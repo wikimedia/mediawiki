@@ -1208,7 +1208,7 @@ class Block extends AbstractBlock {
 	 *  - Other softblocks are chosen over autoblocks
 	 *  - If there are multiple exact or range blocks at the same level, the one chosen
 	 *    is random
-	 * This should be used when $blocks where retrieved from the user's IP address
+	 * This should be used when $blocks were retrieved from the user's IP address
 	 * and $ipChain is populated from the same IP address information.
 	 *
 	 * @param array $blocks Array of Block objects
