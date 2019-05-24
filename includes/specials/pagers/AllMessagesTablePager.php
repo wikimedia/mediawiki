@@ -188,8 +188,8 @@ class AllMessagesTablePager extends TablePager {
 				( $asc && ( $key < $offset || !$offset ) || !$asc && $key > $offset ) &&
 				( ( $this->prefix && preg_match( $this->prefix, $key ) ) || $this->prefix === false )
 			) {
-				$actual = wfMessage( $key )->inLanguage( $this->lang )->plain();
-				$default = wfMessage( $key )->inLanguage( $this->lang )->useDatabase( false )->plain();
+				$actual = $this->msg( $key )->inLanguage( $this->lang )->plain();
+				$default = $this->msg( $key )->inLanguage( $this->lang )->useDatabase( false )->plain();
 				$result->result[] = [
 					'am_title' => $key,
 					'am_actual' => $actual,
