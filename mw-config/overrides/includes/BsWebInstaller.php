@@ -32,6 +32,8 @@
  */
 class BsWebInstaller extends WebInstaller {
 	protected static $aOptions = null;
+	protected $extensionsLoaded = [];
+
 	protected function getOptions() {
 		if( !is_null(static::$aOptions) ) {
 			return static::$aOptions;
@@ -106,23 +108,99 @@ class BsWebInstaller extends WebInstaller {
 		require_once
 			"$IP/extensions/BlueSpiceFoundation/BlueSpiceFoundation.php";
 
+		// Manual dependency to BSF
+		$this->doIncludeExtensions( [
+			"BlueSpiceFoundation"
+		] );
+
+		// Include all other
+		$this->doIncludeExtensions( $exts );
+
+		return Status::newGood();
+	}
+
+	/**
+	 * Loads all declared dependencies for given path
+	 *
+	 * @param string $path
+	 * @throws Exception
+	 */
+	private function loadDependencies( $path ) {
+		$processor = new ExtensionProcessor();
+
+		$json = file_get_contents( $path );
+		if ( $json === false ) {
+			return;
+		}
+		$info = json_decode( $json, true );
+		if ( !is_array( $info ) ) {
+			return;
+		}
+
+		$requires = $processor->getRequirements( $info );
+		if ( is_array( $requires ) && $requires && isset( $requires['extensions'] ) ) {
+			$deps = $requires['extensions'];
+			if ( is_array( $deps ) ) {
+				// We are not interested in if the correct version is available,
+				// we just want to make sure extension is available at all
+				$this->doIncludeExtensions( array_keys( $deps ) );
+			}
+		}
+	}
+
+	/**
+	 * Loads/includes extensions including all required
+	 * extensions in order
+	 *
+	 * @param array $exts
+	 * @throws Exception
+	 */
+	private function doIncludeExtensions( $exts ) {
+		global $IP;
+
 		$registry = ExtensionRegistry::getInstance();
-		$registry->queue( "$IP/extensions/BlueSpiceFoundation/extension.json" );
 		foreach ( $exts as $e ) {
+			$hasExtensionJson = false;
+			$path = '';
 			if ( file_exists( "$IP/extensions/$e/extension.json" ) ) {
-				$registry->queue( "$IP/extensions/$e/extension.json" );
+				$path = "$IP/extensions/$e/extension.json";
+				$hasExtensionJson = true;
 			} else {
 				if( file_exists( "$IP/extensions/$e/$e.setup.php" ) ) {
-					require_once "$IP/extensions/$e/$e.setup.php";
+					$path = "$IP/extensions/$e/$e.setup.php";
 				} elseif( file_exists( "$IP/extensions/$e/$e.php" ) ) {
-					require_once "$IP/extensions/$e/$e.php";
+					$path = "$IP/extensions/$e/$e.php";
 				} else {
 					// :(
 					continue;
 				}
 			}
+
+			if ( $this->isExtensionLoaded( $path ) ) {
+				continue;
+			}
+
+			if ( $hasExtensionJson ) {
+				$this->loadDependencies( $path );
+				$registry->queue( $path );
+			} else {
+				require_once $path;
+			}
 		}
-		return Status::newGood();
+	}
+
+	/**
+	 * Checks if the extension has already been included
+	 *
+	 * @param string $path
+	 * @return bool
+	 */
+	private function isExtensionLoaded( $path ) {
+		if ( array_search( $path, $this->extensionsLoaded ) === false ) {
+			$this->extensionsLoaded[] = $path;
+			return false;
+		}
+		return true;
 	}
 
 	/**
