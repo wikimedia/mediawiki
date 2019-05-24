@@ -486,14 +486,14 @@ class MediaWiki {
 			}
 
 			# Let CDN cache things if we can purge them.
-			if ( $this->config->get( 'UseSquid' ) &&
+			if ( $this->config->get( 'UseCdn' ) &&
 				in_array(
 					// Use PROTO_INTERNAL because that's what getCdnUrls() uses
 					wfExpandUrl( $request->getRequestURL(), PROTO_INTERNAL ),
 					$requestTitle->getCdnUrls()
 				)
 			) {
-				$output->setCdnMaxage( $this->config->get( 'SquidMaxage' ) );
+				$output->setCdnMaxage( $this->config->get( 'CdnMaxAge' ) );
 			}
 
 			$action->show();
@@ -597,7 +597,7 @@ class MediaWiki {
 		wfDebug( __METHOD__ . ': primary transaction round committed' );
 
 		// Run updates that need to block the user or affect output (this is the last chance)
-		DeferredUpdates::doUpdates( 'enqueue', DeferredUpdates::PRESEND );
+		DeferredUpdates::doUpdates( 'run', DeferredUpdates::PRESEND );
 		wfDebug( __METHOD__ . ': pre-send deferred updates completed' );
 		// T214471: persist the session to avoid race conditions on subsequent requests
 		$request->getSession()->save();

@@ -518,9 +518,61 @@ foreach ( LanguageCode::getNonstandardLanguageCodeMapping() as $code => $bcp47 )
 // To determine the user language, use $wgLang->getCode()
 $wgContLanguageCode = $wgLanguageCode;
 
+// Temporary backwards-compatibility reading of old Squid-named CDN settings as of MediaWiki 1.34,
+// to support sysadmins who fail to update their settings immediately:
+
+if ( isset( $wgUseSquid ) ) {
+	// If the sysadmin is still setting a value of $wgUseSquid to true but $wgUseCdn is the default of
+	// false, to be safe, assume they do want this still, so enable it.
+	if ( !$wgUseCdn && $wgUseSquid ) {
+		$wgUseCdn = $wgUseSquid;
+		wfDeprecated( '$wgUseSquid enabled but $wgUseCdn disabled; enabling CDN functions', '1.34' );
+	}
+} else {
+	// Backwards-compatibility for extensions that read this value.
+	$wgUseSquid = $wgUseCdn;
+}
+
+if ( isset( $wgSquidServers ) ) {
+	// If the sysadmin is still setting a value of $wgSquidServers but $wgCdnServers is the default of
+	// empty, to be safe, assume they do want these servers to be still used, so use them.
+	if ( !empty( $wgSquidServers ) && empty( $wgCdnServers ) ) {
+		$wgCdnServers = $wgSquidServers;
+		wfDeprecated( '$wgSquidServers set, $wgCdnServers empty; using them', '1.34' );
+	}
+} else {
+	// Backwards-compatibility for extensions that read this value.
+	$wgSquidServers = $wgCdnServers;
+}
+
+if ( isset( $wgSquidServersNoPurge ) ) {
+	// If the sysadmin is still setting values in $wgSquidServersNoPurge but $wgCdnServersNoPurge is
+	// the default of empty, to be safe, assume they do want these servers to be still used, so use
+	// them.
+	if ( !empty( $wgSquidServersNoPurge ) && empty( $wgCdnServersNoPurge ) ) {
+		$wgCdnServersNoPurge = $wgSquidServersNoPurge;
+		wfDeprecated( '$wgSquidServersNoPurge set, $wgCdnServersNoPurge empty; using them', '1.34' );
+	}
+} else {
+	// Backwards-compatibility for extensions that read this value.
+	$wgSquidServersNoPurge = $wgCdnServersNoPurge;
+}
+
+if ( isset( $wgSquidMaxage ) ) {
+	// If the sysadmin is still setting a value of $wgSquidMaxage and it's higher than $wgCdnMaxAge,
+	// to be safe, assume they want the higher (lower performance requirement) value, so use that.
+	if ( $wgCdnMaxAge < $wgSquidMaxage ) {
+		$wgCdnMaxAge = $wgSquidMaxage;
+		wfDeprecated( '$wgSquidMaxage set higher than $wgCdnMaxAge; using the higher value', '1.34' );
+	}
+} else {
+	// Backwards-compatibility for extensions that read this value.
+	$wgSquidMaxage = $wgCdnMaxAge;
+}
+
 // Easy to forget to falsify $wgDebugToolbar for static caches.
 // If file cache or CDN cache is on, just disable this (DWIMD).
-if ( $wgUseFileCache || $wgUseSquid ) {
+if ( $wgUseFileCache || $wgUseCdn ) {
 	$wgDebugToolbar = false;
 }
 

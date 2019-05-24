@@ -280,8 +280,7 @@ class RefreshLinksJob extends Job {
 			// Carry over cause so the update can do extra logging
 			'causeAction' => $this->params['causeAction'],
 			'causeAgent' => $this->params['causeAgent'],
-			'defer' => false,
-			'transactionTicket' => $ticket,
+			'transactionTicket' => $ticket
 		];
 		if ( !empty( $this->params['triggeringUser'] ) ) {
 			$userInfo = $this->params['triggeringUser'];

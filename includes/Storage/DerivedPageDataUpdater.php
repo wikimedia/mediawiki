@@ -1582,10 +1582,10 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		];
 		$deferValues = [ false, DeferredUpdates::PRESEND, DeferredUpdates::POSTSEND ];
 		if ( !in_array( $options['defer'], $deferValues, true ) ) {
-			throw new InvalidArgumentException( 'invalid value for defer: ' . $options['defer'] );
+			throw new InvalidArgumentException( 'Invalid value for defer: ' . $options['defer'] );
 		}
-		Assert::parameterType( 'integer|null', $options['transactionTicket'],
-			'$options[\'transactionTicket\']' );
+		Assert::parameterType(
+			'integer|null', $options['transactionTicket'], '$options[\'transactionTicket\']' );
 
 		$updates = $this->getSecondaryDataUpdates( $options['recursive'] );
 
@@ -1596,14 +1596,13 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		$causeAction = $this->options['causeAction'] ?? 'unknown';
 		$causeAgent = $this->options['causeAgent'] ?? 'unknown';
 		$legacyRevision = new Revision( $this->revision );
+		$ticket = $options['transactionTicket'];
 
-		if ( $options['defer'] === false && $options['transactionTicket'] !== null ) {
+		if ( $options['defer'] === false && $ticket !== null ) {
 			// For legacy hook handlers doing updates via LinksUpdateConstructed, make sure
 			// any pending writes they made get flushed before the doUpdate() calls below.
 			// This avoids snapshot-clearing errors in LinksUpdate::acquirePageLock().
-			$this->loadbalancerFactory->commitAndWaitForReplication(
-				__METHOD__, $options['transactionTicket']
-			);
+			$this->loadbalancerFactory->commitAndWaitForReplication( __METHOD__, $ticket );
 		}
 
 		foreach ( $updates as $update ) {
@@ -1616,8 +1615,8 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 			}
 
 			if ( $options['defer'] === false ) {
-				if ( $update instanceof DataUpdate && $options['transactionTicket'] !== null ) {
-					$update->setTransactionTicket( $options['transactionTicket'] );
+				if ( $update instanceof DataUpdate && $ticket !== null ) {
+					$update->setTransactionTicket( $ticket );
 				}
 				$update->doUpdate();
 			} else {
