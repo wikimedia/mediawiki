@@ -38,13 +38,6 @@ $digitTransformTable = null;
 $separatorTransformTable = null;
 
 /**
- * Extra user preferences, which will be shown in Special:Preferences as
- * checkboxes. Extra settings in derived languages will automatically be
- * appended to the array of the fallback languages.
- */
-$extraUserToggles = [];
-
-/**
  * URLs do not specify their encoding. UTF-8 is used by default, but if the
  * URL is not a valid UTF-8 sequence, we have to try to guess what the real
  * encoding is. The encoding used in this case is defined below, and must be

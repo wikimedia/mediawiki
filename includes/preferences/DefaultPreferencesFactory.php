@@ -496,18 +496,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			}
 		}
 
-		// Stuff from Language::getExtraUserToggles()
-		// FIXME is this dead code? $extraUserToggles doesn't seem to be defined for any language
-		$toggles = $this->contLang->getExtraUserToggles();
-
-		foreach ( $toggles as $toggle ) {
-			$defaultPreferences[$toggle] = [
-				'type' => 'toggle',
-				'section' => 'personal/i18n',
-				'label-message' => "tog-$toggle",
-			];
-		}
-
 		// show a preview of the old signature first
 		$oldsigWikiText = MediaWikiServices::getInstance()->getParser()->preSaveTransform(
 			'~~~',
