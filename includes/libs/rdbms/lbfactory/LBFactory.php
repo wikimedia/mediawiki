@@ -511,7 +511,7 @@ abstract class LBFactory implements ILBFactory {
 			[
 				'ip' => $this->requestInfo['IPAddress'],
 				'agent' => $this->requestInfo['UserAgent'],
-				'clientId' => $this->requestInfo['ChronologyClientId']
+				'clientId' => $this->requestInfo['ChronologyClientId'] ?: null
 			],
 			$this->requestInfo['ChronologyPositionIndex'],
 			$this->secret
@@ -549,7 +549,7 @@ abstract class LBFactory implements ILBFactory {
 	) {
 		// Record all the master positions needed
 		$this->forEachLB( function ( ILoadBalancer $lb ) use ( $cp ) {
-			$cp->shutdownLB( $lb );
+			$cp->storeSessionReplicationPosition( $lb );
 		} );
 		// Write them to the persistent stash. Try to do something useful by running $work
 		// while ChronologyProtector waits for the stash write to replicate to all DCs.
@@ -603,7 +603,7 @@ abstract class LBFactory implements ILBFactory {
 			'chronologyCallback' => function ( ILoadBalancer $lb ) {
 				// Defer ChronologyProtector construction in case setRequestInfo() ends up
 				// being called later (but before the first connection attempt) (T192611)
-				$this->getChronologyProtector()->initLB( $lb );
+				$this->getChronologyProtector()->applySessionReplicationPosition( $lb );
 			},
 			'roundStage' => $initStage
 		];

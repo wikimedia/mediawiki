@@ -22,6 +22,7 @@
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\LoadBalancer;
 
 /**
@@ -136,11 +137,11 @@ class DeferredUpdates {
 		// Normally, these use the subqueue, but that isn't true for MergeableUpdate items.
 		do {
 			if ( $stage === self::ALL || $stage === self::PRESEND ) {
-				self::execute( self::$preSendUpdates, $mode, $stageEffective );
+				self::handleUpdateQueue( self::$preSendUpdates, $mode, $stageEffective );
 			}
 
 			if ( $stage === self::ALL || $stage == self::POSTSEND ) {
-				self::execute( self::$postSendUpdates, $mode, $stageEffective );
+				self::handleUpdateQueue( self::$postSendUpdates, $mode, $stageEffective );
 			}
 		} while ( $stage === self::ALL && self::$preSendUpdates );
 	}
@@ -169,15 +170,15 @@ class DeferredUpdates {
 	}
 
 	/**
-	 * Immediately run/queue a list of updates
+	 * Immediately run or enqueue a list of updates
 	 *
 	 * @param DeferrableUpdate[] &$queue List of DeferrableUpdate objects
-	 * @param string $mode Use "enqueue" to use the job queue when possible
+	 * @param string $mode Either "run" or "enqueue" (to use the job queue when possible)
 	 * @param int $stage Class constant (PRESEND, POSTSEND) (since 1.28)
 	 * @throws ErrorPageError Happens on top-level calls
 	 * @throws Exception Happens on second-level calls
 	 */
-	protected static function execute( array &$queue, $mode, $stage ) {
+	protected static function handleUpdateQueue( array &$queue, $mode, $stage ) {
 		$services = MediaWikiServices::getInstance();
 		$stats = $services->getStatsdDataFactory();
 		$lbFactory = $services->getDBLoadBalancerFactory();
@@ -216,7 +217,7 @@ class DeferredUpdates {
 					self::$executeContext = [ 'stage' => $stage, 'subqueue' => [] ];
 					try {
 						/** @var DeferrableUpdate $update */
-						$guiError = self::runUpdate( $update, $lbFactory, $mode, $stage );
+						$guiError = self::handleUpdate( $update, $lbFactory, $mode, $stage );
 						$reportableError = $reportableError ?: $guiError;
 						// Do the subqueue updates for $update until there are none
 						while ( self::$executeContext['subqueue'] ) {
@@ -228,7 +229,7 @@ class DeferredUpdates {
 								$subUpdate->setTransactionTicket( $ticket );
 							}
 
-							$guiError = self::runUpdate( $subUpdate, $lbFactory, $mode, $stage );
+							$guiError = self::handleUpdate( $subUpdate, $lbFactory, $mode, $stage );
 							$reportableError = $reportableError ?: $guiError;
 						}
 					} finally {
@@ -249,13 +250,15 @@ class DeferredUpdates {
 	}
 
 	/**
+	 * Run or enqueue an update
+	 *
 	 * @param DeferrableUpdate $update
 	 * @param LBFactory $lbFactory
 	 * @param string $mode
 	 * @param int $stage
 	 * @return ErrorPageError|null
 	 */
-	private static function runUpdate(
+	private static function handleUpdate(
 		DeferrableUpdate $update, LBFactory $lbFactory, $mode, $stage
 	) {
 		$guiError = null;
@@ -265,21 +268,15 @@ class DeferredUpdates {
 				$spec = $update->getAsJobSpecification();
 				$domain = $spec['domain'] ?? $spec['wiki'];
 				JobQueueGroup::singleton( $domain )->push( $spec['job'] );
-			} elseif ( $update instanceof TransactionRoundDefiningUpdate ) {
-				$update->doUpdate();
 			} else {
-				// Run the bulk of the update now
-				$fnameTrxOwner = get_class( $update ) . '::doUpdate';
-				$lbFactory->beginMasterChanges( $fnameTrxOwner );
-				$update->doUpdate();
-				$lbFactory->commitMasterChanges( $fnameTrxOwner );
+				self::attemptUpdate( $update, $lbFactory );
 			}
 		} catch ( Exception $e ) {
 			// Reporting GUI exceptions does not work post-send
 			if ( $e instanceof ErrorPageError && $stage === self::PRESEND ) {
 				$guiError = $e;
 			}
-			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
+			$lbFactory->rollbackMasterChanges( __METHOD__ );
 
 			// VW-style hack to work around T190178, so we can make sure
 			// PageMetaDataUpdater doesn't throw exceptions.
@@ -289,6 +286,32 @@ class DeferredUpdates {
 		}
 
 		return $guiError;
+	}
+
+	/**
+	 * Attempt to run an update with the appropriate transaction round state it expects
+	 *
+	 * DeferredUpdate classes that wrap the execution of bundles of other DeferredUpdate
+	 * instances can use this method to run the updates. Any such wrapper class should
+	 * always use TRX_ROUND_ABSENT itself.
+	 *
+	 * @param DeferrableUpdate $update
+	 * @param ILBFactory $lbFactory
+	 * @since 1.34
+	 */
+	public static function attemptUpdate( DeferrableUpdate $update, ILBFactory $lbFactory ) {
+		if (
+			$update instanceof TransactionRoundAwareUpdate &&
+			$update->getTransactionRoundRequirement() == $update::TRX_ROUND_ABSENT
+		) {
+			$update->doUpdate();
+		} else {
+			// Run the bulk of the update now
+			$fnameTrxOwner = get_class( $update ) . '::doUpdate';
+			$lbFactory->beginMasterChanges( $fnameTrxOwner );
+			$update->doUpdate();
+			$lbFactory->commitMasterChanges( $fnameTrxOwner );
+		}
 	}
 
 	/**

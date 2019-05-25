@@ -356,11 +356,11 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$mockDB2->expects( $this->exactly( 1 ) )->method( 'lastDoneWrites' );
 
 		// Nothing to wait for on first HTTP request start
-		$cp->initLB( $lb1 );
-		$cp->initLB( $lb2 );
+		$cp->applySessionReplicationPosition( $lb1 );
+		$cp->applySessionReplicationPosition( $lb2 );
 		// Record positions in stash on first HTTP request end
-		$cp->shutdownLB( $lb1 );
-		$cp->shutdownLB( $lb2 );
+		$cp->storeSessionReplicationPosition( $lb1 );
+		$cp->storeSessionReplicationPosition( $lb2 );
 		$cpIndex = null;
 		$cp->shutdown( null, 'sync', $cpIndex );
 
@@ -395,11 +395,11 @@ class LBFactoryTest extends MediaWikiTestCase {
 		);
 
 		// Wait for last positions to be reached on second HTTP request start
-		$cp->initLB( $lb1 );
-		$cp->initLB( $lb2 );
+		$cp->applySessionReplicationPosition( $lb1 );
+		$cp->applySessionReplicationPosition( $lb2 );
 		// Shutdown (nothing to record)
-		$cp->shutdownLB( $lb1 );
-		$cp->shutdownLB( $lb2 );
+		$cp->storeSessionReplicationPosition( $lb1 );
+		$cp->storeSessionReplicationPosition( $lb2 );
 		$cpIndex = null;
 		$cp->shutdown( null, 'sync', $cpIndex );
 
