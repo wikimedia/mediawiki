@@ -895,7 +895,7 @@ class Linker {
 	 */
 	public static function userLink( $userId, $userName, $altUserName = false ) {
 		if ( $userName === '' ) {
-			wfLogWarning( __METHOD__ . ' received an empty username. Are there database errors ' .
+			wfDebug( __METHOD__ . ' received an empty username. Are there database errors ' .
 				'that need to be fixed?' );
 			return wfMessage( 'empty-username' )->parse();
 		}
@@ -943,7 +943,7 @@ class Linker {
 		$useParentheses = true
 	) {
 		if ( $userText === '' ) {
-			wfLogWarning( __METHOD__ . ' received an empty username. Are there database errors ' .
+			wfDebug( __METHOD__ . ' received an empty username. Are there database errors ' .
 				'that need to be fixed?' );
 			return ' ' . wfMessage( 'empty-username' )->parse();
 		}
@@ -1031,7 +1031,7 @@ class Linker {
 	 */
 	public static function userTalkLink( $userId, $userText ) {
 		if ( $userText === '' ) {
-			wfLogWarning( __METHOD__ . ' received an empty username. Are there database errors ' .
+			wfDebug( __METHOD__ . ' received an empty username. Are there database errors ' .
 				'that need to be fixed?' );
 			return wfMessage( 'empty-username' )->parse();
 		}
@@ -1053,7 +1053,7 @@ class Linker {
 	 */
 	public static function blockLink( $userId, $userText ) {
 		if ( $userText === '' ) {
-			wfLogWarning( __METHOD__ . ' received an empty username. Are there database errors ' .
+			wfDebug( __METHOD__ . ' received an empty username. Are there database errors ' .
 				'that need to be fixed?' );
 			return wfMessage( 'empty-username' )->parse();
 		}
