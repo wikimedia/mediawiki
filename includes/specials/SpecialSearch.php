@@ -314,14 +314,14 @@ class SpecialSearch extends SpecialPage {
 			return;
 		}
 
-		$search = $this->getSearchEngine();
-		$search->setFeatureData( 'rewrite', $this->runSuggestion );
-		$search->setLimitOffset( $this->limit, $this->offset );
-		$search->setNamespaces( $this->namespaces );
-		$search->setSort( $this->sort );
-		$search->prefix = $this->mPrefix;
+		$engine = $this->getSearchEngine();
+		$engine->setFeatureData( 'rewrite', $this->runSuggestion );
+		$engine->setLimitOffset( $this->limit, $this->offset );
+		$engine->setNamespaces( $this->namespaces );
+		$engine->setSort( $this->sort );
+		$engine->prefix = $this->mPrefix;
 
-		Hooks::run( 'SpecialSearchSetupEngine', [ $this, $this->profile, $search ] );
+		Hooks::run( 'SpecialSearchSetupEngine', [ $this, $this->profile, $engine ] );
 		if ( !Hooks::run( 'SpecialSearchResultsPrepend', [ $this, $out, $term ] ) ) {
 			# Hook requested termination
 			return;
@@ -329,17 +329,17 @@ class SpecialSearch extends SpecialPage {
 
 		$title = Title::newFromText( $term );
 		$showSuggestion = $title === null || !$title->isKnown();
-		$search->setShowSuggestion( $showSuggestion );
+		$engine->setShowSuggestion( $showSuggestion );
 
-		$rewritten = $search->replacePrefixes( $term );
+		$rewritten = $engine->replacePrefixes( $term );
 		if ( $rewritten !== $term ) {
 			wfDeprecated( 'SearchEngine::replacePrefixes() (overridden by ' .
-						  get_class( $search ) . ')', '1.32' );
+						  get_class( $engine ) . ')', '1.32' );
 		}
 
 		// fetch search results
-		$titleMatches = $search->searchTitle( $rewritten );
-		$textMatches = $search->searchText( $rewritten );
+		$titleMatches = $engine->searchTitle( $rewritten );
+		$textMatches = $engine->searchText( $rewritten );
 
 		$textStatus = null;
 		if ( $textMatches instanceof Status ) {
@@ -357,7 +357,7 @@ class SpecialSearch extends SpecialPage {
 			$textMatchesNum = $textMatches->numRows();
 			$numTextMatches = $textMatches->getTotalHits();
 			if ( $textMatchesNum > 0 ) {
-				$search->augmentSearchResults( $textMatches );
+				$engine->augmentSearchResults( $textMatches );
 			}
 		}
 		$num = $titleMatchesNum + $textMatchesNum;
@@ -418,14 +418,14 @@ class SpecialSearch extends SpecialPage {
 		$mainResultWidget = new FullSearchResultWidget( $this, $linkRenderer );
 
 		// Default (null) on. Can be explicitly disabled.
-		if ( $search->getFeatureData( 'enable-new-crossproject-page' ) !== false ) {
+		if ( $engine->getFeatureData( 'enable-new-crossproject-page' ) !== false ) {
 			$sidebarResultWidget = new InterwikiSearchResultWidget( $this, $linkRenderer );
 			$sidebarResultsWidget = new InterwikiSearchResultSetWidget(
 				$this,
 				$sidebarResultWidget,
 				$linkRenderer,
 				MediaWikiServices::getInstance()->getInterwikiLookup(),
-				$search->getFeatureData( 'show-multimedia-search-results' )
+				$engine->getFeatureData( 'show-multimedia-search-results' )
 			);
 		} else {
 			$sidebarResultWidget = new SimpleSearchResultWidget( $this, $linkRenderer );
