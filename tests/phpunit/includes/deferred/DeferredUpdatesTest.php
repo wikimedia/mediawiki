@@ -8,8 +8,8 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 	 * @covers DeferredUpdates::addUpdate
 	 * @covers DeferredUpdates::push
 	 * @covers DeferredUpdates::doUpdates
-	 * @covers DeferredUpdates::execute
-	 * @covers DeferredUpdates::runUpdate
+	 * @covers DeferredUpdates::handleUpdateQueue
+	 * @covers DeferredUpdates::attemptUpdate
 	 */
 	public function testAddAndRun() {
 		$update = $this->getMockBuilder( DeferrableUpdate::class )
@@ -92,7 +92,7 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers DeferredUpdates::doUpdates
-	 * @covers DeferredUpdates::execute
+	 * @covers DeferredUpdates::handleUpdateQueue
 	 * @covers DeferredUpdates::addUpdate
 	 */
 	public function testDoUpdatesWeb() {
@@ -189,7 +189,7 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers DeferredUpdates::doUpdates
-	 * @covers DeferredUpdates::execute
+	 * @covers DeferredUpdates::handleUpdateQueue
 	 * @covers DeferredUpdates::addUpdate
 	 */
 	public function testDoUpdatesCLI() {
@@ -263,7 +263,7 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers DeferredUpdates::doUpdates
-	 * @covers DeferredUpdates::execute
+	 * @covers DeferredUpdates::handleUpdateQueue
 	 * @covers DeferredUpdates::addUpdate
 	 */
 	public function testPresendAddOnPostsendRun() {
@@ -295,7 +295,7 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers DeferredUpdates::runUpdate
+	 * @covers DeferredUpdates::attemptUpdate
 	 */
 	public function testRunUpdateTransactionScope() {
 		$this->setMwGlobals( 'wgCommandLineMode', false );
@@ -315,7 +315,7 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers DeferredUpdates::runUpdate
+	 * @covers DeferredUpdates::attemptUpdate
 	 * @covers TransactionRoundDefiningUpdate::getOrigin
 	 */
 	public function testRunOuterScopeUpdate() {
@@ -326,10 +326,10 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 
 		$ran = 0;
 		DeferredUpdates::addUpdate( new TransactionRoundDefiningUpdate(
-			function () use ( &$ran, $lbFactory ) {
-				$ran++;
-				$this->assertFalse( $lbFactory->hasTransactionRound(), 'No transaction' );
-			} )
+				function () use ( &$ran, $lbFactory ) {
+					$ran++;
+					$this->assertFalse( $lbFactory->hasTransactionRound(), 'No transaction' );
+				} )
 		);
 		DeferredUpdates::doUpdates();
 
