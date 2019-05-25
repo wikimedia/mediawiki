@@ -30,7 +30,10 @@ use Wikimedia\WaitConditionLoop;
 use BagOStuff;
 
 /**
- * Class for ensuring a consistent ordering of events as seen by the user, despite replication.
+ * Helper class for mitigating DB replication lag in order to provide "session consistency"
+ *
+ * This helps to ensure a consistent ordering of events as seen by an client
+ *
  * Kind of like Hawking's [[Chronology Protection Agency]].
  */
 class ChronologyProtector implements LoggerAwareInterface {
@@ -82,7 +85,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 		if ( isset( $client['clientId'] ) ) {
 			$this->clientId = $client['clientId'];
 		} else {
-			$this->clientId = strlen( $secret )
+			$this->clientId = ( $secret != '' )
 				? hash_hmac( 'md5', $client['ip'] . "\n" . $client['agent'], $secret )
 				: md5( $client['ip'] . "\n" . $client['agent'] );
 		}
@@ -127,44 +130,46 @@ class ChronologyProtector implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Initialise a ILoadBalancer to give it appropriate chronology protection.
+	 * Apply the "session consistency" DB replication position to a new ILoadBalancer
 	 *
-	 * If the stash has a previous master position recorded, this will try to
-	 * make sure that the next query to a replica DB of that master will see changes up
+	 * If the stash has a previous master position recorded, this will try to make
+	 * sure that the next query to a replica DB of that master will see changes up
 	 * to that position by delaying execution. The delay may timeout and allow stale
 	 * data if no non-lagged replica DBs are available.
+	 *
+	 * This method should only be called from LBFactory.
 	 *
 	 * @param ILoadBalancer $lb
 	 * @return void
 	 */
-	public function initLB( ILoadBalancer $lb ) {
-		if ( !$this->enabled || $lb->getServerCount() <= 1 ) {
-			return; // non-replicated setup or disabled
+	public function applySessionReplicationPosition( ILoadBalancer $lb ) {
+		if ( !$this->enabled ) {
+			return; // disabled
 		}
 
-		$this->initPositions();
-
 		$masterName = $lb->getServerName( $lb->getWriterIndex() );
-		if (
-			isset( $this->startupPositions[$masterName] ) &&
-			$this->startupPositions[$masterName] instanceof DBMasterPos
-		) {
-			$pos = $this->startupPositions[$masterName];
-			$this->logger->debug( __METHOD__ . ": LB for '$masterName' set to pos $pos\n" );
+		$startupPositions = $this->getStartupMasterPositions();
+
+		$pos = $startupPositions[$masterName] ?? null;
+		if ( $pos instanceof DBMasterPos ) {
+			$this->logger->debug( __METHOD__ . ": pos for DB '$masterName' set to '$pos'\n" );
 			$lb->waitFor( $pos );
 		}
 	}
 
 	/**
-	 * Notify the ChronologyProtector that the ILoadBalancer is about to shut
-	 * down. Saves replication positions.
+	 * Save the "session consistency" DB replication position for an end-of-life ILoadBalancer
+	 *
+	 * This saves the replication position of the master DB if this request made writes to it.
+	 *
+	 * This method should only be called from LBFactory.
 	 *
 	 * @param ILoadBalancer $lb
 	 * @return void
 	 */
-	public function shutdownLB( ILoadBalancer $lb ) {
+	public function storeSessionReplicationPosition( ILoadBalancer $lb ) {
 		if ( !$this->enabled ) {
-			return; // not enabled
+			return; // disabled
 		} elseif ( !$lb->hasOrMadeRecentMasterChanges( INF ) ) {
 			// Only save the position if writes have been done on the connection
 			return;
@@ -209,10 +214,13 @@ class ChronologyProtector implements LoggerAwareInterface {
 		}
 
 		if ( $this->shutdownPositions === [] ) {
+			$this->logger->debug( __METHOD__ . ": no master positions to save\n" );
+
 			return []; // nothing to save
 		}
 
-		$this->logger->debug( __METHOD__ . ": saving master pos for " .
+		$this->logger->debug(
+			__METHOD__ . ": saving master pos for " .
 			implode( ', ', array_keys( $this->shutdownPositions ) ) . "\n"
 		);
 
@@ -282,12 +290,14 @@ class ChronologyProtector implements LoggerAwareInterface {
 	/**
 	 * Load in previous master positions for the client
 	 */
-	protected function initPositions() {
+	protected function getStartupMasterPositions() {
 		if ( $this->initialized ) {
-			return;
+			return $this->startupPositions;
 		}
 
 		$this->initialized = true;
+		$this->logger->debug( __METHOD__ . ": client ID is {$this->clientId} (read)\n" );
+
 		if ( $this->wait ) {
 			// If there is an expectation to see master positions from a certain write
 			// index or higher, then block until it appears, or until a timeout is reached.
@@ -344,6 +354,8 @@ class ChronologyProtector implements LoggerAwareInterface {
 			$this->startupPositions = [];
 			$this->logger->debug( __METHOD__ . ": key is {$this->key} (unread)\n" );
 		}
+
+		return $this->startupPositions;
 	}
 
 	/**
