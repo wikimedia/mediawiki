@@ -97,7 +97,8 @@
 			"Kurt Jansson",
 			"McDutchie",
 			"Johanna Strodt (WMDE)",
-			"Andi-3"
+			"Andi-3",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -3732,6 +3733,8 @@
 	"mw-widgets-abandonedit-discard": "Bearbeitungen verwerfen",
 	"mw-widgets-abandonedit-keep": "Weiter bearbeiten",
 	"mw-widgets-abandonedit-title": "Bist du sicher?",
+	"mw-widgets-copytextlayout-copy": "Kopieren",
+	"mw-widgets-copytextlayout-copy-fail": "Der Text konnte nicht in die Zwischenablage kopiert werden.",
 	"mw-widgets-dateinput-no-date": "Kein Datum ausgewählt",
 	"mw-widgets-dateinput-placeholder-day": "JJJJ-MM-TT",
 	"mw-widgets-dateinput-placeholder-month": "JJJJ-MM",
