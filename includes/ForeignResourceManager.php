@@ -19,6 +19,8 @@
  * @ingroup Maintenance
  */
 
+use Wikimedia\AtEase\AtEase;
+
 /**
  * Manage foreign resources registered with ResourceLoader.
  *
@@ -150,7 +152,7 @@ class ForeignResourceManager {
 
 	/** @return string|false */
 	private function cacheGet( $key ) {
-		return Wikimedia\quietCall( 'file_get_contents', "{$this->cacheDir}/$key.data" );
+		return AtEase::quietCall( 'file_get_contents', "{$this->cacheDir}/$key.data" );
 	}
 
 	private function cacheSet( $key, $data ) {

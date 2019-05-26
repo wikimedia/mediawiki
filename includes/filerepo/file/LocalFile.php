@@ -21,6 +21,7 @@
  * @ingroup FileAbstraction
  */
 
+use Wikimedia\AtEase\AtEase;
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
@@ -1337,7 +1338,7 @@ class LocalFile extends File {
 		$options = [];
 		$handler = MediaHandler::getHandler( $props['mime'] );
 		if ( $handler ) {
-			$metadata = Wikimedia\quietCall( 'unserialize', $props['metadata'] );
+			$metadata = AtEase::quietCall( 'unserialize', $props['metadata'] );
 
 			if ( !is_array( $metadata ) ) {
 				$metadata = [];

@@ -22,6 +22,7 @@
  * @file
  */
 
+use Wikimedia\AtEase\AtEase;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
@@ -553,7 +554,7 @@ class RequestContext implements IContextSource, MutableContext {
 			$wgUser = $context->getUser(); // b/c
 			if ( $session && MediaWiki\Session\PHPSessionHandler::isEnabled() ) {
 				session_id( $session->getId() );
-				Wikimedia\quietCall( 'session_start' );
+				AtEase::quietCall( 'session_start' );
 			}
 			$request = new FauxRequest( [], false, $session );
 			$request->setIP( $params['ip'] );

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Session;
 
+use Wikimedia\AtEase\AtEase;
 use Config;
 use MediaWikiTestCase;
 use User;
@@ -900,7 +901,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$manager->globalSessionRequest = $request;
 
 		session_id( self::SESSIONID );
-		\Wikimedia\quietCall( 'session_start' );
+		AtEase::quietCall( 'session_start' );
 		$_SESSION['foo'] = __METHOD__;
 		$backend->resetId();
 		$this->assertNotEquals( self::SESSIONID, $backend->getId() );
@@ -938,7 +939,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$manager->globalSessionRequest = $request;
 
 		session_id( self::SESSIONID . 'x' );
-		\Wikimedia\quietCall( 'session_start' );
+		AtEase::quietCall( 'session_start' );
 		$backend->unpersist();
 		$this->assertSame( self::SESSIONID . 'x', session_id() );
 		session_write_close();

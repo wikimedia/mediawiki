@@ -5,6 +5,7 @@
  *
  * Represents files in a repository.
  */
+use Wikimedia\AtEase\AtEase;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -2171,7 +2172,7 @@ abstract class File implements IDBAccessObject {
 			$metadata = $this->getMetadata();
 
 			if ( is_string( $metadata ) ) {
-				$metadata = Wikimedia\quietCall( 'unserialize', $metadata );
+				$metadata = AtEase::quietCall( 'unserialize', $metadata );
 			}
 
 			if ( !is_array( $metadata ) ) {

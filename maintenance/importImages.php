@@ -306,7 +306,7 @@ class ImportImages extends Maintenance {
 					$publishOptions = [];
 					$handler = MediaHandler::getHandler( $props['mime'] );
 					if ( $handler ) {
-						$metadata = Wikimedia\quietCall( 'unserialize', $props['metadata'] );
+						$metadata = \Wikimedia\AtEase\AtEase::quietCall( 'unserialize', $props['metadata'] );
 
 						$publishOptions['headers'] = $handler->getContentHeaders( $metadata );
 					} else {
