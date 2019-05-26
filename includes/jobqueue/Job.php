@@ -97,7 +97,9 @@ abstract class Job implements IJobSpecification {
 
 				return $job;
 			} else {
-				throw new InvalidArgumentException( "Could instantiate job '$command': bad spec!" );
+				throw new InvalidArgumentException(
+					"Could not instantiate job '$command': bad spec!"
+				);
 			}
 		}
 
