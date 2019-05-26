@@ -39,7 +39,8 @@
 			"שמזן",
 			"Uziel302",
 			"Strayblues",
-			"דויד־תמר"
+			"דויד־תמר",
+			"Steeve815"
 		]
 	},
 	"tog-underline": "סימון קישורים בקו תחתי:",
@@ -3730,6 +3731,9 @@
 	"mw-widgets-abandonedit-discard": "ביטול העריכות",
 	"mw-widgets-abandonedit-keep": "המשך עריכה",
 	"mw-widgets-abandonedit-title": "בטוח?",
+	"mw-widgets-copytextlayout-copy": "העתק",
+	"mw-widgets-copytextlayout-copy-fail": "ההעתקה ללוח נכשלה.",
+	"mw-widgets-copytextlayout-copy-success": "הועתק ללוח.",
 	"mw-widgets-dateinput-no-date": "לא נבחר תאריך",
 	"mw-widgets-mediasearch-input-placeholder": "חיפוש מדיה",
 	"mw-widgets-mediasearch-noresults": "לא נמצאו תוצאות.",

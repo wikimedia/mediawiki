@@ -140,7 +140,8 @@
 			"Edward Chernenko",
 			"Romanko Mikhail",
 			"Diralik",
-			"1233qwer1234qwer4"
+			"1233qwer1234qwer4",
+			"Саша Волохов"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -3853,6 +3854,9 @@
 	"mw-widgets-abandonedit-discard": "Отменить правки",
 	"mw-widgets-abandonedit-keep": "Продолжить редактирование",
 	"mw-widgets-abandonedit-title": "Вы уверены?",
+	"mw-widgets-copytextlayout-copy": "Скопировать",
+	"mw-widgets-copytextlayout-copy-fail": "Не удалось скопировать данные в буфер обмена.",
+	"mw-widgets-copytextlayout-copy-success": "Скопировано в буфер обмена.",
 	"mw-widgets-dateinput-no-date": "Дата не выбрана",
 	"mw-widgets-dateinput-placeholder-day": "ГГГГ-ММ-ДД",
 	"mw-widgets-dateinput-placeholder-month": "ГГГГ-ММ",
