@@ -169,12 +169,6 @@ return [
 		'messages' => [ 'brackets', 'word-separator' ],
 		'targets' => [ 'mobile', 'desktop' ],
 	],
-	'jquery.byteLength' => [
-		'scripts' => 'resources/src/jquery/jquery.byteLength.js',
-		'deprecated' => 'Use "mediawiki.String" instead.',
-		'dependencies' => 'mediawiki.String',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'jquery.checkboxShiftClick' => [
 		'scripts' => 'resources/src/jquery/jquery.checkboxShiftClick.js',
 		'targets' => [ 'desktop', 'mobile' ],
