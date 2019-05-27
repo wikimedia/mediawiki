@@ -345,29 +345,42 @@ class BlockManager {
 				if ( is_array( $base ) ) {
 					if ( count( $base ) >= 2 ) {
 						// Access key is 1, base URL is 0
-						$host = "{$base[1]}.$ipReversed.{$base[0]}";
+						$hostname = "{$base[1]}.$ipReversed.{$base[0]}";
 					} else {
-						$host = "$ipReversed.{$base[0]}";
+						$hostname = "$ipReversed.{$base[0]}";
 					}
 					$basename = $base[0];
 				} else {
-					$host = "$ipReversed.$base";
+					$hostname = "$ipReversed.$base";
 				}
 
 				// Send query
-				$ipList = gethostbynamel( $host );
+				$ipList = $this->checkHost( $hostname );
 
 				if ( $ipList ) {
-					wfDebugLog( 'dnsblacklist', "Hostname $host is {$ipList[0]}, it's a proxy says $basename!" );
+					wfDebugLog(
+						'dnsblacklist',
+						"Hostname $hostname is {$ipList[0]}, it's a proxy says $basename!"
+					);
 					$found = true;
 					break;
 				}
 
-				wfDebugLog( 'dnsblacklist', "Requested $host, not found in $basename." );
+				wfDebugLog( 'dnsblacklist', "Requested $hostname, not found in $basename." );
 			}
 		}
 
 		return $found;
+	}
+
+	/**
+	 * Wrapper for mocking in tests.
+	 *
+	 * @param string $hostname DNSBL query
+	 * @return string[]|bool IPv4 array, or false if the IP is not blacklisted
+	 */
+	protected function checkHost( $hostname ) {
+		return gethostbynamel( $hostname );
 	}
 
 }
