@@ -185,6 +185,8 @@ because of Phabricator reports.
 * IP::isValidBlock(), deprecated in 1.30, has been removed.
 * WikiPage::prepareContentForEdit now doesn't accept an integer for $revision,
   was deprecated in 1.25.
+* The jquery.byteLength module, deprecated in 1.31, was removed.
+  Use the mediawiki.String module instead.
 * …
 
 === Deprecations in 1.34 ===
