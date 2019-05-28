@@ -196,8 +196,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		$cache = ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
 
 		$key = $cache->makeGlobalKey(
-			'resourceloader',
-			'filter',
+			'resourceloader-filter',
 			$filter,
 			self::CACHE_VERSION,
 			md5( $data )
