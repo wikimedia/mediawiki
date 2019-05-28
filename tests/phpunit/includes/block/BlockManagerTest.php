@@ -20,10 +20,7 @@ class BlockManagerTest extends MediaWikiTestCase {
 
 		$this->user = $this->getTestUser()->getUser();
 		$this->sysopId = $this->getTestSysop()->getUser()->getId();
-	}
-
-	private function getBlockManager( $overrideConfig ) {
-		$blockManagerConfig = array_merge( [
+		$this->blockManagerConfig = [
 			'wgApplyIpBlocksToXff' => true,
 			'wgCookieSetOnAutoblock' => true,
 			'wgCookieSetOnIpBlock' => true,
@@ -32,7 +29,11 @@ class BlockManagerTest extends MediaWikiTestCase {
 			'wgProxyList' => [],
 			'wgProxyWhitelist' => [],
 			'wgSoftBlockRanges' => [],
-		], $overrideConfig );
+		];
+	}
+
+	private function getBlockManager( $overrideConfig ) {
+		$blockManagerConfig = array_merge( $this->blockManagerConfig, $overrideConfig );
 		return new BlockManager(
 			$this->user,
 			$this->user->getRequest(),
@@ -174,50 +175,112 @@ class BlockManagerTest extends MediaWikiTestCase {
 	 * @covers ::inDnsBlacklist
 	 */
 	public function testIsDnsBlacklisted( $options, $expected ) {
-		$blockManager = $this->getBlockManager( [
+		$blockManagerConfig = array_merge( $this->blockManagerConfig, [
 			'wgEnableDnsBlacklist' => true,
-			'wgDnsBlacklistUrls' => $options[ 'inBlacklist' ] ? [ 'local.wmftest.net' ] : [],
-			'wgProxyWhitelist' => $options[ 'inWhitelist' ] ? [ '127.0.0.1' ] : [],
+			'wgDnsBlacklistUrls' => $options['blacklist'],
+			'wgProxyWhitelist' => $options['whitelist'],
 		] );
 
-		$ip = '127.0.0.1';
+		$blockManager = $this->getMockBuilder( BlockManager::class )
+			->setConstructorArgs(
+				array_merge( [
+					$this->user,
+					$this->user->getRequest(),
+				], $blockManagerConfig ) )
+			->setMethods( [ 'checkHost' ] )
+			->getMock();
+
+		$blockManager->expects( $this->any() )
+			->method( 'checkHost' )
+			->will( $this->returnValueMap( [ [
+				$options['dnsblQuery'],
+				$options['dnsblResponse'],
+			] ] ) );
+
 		$this->assertSame(
 			$expected,
-			$blockManager->isDnsBlacklisted( $ip, $options[ 'check' ] )
+			$blockManager->isDnsBlacklisted( $options['ip'], $options['checkWhitelist'] )
 		);
 	}
 
 	public static function provideIsDnsBlacklisted() {
+		$dnsblFound = [ '127.0.0.2' ];
+		$dnsblNotFound = false;
 		return [
 			'IP is blacklisted' => [
 				[
-					'inBlacklist' => true,
-					'inWhitelist' => false,
-					'check' => false,
+					'blacklist' => [ 'dnsbl.test' ],
+					'ip' => '127.0.0.1',
+					'dnsblQuery' => '1.0.0.127.dnsbl.test',
+					'dnsblResponse' => $dnsblFound,
+					'whitelist' => [],
+					'checkWhitelist' => false,
+				],
+				true,
+			],
+			'IP is blacklisted; blacklist has key' => [
+				[
+					'blacklist' => [ [ 'dnsbl.test', 'key' ] ],
+					'ip' => '127.0.0.1',
+					'dnsblQuery' => 'key.1.0.0.127.dnsbl.test',
+					'dnsblResponse' => $dnsblFound,
+					'whitelist' => [],
+					'checkWhitelist' => false,
+				],
+				true,
+			],
+			'IP is blacklisted; blacklist is array' => [
+				[
+					'blacklist' => [ [ 'dnsbl.test' ] ],
+					'ip' => '127.0.0.1',
+					'dnsblQuery' => '1.0.0.127.dnsbl.test',
+					'dnsblResponse' => $dnsblFound,
+					'whitelist' => [],
+					'checkWhitelist' => false,
 				],
 				true,
 			],
 			'IP is not blacklisted' => [
 				[
-					'inBlacklist' => false,
-					'inWhitelist' => false,
-					'check' => false,
+					'blacklist' => [ 'dnsbl.test' ],
+					'ip' => '1.2.3.4',
+					'dnsblQuery' => '4.3.2.1.dnsbl.test',
+					'dnsblResponse' => $dnsblNotFound,
+					'whitelist' => [],
+					'checkWhitelist' => false,
 				],
 				false,
 			],
-			'IP is blacklisted and whitelisted; whitelist is checked' => [
+			'Blacklist is empty' => [
 				[
-					'inBlacklist' => true,
-					'inWhitelist' => true,
-					'check' => false,
+					'blacklist' => [],
+					'ip' => '127.0.0.1',
+					'dnsblQuery' => '1.0.0.127.dnsbl.test',
+					'dnsblResponse' => $dnsblFound,
+					'whitelist' => [],
+					'checkWhitelist' => false,
 				],
-				true,
+				false,
 			],
 			'IP is blacklisted and whitelisted; whitelist is not checked' => [
 				[
-					'inBlacklist' => true,
-					'inWhitelist' => true,
-					'check' => true,
+					'blacklist' => [ 'dnsbl.test' ],
+					'ip' => '127.0.0.1',
+					'dnsblQuery' => '1.0.0.127.dnsbl.test',
+					'dnsblResponse' => $dnsblFound,
+					'whitelist' => [ '127.0.0.1' ],
+					'checkWhitelist' => false,
+				],
+				true,
+			],
+			'IP is blacklisted and whitelisted; whitelist is checked' => [
+				[
+					'blacklist' => [ 'dnsbl.test' ],
+					'ip' => '127.0.0.1',
+					'dnsblQuery' => '1.0.0.127.dnsbl.test',
+					'dnsblResponse' => $dnsblFound,
+					'whitelist' => [ '127.0.0.1' ],
+					'checkWhitelist' => true,
 				],
 				false,
 			],
