@@ -2,9 +2,11 @@
 
 THIS IS NOT A RELEASE YET
 
+Required PHP version has been increased from 7.0.0 to 7.0.13.
+
 === Changes since MediaWiki 1.31.1 ===
 * (T204729) WatchedItemStore::countVisitingWatchersMultiple() shouldn't query all
-  titles when asked for none
+  titles when asked for none.
 * (T205967) Fix syntax error typo in postgres database upgrade file.
 * (T200254) Add pear/Net_SMTP 1.7.3 to composer dependencies.
 * (T206765) Load installer i18n when running update.php.
@@ -17,58 +19,66 @@ THIS IS NOT A RELEASE YET
   * (T206979) Fix PHP 7.3 warnings of using "compact()" when some variables may
     not be set.
   * (T215632) FormatMetadata and UploadStash regexes fixed to be PHP 7.3-compatible.
-  * Avoid PHP 7.2 warnings in DBConRefTest about count() on non-Countable
-  * Suppress "Headers already sent" in PHP 7.2 too
-  * (T206476) Output only to stderr in unit tests
-  * (T207112) Add session_write_close() calls to SessionManager tests
+  * Fix PHP warnings "preg_replace(): [...] invalid range in character class.
+  * Avoid PHP 7.2 warnings in DBConRefTest about count() on non-Countable.
+  * Suppress "Headers already sent" in PHP 7.2 too.
+  * (T206476) Output only to stderr in unit tests.
+  * (T207112) Add session_write_close() calls to SessionManager tests.
   * oyejorge/less.php replaced with our fork wikimedia/less.php
   * (T209756) Updated wikimedia/ip-set from 1.2.0 to 1.3.0.
   * (T213489) Avoid session double-start in Setup.php.
+  * (T206975) Switch to our fork of less.php.
 * (T207540) Include IP address in "Login for $1 succeeded" log entry.
-* (T201781) Database: Allow selectFieldValues() to accept SQL fragments
-* (T205765) installer: Don't link to the obsolete "Extension Matrix" page
-* (T206013) Update ImportableUploadRevisionImporter for interwiki usernames
+* (T201781) Database: Allow selectFieldValues() to accept SQL fragments.
+* (T205765) installer: Don't link to the obsolete "Extension Matrix" page.
+* (T206013) Update ImportableUploadRevisionImporter for interwiki usernames.
 * (T207541) Pass an email address, not a MailAddress, to mail().
-* (T207603) User JS may no longer be loaded with mime type text/javascript if
+* (T207603) SECURITY: User JS may no longer be loaded with mime type text/javascript if
   there is no account associated with the username.
-* (T112937, T113042) Do not allow loading pages raw with a text/javascript MIME
+* (T112937, T113042) SECURITY: Do not allow loading pages raw with a text/javascript MIME
   type if non-admins can edit the page.
-* (T17491) <ins>/<del> elements can be phrasing or flow
+* (T17491) <ins>/<del> elements can be phrasing or flow.
 * (T200827) RemexCompatMunger: Don't call endTag() in case B/b
-* (T207088) Upgrade wikimedia/remex-html to 2.0.1
+* (T207088) Upgrade wikimedia/remex-html to 2.0.1.
   [Also in the bundled composer /vendor directory.]
 * (T194052) Updated wikimedia/base-convert from 1.0.1 to 2.0.0.
   [Also in the bundled composer /vendor directory.]
-* (T199494) Fix notices in maintenance/removeUnusuedAccounts.php
-* Require ext-fileinfo in composer.json, per PHPVersionCheck
-* (T176390) Bundled LocalisationUpdate extension: Handle exceptions from GitHubFetcher
-* (T208255) Completion search should not change the search query
-* (T209870) Fix SQL syntax error in MS-SQL initialisation file for new wikis
-* (T185049) LogFormatter: Fail softer when trying to link an invalid titles
+* (T199494) Fix notices in maintenance/removeUnusuedAccounts.php.
+* Require ext-fileinfo in composer.json, per PHPVersionCheck.
+* (T176390) Bundled LocalisationUpdate extension: Handle exceptions from GitHubFetcher.
+* (T208255) Completion search should not change the search query.
+* (T209870) Fix SQL syntax error in MS-SQL initialisation file for new wikis.
+* (T185049) LogFormatter: Fail softer when trying to link an invalid titles.
 * (T210998) Properly set $wgLanguageCode in the generated LocalSettings.php
   if --lang is used with the command-line installer (install.php).
+* (T211061) ImageListPager: Actor migration for buildQueryConds().
+* (T209335) Clarify the default sidebar 'Help' link is about MediaWiki itself.
 * Fix addition of ug_expiry column to user_groups table on MSSQL.
-* (T204767) Add join conditions to ActiveUsersPager
+* (T204767) Add join conditions to ActiveUsersPager.
 * (T210621) User: Bypass repeatable-read when creating an actor_id.
 * (T204531) rdbms: reduce LoadBalancer replication log spam.
 * (T195525) Fix db error outage page.
 * (T208871) The hard-coded Google search form on the database error page was
   removed.
+* (T176097) Fix flaky MessageBlobStoreTest assertion failures.
+* (T209423) Update required PHP version to 7.0.13.
 * (T209885) Prevent populateSearchIndex.php from breaking once actor migration
   has been started.
 * (T216968) Return pageid as int in both list=iwbacklinks and list=langbacklinks.
 * (T215169) Fix for Database::update() with IGNORE option fails on PostgreSQL.
 * (T204423) Backport support for hyphenated DB names in JobQueueGroup.
 * (T199474) Fix typo in rebuildrecentchanges.php resulting in rogue flags.
-* (T218608) Fix an issue that prevents Extension:OAuth working when
+* (T218608) SECURITY: Fix an issue that prevents Extension:OAuth working when
   $wgBlockDisablesLogin is true.
 * (T216029) Chrome redirects to Special:BadTitle after editing a section with
   a non-Latin name on a page with non-Latin characters in title.
-* (T219728) Added support for new Japanese era name "Reiwa"
-* (T25227) action=logout now requires to be posted and have a csrf token.
+* (T219728) Added support for new Japanese era name "Reiwa".
+* (T25227) SECURITY: action=logout now requires to be posted and have a csrf token.
 * Updated cssjanus/cssjanus from 1.2.0 to 1.3.0.
 * (T222385) resourceloader: Use AND instead of OR for upsert conds in
   saveFileDependencies().
+* (T224374) Fix message parameters so that the message that says SQLite is out of date
+  makes sense.
 
 == MediaWiki 1.31.1 ==
 
