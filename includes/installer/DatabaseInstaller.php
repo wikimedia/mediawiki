@@ -82,7 +82,7 @@ abstract class DatabaseInstaller {
 	public static function meetsMinimumRequirement( $serverVersion ) {
 		if ( version_compare( $serverVersion, static::$minimumVersion ) < 0 ) {
 			return Status::newFatal(
-				static::$notMinimumVerisonMessage, $serverVersion, static::$minimumVersion
+				static::$notMinimumVerisonMessage, static::$minimumVersion, $serverVersion
 			);
 		}
 
