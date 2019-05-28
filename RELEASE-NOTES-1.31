@@ -83,6 +83,14 @@ Required PHP version has been increased from 7.0.0 to 7.0.13.
   reauthenticating.
 * FormSpecialPage::execute() will now call checkLoginSecurityLevel() if
   getLoginSecurityLevel() returns non-false.
+* (T197279) SECURITY: Fix reauth in Special:ChangeEmail.
+* (T208881) SECURITY: blacklist CSS var().
+* (T209794) SECURITY: rate-limit and prevent blocked users from changing email.
+* (T199540) SECURITY: API: Respect $wgBlockCIDRLimit in action=block.
+* (T212118) SECURITY: Fix cache mode for (un)patrolled recent changes query.
+* (T222036, T222038) SECURITY: Add permission check for user is permitted to
+  view the log type.
+* (T221739) SECURITY: resources: Patch jQuery 3.2.1 for CVE-2019-11358.
 
 == MediaWiki 1.31.1 ==
 
