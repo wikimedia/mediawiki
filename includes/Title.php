@@ -3429,6 +3429,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return array|bool True on success, getUserPermissionsErrors()-like array on failure
 	 */
 	public function isValidMoveOperation( &$nt, $auth = true, $reason = '' ) {
+		wfDeprecated( __METHOD__, '1.25' );
+
 		global $wgUser;
 
 		if ( !( $nt instanceof Title ) ) {
@@ -3465,6 +3467,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	public function moveTo( &$nt, $auth = true, $reason = '', $createRedirect = true,
 		array $changeTags = []
 	) {
+		wfDeprecated( __METHOD__, '1.25' );
+
 		global $wgUser;
 
 		$mp = new MovePage( $this, $nt );
@@ -3495,26 +3499,10 @@ class Title implements LinkTarget, IDBAccessObject {
 	public function moveSubpages( $nt, $auth = true, $reason = '', $createRedirect = true,
 		array $changeTags = []
 	) {
-		// Check permissions
-		if ( !$this->userCan( 'move-subpages' ) ) {
-			return [
-				[ 'cant-move-subpages' ],
-			];
-		}
-		// Do the source and target namespaces support subpages?
-		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
-		if ( !$nsInfo->hasSubpages( $this->mNamespace ) ) {
-			return [
-				[ 'namespace-nosubpages', $nsInfo->getCanonicalName( $this->mNamespace ) ],
-			];
-		}
-		if ( !$nsInfo->hasSubpages( $nt->getNamespace() ) ) {
-			return [
-				[ 'namespace-nosubpages', $nsInfo->getCanonicalName( $nt->getNamespace() ) ],
-			];
-		}
+		wfDeprecated( __METHOD__, '1.34' );
 
 		global $wgUser;
+
 		$mp = new MovePage( $this, $nt );
 		$method = $auth ? 'moveSubpagesIfAllowed' : 'moveSubpages';
 		$result = $mp->$method( $wgUser, $reason, $createRedirect, $changeTags );
@@ -3592,6 +3580,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return bool
 	 */
 	public function isValidMoveTarget( $nt ) {
+		wfDeprecated( __METHOD__, '1.25' );
+
 		# Is it an existing file?
 		if ( $nt->getNamespace() == NS_FILE ) {
 			$file = wfLocalFile( $nt );

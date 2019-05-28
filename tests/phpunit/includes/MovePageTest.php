@@ -48,29 +48,6 @@ class MovePageTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Integration test to catch regressions like T74870. Taken and modified
-	 * from SemanticMediaWiki
-	 *
-	 * @covers Title::moveTo
-	 */
-	public function testTitleMoveCompleteIntegrationTest() {
-		$oldTitle = Title::newFromText( 'Help:Some title' );
-		WikiPage::factory( $oldTitle )->doEditContent( new WikitextContent( 'foo' ), 'bar' );
-		$newTitle = Title::newFromText( 'Help:Some other title' );
-		$this->assertNull(
-			WikiPage::factory( $newTitle )->getRevision()
-		);
-
-		$this->assertTrue( $oldTitle->moveTo( $newTitle, false, 'test1', true ) );
-		$this->assertNotNull(
-			WikiPage::factory( $oldTitle )->getRevision()
-		);
-		$this->assertNotNull(
-			WikiPage::factory( $newTitle )->getRevision()
-		);
-	}
-
-	/**
 	 * Test for the move operation being aborted via the TitleMove hook
 	 * @covers MovePage::move
 	 */

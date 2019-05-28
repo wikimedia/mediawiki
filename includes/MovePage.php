@@ -46,6 +46,14 @@ class MovePage {
 		$this->newTitle = $newTitle;
 	}
 
+	/**
+	 * Check if the user is allowed to perform the move.
+	 *
+	 * @param User $user
+	 * @param string|null $reason To check against summary spam regex. Set to null to skip the check,
+	 *   for instance to display errors preemptively before the user has filled in a summary.
+	 * @return Status
+	 */
 	public function checkPermissions( User $user, $reason ) {
 		$status = new Status();
 
@@ -63,7 +71,7 @@ class MovePage {
 			}
 		}
 
-		if ( EditPage::matchSummarySpamRegex( $reason ) !== false ) {
+		if ( $reason !== null && EditPage::matchSummarySpamRegex( $reason ) !== false ) {
 			// This is kind of lame, won't display nice
 			$status->fatal( 'spamprotectiontext' );
 		}

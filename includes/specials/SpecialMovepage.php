@@ -170,6 +170,8 @@ class MovePageForm extends UnlistedSpecialPage {
 		$deleteAndMove = false;
 		$moveOverShared = false;
 
+		$user = $this->getUser();
+
 		$newTitle = $this->newTitle;
 
 		if ( !$newTitle ) {
@@ -180,13 +182,13 @@ class MovePageForm extends UnlistedSpecialPage {
 			# If a title was supplied, probably from the move log revert
 			# link, check for validity. We can then show some diagnostic
 			# information and save a click.
-			$newerr = $this->oldTitle->isValidMoveOperation( $newTitle );
-			if ( is_array( $newerr ) ) {
-				$err = $newerr;
+			$mp = new MovePage( $this->oldTitle, $newTitle );
+			$status = $mp->isValidMove();
+			$status->merge( $mp->checkPermissions( $user, null ) );
+			if ( $status->getErrors() ) {
+				$err = $status->getErrorsArray();
 			}
 		}
-
-		$user = $this->getUser();
 
 		if ( count( $err ) == 1 && isset( $err[0][0] ) && $err[0][0] == 'articleexists'
 			&& $newTitle->quickUserCan( 'delete', $user )
@@ -741,14 +743,15 @@ class MovePageForm extends UnlistedSpecialPage {
 				continue;
 			}
 
+			$mp = new MovePage( $oldSubpage, $newSubpage );
 			# This was copy-pasted from Renameuser, bleh.
-			if ( $newSubpage->exists() && !$oldSubpage->isValidMoveTarget( $newSubpage ) ) {
+			if ( $newSubpage->exists() && !$mp->isValidMove()->isOk() ) {
 				$link = $linkRenderer->makeKnownLink( $newSubpage );
 				$extraOutput[] = $this->msg( 'movepage-page-exists' )->rawParams( $link )->escaped();
 			} else {
-				$success = $oldSubpage->moveTo( $newSubpage, true, $this->reason, $createRedirect );
+				$status = $mp->moveIfAllowed( $user, $this->reason, $createRedirect );
 
-				if ( $success === true ) {
+				if ( $status->isOK() ) {
 					if ( $this->fixRedirects ) {
 						DoubleRedirectJob::fixRedirects( 'move', $oldSubpage, $newSubpage );
 					}
