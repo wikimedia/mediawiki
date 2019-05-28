@@ -4,23 +4,25 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.27.6 ===
 * (T204729) WatchedItemStore::countVisitingWatchersMultiple() shouldn't query all
-  titles when asked for none
+  titles when asked for none.
 * (T109121) Remove deprecated pear/mail_mime-decode from composer suggested libraries.
+* (T207241) Augment precision of updatelist time.
 * (T207540) Include IP address in "Login for $1 succeeded" log entry.
 * (T205765) Don't link to the obsolete "Extension Matrix" page in installer.
-* (T207603) User JS may no longer be loaded with mime type text/javascript if
+* (T207603) SECURITY: User JS may no longer be loaded with mime type text/javascript if
   there is no account associated with the username.
-* (T113042) Do not allow loading pages raw with a text/javascript MIME type if
+* (T113042) SECURITY: Do not allow loading pages raw with a text/javascript MIME type if
   non-admins can edit the page.
 * (T207541) Pass email address to mail().
+* (T209335) Clarify the default sidebar 'Help' link is about MediaWiki itself.
 * (T213359) Update mediawiki/mediawiki-codesniffer to 0.8.1.
 * (T208871) The hard-coded Google search form on the database error page was
   removed.
 * (T216968) Return pageid as int in both list=iwbacklinks and list=langbacklinks.
 * (T218608) Fix an issue that prevents Extension:OAuth working when
   $wgBlockDisablesLogin is true.
-* (T219728) Added support for new Japanese era name "Reiwa"
-* (T25227) action=logout now requires to be posted and have a csrf token.
+* (T219728) Added support for new Japanese era name "Reiwa".
+* (T25227) SECURITY: action=logout now requires to be posted and have a csrf token.
 
 == MediaWiki 1.27.5 ==
 
