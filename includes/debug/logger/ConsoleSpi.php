@@ -1,4 +1,5 @@
 <?php
+
 namespace MediaWiki\Logger;
 
 class ConsoleSpi implements Spi {
