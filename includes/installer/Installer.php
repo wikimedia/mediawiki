@@ -1764,7 +1764,9 @@ abstract class Installer {
 	public static function overrideConfig() {
 		// Use PHP's built-in session handling, since MediaWiki's
 		// SessionHandler can't work before we have an object cache set up.
-		define( 'MW_NO_SESSION_HANDLER', 1 );
+		if ( !defined( 'MW_NO_SESSION_HANDLER' ) ) {
+			define( 'MW_NO_SESSION_HANDLER', 1 );
+		}
 
 		// Don't access the database
 		$GLOBALS['wgUseDatabaseMessages'] = false;
