@@ -501,7 +501,7 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Same as addPageSubItems(), but one element of $data at a time
 	 * @param int $pageId Page ID
-	 * @param array $item Data array à la ApiResult
+	 * @param mixed $item Data à la ApiResult
 	 * @param string|null $elemname XML element name. If null, getModuleName()
 	 *  is used
 	 * @return bool Whether the element fit in the result
