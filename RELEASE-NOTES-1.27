@@ -1,6 +1,6 @@
 == MediaWiki 1.27.6 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.27 branch.
 
 === Changes since MediaWiki 1.27.6 ===
 * (T204729) WatchedItemStore::countVisitingWatchersMultiple() shouldn't query all
