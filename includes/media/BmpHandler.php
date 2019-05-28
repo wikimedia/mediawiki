@@ -39,12 +39,12 @@ class BmpHandler extends BitmapHandler {
 	/**
 	 * Render files as PNG
 	 *
-	 * @param string $text
+	 * @param string $ext
 	 * @param string $mime
 	 * @param array|null $params
 	 * @return array
 	 */
-	public function getThumbType( $text, $mime, $params = null ) {
+	public function getThumbType( $ext, $mime, $params = null ) {
 		return [ 'png', 'image/png' ];
 	}
 
