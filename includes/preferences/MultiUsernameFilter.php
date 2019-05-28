@@ -67,7 +67,7 @@ class MultiUsernameFilter implements Filter {
 	}
 
 	/**
-	 * Splits a newline separated list of user ids into a
+	 * Splits a newline separated list of user ids into an array.
 	 *
 	 * @param string $str
 	 * @return int[]
