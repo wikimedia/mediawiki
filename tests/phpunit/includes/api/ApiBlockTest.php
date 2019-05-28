@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 
@@ -57,7 +58,7 @@ class ApiBlockTest extends ApiTestCase {
 		$ret = $this->doApiRequest( array_merge( $params, $extraParams ), null,
 			false, $blocker );
 
-		$block = Block::newFromTarget( $this->mUser->getName() );
+		$block = DatabaseBlock::newFromTarget( $this->mUser->getName() );
 
 		$this->assertTrue( !is_null( $block ), 'Block is valid' );
 
@@ -89,7 +90,7 @@ class ApiBlockTest extends ApiTestCase {
 			'You cannot block or unblock other users because you are yourself blocked.' );
 
 		$blocked = $this->getMutableTestUser( [ 'sysop' ] )->getUser();
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'address' => $blocked->getName(),
 			'by' => self::$users['sysop']->getUser()->getId(),
 			'reason' => 'Capriciousness',
@@ -237,7 +238,7 @@ class ApiBlockTest extends ApiTestCase {
 
 		$this->doBlock();
 
-		$block = Block::newFromTarget( $this->mUser->getName() );
+		$block = DatabaseBlock::newFromTarget( $this->mUser->getName() );
 
 		$this->assertTrue( $block->isSitewide() );
 		$this->assertCount( 0, $block->getRestrictions() );
@@ -258,7 +259,7 @@ class ApiBlockTest extends ApiTestCase {
 			'namespacerestrictions' => $namespace,
 		] );
 
-		$block = Block::newFromTarget( $this->mUser->getName() );
+		$block = DatabaseBlock::newFromTarget( $this->mUser->getName() );
 
 		$this->assertFalse( $block->isSitewide() );
 		$this->assertCount( 2, $block->getRestrictions() );

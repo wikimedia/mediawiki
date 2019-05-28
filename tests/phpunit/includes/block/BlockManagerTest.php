@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\BlockManager;
+use MediaWiki\Block\DatabaseBlock;
 
 /**
  * @group Blocking
@@ -51,7 +52,7 @@ class BlockManagerTest extends MediaWikiTestCase {
 			'wgCookieSetOnIpBlock' => true,
 		] );
 
-		$block = new Block( array_merge( [
+		$block = new DatabaseBlock( array_merge( [
 			'address' => $options[ 'target' ] ?: $this->user,
 			'by' => $this->sysopId,
 		], $options[ 'blockOptions' ] ) );

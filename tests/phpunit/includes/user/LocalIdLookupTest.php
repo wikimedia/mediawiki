@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Block\DatabaseBlock;
+
 /**
  * @covers LocalIdLookup
  * @group Database
@@ -20,7 +22,7 @@ class LocalIdLookupTest extends MediaWikiTestCase {
 
 		$sysop = static::getTestSysop()->getUser();
 
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'address' => $this->localUsers[2]->getName(),
 			'by' => $sysop->getId(),
 			'reason' => __METHOD__,
@@ -29,7 +31,7 @@ class LocalIdLookupTest extends MediaWikiTestCase {
 		] );
 		$block->insert();
 
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'address' => $this->localUsers[3]->getName(),
 			'by' => $sysop->getId(),
 			'reason' => __METHOD__,

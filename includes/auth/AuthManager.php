@@ -24,6 +24,7 @@
 namespace MediaWiki\Auth;
 
 use Config;
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -1010,7 +1011,7 @@ class AuthManager implements LoggerAwareInterface {
 				$block->getByName()
 			];
 
-			if ( $block->getType() === \Block::TYPE_RANGE ) {
+			if ( $block->getType() === DatabaseBlock::TYPE_RANGE ) {
 				$errorMessage = 'cantcreateaccount-range-text';
 				$errorParams[] = $this->getRequest()->getIP();
 			} else {

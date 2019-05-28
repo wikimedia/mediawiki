@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\MediaWikiServices;
@@ -222,7 +223,7 @@ class BlockListPagerTest extends MediaWikiTestCase {
 		$target = '127.0.0.1';
 
 		// Test Partial Blocks Blocks.
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'address' => $target,
 			'by' => $this->getTestSysop()->getUser()->getId(),
 			'reason' => 'Parce que',

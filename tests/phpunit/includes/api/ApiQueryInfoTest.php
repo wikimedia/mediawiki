@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Block\DatabaseBlock;
+
 /**
  * @group API
  * @group medium
@@ -102,7 +104,7 @@ class ApiQueryInfoTest extends ApiTestCase {
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 
-		$block = new \Block( [
+		$block = new DatabaseBlock( [
 			'address' => $badActor->getName(),
 			'user' => $badActor->getId(),
 			'by' => $sysop->getId(),

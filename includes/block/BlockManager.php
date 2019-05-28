@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Block;
 
-use Block;
 use IP;
 use MediaWiki\User\UserIdentity;
 use User;
@@ -120,7 +119,7 @@ class BlockManager {
 		// we should not look for XFF or cookie blocks.
 		$request = $user->getRequest();
 
-		# We only need to worry about passing the IP address to the Block generator if the
+		# We only need to worry about passing the IP address to the block generator if the
 		# user is not immune to autoblocks/hardblocks, and they are the current user so we
 		# know which IP address they're actually coming from
 		$ip = null;
@@ -135,8 +134,8 @@ class BlockManager {
 		}
 
 		// User/IP blocking
-		// TODO: remove dependency on Block
-		$block = Block::newFromTarget( $user, $ip, !$fromReplica );
+		// TODO: remove dependency on DatabaseBlock
+		$block = DatabaseBlock::newFromTarget( $user, $ip, !$fromReplica );
 
 		// Cookie blocking
 		if ( !$block instanceof AbstractBlock ) {
@@ -175,10 +174,10 @@ class BlockManager {
 			$xff = $request->getHeader( 'X-Forwarded-For' );
 			$xff = array_map( 'trim', explode( ',', $xff ) );
 			$xff = array_diff( $xff, [ $ip ] );
-			// TODO: remove dependency on Block
-			$xffblocks = Block::getBlocksForIPList( $xff, $isAnon, !$fromReplica );
-			// TODO: remove dependency on Block
-			$block = Block::chooseBlock( $xffblocks, $xff );
+			// TODO: remove dependency on DatabaseBlock
+			$xffblocks = DatabaseBlock::getBlocksForIPList( $xff, $isAnon, !$fromReplica );
+			// TODO: remove dependency on DatabaseBlock
+			$block = DatabaseBlock::chooseBlock( $xffblocks, $xff );
 			if ( $block instanceof AbstractBlock ) {
 				# Mangle the reason to alert the user that the block
 				# originated from matching the X-Forwarded-For header.
@@ -204,11 +203,11 @@ class BlockManager {
 	}
 
 	/**
-	 * Try to load a Block from an ID given in a cookie value.
+	 * Try to load a block from an ID given in a cookie value.
 	 *
 	 * @param UserIdentity $user
 	 * @param WebRequest $request
-	 * @return Block|bool The Block object, or false if none could be loaded.
+	 * @return DatabaseBlock|bool The block object, or false if none could be loaded.
 	 */
 	private function getBlockFromCookieValue(
 		UserIdentity $user,
@@ -221,21 +220,21 @@ class BlockManager {
 		if ( strlen( $blockCookieVal ) < 1 || !is_numeric( substr( $blockCookieVal, 0, 1 ) ) ) {
 			return false;
 		}
-		// Load the Block from the ID in the cookie.
-		// TODO: remove dependency on Block
-		$blockCookieId = Block::getIdFromCookieValue( $blockCookieVal );
+		// Load the block from the ID in the cookie.
+		// TODO: remove dependency on DatabaseBlock
+		$blockCookieId = DatabaseBlock::getIdFromCookieValue( $blockCookieVal );
 		if ( $blockCookieId !== null ) {
 			// An ID was found in the cookie.
-			// TODO: remove dependency on Block
-			$tmpBlock = Block::newFromID( $blockCookieId );
-			if ( $tmpBlock instanceof Block ) {
+			// TODO: remove dependency on DatabaseBlock
+			$tmpBlock = DatabaseBlock::newFromID( $blockCookieId );
+			if ( $tmpBlock instanceof DatabaseBlock ) {
 				switch ( $tmpBlock->getType() ) {
-					case Block::TYPE_USER:
+					case DatabaseBlock::TYPE_USER:
 						$blockIsValid = !$tmpBlock->isExpired() && $tmpBlock->isAutoblocking();
 						$useBlockCookie = ( $this->cookieSetOnAutoblock === true );
 						break;
-					case Block::TYPE_IP:
-					case Block::TYPE_RANGE:
+					case DatabaseBlock::TYPE_IP:
+					case DatabaseBlock::TYPE_RANGE:
 						// If block is type IP or IP range, load only if user is not logged in (T152462)
 						$blockIsValid = !$tmpBlock->isExpired() && $user->getId() === 0;
 						$useBlockCookie = ( $this->cookieSetOnIpBlock === true );
@@ -251,12 +250,12 @@ class BlockManager {
 				}
 
 				// If the block is not valid, remove the cookie.
-				// TODO: remove dependency on Block
-				Block::clearCookie( $response );
+				// TODO: remove dependency on DatabaseBlock
+				DatabaseBlock::clearCookie( $response );
 			} else {
 				// If the block doesn't exist, remove the cookie.
-				// TODO: remove dependency on Block
-				Block::clearCookie( $response );
+				// TODO: remove dependency on DatabaseBlock
+				DatabaseBlock::clearCookie( $response );
 			}
 		}
 		return false;

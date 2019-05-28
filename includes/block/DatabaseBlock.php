@@ -20,22 +20,41 @@
  * @file
  */
 
-use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\IDatabase;
-use MediaWiki\Block\AbstractBlock;
-use MediaWiki\Block\BlockRestrictionStore;
-use MediaWiki\Block\Restriction\Restriction;
+namespace MediaWiki\Block;
+
+use ActorMigration;
+use AutoCommitUpdate;
+use BadMethodCallException;
+use CommentStore;
+use DateTime;
+use DeferredUpdates;
+use Hooks;
+use Html;
+use IContextSource;
+use IP;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\MediaWikiServices;
+use MWCryptHash;
+use MWException;
+use RequestContext;
+use stdClass;
+use Title;
+use User;
+use WebResponse;
+use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
- * Blocks (as opposed to system blocks) are stored in the database, may
- * give rise to autoblocks and may be tracked with cookies. Blocks are
- * more customizable than system blocks: they may be hardblocks, and
+ * A DatabaseBlock (unlike a SystemBlock) is stored in the database, may
+ * give rise to autoblocks and may be tracked with cookies. Such blocks
+ * are more customizable than system blocks: they may be hardblocks, and
  * they may be sitewide or partial.
+ *
+ * @since 1.34 Renamed from Block.
  */
-class Block extends AbstractBlock {
+class DatabaseBlock extends AbstractBlock {
 	/** @var bool */
 	public $mAuto;
 
@@ -120,8 +139,8 @@ class Block extends AbstractBlock {
 	/**
 	 * Load a block from the block id.
 	 *
-	 * @param int $id Block id to search for
-	 * @return Block|null
+	 * @param int $id id to search for
+	 * @return DatabaseBlock|null
 	 */
 	public static function newFromID( $id ) {
 		$dbr = wfGetDB( DB_REPLICA );
@@ -219,11 +238,10 @@ class Block extends AbstractBlock {
 	 * Check if two blocks are effectively equal.  Doesn't check irrelevant things like
 	 * the blocking user or the block timestamp, only things which affect the blocked user
 	 *
-	 * @param Block $block
-	 *
+	 * @param DatabaseBlock $block
 	 * @return bool
 	 */
-	public function equals( Block $block ) {
+	public function equals( DatabaseBlock $block ) {
 		return (
 			(string)$this->target == (string)$block->target
 			&& $this->type == $block->type
@@ -237,8 +255,8 @@ class Block extends AbstractBlock {
 			&& $this->isUsertalkEditAllowed() == $block->isUsertalkEditAllowed()
 			&& $this->getReason() == $block->getReason()
 			&& $this->isSitewide() == $block->isSitewide()
-			// Block::getRestrictions() may perform a database query, so keep it at
-			// the end.
+			// DatabaseBlock::getRestrictions() may perform a database query, so
+			// keep it at the end.
 			&& $this->getBlockRestrictionStore()->equals(
 				$this->getRestrictions(), $block->getRestrictions()
 			)
@@ -432,12 +450,12 @@ class Block extends AbstractBlock {
 	}
 
 	/**
-	 * Create a new Block object from a database row
+	 * Create a new DatabaseBlock object from a database row
 	 * @param stdClass $row Row from the ipblocks table
-	 * @return Block
+	 * @return DatabaseBlock
 	 */
 	public static function newFromRow( $row ) {
-		$block = new Block;
+		$block = new DatabaseBlock;
 		$block->initFromRow( $row );
 		return $block;
 	}
@@ -454,7 +472,9 @@ class Block extends AbstractBlock {
 		}
 
 		if ( !$this->getId() ) {
-			throw new MWException( "Block::delete() requires that the mId member be filled\n" );
+			throw new MWException(
+				__METHOD__ . " requires that the mId member be filled\n"
+			);
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -483,7 +503,7 @@ class Block extends AbstractBlock {
 			throw new MWException( 'Cannot insert a block without a blocker set' );
 		}
 
-		wfDebug( "Block::insert; timestamp {$this->mTimestamp}\n" );
+		wfDebug( __METHOD__ . "; timestamp {$this->mTimestamp}\n" );
 
 		if ( $dbw === null ) {
 			$dbw = wfGetDB( DB_MASTER );
@@ -551,7 +571,7 @@ class Block extends AbstractBlock {
 	 *   ('id' => block ID, 'autoIds' => array of autoblock IDs)
 	 */
 	public function update() {
-		wfDebug( "Block::update; timestamp {$this->mTimestamp}\n" );
+		wfDebug( __METHOD__ . "; timestamp {$this->mTimestamp}\n" );
 		$dbw = wfGetDB( DB_MASTER );
 
 		$dbw->startAtomic( __METHOD__ );
@@ -660,9 +680,9 @@ class Block extends AbstractBlock {
 
 	/**
 	 * Retroactively autoblocks the last IP used by the user (if it is a user)
-	 * blocked by this Block.
+	 * blocked by this block.
 	 *
-	 * @return array Block IDs of retroactive autoblocks made
+	 * @return array IDs of retroactive autoblocks made
 	 */
 	protected function doRetroactiveAutoblock() {
 		$blockIds = [];
@@ -682,12 +702,12 @@ class Block extends AbstractBlock {
 
 	/**
 	 * Retroactively autoblocks the last IP used by the user (if it is a user)
-	 * blocked by this Block. This will use the recentchanges table.
+	 * blocked by this block. This will use the recentchanges table.
 	 *
-	 * @param Block $block
+	 * @param DatabaseBlock $block
 	 * @param array &$blockIds
 	 */
-	protected static function defaultRetroactiveAutoblock( Block $block, array &$blockIds ) {
+	protected static function defaultRetroactiveAutoblock( DatabaseBlock $block, array &$blockIds ) {
 		global $wgPutIPinRC;
 
 		// No IPs are in recentchanges table, so nothing to select
@@ -781,10 +801,10 @@ class Block extends AbstractBlock {
 	}
 
 	/**
-	 * Autoblocks the given IP, referring to this Block.
+	 * Autoblocks the given IP, referring to this block.
 	 *
 	 * @param string $autoblockIP The IP to autoblock.
-	 * @return int|bool Block ID if an autoblock was inserted, false if not.
+	 * @return int|bool ID if an autoblock was inserted, false if not.
 	 */
 	public function doAutoblock( $autoblockIP ) {
 		# If autoblocks are disabled, go away.
@@ -823,7 +843,7 @@ class Block extends AbstractBlock {
 		}
 
 		# Make a new block object with the desired properties.
-		$autoblock = new Block;
+		$autoblock = new DatabaseBlock;
 		wfDebug( "Autoblocking {$this->getTarget()}@" . $autoblockIP . "\n" );
 		$autoblock->setTarget( $autoblockIP );
 		$autoblock->setBlocker( $this->getBlocker() );
@@ -864,11 +884,11 @@ class Block extends AbstractBlock {
 	 */
 	public function deleteIfExpired() {
 		if ( $this->isExpired() ) {
-			wfDebug( "Block::deleteIfExpired() -- deleting\n" );
+			wfDebug( __METHOD__ . " -- deleting\n" );
 			$this->delete();
 			$retVal = true;
 		} else {
-			wfDebug( "Block::deleteIfExpired() -- not expired\n" );
+			wfDebug( __METHOD__ . " -- not expired\n" );
 			$retVal = false;
 		}
 
@@ -881,7 +901,7 @@ class Block extends AbstractBlock {
 	 */
 	public function isExpired() {
 		$timestamp = wfTimestampNow();
-		wfDebug( "Block::isExpired() checking current " . $timestamp . " vs $this->mExpiry\n" );
+		wfDebug( __METHOD__ . " checking current " . $timestamp . " vs $this->mExpiry\n" );
 
 		if ( !$this->getExpiry() ) {
 			return false;
@@ -997,7 +1017,7 @@ class Block extends AbstractBlock {
 	}
 
 	/**
-	 * Get/set whether the Block is a hardblock (affects logged-in users on a given IP/range)
+	 * Get/set whether the block is a hardblock (affects logged-in users on a given IP/range)
 	 * @param bool|null $x
 	 * @return bool
 	 */
@@ -1080,7 +1100,7 @@ class Block extends AbstractBlock {
 	}
 
 	/**
-	 * Given a target and the target's type, get an existing Block object if possible.
+	 * Given a target and the target's type, get an existing block object if possible.
 	 * @param string|User|int $specificTarget A block target, which may be one of several types:
 	 *     * A user to block, in which case $target will be a User
 	 *     * An IP to block, in which case $target will be a User generated by using
@@ -1095,8 +1115,8 @@ class Block extends AbstractBlock {
 	 *     affects that target (so for an IP address, get ranges containing that IP; and also
 	 *     get any relevant autoblocks). Leave empty or blank to skip IP-based lookups.
 	 * @param bool $fromMaster Whether to use the DB_MASTER database
-	 * @return Block|null (null if no relevant block could be found).  The target and type
-	 *     of the returned Block will refer to the actual block which was found, which might
+	 * @return DatabaseBlock|null (null if no relevant block could be found). The target and type
+	 *     of the returned block will refer to the actual block which was found, which might
 	 *     not be the same as the target you gave if you used $vagueTarget!
 	 */
 	public static function newFromTarget( $specificTarget, $vagueTarget = null, $fromMaster = false ) {
@@ -1114,7 +1134,7 @@ class Block extends AbstractBlock {
 			$type,
 			[ self::TYPE_USER, self::TYPE_IP, self::TYPE_RANGE, null ] )
 		) {
-			$block = new Block();
+			$block = new DatabaseBlock();
 			$block->fromMaster( $fromMaster );
 
 			if ( $type !== null ) {
@@ -1199,7 +1219,7 @@ class Block extends AbstractBlock {
 	}
 
 	/**
-	 * From a list of multiple blocks, find the most exact and strongest Block.
+	 * From a list of multiple blocks, find the most exact and strongest block.
 	 *
 	 * The logic for finding the "best" block is:
 	 *  - Blocks that match the block's target IP are preferred over ones in a range
@@ -1211,13 +1231,13 @@ class Block extends AbstractBlock {
 	 * This should be used when $blocks were retrieved from the user's IP address
 	 * and $ipChain is populated from the same IP address information.
 	 *
-	 * @param array $blocks Array of Block objects
+	 * @param array $blocks Array of DatabaseBlock objects
 	 * @param array $ipChain List of IPs (strings). This is used to determine how "close"
 	 *     a block is to the server, and if a block matches exactly, or is in a range.
 	 *     The order is furthest from the server to nearest e.g., (Browser, proxy1, proxy2,
 	 *     local-cdn, ...)
 	 * @throws MWException
-	 * @return Block|null The "best" block from the list
+	 * @return DatabaseBlock|null The "best" block from the list
 	 */
 	public static function chooseBlock( array $blocks, array $ipChain ) {
 		if ( $blocks === [] ) {
@@ -1228,7 +1248,7 @@ class Block extends AbstractBlock {
 
 		// Sort hard blocks before soft ones and secondarily sort blocks
 		// that disable account creation before those that don't.
-		usort( $blocks, function ( Block $a, Block $b ) {
+		usort( $blocks, function ( DatabaseBlock $a, DatabaseBlock $b ) {
 			$aWeight = (int)$a->isHardblock() . (int)$a->appliesToRight( 'createaccount' );
 			$bWeight = (int)$b->isHardblock() . (int)$b->appliesToRight( 'createaccount' );
 			return strcmp( $bWeight, $aWeight ); // highest weight first
@@ -1248,7 +1268,6 @@ class Block extends AbstractBlock {
 		];
 		$ipChain = array_reverse( $ipChain );
 
-		/** @var Block $block */
 		foreach ( $blocks as $block ) {
 			// Stop searching if we have already have a "better" block. This
 			// is why the order of the blocks matters
@@ -1270,7 +1289,7 @@ class Block extends AbstractBlock {
 					} else {
 						$blocksListExact['other'] = $blocksListExact['other'] ?: $block;
 					}
-					// We found closest exact match in the ip list, so go to the next Block
+					// We found closest exact match in the ip list, so go to the next block
 					break;
 				} elseif ( array_filter( $blocksListExact ) == []
 					&& $block->getRangeStart() <= $checkipHex
@@ -1336,7 +1355,7 @@ class Block extends AbstractBlock {
 		// Calculate the default expiry time.
 		$maxExpiryTime = wfTimestamp( TS_MW, wfTimestamp() + ( 24 * 60 * 60 ) );
 
-		// Use the Block's expiry time only if it's less than the default.
+		// Use the block's expiry time only if it's less than the default.
 		$expiryTime = $this->getExpiry();
 		if ( $expiryTime === 'infinity' || $expiryTime > $maxExpiryTime ) {
 			$expiryTime = $maxExpiryTime;
@@ -1384,7 +1403,7 @@ class Block extends AbstractBlock {
 
 	/**
 	 * Get the stored ID from the 'BlockID' cookie. The cookie's value is usually a combination of
-	 * the ID and a HMAC (see Block::setCookie), but will sometimes only be the ID.
+	 * the ID and a HMAC (see DatabaseBlock::setCookie), but will sometimes only be the ID.
 	 *
 	 * @since 1.29
 	 *
@@ -1570,3 +1589,8 @@ class Block extends AbstractBlock {
 		return MediaWikiServices::getInstance()->getBlockRestrictionStore();
 	}
 }
+
+/**
+ * @deprecated since 1.34
+ */
+class_alias( DatabaseBlock::class, 'Block' );

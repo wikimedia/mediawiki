@@ -3,11 +3,11 @@
 namespace MediaWiki\Tests\Permissions;
 
 use Action;
-use Block;
 use MediaWikiLangTestCase;
 use RequestContext;
 use Title;
 use User;
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
@@ -1036,7 +1036,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$prev = time();
 		$now = time() + 120;
 		$this->user->mBlockedby = $this->user->getId();
-		$this->user->mBlock = new Block( [
+		$this->user->mBlock = new DatabaseBlock( [
 			'address' => '127.0.8.1',
 			'by' => $this->user->getId(),
 			'reason' => 'no reason given',
@@ -1062,7 +1062,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		global $wgLocalTZoffset;
 		$wgLocalTZoffset = -60;
 		$this->user->mBlockedby = $this->user->getName();
-		$this->user->mBlock = new Block( [
+		$this->user->mBlock = new DatabaseBlock( [
 			'address' => '127.0.8.1',
 			'by' => $this->user->getId(),
 			'reason' => 'no reason given',
@@ -1116,7 +1116,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		// partial block message test
 		$this->user->mBlockedby = $this->user->getName();
-		$this->user->mBlock = new Block( [
+		$this->user->mBlock = new DatabaseBlock( [
 			'address' => '127.0.8.1',
 			'by' => $this->user->getId(),
 			'reason' => 'no reason given',
@@ -1213,7 +1213,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		$now = time();
 		$this->user->mBlockedby = $this->user->getName();
-		$this->user->mBlock = new Block( [
+		$this->user->mBlock = new DatabaseBlock( [
 			'address' => '127.0.8.1',
 			'by' => $this->user->getId(),
 			'reason' => 'no reason given',
@@ -1248,7 +1248,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		// Block the user
 		$blocker = $this->getTestSysop()->getUser();
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'hideName' => true,
 			'allowUsertalk' => false,
 			'reason' => 'Because',
@@ -1260,7 +1260,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		// Clear cache and confirm it loaded the block properly
 		$user->clearInstanceCache();
-		$this->assertInstanceOf( Block::class, $user->getBlock( false ) );
+		$this->assertInstanceOf( DatabaseBlock::class, $user->getBlock( false ) );
 		//$this->assertSame( $blocker->getName(), $user->blockedBy() );
 		//$this->assertSame( 'Because', $user->blockedFor() );
 		//$this->assertTrue( (bool)$user->isHidden() );
@@ -1285,7 +1285,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 * @param bool $expect Expected result from User::isBlockedFrom()
 	 * @param array $options Additional test options:
 	 *  - 'blockAllowsUTEdit': (bool, default true) Value for $wgBlockAllowsUTEdit
-	 *  - 'allowUsertalk': (bool, default false) Passed to Block::__construct()
+	 *  - 'allowUsertalk': (bool, default false) Passed to DatabaseBlock::__construct()
 	 *  - 'pageRestrictions': (array|null) If non-empty, page restriction titles for the block.
 	 */
 	public function testIsBlockedFrom( $title, $expect, array $options = [] ) {
@@ -1312,7 +1312,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			$restrictions[] = new NamespaceRestriction( 0, $ns );
 		}
 
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
 			'allowUsertalk' => $options['allowUsertalk'] ?? false,
 			'sitewide' => !$restrictions,

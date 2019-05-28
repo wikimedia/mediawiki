@@ -3,6 +3,7 @@
 namespace MediaWiki\Auth;
 
 use Config;
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\UserInfo;
 use Psr\Log\LoggerInterface;
@@ -1430,7 +1431,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			\TestUser::setPasswordForUser( $user, 'UTBlockeePassword' );
 			$user->saveSettings();
 		}
-		$oldBlock = \Block::newFromTarget( 'UTBlockee' );
+		$oldBlock = DatabaseBlock::newFromTarget( 'UTBlockee' );
 		if ( $oldBlock ) {
 			// An old block will prevent our new one from saving.
 			$oldBlock->delete();
@@ -1443,7 +1444,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			'expiry' => time() + 100500,
 			'createAccount' => true,
 		];
-		$block = new \Block( $blockOptions );
+		$block = new DatabaseBlock( $blockOptions );
 		$block->insert();
 		$status = $this->manager->checkAccountCreatePermissions( $user );
 		$this->assertFalse( $status->isOK() );
@@ -1456,7 +1457,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			'expiry' => time() + 100500,
 			'createAccount' => true,
 		];
-		$block = new \Block( $blockOptions );
+		$block = new DatabaseBlock( $blockOptions );
 		$block->insert();
 		$scopeVariable = new ScopedCallback( [ $block, 'delete' ] );
 		$status = $this->manager->checkAccountCreatePermissions( new \User );

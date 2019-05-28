@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -159,9 +160,9 @@ class DeletedContributionsPage extends SpecialPage {
 			$links = $this->getLanguage()->pipeList( $tools );
 
 			// Show a note if the user is blocked and display the last block log entry.
-			$block = Block::newFromTarget( $userObj, $userObj );
-			if ( !is_null( $block ) && $block->getType() != Block::TYPE_AUTO ) {
-				if ( $block->getType() == Block::TYPE_RANGE ) {
+			$block = DatabaseBlock::newFromTarget( $userObj, $userObj );
+			if ( !is_null( $block ) && $block->getType() != DatabaseBlock::TYPE_AUTO ) {
+				if ( $block->getType() == DatabaseBlock::TYPE_RANGE ) {
 					$nt = MediaWikiServices::getInstance()->getNamespaceInfo()->
 						getCanonicalName( NS_USER ) . ':' . $block->getTarget();
 				}

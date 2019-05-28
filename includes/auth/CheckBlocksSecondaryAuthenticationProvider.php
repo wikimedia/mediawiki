@@ -22,6 +22,7 @@
 namespace MediaWiki\Auth;
 
 use Config;
+use MediaWiki\Block\DatabaseBlock;
 use StatusValue;
 
 /**
@@ -95,7 +96,7 @@ class CheckBlocksSecondaryAuthenticationProvider extends AbstractSecondaryAuthen
 				$block->getByName()
 			];
 
-			if ( $block->getType() === \Block::TYPE_RANGE ) {
+			if ( $block->getType() === DatabaseBlock::TYPE_RANGE ) {
 				$errorMessage = 'cantcreateaccount-range-text';
 				$errorParams[] = $this->manager->getRequest()->getIP();
 			} else {
