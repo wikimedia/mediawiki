@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\Block\DatabaseBlock;
+
 /**
  * Factory for handling the special page list and generating SpecialPage objects.
  *
@@ -30,7 +33,7 @@ abstract class FormSpecialPageTestCase extends SpecialPageTestBase {
 
 		$user = clone $this->getTestUser()->getUser();
 		$user->mBlockedby = $user->getName();
-		$user->mBlock = new Block( [
+		$user->mBlock = new DatabaseBlock( [
 			'address' => '127.0.8.1',
 			'by' => $user->getId(),
 			'reason' => 'sitewide block',
@@ -52,7 +55,7 @@ abstract class FormSpecialPageTestCase extends SpecialPageTestBase {
 
 		$user = clone $this->getTestUser()->getUser();
 		$user->mBlockedby = $user->getName();
-		$user->mBlock = new Block( [
+		$user->mBlock = new DatabaseBlock( [
 			'address' => '127.0.8.1',
 			'by' => $user->getId(),
 			'reason' => 'partial block',

@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Block\DatabaseBlock;
+
 /**
  * A special page for unblocking users
  *
@@ -45,7 +47,7 @@ class SpecialUnblock extends SpecialPage {
 		$this->checkReadOnly();
 
 		list( $this->target, $this->type ) = SpecialBlock::getTargetAndType( $par, $this->getRequest() );
-		$this->block = Block::newFromTarget( $this->target );
+		$this->block = DatabaseBlock::newFromTarget( $this->target );
 		if ( $this->target instanceof User ) {
 			# Set the 'relevant user' in the skin, so it displays links like Contributions,
 			# User logs, UserRights, etc.
@@ -67,17 +69,17 @@ class SpecialUnblock extends SpecialPage {
 
 		if ( $form->show() ) {
 			switch ( $this->type ) {
-				case Block::TYPE_IP:
+				case DatabaseBlock::TYPE_IP:
 					$out->addWikiMsg( 'unblocked-ip', wfEscapeWikiText( $this->target ) );
 					break;
-				case Block::TYPE_USER:
+				case DatabaseBlock::TYPE_USER:
 					$out->addWikiMsg( 'unblocked', wfEscapeWikiText( $this->target ) );
 					break;
-				case Block::TYPE_RANGE:
+				case DatabaseBlock::TYPE_RANGE:
 					$out->addWikiMsg( 'unblocked-range', wfEscapeWikiText( $this->target ) );
 					break;
-				case Block::TYPE_ID:
-				case Block::TYPE_AUTO:
+				case DatabaseBlock::TYPE_ID:
+				case DatabaseBlock::TYPE_AUTO:
 					$out->addWikiMsg( 'unblocked-id', wfEscapeWikiText( $this->target ) );
 					break;
 			}
@@ -104,28 +106,28 @@ class SpecialUnblock extends SpecialPage {
 			]
 		];
 
-		if ( $this->block instanceof Block ) {
+		if ( $this->block instanceof DatabaseBlock ) {
 			list( $target, $type ) = $this->block->getTargetAndType();
 
 			# Autoblocks are logged as "autoblock #123 because the IP was recently used by
 			# User:Foo, and we've just got any block, auto or not, that applies to a target
 			# the user has specified.  Someone could be fishing to connect IPs to autoblocks,
 			# so don't show any distinction between unblocked IPs and autoblocked IPs
-			if ( $type == Block::TYPE_AUTO && $this->type == Block::TYPE_IP ) {
+			if ( $type == DatabaseBlock::TYPE_AUTO && $this->type == DatabaseBlock::TYPE_IP ) {
 				$fields['Target']['default'] = $this->target;
 				unset( $fields['Name'] );
 			} else {
 				$fields['Target']['default'] = $target;
 				$fields['Target']['type'] = 'hidden';
 				switch ( $type ) {
-					case Block::TYPE_IP:
+					case DatabaseBlock::TYPE_IP:
 						$fields['Name']['default'] = $this->getLinkRenderer()->makeKnownLink(
 							SpecialPage::getTitleFor( 'Contributions', $target->getName() ),
 							$target->getName()
 						);
 						$fields['Name']['raw'] = true;
 						break;
-					case Block::TYPE_USER:
+					case DatabaseBlock::TYPE_USER:
 						$fields['Name']['default'] = $this->getLinkRenderer()->makeLink(
 							$target->getUserPage(),
 							$target->getName()
@@ -133,11 +135,11 @@ class SpecialUnblock extends SpecialPage {
 						$fields['Name']['raw'] = true;
 						break;
 
-					case Block::TYPE_RANGE:
+					case DatabaseBlock::TYPE_RANGE:
 						$fields['Name']['default'] = $target;
 						break;
 
-					case Block::TYPE_AUTO:
+					case DatabaseBlock::TYPE_AUTO:
 						$fields['Name']['default'] = $this->block->getRedactedName();
 						$fields['Name']['raw'] = true;
 						# Don't expose the real target of the autoblock
@@ -180,9 +182,9 @@ class SpecialUnblock extends SpecialPage {
 	public static function processUnblock( array $data, IContextSource $context ) {
 		$performer = $context->getUser();
 		$target = $data['Target'];
-		$block = Block::newFromTarget( $data['Target'] );
+		$block = DatabaseBlock::newFromTarget( $data['Target'] );
 
-		if ( !$block instanceof Block ) {
+		if ( !$block instanceof DatabaseBlock ) {
 			return [ [ 'ipb_cant_unblock', $target ] ];
 		}
 
@@ -197,7 +199,7 @@ class SpecialUnblock extends SpecialPage {
 		# If the specified IP is a single address, and the block is a range block, don't
 		# unblock the whole range.
 		list( $target, $type ) = SpecialBlock::getTargetAndType( $target );
-		if ( $block->getType() == Block::TYPE_RANGE && $type == Block::TYPE_IP ) {
+		if ( $block->getType() == DatabaseBlock::TYPE_RANGE && $type == DatabaseBlock::TYPE_IP ) {
 			$range = $block->getTarget();
 
 			return [ [ 'ipb_blocked_as_range', $target, $range ] ];
@@ -232,7 +234,7 @@ class SpecialUnblock extends SpecialPage {
 		}
 
 		# Redact the name (IP address) for autoblocks
-		if ( $block->getType() == Block::TYPE_AUTO ) {
+		if ( $block->getType() == DatabaseBlock::TYPE_AUTO ) {
 			$page = Title::makeTitle( NS_USER, '#' . $block->getId() );
 		} else {
 			$page = $block->getTarget() instanceof User

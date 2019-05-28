@@ -3,6 +3,7 @@
 define( 'NS_UNITTEST', 5600 );
 define( 'NS_UNITTEST_TALK', 5601 );
 
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\SystemBlock;
@@ -602,7 +603,7 @@ class UserTest extends MediaWikiTestCase {
 		$request1 = new FauxRequest();
 		$request1->getSession()->setUser( $user1tmp );
 		$expiryFiveHours = wfTimestamp() + ( 5 * 60 * 60 );
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'enableAutoblock' => true,
 			'expiry' => wfTimestamp( TS_MW, $expiryFiveHours ),
 		] );
@@ -616,8 +617,8 @@ class UserTest extends MediaWikiTestCase {
 
 		// Confirm that the block has been applied as required.
 		$this->assertTrue( $user1->isLoggedIn() );
-		$this->assertInstanceOf( Block::class, $user1->getBlock() );
-		$this->assertEquals( Block::TYPE_USER, $block->getType() );
+		$this->assertInstanceOf( DatabaseBlock::class, $user1->getBlock() );
+		$this->assertEquals( DatabaseBlock::TYPE_USER, $block->getType() );
 		$this->assertTrue( $block->isAutoblocking() );
 		$this->assertGreaterThanOrEqual( 1, $block->getId() );
 
@@ -625,7 +626,7 @@ class UserTest extends MediaWikiTestCase {
 		$cookies = $request1->response()->getCookies();
 		$this->assertArrayHasKey( 'wmsitetitleBlockID', $cookies );
 		$this->assertEquals( $expiryFiveHours, $cookies['wmsitetitleBlockID']['expire'] );
-		$cookieValue = Block::getIdFromCookieValue( $cookies['wmsitetitleBlockID']['value'] );
+		$cookieValue = DatabaseBlock::getIdFromCookieValue( $cookies['wmsitetitleBlockID']['value'] );
 		$this->assertEquals( $block->getId(), $cookieValue );
 
 		// 2. Create a new request, set the cookies, and see if the (anon) user is blocked.
@@ -637,7 +638,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertNotEquals( $user1->getToken(), $user2->getToken() );
 		$this->assertTrue( $user2->isAnon() );
 		$this->assertFalse( $user2->isLoggedIn() );
-		$this->assertInstanceOf( Block::class, $user2->getBlock() );
+		$this->assertInstanceOf( DatabaseBlock::class, $user2->getBlock() );
 		// Non-strict type-check.
 		$this->assertEquals( true, $user2->getBlock()->isAutoblocking(), 'Autoblock does not work' );
 		// Can't directly compare the objects because of member type differences.
@@ -653,7 +654,7 @@ class UserTest extends MediaWikiTestCase {
 		$user3 = User::newFromSession( $request3 );
 		$user3->load();
 		$this->assertTrue( $user3->isLoggedIn() );
-		$this->assertInstanceOf( Block::class, $user3->getBlock() );
+		$this->assertInstanceOf( DatabaseBlock::class, $user3->getBlock() );
 		$this->assertEquals( true, $user3->getBlock()->isAutoblocking() ); // Non-strict type-check.
 
 		// Clean up.
@@ -682,7 +683,7 @@ class UserTest extends MediaWikiTestCase {
 		$testUser = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
 		$request1->getSession()->setUser( $testUser );
-		$block = new Block( [ 'enableAutoblock' => true ] );
+		$block = new DatabaseBlock( [ 'enableAutoblock' => true ] );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 		$block->setTarget( $testUser );
 		$res = $block->insert();
@@ -693,8 +694,8 @@ class UserTest extends MediaWikiTestCase {
 
 		// 2. Test that the cookie IS NOT present.
 		$this->assertTrue( $user->isLoggedIn() );
-		$this->assertInstanceOf( Block::class, $user->getBlock() );
-		$this->assertEquals( Block::TYPE_USER, $block->getType() );
+		$this->assertInstanceOf( DatabaseBlock::class, $user->getBlock() );
+		$this->assertEquals( DatabaseBlock::TYPE_USER, $block->getType() );
 		$this->assertTrue( $block->isAutoblocking() );
 		$this->assertGreaterThanOrEqual( 1, $user->getBlockId() );
 		$this->assertGreaterThanOrEqual( $block->getId(), $user->getBlockId() );
@@ -727,7 +728,7 @@ class UserTest extends MediaWikiTestCase {
 		$user1Tmp = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
 		$request1->getSession()->setUser( $user1Tmp );
-		$block = new Block( [ 'enableAutoblock' => true, 'expiry' => 'infinity' ] );
+		$block = new DatabaseBlock( [ 'enableAutoblock' => true, 'expiry' => 'infinity' ] );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 		$block->setTarget( $user1Tmp );
 		$res = $block->insert();
@@ -738,8 +739,8 @@ class UserTest extends MediaWikiTestCase {
 
 		// 2. Test the cookie's expiry timestamp.
 		$this->assertTrue( $user1->isLoggedIn() );
-		$this->assertInstanceOf( Block::class, $user1->getBlock() );
-		$this->assertEquals( Block::TYPE_USER, $block->getType() );
+		$this->assertInstanceOf( DatabaseBlock::class, $user1->getBlock() );
+		$this->assertEquals( DatabaseBlock::TYPE_USER, $block->getType() );
 		$this->assertTrue( $block->isAutoblocking() );
 		$this->assertGreaterThanOrEqual( 1, $user1->getBlockId() );
 		$cookies = $request1->response()->getCookies();
@@ -832,7 +833,7 @@ class UserTest extends MediaWikiTestCase {
 		$user1tmp = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
 		$request1->getSession()->setUser( $user1tmp );
-		$block = new Block( [ 'enableAutoblock' => true ] );
+		$block = new DatabaseBlock( [ 'enableAutoblock' => true ] );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 		$block->setTarget( $user1tmp );
 		$res = $block->insert();
@@ -877,7 +878,7 @@ class UserTest extends MediaWikiTestCase {
 		$user1tmp = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
 		$request1->getSession()->setUser( $user1tmp );
-		$block = new Block( [ 'enableAutoblock' => true ] );
+		$block = new DatabaseBlock( [ 'enableAutoblock' => true ] );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 		$block->setTarget( $user1tmp );
 		$res = $block->insert();
@@ -885,7 +886,7 @@ class UserTest extends MediaWikiTestCase {
 		$user1 = User::newFromSession( $request1 );
 		$user1->mBlock = $block;
 		$user1->load();
-		$this->assertInstanceOf( Block::class, $user1->getBlock() );
+		$this->assertInstanceOf( DatabaseBlock::class, $user1->getBlock() );
 
 		// 2. Create a new request, set the cookie to just the block ID, and the user should
 		// still get blocked when they log in again.
@@ -897,7 +898,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertNotEquals( $user1->getToken(), $user2->getToken() );
 		$this->assertTrue( $user2->isAnon() );
 		$this->assertFalse( $user2->isLoggedIn() );
-		$this->assertInstanceOf( Block::class, $user2->getBlock() );
+		$this->assertInstanceOf( DatabaseBlock::class, $user2->getBlock() );
 		$this->assertEquals( true, $user2->getBlock()->isAutoblocking() ); // Non-strict type-check.
 
 		// Clean up.
@@ -1283,7 +1284,7 @@ class UserTest extends MediaWikiTestCase {
 
 		// Block the user
 		$blocker = $this->getTestSysop()->getUser();
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'hideName' => true,
 			'allowUsertalk' => false,
 			'reason' => 'Because',
@@ -1295,7 +1296,7 @@ class UserTest extends MediaWikiTestCase {
 
 		// Clear cache and confirm it loaded the block properly
 		$user->clearInstanceCache();
-		$this->assertInstanceOf( Block::class, $user->getBlock( false ) );
+		$this->assertInstanceOf( DatabaseBlock::class, $user->getBlock( false ) );
 		$this->assertSame( $blocker->getName(), $user->blockedBy() );
 		$this->assertSame( 'Because', $user->blockedFor() );
 		$this->assertTrue( (bool)$user->isHidden() );
@@ -1320,7 +1321,7 @@ class UserTest extends MediaWikiTestCase {
 	 * @param bool $expect Expected result from User::isBlockedFrom()
 	 * @param array $options Additional test options:
 	 *  - 'blockAllowsUTEdit': (bool, default true) Value for $wgBlockAllowsUTEdit
-	 *  - 'allowUsertalk': (bool, default false) Passed to Block::__construct()
+	 *  - 'allowUsertalk': (bool, default false) Passed to DatabaseBlock::__construct()
 	 *  - 'pageRestrictions': (array|null) If non-empty, page restriction titles for the block.
 	 */
 	public function testIsBlockedFrom( $title, $expect, array $options = [] ) {
@@ -1347,7 +1348,7 @@ class UserTest extends MediaWikiTestCase {
 			$restrictions[] = new NamespaceRestriction( 0, $ns );
 		}
 
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
 			'allowUsertalk' => $options['allowUsertalk'] ?? false,
 			'sitewide' => !$restrictions,
@@ -1456,7 +1457,7 @@ class UserTest extends MediaWikiTestCase {
 		] );
 
 		// setup block
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 5 * 60 * 60 ) ),
 		] );
 		$block->setTarget( '1.2.3.4' );
@@ -1492,7 +1493,7 @@ class UserTest extends MediaWikiTestCase {
 		] );
 
 		// setup block
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 5 * 60 * 60 ) ),
 		] );
 		$block->setTarget( '1.2.3.4' );
@@ -1529,7 +1530,7 @@ class UserTest extends MediaWikiTestCase {
 		] );
 
 		// setup block
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
 		] );
 		$block->setTarget( '1.2.3.4' );

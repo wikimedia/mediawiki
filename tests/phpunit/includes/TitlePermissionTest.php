@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\MediaWikiServices;
@@ -920,7 +921,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$prev = time();
 		$now = time() + 120;
 		$this->user->mBlockedby = $this->user->getId();
-		$this->user->mBlock = new Block( [
+		$this->user->mBlock = new DatabaseBlock( [
 			'address' => '127.0.8.1',
 			'by' => $this->user->getId(),
 			'reason' => 'no reason given',
@@ -943,7 +944,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		global $wgLocalTZoffset;
 		$wgLocalTZoffset = -60;
 		$this->user->mBlockedby = $this->user->getName();
-		$this->user->mBlock = new Block( [
+		$this->user->mBlock = new DatabaseBlock( [
 			'address' => '127.0.8.1',
 			'by' => $this->user->getId(),
 			'reason' => 'no reason given',
@@ -989,7 +990,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 		// partial block message test
 		$this->user->mBlockedby = $this->user->getName();
-		$this->user->mBlock = new Block( [
+		$this->user->mBlock = new DatabaseBlock( [
 			'address' => '127.0.8.1',
 			'by' => $this->user->getId(),
 			'reason' => 'no reason given',
@@ -1073,7 +1074,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 		$now = time();
 		$this->user->mBlockedby = $this->user->getName();
-		$this->user->mBlock = new Block( [
+		$this->user->mBlock = new DatabaseBlock( [
 			'address' => '127.0.8.1',
 			'by' => $this->user->getId(),
 			'reason' => 'no reason given',

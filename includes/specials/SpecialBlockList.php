@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Block\DatabaseBlock;
+
 /**
  * A special page that lists existing blocks
  *
@@ -139,28 +141,28 @@ class SpecialBlockList extends SpecialPage {
 		}
 
 		if ( $this->target !== '' ) {
-			list( $target, $type ) = Block::parseTarget( $this->target );
+			list( $target, $type ) = DatabaseBlock::parseTarget( $this->target );
 
 			switch ( $type ) {
-				case Block::TYPE_ID:
-				case Block::TYPE_AUTO:
+				case DatabaseBlock::TYPE_ID:
+				case DatabaseBlock::TYPE_AUTO:
 					$conds['ipb_id'] = $target;
 					break;
 
-				case Block::TYPE_IP:
-				case Block::TYPE_RANGE:
+				case DatabaseBlock::TYPE_IP:
+				case DatabaseBlock::TYPE_RANGE:
 					list( $start, $end ) = IP::parseRange( $target );
 					$conds[] = wfGetDB( DB_REPLICA )->makeList(
 						[
 							'ipb_address' => $target,
-							Block::getRangeCond( $start, $end )
+							DatabaseBlock::getRangeCond( $start, $end )
 						],
 						LIST_OR
 					);
 					$conds['ipb_auto'] = 0;
 					break;
 
-				case Block::TYPE_USER:
+				case DatabaseBlock::TYPE_USER:
 					$conds['ipb_address'] = $target->getName();
 					$conds['ipb_auto'] = 0;
 					break;

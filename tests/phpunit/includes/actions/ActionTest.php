@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
 
 /**
@@ -213,7 +214,7 @@ class ActionTest extends MediaWikiTestCase {
 		$page = $this->getExistingTestPage();
 		$action = Action::factory( 'unblock', $page, $this->getContext() );
 
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'address' => $user,
 			'by' => $this->getTestSysop()->getUser()->getId(),
 			'expiry' => 'infinity',

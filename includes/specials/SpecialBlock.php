@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\MediaWikiServices;
@@ -36,7 +37,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * or as subpage (Special:Block/Foo) */
 	protected $target;
 
-	/** @var int Block::TYPE_ constant */
+	/** @var int DatabaseBlock::TYPE_ constant */
 	protected $type;
 
 	/** @var User|string The previous block target */
@@ -101,7 +102,7 @@ class SpecialBlock extends FormSpecialPage {
 		}
 
 		list( $this->previousTarget, /*...*/ ) =
-			Block::parseTarget( $request->getVal( 'wpPreviousTarget' ) );
+			DatabaseBlock::parseTarget( $request->getVal( 'wpPreviousTarget' ) );
 		$this->requestedHideUser = $request->getBool( 'wpHideUser' );
 	}
 
@@ -335,12 +336,12 @@ class SpecialBlock extends FormSpecialPage {
 		# This won't be
 		$fields['PreviousTarget']['default'] = (string)$this->target;
 
-		$block = Block::newFromTarget( $this->target );
+		$block = DatabaseBlock::newFromTarget( $this->target );
 
 		// Populate fields if there is a block that is not an autoblock; if it is a range
 		// block, only populate the fields if the range is the same as $this->target
-		if ( $block instanceof Block && $block->getType() !== Block::TYPE_AUTO
-			&& ( $this->type != Block::TYPE_RANGE
+		if ( $block instanceof DatabaseBlock && $block->getType() !== DatabaseBlock::TYPE_AUTO
+			&& ( $this->type != DatabaseBlock::TYPE_RANGE
 				|| $block->getTarget() == $this->target )
 		) {
 			$fields['HardBlock']['default'] = $block->isHardblock();
@@ -409,13 +410,13 @@ class SpecialBlock extends FormSpecialPage {
 		}
 
 		if ( $this->getConfig()->get( 'EnablePartialBlocks' ) ) {
-			if ( $block instanceof Block && !$block->isSitewide() ) {
+			if ( $block instanceof DatabaseBlock && !$block->isSitewide() ) {
 				$fields['EditingRestriction']['default'] = 'partial';
 			} else {
 				$fields['EditingRestriction']['default'] = 'sitewide';
 			}
 
-			if ( $block instanceof Block ) {
+			if ( $block instanceof DatabaseBlock ) {
 				$pageRestrictions = [];
 				$namespaceRestrictions = [];
 				foreach ( $block->getRestrictions() as $restriction ) {
@@ -614,11 +615,11 @@ class SpecialBlock extends FormSpecialPage {
 
 	/**
 	 * Determine the target of the block, and the type of target
-	 * @todo Should be in Block.php?
+	 * @todo Should be in DatabaseBlock.php?
 	 * @param string $par Subpage parameter passed to setup, or data value from
 	 *     the HTMLForm
 	 * @param WebRequest|null $request Optionally try and get data from a request too
-	 * @return array [ User|string|null, Block::TYPE_ constant|null ]
+	 * @return array [ User|string|null, DatabaseBlock::TYPE_ constant|null ]
 	 * @phan-return array{0:User|string|null,1:int|null}
 	 */
 	public static function getTargetAndType( $par, WebRequest $request = null ) {
@@ -654,7 +655,7 @@ class SpecialBlock extends FormSpecialPage {
 					break 2;
 			}
 
-			list( $target, $type ) = Block::parseTarget( $target );
+			list( $target, $type ) = DatabaseBlock::parseTarget( $target );
 
 			if ( $type !== null ) {
 				return [ $target, $type ];
@@ -698,7 +699,7 @@ class SpecialBlock extends FormSpecialPage {
 		list( $target, $type ) = self::getTargetAndType( $value );
 		$status = Status::newGood( $target );
 
-		if ( $type == Block::TYPE_USER ) {
+		if ( $type == DatabaseBlock::TYPE_USER ) {
 			if ( $target->isAnon() ) {
 				$status->fatal(
 					'nosuchusershort',
@@ -710,7 +711,7 @@ class SpecialBlock extends FormSpecialPage {
 			if ( $unblockStatus !== true ) {
 				$status->fatal( 'badaccess', $unblockStatus );
 			}
-		} elseif ( $type == Block::TYPE_RANGE ) {
+		} elseif ( $type == DatabaseBlock::TYPE_RANGE ) {
 			list( $ip, $range ) = explode( '/', $target, 2 );
 
 			if (
@@ -736,7 +737,7 @@ class SpecialBlock extends FormSpecialPage {
 			if ( IP::isIPv6( $ip ) && $range < $wgBlockCIDRLimit['IPv6'] ) {
 				$status->fatal( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv6'] );
 			}
-		} elseif ( $type == Block::TYPE_IP ) {
+		} elseif ( $type == DatabaseBlock::TYPE_IP ) {
 			# All is well
 		} else {
 			$status->fatal( 'badipaddress' );
@@ -770,7 +771,7 @@ class SpecialBlock extends FormSpecialPage {
 
 		/** @var User $target */
 		list( $target, $type ) = self::getTargetAndType( $data['Target'] );
-		if ( $type == Block::TYPE_USER ) {
+		if ( $type == DatabaseBlock::TYPE_USER ) {
 			$user = $target;
 			$target = $user->getName();
 			$userId = $user->getId();
@@ -787,10 +788,10 @@ class SpecialBlock extends FormSpecialPage {
 			) {
 				return [ 'ipb-blockingself', 'ipb-confirmaction' ];
 			}
-		} elseif ( $type == Block::TYPE_RANGE ) {
+		} elseif ( $type == DatabaseBlock::TYPE_RANGE ) {
 			$user = null;
 			$userId = 0;
-		} elseif ( $type == Block::TYPE_IP ) {
+		} elseif ( $type == DatabaseBlock::TYPE_IP ) {
 			$user = null;
 			$target = $target->getName();
 			$userId = 0;
@@ -842,7 +843,7 @@ class SpecialBlock extends FormSpecialPage {
 			}
 
 			# Recheck params here...
-			if ( $type != Block::TYPE_USER ) {
+			if ( $type != DatabaseBlock::TYPE_USER ) {
 				$data['HideUser'] = false; # IP users should not be hidden
 			} elseif ( !wfIsInfinity( $data['Expiry'] ) ) {
 				# Bad expiry.
@@ -860,7 +861,7 @@ class SpecialBlock extends FormSpecialPage {
 		}
 
 		# Create block object.
-		$block = new Block();
+		$block = new DatabaseBlock();
 		$block->setTarget( $target );
 		$block->setBlocker( $performer );
 		$block->setReason( $data['Reason'][0] );
@@ -923,7 +924,7 @@ class SpecialBlock extends FormSpecialPage {
 			} else {
 				# This returns direct blocks before autoblocks/rangeblocks, since we should
 				# be sure the user is blocked by now it should work for our purposes
-				$currentBlock = Block::newFromTarget( $target );
+				$currentBlock = DatabaseBlock::newFromTarget( $target );
 				if ( $block->equals( $currentBlock ) ) {
 					return [ [ 'ipb_already_blocked', $block->getTarget() ] ];
 				}
@@ -984,7 +985,7 @@ class SpecialBlock extends FormSpecialPage {
 		}
 
 		# Can't watch a rangeblock
-		if ( $type != Block::TYPE_RANGE && $data['Watch'] ) {
+		if ( $type != DatabaseBlock::TYPE_RANGE && $data['Watch'] ) {
 			WatchAction::doWatch(
 				Title::makeTitle( NS_USER, $target ),
 				$performer,
@@ -992,7 +993,7 @@ class SpecialBlock extends FormSpecialPage {
 			);
 		}
 
-		# Block constructor sanitizes certain block options on insert
+		# DatabaseBlock constructor sanitizes certain block options on insert
 		$data['BlockEmail'] = $block->isEmailBlocked();
 		$data['AutoBlock'] = $block->isAutoblocking();
 
@@ -1141,7 +1142,7 @@ class SpecialBlock extends FormSpecialPage {
 				}
 			} elseif (
 				$target instanceof User &&
-				$performer->getBlock() instanceof Block &&
+				$performer->getBlock() instanceof DatabaseBlock &&
 				$performer->getBlock()->getBy() &&
 				$performer->getBlock()->getBy() === $target->getId()
 			) {
@@ -1165,7 +1166,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * Return a comma-delimited list of "flags" to be passed to the log
 	 * reader for this block, to provide more information in the logs
 	 * @param array $data From HTMLForm data
-	 * @param int $type Block::TYPE_ constant (USER, RANGE, or IP)
+	 * @param int $type DatabaseBlock::TYPE_ constant (USER, RANGE, or IP)
 	 * @return string
 	 */
 	protected static function blockLogFlags( array $data, $type ) {
@@ -1177,7 +1178,7 @@ class SpecialBlock extends FormSpecialPage {
 
 		# when blocking a user the option 'anononly' is not available/has no effect
 		# -> do not write this into log
-		if ( !$data['HardBlock'] && $type != Block::TYPE_USER ) {
+		if ( !$data['HardBlock'] && $type != DatabaseBlock::TYPE_USER ) {
 			// For grepping: message block-log-flags-anononly
 			$flags[] = 'anononly';
 		}
@@ -1188,7 +1189,7 @@ class SpecialBlock extends FormSpecialPage {
 		}
 
 		# Same as anononly, this is not displayed when blocking an IP address
-		if ( !$data['AutoBlock'] && $type == Block::TYPE_USER ) {
+		if ( !$data['AutoBlock'] && $type == DatabaseBlock::TYPE_USER ) {
 			// For grepping: message block-log-flags-noautoblock
 			$flags[] = 'noautoblock';
 		}

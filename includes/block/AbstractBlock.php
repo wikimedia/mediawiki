@@ -28,7 +28,7 @@ use Title;
 use User;
 
 /**
- * @since 1.34 Factored out from Block.
+ * @since 1.34 Factored out from DatabaseBlock (previously Block).
  */
 abstract class AbstractBlock {
 	/** @var string */
@@ -56,7 +56,7 @@ abstract class AbstractBlock {
 	protected $target;
 
 	/**
-	 * @var int Block::TYPE_ constant. After the block has been loaded
+	 * @var int AbstractBlock::TYPE_ constant. After the block has been loaded
 	 * from the database, this can only be USER, IP or RANGE.
 	 */
 	protected $type;
@@ -228,9 +228,9 @@ abstract class AbstractBlock {
 	}
 
 	/**
-	 * Determine whether the Block prevents a given right. A right
+	 * Determine whether the block prevents a given right. A right
 	 * may be blacklisted or whitelisted, or determined from a
-	 * property on the Block object. For certain rights, the property
+	 * property on the block object. For certain rights, the property
 	 * may be overridden according to global configs.
 	 *
 	 * @since 1.33
@@ -275,7 +275,7 @@ abstract class AbstractBlock {
 	}
 
 	/**
-	 * Get/set whether the Block prevents a given action
+	 * Get/set whether the block prevents a given action
 	 *
 	 * @deprecated since 1.33, use appliesToRight to determine block
 	 *  behaviour, and specific methods to get/set properties
@@ -335,13 +335,13 @@ abstract class AbstractBlock {
 	}
 
 	/**
-	 * From an existing Block, get the target and the type of target.
+	 * From an existing block, get the target and the type of target.
 	 * Note that, except for null, it is always safe to treat the target
 	 * as a string; for User objects this will return User::__toString()
 	 * which in turn gives User::getName().
 	 *
 	 * @param string|int|User|null $target
-	 * @return array [ User|String|null, Block::TYPE_ constant|null ]
+	 * @return array [ User|String|null, AbstractBlock::TYPE_ constant|null ]
 	 */
 	public static function parseTarget( $target ) {
 		# We may have been through this before
@@ -395,25 +395,25 @@ abstract class AbstractBlock {
 
 	/**
 	 * Get the type of target for this particular block.
-	 * @return int Block::TYPE_ constant, will never be TYPE_ID
+	 * @return int AbstractBlock::TYPE_ constant, will never be TYPE_ID
 	 */
 	public function getType() {
 		return $this->type;
 	}
 
 	/**
-	 * Get the target and target type for this particular Block.  Note that for autoblocks,
+	 * Get the target and target type for this particular block. Note that for autoblocks,
 	 * this returns the unredacted name; frontend functions need to call $block->getRedactedName()
 	 * in this situation.
-	 * @return array [ User|String, Block::TYPE_ constant ]
-	 * @todo FIXME: This should be an integral part of the Block member variables
+	 * @return array [ User|String, AbstractBlock::TYPE_ constant ]
+	 * @todo FIXME: This should be an integral part of the block member variables
 	 */
 	public function getTargetAndType() {
 		return [ $this->getTarget(), $this->getType() ];
 	}
 
 	/**
-	 * Get the target for this particular Block.  Note that for autoblocks,
+	 * Get the target for this particular block.  Note that for autoblocks,
 	 * this returns the unredacted name; frontend functions need to call $block->getRedactedName()
 	 * in this situation.
 	 * @return User|string
@@ -547,10 +547,11 @@ abstract class AbstractBlock {
 
 	/**
 	 * Determine whether the block allows the user to edit their own
-	 * user talk page. This is done separately from Block::appliesToRight
-	 * because there is no right for editing one's own user talk page
-	 * and because the user's talk page needs to be passed into the
-	 * Block object, which is unaware of the user.
+	 * user talk page. This is done separately from
+	 * AbstractBlock::appliesToRight because there is no right for
+	 * editing one's own user talk page and because the user's talk
+	 * page needs to be passed into the block object, which is unaware
+	 * of the user.
 	 *
 	 * The ipb_allow_usertalk flag (which corresponds to the property
 	 * allowUsertalk) is used on sitewide blocks and partial blocks

@@ -1,6 +1,7 @@
 <?php
 
 use Wikimedia\TestingAccessWrapper;
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
 
 /**
@@ -26,11 +27,11 @@ class ApiBlockInfoTraitTest extends MediaWikiTestCase {
 	public static function provideGetBlockDetails() {
 		return [
 			'Sitewide block' => [
-				new Block(),
+				new DatabaseBlock(),
 				[ 'blockpartial' => false ],
 			],
 			'Partial block' => [
-				new Block( [ 'sitewide' => false ] ),
+				new DatabaseBlock( [ 'sitewide' => false ] ),
 				[ 'blockpartial' => true ],
 			],
 			'System block' => [

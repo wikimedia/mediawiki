@@ -251,7 +251,7 @@ class BlockRestrictionStore {
 	}
 
 	/**
-	 * Delete the restrictions by Block ID.
+	 * Delete the restrictions by block ID.
 	 *
 	 * @since 1.33
 	 * @param int|array $blockId
@@ -268,7 +268,7 @@ class BlockRestrictionStore {
 	}
 
 	/**
-	 * Delete the restrictions by Parent Block ID.
+	 * Delete the restrictions by parent block ID.
 	 *
 	 * @since 1.33
 	 * @param int|array $parentBlockId

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Block\DatabaseBlock;
+
 /**
  * @group medium
  * @covers ApiQueryUserInfo
@@ -13,7 +15,7 @@ class ApiQueryUserInfoTest extends ApiTestCase {
 			'userinfo'
 		);
 
-		$block = new Block();
+		$block = new DatabaseBlock();
 		$info = $apiQueryUserInfo->getBlockInfo( $block );
 		$subset = [
 			'blockid' => null,
@@ -34,7 +36,7 @@ class ApiQueryUserInfoTest extends ApiTestCase {
 			'userinfo'
 		);
 
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'sitewide' => false,
 		] );
 		$info = $apiQueryUserInfo->getBlockInfo( $block );

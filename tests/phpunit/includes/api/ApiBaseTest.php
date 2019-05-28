@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
@@ -1325,7 +1326,7 @@ class ApiBaseTest extends ApiTestCase {
 
 		// Has a blocked $user, so special block handling
 		$user = $this->getMutableTestUser()->getUser();
-		$block = new \Block( [
+		$block = new DatabaseBlock( [
 			'address' => $user->getName(),
 			'user' => $user->getID(),
 			'by' => $this->getTestSysop()->getUser()->getId(),
@@ -1383,7 +1384,7 @@ class ApiBaseTest extends ApiTestCase {
 
 		// Has a blocked $user, so special block handling
 		$user = $this->getMutableTestUser()->getUser();
-		$block = new \Block( [
+		$block = new DatabaseBlock( [
 			'address' => $user->getName(),
 			'user' => $user->getID(),
 			'by' => $this->getTestSysop()->getUser()->getId(),

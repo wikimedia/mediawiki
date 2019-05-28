@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Block\DatabaseBlock;
+
 /**
  * API module that facilitates the blocking of users. Requires API write mode
  * to be enabled.
@@ -82,7 +84,7 @@ class ApiBlock extends ApiBase {
 
 			// T40633 - if the target is a user (not an IP address), but it
 			// doesn't exist or is unusable, error.
-			if ( $type === Block::TYPE_USER &&
+			if ( $type === DatabaseBlock::TYPE_USER &&
 				( $target->isAnon() /* doesn't exist */ || !User::isUsableName( $params['user'] ) )
 			) {
 				$this->dieWithError( [ 'nosuchusershort', $params['user'] ], 'nosuchuser' );
@@ -136,8 +138,8 @@ class ApiBlock extends ApiBase {
 		$res['user'] = $params['user'];
 		$res['userID'] = $target instanceof User ? $target->getId() : 0;
 
-		$block = Block::newFromTarget( $target, null, true );
-		if ( $block instanceof Block ) {
+		$block = DatabaseBlock::newFromTarget( $target, null, true );
+		if ( $block instanceof DatabaseBlock ) {
 			$res['expiry'] = ApiResult::formatExpiry( $block->getExpiry(), 'infinite' );
 			$res['id'] = $block->getId();
 		} else {

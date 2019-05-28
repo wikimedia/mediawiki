@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Block\AbstractBlock;
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
@@ -1355,7 +1356,7 @@ class User implements IDBAccessObject, UserIdentity {
 		if ( $user->isLoggedIn() ) {
 			$this->loadFromUserObject( $user );
 			if ( $user->getBlock() ) {
-				// If this user is autoblocked, set a cookie to track the Block. This has to be done on
+				// If this user is autoblocked, set a cookie to track the block. This has to be done on
 				// every session load, because an autoblocked editor might not edit again from the same
 				// IP address after being blocked.
 				$this->trackBlockWithCookie();
@@ -4355,7 +4356,7 @@ class User implements IDBAccessObject, UserIdentity {
 			return false;
 		}
 
-		$userblock = Block::newFromTarget( $this->getName() );
+		$userblock = DatabaseBlock::newFromTarget( $this->getName() );
 		if ( !$userblock ) {
 			return false;
 		}
@@ -4377,7 +4378,9 @@ class User implements IDBAccessObject, UserIdentity {
 		# blocked with createaccount disabled, prevent new account creation there even
 		# when the user is logged in
 		if ( $this->mBlockedFromCreateAccount === false && !$this->isAllowed( 'ipblock-exempt' ) ) {
-			$this->mBlockedFromCreateAccount = Block::newFromTarget( null, $this->getRequest()->getIP() );
+			$this->mBlockedFromCreateAccount = DatabaseBlock::newFromTarget(
+				null, $this->getRequest()->getIP()
+			);
 		}
 		return $this->mBlockedFromCreateAccount instanceof AbstractBlock
 			&& $this->mBlockedFromCreateAccount->appliesToRight( 'createaccount' )

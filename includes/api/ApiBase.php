@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Block\AbstractBlock;
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -2034,7 +2035,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function dieBlocked( AbstractBlock $block ) {
 		// Die using the appropriate message depending on block type
-		if ( $block->getType() == Block::TYPE_AUTO ) {
+		if ( $block->getType() == DatabaseBlock::TYPE_AUTO ) {
 			$this->dieWithError(
 				'apierror-autoblocked',
 				'autoblocked',
