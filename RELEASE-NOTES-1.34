@@ -189,6 +189,8 @@ because of Phabricator reports.
   Use the mediawiki.String module instead.
 * mw.language.specialCharacters, deprecated in 1.33, has been removed.
   Use require( 'mediawiki.language.specialCharacters' ) instead.
+* EditPage::submit(), deprecated in 1.29, has been removed. Used $this->edit()
+  directly.
 * …
 
 === Deprecations in 1.34 ===
@@ -234,7 +236,6 @@ because of Phabricator reports.
   MovePage::moveSubpagesIfAllowed.
 * The MWNamespace class is deprecated. Use MediaWikiServices::getNamespaceInfo.
 * (T62260) Hard deprecate Language::getExtraUserToggles() method.
-* …
 
 === Other changes in 1.34 ===
 * …

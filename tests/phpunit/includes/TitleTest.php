@@ -295,6 +295,8 @@ class TitleTest extends MediaWikiTestCase {
 	 * @covers Title::isValidMoveOperation
 	 */
 	public function testIsValidMoveOperation( $source, $target, $expected ) {
+		$this->hideDeprecated( 'Title::isValidMoveOperation' );
+
 		$this->setMwGlobals( 'wgContentHandlerUseDB', false );
 		$title = Title::newFromText( $source );
 		$nt = Title::newFromText( $target );

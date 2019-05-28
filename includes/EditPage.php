@@ -566,14 +566,6 @@ class EditPage {
 	}
 
 	/**
-	 * @deprecated since 1.29, call edit directly
-	 */
-	public function submit() {
-		wfDeprecated( __METHOD__, '1.29' );
-		$this->edit();
-	}
-
-	/**
 	 * This is the function that gets called for "action=edit". It
 	 * sets up various member variables, then passes execution to
 	 * another function, usually showEditForm()
