@@ -1,5 +1,6 @@
 == MediaWiki 1.32.2 ==
-THIS IS NOT A RELEASE YET
+
+This is a security and maintenance release of the MediaWiki 1.32 branch.
 
 === Changes since MediaWiki 1.32.1 ===
 * (T204423) Backport support for hyphenated DB names in JobQueueGroup.
@@ -33,6 +34,8 @@ THIS IS NOT A RELEASE YET
 * (T221739) SECURITY: resources: Patch jQuery 3.3.1 for CVE-2019-11358.
 
 == MediaWiki 1.32.1 ==
+
+This is a maintenance release of the MediaWiki 1.32 branch.
 
 === Changes since MediaWiki 1.32.0 ===
 * (T213577) rdbms: avoid transaction status errors from ping() in rollback().
