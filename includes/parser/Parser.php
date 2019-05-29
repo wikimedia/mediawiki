@@ -678,6 +678,7 @@ class Parser {
 		$limitReport .= 'Dynamic content: ' .
 			( $this->mOutput->hasDynamicContent() ? 'true' : 'false' ) .
 			"\n";
+		$limitReport .= 'Complications: [' . implode( ', ', $this->mOutput->getAllFlags() ) . "]\n";
 
 		foreach ( $this->mOutput->getLimitReportData() as $key => $value ) {
 			if ( Hooks::run( 'ParserLimitReportFormat',
