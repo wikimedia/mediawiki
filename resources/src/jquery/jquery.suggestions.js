@@ -776,10 +776,12 @@
 						}
 						$.suggestions.hide( context );
 						$.suggestions.cancel( context );
-					} )
-					// Simulate a keypress on load. This loads the search suggestions when there are already
-					// typed characters before the JavaScript is loaded.
-					.trigger( 'keypress' );
+					} );
+				// Load suggestions if the value is changed because there are already
+				// typed characters before the JavaScript is loaded.
+				if ( this.value !== this.defaultValue ) {
+					$.suggestions.update( context, false );
+				}
 			}
 
 			// Store the context for next time
