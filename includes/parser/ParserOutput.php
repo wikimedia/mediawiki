@@ -895,15 +895,28 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * Fairly generic flag setter thingy.
+	 * Attach a flag to the output so that it can be checked later to handle special cases
+	 *
 	 * @param string $flag
 	 */
 	public function setFlag( $flag ) {
 		$this->mFlags[$flag] = true;
 	}
 
+	/**
+	 * @param string $flag
+	 * @return bool Whether the given flag was set to signify a special case
+	 */
 	public function getFlag( $flag ) {
 		return isset( $this->mFlags[$flag] );
+	}
+
+	/**
+	 * @return string[] List of flags signifying special cases
+	 * @since 1.34
+	 */
+	public function getAllFlags() {
+		return array_keys( $this->mFlags );
 	}
 
 	/**
