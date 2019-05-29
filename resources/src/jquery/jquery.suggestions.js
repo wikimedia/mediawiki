@@ -90,8 +90,6 @@
 
 ( function () {
 
-	var hasOwn = Object.hasOwnProperty;
-
 	/**
 	 * Cancel any delayed maybeFetch() call and callback the context so
 	 * they can cancel any async fetching if they use AJAX or something.
@@ -176,7 +174,7 @@
 			) {
 				context.data.prevText = val;
 				// Try cache first
-				if ( context.config.cache && hasOwn.call( cache, val ) ) {
+				if ( context.config.cache && val in cache ) {
 					if ( mw.now() - cache[ val ].timestamp < context.config.cacheMaxAge ) {
 						context.data.$textbox.suggestions( 'suggestions', cache[ val ].suggestions );
 						if ( typeof context.config.update.after === 'function' ) {
@@ -637,7 +635,7 @@
 					prevText: null,
 
 					// Cache of fetched suggestions
-					cache: {},
+					cache: Object.create( null ),
 
 					// Number of results visible without scrolling
 					visibleResults: 0,
