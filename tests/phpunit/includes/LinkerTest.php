@@ -4,7 +4,6 @@
  * @group Database
  */
 class LinkerTest extends MediaWikiLangTestCase {
-
 	/**
 	 * @dataProvider provideCasesForUserLink
 	 * @covers Linker::userLink
@@ -414,14 +413,15 @@ class LinkerTest extends MediaWikiLangTestCase {
 	 * @covers Linker::generateRollback
 	 * @dataProvider provideCasesForRollbackGeneration
 	 */
-	public function testGenerateRollback( $rollbackEnabled, $expectedModules ) {
+	public function testGenerateRollback( $rollbackEnabled, $expectedModules, $title ) {
 		$this->markTestSkippedIfDbType( 'postgres' );
 
 		$context = RequestContext::getMain();
 		$user = $context->getUser();
 		$user->setOption( 'showrollbackconfirmation', $rollbackEnabled );
 
-		$pageData = $this->insertPage( 'Rollback_Test_Page' );
+		$this->assertEquals( 0, Title::newFromText( $title )->getArticleID() );
+		$pageData = $this->insertPage( $title );
 		$page = WikiPage::factory( $pageData['title'] );
 
 		$updater = $page->newPageUpdater( $user );
@@ -433,8 +433,24 @@ class LinkerTest extends MediaWikiLangTestCase {
 
 		$rollbackOutput = Linker::generateRollback( $page->getRevision(), $context );
 		$modules = $context->getOutput()->getModules();
+		$currentRev = $page->getRevision();
+		$oldestRev = $page->getOldestRevision();
 
 		$this->assertEquals( $expectedModules, $modules );
+		$this->assertEquals( $user->getName(), $currentRev->getUserText() );
+		$this->assertEquals(
+			static::getTestSysop()->getUser(),
+			$oldestRev->getUserText()
+		);
+
+		$ids = [];
+		$r = $oldestRev;
+		while ( $r ) {
+			$ids[] = $r->getId();
+			$r = $r->getNext();
+		}
+		$this->assertEquals( [ $oldestRev->getId(), $currentRev->getId() ], $ids );
+
 		$this->assertContains( 'rollback 1 edit', $rollbackOutput );
 	}
 
@@ -442,12 +458,13 @@ class LinkerTest extends MediaWikiLangTestCase {
 		return [
 			[
 				true,
-				[ 'mediawiki.page.rollback.confirmation' ]
-
+				[ 'mediawiki.page.rollback.confirmation' ],
+				'Rollback_Test_Page'
 			],
 			[
 				false,
-				[]
+				[],
+				'Rollback_Test_Page2'
 			]
 		];
 	}
