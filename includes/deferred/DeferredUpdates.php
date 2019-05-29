@@ -184,8 +184,6 @@ class DeferredUpdates {
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$method = RequestContext::getMain()->getRequest()->getMethod();
 
-		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
-
 		/** @var ErrorPageError $reportableError */
 		$reportableError = null;
 		/** @var DeferrableUpdate[] $updates Snapshot of queue */
@@ -199,7 +197,6 @@ class DeferredUpdates {
 			$updatesByType = [ 'data' => [], 'generic' => [] ];
 			foreach ( $updates as $du ) {
 				if ( $du instanceof DataUpdate ) {
-					$du->setTransactionTicket( $ticket );
 					$updatesByType['data'][] = $du;
 				} else {
 					$updatesByType['generic'][] = $du;
@@ -224,10 +221,6 @@ class DeferredUpdates {
 							$subUpdate = reset( self::$executeContext['subqueue'] );
 							$firstKey = key( self::$executeContext['subqueue'] );
 							unset( self::$executeContext['subqueue'][$firstKey] );
-
-							if ( $subUpdate instanceof DataUpdate ) {
-								$subUpdate->setTransactionTicket( $ticket );
-							}
 
 							$guiError = self::handleUpdate( $subUpdate, $lbFactory, $mode, $stage );
 							$reportableError = $reportableError ?: $guiError;
@@ -300,6 +293,10 @@ class DeferredUpdates {
 	 * @since 1.34
 	 */
 	public static function attemptUpdate( DeferrableUpdate $update, ILBFactory $lbFactory ) {
+		if ( $update instanceof DataUpdate ) {
+			$update->setTransactionTicket( $lbFactory->getEmptyTransactionTicket( __METHOD__ ) );
+		}
+
 		if (
 			$update instanceof TransactionRoundAwareUpdate &&
 			$update->getTransactionRoundRequirement() == $update::TRX_ROUND_ABSENT

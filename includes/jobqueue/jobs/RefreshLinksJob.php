@@ -279,8 +279,7 @@ class RefreshLinksJob extends Job {
 			'recursive' => !empty( $this->params['useRecursiveLinksUpdate'] ),
 			// Carry over cause so the update can do extra logging
 			'causeAction' => $this->params['causeAction'],
-			'causeAgent' => $this->params['causeAgent'],
-			'transactionTicket' => $ticket
+			'causeAgent' => $this->params['causeAgent']
 		];
 		if ( !empty( $this->params['triggeringUser'] ) ) {
 			$userInfo = $this->params['triggeringUser'];
