@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.6
+ * OOUI v0.32.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-05-08T10:08:44Z
+ * Date: 2019-05-29T00:38:49Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -1086,8 +1086,12 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   max-width: 50em;
 }
 .oo-ui-dropdownInputWidget .oo-ui-dropdownWidget,
-.oo-ui-dropdownInputWidget.oo-ui-dropdownInputWidget-php select {
+.oo-ui-dropdownInputWidget.oo-ui-dropdownInputWidget-php select,
+.oo-ui-dropdownInputWidget.oo-ui-isMobile select {
   display: block;
+}
+.oo-ui-dropdownInputWidget.oo-ui-isMobile .oo-ui-dropdownWidget {
+  display: none;
 }
 .oo-ui-dropdownInputWidget select {
   display: none;
@@ -1381,26 +1385,18 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   position: relative;
   width: 100%;
   display: block;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  padding: 0;
-  overflow: hidden;
-  font-family: inherit;
-  font-size: inherit;
-  text-align: left;
-  text-overflow: ellipsis;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   cursor: default;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-.oo-ui-dropdownWidget-handle::-moz-focus-inner {
-  border-color: transparent;
-  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle {
   cursor: pointer;

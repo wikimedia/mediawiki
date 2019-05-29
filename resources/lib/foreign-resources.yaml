@@ -228,8 +228,9 @@ oojs-router:
 
 ooui:
   type: tar
-  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.31.6.tgz
-  integrity: sha384-zixZ5PrOMXEo9x3/Y6++IJGbOPYEUpDjCjCsXhiPVKyEBvySFtlceFKM2HJvi9mz
+  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.32.0.tgz
+  integrity: sha384-kRQZfA8MkOJvjOQmuy20urqZKmyusFMJ4e03fcDXi3aeHiDYrgC/Ii7vGrlXXVWY
+
   dest:
     # Main stuff
     package/dist/oojs-ui-core.js{,.map.json}:

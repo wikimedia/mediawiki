@@ -1,4 +1,40 @@
 # OOUI Release History
+## v0.32.0 / 2019-05-28
+### Breaking changes
+* [BREAKING CHANGE] SelectWidget: Drop depressed class, deprecated since 0.30.4 (James D. Forrester)
+* [BREAKING CHANGE] Toolbar: Remove support for non-tool buttons (Ed Sanders)
+* [BREAKING CHANGE] icons: Drop 'web', deprecated in v0.30.4 (James D. Forrester)
+
+### Features
+* Implement frameless mode for TabSelectWidget (Ed Sanders)
+* LookupElement: Add showSuggestionsOnFocus flag (Ed Sanders)
+
+### Styles
+* WikimediaUI theme: Enable correct DropdownInputWidget styling on IE 8-9 (Volker E.)
+* Apex theme: Synchronise icons with WikimediaUI (James D. Forrester)
+* Apex theme: Add text colour to bar tools (Ed Sanders)
+* icons: Better align 'articleDisambiguation*' and 'articleNotFound*' (Volker E.)
+* icons: Manually recreate settings.svg icon (Thiemo Kreuz)
+
+### Code
+* DropdownInputWidget: Use native `select` when `isMobile` is true (Volker E.)
+* DropdownWidget: Alternative ARIA roles and attributes approach (Volker E.)
+* Make 'Infuse' button behave like a toggle (Ed Sanders)
+* Revert "Merge "DropDownWidget: Turn handle into `button` and add ARIA attribute"" (Volker E.)
+* SelectWidget: Fix keyboard accessibility issue with select widgets (Moriel Schottlender)
+* TabSelectWidget: Horizontally scroll tabs on mobile (Ed Sanders)
+* build: Upgrade grunt-cssjanus from 0.4.0 to 0.5.0 (James D. Forrester)
+* demos: Change doc and tutorials link to frameless (Volker E.)
+* demos: Expand max-width, from mostly-arbitrary 62.5em to 68.5715em (James D. Forrester)
+* demos: Fix error CSS for demos (Gabriel Birke)
+* demos: Improve example and console toggle links usability (Volker E.)
+* demos: Make the spacing in header identical in PHP and JS (Bartosz Dziewoński)
+* demos: Move 'layouts' to a specific page in demos (Volker E.)
+* demos: Provide headings for better user orientation (Volker E.)
+* demos: Use system font stack for demos (Volker E.)
+* demos: Use tabs for demo page list (Ed Sanders)
+
+
 ## v0.31.6 / 2019-05-07
 ### Styles
 * FieldLayout: Use 'error' icon for error messages (Volker E.)

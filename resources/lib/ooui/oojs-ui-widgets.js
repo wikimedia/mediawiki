@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.6
+ * OOUI v0.32.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-05-08T10:08:36Z
+ * Date: 2019-05-29T00:38:42Z
  */
 ( function ( OO ) {
 
@@ -650,6 +650,9 @@ OO.ui.mixin.RequestManager.prototype.getRequestCacheDataFromResponse = null;
  * @cfg {boolean} [highlightFirst=true] Whether the first lookup result should be highlighted
  *  (so, that the user can take it over into the input with simply pressing return) automatically
  *  or not.
+ * @cfg {boolean} [showSuggestionsOnFocus=true] Show suggestions when focusing the input. If this
+ *  is set to false, suggestions will still be shown on a mousedown triggered focus. This matches
+ *  browser autocomplete behavior.
  */
 OO.ui.mixin.LookupElement = function OoUiMixinLookupElement( config ) {
 	// Configuration initialization
@@ -672,6 +675,7 @@ OO.ui.mixin.LookupElement = function OoUiMixinLookupElement( config ) {
 	this.lookupsDisabled = false;
 	this.lookupInputFocused = false;
 	this.lookupHighlightFirstItem = config.highlightFirst;
+	this.showSuggestionsOnFocus = config.showSuggestionsOnFocus !== false;
 
 	// Events
 	this.$input.on( {
@@ -712,7 +716,9 @@ OO.mixinClass( OO.ui.mixin.LookupElement, OO.ui.mixin.RequestManager );
  */
 OO.ui.mixin.LookupElement.prototype.onLookupInputFocus = function () {
 	this.lookupInputFocused = true;
-	this.populateLookupMenu();
+	if ( this.showSuggestionsOnFocus ) {
+		this.populateLookupMenu();
+	}
 };
 
 /**
@@ -733,11 +739,17 @@ OO.ui.mixin.LookupElement.prototype.onLookupInputBlur = function () {
  * @param {jQuery.Event} e Input mouse down event
  */
 OO.ui.mixin.LookupElement.prototype.onLookupInputMouseDown = function () {
-	// Only open the menu if the input was already focused.
-	// This way we allow the user to open the menu again after closing it with Escape (esc)
-	// by clicking in the input. Opening (and populating) the menu when initially
-	// clicking into the input is handled by the focus handler.
-	if ( this.lookupInputFocused && !this.lookupMenu.isVisible() ) {
+	if (
+		!this.lookupMenu.isVisible() &&
+		(
+			// Open the menu if the input was already focused.
+			// This way we allow the user to open the menu again after closing it with Escape (esc)
+			// by clicking in the input.
+			this.lookupInputFocused ||
+			// If showSuggestionsOnFocus is disabled, still open the menu on mousedown.
+			!this.showSuggestionsOnFocus
+		)
+	) {
 		this.populateLookupMenu();
 	}
 };
@@ -2502,6 +2514,7 @@ OO.ui.BookletLayout.prototype.selectFirstSelectablePage = function () {
  * @cfg {boolean} [continuous=false] Show all tab panels, one after another
  * @cfg {boolean} [autoFocus=true] Focus on the first focusable element when a new tab panel is
  *  displayed. Disabled on mobile.
+ * @cfg {boolean} [framed=true] Render the tabs with frames
  */
 OO.ui.IndexLayout = function OoUiIndexLayout( config ) {
 	// Configuration initialization
@@ -2524,7 +2537,9 @@ OO.ui.IndexLayout = function OoUiIndexLayout( config ) {
 	this.autoFocus = config.autoFocus === undefined || !!config.autoFocus;
 
 	// Allow infused widgets to pass an existing tabSelectWidget
-	this.tabSelectWidget = config.tabSelectWidget || new OO.ui.TabSelectWidget();
+	this.tabSelectWidget = config.tabSelectWidget || new OO.ui.TabSelectWidget( {
+		framed: config.framed === undefined || config.framed
+	} );
 	this.tabPanel = this.menuPanel || new OO.ui.PanelLayout( {
 		expanded: this.expanded
 	} );
@@ -3795,6 +3810,7 @@ OO.ui.TabOptionWidget.static.highlightable = false;
  *
  * @constructor
  * @param {Object} [config] Configuration options
+ * @cfg {boolean} [framed=true] Use framed tabs
  */
 OO.ui.TabSelectWidget = function OoUiTabSelectWidget( config ) {
 	// Parent constructor
@@ -3813,12 +3829,48 @@ OO.ui.TabSelectWidget = function OoUiTabSelectWidget( config ) {
 	this.$element
 		.addClass( 'oo-ui-tabSelectWidget' )
 		.attr( 'role', 'tablist' );
+
+	this.toggleFramed( config.framed === undefined || config.framed );
+
+	if ( OO.ui.isMobile() ) {
+		this.$element.addClass( 'oo-ui-tabSelectWidget-mobile' );
+	}
 };
 
 /* Setup */
 
 OO.inheritClass( OO.ui.TabSelectWidget, OO.ui.SelectWidget );
 OO.mixinClass( OO.ui.TabSelectWidget, OO.ui.mixin.TabIndexedElement );
+
+/* Methods */
+
+/**
+ * Check if tabs are framed.
+ *
+ * @return {boolean} Tabs are framed
+ */
+OO.ui.TabSelectWidget.prototype.isFramed = function () {
+	return this.framed;
+};
+
+/**
+ * Render the tabs with or without frames.
+ *
+ * @param {boolean} [framed] Make tabs framed, omit to toggle
+ * @chainable
+ * @return {OO.ui.Element} The element, for chaining
+ */
+OO.ui.TabSelectWidget.prototype.toggleFramed = function ( framed ) {
+	framed = framed === undefined ? !this.framed : !!framed;
+	if ( framed !== this.framed ) {
+		this.framed = framed;
+		this.$element
+			.toggleClass( 'oo-ui-tabSelectWidget-frameless', !framed )
+			.toggleClass( 'oo-ui-tabSelectWidget-framed', framed );
+	}
+
+	return this;
+};
 
 /**
  * TagItemWidgets are used within a {@link OO.ui.TagMultiselectWidget

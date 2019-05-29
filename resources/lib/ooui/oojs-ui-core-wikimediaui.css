@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.6
+ * OOUI v0.32.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-05-08T10:08:44Z
+ * Date: 2019-05-29T00:38:49Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -1334,8 +1334,12 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   max-width: 50em;
 }
 .oo-ui-dropdownInputWidget .oo-ui-dropdownWidget,
-.oo-ui-dropdownInputWidget.oo-ui-dropdownInputWidget-php select {
+.oo-ui-dropdownInputWidget.oo-ui-dropdownInputWidget-php select,
+.oo-ui-dropdownInputWidget.oo-ui-isMobile select {
   display: block;
+}
+.oo-ui-dropdownInputWidget.oo-ui-isMobile .oo-ui-dropdownWidget {
+  display: none;
 }
 .oo-ui-dropdownInputWidget select {
   display: none;
@@ -1360,19 +1364,24 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   height: 2.28571429em;
   border: 1px solid #a2a9b1;
   border-radius: 2px;
-  padding: 0.42857143em 0.85714286em;
+  padding-left: 0.85714286em;
+  padding-right: 2.57142857em;
   font-size: inherit;
   font-family: inherit;
   vertical-align: middle;
+  background-position: -9999em 0\9;
+  padding: 0\9;
+  /* Support IE 10: Move it in again and also add `padding`. Because we talk to morons. */
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .oo-ui-dropdownInputWidget select {
+    background-position: right 0.85714286em center;
+    padding-left: 0.85714286em;
+    padding-right: 2.57142857em;
+  }
 }
 .oo-ui-dropdownInputWidget select::-ms-expand {
   display: none;
-}
-@media screen and (min-width: 0 \0 ) {
-  .oo-ui-dropdownInputWidget select select {
-    background-image: none\9;
-    padding: 5px\9;
-  }
 }
 .oo-ui-dropdownInputWidget option {
   background-color: transparent;
@@ -1798,26 +1807,18 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   position: relative;
   width: 100%;
   display: block;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  padding: 0;
-  overflow: hidden;
-  font-family: inherit;
-  font-size: inherit;
-  text-align: left;
-  text-overflow: ellipsis;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   cursor: default;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-.oo-ui-dropdownWidget-handle::-moz-focus-inner {
-  border-color: transparent;
-  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle {
   cursor: pointer;
@@ -1829,7 +1830,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   min-height: 2.28571429em;
   border: 1px solid #a2a9b1;
   border-radius: 2px;
-  padding: 0.42857143em 0.85714286em;
+  padding: 0.42857143em 2.57142857em 0.42857143em 0.85714286em;
   line-height: 1;
 }
 .oo-ui-dropdownWidget-handle .oo-ui-iconElement-icon {
@@ -1843,9 +1844,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-dropdownWidget.oo-ui-iconElement .oo-ui-dropdownWidget-handle {
   padding-left: 2.64285714em;
-}
-.oo-ui-dropdownWidget.oo-ui-indicatorElement .oo-ui-dropdownWidget-handle {
-  padding-right: 2.57142857em;
 }
 .oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle {
   background-color: #f8f9fa;
