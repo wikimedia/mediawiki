@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.6
+ * OOUI v0.32.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-05-08T10:08:36Z
+ * Date: 2019-05-29T00:38:42Z
  */
 ( function ( OO ) {
 
@@ -6489,8 +6489,7 @@ OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 
 	// Initialization
 	this.$element
-		// -depressed is a deprecated alias of -unpressed
-		.addClass( 'oo-ui-selectWidget oo-ui-selectWidget-unpressed oo-ui-selectWidget-depressed' )
+		.addClass( 'oo-ui-selectWidget oo-ui-selectWidget-unpressed' )
 		.attr( 'role', 'listbox' );
 	this.setFocusOwner( this.$element );
 	if ( Array.isArray( config.items ) ) {
@@ -6734,7 +6733,10 @@ OO.ui.SelectWidget.prototype.onMouseLeave = function () {
 OO.ui.SelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 	var nextItem,
 		handled = false,
-		currentItem = this.findHighlightedItem(),
+		selected = this.findSelectedItems(),
+		currentItem = this.findHighlightedItem() || (
+			Array.isArray( selected ) ? selected[ 0 ] : selected
+		),
 		firstItem = this.getItems()[ 0 ];
 
 	if ( !this.isDisabled() && this.isVisible() ) {
@@ -6844,7 +6846,7 @@ OO.ui.SelectWidget.prototype.clearKeyPressBuffer = function () {
  * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.SelectWidget.prototype.onDocumentKeyPress = function ( e ) {
-	var c, filter, item;
+	var c, filter, item, selected;
 
 	if ( !e.charCode ) {
 		if ( e.keyCode === OO.ui.Keys.BACKSPACE && this.keyPressBuffer !== '' ) {
@@ -6866,7 +6868,10 @@ OO.ui.SelectWidget.prototype.onDocumentKeyPress = function ( e ) {
 	}
 	this.keyPressBufferTimer = setTimeout( this.clearKeyPressBuffer.bind( this ), 1500 );
 
-	item = this.findHighlightedItem() || this.findSelectedItem();
+	selected = this.findSelectedItems();
+	item = this.findHighlightedItem() || (
+		Array.isArray( selected ) ? selected[ 0 ] : selected
+	);
 
 	if ( this.keyPressBuffer === c ) {
 		// Common (if weird) special case: typing "xxxx" will cycle through all
@@ -7046,8 +7051,7 @@ OO.ui.SelectWidget.prototype.togglePressed = function ( pressed ) {
 	if ( pressed !== this.pressed ) {
 		this.$element
 			.toggleClass( 'oo-ui-selectWidget-pressed', pressed )
-			// -depressed is a deprecated alias of -unpressed
-			.toggleClass( 'oo-ui-selectWidget-unpressed oo-ui-selectWidget-depressed', !pressed );
+			.toggleClass( 'oo-ui-selectWidget-unpressed', !pressed );
 		this.pressed = pressed;
 	}
 };
@@ -8111,10 +8115,10 @@ OO.ui.MenuSelectWidget.prototype.scrollToTop = function () {
  * @param {Object} [config] Configuration options
  * @cfg {Object} [menu] Configuration options to pass to
  *  {@link OO.ui.MenuSelectWidget menu select widget}.
- * @cfg {jQuery} [$overlay] Render the menu into a separate layer. This configuration is useful
- *  in cases where the expanded menu is larger than its containing `<div>`. The specified overlay
- *  layer is usually on top of the containing `<div>` and has a larger area. By default, the menu
- *  uses relative positioning.
+ * @cfg {jQuery|boolean} [$overlay] Render the menu into a separate layer. This configuration is
+ *  useful in cases where the expanded menu is larger than its containing `<div>`. The specified
+ *  overlay layer is usually on top of the containing `<div>` and has a larger area. By default,
+ *  the menu uses relative positioning. Pass 'true' to use the default overlay.
  *  See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
  */
 OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
@@ -8125,7 +8129,7 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 	OO.ui.DropdownWidget.parent.call( this, config );
 
 	// Properties (must be set before TabIndexedElement constructor call)
-	this.$handle = $( '<button>' );
+	this.$handle = $( '<span>' );
 	this.$overlay = ( config.$overlay === true ?
 		OO.ui.getDefaultOverlay() : config.$overlay ) || this.$element;
 
@@ -8160,14 +8164,21 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 	} );
 
 	// Initialization
+	this.$label
+		.attr( {
+			role: 'textbox',
+			'aria-readonly': 'true'
+		} );
 	this.$handle
 		.addClass( 'oo-ui-dropdownWidget-handle' )
+		.append( this.$icon, this.$label, this.$indicator )
 		.attr( {
-			type: 'button',
-			'aria-owns': this.menu.getElementId(),
-			'aria-haspopup': 'listbox'
-		} )
-		.append( this.$icon, this.$label, this.$indicator );
+			role: 'combobox',
+			'aria-autocomplete': 'list',
+			'aria-expanded': 'false',
+			'aria-haspopup': 'true',
+			'aria-owns': this.menu.getElementId()
+		} );
 	this.$element
 		.addClass( 'oo-ui-dropdownWidget' )
 		.append( this.$handle );
@@ -9712,10 +9723,10 @@ OO.ui.CheckboxInputWidget.prototype.restorePreInfuseState = function ( state ) {
  * @param {Object} [config] Configuration options
  * @cfg {Object[]} [options=[]] Array of menu options in the format described above.
  * @cfg {Object} [dropdown] Configuration options for {@link OO.ui.DropdownWidget DropdownWidget}
- * @cfg {jQuery} [$overlay] Render the menu into a separate layer. This configuration is useful
- *  in cases where the expanded menu is larger than its containing `<div>`. The specified overlay
- *  layer is usually on top of the containing `<div>` and has a larger area. By default, the menu
- *  uses relative positioning.
+ * @cfg {jQuery|boolean} [$overlay] Render the menu into a separate layer. This configuration is
+ *  useful in cases where the expanded menu is larger than its containing `<div>`. The specified
+ *  overlay layer is usually on top of the containing `<div>` and has a larger area. By default,
+ *  the menu uses relative positioning. Pass 'true' to use the default overlay.
  *  See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
  */
 OO.ui.DropdownInputWidget = function OoUiDropdownInputWidget( config ) {
@@ -9745,6 +9756,9 @@ OO.ui.DropdownInputWidget = function OoUiDropdownInputWidget( config ) {
 	this.$element
 		.addClass( 'oo-ui-dropdownInputWidget' )
 		.append( this.dropdownWidget.$element );
+	if ( OO.ui.isMobile() ) {
+		this.$element.addClass( 'oo-ui-isMobile' );
+	}
 	this.setTabIndexedElement( this.dropdownWidget.$tabIndexed );
 	this.setTitledElement( this.dropdownWidget.$handle );
 };
@@ -9760,7 +9774,7 @@ OO.inheritClass( OO.ui.DropdownInputWidget, OO.ui.InputWidget );
  * @protected
  */
 OO.ui.DropdownInputWidget.prototype.getInputElement = function () {
-	return $( '<select>' );
+	return $( '<select>' ).addClass( 'oo-ui-indicator-down' );
 };
 
 /**
