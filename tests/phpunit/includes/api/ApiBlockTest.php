@@ -147,6 +147,8 @@ class ApiBlockTest extends ApiTestCase {
 		$this->setMwGlobals( 'wgRevokePermissions',
 			[ 'user' => [ 'applychangetags' => true ] ] );
 
+		$this->overrideMwServices();
+
 		$this->doBlock( [ 'tags' => 'custom tag' ] );
 	}
 
@@ -157,6 +159,7 @@ class ApiBlockTest extends ApiTestCase {
 		$this->mergeMwGlobalArrayValue( 'wgGroupPermissions',
 			[ 'sysop' => $newPermissions ] );
 
+		$this->overrideMwServices();
 		$res = $this->doBlock( [ 'hidename' => '' ] );
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -205,6 +208,8 @@ class ApiBlockTest extends ApiTestCase {
 
 		$this->setMwGlobals( 'wgRevokePermissions',
 			[ 'sysop' => [ 'blockemail' => true ] ] );
+
+		$this->overrideMwServices();
 
 		$this->doBlock( [ 'noemail' => '' ] );
 	}
