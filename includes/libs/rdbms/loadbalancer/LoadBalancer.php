@@ -896,7 +896,7 @@ class LoadBalancer implements ILoadBalancer {
 			// Connection was made but later unrecoverably lost for some reason.
 			// Do not return a handle that will just throw exceptions on use,
 			// but let the calling code (e.g. getReaderIndex) try another server.
-			// See DatabaseMyslBase::ping() for how this can happen.
+			// See DatabaseMysqlBase::ping() for how this can happen.
 			$this->errorConnection = $conn;
 			$conn = false;
 		}
