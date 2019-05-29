@@ -2094,9 +2094,8 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				return $mockRevisionRecord;
 			},
 			'getNextRevision' =>
-			function ( $oldRev, $titleArg ) use ( $mockRevisionRecord, $title ) {
+			function ( $oldRev ) use ( $mockRevisionRecord ) {
 				$this->assertSame( $mockRevisionRecord, $oldRev );
-				$this->assertSame( $title, $titleArg );
 				return false;
 			},
 		], [
