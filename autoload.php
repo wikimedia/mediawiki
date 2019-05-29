@@ -908,6 +908,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Logger\\NullSpi' => __DIR__ . '/includes/debug/logger/NullSpi.php',
 	'MediaWiki\\Logger\\Spi' => __DIR__ . '/includes/debug/logger/Spi.php',
 	'MediaWiki\\MediaWikiServices' => __DIR__ . '/includes/MediaWikiServices.php',
+	'MediaWiki\\Navigation\\PrevNextNavigationRenderer' => __DIR__ . '/includes/Navigation/PrevNextNavigationRenderer.php',
 	'MediaWiki\\OutputHandler' => __DIR__ . '/includes/OutputHandler.php',
 	'MediaWiki\\ProcOpenError' => __DIR__ . '/includes/exception/ProcOpenError.php',
 	'MediaWiki\\Search\\ParserOutputSearchDataExtractor' => __DIR__ . '/includes/search/ParserOutputSearchDataExtractor.php',

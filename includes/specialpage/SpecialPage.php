@@ -24,6 +24,7 @@
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Navigation\PrevNextNavigationRenderer;
 
 /**
  * Parent class for all special pages.
@@ -933,58 +934,11 @@ class SpecialPage implements MessageLocalizer {
 	 * @return string
 	 */
 	protected function buildPrevNextNavigation( $offset, $limit,
-		array $query = [], $atend = false, $subpage = false
+											 array $query = [], $atend = false, $subpage = false
 	) {
-		$lang = $this->getLanguage();
+		$title = $this->getPageTitle( $subpage );
+		$prevNext = new PrevNextNavigationRenderer( $this );
 
-		# Make 'previous' link
-		$prev = $this->msg( 'prevn' )->numParams( $limit )->text();
-		if ( $offset > 0 ) {
-			$plink = $this->numLink( max( $offset - $limit, 0 ), $limit, $query,
-				$prev, 'prevn-title', 'mw-prevlink', $subpage );
-		} else {
-			$plink = htmlspecialchars( $prev );
-		}
-
-		# Make 'next' link
-		$next = $this->msg( 'nextn' )->numParams( $limit )->text();
-		if ( $atend ) {
-			$nlink = htmlspecialchars( $next );
-		} else {
-			$nlink = $this->numLink( $offset + $limit, $limit,
-				$query, $next, 'nextn-title', 'mw-nextlink', $subpage );
-		}
-
-		# Make links to set number of items per page
-		$numLinks = [];
-		foreach ( [ 20, 50, 100, 250, 500 ] as $num ) {
-			$numLinks[] = $this->numLink( $offset, $num, $query,
-				$lang->formatNum( $num ), 'shown-title', 'mw-numlink', $subpage );
-		}
-
-		return $this->msg( 'viewprevnext' )->rawParams( $plink, $nlink, $lang->pipeList( $numLinks ) )->
-			escaped();
-	}
-
-	/**
-	 * Helper function for buildPrevNextNavigation() that generates links
-	 *
-	 * @param int $offset
-	 * @param int $limit
-	 * @param array $query Extra query parameters
-	 * @param string $link Text to use for the link; will be escaped
-	 * @param string $tooltipMsg Name of the message to use as tooltip
-	 * @param string $class Value of the "class" attribute of the link
-	 * @param string|bool $subpage Optional param for specifying subpage
-	 * @return string HTML fragment
-	 */
-	private function numLink( $offset, $limit, array $query, $link,
-		$tooltipMsg, $class, $subpage = false
-	) {
-		$query = [ 'limit' => $limit, 'offset' => $offset ] + $query;
-		$tooltip = $this->msg( $tooltipMsg )->numParams( $limit )->text();
-		$href = $this->getPageTitle( $subpage )->getLocalURL( $query );
-		return Html::element( 'a', [ 'href' => $href,
-			'title' => $tooltip, 'class' => $class ], $link );
+		return $prevNext->buildPrevNextNavigation( $title, $offset, $limit, $query,  $atend );
 	}
 }

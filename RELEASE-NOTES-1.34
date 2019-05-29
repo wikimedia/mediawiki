@@ -237,6 +237,8 @@ because of Phabricator reports.
   MovePage::moveSubpagesIfAllowed.
 * The MWNamespace class is deprecated. Use MediaWikiServices::getNamespaceInfo.
 * (T62260) Hard deprecate Language::getExtraUserToggles() method.
+* Language::viewPrevNext function is deprecated, use
+  PrevNextNavigationRenderer::buildPrevNextNavigation instead
 
 === Other changes in 1.34 ===
 * …
