@@ -1237,18 +1237,17 @@ class Linker {
 						// that starts with "#". Before PHP 7 (and still on HHVM) substr() would
 						// return false if the start offset is the end of the string.
 						// On PHP 7+, it gracefully returns empty string instead.
-						if ( $section === false ) {
-							$section = '';
-						}
-						if ( $local ) {
-							$sectionTitle = new TitleValue( NS_MAIN, '', $section );
-						} else {
-							$sectionTitle = $title->createFragmentTarget( $section );
-						}
-						if ( $sectionTitle ) {
+						if ( $section !== '' && $section !== false ) {
+							if ( $local ) {
+								$sectionTitle = new TitleValue( NS_MAIN, '', $section );
+							} else {
+								$sectionTitle = $title->createFragmentTarget( $section );
+							}
 							$auto = Linker::makeCommentLink(
-								$sectionTitle, $wgLang->getArrow() . $wgLang->getDirMark() . $sectionText,
-								$wikiId, 'noclasses'
+								$sectionTitle,
+								$wgLang->getArrow() . $wgLang->getDirMark() . $sectionText,
+								$wikiId,
+								'noclasses'
 							);
 						}
 					}
