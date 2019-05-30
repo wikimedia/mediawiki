@@ -75,6 +75,16 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->overrideMwServices();
 	}
 
+	protected function setUserPerm( $perm ) {
+		// Setting member variables is evil!!!
+
+		if ( is_array( $perm ) ) {
+			$this->user->mRights = $perm;
+		} else {
+			$this->user->mRights = [ $perm ];
+		}
+	}
+
 	protected function setTitle( $ns, $title = "Main_Page" ) {
 		$this->title = Title::makeTitle( $ns, $title );
 	}
@@ -104,139 +114,139 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 		$this->setUser( 'anon' );
 		$this->setTitle( NS_TALK );
-		$this->overrideUserPermissions( $this->user, "createtalk" );
+		$this->setUserPerm( "createtalk" );
 		$res = $this->title->getUserPermissionsErrors( 'create', $this->user );
 		$this->assertEquals( [], $res );
 
 		$this->setTitle( NS_TALK );
-		$this->overrideUserPermissions( $this->user, "createpage" );
+		$this->setUserPerm( "createpage" );
 		$res = $this->title->getUserPermissionsErrors( 'create', $this->user );
 		$this->assertEquals( [ [ "nocreatetext" ] ], $res );
 
 		$this->setTitle( NS_TALK );
-		$this->overrideUserPermissions( $this->user, "" );
+		$this->setUserPerm( "" );
 		$res = $this->title->getUserPermissionsErrors( 'create', $this->user );
 		$this->assertEquals( [ [ 'nocreatetext' ] ], $res );
 
 		$this->setTitle( NS_MAIN );
-		$this->overrideUserPermissions( $this->user, "createpage" );
+		$this->setUserPerm( "createpage" );
 		$res = $this->title->getUserPermissionsErrors( 'create', $this->user );
 		$this->assertEquals( [], $res );
 
 		$this->setTitle( NS_MAIN );
-		$this->overrideUserPermissions( $this->user, "createtalk" );
+		$this->setUserPerm( "createtalk" );
 		$res = $this->title->getUserPermissionsErrors( 'create', $this->user );
 		$this->assertEquals( [ [ 'nocreatetext' ] ], $res );
 
 		$this->setUser( $this->userName );
 		$this->setTitle( NS_TALK );
-		$this->overrideUserPermissions( $this->user, "createtalk" );
+		$this->setUserPerm( "createtalk" );
 		$res = $this->title->getUserPermissionsErrors( 'create', $this->user );
 		$this->assertEquals( [], $res );
 
 		$this->setTitle( NS_TALK );
-		$this->overrideUserPermissions( $this->user, "createpage" );
+		$this->setUserPerm( "createpage" );
 		$res = $this->title->getUserPermissionsErrors( 'create', $this->user );
 		$this->assertEquals( [ [ 'nocreate-loggedin' ] ], $res );
 
 		$this->setTitle( NS_TALK );
-		$this->overrideUserPermissions( $this->user );
+		$this->setUserPerm( "" );
 		$res = $this->title->getUserPermissionsErrors( 'create', $this->user );
 		$this->assertEquals( [ [ 'nocreate-loggedin' ] ], $res );
 
 		$this->setTitle( NS_MAIN );
-		$this->overrideUserPermissions( $this->user, "createpage" );
+		$this->setUserPerm( "createpage" );
 		$res = $this->title->getUserPermissionsErrors( 'create', $this->user );
 		$this->assertEquals( [], $res );
 
 		$this->setTitle( NS_MAIN );
-		$this->overrideUserPermissions( $this->user, "createtalk" );
+		$this->setUserPerm( "createtalk" );
 		$res = $this->title->getUserPermissionsErrors( 'create', $this->user );
 		$this->assertEquals( [ [ 'nocreate-loggedin' ] ], $res );
 
 		$this->setTitle( NS_MAIN );
-		$this->overrideUserPermissions( $this->user );
+		$this->setUserPerm( "" );
 		$res = $this->title->getUserPermissionsErrors( 'create', $this->user );
 		$this->assertEquals( [ [ 'nocreate-loggedin' ] ], $res );
 
 		$this->setUser( 'anon' );
 		$this->setTitle( NS_USER, $this->userName . '' );
-		$this->overrideUserPermissions( $this->user );
+		$this->setUserPerm( "" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
 		$this->assertEquals( [ [ 'cant-move-user-page' ], [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_USER, $this->userName . '/subpage' );
-		$this->overrideUserPermissions( $this->user );
+		$this->setUserPerm( "" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
 		$this->assertEquals( [ [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_USER, $this->userName . '' );
-		$this->overrideUserPermissions( $this->user, "move-rootuserpages" );
+		$this->setUserPerm( "move-rootuserpages" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
 		$this->assertEquals( [ [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_USER, $this->userName . '/subpage' );
-		$this->overrideUserPermissions( $this->user, "move-rootuserpages" );
+		$this->setUserPerm( "move-rootuserpages" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
 		$this->assertEquals( [ [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_USER, $this->userName . '' );
-		$this->overrideUserPermissions( $this->user, "" );
+		$this->setUserPerm( "" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
 		$this->assertEquals( [ [ 'cant-move-user-page' ], [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_USER, $this->userName . '/subpage' );
-		$this->overrideUserPermissions( $this->user, "" );
+		$this->setUserPerm( "" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
 		$this->assertEquals( [ [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_USER, $this->userName . '' );
-		$this->overrideUserPermissions( $this->user, "move-rootuserpages" );
+		$this->setUserPerm( "move-rootuserpages" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
 		$this->assertEquals( [ [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_USER, $this->userName . '/subpage' );
-		$this->overrideUserPermissions( $this->user, "move-rootuserpages" );
+		$this->setUserPerm( "move-rootuserpages" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
 		$this->assertEquals( [ [ 'movenologintext' ] ], $res );
 
 		$this->setUser( $this->userName );
 		$this->setTitle( NS_FILE, "img.png" );
-		$this->overrideUserPermissions( $this->user );
+		$this->setUserPerm( "" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
 		$this->assertEquals( [ [ 'movenotallowedfile' ], [ 'movenotallowed' ] ], $res );
 
 		$this->setTitle( NS_FILE, "img.png" );
-		$this->overrideUserPermissions( $this->user, "movefile" );
+		$this->setUserPerm( "movefile" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
 		$this->assertEquals( [ [ 'movenotallowed' ] ], $res );
 
 		$this->setUser( 'anon' );
 		$this->setTitle( NS_FILE, "img.png" );
-		$this->overrideUserPermissions( $this->user );
+		$this->setUserPerm( "" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
 		$this->assertEquals( [ [ 'movenotallowedfile' ], [ 'movenologintext' ] ], $res );
 
 		$this->setTitle( NS_FILE, "img.png" );
-		$this->overrideUserPermissions( $this->user, "movefile" );
+		$this->setUserPerm( "movefile" );
 		$res = $this->title->getUserPermissionsErrors( 'move', $this->user );
 		$this->assertEquals( [ [ 'movenologintext' ] ], $res );
 
 		$this->setUser( $this->userName );
-		$this->overrideUserPermissions( $this->user, "move" );
+		$this->setUserPerm( "move" );
 		$this->runGroupPermissions( 'move', [ [ 'movenotallowedfile' ] ] );
 
-		$this->overrideUserPermissions( $this->user );
+		$this->setUserPerm( "" );
 		$this->runGroupPermissions(
 			'move',
 			[ [ 'movenotallowedfile' ], [ 'movenotallowed' ] ]
 		);
 
 		$this->setUser( 'anon' );
-		$this->overrideUserPermissions( $this->user, "move" );
+		$this->setUserPerm( "move" );
 		$this->runGroupPermissions( 'move', [ [ 'movenotallowedfile' ] ] );
 
-		$this->overrideUserPermissions( $this->user );
+		$this->setUserPerm( "" );
 		$this->runGroupPermissions(
 			'move',
 			[ [ 'movenotallowedfile' ], [ 'movenotallowed' ] ],
@@ -249,51 +259,51 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 			$this->setTitle( NS_MAIN );
 			$this->setUser( 'anon' );
-			$this->overrideUserPermissions( $this->user, "move" );
+			$this->setUserPerm( "move" );
 			$this->runGroupPermissions( 'move', [] );
 
-			$this->overrideUserPermissions( $this->user, "" );
+			$this->setUserPerm( "" );
 			$this->runGroupPermissions( 'move', [ [ 'movenotallowed' ] ],
 				[ [ 'movenologintext' ] ] );
 
 			$this->setUser( $this->userName );
-			$this->overrideUserPermissions( $this->user, "" );
+			$this->setUserPerm( "" );
 			$this->runGroupPermissions( 'move', [ [ 'movenotallowed' ] ] );
 
-			$this->overrideUserPermissions( $this->user, "move" );
+			$this->setUserPerm( "move" );
 			$this->runGroupPermissions( 'move', [] );
 
 			$this->setUser( 'anon' );
-			$this->overrideUserPermissions( $this->user, 'move' );
+			$this->setUserPerm( 'move' );
 			$res = $this->title->getUserPermissionsErrors( 'move-target', $this->user );
 			$this->assertEquals( [], $res );
 
-			$this->overrideUserPermissions( $this->user );
+			$this->setUserPerm( '' );
 			$res = $this->title->getUserPermissionsErrors( 'move-target', $this->user );
 			$this->assertEquals( [ [ 'movenotallowed' ] ], $res );
 		}
 
 		$this->setTitle( NS_USER );
 		$this->setUser( $this->userName );
-		$this->overrideUserPermissions( $this->user, [ "move", "move-rootuserpages" ] );
+		$this->setUserPerm( [ "move", "move-rootuserpages" ] );
 		$res = $this->title->getUserPermissionsErrors( 'move-target', $this->user );
 		$this->assertEquals( [], $res );
 
-		$this->overrideUserPermissions( $this->user, "move" );
+		$this->setUserPerm( "move" );
 		$res = $this->title->getUserPermissionsErrors( 'move-target', $this->user );
 		$this->assertEquals( [ [ 'cant-move-to-user-page' ] ], $res );
 
 		$this->setUser( 'anon' );
-		$this->overrideUserPermissions( $this->user, [ "move", "move-rootuserpages" ] );
+		$this->setUserPerm( [ "move", "move-rootuserpages" ] );
 		$res = $this->title->getUserPermissionsErrors( 'move-target', $this->user );
 		$this->assertEquals( [], $res );
 
 		$this->setTitle( NS_USER, "User/subpage" );
-		$this->overrideUserPermissions( $this->user, [ "move", "move-rootuserpages" ] );
+		$this->setUserPerm( [ "move", "move-rootuserpages" ] );
 		$res = $this->title->getUserPermissionsErrors( 'move-target', $this->user );
 		$this->assertEquals( [], $res );
 
-		$this->overrideUserPermissions( $this->user, "move" );
+		$this->setUserPerm( "move" );
 		$res = $this->title->getUserPermissionsErrors( 'move-target', $this->user );
 		$this->assertEquals( [], $res );
 
@@ -319,7 +329,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		];
 
 		foreach ( [ "edit", "protect", "" ] as $action ) {
-			$this->overrideUserPermissions( $this->user );
+			$this->setUserPerm( null );
 			$this->assertEquals( $check[$action][0],
 				$this->title->getUserPermissionsErrors( $action, $this->user, true ) );
 			$this->assertEquals( $check[$action][0],
@@ -331,19 +341,15 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$old = $wgGroupPermissions;
 			$wgGroupPermissions = [];
 
-			$this->overrideMwServices();
-
 			$this->assertEquals( $check[$action][1],
 				$this->title->getUserPermissionsErrors( $action, $this->user, true ) );
 			$this->assertEquals( $check[$action][1],
 				$this->title->getUserPermissionsErrors( $action, $this->user, 'full' ) );
 			$this->assertEquals( $check[$action][1],
 				$this->title->getUserPermissionsErrors( $action, $this->user, 'secure' ) );
-
 			$wgGroupPermissions = $old;
-			$this->overrideMwServices();
 
-			$this->overrideUserPermissions( $this->user, $action );
+			$this->setUserPerm( $action );
 			$this->assertEquals( $check[$action][2],
 				$this->title->getUserPermissionsErrors( $action, $this->user, true ) );
 			$this->assertEquals( $check[$action][2],
@@ -351,7 +357,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->assertEquals( $check[$action][2],
 				$this->title->getUserPermissionsErrors( $action, $this->user, 'secure' ) );
 
-			$this->overrideUserPermissions( $this->user, $action );
+			$this->setUserPerm( $action );
 			$this->assertEquals( $check[$action][3],
 				$this->title->userCan( $action, $this->user, true ) );
 			$this->assertEquals( $check[$action][3],
@@ -367,39 +373,23 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$result2 = $result;
 		}
 
-		// XXX: there could be a better way to handle this, but since we need to
-		// override PermissionManager service each time globals are changed
-		// and in the same time we need to keep user permissions overrides from the outside
-		// the best we can do inside this method is to save & restore faked user perms
-
-		$userPermsOverrides = MediaWikiServices::getInstance()->getPermissionManager()
-			->getUserPermissions( $this->user );
-
 		$wgGroupPermissions['autoconfirmed']['move'] = false;
 		$wgGroupPermissions['user']['move'] = false;
-		$this->overrideMwServices();
-		$this->overrideUserPermissions( $this->user, $userPermsOverrides );
 		$res = $this->title->getUserPermissionsErrors( $action, $this->user );
 		$this->assertEquals( $result, $res );
 
 		$wgGroupPermissions['autoconfirmed']['move'] = true;
 		$wgGroupPermissions['user']['move'] = false;
-		$this->overrideMwServices();
-		$this->overrideUserPermissions( $this->user, $userPermsOverrides );
 		$res = $this->title->getUserPermissionsErrors( $action, $this->user );
 		$this->assertEquals( $result2, $res );
 
 		$wgGroupPermissions['autoconfirmed']['move'] = true;
 		$wgGroupPermissions['user']['move'] = true;
-		$this->overrideMwServices();
-		$this->overrideUserPermissions( $this->user, $userPermsOverrides );
 		$res = $this->title->getUserPermissionsErrors( $action, $this->user );
 		$this->assertEquals( $result2, $res );
 
 		$wgGroupPermissions['autoconfirmed']['move'] = false;
 		$wgGroupPermissions['user']['move'] = true;
-		$this->overrideMwServices();
-		$this->overrideUserPermissions( $this->user, $userPermsOverrides );
 		$res = $this->title->getUserPermissionsErrors( $action, $this->user );
 		$this->assertEquals( $result2, $res );
 	}
@@ -419,42 +409,42 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 
 		$this->setTitle( NS_MAIN );
-		$this->overrideUserPermissions( $this->user, 'bogus' );
+		$this->setUserPerm( 'bogus' );
 		$this->assertEquals( [],
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 
 		$this->setTitle( NS_MAIN );
-		$this->overrideUserPermissions( $this->user );
+		$this->setUserPerm( '' );
 		$this->assertEquals( [ [ 'badaccess-group0' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 
 		$wgNamespaceProtection[NS_USER] = [ 'bogus' ];
 
 		$this->setTitle( NS_USER );
-		$this->overrideUserPermissions( $this->user );
+		$this->setUserPerm( '' );
 		$this->assertEquals( [ [ 'badaccess-group0' ],
 				[ 'namespaceprotected', 'User', 'bogus' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 
 		$this->setTitle( NS_MEDIAWIKI );
-		$this->overrideUserPermissions( $this->user, 'bogus' );
+		$this->setUserPerm( 'bogus' );
 		$this->assertEquals( [ [ 'protectedinterface', 'bogus' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 
 		$this->setTitle( NS_MEDIAWIKI );
-		$this->overrideUserPermissions( $this->user, 'bogus' );
+		$this->setUserPerm( 'bogus' );
 		$this->assertEquals( [ [ 'protectedinterface', 'bogus' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 
 		$wgNamespaceProtection = null;
 
-		$this->overrideUserPermissions( $this->user, 'bogus' );
+		$this->setUserPerm( 'bogus' );
 		$this->assertEquals( [],
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 		$this->assertEquals( true,
 			$this->title->userCan( 'bogus', $this->user ) );
 
-		$this->overrideUserPermissions( $this->user );
+		$this->setUserPerm( '' );
 		$this->assertEquals( [ [ 'badaccess-group0' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 		$this->assertEquals( false,
@@ -655,39 +645,39 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$resultUserJs,
 		$resultPatrol
 	) {
-		$this->overrideUserPermissions( $this->user );
+		$this->setUserPerm( '' );
 		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
 		$this->assertEquals( $resultNone, $result );
 
-		$this->overrideUserPermissions( $this->user, 'editmyusercss' );
+		$this->setUserPerm( 'editmyusercss' );
 		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
 		$this->assertEquals( $resultMyCss, $result );
 
-		$this->overrideUserPermissions( $this->user, 'editmyuserjson' );
+		$this->setUserPerm( 'editmyuserjson' );
 		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
 		$this->assertEquals( $resultMyJson, $result );
 
-		$this->overrideUserPermissions( $this->user, 'editmyuserjs' );
+		$this->setUserPerm( 'editmyuserjs' );
 		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
 		$this->assertEquals( $resultMyJs, $result );
 
-		$this->overrideUserPermissions( $this->user, 'editusercss' );
+		$this->setUserPerm( 'editusercss' );
 		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
 		$this->assertEquals( $resultUserCss, $result );
 
-		$this->overrideUserPermissions( $this->user, 'edituserjson' );
+		$this->setUserPerm( 'edituserjson' );
 		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
 		$this->assertEquals( $resultUserJson, $result );
 
-		$this->overrideUserPermissions( $this->user, 'edituserjs' );
+		$this->setUserPerm( 'edituserjs' );
 		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
 		$this->assertEquals( $resultUserJs, $result );
 
-		$this->overrideUserPermissions( $this->user );
+		$this->setUserPerm( '' );
 		$result = $this->title->getUserPermissionsErrors( 'patrol', $this->user );
 		$this->assertEquals( reset( $resultPatrol[0] ), reset( $result[0] ) );
 
-		$this->overrideUserPermissions( $this->user, [ 'edituserjs', 'edituserjson', 'editusercss' ] );
+		$this->setUserPerm( [ 'edituserjs', 'edituserjson', 'editusercss' ] );
 		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
 		$this->assertEquals( [ [ 'badaccess-group0' ] ], $result );
 	}
@@ -707,7 +697,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 		$this->setTitle( NS_MAIN );
 		$this->title->mRestrictionsLoaded = true;
-		$this->overrideUserPermissions( $this->user, "edit" );
+		$this->setUserPerm( "edit" );
 		$this->title->mRestrictions = [ "bogus" => [ 'bogus', "sysop", "protect", "" ] ];
 
 		$this->assertEquals( [],
@@ -730,7 +720,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 				[ 'protectedpagetext', 'protect', 'edit' ] ],
 			$this->title->getUserPermissionsErrors( 'edit',
 				$this->user ) );
-		$this->overrideUserPermissions( $this->user );
+		$this->setUserPerm( "" );
 		$this->assertEquals( [ [ 'badaccess-group0' ],
 				[ 'protectedpagetext', 'bogus', 'bogus' ],
 				[ 'protectedpagetext', 'editprotected', 'bogus' ],
@@ -743,7 +733,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 				[ 'protectedpagetext', 'protect', 'edit' ] ],
 			$this->title->getUserPermissionsErrors( 'edit',
 				$this->user ) );
-		$this->overrideUserPermissions( $this->user, [ "edit", "editprotected" ] );
+		$this->setUserPerm( [ "edit", "editprotected" ] );
 		$this->assertEquals( [ [ 'badaccess-group0' ],
 				[ 'protectedpagetext', 'bogus', 'bogus' ],
 				[ 'protectedpagetext', 'protect', 'bogus' ] ],
@@ -756,7 +746,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 				$this->user ) );
 
 		$this->title->mCascadeRestriction = true;
-		$this->overrideUserPermissions( $this->user, "edit" );
+		$this->setUserPerm( "edit" );
 		$this->assertEquals( false,
 			$this->title->quickUserCan( 'bogus', $this->user ) );
 		$this->assertEquals( false,
@@ -773,7 +763,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->title->getUserPermissionsErrors( 'edit',
 				$this->user ) );
 
-		$this->overrideUserPermissions( $this->user, [ "edit", "editprotected" ] );
+		$this->setUserPerm( [ "edit", "editprotected" ] );
 		$this->assertEquals( false,
 			$this->title->quickUserCan( 'bogus', $this->user ) );
 		$this->assertEquals( false,
@@ -796,7 +786,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	 */
 	public function testCascadingSourcesRestrictions() {
 		$this->setTitle( NS_MAIN, "test page" );
-		$this->overrideUserPermissions( $this->user, [ "edit", "bogus" ] );
+		$this->setUserPerm( [ "edit", "bogus" ] );
 
 		$this->title->mCascadeSources = [
 			Title::makeTitle( NS_MAIN, "Bogus" ),
@@ -826,7 +816,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\Permissions\PermissionManager::checkActionPermissions
 	 */
 	public function testActionPermissions() {
-		$this->overrideUserPermissions( $this->user, [ "createpage" ] );
+		$this->setUserPerm( [ "createpage" ] );
 		$this->setTitle( NS_MAIN, "test page" );
 		$this->title->mTitleProtection['permission'] = '';
 		$this->title->mTitleProtection['user'] = $this->user->getId();
@@ -840,26 +830,26 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->title->userCan( 'create', $this->user ) );
 
 		$this->title->mTitleProtection['permission'] = 'editprotected';
-		$this->overrideUserPermissions( $this->user, [ 'createpage', 'protect' ] );
+		$this->setUserPerm( [ 'createpage', 'protect' ] );
 		$this->assertEquals( [ [ 'titleprotected', 'Useruser', 'test' ] ],
 			$this->title->getUserPermissionsErrors( 'create', $this->user ) );
 		$this->assertEquals( false,
 			$this->title->userCan( 'create', $this->user ) );
 
-		$this->overrideUserPermissions( $this->user, [ 'createpage', 'editprotected' ] );
+		$this->setUserPerm( [ 'createpage', 'editprotected' ] );
 		$this->assertEquals( [],
 			$this->title->getUserPermissionsErrors( 'create', $this->user ) );
 		$this->assertEquals( true,
 			$this->title->userCan( 'create', $this->user ) );
 
-		$this->overrideUserPermissions( $this->user, [ 'createpage' ] );
+		$this->setUserPerm( [ 'createpage' ] );
 		$this->assertEquals( [ [ 'titleprotected', 'Useruser', 'test' ] ],
 			$this->title->getUserPermissionsErrors( 'create', $this->user ) );
 		$this->assertEquals( false,
 			$this->title->userCan( 'create', $this->user ) );
 
 		$this->setTitle( NS_MEDIA, "test page" );
-		$this->overrideUserPermissions( $this->user, [ "move" ] );
+		$this->setUserPerm( [ "move" ] );
 		$this->assertEquals( false,
 			$this->title->userCan( 'move', $this->user ) );
 		$this->assertEquals( [ [ 'immobile-source-namespace', 'Media' ] ],
@@ -907,10 +897,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		] );
 		$this->overrideMwServices();
 
-		$this->overrideUserPermissions(
-			$this->user,
-			[ 'createpage', 'edit', 'move', 'rollback', 'patrol', 'upload', 'purge' ]
-		);
+		$this->setUserPerm( [ 'createpage', 'edit', 'move', 'rollback', 'patrol', 'upload', 'purge' ] );
 		$this->setTitle( NS_HELP, "test page" );
 
 		# $wgEmailConfirmToEdit only applies to 'edit' action
@@ -921,10 +908,6 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 		$this->setMwGlobals( 'wgEmailConfirmToEdit', false );
 		$this->overrideMwServices();
-		$this->overrideUserPermissions(
-			$this->user,
-			[ 'createpage', 'edit', 'move', 'rollback', 'patrol', 'upload', 'purge' ]
-		);
 
 		$this->assertNotContains( [ 'confirmedittext' ],
 			$this->title->getUserPermissionsErrors( 'edit', $this->user ) );

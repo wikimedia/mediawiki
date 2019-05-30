@@ -124,7 +124,7 @@ class UserTest extends MediaWikiTestCase {
 			$rights = array_diff( $rights, [ 'writetest' ] );
 		} ] ] );
 
-		$this->overrideMwServices();
+		$userWrapper->mRights = null;
 		$rights = $user->getRights();
 		$this->assertContains( 'test', $rights );
 		$this->assertContains( 'runtest', $rights );
@@ -146,7 +146,7 @@ class UserTest extends MediaWikiTestCase {
 		$mockRequest->method( 'getSession' )->willReturn( $session );
 		$userWrapper->mRequest = $mockRequest;
 
-		$this->overrideMwServices();
+		$userWrapper->mRights = null;
 		$rights = $user->getRights();
 		$this->assertContains( 'test', $rights );
 		$this->assertNotContains( 'runtest', $rights );
@@ -924,11 +924,9 @@ class UserTest extends MediaWikiTestCase {
 
 		$this->setMwGlobals( 'wgRateLimitsExcludedIPs', [] );
 		$noRateLimitUser = $this->getMockBuilder( User::class )->disableOriginalConstructor()
-			->setMethods( [ 'getIP', 'getId', 'getGroups' ] )->getMock();
+			->setMethods( [ 'getIP', 'getRights' ] )->getMock();
 		$noRateLimitUser->expects( $this->any() )->method( 'getIP' )->willReturn( '1.2.3.4' );
-		$noRateLimitUser->expects( $this->any() )->method( 'getId' )->willReturn( 0 );
-		$noRateLimitUser->expects( $this->any() )->method( 'getGroups' )->willReturn( [] );
-		$this->overrideUserPermissions( $noRateLimitUser, 'noratelimit' );
+		$noRateLimitUser->expects( $this->any() )->method( 'getRights' )->willReturn( [ 'noratelimit' ] );
 		$this->assertFalse( $noRateLimitUser->isPingLimitable() );
 	}
 

@@ -1131,21 +1131,6 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Overrides specific user permissions until services are reloaded
-	 *
-	 * @param User $user
-	 * @param string[]|string $permissions
-	 *
-	 * @throws Exception
-	 */
-	public function overrideUserPermissions( $user, $permissions = [] ) {
-		MediaWikiServices::getInstance()->getPermissionManager()->overrideUserRightsForTesting(
-			$user,
-			$permissions
-		);
-	}
-
-	/**
 	 * Sets the logger for a specified channel, for the duration of the test.
 	 * @since 1.27
 	 * @param string $channel
