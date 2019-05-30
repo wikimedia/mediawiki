@@ -2106,8 +2106,6 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   - defer: one of the DeferredUpdates constants, or false to run immediately (default: false).
 	 *     Note that even when this is set to false, some updates might still get deferred (as
 	 *     some update might directly add child updates to DeferredUpdates).
-	 *   - transactionTicket: a transaction ticket from LBFactory::getEmptyTransactionTicket(),
-	 *     only when defer is false (default: null)
 	 * @since 1.32
 	 */
 	public function doSecondaryDataUpdates( array $options = [] ) {
