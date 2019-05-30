@@ -156,10 +156,10 @@ class UserrightsPage extends SpecialPage {
 			$user->matchEditToken( $request->getVal( 'wpEditToken' ), $this->mTarget )
 		) {
 			/*
-			* If the user is blocked and they only have "partial" access
-			* (e.g. they don't have the userrights permission), then don't
-			* allow them to change any user rights.
-			*/
+			 * If the user is blocked and they only have "partial" access
+			 * (e.g. they don't have the userrights permission), then don't
+			 * allow them to change any user rights.
+			 */
 			if ( !$user->isAllowed( 'userrights' ) ) {
 				// @TODO Should the user be blocked from changing user rights if they
 				//       are partially blocked?

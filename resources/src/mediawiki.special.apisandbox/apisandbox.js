@@ -776,10 +776,10 @@
 	};
 
 	/**
-	* Interface to ApiSandbox UI
-	*
-	* @class mw.special.ApiSandbox
-	*/
+	 * Interface to ApiSandbox UI
+	 *
+	 * @class mw.special.ApiSandbox
+	 */
 	ApiSandbox = {
 		/**
 		 * Initialize the UI
