@@ -267,7 +267,7 @@ div.thumbinner {
 	color: #666;
 	text-align: center;
 	/* new block formatting context,
-	 * to clear background from floating content  */
+	 * to clear background from floating content */
 	overflow: hidden;
 	min-width: 100px;
 }
