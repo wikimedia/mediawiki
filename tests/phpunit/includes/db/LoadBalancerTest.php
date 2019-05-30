@@ -336,8 +336,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 				$this->fail( "No exception thrown." );
 			} catch ( DBUnexpectedError $e ) {
 				$this->assertEquals(
-					'Wikimedia\Rdbms\LoadBalancer::openConnection: ' .
-					'CONN_TRX_AUTOCOMMIT handle has a transaction.',
+					'Handle requested with CONN_TRX_AUTOCOMMIT yet it has a transaction',
 					$e->getMessage()
 				);
 			}

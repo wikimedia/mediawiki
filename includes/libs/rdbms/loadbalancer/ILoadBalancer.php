@@ -131,7 +131,7 @@ interface ILoadBalancer {
 
 	/**
 	 * @param DatabaseDomain|string|bool $domain Database domain
-	 * @return string Value of $domain if provided or the local domain otherwise
+	 * @return string Value of $domain if it is foreign or the local domain otherwise
 	 * @since 1.32
 	 */
 	public function resolveDomainID( $domain );
