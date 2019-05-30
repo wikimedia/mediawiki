@@ -30,8 +30,8 @@ class ResultWrapper implements IResultWrapper {
 
 	/** @var int */
 	protected $pos = 0;
-	/** @var stdClass|null */
-	protected $currentRow = null;
+	/** @var stdClass|bool|null */
+	protected $currentRow;
 
 	/**
 	 * Create a row iterator from a result resource and an optional Database object
@@ -63,27 +63,14 @@ class ResultWrapper implements IResultWrapper {
 		return $this->getDB()->fetchRow( $this );
 	}
 
-	public function seek( $row ) {
-		$this->getDB()->dataSeek( $this, $row );
+	public function seek( $pos ) {
+		$this->getDB()->dataSeek( $this, $pos );
+		$this->pos = $pos;
 	}
 
 	public function free() {
-		if ( $this->db ) {
-			$this->db = null;
-		}
+		$this->db = null;
 		$this->result = null;
-	}
-
-	/**
-	 * @return IDatabase
-	 * @throws RuntimeException
-	 */
-	private function getDB() {
-		if ( !$this->db ) {
-			throw new RuntimeException( static::class . ' needs a DB handle for iteration.' );
-		}
-
-		return $this->db;
 	}
 
 	function rewind() {
@@ -95,8 +82,8 @@ class ResultWrapper implements IResultWrapper {
 	}
 
 	function current() {
-		if ( is_null( $this->currentRow ) ) {
-			$this->next();
+		if ( $this->currentRow === null ) {
+			$this->currentRow = $this->fetchObject();
 		}
 
 		return $this->currentRow;
@@ -115,6 +102,18 @@ class ResultWrapper implements IResultWrapper {
 
 	function valid() {
 		return $this->current() !== false;
+	}
+
+	/**
+	 * @return IDatabase
+	 * @throws RuntimeException
+	 */
+	private function getDB() {
+		if ( !$this->db ) {
+			throw new RuntimeException( static::class . ' needs a DB handle for iteration.' );
+		}
+
+		return $this->db;
 	}
 }
 
