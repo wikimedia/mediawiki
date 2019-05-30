@@ -190,14 +190,14 @@ class ActionTest extends MediaWikiTestCase {
 
 	public function testCanExecute() {
 		$user = $this->getTestUser()->getUser();
-		$this->overrideUserPermissions( $user, 'access' );
+		$user->mRights = [ 'access' ];
 		$action = Action::factory( 'access', $this->getPage(), $this->getContext() );
 		$this->assertNull( $action->canExecute( $user ) );
 	}
 
 	public function testCanExecuteNoRight() {
 		$user = $this->getTestUser()->getUser();
-		$this->overrideUserPermissions( $user, [] );
+		$user->mRights = [];
 		$action = Action::factory( 'access', $this->getPage(), $this->getContext() );
 
 		try {
@@ -209,7 +209,7 @@ class ActionTest extends MediaWikiTestCase {
 
 	public function testCanExecuteRequiresUnblock() {
 		$user = $this->getTestUser()->getUser();
-		$this->overrideUserPermissions( $user, [] );
+		$user->mRights = [];
 
 		$page = $this->getExistingTestPage();
 		$action = Action::factory( 'unblock', $page, $this->getContext() );

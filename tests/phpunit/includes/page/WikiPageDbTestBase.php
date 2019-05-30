@@ -1374,7 +1374,6 @@ more stuff
 
 		// Now, try the rollback
 		$admin->addGroup( 'sysop' ); // Make the test user a sysop
-		MediaWikiServices::getInstance()->getPermissionManager()->invalidateUsersRightsCache();
 		$token = $admin->getEditToken( 'rollback' );
 		$errors = $page->doRollback(
 			$secondUser->getName(),

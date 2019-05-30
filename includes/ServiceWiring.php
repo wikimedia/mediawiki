@@ -463,9 +463,6 @@ return [
 			$config->get( 'WhitelistReadRegexp' ),
 			$config->get( 'EmailConfirmToEdit' ),
 			$config->get( 'BlockDisablesLogin' ),
-			$config->get( 'GroupPermissions' ),
-			$config->get( 'RevokePermissions' ),
-			$config->get( 'AvailableRights' ),
 			$services->getNamespaceInfo()
 		);
 	},

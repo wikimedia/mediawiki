@@ -15,7 +15,7 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 	 */
 	public function testTemplateCategories() {
 		$user = new User();
-		$this->overrideUserPermissions( $user, [ 'createpage', 'edit', 'purge', 'delete' ] );
+		$user->mRights = [ 'createpage', 'edit', 'purge', 'delete' ];
 
 		$title = Title::newFromText( "Categorized from template" );
 		$page = WikiPage::factory( $title );
