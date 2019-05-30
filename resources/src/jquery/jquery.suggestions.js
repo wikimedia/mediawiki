@@ -224,7 +224,7 @@
 
 		/**
 		 * @param {Object} context
-		*/
+		 */
 		special: function ( context ) {
 			// Allow custom rendering - but otherwise don't do any rendering
 			if ( typeof context.config.special.render === 'function' ) {

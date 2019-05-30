@@ -411,10 +411,10 @@ class ApiEditPageTest extends ApiTestCase {
 		$count++;
 
 		/*
-		* T43990: if the target page has a newer revision than the redirect, then editing the
-		* redirect while specifying 'redirect' and *not* specifying 'basetimestamp' erroneously
-		* caused an edit conflict to be detected.
-		*/
+		 * T43990: if the target page has a newer revision than the redirect, then editing the
+		 * redirect while specifying 'redirect' and *not* specifying 'basetimestamp' erroneously
+		 * caused an edit conflict to be detected.
+		 */
 
 		// assume NS_HELP defaults to wikitext
 		$name = "Help:ApiEditPageTest_testEditConflict_redirect_T43990_$count";
