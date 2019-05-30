@@ -141,7 +141,6 @@ class ApiMainTest extends ApiTestCase {
 	public function testSetCacheModeUnrecognized() {
 		$api = new ApiMain();
 		$api->setCacheMode( 'unrecognized' );
-		$this->overrideMwServices();
 		$this->assertSame(
 			'private',
 			TestingAccessWrapper::newFromObject( $api )->mCacheMode,
@@ -151,7 +150,7 @@ class ApiMainTest extends ApiTestCase {
 
 	public function testSetCacheModePrivateWiki() {
 		$this->setGroupPermissions( '*', 'read', false );
-		$this->overrideMwServices();
+
 		$wrappedApi = TestingAccessWrapper::newFromObject( new ApiMain() );
 		$wrappedApi->setCacheMode( 'public' );
 		$this->assertSame( 'private', $wrappedApi->mCacheMode );
@@ -402,7 +401,7 @@ class ApiMainTest extends ApiTestCase {
 		} else {
 			$user = new User();
 		}
-		$this->overrideUserPermissions( $user, $rights );
+		$user->mRights = $rights;
 		try {
 			$this->doApiRequest( [
 				'action' => 'query',
@@ -413,7 +412,6 @@ class ApiMainTest extends ApiTestCase {
 			$this->assertTrue( self::apiExceptionHasCode( $e, $error ),
 				"Error '{$e->getMessage()}' matched expected '$error'" );
 		}
-		$this->overrideMwServices();
 	}
 
 	/**
@@ -706,7 +704,6 @@ class ApiMainTest extends ApiTestCase {
 			'You need read permission to use this module.' );
 
 		$this->setGroupPermissions( '*', 'read', false );
-		$this->overrideMwServices();
 
 		$main = new ApiMain( new FauxRequest( [ 'action' => 'query', 'meta' => 'siteinfo' ] ) );
 		$main->execute();
@@ -730,7 +727,6 @@ class ApiMainTest extends ApiTestCase {
 		$this->setExpectedException( ApiUsageException::class,
 			"You're not allowed to edit this wiki through the API." );
 		$this->setGroupPermissions( '*', 'writeapi', false );
-		$this->overrideMwServices();
 
 		$main = new ApiMain( new FauxRequest( [
 			'action' => 'edit',

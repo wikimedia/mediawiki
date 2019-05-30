@@ -13,7 +13,6 @@ class LocalIdLookupTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		$this->setGroupPermissions( 'local-id-lookup-test', 'hideuser', true );
-		$this->overrideMwServices();
 	}
 
 	public function addDBData() {

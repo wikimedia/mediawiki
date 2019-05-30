@@ -1551,8 +1551,6 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 				],
 			]
 		);
-		// TODO: this one is necessary to pass globals changes to PermissionManger
-		$this->overrideMwServices();
 		$user = $this->getTestUser( $userGroups )->getUser();
 
 		$this->assertSame(
@@ -1606,8 +1604,6 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 				],
 			]
 		);
-		// TODO: this one is necessary to pass globals changes to PermissionManger
-		$this->overrideMwServices();
 		$user = $this->getTestUser( $userGroups )->getUser();
 		$revision = new Revision( [ 'deleted' => $bitField ], 0, $this->testPage->getTitle() );
 

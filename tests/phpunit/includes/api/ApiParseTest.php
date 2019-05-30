@@ -206,7 +206,6 @@ class ApiParseTest extends ApiTestCase {
 
 	public function testSuppressed() {
 		$this->setGroupPermissions( 'sysop', 'viewsuppressed', true );
-		$this->overrideMwServices();
 
 		$res = $this->doApiRequest( [
 			'action' => 'parse',

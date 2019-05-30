@@ -4,7 +4,6 @@
  * @group Database
  */
 class ArticleTablesTest extends MediaWikiLangTestCase {
-
 	/**
 	 * Make sure that T16404 doesn't strike again. We don't want
 	 * templatelinks based on the user language when {{int:}} is used, only the
@@ -17,7 +16,7 @@ class ArticleTablesTest extends MediaWikiLangTestCase {
 		$title = Title::newFromText( 'T16404' );
 		$page = WikiPage::factory( $title );
 		$user = new User();
-		$this->overrideUserPermissions( $user, [ 'createpage', 'edit', 'purge' ] );
+		$user->mRights = [ 'createpage', 'edit', 'purge' ];
 		$this->setContentLang( 'es' );
 		$this->setUserLang( 'fr' );
 

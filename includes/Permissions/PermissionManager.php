@@ -21,12 +21,12 @@ namespace MediaWiki\Permissions;
 
 use Action;
 use Exception;
+use FatalError;
 use Hooks;
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Session\SessionManager;
 use MediaWiki\Special\SpecialPageFactory;
-use MediaWiki\User\UserIdentity;
 use MessageSpecifier;
+use MWException;
 use NamespaceInfo;
 use RequestContext;
 use SpecialPage;
@@ -69,121 +69,12 @@ class PermissionManager {
 	/** @var NamespaceInfo */
 	private $nsInfo;
 
-	/** @var string[][] Access rights for groups and users in these groups */
-	private $groupPermissions;
-
-	/** @var string[][] Permission keys revoked from users in each group */
-	private $revokePermissions;
-
-	/** @var string[] A list of available rights, in addition to the ones defined by the core */
-	private $availableRights;
-
-	/** @var string[] Cached results of getAllRights() */
-	private $allRights = false;
-
-	/** @var string[][] Cached user rights */
-	private $usersRights = null;
-
-	/** @var string[] Cached rights for isEveryoneAllowed */
-	private $cachedRights = [];
-
-	/**
-	 * Array of Strings Core rights.
-	 * Each of these should have a corresponding message of the form
-	 * "right-$right".
-	 * @showinitializer
-	 */
-	private $coreRights = [
-		'apihighlimits',
-		'applychangetags',
-		'autoconfirmed',
-		'autocreateaccount',
-		'autopatrol',
-		'bigdelete',
-		'block',
-		'blockemail',
-		'bot',
-		'browsearchive',
-		'changetags',
-		'createaccount',
-		'createpage',
-		'createtalk',
-		'delete',
-		'deletechangetags',
-		'deletedhistory',
-		'deletedtext',
-		'deletelogentry',
-		'deleterevision',
-		'edit',
-		'editcontentmodel',
-		'editinterface',
-		'editprotected',
-		'editmyoptions',
-		'editmyprivateinfo',
-		'editmyusercss',
-		'editmyuserjson',
-		'editmyuserjs',
-		'editmywatchlist',
-		'editsemiprotected',
-		'editsitecss',
-		'editsitejson',
-		'editsitejs',
-		'editusercss',
-		'edituserjson',
-		'edituserjs',
-		'hideuser',
-		'import',
-		'importupload',
-		'ipblock-exempt',
-		'managechangetags',
-		'markbotedits',
-		'mergehistory',
-		'minoredit',
-		'move',
-		'movefile',
-		'move-categorypages',
-		'move-rootuserpages',
-		'move-subpages',
-		'nominornewtalk',
-		'noratelimit',
-		'override-export-depth',
-		'pagelang',
-		'patrol',
-		'patrolmarks',
-		'protect',
-		'purge',
-		'read',
-		'reupload',
-		'reupload-own',
-		'reupload-shared',
-		'rollback',
-		'sendemail',
-		'siteadmin',
-		'suppressionlog',
-		'suppressredirect',
-		'suppressrevision',
-		'unblockself',
-		'undelete',
-		'unwatchedpages',
-		'upload',
-		'upload_by_url',
-		'userrights',
-		'userrights-interwiki',
-		'viewmyprivateinfo',
-		'viewmywatchlist',
-		'viewsuppressed',
-		'writeapi',
-	];
-
 	/**
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param string[] $whitelistRead
 	 * @param string[] $whitelistReadRegexp
 	 * @param bool $emailConfirmToEdit
 	 * @param bool $blockDisablesLogin
-	 * @param string[][] $groupPermissions
-	 * @param string[][] $revokePermissions
-	 * @param string[] $availableRights
 	 * @param NamespaceInfo $nsInfo
 	 */
 	public function __construct(
@@ -192,9 +83,6 @@ class PermissionManager {
 		$whitelistReadRegexp,
 		$emailConfirmToEdit,
 		$blockDisablesLogin,
-		$groupPermissions,
-		$revokePermissions,
-		$availableRights,
 		NamespaceInfo $nsInfo
 	) {
 		$this->specialPageFactory = $specialPageFactory;
@@ -202,9 +90,6 @@ class PermissionManager {
 		$this->whitelistReadRegexp = $whitelistReadRegexp;
 		$this->emailConfirmToEdit = $emailConfirmToEdit;
 		$this->blockDisablesLogin = $blockDisablesLogin;
-		$this->groupPermissions = $groupPermissions;
-		$this->revokePermissions = $revokePermissions;
-		$this->availableRights = $availableRights;
 		$this->nsInfo = $nsInfo;
 	}
 
@@ -226,6 +111,7 @@ class PermissionManager {
 	 *   - RIGOR_SECURE : does cheap and expensive checks, using the master as needed
 	 *
 	 * @return bool
+	 * @throws Exception
 	 */
 	public function userCan( $action, User $user, LinkTarget $page, $rigor = self::RIGOR_SECURE ) {
 		return !count( $this->getPermissionErrorsInternal( $action, $user, $page, $rigor, true ) );
@@ -247,6 +133,7 @@ class PermissionManager {
 	 *   whose corresponding errors may be ignored.
 	 *
 	 * @return array Array of arrays of the arguments to wfMessage to explain permissions problems.
+	 * @throws Exception
 	 */
 	public function getPermissionErrors(
 		$action,
@@ -280,6 +167,8 @@ class PermissionManager {
 	 * @param bool $fromReplica Whether to check the replica DB instead of the master
 	 *
 	 * @return bool
+	 * @throws FatalError
+	 * @throws MWException
 	 */
 	public function isBlockedFrom( User $user, LinkTarget $page, $fromReplica = false ) {
 		$blocked = $user->isHidden();
@@ -397,6 +286,8 @@ class PermissionManager {
 	 * @param LinkTarget $page
 	 *
 	 * @return array List of errors
+	 * @throws FatalError
+	 * @throws MWException
 	 */
 	private function checkPermissionHooks(
 		$action,
@@ -472,6 +363,8 @@ class PermissionManager {
 	 * @param LinkTarget $page
 	 *
 	 * @return array List of errors
+	 * @throws FatalError
+	 * @throws MWException
 	 */
 	private function checkReadPermissions(
 		$action,
@@ -604,6 +497,7 @@ class PermissionManager {
 	 * @param LinkTarget $page
 	 *
 	 * @return array List of errors
+	 * @throws MWException
 	 */
 	private function checkUserBlock(
 		$action,
@@ -689,6 +583,8 @@ class PermissionManager {
 	 * @param LinkTarget $page
 	 *
 	 * @return array List of errors
+	 * @throws FatalError
+	 * @throws MWException
 	 */
 	private function checkQuickPermissions(
 		$action,
@@ -866,7 +762,6 @@ class PermissionManager {
 					}
 					if ( $right != '' && !$user->isAllowedAll( 'protect', $right ) ) {
 						$wikiPages = '';
-						/** @var Title $wikiPage */
 						foreach ( $cascadingSources as $wikiPage ) {
 							$wikiPages .= '* [[:' . $wikiPage->getPrefixedText() . "]]\n";
 						}
@@ -894,6 +789,7 @@ class PermissionManager {
 	 * @param LinkTarget $page
 	 *
 	 * @return array List of errors
+	 * @throws Exception
 	 */
 	private function checkActionPermissions(
 		$action,
@@ -1154,258 +1050,6 @@ class PermissionManager {
 		}
 
 		return $errors;
-	}
-
-	/**
-	 * Testing a permission
-	 *
-	 * @since 1.34
-	 *
-	 * @param UserIdentity $user
-	 * @param string $action
-	 *
-	 * @return bool
-	 */
-	public function userHasRight( UserIdentity $user, $action = '' ) {
-		if ( $action === '' ) {
-			return true; // In the spirit of DWIM
-		}
-		// Use strict parameter to avoid matching numeric 0 accidentally inserted
-		// by misconfiguration: 0 == 'foo'
-		return in_array( $action, $this->getUserPermissions( $user ), true );
-	}
-
-	/**
-	 * Get the permissions this user has.
-	 *
-	 * @since 1.34
-	 *
-	 * @param UserIdentity $user
-	 *
-	 * @return string[] permission names
-	 */
-	public function getUserPermissions( UserIdentity $user ) {
-		$user = User::newFromIdentity( $user );
-		if ( !isset( $this->usersRights[ $user->getId() ] ) ) {
-			$this->usersRights[ $user->getId() ] = $this->getGroupPermissions(
-				$user->getEffectiveGroups()
-			);
-			Hooks::run( 'UserGetRights', [ $user, &$this->usersRights[ $user->getId() ] ] );
-
-			// Deny any rights denied by the user's session, unless this
-			// endpoint has no sessions.
-			if ( !defined( 'MW_NO_SESSION' ) ) {
-				// FIXME: $user->getRequest().. need to be replaced with something else
-				$allowedRights = $user->getRequest()->getSession()->getAllowedUserRights();
-				if ( $allowedRights !== null ) {
-					$this->usersRights[ $user->getId() ] = array_intersect(
-						$this->usersRights[ $user->getId() ],
-						$allowedRights
-					);
-				}
-			}
-
-			Hooks::run( 'UserGetRightsRemove', [ $user, &$this->usersRights[ $user->getId() ] ] );
-			// Force reindexation of rights when a hook has unset one of them
-			$this->usersRights[ $user->getId() ] = array_values(
-				array_unique( $this->usersRights[ $user->getId() ] )
-			);
-
-			if (
-				$user->isLoggedIn() &&
-				$this->blockDisablesLogin &&
-				$user->getBlock()
-			) {
-				$anon = new User;
-				$this->usersRights[ $user->getId() ] = array_intersect(
-					$this->usersRights[ $user->getId() ],
-					$this->getUserPermissions( $anon )
-				);
-			}
-		}
-		return $this->usersRights[ $user->getId() ];
-	}
-
-	/**
-	 * Clears users permissions cache, if specific user is provided it tries to clear
-	 * permissions cache only for provided user.
-	 *
-	 * @since 1.34
-	 *
-	 * @param User|null $user
-	 */
-	public function invalidateUsersRightsCache( $user = null ) {
-		if ( $user !== null ) {
-			if ( isset( $this->usersRights[ $user->getId() ] ) ) {
-				unset( $this->usersRights[$user->getId()] );
-			}
-		} else {
-			$this->usersRights = null;
-		}
-	}
-
-	/**
-	 * Check, if the given group has the given permission
-	 *
-	 * If you're wanting to check whether all users have a permission, use
-	 * PermissionManager::isEveryoneAllowed() instead. That properly checks if it's revoked
-	 * from anyone.
-	 *
-	 * @since 1.34
-	 *
-	 * @param string $group Group to check
-	 * @param string $role Role to check
-	 *
-	 * @return bool
-	 */
-	public function groupHasPermission( $group, $role ) {
-		return isset( $this->groupPermissions[$group][$role] ) &&
-			   $this->groupPermissions[$group][$role] &&
-			   !( isset( $this->revokePermissions[$group][$role] ) &&
-				  $this->revokePermissions[$group][$role] );
-	}
-
-	/**
-	 * Get the permissions associated with a given list of groups
-	 *
-	 * @since 1.34
-	 *
-	 * @param array $groups Array of Strings List of internal group names
-	 * @return array Array of Strings List of permission key names for given groups combined
-	 */
-	public function getGroupPermissions( $groups ) {
-		$rights = [];
-		// grant every granted permission first
-		foreach ( $groups as $group ) {
-			if ( isset( $this->groupPermissions[$group] ) ) {
-				$rights = array_merge( $rights,
-					// array_filter removes empty items
-					array_keys( array_filter( $this->groupPermissions[$group] ) ) );
-			}
-		}
-		// now revoke the revoked permissions
-		foreach ( $groups as $group ) {
-			if ( isset( $this->revokePermissions[$group] ) ) {
-				$rights = array_diff( $rights,
-					array_keys( array_filter( $this->revokePermissions[$group] ) ) );
-			}
-		}
-		return array_unique( $rights );
-	}
-
-	/**
-	 * Get all the groups who have a given permission
-	 *
-	 * @since 1.34
-	 *
-	 * @param string $role Role to check
-	 * @return array Array of Strings List of internal group names with the given permission
-	 */
-	public function getGroupsWithPermission( $role ) {
-		$allowedGroups = [];
-		foreach ( array_keys( $this->groupPermissions ) as $group ) {
-			if ( $this->groupHasPermission( $group, $role ) ) {
-				$allowedGroups[] = $group;
-			}
-		}
-		return $allowedGroups;
-	}
-
-	/**
-	 * Check if all users may be assumed to have the given permission
-	 *
-	 * We generally assume so if the right is granted to '*' and isn't revoked
-	 * on any group. It doesn't attempt to take grants or other extension
-	 * limitations on rights into account in the general case, though, as that
-	 * would require it to always return false and defeat the purpose.
-	 * Specifically, session-based rights restrictions (such as OAuth or bot
-	 * passwords) are applied based on the current session.
-	 *
-	 * @param string $right Right to check
-	 *
-	 * @return bool
-	 * @since 1.34
-	 */
-	public function isEveryoneAllowed( $right ) {
-		// Use the cached results, except in unit tests which rely on
-		// being able change the permission mid-request
-		if ( isset( $this->cachedRights[$right] ) ) {
-			return $this->cachedRights[$right];
-		}
-
-		if ( !isset( $this->groupPermissions['*'][$right] )
-			 || !$this->groupPermissions['*'][$right] ) {
-			$this->cachedRights[$right] = false;
-			return false;
-		}
-
-		// If it's revoked anywhere, then everyone doesn't have it
-		foreach ( $this->revokePermissions as $rights ) {
-			if ( isset( $rights[$right] ) && $rights[$right] ) {
-				$this->cachedRights[$right] = false;
-				return false;
-			}
-		}
-
-		// Remove any rights that aren't allowed to the global-session user,
-		// unless there are no sessions for this endpoint.
-		if ( !defined( 'MW_NO_SESSION' ) ) {
-
-			// XXX: think what could be done with the below
-			$allowedRights = SessionManager::getGlobalSession()->getAllowedUserRights();
-			if ( $allowedRights !== null && !in_array( $right, $allowedRights, true ) ) {
-				$this->cachedRights[$right] = false;
-				return false;
-			}
-		}
-
-		// Allow extensions to say false
-		if ( !Hooks::run( 'UserIsEveryoneAllowed', [ $right ] ) ) {
-			$this->cachedRights[$right] = false;
-			return false;
-		}
-
-		$this->cachedRights[$right] = true;
-		return true;
-	}
-
-	/**
-	 * Get a list of all available permissions.
-	 *
-	 * @since 1.34
-	 *
-	 * @return string[] Array of permission names
-	 */
-	public function getAllPermissions() {
-		if ( $this->allRights === false ) {
-			if ( count( $this->availableRights ) ) {
-				$this->allRights = array_unique( array_merge(
-					$this->coreRights,
-					$this->availableRights
-				) );
-			} else {
-				$this->allRights = $this->coreRights;
-			}
-			Hooks::run( 'UserGetAllRights', [ &$this->allRights ] );
-		}
-		return $this->allRights;
-	}
-
-	/**
-	 * Overrides user permissions cache
-	 *
-	 * @since 1.34
-	 *
-	 * @param User $user
-	 * @param string[]|string $rights
-	 *
-	 * @throws Exception
-	 */
-	public function overrideUserRightsForTesting( $user, $rights = [] ) {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new Exception( __METHOD__ . ' can not be called outside of tests' );
-		}
-		$this->usersRights[ $user->getId() ] = is_array( $rights ) ? $rights : [ $rights ];
 	}
 
 }

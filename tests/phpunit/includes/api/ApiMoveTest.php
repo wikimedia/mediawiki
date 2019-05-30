@@ -212,7 +212,6 @@ class ApiMoveTest extends ApiTestCase {
 		ChangeTags::defineTag( 'custom tag' );
 
 		$this->setGroupPermissions( 'user', 'applychangetags', false );
-		$this->overrideMwServices();
 
 		$id = $this->createPage( $name );
 
@@ -295,7 +294,6 @@ class ApiMoveTest extends ApiTestCase {
 		$name = ucfirst( __FUNCTION__ );
 
 		$this->mergeMwGlobalArrayValue( 'wgNamespacesWithSubpages', [ NS_MAIN => true ] );
-		$this->overrideMwServices();
 
 		$pages = [ $name, "$name/1", "$name/2", "Talk:$name", "Talk:$name/1", "Talk:$name/3" ];
 		$ids = [];
@@ -381,7 +379,6 @@ class ApiMoveTest extends ApiTestCase {
 		$name = ucfirst( __FUNCTION__ );
 
 		$this->setGroupPermissions( 'sysop', 'suppressredirect', false );
-		$this->overrideMwServices();
 
 		$id = $this->createPage( $name );
 
