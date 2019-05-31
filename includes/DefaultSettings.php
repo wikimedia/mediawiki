@@ -508,7 +508,7 @@ $wgImgAuthUrlPathMap = [];
  *                       equivalent to the corresponding member of $wgDBservers
  *   - tablePrefix       Table prefix, the foreign wiki's $wgDBprefix
  *   - hasSharedCache    Set to true if the foreign wiki's $wgMainCacheType is identical to,
- *                       and accesible from, this wiki.
+ *                       and accessible from, this wiki.
  *
  * ForeignAPIRepo:
  *   - apibase              Use for the foreign API's URL
@@ -554,7 +554,7 @@ $wgUseInstantCommons = false;
 /**
  * Shortcut for adding an entry to $wgForeignFileRepos.
  *
- * Uses the folowing variables:
+ * Uses the following variables:
  *
  * - directory: $wgSharedUploadDirectory.
  * - url: $wgSharedUploadPath.
@@ -2782,7 +2782,7 @@ $wgCdnMaxageLagged = 30;
  * If a purge for a URL reaches cdn2 before cdn1 and a request reaches cdn2 for that URL,
  * it will populate the response from the stale cdn1 value. When cdn1 gets the purge, cdn2
  * will still be stale. If the rebound purge delay is safely higher than the time to relay
- * a purge to all nodes, then the rebound puge will clear cdn2 after cdn1 was cleared.
+ * a purge to all nodes, then the rebound purge will clear cdn2 after cdn1 was cleared.
  *
  * @since 1.27
  */
@@ -3369,7 +3369,7 @@ $wgAllowUserCss = false;
  * Allow style-related user-preferences?
  *
  * This controls whether the `editfont` and `underline` preferences
- * are availabe to users.
+ * are available to users.
  */
 $wgAllowUserCssPrefs = true;
 
@@ -8862,7 +8862,7 @@ $wgRawHtmlMessages = [
  * that uses it, MediaWiki can broadcast events to all subscribers. Certain features like WAN
  * cache purging and CDN cache purging will emit events to this system. Appropriate listers can
  * subscribe to the channel and take actions based on the events. For example, a local daemon
- * can run on each CDN cache node and perfom local purges based on the URL purge channel events.
+ * can run on each CDN cache node and perform local purges based on the URL purge channel events.
  *
  * Some extensions may want to use "channel categories" so that different channels can also share
  * the same custom relayer instance (e.g. when it's likely to be overriden). They can use
