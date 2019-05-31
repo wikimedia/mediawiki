@@ -331,6 +331,81 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 	 * @dataProvider provideSuppressBlockLogDatabaseRows
 	 */
 	public function testSuppressBlockLogDatabaseRows( $row, $extra ) {
+		$this->setMwGlobals(
+			'wgGroupPermissions',
+			[
+				'oversight' => [
+					'viewsuppressed' => true,
+					'suppressionlog' => true,
+				],
+			]
+		);
+		$this->doTestLogFormatter( $row, $extra, [ 'oversight' ] );
+	}
+
+	/**
+	 * Provide different rows from the logging table to test
+	 * for backward compatibility.
+	 * Do not change the existing data, just add a new database row
+	 */
+	public static function provideSuppressBlockLogDatabaseRowsNonPrivileged() {
+		return [
+			// Current log format
+			[
+				[
+					'type' => 'suppress',
+					'action' => 'block',
+					'comment' => 'Block comment',
+					'user' => 0,
+					'user_text' => 'Sysop',
+					'namespace' => NS_USER,
+					'title' => 'Logtestuser',
+					'params' => [
+						'5::duration' => 'infinite',
+						'6::flags' => 'anononly',
+					],
+				],
+				[
+					'text' => '(username removed) (log details removed)',
+					'api' => [
+						'duration' => 'infinite',
+						'flags' => [ 'anononly' ],
+					],
+				],
+			],
+
+			// legacy log
+			[
+				[
+					'type' => 'suppress',
+					'action' => 'block',
+					'comment' => 'Block comment',
+					'user' => 0,
+					'user_text' => 'Sysop',
+					'namespace' => NS_USER,
+					'title' => 'Logtestuser',
+					'params' => [
+						'infinite',
+						'anononly',
+					],
+				],
+				[
+					'legacy' => true,
+					'text' => '(username removed) (log details removed)',
+					'api' => [
+						'duration' => 'infinite',
+						'flags' => [ 'anononly' ],
+					],
+				],
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideSuppressBlockLogDatabaseRowsNonPrivileged
+	 */
+	public function testSuppressBlockLogDatabaseRowsNonPrivileged( $row, $extra ) {
+		$this->user = $this->getTestUser()->getUser();
 		$this->doTestLogFormatter( $row, $extra );
 	}
 
@@ -398,6 +473,81 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 	 * @dataProvider provideSuppressReblockLogDatabaseRows
 	 */
 	public function testSuppressReblockLogDatabaseRows( $row, $extra ) {
+		$this->setMwGlobals(
+			'wgGroupPermissions',
+			[
+				'oversight' => [
+					'viewsuppressed' => true,
+					'suppressionlog' => true,
+				],
+			]
+		);
+		$this->doTestLogFormatter( $row, $extra, [ 'oversight' ] );
+	}
+
+	/**
+	 * Provide different rows from the logging table to test
+	 * for backward compatibility.
+	 * Do not change the existing data, just add a new database row
+	 */
+	public static function provideSuppressReblockLogDatabaseRowsNonPrivileged() {
+		return [
+			// Current log format
+			[
+				[
+					'type' => 'suppress',
+					'action' => 'reblock',
+					'comment' => 'Block comment',
+					'user' => 0,
+					'user_text' => 'Sysop',
+					'namespace' => NS_USER,
+					'title' => 'Logtestuser',
+					'params' => [
+						'5::duration' => 'infinite',
+						'6::flags' => 'anononly',
+					],
+				],
+				[
+					'text' => '(username removed) (log details removed)',
+					'api' => [
+						'duration' => 'infinite',
+						'flags' => [ 'anononly' ],
+					],
+				],
+			],
+
+			// Legacy format
+			[
+				[
+					'type' => 'suppress',
+					'action' => 'reblock',
+					'comment' => 'Block comment',
+					'user' => 0,
+					'user_text' => 'Sysop',
+					'namespace' => NS_USER,
+					'title' => 'Logtestuser',
+					'params' => [
+						'infinite',
+						'anononly',
+					],
+				],
+				[
+					'legacy' => true,
+					'text' => '(username removed) (log details removed)',
+					'api' => [
+						'duration' => 'infinite',
+						'flags' => [ 'anononly' ],
+					],
+				],
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideSuppressReblockLogDatabaseRowsNonPrivileged
+	 */
+	public function testSuppressReblockLogDatabaseRowsNonPrivileged( $row, $extra ) {
+		$this->user = $this->getTestUser()->getUser();
 		$this->doTestLogFormatter( $row, $extra );
 	}
 

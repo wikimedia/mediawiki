@@ -154,6 +154,19 @@ class LogFormatter {
 	}
 
 	/**
+	 * Check if a log item type can be displayed
+	 * @return bool
+	 */
+	public function canViewLogType() {
+		// If the user doesn't have the right permission to view the specific
+		// log type, return false
+		$logRestrictions = $this->context->getConfig()->get( 'LogRestrictions' );
+		$type = $this->entry->getType();
+		return !isset( $logRestrictions[$type] )
+			|| $this->context->getUser()->isAllowed( $logRestrictions[$type] );
+	}
+
+	/**
 	 * Check if a log item can be displayed
 	 * @param int $field LogPage::DELETED_* constant
 	 * @return bool
@@ -161,9 +174,10 @@ class LogFormatter {
 	protected function canView( $field ) {
 		if ( $this->audience == self::FOR_THIS_USER ) {
 			return LogEventsList::userCanBitfield(
-				$this->entry->getDeleted(), $field, $this->context->getUser() );
+				$this->entry->getDeleted(), $field, $this->context->getUser() ) &&
+				self::canViewLogType();
 		} else {
-			return !$this->entry->isDeleted( $field );
+			return !$this->entry->isDeleted( $field ) && self::canViewLogType();
 		}
 	}
 
