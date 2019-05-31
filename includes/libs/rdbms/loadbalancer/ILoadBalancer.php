@@ -151,7 +151,7 @@ interface ILoadBalancer {
 	 * always return a consistent index during a given invocation.
 	 *
 	 * Side effect: opens connections to databases
-	 * @param string|bool $group Query group, or false for the generic reader
+	 * @param string|bool $group Query group, or false for the generic group
 	 * @param string|bool $domain Domain ID, or false for the current domain
 	 * @throws DBError
 	 * @return bool|int|string
@@ -159,12 +159,12 @@ interface ILoadBalancer {
 	public function getReaderIndex( $group = false, $domain = false );
 
 	/**
-	 * Set the master wait position
+	 * Set the master position to reach before the next generic group DB handle query
 	 *
-	 * If a DB_REPLICA connection has been opened already, then wait immediately.
-	 * Otherwise sets a variable telling it to wait if such a connection is opened.
+	 * If a generic replica DB connection is already open then this immediately waits
+	 * for that DB to catch up to the specified replication position. Otherwise, it will
+	 * do so once such a connection is opened.
 	 *
-	 * This only applies to connections to the generic replica DB for this request.
 	 * If a timeout happens when waiting, then getLaggedReplicaMode()/laggedReplicaUsed()
 	 * will return true.
 	 *
@@ -173,7 +173,7 @@ interface ILoadBalancer {
 	public function waitFor( $pos );
 
 	/**
-	 * Set the master wait position and wait for a "generic" replica DB to catch up to it
+	 * Set the master wait position and wait for a generic replica DB to catch up to it
 	 *
 	 * This can be used a faster proxy for waitForAll()
 	 *
