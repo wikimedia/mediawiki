@@ -92,6 +92,7 @@ use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Services\NoSuchServiceException;
 use Wikimedia\Services\SalvageableService;
 use Wikimedia\Services\ServiceContainer;
+use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
  * Service locator for MediaWiki core services.
@@ -659,6 +660,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getGenderCache() : GenderCache {
 		return $this->getService( 'GenderCache' );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return GlobalIdGenerator
+	 */
+	public function getGlobalIdGenerator() : GlobalIdGenerator {
+		return $this->getService( 'GlobalIdGenerator' );
 	}
 
 	/**

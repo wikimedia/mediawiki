@@ -21,6 +21,7 @@
  * @defgroup JobQueue JobQueue
  */
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
  * Class to handle enqueueing and running of background jobs
@@ -45,6 +46,8 @@ abstract class JobQueue {
 	protected $readOnlyReason;
 	/** @var StatsdDataFactoryInterface */
 	protected $stats;
+	/** @var GlobalIdGenerator */
+	protected $idGenerator;
 
 	/** @var WANObjectCache */
 	protected $wanCache;
@@ -55,13 +58,14 @@ abstract class JobQueue {
 
 	/**
 	 * @param array $params
-	 * 	 - type           : A job type
-	 *   - domain         : A DB domain ID
-	 *   - wanCache       : An instance of WANObjectCache to use for caching [default: none]
-	 *   - stats          : An instance of StatsdDataFactoryInterface [default: none]
-	 *   - claimTTL       : Seconds a job can be claimed for exclusive execution [default: forever]
-	 *   - maxTries       : Total times a job can be tried, assuming claims expire [default: 3]
-	 *   - order          : Queue order, one of ("fifo", "timestamp", "random") [default: variable]
+	 * 	 - type : A job type
+	 *   - domain : A DB domain ID
+	 *   - idGenerator : A GlobalIdGenerator instance.
+	 *   - wanCache : An instance of WANObjectCache to use for caching [default: none]
+	 *   - stats : An instance of StatsdDataFactoryInterface [default: none]
+	 *   - claimTTL : Seconds a job can be claimed for exclusive execution [default: forever]
+	 *   - maxTries : Total times a job can be tried, assuming claims expire [default: 3]
+	 *   - order : Queue order, one of ("fifo", "timestamp", "random") [default: variable]
 	 *   - readOnlyReason : Mark the queue as read-only with this reason [default: false]
 	 * @throws JobQueueError
 	 */
@@ -81,31 +85,32 @@ abstract class JobQueue {
 		$this->readOnlyReason = $params['readOnlyReason'] ?? false;
 		$this->stats = $params['stats'] ?? new NullStatsdDataFactory();
 		$this->wanCache = $params['wanCache'] ?? WANObjectCache::newEmpty();
+		$this->idGenerator = $params['idGenerator'];
 	}
 
 	/**
 	 * Get a job queue object of the specified type.
 	 * $params includes:
-	 *   - class      : What job class to use (determines job type)
-	 *   - domain     : Database domain ID of the wiki the jobs are for (defaults to current wiki)
-	 *   - type       : The name of the job types this queue handles
-	 *   - order      : Order that pop() selects jobs, one of "fifo", "timestamp" or "random".
-	 *                  If "fifo" is used, the queue will effectively be FIFO. Note that job
-	 *                  completion will not appear to be exactly FIFO if there are multiple
-	 *                  job runners since jobs can take different times to finish once popped.
-	 *                  If "timestamp" is used, the queue will at least be loosely ordered
-	 *                  by timestamp, allowing for some jobs to be popped off out of order.
-	 *                  If "random" is used, pop() will pick jobs in random order.
-	 *                  Note that it may only be weakly random (e.g. a lottery of the oldest X).
-	 *                  If "any" is choosen, the queue will use whatever order is the fastest.
-	 *                  This might be useful for improving concurrency for job acquisition.
-	 *   - claimTTL   : If supported, the queue will recycle jobs that have been popped
-	 *                  but not acknowledged as completed after this many seconds. Recycling
-	 *                  of jobs simply means re-inserting them into the queue. Jobs can be
-	 *                  attempted up to three times before being discarded.
-	 *   - readOnlyReason : Set this to a string to make the queue read-only.
-	 *   - stash      : A BagOStuff instance that can be used for root job deduplication
-	 *   - stats      : A StatsdDataFactoryInterface [optional]
+	 *   - class : What job class to use (determines job type)
+	 *   - domain : Database domain ID of the wiki the jobs are for (defaults to current wiki)
+	 *   - type : The name of the job types this queue handles
+	 *   - order : Order that pop() selects jobs, one of "fifo", "timestamp" or "random".
+	 *      If "fifo" is used, the queue will effectively be FIFO. Note that job
+	 *      completion will not appear to be exactly FIFO if there are multiple
+	 *      job runners since jobs can take different times to finish once popped.
+	 *      If "timestamp" is used, the queue will at least be loosely ordered
+	 *      by timestamp, allowing for some jobs to be popped off out of order.
+	 *      If "random" is used, pop() will pick jobs in random order.
+	 *      Note that it may only be weakly random (e.g. a lottery of the oldest X).
+	 *      If "any" is choosen, the queue will use whatever order is the fastest.
+	 *      This might be useful for improving concurrency for job acquisition.
+	 *   - claimTTL : If supported, the queue will recycle jobs that have been popped
+	 *      but not acknowledged as completed after this many seconds. Recycling
+	 *      of jobs simply means re-inserting them into the queue. Jobs can be
+	 *      attempted up to three times before being discarded.
+	 *   - readOnlyReason : Set this to a string to make the queue read-only. [optional]
+	 *   - idGenerator : A GlobalIdGenerator instance.
+	 *   - stats  : A StatsdDataFactoryInterface. [optional]
 	 *
 	 * Queue classes should throw an exception if they do not support the options given.
 	 *
@@ -118,6 +123,16 @@ abstract class JobQueue {
 		if ( !class_exists( $class ) ) {
 			throw new JobQueueError( "Invalid job queue class '$class'." );
 		}
+
+		if ( !isset( $params['idGenerator'] ) ) {
+			wfDeprecated( __METHOD__ . ' called without "idGenerator" set', '1.35' );
+			$params['idGenerator'] = new GlobalIdGenerator(
+				sys_get_temp_dir(),
+				new EmptyBagOStuff(),
+				'shell_exec'
+			);
+		}
+
 		$obj = new $class( $params );
 		if ( !( $obj instanceof self ) ) {
 			throw new JobQueueError( "Class '$class' is not a " . __CLASS__ . " class." );

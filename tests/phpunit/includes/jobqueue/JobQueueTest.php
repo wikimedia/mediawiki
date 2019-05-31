@@ -21,6 +21,7 @@ class JobQueueTest extends MediaWikiTestCase {
 		global $wgJobTypeConf;
 		parent::setUp();
 
+		$services = MediaWikiServices::getInstance();
 		if ( $this->getCliArg( 'use-jobqueue' ) ) {
 			$name = $this->getCliArg( 'use-jobqueue' );
 			if ( !isset( $wgJobTypeConf[$name] ) ) {
@@ -34,6 +35,7 @@ class JobQueueTest extends MediaWikiTestCase {
 		$baseConfig['domain'] = WikiMap::getCurrentWikiDbDomain()->getId();
 		$baseConfig['stash'] = new HashBagOStuff();
 		$baseConfig['wanCache'] = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
+		$baseConfig['idGenerator'] = $services->getGlobalIdGenerator();
 		$variants = [
 			'queueRand' => [ 'order' => 'random', 'claimTTL' => 0 ],
 			'queueRandTTL' => [ 'order' => 'random', 'claimTTL' => 10 ],

@@ -1,26 +1,25 @@
 <?php
 
-class UIDGeneratorTest extends PHPUnit\Framework\TestCase {
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\UUID\GlobalIdGenerator;
+
+class GlobalIdGeneratorTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
-
-	protected function tearDown() : void {
-		// T46850
-		UIDGenerator::unitTestTearDown();
-		parent::tearDown();
-	}
 
 	/**
 	 * Test that generated UIDs have the expected properties
 	 *
 	 * @dataProvider provider_testTimestampedUID
-	 * @covers UIDGenerator::newTimestampedUID88
-	 * @covers UIDGenerator::getTimestampedID88
-	 * @covers UIDGenerator::newTimestampedUID128
-	 * @covers UIDGenerator::getTimestampedID128
+	 * @covers \Wikimedia\UUID\GlobalIdGenerator::newTimestampedUID88
+	 * @covers \Wikimedia\UUID\GlobalIdGenerator::getTimestampedID88
+	 * @covers \Wikimedia\UUID\GlobalIdGenerator::newTimestampedUID128
+	 * @covers \Wikimedia\UUID\GlobalIdGenerator::getTimestampedID128
 	 */
 	public function testTimestampedUID( $method, $digitlen, $bits, $tbits, $hostbits ) {
-		$id = call_user_func( [ UIDGenerator::class, $method ] );
+		$gen = $this->getGlobalIdGenerator();
+
+		$id = call_user_func( [ $gen, $method ] );
 		$this->assertTrue( ctype_digit( $id ), "UID made of digit characters" );
 		$this->assertLessThanOrEqual( $digitlen, strlen( $id ),
 			"UID has the right number of digits" );
@@ -29,7 +28,7 @@ class UIDGeneratorTest extends PHPUnit\Framework\TestCase {
 
 		$ids = [];
 		for ( $i = 0; $i < 300; $i++ ) {
-			$ids[] = call_user_func( [ UIDGenerator::class, $method ] );
+			$ids[] = call_user_func( [ $gen, $method ] );
 		}
 
 		$lastId = array_shift( $ids );
@@ -79,13 +78,15 @@ class UIDGeneratorTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers UIDGenerator::newUUIDv1
-	 * @covers UIDGenerator::getUUIDv1
+	 * @covers \Wikimedia\UUID\GlobalIdGenerator::newUUIDv1
+	 * @covers \Wikimedia\UUID\GlobalIdGenerator::getUUIDv1
 	 */
 	public function testUUIDv1() {
+		$gen = $this->getGlobalIdGenerator();
+
 		$ids = [];
 		for ( $i = 0; $i < 100; $i++ ) {
-			$id = UIDGenerator::newUUIDv1();
+			$id = $gen->newUUIDv1();
 			$this->assertRegExp(
 				'!^[0-9a-f]{8}-[0-9a-f]{4}-1[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$!',
 				$id,
@@ -93,14 +94,14 @@ class UIDGeneratorTest extends PHPUnit\Framework\TestCase {
 			);
 			$ids[] = $id;
 
-			$id = UIDGenerator::newRawUUIDv1();
+			$id = $gen->newRawUUIDv1();
 			$this->assertRegExp(
 				'!^[0-9a-f]{12}1[0-9a-f]{3}[89ab][0-9a-f]{15}$!',
 				$id,
 				"UID $id has the right format"
 			);
 
-			$id = UIDGenerator::newRawUUIDv1();
+			$id = $gen->newRawUUIDv1();
 			$this->assertRegExp(
 				'!^[0-9a-f]{12}1[0-9a-f]{3}[89ab][0-9a-f]{15}$!',
 				$id,
@@ -112,12 +113,14 @@ class UIDGeneratorTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers UIDGenerator::newUUIDv4
+	 * @covers \Wikimedia\UUID\GlobalIdGenerator::newUUIDv4
 	 */
 	public function testUUIDv4() {
+		$gen = $this->getGlobalIdGenerator();
+
 		$ids = [];
 		for ( $i = 0; $i < 100; $i++ ) {
-			$id = UIDGenerator::newUUIDv4();
+			$id = $gen->newUUIDv4();
 			$ids[] = $id;
 			$this->assertRegExp(
 				'!^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$!',
@@ -130,11 +133,22 @@ class UIDGeneratorTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers UIDGenerator::newRawUUIDv4
+	 * @covers \Wikimedia\UUID\GlobalIdGenerator::newRawUUIDv4
 	 */
 	public function testRawUUIDv4() {
+		$gen = $this->getGlobalIdGenerator();
+
 		for ( $i = 0; $i < 100; $i++ ) {
-			$id = UIDGenerator::newRawUUIDv4();
+			$id = $gen->newRawUUIDv4();
+			$this->assertRegExp(
+				'!^[0-9a-f]{12}4[0-9a-f]{3}[89ab][0-9a-f]{15}$!',
+				$id,
+				"UID $id has the right format"
+			);
+		}
+
+		for ( $i = 0; $i < 100; $i++ ) {
+			$id = $gen->newRawUUIDv4( UIDGenerator::QUICK_RAND );
 			$this->assertRegExp(
 				'!^[0-9a-f]{12}4[0-9a-f]{3}[89ab][0-9a-f]{15}$!',
 				$id,
@@ -144,25 +158,13 @@ class UIDGeneratorTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers UIDGenerator::newRawUUIDv4
-	 */
-	public function testRawUUIDv4QuickRand() {
-		for ( $i = 0; $i < 100; $i++ ) {
-			$id = UIDGenerator::newRawUUIDv4( UIDGenerator::QUICK_RAND );
-			$this->assertRegExp(
-				'!^[0-9a-f]{12}4[0-9a-f]{3}[89ab][0-9a-f]{15}$!',
-				$id,
-				"UID $id has the right format"
-			);
-		}
-	}
-
-	/**
-	 * @covers UIDGenerator::newSequentialPerNodeID
+	 * @covers \Wikimedia\UUID\GlobalIdGenerator::newSequentialPerNodeID
 	 */
 	public function testNewSequentialID() {
-		$id1 = UIDGenerator::newSequentialPerNodeID( 'test', 32 );
-		$id2 = UIDGenerator::newSequentialPerNodeID( 'test', 32 );
+		$gen = $this->getGlobalIdGenerator();
+
+		$id1 = $gen->newSequentialPerNodeID( 'test', 32 );
+		$id2 = $gen->newSequentialPerNodeID( 'test', 32 );
 
 		$this->assertIsFloat( $id1, "ID returned as float" );
 		$this->assertIsFloat( $id2, "ID returned as float" );
@@ -171,11 +173,13 @@ class UIDGeneratorTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers UIDGenerator::newSequentialPerNodeIDs
-	 * @covers UIDGenerator::getSequentialPerNodeIDs
+	 * @covers \Wikimedia\UUID\GlobalIdGenerator::newSequentialPerNodeIDs
+	 * @covers \Wikimedia\UUID\GlobalIdGenerator::getSequentialPerNodeIDs
 	 */
 	public function testNewSequentialIDs() {
-		$ids = UIDGenerator::newSequentialPerNodeIDs( 'test', 32, 5 );
+		$gen = $this->getGlobalIdGenerator();
+
+		$ids = $gen->newSequentialPerNodeIDs( 'test', 32, 5 );
 		$lastId = null;
 		foreach ( $ids as $id ) {
 			$this->assertIsFloat( $id, "ID returned as float" );
@@ -198,10 +202,12 @@ class UIDGeneratorTest extends PHPUnit\Framework\TestCase {
 	 * @covers UIDGenerator::getTimestampFromUUIDv1
 	 */
 	public function testGetTimestampFromUUIDv1( string $uuid, string $ts ) {
-		$this->assertEquals( $ts, UIDGenerator::getTimestampFromUUIDv1( $uuid ) );
+		$gen = $this->getGlobalIdGenerator();
+
+		$this->assertEquals( $ts, $gen->getTimestampFromUUIDv1( $uuid ) );
 		$this->assertEquals(
-			MWTimestamp::convert( TS_ISO_8601, $ts ),
-			UIDGenerator::getTimestampFromUUIDv1( $uuid, TS_ISO_8601 )
+			ConvertibleTimestamp::convert( TS_ISO_8601, $ts ),
+			$gen->getTimestampFromUUIDv1( $uuid, TS_ISO_8601 )
 		);
 	}
 
@@ -219,4 +225,22 @@ class UIDGeneratorTest extends PHPUnit\Framework\TestCase {
 		$this->expectException( InvalidArgumentException::class );
 		UIDGenerator::getTimestampFromUUIDv1( $uuid );
 	}
+
+	private function getGlobalIdGenerator() : GlobalIdGenerator {
+		return new GlobalIdGenerator(
+			wfTempDir(),
+			new HashBagOStuff( [] ),
+			function ( $command ) {
+				return wfShellExec( $command );
+			}
+		);
+	}
+
+	protected function tearDown(): void {
+		// T46850
+		$gen = $this->getGlobalIdGenerator();
+		$gen->unitTestTearDown();
+		parent::tearDown();
+	}
+
 }

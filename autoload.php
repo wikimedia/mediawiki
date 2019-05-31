@@ -1712,6 +1712,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\Subquery' => __DIR__ . '/includes/libs/rdbms/encasing/Subquery.php',
 	'Wikimedia\\Rdbms\\TransactionProfiler' => __DIR__ . '/includes/libs/rdbms/TransactionProfiler.php',
 	'Wikimedia\\StaticArrayWriter' => __DIR__ . '/includes/libs/StaticArrayWriter.php',
+	'Wikimedia\\UUID\\GlobalIdGenerator' => __DIR__ . '/includes/libs/uuid/GlobalIdGenerator.php',
 	'WikitextContent' => __DIR__ . '/includes/content/WikitextContent.php',
 	'WikitextContentHandler' => __DIR__ . '/includes/content/WikitextContentHandler.php',
 	'WikitextLogFormatter' => __DIR__ . '/includes/logging/WikitextLogFormatter.php',
