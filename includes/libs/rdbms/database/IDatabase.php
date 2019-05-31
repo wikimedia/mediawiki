@@ -801,7 +801,7 @@ interface IDatabase {
 	 *
 	 * @param string|array $table Table name
 	 * @param string|array $vars Field names
-	 * @param array $conds Conditions
+	 * @param string|array $conds Conditions
 	 * @param string $fname Caller function name
 	 * @param string|array $options Query options
 	 * @param array|string $join_conds Join conditions
