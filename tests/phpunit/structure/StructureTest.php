@@ -21,6 +21,7 @@ class StructureTest extends MediaWikiTestCase {
 			'ApiQueryContinueTestBase',
 			'MediaWikiLangTestCase',
 			'MediaWikiMediaTestCase',
+			'MediaWikiUnitTestCase',
 			'MediaWikiTestCase',
 			'ResourceLoaderTestCase',
 			'PHPUnit_Framework_TestCase',
