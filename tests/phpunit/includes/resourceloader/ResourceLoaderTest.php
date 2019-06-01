@@ -34,6 +34,42 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		$this->assertSame( 1, $ranHook, 'Hook was called' );
 	}
 
+	public static function provideInvalidModuleName() {
+		return [
+			'name with 300 chars' => [ str_repeat( 'x', 300 ) ],
+			'name with bang' => [ 'this!that' ],
+			'name with comma' => [ 'this,that' ],
+			'name with pipe' => [ 'this|that' ],
+		];
+	}
+
+	public static function provideValidModuleName() {
+		return [
+			'empty string' => [ '' ],
+			'simple name' => [ 'this.and-that2' ],
+			'name with 100 chars' => [ str_repeat( 'x', 100 ) ],
+			'name with hash' => [ 'this#that' ],
+			'name with slash' => [ 'this/that' ],
+			'name with at' => [ 'this@that' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideInvalidModuleName
+	 * @covers ResourceLoader
+	 */
+	public function testIsValidModuleName_invalid( $name ) {
+		$this->assertFalse( ResourceLoader::isValidModuleName( $name ) );
+	}
+
+	/**
+	 * @dataProvider provideValidModuleName
+	 * @covers ResourceLoader
+	 */
+	public function testIsValidModuleName_valid( $name ) {
+		$this->assertTrue( ResourceLoader::isValidModuleName( $name ) );
+	}
+
 	/**
 	 * @covers ResourceLoader::register
 	 * @covers ResourceLoader::getModule
@@ -60,6 +96,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 
 	/**
 	 * @covers ResourceLoader::register
+	 * @group medium
 	 */
 	public function testRegisterEmptyString() {
 		$module = new ResourceLoaderTestModule();
@@ -70,6 +107,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 
 	/**
 	 * @covers ResourceLoader::register
+	 * @group medium
 	 */
 	public function testRegisterInvalidName() {
 		$resourceLoader = new EmptyResourceLoader();
