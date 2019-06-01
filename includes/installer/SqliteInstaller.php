@@ -71,16 +71,19 @@ class SqliteInstaller extends DatabaseInstaller {
 	}
 
 	public function getGlobalDefaults() {
+		global $IP;
 		$defaults = parent::getGlobalDefaults();
-		if ( isset( $_SERVER['DOCUMENT_ROOT'] ) ) {
-			$path = str_replace(
-				[ '/', '\\' ],
-				DIRECTORY_SEPARATOR,
-				dirname( $_SERVER['DOCUMENT_ROOT'] ) . '/data'
-			);
-
-			$defaults['wgSQLiteDataDir'] = $path;
+		if ( !empty( $_SERVER['DOCUMENT_ROOT'] ) ) {
+			$path = dirname( $_SERVER['DOCUMENT_ROOT'] );
+		} else {
+			// We use $IP when unable to get $_SERVER['DOCUMENT_ROOT']
+			$path = $IP;
 		}
+		$defaults['wgSQLiteDataDir'] = str_replace(
+			[ '/', '\\' ],
+			DIRECTORY_SEPARATOR,
+			$path . '/data'
+		);
 		return $defaults;
 	}
 
@@ -122,7 +125,7 @@ class SqliteInstaller extends DatabaseInstaller {
 
 		# Try realpath() if the directory already exists
 		$dir = self::realpath( $this->getVar( 'wgSQLiteDataDir' ) );
-		$result = self::dataDirOKmaybeCreate( $dir, true /* create? */ );
+		$result = self::checkDataDir( $dir );
 		if ( $result->isOK() ) {
 			# Try expanding again in case we've just created it
 			$dir = self::realpath( $dir );
@@ -135,12 +138,17 @@ class SqliteInstaller extends DatabaseInstaller {
 	}
 
 	/**
-	 * @param string $dir
-	 * @param bool $create
-	 * @return Status
+	 * Check if the data directory is writable or can be created
+	 * @param string $dir Path to the data directory
+	 * @return Status Return fatal Status if $dir un-writable or no permission to create a directory
 	 */
-	private static function dataDirOKmaybeCreate( $dir, $create = false ) {
-		if ( !is_dir( $dir ) ) {
+	private static function checkDataDir( $dir ) : Status {
+		if ( is_dir( $dir ) ) {
+			if ( !is_readable( $dir ) ) {
+				return Status::newFatal( 'config-sqlite-dir-unwritable', $dir );
+			}
+		} else {
+			// Check the parent directory if $dir not exists
 			if ( !is_writable( dirname( $dir ) ) ) {
 				$webserverGroup = Installer::maybeGetWebserverPrimaryGroup();
 				if ( $webserverGroup !== null ) {
@@ -156,25 +164,25 @@ class SqliteInstaller extends DatabaseInstaller {
 					);
 				}
 			}
+		}
+		return Status::newGood();
+	}
 
-			# Called early on in the installer, later we just want to sanity check
-			# if it's still writable
-			if ( $create ) {
-				Wikimedia\suppressWarnings();
-				$ok = wfMkdirParents( $dir, 0700, __METHOD__ );
-				Wikimedia\restoreWarnings();
-				if ( !$ok ) {
-					return Status::newFatal( 'config-sqlite-mkdir-error', $dir );
-				}
-				# Put a .htaccess file in in case the user didn't take our advice
-				file_put_contents( "$dir/.htaccess", "Deny from all\n" );
+	/**
+	 * @param string $dir Path to the data directory
+	 * @return Status Return good Status if without error
+	 */
+	private static function createDataDir( $dir ) : Status {
+		if ( !is_dir( $dir ) ) {
+			Wikimedia\suppressWarnings();
+			$ok = wfMkdirParents( $dir, 0700, __METHOD__ );
+			Wikimedia\restoreWarnings();
+			if ( !$ok ) {
+				return Status::newFatal( 'config-sqlite-mkdir-error', $dir );
 			}
 		}
-		if ( !is_writable( $dir ) ) {
-			return Status::newFatal( 'config-sqlite-dir-unwritable', $dir );
-		}
-
-		# We haven't blown up yet, fall through
+		# Put a .htaccess file in in case the user didn't take our advice
+		file_put_contents( "$dir/.htaccess", "Deny from all\n" );
 		return Status::newGood();
 	}
 
@@ -217,10 +225,15 @@ class SqliteInstaller extends DatabaseInstaller {
 	public function setupDatabase() {
 		$dir = $this->getVar( 'wgSQLiteDataDir' );
 
-		# Sanity check. We checked this before but maybe someone deleted the
-		# data dir between then and now
-		$dir_status = self::dataDirOKmaybeCreate( $dir, false /* create? */ );
-		if ( !$dir_status->isOK() ) {
+		# Sanity check (Only available in web installation). We checked this before but maybe someone
+		# deleted the data dir between then and now
+		$dir_status = self::checkDataDir( $dir );
+		if ( $dir_status->isGood() ) {
+			$res = self::createDataDir( $dir );
+			if ( !$res->isGood() ) {
+				return $res;
+			}
+		} else {
 			return $dir_status;
 		}
 
