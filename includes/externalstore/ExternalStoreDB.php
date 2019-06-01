@@ -166,7 +166,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @return string|bool Database domain ID or false
 	 */
 	private function getDomainId( array $server ) {
-		if ( isset( $this->params['wiki'] ) ) {
+		if ( isset( $this->params['wiki'] ) && $this->params['wiki'] !== false ) {
 			return $this->params['wiki']; // explicit domain
 		}
 
