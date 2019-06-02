@@ -13,7 +13,8 @@
 			"Macofe",
 			"MarcoAurelio",
 			"Sanbec",
-			"Vivaelcelta"
+			"Vivaelcelta",
+			"Agusbou2015"
 		]
 	},
 	"exif-imagewidth": "Anchura",
@@ -201,8 +202,12 @@
 	"exif-copyrighted-false": "No se ha definido el estado del copyright",
 	"exif-photometricinterpretation-0": "Blanco y negro (blanco es 0)",
 	"exif-photometricinterpretation-1": "Blanco y negro (el negro es 0)",
+	"exif-photometricinterpretation-3": "Paleta",
 	"exif-photometricinterpretation-4": "Máscara de transparencia",
 	"exif-photometricinterpretation-5": "Separados (Probablemente CMYK)",
+	"exif-photometricinterpretation-8": "CIE L*a*b*",
+	"exif-photometricinterpretation-9": "CIE L*a*b* (codificación ICC)",
+	"exif-photometricinterpretation-10": "CIE L*a*b* (codificación ITU)",
 	"exif-photometricinterpretation-32803": "Matriz de filtro de color",
 	"exif-unknowndate": "Fecha desconocida",
 	"exif-orientation-1": "Normal",

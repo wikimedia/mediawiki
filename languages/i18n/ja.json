@@ -3237,7 +3237,7 @@
 	"mcrundo-missingparam": "リクエストに必要なパラメーターが見当たりません。",
 	"mcrundo-changed": "このページはあなたが前回差分を表示した後に変更されています。新しい変更の査読をお願いします。",
 	"mcrundo-parse-failed": "新しい版が読み込めませんでした: $1",
-	"semicolon-separator": ";&#32;",
+	"semicolon-separator": "；",
 	"comma-separator": "、",
 	"colon-separator": ":&#32;",
 	"pipe-separator": "&#32;|&#32;",

@@ -191,7 +191,7 @@
 			"Agusbou2015"
 		]
 	},
-	"tog-underline": "Enlaces a subrayar:",
+	"tog-underline": "Enlaces que se van a subrayar:",
 	"tog-hideminor": "Ocultar las ediciones menores en cambios recientes",
 	"tog-hidepatrolled": "Ocultar las ediciones verificadas de cambios recientes",
 	"tog-newpageshidepatrolled": "Ocultar, de la lista de páginas nuevas, las páginas verificadas",
@@ -754,8 +754,8 @@
 	"passwordreset-domain": "Dominio:",
 	"passwordreset-email": "Dirección de correo electrónico:",
 	"passwordreset-emailtitle": "Detalles de la cuenta en {{SITENAME}}",
-	"passwordreset-emailtext-ip": "Alguien (probablemente tú, desde la dirección IP $1) ha solicitado el restablecimiento de tu contraseña en {{SITENAME}} ($4). {{PLURAL:$3|La siguiente cuenta está asociada|Las siguientes cuentas están asociadas}}\na esta dirección de correo electrónico:\n\n$2\n\n{{PLURAL:$3|Esta contraseña temporal|Estas contraseñas temporales}} caducarán en {{PLURAL:$5|un día|$5 días}}.\nAhora puedes iniciar sesión y establecer una nueva contraseña. Si fue otra persona la que realizó esta solicitud, o si ya recuerdas tu contraseña original y, por tanto, no deseas cambiarla, puedes ignorar este mensaje y continuar usando tu contraseña anterior.",
-	"passwordreset-emailtext-user": "El usuario $1 de {{SITENAME}} solicitó el restablecimiento de tu contraseña en {{SITENAME}}\n($4). {{PLURAL:$3|La siguiente cuenta está asociada|Las siguientes cuentas están asociadas}} a esta dirección de correo electrónico:\n\n$2\n\n{{PLURAL:$3|Esta contraseña temporal|Estas contraseñas temporales}} caducarán en {{PLURAL:$5|un día|$5 días}}.\nAhora puedes iniciar sesión y establecer una nueva contraseña. Si fue otra persona la que realizó esta solicitud, o si ya recuerdas tu contraseña original y, por tanto, no deseas cambiarla, puedes ignorar este mensaje y continuar usando tu contraseña anterior.",
+	"passwordreset-emailtext-ip": "Alguien (probablemente tú, desde la dirección IP $1) ha solicitado el restablecimiento de tu contraseña en {{SITENAME}} ($4). {{PLURAL:$3|La siguiente cuenta está asociada|Las siguientes cuentas están asociadas}}\na esta dirección de correo electrónico:\n\n$2\n\n{{PLURAL:$3|Esta contraseña temporal caducará|Estas contraseñas temporales caducarán}} dentro de {{PLURAL:$5|un día|$5 días}}.\nAhora puedes iniciar sesión y establecer una nueva contraseña. Si fue otra persona la que realizó esta solicitud, o si ya recuerdas tu contraseña original y, por tanto, no deseas cambiarla, puedes ignorar este mensaje y continuar usando tu contraseña anterior.",
+	"passwordreset-emailtext-user": "El usuario $1 de {{SITENAME}} solicitó el restablecimiento de tu contraseña en {{SITENAME}}\n($4). {{PLURAL:$3|La siguiente cuenta está asociada|Las siguientes cuentas están asociadas}} a esta dirección de correo electrónico:\n\n$2\n\n{{PLURAL:$3|Esta contraseña temporal caducará|Estas contraseñas temporales caducarán}} dentro de {{PLURAL:$5|un día|$5 días}}.\nAhora puedes iniciar sesión y establecer una nueva contraseña. Si fue otra persona la que realizó esta solicitud, o si ya recuerdas tu contraseña original y, por tanto, no deseas cambiarla, puedes ignorar este mensaje y continuar usando tu contraseña anterior.",
 	"passwordreset-emailelement": "Nombre de {{GENDER:$1|usuario|usuaria}}: \n$1\n\nContraseña temporal: \n$2",
 	"passwordreset-emailsentemail": "Si esta dirección de correo electrónico está asociada a tu cuenta, entonces se enviará un correo electrónico para restablecer la contraseña.",
 	"passwordreset-emailsentusername": "Si existe una dirección de correo electrónico asociada a este nombre de usuario, entonces se enviará un correo para restablecer la contraseña.",
@@ -3821,6 +3821,8 @@
 	"mw-widgets-abandonedit-keep": "Continuar editando",
 	"mw-widgets-abandonedit-title": "¿Seguro?",
 	"mw-widgets-copytextlayout-copy": "Copiar",
+	"mw-widgets-copytextlayout-copy-fail": "No se pudo copiar en el portapapeles.",
+	"mw-widgets-copytextlayout-copy-success": "Copiado en el portapapeles",
 	"mw-widgets-dateinput-no-date": "Ninguna fecha seleccionada",
 	"mw-widgets-dateinput-placeholder-day": "AAAA-MM-DD",
 	"mw-widgets-dateinput-placeholder-month": "AAAA-MM",
@@ -3994,5 +3996,7 @@
 	"passwordpolicies-policyflag-forcechange": "debe cambiar al acceder a la cuenta",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "sugerir cambio al acceder a la cuenta",
 	"easydeflate-invaliddeflate": "El contenido proporcionado no esta comprimido correctamente",
-	"unprotected-js": "Por razones de seguridad, JavaScript no se puede cargar desde páginas desprotegidas. Crea javascript solo en MediaWiki: espacio de nombres o como subpágina de usuario"
+	"unprotected-js": "Por razones de seguridad, JavaScript no se puede cargar desde páginas desprotegidas. Crea javascript solo en MediaWiki: espacio de nombres o como subpágina de usuario",
+	"userlogout-continue": "Si deseas cerrar sesión, [$1 continúa a la página de cierre de sesión].",
+	"userlogout-sessionerror": "No se pudo cerrar la sesión debido a un error de sesión. [$1 Inténtalo de nuevo]."
 }

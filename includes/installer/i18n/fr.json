@@ -30,7 +30,8 @@
 			"Trial",
 			"Tinss",
 			"Thibaut120094",
-			"Tartare"
+			"Tartare",
+			"VIGNERON"
 		]
 	},
 	"config-desc": "Le programme d’installation de MediaWiki",
@@ -267,7 +268,7 @@
 	"config-logo": "URL du logo :",
 	"config-logo-help": "L’habillage par défaut de MediaWiki comprend l’espace pour un logo de 135x160 pixels au-dessus de la barre de menu latérale.\nTéléversez une image de la taille appropriée, et entrez son URL ici.\n\nVous pouvez utiliser <code>$wgStylePath</code> ou <code>$wgScriptPath</code> si votre logo est relatif à ces chemins.\n\nSi vous ne voulez pas de logo, laissez cette case vide.",
 	"config-instantcommons": "Activer ''InstantCommons''",
-	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/InstantCommons/fr InstantCommons] est un service qui permet d’utiliser les images, les sons et les autres médias disponibles sur le site [https://meta.wikimedia.org/wiki/Wikimedia_Commons/fr Wikimédia Commons].\nPour ce faire, il faut que MediaWiki accède à Internet.\n\nPour plus d’informations sur ce service, y compris les instructions sur la façon de le configurer pour d’autres wikis que Wikimedia Commons, consultez le [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos manuel].",
+	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/InstantCommons/fr InstantCommons] est un service qui permet d’utiliser les images, les sons et les autres médias disponibles sur le site [https://commons.wikimedia.org Wikimedia Commons].\nPour ce faire, il faut que MediaWiki accède à Internet.\n\nPour plus d’informations sur ce service, y compris les instructions sur la façon de le configurer pour d’autres wikis que Wikimedia Commons, consultez le [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos manuel].",
 	"config-cc-error": "Le sélection d'une licence ''Creative Commons'' n'a donné aucun résultat.\nEntrez le nom de la licence manuellement.",
 	"config-cc-again": "Choisissez à nouveau...",
 	"config-cc-not-chosen": "Choisissez la licence ''Creative Commons'' que vous désirez et cliquez sur « proceed ».",
