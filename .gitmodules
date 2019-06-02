@@ -680,7 +680,7 @@
 [submodule "extensions/ProtectSite"]
 	path = extensions/ProtectSite
 	url = https://github.com/wikimedia/mediawiki-extensions-ProtectSite
-	branch = REL1_32
+	branch = master
 	ignore = dirty
 [submodule "extensions/EducationProgram"]
 	path = extensions/EducationProgram
