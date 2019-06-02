@@ -3305,6 +3305,7 @@
 	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|promijenio|promijenila}} je jezik stranice $3 iz $4 u $5.",
 	"mediastatistics": "Statistika datoteka",
 	"mediastatistics-summary": "Slijede statistike postavljenih datoteka koje pokazuju zadnju inačicu datoteke. Starije ili izbrisane inačice nisu prikazane.",
+	"mediastatistics-nfiles": "$1 ($2 %)",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 bajt|$1 bajta|$1 bajtova}} ($2; $3 %)",
 	"mediastatistics-bytespertype": "Ukupna veličina datoteka za ovaj odlomak: {{PLURAL:$1|$1 bajt|$1 bajta|$1 bajtova}} ($2; $3%).",
 	"mediastatistics-allbytes": "Ukupna veličina svih datoteka: {{PLURAL:$1|$1 bajt|$1 bajta|$1 bajtova}} ($2).",

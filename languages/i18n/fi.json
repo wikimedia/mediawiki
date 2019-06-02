@@ -62,7 +62,8 @@
 			"OneMember",
 			"Valtlait",
 			"Laurianttila",
-			"Vlad5250"
+			"Vlad5250",
+			"Antsa"
 		]
 	},
 	"tog-underline": "Linkkien alleviivaus:",
@@ -3686,6 +3687,8 @@
 	"mw-widgets-abandonedit-discard": "Hylkää muutokset",
 	"mw-widgets-abandonedit-keep": "Jatka muokkaamista",
 	"mw-widgets-abandonedit-title": "Oletko varma?",
+	"mw-widgets-copytextlayout-copy": "Kopioi",
+	"mw-widgets-copytextlayout-copy-success": "Kopioitu leikepöydälle",
 	"mw-widgets-dateinput-no-date": "Ei ole valittu mitään päivää",
 	"mw-widgets-dateinput-placeholder-day": "VVVV-KK-PP",
 	"mw-widgets-dateinput-placeholder-month": "VVVV-KK",
