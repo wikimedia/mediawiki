@@ -1284,7 +1284,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string $commentedSql SQL query with debugging/trace comment
 	 * @param bool $isEffectiveWrite Whether the query is a (non-temporary table) write
 	 * @param string $fname Name of the calling function
-	 * @return bool|ResultWrapper True for a successful write query, ResultWrapper
+	 * @return bool|IResultWrapper True for a successful write query, ResultWrapper
 	 *     object for a successful read query, or false on failure
 	 */
 	private function attemptQuery( $sql, $commentedSql, $isEffectiveWrite, $fname ) {
@@ -4112,8 +4112,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * a wrapper. Nowadays, raw database objects are never exposed to external
 	 * callers, so this is unnecessary in external code.
 	 *
-	 * @param bool|ResultWrapper|resource $result
-	 * @return bool|ResultWrapper
+	 * @param bool|IResultWrapper|resource $result
+	 * @return bool|IResultWrapper
 	 */
 	protected function resultObject( $result ) {
 		if ( !$result ) {
@@ -4603,7 +4603,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Delete a table
 	 * @param string $tableName
 	 * @param string $fName
-	 * @return bool|ResultWrapper
+	 * @return bool|IResultWrapper
 	 * @since 1.18
 	 */
 	public function dropTable( $tableName, $fName = __METHOD__ ) {

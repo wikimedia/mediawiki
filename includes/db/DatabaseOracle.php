@@ -26,6 +26,7 @@ use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\DBUnexpectedError;
 use Wikimedia\Rdbms\DBExpectedError;
@@ -250,7 +251,7 @@ class DatabaseOracle extends Database {
 
 	/**
 	 * Frees resources associated with the LOB descriptor
-	 * @param ResultWrapper|ORAResult $res
+	 * @param IResultWrapper|ORAResult $res
 	 */
 	function freeResult( $res ) {
 		if ( $res instanceof ResultWrapper ) {
@@ -261,8 +262,8 @@ class DatabaseOracle extends Database {
 	}
 
 	/**
-	 * @param ResultWrapper|ORAResult $res
-	 * @return mixed
+	 * @param IResultWrapper|ORAResult $res
+	 * @return stdClass|bool
 	 */
 	function fetchObject( $res ) {
 		if ( $res instanceof ResultWrapper ) {
@@ -273,8 +274,8 @@ class DatabaseOracle extends Database {
 	}
 
 	/**
-	 * @param ResultWrapper|ORAResult $res
-	 * @return mixed
+	 * @param IResultWrapper|ORAResult $res
+	 * @return stdClass|bool
 	 */
 	function fetchRow( $res ) {
 		if ( $res instanceof ResultWrapper ) {
@@ -285,7 +286,7 @@ class DatabaseOracle extends Database {
 	}
 
 	/**
-	 * @param ResultWrapper|ORAResult $res
+	 * @param IResultWrapper|ORAResult $res
 	 * @return int
 	 */
 	function numRows( $res ) {
@@ -297,7 +298,7 @@ class DatabaseOracle extends Database {
 	}
 
 	/**
-	 * @param ResultWrapper|ORAResult $res
+	 * @param IResultWrapper|ORAResult $res
 	 * @return int
 	 */
 	function numFields( $res ) {

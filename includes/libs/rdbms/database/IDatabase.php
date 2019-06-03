@@ -217,7 +217,7 @@ interface IDatabase {
 	 * the LB info array is set to that parameter. If it is called with two
 	 * parameters, the member with the given name is set to the given value.
 	 *
-	 * @param string $name
+	 * @param array|string $name
 	 * @param array|null $value
 	 */
 	public function setLBInfo( $name, $value = null );
