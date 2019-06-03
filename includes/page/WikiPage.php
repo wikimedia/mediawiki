@@ -1904,7 +1904,11 @@ class WikiPage implements Page, IDBAccessObject {
 		// TODO: this logic should not be in the storage layer, it's here for compatibility
 		// with 1.31 behavior. Applying the 'autopatrol' right should be done in the same
 		// place the 'bot' right is handled, which is currently in EditPage::attemptSave.
-		if ( $needsPatrol && $this->getTitle()->userCan( 'autopatrol', $user ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
+		if ( $needsPatrol && $permissionManager->userCan(
+			'autopatrol', $user, $this->getTitle()
+		) ) {
 			$updater->setRcPatrolStatus( RecentChange::PRC_AUTOPATROLLED );
 		}
 
@@ -3267,7 +3271,11 @@ class WikiPage implements Page, IDBAccessObject {
 		// TODO: this logic should not be in the storage layer, it's here for compatibility
 		// with 1.31 behavior. Applying the 'autopatrol' right should be done in the same
 		// place the 'bot' right is handled, which is currently in EditPage::attemptSave.
-		if ( $wgUseRCPatrol && $this->getTitle()->userCan( 'autopatrol', $guser ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
+		if ( $wgUseRCPatrol && $permissionManager->userCan(
+			'autopatrol', $guser, $this->getTitle()
+		) ) {
 			$updater->setRcPatrolStatus( RecentChange::PRC_AUTOPATROLLED );
 		}
 

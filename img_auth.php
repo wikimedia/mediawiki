@@ -79,6 +79,8 @@ function wfImageAuthMain() {
 		return;
 	}
 
+	$user = RequestContext::getMain()->getUser();
+
 	// Various extensions may have their own backends that need access.
 	// Check if there is a special backend and storage base path for this file.
 	foreach ( $wgImgAuthUrlPathMap as $prefix => $storageDir ) {
@@ -87,7 +89,7 @@ function wfImageAuthMain() {
 			$be = FileBackendGroup::singleton()->backendFromPath( $storageDir );
 			$filename = $storageDir . substr( $path, strlen( $prefix ) ); // strip prefix
 			// Check basic user authorization
-			if ( !RequestContext::getMain()->getUser()->isAllowed( 'read' ) ) {
+			if ( !$user->isAllowed( 'read' ) ) {
 				wfForbidden( 'img-auth-accessdenied', 'img-auth-noread', $path );
 				return;
 			}
@@ -157,7 +159,9 @@ function wfImageAuthMain() {
 
 		// Check user authorization for this title
 		// Checks Whitelist too
-		if ( !$title->userCan( 'read' ) ) {
+		$permissionManager = \MediaWiki\MediaWikiServices::getInstance()->getPermissionManager();
+
+		if ( !$permissionManager->userCan( 'read', $user, $title ) ) {
 			wfForbidden( 'img-auth-accessdenied', 'img-auth-noread', $name );
 			return;
 		}

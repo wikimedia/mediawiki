@@ -2882,8 +2882,11 @@ class OutputPage extends ContextSource {
 					$query['returntoquery'] = wfArrayToCgi( $returntoquery );
 				}
 			}
+
+			$services = MediaWikiServices::getInstance();
+
 			$title = SpecialPage::getTitleFor( 'Userlogin' );
-			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+			$linkRenderer = $services->getLinkRenderer();
 			$loginUrl = $title->getLinkURL( $query, false, PROTO_RELATIVE );
 			$loginLink = $linkRenderer->makeKnownLink(
 				$title,
@@ -2895,9 +2898,13 @@ class OutputPage extends ContextSource {
 			$this->prepareErrorPage( $this->msg( 'loginreqtitle' ) );
 			$this->addHTML( $this->msg( $msg )->rawParams( $loginLink )->params( $loginUrl )->parse() );
 
+			$permissionManager = $services->getPermissionManager();
+
 			# Don't return to a page the user can't read otherwise
 			# we'll end up in a pointless loop
-			if ( $displayReturnto && $displayReturnto->userCan( 'read', $this->getUser() ) ) {
+			if ( $displayReturnto && $permissionManager->userCan(
+				'read', $this->getUser(), $displayReturnto
+			) ) {
 				$this->returnToMain( null, $displayReturnto );
 			}
 		} else {

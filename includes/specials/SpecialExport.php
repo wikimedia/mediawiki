@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * A special page that allows users to export pages in a XML file
@@ -387,6 +388,8 @@ class SpecialExport extends SpecialPage {
 		if ( $exportall ) {
 			$exporter->allPages();
 		} else {
+			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
 			foreach ( $pages as $page ) {
 				# T10824: Only export pages the user can read
 				$title = Title::newFromText( $page );
@@ -395,7 +398,7 @@ class SpecialExport extends SpecialPage {
 					continue;
 				}
 
-				if ( !$title->userCan( 'read', $this->getUser() ) ) {
+				if ( !$permissionManager->userCan( 'read', $this->getUser(), $title ) ) {
 					// @todo Perhaps output an <error> tag or something.
 					continue;
 				}
