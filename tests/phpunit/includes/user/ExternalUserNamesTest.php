@@ -27,6 +27,8 @@ class ExternalUserNamesTest extends MediaWikiTestCase {
 	 * @dataProvider provideGetUserLinkTitle
 	 */
 	public function testGetUserLinkTitle( $username, $expected ) {
+		$this->setContentLang( 'en' );
+
 		$interwikiLookupMock = $this->getMockBuilder( InterwikiLookup::class )
 			->getMock();
 
