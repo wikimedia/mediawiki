@@ -6,6 +6,7 @@
  */
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Linker\LinkTarget;
 
 class NamespaceInfoTest extends MediaWikiTestCase {
 	/**********************************************************************************************
@@ -688,73 +689,88 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideSpecialNamespaces
-	 * @covers NamespaceInfo::getTalk
-	 * @covers NamespaceInfo::getTalkPage
-	 * @covers NamespaceInfo::isMethodValidFor
-	 *
-	 * @param int $ns
-	 */
-	public function testGetTalkPage_special( $ns ) {
-		$this->setExpectedException( MWException::class,
-			"NamespaceInfo::getTalk does not make any sense for given namespace $ns" );
-		$this->newObj()->getTalkPage( new TitleValue( $ns, 'A' ) );
-	}
-
-	/**
-	 * @dataProvider provideSpecialNamespaces
-	 * @covers NamespaceInfo::getTalk
-	 * @covers NamespaceInfo::getTalkPage
-	 * @covers NamespaceInfo::isMethodValidFor
-	 * @covers Title::getTalkPage
-	 *
-	 * @param int $ns
-	 */
-	public function testTitleGetTalkPage_special( $ns ) {
-		$this->setExpectedException( MWException::class,
-			"NamespaceInfo::getTalk does not make any sense for given namespace $ns" );
-		Title::makeTitle( $ns, 'A' )->getTalkPage();
-	}
-
-	/**
-	 * @dataProvider provideSpecialNamespaces
 	 * @covers NamespaceInfo::getAssociated
 	 * @covers NamespaceInfo::isMethodValidFor
 	 *
 	 * @param int $ns
 	 */
 	public function testGetAssociated_special( $ns ) {
-		$this->setExpectedException( MWException::class,
-			"NamespaceInfo::getAssociated does not make any sense for given namespace $ns" );
+		$this->setExpectedException(
+			MWException::class,
+			"NamespaceInfo::getAssociated does not make any sense for given namespace $ns"
+		);
 		$this->newObj()->getAssociated( $ns );
 	}
 
-	/**
-	 * @dataProvider provideSpecialNamespaces
-	 * @covers NamespaceInfo::getAssociated
-	 * @covers NamespaceInfo::getAssociatedPage
-	 * @covers NamespaceInfo::isMethodValidFor
-	 *
-	 * @param int $ns
-	 */
-	public function testGetAssociatedPage_special( $ns ) {
-		$this->setExpectedException( MWException::class,
-			"NamespaceInfo::getAssociated does not make any sense for given namespace $ns" );
-		$this->newObj()->getAssociatedPage( new TitleValue( $ns, 'A' ) );
+	public static function provideCanHaveTalkPage() {
+		return [
+			[ new TitleValue( NS_MAIN, 'Test' ), true ],
+			[ new TitleValue( NS_TALK, 'Test' ), true ],
+			[ new TitleValue( NS_USER, 'Test' ), true ],
+			[ new TitleValue( NS_SPECIAL, 'Test' ), false ],
+			[ new TitleValue( NS_MEDIA, 'Test' ), false ],
+			[ new TitleValue( NS_MAIN, '', 'Kittens' ), false ],
+			[ new TitleValue( NS_MAIN, 'Kittens', '', 'acme' ), false ],
+		];
 	}
 
 	/**
-	 * @dataProvider provideSpecialNamespaces
+	 * @dataProvider provideCanHaveTalkPage
+	 * @covers NamespaceInfo::canHaveTalkPage
+	 */
+	public function testCanHaveTalkPage( LinkTarget $t, $expected ) {
+		$actual = $this->newObj()->canHaveTalkPage( $t );
+		$this->assertEquals( $expected, $actual, $t->getDBkey() );
+	}
+
+	public static function provideGetTalkPage_good() {
+		return [
+			[ new TitleValue( NS_MAIN, 'Test' ), new TitleValue( NS_TALK, 'Test' ) ],
+			[ new TitleValue( NS_TALK, 'Test' ), new TitleValue( NS_TALK, 'Test' ) ],
+			[ new TitleValue( NS_USER, 'Test' ), new TitleValue( NS_USER_TALK, 'Test' ) ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetTalkPage_good
+	 * @covers NamespaceInfo::getTalk
+	 * @covers NamespaceInfo::getTalkPage
+	 * @covers NamespaceInfo::isMethodValidFor
+	 */
+	public function testGetTalkPage_good( LinkTarget $t, LinkTarget $expected ) {
+		$actual = $this->newObj()->getTalkPage( $t );
+		$this->assertEquals( $expected, $actual, $t->getDBkey() );
+	}
+
+	public static function provideGetTalkPage_bad() {
+		return [
+			[ new TitleValue( NS_SPECIAL, 'Test' ) ],
+			[ new TitleValue( NS_MEDIA, 'Test' ) ],
+			[ new TitleValue( NS_MAIN, '', 'Kittens' ) ],
+			[ new TitleValue( NS_MAIN, 'Kittens', '', 'acme' ) ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetTalkPage_bad
+	 * @covers NamespaceInfo::getTalk
+	 * @covers NamespaceInfo::getTalkPage
+	 * @covers NamespaceInfo::isMethodValidFor
+	 */
+	public function testGetTalkPage_bad( LinkTarget $t ) {
+		$this->setExpectedException( MWException::class );
+		$this->newObj()->getTalkPage( $t );
+	}
+
+	/**
+	 * @dataProvider provideGetTalkPage_bad
 	 * @covers NamespaceInfo::getAssociated
 	 * @covers NamespaceInfo::getAssociatedPage
 	 * @covers NamespaceInfo::isMethodValidFor
-	 * @covers Title::getOtherPage
-	 *
-	 * @param int $ns
 	 */
-	public function testTitleGetOtherPage_special( $ns ) {
-		$this->setExpectedException( MWException::class,
-			"NamespaceInfo::getAssociated does not make any sense for given namespace $ns" );
-		Title::makeTitle( $ns, 'A' )->getOtherPage();
+	public function testGetAssociatedPage_bad( LinkTarget $t ) {
+		$this->setExpectedException( MWException::class );
+		$this->newObj()->getAssociatedPage( $t );
 	}
 
 	/**

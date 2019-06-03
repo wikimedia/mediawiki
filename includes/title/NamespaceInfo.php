@@ -142,6 +142,8 @@ class NamespaceInfo {
 	 *
 	 * @param int $index Namespace index
 	 * @return int
+	 * @throws MWException if the given namespace doesn't have an associated talk namespace
+	 *         (e.g. NS_SPECIAL).
 	 */
 	public function getTalk( $index ) {
 		$this->isMethodValidFor( $index, __METHOD__ );
@@ -151,15 +153,52 @@ class NamespaceInfo {
 	}
 
 	/**
+	 * Get a LinkTarget referring to the talk page of $target.
+	 *
+	 * @see canHaveTalkPage
 	 * @param LinkTarget $target
 	 * @return LinkTarget Talk page for $target
-	 * @throws MWException if $target's namespace doesn't have talk pages (e.g., NS_SPECIAL)
+	 * @throws MWException if $target doesn't have talk pages, e.g. because it's in NS_SPECIAL,
+	 *         because it's a relative section-only link, or it's an an interwiki link.
 	 */
 	public function getTalkPage( LinkTarget $target ) : LinkTarget {
+		if ( $target->getText() === '' ) {
+			throw new MWException( 'Can\'t determine talk page associated with relative section link' );
+		}
+
+		if ( $target->getInterwiki() !== '' ) {
+			throw new MWException( 'Can\'t determine talk page associated with interwiki link' );
+		}
+
 		if ( $this->isTalk( $target->getNamespace() ) ) {
 			return $target;
 		}
-		return new TitleValue( $this->getTalk( $target->getNamespace() ), $target->getDbKey() );
+
+		// NOTE: getTalk throws on bad namespaces!
+		return new TitleValue( $this->getTalk( $target->getNamespace() ), $target->getDBkey() );
+	}
+
+	/**
+	 * Can the title have a corresponding talk page?
+	 *
+	 * False for relative section-only links (with getText() === ''),
+	 * interwiki links (with getInterwiki() !== ''), and pages in NS_SPECIAL.
+	 *
+	 * @see getTalkPage
+	 *
+	 * @param LinkTarget $target
+	 * @return bool True if this title either is a talk page or can have a talk page associated.
+	 */
+	public function canHaveTalkPage( LinkTarget $target ) {
+		if ( $target->getText() === '' || $target->getInterwiki() !== '' ) {
+			return false;
+		}
+
+		if ( $target->getNamespace() < NS_MAIN ) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
@@ -188,7 +227,7 @@ class NamespaceInfo {
 		if ( $this->isSubject( $target->getNamespace() ) ) {
 			return $target;
 		}
-		return new TitleValue( $this->getSubject( $target->getNamespace() ), $target->getDbKey() );
+		return new TitleValue( $this->getSubject( $target->getNamespace() ), $target->getDBkey() );
 	}
 
 	/**
@@ -216,8 +255,16 @@ class NamespaceInfo {
 	 * @throws MWException if $target's namespace doesn't have talk pages (e.g., NS_SPECIAL)
 	 */
 	public function getAssociatedPage( LinkTarget $target ) : LinkTarget {
+		if ( $target->getText() === '' ) {
+			throw new MWException( 'Can\'t determine talk page associated with relative section link' );
+		}
+
+		if ( $target->getInterwiki() !== '' ) {
+			throw new MWException( 'Can\'t determine talk page associated with interwiki link' );
+		}
+
 		return new TitleValue(
-			$this->getAssociated( $target->getNamespace() ), $target->getDbKey() );
+			$this->getAssociated( $target->getNamespace() ), $target->getDBkey() );
 	}
 
 	/**
