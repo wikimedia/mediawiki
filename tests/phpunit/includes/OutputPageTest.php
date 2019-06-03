@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -2662,7 +2663,8 @@ class OutputPageTest extends MediaWikiTestCase {
 		$method = $class->getMethod( 'makeResourceLoaderLink' );
 		$method->setAccessible( true );
 		$ctx = new RequestContext();
-		$ctx->setSkin( SkinFactory::getDefaultInstance()->makeSkin( 'fallback' ) );
+		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
+		$ctx->setSkin( $skinFactory->makeSkin( 'fallback' ) );
 		$ctx->setLanguage( 'en' );
 		$out = new OutputPage( $ctx );
 		$nonce = $class->getProperty( 'CSPNonce' );
@@ -2775,7 +2777,8 @@ class OutputPageTest extends MediaWikiTestCase {
 
 		// Set up stubs
 		$ctx = new RequestContext();
-		$ctx->setSkin( SkinFactory::getDefaultInstance()->makeSkin( 'fallback' ) );
+		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
+		$ctx->setSkin( $skinFactory->makeSkin( 'fallback' ) );
 		$ctx->setLanguage( 'en' );
 		$op = $this->getMockBuilder( OutputPage::class )
 			->setConstructorArgs( [ $ctx ] )
