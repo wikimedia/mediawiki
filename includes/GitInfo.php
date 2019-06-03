@@ -66,7 +66,7 @@ class GitInfo {
 		$this->repoDir = $repoDir;
 		$this->cacheFile = self::getCacheFilePath( $repoDir );
 		wfDebugLog( 'gitinfo',
-			"Computed cacheFile={$this->cacheFile} for {$repoDir}"
+			"Candidate cacheFile={$this->cacheFile} for {$repoDir}"
 		);
 		if ( $usePrecomputed &&
 			$this->cacheFile !== null &&
