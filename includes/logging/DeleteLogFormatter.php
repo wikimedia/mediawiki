@@ -270,8 +270,6 @@ class DeleteLogFormatter extends LogFormatter {
 				}
 			}
 
-			$old = $this->parseBitField( $rawParams['6::ofield'] );
-			$new = $this->parseBitField( $rawParams['7::nfield'] );
 			if ( !is_array( $rawParams['5::ids'] ) ) {
 				$rawParams['5::ids'] = explode( ',', $rawParams['5::ids'] );
 			}
@@ -279,8 +277,6 @@ class DeleteLogFormatter extends LogFormatter {
 			$params = [
 				'::type' => $rawParams['4::type'],
 				':array:ids' => $rawParams['5::ids'],
-				':assoc:old' => [ 'bitmask' => $old ],
-				':assoc:new' => [ 'bitmask' => $new ],
 			];
 
 			static $fields = [
@@ -289,9 +285,20 @@ class DeleteLogFormatter extends LogFormatter {
 				Revision::DELETED_USER => 'user',
 				Revision::DELETED_RESTRICTED => 'restricted',
 			];
-			foreach ( $fields as $bit => $key ) {
-				$params[':assoc:old'][$key] = (bool)( $old & $bit );
-				$params[':assoc:new'][$key] = (bool)( $new & $bit );
+
+			if ( isset( $rawParams['6::ofield'] ) ) {
+				$old = $this->parseBitField( $rawParams['6::ofield'] );
+				$params[':assoc:old'] = [ 'bitmask' => $old ];
+				foreach ( $fields as $bit => $key ) {
+					$params[':assoc:old'][$key] = (bool)( $old & $bit );
+				}
+			}
+			if ( isset( $rawParams['7::nfield'] ) ) {
+				$new = $this->parseBitField( $rawParams['7::nfield'] );
+				$params[':assoc:new'] = [ 'bitmask' => $new ];
+				foreach ( $fields as $bit => $key ) {
+					$params[':assoc:new'][$key] = (bool)( $new & $bit );
+				}
 			}
 		} elseif ( $subtype === 'restore' ) {
 			$rawParams = $entry->getParameters();
