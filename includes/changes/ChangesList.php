@@ -23,7 +23,7 @@
  */
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 
 class ChangesList extends ContextSource {
 	const CSS_CLASS_PREFIX = 'mw-changeslist-';
@@ -298,7 +298,7 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * @param ResultWrapper|array $rows
+	 * @param IResultWrapper|array $rows
 	 */
 	public function initChangesListRows( $rows ) {
 		Hooks::run( 'ChangesListInitRows', [ $this, $rows ] );
