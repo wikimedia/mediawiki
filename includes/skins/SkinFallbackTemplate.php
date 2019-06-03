@@ -9,6 +9,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * BaseTemplate class for the fallback skin
  */
@@ -41,7 +43,8 @@ class SkinFallbackTemplate extends BaseTemplate {
 	private function buildHelpfulInformationMessage() {
 		$defaultSkin = $this->config->get( 'DefaultSkin' );
 		$installedSkins = $this->findInstalledSkins();
-		$enabledSkins = SkinFactory::getDefaultInstance()->getSkinNames();
+		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
+		$enabledSkins = $skinFactory->getSkinNames();
 		$enabledSkins = array_change_key_case( $enabledSkins, CASE_LOWER );
 
 		if ( $installedSkins ) {

@@ -16,12 +16,15 @@ class ResourceLoaderOOUIImageModuleTest extends ResourceLoaderTestCase {
 		] );
 
 		// Pretend that 'fakemonobook' is a real skin using the Apex theme
-		SkinFactory::getDefaultInstance()->register(
+		$skinFactory = new SkinFactory();
+		$skinFactory->register(
 			'fakemonobook',
 			'FakeMonoBook',
 			function () {
 			}
 		);
+		$this->setService( 'SkinFactory', $skinFactory );
+
 		$r = new ReflectionMethod( ExtensionRegistry::class, 'exportExtractedData' );
 		$r->setAccessible( true );
 		$r->invoke( ExtensionRegistry::getInstance(), [
