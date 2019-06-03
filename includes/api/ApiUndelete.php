@@ -41,7 +41,7 @@ class ApiUndelete extends ApiBase {
 			$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['title'] ) ] );
 		}
 
-		if ( !$titleObj->userCan( 'undelete', $user, 'secure' ) ) {
+		if ( !$this->getPermissionManager()->userCan( 'undelete', $this->getUser(), $titleObj ) ) {
 			$this->dieWithError( 'permdenied-undelete' );
 		}
 

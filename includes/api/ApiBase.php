@@ -22,7 +22,9 @@
 
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -696,6 +698,16 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		$this->getMain()->setContinuationManager( $manager );
+	}
+
+	/**
+	 * Obtain a PermissionManager instance that subclasses may use in their authorization checks.
+	 *
+	 * @since 1.34
+	 * @return PermissionManager
+	 */
+	protected function getPermissionManager(): PermissionManager {
+		return MediaWikiServices::getInstance()->getPermissionManager();
 	}
 
 	/**@}*/
@@ -2120,17 +2132,19 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Helper function for permission-denied errors
-	 * @since 1.29
-	 * @since 1.33 Changed the third parameter from $user to $options.
-	 * @param Title $title
+	 *
+	 * @param LinkTarget $linkTarget
 	 * @param string|string[] $actions
 	 * @param array $options Additional options
 	 *   - user: (User) User to use rather than $this->getUser()
 	 *   - autoblock: (bool, default false) Whether to spread autoblocks
 	 *  For compatibility, passing a User object is treated as the value for the 'user' option.
 	 * @throws ApiUsageException if the user doesn't have all of the rights.
+	 *
+	 * @since 1.29
+	 * @since 1.33 Changed the third parameter from $user to $options.
 	 */
-	public function checkTitleUserPermissions( Title $title, $actions, $options = [] ) {
+	public function checkTitleUserPermissions( LinkTarget $linkTarget, $actions, $options = [] ) {
 		if ( !is_array( $options ) ) {
 			wfDeprecated( '$user as the third parameter to ' . __METHOD__, '1.33' );
 			$options = [ 'user' => $options ];
@@ -2139,7 +2153,10 @@ abstract class ApiBase extends ContextSource {
 
 		$errors = [];
 		foreach ( (array)$actions as $action ) {
-			$errors = array_merge( $errors, $title->getUserPermissionsErrors( $action, $user ) );
+			$errors = array_merge(
+				$errors,
+				$this->getPermissionManager()->getPermissionErrors( $action, $user, $linkTarget )
+			);
 		}
 
 		if ( $errors ) {

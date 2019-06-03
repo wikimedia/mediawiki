@@ -201,11 +201,12 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 		if ( $resultPageSet === null && $this->fetchContent ) {
 			// For each page we will request, the user must have read rights for that page
-			$user = $this->getUser();
 			$status = Status::newGood();
+			$user = $this->getUser();
+
 			/** @var Title $title */
 			foreach ( $pageSet->getGoodTitles() as $title ) {
-				if ( !$title->userCan( 'read', $user ) ) {
+				if ( !$this->getPermissionManager()->userCan( 'read', $user, $title ) ) {
 					$status->fatal( ApiMessage::create(
 						[ 'apierror-cannotviewtitle', wfEscapeWikiText( $title->getPrefixedText() ) ],
 						'accessdenied'
