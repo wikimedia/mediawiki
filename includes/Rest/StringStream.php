@@ -35,6 +35,7 @@ class StringStream implements CopyableStreamInterface {
 		} else {
 			$block = $this->contents;
 		}
+		$this->offset = strlen( $this->contents );
 		fwrite( $stream, $block );
 	}
 
