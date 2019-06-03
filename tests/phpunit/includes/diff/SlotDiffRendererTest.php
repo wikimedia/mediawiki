@@ -1,4 +1,5 @@
 <?php
+
 use Wikimedia\Assert\ParameterTypeException;
 use Wikimedia\TestingAccessWrapper;
 
