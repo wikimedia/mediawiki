@@ -43,9 +43,9 @@
 		display: none;
 	}
 
+	// table.: Where the tbody or thead is the first child of the collapsible table
 	ol.mw-collapsible:not( @{exclude} ):before,
 	ul.mw-collapsible:not( @{exclude} ):before,
-	// Where the tbody or thead is the first child of the collapsible table
 	table.mw-collapsible:not( @{exclude} ) :first-child tr:first-child th:last-child:before,
 	table.mw-collapsible:not( @{exclude} ) > caption:first-child:after,
 	div.mw-collapsible:not( @{exclude} ):before {
@@ -74,9 +74,10 @@
 	// Use the exclude selector to ensure animations do not break
 	.mw-collapsed:not( @{exclude} ) {
 		// Avoid FOUC/reflows on collapsed elements by making sure they are opened by default (T42812)
+		// > thead + tbody: 'https://www.mediawiki.org/wiki/Manual:Collapsible_elements/Demo/Simple#Collapsed_by_default'
 		> p,
 		> table,
-		> thead + tbody, // 'https://www.mediawiki.org/wiki/Manual:Collapsible_elements/Demo/Simple#Collapsed_by_default'
+		> thead + tbody,
 		tr:not( :first-child ),
 		.mw-collapsible-content {
 			display: none;
