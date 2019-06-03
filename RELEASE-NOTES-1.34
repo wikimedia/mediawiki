@@ -189,8 +189,10 @@ because of Phabricator reports.
   Use the mediawiki.String module instead.
 * mw.language.specialCharacters, deprecated in 1.33, has been removed.
   Use require( 'mediawiki.language.specialCharacters' ) instead.
-* EditPage::submit(), deprecated in 1.29, has been removed. Used $this->edit()
+* EditPage::submit(), deprecated in 1.29, has been removed. Use $this->edit()
   directly.
+* HTMLForm::getErrors(), deprecated in 1.28, has been removed. Use
+  getErrorsOrWarnings() instead.
 * …
 
 === Deprecations in 1.34 ===

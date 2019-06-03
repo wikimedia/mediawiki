@@ -1278,20 +1278,6 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * Format and display an error message stack.
-	 *
-	 * @param string|array|Status $errors
-	 *
-	 * @deprecated since 1.28, use getErrorsOrWarnings() instead
-	 *
-	 * @return string
-	 */
-	public function getErrors( $errors ) {
-		wfDeprecated( __METHOD__, '1.28' );
-		return $this->getErrorsOrWarnings( $errors, 'error' );
-	}
-
-	/**
 	 * Returns a formatted list of errors or warnings from the given elements.
 	 *
 	 * @param string|array|Status $elements The set of errors/warnings to process.
