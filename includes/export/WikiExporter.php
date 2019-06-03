@@ -399,6 +399,7 @@ class WikiExporter {
 				$this->do_list_authors( $cond );
 			}
 			$join['revision'] = [ 'JOIN', 'page_id=rev_page AND page_latest=rev_id' ];
+			$opts[ 'ORDER BY' ] = [ 'page_id ASC' ];
 		} elseif ( $this->history & self::STABLE ) {
 			# "Stable" revision dumps...
 			# Default JOIN, to be overridden...
