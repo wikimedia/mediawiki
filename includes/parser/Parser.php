@@ -205,9 +205,11 @@ class Parser {
 	public $mLinkID;
 	public $mIncludeSizes, $mPPNodeCount, $mGeneratedPPNodeCount, $mHighestExpansionDepth;
 	public $mDefaultSort;
-	public $mTplRedirCache, $mTplDomCache, $mHeadings, $mDoubleUnderscores;
+	public $mTplRedirCache, $mHeadings, $mDoubleUnderscores;
 	public $mExpensiveFunctionCount; # number of expensive parser function calls
 	public $mShowToc, $mForceTocPosition;
+	/** @var array */
+	public $mTplDomCache;
 
 	/**
 	 * @var User
@@ -3084,7 +3086,7 @@ class Parser {
 	 *  self::OT_HTML: all templates and extension tags
 	 *
 	 * @param string $text The text to transform
-	 * @param bool|PPFrame $frame Object describing the arguments passed to the
+	 * @param false|PPFrame|array $frame Object describing the arguments passed to the
 	 *   template. Arguments may also be provided as an associative array, as
 	 *   was the usual case before MW1.12. Providing arguments this way may be
 	 *   useful for extensions wishing to perform variable replacement
@@ -3190,7 +3192,7 @@ class Parser {
 	 *   $piece['lineStart']: whether the brace was at the start of a line
 	 * @param PPFrame $frame The current frame, contains template arguments
 	 * @throws Exception
-	 * @return string The text of the template
+	 * @return string|array The text of the template
 	 */
 	public function braceSubstitution( $piece, $frame ) {
 		// Flags

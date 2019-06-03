@@ -37,6 +37,9 @@ class Preprocessor_DOM extends Preprocessor {
 
 	const CACHE_PREFIX = 'preprocess-xml';
 
+	/**
+	 * @param Parser $parser
+	 */
 	public function __construct( $parser ) {
 		wfDeprecated( __METHOD__, '1.34' ); // T204945
 		$this->parser = $parser;

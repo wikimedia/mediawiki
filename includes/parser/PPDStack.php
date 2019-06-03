@@ -27,7 +27,7 @@ class PPDStack {
 	public $stack, $rootAccum;
 
 	/**
-	 * @var PPDStack
+	 * @var PPDStack|false
 	 */
 	public $top;
 	public $out;
