@@ -2850,6 +2850,7 @@
 	"confirm-rollback-button": "好",
 	"confirm-rollback-bottom": "呢個動作會立即反轉晒揀咗嘅修改。",
 	"confirm-mcrundo-title": "還原一個改動",
+	"semicolon-separator": "；",
 	"comma-separator": "、",
 	"word-separator": "",
 	"parentheses": "（$1）",

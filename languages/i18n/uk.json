@@ -1485,7 +1485,7 @@
 	"rcfilters-restore-default-filters": "Відновити стандартні фільтри",
 	"rcfilters-clear-all-filters": "Очистити фільтри",
 	"rcfilters-show-new-changes": "Переглянути нові зміни з $1",
-	"rcfilters-search-placeholder": "Фільтруйте редагування (використовуйте меню, або скористайтесь пошуком фільтра за назвою)",
+	"rcfilters-search-placeholder": "Фільтрувати зміни (використовуйте меню, або скористайтесь пошуком фільтра за назвою)",
 	"rcfilters-invalid-filter": "Недійсний фільтр",
 	"rcfilters-empty-filter": "Без фільтрів. Показано всі зміни.",
 	"rcfilters-filterlist-title": "Фільтри",
