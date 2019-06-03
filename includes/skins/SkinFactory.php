@@ -48,6 +48,7 @@ class SkinFactory {
 	 * @return SkinFactory
 	 */
 	public static function getDefaultInstance() {
+		wfDeprecated( __METHOD__, '1.27' );
 		return MediaWikiServices::getInstance()->getSkinFactory();
 	}
 
