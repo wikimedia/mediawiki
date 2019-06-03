@@ -103,6 +103,9 @@ class InfoAction extends FormlessAction {
 			}
 		}
 
+		// "Help" button
+		$this->addHelpLink( 'Page information' );
+
 		// Page header
 		if ( !$this->msg( 'pageinfo-header' )->isDisabled() ) {
 			$content .= $this->msg( 'pageinfo-header' )->parse();
