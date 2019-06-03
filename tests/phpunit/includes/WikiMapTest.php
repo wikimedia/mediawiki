@@ -1,4 +1,5 @@
 <?php
+
 use Wikimedia\Rdbms\DatabaseDomain;
 
 /**

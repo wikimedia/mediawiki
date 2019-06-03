@@ -1,4 +1,5 @@
 <?php
+
 namespace MediaWiki\Tests\Revision;
 
 use Wikimedia\Rdbms\IDatabase;

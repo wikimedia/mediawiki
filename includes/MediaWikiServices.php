@@ -1,4 +1,5 @@
 <?php
+
 namespace MediaWiki;
 
 use ActorMigration;
