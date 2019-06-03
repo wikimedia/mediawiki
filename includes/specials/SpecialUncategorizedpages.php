@@ -30,6 +30,7 @@ use MediaWiki\MediaWikiServices;
  * @todo FIXME: Make $requestedNamespace selectable, unify all subclasses into one
  */
 class UncategorizedPagesPage extends PageQueryPage {
+	/** @var int|false */
 	protected $requestedNamespace = false;
 
 	function __construct( $name = 'Uncategorizedpages' ) {
