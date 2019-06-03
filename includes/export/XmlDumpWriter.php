@@ -252,7 +252,8 @@ class XmlDumpWriter {
 		if ( isset( $row->rev_deleted ) && ( $row->rev_deleted & Revision::DELETED_USER ) ) {
 			$out .= "      " . Xml::element( 'contributor', [ 'deleted' => 'deleted' ] ) . "\n";
 		} else {
-			$out .= $this->writeContributor( $row->rev_user, $row->rev_user_text );
+			// empty values get written out as uid 0, see T224221
+			$out .= $this->writeContributor( $row->rev_user ?: 0, $row->rev_user_text );
 		}
 
 		if ( isset( $row->rev_minor_edit ) && $row->rev_minor_edit ) {
