@@ -9,14 +9,16 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	protected function setUp() {
 		parent::setUp();
 
+		$skinFactory = new SkinFactory();
 		// The return value of the closure shouldn't matter since this test should
 		// never call it
-		SkinFactory::getDefaultInstance()->register(
+		$skinFactory->register(
 			'fakeskin',
 			'FakeSkin',
 			function () {
 			}
 		);
+		$this->setService( 'SkinFactory', $skinFactory );
 	}
 
 	private static function getModules() {

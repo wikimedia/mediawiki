@@ -358,7 +358,7 @@ abstract class Maintenance {
 			wfDeprecated( __METHOD__ . ' without an $argId', '1.33' );
 		}
 
-		return $this->hasArg( $argId ) ? $this->mArgs[$argId] : $default;
+		return $this->mArgs[$argId] ?? $default;
 	}
 
 	/**
