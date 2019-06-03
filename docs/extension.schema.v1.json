@@ -793,7 +793,7 @@
 		},
 		"ParserTestFiles": {
 			"type": "array",
-			"description": "Parser test suite files to be run by parserTests.php when no specific filename is passed to it"
+			"description": "DEPRECATED: Parser test suite files to be run by parserTests.php when no specific filename is passed to it"
 		},
 		"ServiceWiringFiles": {
 			"type": "array",
