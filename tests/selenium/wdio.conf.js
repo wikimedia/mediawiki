@@ -55,13 +55,12 @@ exports.config = {
 	// FIXME: The non-core patterns to be removed once T199116 is fixed.
 	// ==================
 	specs: [
-		// T222406: Temporarily disabling all selenium tests for node6->10 CI migration
-		// relPath( './tests/selenium/wdio-mediawiki/specs/*.js' ),
-		// relPath( './tests/selenium/specs/**/*.js' ),
-		// relPath( './extensions/*/tests/selenium/specs/**/*.js' ),
-		// relPath( './extensions/VisualEditor/modules/ve-mw/tests/selenium/specs/**/*.js' ),
-		// relPath( './extensions/Wikibase/repo/tests/selenium/specs/**/*.js' ),
-		// relPath( './skins/*/tests/selenium/specs/**/*.js' )
+		relPath( './tests/selenium/wdio-mediawiki/specs/*.js' ),
+		relPath( './tests/selenium/specs/**/*.js' ),
+		relPath( './extensions/*/tests/selenium/specs/**/*.js' ),
+		relPath( './extensions/VisualEditor/modules/ve-mw/tests/selenium/specs/**/*.js' ),
+		relPath( './extensions/Wikibase/repo/tests/selenium/specs/**/*.js' ),
+		relPath( './skins/*/tests/selenium/specs/**/*.js' )
 	],
 	// Patterns to exclude
 	exclude: [
