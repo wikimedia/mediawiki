@@ -25,20 +25,9 @@ class ResourceLoaderOOUIImageModuleTest extends ResourceLoaderTestCase {
 		);
 		$this->setService( 'SkinFactory', $skinFactory );
 
-		$r = new ReflectionMethod( ExtensionRegistry::class, 'exportExtractedData' );
-		$r->setAccessible( true );
-		$r->invoke( ExtensionRegistry::getInstance(), [
-			'globals' => [],
-			'defines' => [],
-			'callbacks' => [],
-			'credits' => [],
-			'autoloaderPaths' => [],
-			'attributes' => [
-				'SkinOOUIThemes' => [
-					'fakemonobook' => 'Apex',
-				],
-			],
-		] );
+		$reset = ExtensionRegistry::getInstance()->setAttributeForTest(
+			'SkinOOUIThemes', [ 'fakemonobook' => 'Apex' ]
+		);
 
 		$styles = $module->getStyles( $this->getResourceLoaderContext( [ 'skin' => 'fakemonobook' ] ) );
 		$this->assertRegExp(
