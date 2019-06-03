@@ -409,6 +409,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		$pageInfo['pagelanguagehtmlcode'] = $pageLanguage->getHtmlCode();
 		$pageInfo['pagelanguagedir'] = $pageLanguage->getDir();
 
+		$user = $this->getUser();
+
 		if ( $titleExists ) {
 			$pageInfo['touched'] = wfTimestamp( TS_ISO_8601, $this->pageTouched[$pageid] );
 			$pageInfo['lastrevid'] = (int)$this->pageLatest[$pageid];
@@ -493,7 +495,9 @@ class ApiQueryInfo extends ApiQueryBase {
 			$pageInfo['canonicalurl'] = wfExpandUrl( $title->getFullURL(), PROTO_CANONICAL );
 		}
 		if ( $this->fld_readable ) {
-			$pageInfo['readable'] = $title->userCan( 'read', $this->getUser() );
+			$pageInfo['readable'] = $this->getPermissionManager()->userCan(
+				'read', $user, $title
+			);
 		}
 
 		if ( $this->fld_preload ) {
@@ -539,10 +543,14 @@ class ApiQueryInfo extends ApiQueryBase {
 				$this->countTestedActions++;
 
 				if ( $detailLevel === 'boolean' ) {
-					$pageInfo['actions'][$action] = $title->userCan( $action, $user );
+					$pageInfo['actions'][$action] = $this->getPermissionManager()->userCan(
+						$action, $user, $title
+					);
 				} else {
 					$pageInfo['actions'][$action] = $errorFormatter->arrayFromStatus( $this->errorArrayToStatus(
-						$title->getUserPermissionsErrors( $action, $user, $rigor ),
+						$this->getPermissionManager()->getPermissionErrors(
+							$action, $user, $title, $rigor
+						),
 						$user
 					) );
 				}
