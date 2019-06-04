@@ -49,7 +49,7 @@ class HelloHandlerTest extends MediaWikiTestCase {
 	/** @dataProvider provideTestViaRouter */
 	public function testViaRouter( $requestInfo, $responseInfo ) {
 		$router = new Router(
-			[ __DIR__ . '/testRoutes.json' ],
+			[ __DIR__ . '/../testRoutes.json' ],
 			[],
 			'/rest',
 			new EmptyBagOStuff(),

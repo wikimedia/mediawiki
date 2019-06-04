@@ -6,8 +6,16 @@ use ExtensionRegistry;
 use MediaWiki\MediaWikiServices;
 use RequestContext;
 use Title;
+use WebResponse;
 
 class EntryPoint {
+	/** @var RequestInterface */
+	private $request;
+	/** @var WebResponse */
+	private $webResponse;
+	/** @var Router */
+	private $router;
+
 	public static function main() {
 		// URL safety checks
 		global $wgRequest;
@@ -21,8 +29,8 @@ class EntryPoint {
 		RequestContext::getMain()->setTitle( $wgTitle );
 
 		$services = MediaWikiServices::getInstance();
-
 		$conf = $services->getMainConfig();
+
 		$request = new RequestFromGlobals( [
 			'cookiePrefix' => $conf->get( 'CookiePrefix' )
 		] );
@@ -36,20 +44,35 @@ class EntryPoint {
 			new ResponseFactory
 		);
 
-		$response = $router->execute( $request );
+		$entryPoint = new self(
+			$request,
+			$wgRequest->response(),
+			$router );
+		$entryPoint->execute();
+	}
 
-		$webResponse = $wgRequest->response();
-		$webResponse->header(
+	public function __construct( RequestInterface $request, WebResponse $webResponse,
+		Router $router
+	) {
+		$this->request = $request;
+		$this->webResponse = $webResponse;
+		$this->router = $router;
+	}
+
+	public function execute() {
+		$response = $this->router->execute( $this->request );
+
+		$this->webResponse->header(
 			'HTTP/' . $response->getProtocolVersion() . ' ' .
 			$response->getStatusCode() . ' ' .
 			$response->getReasonPhrase() );
 
 		foreach ( $response->getRawHeaderLines() as $line ) {
-			$webResponse->header( $line );
+			$this->webResponse->header( $line );
 		}
 
 		foreach ( $response->getCookies() as $cookie ) {
-			$webResponse->setCookie(
+			$this->webResponse->setCookie(
 				$cookie['name'],
 				$cookie['value'],
 				$cookie['expiry'],
