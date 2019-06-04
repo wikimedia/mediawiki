@@ -42,6 +42,8 @@ interface IDatabase {
 	const TRIGGER_COMMIT = 2;
 	/** @var int Callback triggered by ROLLBACK */
 	const TRIGGER_ROLLBACK = 3;
+	/** @var int Callback triggered by atomic section cancel (ROLLBACK TO SAVEPOINT) */
+	const TRIGGER_CANCEL = 4;
 
 	/** @var string Transaction is requested by regular caller outside of the DB layer */
 	const TRANSACTION_EXPLICIT = '';
@@ -1549,6 +1551,9 @@ interface IDatabase {
 	 *
 	 * This is useful for combining cooperative locks and DB transactions.
 	 *
+	 * Note this is called when the whole transaction is resolved. To take action immediately
+	 * when an atomic section is cancelled, use onAtomicSectionCancel().
+	 *
 	 * @note do not assume that *other* IDatabase instances will be AUTOCOMMIT mode
 	 *
 	 * The callback takes the following arguments:
@@ -1629,6 +1634,31 @@ interface IDatabase {
 	 * @since 1.22
 	 */
 	public function onTransactionPreCommitOrIdle( callable $callback, $fname = __METHOD__ );
+
+	/**
+	 * Run a callback when the atomic section is cancelled.
+	 *
+	 * The callback is run just after the current atomic section, any outer
+	 * atomic section, or the whole transaction is rolled back.
+	 *
+	 * An error is thrown if no atomic section is pending. The atomic section
+	 * need not have been created with the ATOMIC_CANCELABLE flag.
+	 *
+	 * Queries in the function may be running in the context of an outer
+	 * transaction or may be running in AUTOCOMMIT mode. The callback should
+	 * use atomic sections if necessary.
+	 *
+	 * @note do not assume that *other* IDatabase instances will be AUTOCOMMIT mode
+	 *
+	 * The callback takes the following arguments:
+	 *   - IDatabase::TRIGGER_CANCEL or IDatabase::TRIGGER_ROLLBACK
+	 *   - This IDatabase instance
+	 *
+	 * @param callable $callback
+	 * @param string $fname Caller name
+	 * @since 1.34
+	 */
+	public function onAtomicSectionCancel( callable $callback, $fname = __METHOD__ );
 
 	/**
 	 * Run a callback after each time any transaction commits or rolls back
