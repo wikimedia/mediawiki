@@ -553,7 +553,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @since 1.27
 	 * @param UserIdentity $user
 	 * @param LinkTarget $target
-	 * @return bool
+	 * @return WatchedItem|false
 	 */
 	public function getWatchedItem( UserIdentity $user, LinkTarget $target ) {
 		if ( !$user->isRegistered() ) {
@@ -573,7 +573,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @since 1.27
 	 * @param UserIdentity $user
 	 * @param LinkTarget $target
-	 * @return WatchedItem|bool
+	 * @return WatchedItem|false
 	 */
 	public function loadWatchedItem( UserIdentity $user, LinkTarget $target ) {
 		// Only registered user can have a watchlist
