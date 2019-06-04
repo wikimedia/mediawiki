@@ -21,6 +21,8 @@ THIS IS NOT A RELEASE YET
   saveFileDependencies().
 * (T224374) Fix message parameters so that the message that says SQLite is
   out of date makes sense.
+* (T200471) Prevent LBFactorySimple breaking ExternalStorage, when trying to
+  connect to external server with local database name.
 
 == MediaWiki 1.32.1 ==
 
