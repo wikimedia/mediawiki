@@ -191,16 +191,16 @@ class Router {
 		$matchers = $this->getMatchers();
 		$matcher = $matchers[$request->getMethod()] ?? null;
 		if ( $matcher === null ) {
-			return $this->responseFactory->create404();
+			return $this->responseFactory->createHttpError( 404 );
 		}
 		$path = $request->getUri()->getPath();
 		if ( substr_compare( $path, $this->rootPath, 0, strlen( $this->rootPath ) ) !== 0 ) {
-			return $this->responseFactory->create404();
+			return $this->responseFactory->createHttpError( 404 );
 		}
 		$relPath = substr( $path, strlen( $this->rootPath ) );
 		$match = $matcher->match( $relPath );
 		if ( !$match ) {
-			return $this->responseFactory->create404();
+			return $this->responseFactory->createHttpError( 404 );
 		}
 		$request->setAttributes( $match['params'] );
 		$spec = $match['userData'];
