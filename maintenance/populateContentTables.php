@@ -42,6 +42,9 @@ class PopulateContentTables extends Maintenance {
 	/** @var NameTableStore */
 	private $contentModelStore;
 
+	/** @var NameTableStore */
+	private $slotRoleStore;
+
 	/** @var BlobStore */
 	private $blobStore;
 
@@ -71,9 +74,14 @@ class PopulateContentTables extends Maintenance {
 	private function initServices() {
 		$this->dbw = $this->getDB( DB_MASTER );
 		$this->contentModelStore = MediaWikiServices::getInstance()->getContentModelStore();
+		$this->slotRoleStore = MediaWikiServices::getInstance()->getSlotRoleStore();
 		$this->blobStore = MediaWikiServices::getInstance()->getBlobStore();
-		$this->mainRoleId = MediaWikiServices::getInstance()->getSlotRoleStore()
-			->acquireId( SlotRecord::MAIN );
+
+		// Don't trust the cache for the NameTableStores, in case something went
+		// wrong during a previous run (see T224949#5325895).
+		$this->contentModelStore->reloadMap();
+		$this->slotRoleStore->reloadMap();
+		$this->mainRoleId = $this->slotRoleStore->acquireId( SlotRecord::MAIN );
 	}
 
 	public function execute() {
