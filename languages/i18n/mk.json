@@ -2923,7 +2923,7 @@
 	"pageinfo-header-restrictions": "Заштита на страницата",
 	"pageinfo-header-properties": "Својства на страницата",
 	"pageinfo-display-title": "Наслов за приказ",
-	"pageinfo-default-sort": "Основен подредбен клуч",
+	"pageinfo-default-sort": "Основен клуч за подредување",
 	"pageinfo-length": "Големина на страницата (во бајти)",
 	"pageinfo-namespace": "Именски простор",
 	"pageinfo-article-id": "Назнака на страницата",

@@ -39,7 +39,8 @@
 			"Luanibraj",
 			"Matěj Suchánek",
 			"Bjakupi",
-			"Vlad5250"
+			"Vlad5250",
+			"Klein Muçi"
 		]
 	},
 	"tog-underline": "Nënvizimi i lidhjes:",
@@ -1727,7 +1728,7 @@
 	"nrevisions": "$1 {{PLURAL:$1|version|versione}}",
 	"nimagelinks": "Përdorur në $1 {{PLURAL:$1|faqe|faqe}}",
 	"ntransclusions": "përdorur në $1 {{PLURAL:$1|faqe|faqe}}",
-	"specialpage-empty": "Kjo faqe është boshe.",
+	"specialpage-empty": "Kjo faqe është bosh.",
 	"lonelypages": "Artikuj të palidhur",
 	"lonelypagestext": "Faqet në vijim nuk janë të lidhura ose nuk janë të përfshira në faqet tjera në {{SITENAME}}.",
 	"uncategorizedpages": "Artikuj të pakategorizuar",
