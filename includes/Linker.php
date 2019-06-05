@@ -894,7 +894,7 @@ class Linker {
 	 * @since 1.16.3. $altUserName was added in 1.19.
 	 */
 	public static function userLink( $userId, $userName, $altUserName = false ) {
-		if ( $userName === '' ) {
+		if ( $userName === '' || $userName === false || $userName === null ) {
 			wfDebug( __METHOD__ . ' received an empty username. Are there database errors ' .
 				'that need to be fixed?' );
 			return wfMessage( 'empty-username' )->parse();

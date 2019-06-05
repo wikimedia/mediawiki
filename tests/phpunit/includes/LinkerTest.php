@@ -14,11 +14,11 @@ class LinkerTest extends MediaWikiLangTestCase {
 		] );
 
 		// We'd also test the warning, but injecting a mock logger into a static method is tricky.
-		if ( $userName === '' ) {
+		if ( !$userName ) {
 			Wikimedia\suppressWarnings();
 		}
 		$actual = Linker::userLink( $userId, $userName, $altUserName );
-		if ( $userName === '' ) {
+		if ( !$userName ) {
 			Wikimedia\restoreWarnings();
 		}
 
@@ -36,6 +36,9 @@ class LinkerTest extends MediaWikiLangTestCase {
 			# Empty name (T222529)
 			'Empty username, userid 0' => [ '(no username available)', 0, '' ],
 			'Empty username, userid > 0' => [ '(no username available)', 73, '' ],
+
+			'false instead of username' => [ '(no username available)', 73, false ],
+			'null instead of username' => [ '(no username available)', 0, null ],
 
 			# ## ANONYMOUS USER ########################################
 			[
