@@ -21,8 +21,6 @@
  * @file
  */
 
-use Wikimedia\ObjectFactory;
-
 /**
  * Object handling generic submission, CSRF protection, layout and
  * other logic for UI forms. in a reusable manner.
@@ -304,12 +302,11 @@ class HTMLForm extends ContextSource {
 
 		switch ( $displayFormat ) {
 			case 'vform':
-				return ObjectFactory::constructClassInstance( VFormHTMLForm::class, $arguments );
+				return new VFormHTMLForm( ...$arguments );
 			case 'ooui':
-				return ObjectFactory::constructClassInstance( OOUIHTMLForm::class, $arguments );
+				return new OOUIHTMLForm( ...$arguments );
 			default:
-				/** @var HTMLForm $form */
-				$form = ObjectFactory::constructClassInstance( self::class, $arguments );
+				$form = new self( ...$arguments );
 				$form->setDisplayFormat( $displayFormat );
 				return $form;
 		}
