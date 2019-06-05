@@ -193,7 +193,7 @@ abstract class MediaHandler {
 	 *  performance problems.
 	 * @param File $image
 	 * @param string $metadata The metadata in serialized form
-	 * @return bool
+	 * @return bool|int
 	 */
 	public function isMetadataValid( $image, $metadata ) {
 		return self::METADATA_GOOD;

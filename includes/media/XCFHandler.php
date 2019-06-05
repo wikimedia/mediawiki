@@ -186,7 +186,7 @@ class XCFHandler extends BitmapHandler {
 	 *
 	 * @param File $file The file object for the file in question
 	 * @param string $metadata Serialized metadata
-	 * @return bool One of the self::METADATA_(BAD|GOOD|COMPATIBLE) constants
+	 * @return bool|int One of the self::METADATA_(BAD|GOOD|COMPATIBLE) constants
 	 */
 	public function isMetadataValid( $file, $metadata ) {
 		if ( !$metadata ) {
