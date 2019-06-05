@@ -1195,7 +1195,7 @@ abstract class UploadBase {
 	 *
 	 * @param string[] $ext
 	 * @param string[] $list
-	 * @return bool
+	 * @return string[]
 	 */
 	public static function checkFileExtensionList( $ext, $list ) {
 		return array_intersect( array_map( 'strtolower', $ext ), $list );
@@ -1446,7 +1446,7 @@ abstract class UploadBase {
 	/**
 	 * @param string $filename
 	 * @param bool $partial
-	 * @return mixed False of the file is verified (does not contain scripts), array otherwise.
+	 * @return bool|array
 	 */
 	protected function detectScriptInSvg( $filename, $partial ) {
 		$this->mSVGNSError = false;
@@ -1478,7 +1478,7 @@ abstract class UploadBase {
 	 * Callback to filter SVG Processing Instructions.
 	 * @param string $target Processing instruction name
 	 * @param string $data Processing instruction attribute and value
-	 * @return bool (true if the filter identified something bad)
+	 * @return bool|array
 	 */
 	public static function checkSvgPICallback( $target, $data ) {
 		// Don't allow external stylesheets (T59550)
@@ -1525,7 +1525,7 @@ abstract class UploadBase {
 	 * @param string $element
 	 * @param array $attribs
 	 * @param array|null $data
-	 * @return bool
+	 * @return bool|array
 	 */
 	public function checkSvgScriptCallback( $element, $attribs, $data = null ) {
 		list( $namespace, $strippedElement ) = $this->splitXmlNamespace( $element );
@@ -1836,7 +1836,7 @@ abstract class UploadBase {
 	 * $wgAntivirusRequired may be used to deny upload if the scan fails.
 	 *
 	 * @param string $file Pathname to the temporary upload file
-	 * @return mixed False if not virus is found, null if the scan fails or is disabled,
+	 * @return bool|null|string False if not virus is found, null if the scan fails or is disabled,
 	 *   or a string containing feedback from the virus scanner if a virus was found.
 	 *   If textual feedback is missing but a virus was found, this function returns true.
 	 */
@@ -1932,7 +1932,7 @@ abstract class UploadBase {
 	 *
 	 * @param User $user
 	 *
-	 * @return mixed True on success, array on failure
+	 * @return bool|array
 	 */
 	private function checkOverwrite( $user ) {
 		// First check whether the local file can be overwritten
