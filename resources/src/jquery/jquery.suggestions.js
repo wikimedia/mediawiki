@@ -78,7 +78,7 @@
  *
  * @param {string} [options.expandFrom=auto] Which direction to offset the suggestion box from.
  *  Values 'start' and 'end' translate to left and right respectively depending on the directionality
- *   of the current document, according to `$( 'html' ).css( 'direction' )`.
+ *   of the current document, according to `$( document.documentElement ).css( 'direction' )`.
  *   Valid values: "left", "right", "start", "end", and "auto".
  *
  * @param {boolean} [options.positionFromLeft] Sets `expandFrom=left`, for backwards
@@ -357,7 +357,7 @@
 						// Process expandFrom, after this it is set to left or right.
 						context.config.expandFrom = ( function ( expandFrom ) {
 							var regionWidth, docWidth, regionCenter, docCenter,
-								docDir = $( document.documentElement ).css( 'direction' ),
+								isRTL = $( document.documentElement ).css( 'direction' ) === 'rtl',
 								$region = context.config.$region;
 
 							// Backwards compatible
@@ -398,10 +398,10 @@
 							}
 
 							if ( expandFrom === 'start' ) {
-								expandFrom = docDir === 'rtl' ? 'right' : 'left';
+								expandFrom = isRTL ? 'right' : 'left';
 
 							} else if ( expandFrom === 'end' ) {
-								expandFrom = docDir === 'rtl' ? 'left' : 'right';
+								expandFrom = isRTL ? 'left' : 'right';
 							}
 
 							return expandFrom;
