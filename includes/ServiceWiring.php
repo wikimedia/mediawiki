@@ -209,7 +209,12 @@ return [
 	},
 
 	'GenderCache' => function ( MediaWikiServices $services ) : GenderCache {
-		return new GenderCache( $services->getNamespaceInfo() );
+		$nsInfo = $services->getNamespaceInfo();
+		// Database layer may be disabled, so processing without database connection
+		$dbLoadBalancer = $services->isServiceDisabled( 'DBLoadBalancer' )
+			? null
+			: $services->getDBLoadBalancer();
+		return new GenderCache( $nsInfo, $dbLoadBalancer );
 	},
 
 	'HttpRequestFactory' =>
