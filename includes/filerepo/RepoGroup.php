@@ -47,7 +47,7 @@ class RepoGroup {
 	/** @var array */
 	protected $foreignInfo;
 
-	/** @var ProcessCacheLRU */
+	/** @var MapCacheLRU */
 	protected $cache;
 
 	/** Maximum number of cache items */

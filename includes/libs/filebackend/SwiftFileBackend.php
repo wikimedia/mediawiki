@@ -62,7 +62,7 @@ class SwiftFileBackend extends FileBackendStore {
 	/** @var BagOStuff */
 	protected $srvCache;
 
-	/** @var ProcessCacheLRU Container stat cache */
+	/** @var MapCacheLRU Container stat cache */
 	protected $containerStatCache;
 
 	/** @var array */
