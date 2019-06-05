@@ -448,6 +448,7 @@
 	"apihelp-query+langlinks-paramvalue-prop-url": "Aggiunge l'URL completo.",
 	"apihelp-query+langlinks-paramvalue-prop-autonym": "Aggiunge il nome nativo della lingua.",
 	"apihelp-query+langlinks-param-dir": "La direzione in cui elencare.",
+	"apihelp-query+languageinfo-paramvalue-prop-bcp47": "Il codice lingua BCP-47.",
 	"apihelp-query+links-param-namespace": "Mostra collegamenti solo in questi namespace.",
 	"apihelp-query+links-param-limit": "Quanti collegamenti restituire.",
 	"apihelp-query+links-param-dir": "La direzione in cui elencare.",
