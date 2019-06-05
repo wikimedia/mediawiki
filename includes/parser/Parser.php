@@ -3841,19 +3841,6 @@ class Parser {
 	 * If 'broken' is a key in $options then the file will appear as a broken thumbnail.
 	 * @param Title $title
 	 * @param array $options Array of options to RepoGroup::findFile
-	 * @return File|bool
-	 * @deprecated since 1.32, use fetchFileAndTitle instead
-	 */
-	public function fetchFile( $title, $options = [] ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		return $this->fetchFileAndTitle( $title, $options )[0];
-	}
-
-	/**
-	 * Fetch a file and its title and register a reference to it.
-	 * If 'broken' is a key in $options then the file will appear as a broken thumbnail.
-	 * @param Title $title
-	 * @param array $options Array of options to RepoGroup::findFile
 	 * @return array ( File or false, Title of file )
 	 */
 	public function fetchFileAndTitle( $title, $options = [] ) {

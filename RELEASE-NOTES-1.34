@@ -218,6 +218,8 @@ because of Phabricator reports.
 * The $wgUseKeyHeader configuration option and the OutputPage::getKeyHeader()
   method, deprecated in 1.32, have been removed.
 * WebInstallerOutput::addWikiText(), deprecated in 1.32, has been removed.
+* Parser::fetchFile(), deprecated in 1.32, has been removed. Use the method
+  Parser::fetchFileAndTitle() instead.
 * …
 
 === Deprecations in 1.34 ===
