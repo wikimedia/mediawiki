@@ -228,8 +228,8 @@ oojs-router:
 
 ooui:
   type: tar
-  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.32.0.tgz
-  integrity: sha384-kRQZfA8MkOJvjOQmuy20urqZKmyusFMJ4e03fcDXi3aeHiDYrgC/Ii7vGrlXXVWY
+  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.32.1.tgz
+  integrity: sha384-p2Y1dRD73TIYZFFhvRu1GtOrklANhT/DBJavX9YIN5aystf5hL5KYj4i1QDY/gCW
 
   dest:
     # Main stuff
@@ -247,10 +247,9 @@ ooui:
     # WikimediaUI theme
     package/dist/themes/wikimediaui/images/icons/*.{svg,png}: themes/wikimediaui/images/icons
     package/dist/themes/wikimediaui/images/indicators/*.{svg,png}: themes/wikimediaui/images/indicators
-    package/dist/themes/wikimediaui/images/textures/*.{gif,svg}: themes/wikimediaui/images/textures
     package/dist/themes/wikimediaui/*.json: themes/wikimediaui
     package/dist/wikimedia-ui-base.less:
-    # Apex theme (icons, indicators, and textures)
+    # Apex theme (icons and indicators)
     package/dist/themes/apex/*.json: themes/apex
     # Misc stuff
     package/dist/AUTHORS.txt:
