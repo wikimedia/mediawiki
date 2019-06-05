@@ -384,7 +384,7 @@
 	"protectedinterface": "Ova stranica je zaštićena od izmjena jer sadrži tekst MediaWiki softvera.\nAko želite prevesti neprevedenu poruku ili popraviti prijevod neke druge poruke za sve MediaWiki wikije, posjetite [https://translatewiki.net/  translatewiki.net], projekt za lokalizaciju MediaWiki softvera.",
 	"editinginterface": "<strong>Upozorenje:</strong> Uređujete stranicu koja se rabi za prikaz teksta u sučelju softvera. Promjene učinjene na ovoj stranici odrazit će se na izgled korisničkog sučelja kod drugih suradnika na ovoj wiki.",
 	"translateinterface": "Za dodavanje ili promjenu prijevoda za sve wikije koristite [https://translatewiki.net/ translatewiki.net], projekt za lokalizaciju MediaWikija.",
-	"cascadeprotected": "Ova je stranica zaključana za uređivanja jer je uključena u {{PLURAL:$1|sljedeću stranicu|sljedeće stranice}}, koje su zaštićene \"prenosivom zaštitom\":\n$2",
+	"cascadeprotected": "Ova je stranica zaključana za uređivanja jer je uključena u {{PLURAL:$1|sljedeću stranicu koja je zaštićena|sljedeće stranice koje su zaštićene}} »prenosivom zaštitom«:\n$2",
 	"namespaceprotected": "Ne možete uređivati stranice u imenskom prostoru '''$1'''.",
 	"customcssprotected": "Ne možete uređivati ovu CSS stranicu zato što ona sadrži osobne postavke drugog suradnika.",
 	"customjsonprotected": "Ne možete uređivati ovu JSON stranicu zato što ona sadrži osobne postavke drugog suradnika.",
