@@ -1689,7 +1689,7 @@ class FileRepo {
 	/**
 	 * Get a callback function to use for cleaning error message parameters
 	 *
-	 * @return string[]
+	 * @return callable
 	 */
 	function getErrorCleanupFunction() {
 		switch ( $this->pathDisclosureProtection ) {
