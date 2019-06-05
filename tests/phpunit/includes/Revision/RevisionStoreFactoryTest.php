@@ -151,13 +151,10 @@ class RevisionStoreFactoryTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return \PHPUnit_Framework_MockObject_MockObject|SlotRoleRegistry
+	 * @return SlotRoleRegistry
 	 */
 	private function getMockSlotRoleRegistry() {
-		$mock = $this->getMockBuilder( SlotRoleRegistry::class )
-			->disableOriginalConstructor()->getMock();
-
-		return $mock;
+		return $this->createMock( SlotRoleRegistry::class );
 	}
 
 	/**
