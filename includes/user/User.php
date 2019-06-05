@@ -87,6 +87,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * shared cache (memcached). Any operation which changes the
 	 * corresponding database fields must call a cache-clearing function.
 	 * @showinitializer
+	 * @var string[]
 	 */
 	protected static $mCacheVars = [
 		// user table
@@ -114,6 +115,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Each of these should have a corresponding message of the form
 	 * "right-$right".
 	 * @showinitializer
+	 * @var string[]
 	 */
 	protected static $mCoreRights = [
 		'apihighlimits',
@@ -198,7 +200,7 @@ class User implements IDBAccessObject, UserIdentity {
 	];
 
 	/**
-	 * String Cached results of getAllRights()
+	 * @var string[] Cached results of getAllRights()
 	 */
 	protected static $mAllRights = false;
 
@@ -237,20 +239,20 @@ class User implements IDBAccessObject, UserIdentity {
 	protected $mOptionOverrides;
 	// @}
 
-	/**
-	 * Bool Whether the cache variables have been loaded.
-	 */
 	// @{
+	/**
+	 * @var bool Whether the cache variables have been loaded.
+	 */
 	public $mOptionsLoaded;
 
 	/**
-	 * Array with already loaded items or true if all items have been loaded.
+	 * @var array|bool Array with already loaded items or true if all items have been loaded.
 	 */
 	protected $mLoadedItems = [];
 	// @}
 
 	/**
-	 * String Initialization data source if mLoadedItems!==true. May be one of:
+	 * @var string Initialization data source if mLoadedItems!==true. May be one of:
 	 *  - 'defaults'   anonymous user initialised from class defaults
 	 *  - 'name'       initialise from mName
 	 *  - 'id'         initialise from mId
@@ -264,6 +266,7 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Lazy-initialized variables, invalidated with clearInstanceCache
 	 */
+	/** @var int|bool */
 	protected $mNewtalk;
 	/** @var string */
 	protected $mDatePreference;
@@ -299,12 +302,13 @@ class User implements IDBAccessObject, UserIdentity {
 	/** @var bool */
 	protected $mAllowUsertalk;
 
-	/** @var AbstractBlock */
+	/** @var AbstractBlock|bool */
 	private $mBlockedFromCreateAccount = false;
 
 	/** @var int User::READ_* constant bitfield used to load data */
 	protected $queryFlagsUsed = self::READ_NORMAL;
 
+	/** @var int[] */
 	public static $idCacheByName = [];
 
 	/**
