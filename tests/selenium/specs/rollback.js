@@ -41,7 +41,7 @@ describe( 'Rollback with confirmation', function () {
 		assert.strictEqual( HistoryPage.rollbackConfirmableNo.getText(), 'Cancel' );
 	} );
 
-	it( 'should offer a way to cancel rollbacks', function () {
+	it.skip( 'should offer a way to cancel rollbacks', function () {
 		HistoryPage.rollback.click();
 
 		HistoryPage.rollbackConfirmableNo.waitForVisible( 5000 );
