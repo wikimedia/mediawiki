@@ -404,7 +404,7 @@ abstract class UploadBase {
 	 * @return mixed True if the file is verified, an array otherwise
 	 */
 	protected function verifyMimeType( $mime ) {
-		global $wgVerifyMimeType;
+		global $wgVerifyMimeType, $wgVerifyMimeTypeIE;
 		if ( $wgVerifyMimeType ) {
 			wfDebug( "mime: <$mime> extension: <{$this->mFinalExtension}>\n" );
 			global $wgMimeTypeBlacklist;
@@ -412,17 +412,19 @@ abstract class UploadBase {
 				return [ 'filetype-badmime', $mime ];
 			}
 
-			# Check what Internet Explorer would detect
-			$fp = fopen( $this->mTempPath, 'rb' );
-			$chunk = fread( $fp, 256 );
-			fclose( $fp );
+			if ( $wgVerifyMimeTypeIE ) {
+				# Check what Internet Explorer would detect
+				$fp = fopen( $this->mTempPath, 'rb' );
+				$chunk = fread( $fp, 256 );
+				fclose( $fp );
 
-			$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
-			$extMime = $magic->guessTypesForExtension( $this->mFinalExtension );
-			$ieTypes = $magic->getIEMimeTypes( $this->mTempPath, $chunk, $extMime );
-			foreach ( $ieTypes as $ieType ) {
-				if ( $this->checkFileExtension( $ieType, $wgMimeTypeBlacklist ) ) {
-					return [ 'filetype-bad-ie-mime', $ieType ];
+				$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
+				$extMime = $magic->guessTypesForExtension( $this->mFinalExtension );
+				$ieTypes = $magic->getIEMimeTypes( $this->mTempPath, $chunk, $extMime );
+				foreach ( $ieTypes as $ieType ) {
+					if ( $this->checkFileExtension( $ieType, $wgMimeTypeBlacklist ) ) {
+						return [ 'filetype-bad-ie-mime', $ieType ];
+					}
 				}
 			}
 		}
@@ -1262,12 +1264,11 @@ abstract class UploadBase {
 	 * @return bool True if the file contains something looking like embedded scripts
 	 */
 	public static function detectScript( $file, $mime, $extension ) {
-		global $wgAllowTitlesInSVG;
-
 		# ugly hack: for text files, always look at the entire file.
 		# For binary field, just check the first K.
 
-		if ( strpos( $mime, 'text/' ) === 0 ) {
+		$isText = strpos( $mime, 'text/' ) === 0;
+		if ( $isText ) {
 			$chunk = file_get_contents( $file );
 		} else {
 			$fp = fopen( $file, 'rb' );
@@ -1312,35 +1313,18 @@ abstract class UploadBase {
 			}
 		}
 
-		/**
-		 * Internet Explorer for Windows performs some really stupid file type
-		 * autodetection which can cause it to interpret valid image files as HTML
-		 * and potentially execute JavaScript, creating a cross-site scripting
-		 * attack vectors.
-		 *
-		 * Apple's Safari browser also performs some unsafe file type autodetection
-		 * which can cause legitimate files to be interpreted as HTML if the
-		 * web server is not correctly configured to send the right content-type
-		 * (or if you're really uploading plain text and octet streams!)
-		 *
-		 * Returns true if IE is likely to mistake the given file for HTML.
-		 * Also returns true if Safari would mistake the given file for HTML
-		 * when served with a generic content-type.
-		 */
+		// Quick check for HTML heuristics in old IE and Safari.
+		//
+		// The exact heuristics IE uses are checked separately via verifyMimeType(), so we
+		// don't need them all here as it can cause many false positives.
+		//
+		// Check for `<script` and such still to forbid script tags and embedded HTML in SVG:
 		$tags = [
-			'<a href',
 			'<body',
 			'<head',
 			'<html', # also in safari
-			'<img',
-			'<pre',
 			'<script', # also in safari
-			'<table'
 		];
-
-		if ( !$wgAllowTitlesInSVG && $extension !== 'svg' && $mime !== 'image/svg' ) {
-			$tags[] = '<title';
-		}
 
 		foreach ( $tags as $tag ) {
 			if ( strpos( $chunk, $tag ) !== false ) {

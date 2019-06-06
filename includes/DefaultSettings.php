@@ -1214,17 +1214,12 @@ $wgSVGMaxSize = 5120;
 $wgSVGMetadataCutoff = 262144;
 
 /**
- * Disallow <title> element in SVG files.
+ * Obsolete, no longer used.
+ * SVG file uploads now always allow <title> elements.
  *
- * MediaWiki will reject HTMLesque tags in uploaded files due to idiotic
- * browsers which can not perform basic stuff like MIME detection and which are
- * vulnerable to further idiots uploading crap files as images.
- *
- * When this directive is on, "<title>" will be allowed in files with an
- * "image/svg+xml" MIME type. You should leave this disabled if your web server
- * is misconfigured and doesn't send appropriate MIME types for SVG images.
+ * @deprecated 1.34
  */
-$wgAllowTitlesInSVG = false;
+$wgAllowTitlesInSVG = true;
 
 /**
  * Whether thumbnails should be generated in target language (usually, same as
@@ -1389,6 +1384,16 @@ $wgAntivirusRequired = true;
  * Determines if the MIME type of uploaded files should be checked
  */
 $wgVerifyMimeType = true;
+
+/**
+ * Determines whether extra checks for IE type detection should be applied.
+ * This is a conservative check for exactly what IE 6 or so checked for,
+ * and shouldn't trigger on for instance JPEG files containing links in EXIF
+ * metadata.
+ *
+ * @since 1.34
+ */
+$wgVerifyMimeTypeIE = true;
 
 /**
  * Sets the MIME type definition file to use by includes/libs/mime/MimeAnalyzer.php.
