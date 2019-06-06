@@ -314,7 +314,7 @@ class ApiBlockTest extends ApiTestCase {
 	 * @expectedExceptionMessage Too many values supplied for parameter "pagerestrictions". The
 	 * limit is 10.
 	 */
-	public function testBlockingToManyPageRestrictions() {
+	public function testBlockingTooManyPageRestrictions() {
 		$this->setMwGlobals( [
 			'wgEnablePartialBlocks' => true,
 		] );
