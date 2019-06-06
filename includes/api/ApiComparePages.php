@@ -562,7 +562,7 @@ class ApiComparePages extends ApiBase {
 	 */
 	private function setVals( &$vals, $prefix, $rev ) {
 		if ( $rev ) {
-			$title = $rev->getPageAsLinkTarget();
+			$title = Title::newFromLinkTarget( $rev->getPageAsLinkTarget() );
 			if ( isset( $this->props['ids'] ) ) {
 				$vals["{$prefix}id"] = $title->getArticleID();
 				$vals["{$prefix}revid"] = $rev->getId();
@@ -603,7 +603,7 @@ class ApiComparePages extends ApiBase {
 						$vals["{$prefix}comment"] = $comment->text;
 					}
 					$vals["{$prefix}parsedcomment"] = Linker::formatComment(
-						$comment->text, Title::newFromLinkTarget( $title )
+						$comment->text, $title
 					);
 				}
 			}
