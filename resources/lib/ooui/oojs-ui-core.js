@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.32.0
+ * OOUI v0.32.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-05-29T00:38:42Z
+ * Date: 2019-06-05T16:24:08Z
  */
 ( function ( OO ) {
 
@@ -12440,13 +12440,20 @@ OO.inheritClass( OO.ui.ActionFieldLayout, OO.ui.FieldLayout );
  * @param {Object} [config] Configuration options
  * @cfg {OO.ui.FieldLayout[]} [items] An array of fields to add to the fieldset.
  *  See OO.ui.FieldLayout for more information about fields.
- * @cfg {string|OO.ui.HtmlSnippet} [help] Help text. When help text is specified, a "help" icon
- *  will appear in the upper-right corner of the rendered field; clicking it will display the text
- *  in a popup. For important messages, you are advised to use `notices`, as they are always shown.
+ * @cfg {string|OO.ui.HtmlSnippet} [help] Help text. When help text is specified
+ *  and `helpInline` is `false`, a "help" icon will appear in the upper-right
+ *  corner of the rendered field; clicking it will display the text in a popup.
+ *  If `helpInline` is `true`, then a subtle description will be shown after the
+ *  label.
+ *  For feedback messages, you are advised to use `notices`.
+ * @cfg {boolean} [helpInline=false] Whether or not the help should be inline,
+ *  or shown when the "help" icon is clicked.
  * @cfg {jQuery} [$overlay] Passed to OO.ui.PopupButtonWidget for help popup, if `help` is given.
  *  See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
  */
 OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
+	var helpWidget;
+
 	// Configuration initialization
 	config = config || {};
 
@@ -12460,36 +12467,44 @@ OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 
 	// Properties
 	this.$header = $( '<legend>' );
-	if ( config.help ) {
-		this.popupButtonWidget = new OO.ui.PopupButtonWidget( {
-			$overlay: config.$overlay,
-			popup: {
-				padded: true
-			},
-			classes: [ 'oo-ui-fieldsetLayout-help' ],
-			framed: false,
-			icon: 'info',
-			label: OO.ui.msg( 'ooui-field-help' ),
-			invisibleLabel: true
-		} );
-		if ( config.help instanceof OO.ui.HtmlSnippet ) {
-			this.popupButtonWidget.getPopup().$body.html( config.help.toString() );
-		} else {
-			this.popupButtonWidget.getPopup().$body.text( config.help );
-		}
-		this.$help = this.popupButtonWidget.$element;
-	} else {
-		this.$help = $( [] );
-	}
 
 	// Initialization
 	this.$header
 		.addClass( 'oo-ui-fieldsetLayout-header' )
-		.append( this.$icon, this.$label, this.$help );
+		.append( this.$icon, this.$label );
 	this.$group.addClass( 'oo-ui-fieldsetLayout-group' );
 	this.$element
 		.addClass( 'oo-ui-fieldsetLayout' )
 		.prepend( this.$header, this.$group );
+
+	// Help
+	if ( config.help ) {
+		if ( config.helpInline ) {
+			helpWidget = new OO.ui.LabelWidget( {
+				label: config.help,
+				classes: [ 'oo-ui-inline-help' ]
+			} );
+			this.$element.prepend( this.$header, helpWidget.$element, this.$group );
+		} else {
+			helpWidget = new OO.ui.PopupButtonWidget( {
+				$overlay: config.$overlay,
+				popup: {
+					padded: true
+				},
+				classes: [ 'oo-ui-fieldsetLayout-help' ],
+				framed: false,
+				icon: 'info',
+				label: OO.ui.msg( 'ooui-field-help' ),
+				invisibleLabel: true
+			} );
+			if ( config.help instanceof OO.ui.HtmlSnippet ) {
+				helpWidget.getPopup().$body.html( config.help.toString() );
+			} else {
+				helpWidget.getPopup().$body.text( config.help );
+			}
+			this.$header.append( helpWidget.$element );
+		}
+	}
 	if ( Array.isArray( config.items ) ) {
 		this.addItems( config.items );
 	}

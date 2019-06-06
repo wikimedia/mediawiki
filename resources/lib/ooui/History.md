@@ -1,4 +1,37 @@
 # OOUI Release History
+## v0.32.1 / 2019-06-04
+### Features
+* Add 'helpInline' support to FieldsetLayout (Ed Sanders)
+
+### Styles
+* Field(set)Layout: Use `cursor:help` in PHP mode (Ed Sanders)
+* TabSelectWidget: Use right margin for frameless options (Ed Sanders)
+* Apex theme: Fix NumberInputWidget height issues (Volker E.)
+* Apex theme: Frameless tabs tweaks (Ed Sanders)
+* Apex theme: Simplify `line-height` CSS logic (Volker E.)
+* Apex theme: Unify DropdownWidget label position with buttons and inputs (Volker E.)
+* icons: Add 'infoFilled' (Volker E.)
+* icons: Amend 'settings' to align to SVGO output (Volker E.)
+
+### Code
+* ActionFieldLayout: Add `z-index` hack to invalid input element (Volker E.)
+* Direct users of TabSelectWidget to IndexLayout (Ed Sanders)
+* DropdownWidget: Make label `display: inline-block` (Volker E.)
+* Field(set)Layout.php: Don't output config defaults (Ed Sanders)
+* Make first tab alignment from demo page the default (Ed Sanders)
+* SelectFileWidget: Behave more like a button in buttonOnly mode (Ed Sanders)
+* demos: Avoid `$.each` (Ed Sanders)
+* demos: Copy TabSelectWidget from PHP to JS, and add frameless to both (Ed Sanders)
+* demos: Fix exception when changing page (Ed Sanders)
+* demos: Improve `Demo.prototype.getUrlQuery` API (Ed Sanders)
+* demos: Reduce header height for correct rendering (Volker E.)
+* demos: Reorder flagged buttons and add inline message (Volker E.)
+* demos: Set `isMobile` earlier (Ed Sanders)
+* demos: Use different font stack per theme (Volker E.)
+* tutorials: Fix a few minor style glitches (Volker E.)
+* tutorials: Fix footer layout (Volker E.)
+
+
 ## v0.32.0 / 2019-05-28
 ### Breaking changes
 * [BREAKING CHANGE] SelectWidget: Drop depressed class, deprecated since 0.30.4 (James D. Forrester)
