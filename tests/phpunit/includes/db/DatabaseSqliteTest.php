@@ -1,9 +1,12 @@
 <?php
 
+use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseSqlite;
 use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\TransactionProfiler;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group sqlite
@@ -11,7 +14,7 @@ use Wikimedia\Rdbms\ResultWrapper;
  * @group medium
  */
 class DatabaseSqliteTest extends MediaWikiTestCase {
-	/** @var DatabaseSqliteMock */
+	/** @var DatabaseSqlite */
 	protected $db;
 
 	protected function setUp() {
@@ -20,15 +23,41 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		if ( !Sqlite::isPresent() ) {
 			$this->markTestSkipped( 'No SQLite support detected' );
 		}
-		$this->db = DatabaseSqliteMock::newInstance();
+		$this->db = $this->getMockBuilder( DatabaseSqlite::class )
+			->setConstructorArgs( [ [
+				'dbFilePath' => ':memory:',
+				'schema' => false,
+				'host' => false,
+				'user' => false,
+				'password' => false,
+				'tablePrefix' => '',
+				'cliMode' => true,
+				'agent' => 'unit-tests',
+				'flags' => DBO_DEFAULT,
+				'variables' => [],
+				'profiler' => null,
+				'trxProfiler' => new TransactionProfiler(),
+				'connLogger' => new NullLogger(),
+				'queryLogger' => new NullLogger(),
+				'errorLogger' => null,
+				'deprecationLogger' => null,
+			] ] )->setMethods( [ 'query' ] )
+			->getMock();
+		$this->db->initConnection();
+		$this->db->method( 'query' )->willReturn( true );
 		if ( version_compare( $this->db->getServerVersion(), '3.6.0', '<' ) ) {
 			$this->markTestSkipped( "SQLite at least 3.6 required, {$this->db->getServerVersion()} found" );
 		}
 	}
 
+	/**
+	 * @param $sql
+	 * @return string|string[]|null
+	 */
 	private function replaceVars( $sql ) {
+		$wrapper = TestingAccessWrapper::newFromObject( $this->db );
 		// normalize spacing to hide implementation details
-		return preg_replace( '/\s+/', ' ', $this->db->replaceVars( $sql ) );
+		return preg_replace( '/\s+/', ' ', $wrapper->replaceVars( $sql ) );
 	}
 
 	private function assertResultIs( $expected, $res ) {
@@ -105,7 +134,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 
 		$this->assertEquals(
 			"CREATE TABLE /**/foo (foo_key INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "
-				. "foo_bar TEXT, foo_name TEXT NOT NULL DEFAULT '', foo_int INTEGER, foo_int2 INTEGER );",
+			. "foo_bar TEXT, foo_name TEXT NOT NULL DEFAULT '', foo_int INTEGER, foo_int2 INTEGER );",
 			$this->replaceVars(
 				"CREATE TABLE /**/foo (foo_key int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT, "
 				. "foo_bar char(13), foo_name varchar(255) binary NOT NULL DEFAULT '', "
@@ -240,24 +269,24 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		$db->query( 'CREATE TABLE a (a_1)', __METHOD__ );
 		$db->query( 'CREATE TABLE b (b_1, b_2)', __METHOD__ );
 		$db->insert( 'a', [
-				[ 'a_1' => 1 ],
-				[ 'a_1' => 2 ],
-				[ 'a_1' => 3 ],
-			],
+			[ 'a_1' => 1 ],
+			[ 'a_1' => 2 ],
+			[ 'a_1' => 3 ],
+		],
 			__METHOD__
 		);
 		$db->insert( 'b', [
-				[ 'b_1' => 2, 'b_2' => 'a' ],
-				[ 'b_1' => 3, 'b_2' => 'b' ],
-			],
+			[ 'b_1' => 2, 'b_2' => 'a' ],
+			[ 'b_1' => 3, 'b_2' => 'b' ],
+		],
 			__METHOD__
 		);
 		$db->deleteJoin( 'a', 'b', 'a_1', 'b_1', [ 'b_2' => 'a' ], __METHOD__ );
 		$res = $db->query( "SELECT * FROM a", __METHOD__ );
 		$this->assertResultIs( [
-				[ 'a_1' => 1 ],
-				[ 'a_1' => 3 ],
-			],
+			[ 'a_1' => 1 ],
+			[ 'a_1' => 3 ],
+		],
 			$res
 		);
 	}
@@ -520,25 +549,5 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 	public function testsAttributes() {
 		$attributes = Database::attributesFromType( 'sqlite' );
 		$this->assertTrue( $attributes[Database::ATTR_DB_LEVEL_LOCKING] );
-	}
-}
-
-class DatabaseSqliteMock extends DatabaseSqlite {
-	public static function newInstance( array $p = [] ) {
-		$p['dbFilePath'] = ':memory:';
-		$p['schema'] = false;
-
-		return Database::factory( 'SqliteMock', $p );
-	}
-
-	function query( $sql, $fname = '', $flags = 0 ) {
-		return true;
-	}
-
-	/**
-	 * Override parent visibility to public
-	 */
-	public function replaceVars( $s ) {
-		return parent::replaceVars( $s );
 	}
 }
