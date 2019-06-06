@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.32.0
+ * OOUI v0.32.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-05-29T00:38:42Z
+ * Date: 2019-06-05T16:24:08Z
  */
 ( function ( OO ) {
 
@@ -5659,17 +5659,6 @@ OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 	this.showDropTarget = droppable && config.showDropTarget && !this.multiple;
 	this.thumbnailSizeLimit = config.thumbnailSizeLimit;
 
-	// Events
-	if ( droppable ) {
-		dragHandler = this.onDragEnterOrOver.bind( this );
-		this.$element.on( {
-			dragenter: dragHandler,
-			dragover: dragHandler,
-			dragleave: this.onDragLeave.bind( this ),
-			drop: this.onDrop.bind( this )
-		} );
-	}
-
 	// Initialization
 	if ( this.showDropTarget ) {
 		this.selectButton.setIcon( 'upload' );
@@ -5690,8 +5679,24 @@ OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 			);
 		this.fieldLayout.$element.remove();
 	} else if ( config.buttonOnly ) {
-		this.$element.append( this.selectButton.$element );
-		this.fieldLayout.$element.remove();
+		// Copy over any classes that may have been added already.
+		// Ensure no events are bound to this.$element before here.
+		this.selectButton.$element
+			.addClass( this.$element.attr( 'class' ) )
+			.addClass( 'oo-ui-selectFileWidget-buttonOnly' );
+		// Set this.$element to just be the button
+		this.$element = this.selectButton.$element;
+	}
+
+	// Events
+	if ( droppable ) {
+		dragHandler = this.onDragEnterOrOver.bind( this );
+		this.$element.on( {
+			dragenter: dragHandler,
+			dragover: dragHandler,
+			dragleave: this.onDragLeave.bind( this ),
+			drop: this.onDrop.bind( this )
+		} );
 	}
 
 	this.$input

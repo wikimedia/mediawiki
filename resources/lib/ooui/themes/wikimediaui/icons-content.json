@@ -90,6 +90,14 @@
 				}
 			}
 		},
+		"infoFilled": {
+			"file": {
+				"default": "images/icons/infoFilled.svg",
+				"lang": {
+					"ar": "images/icons/lightbulb.svg"
+				}
+			}
+		},
 		"robot": {
 			"file": "images/icons/robot.svg"
 		},

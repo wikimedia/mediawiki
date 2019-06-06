@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.32.0
+ * OOUI v0.32.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-05-29T00:38:49Z
+ * Date: 2019-06-05T16:24:16Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -486,6 +486,10 @@
 .oo-ui-selectFileWidget-dropTarget .oo-ui-pendingElement-pending {
   background-size: 1.42857143em 1.42857143em;
 }
+.oo-ui-selectFileWidget-buttonOnly {
+  width: auto;
+  max-width: none;
+}
 .oo-ui-selectFileWidget.oo-ui-widget-enabled.oo-ui-selectFileWidget-dropTarget {
   background-color: #fff;
   -webkit-transition: background-color 250ms, color 250ms, border-color 250ms;
@@ -698,6 +702,7 @@
   border-bottom-color: #36c;
 }
 .oo-ui-tabSelectWidget-frameless .oo-ui-tabOptionWidget {
+  margin: 0.42857143em 0.42857143em 0 0;
   border-width: 0;
   box-shadow: inset 0 0 0 0 #36c;
   -webkit-transition: color 100ms, box-shadow 100ms;

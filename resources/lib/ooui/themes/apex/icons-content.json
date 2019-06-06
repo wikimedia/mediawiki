@@ -67,6 +67,14 @@
 				}
 			}
 		},
+		"infoFilled": {
+			"file": {
+				"default": "../wikimediaui/images/icons/infoFilled.svg",
+				"lang": {
+					"ar": "../wikimediaui/images/icons/lightbulb.svg"
+				}
+			}
+		},
 		"robot": {
 			"file": "../wikimediaui/images/icons/robot.svg"
 		},
