@@ -20,10 +20,13 @@
 
 namespace MediaWiki\Block;
 
+use DateTime;
 use IP;
 use MediaWiki\User\UserIdentity;
+use MWCryptHash;
 use User;
 use WebRequest;
+use WebResponse;
 use Wikimedia\IPSet;
 
 /**
@@ -61,6 +64,9 @@ class BlockManager {
 	/** @var array */
 	private $proxyWhitelist;
 
+	/** @var string|bool */
+	private $secretKey;
+
 	/** @var array */
 	private $softBlockRanges;
 
@@ -74,6 +80,7 @@ class BlockManager {
 	 * @param bool $enableDnsBlacklist
 	 * @param array $proxyList
 	 * @param array $proxyWhitelist
+	 * @param string $secretKey
 	 * @param array $softBlockRanges
 	 */
 	public function __construct(
@@ -86,6 +93,7 @@ class BlockManager {
 		$enableDnsBlacklist,
 		$proxyList,
 		$proxyWhitelist,
+		$secretKey,
 		$softBlockRanges
 	) {
 		$this->currentUser = $currentUser;
@@ -97,6 +105,7 @@ class BlockManager {
 		$this->enableDnsBlacklist = $enableDnsBlacklist;
 		$this->proxyList = $proxyList;
 		$this->proxyWhitelist = $proxyWhitelist;
+		$this->secretKey = $secretKey;
 		$this->softBlockRanges = $softBlockRanges;
 	}
 
@@ -221,8 +230,7 @@ class BlockManager {
 			return false;
 		}
 		// Load the block from the ID in the cookie.
-		// TODO: remove dependency on DatabaseBlock
-		$blockCookieId = DatabaseBlock::getIdFromCookieValue( $blockCookieVal );
+		$blockCookieId = $this->getIdFromCookieValue( $blockCookieVal );
 		if ( $blockCookieId !== null ) {
 			// An ID was found in the cookie.
 			// TODO: remove dependency on DatabaseBlock
@@ -248,15 +256,9 @@ class BlockManager {
 					// Use the block.
 					return $tmpBlock;
 				}
-
-				// If the block is not valid, remove the cookie.
-				// TODO: remove dependency on DatabaseBlock
-				DatabaseBlock::clearCookie( $response );
-			} else {
-				// If the block doesn't exist, remove the cookie.
-				// TODO: remove dependency on DatabaseBlock
-				DatabaseBlock::clearCookie( $response );
 			}
+			// If the block is invalid or doesn't exist, remove the cookie.
+			$this->clearBlockCookie( $response );
 		}
 		return false;
 	}
@@ -380,6 +382,133 @@ class BlockManager {
 	 */
 	protected function checkHost( $hostname ) {
 		return gethostbynamel( $hostname );
+	}
+
+	/**
+	 * Set the 'BlockID' cookie depending on block type and user authentication status.
+	 *
+	 * @since 1.34
+	 * @param User $user
+	 */
+	public function trackBlockWithCookie( User $user ) {
+		$block = $user->getBlock();
+		$request = $user->getRequest();
+
+		if (
+			$block &&
+			$request->getCookie( 'BlockID' ) === null &&
+			$this->shouldTrackBlockWithCookie( $block, $user->isAnon() )
+		) {
+			$this->setBlockCookie( $block, $request->response() );
+		}
+	}
+
+	/**
+	 * Set the 'BlockID' cookie to this block's ID and expiry time. The cookie's expiry will be
+	 * the same as the block's, to a maximum of 24 hours.
+	 *
+	 * @since 1.34
+	 * @internal Should be private.
+	 *  Left public for backwards compatibility, until DatabaseBlock::setCookie is removed.
+	 * @param DatabaseBlock $block
+	 * @param WebResponse $response The response on which to set the cookie.
+	 */
+	public function setBlockCookie( DatabaseBlock $block, WebResponse $response ) {
+		// Calculate the default expiry time.
+		$maxExpiryTime = wfTimestamp( TS_MW, wfTimestamp() + ( 24 * 60 * 60 ) );
+
+		// Use the block's expiry time only if it's less than the default.
+		$expiryTime = $block->getExpiry();
+		if ( $expiryTime === 'infinity' || $expiryTime > $maxExpiryTime ) {
+			$expiryTime = $maxExpiryTime;
+		}
+
+		// Set the cookie. Reformat the MediaWiki datetime as a Unix timestamp for the cookie.
+		$expiryValue = DateTime::createFromFormat( 'YmdHis', $expiryTime )->format( 'U' );
+		$cookieOptions = [ 'httpOnly' => false ];
+		$cookieValue = $this->getCookieValue( $block );
+		$response->setCookie( 'BlockID', $cookieValue, $expiryValue, $cookieOptions );
+	}
+
+	/**
+	 * Check if the block should be tracked with a cookie.
+	 *
+	 * @param AbstractBlock $block
+	 * @param bool $isAnon The user is logged out
+	 * @return bool The block sould be tracked with a cookie
+	 */
+	private function shouldTrackBlockWithCookie( AbstractBlock $block, $isAnon ) {
+		if ( $block instanceof DatabaseBlock ) {
+			switch ( $block->getType() ) {
+				case DatabaseBlock::TYPE_IP:
+				case DatabaseBlock::TYPE_RANGE:
+					return $isAnon && $this->cookieSetOnIpBlock;
+				case DatabaseBlock::TYPE_USER:
+					return !$isAnon && $this->cookieSetOnAutoblock && $block->isAutoblocking();
+				default:
+					return false;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Unset the 'BlockID' cookie.
+	 *
+	 * @since 1.34
+	 * @param WebResponse $response
+	 */
+	public static function clearBlockCookie( WebResponse $response ) {
+		$response->clearCookie( 'BlockID', [ 'httpOnly' => false ] );
+	}
+
+	/**
+	 * Get the stored ID from the 'BlockID' cookie. The cookie's value is usually a combination of
+	 * the ID and a HMAC (see DatabaseBlock::setCookie), but will sometimes only be the ID.
+	 *
+	 * @since 1.34
+	 * @internal Should be private.
+	 *  Left public for backwards compatibility, until DatabaseBlock::getIdFromCookieValue is removed.
+	 * @param string $cookieValue The string in which to find the ID.
+	 * @return int|null The block ID, or null if the HMAC is present and invalid.
+	 */
+	public function getIdFromCookieValue( $cookieValue ) {
+		// Extract the ID prefix from the cookie value (may be the whole value, if no bang found).
+		$bangPos = strpos( $cookieValue, '!' );
+		$id = ( $bangPos === false ) ? $cookieValue : substr( $cookieValue, 0, $bangPos );
+		if ( !$this->secretKey ) {
+			// If there's no secret key, just use the ID as given.
+			return $id;
+		}
+		$storedHmac = substr( $cookieValue, $bangPos + 1 );
+		$calculatedHmac = MWCryptHash::hmac( $id, $this->secretKey, false );
+		if ( $calculatedHmac === $storedHmac ) {
+			return $id;
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Get the BlockID cookie's value for this block. This is usually the block ID concatenated
+	 * with an HMAC in order to avoid spoofing (T152951), but if wgSecretKey is not set will just
+	 * be the block ID.
+	 *
+	 * @since 1.34
+	 * @internal Should be private.
+	 *  Left public for backwards compatibility, until DatabaseBlock::getCookieValue is removed.
+	 * @param DatabaseBlock $block
+	 * @return string The block ID, probably concatenated with "!" and the HMAC.
+	 */
+	public function getCookieValue( DatabaseBlock $block ) {
+		$id = $block->getId();
+		if ( !$this->secretKey ) {
+			// If there's no secret key, don't append a HMAC.
+			return $id;
+		}
+		$hmac = MWCryptHash::hmac( $id, $this->secretKey, false );
+		$cookieValue = $id . '!' . $hmac;
+		return $cookieValue;
 	}
 
 }

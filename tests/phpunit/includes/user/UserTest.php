@@ -626,8 +626,10 @@ class UserTest extends MediaWikiTestCase {
 		$cookies = $request1->response()->getCookies();
 		$this->assertArrayHasKey( 'wmsitetitleBlockID', $cookies );
 		$this->assertEquals( $expiryFiveHours, $cookies['wmsitetitleBlockID']['expire'] );
-		$cookieValue = DatabaseBlock::getIdFromCookieValue( $cookies['wmsitetitleBlockID']['value'] );
-		$this->assertEquals( $block->getId(), $cookieValue );
+		$cookieId = MediaWikiServices::getInstance()->getBlockManager()->getIdFromCookieValue(
+			$cookies['wmsitetitleBlockID']['value']
+		);
+		$this->assertEquals( $block->getId(), $cookieId );
 
 		// 2. Create a new request, set the cookies, and see if the (anon) user is blocked.
 		$request2 = new FauxRequest();
@@ -1470,7 +1472,7 @@ class UserTest extends MediaWikiTestCase {
 
 		// get user
 		$user = User::newFromSession( $request );
-		$user->trackBlockWithCookie();
+		MediaWikiServices::getInstance()->getBlockManager()->trackBlockWithCookie( $user );
 
 		// test cookie was set
 		$cookies = $request->response()->getCookies();
@@ -1506,7 +1508,7 @@ class UserTest extends MediaWikiTestCase {
 
 		// get user
 		$user = User::newFromSession( $request );
-		$user->trackBlockWithCookie();
+		MediaWikiServices::getInstance()->getBlockManager()->trackBlockWithCookie( $user );
 
 		// test cookie was not set
 		$cookies = $request->response()->getCookies();

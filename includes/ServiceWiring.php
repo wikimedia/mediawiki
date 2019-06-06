@@ -102,6 +102,7 @@ return [
 			$config->get( 'EnableDnsBlacklist' ),
 			$config->get( 'ProxyList' ),
 			$config->get( 'ProxyWhitelist' ),
+			$config->get( 'SecretKey' ),
 			$config->get( 'SoftBlockRanges' )
 		);
 	},
