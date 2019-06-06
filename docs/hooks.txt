@@ -965,8 +965,8 @@ form via the Preferences form.
 
 'ChangesListInitRows': Batch process change list rows prior to rendering.
 $changesList: ChangesList instance
-$rows: The data that will be rendered. May be a ResultWrapper instance or
-  an array.
+$rows: The data that will be rendered. May be a \Wikimedia\Rdbms\IResultWrapper
+  instance or an array.
 
 'ChangesListInsertArticleLink': Override or augment link to article in RC list.
 &$changesList: ChangesList instance.

@@ -31,7 +31,7 @@ class JobQueueGroup {
 	/** @var JobQueueGroup[] */
 	protected static $instances = [];
 
-	/** @var ProcessCacheLRU */
+	/** @var MapCacheLRU */
 	protected $cache;
 
 	/** @var string Wiki domain ID */
