@@ -4857,7 +4857,7 @@ class Language {
 	 * @param array $query Optional URL query parameter string
 	 * @param bool $atend Optional param for specified if this is the last page
 	 * @return string
-	 * @deprecated since 1.33, use SpecialPage::viewPrevNext()
+	 * @deprecated since 1.34, use PrevNextNavigationRenderer::buildPrevNextNavigation()
 	 *  instead.
 	 */
 	public function viewPrevNext( Title $title, $offset, $limit,
