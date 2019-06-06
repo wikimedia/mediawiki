@@ -59,6 +59,7 @@ addons:
     - tidy
 
 before_script:
+  - echo 'opcache.enable_cli = 1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - composer install --prefer-source --quiet --no-interaction
   - if [ "$dbtype" = postgres ]; then psql -c "CREATE DATABASE traviswiki WITH OWNER travis;" -U postgres; fi
   - >
