@@ -463,13 +463,13 @@ class SpecialSearch extends SpecialPage {
 				$offset = $this->offset;
 			}
 
-			$prevnext = $this->buildPrevNextNavigation(
+			$prevNext = $this->buildPrevNextNavigation(
 				$offset,
 				$this->limit,
 				$this->powerSearchOptions() + [ 'search' => $term ],
 				$this->limit + $this->offset >= $totalRes
 			);
-			$out->addHTML( "<p class='mw-search-pager-bottom'>{$prevnext}</p>\n" );
+			$out->addHTML( "<p class='mw-search-pager-bottom'>{$prevNext}</p>\n" );
 		}
 
 		// Close <div class='searchresults'>

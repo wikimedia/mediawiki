@@ -23,6 +23,8 @@
 
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Navigation\PrevNextNavigationRenderer;
 
 /**
  * IndexPager is an efficient pager which uses a (roughly unique) index in the
@@ -783,5 +785,23 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 */
 	protected function getDefaultDirections() {
 		return self::DIR_ASCENDING;
+	}
+
+	/**
+	 * Generate (prev x| next x) (20|50|100...) type links for paging
+	 *
+	 * @param LinkTarget $title
+	 * @param int $offset
+	 * @param int $limit
+	 * @param array $query Optional URL query parameter string
+	 * @param bool $atend Optional param for specified if this is the last page
+	 * @return string
+	 */
+	protected function buildPrevNextNavigation( LinkTarget $title, $offset, $limit,
+												array $query = [], $atend = false
+	) {
+		$prevNext = new PrevNextNavigationRenderer( $this );
+
+		return $prevNext->buildPrevNextNavigation( $title, $offset, $limit, $query,  $atend );
 	}
 }
