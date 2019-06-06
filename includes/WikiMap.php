@@ -258,4 +258,37 @@ class WikiMap {
 			? "{$domain->getDatabase()}-{$domain->getTablePrefix()}"
 			: $domain->getDatabase();
 	}
+
+	/**
+	 * @param DatabaseDomain|string $domain
+	 * @return bool Whether $domain has the same DB/prefix as the current wiki
+	 * @since 1.33
+	 */
+	public static function isCurrentWikiDbDomain( $domain ) {
+		$domain = DatabaseDomain::newFromId( $domain );
+		$curDomain = self::getCurrentWikiDbDomain();
+
+		if ( !in_array( $curDomain->getSchema(), [ null, 'mediawiki' ], true ) ) {
+			// Include the schema if it is set and is not the default placeholder.
+			// This means a site admin may have specifically taylored the schemas.
+			// Domain IDs might use the form <DB>-<project>-<language>, meaning that
+			// the schema portion must be accounted for to disambiguate wikis.
+			return $curDomain->equals( $domain );
+		}
+
+		return (
+			$curDomain->getDatabase() === $domain->getDatabase() &&
+			$curDomain->getTablePrefix() === $domain->getTablePrefix()
+		);
+	}
+
+	/**
+	 * @return DatabaseDomain Database domain of the current wiki
+	 * @since 1.33
+	 */
+	public static function getCurrentWikiDbDomain() {
+		global $wgDBname, $wgDBmwschema, $wgDBprefix;
+		// Avoid invoking LBFactory to avoid any chance of recursion
+		return new DatabaseDomain( $wgDBname, $wgDBmwschema, (string)$wgDBprefix );
+	}
 }

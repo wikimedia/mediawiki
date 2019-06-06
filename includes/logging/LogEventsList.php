@@ -531,7 +531,7 @@ class LogEventsList extends ContextSource {
 
 	/**
 	 * Determine if the current user is allowed to view a particular
-	 * field of this log row, if it's marked as deleted.
+	 * field of this log row, if it's marked as deleted and/or restricted log type.
 	 *
 	 * @param stdClass $row
 	 * @param int $field
@@ -539,7 +539,8 @@ class LogEventsList extends ContextSource {
 	 * @return bool
 	 */
 	public static function userCan( $row, $field, User $user = null ) {
-		return self::userCanBitfield( $row->log_deleted, $field, $user );
+		return self::userCanBitfield( $row->log_deleted, $field, $user ) &&
+			self::userCanViewLogType( $row->log_type, $user );
 	}
 
 	/**
@@ -565,6 +566,26 @@ class LogEventsList extends ContextSource {
 			$permissionlist = implode( ', ', $permissions );
 			wfDebug( "Checking for $permissionlist due to $field match on $bitfield\n" );
 			return $user->isAllowedAny( ...$permissions );
+		}
+		return true;
+	}
+
+	/**
+	 * Determine if the current user is allowed to view a particular
+	 * field of this log row, if it's marked as restricted log type.
+	 *
+	 * @param stdClass $type
+	 * @param User|null $user User to check, or null to use $wgUser
+	 * @return bool
+	 */
+	public static function userCanViewLogType( $type, User $user = null ) {
+		if ( $user === null ) {
+			global $wgUser;
+			$user = $wgUser;
+		}
+		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogRestrictions' );
+		if ( isset( $logRestrictions[$type] ) && !$user->isAllowed( $logRestrictions[$type] ) ) {
+			return false;
 		}
 		return true;
 	}

@@ -106,7 +106,9 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	}
 
 	public function isReadOnly( $location ) {
-		return ( $this->getLoadBalancer( $location )->getReadOnlyReason() !== false );
+		$lb = $this->getLoadBalancer( $location );
+		$domainId = $this->getDomainId( $lb->getServerInfo( $lb->getWriterIndex() ) );
+		return ( $lb->getReadOnlyReason( $domainId ) !== false );
 	}
 
 	/**
@@ -166,7 +168,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @return string|bool Database domain ID or false
 	 */
 	private function getDomainId( array $server ) {
-		if ( isset( $this->params['wiki'] ) ) {
+		if ( isset( $this->params['wiki'] ) && $this->params['wiki'] !== false ) {
 			return $this->params['wiki']; // explicit domain
 		}
 
