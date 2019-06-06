@@ -3,6 +3,7 @@
 namespace Wikimedia\Services;
 
 use Exception;
+use Psr\Container\ContainerExceptionInterface;
 use RuntimeException;
 
 /**
@@ -33,7 +34,8 @@ use RuntimeException;
  * Exception thrown when a service was already defined, but the
  * caller expected it to not exist.
  */
-class ServiceAlreadyDefinedException extends RuntimeException {
+class ServiceAlreadyDefinedException extends RuntimeException
+	implements ContainerExceptionInterface {
 
 	/**
 	 * @param string $serviceName

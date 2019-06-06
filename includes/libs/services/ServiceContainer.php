@@ -3,6 +3,7 @@
 namespace Wikimedia\Services;
 
 use InvalidArgumentException;
+use Psr\Container\ContainerInterface;
 use RuntimeException;
 use Wikimedia\Assert\Assert;
 
@@ -44,7 +45,7 @@ use Wikimedia\Assert\Assert;
  * @see docs/injection.txt for an overview of using dependency injection in the
  *      MediaWiki code base.
  */
-class ServiceContainer implements DestructibleService {
+class ServiceContainer implements ContainerInterface, DestructibleService {
 
 	/**
 	 * @var object[]
@@ -191,6 +192,11 @@ class ServiceContainer implements DestructibleService {
 	 */
 	public function hasService( $name ) {
 		return isset( $this->serviceInstantiators[$name] );
+	}
+
+	/** @inheritDoc */
+	public function has( $name ) {
+		return $this->hasService( $name );
 	}
 
 	/**
@@ -416,6 +422,11 @@ class ServiceContainer implements DestructibleService {
 		}
 
 		return $this->services[$name];
+	}
+
+	/** @inheritDoc */
+	public function get( $name ) {
+		return $this->getService( $name );
 	}
 
 	/**
