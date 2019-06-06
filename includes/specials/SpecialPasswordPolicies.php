@@ -127,7 +127,7 @@ class SpecialPasswordPolicies extends SpecialPage {
 	 * Create a HTML list of password policies for $group
 	 *
 	 * @param array $policies Original $wgPasswordPolicy array
-	 * @param array $group Group to format password policies for
+	 * @param string $group Group to format password policies for
 	 *
 	 * @return string HTML list of all applied password policies
 	 */
