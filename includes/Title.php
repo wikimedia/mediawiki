@@ -2235,7 +2235,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @throws Exception
 	 *
 	 * @deprecated since 1.33,
-	 * use MediaWikiServices::getInstance()->getPermissionManager()->getUserPermissionsErrors()
+	 * use MediaWikiServices::getInstance()->getPermissionManager()->getPermissionErrors()
 	 *
 	 */
 	public function getUserPermissionsErrors(
