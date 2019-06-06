@@ -911,6 +911,7 @@
 	"apihelp-query+langlinks-param-dir": "באיזה כיוון לרשום.",
 	"apihelp-query+langlinks-param-inlanguagecode": "קוד שפה בשביל שמות שפות מתורגמות.",
 	"apihelp-query+langlinks-example-simple": "קבלת קישורים בין־לשוניים מהדף <kbd>Main Page</kbd>.",
+	"apihelp-query+languageinfo-summary": "מחזירה מידע על שפות זמינות.",
 	"apihelp-query+links-summary": "החזרת כל הקישורים מהדפים שצוינו.",
 	"apihelp-query+links-param-namespace": "להציג קישורים רק במרחבי השם האלה.",
 	"apihelp-query+links-param-limit": "כמה קישורים להחזיר.",

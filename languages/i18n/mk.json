@@ -2090,7 +2090,7 @@
 	"magiclink-tracking-isbn": "Страници со волшебни врски за ISBN",
 	"magiclink-tracking-isbn-desc": "Страницава користи волшебни врски за ISBN. Погл. [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org] за да дознаете како да ги преселите.",
 	"specialloguserlabel": "Изведувач:",
-	"speciallogtitlelabel": "Цел (наслов или {{ns:user}}:корисничко име на корисникот):",
+	"speciallogtitlelabel": "Цел (наслов или {{ns:user}}:корисничко име):",
 	"log": "Дневници",
 	"logeventslist-submit": "Прикажи",
 	"logeventslist-more-filters": "Прикажи повеќе дневници:",

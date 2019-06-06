@@ -909,6 +909,7 @@
 	"apihelp-query+langlinks-param-dir": "A direção na qual listar.",
 	"apihelp-query+langlinks-param-inlanguagecode": "Código de idioma para nomes de idiomas localizados.",
 	"apihelp-query+langlinks-example-simple": "Obter links de interligação da página <kbd>Main Page</kbd>.",
+	"apihelp-query+languageinfo-summary": "Retornar informações sobre os idiomas disponíveis.",
 	"apihelp-query+links-summary": "Retorna todos os links das páginas fornecidas.",
 	"apihelp-query+links-param-namespace": "Mostre apenas links nesses espaços de nominais.",
 	"apihelp-query+links-param-limit": "Quantos links retornar.",

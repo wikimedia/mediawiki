@@ -3763,7 +3763,7 @@
 	"date-range-to": "Do daty:",
 	"sessionmanager-tie": "Nie można łączyć kilku rodzajów uwierzytelniania dla zapytania: $1.",
 	"sessionprovider-generic": "sesje $1",
-	"sessionprovider-mediawiki-session-cookiesessionprovider": "sesje na podstawie cookie",
+	"sessionprovider-mediawiki-session-cookiesessionprovider": "sesji na podstawie cookie",
 	"sessionprovider-nocookies": "Być może cookies są wyłączone. Upewnij się, że masz włączone cookies i zacznij od nowa.",
 	"randomrootpage": "Losowa strona (bez podstron)",
 	"log-action-filter-block": "Rodzaj blokady:",
