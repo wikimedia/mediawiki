@@ -129,6 +129,11 @@ class ApiBlock extends ApiBase {
 			'NamespaceRestrictions' => $namespaceRestrictions,
 		];
 
+		$status = SpecialBlock::validateTarget( $params['user'], $user );
+		if ( !$status->isOK() ) {
+			$this->dieStatus( $status );
+		}
+
 		$retval = SpecialBlock::processForm( $data, $this->getContext() );
 		if ( $retval !== true ) {
 			$this->dieStatus( $this->errorArrayToStatus( $retval ) );
