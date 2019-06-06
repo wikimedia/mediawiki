@@ -409,6 +409,8 @@ function wfProxyThumbnailRequest( $img, $thumbName ) {
 	// Send request to proxied service
 	$status = $req->execute();
 
+	MediaWiki\HeaderCallback::warnIfHeadersSent();
+
 	// Simply serve the response from the proxied service as-is
 	header( 'HTTP/1.1 ' . $req->getStatus() );
 
@@ -633,6 +635,8 @@ function wfThumbErrorText( $status, $msgText ) {
  */
 function wfThumbError( $status, $msgHtml, $msgText = null, $context = [] ) {
 	global $wgShowHostnames;
+
+	MediaWiki\HeaderCallback::warnIfHeadersSent();
 
 	header( 'Cache-Control: no-cache' );
 	header( 'Content-Type: text/html; charset=utf-8' );
