@@ -113,7 +113,8 @@
 			"VulpesVulpes825",
 			"佛壁灯",
 			"94rain",
-			"Viztor"
+			"Viztor",
+			"Ps2049"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -485,6 +486,8 @@
 	"virus-scanfailed": "扫描失败（代码 $1）",
 	"virus-unknownscanner": "未知的反病毒软件：",
 	"logouttext": "<strong>您现在已经退出登录。</strong>\n\n请注意一些页面可能仍然显示您处于登录状态，直到您清空浏览器缓存为止。",
+	"logging-out-notify": "您正在退出，请稍候。",
+	"logout-failed": "现在不能退出:$1",
 	"cannotlogoutnow-title": "现在不能退出",
 	"cannotlogoutnow-text": "当使用$1时无法退出。",
 	"welcomeuser": "欢迎，$1！",
@@ -3782,6 +3785,9 @@
 	"mw-widgets-abandonedit-discard": "撤销编辑",
 	"mw-widgets-abandonedit-keep": "继续编辑",
 	"mw-widgets-abandonedit-title": "您确定吗？",
+	"mw-widgets-copytextlayout-copy": "复制",
+	"mw-widgets-copytextlayout-copy-fail": "无法复制到剪贴板。",
+	"mw-widgets-copytextlayout-copy-success": "文本已复制至剪贴板。",
 	"mw-widgets-dateinput-no-date": "没有选定日期",
 	"mw-widgets-mediasearch-input-placeholder": "搜索媒体",
 	"mw-widgets-mediasearch-noresults": "找不到结果。",
