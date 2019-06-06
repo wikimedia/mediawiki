@@ -136,7 +136,7 @@ class SpecialProtectedtitles extends SpecialPage {
 
 	/**
 	 * @param string $pr_level Determines which option is selected as default
-	 * @return string Formatted HTML
+	 * @return string|array
 	 * @private
 	 */
 	function getLevelMenu( $pr_level ) {

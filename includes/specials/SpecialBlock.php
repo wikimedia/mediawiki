@@ -751,7 +751,7 @@ class SpecialBlock extends FormSpecialPage {
 	 *
 	 * @param array $data
 	 * @param IContextSource $context
-	 * @return bool|string
+	 * @return bool|array
 	 */
 	public static function processForm( array $data, IContextSource $context ) {
 		global $wgBlockAllowsUTEdit, $wgHideUserContribLimit;

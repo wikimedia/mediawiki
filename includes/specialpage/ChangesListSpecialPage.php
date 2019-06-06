@@ -1099,7 +1099,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * Register all the filters, including legacy hook-driven ones.
 	 * Then create a FormOptions object with options as specified by the user
 	 *
-	 * @param array $parameters
+	 * @param string $parameters
 	 *
 	 * @return FormOptions
 	 */
