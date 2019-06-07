@@ -146,7 +146,7 @@ class SearchResult {
 	}
 
 	/**
-	 * @param array $terms Terms to highlight
+	 * @param string[] $terms Terms to highlight
 	 * @return string Highlighted text snippet, null (and not '') if not supported
 	 */
 	function getTextSnippet( $terms ) {

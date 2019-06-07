@@ -44,7 +44,7 @@ class SearchHighlighter {
 	 * Wikitext highlighting when $wgAdvancedSearchHighlighting = true
 	 *
 	 * @param string $text
-	 * @param array $terms Terms to highlight (not html escaped but
+	 * @param string[] $terms Terms to highlight (not html escaped but
 	 *   regex escaped via SearchDatabase::regexTerm())
 	 * @param int $contextlines
 	 * @param int $contextchars
@@ -502,7 +502,7 @@ class SearchHighlighter {
 	 * Used when $wgAdvancedSearchHighlighting is false.
 	 *
 	 * @param string $text
-	 * @param array $terms Escaped for regex by SearchDatabase::regexTerm()
+	 * @param string[] $terms Escaped for regex by SearchDatabase::regexTerm()
 	 * @param int $contextlines
 	 * @param int $contextchars
 	 * @return string
