@@ -324,7 +324,7 @@ class PermissionManager {
 	 * Add the resulting error code to the errors array
 	 *
 	 * @param array $errors List of current errors
-	 * @param array $result Result of errors
+	 * @param array|string|MessageSpecifier|false $result Result of errors
 	 *
 	 * @return array List of errors
 	 */
