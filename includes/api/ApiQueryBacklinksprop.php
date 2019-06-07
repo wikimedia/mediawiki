@@ -334,6 +334,12 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 					$this->setContinue( $row, $sortby );
 					break;
 				}
+
+				if ( $miser_ns !== null && !in_array( $row->page_namespace, $miser_ns ) ) {
+					// Miser mode namespace check
+					continue;
+				}
+
 				$titles[] = Title::makeTitle( $row->page_namespace, $row->page_title );
 			}
 			$resultPageSet->populateFromTitles( $titles );
