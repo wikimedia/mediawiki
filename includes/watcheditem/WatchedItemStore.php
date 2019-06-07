@@ -641,7 +641,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			// @todo: Should we add these to the process cache?
 			$watchedItems[] = new WatchedItem(
 				$user,
-				new TitleValue( (int)$row->wl_namespace, $row->wl_title ),
+				$target,
 				$this->getLatestNotificationTimestamp(
 					$row->wl_notificationtimestamp, $user, $target )
 			);
