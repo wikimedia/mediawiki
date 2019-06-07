@@ -2,6 +2,41 @@ Change notes from older releases. For current info see RELEASE-NOTES-1.34.
 
 = MediaWiki 1.32 =
 
+== MediaWiki 1.32.2 ==
+
+This is a security and maintenance release of the MediaWiki 1.32 branch.
+
+=== Changes since MediaWiki 1.32.1 ===
+* (T204423) Backport support for hyphenated DB names in JobQueueGroup.
+* (T216968) Return pageid as int in both list=iwbacklinks and
+  list=langbacklinks.
+* (T215169) Fix for Database::update() with IGNORE option fails on PostgreSQL.
+* (T199474) Fix typo in rebuildrecentchanges.php resulting in rogue flags.
+* (T218608) SECURITY: Fix an issue that prevents Extension:OAuth working when
+  $wgBlockDisablesLogin is true.
+* (T216029) Chrome redirects to Special:BadTitle after editing a section with
+  a non-Latin name on a page with non-Latin characters in title.
+* Unbreak language related maintenance scripts that use StaticArrayWriter.
+* (T219728) Added support for new Japanese era name "Reiwa".
+* (T25227) SECURITY: action=logout now requires to be posted and have a csrf
+  token.
+* Updated cssjanus/cssjanus from 1.2.0 to 1.3.0.
+* (T221045) Remove orphaned code from ConfigRepository.
+* (T222385) resourceloader: Use AND instead of OR for upsert conds in
+  saveFileDependencies().
+* (T224374) Fix message parameters so that the message that says SQLite is
+  out of date makes sense.
+* (T200471) Prevent LBFactorySimple breaking ExternalStorage, when trying to
+  connect to external server with local database name.
+* (T197279) SECURITY: Fix reauth in Special:ChangeEmail.
+* (T208881) SECURITY: blacklist CSS var().
+* (T209794) SECURITY: rate-limit and prevent blocked users from changing email.
+* (T199540) SECURITY: API: Respect $wgBlockCIDRLimit in action=block.
+* (T212118) SECURITY: Fix cache mode for (un)patrolled recent changes query.
+* (T222036, T222038) SECURITY: Add permission check for user is permitted to
+  view the log type.
+* (T221739) SECURITY: resources: Patch jQuery 3.3.1 for CVE-2019-11358.
+
 == MediaWiki 1.32.1 ==
 
 === Changes since MediaWiki 1.32.0 ===
@@ -716,6 +751,107 @@ because of Phabricator reports.
 
 = MediaWiki 1.31 =
 
+== MediaWiki 1.31.2 ==
+
+This is a security and maintenance release of the MediaWiki 1.31 branch.
+
+Required PHP version has been increased from 7.0.0 to 7.0.13.
+
+=== Changes since MediaWiki 1.31.1 ===
+* (T204729) WatchedItemStore::countVisitingWatchersMultiple() shouldn't query
+  all titles when asked for none.
+* (T205967) Fix syntax error typo in postgres database upgrade file.
+* (T200254) Add pear/Net_SMTP 1.7.3 to composer dependencies.
+* (T206765) Load installer i18n when running update.php.
+* (T109121) Remove deprecated pear/mail_mime-decode from composer suggested
+  libraries.
+  [Also in the bundled composer /vendor directory.]
+* Various PHP 7.2 and 7.3 compatibility fixes:
+  * (T200595, T206974) Fix PHP 7.3 warnings of using "continue" in some
+    scenarios instead of "break".
+    * (T206976, T206977) Also in the bundled LocalisationUpdate and
+      ParserFunctions extensions.
+  * (T206979) Fix PHP 7.3 warnings of using "compact()" when some variables may
+    not be set.
+  * (T215632) FormatMetadata and UploadStash regexes fixed to be PHP
+    7.3-compatible.
+  * Fix PHP warnings "preg_replace(): [...] invalid range in character class.
+  * Avoid PHP 7.2 warnings in DBConRefTest about count() on non-Countable.
+  * Suppress "Headers already sent" in PHP 7.2 too.
+  * (T206476) Output only to stderr in unit tests.
+  * (T207112) Add session_write_close() calls to SessionManager tests.
+  * oyejorge/less.php replaced with our fork wikimedia/less.php
+  * (T209756) Updated wikimedia/ip-set from 1.2.0 to 1.3.0.
+  * (T213489) Avoid session double-start in Setup.php.
+  * (T206975) Switch to our fork of less.php.
+* (T207540) Include IP address in "Login for $1 succeeded" log entry.
+* (T201781) Database: Allow selectFieldValues() to accept SQL fragments.
+* (T205765) installer: Don't link to the obsolete "Extension Matrix" page.
+* (T206013) Update ImportableUploadRevisionImporter for interwiki usernames.
+* (T207541) Pass an email address, not a MailAddress, to mail().
+* (T207603) SECURITY: User JS may no longer be loaded with mime type
+  text/javascript if there is no account associated with the username.
+* (T112937, T113042) SECURITY: Do not allow loading pages raw with a
+  text/javascript MIME
+  type if non-admins can edit the page.
+* (T17491) <ins>/<del> elements can be phrasing or flow.
+* (T200827) RemexCompatMunger: Don't call endTag() in case B/b
+* (T207088) Upgrade wikimedia/remex-html to 2.0.1.
+  [Also in the bundled composer /vendor directory.]
+* (T194052) Updated wikimedia/base-convert from 1.0.1 to 2.0.0.
+  [Also in the bundled composer /vendor directory.]
+* (T199494) Fix notices in maintenance/removeUnusuedAccounts.php.
+* Require ext-fileinfo in composer.json, per PHPVersionCheck.
+* (T176390) Bundled LocalisationUpdate extension: Handle exceptions from
+  GitHubFetcher.
+* (T208255) Completion search should not change the search query.
+* (T209870) Fix SQL syntax error in MS-SQL initialisation file for new wikis.
+* (T185049) LogFormatter: Fail softer when trying to link an invalid titles.
+* (T210998) Properly set $wgLanguageCode in the generated LocalSettings.php
+  if --lang is used with the command-line installer (install.php).
+* (T211061) ImageListPager: Actor migration for buildQueryConds().
+* (T209335) Clarify the default sidebar 'Help' link is about MediaWiki itself.
+* Fix addition of ug_expiry column to user_groups table on MSSQL.
+* (T204767) Add join conditions to ActiveUsersPager.
+* (T210621) User: Bypass repeatable-read when creating an actor_id.
+* (T204531) rdbms: reduce LoadBalancer replication log spam.
+* (T195525) Fix db error outage page.
+* (T208871) The hard-coded Google search form on the database error page was
+  removed.
+* (T176097) Fix flaky MessageBlobStoreTest assertion failures.
+* (T209423) Update required PHP version to 7.0.13.
+* (T209885) Prevent populateSearchIndex.php from breaking once actor migration
+  has been started.
+* (T216968) Return pageid as int in both list=iwbacklinks and
+  list=langbacklinks.
+* (T215169) Fix for Database::update() with IGNORE option fails on PostgreSQL.
+* (T204423) Backport support for hyphenated DB names in JobQueueGroup.
+* (T199474) Fix typo in rebuildrecentchanges.php resulting in rogue flags.
+* (T218608) SECURITY: Fix an issue that prevents Extension:OAuth working when
+  $wgBlockDisablesLogin is true.
+* (T216029) Chrome redirects to Special:BadTitle after editing a section with
+  a non-Latin name on a page with non-Latin characters in title.
+* (T219728) Added support for new Japanese era name "Reiwa".
+* (T25227) SECURITY: action=logout now requires to be posted and have a csrf
+  token.
+* Updated cssjanus/cssjanus from 1.2.0 to 1.3.0.
+* (T222385) resourceloader: Use AND instead of OR for upsert conds in
+  saveFileDependencies().
+* (T224374) Fix message parameters so that the message that says SQLite is out
+  of date makes sense.
+* SpecialPage::checkLoginSecurityLevel() will now preserve POST data when
+  reauthenticating.
+* FormSpecialPage::execute() will now call checkLoginSecurityLevel() if
+  getLoginSecurityLevel() returns non-false.
+* (T197279) SECURITY: Fix reauth in Special:ChangeEmail.
+* (T208881) SECURITY: blacklist CSS var().
+* (T209794) SECURITY: rate-limit and prevent blocked users from changing email.
+* (T199540) SECURITY: API: Respect $wgBlockCIDRLimit in action=block.
+* (T212118) SECURITY: Fix cache mode for (un)patrolled recent changes query.
+* (T222036, T222038) SECURITY: Add permission check for user is permitted to
+  view the log type.
+* (T221739) SECURITY: resources: Patch jQuery 3.2.1 for CVE-2019-11358.
+
 == MediaWiki 1.31.1 ==
 
 This is a security and maintenance release of the MediaWiki 1.31 branch.
@@ -1230,6 +1366,51 @@ There's usually someone online in #mediawiki on irc.freenode.net.
 
 
 = MediaWiki 1.30 =
+
+== MediaWiki 1.30.2 ==
+
+This is a security and maintenance release of the MediaWiki 1.30 branch.
+
+=== Changes since MediaWiki 1.30.1 ===
+* (T204729) WatchedItemStore::countVisitingWatchersMultiple() shouldn't query
+  all titles when asked for none.
+* (T109121) Remove deprecated pear/mail_mime-decode from composer suggested
+  libraries.
+* (T207540) Include IP address in "Login for $1 succeeded" log entry.
+* (T205765) Don't link to the obsolete "Extension Matrix" page in installer.
+* (T207603) SECURITY: User JS may no longer be loaded with mime type
+  text/javascript if there is no account associated with the username.
+* (T113042) SECURITY: Do not allow loading pages raw with a text/javascript MIME
+  type if non-admins can edit the page.
+* (T207541) Pass email address to mail().
+* Fix addition of ug_expiry column to user_groups table on MSSQL.
+* (T204531) rdbms: reduce LoadBalancer replication log spam.
+* (T213489) Avoid session double-start in Setup.php.
+* (T195525) Fix db error outage page.
+* (T208871) The hard-coded Google search form on the database error page was
+  removed.
+* (T216968) Return pageid as int in both list=iwbacklinks and
+  list=langbacklinks.
+* (T218608) SECURITY: Fix an issue that prevents Extension:OAuth working when
+  $wgBlockDisablesLogin is true.
+* (T25227) SECURITY: action=logout now requires to be posted and have a csrf
+  token.
+* (T222385) resourceloader: Use AND instead of OR for upsert conds in
+  saveFileDependencies().
+* (T224374) Fix message parameters so that the message that says SQLite is out
+  of date makes sense.
+* SpecialPage::checkLoginSecurityLevel() will now preserve POST data when
+  reauthenticating.
+* FormSpecialPage::execute() will now call checkLoginSecurityLevel() if
+  getLoginSecurityLevel() returns non-false.
+* (T197279) SECURITY: Fix reauth in Special:ChangeEmail.
+* (T208881) SECURITY: blacklist CSS var().
+* (T209794) SECURITY: rate-limit and prevent blocked users from changing email.
+* (T199540) SECURITY: API: Respect $wgBlockCIDRLimit in action=block.
+* (T212118) SECURITY: Fix cache mode for (un)patrolled recent changes query.
+* (T222036, T222038) SECURITY: Add permission check for user is permitted to
+  view the log type.
+* (T221739) SECURITY: resources: Patch jQuery 1.11.3 for CVE-2019-11358.
 
 == MediaWiki 1.30.1 ==
 
@@ -2388,6 +2569,47 @@ going to run a public MediaWiki, so you can be notified of security fixes.
 There's usually someone online in #mediawiki on irc.freenode.net.
 
 = MediaWiki 1.27 =
+
+== MediaWiki 1.27.6 ==
+
+This is a security and maintenance release of the MediaWiki 1.27 branch.
+
+=== Changes since MediaWiki 1.27.6 ===
+* (T204729) WatchedItemStore::countVisitingWatchersMultiple() shouldn't query
+  all titles when asked for none.
+* (T109121) Remove deprecated pear/mail_mime-decode from composer suggested
+  libraries.
+* (T207241) Augment precision of updatelist time.
+* (T207540) Include IP address in "Login for $1 succeeded" log entry.
+* (T205765) Don't link to the obsolete "Extension Matrix" page in installer.
+* (T207603) SECURITY: User JS may no longer be loaded with mime type
+  text/javascript if there is no account associated with the username.
+* (T113042) SECURITY: Do not allow loading pages raw with a text/javascript MIME
+  type if non-admins can edit the page.
+* (T207541) Pass email address to mail().
+* (T209335) Clarify the default sidebar 'Help' link is about MediaWiki itself.
+* (T213359) Update mediawiki/mediawiki-codesniffer to 0.8.1.
+* (T208871) The hard-coded Google search form on the database error page was
+  removed.
+* (T216968) Return pageid as int in both list=iwbacklinks and
+  list=langbacklinks.
+* (T218608) Fix an issue that prevents Extension:OAuth working when
+  $wgBlockDisablesLogin is true.
+* (T219728) Added support for new Japanese era name "Reiwa".
+* (T25227) SECURITY: action=logout now requires to be posted and have a csrf
+  token.
+* SpecialPage::checkLoginSecurityLevel() will now preserve POST data when
+  reauthenticating.
+* FormSpecialPage::execute() will now call checkLoginSecurityLevel() if
+  getLoginSecurityLevel() returns non-false.
+* (T197279) SECURITY: Fix reauth in Special:ChangeEmail.
+* (T208881) SECURITY: blacklist CSS var().
+* (T209794) SECURITY: rate-limit and prevent blocked users from changing email.
+* (T199540) SECURITY: API: Respect $wgBlockCIDRLimit in action=block.
+* (T212118) SECURITY: Fix cache mode for (un)patrolled recent changes query.
+* (T222036, T222038) SECURITY: Add permission check for user is permitted to
+  view the log type.
+* (T221739) SECURITY: resources: Patch jQuery 1.11.3 for CVE-2019-11358.
 
 == MediaWiki 1.27.5 ==
 
