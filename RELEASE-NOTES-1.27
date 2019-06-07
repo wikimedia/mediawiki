@@ -1,8 +1,16 @@
+== MediaWiki 1.27.7 ==
+
+This is a maintenance release of the MediaWiki 1.27 branch.
+
+=== Changes since MediaWiki 1.27.6 ===
+* Add missing `use MediaWiki\MediaWikiServices;` to LogEventsList.php.
+* Remove broken tests from ApiBlockTest.php.
+
 == MediaWiki 1.27.6 ==
 
 This is a security and maintenance release of the MediaWiki 1.27 branch.
 
-=== Changes since MediaWiki 1.27.6 ===
+=== Changes since MediaWiki 1.27.5 ===
 * (T204729) WatchedItemStore::countVisitingWatchersMultiple() shouldn't query all
   titles when asked for none.
 * (T109121) Remove deprecated pear/mail_mime-decode from composer suggested libraries.
