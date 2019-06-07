@@ -47,13 +47,15 @@ class MWExceptionRenderer {
 			self::printError( self::getText( $e ) );
 		} elseif ( $mode === self::AS_PRETTY ) {
 			self::statusHeader( 500 );
+			self::header( "Content-Type: $wgMimeType; charset=utf-8" );
 			if ( $e instanceof DBConnectionError ) {
 				self::reportOutageHTML( $e );
 			} else {
-				self::header( "Content-Type: $wgMimeType; charset=utf-8" );
 				self::reportHTML( $e );
 			}
 		} else {
+			self::statusHeader( 500 );
+			self::header( "Content-Type: $wgMimeType; charset=utf-8" );
 			if ( $eNew ) {
 				$message = "MediaWiki internal error.\n\n";
 				if ( self::showBackTrace( $e ) ) {
@@ -292,7 +294,7 @@ class MWExceptionRenderer {
 	 * @param Exception|Throwable $e
 	 */
 	private static function reportOutageHTML( $e ) {
-		global $wgShowDBErrorBacktrace, $wgShowHostnames, $wgShowSQLErrors;
+		global $wgShowDBErrorBacktrace, $wgShowHostnames, $wgShowSQLErrors, $wgSitename;
 
 		$sorry = htmlspecialchars( self::msg(
 			'dberr-problems',
@@ -317,55 +319,20 @@ class MWExceptionRenderer {
 		}
 
 		MessageCache::singleton()->disable(); // no DB access
-
-		$html = "<h1>$sorry</h1><p>$again</p><p><small>$info</small></p>";
+		$html = "<!DOCTYPE html>\n" .
+				'<html><head>' .
+				'<title>' .
+				htmlspecialchars( $wgSitename ) .
+				'</title>' .
+				'<style>body { font-family: sans-serif; margin: 0; padding: 0.5em 2em; }</style>' .
+				"</head><body><h1>$sorry</h1><p>$again</p><p><small>$info</small></p>";
 
 		if ( $wgShowDBErrorBacktrace ) {
 			$html .= '<p>Backtrace:</p><pre>' .
 				htmlspecialchars( $e->getTraceAsString() ) . '</pre>';
 		}
 
-		$html .= '<hr />';
-		$html .= self::googleSearchForm();
-
+		$html .= '</body></html>';
 		echo $html;
-	}
-
-	/**
-	 * @return string
-	 */
-	private static function googleSearchForm() {
-		global $wgSitename, $wgCanonicalServer, $wgRequest;
-
-		$usegoogle = htmlspecialchars( self::msg(
-			'dberr-usegoogle',
-			'You can try searching via Google in the meantime.'
-		) );
-		$outofdate = htmlspecialchars( self::msg(
-			'dberr-outofdate',
-			'Note that their indexes of our content may be out of date.'
-		) );
-		$googlesearch = htmlspecialchars( self::msg( 'searchbutton', 'Search' ) );
-		$search = htmlspecialchars( $wgRequest->getVal( 'search' ) );
-		$server = htmlspecialchars( $wgCanonicalServer );
-		$sitename = htmlspecialchars( $wgSitename );
-		$trygoogle = <<<EOT
-<div style="margin: 1.5em">$usegoogle<br />
-<small>$outofdate</small>
-</div>
-<form method="get" action="//www.google.com/search" id="googlesearch">
-	<input type="hidden" name="domains" value="$server" />
-	<input type="hidden" name="num" value="50" />
-	<input type="hidden" name="ie" value="UTF-8" />
-	<input type="hidden" name="oe" value="UTF-8" />
-	<input type="text" name="q" size="31" maxlength="255" value="$search" />
-	<input type="submit" name="btnG" value="$googlesearch" />
-	<p>
-		<label><input type="radio" name="sitesearch" value="$server" checked="checked" />$sitename</label>
-		<label><input type="radio" name="sitesearch" value="" />WWW</label>
-	</p>
-</form>
-EOT;
-		return $trygoogle;
 	}
 }

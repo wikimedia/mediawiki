@@ -1044,6 +1044,27 @@ class LanguageTest extends LanguageClassesTestCase {
 				'nengo'
 			],
 			[
+				'xtY',
+				'20190430235959',
+				'平成31',
+				'平成31',
+				'nengo - last day of heisei'
+			],
+			[
+				'xtY',
+				'20190501000000',
+				'令和元',
+				'令和元',
+				'nengo - first day of reiwa'
+			],
+			[
+				'xtY',
+				'20200501000000',
+				'令和2',
+				'令和2',
+				'nengo - second year of reiwa'
+			],
+			[
 				'xrxkYY',
 				'20120102090705',
 				'MMDLV2012',

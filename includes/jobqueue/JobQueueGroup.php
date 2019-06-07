@@ -33,8 +33,8 @@ class JobQueueGroup {
 	/** @var ProcessCacheLRU */
 	protected $cache;
 
-	/** @var string Wiki ID */
-	protected $wiki;
+	/** @var string Wiki DB domain ID */
+	protected $domain;
 	/** @var string|bool Read only rationale (or false if r/w) */
 	protected $readOnlyReason;
 	/** @var bool Whether the wiki is not recognized in configuration */
@@ -56,34 +56,40 @@ class JobQueueGroup {
 	const CACHE_VERSION = 1; // integer; cache version
 
 	/**
-	 * @param string $wiki Wiki ID
+	 * @param string $domain Wiki DB domain ID
 	 * @param string|bool $readOnlyReason Read-only reason or false
 	 */
-	protected function __construct( $wiki, $readOnlyReason ) {
-		$this->wiki = $wiki;
+	protected function __construct( $domain, $readOnlyReason ) {
+		$this->domain = $domain;
 		$this->readOnlyReason = $readOnlyReason;
 		$this->cache = new ProcessCacheLRU( 10 );
 	}
 
 	/**
-	 * @param bool|string $wiki Wiki ID
+	 * @param bool|string $domain Wiki domain ID
 	 * @return JobQueueGroup
 	 */
-	public static function singleton( $wiki = false ) {
+	public static function singleton( $domain = false ) {
 		global $wgLocalDatabases;
 
-		$wiki = ( $wiki === false ) ? wfWikiID() : $wiki;
+		if ( $domain === false ) {
+			$domain = WikiMap::getCurrentWikiDbDomain()->getId();
+		}
 
-		if ( !isset( self::$instances[$wiki] ) ) {
-			self::$instances[$wiki] = new self( $wiki, wfConfiguredReadOnlyReason() );
+		if ( !isset( self::$instances[$domain] ) ) {
+			self::$instances[$domain] = new self( $domain, wfConfiguredReadOnlyReason() );
 			// Make sure jobs are not getting pushed to bogus wikis. This can confuse
 			// the job runner system into spawning endless RPC requests that fail (T171371).
-			if ( $wiki !== wfWikiID() && !in_array( $wiki, $wgLocalDatabases ) ) {
-				self::$instances[$wiki]->invalidWiki = true;
+			$wikiId = WikiMap::getWikiIdFromDomain( $domain );
+			if (
+				!WikiMap::isCurrentWikiDbDomain( $domain ) &&
+				!in_array( $wikiId, $wgLocalDatabases )
+			) {
+				self::$instances[$domain]->invalidWiki = true;
 			}
 		}
 
-		return self::$instances[$wiki];
+		return self::$instances[$domain];
 	}
 
 	/**
@@ -104,7 +110,7 @@ class JobQueueGroup {
 	public function get( $type ) {
 		global $wgJobTypeConf;
 
-		$conf = [ 'wiki' => $this->wiki, 'type' => $type ];
+		$conf = [ 'wiki' => $this->domain, 'type' => $type ];
 		if ( isset( $wgJobTypeConf[$type] ) ) {
 			$conf = $conf + $wgJobTypeConf[$type];
 		} else {
@@ -133,7 +139,7 @@ class JobQueueGroup {
 
 		if ( $this->invalidWiki ) {
 			// Do not enqueue job that cannot be run (T171371)
-			$e = new LogicException( "Domain '{$this->wiki}' is not recognized." );
+			$e = new LogicException( "Domain '{$this->domain}' is not recognized." );
 			MWExceptionHandler::logException( $e );
 			return;
 		}
@@ -163,13 +169,13 @@ class JobQueueGroup {
 
 		$cache = ObjectCache::getLocalClusterInstance();
 		$cache->set(
-			$cache->makeGlobalKey( 'jobqueue', $this->wiki, 'hasjobs', self::TYPE_ANY ),
+			$cache->makeGlobalKey( 'jobqueue', $this->domain, 'hasjobs', self::TYPE_ANY ),
 			'true',
 			15
 		);
 		if ( array_diff( array_keys( $jobsByType ), $wgJobTypesExcludedFromDefaultQueue ) ) {
 			$cache->set(
-				$cache->makeGlobalKey( 'jobqueue', $this->wiki, 'hasjobs', self::TYPE_DEFAULT ),
+				$cache->makeGlobalKey( 'jobqueue', $this->domain, 'hasjobs', self::TYPE_DEFAULT ),
 				'true',
 				15
 			);
@@ -190,7 +196,7 @@ class JobQueueGroup {
 	public function lazyPush( $jobs ) {
 		if ( $this->invalidWiki ) {
 			// Do not enqueue job that cannot be run (T171371)
-			throw new LogicException( "Domain '{$this->wiki}' is not recognized." );
+			throw new LogicException( "Domain '{$this->domain}' is not recognized." );
 		}
 
 		if ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' ) {
@@ -338,7 +344,7 @@ class JobQueueGroup {
 	 */
 	public function queuesHaveJobs( $type = self::TYPE_ANY ) {
 		$cache = ObjectCache::getLocalClusterInstance();
-		$key = $cache->makeGlobalKey( 'jobqueue', $this->wiki, 'hasjobs', $type );
+		$key = $cache->makeGlobalKey( 'jobqueue', $this->domain, 'hasjobs', $type );
 
 		$value = $cache->get( $key );
 		if ( $value === false ) {
@@ -407,7 +413,7 @@ class JobQueueGroup {
 			$this->coalescedQueues = [];
 			foreach ( $wgJobTypeConf as $type => $conf ) {
 				$queue = JobQueue::factory(
-					[ 'wiki' => $this->wiki, 'type' => 'null' ] + $conf );
+					[ 'wiki' => $this->domain, 'type' => 'null' ] + $conf );
 				$loc = $queue->getCoalesceLocationInternal();
 				if ( !isset( $this->coalescedQueues[$loc] ) ) {
 					$this->coalescedQueues[$loc]['queue'] = $queue;
@@ -433,22 +439,21 @@ class JobQueueGroup {
 	 */
 	private function getCachedConfigVar( $name ) {
 		// @TODO: cleanup this whole method with a proper config system
-		if ( $this->wiki === wfWikiID() ) {
+		if ( WikiMap::isCurrentWikiDbDomain( $this->domain ) ) {
 			return $GLOBALS[$name]; // common case
 		} else {
-			$wiki = $this->wiki;
+			$wiki = WikiMap::getWikiIdFromDomain( $this->domain );
 			$cache = ObjectCache::getMainWANInstance();
 			$value = $cache->getWithSetCallback(
-				$cache->makeGlobalKey( 'jobqueue', 'configvalue', $wiki, $name ),
+				$cache->makeGlobalKey( 'jobqueue', 'configvalue', $this->domain, $name ),
 				$cache::TTL_DAY + mt_rand( 0, $cache::TTL_DAY ),
 				function () use ( $wiki, $name ) {
 					global $wgConf;
-
+					// @TODO: use the full domain ID here
 					return [ 'v' => $wgConf->getConfig( $wiki, $name ) ];
 				},
 				[ 'pcTTL' => WANObjectCache::TTL_PROC_LONG ]
 			);
-
 			return $value['v'];
 		}
 	}

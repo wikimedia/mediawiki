@@ -362,7 +362,7 @@ abstract class JobQueue {
 		global $wgJobClasses;
 
 		$this->assertNotReadOnly();
-		if ( $this->wiki !== wfWikiID() ) {
+		if ( !WikiMap::isCurrentWikiDbDomain( $this->wiki ) ) {
 			throw new MWException( "Cannot pop '{$this->type}' job off foreign wiki queue." );
 		} elseif ( !isset( $wgJobClasses[$this->type] ) ) {
 			// Do not pop jobs if there is no class for the queue type

@@ -244,4 +244,17 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			'ApiTestCase::setUp can be slow, tests must be "medium" or "large"'
 		);
 	}
+
+	/**
+	 * Expect an ApiUsageException to be thrown with the given parameters, which are the same as
+	 * ApiUsageException::newWithMessage()'s parameters.  This allows checking for an exception
+	 * whose text is given by a message key instead of text, so as not to hard-code the message's
+	 * text into test code.
+	 */
+	protected function setExpectedApiException(
+		$msg, $code = null, array $data = null, $httpCode = 0
+	) {
+		$expected = ApiUsageException::newWithMessage( null, $msg, $code, $data, $httpCode );
+		$this->setExpectedException( ApiUsageException::class, $expected->getMessage() );
+	}
 }

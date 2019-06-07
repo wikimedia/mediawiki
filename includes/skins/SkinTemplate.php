@@ -627,16 +627,18 @@ class SkinTemplate extends Skin {
 			$page = Title::newFromText( $request->getVal( 'title', '' ) );
 		}
 		$page = $request->getVal( 'returnto', $page );
-		$a = [];
+		$returnto = [];
 		if ( strval( $page ) !== '' ) {
-			$a['returnto'] = $page;
+			$returnto['returnto'] = $page;
 			$query = $request->getVal( 'returntoquery', $this->thisquery );
+			$paramsArray = wfCgiToArray( $query );
+			unset( $paramsArray['logoutToken'] );
+			$query = wfArrayToCgi( $paramsArray );
 			if ( $query != '' ) {
-				$a['returntoquery'] = $query;
+				$returnto['returntoquery'] = $query;
 			}
 		}
 
-		$returnto = wfArrayToCgi( $a );
 		if ( $this->loggedin ) {
 			$personal_urls['userpage'] = [
 				'text' => $this->username,
@@ -699,9 +701,10 @@ class SkinTemplate extends Skin {
 				$personal_urls['logout'] = [
 					'text' => $this->msg( 'pt-userlogout' )->text(),
 					'href' => self::makeSpecialUrl( 'Userlogout',
-						// userlogout link must always contain an & character, otherwise we might not be able
+						// Note: userlogout link must always contain an & character, otherwise we might not be able
 						// to detect a buggy precaching proxy (T19790)
-						$title->isSpecial( 'Preferences' ) ? 'noreturnto' : $returnto ),
+						( $title->isSpecial( 'Preferences' ) ? [] : $returnto )
+						+ [ 'logoutToken' => $this->getUser()->getEditToken( 'logoutToken', $this->getRequest() ) ] ),
 					'active' => false
 				];
 			}

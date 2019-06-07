@@ -130,7 +130,7 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 			if ( !is_null( $resultPageSet ) ) {
 				$pages[] = Title::newFromRow( $row );
 			} else {
-				$entry = [ 'pageid' => $row->page_id ];
+				$entry = [ 'pageid' => (int)$row->page_id ];
 
 				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 				ApiQueryBase::addTitleInfo( $entry, $title );
