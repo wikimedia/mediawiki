@@ -115,8 +115,4 @@ class HashBagOStuff extends BagOStuff {
 	public function clear() {
 		$this->bag = [];
 	}
-
-	protected function getCurrentTime() {
-		return time();
-	}
 }

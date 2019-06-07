@@ -4578,7 +4578,10 @@ ERROR;
 			return $wgParser->guessLegacySectionNameFromWikiText( $text );
 		}
 		// Meanwhile, real browsers get real anchors
-		return $wgParser->guessSectionNameFromWikiText( $text );
+		$name = $wgParser->guessSectionNameFromWikiText( $text );
+		// With one little caveat: per T216029, fragments in HTTP redirects need to be urlencoded,
+		// otherwise Chrome double-escapes the rest of the URL.
+		return '#' . urlencode( mb_substr( $name, 1 ) );
 	}
 
 	/**

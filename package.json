@@ -33,7 +33,7 @@
     "stylelint": "9.2.0",
     "stylelint-config-wikimedia": "0.4.3",
     "wdio-junit-reporter": "0.2.0",
-    "wdio-mocha-framework": "0.5.8",
+    "wdio-mocha-framework": "0.6.4",
     "wdio-sauce-service": "0.3.1",
     "wdio-spec-reporter": "0.0.5",
     "webdriverio": "4.12.0"

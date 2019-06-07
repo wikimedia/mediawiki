@@ -373,7 +373,7 @@ class RebuildRecentchanges extends Maintenance {
 				[ 'ug_group' => $botgroups ],
 				__METHOD__,
 				[ 'DISTINCT' ],
-				[ 'user_group' => [ 'JOIN', 'user_id = ug_user' ] ] + $userQuery['joins']
+				[ 'user_groups' => [ 'JOIN', 'user_id = ug_user' ] ] + $userQuery['joins']
 			);
 
 			$botusers = [];
@@ -426,7 +426,7 @@ class RebuildRecentchanges extends Maintenance {
 				[ 'ug_group' => $autopatrolgroups ],
 				__METHOD__,
 				[ 'DISTINCT' ],
-				[ 'user_group' => [ 'JOIN', 'user_id = ug_user' ] ] + $userQuery['joins']
+				[ 'user_groups' => [ 'JOIN', 'user_id = ug_user' ] ] + $userQuery['joins']
 			);
 
 			foreach ( $res as $obj ) {

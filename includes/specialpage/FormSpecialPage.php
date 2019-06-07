@@ -36,6 +36,12 @@ abstract class FormSpecialPage extends SpecialPage {
 	protected $par = null;
 
 	/**
+	 * @var array|null POST data preserved across re-authentication
+	 * @since 1.32
+	 */
+	protected $reauthPostData = null;
+
+	/**
 	 * Get an HTMLForm descriptor array
 	 * @return array
 	 */
@@ -89,13 +95,31 @@ abstract class FormSpecialPage extends SpecialPage {
 	 * @return HTMLForm|null
 	 */
 	protected function getForm() {
+		$context = $this->getContext();
+		$onSubmit = [ $this, 'onSubmit' ];
+
+		if ( $this->reauthPostData ) {
+			// Restore POST data
+			$context = new DerivativeContext( $context );
+			$oldRequest = $this->getRequest();
+			$context->setRequest( new DerivativeRequest(
+				$oldRequest, $this->reauthPostData + $oldRequest->getQueryValues(), true
+			) );
+
+			// But don't treat it as a "real" submission just in case of some
+			// crazy kind of CSRF.
+			$onSubmit = function () {
+				return false;
+			};
+		}
+
 		$form = HTMLForm::factory(
 			$this->getDisplayFormat(),
 			$this->getFormFields(),
-			$this->getContext(),
+			$context,
 			$this->getMessagePrefix()
 		);
-		$form->setSubmitCallback( [ $this, 'onSubmit' ] );
+		$form->setSubmitCallback( $onSubmit );
 		if ( $this->getDisplayFormat() !== 'ooui' ) {
 			// No legend and wrapper by default in OOUI forms, but can be set manually
 			// from alterForm()
@@ -151,6 +175,11 @@ abstract class FormSpecialPage extends SpecialPage {
 		// This will throw exceptions if there's a problem
 		$this->checkExecutePermissions( $this->getUser() );
 
+		$securityLevel = $this->getLoginSecurityLevel();
+		if ( $securityLevel !== false && !$this->checkLoginSecurityLevel( $securityLevel ) ) {
+			return;
+		}
+
 		$form = $this->getForm();
 		if ( $form->show() ) {
 			$this->onSuccess();
@@ -198,5 +227,15 @@ abstract class FormSpecialPage extends SpecialPage {
 	 */
 	public function requiresUnblock() {
 		return true;
+	}
+
+	/**
+	 * Preserve POST data across reauthentication
+	 *
+	 * @since 1.32
+	 * @param array $data
+	 */
+	protected function setReauthPostData( array $data ) {
+		$this->reauthPostData = $data;
 	}
 }
