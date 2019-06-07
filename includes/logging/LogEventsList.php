@@ -23,6 +23,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 class LogEventsList extends ContextSource {
 	const NO_ACTION_LINK = 1;
 	const NO_EXTRA_USER_LINKS = 2;
@@ -529,12 +531,12 @@ class LogEventsList extends ContextSource {
 	 * Determine if the current user is allowed to view a particular
 	 * field of this log row, if it's marked as restricted log type.
 	 *
-	 * @param stdClass $row
+	 * @param stdClass $type
 	 * @param User|null $user User to check, or null to use $wgUser
 	 * @return bool
 	 */
 	public static function userCanViewLogType( $type, User $user = null ) {
-		if ( $user === null ){
+		if ( $user === null ) {
 			global $wgUser;
 			$user = $wgUser;
 		}
