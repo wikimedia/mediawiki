@@ -60,7 +60,7 @@ use SiteStatsUpdate;
 use Title;
 use User;
 use Wikimedia\Assert\Assert;
-use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\ILBFactory;
 use WikiPage;
 
 /**
@@ -132,7 +132,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	private $messageCache;
 
 	/**
-	 * @var LBFactory
+	 * @var ILBFactory
 	 */
 	private $loadbalancerFactory;
 
@@ -268,7 +268,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 * @param JobQueueGroup $jobQueueGroup
 	 * @param MessageCache $messageCache
 	 * @param Language $contLang
-	 * @param LBFactory $loadbalancerFactory
+	 * @param ILBFactory $loadbalancerFactory
 	 */
 	public function __construct(
 		WikiPage $wikiPage,
@@ -279,7 +279,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		JobQueueGroup $jobQueueGroup,
 		MessageCache $messageCache,
 		Language $contLang,
-		LBFactory $loadbalancerFactory
+		ILBFactory $loadbalancerFactory
 	) {
 		$this->wikiPage = $wikiPage;
 

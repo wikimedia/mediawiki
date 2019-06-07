@@ -23,7 +23,7 @@ namespace MediaWiki\Storage;
 use Language;
 use MediaWiki\Config\ServiceOptions;
 use WANObjectCache;
-use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\ILBFactory;
 
 /**
  * Service for instantiating BlobStores
@@ -35,7 +35,7 @@ use Wikimedia\Rdbms\LBFactory;
 class BlobStoreFactory {
 
 	/**
-	 * @var LBFactory
+	 * @var ILBFactory
 	 */
 	private $lbFactory;
 
@@ -68,7 +68,7 @@ class BlobStoreFactory {
 	];
 
 	public function __construct(
-		LBFactory $lbFactory,
+		ILBFactory $lbFactory,
 		WANObjectCache $cache,
 		ServiceOptions $options,
 		Language $contLang
