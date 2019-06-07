@@ -113,7 +113,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	/**
 	 * Do not call this directly.  Get it from MediaWikiServices.
 	 *
-	 * @param array|Config $options Config accepted for backwards compatibility
+	 * @param ServiceOptions|Config $options Config accepted for backwards compatibility
 	 * @param Language $contLang
 	 * @param AuthManager $authManager
 	 * @param LinkRenderer $linkRenderer
