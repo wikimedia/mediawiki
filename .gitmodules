@@ -87,15 +87,15 @@
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/WikiEditor
 	branch = REL1_33
 [submodule "MonoBook"]
-	path = extensions/MonoBook
+	path = skins/MonoBook
 	url = https://gerrit.wikimedia.org/r/mediawiki/skins/MonoBook
 	branch = REL1_33
 [submodule "Timeless"]
-	path = extensions/Timeless
+	path = skins/Timeless
 	url = https://gerrit.wikimedia.org/r/mediawiki/skins/Timeless
 	branch = REL1_33
 [submodule "Vector"]
-	path = extensions/Vector
+	path = skins/Vector
 	url = https://gerrit.wikimedia.org/r/mediawiki/skins/Vector
 	branch = REL1_33
 [submodule "vendor"]
