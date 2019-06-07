@@ -1,10 +1,8 @@
 <?php
 
 /**
- * FIXME Temporary disabled per T225244
  * @group API
  * @group medium
- * @group Broken
  *
  * @covers ApiQueryLanguageinfo
  */
@@ -27,6 +25,7 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 				}
 			}
 		);
+		Language::clearCaches();
 	}
 
 	private function doQuery( array $params, $microtimeFunction = null ): array {
