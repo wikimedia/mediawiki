@@ -1494,7 +1494,7 @@ class LocalFile extends File {
 				'img_sha1' => $this->sha1
 			] + $commentFields + $actorFields,
 			__METHOD__,
-			'IGNORE'
+			[ 'IGNORE' ]
 		);
 		$reupload = ( $dbw->affectedRows() == 0 );
 

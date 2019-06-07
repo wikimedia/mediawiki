@@ -196,7 +196,7 @@ class Pingback {
 					'updatelog',
 					[ 'ul_key' => 'PingBack', 'ul_value' => $id ],
 					__METHOD__,
-					'IGNORE'
+					[ 'IGNORE' ]
 				);
 
 				if ( !$dbw->affectedRows() ) {

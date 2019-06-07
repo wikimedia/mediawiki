@@ -403,7 +403,7 @@ class LogPage {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->insert( 'log_search', $data, __METHOD__, 'IGNORE' );
+		$dbw->insert( 'log_search', $data, __METHOD__, [ 'IGNORE' ] );
 
 		return true;
 	}

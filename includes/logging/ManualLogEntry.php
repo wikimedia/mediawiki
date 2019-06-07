@@ -335,7 +335,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 			}
 		}
 		if ( count( $rows ) ) {
-			$dbw->insert( 'log_search', $rows, __METHOD__, 'IGNORE' );
+			$dbw->insert( 'log_search', $rows, __METHOD__, [ 'IGNORE' ] );
 		}
 
 		return $this->id;

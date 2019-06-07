@@ -141,7 +141,7 @@ TEXT
 						'iw_local' => 1
 					],
 					__METHOD__,
-					'IGNORE'
+					[ 'IGNORE' ]
 				);
 			}
 
