@@ -151,7 +151,8 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Add a set of tables to the internal array
-	 * @param string|string[] $tables Table name or array of table names
+	 * @param string|array $tables Table name or array of table names
+	 *  or nested arrays for joins using parentheses for grouping
 	 * @param string|null $alias Table alias, or null for no alias. Cannot be
 	 *  used with multiple tables
 	 */
