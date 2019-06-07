@@ -85,18 +85,4 @@ class ApiBlockTest extends ApiTestCase {
 			self::$users['sysop']->getUser()
 		);
 	}
-
-	public function testRangeBlock() {
-		$this->mUser = User::newFromName( '128.0.0.0/16', false );
-		$this->doBlock();
-	}
-
-	/**
-	 * @expectedException ApiUsageException
-	 * @expectedExceptionMessage Range blocks larger than /16 are not allowed.
-	 */
-	public function testVeryLargeRangeBlock() {
-		$this->mUser = User::newFromName( '128.0.0.0/1', false );
-		$this->doBlock();
-	}
 }
