@@ -49,7 +49,7 @@ class ChangeTagsLogItem extends RevisionItemBase {
 	}
 
 	public function canView() {
-		return LogEventsList::userCan( $this->row, Revision::DELETED_RESTRICTED, $this->list->getUser() );
+		return LogEventsList::userCan( $this->row, Revision::SUPPRESSED_ALL, $this->list->getUser() );
 	}
 
 	public function canViewContent() {
