@@ -522,7 +522,7 @@ class SqlBagOStuff extends BagOStuff {
 					'exptime' => $row->exptime
 				],
 				__METHOD__,
-				'IGNORE'
+				[ 'IGNORE' ]
 			);
 
 			if ( $db->affectedRows() == 0 ) {

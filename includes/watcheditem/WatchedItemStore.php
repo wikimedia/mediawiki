@@ -769,7 +769,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		foreach ( $rowBatches as $toInsert ) {
 			// Use INSERT IGNORE to avoid overwriting the notification timestamp
 			// if there's already an entry for this page
-			$dbw->insert( 'watchlist', $toInsert, __METHOD__, 'IGNORE' );
+			$dbw->insert( 'watchlist', $toInsert, __METHOD__, [ 'IGNORE' ] );
 			$affectedRows += $dbw->affectedRows();
 			if ( $ticket ) {
 				$this->lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );

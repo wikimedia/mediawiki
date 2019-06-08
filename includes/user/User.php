@@ -2549,7 +2549,7 @@ class User implements IDBAccessObject, UserIdentity {
 		$dbw->insert( 'user_newtalk',
 			[ $field => $id, 'user_last_timestamp' => $dbw->timestampOrNull( $ts ) ],
 			__METHOD__,
-			'IGNORE' );
+			[ 'IGNORE' ] );
 		if ( $dbw->affectedRows() ) {
 			wfDebug( __METHOD__ . ": set on ($field, $id)\n" );
 			return true;
