@@ -65,8 +65,6 @@
 			api.postWithToken( 'csrf', {
 				action: 'logout'
 			} ).done( function () {
-				// Horrible hack until deprecation of logoutToken in GET is done
-				returnUrl = returnUrl.replace( /logoutToken=.+?($|&)/g, 'logoutToken=%2B%5C' );
 				window.location = returnUrl;
 			} ).fail( function ( e ) {
 				mw.notify(
