@@ -1343,7 +1343,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Wikimedia\Rdbms\Database::registerTempTableWrite
+	 * @covers Wikimedia\Rdbms\Database::getTempWrites
 	 */
 	public function testSessionTempTables() {
 		$temp1 = $this->database->tableName( 'tmp_table_1' );
