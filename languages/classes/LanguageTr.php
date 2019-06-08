@@ -48,7 +48,7 @@ class LanguageTr extends Language {
 	 * @return mixed|string
 	 */
 	function lcfirst( $string ) {
-		if ( strlen( $string ) && $string[0] == 'I' ) {
+		if ( strlen( $string ) && in_array( $string[0], [ 'I', 'İ' ] ) ) {
 			return 'ı' . substr( $string, 1 );
 		}
 		return parent::lcfirst( $string );
