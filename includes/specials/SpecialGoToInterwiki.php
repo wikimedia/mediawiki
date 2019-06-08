@@ -71,7 +71,7 @@ class SpecialGoToInterwiki extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * @return String
+	 * @return string
 	 */
 	protected function getGroupName() {
 		return 'redirects';

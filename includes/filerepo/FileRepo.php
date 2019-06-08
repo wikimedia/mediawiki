@@ -137,6 +137,9 @@ class FileRepo {
 	/** @var string Secret key to pass as an X-Swift-Secret header to the proxied thumb service */
 	protected $thumbProxySecret;
 
+	/** @var WANObjectCache */
+	protected $wanCache;
+
 	/**
 	 * @param array|null $info
 	 * @throws MWException
@@ -200,6 +203,8 @@ class FileRepo {
 		}
 
 		$this->supportsSha1URLs = !empty( $info['supportsSha1URLs'] );
+
+		$this->wanCache = $info['wanCache'] ?? WANObjectCache::newEmpty();
 	}
 
 	/**
@@ -1507,7 +1512,7 @@ class FileRepo {
 	 * @throws MWException
 	 */
 	protected function resolveToStoragePath( $path ) {
-		if ( $this->isVirtualUrl( $path ) ) {
+		if ( self::isVirtualUrl( $path ) ) {
 			return $this->resolveVirtualUrl( $path );
 		}
 
@@ -1818,7 +1823,7 @@ class FileRepo {
 	/**
 	 * Get a key on the primary cache for this repository.
 	 * Returns false if the repository's cache is not accessible at this site.
-	 * The parameters are the parts of the key, as for wfMemcKey().
+	 * The parameters are the parts of the key.
 	 *
 	 * STUB
 	 * @return bool
@@ -1830,7 +1835,7 @@ class FileRepo {
 	/**
 	 * Get a key for this repo in the local cache domain. These cache keys are
 	 * not shared with remote instances of the repo.
-	 * The parameters are the parts of the key, as for wfMemcKey().
+	 * The parameters are the parts of the key.
 	 *
 	 * @return string
 	 */
@@ -1838,7 +1843,7 @@ class FileRepo {
 		$args = func_get_args();
 		array_unshift( $args, 'filerepo', $this->getName() );
 
-		return wfMemcKey( ...$args );
+		return $this->wanCache->makeKey( ...$args );
 	}
 
 	/**

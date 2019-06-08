@@ -117,9 +117,7 @@ class CLIParser extends Maintenance {
 	 * @return Title
 	 */
 	protected function getTitle() {
-		$title = $this->getOption( 'title' )
-			? $this->getOption( 'title' )
-			: 'CLIParser';
+		$title = $this->getOption( 'title' ) ?: 'CLIParser';
 
 		return Title::newFromText( $title );
 	}

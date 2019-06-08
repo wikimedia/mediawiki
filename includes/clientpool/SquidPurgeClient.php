@@ -25,7 +25,7 @@
  * Uses asynchronous I/O, allowing purges to be done in a highly parallel
  * manner.
  *
- * Could be replaced by curl_multi_exec() or some such.
+ * @todo Consider using MultiHttpClient.
  */
 class SquidPurgeClient {
 	/** @var string */
@@ -220,6 +220,7 @@ class SquidPurgeClient {
 			$request[] = "PURGE $path HTTP/1.1";
 			$request[] = "Host: $host";
 		} else {
+			wfDeprecated( '$wgSquidPurgeUseHostHeader = false', '1.33' );
 			$request[] = "PURGE $url HTTP/1.0";
 		}
 		$request[] = "Connection: Keep-Alive";
@@ -326,7 +327,7 @@ class SquidPurgeClient {
 				}
 				if ( $this->readState == 'status' ) {
 					$this->processStatusLine( $lines[0] );
-				} else { // header
+				} else {
 					$this->processHeaderLine( $lines[0] );
 				}
 				$this->readBuffer = $lines[1];

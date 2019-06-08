@@ -1,11 +1,16 @@
 /* This style adds a toggle button with internationalized message for the TOC. */
 
-/* When the browser supports :checked then overwrite the style="display:none" and make the /*
+/* When the browser supports :checked then overwrite the style="display:none" and make the */
 /* checkbox invisible on another way to allow to focus the checkbox with keyboard. */
 :not( :checked ) > .toctogglecheckbox {
+	// Make the checkbox visible to allow it to focus with keyboard.
 	display: inline !important; /* stylelint-disable-line declaration-no-important */
+	// Remove any size of the checkbox.
 	position: absolute;
+	// Make the checkbox invisible.
 	opacity: 0;
+	// Prevent that the checkbox is clickable and changes the cursor.
+	z-index: -1;
 }
 
 .toctogglespan {
@@ -47,12 +52,4 @@
 
 .toctogglecheckbox:not( :checked ) + .toctitle .toctogglelabel:after {
 	content: '@{msg-hidetoc}';
-}
-
-/*
-Cached: https://phabricator.wikimedia.org/T195053#4417392
-Can be cleared at least one week after the above comment
-*/
-.toctogglespan ~ .toctoggle {
-	display: none;
 }

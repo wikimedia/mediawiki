@@ -91,7 +91,6 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	private function getLogoPreloadlinks() {
 		$logo = $this->getLogoData( $this->getConfig() );
 
-		$tags = [];
 		$logosPerDppx = [];
 		$logos = [];
 
@@ -99,14 +98,14 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 
 		if ( !is_array( $logo ) ) {
 			// No media queries required if we only have one variant
-			$preloadLinks[ $logo ] = [ 'as' => 'image' ];
+			$preloadLinks[$logo] = [ 'as' => 'image' ];
 			return $preloadLinks;
 		}
 
 		if ( isset( $logo['svg'] ) ) {
 			// No media queries required if we only have a 1x and svg variant
 			// because all preload-capable browsers support SVGs
-			$preloadLinks [ $logo['svg'] ] = [ 'as' => 'image' ];
+			$preloadLinks[$logo['svg']] = [ 'as' => 'image' ];
 			return $preloadLinks;
 		}
 
@@ -125,7 +124,10 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		} );
 
 		foreach ( $logosPerDppx as $dppx => $src ) {
-			$logos[] = [ 'dppx' => $dppx, 'src' => $src ];
+			$logos[] = [
+				'dppx' => $dppx,
+				'src' => $src
+			];
 		}
 
 		$logosCount = count( $logos );
@@ -139,21 +141,24 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 				// Smallest dppx
 				// min-resolution is ">=" (larger than or equal to)
 				// "not min-resolution" is essentially "<"
-				$media_query = 'not all and (min-resolution: ' . $logos[ 1 ]['dppx'] . 'dppx)';
+				$media_query = 'not all and (min-resolution: ' . $logos[1]['dppx'] . 'dppx)';
 			} elseif ( $i !== $logosCount - 1 ) {
 				// In between
 				// Media query expressions can only apply "not" to the entire expression
 				// (e.g. can't express ">= 1.5 and not >= 2).
 				// Workaround: Use <= 1.9999 in place of < 2.
-				$upper_bound = floatval( $logos[ $i + 1 ]['dppx'] ) - 0.000001;
-				$media_query = '(min-resolution: ' . $logos[ $i ]['dppx'] .
+				$upper_bound = floatval( $logos[$i + 1]['dppx'] ) - 0.000001;
+				$media_query = '(min-resolution: ' . $logos[$i]['dppx'] .
 					'dppx) and (max-resolution: ' . $upper_bound . 'dppx)';
 			} else {
 				// Largest dppx
-				$media_query = '(min-resolution: ' . $logos[ $i ]['dppx'] . 'dppx)';
+				$media_query = '(min-resolution: ' . $logos[$i]['dppx'] . 'dppx)';
 			}
 
-			$preloadLinks[ $logos[$i]['src'] ] = [ 'as' => 'image', 'media' => $media_query ];
+			$preloadLinks[$logos[$i]['src']] = [
+				'as' => 'image',
+				'media' => $media_query
+			];
 		}
 
 		return $preloadLinks;

@@ -54,11 +54,7 @@ class UploadFromChunks extends UploadFromFile {
 		if ( $stash ) {
 			$this->stash = $stash;
 		} else {
-			if ( $user ) {
-				wfDebug( __METHOD__ . " creating new UploadFromChunks instance for " . $user->getId() . "\n" );
-			} else {
-				wfDebug( __METHOD__ . " creating new UploadFromChunks instance with no user\n" );
-			}
+			wfDebug( __METHOD__ . " creating new UploadFromChunks instance for " . $user->getId() . "\n" );
 			$this->stash = new UploadStash( $this->repo, $this->user );
 		}
 	}
@@ -411,20 +407,5 @@ class UploadFromChunks extends UploadFromFile {
 		if ( is_array( $res ) ) {
 			throw new UploadChunkVerificationException( $res );
 		}
-	}
-}
-
-class UploadChunkZeroLengthFileException extends MWException {
-}
-
-class UploadChunkFileException extends MWException {
-}
-
-class UploadChunkVerificationException extends MWException {
-	public $msg;
-	public function __construct( array $res ) {
-		$this->msg = wfMessage( ...$res );
-		parent::__construct( wfMessage( ...$res )
-			->inLanguage( 'en' )->useDatabase( false )->text() );
 	}
 }

@@ -52,7 +52,7 @@ class PurgeChangedPages extends Maintenance {
 		global $wgHTCPRouting;
 
 		if ( $this->hasOption( 'htcp-dest' ) ) {
-			$parts = explode( ':', $this->getOption( 'htcp-dest' ) );
+			$parts = explode( ':', $this->getOption( 'htcp-dest' ), 2 );
 			if ( count( $parts ) < 2 ) {
 				// Add default htcp port
 				$parts[] = '4827';
@@ -99,7 +99,7 @@ class PurgeChangedPages extends Maintenance {
 				__METHOD__,
 				[ 'ORDER BY' => 'rev_timestamp', 'LIMIT' => $bSize ],
 				[
-					'page' => [ 'INNER JOIN', 'rev_page=page_id' ],
+					'page' => [ 'JOIN', 'rev_page=page_id' ],
 				]
 			);
 
@@ -170,23 +170,31 @@ class PurgeChangedPages extends Maintenance {
 	 */
 	protected function pageableSortedRows( ResultWrapper $res, $column, $limit ) {
 		$rows = iterator_to_array( $res, false );
-		$count = count( $rows );
-		if ( !$count ) {
-			return [ [], null ]; // nothing to do
-		} elseif ( $count < $limit ) {
-			return [ $rows, $rows[$count - 1]->$column ]; // no more rows left
+
+		// Nothing to do
+		if ( !$rows ) {
+			return [ [], null ];
 		}
-		$lastValue = $rows[$count - 1]->$column; // should be the highest
-		for ( $i = $count - 1; $i >= 0; --$i ) {
-			if ( $rows[$i]->$column === $lastValue ) {
-				unset( $rows[$i] );
-			} else {
+
+		$lastValue = end( $rows )->$column;
+		if ( count( $rows ) < $limit ) {
+			return [ $rows, $lastValue ];
+		}
+
+		for ( $i = count( $rows ) - 1; $i >= 0; --$i ) {
+			if ( $rows[$i]->$column !== $lastValue ) {
 				break;
 			}
-		}
-		$lastValueLeft = count( $rows ) ? $rows[count( $rows ) - 1]->$column : null;
 
-		return [ $rows, $lastValueLeft ];
+			unset( $rows[$i] );
+		}
+
+		// No more rows left
+		if ( !$rows ) {
+			return [ [], null ];
+		}
+
+		return [ $rows, end( $rows )->$column ];
 	}
 }
 

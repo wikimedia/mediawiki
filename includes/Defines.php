@@ -31,7 +31,7 @@ use Wikimedia\Rdbms\IDatabase;
 
 # Obsolete aliases
 /**
- * @deprecated since 1.28
+ * @deprecated since 1.28, use DB_REPLICA instead
  */
 define( 'DB_SLAVE', -1 );
 
@@ -316,4 +316,14 @@ define( 'MIGRATION_OLD', 0x00000000 | SCHEMA_COMPAT_OLD );
 define( 'MIGRATION_WRITE_BOTH', 0x10000000 | SCHEMA_COMPAT_READ_BOTH | SCHEMA_COMPAT_WRITE_BOTH );
 define( 'MIGRATION_WRITE_NEW', 0x20000000 | SCHEMA_COMPAT_READ_BOTH | SCHEMA_COMPAT_WRITE_NEW );
 define( 'MIGRATION_NEW', 0x30000000 | SCHEMA_COMPAT_NEW );
+/**@}*/
+
+/**@{
+ * XML dump schema versions, for use with XmlDumpWriter.
+ * See also the corresponding export-nnnn.xsd files in the docs directory,
+ * which are also listed at <https://www.mediawiki.org/xml/>.
+ * Note that not all old schema versions are represented here, as several
+ * were already unsupported at the time these constants were introduced.
+ */
+define( 'XML_DUMP_SCHEMA_VERSION_10', '0.10' );
 /**@}*/

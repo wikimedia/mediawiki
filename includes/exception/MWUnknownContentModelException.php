@@ -18,6 +18,7 @@ class MWUnknownContentModelException extends MWException {
 			'handle this content model.' );
 		$this->modelId = $modelId;
 	}
+
 	/** @return string */
 	public function getModelId() {
 		return $this->modelId;

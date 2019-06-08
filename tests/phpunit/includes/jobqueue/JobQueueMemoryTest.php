@@ -18,7 +18,7 @@ class JobQueueMemoryTest extends PHPUnit\Framework\TestCase {
 	private function newJobQueue() {
 		return JobQueue::factory( [
 			'class' => JobQueueMemory::class,
-			'wiki' => wfWikiID(),
+			'domain' => WikiMap::getCurrentWikiDbDomain()->getId(),
 			'type' => 'null',
 		] );
 	}

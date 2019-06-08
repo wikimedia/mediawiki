@@ -207,7 +207,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 				$conds + $subconds,
 				__METHOD__,
 				$order + $query_options,
-				$join_conds + [ $link_table => [ 'INNER JOIN', $subjoin ] ]
+				$join_conds + [ $link_table => [ 'JOIN', $subjoin ] ]
 			);
 
 			if ( $dbr->unionSupportsOrderAndLimit() ) {
@@ -224,7 +224,8 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			$sql = $subsql[0];
 		} else {
 			// need to resort and relimit after union
-			$sql = $dbr->unionQueries( $subsql, false ) . ' ORDER BY rc_timestamp DESC';
+			$sql = $dbr->unionQueries( $subsql, $dbr::UNION_DISTINCT ) .
+				' ORDER BY rc_timestamp DESC';
 			$sql = $dbr->limitResult( $sql, $limit, false );
 		}
 
@@ -297,15 +298,19 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$targetTitle = $this->getTargetTitle();
 		if ( $targetTitle === false ) {
 			$this->getOutput()->addHTML(
-				'<div class="mw-changeslist-empty mw-changeslist-notargetpage">' .
-				$this->msg( 'recentchanges-notargetpage' )->parse() .
-				'</div>'
+				Html::rawElement(
+					'div',
+					[ 'class' => 'mw-changeslist-empty mw-changeslist-notargetpage' ],
+					$this->msg( 'recentchanges-notargetpage' )->parse()
+				)
 			);
 		} elseif ( !$targetTitle || $targetTitle->isExternal() ) {
 			$this->getOutput()->addHTML(
-				'<div class="mw-changeslist-empty mw-changeslist-invalidtargetpage">' .
-				$this->msg( 'allpagesbadtitle' )->parse() .
-				'</div>'
+				Html::rawElement(
+					'div',
+					[ 'class' => 'mw-changeslist-empty mw-changeslist-invalidtargetpage' ],
+					$this->msg( 'allpagesbadtitle' )->parse()
+				)
 			);
 		} else {
 			parent::outputNoResults();

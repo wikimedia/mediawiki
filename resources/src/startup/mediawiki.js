@@ -13,7 +13,7 @@
 	'use strict';
 
 	var mw, StringSet, log,
-		trackQueue = [];
+		hasOwn = Object.prototype.hasOwnProperty;
 
 	/**
 	 * FNV132 hash function
@@ -28,11 +28,11 @@
 	 * @return {string} hash as an seven-character base 36 string
 	 */
 	function fnv132( str ) {
-		/* eslint-disable no-bitwise */
 		var hash = 0x811C9DC5,
-			i;
+			i = 0;
 
-		for ( i = 0; i < str.length; i++ ) {
+		/* eslint-disable no-bitwise */
+		for ( ; i < str.length; i++ ) {
 			hash += ( hash << 1 ) + ( hash << 4 ) + ( hash << 7 ) + ( hash << 8 ) + ( hash << 24 );
 			hash ^= str.charCodeAt( i );
 		}
@@ -41,9 +41,9 @@
 		while ( hash.length < 7 ) {
 			hash = '0' + hash;
 		}
+		/* eslint-enable no-bitwise */
 
 		return hash;
-		/* eslint-enable no-bitwise */
 	}
 
 	function defineFallbacks() {
@@ -52,13 +52,15 @@
 		 * @private
 		 * @class
 		 */
-		StringSet = window.Set || function StringSet() {
+		StringSet = window.Set || function () {
 			var set = Object.create( null );
-			this.add = function ( value ) {
-				set[ value ] = true;
-			};
-			this.has = function ( value ) {
-				return value in set;
+			return {
+				add: function ( value ) {
+					set[ value ] = true;
+				},
+				has: function ( value ) {
+					return value in set;
+				}
 			};
 		};
 	}
@@ -99,19 +101,16 @@
 	 * @param {string} [data.module] Name of module which caused the error
 	 */
 	function logError( topic, data ) {
-		/* eslint-disable no-console */
 		var msg,
 			e = data.exception,
-			source = data.source,
-			module = data.module,
 			console = window.console;
 
 		if ( console && console.log ) {
-			msg = ( e ? 'Exception' : 'Error' ) + ' in ' + source;
-			if ( module ) {
-				msg += ' in module ' + module;
-			}
-			msg += ( e ? ':' : '.' );
+			msg = ( e ? 'Exception' : 'Error' ) +
+				' in ' + data.source +
+				( data.module ? ' in module ' + data.module : '' ) +
+				( e ? ':' : '.' );
+
 			console.log( msg );
 
 			// If we have an exception object, log it to the warning channel to trigger
@@ -120,7 +119,6 @@
 				console.warn( e );
 			}
 		}
-		/* eslint-enable no-console */
 	}
 
 	/**
@@ -142,13 +140,11 @@
 			this.set = function ( selection, value ) {
 				var s;
 				if ( arguments.length > 1 ) {
-					if ( typeof selection !== 'string' ) {
-						return false;
+					if ( typeof selection === 'string' ) {
+						setGlobalMapValue( this, selection, value );
+						return true;
 					}
-					setGlobalMapValue( this, selection, value );
-					return true;
-				}
-				if ( typeof selection === 'object' ) {
+				} else if ( typeof selection === 'object' ) {
 					for ( s in selection ) {
 						setGlobalMapValue( this, s, selection[ s ] );
 					}
@@ -218,13 +214,13 @@
 			var s;
 			// Use `arguments.length` because `undefined` is also a valid value.
 			if ( arguments.length > 1 ) {
-				if ( typeof selection !== 'string' ) {
-					return false;
+				// Set one key
+				if ( typeof selection === 'string' ) {
+					this.values[ selection ] = value;
+					return true;
 				}
-				this.values[ selection ] = value;
-				return true;
-			}
-			if ( typeof selection === 'object' ) {
+			} else if ( typeof selection === 'object' ) {
+				// Set multiple keys
 				for ( s in selection ) {
 					this.values[ s ] = selection[ s ];
 				}
@@ -315,23 +311,25 @@
 		 * @param {string} key Name of property to create in `obj`
 		 * @param {Mixed} val The value this property should return when accessed
 		 * @param {string} [msg] Optional text to include in the deprecation message
-		 * @param {string} [logName=key] Optional custom name for the feature.
-		 *  This is used instead of `key` in the message and `mw.deprecate` tracking.
+		 * @param {string} [logName] Name for the feature for logging and tracking
+		 *  purposes. Except for properties of the window object, tracking is only
+		 *  enabled if logName is set.
 		 */
 		log.deprecate = function ( obj, key, val, msg, logName ) {
 			var stacks;
 			function maybeLog() {
-				var name,
+				var name = logName || key,
 					trace = new Error().stack;
 				if ( !stacks ) {
 					stacks = new StringSet();
 				}
 				if ( !stacks.has( trace ) ) {
 					stacks.add( trace );
-					name = logName || key;
-					mw.track( 'mw.deprecate', name );
+					if ( logName || obj === window ) {
+						mw.track( 'mw.deprecate', name );
+					}
 					mw.log.warn(
-						'Use of "' + name + '" is deprecated.' + ( msg ? ( ' ' + msg ) : '' )
+						'Use of "' + name + '" is deprecated.' + ( msg ? ' ' + msg : '' )
 					);
 				}
 			}
@@ -365,7 +363,7 @@
 	mw = {
 		redefineFallbacksForTest: function () {
 			if ( !window.QUnit ) {
-				throw new Error( 'Reset not allowed outside unit tests' );
+				throw new Error( 'Not allowed' );
 			}
 			defineFallbacks();
 		},
@@ -380,12 +378,13 @@
 		 * @return {number} Current time
 		 */
 		now: function () {
-			// Optimisation: Define the shortcut on first call, not at module definition.
+			// Optimisation: Make startup initialisation faster by defining the
+			// shortcut on first call, not at module definition.
 			var perf = window.performance,
 				navStart = perf && perf.timing && perf.timing.navigationStart;
 
 			// Define the relevant shortcut
-			mw.now = navStart && typeof perf.now === 'function' ?
+			mw.now = navStart && perf.now ?
 				function () { return navStart + perf.now(); } :
 				Date.now;
 
@@ -395,14 +394,16 @@
 		/**
 		 * List of all analytic events emitted so far.
 		 *
+		 * Exposed only for use by mediawiki.base.
+		 *
 		 * @private
 		 * @property {Array}
 		 */
-		trackQueue: trackQueue,
+		trackQueue: [],
 
 		track: function ( topic, data ) {
-			trackQueue.push( { topic: topic, timeStamp: mw.now(), data: data } );
-			// The base module extends this method to fire events here
+			mw.trackQueue.push( { topic: topic, timeStamp: mw.now(), data: data } );
+			// This method is extended by mediawiki.base to also fire events.
 		},
 
 		/**
@@ -535,14 +536,13 @@
 			 *             'dependencies': ['required.foo', 'bar.also', ...]
 			 *             'group': 'somegroup', (or) null
 			 *             'source': 'local', (or) 'anotherwiki'
-			 *             'skip': 'return !!window.Example', (or) null
+			 *             'skip': 'return !!window.Example', (or) null, (or) boolean result of skip
 			 *             'module': export Object
 			 *
 			 *             // Set from execute() or mw.loader.state()
 			 *             'state': 'registered', 'loaded', 'loading', 'ready', 'error', or 'missing'
 			 *
 			 *             // Optionally added at run-time by mw.loader.implement()
-			 *             'skipped': true
 			 *             'script': closure, array of urls, or string
 			 *             'style': { ... } (see #execute)
 			 *             'messages': { 'key': 'value', ... }
@@ -716,7 +716,7 @@
 
 			/**
 			 * @private
-			 * @param {Array} modules List of module names
+			 * @param {string[]} modules List of module names
 			 * @return {string} Hash of concatenated version hashes.
 			 */
 			function getCombinedVersion( modules ) {
@@ -731,12 +731,12 @@
 			 * execute the module or job now.
 			 *
 			 * @private
-			 * @param {Array} modules Names of modules to be checked
+			 * @param {string[]} modules Names of modules to be checked
 			 * @return {boolean} True if all modules are in state 'ready', false otherwise
 			 */
 			function allReady( modules ) {
-				var i;
-				for ( i = 0; i < modules.length; i++ ) {
+				var i = 0;
+				for ( ; i < modules.length; i++ ) {
 					if ( mw.loader.getState( modules[ i ] ) !== 'ready' ) {
 						return false;
 					}
@@ -765,8 +765,9 @@
 			 * @return {boolean} True if no modules are in state 'error' or 'missing', false otherwise
 			 */
 			function anyFailed( modules ) {
-				var i, state;
-				for ( i = 0; i < modules.length; i++ ) {
+				var state,
+					i = 0;
+				for ( ; i < modules.length; i++ ) {
 					state = mw.loader.getState( modules[ i ] );
 					if ( state === 'error' || state === 'missing' ) {
 						return true;
@@ -840,7 +841,7 @@
 							i -= 1;
 							try {
 								if ( failed && job.error ) {
-									job.error( new Error( 'Module has failed dependencies' ), job.dependencies );
+									job.error( new Error( 'Failed dependencies' ), job.dependencies );
 								} else if ( !failed && job.ready ) {
 									job.ready();
 								}
@@ -916,48 +917,33 @@
 			 *  dependencies, such that later modules depend on earlier modules. The array
 			 *  contains the module names. If the array contains already some module names,
 			 *  this function appends its result to the pre-existing array.
-			 * @param {StringSet} [unresolved] Used to track the current dependency
-			 *  chain, and to report loops in the dependency graph.
-			 * @throws {Error} If any unregistered module or a dependency loop is encountered
+			 * @param {StringSet} [unresolved] Used to detect loops in the dependency graph.
+			 * @throws {Error} If an unknown module or a circular dependency is encountered
 			 */
 			function sortDependencies( module, resolved, unresolved ) {
-				var i, deps, skip;
+				var i, skip, deps;
 
 				if ( !( module in registry ) ) {
-					throw new Error( 'Unknown dependency: ' + module );
+					throw new Error( 'Unknown module: ' + module );
 				}
 
-				if ( registry[ module ].skip !== null ) {
+				if ( typeof registry[ module ].skip === 'string' ) {
 					// eslint-disable-next-line no-new-func
-					skip = new Function( registry[ module ].skip );
-					registry[ module ].skip = null;
-					if ( skip() ) {
-						registry[ module ].skipped = true;
+					skip = ( new Function( registry[ module ].skip )() );
+					registry[ module ].skip = !!skip;
+					if ( skip ) {
 						registry[ module ].dependencies = [];
 						setAndPropagate( module, 'ready' );
 						return;
 					}
 				}
 
-				if ( resolved.indexOf( module ) !== -1 ) {
-					// Module already resolved; nothing to do
-					return;
-				}
 				// Create unresolved if not passed in
 				if ( !unresolved ) {
 					unresolved = new StringSet();
 				}
 
-				// Add base modules
-				if ( baseModules.indexOf( module ) === -1 ) {
-					baseModules.forEach( function ( baseModule ) {
-						if ( resolved.indexOf( baseModule ) === -1 ) {
-							resolved.push( baseModule );
-						}
-					} );
-				}
-
-				// Tracks down dependencies
+				// Track down dependencies
 				deps = registry[ module ].dependencies;
 				unresolved.add( module );
 				for ( i = 0; i < deps.length; i++ ) {
@@ -971,6 +957,7 @@
 						sortDependencies( deps[ i ], resolved, unresolved );
 					}
 				}
+
 				resolved.push( module );
 			}
 
@@ -983,8 +970,10 @@
 			 * @throws {Error} If an unregistered module or a dependency loop is encountered
 			 */
 			function resolve( modules ) {
-				var i, resolved = [];
-				for ( i = 0; i < modules.length; i++ ) {
+				// Always load base modules
+				var resolved = baseModules.slice(),
+					i = 0;
+				for ( ; i < modules.length; i++ ) {
 					sortDependencies( modules[ i ], resolved );
 				}
 				return resolved;
@@ -999,8 +988,11 @@
 			 * @return {Array} List of dependencies.
 			 */
 			function resolveStubbornly( modules ) {
-				var i, saved, resolved = [];
-				for ( i = 0; i < modules.length; i++ ) {
+				var saved,
+					// Always load base modules
+					resolved = baseModules.slice(),
+					i = 0;
+				for ( ; i < modules.length; i++ ) {
 					saved = resolved.slice();
 					try {
 						sortDependencies( modules[ i ], resolved );
@@ -1018,6 +1010,84 @@
 			}
 
 			/**
+			 * Resolve a relative file path.
+			 *
+			 * For example, resolveRelativePath( '../foo.js', 'resources/src/bar/bar.js' )
+			 * returns 'resources/src/foo.js'.
+			 *
+			 * @param {string} relativePath Relative file path, starting with ./ or ../
+			 * @param {string} basePath Path of the file (not directory) relativePath is relative to
+			 * @return {string|null} Resolved path, or null if relativePath does not start with ./ or ../
+			 */
+			function resolveRelativePath( relativePath, basePath ) {
+				var prefixes, prefix, baseDirParts,
+					relParts = relativePath.match( /^((?:\.\.?\/)+)(.*)$/ );
+
+				if ( !relParts ) {
+					return null;
+				}
+
+				baseDirParts = basePath.split( '/' );
+				// basePath looks like 'foo/bar/baz.js', so baseDirParts looks like [ 'foo', 'bar, 'baz.js' ]
+				// Remove the file component at the end, so that we are left with only the directory path
+				baseDirParts.pop();
+
+				prefixes = relParts[ 1 ].split( '/' );
+				// relParts[ 1 ] looks like '../../', so prefixes looks like [ '..', '..', '' ]
+				// Remove the empty element at the end
+				prefixes.pop();
+
+				// For every ../ in the path prefix, remove one directory level from baseDirParts
+				while ( ( prefix = prefixes.pop() ) !== undefined ) {
+					if ( prefix === '..' ) {
+						baseDirParts.pop();
+					}
+				}
+
+				// If there's anything left of the base path, prepend it to the file path
+				return ( baseDirParts.length ? baseDirParts.join( '/' ) + '/' : '' ) + relParts[ 2 ];
+			}
+
+			/**
+			 * Make a require() function scoped to a package file
+			 * @private
+			 * @param {Object} moduleObj Module object from the registry
+			 * @param {string} basePath Path of the file this is scoped to. Used for relative paths.
+			 * @return {Function}
+			 */
+			function makeRequireFunction( moduleObj, basePath ) {
+				return function require( moduleName ) {
+					var fileName, fileContent, result, moduleParam,
+						scriptFiles = moduleObj.script.files;
+					fileName = resolveRelativePath( moduleName, basePath );
+					if ( fileName === null ) {
+						// Not a relative path, so it's a module name
+						return mw.loader.require( moduleName );
+					}
+
+					if ( !hasOwn.call( scriptFiles, fileName ) ) {
+						throw new Error( 'Cannot require() undefined file ' + fileName );
+					}
+					if ( hasOwn.call( moduleObj.packageExports, fileName ) ) {
+						// File has already been executed, return the cached result
+						return moduleObj.packageExports[ fileName ];
+					}
+
+					fileContent = scriptFiles[ fileName ];
+					if ( typeof fileContent === 'function' ) {
+						moduleParam = { exports: {} };
+						fileContent( makeRequireFunction( moduleObj, fileName ), moduleParam );
+						result = moduleParam.exports;
+					} else {
+						// fileContent is raw data, just pass it through
+						result = fileContent;
+					}
+					moduleObj.packageExports[ fileName ] = result;
+					return result;
+				};
+			}
+
+			/**
 			 * Load and execute a script.
 			 *
 			 * @private
@@ -1025,13 +1095,18 @@
 			 * @param {Function} [callback] Callback to run after request resolution
 			 */
 			function addScript( src, callback ) {
+				// Use a <script> element rather than XHR. Using XHR changes the request
+				// headers (potentially missing a cache hit), and reduces caching in general
+				// since browsers cache XHR much less (if at all). And XHR means we retrieve
+				// text, so we'd need to eval, which then messes up line numbers.
+				// The drawback is that <script> does not offer progress events, feedback is
+				// only given after downloading, parsing, and execution have completed.
 				var script = document.createElement( 'script' );
 				script.src = src;
 				script.onload = script.onerror = function () {
 					if ( script.parentNode ) {
 						script.parentNode.removeChild( script );
 					}
-					script = null;
 					if ( callback ) {
 						callback();
 						callback = null;
@@ -1169,9 +1244,9 @@
 						// these as the server will deny them anyway (T101806).
 						if ( registry[ module ].group === 'private' ) {
 							setAndPropagate( module, 'error' );
-							return;
+						} else {
+							queue.push( module );
 						}
-						queue.push( module );
 					}
 				} );
 
@@ -1196,7 +1271,7 @@
 				$CODE.profileExecuteStart();
 
 				runScript = function () {
-					var script, markModuleReady, nestedAddScript;
+					var script, markModuleReady, nestedAddScript, mainScript;
 
 					$CODE.profileScriptStart();
 					script = registry[ module ].script;
@@ -1221,23 +1296,40 @@
 					try {
 						if ( Array.isArray( script ) ) {
 							nestedAddScript( script, markModuleReady, 0 );
-						} else if ( typeof script === 'function' ) {
-							// Keep in sync with queueModuleScript() for debug mode
-							if ( module === 'jquery' ) {
-								// This is a special case for when 'jquery' itself is being loaded.
-								// - The standard jquery.js distribution does not set `window.jQuery`
-								//   in CommonJS-compatible environments (Node.js, AMD, RequireJS, etc.).
-								// - MediaWiki's 'jquery' module also bundles jquery.migrate.js, which
-								//   in a CommonJS-compatible environment, will use require('jquery'),
-								//   but that can't work when we're still inside that module.
-								script();
+						} else if (
+							typeof script === 'function' || (
+								typeof script === 'object' &&
+								script !== null
+							)
+						) {
+							if ( typeof script === 'function' ) {
+								// Keep in sync with queueModuleScript() for debug mode
+								if ( module === 'jquery' ) {
+									// This is a special case for when 'jquery' itself is being loaded.
+									// - The standard jquery.js distribution does not set `window.jQuery`
+									//   in CommonJS-compatible environments (Node.js, AMD, RequireJS, etc.).
+									// - MediaWiki's 'jquery' module also bundles jquery.migrate.js, which
+									//   in a CommonJS-compatible environment, will use require('jquery'),
+									//   but that can't work when we're still inside that module.
+									script();
+								} else {
+									// Pass jQuery twice so that the signature of the closure which wraps
+									// the script can bind both '$' and 'jQuery'.
+									script( window.$, window.$, mw.loader.require, registry[ module ].module );
+								}
 							} else {
-								// Pass jQuery twice so that the signature of the closure which wraps
-								// the script can bind both '$' and 'jQuery'.
-								script( window.$, window.$, mw.loader.require, registry[ module ].module );
+								mainScript = script.files[ script.main ];
+								if ( typeof mainScript !== 'function' ) {
+									throw new Error( 'Main file ' + script.main + ' in module ' + module +
+										' must be of type function, found ' + typeof mainScript );
+								}
+								// jQuery parameters are not passed for multi-file modules
+								mainScript(
+									makeRequireFunction( registry[ module ], script.main ),
+									registry[ module ].module
+								);
 							}
 							markModuleReady();
-
 						} else if ( typeof script === 'string' ) {
 							// Site and user modules are legacy scripts that run in the global scope.
 							// This is transported as a string instead of a function to avoid needing
@@ -1398,7 +1490,7 @@
 			 * to a query string of the form `foo.bar,baz|bar.baz,quux`.
 			 *
 			 * See `ResourceLoader::makePackedModulesString()` in PHP, of which this is a port.
-			 * On the server, unpacking is done by `ResourceLoaderContext::expandModuleNames()`.
+			 * On the server, unpacking is done by `ResourceLoader::expandModuleNames()`.
 			 *
 			 * Note: This is only half of the logic, the other half has to be in #batchRequest(),
 			 * because its implementation needs to keep track of potential string size in order
@@ -1479,7 +1571,7 @@
 			 * @param {string[]} batch
 			 */
 			function batchRequest( batch ) {
-				var reqBase, splits, maxQueryLength, b, bSource, bGroup,
+				var reqBase, splits, b, bSource, bGroup,
 					source, group, i, modules, sourceLoadScript,
 					currReqBase, currReqBaseLength, moduleMap, currReqModules, l,
 					lastDotIndex, prefix, suffix, bytesAdded;
@@ -1518,7 +1610,6 @@
 					lang: mw.config.get( 'wgUserLanguage' ),
 					debug: mw.config.get( 'debug' )
 				};
-				maxQueryLength = mw.config.get( 'wgResourceLoaderMaxQueryLength', 2000 );
 
 				// Split module list by source and by group.
 				splits = Object.create( null );
@@ -1574,7 +1665,7 @@
 								modules[ i ].length + 3; // '%7C'.length == 3
 
 							// If the url would become too long, create a new one, but don't create empty requests
-							if ( maxQueryLength > 0 && currReqModules.length && l + bytesAdded > maxQueryLength ) {
+							if ( currReqModules.length && l + bytesAdded > mw.loader.maxQueryLength ) {
 								// Dispatch what we've got...
 								doRequest();
 								// .. and start again.
@@ -1582,7 +1673,7 @@
 								moduleMap = Object.create( null );
 								currReqModules = [];
 
-								mw.track( 'resourceloader.splitRequest', { maxQueryLength: maxQueryLength } );
+								mw.track( 'resourceloader.splitRequest', { maxQueryLength: mw.loader.maxQueryLength } );
 							}
 							if ( !moduleMap[ prefix ] ) {
 								moduleMap[ prefix ] = [];
@@ -1669,6 +1760,8 @@
 					module: {
 						exports: {}
 					},
+					// module.export objects for each package file inside this module
+					packageExports: {},
 					version: String( version || '' ),
 					dependencies: dependencies || [],
 					group: typeof group === 'string' ? group : null,
@@ -1691,6 +1784,15 @@
 				moduleRegistry: registry,
 
 				/**
+				 * Exposed for testing and debugging only.
+				 *
+				 * @see #batchRequest
+				 * @property
+				 * @private
+				 */
+				maxQueryLength: $VARS.maxQueryLength,
+
+				/**
 				 * @inheritdoc #newStyleTag
 				 * @method
 				 */
@@ -1706,12 +1808,12 @@
 				 * @private
 				 */
 				work: function () {
-					var q, batch, implementations, sourceModules;
-
-					batch = [];
+					var implementations, sourceModules,
+						batch = [],
+						q = 0;
 
 					// Appends a list of modules from the queue to the batch
-					for ( q = 0; q < queue.length; q++ ) {
+					for ( ; q < queue.length; q++ ) {
 						// Only load modules which are registered
 						if ( queue[ q ] in registry && registry[ queue[ q ] ].state === 'registered' ) {
 							// Prevent duplicate entries
@@ -1845,8 +1947,13 @@
 				 *  as '`[name]@[version]`". This version should match the requested version
 				 *  (from #batchRequest and #registry). This avoids race conditions (T117587).
 				 *  For back-compat with MediaWiki 1.27 and earlier, the version may be omitted.
-				 * @param {Function|Array|string} [script] Function with module code, list of URLs
-				 *  to load via `<script src>`, or string of module code for `$.globalEval()`.
+				 * @param {Function|Array|string|Object} [script] Module code. This can be a function,
+				 *  a list of URLs to load via `<script src>`, a string for `$.globalEval()`, or an
+				 *  object like {"files": {"foo.js":function, "bar.js": function, ...}, "main": "foo.js"}.
+				 *  If an object is provided, the main file will be executed immediately, and the other
+				 *  files will only be executed if loaded via require(). If a function or string is
+				 *  provided, it will be executed/evaluated immediately. If an array is provided, all
+				 *  URLs in the array will be loaded immediately, and executed as soon as they arrive.
 				 * @param {Object} [style] Should follow one of the following patterns:
 				 *
 				 *     { "css": [css, ..] }
@@ -1931,7 +2038,7 @@
 								return;
 							}
 							// Unknown type
-							throw new Error( 'invalid type for external url, must be text/css or text/javascript. not ' + type );
+							throw new Error( 'type must be text/css or text/javascript, found ' + type );
 						}
 						// Called with single module
 						modules = [ modules ];
@@ -2017,7 +2124,7 @@
 					// Only ready modules can be required
 					if ( state !== 'ready' ) {
 						// Module may've forgotten to declare a dependency
-						throw new Error( 'Module "' + moduleName + '" is not loaded.' );
+						throw new Error( 'Module "' + moduleName + '" is not loaded' );
 					}
 
 					return registry[ moduleName ].module.exports;
@@ -2134,10 +2241,8 @@
 								return;
 							}
 						} catch ( e ) {
-							mw.trackError( 'resourceloader.exception', {
-								exception: e,
-								source: 'store-localstorage-init'
-							} );
+							// Perhaps localStorage was disabled by the user, or got corrupted.
+							// See point 3 and 4 below. (T195647)
 						}
 
 						// If we get here, one of four things happened:
@@ -2181,6 +2286,7 @@
 							this.stats.hits++;
 							return this.items[ key ];
 						}
+
 						this.stats.misses++;
 						return false;
 					},
@@ -2213,6 +2319,7 @@
 					 */
 					set: function ( module ) {
 						var key, args, src,
+							encodedScript,
 							descriptor = mw.loader.moduleRegistry[ module ];
 
 						key = getModuleKey( module );
@@ -2237,11 +2344,32 @@
 						}
 
 						try {
+							if ( typeof descriptor.script === 'function' ) {
+								// Function literal: cast to string
+								encodedScript = String( descriptor.script );
+							} else if (
+								// Plain object: serialise as object literal (not JSON),
+								// making sure to preserve the functions.
+								typeof descriptor.script === 'object' &&
+								descriptor.script &&
+								!Array.isArray( descriptor.script )
+							) {
+								encodedScript = '{' +
+									'main:' + JSON.stringify( descriptor.script.main ) + ',' +
+									'files:{' +
+									Object.keys( descriptor.script.files ).map( function ( key ) {
+										var value = descriptor.script.files[ key ];
+										return JSON.stringify( key ) + ':' +
+											( typeof value === 'function' ? value : JSON.stringify( value ) );
+									} ).join( ',' ) +
+									'}}';
+							} else {
+								// Array of urls, or null.
+								encodedScript = JSON.stringify( descriptor.script );
+							}
 							args = [
 								JSON.stringify( key ),
-								typeof descriptor.script === 'function' ?
-									String( descriptor.script ) :
-									JSON.stringify( descriptor.script ),
+								encodedScript,
 								JSON.stringify( descriptor.style ),
 								JSON.stringify( descriptor.messages ),
 								JSON.stringify( descriptor.templates )

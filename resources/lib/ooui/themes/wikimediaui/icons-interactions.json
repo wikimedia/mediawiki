@@ -14,17 +14,19 @@
 		"destructive": {
 			"color": "#d33"
 		},
+		"error": {
+			"color": "#d33"
+		},
 		"warning": {
-			"color": "#ff5d00"
+			"color": "#fc3"
+		},
+		"success": {
+			"color": "#14866d"
 		}
 	},
 	"images": {
 		"add": {
 			"file": "images/icons/add.svg"
-		},
-		"advanced": {
-			"file": "images/icons/settings.svg",
-			"deprecated": "Renamed since v0.28.1, use 'settings' instead."
 		},
 		"browser": {
 			"file": {
@@ -38,7 +40,7 @@
 		},
 		"check": {
 			"file": "images/icons/check.svg",
-			"variants": [ "destructive" ]
+			"variants": [ "destructive", "success" ]
 		},
 		"checkAll": {
 			"file": "images/icons/checkAll.svg"
@@ -81,10 +83,10 @@
 		},
 		"helpNotice": {
 			"file": {
-				"ltr": "images/icons/helpOutlined-ltr.svg",
-				"rtl": "images/icons/helpOutlined-rtl.svg",
+				"ltr": "images/icons/helpNotice-ltr.svg",
+				"rtl": "images/icons/helpNotice-rtl.svg",
 				"lang": {
-					"he,yi": "images/icons/helpOutlined-ltr.svg"
+					"he,yi": "images/icons/helpNotice-ltr.svg"
 				}
 			}
 		},

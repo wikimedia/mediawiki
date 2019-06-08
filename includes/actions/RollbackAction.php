@@ -25,7 +25,7 @@
  *
  * @ingroup Actions
  */
-class RollbackAction extends FormlessAction {
+class RollbackAction extends FormAction {
 
 	public function getName() {
 		return 'rollback';
@@ -35,21 +35,59 @@ class RollbackAction extends FormlessAction {
 		return 'rollback';
 	}
 
-	/**
-	 * Temporarily unused message keys due to T88044/T136375:
-	 * - confirm-rollback-top
-	 * - confirm-rollback-button
-	 * - rollbackfailed
-	 * - rollback-missingparam
-	 * - rollback-success-notify
-	 */
+	protected function usesOOUI() {
+		return true;
+	}
+
+	protected function getDescription() {
+		return '';
+	}
+
+	public function doesWrites() {
+		return true;
+	}
+
+	public function onSuccess() {
+		return false;
+	}
+
+	public function onSubmit( $data ) {
+		return false;
+	}
+
+	protected function alterForm( HTMLForm $form ) {
+		$form->setWrapperLegendMsg( 'confirm-rollback-top' );
+		$form->setSubmitTextMsg( 'confirm-rollback-button' );
+		$form->setTokenSalt( 'rollback' );
+
+		$from = $this->getRequest()->getVal( 'from' );
+		if ( $from === null ) {
+			throw new BadRequestError( 'rollbackfailed', 'rollback-missingparam' );
+		}
+		foreach ( [ 'from', 'bot', 'hidediff', 'summary', 'token' ] as $param ) {
+			$val = $this->getRequest()->getVal( $param );
+			if ( $val !== null ) {
+				$form->addHiddenField( $param, $val );
+			}
+		}
+	}
 
 	/**
 	 * @throws ErrorPageError
+	 * @throws ReadOnlyError
+	 * @throws ThrottledError
 	 */
-	public function onView() {
-		// TODO: use $this->useTransactionalTimeLimit(); when POST only
-		wfTransactionalTimeLimit();
+	public function show() {
+		if ( $this->getUser()->getOption( 'showrollbackconfirmation' ) == false ||
+			 $this->getRequest()->wasPosted() ) {
+			$this->handleRollbackRequest();
+		} else {
+			$this->showRollbackConfirmationForm();
+		}
+	}
+
+	public function handleRollbackRequest() {
+		$this->enableTransactionalTimelimit();
 
 		$request = $this->getRequest();
 		$user = $this->getUser();
@@ -83,9 +121,7 @@ class RollbackAction extends FormlessAction {
 			throw new ThrottledError;
 		}
 
-		if ( isset( $errors[0][0] ) &&
-			( $errors[0][0] == 'alreadyrolled' || $errors[0][0] == 'cantrollback' )
-		) {
+		if ( $this->hasRollbackRelatedErrors( $errors ) ) {
 			$this->getOutput()->setPageTitle( $this->msg( 'rollbackfailed' ) );
 			$errArray = $errors[0];
 			$errMsg = array_shift( $errArray );
@@ -96,8 +132,12 @@ class RollbackAction extends FormlessAction {
 				$current = $data['current'];
 
 				if ( $current->getComment() != '' ) {
-					$this->getOutput()->addHTML( $this->msg( 'editcomment' )->rawParams(
-						Linker::formatComment( $current->getComment() ) )->parse() );
+					$this->getOutput()->addWikiMsg(
+						'editcomment',
+						Message::rawParam(
+							Linker::formatComment( $current->getComment() )
+						)
+					);
 				}
 			}
 
@@ -153,11 +193,51 @@ class RollbackAction extends FormlessAction {
 		}
 	}
 
-	protected function getDescription() {
-		return '';
+	/**
+	 * Enables transactional time limit for POST and GET requests to RollbackAction
+	 * @throws ConfigException
+	 */
+	private function enableTransactionalTimelimit() {
+		// If Rollbacks are made POST-only, use $this->useTransactionalTimeLimit()
+		wfTransactionalTimeLimit();
+		if ( !$this->getRequest()->wasPosted() ) {
+			/**
+			 * We apply the higher POST limits on GET requests
+			 * to prevent logstash.wikimedia.org from being spammed
+			 */
+			$fname = __METHOD__;
+			$trxLimits = $this->context->getConfig()->get( 'TrxProfilerLimits' );
+			$trxProfiler = Profiler::instance()->getTransactionProfiler();
+			$trxProfiler->redefineExpectations( $trxLimits['POST'], $fname );
+			DeferredUpdates::addCallableUpdate( function () use ( $trxProfiler, $trxLimits, $fname
+			) {
+				$trxProfiler->redefineExpectations( $trxLimits['PostSend-POST'], $fname );
+			} );
+		}
 	}
 
-	public function doesWrites() {
-		return true;
+	private function showRollbackConfirmationForm() {
+		$form = $this->getForm();
+		if ( $form->show() ) {
+			$this->onSuccess();
+		}
+	}
+
+	protected function getFormFields() {
+		return [
+			'intro' => [
+				'type' => 'info',
+				'vertical-label' => true,
+				'raw' => true,
+				'default' => $this->msg( 'confirm-rollback-bottom' )->parse()
+			]
+		];
+	}
+
+	private function hasRollbackRelatedErrors( array $errors ) {
+		return isset( $errors[0][0] ) &&
+			( $errors[0][0] == 'alreadyrolled' ||
+				$errors[0][0] == 'cantrollback'
+			);
 	}
 }

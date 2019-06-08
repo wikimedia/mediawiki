@@ -3,6 +3,7 @@
 use MediaWiki\Logger\LegacySpi;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\MonologSpi;
+use MediaWiki\Logger\LogCapturingSpi;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IDatabase;
@@ -360,6 +361,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	public static function resetNonServiceCaches() {
 		global $wgRequest, $wgJobClasses;
 
+		User::resetGetDefaultOptionsForTestsOnly();
 		foreach ( $wgJobClasses as $type => $class ) {
 			JobQueueGroup::singleton()->get( $type )->delete();
 		}
@@ -399,7 +401,8 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			self::$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
 			self::$reuseDB = $this->getCliArg( 'reuse-db' );
 
-			$this->db = wfGetDB( DB_MASTER );
+			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+			$this->db = $lb->getConnection( DB_MASTER );
 
 			$this->checkDbIsSupported();
 
@@ -1124,7 +1127,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 				$this->loggers[$channel] = $singletons['loggers'][$channel] ?? null;
 			}
 			$singletons['loggers'][$channel] = $logger;
-		} elseif ( $provider instanceof LegacySpi ) {
+		} elseif ( $provider instanceof LegacySpi || $provider instanceof LogCapturingSpi ) {
 			if ( !isset( $this->loggers[$channel] ) ) {
 				$this->loggers[$channel] = $singletons[$channel] ?? null;
 			}
@@ -1151,7 +1154,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 				} else {
 					$singletons['loggers'][$channel] = $logger;
 				}
-			} elseif ( $provider instanceof LegacySpi ) {
+			} elseif ( $provider instanceof LegacySpi || $provider instanceof LogCapturingSpi ) {
 				if ( $logger === null ) {
 					unset( $singletons[$channel] );
 				} else {
@@ -1362,6 +1365,9 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			JobQueueGroup::singleton()->get( $type )->delete();
 		}
 
+		// T219673: close any connections from code that failed to call reuseConnection()
+		// or is still holding onto a DBConnRef instance (e.g. in a singleton).
+		MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->closeAll();
 		CloneDatabase::changePrefix( self::$oldTablePrefix );
 
 		self::$oldTablePrefix = false;
@@ -1452,12 +1458,12 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @note this method only works when first called. Subsequent calls have no effect,
 	 * even if using different parameters.
 	 *
-	 * @param Database $db The database connection
+	 * @param IMaintainableDatabase $db The database connection
 	 * @param string $prefix The prefix to use for the new table set (aka schema).
 	 *
 	 * @throws MWException If the database table prefix is already $prefix
 	 */
-	public static function setupTestDB( Database $db, $prefix ) {
+	public static function setupTestDB( IMaintainableDatabase $db, $prefix ) {
 		if ( self::$dbSetup ) {
 			return;
 		}
@@ -1594,7 +1600,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		$this->ensureMockDatabaseConnection( $db );
 
 		$oldOverrides = $oldOverrides + self::$schemaOverrideDefaults;
-		$originalTables = $this->listOriginalTables( $db, 'unprefixed' );
+		$originalTables = $this->listOriginalTables( $db );
 
 		// Drop tables that need to be restored or removed.
 		$tablesToDrop = array_merge( $oldOverrides['create'], $oldOverrides['alter'] );
@@ -1610,6 +1616,10 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 
 		if ( $tablesToRestore ) {
 			$this->recloneMockTables( $db, $tablesToRestore );
+
+			// Reset the restored tables, mainly for the side effect of
+			// re-calling $this->addCoreDBData() if necessary.
+			$this->resetDB( $db, $tablesToRestore );
 		}
 	}
 
@@ -1624,6 +1634,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 
 		if ( $oldOverrides['alter'] || $oldOverrides['create'] || $oldOverrides['drop'] ) {
 			$this->undoSchemaOverrides( $db, $oldOverrides );
+			unset( $db->_schemaOverrides );
 		}
 
 		// Determine new overrides.
@@ -1655,7 +1666,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		$this->ensureMockDatabaseConnection( $db );
 
 		// Drop the tables that will be created by the schema scripts.
-		$originalTables = $this->listOriginalTables( $db, 'unprefixed' );
+		$originalTables = $this->listOriginalTables( $db );
 		$tablesToDrop = array_intersect( $originalTables, $overrides['create'] );
 
 		if ( $tablesToDrop ) {
@@ -1700,29 +1711,36 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Lists all tables in the live database schema.
+	 * Lists all tables in the live database schema, without a prefix.
 	 *
 	 * @param IMaintainableDatabase $db
-	 * @param string $prefix Either 'prefixed' or 'unprefixed'
 	 * @return array
 	 */
-	private function listOriginalTables( IMaintainableDatabase $db, $prefix = 'prefixed' ) {
+	private function listOriginalTables( IMaintainableDatabase $db ) {
 		if ( !isset( $db->_originalTablePrefix ) ) {
 			throw new LogicException( 'No original table prefix know, cannot list tables!' );
 		}
 
 		$originalTables = $db->listTables( $db->_originalTablePrefix, __METHOD__ );
-		if ( $prefix === 'unprefixed' ) {
-			$originalPrefixRegex = '/^' . preg_quote( $db->_originalTablePrefix, '/' ) . '/';
-			$originalTables = array_map(
-				function ( $pt ) use ( $originalPrefixRegex ) {
-					return preg_replace( $originalPrefixRegex, '', $pt );
-				},
-				$originalTables
-			);
-		}
 
-		return $originalTables;
+		$unittestPrefixRegex = '/^' . preg_quote( $this->dbPrefix(), '/' ) . '/';
+		$originalPrefixRegex = '/^' . preg_quote( $db->_originalTablePrefix, '/' ) . '/';
+
+		$originalTables = array_filter(
+			$originalTables,
+			function ( $pt ) use ( $unittestPrefixRegex ) {
+				return !preg_match( $unittestPrefixRegex, $pt );
+			}
+		);
+
+		$originalTables = array_map(
+			function ( $pt ) use ( $originalPrefixRegex ) {
+				return preg_replace( $originalPrefixRegex, '', $pt );
+			},
+			$originalTables
+		);
+
+		return array_unique( $originalTables );
 	}
 
 	/**
@@ -1740,7 +1758,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			throw new LogicException( 'No original table prefix know, cannot restore tables!' );
 		}
 
-		$originalTables = $this->listOriginalTables( $db, 'unprefixed' );
+		$originalTables = $this->listOriginalTables( $db );
 		$tables = array_intersect( $tables, $originalTables );
 
 		$dbClone = new CloneDatabase( $db, $tables, $db->tablePrefix(), $db->_originalTablePrefix );
@@ -1768,6 +1786,12 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			if ( array_intersect( $tablesUsed, $userTables ) ) {
 				$tablesUsed = array_unique( array_merge( $tablesUsed, $userTables ) );
 				TestUserRegistry::clear();
+
+				// Reset $wgUser, which is probably 127.0.0.1, as its loaded data is probably not valid
+				// @todo Should we start setting $wgUser to something nondeterministic
+				//  to encourage tests to be updated to not depend on it?
+				global $wgUser;
+				$wgUser->clearInstanceCache( $wgUser->mFrom );
 			}
 			if ( array_intersect( $tablesUsed, $pageTables ) ) {
 				$tablesUsed = array_unique( array_merge( $tablesUsed, $pageTables ) );
@@ -1888,7 +1912,17 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @param IDatabase $target
 	 */
 	public function copyTestData( IDatabase $source, IDatabase $target ) {
-		$tables = self::listOriginalTables( $source, 'unprefixed' );
+		if ( $this->db->getType() === 'sqlite' ) {
+			// SQLite uses a non-temporary copy of the searchindex table for testing,
+			// which gets deleted and re-created when setting up the secondary connection,
+			// causing "Error 17" when trying to copy the data. See T191863#4130112.
+			throw new RuntimeException(
+				'Setting up a secondary database connection with test data is currently not'
+				. 'with SQLite. You may want to use markTestSkippedIfDbType() to bypass this issue.'
+			);
+		}
+
+		$tables = self::listOriginalTables( $source );
 
 		foreach ( $tables as $table ) {
 			$res = $source->select( $table, '*', [], __METHOD__ );

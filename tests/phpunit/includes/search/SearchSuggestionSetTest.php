@@ -23,6 +23,7 @@ class SearchSuggestionSetTest extends \PHPUnit\Framework\TestCase {
 	/**
 	 * Test that adding a new suggestion at the end
 	 * will keep proper score ordering
+	 * @covers SearchSuggestionSet::append
 	 */
 	public function testAppend() {
 		$set = SearchSuggestionSet::emptySuggestionSet();
@@ -54,6 +55,9 @@ class SearchSuggestionSetTest extends \PHPUnit\Framework\TestCase {
 	/**
 	 * Test that adding a new best suggestion will keep proper score
 	 * ordering
+	 * @covers SearchSuggestionSet::getWorstScore
+	 * @covers SearchSuggestionSet::getBestScore
+	 * @covers SearchSuggestionSet::prepend
 	 */
 	public function testInsertBest() {
 		$set = SearchSuggestionSet::emptySuggestionSet();
@@ -88,6 +92,9 @@ class SearchSuggestionSetTest extends \PHPUnit\Framework\TestCase {
 		$this->assertEquals( $sorted, $scores );
 	}
 
+	/**
+	 * @covers SearchSuggestionSet::shrink
+	 */
 	public function testShrink() {
 		$set = SearchSuggestionSet::emptySuggestionSet();
 		for ( $i = 0; $i < 100; $i++ ) {

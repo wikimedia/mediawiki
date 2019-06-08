@@ -70,7 +70,7 @@ class LogPager extends ReverseChronologicalPager {
 	 */
 	public function __construct( $list, $types = [], $performer = '', $title = '',
 		$pattern = false, $conds = [], $year = false, $month = false, $day = false,
-		$tagFilter = '', $action = '', $logId = false
+		$tagFilter = '', $action = '', $logId = 0
 	) {
 		parent::__construct( $list->getContext() );
 		$this->mConds = $conds;
@@ -333,7 +333,7 @@ class LogPager extends ReverseChronologicalPager {
 			}
 		}
 		# Don't show duplicate rows when using log_search
-		$joins['log_search'] = [ 'INNER JOIN', 'ls_log_id=log_id' ];
+		$joins['log_search'] = [ 'JOIN', 'ls_log_id=log_id' ];
 
 		$info = [
 			'tables' => $tables,
@@ -365,7 +365,7 @@ class LogPager extends ReverseChronologicalPager {
 		return 'log_timestamp';
 	}
 
-	public function getStartBody() {
+	protected function getStartBody() {
 		# Do a link batch query
 		if ( $this->getNumRows() > 0 ) {
 			$lb = new LinkBatch;

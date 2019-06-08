@@ -281,22 +281,15 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testConstructFromRowWithBadPageId() {
-		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
 		$this->overrideMwServices();
 		Wikimedia\suppressWarnings();
-		$rev = new Revision( (object)[ 'rev_page' => 77777777 ] );
+		$rev = new Revision( (object)[
+			'rev_page' => 77777777,
+			'rev_comment_text' => '',
+			'rev_comment_data' => null,
+		] );
 		$this->assertSame( 77777777, $rev->getPage() );
 		Wikimedia\restoreWarnings();
-	}
-
-	public function provideGetRevisionText() {
-		yield 'Generic test' => [
-			'This is a goat of revision text.',
-			[
-				'old_flags' => '',
-				'old_text' => 'This is a goat of revision text.',
-			],
-		];
 	}
 
 	public function provideGetId() {
@@ -365,6 +358,20 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->assertSame( $expected, $rev->getParentId() );
 	}
 
+	public function provideGetRevisionText() {
+		yield 'Generic test' => [
+			'This is a goat of revision text.',
+			(object)[
+				'old_flags' => '',
+				'old_text' => 'This is a goat of revision text.',
+			],
+		];
+		yield 'garbage in, garbage out' => [
+			false,
+			false,
+		];
+	}
+
 	/**
 	 * @covers Revision::getRevisionText
 	 * @dataProvider provideGetRevisionText
@@ -372,13 +379,13 @@ class RevisionTest extends MediaWikiTestCase {
 	public function testGetRevisionText( $expected, $rowData, $prefix = 'old_', $wiki = false ) {
 		$this->assertEquals(
 			$expected,
-			Revision::getRevisionText( (object)$rowData, $prefix, $wiki ) );
+			Revision::getRevisionText( $rowData, $prefix, $wiki ) );
 	}
 
 	public function provideGetRevisionTextWithZlibExtension() {
 		yield 'Generic gzip test' => [
 			'This is a small goat of revision text.',
-			[
+			(object)[
 				'old_flags' => 'gzip',
 				'old_text' => gzdeflate( 'This is a small goat of revision text.' ),
 			],
@@ -397,7 +404,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function provideGetRevisionTextWithZlibExtension_badData() {
 		yield 'Generic gzip test' => [
 			'This is a small goat of revision text.',
-			[
+			(object)[
 				'old_flags' => 'gzip',
 				'old_text' => 'DEAD BEEF',
 			],
@@ -470,6 +477,7 @@ class RevisionTest extends MediaWikiTestCase {
 			MediaWikiServices::getInstance()->getCommentStore(),
 			MediaWikiServices::getInstance()->getContentModelStore(),
 			MediaWikiServices::getInstance()->getSlotRoleStore(),
+			MediaWikiServices::getInstance()->getSlotRoleRegistry(),
 			MIGRATION_OLD,
 			MediaWikiServices::getInstance()->getActorMigration()
 		);
@@ -481,7 +489,7 @@ class RevisionTest extends MediaWikiTestCase {
 			"Wiki est l'\xc3\xa9cole superieur !",
 			'fr',
 			'iso-8859-1',
-			[
+			(object)[
 				'old_flags' => 'utf-8',
 				'old_text' => "Wiki est l'\xc3\xa9cole superieur !",
 			]
@@ -490,7 +498,7 @@ class RevisionTest extends MediaWikiTestCase {
 			"Wiki est l'\xc3\xa9cole superieur !",
 			'fr',
 			'iso-8859-1',
-			[
+			(object)[
 				'old_flags' => '',
 				'old_text' => "Wiki est l'\xe9cole superieur !",
 			]
@@ -519,7 +527,7 @@ class RevisionTest extends MediaWikiTestCase {
 			"Wiki est l'\xc3\xa9cole superieur !",
 			'fr',
 			'iso-8859-1',
-			[
+			(object)[
 				'old_flags' => 'gzip,utf-8',
 				'old_text' => gzdeflate( "Wiki est l'\xc3\xa9cole superieur !" ),
 			]
@@ -528,7 +536,7 @@ class RevisionTest extends MediaWikiTestCase {
 			"Wiki est l'\xc3\xa9cole superieur !",
 			'fr',
 			'iso-8859-1',
-			[
+			(object)[
 				'old_flags' => 'gzip',
 				'old_text' => gzdeflate( "Wiki est l'\xe9cole superieur !" ),
 			]
@@ -556,9 +564,9 @@ class RevisionTest extends MediaWikiTestCase {
 		$row = new stdClass;
 		$row->old_text = "Wiki est l'\xc3\xa9cole superieur !";
 		$row->old_flags = Revision::compressRevisionText( $row->old_text );
-		$this->assertTrue( false !== strpos( $row->old_flags, 'utf-8' ),
+		$this->assertTrue( strpos( $row->old_flags, 'utf-8' ) !== false,
 			"Flags should contain 'utf-8'" );
-		$this->assertFalse( false !== strpos( $row->old_flags, 'gzip' ),
+		$this->assertFalse( strpos( $row->old_flags, 'gzip' ) !== false,
 			"Flags should not contain 'gzip'" );
 		$this->assertEquals( "Wiki est l'\xc3\xa9cole superieur !",
 			$row->old_text, "Direct check" );
@@ -579,9 +587,9 @@ class RevisionTest extends MediaWikiTestCase {
 		$row = new stdClass;
 		$row->old_text = "Wiki est l'\xc3\xa9cole superieur !";
 		$row->old_flags = Revision::compressRevisionText( $row->old_text );
-		$this->assertTrue( false !== strpos( $row->old_flags, 'utf-8' ),
+		$this->assertTrue( strpos( $row->old_flags, 'utf-8' ) !== false,
 			"Flags should contain 'utf-8'" );
-		$this->assertTrue( false !== strpos( $row->old_flags, 'gzip' ),
+		$this->assertTrue( strpos( $row->old_flags, 'gzip' ) !== false,
 			"Flags should contain 'gzip'" );
 		$this->assertEquals( "Wiki est l'\xc3\xa9cole superieur !",
 			gzinflate( $row->old_text ), "Direct check" );
@@ -593,8 +601,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::loadFromTitle
 	 */
 	public function testLoadFromTitle() {
-		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
-		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_OLD );
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_NEW );
 		$this->overrideMwServices();
 		$title = $this->getMockTitle();
 
@@ -630,7 +637,11 @@ class RevisionTest extends MediaWikiTestCase {
 		$db->expects( $this->once() )
 			->method( 'selectRow' )
 			->with(
-				$this->equalTo( [ 'revision', 'page', 'user' ] ),
+				$this->equalTo( [
+					'revision', 'page', 'user',
+					'temp_rev_comment' => 'revision_comment_temp', 'comment_rev_comment' => 'comment',
+					'temp_rev_user' => 'revision_actor_temp', 'actor_rev_user' => 'actor',
+				] ),
 				// We don't really care about the fields are they come from the selectField methods
 				$this->isType( 'array' ),
 				$this->equalTo( $conditions ),
@@ -727,13 +738,6 @@ class RevisionTest extends MediaWikiTestCase {
 			$expected,
 			Revision::decompressRevisionText( $text, $flags )
 		);
-	}
-
-	/**
-	 * @covers Revision::getRevisionText
-	 */
-	public function testGetRevisionText_returnsFalseWhenNoTextField() {
-		$this->assertFalse( Revision::getRevisionText( new stdClass() ) );
 	}
 
 	public function provideTestGetRevisionText_returnsDecompressedTextFieldWhenNotExternal() {

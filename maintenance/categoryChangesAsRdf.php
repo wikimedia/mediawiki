@@ -307,7 +307,7 @@ SPARQL;
 			'rc_type' => RC_LOG,
 		] );
 		$it->addJoinConditions( [
-			'page' => [ 'INNER JOIN', 'rc_cur_id = page_id' ],
+			'page' => [ 'JOIN', 'rc_cur_id = page_id' ],
 		] );
 		$this->addIndex( $it );
 		return $it;
@@ -402,7 +402,7 @@ SPARQL;
 	/**
 	 * Get iterator for links for categories.
 	 * @param IDatabase $dbr
-	 * @param array $ids List of page IDs
+	 * @param int[] $ids List of page IDs
 	 * @return Traversable
 	 */
 	protected function getCategoryLinksIterator( IDatabase $dbr, array $ids ) {

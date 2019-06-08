@@ -7,9 +7,12 @@ use Content;
 use Language;
 use LogicException;
 use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Revision\SlotRoleRegistry;
+use MediaWiki\Storage\NameTableStore;
 use MediaWikiTestCase;
 use MediaWiki\User\UserIdentityValue;
 use ParserOptions;
@@ -27,8 +30,8 @@ use WikitextContent;
 class RevisionRendererTest extends MediaWikiTestCase {
 
 	/**
-	 * @param $articleId
-	 * @param $revisionId
+	 * @param int $articleId
+	 * @param int $revisionId
 	 * @return Title
 	 */
 	private function getMockTitle( $articleId, $revisionId ) {
@@ -126,7 +129,20 @@ class RevisionRendererTest extends MediaWikiTestCase {
 			->with( $dbIndex )
 			->willReturn( $db );
 
-		return new RevisionRenderer( $lb );
+		/** @var NameTableStore|MockObject $slotRoles */
+		$slotRoles = $this->getMockBuilder( NameTableStore::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$slotRoles->method( 'getMap' )
+			->willReturn( [] );
+
+		$roleReg = new SlotRoleRegistry( $slotRoles );
+		$roleReg->defineRole( 'main', function () {
+			return new MainSlotRoleHandler( [] );
+		} );
+		$roleReg->defineRoleWithModel( 'aux', CONTENT_MODEL_WIKITEXT );
+
+		return new RevisionRenderer( $lb, $roleReg );
 	}
 
 	private function selectFieldCallback( $table, $fields, $cond, $maxRev ) {
@@ -238,6 +254,34 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$this->assertContains( 'rev:21', $html );
 
 		$this->assertSame( $html, $rr->getSlotParserOutput( SlotRecord::MAIN )->getText() );
+	}
+
+	public function testGetRenderedRevision_known() {
+		$renderer = $this->newRevisionRenderer( 100, true ); // use master
+		$title = $this->getMockTitle( 7, 21 );
+
+		$rev = new MutableRevisionRecord( $title );
+		$rev->setId( 21 ); // current!
+		$rev->setUser( new UserIdentityValue( 9, 'Frank', 0 ) );
+		$rev->setTimestamp( '20180101000003' );
+		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
+
+		$text = "uncached text";
+		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
+
+		$output = new ParserOutput( 'cached text' );
+
+		$options = ParserOptions::newCanonical( 'canonical' );
+		$rr = $renderer->getRenderedRevision(
+			$rev,
+			$options,
+			null,
+			[ 'known-revision-output' => $output ]
+		);
+
+		$this->assertSame( $output, $rr->getRevisionParserOutput() );
+		$this->assertSame( 'cached text', $rr->getRevisionParserOutput()->getText() );
+		$this->assertSame( 'cached text', $rr->getSlotParserOutput( SlotRecord::MAIN )->getText() );
 	}
 
 	public function testGetRenderedRevision_old() {

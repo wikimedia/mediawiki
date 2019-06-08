@@ -63,12 +63,16 @@ class WikiExporter {
 	/** @var DumpOutput */
 	public $sink;
 
+	/** @var XmlDumpWriter */
+	private $writer;
+
 	/**
-	 * Returns the export schema version.
+	 * Returns the default export schema version, as defined by $wgXmlDumpSchemaVersion.
 	 * @return string
 	 */
 	public static function schemaVersion() {
-		return "0.10";
+		global $wgXmlDumpSchemaVersion;
+		return $wgXmlDumpSchemaVersion;
 	}
 
 	/**
@@ -83,9 +87,18 @@ class WikiExporter {
 	function __construct( $db, $history = self::CURRENT, $text = self::TEXT ) {
 		$this->db = $db;
 		$this->history = $history;
-		$this->writer = new XmlDumpWriter();
+		$this->writer = new XmlDumpWriter( $text, self::schemaVersion() );
 		$this->sink = new DumpOutput();
 		$this->text = $text;
+	}
+
+	/**
+	 * @param string $schemaVersion which schema version the generated XML should comply to.
+	 * One of the values from self::$supportedSchemas, using the XML_DUMP_SCHEMA_VERSION_XX
+	 * constants.
+	 */
+	public function setSchemaVersion( $schemaVersion ) {
+		$this->writer = new XmlDumpWriter( $this->text, $schemaVersion );
 	}
 
 	/**
@@ -233,10 +246,10 @@ class WikiExporter {
 		foreach ( $res as $row ) {
 			$this->author_list .= "<contributor>" .
 				"<username>" .
-				htmlentities( $row->rev_user_text ) .
+				htmlspecialchars( $row->rev_user_text ) .
 				"</username>" .
 				"<id>" .
-				$row->rev_user .
+				( (int)$row->rev_user ) .
 				"</id>" .
 				"</contributor>";
 		}
@@ -322,10 +335,7 @@ class WikiExporter {
 		}
 
 		$revOpts = [ 'page' ];
-		if ( $this->text != self::STUB ) {
-			// TODO: remove the text and make XmlDumpWriter use a RevisionStore instead! (T198706)
-			$revOpts[] = 'text';
-		}
+
 		$revQuery = Revision::getQueryInfo( $revOpts );
 
 		// We want page primary rather than revision
@@ -335,8 +345,12 @@ class WikiExporter {
 			];
 		unset( $join['page'] );
 
-		// TODO: remove rev_text_id and make XmlDumpWriter use a RevisionStore instead! (T198706)
-		$fields = array_merge( $revQuery['fields'], [ 'page_restrictions, rev_text_id' ] );
+		$fields = $revQuery['fields'];
+		$fields[] = 'page_restrictions';
+
+		if ( $this->text != self::STUB ) {
+			$fields['_load_content'] = '1';
+		}
 
 		$conds = [];
 		if ( $cond !== '' ) {
@@ -372,18 +386,18 @@ class WikiExporter {
 				$opts[] = 'STRAIGHT_JOIN';
 				$opts['USE INDEX']['revision'] = 'rev_page_id';
 				unset( $join['revision'] );
-				$join['page'] = [ 'INNER JOIN', 'rev_page=page_id' ];
+				$join['page'] = [ 'JOIN', 'rev_page=page_id' ];
 			}
 		} elseif ( $this->history & self::CURRENT ) {
 			# Latest revision dumps...
 			if ( $this->list_authors && $cond != '' ) { // List authors, if so desired
 				$this->do_list_authors( $cond );
 			}
-			$join['revision'] = [ 'INNER JOIN', 'page_id=rev_page AND page_latest=rev_id' ];
+			$join['revision'] = [ 'JOIN', 'page_id=rev_page AND page_latest=rev_id' ];
 		} elseif ( $this->history & self::STABLE ) {
 			# "Stable" revision dumps...
 			# Default JOIN, to be overridden...
-			$join['revision'] = [ 'INNER JOIN', 'page_id=rev_page AND page_latest=rev_id' ];
+			$join['revision'] = [ 'JOIN', 'page_id=rev_page AND page_latest=rev_id' ];
 			# One, and only one hook should set this, and return false
 			if ( Hooks::run( 'WikiExporter::dumpStableQuery', [ &$tables, &$opts, &$join ] ) ) {
 				throw new MWException( __METHOD__ . " given invalid history dump type." );
@@ -418,7 +432,7 @@ class WikiExporter {
 			$queryConds[] = 'rev_page>' . intval( $revPage ) . ' OR (rev_page=' .
 				intval( $revPage ) . ' AND rev_id' . $op . intval( $revId ) . ')';
 
-			# Do the query!
+			# Do the query and process any results, remembering max ids for the next iteration.
 			$result = $this->db->select(
 				$tables,
 				$fields,
@@ -427,15 +441,18 @@ class WikiExporter {
 				$opts,
 				$join
 			);
-			# Output dump results, get new max ids.
-			$lastRow = $this->outputPageStream( $result, $lastRow );
-
-			if ( !$result->numRows() || !$lastRow ) {
-				$done = true;
-			} else {
+			if ( $result->numRows() > 0 ) {
+				$lastRow = $this->outputPageStreamBatch( $result, $lastRow );
 				$rowCount += $result->numRows();
 				$revPage = $lastRow->rev_page;
 				$revId = $lastRow->rev_id;
+			} else {
+				$done = true;
+			}
+
+			// If we are finished, close off final page element (if any).
+			if ( $done && $lastRow ) {
+				$this->finishPageStreamOutput( $lastRow );
 			}
 		}
 	}
@@ -445,44 +462,47 @@ class WikiExporter {
 	 * The result set should be sorted/grouped by page to avoid duplicate
 	 * page records in the output.
 	 *
-	 * @param ResultWrapper $resultset
+	 * @param ResultWrapper $results
 	 * @param object $lastRow the last row output from the previous call (or null if none)
 	 * @return object the last row processed
 	 */
-	protected function outputPageStream( $resultset, $lastRow ) {
-		if ( $resultset->numRows() ) {
-			foreach ( $resultset as $row ) {
-				if ( $lastRow === null ||
-					$lastRow->page_namespace != $row->page_namespace ||
-					$lastRow->page_title != $row->page_title ) {
-					if ( $lastRow !== null ) {
-						$output = '';
-						if ( $this->dumpUploads ) {
-							$output .= $this->writer->writeUploads( $lastRow, $this->dumpUploadFileContents );
-						}
-						$output .= $this->writer->closePage();
-						$this->sink->writeClosePage( $output );
+	protected function outputPageStreamBatch( $results, $lastRow ) {
+		foreach ( $results as $row ) {
+			if ( $lastRow === null ||
+				$lastRow->page_namespace !== $row->page_namespace ||
+				$lastRow->page_title !== $row->page_title ) {
+				if ( $lastRow !== null ) {
+					$output = '';
+					if ( $this->dumpUploads ) {
+						$output .= $this->writer->writeUploads( $lastRow, $this->dumpUploadFileContents );
 					}
-					$output = $this->writer->openPage( $row );
-					$this->sink->writeOpenPage( $row, $output );
+					$output .= $this->writer->closePage();
+					$this->sink->writeClosePage( $output );
 				}
-				$output = $this->writer->writeRevision( $row );
-				$this->sink->writeRevision( $row, $output );
-				$lastRow = $row;
+				$output = $this->writer->openPage( $row );
+				$this->sink->writeOpenPage( $row, $output );
 			}
-		} elseif ( $lastRow !== null ) {
-			// Empty resultset means done with all batches  Close off final page element (if any).
-			$output = '';
-			if ( $this->dumpUploads ) {
-				$output .= $this->writer->writeUploads( $lastRow, $this->dumpUploadFileContents );
-			}
-			$output .= $this->author_list;
-			$output .= $this->writer->closePage();
-			$this->sink->writeClosePage( $output );
-			$lastRow = null;
+			$output = $this->writer->writeRevision( $row );
+			$this->sink->writeRevision( $row, $output );
+			$lastRow = $row;
 		}
 
 		return $lastRow;
+	}
+
+	/**
+	 * Final page stream output, after all batches are complete
+	 *
+	 * @param object $lastRow the last row output from the last batch (or null if none)
+	 */
+	protected function finishPageStreamOutput( $lastRow ) {
+		$output = '';
+		if ( $this->dumpUploads ) {
+			$output .= $this->writer->writeUploads( $lastRow, $this->dumpUploadFileContents );
+		}
+		$output .= $this->author_list;
+		$output .= $this->writer->closePage();
+		$this->sink->writeClosePage( $output );
 	}
 
 	/**

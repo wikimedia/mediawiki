@@ -23,7 +23,7 @@ use MediaWiki\Linker\LinkRenderer;
 
 class ProtectedPagesPager extends TablePager {
 
-	public $mForm, $mConds;
+	public $mConds;
 	private $type, $level, $namespace, $sizetype, $size, $indefonly, $cascadeonly, $noredirect;
 
 	/**
@@ -32,7 +32,7 @@ class ProtectedPagesPager extends TablePager {
 	private $linkRenderer;
 
 	/**
-	 * @param SpecialProtectedpages $form
+	 * @param SpecialPage $form
 	 * @param array $conds
 	 * @param string $type
 	 * @param string $level
@@ -44,13 +44,12 @@ class ProtectedPagesPager extends TablePager {
 	 * @param bool $noredirect
 	 * @param LinkRenderer $linkRenderer
 	 */
-	function __construct( $form, $conds, $type, $level, $namespace,
+	public function __construct( $form, $conds, $type, $level, $namespace,
 		$sizetype, $size, $indefonly, $cascadeonly, $noredirect,
 		LinkRenderer $linkRenderer
 	) {
-		$this->mForm = $form;
 		$this->mConds = $conds;
-		$this->type = ( $type ) ? $type : 'edit';
+		$this->type = $type ?: 'edit';
 		$this->level = $level;
 		$this->namespace = $namespace;
 		$this->sizetype = $sizetype;

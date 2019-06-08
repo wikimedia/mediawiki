@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Giromin Cangiaxo"
+			"Giromin Cangiaxo",
+			"Fitoschido"
 		]
 	},
 	"config-desc": "Programma de installaçion pe MediaWiki",
@@ -106,7 +107,7 @@
 	"config-sqlite-dir-help": "SQLite o memorizza tutti i dæti inte 'n unnico file.\n\nA directory che t'indichiæ a dev'ese scrivibile da-o serviou web durante l'instalaçion.\n\nA dev'ese <strong>non acescibbile via web</strong>, l'è pe questo che no a mettemmo donde gh'è i file PHP.\n\nL'instalou o ghe scriviâ insemme un file <code>.htaccess</code>, ma se o tentativo o falisse quarcun poriæ avei accesso a-o database sgroeuzzo.\nQuesto o l'includde di dæti utente sgroeuzzi (adressi, password çiffræ) coscì comme de vercsioin eliminæ e atri dæti a accesso limitou da wiki.\n\nConsciddera a-a dreitua l'oportunitæ d'alugâ o database da quarch'atra parte, prezempio in <code>/var/lib/mediawiki/tuowiki</code>.",
 	"config-oracle-def-ts": "Tablespace pe difetto:",
 	"config-oracle-temp-ts": "Tablespace tempoannio:",
-	"config-type-mysql": "MySQL (ò compatibbile)",
+	"config-type-mysql": "MariaDB, MySQL ò compatibbile",
 	"config-type-mssql": "Microsoft SQL Server",
 	"config-support-info": "MediaWiki o supporta i seguenti scistemi de database:\n\n$1\n\nSe fra quelli elencæ chì de sotta no ti veddi o scistema de database che ti voriesci doeuviâ, segui e instruçioin inganciæ de d'ato pe abilitâ o supporto.",
 	"config-dbsupport-mysql": "* [{{int:version-db-mysql-url}} MySQL] a l'è a primma scelta pe MediaWiki e a l'è quella megio suportâ. MediaWiki a fonçion-a ascì con [{{int:version-db-mariadb-url}} MariaDB] e [{{int:version-db-percona-url}} Percona Server], che son compatibbili con MySQL.([https://secure.php.net/manual/en/mysqli.installation.php Comme compilâ PHP con suporto MySQL])",

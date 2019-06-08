@@ -67,7 +67,7 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 		$blobs = [];
 		foreach ( $pathsByBackend as $backendName => $paths ) {
 			$be = FileBackendGroup::singleton()->get( $backendName );
-			$blobs = $blobs + $be->getFileContentsMulti( [ 'srcs' => $paths ] );
+			$blobs += $be->getFileContentsMulti( [ 'srcs' => $paths ] );
 		}
 
 		return $blobs;
@@ -81,6 +81,7 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 			// Make sure ID is roughly lexicographically increasing for performance
 			$id = str_pad( UIDGenerator::newTimestampedUID128( 32 ), 26, '0', STR_PAD_LEFT );
 			// Segregate items by wiki ID for the sake of bookkeeping
+			// @FIXME: this does not include the domain for b/c but it ideally should
 			$wiki = $this->params['wiki'] ?? wfWikiID();
 
 			$url = $be->getContainerStoragePath( 'data' ) . '/' . rawurlencode( $wiki );

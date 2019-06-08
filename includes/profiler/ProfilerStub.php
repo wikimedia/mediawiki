@@ -32,9 +32,11 @@ class ProfilerStub extends Profiler {
 	}
 
 	public function getFunctionStats() {
+		return [];
 	}
 
 	public function getOutput() {
+		return '';
 	}
 
 	public function close() {

@@ -9,7 +9,7 @@ class SampleTest extends MediaWikiLangTestCase {
 	 * Anything that needs to happen before your tests should go here.
 	 */
 	protected function setUp() {
-		// Be sure to do call the parent setup and teardown functions.
+		// Be sure to call the parent setup and teardown functions.
 		// This makes sure that all the various cleanup and restorations
 		// happen as they should (including the restoration for setMwGlobals).
 		parent::setUp();
@@ -46,7 +46,7 @@ class SampleTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * If you want to run a the same test with a variety of data, use a data provider.
+	 * If you want to run the same test with a variety of data, use a data provider.
 	 * see: https://www.phpunit.de/manual/3.4/en/writing-tests-for-phpunit.html
 	 */
 	public static function provideTitles() {

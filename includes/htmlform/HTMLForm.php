@@ -81,9 +81,6 @@ use Wikimedia\ObjectFactory;
  *    'help-inline'         -- Whether help text (defined using options above) will be shown
  *                             inline after the input field, rather than in a popup.
  *                             Defaults to true. Only used by OOUI form fields.
- *    'notice'              -- (deprecated, use 'help' instead)
- *    'notice-messages'     -- (deprecated, use 'help-messages' instead)
- *    'notice-message'      -- (deprecated, use 'help-message' instead)
  *    'required'            -- passed through to the object, indicating that it
  *                             is a required field.
  *    'size'                -- the length of text fields
@@ -162,6 +159,7 @@ class HTMLForm extends ContextSource {
 		'checkmatrix' => HTMLCheckMatrix::class,
 		'cloner' => HTMLFormFieldCloner::class,
 		'autocompleteselect' => HTMLAutoCompleteSelectField::class,
+		'language' => HTMLSelectLanguageField::class,
 		'date' => HTMLDateTimeField::class,
 		'time' => HTMLDateTimeField::class,
 		'datetime' => HTMLDateTimeField::class,
@@ -175,6 +173,8 @@ class HTMLForm extends ContextSource {
 		'title' => HTMLTitleTextField::class,
 		'user' => HTMLUserTextField::class,
 		'usersmultiselect' => HTMLUsersMultiselectField::class,
+		'titlesmultiselect' => HTMLTitlesMultiselectField::class,
+		'namespacesmultiselect' => HTMLNamespacesMultiselectField::class,
 	];
 
 	public $mFieldData;
@@ -346,11 +346,7 @@ class HTMLForm extends ContextSource {
 
 			$setSection =& $loadedDescriptor;
 			if ( $section ) {
-				$sectionParts = explode( '/', $section );
-
-				while ( count( $sectionParts ) ) {
-					$newName = array_shift( $sectionParts );
-
+				foreach ( explode( '/', $section ) as $newName ) {
 					if ( !isset( $setSection[$newName] ) ) {
 						$setSection[$newName] = [];
 					}
@@ -530,7 +526,6 @@ class HTMLForm extends ContextSource {
 	public function tryAuthorizedSubmit() {
 		$result = false;
 
-		$identOkay = false;
 		if ( $this->mFormIdentifier === null ) {
 			$identOkay = true;
 		} else {
@@ -609,7 +604,7 @@ class HTMLForm extends ContextSource {
 		$valid = true;
 		$hoistedErrors = Status::newGood();
 		if ( $this->mValidationErrorMessage ) {
-			foreach ( (array)$this->mValidationErrorMessage as $error ) {
+			foreach ( $this->mValidationErrorMessage as $error ) {
 				$hoistedErrors->fatal( ...$error );
 			}
 		} else {
@@ -704,8 +699,8 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Set a message to display on a validation error.
 	 *
-	 * @param string|array $msg String or Array of valid inputs to wfMessage()
-	 *     (so each entry can be either a String or Array)
+	 * @param array $msg Array of valid inputs to wfMessage()
+	 *     (so each entry must itself be an array of arguments)
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
@@ -1287,7 +1282,7 @@ class HTMLForm extends ContextSource {
 			if ( $status->isGood() ) {
 				$elementstr = '';
 			} else {
-				$elementstr = $this->getOutput()->parse(
+				$elementstr = $this->getOutput()->parseAsInterface(
 					$status->getWikiText()
 				);
 			}

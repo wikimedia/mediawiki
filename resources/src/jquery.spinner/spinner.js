@@ -59,9 +59,9 @@
 		 * @return {jQuery}
 		 */
 		createSpinner: function ( opts ) {
-			var $spinner;
+			var i, $spinner, $container;
 
-			if ( opts !== undefined && $.type( opts ) !== 'object' ) {
+			if ( typeof opts === 'string' ) {
 				opts = {
 					id: opts
 				};
@@ -74,8 +74,14 @@
 				$spinner.attr( 'id', 'mw-spinner-' + opts.id );
 			}
 
-			$spinner.addClass( opts.size === 'large' ? 'mw-spinner-large' : 'mw-spinner-small' );
-			$spinner.addClass( opts.type === 'block' ? 'mw-spinner-block' : 'mw-spinner-inline' );
+			$spinner
+				.addClass( opts.size === 'large' ? 'mw-spinner-large' : 'mw-spinner-small' )
+				.addClass( opts.type === 'block' ? 'mw-spinner-block' : 'mw-spinner-inline' );
+
+			$container = $( '<div>' ).addClass( 'mw-spinner-container' ).appendTo( $spinner );
+			for ( i = 0; i < 12; i++ ) {
+				$container.append( $( '<div>' ) );
+			}
 
 			return $spinner;
 		},

@@ -14,16 +14,21 @@ EOF;
 	require_once __DIR__ . "/phpunit.php";
 }
 
-class MediaWikiPHPUnitBootstrap {
-	public function __destruct() {
-		// Return to real wiki db, so profiling data is preserved
-		MediaWikiTestCase::teardownTestDB();
+// The PHPUnit_TextUI_TestRunner class will run each test suite and may call
+// exit() with an exit status code. As such, we cannot run code "after the last test"
+// by adding statements to PHPUnitMaintClass::execute or MediaWikiPHPUnitCommand::run.
+// Instead, we work around it by registering a shutdown callback from the bootstrap
+// file, which runs before PHPUnit starts.
+// @todo Once we use PHPUnit 8 or higher, use the 'AfterLastTestHook' feature.
+// https://phpunit.readthedocs.io/en/8.0/extending-phpunit.html#available-hook-interfaces
+register_shutdown_function( function () {
+	// This will:
+	// - clear the temporary job queue.
+	// - allow extensions to delete any temporary tables they created.
+	// - restore ability to connect to the real database,
+	//   (for logging profiling data).
+	MediaWikiTestCase::teardownTestDB();
 
-		// Log profiling data, e.g. in the database or UDP
-		wfLogProfilingData();
-	}
-
-}
-
-// This will be destructed after all tests have been run
-$mediawikiPHPUnitBootstrap = new MediaWikiPHPUnitBootstrap();
+	// Log profiling data, e.g. in the database or UDP
+	wfLogProfilingData();
+} );

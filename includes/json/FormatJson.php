@@ -153,6 +153,16 @@ class FormatJson {
 	 * which returns more comprehensive result in case of an error, and has
 	 * more parsing options.
 	 *
+	 * In PHP versions before 7.1, decoding a JSON string containing an empty key
+	 * without passing $assoc as true results in a return object with a property
+	 * named "_empty_" (because true empty properties were not supported pre-PHP-7.1).
+	 * Instead, consider passing $assoc as true to return an associative array.
+	 *
+	 * But be aware that in all supported PHP versions, decoding an empty JSON object
+	 * with $assoc = true returns an array, not an object, breaking round-trip consistency.
+	 *
+	 * See https://phabricator.wikimedia.org/T206411 for more details on these quirks.
+	 *
 	 * @param string $value The JSON string being decoded
 	 * @param bool $assoc When true, returned objects will be converted into associative arrays.
 	 *

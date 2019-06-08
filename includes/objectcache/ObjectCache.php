@@ -154,7 +154,7 @@ class ObjectCache {
 			return $keyspace;
 		}
 
-		return wfWikiID();
+		return WikiMap::getCurrentWikiDbDomain()->getId();
 	}
 
 	/**
@@ -169,11 +169,7 @@ class ObjectCache {
 	 * @throws InvalidArgumentException
 	 */
 	public static function newFromParams( $params ) {
-		if ( isset( $params['loggroup'] ) ) {
-			$params['logger'] = LoggerFactory::getInstance( $params['loggroup'] );
-		} else {
-			$params['logger'] = LoggerFactory::getInstance( 'objectcache' );
-		}
+		$params['logger'] = LoggerFactory::getInstance( $params['loggroup'] ?? 'objectcache' );
 		if ( !isset( $params['keyspace'] ) ) {
 			$params['keyspace'] = self::getDefaultKeyspace();
 		}
@@ -242,7 +238,6 @@ class ObjectCache {
 		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType;
 		$candidates = [ $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType ];
 		foreach ( $candidates as $candidate ) {
-			$cache = false;
 			if ( $candidate !== CACHE_NONE && $candidate !== CACHE_ANYTHING ) {
 				$cache = self::getInstance( $candidate );
 				// CACHE_ACCEL might default to nothing if no APCu
@@ -340,11 +335,7 @@ class ObjectCache {
 			}
 		}
 		$params['cache'] = self::newFromParams( $params['store'] );
-		if ( isset( $params['loggroup'] ) ) {
-			$params['logger'] = LoggerFactory::getInstance( $params['loggroup'] );
-		} else {
-			$params['logger'] = LoggerFactory::getInstance( 'objectcache' );
-		}
+		$params['logger'] = LoggerFactory::getInstance( $params['loggroup'] ?? 'objectcache' );
 		if ( !$wgCommandLineMode ) {
 			// Send the statsd data post-send on HTTP requests; avoid in CLI mode (T181385)
 			$params['stats'] = $services->getStatsdDataFactory();
@@ -373,7 +364,7 @@ class ObjectCache {
 	 *
 	 * @since 1.26
 	 * @return WANObjectCache
-	 * @deprecated Since 1.28 Use MediaWikiServices::getMainWANObjectCache()
+	 * @deprecated Since 1.28 Use MediaWikiServices::getInstance()->getMainWANObjectCache()
 	 */
 	public static function getMainWANInstance() {
 		return MediaWikiServices::getInstance()->getMainWANObjectCache();
@@ -396,7 +387,7 @@ class ObjectCache {
 	 *
 	 * @return BagOStuff
 	 * @since 1.26
-	 * @deprecated Since 1.28 Use MediaWikiServices::getMainObjectStash
+	 * @deprecated Since 1.28 Use MediaWikiServices::getInstance()->getMainObjectStash()
 	 */
 	public static function getMainStashInstance() {
 		return MediaWikiServices::getInstance()->getMainObjectStash();

@@ -50,7 +50,7 @@ class AncientPagesPage extends QueryPage {
 		];
 		$joinConds = [
 			'revision' => [
-				'INNER JOIN', [
+				'JOIN', [
 					'page_latest = rev_id'
 				]
 			],

@@ -85,6 +85,16 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	private $linkDeletions = null;
 
 	/**
+	 * @var null|array Added external links if calculated.
+	 */
+	private $externalLinkInsertions = null;
+
+	/**
+	 * @var null|array Deleted external links if calculated.
+	 */
+	private $externalLinkDeletions = null;
+
+	/**
 	 * @var null|array Added properties if calculated.
 	 */
 	private $propertyInsertions = null;
@@ -112,7 +122,11 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 		parent::__construct();
 
 		$this->mTitle = $title;
-		$this->mId = $title->getArticleID( Title::GAID_FOR_UPDATE );
+
+		if ( !$this->mId ) {
+			// NOTE: subclasses may initialize mId before calling this constructor!
+			$this->mId = $title->getArticleID( Title::GAID_FOR_UPDATE );
+		}
 
 		if ( !$this->mId ) {
 			throw new InvalidArgumentException(
@@ -234,11 +248,14 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 
 		# External links
 		$existingEL = $this->getExistingExternals();
+		$this->externalLinkDeletions = $this->getExternalDeletions( $existingEL );
+		$this->externalLinkInsertions = $this->getExternalInsertions(
+			$existingEL );
 		$this->incrTableUpdate(
 			'externallinks',
 			'el',
-			$this->getExternalDeletions( $existingEL ),
-			$this->getExternalInsertions( $existingEL ) );
+			$this->externalLinkDeletions,
+			$this->externalLinkInsertions );
 
 		# Language links
 		$existingLL = $this->getExistingInterlangs();
@@ -567,7 +584,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 		$arr = [];
 		$diffs = array_diff_key( $this->mExternals, $existing );
 		foreach ( $diffs as $url => $dummy ) {
-			foreach ( wfMakeUrlIndexes( $url ) as $index ) {
+			foreach ( LinkFilter::makeIndexes( $url ) as $index ) {
 				$arr[] = [
 					'el_from' => $this->mId,
 					'el_to' => $url,
@@ -819,7 +836,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	 * @param array $existing
 	 * @return array
 	 */
-	function getPropertyDeletions( $existing ) {
+	private function getPropertyDeletions( $existing ) {
 		return array_diff_assoc( $existing, $this->mProperties );
 	}
 
@@ -1100,6 +1117,36 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	}
 
 	/**
+	 * Fetch external links added by this LinksUpdate. Only available after
+	 * the update is complete.
+	 * @since 1.33
+	 * @return null|array Array of Strings
+	 */
+	public function getAddedExternalLinks() {
+		if ( $this->externalLinkInsertions === null ) {
+			return null;
+		}
+		$result = [];
+		foreach ( $this->externalLinkInsertions as $key => $value ) {
+			$result[] = $value['el_to'];
+		}
+		return $result;
+	}
+
+	/**
+	 * Fetch external links removed by this LinksUpdate. Only available after
+	 * the update is complete.
+	 * @since 1.33
+	 * @return null|array Array of Strings
+	 */
+	public function getRemovedExternalLinks() {
+		if ( $this->externalLinkDeletions === null ) {
+			return null;
+		}
+		return array_keys( $this->externalLinkDeletions );
+	}
+
+	/**
 	 * Fetch page properties added by this LinksUpdate.
 	 * Only available after the update is complete.
 	 * @since 1.28
@@ -1137,7 +1184,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	/**
 	 * @return IDatabase
 	 */
-	private function getDB() {
+	protected function getDB() {
 		if ( !$this->db ) {
 			$this->db = wfGetDB( DB_MASTER );
 		}
@@ -1162,7 +1209,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 		}
 
 		return [
-			'wiki' => WikiMap::getWikiIdFromDomain( $this->getDB()->getDomainID() ),
+			'domain' => $this->getDB()->getDomainID(),
 			'job'  => new JobSpecification(
 				'refreshLinksPrioritized',
 				[

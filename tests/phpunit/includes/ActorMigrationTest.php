@@ -571,10 +571,8 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	public static function provideInsertRoundTrip() {
 		$db = wfGetDB( DB_REPLICA ); // for timestamps
 
-		$ipbfields = [
-		];
-		$revfields = [
-		];
+		$comment = MediaWikiServices::getInstance()->getCommentStore()
+			->createComment( wfGetDB( DB_MASTER ), '' );
 
 		return [
 			'recentchanges' => [ 'recentchanges', 'rc_user', 'rc_id', [
@@ -584,16 +582,17 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 				'rc_this_oldid' => 42,
 				'rc_last_oldid' => 41,
 				'rc_source' => 'test',
+				'rc_comment_id' => $comment->id,
 			] ],
 			'ipblocks' => [ 'ipblocks', 'ipb_by', 'ipb_id', [
 				'ipb_range_start' => '',
 				'ipb_range_end' => '',
 				'ipb_timestamp' => $db->timestamp(),
 				'ipb_expiry' => $db->getInfinity(),
+				'ipb_reason_id' => $comment->id,
 			] ],
 			'revision' => [ 'revision', 'rev_user', 'rev_id', [
 				'rev_page' => 42,
-				'rev_text_id' => 42,
 				'rev_len' => 0,
 				'rev_timestamp' => $db->timestamp(),
 			] ],
@@ -659,14 +658,18 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		$callback( 1, [] );
 	}
 
-	public function testInsertUserIdentity() {
+	/**
+	 * @dataProvider provideStages
+	 * @param int $stage
+	 */
+	public function testInsertUserIdentity( $stage ) {
 		$this->setMwGlobals( [
 			// for User::getActorId()
-			'wgActorTableSchemaMigrationStage' => SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
+			'wgActorTableSchemaMigrationStage' => $stage
 		] );
 		$this->overrideMwServices();
 
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getMutableTestUser()->getUser();
 		$userIdentity = $this->getMock( UserIdentity::class );
 		$userIdentity->method( 'getId' )->willReturn( $user->getId() );
 		$userIdentity->method( 'getName' )->willReturn( $user->getName() );
@@ -674,12 +677,11 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 
 		list( $cFields, $cCallback ) = MediaWikiServices::getInstance()->getCommentStore()
 			->insertWithTempTable( $this->db, 'rev_comment', '' );
-		$m = $this->makeMigration( SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW );
+		$m = $this->makeMigration( $stage );
 		list( $fields, $callback ) =
 			$m->getInsertValuesWithTempTable( $this->db, 'rev_user', $userIdentity );
 		$extraFields = [
 			'rev_page' => 42,
-			'rev_text_id' => 42,
 			'rev_len' => 0,
 			'rev_timestamp' => $this->db->timestamp(),
 		] + $cFields;
@@ -694,13 +696,25 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		);
 		$this->assertSame( $user->getId(), (int)$row->rev_user );
 		$this->assertSame( $user->getName(), $row->rev_user_text );
-		$this->assertSame( $user->getActorId(), (int)$row->rev_actor );
+		$this->assertSame(
+			( $stage & SCHEMA_COMPAT_READ_NEW ) ? $user->getActorId() : 0,
+			(int)$row->rev_actor
+		);
 
-		$m = $this->makeMigration( SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW );
+		$m = $this->makeMigration( $stage );
 		$fields = $m->getInsertValues( $this->db, 'dummy_user', $userIdentity );
-		$this->assertSame( $user->getId(), $fields['dummy_user'] );
-		$this->assertSame( $user->getName(), $fields['dummy_user_text'] );
-		$this->assertSame( $user->getActorId(), $fields['dummy_actor'] );
+		if ( $stage & SCHEMA_COMPAT_WRITE_OLD ) {
+			$this->assertSame( $user->getId(), $fields['dummy_user'] );
+			$this->assertSame( $user->getName(), $fields['dummy_user_text'] );
+		} else {
+			$this->assertArrayNotHasKey( 'dummy_user', $fields );
+			$this->assertArrayNotHasKey( 'dummy_user_text', $fields );
+		}
+		if ( $stage & SCHEMA_COMPAT_WRITE_NEW ) {
+			$this->assertSame( $user->getActorId(), $fields['dummy_actor'] );
+		} else {
+			$this->assertArrayNotHasKey( 'dummy_actor', $fields );
+		}
 	}
 
 	public function testNewMigration() {

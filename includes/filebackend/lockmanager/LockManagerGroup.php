@@ -50,7 +50,10 @@ class LockManagerGroup {
 	 * @return LockManagerGroup
 	 */
 	public static function singleton( $domain = false ) {
-		$domain = ( $domain === false ) ? wfWikiID() : $domain;
+		if ( $domain === false ) {
+			$domain = WikiMap::getCurrentWikiDbDomain()->getId();
+		}
+
 		if ( !isset( self::$instances[$domain] ) ) {
 			self::$instances[$domain] = new self( $domain );
 			self::$instances[$domain]->initFromGlobals();
@@ -126,6 +129,7 @@ class LockManagerGroup {
 			}
 			$config['logger'] = LoggerFactory::getInstance( 'LockManager' );
 
+			// @phan-suppress-next-line PhanTypeInstantiateAbstract
 			$this->managers[$name]['instance'] = new $class( $config );
 		}
 

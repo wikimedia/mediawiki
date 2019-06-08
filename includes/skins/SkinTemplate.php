@@ -171,6 +171,9 @@ class SkinTemplate extends Skin {
 		return $languageLinks;
 	}
 
+	/**
+	 * @return QuickTemplate
+	 */
 	protected function setupTemplateForOutput() {
 		$request = $this->getRequest();
 		$user = $this->getUser();
@@ -386,14 +389,15 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'credits', false );
 		$tpl->set( 'numberofwatchingusers', false );
 		if ( $title->exists() ) {
-			if ( $out->isArticle() ) {
-				if ( $this->isRevisionCurrent() ) {
-					if ( $wgMaxCredits != 0 ) {
-						$tpl->set( 'credits', Action::factory( 'credits', $this->getWikiPage(),
-							$this->getContext() )->getCredits( $wgMaxCredits, $wgShowCreditsIfMax ) );
-					} else {
-						$tpl->set( 'lastmod', $this->lastModified() );
-					}
+			if ( $out->isArticle() && $this->isRevisionCurrent() ) {
+				if ( $wgMaxCredits != 0 ) {
+					/** @var CreditsAction $action */
+					$action = Action::factory(
+						'credits', $this->getWikiPage(), $this->getContext() );
+					$tpl->set( 'credits',
+						$action->getCredits( $wgMaxCredits, $wgShowCreditsIfMax ) );
+				} else {
+					$tpl->set( 'lastmod', $this->lastModified() );
 				}
 			}
 			if ( $out->showsCopyright() ) {
@@ -526,7 +530,9 @@ class SkinTemplate extends Skin {
 		$html = '';
 
 		if ( $personalTools === null ) {
-			$personalTools = $tpl->getPersonalTools();
+			$personalTools = ( $tpl instanceof BaseTemplate )
+				? $tpl->getPersonalTools()
+				: [];
 		}
 
 		foreach ( $personalTools as $key => $item ) {
@@ -547,7 +553,7 @@ class SkinTemplate extends Skin {
 		$tpl = $this->setupTemplateForOutput();
 		$tpl->set( 'personal_urls', $this->buildPersonalUrls() );
 
-		return $tpl->getPersonalTools();
+		return ( $tpl instanceof BaseTemplate ) ? $tpl->getPersonalTools() : [];
 	}
 
 	/**

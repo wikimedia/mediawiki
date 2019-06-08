@@ -13,9 +13,6 @@
 		},
 		"required": {
 			"file": "../wikimediaui/images/indicators/required.svg"
-		},
-		"search": {
-			"file": "../wikimediaui/images/indicators/search.svg"
 		}
 	}
 }

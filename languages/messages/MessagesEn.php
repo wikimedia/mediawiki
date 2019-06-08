@@ -207,8 +207,6 @@ $bookstoreList = [
  *     used aliases. The aliases SHOULD be sorted by the following convention:
  *     1. Local first, English last, then
  *     2. Most common first, least common last.
- *
- * This array can be modified at runtime with the LanguageGetMagic hook
  */
 $magicWords = [
 #   ID                               CASE  SYNONYMS
@@ -361,6 +359,7 @@ $magicWords = [
 	'filepath'                => [ 0, 'FILEPATH:' ],
 	'tag'                     => [ 0, 'tag' ],
 	'hiddencat'               => [ 1, '__HIDDENCAT__' ],
+	'expectunusedcategory'    => [ 1, '__EXPECTUNUSEDCATEGORY__', ],
 	'pagesincategory'         => [ 1, 'PAGESINCATEGORY', 'PAGESINCAT' ],
 	'pagesize'                => [ 1, 'PAGESIZE' ],
 	'index'                   => [ 1, '__INDEX__' ],
@@ -388,9 +387,6 @@ $magicWords = [
  * Alternate names of special pages. All names are case-insensitive. The first
  * listed alias will be used as the default. Aliases from the fallback
  * localisation (usually English) will be included by default.
- *
- * This array may be altered at runtime using the LanguageGetSpecialPageAliases
- * hook.
  */
 $specialPageAliases = [
 	'Activeusers'               => [ 'ActiveUsers' ],
@@ -442,7 +438,7 @@ $specialPageAliases = [
 	'Listgrants'                => [ 'ListGrants' ],
 	'Listredirects'             => [ 'ListRedirects' ],
 	'ListDuplicatedFiles'       => [ 'ListDuplicatedFiles', 'ListFileDuplicates' ],
-	'Listusers'                 => [ 'ListUsers', 'UserList' ],
+	'Listusers'                 => [ 'ListUsers', 'UserList', 'Users' ],
 	'Lockdb'                    => [ 'LockDB' ],
 	'Log'                       => [ 'Log', 'Logs' ],
 	'Lonelypages'               => [ 'LonelyPages', 'OrphanedPages' ],

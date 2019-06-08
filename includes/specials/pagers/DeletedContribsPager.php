@@ -29,10 +29,29 @@ use Wikimedia\Rdbms\FakeResultWrapper;
 
 class DeletedContribsPager extends IndexPager {
 
+	/**
+	 * @var bool Default direction for pager
+	 */
 	public $mDefaultDirection = IndexPager::DIR_DESCENDING;
+
+	/**
+	 * @var string[] Local cache for escaped messages
+	 */
 	public $messages;
+
+	/**
+	 * @var string User name, or a string describing an IP address range
+	 */
 	public $target;
+
+	/**
+	 * @var string|int A single namespace number, or an empty string for all namespaces
+	 */
 	public $namespace = '';
+
+	/**
+	 * @var \Wikimedia\Rdbms\Database
+	 */
 	public $mDb;
 
 	/**
@@ -40,7 +59,7 @@ class DeletedContribsPager extends IndexPager {
 	 */
 	protected $mNavigationBar;
 
-	function __construct( IContextSource $context, $target, $namespace = false ) {
+	public function __construct( IContextSource $context, $target, $namespace = false ) {
 		parent::__construct( $context );
 		$msgs = [ 'deletionlog', 'undeleteviewlink', 'diff' ];
 		foreach ( $msgs as $msg ) {
@@ -96,17 +115,17 @@ class DeletedContribsPager extends IndexPager {
 	 *
 	 * @param string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
-	 * @param bool $descending Query direction, false for ascending, true for descending
+	 * @param bool $order IndexPager::QUERY_ASCENDING or IndexPager::QUERY_DESCENDING
 	 * @return IResultWrapper
 	 */
-	function reallyDoQuery( $offset, $limit, $descending ) {
-		$data = [ parent::reallyDoQuery( $offset, $limit, $descending ) ];
+	function reallyDoQuery( $offset, $limit, $order ) {
+		$data = [ parent::reallyDoQuery( $offset, $limit, $order ) ];
 
 		// This hook will allow extensions to add in additional queries, nearly
 		// identical to ContribsPager::reallyDoQuery.
 		Hooks::run(
 			'DeletedContribsPager::reallyDoQuery',
-			[ &$data, $this, $offset, $limit, $descending ]
+			[ &$data, $this, $offset, $limit, $order ]
 		);
 
 		$result = [];
@@ -120,7 +139,7 @@ class DeletedContribsPager extends IndexPager {
 		}
 
 		// sort results
-		if ( $descending ) {
+		if ( $order === self::QUERY_ASCENDING ) {
 			ksort( $result );
 		} else {
 			krsort( $result );
@@ -139,11 +158,25 @@ class DeletedContribsPager extends IndexPager {
 		return 'ar_timestamp';
 	}
 
-	function getStartBody() {
+	/**
+	 * @return string
+	 */
+	public function getTarget() {
+		return $this->target;
+	}
+
+	/**
+	 * @return int|string
+	 */
+	public function getNamespace() {
+		return $this->namespace;
+	}
+
+	protected function getStartBody() {
 		return "<ul>\n";
 	}
 
-	function getEndBody() {
+	protected function getEndBody() {
 		return "</ul>\n";
 	}
 

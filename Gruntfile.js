@@ -8,11 +8,11 @@ module.exports = function ( grunt ) {
 
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
 	grunt.loadNpmTasks( 'grunt-contrib-copy' );
-	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-eslint' );
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
 	grunt.loadNpmTasks( 'grunt-karma' );
 	grunt.loadNpmTasks( 'grunt-stylelint' );
+	grunt.loadNpmTasks( 'grunt-svgmin' );
 
 	karmaProxy[ wgScriptPath ] = {
 		target: wgServer + wgScriptPath,
@@ -21,6 +21,10 @@ module.exports = function ( grunt ) {
 
 	grunt.initConfig( {
 		eslint: {
+			options: {
+				reportUnusedDisableDirectives: true,
+				cache: true
+			},
 			all: [
 				'**/*.js',
 				'!docs/**',
@@ -47,11 +51,47 @@ module.exports = function ( grunt ) {
 				disallowBlankTranslations: false
 			},
 			core: 'languages/i18n/',
+			exif: 'languages/i18n/exif/',
 			api: 'includes/api/i18n/',
 			installer: 'includes/installer/i18n/'
 		},
 		stylelint: {
 			src: '{resources/src,mw-config}/**/*.{css,less}'
+		},
+		svgmin: {
+			options: {
+				js2svg: {
+					indent: '\t',
+					pretty: true
+				},
+				multipass: true,
+				plugins: [ {
+					cleanupIDs: false
+				}, {
+					removeDesc: false
+				}, {
+					removeRasterImages: true
+				}, {
+					removeTitle: false
+				}, {
+					removeViewBox: false
+				}, {
+					removeXMLProcInst: false
+				}, {
+					sortAttrs: true
+				} ]
+			},
+			all: {
+				files: [ {
+					expand: true,
+					cwd: 'resources/src',
+					src: [
+						'**/*.svg'
+					],
+					dest: 'resources/src/',
+					ext: '.svg'
+				} ]
+			}
 		},
 		watch: {
 			files: [
@@ -63,6 +103,18 @@ module.exports = function ( grunt ) {
 		},
 		karma: {
 			options: {
+				customLaunchers: {
+					ChromeCustom: {
+						base: 'ChromeHeadless',
+						// Chrome requires --no-sandbox in Docker/CI.
+						// Newer CI images expose CHROMIUM_FLAGS which sets this (and
+						// anything else it might need) automatically. Older CI images,
+						// (including Quibble for MW) don't set it yet.
+						flags: ( process.env.CHROMIUM_FLAGS ||
+							( process.env.ZUUL_PROJECT ? '--no-sandbox' : '' )
+						).split( ' ' )
+					}
+				},
 				proxies: karmaProxy,
 				files: [ {
 					pattern: wgServer + wgScriptPath + '/index.php?title=Special:JavaScriptTest/qunit/export',
@@ -82,13 +134,10 @@ module.exports = function ( grunt ) {
 				crossOriginAttribute: false
 			},
 			main: {
-				browsers: [ 'Chrome' ]
-			},
-			chromium: {
-				browsers: [ 'Chromium' ]
+				browsers: [ 'ChromeCustom' ]
 			},
 			firefox: {
-				browsers: [ 'Firefox' ]
+				browsers: [ 'FirefoxHeadless' ]
 			}
 		},
 		copy: {
@@ -116,9 +165,7 @@ module.exports = function ( grunt ) {
 		return !!( process.env.MW_SERVER && process.env.MW_SCRIPT_PATH );
 	} );
 
+	grunt.registerTask( 'minify', 'svgmin' );
 	grunt.registerTask( 'lint', [ 'eslint', 'banana', 'stylelint' ] );
 	grunt.registerTask( 'qunit', [ 'assert-mw-env', 'karma:main' ] );
-
-	grunt.registerTask( 'test', [ 'lint' ] );
-	grunt.registerTask( 'default', 'test' );
 };

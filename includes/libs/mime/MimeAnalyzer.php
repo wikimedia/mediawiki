@@ -653,7 +653,6 @@ EOT;
 				"Seeking $tailLength bytes from EOF failed in " . __METHOD__ );
 		}
 		$tail = $tailLength ? fread( $f, $tailLength ) : '';
-		fclose( $f );
 
 		$this->logger->info( __METHOD__ .
 			": analyzing head and tail of $file for magic numbers.\n" );
@@ -724,6 +723,12 @@ EOT;
 			return "image/webp";
 		}
 
+		/* Look for MS Compound Binary (OLE) files */
+		if ( strncmp( $head, "\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1", 8 ) == 0 ) {
+			$this->logger->info( __METHOD__ . ': recognized MS CFB (OLE) file' );
+			return $this->detectMicrosoftBinaryType( $f );
+		}
+
 		/**
 		 * Look for PHP.  Check for this before HTML/XML...  Warning: this is a
 		 * heuristic, and won't match a file with a lot of non-PHP before.  It
@@ -753,11 +758,7 @@ EOT;
 		$xml = new XmlTypeCheck( $file );
 		if ( $xml->wellFormed ) {
 			$xmlTypes = $this->xmlTypes;
-			if ( isset( $xmlTypes[$xml->getRootElement()] ) ) {
-				return $xmlTypes[$xml->getRootElement()];
-			} else {
-				return 'application/xml';
-			}
+			return $xmlTypes[$xml->getRootElement()] ?? 'application/xml';
 		}
 
 		/**
@@ -801,9 +802,18 @@ EOT;
 		}
 
 		// Check for ZIP variants (before getimagesize)
-		if ( strpos( $tail, "PK\x05\x06" ) !== false ) {
-			$this->logger->info( __METHOD__ . ": ZIP header present in $file\n" );
-			return $this->detectZipType( $head, $tail, $ext );
+		$eocdrPos = strpos( $tail, "PK\x05\x06" );
+		if ( $eocdrPos !== false ) {
+			$this->logger->info( __METHOD__ . ": ZIP signature present in $file\n" );
+			// Check if it really is a ZIP file, make sure the EOCDR is at the end (T40432)
+			// FIXME: unpack()'s third argument was added in PHP 7.1
+			// @phan-suppress-next-line PhanParamTooManyInternal
+			$commentLength = unpack( "n", $tail, $eocdrPos + 20 )[0];
+			if ( $eocdrPos + 22 + $commentLength !== strlen( $tail ) ) {
+				$this->logger->info( __METHOD__ . ": ZIP EOCDR not at end. Not a ZIP file." );
+			} else {
+				return $this->detectZipType( $head, $tail, $ext );
+			}
 		}
 
 		// Check for STL (3D) files
@@ -947,6 +957,26 @@ EOT;
 			$this->logger->info( __METHOD__ . ": unable to identify type of ZIP archive\n" );
 		}
 		return $mime;
+	}
+
+	/**
+	 * Detect the type of a Microsoft Compound Binary a.k.a. OLE file.
+	 * These are old style pre-ODF files such as .doc and .xls
+	 *
+	 * @param resource $handle An opened seekable file handle
+	 * @return string The detected MIME type
+	 */
+	function detectMicrosoftBinaryType( $handle ) {
+		$info = MSCompoundFileReader::readHandle( $handle );
+		if ( !$info['valid'] ) {
+			$this->logger->info( __METHOD__ . ': invalid file format' );
+			return 'unknown/unknown';
+		}
+		if ( !$info['mime'] ) {
+			$this->logger->info( __METHOD__ . ": unrecognised document subtype" );
+			return 'unknown/unknown';
+		}
+		return $info['mime'];
 	}
 
 	/**
@@ -1120,7 +1150,7 @@ EOT;
 	 * distinguish them from MIME types.
 	 *
 	 * This function relies on the mapping defined by $this->mMediaTypes
-	 * @access private
+	 * @private
 	 * @param string $extMime
 	 * @return int|string
 	 */

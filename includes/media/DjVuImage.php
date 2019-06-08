@@ -24,6 +24,8 @@
  * @ingroup Media
  */
 
+use MediaWiki\Shell\Shell;
+
 /**
  * Support for detecting/validating DjVu image files and getting
  * some basic file metadata (resolution etc)
@@ -108,7 +110,7 @@ class DjVuImage {
 				$this->dumpForm( $file, $chunkLength, $indent + 1 );
 			} else {
 				fseek( $file, $chunkLength, SEEK_CUR );
-				if ( $chunkLength & 1 == 1 ) {
+				if ( ( $chunkLength & 1 ) == 1 ) {
 					// Padding byte between chunks
 					fseek( $file, 1, SEEK_CUR );
 				}
@@ -166,7 +168,7 @@ class DjVuImage {
 	private function skipChunk( $file, $chunkLength ) {
 		fseek( $file, $chunkLength, SEEK_CUR );
 
-		if ( $chunkLength & 0x01 == 1 && !feof( $file ) ) {
+		if ( ( $chunkLength & 0x01 ) == 1 && !feof( $file ) ) {
 			// padding byte
 			fseek( $file, 1, SEEK_CUR );
 		}
@@ -253,19 +255,19 @@ class DjVuImage {
 		if ( isset( $wgDjvuDump ) ) {
 			# djvudump is faster as of version 3.5
 			# https://sourceforge.net/p/djvu/bugs/71/
-			$cmd = wfEscapeShellArg( $wgDjvuDump ) . ' ' . wfEscapeShellArg( $this->mFilename );
+			$cmd = Shell::escape( $wgDjvuDump ) . ' ' . Shell::escape( $this->mFilename );
 			$dump = wfShellExec( $cmd );
 			$xml = $this->convertDumpToXML( $dump );
 		} elseif ( isset( $wgDjvuToXML ) ) {
-			$cmd = wfEscapeShellArg( $wgDjvuToXML ) . ' --without-anno --without-text ' .
-				wfEscapeShellArg( $this->mFilename );
+			$cmd = Shell::escape( $wgDjvuToXML ) . ' --without-anno --without-text ' .
+				Shell::escape( $this->mFilename );
 			$xml = wfShellExec( $cmd );
 		} else {
 			$xml = null;
 		}
 		# Text layer
 		if ( isset( $wgDjvuTxt ) ) {
-			$cmd = wfEscapeShellArg( $wgDjvuTxt ) . ' --detail=page ' . wfEscapeShellArg( $this->mFilename );
+			$cmd = Shell::escape( $wgDjvuTxt ) . ' --detail=page ' . Shell::escape( $this->mFilename );
 			wfDebug( __METHOD__ . ": $cmd\n" );
 			$retval = '';
 			$txt = wfShellExec( $cmd, $retval, [], [ 'memory' => self::DJVUTXT_MEMORY_LIMIT ] );
@@ -285,8 +287,9 @@ class DjVuImage {
 EOR;
 				$txt = preg_replace_callback( $reg, [ $this, 'pageTextCallback' ], $txt );
 				$txt = "<DjVuTxt>\n<HEAD></HEAD>\n<BODY>\n" . $txt . "</BODY>\n</DjVuTxt>\n";
-				$xml = preg_replace( "/<DjVuXML>/", "<mw-djvu><DjVuXML>", $xml, 1 );
-				$xml = $xml . $txt . '</mw-djvu>';
+				$xml = preg_replace( "/<DjVuXML>/", "<mw-djvu><DjVuXML>", $xml, 1 ) .
+					$txt .
+					'</mw-djvu>';
 			}
 		}
 

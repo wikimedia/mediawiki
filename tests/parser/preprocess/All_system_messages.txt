@@ -461,7 +461,7 @@ Talk for this IP
 [http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:5bbc19f4&action=edit 07575f81]<br>
 [[MediaWiki_talk:5bbc19f4|Talk]]
 </td><td>
-----&#39;&#39;This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical &#91;&#91;IP address]] to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please &#91;&#91;Special:Userlogin&#124;create an account or log in]] to avoid future confusion with other anonymous users.&#39;&#39; 
+----&#39;&#39;This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical &#91;&#91;IP address]] to identify them. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please &#91;&#91;Special:Userlogin&#124;create an account or log in]] to avoid future confusion with other anonymous users.&#39;&#39; 
 </td><td>
 {{int:5bbc19f4}}
 </td></tr><tr><td>

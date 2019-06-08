@@ -28,7 +28,11 @@
  * @since 1.19
  */
 
+use MediaWiki\ChangeTags\Taggable;
+use MediaWiki\Linker\LinkTarget;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Assert\Assert;
 
 /**
  * Interface for log entries. Every log entry has these methods.
@@ -96,7 +100,7 @@ interface LogEntry {
 	/**
 	 * Get the access restriction.
 	 *
-	 * @return string
+	 * @return int
 	 */
 	public function getDeleted();
 
@@ -434,7 +438,7 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
  *
  * @since 1.19
  */
-class ManualLogEntry extends LogEntryBase {
+class ManualLogEntry extends LogEntryBase implements Taggable {
 	/** @var string Type of log entry */
 	protected $type;
 
@@ -462,8 +466,8 @@ class ManualLogEntry extends LogEntryBase {
 	/** @var int A rev id associated to the log entry */
 	protected $revId = 0;
 
-	/** @var array Change tags add to the log entry */
-	protected $tags = null;
+	/** @var string[] Change tags add to the log entry */
+	protected $tags = [];
 
 	/** @var int Deletion state of the log entry */
 	protected $deleted;
@@ -527,20 +531,20 @@ class ManualLogEntry extends LogEntryBase {
 	 * Set the user that performed the action being logged.
 	 *
 	 * @since 1.19
-	 * @param User $performer
+	 * @param UserIdentity $performer
 	 */
-	public function setPerformer( User $performer ) {
-		$this->performer = $performer;
+	public function setPerformer( UserIdentity $performer ) {
+		$this->performer = User::newFromIdentity( $performer );
 	}
 
 	/**
 	 * Set the title of the object changed.
 	 *
 	 * @since 1.19
-	 * @param Title $target
+	 * @param LinkTarget $target
 	 */
-	public function setTarget( Title $target ) {
-		$this->target = $target;
+	public function setTarget( LinkTarget $target ) {
+		$this->target = Title::newFromLinkTarget( $target );
 	}
 
 	/**
@@ -579,14 +583,35 @@ class ManualLogEntry extends LogEntryBase {
 	/**
 	 * Set change tags for the log entry.
 	 *
+	 * Passing `null` means the same as empty array,
+	 * for compatibility with WikiPage::doUpdateRestrictions().
+	 *
 	 * @since 1.27
-	 * @param string|string[] $tags
+	 * @param string|string[]|null $tags
+	 * @deprecated since 1.33 Please use addTags() instead
 	 */
 	public function setTags( $tags ) {
+		if ( $this->tags ) {
+			wfDebug( 'Overwriting existing ManualLogEntry tags' );
+		}
+		$this->tags = [];
+		if ( $tags !== null ) {
+			$this->addTags( $tags );
+		}
+	}
+
+	/**
+	 * Add change tags for the log entry
+	 *
+	 * @since 1.33
+	 * @param string|string[] $tags Tags to apply
+	 */
+	public function addTags( $tags ) {
 		if ( is_string( $tags ) ) {
 			$tags = [ $tags ];
 		}
-		$this->tags = $tags;
+		Assert::parameterElementType( 'string', $tags, 'tags' );
+		$this->tags = array_unique( array_merge( $this->tags, $tags ) );
 	}
 
 	/**
@@ -768,20 +793,44 @@ class ManualLogEntry extends LogEntryBase {
 	 * @param string $to One of: rcandudp (default), rc, udp
 	 */
 	public function publish( $newId, $to = 'rcandudp' ) {
+		$canAddTags = true;
+		// FIXME: this code should be removed once all callers properly call publish()
+		if ( $to === 'udp' && !$newId && !$this->getAssociatedRevId() ) {
+			\MediaWiki\Logger\LoggerFactory::getInstance( 'logging' )->warning(
+				'newId and/or revId must be set when calling ManualLogEntry::publish()',
+				[
+					'newId' => $newId,
+					'to' => $to,
+					'revId' => $this->getAssociatedRevId(),
+					// pass a new exception to register the stack trace
+					'exception' => new RuntimeException()
+				]
+			);
+			$canAddTags = false;
+		}
+
 		DeferredUpdates::addCallableUpdate(
-			function () use ( $newId, $to ) {
+			function () use ( $newId, $to, $canAddTags ) {
 				$log = new LogPage( $this->getType() );
 				if ( !$log->isRestricted() ) {
+					Hooks::runWithoutAbort( 'ManualLogEntryBeforePublish', [ $this ] );
 					$rc = $this->getRecentChange( $newId );
 
 					if ( $to === 'rc' || $to === 'rcandudp' ) {
 						// save RC, passing tags so they are applied there
-						$tags = $this->getTags();
-						if ( is_null( $tags ) ) {
-							$tags = [];
-						}
-						$rc->addTags( $tags );
+						$rc->addTags( $this->getTags() );
 						$rc->save( $rc::SEND_NONE );
+					} else {
+						$tags = $this->getTags();
+						if ( $tags && $canAddTags ) {
+							$revId = $this->getAssociatedRevId();
+							ChangeTags::addTags(
+								$tags,
+								null,
+								$revId > 0 ? $revId : null,
+								$newId > 0 ? $newId : null
+							);
+						}
 					}
 
 					if ( $to === 'udp' || $to === 'rcandudp' ) {
@@ -840,7 +889,7 @@ class ManualLogEntry extends LogEntryBase {
 
 	/**
 	 * @since 1.27
-	 * @return array
+	 * @return string[]
 	 */
 	public function getTags() {
 		return $this->tags;

@@ -72,7 +72,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 
 	/**
 	 * @param BagOStuff $store
-	 * @param array[] $client Map of (ip: <IP>, agent: <user-agent> [, clientId: <hash>] )
+	 * @param array $client Map of (ip: <IP>, agent: <user-agent> [, clientId: <hash>] )
 	 * @param int|null $posIndex Write counter index [optional]
 	 * @since 1.27
 	 */
@@ -202,7 +202,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 			);
 		}
 
-		if ( !count( $this->shutdownPositions ) ) {
+		if ( $this->shutdownPositions === [] ) {
 			return []; // nothing to save
 		}
 

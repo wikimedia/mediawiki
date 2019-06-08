@@ -59,7 +59,7 @@ abstract class DBAccessBase implements IDBAccessObject {
 	 *
 	 * @return IDatabase
 	 */
-	protected function getConnection( $id, $groups = [] ) {
+	protected function getConnection( $id, array $groups = [] ) {
 		$loadBalancer = $this->getLoadBalancer();
 
 		return $loadBalancer->getConnection( $id, $groups, $this->wiki );
@@ -84,7 +84,7 @@ abstract class DBAccessBase implements IDBAccessObject {
 	/**
 	 * Get the database type used for read operations.
 	 *
-	 * @see MediaWikiServices::getDBLoadBalancer
+	 * @see MediaWikiServices::getInstance()->getDBLoadBalancer
 	 *
 	 * @since 1.21
 	 *

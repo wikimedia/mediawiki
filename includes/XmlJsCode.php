@@ -32,7 +32,8 @@
  *
  * @note As of 1.21, XmlJsCode objects cannot be nested inside objects or arrays. The sole
  *       exception is the $args argument to Xml::encodeJsCall() because Xml::encodeJsVar() is
- *       called for each individual element in that array.
+ *       called for each individual element in that array. If you need to encode an object or array
+ *       containing XmlJsCode objects, use XmlJsCode::encodeObject() to re-encode it first.
  *
  * @since 1.17
  */
@@ -41,5 +42,34 @@ class XmlJsCode {
 
 	function __construct( $value ) {
 		$this->value = $value;
+	}
+
+	/**
+	 * Encode an object containing XmlJsCode objects.
+	 *
+	 * This takes an object or associative array where (some of) the values are XmlJsCode objects,
+	 * and re-encodes it as a single XmlJsCode object.
+	 *
+	 * @since 1.33
+	 * @param object|array $obj Object or associative array to encode
+	 * @param bool $pretty If true, add non-significant whitespace to improve readability.
+	 * @return XmlJsCode
+	 */
+	public static function encodeObject( $obj, $pretty = false ) {
+		$parts = [];
+		foreach ( $obj as $key => $value ) {
+			$parts[] =
+				( $pretty ? '    ' : '' ) .
+				Xml::encodeJsVar( $key, $pretty ) .
+				( $pretty ? ': ' : ':' ) .
+				Xml::encodeJsVar( $value, $pretty );
+		}
+		return new self(
+			'{' .
+			( $pretty ? "\n" : '' ) .
+			implode( $pretty ? ",\n" : ',', $parts ) .
+			( $pretty ? "\n" : '' ) .
+			'}'
+		);
 	}
 }

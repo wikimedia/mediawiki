@@ -74,7 +74,7 @@ class SVGReader {
 
 		if ( $size > $wgSVGMetadataCutoff ) {
 			$this->debug( "SVG is $size bytes, which is bigger than $wgSVGMetadataCutoff. Truncating." );
-			$contents = file_get_contents( $source, false, null, -1, $wgSVGMetadataCutoff );
+			$contents = file_get_contents( $source, false, null, 0, $wgSVGMetadataCutoff );
 			if ( $contents === false ) {
 				throw new MWException( 'Error reading SVG file.' );
 			}
@@ -165,7 +165,7 @@ class SVGReader {
 			} elseif ( $isSVG && $tag == 'desc' ) {
 				$this->readField( $tag, 'description' );
 			} elseif ( $isSVG && $tag == 'metadata' && $type == XMLReader::ELEMENT ) {
-				$this->readXml( $tag, 'metadata' );
+				$this->readXml( 'metadata' );
 			} elseif ( $isSVG && $tag == 'script' ) {
 				// We normally do not allow scripted svgs.
 				// However its possible to configure MW to let them
@@ -226,13 +226,8 @@ class SVGReader {
 			return;
 		}
 		// @todo Find and store type of xml snippet. metadata['metadataType'] = "rdf"
-		if ( method_exists( $this->reader, 'readInnerXML' ) ) {
-			$this->metadata[$metafield] = trim( $this->reader->readInnerXml() );
-		} else {
-			throw new MWException( "The PHP XMLReader extension does not come " .
-				"with readInnerXML() method. Your libxml is probably out of " .
-				"date (need 2.6.20 or later)." );
-		}
+		$this->metadata[$metafield] = trim( $this->reader->readInnerXml() );
+
 		$this->reader->next();
 	}
 

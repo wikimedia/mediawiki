@@ -1,12 +1,13 @@
 <?php
 
+use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MediaWikiServices;
 
 /**
  * @group Database
  *
- * @covers Title::getUserPermissionsErrors
- * @covers Title::getUserPermissionsErrorsInternal
+ * @covers \MediaWiki\Permissions\PermissionManager::getPermissionErrors
+ * @covers \MediaWiki\Permissions\PermissionManager::getPermissionErrorsInternal
  */
 class TitlePermissionTest extends MediaWikiLangTestCase {
 
@@ -103,7 +104,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	 * This test is failing per T201776.
 	 *
 	 * @group Broken
-	 * @covers Title::checkQuickPermissions
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkQuickPermissions
 	 */
 	public function testQuickPermissions() {
 		$prefix = MediaWikiServices::getInstance()->getContentLanguage()->
@@ -394,7 +395,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	/**
 	 * @todo This test method should be split up into separate test methods and
 	 * data providers
-	 * @covers Title::checkSpecialsAndNSPermissions
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkSpecialsAndNSPermissions
 	 */
 	public function testSpecialsAndNSPermissions() {
 		global $wgNamespaceProtection;
@@ -451,7 +452,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	/**
 	 * @todo This test method should be split up into separate test methods and
 	 * data providers
-	 * @covers Title::checkUserConfigPermissions
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserConfigPermissions
 	 */
 	public function testJsConfigEditPermissions() {
 		$this->setUser( $this->userName );
@@ -474,7 +475,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	/**
 	 * @todo This test method should be split up into separate test methods and
 	 * data providers
-	 * @covers Title::checkUserConfigPermissions
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserConfigPermissions
 	 */
 	public function testJsonConfigEditPermissions() {
 		$prefix = MediaWikiServices::getInstance()->getContentLanguage()->
@@ -499,7 +500,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	/**
 	 * @todo This test method should be split up into separate test methods and
 	 * data providers
-	 * @covers Title::checkUserConfigPermissions
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserConfigPermissions
 	 */
 	public function testCssConfigEditPermissions() {
 		$this->setUser( $this->userName );
@@ -522,7 +523,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	/**
 	 * @todo This test method should be split up into separate test methods and
 	 * data providers
-	 * @covers Title::checkUserConfigPermissions
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserConfigPermissions
 	 */
 	public function testOtherJsConfigEditPermissions() {
 		$this->setUser( $this->userName );
@@ -545,7 +546,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	/**
 	 * @todo This test method should be split up into separate test methods and
 	 * data providers
-	 * @covers Title::checkUserConfigPermissions
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserConfigPermissions
 	 */
 	public function testOtherJsonConfigEditPermissions() {
 		$this->setUser( $this->userName );
@@ -568,7 +569,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	/**
 	 * @todo This test method should be split up into separate test methods and
 	 * data providers
-	 * @covers Title::checkUserConfigPermissions
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserConfigPermissions
 	 */
 	public function testOtherCssConfigEditPermissions() {
 		$this->setUser( $this->userName );
@@ -591,7 +592,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	/**
 	 * @todo This test method should be split up into separate test methods and
 	 * data providers
-	 * @covers Title::checkUserConfigPermissions
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserConfigPermissions
 	 */
 	public function testOtherNonConfigEditPermissions() {
 		$this->setUser( $this->userName );
@@ -613,7 +614,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @todo This should use data providers like the other methods here.
-	 * @covers Title::checkUserConfigPermissions
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserConfigPermissions
 	 */
 	public function testPatrolActionConfigEditPermissions() {
 		$this->setUser( 'anon' );
@@ -686,7 +687,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	 * This test is failing per T201776.
 	 *
 	 * @group Broken
-	 * @covers Title::checkPageRestrictions
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkPageRestrictions
 	 */
 	public function testPageRestrictions() {
 		$prefix = MediaWikiServices::getInstance()->getContentLanguage()->
@@ -779,7 +780,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Title::checkCascadingSourcesRestrictions
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkCascadingSourcesRestrictions
 	 */
 	public function testCascadingSourcesRestrictions() {
 		$this->setTitle( NS_MAIN, "test page" );
@@ -810,7 +811,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	/**
 	 * @todo This test method should be split up into separate test methods and
 	 * data providers
-	 * @covers Title::checkActionPermissions
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkActionPermissions
 	 */
 	public function testActionPermissions() {
 		$this->setUserPerm( [ "createpage" ] );
@@ -884,15 +885,16 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Title::checkUserBlock
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserBlock
 	 */
 	public function testUserBlock() {
 		$this->setMwGlobals( [
 			'wgEmailConfirmToEdit' => true,
 			'wgEmailAuthentication' => true,
 		] );
+		$this->overrideMwServices();
 
-		$this->setUserPerm( [ "createpage", "move" ] );
+		$this->setUserPerm( [ 'createpage', 'edit', 'move', 'rollback', 'patrol', 'upload', 'purge' ] );
 		$this->setTitle( NS_HELP, "test page" );
 
 		# $wgEmailConfirmToEdit only applies to 'edit' action
@@ -902,6 +904,8 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->title->getUserPermissionsErrors( 'edit', $this->user ) );
 
 		$this->setMwGlobals( 'wgEmailConfirmToEdit', false );
+		$this->overrideMwServices();
+
 		$this->assertNotContains( [ 'confirmedittext' ],
 			$this->title->getUserPermissionsErrors( 'edit', $this->user ) );
 
@@ -922,7 +926,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			'auto' => true,
 			'expiry' => 0
 		] );
-		$this->user->mBlock->mTimestamp = 0;
+		$this->user->mBlock->setTimestamp( 0 );
 		$this->assertEquals( [ [ 'autoblockedtext',
 				'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
 				'Useruser', null, 'infinite', '127.0.8.1',
@@ -964,10 +968,126 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			'expiry' => 10,
 			'systemBlock' => 'test',
 		] );
-		$this->assertEquals( [ [ 'systemblockedtext',
+
+		$errors = [ [ 'systemblockedtext',
 				'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
 				'Useruser', 'test', '23:00, 31 December 1969', '127.0.8.1',
-				$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ] ],
+				$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ] ];
+
+		$this->assertEquals( $errors,
+			$this->title->getUserPermissionsErrors( 'edit', $this->user ) );
+		$this->assertEquals( $errors,
 			$this->title->getUserPermissionsErrors( 'move-target', $this->user ) );
+		$this->assertEquals( $errors,
+			$this->title->getUserPermissionsErrors( 'rollback', $this->user ) );
+		$this->assertEquals( $errors,
+			$this->title->getUserPermissionsErrors( 'patrol', $this->user ) );
+		$this->assertEquals( $errors,
+			$this->title->getUserPermissionsErrors( 'upload', $this->user ) );
+		$this->assertEquals( [],
+			$this->title->getUserPermissionsErrors( 'purge', $this->user ) );
+
+		// partial block message test
+		$this->user->mBlockedby = $this->user->getName();
+		$this->user->mBlock = new Block( [
+			'address' => '127.0.8.1',
+			'by' => $this->user->getId(),
+			'reason' => 'no reason given',
+			'timestamp' => $now,
+			'sitewide' => false,
+			'expiry' => 10,
+		] );
+
+		$this->assertEquals( [],
+			$this->title->getUserPermissionsErrors( 'edit', $this->user ) );
+		$this->assertEquals( [],
+			$this->title->getUserPermissionsErrors( 'move-target', $this->user ) );
+		$this->assertEquals( [],
+			$this->title->getUserPermissionsErrors( 'rollback', $this->user ) );
+		$this->assertEquals( [],
+			$this->title->getUserPermissionsErrors( 'patrol', $this->user ) );
+		$this->assertEquals( [],
+			$this->title->getUserPermissionsErrors( 'upload', $this->user ) );
+		$this->assertEquals( [],
+			$this->title->getUserPermissionsErrors( 'purge', $this->user ) );
+
+		$this->user->mBlock->setRestrictions( [
+				( new PageRestriction( 0, $this->title->getArticleID() ) )->setTitle( $this->title ),
+		] );
+
+		$errors = [ [ 'blockedtext-partial',
+				'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
+				'Useruser', null, '23:00, 31 December 1969', '127.0.8.1',
+				$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ] ];
+
+		$this->assertEquals( $errors,
+			$this->title->getUserPermissionsErrors( 'edit', $this->user ) );
+		$this->assertEquals( $errors,
+			$this->title->getUserPermissionsErrors( 'move-target', $this->user ) );
+		$this->assertEquals( $errors,
+			$this->title->getUserPermissionsErrors( 'rollback', $this->user ) );
+		$this->assertEquals( $errors,
+			$this->title->getUserPermissionsErrors( 'patrol', $this->user ) );
+		$this->assertEquals( [],
+			$this->title->getUserPermissionsErrors( 'upload', $this->user ) );
+		$this->assertEquals( [],
+			$this->title->getUserPermissionsErrors( 'purge', $this->user ) );
+
+		// Test no block.
+		$this->user->mBlockedby = null;
+		$this->user->mBlock = null;
+
+		$this->assertEquals( [],
+			$this->title->getUserPermissionsErrors( 'edit', $this->user ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserBlock
+	 *
+	 * Tests to determine that the passed in permission does not get mixed up with
+	 * an action of the same name.
+	 */
+	public function testUserBlockAction() {
+		global $wgLang;
+
+		$tester = $this->getMockBuilder( Action::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$tester->method( 'getName' )
+			->willReturn( 'tester' );
+		$tester->method( 'getRestriction' )
+			->willReturn( 'test' );
+		$tester->method( 'requiresUnblock' )
+			->willReturn( false );
+
+		$this->setMwGlobals( [
+			'wgActions' => [
+				'tester' => $tester,
+			],
+			'wgGroupPermissions' => [
+				'*' => [
+					'tester' => true,
+				],
+			],
+		] );
+
+		$now = time();
+		$this->user->mBlockedby = $this->user->getName();
+		$this->user->mBlock = new Block( [
+			'address' => '127.0.8.1',
+			'by' => $this->user->getId(),
+			'reason' => 'no reason given',
+			'timestamp' => $now,
+			'auto' => false,
+			'expiry' => 'infinity',
+		] );
+
+		$errors = [ [ 'blockedtext',
+				'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
+				'Useruser', null, 'infinite', '127.0.8.1',
+				$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ] ];
+
+		$this->assertEquals( $errors,
+			$this->title->getUserPermissionsErrors( 'tester', $this->user ) );
 	}
 }

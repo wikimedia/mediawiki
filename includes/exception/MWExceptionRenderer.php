@@ -71,14 +71,12 @@ class MWExceptionRenderer {
 						self::getShowBacktraceError( $e );
 				}
 				$message .= "\n";
+			} elseif ( $wgShowExceptionDetails ) {
+				$message = MWExceptionHandler::getLogMessage( $e ) .
+					"\nBacktrace:\n" .
+					MWExceptionHandler::getRedactedTraceAsString( $e ) . "\n";
 			} else {
-				if ( $wgShowExceptionDetails ) {
-					$message = MWExceptionHandler::getLogMessage( $e ) .
-						"\nBacktrace:\n" .
-						MWExceptionHandler::getRedactedTraceAsString( $e ) . "\n";
-				} else {
-					$message = MWExceptionHandler::getPublicLogMessage( $e );
-				}
+				$message = MWExceptionHandler::getPublicLogMessage( $e );
 			}
 			echo nl2br( htmlspecialchars( $message ) ) . "\n";
 		}
@@ -268,6 +266,7 @@ class MWExceptionRenderer {
 	 * Print a message, if possible to STDERR.
 	 * Use this in command line mode only (see isCommandLine)
 	 *
+	 * @suppress SecurityCheck-XSS
 	 * @param string $message Failure text
 	 */
 	private static function printError( $message ) {

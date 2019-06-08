@@ -136,7 +136,7 @@ class SpecialTags extends SpecialPage {
 		}
 
 		// Write the headers
-		$html = Xml::tags( 'tr', null, Xml::tags( 'th', null, $this->msg( 'tags-tag' )->parse() ) .
+		$thead = Xml::tags( 'tr', null, Xml::tags( 'th', null, $this->msg( 'tags-tag' )->parse() ) .
 			Xml::tags( 'th', null, $this->msg( 'tags-display-header' )->parse() ) .
 			Xml::tags( 'th', null, $this->msg( 'tags-description-header' )->parse() ) .
 			Xml::tags( 'th', null, $this->msg( 'tags-source-header' )->parse() ) .
@@ -148,26 +148,30 @@ class SpecialTags extends SpecialPage {
 				'' )
 		);
 
+		$tbody = '';
 		// Used in #doTagRow()
 		$this->softwareActivatedTags = array_fill_keys(
 			ChangeTags::listSoftwareActivatedTags(), true );
 
 		// Insert tags that have been applied at least once
 		foreach ( $tagStats as $tag => $hitcount ) {
-			$html .= $this->doTagRow( $tag, $hitcount, $userCanManage,
+			$tbody .= $this->doTagRow( $tag, $hitcount, $userCanManage,
 				$userCanDelete, $userCanEditInterface );
 		}
 		// Insert tags defined somewhere but never applied
 		foreach ( $definedTags as $tag ) {
 			if ( !isset( $tagStats[$tag] ) ) {
-				$html .= $this->doTagRow( $tag, 0, $userCanManage, $userCanDelete, $userCanEditInterface );
+				$tbody .= $this->doTagRow( $tag, 0, $userCanManage, $userCanDelete, $userCanEditInterface );
 			}
 		}
 
+		$out->addModuleStyles( 'jquery.tablesorter.styles' );
+		$out->addModules( 'jquery.tablesorter' );
 		$out->addHTML( Xml::tags(
 			'table',
 			[ 'class' => 'mw-datatable sortable mw-tags-table' ],
-			$html
+			Xml::tags( 'thead', null, $thead ) .
+			Xml::tags( 'tbody', null, $tbody )
 		) );
 	}
 
@@ -233,10 +237,8 @@ class SpecialTags extends SpecialPage {
 		// add raw $hitcount for sorting, because tags-hitcount contains numbers and letters
 		$newRow .= Xml::tags( 'td', [ 'data-sort-value' => $hitcount ], $hitcountLabel );
 
-		// actions
 		$actionLinks = [];
 
-		// delete
 		if ( $showDeleteActions && ChangeTags::canDeleteTag( $tag )->isOK() ) {
 			$actionLinks[] = $linkRenderer->makeKnownLink(
 				$this->getPageTitle( 'delete' ),
@@ -246,7 +248,6 @@ class SpecialTags extends SpecialPage {
 		}
 
 		if ( $showManageActions ) { // we've already checked that the user had the requisite userright
-			// activate
 			if ( ChangeTags::canActivateTag( $tag )->isOK() ) {
 				$actionLinks[] = $linkRenderer->makeKnownLink(
 					$this->getPageTitle( 'activate' ),
@@ -255,7 +256,6 @@ class SpecialTags extends SpecialPage {
 					[ 'tag' => $tag ] );
 			}
 
-			// deactivate
 			if ( ChangeTags::canDeactivateTag( $tag )->isOK() ) {
 				$actionLinks[] = $linkRenderer->makeKnownLink(
 					$this->getPageTitle( 'deactivate' ),
@@ -307,7 +307,7 @@ class SpecialTags extends SpecialPage {
 
 			$headerText = $this->msg( 'tags-create-warnings-above', $tag,
 				count( $status->getWarningsArray() ) )->parseAsBlock() .
-				$out->parse( $status->getWikiText() ) .
+				$out->parseAsInterface( $status->getWikiText() ) .
 				$this->msg( 'tags-create-warnings-below' )->parseAsBlock();
 
 			$subform = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
@@ -321,8 +321,7 @@ class SpecialTags extends SpecialPage {
 			$out->addBacklinkSubtitle( $this->getPageTitle() );
 			return true;
 		} else {
-			$out->addWikiText( "<div class=\"error\">\n" . $status->getWikiText() .
-				"\n</div>" );
+			$out->wrapWikiTextAsInterface( 'error', $status->getWikiText() );
 			return false;
 		}
 	}
@@ -340,8 +339,7 @@ class SpecialTags extends SpecialPage {
 		// is the tag actually able to be deleted?
 		$canDeleteResult = ChangeTags::canDeleteTag( $tag, $user );
 		if ( !$canDeleteResult->isGood() ) {
-			$out->addWikiText( "<div class=\"error\">\n" . $canDeleteResult->getWikiText() .
-				"\n</div>" );
+			$out->wrapWikiTextAsInterface( 'error', $canDeleteResult->getWikiText() );
 			if ( !$canDeleteResult->isOK() ) {
 				return;
 			}
@@ -402,8 +400,7 @@ class SpecialTags extends SpecialPage {
 		$func = $activate ? 'canActivateTag' : 'canDeactivateTag';
 		$result = ChangeTags::$func( $tag, $user );
 		if ( !$result->isGood() ) {
-			$out->addWikiText( "<div class=\"error\">\n" . $result->getWikiText() .
-				"\n</div>" );
+			$out->wrapWikiTextAsInterface( 'error', $result->getWikiText() );
 			if ( !$result->isOK() ) {
 				return;
 			}
@@ -449,14 +446,13 @@ class SpecialTags extends SpecialPage {
 			return true;
 		} elseif ( $status->isOK() && $form->tagAction === 'delete' ) {
 			// deletion succeeded, but hooks raised a warning
-			$out->addWikiText( $this->msg( 'tags-delete-warnings-after-delete', $tag,
+			$out->addWikiTextAsInterface( $this->msg( 'tags-delete-warnings-after-delete', $tag,
 				count( $status->getWarningsArray() ) )->text() . "\n" .
 				$status->getWikitext() );
 			$out->addReturnTo( $this->getPageTitle() );
 			return true;
 		} else {
-			$out->addWikiText( "<div class=\"error\">\n" . $status->getWikitext() .
-				"\n</div>" );
+			$out->wrapWikiTextAsInterface( 'error', $status->getWikitext() );
 			return false;
 		}
 	}

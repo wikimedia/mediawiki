@@ -84,12 +84,9 @@ class RESTBagOStuff extends BagOStuff {
 		$this->client->setLogger( $logger );
 	}
 
-	/**
-	 * @param string $key
-	 * @param int $flags Bitfield of BagOStuff::READ_* constants [optional]
-	 * @return mixed Returns false on failure and if the item does not exist
-	 */
-	protected function doGet( $key, $flags = 0 ) {
+	protected function doGet( $key, $flags = 0, &$casToken = null ) {
+		$casToken = null;
+
 		$req = [
 			'method' => 'GET',
 			'url' => $this->url . rawurlencode( $key ),
@@ -98,13 +95,66 @@ class RESTBagOStuff extends BagOStuff {
 		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->client->run( $req );
 		if ( $rcode === 200 ) {
 			if ( is_string( $rbody ) ) {
-				return unserialize( $rbody );
+				$value = unserialize( $rbody );
+				/// @FIXME: use some kind of hash or UUID header as CAS token
+				$casToken = ( $value !== false ) ? $rbody : null;
+
+				return $value;
 			}
 			return false;
 		}
 		if ( $rcode === 0 || ( $rcode >= 400 && $rcode != 404 ) ) {
 			return $this->handleError( "Failed to fetch $key", $rcode, $rerr );
 		}
+		return false;
+	}
+
+	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
+		// @TODO: respect WRITE_SYNC (e.g. EACH_QUORUM)
+		// @TODO: respect $exptime
+		$req = [
+			'method' => 'PUT',
+			'url' => $this->url . rawurlencode( $key ),
+			'body' => serialize( $value )
+		];
+		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->client->run( $req );
+		if ( $rcode === 200 || $rcode === 201 || $rcode === 204 ) {
+			return true;
+		}
+		return $this->handleError( "Failed to store $key", $rcode, $rerr );
+	}
+
+	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
+		// @TODO: make this atomic
+		if ( $this->get( $key ) === false ) {
+			return $this->set( $key, $value, $exptime, $flags );
+		}
+
+		return false; // key already set
+	}
+
+	public function delete( $key, $flags = 0 ) {
+		// @TODO: respect WRITE_SYNC (e.g. EACH_QUORUM)
+		$req = [
+			'method' => 'DELETE',
+			'url' => $this->url . rawurlencode( $key ),
+		];
+		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->client->run( $req );
+		if ( in_array( $rcode, [ 200, 204, 205, 404, 410 ] ) ) {
+			return true;
+		}
+		return $this->handleError( "Failed to delete $key", $rcode, $rerr );
+	}
+
+	public function incr( $key, $value = 1 ) {
+		// @TODO: make this atomic
+		$n = $this->get( $key, self::READ_LATEST );
+		if ( $this->isInteger( $n ) ) { // key exists?
+			$n = max( $n + intval( $value ), 0 );
+			// @TODO: respect $exptime
+			return $this->set( $key, $n ) ? $n : false;
+		}
+
 		return false;
 	}
 
@@ -122,45 +172,5 @@ class RESTBagOStuff extends BagOStuff {
 		] );
 		$this->setLastError( $rcode === 0 ? self::ERR_UNREACHABLE : self::ERR_UNEXPECTED );
 		return false;
-	}
-
-	/**
-	 * Set an item
-	 *
-	 * @param string $key
-	 * @param mixed $value
-	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
-	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
-	 * @return bool Success
-	 */
-	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
-		$req = [
-			'method' => 'PUT',
-			'url' => $this->url . rawurlencode( $key ),
-			'body' => serialize( $value )
-		];
-		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->client->run( $req );
-		if ( $rcode === 200 || $rcode === 201 || $rcode === 204 ) {
-			return true;
-		}
-		return $this->handleError( "Failed to store $key", $rcode, $rerr );
-	}
-
-	/**
-	 * Delete an item.
-	 *
-	 * @param string $key
-	 * @return bool True if the item was deleted or not found, false on failure
-	 */
-	public function delete( $key ) {
-		$req = [
-			'method' => 'DELETE',
-			'url' => $this->url . rawurlencode( $key ),
-		];
-		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->client->run( $req );
-		if ( in_array( $rcode, [ 200, 204, 205, 404, 410 ] ) ) {
-			return true;
-		}
-		return $this->handleError( "Failed to delete $key", $rcode, $rerr );
 	}
 }

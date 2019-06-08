@@ -46,6 +46,8 @@ class ApiStashEdit extends ApiBase {
 	const MAX_CACHE_TTL = 300; // 5 minutes
 	const MAX_SIGNATURE_TTL = 60;
 
+	const MAX_CACHE_RECENT = 2;
+
 	public function execute() {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
@@ -169,7 +171,6 @@ class ApiStashEdit extends ApiBase {
 	 * @since 1.25
 	 */
 	public static function parseAndStash( WikiPage $page, Content $content, User $user, $summary ) {
-		$cache = ObjectCache::getLocalClusterInstance();
 		$logger = LoggerFactory::getInstance( 'StashEdit' );
 
 		$title = $page->getTitle();
@@ -195,7 +196,7 @@ class ApiStashEdit extends ApiBase {
 		$cutoffTime = time() - self::PRESUME_FRESH_TTL_SEC;
 
 		// Reuse any freshly build matching edit stash cache
-		$editInfo = $cache->get( $key );
+		$editInfo = self::getStashValue( $key );
 		if ( $editInfo && wfTimestamp( TS_UNIX, $editInfo->timestamp ) >= $cutoffTime ) {
 			$alreadyCached = true;
 		} else {
@@ -216,29 +217,27 @@ class ApiStashEdit extends ApiBase {
 				return self::ERROR_NONE;
 			}
 
-			list( $stashInfo, $ttl, $code ) = self::buildStashValue(
+			$code = self::storeStashValue(
+				$key,
 				$editInfo->pstContent,
 				$editInfo->output,
 				$editInfo->timestamp,
 				$user
 			);
 
-			if ( $stashInfo ) {
-				$ok = $cache->set( $key, $stashInfo, $ttl );
-				if ( $ok ) {
-					$logger->debug( "Cached parser output for key '{cachekey}' ('{title}').",
-						[ 'cachekey' => $key, 'title' => $titleStr ] );
-					return self::ERROR_NONE;
-				} else {
-					$logger->error( "Failed to cache parser output for key '{cachekey}' ('{title}').",
-						[ 'cachekey' => $key, 'title' => $titleStr ] );
-					return self::ERROR_CACHE;
-				}
-			} else {
-				// @todo Doesn't seem reachable, see @todo in buildStashValue
-				$logger->info( "Uncacheable parser output for key '{cachekey}' ('{title}') [{code}].",
+			if ( $code === true ) {
+				$logger->debug( "Cached parser output for key '{cachekey}' ('{title}').",
+					[ 'cachekey' => $key, 'title' => $titleStr ] );
+				return self::ERROR_NONE;
+			} elseif ( $code === 'uncacheable' ) {
+				$logger->info(
+					"Uncacheable parser output for key '{cachekey}' ('{title}') [{code}].",
 					[ 'cachekey' => $key, 'title' => $titleStr, 'code' => $code ] );
 				return self::ERROR_UNCACHEABLE;
+			} else {
+				$logger->error( "Failed to cache parser output for key '{cachekey}' ('{title}').",
+					[ 'cachekey' => $key, 'title' => $titleStr, 'code' => $code ] );
+				return self::ERROR_CACHE;
 			}
 		}
 
@@ -267,12 +266,11 @@ class ApiStashEdit extends ApiBase {
 			return false; // bots never stash - don't pollute stats
 		}
 
-		$cache = ObjectCache::getLocalClusterInstance();
 		$logger = LoggerFactory::getInstance( 'StashEdit' );
 		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 
 		$key = self::getStashKey( $title, self::getContentHash( $content ), $user );
-		$editInfo = $cache->get( $key );
+		$editInfo = self::getStashValue( $key );
 		if ( !is_object( $editInfo ) ) {
 			$start = microtime( true );
 			// We ignore user aborts and keep parsing. Block on any prior parsing
@@ -282,7 +280,7 @@ class ApiStashEdit extends ApiBase {
 			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 			$dbw = $lb->getAnyOpenConnection( $lb->getWriterIndex() );
 			if ( $dbw && $dbw->lock( $key, __METHOD__, 30 ) ) {
-				$editInfo = $cache->get( $key );
+				$editInfo = self::getStashValue( $key );
 				$dbw->unlock( $key, __METHOD__ );
 			}
 
@@ -378,7 +376,7 @@ class ApiStashEdit extends ApiBase {
 	 */
 	private static function getStashKey( Title $title, $contentHash, User $user ) {
 		return ObjectCache::getLocalClusterInstance()->makeKey(
-			'prepared-edit',
+			'stashed-edit-info',
 			md5( $title->getPrefixedDBkey() ),
 			// Account for the edit model/text
 			$contentHash,
@@ -388,45 +386,107 @@ class ApiStashEdit extends ApiBase {
 	}
 
 	/**
+	 * @param string $uuid
+	 * @return string
+	 */
+	private static function getStashParserOutputKey( $uuid ) {
+		return ObjectCache::getLocalClusterInstance()->makeKey( 'stashed-edit-output', $uuid );
+	}
+
+	/**
+	 * @param string $key
+	 * @return stdClass|bool Object map (pstContent,output,outputID,timestamp,edits) or false
+	 */
+	private static function getStashValue( $key ) {
+		$cache = ObjectCache::getLocalClusterInstance();
+
+		$stashInfo = $cache->get( $key );
+		if ( !is_object( $stashInfo ) ) {
+			return false;
+		}
+
+		$parserOutputKey = self::getStashParserOutputKey( $stashInfo->outputID );
+		$parserOutput = $cache->get( $parserOutputKey );
+		if ( $parserOutput instanceof ParserOutput ) {
+			$stashInfo->output = $parserOutput;
+
+			return $stashInfo;
+		}
+
+		return false;
+	}
+
+	/**
 	 * Build a value to store in memcached based on the PST content and parser output
 	 *
 	 * This makes a simple version of WikiPage::prepareContentForEdit() as stash info
 	 *
+	 * @param string $key
 	 * @param Content $pstContent Pre-Save transformed content
 	 * @param ParserOutput $parserOutput
 	 * @param string $timestamp TS_MW
 	 * @param User $user
-	 * @return array (stash info array, TTL in seconds, info code) or (null, 0, info code)
+	 * @return string|bool True or an error code
 	 */
-	private static function buildStashValue(
-		Content $pstContent, ParserOutput $parserOutput, $timestamp, User $user
+	private static function storeStashValue(
+		$key, Content $pstContent, ParserOutput $parserOutput, $timestamp, User $user
 	) {
 		// If an item is renewed, mind the cache TTL determined by config and parser functions.
 		// Put an upper limit on the TTL for sanity to avoid extreme template/file staleness.
-		$since = time() - wfTimestamp( TS_UNIX, $parserOutput->getCacheTime() );
-		$ttl = min( $parserOutput->getCacheExpiry() - $since, self::MAX_CACHE_TTL );
-
+		$age = time() - wfTimestamp( TS_UNIX, $parserOutput->getCacheTime() );
+		$ttl = min( $parserOutput->getCacheExpiry() - $age, self::MAX_CACHE_TTL );
 		// Avoid extremely stale user signature timestamps (T84843)
 		if ( $parserOutput->getFlag( 'user-signature' ) ) {
 			$ttl = min( $ttl, self::MAX_SIGNATURE_TTL );
 		}
 
 		if ( $ttl <= 0 ) {
-			// @todo It doesn't seem like this can occur, because it would mean an entry older than
-			// getCacheExpiry() seconds, which is much longer than PRESUME_FRESH_TTL_SEC, and
-			// anything older than PRESUME_FRESH_TTL_SEC will have been thrown out already.
-			return [ null, 0, 'no_ttl' ];
+			return 'uncacheable'; // low TTL due to a tag, magic word, or signature?
 		}
 
-		// Only store what is actually needed
+		// Store what is actually needed and split the output into another key (T204742)
+		$parseroutputID = md5( $key );
 		$stashInfo = (object)[
 			'pstContent' => $pstContent,
-			'output'     => $parserOutput,
+			'outputID'   => $parseroutputID,
 			'timestamp'  => $timestamp,
 			'edits'      => $user->getEditCount()
 		];
 
-		return [ $stashInfo, $ttl, 'ok' ];
+		$cache = ObjectCache::getLocalClusterInstance();
+		$ok = $cache->set( $key, $stashInfo, $ttl );
+		if ( $ok ) {
+			$ok = $cache->set(
+				self::getStashParserOutputKey( $parseroutputID ),
+				$parserOutput,
+				$ttl
+			);
+		}
+
+		if ( $ok ) {
+			// These blobs can waste slots in low cardinality memcached slabs
+			self::pruneExcessStashedEntries( $cache, $user, $key );
+		}
+
+		return $ok ? true : 'store_error';
+	}
+
+	/**
+	 * @param BagOStuff $cache
+	 * @param User $user
+	 * @param string $newKey
+	 */
+	private static function pruneExcessStashedEntries( BagOStuff $cache, User $user, $newKey ) {
+		$key = $cache->makeKey( 'stash-edit-recent', sha1( $user->getName() ) );
+
+		$keyList = $cache->get( $key ) ?: [];
+		if ( count( $keyList ) >= self::MAX_CACHE_RECENT ) {
+			$oldestKey = array_shift( $keyList );
+			$cache->delete( $oldestKey );
+		}
+
+		$keyList[] = $newKey;
+		$cache->set( $key, $keyList, 2 * self::MAX_CACHE_TTL );
 	}
 
 	public function getAllowedParams() {

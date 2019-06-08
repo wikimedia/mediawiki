@@ -67,6 +67,8 @@ require_once "$IP/includes/GlobalFunctions.php";
 // Load composer's autoloader if present
 if ( is_readable( "$IP/vendor/autoload.php" ) ) {
 	require_once "$IP/vendor/autoload.php";
+} elseif ( file_exists( "$IP/vendor/autoload.php" ) ) {
+	die( "$IP/vendor/autoload.php exists but is not readable" );
 }
 
 // Assert that composer dependencies were successfully loaded
@@ -192,10 +194,6 @@ if ( $wgDeletedDirectory === false ) {
 
 if ( $wgGitInfoCacheDirectory === false && $wgCacheDirectory !== false ) {
 	$wgGitInfoCacheDirectory = "{$wgCacheDirectory}/gitinfo";
-}
-
-if ( $wgEnableParserCache === false ) {
-	$wgParserCacheType = CACHE_NONE;
 }
 
 // Fix path to icon images after they were moved in 1.24
@@ -367,10 +365,9 @@ if ( $wgRCFilterByAge ) {
 	// Note that we allow 1 link higher than the max for things like 56 days but a 60 day link.
 	sort( $wgRCLinkDays );
 
-	// phpcs:ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall
-	for ( $i = 0; $i < count( $wgRCLinkDays ); $i++ ) {
-		if ( $wgRCLinkDays[$i] >= $rcMaxAgeDays ) {
-			$wgRCLinkDays = array_slice( $wgRCLinkDays, 0, $i + 1, false );
+	foreach ( $wgRCLinkDays as $i => $days ) {
+		if ( $days >= $rcMaxAgeDays ) {
+			array_splice( $wgRCLinkDays, $i + 1 );
 			break;
 		}
 	}
@@ -495,7 +492,7 @@ $wgCanonicalNamespaceNames = [
 
 /// @todo UGLY UGLY
 if ( is_array( $wgExtraNamespaces ) ) {
-	$wgCanonicalNamespaceNames = $wgCanonicalNamespaceNames + $wgExtraNamespaces;
+	$wgCanonicalNamespaceNames += $wgExtraNamespaces;
 }
 
 // Hard-deprecate setting $wgDummyLanguageCodes in LocalSettings.php
@@ -582,21 +579,6 @@ if ( $wgMinimalPasswordLength !== false ) {
 if ( $wgMaximalPasswordLength !== false ) {
 	$wgPasswordPolicy['policies']['default']['MaximalPasswordLength'] = $wgMaximalPasswordLength;
 }
-
-// Backwards compatibility warning
-if ( !$wgSessionsInObjectCache ) {
-	wfDeprecated( '$wgSessionsInObjectCache = false', '1.27' );
-	if ( $wgSessionHandler ) {
-		wfDeprecated( '$wgSessionsHandler', '1.27' );
-	}
-	$cacheType = get_class( ObjectCache::getInstance( $wgSessionCacheType ) );
-	wfDebugLog(
-		'caches',
-		"Session data will be stored in \"$cacheType\" cache with " .
-			"expiry $wgObjectCacheSessionExpiry seconds"
-	);
-}
-$wgSessionsInObjectCache = true;
 
 if ( $wgPHPSessionHandling !== 'enable' &&
 	$wgPHPSessionHandling !== 'warn' &&
@@ -708,8 +690,7 @@ if ( $wgMainWANCache === false ) {
 	$wgMainWANCache = 'mediawiki-main-default';
 	$wgWANObjectCaches[$wgMainWANCache] = [
 		'class'    => WANObjectCache::class,
-		'cacheId'  => $wgMainCacheType,
-		'channels' => [ 'purge' => 'wancache-main-default-purge' ]
+		'cacheId'  => $wgMainCacheType
 	];
 }
 
@@ -811,22 +792,6 @@ $wgContLang = MediaWikiServices::getInstance()->getContentLanguage();
 // Now that variant lists may be available...
 $wgRequest->interpolateTitle();
 
-if ( !is_object( $wgAuth ) ) {
-	$wgAuth = new MediaWiki\Auth\AuthManagerAuthPlugin;
-	Hooks::run( 'AuthPluginSetup', [ &$wgAuth ] );
-}
-if ( $wgAuth && !$wgAuth instanceof MediaWiki\Auth\AuthManagerAuthPlugin ) {
-	MediaWiki\Auth\AuthManager::singleton()->forcePrimaryAuthenticationProviders( [
-		new MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider( [
-			'authoritative' => false,
-		] ),
-		new MediaWiki\Auth\AuthPluginPrimaryAuthenticationProvider( $wgAuth ),
-		new MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider( [
-			'authoritative' => true,
-		] ),
-	], '$wgAuth is ' . get_class( $wgAuth ) );
-}
-
 /**
  * @var MediaWiki\Session\SessionId|null $wgInitialSessionId The persistent
  * session ID (if any) loaded at startup
@@ -916,7 +881,7 @@ $wgOut = RequestContext::getMain()->getOutput(); // BackCompat
 
 /**
  * @var Parser $wgParser
- * @deprecated since 1.32, use MediaWikiServices::getParser() instead
+ * @deprecated since 1.32, use MediaWikiServices::getInstance()->getParser() instead
  */
 $wgParser = new StubObject( 'wgParser', function () {
 	return MediaWikiServices::getInstance()->getParser();

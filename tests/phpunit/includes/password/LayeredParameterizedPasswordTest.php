@@ -58,6 +58,6 @@ class LayeredParameterizedPasswordTest extends PasswordTestCase {
 		$totalPassword = $this->passwordFactory->newFromType( 'testLargeLayeredTop' );
 		$totalPassword->partialCrypt( $partialPassword );
 
-		$this->assertTrue( $totalPassword->equals( 'testPassword123' ) );
+		$this->assertTrue( $totalPassword->verify( 'testPassword123' ) );
 	}
 }

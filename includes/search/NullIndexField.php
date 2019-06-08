@@ -22,6 +22,7 @@ class NullIndexField implements SearchIndexField {
 	 * @return $this
 	 */
 	public function setFlag( $flag, $unset = false ) {
+		return $this;
 	}
 
 	/**

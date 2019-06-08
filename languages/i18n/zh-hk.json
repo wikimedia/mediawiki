@@ -17,7 +17,8 @@
 			"Quest for Truth",
 			"Wxyveronica",
 			"和平至上",
-			"A2093064"
+			"A2093064",
+			"WQL"
 		]
 	},
 	"tog-watchlisthidebots": "隱藏監視清單中機械人的編輯",
@@ -50,7 +51,7 @@
 	"namespaces": "命名空間",
 	"variants": "變體",
 	"navigation-heading": "導覽菜單",
-	"tagline": "從 {{SITENAME}}",
+	"tagline": "出自{{SITENAME}}",
 	"help": "說明",
 	"search": "搜尋",
 	"searchbutton": "搜尋",
@@ -129,8 +130,8 @@
 	"recentchanges-label-bot": "此編輯由機械人執行",
 	"rcfilters-filter-bots-label": "機械人",
 	"rcfilters-filter-humans-label": "人類（非機械人）",
-	"rcshowhidebots": "$1機械人的編輯",
-	"rcshowhideliu": "$1 已註冊的用戶",
+	"rcshowhidebots": "$1機械人",
+	"rcshowhideliu": "$1已註冊的用戶",
 	"rcshowhideanons": "$1 匿名用戶",
 	"rc-change-size-new": "變更後為$1{{PLURAL:$1|}}",
 	"upload": "上載檔案",
@@ -165,7 +166,6 @@
 	"tooltip-ca-nstab-user": "檢視用戶頁面",
 	"pageinfo-toolboxlink": "頁面資訊",
 	"newimages-showbots": "顯示機械人上傳的檔案",
-	"exif-rowsperstrip": "每帶行數",
 	"redirect-user": "用戶 ID",
 	"specialpages": "特殊頁面",
 	"tags-source-manual": "由使用者與機械人手動套用",

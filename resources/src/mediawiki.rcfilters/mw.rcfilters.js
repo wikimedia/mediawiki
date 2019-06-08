@@ -4,7 +4,17 @@
 	 * @singleton
 	 */
 	mw.rcfilters = {
-		dm: {},
+		Controller: require( './Controller.js' ),
+		UriProcessor: require( './UriProcessor.js' ),
+		dm: {
+			ChangesListViewModel: require( './dm/ChangesListViewModel.js' ),
+			FilterGroup: require( './dm/FilterGroup.js' ),
+			FilterItem: require( './dm/FilterItem.js' ),
+			FiltersViewModel: require( './dm/FiltersViewModel.js' ),
+			ItemModel: require( './dm/ItemModel.js' ),
+			SavedQueriesModel: require( './dm/SavedQueriesModel.js' ),
+			SavedQueryItemModel: require( './dm/SavedQueryItemModel.js' )
+		},
 		ui: {},
 		utils: {
 			addArrayElementsUnique: function ( arr, elements ) {
@@ -46,4 +56,6 @@
 			}
 		}
 	};
+
+	module.exports = mw.rcfilters;
 }() );

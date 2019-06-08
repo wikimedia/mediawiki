@@ -43,7 +43,7 @@
 
 	* {
 		// Reset font sizes, see T74727
-		font: inherit;
+		font-size: inherit;
 		vertical-align: middle;
 	}
 
@@ -74,7 +74,7 @@
 			background-origin: border-box;
 			background-position: center center;
 			background-repeat: no-repeat;
-			.background-size( 0, 0 );
+			background-size: 0 0;
 			.box-sizing( border-box );
 			position: absolute;
 			// Ensure alignment of checkbox to middle of the text in long labels, see T85241
@@ -90,7 +90,7 @@
 		// Apply a checkmark on the pseudo `:before` element when the input is checked
 		&:checked + label:before {
 			.background-image-svg( 'images/checkbox-checked.svg', 'images/checkbox-checked.png' );
-			.background-size( 90%, 90% );
+			background-size: 90% 90%;
 		}
 
 		&:enabled {

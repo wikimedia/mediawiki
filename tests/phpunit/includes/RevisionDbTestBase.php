@@ -26,6 +26,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			[
 				'page',
 				'revision',
+				'comment',
 				'ip_changes',
 				'text',
 				'archive',
@@ -90,8 +91,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$this->setMwGlobals( [
 			'wgMultiContentRevisionSchemaMigrationStage' => $this->getMcrMigrationStage(),
 			'wgContentHandlerUseDB' => $this->getContentHandlerUseDB(),
-			'wgCommentTableSchemaMigrationStage' => MIGRATION_OLD,
-			'wgActorTableSchemaMigrationStage' => SCHEMA_COMPAT_OLD,
+			'wgActorTableSchemaMigrationStage' => SCHEMA_COMPAT_NEW,
 		] );
 
 		$this->overrideMwServices();
@@ -458,6 +458,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			$services->getCommentStore(),
 			$services->getContentModelStore(),
 			$services->getSlotRoleStore(),
+			$services->getSlotRoleRegistry(),
 			$this->getMcrMigrationStage(),
 			$services->getActorMigration()
 		);
@@ -572,28 +573,6 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers Revision::fetchRevision
-	 */
-	public function testFetchRevision() {
-		// Hidden process cache assertion below
-		$this->testPage->getRevision()->getId();
-
-		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
-		$id = $this->testPage->getRevision()->getId();
-
-		$this->hideDeprecated( 'Revision::fetchRevision' );
-		$res = Revision::fetchRevision( $this->testPage->getTitle() );
-
-		# note: order is unspecified
-		$rows = [];
-		while ( ( $row = $res->fetchObject() ) ) {
-			$rows[$row->rev_id] = $row;
-		}
-
-		$this->assertEmpty( $rows, 'expected empty set' );
-	}
-
-	/**
 	 * @covers Revision::getPage
 	 */
 	public function testGetPage() {
@@ -679,7 +658,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			'new null revision should have the same SHA1 as the original revision' );
 		$this->assertTrue( $orig->getRevisionRecord()->hasSameContent( $rev->getRevisionRecord() ),
 			'new null revision should have the same content as the original revision' );
-		$this->assertEquals( __METHOD__, $rev->getContent()->getNativeData() );
+		$this->assertEquals( __METHOD__, $rev->getContent()->getText() );
 	}
 
 	/**
@@ -1401,7 +1380,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		);
 		$rev = $this->testPage->getRevision();
 
-		$this->assertSame( $expectedText, $rev->getContent()->getNativeData() );
+		$this->assertSame( $expectedText, $rev->getContent()->getText() );
 		$this->assertSame( $expectedText, $rev->getSerializedData() );
 		$this->assertSame( $this->testPage->getContentModel(), $rev->getContentModel() );
 		$this->assertSame( $this->testPage->getContent()->getDefaultFormat(), $rev->getContentFormat() );
@@ -1418,6 +1397,9 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$this->setService( 'MainWANObjectCache', $cache );
 		$db = wfGetDB( DB_MASTER );
 
+		$now = 1553893742;
+		$cache->setMockTime( $now );
+
 		// Get a fresh revision to use during testing
 		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
 		$rev = $this->testPage->getRevision();
@@ -1431,6 +1413,8 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		);
 		$cache->delete( $key, WANObjectCache::HOLDOFF_NONE );
 		$this->assertFalse( $cache->get( $key ) );
+
+		++$now;
 
 		// Get the new revision and make sure it is in the cache and correct
 		$newRev = Revision::newKnownCurrent( $db, $rev->getPage(), $rev->getId() );
@@ -1599,6 +1583,40 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	public function testGetTextId( $spec, $expected ) {
 		$rev = new Revision( $spec, 0, $this->testPage->getTitle() );
 		$this->assertSame( $expected, $rev->getTextId() );
+	}
+
+	public function provideGetRevisionText() {
+		yield [
+			[ 'text' ]
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetRevisionText
+	 * @covers Revision::getRevisionText
+	 */
+	public function testGetRevisionText( array $queryInfoOptions, array $queryInfoExtra = [] ) {
+		$rev = $this->testPage->getRevisionRecord();
+
+		$queryInfo = Revision::getQueryInfo( $queryInfoOptions );
+		$queryInfo['tables'] = array_merge( $queryInfo['tables'], $queryInfoExtra['tables'] ?? [] );
+		$queryInfo['fields'] = array_merge( $queryInfo['fields'], $queryInfoExtra['fields'] ?? [] );
+		$queryInfo['joins'] = array_merge( $queryInfo['joins'], $queryInfoExtra['joins'] ?? [] );
+
+		$conds = [ 'rev_id' => $rev->getId() ];
+		$row = $this->db->selectRow(
+			$queryInfo['tables'],
+			$queryInfo['fields'],
+			$conds,
+			__METHOD__,
+			[],
+			$queryInfo['joins']
+		);
+
+		$expected = $rev->getContent( SlotRecord::MAIN )->serialize();
+
+		$this->hideDeprecated( 'Revision::getRevisionText (MCR without SCHEMA_COMPAT_WRITE_OLD)' );
+		$this->assertSame( $expected, Revision::getRevisionText( $row ) );
 	}
 
 }

@@ -3,6 +3,12 @@
 	"description": "MediaWiki extension.json schema",
 	"type": "object",
 	"additionalProperties": false,
+	"patternProperties": {
+		"^@": {
+			"type": "string",
+			"description": "Arbitrary notes, ignored by the parser."
+		}
+	},
 	"properties": {
 		"manifest_version": {
 			"type": "integer",
@@ -71,9 +77,14 @@
 						"php": {
 							"type": "string",
 							"description": "Version constraint string against PHP."
+						},
+						"ability-shell": {
+							"type": "boolean",
+							"default": false,
+							"description": "Whether this extension requires shell access."
 						}
 					},
-					"patternProprties": {
+					"patternProperties": {
 						"^ext-": {
 							"type": "string",
 							"description": "Required PHP extension.",
@@ -254,6 +265,10 @@
 								"noflip": {
 									"type": "boolean",
 									"description": "Whether to skip CSSJanus LTR-to-RTL flipping for this module. Recommended for styles imported from libraries that already properly handle their RTL styles. Default is false, meaning CSSJanus will be applied on RTL-mode output."
+								},
+								"packageFiles": {
+									"type": ["object", "array"],
+									"description": "Package files that can be require()d"
 								}
 							}
 						},
@@ -346,7 +361,7 @@
 							"properties": {
 								"class": {
 									"type": "string",
-									"pattern": "^((?!ResourceLoader(File|Image)Module).)*$"
+									"pattern": "^(?!ResourceLoader(File|Image|Wiki)Module).*$"
 								}
 							},
 							"required": ["class"]
@@ -372,6 +387,53 @@
 		"ResourceLoaderSources": {
 			"type": "object",
 			"description": "ResourceLoader sources to register"
+		},
+		"QUnitTestModule": {
+			"type": "object",
+			"description": "A ResourceLoaderFileModule definition registered only when wgEnableJavaScriptTest is true.",
+			"additionalProperties": false,
+			"properties": {
+				"localBasePath": {
+					"type": "string",
+					"description": "Prefix for local paths to files in $options, relative to extenion directory"
+				},
+				"remoteExtPath": {
+					"type": "string",
+					"description": "Prefix for URLs to files in $options, relative to $wgExtensionAssetsPath"
+				},
+				"remoteSkinPath": {
+					"type": "string",
+					"description": "Prefix for URLs to files in $options, relative to $wgStylePath"
+				},
+				"scripts": {
+					"type": ["string", "array"],
+					"description": "Scripts to include (array of file paths)",
+					"items": {
+						"type": "string"
+					}
+				},
+				"dependencies": {
+					"type": ["string", "array"],
+					"description": "Modules which must be loaded before this module",
+					"items": {
+						"type": "string"
+					}
+				},
+				"styles": {
+					"type": ["string", "array", "object"],
+					"description": "Styles to load",
+					"items": {
+						"type": "string"
+					}
+				},
+				"messages": {
+					"type": ["string", "array"],
+					"description": "Messages to load",
+					"items": {
+						"type": "string"
+					}
+				}
+			}
 		},
 		"ConfigRegistry": {
 			"type": "object",
@@ -713,6 +775,14 @@
 			"description": "Messages which are rendered as raw HTML",
 			"items": {
 				"type": "string"
+			}
+		},
+		"ReauthenticateTime": {
+			"type": "object",
+			"patternProperties": {
+				".*": {
+					"type": "integer"
+				}
 			}
 		},
 		"callback": {

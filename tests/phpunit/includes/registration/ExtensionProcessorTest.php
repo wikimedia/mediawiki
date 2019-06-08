@@ -357,12 +357,19 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideExtractResourceLoaderModules
 	 */
-	public function testExtractResourceLoaderModules( $input, $expected ) {
+	public function testExtractResourceLoaderModules(
+		$input,
+		array $expectedGlobals,
+		array $expectedAttribs = []
+	) {
 		$processor = new ExtensionProcessor();
 		$processor->extractInfo( $this->dir, $input + self::$default, 1 );
 		$out = $processor->getExtractedInfo();
-		foreach ( $expected as $key => $value ) {
+		foreach ( $expectedGlobals as $key => $value ) {
 			$this->assertEquals( $value, $out['globals'][$key] );
+		}
+		foreach ( $expectedAttribs as $key => $value ) {
+			$this->assertEquals( $value, $out['attributes'][$key] );
 		}
 	}
 
@@ -499,6 +506,27 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 							'test.foo' => 'foo.css',
 							'localBasePath' => $dir,
 							'remoteSkinPath' => 'BarFoo',
+						],
+					],
+				],
+			],
+			'QUnit test module' => [
+				// Input
+				[
+					'QUnitTestModule' => [
+						'localBasePath' => '',
+						'remoteExtPath' => 'Foo',
+						'scripts' => 'bar.js',
+					],
+				],
+				// Expected
+				[],
+				[
+					'QUnitTestModules' => [
+						'test.FooBar' => [
+							'localBasePath' => $dir,
+							'remoteExtPath' => 'Foo',
+							'scripts' => 'bar.js',
 						],
 					],
 				],

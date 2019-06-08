@@ -46,6 +46,13 @@ class LocalPasswordPrimaryAuthenticationProvider
 		$this->loginOnly = !empty( $params['loginOnly'] );
 	}
 
+	/**
+	 * Check if the password has expired and needs a reset
+	 *
+	 * @param string $username
+	 * @param \stdClass $row A row from the user table
+	 * @return \stdClass|null
+	 */
 	protected function getPasswordResetData( $username, $row ) {
 		$now = wfTimestamp();
 		$expiration = wfTimestampOrNull( TS_UNIX, $row->user_password_expires );
@@ -120,12 +127,12 @@ class LocalPasswordPrimaryAuthenticationProvider
 		}
 
 		$pwhash = $this->getPassword( $row->user_password );
-		if ( !$pwhash->equals( $req->password ) ) {
+		if ( !$pwhash->verify( $req->password ) ) {
 			if ( $this->config->get( 'LegacyEncoding' ) ) {
 				// Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted
 				// Check for this with iconv
 				$cp1252Password = iconv( 'UTF-8', 'WINDOWS-1252//TRANSLIT', $req->password );
-				if ( $cp1252Password === $req->password || !$pwhash->equals( $cp1252Password ) ) {
+				if ( $cp1252Password === $req->password || !$pwhash->verify( $cp1252Password ) ) {
 					return $this->failResponse( $req );
 				}
 			} else {
@@ -296,18 +303,16 @@ class LocalPasswordPrimaryAuthenticationProvider
 		}
 
 		$req = AuthenticationRequest::getRequestByClass( $reqs, PasswordAuthenticationRequest::class );
-		if ( $req ) {
-			if ( $req->username !== null && $req->password !== null ) {
-				// Nothing we can do besides claim it, because the user isn't in
-				// the DB yet
-				if ( $req->username !== $user->getName() ) {
-					$req = clone $req;
-					$req->username = $user->getName();
-				}
-				$ret = AuthenticationResponse::newPass( $req->username );
-				$ret->createRequest = $req;
-				return $ret;
+		if ( $req && $req->username !== null && $req->password !== null ) {
+			// Nothing we can do besides claim it, because the user isn't in
+			// the DB yet
+			if ( $req->username !== $user->getName() ) {
+				$req = clone $req;
+				$req->username = $user->getName();
 			}
+			$ret = AuthenticationResponse::newPass( $req->username );
+			$ret->createRequest = $req;
+			return $ret;
 		}
 		return AuthenticationResponse::newAbstain();
 	}

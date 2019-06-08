@@ -42,16 +42,6 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 		$this->addOption( 'set-user-tags-only', 'Only update ctd_user_defined from valid_tag table' );
 	}
 
-	public function execute() {
-		global $wgChangeTagsSchemaMigrationStage;
-		if ( $wgChangeTagsSchemaMigrationStage === MIGRATION_OLD ) {
-			// Return "success", but don't flag it as done so the next run will retry
-			$this->output( '... Not run, $wgChangeTagsSchemaMigrationStage === MIGRATION_OLD' . "\n" );
-			return true;
-		}
-		return parent::execute();
-	}
-
 	protected function doDBUpdates() {
 		$this->lbFactory = MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$this->setBatchSize( $this->getOption( 'batch-size', $this->getBatchSize() ) );

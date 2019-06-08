@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Shell\Shell;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -107,9 +109,9 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 			// in the pipe buffer. This can improve performance by up to a
 			// factor of 2.
 			global $wgDBuser, $wgDBserver, $wgDBpassword, $wgDBname;
-			$cmd = 'mysql -u' . wfEscapeShellArg( $wgDBuser ) .
-				' -h' . wfEscapeShellArg( $wgDBserver ) .
-				' -p' . wfEscapeShellArg( $wgDBpassword, $wgDBname );
+			$cmd = 'mysql -u' . Shell::escape( $wgDBuser ) .
+				' -h' . Shell::escape( $wgDBserver ) .
+				' -p' . Shell::escape( $wgDBpassword, $wgDBname );
 			$this->output( "Using pipe method\n" );
 			$pipe = popen( $cmd, 'w' );
 		}

@@ -33,6 +33,7 @@
  */
 class DerivativeRequest extends FauxRequest {
 	private $base;
+	private $ip;
 
 	/**
 	 * @param WebRequest $base
@@ -74,7 +75,11 @@ class DerivativeRequest extends FauxRequest {
 	}
 
 	public function getIP() {
-		return $this->base->getIP();
+		return $this->ip ?: $this->base->getIP();
+	}
+
+	public function setIP( $ip ) {
+		$this->ip = $ip;
 	}
 
 	public function getProtocol() {

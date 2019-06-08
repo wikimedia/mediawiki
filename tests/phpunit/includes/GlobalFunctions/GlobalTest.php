@@ -14,6 +14,7 @@ class GlobalTest extends MediaWikiTestCase {
 		unlink( $readOnlyFile );
 
 		$this->setMwGlobals( [
+			'wgReadOnly' => null,
 			'wgReadOnlyFile' => $readOnlyFile,
 			'wgUrlProtocols' => [
 				'http://',
@@ -108,10 +109,6 @@ class GlobalTest extends MediaWikiTestCase {
 	 * @covers ::wfReadOnly
 	 */
 	public function testReadOnlyEmpty() {
-		global $wgReadOnly;
-		$wgReadOnly = null;
-
-		MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode()->clearCache();
 		$this->assertFalse( wfReadOnly() );
 		$this->assertFalse( wfReadOnly() );
 	}
@@ -121,23 +118,17 @@ class GlobalTest extends MediaWikiTestCase {
 	 * @covers ::wfReadOnly
 	 */
 	public function testReadOnlySet() {
-		global $wgReadOnly, $wgReadOnlyFile;
-
-		$readOnlyMode = MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode();
-		$readOnlyMode->clearCache();
+		global $wgReadOnlyFile;
 
 		$f = fopen( $wgReadOnlyFile, "wt" );
 		fwrite( $f, 'Message' );
 		fclose( $f );
-		$wgReadOnly = null; # Check on $wgReadOnlyFile
+
+		// Reset the service to avoid cached results
+		$this->overrideMwServices();
 
 		$this->assertTrue( wfReadOnly() );
 		$this->assertTrue( wfReadOnly() ); # Check cached
-
-		unlink( $wgReadOnlyFile );
-		$readOnlyMode->clearCache();
-		$this->assertFalse( wfReadOnly() );
-		$this->assertFalse( wfReadOnly() );
 	}
 
 	/**
@@ -146,9 +137,12 @@ class GlobalTest extends MediaWikiTestCase {
 	 */
 	public function testReadOnlyGlobalChange() {
 		$this->assertFalse( wfReadOnlyReason() );
+
 		$this->setMwGlobals( [
 			'wgReadOnly' => 'reason'
 		] );
+		$this->overrideMwServices();
+
 		$this->assertSame( 'reason', wfReadOnlyReason() );
 	}
 
@@ -585,63 +579,6 @@ class GlobalTest extends MediaWikiTestCase {
 				"\n" .
 				"two two\n" .
 				".\n",
-			],
-		];
-	}
-
-	/**
-	 * @dataProvider provideMakeUrlIndexes()
-	 * @covers ::wfMakeUrlIndexes
-	 */
-	public function testMakeUrlIndexes( $url, $expected ) {
-		$index = wfMakeUrlIndexes( $url );
-		$this->assertEquals( $expected, $index, "wfMakeUrlIndexes(\"$url\")" );
-	}
-
-	public static function provideMakeUrlIndexes() {
-		return [
-			// Testcase for T30627
-			[
-				'https://example.org/test.cgi?id=12345',
-				[ 'https://org.example./test.cgi?id=12345' ]
-			],
-			[
-				// mailtos are handled special
-				// is this really right though? that final . probably belongs earlier?
-				'mailto:wiki@wikimedia.org',
-				[ 'mailto:org.wikimedia@wiki.' ]
-			],
-
-			// file URL cases per T30627...
-			[
-				// three slashes: local filesystem path Unix-style
-				'file:///whatever/you/like.txt',
-				[ 'file://./whatever/you/like.txt' ]
-			],
-			[
-				// three slashes: local filesystem path Windows-style
-				'file:///c:/whatever/you/like.txt',
-				[ 'file://./c:/whatever/you/like.txt' ]
-			],
-			[
-				// two slashes: UNC filesystem path Windows-style
-				'file://intranet/whatever/you/like.txt',
-				[ 'file://intranet./whatever/you/like.txt' ]
-			],
-			// Multiple-slash cases that can sorta work on Mozilla
-			// if you hack it just right are kinda pathological,
-			// and unreliable cross-platform or on IE which means they're
-			// unlikely to appear on intranets.
-			// Those will survive the algorithm but with results that
-			// are less consistent.
-
-			// protocol-relative URL cases per T31854...
-			[
-				'//example.org/test.cgi?id=12345',
-				[
-					'http://org.example./test.cgi?id=12345',
-					'https://org.example./test.cgi?id=12345'
-				]
 			],
 		];
 	}

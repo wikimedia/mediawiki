@@ -25,16 +25,16 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
 
 class CloneDatabase {
 	/** @var string Table prefix for cloning */
-	private $newTablePrefix = '';
+	private $newTablePrefix;
 
 	/** @var string Current table prefix */
-	private $oldTablePrefix = '';
+	private $oldTablePrefix;
 
 	/** @var array List of tables to be cloned */
-	private $tablesToClone = [];
+	private $tablesToClone;
 
 	/** @var bool Should we DROP tables containing the new names? */
-	private $dropCurrentTables = true;
+	private $dropCurrentTables;
 
 	/** @var bool Whether to use temporary tables or not */
 	private $useTemporaryTables = true;
@@ -128,7 +128,7 @@ class CloneDatabase {
 	}
 
 	/**
-	 * Change the table prefix on all open DB connections/
+	 * Change the table prefix on all open DB connections
 	 *
 	 * @param string $prefix
 	 * @return void
@@ -137,7 +137,7 @@ class CloneDatabase {
 		global $wgDBprefix;
 
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$lbFactory->setDomainPrefix( $prefix );
+		$lbFactory->setLocalDomainPrefix( $prefix );
 		$wgDBprefix = $prefix;
 	}
 }

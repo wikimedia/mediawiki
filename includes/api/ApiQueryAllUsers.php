@@ -94,7 +94,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			}
 
 			// no group with the given right(s) exists, no need for a query
-			if ( !count( $groups ) ) {
+			if ( $groups === [] ) {
 				$this->getResult()->addIndexedTagName( [ 'query', $this->getModuleName() ], '' );
 
 				return;
@@ -117,7 +117,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$this->addTables( 'user_groups', 'ug1' );
 			$this->addJoinConds( [
 				'ug1' => [
-					'INNER JOIN',
+					'JOIN',
 					[
 						'ug1.ug_user=user_id',
 						'ug1.ug_group' => $params['group'],
@@ -141,7 +141,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 					LIST_OR
 				) ];
 			}
-			$this->addJoinConds( [ 'ug1' => [ 'LEFT OUTER JOIN',
+			$this->addJoinConds( [ 'ug1' => [ 'LEFT JOIN',
 				array_merge( [
 					'ug1.ug_user=user_id',
 					'ug1.ug_expiry IS NULL OR ug1.ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
@@ -172,7 +172,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			// There shouldn't be any duplicate rows in querycachetwo here.
 			$this->addTables( 'querycachetwo' );
 			$this->addJoinConds( [ 'querycachetwo' => [
-				'INNER JOIN', [
+				'JOIN', [
 					'qcc_type' => 'activeusers',
 					'qcc_namespace' => NS_USER,
 					'qcc_title=user_name',
@@ -281,10 +281,10 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				$data['hidden'] = true;
 			}
 			if ( $fld_editcount ) {
-				$data['editcount'] = intval( $row->user_editcount );
+				$data['editcount'] = (int)$row->user_editcount;
 			}
 			if ( $params['activeusers'] ) {
-				$data['recentactions'] = intval( $row->recentactions );
+				$data['recentactions'] = (int)$row->recentactions;
 				// @todo 'recenteditcount' is set for BC, remove in 1.25
 				$data['recenteditcount'] = $data['recentactions'];
 			}

@@ -36,8 +36,6 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 	}
 
 	public function execute() {
-		global $wgChangeTagsSchemaMigrationStage;
-
 		// Before doing anything at all, let's check permissions
 		$this->checkUserRightsAny( 'deletedhistory' );
 
@@ -133,28 +131,20 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		}
 
 		if ( $fld_tags ) {
-			$this->addTables( 'tag_summary' );
-			$this->addJoinConds(
-				[ 'tag_summary' => [ 'LEFT JOIN', [ 'ar_rev_id=ts_rev_id' ] ] ]
-			);
-			$this->addFields( 'ts_tags' );
+			$this->addFields( [ 'ts_tags' => ChangeTags::makeTagSummarySubquery( 'archive' ) ] );
 		}
 
 		if ( !is_null( $params['tag'] ) ) {
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds(
-				[ 'change_tag' => [ 'INNER JOIN', [ 'ar_rev_id=ct_rev_id' ] ] ]
+				[ 'change_tag' => [ 'JOIN', [ 'ar_rev_id=ct_rev_id' ] ] ]
 			);
-			if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
-				$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
-				try {
-					$this->addWhereFld( 'ct_tag_id', $changeTagDefStore->getId( $params['tag'] ) );
-				} catch ( NameTableAccessException $exception ) {
-					// Return nothing.
-					$this->addWhere( '1=0' );
-				}
-			} else {
-				$this->addWhereFld( 'ct_tag', $params['tag'] );
+			$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
+			try {
+				$this->addWhereFld( 'ct_tag_id', $changeTagDefStore->getId( $params['tag'] ) );
+			} catch ( NameTableAccessException $exception ) {
+				// Return nothing.
+				$this->addWhere( '1=0' );
 			}
 		}
 
@@ -248,7 +238,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$op = ( $dir == 'newer' ? '>' : '<' );
 			if ( $mode == 'all' || $mode == 'revs' ) {
 				$this->dieContinueUsageIf( count( $cont ) != 4 );
-				$ns = intval( $cont[0] );
+				$ns = (int)$cont[0];
 				$this->dieContinueUsageIf( strval( $ns ) !== $cont[0] );
 				$title = $db->addQuotes( $cont[1] );
 				$ts = $db->addQuotes( $db->timestamp( $cont[2] ) );
@@ -317,10 +307,10 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 			$rev['timestamp'] = wfTimestamp( TS_ISO_8601, $row->ar_timestamp );
 			if ( $fld_revid ) {
-				$rev['revid'] = intval( $row->ar_rev_id );
+				$rev['revid'] = (int)$row->ar_rev_id;
 			}
 			if ( $fld_parentid && !is_null( $row->ar_parent_id ) ) {
-				$rev['parentid'] = intval( $row->ar_parent_id );
+				$rev['parentid'] = (int)$row->ar_parent_id;
 			}
 			if ( $fld_user || $fld_userid ) {
 				if ( $row->ar_deleted & Revision::DELETED_USER ) {

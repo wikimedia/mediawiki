@@ -6,7 +6,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group AuthManager
- * @covers MediaWiki\Auth\ResetPasswordSecondaryAuthenticationProvider
+ * @covers \MediaWiki\Auth\ResetPasswordSecondaryAuthenticationProvider
  */
 class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	/**

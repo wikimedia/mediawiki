@@ -12,7 +12,10 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\IncompleteRevisionException;
 use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionArchiveRecord;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStoreRecord;
+use MediaWiki\Revision\RevisionSlots;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\BlobStoreFactory;
@@ -78,8 +81,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->setMwGlobals( [
 			'wgMultiContentRevisionSchemaMigrationStage' => $this->getMcrMigrationStage(),
 			'wgContentHandlerUseDB' => $this->getContentHandlerUseDB(),
-			'wgCommentTableSchemaMigrationStage' => MIGRATION_OLD,
-			'wgActorTableSchemaMigrationStage' => SCHEMA_COMPAT_OLD,
+			'wgActorTableSchemaMigrationStage' => SCHEMA_COMPAT_NEW,
 		] );
 
 		$this->overrideMwServices();
@@ -100,6 +102,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->testPageTitle = Title::newFromText( 'UTPage-' . __CLASS__ );
 		return $this->testPageTitle;
 	}
+
 	/**
 	 * @return WikiPage
 	 */
@@ -231,6 +234,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			MediaWikiServices::getInstance()->getCommentStore(),
 			MediaWikiServices::getInstance()->getContentModelStore(),
 			MediaWikiServices::getInstance()->getSlotRoleStore(),
+			MediaWikiServices::getInstance()->getSlotRoleRegistry(),
 			$this->getMcrMigrationStage(),
 			MediaWikiServices::getInstance()->getActorMigration(),
 			$wikiId
@@ -434,9 +438,19 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$queryInfo = $store->getQueryInfo( [ 'user' ] );
 
 		$row = get_object_vars( $row );
+
+		// Use aliased fields from $queryInfo, e.g. rev_user
+		$keys = array_keys( $row );
+		$keys = array_combine( $keys, $keys );
+		$fields = array_intersect_key( $queryInfo['fields'], $keys ) + $keys;
+
+		// assertSelect() fails unless the orders match.
+		ksort( $fields );
+		ksort( $row );
+
 		$this->assertSelect(
 			$queryInfo['tables'],
-			array_keys( $row ),
+			$fields,
 			[ 'rev_id' => $rev->getId() ],
 			[ array_values( $row ) ],
 			[],
@@ -796,7 +810,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			'rev_page' => (string)$rev->getPage(),
 			'rev_timestamp' => $this->db->timestamp( $rev->getTimestamp() ),
 			'rev_user_text' => (string)$rev->getUserText(),
-			'rev_user' => (string)$rev->getUser(),
+			'rev_user' => (string)$rev->getUser() ?: null,
 			'rev_minor_edit' => $rev->isMinor() ? '1' : '0',
 			'rev_deleted' => (string)$rev->getVisibility(),
 			'rev_len' => (string)$rev->getSize(),
@@ -1354,6 +1368,44 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		);
 	}
 
+	public function provideNonHistoryRevision() {
+		$title = Title::newFromText( __METHOD__ );
+		$rev = new MutableRevisionRecord( $title );
+		yield [ $rev ];
+
+		$user = new UserIdentityValue( 7, 'Frank', 0 );
+		$comment = CommentStoreComment::newUnsavedComment( 'Test' );
+		$row = (object)[
+			'ar_id' => 3,
+			'ar_rev_id' => 34567,
+			'ar_page_id' => 5,
+			'ar_deleted' => 0,
+			'ar_minor_edit' => 0,
+			'ar_timestamp' => '20180101020202',
+		];
+		$slots = new RevisionSlots( [] );
+		$rev = new RevisionArchiveRecord( $title, $user, $comment, $row, $slots );
+		yield [ $rev ];
+	}
+
+	/**
+	 * @dataProvider provideNonHistoryRevision
+	 * @covers \MediaWiki\Revision\RevisionStore::getPreviousRevision
+	 */
+	public function testGetPreviousRevision_bad( RevisionRecord $rev ) {
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$this->assertNull( $store->getPreviousRevision( $rev ) );
+	}
+
+	/**
+	 * @dataProvider provideNonHistoryRevision
+	 * @covers \MediaWiki\Revision\RevisionStore::getNextRevision
+	 */
+	public function testGetNextRevision_bad( RevisionRecord $rev ) {
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$this->assertNull( $store->getNextRevision( $rev ) );
+	}
+
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::getTimestampFromId
 	 */
@@ -1662,6 +1714,200 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->setService( 'BlobStoreFactory', $factory );
 
 		$this->testNewMutableRevisionFromArray( $array );
+	}
+
+	/**
+	 * Creates a new revision for testing caching behavior
+	 *
+	 * @param WikiPage $page the page for the new revision
+	 * @param RevisionStore $store store object to use for creating the revision
+	 * @return bool|RevisionStoreRecord the revision created, or false if missing
+	 */
+	private function createRevisionStoreCacheRecord( $page, $store ) {
+		$user = MediaWikiTestCase::getMutableTestUser()->getUser();
+		$updater = $page->newPageUpdater( $user );
+		$updater->setContent( SlotRecord::MAIN, new WikitextContent( __METHOD__ ) );
+		$summary = CommentStoreComment::newUnsavedComment( __METHOD__ );
+		$rev = $updater->saveRevision( $summary, EDIT_NEW );
+		return $store->getKnownCurrentRevision( $page->getTitle(), $rev->getId() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::getKnownCurrentRevision
+	 */
+	public function testGetKnownCurrentRevision_userNameChange() {
+		global $wgActorTableSchemaMigrationStage;
+
+		$this->overrideMwServices();
+		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
+		$this->setService( 'MainWANObjectCache', $cache );
+
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$page = $this->getNonexistingTestPage();
+		$rev = $this->createRevisionStoreCacheRecord( $page, $store );
+
+		// Grab the user name
+		$userNameBefore = $rev->getUser()->getName();
+
+		// Change the user name in the database, "behind the back" of the cache
+		$newUserName = "Renamed $userNameBefore";
+		$this->db->update( 'revision',
+			[ 'rev_user_text' => $newUserName ],
+			[ 'rev_id' => $rev->getId() ] );
+		$this->db->update( 'user',
+			[ 'user_name' => $newUserName ],
+			[ 'user_id' => $rev->getUser()->getId() ] );
+		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+			$this->db->update( 'actor',
+				[ 'actor_name' => $newUserName ],
+				[ 'actor_user' => $rev->getUser()->getId() ] );
+		}
+
+		// Reload the revision and regrab the user name.
+		$revAfter = $store->getKnownCurrentRevision( $page->getTitle(), $rev->getId() );
+		$userNameAfter = $revAfter->getUser()->getName();
+
+		// The two user names should be different.
+		// If they are the same, we are seeing a cached value, which is bad.
+		$this->assertNotSame( $userNameBefore, $userNameAfter );
+
+		// This is implied by the above assertion, but explicitly check it, for completeness
+		$this->assertSame( $newUserName, $userNameAfter );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::getKnownCurrentRevision
+	 */
+	public function testGetKnownCurrentRevision_revDelete() {
+		$this->overrideMwServices();
+		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
+		$this->setService( 'MainWANObjectCache', $cache );
+
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$page = $this->getNonexistingTestPage();
+		$rev = $this->createRevisionStoreCacheRecord( $page, $store );
+
+		// Grab the deleted bitmask
+		$deletedBefore = $rev->getVisibility();
+
+		// Change the deleted bitmask in the database, "behind the back" of the cache
+		$this->db->update( 'revision',
+			[ 'rev_deleted' => RevisionRecord::DELETED_TEXT ],
+			[ 'rev_id' => $rev->getId() ] );
+
+		// Reload the revision and regrab the visibility flag.
+		$revAfter = $store->getKnownCurrentRevision( $page->getTitle(), $rev->getId() );
+		$deletedAfter = $revAfter->getVisibility();
+
+		// The two deleted flags should be different.
+		// If they are the same, we are seeing a cached value, which is bad.
+		$this->assertNotSame( $deletedBefore, $deletedAfter );
+
+		// This is implied by the above assertion, but explicitly check it, for completeness
+		$this->assertSame( RevisionRecord::DELETED_TEXT, $deletedAfter );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRow
+	 */
+	public function testNewRevisionFromRow_userNameChange() {
+		global $wgActorTableSchemaMigrationStage;
+
+		$page = $this->getTestPage();
+		$text = __METHOD__;
+		/** @var Revision $rev */
+		$rev = $page->doEditContent(
+			new WikitextContent( $text ),
+			__METHOD__,
+			0,
+			false,
+			$this->getMutableTestUser()->getUser()
+		)->value['revision'];
+
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$record = $store->newRevisionFromRow(
+			$this->revisionToRow( $rev ),
+			[],
+			$page->getTitle()
+		);
+
+		// Grab the user name
+		$userNameBefore = $record->getUser()->getName();
+
+		// Change the user name in the database
+		$newUserName = "Renamed $userNameBefore";
+		$this->db->update( 'revision',
+			[ 'rev_user_text' => $newUserName ],
+			[ 'rev_id' => $record->getId() ] );
+		$this->db->update( 'user',
+			[ 'user_name' => $newUserName ],
+			[ 'user_id' => $record->getUser()->getId() ] );
+		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+			$this->db->update( 'actor',
+				[ 'actor_name' => $newUserName ],
+				[ 'actor_user' => $record->getUser()->getId() ] );
+		}
+
+		// Reload the record, passing $fromCache as true to force fresh info from the db,
+		// and regrab the user name
+		$recordAfter = $store->newRevisionFromRow(
+			$this->revisionToRow( $rev ),
+			[],
+			$page->getTitle(),
+			true
+		);
+		$userNameAfter = $recordAfter->getUser()->getName();
+
+		// The two user names should be different.
+		// If they are the same, we are seeing a cached value, which is bad.
+		$this->assertNotSame( $userNameBefore, $userNameAfter );
+
+		// This is implied by the above assertion, but explicitly check it, for completeness
+		$this->assertSame( $newUserName, $userNameAfter );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRow
+	 */
+	public function testNewRevisionFromRow_revDelete() {
+		$page = $this->getTestPage();
+		$text = __METHOD__;
+		/** @var Revision $rev */
+		$rev = $page->doEditContent(
+			new WikitextContent( $text ),
+			__METHOD__
+		)->value['revision'];
+
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$record = $store->newRevisionFromRow(
+			$this->revisionToRow( $rev ),
+			[],
+			$page->getTitle()
+		);
+
+		// Grab the deleted bitmask
+		$deletedBefore = $record->getVisibility();
+
+		// Change the deleted bitmask in the database
+		$this->db->update( 'revision',
+			[ 'rev_deleted' => RevisionRecord::DELETED_TEXT ],
+			[ 'rev_id' => $record->getId() ] );
+
+		// Reload the record, passing $fromCache as true to force fresh info from the db,
+		// and regrab the deleted bitmask
+		$recordAfter = $store->newRevisionFromRow(
+			$this->revisionToRow( $rev ),
+			[],
+			$page->getTitle(),
+			true
+		);
+		$deletedAfter = $recordAfter->getVisibility();
+
+		// The two deleted flags should be different, because we modified the database.
+		$this->assertNotSame( $deletedBefore, $deletedAfter );
+
+		// This is implied by the above assertion, but explicitly check it, for completeness
+		$this->assertSame( RevisionRecord::DELETED_TEXT, $deletedAfter );
 	}
 
 }

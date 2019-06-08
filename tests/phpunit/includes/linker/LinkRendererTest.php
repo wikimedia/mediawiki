@@ -51,11 +51,10 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 
 		// Query added
 		$this->assertEquals(
-			'<a href="/w/index.php?title=Foobar&amp;foo=bar" ' . 'title="Foobar">Foobar</a>',
+			'<a href="/w/index.php?title=Foobar&amp;foo=bar" title="Foobar">Foobar</a>',
 			$linkRenderer->makeKnownLink( $target, null, [], [ 'foo' => 'bar' ] )
 		);
 
-		// forcearticlepath
 		$linkRenderer->setForceArticlePath( true );
 		$this->assertEquals(
 			'<a href="/wiki/Foobar?foo=bar" title="Foobar">Foobar</a>',
@@ -191,4 +190,8 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	function tearDown() {
+		Title::clearCaches();
+		parent::tearDown();
+	}
 }

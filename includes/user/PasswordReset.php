@@ -81,9 +81,7 @@ class PasswordReset implements LoggerAwareInterface {
 			$resetRoutes = $this->config->get( 'PasswordResetRoutes' );
 			$status = StatusValue::newGood();
 
-			if ( !is_array( $resetRoutes ) ||
-				 !in_array( true, array_values( $resetRoutes ), true )
-			) {
+			if ( !is_array( $resetRoutes ) || !in_array( true, $resetRoutes, true ) ) {
 				// Maybe password resets are disabled, or there are no allowable routes
 				$status = StatusValue::newFatal( 'passwordreset-disabled' );
 			} elseif (
@@ -265,23 +263,7 @@ class PasswordReset implements LoggerAwareInterface {
 		if ( !$block ) {
 			return false;
 		}
-		$type = $block->getSystemBlockType();
-		if ( in_array( $type, [ null, 'global-block' ], true ) ) {
-			// Normal block. Maybe it was meant for someone else and the user just needs to log in;
-			// or maybe it was issued specifically to prevent some IP from messing with password
-			// reset? Go out on a limb and use the registration allowed flag to decide.
-			return $block->prevents( 'createaccount' );
-		} elseif ( $type === 'proxy' ) {
-			// we disallow actions through proxy even if the user is logged in
-			// so it makes sense to disallow password resets as well
-			return true;
-		} elseif ( in_array( $type, [ 'dnsbl', 'wgSoftBlockRanges' ], true ) ) {
-			// these are just meant to force login so let's not prevent that
-			return false;
-		} else {
-			// some extension - we'll have to guess
-			return true;
-		}
+		return $block->appliesToPasswordReset();
 	}
 
 	/**

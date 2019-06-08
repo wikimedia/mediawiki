@@ -114,9 +114,11 @@ class TransactionProfiler implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Set multiple performance expectations
+	 * Set one or multiple performance expectations
 	 *
 	 * With conflicting expectations, the most narrow ones will be used
+	 *
+	 * Use this to initialize expectations or make them stricter mid-request
 	 *
 	 * @param array $expects Map of (event => limit)
 	 * @param string $fname
@@ -129,7 +131,11 @@ class TransactionProfiler implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Reset performance expectations and hit counters
+	 * Reset all performance expectations and hit counters
+	 *
+	 * Use this for unit testing or before applying a totally different set of expectations
+	 * for a different part of the request, such as during "post-send" (execution after HTTP
+	 * response completion)
 	 *
 	 * @since 1.25
 	 */
@@ -143,6 +149,21 @@ class TransactionProfiler implements LoggerAwareInterface {
 		}
 		unset( $val );
 		$this->expectBy = [];
+	}
+
+	/**
+	 * Clear all expectations and hit counters and set new performance expectations
+	 *
+	 * Use this to apply a totally different set of expectations for a different part
+	 * of the request, such as during "post-send" (execution after HTTP response completion)
+	 *
+	 * @param array $expects Map of (event => limit)
+	 * @param string $fname
+	 * @since 1.33
+	 */
+	public function redefineExpectations( array $expects, $fname ) {
+		$this->resetExpectations();
+		$this->setExpectations( $expects, $fname );
 	}
 
 	/**

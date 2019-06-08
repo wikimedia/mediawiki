@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\ScopedCallback;
+
 /**
  * @covers ExtensionRegistry
  */
@@ -398,5 +400,29 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 				],
 			],
 		];
+	}
+
+	public function testSetAttributeForTest() {
+		$registry = new ExtensionRegistry();
+		$registry->queue( "{$this->dataDir}/good.json" );
+		$registry->loadFromQueue();
+		// Sanity check that it worked
+		$this->assertSame( [ 'test' ], $registry->getAttribute( 'FooBarAttr' ) );
+		$reset = $registry->setAttributeForTest( 'FooBarAttr', [ 'override' ] );
+		// overridden properly
+		$this->assertSame( [ 'override' ], $registry->getAttribute( 'FooBarAttr' ) );
+		ScopedCallback::consume( $reset );
+		// reset properly
+		$this->assertSame( [ 'test' ], $registry->getAttribute( 'FooBarAttr' ) );
+	}
+
+	/**
+	 * @expectedException Exception
+	 * @expectedExceptionMessage The attribute 'foo' has already been overridden
+	 */
+	public function testSetAttributeForTestDuplicate() {
+		$registry = new ExtensionRegistry();
+		$reset1 = $registry->setAttributeForTest( 'foo', [ 'val1' ] );
+		$reset2 = $registry->setAttributeForTest( 'foo', [ 'val2' ] );
 	}
 }

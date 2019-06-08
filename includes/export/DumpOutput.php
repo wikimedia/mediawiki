@@ -76,7 +76,6 @@ class DumpOutput {
 	/**
 	 * Override to write to a different stream type.
 	 * @param string $string
-	 * @return bool
 	 */
 	function write( $string ) {
 		print $string;

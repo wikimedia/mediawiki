@@ -537,11 +537,7 @@ abstract class Installer {
 	 * @return mixed
 	 */
 	public function getVar( $name, $default = null ) {
-		if ( !isset( $this->settings[$name] ) ) {
-			return $default;
-		} else {
-			return $this->settings[$name];
-		}
+		return $this->settings[$name] ?? $default;
 	}
 
 	/**
@@ -690,15 +686,15 @@ abstract class Installer {
 	 * @return string
 	 */
 	public function parse( $text, $lineStart = false ) {
-		global $wgParser;
+		$parser = MediaWikiServices::getInstance()->getParser();
 
 		try {
-			$out = $wgParser->parse( $text, $this->parserTitle, $this->parserOptions, $lineStart );
+			$out = $parser->parse( $text, $this->parserTitle, $this->parserOptions, $lineStart );
 			$html = $out->getText( [
 				'enableSectionEditLinks' => false,
 				'unwrap' => true,
 			] );
-		} catch ( MediaWiki\Services\ServiceDisabledException $e ) {
+		} catch ( Wikimedia\Services\ServiceDisabledException $e ) {
 			$html = '<!--DB access attempted during parse-->  ' . htmlspecialchars( $text );
 		}
 
@@ -870,8 +866,7 @@ abstract class Installer {
 		}
 
 		if ( !$caches ) {
-			$key = 'config-no-cache-apcu';
-			$this->showMessage( $key );
+			$this->showMessage( 'config-no-cache-apcu' );
 		}
 
 		$this->setVar( '_Caches', $caches );
@@ -1188,8 +1183,8 @@ abstract class Installer {
 	public function dirIsExecutable( $dir, $url ) {
 		$scriptTypes = [
 			'php' => [
-				"<?php echo 'ex' . 'ec';",
-				"#!/var/env php\n<?php echo 'ex' . 'ec';",
+				"<?php echo 'exec';",
+				"#!/var/env php\n<?php echo 'exec';",
 			],
 		];
 
@@ -1468,6 +1463,7 @@ abstract class Installer {
 	/**
 	 * Installs the auto-detected extensions.
 	 *
+	 * @suppress SecurityCheck-OTHER It thinks $exts/$IP is user controlled but they are not.
 	 * @return Status
 	 */
 	protected function includeExtensions() {
@@ -1505,9 +1501,8 @@ abstract class Installer {
 		$data = $registry->readFromQueue( $queue );
 		$wgAutoloadClasses += $data['autoload'];
 
-		$hooksWeWant = isset( $wgHooks['LoadExtensionSchemaUpdates'] ) ?
-			/** @suppress PhanUndeclaredVariable $wgHooks is set by DefaultSettings */
-			$wgHooks['LoadExtensionSchemaUpdates'] : [];
+		// @phan-suppress-next-line PhanUndeclaredVariable $wgHooks is set by DefaultSettings
+		$hooksWeWant = $wgHooks['LoadExtensionSchemaUpdates'] ?? [];
 
 		if ( isset( $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
 			$hooksWeWant = array_merge_recursive(
@@ -1612,9 +1607,7 @@ abstract class Installer {
 		}
 		if ( $status->isOk() ) {
 			$this->showMessage(
-				'config-install-success',
-				$this->getVar( 'wgServer' ),
-				$this->getVar( 'wgScriptPath' )
+				'config-install-db-success'
 			);
 			$this->setVar( '_InstallDone', true );
 		}
@@ -1637,8 +1630,7 @@ abstract class Installer {
 	}
 
 	/**
-	 * Generate a secret value for variables using our CryptRand generator.
-	 * Produce a warning if the random source was insecure.
+	 * Generate a secret value for variables using a secure generator.
 	 *
 	 * @param array $keys
 	 * @return Status

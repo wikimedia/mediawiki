@@ -1,13 +1,3 @@
-.feedback-spinner {
-	display: inline-block;
-	zoom: 1;
-	*display: inline; /* IE7 and below */ /* stylelint-disable declaration-block-no-duplicate-properties */
-	/* @embed */
-	background: url( images/spinner.gif );
-	width: 18px;
-	height: 18px;
-}
-
 .mw-feedbackDialog-welcome-message,
 .mw-feedbackDialog-feedback-terms {
 	line-height: 1.4;
@@ -21,11 +11,12 @@
 	margin-bottom: 1em;
 }
 
-/* Overwriting OOUI is no fun */
+/* Overwriting OOUI */
 .mw-feedbackDialog-feedback-form .oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
 	min-width: 4.2em;
 	width: 20%;
 }
+
 .mw-feedbackDialog-feedback-form .oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
 	width: 80%;
 }

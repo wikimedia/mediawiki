@@ -63,7 +63,7 @@ abstract class QuickTemplate {
 	 */
 	public function extend( $name, $value ) {
 		if ( $this->haveData( $name ) ) {
-			$this->data[$name] = $this->data[$name] . $value;
+			$this->data[$name] .= $value;
 		} else {
 			$this->data[$name] = $value;
 		}
@@ -129,7 +129,7 @@ abstract class QuickTemplate {
 	 * @private
 	 * @param string $msgKey
 	 * @warning You should never use this method. I18n messages should be escaped
-	 * @deprecated 1.32 Use ->msg() or ->msgWiki() instead.
+	 * @deprecated 1.32 Use ->msg() instead.
 	 * @suppress SecurityCheck-XSS
 	 * @return-taint exec_html
 	 */
@@ -140,14 +140,15 @@ abstract class QuickTemplate {
 
 	/**
 	 * An ugly, ugly hack.
-	 * @private
+	 * @deprecated since 1.33 Use ->msg() instead.
 	 * @param string $msgKey
 	 */
 	function msgWiki( $msgKey ) {
+		// TODO: Add wfDeprecated( __METHOD__, '1.33' ) after 1.33 got released
 		global $wgOut;
 
-		$text = wfMessage( $msgKey )->text();
-		echo $wgOut->parse( $text );
+		$text = wfMessage( $msgKey )->plain();
+		echo $wgOut->parseAsInterface( $text );
 	}
 
 	/**

@@ -38,11 +38,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	$cluster = $args[0];
 	$dbw = wfGetDB( DB_MASTER );
 
-	if ( isset( $options['e'] ) ) {
-		$maxID = $options['e'];
-	} else {
-		$maxID = $dbw->selectField( 'text', 'MAX(old_id)', '', $fname );
-	}
+	$maxID = $options['e'] ?? $dbw->selectField( 'text', 'MAX(old_id)', '', $fname );
 	$minID = $options['s'] ?? 1;
 
 	moveToExternal( $cluster, $maxID, $minID );

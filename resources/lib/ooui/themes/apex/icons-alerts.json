@@ -8,6 +8,9 @@
 		"bell": {
 			"file": "../wikimediaui/images/icons/bell.svg"
 		},
+		"error": {
+			"file": "../wikimediaui/images/icons/error.svg"
+		},
 		"message": {
 			"file": "../wikimediaui/images/icons/message.svg"
 		},

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg">
+	<g>
+		<switch>
+			<text systemLanguage="ru"><tspan>RU</tspan></text>
+			<text systemLanguage="de"><tspan>DE</tspan></text>
+			<text>fallback</text>
+		</switch>
+	</g>
+</svg>

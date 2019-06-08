@@ -167,28 +167,4 @@ class ReadOnlyModeTest extends MediaWikiTestCase {
 		$rom->setReason( 'override' );
 		$this->assertSame( 'override', $rom->getReason() );
 	}
-
-	/**
-	 * @covers ReadOnlyMode::clearCache
-	 * @covers ConfiguredReadOnlyMode::clearCache
-	 */
-	public function testClearCache() {
-		$fileName = $this->getNewTempFile();
-		unlink( $fileName );
-		$config = new HashConfig( [
-			'ReadOnly' => null,
-			'ReadOnlyFile' => $fileName,
-		] );
-		$cro = new ConfiguredReadOnlyMode( $config );
-		$lb = $this->createLB( [ 'lbMessage' => false ] );
-		$rom = new ReadOnlyMode( $cro, $lb );
-
-		$this->assertSame( false, $rom->getReason(), 'initial' );
-
-		file_put_contents( $fileName, 'file' );
-		$this->assertSame( false, $rom->getReason(), 'stale' );
-
-		$rom->clearCache();
-		$this->assertSame( 'file', $rom->getReason(), 'fresh' );
-	}
 }

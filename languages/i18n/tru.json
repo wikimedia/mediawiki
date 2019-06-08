@@ -3,7 +3,8 @@
 		"authors": [
 			"Ariyo",
 			"Arjunaraoc",
-			"아라"
+			"아라",
+			"Mirzali"
 		]
 	},
 	"tog-oldsig": "Imḍa du3do:",
@@ -447,7 +448,7 @@
 	"contributions-title": "Maṫwoṭo d$1",
 	"mycontris": "aMaṫwoṭayḍi",
 	"contribsub2": "d$1 ($2)",
-	"uctop": "(ḥaroyo)",
+	"uctop": "ḥaroyo",
 	"month": "muYarḥo",
 	"year": "hul iŞato:",
 	"sp-contributions-newbies": "Bes maḥway Maṫwoṭo dHadome ḥaṭe",
@@ -561,9 +562,6 @@
 	"metadata": "Metadata",
 	"metadata-help": "This file contains additional information, probably added from the digital camera or scanner used to create or digitize it.\nIf the file has been modified from its original state, some details may not fully reflect the modified file.",
 	"metadata-fields": "Image metadata fields listed in this message will be included on image page display when the metadata table is collapsed.\nOthers will be hidden by default.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
-	"exif-writer": "Kaṭowo",
-	"exif-languagecode": "Leşono",
-	"exif-cameraownername": "uMoro diQamera",
 	"namespacesall": "kulle",
 	"monthsall": "kulle",
 	"watchlisttools-view": "View relevant changes",

@@ -70,9 +70,14 @@
 						"php": {
 							"type": "string",
 							"description": "Version constraint string against PHP."
+						},
+						"ability-shell": {
+							"type": "boolean",
+							"default": false,
+							"description": "Whether this extension requires shell access."
 						}
 					},
-					"patternProprties": {
+					"patternProperties": {
 						"^ext-": {
 							"type": "string",
 							"description": "Required PHP extension.",
@@ -253,6 +258,10 @@
 								"noflip": {
 									"type": "boolean",
 									"description": "Whether to skip CSSJanus LTR-to-RTL flipping for this module. Recommended for styles imported from libraries that already properly handle their RTL styles. Default is false, meaning CSSJanus will be applied on RTL-mode output."
+								},
+								"packageFiles": {
+									"type": ["object", "array"],
+									"description": "Package files that can be require()d"
 								}
 							}
 						},
@@ -343,7 +352,7 @@
 							"properties": {
 								"class": {
 									"type": "string",
-									"pattern": "^((?!ResourceLoader(File|Image)Module).)*$"
+									"pattern": "^(?!ResourceLoader(File|Image|Wiki)Module).*$"
 								}
 							},
 							"required": ["class"]
@@ -359,6 +368,10 @@
 		"ResourceLoaderSources": {
 			"type": "object",
 			"description": "ResourceLoader sources to register"
+		},
+		"QUnitTestModule": {
+			"type": "object",
+			"description": "A ResourceLoaderFileModule definition registered only when wgEnableJavaScriptTest is true."
 		},
 		"ConfigRegistry": {
 			"type": "object",
@@ -691,6 +704,14 @@
 			"description": "Messages which are rendered as raw HTML",
 			"items": {
 				"type": "string"
+			}
+		},
+		"ReauthenticateTime": {
+			"type": "object",
+			"patternProperties": {
+				".*": {
+					"type": "integer"
+				}
 			}
 		},
 		"callback": {

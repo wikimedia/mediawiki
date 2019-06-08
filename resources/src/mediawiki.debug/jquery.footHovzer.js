@@ -7,7 +7,7 @@
 
 	function getHovzer() {
 		if ( $hovzer === undefined ) {
-			$hovzer = $( '<div id="jquery-foot-hovzer"></div>' ).appendTo( 'body' );
+			$hovzer = $( '<div>' ).attr( 'id', 'jquery-foot-hovzer' ).appendTo( 'body' );
 		}
 		return $hovzer;
 	}

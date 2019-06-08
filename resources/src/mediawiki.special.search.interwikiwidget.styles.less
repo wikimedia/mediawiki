@@ -1,11 +1,10 @@
-/* interwiki search results */
-/*==========================*/
+/* Interwiki search results */
+/* ======================== */
 
 @import 'mediawiki.ui/variables.less';
 @import 'mediawiki.mixins';
 
 .mw-searchresults-has-iw {
-
 	.iw-headline {
 		font-weight: bold;
 	}
@@ -27,11 +26,11 @@
 	}
 
 	.iw-result__title {
-		font-size: 108%; /* matching regular search title */
+		font-size: 108%; /* Matching regular search title */
 	}
 
 	.iw-result:after,
-	.iw-result__content:after { /* clearfix */
+	.iw-result__content:after { /* Clearfix */
 		visibility: hidden;
 		display: block;
 		font-size: 0;
@@ -42,9 +41,10 @@
 
 	.iw-result__footer {
 		float: right;
-		font-size: 97%; /* matching main search result font-size */
+		font-size: 97%; /* Matching main search result font-size */
 		margin-top: 0.5em;
 	}
+
 	.iw-result__footer a {
 		vertical-align: middle;
 		font-style: italic;
@@ -54,7 +54,7 @@
 		padding-right: 1em;
 	}
 
-	/* image search result */
+	/* Image search result */
 	.iw-result__mini-gallery {
 		position: relative;
 		float: left;
@@ -64,7 +64,7 @@
 		padding: 0.25rem;
 	}
 
-	/* second and third images are small */
+	/* Second and third images are small */
 	.iw-result__mini-gallery:nth-child( 2 ),
 	.iw-result__mini-gallery:nth-child( 3 ) { /* stylelint-disable-line indentation */
 		width: 50%;
@@ -82,7 +82,7 @@
 		background-position: center center;
 	}
 
-	/* image gallery text */
+	/* Image gallery text */
 	.iw-result__mini-gallery__image > .iw-result__mini-gallery__caption {
 		visibility: hidden;
 		position: absolute;
@@ -99,15 +99,14 @@
 		visibility: visible;
 	}
 
-	/* tablet and up */
-
+	/* Tablet and up */
 	@media only screen and ( min-width: @width-breakpoint-tablet ) {
-
 		#mw-interwiki-results {
 			width: 30%;
-			display: inline-block; /* used to align interwiki sidebar with the top of the main search results */
-			margin-left: 8%; /* since inline-block causes whitespace issues, this is 8 instead of 10% */
+			display: inline-block; /* Used to align interwiki sidebar with the top of the main search results */
+			margin-left: 8%; /* Since inline-block causes whitespace issues, this is 8 instead of 10% */
 		}
+
 		.mw-search-createlink,
 		.mw-search-nonefound,
 		.mw-search-results,

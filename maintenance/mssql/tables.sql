@@ -270,8 +270,7 @@ CREATE TABLE /*_*/archive (
    ar_id int NOT NULL PRIMARY KEY IDENTITY,
    ar_namespace SMALLINT NOT NULL DEFAULT 0,
    ar_title NVARCHAR(255) NOT NULL DEFAULT '',
-   ar_comment NVARCHAR(255) NOT NULL CONSTRAINT DF_ar_comment DEFAULT '',
-   ar_comment_id bigint NOT NULL CONSTRAINT DF_ar_comment_id DEFAULT 0 CONSTRAINT FK_ar_comment_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
+   ar_comment_id bigint NOT NULL CONSTRAINT FK_ar_comment_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
    ar_user INT CONSTRAINT ar_user__user_id__fk FOREIGN KEY REFERENCES /*_*/mwuser(user_id),
    ar_user_text NVARCHAR(255) NOT NULL CONSTRAINT DF_ar_user_text DEFAULT '',
    ar_actor bigint NOT NULL CONSTRAINT DF_ar_actor DEFAULT 0,
@@ -545,6 +544,9 @@ CREATE TABLE /*_*/externallinks (
   -- which allows for fast searching for all pages under example.com with the
   -- clause:
   --      WHERE el_index LIKE 'http://com.example.%'
+  --
+  -- Note if you enable or disable PHP's intl extension, you'll need to run
+  -- maintenance/refreshExternallinksIndex.php to refresh this field.
   el_index nvarchar(450) NOT NULL,
 
   -- This is el_index truncated to 60 bytes to allow for sortable queries that
@@ -648,12 +650,8 @@ CREATE TABLE /*_*/ipblocks (
   -- User name of blocker
   ipb_by_text nvarchar(255) NOT NULL default '',
 
-  -- Text comment made by blocker.
-  ipb_reason nvarchar(255) NOT NULL CONSTRAINT DF_ipb_reason DEFAULT '',
-
   -- Key to comment_id. Text comment made by blocker.
-  -- ("DEFAULT 0" is temporary, signaling that ipb_reason should be used)
-  ipb_reason_id bigint NOT NULL CONSTRAINT DF_ipb_reason_id DEFAULT 0 CONSTRAINT FK_ipb_reason_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
+  ipb_reason_id bigint NOT NULL CONSTRAINT FK_ipb_reason_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
 
   -- Creation (or refresh) date in standard YMDHMS form.
   -- IP blocks expire automatically.
@@ -773,8 +771,7 @@ CREATE TABLE /*_*/image (
 
   -- Description field as entered by the uploader.
   -- This is displayed in image upload history and logs.
-  img_description nvarchar(255) NOT NULL CONSTRAINT DF_img_description DEFAULT '',
-  img_description_id bigint NOT NULL CONSTRAINT DF_img_description_id DEFAULT 0 CONSTRAINT FK_img_description_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
+  img_description_id bigint NOT NULL CONSTRAINT FK_img_description_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
 
   -- user_id and user_name of uploader.
   img_user int REFERENCES /*_*/mwuser(user_id) ON DELETE SET NULL,
@@ -822,8 +819,7 @@ CREATE TABLE /*_*/oldimage (
   oi_width int NOT NULL default 0,
   oi_height int NOT NULL default 0,
   oi_bits int NOT NULL default 0,
-  oi_description nvarchar(255) NOT NULL CONSTRAINT DF_oi_description DEFAULT '',
-  oi_description_id bigint NOT NULL CONSTRAINT DF_oi_description_id DEFAULT 0 CONSTRAINT FK_oi_description_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
+  oi_description_id bigint NOT NULL CONSTRAINT FK_oi_description_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
   oi_user int REFERENCES /*_*/mwuser(user_id),
   oi_user_text nvarchar(255) NOT NULL CONSTRAINT DF_oi_user_text DEFAULT '',
   oi_actor bigint NOT NULL CONSTRAINT DF_oi_actor DEFAULT 0,
@@ -874,8 +870,7 @@ CREATE TABLE /*_*/filearchive (
   -- Deletion information, if this file is deleted.
   fa_deleted_user int,
   fa_deleted_timestamp varchar(14) default '',
-  fa_deleted_reason nvarchar(max) CONSTRAINT DF_fa_deleted_reason DEFAULT '',
-  fa_deleted_reason_id bigint NOT NULL CONSTRAINT DF_fa_deleted_reason_id DEFAULT 0 CONSTRAINT FK_fa_deleted_reason_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
+  fa_deleted_reason_id bigint NOT NULL CONSTRAINT FK_fa_deleted_reason_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
 
   -- Duped fields from image
   fa_size int default 0,
@@ -886,8 +881,7 @@ CREATE TABLE /*_*/filearchive (
   fa_media_type varchar(16) default null,
   fa_major_mime varchar(16) not null default 'unknown',
   fa_minor_mime nvarchar(100) default 'unknown',
-  fa_description nvarchar(255) CONSTRAINT DF_fa_description DEFAULT '',
-  fa_description_id bigint NOT NULL CONSTRAINT DF_fa_description_id DEFAULT 0 CONSTRAINT FK_fa_description_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
+  fa_description_id bigint NOT NULL CONSTRAINT FK_fa_description_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
   fa_user int default 0 REFERENCES /*_*/mwuser(user_id) ON DELETE SET NULL,
   fa_user_text nvarchar(255) CONSTRAINT DF_fa_user_text DEFAULT '',
   fa_actor bigint NOT NULL CONSTRAINT DF_fa_actor DEFAULT 0,
@@ -992,8 +986,7 @@ CREATE TABLE /*_*/recentchanges (
   rc_title nvarchar(255) NOT NULL default '',
 
   -- as in revision...
-  rc_comment nvarchar(255) NOT NULL default '',
-  rc_comment_id bigint NOT NULL CONSTRAINT DF_rc_comment_id DEFAULT 0 CONSTRAINT FK_rc_comment_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
+  rc_comment_id bigint NOT NULL CONSTRAINT FK_rc_comment_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
   rc_minor bit NOT NULL default 0,
 
   -- Edits by user accounts with the 'bot' rights key are
@@ -1186,12 +1179,8 @@ CREATE TABLE /*_*/logging (
   log_title nvarchar(255) NOT NULL default '',
   log_page int NULL, -- NOT an FK, logging entries are inserted for deleted pages which still reference the deleted page ids
 
-  -- Freeform text. Interpreted as edit history comments.
-  log_comment nvarchar(255) NOT NULL default '',
-
   -- Key to comment_id. Comment summarizing the change.
-  -- ("DEFAULT 0" is temporary, signaling that log_comment should be used)
-  log_comment_id bigint NOT NULL CONSTRAINT DF_log_comment_id DEFAULT 0 CONSTRAINT FK_log_comment_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
+  log_comment_id bigint NOT NULL CONSTRAINT FK_log_comment_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
 
   -- miscellaneous parameters:
   -- LF separated list (old system) or serialized PHP array (new system)
@@ -1355,8 +1344,7 @@ CREATE TABLE /*_*/protected_titles (
   pt_namespace int NOT NULL,
   pt_title nvarchar(255) NOT NULL,
   pt_user int REFERENCES /*_*/mwuser(user_id) ON DELETE SET NULL,
-  pt_reason nvarchar(255) CONSTRAINT DF_pt_reason DEFAULT '',
-  pt_reason_id bigint NOT NULL CONSTRAINT DF_pt_reason_id DEFAULT 0 CONSTRAINT FK_pt_reason_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
+  pt_reason_id bigint NOT NULL CONSTRAINT FK_pt_reason_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
   pt_timestamp varchar(14) NOT NULL,
   pt_expiry varchar(14) NOT NULL,
   pt_create_perm nvarchar(60) NOT NULL,
@@ -1395,48 +1383,18 @@ CREATE TABLE /*_*/change_tag (
   ct_log_id int NULL REFERENCES /*_*/logging(log_id),
   -- REVID for the change
   ct_rev_id int NULL REFERENCES /*_*/revision(rev_id),
-  -- Tag applied
-  ct_tag nvarchar(255) NOT NULL default '',
   -- Parameters for the tag, presently unused
   ct_params nvarchar(max) NULL,
   -- Foreign key to change_tag_def row
-  ct_tag_id int NULL CONSTRAINT ctd_tag_id__fk FOREIGN KEY REFERENCES /*_*/change_tag_def(ctd_id)
+  ct_tag_id int NOT NULL CONSTRAINT ctd_tag_id__fk FOREIGN KEY REFERENCES /*_*/change_tag_def(ctd_id)
 );
-
-CREATE INDEX /*i*/change_tag_rc_tag_nonuniq ON /*_*/change_tag (ct_rc_id,ct_tag);
-CREATE INDEX /*i*/change_tag_log_tag_nonuniq ON /*_*/change_tag (ct_log_id,ct_tag);
-CREATE INDEX /*i*/change_tag_rev_tag_nonuniq ON /*_*/change_tag (ct_rev_id,ct_tag);
 
 CREATE UNIQUE INDEX /*i*/change_tag_rc_tag_id ON /*_*/change_tag (ct_rc_id,ct_tag_id);
 CREATE UNIQUE INDEX /*i*/change_tag_log_tag_id ON /*_*/change_tag (ct_log_id,ct_tag_id);
 CREATE UNIQUE INDEX /*i*/change_tag_rev_tag_id ON /*_*/change_tag (ct_rev_id,ct_tag_id);
 
 -- Covering index, so we can pull all the info only out of the index.
-CREATE INDEX /*i*/change_tag_tag_id ON /*_*/change_tag (ct_tag,ct_rc_id,ct_rev_id,ct_log_id);
 CREATE INDEX /*i*/change_tag_tag_id_id ON /*_*/change_tag (ct_tag_id,ct_rc_id,ct_rev_id,ct_log_id);
-
--- Rollup table to pull a LIST of tags simply without ugly GROUP_CONCAT
--- that only works on MySQL 4.1+
-CREATE TABLE /*_*/tag_summary (
-  ts_id int NOT NULL PRIMARY KEY IDENTITY,
-  -- RCID for the change
-  ts_rc_id int NULL REFERENCES /*_*/recentchanges(rc_id),
-  -- LOGID for the change
-  ts_log_id int NULL REFERENCES /*_*/logging(log_id),
-  -- REVID for the change
-  ts_rev_id int NULL REFERENCES /*_*/revision(rev_id),
-  -- Comma-separated list of tags
-  ts_tags nvarchar(max) NOT NULL
-);
-
-CREATE UNIQUE INDEX /*i*/tag_summary_rc_id ON /*_*/tag_summary (ts_rc_id);
-CREATE UNIQUE INDEX /*i*/tag_summary_log_id ON /*_*/tag_summary (ts_log_id);
-CREATE UNIQUE INDEX /*i*/tag_summary_rev_id ON /*_*/tag_summary (ts_rev_id);
-
-
-CREATE TABLE /*_*/valid_tag (
-  vt_tag nvarchar(255) NOT NULL PRIMARY KEY
-);
 
 -- Table for storing localisation data
 CREATE TABLE /*_*/l10n_cache (

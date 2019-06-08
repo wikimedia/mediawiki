@@ -228,7 +228,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$tz = $config->get( 'Localtimezone' );
 		$offset = $config->get( 'LocalTZoffset' );
 		$data['timezone'] = $tz;
-		$data['timeoffset'] = intval( $offset );
+		$data['timeoffset'] = (int)$offset;
 		$data['articlepath'] = $config->get( 'ArticlePath' );
 		$data['scriptpath'] = $config->get( 'ScriptPath' );
 		$data['script'] = $config->get( 'Script' );
@@ -236,7 +236,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data[ApiResult::META_BC_BOOLS][] = 'variantarticlepath';
 		$data['server'] = $config->get( 'Server' );
 		$data['servername'] = $config->get( 'ServerName' );
-		$data['wikiid'] = wfWikiID();
+		$data['wikiid'] = WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() );
 		$data['time'] = wfTimestamp( TS_ISO_8601, time() );
 
 		$data['misermode'] = (bool)$config->get( 'MiserMode' );
@@ -287,7 +287,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			as $ns => $title
 		) {
 			$data[$ns] = [
-				'id' => intval( $ns ),
+				'id' => (int)$ns,
 				'case' => MWNamespace::isCapitalized( $ns ) ? 'first-letter' : 'case-sensitive',
 			];
 			ApiResult::setContentValue( $data[$ns], 'name', $title );
@@ -326,7 +326,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				continue;
 			}
 			$item = [
-				'id' => intval( $ns )
+				'id' => (int)$ns
 			];
 			ApiResult::setContentValue( $item, 'alias', strtr( $title, '_', ' ' ) );
 			$data[] = $item;
@@ -472,14 +472,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	protected function appendStatistics( $property ) {
 		$data = [];
-		$data['pages'] = intval( SiteStats::pages() );
-		$data['articles'] = intval( SiteStats::articles() );
-		$data['edits'] = intval( SiteStats::edits() );
-		$data['images'] = intval( SiteStats::images() );
-		$data['users'] = intval( SiteStats::users() );
-		$data['activeusers'] = intval( SiteStats::activeUsers() );
-		$data['admins'] = intval( SiteStats::numberingroup( 'sysop' ) );
-		$data['jobs'] = intval( SiteStats::jobs() );
+		$data['pages'] = (int)SiteStats::pages();
+		$data['articles'] = (int)SiteStats::articles();
+		$data['edits'] = (int)SiteStats::edits();
+		$data['images'] = (int)SiteStats::images();
+		$data['users'] = (int)SiteStats::users();
+		$data['activeusers'] = (int)SiteStats::activeUsers();
+		$data['admins'] = (int)SiteStats::numberingroup( 'sysop' );
+		$data['jobs'] = (int)SiteStats::jobs();
 
 		Hooks::run( 'APIQuerySiteInfoStatisticsInfo', [ &$data ] );
 
@@ -664,8 +664,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		$data = [
-			'url' => strlen( $url ) ? $url : '',
-			'text' => strlen( $text ) ? $text : '',
+			'url' => (string)$url,
+			'text' => (string)$text,
 		];
 
 		return $this->getResult()->addValue( 'query', $property, $data );

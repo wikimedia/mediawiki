@@ -34,7 +34,6 @@
 	/* IE7 and earlier */
 	zoom: 1;
 	*display: inline; /* stylelint-disable declaration-block-no-duplicate-properties */
-
 	padding: 7px;
 }
 

@@ -13,8 +13,6 @@ class ChangeTagsTest extends MediaWikiTestCase {
 
 		$this->tablesUsed[] = 'change_tag';
 		$this->tablesUsed[] = 'change_tag_def';
-		$this->tablesUsed[] = 'tag_summary';
-		$this->tablesUsed[] = 'valid_tag';
 
 		// Truncate these to avoid the supposed-to-be-unused IDs in tests here turning
 		// out to be used, leading ChangeTags::updateTags() to pick up bogus rc_id,
@@ -30,6 +28,8 @@ class ChangeTagsTest extends MediaWikiTestCase {
 	/** @dataProvider provideModifyDisplayQuery */
 	public function testModifyDisplayQuery( $origQuery, $filter_tag, $useTags, $modifiedQuery ) {
 		$this->setMwGlobals( 'wgUseTagFilter', $useTags );
+		$rcId = 123;
+		ChangeTags::updateTags( [ 'foo', 'bar' ], [], $rcId );
 		// HACK resolve deferred group concats (see comment in provideModifyDisplayQuery)
 		if ( isset( $modifiedQuery['fields']['ts_tags'] ) ) {
 			$modifiedQuery['fields']['ts_tags'] = call_user_func_array(
@@ -61,11 +61,13 @@ class ChangeTagsTest extends MediaWikiTestCase {
 	public function provideModifyDisplayQuery() {
 		// HACK if we call $dbr->buildGroupConcatField() now, it will return the wrong table names
 		// We have to have the test runner call it instead
+		$baseConcats = [ ',', [ 'change_tag', 'change_tag_def' ], 'ctd_name' ];
+		$joinConds = [ 'change_tag_def' => [ 'JOIN', 'ct_tag_id=ctd_id' ] ];
 		$groupConcats = [
-			'recentchanges' => [ ',', 'change_tag', 'ct_tag', 'ct_rc_id=rc_id' ],
-			'logging' => [ ',', 'change_tag', 'ct_tag', 'ct_log_id=log_id' ],
-			'revision' => [ ',', 'change_tag', 'ct_tag', 'ct_rev_id=rev_id' ],
-			'archive' => [ ',', 'change_tag', 'ct_tag', 'ct_rev_id=ar_rev_id' ],
+			'recentchanges' => array_merge( $baseConcats, [ 'ct_rc_id=rc_id', $joinConds ] ),
+			'logging' => array_merge( $baseConcats, [ 'ct_log_id=log_id', $joinConds ] ),
+			'revision' => array_merge( $baseConcats, [ 'ct_rev_id=rev_id', $joinConds ] ),
+			'archive' => array_merge( $baseConcats, [ 'ct_rev_id=ar_rev_id', $joinConds ] ),
 		];
 
 		return [
@@ -118,8 +120,8 @@ class ChangeTagsTest extends MediaWikiTestCase {
 				[
 					'tables' => [ 'recentchanges', 'change_tag' ],
 					'fields' => [ 'rc_id', 'rc_timestamp', 'ts_tags' => $groupConcats['recentchanges'] ],
-					'conds' => [ "rc_timestamp > '20170714183203'", 'ct_tag' => 'foo' ],
-					'join_conds' => [ 'change_tag' => [ 'INNER JOIN', 'ct_rc_id=rc_id' ] ],
+					'conds' => [ "rc_timestamp > '20170714183203'", 'ct_tag_id' => [ 1 ] ],
+					'join_conds' => [ 'change_tag' => [ 'JOIN', 'ct_rc_id=rc_id' ] ],
 					'options' => [ 'ORDER BY' => 'rc_timestamp DESC' ],
 				]
 			],
@@ -136,8 +138,8 @@ class ChangeTagsTest extends MediaWikiTestCase {
 				[
 					'tables' => [ 'logging', 'change_tag' ],
 					'fields' => [ 'log_id', 'ts_tags' => $groupConcats['logging'] ],
-					'conds' => [ "log_timestamp > '20170714183203'", 'ct_tag' => 'foo' ],
-					'join_conds' => [ 'change_tag' => [ 'INNER JOIN', 'ct_log_id=log_id' ] ],
+					'conds' => [ "log_timestamp > '20170714183203'", 'ct_tag_id' => [ 1 ] ],
+					'join_conds' => [ 'change_tag' => [ 'JOIN', 'ct_log_id=log_id' ] ],
 					'options' => [ 'ORDER BY log_timestamp DESC' ],
 				]
 			],
@@ -154,8 +156,8 @@ class ChangeTagsTest extends MediaWikiTestCase {
 				[
 					'tables' => [ 'revision', 'change_tag' ],
 					'fields' => [ 'rev_id', 'rev_timestamp', 'ts_tags' => $groupConcats['revision'] ],
-					'conds' => [ "rev_timestamp > '20170714183203'", 'ct_tag' => 'foo' ],
-					'join_conds' => [ 'change_tag' => [ 'INNER JOIN', 'ct_rev_id=rev_id' ] ],
+					'conds' => [ "rev_timestamp > '20170714183203'", 'ct_tag_id' => [ 1 ] ],
+					'join_conds' => [ 'change_tag' => [ 'JOIN', 'ct_rev_id=rev_id' ] ],
 					'options' => [ 'ORDER BY' => 'rev_timestamp DESC' ],
 				]
 			],
@@ -172,8 +174,8 @@ class ChangeTagsTest extends MediaWikiTestCase {
 				[
 					'tables' => [ 'archive', 'change_tag' ],
 					'fields' => [ 'ar_id', 'ar_timestamp', 'ts_tags' => $groupConcats['archive'] ],
-					'conds' => [ "ar_timestamp > '20170714183203'", 'ct_tag' => 'foo' ],
-					'join_conds' => [ 'change_tag' => [ 'INNER JOIN', 'ct_rev_id=ar_rev_id' ] ],
+					'conds' => [ "ar_timestamp > '20170714183203'", 'ct_tag_id' => [ 1 ] ],
+					'join_conds' => [ 'change_tag' => [ 'JOIN', 'ct_rev_id=ar_rev_id' ] ],
 					'options' => [ 'ORDER BY' => 'ar_timestamp DESC' ],
 				]
 			],
@@ -220,8 +222,8 @@ class ChangeTagsTest extends MediaWikiTestCase {
 				[
 					'tables' => [ 'recentchanges', 'change_tag' ],
 					'fields' => [ 'rc_id', 'rc_timestamp', 'ts_tags' => $groupConcats['recentchanges'] ],
-					'conds' => [ "rc_timestamp > '20170714183203'", 'ct_tag' => [ 'foo', 'bar' ] ],
-					'join_conds' => [ 'change_tag' => [ 'INNER JOIN', 'ct_rc_id=rc_id' ] ],
+					'conds' => [ "rc_timestamp > '20170714183203'", 'ct_tag_id' => [ 1, 2 ] ],
+					'join_conds' => [ 'change_tag' => [ 'JOIN', 'ct_rc_id=rc_id' ] ],
 					'options' => [ 'ORDER BY' => 'rc_timestamp DESC', 'DISTINCT' ],
 				]
 			],
@@ -238,8 +240,8 @@ class ChangeTagsTest extends MediaWikiTestCase {
 				[
 					'tables' => [ 'recentchanges', 'change_tag' ],
 					'fields' => [ 'rc_id', 'rc_timestamp', 'ts_tags' => $groupConcats['recentchanges'] ],
-					'conds' => [ "rc_timestamp > '20170714183203'", 'ct_tag' => [ 'foo', 'bar' ] ],
-					'join_conds' => [ 'change_tag' => [ 'INNER JOIN', 'ct_rc_id=rc_id' ] ],
+					'conds' => [ "rc_timestamp > '20170714183203'", 'ct_tag_id' => [ 1, 2 ] ],
+					'join_conds' => [ 'change_tag' => [ 'JOIN', 'ct_rc_id=rc_id' ] ],
 					'options' => [ 'DISTINCT', 'ORDER BY' => 'rc_timestamp DESC' ],
 				]
 			],
@@ -256,8 +258,8 @@ class ChangeTagsTest extends MediaWikiTestCase {
 				[
 					'tables' => [ 'recentchanges', 'change_tag' ],
 					'fields' => [ 'rc_id', 'ts_tags' => $groupConcats['recentchanges'] ],
-					'conds' => [ "rc_timestamp > '20170714183203'", 'ct_tag' => [ 'foo', 'bar' ] ],
-					'join_conds' => [ 'change_tag' => [ 'INNER JOIN', 'ct_rc_id=rc_id' ] ],
+					'conds' => [ "rc_timestamp > '20170714183203'", 'ct_tag_id' => [ 1, 2 ] ],
+					'join_conds' => [ 'change_tag' => [ 'JOIN', 'ct_rc_id=rc_id' ] ],
 					'options' => [ 'ORDER BY rc_timestamp DESC', 'DISTINCT' ],
 				]
 			],
@@ -327,80 +329,17 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $actual );
 	}
 
-	public function testUpdateTagsMigrationOld() {
-		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_OLD );
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'change_tag', '*' );
-		$dbw->delete( 'change_tag_def', '*' );
-
-		$rcId = 123;
-		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
-
-		$dbr = wfGetDB( DB_REPLICA );
-
-		$res = $dbr->select( 'change_tag_def', [ 'ctd_name', 'ctd_id', 'ctd_count' ], '' );
-		$this->assertEquals( [], iterator_to_array( $res, false ) );
-
-		$expected2 = [
-			(object)[
-				'ct_tag' => 'tag1',
-				'ct_tag_id' => null,
-				'ct_rc_id' => 123
-			],
-			(object)[
-				'ct_tag' => 'tag2',
-				'ct_tag_id' => null,
-				'ct_rc_id' => 123
-			],
-		];
-		$res2 = $dbr->select( 'change_tag', [ 'ct_tag', 'ct_tag_id', 'ct_rc_id' ], '' );
-		$this->assertEquals( $expected2, iterator_to_array( $res2, false ) );
-
-		$rcId = 124;
-		ChangeTags::updateTags( [ 'tag1', 'tag3' ], [], $rcId );
-
-		$dbr = wfGetDB( DB_REPLICA );
-
-		$res = $dbr->select( 'change_tag_def', [ 'ctd_name', 'ctd_id', 'ctd_count' ], '' );
-		$this->assertEquals( [], iterator_to_array( $res, false ) );
-
-		$expected2 = [
-			(object)[
-				'ct_tag' => 'tag1',
-				'ct_tag_id' => null,
-				'ct_rc_id' => 123
-			],
-			(object)[
-				'ct_tag' => 'tag2',
-				'ct_tag_id' => null,
-				'ct_rc_id' => 123
-			],
-			(object)[
-				'ct_tag' => 'tag1',
-				'ct_tag_id' => null,
-				'ct_rc_id' => 124
-			],
-			(object)[
-				'ct_tag' => 'tag3',
-				'ct_tag_id' => null,
-				'ct_rc_id' => 124
-			],
-		];
-		$res2 = $dbr->select( 'change_tag', [ 'ct_tag', 'ct_tag_id', 'ct_rc_id' ], '' );
-		$this->assertEquals( $expected2, iterator_to_array( $res2, false ) );
-	}
-
-	public function testUpdateTagsMigrationWriteBoth() {
+	public function testUpdateTags() {
 		// FIXME: fails under postgres
 		$this->markTestSkippedIfDbType( 'postgres' );
 
-		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_WRITE_BOTH );
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'change_tag', '*' );
 		$dbw->delete( 'change_tag_def', '*' );
 
 		$rcId = 123;
-		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
+		$revId = 341;
+		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId, $revId );
 
 		$dbr = wfGetDB( DB_REPLICA );
 
@@ -421,23 +360,23 @@ class ChangeTagsTest extends MediaWikiTestCase {
 
 		$expected2 = [
 			(object)[
-				'ct_tag' => 'tag1',
 				'ct_tag_id' => 1,
-				'ct_rc_id' => 123
+				'ct_rc_id' => 123,
+				'ct_rev_id' => 341
 			],
 			(object)[
-				'ct_tag' => 'tag2',
 				'ct_tag_id' => 2,
-				'ct_rc_id' => 123
+				'ct_rc_id' => 123,
+				'ct_rev_id' => 341
 			],
 		];
-		$res2 = $dbr->select( 'change_tag', [ 'ct_tag', 'ct_tag_id', 'ct_rc_id' ], '' );
+		$res2 = $dbr->select( 'change_tag', [ 'ct_tag_id', 'ct_rc_id', 'ct_rev_id' ], '' );
 		$this->assertEquals( $expected2, iterator_to_array( $res2, false ) );
 
 		$rcId = 124;
-		ChangeTags::updateTags( [ 'tag1' ], [], $rcId );
-
-		ChangeTags::updateTags( [ 'tag3' ], [], $rcId );
+		$revId = 342;
+		ChangeTags::updateTags( [ 'tag1' ], [], $rcId, $revId );
+		ChangeTags::updateTags( [ 'tag3' ], [], $rcId, $revId );
 
 		$dbr = wfGetDB( DB_REPLICA );
 
@@ -463,59 +402,127 @@ class ChangeTagsTest extends MediaWikiTestCase {
 
 		$expected2 = [
 			(object)[
-				'ct_tag' => 'tag1',
 				'ct_tag_id' => 1,
-				'ct_rc_id' => 123
+				'ct_rc_id' => 123,
+				'ct_rev_id' => 341
 			],
 			(object)[
-				'ct_tag' => 'tag2',
+				'ct_tag_id' => 1,
+				'ct_rc_id' => 124,
+				'ct_rev_id' => 342
+			],
+			(object)[
 				'ct_tag_id' => 2,
-				'ct_rc_id' => 123
+				'ct_rc_id' => 123,
+				'ct_rev_id' => 341
 			],
 			(object)[
-				'ct_tag' => 'tag1',
-				'ct_tag_id' => 1,
-				'ct_rc_id' => 124
-			],
-			(object)[
-				'ct_tag' => 'tag3',
 				'ct_tag_id' => 3,
-				'ct_rc_id' => 124
+				'ct_rc_id' => 124,
+				'ct_rev_id' => 342
 			],
 		];
-		$res2 = $dbr->select( 'change_tag', [ 'ct_tag', 'ct_tag_id', 'ct_rc_id' ], '' );
+		$res2 = $dbr->select( 'change_tag', [ 'ct_tag_id', 'ct_rc_id', 'ct_rev_id' ], '' );
 		$this->assertEquals( $expected2, iterator_to_array( $res2, false ) );
 	}
 
-	public function testDeleteTagsMigrationOld() {
-		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_OLD );
+	public function testUpdateTagsSkipDuplicates() {
+		// FIXME: fails under postgres
+		$this->markTestSkippedIfDbType( 'postgres' );
+
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'change_tag', '*' );
 		$dbw->delete( 'change_tag_def', '*' );
 
 		$rcId = 123;
 		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
-
-		ChangeTags::updateTags( [], [ 'tag2' ], $rcId );
+		ChangeTags::updateTags( [ 'tag2', 'tag3' ], [], $rcId );
 
 		$dbr = wfGetDB( DB_REPLICA );
 
+		$expected = [
+			(object)[
+				'ctd_name' => 'tag1',
+				'ctd_id' => 1,
+				'ctd_count' => 1
+			],
+			(object)[
+				'ctd_name' => 'tag2',
+				'ctd_id' => 2,
+				'ctd_count' => 1
+			],
+			(object)[
+				'ctd_name' => 'tag3',
+				'ctd_id' => 3,
+				'ctd_count' => 1
+			],
+		];
 		$res = $dbr->select( 'change_tag_def', [ 'ctd_name', 'ctd_id', 'ctd_count' ], '' );
-		$this->assertEquals( [], iterator_to_array( $res, false ) );
+		$this->assertEquals( $expected, iterator_to_array( $res, false ) );
 
 		$expected2 = [
 			(object)[
-				'ct_tag' => 'tag1',
-				'ct_tag_id' => null,
+				'ct_tag_id' => 1,
 				'ct_rc_id' => 123
-			]
+			],
+			(object)[
+				'ct_tag_id' => 2,
+				'ct_rc_id' => 123
+			],
+			(object)[
+				'ct_tag_id' => 3,
+				'ct_rc_id' => 123
+			],
 		];
-		$res2 = $dbr->select( 'change_tag', [ 'ct_tag', 'ct_tag_id', 'ct_rc_id' ], '' );
+		$res2 = $dbr->select( 'change_tag', [ 'ct_tag_id', 'ct_rc_id' ], '' );
 		$this->assertEquals( $expected2, iterator_to_array( $res2, false ) );
 	}
 
-	public function testDeleteTagsMigrationWriteBoth() {
-		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_WRITE_BOTH );
+	public function testUpdateTagsDoNothingOnRepeatedCall() {
+		// FIXME: fails under postgres
+		$this->markTestSkippedIfDbType( 'postgres' );
+
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'change_tag', '*' );
+		$dbw->delete( 'change_tag_def', '*' );
+
+		$rcId = 123;
+		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
+		$res = ChangeTags::updateTags( [ 'tag2', 'tag1' ], [], $rcId );
+		$this->assertEquals( [ [], [], [ 'tag1', 'tag2' ] ], $res );
+
+		$dbr = wfGetDB( DB_REPLICA );
+
+		$expected = [
+			(object)[
+				'ctd_name' => 'tag1',
+				'ctd_id' => 1,
+				'ctd_count' => 1
+			],
+			(object)[
+				'ctd_name' => 'tag2',
+				'ctd_id' => 2,
+				'ctd_count' => 1
+			],
+		];
+		$res = $dbr->select( 'change_tag_def', [ 'ctd_name', 'ctd_id', 'ctd_count' ], '' );
+		$this->assertEquals( $expected, iterator_to_array( $res, false ) );
+
+		$expected2 = [
+			(object)[
+				'ct_tag_id' => 1,
+				'ct_rc_id' => 123
+			],
+			(object)[
+				'ct_tag_id' => 2,
+				'ct_rc_id' => 123
+			],
+		];
+		$res2 = $dbr->select( 'change_tag', [ 'ct_tag_id', 'ct_rc_id' ], '' );
+		$this->assertEquals( $expected2, iterator_to_array( $res2, false ) );
+	}
+
+	public function testDeleteTags() {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'change_tag', '*' );
 		$dbw->delete( 'change_tag_def', '*' );
@@ -540,36 +547,15 @@ class ChangeTagsTest extends MediaWikiTestCase {
 
 		$expected2 = [
 			(object)[
-				'ct_tag' => 'tag1',
 				'ct_tag_id' => 1,
 				'ct_rc_id' => 123
 			]
 		];
-		$res2 = $dbr->select( 'change_tag', [ 'ct_tag', 'ct_tag_id', 'ct_rc_id' ], '' );
+		$res2 = $dbr->select( 'change_tag', [ 'ct_tag_id', 'ct_rc_id' ], '' );
 		$this->assertEquals( $expected2, iterator_to_array( $res2, false ) );
 	}
 
-	public function testTagUsageStatisticsOldBackend() {
-		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_OLD );
-		$this->setMwGlobals( 'wgTagStatisticsNewTable', false );
-
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'change_tag', '*' );
-		$dbw->delete( 'change_tag_def', '*' );
-
-		$rcId = 123;
-		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
-
-		$rcId = 124;
-		ChangeTags::updateTags( [ 'tag1' ], [], $rcId );
-
-		$this->assertEquals( [ 'tag1' => 2, 'tag2' => 1 ], ChangeTags::tagUsageStatistics() );
-	}
-
-	public function testTagUsageStatisticsNewMigrationOldBackedn() {
-		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_WRITE_BOTH );
-		$this->setMwGlobals( 'wgTagStatisticsNewTable', false );
-
+	public function testTagUsageStatistics() {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'change_tag', '*' );
 		$dbw->delete( 'change_tag_def', '*' );
@@ -584,49 +570,10 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		$this->assertEquals( [ 'tag1' => 2, 'tag2' => 1 ], ChangeTags::tagUsageStatistics() );
 	}
 
-	public function testTagUsageStatisticsNewBackend() {
-		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_WRITE_BOTH );
-		$this->setMwGlobals( 'wgTagStatisticsNewTable', true );
-
+	public function testListExplicitlyDefinedTags() {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'change_tag', '*' );
 		$dbw->delete( 'change_tag_def', '*' );
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'NameTableStoreFactory' );
-
-		$rcId = 123;
-		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
-
-		$rcId = 124;
-		ChangeTags::updateTags( [ 'tag1' ], [], $rcId );
-
-		$this->assertEquals( [ 'tag1' => 2, 'tag2' => 1 ], ChangeTags::tagUsageStatistics() );
-	}
-
-	public function testListExplicitlyDefinedTagsOld() {
-		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_OLD );
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'change_tag', '*' );
-		$dbw->delete( 'change_tag_def', '*' );
-		$dbw->delete( 'valid_tag', '*' );
-
-		$rcId = 123;
-		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
-		ChangeTags::defineTag( 'tag2' );
-
-		$this->assertEquals( [ 'tag2' ], ChangeTags::listExplicitlyDefinedTags() );
-		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->select( 'change_tag_def', [ 'ctd_name', 'ctd_user_defined' ], '' );
-		$this->assertEquals( [], iterator_to_array( $res, false ) );
-
-		$this->assertEquals( [ 'tag2' ], $dbr->selectFieldValues( 'valid_tag', 'vt_tag', '' ) );
-	}
-
-	public function testListExplicitlyDefinedTagsWriteBoth() {
-		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_WRITE_BOTH );
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'change_tag', '*' );
-		$dbw->delete( 'change_tag_def', '*' );
-		$dbw->delete( 'valid_tag', '*' );
 
 		$rcId = 123;
 		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
@@ -645,39 +592,13 @@ class ChangeTagsTest extends MediaWikiTestCase {
 				'ctd_user_defined' => 1
 			],
 		];
-		$res = $dbr->select( 'change_tag_def', [ 'ctd_name', 'ctd_user_defined' ], '' );
+		$res = $dbr->select(
+			'change_tag_def',
+			[ 'ctd_name', 'ctd_user_defined' ],
+			'',
+			__METHOD__,
+			[ 'ORDER BY' => 'ctd_name' ]
+		);
 		$this->assertEquals( $expected, iterator_to_array( $res, false ) );
-
-		$this->assertEquals( [ 'tag2' ], $dbr->selectFieldValues( 'valid_tag', 'vt_tag', '' ) );
-	}
-
-	public function testListExplicitlyDefinedTagsNew() {
-		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_NEW );
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'change_tag', '*' );
-		$dbw->delete( 'change_tag_def', '*' );
-		$dbw->delete( 'valid_tag', '*' );
-
-		$rcId = 123;
-		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
-		ChangeTags::defineTag( 'tag2' );
-
-		$this->assertEquals( [ 'tag2' ], ChangeTags::listExplicitlyDefinedTags() );
-		$dbr = wfGetDB( DB_REPLICA );
-
-		$expected = [
-			(object)[
-				'ctd_name' => 'tag1',
-				'ctd_user_defined' => 0
-			],
-			(object)[
-				'ctd_name' => 'tag2',
-				'ctd_user_defined' => 1
-			],
-		];
-		$res = $dbr->select( 'change_tag_def', [ 'ctd_name', 'ctd_user_defined' ], '' );
-		$this->assertEquals( $expected, iterator_to_array( $res, false ) );
-
-		$this->assertEquals( [], $dbr->selectFieldValues( 'valid_tag', 'vt_tag', '' ) );
 	}
 }

@@ -314,11 +314,6 @@ final class SessionManager implements SessionManagerInterface {
 		$user->setToken();
 		$user->saveSettings();
 
-		$authUser = \MediaWiki\Auth\AuthManager::callLegacyAuthPlugin( 'getUserInstance', [ &$user ] );
-		if ( $authUser ) {
-			$authUser->resetAuthToken();
-		}
-
 		foreach ( $this->getProviders() as $provider ) {
 			$provider->invalidateSessionsForUser( $user );
 		}
@@ -376,23 +371,6 @@ final class SessionManager implements SessionManagerInterface {
 	 * @name Internal methods
 	 * @{
 	 */
-
-	/**
-	 * Auto-create the given user, if necessary
-	 * @private Don't call this yourself. Let Setup.php do it for you at the right time.
-	 * @deprecated since 1.27, use MediaWiki\Auth\AuthManager::autoCreateUser instead
-	 * @param User $user User to auto-create
-	 * @return bool Success
-	 * @codeCoverageIgnore
-	 */
-	public static function autoCreateUser( User $user ) {
-		wfDeprecated( __METHOD__, '1.27' );
-		return \MediaWiki\Auth\AuthManager::singleton()->autoCreateUser(
-			$user,
-			\MediaWiki\Auth\AuthManager::AUTOCREATE_SOURCE_SESSION,
-			false
-		)->isGood();
-	}
 
 	/**
 	 * Prevent future sessions for the user

@@ -37,7 +37,7 @@ class LanguageConverter {
 	 * @since 1.20
 	 * @var array
 	 */
-	static public $languagesWithVariants = [
+	public static $languagesWithVariants = [
 		'en',
 		'crh',
 		'gan',
@@ -60,7 +60,13 @@ class LanguageConverter {
 	public $mVariantFallbacks;
 	public $mVariantNames;
 	public $mTablesLoaded = false;
+
+	/**
+	 * @var ReplacementArray[]
+	 * @phan-var array<string,ReplacementArray>
+	 */
 	public $mTables;
+
 	// 'bidirectional' 'unidirectional' 'disable' for each variant
 	public $mManualLevel;
 
@@ -140,10 +146,7 @@ class LanguageConverter {
 	 *   main code if there is no fallback
 	 */
 	public function getVariantFallbacks( $variant ) {
-		if ( isset( $this->mVariantFallbacks[$variant] ) ) {
-			return $this->mVariantFallbacks[$variant];
-		}
-		return $this->mMainLanguageCode;
+		return $this->mVariantFallbacks[$variant] ?? $this->mMainLanguageCode;
 	}
 
 	/**
@@ -1036,7 +1039,7 @@ class LanguageConverter {
 				$revision = Revision::newFromTitle( $title );
 				if ( $revision ) {
 					if ( $revision->getContentModel() == CONTENT_MODEL_WIKITEXT ) {
-						$txt = $revision->getContent( Revision::RAW )->getNativeData();
+						$txt = $revision->getContent( Revision::RAW )->getText();
 					}
 
 					// @todo in the future, use a specialized content model, perhaps based on json!
@@ -1179,8 +1182,21 @@ class LanguageConverter {
 			//    [1] => 'zh-hant:<span style="font-size:120%;">yyy</span>'
 			//    [2] => ''
 			//  ]
-			$pat = '/;\s*(?=';
+			$expandedVariants = [];
 			foreach ( $this->mVariants as $variant ) {
+				$expandedVariants[ $variant ] = 1;
+				// Accept standard BCP 47 names for variants as well.
+				$expandedVariants[ LanguageCode::bcp47( $variant ) ] = 1;
+			}
+			// Accept old deprecated names for variants
+			foreach ( LanguageCode::getDeprecatedCodeMapping() as $old => $new ) {
+				if ( isset( $expandedVariants[ $new ] ) ) {
+					$expandedVariants[ $old ] = 1;
+				}
+			}
+
+			$pat = '/;\s*(?=';
+			foreach ( $expandedVariants as $variant => $ignore ) {
 				// zh-hans:xxx;zh-hant:yyy
 				$pat .= $variant . '\s*:|';
 				// xxx=>zh-hans:yyy; xxx=>zh-hant:zzz

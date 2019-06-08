@@ -121,7 +121,7 @@ class MWException extends Exception {
 					"Fatal exception of type $1",
 					$type,
 					$logId,
-					MWExceptionHandler::getURL( $this )
+					MWExceptionHandler::getURL()
 				)
 			) ) .
 			"<!-- Set \$wgShowExceptionDetails = true; " .
@@ -209,17 +209,27 @@ class MWException extends Exception {
 			wfHttpError( 500, 'Internal Server Error', $this->getText() );
 		} elseif ( self::isCommandLine() ) {
 			$message = $this->getText();
-			// T17602: STDERR may not be available
-			if ( !defined( 'MW_PHPUNIT_TEST' ) && defined( 'STDERR' ) ) {
-				fwrite( STDERR, $message );
-			} else {
-				echo $message;
-			}
+			$this->writeToCommandLine( $message );
 		} else {
 			self::statusHeader( 500 );
 			self::header( "Content-Type: $wgMimeType; charset=utf-8" );
 
 			$this->reportHTML();
+		}
+	}
+
+	/**
+	 * Write a message to stderr falling back to stdout if stderr unavailable
+	 *
+	 * @param string $message
+	 * @suppress SecurityCheck-XSS
+	 */
+	private function writeToCommandLine( $message ) {
+		// T17602: STDERR may not be available
+		if ( !defined( 'MW_PHPUNIT_TEST' ) && defined( 'STDERR' ) ) {
+			fwrite( STDERR, $message );
+		} else {
+			echo $message;
 		}
 	}
 

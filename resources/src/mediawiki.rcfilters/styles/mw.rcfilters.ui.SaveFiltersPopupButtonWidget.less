@@ -15,25 +15,26 @@
 			padding-right: 1.875em + 0.5em;
 
 			> .oo-ui-buttonWidget {
-				top: 50%;
-				.transform( translateY( -50% ) );
+				top: 0.5em;
 			}
 
 			> .oo-ui-iconWidget {
-				float: none;
-				display: inline-block;
-				margin: 0;
+				vertical-align: top;
 			}
 
 			> .oo-ui-labelElement-label {
 				float: none;
 				display: inline-block;
+				// Label doesn't wrap without `max-width`. First setting a pretty arbitrary percentage value.
+				max-width: 80%;
+				// Overwrite it with `calc` reduced by icon width and left margin combined.
+				max-width: calc( ~'100% - 1.42857143em - 0.25em' );
+				margin: 0 0 0 0.25em;
 				font-size: 1.2em;
-				margin: 0;
 				font-weight: bold;
-				vertical-align: middle;
+				line-height: 1.25;
+				vertical-align: top;
 			}
 		}
 	}
-
 }

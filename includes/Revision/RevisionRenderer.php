@@ -50,15 +50,24 @@ class RevisionRenderer {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
+	/** @var SlotRoleRegistry */
+	private $roleRegistery;
+
 	/** @var string|bool */
 	private $wikiId;
 
 	/**
 	 * @param ILoadBalancer $loadBalancer
+	 * @param SlotRoleRegistry $roleRegistry
 	 * @param bool|string $wikiId
 	 */
-	public function __construct( ILoadBalancer $loadBalancer, $wikiId = false ) {
+	public function __construct(
+		ILoadBalancer $loadBalancer,
+		SlotRoleRegistry $roleRegistry,
+		$wikiId = false
+	) {
 		$this->loadBalancer = $loadBalancer;
+		$this->roleRegistery = $roleRegistry;
 		$this->wikiId = $wikiId;
 
 		$this->saveParseLogger = new NullLogger();
@@ -82,6 +91,11 @@ class RevisionRenderer {
 	 *      - 'audience' the audience to use for content access. Default is
 	 *        RevisionRecord::FOR_PUBLIC if $forUser is not set, RevisionRecord::FOR_THIS_USER
 	 *        if $forUser is set. Can be set to RevisionRecord::RAW to disable audience checks.
+	 *      - 'known-revision-output' a combined ParserOutput for the revision, perhaps from
+	 *        some cache. the caller is responsible for ensuring that the ParserOutput indeed
+	 *        matched the $rev and $options. This mechanism is intended as a temporary stop-gap,
+	 *        for the time until caches have been changed to store RenderedRevision states instead
+	 *        of ParserOutput objects.
 	 *
 	 * @return RenderedRevision|null The rendered revision, or null if the audience checks fails.
 	 */
@@ -133,6 +147,10 @@ class RevisionRenderer {
 
 		$renderedRevision->setSaveParseLogger( $this->saveParseLogger );
 
+		if ( isset( $hints['known-revision-output'] ) ) {
+			$renderedRevision->setRevisionParserOutput( $hints['known-revision-output'] );
+		}
+
 		return $renderedRevision;
 	}
 
@@ -175,8 +193,6 @@ class RevisionRenderer {
 			return $rrev->getSlotParserOutput( SlotRecord::MAIN );
 		}
 
-		// TODO: put fancy layout logic here, see T200915.
-
 		// move main slot to front
 		if ( isset( $slots[SlotRecord::MAIN] ) ) {
 			$slots = [ SlotRecord::MAIN => $slots[SlotRecord::MAIN] ] + $slots;
@@ -192,6 +208,7 @@ class RevisionRenderer {
 			$out = $rrev->getSlotParserOutput( $role, $hints );
 			$slotOutput[$role] = $out;
 
+			// XXX: should the SlotRoleHandler be able to intervene here?
 			$combinedOutput->mergeInternalMetaDataFrom( $out, $role );
 			$combinedOutput->mergeTrackingMetaDataFrom( $out );
 		}
@@ -201,6 +218,16 @@ class RevisionRenderer {
 			$first = true;
 			/** @var ParserOutput $out */
 			foreach ( $slotOutput as $role => $out ) {
+				$roleHandler = $this->roleRegistery->getRoleHandler( $role );
+
+				// TODO: put more fancy layout logic here, see T200915.
+				$layout = $roleHandler->getOutputLayoutHints();
+				$display = $layout['display'] ?? 'section';
+
+				if ( $display === 'none' ) {
+					continue;
+				}
+
 				if ( $first ) {
 					// skip header for the first slot
 					$first = false;
@@ -210,6 +237,8 @@ class RevisionRenderer {
 					$html .= Html::rawElement( 'h1', [ 'class' => 'mw-slot-header' ], $headText );
 				}
 
+				// XXX: do we want to put a wrapper div around the output?
+				// Do we want to let $roleHandler do that?
 				$html .= $out->getRawText();
 				$combinedOutput->mergeHtmlMetaDataFrom( $out );
 			}

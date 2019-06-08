@@ -158,11 +158,9 @@ abstract class ApiFormatBase extends ApiBase {
 
 		if ( !is_array( $paramSettings ) ) {
 			return $paramSettings;
-		} elseif ( isset( $paramSettings[self::PARAM_DFLT] ) ) {
-			return $paramSettings[self::PARAM_DFLT];
-		} else {
-			return null;
 		}
+
+		return $paramSettings[self::PARAM_DFLT] ?? null;
 	}
 
 	/**
@@ -307,7 +305,6 @@ abstract class ApiFormatBase extends ApiBase {
 						'html' => $out->getHTML(),
 						'modules' => array_values( array_unique( array_merge(
 							$out->getModules(),
-							$out->getModuleScripts(),
 							$out->getModuleStyles()
 						) ) ),
 						'continue' => $this->getResult()->getResultData( 'continue' ),

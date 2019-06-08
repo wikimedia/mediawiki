@@ -224,8 +224,21 @@ abstract class RevDelList extends RevisionListBase {
 					} elseif ( IP::isIPAddress( $item->getAuthorName() ) ) {
 						$authorIPs[] = $item->getAuthorName();
 					}
-				}
-				if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+					if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+						$actorId = $item->getAuthorActor();
+						// During migration, the actor field might be empty. If so, populate
+						// it here.
+						if ( !$actorId ) {
+							if ( $item->getAuthorId() > 0 ) {
+								$user = User::newFromId( $item->getAuthorId() );
+							} else {
+								$user = User::newFromName( $item->getAuthorName(), false );
+							}
+							$actorId = $user->getActorId( $dbw );
+						}
+						$authorActors[] = $actorId;
+					}
+				} elseif ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 					$authorActors[] = $item->getAuthorActor();
 				}
 

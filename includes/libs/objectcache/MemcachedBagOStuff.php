@@ -50,13 +50,7 @@ class MemcachedBagOStuff extends BagOStuff {
 		];
 	}
 
-	protected function doGet( $key, $flags = 0 ) {
-		$casToken = null;
-
-		return $this->getWithToken( $key, $casToken, $flags );
-	}
-
-	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
+	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		return $this->client->get( $this->validateKeyEncoding( $key ), $casToken );
 	}
 
@@ -65,25 +59,33 @@ class MemcachedBagOStuff extends BagOStuff {
 			$this->fixExpiry( $exptime ) );
 	}
 
-	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
+	protected function cas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
 		return $this->client->cas( $casToken, $this->validateKeyEncoding( $key ),
 			$value, $this->fixExpiry( $exptime ) );
 	}
 
-	public function delete( $key ) {
+	public function delete( $key, $flags = 0 ) {
 		return $this->client->delete( $this->validateKeyEncoding( $key ) );
 	}
 
-	public function add( $key, $value, $exptime = 0 ) {
+	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
 		return $this->client->add( $this->validateKeyEncoding( $key ), $value,
 			$this->fixExpiry( $exptime ) );
 	}
 
-	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
-		return $this->mergeViaCas( $key, $callback, $exptime, $attempts );
+	public function incr( $key, $value = 1 ) {
+		$n = $this->client->incr( $this->validateKeyEncoding( $key ), $value );
+
+		return ( $n !== false && $n !== null ) ? $n : false;
 	}
 
-	public function changeTTL( $key, $exptime = 0 ) {
+	public function decr( $key, $value = 1 ) {
+		$n = $this->client->decr( $this->validateKeyEncoding( $key ), $value );
+
+		return ( $n !== false && $n !== null ) ? $n : false;
+	}
+
+	public function changeTTL( $key, $exptime = 0, $flags = 0 ) {
 		return $this->client->touch( $this->validateKeyEncoding( $key ),
 			$this->fixExpiry( $exptime ) );
 	}
@@ -180,13 +182,5 @@ class MemcachedBagOStuff extends BagOStuff {
 	 */
 	protected function debugLog( $text ) {
 		$this->logger->debug( $text );
-	}
-
-	public function modifySimpleRelayEvent( array $event ) {
-		if ( array_key_exists( 'val', $event ) ) {
-			$event['flg'] = 0; // data is not serialized nor gzipped (for memcached driver)
-		}
-
-		return $event;
 	}
 }

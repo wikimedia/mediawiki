@@ -48,6 +48,11 @@ class RefreshLinksJobTest extends MediaWikiTestCase {
 	// TODO: test partition
 
 	public function testRunForSinglePage() {
+		MediaWikiServices::getInstance()->getSlotRoleRegistry()->defineRoleWithModel(
+			'aux',
+			CONTENT_MODEL_WIKITEXT
+		);
+
 		$mainContent = new WikitextContent( 'MAIN [[Kittens]]' );
 		$auxContent = new WikitextContent( 'AUX [[Category:Goats]]' );
 		$page = $this->createPage( __METHOD__, [ 'main' => $mainContent, 'aux' => $auxContent ] );

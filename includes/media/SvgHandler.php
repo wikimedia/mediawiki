@@ -20,6 +20,8 @@
  * @file
  * @ingroup Media
  */
+
+use MediaWiki\Shell\Shell;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -41,7 +43,7 @@ class SvgHandler extends ImageHandler {
 		'title' => 'ObjectName',
 	];
 
-	function isEnabled() {
+	public function isEnabled() {
 		global $wgSVGConverters, $wgSVGConverter;
 		if ( !isset( $wgSVGConverters[$wgSVGConverter] ) ) {
 			wfDebug( "\$wgSVGConverter is invalid, disabling SVG rendering.\n" );
@@ -137,6 +139,16 @@ class SvgHandler extends ImageHandler {
 	}
 
 	/**
+	 * Determines render language from image parameters
+	 *
+	 * @param array $params
+	 * @return string
+	 */
+	protected function getLanguageFromParams( array $params ) {
+		return $params['lang'] ?? $params['targetlang'] ?? 'en';
+	}
+
+	/**
 	 * What language to render file in if none selected
 	 *
 	 * @param File $file Language code
@@ -160,11 +172,27 @@ class SvgHandler extends ImageHandler {
 	 * @param array &$params
 	 * @return bool
 	 */
-	function normaliseParams( $image, &$params ) {
-		global $wgSVGMaxSize;
-		if ( !parent::normaliseParams( $image, $params ) ) {
-			return false;
+	public function normaliseParams( $image, &$params ) {
+		if ( parent::normaliseParams( $image, $params ) ) {
+			$params = $this->normaliseParamsInternal( $image, $params );
+			return true;
 		}
+
+		return false;
+	}
+
+	/**
+	 * Code taken out of normaliseParams() for testability
+	 *
+	 * @since 1.33
+	 *
+	 * @param File $image
+	 * @param array $params
+	 * @return array Modified $params
+	 */
+	protected function normaliseParamsInternal( $image, $params ) {
+		global $wgSVGMaxSize;
+
 		# Don't make an image bigger than wgMaxSVGSize on the smaller side
 		if ( $params['physicalWidth'] <= $params['physicalHeight'] ) {
 			if ( $params['physicalWidth'] > $wgSVGMaxSize ) {
@@ -173,16 +201,19 @@ class SvgHandler extends ImageHandler {
 				$params['physicalWidth'] = $wgSVGMaxSize;
 				$params['physicalHeight'] = File::scaleHeight( $srcWidth, $srcHeight, $wgSVGMaxSize );
 			}
-		} else {
-			if ( $params['physicalHeight'] > $wgSVGMaxSize ) {
-				$srcWidth = $image->getWidth( $params['page'] );
-				$srcHeight = $image->getHeight( $params['page'] );
-				$params['physicalWidth'] = File::scaleHeight( $srcHeight, $srcWidth, $wgSVGMaxSize );
-				$params['physicalHeight'] = $wgSVGMaxSize;
-			}
+		} elseif ( $params['physicalHeight'] > $wgSVGMaxSize ) {
+			$srcWidth = $image->getWidth( $params['page'] );
+			$srcHeight = $image->getHeight( $params['page'] );
+			$params['physicalWidth'] = File::scaleHeight( $srcHeight, $srcWidth, $wgSVGMaxSize );
+			$params['physicalHeight'] = $wgSVGMaxSize;
+		}
+		// To prevent the proliferation of thumbnails in languages not present in SVGs, unless
+		// explicitly forced by user.
+		if ( isset( $params['targetlang'] ) && !$image->getMatchedLanguage( $params['targetlang'] ) ) {
+			unset( $params['targetlang'] );
 		}
 
-		return true;
+		return $params;
 	}
 
 	/**
@@ -201,7 +232,7 @@ class SvgHandler extends ImageHandler {
 		$clientHeight = $params['height'];
 		$physicalWidth = $params['physicalWidth'];
 		$physicalHeight = $params['physicalHeight'];
-		$lang = $params['lang'] ?? $this->getDefaultRenderLanguage( $image );
+		$lang = $this->getLanguageFromParams( $params );
 
 		if ( $flags & self::TRANSFORM_LATER ) {
 			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
@@ -306,11 +337,11 @@ class SvgHandler extends ImageHandler {
 				// External command
 				$cmd = str_replace(
 					[ '$path/', '$width', '$height', '$input', '$output' ],
-					[ $wgSVGConverterPath ? wfEscapeShellArg( "$wgSVGConverterPath/" ) : "",
+					[ $wgSVGConverterPath ? Shell::escape( "$wgSVGConverterPath/" ) : "",
 						intval( $width ),
 						intval( $height ),
-						wfEscapeShellArg( $srcPath ),
-						wfEscapeShellArg( $dstPath ) ],
+						Shell::escape( $srcPath ),
+						Shell::escape( $dstPath ) ],
 					$wgSVGConverters[$wgSVGConverter]
 				);
 
@@ -366,7 +397,7 @@ class SvgHandler extends ImageHandler {
 		}
 	}
 
-	function getThumbType( $ext, $mime, $params = null ) {
+	public function getThumbType( $ext, $mime, $params = null ) {
 		return [ 'png', 'image/png' ];
 	}
 
@@ -379,7 +410,7 @@ class SvgHandler extends ImageHandler {
 	 * @param File $file
 	 * @return string
 	 */
-	function getLongDesc( $file ) {
+	public function getLongDesc( $file ) {
 		global $wgLang;
 
 		$metadata = $this->unpackMetadata( $file->getMetadata() );
@@ -405,7 +436,7 @@ class SvgHandler extends ImageHandler {
 	 * @param string $filename
 	 * @return string Serialised metadata
 	 */
-	function getMetadata( $file, $filename ) {
+	public function getMetadata( $file, $filename ) {
 		$metadata = [ 'version' => self::SVG_METADATA_VERSION ];
 		try {
 			$metadata += SVGMetadataExtractor::getMetadata( $filename );
@@ -436,7 +467,7 @@ class SvgHandler extends ImageHandler {
 		return 'parsed-svg';
 	}
 
-	function isMetadataValid( $image, $metadata ) {
+	public function isMetadataValid( $image, $metadata ) {
 		$meta = $this->unpackMetadata( $metadata );
 		if ( $meta === false ) {
 			return self::METADATA_BAD;
@@ -460,7 +491,7 @@ class SvgHandler extends ImageHandler {
 	 * @param bool|IContextSource $context Context to use (optional)
 	 * @return array|bool
 	 */
-	function formatMetadata( $file, $context = false ) {
+	public function formatMetadata( $file, $context = false ) {
 		$result = [
 			'visible' => [],
 			'collapsed' => []
@@ -531,8 +562,9 @@ class SvgHandler extends ImageHandler {
 	 */
 	public function makeParamString( $params ) {
 		$lang = '';
-		if ( isset( $params['lang'] ) && $params['lang'] !== 'en' ) {
-			$lang = 'lang' . strtolower( $params['lang'] ) . '-';
+		$code = $this->getLanguageFromParams( $params );
+		if ( $code !== 'en' ) {
+			$lang = 'lang' . strtolower( $code ) . '-';
 		}
 		if ( !isset( $params['width'] ) ) {
 			return false;
@@ -560,7 +592,7 @@ class SvgHandler extends ImageHandler {
 	 * @param array $params
 	 * @return array
 	 */
-	function getScriptParams( $params ) {
+	protected function getScriptParams( $params ) {
 		$scriptParams = [ 'width' => $params['width'] ];
 		if ( isset( $params['lang'] ) ) {
 			$scriptParams['lang'] = $params['lang'];

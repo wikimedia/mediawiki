@@ -20,9 +20,6 @@
 		},
 		"required": {
 			"file": "images/indicators/required.svg"
-		},
-		"search": {
-			"file": "images/indicators/search.svg"
 		}
 	}
 }

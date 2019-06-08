@@ -7,7 +7,7 @@
 			summaryByteLimit = mw.config.get( 'wgCommentByteLimit' ),
 			wpComment = OO.ui.infuse( $( '#wpComment' ).closest( '.oo-ui-widget' ) );
 
-		$( '#mw-undelete-invert' ).click( function () {
+		$( '#mw-undelete-invert' ).on( 'click', function () {
 			$( '.mw-undelete-revlist input[type="checkbox"]' ).prop( 'checked', function ( i, val ) {
 				return !val;
 			} );

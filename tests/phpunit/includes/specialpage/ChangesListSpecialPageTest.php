@@ -116,7 +116,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 	/** return false if condition begins with 'rc_timestamp ' */
 	private static function filterOutRcTimestampCondition( $var ) {
-		return ( is_array( $var ) || false === strpos( $var, 'rc_timestamp ' ) );
+		return ( is_array( $var ) || strpos( $var, 'rc_timestamp ' ) === false );
 	}
 
 	public function testRcNsFilter() {
@@ -197,6 +197,37 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	public function testRcHidemyselfFilter() {
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_NEW );
+		$this->overrideMwServices();
+
+		$user = $this->getTestUser()->getUser();
+		$user->getActorId( wfGetDB( DB_MASTER ) );
+		$this->assertConditions(
+			[ # expected
+				"NOT((rc_actor = '{$user->getActorId()}'))",
+			],
+			[
+				'hidemyself' => 1,
+			],
+			"rc conditions: hidemyself=1 (logged in)",
+			$user
+		);
+
+		$user = User::newFromName( '10.11.12.13', false );
+		$id = $user->getActorId( wfGetDB( DB_MASTER ) );
+		$this->assertConditions(
+			[ # expected
+				"NOT((rc_actor = '{$user->getActorId()}'))",
+			],
+			[
+				'hidemyself' => 1,
+			],
+			"rc conditions: hidemyself=1 (anon)",
+			$user
+		);
+	}
+
+	public function testRcHidemyselfFilter_old() {
 		$this->setMwGlobals(
 			'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
 		);
@@ -230,6 +261,37 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	public function testRcHidebyothersFilter() {
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_NEW );
+		$this->overrideMwServices();
+
+		$user = $this->getTestUser()->getUser();
+		$user->getActorId( wfGetDB( DB_MASTER ) );
+		$this->assertConditions(
+			[ # expected
+				"(rc_actor = '{$user->getActorId()}')",
+			],
+			[
+				'hidebyothers' => 1,
+			],
+			"rc conditions: hidebyothers=1 (logged in)",
+			$user
+		);
+
+		$user = User::newFromName( '10.11.12.13', false );
+		$id = $user->getActorId( wfGetDB( DB_MASTER ) );
+		$this->assertConditions(
+			[ # expected
+				"(rc_actor = '{$user->getActorId()}')",
+			],
+			[
+				'hidebyothers' => 1,
+			],
+			"rc conditions: hidebyothers=1 (anon)",
+			$user
+		);
+	}
+
+	public function testRcHidebyothersFilter_old() {
 		$this->setMwGlobals(
 			'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
 		);
@@ -464,6 +526,22 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	public function testFilterUserExpLevelAllExperienceLevels() {
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_NEW );
+		$this->overrideMwServices();
+
+		$this->assertConditions(
+			[
+				# expected
+				'actor_rc_user.actor_user IS NOT NULL',
+			],
+			[
+				'userExpLevel' => 'newcomer;learner;experienced',
+			],
+			"rc conditions: userExpLevel=newcomer;learner;experienced"
+		);
+	}
+
+	public function testFilterUserExpLevelAllExperienceLevels_old() {
 		$this->setMwGlobals(
 			'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
 		);
@@ -482,6 +560,22 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	public function testFilterUserExpLevelRegistrered() {
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_NEW );
+		$this->overrideMwServices();
+
+		$this->assertConditions(
+			[
+				# expected
+				'actor_rc_user.actor_user IS NOT NULL',
+			],
+			[
+				'userExpLevel' => 'registered',
+			],
+			"rc conditions: userExpLevel=registered"
+		);
+	}
+
+	public function testFilterUserExpLevelRegistrered_old() {
 		$this->setMwGlobals(
 			'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
 		);
@@ -500,6 +594,22 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	public function testFilterUserExpLevelUnregistrered() {
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_NEW );
+		$this->overrideMwServices();
+
+		$this->assertConditions(
+			[
+				# expected
+				'actor_rc_user.actor_user IS NULL',
+			],
+			[
+				'userExpLevel' => 'unregistered',
+			],
+			"rc conditions: userExpLevel=unregistered"
+		);
+	}
+
+	public function testFilterUserExpLevelUnregistrered_old() {
 		$this->setMwGlobals(
 			'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
 		);
@@ -518,6 +628,22 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	public function testFilterUserExpLevelRegistreredOrLearner() {
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_NEW );
+		$this->overrideMwServices();
+
+		$this->assertConditions(
+			[
+				# expected
+				'actor_rc_user.actor_user IS NOT NULL',
+			],
+			[
+				'userExpLevel' => 'registered;learner',
+			],
+			"rc conditions: userExpLevel=registered;learner"
+		);
+	}
+
+	public function testFilterUserExpLevelRegistreredOrLearner_old() {
 		$this->setMwGlobals(
 			'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
 		);
@@ -536,6 +662,20 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	public function testFilterUserExpLevelUnregistreredOrExperienced() {
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_NEW );
+		$this->overrideMwServices();
+
+		$conds = $this->buildQuery( [ 'userExpLevel' => 'unregistered;experienced' ] );
+
+		$this->assertRegExp(
+			'/\(actor_rc_user\.actor_user IS NULL\) OR '
+				. '\(\(user_editcount >= 500\) AND \(user_registration <= \'[^\']+\'\)\)/',
+			reset( $conds ),
+			"rc conditions: userExpLevel=unregistered;experienced"
+		);
+	}
+
+	public function testFilterUserExpLevelUnregistreredOrExperienced_old() {
 		$this->setMwGlobals(
 			'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
 		);
@@ -613,8 +753,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 				'Learner1', 'Learner2', 'Learner3', 'Learner4',
 				'Experienced1',
 			],
-			$this->fetchUsers( [ 'learner', 'experienced' ], $now ),
-			'Learner and more experienced'
+			$this->fetchUsers( [ 'learner', 'experienced' ], $now )
 		);
 	}
 

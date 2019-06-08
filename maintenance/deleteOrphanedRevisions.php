@@ -84,13 +84,10 @@ class DeleteOrphanedRevisions extends Maintenance {
 	 * Delete one or more revisions from the database
 	 * Do this inside a transaction
 	 *
-	 * @param array $id Array of revision id values
+	 * @param int[] $id Array of revision id values
 	 * @param IDatabase $dbw Master DB handle
 	 */
-	private function deleteRevs( $id, &$dbw ) {
-		if ( !is_array( $id ) ) {
-			$id = [ $id ];
-		}
+	private function deleteRevs( array $id, &$dbw ) {
 		$dbw->delete( 'revision', [ 'rev_id' => $id ], __METHOD__ );
 
 		// Delete from ip_changes should a record exist.

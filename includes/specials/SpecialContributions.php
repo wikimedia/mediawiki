@@ -21,7 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Widget\DateInputWidget;
 
 /**
@@ -42,9 +41,11 @@ class SpecialContributions extends IncludableSpecialPage {
 		$out = $this->getOutput();
 		// Modules required for viewing the list of contributions (also when included on other pages)
 		$out->addModuleStyles( [
+			'mediawiki.interface.helpers.styles',
 			'mediawiki.special',
 			'mediawiki.special.changeslist',
 		] );
+		$out->addModules( 'mediawiki.special.recentchanges' );
 		$this->addHelpLink( 'Help:User contributions' );
 
 		$this->opts = [];
@@ -152,6 +153,15 @@ class SpecialContributions extends IncludableSpecialPage {
 		}
 		$this->opts = ContribsPager::processDateFilter( $this->opts );
 
+		if ( $this->opts['namespace'] < NS_MAIN ) {
+			$this->getOutput()->wrapWikiMsg(
+				"<div class=\"mw-negative-namespace-not-supported error\">\n\$1\n</div>",
+				[ 'negative-namespace-not-supported' ]
+			);
+			$out->addHTML( $this->getForm() );
+			return;
+		}
+
 		$feedType = $request->getVal( 'feed' );
 
 		$feedParams = [
@@ -227,17 +237,16 @@ class SpecialContributions extends IncludableSpecialPage {
 				$out->addWikiMsg( 'nocontribs', $target );
 			} else {
 				# Show a message about replica DB lag, if applicable
-				$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-				$lag = $lb->safeGetLag( $pager->getDatabase() );
+				$lag = $pager->getDatabase()->getSessionLagStatus()['lag'];
 				if ( $lag > 0 ) {
 					$out->showLagWarning( $lag );
 				}
 
 				$output = $pager->getBody();
 				if ( !$this->including() ) {
-					$output = '<p>' . $pager->getNavigationBar() . '</p>' .
+					$output = $pager->getNavigationBar() .
 						$output .
-						'<p>' . $pager->getNavigationBar() . '</p>';
+						$pager->getNavigationBar();
 				}
 				$out->addHTML( $output );
 			}
@@ -258,14 +267,10 @@ class SpecialContributions extends IncludableSpecialPage {
 				$message = 'sp-contributions-footer';
 			}
 
-			if ( $message ) {
-				if ( !$this->including() ) {
-					if ( !$this->msg( $message, $target )->isDisabled() ) {
-						$out->wrapWikiMsg(
-							"<div class='mw-contributions-footer'>\n$1\n</div>",
-							[ $message, $target ] );
-					}
-				}
+			if ( $message && !$this->including() && !$this->msg( $message, $target )->isDisabled() ) {
+				$out->wrapWikiMsg(
+					"<div class='mw-contributions-footer'>\n$1\n</div>",
+					[ $message, $target ] );
 			}
 		}
 	}
@@ -304,7 +309,11 @@ class SpecialContributions extends IncludableSpecialPage {
 		$links = '';
 		if ( $talk ) {
 			$tools = self::getUserLinks( $this, $userObj );
-			$links = $this->getLanguage()->pipeList( $tools );
+			$links = Html::openElement( 'span', [ 'class' => 'mw-changeslist-links' ] );
+			foreach ( $tools as $tool ) {
+				$links .= Html::rawElement( 'span', [], $tool ) . ' ';
+			}
+			$links = trim( $links ) . Html::closeElement( 'span' );
 
 			// Show a note if the user is blocked and display the last block log entry.
 			// Do not expose the autoblocks, since that may lead to a leak of accounts' IPs,
@@ -344,7 +353,10 @@ class SpecialContributions extends IncludableSpecialPage {
 			}
 		}
 
-		return $this->msg( 'contribsub2' )->rawParams( $user, $links )->params( $userObj->getName() );
+		return Html::rawElement( 'div', [ 'class' => 'mw-contributions-user-tools' ],
+			$this->msg( 'contributions-subtitle' )->rawParams( $user )->params( $userObj->getName() )
+			. ' ' . $links
+		);
 	}
 
 	/**
@@ -579,6 +591,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			$this->opts['target'],
 			'text',
 			[
+				'id' => 'mw-target-user-or-ip',
 				'size' => '40',
 				'class' => [
 					'mw-input',
@@ -598,6 +611,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			$labelNewbies . '<br>' . $labelUsername . ' ' . $input . ' '
 		);
 
+		$hidden = $this->opts['namespace'] === '' ? ' mw-input-hidden' : '';
 		$namespaceSelection = Xml::tags(
 			'div',
 			[],
@@ -607,7 +621,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				''
 			) . "\u{00A0}" .
 			Html::namespaceSelector(
-				[ 'selected' => $this->opts['namespace'], 'all' => '' ],
+				[ 'selected' => $this->opts['namespace'], 'all' => '', 'in-user-lang' => true ],
 				[
 					'name' => 'namespace',
 					'id' => 'namespace',
@@ -616,11 +630,11 @@ class SpecialContributions extends IncludableSpecialPage {
 			) . "\u{00A0}" .
 				Html::rawElement(
 					'span',
-					[ 'class' => 'mw-input-with-label' ],
+					[ 'class' => 'mw-input-with-label' . $hidden ],
 					Xml::checkLabel(
 						$this->msg( 'invert' )->text(),
 						'nsInvert',
-						'nsInvert',
+						'nsinvert',
 						$this->opts['nsInvert'],
 						[
 							'title' => $this->msg( 'tooltip-invert' )->text(),
@@ -628,11 +642,11 @@ class SpecialContributions extends IncludableSpecialPage {
 						]
 					) . "\u{00A0}"
 				) .
-				Html::rawElement( 'span', [ 'class' => 'mw-input-with-label' ],
+				Html::rawElement( 'span', [ 'class' => 'mw-input-with-label' . $hidden ],
 					Xml::checkLabel(
 						$this->msg( 'namespace_association' )->text(),
 						'associated',
-						'associated',
+						'nsassociated',
 						$this->opts['associated'],
 						[
 							'title' => $this->msg( 'tooltip-namespace_association' )->text(),
@@ -744,7 +758,9 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		$explain = $this->msg( 'sp-contributions-explain' );
 		if ( !$explain->isBlank() ) {
-			$form .= "<p id='mw-sp-contributions-explain'>{$explain->parse()}</p>";
+			$form .= Html::rawElement(
+				'p', [ 'id' => 'mw-sp-contributions-explain' ], $explain->parse()
+			);
 		}
 
 		$form .= Xml::closeElement( 'form' );

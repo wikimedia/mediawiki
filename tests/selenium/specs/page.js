@@ -5,7 +5,7 @@ const assert = require( 'assert' ),
 	EditPage = require( '../pageobjects/edit.page' ),
 	HistoryPage = require( '../pageobjects/history.page' ),
 	UndoPage = require( '../pageobjects/undo.page' ),
-	UserLoginPage = require( '../pageobjects/userlogin.page' ),
+	UserLoginPage = require( 'wdio-mediawiki/LoginPage' ),
 	Util = require( 'wdio-mediawiki/Util' );
 
 describe( 'Page', function () {
@@ -22,6 +22,20 @@ describe( 'Page', function () {
 		browser.deleteCookie();
 		content = Util.getTestString( 'beforeEach-content-' );
 		name = Util.getTestString( 'BeforeEach-name-' );
+	} );
+
+	it( 'should be previewable', function () {
+		EditPage.preview( name, content );
+
+		assert.strictEqual( EditPage.heading.getText(), 'Creating ' + name );
+		assert.strictEqual( EditPage.displayedContent.getText(), content );
+		assert( EditPage.content.isVisible(), 'editor is still present' );
+		assert( !EditPage.conflictingContent.isVisible(), 'no edit conflict happened' );
+		// provoke and dismiss reload warning due to unsaved content
+		browser.url( 'data:text/html,Done' );
+		try {
+			browser.alertAccept();
+		} catch ( e ) {}
 	} );
 
 	it( 'should be creatable', function () {
@@ -77,7 +91,7 @@ describe( 'Page', function () {
 
 		// check
 		HistoryPage.open( name );
-		assert.strictEqual( HistoryPage.comment.getText(), `(Created page with "${content}")` );
+		assert.strictEqual( HistoryPage.comment.getText(), `Created or updated page with "${content}"` );
 	} );
 
 	it( 'should be deletable', function () {

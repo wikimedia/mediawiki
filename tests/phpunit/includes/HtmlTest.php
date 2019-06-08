@@ -77,6 +77,15 @@ class HtmlTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @expectedException PHPUnit_Framework_Error_Notice
+	 * @expectedExceptionMessage given element name with space
+	 * @covers Html::openElement
+	 */
+	public function testOpenElement() {
+		Html::openElement( 'span id="x"' );
+	}
+
+	/**
 	 * @covers Html::element
 	 * @covers Html::rawElement
 	 * @covers Html::openElement
@@ -203,7 +212,6 @@ class HtmlTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Test for Html::expandAttributes()
 	 * Please note it output a string prefixed with a space!
 	 * @covers Html::expandAttributes
 	 */
@@ -420,6 +428,33 @@ class HtmlTest extends MediaWikiTestCase {
 				[ 'label' => 'Select a namespace:' ]
 			),
 			'Basic namespace selector with a custom label but no id attribtue for the <select>'
+		);
+
+		$this->assertEquals(
+			'<select id="namespace" name="namespace">' . "\n" .
+				'<option value="0">(Principal)</option>' . "\n" .
+				'<option value="1">Discusión</option>' . "\n" .
+				'<option value="2">Usuario</option>' . "\n" .
+				'<option value="3">Usuario discusión</option>' . "\n" .
+				'<option value="4">Wiki</option>' . "\n" .
+				'<option value="5">Wiki discusión</option>' . "\n" .
+				'<option value="6">Archivo</option>' . "\n" .
+				'<option value="7">Archivo discusión</option>' . "\n" .
+				'<option value="8">MediaWiki</option>' . "\n" .
+				'<option value="9">MediaWiki discusión</option>' . "\n" .
+				'<option value="10">Plantilla</option>' . "\n" .
+				'<option value="11">Plantilla discusión</option>' . "\n" .
+				'<option value="12">Ayuda</option>' . "\n" .
+				'<option value="13">Ayuda discusión</option>' . "\n" .
+				'<option value="14">Categoría</option>' . "\n" .
+				'<option value="15">Categoría discusión</option>' . "\n" .
+				'<option value="100">Personalizado</option>' . "\n" .
+				'<option value="101">Personalizado discusión</option>' . "\n" .
+				'</select>',
+			Html::namespaceSelector(
+				[ 'in-user-lang' => true ]
+			),
+			'Basic namespace selector in user language'
 		);
 	}
 

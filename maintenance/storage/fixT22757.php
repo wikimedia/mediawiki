@@ -255,11 +255,7 @@ class FixT22757 extends Maintenance {
 
 	function findTextIdInPage( $pageId, $textId ) {
 		$ids = $this->getRevTextMap( $pageId );
-		if ( !isset( $ids[$textId] ) ) {
-			return null;
-		} else {
-			return $ids[$textId];
-		}
+		return $ids[$textId] ?? null;
 	}
 
 	function getRevTextMap( $pageId ) {

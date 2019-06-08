@@ -48,6 +48,7 @@ interface ILBFactory {
 	 *  - wanCache: WANObjectCache object [optional]
 	 *  - hostname: The name of the current server [optional]
 	 *  - cliMode: Whether the execution context is a CLI script. [optional]
+	 *  - maxLag: Try to avoid DB replicas with lag above this many seconds [optional]
 	 *  - profiler: Class name or instance with profileIn()/profileOut() methods. [optional]
 	 *  - trxProfiler: TransactionProfiler instance. [optional]
 	 *  - replLogger: PSR-3 logger instance. [optional]
@@ -330,8 +331,9 @@ interface ILBFactory {
 	 * Set a new table prefix for the existing local domain ID for testing
 	 *
 	 * @param string $prefix
+	 * @since 1.33
 	 */
-	public function setDomainPrefix( $prefix );
+	public function setLocalDomainPrefix( $prefix );
 
 	/**
 	 * Close all open database connections on all open load balancers.
@@ -388,7 +390,6 @@ interface ILBFactory {
 	 * the aliases can be removed, and then the old X-named indexes dropped.
 	 *
 	 * @param string[] $aliases
-	 * @return mixed
 	 * @since 1.31
 	 */
 	public function setIndexAliases( array $aliases );

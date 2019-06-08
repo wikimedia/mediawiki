@@ -13,10 +13,13 @@ use GlobalVarConfig;
 use Hooks;
 use IBufferingStatsdDataFactory;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Revision\RevisionRenderer;
+use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Special\SpecialPageFactory;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
@@ -35,9 +38,6 @@ use MediaHandlerFactory;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
-use MediaWiki\Services\SalvageableService;
-use MediaWiki\Services\ServiceContainer;
-use MediaWiki\Services\NoSuchServiceException;
 use MWException;
 use MimeAnalyzer;
 use ObjectCache;
@@ -46,6 +46,7 @@ use ParserCache;
 use ParserFactory;
 use PasswordFactory;
 use ProxyLookup;
+use ResourceLoader;
 use SearchEngine;
 use SearchEngineConfig;
 use SearchEngineFactory;
@@ -57,6 +58,9 @@ use SkinFactory;
 use TitleFormatter;
 use TitleParser;
 use VirtualRESTServiceClient;
+use Wikimedia\Services\SalvageableService;
+use Wikimedia\Services\ServiceContainer;
+use Wikimedia\Services\NoSuchServiceException;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MagicWordFactory;
 
@@ -432,6 +436,14 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.33
+	 * @return BlockRestrictionStore
+	 */
+	public function getBlockRestrictionStore() : BlockRestrictionStore {
+		return $this->getService( 'BlockRestrictionStore' );
+	}
+
+	/**
 	 * Returns the Config object containing the bootstrap configuration.
 	 * Bootstrap configuration would typically include database credentials
 	 * and other information that may be needed before the ConfigFactory
@@ -518,6 +530,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * @return CryptRand
 	 */
 	public function getCryptRand() {
+		wfDeprecated( __METHOD__, '1.32' );
 		return $this->getService( 'CryptRand' );
 	}
 
@@ -719,6 +732,14 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.33
+	 * @return PermissionManager
+	 */
+	public function getPermissionManager() {
+		return $this->getService( 'PermissionManager' );
+	}
+
+	/**
 	 * @since 1.31
 	 * @return PreferencesFactory
 	 */
@@ -740,6 +761,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getReadOnlyMode() {
 		return $this->getService( 'ReadOnlyMode' );
+	}
+
+	/**
+	 * @since 1.33
+	 * @return ResourceLoader
+	 */
+	public function getResourceLoader() {
+		return $this->getService( 'ResourceLoader' );
 	}
 
 	/**
@@ -837,6 +866,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getSkinFactory() {
 		return $this->getService( 'SkinFactory' );
+	}
+
+	/**
+	 * @since 1.33
+	 * @return SlotRoleRegistry
+	 */
+	public function getSlotRoleRegistry() {
+		return $this->getService( 'SlotRoleRegistry' );
 	}
 
 	/**

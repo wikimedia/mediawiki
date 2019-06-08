@@ -157,16 +157,14 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 	protected function addTables( $tables, $alias = null ) {
 		if ( is_array( $tables ) ) {
-			if ( !is_null( $alias ) ) {
+			if ( $alias !== null ) {
 				ApiBase::dieDebug( __METHOD__, 'Multiple table aliases not supported' );
 			}
 			$this->tables = array_merge( $this->tables, $tables );
+		} elseif ( $alias !== null ) {
+			$this->tables[$alias] = $tables;
 		} else {
-			if ( !is_null( $alias ) ) {
-				$this->tables[$alias] = $tables;
-			} else {
-				$this->tables[] = $tables;
-			}
+			$this->tables[] = $tables;
 		}
 	}
 
@@ -261,6 +259,30 @@ abstract class ApiQueryBase extends ApiBase {
 		if ( $value !== null && !( is_array( $value ) && !$value ) ) {
 			$this->where[$field] = $value;
 		}
+	}
+
+	/**
+	 * Like addWhereFld for an integer list of IDs
+	 * @since 1.33
+	 * @param string $table Table name
+	 * @param string $field Field name
+	 * @param int[] $ids IDs
+	 * @return int Count of IDs actually included
+	 */
+	protected function addWhereIDsFld( $table, $field, $ids ) {
+		// Use count() to its full documented capabilities to simultaneously
+		// test for null, empty array or empty countable object
+		if ( count( $ids ) ) {
+			$ids = $this->filterIDs( [ [ $table, $field ] ], $ids );
+
+			if ( $ids === [] ) {
+				// Return nothing, no IDs are valid
+				$this->where[] = '0 = 1';
+			} else {
+				$this->where[$field] = $ids;
+			}
+		}
+		return count( $ids );
 	}
 
 	/**
@@ -402,13 +424,15 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
+	 * @deprecated since 1.33, use LinkFilter::getQueryConditions() instead
 	 * @param string|null $query
 	 * @param string|null $protocol
 	 * @return null|string
 	 */
 	public function prepareUrlQuerySearchString( $query = null, $protocol = null ) {
+		wfDeprecated( __METHOD__, '1.33' );
 		$db = $this->getDB();
-		if ( !is_null( $query ) || $query != '' ) {
+		if ( $query !== null && $query !== '' ) {
 			if ( is_null( $protocol ) ) {
 				$protocol = 'http://';
 			}
@@ -484,7 +508,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param string $prefix Module prefix
 	 */
 	public static function addTitleInfo( &$arr, $title, $prefix = '' ) {
-		$arr[$prefix . 'ns'] = intval( $title->getNamespace() );
+		$arr[$prefix . 'ns'] = (int)$title->getNamespace();
 		$arr[$prefix . 'title'] = $title->getPrefixedText();
 	}
 
@@ -498,7 +522,7 @@ abstract class ApiQueryBase extends ApiBase {
 		$result = $this->getResult();
 		ApiResult::setIndexedTagName( $data, $this->getModulePrefix() );
 
-		return $result->addValue( [ 'query', 'pages', intval( $pageId ) ],
+		return $result->addValue( [ 'query', 'pages', (int)$pageId ],
 			$this->getModuleName(),
 			$data );
 	}

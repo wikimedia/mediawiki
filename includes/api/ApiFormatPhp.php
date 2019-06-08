@@ -30,6 +30,9 @@ class ApiFormatPhp extends ApiFormatBase {
 		return 'application/vnd.php.serialized';
 	}
 
+	/**
+	 * @suppress SecurityCheck-XSS Output type is not text/html
+	 */
 	public function execute() {
 		$params = $this->extractRequestParams();
 

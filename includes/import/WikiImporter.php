@@ -286,18 +286,16 @@ class WikiImporter {
 
 			if ( !$title || $title->isExternal() ) {
 				$status->fatal( 'import-rootpage-invalid' );
+			} elseif ( !MWNamespace::hasSubpages( $title->getNamespace() ) ) {
+				$displayNSText = $title->getNamespace() == NS_MAIN
+					? wfMessage( 'blanknamespace' )->text()
+					: MediaWikiServices::getInstance()->getContentLanguage()->
+						getNsText( $title->getNamespace() );
+				$status->fatal( 'import-rootpage-nosubpage', $displayNSText );
 			} else {
-				if ( !MWNamespace::hasSubpages( $title->getNamespace() ) ) {
-					$displayNSText = $title->getNamespace() == NS_MAIN
-						? wfMessage( 'blanknamespace' )->text()
-						: MediaWikiServices::getInstance()->getContentLanguage()->
-							getNsText( $title->getNamespace() );
-					$status->fatal( 'import-rootpage-nosubpage', $displayNSText );
-				} else {
-					// set namespace to 'all', so the namespace check in processTitle() can pass
-					$this->setTargetNamespace( null );
-					$this->setImportTitleFactory( new SubpageImportTitleFactory( $title ) );
-				}
+				// set namespace to 'all', so the namespace check in processTitle() can pass
+				$this->setTargetNamespace( null );
+				$this->setImportTitleFactory( new SubpageImportTitleFactory( $title ) );
 			}
 		}
 		return $status;
@@ -536,7 +534,7 @@ class WikiImporter {
 	 * Fetches text contents of the current element, assuming
 	 * no sub-elements or such scary things.
 	 * @return string
-	 * @access private
+	 * @private
 	 */
 	public function nodeContents() {
 		if ( $this->reader->isEmptyElement ) {
@@ -893,6 +891,7 @@ class WikiImporter {
 				) . " exceeds the maximum allowable size ($wgMaxArticleSize KB)" );
 		}
 
+		// FIXME: process schema version 11!
 		$revision = new WikiRevision( $this->config );
 
 		if ( isset( $revisionInfo['id'] ) ) {
@@ -914,11 +913,7 @@ class WikiImporter {
 
 			$revision->setText( $text );
 		}
-		if ( isset( $revisionInfo['timestamp'] ) ) {
-			$revision->setTimestamp( $revisionInfo['timestamp'] );
-		} else {
-			$revision->setTimestamp( wfTimestampNow() );
-		}
+		$revision->setTimestamp( $revisionInfo['timestamp'] ?? wfTimestampNow() );
 
 		if ( isset( $revisionInfo['comment'] ) ) {
 			$revision->setComment( $revisionInfo['comment'] );

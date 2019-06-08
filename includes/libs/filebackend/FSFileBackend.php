@@ -793,7 +793,7 @@ class FSFileBackend extends FileBackendStore {
 	 * @param int $errno
 	 * @param string $errstr
 	 * @return bool
-	 * @access private
+	 * @private
 	 */
 	public function handleWarning( $errno, $errstr ) {
 		$this->logger->error( $errstr ); // more detailed error logging

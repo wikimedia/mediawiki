@@ -44,10 +44,10 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	 */
 	public function testUnserializeContent() {
 		$content = $this->handler->unserializeContent( 'hello world' );
-		$this->assertEquals( 'hello world', $content->getNativeData() );
+		$this->assertEquals( 'hello world', $content->getText() );
 
 		$content = $this->handler->unserializeContent( 'hello world', CONTENT_FORMAT_WIKITEXT );
-		$this->assertEquals( 'hello world', $content->getNativeData() );
+		$this->assertEquals( 'hello world', $content->getText() );
 
 		try {
 			$this->handler->unserializeContent( 'hello world', 'dummy/foo' );
@@ -64,7 +64,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$content = $this->handler->makeEmptyContent();
 
 		$this->assertTrue( $content->isEmpty() );
-		$this->assertEquals( '', $content->getNativeData() );
+		$this->assertEquals( '', $content->getText() );
 	}
 
 	public static function dataIsSupportedFormat() {
@@ -172,7 +172,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 
 		$merged = $this->handler->merge3( $oldContent, $myContent, $yourContent );
 
-		$this->assertEquals( $expected, $merged ? $merged->getNativeData() : $merged );
+		$this->assertEquals( $expected, $merged ? $merged->getText() : $merged );
 	}
 
 	public static function dataGetAutosummary() {
@@ -366,6 +366,9 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'This is file content', $data['file_text'] );
 	}
 
+	/**
+	 * @covers ContentHandler::getSecondaryDataUpdates
+	 */
 	public function testGetSecondaryDataUpdates() {
 		$title = Title::newFromText( 'Somefile.jpg', NS_FILE );
 		$content = new WikitextContent( '' );
@@ -379,6 +382,9 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$this->assertEquals( [], $updates );
 	}
 
+	/**
+	 * @covers ContentHandler::getDeletionUpdates
+	 */
 	public function testGetDeletionUpdates() {
 		$title = Title::newFromText( 'Somefile.jpg', NS_FILE );
 		$content = new WikitextContent( '' );

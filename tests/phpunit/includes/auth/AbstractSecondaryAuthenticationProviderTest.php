@@ -4,7 +4,7 @@ namespace MediaWiki\Auth;
 
 /**
  * @group AuthManager
- * @covers MediaWiki\Auth\AbstractSecondaryAuthenticationProvider
+ * @covers \MediaWiki\Auth\AbstractSecondaryAuthenticationProvider
  */
 class AbstractSecondaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	public function testAbstractSecondaryAuthenticationProvider() {

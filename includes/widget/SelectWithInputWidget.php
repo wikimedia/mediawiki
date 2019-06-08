@@ -23,7 +23,7 @@ class SelectWithInputWidget extends \OOUI\Widget {
 	 *   - array $config['textinput'] Configuration for the TextInputWidget
 	 *   - array $config['dropdowninput'] Configuration for the DropdownInputWidget
 	 *   - bool $config['or'] Configuration for whether the widget is dropdown AND input
-	 *                              or dropdown OR input
+	 *       or dropdown OR input
 	 */
 	public function __construct( array $config = [] ) {
 		// Configuration initialization
@@ -36,7 +36,7 @@ class SelectWithInputWidget extends \OOUI\Widget {
 			$config
 		);
 
-		if ( isset( $config['disabled'] ) && $config['disabled'] == true ) {
+		if ( isset( $config['disabled'] ) && $config['disabled'] ) {
 			$config['textinput']['disabled'] = true;
 			$config['dropdowninput']['disabled'] = true;
 		}

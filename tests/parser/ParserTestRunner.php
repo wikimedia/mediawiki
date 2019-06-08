@@ -76,11 +76,6 @@ class ParserTestRunner {
 	private $dbClone;
 
 	/**
-	 * @var TidySupport
-	 */
-	private $tidySupport;
-
-	/**
 	 * @var TidyDriverBase
 	 */
 	private $tidyDriver = null;
@@ -121,12 +116,6 @@ class ParserTestRunner {
 	 * @var bool
 	 */
 	private $runDisabled;
-
-	/**
-	 * Run tests intended only for parsoid
-	 * @var bool
-	 */
-	private $runParsoid;
 
 	/**
 	 * Disable parse on article insertion
@@ -170,15 +159,8 @@ class ParserTestRunner {
 		$this->fileBackendName = $options['file-backend'] ?? false;
 
 		$this->runDisabled = !empty( $options['run-disabled'] );
-		$this->runParsoid = !empty( $options['run-parsoid'] );
 
 		$this->disableSaveParse = !empty( $options['disable-save-parse'] );
-
-		$this->tidySupport = new TidySupport( !empty( $options['use-tidy-config'] ) );
-		if ( !$this->tidySupport->isEnabled() ) {
-			$this->recorder->warning(
-				"Warning: tidy is not installed, skipping some tests\n" );
-		}
 
 		if ( isset( $options['upload-dir'] ) ) {
 			$this->uploadDir = $options['upload-dir'];
@@ -703,7 +685,6 @@ class ParserTestRunner {
 			foreach ( $filenames as $filename ) {
 				$testFileInfo = TestFileReader::read( $filename, [
 					'runDisabled' => $this->runDisabled,
-					'runParsoid' => $this->runParsoid,
 					'regex' => $this->regex ] );
 
 				// Don't start the suite if there are no enabled tests in the file
@@ -840,12 +821,7 @@ class ParserTestRunner {
 		$options->setTimestamp( $this->getFakeTimestamp() );
 
 		if ( isset( $opts['tidy'] ) ) {
-			if ( !$this->tidySupport->isEnabled() ) {
-				$this->recorder->skipped( $test, 'tidy extension is not installed' );
-				return false;
-			} else {
-				$options->setTidy( true );
-			}
+			$options->setTidy( true );
 		}
 
 		if ( isset( $opts['title'] ) ) {
@@ -962,12 +938,7 @@ class ParserTestRunner {
 	 */
 	private static function getOptionValue( $key, $opts, $default ) {
 		$key = strtolower( $key );
-
-		if ( isset( $opts[$key] ) ) {
-			return $opts[$key];
-		} else {
-			return $default;
-		}
+		return $opts[$key] ?? $default;
 	}
 
 	/**
@@ -1136,12 +1107,19 @@ class ParserTestRunner {
 		if ( isset( $opts['tidy'] ) ) {
 			// Cache a driver instance
 			if ( $this->tidyDriver === null ) {
-				$this->tidyDriver = MWTidy::factory( $this->tidySupport->getConfig() );
+				$this->tidyDriver = MWTidy::factory();
 			}
 			$tidy = $this->tidyDriver;
 		} else {
 			$tidy = false;
 		}
+
+		# Suppress warnings about running tests without tidy
+		Wikimedia\suppressWarnings();
+		wfDeprecated( 'disabling tidy' );
+		wfDeprecated( 'MWTidy::setInstance' );
+		Wikimedia\restoreWarnings();
+
 		MWTidy::setInstance( $tidy );
 		$teardown[] = function () {
 			MWTidy::destroySingleton();
@@ -1214,7 +1192,7 @@ class ParserTestRunner {
 	 * @return array
 	 */
 	private function listTables() {
-		global $wgCommentTableSchemaMigrationStage, $wgActorTableSchemaMigrationStage;
+		global $wgActorTableSchemaMigrationStage;
 
 		$tables = [ 'user', 'user_properties', 'user_former_groups', 'page', 'page_restrictions',
 			'protected_titles', 'revision', 'ip_changes', 'text', 'pagelinks', 'imagelinks',
@@ -1224,13 +1202,8 @@ class ParserTestRunner {
 			'querycache', 'objectcache', 'job', 'l10n_cache', 'redirect', 'querycachetwo',
 			'archive', 'user_groups', 'page_props', 'category',
 			'slots', 'content', 'slot_roles', 'content_models',
+			'comment', 'revision_comment_temp',
 		];
-
-		if ( $wgCommentTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
-			// The new tables for comments are in use
-			$tables[] = 'comment';
-			$tables[] = 'revision_comment_temp';
-		}
 
 		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 			// The new tables for actors are in use
@@ -1392,7 +1365,17 @@ class ParserTestRunner {
 				'bits'        => 0,
 				'media_type'  => MEDIATYPE_DRAWING,
 				'mime'        => 'image/svg+xml',
-				'metadata'    => serialize( [] ),
+				'metadata'    => serialize( [
+					'version'        => SvgHandler::SVG_METADATA_VERSION,
+					'width'          => 240,
+					'height'         => 180,
+					'originalWidth'  => '100%',
+					'originalHeight' => '100%',
+					'translations'   => [
+						'en' => SVGReader::LANG_FULL_MATCH,
+						'ru' => SVGReader::LANG_FULL_MATCH,
+					],
+				] ),
 				'sha1'        => Wikimedia\base_convert( '', 16, 36, 31 ),
 				'fileExists'  => true
 		], $this->db->timestamp( '20010115123500' ), $user );

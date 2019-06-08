@@ -28,7 +28,7 @@
  * Belarusian in Taraškievica orthography (Беларуская тарашкевіца)
  *
  * @ingroup Language
- * @see http://be-x-old.wikipedia.org/wiki/Project_talk:LanguageBe_tarask.php
+ * @see https://be-tarask.wikipedia.org/wiki/Project_talk:LanguageBe_tarask.php
  */
 // phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class LanguageBe_tarask extends Language {

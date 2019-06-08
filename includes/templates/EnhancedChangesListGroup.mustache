@@ -10,19 +10,19 @@
 				<div class="mw-rcfilters-ui-highlights-color-c5" data-color="c5"></div>
 			</div>
 		</td>
-		<td>
-			<span class="mw-collapsible-toggle mw-collapsible-arrow mw-enhancedchanges-arrow mw-enhancedchanges-arrow-space"></span>
-		</td>
+		<td>{{!
+			}}<span class="mw-collapsible-toggle mw-collapsible-arrow mw-enhancedchanges-arrow mw-enhancedchanges-arrow-space mw-collapsible-toggle-collapsed"></span>{{!
+		}}</td>
 		<td class="mw-changeslist-line-prefix">{{{ prefix }}}</td>
 		<td class="mw-enhanced-rc" colspan="2">{{{ collectedRcFlags }}}&#160;{{ timestamp }}&#160;</td>
-		<td class="mw-changeslist-line-inner">
-			{{# rev-deleted-event }}<span class="history-deleted">{{{ . }}}</span>{{/ rev-deleted-event }}
-			{{{ articleLink }}}{{{ languageDirMark }}}{{{ logText }}}
-			<span class="mw-changeslist-separator">. .</span>
-			{{# charDifference }}{{{ . }}} <span class="mw-changeslist-separator">. .</span>{{/ charDifference }}
-			<span class="changedby">{{{ users }}}</span>
-			{{ numberofWatchingusers }}
-		</td>
+		<td class="mw-changeslist-line-inner">{{!
+			}}{{# rev-deleted-event }}<span class="history-deleted">{{{ . }}}</span>{{/ rev-deleted-event }}{{!
+			}}{{{ articleLink }}}{{{ languageDirMark }}}{{{ logText }}}{{!
+			}}<span class="mw-changeslist-separator"></span>{{!
+			}}{{# charDifference }}{{{ . }}} <span class="mw-changeslist-separator"></span>{{/ charDifference }}{{!
+			}}<span class="changedby">{{{ users }}}</span>{{!
+			}}{{ numberofWatchingusers }}{{!
+		}}</td>
 	</tr>
 	{{# lines }}
 	<tr class="mw-rcfilters-ui-highlights-enhanced-nested {{# classes }}{{ . }} {{/ classes }}"{{{ attribs }}}>
@@ -40,12 +40,12 @@
 				<div class="mw-rcfilters-ui-highlights-color-c5" data-color="c5"></div>
 			</div>
 		</td>
-		<td class="mw-enhanced-rc-nested" data-target-page="{{ targetTitle }}">
-			{{# timestampLink }}
-			<span class="mw-enhanced-rc-time">{{{ . }}}</span>
-			{{/ timestampLink }}
-			{{# data }}{{{ . }}}{{/ data }}
-		</td>
+		<td class="mw-enhanced-rc-nested" data-target-page="{{ targetTitle }}">{{!
+			}}{{# timestampLink }}{{!
+			}}<span class="mw-enhanced-rc-time">{{{ . }}}</span>{{!
+			}}{{/ timestampLink }}{{!
+			}}{{# data }}{{{ . }}}{{/ data }}{{!
+		}}</td>
 	</tr>
 	{{/ lines }}
 </table>

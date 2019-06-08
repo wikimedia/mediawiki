@@ -463,22 +463,6 @@ TXT;
 	}
 
 	/**
-	 * Get the ID for this exception.
-	 *
-	 * The ID is saved so that one can match the one output to the user (when
-	 * $wgShowExceptionDetails is set to false), to the entry in the debug log.
-	 *
-	 * @since 1.22
-	 * @deprecated since 1.27: Exception IDs are synonymous with request IDs.
-	 * @param Exception|Throwable $e
-	 * @return string
-	 */
-	public static function getLogId( $e ) {
-		wfDeprecated( __METHOD__, '1.27' );
-		return WebRequest::getRequestId();
-	}
-
-	/**
 	 * If the exception occurred in the course of responding to a request,
 	 * returns the requested URL. Otherwise, returns false.
 	 *

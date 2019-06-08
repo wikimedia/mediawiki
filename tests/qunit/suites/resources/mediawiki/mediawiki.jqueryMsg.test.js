@@ -1220,10 +1220,12 @@
 	} );
 
 	QUnit.test( 'Integration', function ( assert ) {
-		var expected, msg;
+		var expected, msg, $bar;
 
 		expected = '<b><a title="Bold" href="/wiki/Bold">Bold</a>!</b>';
 		mw.messages.set( 'integration-test', '<b>[[Bold]]!</b>' );
+		mw.messages.set( 'param-test', 'Hello $1' );
+		mw.messages.set( 'param-test-with-link', 'Hello $1 [[$2|$3]]' );
 
 		assert.strictEqual(
 			mw.message( 'integration-test' ).parse(),
@@ -1237,6 +1239,35 @@
 			'jQuery plugin $.fn.msg() works correctly'
 		);
 
+		assert.strictEqual(
+			mw.message( 'param-test', $( '<span>' ).text( 'World' ) ).parse(),
+			'Hello <span>World</span>',
+			'Passing a jQuery object as a parameter to a message without wikitext works correctly'
+		);
+
+		assert.strictEqual(
+			mw.message( 'param-test', $( '<span>' ).text( 'World' ).get( 0 ) ).parse(),
+			'Hello <span>World</span>',
+			'Passing a DOM node as a parameter to a message without wikitext works correctly'
+		);
+
+		assert.strictEqual(
+			mw.message( 'param-test', undefined ).parse(),
+			'Hello $1',
+			'Passing undefined as a parameter to a message does not throw an exception'
+		);
+
+		assert.strictEqual(
+			mw.message(
+				'param-test-with-link',
+				$( '<span>' ).text( 'cruel' ),
+				'Globe',
+				'world'
+			).parse(),
+			'Hello <span>cruel</span> <a title="Globe" href="/wiki/Globe">world</a>',
+			'Message with a jQuery parameter and a parsed link'
+		);
+
 		mw.messages.set( 'integration-test-extlink', '[$1 Link]' );
 		msg = mw.message(
 			'integration-test-extlink',
@@ -1248,6 +1279,10 @@
 			'<a href="http://example.com/">Link</a>',
 			'Calling .parse() multiple times does not duplicate link contents'
 		);
+
+		mw.config.set( 'wgUserLanguage', 'qqx' );
+		$bar = $( '<b>' ).text( 'bar' );
+		assert.strictEqual( mw.message( 'foo', $bar, 'baz' ).parse(), '(foo: <b>bar</b>, baz)', 'qqx message with parameters' );
 	} );
 
 	QUnit.test( 'setParserDefaults', function ( assert ) {

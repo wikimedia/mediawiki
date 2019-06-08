@@ -159,8 +159,20 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * Get all JS for this module for a given language and skin.
 	 * Includes all relevant JS except loader scripts.
 	 *
+	 * For "plain" script modules, this should return a string with JS code. For multi-file modules
+	 * where require() is used to load one file from another file, this should return an array
+	 * structured as follows:
+	 * [
+	 *     'files' => [
+	 *         'file1.js' => [ 'type' => 'script', 'content' => 'JS code' ],
+	 *         'file2.js' => [ 'type' => 'script', 'content' => 'JS code' ],
+	 *         'data.json' => [ 'type' => 'data', 'content' => array ]
+	 *     ],
+	 *     'main' => 'file1.js'
+	 * ]
+	 *
 	 * @param ResourceLoaderContext $context
-	 * @return string JavaScript code
+	 * @return string|array JavaScript code (string), or multi-file structure described above (array)
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		// Stub, override expected
@@ -464,44 +476,51 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 			$localFileRefs = array_values( array_unique( $localFileRefs ) );
 			sort( $localFileRefs );
 			$localPaths = self::getRelativePaths( $localFileRefs );
-
 			$storedPaths = self::getRelativePaths( $this->getFileDependencies( $context ) );
-			// If the list has been modified since last time we cached it, update the cache
-			if ( $localPaths !== $storedPaths ) {
-				$vary = $context->getSkin() . '|' . $context->getLanguage();
-				$cache = ObjectCache::getLocalClusterInstance();
-				$key = $cache->makeKey( __METHOD__, $this->getName(), $vary );
-				$scopeLock = $cache->getScopedLock( $key, 0 );
-				if ( !$scopeLock ) {
-					return; // T124649; avoid write slams
-				}
 
-				// No needless escaping as this isn't HTML output.
-				// Only stored in the database and parsed in PHP.
-				$deps = json_encode( $localPaths, JSON_UNESCAPED_SLASHES );
-				$dbw = wfGetDB( DB_MASTER );
-				$dbw->upsert( 'module_deps',
-					[
-						'md_module' => $this->getName(),
-						'md_skin' => $vary,
-						'md_deps' => $deps,
-					],
-					[ [ 'md_module', 'md_skin' ] ],
-					[
-						'md_deps' => $deps,
-					]
+			if ( $localPaths === $storedPaths ) {
+				// Unchanged. Avoid needless database query (especially master conn!).
+				return;
+			}
+
+			// The file deps list has changed, we want to update it.
+			$vary = $context->getSkin() . '|' . $context->getLanguage();
+			$cache = ObjectCache::getLocalClusterInstance();
+			$key = $cache->makeKey( __METHOD__, $this->getName(), $vary );
+			$scopeLock = $cache->getScopedLock( $key, 0 );
+			if ( !$scopeLock ) {
+				// Another request appears to be doing this update already.
+				// Avoid write slams (T124649).
+				return;
+			}
+
+			// No needless escaping as this isn't HTML output.
+			// Only stored in the database and parsed in PHP.
+			$deps = json_encode( $localPaths, JSON_UNESCAPED_SLASHES );
+			$dbw = wfGetDB( DB_MASTER );
+			$dbw->upsert( 'module_deps',
+				[
+					'md_module' => $this->getName(),
+					'md_skin' => $vary,
+					'md_deps' => $deps,
+				],
+				[ [ 'md_module', 'md_skin' ] ],
+				[
+					'md_deps' => $deps,
+				]
+			);
+
+			if ( $dbw->trxLevel() ) {
+				$dbw->onTransactionResolution(
+					function () use ( &$scopeLock ) {
+						ScopedCallback::consume( $scopeLock ); // release after commit
+					},
+					__METHOD__
 				);
-
-				if ( $dbw->trxLevel() ) {
-					$dbw->onTransactionResolution(
-						function () use ( &$scopeLock ) {
-							ScopedCallback::consume( $scopeLock ); // release after commit
-						},
-						__METHOD__
-					);
-				}
 			}
 		} catch ( Exception $e ) {
+			// Probably a DB failure. Either the read query from getFileDependencies(),
+			// or the write query above.
 			wfDebugLog( 'resourceloader', __METHOD__ . ": failed to update DB: $e" );
 		}
 	}
@@ -691,7 +710,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 
 		// This MUST build both scripts and styles, regardless of whether $context->getOnly()
 		// is 'scripts' or 'styles' because the result is used by getVersionHash which
-		// must be consistent regardles of the 'only' filter on the current request.
+		// must be consistent regardless of the 'only' filter on the current request.
 		// Also, when introducing new module content resources (e.g. templates, headers),
 		// these should only be included in the array when they are non-empty so that
 		// existing modules not using them do not get their cache invalidated.
@@ -722,7 +741,6 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		}
 		$content['scripts'] = $scripts;
 
-		// Styles
 		$styles = [];
 		// Don't create empty stylesheets like [ '' => '' ] for modules
 		// that don't *have* any stylesheets (T40024).
@@ -932,7 +950,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		if ( !$this->getConfig()->get( 'ResourceLoaderValidateJS' ) ) {
 			return $contents;
 		}
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		return $cache->getWithSetCallback(
 			$cache->makeGlobalKey(
 				'resourceloader',
@@ -944,16 +962,25 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 			$cache::TTL_WEEK,
 			function () use ( $contents, $fileName ) {
 				$parser = self::javaScriptParser();
+				$err = null;
 				try {
+					Wikimedia\suppressWarnings();
 					$parser->parse( $contents, $fileName, 1 );
-					$result = $contents;
 				} catch ( Exception $e ) {
-					// We'll save this to cache to avoid having to re-validate broken JS
-					$err = $e->getMessage();
-					$result = "mw.log.error(" .
-						Xml::encodeJsVar( "JavaScript parse error: $err" ) . ");";
+					$err = $e;
+				} finally {
+					Wikimedia\restoreWarnings();
 				}
-				return $result;
+				if ( $err ) {
+					// Send the error to the browser console client-side.
+					// By returning this as replacement for the actual script,
+					// we ensure modules are safe to load in a batch request,
+					// without causing other unrelated modules to break.
+					return 'mw.log.error(' .
+						Xml::encodeJsVar( 'JavaScript parse error: ' . $err->getMessage() ) .
+						');';
+				}
+				return $contents;
 			}
 		);
 	}

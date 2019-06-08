@@ -1,12 +1,27 @@
 {
 	"@metadata": {
 		"authors": [
-			"Milicevic01"
+			"Milicevic01",
+			"Zoranzoki21"
 		]
 	},
 	"apihelp-block-summary": "Blokiraj korisnika.",
 	"apihelp-block-param-reason": "Razlog za blokiranje.",
+	"apihelp-createaccount-param-name": "Korisničko ime.",
 	"apihelp-delete-summary": "Obriši stranicu.",
+	"apihelp-edit-param-text": "Stranica sa sadržajem.",
 	"apihelp-edit-param-minor": "Manja izmena.",
-	"apihelp-feedrecentchanges-param-hidepatrolled": "Sakrij patrolirane izmene."
+	"apihelp-edit-example-edit": "Uređivanje stranice.",
+	"apihelp-emailuser-summary": "Slanje imejla korisniku.",
+	"apihelp-emailuser-param-target": "Korisnik je poslao imejl.",
+	"apihelp-feedcontributions-param-year": "Od godine (i ranije).",
+	"apihelp-feedrecentchanges-param-hidepatrolled": "Sakrij patrolirane izmene.",
+	"apihelp-filerevert-summary": "Vratiti datoteku u raniju verziju.",
+	"apihelp-help-example-recursive": "Sva pomoć u jednoj stranici.",
+	"apihelp-login-param-name": "Korisničko ime.",
+	"apihelp-login-param-password": "Lozinka.",
+	"apihelp-login-example-login": "Prijava.",
+	"apihelp-move-summary": "Premeštanje stranice.",
+	"apihelp-query+allrevisions-param-namespace": "Samo spisak stranica u ovom imenskom prostoru.",
+	"apihelp-stashedit-param-text": "Stranica sa sadržajem."
 }

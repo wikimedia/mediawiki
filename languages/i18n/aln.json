@@ -9,7 +9,8 @@
 			"Ammartivari",
 			"Olsi",
 			"Kosovastar",
-			"Macofe"
+			"Macofe",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Nënvizoji vegzat",
@@ -19,7 +20,6 @@
 	"tog-extendwatchlist": "Zgjâno listën e mbikëqyrjeve që me i pa tâna ndryshimet, jo veç ato mâ të fresktat",
 	"tog-usenewrc": "Përdor ndryshimet e freskëta me vegla të përparueme (lyp JavaScript)",
 	"tog-numberheadings": "Numëro automatikisht mbititujt",
-	"tog-showtoolbar": "Trego butonat për redaktim (JavaScript)",
 	"tog-editondblclick": "Redakto faqet me klikim të dyfishtë (JavaScript)",
 	"tog-editsectiononrightclick": "Lejo redaktimin e seksioneve tue klikue me të djathtë mbi titull (JavaScript)",
 	"tog-watchcreations": "Shtoji në listë mbikëqyrëse faqet që i krijoj vetë",
@@ -733,7 +733,9 @@
 	"right-editprotected": "Redakto faqet e mbrojtura (pa ndryshuar mbrojtjen)",
 	"right-editinterface": "Ndrysho parapamjen e përdoruesit",
 	"right-editusercss": "Redakto skedat CSS të përdoruesve tjerë",
+	"right-edituserjson": "Redakto skedat JSON të përdoruesve tjerë",
 	"right-edituserjs": "Redakto skedat JS të përdoruesve tjerë",
+	"right-editmyuserjson": "Redakto JSON - skedat e tua të përdoruesit",
 	"right-noratelimit": "Mos u prek nga kufizimet e vlerësimit",
 	"right-import": "Importo faqe nga wiki tjera",
 	"right-unwatchedpages": "Shiko listën e faqeve të pa vëzhguara",
@@ -895,7 +897,7 @@
 	"contributions-title": "Kontributet e përdoruesit në $1",
 	"mycontris": "Redaktimet e mia",
 	"contribsub2": "Për $1 ($2)",
-	"uctop": "(në krye)",
+	"uctop": "në krye",
 	"month": "Prej muejit (e mâ herët):",
 	"year": "Prej vjetit (e mâ herët):",
 	"sp-contributions-newbies": "Trego sall kontributet e përdoruesve të rij",

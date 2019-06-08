@@ -287,7 +287,7 @@ class ApiQuery extends ApiBase {
 			}
 		} elseif ( $modCacheMode === 'public' ) {
 			// do nothing, if it's public already it will stay public
-		} else { // private
+		} else {
 			$cacheMode = 'private';
 		}
 

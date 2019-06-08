@@ -20,7 +20,9 @@
 	line-height: 2.5;
 }
 
-.mw-widget-calendarWidget-header .oo-ui-buttonWidget {
+// Overwrite OOUI's `.oo-ui-buttonElement-frameless.oo-ui-iconElement:first-child`
+.mw-widget-calendarWidget-header .oo-ui-buttonWidget.oo-ui-iconElement {
+	margin-left: 0;
 	margin-right: 0;
 }
 
@@ -61,6 +63,7 @@
 .mw-widget-calendarWidget-body-wrapper {
 	.mw-widget-calendarWidget-body {
 		display: inline-block;
+		display: inline-grid;
 		// Fit 7 days, 3em each
 		width: @calendarWidth;
 		// Fit 6 weeks + heading line, 2em each
@@ -106,6 +109,7 @@
 
 	.mw-widget-calendarWidget-body {
 		display: block;
+		display: grid;
 	}
 
 	.mw-widget-calendarWidget-body:first-child {
@@ -121,6 +125,7 @@
 
 	.mw-widget-calendarWidget-body {
 		display: block;
+		display: grid;
 	}
 
 	.mw-widget-calendarWidget-body:first-child {
@@ -128,6 +133,20 @@
 		margin-top: -@calendarHeight !important; /* stylelint-disable-line value-keyword-case, declaration-no-important */
 		.transition( margin-top 500ms );
 	}
+}
+
+// Support: Browsers that render CSS Grid. All others ignore unknown `grid-*` properties.
+// This avoids any calculation issues pushing items to next line.
+.mw-widget-calendarWidget-body-month {
+	grid-template-columns: auto auto auto auto auto auto auto;
+}
+
+.mw-widget-calendarWidget-body-year {
+	grid-template-columns: auto auto;
+}
+
+.mw-widget-calendarWidget-body-duodecade {
+	grid-template-columns: auto auto auto auto auto;
 }
 
 .mw-widget-calendarWidget-day,
@@ -147,15 +166,18 @@
 	// 7x7 grid
 	width: @calendarWidth / 7;
 	line-height: @calendarHeight / 7;
+
 	// Don't overlap the hacked-up fake box-shadow border we get when focussed
 	&:nth-child( 7n ) {
 		width: @calendarWidth / 7 - 0.2em;
 		margin-right: 0.2em;
 	}
+
 	&:nth-child( 7n+1 ) {
 		width: @calendarWidth / 7 - 0.2em;
 		margin-left: 0.2em;
 	}
+
 	&:nth-child( 42 ) ~ & {
 		line-height: @calendarHeight / 7 - 0.2em;
 		margin-bottom: 0.2em;
@@ -166,15 +188,18 @@
 	// 2x6 grid
 	width: @calendarWidth / 2;
 	line-height: @calendarHeight / 6;
+
 	// Don't overlap the hacked-up fake box-shadow border we get when focussed
 	&:nth-child( 2n ) {
 		width: @calendarWidth / 2 - 0.2em;
 		margin-right: 0.2em;
 	}
+
 	&:nth-child( 2n+1 ) {
 		width: @calendarWidth / 2 - 0.2em;
 		margin-left: 0.2em;
 	}
+
 	&:nth-child( 10 ) ~ & {
 		line-height: @calendarHeight / 6 - 0.2em;
 		margin-bottom: 0.2em;
@@ -185,15 +210,18 @@
 	// 5x4 grid
 	width: @calendarWidth / 5;
 	line-height: @calendarHeight / 4;
+
 	// Don't overlap the hacked-up fake box-shadow border we get when focussed
 	&:nth-child( 5n ) {
 		width: @calendarWidth / 5 - 0.2em;
 		margin-right: 0.2em;
 	}
+
 	&:nth-child( 5n+1 ) {
 		width: @calendarWidth / 5 - 0.2em;
 		margin-left: 0.2em;
 	}
+
 	&:nth-child( 15 ) ~ & {
 		line-height: @calendarHeight / 4 - 0.2em;
 		margin-bottom: 0.2em;

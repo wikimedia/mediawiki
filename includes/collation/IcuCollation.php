@@ -22,7 +22,7 @@
  * @since 1.16.3
  */
 class IcuCollation extends Collation {
-	const FIRST_LETTER_VERSION = 3;
+	const FIRST_LETTER_VERSION = 4;
 
 	/** @var Collator */
 	private $primaryCollator;
@@ -225,6 +225,7 @@ class IcuCollation extends Collation {
 		'tl' => [ "Ñ", "Ng" ], // not in libicu
 		'to' => [ "Ng", "ʻ" ],
 		'tr' => [ "Ç", "Ğ", "İ", "Ö", "Ş", "Ü" ],
+		'-tr' => [ "ı" ],
 		'tt' => [ "Ә", "Ө", "Ү", "Җ", "Ң", "Һ" ], // not in libicu
 		'uk' => [ "Ґ", "Ь" ],
 		'uz' => [ "Ch", "G'", "Ng", "O'", "Sh" ], // not in libicu
@@ -364,16 +365,14 @@ class IcuCollation extends Collation {
 			foreach ( $digits as $digit ) {
 				$letters[] = $this->digitTransformLanguage->formatNum( $digit, true );
 			}
+		} elseif ( $this->locale === 'root' ) {
+			$letters = require "$IP/includes/collation/data/first-letters-root.php";
 		} else {
-			if ( $this->locale === 'root' ) {
-				$letters = require "$IP/includes/collation/data/first-letters-root.php";
-			} else {
-				// FIXME: Is this still used?
-				$letters = wfGetPrecompiledData( "first-letters-{$this->locale}.ser" );
-				if ( $letters === false ) {
-					throw new MWException( "MediaWiki does not support ICU locale " .
-						"\"{$this->locale}\"" );
-				}
+			// FIXME: Is this still used?
+			$letters = wfGetPrecompiledData( "first-letters-{$this->locale}.ser" );
+			if ( $letters === false ) {
+				throw new MWException( "MediaWiki does not support ICU locale " .
+					"\"{$this->locale}\"" );
 			}
 		}
 
@@ -560,6 +559,8 @@ class IcuCollation extends Collation {
 		$versionPrefix = substr( $icuVersion, 0, 3 );
 		// Source: http://site.icu-project.org/download
 		$map = [
+			'63.' => '11.0',
+			'62.' => '11.0',
 			'61.' => '10.0',
 			'60.' => '10.0',
 			'59.' => '9.0',

@@ -74,36 +74,30 @@ class ReplicatedBagOStuff extends BagOStuff {
 		$this->readStore->setDebug( $debug );
 	}
 
-	protected function doGet( $key, $flags = 0 ) {
+	public function get( $key, $flags = 0 ) {
 		return ( $flags & self::READ_LATEST )
 			? $this->writeStore->get( $key, $flags )
 			: $this->readStore->get( $key, $flags );
-	}
-
-	public function getMulti( array $keys, $flags = 0 ) {
-		return ( $flags & self::READ_LATEST )
-			? $this->writeStore->getMulti( $keys, $flags )
-			: $this->readStore->getMulti( $keys, $flags );
 	}
 
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		return $this->writeStore->set( $key, $value, $exptime, $flags );
 	}
 
-	public function delete( $key ) {
-		return $this->writeStore->delete( $key );
+	public function delete( $key, $flags = 0 ) {
+		return $this->writeStore->delete( $key, $flags );
 	}
 
-	public function add( $key, $value, $exptime = 0 ) {
-		return $this->writeStore->add( $key, $value, $exptime );
+	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
+		return $this->writeStore->add( $key, $value, $exptime, $flags );
 	}
 
-	public function incr( $key, $value = 1 ) {
-		return $this->writeStore->incr( $key, $value );
+	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
+		return $this->writeStore->merge( $key, $callback, $exptime, $attempts, $flags );
 	}
 
-	public function decr( $key, $value = 1 ) {
-		return $this->writeStore->decr( $key, $value );
+	public function changeTTL( $key, $exptime = 0, $flags = 0 ) {
+		return $this->writeStore->changeTTL( $key, $exptime, $flags );
 	}
 
 	public function lock( $key, $timeout = 6, $expiry = 6, $rclass = '' ) {
@@ -114,8 +108,34 @@ class ReplicatedBagOStuff extends BagOStuff {
 		return $this->writeStore->unlock( $key );
 	}
 
-	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
-		return $this->writeStore->merge( $key, $callback, $exptime, $attempts, $flags );
+	public function deleteObjectsExpiringBefore( $date, $progressCallback = false ) {
+		return $this->writeStore->deleteObjectsExpiringBefore( $date, $progressCallback );
+	}
+
+	public function getMulti( array $keys, $flags = 0 ) {
+		return ( ( $flags & self::READ_LATEST ) == self::READ_LATEST )
+			? $this->writeStore->getMulti( $keys, $flags )
+			: $this->readStore->getMulti( $keys, $flags );
+	}
+
+	public function setMulti( array $data, $exptime = 0, $flags = 0 ) {
+		return $this->writeStore->setMulti( $data, $exptime, $flags );
+	}
+
+	public function deleteMulti( array $keys, $flags = 0 ) {
+		return $this->writeStore->deleteMulti( $keys, $flags );
+	}
+
+	public function incr( $key, $value = 1 ) {
+		return $this->writeStore->incr( $key, $value );
+	}
+
+	public function decr( $key, $value = 1 ) {
+		return $this->writeStore->decr( $key, $value );
+	}
+
+	public function incrWithInit( $key, $ttl, $value = 1, $init = 1 ) {
+		return $this->writeStore->incrWithInit( $key, $ttl, $value, $init );
 	}
 
 	public function getLastError() {
@@ -139,5 +159,9 @@ class ReplicatedBagOStuff extends BagOStuff {
 
 	public function makeGlobalKey( $class, $component = null ) {
 		return $this->writeStore->makeGlobalKey( ...func_get_args() );
+	}
+
+	protected function doGet( $key, $flags = 0, &$casToken = null ) {
+		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
 	}
 }

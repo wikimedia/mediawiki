@@ -40,7 +40,7 @@
 		}, config );
 
 		// Parent constructor
-		mw.widgets.datetime.CalendarWidget[ 'super' ].call( this, config );
+		mw.widgets.datetime.CalendarWidget.super.call( this, config );
 
 		// Mixin constructors
 		OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: this.$element } ) );
@@ -216,7 +216,9 @@
 		if ( dates instanceof Date ) {
 			dates = [ dates ];
 		} else if ( Array.isArray( dates ) ) {
-			dates = dates.filter( function ( dt ) { return dt instanceof Date; } );
+			dates = dates.filter( function ( dt ) {
+				return dt instanceof Date;
+			} );
 			dates.sort();
 		} else {
 			dates = [];
@@ -450,7 +452,7 @@
 	mw.widgets.datetime.CalendarWidget.prototype.onPrevClick = function () {
 		this.setFocusedDate( this.adjustDate( this.getFocusedDate(), 'month', -1 ) );
 		if ( !this.$widget || OO.ui.contains( this.$element[ 0 ], document.activeElement, true ) ) {
-			this.$element.focus();
+			this.$element.trigger( 'focus' );
 		}
 	};
 
@@ -462,7 +464,7 @@
 	mw.widgets.datetime.CalendarWidget.prototype.onNextClick = function () {
 		this.setFocusedDate( this.adjustDate( this.getFocusedDate(), 'month', 1 ) );
 		if ( !this.$widget || OO.ui.contains( this.$element[ 0 ], document.activeElement, true ) ) {
-			this.$element.focus();
+			this.$element.trigger( 'focus' );
 		}
 	};
 
@@ -476,7 +478,7 @@
 		this.setFocusedDate( $button.getData() );
 		this.setSelected( [ $button.getData() ] );
 		if ( !this.$widget || OO.ui.contains( this.$element[ 0 ], document.activeElement, true ) ) {
-			this.$element.focus();
+			this.$element.trigger( 'focus' );
 		}
 	};
 
@@ -572,7 +574,7 @@
 		change = visible !== this.isVisible();
 
 		// Parent method
-		mw.widgets.datetime.CalendarWidget[ 'super' ].prototype.toggle.call( this, visible );
+		mw.widgets.datetime.CalendarWidget.super.prototype.toggle.call( this, visible );
 
 		if ( change ) {
 			if ( visible ) {

@@ -51,13 +51,7 @@ class LogFormatter {
 		global $wgLogActionsHandlers;
 		$fulltype = $entry->getFullType();
 		$wildcard = $entry->getType() . '/*';
-		$handler = '';
-
-		if ( isset( $wgLogActionsHandlers[$fulltype] ) ) {
-			$handler = $wgLogActionsHandlers[$fulltype];
-		} elseif ( isset( $wgLogActionsHandlers[$wildcard] ) ) {
-			$handler = $wgLogActionsHandlers[$wildcard];
-		}
+		$handler = $wgLogActionsHandlers[$fulltype] ?? $wgLogActionsHandlers[$wildcard] ?? '';
 
 		if ( $handler !== '' && is_string( $handler ) && class_exists( $handler ) ) {
 			return new $handler( $entry );
@@ -335,6 +329,7 @@ class LogFormatter {
 							->rawParams( $target )->inContentLanguage()->escaped();
 						break;
 					case 'overwrite':
+					case 'revert':
 						$text = wfMessage( 'overwroteimage' )
 							->rawParams( $target )->inContentLanguage()->escaped();
 						break;
@@ -650,18 +645,18 @@ class LogFormatter {
 	protected function makePageLink( Title $title = null, $parameters = [], $html = null ) {
 		if ( !$title instanceof Title ) {
 			$msg = $this->msg( 'invalidtitle' )->text();
-			if ( !$this->plaintext ) {
-				return Html::element( 'span', [ 'class' => 'mw-invalidtitle' ], $msg );
-			} else {
+			if ( $this->plaintext ) {
 				return $msg;
+			} else {
+				return Html::element( 'span', [ 'class' => 'mw-invalidtitle' ], $msg );
 			}
 		}
 
-		if ( !$this->plaintext ) {
+		if ( $this->plaintext ) {
+			$link = '[[' . $title->getPrefixedText() . ']]';
+		} else {
 			$html = $html !== null ? new HtmlArmor( $html ) : $html;
 			$link = $this->getLinkRenderer()->makeLink( $title, $html, [], $parameters );
-		} else {
-			$link = '[[' . $title->getPrefixedText() . ']]';
 		}
 
 		return $link;
@@ -767,7 +762,9 @@ class LogFormatter {
 					$user->getName(),
 					true, // redContribsWhenNoEdits
 					$toolFlags,
-					$user->getEditCount()
+					$user->getEditCount(),
+					// do not render parenthesises in the HTML markup (CSS will provide)
+					false
 				);
 			}
 		}
@@ -820,6 +817,11 @@ class LogFormatter {
 		foreach ( $this->getParametersForApi() as $key => $value ) {
 			$vals = explode( ':', $key, 3 );
 			if ( count( $vals ) !== 3 ) {
+				if ( $value instanceof __PHP_Incomplete_Class ) {
+					wfLogWarning( 'Log entry of type ' . $this->entry->getFullType() .
+						' contains unrecoverable extra parameters.' );
+					continue;
+				}
 				$logParams[$key] = $value;
 				continue;
 			}

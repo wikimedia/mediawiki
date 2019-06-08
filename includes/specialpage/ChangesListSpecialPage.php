@@ -25,6 +25,7 @@ use Wikimedia\Rdbms\DBQueryTimeoutError;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Special page which uses a ChangesList to show query results.
@@ -615,9 +616,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Main execution point
-	 *
-	 * @param string $subpage
+	 * @param string|null $subpage
 	 */
 	public function execute( $subpage ) {
 		$this->rcSubpage = $subpage;
@@ -793,10 +792,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$out->addJsConfigVars( 'wgStructuredChangeFiltersCollapsedState', $collapsed );
 
 			$out->addJsConfigVars(
-				'wgRCFiltersChangeTags',
-				$this->getChangeTagList()
-			);
-			$out->addJsConfigVars(
 				'StructuredChangeFiltersDisplayConfig',
 				[
 					'maxDays' => (int)$this->getConfig()->get( 'RCMaxAge' ) / ( 24 * 3600 ), // Translate to days
@@ -823,48 +818,61 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				'wgStructuredChangeFiltersCollapsedPreferenceName',
 				static::$collapsedPreferenceName
 			);
-
-			$out->addJsConfigVars(
-				'StructuredChangeFiltersLiveUpdatePollingRate',
-				$this->getConfig()->get( 'StructuredChangeFiltersLiveUpdatePollingRate' )
-			);
 		} else {
 			$out->addBodyClasses( 'mw-rcfilters-disabled' );
 		}
 	}
 
 	/**
+	 * Get config vars to export with the mediawiki.rcfilters.filters.ui module.
+	 *
+	 * @param ResourceLoaderContext $context
+	 * @return array
+	 */
+	public static function getRcFiltersConfigVars( ResourceLoaderContext $context ) {
+		return [
+			'RCFiltersChangeTags' => self::getChangeTagList( $context ),
+			'StructuredChangeFiltersEditWatchlistUrl' =>
+				SpecialPage::getTitleFor( 'EditWatchlist' )->getLocalURL()
+		];
+	}
+
+	/**
 	 * Fetch the change tags list for the front end
 	 *
-	 * @return Array Tag data
+	 * @param ResourceLoaderContext $context
+	 * @return array Tag data
 	 */
-	protected function getChangeTagList() {
-		$cache = ObjectCache::getMainWANInstance();
-		$context = $this->getContext();
+	protected static function getChangeTagList( ResourceLoaderContext $context ) {
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		return $cache->getWithSetCallback(
-			$cache->makeKey( 'changeslistspecialpage-changetags', $context->getLanguage()->getCode() ),
+			$cache->makeKey( 'changeslistspecialpage-changetags', $context->getLanguage() ),
 			$cache::TTL_MINUTE * 10,
 			function () use ( $context ) {
 				$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
 				$softwareActivatedTags = array_fill_keys( ChangeTags::listSoftwareActivatedTags(), 0 );
 
-				// Hit counts disabled for perf reasons, see T169997
-				/*
 				$tagStats = ChangeTags::tagUsageStatistics();
 				$tagHitCounts = array_merge( $explicitlyDefinedTags, $softwareActivatedTags, $tagStats );
 
-				// Sort by hits
-				arsort( $tagHitCounts );
-				*/
-				$tagHitCounts = array_merge( $explicitlyDefinedTags, $softwareActivatedTags );
+				// Sort by hits (disabled for now)
+				//arsort( $tagHitCounts );
+
+				// HACK work around ChangeTags::truncateTagDescription() requiring a RequestContext
+				$fakeContext = RequestContext::newExtraneousContext( Title::newFromText( 'Dwimmerlaik' ) );
+				$fakeContext->setLanguage( Language::factory( $context->getLanguage() ) );
 
 				// Build the list and data
 				$result = [];
 				foreach ( $tagHitCounts as $tagName => $hits ) {
 					if (
-						// Only get active tags
-						isset( $explicitlyDefinedTags[ $tagName ] ) ||
-						isset( $softwareActivatedTags[ $tagName ] )
+						(
+							// Only get active tags
+							isset( $explicitlyDefinedTags[ $tagName ] ) ||
+							isset( $softwareActivatedTags[ $tagName ] )
+						) &&
+						// Only get tags with more than 0 hits
+						$hits > 0
 					) {
 						$result[] = [
 							'name' => $tagName,
@@ -873,7 +881,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 							),
 							'description' =>
 								ChangeTags::truncateTagDescription(
-									$tagName, self::TAG_DESC_CHARACTER_LIMIT, $context
+									$tagName,
+									self::TAG_DESC_CHARACTER_LIMIT,
+									$fakeContext
 								),
 							'cssClass' => Sanitizer::escapeClass( 'mw-tag-' . $tagName ),
 							'hits' => $hits,
@@ -1042,6 +1052,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 *
 	 * There is light processing to simplify core maintenance.
 	 * @param array $definition
+	 * @phan-param array<int,array{class:string}> $definition
 	 */
 	protected function registerFiltersFromDefinitions( array $definition ) {
 		$autoFillPriority = -1;
@@ -1591,7 +1602,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Send the text to be displayed before the options. Should use $this->getOutput()->addWikiText()
+	 * Send the text to be displayed before the options.
+	 * Should use $this->getOutput()->addWikiTextAsInterface()
 	 * or similar methods to print the text.
 	 *
 	 * @param FormOptions $opts
@@ -1601,7 +1613,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Send the text to be displayed after the options. Should use $this->getOutput()->addWikiText()
+	 * Send the text to be displayed after the options.
+	 * Should use $this->getOutput()->addWikiTextAsInterface()
 	 * or similar methods to print the text.
 	 *
 	 * @param FormOptions $opts
@@ -1687,6 +1700,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$out = $this->getOutput();
 		// Styles and behavior for the legend box (see makeLegend())
 		$out->addModuleStyles( [
+			'mediawiki.interface.helpers.styles',
 			'mediawiki.special.changeslist.legend',
 			'mediawiki.special.changeslist',
 		] );

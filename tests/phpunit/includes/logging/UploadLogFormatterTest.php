@@ -134,7 +134,7 @@ class UploadLogFormatterTest extends LogFormatterTestCase {
 					],
 				],
 				[
-					'text' => 'User uploaded File:File.png',
+					'text' => 'User reverted File:File.png to an old version',
 					'api' => [
 						'img_sha1' => 'hash',
 						'img_timestamp' => '2015-01-01T00:00:00Z',
@@ -153,7 +153,7 @@ class UploadLogFormatterTest extends LogFormatterTestCase {
 					'params' => [],
 				],
 				[
-					'text' => 'User uploaded File:File.png',
+					'text' => 'User reverted File:File.png to an old version',
 					'api' => [],
 				],
 			],

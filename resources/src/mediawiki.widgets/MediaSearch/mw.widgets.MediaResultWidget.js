@@ -53,10 +53,6 @@
 
 		this.calculateSizing( this.data );
 
-		// Get wiki default thumbnail size
-		this.defaultThumbSize = mw.config.get( 'wgVisualEditorConfig' )
-			.defaultUserOptions.defaultthumbsize;
-
 		// Initialization
 		this.setLabel( new mw.Title( this.data.title ).getNameText() );
 		this.$label.addClass( 'mw-widget-mediaResultWidget-nameLabel' );

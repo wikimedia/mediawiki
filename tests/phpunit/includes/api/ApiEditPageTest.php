@@ -152,7 +152,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$content = $page->getContent();
 		$this->assertNotNull( $content, 'Page should have been created' );
 
-		$text = $content->getNativeData();
+		$text = $content->getText();
 
 		$this->assertSame( $expected, $text );
 	}
@@ -176,7 +176,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertSame( 'Success', $re['edit']['result'] );
 		$newtext = WikiPage::factory( Title::newFromText( $name ) )
 			->getContent( Revision::RAW )
-			->getNativeData();
+			->getText();
 		$this->assertSame( "==section 1==\nnew content 1\n\n==section 2==\ncontent2", $newtext );
 
 		// Test that we raise a 'nosuchsection' error
@@ -216,7 +216,7 @@ class ApiEditPageTest extends ApiTestCase {
 		// Check the page text is correct
 		$text = WikiPage::factory( Title::newFromText( $name ) )
 			->getContent( Revision::RAW )
-			->getNativeData();
+			->getText();
 		$this->assertSame( "== header ==\n\ntest", $text );
 
 		// Now on one that does
@@ -232,7 +232,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertSame( 'Success', $re2['edit']['result'] );
 		$text = WikiPage::factory( Title::newFromText( $name ) )
 			->getContent( Revision::RAW )
-			->getNativeData();
+			->getText();
 		$this->assertSame( "== header ==\n\ntest\n\n== header ==\n\ntest", $text );
 	}
 
@@ -733,7 +733,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'undoafter' => $revId1,
 		] );
 
-		$text = ( new WikiPage( $titleObj ) )->getContent()->getNativeData();
+		$text = ( new WikiPage( $titleObj ) )->getContent()->getText();
 
 		// This is wrong!  It should be 1.  But let's test for our incorrect
 		// behavior for now, so if someone fixes it they'll fix the test as
@@ -761,7 +761,7 @@ class ApiEditPageTest extends ApiTestCase {
 		] );
 
 		$text = ( new WikiPage( Title::newFromText( $name ) ) )->getContent()
-			->getNativeData();
+			->getText();
 		$this->assertSame( '3', $text );
 	}
 
@@ -784,7 +784,7 @@ class ApiEditPageTest extends ApiTestCase {
 		] );
 
 		$text = ( new WikiPage( Title::newFromText( $name ) ) )->getContent()
-			->getNativeData();
+			->getText();
 		$this->assertSame( '1', $text );
 	}
 
@@ -855,7 +855,7 @@ class ApiEditPageTest extends ApiTestCase {
 		] );
 
 		$text = ( new WikiPage( Title::newFromText( $name ) ) )
-			->getContent()->getNativeData();
+			->getContent()->getText();
 		$this->assertSame( 'Alert: Some text', $text );
 	}
 
@@ -872,7 +872,7 @@ class ApiEditPageTest extends ApiTestCase {
 		] );
 
 		$text = ( new WikiPage( Title::newFromText( $name ) ) )
-			->getContent()->getNativeData();
+			->getContent()->getText();
 		$this->assertSame( 'Some text is nice', $text );
 	}
 
@@ -890,7 +890,7 @@ class ApiEditPageTest extends ApiTestCase {
 		] );
 
 		$text = ( new WikiPage( Title::newFromText( $name ) ) )
-			->getContent()->getNativeData();
+			->getContent()->getText();
 		$this->assertSame( 'Alert: Some text is nice', $text );
 	}
 
@@ -957,7 +957,7 @@ class ApiEditPageTest extends ApiTestCase {
 		} finally {
 			// Validate that content was not changed
 			$text = ( new WikiPage( Title::newFromText( $name ) ) )
-				->getContent()->getNativeData();
+				->getContent()->getText();
 
 			$this->assertSame( 'Some text', $text );
 		}
@@ -1059,7 +1059,7 @@ class ApiEditPageTest extends ApiTestCase {
 		] );
 
 		$text = ( new WikiPage( Title::newFromText( $name ) ) )
-			->getContent()->getNativeData();
+			->getContent()->getText();
 
 		$this->assertSame( "Initial content\n\n== New section ==", $text );
 	}
@@ -1097,7 +1097,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$page = new WikiPage( Title::newFromText( $name ) );
 
 		$this->assertSame( "Initial content\n\n== My section ==\n\nMore content",
-			$page->getContent()->getNativeData() );
+			$page->getContent()->getText() );
 		$this->assertSame( '/* My section */ new section',
 			$page->getRevision()->getComment() );
 	}
@@ -1118,7 +1118,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$page = new WikiPage( Title::newFromText( $name ) );
 
 		$this->assertSame( "Initial content\n\n== Add new section ==\n\nMore content",
-			$page->getContent()->getNativeData() );
+			$page->getContent()->getText() );
 		// EditPage actually assumes the summary is the section name here
 		$this->assertSame( '/* Add new section */ new section',
 			$page->getRevision()->getComment() );
@@ -1141,7 +1141,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$page = new WikiPage( Title::newFromText( $name ) );
 
 		$this->assertSame( "Initial content\n\n== My section ==\n\nMore content",
-			$page->getContent()->getNativeData() );
+			$page->getContent()->getText() );
 		$this->assertSame( 'Add new section',
 			$page->getRevision()->getComment() );
 	}
@@ -1160,7 +1160,7 @@ class ApiEditPageTest extends ApiTestCase {
 		] );
 
 		$text = ( new WikiPage( Title::newFromText( $name ) ) )
-			->getContent()->getNativeData();
+			->getContent()->getText();
 
 		$this->assertSame( "== Section 1 ==\n\nContent and more content\n\n" .
 			"== Section 2 ==\n\nFascinating!", $text );
@@ -1179,7 +1179,7 @@ class ApiEditPageTest extends ApiTestCase {
 		] );
 
 		$text = ( new WikiPage( Title::newFromText( $name ) ) )
-			->getContent()->getNativeData();
+			->getContent()->getText();
 
 		$this->assertSame( "Content and more content\n\n== Section 1 ==\n\n" .
 			"Fascinating!", $text );
@@ -1201,7 +1201,7 @@ class ApiEditPageTest extends ApiTestCase {
 			] );
 		} finally {
 			$text = ( new WikiPage( Title::newFromText( $name ) ) )
-				->getContent()->getNativeData();
+				->getContent()->getText();
 
 			$this->assertSame( 'Content', $text );
 		}
@@ -1223,7 +1223,7 @@ class ApiEditPageTest extends ApiTestCase {
 			] );
 		} finally {
 			$text = ( new WikiPage( Title::newFromText( $name ) ) )
-				->getContent()->getNativeData();
+				->getContent()->getText();
 
 			$this->assertSame( 'Content', $text );
 		}
@@ -1332,25 +1332,6 @@ class ApiEditPageTest extends ApiTestCase {
 	}
 
 	public function testEditWithTag() {
-		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_WRITE_BOTH );
-		$name = 'Help:' . ucfirst( __FUNCTION__ );
-
-		ChangeTags::defineTag( 'custom tag' );
-
-		$revId = $this->doApiRequestWithToken( [
-			'action' => 'edit',
-			'title' => $name,
-			'text' => 'Some text',
-			'tags' => 'custom tag',
-		] )[0]['edit']['newrevid'];
-
-		$dbw = wfGetDB( DB_MASTER );
-		$this->assertSame( 'custom tag', $dbw->selectField(
-			'change_tag', 'ct_tag', [ 'ct_rev_id' => $revId ], __METHOD__ ) );
-	}
-
-	public function testEditWithTagNewBackend() {
-		$this->setMwGlobals( 'wgChangeTagsSchemaMigrationStage', MIGRATION_NEW );
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
 		ChangeTags::defineTag( 'custom tag' );
@@ -1368,7 +1349,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'ctd_name',
 			[ 'ct_rev_id' => $revId ],
 			__METHOD__,
-			[ 'change_tag_def' => [ 'INNER JOIN', 'ctd_id = ct_tag_id' ] ]
+			[ 'change_tag_def' => [ 'JOIN', 'ctd_id = ct_tag_id' ] ]
 			)
 		);
 	}
@@ -1493,8 +1474,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testEditWhileBlocked() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$this->setExpectedException( ApiUsageException::class,
-			'You have been blocked from editing.' );
+		$this->assertNull( Block::newFromTarget( '127.0.0.1' ), 'Sanity check' );
 
 		$block = new Block( [
 			'address' => self::$users['sysop']->getUser()->getName(),
@@ -1502,6 +1482,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'reason' => 'Capriciousness',
 			'timestamp' => '19370101000000',
 			'expiry' => 'infinity',
+			'enableAutoblock' => true,
 		] );
 		$block->insert();
 
@@ -1511,6 +1492,10 @@ class ApiEditPageTest extends ApiTestCase {
 				'title' => $name,
 				'text' => 'Some text',
 			] );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( ApiUsageException $ex ) {
+			$this->assertSame( 'You have been blocked from editing.', $ex->getMessage() );
+			$this->assertNotNull( Block::newFromTarget( '127.0.0.1' ), 'Autoblock spread' );
 		} finally {
 			$block->delete();
 			self::$users['sysop']->getUser()->clearInstanceCache();

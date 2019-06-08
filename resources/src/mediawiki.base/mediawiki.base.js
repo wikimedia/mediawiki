@@ -103,7 +103,13 @@
 		 * @return {string} Parsed message
 		 */
 		parser: function () {
-			return mw.format.apply( null, [ this.map.get( this.key ) ].concat( this.parameters ) );
+			var text;
+			if ( mw.config.get( 'wgUserLanguage' ) === 'qqx' ) {
+				text = '(' + this.key + '$*)';
+			} else {
+				text = this.map.get( this.key );
+			}
+			return mw.format.apply( null, [ text ].concat( this.parameters ) );
 		},
 
 		/**
@@ -217,6 +223,9 @@
 		 * @return {boolean}
 		 */
 		exists: function () {
+			if ( mw.config.get( 'wgUserLanguage' ) === 'qqx' ) {
+				return true;
+			}
 			return this.map.exists( this.key );
 		}
 	};
@@ -239,6 +248,29 @@
 	};
 
 	/**
+	 * Replace $* with a list of parameters for &uselang=qqx.
+	 *
+	 * @private
+	 * @since 1.33
+	 * @param {string} formatString Format string
+	 * @param {Array} parameters Values for $N replacements
+	 * @return {string} Transformed format string
+	 */
+	mw.internalDoTransformFormatForQqx = function ( formatString, parameters ) {
+		var parametersString;
+		if ( formatString.indexOf( '$*' ) !== -1 ) {
+			parametersString = '';
+			if ( parameters.length ) {
+				parametersString = ': ' + parameters.map( function ( _, i ) {
+					return '$' + ( i + 1 );
+				} ).join( ', ' );
+			}
+			return formatString.replace( '$*', parametersString );
+		}
+		return formatString;
+	};
+
+	/**
 	 * Format a string. Replace $1, $2 ... $N with positional arguments.
 	 *
 	 * Used by Message#parser().
@@ -250,6 +282,7 @@
 	 */
 	mw.format = function ( formatString ) {
 		var parameters = slice.call( arguments, 1 );
+		formatString = mw.internalDoTransformFormatForQqx( formatString, parameters );
 		return formatString.replace( /\$(\d+)/g, function ( str, match ) {
 			var index = parseInt( match, 10 ) - 1;
 			return parameters[ index ] !== undefined ? parameters[ index ] : '$' + match;
@@ -611,7 +644,7 @@
 		var deferred = $.Deferred();
 
 		// Allow calling with a single dependency as a string
-		if ( typeof dependencies === 'string' ) {
+		if ( !Array.isArray( dependencies ) ) {
 			dependencies = [ dependencies ];
 		}
 
@@ -629,11 +662,40 @@
 			return deferred.reject( e ).promise();
 		}
 
-		mw.loader.enqueue( dependencies, function () {
-			deferred.resolve( mw.loader.require );
-		}, deferred.reject );
+		mw.loader.enqueue(
+			dependencies,
+			function () { deferred.resolve( mw.loader.require ); },
+			deferred.reject
+		);
 
 		return deferred.promise();
+	};
+
+	/**
+	 * Load a script by URL.
+	 *
+	 * Example:
+	 *
+	 *     mw.loader.getScript(
+	 *         'https://example.org/x-1.0.0.js'
+	 *     )
+	 *         .then( function () {
+	 *             // Script succeeded. You can use X now.
+	 *         }, function ( e ) {
+	 *             // Script failed. X is not avaiable
+	 *             mw.log.error( e.message ); // => "Failed to load script"
+	 *         } );
+	 *     } );
+	 *
+	 * @member mw.loader
+	 * @param {string} url Script URL
+	 * @return {jQuery.Promise} Resolved when the script is loaded
+	 */
+	mw.loader.getScript = function ( url ) {
+		return $.ajax( url, { dataType: 'script', cache: true } )
+			.catch( function () {
+				throw new Error( 'Failed to load script' );
+			} );
 	};
 
 	// Alias $j to jQuery for backwards compatibility

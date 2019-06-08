@@ -104,7 +104,7 @@ trait ResourceLoaderOOUIModule {
 	 */
 	protected function getThemePath( $theme, $kind, $module ) {
 		$paths = self::getThemePaths();
-		$path = $paths[ $theme ][ $kind ];
+		$path = $paths[$theme][$kind];
 		$path = str_replace( '{module}', $module, $path );
 		return $path;
 	}

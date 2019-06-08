@@ -40,10 +40,6 @@ class ApiDisabled extends ApiBase {
 		return false;
 	}
 
-	protected function getDescriptionMessage() {
-		return 'apihelp-disabled-summary';
-	}
-
 	protected function getSummaryMessage() {
 		return 'apihelp-disabled-summary';
 	}

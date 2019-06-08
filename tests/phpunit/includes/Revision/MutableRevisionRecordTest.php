@@ -25,6 +25,11 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 
 	use RevisionRecordTests;
 
+	function setUp() {
+		Title::clearCaches();
+		parent::setUp();
+	}
+
 	/**
 	 * @param array $rowOverrides
 	 *

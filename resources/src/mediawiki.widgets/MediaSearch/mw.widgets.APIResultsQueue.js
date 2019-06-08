@@ -48,7 +48,7 @@
 	 *  are set up. Note: The promise must have an .abort() functionality.
 	 */
 	mw.widgets.APIResultsQueue.prototype.setup = function () {
-		return $.Deferred().resolve().promise( { abort: $.noop } );
+		return $.Deferred().resolve().promise( { abort: function () {} } );
 	};
 
 	/**

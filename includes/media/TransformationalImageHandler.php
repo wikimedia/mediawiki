@@ -26,6 +26,7 @@
  * @ingroup Media
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Shell\Shell;
 
 /**
  * Handler for images that need to be transformed
@@ -41,7 +42,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * 'physicalWidth' and 'physicalHeight' indicate the thumbnail dimensions.
 	 * @return bool
 	 */
-	function normaliseParams( $image, &$params ) {
+	public function normaliseParams( $image, &$params ) {
 		if ( !parent::normaliseParams( $image, $params ) ) {
 			return false;
 		}
@@ -517,7 +518,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			function () use ( $method ) {
 				global $wgImageMagickConvertCommand;
 
-				$cmd = wfEscapeShellArg( $wgImageMagickConvertCommand ) . ' -version';
+				$cmd = Shell::escape( $wgImageMagickConvertCommand ) . ' -version';
 				wfDebug( $method . ": Running convert -version\n" );
 				$retval = '';
 				$return = wfShellExecWithStderr( $cmd, $retval );

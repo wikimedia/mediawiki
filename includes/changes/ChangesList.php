@@ -58,8 +58,6 @@ class ChangesList extends ContextSource {
 	protected $filterGroups;
 
 	/**
-	 * Changeslist constructor
-	 *
 	 * @param Skin|IContextSource $obj
 	 * @param array $filterGroups Array of ChangesListFilterGroup objects (currently optional)
 	 */
@@ -291,7 +289,10 @@ class ChangesList extends ContextSource {
 		$this->rcCacheIndex = 0;
 		$this->lastdate = '';
 		$this->rclistOpen = false;
-		$this->getOutput()->addModuleStyles( 'mediawiki.special.changeslist' );
+		$this->getOutput()->addModuleStyles( [
+			'mediawiki.interface.helpers.styles',
+			'mediawiki.special.changeslist'
+		] );
 
 		return '<div class="mw-changeslist">';
 	}
@@ -351,12 +352,13 @@ class ChangesList extends ContextSource {
 		} else {
 			$formattedSizeClass = 'mw-plusminus-neg';
 		}
+		$formattedSizeClass .= ' mw-diff-bytes';
 
 		$formattedTotalSize = $context->msg( 'rc-change-size-new' )->numParams( $new )->text();
 
 		return Html::element( $tag,
 			[ 'dir' => 'ltr', 'class' => $formattedSizeClass, 'title' => $formattedTotalSize ],
-			$context->msg( 'parentheses', $formattedSize )->plain() ) . $lang->getDirMark();
+			$formattedSize ) . $lang->getDirMark();
 	}
 
 	/**
@@ -391,6 +393,36 @@ class ChangesList extends ContextSource {
 		$out .= '</div>';
 
 		return $out;
+	}
+
+	/**
+	 * Render the date and time of a revision in the current user language
+	 * based on whether the user is able to view this information or not.
+	 * @param Revision $rev
+	 * @param User $user
+	 * @param Language $lang
+	 * @param Title|null $title (optional) where Title does not match
+	 *   the Title associated with the Revision
+	 * @internal For usage by Pager classes only (e.g. HistoryPager and ContribsPager).
+	 * @return string HTML
+	 */
+	public static function revDateLink( Revision $rev, User $user, Language $lang, $title = null ) {
+		$ts = $rev->getTimestamp();
+		$date = $lang->userTimeAndDate( $ts, $user );
+		if ( $rev->userCan( Revision::DELETED_TEXT, $user ) ) {
+			$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
+				$title !== null ? $title : $rev->getTitle(),
+				$date,
+				[ 'class' => 'mw-changeslist-date' ],
+				[ 'oldid' => $rev->getId() ]
+			);
+		} else {
+			$link = htmlspecialchars( $date );
+		}
+		if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
+			$link = "<span class=\"history-deleted mw-changeslist-date\">$link</span>";
+		}
+		return $link;
 	}
 
 	/**
@@ -453,11 +485,9 @@ class ChangesList extends ContextSource {
 			);
 		}
 		if ( $rc->mAttribs['rc_type'] == RC_CATEGORIZE ) {
-			$diffhist = $diffLink . $this->message['pipe-separator'] . $this->message['hist'];
+			$histLink = $this->message['hist'];
 		} else {
-			$diffhist = $diffLink . $this->message['pipe-separator'];
-			# History link
-			$diffhist .= $this->linkRenderer->makeKnownLink(
+			$histLink = $this->linkRenderer->makeKnownLink(
 				$rc->getTitle(),
 				new HtmlArmor( $this->message['hist'] ),
 				[ 'class' => 'mw-changeslist-history' ],
@@ -468,20 +498,11 @@ class ChangesList extends ContextSource {
 			);
 		}
 
-		// @todo FIXME: Hard coded ". .". Is there a message for this? Should there be?
-		$s .= $this->msg( 'parentheses' )->rawParams( $diffhist )->escaped() .
-			' <span class="mw-changeslist-separator">. .</span> ';
-	}
-
-	/**
-	 * @param string &$s Article link will be appended to this string, in place.
-	 * @param RecentChange $rc
-	 * @param bool $unpatrolled
-	 * @param bool $watched
-	 * @deprecated since 1.27, use getArticleLink instead.
-	 */
-	public function insertArticleLink( &$s, RecentChange $rc, $unpatrolled, $watched ) {
-		$s .= $this->getArticleLink( $rc, $unpatrolled, $watched );
+		$s .= Html::rawElement( 'div', [ 'class' => 'mw-changeslist-links' ],
+				Html::rawElement( 'span', [], $diffLink ) .
+				Html::rawElement( 'span', [], $histLink )
+			) .
+			' <span class="mw-changeslist-separator"></span> ';
 	}
 
 	/**
@@ -526,6 +547,7 @@ class ChangesList extends ContextSource {
 	 * and a separator
 	 *
 	 * @param RecentChange $rc
+	 * @deprecated use revDateLink instead.
 	 * @return string HTML fragment
 	 */
 	public function getTimestamp( $rc ) {
@@ -534,7 +556,7 @@ class ChangesList extends ContextSource {
 			htmlspecialchars( $this->getLanguage()->userTime(
 				$rc->mAttribs['rc_timestamp'],
 				$this->getUser()
-			) ) . '</span> <span class="mw-changeslist-separator">. .</span> ';
+			) ) . '</span> <span class="mw-changeslist-separator"></span> ';
 	}
 
 	/**
@@ -560,7 +582,13 @@ class ChangesList extends ContextSource {
 		} else {
 			$s .= $this->getLanguage()->getDirMark() . Linker::userLink( $rc->mAttribs['rc_user'],
 				$rc->mAttribs['rc_user_text'] );
-			$s .= Linker::userToolLinks( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
+			$s .= Linker::userToolLinks(
+				$rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'],
+				false, 0, null,
+				// The text content of tools is not wrapped with parenthesises or "piped".
+				// This will be handled in CSS (T205581).
+				false
+			);
 		}
 	}
 
@@ -589,7 +617,13 @@ class ChangesList extends ContextSource {
 			return ' <span class="history-deleted">' .
 				$this->msg( 'rev-deleted-comment' )->escaped() . '</span>';
 		} else {
-			return Linker::commentBlock( $rc->mAttribs['rc_comment'], $rc->getTitle() );
+			return Linker::commentBlock( $rc->mAttribs['rc_comment'], $rc->getTitle(),
+				// Whether section links should refer to local page (using default false)
+				false,
+				// wikid to generate links for (using default null) */
+				null,
+				// whether parentheses should be rendered as part of the message
+				false );
 		}
 	}
 

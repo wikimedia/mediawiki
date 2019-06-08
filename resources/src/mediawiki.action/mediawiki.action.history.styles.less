@@ -1,0 +1,30 @@
+/* Basic styles for the history page */
+@import 'mediawiki.mixins';
+
+/* Visually hide repeating text, but leave in for better form navigation on screen readers. */
+.action-history .mw-htmlform-ooui .oo-ui-fieldsetLayout:first-child .oo-ui-fieldsetLayout-header {
+	.mixin-screen-reader-text();
+}
+
+#pagehistory .history-user {
+	margin-left: 0.4em;
+	margin-right: 0.2em;
+}
+
+#pagehistory li {
+	border: 1px solid #fff;
+}
+
+#pagehistory li.selected {
+	background-color: #f8f9fa;
+	color: #222;
+	border: 1px dashed #a2a9b1;
+}
+
+.mw-history-revisionactions {
+	float: right;
+}
+
+.updatedmarker {
+	background-color: #b7f430;
+}

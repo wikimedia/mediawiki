@@ -16,7 +16,8 @@
 			"Lemondoge",
 			"Hex",
 			"Mainframe98",
-			"Southparkfan"
+			"Southparkfan",
+			"Elroy"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentatie]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api E-maillijst]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-aankondigingen]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & verzoeken]\n</div>\n<strong>Status:</strong> De MediaWiki API is een stabiele interface die actief ondersteund en verbeterd wordt. Hoewel we het proberen te voorkomen, is het mogelijk dat er soms wijzigingen worden aangebracht die bepaalde API-verzoek kunnen verhinderen; abonneer u op de [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ e-maillijst mediawiki-api-announce] voor meldingen over wijzigingen.\n\n<strong>Foutieve verzoeken:</strong> als de API foutieve verzoeken ontvangt, wordt er geantwoord met een HTTP-header met de sleutel \"MediaWiki-API-Error\" en daarna worden de waarde van de header en de foutcode op dezelfde waarde ingesteld. Zie [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Foutmeldingen en waarschuwingen]] voor meer informatie.\n\n<p class=\"mw-apisandbox-link\"><strong>Testen:</strong> u kunt [[Special:ApiSandbox|eenvoudig API-verzoeken testen]].</p>",
@@ -70,15 +71,6 @@
 	"apihelp-compare-param-torev": "Tweede te vergelijken revisie.",
 	"apihelp-createaccount-summary": "Een nieuw gebruikersaccount aanmaken.",
 	"apihelp-createaccount-example-create": "Start het proces voor het aanmaken van account <kbd>Example</kbd> met wachtwoord <kbd>ExamplePassword</kbd>.",
-	"apihelp-createaccount-param-name": "Gebruikersnaam.",
-	"apihelp-createaccount-param-password": "Wachtwoord (genegeerd als <var>$1mailpassword</var> is ingesteld).",
-	"apihelp-createaccount-param-domain": "Domein voor externe authentificatie (optioneel).",
-	"apihelp-createaccount-param-email": "E-mailadres van de gebruiker (optioneel).",
-	"apihelp-createaccount-param-realname": "Echte naam van de gebruiker (optioneel).",
-	"apihelp-createaccount-param-reason": "Optionele reden voor het aanmaken van het account, om in de logboeken te zetten.",
-	"apihelp-createaccount-param-language": "Taalcode om als standaard voor de gebruiker in te stellen (optioneel, standaard ingesteld op de inhoudstaal).",
-	"apihelp-createaccount-example-pass": "Account <kbd>testuser</kbd> met wachtwoord <kbd>test123</kbd> aanmaken.",
-	"apihelp-createaccount-example-mail": "Account <kbd>testmailuser</kbd> aanmaken en een willekeurig gegenereerd wachtwoord e-mailen.",
 	"apihelp-delete-summary": "Een pagina verwijderen.",
 	"apihelp-delete-param-title": "Titel van de te verwijderen pagina. Kan niet in combinatie met <var>$1pageid</var> gebruikt worden.",
 	"apihelp-delete-param-pageid": "Pagina-ID van de te verwijderen pagina. Kan niet in combinatie met <var>$1title</var> gebruikt worden.",
@@ -460,6 +452,7 @@
 	"apierror-import-unknownerror": "Onbekende fout trad op tijdens het importeren: $1.",
 	"apierror-integeroutofrange-belowminimum": "<var>$1</var> mag niet minder zijn dan $2 (ingesteld op $3).",
 	"apierror-invalidcategory": "De opgegeven categorienaam is niet geldig.",
+	"apierror-invalidmethod": "Ongeldige http-methode. Overweeg de methodes GET of POST.",
 	"apierror-invalidtitle": "Ongeldige titel \"$1\".",
 	"apierror-invaliduser": "Ongeldige gebruikersnaam \"$1\".",
 	"apierror-invaliduserid": "Gebruikers-ID <var>$1</var> is ongeldig.",

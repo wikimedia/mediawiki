@@ -4,10 +4,22 @@
  * @since 1.28
  */
 interface SearchIndexField {
-	/**
+	/*
 	 * Field types
 	 */
+	/**
+	 * TEXT fields are suitable for natural language and may be subject to
+	 * analysis such as stemming.
+	 *
+	 * Read more:
+	 * https://wikimediafoundation.org/2018/08/07/anatomy-search-token-affection/
+	 * https://wikimediafoundation.org/2018/09/13/anatomy-search-variation-under-nature/
+	 */
 	const INDEX_TYPE_TEXT = 0;
+	/**
+	 * KEYWORD fields are indexed without any processing, so are appropriate
+	 * for e.g. URLs.  The content will often consist of a single token.
+	 */
 	const INDEX_TYPE_KEYWORD = 1;
 	const INDEX_TYPE_INTEGER = 2;
 	const INDEX_TYPE_NUMBER = 3;

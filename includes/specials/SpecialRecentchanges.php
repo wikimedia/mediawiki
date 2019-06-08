@@ -136,9 +136,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Main execution point
-	 *
-	 * @param string $subpage
+	 * @param string|null $subpage
 	 */
 	public function execute( $subpage ) {
 		// Backwards-compatibility: redirect to new feed URLs
@@ -674,24 +672,29 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * Creates the choose namespace selection
 	 *
 	 * @param FormOptions $opts
-	 * @return string
+	 * @return string[]
 	 */
 	protected function namespaceFilterForm( FormOptions $opts ) {
 		$nsSelect = Html::namespaceSelector(
-			[ 'selected' => $opts['namespace'], 'all' => '' ],
+			[ 'selected' => $opts['namespace'], 'all' => '', 'in-user-lang' => true ],
 			[ 'name' => 'namespace', 'id' => 'namespace' ]
 		);
 		$nsLabel = Xml::label( $this->msg( 'namespace' )->text(), 'namespace' );
-		$invert = Xml::checkLabel(
+		$attribs = [ 'class' => [ 'mw-input-with-label' ] ];
+		// Hide the checkboxes when the namespace filter is set to 'all'.
+		if ( $opts['namespace'] === '' ) {
+			$attribs['class'][] = 'mw-input-hidden';
+		}
+		$invert = Html::rawElement( 'span', $attribs, Xml::checkLabel(
 			$this->msg( 'invert' )->text(), 'invert', 'nsinvert',
 			$opts['invert'],
 			[ 'title' => $this->msg( 'tooltip-invert' )->text() ]
-		);
-		$associated = Xml::checkLabel(
+		) );
+		$associated = Html::rawElement( 'span', $attribs, Xml::checkLabel(
 			$this->msg( 'namespace_association' )->text(), 'associated', 'nsassociated',
 			$opts['associated'],
 			[ 'title' => $this->msg( 'tooltip-namespace_association' )->text() ]
-		);
+		) );
 
 		return [ $nsLabel, "$nsSelect $invert $associated" ];
 	}
@@ -709,7 +712,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		$categories = array_map( 'trim', explode( '|', $opts['categories'] ) );
 
-		if ( !count( $categories ) ) {
+		if ( $categories === [] ) {
 			return;
 		}
 
@@ -744,7 +747,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		}
 
 		# Shortcut?
-		if ( !count( $articles ) || !count( $cats ) ) {
+		if ( $articles === [] || $cats === [] ) {
 			return;
 		}
 
@@ -800,7 +803,11 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$note = '';
 		$msg = $this->msg( 'rclegend' );
 		if ( !$msg->isDisabled() ) {
-			$note .= '<div class="mw-rclegend">' . $msg->parse() . "</div>\n";
+			$note .= Html::rawElement(
+				'div',
+				[ 'class' => 'mw-rclegend' ],
+				$msg->parse()
+			);
 		}
 
 		$lang = $this->getLanguage();
@@ -898,14 +905,21 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$datenow = $lang->userDate( $timestamp, $user );
 		$pipedLinks = '<span class="rcshowhide">' . $lang->pipeList( $links ) . '</span>';
 
-		$rclinks = '<span class="rclinks">' . $this->msg( 'rclinks' )->rawParams( $cl, $dl, '' )
-			->parse() . '</span>';
+		$rclinks = Html::rawElement(
+			'span',
+			[ 'class' => 'rclinks' ],
+			$this->msg( 'rclinks' )->rawParams( $cl, $dl, '' )->parse()
+		);
 
-		$rclistfrom = '<span class="rclistfrom">' . $this->makeOptionsLink(
-			$this->msg( 'rclistfrom' )->rawParams( $now, $timenow, $datenow )->parse(),
-			[ 'from' => $timestamp ],
-			$nondefaults
-		) . '</span>';
+		$rclistfrom = Html::rawElement(
+			'span',
+			[ 'class' => 'rclistfrom' ],
+			$this->makeOptionsLink(
+				$this->msg( 'rclistfrom' )->plaintextParams( $now, $timenow, $datenow )->parse(),
+				[ 'from' => $timestamp ],
+				$nondefaults
+			)
+		);
 
 		return "{$note}$rclinks<br />$pipedLinks<br />$rclistfrom";
 	}

@@ -397,7 +397,6 @@ EOF
 		$a->addHeadItem( '<foo1>' );
 		$a->addHeadItem( '<bar1>', 'bar' );
 		$a->addModules( 'test-module-a' );
-		$a->addModuleScripts( 'test-module-script-a' );
 		$a->addModuleStyles( 'test-module-styles-a' );
 		$b->addJsConfigVars( 'test-config-var-a', 'a' );
 
@@ -406,7 +405,6 @@ EOF
 		$b->addHeadItem( '<foo2>' );
 		$b->addHeadItem( '<bar2>', 'bar' );
 		$b->addModules( 'test-module-b' );
-		$b->addModuleScripts( 'test-module-script-b' );
 		$b->addModuleStyles( 'test-module-styles-b' );
 		$b->addJsConfigVars( 'test-config-var-b', 'b' );
 		$b->addJsConfigVars( 'test-config-var-a', 'X' );
@@ -420,10 +418,6 @@ EOF
 			'getModules' => [
 				'test-module-a',
 				'test-module-b',
-			],
-			'getModuleScripts' => [
-				'test-module-script-a',
-				'test-module-script-b',
 			],
 			'getModuleStyles' => [
 				'test-module-styles-a',
@@ -849,6 +843,11 @@ EOF
 		$this->assertFieldValues( $a, $expected );
 	}
 
+	/**
+	 * @covers ParserOutput::mergeInternalMetaDataFrom
+	 * @covers ParserOutput::getTimes
+	 * @covers ParserOutput::resetParseStartTime
+	 */
 	public function testMergeInternalMetaDataFrom_parseStartTime() {
 		/** @var object $a */
 		$a = new ParserOutput();

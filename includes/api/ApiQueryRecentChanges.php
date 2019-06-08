@@ -143,8 +143,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	 * @param ApiPageSet|null $resultPageSet
 	 */
 	public function run( $resultPageSet = null ) {
-		global $wgChangeTagsSchemaMigrationStage;
-
 		$user = $this->getUser();
 		/* Get the parameters of the request. */
 		$params = $this->extractRequestParams();
@@ -161,7 +159,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
 			$db = $this->getDB();
 			$timestamp = $db->addQuotes( $db->timestamp( $cont[0] ) );
-			$id = intval( $cont[1] );
+			$id = (int)$cont[1];
 			$this->dieContinueUsageIf( $id != $cont[1] );
 			$op = $params['dir'] === 'older' ? '<' : '>';
 			$this->addWhere(
@@ -334,9 +332,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$resultPageSet && $params['generaterevisions'] );
 
 		if ( $this->fld_tags ) {
-			$this->addTables( 'tag_summary' );
-			$this->addJoinConds( [ 'tag_summary' => [ 'LEFT JOIN', [ 'rc_id=ts_rc_id' ] ] ] );
-			$this->addFields( 'ts_tags' );
+			$this->addFields( [ 'ts_tags' => ChangeTags::makeTagSummarySubquery( 'recentchanges' ) ] );
 		}
 
 		if ( $this->fld_sha1 ) {
@@ -359,17 +355,13 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		if ( !is_null( $params['tag'] ) ) {
 			$this->addTables( 'change_tag' );
-			$this->addJoinConds( [ 'change_tag' => [ 'INNER JOIN', [ 'rc_id=ct_rc_id' ] ] ] );
-			if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
-				$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
-				try {
-					$this->addWhereFld( 'ct_tag_id', $changeTagDefStore->getId( $params['tag'] ) );
-				} catch ( NameTableAccessException $exception ) {
-					// Return nothing.
-					$this->addWhere( '1=0' );
-				}
-			} else {
-				$this->addWhereFld( 'ct_tag', $params['tag'] );
+			$this->addJoinConds( [ 'change_tag' => [ 'JOIN', [ 'rc_id=ct_rc_id' ] ] ] );
+			$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
+			try {
+				$this->addWhereFld( 'ct_tag_id', $changeTagDefStore->getId( $params['tag'] ) );
+			} catch ( NameTableAccessException $exception ) {
+				// Return nothing.
+				$this->addWhere( '1=0' );
 			}
 		}
 
@@ -477,7 +469,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	 *
 	 * @param stdClass $row The row from which to extract the data.
 	 * @return array An array mapping strings (descriptors) to their respective string values.
-	 * @access public
 	 */
 	public function extractRowInfo( $row ) {
 		/* Determine the title of the page that has been changed. */
@@ -487,7 +478,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		/* Our output data. */
 		$vals = [];
 
-		$type = intval( $row->rc_type );
+		$type = (int)$row->rc_type;
 		$vals['type'] = RecentChange::parseFromRCType( $type );
 
 		$anyHidden = false;
@@ -505,15 +496,15 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					ApiQueryBase::addTitleInfo( $vals, $title );
 				}
 				if ( $this->fld_ids ) {
-					$vals['pageid'] = intval( $row->rc_cur_id );
-					$vals['revid'] = intval( $row->rc_this_oldid );
-					$vals['old_revid'] = intval( $row->rc_last_oldid );
+					$vals['pageid'] = (int)$row->rc_cur_id;
+					$vals['revid'] = (int)$row->rc_this_oldid;
+					$vals['old_revid'] = (int)$row->rc_last_oldid;
 				}
 			}
 		}
 
 		if ( $this->fld_ids ) {
-			$vals['rcid'] = intval( $row->rc_id );
+			$vals['rcid'] = (int)$row->rc_id;
 		}
 
 		/* Add user data and 'anon' flag, if user is anonymous. */
@@ -546,8 +537,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		/* Add sizes of each revision. (Only available on 1.10+) */
 		if ( $this->fld_sizes ) {
-			$vals['oldlen'] = intval( $row->rc_old_len );
-			$vals['newlen'] = intval( $row->rc_new_len );
+			$vals['oldlen'] = (int)$row->rc_old_len;
+			$vals['newlen'] = (int)$row->rc_new_len;
 		}
 
 		/* Add the timestamp. */
@@ -592,7 +583,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				$anyHidden = true;
 			}
 			if ( LogEventsList::userCanBitfield( $row->rc_deleted, LogPage::DELETED_ACTION, $user ) ) {
-				$vals['logid'] = intval( $row->rc_logid );
+				$vals['logid'] = (int)$row->rc_logid;
 				$vals['logtype'] = $row->rc_log_type;
 				$vals['logaction'] = $row->rc_log_action;
 				$vals['logparams'] = LogFormatter::newFromRow( $row )->formatParametersForApi();

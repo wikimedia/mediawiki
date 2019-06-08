@@ -178,8 +178,15 @@ class FileBackendGroup {
 
 		$config = $this->backends[$name]['config'];
 		$config['class'] = $class;
-		$config += [ // set defaults
-			'wikiId' => wfWikiID(), // e.g. "my_wiki-en_"
+		if ( isset( $config['domainId'] ) ) {
+			$domain = $config['domainId'];
+		} else {
+			// @FIXME: this does not include the domain for b/c but it ideally should
+			$domain = $config['wikiId'] ?? wfWikiID();
+		}
+		// Set default parameter values
+		$config += [
+			'domainId' => $domain, // e.g. "my_wiki-en_"
 			'mimeCallback' => [ $this, 'guessMimeInternal' ],
 			'obResetFunc' => 'wfResetOutputBuffers',
 			'streamMimeFunc' => [ StreamFile::class, 'contentTypeFromPath' ],
@@ -188,10 +195,12 @@ class FileBackendGroup {
 			'wanCache' => MediaWikiServices::getInstance()->getMainWANObjectCache(),
 			'srvCache' => ObjectCache::getLocalServerInstance( 'hash' ),
 			'logger' => LoggerFactory::getInstance( 'FileOperation' ),
-			'profiler' => Profiler::instance()
+			'profiler' => function ( $section ) {
+				return Profiler::instance()->scopedProfileIn( $section );
+			}
 		];
 		$config['lockManager'] =
-			LockManagerGroup::singleton( $config['wikiId'] )->get( $config['lockManager'] );
+			LockManagerGroup::singleton( $domain )->get( $config['lockManager'] );
 		$config['fileJournal'] = isset( $config['fileJournal'] )
 			? FileJournal::factory( $config['fileJournal'], $name )
 			: FileJournal::factory( [ 'class' => NullFileJournal::class ], $name );

@@ -75,7 +75,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$this->outputHeader();
 
 		$request = $this->getRequest();
-		$target = !is_null( $par ) ? $par : $request->getVal( 'target' );
+		$target = $par ?? $request->getVal( 'target' );
 
 		// Yes, the use of getVal() and getText() is wanted, see T22365
 
@@ -122,7 +122,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$this->moveOverShared = $request->getBool( 'wpMoveOverSharedFile' );
 		$this->watch = $request->getCheck( 'wpWatch' ) && $user->isLoggedIn();
 
-		if ( 'submit' == $request->getVal( 'action' ) && $request->wasPosted()
+		if ( $request->getVal( 'action' ) == 'submit' && $request->wasPosted()
 			&& $user->matchEditToken( $request->getVal( 'wpEditToken' ) )
 		) {
 			$this->doSubmit();
@@ -137,8 +137,9 @@ class MovePageForm extends UnlistedSpecialPage {
 	 * @param array $err Error messages. Each item is an error message.
 	 *    It may either be a string message name or array message name and
 	 *    parameters, like the second argument to OutputPage::wrapWikiMsg().
+	 * @param bool $isPermError Whether the error message is about user permissions.
 	 */
-	function showForm( $err ) {
+	function showForm( $err, $isPermError = false ) {
 		$this->getSkin()->setRelevantTitle( $this->oldTitle );
 
 		$out = $this->getOutput();
@@ -235,9 +236,13 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		if ( count( $err ) ) {
-			$action_desc = $this->msg( 'action-move' )->plain();
-			$errMsgHtml = $this->msg( 'permissionserrorstext-withaction',
-				count( $err ), $action_desc )->parseAsBlock();
+			if ( $isPermError ) {
+				$action_desc = $this->msg( 'action-move' )->plain();
+				$errMsgHtml = $this->msg( 'permissionserrorstext-withaction',
+					count( $err ), $action_desc )->parseAsBlock();
+			} else {
+				$errMsgHtml = $this->msg( 'cannotmove', count( $err ) )->parseAsBlock();
+			}
 
 			if ( count( $err ) == 1 ) {
 				$errMsg = $err[0];
@@ -328,14 +333,12 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
 		// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
-		// Unicode codepoints (or 255 UTF-8 bytes for old schema).
-		$conf = $this->getConfig();
-		$oldCommentSchema = $conf->get( 'CommentTableSchemaMigrationStage' ) === MIGRATION_OLD;
+		// Unicode codepoints.
 		$fields[] = new OOUI\FieldLayout(
 			new OOUI\TextInputWidget( [
 				'name' => 'wpReason',
 				'id' => 'wpReason',
-				'maxLength' => $oldCommentSchema ? 200 : CommentStore::COMMENT_CHARACTER_LIMIT,
+				'maxLength' => CommentStore::COMMENT_CHARACTER_LIMIT,
 				'infusable' => true,
 				'value' => $this->reason,
 			] ),
@@ -542,7 +545,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			$permErrors = $nt->getUserPermissionsErrors( 'delete', $user );
 			if ( count( $permErrors ) ) {
 				# Only show the first error
-				$this->showForm( $permErrors );
+				$this->showForm( $permErrors, true );
 
 				return;
 			}
@@ -596,7 +599,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		$permStatus = $mp->checkPermissions( $user, $this->reason );
 		if ( !$permStatus->isOK() ) {
-			$this->showForm( $permStatus->getErrorsArray() );
+			$this->showForm( $permStatus->getErrorsArray(), true );
 			return;
 		}
 
@@ -789,12 +792,6 @@ class MovePageForm extends UnlistedSpecialPage {
 		# Deal with watches (we don't watch subpages)
 		WatchAction::doWatchOrUnwatch( $this->watch, $ot, $user );
 		WatchAction::doWatchOrUnwatch( $this->watch, $nt, $user );
-
-		/**
-		 * T163966
-		 * Increment user_editcount during page moves
-		 */
-		$user->incEditCount();
 	}
 
 	function showLogFragment( $title ) {

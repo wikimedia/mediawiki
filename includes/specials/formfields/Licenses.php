@@ -214,7 +214,7 @@ class Licenses extends HTMLFormField {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getInputHTML( $value ) {
 		$this->selected = $value;

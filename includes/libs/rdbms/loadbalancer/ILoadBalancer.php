@@ -101,7 +101,7 @@ interface ILoadBalancer {
 	 *  - loadMonitor : Name of a class used to fetch server lag and load.
 	 *  - readOnlyReason : Reason the master DB is read-only if so [optional]
 	 *  - waitTimeout : Maximum time to wait for replicas for consistency [optional]
-	 *  - maxLag: Avoid replica DB servers with more lag than this [optional]
+	 *  - maxLag: Try to avoid DB replicas with lag above this many seconds [optional]
 	 *  - srvCache : BagOStuff object for server cache [optional]
 	 *  - wanCache : WANObjectCache object [optional]
 	 *  - chronologyCallback: Callback to run before the first connection attempt [optional]
@@ -291,13 +291,13 @@ interface ILoadBalancer {
 	 *
 	 * @see ILoadBalancer::getConnection() for parameter information
 	 *
-	 * @param int $db Server index or DB_MASTER/DB_REPLICA
+	 * @param int $i Server index or DB_MASTER/DB_REPLICA
 	 * @param array|string|bool $groups Query group(s), or false for the generic reader
 	 * @param string|bool $domain Domain ID, or false for the current domain
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
 	 * @return MaintainableDBConnRef
 	 */
-	public function getMaintenanceConnectionRef( $db, $groups = [], $domain = false, $flags = 0 );
+	public function getMaintenanceConnectionRef( $i, $groups = [], $domain = false, $flags = 0 );
 
 	/**
 	 * Open a connection to the server given by the specified index
@@ -652,8 +652,9 @@ interface ILoadBalancer {
 	 * Set a new table prefix for the existing local domain ID for testing
 	 *
 	 * @param string $prefix
+	 * @since 1.33
 	 */
-	public function setDomainPrefix( $prefix );
+	public function setLocalDomainPrefix( $prefix );
 
 	/**
 	 * Make certain table names use their own database, schema, and table prefix
@@ -679,7 +680,6 @@ interface ILoadBalancer {
 	 * the aliases can be removed, and then the old X-named indexes dropped.
 	 *
 	 * @param string[] $aliases
-	 * @return mixed
 	 * @since 1.31
 	 */
 	public function setIndexAliases( array $aliases );

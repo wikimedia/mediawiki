@@ -11,11 +11,12 @@
 		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentStart" />
 		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentEnd" />
 		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures" />
-		<exclude name="MediaWiki.Commenting.MissingCovers.MissingCovers" />
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName" />
 		<exclude name="MediaWiki.Usage.DbrQueryUsage.DbrQueryFound" />
+		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgContLang" />
+		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgParser" />
+		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle" />
 		<exclude name="MediaWiki.Usage.ForbiddenFunctions.passthru" />
-		<exclude name="MediaWiki.VariableAnalysis.ForbiddenGlobalVariables.ForbiddenGlobal$wgTitle" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.SingleSpaceBeforeSingleLineComment" />
 		<exclude name="Squiz.Scope.MethodScope.Missing" />
@@ -23,17 +24,8 @@
 	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
 		<properties>
 			<!--
-			includes/compat/normal/UtfNormalUtil.php
-			* codepointToUtf8
-			* escapeSingleString
-			* hexSequenceToUtf8
-			* utf8ToCodepoint
-			* utf8ToHexSequence
 			includes/GlobalFunctions.php
 			* mimeTypeMatch
-			maintenance/benchmarks/bench_strtr_str_replace.php
-			* bfNormalizeTitleStrReplace
-			* bfNormalizeTitleStrTr
 			maintenance/cdb.php
 			* cdbShowHelp
 			maintenance/language/transstat.php
@@ -55,7 +47,7 @@
 			tests/qunit/data/styleTest.css.php
 			* cssfilter
 			-->
-			<property name="ignoreList" type="array" value="bfNormalizeTitleStrReplace,bfNormalizeTitleStrTr,cdbShowHelp,codepointToUtf8,compare_point,cssfilter,escapeSingleString,getEscapedProfileUrl,hexSequenceToUtf8,mccGetHelp,mccShowUsage,mimeTypeMatch,moveToExternal,NothingFunction,NothingFunctionData,resolveStub,resolveStubs,showUsage,utf8ToCodepoint,utf8ToHexSequence" />
+			<property name="ignoreList" type="array" value="cdbShowHelp,compare_point,cssfilter,getEscapedProfileUrl,mccGetHelp,mccShowUsage,mimeTypeMatch,moveToExternal,NothingFunction,NothingFunctionData,resolveStub,resolveStubs,showUsage" />
 		</properties>
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.ValidGlobalName">
@@ -78,16 +70,9 @@
 			Whitelist existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
-		<exclude-pattern>*/includes/media/XCF\.php</exclude-pattern>
 		<exclude-pattern>*/includes/Feed\.php</exclude-pattern>
-		<exclude-pattern>*/includes/libs/xmp/XMP\.php</exclude-pattern>
-		<exclude-pattern>*/includes/jobqueue/JobSpecification\.php</exclude-pattern>
-		<exclude-pattern>*/includes/RevisionList\.php</exclude-pattern>
 		<exclude-pattern>*/includes/installer/PhpBugTests\.php</exclude-pattern>
-		<exclude-pattern>*/includes/exception/LocalizedException\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialMostinterwikis\.php</exclude-pattern>
-		<exclude-pattern>*/includes/cache/CacheDependency\.php</exclude-pattern>
-		<exclude-pattern>*/includes/cache/CacheHelper\.php</exclude-pattern>
 		<exclude-pattern>*/includes/compat/XMPReader\.php</exclude-pattern>
 		<exclude-pattern>*/includes/diff/DairikiDiff\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialAncientpages\.php</exclude-pattern>
@@ -113,7 +98,6 @@
 		<exclude-pattern>*/includes/specials/SpecialMostlinkedtemplates\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialMostrevisions\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialMovepage\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialMyRedirectPages\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialNewimages\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialRandompage\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialShortpages\.php</exclude-pattern>
@@ -138,7 +122,6 @@
 		<exclude-pattern>*/maintenance/benchmarks/bench_Wikimedia_base_convert\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_delete_truncate\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_if_switch\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/benchmarks/bench_strtr_str_replace\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_utf8_title_check\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_wfIsWindows\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/cleanupTable.inc</exclude-pattern>
@@ -176,8 +159,12 @@
 		<exclude-pattern>*/profileinfo\.php</exclude-pattern>
 		<!-- Language converters use the pattern of 2 classes in one file -->
 		<exclude-pattern>*/languages/*\.php</exclude-pattern>
-		<!-- We don't care that much about violations in tests -->
-		<exclude-pattern>*/tests/*\.php</exclude-pattern>
+		<!-- Skip violations in some tests for now -->
+		<exclude-pattern>*/tests/parser/*\.php</exclude-pattern>
+		<exclude-pattern>*/tests/phan/*\.php</exclude-pattern>
+		<exclude-pattern>*/tests/phpunit/maintenance/*\.php</exclude-pattern>
+		<exclude-pattern>*/tests/phpunit/bootstrap\.php</exclude-pattern>
+		<exclude-pattern>*/tests/phpunit/phpunit\.php</exclude-pattern>
 	</rule>
 	<rule ref="MediaWiki.Files.ClassMatchesFilename.WrongCase">
 		<!--
@@ -208,8 +195,9 @@
 		<exclude-pattern>*/maintenance/storage/checkStorage\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/storage/recompressTracked\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/storage/trackBlobs\.php</exclude-pattern>
-		<!-- We don't care that much about violations in tests -->
-		<exclude-pattern>*/tests/*\.php</exclude-pattern>
+		<!-- Skip violations in some tests for now -->
+		<exclude-pattern>*/tests/phpunit/includes/GlobalFunctions/*\.php</exclude-pattern>
+		<exclude-pattern>*/tests/phpunit/maintenance/*\.php</exclude-pattern>
 	</rule>
 
 	<rule ref="Generic.Files.OneObjectStructurePerFile.MultipleFound">
@@ -217,56 +205,32 @@
 			Whitelist existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
-		<exclude-pattern>*/includes/actions/HistoryAction\.php</exclude-pattern>
 		<exclude-pattern>*/includes/api/ApiErrorFormatter\.php</exclude-pattern>
 		<exclude-pattern>*/includes/api/ApiImport\.php</exclude-pattern>
 		<exclude-pattern>*/includes/api/ApiMessage\.php</exclude-pattern>
 		<exclude-pattern>*/includes/api/ApiOpenSearch\.php</exclude-pattern>
 		<exclude-pattern>*/includes/api/ApiRsd\.php</exclude-pattern>
-		<exclude-pattern>*/includes/api/ApiUsageException\.php</exclude-pattern>
-		<exclude-pattern>*/includes/AuthPlugin\.php</exclude-pattern>
-		<exclude-pattern>*/includes/cache/CacheDependency\.php</exclude-pattern>
-		<exclude-pattern>*/includes/cache/CacheHelper\.php</exclude-pattern>
 		<exclude-pattern>*/includes/compat/XMPReader\.php</exclude-pattern>
-		<exclude-pattern>*/includes/deferred/CdnCacheUpdate\.php</exclude-pattern>
 		<exclude-pattern>*/includes/diff/DairikiDiff\.php</exclude-pattern>
-		<exclude-pattern>*/includes/diff/DiffEngine\.php</exclude-pattern>
-		<exclude-pattern>*/includes/exception/LocalizedException\.php</exclude-pattern>
 		<exclude-pattern>*/includes/Feed\.php</exclude-pattern>
 		<exclude-pattern>*/includes/filerepo/file/LocalFile\.php</exclude-pattern>
-		<exclude-pattern>*/includes/gallery/PackedOverlayImageGallery\.php</exclude-pattern>
-		<exclude-pattern>*/includes/HistoryBlob\.php</exclude-pattern>
 		<exclude-pattern>*/includes/htmlform/HTMLFormElement\.php</exclude-pattern>
-		<exclude-pattern>*/includes/jobqueue/aggregator/JobQueueAggregator\.php</exclude-pattern>
-		<exclude-pattern>*/includes/jobqueue/JobQueue\.php</exclude-pattern>
-		<exclude-pattern>*/includes/jobqueue/JobSpecification\.php</exclude-pattern>
 		<exclude-pattern>*/includes/libs/filebackend/FileBackendStore\.php</exclude-pattern>
 		<exclude-pattern>*/includes/libs/filebackend/FSFileBackend\.php</exclude-pattern>
 		<exclude-pattern>*/includes/libs/filebackend/SwiftFileBackend\.php</exclude-pattern>
 		<exclude-pattern>*/includes/logging/LogEntry\.php</exclude-pattern>
 		<exclude-pattern>*/includes/logging/LogFormatter\.php</exclude-pattern>
-		<exclude-pattern>*/includes/media/MediaTransformOutput\.php</exclude-pattern>
 		<exclude-pattern>*/includes/media/SVGMetadataExtractor\.php</exclude-pattern>
 		<exclude-pattern>*/includes/parser/Preprocessor_DOM\.php</exclude-pattern>
 		<exclude-pattern>*/includes/parser/Preprocessor_Hash\.php</exclude-pattern>
 		<exclude-pattern>*/includes/parser/Preprocessor\.php</exclude-pattern>
 		<exclude-pattern>*/includes/PathRouter\.php</exclude-pattern>
-		<exclude-pattern>*/includes/poolcounter/PoolCounter\.php</exclude-pattern>
-		<exclude-pattern>*/includes/PrefixSearch\.php</exclude-pattern>
 		<exclude-pattern>*/includes/profiler/SectionProfiler\.php</exclude-pattern>
-		<exclude-pattern>*/includes/RevisionList\.php</exclude-pattern>
-		<exclude-pattern>*/includes/search/SearchEngine\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specialpage/LoginSignupSpecialPage\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specialpage/RedirectSpecialPage\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/forms/PreferencesFormLegacy\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialListusers\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialMyRedirectPages\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialUploadStash\.php</exclude-pattern>
 		<exclude-pattern>*/includes/StubObject\.php</exclude-pattern>
-		<exclude-pattern>*/includes/upload/UploadFromChunks\.php</exclude-pattern>
 		<exclude-pattern>*/includes/upload/UploadStash\.php</exclude-pattern>
 		<exclude-pattern>*/includes/utils/AutoloadGenerator\.php</exclude-pattern>
-		<exclude-pattern>*/includes/WebResponse\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/dumpIterator\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/Maintenance\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/findDeprecated\.php</exclude-pattern>
@@ -296,14 +260,6 @@
 		<exclude-pattern>*/includes/libs/filebackend/FSFileBackend\.php</exclude-pattern>
 		<exclude-pattern>*/includes/shell/Command\.php</exclude-pattern>
 		<exclude-pattern>*/includes/shell/Shell\.php</exclude-pattern>
-		<exclude-pattern>*/tests/phpunit/structure/StructureTest\.php</exclude-pattern>
-	</rule>
-	<rule ref="MediaWiki.Usage.ForbiddenFunctions.exec">
-		<!--
-			Whitelist existing violations, but enable the sniff to prevent
-			any new occurrences.
-		-->
-		<exclude-pattern>*/tests/phpunit/structure/StructureTest\.php</exclude-pattern>
 	</rule>
 	<rule ref="MediaWiki.Usage.ForbiddenFunctions.popen">
 		<!--
@@ -323,7 +279,6 @@
 		<exclude-pattern>includes/export/DumpPipeOutput\.php</exclude-pattern>
 		<exclude-pattern>includes/resourceloader/ResourceLoaderImage\.php</exclude-pattern>
 		<exclude-pattern>includes/shell/Command\.php</exclude-pattern>
-		<exclude-pattern>includes/tidy/RaggettExternal\.php</exclude-pattern>
 		<exclude-pattern>maintenance/dumpTextPass\.php</exclude-pattern>
 		<exclude-pattern>maintenance/mysql\.php</exclude-pattern>
 		<exclude-pattern>maintenance/storage/recompressTracked\.php</exclude-pattern>

@@ -22,7 +22,7 @@ use Wikimedia\WrappedString;
 use Wikimedia\WrappedStringList;
 
 /**
- * Bootstrap a ResourceLoader client on an HTML page.
+ * Load and configure a ResourceLoader client on an HTML page.
  *
  * @since 1.28
  */
@@ -45,9 +45,6 @@ class ResourceLoaderClientHtml {
 
 	/** @var array */
 	private $moduleStyles = [];
-
-	/** @var array */
-	private $moduleScripts = [];
 
 	/** @var array */
 	private $exemptStates = [];
@@ -102,16 +99,6 @@ class ResourceLoaderClientHtml {
 	}
 
 	/**
-	 * Ensure the scripts of one or more modules are loaded.
-	 *
-	 * @deprecated since 1.28
-	 * @param array $modules Array of module names
-	 */
-	public function setModuleScripts( array $modules ) {
-		$this->moduleScripts = $modules;
-	}
-
-	/**
 	 * Set state of special modules that are handled by the caller manually.
 	 *
 	 * See OutputPage::buildExemptModules() for use cases.
@@ -139,7 +126,6 @@ class ResourceLoaderClientHtml {
 			],
 			'general' => [],
 			'styles' => [],
-			'scripts' => [],
 			// Embedding for private modules
 			'embed' => [
 				'styles' => [],
@@ -217,26 +203,6 @@ class ResourceLoaderClientHtml {
 			}
 		}
 
-		foreach ( $this->moduleScripts as $name ) {
-			$module = $rl->getModule( $name );
-			if ( !$module ) {
-				continue;
-			}
-
-			$group = $module->getGroup();
-			$context = $this->getContext( $group, ResourceLoaderModule::TYPE_SCRIPTS );
-			if ( $module->isKnownEmpty( $context ) ) {
-				// Avoid needless request for empty module
-				$data['states'][$name] = 'ready';
-			} else {
-				// Load from load.php?only=scripts via <script src></script>
-				$data['scripts'][] = $name;
-
-				// Avoid duplicate request from mw.loader
-				$data['states'][$name] = 'loading';
-			}
-		}
-
 		return $data;
 	}
 
@@ -308,15 +274,6 @@ class ResourceLoaderClientHtml {
 					. ResourceLoader::encodeJsonForScript( $data['general'] )
 					. ';'
 					. 'mw.loader.load(RLPAGEMODULES);',
-				$nonce
-			);
-		}
-
-		// Inline RLQ: Load only=scripts
-		if ( $data['scripts'] ) {
-			$chunks[] = $this->getLoad(
-				$data['scripts'],
-				ResourceLoaderModule::TYPE_SCRIPTS,
 				$nonce
 			);
 		}
@@ -493,19 +450,17 @@ class ResourceLoaderClientHtml {
 						// Decide whether to use 'style' or 'script' element
 						if ( $only === ResourceLoaderModule::TYPE_STYLES ) {
 							$chunk = Html::linkedStyle( $url );
+						} elseif ( $context->getRaw() || $isRaw ) {
+							$chunk = Html::element( 'script', [
+								// In SpecialJavaScriptTest, QUnit must load synchronous
+								'async' => !isset( $extraQuery['sync'] ),
+								'src' => $url
+							] );
 						} else {
-							if ( $context->getRaw() || $isRaw ) {
-								$chunk = Html::element( 'script', [
-									// In SpecialJavaScriptTest, QUnit must load synchronous
-									'async' => !isset( $extraQuery['sync'] ),
-									'src' => $url
-								] );
-							} else {
-								$chunk = ResourceLoader::makeInlineScript(
-									Xml::encodeJsCall( 'mw.loader.load', [ $url ] ),
-									$nonce
-								);
-							}
+							$chunk = ResourceLoader::makeInlineScript(
+								Xml::encodeJsCall( 'mw.loader.load', [ $url ] ),
+								$nonce
+							);
 						}
 
 						if ( $group == 'noscript' ) {

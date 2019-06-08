@@ -50,11 +50,7 @@ class LCStoreCDB implements LCStore {
 	function __construct( $conf = [] ) {
 		global $wgCacheDirectory;
 
-		if ( isset( $conf['directory'] ) ) {
-			$this->directory = $conf['directory'];
-		} else {
-			$this->directory = $wgCacheDirectory;
-		}
+		$this->directory = $conf['directory'] ?? $wgCacheDirectory;
 	}
 
 	public function get( $code, $key ) {
@@ -90,11 +86,9 @@ class LCStoreCDB implements LCStore {
 	}
 
 	public function startWrite( $code ) {
-		if ( !file_exists( $this->directory ) ) {
-			if ( !wfMkdirParents( $this->directory, null, __METHOD__ ) ) {
-				throw new MWException( "Unable to create the localisation store " .
-					"directory \"{$this->directory}\"" );
-			}
+		if ( !file_exists( $this->directory ) && !wfMkdirParents( $this->directory, null, __METHOD__ ) ) {
+			throw new MWException( "Unable to create the localisation store " .
+				"directory \"{$this->directory}\"" );
 		}
 
 		// Close reader to stop permission errors on write

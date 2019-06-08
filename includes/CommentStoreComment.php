@@ -50,7 +50,7 @@ class CommentStoreComment {
 	public function __construct( $id, $text, Message $message = null, array $data = null ) {
 		$this->id = $id;
 		$this->text = $text;
-		$this->message = $message ?: new RawMessage( '$1', [ $text ] );
+		$this->message = $message ?: new RawMessage( '$1', [ Message::plaintextParam( $text ) ] );
 		$this->data = $data;
 	}
 

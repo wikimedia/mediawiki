@@ -34,17 +34,19 @@ class ZhConverter extends LanguageConverter {
 	 * @param array $manualLevel
 	 */
 	function __construct( Language $langobj, $maincode,
-								$variants = [],
-								$variantfallbacks = [],
-								$flags = [],
-								$manualLevel = [] ) {
+		$variants = [],
+		$variantfallbacks = [],
+		$flags = [],
+		$manualLevel = []
+	) {
 		$this->mDescCodeSep = '：';
 		$this->mDescVarSep = '；';
 		parent::__construct( $langobj, $maincode,
-									$variants,
-									$variantfallbacks,
-									$flags,
-									$manualLevel );
+			$variants,
+			$variantfallbacks,
+			$flags,
+			$manualLevel
+		);
 		$names = [
 			'zh' => '原文',
 			'zh-hans' => '简体',
@@ -143,9 +145,10 @@ class LanguageZh extends LanguageZh_hans {
 		];
 
 		$this->mConverter = new ZhConverter( $this, 'zh',
-								$variants, $variantfallbacks,
-								[],
-								$ml );
+			$variants, $variantfallbacks,
+			[],
+			$ml
+		);
 	}
 
 	/**

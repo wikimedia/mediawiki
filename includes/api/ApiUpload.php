@@ -417,7 +417,7 @@ class ApiUpload extends ApiBase {
 		if ( $this->mParams['filekey'] && $this->mParams['checkstatus'] ) {
 			$progress = UploadBase::getSessionStatus( $this->getUser(), $this->mParams['filekey'] );
 			if ( !$progress ) {
-				$this->dieWithError( 'api-upload-missingresult', 'missingresult' );
+				$this->dieWithError( 'apierror-upload-missingresult', 'missingresult' );
 			} elseif ( !$progress['status']->isGood() ) {
 				$this->dieStatusWithCode( $progress['status'], 'stashfailed' );
 			}
@@ -542,7 +542,7 @@ class ApiUpload extends ApiBase {
 		}
 
 		// Check blocks
-		if ( $user->isBlocked() ) {
+		if ( $user->isBlockedFromUpload() ) {
 			$this->dieBlocked( $user->getBlock() );
 		}
 

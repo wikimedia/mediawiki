@@ -162,12 +162,10 @@ class UploadStash {
 			);
 		}
 
-		if ( !$noAuth ) {
-			if ( $this->fileMetadata[$key]['us_user'] != $this->userId ) {
-				throw new UploadStashWrongOwnerException(
-					wfMessage( 'uploadstash-wrong-owner', $key )
-				);
-			}
+		if ( !$noAuth && $this->fileMetadata[$key]['us_user'] != $this->userId ) {
+			throw new UploadStashWrongOwnerException(
+				wfMessage( 'uploadstash-wrong-owner', $key )
+			);
 		}
 
 		return $this->files[$key];
@@ -599,7 +597,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 		$this->fileKey = $key;
 
 		// resolve mwrepo:// urls
-		if ( $repo->isVirtualUrl( $path ) ) {
+		if ( FileRepo::isVirtualUrl( $path ) ) {
 			$path = $repo->resolveVirtualUrl( $path );
 		} else {
 			// check if path appears to be sane, no parent traversals,
@@ -765,73 +763,4 @@ class UploadStashFile extends UnregisteredLocalFile {
 	public function exists() {
 		return $this->repo->fileExists( $this->path );
 	}
-}
-
-/**
- * @ingroup Upload
- */
-class UploadStashException extends MWException implements ILocalizedException {
-	/** @var string|array|MessageSpecifier */
-	protected $messageSpec;
-
-	/**
-	 * @param string|array|MessageSpecifier $messageSpec See Message::newFromSpecifier
-	 * @param int $code Exception code
-	 * @param Exception|Throwable|null $previous The previous exception used for the exception
-	 *  chaining.
-	 */
-	public function __construct( $messageSpec, $code = 0, $previous = null ) {
-		$this->messageSpec = $messageSpec;
-
-		$msg = $this->getMessageObject()->text();
-		$msg = preg_replace( '!</?(var|kbd|samp|code)>!', '"', $msg );
-		$msg = Sanitizer::stripAllTags( $msg );
-		parent::__construct( $msg, $code, $previous );
-	}
-
-	public function getMessageObject() {
-		return Message::newFromSpecifier( $this->messageSpec );
-	}
-}
-
-/**
- * @ingroup Upload
- */
-class UploadStashFileNotFoundException extends UploadStashException {
-}
-
-/**
- * @ingroup Upload
- */
-class UploadStashBadPathException extends UploadStashException {
-}
-
-/**
- * @ingroup Upload
- */
-class UploadStashFileException extends UploadStashException {
-}
-
-/**
- * @ingroup Upload
- */
-class UploadStashZeroLengthFileException extends UploadStashException {
-}
-
-/**
- * @ingroup Upload
- */
-class UploadStashNotLoggedInException extends UploadStashException {
-}
-
-/**
- * @ingroup Upload
- */
-class UploadStashWrongOwnerException extends UploadStashException {
-}
-
-/**
- * @ingroup Upload
- */
-class UploadStashNoSuchKeyException extends UploadStashException {
 }

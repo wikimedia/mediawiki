@@ -170,7 +170,7 @@ class SparqlClient {
 		$status = $request->execute();
 
 		if ( !$status->isOK() ) {
-			throw new SparqlException( "HTTP error: {$status->getWikiText()}" );
+			throw new SparqlException( 'HTTP error: ' . $status->getWikiText( false, false, 'en' ) );
 		}
 		$result = $request->getContent();
 		\Wikimedia\suppressWarnings();

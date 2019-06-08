@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-properties */
 ( function () {
 
 	/**
@@ -36,24 +35,28 @@
 
 		if ( config.fullMonthNames && !config.shortMonthNames ) {
 			config.shortMonthNames = {};
+			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( config.fullMonthNames, function ( k, v ) {
 				config.shortMonthNames[ k ] = v.substr( 0, 3 );
 			} );
 		}
 		if ( config.shortDayNames && !config.dayLetters ) {
 			config.dayLetters = [];
+			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( config.shortDayNames, function ( k, v ) {
 				config.dayLetters[ k ] = v.substr( 0, 1 );
 			} );
 		}
 		if ( config.fullDayNames && !config.dayLetters ) {
 			config.dayLetters = [];
+			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( config.fullDayNames, function ( k, v ) {
 				config.dayLetters[ k ] = v.substr( 0, 1 );
 			} );
 		}
 		if ( config.fullDayNames && !config.shortDayNames ) {
 			config.shortDayNames = {};
+			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( config.fullDayNames, function ( k, v ) {
 				config.shortDayNames[ k ] = v.substr( 0, 3 );
 			} );
@@ -67,7 +70,7 @@
 		}, config );
 
 		// Parent constructor
-		mw.widgets.datetime.ProlepticGregorianDateTimeFormatter[ 'super' ].call( this, config );
+		mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.super.call( this, config );
 
 		// Properties
 		this.weekStartsOn = config.weekStartsOn % 7;
@@ -154,24 +157,28 @@
 
 		if ( this.fullMonthNames && !this.shortMonthNames ) {
 			this.shortMonthNames = {};
+			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( this.fullMonthNames, function ( k, v ) {
 				this.shortMonthNames[ k ] = v.substr( 0, 3 );
 			}.bind( this ) );
 		}
 		if ( this.shortDayNames && !this.dayLetters ) {
 			this.dayLetters = [];
+			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( this.shortDayNames, function ( k, v ) {
 				this.dayLetters[ k ] = v.substr( 0, 1 );
 			}.bind( this ) );
 		}
 		if ( this.fullDayNames && !this.dayLetters ) {
 			this.dayLetters = [];
+			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( this.fullDayNames, function ( k, v ) {
 				this.dayLetters[ k ] = v.substr( 0, 1 );
 			}.bind( this ) );
 		}
 		if ( this.fullDayNames && !this.shortDayNames ) {
 			this.shortDayNames = {};
+			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( this.fullDayNames, function ( k, v ) {
 				this.shortDayNames[ k ] = v.substr( 0, 3 );
 			}.bind( this ) );
@@ -234,6 +241,7 @@
 		}
 		if ( !this.dayLetters ) {
 			this.dayLetters = [];
+			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( this.shortDayNames, function ( k, v ) {
 				this.dayLetters[ k ] = v.substr( 0, 1 );
 			}.bind( this ) );
@@ -371,7 +379,7 @@
 				break;
 
 			default:
-				return mw.widgets.datetime.ProlepticGregorianDateTimeFormatter[ 'super' ].prototype.getFieldForTag.call( this, tag, params );
+				return mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.super.prototype.getFieldForTag.call( this, tag, params );
 		}
 
 		if ( spec ) {
@@ -382,6 +390,7 @@
 			spec.parseValue = this.parseSpecValue;
 			if ( spec.values ) {
 				spec.size = Math.max.apply(
+					// eslint-disable-next-line no-jquery/no-map-util
 					null, $.map( spec.values, function ( v ) { return v.length; } )
 				);
 			}

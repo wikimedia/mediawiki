@@ -66,7 +66,7 @@ class HTMLTitleTextField extends HTMLTextField {
 		if ( $this->mParams['namespace'] !== false &&
 			!$title->inNamespace( $this->mParams['namespace'] )
 		) {
-			return $this->msg( 'htmlform-title-badnamespace', $this->mParams['namespace'], $text );
+			return $this->msg( 'htmlform-title-badnamespace', $text, $this->mParams['namespace'] );
 		}
 
 		if ( $this->mParams['creatable'] && !$title->canExist() ) {

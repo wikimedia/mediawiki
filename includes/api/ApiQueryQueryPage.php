@@ -20,24 +20,33 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Special\SpecialPageFactory;
+
 /**
  * Query module to get the results of a QueryPage-based special page
  *
  * @ingroup API
  */
 class ApiQueryQueryPage extends ApiQueryGeneratorBase {
-	private $qpMap;
+
+	/**
+	 * @var string[] list of special page names
+	 */
+	private $queryPages;
+
+	/**
+	 * @var SpecialPageFactory
+	 */
+	private $specialPageFactory;
 
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'qp' );
-		// Build mapping from special page names to QueryPage classes
-		$uselessQueryPages = $this->getConfig()->get( 'APIUselessQueryPages' );
-		$this->qpMap = [];
-		foreach ( QueryPage::getPages() as $page ) {
-			if ( !in_array( $page[1], $uselessQueryPages ) ) {
-				$this->qpMap[$page[1]] = $page[0];
-			}
-		}
+		$this->queryPages = array_values( array_diff(
+			array_column( QueryPage::getPages(), 1 ), // [ class, name ]
+			$this->getConfig()->get( 'APIUselessQueryPages' )
+		) );
+		$this->specialPageFactory = MediaWikiServices::getInstance()->getSpecialPageFactory();
 	}
 
 	public function execute() {
@@ -49,14 +58,34 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	}
 
 	/**
+	 * @param string $name
+	 * @return QueryPage
+	 */
+	private function getSpecialPage( $name ) {
+		$qp = $this->specialPageFactory->getPage( $name );
+		if ( !$qp ) {
+			self::dieDebug(
+				__METHOD__,
+				'SpecialPageFactory failed to create special page ' . $name
+			);
+		}
+		if ( !( $qp instanceof QueryPage ) ) {
+			self::dieDebug(
+				__METHOD__,
+				'Special page ' . $name . ' is not a QueryPage'
+			);
+		}
+		return $qp;
+	}
+
+	/**
 	 * @param ApiPageSet|null $resultPageSet
 	 */
 	public function run( $resultPageSet = null ) {
 		$params = $this->extractRequestParams();
 		$result = $this->getResult();
 
-		/** @var QueryPage $qp */
-		$qp = new $this->qpMap[$params['page']]();
+		$qp = $this->getSpecialPage( $params['page'] );
 		if ( !$qp->userCanExecute( $this->getUser() ) ) {
 			$this->dieWithError( 'apierror-specialpage-cantexecute' );
 		}
@@ -125,8 +154,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	}
 
 	public function getCacheMode( $params ) {
-		/** @var QueryPage $qp */
-		$qp = new $this->qpMap[$params['page']]();
+		$qp = $this->getSpecialPage( $params['page'] );
 		if ( $qp->getRestriction() != '' ) {
 			return 'private';
 		}
@@ -137,7 +165,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	public function getAllowedParams() {
 		return [
 			'page' => [
-				ApiBase::PARAM_TYPE => array_keys( $this->qpMap ),
+				ApiBase::PARAM_TYPE => $this->queryPages,
 				ApiBase::PARAM_REQUIRED => true
 			],
 			'offset' => [

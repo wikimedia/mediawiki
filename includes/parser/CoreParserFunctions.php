@@ -327,7 +327,6 @@ class CoreParserFunctions {
 
 		$username = trim( $username );
 
-		// default
 		$gender = User::getDefaultOption( 'gender' );
 
 		// allow prefix and normalize (e.g. "&#42;foo" -> "*foo" ).
@@ -455,11 +454,10 @@ class CoreParserFunctions {
 				return '';
 			}
 		} else {
-			$converter = $parser->getTargetLanguage()->getConverter();
 			$parser->getOutput()->addWarning(
 				wfMessage( 'restricted-displaytitle',
 					// Message should be parsed, but this param should only be escaped.
-					$converter->markNoConversion( wfEscapeWikiText( $text ) )
+					wfEscapeWikiText( $text )
 				)->text()
 			);
 			$parser->addTrackingCategory( 'restricted-displaytitle-ignored' );

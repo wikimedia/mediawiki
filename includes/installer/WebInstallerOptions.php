@@ -31,10 +31,8 @@ class WebInstallerOptions extends WebInstallerPage {
 			$this->submitSkins();
 			return 'skip';
 		}
-		if ( $this->parent->request->wasPosted() ) {
-			if ( $this->submit() ) {
-				return 'continue';
-			}
+		if ( $this->parent->request->wasPosted() && $this->submit() ) {
+			return 'continue';
 		}
 
 		$emailwrapperStyle = $this->getVar( 'wgEnableEmail' ) ? '' : 'display: none';
@@ -397,7 +395,7 @@ class WebInstallerOptions extends WebInstallerPage {
 		$wrapperStyle = ( $this->getVar( '_LicenseCode' ) == 'cc-choose' ) ? '' : 'display: none';
 
 		return "<div class=\"config-cc-wrapper\" id=\"config-cc-wrapper\" style=\"$wrapperStyle\">\n" .
-			Html::element( 'iframe', $iframeAttribs, '', false /* not short */ ) .
+			Html::element( 'iframe', $iframeAttribs ) .
 			"</div>\n";
 	}
 
@@ -490,11 +488,8 @@ class WebInstallerOptions extends WebInstallerPage {
 			// config-license-cc-0, config-license-pd, config-license-gfdl, config-license-none,
 			// config-license-cc-choose
 			$entry = $this->parent->licenses[$code];
-			if ( isset( $entry['text'] ) ) {
-				$this->setVar( 'wgRightsText', $entry['text'] );
-			} else {
-				$this->setVar( 'wgRightsText', wfMessage( 'config-license-' . $code )->text() );
-			}
+			$this->setVar( 'wgRightsText',
+				$entry['text'] ?? wfMessage( 'config-license-' . $code )->text() );
 			$this->setVar( 'wgRightsUrl', $entry['url'] );
 			$this->setVar( 'wgRightsIcon', $entry['icon'] );
 		} else {

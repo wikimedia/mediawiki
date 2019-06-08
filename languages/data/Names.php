@@ -173,7 +173,7 @@ class Names {
 		'gan' => '贛語', # Gan (multiple scripts - defaults to Traditional)
 		'gan-hans' => "赣语（简体）\u{200E}", # Gan (Simplified Han)
 		'gan-hant' => "贛語（繁體）\u{200E}", # Gan (Traditional Han)
-		'gcr' => 'kréyòl gwiyanè', # Guianan Creole
+		'gcr' => 'kriyòl gwiyannen', # Guianan Creole
 		'gd' => 'Gàidhlig', # Scots Gaelic
 		'gl' => 'galego', # Galician
 		'glk' => 'گیلکی', # Gilaki
@@ -235,6 +235,7 @@ class Names {
 		'ki' => 'Gĩkũyũ', # Gikuyu
 		'kiu' => 'Kırmancki', # Kirmanjki
 		'kj' => 'Kwanyama', # Kwanyama
+		'kjp' => 'ဖၠုံလိက်', # Eastern Pwo (multiple scripts - defaults to Burmese script)
 		'kk' => 'қазақша', # Kazakh (multiple scripts - defaults to Cyrillic)
 		'kk-arab' => "قازاقشا (تٴوتە)\u{200F}", # Kazakh Arabic
 		'kk-cyrl' => "қазақша (кирил)\u{200E}", # Kazakh Cyrillic
@@ -468,6 +469,7 @@ class Names {
 		'xal' => 'хальмг', # Kalmyk-Oirat
 		'xh' => 'isiXhosa', # Xhosan
 		'xmf' => 'მარგალური', # Mingrelian
+		'xsy' => 'saisiyat', # SaiSiyat - T216479
 		'yi' => 'ייִדיש', # Yiddish
 		'yo' => 'Yorùbá', # Yoruba
 		'yue' => '粵語', # Cantonese

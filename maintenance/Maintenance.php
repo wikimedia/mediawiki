@@ -23,7 +23,7 @@
 // Bail on old versions of PHP, or if composer has not been run yet to install
 // dependencies.
 require_once __DIR__ . '/../includes/PHPVersionCheck.php';
-wfEntryPointCheck( 'cli' );
+wfEntryPointCheck( 'text' );
 
 use MediaWiki\Shell\Shell;
 
@@ -54,6 +54,18 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
  * is the execute() method. See docs/maintenance.txt for more info
  * and a quick demo of how to use it.
  *
+ * Terminology:
+ *   params: registry of named values that may be passed to the script
+ *   arg list: registry of positional values that may be passed to the script
+ *   options: passed param values
+ *   args: passed positional values
+ *
+ * In the command:
+ *   mwscript somescript.php --foo=bar baz
+ * foo is a param
+ * bar is the option value of the option for param foo
+ * baz is the arg value at index 0 in the arg list
+ *
  * @since 1.16
  * @ingroup Maintenance
  */
@@ -69,13 +81,13 @@ abstract class Maintenance {
 	// Const for getStdin()
 	const STDIN_ALL = 'all';
 
-	// This is the desired params
+	// Array of desired/allowed params
 	protected $mParams = [];
 
 	// Array of mapping short parameters to long ones
 	protected $mShortParamsMap = [];
 
-	// Array of desired args
+	// Array of desired/allowed args
 	protected $mArgList = [];
 
 	// This is the list of options that were actually passed
@@ -324,6 +336,10 @@ abstract class Maintenance {
 	 * @return bool
 	 */
 	protected function hasArg( $argId = 0 ) {
+		if ( func_num_args() === 0 ) {
+			wfDeprecated( __METHOD__ . ' without an $argId', '1.33' );
+		}
+
 		return isset( $this->mArgs[$argId] );
 	}
 
@@ -334,6 +350,10 @@ abstract class Maintenance {
 	 * @return mixed
 	 */
 	protected function getArg( $argId = 0, $default = null ) {
+		if ( func_num_args() === 0 ) {
+			wfDeprecated( __METHOD__ . ' without an $argId', '1.33' );
+		}
+
 		return $this->hasArg( $argId ) ? $this->mArgs[$argId] : $default;
 	}
 
@@ -738,7 +758,6 @@ abstract class Maintenance {
 		}
 
 		$this->loadParamsAndArgs();
-		$this->maybeHelp();
 
 		# Set the memory limit
 		# Note we need to set it again later in cache LocalSettings changed it
@@ -758,8 +777,6 @@ abstract class Maintenance {
 		while ( ob_get_level() > 0 ) {
 			ob_end_flush();
 		}
-
-		$this->validateParamsAndArgs();
 	}
 
 	/**
@@ -862,14 +879,7 @@ abstract class Maintenance {
 					$this->setParam( $options, $option, $param );
 				} else {
 					$bits = explode( '=', $option, 2 );
-					if ( count( $bits ) > 1 ) {
-						$option = $bits[0];
-						$param = $bits[1];
-					} else {
-						$param = 1;
-					}
-
-					$this->setParam( $options, $option, $param );
+					$this->setParam( $options, $bits[0], $bits[1] ?? 1 );
 				}
 			} elseif ( $arg == '-' ) {
 				# Lonely "-", often used to indicate stdin or stdout.
@@ -979,7 +989,7 @@ abstract class Maintenance {
 	/**
 	 * Run some validation checks on the params, etc
 	 */
-	protected function validateParamsAndArgs() {
+	public function validateParamsAndArgs() {
 		$die = false;
 		# Check to make sure we've got all the required options
 		foreach ( $this->mParams as $opt => $info ) {
@@ -1005,9 +1015,7 @@ abstract class Maintenance {
 			}
 		}
 
-		if ( $die ) {
-			$this->maybeHelp( true );
-		}
+		$this->maybeHelp( $die );
 	}
 
 	/**
@@ -1251,12 +1259,9 @@ abstract class Maintenance {
 			$settingsFile = "$IP/LocalSettings.php";
 		}
 		if ( isset( $this->mOptions['wiki'] ) ) {
-			$bits = explode( '-', $this->mOptions['wiki'] );
-			if ( count( $bits ) == 1 ) {
-				$bits[] = '';
-			}
+			$bits = explode( '-', $this->mOptions['wiki'], 2 );
 			define( 'MW_DB', $bits[0] );
-			define( 'MW_PREFIX', $bits[1] );
+			define( 'MW_PREFIX', $bits[1] ?? '' );
 		} elseif ( isset( $this->mOptions['server'] ) ) {
 			// Provide the option for site admins to detect and configure
 			// multiple wikis based on server names. This offers --server
@@ -1281,27 +1286,45 @@ abstract class Maintenance {
 	 * @author Rob Church <robchur@gmail.com>
 	 */
 	public function purgeRedundantText( $delete = true ) {
+		global $wgMultiContentRevisionSchemaMigrationStage;
+
 		# Data should come off the master, wrapped in a transaction
 		$dbw = $this->getDB( DB_MASTER );
 		$this->beginTransaction( $dbw, __METHOD__ );
 
-		# Get "active" text records from the revisions table
-		$cur = [];
-		$this->output( 'Searching for active text records in revisions table...' );
-		$res = $dbw->select( 'revision', 'rev_text_id', [], __METHOD__, [ 'DISTINCT' ] );
-		foreach ( $res as $row ) {
-			$cur[] = $row->rev_text_id;
-		}
-		$this->output( "done.\n" );
-
-		# Get "active" text records from the archive table
-		$this->output( 'Searching for active text records in archive table...' );
-		$res = $dbw->select( 'archive', 'ar_text_id', [], __METHOD__, [ 'DISTINCT' ] );
-		foreach ( $res as $row ) {
-			# old pre-MW 1.5 records can have null ar_text_id's.
-			if ( $row->ar_text_id !== null ) {
-				$cur[] = $row->ar_text_id;
+		if ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			# Get "active" text records from the revisions table
+			$cur = [];
+			$this->output( 'Searching for active text records in revisions table...' );
+			$res = $dbw->select( 'revision', 'rev_text_id', [], __METHOD__, [ 'DISTINCT' ] );
+			foreach ( $res as $row ) {
+				$cur[] = $row->rev_text_id;
 			}
+			$this->output( "done.\n" );
+
+			# Get "active" text records from the archive table
+			$this->output( 'Searching for active text records in archive table...' );
+			$res = $dbw->select( 'archive', 'ar_text_id', [], __METHOD__, [ 'DISTINCT' ] );
+			foreach ( $res as $row ) {
+				# old pre-MW 1.5 records can have null ar_text_id's.
+				if ( $row->ar_text_id !== null ) {
+					$cur[] = $row->ar_text_id;
+				}
+			}
+			$this->output( "done.\n" );
+		} else {
+			# Get "active" text records via the content table
+			$cur = [];
+			$this->output( 'Searching for active text records via contents table...' );
+			$res = $dbw->select( 'content', 'content_address', [], __METHOD__, [ 'DISTINCT' ] );
+			$blobStore = MediaWikiServices::getInstance()->getBlobStore();
+			foreach ( $res as $row ) {
+				$textId = $blobStore->getTextIdFromAddress( $row->content_address );
+				if ( $textId ) {
+					$cur[] = $textId;
+				}
+			}
+			$this->output( "done.\n" );
 		}
 		$this->output( "done.\n" );
 
@@ -1326,7 +1349,6 @@ abstract class Maintenance {
 			$this->output( "done.\n" );
 		}
 
-		# Done
 		$this->commitTransaction( $dbw, __METHOD__ );
 	}
 
@@ -1349,11 +1371,10 @@ abstract class Maintenance {
 	 * @return IMaintainableDatabase
 	 */
 	protected function getDB( $db, $groups = [], $wiki = false ) {
-		if ( is_null( $this->mDb ) ) {
+		if ( $this->mDb === null ) {
 			return wfGetDB( $db, $groups, $wiki );
-		} else {
-			return $this->mDb;
 		}
+		return $this->mDb;
 	}
 
 	/**
@@ -1429,7 +1450,7 @@ abstract class Maintenance {
 			'user',
 			'page_restrictions'
 		];
-		$db->lockTables( $read, $write, __CLASS__ . '::' . __METHOD__ );
+		$db->lockTables( $read, $write, __CLASS__ . '-searchIndexLock' );
 	}
 
 	/**
@@ -1437,7 +1458,7 @@ abstract class Maintenance {
 	 * @param IMaintainableDatabase &$db
 	 */
 	private function unlockSearchindex( $db ) {
-		$db->unlockTables( __CLASS__ . '::' . __METHOD__ );
+		$db->unlockTables( __CLASS__ . '-searchIndexLock' );
 	}
 
 	/**
@@ -1594,10 +1615,10 @@ abstract class Maintenance {
 		$bash = ExecutableFinder::findInDefaultPaths( 'bash' );
 		if ( !wfIsWindows() && $bash ) {
 			$retval = false;
-			$encPrompt = wfEscapeShellArg( $prompt );
+			$encPrompt = Shell::escape( $prompt );
 			$command = "read -er -p $encPrompt && echo \"\$REPLY\"";
-			$encCommand = wfEscapeShellArg( $command );
-			$line = wfShellExec( "$bash -c $encCommand", $retval, [], [ 'walltime' => 0 ] );
+			$encCommand = Shell::escape( $command );
+			$line = Shell::escape( "$bash -c $encCommand", $retval, [], [ 'walltime' => 0 ] );
 
 			if ( $retval == 0 ) {
 				return $line;
@@ -1699,13 +1720,9 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 			return false;
 		}
 
-		if ( $db->insert( 'updatelog', [ 'ul_key' => $key ], __METHOD__, 'IGNORE' ) ) {
-			return true;
-		} else {
-			$this->output( $this->updatelogFailedMessage() . "\n" );
+		$db->insert( 'updatelog', [ 'ul_key' => $key ], __METHOD__, 'IGNORE' );
 
-			return false;
-		}
+		return true;
 	}
 
 	/**
@@ -1716,16 +1733,6 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 		$key = $this->getUpdateKey();
 
 		return "Update '{$key}' already logged as completed.";
-	}
-
-	/**
-	 * Message to show that the update log was unable to log the completion of this update
-	 * @return string
-	 */
-	protected function updatelogFailedMessage() {
-		$key = $this->getUpdateKey();
-
-		return "Unable to log update '{$key}' as completed.";
 	}
 
 	/**

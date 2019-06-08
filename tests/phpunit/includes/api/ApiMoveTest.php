@@ -17,6 +17,7 @@ class ApiMoveTest extends ApiTestCase {
 	protected function assertMoved( $from, $to, $id, $opts = null ) {
 		$opts = (array)$opts;
 
+		Title::clearCaches();
 		$fromTitle = Title::newFromText( $from );
 		$toTitle = Title::newFromText( $to );
 
@@ -36,7 +37,7 @@ class ApiMoveTest extends ApiTestCase {
 			$this->assertSame( $toTitle->getPrefixedText(), $target->getPrefixedText() );
 		}
 
-		$this->assertSame( $id, $toTitle->getArticleId() );
+		$this->assertSame( $id, $toTitle->getArticleID() );
 	}
 
 	/**
@@ -126,7 +127,40 @@ class ApiMoveTest extends ApiTestCase {
 				'to' => '[',
 			] );
 		} finally {
-			$this->assertSame( $id, Title::newFromText( $name )->getArticleId() );
+			$this->assertSame( $id, Title::newFromText( $name )->getArticleID() );
+		}
+	}
+
+	public function testMoveWhileBlocked() {
+		$this->assertNull( Block::newFromTarget( '127.0.0.1' ), 'Sanity check' );
+
+		$block = new Block( [
+			'address' => self::$users['sysop']->getUser()->getName(),
+			'by' => self::$users['sysop']->getUser()->getId(),
+			'reason' => 'Capriciousness',
+			'timestamp' => '19370101000000',
+			'expiry' => 'infinity',
+			'enableAutoblock' => true,
+		] );
+		$block->insert();
+
+		$name = ucfirst( __FUNCTION__ );
+		$id = $this->createPage( $name );
+
+		try {
+			$this->doApiRequestWithToken( [
+				'action' => 'move',
+				'from' => $name,
+				'to' => "$name 2",
+			] );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( ApiUsageException $ex ) {
+			$this->assertSame( 'You have been blocked from editing.', $ex->getMessage() );
+			$this->assertNotNull( Block::newFromTarget( '127.0.0.1' ), 'Autoblock spread' );
+		} finally {
+			$block->delete();
+			self::$users['sysop']->getUser()->clearInstanceCache();
+			$this->assertSame( $id, Title::newFromText( $name )->getArticleID() );
 		}
 	}
 
@@ -161,7 +195,7 @@ class ApiMoveTest extends ApiTestCase {
 				'to' => "$name 3",
 			] );
 		} finally {
-			$this->assertSame( $id, Title::newFromText( "$name 2" )->getArticleId() );
+			$this->assertSame( $id, Title::newFromText( "$name 2" )->getArticleID() );
 			$this->assertFalse( Title::newFromText( "$name 3" )->exists(),
 				"\"$name 3\" should not exist" );
 		}
@@ -187,7 +221,7 @@ class ApiMoveTest extends ApiTestCase {
 				'tags' => 'custom tag',
 			] );
 		} finally {
-			$this->assertSame( $id, Title::newFromText( $name )->getArticleId() );
+			$this->assertSame( $id, Title::newFromText( $name )->getArticleID() );
 			$this->assertFalse( Title::newFromText( "$name 2" )->exists(),
 				"\"$name 2\" should not exist" );
 		}
@@ -241,9 +275,9 @@ class ApiMoveTest extends ApiTestCase {
 		] );
 
 		$this->assertMoved( $name, "$name 2", $id );
-		$this->assertSame( $talkId, Title::newFromText( "Talk:$name" )->getArticleId() );
+		$this->assertSame( $talkId, Title::newFromText( "Talk:$name" )->getArticleID() );
 		$this->assertSame( $talkDestinationId,
-			Title::newFromText( "Talk:$name 2" )->getArticleId() );
+			Title::newFromText( "Talk:$name 2" )->getArticleID() );
 		$this->assertSame( [ [
 			'message' => 'articleexists',
 			'params' => [],
@@ -278,9 +312,9 @@ class ApiMoveTest extends ApiTestCase {
 		}
 
 		$this->assertSame( $ids["$name/error"],
-			Title::newFromText( "$name/error" )->getArticleId() );
+			Title::newFromText( "$name/error" )->getArticleID() );
 		$this->assertSame( $ids["$name 2/error"],
-			Title::newFromText( "$name 2/error" )->getArticleId() );
+			Title::newFromText( "$name 2/error" )->getArticleID() );
 
 		$results = array_merge( $res[0]['move']['subpages'], $res[0]['move']['subpages-talk'] );
 		foreach ( $results as $arr ) {
@@ -317,7 +351,7 @@ class ApiMoveTest extends ApiTestCase {
 				'to' => "$name 2",
 			], null, $user );
 		} finally {
-			$this->assertSame( $id, Title::newFromText( "$name" )->getArticleId() );
+			$this->assertSame( $id, Title::newFromText( "$name" )->getArticleID() );
 			$this->assertFalse( Title::newFromText( "$name 2" )->exists(),
 				"\"$name 2\" should not exist" );
 		}
@@ -372,7 +406,7 @@ class ApiMoveTest extends ApiTestCase {
 		] );
 
 		$this->assertMoved( "Talk:$name", $name, $idBase );
-		$this->assertSame( $idSub, Title::newFromText( "Talk:$name/1" )->getArticleId() );
+		$this->assertSame( $idSub, Title::newFromText( "Talk:$name/1" )->getArticleID() );
 		$this->assertFalse( Title::newFromText( "$name/1" )->exists(),
 			"\"$name/1\" should not exist" );
 

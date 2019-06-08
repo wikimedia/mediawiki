@@ -43,8 +43,8 @@
 					deleteButton.$element.closest( 'li.mw-htmlform-cloner-li' ).remove();
 				} );
 			} else {
-				$element.filter( ':input' ).click( function ( ev ) {
-					ev.preventDefault();
+				$element.filter( ':input' ).on( 'click', function ( e ) {
+					e.preventDefault();
 					$( this ).closest( 'li.mw-htmlform-cloner-li' ).remove();
 				} );
 			}
@@ -56,8 +56,8 @@
 				appendToCloner( createButton.$element );
 			} );
 		} else {
-			$createElement.filter( ':input' ).click( function ( ev ) {
-				ev.preventDefault();
+			$createElement.filter( ':input' ).on( 'click', function ( e ) {
+				e.preventDefault();
 
 				appendToCloner( $( this ) );
 			} );

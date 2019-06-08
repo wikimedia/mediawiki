@@ -21,21 +21,15 @@
  */
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
-use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Update object handling the cleanup of links tables after a page was deleted.
  */
-class LinksDeletionUpdate extends DataUpdate implements EnqueueableDataUpdate {
+class LinksDeletionUpdate extends LinksUpdate implements EnqueueableDataUpdate {
 	/** @var WikiPage */
 	protected $page;
-	/** @var int */
-	protected $pageId;
 	/** @var string */
 	protected $timestamp;
-
-	/** @var IDatabase */
-	private $db;
 
 	/**
 	 * @param WikiPage $page Page we are updating
@@ -44,63 +38,37 @@ class LinksDeletionUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	 * @throws MWException
 	 */
 	function __construct( WikiPage $page, $pageId = null, $timestamp = null ) {
-		parent::__construct();
-
 		$this->page = $page;
 		if ( $pageId ) {
-			$this->pageId = $pageId; // page ID at time of deletion
+			$this->mId = $pageId; // page ID at time of deletion
 		} elseif ( $page->exists() ) {
-			$this->pageId = $page->getId();
+			$this->mId = $page->getId();
 		} else {
 			throw new InvalidArgumentException( "Page ID not known. Page doesn't exist?" );
 		}
 
 		$this->timestamp = $timestamp ?: wfTimestampNow();
+
+		$fakePO = new ParserOutput();
+		$fakePO->setCacheTime( $timestamp );
+		parent::__construct( $page->getTitle(), $fakePO, false );
 	}
 
-	public function doUpdate() {
+	protected function doIncrementalUpdate() {
 		$services = MediaWikiServices::getInstance();
 		$config = $services->getMainConfig();
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$batchSize = $config->get( 'UpdateRowsPerQuery' );
 
-		// Page may already be deleted, so don't just getId()
-		$id = $this->pageId;
+		$id = $this->mId;
+		$title = $this->mTitle;
 
-		if ( $this->ticket ) {
-			// Make sure all links update threads see the changes of each other.
-			// This handles the case when updates have to batched into several COMMITs.
-			$scopedLock = LinksUpdate::acquirePageLock( $this->getDB(), $id );
-			if ( !$scopedLock ) {
-				throw new RuntimeException( "Could not acquire lock for page ID '{$id}'." );
-			}
-		}
-
-		$title = $this->page->getTitle();
 		$dbw = $this->getDB(); // convenience
 
-		// Delete restrictions for it
-		$dbw->delete( 'page_restrictions', [ 'pr_page' => $id ], __METHOD__ );
+		parent::doIncrementalUpdate();
 
-		// Fix category table counts
-		$cats = $dbw->selectFieldValues(
-			'categorylinks',
-			'cl_to',
-			[ 'cl_from' => $id ],
-			__METHOD__
-		);
-		$catBatches = array_chunk( $cats, $batchSize );
-		foreach ( $catBatches as $catBatch ) {
-			$this->page->updateCategoryCounts( [], $catBatch, $id );
-			if ( count( $catBatches ) > 1 ) {
-				// Only sacrifice atomicity if necessary due to size
-				$lbFactory->commitAndWaitForReplication(
-					__METHOD__, $this->ticket, [ 'domain' => $dbw->getDomainID() ]
-				);
-			}
-		}
-
-		// Refresh counts on categories that should be empty now
+		// Typically, a category is empty when deleted, so check that we don't leave
+		// spurious row in the category table.
 		if ( $title->getNamespace() === NS_CATEGORY ) {
 			// T166757: do the update after the main job DB commit
 			DeferredUpdates::addCallableUpdate( function () use ( $title ) {
@@ -109,52 +77,11 @@ class LinksDeletionUpdate extends DataUpdate implements EnqueueableDataUpdate {
 			} );
 		}
 
-		$this->batchDeleteByPK(
-			'pagelinks',
-			[ 'pl_from' => $id ],
-			[ 'pl_from', 'pl_namespace', 'pl_title' ],
-			$batchSize
-		);
-		$this->batchDeleteByPK(
-			'imagelinks',
-			[ 'il_from' => $id ],
-			[ 'il_from', 'il_to' ],
-			$batchSize
-		);
-		$this->batchDeleteByPK(
-			'categorylinks',
-			[ 'cl_from' => $id ],
-			[ 'cl_from', 'cl_to' ],
-			$batchSize
-		);
-		$this->batchDeleteByPK(
-			'templatelinks',
-			[ 'tl_from' => $id ],
-			[ 'tl_from', 'tl_namespace', 'tl_title' ],
-			$batchSize
-		);
-		$this->batchDeleteByPK(
-			'externallinks',
-			[ 'el_from' => $id ],
-			[ 'el_id' ],
-			$batchSize
-		);
-		$this->batchDeleteByPK(
-			'langlinks',
-			[ 'll_from' => $id ],
-			[ 'll_from', 'll_lang' ],
-			$batchSize
-		);
-		$this->batchDeleteByPK(
-			'iwlinks',
-			[ 'iwl_from' => $id ],
-			[ 'iwl_from', 'iwl_prefix', 'iwl_title' ],
-			$batchSize
-		);
+		// Delete restrictions for the deleted page
+		$dbw->delete( 'page_restrictions', [ 'pr_page' => $id ], __METHOD__ );
 
-		// Delete any redirect entry or page props entries
+		// Delete any redirect entry
 		$dbw->delete( 'redirect', [ 'rd_from' => $id ], __METHOD__ );
-		$dbw->delete( 'page_props', [ 'pp_page' => $id ], __METHOD__ );
 
 		// Find recentchanges entries to clean up...
 		$rcIdsForTitle = $dbw->selectFieldValues(
@@ -191,46 +118,14 @@ class LinksDeletionUpdate extends DataUpdate implements EnqueueableDataUpdate {
 		ScopedCallback::consume( $scopedLock );
 	}
 
-	private function batchDeleteByPK( $table, array $conds, array $pk, $bSize ) {
-		$services = MediaWikiServices::getInstance();
-		$lbFactory = $services->getDBLoadBalancerFactory();
-		$dbw = $this->getDB(); // convenience
-
-		$res = $dbw->select( $table, $pk, $conds, __METHOD__ );
-
-		$pkDeleteConds = [];
-		foreach ( $res as $row ) {
-			$pkDeleteConds[] = $dbw->makeList( (array)$row, LIST_AND );
-			if ( count( $pkDeleteConds ) >= $bSize ) {
-				$dbw->delete( $table, $dbw->makeList( $pkDeleteConds, LIST_OR ), __METHOD__ );
-				$lbFactory->commitAndWaitForReplication(
-					__METHOD__, $this->ticket, [ 'domain' => $dbw->getDomainID() ]
-				);
-				$pkDeleteConds = [];
-			}
-		}
-
-		if ( $pkDeleteConds ) {
-			$dbw->delete( $table, $dbw->makeList( $pkDeleteConds, LIST_OR ), __METHOD__ );
-		}
-	}
-
-	protected function getDB() {
-		if ( !$this->db ) {
-			$this->db = wfGetDB( DB_MASTER );
-		}
-
-		return $this->db;
-	}
-
 	public function getAsJobSpecification() {
 		return [
-			'wiki' => WikiMap::getWikiIdFromDomain( $this->getDB()->getDomainID() ),
-			'job'  => new JobSpecification(
+			'domain' => $this->getDB()->getDomainID(),
+			'job' => new JobSpecification(
 				'deleteLinks',
-				[ 'pageId' => $this->pageId, 'timestamp' => $this->timestamp ],
+				[ 'pageId' => $this->mId, 'timestamp' => $this->timestamp ],
 				[ 'removeDuplicates' => true ],
-				$this->page->getTitle()
+				$this->mTitle
 			)
 		];
 	}

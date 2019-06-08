@@ -193,7 +193,7 @@ interface WatchedItemStoreInterface {
 	public function addWatchBatchForUser( User $user, array $targets );
 
 	/**
-	 * Removes the an entry for the User watching the LinkTarget
+	 * Removes an entry for the User watching the LinkTarget
 	 * Must be called separately for Subject & Talk namespaces
 	 *
 	 * @since 1.31
@@ -316,4 +316,28 @@ interface WatchedItemStoreInterface {
 	 */
 	public function clearUserWatchedItemsUsingJobQueue( User $user );
 
+	/**
+	 * @since 1.32
+	 *
+	 * @param User $user
+	 * @param LinkTarget[] $targets
+	 *
+	 * @return bool success
+	 */
+	public function removeWatchBatchForUser( User $user, array $targets );
+
+	/**
+	 * Convert $timestamp to TS_MW or return null if the page was visited since then by $user
+	 *
+	 * Use this only on single-user methods (having higher read-after-write expectations)
+	 * and not in places involving arbitrary batches of different users
+	 *
+	 * Usage of this method should be limited to WatchedItem* classes
+	 *
+	 * @param string|null $timestamp Value of wl_notificationtimestamp from the DB
+	 * @param User $user
+	 * @param LinkTarget $target
+	 * @return string TS_MW timestamp or null
+	 */
+	public function getLatestNotificationTimestamp( $timestamp, User $user, LinkTarget $target );
 }

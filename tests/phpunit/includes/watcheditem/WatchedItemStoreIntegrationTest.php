@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @author Addshore
@@ -167,6 +168,13 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 			[ $title->getNamespace() => [ $title->getDBkey() => null ] ],
 			$store->getNotificationTimestampsBatch( $user, [ $title ] )
 		);
+
+		// Run the job queue
+		JobQueueGroup::destroySingletons();
+		$jobs = new RunJobs;
+		$jobs->loadParamsAndArgs( null, [ 'quiet' => true ], null );
+		$jobs->execute();
+
 		$this->assertEquals(
 			$initialVisitingWatchers,
 			$store->countVisitingWatchers( $title, '20150202020202' )
@@ -192,19 +200,28 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 
 		// setNotificationTimestampsForUser specifying a title
 		$this->assertTrue(
-			$store->setNotificationTimestampsForUser( $user, '20200202020202', [ $title ] )
+			$store->setNotificationTimestampsForUser( $user, '20100202020202', [ $title ] )
 		);
 		$this->assertEquals(
-			'20200202020202',
+			'20100202020202',
 			$store->getWatchedItem( $user, $title )->getNotificationTimestamp()
 		);
 
 		// setNotificationTimestampsForUser not specifying a title
+		// This will try to use a DeferredUpdate; disable that
+		$mockCallback = function ( $callback ) {
+			$callback();
+		};
+		$scopedOverride = $store->overrideDeferredUpdatesAddCallableUpdateCallback( $mockCallback );
 		$this->assertTrue(
-			$store->setNotificationTimestampsForUser( $user, '20210202020202' )
+			$store->setNotificationTimestampsForUser( $user, '20110202020202' )
 		);
+		// Because the operation above is normally deferred, it doesn't clear the cache
+		// Clear the cache manually
+		$wrappedStore = TestingAccessWrapper::newFromObject( $store );
+		$wrappedStore->uncacheUser( $user );
 		$this->assertEquals(
-			'20210202020202',
+			'20110202020202',
 			$store->getWatchedItem( $user, $title )->getNotificationTimestamp()
 		);
 	}

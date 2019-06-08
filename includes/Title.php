@@ -22,6 +22,7 @@
  * @file
  */
 
+use MediaWiki\Permissions\PermissionManager;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Linker\LinkTarget;
@@ -36,9 +37,9 @@ use MediaWiki\MediaWikiServices;
  * @note Consider using a TitleValue object instead. TitleValue is more lightweight
  *       and does not rely on global state or the database.
  */
-class Title implements LinkTarget {
-	/** @var MapCacheLRU */
-	static private $titleCache = null;
+class Title implements LinkTarget, IDBAccessObject {
+	/** @var MapCacheLRU|null */
+	private static $titleCache = null;
 
 	/**
 	 * Title::newFromText maintains a cache to avoid expensive re-normalization of
@@ -52,6 +53,15 @@ class Title implements LinkTarget {
 	 * to use the master DB
 	 */
 	const GAID_FOR_UPDATE = 1;
+
+	/**
+	 * Flag for use with factory methods like newFromLinkTarget() that have
+	 * a $forceClone parameter. If set, the method must return a new instance.
+	 * Without this flag, some factory methods may return existing instances.
+	 *
+	 * @since 1.33
+	 */
+	const NEW_CLONE = 'clone';
 
 	/**
 	 * @name Private member variables
@@ -140,7 +150,7 @@ class Title implements LinkTarget {
 	 * Only public to share cache with TitleFormatter
 	 *
 	 * @private
-	 * @var string
+	 * @var string|null
 	 */
 	public $prefixedText = null;
 
@@ -173,10 +183,10 @@ class Title implements LinkTarget {
 	 * the database or false if not loaded, yet. */
 	private $mDbPageLanguage = false;
 
-	/** @var TitleValue A corresponding TitleValue object */
+	/** @var TitleValue|null A corresponding TitleValue object */
 	private $mTitleValue = null;
 
-	/** @var bool Would deleting this page be a big deletion? */
+	/** @var bool|null Would deleting this page be a big deletion? */
 	private $mIsBigDeletion = null;
 	// @}
 
@@ -205,7 +215,7 @@ class Title implements LinkTarget {
 	}
 
 	/**
-	 * @access protected
+	 * @protected
 	 */
 	function __construct() {
 	}
@@ -219,7 +229,7 @@ class Title implements LinkTarget {
 	 * @return Title|null Title, or null on an error
 	 */
 	public static function newFromDBkey( $key ) {
-		$t = new Title();
+		$t = new self();
 		$t->mDbkeyform = $key;
 
 		try {
@@ -231,27 +241,39 @@ class Title implements LinkTarget {
 	}
 
 	/**
-	 * Create a new Title from a TitleValue
+	 * Returns a Title given a TitleValue.
+	 * If the given TitleValue is already a Title instance, that instance is returned,
+	 * unless $forceClone is "clone". If $forceClone is "clone" and the given TitleValue
+	 * is already a Title instance, that instance is copied using the clone operator.
 	 *
 	 * @param TitleValue $titleValue Assumed to be safe.
+	 * @param string $forceClone set to NEW_CLONE to ensure a fresh instance is returned.
 	 *
 	 * @return Title
 	 */
-	public static function newFromTitleValue( TitleValue $titleValue ) {
-		return self::newFromLinkTarget( $titleValue );
+	public static function newFromTitleValue( TitleValue $titleValue, $forceClone = '' ) {
+		return self::newFromLinkTarget( $titleValue, $forceClone );
 	}
 
 	/**
-	 * Create a new Title from a LinkTarget
+	 * Returns a Title given a LinkTarget.
+	 * If the given LinkTarget is already a Title instance, that instance is returned,
+	 * unless $forceClone is "clone". If $forceClone is "clone" and the given LinkTarget
+	 * is already a Title instance, that instance is copied using the clone operator.
 	 *
 	 * @param LinkTarget $linkTarget Assumed to be safe.
+	 * @param string $forceClone set to NEW_CLONE to ensure a fresh instance is returned.
 	 *
 	 * @return Title
 	 */
-	public static function newFromLinkTarget( LinkTarget $linkTarget ) {
+	public static function newFromLinkTarget( LinkTarget $linkTarget, $forceClone = '' ) {
 		if ( $linkTarget instanceof Title ) {
 			// Special case if it's already a Title object
-			return $linkTarget;
+			if ( $forceClone === self::NEW_CLONE ) {
+				return clone $linkTarget;
+			} else {
+				return $linkTarget;
+			}
 		}
 		return self::makeTitle(
 			$linkTarget->getNamespace(),
@@ -267,6 +289,10 @@ class Title implements LinkTarget {
 	 *
 	 * Title objects returned by this method are guaranteed to be valid, and
 	 * thus return true from the isValid() method.
+	 *
+	 * @note The Title instance returned by this method is not guaranteed to be a fresh instance.
+	 * It may instead be a cached instance created previously, with references to it remaining
+	 * elsewhere.
 	 *
 	 * @param string|int|null $text The link text; spaces, prefixes, and an
 	 *   initial ':' indicating the main namespace are accepted.
@@ -287,7 +313,7 @@ class Title implements LinkTarget {
 		}
 
 		try {
-			return self::newFromTextThrow( strval( $text ), $defaultNamespace );
+			return self::newFromTextThrow( (string)$text, $defaultNamespace );
 		} catch ( MalformedTitleException $ex ) {
 			return null;
 		}
@@ -301,6 +327,10 @@ class Title implements LinkTarget {
 	 *
 	 * Title objects returned by this method are guaranteed to be valid, and
 	 * thus return true from the isValid() method.
+	 *
+	 * @note The Title instance returned by this method is not guaranteed to be a fresh instance.
+	 * It may instead be a cached instance created previously, with references to it remaining
+	 * elsewhere.
 	 *
 	 * @see Title::newFromText
 	 *
@@ -337,7 +367,7 @@ class Title implements LinkTarget {
 
 		$t = new Title();
 		$t->mDbkeyform = strtr( $filteredText, ' ', '_' );
-		$t->mDefaultNamespace = intval( $defaultNamespace );
+		$t->mDefaultNamespace = (int)$defaultNamespace;
 
 		$t->secureAndSplit();
 		if ( $defaultNamespace == NS_MAIN ) {
@@ -385,7 +415,7 @@ class Title implements LinkTarget {
 	 * @return MapCacheLRU
 	 */
 	private static function getTitleCache() {
-		if ( self::$titleCache == null ) {
+		if ( self::$titleCache === null ) {
 			self::$titleCache = new MapCacheLRU( self::CACHE_MAX );
 		}
 		return self::$titleCache;
@@ -437,6 +467,7 @@ class Title implements LinkTarget {
 		} else {
 			$title = null;
 		}
+
 		return $title;
 	}
 
@@ -499,7 +530,7 @@ class Title implements LinkTarget {
 				$this->mLatestID = (int)$row->page_latest;
 			}
 			if ( !$this->mForcedContentModel && isset( $row->page_content_model ) ) {
-				$this->mContentModel = strval( $row->page_content_model );
+				$this->mContentModel = (string)$row->page_content_model;
 			} elseif ( !$this->mForcedContentModel ) {
 				$this->mContentModel = false; # initialized lazily in getContentModel()
 			}
@@ -546,7 +577,7 @@ class Title implements LinkTarget {
 		$t = new Title();
 		$t->mInterwiki = $interwiki;
 		$t->mFragment = $fragment;
-		$t->mNamespace = $ns = intval( $ns );
+		$t->mNamespace = $ns = (int)$ns;
 		$t->mDbkeyform = strtr( $title, ' ', '_' );
 		$t->mArticleID = ( $ns >= 0 ) ? -1 : 0;
 		$t->mUrlform = wfUrlencode( $t->mDbkeyform );
@@ -591,6 +622,10 @@ class Title implements LinkTarget {
 
 	/**
 	 * Create a new Title for the Main Page
+	 *
+	 * @note The Title instance returned by this method is not guaranteed to be a fresh instance.
+	 * It may instead be a cached instance created previously, with references to it remaining
+	 * elsewhere.
 	 *
 	 * @return Title The new object
 	 */
@@ -698,6 +733,7 @@ class Title implements LinkTarget {
 				// Allow unicode if a single high-bit character appears
 				$r0 = sprintf( '\x%02x', $ord0 );
 				$allowUnicode = true;
+				// @phan-suppress-next-line PhanParamSuspiciousOrder false positive
 			} elseif ( strpos( '-\\[]^', $d0 ) !== false ) {
 				$r0 = '\\' . $d0;
 			} else {
@@ -765,23 +801,6 @@ class Title implements LinkTarget {
 			$name .= '#' . $fragment;
 		}
 		return $name;
-	}
-
-	/**
-	 * Escape a text fragment, say from a link, for a URL
-	 *
-	 * @deprecated since 1.30, use Sanitizer::escapeIdForLink() or escapeIdForExternalInterwiki()
-	 *
-	 * @param string $fragment Containing a URL or link fragment (after the "#")
-	 * @return string Escaped string
-	 */
-	static function escapeFragmentForURL( $fragment ) {
-		wfDeprecated( __METHOD__, '1.30' );
-		# Note that we don't urlencode the fragment.  urlencoded Unicode
-		# fragments appear not to work in IE (at least up to 7) or in at least
-		# one version of Opera 9.x.  The W3C validator, for one, doesn't seem
-		# to care if they aren't encoded.
-		return Sanitizer::escapeId( $fragment, 'noninitial' );
 	}
 
 	/**
@@ -954,6 +973,7 @@ class Title implements LinkTarget {
 
 	/**
 	 * Get the DB key with the initial letter case as specified by the user
+	 * @deprecated since 1.33; please use Title::getDBKey() instead
 	 *
 	 * @return string DB key
 	 */
@@ -977,6 +997,8 @@ class Title implements LinkTarget {
 
 	/**
 	 * Get the page's content model id, see the CONTENT_MODEL_XXX constants.
+	 *
+	 * @todo Deprecate this in favor of SlotRecord::getModel()
 	 *
 	 * @param int $flags A bit field; may be Title::GAID_FOR_UPDATE to select for update
 	 * @return string Content model id
@@ -1066,17 +1088,6 @@ class Title implements LinkTarget {
 	public function getTalkNsText() {
 		return MediaWikiServices::getInstance()->getContentLanguage()->
 			getNsText( MWNamespace::getTalk( $this->mNamespace ) );
-	}
-
-	/**
-	 * Can this title have a corresponding talk page?
-	 *
-	 * @deprecated since 1.30, use canHaveTalkPage() instead.
-	 *
-	 * @return bool True if this title either is a talk page or can have a talk page associated.
-	 */
-	public function canTalk() {
-		return $this->canHaveTalkPage();
 	}
 
 	/**
@@ -1306,17 +1317,6 @@ class Title implements LinkTarget {
 	}
 
 	/**
-	 * @return bool
-	 * @deprecated Since 1.31; use ::isSiteConfigPage() instead (which also checks for JSON pages)
-	 */
-	public function isCssOrJsPage() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return ( NS_MEDIAWIKI == $this->mNamespace
-				&& ( $this->hasContentModel( CONTENT_MODEL_CSS )
-					|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) ) );
-	}
-
-	/**
 	 * Is this a "config" (.css, .json, or .js) sub-page of a user page?
 	 *
 	 * @return bool
@@ -1328,17 +1328,6 @@ class Title implements LinkTarget {
 			|| $this->isUserJsonConfigPage()
 			|| $this->isUserJsConfigPage()
 		);
-	}
-
-	/**
-	 * @return bool
-	 * @deprecated Since 1.31; use ::isUserConfigPage() instead (which also checks for JSON pages)
-	 */
-	public function isCssJsSubpage() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return ( NS_USER == $this->mNamespace && $this->isSubpage()
-				&& ( $this->hasContentModel( CONTENT_MODEL_CSS )
-					|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) ) );
 	}
 
 	/**
@@ -1358,15 +1347,6 @@ class Title implements LinkTarget {
 	}
 
 	/**
-	 * @deprecated Since 1.31; use ::getSkinFromConfigSubpage() instead
-	 * @return string Containing skin name from .css, .json, or .js subpage title
-	 */
-	public function getSkinFromCssJsSubpage() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return $this->getSkinFromConfigSubpage();
-	}
-
-	/**
 	 * Is this a CSS "config" sub-page of a user page?
 	 *
 	 * @return bool
@@ -1378,15 +1358,6 @@ class Title implements LinkTarget {
 			&& $this->isSubpage()
 			&& $this->hasContentModel( CONTENT_MODEL_CSS )
 		);
-	}
-
-	/**
-	 * @deprecated Since 1.31; use ::isUserCssConfigPage()
-	 * @return bool
-	 */
-	public function isCssSubpage() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return $this->isUserCssConfigPage();
 	}
 
 	/**
@@ -1415,15 +1386,6 @@ class Title implements LinkTarget {
 			&& $this->isSubpage()
 			&& $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
 		);
-	}
-
-	/**
-	 * @deprecated Since 1.31; use ::isUserJsConfigPage()
-	 * @return bool
-	 */
-	public function isJsSubpage() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return $this->isUserJsConfigPage();
 	}
 
 	/**
@@ -1663,7 +1625,7 @@ class Title implements LinkTarget {
 			$p = $this->mInterwiki . ':';
 		}
 
-		if ( 0 != $this->mNamespace ) {
+		if ( $this->mNamespace != 0 ) {
 			$nsText = $this->getNsText();
 
 			if ( $nsText === false ) {
@@ -1775,16 +1737,18 @@ class Title implements LinkTarget {
 	 * @return string Base name
 	 */
 	public function getBaseText() {
+		$text = $this->getText();
 		if ( !MWNamespace::hasSubpages( $this->mNamespace ) ) {
-			return $this->getText();
+			return $text;
 		}
 
-		$parts = explode( '/', $this->getText() );
-		# Don't discard the real title if there's no subpage involved
-		if ( count( $parts ) > 1 ) {
-			unset( $parts[count( $parts ) - 1] );
+		$lastSlashPos = strrpos( $text, '/' );
+		// Don't discard the real title if there's no subpage involved
+		if ( $lastSlashPos === false ) {
+			return $text;
 		}
-		return implode( '/', $parts );
+
+		return substr( $text, 0, $lastSlashPos );
 	}
 
 	/**
@@ -1832,7 +1796,7 @@ class Title implements LinkTarget {
 	 * @endcode
 	 *
 	 * @param string $text The subpage name to add to the title
-	 * @return Title Subpage title
+	 * @return Title|null Subpage title, or null on an error
 	 * @since 1.20
 	 */
 	public function getSubpage( $text ) {
@@ -2101,8 +2065,8 @@ class Title implements LinkTarget {
 	 * protocol-relative, the URL will be expanded to http://
 	 *
 	 * @see self::getLocalURL for the arguments.
-	 * @param string $query
-	 * @param string|bool $query2
+	 * @param string|string[] $query
+	 * @param string|bool $query2 Deprecated
 	 * @return string The URL
 	 */
 	public function getInternalURL( $query = '', $query2 = false ) {
@@ -2124,8 +2088,8 @@ class Title implements LinkTarget {
 	 * NOTE: Unlike getInternalURL(), the canonical URL includes the fragment
 	 *
 	 * @see self::getLocalURL for the arguments.
-	 * @param string $query
-	 * @param string|bool $query2
+	 * @param string|string[] $query
+	 * @param string|bool $query2 Deprecated
 	 * @return string The URL
 	 * @since 1.18
 	 */
@@ -2164,7 +2128,13 @@ class Title implements LinkTarget {
 	 *
 	 * @param string $action Action that permission needs to be checked for
 	 * @param User|null $user User to check (since 1.19); $wgUser will be used if not provided.
+	 *
 	 * @return bool
+	 * @throws Exception
+	 *
+	 * @deprecated since 1.33,
+	 * use MediaWikiServices::getInstance()->getPermissionManager()->quickUserCan(..) instead
+	 *
 	 */
 	public function quickUserCan( $action, $user = null ) {
 		return $this->userCan( $action, $user, false );
@@ -2177,15 +2147,29 @@ class Title implements LinkTarget {
 	 * @param User|null $user User to check (since 1.19); $wgUser will be used if not
 	 *   provided.
 	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
+	 *
 	 * @return bool
+	 * @throws Exception
+	 *
+	 * @deprecated since 1.33,
+	 * use MediaWikiServices::getInstance()->getPermissionManager()->userCan(..) instead
+	 *
 	 */
-	public function userCan( $action, $user = null, $rigor = 'secure' ) {
+	public function userCan( $action, $user = null, $rigor = PermissionManager::RIGOR_SECURE ) {
 		if ( !$user instanceof User ) {
 			global $wgUser;
 			$user = $wgUser;
 		}
 
-		return !count( $this->getUserPermissionsErrorsInternal( $action, $user, $rigor, true ) );
+		// TODO: this is for b/c, eventually will be removed
+		if ( $rigor === true ) {
+			$rigor = PermissionManager::RIGOR_SECURE; // b/c
+		} elseif ( $rigor === false ) {
+			$rigor = PermissionManager::RIGOR_QUICK; // b/c
+		}
+
+		return MediaWikiServices::getInstance()->getPermissionManager()
+			->userCan( $action, $user, $this, $rigor );
 	}
 
 	/**
@@ -2201,99 +2185,26 @@ class Title implements LinkTarget {
 	 *   - secure : does cheap and expensive checks, using the master as needed
 	 * @param array $ignoreErrors Array of Strings Set this to a list of message keys
 	 *   whose corresponding errors may be ignored.
+	 *
 	 * @return array Array of arrays of the arguments to wfMessage to explain permissions problems.
+	 * @throws Exception
+	 *
+	 * @deprecated since 1.33,
+	 * use MediaWikiServices::getInstance()->getPermissionManager()->getUserPermissionsErrors()
+	 *
 	 */
 	public function getUserPermissionsErrors(
-		$action, $user, $rigor = 'secure', $ignoreErrors = []
+		$action, $user, $rigor = PermissionManager::RIGOR_SECURE, $ignoreErrors = []
 	) {
-		$errors = $this->getUserPermissionsErrorsInternal( $action, $user, $rigor );
-
-		// Remove the errors being ignored.
-		foreach ( $errors as $index => $error ) {
-			$errKey = is_array( $error ) ? $error[0] : $error;
-
-			if ( in_array( $errKey, $ignoreErrors ) ) {
-				unset( $errors[$index] );
-			}
-			if ( $errKey instanceof MessageSpecifier && in_array( $errKey->getKey(), $ignoreErrors ) ) {
-				unset( $errors[$index] );
-			}
+		// TODO: this is for b/c, eventually will be removed
+		if ( $rigor === true ) {
+			$rigor = PermissionManager::RIGOR_SECURE; // b/c
+		} elseif ( $rigor === false ) {
+			$rigor = PermissionManager::RIGOR_QUICK; // b/c
 		}
 
-		return $errors;
-	}
-
-	/**
-	 * Permissions checks that fail most often, and which are easiest to test.
-	 *
-	 * @param string $action The action to check
-	 * @param User $user User to check
-	 * @param array $errors List of current errors
-	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
-	 * @param bool $short Short circuit on first error
-	 *
-	 * @return array List of errors
-	 */
-	private function checkQuickPermissions( $action, $user, $errors, $rigor, $short ) {
-		if ( !Hooks::run( 'TitleQuickPermissions',
-			[ $this, $user, $action, &$errors, ( $rigor !== 'quick' ), $short ] )
-		) {
-			return $errors;
-		}
-
-		if ( $action == 'create' ) {
-			if (
-				( $this->isTalkPage() && !$user->isAllowed( 'createtalk' ) ) ||
-				( !$this->isTalkPage() && !$user->isAllowed( 'createpage' ) )
-			) {
-				$errors[] = $user->isAnon() ? [ 'nocreatetext' ] : [ 'nocreate-loggedin' ];
-			}
-		} elseif ( $action == 'move' ) {
-			if ( !$user->isAllowed( 'move-rootuserpages' )
-					&& $this->mNamespace == NS_USER && !$this->isSubpage() ) {
-				// Show user page-specific message only if the user can move other pages
-				$errors[] = [ 'cant-move-user-page' ];
-			}
-
-			// Check if user is allowed to move files if it's a file
-			if ( $this->mNamespace == NS_FILE && !$user->isAllowed( 'movefile' ) ) {
-				$errors[] = [ 'movenotallowedfile' ];
-			}
-
-			// Check if user is allowed to move category pages if it's a category page
-			if ( $this->mNamespace == NS_CATEGORY && !$user->isAllowed( 'move-categorypages' ) ) {
-				$errors[] = [ 'cant-move-category-page' ];
-			}
-
-			if ( !$user->isAllowed( 'move' ) ) {
-				// User can't move anything
-				$userCanMove = User::groupHasPermission( 'user', 'move' );
-				$autoconfirmedCanMove = User::groupHasPermission( 'autoconfirmed', 'move' );
-				if ( $user->isAnon() && ( $userCanMove || $autoconfirmedCanMove ) ) {
-					// custom message if logged-in users without any special rights can move
-					$errors[] = [ 'movenologintext' ];
-				} else {
-					$errors[] = [ 'movenotallowed' ];
-				}
-			}
-		} elseif ( $action == 'move-target' ) {
-			if ( !$user->isAllowed( 'move' ) ) {
-				// User can't move anything
-				$errors[] = [ 'movenotallowed' ];
-			} elseif ( !$user->isAllowed( 'move-rootuserpages' )
-					&& $this->mNamespace == NS_USER && !$this->isSubpage() ) {
-				// Show user page-specific message only if the user can move other pages
-				$errors[] = [ 'cant-move-to-user-page' ];
-			} elseif ( !$user->isAllowed( 'move-categorypages' )
-					&& $this->mNamespace == NS_CATEGORY ) {
-				// Show category page-specific message only if the user can move other pages
-				$errors[] = [ 'cant-move-to-category-page' ];
-			}
-		} elseif ( !$user->isAllowed( $action ) ) {
-			$errors[] = $this->missingPermissionError( $action, $short );
-		}
-
-		return $errors;
+		return MediaWikiServices::getInstance()->getPermissionManager()
+			->getPermissionErrors( $action, $user, $this, $rigor, $ignoreErrors );
 	}
 
 	/**
@@ -2321,553 +2232,6 @@ class Title implements LinkTarget {
 			// a generic "We don't want them to do that"
 			$errors[] = [ 'badaccess-group0' ];
 		}
-		return $errors;
-	}
-
-	/**
-	 * Check various permission hooks
-	 *
-	 * @param string $action The action to check
-	 * @param User $user User to check
-	 * @param array $errors List of current errors
-	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
-	 * @param bool $short Short circuit on first error
-	 *
-	 * @return array List of errors
-	 */
-	private function checkPermissionHooks( $action, $user, $errors, $rigor, $short ) {
-		// Use getUserPermissionsErrors instead
-		$result = '';
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$titleRef = $this;
-		if ( !Hooks::run( 'userCan', [ &$titleRef, &$user, $action, &$result ] ) ) {
-			return $result ? [] : [ [ 'badaccess-group0' ] ];
-		}
-		// Check getUserPermissionsErrors hook
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$titleRef = $this;
-		if ( !Hooks::run( 'getUserPermissionsErrors', [ &$titleRef, &$user, $action, &$result ] ) ) {
-			$errors = $this->resultToError( $errors, $result );
-		}
-		// Check getUserPermissionsErrorsExpensive hook
-		if (
-			$rigor !== 'quick'
-			&& !( $short && count( $errors ) > 0 )
-			&& !Hooks::run( 'getUserPermissionsErrorsExpensive', [ &$titleRef, &$user, $action, &$result ] )
-		) {
-			$errors = $this->resultToError( $errors, $result );
-		}
-
-		return $errors;
-	}
-
-	/**
-	 * Check permissions on special pages & namespaces
-	 *
-	 * @param string $action The action to check
-	 * @param User $user User to check
-	 * @param array $errors List of current errors
-	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
-	 * @param bool $short Short circuit on first error
-	 *
-	 * @return array List of errors
-	 */
-	private function checkSpecialsAndNSPermissions( $action, $user, $errors, $rigor, $short ) {
-		# Only 'createaccount' can be performed on special pages,
-		# which don't actually exist in the DB.
-		if ( $this->isSpecialPage() && $action !== 'createaccount' ) {
-			$errors[] = [ 'ns-specialprotected' ];
-		}
-
-		# Check $wgNamespaceProtection for restricted namespaces
-		if ( $this->isNamespaceProtected( $user ) ) {
-			$ns = $this->mNamespace == NS_MAIN ?
-				wfMessage( 'nstab-main' )->text() : $this->getNsText();
-			$errors[] = $this->mNamespace == NS_MEDIAWIKI ?
-				[ 'protectedinterface', $action ] : [ 'namespaceprotected', $ns, $action ];
-		}
-
-		return $errors;
-	}
-
-	/**
-	 * Check sitewide CSS/JSON/JS permissions
-	 *
-	 * @param string $action The action to check
-	 * @param User $user User to check
-	 * @param array $errors List of current errors
-	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
-	 * @param bool $short Short circuit on first error
-	 *
-	 * @return array List of errors
-	 */
-	private function checkSiteConfigPermissions( $action, $user, $errors, $rigor, $short ) {
-		if ( $action != 'patrol' ) {
-			$error = null;
-			// Sitewide CSS/JSON/JS changes, like all NS_MEDIAWIKI changes, also require the
-			// editinterface right. That's implemented as a restriction so no check needed here.
-			if ( $this->isSiteCssConfigPage() && !$user->isAllowed( 'editsitecss' ) ) {
-				$error = [ 'sitecssprotected', $action ];
-			} elseif ( $this->isSiteJsonConfigPage() && !$user->isAllowed( 'editsitejson' ) ) {
-				$error = [ 'sitejsonprotected', $action ];
-			} elseif ( $this->isSiteJsConfigPage() && !$user->isAllowed( 'editsitejs' ) ) {
-				$error = [ 'sitejsprotected', $action ];
-			} elseif ( $this->isRawHtmlMessage() ) {
-				// Raw HTML can be used to deploy CSS or JS so require rights for both.
-				if ( !$user->isAllowed( 'editsitejs' ) ) {
-					$error = [ 'sitejsprotected', $action ];
-				} elseif ( !$user->isAllowed( 'editsitecss' ) ) {
-					$error = [ 'sitecssprotected', $action ];
-				}
-			}
-
-			if ( $error ) {
-				if ( $user->isAllowed( 'editinterface' ) ) {
-					// Most users / site admins will probably find out about the new, more restrictive
-					// permissions by failing to edit something. Give them more info.
-					// TODO remove this a few release cycles after 1.32
-					$error = [ 'interfaceadmin-info', wfMessage( $error[0], $error[1] ) ];
-				}
-				$errors[] = $error;
-			}
-		}
-
-		return $errors;
-	}
-
-	/**
-	 * Check CSS/JSON/JS sub-page permissions
-	 *
-	 * @param string $action The action to check
-	 * @param User $user User to check
-	 * @param array $errors List of current errors
-	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
-	 * @param bool $short Short circuit on first error
-	 *
-	 * @return array List of errors
-	 */
-	private function checkUserConfigPermissions( $action, $user, $errors, $rigor, $short ) {
-		# Protect css/json/js subpages of user pages
-		# XXX: this might be better using restrictions
-
-		if ( $action === 'patrol' ) {
-			return $errors;
-		}
-
-		if ( preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $this->mTextform ) ) {
-			// Users need editmyuser* to edit their own CSS/JSON/JS subpages.
-			if (
-				$this->isUserCssConfigPage()
-				&& !$user->isAllowedAny( 'editmyusercss', 'editusercss' )
-			) {
-				$errors[] = [ 'mycustomcssprotected', $action ];
-			} elseif (
-				$this->isUserJsonConfigPage()
-				&& !$user->isAllowedAny( 'editmyuserjson', 'edituserjson' )
-			) {
-				$errors[] = [ 'mycustomjsonprotected', $action ];
-			} elseif (
-				$this->isUserJsConfigPage()
-				&& !$user->isAllowedAny( 'editmyuserjs', 'edituserjs' )
-			) {
-				$errors[] = [ 'mycustomjsprotected', $action ];
-			}
-		} else {
-			// Users need editmyuser* to edit their own CSS/JSON/JS subpages, except for
-			// deletion/suppression which cannot be used for attacks and we want to avoid the
-			// situation where an unprivileged user can post abusive content on their subpages
-			// and only very highly privileged users could remove it.
-			if ( !in_array( $action, [ 'delete', 'deleterevision', 'suppressrevision' ], true ) ) {
-				if (
-					$this->isUserCssConfigPage()
-					&& !$user->isAllowed( 'editusercss' )
-				) {
-					$errors[] = [ 'customcssprotected', $action ];
-				} elseif (
-					$this->isUserJsonConfigPage()
-					&& !$user->isAllowed( 'edituserjson' )
-				) {
-					$errors[] = [ 'customjsonprotected', $action ];
-				} elseif (
-					$this->isUserJsConfigPage()
-					&& !$user->isAllowed( 'edituserjs' )
-				) {
-					$errors[] = [ 'customjsprotected', $action ];
-				}
-			}
-		}
-
-		return $errors;
-	}
-
-	/**
-	 * Check against page_restrictions table requirements on this
-	 * page. The user must possess all required rights for this
-	 * action.
-	 *
-	 * @param string $action The action to check
-	 * @param User $user User to check
-	 * @param array $errors List of current errors
-	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
-	 * @param bool $short Short circuit on first error
-	 *
-	 * @return array List of errors
-	 */
-	private function checkPageRestrictions( $action, $user, $errors, $rigor, $short ) {
-		foreach ( $this->getRestrictions( $action ) as $right ) {
-			// Backwards compatibility, rewrite sysop -> editprotected
-			if ( $right == 'sysop' ) {
-				$right = 'editprotected';
-			}
-			// Backwards compatibility, rewrite autoconfirmed -> editsemiprotected
-			if ( $right == 'autoconfirmed' ) {
-				$right = 'editsemiprotected';
-			}
-			if ( $right == '' ) {
-				continue;
-			}
-			if ( !$user->isAllowed( $right ) ) {
-				$errors[] = [ 'protectedpagetext', $right, $action ];
-			} elseif ( $this->mCascadeRestriction && !$user->isAllowed( 'protect' ) ) {
-				$errors[] = [ 'protectedpagetext', 'protect', $action ];
-			}
-		}
-
-		return $errors;
-	}
-
-	/**
-	 * Check restrictions on cascading pages.
-	 *
-	 * @param string $action The action to check
-	 * @param User $user User to check
-	 * @param array $errors List of current errors
-	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
-	 * @param bool $short Short circuit on first error
-	 *
-	 * @return array List of errors
-	 */
-	private function checkCascadingSourcesRestrictions( $action, $user, $errors, $rigor, $short ) {
-		if ( $rigor !== 'quick' && !$this->isUserConfigPage() ) {
-			# We /could/ use the protection level on the source page, but it's
-			# fairly ugly as we have to establish a precedence hierarchy for pages
-			# included by multiple cascade-protected pages. So just restrict
-			# it to people with 'protect' permission, as they could remove the
-			# protection anyway.
-			list( $cascadingSources, $restrictions ) = $this->getCascadeProtectionSources();
-			# Cascading protection depends on more than this page...
-			# Several cascading protected pages may include this page...
-			# Check each cascading level
-			# This is only for protection restrictions, not for all actions
-			if ( isset( $restrictions[$action] ) ) {
-				foreach ( $restrictions[$action] as $right ) {
-					// Backwards compatibility, rewrite sysop -> editprotected
-					if ( $right == 'sysop' ) {
-						$right = 'editprotected';
-					}
-					// Backwards compatibility, rewrite autoconfirmed -> editsemiprotected
-					if ( $right == 'autoconfirmed' ) {
-						$right = 'editsemiprotected';
-					}
-					if ( $right != '' && !$user->isAllowedAll( 'protect', $right ) ) {
-						$pages = '';
-						foreach ( $cascadingSources as $page ) {
-							$pages .= '* [[:' . $page->getPrefixedText() . "]]\n";
-						}
-						$errors[] = [ 'cascadeprotected', count( $cascadingSources ), $pages, $action ];
-					}
-				}
-			}
-		}
-
-		return $errors;
-	}
-
-	/**
-	 * Check action permissions not already checked in checkQuickPermissions
-	 *
-	 * @param string $action The action to check
-	 * @param User $user User to check
-	 * @param array $errors List of current errors
-	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
-	 * @param bool $short Short circuit on first error
-	 *
-	 * @return array List of errors
-	 */
-	private function checkActionPermissions( $action, $user, $errors, $rigor, $short ) {
-		global $wgDeleteRevisionsLimit, $wgLang;
-
-		if ( $action == 'protect' ) {
-			if ( count( $this->getUserPermissionsErrorsInternal( 'edit', $user, $rigor, true ) ) ) {
-				// If they can't edit, they shouldn't protect.
-				$errors[] = [ 'protect-cantedit' ];
-			}
-		} elseif ( $action == 'create' ) {
-			$title_protection = $this->getTitleProtection();
-			if ( $title_protection ) {
-				if ( $title_protection['permission'] == ''
-					|| !$user->isAllowed( $title_protection['permission'] )
-				) {
-					$errors[] = [
-						'titleprotected',
-						User::whoIs( $title_protection['user'] ),
-						$title_protection['reason']
-					];
-				}
-			}
-		} elseif ( $action == 'move' ) {
-			// Check for immobile pages
-			if ( !MWNamespace::isMovable( $this->mNamespace ) ) {
-				// Specific message for this case
-				$errors[] = [ 'immobile-source-namespace', $this->getNsText() ];
-			} elseif ( !$this->isMovable() ) {
-				// Less specific message for rarer cases
-				$errors[] = [ 'immobile-source-page' ];
-			}
-		} elseif ( $action == 'move-target' ) {
-			if ( !MWNamespace::isMovable( $this->mNamespace ) ) {
-				$errors[] = [ 'immobile-target-namespace', $this->getNsText() ];
-			} elseif ( !$this->isMovable() ) {
-				$errors[] = [ 'immobile-target-page' ];
-			}
-		} elseif ( $action == 'delete' ) {
-			$tempErrors = $this->checkPageRestrictions( 'edit', $user, [], $rigor, true );
-			if ( !$tempErrors ) {
-				$tempErrors = $this->checkCascadingSourcesRestrictions( 'edit',
-					$user, $tempErrors, $rigor, true );
-			}
-			if ( $tempErrors ) {
-				// If protection keeps them from editing, they shouldn't be able to delete.
-				$errors[] = [ 'deleteprotected' ];
-			}
-			if ( $rigor !== 'quick' && $wgDeleteRevisionsLimit
-				&& !$this->userCan( 'bigdelete', $user ) && $this->isBigDeletion()
-			) {
-				$errors[] = [ 'delete-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) ];
-			}
-		} elseif ( $action === 'undelete' ) {
-			if ( count( $this->getUserPermissionsErrorsInternal( 'edit', $user, $rigor, true ) ) ) {
-				// Undeleting implies editing
-				$errors[] = [ 'undelete-cantedit' ];
-			}
-			if ( !$this->exists()
-				&& count( $this->getUserPermissionsErrorsInternal( 'create', $user, $rigor, true ) )
-			) {
-				// Undeleting where nothing currently exists implies creating
-				$errors[] = [ 'undelete-cantcreate' ];
-			}
-		}
-		return $errors;
-	}
-
-	/**
-	 * Check that the user isn't blocked from editing.
-	 *
-	 * @param string $action The action to check
-	 * @param User $user User to check
-	 * @param array $errors List of current errors
-	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
-	 * @param bool $short Short circuit on first error
-	 *
-	 * @return array List of errors
-	 */
-	private function checkUserBlock( $action, $user, $errors, $rigor, $short ) {
-		global $wgEmailConfirmToEdit, $wgBlockDisablesLogin;
-		// Account creation blocks handled at userlogin.
-		// Unblocking handled in SpecialUnblock
-		if ( $rigor === 'quick' || in_array( $action, [ 'createaccount', 'unblock' ] ) ) {
-			return $errors;
-		}
-
-		// Optimize for a very common case
-		if ( $action === 'read' && !$wgBlockDisablesLogin ) {
-			return $errors;
-		}
-
-		if ( $wgEmailConfirmToEdit
-			&& !$user->isEmailConfirmed()
-			&& $action === 'edit'
-		) {
-			$errors[] = [ 'confirmedittext' ];
-		}
-
-		$useSlave = ( $rigor !== 'secure' );
-		if ( ( $action == 'edit' || $action == 'create' )
-			&& !$user->isBlockedFrom( $this, $useSlave )
-		) {
-			// Don't block the user from editing their own talk page unless they've been
-			// explicitly blocked from that too.
-		} elseif ( $user->isBlocked() && $user->getBlock()->prevents( $action ) !== false ) {
-			// @todo FIXME: Pass the relevant context into this function.
-			$errors[] = $user->getBlock()->getPermissionsError( RequestContext::getMain() );
-		}
-
-		return $errors;
-	}
-
-	/**
-	 * Check that the user is allowed to read this page.
-	 *
-	 * @param string $action The action to check
-	 * @param User $user User to check
-	 * @param array $errors List of current errors
-	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
-	 * @param bool $short Short circuit on first error
-	 *
-	 * @return array List of errors
-	 */
-	private function checkReadPermissions( $action, $user, $errors, $rigor, $short ) {
-		global $wgWhitelistRead, $wgWhitelistReadRegexp;
-
-		$whitelisted = false;
-		if ( User::isEveryoneAllowed( 'read' ) ) {
-			# Shortcut for public wikis, allows skipping quite a bit of code
-			$whitelisted = true;
-		} elseif ( $user->isAllowed( 'read' ) ) {
-			# If the user is allowed to read pages, he is allowed to read all pages
-			$whitelisted = true;
-		} elseif ( $this->isSpecial( 'Userlogin' )
-			|| $this->isSpecial( 'PasswordReset' )
-			|| $this->isSpecial( 'Userlogout' )
-		) {
-			# Always grant access to the login page.
-			# Even anons need to be able to log in.
-			$whitelisted = true;
-		} elseif ( is_array( $wgWhitelistRead ) && count( $wgWhitelistRead ) ) {
-			# Time to check the whitelist
-			# Only do these checks is there's something to check against
-			$name = $this->getPrefixedText();
-			$dbName = $this->getPrefixedDBkey();
-
-			// Check for explicit whitelisting with and without underscores
-			if ( in_array( $name, $wgWhitelistRead, true ) || in_array( $dbName, $wgWhitelistRead, true ) ) {
-				$whitelisted = true;
-			} elseif ( $this->mNamespace == NS_MAIN ) {
-				# Old settings might have the title prefixed with
-				# a colon for main-namespace pages
-				if ( in_array( ':' . $name, $wgWhitelistRead ) ) {
-					$whitelisted = true;
-				}
-			} elseif ( $this->isSpecialPage() ) {
-				# If it's a special page, ditch the subpage bit and check again
-				$name = $this->mDbkeyform;
-				list( $name, /* $subpage */ ) =
-					MediaWikiServices::getInstance()->getSpecialPageFactory()->
-						resolveAlias( $name );
-				if ( $name ) {
-					$pure = SpecialPage::getTitleFor( $name )->getPrefixedText();
-					if ( in_array( $pure, $wgWhitelistRead, true ) ) {
-						$whitelisted = true;
-					}
-				}
-			}
-		}
-
-		if ( !$whitelisted && is_array( $wgWhitelistReadRegexp ) && !empty( $wgWhitelistReadRegexp ) ) {
-			$name = $this->getPrefixedText();
-			// Check for regex whitelisting
-			foreach ( $wgWhitelistReadRegexp as $listItem ) {
-				if ( preg_match( $listItem, $name ) ) {
-					$whitelisted = true;
-					break;
-				}
-			}
-		}
-
-		if ( !$whitelisted ) {
-			# If the title is not whitelisted, give extensions a chance to do so...
-			Hooks::run( 'TitleReadWhitelist', [ $this, $user, &$whitelisted ] );
-			if ( !$whitelisted ) {
-				$errors[] = $this->missingPermissionError( $action, $short );
-			}
-		}
-
-		return $errors;
-	}
-
-	/**
-	 * Get a description array when the user doesn't have the right to perform
-	 * $action (i.e. when User::isAllowed() returns false)
-	 *
-	 * @param string $action The action to check
-	 * @param bool $short Short circuit on first error
-	 * @return array Array containing an error message key and any parameters
-	 */
-	private function missingPermissionError( $action, $short ) {
-		// We avoid expensive display logic for quickUserCan's and such
-		if ( $short ) {
-			return [ 'badaccess-group0' ];
-		}
-
-		return User::newFatalPermissionDeniedStatus( $action )->getErrorsArray()[0];
-	}
-
-	/**
-	 * Can $user perform $action on this page? This is an internal function,
-	 * with multiple levels of checks depending on performance needs; see $rigor below.
-	 * It does not check wfReadOnly().
-	 *
-	 * @param string $action Action that permission needs to be checked for
-	 * @param User $user User to check
-	 * @param string $rigor One of (quick,full,secure)
-	 *   - quick  : does cheap permission checks from replica DBs (usable for GUI creation)
-	 *   - full   : does cheap and expensive checks possibly from a replica DB
-	 *   - secure : does cheap and expensive checks, using the master as needed
-	 * @param bool $short Set this to true to stop after the first permission error.
-	 * @return array Array of arrays of the arguments to wfMessage to explain permissions problems.
-	 */
-	protected function getUserPermissionsErrorsInternal(
-		$action, $user, $rigor = 'secure', $short = false
-	) {
-		if ( $rigor === true ) {
-			$rigor = 'secure'; // b/c
-		} elseif ( $rigor === false ) {
-			$rigor = 'quick'; // b/c
-		} elseif ( !in_array( $rigor, [ 'quick', 'full', 'secure' ] ) ) {
-			throw new Exception( "Invalid rigor parameter '$rigor'." );
-		}
-
-		# Read has special handling
-		if ( $action == 'read' ) {
-			$checks = [
-				'checkPermissionHooks',
-				'checkReadPermissions',
-				'checkUserBlock', // for wgBlockDisablesLogin
-			];
-		# Don't call checkSpecialsAndNSPermissions, checkSiteConfigPermissions
-		# or checkUserConfigPermissions here as it will lead to duplicate
-		# error messages. This is okay to do since anywhere that checks for
-		# create will also check for edit, and those checks are called for edit.
-		} elseif ( $action == 'create' ) {
-			$checks = [
-				'checkQuickPermissions',
-				'checkPermissionHooks',
-				'checkPageRestrictions',
-				'checkCascadingSourcesRestrictions',
-				'checkActionPermissions',
-				'checkUserBlock'
-			];
-		} else {
-			$checks = [
-				'checkQuickPermissions',
-				'checkPermissionHooks',
-				'checkSpecialsAndNSPermissions',
-				'checkSiteConfigPermissions',
-				'checkUserConfigPermissions',
-				'checkPageRestrictions',
-				'checkCascadingSourcesRestrictions',
-				'checkActionPermissions',
-				'checkUserBlock'
-			];
-		}
-
-		$errors = [];
-		while ( count( $checks ) > 0 &&
-				!( $short && count( $errors ) > 0 ) ) {
-			$method = array_shift( $checks );
-			$errors = $this->$method( $action, $user, $errors, $rigor, $short );
-		}
-
 		return $errors;
 	}
 
@@ -3279,6 +2643,9 @@ class Title implements LinkTarget {
 	 * Example: "edit=autoconfirmed,sysop:move=sysop"
 	 */
 	public function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = null ) {
+		// This function will only read rows from a table that we migrated away
+		// from before adding READ_LATEST support to loadRestrictions, so we
+		// don't need to support reading from DB_MASTER here.
 		$dbr = wfGetDB( DB_REPLICA );
 
 		$restrictionTypes = $this->getRestrictionTypes();
@@ -3296,8 +2663,9 @@ class Title implements LinkTarget {
 		}
 
 		if ( $this->mOldRestrictions === false ) {
-			$this->mOldRestrictions = $dbr->selectField( 'page', 'page_restrictions',
-				[ 'page_id' => $this->getArticleID() ], __METHOD__ );
+			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
+			$linkCache->addLinkObj( $this ); # in case we already had an article ID
+			$this->mOldRestrictions = $linkCache->getGoodLinkFieldObj( $this, 'restrictions' );
 		}
 
 		if ( $this->mOldRestrictions != '' ) {
@@ -3349,35 +2717,55 @@ class Title implements LinkTarget {
 	 * indicating who can move or edit the page from the page table, (pre 1.10) rows.
 	 * Edit and move sections are separated by a colon
 	 * Example: "edit=autoconfirmed,sysop:move=sysop"
+	 * @param int $flags A bit field. If self::READ_LATEST is set, skip replicas and read
+	 *  from the master DB.
 	 */
-	public function loadRestrictions( $oldFashionedRestrictions = null ) {
-		if ( $this->mRestrictionsLoaded ) {
+	public function loadRestrictions( $oldFashionedRestrictions = null, $flags = 0 ) {
+		$readLatest = DBAccessObjectUtils::hasFlags( $flags, self::READ_LATEST );
+		if ( $this->mRestrictionsLoaded && !$readLatest ) {
 			return;
 		}
 
+		// TODO: should probably pass $flags into getArticleID, but it seems hacky
+		// to mix READ_LATEST and GAID_FOR_UPDATE, even if they have the same value.
+		// Maybe deprecate GAID_FOR_UPDATE now that we implement IDBAccessObject?
 		$id = $this->getArticleID();
 		if ( $id ) {
-			$cache = ObjectCache::getMainWANInstance();
 			$fname = __METHOD__;
-			$rows = $cache->getWithSetCallback(
-				// Page protections always leave a new null revision
-				$cache->makeKey( 'page-restrictions', $id, $this->getLatestRevID() ),
-				$cache::TTL_DAY,
-				function ( $curValue, &$ttl, array &$setOpts ) use ( $fname ) {
-					$dbr = wfGetDB( DB_REPLICA );
+			$loadRestrictionsFromDb = function ( IDatabase $dbr ) use ( $fname, $id ) {
+				return iterator_to_array(
+					$dbr->select(
+						'page_restrictions',
+						[ 'pr_type', 'pr_expiry', 'pr_level', 'pr_cascade' ],
+						[ 'pr_page' => $id ],
+						$fname
+					)
+				);
+			};
 
-					$setOpts += Database::getCacheSetOptions( $dbr );
+			if ( $readLatest ) {
+				$dbr = wfGetDB( DB_MASTER );
+				$rows = $loadRestrictionsFromDb( $dbr );
+			} else {
+				$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+				$rows = $cache->getWithSetCallback(
+					// Page protections always leave a new null revision
+					$cache->makeKey( 'page-restrictions', 'v1', $id, $this->getLatestRevID() ),
+					$cache::TTL_DAY,
+					function ( $curValue, &$ttl, array &$setOpts ) use ( $loadRestrictionsFromDb ) {
+						$dbr = wfGetDB( DB_REPLICA );
 
-					return iterator_to_array(
-						$dbr->select(
-							'page_restrictions',
-							[ 'pr_type', 'pr_expiry', 'pr_level', 'pr_cascade' ],
-							[ 'pr_page' => $this->getArticleID() ],
-							$fname
-						)
-					);
-				}
-			);
+						$setOpts += Database::getCacheSetOptions( $dbr );
+						$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+						if ( $lb->hasOrMadeRecentMasterChanges() ) {
+							// @TODO: cleanup Title cache and caller assumption mess in general
+							$ttl = WANObjectCache::TTL_UNCACHEABLE;
+						}
+
+						return $loadRestrictionsFromDb( $dbr );
+					}
+				);
+			}
 
 			$this->loadRestrictionsFromRows( $rows, $oldFashionedRestrictions );
 		} else {
@@ -3574,10 +2962,8 @@ class Title implements LinkTarget {
 			$linkCache->clearLink( $this );
 			$this->mArticleID = $linkCache->addLinkObj( $this );
 			$linkCache->forUpdate( $oldUpdate );
-		} else {
-			if ( -1 == $this->mArticleID ) {
-				$this->mArticleID = $linkCache->addLinkObj( $this );
-			}
+		} elseif ( $this->mArticleID == -1 ) {
+			$this->mArticleID = $linkCache->addLinkObj( $this );
 		}
 		return $this->mArticleID;
 	}
@@ -3747,6 +3133,7 @@ class Title implements LinkTarget {
 		// @todo: get rid of secureAndSplit, refactor parsing code.
 		// @note: getTitleParser() returns a TitleParser implementation which does not have a
 		//        splitTitleString method, but the only implementation (MediaWikiTitleCodec) does
+		/** @var MediaWikiTitleCodec $titleCodec */
 		$titleCodec = MediaWikiServices::getInstance()->getTitleParser();
 		// MalformedTitleException can be thrown here
 		$parts = $titleCodec->splitTitleString( $this->mDbkeyform, $this->mDefaultNamespace );
@@ -3970,13 +3357,6 @@ class Title implements LinkTarget {
 	}
 
 	/**
-	 * @deprecated since 1.27 use getCdnUrls()
-	 */
-	public function getSquidURLs() {
-		return $this->getCdnUrls();
-	}
-
-	/**
 	 * Purge all applicable CDN URLs
 	 */
 	public function purgeSquid() {
@@ -4015,28 +3395,6 @@ class Title implements LinkTarget {
 		}
 
 		return $errors ?: true;
-	}
-
-	/**
-	 * Check if the requested move target is a valid file move target
-	 * @todo move this to MovePage
-	 * @param Title $nt Target title
-	 * @return array List of errors
-	 */
-	protected function validateFileMoveOperation( $nt ) {
-		global $wgUser;
-
-		$errors = [];
-
-		$destFile = wfLocalFile( $nt );
-		$destFile->load( File::READ_LATEST );
-		if ( !$wgUser->isAllowed( 'reupload-shared' )
-			&& !$destFile->exists() && wfFindFile( $nt )
-		) {
-			$errors[] = [ 'file-exists-sharedrepo' ];
-		}
-
-		return $errors;
 	}
 
 	/**
@@ -4442,7 +3800,7 @@ class Title implements LinkTarget {
 	 * Get the oldest revision timestamp of this page
 	 *
 	 * @param int $flags Title::GAID_FOR_UPDATE
-	 * @return string MW timestamp
+	 * @return string|null MW timestamp
 	 */
 	public function getEarliestRevTime( $flags = 0 ) {
 		$rev = $this->getFirstRevision( $flags );
@@ -4852,7 +4210,7 @@ class Title implements LinkTarget {
 		$dbw->onTransactionPreCommitOrIdle(
 			function () use ( $dbw ) {
 				ResourceLoaderWikiModule::invalidateModuleCache(
-					$this, null, null, $dbw->getDomainId() );
+					$this, null, null, $dbw->getDomainID() );
 			},
 			__METHOD__
 		);
@@ -5051,9 +4409,7 @@ class Title implements LinkTarget {
 	public function canUseNoindex() {
 		global $wgExemptFromUserRobotsControl;
 
-		$bannedNamespaces = is_null( $wgExemptFromUserRobotsControl )
-			? MWNamespace::getContentNamespaces()
-			: $wgExemptFromUserRobotsControl;
+		$bannedNamespaces = $wgExemptFromUserRobotsControl ?? MWNamespace::getContentNamespaces();
 
 		return !in_array( $this->mNamespace, $bannedNamespaces );
 	}
@@ -5222,10 +4578,9 @@ class Title implements LinkTarget {
 
 		if ( MWNamespace::hasSubpages( $this->mNamespace ) ) {
 			// Optional notice for page itself and any parent page
-			$parts = explode( '/', $this->mDbkeyform );
 			$editnotice_base = $editnotice_ns;
-			while ( count( $parts ) > 0 ) {
-				$editnotice_base .= '-' . array_shift( $parts );
+			foreach ( explode( '/', $this->mDbkeyform ) as $part ) {
+				$editnotice_base .= '-' . $part;
 				$msg = wfMessage( $editnotice_base );
 				if ( $msg->exists() ) {
 					$html = $msg->parseAsBlock();

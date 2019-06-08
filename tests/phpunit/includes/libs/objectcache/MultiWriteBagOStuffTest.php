@@ -138,6 +138,9 @@ class MultiWriteBagOStuffTest extends MediaWikiTestCase {
 		$this->assertSame( 'special', $cache->makeGlobalKey( 'a', 'b' ) );
 	}
 
+	/**
+	 * @covers MultiWriteBagOStuff::add
+	 */
 	public function testDuplicateStoreAdd() {
 		$bag = new HashBagOStuff();
 		$cache = new MultiWriteBagOStuff( [

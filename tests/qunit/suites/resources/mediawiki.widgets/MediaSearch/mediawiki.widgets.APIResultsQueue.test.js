@@ -50,7 +50,9 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 			},
 			this.responseDelay );
 
-		return deferred.promise( { abort: function () { clearTimeout( timer ); } } );
+		return deferred.promise( { abort: function () {
+			clearTimeout( timer );
+		} } );
 	};
 
 	EmptyResourceProvider.prototype.getResults = function () {
@@ -64,7 +66,9 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 				},
 				this.responseDelay );
 
-		return deferred.promise( { abort: function () { clearTimeout( timer ); } } );
+		return deferred.promise( { abort: function () {
+			clearTimeout( timer );
+		} } );
 	};
 
 	SingleResultResourceProvider.prototype.getResults = function ( howMany ) {
@@ -80,7 +84,9 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 			},
 			this.responseDelay );
 
-		return deferred.promise( { abort: function () { clearTimeout( timer ); } } );
+		return deferred.promise( { abort: function () {
+			clearTimeout( timer );
+		} } );
 	};
 
 	/* Tests */
@@ -171,7 +177,9 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 		assert.expect( 1 );
 
 		// Make the delay higher
-		providers.forEach( function ( provider ) { provider.responseDelay = 3; } );
+		providers.forEach( function ( provider ) {
+			provider.responseDelay = 3;
+		} );
 
 		// Add providers to queue
 		biggerQueue.setProviders( providers );
@@ -184,7 +192,9 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 			} );
 
 		// Make the delay higher
-		providers.forEach( function ( provider ) { provider.responseDelay = 5; } );
+		providers.forEach( function ( provider ) {
+			provider.responseDelay = 5;
+		} );
 
 		biggerQueue.setParams( { foo: 'baz' } );
 		biggerQueue.get( 10 )

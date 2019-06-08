@@ -72,13 +72,13 @@ class EncryptedPasswordTest extends PasswordTestCase {
 		// phpcs:ignore Generic.Files.LineLength
 		$hash = ':both:aes-256-cbc:0:izBpxujqC1YbzpCB3qAzgg==:ZqHnitT1pL4YJqKqFES2KEevZYSy2LtlibW5+IMi4XKOGKGy6sE638BXyBbLQQsBtTSrt+JyzwOayKtwIfRbaQsBridx/O1JwBSai1TkGkOsYMBXnlu2Bu/EquCBj5QpjYh7p3Uq4rpiop1KQlin1BJMwnAa1PovhxjpxnYhlhkM4X5ALoGi3XM0bapN48vt';
 		$fromHash = $this->passwordFactory->newFromCiphertext( $hash );
-		$fromPlaintext = $this->passwordFactory->newFromPlaintext( 'password', $fromHash );
 		$this->assertTrue( $fromHash->update() );
 
 		$serialized = $fromHash->toString();
 		$this->assertRegExp( '/^:both:aes-256-cbc:1:/', $serialized );
 		$fromNewHash = $this->passwordFactory->newFromCiphertext( $serialized );
 		$fromPlaintext = $this->passwordFactory->newFromPlaintext( 'password', $fromNewHash );
-		$this->assertTrue( $fromHash->equals( $fromPlaintext ) );
+		$this->assertTrue( $fromPlaintext->verify( 'password' ) );
+		$this->assertTrue( $fromHash->verify( 'password' ) );
 	}
 }

@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\DatabaseDomain;
 
@@ -39,10 +38,18 @@ abstract class MWLBFactory {
 	 * @param array $lbConf Config for LBFactory::__construct()
 	 * @param Config $mainConfig Main config object from MediaWikiServices
 	 * @param ConfiguredReadOnlyMode $readOnlyMode
+	 * @param BagOStuff $srvCace
+	 * @param BagOStuff $mainStash
+	 * @param WANObjectCache $wanCache
 	 * @return array
 	 */
-	public static function applyDefaultConfig( array $lbConf, Config $mainConfig,
-		ConfiguredReadOnlyMode $readOnlyMode
+	public static function applyDefaultConfig(
+		array $lbConf,
+		Config $mainConfig,
+		ConfiguredReadOnlyMode $readOnlyMode,
+		BagOStuff $srvCace,
+		BagOStuff $mainStash,
+		WANObjectCache $wanCache
 	) {
 		global $wgCommandLineMode;
 
@@ -54,7 +61,9 @@ abstract class MWLBFactory {
 				$mainConfig->get( 'DBmwschema' ),
 				$mainConfig->get( 'DBprefix' )
 			),
-			'profiler' => Profiler::instance(),
+			'profiler' => function ( $section ) {
+				return Profiler::instance()->scopedProfileIn( $section );
+			},
 			'trxProfiler' => Profiler::instance()->getTransactionProfiler(),
 			'replLogger' => LoggerFactory::getInstance( 'DBReplication' ),
 			'queryLogger' => LoggerFactory::getInstance( 'DBQuery' ),
@@ -68,16 +77,27 @@ abstract class MWLBFactory {
 			'defaultGroup' => $mainConfig->get( 'DBDefaultGroup' ),
 		];
 
+		$serversCheck = [];
 		// When making changes here, remember to also specify MediaWiki-specific options
 		// for Database classes in the relevant Installer subclass.
 		// Such as MysqlInstaller::openConnection and PostgresInstaller::openConnectionWithParams.
 		if ( $lbConf['class'] === Wikimedia\Rdbms\LBFactorySimple::class ) {
+			$httpMethod = $_SERVER['REQUEST_METHOD'] ?? null;
+			// T93097: hint for how file-based databases (e.g. sqlite) should go about locking.
+			// See https://www.sqlite.org/lang_transaction.html
+			// See https://www.sqlite.org/lockingv3.html#shared_lock
+			$isReadRequest = in_array( $httpMethod, [ 'GET', 'HEAD', 'OPTIONS', 'TRACE' ] );
+
 			if ( isset( $lbConf['servers'] ) ) {
 				// Server array is already explicitly configured; leave alone
 			} elseif ( is_array( $mainConfig->get( 'DBservers' ) ) ) {
+				$lbConf['servers'] = [];
 				foreach ( $mainConfig->get( 'DBservers' ) as $i => $server ) {
 					if ( $server['type'] === 'sqlite' ) {
-						$server += [ 'dbDirectory' => $mainConfig->get( 'SQLiteDataDir' ) ];
+						$server += [
+							'dbDirectory' => $mainConfig->get( 'SQLiteDataDir' ),
+							'trxMode' => $isReadRequest ? 'DEFERRED' : 'IMMEDIATE'
+						];
 					} elseif ( $server['type'] === 'postgres' ) {
 						$server += [
 							'port' => $mainConfig->get( 'DBport' ),
@@ -99,7 +119,6 @@ abstract class MWLBFactory {
 						'tablePrefix' => $mainConfig->get( 'DBprefix' ),
 						'flags' => DBO_DEFAULT,
 						'sqlMode' => $mainConfig->get( 'SQLMode' ),
-						'utf8Mode' => $mainConfig->get( 'DBmysql5' )
 					];
 
 					$lbConf['servers'][$i] = $server;
@@ -119,7 +138,7 @@ abstract class MWLBFactory {
 					'load' => 1,
 					'flags' => $flags,
 					'sqlMode' => $mainConfig->get( 'SQLMode' ),
-					'utf8Mode' => $mainConfig->get( 'DBmysql5' )
+					'trxMode' => $isReadRequest ? 'DEFERRED' : 'IMMEDIATE'
 				];
 				if ( in_array( $server['type'], $typesWithSchema, true ) ) {
 					$server += [ 'schema' => $mainConfig->get( 'DBmwschema' ) ];
@@ -139,33 +158,124 @@ abstract class MWLBFactory {
 			if ( !isset( $lbConf['externalClusters'] ) ) {
 				$lbConf['externalClusters'] = $mainConfig->get( 'ExternalServers' );
 			}
+
+			$serversCheck = $lbConf['servers'];
 		} elseif ( $lbConf['class'] === Wikimedia\Rdbms\LBFactoryMulti::class ) {
 			if ( isset( $lbConf['serverTemplate'] ) ) {
 				if ( in_array( $lbConf['serverTemplate']['type'], $typesWithSchema, true ) ) {
 					$lbConf['serverTemplate']['schema'] = $mainConfig->get( 'DBmwschema' );
 				}
 				$lbConf['serverTemplate']['sqlMode'] = $mainConfig->get( 'SQLMode' );
-				$lbConf['serverTemplate']['utf8Mode'] = $mainConfig->get( 'DBmysql5' );
 			}
+			$serversCheck = $lbConf['serverTemplate'] ?? [];
 		}
 
-		$services = MediaWikiServices::getInstance();
+		self::sanityCheckServerConfig( $serversCheck, $mainConfig );
+		$lbConf = self::applyDefaultCaching( $lbConf, $srvCace, $mainStash, $wanCache );
 
+		return $lbConf;
+	}
+
+	/**
+	 * @param array $lbConf
+	 * @param BagOStuff $sCache
+	 * @param BagOStuff $mStash
+	 * @param WANObjectCache $wCache
+	 * @return array
+	 */
+	private static function applyDefaultCaching(
+		array $lbConf, BagOStuff $sCache, BagOStuff $mStash, WANObjectCache $wCache
+	) {
 		// Use APC/memcached style caching, but avoids loops with CACHE_DB (T141804)
-		$sCache = $services->getLocalServerObjectCache();
 		if ( $sCache->getQoS( $sCache::ATTR_EMULATION ) > $sCache::QOS_EMULATION_SQL ) {
 			$lbConf['srvCache'] = $sCache;
 		}
-		$mStash = $services->getMainObjectStash();
 		if ( $mStash->getQoS( $mStash::ATTR_EMULATION ) > $mStash::QOS_EMULATION_SQL ) {
 			$lbConf['memStash'] = $mStash;
 		}
-		$wCache = $services->getMainWANObjectCache();
 		if ( $wCache->getQoS( $wCache::ATTR_EMULATION ) > $wCache::QOS_EMULATION_SQL ) {
 			$lbConf['wanCache'] = $wCache;
 		}
 
 		return $lbConf;
+	}
+
+	/**
+	 * @param array $servers
+	 * @param Config $mainConfig
+	 */
+	private static function sanityCheckServerConfig( array $servers, Config $mainConfig ) {
+		$ldDB = $mainConfig->get( 'DBname' ); // local domain DB
+		$ldTP = $mainConfig->get( 'DBprefix' ); // local domain prefix
+
+		foreach ( $servers as $server ) {
+			$type = $server['type'] ?? null;
+			$srvDB = $server['dbname'] ?? null; // server DB
+			$srvTP = $server['tablePrefix'] ?? ''; // server table prefix
+
+			if ( $type === 'mysql' ) {
+				// A DB name is not needed to connect to mysql; 'dbname' is useless.
+				// This field only defines the DB to use for unspecified DB domains.
+				if ( $srvDB !== null && $srvDB !== $ldDB ) {
+					self::reportMismatchedDBs( $srvDB, $ldDB );
+				}
+			} elseif ( $type === 'postgres' ) {
+				if ( $srvTP !== '' ) {
+					self::reportIfPrefixSet( $srvTP, $type );
+				}
+			}
+
+			if ( $srvTP !== '' && $srvTP !== $ldTP ) {
+				self::reportMismatchedPrefixes( $srvTP, $ldTP );
+			}
+		}
+	}
+
+	/**
+	 * @param string $prefix Table prefix
+	 * @param string $dbType Database type
+	 */
+	private static function reportIfPrefixSet( $prefix, $dbType ) {
+		$e = new UnexpectedValueException(
+			"\$wgDBprefix is set to '$prefix' but the database type is '$dbType'. " .
+			"MediaWiki does not support using a table prefix with this RDBMS type."
+		);
+		MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_PRETTY );
+		exit;
+	}
+
+	/**
+	 * @param string $srvDB Server config database
+	 * @param string $ldDB Local DB domain database
+	 */
+	private static function reportMismatchedDBs( $srvDB, $ldDB ) {
+		$e = new UnexpectedValueException(
+			"\$wgDBservers has dbname='$srvDB' but \$wgDBname='$ldDB'. " .
+			"Set \$wgDBname to the database used by this wiki project. " .
+			"There is rarely a need to set 'dbname' in \$wgDBservers. " .
+			"Cross-wiki database access, use of WikiMap::getCurrentWikiDbDomain(), " .
+			"use of Database::getDomainId(), and other features are not reliable when " .
+			"\$wgDBservers does not match the local wiki database/prefix."
+		);
+		MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_PRETTY );
+		exit;
+	}
+
+	/**
+	 * @param string $srvTP Server config table prefix
+	 * @param string $ldTP Local DB domain database
+	 */
+	private static function reportMismatchedPrefixes( $srvTP, $ldTP ) {
+		$e = new UnexpectedValueException(
+			"\$wgDBservers has tablePrefix='$srvTP' but \$wgDBprefix='$ldTP'. " .
+			"Set \$wgDBprefix to the table prefix used by this wiki project. " .
+			"There is rarely a need to set 'tablePrefix' in \$wgDBservers. " .
+			"Cross-wiki database access, use of WikiMap::getCurrentWikiDbDomain(), " .
+			"use of Database::getDomainId(), and other features are not reliable when " .
+			"\$wgDBservers does not match the local wiki database/prefix."
+		);
+		MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_PRETTY );
+		exit;
 	}
 
 	/**

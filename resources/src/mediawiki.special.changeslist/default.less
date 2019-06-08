@@ -1,0 +1,46 @@
+/*
+ * Styling for Special:Watchlist and Special:RecentChanges
+ */
+
+/* Make sure namespace label is aligned correctly on mobile when checkboxes are displayed */
+.mw-label.mw-namespace-label {
+	vertical-align: top;
+}
+
+.mw-changeslist-line-watched .mw-title {
+	font-weight: bold;
+}
+
+/* Colored watchlist and recent changes numbers */
+.mw-plusminus-pos {
+	color: #006400; /* dark green */
+}
+
+.mw-plusminus-neg {
+	color: #8b0000; /* dark red */
+}
+
+.mw-plusminus-null {
+	color: #a2a9b1; /* gray */
+}
+
+/* Prevent FOUC if legend is initially collapsed */
+.mw-changeslist-legend.mw-collapsed .mw-collapsible-content {
+	display: none;
+}
+
+.mw-changeslist-legend.mw-collapsed {
+	margin-bottom: 0;
+}
+
+/* Prevent pushing down the content if legend is collapsed */
+.mw-changeslist-legend.mw-collapsed ~ ul:first-of-type > li:first-child,
+.mw-changeslist-legend.mw-collapsed + h4 + div > table.mw-changeslist-line:first-child {
+	clear: right;
+}
+
+/* Hide RCFilters highlight containers if RCFilters is not enabled.
+   This is overridden in mw.ui.rcfilters.ChangesListWrapperWidget.less if RCFilters is enabled. */
+.mw-rcfilters-ui-highlights {
+	display: none;
+}

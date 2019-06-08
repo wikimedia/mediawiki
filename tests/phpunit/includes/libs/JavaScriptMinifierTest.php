@@ -182,8 +182,8 @@ class JavaScriptMinifierTest extends PHPUnit\Framework\TestCase {
 
 			// Boolean minification (!0 / !1)
 			[ "var a = { b: true };", "var a={b:!0};" ],
-			[ "var a = { true: 12 };", "var a={true:12};", false ],
-			[ "a.true = 12;", "a.true=12;", false ],
+			[ "var a = { true: 12 };", "var a={true:12};" ],
+			[ "a.true = 12;", "a.true=12;" ],
 			[ "a.foo = true;", "a.foo=!0;" ],
 			[ "a.foo = false;", "a.foo=!1;" ],
 		];

@@ -1,11 +1,20 @@
 {
 	"name": "FooBar",
+	"@note": "This is a note",
+	"@duck": "Docs say any @-item is ignored",
 	"attributes": {
 		"FooBar": {
 			"Attr": [ "test" ]
 		},
 		"NotLoaded": {
 			"Attr": [ "test2" ]
+		}
+	},
+	"config": {
+		"MyConfigValue": {
+			"value": 42,
+			"description": "Very important config value",
+			"public": true
 		}
 	},
 	"manifest_version": 2

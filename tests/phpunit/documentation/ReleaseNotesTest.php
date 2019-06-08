@@ -34,15 +34,20 @@ class ReleaseNotesTest extends MediaWikiTestCase {
 		}
 
 		// Also test the README and similar files
-		$otherFiles = [ "$IP/COPYING", "$IP/FAQ", "$IP/INSTALL", "$IP/README", "$IP/SECURITY" ];
+		$otherFiles = [
+			"$IP/COPYING",
+			"$IP/FAQ",
+			"$IP/HISTORY",
+			"$IP/INSTALL",
+			"$IP/README",
+			"$IP/SECURITY"
+		];
 
 		foreach ( $otherFiles as $index => $fileName ) {
 			$this->assertFileLength( "Help", $fileName );
 		}
 	}
 
-	/**
-	 */
 	private function assertFileLength( $type, $fileName ) {
 		$file = file( $fileName, FILE_IGNORE_NEW_LINES );
 
@@ -51,16 +56,13 @@ class ReleaseNotesTest extends MediaWikiTestCase {
 			"$type file '$fileName' is inaccessible."
 		);
 
-		$lines = count( $file );
-
-		for ( $i = 0; $i < $lines; $i++ ) {
-			$line = $file[$i];
-
+		foreach ( $file as $i => $line ) {
+			$num = $i + 1;
 			$this->assertLessThanOrEqual(
 				// FILE_IGNORE_NEW_LINES drops the \n at the EOL, so max length is 80 not 81.
 				80,
 				mb_strlen( $line ),
-				"$type file '$fileName' line $i is longer than 80 chars:\n\t'$line'"
+				"$type file '$fileName' line $num, is longer than 80 chars:\n\t'$line'"
 			);
 		}
 	}

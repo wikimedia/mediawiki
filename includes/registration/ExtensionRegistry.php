@@ -1,6 +1,9 @@
 <?php
 
 use Composer\Semver\Semver;
+use Wikimedia\ScopedCallback;
+use MediaWiki\Shell\Shell;
+use MediaWiki\ShellDisabledError;
 
 /**
  * ExtensionRegistry class
@@ -77,6 +80,13 @@ class ExtensionRegistry {
 	protected $attributes = [];
 
 	/**
+	 * Attributes for testing
+	 *
+	 * @var array
+	 */
+	protected $testAttributes = [];
+
+	/**
 	 * @var ExtensionRegistry
 	 */
 	private static $instance;
@@ -136,7 +146,8 @@ class ExtensionRegistry {
 		// A few more things to vary the cache on
 		$versions = [
 			'registration' => self::CACHE_VERSION,
-			'mediawiki' => $wgVersion
+			'mediawiki' => $wgVersion,
+			'abilities' => $this->getAbilities(),
 		];
 
 		// We use a try/catch because we don't want to fail here
@@ -200,6 +211,38 @@ class ExtensionRegistry {
 	}
 
 	/**
+	 * Get the list of abilities and their values
+	 * @return bool[]
+	 */
+	private function getAbilities() {
+		return [
+			'shell' => !Shell::isDisabled(),
+		];
+	}
+
+	/**
+	 * Queries information about the software environment and constructs an appropiate version checker
+	 *
+	 * @return VersionChecker
+	 */
+	private function buildVersionChecker() {
+		global $wgVersion;
+		// array to optionally specify more verbose error messages for
+		// missing abilities
+		$abilityErrors = [
+			'shell' => ( new ShellDisabledError() )->getMessage(),
+		];
+
+		return new VersionChecker(
+			$wgVersion,
+			PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION . '.' . PHP_RELEASE_VERSION,
+			get_loaded_extensions(),
+			$this->getAbilities(),
+			$abilityErrors
+		);
+	}
+
+	/**
 	 * Process a queue of extensions and return their extracted data
 	 *
 	 * @param array $queue keys are filenames, values are ignored
@@ -208,16 +251,11 @@ class ExtensionRegistry {
 	 * @throws ExtensionDependencyError
 	 */
 	public function readFromQueue( array $queue ) {
-		global $wgVersion;
 		$autoloadClasses = [];
 		$autoloadNamespaces = [];
 		$autoloaderPaths = [];
 		$processor = new ExtensionProcessor();
-		$versionChecker = new VersionChecker(
-			$wgVersion,
-			PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION . '.' . PHP_RELEASE_VERSION,
-			get_loaded_extensions()
-		);
+		$versionChecker = $this->buildVersionChecker();
 		$extDependencies = [];
 		$incompatible = [];
 		$warnings = false;
@@ -366,7 +404,7 @@ class ExtensionRegistry {
 				}
 				throw new UnexpectedValueException( "callback '$cb' is not callable" );
 			}
-			call_user_func( $cb, $info['credits'][$name] );
+			$cb( $info['credits'][$name] );
 		}
 	}
 
@@ -412,7 +450,31 @@ class ExtensionRegistry {
 	 * @return array
 	 */
 	public function getAttribute( $name ) {
-		return $this->attributes[$name] ?? [];
+		return $this->testAttributes[$name] ??
+			$this->attributes[$name] ?? [];
+	}
+
+	/**
+	 * Force override the value of an attribute during tests
+	 *
+	 * @param string $name Name of attribute to override
+	 * @param array $value Value to set
+	 * @return ScopedCallback to reset
+	 * @since 1.33
+	 */
+	public function setAttributeForTest( $name, array $value ) {
+		// @codeCoverageIgnoreStart
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new RuntimeException( __METHOD__ . ' can only be used in tests' );
+		}
+		// @codeCoverageIgnoreEnd
+		if ( isset( $this->testAttributes[$name] ) ) {
+			throw new Exception( "The attribute '$name' has already been overridden" );
+		}
+		$this->testAttributes[$name] = $value;
+		return new ScopedCallback( function () use ( $name ) {
+			unset( $this->testAttributes[$name] );
+		} );
 	}
 
 	/**

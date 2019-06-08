@@ -1,7 +1,9 @@
 ( function () {
 	'use strict';
 
-	var util;
+	var util,
+		config = require( './config.json' ),
+		origConfig = config;
 
 	/**
 	 * Encode the string like PHP's rawurlencode
@@ -50,6 +52,20 @@
 
 		/* Main body */
 
+		setOptionsForTest: function ( opts ) {
+			if ( !window.QUnit ) {
+				throw new Error( 'Modifying options not allowed outside unit tests' );
+			}
+			config = $.extend( {}, config, opts );
+		},
+
+		resetOptionsForTest: function () {
+			if ( !window.QUnit ) {
+				throw new Error( 'Resetting options not allowed outside unit tests' );
+			}
+			config = origConfig;
+		},
+
 		/**
 		 * Encode the string like PHP's rawurlencode
 		 *
@@ -68,7 +84,7 @@
 		 * @return {string} Encoded string
 		 */
 		escapeIdForAttribute: function ( str ) {
-			var mode = mw.config.get( 'wgFragmentMode' )[ 0 ];
+			var mode = config.FragmentMode[ 0 ];
 
 			return escapeIdInternal( str, mode );
 		},
@@ -83,7 +99,7 @@
 		 * @return {string} Encoded string
 		 */
 		escapeIdForLink: function ( str ) {
-			var mode = mw.config.get( 'wgFragmentMode' )[ 0 ];
+			var mode = config.FragmentMode[ 0 ];
 
 			return escapeIdInternal( str, mode );
 		},
@@ -208,7 +224,7 @@
 		 */
 		getParamValue: function ( param, url ) {
 			// Get last match, stop at hash
-			var	re = new RegExp( '^[^#]*[&?]' + mw.RegExp.escape( param ) + '=([^&#]*)' ),
+			var re = new RegExp( '^[^#]*[&?]' + mw.RegExp.escape( param ) + '=([^&#]*)' ),
 				m = re.exec( url !== undefined ? url : location.href );
 
 			if ( m ) {
@@ -515,27 +531,6 @@
 				util.isIPv6Address( address, allowBlock );
 		}
 	};
-
-	/**
-	 * Add a little box at the top of the screen to inform the user of
-	 * something, replacing any previous message.
-	 * Calling with no arguments, with an empty string or null will hide the message
-	 *
-	 * @method jsMessage
-	 * @deprecated since 1.20 Use mw#notify
-	 * @param {Mixed} message The DOM-element, jQuery object or HTML-string to be put inside the message box.
-	 *  to allow CSS/JS to hide different boxes. null = no class used.
-	 */
-	mw.log.deprecate( util, 'jsMessage', function ( message ) {
-		if ( !arguments.length || message === '' || message === null ) {
-			return true;
-		}
-		if ( typeof message !== 'object' ) {
-			message = $.parseHTML( message );
-		}
-		mw.notify( message, { autoHide: true, tag: 'legacy' } );
-		return true;
-	}, 'Use mw.notify instead.', 'mw.util.jsMessage' );
 
 	/**
 	 * Initialisation of mw.util.$content

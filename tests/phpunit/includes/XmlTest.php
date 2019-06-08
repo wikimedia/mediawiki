@@ -455,6 +455,34 @@ class XmlTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers Xml::encodeJsVar
+	 */
+	public function testXmlJsCode() {
+		$code = 'function () { foo( 42 ); }';
+		$this->assertEquals(
+			$code,
+			Xml::encodeJsVar( new XmlJsCode( $code ) )
+		);
+	}
+
+	/**
+	 * @covers Xml::encodeJsVar
+	 * @covers XmlJsCode::encodeObject
+	 */
+	public function testEncodeObject() {
+		$codeA = 'function () { foo( 42 ); }';
+		$codeB = 'function ( jQuery ) { bar( 142857 ); }';
+		$obj = XmlJsCode::encodeObject( [
+			'a' => new XmlJsCode( $codeA ),
+			'b' => new XmlJsCode( $codeB )
+		] );
+		$this->assertEquals(
+			"{\"a\":$codeA,\"b\":$codeB}",
+			Xml::encodeJsVar( $obj )
+		);
+	}
+
+	/**
 	 * @covers Xml::listDropDown
 	 */
 	public function testListDropDown() {

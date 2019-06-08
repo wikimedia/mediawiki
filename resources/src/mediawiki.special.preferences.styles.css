@@ -17,6 +17,7 @@
 #preferences > fieldset table {
 	width: 100%;
 }
+
 #preferences > fieldset table.mw-htmlform-matrix {
 	width: auto;
 }
@@ -24,16 +25,11 @@
 /* The CSS below is also for JS enabled version, because we want to prevent FOUC */
 
 /*
- * Hide, but keep accessible for screen-readers.
+ * Hide, when not keyboard focussed.
  */
-.client-js .mw-navigation-hint {
-	overflow: hidden;
+.client-js .mw-navigation-hint:not( :focus ) {
 	height: 0;
-	zoom: 1;
-}
-
-.client-nojs #preftoc {
-	display: none;
+	overflow: hidden;
 }
 
 .client-js #preferences > fieldset {

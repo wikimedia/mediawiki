@@ -330,7 +330,7 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( !is_null( $oldid ) ) {
-			$result_array['revid'] = intval( $oldid );
+			$result_array['revid'] = (int)$oldid;
 		}
 
 		if ( $params['redirects'] && !is_null( $redirValues ) ) {
@@ -417,11 +417,13 @@ class ApiParse extends ApiBase {
 		if ( isset( $prop['modules'] ) ) {
 			if ( $skin ) {
 				$result_array['modules'] = $outputPage->getModules();
-				$result_array['modulescripts'] = $outputPage->getModuleScripts();
+				// Deprecated since 1.32 (T188689)
+				$result_array['modulescripts'] = [];
 				$result_array['modulestyles'] = $outputPage->getModuleStyles();
 			} else {
 				$result_array['modules'] = array_values( array_unique( $p_result->getModules() ) );
-				$result_array['modulescripts'] = array_values( array_unique( $p_result->getModuleScripts() ) );
+				// Deprecated since 1.32 (T188689)
+				$result_array['modulescripts'] = [];
 				$result_array['modulestyles'] = array_values( array_unique( $p_result->getModuleStyles() ) );
 			}
 		}
@@ -487,7 +489,7 @@ class ApiParse extends ApiBase {
 			}
 
 			$wgParser->startExternalParse( $titleObj, $popts, Parser::OT_PREPROCESS );
-			$xml = $wgParser->preprocessToDom( $this->content->getNativeData() )->__toString();
+			$xml = $wgParser->preprocessToDom( $this->content->getText() )->__toString();
 			$result_array['parsetree'] = $xml;
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'parsetree';
 		}
@@ -625,13 +627,13 @@ class ApiParse extends ApiBase {
 	 * This mimicks the behavior of EditPage in formatting a summary
 	 *
 	 * @param Title $title of the page being parsed
-	 * @param Array $params the API parameters of the request
+	 * @param array $params The API parameters of the request
 	 * @return Content|bool
 	 */
 	private function formatSummary( $title, $params ) {
 		global $wgParser;
-		$summary = !is_null( $params['summary'] ) ? $params['summary'] : '';
-		$sectionTitle = !is_null( $params['sectiontitle'] ) ? $params['sectiontitle'] : '';
+		$summary = $params['summary'] ?? '';
+		$sectionTitle = $params['sectiontitle'] ?? '';
 
 		if ( $this->section === 'new' && ( $sectionTitle === '' || $summary === '' ) ) {
 			if ( $sectionTitle !== '' ) {

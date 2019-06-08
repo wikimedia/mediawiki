@@ -13,14 +13,24 @@
 .mw-email-authenticated .oo-ui-labelWidget { }
 */
 
+/*
+ * Use `position: sticky` on supported browsers, degrades gracefully in
+ * all others, therefore no `@supports` feature query to reduce code complexity.
+ */
+.mw-prefs-buttons {
+	background-color: #fff;
+	position: -webkit-sticky;
+	position: sticky;
+	bottom: 0;
+	margin-top: -1px;
+	border-top: 1px solid #c8ccd1;
+	padding: 1em 0;
+}
+
 /* This is needed because add extra buttons in a weird way */
 .mw-prefs-buttons .mw-htmlform-submit-buttons {
 	display: inline;
 	margin: 0;
-}
-
-.mw-prefs-buttons {
-	margin-top: 1em;
 }
 
 #prefcontrol {
@@ -28,94 +38,86 @@
 }
 
 /*
- * Hide, but keep accessible for screen-readers.
+ * Hide, when not keyboard focussed.
  */
 .client-js .mw-navigation-hint:not( :focus ) {
-	.mixin-screen-reader-text;
+	height: 0;
+	overflow: hidden;
 }
 
-/* Most outer Panellayout:
- * Decrease contrast of `border` slightly as padding/border combination is sufficient
- * accessibility wise and focus of content is more important here. */
-#preferences .oo-ui-panelLayout-framed {
+.mw-prefs-tabs {
+	.mw-prefs-fieldset-wrapper {
+		padding-left: 0;
+		padding-right: 0;
+
+		&:first-child {
+			padding-top: 0;
+		}
+
+		&:last-child {
+			padding-bottom: 0;
+		}
+	}
+}
+
+.mw-prefs-tabs-wrapper.oo-ui-panelLayout-framed,
+.mw-prefs-tabs > .oo-ui-menuLayout-content > .oo-ui-indexLayout-stackLayout > .oo-ui-tabPanelLayout {
+	/* Decrease contrast of `border` slightly as padding/border combination is sufficient
+	 * accessibility wise and focus of content is more important here. */
 	border-color: #c8ccd1;
 }
 
-#preferences .oo-ui-menuLayout .oo-ui-panelLayout-framed .oo-ui-panelLayout-framed {
-	border-width: 0;
-	border-radius: 0;
-	padding-left: 0;
-	padding-right: 0;
-	box-shadow: none;
-}
-
-.mw-prefs-faketabs > .oo-ui-menuLayout > .oo-ui-menuLayout-menu a {
-	color: inherit;
-	text-decoration: none;
-}
-
-/* Disabled JavaScript */
+/* JavaScript disabled */
 .client-nojs {
-	/* Adjust the borders: frame each prefsection instead of the
-	 * whole tabLayout wrapper */
-	#preferences .oo-ui-menuLayout .oo-ui-panelLayout-framed .oo-ui-panelLayout-framed:first-child {
-		border-color: #c8ccd1;
-		border-width: 1px 0 0;
-	}
-
-	#preferences .oo-ui-panelLayout-framed .oo-ui-panelLayout-framed:last-child {
-		padding-bottom: 0;
-		margin-bottom: 0;
-	}
-
-	/* Fake Tabs to address reflow */
-	.mw-prefs-faketabs {
+	// Disable .oo-ui-panelLayout-framed on outer wrapper
+	.mw-prefs-tabs-wrapper {
 		border-width: 0;
 		border-radius: 0;
-		.box-shadow( none );
+	}
 
-		> .oo-ui-menuLayout > .oo-ui-menuLayout-content > .oo-ui-stackLayout {
+	.mw-prefs-tabs {
+		// Hide the tab menu when JS is disabled as we can't use this feature
+		> .oo-ui-menuLayout-menu {
+			display: none;
+		}
+
+		.mw-prefs-section-fieldset {
+			// <legend> is hard to style, so apply border to top of group
+			> .oo-ui-fieldsetLayout-group {
+				padding-top: 1.5em;
+				border-top: 1px solid #c8ccd1;
+			}
+
+			// Remove spacing between legend and underline
+			&.oo-ui-labelElement > .oo-ui-fieldsetLayout-header > .oo-ui-labelElement-label {
+				margin-bottom: 0;
+			}
+		}
+
+		// Spacing between sections
+		> .oo-ui-menuLayout-content > .oo-ui-indexLayout-stackLayout > .oo-ui-tabPanelLayout {
 			margin-bottom: 1em;
 		}
-
-		/* Hide the tab menu when JS is disabled as we can't use this feature */
-		> .oo-ui-menuLayout > .oo-ui-menuLayout-menu {
-			display: none;
-		}
 	}
 }
 
-/* Enabled JavaScript
- * Hide top level legends when JS is enabled, as they will not be visible
- * when the real tabLayout is built */
-.client-js #preferences {
+/* JavaScript enabled */
+.client-js .mw-prefs-tabs {
 	.oo-ui-tabPanelLayout {
-		padding-top: 0.5em;
+		// Panels don't need borders as the IndexLayout is inside a framed wrapper.
+		border: 0;
 
-		& > fieldset > legend {
+		// Hide section legend, only used in nojs mode
+		> fieldset > legend {
 			display: none;
 		}
 	}
 
-	.oo-ui-panelLayout-framed .oo-ui-panelLayout-framed {
-		margin-top: 2.286em; /* equals `32px` at `font-size: 14px;` */
-		margin-bottom: 0;
-		border-width: 0;
-		border-radius: 0;
-		padding: 0;
-		box-shadow: none;
-
-		&:first-child {
-			margin-top: 0.85714286em;
+	// Hide all but the first panel before infusion
+	&:not( .mw-prefs-tabs-infused ) {
+		.oo-ui-tabPanelLayout:not( :first-child ) {
+			display: none;
 		}
-
-		.oo-ui-panelLayout-framed:first-child {
-			margin-top: 0;
-		}
-	}
-
-	> .oo-ui-panelLayout > .oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-header {
-		margin-bottom: 1em;
 	}
 }
 

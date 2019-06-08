@@ -14,8 +14,14 @@
 		"destructive": {
 			"color": "#d33"
 		},
+		"error": {
+			"color": "#d33"
+		},
 		"warning": {
-			"color": "#ff5d00"
+			"color": "#fc3"
+		},
+		"success": {
+			"color": "#14866d"
 		}
 	},
 	"images": {
@@ -30,6 +36,9 @@
 				"ltr": "images/icons/articles-ltr.svg",
 				"rtl": "images/icons/articles-rtl.svg"
 			}
+		},
+		"articleAdd": {
+			"file": "images/icons/articleAdd.svg"
 		},
 		"articleCheck": {
 			"file": "images/icons/articleCheck.svg"
@@ -66,12 +75,19 @@
 				}
 			}
 		},
+		"robot": {
+			"file": "images/icons/robot.svg"
+		},
 		"tag": {
 			"file": {
 				"ltr": "images/icons/tag-ltr.svg",
 				"rtl": "images/icons/tag-rtl.svg"
 			},
-			"variants": [ "destructive", "warning" ]
+			"variants": [
+				"destructive",
+				"error",
+				"warning"
+			]
 		},
 		"upload": {
 			"file": "images/icons/upload.svg"

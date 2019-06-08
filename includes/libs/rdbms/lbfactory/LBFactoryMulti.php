@@ -89,9 +89,6 @@ class LBFactoryMulti extends LBFactory {
 	 */
 	private $readOnlyBySection = [];
 
-	/** @var array Load balancer factory configuration */
-	private $conf;
-
 	/** @var LoadBalancer[] */
 	private $mainLBs = [];
 
@@ -106,12 +103,6 @@ class LBFactoryMulti extends LBFactory {
 
 	/** @var string */
 	private $lastSection;
-
-	/** @var int */
-	private $maxLag = self::MAX_LAG_DEFAULT;
-
-	/** @var int Default 'maxLag' when unspecified */
-	const MAX_LAG_DEFAULT = 10;
 
 	/**
 	 * @see LBFactory::__construct()
@@ -166,19 +157,17 @@ class LBFactoryMulti extends LBFactory {
 	 *                                 storage cluster.
 	 *   - masterTemplateOverrides     Server configuration map overrides for all master servers.
 	 *   - loadMonitorClass            Name of the LoadMonitor class to always use.
-	 *   - maxLag                      Avoid replica DBs with more lag than this many seconds.
 	 *   - readOnlyBySection           A map of section name to read-only message.
 	 *                                 Missing or false for read/write.
 	 */
 	public function __construct( array $conf ) {
 		parent::__construct( $conf );
 
-		$this->conf = $conf;
 		$required = [ 'sectionsByDB', 'sectionLoads', 'serverTemplate' ];
 		$optional = [ 'groupLoadsBySection', 'groupLoadsByDB', 'hostsByName',
 			'externalLoads', 'externalTemplateOverrides', 'templateOverridesByServer',
 			'templateOverridesByCluster', 'templateOverridesBySection', 'masterTemplateOverrides',
-			'readOnlyBySection', 'maxLag', 'loadMonitorClass' ];
+			'readOnlyBySection', 'loadMonitorClass' ];
 
 		foreach ( $required as $key ) {
 			if ( !isset( $conf[$key] ) ) {
@@ -203,11 +192,7 @@ class LBFactoryMulti extends LBFactory {
 			return $this->lastSection;
 		}
 		list( $dbName, ) = $this->getDBNameAndPrefix( $domain );
-		if ( isset( $this->sectionsByDB[$dbName] ) ) {
-			$section = $this->sectionsByDB[$dbName];
-		} else {
-			$section = 'DEFAULT';
-		}
+		$section = $this->sectionsByDB[$dbName] ?? 'DEFAULT';
 		$this->lastSection = $section;
 		$this->lastDomain = $domain;
 
@@ -221,11 +206,7 @@ class LBFactoryMulti extends LBFactory {
 	public function newMainLB( $domain = false ) {
 		list( $dbName, ) = $this->getDBNameAndPrefix( $domain );
 		$section = $this->getSectionForDomain( $domain );
-		if ( isset( $this->groupLoadsByDB[$dbName] ) ) {
-			$groupLoads = $this->groupLoadsByDB[$dbName];
-		} else {
-			$groupLoads = [];
-		}
+		$groupLoads = $this->groupLoadsByDB[$dbName] ?? [];
 
 		if ( isset( $this->groupLoadsBySection[$section] ) ) {
 			$groupLoads = array_merge_recursive(
@@ -326,7 +307,6 @@ class LBFactoryMulti extends LBFactory {
 			$this->baseLoadBalancerParams(),
 			[
 				'servers' => $this->makeServerArray( $template, $loads, $groupLoads ),
-				'maxLag' => $this->maxLag,
 				'loadMonitor' => [ 'class' => $this->loadMonitorClass ],
 				'readOnlyReason' => $readOnlyReason
 			]
@@ -370,11 +350,7 @@ class LBFactoryMulti extends LBFactory {
 			if ( isset( $groupLoadsByServer[$serverName] ) ) {
 				$serverInfo['groupLoads'] = $groupLoadsByServer[$serverName];
 			}
-			if ( isset( $this->hostsByName[$serverName] ) ) {
-				$serverInfo['host'] = $this->hostsByName[$serverName];
-			} else {
-				$serverInfo['host'] = $serverName;
-			}
+			$serverInfo['host'] = $this->hostsByName[$serverName] ?? $serverName;
 			$serverInfo['hostName'] = $serverName;
 			$serverInfo['load'] = $load;
 			$serverInfo += [ 'flags' => IDatabase::DBO_DEFAULT ];

@@ -319,7 +319,7 @@
 				callback( $table );
 			} else {
 				$table.tablesorter();
-				$table.find( '#sortme' ).click();
+				$table.find( '#sortme' ).trigger( 'click' );
 			}
 
 			// Table sorting is done synchronously; if it ever needs to change back
@@ -369,7 +369,7 @@
 		planetsAscName,
 		function ( $table ) {
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 		}
 	);
 	tableTest(
@@ -379,7 +379,7 @@
 		planetsAscName,
 		function ( $table ) {
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 		}
 	);
 	tableTest(
@@ -389,9 +389,9 @@
 		planetsAscName,
 		function ( $table ) {
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(0)' ).click();
-			$table.find( '.headerSort:eq(1)' ).click();
-			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
+			$table.find( '.headerSort:eq(1)' ).trigger( 'click' );
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 		}
 	);
 	tableTest(
@@ -401,7 +401,7 @@
 		reversed( planetsAscName ),
 		function ( $table ) {
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(0)' ).click().click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' ).trigger( 'click' );
 		}
 	);
 	tableTest(
@@ -411,7 +411,7 @@
 		planetsAscRadius,
 		function ( $table ) {
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(1)' ).click();
+			$table.find( '.headerSort:eq(1)' ).trigger( 'click' );
 		}
 	);
 	tableTest(
@@ -421,7 +421,7 @@
 		reversed( planetsAscRadius ),
 		function ( $table ) {
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(1)' ).click().click();
+			$table.find( '.headerSort:eq(1)' ).trigger( 'click' ).trigger( 'click' );
 		}
 	);
 	tableTest(
@@ -483,7 +483,7 @@
 			$table.tablesorter(
 				{ sortList: [ { 0: 'asc' }, { 1: 'asc' } ] }
 			);
-			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 		}
 	);
 	tableTest(
@@ -496,7 +496,7 @@
 			$table.tablesorter(
 				{ sortList: [ { 0: 'desc' }, { 1: 'desc' } ] }
 			);
-			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 
 			// Pretend to click while pressing the multi-sort key
 			event = $.Event( 'click' );
@@ -545,7 +545,7 @@
 			$table.find( 'tr:eq(0) th:eq(0)' ).attr( 'colspan', '3' );
 
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 		}
 	);
 	tableTest( 'Sorting with colspanned headers: sort spanned column twice',
@@ -558,8 +558,8 @@
 			$table.find( 'tr:eq(0) th:eq(0)' ).attr( 'colspan', '3' );
 
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(0)' ).click();
-			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 		}
 	);
 	tableTest( 'Sorting with colspanned headers: subsequent column',
@@ -572,7 +572,7 @@
 			$table.find( 'tr:eq(0) th:eq(0)' ).attr( 'colspan', '3' );
 
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(1)' ).click();
+			$table.find( '.headerSort:eq(1)' ).trigger( 'click' );
 		}
 	);
 	tableTest( 'Sorting with colspanned headers: sort subsequent column twice',
@@ -585,8 +585,8 @@
 			$table.find( 'tr:eq(0) th:eq(0)' ).attr( 'colspan', '3' );
 
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(1)' ).click();
-			$table.find( '.headerSort:eq(1)' ).click();
+			$table.find( '.headerSort:eq(1)' ).trigger( 'click' );
+			$table.find( '.headerSort:eq(1)' ).trigger( 'click' );
 		}
 	);
 
@@ -596,7 +596,7 @@
 		$table.find( 'tr:eq(0) > th:eq(0)' ).addClass( 'unsortable' );
 
 		$table.tablesorter();
-		$table.find( 'tr:eq(0) > th:eq(0)' ).click();
+		$table.find( 'tr:eq(0) > th:eq(0)' ).trigger( 'click' );
 
 		assert.deepEqual(
 			tableExtract( $table ),
@@ -605,7 +605,7 @@
 		);
 
 		$cell = $table.find( 'tr:eq(0) > th:eq(0)' );
-		$table.find( 'tr:eq(0) > th:eq(1)' ).click();
+		$table.find( 'tr:eq(0) > th:eq(1)' ).trigger( 'click' );
 
 		assert.strictEqual(
 			$cell.hasClass( 'headerSortUp' ) || $cell.hasClass( 'headerSortDown' ),
@@ -646,7 +646,7 @@
 			mw.config.set( 'wgPageContentLanguage', 'de' );
 
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 		}
 	);
 
@@ -673,7 +673,7 @@
 			mw.config.set( 'wgDefaultDateFormat', 'mdy' );
 
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 		}
 	);
 
@@ -684,7 +684,7 @@
 		ipv4Sorted,
 		function ( $table ) {
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 		}
 	);
 	tableTest(
@@ -694,7 +694,7 @@
 		reversed( ipv4Sorted ),
 		function ( $table ) {
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(0)' ).click().click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' ).trigger( 'click' );
 		}
 	);
 
@@ -712,7 +712,7 @@
 			} );
 
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 		}
 	);
 
@@ -728,7 +728,7 @@
 			} );
 
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 		}
 	);
 
@@ -775,7 +775,7 @@
 			$table.find( 'tr:eq(2) td:eq(1)' ).attr( 'rowspan', '3' );
 
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 		}
 	);
 	tableTest(
@@ -810,7 +810,7 @@
 			$table.find( 'tr:eq(2) td:eq(0)' ).attr( 'rowspan', '3' );
 
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 		}
 	);
 
@@ -823,7 +823,7 @@
 			mw.config.set( 'wgDefaultDateFormat', 'mdy' );
 
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 		}
 	);
 
@@ -834,7 +834,7 @@
 		currencySorted,
 		function ( $table ) {
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 		}
 	);
 
@@ -850,7 +850,7 @@
 		function ( $table ) {
 			$table.find( 'tr:last' ).addClass( 'sortbottom' );
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 		}
 	);
 
@@ -865,7 +865,7 @@
 				'</table>'
 		);
 		$table.tablesorter();
-		$table.find( '.headerSort:eq(0)' ).click();
+		$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 
 		assert.strictEqual(
 			$table.data( 'tablesorter' ).config.parsers[ 0 ].id,
@@ -910,7 +910,7 @@
 				'<tr><td data-sort-value="Cherry">Dolphin</td></tr>' +
 				'</tbody></table>'
 		);
-		$table.tablesorter().find( '.headerSort:eq(0)' ).click();
+		$table.tablesorter().find( '.headerSort:eq(0)' ).trigger( 'click' );
 
 		data = [];
 		$table.find( 'tbody > tr' ).each( function ( i, tr ) {
@@ -957,7 +957,7 @@
 				'<tr><td><span data-sort-value="D">H</span></td></tr>' +
 				'</tbody></table>'
 		);
-		$table.tablesorter().find( '.headerSort:eq(0)' ).click();
+		$table.tablesorter().find( '.headerSort:eq(0)' ).trigger( 'click' );
 
 		data = [];
 		$table.find( 'tbody > tr' ).each( function ( i, tr ) {
@@ -1011,7 +1011,7 @@
 		// initialize table sorter and sort once
 		$table
 			.tablesorter()
-			.find( '.headerSort:eq(0)' ).click();
+			.find( '.headerSort:eq(0)' ).trigger( 'click' );
 
 		// Change the sortValue data properties (T40152)
 		// - change data
@@ -1022,8 +1022,8 @@
 		$table.find( 'td:contains(G)' ).removeData( 'sortValue' );
 
 		// Now sort again (twice, so it is back at Ascending)
-		$table.find( '.headerSort:eq(0)' ).click();
-		$table.find( '.headerSort:eq(0)' ).click();
+		$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
+		$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 
 		data = [];
 		$table.find( 'tbody > tr' ).each( function ( i, tr ) {
@@ -1064,7 +1064,7 @@
 		[ 'Numbers' ], numbers, numbersAsc,
 		function ( $table ) {
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 		}
 	);
 
@@ -1072,7 +1072,7 @@
 		[ 'Numbers' ], numbers, reversed( numbersAsc ),
 		function ( $table ) {
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(0)' ).click().click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' ).trigger( 'click' );
 		}
 	);
 	// TODO add numbers sorting tests for T10115 with a different language
@@ -1111,7 +1111,7 @@
 			mw.config.set( 'wgDefaultDateFormat', 'mdy' );
 
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 		}
 	);
 
@@ -1124,7 +1124,7 @@
 			mw.config.set( 'wgDefaultDateFormat', 'dmy' );
 
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 		}
 	);
 
@@ -1137,7 +1137,7 @@
 			mw.config.set( 'wgDefaultDateFormat', 'dmy' );
 
 			$table.tablesorter();
-			$table.find( '.headerSort:eq(0)' ).click();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 		}
 	);
 
@@ -1149,7 +1149,7 @@
 				'<tr><td>1</td></tr>' +
 				'</table>'
 		);
-		$table.tablesorter().find( '.headerSort:eq(0)' ).click();
+		$table.tablesorter().find( '.headerSort:eq(0)' ).trigger( 'click' );
 
 		assert.strictEqual(
 			$table.find( 'td' ).first().text(),
@@ -1170,7 +1170,7 @@
 				'<tr><td><img alt="A" />C</tr>' +
 				'</table>'
 		);
-		$table.tablesorter().find( '.headerSort:eq(0)' ).click();
+		$table.tablesorter().find( '.headerSort:eq(0)' ).trigger( 'click' );
 
 		assert.strictEqual(
 			$table.find( 'td' ).text(),
@@ -1189,7 +1189,7 @@
 				'<tr><td>4</td></tr>' +
 				'</table>'
 		);
-		$table.tablesorter().find( '.headerSort:eq(0)' ).click();
+		$table.tablesorter().find( '.headerSort:eq(0)' ).trigger( 'click' );
 
 		assert.strictEqual(
 			$table.find( 'td' ).text(),
@@ -1440,9 +1440,9 @@
 				'</table>'
 		);
 		$table.tablesorter();
-		$table.find( '.headerSort:eq(0)' ).click();
+		$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 		// now the first row have 2 columns
-		$table.find( '.headerSort:eq(1)' ).click();
+		$table.find( '.headerSort:eq(1)' ).trigger( 'click' );
 
 		parsers = $table.data( 'tablesorter' ).config.parsers;
 
@@ -1478,7 +1478,7 @@
 				'</table>'
 		);
 		$table.tablesorter();
-		$table.find( '.headerSort:eq(0)' ).click();
+		$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 
 		assert.deepEqual(
 			tableExtract( $table ),
@@ -1509,7 +1509,7 @@
 				'</table>'
 		);
 		$table.tablesorter();
-		$table.find( '.headerSort:eq(0)' ).click();
+		$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 
 		assert.deepEqual(
 			tableExtract( $table ),

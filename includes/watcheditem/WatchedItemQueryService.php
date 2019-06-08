@@ -65,14 +65,19 @@ class WatchedItemQueryService {
 	/** @var ActorMigration */
 	private $actorMigration;
 
+	/** @var WatchedItemStoreInterface */
+	private $watchedItemStore;
+
 	public function __construct(
 		LoadBalancer $loadBalancer,
 		CommentStore $commentStore,
-		ActorMigration $actorMigration
+		ActorMigration $actorMigration,
+		WatchedItemStoreInterface $watchedItemStore
 	) {
 		$this->loadBalancer = $loadBalancer;
 		$this->commentStore = $commentStore;
 		$this->actorMigration = $actorMigration;
+		$this->watchedItemStore = $watchedItemStore;
 	}
 
 	/**
@@ -88,7 +93,6 @@ class WatchedItemQueryService {
 
 	/**
 	 * @return IDatabase
-	 * @throws MWException
 	 */
 	private function getConnection() {
 		return $this->loadBalancer->getConnectionRef( DB_REPLICA, [ 'watchlist' ] );
@@ -229,11 +233,14 @@ class WatchedItemQueryService {
 				break;
 			}
 
+			$target = new TitleValue( (int)$row->rc_namespace, $row->rc_title );
 			$items[] = [
 				new WatchedItem(
 					$user,
-					new TitleValue( (int)$row->rc_namespace, $row->rc_title ),
-					$row->wl_notificationtimestamp
+					$target,
+					$this->watchedItemStore->getLatestNotificationTimestamp(
+						$row->wl_notificationtimestamp, $user, $target
+					)
 				),
 				$this->getRecentChangeFieldsFromRow( $row )
 			];
@@ -308,11 +315,14 @@ class WatchedItemQueryService {
 
 		$watchedItems = [];
 		foreach ( $res as $row ) {
+			$target = new TitleValue( (int)$row->wl_namespace, $row->wl_title );
 			// todo these could all be cached at some point?
 			$watchedItems[] = new WatchedItem(
 				$user,
-				new TitleValue( (int)$row->wl_namespace, $row->wl_title ),
-				$row->wl_notificationtimestamp
+				$target,
+				$this->watchedItemStore->getLatestNotificationTimestamp(
+					$row->wl_notificationtimestamp, $user, $target
+				)
 			);
 		}
 
@@ -339,9 +349,6 @@ class WatchedItemQueryService {
 		}
 		if ( in_array( self::INCLUDE_COMMENT, $options['includeFields'] ) ) {
 			$tables += $this->commentStore->getJoin( 'rc_comment' )['tables'];
-		}
-		if ( in_array( self::INCLUDE_TAGS, $options['includeFields'] ) ) {
-			$tables[] = 'tag_summary';
 		}
 		if ( in_array( self::INCLUDE_USER, $options['includeFields'] ) ||
 			in_array( self::INCLUDE_USER_ID, $options['includeFields'] ) ||
@@ -402,7 +409,7 @@ class WatchedItemQueryService {
 		}
 		if ( in_array( self::INCLUDE_TAGS, $options['includeFields'] ) ) {
 			// prefixed with rc_ to include the field in getRecentChangeFieldsFromRow
-			$fields['rc_tags'] = 'ts_tags';
+			$fields['rc_tags'] = ChangeTags::makeTagSummarySubquery( 'recentchanges' );
 		}
 
 		return $fields;
@@ -438,11 +445,9 @@ class WatchedItemQueryService {
 
 		$conds = array_merge( $conds, $this->getStartEndConds( $db, $options ) );
 
-		if ( !isset( $options['start'] ) && !isset( $options['end'] ) ) {
-			if ( $db->getType() === 'mysql' ) {
-				// This is an index optimization for mysql
-				$conds[] = 'rc_timestamp > ' . $db->addQuotes( '' );
-			}
+		if ( !isset( $options['start'] ) && !isset( $options['end'] ) && $db->getType() === 'mysql' ) {
+			// This is an index optimization for mysql
+			$conds[] = 'rc_timestamp > ' . $db->addQuotes( '' );
 		}
 
 		$conds = array_merge( $conds, $this->getUserRelatedConds( $db, $user, $options ) );
@@ -697,7 +702,7 @@ class WatchedItemQueryService {
 
 	private function getWatchedItemsWithRCInfoQueryJoinConds( array $options ) {
 		$joinConds = [
-			'watchlist' => [ 'INNER JOIN',
+			'watchlist' => [ 'JOIN',
 				[
 					'wl_namespace=rc_namespace',
 					'wl_title=rc_title'
@@ -709,9 +714,6 @@ class WatchedItemQueryService {
 		}
 		if ( in_array( self::INCLUDE_COMMENT, $options['includeFields'] ) ) {
 			$joinConds += $this->commentStore->getJoin( 'rc_comment' )['joins'];
-		}
-		if ( in_array( self::INCLUDE_TAGS, $options['includeFields'] ) ) {
-			$joinConds['tag_summary'] = [ 'LEFT JOIN', [ 'rc_id=ts_rc_id' ] ];
 		}
 		if ( in_array( self::INCLUDE_USER, $options['includeFields'] ) ||
 			in_array( self::INCLUDE_USER_ID, $options['includeFields'] ) ||

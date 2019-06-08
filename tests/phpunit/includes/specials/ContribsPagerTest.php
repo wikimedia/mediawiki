@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @group Database
  */
@@ -23,7 +25,7 @@ class ContribsPagerTest extends MediaWikiTestCase {
 	 * @param array $inputOpts Input options
 	 * @param array $expectedOpts Expected options
 	 */
-	public function testDateFilterOptionProcessing( $inputOpts, $expectedOpts ) {
+	public function testDateFilterOptionProcessing( array $inputOpts, array $expectedOpts ) {
 		$this->assertArraySubset( $expectedOpts, ContribsPager::processDateFilter( $inputOpts ) );
 	}
 
@@ -115,4 +117,50 @@ class ContribsPagerTest extends MediaWikiTestCase {
 			[ '2001:db8::/9999' ],
 		];
 	}
+
+	/**
+	 * @covers \ContribsPager::getExtraSortFields
+	 * @covers \ContribsPager::getIndexField
+	 * @covers \ContribsPager::getQueryInfo
+	 */
+	public function testUniqueSortOrderWithoutIpChanges() {
+		$pager = new ContribsPager( new RequestContext(), [
+			'start' => '',
+			'end' => '',
+		] );
+
+		/** @var ContribsPager $pager */
+		$pager = TestingAccessWrapper::newFromObject( $pager );
+		$queryInfo = $pager->buildQueryInfo( '', 1, false );
+
+		$this->assertNotContains( 'ip_changes', $queryInfo[0] );
+		$this->assertArrayNotHasKey( 'ip_changes', $queryInfo[5] );
+		$this->assertContains( 'rev_timestamp', $queryInfo[1] );
+		$this->assertContains( 'rev_id', $queryInfo[1] );
+		$this->assertSame( [ 'rev_timestamp DESC', 'rev_id DESC' ], $queryInfo[4]['ORDER BY'] );
+	}
+
+	/**
+	 * @covers \ContribsPager::getExtraSortFields
+	 * @covers \ContribsPager::getIndexField
+	 * @covers \ContribsPager::getQueryInfo
+	 */
+	public function testUniqueSortOrderOnIpChanges() {
+		$pager = new ContribsPager( new RequestContext(), [
+			'target' => '116.17.184.5/32',
+			'start' => '',
+			'end' => '',
+		] );
+
+		/** @var ContribsPager $pager */
+		$pager = TestingAccessWrapper::newFromObject( $pager );
+		$queryInfo = $pager->buildQueryInfo( '', 1, false );
+
+		$this->assertContains( 'ip_changes', $queryInfo[0] );
+		$this->assertArrayHasKey( 'ip_changes', $queryInfo[5] );
+		$this->assertSame( 'ipc_rev_timestamp', $queryInfo[1]['rev_timestamp'] );
+		$this->assertSame( 'ipc_rev_id', $queryInfo[1]['rev_id'] );
+		$this->assertSame( [ 'rev_timestamp DESC', 'rev_id DESC' ], $queryInfo[4]['ORDER BY'] );
+	}
+
 }

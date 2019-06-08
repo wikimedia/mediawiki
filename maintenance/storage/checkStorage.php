@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Shell\Shell;
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	$optionsWithoutArgs = [ 'fix' ];
@@ -29,11 +30,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 	$cs = new CheckStorage;
 	$fix = isset( $options['fix'] );
-	if ( isset( $args[0] ) ) {
-		$xml = $args[0];
-	} else {
-		$xml = false;
-	}
+	$xml = $args[0] ?? false;
 	$cs->check( $fix, $xml );
 }
 
@@ -90,7 +87,6 @@ class CheckStorage {
 			foreach ( $res as $row ) {
 				$this->oldIdMap[$row->rev_id] = $row->rev_text_id;
 			}
-			$dbr->freeResult( $res );
 
 			if ( !count( $this->oldIdMap ) ) {
 				continue;
@@ -151,7 +147,6 @@ class CheckStorage {
 					$this->addError( 'unfixable', "Error: invalid flags field \"$flags\"", $id );
 				}
 			}
-			$dbr->freeResult( $res );
 
 			// Output errors for any missing text rows
 			foreach ( $missingTextRows as $oldId => $revId ) {
@@ -191,7 +186,6 @@ class CheckStorage {
 						$externalNormalBlobs[$cluster][$id][] = $row->old_id;
 					}
 				}
-				$dbr->freeResult( $res );
 			}
 
 			// Check external concat blobs for the right header
@@ -214,7 +208,6 @@ class CheckStorage {
 					foreach ( $res as $row ) {
 						unset( $xBlobIds[$row->blob_id] );
 					}
-					$extDb->freeResult( $res );
 					// Print errors for missing blobs rows
 					foreach ( $xBlobIds as $blobId => $oldId ) {
 						$this->addError(
@@ -283,7 +276,6 @@ class CheckStorage {
 							$this->addError( 'unfixable', "Error: unrecognised object class \"$className\"", $oldId );
 					}
 				}
-				$dbr->freeResult( $res );
 			}
 
 			// Check local concat blob validity
@@ -337,7 +329,6 @@ class CheckStorage {
 
 					unset( $concatBlobs[$row->old_id] );
 				}
-				$dbr->freeResult( $res );
 			}
 
 			// Check targets of unresolved stubs
@@ -425,7 +416,6 @@ class CheckStorage {
 				}
 				unset( $oldIds[$row->blob_id] );
 			}
-			$extDb->freeResult( $res );
 
 			// Print errors for missing blobs rows
 			foreach ( $oldIds as $blobId => $oldIds2 ) {
@@ -462,7 +452,7 @@ class CheckStorage {
 		echo "Filtering XML dump...\n";
 		$exitStatus = 0;
 		passthru( 'mwdumper ' .
-			wfEscapeShellArg(
+			Shell::escape(
 				"--output=file:$filteredXmlFileName",
 				"--filter=revlist:$revFileName",
 				$xml

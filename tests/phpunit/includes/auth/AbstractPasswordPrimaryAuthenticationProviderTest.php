@@ -7,7 +7,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group AuthManager
- * @covers MediaWiki\Auth\AbstractPasswordPrimaryAuthenticationProvider
+ * @covers \MediaWiki\Auth\AbstractPasswordPrimaryAuthenticationProvider
  */
 class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	public function testConstructor() {
@@ -88,7 +88,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCa
 
 	public function testCheckPasswordValidity() {
 		$uppCalled = 0;
-		$uppStatus = \Status::newGood();
+		$uppStatus = \Status::newGood( [] );
 		$this->setMwGlobals( [
 			'wgPasswordPolicy' => [
 				'policies' => [
@@ -142,7 +142,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCa
 		$this->assertNull( $manager->getAuthenticationSessionData( 'reset-pass' ) );
 
 		$manager->removeAuthenticationSessionData( null );
-		$status = \Status::newGood();
+		$status = \Status::newGood( [ 'suggestChangeOnLogin' => true ] );
 		$status->error( 'testing' );
 		$providerPriv->setPasswordResetFlag( 'Foo', $status );
 		$ret = $manager->getAuthenticationSessionData( 'reset-pass' );

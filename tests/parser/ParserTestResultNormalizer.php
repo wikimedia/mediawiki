@@ -47,7 +47,7 @@ class ParserTestResultNormalizer {
 
 	/**
 	 * The point of this function is to produce a normalized DOM in which
-	 * Tidy's output matches the output of html5depurate. Tidy both trims
+	 * Tidy's output matches the output of RemexHtml. Tidy both trims
 	 * and pretty-prints, so this requires fairly aggressive treatment.
 	 *
 	 * In particular, note that Tidy converts <pre>x</pre> to <pre>\nx\n</pre>,

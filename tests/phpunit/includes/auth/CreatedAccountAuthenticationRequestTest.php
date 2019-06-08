@@ -4,7 +4,7 @@ namespace MediaWiki\Auth;
 
 /**
  * @group AuthManager
- * @covers MediaWiki\Auth\CreatedAccountAuthenticationRequest
+ * @covers \MediaWiki\Auth\CreatedAccountAuthenticationRequest
  */
 class CreatedAccountAuthenticationRequestTest extends AuthenticationRequestTestCase {
 

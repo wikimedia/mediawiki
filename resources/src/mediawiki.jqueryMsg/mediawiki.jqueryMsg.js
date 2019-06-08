@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-properties */
 /*!
 * Experimental advanced wikitext parser-emitter.
 * See: https://www.mediawiki.org/wiki/Extension:UploadWizard/MessageParser for docs
@@ -15,13 +14,14 @@
 	var oldParser,
 		slice = Array.prototype.slice,
 		parserDefaults = {
+			// Magic words and their expansions. Server-side data is added to this below.
 			magic: {
 				PAGENAME: mw.config.get( 'wgPageName' ),
 				PAGENAMEE: mw.util.wikiUrlencode( mw.config.get( 'wgPageName' ) )
 			},
 			// Whitelist for allowed HTML elements in wikitext.
 			// Self-closing tags are not currently supported.
-			// Can be populated via setParserDefaults().
+			// Filled in with server-side data below
 			allowedHtmlElements: [],
 			// Key tag name, value allowed attributes for that tag.
 			// See Sanitizer::setupAttributeWhitelist
@@ -56,6 +56,9 @@
 			// is 'text', including when it uses jqueryMsg.
 			format: 'parse'
 		};
+
+	// Add in server-side data (allowedHtmlElements and magic words)
+	$.extend( true, parserDefaults, require( './parserDefaults.json' ) );
 
 	/**
 	 * Wrapper around jQuery append that converts all non-objects to TextNode so append will not
@@ -298,7 +301,7 @@
 		 * @return {jQuery}
 		 */
 		parse: function ( key, replacements ) {
-			var ast = this.getAst( key );
+			var ast = this.getAst( key, replacements );
 			return this.emitter.emit( ast, replacements );
 		},
 
@@ -307,16 +310,22 @@
 		 * Note that we pass '⧼' + key + '⧽' back for a missing message here.
 		 *
 		 * @param {string} key
+		 * @param {Array} replacements Variable replacements for $1, $2... $n
 		 * @return {string|Array} string of '⧼key⧽' if message missing, simple string if possible, array of arrays if needs parsing
 		 */
-		getAst: function ( key ) {
+		getAst: function ( key, replacements ) {
 			var wikiText;
 
 			if ( !Object.prototype.hasOwnProperty.call( this.astCache, key ) ) {
-				wikiText = this.settings.messages.get( key );
-				if ( typeof wikiText !== 'string' ) {
-					wikiText = '⧼' + key + '⧽';
+				if ( mw.config.get( 'wgUserLanguage' ) === 'qqx' ) {
+					wikiText = '(' + key + '$*)';
+				} else {
+					wikiText = this.settings.messages.get( key );
+					if ( typeof wikiText !== 'string' ) {
+						wikiText = '⧼' + key + '⧽';
+					}
 				}
+				wikiText = mw.internalDoTransformFormatForQqx( wikiText, replacements );
 				this.astCache[ key ] = this.wikiTextToAst( wikiText );
 			}
 			return this.astCache[ key ];
@@ -957,7 +966,7 @@
 	mw.jqueryMsg.HtmlEmitter = function ( language, magic ) {
 		var jmsg = this;
 		this.language = language;
-		// eslint-disable-next-line no-restricted-properties
+		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( magic, function ( key, val ) {
 			jmsg[ key.toLowerCase() ] = function () {
 				return val;
@@ -983,6 +992,7 @@
 				// typeof returns object for arrays
 				case 'object':
 					// node is an array of nodes
+					// eslint-disable-next-line no-jquery/no-map-util
 					subnodes = $.map( node.slice( 1 ), function ( n ) {
 						return jmsg.emit( n, replacements );
 					} );
@@ -1023,7 +1033,7 @@
 		 */
 		concat: function ( nodes ) {
 			var $span = $( '<span>' ).addClass( 'mediaWiki_htmlEmitter' );
-			// eslint-disable-next-line no-restricted-properties
+			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( nodes, function ( i, node ) {
 				// Let jQuery append nodes, arrays of nodes and jQuery objects
 				// other things (strings, numbers, ..) are appended as text nodes (not as HTML strings)
@@ -1207,6 +1217,7 @@
 			}
 
 			// Remove explicit plural forms from the forms. They were set undefined in the above loop.
+			// eslint-disable-next-line no-jquery/no-map-util
 			forms = $.map( forms, function ( form ) {
 				return form;
 			} );
@@ -1274,7 +1285,7 @@
 		 * @param {Array} nodes List of nodes
 		 * @return {string} Other message
 		 */
-		'int': function ( nodes ) {
+		int: function ( nodes ) {
 			var msg = textify( nodes[ 0 ] );
 			return mw.jqueryMsg.getMessageFunction()( msg.charAt( 0 ).toLowerCase() + msg.slice( 1 ) );
 		},
@@ -1368,8 +1379,19 @@
 	// Replace the default message parser with jqueryMsg
 	oldParser = mw.Message.prototype.parser;
 	mw.Message.prototype.parser = function () {
-		if ( this.format === 'plain' || !/\{\{|[<>[&]/.test( this.map.get( this.key ) ) ) {
-			// Fall back to mw.msg's simple parser
+		// Fall back to mw.msg's simple parser where possible
+		if (
+			// Plain text output always uses the simple parser
+			this.format === 'plain' ||
+			(
+				// jqueryMsg parser is needed for messages containing wikitext
+				!/\{\{|[<>[&]/.test( this.map.get( this.key ) ) &&
+				// jqueryMsg parser is needed when jQuery objects or DOM nodes are passed in as parameters
+				!this.parameters.some( function ( param ) {
+					return param instanceof $ || ( param && param.nodeType !== undefined );
+				} )
+			)
+		) {
 			return oldParser.apply( this );
 		}
 

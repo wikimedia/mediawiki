@@ -26,6 +26,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MWHttpRequest;
 use PhpHttpRequest;
 use Profiler;
+use GuzzleHttpRequest;
 
 /**
  * Factory creating MWHttpRequest objects.
@@ -43,7 +44,7 @@ class HttpRequestFactory {
 	 */
 	public function create( $url, array $options = [], $caller = __METHOD__ ) {
 		if ( !Http::$httpEngine ) {
-			Http::$httpEngine = function_exists( 'curl_init' ) ? 'curl' : 'php';
+			Http::$httpEngine = 'guzzle';
 		} elseif ( Http::$httpEngine == 'curl' && !function_exists( 'curl_init' ) ) {
 			throw new DomainException( __METHOD__ . ': curl (https://secure.php.net/curl) is not ' .
 			   'installed, but Http::$httpEngine is set to "curl"' );
@@ -54,6 +55,8 @@ class HttpRequestFactory {
 		}
 
 		switch ( Http::$httpEngine ) {
+			case 'guzzle':
+				return new GuzzleHttpRequest( $url, $options, $caller, Profiler::instance() );
 			case 'curl':
 				return new CurlHttpRequest( $url, $options, $caller, Profiler::instance() );
 			case 'php':

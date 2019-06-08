@@ -22,8 +22,8 @@
 
 namespace MediaWiki\Config;
 
-use MediaWiki\Services\SalvageableService;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Services\SalvageableService;
 
 /**
  * Object which holds currently registered configuration options.
@@ -71,10 +71,8 @@ class ConfigRepository implements SalvageableService {
 		if ( !$this->has( $name, true ) ) {
 			throw new \ConfigException( 'The configuration option ' . $name . ' does not exist.' );
 		}
-		if ( isset( $this->configItems['public'][$name] ) ) {
-			return $this->configItems['public'][$name];
-		}
-		return $this->configItems['private'][$name];
+
+		return $this->configItems['public'][$name] ?? $this->configItems['private'][$name];
 	}
 
 	/**

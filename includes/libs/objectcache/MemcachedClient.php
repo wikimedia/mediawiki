@@ -255,8 +255,6 @@ class MemcachedClient {
 	 * Memcache initializer
 	 *
 	 * @param array $args Associative array of settings
-	 *
-	 * @return mixed
 	 */
 	public function __construct( $args ) {
 		$this->set_servers( $args['servers'] ?? array() );

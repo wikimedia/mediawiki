@@ -21,14 +21,10 @@
  */
 
 /**
- * Provides a file-based cache of a SiteStore. The sites are stored in
- * a json file. (see docs/sitescache.txt regarding format)
- *
- * The cache can be built with the rebuildSitesCache.php maintenance script,
- * and a MediaWiki instance can be setup to use this by setting the
- * 'wgSitesCacheFile' configuration to the cache file location.
+ * Provides a file-based cache of a SiteStore, using a json file.
  *
  * @since 1.25
+ * @deprecated since 1.33 Use CachingSiteStore instead.
  */
 class FileBasedSiteLookup implements SiteLookup {
 
@@ -46,6 +42,7 @@ class FileBasedSiteLookup implements SiteLookup {
 	 * @param string $cacheFile
 	 */
 	public function __construct( $cacheFile ) {
+		wfDeprecated( __CLASS__, '1.33' );
 		$this->cacheFile = $cacheFile;
 	}
 

@@ -390,7 +390,7 @@ ${serverSetting}
 
 ## Set \$wgCacheDirectory to a writable directory on the web server
 ## to make your wiki go slightly faster. The directory should not
-## be publically accessible from the web.
+## be publicly accessible from the web.
 #\$wgCacheDirectory = \"\$IP/cache\";
 
 # Site language code, should be one of the list in ./languages/data/Names.php

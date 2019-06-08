@@ -219,7 +219,7 @@ already known to MediaWikiServices (if not, see above).
   variables.
 * Add a constructor to MyExtHooks that takes a Bar service as a parameter.
 * Add a static method called newFromGlobalState() with no parameters. It should
-  just return new MyExtHooks( MediaWikiServices::getBar() ).
+  just return new MyExtHooks( MediaWikiServices::getInstance()->getBar() ).
 * The original static handler method onFoo( $x ) is then implemented as
   self::newFromGlobalState()->doFoo( $x ).
 

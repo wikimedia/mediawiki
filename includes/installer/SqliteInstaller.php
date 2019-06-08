@@ -33,7 +33,7 @@ use Wikimedia\Rdbms\DBConnectionError;
  */
 class SqliteInstaller extends DatabaseInstaller {
 
-	public static $minimumVersion = '3.3.7';
+	public static $minimumVersion = '3.8.0';
 	protected static $notMiniumumVerisonMessage = 'config-outdated-sqlite';
 
 	/**
@@ -231,6 +231,7 @@ class SqliteInstaller extends DatabaseInstaller {
 		$status->merge( $this->makeStubDBFile( $dir, $db ) );
 		$status->merge( $this->makeStubDBFile( $dir, "wikicache" ) );
 		$status->merge( $this->makeStubDBFile( $dir, "{$db}_l10n_cache" ) );
+		$status->merge( $this->makeStubDBFile( $dir, "{$db}_jobqueue" ) );
 		if ( !$status->isOK() ) {
 			return $status;
 		}
@@ -283,6 +284,39 @@ EOT;
 			return Status::newFatal( 'config-sqlite-connection-error', $e->getMessage() );
 		}
 
+		# Create the job queue DB
+		try {
+			$conn = Database::factory(
+				'sqlite', [ 'dbname' => "{$db}_jobqueue", 'dbDirectory' => $dir ] );
+			# @todo: don't duplicate job definition, though it's very static
+			$sql =
+<<<EOT
+	CREATE TABLE job (
+		job_id INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,
+		job_cmd BLOB NOT NULL default '',
+		job_namespace INTEGER NOT NULL,
+		job_title TEXT  NOT NULL,
+		job_timestamp BLOB NULL default NULL,
+		job_params BLOB NOT NULL,
+		job_random integer  NOT NULL default 0,
+		job_attempts integer  NOT NULL default 0,
+		job_token BLOB NOT NULL default '',
+		job_token_timestamp BLOB NULL default NULL,
+		job_sha1 BLOB NOT NULL default ''
+	);
+	CREATE INDEX job_sha1 ON job (job_sha1);
+	CREATE INDEX job_cmd_token ON job (job_cmd,job_token,job_random);
+	CREATE INDEX job_cmd_token_id ON job (job_cmd,job_token,job_id);
+	CREATE INDEX job_cmd ON job (job_cmd, job_namespace, job_title, job_params);
+	CREATE INDEX job_timestamp ON job (job_timestamp);
+EOT;
+			$conn->query( $sql );
+			$conn->query( "PRAGMA journal_mode=WAL" ); // this is permanent
+			$conn->close();
+		} catch ( DBConnectionError $e ) {
+			return Status::newFatal( 'config-sqlite-connection-error', $e->getMessage() );
+		}
+
 		# Open the main DB
 		return $this->getConnection();
 	}
@@ -298,10 +332,8 @@ EOT;
 			if ( !is_writable( $file ) ) {
 				return Status::newFatal( 'config-sqlite-readonly', $file );
 			}
-		} else {
-			if ( file_put_contents( $file, '' ) === false ) {
-				return Status::newFatal( 'config-sqlite-cant-create-db', $file );
-			}
+		} elseif ( file_put_contents( $file, '' ) === false ) {
+			return Status::newFatal( 'config-sqlite-cant-create-db', $file );
 		}
 
 		return Status::newGood();
@@ -340,7 +372,9 @@ EOT;
 	 */
 	public function getLocalSettings() {
 		$dir = LocalSettingsGenerator::escapePhpString( $this->getVar( 'wgSQLiteDataDir' ) );
-
+		// These tables have frequent writes and are thus split off from the main one.
+		// Since the code using these tables only uses transactions for writes then set
+		// them to using BEGIN IMMEDIATE. This avoids frequent lock errors on first write.
 		return "# SQLite-specific settings
 \$wgSQLiteDataDir = \"{$dir}\";
 \$wgObjectCaches[CACHE_DB] = [
@@ -350,7 +384,9 @@ EOT;
 		'type' => 'sqlite',
 		'dbname' => 'wikicache',
 		'tablePrefix' => '',
+		'variables' => [ 'synchronous' => 'NORMAL' ],
 		'dbDirectory' => \$wgSQLiteDataDir,
+		'trxMode' => 'IMMEDIATE',
 		'flags' => 0
 	]
 ];
@@ -358,8 +394,22 @@ EOT;
 	'type' => 'sqlite',
 	'dbname' => \"{\$wgDBname}_l10n_cache\",
 	'tablePrefix' => '',
+	'variables' => [ 'synchronous' => 'NORMAL' ],
 	'dbDirectory' => \$wgSQLiteDataDir,
+	'trxMode' => 'IMMEDIATE',
 	'flags' => 0
+];
+\$wgJobTypeConf['default'] = [
+	'class' => 'JobQueueDB',
+	'claimTTL' => 3600,
+	'server' => [
+		'type' => 'sqlite',
+		'dbname' => \"{\$wgDBname}_jobqueue\",
+		'tablePrefix' => '',
+		'dbDirectory' => \$wgSQLiteDataDir,
+		'trxMode' => 'IMMEDIATE',
+		'flags' => 0
+	]
 ];";
 	}
 }

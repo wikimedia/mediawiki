@@ -90,7 +90,6 @@ class DeleteOldRevisions extends Maintenance {
 			$this->output( "done.\n" );
 		}
 
-		# This bit's done
 		# Purge redundant text records
 		$this->commitTransaction( $dbw, __METHOD__ );
 		if ( $delete ) {

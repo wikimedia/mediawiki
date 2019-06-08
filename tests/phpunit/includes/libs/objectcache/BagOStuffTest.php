@@ -16,7 +16,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		// type defined through parameter
-		if ( $this->getCliArg( 'use-bagostuff' ) ) {
+		if ( $this->getCliArg( 'use-bagostuff' ) !== null ) {
 			$name = $this->getCliArg( 'use-bagostuff' );
 
 			$this->cache = ObjectCache::newFromId( $name );
@@ -26,6 +26,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 		}
 
 		$this->cache->delete( $this->cache->makeKey( self::TEST_KEY ) );
+		$this->cache->delete( $this->cache->makeKey( self::TEST_KEY ) . ':lock' );
 	}
 
 	/**
@@ -64,14 +65,19 @@ class BagOStuffTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers BagOStuff::merge
-	 * @covers BagOStuff::mergeViaLock
 	 * @covers BagOStuff::mergeViaCas
 	 */
 	public function testMerge() {
-		$calls = 0;
 		$key = $this->cache->makeKey( self::TEST_KEY );
-		$callback = function ( BagOStuff $cache, $key, $oldVal ) use ( &$calls ) {
+
+		$calls = 0;
+		$casRace = false; // emulate a race
+		$callback = function ( BagOStuff $cache, $key, $oldVal ) use ( &$calls, &$casRace ) {
 			++$calls;
+			if ( $casRace ) {
+				// Uses CAS instead?
+				$cache->set( $key, 'conflict', 5 );
+			}
 
 			return ( $oldVal === false ) ? 'merged' : $oldVal . 'merged';
 		};
@@ -87,67 +93,18 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$this->assertEquals( 'mergedmerged', $this->cache->get( $key ) );
 
 		$calls = 0;
-		$this->cache->lock( $key );
-		$this->assertFalse( $this->cache->merge( $key, $callback, 1 ), 'Non-blocking merge' );
-		$this->cache->unlock( $key );
-		$this->assertEquals( 0, $calls );
-	}
-
-	/**
-	 * @covers BagOStuff::merge
-	 * @covers BagOStuff::mergeViaLock
-	 */
-	public function testMerge_fork() {
-		$key = $this->cache->makeKey( self::TEST_KEY );
-		$callback = function ( BagOStuff $cache, $key, $oldVal ) {
-			return ( $oldVal === false ) ? 'merged' : $oldVal . 'merged';
-		};
-		/*
-		 * Test concurrent merges by forking this process, if:
-		 * - not manually called with --use-bagostuff
-		 * - pcntl_fork is supported by the system
-		 * - cache type will correctly support calls over forks
-		 */
-		$fork = (bool)$this->getCliArg( 'use-bagostuff' );
-		$fork &= function_exists( 'pcntl_fork' );
-		$fork &= !$this->cache instanceof HashBagOStuff;
-		$fork &= !$this->cache instanceof EmptyBagOStuff;
-		$fork &= !$this->cache instanceof MultiWriteBagOStuff;
-		if ( $fork ) {
-			$pid = null;
-			// Function to start merge(), run another merge() midway through, then finish
-			$outerFunc = function ( BagOStuff $cache, $key, $oldVal ) use ( $callback, &$pid ) {
-				$pid = pcntl_fork();
-				if ( $pid == -1 ) {
-					return false;
-				} elseif ( $pid ) {
-					pcntl_wait( $status );
-
-					return $callback( $cache, $key, $oldVal );
-				} else {
-					$this->cache->merge( $key, $callback, 0, 1 );
-					// Bail out of the outer merge() in the child process since it does not
-					// need to attempt to write anything. Success is checked by the parent.
-					parent::tearDown(); // avoid phpunit notices
-					exit;
-				}
-			};
-
-			// attempt a merge - this should fail
-			$merged = $this->cache->merge( $key, $outerFunc, 0, 1 );
-
-			if ( $pid == -1 ) {
-				return; // can't fork, ignore this test...
-			}
-
-			// merge has failed because child process was merging (and we only attempted once)
-			$this->assertFalse( $merged );
-
-			// make sure the child's merge is completed and verify
-			$this->assertEquals( $this->cache->get( $key ), 'mergedmerged' );
+		$casRace = true;
+		$this->assertFalse(
+			$this->cache->merge( $key, $callback, 5, 1 ),
+			'Non-blocking merge (CAS)'
+		);
+		if ( $this->cache instanceof MultiWriteBagOStuff ) {
+			$wrapper = \Wikimedia\TestingAccessWrapper::newFromObject( $this->cache );
+			$n = count( $wrapper->caches );
 		} else {
-			$this->markTestSkipped( 'No pcntl methods available' );
+			$n = 1;
 		}
+		$this->assertEquals( $n, $calls );
 	}
 
 	/**
@@ -264,6 +221,34 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$this->cache->delete( $key2 );
 		$this->cache->delete( $key3 );
 		$this->cache->delete( $key4 );
+	}
+
+	/**
+	 * @covers BagOStuff::setMulti
+	 * @covers BagOStuff::deleteMulti
+	 */
+	public function testSetDeleteMulti() {
+		$map = [
+			$this->cache->makeKey( 'test-1' ) => 'Siberian',
+			$this->cache->makeKey( 'test-2' ) => [ 'Huskies' ],
+			$this->cache->makeKey( 'test-3' ) => [ 'are' => 'the' ],
+			$this->cache->makeKey( 'test-4' ) => (object)[ 'greatest' => 'animal' ],
+			$this->cache->makeKey( 'test-5' ) => 4,
+			$this->cache->makeKey( 'test-6' ) => 'ever'
+		];
+
+		$this->cache->setMulti( $map, 5 );
+		$this->assertEquals(
+			$map,
+			$this->cache->getMulti( array_keys( $map ) )
+		);
+
+		$this->assertTrue( $this->cache->deleteMulti( array_keys( $map ), 5 ) );
+
+		$this->assertEquals(
+			[],
+			$this->cache->getMulti( array_keys( $map ) )
+		);
 	}
 
 	/**

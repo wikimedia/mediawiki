@@ -14,8 +14,14 @@
 		"destructive": {
 			"color": "#d33"
 		},
+		"error": {
+			"color": "#d33"
+		},
 		"warning": {
-			"color": "#ff5d00"
+			"color": "#fc3"
+		},
+		"success": {
+			"color": "#14866d"
 		}
 	},
 	"images": {
@@ -42,6 +48,18 @@
 		},
 		"hieroglyph": {
 			"file": "images/icons/hieroglyph.svg"
+		},
+		"imageLayoutBasic": {
+			"file": "images/icons/imageLayoutBasic.svg"
+		},
+		"imageLayoutFrame": {
+			"file": "images/icons/imageLayoutFrame.svg"
+		},
+		"imageLayoutFrameless": {
+			"file": "images/icons/imageLayoutFrameless.svg"
+		},
+		"imageLayoutThumbnail": {
+			"file": "images/icons/imageLayoutThumbnail.svg"
 		},
 		"language": {
 			"file": "images/icons/language.svg"

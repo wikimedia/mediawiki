@@ -76,7 +76,7 @@ abstract class Collation {
 				$collationObject = null;
 				Hooks::run( 'Collation::factory', [ $collationName, &$collationObject ] );
 
-				if ( $collationObject instanceof Collation ) {
+				if ( $collationObject instanceof self ) {
 					return $collationObject;
 				}
 

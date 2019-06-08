@@ -31,30 +31,6 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public static function provideEquals() {
-		return [
-			[ 'Main Page', 'Main Page', true ],
-			[ 'Main Page', 'Not The Main Page', false ],
-			[ 'Main Page', 'Project:Main Page', false ],
-			[ 'File:Example.png', 'Image:Example.png', true ],
-			[ 'Special:Version', 'Special:Version', true ],
-			[ 'Special:Version', 'Special:Recentchanges', false ],
-			[ 'Special:Version', 'Main Page', false ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideEquals
-	 * @covers Title::equals
-	 */
-	public function testEquals( $titleA, $titleB, $expectedBool ) {
-		$titleA = Title::newFromText( $titleA );
-		$titleB = Title::newFromText( $titleB );
-
-		$this->assertEquals( $expectedBool, $titleA->equals( $titleB ) );
-		$this->assertEquals( $expectedBool, $titleB->equals( $titleA ) );
-	}
-
 	public static function provideInNamespace() {
 		return [
 			[ 'Main Page', NS_MAIN, true ],

@@ -48,6 +48,15 @@ abstract class ProfilerOutput {
 	}
 
 	/**
+	 * Does log() just send the data to the request/script output?
+	 * @return bool
+	 * @since 1.33
+	 */
+	public function logsToOutput() {
+		return false;
+	}
+
+	/**
 	 * Log MediaWiki-style profiling data
 	 *
 	 * @param array $stats Result of Profiler::getFunctionStats()

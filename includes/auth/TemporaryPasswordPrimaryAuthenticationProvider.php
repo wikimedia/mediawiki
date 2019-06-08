@@ -146,7 +146,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		}
 
 		$pwhash = $this->getPassword( $row->user_newpassword );
-		if ( !$pwhash->equals( $req->password ) ) {
+		if ( !$pwhash->verify( $req->password ) ) {
 			return $this->failResponse( $req );
 		}
 
@@ -356,23 +356,21 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		$req = AuthenticationRequest::getRequestByClass(
 			$reqs, TemporaryPasswordAuthenticationRequest::class
 		);
-		if ( $req ) {
-			if ( $req->username !== null && $req->password !== null ) {
-				// Nothing we can do yet, because the user isn't in the DB yet
-				if ( $req->username !== $user->getName() ) {
-					$req = clone $req;
-					$req->username = $user->getName();
-				}
-
-				if ( $req->mailpassword ) {
-					// prevent EmailNotificationSecondaryAuthenticationProvider from sending another mail
-					$this->manager->setAuthenticationSessionData( 'no-email', true );
-				}
-
-				$ret = AuthenticationResponse::newPass( $req->username );
-				$ret->createRequest = $req;
-				return $ret;
+		if ( $req && $req->username !== null && $req->password !== null ) {
+			// Nothing we can do yet, because the user isn't in the DB yet
+			if ( $req->username !== $user->getName() ) {
+				$req = clone $req;
+				$req->username = $user->getName();
 			}
+
+			if ( $req->mailpassword ) {
+				// prevent EmailNotificationSecondaryAuthenticationProvider from sending another mail
+				$this->manager->setAuthenticationSessionData( 'no-email', true );
+			}
+
+			$ret = AuthenticationResponse::newPass( $req->username );
+			$ret->createRequest = $req;
+			return $ret;
 		}
 		return AuthenticationResponse::newAbstain();
 	}

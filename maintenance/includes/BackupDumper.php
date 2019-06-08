@@ -26,6 +26,7 @@
  */
 
 require_once __DIR__ . '/../Maintenance.php';
+require_once __DIR__ . '/../../includes/export/WikiExporter.php';
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -51,6 +52,7 @@ abstract class BackupDumper extends Maintenance {
 	protected $reportingInterval = 100;
 	protected $pageCount = 0;
 	protected $revCount = 0;
+	protected $schemaVersion = null; // use default
 	protected $server = null; // use default
 	protected $sink = null; // Output filters
 	protected $lastTime = 0;
@@ -74,9 +76,6 @@ abstract class BackupDumper extends Maintenance {
 	/** @var LoadBalancer */
 	protected $lb;
 
-	// @todo Unused?
-	private $stubText = false; // include rev_text_id instead of text; for 2-pass dump
-
 	/**
 	 * @param array|null $args For backward compatibility
 	 */
@@ -89,6 +88,7 @@ abstract class BackupDumper extends Maintenance {
 		$this->registerOutput( 'gzip', DumpGZipOutput::class );
 		$this->registerOutput( 'bzip2', DumpBZip2Output::class );
 		$this->registerOutput( 'dbzip2', DumpDBZip2Output::class );
+		$this->registerOutput( 'lbzip2', DumpLBZip2Output::class );
 		$this->registerOutput( '7zip', Dump7ZipOutput::class );
 
 		$this->registerFilter( 'latest', DumpLatestFilter::class );
@@ -99,11 +99,13 @@ abstract class BackupDumper extends Maintenance {
 		$this->addOption( 'plugin', 'Load a dump plugin class. Specify as <class>[:<file>].',
 			false, true, false, true );
 		$this->addOption( 'output', 'Begin a filtered output stream; Specify as <type>:<file>. ' .
-			'<type>s: file, gzip, bzip2, 7zip, dbzip2', false, true, false, true );
+			'<type>s: file, gzip, bzip2, 7zip, dbzip2, lbzip2', false, true, false, true );
 		$this->addOption( 'filter', 'Add a filter on an output branch. Specify as ' .
 			'<type>[:<options>]. <types>s: latest, notalk, namespace', false, true, false, true );
 		$this->addOption( 'report', 'Report position and speed after every n pages processed. ' .
 			'Default: 100.', false, true );
+		$this->addOption( 'schema-version', 'Schema version to use for output. ' .
+			'Default: ' . WikiExporter::schemaVersion(), false, true );
 		$this->addOption( 'server', 'Force reading from MySQL server', false, true );
 		$this->addOption( '7ziplevel', '7zip compression level for all 7zip outputs. Used for ' .
 			'-mx option to 7za command.', false, true );
@@ -158,22 +160,20 @@ abstract class BackupDumper extends Maintenance {
 		$sink = null;
 		$sinks = [];
 
+		$this->schemaVersion = WikiExporter::schemaVersion();
+
 		$options = $this->orderedOptions;
 		foreach ( $options as $arg ) {
-			$opt = $arg[0];
-			$param = $arg[1];
+			list( $opt, $param ) = $arg;
 
 			switch ( $opt ) {
 				case 'plugin':
-					$val = explode( ':', $param );
+					$val = explode( ':', $param, 2 );
 
 					if ( count( $val ) === 1 ) {
 						$this->loadPlugin( $val[0], '' );
 					} elseif ( count( $val ) === 2 ) {
 						$this->loadPlugin( $val[0], $val[1] );
-					} else {
-						$this->fatalError( 'Invalid plugin parameter' );
-						return;
 					}
 
 					break;
@@ -202,7 +202,7 @@ abstract class BackupDumper extends Maintenance {
 						$sink = new DumpOutput();
 					}
 
-					$split = explode( ':', $param );
+					$split = explode( ':', $param, 2 );
 					$key = $split[0];
 
 					if ( !isset( $this->filterTypes[$key] ) ) {
@@ -215,14 +215,21 @@ abstract class BackupDumper extends Maintenance {
 						$filter = new $type( $sink );
 					} elseif ( count( $split ) === 2 ) {
 						$filter = new $type( $sink, $split[1] );
-					} else {
-						$this->fatalError( 'Invalid filter parameter' );
 					}
 
 					// references are lame in php...
 					unset( $sink );
 					$sink = $filter;
 
+					break;
+				case 'schema-version':
+					if ( !in_array( $param, XmlDumpWriter::$supportedSchemas ) ) {
+						$this->fatalError(
+							"Unsupported schema version $param. Supported versions: " .
+							implode( ', ', XmlDumpWriter::$supportedSchemas )
+						);
+					}
+					$this->schemaVersion = $param;
 					break;
 			}
 		}
@@ -258,6 +265,7 @@ abstract class BackupDumper extends Maintenance {
 
 		$db = $this->backupDb();
 		$exporter = new WikiExporter( $db, $history, $text );
+		$exporter->setSchemaVersion( $this->schemaVersion );
 		$exporter->dumpUploads = $this->dumpUploads;
 		$exporter->dumpUploadFileContents = $this->dumpUploadFileContents;
 
@@ -358,9 +366,7 @@ abstract class BackupDumper extends Maintenance {
 	function backupServer() {
 		global $wgDBserver;
 
-		return $this->server
-			? $this->server
-			: $wgDBserver;
+		return $this->server ?: $wgDBserver;
 	}
 
 	function reportPage() {

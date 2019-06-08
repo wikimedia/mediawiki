@@ -27,7 +27,9 @@
 	 * @deprecated since 1.17 Use jQuery instead
 	 */
 	mw.log.deprecate( window, 'addOnloadHook', function ( fn ) {
-		$( function () { fn(); } );
+		$( function () {
+			fn();
+		} );
 	}, 'Use jQuery instead.' );
 
 	/**

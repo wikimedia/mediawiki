@@ -15,6 +15,7 @@ class HTMLExpiryField extends HTMLFormField {
 
 	/**
 	 * Relative Date Time Field.
+	 * @param array $params
 	 */
 	public function __construct( array $params = [] ) {
 		parent::__construct( $params );
@@ -24,7 +25,7 @@ class HTMLExpiryField extends HTMLFormField {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 *
 	 * Use whatever the relative field is as the standard HTML input.
 	 */
@@ -37,7 +38,7 @@ class HTMLExpiryField extends HTMLFormField {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	protected function getOOUIModules() {
 		return array_merge(
@@ -49,7 +50,7 @@ class HTMLExpiryField extends HTMLFormField {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getInputOOUI( $value ) {
 		return new ExpiryInputWidget(
@@ -62,7 +63,7 @@ class HTMLExpiryField extends HTMLFormField {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function loadDataFromRequest( $request ) {
 		return $this->relativeField->loadDataFromRequest( $request );

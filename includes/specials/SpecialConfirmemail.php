@@ -110,7 +110,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 				// should never happen, but if so, don't let the user without any message
 				$out->addWikiMsg( 'confirmemail_sent' );
 			} elseif ( $retval instanceof Status && $retval->isGood() ) {
-				$out->addWikiText( $retval->getValue() );
+				$out->addWikiTextAsInterface( $retval->getValue() );
 			}
 		} else {
 			// date and time are separate parameters to facilitate localisation.
@@ -148,7 +148,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 	 * @param string $code Confirmation code
 	 */
 	private function attemptConfirm( $code ) {
-		$user = User::newFromConfirmationCode( $code, User::READ_LATEST );
+		$user = User::newFromConfirmationCode( $code, User::READ_EXCLUSIVE );
 		if ( !is_object( $user ) ) {
 			$this->getOutput()->addWikiMsg( 'confirmemail_invalid' );
 

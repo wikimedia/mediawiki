@@ -1,5 +1,8 @@
 ( function () {
 	QUnit.module( 'mediawiki.api.options', QUnit.newMwEnvironment( {
+		config: {
+			wgUserName: 'Foo'
+		},
 		setup: function () {
 			this.server = this.sandbox.useFakeServer();
 			this.server.respondImmediately = true;
@@ -137,5 +140,22 @@
 				assert.ok( true, 'Request completed: reset an option, not bundleable' );
 			} )
 		);
+	} );
+
+	QUnit.test( 'saveOptions (anonymous)', function ( assert ) {
+		var promise, test = this;
+
+		mw.config.set( 'wgUserName', null );
+		promise = new mw.Api().saveOptions( { foo: 'bar' } );
+
+		assert.rejects( promise, /notloggedin/, 'Can not save options while not logged in' );
+
+		return promise
+			.catch( function () {
+				return $.Deferred().resolve();
+			} )
+			.then( function () {
+				assert.strictEqual( test.server.requests.length, 0, 'No requests made' );
+			} );
 	} );
 }() );

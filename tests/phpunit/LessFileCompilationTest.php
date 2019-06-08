@@ -5,6 +5,7 @@
  *
  * @see https://github.com/sebastianbergmann/phpunit/blob/master/src/Extensions/PhptTestCase.php
  * @author Sam Smith <samsmith@wikimedia.org>
+ * @coversNothing
  */
 class LessFileCompilationTest extends ResourceLoaderTestCase {
 

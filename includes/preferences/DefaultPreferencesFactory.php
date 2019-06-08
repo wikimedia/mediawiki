@@ -121,7 +121,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$this->skinPreferences( $user, $context, $preferences );
 		$this->datetimePreferences( $user, $context, $preferences );
 		$this->filesPreferences( $context, $preferences );
-		$this->renderingPreferences( $context, $preferences );
+		$this->renderingPreferences( $user, $context, $preferences );
 		$this->editingPreferences( $user, $context, $preferences );
 		$this->rcPreferences( $user, $context, $preferences );
 		$this->watchlistPreferences( $user, $context, $preferences );
@@ -267,11 +267,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				continue;
 			}
 
-			if ( isset( $userGroupMemberships[$ueg] ) ) {
-				$groupStringOrObject = $userGroupMemberships[$ueg];
-			} else {
-				$groupStringOrObject = $ueg;
-			}
+			$groupStringOrObject = $userGroupMemberships[$ueg] ?? $ueg;
 
 			$userG = UserGroupMembership::getLink( $groupStringOrObject, $context, 'html' );
 			$userM = UserGroupMembership::getLink( $groupStringOrObject, $context, 'html',
@@ -377,7 +373,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			];
 		}
 
-		// Language
 		$languages = Language::fetchLanguageNames( null, 'mwfile' );
 		$languageCode = $this->config->get( 'LanguageCode' );
 		if ( !array_key_exists( $languageCode, $languages ) ) {
@@ -467,7 +462,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			$user,
 			ParserOptions::newFromContext( $context )
 		);
-		$oldsigHTML = $context->getOutput()->parseInline( $oldsigWikiText, true, true );
+		$oldsigHTML = Parser::stripOuterParagraph(
+			$context->getOutput()->parseAsContent( $oldsigWikiText )
+		);
 		$defaultPreferences['oldsig'] = [
 			'type' => 'info',
 			'raw' => true,
@@ -798,14 +795,20 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'section' => 'rendering/timeoffset',
 			'id' => 'wpTimeCorrection',
 			'filter' => TimezoneFilter::class,
+			'placeholder-message' => 'timezone-useoffset-placeholder',
 		];
 	}
 
 	/**
+	 * @param User $user
 	 * @param MessageLocalizer $l10n
 	 * @param array &$defaultPreferences
 	 */
-	protected function renderingPreferences( MessageLocalizer $l10n, &$defaultPreferences ) {
+	protected function renderingPreferences(
+		User $user,
+		MessageLocalizer $l10n,
+		&$defaultPreferences
+	) {
 		# # Diffs ####################################
 		$defaultPreferences['diffonly'] = [
 			'type' => 'toggle',
@@ -844,7 +847,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'options' => $stubThresholdOptions,
 			// This is not a raw HTML message; label-raw is needed for the manual <a></a>
 			'label-raw' => $l10n->msg( 'stub-threshold' )->rawParams(
-				'<a href="#" class="stub">' .
+				'<a class="stub">' .
 				$l10n->msg( 'stub-threshold-sample-link' )->parse() .
 				'</a>' )->parse(),
 		];
@@ -860,6 +863,14 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'section' => 'rendering/advancedrendering',
 			'label-message' => 'tog-numberheadings',
 		];
+
+		if ( $user->isAllowed( 'rollback' ) ) {
+			$defaultPreferences['showrollbackconfirmation'] = [
+				'type' => 'toggle',
+				'section' => 'rendering/advancedrendering',
+				'label-message' => 'tog-showrollbackconfirmation',
+			];
+		}
 	}
 
 	/**
@@ -963,7 +974,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$defaultPreferences['hideminor'] = [
 			'type' => 'toggle',
 			'label-message' => 'tog-hideminor',
-			'section' => 'rc/advancedrc',
+			'section' => 'rc/changesrc',
 		];
 		$defaultPreferences['rcfilters-rc-collapsed'] = [
 			'type' => 'api',
@@ -992,14 +1003,14 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			$defaultPreferences['hidecategorization'] = [
 				'type' => 'toggle',
 				'label-message' => 'tog-hidecategorization',
-				'section' => 'rc/advancedrc',
+				'section' => 'rc/changesrc',
 			];
 		}
 
 		if ( $user->useRCPatrol() ) {
 			$defaultPreferences['hidepatrolled'] = [
 				'type' => 'toggle',
-				'section' => 'rc/advancedrc',
+				'section' => 'rc/changesrc',
 				'label-message' => 'tog-hidepatrolled',
 			];
 		}
@@ -1007,7 +1018,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		if ( $user->useNPPatrol() ) {
 			$defaultPreferences['newpageshidepatrolled'] = [
 				'type' => 'toggle',
-				'section' => 'rc/advancedrc',
+				'section' => 'rc/changesrc',
 				'label-message' => 'tog-newpageshidepatrolled',
 			];
 		}
@@ -1022,7 +1033,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		$defaultPreferences['rcenhancedfilters-disable'] = [
 			'type' => 'toggle',
-			'section' => 'rc/optoutrc',
+			'section' => 'rc/advancedrc',
 			'label-message' => 'rcfilters-preference-label',
 			'help-message' => 'rcfilters-preference-help',
 		];
@@ -1041,7 +1052,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		# # Watchlist #####################################
 		if ( $user->isAllowed( 'editmywatchlist' ) ) {
 			$editWatchlistLinks = '';
-			$editWatchlistLinksOld = [];
 			$editWatchlistModes = [
 				'edit' => [ 'subpage' => false, 'flags' => [] ],
 				'raw' => [ 'subpage' => 'raw', 'flags' => [] ],
@@ -1093,27 +1103,27 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		];
 		$defaultPreferences['watchlisthideminor'] = [
 			'type' => 'toggle',
-			'section' => 'watchlist/advancedwatchlist',
+			'section' => 'watchlist/changeswatchlist',
 			'label-message' => 'tog-watchlisthideminor',
 		];
 		$defaultPreferences['watchlisthidebots'] = [
 			'type' => 'toggle',
-			'section' => 'watchlist/advancedwatchlist',
+			'section' => 'watchlist/changeswatchlist',
 			'label-message' => 'tog-watchlisthidebots',
 		];
 		$defaultPreferences['watchlisthideown'] = [
 			'type' => 'toggle',
-			'section' => 'watchlist/advancedwatchlist',
+			'section' => 'watchlist/changeswatchlist',
 			'label-message' => 'tog-watchlisthideown',
 		];
 		$defaultPreferences['watchlisthideanons'] = [
 			'type' => 'toggle',
-			'section' => 'watchlist/advancedwatchlist',
+			'section' => 'watchlist/changeswatchlist',
 			'label-message' => 'tog-watchlisthideanons',
 		];
 		$defaultPreferences['watchlisthideliu'] = [
 			'type' => 'toggle',
-			'section' => 'watchlist/advancedwatchlist',
+			'section' => 'watchlist/changeswatchlist',
 			'label-message' => 'tog-watchlisthideliu',
 		];
 
@@ -1137,7 +1147,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		if ( $this->config->get( 'RCWatchCategoryMembership' ) ) {
 			$defaultPreferences['watchlisthidecategorization'] = [
 				'type' => 'toggle',
-				'section' => 'watchlist/advancedwatchlist',
+				'section' => 'watchlist/changeswatchlist',
 				'label-message' => 'tog-watchlisthidecategorization',
 			];
 		}
@@ -1145,7 +1155,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		if ( $user->useRCPatrol() ) {
 			$defaultPreferences['watchlisthidepatrolled'] = [
 				'type' => 'toggle',
-				'section' => 'watchlist/advancedwatchlist',
+				'section' => 'watchlist/changeswatchlist',
 				'label-message' => 'tog-watchlisthidepatrolled',
 			];
 		}
@@ -1176,7 +1186,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				// tog-watchrollback
 				$defaultPreferences[$pref] = [
 					'type' => 'toggle',
-					'section' => 'watchlist/advancedwatchlist',
+					'section' => 'watchlist/pageswatchlist',
 					'label-message' => "tog-$pref",
 				];
 			}
@@ -1203,7 +1213,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		$defaultPreferences['wlenhancedfilters-disable'] = [
 			'type' => 'toggle',
-			'section' => 'watchlist/optoutwatchlist',
+			'section' => 'watchlist/advancedwatchlist',
 			'label-message' => 'rcfilters-watchlist-preference-label',
 			'help-message' => 'rcfilters-watchlist-preference-help',
 		];
@@ -1573,7 +1583,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			);
 		}
 
-		AuthManager::callLegacyAuthPlugin( 'updateExternalDB', [ $user ] );
 		$user->saveSettings();
 
 		return $result;

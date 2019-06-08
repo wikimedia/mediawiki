@@ -115,7 +115,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						$info['imagerepository'] = '';
 					} else {
 						$result->addValue(
-							[ 'query', 'pages', intval( $pageId ) ],
+							[ 'query', 'pages', (int)$pageId ],
 							'imagerepository', ''
 						);
 						// The above can't fail because it doesn't increase the result size
@@ -146,7 +146,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					$info['badfile'] = (bool)wfIsBadImage( $title, $badFileContextTitle );
 				}
 
-				$fit = $result->addValue( [ 'query', 'pages' ], intval( $pageId ), $info );
+				$fit = $result->addValue( [ 'query', 'pages' ], (int)$pageId, $info );
 				if ( !$fit ) {
 					if ( count( $pageIds[NS_FILE] ) == 1 ) {
 						// The user is screwed. imageinfo can't be solely
@@ -249,13 +249,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			// Don't set $scale['width']; this signals mergeThumbParams() to fill it with the image's width
 			$scale = [];
 			$scale['height'] = $params['urlheight'];
+		} elseif ( $params['urlparam'] ) {
+			// Audio files might not have a width/height.
+			$scale = [];
 		} else {
-			if ( $params['urlparam'] ) {
-				// Audio files might not have a width/height.
-				$scale = [];
-			} else {
-				$scale = null;
-			}
+			$scale = null;
 		}
 
 		return $scale;
@@ -312,7 +310,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $paramList['width'] ) && isset( $thumbParams['width'] ) ) {
-			if ( intval( $paramList['width'] ) != intval( $thumbParams['width'] ) ) {
+			if ( (int)$paramList['width'] != (int)$thumbParams['width'] ) {
 				$this->addWarning(
 					[ 'apiwarn-urlparamwidth', $p, $paramList['width'], $thumbParams['width'] ]
 				);
@@ -429,9 +427,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		// This is shown even if the file is revdelete'd in interface
 		// so do same here.
 		if ( isset( $prop['size'] ) || isset( $prop['dimensions'] ) ) {
-			$vals['size'] = intval( $file->getSize() );
-			$vals['width'] = intval( $file->getWidth() );
-			$vals['height'] = intval( $file->getHeight() );
+			$vals['size'] = (int)$file->getSize();
+			$vals['width'] = (int)$file->getWidth();
+			$vals['height'] = (int)$file->getHeight();
 
 			$pageCount = $file->pageCount();
 			if ( $pageCount !== false ) {
@@ -510,11 +508,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						// T25834 - If the URLs are the same, we haven't resized it, so shouldn't give the wanted
 						// thumbnail sizes for the thumbnail actual size
 						if ( $mto->getUrl() !== $file->getUrl() ) {
-							$vals['thumbwidth'] = intval( $mto->getWidth() );
-							$vals['thumbheight'] = intval( $mto->getHeight() );
+							$vals['thumbwidth'] = (int)$mto->getWidth();
+							$vals['thumbheight'] = (int)$mto->getHeight();
 						} else {
-							$vals['thumbwidth'] = intval( $file->getWidth() );
-							$vals['thumbheight'] = intval( $file->getHeight() );
+							$vals['thumbwidth'] = (int)$file->getWidth();
+							$vals['thumbheight'] = (int)$file->getHeight();
 						}
 
 						if ( isset( $prop['thumbmime'] ) && $file->getHandler() ) {

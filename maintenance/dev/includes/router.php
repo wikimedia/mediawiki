@@ -25,73 +25,59 @@ if ( PHP_SAPI != 'cli-server' ) {
 	die( "This script can only be run by php's cli-server sapi." );
 }
 
-ini_set( 'display_errors', 1 );
-error_reporting( E_ALL );
-
-if ( isset( $_SERVER["SCRIPT_FILENAME"] ) ) {
-	# Known resource, sometimes a script sometimes a file
-	$file = $_SERVER["SCRIPT_FILENAME"];
-} elseif ( isset( $_SERVER["SCRIPT_NAME"] ) ) {
-	# Usually unknown, document root relative rather than absolute
-	# Happens with some cases like /wiki/File:Image.png
-	if ( is_readable( $_SERVER['DOCUMENT_ROOT'] . $_SERVER["SCRIPT_NAME"] ) ) {
-		# Just in case this actually IS a file, set it here
-		$file = $_SERVER['DOCUMENT_ROOT'] . $_SERVER["SCRIPT_NAME"];
-	} else {
-		# Otherwise let's pretend that this is supposed to go to index.php
-		$file = $_SERVER['DOCUMENT_ROOT'] . '/index.php';
-	}
-} else {
-	# Meh, we'll just give up
+if ( !isset( $_SERVER['SCRIPT_FILENAME'] ) ) {
+	// Let built-in server handle error.
 	return false;
 }
 
-# And now do handling for that $file
-
+// The SCRIPT_FILENAME can be one of three things:
+// 1. Absolute path to a file in the docroot associated with the
+//    path of the current request URL. PHP does this for any file path
+//    where it finds a matching file on disk. For both PHP files, and for
+//    static files.
+// 2. Relative path to router.php (this file), for any unknown URL path
+//    that ends in ".php" or another extension that PHP would execute.
+// 3. Absolute path to {docroot}/index.php, for any other unknown path.
+//    Effectively treating it as a 404 handler.
+$file = $_SERVER['SCRIPT_FILENAME'];
 if ( !is_readable( $file ) ) {
-	# Let the server throw the error if it doesn't exist
+	// Let built-in server handle error.
 	return false;
 }
+
 $ext = pathinfo( $file, PATHINFO_EXTENSION );
-if ( $ext == 'php' || $ext == 'php5' ) {
+if ( $ext == 'php' ) {
+	// Let built-in server handle script inclusion.
 	return false;
-}
-$mime = false;
-// Borrow mime type file from MimeAnalyzer
-$lines = explode( "\n", file_get_contents( "includes/libs/mime/mime.types" ) );
-foreach ( $lines as $line ) {
-	$exts = explode( " ", $line );
-	$mime = array_shift( $exts );
-	if ( in_array( $ext, $exts ) ) {
-		break; # this is the right value for $mime
+} else {
+	// Serve static file with appropiate Content-Type headers.
+	// The built-in server for PHP 7.0+ supports most files already
+	// (contrary to PHP 5.2, which was supported when router.php was created).
+	// But it still doesn't support as many MIME types as MediaWiki (e.g. ".json")
+
+	// Fallback
+	$mime = 'text/plain';
+	// Borrow from MimeAnalyzer
+	$lines = explode( "\n", file_get_contents( "includes/libs/mime/mime.types" ) );
+	foreach ( $lines as $line ) {
+		$exts = explode( ' ', $line );
+		$type = array_shift( $exts );
+		if ( in_array( $ext, $exts ) ) {
+			$mime = $type;
+			break;
+		}
 	}
-	$mime = false;
-}
-if ( !$mime ) {
-	$basename = basename( $file );
-	if ( $basename == strtoupper( $basename ) ) {
-		# IF it's something like README serve it as text
-		$mime = "text/plain";
-	}
-}
-if ( $mime ) {
-	# Use custom handling to serve files with a known MIME type
-	# This way we can serve things like .svg files that the built-in
-	# PHP webserver doesn't understand.
-	# ;) Nicely enough we just happen to bundle a mime.types file
-	$f = fopen( $file, 'rb' );
+
 	if ( preg_match( '#^text/#', $mime ) ) {
-		# Text should have a charset=UTF-8 (php's webserver does this too)
+		// Text should have a charset=UTF-8 (PHP's webserver does this too)
 		header( "Content-Type: $mime; charset=UTF-8" );
 	} else {
 		header( "Content-Type: $mime" );
 	}
 	header( "Content-Length: " . filesize( $file ) );
 	// Stream that out to the browser
+	$f = fopen( $file, 'rb' );
 	fpassthru( $f );
 
 	return true;
 }
-
-# Let the php server handle things on its own otherwise
-return false;

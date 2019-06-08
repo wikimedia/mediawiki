@@ -1,5 +1,10 @@
 <?php
 
+use MediaWiki\Block\BlockRestrictionStore;
+use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\Block\Restriction\NamespaceRestriction;
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group Database
  * @group Blocking
@@ -90,7 +95,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		$madeAt = wfTimestamp( TS_MW );
 
 		// delta to stop one-off errors when things happen to go over a second mark.
-		$delta = abs( $madeAt - $block->mTimestamp );
+		$delta = abs( $madeAt - $block->getTimestamp() );
 		$this->assertLessThan(
 			2,
 			$delta,
@@ -127,7 +132,7 @@ class BlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Block::prevents
+	 * @covers Block::appliesToRight
 	 */
 	public function testBlockedUserCanNotCreateAccount() {
 		$username = 'BlockedUserToCreateAccountWith';
@@ -170,8 +175,8 @@ class BlockTest extends MediaWikiLangTestCase {
 		// Reload block from DB
 		$userBlock = Block::newFromTarget( $username );
 		$this->assertTrue(
-			(bool)$block->prevents( 'createaccount' ),
-			"Block object in DB should prevents 'createaccount'"
+			(bool)$block->appliesToRight( 'createaccount' ),
+			"Block object in DB should block right 'createaccount'"
 		);
 
 		$this->assertInstanceOf(
@@ -298,9 +303,9 @@ class BlockTest extends MediaWikiLangTestCase {
 			$block = new Block();
 			$block->setTarget( $target );
 			$block->setBlocker( $blocker );
-			$block->mReason = $insBlock['desc'];
-			$block->mExpiry = 'infinity';
-			$block->prevents( 'createaccount', $insBlock['ACDisable'] );
+			$block->setReason( $insBlock['desc'] );
+			$block->setExpiry( 'infinity' );
+			$block->isCreateAccountBlocked( $insBlock['ACDisable'] );
 			$block->isHardblock( $insBlock['isHardblock'] );
 			$block->isAutoblocking( $insBlock['isAutoBlocking'] );
 			$block->insert();
@@ -365,61 +370,8 @@ class BlockTest extends MediaWikiLangTestCase {
 		$xffblocks = Block::getBlocksForIPList( $list, true );
 		$this->assertEquals( $exCount, count( $xffblocks ), 'Number of blocks for ' . $xff );
 		$block = Block::chooseBlock( $xffblocks, $list );
-		$this->assertEquals( $exResult, $block->mReason, 'Correct block type for XFF header ' . $xff );
-	}
-
-	/**
-	 * @covers Block::__construct
-	 */
-	public function testDeprecatedConstructor() {
-		$this->hideDeprecated( 'Block::__construct with multiple arguments' );
-		$username = 'UnthinkablySecretRandomUsername';
-		$reason = 'being irrational';
-
-		# Set up the target
-		$u = User::newFromName( $username );
-		if ( $u->getId() == 0 ) {
-			$u->addToDatabase();
-			TestUser::setPasswordForUser( $u, 'TotallyObvious' );
-		}
-		unset( $u );
-
-		# Make sure the user isn't blocked
-		$this->assertNull(
-			Block::newFromTarget( $username ),
-			"$username should not be blocked"
-		);
-
-		# Perform the block
-		$block = new Block(
-			/* address */ $username,
-			/* user */ 0,
-			/* by */ $this->getTestSysop()->getUser()->getId(),
-			/* reason */ $reason,
-			/* timestamp */ 0,
-			/* auto */ false,
-			/* expiry */ 0
-		);
-		$block->insert();
-
-		# Check target
 		$this->assertEquals(
-			$block->getTarget()->getName(),
-			$username,
-			"Target should be set properly"
-		);
-
-		# Check supplied parameter
-		$this->assertEquals(
-			$block->mReason,
-			$reason,
-			"Reason should be non-default"
-		);
-
-		# Check default parameter
-		$this->assertFalse(
-			(bool)$block->prevents( 'createaccount' ),
-			"Account creation should not be blocked by default"
+			$exResult, $block->getReason(), 'Correct block type for XFF header ' . $xff
 		);
 	}
 
@@ -460,4 +412,319 @@ class BlockTest extends MediaWikiLangTestCase {
 		}
 	}
 
+	/**
+	 * @covers Block::newFromRow
+	 */
+	public function testNewFromRow() {
+		$badActor = $this->getTestUser()->getUser();
+		$sysop = $this->getTestSysop()->getUser();
+
+		$block = new Block( [
+			'address' => $badActor->getName(),
+			'user' => $badActor->getId(),
+			'by' => $sysop->getId(),
+			'expiry' => 'infinity',
+		] );
+		$block->insert();
+
+		$blockQuery = Block::getQueryInfo();
+		$row = $this->db->select(
+			$blockQuery['tables'],
+			$blockQuery['fields'],
+			[
+				'ipb_id' => $block->getId(),
+			],
+			__METHOD__,
+			[],
+			$blockQuery['joins']
+		)->fetchObject();
+
+		$block = Block::newFromRow( $row );
+		$this->assertInstanceOf( Block::class, $block );
+		$this->assertEquals( $block->getBy(), $sysop->getId() );
+		$this->assertEquals( $block->getTarget()->getName(), $badActor->getName() );
+		$block->delete();
+	}
+
+	/**
+	 * @covers Block::equals
+	 */
+	public function testEquals() {
+		$block = new Block();
+
+		$this->assertTrue( $block->equals( $block ) );
+
+		$partial = new Block( [
+			'sitewide' => false,
+		] );
+		$this->assertFalse( $block->equals( $partial ) );
+	}
+
+	/**
+	 * @covers Block::isSitewide
+	 */
+	public function testIsSitewide() {
+		$block = new Block();
+		$this->assertTrue( $block->isSitewide() );
+
+		$block = new Block( [
+			'sitewide' => true,
+		] );
+		$this->assertTrue( $block->isSitewide() );
+
+		$block = new Block( [
+			'sitewide' => false,
+		] );
+		$this->assertFalse( $block->isSitewide() );
+
+		$block = new Block( [
+			'sitewide' => false,
+		] );
+		$block->isSitewide( true );
+		$this->assertTrue( $block->isSitewide() );
+	}
+
+	/**
+	 * @covers Block::getRestrictions
+	 * @covers Block::setRestrictions
+	 */
+	public function testRestrictions() {
+		$block = new Block();
+		$restrictions = [
+			new PageRestriction( 0, 1 )
+		];
+		$block->setRestrictions( $restrictions );
+
+		$this->assertSame( $restrictions, $block->getRestrictions() );
+	}
+
+	/**
+	 * @covers Block::getRestrictions
+	 * @covers Block::insert
+	 */
+	public function testRestrictionsFromDatabase() {
+		$badActor = $this->getTestUser()->getUser();
+		$sysop = $this->getTestSysop()->getUser();
+
+		$block = new Block( [
+			'address' => $badActor->getName(),
+			'user' => $badActor->getId(),
+			'by' => $sysop->getId(),
+			'expiry' => 'infinity',
+		] );
+		$page = $this->getExistingTestPage( 'Foo' );
+		$restriction = new PageRestriction( 0, $page->getId() );
+		$block->setRestrictions( [ $restriction ] );
+		$block->insert();
+
+		// Refresh the block from the database.
+		$block = Block::newFromID( $block->getId() );
+		$restrictions = $block->getRestrictions();
+		$this->assertCount( 1, $restrictions );
+		$this->assertTrue( $restriction->equals( $restrictions[0] ) );
+		$block->delete();
+	}
+
+	/**
+	 * @covers Block::insert
+	 */
+	public function testInsertExistingBlock() {
+		$badActor = $this->getTestUser()->getUser();
+		$sysop = $this->getTestSysop()->getUser();
+
+		$block = new Block( [
+			'address' => $badActor->getName(),
+			'user' => $badActor->getId(),
+			'by' => $sysop->getId(),
+			'expiry' => 'infinity',
+		] );
+		$page = $this->getExistingTestPage( 'Foo' );
+		$restriction = new PageRestriction( 0, $page->getId() );
+		$block->setRestrictions( [ $restriction ] );
+		$block->insert();
+
+		// Insert the block again, which should result in a failur
+		$result = $block->insert();
+
+		$this->assertFalse( $result );
+
+		// Ensure that there are no restrictions where the blockId is 0.
+		$count = $this->db->selectRowCount(
+			'ipblocks_restrictions',
+			'*',
+			[ 'ir_ipb_id' => 0 ],
+			__METHOD__
+		);
+		$this->assertSame( 0, $count );
+
+		$block->delete();
+	}
+
+	/**
+	 * @covers Block::appliesToTitle
+	 */
+	public function testAppliesToTitleReturnsTrueOnSitewideBlock() {
+		$this->setMwGlobals( [
+			'wgBlockDisablesLogin' => false,
+		] );
+		$user = $this->getTestUser()->getUser();
+		$block = new Block( [
+			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
+			'allowUsertalk' => true,
+			'sitewide' => true
+		] );
+
+		$block->setTarget( $user );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+		$block->insert();
+
+		$title = $this->getExistingTestPage( 'Foo' )->getTitle();
+
+		$this->assertTrue( $block->appliesToTitle( $title ) );
+
+		// appliesToTitle() ignores allowUsertalk
+		$title = $user->getTalkPage();
+		$this->assertTrue( $block->appliesToTitle( $title ) );
+
+		$block->delete();
+	}
+
+	/**
+	 * @covers Block::appliesToTitle
+	 */
+	public function testAppliesToTitleOnPartialBlock() {
+		$this->setMwGlobals( [
+			'wgBlockDisablesLogin' => false,
+		] );
+		$user = $this->getTestUser()->getUser();
+		$block = new Block( [
+			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
+			'allowUsertalk' => true,
+			'sitewide' => false
+		] );
+
+		$block->setTarget( $user );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+		$block->insert();
+
+		$pageFoo = $this->getExistingTestPage( 'Foo' );
+		$pageBar = $this->getExistingTestPage( 'Bar' );
+		$pageJohn = $this->getExistingTestPage( 'User:John' );
+
+		$pageRestriction = new PageRestriction( $block->getId(), $pageFoo->getId() );
+		$namespaceRestriction = new NamespaceRestriction( $block->getId(), NS_USER );
+		$this->getBlockRestrictionStore()->insert( [ $pageRestriction, $namespaceRestriction ] );
+
+		$this->assertTrue( $block->appliesToTitle( $pageFoo->getTitle() ) );
+		$this->assertFalse( $block->appliesToTitle( $pageBar->getTitle() ) );
+		$this->assertTrue( $block->appliesToTitle( $pageJohn->getTitle() ) );
+
+		$block->delete();
+	}
+
+	/**
+	 * @covers Block::appliesToNamespace
+	 * @covers Block::appliesToPage
+	 */
+	public function testAppliesToReturnsTrueOnSitewideBlock() {
+		$this->setMwGlobals( [
+			'wgBlockDisablesLogin' => false,
+		] );
+		$user = $this->getTestUser()->getUser();
+		$block = new Block( [
+			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
+			'allowUsertalk' => true,
+			'sitewide' => true
+		] );
+
+		$block->setTarget( $user );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+		$block->insert();
+
+		$title = $this->getExistingTestPage()->getTitle();
+
+		$this->assertTrue( $block->appliesToPage( $title->getArticleID() ) );
+		$this->assertTrue( $block->appliesToNamespace( NS_MAIN ) );
+		$this->assertTrue( $block->appliesToNamespace( NS_USER_TALK ) );
+
+		$block->delete();
+	}
+
+	/**
+	 * @covers Block::appliesToPage
+	 */
+	public function testAppliesToPageOnPartialPageBlock() {
+		$this->setMwGlobals( [
+			'wgBlockDisablesLogin' => false,
+		] );
+		$user = $this->getTestUser()->getUser();
+		$block = new Block( [
+			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
+			'allowUsertalk' => true,
+			'sitewide' => false
+		] );
+
+		$block->setTarget( $user );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+		$block->insert();
+
+		$title = $this->getExistingTestPage()->getTitle();
+
+		$pageRestriction = new PageRestriction(
+			$block->getId(),
+			$title->getArticleID()
+		);
+		$this->getBlockRestrictionStore()->insert( [ $pageRestriction ] );
+
+		$this->assertTrue( $block->appliesToPage( $title->getArticleID() ) );
+
+		$block->delete();
+	}
+
+	/**
+	 * @covers Block::appliesToNamespace
+	 */
+	public function testAppliesToNamespaceOnPartialNamespaceBlock() {
+		$this->setMwGlobals( [
+			'wgBlockDisablesLogin' => false,
+		] );
+		$user = $this->getTestUser()->getUser();
+		$block = new Block( [
+			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
+			'allowUsertalk' => true,
+			'sitewide' => false
+		] );
+
+		$block->setTarget( $user );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+		$block->insert();
+
+		$namespaceRestriction = new NamespaceRestriction( $block->getId(), NS_MAIN );
+		$this->getBlockRestrictionStore()->insert( [ $namespaceRestriction ] );
+
+		$this->assertTrue( $block->appliesToNamespace( NS_MAIN ) );
+		$this->assertFalse( $block->appliesToNamespace( NS_USER ) );
+
+		$block->delete();
+	}
+
+	/**
+	 * @covers Block::appliesToRight
+	 */
+	public function testBlockAllowsPurge() {
+		$this->setMwGlobals( [
+			'wgBlockDisablesLogin' => false,
+		] );
+		$block = new Block();
+		$this->assertFalse( $block->appliesToRight( 'purge' ) );
+	}
+
+	/**
+	 * Get an instance of BlockRestrictionStore
+	 *
+	 * @return BlockRestrictionStore
+	 */
+	protected function getBlockRestrictionStore() : BlockRestrictionStore {
+		return MediaWikiServices::getInstance()->getBlockRestrictionStore();
+	}
 }

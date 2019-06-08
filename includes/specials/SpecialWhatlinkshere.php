@@ -170,7 +170,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 				// Force JOIN order per T106682 to avoid large filesorts
 				[ 'ORDER BY' => $fromCol, 'LIMIT' => 2 * $queryLimit, 'STRAIGHT_JOIN' ],
 				[
-					'page' => [ 'INNER JOIN', "$fromCol = page_id" ],
+					'page' => [ 'JOIN', "$fromCol = page_id" ],
 					'redirect' => [ 'LEFT JOIN', $on ]
 				]
 			);
@@ -180,7 +180,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 				[],
 				__CLASS__ . '::showIndirectLinks',
 				[ 'ORDER BY' => 'page_id', 'LIMIT' => $queryLimit ],
-				[ 'page' => [ 'INNER JOIN', "$fromCol = page_id" ] ]
+				[ 'page' => [ 'JOIN', "$fromCol = page_id" ] ]
 			);
 		};
 
@@ -200,29 +200,27 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			&& ( $hidetrans || !$tlRes->numRows() )
 			&& ( $hideimages || !$ilRes->numRows() )
 		) {
-			if ( 0 == $level ) {
-				if ( !$this->including() ) {
-					$out->addHTML( $this->whatlinkshereForm() );
+			if ( $level == 0 && !$this->including() ) {
+				$out->addHTML( $this->whatlinkshereForm() );
 
-					// Show filters only if there are links
-					if ( $hidelinks || $hidetrans || $hideredirs || $hideimages ) {
-						$out->addHTML( $this->getFilterPanel() );
-					}
-					$msgKey = is_int( $namespace ) ? 'nolinkshere-ns' : 'nolinkshere';
-					$link = $this->getLinkRenderer()->makeLink(
-						$this->target,
-						null,
-						[],
-						$this->target->isRedirect() ? [ 'redirect' => 'no' ] : []
-					);
-
-					$errMsg = $this->msg( $msgKey )
-						->params( $this->target->getPrefixedText() )
-						->rawParams( $link )
-						->parseAsBlock();
-					$out->addHTML( $errMsg );
-					$out->setStatusCode( 404 );
+				// Show filters only if there are links
+				if ( $hidelinks || $hidetrans || $hideredirs || $hideimages ) {
+					$out->addHTML( $this->getFilterPanel() );
 				}
+				$msgKey = is_int( $namespace ) ? 'nolinkshere-ns' : 'nolinkshere';
+				$link = $this->getLinkRenderer()->makeLink(
+					$this->target,
+					null,
+					[],
+					$this->target->isRedirect() ? [ 'redirect' => 'no' ] : []
+				);
+
+				$errMsg = $this->msg( $msgKey )
+					->params( $this->target->getPrefixedText() )
+					->rawParams( $link )
+					->parseAsBlock();
+				$out->addHTML( $errMsg );
+				$out->setStatusCode( 404 );
 			}
 
 			return;
@@ -280,27 +278,25 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		}
 		$lb->execute();
 
-		if ( $level == 0 ) {
-			if ( !$this->including() ) {
-				$out->addHTML( $this->whatlinkshereForm() );
-				$out->addHTML( $this->getFilterPanel() );
+		if ( $level == 0 && !$this->including() ) {
+			$out->addHTML( $this->whatlinkshereForm() );
+			$out->addHTML( $this->getFilterPanel() );
 
-				$link = $this->getLinkRenderer()->makeLink(
-					$this->target,
-					null,
-					[],
-					$this->target->isRedirect() ? [ 'redirect' => 'no' ] : []
-				);
+			$link = $this->getLinkRenderer()->makeLink(
+				$this->target,
+				null,
+				[],
+				$this->target->isRedirect() ? [ 'redirect' => 'no' ] : []
+			);
 
-				$msg = $this->msg( 'linkshere' )
-					->params( $this->target->getPrefixedText() )
-					->rawParams( $link )
-					->parseAsBlock();
-				$out->addHTML( $msg );
+			$msg = $this->msg( 'linkshere' )
+				->params( $this->target->getPrefixedText() )
+				->rawParams( $link )
+				->parseAsBlock();
+			$out->addHTML( $msg );
 
-				$prevnext = $this->getPrevNext( $prevId, $nextId );
-				$out->addHTML( $prevnext );
-			}
+			$prevnext = $this->getPrevNext( $prevId, $nextId );
+			$out->addHTML( $prevnext );
 		}
 		$out->addHTML( $this->listStart( $level ) );
 		foreach ( $rows as $row ) {
@@ -321,10 +317,8 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		$out->addHTML( $this->listEnd() );
 
-		if ( $level == 0 ) {
-			if ( !$this->including() ) {
-				$out->addHTML( $prevnext );
-			}
+		if ( $level == 0 && !$this->including() ) {
+			$out->addHTML( $prevnext );
 		}
 	}
 
@@ -461,11 +455,11 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$changed = $this->opts->getChangedValues();
 		unset( $changed['target'] ); // Already in the request title
 
-		if ( 0 != $prevId ) {
+		if ( $prevId != 0 ) {
 			$overrides = [ 'from' => $this->opts->getValue( 'back' ) ];
 			$prev = $this->makeSelfLink( $prev, array_merge( $changed, $overrides ) );
 		}
-		if ( 0 != $nextId ) {
+		if ( $nextId != 0 ) {
 			$overrides = [ 'from' => $nextId, 'back' => $prevId ];
 			$next = $this->makeSelfLink( $next, array_merge( $changed, $overrides ) );
 		}
@@ -515,7 +509,8 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			[
 				'selected' => $namespace,
 				'all' => '',
-				'label' => $this->msg( 'namespace' )->text()
+				'label' => $this->msg( 'namespace' )->text(),
+				'in-user-lang' => true,
 			], [
 				'name' => 'namespace',
 				'id' => 'namespace',

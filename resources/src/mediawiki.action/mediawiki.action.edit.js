@@ -43,7 +43,7 @@
 			if ( scrollTop.value ) {
 				editBox.scrollTop = scrollTop.value;
 			}
-			$editForm.submit( function () {
+			$editForm.on( 'submit', function () {
 				scrollTop.value = editBox.scrollTop;
 			} );
 		}

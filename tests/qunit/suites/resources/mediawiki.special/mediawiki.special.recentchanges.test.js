@@ -3,7 +3,7 @@
 
 	// TODO: verify checkboxes == [ 'nsassociated', 'nsinvert' ]
 
-	QUnit.test( '"all" namespace disable checkboxes', function ( assert ) {
+	QUnit.test( '"all" namespace hides checkboxes', function ( assert ) {
 		var selectHtml, $env, $options,
 			rc = require( 'mediawiki.special.recentchanges' );
 
@@ -17,10 +17,14 @@
 			+ '<option value="4">ProjectName</option>'
 			+ '<option value="5">ProjectName talk</option>'
 			+ '</select>'
+			+ '<span class="mw-input-with-label mw-input-hidden">'
 			+ '<input name="invert" type="checkbox" value="1" id="nsinvert" title="no title" />'
 			+ '<label for="nsinvert" title="no title">Invert selection</label>'
+			+ '</span>'
+			+ '<span class="mw-input-with-label mw-input-hidden">'
 			+ '<input name="associated" type="checkbox" value="1" id="nsassociated" title="no title" />'
 			+ '<label for="nsassociated" title="no title">Associated namespace</label>'
+			+ '</span>'
 			+ '<input type="submit" value="Go" />'
 			+ '<input type="hidden" value="Special:RecentChanges" name="title" />';
 
@@ -28,35 +32,35 @@
 
 		// TODO abstract the double strictEquals
 
-		// At first checkboxes are enabled
-		assert.strictEqual( $( '#nsinvert' ).prop( 'disabled' ), false );
-		assert.strictEqual( $( '#nsassociated' ).prop( 'disabled' ), false );
+		// At first checkboxes are hidden
+		assert.strictEqual( $( '#nsinvert' ).closest( '.mw-input-with-label' ).hasClass( 'mw-input-hidden' ), true );
+		assert.strictEqual( $( '#nsassociated' ).closest( '.mw-input-with-label' ).hasClass( 'mw-input-hidden' ), true );
 
 		// Initiate the recentchanges module
 		rc.init();
 
 		// By default
-		assert.strictEqual( $( '#nsinvert' ).prop( 'disabled' ), true );
-		assert.strictEqual( $( '#nsassociated' ).prop( 'disabled' ), true );
+		assert.strictEqual( $( '#nsinvert' ).closest( '.mw-input-with-label' ).hasClass( 'mw-input-hidden' ), true );
+		assert.strictEqual( $( '#nsassociated' ).closest( '.mw-input-with-label' ).hasClass( 'mw-input-hidden' ), true );
 
 		// select second option...
 		$options = $( '#namespace' ).find( 'option' );
 		$options.eq( 0 ).removeProp( 'selected' );
 		$options.eq( 1 ).prop( 'selected', true );
-		$( '#namespace' ).change();
+		$( '#namespace' ).trigger( 'change' );
 
-		// ... and checkboxes should be enabled again
-		assert.strictEqual( $( '#nsinvert' ).prop( 'disabled' ), false );
-		assert.strictEqual( $( '#nsassociated' ).prop( 'disabled' ), false );
+		// ... and checkboxes should be visible again
+		assert.strictEqual( $( '#nsinvert' ).closest( '.mw-input-with-label' ).hasClass( 'mw-input-hidden' ), false );
+		assert.strictEqual( $( '#nsassociated' ).closest( '.mw-input-with-label' ).hasClass( 'mw-input-hidden' ), false );
 
 		// select first option ( 'all' namespace)...
 		$options.eq( 1 ).removeProp( 'selected' );
 		$options.eq( 0 ).prop( 'selected', true );
-		$( '#namespace' ).change();
+		$( '#namespace' ).trigger( 'change' );
 
-		// ... and checkboxes should now be disabled
-		assert.strictEqual( $( '#nsinvert' ).prop( 'disabled' ), true );
-		assert.strictEqual( $( '#nsassociated' ).prop( 'disabled' ), true );
+		// ... and checkboxes should now be hidden
+		assert.strictEqual( $( '#nsinvert' ).closest( '.mw-input-with-label' ).hasClass( 'mw-input-hidden' ), true );
+		assert.strictEqual( $( '#nsassociated' ).closest( '.mw-input-with-label' ).hasClass( 'mw-input-hidden' ), true );
 
 		// DOM cleanup
 		$env.remove();

@@ -118,7 +118,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		return $this->tokenFunctions;
 	}
 
-	static protected $cachedTokens = [];
+	protected static $cachedTokens = [];
 
 	/**
 	 * @deprecated since 1.24
@@ -411,8 +411,8 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		if ( $titleExists ) {
 			$pageInfo['touched'] = wfTimestamp( TS_ISO_8601, $this->pageTouched[$pageid] );
-			$pageInfo['lastrevid'] = intval( $this->pageLatest[$pageid] );
-			$pageInfo['length'] = intval( $this->pageLength[$pageid] );
+			$pageInfo['lastrevid'] = (int)$this->pageLatest[$pageid];
+			$pageInfo['length'] = (int)$this->pageLength[$pageid];
 
 			if ( isset( $this->pageIsRedir[$pageid] ) && $this->pageIsRedir[$pageid] ) {
 				$pageInfo['redirect'] = true;
@@ -515,10 +515,8 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 		}
 
-		if ( $this->fld_varianttitles ) {
-			if ( isset( $this->variantTitles[$pageid] ) ) {
-				$pageInfo['varianttitles'] = $this->variantTitles[$pageid];
-			}
+		if ( $this->fld_varianttitles && isset( $this->variantTitles[$pageid] ) ) {
+			$pageInfo['varianttitles'] = $this->variantTitles[$pageid];
 		}
 
 		if ( $this->params['testactions'] ) {
@@ -721,7 +719,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				$getTitles[] = $t->getTalkPage();
 			}
 		}
-		if ( !count( $getTitles ) ) {
+		if ( $getTitles === [] ) {
 			return;
 		}
 
@@ -738,10 +736,10 @@ class ApiQueryInfo extends ApiQueryBase {
 		foreach ( $res as $row ) {
 			if ( MWNamespace::isTalk( $row->page_namespace ) ) {
 				$this->talkids[MWNamespace::getSubject( $row->page_namespace )][$row->page_title] =
-					intval( $row->page_id );
+					(int)$row->page_id;
 			} else {
 				$this->subjectids[MWNamespace::getTalk( $row->page_namespace )][$row->page_title] =
-					intval( $row->page_id );
+					(int)$row->page_id;
 			}
 		}
 	}
@@ -751,7 +749,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		$pageIds = array_keys( $this->titles );
 
-		if ( !count( $pageIds ) ) {
+		if ( $pageIds === [] ) {
 			return;
 		}
 
@@ -768,7 +766,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	}
 
 	private function getVariantTitles() {
-		if ( !count( $this->titles ) ) {
+		if ( $this->titles === [] ) {
 			return;
 		}
 		$this->variantTitles = [];

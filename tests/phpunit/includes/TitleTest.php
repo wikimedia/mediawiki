@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -289,7 +290,6 @@ class TitleTest extends MediaWikiTestCase {
 	 * @param array|string|bool $expected Required error
 	 * @dataProvider provideTestIsValidMoveOperation
 	 * @covers Title::isValidMoveOperation
-	 * @covers Title::validateFileMoveOperation
 	 */
 	public function testIsValidMoveOperation( $source, $target, $expected ) {
 		$this->setMwGlobals( 'wgContentHandlerUseDB', false );
@@ -315,7 +315,6 @@ class TitleTest extends MediaWikiTestCase {
 			[ 'Test', 'Special:FooBar', 'immobile-target-namespace' ],
 			[ 'MediaWiki:Common.js', 'Help:Some wikitext page', 'bad-target-model' ],
 			[ 'Page', 'File:Test.jpg', 'nonfile-cannot-move-to-file' ],
-			// for Title::validateFileMoveOperation
 			[ 'File:Test.jpg', 'Page', 'imagenocrossnamespace' ],
 		];
 	}
@@ -328,7 +327,7 @@ class TitleTest extends MediaWikiTestCase {
 	 * @param string $action
 	 * @param array|string|bool $expected Required error
 	 *
-	 * @covers Title::checkReadPermissions
+	 * @covers \Mediawiki\Permissions\PermissionManager::checkReadPermissions
 	 * @dataProvider dataWgWhitelistReadRegexp
 	 */
 	public function testWgWhitelistReadRegexp( $whitelistRegexp, $source, $action, $expected ) {
@@ -566,6 +565,32 @@ class TitleTest extends MediaWikiTestCase {
 		$this->assertEquals( $value->getFragment(), $title->getFragment() );
 	}
 
+	/**
+	 * @covers Title::newFromLinkTarget
+	 * @dataProvider provideNewFromTitleValue
+	 */
+	public function testNewFromLinkTarget( LinkTarget $value ) {
+		$title = Title::newFromLinkTarget( $value );
+
+		$dbkey = str_replace( ' ', '_', $value->getText() );
+		$this->assertEquals( $dbkey, $title->getDBkey() );
+		$this->assertEquals( $value->getNamespace(), $title->getNamespace() );
+		$this->assertEquals( $value->getFragment(), $title->getFragment() );
+	}
+
+	/**
+	 * @covers Title::newFromLinkTarget
+	 */
+	public function testNewFromLinkTarget_clone() {
+		$title = Title::newFromText( __METHOD__ );
+		$this->assertSame( $title, Title::newFromLinkTarget( $title ) );
+
+		// The Title::NEW_CLONE flag should ensure that a fresh instance is returned.
+		$clone = Title::newFromLinkTarget( $title, Title::NEW_CLONE );
+		$this->assertNotSame( $title, $clone );
+		$this->assertTrue( $clone->equals( $title ) );
+	}
+
 	public static function provideGetTitleValue() {
 		return [
 			[ 'Foo' ],
@@ -727,18 +752,6 @@ class TitleTest extends MediaWikiTestCase {
 	 */
 	public function testCanHaveTalkPage( Title $title, $expected ) {
 		$actual = $title->canHaveTalkPage();
-		$this->assertSame( $expected, $actual, $title->getPrefixedDBkey() );
-	}
-
-	/**
-	 * @dataProvider provideCanHaveTalkPage
-	 * @covers Title::canTalk
-	 *
-	 * @param Title $title
-	 * @param bool $expected
-	 */
-	public function testCanTalk( Title $title, $expected ) {
-		$actual = $title->canTalk();
 		$this->assertSame( $expected, $actual, $title->getPrefixedDBkey() );
 	}
 
@@ -994,5 +1007,94 @@ class TitleTest extends MediaWikiTestCase {
 			[ 'MediaWiki:some-other-message', false ],
 			[ 'Main Page', false ],
 		];
+	}
+
+	public function provideEquals() {
+		yield [
+			Title::newFromText( 'Main Page' ),
+			Title::newFromText( 'Main Page' ),
+			true
+		];
+		yield [
+			Title::newFromText( 'Main Page' ),
+			Title::newFromText( 'Not The Main Page' ),
+			false
+		];
+		yield [
+			Title::newFromText( 'Main Page' ),
+			Title::newFromText( 'Project:Main Page' ),
+			false
+		];
+		yield [
+			Title::newFromText( 'File:Example.png' ),
+			Title::newFromText( 'Image:Example.png' ),
+			true
+		];
+		yield [
+			Title::newFromText( 'Special:Version' ),
+			Title::newFromText( 'Special:Version' ),
+			true
+		];
+		yield [
+			Title::newFromText( 'Special:Version' ),
+			Title::newFromText( 'Special:Recentchanges' ),
+			false
+		];
+		yield [
+			Title::newFromText( 'Special:Version' ),
+			Title::newFromText( 'Main Page' ),
+			false
+		];
+		yield [
+			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
+			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
+			true
+		];
+		yield [
+			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
+			Title::makeTitle( NS_MAIN, 'Bar', '', '' ),
+			false
+		];
+		yield [
+			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
+			Title::makeTitle( NS_TALK, 'Foo', '', '' ),
+			false
+		];
+		yield [
+			Title::makeTitle( NS_MAIN, 'Foo', 'Bar', '' ),
+			Title::makeTitle( NS_MAIN, 'Foo', 'Bar', '' ),
+			true
+		];
+		yield [
+			Title::makeTitle( NS_MAIN, 'Foo', 'Bar', '' ),
+			Title::makeTitle( NS_MAIN, 'Foo', 'Baz', '' ),
+			true
+		];
+		yield [
+			Title::makeTitle( NS_MAIN, 'Foo', 'Bar', '' ),
+			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
+			true
+		];
+		yield [
+			Title::makeTitle( NS_MAIN, 'Foo', '', 'baz' ),
+			Title::makeTitle( NS_MAIN, 'Foo', '', 'baz' ),
+			true
+		];
+		yield [
+			Title::makeTitle( NS_MAIN, 'Foo', '', '' ),
+			Title::makeTitle( NS_MAIN, 'Foo', '', 'baz' ),
+			false
+		];
+	}
+
+	/**
+	 * @covers Title::equals
+	 * @dataProvider provideEquals
+	 */
+	public function testEquals( Title $firstValue, /* LinkTarget */ $secondValue, $expectedSame ) {
+		$this->assertSame(
+			$expectedSame,
+			$firstValue->equals( $secondValue )
+		);
 	}
 }

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @author Sam Smith <samsmith@wikimedia.org>
  */
@@ -7,7 +9,7 @@ class LessTestSuite extends PHPUnit_Framework_TestSuite {
 	public function __construct() {
 		parent::__construct();
 
-		$resourceLoader = new ResourceLoader();
+		$resourceLoader = MediaWikiServices::getInstance()->getResourceLoader();
 
 		foreach ( $resourceLoader->getModuleNames() as $name ) {
 			$module = $resourceLoader->getModule( $name );

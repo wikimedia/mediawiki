@@ -77,12 +77,13 @@ class EnhancedChangesList extends ChangesList {
 		$this->lastdate = '';
 		$this->rclistOpen = false;
 		$this->getOutput()->addModuleStyles( [
+			'mediawiki.icon',
+			'mediawiki.interface.helpers.styles',
 			'mediawiki.special.changeslist',
 			'mediawiki.special.changeslist.enhanced',
 		] );
 		$this->getOutput()->addModules( [
 			'jquery.makeCollapsible',
-			'mediawiki.icon',
 		] );
 
 		return '<div class="mw-changeslist">';
@@ -392,7 +393,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 		$classes = array_merge( $classes, $this->getHTMLClasses( $rcObj, $rcObj->watched ) );
 
-		$separator = ' <span class="mw-changeslist-separator">. .</span> ';
+		$separator = ' <span class="mw-changeslist-separator"></span> ';
 
 		$data['recentChangesFlags'] = [
 			'newpage' => $type == RC_NEW,
@@ -555,19 +556,22 @@ class EnhancedChangesList extends ChangesList {
 				$isnew ||
 				$rcObj->mAttribs['rc_type'] == RC_CATEGORIZE
 			) {
-				$links['total-changes'] = $nchanges[$n];
+				$links['total-changes'] = Html::rawElement( 'span', [], $nchanges[$n] );
 			} else {
-				$links['total-changes'] = $this->linkRenderer->makeKnownLink(
-					$block0->getTitle(),
-					new HtmlArmor( $nchanges[$n] ),
-					[ 'class' => 'mw-changeslist-groupdiff' ],
-					$queryParams + [
-						'diff' => $currentRevision,
-						'oldid' => $last->mAttribs['rc_last_oldid'],
-					]
+				$links['total-changes'] = Html::rawElement( 'span', [],
+					$this->linkRenderer->makeKnownLink(
+						$block0->getTitle(),
+						new HtmlArmor( $nchanges[$n] ),
+						[ 'class' => 'mw-changeslist-groupdiff' ],
+						$queryParams + [
+							'diff' => $currentRevision,
+							'oldid' => $last->mAttribs['rc_last_oldid'],
+						]
+					)
 				);
 				if ( $sinceLast > 0 && $sinceLast < $n ) {
-					$links['total-changes-since-last'] = $this->linkRenderer->makeKnownLink(
+					$links['total-changes-since-last'] = Html::rawElement( 'span', [],
+						$this->linkRenderer->makeKnownLink(
 							$block0->getTitle(),
 							new HtmlArmor( $sinceLastVisitMsg[$sinceLast] ),
 							[ 'class' => 'mw-changeslist-groupdiff' ],
@@ -575,7 +579,8 @@ class EnhancedChangesList extends ChangesList {
 								'diff' => $currentRevision,
 								'oldid' => $unvisitedOldid,
 							]
-						);
+						)
+					);
 				}
 			}
 		}
@@ -584,17 +589,19 @@ class EnhancedChangesList extends ChangesList {
 		if ( $allLogs || $rcObj->mAttribs['rc_type'] == RC_CATEGORIZE ) {
 			// don't show history link for logs
 		} elseif ( $namehidden || !$block0->getTitle()->exists() ) {
-			$links['history'] = $this->message['enhancedrc-history'];
+			$links['history'] = Html::rawElement( 'span', [], $this->message['enhancedrc-history'] );
 		} else {
 			$params = $queryParams;
 			$params['action'] = 'history';
 
-			$links['history'] = $this->linkRenderer->makeKnownLink(
+			$links['history'] = Html::rawElement( 'span', [],
+				$this->linkRenderer->makeKnownLink(
 					$block0->getTitle(),
 					new HtmlArmor( $this->message['enhancedrc-history'] ),
 					[ 'class' => 'mw-changeslist-history' ],
 					$params
-				);
+				)
+			);
 		}
 
 		# Allow others to alter, remove or add to these links
@@ -605,8 +612,8 @@ class EnhancedChangesList extends ChangesList {
 			return '';
 		}
 
-		$logtext = implode( $this->message['pipe-separator'], $links );
-		$logtext = $this->msg( 'parentheses' )->rawParams( $logtext )->escaped();
+		$logtext = Html::rawElement( 'span', [ 'class' => 'mw-changeslist-links' ],
+			implode( ' ', $links ) );
 		return ' ' . $logtext;
 	}
 
@@ -652,10 +659,9 @@ class EnhancedChangesList extends ChangesList {
 			$logPage = new LogPage( $logType );
 			$logTitle = SpecialPage::getTitleFor( 'Log', $logType );
 			$logName = $logPage->getName()->text();
-			$data['logLink'] = $this->msg( 'parentheses' )
-				->rawParams(
-					$this->linkRenderer->makeKnownLink( $logTitle, $logName )
-				)->escaped();
+			$data['logLink'] = Html::rawElement( 'span', [ 'class' => 'mw-changeslist-links' ],
+				$this->linkRenderer->makeKnownLink( $logTitle, $logName )
+			);
 		} else {
 			$data['articleLink'] = $this->getArticleLink( $rcObj, $rcObj->unpatrolled, $rcObj->watched );
 		}
@@ -663,16 +669,16 @@ class EnhancedChangesList extends ChangesList {
 		# Diff and hist links
 		if ( $type != RC_LOG && $type != RC_CATEGORIZE ) {
 			$query['action'] = 'history';
-			$data['historyLink'] = $this->getDiffHistLinks( $rcObj, $query );
+			$data['historyLink'] = $this->getDiffHistLinks( $rcObj, $query, false );
 		}
-		$data['separatorAfterLinks'] = ' <span class="mw-changeslist-separator">. .</span> ';
+		$data['separatorAfterLinks'] = ' <span class="mw-changeslist-separator"></span> ';
 
 		# Character diff
 		if ( $this->getConfig()->get( 'RCShowChangedSize' ) ) {
 			$cd = $this->formatCharacterDifference( $rcObj );
 			if ( $cd !== '' ) {
 				$data['characterDiff'] = $cd;
-				$data['separatorAftercharacterDiff'] = ' <span class="mw-changeslist-separator">. .</span> ';
+				$data['separatorAftercharacterDiff'] = ' <span class="mw-changeslist-separator"></span> ';
 			}
 		}
 
@@ -685,7 +691,7 @@ class EnhancedChangesList extends ChangesList {
 			$data['userTalkLink'] = $rcObj->usertalklink;
 			$data['comment'] = $this->insertComment( $rcObj );
 			if ( $type == RC_CATEGORIZE ) {
-				$data['historyLink'] = $this->getDiffHistLinks( $rcObj, $query );
+				$data['historyLink'] = $this->getDiffHistLinks( $rcObj, $query, false );
 			}
 			$data['rollback'] = $this->getRollback( $rcObj );
 		}
@@ -743,7 +749,11 @@ class EnhancedChangesList extends ChangesList {
 		] );
 
 		// everything else: makes it easier for extensions to add or remove data
-		$line .= implode( '', $data );
+		foreach ( $data as $key => $dataItem ) {
+			$line .= Html::rawElement( 'span', [
+				'class' => 'mw-changeslist-line-inner-' . $key,
+			], $dataItem );
+		}
 
 		$line .= "</td></tr></table>\n";
 
@@ -758,9 +768,10 @@ class EnhancedChangesList extends ChangesList {
 	 *
 	 * @param RCCacheEntry $rc
 	 * @param array $query array of key/value pairs to append as a query string
+	 * @param bool $useParentheses (optional) Wrap comments in parentheses where needed
 	 * @return string HTML
 	 */
-	public function getDiffHistLinks( RCCacheEntry $rc, array $query ) {
+	public function getDiffHistLinks( RCCacheEntry $rc, array $query, $useParentheses = true ) {
 		$pageTitle = $rc->getTitle();
 		if ( $rc->getAttribute( 'rc_type' ) == RC_CATEGORIZE ) {
 			// For categorizations we must swap the category title with the page title!
@@ -772,15 +783,23 @@ class EnhancedChangesList extends ChangesList {
 			}
 		}
 
-		$retVal = ' ' . $this->msg( 'parentheses' )
-				->rawParams( $rc->difflink . $this->message['pipe-separator']
-					. $this->linkRenderer->makeKnownLink(
-						$pageTitle,
-						new HtmlArmor( $this->message['hist'] ),
-						[ 'class' => 'mw-changeslist-history' ],
-						$query
-					) )->escaped();
-		return $retVal;
+		$histLink = $this->linkRenderer->makeKnownLink(
+			$pageTitle,
+			new HtmlArmor( $this->message['hist'] ),
+			[ 'class' => 'mw-changeslist-history' ],
+			$query
+		);
+		if ( $useParentheses ) {
+			$retVal = $this->msg( 'parentheses' )
+			->rawParams( $rc->difflink . $this->message['pipe-separator']
+				. $histLink )->escaped();
+		} else {
+			$retVal = Html::rawElement( 'span', [ 'class' => 'mw-changeslist-links' ],
+				Html::rawElement( 'span', [], $rc->difflink ) .
+				Html::rawElement( 'span', [], $histLink )
+			);
+		}
+		return ' ' . $retVal;
 	}
 
 	/**

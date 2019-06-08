@@ -31,7 +31,7 @@ class DumpNotalkFilter extends DumpFilter {
 	 * @param object $page
 	 * @return bool
 	 */
-	function pass( $page ) {
+	protected function pass( $page ) {
 		return !MWNamespace::isTalk( $page->page_namespace );
 	}
 }

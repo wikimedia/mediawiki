@@ -1,9 +1,9 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Services\DestructibleService;
-use MediaWiki\Services\SalvageableService;
-use MediaWiki\Services\ServiceDisabledException;
+use Wikimedia\Services\DestructibleService;
+use Wikimedia\Services\SalvageableService;
+use Wikimedia\Services\ServiceDisabledException;
 
 /**
  * @covers MediaWiki\MediaWikiServices
@@ -11,6 +11,7 @@ use MediaWiki\Services\ServiceDisabledException;
  * @group MediaWiki
  */
 class MediaWikiServicesTest extends MediaWikiTestCase {
+	private $deprecatedServices = [ 'CryptRand' ];
 
 	/**
 	 * @return Config
@@ -218,7 +219,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'Test',
 			function () use ( &$serviceCounter ) {
 				$serviceCounter++;
-				$service = $this->createMock( MediaWiki\Services\DestructibleService::class );
+				$service = $this->createMock( Wikimedia\Services\DestructibleService::class );
 				$service->expects( $this->once() )->method( 'destroy' );
 				return $service;
 			}
@@ -247,7 +248,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 		$services->defineService(
 			'Test',
 			function () {
-				$service = $this->createMock( MediaWiki\Services\DestructibleService::class );
+				$service = $this->createMock( Wikimedia\Services\DestructibleService::class );
 				$service->expects( $this->never() )->method( 'destroy' );
 				return $service;
 			}
@@ -276,6 +277,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			$getterCases[$name] = [
 				'get' . $service,
 				$class,
+				in_array( $service, $this->deprecatedServices )
 			];
 		}
 
@@ -285,7 +287,11 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideGetters
 	 */
-	public function testGetters( $getter, $type ) {
+	public function testGetters( $getter, $type, $isDeprecated = false ) {
+		if ( $isDeprecated ) {
+			$this->hideDeprecated( MediaWikiServices::class . "::$getter" );
+		}
+
 		// Test against the default instance, since the dummy will not know the default services.
 		$services = MediaWikiServices::getInstance();
 		$service = $services->$getter();

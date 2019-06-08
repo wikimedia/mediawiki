@@ -1,9 +1,10 @@
-Trevor Parscal <trevorparscal@gmail.com>
-Timo Tijhof <krinklemail@gmail.com>
-Roan Kattouw <roan.kattouw@gmail.com>
-Derk-Jan Hartman <hartman.wiki@gmail.com>
+Alexander Monk <krenair@gmail.com>
 Bartosz Dziewoński <matma.rex@gmail.com>
-Rob Moen <rmoen@wikimedia.org>
+Brion Vibber <brion@wikimedia.org>
+Derk-Jan Hartman <hartman@videolan.org>
 Ed Sanders <esanders@wikimedia.org>
-Alex Monk <krenair@gmail.com>
 James D. Forrester <jforrester@wikimedia.org>
+Roan Kattouw <roan.kattouw@gmail.com>
+Rob Moen <rmoen@mediawiki.org>
+Timo Tijhof <krinklemail@gmail.com>
+Trevor Parscal <trevorparscal@gmail.com>

@@ -3,11 +3,12 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use ContentHandler;
+use DOMDocument;
 use ExecutableFinder;
 use MediaWikiLangTestCase;
-use Page;
 use User;
-use XMLReader;
+use WikiExporter;
+use WikiPage;
 use MWException;
 
 /**
@@ -27,13 +28,6 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 * @var \Exception|null
 	 */
 	protected $exceptionFromAddDBData = null;
-
-	/**
-	 * Holds the XMLReader used for analyzing an XML dump
-	 *
-	 * @var XMLReader|null
-	 */
-	protected $xml = null;
 
 	/** @var bool|null Whether the 'gzip' utility is available */
 	protected static $hasGzip = null;
@@ -58,7 +52,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	/**
 	 * Adds a revision to a page, while returning the resuting revision's id
 	 *
-	 * @param Page $page Page to add the revision to
+	 * @param WikiPage $page Page to add the revision to
 	 * @param string $text Revisions text
 	 * @param string $summary Revisions summary
 	 * @param string $model The model ID (defaults to wikitext)
@@ -66,10 +60,15 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 * @throws MWException
 	 * @return array
 	 */
-	protected function addRevision( Page $page, $text, $summary, $model = CONTENT_MODEL_WIKITEXT ) {
+	protected function addRevision(
+		WikiPage $page,
+		$text,
+		$summary,
+		$model = CONTENT_MODEL_WIKITEXT
+	) {
 		$status = $page->doEditContent(
 			ContentHandler::makeContent( $text, $page->getTitle(), $model ),
-			$summary
+			$summary, 0, false, $this->getTestUser()->getUser()
 		);
 
 		if ( $status->isGood() ) {
@@ -108,6 +107,36 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		);
 	}
 
+	public static function setUpBeforeClass() {
+		parent::setUpBeforeClass();
+
+		if ( !function_exists( 'libxml_set_external_entity_loader' ) ) {
+			return;
+		}
+
+		// The W3C is intentionally slow about returning schema files,
+		// see <https://www.w3.org/Help/Webmaster#slowdtd>.
+		// To work around that, we keep our own copies of the relevant schema files.
+		libxml_set_external_entity_loader(
+			function ( $public, $system, $context ) {
+				switch ( $system ) {
+					// if more schema files are needed, add them here.
+					case 'http://www.w3.org/2001/xml.xsd':
+						$file = __DIR__ . '/xml.xsd';
+						break;
+					default:
+						if ( is_file( $system ) ) {
+							$file = $system;
+						} else {
+							return null;
+						}
+				}
+
+				return $file;
+			}
+		);
+	}
+
 	/**
 	 * Default set up function.
 	 *
@@ -123,6 +152,21 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		}
 
 		$this->setMwGlobals( 'wgUser', new User() );
+	}
+
+	/**
+	 * Returns the path to the XML schema file for the given schema version.
+	 *
+	 * @param string|null $schemaVersion
+	 *
+	 * @return string
+	 */
+	protected function getXmlSchemaPath( $schemaVersion = null ) {
+		global $IP, $wgXmlDumpSchemaVersion;
+
+		$schemaVersion = $schemaVersion ?: $wgXmlDumpSchemaVersion;
+
+		return "$IP/docs/export-$schemaVersion.xsd";
 	}
 
 	/**
@@ -152,266 +196,62 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * Step the current XML reader until node end of given name is found.
+	 * @param null|string $schemaVersion
 	 *
-	 * @param string $name Name of the closing element to look for
-	 *   (e.g.: "mediawiki" when looking for </mediawiki>)
-	 *
-	 * @return bool True if the end node could be found. false otherwise.
+	 * @return DumpAsserter
 	 */
-	protected function skipToNodeEnd( $name ) {
-		while ( $this->xml->read() ) {
-			if ( $this->xml->nodeType == XMLReader::END_ELEMENT &&
-				$this->xml->name == $name
-			) {
-				return true;
+	protected function getDumpAsserter( $schemaVersion = null ) {
+		$schemaVersion = $schemaVersion ?: WikiExporter::schemaVersion();
+		return new DumpAsserter( $schemaVersion );
+	}
+
+	/**
+	 * Checks an XML file against an XSD schema.
+	 */
+	protected function assertDumpSchema( $fname, $schemaFile ) {
+		if ( !function_exists( 'libxml_use_internal_errors' ) ) {
+			// Would be nice to leave a warning somehow.
+			// We don't want to skip all of the test case that calls this, though.
+			$this->markAsRisky();
+			return;
+		}
+		if ( defined( 'HHVM_VERSION' ) ) {
+			// In HHVM, loading a schema from a file is disabled per default.
+			// This is controlled by hhvm.libxml.ext_entity_whitelist which
+			// cannot be read with ini_get(), see
+			// <https://docs.hhvm.com/hhvm/configuration/INI-settings#xml>.
+			// Would be nice to leave a warning somehow.
+			// We don't want to skip all of the test case that calls this, though.
+			$this->markAsRisky();
+			return;
+		}
+
+		$xml = new DOMDocument();
+		$this->assertTrue( $xml->load( $fname ),
+			"Opening temporary file $fname via DOMDocument failed" );
+
+		// Don't throw
+		$oldLibXmlInternalErrors = libxml_use_internal_errors( true );
+
+		// NOTE: if this reports "Invalid Schema", the schema may be referencing an external
+		// entity (typically, another schema) that needs to be mapped in the
+		// libxml_set_external_entity_loader callback defined in setUpBeforeClass() above!
+		// Or $schemaFile doesn't point to a schema file, or the schema is indeed just broken.
+		if ( !$xml->schemaValidate( $schemaFile ) ) {
+			$errorText = '';
+
+			foreach ( libxml_get_errors() as $error ) {
+				$errorText .= "\nline {$error->line}: {$error->message}";
 			}
+
+			libxml_clear_errors();
+
+			$this->fail(
+				"Failed asserting that $fname conforms to the schema in $schemaFile:\n$errorText"
+			);
 		}
 
-		return false;
+		libxml_use_internal_errors( $oldLibXmlInternalErrors );
 	}
 
-	/**
-	 * Step the current XML reader to the first element start after the node
-	 * end of a given name.
-	 *
-	 * @param string $name Name of the closing element to look for
-	 *   (e.g.: "mediawiki" when looking for </mediawiki>)
-	 *
-	 * @return bool True if new element after the closing of $name could be
-	 *   found. false otherwise.
-	 */
-	protected function skipPastNodeEnd( $name ) {
-		$this->assertTrue( $this->skipToNodeEnd( $name ),
-			"Skipping to end of $name" );
-		while ( $this->xml->read() ) {
-			if ( $this->xml->nodeType == XMLReader::ELEMENT ) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/**
-	 * Opens an XML file to analyze and optionally skips past siteinfo.
-	 *
-	 * @param string $fname Name of file to analyze
-	 * @param bool $skip_siteinfo (optional) If true, step the xml reader
-	 *   to the first element after </siteinfo>
-	 */
-	protected function assertDumpStart( $fname, $skip_siteinfo = true ) {
-		$this->xml = new XMLReader();
-		$this->assertTrue( $this->xml->open( $fname ),
-			"Opening temporary file $fname via XMLReader failed" );
-		if ( $skip_siteinfo ) {
-			$this->assertTrue( $this->skipPastNodeEnd( "siteinfo" ),
-				"Skipping past end of siteinfo" );
-		}
-	}
-
-	/**
-	 * Asserts that the xml reader is at the final closing tag of an xml file and
-	 * closes the reader.
-	 *
-	 * @param string $name (optional) the name of the final tag
-	 *   (e.g.: "mediawiki" for </mediawiki>)
-	 */
-	protected function assertDumpEnd( $name = "mediawiki" ) {
-		$this->assertNodeEnd( $name, false );
-		if ( $this->xml->read() ) {
-			$this->skipWhitespace();
-		}
-		$this->assertEquals( $this->xml->nodeType, XMLReader::NONE,
-			"No proper entity left to parse" );
-		$this->xml->close();
-	}
-
-	/**
-	 * Steps the xml reader over white space
-	 */
-	protected function skipWhitespace() {
-		$cont = true;
-		while ( $cont && ( ( $this->xml->nodeType == XMLReader::WHITESPACE )
-			|| ( $this->xml->nodeType == XMLReader::SIGNIFICANT_WHITESPACE ) ) ) {
-			$cont = $this->xml->read();
-		}
-	}
-
-	/**
-	 * Asserts that the xml reader is at an element of given name, and optionally
-	 * skips past it.
-	 *
-	 * @param string $name The name of the element to check for
-	 *   (e.g.: "mediawiki" for <mediawiki>)
-	 * @param bool $skip (optional) if true, skip past the found element
-	 */
-	protected function assertNodeStart( $name, $skip = true ) {
-		$this->assertEquals( $name, $this->xml->name, "Node name" );
-		$this->assertEquals( XMLReader::ELEMENT, $this->xml->nodeType, "Node type" );
-		if ( $skip ) {
-			$this->assertTrue( $this->xml->read(), "Skipping past start tag" );
-		}
-	}
-
-	/**
-	 * Asserts that the xml reader is at an closing element of given name, and optionally
-	 * skips past it.
-	 *
-	 * @param string $name The name of the closing element to check for
-	 *   (e.g.: "mediawiki" for </mediawiki>)
-	 * @param bool $skip (optional) if true, skip past the found element
-	 */
-	protected function assertNodeEnd( $name, $skip = true ) {
-		$this->assertEquals( $name, $this->xml->name, "Node name" );
-		$this->assertEquals( XMLReader::END_ELEMENT, $this->xml->nodeType, "Node type" );
-		if ( $skip ) {
-			$this->assertTrue( $this->xml->read(), "Skipping past end tag" );
-		}
-	}
-
-	/**
-	 * Asserts that the xml reader is at an element of given tag that contains a given text,
-	 * and skips over the element.
-	 *
-	 * @param string $name The name of the element to check for
-	 *   (e.g.: "mediawiki" for <mediawiki>...</mediawiki>)
-	 * @param string|bool $text If string, check if it equals the elements text.
-	 *   If false, ignore the element's text
-	 * @param bool $skip_ws (optional) if true, skip past white spaces that trail the
-	 *   closing element.
-	 */
-	protected function assertTextNode( $name, $text, $skip_ws = true ) {
-		$this->assertNodeStart( $name );
-
-		if ( $text !== false ) {
-			$this->assertEquals( $text, $this->xml->value, "Text of node " . $name );
-		}
-		$this->assertTrue( $this->xml->read(), "Skipping past processed text of " . $name );
-		$this->assertNodeEnd( $name );
-
-		if ( $skip_ws ) {
-			$this->skipWhitespace();
-		}
-	}
-
-	/**
-	 * Asserts that the xml reader is at the start of a page element and skips over the first
-	 * tags, after checking them.
-	 *
-	 * Besides the opening page element, this function also checks for and skips over the
-	 * title, ns, and id tags. Hence after this function, the xml reader is at the first
-	 * revision of the current page.
-	 *
-	 * @param int $id Id of the page to assert
-	 * @param int $ns Number of namespage to assert
-	 * @param string $name Title of the current page
-	 */
-	protected function assertPageStart( $id, $ns, $name ) {
-		$this->assertNodeStart( "page" );
-		$this->skipWhitespace();
-
-		$this->assertTextNode( "title", $name );
-		$this->assertTextNode( "ns", $ns );
-		$this->assertTextNode( "id", $id );
-	}
-
-	/**
-	 * Asserts that the xml reader is at the page's closing element and skips to the next
-	 * element.
-	 */
-	protected function assertPageEnd() {
-		$this->assertNodeEnd( "page" );
-		$this->skipWhitespace();
-	}
-
-	/**
-	 * Asserts that the xml reader is at a revision and checks its representation before
-	 * skipping over it.
-	 *
-	 * @param int $id Id of the revision
-	 * @param string $summary Summary of the revision
-	 * @param int $text_id Id of the revision's text
-	 * @param int $text_bytes Number of bytes in the revision's text
-	 * @param string $text_sha1 The base36 SHA-1 of the revision's text
-	 * @param string|bool $text (optional) The revision's string, or false to check for a
-	 *            revision stub
-	 * @param int|bool $parentid (optional) id of the parent revision
-	 * @param string $model The expected content model id (default: CONTENT_MODEL_WIKITEXT)
-	 * @param string $format The expected format model id (default: CONTENT_FORMAT_WIKITEXT)
-	 */
-	protected function assertRevision( $id, $summary, $text_id, $text_bytes,
-		$text_sha1, $text = false, $parentid = false,
-		$model = CONTENT_MODEL_WIKITEXT, $format = CONTENT_FORMAT_WIKITEXT
-	) {
-		$this->assertNodeStart( "revision" );
-		$this->skipWhitespace();
-
-		$this->assertTextNode( "id", $id );
-		if ( $parentid !== false ) {
-			$this->assertTextNode( "parentid", $parentid );
-		}
-		$this->assertTextNode( "timestamp", false );
-
-		$this->assertNodeStart( "contributor" );
-		$this->skipWhitespace();
-		$this->assertTextNode( "ip", false );
-		$this->assertNodeEnd( "contributor" );
-		$this->skipWhitespace();
-
-		$this->assertTextNode( "comment", $summary );
-		$this->skipWhitespace();
-
-		$this->assertTextNode( "model", $model );
-		$this->skipWhitespace();
-
-		$this->assertTextNode( "format", $format );
-		$this->skipWhitespace();
-
-		if ( $this->xml->name == "text" ) {
-			// note: <text> tag may occur here or at the very end.
-			$text_found = true;
-			$this->assertText( $id, $text_id, $text_bytes, $text );
-		} else {
-			$text_found = false;
-		}
-
-		$this->assertTextNode( "sha1", $text_sha1 );
-
-		if ( !$text_found ) {
-			$this->assertText( $id, $text_id, $text_bytes, $text );
-		}
-
-		$this->assertNodeEnd( "revision" );
-		$this->skipWhitespace();
-	}
-
-	protected function assertText( $id, $text_id, $text_bytes, $text ) {
-		$this->assertNodeStart( "text", false );
-		if ( $text_bytes !== false ) {
-			$this->assertEquals( $this->xml->getAttribute( "bytes" ), $text_bytes,
-				"Attribute 'bytes' of revision " . $id );
-		}
-
-		if ( $text === false ) {
-			// Testing for a stub
-			$this->assertEquals( $this->xml->getAttribute( "id" ), $text_id,
-				"Text id of revision " . $id );
-			$this->assertFalse( $this->xml->hasValue, "Revision has text" );
-			$this->assertTrue( $this->xml->read(), "Skipping text start tag" );
-			if ( ( $this->xml->nodeType == XMLReader::END_ELEMENT )
-				&& ( $this->xml->name == "text" )
-			) {
-				$this->xml->read();
-			}
-			$this->skipWhitespace();
-		} else {
-			// Testing for a real dump
-			$this->assertTrue( $this->xml->read(), "Skipping text start tag" );
-			$this->assertEquals( $text, $this->xml->value, "Text of revision " . $id );
-			$this->assertTrue( $this->xml->read(), "Skipping past text" );
-			$this->assertNodeEnd( "text" );
-			$this->skipWhitespace();
-		}
-	}
 }

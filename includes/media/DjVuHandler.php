@@ -20,6 +20,8 @@
  * @file
  * @ingroup Media
  */
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Shell\Shell;
 
 /**
  * Handler for DjVu images
@@ -32,7 +34,7 @@ class DjVuHandler extends ImageHandler {
 	/**
 	 * @return bool
 	 */
-	function isEnabled() {
+	public function isEnabled() {
 		global $wgDjvuRenderer, $wgDjvuDump, $wgDjvuToXML;
 		if ( !$wgDjvuRenderer || ( !$wgDjvuDump && !$wgDjvuToXML ) ) {
 			wfDebug( "DjVu is disabled, please set \$wgDjvuRenderer and \$wgDjvuDump\n" );
@@ -130,7 +132,7 @@ class DjVuHandler extends ImageHandler {
 	 * @param array $params
 	 * @return array
 	 */
-	function getScriptParams( $params ) {
+	protected function getScriptParams( $params ) {
 		return [
 			'width' => $params['width'],
 			'page' => $params['page'],
@@ -203,7 +205,7 @@ class DjVuHandler extends ImageHandler {
 
 		# Use a subshell (brackets) to aggregate stderr from both pipeline commands
 		# before redirecting it to the overall stdout. This works in both Linux and Windows XP.
-		$cmd = '(' . wfEscapeShellArg(
+		$cmd = '(' . Shell::escape(
 			$wgDjvuRenderer,
 			"-format=ppm",
 			"-page={$page}",
@@ -212,7 +214,7 @@ class DjVuHandler extends ImageHandler {
 		if ( $wgDjvuPostProcessor ) {
 			$cmd .= " | {$wgDjvuPostProcessor}";
 		}
-		$cmd .= ' > ' . wfEscapeShellArg( $dstPath ) . ') 2>&1';
+		$cmd .= ' > ' . Shell::escape( $dstPath ) . ') 2>&1';
 		wfDebug( __METHOD__ . ": $cmd\n" );
 		$retval = '';
 		$err = wfShellExec( $cmd, $retval );
@@ -353,7 +355,7 @@ class DjVuHandler extends ImageHandler {
 		return $this->getDjVuImage( $image, $path )->getImageSize();
 	}
 
-	function getThumbType( $ext, $mime, $params = null ) {
+	public function getThumbType( $ext, $mime, $params = null ) {
 		global $wgDjvuOutputExtension;
 		static $mime;
 		if ( !isset( $mime ) ) {
@@ -364,7 +366,7 @@ class DjVuHandler extends ImageHandler {
 		return [ $wgDjvuOutputExtension, $mime ];
 	}
 
-	function getMetadata( $image, $path ) {
+	public function getMetadata( $image, $path ) {
 		wfDebug( "Getting DjVu metadata for $path\n" );
 
 		$xml = $this->getDjVuImage( $image, $path )->retrieveMetaData();
@@ -380,17 +382,17 @@ class DjVuHandler extends ImageHandler {
 		return 'djvuxml';
 	}
 
-	function isMetadataValid( $image, $metadata ) {
+	public function isMetadataValid( $image, $metadata ) {
 		return !empty( $metadata ) && $metadata != serialize( [] );
 	}
 
-	function pageCount( File $image ) {
+	public function pageCount( File $image ) {
 		$info = $this->getDimensionInfo( $image );
 
 		return $info ? $info['pageCount'] : false;
 	}
 
-	function getPageDimensions( File $image, $page ) {
+	public function getPageDimensions( File $image, $page ) {
 		$index = $page - 1; // MW starts pages at 1
 
 		$info = $this->getDimensionInfo( $image );
@@ -402,7 +404,7 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	protected function getDimensionInfo( File $file ) {
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		return $cache->getWithSetCallback(
 			$cache->makeKey( 'file-djvu', 'dimensions', $file->getSha1() ),
 			$cache::TTL_INDEFINITE,

@@ -20,7 +20,7 @@
  */
 
 /**
- * Parser for rules of language conversion , parse rules in -{ }- tag.
+ * Parser for rules of language conversion, parse rules in -{ }- tag.
  * @ingroup Language
  * @author fdcn <fdcn64@gmail.com>, PhiLiP <philip.npc@gmail.com>
  */
@@ -29,13 +29,13 @@ class ConverterRule {
 	public $mConverter; // LanguageConverter object
 	public $mRuleDisplay = '';
 	public $mRuleTitle = false;
-	public $mRules = '';// string : the text of the rules
+	public $mRules = ''; // string : the text of the rules
 	public $mRulesAction = 'none';
 	public $mFlags = [];
 	public $mVariantFlags = [];
 	public $mConvTable = [];
-	public $mBidtable = [];// array of the translation in each variant
-	public $mUnidtable = [];// array of the translation in each variant
+	public $mBidtable = []; // array of the translation in each variant
+	public $mUnidtable = []; // array of the translation in each variant
 
 	/**
 	 * @param string $text The text between -{ and }-
@@ -153,25 +153,27 @@ class ConverterRule {
 			$to = trim( $v[1] );
 			$v = trim( $v[0] );
 			$u = explode( '=>', $v, 2 );
+			$vv = $this->mConverter->validateVariant( $v );
 			// if $to is empty (which is also used as $from in bidtable),
 			// strtr() could return a wrong result.
-			if ( count( $u ) == 1 && $to !== '' && in_array( $v, $variants ) ) {
-				$bidtable[$v] = $to;
+			if ( count( $u ) == 1 && $to !== '' && $vv ) {
+				$bidtable[$vv] = $to;
 			} elseif ( count( $u ) == 2 ) {
 				$from = trim( $u[0] );
 				$v = trim( $u[1] );
+				$vv = $this->mConverter->validateVariant( $v );
 				// if $from is empty, strtr() could return a wrong result.
-				if ( array_key_exists( $v, $unidtable )
-					&& !is_array( $unidtable[$v] )
+				if ( array_key_exists( $vv, $unidtable )
+					&& !is_array( $unidtable[$vv] )
 					&& $from !== ''
-					&& in_array( $v, $variants ) ) {
-					$unidtable[$v] = [ $from => $to ];
-				} elseif ( $from !== '' && in_array( $v, $variants ) ) {
-					$unidtable[$v][$from] = $to;
+					&& $vv ) {
+					$unidtable[$vv] = [ $from => $to ];
+				} elseif ( $from !== '' && $vv ) {
+					$unidtable[$vv][$from] = $to;
 				}
 			}
 			// syntax error, pass
-			if ( !isset( $this->mConverter->mVariantNames[$v] ) ) {
+			if ( !isset( $this->mConverter->mVariantNames[$vv] ) ) {
 				$bidtable = [];
 				$unidtable = [];
 				break;
@@ -399,11 +401,7 @@ class ConverterRule {
 				case 'N':
 					// process N flag: output current variant name
 					$ruleVar = trim( $rules );
-					if ( isset( $this->mConverter->mVariantNames[$ruleVar] ) ) {
-						$this->mRuleDisplay = $this->mConverter->mVariantNames[$ruleVar];
-					} else {
-						$this->mRuleDisplay = '';
-					}
+					$this->mRuleDisplay = $this->mConverter->mVariantNames[$ruleVar] ?? '';
 					break;
 				case 'D':
 					// process D flag: output rules description

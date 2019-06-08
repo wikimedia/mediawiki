@@ -30,7 +30,7 @@
 	$( function () {
 		var $projectField = $( '#mw-import-table-interwiki #interwiki' );
 		if ( $projectField.length ) {
-			$projectField.change( updateImportSubprojectList );
+			$projectField.on( 'change', updateImportSubprojectList );
 			updateImportSubprojectList();
 		}
 	} );

@@ -5,7 +5,8 @@
 			"Futhark1988",
 			"Máté",
 			"R-Joe",
-			"Tacsipacsi"
+			"Tacsipacsi",
+			"Misibacsi"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -15,7 +16,6 @@
 	"tog-extendwatchlist": "A figyelőlistán az összes változtatás látszódjon, ne csak az utolsó",
 	"tog-usenewrc": "Szerkesztések csoportosítása oldal szerint a friss változtatásokban és a figyelőlistán",
 	"tog-numberheadings": "Fejezetcímek automatikus számozása",
-	"tog-showtoolbar": "Szerkesztőeszközsor megjelenítése",
 	"tog-editondblclick": "A lapok szerkesztése dupla kattintásra",
 	"tog-editsectiononrightclick": "Szakaszok szerkesztése a szakaszcímre való jobb kattintással",
 	"tog-watchcreations": "Az Ön által létrehozott lapok és feltöltött fájlok felvétele a figyelőlistára",
@@ -235,5 +235,8 @@
 	"newpages": "Új lapok",
 	"changecontentmodel-submit": "Módosít",
 	"specialpages": "Speciális lapok",
+	"mw-widgets-abandonedit-discard": "Változtatások elvetése",
+	"mw-widgets-abandonedit-keep": "Szerkesztés folytatása",
+	"mw-widgets-abandonedit-title": "Biztos benne?",
 	"sessionprovider-nocookies": "A sütik le lehetnek tiltva. Engedélyezze a sütiket, és próbálja meg újra!"
 }

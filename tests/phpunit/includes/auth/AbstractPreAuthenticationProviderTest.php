@@ -4,7 +4,7 @@ namespace MediaWiki\Auth;
 
 /**
  * @group AuthManager
- * @covers MediaWiki\Auth\AbstractPreAuthenticationProvider
+ * @covers \MediaWiki\Auth\AbstractPreAuthenticationProvider
  */
 class AbstractPreAuthenticationProviderTest extends \MediaWikiTestCase {
 	public function testAbstractPreAuthenticationProvider() {

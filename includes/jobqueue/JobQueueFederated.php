@@ -73,7 +73,7 @@ class JobQueueFederated extends JobQueue {
 	 */
 	protected function __construct( array $params ) {
 		parent::__construct( $params );
-		$section = $params['sectionsByWiki'][$this->wiki] ?? 'default';
+		$section = $params['sectionsByWiki'][$this->domain] ?? 'default';
 		if ( !isset( $params['partitionsBySection'][$section] ) ) {
 			throw new MWException( "No configuration for section '$section'." );
 		}
@@ -180,7 +180,6 @@ class JobQueueFederated extends JobQueue {
 		// Try to insert the jobs and update $partitionsTry on any failures.
 		// Retry to insert any remaning jobs again, ignoring the bad partitions.
 		$jobsLeft = $jobs;
-		// phpcs:ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall
 		for ( $i = $this->maxPartitionsTry; $i > 0 && count( $jobsLeft ); --$i ) {
 			try {
 				$partitionRing->getLiveLocationWeights();
@@ -288,7 +287,7 @@ class JobQueueFederated extends JobQueue {
 				$job = false;
 			}
 			if ( $job ) {
-				$job->metadata['QueuePartition'] = $partition;
+				$job->setMetadata( 'QueuePartition', $partition );
 
 				return $job;
 			} else {
@@ -301,11 +300,12 @@ class JobQueueFederated extends JobQueue {
 	}
 
 	protected function doAck( Job $job ) {
-		if ( !isset( $job->metadata['QueuePartition'] ) ) {
+		$partition = $job->getMetadata( 'QueuePartition' );
+		if ( $partition === null ) {
 			throw new MWException( "The given job has no defined partition name." );
 		}
 
-		$this->partitionQueues[$job->metadata['QueuePartition']]->ack( $job );
+		$this->partitionQueues[$partition]->ack( $job );
 	}
 
 	protected function doIsRootJobOldDuplicate( Job $job ) {
@@ -419,7 +419,7 @@ class JobQueueFederated extends JobQueue {
 	}
 
 	public function getCoalesceLocationInternal() {
-		return "JobQueueFederated:wiki:{$this->wiki}" .
+		return "JobQueueFederated:wiki:{$this->domain}" .
 			sha1( serialize( array_keys( $this->partitionQueues ) ) );
 	}
 

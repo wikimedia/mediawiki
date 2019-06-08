@@ -45,6 +45,8 @@ class LanguageAr extends Language {
 		$s = parent::normalize( $s );
 		if ( $wgFixArabicUnicode ) {
 			$s = $this->transformUsingPairFile( 'normalize-ar.php', $s );
+		} else {
+			wfDeprecated( '$wgFixArabicUnicode = false', '1.33' );
 		}
 		return $s;
 	}

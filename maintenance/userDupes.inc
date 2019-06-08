@@ -163,7 +163,7 @@ class UserDupes {
 
 	/**
 	 * We don't want anybody to mess with our stuff...
-	 * @access private
+	 * @private
 	 */
 	function lock() {
 		$set = [ 'user', 'revision' ];
@@ -178,7 +178,7 @@ class UserDupes {
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function unlock() {
 		$this->db->query( "UNLOCK TABLES", __METHOD__ );
@@ -187,7 +187,7 @@ class UserDupes {
 	/**
 	 * Grab usernames for which multiple records are present in the database.
 	 * @return array
-	 * @access private
+	 * @private
 	 */
 	function getDupes() {
 		$user = $this->db->tableName( 'user' );
@@ -211,7 +211,7 @@ class UserDupes {
 	 * for edits. If the dupes have no edits, we can safely remove them.
 	 * @param string $name
 	 * @param bool $doDelete
-	 * @access private
+	 * @private
 	 */
 	function examine( $name, $doDelete ) {
 		$result = $this->db->select( 'user',
@@ -260,7 +260,7 @@ class UserDupes {
 	 * where it might show up...
 	 * @param int $userid
 	 * @return int
-	 * @access private
+	 * @private
 	 */
 	function editCount( $userid ) {
 		return intval( $this->db->selectField(
@@ -273,7 +273,7 @@ class UserDupes {
 	/**
 	 * @param int $from
 	 * @param int $to
-	 * @access private
+	 * @private
 	 */
 	function reassignEdits( $from, $to ) {
 		$this->out( 'reassigning... ' );
@@ -287,7 +287,7 @@ class UserDupes {
 	/**
 	 * Remove a user account line.
 	 * @param int $userid
-	 * @access private
+	 * @private
 	 */
 	function trimAccount( $userid ) {
 		$this->out( "deleting..." );

@@ -6,7 +6,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group AuthManager
- * @covers MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider
+ * @covers \MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider
  */
 class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	/**

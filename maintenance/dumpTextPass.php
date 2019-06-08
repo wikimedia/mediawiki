@@ -29,6 +29,9 @@ require_once __DIR__ . '/7zip.inc';
 require_once __DIR__ . '/../includes/export/WikiExporter.php';
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Shell\Shell;
+use MediaWiki\Storage\BlobAccessException;
+use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
@@ -137,6 +140,13 @@ TEXT
 			$this->loadWithArgv( $args );
 			$this->processOptions();
 		}
+	}
+
+	/**
+	 * @return SqlBlobStore
+	 */
+	private function getBlobStore() {
+		return MediaWikiServices::getInstance()->getBlobStore();
 	}
 
 	function execute() {
@@ -520,17 +530,17 @@ TEXT
 	}
 
 	/**
-	 * Tries to get the revision text for a revision id.
-	 * Export transformations are applied if the content model can is given or can be
+	 * Tries to load revision text.
+	 * Export transformations are applied if the content model is given or can be
 	 * determined from the database.
 	 *
 	 * Upon errors, retries (Up to $this->maxFailures tries each call).
-	 * If still no good revision get could be found even after this retrying, "" is returned.
+	 * If still no good revision could be found even after this retrying, "" is returned.
 	 * If no good revision text could be returned for
 	 * $this->maxConsecutiveFailedTextRetrievals consecutive calls to getText, MWException
 	 * is thrown.
 	 *
-	 * @param string $id The revision id to get the text for
+	 * @param int|string $id Content address, or text row ID.
 	 * @param string|bool|null $model The content model used to determine
 	 *  applicable export transformations.
 	 *  If $model is null, it will be determined from the database.
@@ -558,6 +568,7 @@ TEXT
 		$consecutiveFailedTextRetrievals = 0;
 
 		if ( $model === null && $wgContentHandlerUseDB ) {
+			// TODO: MCR: use content table
 			$row = $this->db->selectRow(
 				'revision',
 				[ 'rev_content_model', 'rev_content_format' ],
@@ -700,37 +711,42 @@ TEXT
 	}
 
 	/**
-	 * May throw a database error if, say, the server dies during query.
-	 * @param int $id
+	 * Loads the serialized content from storage.
+	 *
+	 * @param int|string $id Content address, or text row ID.
 	 * @return bool|string
-	 * @throws MWException
 	 */
 	private function getTextDb( $id ) {
-		if ( !isset( $this->db ) ) {
-			throw new MWException( __METHOD__ . "No database available" );
-		}
-		$row = $this->db->selectRow( 'text',
-			[ 'old_text', 'old_flags' ],
-			[ 'old_id' => $id ],
-			__METHOD__ );
-		$text = Revision::getRevisionText( $row );
-		if ( $text === false ) {
+		$store = $this->getBlobStore();
+		$address = ( is_int( $id ) || strpos( $id, ':' ) === false )
+			? SqlBlobStore::makeAddressFromTextId( (int)$id )
+			: $id;
+
+		try {
+			$text = $store->getBlob( $address );
+
+			$stripped = str_replace( "\r", "", $text );
+			$normalized = MediaWikiServices::getInstance()->getContentLanguage()
+				->normalize( $stripped );
+
+			return $normalized;
+		} catch ( BlobAccessException $ex ) {
+			// XXX: log a warning?
 			return false;
 		}
-		$stripped = str_replace( "\r", "", $text );
-		$normalized = MediaWikiServices::getInstance()->getContentLanguage()->
-			normalize( $stripped );
-
-		return $normalized;
 	}
 
-	private function getTextSpawned( $id ) {
+	/**
+	 * @param int|string $address Content address, or text row ID.
+	 * @return bool|string
+	 */
+	private function getTextSpawned( $address ) {
 		Wikimedia\suppressWarnings();
 		if ( !$this->spawnProc ) {
 			// First time?
 			$this->openSpawn();
 		}
-		$text = $this->getTextSpawnedOnce( $id );
+		$text = $this->getTextSpawnedOnce( $address );
 		Wikimedia\restoreWarnings();
 
 		return $text;
@@ -741,7 +757,7 @@ TEXT
 
 		if ( file_exists( "$IP/../multiversion/MWScript.php" ) ) {
 			$cmd = implode( " ",
-				array_map( 'wfEscapeShellArg',
+				array_map( [ Shell::class, 'escape' ],
 					[
 						$this->php,
 						"$IP/../multiversion/MWScript.php",
@@ -749,7 +765,7 @@ TEXT
 						'--wiki', wfWikiID() ] ) );
 		} else {
 			$cmd = implode( " ",
-				array_map( 'wfEscapeShellArg',
+				array_map( [ Shell::class, 'escape' ],
 					[
 						$this->php,
 						"$IP/maintenance/fetchText.php",
@@ -797,8 +813,16 @@ TEXT
 		Wikimedia\restoreWarnings();
 	}
 
-	private function getTextSpawnedOnce( $id ) {
-		$ok = fwrite( $this->spawnWrite, "$id\n" );
+	/**
+	 * @param int|string $address Content address, or text row ID.
+	 * @return bool|string
+	 */
+	private function getTextSpawnedOnce( $address ) {
+		if ( is_int( $address ) || intval( $address ) ) {
+			$address = SqlBlobStore::makeAddressFromTextId( (int)$address );
+		}
+
+		$ok = fwrite( $this->spawnWrite, "$address\n" );
 		// $this->progress( ">> $id" );
 		if ( !$ok ) {
 			return false;
@@ -810,13 +834,18 @@ TEXT
 			return false;
 		}
 
-		// check that the text id they are sending is the one we asked for
+		// check that the text address they are sending is the one we asked for
 		// this avoids out of sync revision text errors we have encountered in the past
-		$newId = fgets( $this->spawnRead );
-		if ( $newId === false ) {
+		$newAddress = fgets( $this->spawnRead );
+		if ( $newAddress === false ) {
 			return false;
 		}
-		if ( $id != intval( $newId ) ) {
+		$newAddress = trim( $newAddress );
+		if ( strpos( $newAddress, ':' ) === false ) {
+			$newAddress = SqlBlobStore::makeAddressFromTextId( intval( $newAddress ) );
+		}
+
+		if ( $newAddress !== $address ) {
 			return false;
 		}
 

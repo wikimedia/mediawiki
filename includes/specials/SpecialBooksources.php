@@ -36,9 +36,7 @@ class SpecialBookSources extends SpecialPage {
 	}
 
 	/**
-	 * Show the special page
-	 *
-	 * @param string $isbn ISBN passed as a subpage parameter
+	 * @param string|null $isbn ISBN passed as a subpage parameter
 	 */
 	public function execute( $isbn ) {
 		$out = $this->getOutput();
@@ -171,8 +169,8 @@ class SpecialBookSources extends SpecialPage {
 			if ( $content instanceof TextContent ) {
 				// XXX: in the future, this could be stored as structured data, defining a list of book sources
 
-				$text = $content->getNativeData();
-				$out->addWikiText( str_replace( 'MAGICNUMBER', $isbn, $text ) );
+				$text = $content->getText();
+				$out->addWikiTextAsInterface( str_replace( 'MAGICNUMBER', $isbn, $text ) );
 
 				return true;
 			} else {

@@ -394,7 +394,7 @@
 			fileReader = new FileReader();
 			fileReader.onload = function () {
 				var fileStr, arr, i, metadata,
-					jpegmeta = mw.loader.require( 'mediawiki.libs.jpegmeta' );
+					jpegmeta = require( 'mediawiki.libs.jpegmeta' );
 
 				if ( typeof fileReader.result === 'string' ) {
 					fileStr = fileReader.result;

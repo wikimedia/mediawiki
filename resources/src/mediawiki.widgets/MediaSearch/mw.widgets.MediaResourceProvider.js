@@ -173,7 +173,7 @@
 			provider = this;
 
 		if ( !this.isValid() ) {
-			return $.Deferred().reject().promise( { abort: $.noop } );
+			return $.Deferred().reject().promise( { abort: function () {} } );
 		}
 
 		api = this.isLocal ? new mw.Api() : new mw.ForeignApi( this.getAPIurl(), { anonymous: true } );

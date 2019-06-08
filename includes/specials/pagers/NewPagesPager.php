@@ -24,15 +24,21 @@
  */
 class NewPagesPager extends ReverseChronologicalPager {
 
-	// Stored opts
+	/**
+	 * @var FormOptions
+	 */
 	protected $opts;
 
 	/**
-	 * @var HTMLForm
+	 * @var SpecialNewpages
 	 */
 	protected $mForm;
 
-	function __construct( $form, FormOptions $opts ) {
+	/**
+	 * @param SpecialNewpages $form
+	 * @param FormOptions $opts
+	 */
+	public function __construct( $form, FormOptions $opts ) {
 		parent::__construct( $form->getContext() );
 		$this->mForm = $form;
 		$this->opts = $opts;
@@ -58,8 +64,6 @@ class NewPagesPager extends ReverseChronologicalPager {
 				$conds[] = 'page_len >= ' . $size;
 			}
 		}
-
-		$rcIndexes = [];
 
 		if ( $namespace !== false ) {
 			if ( $this->opts->getValue( 'invert' ) ) {
@@ -98,24 +102,18 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$fields = array_merge( $rcQuery['fields'], [
 			'length' => 'page_len', 'rev_id' => 'page_latest', 'page_namespace', 'page_title'
 		] );
-		$join_conds = [ 'page' => [ 'INNER JOIN', 'page_id=rc_cur_id' ] ] + $rcQuery['joins'];
+		$join_conds = [ 'page' => [ 'JOIN', 'page_id=rc_cur_id' ] ] + $rcQuery['joins'];
 
 		// Avoid PHP 7.1 warning from passing $this by reference
 		$pager = $this;
 		Hooks::run( 'SpecialNewpagesConditions',
 			[ &$pager, $this->opts, &$conds, &$tables, &$fields, &$join_conds ] );
 
-		$options = [];
-
-		if ( $rcIndexes ) {
-			$options = [ 'USE INDEX' => [ 'recentchanges' => $rcIndexes ] ];
-		}
-
 		$info = [
 			'tables' => $tables,
 			'fields' => $fields,
 			'conds' => $conds,
-			'options' => $options,
+			'options' => [],
 			'join_conds' => $join_conds
 		];
 
@@ -140,7 +138,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		return $this->mForm->formatRow( $row );
 	}
 
-	function getStartBody() {
+	protected function getStartBody() {
 		# Do a batch existence check on pages
 		$linkBatch = new LinkBatch();
 		foreach ( $this->mResult as $row ) {
@@ -153,7 +151,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		return '<ul>';
 	}
 
-	function getEndBody() {
+	protected function getEndBody() {
 		return '</ul>';
 	}
 }

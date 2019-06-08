@@ -81,10 +81,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->fld_loginfo = isset( $prop['loginfo'] );
 			$this->fld_tags = isset( $prop['tags'] );
 
-			if ( $this->fld_patrol ) {
-				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
-					$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'patrol' );
-				}
+			if ( $this->fld_patrol && !$user->useRCPatrol() && !$user->useNPPatrol() ) {
+				$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'patrol' );
 			}
 
 			if ( $this->fld_comment || $this->fld_parsedcomment ) {
@@ -180,7 +178,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		] );
 
 		$ids = [];
-		$count = 0;
 		$watchedItemQuery = MediaWikiServices::getInstance()->getWatchedItemQueryService();
 		$items = $watchedItemQuery->getWatchedItemsWithRecentChangeInfo( $wlowner, $options, $startFrom );
 
@@ -193,12 +190,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					$startFrom = [ $recentChangeInfo['rc_timestamp'], $recentChangeInfo['rc_id'] ];
 					break;
 				}
+			} elseif ( $params['allrev'] ) {
+				$ids[] = (int)$recentChangeInfo['rc_this_oldid'];
 			} else {
-				if ( $params['allrev'] ) {
-					$ids[] = intval( $recentChangeInfo['rc_this_oldid'] );
-				} else {
-					$ids[] = intval( $recentChangeInfo['rc_cur_id'] );
-				}
+				$ids[] = (int)$recentChangeInfo['rc_cur_id'];
 			}
 		}
 
@@ -272,7 +267,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		/* Our output data. */
 		$vals = [];
-		$type = intval( $recentChangeInfo['rc_type'] );
+		$type = (int)$recentChangeInfo['rc_type'];
 		$vals['type'] = RecentChange::parseFromRCType( $type );
 		$anyHidden = false;
 
@@ -294,9 +289,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					ApiQueryBase::addTitleInfo( $vals, $title );
 				}
 				if ( $this->fld_ids ) {
-					$vals['pageid'] = intval( $recentChangeInfo['rc_cur_id'] );
-					$vals['revid'] = intval( $recentChangeInfo['rc_this_oldid'] );
-					$vals['old_revid'] = intval( $recentChangeInfo['rc_last_oldid'] );
+					$vals['pageid'] = (int)$recentChangeInfo['rc_cur_id'];
+					$vals['revid'] = (int)$recentChangeInfo['rc_this_oldid'];
+					$vals['old_revid'] = (int)$recentChangeInfo['rc_last_oldid'];
 				}
 			}
 		}
@@ -337,8 +332,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		/* Add sizes of each revision. (Only available on 1.10+) */
 		if ( $this->fld_sizes ) {
-			$vals['oldlen'] = intval( $recentChangeInfo['rc_old_len'] );
-			$vals['newlen'] = intval( $recentChangeInfo['rc_new_len'] );
+			$vals['oldlen'] = (int)$recentChangeInfo['rc_old_len'];
+			$vals['newlen'] = (int)$recentChangeInfo['rc_new_len'];
 		}
 
 		/* Add the timestamp. */
@@ -391,7 +386,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				LogPage::DELETED_ACTION,
 				$user
 			) ) {
-				$vals['logid'] = intval( $recentChangeInfo['rc_logid'] );
+				$vals['logid'] = (int)$recentChangeInfo['rc_logid'];
 				$vals['logtype'] = $recentChangeInfo['rc_log_type'];
 				$vals['logaction'] = $recentChangeInfo['rc_log_action'];
 				$vals['logparams'] = LogFormatter::newFromRow( $recentChangeInfo )->formatParametersForApi();

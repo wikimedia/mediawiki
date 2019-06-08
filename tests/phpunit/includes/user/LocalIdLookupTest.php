@@ -124,9 +124,8 @@ class LocalIdLookupTest extends MediaWikiTestCase {
 	 * @param bool $localDBSet $wgLocalDatabases contains the shared DB
 	 */
 	public function testIsAttachedShared( $sharedDB, $sharedTable, $localDBSet ) {
-		global $wgDBName;
 		$this->setMwGlobals( [
-			'wgSharedDB' => $sharedDB ? $wgDBName : null,
+			'wgSharedDB' => $sharedDB ? "dummy" : null,
 			'wgSharedTables' => $sharedTable ? [ 'user' ] : [],
 			'wgLocalDatabases' => $localDBSet ? [ 'shared' ] : [],
 		] );

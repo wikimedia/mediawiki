@@ -1,4 +1,4 @@
-// Common Less mixin library for MediaWiki
+// Common LESS mixin library for MediaWiki
 //
 // By default the folder containing this file is included in the LESS import paths,
 // which makes this file importable by all less files via `@import 'mediawiki.mixins';`.
@@ -10,13 +10,6 @@
 
 .background-image( @url ) {
 	background-image: e( '/* @embed */' ) url( @url );
-}
-
-// Deprecated in MW 1.27
-.background-size( @width, @height ) {
-	// Vendor prefix is added to support Android 2
-	-webkit-background-size: @width @height;
-	background-size: @width @height;
 }
 
 .vertical-gradient( @startColor: gray, @endColor: white, @startPos: 0, @endPos: 100% ) {
@@ -47,14 +40,8 @@
 	list-style-image: e( '/* @embed */' ) url( @url );
 }
 
-.list-style-image-svg( @svg, @fallback ) {
-	list-style-image: e( '/* @embed */' ) url( @svg );
-	/* Fallback to PNG bullet for IE 8 and below using CSS hack */
-	list-style-image: e( '/* @embed */' ) url( @fallback ) e( '\9' );
-}
-
 .hyphens( @value: auto ) {
-	& when ( @value = auto ){
+	& when ( @value = auto ) {
 		// Legacy `word-wrap`; IE 6-11, Edge 12+, Firefox 3.5+, Chrome 4+, Safari 3.1+,
 		//   Opera 11.5+, iOS 3.2+, Android 2.1+
 		// `overflow-wrap` is W3 standard, but it doesn't seem as if browser vendors
@@ -92,7 +79,6 @@
 // and remaining parameters are additional transitions."
 .transition-transform( ... ) {
 	-webkit-backface-visibility: hidden; // Older Webkit browsers: Promote element to a composite layer & involve the GPU
-
 	-webkit-transition: -webkit-transform @arguments; // Safari 3.1-8, iOS 3.2-8.4, Android 2.1-4.4.4
 	-moz-transition: -moz-transform @arguments; // Firefox 4-15 for `-moz-transition`
 	transition: transform @arguments; // Chrome 36+, Firefox 16+, IE 10+, Safari 9+, Opera 12.1+, iOS 9.2+, Android 36+
@@ -153,10 +139,8 @@
 	-webkit-box-flex: @grow; // iOS 6-, Safari 3.1-6
 	-moz-box-flex: @grow; // Firefox 21-
 	width: @width; // Fallback for flex-basis
-
 	-ms-flex: @grow @shrink @width; // IE 10
 	flex: @grow @shrink @width;
-
 	-webkit-box-ordinal-group: @order; // iOS 6-, Safari 3.1-6
 	-moz-box-ordinal-group: @order; // Firefox 21-
 	-ms-flex-order: @order; // IE 10

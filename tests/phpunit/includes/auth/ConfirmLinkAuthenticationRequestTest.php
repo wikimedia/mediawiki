@@ -6,7 +6,7 @@ use InvalidArgumentException;
 
 /**
  * @group AuthManager
- * @covers MediaWiki\Auth\ConfirmLinkAuthenticationRequest
+ * @covers \MediaWiki\Auth\ConfirmLinkAuthenticationRequest
  */
 class ConfirmLinkAuthenticationRequestTest extends AuthenticationRequestTestCase {
 

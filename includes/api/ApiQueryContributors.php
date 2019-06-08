@@ -64,7 +64,7 @@ class ApiQueryContributors extends ApiQueryBase {
 				return $v >= $cont_page;
 			} );
 		}
-		if ( !count( $pages ) ) {
+		if ( $pages === [] ) {
 			// Nothing to do
 			return;
 		}
@@ -176,7 +176,7 @@ class ApiQueryContributors extends ApiQueryBase {
 			$limitGroups = array_unique( $limitGroups );
 			$this->addTables( 'user_groups' );
 			$this->addJoinConds( [ 'user_groups' => [
-				$excludeGroups ? 'LEFT OUTER JOIN' : 'INNER JOIN',
+				$excludeGroups ? 'LEFT JOIN' : 'JOIN',
 				[
 					'ug_user=' . $revQuery['fields']['rev_user'],
 					'ug_group' => $limitGroups,

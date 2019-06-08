@@ -60,7 +60,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
 			$op = $params['dir'] == 'descending' ? '<' : '>';
-			$ilfrom = intval( $cont[0] );
+			$ilfrom = (int)$cont[0];
 			$ilto = $this->getDB()->addQuotes( $cont[1] );
 			$this->addWhere(
 				"il_from $op $ilfrom OR " .

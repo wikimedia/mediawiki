@@ -48,7 +48,7 @@ class MessageCache {
 	/**
 	 * Process cache of loaded messages that are defined in MediaWiki namespace
 	 *
-	 * @var MapCacheLRU Map of (language code => key => " <MESSAGE>" or "!TOO BIG")
+	 * @var MapCacheLRU Map of (language code => key => " <MESSAGE>" or "!TOO BIG" or "!ERROR")
 	 */
 	protected $cache;
 
@@ -198,6 +198,7 @@ class MessageCache {
 				// either.
 				$po = ParserOptions::newFromAnon();
 				$po->setAllowUnsafeRawHtml( false );
+				$po->setTidy( true );
 				return $po;
 			}
 
@@ -206,6 +207,8 @@ class MessageCache {
 			// from malicious sources. As a precaution, disable
 			// the <html> parser tag when parsing messages.
 			$this->mParserOptions->setAllowUnsafeRawHtml( false );
+			// For the same reason, tidy the output!
+			$this->mParserOptions->setTidy( true );
 		}
 
 		return $this->mParserOptions;
@@ -266,6 +269,17 @@ class MessageCache {
 		}
 
 		$this->overridable = array_flip( Language::getMessageKeysFor( $code ) );
+
+		// T208897 array_flip can fail and return null
+		if ( is_null( $this->overridable ) ) {
+			LoggerFactory::getInstance( 'MessageCache' )->error(
+				__METHOD__ . ': $this->overridable is null',
+				[
+					'message_keys' => Language::getMessageKeysFor( $code ),
+					'code' => $code
+				]
+			);
+		}
 
 		# 8 lines of code just to say (once) that message cache is disabled
 		if ( $this->mDisable ) {
@@ -521,27 +535,33 @@ class MessageCache {
 		}
 
 		// Set the text for small software-defined messages in the main cache map
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$revQuery = $revisionStore->getQueryInfo( [ 'page', 'user' ] );
 		$res = $dbr->select(
-			[ 'page', 'revision', 'text' ],
-			[ 'page_title', 'page_latest', 'old_id', 'old_text', 'old_flags' ],
-			array_merge( $conds, [ 'page_len <= ' . intval( $wgMaxMsgCacheEntrySize ) ] ),
+			$revQuery['tables'],
+			$revQuery['fields'],
+			array_merge( $conds, [
+				'page_len <= ' . intval( $wgMaxMsgCacheEntrySize ),
+				'page_latest = rev_id' // get the latest revision only
+			] ),
 			__METHOD__ . "($code)-small",
 			[],
-			[
-				'revision' => [ 'JOIN', 'page_latest=rev_id' ],
-				'text' => [ 'JOIN', 'rev_text_id=old_id' ],
-			]
+			$revQuery['joins']
 		);
 		foreach ( $res as $row ) {
 			$name = $this->contLang->lcfirst( $row->page_title );
 			// Include entries/stubs for all keys in $mostused in adaptive mode
 			if ( $wgAdaptiveMessageCache || $this->isMainCacheable( $name, $overridable ) ) {
-				$text = Revision::getRevisionText( $row );
-				if ( $text === false ) {
-					// Failed to fetch data; possible ES errors?
-					// Store a marker to fetch on-demand as a workaround...
-					// TODO Use a differnt marker
-					$entry = '!TOO BIG';
+				try {
+					$rev = $revisionStore->newRevisionFromRow( $row );
+					$content = $rev->getContent( MediaWiki\Revision\SlotRecord::MAIN );
+					$text = $this->getMessageTextFromContent( $content );
+				} catch ( Exception $ex ) {
+					$text = false;
+				}
+
+				if ( !is_string( $text ) ) {
+					$entry = '!ERROR';
 					wfDebugLog(
 						'MessageCache',
 						__METHOD__
@@ -1035,7 +1055,7 @@ class MessageCache {
 		if ( $entry !== null ) {
 			// Message page exists as an override of a software messages
 			if ( substr( $entry, 0, 1 ) === ' ' ) {
-				// The message exists and is not '!TOO BIG'
+				// The message exists and is not '!TOO BIG' or '!ERROR'
 				return (string)substr( $entry, 1 );
 			} elseif ( $entry === '!NONEXISTENT' ) {
 				// The text might be '-' or missing due to some data loss

@@ -54,6 +54,8 @@ class RefreshLinksJob extends Job {
 			!( isset( $params['pages'] ) && count( $params['pages'] ) != 1 )
 		);
 		$this->params += [ 'causeAction' => 'unknown', 'causeAgent' => 'unknown' ];
+		// This will control transaction rounds in order to run DataUpdates
+		$this->executionFlags |= self::JOB_NO_EXPLICIT_TRX_ROUND;
 	}
 
 	/**
@@ -83,6 +85,7 @@ class RefreshLinksJob extends Job {
 	function run() {
 		global $wgUpdateRowsPerJob;
 
+		$ok = true;
 		// Job to update all (or a range of) backlink pages for a page
 		if ( !empty( $this->params['recursive'] ) ) {
 			// When the base job branches, wait for the replica DBs to catch up to the master.
@@ -115,16 +118,21 @@ class RefreshLinksJob extends Job {
 			JobQueueGroup::singleton()->push( $jobs );
 		// Job to update link tables for a set of titles
 		} elseif ( isset( $this->params['pages'] ) ) {
-			foreach ( $this->params['pages'] as $nsAndKey ) {
-				list( $ns, $dbKey ) = $nsAndKey;
-				$this->runForTitle( Title::makeTitleSafe( $ns, $dbKey ) );
+			foreach ( $this->params['pages'] as list( $ns, $dbKey ) ) {
+				$title = Title::makeTitleSafe( $ns, $dbKey );
+				if ( $title ) {
+					$this->runForTitle( $title );
+				} else {
+					$ok = false;
+					$this->setLastError( "Invalid title ($ns,$dbKey)." );
+				}
 			}
 		// Job to update link tables for a given title
 		} else {
 			$this->runForTitle( $this->title );
 		}
 
-		return true;
+		return $ok;
 	}
 
 	/**
@@ -139,6 +147,8 @@ class RefreshLinksJob extends Job {
 		$renderer = $services->getRevisionRenderer();
 		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
 
+		$lbFactory->beginMasterChanges( __METHOD__ );
+
 		$page = WikiPage::factory( $title );
 		$page->loadPageData( WikiPage::READ_LATEST );
 
@@ -147,6 +157,7 @@ class RefreshLinksJob extends Job {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scopedLock = LinksUpdate::acquirePageLock( $dbw, $page->getId(), 'job' );
 		if ( $scopedLock === null ) {
+			$lbFactory->commitMasterChanges( __METHOD__ );
 			// Another job is already updating the page, likely for an older revision (T170596).
 			$this->setLastError( 'LinksUpdate already running for this page, try again later.' );
 			return false;
@@ -169,10 +180,12 @@ class RefreshLinksJob extends Job {
 		}
 
 		if ( !$revision ) {
+			$lbFactory->commitMasterChanges( __METHOD__ );
 			$stats->increment( 'refreshlinks.rev_not_found' );
 			$this->setLastError( "Revision not found for {$title->getPrefixedDBkey()}" );
 			return false; // just deleted?
 		} elseif ( $revision->getId() != $latest || $revision->getPageId() !== $page->getId() ) {
+			$lbFactory->commitMasterChanges( __METHOD__ );
 			// Do not clobber over newer updates with older ones. If all jobs where FIFO and
 			// serialized, it would be OK to update links based on older revisions since it
 			// would eventually get to the latest. Since that is not the case (by design),
@@ -202,6 +215,7 @@ class RefreshLinksJob extends Job {
 			}
 
 			if ( $page->getLinksTimestamp() > $skewedTimestamp ) {
+				$lbFactory->commitMasterChanges( __METHOD__ );
 				// Something already updated the backlinks since this job was made
 				$stats->increment( 'refreshlinks.update_skipped' );
 				return true;
@@ -278,6 +292,9 @@ class RefreshLinksJob extends Job {
 				$options['triggeringUser'] = User::newFromName( $userInfo['userName'], false );
 			}
 		}
+
+		$lbFactory->commitMasterChanges( __METHOD__ );
+
 		$page->doSecondaryDataUpdates( $options );
 
 		InfoAction::invalidateCache( $title );

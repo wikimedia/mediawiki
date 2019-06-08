@@ -459,13 +459,12 @@ mw.loader.register( [
 	 * @covers ResourceLoader::makeLoaderRegisterScript
 	 */
 	public function testGetModuleRegistrations( $case ) {
-		if ( isset( $case['sources'] ) ) {
-			$this->setMwGlobals( 'wgResourceLoaderSources', $case['sources'] );
-		}
-
 		$extraQuery = $case['extraQuery'] ?? [];
 		$context = $this->getResourceLoaderContext( $extraQuery );
 		$rl = $context->getResourceLoader();
+		if ( isset( $case['sources'] ) ) {
+			$rl->addSource( $case['sources'] );
+		}
 		$rl->register( $case['modules'] );
 		$module = new ResourceLoaderStartUpModule();
 		$out = ltrim( $case['out'], "\n" );
@@ -499,6 +498,7 @@ mw.loader.register( [
 			] ]
 		];
 	}
+
 	/**
 	 * @covers ResourceLoaderStartUpModule::getModuleRegistrations
 	 * @dataProvider provideRegistrations

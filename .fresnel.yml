@@ -1,0 +1,55 @@
+warmup: true
+runs: 5
+scenarios:
+  Read a page:
+    # The only page that exists by default is the main page.
+    # But its actual name is configurable/unknown (T216791).
+    # Omit 'title' to let MediaWiki show the default (which is the main page),
+    # and a query string to prevent a normalization redirect.
+    url: "{MW_SERVER}{MW_SCRIPT_PATH}/index.php?noredirectplz"
+    viewport:
+      width: 1100
+      height: 700
+    reports:
+      - navtiming
+      - paint
+      - transfer
+    probes:
+      - screenshot
+      - trace
+  Load the editor:
+    url: "{MW_SERVER}{MW_SCRIPT_PATH}/index.php?action=edit"
+    viewport:
+      width: 1100
+      height: 700
+    reports:
+      - navtiming
+      - paint
+      - transfer
+    probes:
+      - screenshot
+      - trace
+  View history of a page:
+    url: "{MW_SERVER}{MW_SCRIPT_PATH}/index.php?action=history"
+    viewport:
+      width: 1100
+      height: 700
+    reports:
+      - navtiming
+      - paint
+      - transfer
+    probes:
+      - screenshot
+      - trace
+  View recent changes:
+    url: "{MW_SERVER}{MW_SCRIPT_PATH}/index.php?title=Special:RecentChanges"
+    viewport:
+      width: 1100
+      height: 700
+    reports:
+      - navtiming
+      - paint
+      - transfer
+    probes:
+      - screenshot
+      - trace

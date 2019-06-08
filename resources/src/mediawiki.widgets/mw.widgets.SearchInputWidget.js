@@ -151,7 +151,7 @@
 			self = this;
 
 		// reuse the searchSuggest function from mw.searchSuggest
-		promise = mw.searchSuggest.request( api, this.getQueryValue(), $.noop, this.limit, this.getNamespace() );
+		promise = mw.searchSuggest.request( api, this.getQueryValue(), function () {}, this.limit, this.getNamespace() );
 
 		// tracking purposes
 		promise.done( function ( data, jqXHR ) {
@@ -194,7 +194,7 @@
 			urls = data.data[ 3 ],
 			self = this;
 
-		// eslint-disable-next-line no-restricted-properties
+		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( titles, function ( i, result ) {
 			items.push( new mw.widgets.TitleOptionWidget(
 				self.getOptionWidgetData(
@@ -233,7 +233,7 @@
 		mw.widgets.SearchInputWidget.parent.prototype.onLookupMenuItemChoose.apply( this, arguments );
 
 		if ( this.performSearchOnClick ) {
-			this.$element.closest( 'form' ).submit();
+			this.$element.closest( 'form' ).trigger( 'submit' );
 		}
 	};
 

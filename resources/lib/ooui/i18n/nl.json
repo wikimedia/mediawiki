@@ -18,7 +18,8 @@
 			"सरोज कुमार ढकाल",
 			"Sjoerddebruin",
 			"Gloria sah",
-			"Mainframe98"
+			"Mainframe98",
+			"Marcelhospers"
 		]
 	},
 	"ooui-outline-control-move-down": "Item omlaag verplaatsen",
@@ -34,6 +35,7 @@
 	"ooui-dialog-process-dismiss": "Sluiten",
 	"ooui-dialog-process-retry": "Opnieuw proberen",
 	"ooui-dialog-process-continue": "Doorgaan",
+	"ooui-combobox-button-label": "Dropdown voor combobox",
 	"ooui-selectfile-button-select": "Selecteer een bestand",
 	"ooui-selectfile-not-supported": "Selectie van een bestand wordt niet ondersteund",
 	"ooui-selectfile-placeholder": "Er is geen bestand geselecteerd",

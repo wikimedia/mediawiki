@@ -11,6 +11,7 @@ use MediaWiki\MediaWikiServices;
  *
  * @since 1.32
  * @author Addshore
+ * @coversNothing
  */
 class SpecialPageFatalTest extends MediaWikiTestCase {
 	public function provideSpecialPages() {
@@ -31,8 +32,14 @@ class SpecialPageFatalTest extends MediaWikiTestCase {
 
 		try {
 			$executor->executeSpecialPage( $page, '', null, null, $user );
+		} catch ( \PHPUnit\Framework\Error\Error $error ) {
+			// Let phpunit settings working:
+			// - convertErrorsToExceptions="true"
+			// - convertNoticesToExceptions="true"
+			// - convertWarningsToExceptions="true"
+			throw $error;
 		} catch ( Exception $e ) {
-			// Exceptions are allowed
+			// Other exceptions are allowed
 		}
 
 		// If the page fataled phpunit will have already died

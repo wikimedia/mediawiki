@@ -185,7 +185,7 @@ class MWDebug {
 	 * @param string $function Function that is deprecated.
 	 * @param string|bool $version Version in which the function was deprecated.
 	 * @param string|bool $component Component to which the function belongs.
-	 *    If false, it is assumbed the function is in MediaWiki core.
+	 *    If false, it is assumed the function is in MediaWiki core.
 	 * @param int $callerOffset How far up the callstack is the original
 	 *    caller. 2 = function that called the function that called
 	 *    MWDebug::deprecated() (Added in 1.20).
@@ -349,12 +349,11 @@ class MWDebug {
 	 * @param string $function
 	 * @param bool $isMaster
 	 * @param float $runTime Query run time
-	 * @return int ID number of the query to pass to queryTime or -1 if the
-	 *  debugger is disabled
+	 * @return bool True if debugger is enabled, false otherwise
 	 */
 	public static function query( $sql, $function, $isMaster, $runTime ) {
 		if ( !self::$enabled ) {
-			return -1;
+			return false;
 		}
 
 		// Replace invalid UTF-8 chars with a square UTF-8 character
@@ -389,7 +388,7 @@ class MWDebug {
 			'time' => $runTime,
 		];
 
-		return count( self::$query ) - 1;
+		return true;
 	}
 
 	/**

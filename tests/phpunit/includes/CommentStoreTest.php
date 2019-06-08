@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
@@ -18,6 +19,17 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		'comment',
 	];
 
+	protected function getSchemaOverrides( IMaintainableDatabase $db ) {
+		return [
+			'scripts' => [
+				__DIR__ . '/CommentStoreTest.sql',
+			],
+			'drop' => [],
+			'create' => [ 'commentstore1', 'commentstore2', 'commentstore2_temp' ],
+			'alter' => [],
+		];
+	}
+
 	/**
 	 * Create a store for a particular stage
 	 * @param int $stage
@@ -25,6 +37,16 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	 */
 	protected function makeStore( $stage ) {
 		$store = new CommentStore( MediaWikiServices::getInstance()->getContentLanguage(), $stage );
+
+		TestingAccessWrapper::newFromObject( $store )->tempTables += [ 'cs2_comment' => [
+			'table' => 'commentstore2_temp',
+			'pk' => 'cs2t_id',
+			'field' => 'cs2t_comment_id',
+			'joinPK' => 'cs2_id',
+			'stage' => MIGRATION_OLD,
+			'deprecatedIn' => null,
+		] ];
+
 		return $store;
 	}
 
@@ -38,6 +60,16 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		$this->hideDeprecated( 'CommentStore::newKey' );
 		$store = CommentStore::newKey( $key );
 		TestingAccessWrapper::newFromObject( $store )->stage = $stage;
+
+		TestingAccessWrapper::newFromObject( $store )->tempTables += [ 'cs2_comment' => [
+			'table' => 'commentstore2_temp',
+			'pk' => 'cs2t_id',
+			'field' => 'cs2t_comment_id',
+			'joinPK' => 'cs2_id',
+			'stage' => MIGRATION_OLD,
+			'deprecatedIn' => null,
+		] ];
+
 		return $store;
 	}
 
@@ -352,6 +384,8 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 			"message keys $from" );
 		$this->assertEquals( $expect['message']->text(), $actual->message->text(),
 			"message rendering $from" );
+		$this->assertEquals( $expect['text'], $actual->message->text(),
+			"message rendering and text $from" );
 		$this->assertEquals( $expect['data'], $actual->data, "data $from" );
 	}
 
@@ -360,15 +394,16 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	 * @param string $table
 	 * @param string $key
 	 * @param string $pk
-	 * @param string $extraFields
 	 * @param string|Message $comment
 	 * @param array|null $data
 	 * @param array $expect
 	 */
-	public function testInsertRoundTrip( $table, $key, $pk, $extraFields, $comment, $data, $expect ) {
+	public function testInsertRoundTrip( $table, $key, $pk, $comment, $data, $expect ) {
+		static $id = 1;
+
 		$expectOld = [
 			'text' => $expect['text'],
-			'message' => new RawMessage( '$1', [ $expect['text'] ] ),
+			'message' => new RawMessage( '$1', [ Message::plaintextParam( $expect['text'] ) ] ),
 			'data' => null,
 		];
 
@@ -381,12 +416,8 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		];
 
 		foreach ( $stages as $writeStage => $possibleReadStages ) {
-			if ( $key === 'ipb_reason' ) {
-				$extraFields['ipb_address'] = __CLASS__ . "#$writeStage";
-			}
-
 			$wstore = $this->makeStore( $writeStage );
-			$usesTemp = $key === 'rev_comment';
+			$usesTemp = $key === 'cs2_comment';
 
 			if ( $usesTemp ) {
 				list( $fields, $callback ) = $wstore->insertWithTempTable(
@@ -407,8 +438,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 				$this->assertArrayNotHasKey( "{$key}_id", $fields, "new field, stage=$writeStage" );
 			}
 
-			$this->db->insert( $table, $extraFields + $fields, __METHOD__ );
-			$id = $this->db->insertId();
+			$this->db->insert( $table, [ $pk => ++$id ] + $fields, __METHOD__ );
 			if ( $usesTemp ) {
 				$callback( $id );
 			}
@@ -452,17 +482,18 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	 * @param string $table
 	 * @param string $key
 	 * @param string $pk
-	 * @param string $extraFields
 	 * @param string|Message $comment
 	 * @param array|null $data
 	 * @param array $expect
 	 */
 	public function testInsertRoundTrip_withKeyConstruction(
-		$table, $key, $pk, $extraFields, $comment, $data, $expect
+		$table, $key, $pk, $comment, $data, $expect
 	) {
+		static $id = 1000;
+
 		$expectOld = [
 			'text' => $expect['text'],
-			'message' => new RawMessage( '$1', [ $expect['text'] ] ),
+			'message' => new RawMessage( '$1', [ Message::plaintextParam( $expect['text'] ) ] ),
 			'data' => null,
 		];
 
@@ -475,12 +506,8 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		];
 
 		foreach ( $stages as $writeStage => $possibleReadStages ) {
-			if ( $key === 'ipb_reason' ) {
-				$extraFields['ipb_address'] = __CLASS__ . "#$writeStage";
-			}
-
 			$wstore = $this->makeStoreWithKey( $writeStage, $key );
-			$usesTemp = $key === 'rev_comment';
+			$usesTemp = $key === 'cs2_comment';
 
 			if ( $usesTemp ) {
 				list( $fields, $callback ) = $wstore->insertWithTempTable(
@@ -501,8 +528,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 				$this->assertArrayNotHasKey( "{$key}_id", $fields, "new field, stage=$writeStage" );
 			}
 
-			$this->db->insert( $table, $extraFields + $fields, __METHOD__ );
-			$id = $this->db->insertId();
+			$this->db->insert( $table, [ $pk => ++$id ] + $fields, __METHOD__ );
 			if ( $usesTemp ) {
 				$callback( $id );
 			}
@@ -545,62 +571,50 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		$db = wfGetDB( DB_REPLICA ); // for timestamps
 
 		$msgComment = new Message( 'parentheses', [ 'message comment' ] );
-		$textCommentMsg = new RawMessage( '$1', [ 'text comment' ] );
+		$textCommentMsg = new RawMessage( '$1', [ Message::plaintextParam( '{{text}} comment' ) ] );
 		$nestedMsgComment = new Message( [ 'parentheses', 'rawmessage' ], [ new Message( 'mainpage' ) ] );
-		$ipbfields = [
-			'ipb_range_start' => '',
-			'ipb_range_end' => '',
-			'ipb_timestamp' => $db->timestamp(),
-			'ipb_expiry' => $db->getInfinity(),
-		];
-		$revfields = [
-			'rev_page' => 42,
-			'rev_text_id' => 42,
-			'rev_len' => 0,
-			'rev_timestamp' => $db->timestamp(),
-		];
 		$comStoreComment = new CommentStoreComment(
 			null, 'comment store comment', null, [ 'foo' => 'bar' ]
 		);
 
 		return [
 			'Simple table, text comment' => [
-				'ipblocks', 'ipb_reason', 'ipb_id', $ipbfields, 'text comment', null, [
-					'text' => 'text comment',
+				'commentstore1', 'cs1_comment', 'cs1_id', '{{text}} comment', null, [
+					'text' => '{{text}} comment',
 					'message' => $textCommentMsg,
 					'data' => null,
 				]
 			],
 			'Simple table, text comment with data' => [
-				'ipblocks', 'ipb_reason', 'ipb_id', $ipbfields, 'text comment', [ 'message' => 42 ], [
-					'text' => 'text comment',
+				'commentstore1', 'cs1_comment', 'cs1_id', '{{text}} comment', [ 'message' => 42 ], [
+					'text' => '{{text}} comment',
 					'message' => $textCommentMsg,
 					'data' => [ 'message' => 42 ],
 				]
 			],
 			'Simple table, message comment' => [
-				'ipblocks', 'ipb_reason', 'ipb_id', $ipbfields, $msgComment, null, [
+				'commentstore1', 'cs1_comment', 'cs1_id', $msgComment, null, [
 					'text' => '(message comment)',
 					'message' => $msgComment,
 					'data' => null,
 				]
 			],
 			'Simple table, message comment with data' => [
-				'ipblocks', 'ipb_reason', 'ipb_id', $ipbfields, $msgComment, [ 'message' => 42 ], [
+				'commentstore1', 'cs1_comment', 'cs1_id', $msgComment, [ 'message' => 42 ], [
 					'text' => '(message comment)',
 					'message' => $msgComment,
 					'data' => [ 'message' => 42 ],
 				]
 			],
 			'Simple table, nested message comment' => [
-				'ipblocks', 'ipb_reason', 'ipb_id', $ipbfields, $nestedMsgComment, null, [
+				'commentstore1', 'cs1_comment', 'cs1_id', $nestedMsgComment, null, [
 					'text' => '(Main Page)',
 					'message' => $nestedMsgComment,
 					'data' => null,
 				]
 			],
 			'Simple table, CommentStoreComment' => [
-				'ipblocks', 'ipb_reason', 'ipb_id', $ipbfields, clone $comStoreComment, [ 'baz' => 'baz' ], [
+				'commentstore1', 'cs1_comment', 'cs1_id', clone $comStoreComment, [ 'baz' => 'baz' ], [
 					'text' => 'comment store comment',
 					'message' => $comStoreComment->message,
 					'data' => [ 'foo' => 'bar' ],
@@ -608,42 +622,42 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 			],
 
 			'Revision, text comment' => [
-				'revision', 'rev_comment', 'rev_id', $revfields, 'text comment', null, [
-					'text' => 'text comment',
+				'commentstore2', 'cs2_comment', 'cs2_id', '{{text}} comment', null, [
+					'text' => '{{text}} comment',
 					'message' => $textCommentMsg,
 					'data' => null,
 				]
 			],
 			'Revision, text comment with data' => [
-				'revision', 'rev_comment', 'rev_id', $revfields, 'text comment', [ 'message' => 42 ], [
-					'text' => 'text comment',
+				'commentstore2', 'cs2_comment', 'cs2_id', '{{text}} comment', [ 'message' => 42 ], [
+					'text' => '{{text}} comment',
 					'message' => $textCommentMsg,
 					'data' => [ 'message' => 42 ],
 				]
 			],
 			'Revision, message comment' => [
-				'revision', 'rev_comment', 'rev_id', $revfields, $msgComment, null, [
+				'commentstore2', 'cs2_comment', 'cs2_id', $msgComment, null, [
 					'text' => '(message comment)',
 					'message' => $msgComment,
 					'data' => null,
 				]
 			],
 			'Revision, message comment with data' => [
-				'revision', 'rev_comment', 'rev_id', $revfields, $msgComment, [ 'message' => 42 ], [
+				'commentstore2', 'cs2_comment', 'cs2_id', $msgComment, [ 'message' => 42 ], [
 					'text' => '(message comment)',
 					'message' => $msgComment,
 					'data' => [ 'message' => 42 ],
 				]
 			],
 			'Revision, nested message comment' => [
-				'revision', 'rev_comment', 'rev_id', $revfields, $nestedMsgComment, null, [
+				'commentstore2', 'cs2_comment', 'cs2_id', $nestedMsgComment, null, [
 					'text' => '(Main Page)',
 					'message' => $nestedMsgComment,
 					'data' => null,
 				]
 			],
 			'Revision, CommentStoreComment' => [
-				'revision', 'rev_comment', 'rev_id', $revfields, clone $comStoreComment, [ 'baz' => 'baz' ], [
+				'commentstore2', 'cs2_comment', 'cs2_id', clone $comStoreComment, [ 'baz' => 'baz' ], [
 					'text' => 'comment store comment',
 					'message' => $comStoreComment->message,
 					'data' => [ 'foo' => 'bar' ],

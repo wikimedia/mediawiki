@@ -62,6 +62,6 @@
 
 		// Override toggle handler because we don't need it for this popup
 		// object at all. Sort of nasty, but it gets the job done.
-		dialog.getPopup().toggle = $.noop;
+		dialog.getPopup().toggle = function () {};
 	}
 }() );

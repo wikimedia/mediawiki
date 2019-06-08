@@ -98,7 +98,7 @@ class SearchOracle extends SearchDatabase {
 		if ( is_null( $this->namespaces ) ) {
 			return '';
 		}
-		if ( !count( $this->namespaces ) ) {
+		if ( $this->namespaces === [] ) {
 			$namespaces = '0';
 		} else {
 			$namespaces = $this->db->makeList( $this->namespaces );

@@ -50,7 +50,7 @@ trait DeprecationHelper {
 	 * the name of the class defining the property, <component> is the MediaWiki component
 	 * (extension, skin etc.) for use in the deprecation warning) or null if it is MediaWiki.
 	 * E.g. [ 'mNewRev' => [ '1.32', 'DifferenceEngine', null ]
-	 * @var string[]
+	 * @var string[][]
 	 */
 	protected $deprecatedPublicProperties = [];
 
@@ -68,7 +68,7 @@ trait DeprecationHelper {
 	protected function deprecatePublicProperty(
 		$property, $version, $class = null, $component = null
 	) {
-		$this->deprecatedPublicProperties[$property] = [ $version, $class ?: get_class(), $component ];
+		$this->deprecatedPublicProperties[$property] = [ $version, $class ?: __CLASS__, $component ];
 	}
 
 	public function __get( $name ) {
@@ -79,7 +79,7 @@ trait DeprecationHelper {
 			return $this->$name;
 		}
 
-		$qualifiedName = get_class() . '::$' . $name;
+		$qualifiedName = __CLASS__ . '::$' . $name;
 		if ( $this->deprecationHelperGetPropertyOwner( $name ) ) {
 			// Someone tried to access a normal non-public property. Try to behave like PHP would.
 			trigger_error( "Cannot access non-public property $qualifiedName", E_USER_ERROR );
@@ -99,7 +99,7 @@ trait DeprecationHelper {
 			return;
 		}
 
-		$qualifiedName = get_class() . '::$' . $name;
+		$qualifiedName = __CLASS__ . '::$' . $name;
 		if ( $this->deprecationHelperGetPropertyOwner( $name ) ) {
 			// Someone tried to access a normal non-public property. Try to behave like PHP would.
 			trigger_error( "Cannot access non-public property $qualifiedName", E_USER_ERROR );

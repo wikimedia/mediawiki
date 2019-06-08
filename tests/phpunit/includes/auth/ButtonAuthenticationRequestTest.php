@@ -4,7 +4,7 @@ namespace MediaWiki\Auth;
 
 /**
  * @group AuthManager
- * @covers MediaWiki\Auth\ButtonAuthenticationRequest
+ * @covers \MediaWiki\Auth\ButtonAuthenticationRequest
  */
 class ButtonAuthenticationRequestTest extends AuthenticationRequestTestCase {
 

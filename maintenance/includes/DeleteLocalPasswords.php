@@ -23,6 +23,7 @@
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 
 require_once __DIR__ . '/../Maintenance.php';
 
@@ -105,6 +106,7 @@ ERROR
 	/**
 	 * Get the master DB handle for the current user batch. This is provided for the benefit
 	 * of authentication extensions which subclass this and work with wiki farms.
+	 * @return IMaintainableDatabase
 	 */
 	protected function getUserDB() {
 		return $this->getDB( DB_MASTER );

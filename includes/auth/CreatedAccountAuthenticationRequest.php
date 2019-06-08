@@ -42,7 +42,7 @@ class CreatedAccountAuthenticationRequest extends AuthenticationRequest {
 	 * @param string $name Username
 	 */
 	public function __construct( $id, $name ) {
-		$this->id = $id;
+		$this->id = (int)$id;
 		$this->username = $name;
 	}
 }

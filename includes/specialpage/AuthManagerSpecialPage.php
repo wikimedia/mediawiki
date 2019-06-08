@@ -157,7 +157,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 				if ( $request->wasPosted() ) {
 					// unique ID in case the same special page is open in multiple browser tabs
 					$uniqueId = MWCryptRand::generateHex( 6 );
-					$key = $key . ':' . $uniqueId;
+					$key .= ':' . $uniqueId;
 
 					$queryParams = [ 'authUniqueId' => $uniqueId ] + $queryParams;
 					$authData = array_diff_key( $request->getValues(),
@@ -181,7 +181,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 
 		$uniqueId = $request->getVal( 'authUniqueId' );
 		if ( $uniqueId ) {
-			$key = $key . ':' . $uniqueId;
+			$key .= ':' . $uniqueId;
 			$authData = $authManager->getAuthenticationSessionData( $key );
 			if ( $authData ) {
 				$authManager->removeAuthenticationSessionData( $key );
@@ -254,7 +254,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 
 		$allReqs = AuthManager::singleton()->getAuthenticationRequests(
 			$this->authAction, $this->getUser() );
-		$this->authRequests = array_filter( $allReqs, function ( $req ) use ( $subPage ) {
+		$this->authRequests = array_filter( $allReqs, function ( $req ) {
 			return !in_array( get_class( $req ), $this->getRequestBlacklist(), true );
 		} );
 	}
@@ -456,7 +456,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 				// Let's just submit the data to AuthManager directly instead.
 				LoggerFactory::getInstance( 'authentication' )
 					->warning( 'Validation error on return', [ 'data' => $form->mFieldData,
-						'status' => $status->getWikiText() ] );
+						'status' => $status->getWikiText( false, false, 'en' ) ] );
 				$status = $this->handleFormSubmit( $form->mFieldData );
 			}
 		}
@@ -710,7 +710,6 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * are shown closer to the bottom; weight defaults to 0. Negative weight is allowed.)
 	 * Keep order if weights are equal.
 	 * @param array &$formDescriptor
-	 * @return array
 	 */
 	protected static function sortFormDescriptorFields( array &$formDescriptor ) {
 		$i = 0;

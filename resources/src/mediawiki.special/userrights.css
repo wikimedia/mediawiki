@@ -1,5 +1,5 @@
 /*!
- * Styling for Special:UserRights
+ * Styles for Special:UserRights
  */
 .mw-userrights-nested {
 	margin-left: 1.2em;
@@ -14,6 +14,7 @@
 .mw-userrights-disabled {
 	color: #72777d;
 }
+
 .mw-userrights-groups * td,
 .mw-userrights-groups * th {
 	padding-right: 1.5em;

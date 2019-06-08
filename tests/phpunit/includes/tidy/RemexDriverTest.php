@@ -1,8 +1,7 @@
 <?php
 
 class RemexDriverTest extends MediaWikiTestCase {
-	static private $remexTidyTestData = [
-		// Tests from Html5Depurate
+	private static $remexTidyTestData = [
 		[
 			'Empty string',
 			"",
@@ -261,6 +260,26 @@ class RemexDriverTest extends MediaWikiTestCase {
 			'p-wrap ended by reparenting (T200827)',
 			'<i><blockquote><p></i>',
 			'<i></i><blockquote><p><i></i></p><p><i></i></p></blockquote>',
+		],
+		[
+			'style tag isn\'t p-wrapped (T186965)',
+			'<style>/* ... */</style>',
+			'<style>/* ... */</style>',
+		],
+		[
+			'link tag isn\'t p-wrapped (T186965)',
+			'<link rel="foo" href="bar" />',
+			'<link rel="foo" href="bar" />',
+		],
+		[
+			'style tag doesn\'t split p-wrapping (T208901)',
+			'foo <style>/* ... */</style> bar',
+			'<p>foo <style>/* ... */</style> bar</p>',
+		],
+		[
+			'link tag doesn\'t split p-wrapping (T208901)',
+			'foo <link rel="foo" href="bar" /> bar',
+			'<p>foo <link rel="foo" href="bar" /> bar</p>',
 		],
 	];
 

@@ -30,7 +30,7 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class CleanupInvalidDbKeys extends Maintenance {
-	/** @var array List of tables to clean up, and the field prefix for that table */
+	/** @var array[] List of tables to clean up, and the field prefix for that table */
 	protected static $tables = [
 		// Data tables
 		[ 'page', 'page' ],
@@ -121,8 +121,7 @@ TEXT
 	 * @param array $tableParams A child array of self::$tables
 	 */
 	protected function cleanupTable( $tableParams ) {
-		$table = $tableParams[0];
-		$prefix = $tableParams[1];
+		list( $table, $prefix ) = $tableParams;
 		$idField = $tableParams['idField'] ?? "{$prefix}_id";
 		$nsField = $tableParams['nsField'] ?? "{$prefix}_namespace";
 		$titleField = $tableParams['titleField'] ?? "{$prefix}_title";

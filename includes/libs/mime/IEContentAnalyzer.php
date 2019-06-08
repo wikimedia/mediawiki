@@ -311,7 +311,6 @@ class IEContentAnalyzer {
 	 */
 	protected $typeTable = [];
 
-	/** constructor */
 	function __construct() {
 		// Construct versioned type arrays from the base type array plus additions
 		$types = $this->baseTypeTable;

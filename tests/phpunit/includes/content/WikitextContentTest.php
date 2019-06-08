@@ -130,7 +130,7 @@ just a test"
 
 		$sectionContent = $content->getSection( $sectionId );
 		if ( is_object( $sectionContent ) ) {
-			$sectionText = $sectionContent->getNativeData();
+			$sectionText = $sectionContent->getText();
 		} else {
 			$sectionText = $sectionContent;
 		}
@@ -182,9 +182,10 @@ just a test"
 	 */
 	public function testReplaceSection( $text, $section, $with, $sectionTitle, $expected ) {
 		$content = $this->newContent( $text );
+		/** @var WikitextContent $c */
 		$c = $content->replaceSection( $section, $this->newContent( $with ), $sectionTitle );
 
-		$this->assertEquals( $expected, is_null( $c ) ? null : $c->getNativeData() );
+		$this->assertEquals( $expected, $c ? $c->getText() : null );
 	}
 
 	/**
@@ -194,7 +195,7 @@ just a test"
 		$content = $this->newContent( 'hello world' );
 		$content = $content->addSectionHeader( 'test' );
 
-		$this->assertEquals( "== test ==\n\nhello world", $content->getNativeData() );
+		$this->assertEquals( "== test ==\n\nhello world", $content->getText() );
 	}
 
 	public static function dataPreSaveTransform() {
@@ -360,6 +361,10 @@ just a test"
 		$this->assertEquals( CONTENT_MODEL_WIKITEXT, $content->getContentHandler()->getModelID() );
 	}
 
+	/**
+	 * @covers ParserOptions::getRedirectTarget
+	 * @covers ParserOptions::setRedirectTarget
+	 */
 	public function testRedirectParserOption() {
 		$title = Title::newFromText( 'testRedirectParserOption' );
 

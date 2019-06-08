@@ -26,8 +26,10 @@
  * @ingroup Pager
  */
 abstract class TablePager extends IndexPager {
+	/** @var string */
 	protected $mSort;
 
+	/** @var stdClass */
 	protected $mCurrentRow;
 
 	public function __construct( IContextSource $context = null ) {
@@ -110,7 +112,7 @@ abstract class TablePager extends IndexPager {
 	 * @protected
 	 * @return string
 	 */
-	function getStartBody() {
+	protected function getStartBody() {
 		$sortClass = $this->getSortHeaderClass();
 
 		$s = '';
@@ -130,12 +132,12 @@ abstract class TablePager extends IndexPager {
 					// We don't actually know in which direction other fields will be sorted by default…
 					if ( $this->mDefaultDirection == IndexPager::DIR_DESCENDING ) {
 						$linkType = 'asc';
-						$class = "$sortClass TablePager_sort-descending";
+						$class = "$sortClass mw-datatable-is-sorted mw-datatable-is-descending";
 						$query['asc'] = '1';
 						$query['desc'] = '';
 					} else {
 						$linkType = 'desc';
-						$class = "$sortClass TablePager_sort-ascending";
+						$class = "$sortClass mw-datatable-is-sorted mw-datatable-is-ascending";
 						$query['asc'] = '';
 						$query['desc'] = '1';
 					}
@@ -150,7 +152,7 @@ abstract class TablePager extends IndexPager {
 
 		$tableClass = $this->getTableClass();
 		$ret = Html::openElement( 'table', [
-			'class' => "mw-datatable $tableClass" ]
+			'class' => " $tableClass" ]
 		);
 		$ret .= Html::rawElement( 'thead', [], Html::rawElement( 'tr', [], "\n" . $s . "\n" ) );
 		$ret .= Html::openElement( 'tbody' ) . "\n";
@@ -162,7 +164,7 @@ abstract class TablePager extends IndexPager {
 	 * @protected
 	 * @return string
 	 */
-	function getEndBody() {
+	protected function getEndBody() {
 		return "</tbody></table>\n";
 	}
 
@@ -264,10 +266,11 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
+	 * TablePager relies on `mw-datatable` for styling, see T214208
 	 * @return string
 	 */
 	protected function getTableClass() {
-		return 'TablePager';
+		return 'mw-datatable';
 	}
 
 	/**
@@ -310,6 +313,9 @@ abstract class TablePager extends IndexPager {
 				// * table_pager_prev
 				// * table_pager_next
 				// * table_pager_last
+				'classes' => [ 'TablePager-button-' . $type ],
+				'flags' => [ 'progressive' ],
+				'framed' => false,
 				'label' => $this->msg( 'table_pager_' . $type )->text(),
 				'href' => $queries[ $type ] ?
 					$title->getLinkURL( $queries[ $type ] + $this->getDefaultQuery() ) :

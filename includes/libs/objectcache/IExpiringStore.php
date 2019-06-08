@@ -21,7 +21,7 @@
  */
 
 /**
- * Generic base class for storage interfaces.
+ * Generic interface for lightweight expiring object stores.
  *
  * Provides convenient TTL constants.
  *
@@ -44,16 +44,24 @@ interface IExpiringStore {
 
 	const TTL_INDEFINITE = 0;
 
-	// Attribute and QoS constants; higher QOS values with the same prefix rank higher...
-	// Medium attributes constants related to emulation or media type
+	// Emulation/fallback medium attribute (e.g. SQLBagOStuff)
 	const ATTR_EMULATION = 1;
+	// Quality of service constants for ATTR_EMULATION (higher means faster)
 	const QOS_EMULATION_SQL = 1;
-	// Medium attributes constants related to replica consistency
-	const ATTR_SYNCWRITES = 2; // SYNC_WRITES flag support
+
+	// Replica synchronization/consistency attribute of medium when SYNC_WRITES is used
+	const ATTR_SYNCWRITES = 2;
+	// Quality of service constants for ATTR_SYNCWRITES (higher means more consistent)
 	const QOS_SYNCWRITES_NONE = 1; // replication only supports eventual consistency or less
 	const QOS_SYNCWRITES_BE = 2; // best effort synchronous with limited retries
 	const QOS_SYNCWRITES_QC = 3; // write quorum applied directly to state machines where R+W > N
 	const QOS_SYNCWRITES_SS = 4; // strict-serializable, nodes refuse reads if possible stale
+
 	// Generic "unknown" value that is useful for comparisons (e.g. always good enough)
 	const QOS_UNKNOWN = INF;
+
+	const ERR_NONE = 0; // no error
+	const ERR_NO_RESPONSE = 1; // no response
+	const ERR_UNREACHABLE = 2; // can't connect
+	const ERR_UNEXPECTED = 3; // response gave some error
 }

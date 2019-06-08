@@ -25,6 +25,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/dumpIterator.php';
 
 /**
@@ -40,9 +42,9 @@ class PreprocessDump extends DumpIterator {
 	public $mPPNodeCount = 0;
 
 	public function getStripList() {
-		global $wgParser;
+		$parser = MediaWikiServices::getInstance()->getParser();
 
-		return $wgParser->getStripList();
+		return $parser->getStripList();
 	}
 
 	public function __construct() {
@@ -86,7 +88,7 @@ class PreprocessDump extends DumpIterator {
 		}
 
 		try {
-			$this->mPreprocessor->preprocessToObj( strval( $content->getNativeData() ), 0 );
+			$this->mPreprocessor->preprocessToObj( strval( $content->getText() ), 0 );
 		} catch ( Exception $e ) {
 			$this->error( "Caught exception " . $e->getMessage() . " in "
 				. $rev->getTitle()->getPrefixedText() );

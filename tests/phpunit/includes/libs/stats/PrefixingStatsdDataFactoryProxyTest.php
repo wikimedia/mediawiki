@@ -31,7 +31,7 @@ class PrefixingStatsdDataFactoryProxyTest extends PHPUnit\Framework\TestCase {
 		);
 		$innerFactory->expects( $this->once() )
 			->method( $method )
-			->with( 'testprefix.' . 'metricname' );
+			->with( 'testprefix.metricname' );
 
 		$proxy = new PrefixingStatsdDataFactoryProxy( $innerFactory, 'testprefix' );
 		// 1,2,3,4 simply makes sure we provide enough parameters, without caring what they are
@@ -48,7 +48,7 @@ class PrefixingStatsdDataFactoryProxyTest extends PHPUnit\Framework\TestCase {
 		);
 		$innerFactory->expects( $this->once() )
 			->method( $method )
-			->with( 'testprefix.' . 'metricname' );
+			->with( 'testprefix.metricname' );
 
 		$proxy = new PrefixingStatsdDataFactoryProxy( $innerFactory, 'testprefix...' );
 		// 1,2,3,4 simply makes sure we provide enough parameters, without caring what they are

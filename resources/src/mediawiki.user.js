@@ -136,10 +136,21 @@
 		},
 
 		/**
-		 * Get an automatically generated random ID (persisted in sessionStorage)
+		 * Retrieve a random ID persisted in sessionStorage, generating it if needed
 		 *
-		 * This ID is ephemeral for everyone, staying in their browser only until they
-		 * close their browsing session.
+		 * This ID is stored in sessionStorage and persists within a single tab,
+		 * including between page views through links and form submissions,
+		 * and when going forwards/backwards in browser history, and when restoring
+		 * a closed tab, or restoring a closed browser session.
+		 *
+		 * This is different from session cookies, because it is not shared between
+		 * tabs of the same browser. Two simultaneous pageviews in the same browser
+		 * can have different session IDs. The ID is also not re-used when opening
+		 * a new tab to a website after fully closing others.
+		 *
+		 * See https://phabricator.wikimedia.org/T118063#4547178 and
+		 * https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage
+		 * for more information.
 		 *
 		 * @return {string} Random session ID
 		 */
@@ -173,7 +184,7 @@
 			var userGroups = mw.config.get( 'wgUserGroups', [] );
 
 			// Uses promise for backwards compatibility
-			return $.Deferred().resolve( userGroups ).done( callback );
+			return $.Deferred().resolve( userGroups ).then( callback );
 		},
 
 		/**
@@ -186,14 +197,8 @@
 			return getUserInfo().then(
 				function ( userInfo ) { return userInfo.rights; },
 				function () { return []; }
-			).done( callback );
+			).then( callback );
 		}
 	} );
-
-	/**
-	 * @method stickyRandomId
-	 * @deprecated since 1.32 use getPageviewToken instead
-	 */
-	mw.log.deprecate( mw.user, 'stickyRandomId', mw.user.getPageviewToken, 'Please use getPageviewToken instead' );
 
 }() );

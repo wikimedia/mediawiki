@@ -17,7 +17,7 @@ class TestSetup {
 		global $wgDevelopmentWarnings;
 		global $wgSessionProviders, $wgSessionPbkdf2Iterations;
 		global $wgJobTypeConf;
-		global $wgAuthManagerConfig, $wgAuth;
+		global $wgAuthManagerConfig;
 
 		// wfWarn should cause tests to fail
 		$wgDevelopmentWarnings = true;
@@ -87,7 +87,6 @@ class TestSetup {
 			],
 			'secondaryauth' => [],
 		];
-		$wgAuth = new MediaWiki\Auth\AuthManagerAuthPlugin();
 
 		// T46192 Do not attempt to send a real e-mail
 		Hooks::clear( 'AlternateUserMailer' );

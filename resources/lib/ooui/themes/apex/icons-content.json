@@ -14,6 +14,9 @@
 				"rtl": "../wikimediaui/images/icons/articles-rtl.svg"
 			}
 		},
+		"articleAdd": {
+			"file": "../wikimediaui/images/icons/articleAdd.svg"
+		},
 		"articleCheck": {
 			"file": "../wikimediaui/images/icons/articleCheck.svg"
 		},
@@ -48,6 +51,9 @@
 					"ar": "../wikimediaui/images/icons/lightbulb.svg"
 				}
 			}
+		},
+		"robot": {
+			"file": "../wikimediaui/images/icons/robot.svg"
 		},
 		"tag": {
 			"file": {

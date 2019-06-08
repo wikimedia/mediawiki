@@ -7,7 +7,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group AuthManager
  * @group Database
- * @covers MediaWiki\Auth\CheckBlocksSecondaryAuthenticationProvider
+ * @covers \MediaWiki\Auth\CheckBlocksSecondaryAuthenticationProvider
  */
 class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	public function testConstructor() {

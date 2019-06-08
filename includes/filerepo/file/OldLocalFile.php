@@ -325,14 +325,14 @@ class OldLocalFile extends LocalFile {
 	 * @return string
 	 */
 	function getRel() {
-		return 'archive/' . $this->getHashPath() . $this->getArchiveName();
+		return $this->getArchiveRel( $this->getArchiveName() );
 	}
 
 	/**
 	 * @return string
 	 */
 	function getUrlRel() {
-		return 'archive/' . $this->getHashPath() . rawurlencode( $this->getArchiveName() );
+		return $this->getArchiveRel( rawurlencode( $this->getArchiveName() ) );
 	}
 
 	function upgradeRow() {
@@ -406,23 +406,22 @@ class OldLocalFile extends LocalFile {
 	 * Upload a file directly into archive. Generally for Special:Import.
 	 *
 	 * @param string $srcPath File system path of the source file
-	 * @param string $archiveName Full archive name of the file, in the form
-	 *   $timestamp!$filename, where $filename must match $this->getName()
 	 * @param string $timestamp
 	 * @param string $comment
 	 * @param User $user
 	 * @return Status
 	 */
-	function uploadOld( $srcPath, $archiveName, $timestamp, $comment, $user ) {
+	public function uploadOld( $srcPath, $timestamp, $comment, $user ) {
 		$this->lock();
 
-		$dstRel = 'archive/' . $this->getHashPath() . $archiveName;
+		$archiveName = $this->getArchiveName();
+		$dstRel = $this->getArchiveRel( $archiveName );
 		$status = $this->publishTo( $srcPath, $dstRel );
 
-		if ( $status->isGood() ) {
-			if ( !$this->recordOldUpload( $srcPath, $archiveName, $timestamp, $comment, $user ) ) {
-				$status->fatal( 'filenotfound', $srcPath );
-			}
+		if ( $status->isGood() &&
+			!$this->recordOldUpload( $srcPath, $archiveName, $timestamp, $comment, $user )
+		) {
+			$status->fatal( 'filenotfound', $srcPath );
 		}
 
 		$this->unlock();

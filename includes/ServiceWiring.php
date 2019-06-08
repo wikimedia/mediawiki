@@ -39,6 +39,7 @@
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
@@ -46,10 +47,13 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
+use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreFactory;
@@ -80,10 +84,16 @@ return [
 		);
 	},
 
+	'BlockRestrictionStore' => function ( MediaWikiServices $services ) : BlockRestrictionStore {
+		return new BlockRestrictionStore(
+			$services->getDBLoadBalancer()
+		);
+	},
+
 	'CommentStore' => function ( MediaWikiServices $services ) : CommentStore {
 		return new CommentStore(
 			$services->getContentLanguage(),
-			$services->getMainConfig()->get( 'CommentTableSchemaMigrationStage' )
+			MIGRATION_NEW
 		);
 	},
 
@@ -147,7 +157,10 @@ return [
 		$lbConf = MWLBFactory::applyDefaultConfig(
 			$mainConfig->get( 'LBFactoryConf' ),
 			$mainConfig,
-			$services->getConfiguredReadOnlyMode()
+			$services->getConfiguredReadOnlyMode(),
+			$services->getLocalServerObjectCache(),
+			$services->getMainObjectStash(),
+			$services->getMainWANObjectCache()
 		);
 		$class = MWLBFactory::getLBFactoryClass( $lbConf );
 
@@ -198,12 +211,12 @@ return [
 	},
 
 	'LinkRenderer' => function ( MediaWikiServices $services ) : LinkRenderer {
-		global $wgUser;
-
 		if ( defined( 'MW_NO_SESSION' ) ) {
 			return $services->getLinkRendererFactory()->create();
 		} else {
-			return $services->getLinkRendererFactory()->createForUser( $wgUser );
+			return $services->getLinkRendererFactory()->createForUser(
+				RequestContext::getMain()->getUser()
+			);
 		}
 	},
 
@@ -361,7 +374,9 @@ return [
 			$services->getMagicWordFactory(),
 			$services->getContentLanguage(),
 			wfUrlProtocols(),
-			$services->getSpecialPageFactory()
+			$services->getSpecialPageFactory(),
+			$services->getMainConfig(),
+			$services->getLinkRendererFactory()
 		);
 	},
 
@@ -381,6 +396,16 @@ return [
 			$services->getStatsdDataFactory(),
 			$wiki
 		);
+	},
+
+	'PermissionManager' => function ( MediaWikiServices $services ) : PermissionManager {
+		$config = $services->getMainConfig();
+		return new PermissionManager(
+			$services->getSpecialPageFactory(),
+			$config->get( 'WhitelistRead' ),
+			$config->get( 'WhitelistReadRegexp' ),
+			$config->get( 'EmailConfirmToEdit' ),
+			$config->get( 'BlockDisablesLogin' ) );
 	},
 
 	'PreferencesFactory' => function ( MediaWikiServices $services ) : PreferencesFactory {
@@ -410,6 +435,20 @@ return [
 		);
 	},
 
+	'ResourceLoader' => function ( MediaWikiServices $services ) : ResourceLoader {
+		global $IP;
+		$config = $services->getMainConfig();
+
+		$rl = new ResourceLoader(
+			$config,
+			LoggerFactory::getInstance( 'resourceloader' )
+		);
+		$rl->addSource( $config->get( 'ResourceLoaderSources' ) );
+		$rl->register( include "$IP/resources/Resources.php" );
+
+		return $rl;
+	},
+
 	'RevisionFactory' => function ( MediaWikiServices $services ) : RevisionFactory {
 		return $services->getRevisionStore();
 	},
@@ -419,9 +458,12 @@ return [
 	},
 
 	'RevisionRenderer' => function ( MediaWikiServices $services ) : RevisionRenderer {
-		$renderer = new RevisionRenderer( $services->getDBLoadBalancer() );
-		$renderer->setLogger( LoggerFactory::getInstance( 'SaveParse' ) );
+		$renderer = new RevisionRenderer(
+			$services->getDBLoadBalancer(),
+			$services->getSlotRoleRegistry()
+		);
 
+		$renderer->setLogger( LoggerFactory::getInstance( 'SaveParse' ) );
 		return $renderer;
 	},
 
@@ -435,6 +477,7 @@ return [
 			$services->getDBLoadBalancerFactory(),
 			$services->getBlobStoreFactory(),
 			$services->getNameTableStoreFactory(),
+			$services->getSlotRoleRegistry(),
 			$services->getMainWANObjectCache(),
 			$services->getCommentStore(),
 			$services->getActorMigration(),
@@ -475,14 +518,10 @@ return [
 	},
 
 	'SiteLookup' => function ( MediaWikiServices $services ) : SiteLookup {
-		$cacheFile = $services->getMainConfig()->get( 'SitesCacheFile' );
-
-		if ( $cacheFile !== false ) {
-			return new FileBasedSiteLookup( $cacheFile );
-		} else {
-			// Use the default SiteStore as the SiteLookup implementation for now
-			return $services->getSiteStore();
-		}
+		// Use SiteStore as the SiteLookup as well. This was originally separated
+		// to allow for a cacheable read-only interface (using FileBasedSiteLookup),
+		// but this was never used. SiteStore has caching (see below).
+		return $services->getSiteStore();
 	},
 
 	'SiteStore' => function ( MediaWikiServices $services ) : SiteStore {
@@ -516,6 +555,22 @@ return [
 		} );
 
 		return $factory;
+	},
+
+	'SlotRoleRegistry' => function ( MediaWikiServices $services ) : SlotRoleRegistry {
+		$config = $services->getMainConfig();
+
+		$registry = new SlotRoleRegistry(
+			$services->getNameTableStoreFactory()->getSlotRoles()
+		);
+
+		$registry->defineRole( 'main', function () use ( $config ) {
+			return new MainSlotRoleHandler(
+				$config->get( 'NamespaceContentModels' )
+			);
+		} );
+
+		return $registry;
 	},
 
 	'SpecialPageFactory' => function ( MediaWikiServices $services ) : SpecialPageFactory {
@@ -568,13 +623,16 @@ return [
 		return new WatchedItemQueryService(
 			$services->getDBLoadBalancer(),
 			$services->getCommentStore(),
-			$services->getActorMigration()
+			$services->getActorMigration(),
+			$services->getWatchedItemStore()
 		);
 	},
 
 	'WatchedItemStore' => function ( MediaWikiServices $services ) : WatchedItemStore {
 		$store = new WatchedItemStore(
 			$services->getDBLoadBalancerFactory(),
+			JobQueueGroup::singleton(),
+			$services->getMainObjectStash(),
 			new HashBagOStuff( [ 'maxKeys' => 100 ] ),
 			$services->getReadOnlyMode(),
 			$services->getMainConfig()->get( 'UpdateRowsPerQuery' )

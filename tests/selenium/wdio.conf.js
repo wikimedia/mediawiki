@@ -1,8 +1,20 @@
 const fs = require( 'fs' ),
 	path = require( 'path' ),
-	saveScreenshot = require( 'wdio-mediawiki' ).saveScreenshot,
-	logPath = process.env.LOG_DIR || __dirname + '/log';
+	logPath = process.env.LOG_DIR || path.join( __dirname, '/log' );
 
+let ffmpeg;
+
+// get current test title and clean it, to use it as file name
+function fileName( title ) {
+	return encodeURIComponent( title.replace( /\s+/g, '-' ) );
+}
+
+// build file path
+function filePath( test, screenshotPath, extension ) {
+	return path.join( screenshotPath, `${fileName( test.parent )}-${fileName( test.title )}.${extension}` );
+}
+
+// relative path
 function relPath( foo ) {
 	return path.resolve( __dirname, '../..', foo );
 }
@@ -105,7 +117,8 @@ exports.config = {
 
 	// Setting this enables automatic screenshots for when a browser command fails
 	// It is also used by afterTest for capturig failed assertions.
-	screenshotPath: logPath,
+	// We disable it since we have our screenshot handler in the afterTest hook.
+	screenshotPath: null,
 
 	// Default timeout for each waitFor* command.
 	waitforTimeout: 10 * 1000,
@@ -136,15 +149,69 @@ exports.config = {
 	// See also: http://webdriver.io/guide/testrunner/configurationfile.html
 
 	/**
+	* Function to be executed before a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
+	* @param {Object} test test details
+	*/
+	beforeTest: function ( test ) {
+		if ( process.env.DISPLAY && process.env.DISPLAY.startsWith( ':' ) ) {
+			var logBuffer;
+			let videoPath = filePath( test, logPath, 'mp4' );
+			const { spawn } = require( 'child_process' );
+			ffmpeg = spawn( 'ffmpeg', [
+				'-f', 'x11grab', //  grab the X11 display
+				'-video_size', '1280x1024', // video size
+				'-i', process.env.DISPLAY, // input file url
+				'-loglevel', 'error', // log only errors
+				'-y', // overwrite output files without asking
+				'-pix_fmt', 'yuv420p', // QuickTime Player support, "Use -pix_fmt yuv420p for compatibility with outdated media players"
+				videoPath // output file
+			] );
+
+			logBuffer = function ( buffer, prefix ) {
+				let lines = buffer.toString().trim().split( '\n' );
+				lines.forEach( function ( line ) {
+					console.log( prefix + line );
+				} );
+			};
+
+			ffmpeg.stdout.on( 'data', ( data ) => {
+				logBuffer( data, 'ffmpeg stdout: ' );
+			} );
+
+			ffmpeg.stderr.on( 'data', ( data ) => {
+				logBuffer( data, 'ffmpeg stderr: ' );
+			} );
+
+			ffmpeg.on( 'close', ( code, signal ) => {
+				console.log( '\n\tVideo location:', videoPath, '\n' );
+				if ( code !== null ) {
+					console.log( `\tffmpeg exited with code ${code} ${videoPath}` );
+				}
+				if ( signal !== null ) {
+					console.log( `\tffmpeg received signal ${signal} ${videoPath}` );
+				}
+			} );
+		}
+	},
+
+	/**
 	 * Save a screenshot when test fails.
 	 *
 	 * @param {Object} test Mocha Test object
 	 */
 	afterTest: function ( test ) {
-		var filePath;
-		if ( !test.passed ) {
-			filePath = saveScreenshot( test.title );
-			console.log( '\n\tScreenshot: ' + filePath + '\n' );
+		if ( ffmpeg ) {
+			// stop video recording
+			ffmpeg.kill( 'SIGINT' );
 		}
+
+		// if test passed, ignore, else take and save screenshot
+		if ( test.passed ) {
+			return;
+		}
+		// save screenshot
+		let screenshotfile = filePath( test, logPath, 'png' );
+		browser.saveScreenshot( screenshotfile );
+		console.log( '\n\tScreenshot location:', screenshotfile, '\n' );
 	}
 };

@@ -199,7 +199,7 @@ class SearchSqlite extends SearchDatabase {
 		if ( is_null( $this->namespaces ) ) {
 			return '';  # search all
 		}
-		if ( !count( $this->namespaces ) ) {
+		if ( $this->namespaces === [] ) {
 			$namespaces = '0';
 		} else {
 			$namespaces = $this->db->makeList( $this->namespaces );

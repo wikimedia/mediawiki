@@ -63,19 +63,16 @@ class ResourceLoaderContext implements MessageLocalizer {
 		$this->request = $request;
 		$this->logger = $resourceLoader->getLogger();
 
-		// Future developers: Use WebRequest::getRawVal() instead getVal().
+		// Future developers: Use WebRequest::getRawVal() instead of getVal().
 		// The getVal() method performs slow Language+UTF logic. (f303bb9360)
 
 		// List of modules
 		$modules = $request->getRawVal( 'modules' );
-		$this->modules = $modules ? self::expandModuleNames( $modules ) : [];
+		$this->modules = $modules ? ResourceLoader::expandModuleNames( $modules ) : [];
 
 		// Various parameters
 		$this->user = $request->getRawVal( 'user' );
-		$this->debug = $request->getFuzzyBool(
-			'debug',
-			$resourceLoader->getConfig()->get( 'ResourceLoaderDebug' )
-		);
+		$this->debug = $request->getRawVal( 'debug' ) === 'true';
 		$this->only = $request->getRawVal( 'only', null );
 		$this->version = $request->getRawVal( 'version', null );
 		$this->raw = $request->getFuzzyBool( 'raw' );
@@ -89,53 +86,38 @@ class ResourceLoaderContext implements MessageLocalizer {
 		$skinnames = Skin::getSkinNames();
 		// If no skin is specified, or we don't recognize the skin, use the default skin
 		if ( !$this->skin || !isset( $skinnames[$this->skin] ) ) {
-			$this->skin = $resourceLoader->getConfig()->get( 'DefaultSkin' );
+			$this->skin = $this->getConfig()->get( 'DefaultSkin' );
 		}
 	}
 
 	/**
-	 * Expand a string of the form `jquery.foo,bar|jquery.ui.baz,quux` to
-	 * an array of module names like `[ 'jquery.foo', 'jquery.bar',
-	 * 'jquery.ui.baz', 'jquery.ui.quux' ]`.
+	 * Reverse the process done by ResourceLoader::makePackedModulesString().
 	 *
-	 * This process is reversed by ResourceLoader::makePackedModulesString().
-	 *
+	 * @deprecated since 1.33 Use ResourceLoader::expandModuleNames instead.
 	 * @param string $modules Packed module name list
 	 * @return array Array of module names
+	 * @codeCoverageIgnore
 	 */
 	public static function expandModuleNames( $modules ) {
-		$retval = [];
-		$exploded = explode( '|', $modules );
-		foreach ( $exploded as $group ) {
-			if ( strpos( $group, ',' ) === false ) {
-				// This is not a set of modules in foo.bar,baz notation
-				// but a single module
-				$retval[] = $group;
-			} else {
-				// This is a set of modules in foo.bar,baz notation
-				$pos = strrpos( $group, '.' );
-				if ( $pos === false ) {
-					// Prefixless modules, i.e. without dots
-					$retval = array_merge( $retval, explode( ',', $group ) );
-				} else {
-					// We have a prefix and a bunch of suffixes
-					$prefix = substr( $group, 0, $pos ); // 'foo'
-					$suffixes = explode( ',', substr( $group, $pos + 1 ) ); // [ 'bar', 'baz' ]
-					foreach ( $suffixes as $suffix ) {
-						$retval[] = "$prefix.$suffix";
-					}
-				}
-			}
-		}
-		return $retval;
+		wfDeprecated( __METHOD__, '1.33' );
+		return ResourceLoader::expandModuleNames( $modules );
 	}
 
 	/**
 	 * Return a dummy ResourceLoaderContext object suitable for passing into
 	 * things that don't "really" need a context.
+	 *
+	 * Use cases:
+	 * - Unit tests (deprecated, create empty instance directly or use RLTestCase).
+	 *
 	 * @return ResourceLoaderContext
 	 */
 	public static function newDummyContext() {
+		// This currently creates a non-empty instance of ResourceLoader (all modules registered),
+		// but that's probably not needed. So once that moves into ServiceWiring, this'll
+		// become more like the EmptyResourceLoader class we have in PHPUnit tests, which
+		// is what this should've had originally. If this turns out to be untrue, change to:
+		// `MediaWikiServices::getInstance()->getResourceLoader()` instead.
 		return new self( new ResourceLoader(
 			MediaWikiServices::getInstance()->getMainConfig(),
 			LoggerFactory::getInstance( 'resourceloader' )
@@ -147,6 +129,13 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 */
 	public function getResourceLoader() {
 		return $this->resourceLoader;
+	}
+
+	/**
+	 * @return Config
+	 */
+	public function getConfig() {
+		return $this->getResourceLoader()->getConfig();
 	}
 
 	/**
@@ -181,7 +170,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 			$lang = $this->getRequest()->getRawVal( 'lang', '' );
 			// Stricter version of RequestContext::sanitizeLangCode()
 			if ( !Language::isValidBuiltInCode( $lang ) ) {
-				$lang = $this->getResourceLoader()->getConfig()->get( 'LanguageCode' );
+				$lang = $this->getConfig()->get( 'LanguageCode' );
 			}
 			$this->language = $lang;
 		}

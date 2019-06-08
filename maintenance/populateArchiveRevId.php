@@ -198,7 +198,7 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 		$rev = null;
 
 		$mainPage = Title::newMainPage();
-		$pageId = $mainPage ? $mainPage->getArticleId() : null;
+		$pageId = $mainPage ? $mainPage->getArticleID() : null;
 		if ( $pageId ) {
 			$rev = $dbw->selectRow(
 				'revision',

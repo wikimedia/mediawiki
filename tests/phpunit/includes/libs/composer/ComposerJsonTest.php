@@ -1,14 +1,13 @@
 <?php
 
-class ComposerJsonTest extends MediaWikiTestCase {
+class ComposerJsonTest extends PHPUnit\Framework\TestCase {
 
 	private $json, $json2;
 
 	public function setUp() {
 		parent::setUp();
-		global $IP;
-		$this->json = "$IP/tests/phpunit/data/composer/composer.json";
-		$this->json2 = "$IP/tests/phpunit/data/composer/new-composer.json";
+		$this->json = __DIR__ . "/../../../data/composer/composer.json";
+		$this->json2 = __DIR__ . "/../../../data/composer/new-composer.json";
 	}
 
 	/**
@@ -17,12 +16,12 @@ class ComposerJsonTest extends MediaWikiTestCase {
 	 */
 	public function testGetRequiredDependencies() {
 		$json = new ComposerJson( $this->json );
-		$this->assertArrayEquals( [
+		$this->assertEquals( [
 			'cdb/cdb' => '1.0.0',
 			'cssjanus/cssjanus' => '1.1.1',
 			'leafo/lessphp' => '0.5.0',
 			'psr/log' => '1.0.0',
-		], $json->getRequiredDependencies(), false, true );
+		], $json->getRequiredDependencies() );
 	}
 
 	public static function provideNormalizeVersion() {

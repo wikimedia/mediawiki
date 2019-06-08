@@ -31,7 +31,9 @@ class JobQueueTest extends MediaWikiTestCase {
 			$baseConfig = [ 'class' => JobQueueDBSingle::class ];
 		}
 		$baseConfig['type'] = 'null';
-		$baseConfig['wiki'] = wfWikiID();
+		$baseConfig['domain'] = WikiMap::getCurrentWikiDbDomain()->getId();
+		$baseConfig['stash'] = new HashBagOStuff();
+		$baseConfig['wanCache'] = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
 		$variants = [
 			'queueRand' => [ 'order' => 'random', 'claimTTL' => 0 ],
 			'queueRandTTL' => [ 'order' => 'random', 'claimTTL' => 10 ],
@@ -75,6 +77,10 @@ class JobQueueTest extends MediaWikiTestCase {
 			$this->markTestSkipped( $desc );
 		}
 		$this->assertEquals( wfWikiID(), $queue->getWiki(), "Proper wiki ID ($desc)" );
+		$this->assertEquals(
+			WikiMap::getCurrentWikiDbDomain()->getId(),
+			$queue->getDomain(),
+			"Proper wiki ID ($desc)" );
 	}
 
 	/**
@@ -388,6 +394,6 @@ class JobQueueDBSingle extends JobQueueDB {
 	protected function getDB( $index ) {
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		// Override to not use CONN_TRX_AUTOCOMMIT so that we see the same temporary `job` table
-		return $lb->getConnection( $index, [], $this->wiki );
+		return $lb->getConnection( $index, [], $this->domain );
 	}
 }

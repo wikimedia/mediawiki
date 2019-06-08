@@ -3,6 +3,8 @@
 define( 'NS_UNITTEST', 5600 );
 define( 'NS_UNITTEST_TALK', 5601 );
 
+use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\TestingAccessWrapper;
@@ -11,6 +13,10 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  */
 class UserTest extends MediaWikiTestCase {
+
+	/** Constant for self::testIsBlockedFrom */
+	const USER_TALK_PAGE = '<user talk page>';
+
 	/**
 	 * @var User
 	 */
@@ -22,7 +28,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->setMwGlobals( [
 			'wgGroupPermissions' => [],
 			'wgRevokePermissions' => [],
-			'wgActorTableSchemaMigrationStage' => SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
+			'wgActorTableSchemaMigrationStage' => SCHEMA_COMPAT_NEW,
 		] );
 		$this->overrideMwServices();
 
@@ -263,6 +269,7 @@ class UserTest extends MediaWikiTestCase {
 
 		// increase the edit count
 		$user->incEditCount();
+		$user->clearInstanceCache();
 
 		$this->assertEquals(
 			4,
@@ -386,6 +393,7 @@ class UserTest extends MediaWikiTestCase {
 				],
 			],
 		] );
+		$this->hideDeprecated( 'User::getPasswordValidity' );
 
 		$user = static::getTestUser()->getUser();
 
@@ -575,6 +583,7 @@ class UserTest extends MediaWikiTestCase {
 	 * When a user is autoblocked a cookie is set with which to track them
 	 * in case they log out and change IP addresses.
 	 * @link https://phabricator.wikimedia.org/T5233
+	 * @covers User::trackBlockWithCookie
 	 */
 	public function testAutoblockCookies() {
 		// Set up the bits of global configuration that we use.
@@ -590,7 +599,6 @@ class UserTest extends MediaWikiTestCase {
 		] );
 
 		// 1. Log in a test user, and block them.
-		$userBlocker = $this->getTestSysop()->getUser();
 		$user1tmp = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
 		$request1->getSession()->setUser( $user1tmp );
@@ -601,7 +609,6 @@ class UserTest extends MediaWikiTestCase {
 		] );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 		$block->setTarget( $user1tmp );
-		$block->setBlocker( $userBlocker );
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user1 = User::newFromSession( $request1 );
@@ -657,6 +664,7 @@ class UserTest extends MediaWikiTestCase {
 	/**
 	 * Make sure that no cookie is set to track autoblocked users
 	 * when $wgCookieSetOnAutoblock is false.
+	 * @covers User::trackBlockWithCookie
 	 */
 	public function testAutoblockCookiesDisabled() {
 		// Set up the bits of global configuration that we use.
@@ -672,14 +680,12 @@ class UserTest extends MediaWikiTestCase {
 		] );
 
 		// 1. Log in a test user, and block them.
-		$userBlocker = $this->getTestSysop()->getUser();
 		$testUser = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
 		$request1->getSession()->setUser( $testUser );
 		$block = new Block( [ 'enableAutoblock' => true ] );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 		$block->setTarget( $testUser );
-		$block->setBlocker( $userBlocker );
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user = User::newFromSession( $request1 );
@@ -704,6 +710,7 @@ class UserTest extends MediaWikiTestCase {
 	 * When a user is autoblocked and a cookie is set to track them, the expiry time of the cookie
 	 * should match the block's expiry, to a maximum of 24 hours. If the expiry time is changed,
 	 * the cookie's should change with it.
+	 * @covers User::trackBlockWithCookie
 	 */
 	public function testAutoblockCookieInfiniteExpiry() {
 		$this->setMwGlobals( [
@@ -718,14 +725,12 @@ class UserTest extends MediaWikiTestCase {
 		] );
 
 		// 1. Log in a test user, and block them indefinitely.
-		$userBlocker = $this->getTestSysop()->getUser();
 		$user1Tmp = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
 		$request1->getSession()->setUser( $user1Tmp );
 		$block = new Block( [ 'enableAutoblock' => true, 'expiry' => 'infinity' ] );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 		$block->setTarget( $user1Tmp );
-		$block->setBlocker( $userBlocker );
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user1 = User::newFromSession( $request1 );
@@ -752,7 +757,7 @@ class UserTest extends MediaWikiTestCase {
 
 		// 3. Change the block's expiry (to 2 hours), and the cookie's should be changed also.
 		$newExpiry = wfTimestamp() + 2 * 60 * 60;
-		$block->mExpiry = wfTimestamp( TS_MW, $newExpiry );
+		$block->setExpiry( wfTimestamp( TS_MW, $newExpiry ) );
 		$block->update();
 		$user2tmp = $this->getTestUser()->getUser();
 		$request2 = new FauxRequest();
@@ -768,6 +773,9 @@ class UserTest extends MediaWikiTestCase {
 		$block->delete();
 	}
 
+	/**
+	 * @covers User::getBlockedStatus
+	 */
 	public function testSoftBlockRanges() {
 		$setSessionUser = function ( User $user, WebRequest $request ) {
 			$this->setMwGlobals( 'wgUser', $user );
@@ -805,6 +813,7 @@ class UserTest extends MediaWikiTestCase {
 
 	/**
 	 * Test that a modified BlockID cookie doesn't actually load the relevant block (T152951).
+	 * @covers User::trackBlockWithCookie
 	 */
 	public function testAutoblockCookieInauthentic() {
 		// Set up the bits of global configuration that we use.
@@ -820,14 +829,12 @@ class UserTest extends MediaWikiTestCase {
 		] );
 
 		// 1. Log in a blocked test user.
-		$userBlocker = $this->getTestSysop()->getUser();
 		$user1tmp = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
 		$request1->getSession()->setUser( $user1tmp );
 		$block = new Block( [ 'enableAutoblock' => true ] );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 		$block->setTarget( $user1tmp );
-		$block->setBlocker( $userBlocker );
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user1 = User::newFromSession( $request1 );
@@ -851,6 +858,7 @@ class UserTest extends MediaWikiTestCase {
 	/**
 	 * The BlockID cookie is normally verified with a HMAC, but not if wgSecretKey is not set.
 	 * This checks that a non-authenticated cookie still works.
+	 * @covers User::trackBlockWithCookie
 	 */
 	public function testAutoblockCookieNoSecretKey() {
 		// Set up the bits of global configuration that we use.
@@ -866,14 +874,12 @@ class UserTest extends MediaWikiTestCase {
 		] );
 
 		// 1. Log in a blocked test user.
-		$userBlocker = $this->getTestSysop()->getUser();
 		$user1tmp = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
 		$request1->getSession()->setUser( $user1tmp );
 		$block = new Block( [ 'enableAutoblock' => true ] );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 		$block->setTarget( $user1tmp );
-		$block->setBlocker( $userBlocker );
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user1 = User::newFromSession( $request1 );
@@ -1020,6 +1026,9 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertTrue( User::isLocallyBlockedProxy( $ip ) );
 	}
 
+	/**
+	 * @covers User::newFromActorId
+	 */
 	public function testActorId() {
 		$domain = MediaWikiServices::getInstance()->getDBLoadBalancer()->getLocalDomainID();
 		$this->hideDeprecated( 'User::selectFields' );
@@ -1048,15 +1057,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertTrue( $user->getActorId() > 0,
 			'Actor ID can be retrieved for user loaded with User::selectFields()' );
 
-		$this->db->delete( 'actor', [ 'actor_user' => $id ], __METHOD__ );
-		User::purge( $domain, $id );
-		// Because WANObjectCache->delete() stupidly doesn't delete from the process cache.
-		ObjectCache::getMainWANInstance()->clearProcessCache();
-
 		$user = User::newFromId( $id );
-		$this->assertFalse( $user->getActorId() > 0, 'No Actor ID by default if none in database' );
-		$this->assertTrue( $user->getActorId( $this->db ) > 0, 'Actor ID can be created if none in db' );
-
 		$user->setName( 'UserTestActorId4-renamed' );
 		$user->saveSettings();
 		$this->assertEquals(
@@ -1083,6 +1084,86 @@ class UserTest extends MediaWikiTestCase {
 			'User::newFromActorId works for an anonymous user' );
 	}
 
+	/**
+	 * Actor tests with SCHEMA_COMPAT_READ_OLD
+	 *
+	 * The only thing different from testActorId() is the behavior if the actor
+	 * row doesn't exist in the DB, since with SCHEMA_COMPAT_READ_NEW that
+	 * situation can't happen. But we copy all the other tests too just for good measure.
+	 *
+	 * @covers User::newFromActorId
+	 */
+	public function testActorId_old() {
+		$this->setMwGlobals( [
+			'wgActorTableSchemaMigrationStage' => SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
+		] );
+		$this->overrideMwServices();
+
+		$domain = MediaWikiServices::getInstance()->getDBLoadBalancer()->getLocalDomainID();
+		$this->hideDeprecated( 'User::selectFields' );
+
+		// Newly-created user has an actor ID
+		$user = User::createNew( 'UserTestActorIdOld1' );
+		$id = $user->getId();
+		$this->assertTrue( $user->getActorId() > 0, 'User::createNew sets an actor ID' );
+
+		$user = User::newFromName( 'UserTestActorIdOld2' );
+		$user->addToDatabase();
+		$this->assertTrue( $user->getActorId() > 0, 'User::addToDatabase sets an actor ID' );
+
+		$user = User::newFromName( 'UserTestActorIdOld1' );
+		$this->assertTrue( $user->getActorId() > 0, 'Actor ID can be retrieved for user loaded by name' );
+
+		$user = User::newFromId( $id );
+		$this->assertTrue( $user->getActorId() > 0, 'Actor ID can be retrieved for user loaded by ID' );
+
+		$user2 = User::newFromActorId( $user->getActorId() );
+		$this->assertEquals( $user->getId(), $user2->getId(),
+			'User::newFromActorId works for an existing user' );
+
+		$row = $this->db->selectRow( 'user', User::selectFields(), [ 'user_id' => $id ], __METHOD__ );
+		$user = User::newFromRow( $row );
+		$this->assertTrue( $user->getActorId() > 0,
+			'Actor ID can be retrieved for user loaded with User::selectFields()' );
+
+		$this->db->delete( 'actor', [ 'actor_user' => $id ], __METHOD__ );
+		User::purge( $domain, $id );
+		// Because WANObjectCache->delete() stupidly doesn't delete from the process cache.
+		ObjectCache::getMainWANInstance()->clearProcessCache();
+
+		$user = User::newFromId( $id );
+		$this->assertFalse( $user->getActorId() > 0, 'No Actor ID by default if none in database' );
+		$this->assertTrue( $user->getActorId( $this->db ) > 0, 'Actor ID can be created if none in db' );
+
+		$user->setName( 'UserTestActorIdOld4-renamed' );
+		$user->saveSettings();
+		$this->assertEquals(
+			$user->getName(),
+			$this->db->selectField(
+				'actor', 'actor_name', [ 'actor_id' => $user->getActorId() ], __METHOD__
+			),
+			'User::saveSettings updates actor table for name change'
+		);
+
+		// For sanity
+		$ip = '192.168.12.34';
+		$this->db->delete( 'actor', [ 'actor_name' => $ip ], __METHOD__ );
+
+		$user = User::newFromName( $ip, false );
+		$this->assertFalse( $user->getActorId() > 0, 'Anonymous user has no actor ID by default' );
+		$this->assertTrue( $user->getActorId( $this->db ) > 0,
+			'Actor ID can be created for an anonymous user' );
+
+		$user = User::newFromName( $ip, false );
+		$this->assertTrue( $user->getActorId() > 0, 'Actor ID can be loaded for an anonymous user' );
+		$user2 = User::newFromActorId( $user->getActorId() );
+		$this->assertEquals( $user->getName(), $user2->getName(),
+			'User::newFromActorId works for an anonymous user' );
+	}
+
+	/**
+	 * @covers User::newFromAnyId
+	 */
 	public function testNewFromAnyId() {
 		// Registered user
 		$user = $this->getTestUser()->getUser();
@@ -1215,8 +1296,139 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers User::isBlockedFrom
+	 * @dataProvider provideIsBlockedFrom
+	 * @param string|null $title Title to test.
+	 * @param bool $expect Expected result from User::isBlockedFrom()
+	 * @param array $options Additional test options:
+	 *  - 'blockAllowsUTEdit': (bool, default true) Value for $wgBlockAllowsUTEdit
+	 *  - 'allowUsertalk': (bool, default false) Passed to Block::__construct()
+	 *  - 'pageRestrictions': (array|null) If non-empty, page restriction titles for the block.
+	 */
+	public function testIsBlockedFrom( $title, $expect, array $options = [] ) {
+		$this->setMwGlobals( [
+			'wgBlockAllowsUTEdit' => $options['blockAllowsUTEdit'] ?? true,
+		] );
+
+		$user = $this->getTestUser()->getUser();
+
+		if ( $title === self::USER_TALK_PAGE ) {
+			$title = $user->getTalkPage();
+		} else {
+			$title = Title::newFromText( $title );
+		}
+
+		$restrictions = [];
+		foreach ( $options['pageRestrictions'] ?? [] as $pagestr ) {
+			$page = $this->getExistingTestPage(
+				$pagestr === self::USER_TALK_PAGE ? $user->getTalkPage() : $pagestr
+			);
+			$restrictions[] = new PageRestriction( 0, $page->getId() );
+		}
+		foreach ( $options['namespaceRestrictions'] ?? [] as $ns ) {
+			$restrictions[] = new NamespaceRestriction( 0, $ns );
+		}
+
+		$block = new Block( [
+			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
+			'allowUsertalk' => $options['allowUsertalk'] ?? false,
+			'sitewide' => !$restrictions,
+		] );
+		$block->setTarget( $user );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+		if ( $restrictions ) {
+			$block->setRestrictions( $restrictions );
+		}
+		$block->insert();
+
+		try {
+			$this->assertSame( $expect, $user->isBlockedFrom( $title ) );
+		} finally {
+			$block->delete();
+		}
+	}
+
+	public static function provideIsBlockedFrom() {
+		return [
+			'Sitewide block, basic operation' => [ 'Test page', true ],
+			'Sitewide block, not allowing user talk' => [
+				self::USER_TALK_PAGE, true, [
+					'allowUsertalk' => false,
+				]
+			],
+			'Sitewide block, allowing user talk' => [
+				self::USER_TALK_PAGE, false, [
+					'allowUsertalk' => true,
+				]
+			],
+			'Sitewide block, allowing user talk but $wgBlockAllowsUTEdit is false' => [
+				self::USER_TALK_PAGE, true, [
+					'allowUsertalk' => true,
+					'blockAllowsUTEdit' => false,
+				]
+			],
+			'Partial block, blocking the page' => [
+				'Test page', true, [
+					'pageRestrictions' => [ 'Test page' ],
+				]
+			],
+			'Partial block, not blocking the page' => [
+				'Test page 2', false, [
+					'pageRestrictions' => [ 'Test page' ],
+				]
+			],
+			'Partial block, not allowing user talk but user talk page is not blocked' => [
+				self::USER_TALK_PAGE, false, [
+					'allowUsertalk' => false,
+					'pageRestrictions' => [ 'Test page' ],
+				]
+			],
+			'Partial block, allowing user talk but user talk page is blocked' => [
+				self::USER_TALK_PAGE, true, [
+					'allowUsertalk' => true,
+					'pageRestrictions' => [ self::USER_TALK_PAGE ],
+				]
+			],
+			'Partial block, user talk page is not blocked but $wgBlockAllowsUTEdit is false' => [
+				self::USER_TALK_PAGE, false, [
+					'allowUsertalk' => false,
+					'pageRestrictions' => [ 'Test page' ],
+					'blockAllowsUTEdit' => false,
+				]
+			],
+			'Partial block, user talk page is blocked and $wgBlockAllowsUTEdit is false' => [
+				self::USER_TALK_PAGE, true, [
+					'allowUsertalk' => true,
+					'pageRestrictions' => [ self::USER_TALK_PAGE ],
+					'blockAllowsUTEdit' => false,
+				]
+			],
+			'Partial user talk namespace block, not allowing user talk' => [
+				self::USER_TALK_PAGE, true, [
+					'allowUsertalk' => false,
+					'namespaceRestrictions' => [ NS_USER_TALK ],
+				]
+			],
+			'Partial user talk namespace block, allowing user talk' => [
+				self::USER_TALK_PAGE, false, [
+					'allowUsertalk' => true,
+					'namespaceRestrictions' => [ NS_USER_TALK ],
+				]
+			],
+			'Partial user talk namespace block, where $wgBlockAllowsUTEdit is false' => [
+				self::USER_TALK_PAGE, true, [
+					'allowUsertalk' => true,
+					'namespaceRestrictions' => [ NS_USER_TALK ],
+					'blockAllowsUTEdit' => false,
+				]
+			],
+		];
+	}
+
+	/**
 	 * Block cookie should be set for IP Blocks if
 	 * wgCookieSetOnIpBlock is set to true
+	 * @covers User::trackBlockWithCookie
 	 */
 	public function testIpBlockCookieSet() {
 		$this->setMwGlobals( [
@@ -1252,6 +1464,7 @@ class UserTest extends MediaWikiTestCase {
 	/**
 	 * Block cookie should NOT be set when wgCookieSetOnIpBlock
 	 * is disabled
+	 * @covers User::trackBlockWithCookie
 	 */
 	public function testIpBlockCookieNotSet() {
 		$this->setMwGlobals( [
@@ -1287,6 +1500,7 @@ class UserTest extends MediaWikiTestCase {
 	/**
 	 * When an ip user is blocked and then they log in, cookie block
 	 * should be invalid and the cookie removed.
+	 * @covers User::trackBlockWithCookie
 	 */
 	public function testIpBlockCookieIgnoredWhenUserLoggedIn() {
 		$this->setMwGlobals( [
@@ -1322,5 +1536,43 @@ class UserTest extends MediaWikiTestCase {
 
 		// clean up
 		$block->delete();
+	}
+
+	/**
+	 * @covers User::getFirstEditTimestamp
+	 * @covers User::getLatestEditTimestamp
+	 */
+	public function testGetFirstLatestEditTimestamp() {
+		$clock = MWTimestamp::convert( TS_UNIX, '20100101000000' );
+		MWTimestamp::setFakeTime( function () use ( &$clock ) {
+			return $clock += 1000;
+		} );
+		try {
+			$user = $this->getTestUser()->getUser();
+			$firstRevision = self::makeEdit( $user, 'Help:UserTest_GetEditTimestamp', 'one', 'test' );
+			$secondRevision = self::makeEdit( $user, 'Help:UserTest_GetEditTimestamp', 'two', 'test' );
+			// Sanity check: revisions timestamp are different
+			$this->assertNotEquals( $firstRevision->getTimestamp(), $secondRevision->getTimestamp() );
+
+			$this->assertEquals( $firstRevision->getTimestamp(), $user->getFirstEditTimestamp() );
+			$this->assertEquals( $secondRevision->getTimestamp(), $user->getLatestEditTimestamp() );
+		} finally {
+			MWTimestamp::setFakeTime( false );
+		}
+	}
+
+	/**
+	 * @param User $user
+	 * @param string $title
+	 * @param string $content
+	 * @param string $comment
+	 * @return \MediaWiki\Revision\RevisionRecord|null
+	 */
+	private static function makeEdit( User $user, $title, $content, $comment ) {
+		$page = WikiPage::factory( Title::newFromText( $title ) );
+		$content = ContentHandler::makeContent( $content, $page->getTitle() );
+		$updater = $page->newPageUpdater( $user );
+		$updater->setContent( 'main', $content );
+		return $updater->saveRevision( CommentStoreComment::newUnsavedComment( $comment ) );
 	}
 }

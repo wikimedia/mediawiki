@@ -61,7 +61,7 @@ class ApiFeedWatchlist extends ApiBase {
 			}
 
 			// limit to the number of hours going from now back
-			$endTime = wfTimestamp( TS_MW, time() - intval( $params['hours'] * 60 * 60 ) );
+			$endTime = wfTimestamp( TS_MW, time() - (int)$params['hours'] * 60 * 60 );
 
 			// Prepare parameters for nested request
 			$fauxReqArr = [
@@ -69,7 +69,7 @@ class ApiFeedWatchlist extends ApiBase {
 				'meta' => 'siteinfo',
 				'siprop' => 'general',
 				'list' => 'watchlist',
-				'wlprop' => 'title|user|comment|timestamp|ids',
+				'wlprop' => 'title|user|comment|timestamp|ids|loginfo',
 				'wldir' => 'older', // reverse order - from newest to oldest
 				'wlend' => $endTime, // stop at this time
 				'wllimit' => min( 50, $this->getConfig()->get( 'FeedLimit' ) )
@@ -102,10 +102,8 @@ class ApiFeedWatchlist extends ApiBase {
 				$fauxReqArr['wlallrev'] = '';
 			}
 
-			// Create the request
 			$fauxReq = new FauxRequest( $fauxReqArr );
 
-			// Execute
 			$module = new ApiMain( $fauxReq );
 			$module->execute();
 
@@ -193,7 +191,12 @@ class ApiFeedWatchlist extends ApiBase {
 			}
 		}
 		if ( isset( $info['revid'] ) ) {
-			$titleUrl = $title->getFullURL( [ 'diff' => $info['revid'] ] );
+			if ( $info['revid'] === 0 && isset( $info['logid'] ) ) {
+				$logTitle = Title::makeTitle( NS_SPECIAL, 'Log' );
+				$titleUrl = $logTitle->getFullURL( [ 'logid' => $info['logid'] ] );
+			} else {
+				$titleUrl = $title->getFullURL( [ 'diff' => $info['revid'] ] );
+			}
 		} else {
 			$titleUrl = $title->getFullURL( $curidParam );
 		}

@@ -174,11 +174,7 @@ abstract class ChangesListFilterGroup {
 		}
 
 		$this->type = $groupDefinition['type'];
-		if ( isset( $groupDefinition['priority'] ) ) {
-			$this->priority = $groupDefinition['priority'];
-		} else {
-			$this->priority = self::DEFAULT_PRIORITY;
-		}
+		$this->priority = $groupDefinition['priority'] ?? self::DEFAULT_PRIORITY;
 
 		$this->isFullCoverage = $groupDefinition['isFullCoverage'];
 
@@ -433,7 +429,7 @@ abstract class ChangesListFilterGroup {
 	 * @return bool
 	 */
 	public function anySelected( FormOptions $opts ) {
-		return !!count( array_filter(
+		return (bool)count( array_filter(
 			$this->getFilters(),
 			function ( ChangesListFilter $filter ) use ( $opts ) {
 				return $filter->isSelected( $opts );

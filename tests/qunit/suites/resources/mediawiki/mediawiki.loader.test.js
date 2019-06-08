@@ -15,6 +15,7 @@
 			};
 		},
 		teardown: function () {
+			mw.loader.maxQueryLength = 2000;
 			// Teardown for StringSet shim test
 			if ( this.nativeSet ) {
 				window.Set = this.nativeSet;
@@ -24,6 +25,7 @@
 			// exposed for cross-file mocks.
 			delete mw.loader.testCallback;
 			delete mw.loader.testFail;
+			delete mw.getScriptExampleScriptLoaded;
 		}
 	} ) );
 
@@ -253,7 +255,7 @@
 		assert.deepEqual(
 			[ {
 				topic: 'resourceloader.exception',
-				error: 'Unknown dependency: test.load.unreg',
+				error: 'Unknown module: test.load.unreg',
 				source: 'resolve'
 			} ],
 			capture
@@ -279,7 +281,7 @@
 		assert.deepEqual(
 			[ {
 				topic: 'resourceloader.exception',
-				error: 'Unknown dependency: test.load.missingdep2',
+				error: 'Unknown module: test.load.missingdep2',
 				source: 'resolve'
 			} ],
 			capture
@@ -558,6 +560,48 @@
 		} );
 	} );
 
+	QUnit.test( '.implement( package files )', function ( assert ) {
+		var done = assert.async(),
+			initJsRan = false;
+		mw.loader.implement(
+			'test.implement.packageFiles',
+			{
+				main: 'resources/src/foo/init.js',
+				files: {
+					'resources/src/foo/data/hello.json': { hello: 'world' },
+					'resources/src/foo/foo.js': function ( require, module ) {
+						window.mwTestFooJsCounter = window.mwTestFooJsCounter || 41;
+						window.mwTestFooJsCounter++;
+						module.exports = { answer: window.mwTestFooJsCounter };
+					},
+					'resources/src/bar/bar.js': function ( require, module ) {
+						var core = require( './core.js' );
+						module.exports = { data: core.sayHello( 'Alice' ) };
+					},
+					'resources/src/bar/core.js': function ( require, module ) {
+						module.exports = { sayHello: function ( name ) {
+							return 'Hello ' + name;
+						} };
+					},
+					'resources/src/foo/init.js': function ( require ) {
+						initJsRan = true;
+						assert.deepEqual( require( './data/hello.json' ), { hello: 'world' }, 'require() with .json file' );
+						assert.deepEqual( require( './foo.js' ), { answer: 42 }, 'require() with .js file in same directory' );
+						assert.deepEqual( require( '../bar/bar.js' ), { data: 'Hello Alice' }, 'require() with ../ of a file that uses same-directory require()' );
+						assert.deepEqual( require( './foo.js' ), { answer: 42 }, 'require()ing the same script twice only runs it once' );
+					}
+				}
+			},
+			{},
+			{},
+			{}
+		);
+		mw.loader.using( 'test.implement.packageFiles' ).done( function () {
+			assert.ok( initJsRan, 'main JS file is executed' );
+			done();
+		} );
+	} );
+
 	QUnit.test( '.addSource()', function ( assert ) {
 		mw.loader.addSource( { testsource1: 'https://1.test/src' } );
 
@@ -581,7 +625,7 @@
 			[ 'testUrlIncDump', 'dump', [], null, 'testloader' ]
 		] );
 
-		mw.config.set( 'wgResourceLoaderMaxQueryLength', 10 );
+		mw.loader.maxQueryLength = 10;
 
 		return mw.loader.using( [ 'testUrlIncDump', 'testUrlInc' ] ).then( function ( require ) {
 			assert.propEqual(
@@ -1050,9 +1094,29 @@
 			assert.strictEqual( siteFromUser, 1, 'site ran before user' );
 		} ).always( function () {
 			// Reset
-			mw.loader.moduleRegistry[ 'site' ].state = 'registered';
-			mw.loader.moduleRegistry[ 'user' ].state = 'registered';
+			mw.loader.moduleRegistry.site.state = 'registered';
+			mw.loader.moduleRegistry.user.state = 'registered';
 		} );
+	} );
+
+	QUnit.test( '.getScript() - success', function ( assert ) {
+		var scriptUrl = QUnit.fixurl(
+			mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/mediawiki.loader.getScript.example.js'
+		);
+
+		return mw.loader.getScript( scriptUrl ).then(
+			function () {
+				assert.strictEqual( mw.getScriptExampleScriptLoaded, true, 'Data attached to a global object is available' );
+			}
+		);
+	} );
+
+	QUnit.test( '.getScript() - failure', function ( assert ) {
+		assert.rejects(
+			mw.loader.getScript( 'https://example.test/not-found' ),
+			/Failed to load script/,
+			'Descriptive error message'
+		);
 	} );
 
 }() );

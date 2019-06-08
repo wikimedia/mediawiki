@@ -31,7 +31,6 @@ use MediaWiki\Revision\SlotRecord;
  *
  * @todo Move and rewrite code to an Action class
  *
- * See design.txt for an overview.
  * Note: edit user interface and cache support functions have been
  * moved to separate EditPage and HTMLFileCache classes.
  */
@@ -120,7 +119,7 @@ class Article implements Page {
 	 * here, there doesn't seem to be any other way to stop calling
 	 * OutputPage::enableSectionEditLinks() and still have it work as it did before.
 	 */
-	private $disableSectionEditForRender = false;
+	protected $viewIsRenderAction = false;
 
 	/**
 	 * Constructor and clear the article
@@ -295,7 +294,7 @@ class Article implements Page {
 			$content = ContentHandler::makeContent( $text, $this->getTitle() );
 		} else {
 			$message = $this->getContext()->getUser()->isLoggedIn() ? 'noarticletext' : 'noarticletextanon';
-			$content = new MessageContent( $message, null, 'parsemag' );
+			$content = new MessageContent( $message, null );
 		}
 
 		return $content;
@@ -633,7 +632,7 @@ class Article implements Page {
 		if ( $outputPage->isPrintable() ) {
 			$parserOptions->setIsPrintable( true );
 			$poOptions['enableSectionEditLinks'] = false;
-		} elseif ( $this->disableSectionEditForRender
+		} elseif ( $this->viewIsRenderAction
 			|| !$this->isCurrent() || !$this->getTitle()->quickUserCan( 'edit', $user )
 		) {
 			$poOptions['enableSectionEditLinks'] = false;
@@ -792,7 +791,7 @@ class Article implements Page {
 							$outputPage->setRobotPolicy( 'noindex,nofollow' );
 
 							$errortext = $error->getWikiText( false, 'view-pool-error' );
-							$outputPage->addWikiText( Html::errorBox( $errortext ) );
+							$outputPage->wrapWikiTextAsInterface( 'errorbox', $errortext );
 						}
 						# Connection or timeout error
 						return;
@@ -820,9 +819,8 @@ class Article implements Page {
 		// Note that the ArticleViewHeader hook is allowed to set $outputDone to a
 		// ParserOutput instance.
 		$pOutput = ( $outputDone instanceof ParserOutput )
-			// phpcs:ignore MediaWiki.Usage.NestedInlineTernary.UnparenthesizedTernary -- FIXME T203805
 			? $outputDone // object fetched by hook
-			: $this->mParserOutput ?: null; // ParserOutput or null, avoid false
+			: ( $this->mParserOutput ?: null ); // ParserOutput or null, avoid false
 
 		# Adjust title for main page & pages with displaytitle
 		if ( $pOutput ) {
@@ -1133,13 +1131,11 @@ class Article implements Page {
 	 * [[MediaWiki:Talkpagetext]]. For Article::view().
 	 */
 	public function showNamespaceHeader() {
-		if ( $this->getTitle()->isTalkPage() ) {
-			if ( !wfMessage( 'talkpageheader' )->isDisabled() ) {
-				$this->getContext()->getOutput()->wrapWikiMsg(
-					"<div class=\"mw-talkpageheader\">\n$1\n</div>",
-					[ 'talkpageheader' ]
-				);
-			}
+		if ( $this->getTitle()->isTalkPage() && !wfMessage( 'talkpageheader' )->isDisabled() ) {
+			$this->getContext()->getOutput()->wrapWikiMsg(
+				"<div class=\"mw-talkpageheader\">\n$1\n</div>",
+				[ 'talkpageheader' ]
+			);
 		}
 	}
 
@@ -1368,8 +1364,13 @@ class Article implements Page {
 			if ( !( $user && $user->isLoggedIn() ) && !$ip ) { # User does not exist
 				$outputPage->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
 					[ 'userpage-userdoesnotexist-view', wfEscapeWikiText( $rootPart ) ] );
-			} elseif ( !is_null( $block ) && $block->getType() != Block::TYPE_AUTO ) {
-				# Show log extract if the user is currently blocked
+			} elseif (
+				!is_null( $block ) &&
+				$block->getType() != Block::TYPE_AUTO &&
+				( $block->isSitewide() || $user->isBlockedFrom( $title ) )
+			) {
+				// Show log extract if the user is sitewide blocked or is partially
+				// blocked and not allowed to edit their user page or user talk page
 				LogEventsList::showLogExtract(
 					$outputPage,
 					'block',
@@ -1461,7 +1462,7 @@ class Article implements Page {
 
 			$dir = $this->getContext()->getLanguage()->getDir();
 			$lang = $this->getContext()->getLanguage()->getHtmlCode();
-			$outputPage->addWikiText( Xml::openElement( 'div', [
+			$outputPage->addWikiTextAsInterface( Xml::openElement( 'div', [
 				'class' => "noarticletext mw-content-$dir",
 				'dir' => $dir,
 				'lang' => $lang,
@@ -1735,7 +1736,8 @@ class Article implements Page {
 	public function render() {
 		$this->getContext()->getRequest()->response()->header( 'X-Robots-Tag: noindex' );
 		$this->getContext()->getOutput()->setArticleBodyOnly( true );
-		$this->disableSectionEditForRender = true;
+		// We later set 'enableSectionEditLinks=false' based on this; also used by ImagePage
+		$this->viewIsRenderAction = true;
 		$this->view();
 	}
 
@@ -1941,15 +1943,13 @@ class Article implements Page {
 
 		// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
 		// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
-		// Unicode codepoints (or 255 UTF-8 bytes for old schema).
-		$conf = $this->getContext()->getConfig();
-		$oldCommentSchema = $conf->get( 'CommentTableSchemaMigrationStage' ) === MIGRATION_OLD;
+		// Unicode codepoints.
 		$fields[] = new OOUI\FieldLayout(
 			new OOUI\TextInputWidget( [
 				'name' => 'wpReason',
 				'inputId' => 'wpReason',
 				'tabIndex' => 2,
-				'maxLength' => $oldCommentSchema ? 255 : CommentStore::COMMENT_CHARACTER_LIMIT,
+				'maxLength' => CommentStore::COMMENT_CHARACTER_LIMIT,
 				'infusable' => true,
 				'value' => $reason,
 				'autofocus' => true,
@@ -2087,8 +2087,9 @@ class Article implements Page {
 			);
 
 			if ( $error == '' ) {
-				$outputPage->addWikiText(
-					"<div class=\"error mw-error-cannotdelete\">\n" . $status->getWikiText() . "\n</div>"
+				$outputPage->wrapWikiTextAsInterface(
+					'error mw-error-cannotdelete',
+					$status->getWikiText()
 				);
 				$deleteLogPage = new LogPage( 'delete' );
 				$outputPage->addHTML( Xml::element( 'h2', null, $deleteLogPage->getName()->text() ) );
@@ -2730,7 +2731,7 @@ class Article implements Page {
 	 * @see WikiPage::setTimestamp
 	 */
 	public function setTimestamp( $ts ) {
-		return $this->mPage->setTimestamp( $ts );
+		$this->mPage->setTimestamp( $ts );
 	}
 
 	/**
@@ -2854,7 +2855,10 @@ class Article implements Page {
 	 * @return array
 	 */
 	public function doRollback( $fromP, $summary, $token, $bot, &$resultDetails, User $user = null ) {
-		$user = is_null( $user ) ? $this->getContext()->getUser() : $user;
+		if ( !$user ) {
+			$user = $this->getContext()->getUser();
+		}
+
 		return $this->mPage->doRollback( $fromP, $summary, $token, $bot, $resultDetails, $user );
 	}
 
@@ -2867,7 +2871,10 @@ class Article implements Page {
 	 * @return array
 	 */
 	public function commitRollback( $fromP, $summary, $bot, &$resultDetails, User $guser = null ) {
-		$guser = is_null( $guser ) ? $this->getContext()->getUser() : $guser;
+		if ( !$guser ) {
+			$guser = $this->getContext()->getUser();
+		}
+
 		return $this->mPage->commitRollback( $fromP, $summary, $bot, $resultDetails, $guser );
 	}
 

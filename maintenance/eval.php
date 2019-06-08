@@ -77,8 +77,8 @@ while ( ( $__line = Maintenance::readconsole() ) !== false ) {
 	try {
 		$__val = eval( $__line . ";" );
 	} catch ( Exception $__e ) {
-		echo "Caught exception " . get_class( $__e ) .
-			": {$__e->getMessage()}\n" . $__e->getTraceAsString() . "\n";
+		fwrite( STDERR, "Caught exception " . get_class( $__e ) .
+			": {$__e->getMessage()}\n" . $__e->getTraceAsString() . "\n" );
 		continue;
 	}
 	if ( wfIsHHVM() || is_null( $__val ) ) {

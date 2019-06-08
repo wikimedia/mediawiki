@@ -69,8 +69,8 @@ class DeleteBatch extends Maintenance {
 		}
 		$wgUser = $user;
 
-		if ( $this->hasArg() ) {
-			$file = fopen( $this->getArg(), 'r' );
+		if ( $this->hasArg( 0 ) ) {
+			$file = fopen( $this->getArg( 0 ), 'r' );
 		} else {
 			$file = $this->getStdin();
 		}
@@ -80,10 +80,7 @@ class DeleteBatch extends Maintenance {
 			$this->fatalError( "Unable to read file, exiting" );
 		}
 
-		$dbw = $this->getDB( DB_MASTER );
-
 		# Handle each entry
-		// phpcs:ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall
 		for ( $linenum = 1; !feof( $file ); $linenum++ ) {
 			$line = trim( fgets( $file ) );
 			if ( $line == '' ) {

@@ -71,7 +71,7 @@ class EditCLI extends Maintenance {
 			$wgUser->addToDatabase();
 		}
 
-		$title = Title::newFromText( $this->getArg() );
+		$title = Title::newFromText( $this->getArg( 0 ) );
 		if ( !$title ) {
 			$this->fatalError( "Invalid title" );
 		}

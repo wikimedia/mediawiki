@@ -11,7 +11,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group AuthManager
- * @covers MediaWiki\Auth\Throttler
+ * @covers \MediaWiki\Auth\Throttler
  */
 class ThrottlerTest extends \MediaWikiTestCase {
 	public function testConstructor() {

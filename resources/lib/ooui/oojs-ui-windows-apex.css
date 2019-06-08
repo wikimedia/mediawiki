@@ -1,16 +1,13 @@
 /*!
- * OOUI v0.29.2
+ * OOUI v0.31.3
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2018 OOUI Team and other contributors.
+ * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-10-08T22:43:02Z
+ * Date: 2019-04-04T19:10:54Z
  */
-.oo-ui-actionWidget.oo-ui-pendingElement-pending {
-  background-image: /* @embed */ url(themes/wikimediaui/images/textures/pending.gif);
-}
 
 .oo-ui-window {
   background-color: transparent;
@@ -69,6 +66,7 @@
 }
 .oo-ui-dialog-content > .oo-ui-window-body {
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
   z-index: 2;
   top: 0;
   bottom: 0;
@@ -229,6 +227,7 @@
   z-index: 4;
   overflow-x: hidden;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .oo-ui-processDialog-content .oo-ui-window-head {
   height: 3.4em;
@@ -376,6 +375,10 @@
   height: 100%;
   top: 0;
   bottom: 0;
+}
+.oo-ui-windowManager-modal-active {
+  overflow: hidden;
+  position: relative;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog {
   background-color: rgba(255, 255, 255, 0.5);

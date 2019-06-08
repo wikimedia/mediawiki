@@ -81,22 +81,14 @@ class RedisBagOStuff extends BagOStuff {
 			$this->serverTagMap[is_int( $key ) ? $server : $key] = $server;
 		}
 
-		if ( isset( $params['automaticFailover'] ) ) {
-			$this->automaticFailover = $params['automaticFailover'];
-		} else {
-			$this->automaticFailover = true;
-		}
+		$this->automaticFailover = $params['automaticFailover'] ?? true;
 
 		$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_NONE;
 	}
 
-	protected function doGet( $key, $flags = 0 ) {
+	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$casToken = null;
 
-		return $this->getWithToken( $key, $casToken, $flags );
-	}
-
-	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
@@ -136,7 +128,7 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	public function delete( $key ) {
+	public function delete( $key, $flags = 0 ) {
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
@@ -193,12 +185,7 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	/**
-	 * @param array $data
-	 * @param int $expiry
-	 * @return bool
-	 */
-	public function setMulti( array $data, $expiry = 0 ) {
+	public function setMulti( array $data, $expiry = 0, $flags = 0 ) {
 		$batches = [];
 		$conns = [];
 		foreach ( $data as $key => $value ) {
@@ -234,7 +221,7 @@ class RedisBagOStuff extends BagOStuff {
 					}
 				}
 			} catch ( RedisException $e ) {
-				$this->handleException( $server, $conn, $e );
+				$this->handleException( $conn, $e );
 				$result = false;
 			}
 		}
@@ -242,7 +229,46 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	public function add( $key, $value, $expiry = 0 ) {
+	public function deleteMulti( array $keys, $flags = 0 ) {
+		$batches = [];
+		$conns = [];
+		foreach ( $keys as $key ) {
+			list( $server, $conn ) = $this->getConnection( $key );
+			if ( !$conn ) {
+				continue;
+			}
+			$conns[$server] = $conn;
+			$batches[$server][] = $key;
+		}
+
+		$result = true;
+		foreach ( $batches as $server => $batchKeys ) {
+			$conn = $conns[$server];
+			try {
+				$conn->multi( Redis::PIPELINE );
+				foreach ( $batchKeys as $key ) {
+					$conn->delete( $key );
+				}
+				$batchResult = $conn->exec();
+				if ( $batchResult === false ) {
+					$this->debug( "deleteMulti request to $server failed" );
+					continue;
+				}
+				foreach ( $batchResult as $value ) {
+					if ( $value === false ) {
+						$result = false;
+					}
+				}
+			} catch ( RedisException $e ) {
+				$this->handleException( $conn, $e );
+				$result = false;
+			}
+		}
+
+		return $result;
+	}
+
+	public function add( $key, $value, $expiry = 0, $flags = 0 ) {
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
@@ -265,10 +291,6 @@ class RedisBagOStuff extends BagOStuff {
 
 		$this->logRequest( 'add', $key, $server, $result );
 		return $result;
-	}
-
-	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
-		return $this->mergeViaCas( $key, $callback, $exptime, $attempts );
 	}
 
 	/**
@@ -303,30 +325,30 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	public function changeTTL( $key, $expiry = 0 ) {
+	public function changeTTL( $key, $exptime = 0, $flags = 0 ) {
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
 		}
 
-		$expiry = $this->convertToRelative( $expiry );
+		$relative = $this->expiryIsRelative( $exptime );
 		try {
-			$result = $conn->expire( $key, $expiry );
+			if ( $exptime == 0 ) {
+				$result = $conn->persist( $key );
+				$this->logRequest( 'persist', $key, $server, $result );
+			} elseif ( $relative ) {
+				$result = $conn->expire( $key, $this->convertToRelative( $exptime ) );
+				$this->logRequest( 'expire', $key, $server, $result );
+			} else {
+				$result = $conn->expireAt( $key, $this->convertToExpiry( $exptime ) );
+				$this->logRequest( 'expireAt', $key, $server, $result );
+			}
 		} catch ( RedisException $e ) {
 			$result = false;
 			$this->handleException( $conn, $e );
 		}
 
-		$this->logRequest( 'expire', $key, $server, $result );
 		return $result;
-	}
-
-	public function modifySimpleRelayEvent( array $event ) {
-		if ( array_key_exists( 'val', $event ) ) {
-			$event['val'] = serialize( $event['val'] ); // this class uses PHP serialization
-		}
-
-		return $event;
 	}
 
 	/**

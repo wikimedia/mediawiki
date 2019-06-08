@@ -46,7 +46,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	/**
 	 * @param string $str
 	 * @warning You should never use this method. I18n messages should be escaped
-	 * @deprecated 1.32 Use ->msg() or ->msgWiki() instead.
+	 * @deprecated 1.32 Use ->msg() or ->getMsg() instead.
 	 * @suppress SecurityCheck-XSS
 	 * @return-taint exec_html
 	 */
@@ -55,7 +55,11 @@ abstract class BaseTemplate extends QuickTemplate {
 		echo $this->getMsg( $str )->text();
 	}
 
+	/**
+	 * @deprecated since 1.33 Use ->msg() or ->getMsg() instead.
+	 */
 	function msgWiki( $str ) {
+		// TODO: Add wfDeprecated( __METHOD__, '1.33' ) after 1.33 got released
 		echo $this->getMsg( $str )->parseAsBlock();
 	}
 
@@ -260,28 +264,26 @@ abstract class BaseTemplate extends QuickTemplate {
 					$boxes[$boxName]['content'] = $content;
 				}
 			}
-		} else {
-			if ( $hookContents ) {
-				$boxes['TOOLBOXEND'] = [
-					'id' => 'p-toolboxend',
-					'header' => $boxes['TOOLBOX']['header'],
-					'generated' => false,
-					'content' => "<ul>{$hookContents}</ul>",
-				];
-				// HACK: Make sure that TOOLBOXEND is sorted next to TOOLBOX
-				$boxes2 = [];
-				foreach ( $boxes as $key => $box ) {
-					if ( $key === 'TOOLBOXEND' ) {
-						continue;
-					}
-					$boxes2[$key] = $box;
-					if ( $key === 'TOOLBOX' ) {
-						$boxes2['TOOLBOXEND'] = $boxes['TOOLBOXEND'];
-					}
+		} elseif ( $hookContents ) {
+			$boxes['TOOLBOXEND'] = [
+				'id' => 'p-toolboxend',
+				'header' => $boxes['TOOLBOX']['header'],
+				'generated' => false,
+				'content' => "<ul>{$hookContents}</ul>",
+			];
+			// HACK: Make sure that TOOLBOXEND is sorted next to TOOLBOX
+			$boxes2 = [];
+			foreach ( $boxes as $key => $box ) {
+				if ( $key === 'TOOLBOXEND' ) {
+					continue;
 				}
-				$boxes = $boxes2;
-				// END hack
+				$boxes2[$key] = $box;
+				if ( $key === 'TOOLBOX' ) {
+					$boxes2['TOOLBOXEND'] = $boxes['TOOLBOXEND'];
+				}
 			}
+			$boxes = $boxes2;
+			// END hack
 		}
 
 		return $boxes;
@@ -371,11 +373,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @return string
 	 */
 	function makeLink( $key, $item, $options = [] ) {
-		if ( isset( $item['text'] ) ) {
-			$text = $item['text'];
-		} else {
-			$text = wfMessage( $item['msg'] ?? $key )->text();
-		}
+		$text = $item['text'] ?? wfMessage( $item['msg'] ?? $key )->text();
 
 		$html = htmlspecialchars( $text );
 

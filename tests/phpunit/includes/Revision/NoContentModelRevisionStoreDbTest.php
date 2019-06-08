@@ -80,7 +80,7 @@ class NoContentModelRevisionStoreDbTest extends RevisionStoreDbTestBase {
 					]
 				),
 				'joins' => [
-					'page' => [ 'INNER JOIN', [ 'page_id = rev_page' ] ],
+					'page' => [ 'JOIN', [ 'page_id = rev_page' ] ],
 				],
 			]
 		];
@@ -115,7 +115,7 @@ class NoContentModelRevisionStoreDbTest extends RevisionStoreDbTestBase {
 					]
 				),
 				'joins' => [
-					'text' => [ 'INNER JOIN', [ 'rev_text_id=old_id' ] ],
+					'text' => [ 'JOIN', [ 'rev_text_id=old_id' ] ],
 				],
 			]
 		];

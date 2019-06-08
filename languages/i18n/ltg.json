@@ -5,7 +5,8 @@
 			"Gleb Borisov",
 			"Jureits",
 			"Reedy",
-			"아라"
+			"아라",
+			"ديفيد"
 		]
 	},
 	"tog-showhiddencats": "Ruodeit nūglobuotys kategorejis",
@@ -458,7 +459,7 @@
 	"contributions-title": "Lītuotuoja $1 devīņs",
 	"mycontris": "Muns devīņs",
 	"contribsub2": "Lītuotuojs: $1 ($2)",
-	"uctop": "(pādejā pataise)",
+	"uctop": "pādejā pataise",
 	"month": "Nu mieneša (i vacuoki):",
 	"year": "Nu goda (i vacuoki):",
 	"sp-contributions-newbies": "Ruodeit jaunūs lituotuoju īguļdejumu",
@@ -469,7 +470,7 @@
 	"whatlinkshere": "Sasītuos nūruodis",
 	"whatlinkshere-title": "Lopys, kuramuos ir saitis iz lopu $1",
 	"whatlinkshere-page": "Puslopa:",
-	"linkshere-2": "Itamuos lopuos ir nūruodis iz lopu '''$1''':",
+	"linkshere": "Itamuos lopuos ir nūruodis iz lopu '''$2''':",
 	"isredirect": "puoradresiešonys puslopa",
 	"istemplate": "izsaukts",
 	"isimage": "Faila saita",

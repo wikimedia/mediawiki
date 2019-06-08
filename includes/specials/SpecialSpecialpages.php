@@ -55,7 +55,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 		$pages = MediaWikiServices::getInstance()->getSpecialPageFactory()->
 			getUsablePages( $this->getUser() );
 
-		if ( !count( $pages ) ) {
+		if ( $pages === [] ) {
 			# Yeah, that was pointless. Thanks for coming.
 			return false;
 		}
@@ -99,10 +99,18 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 		$includesCachedPages = false;
 
 		foreach ( $groups as $group => $sortedPages ) {
-			$out->wrapWikiMsg(
-				"<h2 class=\"mw-specialpagesgroup\" id=\"mw-specialpagesgroup-$group\">$1</h2>\n",
-				"specialpages-group-$group"
-			);
+			if ( strpos( $group, '/' ) !== false ) {
+				list( $group, $subGroup ) = explode( '/', $group, 2 );
+				$out->wrapWikiMsg(
+					"<h3 class=\"mw-specialpagessubgroup\">$1</h3>\n",
+					"specialpages-group-$group-$subGroup"
+				);
+			} else {
+				$out->wrapWikiMsg(
+					"<h2 class=\"mw-specialpagesgroup\" id=\"mw-specialpagesgroup-$group\">$1</h2>\n",
+					"specialpages-group-$group"
+				);
+			}
 			$out->addHTML(
 				Html::openElement( 'div', [ 'class' => 'mw-specialpages-list' ] )
 				. '<ul>'
@@ -151,10 +159,9 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 			$out->wrapWikiMsg(
 				"<h2 class=\"mw-specialpages-note-top\">$1</h2>", 'specialpages-note-top'
 			);
-			$out->addWikiText(
-				"<div class=\"mw-specialpages-notes\">\n" .
-				implode( "\n", $notes ) .
-				"\n</div>"
+			$out->wrapWikiTextAsInterface(
+				'mw-specialpages-notes',
+				implode( "\n", $notes )
 			);
 		}
 	}

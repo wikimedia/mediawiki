@@ -106,6 +106,21 @@ interface IDatabase {
 	/** @var int Enable compression in connection protocol */
 	const DBO_COMPRESS = 512;
 
+	/** @var int Ignore query errors and return false when they happen */
+	const QUERY_SILENCE_ERRORS = 1; // b/c for 1.32 query() argument; note that (int)true = 1
+	/**
+	 * @var int Treat the TEMPORARY table from the given CREATE query as if it is
+	 *   permanent as far as write tracking is concerned. This is useful for testing.
+	 */
+	const QUERY_PSEUDO_PERMANENT = 2;
+	/** @var int Enforce that a query does not make effective writes */
+	const QUERY_REPLICA_ROLE = 4;
+
+	/** @var bool Parameter to unionQueries() for UNION ALL */
+	const UNION_ALL = true;
+	/** @var bool Parameter to unionQueries() for UNION DISTINCT */
+	const UNION_DISTINCT = false;
+
 	/**
 	 * A string describing the current software version, and possibly
 	 * other details in a user-friendly way. Will be listed on Special:Version, etc.
@@ -527,13 +542,13 @@ interface IDatabase {
 	 * @param string $sql SQL query
 	 * @param string $fname Name of the calling function, for profiling/SHOW PROCESSLIST
 	 *     comment (you can use __METHOD__ or add some extra info)
-	 * @param bool $tempIgnore Whether to avoid throwing an exception on errors...
-	 *     maybe best to catch the exception instead?
+	 * @param int $flags Bitfield of IDatabase::QUERY_* constants. Note that suppression
+	 *     of errors is best handled by try/catch rather than using one of these flags.
 	 * @return bool|IResultWrapper True for a successful write query, IResultWrapper object
-	 *     for a successful read query, or false on failure if $tempIgnore set
+	 *     for a successful read query, or false on failure if QUERY_SILENCE_ERRORS is set.
 	 * @throws DBError
 	 */
-	public function query( $sql, $fname = __METHOD__, $tempIgnore = false );
+	public function query( $sql, $fname = __METHOD__, $flags = 0 );
 
 	/**
 	 * Free a result object returned by query() or select(). It's usually not
@@ -583,7 +598,7 @@ interface IDatabase {
 	 * @param string|array $options The query options. See IDatabase::select() for details.
 	 * @param string|array $join_conds The query join conditions. See IDatabase::select() for details.
 	 *
-	 * @return array The values from the field
+	 * @return array The values from the field in the order they were returned from the DB
 	 * @throws DBError
 	 * @since 1.25
 	 */
@@ -595,15 +610,7 @@ interface IDatabase {
 	 * Execute a SELECT query constructed using the various parameters provided.
 	 * See below for full details of the parameters.
 	 *
-	 * @param string|array $table Table name
-	 * @param string|array $vars Field names
-	 * @param string|array $conds Conditions
-	 * @param string $fname Caller function name
-	 * @param array $options Query options
-	 * @param array $join_conds Join conditions
-	 *
-	 *
-	 * @param string|array $table
+	 * @param string|array $table Table name(s)
 	 *
 	 * May be either an array of table names, or a single string holding a table
 	 * name. If an array is given, table aliases can be specified, for example:
@@ -638,7 +645,7 @@ interface IDatabase {
 	 * Do not use untrusted user input as a table name. Alias names should
 	 * not have characters outside of the Basic multilingual plane.
 	 *
-	 * @param string|array $vars
+	 * @param string|array $vars Field name(s)
 	 *
 	 * May be either a field name or an array of field names. The field names
 	 * can be complete fragments of SQL, for direct inclusion into the SELECT
@@ -685,7 +692,9 @@ interface IDatabase {
 	 *
 	 * Use an empty array, string, or '*' to update all rows.
 	 *
-	 * @param string|array $options
+	 * @param string $fname Caller function name
+	 *
+	 * @param string|array $options Query options
 	 *
 	 * Optional: Array of query options. Boolean options are specified by
 	 * including them in the array as a string value with a numeric key, for
@@ -741,7 +750,7 @@ interface IDatabase {
 	 *    - SQL_NO_CACHE
 	 *
 	 *
-	 * @param string|array $join_conds
+	 * @param string|array $join_conds Join conditions
 	 *
 	 * Optional associative array of table-specific join conditions. In the
 	 * most common case, this is unnecessary, since the join condition can be
@@ -930,8 +939,7 @@ interface IDatabase {
 	 * @param array $a Array of rows to insert
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 * @param array $options Array of options
-	 *
-	 * @return bool
+	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 * @throws DBError
 	 */
 	public function insert( $table, $a, $fname = __METHOD__, $options = [] );
@@ -954,7 +962,7 @@ interface IDatabase {
 	 * @param array $options An array of UPDATE options, can be:
 	 *   - IGNORE: Ignore unique key conflicts
 	 *   - LOW_PRIORITY: MySQL-specific, see MySQL manual.
-	 * @return bool
+	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 * @throws DBError
 	 */
 	public function update( $table, $values, $conds, $fname = __METHOD__, $options = [] );
@@ -1005,6 +1013,7 @@ interface IDatabase {
 	 * @param string $valuename
 	 *
 	 * @return string
+	 * @deprecated Since 1.33
 	 */
 	public function aggregateValue( $valuedata, $valuename = 'value' );
 
@@ -1163,6 +1172,17 @@ interface IDatabase {
 	public function addQuotes( $s );
 
 	/**
+	 * Quotes an identifier, in order to make user controlled input safe
+	 *
+	 * Depending on the database this will either be `backticks` or "double quotes"
+	 *
+	 * @param string $s
+	 * @return string
+	 * @since 1.33
+	 */
+	public function addIdentifierQuotes( $s );
+
+	/**
 	 * LIKE statement wrapper, receives a variable-length argument list with
 	 * parts of pattern to match containing either string literals that will be
 	 * escaped or tokens returned by anyChar() or anyString(). Alternatively,
@@ -1228,8 +1248,10 @@ interface IDatabase {
 	 * errors which wouldn't have occurred in MySQL.
 	 *
 	 * @param string $table The table to replace the row(s) in.
-	 * @param array $uniqueIndexes Either a list of fields that define a unique index or
-	 *   an array of such lists if there are multiple unique indexes defined in the schema
+	 * @param array[]|string[]|string $uniqueIndexes All unique indexes. One of the following:
+	 *   a) the one unique field in the table (when no composite unique key exist)
+	 *   b) a list of all unique fields in the table (when no composite unique key exist)
+	 *   c) a list of all unique indexes in the table (each as a list of the indexed fields)
 	 * @param array $rows Can be either a single row to insert, or multiple rows,
 	 *   in the same format as for IDatabase::insert()
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
@@ -1263,8 +1285,10 @@ interface IDatabase {
 	 *
 	 * @param string $table Table name. This will be passed through Database::tableName().
 	 * @param array $rows A single row or list of rows to insert
-	 * @param array $uniqueIndexes Either a list of fields that define a unique index or
-	 *   an array of such lists if there are multiple unique indexes defined in the schema
+	 * @param array[]|string[]|string $uniqueIndexes All unique indexes. One of the following:
+	 *   a) the one unique field in the table (when no composite unique key exist)
+	 *   b) a list of all unique fields in the table (when no composite unique key exist)
+	 *   c) a list of all unique indexes in the table (each as a list of the indexed fields)
 	 * @param array $set An array of values to SET. For each array element, the
 	 *   key gives the field name, and the value gives the data to set that
 	 *   field to. The data will be quoted by IDatabase::addQuotes().
@@ -1272,10 +1296,10 @@ interface IDatabase {
 	 *   things like "field = field + 1" or similar computed values.
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 * @throws DBError
-	 * @return bool
+	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 */
 	public function upsert(
-		$table, array $rows, array $uniqueIndexes, array $set, $fname = __METHOD__
+		$table, array $rows, $uniqueIndexes, array $set, $fname = __METHOD__
 	);
 
 	/**
@@ -1310,7 +1334,7 @@ interface IDatabase {
 	 *   for the format. Use $conds == "*" to delete all rows
 	 * @param string $fname Name of the calling function
 	 * @throws DBUnexpectedError
-	 * @return bool|IResultWrapper
+	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 * @throws DBError
 	 */
 	public function delete( $table, $conds, $fname = __METHOD__ );
@@ -1348,7 +1372,7 @@ interface IDatabase {
 	 * @param array $selectJoinConds Join conditions for the SELECT part of the query, see
 	 *    IDatabase::select() for details.
 	 *
-	 * @return bool
+	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 * @throws DBError
 	 */
 	public function insertSelect( $destTable, $srcTable, $varMap, $conds,
@@ -1368,7 +1392,7 @@ interface IDatabase {
 	 * This is used for providing overload point for other DB abstractions
 	 * not compatible with the MySQL syntax.
 	 * @param array $sqls SQL statements to combine
-	 * @param bool $all Use UNION ALL
+	 * @param bool $all Either IDatabase::UNION_ALL or IDatabase::UNION_DISTINCT
 	 * @return string SQL fragment
 	 */
 	public function unionQueries( $sqls, $all );
@@ -1482,6 +1506,10 @@ interface IDatabase {
 	/**
 	 * Wait for the replica DB to catch up to a given master position
 	 *
+	 * Note that this does not start any new transactions. If any existing transaction
+	 * is flushed, and this is called, then queries will reflect the point the DB was synced
+	 * up to (on success) without interference from REPEATABLE-READ snapshots.
+	 *
 	 * @param DBMasterPos $pos
 	 * @param int $timeout The maximum number of seconds to wait for synchronisation
 	 * @return int|null Zero if the replica DB was past that position already,
@@ -1529,7 +1557,6 @@ interface IDatabase {
 	 *
 	 * @param callable $callback
 	 * @param string $fname Caller name
-	 * @return mixed
 	 * @since 1.28
 	 */
 	public function onTransactionResolution( callable $callback, $fname = __METHOD__ );
@@ -1573,7 +1600,6 @@ interface IDatabase {
 	 *
 	 * @param callable $callback
 	 * @param string $fname
-	 * @return mixed
 	 * @since 1.20
 	 * @deprecated Since 1.32
 	 */
@@ -1619,7 +1645,6 @@ interface IDatabase {
 	 *
 	 * @param string $name Callback name
 	 * @param callable|null $callback Use null to unset a listener
-	 * @return mixed
 	 * @since 1.28
 	 */
 	public function setTransactionListener( $name, callable $callback = null );
@@ -2147,7 +2172,6 @@ interface IDatabase {
 	 * the aliases can be removed, and then the old X-named indexes dropped.
 	 *
 	 * @param string[] $aliases
-	 * @return mixed
 	 * @since 1.31
 	 */
 	public function setIndexAliases( array $aliases );

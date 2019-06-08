@@ -61,16 +61,10 @@
 
 		xhr = $.getJSON( this.getAPIurl(), allParams )
 			.done( function ( data ) {
-				if (
-					$.type( data ) !== 'array' ||
-					(
-						$.type( data ) === 'array' &&
-						data.length === 0
-					)
-				) {
-					deferred.resolve();
-				} else {
+				if ( Array.isArray( data ) && data.length ) {
 					deferred.resolve( data );
+				} else {
+					deferred.resolve();
 				}
 			} );
 		return deferred.promise( { abort: xhr.abort } );

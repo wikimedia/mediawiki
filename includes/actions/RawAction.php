@@ -116,10 +116,10 @@ class RawAction extends FormlessAction {
 				$elevatedText = $elevated ? 'by elevated ' : '';
 				$log = LoggerFactory::getInstance( "security" );
 				$log->warning(
-					"Unsafe JS/CSS/Json $elevatedText" . "load - {user} loaded {title} with {ctype}",
+					"Unsafe JS/CSS/Json {$elevatedText}load - {user} loaded {title} with {ctype}",
 					[
 						'user' => $this->getUser()->getName(),
-						'title' => $title->getPrefixedDBKey(),
+						'title' => $title->getPrefixedDBkey(),
 						'ctype' => $contentType,
 						'elevated' => $elevated
 					]
@@ -147,7 +147,7 @@ class RawAction extends FormlessAction {
 			$log->info( "Blocked loading unprotected JS {title} for {user}",
 				[
 					'user' => $this->getUser()->getName(),
-					'title' => $title->getPrefixedDBKey(),
+					'title' => $title->getPrefixedDBkey(),
 				]
 			);
 			throw new HttpError( 403, wfMessage( 'unprotected-js' ) );
@@ -215,7 +215,7 @@ class RawAction extends FormlessAction {
 					// section not found (or section not supported, e.g. for JS, JSON, and CSS)
 					$text = false;
 				} else {
-					$text = $content->getNativeData();
+					$text = $content->getText();
 				}
 			}
 		}
@@ -300,3 +300,4 @@ class RawAction extends FormlessAction {
 		return $ctype;
 	}
 }
+

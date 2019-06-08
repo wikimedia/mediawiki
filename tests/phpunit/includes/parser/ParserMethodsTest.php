@@ -181,6 +181,16 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 				'http://example.org/%23%2F%3F%26%3D%2B%3B?%23%2F%3F%26%3D%2B%3B#%23%2F%3F%26%3D%2B%3B',
 				'http://example.org/%23%2F%3F&=+;?%23/?%26%3D%2B%3B#%23/?&=+;',
 			],
+			[
+				'IPv6 links aren\'t escaped',
+				'http://[::1]/foobar',
+				'http://[::1]/foobar',
+			],
+			[
+				'non-IPv6 links aren\'t unescaped',
+				'http://%5B::1%5D/foobar',
+				'http://%5B::1%5D/foobar',
+			],
 		];
 	}
 
@@ -368,6 +378,21 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 			$pst = $wgParser->preSaveTransform( $text, $title, $po->getUser(), $po );
 			$this->assertContains( $expectedInPst, $pst, 'After Pre-Safe Transform' );
 		}
+	}
+
+	public static function provideGuessSectionNameFromWikiText() {
+		return [
+			[ '1/2', 'html5', '#1/2' ],
+			[ '1/2', 'legacy', '#1.2F2' ],
+		];
+	}
+
+	/** @dataProvider provideGuessSectionNameFromWikiText */
+	public function testGuessSectionNameFromWikiText( $input, $mode, $expected ) {
+		$this->setMwGlobals( [ 'wgFragmentMode' => [ $mode ] ] );
+		global $wgParser;
+		$result = $wgParser->guessSectionNameFromWikiText( $input );
+		$this->assertEquals( $result, $expected );
 	}
 
 	// @todo Add tests for cleanSig() / cleanSigInSig(), getSection(),

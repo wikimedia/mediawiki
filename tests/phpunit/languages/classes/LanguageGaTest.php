@@ -5,7 +5,11 @@
  * @file
  */
 
-/** Tests for MediaWiki languages/classes/LanguageGa.php */
+/**
+ * Tests for Irish (Gaeilge)
+ *
+ * @covers LanguageGa
+ */
 class LanguageGaTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providePlural

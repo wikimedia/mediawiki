@@ -567,7 +567,7 @@ class BacklinkCache {
 	/**
 	 * Returns check key for the backlinks cache for a particular title
 	 *
-	 * @return String
+	 * @return string
 	 */
 	private function makeCheckKey() {
 		return $this->wanCache->makeKey(

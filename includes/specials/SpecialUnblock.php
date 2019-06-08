@@ -205,7 +205,7 @@ class SpecialUnblock extends SpecialPage {
 
 		# If the name was hidden and the blocking user cannot hide
 		# names, then don't allow any block removals...
-		if ( !$performer->isAllowed( 'hideuser' ) && $block->mHideName ) {
+		if ( !$performer->isAllowed( 'hideuser' ) && $block->getHideName() ) {
 			return [ 'unblock-hideuser' ];
 		}
 
@@ -222,7 +222,7 @@ class SpecialUnblock extends SpecialPage {
 		Hooks::run( 'UnblockUserComplete', [ $block, $performer ] );
 
 		# Unset _deleted fields as needed
-		if ( $block->mHideName ) {
+		if ( $block->getHideName() ) {
 			# Something is deeply FUBAR if this is not a User object, but who knows?
 			$id = $block->getTarget() instanceof User
 				? $block->getTarget()->getId()
@@ -248,6 +248,7 @@ class SpecialUnblock extends SpecialPage {
 		if ( isset( $data['Tags'] ) ) {
 			$logEntry->setTags( $data['Tags'] );
 		}
+		$logEntry->setRelations( [ 'ipb_id' => $block->getId() ] );
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 

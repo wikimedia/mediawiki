@@ -1,7 +1,5 @@
 <?php
 /**
- * Unit tests for HTMLAutoCompleteSelectField
- *
  * @covers HTMLAutoCompleteSelectField
  */
 class HTMLAutoCompleteSelectFieldTest extends MediaWikiTestCase {

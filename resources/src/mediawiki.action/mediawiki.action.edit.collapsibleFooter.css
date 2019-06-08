@@ -11,7 +11,7 @@
 }
 
 /* Show/hide animation is incorrect if the table has a margin set. Extra
- * "table.wikitable" is needed in the selector for CSS specificity. */
-table.wikitable.preview-limit-report {
+ * ".wikitable" is needed in the selector for CSS specificity. */
+.wikitable.preview-limit-report {
 	margin: 0;
 }

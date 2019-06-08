@@ -21,8 +21,8 @@ class SQLiteField implements Field {
 	function defaultValue() {
 		if ( is_string( $this->info->dflt_value ) ) {
 			// Typically quoted
-			if ( preg_match( '/^\'(.*)\'$', $this->info->dflt_value ) ) {
-				return str_replace( "''", "'", $this->info->dflt_value );
+			if ( preg_match( '/^\'(.*)\'$/', $this->info->dflt_value, $matches ) ) {
+				return str_replace( "''", "'", $matches[1] );
 			}
 		}
 

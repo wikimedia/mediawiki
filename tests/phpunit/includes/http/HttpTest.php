@@ -513,13 +513,15 @@ class MWHttpRequestTester extends MWHttpRequest {
 	// returns appropriate tester class here
 	public static function factory( $url, array $options = null, $caller = __METHOD__ ) {
 		if ( !Http::$httpEngine ) {
-			Http::$httpEngine = function_exists( 'curl_init' ) ? 'curl' : 'php';
+			Http::$httpEngine = 'guzzle';
 		} elseif ( Http::$httpEngine == 'curl' && !function_exists( 'curl_init' ) ) {
 			throw new DomainException( __METHOD__ . ': curl (https://secure.php.net/curl) is not ' .
 				'installed, but Http::$httpEngine is set to "curl"' );
 		}
 
 		switch ( Http::$httpEngine ) {
+			case 'guzzle':
+				return new GuzzleHttpRequestTester( $url, $options, $caller );
 			case 'curl':
 				return new CurlHttpRequestTester( $url, $options, $caller );
 			case 'php':
@@ -532,6 +534,12 @@ class MWHttpRequestTester extends MWHttpRequest {
 				return new PhpHttpRequestTester( $url, $options, $caller );
 			default:
 		}
+	}
+}
+
+class GuzzleHttpRequestTester extends GuzzleHttpRequest {
+	function setRespHeaders( $name, $value ) {
+		$this->respHeaders[$name] = $value;
 	}
 }
 

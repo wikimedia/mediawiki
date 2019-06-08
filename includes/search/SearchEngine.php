@@ -219,10 +219,7 @@ abstract class SearchEngine {
 	 * @return mixed the feature value or null if unset
 	 */
 	public function getFeatureData( $feature ) {
-		if ( isset( $this->features[$feature] ) ) {
-			return $this->features[$feature];
-		}
-		return null;
+		return $this->features[$feature] ?? null;
 	}
 
 	/**
@@ -279,18 +276,9 @@ abstract class SearchEngine {
 	 * @return Title
 	 */
 	public static function getNearMatch( $searchterm ) {
-		return static::defaultNearMatcher()->getNearMatch( $searchterm );
-	}
+		wfDeprecated( __METHOD__, '1.27' );
 
-	/**
-	 * Do a near match (see SearchEngine::getNearMatch) and wrap it into a
-	 * SearchResultSet.
-	 * @deprecated since 1.27; Use SearchEngine::getNearMatcher()
-	 * @param string $searchterm
-	 * @return SearchResultSet
-	 */
-	public static function getNearMatchResultSet( $searchterm ) {
-		return static::defaultNearMatcher()->getNearMatchResultSet( $searchterm );
+		return static::defaultNearMatcher()->getNearMatch( $searchterm );
 	}
 
 	/**
@@ -325,7 +313,7 @@ abstract class SearchEngine {
 	function setNamespaces( $namespaces ) {
 		if ( $namespaces ) {
 			// Filter namespaces to only keep valid ones
-			$validNs = $this->searchableNamespaces();
+			$validNs = MediaWikiServices::getInstance()->getSearchEngineConfig()->searchableNamespaces();
 			$namespaces = array_filter( $namespaces, function ( $ns ) use( $validNs ) {
 				return $ns < 0 || isset( $validNs[$ns] );
 			} );
@@ -750,6 +738,8 @@ abstract class SearchEngine {
 	 * @return array
 	 */
 	public static function searchableNamespaces() {
+		wfDeprecated( __METHOD__, '1.27' );
+
 		return MediaWikiServices::getInstance()->getSearchEngineConfig()->searchableNamespaces();
 	}
 
@@ -761,6 +751,8 @@ abstract class SearchEngine {
 	 * @return array
 	 */
 	public static function userNamespaces( $user ) {
+		wfDeprecated( __METHOD__, '1.27' );
+
 		return MediaWikiServices::getInstance()->getSearchEngineConfig()->userNamespaces( $user );
 	}
 
@@ -770,6 +762,8 @@ abstract class SearchEngine {
 	 * @return array
 	 */
 	public static function defaultNamespaces() {
+		wfDeprecated( __METHOD__, '1.27' );
+
 		return MediaWikiServices::getInstance()->getSearchEngineConfig()->defaultNamespaces();
 	}
 
@@ -781,6 +775,8 @@ abstract class SearchEngine {
 	 * @return array
 	 */
 	public static function namespacesAsText( $namespaces ) {
+		wfDeprecated( __METHOD__, '1.27' );
+
 		return MediaWikiServices::getInstance()->getSearchEngineConfig()->namespacesAsText( $namespaces );
 	}
 
@@ -792,6 +788,8 @@ abstract class SearchEngine {
 	 * @return SearchEngine
 	 */
 	public static function create( $type = null ) {
+		wfDeprecated( __METHOD__, '1.27' );
+
 		return MediaWikiServices::getInstance()->getSearchEngineFactory()->create( $type );
 	}
 
@@ -802,6 +800,8 @@ abstract class SearchEngine {
 	 * @return array
 	 */
 	public static function getSearchTypes() {
+		wfDeprecated( __METHOD__, '1.27' );
+
 		return MediaWikiServices::getInstance()->getSearchEngineConfig()->getSearchTypes();
 	}
 
@@ -907,14 +907,4 @@ abstract class SearchEngine {
 			}
 		}
 	}
-}
-
-/**
- * Dummy class to be used when non-supported Database engine is present.
- * @todo FIXME: Dummy class should probably try something at least mildly useful,
- * such as a LIKE search through titles.
- * @ingroup Search
- */
-class SearchEngineDummy extends SearchEngine {
-	// no-op
 }

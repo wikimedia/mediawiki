@@ -53,8 +53,6 @@ class Orphans extends Maintenance {
 	public function execute() {
 		$this->checkOrphans( $this->hasOption( 'fix' ) );
 		$this->checkSeparation( $this->hasOption( 'fix' ) );
-		# Does not work yet, do not use
-		# $this->checkWidows( $this->hasOption( 'fix' ) );
 	}
 
 	/**
@@ -67,7 +65,7 @@ class Orphans extends Maintenance {
 		if ( $extraTable ) {
 			$tbls = array_merge( $tbls, $extraTable );
 		}
-		$db->lockTables( [], $tbls, __METHOD__, false );
+		$db->lockTables( [], $tbls, __METHOD__ );
 	}
 
 	/**
@@ -140,54 +138,6 @@ class Orphans extends Maintenance {
 	}
 
 	/**
-	 * @param bool $fix
-	 * @todo DON'T USE THIS YET! It will remove entries which have children,
-	 *       but which aren't properly attached (eg if page_latest is bogus
-	 *       but valid revisions do exist)
-	 */
-	private function checkWidows( $fix ) {
-		$dbw = $this->getDB( DB_MASTER );
-		$page = $dbw->tableName( 'page' );
-		$revision = $dbw->tableName( 'revision' );
-
-		if ( $fix ) {
-			$this->lockTables( $dbw );
-		}
-
-		$this->output( "\nChecking for childless page table entries... "
-			. "(this may take a while on a large wiki)\n" );
-		$result = $dbw->query( "
-			SELECT *
-			FROM $page LEFT OUTER JOIN $revision ON page_latest=rev_id
-			WHERE rev_id IS NULL
-		" );
-		$widows = $result->numRows();
-		if ( $widows > 0 ) {
-			$this->output( "$widows childless pages...\n" );
-			$this->output( sprintf( "%10s %11s %2s %s\n", 'page_id', 'page_latest', 'ns', 'page_title' ) );
-			foreach ( $result as $row ) {
-				printf( "%10d %11d %2d %s\n",
-					$row->page_id,
-					$row->page_latest,
-					$row->page_namespace,
-					$row->page_title );
-				if ( $fix ) {
-					$dbw->delete( 'page', [ 'page_id' => $row->page_id ] );
-				}
-			}
-			if ( !$fix ) {
-				$this->output( "Run again with --fix to remove these entries automatically.\n" );
-			}
-		} else {
-			$this->output( "No childless pages! Yay!\n" );
-		}
-
-		if ( $fix ) {
-			$dbw->unlockTables( __METHOD__ );
-		}
-	}
-
-	/**
 	 * Check for pages where page_latest is wrong
 	 * @param bool $fix Whether to fix broken entries
 	 */
@@ -204,7 +154,7 @@ class Orphans extends Maintenance {
 			. "(this may take a while on a large wiki)\n" );
 		$result = $dbw->query( "
 			SELECT *
-			FROM $page LEFT OUTER JOIN $revision ON page_latest=rev_id
+			FROM $page LEFT JOIN $revision ON page_latest=rev_id
 		" );
 		$found = 0;
 		foreach ( $result as $row ) {

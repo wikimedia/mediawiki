@@ -125,7 +125,7 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		// Check version
 		$version = $conn->getServerVersion();
-		$status = static::meetsMinimumRequirement( $conn->getServerVersion() );
+		$status = static::meetsMinimumRequirement( $version );
 		if ( !$status->isOK() ) {
 			return $status;
 		}
@@ -443,11 +443,11 @@ class PostgresInstaller extends DatabaseInstaller {
 			}
 			// Recursively search each member of the group to see if the target
 			// is a member of it, up to the given maximum depth.
-			if ( $maxDepth > 0 ) {
-				if ( $this->isRoleMember( $conn, $targetMember, $row->member, $maxDepth - 1 ) ) {
-					// Found member of member
-					return true;
-				}
+			if ( $maxDepth > 0 &&
+				$this->isRoleMember( $conn, $targetMember, $row->member, $maxDepth - 1 )
+			) {
+				// Found member of member
+				return true;
 			}
 		}
 

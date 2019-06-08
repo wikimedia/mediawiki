@@ -7,6 +7,7 @@ use CommentStore;
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreFactory;
+use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStore;
@@ -22,11 +23,15 @@ use Wikimedia\TestingAccessWrapper;
 
 class RevisionStoreFactoryTest extends MediaWikiTestCase {
 
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStoreFactory::__construct
+	 */
 	public function testValidConstruction_doesntCauseErrors() {
 		new RevisionStoreFactory(
 			$this->getMockLoadBalancerFactory(),
 			$this->getMockBlobStoreFactory(),
 			$this->getNameTableStoreFactory(),
+			$this->getMockSlotRoleRegistry(),
 			$this->getHashWANObjectCache(),
 			$this->getMockCommentStore(),
 			ActorMigration::newMigration(),
@@ -47,6 +52,7 @@ class RevisionStoreFactoryTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideWikiIds
+	 * @covers \MediaWiki\Revision\RevisionStoreFactory::getRevisionStore
 	 */
 	public function testGetRevisionStore(
 		$wikiId,
@@ -56,6 +62,7 @@ class RevisionStoreFactoryTest extends MediaWikiTestCase {
 		$lbFactory = $this->getMockLoadBalancerFactory();
 		$blobStoreFactory = $this->getMockBlobStoreFactory();
 		$nameTableStoreFactory = $this->getNameTableStoreFactory();
+		$slotRoleRegistry = $this->getMockSlotRoleRegistry();
 		$cache = $this->getHashWANObjectCache();
 		$commentStore = $this->getMockCommentStore();
 		$actorMigration = ActorMigration::newMigration();
@@ -65,6 +72,7 @@ class RevisionStoreFactoryTest extends MediaWikiTestCase {
 			$lbFactory,
 			$blobStoreFactory,
 			$nameTableStoreFactory,
+			$slotRoleRegistry,
 			$cache,
 			$commentStore,
 			$actorMigration,
@@ -138,6 +146,16 @@ class RevisionStoreFactoryTest extends MediaWikiTestCase {
 			->willReturnCallback( function () {
 				return $this->getMockSqlBlobStore();
 			} );
+
+		return $mock;
+	}
+
+	/**
+	 * @return \PHPUnit_Framework_MockObject_MockObject|SlotRoleRegistry
+	 */
+	private function getMockSlotRoleRegistry() {
+		$mock = $this->getMockBuilder( SlotRoleRegistry::class )
+			->disableOriginalConstructor()->getMock();
 
 		return $mock;
 	}

@@ -41,6 +41,7 @@ abstract class ImmutableSessionProviderWithCookie extends SessionProvider {
 
 	/** @var string|null */
 	protected $sessionCookieName = null;
+	/** @var mixed[] */
 	protected $sessionCookieOptions = [];
 
 	/**

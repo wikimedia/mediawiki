@@ -128,6 +128,37 @@ class ApiFormatJsonTest extends ApiFormatTestBase {
 
 				// Cross-domain mangling
 				[ [ '< Cross-Domain-Policy >' ], '["\u003C Cross-Domain-Policy >"]' ],
+
+				// Invalid UTF-8: bytes 192, 193, and 245-255 are off-limits
+				[
+					[ 'foo' => "\xFF" ],
+					"{\"foo\":\"\u{FFFD}\"}", // Mangled when validated (T210548)
+				],
+				[
+					[ 'foo' => "\xFF" ],
+					new MWException(
+						'Internal error in ApiFormatJson::execute: ' .
+						'Unable to encode API result as JSON'
+					),
+					[],
+					[ 'flags' => ApiResult::NO_VALIDATE ],
+				],
+				// NaN is also not allowed
+				[
+					[ 'foo' => NAN ],
+					new InvalidArgumentException(
+						'Cannot add non-finite floats to ApiResult'
+					),
+				],
+				[
+					[ 'foo' => NAN ],
+					new MWException(
+						'Internal error in ApiFormatJson::execute: ' .
+						'Unable to encode API result as JSON'
+					),
+					[],
+					[ 'flags' => ApiResult::NO_VALIDATE ],
+				],
 			] )
 			// @todo Test rawfm
 		);

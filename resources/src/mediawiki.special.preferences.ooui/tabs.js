@@ -3,58 +3,26 @@
  */
 ( function () {
 	$( function () {
-		var $preferences, tabs, wrapper, previousTab, switchingNoHash;
+		var tabs, previousTab, switchingNoHash;
 
-		$preferences = $( '#preferences' );
-
-		// Make sure the accessibility tip is selectable so that screen reader users take notice,
+		// Make sure the accessibility tip is focussable so that keyboard users take notice,
 		// but hide it by default to reduce visual clutter.
 		// Make sure it becomes visible when focused.
 		$( '<div>' ).addClass( 'mw-navigation-hint' )
 			.text( mw.msg( 'prefs-tabs-navigation-hint' ) )
-			.attr( 'tabIndex', 0 )
-			.prependTo( '#mw-content-text' );
+			.attr( {
+				tabIndex: 0,
+				'aria-hidden': 'true'
+			} )
+			.insertBefore( '.mw-htmlform-ooui-wrapper' );
 
-		tabs = new OO.ui.IndexLayout( {
-			expanded: false,
-			// Do not remove focus from the tabs menu after choosing a tab
-			autoFocus: false
-		} );
+		tabs = OO.ui.infuse( $( '.mw-prefs-tabs' ) );
 
-		mw.config.get( 'wgPreferencesTabs' ).forEach( function ( tabConfig ) {
-			var panel, $panelContents;
-
-			panel = new OO.ui.TabPanelLayout( tabConfig.name, {
-				expanded: false,
-				label: tabConfig.label
-			} );
-			$panelContents = $( '#mw-prefsection-' + tabConfig.name );
-
-			// Hide the unnecessary PHP PanelLayouts
-			// (Do not use .remove(), as that would remove event handlers for everything inside them)
-			$panelContents.parent().detach();
-
-			panel.$element.append( $panelContents );
-			tabs.addTabPanels( [ panel ] );
-
-			// Remove duplicate labels
-			// (This must be after .addTabPanels(), otherwise the tab item doesn't exist yet)
-			$panelContents.children( 'legend' ).remove();
-			$panelContents.attr( 'aria-labelledby', panel.getTabItem().getElementId() );
-		} );
-
-		wrapper = new OO.ui.PanelLayout( {
-			expanded: false,
-			padded: false,
-			framed: true
-		} );
-		wrapper.$element.append( tabs.$element );
-		$preferences.prepend( wrapper.$element );
-		$( '.mw-prefs-faketabs' ).remove();
+		tabs.$element.addClass( 'mw-prefs-tabs-infused' );
 
 		function enhancePanel( panel ) {
 			if ( !panel.$element.data( 'mw-section-infused' ) ) {
-				// mw-htmlform-autoinfuse-lazy class has been removed by replacing faketabs
+				panel.$element.removeClass( 'mw-htmlform-autoinfuse-lazy' );
 				mw.hook( 'htmlform.enhance' ).fire( panel.$element );
 				panel.$element.data( 'mw-section-infused', true );
 			}
@@ -72,7 +40,7 @@
 			// Changing the hash apparently causes keyboard focus to be lost?
 			// Save and restore it. This makes no sense though.
 			active = document.activeElement;
-			location.hash = '#mw-prefsection-' + panel.getName();
+			location.hash = '#' + panel.getName();
 			if ( active ) {
 				active.focus();
 			}
@@ -83,7 +51,7 @@
 
 		/**
 		 * @ignore
-		 * @param {string} name the name of a tab without the prefix ("mw-prefsection-")
+		 * @param {string} name The name of a tab
 		 * @param {boolean} [noHash] A hash will be set according to the current
 		 *  open section. Use this flag to suppress this.
 		 */
@@ -105,14 +73,14 @@
 				matchedElement, parentSection;
 			if ( hash.match( /^#mw-prefsection-[\w]+$/ ) ) {
 				mw.storage.session.remove( 'mwpreferences-prevTab' );
-				switchPrefTab( hash.replace( '#mw-prefsection-', '' ) );
+				switchPrefTab( hash.slice( 1 ) );
 			} else if ( hash.match( /^#mw-[\w-]+$/ ) ) {
 				matchedElement = document.getElementById( hash.slice( 1 ) );
 				parentSection = $( matchedElement ).parent().closest( '[id^="mw-prefsection-"]' );
 				if ( parentSection.length ) {
 					mw.storage.session.remove( 'mwpreferences-prevTab' );
 					// Switch to proper tab and scroll to selected item.
-					switchPrefTab( parentSection.attr( 'id' ).replace( 'mw-prefsection-', '' ), true );
+					switchPrefTab( parentSection.attr( 'id' ), true );
 					matchedElement.scrollIntoView();
 				}
 			}
@@ -123,7 +91,7 @@
 			if ( hash.match( /^#mw-[\w-]+/ ) ) {
 				detectHash();
 			} else if ( hash === '' ) {
-				switchPrefTab( 'personal', true );
+				switchPrefTab( 'mw-prefsection-personal', true );
 			}
 		} )
 			// Run the function immediately to select the proper tab on startup.

@@ -45,9 +45,10 @@ class KkConverter extends LanguageConverter {
 	 * @param array $flags
 	 */
 	function __construct( Language $langobj, $maincode,
-								$variants = [],
-								$variantfallbacks = [],
-								$flags = [] ) {
+		$variants = [],
+		$variantfallbacks = [],
+		$flags = []
+	) {
 		parent::__construct( $langobj, $maincode,
 			$variants, $variantfallbacks, $flags );
 
@@ -315,8 +316,8 @@ class KkConverter extends LanguageConverter {
 					// is matched the word to front vowels?
 					// exclude a words matched to е, э, г, к, к, қ,
 					// them should be without hamza
-					if ( preg_match( '/[' . $front . ']/u', $m[0] )
-						&& !preg_match( '/[' . $excludes . ']/u', $m[0] )
+					if ( preg_match( '/[' . $front . ']/u', $m[0] ) &&
+						!preg_match( '/[' . $excludes . ']/u', $m[0] )
 					) {
 						$ret .= preg_replace( '/[' . $letters . ']+/u', H_HAMZA . '$0', $m[0] );
 					} else {

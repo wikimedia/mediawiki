@@ -120,9 +120,10 @@ class FileDeleteForm {
 
 			if ( !$status->isGood() ) {
 				$wgOut->addHTML( '<h2>' . $this->prepareMessage( 'filedeleteerror-short' ) . "</h2>\n" );
-				$wgOut->addWikiText( '<div class="error">' .
+				$wgOut->wrapWikiTextAsInterface(
+					'error',
 					$status->getWikiText( 'filedeleteerror-short', 'filedeleteerror-long' )
-					. '</div>' );
+				);
 			}
 			if ( $status->isOK() ) {
 				$wgOut->setPageTitle( wfMessage( 'actioncomplete' ) );
@@ -228,7 +229,6 @@ class FileDeleteForm {
 					$lbFactory->rollbackMasterChanges( __METHOD__ );
 				}
 			} else {
-				// Done; nothing changed
 				$dbw->endAtomic( __METHOD__ );
 			}
 		}
@@ -245,9 +245,6 @@ class FileDeleteForm {
 	 */
 	private function showForm() {
 		global $wgOut, $wgUser, $wgRequest;
-
-		$conf = RequestContext::getMain()->getConfig();
-		$oldCommentSchema = $conf->get( 'CommentTableSchemaMigrationStage' ) === MIGRATION_OLD;
 
 		$wgOut->addModules( 'mediawiki.action.delete.file' );
 
@@ -282,13 +279,13 @@ class FileDeleteForm {
 
 		// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
 		// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
-		// Unicode codepoints (or 255 UTF-8 bytes for old schema).
+		// Unicode codepoints.
 		$fields[] = new OOUI\FieldLayout(
 			new OOUI\TextInputWidget( [
 				'name' => 'wpReason',
 				'inputId' => 'wpReason',
 				'tabIndex' => 2,
-				'maxLength' => $oldCommentSchema ? 255 : CommentStore::COMMENT_CHARACTER_LIMIT,
+				'maxLength' => CommentStore::COMMENT_CHARACTER_LIMIT,
 				'infusable' => true,
 				'value' => $wgRequest->getText( 'wpReason' ),
 				'autofocus' => true,

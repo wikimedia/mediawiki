@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -169,11 +170,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					$this->limit = 1;
 				}
 			}
-			if ( isset( $params['section'] ) ) {
-				$this->section = $params['section'];
-			} else {
-				$this->section = false;
-			}
+			$this->section = $params['section'] ?? false;
 		}
 
 		$userMax = $this->parseContent ? 1 : ( $smallLimit ? ApiBase::LIMIT_SML1 : ApiBase::LIMIT_BIG1 );
@@ -233,9 +230,9 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		$anyHidden = false;
 
 		if ( $this->fld_ids ) {
-			$vals['revid'] = intval( $revision->getId() );
+			$vals['revid'] = (int)$revision->getId();
 			if ( !is_null( $revision->getParentId() ) ) {
-				$vals['parentid'] = intval( $revision->getParentId() );
+				$vals['parentid'] = (int)$revision->getParentId();
 			}
 		}
 
@@ -271,7 +268,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 		if ( $this->fld_size ) {
 			try {
-				$vals['size'] = intval( $revision->getSize() );
+				$vals['size'] = (int)$revision->getSize();
 			} catch ( RevisionAccessException $e ) {
 				// Back compat: If there's no size, return 0.
 				// @todo: Gergő says to mention T198099 as a "todo" here.
@@ -296,69 +293,27 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( $this->fld_roles ) {
-			$vals['roles'] = $revision->getSlotRoles();
-		}
-
-		if ( $this->needSlots ) {
-			$revDel = $this->checkRevDel( $revision, RevisionRecord::DELETED_TEXT );
-			if ( ( $this->fld_slotsha1 || $this->fetchContent ) && ( $revDel & self::IS_DELETED ) ) {
-				$anyHidden = true;
+		try {
+			if ( $this->fld_roles ) {
+				$vals['roles'] = $revision->getSlotRoles();
 			}
-			if ( $this->slotRoles === null ) {
-				try {
-					$slot = $revision->getSlot( SlotRecord::MAIN, RevisionRecord::RAW );
-				} catch ( RevisionAccessException $e ) {
-					// Back compat: If there's no slot, there's no content, so set 'textmissing'
-					// @todo: Gergő says to mention T198099 as a "todo" here.
-					$vals['textmissing'] = true;
-					$slot = null;
-				}
 
-				if ( $slot ) {
-					$content = null;
-					$vals += $this->extractSlotInfo( $slot, $revDel, $content );
-					if ( !empty( $vals['nosuchsection'] ) ) {
-						$this->dieWithError(
-							[
-								'apierror-nosuchsection-what',
-								wfEscapeWikiText( $this->section ),
-								$this->msg( 'revid', $revision->getId() )
-							],
-							'nosuchsection'
-						);
-					}
-					if ( $content ) {
-						$vals += $this->extractDeprecatedContent( $content, $revision );
-					}
+			if ( $this->needSlots ) {
+				$revDel = $this->checkRevDel( $revision, RevisionRecord::DELETED_TEXT );
+				if ( ( $this->fld_slotsha1 || $this->fetchContent ) && ( $revDel & self::IS_DELETED ) ) {
+					$anyHidden = true;
 				}
-			} else {
-				$roles = array_intersect( $this->slotRoles, $revision->getSlotRoles() );
-				$vals['slots'] = [
-					ApiResult::META_KVP_MERGE => true,
-				];
-				foreach ( $roles as $role ) {
-					try {
-						$slot = $revision->getSlot( $role, RevisionRecord::RAW );
-					} catch ( RevisionAccessException $e ) {
-						// Don't error out here so the client can still process other slots/revisions.
-						// @todo: Gergő says to mention T198099 as a "todo" here.
-						$vals['slots'][$role]['missing'] = true;
-						continue;
-					}
-					$content = null;
-					$vals['slots'][$role] = $this->extractSlotInfo( $slot, $revDel, $content );
-					// @todo Move this into extractSlotInfo() (and remove its $content parameter)
-					// when extractDeprecatedContent() is no more.
-					if ( $content ) {
-						$vals['slots'][$role]['contentmodel'] = $content->getModel();
-						$vals['slots'][$role]['contentformat'] = $content->getDefaultFormat();
-						ApiResult::setContentValue( $vals['slots'][$role], 'content', $content->serialize() );
-					}
-				}
-				ApiResult::setArrayType( $vals['slots'], 'kvp', 'role' );
-				ApiResult::setIndexedTagName( $vals['slots'], 'slot' );
+				$vals = array_merge( $vals, $this->extractAllSlotInfo( $revision, $revDel ) );
 			}
+		} catch ( RevisionAccessException $ex ) {
+			// This is here so T212428 doesn't spam the log.
+			// TODO: find out why T212428 happens in the first place!
+			$vals['slotsmissing'] = true;
+
+			LoggerFactory::getInstance( 'api-warning' )->error(
+				'Failed to access revision slots',
+				[ 'revision' => $revision->getId(), 'exception' => $ex, ]
+			);
 		}
 
 		if ( $this->fld_comment || $this->fld_parsedcomment ) {
@@ -401,6 +356,79 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	}
 
 	/**
+	 * Extracts information about all relevant slots.
+	 *
+	 * @param RevisionRecord $revision
+	 * @param int $revDel
+	 *
+	 * @return array
+	 * @throws ApiUsageException
+	 */
+	private function extractAllSlotInfo( RevisionRecord $revision, $revDel ): array {
+		$vals = [];
+
+		if ( $this->slotRoles === null ) {
+			try {
+				$slot = $revision->getSlot( SlotRecord::MAIN, RevisionRecord::RAW );
+			} catch ( RevisionAccessException $e ) {
+				// Back compat: If there's no slot, there's no content, so set 'textmissing'
+				// @todo: Gergő says to mention T198099 as a "todo" here.
+				$vals['textmissing'] = true;
+				$slot = null;
+			}
+
+			if ( $slot ) {
+				$content = null;
+				$vals += $this->extractSlotInfo( $slot, $revDel, $content );
+				if ( !empty( $vals['nosuchsection'] ) ) {
+					$this->dieWithError(
+						[
+							'apierror-nosuchsection-what',
+							wfEscapeWikiText( $this->section ),
+							$this->msg( 'revid', $revision->getId() )
+						],
+						'nosuchsection'
+					);
+				}
+				if ( $content ) {
+					$vals += $this->extractDeprecatedContent( $content, $revision );
+				}
+			}
+		} else {
+			$roles = array_intersect( $this->slotRoles, $revision->getSlotRoles() );
+			$vals['slots'] = [
+				ApiResult::META_KVP_MERGE => true,
+			];
+			foreach ( $roles as $role ) {
+				try {
+					$slot = $revision->getSlot( $role, RevisionRecord::RAW );
+				} catch ( RevisionAccessException $e ) {
+					// Don't error out here so the client can still process other slots/revisions.
+					// @todo: Gergő says to mention T198099 as a "todo" here.
+					$vals['slots'][$role]['missing'] = true;
+					continue;
+				}
+				$content = null;
+				$vals['slots'][$role] = $this->extractSlotInfo( $slot, $revDel, $content );
+				// @todo Move this into extractSlotInfo() (and remove its $content parameter)
+				// when extractDeprecatedContent() is no more.
+				if ( $content ) {
+					$vals['slots'][$role]['contentmodel'] = $content->getModel();
+					$vals['slots'][$role]['contentformat'] = $content->getDefaultFormat();
+					ApiResult::setContentValue(
+						$vals['slots'][$role],
+						'content',
+						$content->serialize()
+					);
+				}
+			}
+			ApiResult::setArrayType( $vals['slots'], 'kvp', 'role' );
+			ApiResult::setIndexedTagName( $vals['slots'], 'slot' );
+		}
+		return $vals;
+	}
+
+	/**
 	 * Extract information from the SlotRecord
 	 *
 	 * @param SlotRecord $slot
@@ -414,7 +442,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		ApiResult::setArrayType( $vals, 'assoc' );
 
 		if ( $this->fld_slotsize ) {
-			$vals['size'] = intval( $slot->getSize() );
+			$vals['size'] = (int)$slot->getSize();
 		}
 
 		if ( $this->fld_slotsha1 ) {
@@ -475,7 +503,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 		if ( $this->fld_parsetree || ( $this->fld_content && $this->generateXML ) ) {
 			if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
-				$t = $content->getNativeData(); # note: don't set $text
+				$t = $content->getText(); # note: don't set $text
 
 				$wgParser->startExternalParse(
 					$title,
@@ -507,7 +535,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 			if ( $this->expandTemplates && !$this->parseContent ) {
 				if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
-					$text = $content->getNativeData();
+					$text = $content->getText();
 
 					$text = $wgParser->preprocess(
 						$text,
@@ -620,10 +648,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		$slotRoles = MediaWikiServices::getInstance()->getSlotRoleStore()->getMap();
-		if ( !in_array( SlotRecord::MAIN, $slotRoles, true ) ) {
-			$slotRoles[] = SlotRecord::MAIN;
-		}
+		$slotRoles = MediaWikiServices::getInstance()->getSlotRoleRegistry()->getKnownRoles();
 		sort( $slotRoles, SORT_STRING );
 
 		return [

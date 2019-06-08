@@ -219,7 +219,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 				'OFFSET' => $offset
 			],
 			'join_conds' => [
-				'page' => [ 'INNER JOIN', 'cl_from = page_id' ]
+				'page' => [ 'JOIN', 'cl_from = page_id' ]
 			]
 		];
 
@@ -291,7 +291,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	 * @param int $offset A small offset to make the result seem more "random"
 	 * @param bool $up Get the result above the random value
 	 * @param string $fname The name of the calling method
-	 * @return array Info for the title selected.
+	 * @return stdClass|false Info for the title selected.
 	 */
 	private function selectRandomPageFromDB( $rand, $offset, $up, $fname = __METHOD__ ) {
 		$dbr = wfGetDB( DB_REPLICA );

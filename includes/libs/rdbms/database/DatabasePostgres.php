@@ -116,7 +116,7 @@ class DatabasePostgres extends Database {
 			$connectVars['port'] = (int)$this->port;
 		}
 		if ( $this->flags & self::DBO_SSL ) {
-			$connectVars['sslmode'] = 1;
+			$connectVars['sslmode'] = 'require';
 		}
 
 		$this->connectString = $this->makeConnectionString( $connectVars );
@@ -216,6 +216,10 @@ class DatabasePostgres extends Database {
 			!preg_match( '/^SELECT\s+pg_(try_|)advisory_\w+\(/', $sql );
 	}
 
+	/**
+	 * @param string $sql
+	 * @return bool|mixed|resource
+	 */
 	public function doQuery( $sql ) {
 		$conn = $this->getBindingHandle();
 
@@ -682,9 +686,8 @@ __INDEXATTR__;
 	 * @param array $insertOptions
 	 * @param array $selectOptions
 	 * @param array $selectJoinConds
-	 * @return bool
 	 */
-	public function nativeInsertSelect(
+	protected function nativeInsertSelect(
 		$destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
 		$insertOptions = [], $selectOptions = [], $selectJoinConds = []
 	) {
@@ -709,18 +712,18 @@ __INDEXATTR__;
 				$sql = "INSERT INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ') ' .
 					$selectSql . ' ON CONFLICT DO NOTHING';
 
-				return $this->query( $sql, $fname );
+				$this->query( $sql, $fname );
 			} else {
 				// IGNORE and we don't have ON CONFLICT DO NOTHING, so just use the non-native version
-				return $this->nonNativeInsertSelect(
+				$this->nonNativeInsertSelect(
 					$destTable, $srcTable, $varMap, $conds, $fname,
 					$insertOptions, $selectOptions, $selectJoinConds
 				);
 			}
+		} else {
+			parent::nativeInsertSelect( $destTable, $srcTable, $varMap, $conds, $fname,
+				$insertOptions, $selectOptions, $selectJoinConds );
 		}
-
-		return parent::nativeInsertSelect( $destTable, $srcTable, $varMap, $conds, $fname,
-			$insertOptions, $selectOptions, $selectJoinConds );
 	}
 
 	public function tableName( $name, $format = 'quoted' ) {
@@ -816,8 +819,12 @@ __INDEXATTR__;
 
 		$temporary = $temporary ? 'TEMPORARY' : '';
 
-		$ret = $this->query( "CREATE $temporary TABLE $newNameE " .
-			"(LIKE $oldNameE INCLUDING DEFAULTS INCLUDING INDEXES)", $fname );
+		$ret = $this->query(
+			"CREATE $temporary TABLE $newNameE " .
+				"(LIKE $oldNameE INCLUDING DEFAULTS INCLUDING INDEXES)",
+			$fname,
+			$this::QUERY_PSEUDO_PERMANENT
+		);
 		if ( !$ret ) {
 			return $ret;
 		}
@@ -829,7 +836,7 @@ __INDEXATTR__;
 			. ' WHERE relkind = \'r\''
 			. ' AND nspname = ' . $this->addQuotes( $this->getCoreSchema() )
 			. ' AND relname = ' . $this->addQuotes( $oldName )
-			. ' AND adsrc LIKE \'nextval(%\'',
+			. ' AND pg_get_expr(adbin, adrelid) LIKE \'nextval(%\'',
 			$fname
 		);
 		$row = $this->fetchObject( $res );
@@ -839,7 +846,10 @@ __INDEXATTR__;
 			$fieldE = $this->addIdentifierQuotes( $field );
 			$newSeqE = $this->addIdentifierQuotes( $newSeq );
 			$newSeqQ = $this->addQuotes( $newSeq );
-			$this->query( "CREATE $temporary SEQUENCE $newSeqE OWNED BY $newNameE.$fieldE", $fname );
+			$this->query(
+				"CREATE $temporary SEQUENCE $newSeqE OWNED BY $newNameE.$fieldE",
+				$fname
+			);
 			$this->query(
 				"ALTER TABLE $newNameE ALTER COLUMN $fieldE SET DEFAULT nextval({$newSeqQ}::regclass)",
 				$fname
@@ -864,10 +874,10 @@ __INDEXATTR__;
 			}
 
 			$oid = $this->fetchObject( $res )->oid;
-			$res = $this->query( 'SELECT adsrc FROM pg_attribute a'
+			$res = $this->query( 'SELECT pg_get_expr(adbin, adrelid) AS adsrc FROM pg_attribute a'
 				. ' JOIN pg_attrdef d ON (a.attrelid=d.adrelid and a.attnum=d.adnum)'
 				. " WHERE a.attrelid = $oid"
-				. ' AND adsrc LIKE \'nextval(%\'',
+				. ' AND pg_get_expr(adbin, adrelid) LIKE \'nextval(%\'',
 				$fname
 			);
 			$row = $this->fetchObject( $res );
@@ -929,22 +939,22 @@ __INDEXATTR__;
 	 * @return string[]
 	 */
 	private function pg_array_parse( $text, &$output, $limit = false, $offset = 1 ) {
-		if ( false === $limit ) {
+		if ( $limit === false ) {
 			$limit = strlen( $text ) - 1;
 			$output = [];
 		}
-		if ( '{}' == $text ) {
+		if ( $text == '{}' ) {
 			return $output;
 		}
 		do {
-			if ( '{' != $text[$offset] ) {
+			if ( $text[$offset] != '{' ) {
 				preg_match( "/(\\{?\"([^\"\\\\]|\\\\.)*\"|[^,{}]+)+([,}]+)/",
 					$text, $match, 0, $offset );
 				$offset += strlen( $match[0] );
-				$output[] = ( '"' != $match[1][0]
+				$output[] = ( $match[1][0] != '"'
 					? $match[1]
 					: stripcslashes( substr( $match[1], 1, -1 ) ) );
-				if ( '},' == $match[3] ) {
+				if ( $match[3] == '},' ) {
 					return $output;
 				}
 			} else {
@@ -1343,10 +1353,6 @@ SQL;
 		return [ $startOpts, $useIndex, $preLimitTail, $postLimitTail, $ignoreIndex ];
 	}
 
-	public function getServer() {
-		return $this->server;
-	}
-
 	public function buildConcat( $stringList ) {
 		return implode( ' || ', $stringList );
 	}
@@ -1457,6 +1463,10 @@ SQL;
 		$row = $this->fetchObject( $res );
 
 		return $row ? ( strtolower( $row->default_transaction_read_only ) === 'on' ) : false;
+	}
+
+	public static function getAttributes() {
+		return [ self::ATTR_SCHEMAS_AS_TABLE_GROUPS => true ];
 	}
 
 	/**

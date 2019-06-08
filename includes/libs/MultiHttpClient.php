@@ -237,11 +237,9 @@ class MultiHttpClient implements LoggerAwareInterface {
 					}
 				} while ( $mrc == CURLM_CALL_MULTI_PERFORM );
 				// Wait (if possible) for available work...
-				if ( $active > 0 && $mrc == CURLM_OK ) {
-					if ( curl_multi_select( $chm, $selectTimeout ) == -1 ) {
-						// PHP bug 63411; https://curl.haxx.se/libcurl/c/curl_multi_fdset.html
-						usleep( 5000 ); // 5ms
-					}
+				if ( $active > 0 && $mrc == CURLM_OK && curl_multi_select( $chm, $selectTimeout ) == -1 ) {
+					// PHP bug 63411; https://curl.haxx.se/libcurl/c/curl_multi_fdset.html
+					usleep( 5000 ); // 5ms
 				}
 			} while ( $active > 0 && $mrc == CURLM_OK );
 		}
@@ -384,7 +382,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 
 		curl_setopt( $ch, CURLOPT_HEADERFUNCTION,
 			function ( $ch, $header ) use ( &$req ) {
-				if ( !empty( $req['flags']['relayResponseHeaders'] ) ) {
+				if ( !empty( $req['flags']['relayResponseHeaders'] ) && trim( $header ) !== '' ) {
 					header( $header );
 				}
 				$length = strlen( $header );
@@ -438,7 +436,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 		if ( !$this->multiHandle ) {
 			if ( !function_exists( 'curl_multi_init' ) ) {
 				throw new Exception( "PHP cURL function curl_multi_init missing. " .
-									 "Check https://www.mediawiki.org/wiki/Manual:CURL" );
+					"Check https://www.mediawiki.org/wiki/Manual:CURL" );
 			}
 			$cmh = curl_multi_init();
 			curl_multi_setopt( $cmh, CURLMOPT_PIPELINING, (int)$this->usePipelining );

@@ -50,8 +50,8 @@ class McTest extends Maintenance {
 				$this->fatalError( "MediaWiki isn't configured with a cache named '$cache'" );
 			}
 			$servers = $wgObjectCaches[$cache]['servers'];
-		} elseif ( $this->hasArg() ) {
-			$servers = [ $this->getArg() ];
+		} elseif ( $this->hasArg( 0 ) ) {
+			$servers = [ $this->getArg( 0 ) ];
 		} elseif ( $wgMainCacheType === CACHE_MEMCACHED ) {
 			global $wgMemCachedServers;
 			$servers = $wgMemCachedServers;

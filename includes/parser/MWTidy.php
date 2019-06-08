@@ -22,11 +22,7 @@
  */
 
 /**
- * Class to interact with HTML tidy
- *
- * Either the external tidy program or the in-process tidy extension
- * will be used depending on availability. Override the default
- * $wgTidyInternal setting to disable the internal if it's not working.
+ * Class to interact with and configure Remex tidy
  *
  * @ingroup Parser
  */
@@ -34,7 +30,7 @@ class MWTidy {
 	private static $instance;
 
 	/**
-	 * Interface with html tidy.
+	 * Interface with Remex tidy.
 	 * If tidy isn't able to correct the markup, the original will be
 	 * returned in all its glory with a warning comment appended.
 	 *
@@ -63,34 +59,9 @@ class MWTidy {
 	 * @return bool|\MediaWiki\Tidy\TidyDriverBase
 	 */
 	public static function singleton() {
-		global $wgUseTidy, $wgTidyInternal, $wgTidyConf, $wgDebugTidy, $wgTidyConfig,
-			$wgTidyBin, $wgTidyOpts;
-
+		global $wgTidyConfig;
 		if ( self::$instance === null ) {
-			if ( $wgTidyConfig !== null ) {
-				$config = $wgTidyConfig;
-			} elseif ( $wgUseTidy ) {
-				// b/c configuration
-				wfDeprecated( '$wgUseTidy', '1.26' );
-				$config = [
-					'tidyConfigFile' => $wgTidyConf,
-					'debugComment' => $wgDebugTidy,
-					'tidyBin' => $wgTidyBin,
-					'tidyCommandLine' => $wgTidyOpts ];
-				if ( $wgTidyInternal ) {
-					if ( wfIsHHVM() ) {
-						$config['driver'] = 'RaggettInternalHHVM';
-					} else {
-						$config['driver'] = 'RaggettInternalPHP';
-					}
-				} else {
-					$config['driver'] = 'RaggettExternal';
-				}
-			} else {
-				wfDeprecated( '$wgTidyConfig = null and $wgUseTidy = false', '1.26' );
-				return false;
-			}
-			self::$instance = self::factory( $config );
+			self::$instance = self::factory( $wgTidyConfig );
 		}
 		return self::$instance;
 	}
@@ -98,38 +69,21 @@ class MWTidy {
 	/**
 	 * Create a new Tidy driver object from configuration.
 	 * @see $wgTidyConfig
-	 * @param array $config
+	 * @param array|null $config Optional since 1.33
 	 * @return bool|\MediaWiki\Tidy\TidyDriverBase
 	 * @throws MWException
 	 */
-	public static function factory( array $config ) {
-		switch ( $config['driver'] ) {
-			case 'RaggettInternalHHVM':
-				$instance = new MediaWiki\Tidy\RaggettInternalHHVM( $config );
-				break;
-			case 'RaggettInternalPHP':
-				$instance = new MediaWiki\Tidy\RaggettInternalPHP( $config );
-				break;
-			case 'RaggettExternal':
-				$instance = new MediaWiki\Tidy\RaggettExternal( $config );
-				break;
-			case 'RemexHtml':
-				$instance = new MediaWiki\Tidy\RemexDriver( $config );
-				break;
-			case 'disabled':
-				wfDeprecated( '"disabled" tidy driver', '1.32' );
-				return false;
-			default:
-				throw new MWException( "Invalid tidy driver: \"{$config['driver']}\"" );
-		}
-		return $instance;
+	public static function factory( array $config = null ) {
+		return new MediaWiki\Tidy\RemexDriver( $config ?? [] );
 	}
 
 	/**
 	 * Set the driver to be used. This is for testing.
 	 * @param MediaWiki\Tidy\TidyDriverBase|false|null $instance
+	 * @deprecated Since 1.33
 	 */
 	public static function setInstance( $instance ) {
+		wfDeprecated( __METHOD__, '1.33' );
 		self::$instance = $instance;
 	}
 

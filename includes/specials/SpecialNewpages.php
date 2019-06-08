@@ -39,8 +39,10 @@ class SpecialNewpages extends IncludableSpecialPage {
 		parent::__construct( 'Newpages' );
 	}
 
+	/**
+	 * @param string|null $par
+	 */
 	protected function setup( $par ) {
-		// Options
 		$opts = new FormOptions();
 		$this->opts = $opts; // bind
 		$opts->add( 'hideliu', false );
@@ -63,32 +65,33 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$opts->add( $key, $params['default'] );
 		}
 
-		// Set values
 		$opts->fetchValuesFromRequest( $this->getRequest() );
 		if ( $par ) {
 			$this->parseParams( $par );
 		}
 
-		// Validate
 		$opts->validateIntBounds( 'limit', 0, 5000 );
 	}
 
+	/**
+	 * @param string $par
+	 */
 	protected function parseParams( $par ) {
 		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
 		foreach ( $bits as $bit ) {
-			if ( 'shownav' == $bit ) {
+			if ( $bit === 'shownav' ) {
 				$this->showNavigation = true;
 			}
-			if ( 'hideliu' === $bit ) {
+			if ( $bit === 'hideliu' ) {
 				$this->opts->setValue( 'hideliu', true );
 			}
-			if ( 'hidepatrolled' == $bit ) {
+			if ( $bit === 'hidepatrolled' ) {
 				$this->opts->setValue( 'hidepatrolled', true );
 			}
-			if ( 'hidebots' == $bit ) {
+			if ( $bit === 'hidebots' ) {
 				$this->opts->setValue( 'hidebots', true );
 			}
-			if ( 'showredirs' == $bit ) {
+			if ( $bit === 'showredirs' ) {
 				$this->opts->setValue( 'hideredirs', false );
 			}
 			if ( is_numeric( $bit ) ) {
@@ -118,7 +121,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	/**
 	 * Show a form for filtering namespace and username
 	 *
-	 * @param string $par
+	 * @param string|null $par
 	 */
 	public function execute( $par ) {
 		$out = $this->getOutput();
@@ -192,9 +195,12 @@ class SpecialNewpages extends IncludableSpecialPage {
 		// wfArrayToCgi(), called from LinkRenderer/Title, will not output null and false values
 		// to the URL, which would omit some options (T158504). Fix it by explicitly setting them
 		// to 0 or 1.
-		$changed = array_map( function ( $value ) {
-			return $value ? '1' : '0';
-		}, $changed );
+		// Also do this only for boolean options, not eg. namespace or tagfilter
+		foreach ( $changed as $key => $value ) {
+			if ( array_key_exists( $key, $filters ) ) {
+				$changed[$key] = $changed[$key] ? '1' : '0';
+			}
+		}
 
 		$self = $this->getPageTitle();
 		$linkRenderer = $this->getLinkRenderer();

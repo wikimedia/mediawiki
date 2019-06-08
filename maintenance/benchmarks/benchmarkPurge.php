@@ -54,7 +54,7 @@ class BenchmarkPurge extends Benchmarker {
 	}
 
 	/**
-	 * Run a bunch of URLs through SquidUpdate::purge()
+	 * Run a bunch of URLs through CdnCacheUpdate::purge()
 	 * to benchmark Squid response times.
 	 * @param array $urls A bunch of URLs to purge
 	 * @param int $trials How many times to run the test?

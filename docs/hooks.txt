@@ -226,26 +226,14 @@ Hooks::run() returns true if the calling function should continue processing
 error occurred, or one of the hooks handled the action already). Checking the
 return value matters more for "before" hooks than for "complete" hooks.
 
-Hooks::run() was added in MediaWiki 1.18, before that the global function
-wfRunHooks must be used, which was deprecated in MediaWiki 1.25.
-
 Note that hook parameters are passed in an array; this is a necessary
-inconvenience to make it possible to pass reference values (that can be changed)
-into the hook code. Also note that earlier versions of wfRunHooks took a
-variable number of arguments; the array calling protocol came about after
-MediaWiki 1.4rc1.
+inconvenience to make it possible to pass reference values (which can be changed)
+by the hook callback.
 
 ==Events and parameters==
 
 This is a list of known events and parameters; please add to it if you're going
 to add events to the MediaWiki code.
-
-'AbortAutoAccount': DEPRECATED since 1.27! Create a PreAuthenticationProvider
-instead. Return false to cancel automated local account creation, where normally
-authentication against an external auth plugin would be creating a local
-account.
-$user: the User object about to be created (read-only, incomplete)
-&$abortMsg: out parameter: name of error message to be displayed to user
 
 'AbortAutoblock': Return false to cancel an autoblock.
 $autoblockip: The IP going to be autoblocked.
@@ -258,25 +246,6 @@ $autoblockip: The IP going to be autoblocked.
 $editor: The User who made the change.
 $title: The Title of the page that was edited.
 $rc: The current RecentChange object.
-
-'AbortLogin': DEPRECATED since 1.27! Create a PreAuthenticationProvider instead.
-Return false to cancel account login.
-$user: the User object being authenticated against
-$password: the password being submitted, not yet checked for validity
-&$retval: a LoginForm class constant to return from authenticateUserData();
-  default is LoginForm::ABORTED. Note that the client may be using a machine
-  API rather than the HTML user interface.
-&$msg: the message identifier for abort reason (new in 1.18, not available
-  before 1.18)
-
-'AbortNewAccount': DEPRECATED since 1.27! Create a PreAuthenticationProvider
-instead. Return false to cancel explicit account creation.
-$user: the User object about to be created (read-only, incomplete)
-&$msg: out parameter: HTML to display on abort
-&$status: out parameter: Status object to return, replaces the older $msg param
-  (added in 1.23)
-  Create the object with Status::newFatal() to ensure proper API error
-  messages are returned when creating account through API clients.
 
 'AbortTalkPageEmailNotification': Return false to cancel talk page email
 notification
@@ -415,20 +384,9 @@ $format: API format code for $text.
 &$params: Array of parameters
 $flags: int zero or OR-ed flags like ApiBase::GET_VALUES_FOR_HELP
 
-'APIGetDescription': DEPRECATED since 1.25! Use APIGetDescriptionMessages
-instead. Use this hook to modify a module's description.
-&$module: ApiBase Module object
-&$desc: String description, or array of description strings
-
 'APIGetDescriptionMessages': Use this hook to modify a module's help message.
 $module: ApiBase Module object
 &$msg: Array of Message objects
-
-'APIGetParamDescription': DEPRECATED since 1.25! Use
-APIGetParamDescriptionMessages instead.
-Use this hook to modify a module's parameter descriptions.
-&$module: ApiBase Module object
-&$desc: Array of parameter descriptions
 
 'APIGetParamDescriptionMessages': Use this hook to modify a module's parameter
 descriptions.
@@ -472,6 +430,15 @@ can alter or append to the array.
     - image: Thumbnail for this result. Value is an array with subkeys 'source'
       (url), 'width', 'height', 'alt', 'align'.
     - url: Url for the given title.
+
+'ApiOptions': Called by action=options before applying changes to user
+preferences.
+$apiModule: Calling ApiOptions object
+$user: User object whose preferences are being changed
+$changes: Associative array of preference name => value
+$resetKinds: Array of strings specifying which options kinds to reset.
+  See User::resetOptions() and User::getOptionKinds() for possible
+  values.
 
 'ApiParseMakeOutputPage': Called when preparing the OutputPage object for
 ApiParse. This is mainly intended for calling OutputPage::addContentOverride()
@@ -814,17 +781,11 @@ $response: The MediaWiki\Auth\AuthenticationResponse in either a PASS or FAIL
 $user: The User object being authenticated against, or null if authentication
   failed before getting that far.
 $username: A guess at the user name being authenticated, or null if we can't
-  even determine that.
-
-'AuthPluginAutoCreate': DEPRECATED since 1.27! Use the 'LocalUserCreated' hook
-instead. Called when creating a local account for an user logged in from an
-external authentication method.
-$user: User object created locally
-
-'AuthPluginSetup': DEPRECATED since 1.27! Extensions should be updated to use
-AuthManager. Update or replace authentication plugin object ($wgAuth). Gives a
-chance for an extension to set it programmatically to a variable class.
-&$auth: the $wgAuth object, probably a stub
+  even determine that. When $user is not null, it can be in the form of
+  <username>@<more info> (e.g. for bot passwords).
+$extraData: An array (string => string) with extra information, intended to be
+  added to log contexts. Fields it might include:
+  - appId: the application ID, only if the login was with a bot password
 
 'AutopromoteCondition': Check autopromote condition for user.
 $type: condition type
@@ -1651,7 +1612,7 @@ $out: OutputPage object
 notifications.
 &$title: Title object of page
 &$url: string value as output (out parameter, can modify)
-$query: query options passed to Title::getCanonicalURL()
+$query: query options as string passed to Title::getCanonicalURL()
 
 'GetContentModels': Add content models to the list of available models.
 &$models: array containing current model list, as strings. Extensions should add to this list.
@@ -1689,7 +1650,7 @@ $single: Only extract the current language; if false, the prop value should
 'GetFullURL': Modify fully-qualified URLs used in redirects/export/offsite data.
 &$title: Title object of page
 &$url: string value as output (out parameter, can modify)
-$query: query options passed to Title::getFullURL()
+$query: query options as string passed to Title::getFullURL()
 
 'GetHumanTimestamp': Pre-emptively override the human-readable timestamp
 generated by MWTimestamp::getHumanTimestamp(). Return false in this hook to use
@@ -1703,7 +1664,7 @@ $lang: Language that will be used to render the timestamp
 'GetInternalURL': Modify fully-qualified URLs used for squid cache purging.
 &$title: Title object of page
 &$url: string value as output (out parameter, can modify)
-$query: query options passed to Title::getInternalURL()
+$query: query options as string passed to Title::getInternalURL()
 
 'GetIP': modify the ip of the current user (called only once).
 &$ip: string holding the ip as determined so far
@@ -1728,7 +1689,7 @@ be buggy for internal urls on render if you do not re-implement the horrible
 hack that Title::getLocalURL uses in your own extension.
 &$title: Title object of page
 &$url: string value as output (out parameter, can modify)
-$query: query options passed to Title::getLocalURL()
+$query: query options as string passed to Title::getLocalURL()
 
 'GetLocalURL::Article': Modify local URLs specifically pointing to article paths
 without any fancy queries or variants.
@@ -1738,7 +1699,7 @@ without any fancy queries or variants.
 'GetLocalURL::Internal': Modify local URLs to internal pages.
 &$title: Title object of page
 &$url: string value as output (out parameter, can modify)
-$query: query options passed to Title::getLocalURL()
+$query: query options as string passed to Title::getLocalURL()
 
 'GetLogTypesOnUser': Add log types where the target is a userpage
 &$types: Array of log types
@@ -1990,22 +1951,10 @@ $user: User the password is being validated for
 $code: The language code or the language we're looking for a messages file for
 &$file: The messages file path, you can override this to change the location.
 
-'LanguageGetMagic': DEPRECATED since 1.16! Use $magicWords in a file listed in
-$wgExtensionMessagesFiles instead.
-Use this to define synonyms of magic words depending of the language
-&$magicExtensions: associative array of magic words synonyms
-$lang: language code (string)
-
 'LanguageGetNamespaces': Provide custom ordering for namespaces or
 remove namespaces. Do not use this hook to add namespaces. Use
 CanonicalNamespaces for that.
 &$namespaces: Array of namespaces indexed by their numbers
-
-'LanguageGetSpecialPageAliases': DEPRECATED! Use $specialPageAliases in a file
-listed in $wgExtensionMessagesFiles instead.
-Use to define aliases of special pages names depending of the language
-&$specialPageAliases: associative array of magic words synonyms
-$lang: language code (string)
 
 'LanguageGetTranslatedLanguageNames': Provide translated language names.
 &$names: array of language code => language name
@@ -2226,15 +2175,6 @@ in LoginForm::$validErrorMessages).
 &$messages: Already added messages (inclusive messages from
   LoginForm::$validErrorMessages)
 
-'LoginUserMigrated': DEPRECATED since 1.27! Create a PreAuthenticationProvider
-instead. Called during login to allow extensions the opportunity to inform a
-user that their username doesn't exist for a specific reason, instead of letting
-the login form give the generic error message that the account does not exist.
-For example, when the account has been renamed or deleted.
-$user: the User object being authenticated against.
-&$msg: the message identifier for abort reason, or an array to pass a message
-  key and parameters.
-
 'LogLine': Processes a single log entry on Special:Log.
 $log_type: string for the type of log entry (e.g. 'move'). Corresponds to
   logging.log_type database field.
@@ -2258,6 +2198,16 @@ Special:LonelyPages.
 'MagicWordwgVariableIDs': When defining new magic words IDs.
 &$variableIDs: array of strings
 
+'MaintenanceUpdateAddParams': allow extensions to add params to the update.php
+maintenance script.
+&$params: array to populate with the params to be added. Array elements are keyed by
+the param name. Each param is an associative array that must include the following keys:
+  - desc The description of the param to show on --help
+  - require Is the param required? Defaults to false if not set.
+  - withArg Is an argument required with this option?  Defaults to false if not set.
+  - shortName Character to use as short name, or false if none.  Defaults to false if not set.
+  - multiOccurrence Can this option be passed multiple times?  Defaults to false if not set.
+
 'MaintenanceRefreshLinksInit': before executing the refreshLinks.php maintenance
 script.
 $refreshLinks: RefreshLinks object
@@ -2270,12 +2220,17 @@ ResourceLoaderGetConfigVars instead.
   Skin::makeVariablesScript
 $out: The OutputPage which called the hook, can be used to get the real title.
 
+'ManualLogEntryBeforePublish': Allows to access or modify log entry just before it is
+published.
+$logEntry: ManualLogEntry object
+
 'MarkPatrolled': Before an edit is marked patrolled.
 $rcid: ID of the revision to be marked patrolled
 &$user: the user (object) marking the revision as patrolled
 $wcOnlySysopsCanPatrol: config setting indicating whether the user needs to be a
   sysop in order to mark an edit patrolled.
 $auto: true if the edit is being marked as patrolled automatically
+&$tags: the tags to be applied to the patrol log entry
 
 'MarkPatrolledComplete': After an edit is marked patrolled.
 $rcid: ID of the revision marked as patrolled
@@ -2491,19 +2446,25 @@ $flags: Flags passed to WikiPage::doEditContent()
 $revision: New Revision of the article
 
 'PageContentLanguage': Allows changing the language in which the content of a
-page is written. Defaults to the wiki content language ($wgContLang).
+page is written. Defaults to the wiki content language.
 $title: Title object
-&$pageLang: the page content language (either an object or a language code)
-$wgLang: the user language
+&$pageLang: the page content language. Input can be anything (under control of
+  hook subscribers), but hooks should return Language objects. Language code
+  strings are deprecated.
+$userLang: the user language (Language or StubUserLang object)
 
 'PageContentSave': Before an article is saved.
 $wikiPage: the WikiPage (object) being saved
 $user: the user (object) saving the article
 $content: the new article content, as a Content object
-$summary: the article summary (comment)
-$isminor: minor flag
-$iswatch: watch flag
-$section: section #
+&$summary: CommentStoreComment object containing the edit comment. Can be replaced with a new one.
+$isminor: Boolean flag specifying if the edit was marked as minor.
+$iswatch: Previously a watch flag. Currently unused, always null.
+$section: Previously the section number being edited. Currently unused, always null.
+$flags: All EDIT_… flags (including EDIT_MINOR) as an integer number. See WikiPage::doEditContent
+  documentation for flags' definition.
+$status: StatusValue object for the hook handlers resulting status. Either set $status->fatal() or
+  return false to abort the save action.
 
 'PageContentSaveComplete': After an article has been updated.
 $wikiPage: WikiPage modified
@@ -2867,7 +2828,9 @@ $context: ResourceLoaderContext|null
 ResourceLoaderStartUpModule::getConfigSettings(). Use this to export static
 configuration variables to JavaScript. Things that depend on the current page
 or request state must be added through MakeGlobalVariablesScript instead.
+Skin is made available for skin specific config.
 &$vars: [ variable name => value ]
+$skin: Skin
 
 'ResourceLoaderJqueryMsgModuleMagicWords': Called in
 ResourceLoaderJqueryMsgModule to allow adding magic words for jQueryMsg.
@@ -2881,17 +2844,17 @@ such as when responding to a resource
 loader request or generating HTML output.
 &$resourceLoader: ResourceLoader object
 
-'ResourceLoaderTestModules': Let you add new JavaScript testing modules. This is
-called after the addition of 'qunit' and MediaWiki testing resources.
-&$testModules: array of JavaScript testing modules. The 'qunit' framework,
-  included in core, is fed using tests/qunit/QUnitTestResources.php.
-  To add a new qunit module named 'myext.tests':
-	$testModules['qunit']['myext.tests'] = [
-		'script' => 'extension/myext/tests.js',
-		'dependencies' => <any module dependency you might have>
+'ResourceLoaderTestModules': DEPRECATED since 1.33! Register ResourceLoader modules
+that are only available when `$wgEnableJavaScriptTest` is true. Use this for test
+suites and other test-only resources.
+&$testModules: one array of modules per test framework. The modules array
+follows the same format as `$wgResourceModules`. For example:
+	$testModules['qunit']['ext.Example.test'] = [
+		'localBasePath' => __DIR__ . '/tests/qunit',
+		'remoteExtPath' => 'Example/tests/qunit',
+		'script' => [ 'tests/qunit/foo.js' ],
+		'dependencies' => [ 'ext.Example.foo' ]
 	 ];
-  For QUnit framework, the mediawiki.tests.qunit.testrunner dependency will be
-  added to any module.
 &$ResourceLoader: object
 
 'RevisionDataUpdates': Called when constructing a list of DeferrableUpdate to be
@@ -3464,6 +3427,9 @@ $title: Title object that is being checked
 $old: old title
 $nt: new title
 $user: user who does the move
+$reason: string of the reason provided by the user
+&$status: Status object. To abort the move, add a fatal error to this object
+	(i.e. call $status->fatal()).
 
 'TitleMoveStarting': Before moving an article (title), but just after the atomic
 DB section starts.
@@ -3682,10 +3648,6 @@ messages!" message, return false to not delete it.
 &$user: User (object) that will clear the message
 $oldid: ID of the talk page revision being viewed (0 means the most recent one)
 
-'UserCreateForm': DEPRECATED since 1.27! Create an AuthenticationProvider
-instead. Manipulate the login form.
-&$template: SimpleTemplate instance for the form
-
 'UserEffectiveGroups': Called in User::getEffectiveGroups().
 &$user: User to get groups for
 &$groups: Current effective groups
@@ -3804,10 +3766,6 @@ $direct: (bool) The hook is called directly after a successful login. This will
   only happen once per login. A UserLoginComplete call with direct=false can
   happen when the user visits the login page while already logged in.
 
-'UserLoginForm': DEPRECATED since 1.27! Create an AuthenticationProvider
-instead. Manipulate the login form.
-&$template: QuickTemplate instance for the form
-
 'UserLogout': Before a user logs out.
 &$user: the user object that is about to be logged out
 
@@ -3889,6 +3847,23 @@ $user: The User for which the options are going to be saved
 the database) have been saved. Compare to the UserSaveOptions hook, which is
 called before.
 $user: The User for which the options have been saved
+
+'UserSendConfirmationMail': Called just before a confirmation email is sent to
+a user. Hook handlers can modify the email that will be sent.
+$user: The User for which the confirmation email is going to be sent
+&$mail: Associative array describing the email, with the following keys:
+  - subject: Subject line of the email
+  - body: Email body. Can be a string, or an array with keys 'text' and 'html'
+  - from: User object, or null meaning $wgPasswordSender will be used
+  - replyTo: MailAddress object or null
+$info: Associative array with additional information:
+  - type: 'created' if the user's account was just created; 'set' if the user
+    set an email address when they previously didn't have one; 'changed' if
+    the user had an email address and changed it
+  - ip: The IP address from which the user set/changed their email address
+  - confirmURL: URL the user should visit to confirm their email
+  - invalidateURL: URL the user should visit to invalidate confirmURL
+  - expiration: time and date when confirmURL expires
 
 'UserSetCookies': DEPRECATED since 1.27! If you're trying to replace core
 session cookie handling, you want to create a subclass of

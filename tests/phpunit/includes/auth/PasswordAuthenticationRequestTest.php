@@ -4,7 +4,7 @@ namespace MediaWiki\Auth;
 
 /**
  * @group AuthManager
- * @covers MediaWiki\Auth\PasswordAuthenticationRequest
+ * @covers \MediaWiki\Auth\PasswordAuthenticationRequest
  */
 class PasswordAuthenticationRequestTest extends AuthenticationRequestTestCase {
 

@@ -16,7 +16,6 @@
 	"apihelp-clearhasmsg-summary": "Clears the <code>hasmsg</code> flag for the current user.",
 	"apihelp-compare-summary": "Get the difference between 2 pages.",
 	"apihelp-compare-extended-description": "A revision number, a page title, or a page ID for both \"from\" and \"to\" must be passed.",
-	"apihelp-createaccount-param-password": "Password (ignored if <var>$1mailpassword</var> is set).",
 	"apihelp-delete-param-title": "Title of the page to delete. Cannot be used together with <var>$1pageid</var>.",
 	"apihelp-delete-param-watch": "Add the page to the current user's watchlist.",
 	"apihelp-delete-example-simple": "Delete <kbd>Main Page</kbd>.",

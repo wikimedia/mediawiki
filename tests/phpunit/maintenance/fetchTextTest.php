@@ -4,13 +4,12 @@ namespace MediaWiki\Tests\Maintenance;
 
 use ContentHandler;
 use FetchText;
+use MediaWiki\Storage\RevisionRecord;
 use MediaWikiTestCase;
 use MWException;
 use Title;
 use PHPUnit_Framework_ExpectationFailedException;
 use WikiPage;
-
-require_once __DIR__ . "/../../../maintenance/fetchText.php";
 
 /**
  * Mock for the input/output of FetchText
@@ -106,12 +105,12 @@ class FetchTextTest extends MediaWikiTestCase {
 	private $fetchText;
 
 	/**
-	 * Adds a revision to a page, while returning the resuting text's id
+	 * Adds a revision to a page and returns the main slot's blob address
 	 *
 	 * @param WikiPage $page The page to add the revision to
 	 * @param string $text The revisions text
 	 * @param string $summary The revisions summare
-	 * @return int
+	 * @return string
 	 * @throws MWException
 	 */
 	private function addRevision( $page, $text, $summary ) {
@@ -122,15 +121,14 @@ class FetchTextTest extends MediaWikiTestCase {
 
 		if ( $status->isGood() ) {
 			$value = $status->getValue();
-			$revision = $value['revision'];
-			$id = $revision->getTextId();
 
-			if ( $id > 0 ) {
-				return $id;
-			}
+			/** @var RevisionRecord $revision */
+			$revision = $value['revision-record'];
+			$address = $revision->getSlot( 'main' )->getAddress();
+			return $address;
 		}
 
-		throw new MWException( "Could not determine text id" );
+		throw new MWException( "Could not create revision" );
 	}
 
 	function addDBDataOnce() {
@@ -213,6 +211,11 @@ class FetchTextTest extends MediaWikiTestCase {
 			self::$textId2 . "\n23\nFetchTextTestPage2Text1" );
 	}
 
+	function testExistingInteger() {
+		$this->assertFilter( (int)preg_replace( '/^tt:/', '', self::$textId2 ),
+			self::$textId2 . "\n23\nFetchTextTestPage2Text1" );
+	}
+
 	function testExistingSeveral() {
 		$this->assertFilter(
 			implode( "\n", [
@@ -235,36 +238,52 @@ class FetchTextTest extends MediaWikiTestCase {
 	}
 
 	function testNonExisting() {
-		$this->assertFilter( self::$textId5 + 10, ( self::$textId5 + 10 ) . "\n-1\n" );
+		\Wikimedia\suppressWarnings();
+		$this->assertFilter( 'tt:77889911', 'tt:77889911' . "\n-1\n" );
+		\Wikimedia\suppressWarnings( true );
+	}
+
+	function testNonExistingInteger() {
+		\Wikimedia\suppressWarnings();
+		$this->assertFilter( '77889911', 'tt:77889911' . "\n-1\n" );
+		\Wikimedia\suppressWarnings( true );
+	}
+
+	function testBadBlobAddressWithColon() {
+		$this->assertFilter( 'foo:bar', 'foo:bar' . "\n-1\n" );
 	}
 
 	function testNegativeInteger() {
-		$this->assertFilter( "-42", "-42\n-1\n" );
+		$this->assertFilter( "-42", "tt:-42\n-1\n" );
 	}
 
 	function testFloatingPointNumberExisting() {
-		// float -> int -> revision
-		$this->assertFilter( self::$textId3 + 0.14159,
+		// float -> int -> address -> revision
+		$id = intval( preg_replace( '/^tt:/', '', self::$textId3 ) ) + 0.14159;
+		$this->assertFilter( 'tt:' . intval( $id ),
 			self::$textId3 . "\n23\nFetchTextTestPage2Text2" );
 	}
 
 	function testFloatingPointNumberNonExisting() {
-		$this->assertFilter( self::$textId5 + 3.14159,
-			( self::$textId5 + 3 ) . "\n-1\n" );
+		\Wikimedia\suppressWarnings();
+		$id = intval( preg_replace( '/^tt:/', '', self::$textId5 ) ) + 3.14159;
+		$this->assertFilter( $id, 'tt:' . intval( $id ) . "\n-1\n" );
+		\Wikimedia\suppressWarnings( true );
 	}
 
 	function testCharacters() {
-		$this->assertFilter( "abc", "0\n-1\n" );
+		$this->assertFilter( "abc", "abc\n-1\n" );
 	}
 
 	function testMix() {
-		$this->assertFilter( "ab\n" . self::$textId4 . ".5cd\n\nefg\n" . self::$textId2
+		$this->assertFilter( "ab\n" . self::$textId4 . ".5cd\n\nefg\nfoo:bar\n" . self::$textId2
 				. "\n" . self::$textId3,
 			implode( "", [
-				"0\n-1\n",
-				self::$textId4 . "\n23\nFetchTextTestPage2Text3",
-				"0\n-1\n",
-				"0\n-1\n",
+				"ab\n-1\n",
+				self::$textId4 . ".5cd\n-1\n",
+				"\n-1\n",
+				"efg\n-1\n",
+				"foo:bar\n-1\n",
 				self::$textId2 . "\n23\nFetchTextTestPage2Text1",
 				self::$textId3 . "\n23\nFetchTextTestPage2Text2"
 			] ) );

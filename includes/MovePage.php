@@ -20,6 +20,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Handles the backend logic of moving a page from one title
@@ -104,7 +106,7 @@ class MovePage {
 
 		$oldid = $this->oldTitle->getArticleID();
 
-		if ( strlen( $this->newTitle->getDBkey() ) < 1 ) {
+		if ( $this->newTitle->getDBkey() === '' ) {
 			$status->fatal( 'articleexists' );
 		}
 		if (
@@ -137,7 +139,8 @@ class MovePage {
 			$status->fatal(
 				'content-not-allowed-here',
 				ContentHandler::getLocalizedName( $this->oldTitle->getContentModel() ),
-				$this->newTitle->getPrefixedText()
+				$this->newTitle->getPrefixedText(),
+				SlotRecord::MAIN
 			);
 		}
 
@@ -240,26 +243,15 @@ class MovePage {
 	public function move( User $user, $reason, $createRedirect, array $changeTags = [] ) {
 		global $wgCategoryCollation;
 
-		Hooks::run( 'TitleMove', [ $this->oldTitle, $this->newTitle, $user ] );
-
-		// If it is a file, move it first.
-		// It is done before all other moving stuff is done because it's hard to revert.
-		$dbw = wfGetDB( DB_MASTER );
-		if ( $this->oldTitle->getNamespace() == NS_FILE ) {
-			$file = wfLocalFile( $this->oldTitle );
-			$file->load( File::READ_LATEST );
-			if ( $file->exists() ) {
-				$status = $file->move( $this->newTitle );
-				if ( !$status->isOK() ) {
-					return $status;
-				}
-			}
-			// Clear RepoGroup process cache
-			RepoGroup::singleton()->clearCache( $this->oldTitle );
-			RepoGroup::singleton()->clearCache( $this->newTitle ); # clear false negative cache
+		$status = Status::newGood();
+		Hooks::run( 'TitleMove', [ $this->oldTitle, $this->newTitle, $user, $reason, &$status ] );
+		if ( !$status->isOK() ) {
+			// Move was aborted by the hook
+			return $status;
 		}
 
-		$dbw->startAtomic( __METHOD__ );
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 
 		Hooks::run( 'TitleMoveStarting', [ $this->oldTitle, $this->newTitle, $user ] );
 
@@ -387,6 +379,16 @@ class MovePage {
 			$store->duplicateAllAssociatedEntries( $this->oldTitle, $this->newTitle );
 		}
 
+		// If it is a file then move it last.
+		// This is done after all database changes so that file system errors cancel the transaction.
+		if ( $this->oldTitle->getNamespace() == NS_FILE ) {
+			$status = $this->moveFile( $this->oldTitle, $this->newTitle );
+			if ( !$status->isOK() ) {
+				$dbw->cancelAtomic( __METHOD__ );
+				return $status;
+			}
+		}
+
 		Hooks::run(
 			'TitleMoveCompleting',
 			[ $this->oldTitle, $this->newTitle,
@@ -418,6 +420,33 @@ class MovePage {
 		);
 
 		return Status::newGood();
+	}
+
+	/**
+	 * Move a file associated with a page to a new location.
+	 * Can also be used to revert after a DB failure.
+	 *
+	 * @private
+	 * @param Title $oldTitle Old location to move the file from.
+	 * @param Title $newTitle New location to move the file to.
+	 * @return Status
+	 */
+	private function moveFile( $oldTitle, $newTitle ) {
+		$status = Status::newFatal(
+			'cannotdelete',
+			$oldTitle->getPrefixedText()
+		);
+
+		$file = wfLocalFile( $oldTitle );
+		$file->load( File::READ_LATEST );
+		if ( $file->exists() ) {
+			$status = $file->move( $newTitle );
+		}
+
+		// Clear RepoGroup process cache
+		RepoGroup::singleton()->clearCache( $oldTitle );
+		RepoGroup::singleton()->clearCache( $newTitle ); # clear false negative cache
+		return $status;
 	}
 
 	/**
@@ -465,7 +494,8 @@ class MovePage {
 			);
 
 			if ( !$status->isGood() ) {
-				throw new MWException( 'Failed to delete page-move revision: ' . $status );
+				throw new MWException( 'Failed to delete page-move revision: '
+					. $status->getWikiText( false, false, 'en' ) );
 			}
 
 			$nt->resetArticleID( false );
@@ -542,6 +572,13 @@ class MovePage {
 
 		$nullRevId = $nullRevision->insertOn( $dbw );
 		$logEntry->setAssociatedRevId( $nullRevId );
+
+		/**
+		 * T163966
+		 * Increment user_editcount during page moves
+		 * Moved from SpecialMovepage.php per T195550
+		 */
+		$user->incEditCount();
 
 		if ( !$redirectContent ) {
 			// Clean up the old title *before* reset article id - T47348

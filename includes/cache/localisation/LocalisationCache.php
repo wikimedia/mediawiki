@@ -106,7 +106,7 @@ class LocalisationCache {
 	/**
 	 * All item keys
 	 */
-	static public $allKeys = [
+	public static $allKeys = [
 		'fallback', 'namespaceNames', 'bookstoreList',
 		'magicWords', 'messages', 'rtl', 'capitalizeAllNouns', 'digitTransformTable',
 		'separatorTransformTable', 'minimumGroupingDigits',
@@ -122,42 +122,42 @@ class LocalisationCache {
 	 * Keys for items which consist of associative arrays, which may be merged
 	 * by a fallback sequence.
 	 */
-	static public $mergeableMapKeys = [ 'messages', 'namespaceNames',
+	public static $mergeableMapKeys = [ 'messages', 'namespaceNames',
 		'namespaceAliases', 'dateFormats', 'imageFiles', 'preloadedMessages'
 	];
 
 	/**
 	 * Keys for items which are a numbered array.
 	 */
-	static public $mergeableListKeys = [ 'extraUserToggles' ];
+	public static $mergeableListKeys = [ 'extraUserToggles' ];
 
 	/**
 	 * Keys for items which contain an array of arrays of equivalent aliases
 	 * for each subitem. The aliases may be merged by a fallback sequence.
 	 */
-	static public $mergeableAliasListKeys = [ 'specialPageAliases' ];
+	public static $mergeableAliasListKeys = [ 'specialPageAliases' ];
 
 	/**
 	 * Keys for items which contain an associative array, and may be merged if
 	 * the primary value contains the special array key "inherit". That array
 	 * key is removed after the first merge.
 	 */
-	static public $optionalMergeKeys = [ 'bookstoreList' ];
+	public static $optionalMergeKeys = [ 'bookstoreList' ];
 
 	/**
 	 * Keys for items that are formatted like $magicWords
 	 */
-	static public $magicWordKeys = [ 'magicWords' ];
+	public static $magicWordKeys = [ 'magicWords' ];
 
 	/**
 	 * Keys for items where the subitems are stored in the backend separately.
 	 */
-	static public $splitKeys = [ 'messages' ];
+	public static $splitKeys = [ 'messages' ];
 
 	/**
 	 * Keys which are loaded automatically by initLanguage()
 	 */
-	static public $preloadedKeys = [ 'dateFormats', 'namespaceNames' ];
+	public static $preloadedKeys = [ 'dateFormats', 'namespaceNames' ];
 
 	/**
 	 * Associative array of cached plural rules. The key is the language code,
@@ -536,7 +536,6 @@ class LocalisationCache {
 			}
 		} elseif ( $_fileType == 'aliases' ) {
 			if ( isset( $aliases ) ) {
-				/** @suppress PhanUndeclaredVariable */
 				$data['aliases'] = $aliases;
 			}
 		} else {
@@ -804,6 +803,7 @@ class LocalisationCache {
 		$messagesDirs = $config->get( 'MessagesDirs' );
 		return [
 			'core' => "$IP/languages/i18n",
+			'exif' => "$IP/languages/i18n/exif",
 			'api' => "$IP/includes/api/i18n",
 			'oojs-ui' => "$IP/resources/lib/ooui/i18n",
 		] + $messagesDirs;
@@ -1033,7 +1033,9 @@ class LocalisationCache {
 		# HACK: If using a null (i.e. disabled) storage backend, we
 		# can't write to the MessageBlobStore either
 		if ( $purgeBlobs && !$this->store instanceof LCStoreNull ) {
-			$blobStore = new MessageBlobStore();
+			$blobStore = new MessageBlobStore(
+				MediaWikiServices::getInstance()->getResourceLoader()
+			);
 			$blobStore->clear();
 		}
 	}

@@ -5,26 +5,6 @@ use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseSqlite;
 use Wikimedia\Rdbms\ResultWrapper;
 
-class DatabaseSqliteMock extends DatabaseSqlite {
-	public static function newInstance( array $p = [] ) {
-		$p['dbFilePath'] = ':memory:';
-		$p['schema'] = false;
-
-		return Database::factory( 'SqliteMock', $p );
-	}
-
-	function query( $sql, $fname = '', $tempIgnore = false ) {
-		return true;
-	}
-
-	/**
-	 * Override parent visibility to public
-	 */
-	public function replaceVars( $s ) {
-		return parent::replaceVars( $s );
-	}
-}
-
 /**
  * @group sqlite
  * @group Database
@@ -184,9 +164,9 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$this->assertEquals( 'foo', $db->tableName( 'foo' ) );
 		$this->assertEquals( 'sqlite_master', $db->tableName( 'sqlite_master' ) );
-		$db->tablePrefix( 'foo' );
+		$db->tablePrefix( 'foo_' );
 		$this->assertEquals( 'sqlite_master', $db->tableName( 'sqlite_master' ) );
-		$this->assertEquals( 'foobar', $db->tableName( 'bar' ) );
+		$this->assertEquals( 'foo_bar', $db->tableName( 'bar' ) );
 	}
 
 	/**
@@ -403,6 +383,28 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		$this->assertTrue( $db->close(), "closing database" );
 	}
 
+	/**
+	 * @covers DatabaseSqlite::insert
+	 */
+	public function testInsertAffectedRows() {
+		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
+		$db->query( 'CREATE TABLE testInsertAffectedRows ( foo )', __METHOD__ );
+
+		$insertion = $db->insert(
+			'testInsertAffectedRows',
+			[
+				[ 'foo' => 10 ],
+				[ 'foo' => 12 ],
+				[ 'foo' => 1555 ],
+			],
+			__METHOD__
+		);
+		$this->assertTrue( $insertion, "Insertion worked" );
+
+		$this->assertSame( 3, $db->affectedRows() );
+		$this->assertTrue( $db->close(), "closing database" );
+	}
+
 	private function prepareTestDB( $version ) {
 		static $maint = null;
 		if ( $maint === null ) {
@@ -472,6 +474,9 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		return $indexes;
 	}
 
+	/**
+	 * @coversNothing
+	 */
 	public function testCaseInsensitiveLike() {
 		// TODO: Test this for all databases
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
@@ -515,5 +520,25 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 	public function testsAttributes() {
 		$attributes = Database::attributesFromType( 'sqlite' );
 		$this->assertTrue( $attributes[Database::ATTR_DB_LEVEL_LOCKING] );
+	}
+}
+
+class DatabaseSqliteMock extends DatabaseSqlite {
+	public static function newInstance( array $p = [] ) {
+		$p['dbFilePath'] = ':memory:';
+		$p['schema'] = false;
+
+		return Database::factory( 'SqliteMock', $p );
+	}
+
+	function query( $sql, $fname = '', $flags = 0 ) {
+		return true;
+	}
+
+	/**
+	 * Override parent visibility to public
+	 */
+	public function replaceVars( $s ) {
+		return parent::replaceVars( $s );
 	}
 }

@@ -456,9 +456,7 @@ class DiffEngine {
 
 		// need to store these so we don't lose them when they're
 		// overwritten by the recursion
-		$len = $snake[2];
-		$startx = $snake[0];
-		$starty = $snake[1];
+		list( $startx, $starty, $len ) = $snake;
 
 		// the middle snake is part of the LCS, store it
 		for ( $i = 0; $i < $len; ++$i ) {
@@ -802,43 +800,6 @@ class DiffEngine {
 		}
 
 		return $this->length;
-	}
-
-}
-
-/**
- * Alternative representation of a set of changes, by the index
- * ranges that are changed.
- *
- * @ingroup DifferenceEngine
- */
-class RangeDifference {
-
-	/** @var int */
-	public $leftstart;
-
-	/** @var int */
-	public $leftend;
-
-	/** @var int */
-	public $leftlength;
-
-	/** @var int */
-	public $rightstart;
-
-	/** @var int */
-	public $rightend;
-
-	/** @var int */
-	public $rightlength;
-
-	function __construct( $leftstart, $leftend, $rightstart, $rightend ) {
-		$this->leftstart = $leftstart;
-		$this->leftend = $leftend;
-		$this->leftlength = $leftend - $leftstart;
-		$this->rightstart = $rightstart;
-		$this->rightend = $rightend;
-		$this->rightlength = $rightend - $rightstart;
 	}
 
 }

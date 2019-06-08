@@ -22,6 +22,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionArchiveRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 
@@ -30,11 +31,15 @@ class ApiComparePages extends ApiBase {
 	/** @var RevisionStore */
 	private $revisionStore;
 
+	/** @var \MediaWiki\Revision\SlotRoleRegistry */
+	private $slotRoleRegistry;
+
 	private $guessedTitle = false, $props;
 
 	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
 		parent::__construct( $mainModule, $moduleName, $modulePrefix );
 		$this->revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$this->slotRoleRegistry = MediaWikiServices::getInstance()->getSlotRoleRegistry();
 	}
 
 	public function execute() {
@@ -60,6 +65,11 @@ class ApiComparePages extends ApiBase {
 		if ( $params['torelative'] !== null ) {
 			if ( !$fromRelRev ) {
 				$this->dieWithError( 'apierror-compare-relative-to-nothing' );
+			}
+			if ( $params['torelative'] !== 'cur' && $fromRelRev instanceof RevisionArchiveRecord ) {
+				// RevisionStore's getPreviousRevision/getNextRevision blow up
+				// when passed an RevisionArchiveRecord for a deleted page
+				$this->dieWithError( [ 'apierror-compare-relative-to-deleted', $params['torelative'] ] );
 			}
 			switch ( $params['torelative'] ) {
 				case 'prev':
@@ -297,18 +307,15 @@ class ApiComparePages extends ApiBase {
 		foreach ( [ 'from', 'to' ] as $prefix ) {
 			if ( $params["{$prefix}rev"] !== null ) {
 				$rev = $this->getRevisionById( $params["{$prefix}rev"] );
-				if ( $rev ) {
-					if ( $rev->hasSlot( $role ) ) {
-						return $rev->getSlot( $role, RevisionRecord::RAW )->getModel();
-					}
+				if ( $rev && $rev->hasSlot( $role ) ) {
+					return $rev->getSlot( $role, RevisionRecord::RAW )->getModel();
 				}
 			}
 		}
 
 		$guessedTitle = $this->guessTitle();
-		if ( $guessedTitle && $role === SlotRecord::MAIN ) {
-			// @todo: Use SlotRoleRegistry and do this for all slots
-			return $guessedTitle->getContentModel();
+		if ( $guessedTitle ) {
+			return $this->slotRoleRegistry->getRoleHandler( $role )->getDefaultModel( $guessedTitle );
 		}
 
 		if ( isset( $params["fromcontentmodel-$role"] ) ) {
@@ -616,10 +623,7 @@ class ApiComparePages extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		$slotRoles = MediaWikiServices::getInstance()->getSlotRoleStore()->getMap();
-		if ( !in_array( SlotRecord::MAIN, $slotRoles, true ) ) {
-			$slotRoles[] = SlotRecord::MAIN;
-		}
+		$slotRoles = $this->slotRoleRegistry->getKnownRoles();
 		sort( $slotRoles, SORT_STRING );
 
 		// Parameters for the 'from' and 'to' content

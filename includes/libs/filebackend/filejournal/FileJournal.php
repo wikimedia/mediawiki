@@ -97,7 +97,7 @@ abstract class FileJournal {
 	 * @return StatusValue
 	 */
 	final public function logChangeBatch( array $entries, $batchId ) {
-		if ( !count( $entries ) ) {
+		if ( $entries === [] ) {
 			return StatusValue::newGood();
 		}
 

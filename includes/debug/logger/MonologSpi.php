@@ -22,6 +22,7 @@ namespace MediaWiki\Logger;
 
 use MediaWiki\Logger\Monolog\BufferHandler;
 use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 use Wikimedia\ObjectFactory;
 
 /**
@@ -145,6 +146,17 @@ class MonologSpi implements Spi {
 				$this->config[$key] = array_merge( $this->config[$key], $value );
 			} else {
 				$this->config[$key] = $value;
+			}
+		}
+		if ( !isset( $this->config['loggers']['@default'] ) ) {
+			$this->config['loggers']['@default'] = [
+				'handlers' => [ '@default' ],
+			];
+			if ( !isset( $this->config['handlers']['@default'] ) ) {
+				$this->config['handlers']['@default'] = [
+					'class' => StreamHandler::class,
+					'args' => [ 'php://stderr', Logger::ERROR ],
+				];
 			}
 		}
 		$this->reset();

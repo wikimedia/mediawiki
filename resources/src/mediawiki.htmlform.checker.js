@@ -73,7 +73,7 @@
 
 		if ( value === '' ) {
 			this.currentValue = value;
-			this.setErrors( [] );
+			this.setErrors( true, [] );
 			return;
 		}
 
@@ -91,14 +91,10 @@
 
 				that.currentValue = value;
 
-				if ( info.valid ) {
-					that.setErrors( [], forceReplacement );
-				} else {
-					that.setErrors( info.messages, forceReplacement );
-				}
+				that.setErrors( info.valid, info.messages, forceReplacement );
 			} ).fail( function () {
 				that.currentValue = null;
-				that.setErrors( [] );
+				that.setErrors( true, [] );
 			} );
 
 		return currentRequestInternal;
@@ -106,6 +102,7 @@
 
 	/**
 	 * Display errors associated with the form element
+	 * @param {boolean} valid Whether the input is still valid regardless of the messages
 	 * @param {Array} errors Error messages. Each error message will be appended to a
 	 *  `<span>` or `<li>`, as with jQuery.append().
 	 * @param {boolean} [forceReplacement] Set true to force a visual replacement even
@@ -113,11 +110,13 @@
 	 * @return {mw.htmlform.Checker}
 	 * @chainable
 	 */
-	mw.htmlform.Checker.prototype.setErrors = function ( errors, forceReplacement ) {
+	mw.htmlform.Checker.prototype.setErrors = function ( valid, errors, forceReplacement ) {
 		var $oldErrorBox, tagName, showFunc, text, replace,
 			$errorBox = this.$errorBox;
 
 		if ( errors.length === 0 ) {
+			// FIXME: Use CSS transition
+			// eslint-disable-next-line no-jquery/no-slide
 			$errorBox.slideUp( function () {
 				$errorBox
 					.removeAttr( 'class' )
@@ -160,15 +159,21 @@
 						.removeAttr( 'class' )
 						.detach();
 				}
+				// FIXME: Use CSS transition
+				// eslint-disable-next-line no-jquery/no-slide
 				$errorBox
-					.attr( 'class', 'error' )
+					.attr( 'class', valid ? 'warning' : 'error' )
 					.empty()
 					.append( errors.map( function ( e ) {
 						return errors.length === 1 ? e : $( '<li>' ).append( e );
 					} ) )
 					.slideDown();
 			};
-			if ( $oldErrorBox !== $errorBox && $oldErrorBox.hasClass( 'error' ) ) {
+			if (
+				$oldErrorBox !== $errorBox &&
+				( $oldErrorBox.hasClass( 'error' ) || $oldErrorBox.hasClass( 'warning' ) )
+			) {
+				// eslint-disable-next-line no-jquery/no-slide
 				$oldErrorBox.slideUp( showFunc );
 			} else {
 				showFunc();

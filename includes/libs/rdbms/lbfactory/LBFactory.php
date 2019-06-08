@@ -95,6 +95,9 @@ abstract class LBFactory implements ILBFactory {
 	/** @var string|null */
 	private $defaultGroup = null;
 
+	/** @var int|null */
+	protected $maxLag;
+
 	const ROUND_CURSORY = 'cursory';
 	const ROUND_BEGINNING = 'within-begin';
 	const ROUND_COMMITTING = 'within-commit';
@@ -110,6 +113,7 @@ abstract class LBFactory implements ILBFactory {
 			? DatabaseDomain::newFromId( $conf['localDomain'] )
 			: DatabaseDomain::newUnspecified();
 
+		$this->maxLag = $conf['maxLag'] ?? null;
 		if ( isset( $conf['readOnlyReason'] ) && is_string( $conf['readOnlyReason'] ) ) {
 			$this->readOnlyReason = $conf['readOnlyReason'];
 		}
@@ -257,7 +261,7 @@ abstract class LBFactory implements ILBFactory {
 			);
 		}
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$scope = $this->getScopedPHPBehaviorForCommit(); // try to ignore client aborts
+		$scope = ScopedCallback::newScopedIgnoreUserAbort(); // try to ignore client aborts
 		// Run pre-commit callbacks and suppress post-commit callbacks, aborting on failure
 		do {
 			$count = 0; // number of callbacks executed this iteration
@@ -588,6 +592,7 @@ abstract class LBFactory implements ILBFactory {
 			'hostname' => $this->hostname,
 			'cliMode' => $this->cliMode,
 			'agent' => $this->agent,
+			'maxLag' => $this->maxLag,
 			'defaultGroup' => $this->defaultGroup,
 			'chronologyCallback' => function ( ILoadBalancer $lb ) {
 				// Defer ChronologyProtector construction in case setRequestInfo() ends up
@@ -618,15 +623,33 @@ abstract class LBFactory implements ILBFactory {
 		$this->indexAliases = $aliases;
 	}
 
+	/**
+	 * @param string $prefix
+	 * @deprecated Since 1.33
+	 */
 	public function setDomainPrefix( $prefix ) {
+		$this->setLocalDomainPrefix( $prefix );
+	}
+
+	public function setLocalDomainPrefix( $prefix ) {
 		$this->localDomain = new DatabaseDomain(
 			$this->localDomain->getDatabase(),
-			null,
+			$this->localDomain->getSchema(),
 			$prefix
 		);
 
 		$this->forEachLB( function ( ILoadBalancer $lb ) use ( $prefix ) {
-			$lb->setDomainPrefix( $prefix );
+			$lb->setLocalDomainPrefix( $prefix );
+		} );
+	}
+
+	public function redefineLocalDomain( $domain ) {
+		$this->closeAll();
+
+		$this->localDomain = DatabaseDomain::newFromId( $domain );
+
+		$this->forEachLB( function ( ILoadBalancer $lb ) {
+			$lb->redefineLocalDomain( $this->localDomain );
 		} );
 	}
 
@@ -641,7 +664,7 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	public function closeAll() {
-		$this->forEachLBCallMethod( 'closeAll', [] );
+		$this->forEachLBCallMethod( 'closeAll' );
 	}
 
 	public function setAgentName( $agent ) {
@@ -715,23 +738,6 @@ abstract class LBFactory implements ILBFactory {
 				"Transaction round stage must be '$stage' (not '{$this->trxRoundStage}')"
 			);
 		}
-	}
-
-	/**
-	 * Make PHP ignore user aborts/disconnects until the returned
-	 * value leaves scope. This returns null and does nothing in CLI mode.
-	 *
-	 * @return ScopedCallback|null
-	 */
-	final protected function getScopedPHPBehaviorForCommit() {
-		if ( PHP_SAPI != 'cli' ) { // https://bugs.php.net/bug.php?id=47540
-			$old = ignore_user_abort( true ); // avoid half-finished operations
-			return new ScopedCallback( function () use ( $old ) {
-				ignore_user_abort( $old );
-			} );
-		}
-
-		return null;
 	}
 
 	function __destruct() {

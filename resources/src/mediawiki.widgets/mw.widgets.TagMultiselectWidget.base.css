@@ -1,0 +1,11 @@
+/*!
+ * MediaWiki Widgets - base TagMultiselectWidget styles.
+ *
+ * @copyright 2011-2018 MediaWiki Widgets Team and others; see AUTHORS.txt
+ * @license The MIT License (MIT); see LICENSE.txt
+ */
+
+.client-nojs .mw-widgets-tagMultiselectWidget .mw-widgets-pendingTextInputWidget,
+.client-js .mw-widgets-tagMultiselectWidget .mw-widgets-tagMultiselectWidget-multilineTextInputWidget {
+	display: none;
+}

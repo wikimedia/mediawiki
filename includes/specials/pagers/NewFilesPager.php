@@ -40,7 +40,7 @@ class NewFilesPager extends RangeChronologicalPager {
 	 * @param IContextSource $context
 	 * @param FormOptions $opts
 	 */
-	function __construct( IContextSource $context, FormOptions $opts ) {
+	public function __construct( IContextSource $context, FormOptions $opts ) {
 		parent::__construct( $context );
 
 		$this->opts = $opts;
@@ -122,7 +122,7 @@ class NewFilesPager extends RangeChronologicalPager {
 				$jcond = $rcQuery['fields']['rc_user'] . ' = ' . $imgQuery['fields']['img_user'];
 			}
 			$jconds['recentchanges'] = [
-				'INNER JOIN',
+				'JOIN',
 				[
 					'rc_title = img_name',
 					$jcond,
@@ -168,7 +168,7 @@ class NewFilesPager extends RangeChronologicalPager {
 		return 'img_timestamp';
 	}
 
-	function getStartBody() {
+	protected function getStartBody() {
 		if ( !$this->gallery ) {
 			// Note that null for mode is taken to mean use default.
 			$mode = $this->getRequest()->getVal( 'gallerymode', null );
@@ -183,7 +183,7 @@ class NewFilesPager extends RangeChronologicalPager {
 		return '';
 	}
 
-	function getEndBody() {
+	protected function getEndBody() {
 		return $this->gallery->toHTML();
 	}
 
@@ -204,5 +204,6 @@ class NewFilesPager extends RangeChronologicalPager {
 			. htmlspecialchars( $time )
 			. "</i><br />\n"
 		);
+		return '';
 	}
 }

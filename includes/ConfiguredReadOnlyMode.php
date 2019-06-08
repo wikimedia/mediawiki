@@ -2,7 +2,7 @@
 
 /**
  * A read-only mode service which does not depend on LoadBalancer.
- * To obtain an instance, use MediaWikiServices::getConfiguredReadOnlyMode().
+ * To obtain an instance, use MediaWikiServices::getInstance()->getConfiguredReadOnlyMode().
  *
  * @since 1.29
  */
@@ -62,12 +62,5 @@ class ConfiguredReadOnlyMode {
 	 */
 	public function setReason( $msg ) {
 		$this->overrideReason = $msg;
-	}
-
-	/**
-	 * Clear the cache of the read only file
-	 */
-	public function clearCache() {
-		$this->fileReason = null;
 	}
 }

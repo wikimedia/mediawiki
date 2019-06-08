@@ -213,7 +213,7 @@ class Html {
 			// Silly XML.
 			return substr( $start, 0, -1 ) . '/>';
 		} else {
-			return "$start$contents" . self::closeElement( $element );
+			return $start . $contents . self::closeElement( $element );
 		}
 	}
 
@@ -254,6 +254,12 @@ class Html {
 		// This is not required in HTML5, but let's do it anyway, for
 		// consistency and better compression.
 		$element = strtolower( $element );
+
+		// Some people were abusing this by passing things like
+		// 'h1 id="foo" to $element, which we don't want.
+		if ( strpos( $element, ' ' ) !== false ) {
+			wfWarn( __METHOD__ . " given element name with space '$element'" );
+		}
 
 		// Remove invalid input types
 		if ( $element == 'input' ) {
@@ -568,10 +574,8 @@ class Html {
 		$attrs = [];
 		if ( $nonce !== null ) {
 			$attrs['nonce'] = $nonce;
-		} else {
-			if ( ContentSecurityPolicy::isNonceRequired( RequestContext::getMain()->getConfig() ) ) {
-				wfWarn( "no nonce set on script. CSP will break it" );
-			}
+		} elseif ( ContentSecurityPolicy::isNonceRequired( RequestContext::getMain()->getConfig() ) ) {
+			wfWarn( "no nonce set on script. CSP will break it" );
 		}
 
 		if ( preg_match( '/<\/?script/i', $contents ) ) {
@@ -594,10 +598,8 @@ class Html {
 		$attrs = [ 'src' => $url ];
 		if ( $nonce !== null ) {
 			$attrs['nonce'] = $nonce;
-		} else {
-			if ( ContentSecurityPolicy::isNonceRequired( RequestContext::getMain()->getConfig() ) ) {
-				wfWarn( "no nonce set on script. CSP will break it" );
-			}
+		} elseif ( ContentSecurityPolicy::isNonceRequired( RequestContext::getMain()->getConfig() ) ) {
+			wfWarn( "no nonce set on script. CSP will break it" );
 		}
 
 		return self::element( 'script', $attrs );
@@ -840,9 +842,14 @@ class Html {
 			// Value is provided by user, the name shown is localized for the user.
 			$options[$params['all']] = wfMessage( 'namespacesall' )->text();
 		}
-		// Add all namespaces as options (in the content language)
-		$options +=
-			MediaWikiServices::getInstance()->getContentLanguage()->getFormattedNamespaces();
+		if ( $params['in-user-lang'] ?? false ) {
+			global $wgLang;
+			$lang = $wgLang;
+		} else {
+			$lang = MediaWikiServices::getInstance()->getContentLanguage();
+		}
+		// Add all namespaces as options
+		$options += $lang->getFormattedNamespaces();
 
 		$optionsOut = [];
 		// Filter out namespaces below 0 and massage labels
@@ -855,8 +862,7 @@ class Html {
 				// main we don't use "" but the user message describing it (e.g. "(Main)" or "(Article)")
 				$nsName = wfMessage( 'blanknamespace' )->text();
 			} elseif ( is_int( $nsId ) ) {
-				$nsName = MediaWikiServices::getInstance()->getContentLanguage()->
-					convertNamespace( $nsId );
+				$nsName = $lang->convertNamespace( $nsId );
 			}
 			$optionsOut[$nsId] = $nsName;
 		}
@@ -963,7 +969,7 @@ class Html {
 		if ( $isXHTML ) { // XHTML5
 			// XML MIME-typed markup should have an xml header.
 			// However a DOCTYPE is not needed.
-			$ret .= "<?xml version=\"1.0\" encoding=\"UTF-8\" ?" . ">\n";
+			$ret .= "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
 
 			// Add the standard xmlns
 			$attribs['xmlns'] = 'http://www.w3.org/1999/xhtml';
@@ -973,7 +979,6 @@ class Html {
 				$attribs["xmlns:$tag"] = $ns;
 			}
 		} else { // HTML5
-			// DOCTYPE
 			$ret .= "<!DOCTYPE html>\n";
 		}
 

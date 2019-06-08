@@ -133,10 +133,8 @@ class PathRouter {
 		// Loop over our options and convert any single value $# restrictions
 		// into an array so we only have to do in_array tests.
 		foreach ( $options as $optionName => $optionData ) {
-			if ( preg_match( '/^\$\d+$/u', $optionName ) ) {
-				if ( !is_array( $optionData ) ) {
-					$options[$optionName] = [ $optionData ];
-				}
+			if ( preg_match( '/^\$\d+$/u', $optionName ) && !is_array( $optionData ) ) {
+				$options[$optionName] = [ $optionData ];
 			}
 		}
 
@@ -252,7 +250,7 @@ class PathRouter {
 		// array() (a match with no data) but our WebRequest caller
 		// expects array() even when we have no matches so return
 		// a array() when we have null
-		return is_null( $matches ) ? [] : $matches;
+		return $matches ?? [];
 	}
 
 	/**

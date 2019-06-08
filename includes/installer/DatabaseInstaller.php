@@ -373,6 +373,7 @@ abstract class DatabaseInstaller {
 	/**
 	 * Perform database upgrades
 	 *
+	 * @suppress SecurityCheck-XSS Escaping provided by $this->outputHandler
 	 * @return bool
 	 */
 	public function doUpgrade() {
@@ -384,6 +385,7 @@ abstract class DatabaseInstaller {
 		$up = DatabaseUpdater::newForDB( $this->db );
 		try {
 			$up->doUpdates();
+			$up->purgeCache();
 		} catch ( MWException $e ) {
 			echo "\nAn error occurred:\n";
 			echo $e->getText();
@@ -393,7 +395,6 @@ abstract class DatabaseInstaller {
 			echo $e->getMessage();
 			$ret = false;
 		}
-		$up->purgeCache();
 		ob_end_flush();
 
 		return $ret;

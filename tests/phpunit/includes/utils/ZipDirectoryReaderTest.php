@@ -61,7 +61,8 @@ class ZipDirectoryReaderTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testTrailingBytes() {
-		$this->readZipAssertError( 'trail.zip', 'zip-bad',
+		// Due to T40432 this is now zip-wrong-format instead of zip-bad
+		$this->readZipAssertError( 'trail.zip', 'zip-wrong-format',
 			'Trailing bytes error' );
 	}
 

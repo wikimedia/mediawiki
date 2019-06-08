@@ -406,7 +406,7 @@ class SpecialPage implements MessageLocalizer {
 		if ( $securityStatus === AuthManager::SEC_OK ) {
 			$uniqueId = $request->getVal( 'postUniqueId' );
 			if ( $uniqueId ) {
-				$key = $key . ':' . $uniqueId;
+				$key .= ':' . $uniqueId;
 				$session = $request->getSession();
 				$data = $session->getSecret( $key );
 				if ( $data ) {
@@ -424,7 +424,7 @@ class SpecialPage implements MessageLocalizer {
 				if ( $data ) {
 					// unique ID in case the same special page is open in multiple browser tabs
 					$uniqueId = MWCryptRand::generateHex( 6 );
-					$key = $key . ':' . $uniqueId;
+					$key .= ':' . $uniqueId;
 					$queryParams['postUniqueId'] = $uniqueId;
 					$session = $request->getSession();
 					$session->persist(); // Just in case
@@ -919,5 +919,71 @@ class SpecialPage implements MessageLocalizer {
 	 */
 	public function setLinkRenderer( LinkRenderer $linkRenderer ) {
 		$this->linkRenderer = $linkRenderer;
+	}
+
+	/**
+	 * Generate (prev x| next x) (20|50|100...) type links for paging
+	 *
+	 * @param int $offset
+	 * @param int $limit
+	 * @param array $query Optional URL query parameter string
+	 * @param bool $atend Optional param for specified if this is the last page
+	 * @param string|bool $subpage Optional param for specifying subpage
+	 * @return string
+	 */
+	protected function buildPrevNextNavigation( $offset, $limit,
+		array $query = [], $atend = false, $subpage = false
+	) {
+		$lang = $this->getLanguage();
+
+		# Make 'previous' link
+		$prev = $this->msg( 'prevn' )->numParams( $limit )->text();
+		if ( $offset > 0 ) {
+			$plink = $this->numLink( max( $offset - $limit, 0 ), $limit, $query,
+				$prev, 'prevn-title', 'mw-prevlink', $subpage );
+		} else {
+			$plink = htmlspecialchars( $prev );
+		}
+
+		# Make 'next' link
+		$next = $this->msg( 'nextn' )->numParams( $limit )->text();
+		if ( $atend ) {
+			$nlink = htmlspecialchars( $next );
+		} else {
+			$nlink = $this->numLink( $offset + $limit, $limit,
+				$query, $next, 'nextn-title', 'mw-nextlink', $subpage );
+		}
+
+		# Make links to set number of items per page
+		$numLinks = [];
+		foreach ( [ 20, 50, 100, 250, 500 ] as $num ) {
+			$numLinks[] = $this->numLink( $offset, $num, $query,
+				$lang->formatNum( $num ), 'shown-title', 'mw-numlink', $subpage );
+		}
+
+		return $this->msg( 'viewprevnext' )->rawParams( $plink, $nlink, $lang->pipeList( $numLinks ) )->
+			escaped();
+	}
+
+	/**
+	 * Helper function for buildPrevNextNavigation() that generates links
+	 *
+	 * @param int $offset
+	 * @param int $limit
+	 * @param array $query Extra query parameters
+	 * @param string $link Text to use for the link; will be escaped
+	 * @param string $tooltipMsg Name of the message to use as tooltip
+	 * @param string $class Value of the "class" attribute of the link
+	 * @param string|bool $subpage Optional param for specifying subpage
+	 * @return string HTML fragment
+	 */
+	private function numLink( $offset, $limit, array $query, $link,
+		$tooltipMsg, $class, $subpage = false
+	) {
+		$query = [ 'limit' => $limit, 'offset' => $offset ] + $query;
+		$tooltip = $this->msg( $tooltipMsg )->numParams( $limit )->text();
+		$href = $this->getPageTitle( $subpage )->getLocalURL( $query );
+		return Html::element( 'a', [ 'href' => $href,
+			'title' => $tooltip, 'class' => $class ], $link );
 	}
 }

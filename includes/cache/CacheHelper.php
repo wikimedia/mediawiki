@@ -22,66 +22,6 @@
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 
-/**
- * Interface for all classes implementing CacheHelper functionality.
- *
- * @since 1.20
- */
-interface ICacheHelper {
-	/**
-	 * Sets if the cache should be enabled or not.
-	 *
-	 * @since 1.20
-	 * @param bool $cacheEnabled
-	 */
-	function setCacheEnabled( $cacheEnabled );
-
-	/**
-	 * Initializes the caching.
-	 * Should be called before the first time anything is added via addCachedHTML.
-	 *
-	 * @since 1.20
-	 *
-	 * @param int|null $cacheExpiry Sets the cache expiry, either ttl in seconds or unix timestamp.
-	 * @param bool|null $cacheEnabled Sets if the cache should be enabled or not.
-	 */
-	function startCache( $cacheExpiry = null, $cacheEnabled = null );
-
-	/**
-	 * Get a cached value if available or compute it if not and then cache it if possible.
-	 * The provided $computeFunction is only called when the computation needs to happen
-	 * and should return a result value. $args are arguments that will be passed to the
-	 * compute function when called.
-	 *
-	 * @since 1.20
-	 *
-	 * @param callable $computeFunction
-	 * @param array|mixed $args
-	 * @param string|null $key
-	 *
-	 * @return mixed
-	 */
-	function getCachedValue( $computeFunction, $args = [], $key = null );
-
-	/**
-	 * Saves the HTML to the cache in case it got recomputed.
-	 * Should be called after the last time anything is added via addCachedHTML.
-	 *
-	 * @since 1.20
-	 */
-	function saveCache();
-
-	/**
-	 * Sets the time to live for the cache, in seconds or a unix timestamp
-	 * indicating the point of expiry...
-	 *
-	 * @since 1.20
-	 *
-	 * @param int $cacheExpiry
-	 */
-	function setExpiry( $cacheExpiry );
-}
-
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -270,8 +210,8 @@ class CacheHelper implements ICacheHelper {
 			$value = null;
 
 			if ( is_null( $key ) ) {
-				$itemKey = array_keys( array_slice( $this->cachedChunks, 0, 1 ) );
-				$itemKey = array_shift( $itemKey );
+				reset( $this->cachedChunks );
+				$itemKey = key( $this->cachedChunks );
 
 				if ( !is_int( $itemKey ) ) {
 					wfWarn( "Attempted to get item with non-numeric key while " .
@@ -281,13 +221,11 @@ class CacheHelper implements ICacheHelper {
 				} else {
 					$value = array_shift( $this->cachedChunks );
 				}
+			} elseif ( array_key_exists( $key, $this->cachedChunks ) ) {
+				$value = $this->cachedChunks[$key];
+				unset( $this->cachedChunks[$key] );
 			} else {
-				if ( array_key_exists( $key, $this->cachedChunks ) ) {
-					$value = $this->cachedChunks[$key];
-					unset( $this->cachedChunks[$key] );
-				} else {
-					wfWarn( "There is no item with key '$key' in this->cachedChunks in " . __METHOD__ );
-				}
+				wfWarn( "There is no item with key '$key' in this->cachedChunks in " . __METHOD__ );
 			}
 		} else {
 			if ( !is_array( $args ) ) {

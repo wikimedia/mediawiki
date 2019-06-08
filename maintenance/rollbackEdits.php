@@ -71,7 +71,7 @@ class RollbackEdits extends Maintenance {
 		}
 
 		if ( !$titles ) {
-			$this->output( 'No suitable titles to be rolled back' );
+			$this->output( 'No suitable titles to be rolled back.' );
 
 			return;
 		}
@@ -82,9 +82,9 @@ class RollbackEdits extends Maintenance {
 			$page = WikiPage::factory( $t );
 			$this->output( 'Processing ' . $t->getPrefixedText() . '... ' );
 			if ( !$page->commitRollback( $user, $summary, $bot, $results, $doer ) ) {
-				$this->output( "done\n" );
+				$this->output( "Done!\n" );
 			} else {
-				$this->output( "failed\n" );
+				$this->output( "Failed!\n" );
 			}
 		}
 	}

@@ -5,6 +5,7 @@ namespace MediaWiki\Logger\Monolog;
 class LogstashFormatterTest extends \PHPUnit\Framework\TestCase {
 	/**
 	 * @dataProvider provideV1
+	 * @covers MediaWiki\Logger\Monolog\LogstashFormatter::formatV1
 	 * @param array $record The input record.
 	 * @param array $expected Associative array of expected keys and their values.
 	 * @param array $notExpected List of keys that should not exist.
@@ -42,6 +43,9 @@ class LogstashFormatterTest extends \PHPUnit\Framework\TestCase {
 		];
 	}
 
+	/**
+	 * @covers MediaWiki\Logger\Monolog\LogstashFormatter::formatV1
+	 */
 	public function testV1WithPrefix() {
 		$formatter = new LogstashFormatter( 'app', 'system', null, 'ctx_', LogstashFormatter::V1 );
 		$record = [ 'extra' => [ 'url' => 1 ], 'context' => [ 'url' => 2 ] ];

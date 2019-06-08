@@ -76,7 +76,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 	 * Creates a revision in the database.
 	 *
 	 * @param WikiPage $page
-	 * @param $summary
+	 * @param string|Message|CommentStoreComment $summary
 	 * @param null|string|Content $content
 	 *
 	 * @return RevisionRecord|null
@@ -102,6 +102,9 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		}
 
 		$rev = $updater->saveRevision( $comment );
+		if ( !$updater->wasSuccessful() ) {
+			$this->fail( $updater->getStatus()->getWikiText() );
+		}
 
 		$this->getDerivedPageDataUpdater( $page ); // flush cached instance after.
 		return $rev;
@@ -186,6 +189,11 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::getCanonicalParserOutput()
 	 */
 	public function testPrepareContent() {
+		MediaWikiServices::getInstance()->getSlotRoleRegistry()->defineRoleWithModel(
+			'aux',
+			CONTENT_MODEL_WIKITEXT
+		);
+
 		$sysop = $this->getTestUser( [ 'sysop' ] )->getUser();
 		$updater = $this->getDerivedPageDataUpdater( __METHOD__ );
 
@@ -584,15 +592,18 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 	}
 
 	public function testGetSecondaryDataUpdatesWithSlotRemoval() {
-		global $wgMultiContentRevisionSchemaMigrationStage;
-
-		if ( ! ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) ) {
+		if ( !$this->hasMultiSlotSupport() ) {
 			$this->markTestSkipped( 'Slot removal cannot happen with MCR being enabled' );
 		}
 
 		$m1 = $this->defineMockContentModelForUpdateTesting( 'M1' );
 		$a1 = $this->defineMockContentModelForUpdateTesting( 'A1' );
 		$m2 = $this->defineMockContentModelForUpdateTesting( 'M2' );
+
+		MediaWikiServices::getInstance()->getSlotRoleRegistry()->defineRoleWithModel(
+			'aux',
+			$a1->getModelID()
+		);
 
 		$mainContent1 = $this->createMockContent( $m1, 'main 1' );
 		$auxContent1 = $this->createMockContent( $a1, 'aux 1' );
@@ -806,16 +817,6 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 			'$forParent' => 0,
 			'$isReusable' => false,
 		];
-		yield 'mismatch prepareUpdate revision user' => [
-			'$prepUser' => null,
-			'$prepRevision' => $rev2,
-			'$prepUpdate' => null,
-			'$forUser' => null,
-			'$forRevision' => $rev2x,
-			'$forUpdate' => null,
-			'$forParent' => 0,
-			'$isReusable' => false,
-		];
 		yield 'mismatch prepareUpdate revision id' => [
 			'$prepUser' => null,
 			'$prepRevision' => $rev2,
@@ -879,6 +880,11 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 
 		if ( $this->hasMultiSlotSupport() ) {
 			$content['aux'] = new WikitextContent( 'Aux [[Nix]]' );
+
+			MediaWikiServices::getInstance()->getSlotRoleRegistry()->defineRoleWithModel(
+				'aux',
+				CONTENT_MODEL_WIKITEXT
+			);
 		}
 
 		$rev = $this->createRevision( $page, 'first', $content );
@@ -943,6 +949,13 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParserCacheUpdate()
 	 */
 	public function testDoParserCacheUpdate() {
+		if ( $this->hasMultiSlotSupport() ) {
+			MediaWikiServices::getInstance()->getSlotRoleRegistry()->defineRoleWithModel(
+				'aux',
+				CONTENT_MODEL_WIKITEXT
+			);
+		}
+
 		$page = $this->getPage( __METHOD__ );
 		$this->createRevision( $page, 'Dummy' );
 

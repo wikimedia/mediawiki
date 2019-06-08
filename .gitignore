@@ -24,9 +24,12 @@ project.index
 ## Sublime
 sublime-*
 sftp-config.json
+## Visual Studio Code
+*.vscode/
 
 # MediaWiki install & usage
 /cache
+/docs/coverage
 /docs/js
 /images/[0-9a-f]
 /images/archive
@@ -51,8 +54,10 @@ sftp-config.json
 # Building & testing
 npm-debug.log
 node_modules/
+/resources/lib/.foreign
 /tests/phpunit/phpunit.phar
 /tests/selenium/log
+.eslintcache
 
 # Composer
 /composer.lock
@@ -72,6 +77,7 @@ Thumbs.db
 .buildpath
 .classpath
 .idea
+*.iml
 .metadata*
 .settings
 /favicon.ico

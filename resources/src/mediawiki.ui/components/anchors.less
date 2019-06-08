@@ -1,6 +1,5 @@
 @import 'mediawiki.mixins';
 @import 'mediawiki.ui/variables';
-@import 'mediawiki.ui/mixins';
 
 // Helpers
 .mixin-mw-ui-anchor-styles( @mainColor ) {
@@ -68,6 +67,7 @@ Styleguide 6.2.1.
 	&:hover {
 		color: @mainColor;
 	}
+
 	&:focus,
 	&:active {
 		color: darken( @mainColor, @colorDarkenPercentage );

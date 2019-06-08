@@ -124,6 +124,9 @@ class DeferredUpdates {
 	/**
 	 * Do any deferred updates and clear the list
 	 *
+	 * If $stage is self::ALL then the queue of PRESEND updates will be resolved,
+	 * followed by the queue of POSTSEND updates
+	 *
 	 * @param string $mode Use "enqueue" to use the job queue when possible [Default: "run"]
 	 * @param int $stage DeferredUpdates constant (PRESEND, POSTSEND, or ALL) (since 1.27)
 	 */
@@ -260,7 +263,8 @@ class DeferredUpdates {
 			if ( $mode === 'enqueue' && $update instanceof EnqueueableDataUpdate ) {
 				// Run only the job enqueue logic to complete the update later
 				$spec = $update->getAsJobSpecification();
-				JobQueueGroup::singleton( $spec['wiki'] )->push( $spec['job'] );
+				$domain = $spec['domain'] ?? $spec['wiki'];
+				JobQueueGroup::singleton( $domain )->push( $spec['job'] );
 			} elseif ( $update instanceof TransactionRoundDefiningUpdate ) {
 				$update->doUpdate();
 			} else {
@@ -332,7 +336,8 @@ class DeferredUpdates {
 		foreach ( $updates as $update ) {
 			if ( $update instanceof EnqueueableDataUpdate ) {
 				$spec = $update->getAsJobSpecification();
-				JobQueueGroup::singleton( $spec['wiki'] )->push( $spec['job'] );
+				$domain = $spec['domain'] ?? $spec['wiki'];
+				JobQueueGroup::singleton( $domain )->push( $spec['job'] );
 			} else {
 				$remaining[] = $update;
 			}

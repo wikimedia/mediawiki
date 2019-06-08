@@ -221,7 +221,7 @@
 					}
 				} );
 				tokenPromise.done( function () {
-					$form.submit();
+					$form.trigger( 'submit' );
 				} );
 			} );
 
@@ -233,7 +233,7 @@
 
 			file.name = 'file';
 
-			// eslint-disable-next-line no-restricted-properties
+			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( data, function ( key, val ) {
 				$form.append( getHiddenInput( key, val ) );
 			} );

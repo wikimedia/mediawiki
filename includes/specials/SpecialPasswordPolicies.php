@@ -136,22 +136,39 @@ class SpecialPasswordPolicies extends SpecialPage {
 		);
 
 		$ret = [];
-		foreach ( $groupPolicies as $gp => $val ) {
-			if ( $val === false ) {
-				// Policy isn't enabled, so no need to dislpay it
-				continue;
-			} elseif ( $val === true ) {
-				$msg = $this->msg( 'passwordpolicies-policy-' . strtolower( $gp ) );
-			} else {
-				$msg = $this->msg( 'passwordpolicies-policy-' . strtolower( $gp ) )->numParams( $val );
+		foreach ( $groupPolicies as $gp => $settings ) {
+			if ( !is_array( $settings ) ) {
+				$settings = [ 'value' => $settings ];
 			}
-			$ret[] = $this->msg(
-				'passwordpolicies-policy-display',
-				$msg,
-				'<span class="mw-passwordpolicies-policy-name">' . $gp . '</span>'
-			)->parse();
+			$val = $settings['value'];
+			$flags = array_diff_key( $settings, [ 'value' => true ] );
+			if ( !$val ) {
+				// Policy isn't enabled, so no need to display it
+				continue;
+			}
+			$msg = $this->msg( 'passwordpolicies-policy-' . strtolower( $gp ) )->numParams( $val );
+			$flagMsgs = [];
+			foreach ( array_filter( $flags ) as $flag => $value ) {
+				$flagMsg = $this->msg( 'passwordpolicies-policyflag-' . strtolower( $flag ) );
+				$flagMsg->params( $value );
+				$flagMsgs[] = $flagMsg;
+			}
+			if ( $flagMsgs ) {
+				$ret[] = $this->msg(
+					'passwordpolicies-policy-displaywithflags',
+					$msg,
+					'<span class="mw-passwordpolicies-policy-name">' . $gp . '</span>',
+					$this->getLanguage()->commaList( $flagMsgs )
+				)->parse();
+			} else {
+				$ret[] = $this->msg(
+					'passwordpolicies-policy-display',
+					$msg,
+					'<span class="mw-passwordpolicies-policy-name">' . $gp . '</span>'
+				)->parse();
+			}
 		}
-		if ( !count( $ret ) ) {
+		if ( $ret === [] ) {
 			return '';
 		} else {
 			return '<ul><li>' . implode( "</li>\n<li>", $ret ) . '</li></ul>';

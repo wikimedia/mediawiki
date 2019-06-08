@@ -25,7 +25,6 @@
 @exclude: ~'.mw-made-collapsible';
 
 .client-js {
-
 	ol.mw-collapsible:before,
 	ul.mw-collapsible:before,
 	.mw-collapsible-toggle-li {
@@ -48,7 +47,8 @@
 	ul.mw-collapsible:not( @{exclude} ):before,
 	// Where the tbody or thead is the first child of the collapsible table
 	table.mw-collapsible:not( @{exclude} ) :first-child tr:first-child th:last-child:before,
-	table.mw-collapsible:not( @{exclude} ) > caption:first-child:after {
+	table.mw-collapsible:not( @{exclude} ) > caption:first-child:after,
+	div.mw-collapsible:not( @{exclude} ):before {
 		content: '[@{msg-collapsible-collapse}]';
 	}
 
@@ -76,8 +76,7 @@
 		// Avoid FOUC/reflows on collapsed elements by making sure they are opened by default (T42812)
 		> p,
 		> table,
-		// Manual:Collapsible_elements/Demo/Simple#Collapsed_by_default
-		> thead + tbody,
+		> thead + tbody, // 'https://www.mediawiki.org/wiki/Manual:Collapsible_elements/Demo/Simple#Collapsed_by_default'
 		tr:not( :first-child ),
 		.mw-collapsible-content {
 			display: none;

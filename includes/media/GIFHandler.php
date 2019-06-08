@@ -29,7 +29,7 @@
 class GIFHandler extends BitmapHandler {
 	const BROKEN_FILE = '0'; // value to store in img_metadata if error extracting metadata.
 
-	function getMetadata( $image, $filename ) {
+	public function getMetadata( $image, $filename ) {
 		try {
 			$parsedGIFMetadata = BitmapMetadataHandler::GIF( $filename );
 		} catch ( Exception $e ) {
@@ -47,7 +47,7 @@ class GIFHandler extends BitmapHandler {
 	 * @param bool|IContextSource $context Context to use (optional)
 	 * @return array|bool
 	 */
-	function formatMetadata( $image, $context = false ) {
+	public function formatMetadata( $image, $context = false ) {
 		$meta = $this->getCommonMetaArray( $image );
 		if ( count( $meta ) === 0 ) {
 			return false;
@@ -86,8 +86,11 @@ class GIFHandler extends BitmapHandler {
 		$ser = $image->getMetadata();
 		if ( $ser ) {
 			$metadata = unserialize( $ser );
-
-			return $image->getWidth() * $image->getHeight() * $metadata['frameCount'];
+			if ( isset( $metadata['frameCount'] ) && $metadata['frameCount'] > 0 ) {
+				return $image->getWidth() * $image->getHeight() * $metadata['frameCount'];
+			} else {
+				return $image->getWidth() * $image->getHeight();
+			}
 		} else {
 			return $image->getWidth() * $image->getHeight();
 		}
@@ -101,7 +104,7 @@ class GIFHandler extends BitmapHandler {
 		$ser = $image->getMetadata();
 		if ( $ser ) {
 			$metadata = unserialize( $ser );
-			if ( $metadata['frameCount'] > 1 ) {
+			if ( isset( $metadata['frameCount'] ) && $metadata['frameCount'] > 1 ) {
 				return true;
 			}
 		}
@@ -125,7 +128,7 @@ class GIFHandler extends BitmapHandler {
 		return 'parsed-gif';
 	}
 
-	function isMetadataValid( $image, $metadata ) {
+	public function isMetadataValid( $image, $metadata ) {
 		if ( $metadata === self::BROKEN_FILE ) {
 			// Do not repetitivly regenerate metadata on broken file.
 			return self::METADATA_GOOD;
@@ -156,7 +159,7 @@ class GIFHandler extends BitmapHandler {
 	 * @param File $image
 	 * @return string
 	 */
-	function getLongDesc( $image ) {
+	public function getLongDesc( $image ) {
 		global $wgLang;
 
 		$original = parent::getLongDesc( $image );

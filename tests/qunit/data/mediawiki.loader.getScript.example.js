@@ -1,0 +1,1 @@
+mw.getScriptExampleScriptLoaded = true;

@@ -28,13 +28,13 @@
 require_once __DIR__ . '/../autoload.php';
 
 class AutoLoader {
-	static protected $autoloadLocalClassesLower = null;
+	protected static $autoloadLocalClassesLower = null;
 
 	/**
 	 * @private Only public for ExtensionRegistry
 	 * @var string[] Namespace (ends with \) => Path (ends with /)
 	 */
-	static public $psr4Namespaces = [];
+	public static $psr4Namespaces = [];
 
 	/**
 	 * autoload - take a class name and attempt to load it
@@ -130,17 +130,19 @@ class AutoLoader {
 	public static function getAutoloadNamespaces() {
 		return [
 			'MediaWiki\\Auth\\' => __DIR__ . '/auth/',
+			'MediaWiki\\Block\\' => __DIR__ . '/block/',
 			'MediaWiki\\Edit\\' => __DIR__ . '/edit/',
 			'MediaWiki\\EditPage\\' => __DIR__ . '/editpage/',
 			'MediaWiki\\Linker\\' => __DIR__ . '/linker/',
+			'MediaWiki\\Permissions\\' => __DIR__ . '/Permissions/',
 			'MediaWiki\\Preferences\\' => __DIR__ . '/preferences/',
 			'MediaWiki\\Revision\\' => __DIR__ . '/Revision/',
-			'MediaWiki\\Services\\' => __DIR__ . '/services/',
 			'MediaWiki\\Session\\' => __DIR__ . '/session/',
 			'MediaWiki\\Shell\\' => __DIR__ . '/shell/',
 			'MediaWiki\\Sparql\\' => __DIR__ . '/sparql/',
 			'MediaWiki\\Storage\\' => __DIR__ . '/Storage/',
 			'MediaWiki\\Tidy\\' => __DIR__ . '/tidy/',
+			'Wikimedia\\Services\\' => __DIR__ . '/libs/services/',
 		];
 	}
 }

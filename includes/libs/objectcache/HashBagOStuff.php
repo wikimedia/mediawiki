@@ -34,8 +34,15 @@ class HashBagOStuff extends BagOStuff {
 	/** @var int Max entries allowed */
 	protected $maxCacheKeys;
 
+	/** @var string CAS token prefix for this instance */
+	private $token;
+
+	/** @var int CAS token counter */
+	private static $casCounter = 0;
+
 	const KEY_VAL = 0;
 	const KEY_EXP = 1;
+	const KEY_CAS = 2;
 
 	/**
 	 * @param array $params Additional parameters include:
@@ -44,12 +51,85 @@ class HashBagOStuff extends BagOStuff {
 	function __construct( $params = [] ) {
 		parent::__construct( $params );
 
+		$this->token = microtime( true ) . ':' . mt_rand();
 		$this->maxCacheKeys = $params['maxKeys'] ?? INF;
 		if ( $this->maxCacheKeys <= 0 ) {
 			throw new InvalidArgumentException( '$maxKeys parameter must be above zero' );
 		}
 	}
 
+	protected function doGet( $key, $flags = 0, &$casToken = null ) {
+		$casToken = null;
+
+		if ( !$this->hasKey( $key ) || $this->expire( $key ) ) {
+			return false;
+		}
+
+		// Refresh key position for maxCacheKeys eviction
+		$temp = $this->bag[$key];
+		unset( $this->bag[$key] );
+		$this->bag[$key] = $temp;
+
+		$casToken = $this->bag[$key][self::KEY_CAS];
+
+		return $this->bag[$key][self::KEY_VAL];
+	}
+
+	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
+		// Refresh key position for maxCacheKeys eviction
+		unset( $this->bag[$key] );
+		$this->bag[$key] = [
+			self::KEY_VAL => $value,
+			self::KEY_EXP => $this->convertToExpiry( $exptime ),
+			self::KEY_CAS => $this->token . ':' . ++self::$casCounter
+		];
+
+		if ( count( $this->bag ) > $this->maxCacheKeys ) {
+			reset( $this->bag );
+			$evictKey = key( $this->bag );
+			unset( $this->bag[$evictKey] );
+		}
+
+		return true;
+	}
+
+	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
+		if ( $this->get( $key ) === false ) {
+			return $this->set( $key, $value, $exptime, $flags );
+		}
+
+		return false; // key already set
+	}
+
+	public function delete( $key, $flags = 0 ) {
+		unset( $this->bag[$key] );
+
+		return true;
+	}
+
+	public function incr( $key, $value = 1 ) {
+		$n = $this->get( $key );
+		if ( $this->isInteger( $n ) ) {
+			$n = max( $n + intval( $value ), 0 );
+			$this->bag[$key][self::KEY_VAL] = $n;
+
+			return $n;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Clear all values in cache
+	 */
+	public function clear() {
+		$this->bag = [];
+	}
+
+	/**
+	 * @param string $key
+	 * @return bool
+	 */
 	protected function expire( $key ) {
 		$et = $this->bag[$key][self::KEY_EXP];
 		if ( $et == self::TTL_INDEFINITE || $et > $this->getCurrentTime() ) {
@@ -70,49 +150,5 @@ class HashBagOStuff extends BagOStuff {
 	 */
 	protected function hasKey( $key ) {
 		return isset( $this->bag[$key] );
-	}
-
-	protected function doGet( $key, $flags = 0 ) {
-		if ( !$this->hasKey( $key ) ) {
-			return false;
-		}
-
-		if ( $this->expire( $key ) ) {
-			return false;
-		}
-
-		// Refresh key position for maxCacheKeys eviction
-		$temp = $this->bag[$key];
-		unset( $this->bag[$key] );
-		$this->bag[$key] = $temp;
-
-		return $this->bag[$key][self::KEY_VAL];
-	}
-
-	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
-		// Refresh key position for maxCacheKeys eviction
-		unset( $this->bag[$key] );
-		$this->bag[$key] = [
-			self::KEY_VAL => $value,
-			self::KEY_EXP => $this->convertExpiry( $exptime )
-		];
-
-		if ( count( $this->bag ) > $this->maxCacheKeys ) {
-			reset( $this->bag );
-			$evictKey = key( $this->bag );
-			unset( $this->bag[$evictKey] );
-		}
-
-		return true;
-	}
-
-	public function delete( $key ) {
-		unset( $this->bag[$key] );
-
-		return true;
-	}
-
-	public function clear() {
-		$this->bag = [];
 	}
 }

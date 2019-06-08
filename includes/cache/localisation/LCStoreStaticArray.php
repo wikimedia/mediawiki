@@ -41,19 +41,13 @@ class LCStoreStaticArray implements LCStore {
 	public function __construct( $conf = [] ) {
 		global $wgCacheDirectory;
 
-		if ( isset( $conf['directory'] ) ) {
-			$this->directory = $conf['directory'];
-		} else {
-			$this->directory = $wgCacheDirectory;
-		}
+		$this->directory = $conf['directory'] ?? $wgCacheDirectory;
 	}
 
 	public function startWrite( $code ) {
-		if ( !file_exists( $this->directory ) ) {
-			if ( !wfMkdirParents( $this->directory, null, __METHOD__ ) ) {
-				throw new MWException( "Unable to create the localisation store " .
-					"directory \"{$this->directory}\"" );
-			}
+		if ( !file_exists( $this->directory ) && !wfMkdirParents( $this->directory, null, __METHOD__ ) ) {
+			throw new MWException( "Unable to create the localisation store " .
+				"directory \"{$this->directory}\"" );
 		}
 
 		$this->currentLang = $code;
@@ -72,21 +66,21 @@ class LCStoreStaticArray implements LCStore {
 	 * Encodes a value into an array format
 	 *
 	 * @param mixed $value
-	 * @return array
+	 * @return array|mixed
 	 * @throws RuntimeException
 	 */
 	public static function encode( $value ) {
-		if ( is_scalar( $value ) || $value === null ) {
-			// [V]alue
-			return [ 'v', $value ];
+		if ( is_array( $value ) ) {
+			// [a]rray
+			return [ 'a', array_map( 'LCStoreStaticArray::encode', $value ) ];
 		}
 		if ( is_object( $value ) ) {
-			// [S]erialized
+			// [s]erialized
 			return [ 's', serialize( $value ) ];
 		}
-		if ( is_array( $value ) ) {
-			// [A]rray
-			return [ 'a', array_map( 'LCStoreStaticArray::encode', $value ) ];
+		if ( is_scalar( $value ) || $value === null ) {
+			// Scalar value, written directly without array
+			return $value;
 		}
 
 		throw new RuntimeException( 'Cannot encode ' . var_export( $value, true ) );
@@ -95,21 +89,27 @@ class LCStoreStaticArray implements LCStore {
 	/**
 	 * Decode something that was encoded with encode
 	 *
-	 * @param array $encoded
+	 * @param mixed $encoded
 	 * @return array|mixed
 	 * @throws RuntimeException
 	 */
-	public static function decode( array $encoded ) {
-		$type = $encoded[0];
-		$data = $encoded[1];
+	public static function decode( $encoded ) {
+		if ( !is_array( $encoded ) ) {
+			// Scalar values are written directly without array
+			return $encoded;
+		}
+
+		list( $type, $data ) = $encoded;
 
 		switch ( $type ) {
-			case 'v':
-				return $data;
-			case 's':
-				return unserialize( $data );
 			case 'a':
 				return array_map( 'LCStoreStaticArray::decode', $data );
+			case 's':
+				return unserialize( $data );
+			case 'v':
+				// Support: MediaWiki 1.32 and earlier
+				// Backward compatibility with older file format
+				return $data;
 			default:
 				throw new RuntimeException(
 					'Unable to decode ' . var_export( $encoded, true ) );

@@ -289,7 +289,7 @@ class Message implements MessageSpecifier, Serializable {
 			'parameters' => $this->parameters,
 			'format' => $this->format,
 			'useDatabase' => $this->useDatabase,
-			'title' => $this->title,
+			'titlestr' => $this->title ? $this->title->getFullText() : null,
 		] );
 	}
 
@@ -300,6 +300,10 @@ class Message implements MessageSpecifier, Serializable {
 	 */
 	public function unserialize( $serialized ) {
 		$data = unserialize( $serialized );
+		if ( !is_array( $data ) ) {
+			throw new InvalidArgumentException( __METHOD__ . ': Invalid serialized data' );
+		}
+
 		$this->interface = $data['interface'];
 		$this->key = $data['key'];
 		$this->keysToTry = $data['keysToTry'];
@@ -307,7 +311,15 @@ class Message implements MessageSpecifier, Serializable {
 		$this->format = $data['format'];
 		$this->useDatabase = $data['useDatabase'];
 		$this->language = $data['language'] ? Language::factory( $data['language'] ) : false;
-		$this->title = $data['title'];
+
+		if ( isset( $data['titlestr'] ) ) {
+			$this->title = Title::newFromText( $data['titlestr'] );
+		} elseif ( isset( $data['title'] ) && $data['title'] instanceof Title ) {
+			// Old serializations from before December 2018
+			$this->title = $data['title'];
+		} else {
+			$this->title = null; // Explicit for sanity
+		}
 	}
 
 	/**
@@ -1151,14 +1163,11 @@ class Message implements MessageSpecifier, Serializable {
 					// escaped, breaking the replacement and avoiding XSS.
 					$replacementKeys['$' . ( $n + 1 )] = $marker . ( $n + 1 );
 				}
-			} else {
-				if ( $paramType === 'after' ) {
-					$replacementKeys[$marker . ( $n + 1 )] = $value;
-				}
+			} elseif ( $paramType === 'after' ) {
+				$replacementKeys[$marker . ( $n + 1 )] = $value;
 			}
 		}
-		$message = strtr( $message, $replacementKeys );
-		return $message;
+		return strtr( $message, $replacementKeys );
 	}
 
 	/**

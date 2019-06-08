@@ -30,6 +30,9 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 		$dbw = wfGetDB( DB_MASTER );
 		$logs = [];
 
+		$comment = \MediaWiki\MediaWikiServices::getInstance()->getCommentStore()
+			->createComment( $dbw, '' );
+
 		// Manual patrolling
 		$logs[] = [
 			'log_type' => 'patrol',
@@ -39,6 +42,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			'log_timestamp' => $dbw->timestamp( '20041223210426' ),
 			'log_namespace' => NS_MAIN,
 			'log_title' => 'DeleteAutoPatrolLogs',
+			'log_comment_id' => $comment->id,
 		];
 
 		// Autopatrol #1
@@ -50,6 +54,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			'log_timestamp' => $dbw->timestamp( '20051223210426' ),
 			'log_namespace' => NS_MAIN,
 			'log_title' => 'DeleteAutoPatrolLogs',
+			'log_comment_id' => $comment->id,
 		];
 
 		// Block
@@ -61,6 +66,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			'log_timestamp' => $dbw->timestamp( '20061223210426' ),
 			'log_namespace' => NS_MAIN,
 			'log_title' => 'DeleteAutoPatrolLogs',
+			'log_comment_id' => $comment->id,
 		];
 
 		// Very old/ invalid patrol
@@ -72,6 +78,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			'log_timestamp' => $dbw->timestamp( '20061223210426' ),
 			'log_namespace' => NS_MAIN,
 			'log_title' => 'DeleteAutoPatrolLogs',
+			'log_comment_id' => $comment->id,
 		];
 
 		// Autopatrol #2
@@ -83,6 +90,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			'log_timestamp' => $dbw->timestamp( '20071223210426' ),
 			'log_namespace' => NS_MAIN,
 			'log_title' => 'DeleteAutoPatrolLogs',
+			'log_comment_id' => $comment->id,
 		];
 
 		// Autopatrol #3 old way
@@ -94,6 +102,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			'log_timestamp' => $dbw->timestamp( '20081223210426' ),
 			'log_namespace' => NS_MAIN,
 			'log_title' => 'DeleteAutoPatrolLogs',
+			'log_comment_id' => $comment->id,
 		];
 
 		// Manual patrol #2 old way
@@ -105,6 +114,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			'log_timestamp' => $dbw->timestamp( '20091223210426' ),
 			'log_namespace' => NS_MAIN,
 			'log_title' => 'DeleteAutoPatrolLogs',
+			'log_comment_id' => $comment->id,
 		];
 
 		// Autopatrol #4 very old way
@@ -116,6 +126,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			'log_timestamp' => $dbw->timestamp( '20081223210426' ),
 			'log_namespace' => NS_MAIN,
 			'log_title' => 'DeleteAutoPatrolLogs',
+			'log_comment_id' => $comment->id,
 		];
 
 		// Manual patrol #3 very old way
@@ -127,6 +138,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			'log_timestamp' => $dbw->timestamp( '20091223210426' ),
 			'log_namespace' => NS_MAIN,
 			'log_title' => 'DeleteAutoPatrolLogs',
+			'log_comment_id' => $comment->id,
 		];
 
 		$dbw->insert( 'logging', $logs );

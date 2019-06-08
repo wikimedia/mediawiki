@@ -26,6 +26,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\DerivedPageDataUpdater;
 use MediaWiki\Storage\PageUpdater;
@@ -49,13 +50,23 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public $mTitle = null;
 
-	/**@{{
+	/**
+	 * @var bool
 	 * @protected
 	 */
-	public $mDataLoaded = false;         // !< Boolean
-	public $mIsRedirect = false;         // !< Boolean
-	public $mLatest = false;             // !< Integer (false means "not loaded")
-	/**@}}*/
+	public $mDataLoaded = false;
+
+	/**
+	 * @var bool
+	 * @protected
+	 */
+	public $mIsRedirect = false;
+
+	/**
+	 * @var int|false False means "not loaded"
+	 * @protected
+	 */
+	public $mLatest = false;
 
 	/** @var PreparedEdit Map of cache fields (text, parser output, ect) for a proposed/new edit */
 	public $mPreparedEdit = false;
@@ -230,6 +241,13 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	private function getRevisionRenderer() {
 		return MediaWikiServices::getInstance()->getRevisionRenderer();
+	}
+
+	/**
+	 * @return SlotRoleRegistry
+	 */
+	private function getSlotRoleRegistry() {
+		return MediaWikiServices::getInstance()->getSlotRoleRegistry();
 	}
 
 	/**
@@ -629,7 +647,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function getContentModel() {
 		if ( $this->exists() ) {
-			$cache = ObjectCache::getMainWANInstance();
+			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 
 			return $cache->getWithSetCallback(
 				$cache->makeKey( 'page-content-model', $this->getLatest() ),
@@ -887,7 +905,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   Revision::RAW              get the text regardless of permissions
 	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter
-	 * @return string Comment stored for the last article revision
+	 * @return string|null Comment stored for the last article revision, or null if the specified
+	 *  audience does not have access to the comment.
 	 */
 	public function getComment( $audience = Revision::FOR_PUBLIC, User $user = null ) {
 		$this->loadLastEdit();
@@ -952,12 +971,17 @@ class WikiPage implements Page, IDBAccessObject {
 				// links.
 				$hasLinks = (bool)count( $editInfo->output->getLinks() );
 			} else {
-				// NOTE: keep in sync with revisionRenderer::getLinkCount
+				// NOTE: keep in sync with RevisionRenderer::getLinkCount
+				// NOTE: keep in sync with DerivedPageDataUpdater::isCountable
 				$hasLinks = (bool)wfGetDB( DB_REPLICA )->selectField( 'pagelinks', 1,
 					[ 'pl_from' => $this->getId() ], __METHOD__ );
 			}
 		}
 
+		// TODO: MCR: determine $hasLinks for each slot, and use that info
+		// with that slot's Content's isCountable method. That requires per-
+		// slot ParserOutput in the ParserCache, or per-slot info in the
+		// pagelinks table.
 		return $content->isCountable( $hasLinks );
 	}
 
@@ -1045,20 +1069,22 @@ class WikiPage implements Page, IDBAccessObject {
 		$dbw->startAtomic( __METHOD__ );
 
 		if ( !$oldLatest || $oldLatest == $this->lockAndGetLatest() ) {
+			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+			$truncatedFragment = $contLang->truncateForDatabase( $rt->getFragment(), 255 );
 			$dbw->upsert(
 				'redirect',
 				[
 					'rd_from' => $this->getId(),
 					'rd_namespace' => $rt->getNamespace(),
 					'rd_title' => $rt->getDBkey(),
-					'rd_fragment' => $rt->getFragment(),
+					'rd_fragment' => $truncatedFragment,
 					'rd_interwiki' => $rt->getInterwiki(),
 				],
 				[ 'rd_from' ],
 				[
 					'rd_namespace' => $rt->getNamespace(),
 					'rd_title' => $rt->getDBkey(),
-					'rd_fragment' => $rt->getFragment(),
+					'rd_fragment' => $truncatedFragment,
 					'rd_interwiki' => $rt->getInterwiki(),
 				],
 				__METHOD__
@@ -1663,6 +1689,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$this, // NOTE: eventually, PageUpdater should not know about WikiPage
 			$this->getRevisionStore(),
 			$this->getRevisionRenderer(),
+			$this->getSlotRoleRegistry(),
 			$this->getParserCache(),
 			JobQueueGroup::singleton(),
 			MessageCache::singleton(),
@@ -1767,7 +1794,8 @@ class WikiPage implements Page, IDBAccessObject {
 			$this, // NOTE: eventually, PageUpdater should not know about WikiPage
 			$this->getDerivedDataUpdater( $user, null, $forUpdate, true ),
 			$this->getDBLoadBalancer(),
-			$this->getRevisionStore()
+			$this->getRevisionStore(),
+			$this->getSlotRoleRegistry()
 		);
 
 		$pageUpdater->setUsePageCreationLog( $wgPageCreationLog );
@@ -2130,6 +2158,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		$this->loadPageData( 'fromdbmaster' );
+		$this->mTitle->loadRestrictions( null, Title::READ_LATEST );
 		$restrictionTypes = $this->mTitle->getRestrictionTypes();
 		$id = $this->getId();
 
@@ -2607,7 +2636,9 @@ class WikiPage implements Page, IDBAccessObject {
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$wikiPage = $this;
 
-		$deleter = is_null( $deleter ) ? $wgUser : $deleter;
+		if ( !$deleter ) {
+			$deleter = $wgUser;
+		}
 		if ( !Hooks::run( 'ArticleDelete',
 			[ &$wikiPage, &$deleter, &$reason, &$error, &$status, $suppress ]
 		) ) {
@@ -2727,7 +2758,7 @@ class WikiPage implements Page, IDBAccessObject {
 			// in the job queue to avoid simultaneous deletion operations would add overhead.
 			// Number of archived revisions cannot be known beforehand, because edits can be made
 			// while deletion operations are being processed, changing the number of archivals.
-			$archivedRevisionCount = $dbw->selectField(
+			$archivedRevisionCount = (int)$dbw->selectField(
 				'archive', 'COUNT(*)',
 				[
 					'ar_namespace' => $this->getTitle()->getNamespace(),
@@ -2797,8 +2828,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	protected function archiveRevisions( $dbw, $id, $suppress ) {
 		global $wgContentHandlerUseDB, $wgMultiContentRevisionSchemaMigrationStage,
-			$wgCommentTableSchemaMigrationStage, $wgActorTableSchemaMigrationStage,
-			$wgDeleteRevisionsBatchSize;
+			$wgActorTableSchemaMigrationStage, $wgDeleteRevisionsBatchSize;
 
 		// Given the lock above, we can be confident in the title and page ID values
 		$namespace = $this->getTitle()->getNamespace();
@@ -2924,9 +2954,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$dbw->insert( 'archive', $rowsInsert, __METHOD__ );
 
 			$dbw->delete( 'revision', [ 'rev_id' => $revids ], __METHOD__ );
-			if ( $wgCommentTableSchemaMigrationStage > MIGRATION_OLD ) {
-				$dbw->delete( 'revision_comment_temp', [ 'revcomment_rev' => $revids ], __METHOD__ );
-			}
+			$dbw->delete( 'revision_comment_temp', [ 'revcomment_rev' => $revids ], __METHOD__ );
 			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 				$dbw->delete( 'revision_actor_temp', [ 'revactor_rev' => $revids ], __METHOD__ );
 			}
@@ -2969,7 +2997,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param Content|null $content Page content to be used when determining
 	 *   the required updates. This may be needed because $this->getContent()
 	 *   may already return null when the page proper was deleted.
-	 * @param RevisionRecord|Revision|null $revision The current page revision at the time of
+	 * @param Revision|null $revision The current page revision at the time of
 	 *   deletion, used when determining the required updates. This may be needed because
 	 *   $this->getRevision() may already return null when the page proper was deleted.
 	 * @param User|null $user The user that caused the deletion
@@ -3015,7 +3043,10 @@ class WikiPage implements Page, IDBAccessObject {
 		// Clear caches
 		self::onArticleDelete( $this->mTitle );
 		ResourceLoaderWikiModule::invalidateModuleCache(
-			$this->mTitle, $revision, null, wfWikiID()
+			$this->mTitle,
+			$revision,
+			null,
+			WikiMap::getCurrentWikiDbDomain()->getId()
 		);
 
 		// Reset this object and the Title object
@@ -3264,7 +3295,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		if ( $wgUseRCPatrol ) {
 			// Mark all reverted edits as patrolled
-			$set['rc_patrolled'] = RecentChange::PRC_PATROLLED;
+			$set['rc_patrolled'] = RecentChange::PRC_AUTOPATROLLED;
 		}
 
 		if ( count( $set ) ) {
@@ -3486,7 +3517,11 @@ class WikiPage implements Page, IDBAccessObject {
 				// Do not include the namespace since there can be multiple aliases to it
 				// due to different namespace text definitions on different wikis. This only
 				// means that some cache invalidations happen that are not strictly needed.
-				$cache->makeGlobalKey( 'interwiki-page', wfWikiID(), $title->getDBkey() )
+				$cache->makeGlobalKey(
+					'interwiki-page',
+					WikiMap::getCurrentWikiDbDomain()->getId(),
+					$title->getDBkey()
+				)
 			);
 		} );
 	}

@@ -14,7 +14,7 @@
 			name: name,
 			multiple: 'multiple',
 			'data-placeholder': dataPlaceholder.plain(),
-			'class': 'htmlform-chzn-select mw-input ' + oldClass
+			class: 'htmlform-chzn-select mw-input ' + oldClass
 		} );
 		$oldContainer.find( 'input' ).each( function () {
 			var $oldInput = $( this ),

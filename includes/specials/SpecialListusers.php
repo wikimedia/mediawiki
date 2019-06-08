@@ -35,9 +35,7 @@ class SpecialListUsers extends IncludableSpecialPage {
 	}
 
 	/**
-	 * Show the special page
-	 *
-	 * @param string $par (optional) A group to list users from
+	 * @param string|null $par (optional) A group to list users from
 	 */
 	public function execute( $par ) {
 		$this->setHeaders();
@@ -75,27 +73,5 @@ class SpecialListUsers extends IncludableSpecialPage {
 
 	protected function getGroupName() {
 		return 'users';
-	}
-}
-
-/**
- * Redirect page: Special:ListAdmins --> Special:ListUsers/sysop.
- *
- * @ingroup SpecialPage
- */
-class SpecialListAdmins extends SpecialRedirectToSpecial {
-	function __construct() {
-		parent::__construct( 'Listadmins', 'Listusers', 'sysop' );
-	}
-}
-
-/**
- * Redirect page: Special:ListBots --> Special:ListUsers/bot.
- *
- * @ingroup SpecialPage
- */
-class SpecialListBots extends SpecialRedirectToSpecial {
-	function __construct() {
-		parent::__construct( 'Listbots', 'Listusers', 'bot' );
 	}
 }

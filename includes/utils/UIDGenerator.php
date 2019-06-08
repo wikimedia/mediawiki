@@ -74,7 +74,7 @@ class UIDGenerator {
 			}
 			Wikimedia\restoreWarnings();
 			if ( !preg_match( '/^[0-9a-f]{12}$/i', $nodeId ) ) {
-				$nodeId = MWCryptRand::generateHex( 12, true );
+				$nodeId = MWCryptRand::generateHex( 12 );
 				$nodeId[1] = dechex( hexdec( $nodeId[1] ) | 0x1 ); // set multicast bit
 			}
 			file_put_contents( $this->nodeIdFile, $nodeId ); // cache
@@ -137,8 +137,7 @@ class UIDGenerator {
 			$time = $info['time'];
 			$counter = $info['offsetCounter'];
 		} else {
-			$time = $info[0];
-			$counter = $info[1];
+			list( $time, $counter ) = $info;
 		}
 		// Take the 46 LSBs of "milliseconds since epoch"
 		$id_bin = $this->millisecondsSinceEpochBinary( $time );
@@ -192,9 +191,7 @@ class UIDGenerator {
 			$counter = $info['offsetCounter'];
 			$clkSeq = $info['clkSeq'];
 		} else {
-			$time = $info[0];
-			$counter = $info[1];
-			$clkSeq = $info[2];
+			list( $time, $counter, $clkSeq ) = $info;
 		}
 		// Take the 46 LSBs of "milliseconds since epoch"
 		$id_bin = $this->millisecondsSinceEpochBinary( $time );

@@ -77,6 +77,9 @@ interface Content {
 	 *
 	 * @since 1.21
 	 *
+	 * @deprecated since 1.33 use getText() for TextContent instances.
+	 *             For other content models, use specialized getters.
+	 *
 	 * @return mixed The native representation of the content. Could be a
 	 *    string, a nested array structure, an object, a binary blob...
 	 *    anything, really.
@@ -199,9 +202,11 @@ interface Content {
 	 *
 	 * - Will return false if $that is null.
 	 * - Will return true if $that === $this.
-	 * - Will return false if $that->getModel() != $this->getModel().
-	 * - Will return false if $that->getNativeData() is not equal to $this->getNativeData(),
-	 *   where the meaning of "equal" depends on the actual data model.
+	 * - Will return false if $that->getModel() !== $this->getModel().
+	 * - Will return false if get_class( $that ) !== get_class( $this )
+	 * - Should return false if $that->getModel() == $this->getModel() and
+	 *     $that is not semantically equivalent to $this, according to
+	 *     the data model defined by $this->getModel().
 	 *
 	 * Implementations should be careful to make equals() transitive and reflexive:
 	 *
@@ -240,6 +245,8 @@ interface Content {
 	 * Returns true if this content is countable as a "real" wiki page, provided
 	 * that it's also in a countable location (e.g. a current revision in the
 	 * main namespace).
+	 *
+	 * @see SlotRoleHandler::supportsArticleCount
 	 *
 	 * @since 1.21
 	 *
@@ -351,6 +358,8 @@ interface Content {
 	/**
 	 * Returns whether this Content represents a redirect.
 	 * Shorthand for getRedirectTarget() !== null.
+	 *
+	 * @see SlotRoleHandler::supportsRedirects
 	 *
 	 * @since 1.21
 	 *

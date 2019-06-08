@@ -148,10 +148,6 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 			'SkinModule (FileModule subclass)' => [ true,
 				[ 'class' => ResourceLoaderSkinModule::class, 'scripts' => 'example.js' ]
 			],
-			'JqueryMsgModule (FileModule subclass)' => [ true, [
-				'class' => ResourceLoaderJqueryMsgModule::class,
-				'scripts' => 'example.js',
-			] ],
 			'WikiModule' => [ false, [
 				'class' => ResourceLoaderWikiModule::class,
 				'scripts' => [ 'MediaWiki:Example.js' ],
@@ -292,12 +288,12 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 
 	/**
 	 * @dataProvider providePackedModules
-	 * @covers ResourceLoaderContext::expandModuleNames
+	 * @covers ResourceLoader::expandModuleNames
 	 */
 	public function testExpandModuleNames( $desc, $modules, $packed, $unpacked = null ) {
 		$this->assertEquals(
 			$unpacked ?: $modules,
-			ResourceLoaderContext::expandModuleNames( $packed ),
+			ResourceLoader::expandModuleNames( $packed ),
 			$desc
 		);
 	}
@@ -435,6 +431,45 @@ mw.example();
 
 				'expected' => 'mw.loader.implement( "user", "mw.example( 1 );" );',
 			] ],
+			[ [
+				'title' => 'Implement multi-file script',
+
+				'name' => 'test.multifile',
+				'scripts' => [
+					'files' => [
+						'one.js' => [
+							'type' => 'script',
+							'content' => 'mw.example( 1 );',
+						],
+						'two.json' => [
+							'type' => 'data',
+							'content' => [ 'n' => 2 ],
+						],
+						'three.js' => [
+							'type' => 'script',
+							'content' => 'mw.example( 3 );'
+						],
+					],
+					'main' => 'three.js',
+				],
+
+				'expected' => <<<END
+mw.loader.implement( "test.multifile", {
+    "main": "three.js",
+    "files": {
+    "one.js": function ( require, module ) {
+mw.example( 1 );
+},
+    "two.json": {
+    "n": 2
+},
+    "three.js": function ( require, module ) {
+mw.example( 3 );
+}
+}
+} );
+END
+			] ],
 		];
 	}
 
@@ -446,7 +481,7 @@ mw.example();
 	public function testMakeLoaderImplementScript( $case ) {
 		$case += [
 			'wrap' => true,
-			'styles' => [], 'templates' => [], 'messages' => new XmlJsCode( '{}' )
+			'styles' => [], 'templates' => [], 'messages' => new XmlJsCode( '{}' ), 'packageFiles' => [],
 		];
 		ResourceLoader::clearCache();
 		$this->setMwGlobals( 'wgResourceLoaderDebug', true );
@@ -461,7 +496,8 @@ mw.example();
 					: $case['scripts'],
 				$case['styles'],
 				$case['messages'],
-				$case['templates']
+				$case['templates'],
+				$case['packageFiles']
 			)
 		);
 	}
@@ -477,7 +513,8 @@ mw.example();
 			123, // scripts
 			null, // styles
 			null, // messages
-			null // templates
+			null, // templates
+			null // package files
 		);
 	}
 
@@ -587,7 +624,6 @@ mw.example();
 	 * @covers ResourceLoader::getLoadScript
 	 */
 	public function testGetLoadScript() {
-		$this->setMwGlobals( 'wgResourceLoaderSources', [] );
 		$rl = new ResourceLoader();
 		$sources = self::fakeSources();
 		$rl->addSource( $sources );
@@ -730,11 +766,11 @@ mw.example();
 		}, $scripts );
 		$rl->register( $modules );
 
-		$this->setMwGlobals( 'wgResourceLoaderDebug', $debug );
 		$context = $this->getResourceLoaderContext(
 			[
 				'modules' => implode( '|', array_keys( $modules ) ),
 				'only' => 'scripts',
+				'debug' => $debug ? 'true' : 'false',
 			],
 			$rl
 		);
@@ -837,6 +873,7 @@ mw.example();
 			$response
 		);
 	}
+
 	/**
 	 * Verify that when building the startup module response,
 	 * an exception from one module class will not break the entire

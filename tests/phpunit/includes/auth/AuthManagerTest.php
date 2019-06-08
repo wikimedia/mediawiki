@@ -15,7 +15,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group AuthManager
  * @group Database
- * @covers MediaWiki\Auth\AuthManager
+ * @covers \MediaWiki\Auth\AuthManager
  */
 class AuthManagerTest extends \MediaWikiTestCase {
 	/** @var WebRequest */
@@ -33,12 +33,6 @@ class AuthManagerTest extends \MediaWikiTestCase {
 	protected $manager;
 	/** @var TestingAccessWrapper */
 	protected $managerPriv;
-
-	protected function setUp() {
-		parent::setUp();
-
-		$this->setMwGlobals( [ 'wgAuth' => null ] );
-	}
 
 	/**
 	 * Sets a mock on a hook
@@ -1831,7 +1825,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( \UnexpectedValueException $ex ) {
 			$this->assertEquals(
-				"User \"{$name}\" exists, but ID $id != " . ( $id + 1 ) . '!', $ex->getMessage()
+				"User \"{$name}\" exists, but ID $id !== " . ( $id + 1 ) . '!', $ex->getMessage()
 			);
 		}
 		$this->unhook( 'LocalUserCreated' );
@@ -2352,8 +2346,6 @@ class AuthManagerTest extends \MediaWikiTestCase {
 	}
 
 	public function testAutoAccountCreation() {
-		global $wgHooks;
-
 		// PHPUnit seems to have a bug where it will call the ->with()
 		// callbacks for our hooks again after the test is run (WTF?), which
 		// breaks here because $username no longer matches $user by the end of
@@ -2361,6 +2353,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$workaroundPHPUnitBug = false;
 
 		$username = self::usernameForCreation();
+		$expectedSource = AuthManager::AUTOCREATE_SOURCE_SESSION;
 		$this->initializeManager();
 
 		$this->setGroupPermissions( '*', 'createaccount', true );
@@ -2380,14 +2373,20 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		}
 
 		$good = StatusValue::newGood();
+		$ok = StatusValue::newFatal( 'ok' );
 		$callback = $this->callback( function ( $user ) use ( &$username, &$workaroundPHPUnitBug ) {
 			return $workaroundPHPUnitBug || $user->getName() === $username;
 		} );
+		$callback2 = $this->callback(
+			function ( $source ) use ( &$expectedSource, &$workaroundPHPUnitBug ) {
+				return $workaroundPHPUnitBug || $source === $expectedSource;
+			}
+		);
 
-		$mocks['pre']->expects( $this->exactly( 12 ) )->method( 'testUserForCreation' )
-			->with( $callback, $this->identicalTo( AuthManager::AUTOCREATE_SOURCE_SESSION ) )
+		$mocks['pre']->expects( $this->exactly( 13 ) )->method( 'testUserForCreation' )
+			->with( $callback, $callback2 )
 			->will( $this->onConsecutiveCalls(
-				StatusValue::newFatal( 'ok' ), StatusValue::newFatal( 'ok' ), // For testing permissions
+				$ok, $ok, $ok, // For testing permissions
 				StatusValue::newFatal( 'fail-in-pre' ), $good, $good,
 				$good, // backoff test
 				$good, // addToDatabase fails test
@@ -2401,7 +2400,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$mocks['primary']->expects( $this->any() )->method( 'testUserExists' )
 			->will( $this->returnValue( true ) );
 		$mocks['primary']->expects( $this->exactly( 9 ) )->method( 'testUserForCreation' )
-			->with( $callback, $this->identicalTo( AuthManager::AUTOCREATE_SOURCE_SESSION ) )
+			->with( $callback, $callback2 )
 			->will( $this->onConsecutiveCalls(
 				StatusValue::newFatal( 'fail-in-primary' ), $good,
 				$good, // backoff test
@@ -2411,10 +2410,10 @@ class AuthManagerTest extends \MediaWikiTestCase {
 				$good, $good, $good
 			) );
 		$mocks['primary']->expects( $this->exactly( 3 ) )->method( 'autoCreatedAccount' )
-			->with( $callback, $this->identicalTo( AuthManager::AUTOCREATE_SOURCE_SESSION ) );
+			->with( $callback, $callback2 );
 
 		$mocks['secondary']->expects( $this->exactly( 8 ) )->method( 'testUserForCreation' )
-			->with( $callback, $this->identicalTo( AuthManager::AUTOCREATE_SOURCE_SESSION ) )
+			->with( $callback, $callback2 )
 			->will( $this->onConsecutiveCalls(
 				StatusValue::newFatal( 'fail-in-secondary' ),
 				$good, // backoff test
@@ -2424,7 +2423,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 				$good, $good, $good
 			) );
 		$mocks['secondary']->expects( $this->exactly( 3 ) )->method( 'autoCreatedAccount' )
-			->with( $callback, $this->identicalTo( AuthManager::AUTOCREATE_SOURCE_SESSION ) );
+			->with( $callback, $callback2 );
 
 		$this->preauthMocks = [ $mocks['pre'] ];
 		$this->primaryauthMocks = [ $mocks['primary'] ];
@@ -2564,8 +2563,20 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			'authmanager-autocreate-noperm', $session->get( 'AuthManager::AutoCreateBlacklist' )
 		);
 
+		// maintenance scripts always work
+		$expectedSource = AuthManager::AUTOCREATE_SOURCE_MAINT;
+		$this->setGroupPermissions( '*', 'createaccount', false );
+		$this->setGroupPermissions( '*', 'autocreateaccount', false );
+		$session->clear();
+		$user = \User::newFromName( $username );
+		$this->hook( 'LocalUserCreated', $this->never() );
+		$ret = $this->manager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_MAINT, true );
+		$this->unhook( 'LocalUserCreated' );
+		$this->assertEquals( \Status::newFatal( 'ok' ), $ret );
+
 		// Test that both permutations of permissions are allowed
 		// (this hits the two "ok" entries in $mocks['pre'])
+		$expectedSource = AuthManager::AUTOCREATE_SOURCE_SESSION;
 		$this->setGroupPermissions( '*', 'createaccount', false );
 		$this->setGroupPermissions( '*', 'autocreateaccount', true );
 		$session->clear();
@@ -2752,15 +2763,10 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$session->clear();
 		$username = self::usernameForCreation();
 		$user = \User::newFromName( $username );
-		$this->hook( 'AuthPluginAutoCreate', $this->once() )
-			->with( $callback );
-		$this->hideDeprecated( 'AuthPluginAutoCreate hook (used in ' .
-				get_class( $wgHooks['AuthPluginAutoCreate'][0] ) . '::onAuthPluginAutoCreate)' );
 		$this->hook( 'LocalUserCreated', $this->once() )
 			->with( $callback, $this->equalTo( true ) );
 		$ret = $this->manager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_SESSION, true );
 		$this->unhook( 'LocalUserCreated' );
-		$this->unhook( 'AuthPluginAutoCreate' );
 		$this->assertEquals( \Status::newGood(), $ret );
 		$this->assertNotEquals( 0, $user->getId() );
 		$this->assertEquals( $username, $user->getName() );
@@ -3384,7 +3390,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( \UnexpectedValueException $ex ) {
 			$this->assertEquals(
-				"User \"{$user->getName()}\" is valid, but ID $id != " . ( $id + 1 ) . '!',
+				"User \"{$user->getName()}\" is valid, but ID $id !== " . ( $id + 1 ) . '!',
 				$ex->getMessage()
 			);
 		}

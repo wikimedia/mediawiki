@@ -21,6 +21,7 @@
  * @ingroup Upload
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Shell\Shell;
 
 /**
  * @defgroup Upload Upload related
@@ -98,11 +99,7 @@ abstract class UploadBase {
 			self::WINDOWS_NONASCII_FILENAME => 'windows-nonascii-filename',
 			self::FILENAME_TOO_LONG => 'filename-toolong',
 		];
-		if ( isset( $code_to_status[$error] ) ) {
-			return $code_to_status[$error];
-		}
-
-		return 'unknown-error';
+		return $code_to_status[$error] ?? 'unknown-error';
 	}
 
 	/**
@@ -300,7 +297,7 @@ abstract class UploadBase {
 	 */
 	public function getRealPath( $srcPath ) {
 		$repo = RepoGroup::singleton()->getLocalRepo();
-		if ( $repo->isVirtualUrl( $srcPath ) ) {
+		if ( FileRepo::isVirtualUrl( $srcPath ) ) {
 			/** @todo Just make uploads work with storage paths UploadFromStash
 			 *  loads files via virtual URLs.
 			 */
@@ -951,8 +948,8 @@ abstract class UploadBase {
 		 */
 		list( $partname, $ext ) = $this->splitExtensions( $this->mFilteredName );
 
-		if ( count( $ext ) ) {
-			$this->mFinalExtension = trim( $ext[count( $ext ) - 1] );
+		if ( $ext !== [] ) {
+			$this->mFinalExtension = trim( end( $ext ) );
 		} else {
 			$this->mFinalExtension = '';
 
@@ -1082,10 +1079,8 @@ abstract class UploadBase {
 		$props = $this->mFileProps;
 		$error = null;
 		Hooks::run( 'UploadStashFile', [ $this, $user, $props, &$error ] );
-		if ( $error ) {
-			if ( !is_array( $error ) ) {
-				$error = [ $error ];
-			}
+		if ( $error && !is_array( $error ) ) {
+			$error = [ $error ];
 		}
 		return $error;
 	}
@@ -1173,7 +1168,7 @@ abstract class UploadBase {
 	 * scripts, so the blacklist needs to check them all.
 	 *
 	 * @param string $filename
-	 * @return array
+	 * @return array [ string, string[] ]
 	 */
 	public static function splitExtensions( $filename ) {
 		$bits = explode( '.', $filename );
@@ -1198,8 +1193,8 @@ abstract class UploadBase {
 	 * Perform case-insensitive match against a list of file extensions.
 	 * Returns an array of matching extensions.
 	 *
-	 * @param array $ext
-	 * @param array $list
+	 * @param string[] $ext
+	 * @param string[] $list
 	 * @return bool
 	 */
 	public static function checkFileExtensionList( $ext, $list ) {
@@ -1348,7 +1343,7 @@ abstract class UploadBase {
 		}
 
 		foreach ( $tags as $tag ) {
-			if ( false !== strpos( $chunk, $tag ) ) {
+			if ( strpos( $chunk, $tag ) !== false ) {
 				wfDebug( __METHOD__ . ": found something that may make it be mistaken for html: $tag\n" );
 
 				return true;
@@ -1744,9 +1739,10 @@ abstract class UploadBase {
 			}
 
 			# image filters can pull in url, which could be svg that executes scripts
+			# Only allow url( "#foo" ). Do not allow url( http://example.com )
 			if ( $strippedElement == 'image'
 				&& $stripped == 'filter'
-				&& preg_match( '!url\s*\(!sim', $value )
+				&& preg_match( '!url\s*\(\s*["\']?[^#]!sim', $value )
 			) {
 				wfDebug( __METHOD__ . ": Found image filter with url: "
 					. "\"<$strippedElement $stripped='$value'...\" in uploaded file.\n" );
@@ -1868,10 +1864,10 @@ abstract class UploadBase {
 
 		if ( strpos( $command, "%f" ) === false ) {
 			# simple pattern: append file to scan
-			$command .= " " . wfEscapeShellArg( $file );
+			$command .= " " . Shell::escape( $file );
 		} else {
 			# complex pattern: replace "%f" with file to scan
-			$command = str_replace( "%f", wfEscapeShellArg( $file ), $command );
+			$command = str_replace( "%f", Shell::escape( $file ), $command );
 		}
 
 		wfDebug( __METHOD__ . ": running virus scan: $command \n" );
@@ -1919,10 +1915,8 @@ abstract class UploadBase {
 				$output = true; # if there's no output, return true
 			} elseif ( $msgPattern ) {
 				$groups = [];
-				if ( preg_match( $msgPattern, $output, $groups ) ) {
-					if ( $groups[1] ) {
-						$output = $groups[1];
-					}
+				if ( preg_match( $msgPattern, $output, $groups ) && $groups[1] ) {
+					$output = $groups[1];
 				}
 			}
 

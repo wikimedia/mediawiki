@@ -7,6 +7,7 @@ use Wikimedia\Rdbms\LoadBalancer;
 /**
  * @covers MediaWikiTestCase
  * @group MediaWikiTestCaseTest
+ * @group Database
  *
  * @author Addshore
  */
@@ -173,4 +174,38 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 
 		$this->assertSame( $logger1, $logger2 );
 	}
+
+	/**
+	 * @covers MediaWikiTestCase::setupDatabaseWithTestPrefix
+	 * @covers MediaWikiTestCase::copyTestData
+	 */
+	public function testCopyTestData() {
+		$this->markTestSkippedIfDbType( 'sqlite' );
+
+		$this->tablesUsed[] = 'objectcache';
+		$this->db->insert(
+			'objectcache',
+			[ 'keyname' => __METHOD__, 'value' => 'TEST', 'exptime' => $this->db->timestamp( 11 ) ],
+			__METHOD__
+		);
+
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lb = $lbFactory->newMainLB();
+		$db = $lb->getConnection( DB_REPLICA, DBO_TRX );
+
+		// sanity
+		$this->assertNotSame( $this->db, $db );
+
+		// Make sure the DB connection has the fake table clones and the fake table prefix
+		MediaWikiTestCase::setupDatabaseWithTestPrefix( $db, $this->dbPrefix(), false );
+
+		$this->assertSame( $this->db->tablePrefix(), $db->tablePrefix(), 'tablePrefix' );
+
+		// Make sure the DB connection has all the test data
+		$this->copyTestData( $this->db, $db );
+
+		$value = $db->selectField( 'objectcache', 'value', [ 'keyname' => __METHOD__ ], __METHOD__ );
+		$this->assertSame( 'TEST', $value, 'Copied Data' );
+	}
+
 }

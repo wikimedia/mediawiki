@@ -28,7 +28,6 @@ DROP SEQUENCE IF EXISTS archive_ar_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS externallinks_el_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS sites_site_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS change_tag_ct_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS tag_summary_ts_id_seq CASCADE;
 DROP FUNCTION IF EXISTS page_deleted() CASCADE;
 DROP FUNCTION IF EXISTS ts2_page_title() CASCADE;
 DROP FUNCTION IF EXISTS ts2_page_text() CASCADE;
@@ -244,8 +243,7 @@ CREATE TABLE archive (
   ar_page_id        INTEGER          NULL,
   ar_parent_id      INTEGER          NULL,
   ar_sha1           TEXT         NOT NULL DEFAULT '',
-  ar_comment        TEXT         NOT NULL DEFAULT '',
-  ar_comment_id     INTEGER      NOT NULL DEFAULT 0,
+  ar_comment_id     INTEGER      NOT NULL,
   ar_user           INTEGER      NOT NULL DEFAULT 0 REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   ar_user_text      TEXT         NOT NULL DEFAULT '',
   ar_actor          INTEGER      NOT NULL DEFAULT 0,
@@ -409,8 +407,7 @@ CREATE TABLE ipblocks (
   ipb_by                INTEGER      NOT NULL  DEFAULT 0 REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   ipb_by_text           TEXT         NOT NULL  DEFAULT '',
   ipb_by_actor          INTEGER      NOT NULL  DEFAULT 0,
-  ipb_reason            TEXT         NOT NULL  DEFAULT '',
-  ipb_reason_id         INTEGER      NOT NULL  DEFAULT 0,
+  ipb_reason_id         INTEGER      NOT NULL,
   ipb_timestamp         TIMESTAMPTZ  NOT NULL,
   ipb_auto              SMALLINT     NOT NULL  DEFAULT 0,
   ipb_anon_only         SMALLINT     NOT NULL  DEFAULT 0,
@@ -450,8 +447,7 @@ CREATE TABLE image (
   img_media_type   TEXT,
   img_major_mime   TEXT                DEFAULT 'unknown',
   img_minor_mime   TEXT                DEFAULT 'unknown',
-  img_description  TEXT      NOT NULL  DEFAULT '',
-  img_description_id INTEGER NOT NULL  DEFAULT 0,
+  img_description_id INTEGER NOT NULL,
   img_user         INTEGER   NOT NULL  DEFAULT 0 REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   img_user_text    TEXT      NOT NULL  DEFAULT '',
   img_actor        INTEGER   NOT NULL  DEFAULT 0,
@@ -469,8 +465,7 @@ CREATE TABLE oldimage (
   oi_width         INTEGER      NOT NULL,
   oi_height        INTEGER      NOT NULL,
   oi_bits          SMALLINT         NULL,
-  oi_description   TEXT         NOT NULL DEFAULT '',
-  oi_description_id INTEGER     NOT NULL DEFAULT 0,
+  oi_description_id INTEGER     NOT NULL,
   oi_user          INTEGER      NOT NULL DEFAULT 0  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   oi_user_text     TEXT         NOT NULL DEFAULT '',
   oi_actor         INTEGER      NOT NULL DEFAULT 0,
@@ -497,8 +492,7 @@ CREATE TABLE filearchive (
   fa_storage_key        TEXT,
   fa_deleted_user       INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   fa_deleted_timestamp  TIMESTAMPTZ  NOT NULL,
-  fa_deleted_reason     TEXT         NOT NULL  DEFAULT '',
-  fa_deleted_reason_id  INTEGER      NOT NULL  DEFAULT 0,
+  fa_deleted_reason_id  INTEGER      NOT NULL,
   fa_size               INTEGER      NOT NULL,
   fa_width              INTEGER      NOT NULL,
   fa_height             INTEGER      NOT NULL,
@@ -507,8 +501,7 @@ CREATE TABLE filearchive (
   fa_media_type         TEXT,
   fa_major_mime         TEXT                   DEFAULT 'unknown',
   fa_minor_mime         TEXT                   DEFAULT 'unknown',
-  fa_description        TEXT         NOT NULL DEFAULT '',
-  fa_description_id     INTEGER      NOT NULL DEFAULT 0,
+  fa_description_id     INTEGER      NOT NULL,
   fa_user               INTEGER      NOT NULL DEFAULT 0 REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   fa_user_text          TEXT         NOT NULL DEFAULT '',
   fa_actor              INTEGER      NOT NULL DEFAULT 0,
@@ -560,8 +553,7 @@ CREATE TABLE recentchanges (
   rc_actor           INTEGER      NOT NULL  DEFAULT 0,
   rc_namespace       SMALLINT     NOT NULL,
   rc_title           TEXT         NOT NULL,
-  rc_comment         TEXT         NOT NULL  DEFAULT '',
-  rc_comment_id      INTEGER      NOT NULL  DEFAULT 0,
+  rc_comment_id      INTEGER      NOT NULL,
   rc_minor           SMALLINT     NOT NULL  DEFAULT 0,
   rc_bot             SMALLINT     NOT NULL  DEFAULT 0,
   rc_new             SMALLINT     NOT NULL  DEFAULT 0,
@@ -658,8 +650,7 @@ CREATE TABLE logging (
   log_actor       INTEGER      NOT NULL DEFAULT 0,
   log_namespace   SMALLINT     NOT NULL,
   log_title       TEXT         NOT NULL,
-  log_comment     TEXT         NOT NULL DEFAULT '',
-  log_comment_id  INTEGER      NOT NULL DEFAULT 0,
+  log_comment_id  INTEGER      NOT NULL,
   log_params      TEXT,
   log_deleted     SMALLINT     NOT NULL DEFAULT 0,
   log_user_text   TEXT         NOT NULL DEFAULT '',
@@ -768,8 +759,7 @@ CREATE TABLE protected_titles (
   pt_namespace   SMALLINT    NOT NULL,
   pt_title       TEXT        NOT NULL,
   pt_user        INTEGER         NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
-  pt_reason      TEXT        NOT NULL DEFAULT '',
-  pt_reason_id   INTEGER     NOT NULL DEFAULT 0,
+  pt_reason_id   INTEGER     NOT NULL,
   pt_timestamp   TIMESTAMPTZ NOT NULL,
   pt_expiry      TIMESTAMPTZ     NULL,
   pt_create_perm TEXT        NOT NULL DEFAULT '',
@@ -801,39 +791,16 @@ CREATE TABLE change_tag (
   ct_rc_id   INTEGER      NULL,
   ct_log_id  INTEGER      NULL,
   ct_rev_id  INTEGER      NULL,
-  ct_tag     TEXT     NOT NULL DEFAULT '',
   ct_params  TEXT         NULL,
-  ct_tag_id  INTEGER      NULL
+  ct_tag_id  INTEGER  NOT NULL
 );
 ALTER SEQUENCE change_tag_ct_id_seq OWNED BY change_tag.ct_id;
-
-CREATE INDEX change_tag_rc_tag_nonuniq ON change_tag(ct_rc_id,ct_tag);
-CREATE INDEX change_tag_log_tag_nonuniq ON change_tag(ct_log_id,ct_tag);
-CREATE INDEX change_tag_rev_tag_nonuniq ON change_tag(ct_rev_id,ct_tag);
 
 CREATE UNIQUE INDEX change_tag_rc_tag_id ON change_tag(ct_rc_id,ct_tag_id);
 CREATE UNIQUE INDEX change_tag_log_tag_id ON change_tag(ct_log_id,ct_tag_id);
 CREATE UNIQUE INDEX change_tag_rev_tag_id ON change_tag(ct_rev_id,ct_tag_id);
 
-CREATE INDEX change_tag_tag_id ON change_tag(ct_tag,ct_rc_id,ct_rev_id,ct_log_id);
 CREATE INDEX change_tag_tag_id_id ON change_tag(ct_tag_id,ct_rc_id,ct_rev_id,ct_log_id);
-
-CREATE SEQUENCE tag_summary_ts_id_seq;
-CREATE TABLE tag_summary (
-  ts_id      INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('tag_summary_ts_id_seq'),
-  ts_rc_id   INTEGER      NULL,
-  ts_log_id  INTEGER      NULL,
-  ts_rev_id  INTEGER      NULL,
-  ts_tags    TEXT     NOT NULL
-);
-ALTER SEQUENCE tag_summary_ts_id_seq OWNED BY tag_summary.ts_id;
-CREATE UNIQUE INDEX tag_summary_rc_id ON tag_summary(ts_rc_id);
-CREATE UNIQUE INDEX tag_summary_log_id ON tag_summary(ts_log_id);
-CREATE UNIQUE INDEX tag_summary_rev_id ON tag_summary(ts_rev_id);
-
-CREATE TABLE valid_tag (
-  vt_tag TEXT NOT NULL PRIMARY KEY
-);
 
 CREATE TABLE user_properties (
   up_user     INTEGER      NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
