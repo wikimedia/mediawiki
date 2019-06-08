@@ -1342,7 +1342,7 @@ class WikiPage implements Page, IDBAccessObject {
 				'page_len'          => 0, // Fill this in shortly...
 			] + $pageIdForInsert,
 			__METHOD__,
-			'IGNORE'
+			[ 'IGNORE' ]
 		);
 
 		if ( $dbw->affectedRows() > 0 ) {

@@ -128,7 +128,7 @@ TEXT
 			}
 
 			if ( $insertRows ) {
-				$dbw->insert( 'ip_changes', $insertRows, __METHOD__, 'IGNORE' );
+				$dbw->insert( 'ip_changes', $insertRows, __METHOD__, [ 'IGNORE' ] );
 
 				$inserted += $dbw->affectedRows();
 			}
