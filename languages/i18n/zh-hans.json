@@ -114,7 +114,8 @@
 			"佛壁灯",
 			"94rain",
 			"Viztor",
-			"Ps2049"
+			"Ps2049",
+			"Suchichi02"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -689,7 +690,7 @@
 	"changeemail-no-info": "\n您必须登录以直接访问本页。",
 	"changeemail-oldemail": "当前电子邮件地址：",
 	"changeemail-newemail": "新的电子邮件地址：",
-	"changeemail-newemail-help": "此字段应留空，如果您希望移除您的电子邮件地址的话。如果电子邮件地址被移除，您将无法重置忘记的密码，并将不会接收来自此wiki的电子邮件。",
+	"changeemail-newemail-help": "如果您希望移除您的电子邮件地址的话此字段应留空。如果电子邮件地址被移除，您将无法重置忘记的密码，并将不会接收来自此wiki的电子邮件。",
 	"changeemail-none": "（无）",
 	"changeemail-password": "您的{{SITENAME}}密码：",
 	"changeemail-submit": "更改电子邮件地址",
@@ -2661,7 +2662,7 @@
 	"createaccountblock": "账户创建已禁用",
 	"emailblock": "电子邮件停用",
 	"blocklist-nousertalk": "不能编辑自己的讨论页",
-	"blocklist-editing": "编辑中",
+	"blocklist-editing": "编辑",
 	"blocklist-editing-sitewide": "编辑 (全站)",
 	"blocklist-editing-page": "页面",
 	"blocklist-editing-ns": "名字空间",
@@ -3960,6 +3961,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "建议在登录时更改",
 	"easydeflate-invaliddeflate": "提供的内容未被适当缩小",
 	"unprotected-js": "基于安全原因，JavaScript不能在未保护页面中载入。请在“MediaWiki:”名字空间或者用户子页面中添加JavaScript。",
-	"userlogout-continue": "如果你希望登出请[$1 点这里]。",
-	"userlogout-sessionerror": "登出失败，会话错误。请[$1 重试]"
+	"userlogout-continue": "如果你希望登出请[$1 点这里]。"
 }

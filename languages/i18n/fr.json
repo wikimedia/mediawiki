@@ -4065,6 +4065,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "suggérer une modification à la connexion",
 	"easydeflate-invaliddeflate": "Le contenu fourni n'est pas correctement développé",
 	"unprotected-js": "Pour des raisons de sécurité, JavaScript ne peut pas être chargé depuis des pages non protégées. Veuillez ne créer du javascript que dans l’espace de noms MediaWiki: ou comme sous-page utilisateur",
-	"userlogout-continue": "Si vous voulez vous déconnecter, veuillez [$1 continuer vers la page de déconnexion].",
-	"userlogout-sessionerror": "Déconnexion échouée à cause d’une erreur de session. Veuillez [$1 réessayer]."
+	"userlogout-continue": "Si vous voulez vous déconnecter, veuillez [$1 continuer vers la page de déconnexion]."
 }

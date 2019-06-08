@@ -3875,6 +3875,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "suxerir cambio ó iniciar sesión",
 	"easydeflate-invaliddeflate": "O contido fornecido non está debidamente comprimido",
 	"unprotected-js": "Por motivos de seguridade non se pode cargar JavaScript desde páxinas non protexidas. Por favor, cree só JavaScript no espazo de nomes MediaWiki ou como subpáxina de usuario",
-	"userlogout-continue": "Se quere pechar a sesión, por favor, [$1 continúe á páxina de peche de sesión].",
-	"userlogout-sessionerror": "No se puido pechar a sesión debido a un erro de sesión. Por favor, [$1 ténteo de novo]."
+	"userlogout-continue": "Se quere pechar a sesión, por favor, [$1 continúe á páxina de peche de sesión]."
 }
