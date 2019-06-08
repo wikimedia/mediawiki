@@ -653,16 +653,6 @@ abstract class LBFactory implements ILBFactory {
 		} );
 	}
 
-	public function redefineLocalDomain( $domain ) {
-		$this->closeAll();
-
-		$this->localDomain = DatabaseDomain::newFromId( $domain );
-
-		$this->forEachLB( function ( ILoadBalancer $lb ) {
-			$lb->redefineLocalDomain( $this->localDomain );
-		} );
-	}
-
 	public function closeAll() {
 		$this->forEachLBCallMethod( 'closeAll' );
 	}
