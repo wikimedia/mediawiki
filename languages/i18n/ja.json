@@ -3870,6 +3870,7 @@
 	"mw-widgets-abandonedit-keep": "編集を続行",
 	"mw-widgets-abandonedit-title": "本当によろしいですか?",
 	"mw-widgets-copytextlayout-copy": "コピー",
+	"mw-widgets-copytextlayout-copy-fail": "クリップボードにコピーできませんでした。",
 	"mw-widgets-copytextlayout-copy-success": "クリップボードにコピーされました。",
 	"mw-widgets-dateinput-no-date": "日付が選択されていません",
 	"mw-widgets-dateinput-placeholder-day": "YYYY-MM-DD",
@@ -4045,6 +4046,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "ログイン時に変更を提案",
 	"easydeflate-invaliddeflate": "提供されたコンテンツが適切に圧縮されていません",
 	"unprotected-js": "セキュリティ上の理由から、JavaScriptは保護されていないページからは読み込みできません。MediaWiki: 名前空間内、利用者下位ページのいずれかでのみjavascriptを作成してください。",
-	"userlogout-continue": "ログアウトを行いたい場合、[$1 ログアウトページから実施]してください。",
-	"userlogout-sessionerror": "セッションエラーによりログアウトに失敗しました。再度 [$1 試行して]ください。"
+	"userlogout-continue": "ログアウトを行いたい場合、[$1 ログアウトページから実施]してください。"
 }

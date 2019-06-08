@@ -3825,6 +3825,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "soovita muutmist sisselogimisel",
 	"easydeflate-invaliddeflate": "Ette antud sisu ei ole õigesti vähendatud",
 	"unprotected-js": "Turvalisuse huvides ei saa JavaScripti laadida kaitsmata lehekülgedelt. Palun koosta JavaScripti ainult nimeruumis MediaWiki või kasutajate nimeruumi alamleheküljel.",
-	"userlogout-continue": "Kui soovid välja logida, siis palun [$1 mine väljalogimise leheküljele].",
-	"userlogout-sessionerror": "Väljalogimine ebaõnnestus seansitõrke tõttu. Palun [$1 proovi uuesti]."
+	"userlogout-continue": "Kui soovid välja logida, siis palun [$1 mine väljalogimise leheküljele]."
 }

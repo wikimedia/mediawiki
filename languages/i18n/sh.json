@@ -3762,6 +3762,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "predloži izmjenu pri prijavi",
 	"easydeflate-invaliddeflate": "Sadržaj nije ispravno pročišćen",
 	"unprotected-js": "JavaScript ne može da se učita sa nezaštićenih stranica iz bezbednosnih razloga. Samo napravite JavaScript u imenskom prostoru MediaWiki: ili kao korisničku podstranicu",
-	"userlogout-continue": "Ako se želite odjaviti, [$1 nastavite na odjavnoj strnaici].",
-	"userlogout-sessionerror": "Odjava nije uspjela zbog sesijske pogreške. [$1 Pokušajte ponovo]."
+	"userlogout-continue": "Ako se želite odjaviti, [$1 nastavite na odjavnoj strnaici]."
 }

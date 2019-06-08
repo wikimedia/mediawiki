@@ -3934,6 +3934,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "sarankan penggantian ketika masuk log",
 	"easydeflate-invaliddeflate": "Isi yang disediakan tidak dikempiskan secara tepat",
 	"unprotected-js": "Karena alasan keamanan Javascript tidak dapat dimuat dari halaman yang tidak dilindungi. Mohon hanya buat javascript di ruangnama MediaWiki: atau sebagai subhalaman  Pengguna",
-	"userlogout-continue": "Jika Anda yakin untuk keluar log, silakan [$1 melanjutkan].",
-	"userlogout-sessionerror": "Gagal keluar log karena galat sesi. Silakan [$1 coba lagi]."
+	"userlogout-continue": "Jika Anda yakin untuk keluar log, silakan [$1 melanjutkan]."
 }

@@ -3904,6 +3904,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "建議在登入時更改",
 	"easydeflate-invaliddeflate": "提供的內容未被正常的壓縮",
 	"unprotected-js": "基於安全因素，JavaScript 不能從未保護的頁面來載入。請僅在 MediaWiki:命名空間或使用者子頁面中建立 JavaScript。",
-	"userlogout-continue": "若您想要登出請[$1 繼續前至登出頁面]。",
-	"userlogout-sessionerror": "出於 session 錯誤造成登出失敗。請[$1 重試]。"
+	"userlogout-continue": "若您想要登出請[$1 繼續前至登出頁面]。"
 }

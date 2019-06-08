@@ -3881,6 +3881,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "sugerir alteração ao iniciar sessão",
 	"easydeflate-invaliddeflate": "O conteúdo fornecido não está devidamente comprimido",
 	"unprotected-js": "Por motivos de segurança o JavaScript de páginas desprotegidas não pode ser carregado. Crie javascript só no espaço nominal/domínio MediaWiki: ou numa subpágina do utilizador",
-	"userlogout-continue": "Se pretende terminar a sessão [$1 prossiga para a página de saída], por favor.",
-	"userlogout-sessionerror": "A sua saída falhou devido a um erro da sessão. [$1 Tente novamente], por favor."
+	"userlogout-continue": "Se pretende terminar a sessão [$1 prossiga para a página de saída], por favor."
 }

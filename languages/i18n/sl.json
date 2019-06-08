@@ -3793,6 +3793,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "predlagaj zamenjavo ob prijavi",
 	"easydeflate-invaliddeflate": "Dana vsebina ni pravilno stisnjena",
 	"unprotected-js": "Iz varnostnih razlogov JavaScripta ni možno naložiti z nezaščitenih strani. Prosimo, da JavaScript ustvarite samo v imenskem prostoru MediaWiki ali kot uporabniško podstran.",
-	"userlogout-continue": "Če se želite odjaviti, [$1 pojdite na stran za odjavo].",
-	"userlogout-sessionerror": "Odjava je spodletela zaradi napake seje. Prosimo, [$1 poskusite znova]."
+	"userlogout-continue": "Če se želite odjaviti, [$1 pojdite na stran za odjavo]."
 }

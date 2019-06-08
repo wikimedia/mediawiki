@@ -15,7 +15,8 @@
 			"Matma Rex",
 			"Tokvo",
 			"Crucifunked",
-			"Enolp"
+			"Enolp",
+			"Matěj Suchánek"
 		]
 	},
 	"tog-underline": "Sorrayar enllaces:",
@@ -145,7 +146,7 @@
 	"category-article-count": "{{PLURAL:$2|Esta categoría contien namái la páxina siguiente.|{{PLURAL:$1|La páxina siguiente ta|Les $1 páxines siguientes tán}} nesta categoría, d'un total de $2.}}",
 	"category-article-count-limited": "{{PLURAL:$1|La páxina siguiente ta|Les $1 páxines siguientes tán}} na categoría actual.",
 	"category-file-count": "{{PLURAL:$2|Esta categoría contien namái el ficheru siguiente.|{{PLURAL:$1|El ficheru siguiente ta|Los $1 ficheros siguientes tán}} nesta categoría, d'un total de $2.}}",
-	"category-file-count-limited": "{{PLURAL:$1El ficheru siguiente ta|Los $1 ficheeros siguientes tán}} na categoría actual.",
+	"category-file-count-limited": "{{PLURAL:$1|El ficheru siguiente ta|Los $1 ficheeros siguientes tán}} na categoría actual.",
 	"listingcontinuesabbrev": "cont.",
 	"index-category": "Páxines indexaes",
 	"noindex-category": "Páxines sin indexar",
@@ -3795,6 +3796,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "suxerir cambiu al aniciar sesión",
 	"easydeflate-invaliddeflate": "El conteníu dau nun ta comprimíu correutamente",
 	"unprotected-js": "Por razones de seguridá, JavaScript nun puede cargase dende páxines ensin protexer. Crea javascript sólo nel espaciu de nomes MediaWiki: o como subpáxina d'usuariu",
-	"userlogout-continue": "Si desees zarrar la sesión [$1 sigui na páxina de finar sesión].",
-	"userlogout-sessionerror": "Falló salir por un error de sesión. [$1 Tenta nuevamente]."
+	"userlogout-continue": "Si desees zarrar la sesión [$1 sigui na páxina de finar sesión]."
 }

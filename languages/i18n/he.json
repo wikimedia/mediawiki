@@ -3904,6 +3904,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "להציע שינוי בעת כניסה לחשבון",
 	"easydeflate-invaliddeflate": "התוכן שהועבר אינו דחוס כנדרש",
 	"unprotected-js": "מסיבות אבטחה, לא ניתן לטעון JavaScript מדפים שאינם מוגנים. ניתן ליצור סקריפטי JavaScript רק במרחב השם \"מדיה ויקי:\" או בדפי משנה של דף המשתמש.",
-	"userlogout-continue": "יש [$1 להמשיך לדף היציאה מהחשבון] כדי לצאת מהחשבון.",
-	"userlogout-sessionerror": "היציאה מהחשבון נכשלה בשל שגיאת אימות. יש [$1 לנסות שוב]."
+	"userlogout-continue": "יש [$1 להמשיך לדף היציאה מהחשבון] כדי לצאת מהחשבון."
 }

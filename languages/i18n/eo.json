@@ -3885,6 +3885,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "sugesti ŝanĝadon dum ensaluto",
 	"easydeflate-invaliddeflate": "Provizita enhavo ne estas ĝuste densigita",
 	"unprotected-js": "Pro sekurecaj kialoj, JavaScript ne povas esti ŝargata el neprotektataj paĝoj. Bonvolu nur krei JavaScript en la nomspaco MediaWiki: aŭ kiel subpaĝo de Uzanto.",
-	"userlogout-continue": "Se vi vola elsaluti, bonvolu  [$1 iri al la elsaluta paĝo].",
-	"userlogout-sessionerror": "Elsalutado malsukcesis pro sesia eraro. Bonvolu [$1 reprovi]."
+	"userlogout-continue": "Se vi vola elsaluti, bonvolu  [$1 iri al la elsaluta paĝo]."
 }
