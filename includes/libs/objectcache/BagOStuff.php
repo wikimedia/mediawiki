@@ -806,15 +806,17 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
+	 * @internal For testing only
 	 * @return float UNIX timestamp
 	 * @codeCoverageIgnore
 	 */
-	protected function getCurrentTime() {
+	public function getCurrentTime() {
 		return $this->wallClockOverride ?: microtime( true );
 	}
 
 	/**
-	 * @param float|null &$time Mock UNIX timestamp for testing
+	 * @internal For testing only
+	 * @param float|null &$time Mock UNIX timestamp
 	 * @codeCoverageIgnore
 	 */
 	public function setMockTime( &$time ) {
