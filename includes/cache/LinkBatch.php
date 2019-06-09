@@ -22,7 +22,7 @@
  */
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -152,7 +152,7 @@ class LinkBatch {
 	 * parsing to avoid extra DB queries.
 	 *
 	 * @param LinkCache $cache
-	 * @param ResultWrapper $res
+	 * @param IResultWrapper $res
 	 * @return array Array of remaining titles
 	 */
 	public function addResultToCache( $cache, $res ) {
@@ -188,7 +188,7 @@ class LinkBatch {
 
 	/**
 	 * Perform the existence test query, return a ResultWrapper with page_id fields
-	 * @return bool|ResultWrapper
+	 * @return bool|IResultWrapper
 	 */
 	public function doQuery() {
 		if ( $this->isEmpty() ) {
