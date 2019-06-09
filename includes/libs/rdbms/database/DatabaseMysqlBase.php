@@ -277,7 +277,7 @@ abstract class DatabaseMysqlBase extends Database {
 	abstract protected function mysqlSetCharset( $charset );
 
 	/**
-	 * @param ResultWrapper|resource $res
+	 * @param IResultWrapper|resource $res
 	 * @throws DBUnexpectedError
 	 */
 	public function freeResult( $res ) {
@@ -301,7 +301,7 @@ abstract class DatabaseMysqlBase extends Database {
 	abstract protected function mysqlFreeResult( $res );
 
 	/**
-	 * @param ResultWrapper|resource $res
+	 * @param IResultWrapper|resource $res
 	 * @return stdClass|bool
 	 * @throws DBUnexpectedError
 	 */
@@ -374,7 +374,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 	/**
 	 * @throws DBUnexpectedError
-	 * @param ResultWrapper|resource $res
+	 * @param IResultWrapper|resource $res
 	 * @return int
 	 */
 	function numRows( $res ) {
@@ -402,7 +402,7 @@ abstract class DatabaseMysqlBase extends Database {
 	abstract protected function mysqlNumRows( $res );
 
 	/**
-	 * @param ResultWrapper|resource $res
+	 * @param IResultWrapper|resource $res
 	 * @return int
 	 */
 	public function numFields( $res ) {
@@ -422,7 +422,7 @@ abstract class DatabaseMysqlBase extends Database {
 	abstract protected function mysqlNumFields( $res );
 
 	/**
-	 * @param ResultWrapper|resource $res
+	 * @param IResultWrapper|resource $res
 	 * @param int $n
 	 * @return string
 	 */
@@ -437,7 +437,7 @@ abstract class DatabaseMysqlBase extends Database {
 	/**
 	 * Get the name of the specified field in a result
 	 *
-	 * @param ResultWrapper|resource $res
+	 * @param IResultWrapper|resource $res
 	 * @param int $n
 	 * @return string
 	 */
@@ -445,7 +445,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 	/**
 	 * mysql_field_type() wrapper
-	 * @param ResultWrapper|resource $res
+	 * @param IResultWrapper|resource $res
 	 * @param int $n
 	 * @return string
 	 */
@@ -460,14 +460,14 @@ abstract class DatabaseMysqlBase extends Database {
 	/**
 	 * Get the type of the specified field in a result
 	 *
-	 * @param ResultWrapper|resource $res
+	 * @param IResultWrapper|resource $res
 	 * @param int $n
 	 * @return string
 	 */
 	abstract protected function mysqlFieldType( $res, $n );
 
 	/**
-	 * @param ResultWrapper|resource $res
+	 * @param IResultWrapper|resource $res
 	 * @param int $row
 	 * @return bool
 	 */
@@ -482,7 +482,7 @@ abstract class DatabaseMysqlBase extends Database {
 	/**
 	 * Move internal result pointer
 	 *
-	 * @param ResultWrapper|resource $res
+	 * @param IResultWrapper|resource $res
 	 * @param int $row
 	 * @return bool
 	 */
@@ -1490,7 +1490,7 @@ abstract class DatabaseMysqlBase extends Database {
 	/**
 	 * @param string $tableName
 	 * @param string $fName
-	 * @return bool|ResultWrapper
+	 * @return bool|IResultWrapper
 	 */
 	public function dropTable( $tableName, $fName = __METHOD__ ) {
 		if ( !$this->tableExists( $tableName, $fName ) ) {

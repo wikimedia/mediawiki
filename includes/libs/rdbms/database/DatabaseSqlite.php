@@ -303,7 +303,7 @@ class DatabaseSqlite extends Database {
 	 * @param bool|string $file Database file name. If omitted, will be generated
 	 *   using $name and configured data directory
 	 * @param string $fname Calling function name
-	 * @return ResultWrapper
+	 * @return IResultWrapper
 	 */
 	function attachDatabase( $name, $file = false, $fname = __METHOD__ ) {
 		if ( !$file ) {
@@ -330,7 +330,7 @@ class DatabaseSqlite extends Database {
 	 * SQLite doesn't allow buffered results or data seeking etc, so we'll use fetchAll as the result
 	 *
 	 * @param string $sql
-	 * @return bool|ResultWrapper
+	 * @return bool|IResultWrapper
 	 */
 	protected function doQuery( $sql ) {
 		$res = $this->getBindingHandle()->query( $sql );
@@ -346,7 +346,7 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
-	 * @param ResultWrapper|mixed $res
+	 * @param IResultWrapper|mixed $res
 	 */
 	function freeResult( $res ) {
 		if ( $res instanceof ResultWrapper ) {
@@ -357,7 +357,7 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
-	 * @param ResultWrapper|array $res
+	 * @param IResultWrapper|array $res
 	 * @return stdClass|bool
 	 */
 	function fetchObject( $res ) {
@@ -384,7 +384,7 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
-	 * @param ResultWrapper|mixed $res
+	 * @param IResultWrapper|mixed $res
 	 * @return array|bool
 	 */
 	function fetchRow( $res ) {
@@ -406,7 +406,7 @@ class DatabaseSqlite extends Database {
 	/**
 	 * The PDO::Statement class implements the array interface so count() will work
 	 *
-	 * @param ResultWrapper|array|false $res
+	 * @param IResultWrapper|array|false $res
 	 * @return int
 	 */
 	function numRows( $res ) {
@@ -417,7 +417,7 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
-	 * @param ResultWrapper $res
+	 * @param IResultWrapper $res
 	 * @return int
 	 */
 	function numFields( $res ) {
@@ -432,7 +432,7 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
-	 * @param ResultWrapper $res
+	 * @param IResultWrapper $res
 	 * @param int $n
 	 * @return bool
 	 */
@@ -474,7 +474,7 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
-	 * @param ResultWrapper|array $res
+	 * @param IResultWrapper|array $res
 	 * @param int $row
 	 */
 	function dataSeek( $res, $row ) {
@@ -990,7 +990,7 @@ class DatabaseSqlite extends Database {
 	 * @param string $newName
 	 * @param bool $temporary
 	 * @param string $fname
-	 * @return bool|ResultWrapper
+	 * @return bool|IResultWrapper
 	 * @throws RuntimeException
 	 */
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = __METHOD__ ) {
@@ -1086,7 +1086,7 @@ class DatabaseSqlite extends Database {
 	 *
 	 * @param string $tableName
 	 * @param string $fName
-	 * @return bool|ResultWrapper
+	 * @return bool|IResultWrapper
 	 * @throws DBReadOnlyError
 	 */
 	public function dropTable( $tableName, $fName = __METHOD__ ) {

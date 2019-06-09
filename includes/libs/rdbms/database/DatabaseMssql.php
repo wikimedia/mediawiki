@@ -1358,7 +1358,7 @@ class DatabaseMssql extends Database {
 	 * Delete a table
 	 * @param string $tableName
 	 * @param string $fName
-	 * @return bool|ResultWrapper
+	 * @return bool|IResultWrapper
 	 * @since 1.18
 	 */
 	public function dropTable( $tableName, $fName = __METHOD__ ) {
