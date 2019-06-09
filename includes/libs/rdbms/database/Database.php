@@ -3976,7 +3976,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
-	final public function rollback( $fname = __METHOD__, $flush = '' ) {
+	final public function rollback( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
 		$trxActive = $this->trxLevel;
 
 		if ( $flush !== self::FLUSHING_INTERNAL
