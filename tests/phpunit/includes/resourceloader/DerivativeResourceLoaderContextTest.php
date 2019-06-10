@@ -30,6 +30,7 @@ class DerivativeResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 	public function testChangeLanguageAndDirection() {
 		$derived = new DerivativeResourceLoaderContext( self::makeContext() );
 		$this->assertSame( $derived->getLanguage(), 'qqx', 'inherit from parent' );
+		$this->assertSame( $derived->getDirection(), 'ltr', 'inherit from parent' );
 
 		$derived->setLanguage( 'nl' );
 		$this->assertSame( $derived->getLanguage(), 'nl' );
