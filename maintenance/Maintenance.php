@@ -26,6 +26,7 @@ require_once __DIR__ . '/../includes/PHPVersionCheck.php';
 wfEntryPointCheck( 'text' );
 
 use MediaWiki\Shell\Shell;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * @defgroup MaintenanceArchive Maintenance archives
@@ -1478,9 +1479,9 @@ abstract class Maintenance {
 	/**
 	 * Perform a search index update with locking
 	 * @param int $maxLockTime The maximum time to keep the search index locked.
-	 * @param string $callback The function that will update the function.
+	 * @param callable $callback The function that will update the function.
 	 * @param IMaintainableDatabase $dbw
-	 * @param array $results
+	 * @param array|IResultWrapper $results
 	 */
 	public function updateSearchIndex( $maxLockTime, $callback, $dbw, $results ) {
 		$lockTime = time();
