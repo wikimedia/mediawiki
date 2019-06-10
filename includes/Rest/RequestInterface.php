@@ -207,45 +207,34 @@ interface RequestInterface {
 	 */
 	function getUploadedFiles();
 
-	/**
-	 * Retrieve attributes derived from the request.
-	 *
-	 * The request "attributes" may be used to allow injection of any
-	 * parameters derived from the request: e.g., the results of path
-	 * match operations; the results of decrypting cookies; the results of
-	 * deserializing non-form-encoded message bodies; etc. Attributes
-	 * will be application and request specific, and CAN be mutable.
-	 *
-	 * @return array Attributes derived from the request.
-	 */
-	function getAttributes();
-
-	/**
-	 * Retrieve a single derived request attribute.
-	 *
-	 * Retrieves a single derived request attribute as described in
-	 * getAttributes(). If the attribute has not been previously set, returns
-	 * the default value as provided.
-	 *
-	 * This method obviates the need for a hasAttribute() method, as it allows
-	 * specifying a default value to return if the attribute is not found.
-	 *
-	 * @see getAttributes()
-	 * @param string $name The attribute name.
-	 * @param mixed|null $default Default value to return if the attribute does not exist.
-	 * @return mixed
-	 */
-	function getAttribute( $name, $default = null );
-
 	// MediaWiki extensions to PSR-7
 
 	/**
-	 * Erase all attributes from the object and set the attribute array to the
-	 * specified value
+	 * Get the parameters derived from the path template match
 	 *
-	 * @param mixed[] $attributes
+	 * @return string[]
 	 */
-	function setAttributes( $attributes );
+	function getPathParams();
+
+	/**
+	 * Retrieve a single path parameter.
+	 *
+	 * Retrieves a single path parameter as described in getPathParams(). If
+	 * the attribute has not been previously set, returns null.
+	 *
+	 * @see getPathParams()
+	 * @param string $name The parameter name.
+	 * @return string|null
+	 */
+	function getPathParam( $name );
+
+	/**
+	 * Erase all path parameters from the object and set the parameter array
+	 * to the one specified.
+	 *
+	 * @param string[] $params
+	 */
+	function setPathParams( $params );
 
 	/**
 	 * Get the current cookie prefix
