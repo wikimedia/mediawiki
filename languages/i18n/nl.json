@@ -3892,5 +3892,5 @@
 	"passwordpolicies-policyflag-forcechange": "moet gewijzigd worden bij het aanmelden",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "raad wijzigen aan bij het aanmelden",
 	"unprotected-js": "Vanwege veiligheidsredenen kan er geen JavaScript geladen worden vanaf onbeveiligde pagina's. Gelieve alleen JavaScript pagina's aan te maken in de MediaWiki: naamruimte of als een subpagina van een gebruikerspagina.",
-	"userlogout-continue": "Als u zich wilt afmelden, [$1 gaat u naar de afmeldpagina]."
+	"userlogout-continue": "Wilt u zich afmelden?"
 }

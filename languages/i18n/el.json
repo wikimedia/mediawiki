@@ -1337,7 +1337,7 @@
 	"action-upload_by_url": "να επιφορτώσετε αυτό το αρχείο από μια διεύθυνση URL",
 	"action-writeapi": "να χρησιμοποιήσετε το API για εγγραφή",
 	"action-delete": "να διαγράψετε αυτή τη σελίδα",
-	"action-deleterevision": "διαγράψτε αναθεωρήσεις",
+	"action-deleterevision": "διαγράψετε αναθεωρήσεις",
 	"action-deletelogentry": "διαγράψτε καταχωρήσεις καταγραφών",
 	"action-deletedhistory": "προβάλετε διαγεγραμμένο ιστορικό σελίδας",
 	"action-deletedtext": "να προβάλετε κείμενο διαγεγραμμένων αναθεωρήσεων",

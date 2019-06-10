@@ -3513,5 +3513,6 @@
 	"passwordpolicies": "Password politikker",
 	"passwordpolicies-group": "Gruppe",
 	"passwordpolicies-policies": "Politikker",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Adgangskoden kan ikke være det samme som brugernavnet"
+	"passwordpolicies-policy-passwordcannotmatchusername": "Adgangskoden kan ikke være det samme som brugernavnet",
+	"userlogout-continue": "Ønsker du at logge af?"
 }

@@ -3802,5 +3802,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "прапаноўваць зьмену па ўваходзе",
 	"easydeflate-invaliddeflate": "Пададзены зьмест ня сьціснуты адпаведным чынам",
 	"unprotected-js": "З прычынаў бясьпекі JavaScript ня можа быць загружаны зь неабароненых сайтаў. Калі ласка, стварайце javascript выключна ў прасторы назваў MediaWiki: ці як падстаронку ўдзельніка",
-	"userlogout-continue": "Калі вы захочаце выйсьці з сыстэмы, калі ласка, [$1 пераходзьце на старонку выхаду]."
+	"userlogout-continue": "Вы жадаеце выйсьці з сыстэмы?"
 }

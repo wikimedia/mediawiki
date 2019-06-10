@@ -3985,5 +3985,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "запропонувати зміну при вході",
 	"easydeflate-invaliddeflate": "Наданий вміст не стиснений належним чином",
 	"unprotected-js": "З міркувань безпеки JavaScript не можна запускати з незахищених сторінок. Будь ласка, створюйте javascript лише в просторі MediaWiki, або як особисту підсторінку користувача.",
-	"userlogout-continue": "Якщо Ви хочете вийти із системи, [$1 перейдіть на сторінку виходу]."
+	"userlogout-continue": "Ви хочете вийти із системи?"
 }

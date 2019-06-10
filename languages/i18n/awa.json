@@ -6,7 +6,8 @@
 			"Macofe",
 			"Matma Rex",
 			"Sfic",
-			"Fitoschido"
+			"Fitoschido",
+			"Ajeetsinghawadh"
 		]
 	},
 	"tog-underline": "कड़ि अधोरेखन:",
@@ -2696,5 +2697,6 @@
 	"special-characters-group-khmer": "खमेर",
 	"special-characters-title-endash": "डैश",
 	"special-characters-title-emdash": "बड्का डैश",
-	"special-characters-title-minus": "माइनस चिन्ह"
+	"special-characters-title-minus": "माइनस चिन्ह",
+	"userlogout-continue": "का आप लॉग आउट करा चाहत अहैं?"
 }
