@@ -200,6 +200,8 @@ because of Phabricator reports.
   directly.
 * HTMLForm::getErrors(), deprecated in 1.28, has been removed. Use
   getErrorsOrWarnings() instead.
+* SpecialPage::getTitle(), deprecated in 1.23, has been removed. Use
+  SpecialPage::getPageTitle() instead.
 * …
 
 === Deprecations in 1.34 ===

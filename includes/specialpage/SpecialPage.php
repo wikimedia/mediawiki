@@ -663,18 +663,6 @@ class SpecialPage implements MessageLocalizer {
 	 *
 	 * @param string|bool $subpage
 	 * @return Title
-	 * @deprecated since 1.23, use SpecialPage::getPageTitle
-	 */
-	function getTitle( $subpage = false ) {
-		wfDeprecated( __METHOD__, '1.23' );
-		return $this->getPageTitle( $subpage );
-	}
-
-	/**
-	 * Get a self-referential title object
-	 *
-	 * @param string|bool $subpage
-	 * @return Title
 	 * @since 1.23
 	 */
 	function getPageTitle( $subpage = false ) {
