@@ -25,7 +25,7 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 
 	public function testBlobCreation() {
 		$module = $this->makeModule( [ 'mainpage' ] );
-		$rl = new ResourceLoader();
+		$rl = new EmptyResourceLoader();
 		$rl->register( $module->getName(), $module );
 
 		$blobStore = $this->makeBlobStore( null, $rl );
@@ -36,7 +36,7 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 
 	public function testBlobCreation_empty() {
 		$module = $this->makeModule( [] );
-		$rl = new ResourceLoader();
+		$rl = new EmptyResourceLoader();
 		$rl->register( $module->getName(), $module );
 
 		$blobStore = $this->makeBlobStore( null, $rl );
@@ -47,7 +47,7 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 
 	public function testBlobCreation_unknownMessage() {
 		$module = $this->makeModule( [ 'i-dont-exist', 'mainpage', 'i-dont-exist2' ] );
-		$rl = new ResourceLoader();
+		$rl = new EmptyResourceLoader();
 		$rl->register( $module->getName(), $module );
 		$blobStore = $this->makeBlobStore( null, $rl );
 
@@ -59,7 +59,7 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 
 	public function testMessageCachingAndPurging() {
 		$module = $this->makeModule( [ 'example' ] );
-		$rl = new ResourceLoader();
+		$rl = new EmptyResourceLoader();
 		$rl->register( $module->getName(), $module );
 		$blobStore = $this->makeBlobStore( [ 'fetchMessage' ], $rl );
 
@@ -104,7 +104,7 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 
 	public function testPurgeEverything() {
 		$module = $this->makeModule( [ 'example' ] );
-		$rl = new ResourceLoader();
+		$rl = new EmptyResourceLoader();
 		$rl->register( $module->getName(), $module );
 		$blobStore = $this->makeBlobStore( [ 'fetchMessage' ], $rl );
 		// Advance this new WANObjectCache instance to a normal state.
@@ -138,7 +138,7 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 	public function testValidateAgainstModuleRegistry() {
 		// Arrange version 1 of a module
 		$module = $this->makeModule( [ 'foo' ] );
-		$rl = new ResourceLoader();
+		$rl = new EmptyResourceLoader();
 		$rl->register( $module->getName(), $module );
 		$blobStore = $this->makeBlobStore( [ 'fetchMessage' ], $rl );
 		$blobStore->expects( $this->once() )
@@ -157,7 +157,7 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 		// must always match the set of message keys required by the module.
 		// We do not receive purges for this because no messages were changed.
 		$module = $this->makeModule( [ 'foo', 'bar' ] );
-		$rl = new ResourceLoader();
+		$rl = new EmptyResourceLoader();
 		$rl->register( $module->getName(), $module );
 		$blobStore = $this->makeBlobStore( [ 'fetchMessage' ], $rl );
 		$blobStore->expects( $this->exactly( 2 ) )

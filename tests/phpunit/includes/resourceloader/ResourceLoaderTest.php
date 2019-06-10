@@ -34,6 +34,42 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		$this->assertSame( 1, $ranHook, 'Hook was called' );
 	}
 
+	public static function provideInvalidModuleName() {
+		return [
+			'name with 300 chars' => [ str_repeat( 'x', 300 ) ],
+			'name with bang' => [ 'this!that' ],
+			'name with comma' => [ 'this,that' ],
+			'name with pipe' => [ 'this|that' ],
+		];
+	}
+
+	public static function provideValidModuleName() {
+		return [
+			'empty string' => [ '' ],
+			'simple name' => [ 'this.and-that2' ],
+			'name with 100 chars' => [ str_repeat( 'x', 100 ) ],
+			'name with hash' => [ 'this#that' ],
+			'name with slash' => [ 'this/that' ],
+			'name with at' => [ 'this@that' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideInvalidModuleName
+	 * @covers ResourceLoader
+	 */
+	public function testIsValidModuleName_invalid( $name ) {
+		$this->assertFalse( ResourceLoader::isValidModuleName( $name ) );
+	}
+
+	/**
+	 * @dataProvider provideValidModuleName
+	 * @covers ResourceLoader
+	 */
+	public function testIsValidModuleName_valid( $name ) {
+		$this->assertTrue( ResourceLoader::isValidModuleName( $name ) );
+	}
+
 	/**
 	 * @covers ResourceLoader::register
 	 * @covers ResourceLoader::getModule
@@ -60,6 +96,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 
 	/**
 	 * @covers ResourceLoader::register
+	 * @group medium
 	 */
 	public function testRegisterEmptyString() {
 		$module = new ResourceLoaderTestModule();
@@ -70,6 +107,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 
 	/**
 	 * @covers ResourceLoader::register
+	 * @group medium
 	 */
 	public function testRegisterInvalidName() {
 		$resourceLoader = new EmptyResourceLoader();
@@ -111,7 +149,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		$resourceLoader->register( 'test.foo', new ResourceLoaderTestModule() );
 		$resourceLoader->register( 'test.bar', new ResourceLoaderTestModule() );
 		$this->assertEquals(
-			[ 'test.foo', 'test.bar' ],
+			[ 'startup', 'test.foo', 'test.bar' ],
 			$resourceLoader->getModuleNames()
 		);
 	}
@@ -318,7 +356,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoader::getSources
 	 */
 	public function testAddSource( $name, $info, $expected ) {
-		$rl = new ResourceLoader;
+		$rl = new EmptyResourceLoader;
 		$rl->addSource( $name, $info );
 		if ( is_array( $expected ) ) {
 			foreach ( $expected as $source ) {
@@ -333,7 +371,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoader::addSource
 	 */
 	public function testAddSourceDupe() {
-		$rl = new ResourceLoader;
+		$rl = new EmptyResourceLoader;
 		$this->setExpectedException(
 			MWException::class, 'ResourceLoader duplicate source addition error'
 		);
@@ -345,7 +383,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoader::addSource
 	 */
 	public function testAddSourceInvalid() {
-		$rl = new ResourceLoader;
+		$rl = new EmptyResourceLoader;
 		$this->setExpectedException( MWException::class, 'with no "loadScript" key' );
 		$rl->addSource( 'foo',  [ 'x' => 'https://example.org/w/load.php' ] );
 	}
@@ -623,7 +661,7 @@ END
 	 * @covers ResourceLoader::getLoadScript
 	 */
 	public function testGetLoadScript() {
-		$rl = new ResourceLoader();
+		$rl = new EmptyResourceLoader();
 		$sources = self::fakeSources();
 		$rl->addSource( $sources );
 		foreach ( [ 'examplewiki', 'example2wiki' ] as $name ) {
@@ -881,12 +919,13 @@ END
 	 * @covers ResourceLoader::makeModuleResponse
 	 */
 	public function testMakeModuleResponseStartupError() {
-		$rl = new EmptyResourceLoader();
+		// This is an integration test that uses a lot of MediaWiki state,
+		// provide the full Config object here.
+		$rl = new EmptyResourceLoader( MediaWikiServices::getInstance()->getMainConfig() );
 		$rl->register( [
 			'foo' => self::getSimpleModuleMock( 'foo();' ),
 			'ferry' => self::getFailFerryMock(),
 			'bar' => self::getSimpleModuleMock( 'bar();' ),
-			'startup' => [ 'class' => ResourceLoaderStartUpModule::class ],
 		] );
 		$context = $this->getResourceLoaderContext(
 			[
@@ -897,7 +936,7 @@ END
 		);
 
 		$this->assertEquals(
-			[ 'foo', 'ferry', 'bar', 'startup' ],
+			[ 'startup', 'foo', 'ferry', 'bar' ],
 			$rl->getModuleNames(),
 			'getModuleNames'
 		);
