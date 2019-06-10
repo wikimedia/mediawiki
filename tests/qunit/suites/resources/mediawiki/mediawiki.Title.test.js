@@ -652,6 +652,14 @@
 					title: 'File:Foo.JPEG  ',
 					expected: 'File:Foo.JPEG',
 					description: 'Page in File-namespace with trailing whitespace'
+				},
+				{
+					title: 'File:Foo',
+					description: 'File name without file extension'
+				},
+				{
+					title: 'File:Foo.',
+					description: 'File name with empty file extension'
 				}
 			];
 
