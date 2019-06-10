@@ -70,14 +70,14 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		// Build list of variables
 		$skin = $context->getSkin();
 		$vars = [
-			'wgLoadScript' => wfScript( 'load' ),
+			'wgLoadScript' => $conf->get( 'LoadScript' ),
 			'debug' => $context->getDebug(),
 			'skin' => $skin,
 			'stylepath' => $conf->get( 'StylePath' ),
 			'wgUrlProtocols' => wfUrlProtocols(),
 			'wgArticlePath' => $conf->get( 'ArticlePath' ),
 			'wgScriptPath' => $conf->get( 'ScriptPath' ),
-			'wgScript' => wfScript(),
+			'wgScript' => $conf->get( 'Script' ),
 			'wgSearchType' => $conf->get( 'SearchType' ),
 			'wgVariantArticlePath' => $conf->get( 'VariantArticlePath' ),
 			// Force object to avoid "empty" associative array from
