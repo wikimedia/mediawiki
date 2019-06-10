@@ -83,6 +83,8 @@ class RemexMungerData {
 	 * @return string
 	 */
 	public function dump() {
+		$parts = [];
+
 		if ( $this->childPElement ) {
 			$parts[] = 'childPElement=' . $this->childPElement->getDebugTag();
 		}
