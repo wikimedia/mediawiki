@@ -358,6 +358,7 @@
 	"exception-nologin-text-manual": "ဤစာမျက်နှာကို ဝင်ရောက်နိုင်ရန် သို့မဟုတ် အခြားလုပ်ဆောင်ချက်များ ရရှိနိုင်ရန် ကျေးဇူးပြု၍ $1 ပါ။",
 	"virus-unknownscanner": "အမည်မသိအန်တီဗိုင်းရပ်စ် -",
 	"logouttext": "<strong>သင်သည် လော့ဂ်အောက် လုပ်လိုက်ပြီဖြစ်သည်။</strong>",
+	"logging-out-notify": "အကောင့်မှ ထွက်နေပါသည်၊ ခေတ္တခဏ စောင့်ဆိုင်းပါ။",
 	"cannotlogoutnow-title": "လော့ဂ်အောက်ထွက်၍ မရနိုင်သေးပါ",
 	"cannotlogoutnow-text": "$1 ကိုအသုံးပြုနေစဉ်အတွင်း အကောင့်ထွက်ရန် မဖြစ်နိုင်ပါ။",
 	"welcomeuser": "ကြိုဆိုပါတယ် $1!",
@@ -2640,5 +2641,6 @@
 	"passwordpolicies-group": "အုပ်စု",
 	"passwordpolicies-policies": "မူဝါဒများ",
 	"passwordpolicies-policy-minimalpasswordlength": "စကားဝှက်တွင် အနည်းဆုံး {{PLURAL:$1|စကားလုံး|စကားလုံးများ}} $1 ခုရှိရမည်။",
-	"passwordpolicies-policy-passwordcannotmatchusername": "စကားဝှက်သည် အသုံးပြုသူအမည်နှင့် မတူညီရပါ"
+	"passwordpolicies-policy-passwordcannotmatchusername": "စကားဝှက်သည် အသုံးပြုသူအမည်နှင့် မတူညီရပါ",
+	"userlogout-continue": "အကောင့်မှ ထွက်လိုပါသလား"
 }

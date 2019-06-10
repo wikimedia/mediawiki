@@ -3786,5 +3786,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "suggerer cambio al apertura de session",
 	"easydeflate-invaliddeflate": "Le contento fornite non es correctemente comprimite",
 	"unprotected-js": "Pro motivos de securitate, non es possibile cargar codice JavaScript de paginas non protegite. Crea JavaScript solmente in le spatio de nomines \"MediaWiki:\" o como un subpagina de usator.",
-	"userlogout-continue": "Si tu vole clauder le session, [$1 continua al pagina pro clauder session]."
+	"userlogout-continue": "Vole tu clauder le session?"
 }

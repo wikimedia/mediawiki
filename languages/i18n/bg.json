@@ -2189,6 +2189,7 @@
 	"deleteprotected": "Не можете да изтриете страницата, защото е защитена.",
 	"deleting-backlinks-warning": "<strong>Внимание:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|Други страници]] сочат към или включват като шаблон страницата, която се опитвате да изтриете.",
 	"rollback": "Отмяна на промените",
+	"rollback-confirmation-no": "Отказ",
 	"rollbacklink": "отмяна",
 	"rollbacklinkcount": "отмяна на $1 {{PLURAL:$1|редакция|редакции}}",
 	"rollbacklinkcount-morethan": "отмяна на повече от $1 {{PLURAL:$1|редакция|редакции}}",
