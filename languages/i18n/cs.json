@@ -3704,6 +3704,9 @@
 	"mw-widgets-abandonedit-discard": "Zahodit úpravy",
 	"mw-widgets-abandonedit-keep": "Pokračovat v editování",
 	"mw-widgets-abandonedit-title": "Jste si {{GENDER:|jist|jista|jisti}}?",
+	"mw-widgets-copytextlayout-copy": "Zkopírovat",
+	"mw-widgets-copytextlayout-copy-fail": "Nepodařilo se zkopírovat do schránky.",
+	"mw-widgets-copytextlayout-copy-success": "Zkopírováno do schránky.",
 	"mw-widgets-dateinput-no-date": "Nevybráno žádné datum",
 	"mw-widgets-dateinput-placeholder-day": "RRRR-MM-DD",
 	"mw-widgets-dateinput-placeholder-month": "RRRR-MM",
@@ -3876,5 +3879,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "navrhnout změnu při přihlášení",
 	"easydeflate-invaliddeflate": "Poskytnutý obsah nebyl správně zkomprimován",
 	"unprotected-js": "Z bezpečnostních důvodů nelze načítat JavaScript z nechráněných stran. Vyrábějte prosím JavaScriptové skripty jen ve jmenném prostoru MediaWiki: nebo jako uživatelskou podstránku",
-	"userlogout-continue": "Pokud se chcete odhlásit, [$1 pokračujte na odhlašovací stránku]."
+	"userlogout-continue": "Chcete se odhlásit?"
 }

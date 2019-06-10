@@ -3870,5 +3870,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "föreslå ändring vid inloggning",
 	"easydeflate-invaliddeflate": "Innehåll som tillhandahålls är inte helt komprimerat",
 	"unprotected-js": "Av säkerhetsskäl kan inte JavaScript läsas in från oskyddade sidor. Skapa endast JavaScript i namnrymden MediaWiki: eller som en användarundersida.",
-	"userlogout-continue": "Om du vill logga ut, var god [$1 fortsätt till utloggningssidan]."
+	"userlogout-continue": "Vill du logga ut?"
 }

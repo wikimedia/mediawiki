@@ -26,7 +26,8 @@
 			"逆襲的天邪鬼",
 			"Fitoschido",
 			"A2093064",
-			"Vlad5250"
+			"Vlad5250",
+			"WAN233"
 		]
 	},
 	"tog-underline": "以底線識鏈接：",
@@ -893,6 +894,7 @@
 	"group-autoconfirmed": "自證其簿",
 	"group-bot": "僕",
 	"group-sysop": "有秩",
+	"group-interface-admin": "司空",
 	"group-bureaucrat": "門下",
 	"group-suppress": "監",
 	"group-all": "（眾）",
@@ -900,12 +902,14 @@
 	"group-autoconfirmed-member": "自證其簿",
 	"group-bot-member": "僕",
 	"group-sysop-member": "有秩",
+	"group-interface-admin-member": "司空",
 	"group-bureaucrat-member": "門下",
 	"group-suppress-member": "監",
 	"grouppage-user": "{{ns:project}}:簿",
 	"grouppage-autoconfirmed": "{{ns:project}}:自證其簿",
 	"grouppage-bot": "{{ns:project}}:僕",
 	"grouppage-sysop": "{{ns:project}}:有秩",
+	"grouppage-interface-admin": "{{ns:project}}:司空",
 	"grouppage-bureaucrat": "{{ns:project}}:門下",
 	"grouppage-suppress": "{{ns:project}}:監",
 	"right-read": "閱頁",

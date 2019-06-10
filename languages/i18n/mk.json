@@ -2354,7 +2354,7 @@
 	"protect-badnamespace-title": "Незаштитлив именски простор",
 	"protect-badnamespace-text": "Страниците во овој именски простор не можат да се заштитуваат.",
 	"protect-norestrictiontypes-text": "Страницава не може да се заштити бидејќи нема расположиви типови на ограничување.",
-	"protect-norestrictiontypes-title": "Незаштитливи страници",
+	"protect-norestrictiontypes-title": "Незаштитлива страница",
 	"protect-legend": "Потврдете ја заштитата",
 	"protectcomment": "Причина:",
 	"protectexpiry": "Истекува:",
@@ -2375,7 +2375,7 @@
 	"protect-expiring-local": "истекува $1",
 	"protect-expiry-indefinite": "бесконечно",
 	"protect-cascade": "Заштити страници вклучени во оваа страница (каскадна заштита)",
-	"protect-cantedit": "Не можете да го промените степенот на заштита на оваа страница, бидејќи немате дозвола за тоа.",
+	"protect-cantedit": "Не можете да го промените степенот на заштита на оваа страница, бидејќи немате дозвола да ја уредувате.",
 	"protect-othertime": "Друго време:",
 	"protect-othertime-op": "друго време",
 	"protect-existing-expiry": "Постоечки рок на истекување: $3, $2",
@@ -2856,7 +2856,7 @@
 	"tooltip-t-specialpages": "Список на сите службени страници",
 	"tooltip-t-print": "Верзија на страницава наменета за печатење",
 	"tooltip-t-permalink": "Постојана врска до оваа верзија на страницата",
-	"tooltip-ca-nstab-main": "Преглед на содржината",
+	"tooltip-ca-nstab-main": "Преглед на содржинската страница",
 	"tooltip-ca-nstab-user": "Преглед на корисничката страница",
 	"tooltip-ca-nstab-media": "Преглед на мултимедијалната податотека",
 	"tooltip-ca-nstab-special": "Ова е службена страница и затоа не можете да ја уредувате",
@@ -3938,5 +3938,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "предложи измена при најава",
 	"easydeflate-invaliddeflate": "Содржината не е соодветно прочистена",
 	"unprotected-js": "JavaScript не може да се вчита од незаштитени страници од безбедносни причини. Создавајте JavaScript само во именскиот простор МедијаВики: или како корисничка потстраница",
-	"userlogout-continue": "Ако сакате да се одјавите, [$1 продолжете на одјавната стрнаица]."
+	"userlogout-continue": "Дали сакате да се одјавите?"
 }
