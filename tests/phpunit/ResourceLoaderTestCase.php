@@ -2,7 +2,6 @@
 
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
-use Psr\Log\NullLogger;
 
 abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 	// Version hash for a blank file module.
@@ -34,7 +33,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 			'only' => 'scripts',
 			'safemode' => null,
 		];
-		$resourceLoader = $rl ?: new ResourceLoader();
+		$resourceLoader = $rl ?: new ResourceLoader( MediaWikiServices::getInstance()->getMainConfig() );
 		$request = new FauxRequest( [
 				'debug' => $options['debug'],
 				'lang' => $options['lang'],
@@ -57,14 +56,21 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 			// For ResourceLoader::inDebugMode since it doesn't have context
 			'ResourceLoaderDebug' => true,
 
-			// Avoid influence from wgInvalidateCacheOnLocalSettingsChange
-			'CacheEpoch' => '20140101000000',
-
-			// For wfScript()
+			// For ResourceLoaderStartUpModule and ResourceLoader::__construct()
 			'ScriptPath' => '/w',
 			'Script' => '/w/index.php',
 			'LoadScript' => '/w/load.php',
+
+			// For ResourceLoader::register() - TODO: Inject somehow T32956
+			'ResourceModuleSkinStyles' => [],
+
+			// For ResourceLoader::respond() - TODO: Inject somehow T32956
+			'UseFileCache' => false,
 		];
+	}
+
+	public static function getMinimalConfig() {
+		return new HashConfig( self::getSettings() );
 	}
 
 	protected function setUp() {
@@ -171,14 +177,8 @@ class ResourceLoaderFileModuleTestModule extends ResourceLoaderFileModule {
 }
 
 class EmptyResourceLoader extends ResourceLoader {
-	// TODO: This won't be needed once ResourceLoader is empty by default
-	// and default registrations are done from ServiceWiring instead.
 	public function __construct( Config $config = null, LoggerInterface $logger = null ) {
-		$this->setLogger( $logger ?: new NullLogger() );
-		$this->config = $config ?: MediaWikiServices::getInstance()->getMainConfig();
-		// Source "local" is required by StartupModule
-		$this->addSource( 'local', $this->config->get( 'LoadScript' ) );
-		$this->setMessageBlobStore( new MessageBlobStore( $this, $this->getLogger() ) );
+		parent::__construct( $config ?: ResourceLoaderTestCase::getMinimalConfig(), $logger );
 	}
 
 	public function getErrors() {

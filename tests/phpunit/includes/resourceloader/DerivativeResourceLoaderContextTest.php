@@ -16,7 +16,10 @@ class DerivativeResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 				'skin' => 'fallback',
 				'target' => 'test',
 		] );
-		return new ResourceLoaderContext( new ResourceLoader(), $request );
+		return new ResourceLoaderContext(
+			new ResourceLoader( ResourceLoaderTestCase::getMinimalConfig() ),
+			$request
+		);
 	}
 
 	public function testChangeModules() {
