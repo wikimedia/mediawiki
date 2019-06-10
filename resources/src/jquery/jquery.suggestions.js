@@ -413,7 +413,8 @@
 						} else {
 							// Expand from right
 							newCSS.left = 'auto';
-							newCSS.right = $( 'body' ).width() - ( regionPosition.left + context.config.$region.outerWidth() );
+							newCSS.right = document.documentElement.clientWidth -
+								( regionPosition.left + context.config.$region.outerWidth() );
 						}
 
 						context.data.$container.css( newCSS );
@@ -720,7 +721,7 @@
 								);
 							} )
 					)
-					.appendTo( $( 'body' ) );
+					.appendTo( document.body );
 
 				$( this )
 					// Stop browser autocomplete from interfering
