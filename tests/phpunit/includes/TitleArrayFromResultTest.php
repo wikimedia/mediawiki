@@ -30,10 +30,6 @@ class TitleArrayFromResultTest extends PHPUnit\Framework\TestCase {
 		return $row;
 	}
 
-	private function getTitleArrayFromResult( $resultWrapper ) {
-		return new TitleArrayFromResult( $resultWrapper );
-	}
-
 	/**
 	 * @covers TitleArrayFromResult::__construct
 	 */
@@ -41,7 +37,7 @@ class TitleArrayFromResultTest extends PHPUnit\Framework\TestCase {
 		$row = false;
 		$resultWrapper = $this->getMockResultWrapper( $row );
 
-		$object = $this->getTitleArrayFromResult( $resultWrapper );
+		$object = new TitleArrayFromResult( $resultWrapper );
 
 		$this->assertEquals( $resultWrapper, $object->res );
 		$this->assertSame( 0, $object->key );
@@ -57,7 +53,7 @@ class TitleArrayFromResultTest extends PHPUnit\Framework\TestCase {
 		$row = $this->getRowWithTitle( $namespace, $title );
 		$resultWrapper = $this->getMockResultWrapper( $row );
 
-		$object = $this->getTitleArrayFromResult( $resultWrapper );
+		$object = new TitleArrayFromResult( $resultWrapper );
 
 		$this->assertEquals( $resultWrapper, $object->res );
 		$this->assertSame( 0, $object->key );
@@ -79,7 +75,7 @@ class TitleArrayFromResultTest extends PHPUnit\Framework\TestCase {
 	 * @covers TitleArrayFromResult::count
 	 */
 	public function testCountWithVaryingValues( $numRows ) {
-		$object = $this->getTitleArrayFromResult( $this->getMockResultWrapper(
+		$object = new TitleArrayFromResult( $this->getMockResultWrapper(
 			$this->getRowWithTitle(),
 			$numRows
 		) );
@@ -93,7 +89,7 @@ class TitleArrayFromResultTest extends PHPUnit\Framework\TestCase {
 		$namespace = 0;
 		$title = 'foo';
 		$row = $this->getRowWithTitle( $namespace, $title );
-		$object = $this->getTitleArrayFromResult( $this->getMockResultWrapper( $row ) );
+		$object = new TitleArrayFromResult( $this->getMockResultWrapper( $row ) );
 		$this->assertInstanceOf( Title::class, $object->current() );
 		$this->assertEquals( $namespace, $object->current->mNamespace );
 		$this->assertEquals( $title, $object->current->mTextform );
@@ -111,7 +107,7 @@ class TitleArrayFromResultTest extends PHPUnit\Framework\TestCase {
 	 * @covers TitleArrayFromResult::valid
 	 */
 	public function testValid( $input, $expected ) {
-		$object = $this->getTitleArrayFromResult( $this->getMockResultWrapper( $input ) );
+		$object = new TitleArrayFromResult( $this->getMockResultWrapper( $input ) );
 		$this->assertEquals( $expected, $object->valid() );
 	}
 

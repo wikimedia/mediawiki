@@ -27,10 +27,6 @@ class UserArrayFromResultTest extends MediaWikiTestCase {
 		return $row;
 	}
 
-	private function getUserArrayFromResult( $resultWrapper ) {
-		return new UserArrayFromResult( $resultWrapper );
-	}
-
 	/**
 	 * @covers UserArrayFromResult::__construct
 	 */
@@ -38,7 +34,7 @@ class UserArrayFromResultTest extends MediaWikiTestCase {
 		$row = false;
 		$resultWrapper = $this->getMockResultWrapper( $row );
 
-		$object = $this->getUserArrayFromResult( $resultWrapper );
+		$object = new UserArrayFromResult( $resultWrapper );
 
 		$this->assertEquals( $resultWrapper, $object->res );
 		$this->assertSame( 0, $object->key );
@@ -53,7 +49,7 @@ class UserArrayFromResultTest extends MediaWikiTestCase {
 		$row = $this->getRowWithUsername( $username );
 		$resultWrapper = $this->getMockResultWrapper( $row );
 
-		$object = $this->getUserArrayFromResult( $resultWrapper );
+		$object = new UserArrayFromResult( $resultWrapper );
 
 		$this->assertEquals( $resultWrapper, $object->res );
 		$this->assertSame( 0, $object->key );
@@ -74,7 +70,7 @@ class UserArrayFromResultTest extends MediaWikiTestCase {
 	 * @covers UserArrayFromResult::count
 	 */
 	public function testCountWithVaryingValues( $numRows ) {
-		$object = $this->getUserArrayFromResult( $this->getMockResultWrapper(
+		$object = new UserArrayFromResult( $this->getMockResultWrapper(
 			$this->getRowWithUsername(),
 			$numRows
 		) );
@@ -87,7 +83,7 @@ class UserArrayFromResultTest extends MediaWikiTestCase {
 	public function testCurrentAfterConstruction() {
 		$username = 'addshore';
 		$userRow = $this->getRowWithUsername( $username );
-		$object = $this->getUserArrayFromResult( $this->getMockResultWrapper( $userRow ) );
+		$object = new UserArrayFromResult( $this->getMockResultWrapper( $userRow ) );
 		$this->assertInstanceOf( User::class, $object->current() );
 		$this->assertEquals( $username, $object->current()->mName );
 	}
@@ -104,7 +100,7 @@ class UserArrayFromResultTest extends MediaWikiTestCase {
 	 * @covers UserArrayFromResult::valid
 	 */
 	public function testValid( $input, $expected ) {
-		$object = $this->getUserArrayFromResult( $this->getMockResultWrapper( $input ) );
+		$object = new UserArrayFromResult( $this->getMockResultWrapper( $input ) );
 		$this->assertEquals( $expected, $object->valid() );
 	}
 
