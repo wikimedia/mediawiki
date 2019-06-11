@@ -113,7 +113,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct( $options = [], $localBasePath = null ) {
-		$this->localBasePath = self::extractLocalBasePath( $options, $localBasePath );
+		$this->localBasePath = static::extractLocalBasePath( $options, $localBasePath );
 
 		$this->definition = $options;
 	}
