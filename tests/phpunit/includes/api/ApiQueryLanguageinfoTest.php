@@ -1,8 +1,10 @@
 <?php
 
 /**
+ * FIXME Temporary disabled per T225244
  * @group API
  * @group medium
+ * @group Broken
  *
  * @covers ApiQueryLanguageinfo
  */
