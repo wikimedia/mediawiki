@@ -26,7 +26,6 @@ use ActorMigration;
 use AutoCommitUpdate;
 use BadMethodCallException;
 use CommentStore;
-use DateTime;
 use DeferredUpdates;
 use Hooks;
 use Html;
@@ -36,7 +35,6 @@ use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\MediaWikiServices;
-use MWCryptHash;
 use MWException;
 use RequestContext;
 use stdClass;
@@ -1383,35 +1381,22 @@ class DatabaseBlock extends AbstractBlock {
 	 * the same as the block's, to a maximum of 24 hours.
 	 *
 	 * @since 1.29
-	 *
+	 * @deprecated since 1.34 Set a cookie via BlockManager::trackBlockWithCookie instead.
 	 * @param WebResponse $response The response on which to set the cookie.
 	 */
 	public function setCookie( WebResponse $response ) {
-		// Calculate the default expiry time.
-		$maxExpiryTime = wfTimestamp( TS_MW, wfTimestamp() + ( 24 * 60 * 60 ) );
-
-		// Use the block's expiry time only if it's less than the default.
-		$expiryTime = $this->getExpiry();
-		if ( $expiryTime === 'infinity' || $expiryTime > $maxExpiryTime ) {
-			$expiryTime = $maxExpiryTime;
-		}
-
-		// Set the cookie. Reformat the MediaWiki datetime as a Unix timestamp for the cookie.
-		$expiryValue = DateTime::createFromFormat( 'YmdHis', $expiryTime )->format( 'U' );
-		$cookieOptions = [ 'httpOnly' => false ];
-		$cookieValue = $this->getCookieValue();
-		$response->setCookie( 'BlockID', $cookieValue, $expiryValue, $cookieOptions );
+		MediaWikiServices::getInstance()->getBlockManager()->setBlockCookie( $this, $response );
 	}
 
 	/**
 	 * Unset the 'BlockID' cookie.
 	 *
 	 * @since 1.29
-	 *
+	 * @deprecated since 1.34 Use BlockManager::clearBlockCookie instead
 	 * @param WebResponse $response The response on which to unset the cookie.
 	 */
 	public static function clearCookie( WebResponse $response ) {
-		$response->clearCookie( 'BlockID', [ 'httpOnly' => false ] );
+		MediaWikiServices::getInstance()->getBlockManager()->clearBlockCookie( $response );
 	}
 
 	/**
@@ -1420,20 +1405,12 @@ class DatabaseBlock extends AbstractBlock {
 	 * be the block ID.
 	 *
 	 * @since 1.29
-	 *
+	 * @deprecated since 1.34 Use BlockManager::trackBlockWithCookie instead of calling this
+	 *  directly
 	 * @return string The block ID, probably concatenated with "!" and the HMAC.
 	 */
 	public function getCookieValue() {
-		$config = RequestContext::getMain()->getConfig();
-		$id = $this->getId();
-		$secretKey = $config->get( 'SecretKey' );
-		if ( !$secretKey ) {
-			// If there's no secret key, don't append a HMAC.
-			return $id;
-		}
-		$hmac = MWCryptHash::hmac( $id, $secretKey, false );
-		$cookieValue = $id . '!' . $hmac;
-		return $cookieValue;
+		return MediaWikiServices::getInstance()->getBlockManager()->getCookieValue( $this );
 	}
 
 	/**
@@ -1441,29 +1418,12 @@ class DatabaseBlock extends AbstractBlock {
 	 * the ID and a HMAC (see DatabaseBlock::setCookie), but will sometimes only be the ID.
 	 *
 	 * @since 1.29
-	 *
+	 * @deprecated since 1.34 Use BlockManager::getUserBlock instead
 	 * @param string $cookieValue The string in which to find the ID.
-	 *
 	 * @return int|null The block ID, or null if the HMAC is present and invalid.
 	 */
 	public static function getIdFromCookieValue( $cookieValue ) {
-		// Extract the ID prefix from the cookie value (may be the whole value, if no bang found).
-		$bangPos = strpos( $cookieValue, '!' );
-		$id = ( $bangPos === false ) ? $cookieValue : substr( $cookieValue, 0, $bangPos );
-		// Get the site-wide secret key.
-		$config = RequestContext::getMain()->getConfig();
-		$secretKey = $config->get( 'SecretKey' );
-		if ( !$secretKey ) {
-			// If there's no secret key, just use the ID as given.
-			return $id;
-		}
-		$storedHmac = substr( $cookieValue, $bangPos + 1 );
-		$calculatedHmac = MWCryptHash::hmac( $id, $secretKey, false );
-		if ( $calculatedHmac === $storedHmac ) {
-			return $id;
-		} else {
-			return null;
-		}
+		return MediaWikiServices::getInstance()->getBlockManager()->getIdFromCookieValue( $cookieValue );
 	}
 
 	/**
@@ -1600,9 +1560,12 @@ class DatabaseBlock extends AbstractBlock {
 	}
 
 	/**
+	 * @deprecated since 1.34 Use BlockManager::trackBlockWithCookie instead of calling this
+	 *  directly.
 	 * @inheritDoc
 	 */
 	public function shouldTrackWithCookie( $isAnon ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		$config = RequestContext::getMain()->getConfig();
 		switch ( $this->getType() ) {
 			case self::TYPE_IP:

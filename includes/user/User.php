@@ -1363,7 +1363,7 @@ class User implements IDBAccessObject, UserIdentity {
 				// If this user is autoblocked, set a cookie to track the block. This has to be done on
 				// every session load, because an autoblocked editor might not edit again from the same
 				// IP address after being blocked.
-				$this->trackBlockWithCookie();
+				MediaWikiServices::getInstance()->getBlockManager()->trackBlockWithCookie( $this );
 			}
 
 			// Other code expects these to be set in the session, so set them.
@@ -1379,15 +1379,11 @@ class User implements IDBAccessObject, UserIdentity {
 
 	/**
 	 * Set the 'BlockID' cookie depending on block type and user authentication status.
+	 *
+	 * @deprecated since 1.34 Use BlockManager::trackBlockWithCookie instead
 	 */
 	public function trackBlockWithCookie() {
-		$block = $this->getBlock();
-
-		if ( $block && $this->getRequest()->getCookie( 'BlockID' ) === null
-			&& $block->shouldTrackWithCookie( $this->isAnon() )
-		) {
-			$block->setCookie( $this->getRequest()->response() );
-		}
+		MediaWikiServices::getInstance()->getBlockManager()->trackBlockWithCookie( $this );
 	}
 
 	/**

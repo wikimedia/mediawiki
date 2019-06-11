@@ -29,6 +29,7 @@ class BlockManagerTest extends MediaWikiTestCase {
 			'wgEnableDnsBlacklist' => true,
 			'wgProxyList' => [],
 			'wgProxyWhitelist' => [],
+			'wgSecretKey' => false,
 			'wgSoftBlockRanges' => [],
 		];
 	}
