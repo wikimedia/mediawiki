@@ -1953,8 +1953,7 @@ abstract class File implements IDBAccessObject {
 	 * @param array $versions Set of record ids of deleted items to restore,
 	 *   or empty to restore all revisions.
 	 * @param bool $unsuppress Remove restrictions on content upon restoration?
-	 * @return int|bool The number of file revisions restored if successful,
-	 *   or false on failure
+	 * @return Status
 	 * STUB
 	 * Overridden by LocalFile
 	 */
