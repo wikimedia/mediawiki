@@ -6,6 +6,7 @@ use Category;
 use Hooks;
 use HtmlArmor;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MediaWikiServices;
 use SearchResult;
 use SpecialSearch;
 use Title;
@@ -248,7 +249,8 @@ class FullSearchResultWidget implements SearchResultWidget {
 		$descHtml = null;
 		$thumbHtml = null;
 
-		$img = $result->getFile() ?: wfFindFile( $title );
+		$img = $result->getFile() ?: MediaWikiServices::getInstance()->getRepoGroup()
+			->findFile( $title );
 		if ( $img ) {
 			$thumb = $img->transform( [ 'width' => 120, 'height' => 120 ] );
 			if ( $thumb ) {

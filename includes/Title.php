@@ -3584,7 +3584,8 @@ class Title implements LinkTarget, IDBAccessObject {
 
 		# Is it an existing file?
 		if ( $nt->getNamespace() == NS_FILE ) {
-			$file = wfLocalFile( $nt );
+			$file = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
+				->newFile( $nt );
 			$file->load( File::READ_LATEST );
 			if ( $file->exists() ) {
 				wfDebug( __METHOD__ . ": file exists\n" );
@@ -4056,15 +4057,15 @@ class Title implements LinkTarget, IDBAccessObject {
 			return true; // any interwiki link might be viewable, for all we know
 		}
 
+		$services = MediaWikiServices::getInstance();
 		switch ( $this->mNamespace ) {
 			case NS_MEDIA:
 			case NS_FILE:
 				// file exists, possibly in a foreign repo
-				return (bool)wfFindFile( $this );
+				return (bool)$services->getRepoGroup()->findFile( $this );
 			case NS_SPECIAL:
 				// valid special page
-				return MediaWikiServices::getInstance()->getSpecialPageFactory()->
-					exists( $this->mDbkeyform );
+				return $services->getSpecialPageFactory()->exists( $this->mDbkeyform );
 			case NS_MAIN:
 				// selflink, possibly with fragment
 				return $this->mDbkeyform == '';

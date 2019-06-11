@@ -114,7 +114,8 @@ class WANCacheReapUpdate implements DeferrableUpdate {
 		}
 
 		if ( $t->inNamespace( NS_FILE ) ) {
-			$entities[] = wfLocalFile( $t->getText() );
+			$entities[] = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
+				->newFile( $t->getText() );
 		}
 		if ( $t->inNamespace( NS_USER ) ) {
 			$entities[] = User::newFromName( $t->getText(), false );

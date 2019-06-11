@@ -86,16 +86,17 @@ class SearchResult {
 	 */
 	protected function initFromTitle( $title ) {
 		$this->mTitle = $title;
+		$services = MediaWikiServices::getInstance();
 		if ( !is_null( $this->mTitle ) ) {
 			$id = false;
 			Hooks::run( 'SearchResultInitFromTitle', [ $title, &$id ] );
 			$this->mRevision = Revision::newFromTitle(
 				$this->mTitle, $id, Revision::READ_NORMAL );
 			if ( $this->mTitle->getNamespace() === NS_FILE ) {
-				$this->mImage = wfFindFile( $this->mTitle );
+				$this->mImage = $services->getRepoGroup()->findFile( $this->mTitle );
 			}
 		}
-		$this->searchEngine = MediaWikiServices::getInstance()->newSearchEngine();
+		$this->searchEngine = $services->newSearchEngine();
 	}
 
 	/**
