@@ -53,3 +53,9 @@ if ( $logDir ) {
 	$wgDebugLogGroups['error'] = "$logDir/mw-error.log";
 }
 unset( $logDir );
+// Make caching faster
+$wgMainCacheType = CACHE_ACCEL;
+$wgMessageCacheType = CACHE_ACCEL;
+$wgParserCacheType = CACHE_ACCEL;
+$wgSessionCacheType = CACHE_ACCEL;
+$wgLanguageConverterCacheType = CACHE_ACCEL;
