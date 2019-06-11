@@ -767,7 +767,7 @@
 					} );
 				// Load suggestions if the value is changed because there are already
 				// typed characters before the JavaScript is loaded.
-				if ( this.value !== this.defaultValue ) {
+				if ( $( this ).is( ':focus' ) && this.value !== this.defaultValue ) {
 					update( context, false );
 				}
 			}
