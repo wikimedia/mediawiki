@@ -23,6 +23,7 @@
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Implements Special:CreateAccount
@@ -65,7 +66,7 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		if ( !$status->isGood() ) {
 			// track block with a cookie if it doesn't exists already
 			if ( $user->isBlockedFromCreateAccount() ) {
-				$user->trackBlockWithCookie();
+				MediaWikiServices::getInstance()->getBlockManager()->trackBlockWithCookie( $user );
 			}
 			throw new ErrorPageError( 'createacct-error', $status->getMessage() );
 		}

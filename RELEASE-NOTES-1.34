@@ -250,6 +250,11 @@ because of Phabricator reports.
 * (T62260) Hard deprecate Language::getExtraUserToggles() method.
 * Language::viewPrevNext function is deprecated, use
   PrevNextNavigationRenderer::buildPrevNextNavigation instead
+* User::trackBlockWithCookie and DatabaseBlock::clearCookie are deprecated. Use
+  BlockManager::trackBlockWithCookie and BlockManager::clearCookie instead.
+* DatabaseBlock::setCookie, DatabaseBlock::getCookieValue,
+  DatabaseBlock::getIdFromCookieValue and AbstractBlock::shouldTrackWithCookie
+  are moved to internal helper methods for BlockManager::trackBlockWithCookie.
 
 === Other changes in 1.34 ===
 * …

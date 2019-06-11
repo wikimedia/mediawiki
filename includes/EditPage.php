@@ -622,7 +622,8 @@ class EditPage {
 
 			if ( $this->context->getUser()->getBlock() ) {
 				// track block with a cookie if it doesn't exists already
-				$this->context->getUser()->trackBlockWithCookie();
+				MediaWikiServices::getInstance()->getBlockManager()
+					->trackBlockWithCookie( $this->context->getUser() );
 
 				// Auto-block user's IP if the account was "hard" blocked
 				if ( !wfReadOnly() ) {
