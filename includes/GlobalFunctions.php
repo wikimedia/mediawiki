@@ -2984,7 +2984,7 @@ function wfUnpack( $format, $data, $length = false ) {
 function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
 	# Handle redirects; callers almost always hit wfFindFile() anyway,
 	# so just use that method because it has a fast process cache.
-	$file = wfFindFile( $name ); // get the final name
+	$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $name ); // get the final name
 	$name = $file ? $file->getTitle()->getDBkey() : $name;
 
 	# Run the extension hook

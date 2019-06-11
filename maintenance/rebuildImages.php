@@ -195,9 +195,9 @@ class ImageBuilder extends Maintenance {
 
 	function addMissingImage( $filename, $fullpath ) {
 		$timestamp = $this->dbw->timestamp( $this->getRepo()->getFileTimestamp( $fullpath ) );
+		$services = MediaWikiServices::getInstance();
 
-		$altname = MediaWikiServices::getInstance()->getContentLanguage()->
-			checkTitleEncoding( $filename );
+		$altname = $services->getContentLanguage()->checkTitleEncoding( $filename );
 		if ( $altname != $filename ) {
 			if ( $this->dryrun ) {
 				$filename = $altname;
@@ -214,7 +214,7 @@ class ImageBuilder extends Maintenance {
 			return;
 		}
 		if ( !$this->dryrun ) {
-			$file = wfLocalFile( $filename );
+			$file = $services->getRepoGroup()->getLocalRepo()->newFile( $filename );
 			if ( !$file->recordUpload(
 				'',
 				'(recovered file, missing upload log entry)',

@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -125,7 +126,8 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 				wfWaitForSlaves();
 			}
 
-			$file = wfLocalFile( $row->img_name );
+			$file = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
+				->newFile( $row->img_name );
 			if ( !$file ) {
 				continue;
 			}
