@@ -615,11 +615,6 @@ return [
 		'dependencies' => 'jquery.effects.core',
 		'group' => 'jquery.ui',
 	],
-	'jquery.effects.bounce' => [
-		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect-bounce.js',
-		'dependencies' => 'jquery.effects.core',
-		'group' => 'jquery.ui',
-	],
 	'jquery.effects.clip' => [
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect-clip.js',
 		'dependencies' => 'jquery.effects.core',
@@ -630,28 +625,8 @@ return [
 		'dependencies' => 'jquery.effects.core',
 		'group' => 'jquery.ui',
 	],
-	'jquery.effects.explode' => [
-		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect-explode.js',
-		'dependencies' => 'jquery.effects.core',
-		'group' => 'jquery.ui',
-	],
-	'jquery.effects.fade' => [
-		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect-fade.js',
-		'dependencies' => 'jquery.effects.core',
-		'group' => 'jquery.ui',
-	],
-	'jquery.effects.fold' => [
-		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect-fold.js',
-		'dependencies' => 'jquery.effects.core',
-		'group' => 'jquery.ui',
-	],
 	'jquery.effects.highlight' => [
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect-highlight.js',
-		'dependencies' => 'jquery.effects.core',
-		'group' => 'jquery.ui',
-	],
-	'jquery.effects.pulsate' => [
-		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect-pulsate.js',
 		'dependencies' => 'jquery.effects.core',
 		'group' => 'jquery.ui',
 	],
@@ -662,16 +637,6 @@ return [
 	],
 	'jquery.effects.shake' => [
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect-shake.js',
-		'dependencies' => 'jquery.effects.core',
-		'group' => 'jquery.ui',
-	],
-	'jquery.effects.slide' => [
-		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect-slide.js',
-		'dependencies' => 'jquery.effects.core',
-		'group' => 'jquery.ui',
-	],
-	'jquery.effects.transfer' => [
-		'scripts' => 'resources/lib/jquery.ui/jquery.ui.effect-transfer.js',
 		'dependencies' => 'jquery.effects.core',
 		'group' => 'jquery.ui',
 	],
