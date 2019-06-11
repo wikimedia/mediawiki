@@ -14,7 +14,6 @@ use Wikimedia\TestingAccessWrapper;
  * @copyright © 2012, Niklas Laxström
  * @copyright © 2012, Santhosh Thottingal
  * @copyright © 2012, Timo Tijhof
- * @coversNothing
  */
 class ResourcesTest extends MediaWikiTestCase {
 

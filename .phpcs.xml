@@ -256,6 +256,9 @@
 		-->
 		<exclude-pattern>*/maintenance/mwdocgen\.php</exclude-pattern>
 	</rule>
+	<rule ref="MediaWiki.Commenting.MissingCovers.MissingCovers">
+		<exclude-pattern>tests/phpunit/structure/*</exclude-pattern>
+	</rule>
 	<file>.</file>
 	<arg name="encoding" value="UTF-8"/>
 	<arg name="extensions" value="php,php5,inc,sample"/>
