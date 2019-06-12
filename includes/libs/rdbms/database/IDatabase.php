@@ -115,6 +115,8 @@ interface IDatabase {
 	const QUERY_PSEUDO_PERMANENT = 2;
 	/** @var int Enforce that a query does not make effective writes */
 	const QUERY_REPLICA_ROLE = 4;
+	/** @var int Ignore the current presence of any DBO_TRX flag */
+	const QUERY_IGNORE_DBO_TRX = 8;
 
 	/** @var bool Parameter to unionQueries() for UNION ALL */
 	const UNION_ALL = true;
