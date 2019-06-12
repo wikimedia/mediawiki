@@ -110,7 +110,9 @@ class BlockManager {
 	}
 
 	/**
-	 * Get the blocks that apply to a user and return the most relevant one.
+	 * Get the blocks that apply to a user. If there is only one, return that, otherwise
+	 * return a composite block that combines the strictest features of the applicable
+	 * blocks.
 	 *
 	 * TODO: $user should be UserIdentity instead of User
 	 *
@@ -143,29 +145,28 @@ class BlockManager {
 		}
 
 		// User/IP blocking
+		// After this, $blocks is an array of blocks or an empty array
 		// TODO: remove dependency on DatabaseBlock
-		$block = DatabaseBlock::newFromTarget( $user, $ip, !$fromReplica );
+		$blocks = DatabaseBlock::newListFromTarget( $user, $ip, !$fromReplica );
 
 		// Cookie blocking
-		if ( !$block instanceof AbstractBlock ) {
-			$block = $this->getBlockFromCookieValue( $user, $request );
+		$cookieBlock = $this->getBlockFromCookieValue( $user, $request );
+		if ( $cookieBlock instanceof AbstractBlock ) {
+			$blocks[] = $cookieBlock;
 		}
 
 		// Proxy blocking
-		if ( !$block instanceof AbstractBlock
-			&& $ip !== null
-			&& !in_array( $ip, $this->proxyWhitelist )
-		) {
+		if ( $ip !== null && !in_array( $ip, $this->proxyWhitelist ) ) {
 			// Local list
 			if ( $this->isLocallyBlockedProxy( $ip ) ) {
-				$block = new SystemBlock( [
+				$blocks[] = new SystemBlock( [
 					'byText' => wfMessage( 'proxyblocker' )->text(),
 					'reason' => wfMessage( 'proxyblockreason' )->plain(),
 					'address' => $ip,
 					'systemBlock' => 'proxy',
 				] );
 			} elseif ( $isAnon && $this->isDnsBlacklisted( $ip ) ) {
-				$block = new SystemBlock( [
+				$blocks[] = new SystemBlock( [
 					'byText' => wfMessage( 'sorbs' )->text(),
 					'reason' => wfMessage( 'sorbsreason' )->plain(),
 					'address' => $ip,
@@ -175,8 +176,7 @@ class BlockManager {
 		}
 
 		// (T25343) Apply IP blocks to the contents of XFF headers, if enabled
-		if ( !$block instanceof AbstractBlock
-			&& $this->applyIpBlocksToXff
+		if ( $this->applyIpBlocksToXff
 			&& $ip !== null
 			&& !in_array( $ip, $this->proxyWhitelist )
 		) {
@@ -185,21 +185,15 @@ class BlockManager {
 			$xff = array_diff( $xff, [ $ip ] );
 			// TODO: remove dependency on DatabaseBlock
 			$xffblocks = DatabaseBlock::getBlocksForIPList( $xff, $isAnon, !$fromReplica );
-			// TODO: remove dependency on DatabaseBlock
-			$block = DatabaseBlock::chooseBlock( $xffblocks, $xff );
-			if ( $block instanceof AbstractBlock ) {
-				# Mangle the reason to alert the user that the block
-				# originated from matching the X-Forwarded-For header.
-				$block->setReason( wfMessage( 'xffblockreason', $block->getReason() )->plain() );
-			}
+			$blocks = array_merge( $blocks, $xffblocks );
 		}
 
-		if ( !$block instanceof AbstractBlock
-			&& $ip !== null
+		// Soft blocking
+		if ( $ip !== null
 			&& $isAnon
 			&& IP::isInRanges( $ip, $this->softBlockRanges )
 		) {
-			$block = new SystemBlock( [
+			$blocks[] = new SystemBlock( [
 				'address' => $ip,
 				'byText' => 'MediaWiki default',
 				'reason' => wfMessage( 'softblockrangesreason', $ip )->plain(),
@@ -208,7 +202,19 @@ class BlockManager {
 			] );
 		}
 
-		return $block;
+		if ( count( $blocks ) > 0 ) {
+			if ( count( $blocks ) === 1 ) {
+				$block = $blocks[ 0 ];
+			} else {
+				$block = new CompositeBlock( [
+					'address' => $ip,
+					'originalBlocks' => $blocks,
+				] );
+			}
+			return $block;
+		}
+
+		return null;
 	}
 
 	/**
@@ -393,13 +399,23 @@ class BlockManager {
 	public function trackBlockWithCookie( User $user ) {
 		$block = $user->getBlock();
 		$request = $user->getRequest();
+		$response = $request->response();
+		$isAnon = $user->isAnon();
 
-		if (
-			$block &&
-			$request->getCookie( 'BlockID' ) === null &&
-			$this->shouldTrackBlockWithCookie( $block, $user->isAnon() )
-		) {
-			$this->setBlockCookie( $block, $request->response() );
+		if ( $block && $request->getCookie( 'BlockID' ) === null ) {
+			if ( $block instanceof CompositeBlock ) {
+				// TODO: Improve on simply tracking the first trackable block (T225654)
+				foreach ( $block->getOriginalBlocks() as $originalBlock ) {
+					if ( $this->shouldTrackBlockWithCookie( $originalBlock, $isAnon ) ) {
+						$this->setBlockCookie( $originalBlock, $response );
+						return;
+					}
+				}
+			} else {
+				if ( $this->shouldTrackBlockWithCookie( $block, $isAnon ) ) {
+					$this->setBlockCookie( $block, $response );
+				}
+			}
 		}
 	}
 

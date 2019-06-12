@@ -1822,8 +1822,7 @@ class User implements IDBAccessObject, UserIdentity {
 			$fromReplica
 		);
 
-		if ( $block instanceof AbstractBlock ) {
-			wfDebug( __METHOD__ . ": Found block.\n" );
+		if ( $block ) {
 			$this->mBlock = $block;
 			$this->mBlockedby = $block->getByName();
 			$this->mBlockreason = $block->getReason();

@@ -2,6 +2,7 @@
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\SystemBlock;
 
 /**
@@ -138,6 +139,34 @@ class PasswordResetTest extends MediaWikiTestCase {
 				'allowsAuthenticationDataChange' => true,
 				'canEditPrivate' => true,
 				'block' => new SystemBlock( [ 'systemBlock' => 'unknown' ] ),
+				'globalBlock' => null,
+				'isAllowed' => false,
+			],
+			'blocked with multiple blocks, all allowing password reset' => [
+				'passwordResetRoutes' => [ 'username' => true ],
+				'enableEmail' => true,
+				'allowsAuthenticationDataChange' => true,
+				'canEditPrivate' => true,
+				'block' => new CompositeBlock( [
+					'originalBlocks' => [
+						new SystemBlock( [ 'systemBlock' => 'wgSoftBlockRanges', 'anonOnly' => true ] ),
+						new Block( [] ),
+					]
+				] ),
+				'globalBlock' => null,
+				'isAllowed' => true,
+			],
+			'blocked with multiple blocks, not all allowing password reset' => [
+				'passwordResetRoutes' => [ 'username' => true ],
+				'enableEmail' => true,
+				'allowsAuthenticationDataChange' => true,
+				'canEditPrivate' => true,
+				'block' => new CompositeBlock( [
+					'originalBlocks' => [
+						new SystemBlock( [ 'systemBlock' => 'wgSoftBlockRanges', 'anonOnly' => true ] ),
+						new SystemBlock( [ 'systemBlock' => 'proxy' ] ),
+					]
+				] ),
 				'globalBlock' => null,
 				'isAllowed' => false,
 			],
