@@ -347,7 +347,6 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		$module = new ResourceLoaderFileTestModule( [
 			'localBasePath' => $basePath,
 			'styles' => [ 'styles.less' ],
-		], [
 			'lessVars' => [ 'foo' => '2px', 'Foo' => '#eeeeee' ]
 		] );
 		$module->setName( 'test.less' );
@@ -355,27 +354,48 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		$this->assertStringEqualsFile( $basePath . '/styles.css', $styles['all'] );
 	}
 
+	public function provideGetVersionHash() {
+		$a = [];
+		$b = [
+			'lessVars' => [ 'key' => 'value' ],
+		];
+		yield 'with and without Less variables' => [ $a, $b, false ];
+
+		$a = [
+			'lessVars' => [ 'key' => 'value1' ],
+		];
+		$b = [
+			'lessVars' => [ 'key' => 'value2' ],
+		];
+		yield 'different Less variables' => [ $a, $b, false ];
+
+		$x = [
+			'lessVars' => [ 'key' => 'value' ],
+		];
+		yield 'identical Less variables' => [ $x, $x, true ];
+	}
+
 	/**
+	 * @dataProvider provideGetVersionHash
 	 * @covers ResourceLoaderFileModule::getDefinitionSummary
 	 * @covers ResourceLoaderFileModule::getFileHashes
 	 */
-	public function testGetVersionHash() {
+	public function testGetVersionHash( $a, $b, $isEqual ) {
 		$context = $this->getResourceLoaderContext();
 
-		// Less variables
-		$module = new ResourceLoaderFileTestModule();
-		$version = $module->getVersionHash( $context );
-		$module = new ResourceLoaderFileTestModule( [], [
-			'lessVars' => [ 'key' => 'value' ],
-		] );
-		$this->assertNotEquals(
-			$version,
-			$module->getVersionHash( $context ),
-			'Using less variables is significant'
+		$moduleA = new ResourceLoaderFileTestModule( $a );
+		$versionA = $moduleA->getVersionHash( $context );
+		$moduleB = new ResourceLoaderFileTestModule( $b );
+		$versionB = $moduleB->getVersionHash( $context );
+
+		$this->assertSame(
+			$isEqual,
+			( $versionA === $versionB ),
+			'Whether versions hashes are equal'
 		);
 	}
 
-	public function providerGetScriptPackageFiles() {
+	public function provideGetScriptPackageFiles() {
 		$basePath = __DIR__ . '/../../data/resourceloader';
 		$base = [ 'localBasePath' => $basePath ];
 		$commentScript = file_get_contents( "$basePath/script-comment.js" );
@@ -559,7 +579,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	}
 
 	/**
-	 * @dataProvider providerGetScriptPackageFiles
+	 * @dataProvider provideGetScriptPackageFiles
 	 * @covers ResourceLoaderFileModule::getScript
 	 * @covers ResourceLoaderFileModule::getPackageFiles
 	 * @covers ResourceLoaderFileModule::expandPackageFiles
