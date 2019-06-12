@@ -16,12 +16,22 @@ class SqlSearchResultSet extends SearchResultSet {
 	/** @var int|null Total number of hits for $terms */
 	protected $totalHits;
 
-	function __construct( IResultWrapper $resultSet, $terms, $total = null ) {
+	/**
+	 * @param IResultWrapper $resultSet
+	 * @param string[] $terms
+	 * @param int|null $total
+	 */
+	function __construct( IResultWrapper $resultSet, array $terms, $total = null ) {
+		parent::__construct();
 		$this->resultSet = $resultSet;
 		$this->terms = $terms;
 		$this->totalHits = $total;
 	}
 
+	/**
+	 * @return string[]
+	 * @deprecated since 1.34
+	 */
 	function termMatches() {
 		return $this->terms;
 	}
@@ -42,10 +52,15 @@ class SqlSearchResultSet extends SearchResultSet {
 		if ( $this->results === null ) {
 			$this->results = [];
 			$this->resultSet->rewind();
+			$terms = \MediaWiki\MediaWikiServices::getInstance()->getContentLanguage()
+				->convertForSearchResult( $this->terms );
 			while ( ( $row = $this->resultSet->fetchObject() ) !== false ) {
-				$this->results[] = SearchResult::newFromTitle(
-					Title::makeTitle( $row->page_namespace, $row->page_title ), $this
+				$result = new SqlSearchResult(
+					Title::makeTitle( $row->page_namespace, $row->page_title ),
+					$terms
 				);
+				$this->augmentResult( $result );
+				$this->results[] = $result;
 			}
 		}
 		return $this->results;

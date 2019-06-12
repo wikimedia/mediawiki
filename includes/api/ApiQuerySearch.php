@@ -20,8 +20,6 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Query module to perform full text search within wiki titles and content
  *
@@ -145,9 +143,6 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			}
 		}
 
-		// Add the search results to the result
-		$terms = MediaWikiServices::getInstance()->getContentLanguage()->
-			convertForSearchResult( $matches->termMatches() );
 		$titles = [];
 		$count = 0;
 
@@ -163,7 +158,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			}
 
 			if ( $resultPageSet === null ) {
-				$vals = $this->getSearchResultData( $result, $prop, $terms );
+				$vals = $this->getSearchResultData( $result, $prop );
 				if ( $vals ) {
 					// Add item to results and see whether it fits
 					$fit = $apiResult->addValue( [ 'query', $this->getModuleName() ], null, $vals );
@@ -184,13 +179,13 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		// Interwiki results inside main result set
 		$canAddInterwiki = (bool)$params['enablerewrites'] && ( $resultPageSet === null );
 		if ( $canAddInterwiki ) {
-			$this->addInterwikiResults( $matches, $apiResult, $prop, $terms, 'additional',
+			$this->addInterwikiResults( $matches, $apiResult, $prop, 'additional',
 				SearchResultSet::INLINE_RESULTS );
 		}
 
 		// Interwiki results outside main result set
 		if ( $interwiki && $resultPageSet === null ) {
-			$this->addInterwikiResults( $matches, $apiResult, $prop, $terms, 'interwiki',
+			$this->addInterwikiResults( $matches, $apiResult, $prop, 'interwiki',
 				SearchResultSet::SECONDARY_RESULTS );
 		}
 
@@ -217,10 +212,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	 * Assemble search result data.
 	 * @param SearchResult $result Search result
 	 * @param array        $prop Props to extract (as keys)
-	 * @param array        $terms Terms list
 	 * @return array|null Result data or null if result is broken in some way.
 	 */
-	private function getSearchResultData( SearchResult $result, $prop, $terms ) {
+	private function getSearchResultData( SearchResult $result, $prop ) {
 		// Silently skip broken and missing titles
 		if ( $result->isBrokenTitle() || $result->isMissingRevision() ) {
 			return null;
@@ -239,7 +233,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			$vals['wordcount'] = $result->getWordCount();
 		}
 		if ( isset( $prop['snippet'] ) ) {
-			$vals['snippet'] = $result->getTextSnippet( $terms );
+			$vals['snippet'] = $result->getTextSnippet();
 		}
 		if ( isset( $prop['timestamp'] ) ) {
 			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $result->getTimestamp() );
@@ -287,14 +281,13 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	 * @param SearchResultSet $matches
 	 * @param ApiResult       $apiResult
 	 * @param array           $prop Props to extract (as keys)
-	 * @param array           $terms Terms list
 	 * @param string          $section Section name where results would go
 	 * @param int             $type Interwiki result type
 	 * @return int|null Number of total hits in the data or null if none was produced
 	 */
 	private function addInterwikiResults(
 		SearchResultSet $matches, ApiResult $apiResult, $prop,
-		$terms, $section, $type
+		$section, $type
 	) {
 		$totalhits = null;
 		if ( $matches->hasInterwikiResults( $type ) ) {
@@ -304,7 +297,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 				foreach ( $interwikiMatches as $result ) {
 					$title = $result->getTitle();
-					$vals = $this->getSearchResultData( $result, $prop, $terms );
+					$vals = $this->getSearchResultData( $result, $prop );
 
 					$vals['namespace'] = $result->getInterwikiNamespaceText();
 					$vals['title'] = $title->getText();

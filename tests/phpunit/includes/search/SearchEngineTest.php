@@ -190,7 +190,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		$match = $res->getIterator()->current();
 		$snippet = "A <span class='searchmatch'>" . $phrase . "</span>";
 		$this->assertStringStartsWith( $snippet,
-			$match->getTextSnippet( $res->termMatches() ),
+			$match->getTextSnippet(),
 			"Highlight a phrase search" );
 	}
 

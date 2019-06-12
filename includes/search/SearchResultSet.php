@@ -96,6 +96,7 @@ class SearchResultSet implements Countable, IteratorAggregate {
 	 * STUB
 	 *
 	 * @return string[]
+	 * @deprecated since 1.34 (use SqlSearchResult)
 	 */
 	function termMatches() {
 		return [];

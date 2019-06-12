@@ -117,12 +117,9 @@ class BasicSearchResultSetWidget {
 	 * @return string HTML
 	 */
 	protected function renderResultSet( SearchResultSet $resultSet, $offset ) {
-		$terms = MediaWikiServices::getInstance()->getContentLanguage()->
-			convertForSearchResult( $resultSet->termMatches() );
-
 		$hits = [];
 		foreach ( $resultSet as $result ) {
-			$hits[] = $this->resultWidget->render( $result, $terms, $offset++ );
+			$hits[] = $this->resultWidget->render( $result, $offset++ );
 		}
 
 		return "<ul class='mw-search-results'>" . implode( '', $hits ) . "</ul>";

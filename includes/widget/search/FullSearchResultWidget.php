@@ -31,11 +31,10 @@ class FullSearchResultWidget implements SearchResultWidget {
 
 	/**
 	 * @param SearchResult $result The result to render
-	 * @param string[] $terms Terms to be highlighted (@see SearchResult::getTextSnippet)
 	 * @param int $position The result position, including offset
 	 * @return string HTML
 	 */
-	public function render( SearchResult $result, $terms, $position ) {
+	public function render( SearchResult $result, $position ) {
 		// If the page doesn't *exist*... our search index is out of date.
 		// The least confusing at this point is to drop the result.
 		// You may get less results, but... on well. :P
@@ -43,7 +42,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 			return '';
 		}
 
-		$link = $this->generateMainLinkHtml( $result, $terms, $position );
+		$link = $this->generateMainLinkHtml( $result, $position );
 		// If page content is not readable, just return ths title.
 		// This is not quite safe, but better than showing excerpts from
 		// non-readable pages. Note that hiding the entry entirely would
@@ -63,7 +62,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 			$this->specialPage->getUser()
 		);
 		list( $file, $desc, $thumb ) = $this->generateFileHtml( $result );
-		$snippet = $result->getTextSnippet( $terms );
+		$snippet = $result->getTextSnippet();
 		if ( $snippet ) {
 			$extract = "<div class='searchresult'>$snippet</div>";
 		} else {
@@ -80,6 +79,9 @@ class FullSearchResultWidget implements SearchResultWidget {
 			$html = null;
 			$score = '';
 			$related = '';
+			// TODO: remove this instanceof and always pass [], let implementors do the cast if
+			// they want to be SearchDatabase specific
+			$terms = $result instanceof \SqlSearchResult ? $result->getTermMatches() : [];
 			if ( !Hooks::run( 'ShowSearchHit', [
 				$this->specialPage, $result, $terms,
 				&$link, &$redirect, &$section, &$extract,
@@ -121,11 +123,10 @@ class FullSearchResultWidget implements SearchResultWidget {
 	 * title with highlighted words).
 	 *
 	 * @param SearchResult $result
-	 * @param string[] $terms
 	 * @param int $position
 	 * @return string HTML
 	 */
-	protected function generateMainLinkHtml( SearchResult $result, $terms, $position ) {
+	protected function generateMainLinkHtml( SearchResult $result, $position ) {
 		$snippet = $result->getTitleSnippet();
 		if ( $snippet === '' ) {
 			$snippet = null;
@@ -139,7 +140,9 @@ class FullSearchResultWidget implements SearchResultWidget {
 
 		$attributes = [ 'data-serp-pos' => $position ];
 		Hooks::run( 'ShowSearchHitTitle',
-			[ &$title, &$snippet, $result, $terms, $this->specialPage, &$query, &$attributes ] );
+			[ &$title, &$snippet, $result,
+			  $result instanceof \SqlSearchResult ? $result->getTermMatches() : [],
+			  $this->specialPage, &$query, &$attributes ] );
 
 		$link = $this->linkRenderer->makeLink(
 			$title,

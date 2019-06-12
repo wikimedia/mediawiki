@@ -308,6 +308,18 @@ because of Phabricator reports.
   instead.
 * Sanitizer::attributeWhitelist() and Sanitizer::setupAttributeWhitelist()
   have been deprecated; they will be made private in the future.
+* SearchResult::termMatches() method is deprecated. It was unreliable because
+  only populated by few search engine implementations. Use
+  SqlSearchResult::getTermMatches() if really needed.
+* SearchResult::getTextSnippet( $terms ) the $terms param is being deprecated
+  and should no longer be passed. Search engine implemenations should be
+  responsible for carrying relevant information needed for highlighting with
+  their own SearchResultSet/SearchResult sub-classes.
+* SearchEngine::$searchTerms protected field is deprecated. Moved to
+  SearchDatabase.
+* The use of the $terms param in the ShowSearchHit and ShowSearchHitTitle
+  hooks is highly discouraged as it's only populated by SearchDatabase search
+  engines.
 
 === Other changes in 1.34 ===
 * …

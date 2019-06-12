@@ -147,26 +147,11 @@ class SearchResult {
 	}
 
 	/**
-	 * @param string[] $terms Terms to highlight
+	 * @param string[] $terms Terms to highlight (this parameter is deprecated and ignored)
 	 * @return string Highlighted text snippet, null (and not '') if not supported
 	 */
-	function getTextSnippet( $terms ) {
-		global $wgAdvancedSearchHighlighting;
-		$this->initText();
-
-		// TODO: make highliter take a content object. Make ContentHandler a factory for SearchHighliter.
-		list( $contextlines, $contextchars ) = $this->searchEngine->userHighlightPrefs();
-
-		$h = new SearchHighlighter();
-		if ( count( $terms ) > 0 ) {
-			if ( $wgAdvancedSearchHighlighting ) {
-				return $h->highlightText( $this->mText, $terms, $contextlines, $contextchars );
-			} else {
-				return $h->highlightSimple( $this->mText, $terms, $contextlines, $contextchars );
-			}
-		} else {
-			return $h->highlightNone( $this->mText, $contextlines, $contextchars );
-		}
+	function getTextSnippet( $terms = [] ) {
+		return '';
 	}
 
 	/**
