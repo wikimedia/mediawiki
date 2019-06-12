@@ -1120,11 +1120,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// for all queries within a request. Use cases:
 		// - Treating these as writes would trigger ChronologyProtector (see method doc).
 		// - We use this method to reject writes to replicas, but we need to allow
-		//   use of transactions on replicas for read snapshots. This fine given
+		//   use of transactions on replicas for read snapshots. This is fine given
 		//   that transactions by themselves don't make changes, only actual writes
 		//   within the transaction matter, which we still detect.
 		return !preg_match(
-			'/^(?:SELECT|BEGIN|ROLLBACK|COMMIT|SAVEPOINT|RELEASE|SET|SHOW|EXPLAIN|\(SELECT)\b/i',
+			'/^(?:SELECT|BEGIN|ROLLBACK|COMMIT|SAVEPOINT|RELEASE|SET|SHOW|EXPLAIN|USE|\(SELECT)\b/i',
 			$sql
 		);
 	}
