@@ -9,8 +9,11 @@ use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
+use MediaWiki\Rest\Validator\Validator;
 use MediaWikiTestCase;
+use Psr\Container\ContainerInterface;
 use User;
+use Wikimedia\ObjectFactory;
 
 /**
  * @group Database
@@ -21,7 +24,7 @@ use User;
  * @covers \MediaWiki\Rest\BasicAccess\MWBasicRequestAuthorizer
  */
 class MWBasicRequestAuthorizerTest extends MediaWikiTestCase {
-	private function createRouter( $userRights ) {
+	private function createRouter( $userRights, $request ) {
 		$user = User::newFromName( 'Test user' );
 		// Don't allow the rights to everybody so that user rights kick in.
 		$this->mergeMwGlobalArrayValue( 'wgGroupPermissions', [ '*' => $userRights ] );
@@ -34,18 +37,25 @@ class MWBasicRequestAuthorizerTest extends MediaWikiTestCase {
 
 		global $IP;
 
+		$objectFactory = new ObjectFactory(
+			$this->getMockForAbstractClass( ContainerInterface::class )
+		);
+
 		return new Router(
 			[ "$IP/tests/phpunit/unit/includes/Rest/testRoutes.json" ],
 			[],
 			'/rest',
 			new \EmptyBagOStuff(),
 			new ResponseFactory(),
-			new MWBasicAuthorizer( $user, MediaWikiServices::getInstance()->getPermissionManager() ) );
+			new MWBasicAuthorizer( $user, MediaWikiServices::getInstance()->getPermissionManager() ),
+			$objectFactory,
+			new Validator( $objectFactory, $request, $user )
+		);
 	}
 
 	public function testReadDenied() {
-		$router = $this->createRouter( [ 'read' => false ] );
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/user/joe/hello' ) ] );
+		$router = $this->createRouter( [ 'read' => false ], $request );
 		$response = $router->execute( $request );
 		$this->assertSame( 403, $response->getStatusCode() );
 
@@ -56,8 +66,8 @@ class MWBasicRequestAuthorizerTest extends MediaWikiTestCase {
 	}
 
 	public function testReadAllowed() {
-		$router = $this->createRouter( [ 'read' => true ] );
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/user/joe/hello' ) ] );
+		$router = $this->createRouter( [ 'read' => true ], $request );
 		$response = $router->execute( $request );
 		$this->assertSame( 200, $response->getStatusCode() );
 	}
@@ -75,10 +85,10 @@ class MWBasicRequestAuthorizerTest extends MediaWikiTestCase {
 	}
 
 	public function testWriteDenied() {
-		$router = $this->createRouter( [ 'read' => true, 'writeapi' => false ] );
 		$request = new RequestData( [
 			'uri' => new Uri( '/rest/mock/MWBasicRequestAuthorizerTest/write' )
 		] );
+		$router = $this->createRouter( [ 'read' => true, 'writeapi' => false ], $request );
 		$response = $router->execute( $request );
 		$this->assertSame( 403, $response->getStatusCode() );
 
@@ -89,10 +99,10 @@ class MWBasicRequestAuthorizerTest extends MediaWikiTestCase {
 	}
 
 	public function testWriteAllowed() {
-		$router = $this->createRouter( [ 'read' => true, 'writeapi' => true ] );
 		$request = new RequestData( [
 			'uri' => new Uri( '/rest/mock/MWBasicRequestAuthorizerTest/write' )
 		] );
+		$router = $this->createRouter( [ 'read' => true, 'writeapi' => true ], $request );
 		$response = $router->execute( $request );
 
 		$this->assertSame( 200, $response->getStatusCode() );

@@ -9,10 +9,15 @@ use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\EntryPoint;
 use MediaWiki\Rest\RequestData;
+use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
+use MediaWiki\Rest\Validator\Validator;
+use Psr\Container\ContainerInterface;
 use RequestContext;
 use WebResponse;
+use Wikimedia\ObjectFactory;
+use User;
 
 /**
  * @covers \MediaWiki\Rest\EntryPoint
@@ -21,8 +26,12 @@ use WebResponse;
 class EntryPointTest extends \MediaWikiTestCase {
 	private static $mockHandler;
 
-	private function createRouter() {
+	private function createRouter( RequestInterface $request ) {
 		global $IP;
+
+		$objectFactory = new ObjectFactory(
+			$this->getMockForAbstractClass( ContainerInterface::class )
+		);
 
 		return new Router(
 			[ "$IP/tests/phpunit/unit/includes/Rest/testRoutes.json" ],
@@ -30,7 +39,10 @@ class EntryPointTest extends \MediaWikiTestCase {
 			'/rest',
 			new EmptyBagOStuff(),
 			new ResponseFactory(),
-			new StaticBasicAuthorizer() );
+			new StaticBasicAuthorizer(),
+			$objectFactory,
+			new Validator( $objectFactory, $request, new User )
+		);
 	}
 
 	private function createWebResponse() {
@@ -58,11 +70,12 @@ class EntryPointTest extends \MediaWikiTestCase {
 				[ 'Foo: Bar', true, null ]
 			);
 
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/EntryPoint/header' ) ] );
 		$entryPoint = new EntryPoint(
 			RequestContext::getMain(),
-			new RequestData( [ 'uri' => new Uri( '/rest/mock/EntryPoint/header' ) ] ),
+			$request,
 			$webResponse,
-			$this->createRouter() );
+			$this->createRouter( $request ) );
 		$entryPoint->execute();
 		$this->assertTrue( true );
 	}
@@ -83,11 +96,12 @@ class EntryPointTest extends \MediaWikiTestCase {
 	 * Make sure EntryPoint rewinds a seekable body stream before reading.
 	 */
 	public function testBodyRewind() {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/EntryPoint/bodyRewind' ) ] );
 		$entryPoint = new EntryPoint(
 			RequestContext::getMain(),
-			new RequestData( [ 'uri' => new Uri( '/rest/mock/EntryPoint/bodyRewind' ) ] ),
+			$request,
 			$this->createWebResponse(),
-			$this->createRouter() );
+			$this->createRouter( $request ) );
 		ob_start();
 		$entryPoint->execute();
 		$this->assertSame( 'hello', ob_get_clean() );
