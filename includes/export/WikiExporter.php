@@ -320,7 +320,7 @@ class WikiExporter {
 			}
 
 			$lastLogId = $this->outputLogStream( $result );
-		};
+		}
 	}
 
 	/**

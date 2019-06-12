@@ -76,7 +76,7 @@ class ImportTextFiles extends Maintenance {
 					$this->fatalError( "Fatal error: The file '$arg' does not exist!" );
 				}
 			}
-		};
+		}
 
 		$count = count( $files );
 		$this->output( "Importing $count pages...\n" );

@@ -109,7 +109,7 @@ class LayeredParameterizedPassword extends ParameterizedPassword {
 		foreach ( $this->config['types'] as $i => $type ) {
 			if ( $i == 0 ) {
 				continue;
-			};
+			}
 
 			// Construct pseudo-hash based on params and arguments
 			/** @var ParameterizedPassword $passObj */

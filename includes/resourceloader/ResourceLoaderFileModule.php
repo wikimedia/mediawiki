@@ -617,7 +617,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			'raw',
 		] as $member ) {
 			$options[$member] = $this->{$member};
-		};
+		}
 
 		$summary[] = [
 			'options' => $options,

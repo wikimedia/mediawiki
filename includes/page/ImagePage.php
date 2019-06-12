@@ -935,7 +935,7 @@ EOT
 				) . "\n"
 			);
 
-		};
+		}
 		$out->addHTML( Html::closeElement( 'ul' ) . "\n" );
 		$res->free();
 
