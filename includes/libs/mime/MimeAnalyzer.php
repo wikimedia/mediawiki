@@ -849,7 +849,7 @@ EOT;
 		$callback = $this->guessCallback;
 		if ( $callback ) {
 			$callback( $this, $head, $tail, $file, $mime /* by reference */ );
-		};
+		}
 
 		return $mime;
 	}

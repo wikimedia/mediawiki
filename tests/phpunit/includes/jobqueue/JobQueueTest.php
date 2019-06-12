@@ -48,7 +48,7 @@ class JobQueueTest extends MediaWikiTestCase {
 			} catch ( MWException $e ) {
 				// unsupported?
 				// @todo What if it was another error?
-			};
+			}
 		}
 	}
 
