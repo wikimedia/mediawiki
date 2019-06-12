@@ -160,12 +160,13 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 class ResourceLoaderFileTestModule extends ResourceLoaderFileModule {
 	protected $lessVars = [];
 
-	public function __construct( $options = [], $test = [] ) {
-		parent::__construct( $options );
-
-		foreach ( $test as $key => $value ) {
-			$this->$key = $value;
+	public function __construct( $options = [] ) {
+		if ( isset( $options['lessVars'] ) ) {
+			$this->lessVars = $options['lessVars'];
+			unset( $options['lessVars'] );
 		}
+
+		parent::__construct( $options );
 	}
 
 	public function getLessVars( ResourceLoaderContext $context ) {
