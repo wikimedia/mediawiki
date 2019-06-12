@@ -1159,26 +1159,40 @@ class DatabaseBlock extends AbstractBlock {
 	 *     not be the same as the target you gave if you used $vagueTarget!
 	 */
 	public static function newFromTarget( $specificTarget, $vagueTarget = null, $fromMaster = false ) {
+		$blocks = self::newListFromTarget( $specificTarget, $vagueTarget, $fromMaster );
+		return self::chooseMostSpecificBlock( $blocks );
+	}
+
+	/**
+	 * This is similar to DatabaseBlock::newFromTarget, but it returns all the relevant blocks.
+	 *
+	 * @since 1.34
+	 * @param string|User|int|null $specificTarget
+	 * @param string|User|int|null $vagueTarget
+	 * @param bool $fromMaster
+	 * @return DatabaseBlock[] Any relevant blocks
+	 */
+	public static function newListFromTarget(
+		$specificTarget,
+		$vagueTarget = null,
+		$fromMaster = false
+	) {
 		list( $target, $type ) = self::parseTarget( $specificTarget );
 		if ( $type == self::TYPE_ID || $type == self::TYPE_AUTO ) {
-			return self::newFromID( $target );
-
+			$block = self::newFromID( $target );
+			return $block ? [ $block ] : [];
 		} elseif ( $target === null && $vagueTarget == '' ) {
 			# We're not going to find anything useful here
 			# Be aware that the == '' check is explicit, since empty values will be
 			# passed by some callers (T31116)
-			return null;
-
+			return [];
 		} elseif ( in_array(
 			$type,
 			[ self::TYPE_USER, self::TYPE_IP, self::TYPE_RANGE, null ] )
 		) {
-			$blocks = self::newLoad( $target, $type, $fromMaster, $vagueTarget );
-			if ( !empty( $blocks ) ) {
-				return self::chooseMostSpecificBlock( $blocks );
-			}
+			return self::newLoad( $target, $type, $fromMaster, $vagueTarget );
 		}
-		return null;
+		return [];
 	}
 
 	/**
