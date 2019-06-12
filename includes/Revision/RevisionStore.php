@@ -1644,7 +1644,7 @@ class RevisionStore
 			throw new RevisionAccessException(
 				'Main slot of revision ' . $revId . ' not found in database!'
 			);
-		};
+		}
 
 		return $slots;
 	}

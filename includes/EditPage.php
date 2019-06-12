@@ -4130,7 +4130,7 @@ ERROR;
 
 		if ( !Hooks::run( 'EditPageBeforeEditToolbar', [ &$toolbar ] ) ) {
 			return null;
-		};
+		}
 		// Don't add a pointless `<div>` to the page unless a hook caller populated it
 		return ( $toolbar === $startingToolbar ) ? null : $toolbar;
 	}

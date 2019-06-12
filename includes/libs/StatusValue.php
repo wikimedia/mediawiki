@@ -107,7 +107,7 @@ class StatusValue {
 			} else {
 				$errorsOnlyStatusValue->errors[] = $item;
 			}
-		};
+		}
 
 		return [ $errorsOnlyStatusValue, $warningsOnlyStatusValue ];
 	}

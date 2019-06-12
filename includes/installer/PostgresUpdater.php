@@ -1071,7 +1071,7 @@ END;
 			$this->db->query( $command );
 		} else {
 			$this->output( "...foreign key constraint on '$table.$field' already does not exist\n" );
-		};
+		}
 	}
 
 	protected function changeFkeyDeferrable( $table, $field, $clause ) {
@@ -1235,7 +1235,7 @@ END;
 		if ( $this->updateRowExists( 'patch-textsearch_bug66650.sql' ) ) {
 			$this->output( "...T68650 already fixed or not applicable.\n" );
 			return;
-		};
+		}
 		$this->applyPatch( 'patch-textsearch_bug66650.sql', false,
 			'Rebuilding text search for T68650' );
 	}
