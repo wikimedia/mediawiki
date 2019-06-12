@@ -268,11 +268,6 @@ OO.inheritClass( FilterTagMultiselectWidget, OO.ui.MenuTagMultiselectWidget );
 /* Methods */
 
 /**
- * Override parent method to avoid unnecessary resize events.
- */
-FilterTagMultiselectWidget.prototype.updateIfHeightChanged = function () { };
-
-/**
  * Respond to view select widget choose event
  *
  * @param {OO.ui.ButtonOptionWidget} buttonOptionWidget Chosen widget
