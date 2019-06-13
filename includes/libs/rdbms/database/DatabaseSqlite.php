@@ -216,7 +216,7 @@ class DatabaseSqlite extends Database {
 			# Enforce LIKE to be case sensitive, just like MySQL
 			$this->query( 'PRAGMA case_sensitive_like = 1' );
 
-			$sync = $this->sessionVars['synchronous'] ?? null;
+			$sync = $this->connectionVariables['synchronous'] ?? null;
 			if ( in_array( $sync, [ 'EXTRA', 'FULL', 'NORMAL' ], true ) ) {
 				$this->query( "PRAGMA synchronous = $sync" );
 			}
