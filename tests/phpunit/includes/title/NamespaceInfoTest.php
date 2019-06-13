@@ -402,7 +402,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param $contentNamespaces To pass to constructor
+	 * @param mixed $contentNamespaces To pass to constructor
 	 * @param array $expected
 	 * @dataProvider provideGetContentNamespaces
 	 * @covers NamespaceInfo::getContentNamespaces

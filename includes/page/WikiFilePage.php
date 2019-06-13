@@ -152,7 +152,7 @@ class WikiFilePage extends WikiPage {
 		$size = $this->mFile->getSize();
 
 		/**
-		 * @var $file File
+		 * @var File $file
 		 */
 		foreach ( $dupes as $index => $file ) {
 			$key = $file->getRepoName() . ':' . $file->getName();

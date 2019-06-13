@@ -98,9 +98,6 @@ class MigrateArchiveText extends LoggedUpdateMaintenance {
 
 						if ( $wgDefaultExternalStore ) {
 							$data = ExternalStore::insertToDefault( $data );
-							if ( !$data ) {
-								throw new MWException( "Unable to store text to external storage" );
-							}
 							if ( $flags ) {
 								$flags .= ',';
 							}

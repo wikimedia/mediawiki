@@ -1464,7 +1464,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @param string $kClass
 	 * @param float $elapsed Seconds spent regenerating the value
 	 * @param float $lockTSE
-	 * @param $hasLock bool
+	 * @param bool $hasLock
 	 * @return bool Whether it is OK to proceed with a key set operation
 	 */
 	private function checkAndSetCooloff( $key, $kClass, $elapsed, $lockTSE, $hasLock ) {

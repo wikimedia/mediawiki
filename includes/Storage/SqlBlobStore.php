@@ -220,9 +220,6 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 			if ( $this->useExternalStore ) {
 				// Store and get the URL
 				$data = ExternalStore::insertToDefault( $data );
-				if ( !$data ) {
-					throw new BlobAccessException( "Failed to store text to external storage" );
-				}
 				if ( $flags ) {
 					$flags .= ',';
 				}
