@@ -45,6 +45,7 @@ class APCUBagOStuff extends BagOStuff {
 	const KEY_SUFFIX = ':4';
 
 	public function __construct( array $params = [] ) {
+		$params['segmentationSize'] = $params['segmentationSize'] ?? INF;
 		parent::__construct( $params );
 		// The extension serializer is still buggy, unlike "php" and "igbinary"
 		$this->nativeSerialize = ( ini_get( 'apc.serializer' ) !== 'default' );
@@ -54,7 +55,7 @@ class APCUBagOStuff extends BagOStuff {
 		$casToken = null;
 
 		$blob = apcu_fetch( $key . self::KEY_SUFFIX );
-		$value = $this->unserialize( $blob );
+		$value = $this->nativeSerialize ? $blob : $this->unserialize( $blob );
 		if ( $value !== false ) {
 			$casToken = $blob; // don't bother hashing this
 		}
@@ -62,10 +63,10 @@ class APCUBagOStuff extends BagOStuff {
 		return $value;
 	}
 
-	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
+	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
 		return apcu_store(
 			$key . self::KEY_SUFFIX,
-			$this->serialize( $value ),
+			$this->nativeSerialize ? $value : $this->serialize( $value ),
 			$exptime
 		);
 	}
@@ -73,12 +74,12 @@ class APCUBagOStuff extends BagOStuff {
 	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
 		return apcu_add(
 			$key . self::KEY_SUFFIX,
-			$this->serialize( $value ),
+			$this->nativeSerialize ? $value : $this->serialize( $value ),
 			$exptime
 		);
 	}
 
-	public function delete( $key, $flags = 0 ) {
+	protected function doDelete( $key, $flags = 0 ) {
 		apcu_delete( $key . self::KEY_SUFFIX );
 
 		return true;
@@ -100,21 +101,5 @@ class APCUBagOStuff extends BagOStuff {
 		} else {
 			return false;
 		}
-	}
-
-	protected function serialize( $value ) {
-		if ( $this->nativeSerialize ) {
-			return $value;
-		}
-
-		return $this->isInteger( $value ) ? (int)$value : serialize( $value );
-	}
-
-	protected function unserialize( $value ) {
-		if ( $this->nativeSerialize ) {
-			return $value;
-		}
-
-		return $this->isInteger( $value ) ? (int)$value : unserialize( $value );
 	}
 }

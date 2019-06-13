@@ -1324,6 +1324,7 @@ $wgAutoloadLocalClasses = [
 	'SearchUpdate' => __DIR__ . '/includes/deferred/SearchUpdate.php',
 	'SectionProfileCallback' => __DIR__ . '/includes/profiler/SectionProfileCallback.php',
 	'SectionProfiler' => __DIR__ . '/includes/profiler/SectionProfiler.php',
+	'SerializedValueContainer' => __DIR__ . '/includes/libs/objectcache/serialized/SerializedValueContainer.php',
 	'SevenZipStream' => __DIR__ . '/maintenance/includes/SevenZipStream.php',
 	'ShiConverter' => __DIR__ . '/languages/classes/LanguageShi.php',
 	'ShortPagesPage' => __DIR__ . '/includes/specials/SpecialShortpages.php',

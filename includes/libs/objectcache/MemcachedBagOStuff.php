@@ -26,14 +26,12 @@
  *
  * @ingroup Cache
  */
-class MemcachedBagOStuff extends BagOStuff {
-	/** @var MemcachedClient|Memcached */
-	protected $client;
-
+abstract class MemcachedBagOStuff extends BagOStuff {
 	function __construct( array $params ) {
 		parent::__construct( $params );
 
 		$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_BE; // unreliable
+		$this->segmentationSize = $params['maxPreferedKeySize'] ?? 917504; // < 1MiB
 	}
 
 	/**
@@ -48,55 +46,6 @@ class MemcachedBagOStuff extends BagOStuff {
 			'connect_timeout' => 0.5,
 			'debug' => false
 		];
-	}
-
-	protected function doGet( $key, $flags = 0, &$casToken = null ) {
-		return $this->client->get( $this->validateKeyEncoding( $key ), $casToken );
-	}
-
-	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
-		return $this->client->set( $this->validateKeyEncoding( $key ), $value,
-			$this->fixExpiry( $exptime ) );
-	}
-
-	protected function cas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
-		return $this->client->cas( $casToken, $this->validateKeyEncoding( $key ),
-			$value, $this->fixExpiry( $exptime ) );
-	}
-
-	public function delete( $key, $flags = 0 ) {
-		return $this->client->delete( $this->validateKeyEncoding( $key ) );
-	}
-
-	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
-		return $this->client->add( $this->validateKeyEncoding( $key ), $value,
-			$this->fixExpiry( $exptime ) );
-	}
-
-	public function incr( $key, $value = 1 ) {
-		$n = $this->client->incr( $this->validateKeyEncoding( $key ), $value );
-
-		return ( $n !== false && $n !== null ) ? $n : false;
-	}
-
-	public function decr( $key, $value = 1 ) {
-		$n = $this->client->decr( $this->validateKeyEncoding( $key ), $value );
-
-		return ( $n !== false && $n !== null ) ? $n : false;
-	}
-
-	public function changeTTL( $key, $exptime = 0, $flags = 0 ) {
-		return $this->client->touch( $this->validateKeyEncoding( $key ),
-			$this->fixExpiry( $exptime ) );
-	}
-
-	/**
-	 * Get the underlying client object. This is provided for debugging
-	 * purposes.
-	 * @return MemcachedClient|Memcached
-	 */
-	public function getClient() {
-		return $this->client;
 	}
 
 	/**

@@ -1,6 +1,7 @@
 <?php
 
 use Wikimedia\ScopedCallback;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @author Matthias Mullie <mmullie@wikimedia.org>
@@ -98,13 +99,13 @@ class BagOStuffTest extends MediaWikiTestCase {
 			$this->cache->merge( $key, $callback, 5, 1 ),
 			'Non-blocking merge (CAS)'
 		);
+
 		if ( $this->cache instanceof MultiWriteBagOStuff ) {
-			$wrapper = \Wikimedia\TestingAccessWrapper::newFromObject( $this->cache );
-			$n = count( $wrapper->caches );
+			$wrapper = TestingAccessWrapper::newFromObject( $this->cache );
+			$this->assertEquals( count( $wrapper->caches ), $calls );
 		} else {
-			$n = 1;
+			$this->assertEquals( 1, $calls );
 		}
-		$this->assertEquals( $n, $calls );
 	}
 
 	/**
@@ -115,10 +116,17 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$value = 'meow';
 
 		$this->cache->add( $key, $value, 5 );
-		$this->assertTrue( $this->cache->changeTTL( $key, 5 ) );
+		$this->assertEquals( $value, $this->cache->get( $key ) );
+		$this->assertTrue( $this->cache->changeTTL( $key, 10 ) );
+		$this->assertTrue( $this->cache->changeTTL( $key, 10 ) );
+		$this->assertTrue( $this->cache->changeTTL( $key, 0 ) );
 		$this->assertEquals( $this->cache->get( $key ), $value );
 		$this->cache->delete( $key );
-		$this->assertFalse( $this->cache->changeTTL( $key, 5 ) );
+		$this->assertFalse( $this->cache->changeTTL( $key, 15 ) );
+
+		$this->cache->add( $key, $value, 5 );
+		$this->assertTrue( $this->cache->changeTTL( $key, time() - 3600 ) );
+		$this->assertFalse( $this->cache->get( $key ) );
 	}
 
 	/**
@@ -126,7 +134,9 @@ class BagOStuffTest extends MediaWikiTestCase {
 	 */
 	public function testAdd() {
 		$key = $this->cache->makeKey( self::TEST_KEY );
+		$this->assertFalse( $this->cache->get( $key ) );
 		$this->assertTrue( $this->cache->add( $key, 'test', 5 ) );
+		$this->assertFalse( $this->cache->add( $key, 'test', 5 ) );
 	}
 
 	/**
@@ -237,18 +247,71 @@ class BagOStuffTest extends MediaWikiTestCase {
 			$this->cache->makeKey( 'test-6' ) => 'ever'
 		];
 
-		$this->cache->setMulti( $map, 5 );
+		$this->assertTrue( $this->cache->setMulti( $map ) );
 		$this->assertEquals(
 			$map,
 			$this->cache->getMulti( array_keys( $map ) )
 		);
 
-		$this->assertTrue( $this->cache->deleteMulti( array_keys( $map ), 5 ) );
+		$this->assertTrue( $this->cache->deleteMulti( array_keys( $map ) ) );
 
+		$this->assertEquals(
+			[],
+			$this->cache->getMulti( array_keys( $map ), BagOStuff::READ_LATEST )
+		);
 		$this->assertEquals(
 			[],
 			$this->cache->getMulti( array_keys( $map ) )
 		);
+	}
+
+	/**
+	 * @covers BagOStuff::get
+	 * @covers BagOStuff::getMulti
+	 * @covers BagOStuff::merge
+	 * @covers BagOStuff::delete
+	 */
+	public function testSetSegmentable() {
+		$key = $this->cache->makeKey( self::TEST_KEY );
+		$tiny = 418;
+		$small = wfRandomString( 32 );
+		// 64 * 8 * 32768 = 16777216 bytes
+		$big = str_repeat( wfRandomString( 32 ) . '-' . wfRandomString( 32 ), 32768 );
+
+		$callback = function ( $cache, $key, $oldValue ) {
+			return $oldValue . '!';
+		};
+
+		foreach ( [ $tiny, $small, $big ] as $value ) {
+			$this->cache->set( $key, $value, 10, BagOStuff::WRITE_ALLOW_SEGMENTS );
+			$this->assertEquals( $value, $this->cache->get( $key ) );
+			$this->assertEquals( $value, $this->cache->getMulti( [ $key ] )[$key] );
+
+			$this->assertTrue( $this->cache->merge( $key, $callback, 5 ) );
+			$this->assertEquals( "$value!", $this->cache->get( $key ) );
+			$this->assertEquals( "$value!", $this->cache->getMulti( [ $key ] )[$key] );
+
+			$this->assertTrue( $this->cache->deleteMulti( [ $key ] ) );
+			$this->assertFalse( $this->cache->get( $key ) );
+			$this->assertEquals( [], $this->cache->getMulti( [ $key ] ) );
+
+			$this->cache->set( $key, "@$value", 10, BagOStuff::WRITE_ALLOW_SEGMENTS );
+			$this->assertEquals( "@$value", $this->cache->get( $key ) );
+			$this->assertTrue( $this->cache->delete( $key, BagOStuff::WRITE_PRUNE_SEGMENTS ) );
+			$this->assertFalse( $this->cache->get( $key ) );
+			$this->assertEquals( [], $this->cache->getMulti( [ $key ] ) );
+		}
+
+		$this->cache->set( $key, 666, 10, BagOStuff::WRITE_ALLOW_SEGMENTS );
+
+		$this->assertEquals( 667, $this->cache->incr( $key ) );
+		$this->assertEquals( 667, $this->cache->get( $key ) );
+
+		$this->assertEquals( 664, $this->cache->decr( $key, 3 ) );
+		$this->assertEquals( 664, $this->cache->get( $key ) );
+
+		$this->assertTrue( $this->cache->delete( $key ) );
+		$this->assertFalse( $this->cache->get( $key ) );
 	}
 
 	/**
@@ -315,5 +378,12 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$this->assertTrue( $this->cache->lock( $key2, 5, 5, 'rclass' ) );
 		$this->assertTrue( $this->cache->unlock( $key2 ) );
 		$this->assertTrue( $this->cache->unlock( $key2 ) );
+	}
+
+	public function tearDown() {
+		$this->cache->delete( $this->cache->makeKey( self::TEST_KEY ) );
+		$this->cache->delete( $this->cache->makeKey( self::TEST_KEY ) . ':lock' );
+
+		parent::tearDown();
 	}
 }

@@ -79,6 +79,7 @@ class RESTBagOStuff extends BagOStuff {
 	private $extendedErrorBodyFields;
 
 	public function __construct( $params ) {
+		$params['segmentationSize'] = $params['segmentationSize'] ?? INF;
 		if ( empty( $params['url'] ) ) {
 			throw new InvalidArgumentException( 'URL parameter is required' );
 		}
@@ -146,7 +147,7 @@ class RESTBagOStuff extends BagOStuff {
 		return false;
 	}
 
-	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
+	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
 		// @TODO: respect WRITE_SYNC (e.g. EACH_QUORUM)
 		// @TODO: respect $exptime
 		$req = [
@@ -172,7 +173,7 @@ class RESTBagOStuff extends BagOStuff {
 		return false; // key already set
 	}
 
-	public function delete( $key, $flags = 0 ) {
+	protected function doDelete( $key, $flags = 0 ) {
 		// @TODO: respect WRITE_SYNC (e.g. EACH_QUORUM)
 		$req = [
 			'method' => 'DELETE',

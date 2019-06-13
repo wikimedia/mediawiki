@@ -45,6 +45,7 @@ class APCBagOStuff extends BagOStuff {
 	const KEY_SUFFIX = ':4';
 
 	public function __construct( array $params = [] ) {
+		$params['segmentationSize'] = $params['segmentationSize'] ?? INF;
 		parent::__construct( $params );
 		// The extension serializer is still buggy, unlike "php" and "igbinary"
 		$this->nativeSerialize = ( ini_get( 'apc.serializer' ) !== 'default' );
@@ -62,7 +63,7 @@ class APCBagOStuff extends BagOStuff {
 		return $value;
 	}
 
-	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
+	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
 		apc_store(
 			$key . self::KEY_SUFFIX,
 			$this->nativeSerialize ? $value : $this->serialize( $value ),
@@ -80,7 +81,7 @@ class APCBagOStuff extends BagOStuff {
 		);
 	}
 
-	public function delete( $key, $flags = 0 ) {
+	protected function doDelete( $key, $flags = 0 ) {
 		apc_delete( $key . self::KEY_SUFFIX );
 
 		return true;
@@ -92,13 +93,5 @@ class APCBagOStuff extends BagOStuff {
 
 	public function decr( $key, $value = 1 ) {
 		return apc_dec( $key . self::KEY_SUFFIX, $value );
-	}
-
-	protected function serialize( $value ) {
-		return $this->isInteger( $value ) ? (int)$value : serialize( $value );
-	}
-
-	protected function unserialize( $value ) {
-		return $this->isInteger( $value ) ? (int)$value : unserialize( $value );
 	}
 }

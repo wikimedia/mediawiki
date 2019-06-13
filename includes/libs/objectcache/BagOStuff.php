@@ -50,8 +50,14 @@ use Wikimedia\WaitConditionLoop;
  * For any given instance, methods like lock(), unlock(), merge(), and set() with WRITE_SYNC
  * should semantically operate over its entire access scope; any nodes/threads in that scope
  * should serialize appropriately when using them. Likewise, a call to get() with READ_LATEST
- * from one node in its access scope should reflect the prior changes of any other node its access
- * scope. Any get() should reflect the changes of any prior set() with WRITE_SYNC.
+ * from one node in its access scope should reflect the prior changes of any other node its
+ * access scope. Any get() should reflect the changes of any prior set() with WRITE_SYNC.
+ *
+ * Subclasses should override the default "segmentationSize" field with an appropriate value.
+ * The value should not be larger than what the storage backend (by default) supports. It also
+ * should be roughly informed by common performance bottlenecks (e.g. values over a certain size
+ * having poor scalability). The same goes for the "segmentedValueMaxSize" member, which limits
+ * the maximum size and chunk count (indirectly) of values.
  *
  * @ingroup Cache
  */
@@ -68,6 +74,10 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	protected $asyncHandler;
 	/** @var int Seconds */
 	protected $syncTimeout;
+	/** @var int Bytes; chunk size of segmented cache values */
+	protected $segmentationSize;
+	/** @var int Bytes; maximum total size of a segmented cache value */
+	protected $segmentedValueMaxSize;
 
 	/** @var bool */
 	private $debugMode = false;
@@ -93,6 +103,11 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	/** Bitfield constants for set()/merge() */
 	const WRITE_SYNC = 4; // synchronously write to all locations for replicated stores
 	const WRITE_CACHE_ONLY = 8; // Only change state of the in-memory cache
+	const WRITE_ALLOW_SEGMENTS = 16; // Allow partitioning of the value if it is large
+	const WRITE_PRUNE_SEGMENTS = 32; // Delete all partition segments of the value
+
+	/** @var string Component to use for key construction of blob segment keys */
+	const SEGMENT_COMPONENT = 'segment';
 
 	/**
 	 * $params include:
@@ -103,6 +118,12 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 *   - reportDupes: Whether to emit warning log messages for all keys that were
 	 *      requested more than once (requires an asyncHandler).
 	 *   - syncTimeout: How long to wait with WRITE_SYNC in seconds.
+	 *   - segmentationSize: The chunk size, in bytes, of segmented values. The value should
+	 *      not exceed the maximum size of values in the storage backend, as configured by
+	 *      the site administrator.
+	 *   - segmentedValueMaxSize: The maximum total size, in bytes, of segmented values.
+	 *      This should be configured to a reasonable size give the site traffic and the
+	 *      amount of I/O between application and cache servers that the network can handle.
 	 * @param array $params
 	 */
 	public function __construct( array $params = [] ) {
@@ -119,6 +140,8 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 		}
 
 		$this->syncTimeout = $params['syncTimeout'] ?? 3;
+		$this->segmentationSize = $params['segmentationSize'] ?? 8388608; // 8MiB
+		$this->segmentedValueMaxSize = $params['segmentedValueMaxSize'] ?? 67108864; // 64MiB
 	}
 
 	/**
@@ -180,7 +203,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	public function get( $key, $flags = 0 ) {
 		$this->trackDuplicateKeys( $key );
 
-		return $this->doGet( $key, $flags );
+		return $this->resolveSegments( $key, $this->doGet( $key, $flags ) );
 	}
 
 	/**
@@ -233,7 +256,103 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
 	 * @return bool Success
 	 */
-	abstract public function set( $key, $value, $exptime = 0, $flags = 0 );
+	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
+		if (
+			( $flags & self::WRITE_ALLOW_SEGMENTS ) != self::WRITE_ALLOW_SEGMENTS ||
+			is_infinite( $this->segmentationSize )
+		) {
+			return $this->doSet( $key, $value, $exptime, $flags );
+		}
+
+		$serialized = $this->serialize( $value );
+		$segmentSize = $this->getSegmentationSize();
+		$maxTotalSize = $this->getSegmentedValueMaxSize();
+
+		$size = strlen( $serialized );
+		if ( $size <= $segmentSize ) {
+			// Since the work of serializing it was already done, just use it inline
+			return $this->doSet(
+				$key,
+				SerializedValueContainer::newUnified( $serialized ),
+				$exptime,
+				$flags
+			);
+		} elseif ( $size > $maxTotalSize ) {
+			$this->setLastError( "Key $key exceeded $maxTotalSize bytes." );
+
+			return false;
+		}
+
+		$chunksByKey = [];
+		$segmentHashes = [];
+		$count = intdiv( $size, $segmentSize ) + ( ( $size % $segmentSize ) ? 1 : 0 );
+		for ( $i = 0; $i < $count; ++$i ) {
+			$segment = substr( $serialized, $i * $segmentSize, $segmentSize );
+			$hash = sha1( $segment );
+			$chunkKey = $this->makeGlobalKey( self::SEGMENT_COMPONENT, $key, $hash );
+			$chunksByKey[$chunkKey] = $segment;
+			$segmentHashes[] = $hash;
+		}
+
+		$ok = $this->setMulti( $chunksByKey, $exptime, $flags );
+		if ( $ok ) {
+			// Only when all segments are stored should the main key be changed
+			$ok = $this->doSet(
+				$key,
+				SerializedValueContainer::newSegmented( $segmentHashes ),
+				$exptime,
+				$flags
+			);
+		}
+
+		return $ok;
+	}
+
+	/**
+	 * Set an item
+	 *
+	 * @param string $key
+	 * @param mixed $value
+	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
+	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 * @return bool Success
+	 */
+	abstract protected function doSet( $key, $value, $exptime = 0, $flags = 0 );
+
+	/**
+	 * Delete an item
+	 *
+	 * For large values written using WRITE_ALLOW_SEGMENTS, this only deletes the main
+	 * segment list key unless WRITE_PRUNE_SEGMENTS is in the flags. While deleting the segment
+	 * list key has the effect of functionally deleting the key, it leaves unused blobs in cache.
+	 *
+	 * @param string $key
+	 * @return bool True if the item was deleted or not found, false on failure
+	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 */
+	public function delete( $key, $flags = 0 ) {
+		if ( ( $flags & self::WRITE_PRUNE_SEGMENTS ) != self::WRITE_PRUNE_SEGMENTS ) {
+			return $this->doDelete( $key, $flags );
+		}
+
+		$mainValue = $this->doGet( $key, self::READ_LATEST );
+		if ( !$this->doDelete( $key, $flags ) ) {
+			return false;
+		}
+
+		if ( !SerializedValueContainer::isSegmented( $mainValue ) ) {
+			return true; // no segments to delete
+		}
+
+		$orderedKeys = array_map(
+			function ( $segmentHash ) use ( $key ) {
+				return $this->makeGlobalKey( self::SEGMENT_COMPONENT, $key, $segmentHash );
+			},
+			$mainValue->{SerializedValueContainer::SEGMENTED_HASHES}
+		);
+
+		return $this->deleteMulti( $orderedKeys, $flags );
+	}
 
 	/**
 	 * Delete an item
@@ -242,7 +361,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * @return bool True if the item was deleted or not found, false on failure
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
 	 */
-	abstract public function delete( $key, $flags = 0 );
+	abstract protected function doDelete( $key, $flags = 0 );
 
 	/**
 	 * Insert an item if it does not already exist
@@ -291,7 +410,10 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 			$casToken = null; // passed by reference
 			// Get the old value and CAS token from cache
 			$this->clearLastError();
-			$currentValue = $this->doGet( $key, self::READ_LATEST, $casToken );
+			$currentValue = $this->resolveSegments(
+				$key,
+				$this->doGet( $key, self::READ_LATEST, $casToken )
+			);
 			if ( $this->getLastError() ) {
 				$this->logger->warning(
 					__METHOD__ . ' failed due to I/O error on get() for {key}.',
@@ -324,6 +446,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 
 				return false; // IO error; don't spam retries
 			}
+
 		} while ( !$success && --$attempts );
 
 		return $success;
@@ -338,7 +461,6 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
 	 * @return bool Success
-	 * @throws Exception
 	 */
 	protected function cas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
 		if ( !$this->lock( $key, 0 ) ) {
@@ -368,28 +490,40 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 * If an expiry in the past is given then the key will immediately be expired
 	 *
+	 * For large values written using WRITE_ALLOW_SEGMENTS, this only changes the TTL of the
+	 * main segment list key. While lowering the TTL of the segment list key has the effect of
+	 * functionally lowering the TTL of the key, it might leave unused blobs in cache for longer.
+	 * Raising the TTL of such keys is not effective, since the expiration of a single segment
+	 * key effectively expires the entire value.
+	 *
 	 * @param string $key
-	 * @param int $expiry TTL or UNIX timestamp
+	 * @param int $exptime TTL or UNIX timestamp
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants (since 1.33)
 	 * @return bool Success Returns false on failure or if the item does not exist
 	 * @since 1.28
 	 */
-	public function changeTTL( $key, $expiry = 0, $flags = 0 ) {
-		$found = false;
+	public function changeTTL( $key, $exptime = 0, $flags = 0 ) {
+		$expiry = $this->convertToExpiry( $exptime );
+		$delete = ( $expiry != 0 && $expiry < $this->getCurrentTime() );
 
-		$ok = $this->merge(
-			$key,
-			function ( $cache, $ttl, $currentValue ) use ( &$found ) {
-				$found = ( $currentValue !== false );
+		if ( !$this->lock( $key, 0 ) ) {
+			return false;
+		}
+		// Use doGet() to avoid having to trigger resolveSegments()
+		$blob = $this->doGet( $key, self::READ_LATEST );
+		if ( $blob ) {
+			if ( $delete ) {
+				$ok = $this->doDelete( $key, $flags );
+			} else {
+				$ok = $this->doSet( $key, $blob, $exptime, $flags );
+			}
+		} else {
+			$ok = false;
+		}
 
-				return $currentValue; // nothing is written if this is false
-			},
-			$expiry,
-			1, // 1 attempt
-			$flags
-		);
+		$this->unlock( $key );
 
-		return ( $ok && $found );
+		return $ok;
 	}
 
 	/**
@@ -459,7 +593,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 		if ( isset( $this->locks[$key] ) && --$this->locks[$key]['depth'] <= 0 ) {
 			unset( $this->locks[$key] );
 
-			$ok = $this->delete( "{$key}:lock" );
+			$ok = $this->doDelete( "{$key}:lock" );
 			if ( !$ok ) {
 				$this->logger->warning(
 					__METHOD__ . ' failed to release lock for {key}.',
@@ -533,9 +667,25 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * @return array
 	 */
 	public function getMulti( array $keys, $flags = 0 ) {
+		$valuesBykey = $this->doGetMulti( $keys, $flags );
+		foreach ( $valuesBykey as $key => $value ) {
+			// Resolve one blob at a time (avoids too much I/O at once)
+			$valuesBykey[$key] = $this->resolveSegments( $key, $value );
+		}
+
+		return $valuesBykey;
+	}
+
+	/**
+	 * Get an associative array containing the item for each of the keys that have items.
+	 * @param string[] $keys List of keys
+	 * @param int $flags Bitfield; supports READ_LATEST [optional]
+	 * @return array
+	 */
+	protected function doGetMulti( array $keys, $flags = 0 ) {
 		$res = [];
 		foreach ( $keys as $key ) {
-			$val = $this->get( $key, $flags );
+			$val = $this->doGet( $key, $flags );
 			if ( $val !== false ) {
 				$res[$key] = $val;
 			}
@@ -546,6 +696,9 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 
 	/**
 	 * Batch insertion/replace
+	 *
+	 * This does not support WRITE_ALLOW_SEGMENTS to avoid excessive read I/O
+	 *
 	 * @param mixed[] $data Map of (key => value)
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants (since 1.33)
@@ -553,11 +706,13 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * @since 1.24
 	 */
 	public function setMulti( array $data, $exptime = 0, $flags = 0 ) {
+		if ( ( $flags & self::WRITE_ALLOW_SEGMENTS ) === self::WRITE_ALLOW_SEGMENTS ) {
+			throw new InvalidArgumentException( __METHOD__ . ' got WRITE_ALLOW_SEGMENTS' );
+		}
+
 		$res = true;
 		foreach ( $data as $key => $value ) {
-			if ( !$this->set( $key, $value, $exptime, $flags ) ) {
-				$res = false;
-			}
+			$res = $this->doSet( $key, $value, $exptime, $flags ) && $res;
 		}
 
 		return $res;
@@ -565,6 +720,9 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 
 	/**
 	 * Batch deletion
+	 *
+	 * This does not support WRITE_ALLOW_SEGMENTS to avoid excessive read I/O
+	 *
 	 * @param string[] $keys List of keys
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
 	 * @return bool Success
@@ -573,7 +731,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	public function deleteMulti( array $keys, $flags = 0 ) {
 		$res = true;
 		foreach ( $keys as $key ) {
-			$res = $this->delete( $key, $flags ) && $res;
+			$res = $this->doDelete( $key, $flags ) && $res;
 		}
 
 		return $res;
@@ -622,6 +780,43 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 		}
 
 		return $newValue;
+	}
+
+	/**
+	 * Get and reassemble the chunks of blob at the given key
+	 *
+	 * @param string $key
+	 * @param mixed $mainValue
+	 * @return string|null|bool The combined string, false if missing, null on error
+	 */
+	protected function resolveSegments( $key, $mainValue ) {
+		if ( SerializedValueContainer::isUnified( $mainValue ) ) {
+			return $this->unserialize( $mainValue->{SerializedValueContainer::UNIFIED_DATA} );
+		}
+
+		if ( SerializedValueContainer::isSegmented( $mainValue ) ) {
+			$orderedKeys = array_map(
+				function ( $segmentHash ) use ( $key ) {
+					return $this->makeGlobalKey( self::SEGMENT_COMPONENT, $key, $segmentHash );
+				},
+				$mainValue->{SerializedValueContainer::SEGMENTED_HASHES}
+			);
+
+			$segmentsByKey = $this->doGetMulti( $orderedKeys );
+
+			$parts = [];
+			foreach ( $orderedKeys as $segmentKey ) {
+				if ( isset( $segmentsByKey[$segmentKey] ) ) {
+					$parts[] = $segmentsByKey[$segmentKey];
+				} else {
+					return false; // missing segment
+				}
+			}
+
+			return $this->unserialize( implode( '', $parts ) );
+		}
+
+		return $mainValue;
 	}
 
 	/**
@@ -732,7 +927,15 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * @return bool
 	 */
 	protected function isInteger( $value ) {
-		return ( is_int( $value ) || ctype_digit( $value ) );
+		if ( is_int( $value ) ) {
+			return true;
+		} elseif ( !is_string( $value ) ) {
+			return false;
+		}
+
+		$integer = (int)$value;
+
+		return ( $value === (string)$integer );
 	}
 
 	/**
@@ -785,6 +988,22 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
+	 * @return int|float The chunk size, in bytes, of segmented objects (INF for no limit)
+	 * @since 1.34
+	 */
+	public function getSegmentationSize() {
+		return $this->segmentationSize;
+	}
+
+	/**
+	 * @return int|float Maximum total segmented object size in bytes (INF for no limit)
+	 * @since 1.34
+	 */
+	public function getSegmentedValueMaxSize() {
+		return $this->segmentedValueMaxSize;
+	}
+
+	/**
 	 * Merge the flag maps of one or more BagOStuff objects into a "lowest common denominator" map
 	 *
 	 * @param BagOStuff[] $bags
@@ -821,5 +1040,23 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 */
 	public function setMockTime( &$time ) {
 		$this->wallClockOverride =& $time;
+	}
+
+	/**
+	 * @param mixed $value
+	 * @return string|int String/integer representation
+	 * @note Special handling is usually needed for integers so incr()/decr() work
+	 */
+	protected function serialize( $value ) {
+		return is_int( $value ) ? $value : serialize( $value );
+	}
+
+	/**
+	 * @param string|int $value
+	 * @return mixed Original value or false on error
+	 * @note Special handling is usually needed for integers so incr()/decr() work
+	 */
+	protected function unserialize( $value ) {
+		return $this->isInteger( $value ) ? (int)$value : unserialize( $value );
 	}
 }

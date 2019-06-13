@@ -250,7 +250,7 @@ class SqlBagOStuff extends BagOStuff {
 		return false;
 	}
 
-	public function getMulti( array $keys, $flags = 0 ) {
+	protected function doGetMulti( array $keys, $flags = 0 ) {
 		$values = [];
 
 		$blobs = $this->fetchBlobMulti( $keys );
@@ -261,7 +261,7 @@ class SqlBagOStuff extends BagOStuff {
 		return $values;
 	}
 
-	public function fetchBlobMulti( array $keys, $flags = 0 ) {
+	protected function fetchBlobMulti( array $keys, $flags = 0 ) {
 		$values = []; // array of (key => value)
 
 		$keysByTable = [];
@@ -391,8 +391,8 @@ class SqlBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
-		$ok = $this->setMulti( [ $key => $value ], $exptime );
+	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
+		$ok = $this->insertMulti( [ $key => $value ], $exptime, $flags, true );
 
 		return $ok;
 	}
@@ -446,6 +446,10 @@ class SqlBagOStuff extends BagOStuff {
 	}
 
 	public function deleteMulti( array $keys, $flags = 0 ) {
+		return $this->purgeMulti( $keys, $flags );
+	}
+
+	public function purgeMulti( array $keys, $flags = 0 ) {
 		$keysByTable = [];
 		foreach ( $keys as $key ) {
 			list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
@@ -482,8 +486,8 @@ class SqlBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	public function delete( $key, $flags = 0 ) {
-		$ok = $this->deleteMulti( [ $key ], $flags );
+	protected function doDelete( $key, $flags = 0 ) {
+		$ok = $this->purgeMulti( [ $key ], $flags );
 
 		return $ok;
 	}
@@ -730,10 +734,10 @@ class SqlBagOStuff extends BagOStuff {
 	 * On typical message and page data, this can provide a 3X decrease
 	 * in storage requirements.
 	 *
-	 * @param mixed &$data
+	 * @param mixed $data
 	 * @return string
 	 */
-	protected function serialize( &$data ) {
+	protected function serialize( $data ) {
 		$serial = serialize( $data );
 
 		if ( function_exists( 'gzdeflate' ) ) {

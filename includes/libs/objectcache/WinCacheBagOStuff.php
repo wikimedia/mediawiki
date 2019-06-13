@@ -36,7 +36,7 @@ class WinCacheBagOStuff extends BagOStuff {
 			return false;
 		}
 
-		$value = unserialize( $blob );
+		$value = $this->unserialize( $blob );
 		if ( $value !== false ) {
 			$casToken = (string)$blob; // don't bother hashing this
 		}
@@ -67,8 +67,8 @@ class WinCacheBagOStuff extends BagOStuff {
 		return $success;
 	}
 
-	public function set( $key, $value, $expire = 0, $flags = 0 ) {
-		$result = wincache_ucache_set( $key, serialize( $value ), $expire );
+	protected function doSet( $key, $value, $expire = 0, $flags = 0 ) {
+		$result = wincache_ucache_set( $key, $this->serialize( $value ), $expire );
 
 		// false positive, wincache_ucache_set returns an empty array
 		// in some circumstances.
@@ -77,7 +77,11 @@ class WinCacheBagOStuff extends BagOStuff {
 	}
 
 	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
-		$result = wincache_ucache_add( $key, serialize( $value ), $exptime );
+		if ( wincache_ucache_exists( $key ) ) {
+			return false; // avoid warnings
+		}
+
+		$result = wincache_ucache_add( $key, $this->serialize( $value ), $exptime );
 
 		// false positive, wincache_ucache_add returns an empty array
 		// in some circumstances.
@@ -85,7 +89,7 @@ class WinCacheBagOStuff extends BagOStuff {
 		return ( $result === [] || $result === true );
 	}
 
-	public function delete( $key, $flags = 0 ) {
+	protected function doDelete( $key, $flags = 0 ) {
 		wincache_ucache_delete( $key );
 
 		return true;

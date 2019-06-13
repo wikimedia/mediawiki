@@ -75,7 +75,7 @@ class ReplicatedBagOStuff extends BagOStuff {
 	}
 
 	public function get( $key, $flags = 0 ) {
-		return ( $flags & self::READ_LATEST )
+		return ( ( $flags & self::READ_LATEST ) == self::READ_LATEST )
 			? $this->writeStore->get( $key, $flags )
 			: $this->readStore->get( $key, $flags );
 	}
@@ -162,6 +162,26 @@ class ReplicatedBagOStuff extends BagOStuff {
 	}
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
+		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
+	}
+
+	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
+		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
+	}
+
+	protected function doDelete( $key, $flags = 0 ) {
+		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
+	}
+
+	protected function doGetMulti( array $keys, $flags = 0 ) {
+		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
+	}
+
+	protected function serialize( $value ) {
+		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
+	}
+
+	protected function unserialize( $blob ) {
 		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
 	}
 }

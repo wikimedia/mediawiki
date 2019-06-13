@@ -106,7 +106,7 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	public function set( $key, $value, $expiry = 0, $flags = 0 ) {
+	protected function doSet( $key, $value, $expiry = 0, $flags = 0 ) {
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
@@ -128,7 +128,7 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	public function delete( $key, $flags = 0 ) {
+	protected function doDelete( $key, $flags = 0 ) {
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
@@ -146,7 +146,7 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	public function getMulti( array $keys, $flags = 0 ) {
+	public function doGetMulti( array $keys, $flags = 0 ) {
 		$batches = [];
 		$conns = [];
 		foreach ( $keys as $key ) {
@@ -349,25 +349,6 @@ class RedisBagOStuff extends BagOStuff {
 		}
 
 		return $result;
-	}
-
-	/**
-	 * @param mixed $data
-	 * @return string
-	 */
-	protected function serialize( $data ) {
-		// Serialize anything but integers so INCR/DECR work
-		// Do not store integer-like strings as integers to avoid type confusion (T62563)
-		return is_int( $data ) ? $data : serialize( $data );
-	}
-
-	/**
-	 * @param string $data
-	 * @return mixed
-	 */
-	protected function unserialize( $data ) {
-		$int = intval( $data );
-		return $data === (string)$int ? $int : unserialize( $data );
 	}
 
 	/**
