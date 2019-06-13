@@ -105,6 +105,8 @@ class LoadBalancer implements ILoadBalancer {
 	private $errorConnection;
 	/** @var int The generic (not query grouped) replica DB index */
 	private $genericReadIndex = -1;
+	/** @var int[] The group replica DB indexes keyed by group */
+	private $readIndexByGroup = [];
 	/** @var bool|DBMasterPos False if not set */
 	private $waitForPos;
 	/** @var bool Whether the generic reader fell back to a lagged replica DB */
@@ -398,9 +400,12 @@ class LoadBalancer implements ILoadBalancer {
 		if ( count( $this->servers ) == 1 ) {
 			// Skip the load balancing if there's only one server
 			return $this->getWriterIndex();
-		} elseif ( $group === false && $this->genericReadIndex >= 0 ) {
-			// A generic reader index was already selected and "waitForPos" was handled
-			return $this->genericReadIndex;
+		}
+
+		$index = $this->getExistingReaderIndex( $group );
+		if ( $index >= 0 ) {
+			// A reader index was already selected and "waitForPos" was handled
+			return $index;
 		}
 
 		if ( $group !== false ) {
@@ -435,17 +440,51 @@ class LoadBalancer implements ILoadBalancer {
 			$laggedReplicaMode = true;
 		}
 
-		if ( $this->genericReadIndex < 0 && $this->genericLoads[$i] > 0 && $group === false ) {
-			// Cache the generic (ungrouped) reader index for future DB_REPLICA handles
-			$this->genericReadIndex = $i;
-			// Record if the generic reader index is in "lagged replica DB" mode
-			$this->laggedReplicaMode = ( $laggedReplicaMode || $this->laggedReplicaMode );
+		// Cache the reader index for future DB_REPLICA handles
+		$this->setExistingReaderIndex( $group, $i );
+		// Record whether the generic reader index is in "lagged replica DB" mode
+		if ( $group === false && $laggedReplicaMode ) {
+			$this->laggedReplicaMode = true;
 		}
 
 		$serverName = $this->getServerName( $i );
 		$this->connLogger->debug( __METHOD__ . ": using server $serverName for group '$group'" );
 
 		return $i;
+	}
+
+	/**
+	 * Get the server index chosen by the load balancer for use with the given query group
+	 *
+	 * @param string|bool $group Query group; use false for the generic group
+	 * @return int Server index or -1 if none was chosen
+	 */
+	protected function getExistingReaderIndex( $group ) {
+		if ( $group === false ) {
+			$index = $this->genericReadIndex;
+		} else {
+			$index = $this->readIndexByGroup[$group] ?? -1;
+		}
+
+		return $index;
+	}
+
+	/**
+	 * Set the server index chosen by the load balancer for use with the given query group
+	 *
+	 * @param string|bool $group Query group; use false for the generic group
+	 * @param int $index The index of a specific server
+	 */
+	private function setExistingReaderIndex( $group, $index ) {
+		if ( $index < 0 ) {
+			throw new UnexpectedValueException( "Cannot set a negative read server index" );
+		}
+
+		if ( $group === false ) {
+			$this->genericReadIndex = $index;
+		} else {
+			$this->readIndexByGroup[$group] = $index;
+		}
 	}
 
 	/**
