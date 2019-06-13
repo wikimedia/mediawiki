@@ -33,20 +33,24 @@ class EmptyBagOStuff extends BagOStuff {
 		return false;
 	}
 
-	public function add( $key, $value, $exp = 0, $flags = 0 ) {
+	protected function doSet( $key, $value, $exp = 0, $flags = 0 ) {
 		return true;
 	}
 
-	public function set( $key, $value, $exp = 0, $flags = 0 ) {
+	protected function doDelete( $key, $flags = 0 ) {
 		return true;
 	}
 
-	public function delete( $key, $flags = 0 ) {
+	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
 		return true;
 	}
 
 	public function incr( $key, $value = 1 ) {
 		return false;
+	}
+
+	public function incrWithInit( $key, $ttl, $value = 1, $init = 1 ) {
+		return false; // faster
 	}
 
 	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {

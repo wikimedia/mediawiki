@@ -27,6 +27,9 @@
  * @ingroup Cache
  */
 class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
+	/** @var MemcachedClient */
+	protected $client;
+
 	/**
 	 * Available parameters are:
 	 *   - servers:             The list of IP:port combinations holding the memcached servers.
@@ -51,11 +54,73 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		$this->client->set_debug( $debug );
 	}
 
-	public function getMulti( array $keys, $flags = 0 ) {
+	protected function doGet( $key, $flags = 0, &$casToken = null ) {
+		$casToken = null;
+
+		return $this->client->get( $this->validateKeyEncoding( $key ), $casToken );
+	}
+
+	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
+		return $this->client->set(
+			$this->validateKeyEncoding( $key ),
+			$value,
+			$this->fixExpiry( $exptime )
+		);
+	}
+
+	protected function doDelete( $key, $flags = 0 ) {
+		return $this->client->delete( $this->validateKeyEncoding( $key ) );
+	}
+
+	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
+		return $this->client->add(
+			$this->validateKeyEncoding( $key ),
+			$value,
+			$this->fixExpiry( $exptime )
+		);
+	}
+
+	protected function cas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
+		return $this->client->cas(
+			$casToken,
+			$this->validateKeyEncoding( $key ),
+			$value,
+			$this->fixExpiry( $exptime )
+		);
+	}
+
+	public function incr( $key, $value = 1 ) {
+		$n = $this->client->incr( $this->validateKeyEncoding( $key ), $value );
+
+		return ( $n !== false && $n !== null ) ? $n : false;
+	}
+
+	public function decr( $key, $value = 1 ) {
+		$n = $this->client->decr( $this->validateKeyEncoding( $key ), $value );
+
+		return ( $n !== false && $n !== null ) ? $n : false;
+	}
+
+	public function changeTTL( $key, $exptime = 0, $flags = 0 ) {
+		return $this->client->touch(
+			$this->validateKeyEncoding( $key ),
+			$this->fixExpiry( $exptime )
+		);
+	}
+
+	public function doGetMulti( array $keys, $flags = 0 ) {
 		foreach ( $keys as $key ) {
 			$this->validateKeyEncoding( $key );
 		}
 
 		return $this->client->get_multi( $keys );
+	}
+
+	protected function serialize( $value ) {
+		return is_int( $value ) ? $value : $this->client->serialize( $value );
+	}
+
+	protected function unserialize( $value ) {
+		return $this->isInteger( $value ) ? (int)$value : $this->client->unserialize( $value );
 	}
 }

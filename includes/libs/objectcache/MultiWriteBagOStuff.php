@@ -130,6 +130,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 				$missIndexes,
 				$this->asyncWrites,
 				'set',
+				// @TODO: consider using self::WRITE_ALLOW_SEGMENTS here?
 				[ $key, $value, self::UPGRADE_TTL ]
 			);
 		}
@@ -354,6 +355,26 @@ class MultiWriteBagOStuff extends BagOStuff {
 	}
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
+		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
+	}
+
+	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
+		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
+	}
+
+	protected function doDelete( $key, $flags = 0 ) {
+		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
+	}
+
+	protected function doGetMulti( array $keys, $flags = 0 ) {
+		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
+	}
+
+	protected function serialize( $value ) {
+		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
+	}
+
+	protected function unserialize( $value ) {
 		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
 	}
 }

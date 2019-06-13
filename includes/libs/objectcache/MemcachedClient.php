@@ -278,6 +278,23 @@ class MemcachedClient {
 	}
 
 	// }}}
+
+	/**
+	 * @param mixed $value
+	 * @return string|integer
+	 */
+	public function serialize( $value ) {
+		return serialize( $value );
+	}
+
+	/**
+	 * @param string $value
+	 * @return mixed
+	 */
+	public function unserialize( $value ) {
+		return unserialize( $value );
+	}
+
 	// {{{ add()
 
 	/**
@@ -503,7 +520,8 @@ class MemcachedClient {
 
 		if ( $this->_debug ) {
 			foreach ( $val as $k => $v ) {
-				$this->_debugprint( sprintf( "MemCache: sock %s got %s", serialize( $sock ), $k ) );
+				$this->_debugprint(
+					sprintf( "MemCache: sock %s got %s", $this->serialize( $sock ), $k ) );
 			}
 		}
 
@@ -1018,7 +1036,7 @@ class MemcachedClient {
 					 * yet read "END"), these 2 calls would collide.
 					 */
 					if ( $flags & self::SERIALIZED ) {
-						$ret[$rkey] = unserialize( $ret[$rkey] );
+						$ret[$rkey] = $this->unserialize( $ret[$rkey] );
 					} elseif ( $flags & self::INTVAL ) {
 						$ret[$rkey] = intval( $ret[$rkey] );
 					}
@@ -1072,7 +1090,7 @@ class MemcachedClient {
 		if ( is_int( $val ) ) {
 			$flags |= self::INTVAL;
 		} elseif ( !is_scalar( $val ) ) {
-			$val = serialize( $val );
+			$val = $this->serialize( $val );
 			$flags |= self::SERIALIZED;
 			if ( $this->_debug ) {
 				$this->_debugprint( sprintf( "client: serializing data as it is not scalar" ) );

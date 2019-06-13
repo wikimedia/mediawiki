@@ -347,8 +347,6 @@ class ApiStashEditTest extends ApiTestCase {
 		$cache = $editStash->cache;
 
 		$editInfo = $cache->get( $key );
-		$outputKey = $cache->makeKey( 'stashed-edit-output', $editInfo->outputID );
-		$editInfo->output = $cache->get( $outputKey );
 		$editInfo->output->setCacheTime( wfTimestamp( TS_MW,
 			wfTimestamp( TS_UNIX, $editInfo->output->getCacheTime() ) - $howOld - 1 ) );
 

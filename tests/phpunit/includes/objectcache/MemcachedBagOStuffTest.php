@@ -8,7 +8,7 @@ class MemcachedBagOStuffTest extends MediaWikiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		$this->cache = new MemcachedBagOStuff( [ 'keyspace' => 'test' ] );
+		$this->cache = new MemcachedPhpBagOStuff( [ 'keyspace' => 'test', 'servers' => [] ] );
 	}
 
 	/**
