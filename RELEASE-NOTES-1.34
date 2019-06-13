@@ -207,6 +207,7 @@ because of Phabricator reports.
   which are no longer used, have now been removed.
 * SpecialEmailUser::validateTarget(), ::getTarget() without a sender/user
   specified, deprecated in 1.30, have been removed.
+* BufferingStatsdDataFactory::getBuffer(), deprecated in 1.30, has been removed.
 * …
 
 === Deprecations in 1.34 ===
