@@ -119,7 +119,7 @@
 	"apihelp-delete-param-oldimage": "[[Special:ApiHelp/query+imageinfo|action=query&prop=imageinfo&iiprop=archivename]]에 지정된 바대로 삭제할 오래된 그림의 이름입니다.",
 	"apihelp-delete-example-simple": "<kbd>Main Page</kbd>를 삭제합니다.",
 	"apihelp-delete-example-reason": "<kbd>Preparing for move</kbd> 라는 이유로 <kbd>Main Page</kbd>를 삭제하기.",
-	"apihelp-disabled-summary": "이 모듈은 해제되었습니다.",
+	"apihelp-disabled-summary": "이 모듈은 비활성화되었습니다.",
 	"apihelp-edit-summary": "문서를 만들고 편집합니다.",
 	"apihelp-edit-param-title": "편집할 문서의 제목. <var>$1pageid</var>과 같이 사용할 수 없습니다.",
 	"apihelp-edit-param-pageid": "편집할 문서의 문서 ID입니다. <var>$1title</var>과 함께 사용할 수 없습니다.",

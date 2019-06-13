@@ -5,7 +5,8 @@
 			"علی ساکی لرستانی",
 			"Mjbmr",
 			"Hosseinblue",
-			"MtDu"
+			"MtDu",
+			"Shahriar dehghani"
 		]
 	},
 	"tog-underline": "لینکیا خط وه دومن",
@@ -650,5 +651,6 @@
 	"logentry-move-move": "$1 {{GENDER:$2|انتقال دادھ بیه}} بلگه $3 ۉھ $4",
 	"logentry-newusers-create": "حسآۉ کارڤأر $1 ڤابیە {{GENDER:$2|راس ڤیدھ }}",
 	"logentry-upload-upload": "$1 {{GENDER:$2|بلم گیر کردھ ۉابی}} $3",
-	"searchsuggest-search": "جۉستأن"
+	"searchsuggest-search": "جۉستأن",
+	"userlogout-continue": "ایخیت برِیِتو وَدَر"
 }
