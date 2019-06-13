@@ -167,8 +167,10 @@ interface IDatabase {
 	/**
 	 * Get the UNIX timestamp of the time that the transaction was established
 	 *
-	 * This can be used to reason about the staleness of SELECT data
-	 * in REPEATABLE-READ transaction isolation level.
+	 * This can be used to reason about the staleness of SELECT data in REPEATABLE-READ
+	 * transaction isolation level. Callers can assume that if a view-snapshot isolation
+	 * is used, then the data read by SQL queries is *at least* up to date to that point
+	 * (possibly more up-to-date since the first SELECT defines the snapshot).
 	 *
 	 * @return float|null Returns null if there is not active transaction
 	 * @since 1.25

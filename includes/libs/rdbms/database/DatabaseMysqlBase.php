@@ -182,7 +182,7 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 		// Set any custom settings defined by site config
 		// (e.g. https://dev.mysql.com/doc/refman/4.1/en/innodb-parameters.html)
-		foreach ( $this->sessionVars as $var => $val ) {
+		foreach ( $this->connectionVariables as $var => $val ) {
 			// Escape strings but not numbers to avoid MySQL complaining
 			if ( !is_int( $val ) && !is_float( $val ) ) {
 				$val = $this->addQuotes( $val );
