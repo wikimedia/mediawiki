@@ -122,6 +122,8 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var bool Whether any connection has been attempted yet */
 	private $connectionAttempted = false;
 
+	/** @var int|null An integer ID of the managing LBFactory instance or null */
+	private $ownerId;
 	/** @var string|bool String if a requested DBO_TRX transaction round is active */
 	private $trxRoundId = false;
 	/** @var string Stage of the current transaction round in the transaction round life-cycle */
@@ -249,6 +251,7 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		$this->defaultGroup = $params['defaultGroup'] ?? null;
+		$this->ownerId = $params['ownerId'] ?? null;
 	}
 
 	public function getLocalDomainID() {
@@ -1328,13 +1331,14 @@ class LoadBalancer implements ILoadBalancer {
 		$conn->close();
 	}
 
-	public function commitAll( $fname = __METHOD__ ) {
-		$this->commitMasterChanges( $fname );
+	public function commitAll( $fname = __METHOD__, $owner = null ) {
+		$this->commitMasterChanges( $fname, $owner );
 		$this->flushMasterSnapshots( $fname );
 		$this->flushReplicaSnapshots( $fname );
 	}
 
-	public function finalizeMasterChanges() {
+	public function finalizeMasterChanges( $fname = __METHOD__, $owner = null ) {
+		$this->assertOwnership( $fname, $owner );
 		$this->assertTransactionRoundStage( [ self::ROUND_CURSORY, self::ROUND_FINALIZED ] );
 
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
@@ -1358,7 +1362,8 @@ class LoadBalancer implements ILoadBalancer {
 		return $total;
 	}
 
-	public function approveMasterChanges( array $options ) {
+	public function approveMasterChanges( array $options, $fname = __METHOD__, $owner = null ) {
+		$this->assertOwnership( $fname, $owner );
 		$this->assertTransactionRoundStage( self::ROUND_FINALIZED );
 
 		$limit = $options['maxWriteDuration'] ?? 0;
@@ -1391,7 +1396,8 @@ class LoadBalancer implements ILoadBalancer {
 		$this->trxRoundStage = self::ROUND_APPROVED;
 	}
 
-	public function beginMasterChanges( $fname = __METHOD__ ) {
+	public function beginMasterChanges( $fname = __METHOD__, $owner = null ) {
+		$this->assertOwnership( $fname, $owner );
 		if ( $this->trxRoundId !== false ) {
 			throw new DBTransactionError(
 				null,
@@ -1415,7 +1421,8 @@ class LoadBalancer implements ILoadBalancer {
 		$this->trxRoundStage = self::ROUND_CURSORY;
 	}
 
-	public function commitMasterChanges( $fname = __METHOD__ ) {
+	public function commitMasterChanges( $fname = __METHOD__, $owner = null ) {
+		$this->assertOwnership( $fname, $owner );
 		$this->assertTransactionRoundStage( self::ROUND_APPROVED );
 
 		$failures = [];
@@ -1453,7 +1460,8 @@ class LoadBalancer implements ILoadBalancer {
 		$this->trxRoundStage = self::ROUND_COMMIT_CALLBACKS;
 	}
 
-	public function runMasterTransactionIdleCallbacks() {
+	public function runMasterTransactionIdleCallbacks( $fname = __METHOD__, $owner = null ) {
+		$this->assertOwnership( $fname, $owner );
 		if ( $this->trxRoundStage === self::ROUND_COMMIT_CALLBACKS ) {
 			$type = IDatabase::TRIGGER_COMMIT;
 		} elseif ( $this->trxRoundStage === self::ROUND_ROLLBACK_CALLBACKS ) {
@@ -1522,7 +1530,8 @@ class LoadBalancer implements ILoadBalancer {
 		return $e;
 	}
 
-	public function runMasterTransactionListenerCallbacks() {
+	public function runMasterTransactionListenerCallbacks( $fname = __METHOD__, $owner = null ) {
+		$this->assertOwnership( $fname, $owner );
 		if ( $this->trxRoundStage === self::ROUND_COMMIT_CALLBACKS ) {
 			$type = IDatabase::TRIGGER_COMMIT;
 		} elseif ( $this->trxRoundStage === self::ROUND_ROLLBACK_CALLBACKS ) {
@@ -1549,7 +1558,9 @@ class LoadBalancer implements ILoadBalancer {
 		return $e;
 	}
 
-	public function rollbackMasterChanges( $fname = __METHOD__ ) {
+	public function rollbackMasterChanges( $fname = __METHOD__, $owner = null ) {
+		$this->assertOwnership( $fname, $owner );
+
 		$restore = ( $this->trxRoundId !== false );
 		$this->trxRoundId = false;
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
@@ -1567,6 +1578,7 @@ class LoadBalancer implements ILoadBalancer {
 
 	/**
 	 * @param string|string[] $stage
+	 * @throws DBTransactionError
 	 */
 	private function assertTransactionRoundStage( $stage ) {
 		$stages = (array)$stage;
@@ -1581,6 +1593,20 @@ class LoadBalancer implements ILoadBalancer {
 			throw new DBTransactionError(
 				null,
 				"Transaction round stage must be $stageList (not '{$this->trxRoundStage}')"
+			);
+		}
+	}
+
+	/**
+	 * @param string $fname
+	 * @param int|null $owner Owner ID of the caller
+	 * @throws DBTransactionError
+	 */
+	private function assertOwnership( $fname, $owner ) {
+		if ( $this->ownerId !== null && $owner !== $this->ownerId ) {
+			throw new DBTransactionError(
+				null,
+				"$fname: LoadBalancer is owned by LBFactory #{$this->ownerId} (got '$owner')."
 			);
 		}
 	}

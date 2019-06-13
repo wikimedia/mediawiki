@@ -116,6 +116,7 @@ interface ILoadBalancer {
 	 *  - errorLogger : Callback that takes an Exception and logs it. [optional]
 	 *  - deprecationLogger: Callback to log a deprecation warning. [optional]
 	 *  - roundStage: STAGE_POSTCOMMIT_* class constant; for internal use [optional]
+	 *  - ownerId: integer ID of an LBFactory instance that manages this instance [optional]
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct( array $params );
@@ -414,18 +415,21 @@ interface ILoadBalancer {
 	/**
 	 * Commit transactions on all open connections
 	 * @param string $fname Caller name
+	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @throws DBExpectedError
 	 */
-	public function commitAll( $fname = __METHOD__ );
+	public function commitAll( $fname = __METHOD__, $owner = null );
 
 	/**
 	 * Run pre-commit callbacks and defer execution of post-commit callbacks
 	 *
 	 * Use this only for mutli-database commits
 	 *
+	 * @param string $fname Caller name
+	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @return int Number of pre-commit callbacks run (since 1.32)
 	 */
-	public function finalizeMasterChanges();
+	public function finalizeMasterChanges( $fname = __METHOD__, $owner = null );
 
 	/**
 	 * Perform all pre-commit checks for things like replication safety
@@ -434,9 +438,11 @@ interface ILoadBalancer {
 	 *
 	 * @param array $options Includes:
 	 *   - maxWriteDuration : max write query duration time in seconds
+	 * @param string $fname Caller name
+	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @throws DBTransactionError
 	 */
-	public function approveMasterChanges( array $options );
+	public function approveMasterChanges( array $options, $fname, $owner = null );
 
 	/**
 	 * Flush any master transaction snapshots and set DBO_TRX (if DBO_DEFAULT is set)
@@ -447,38 +453,45 @@ interface ILoadBalancer {
 	 *   - commitAll()
 	 * This allows for custom transaction rounds from any outer transaction scope.
 	 *
-	 * @param string $fname
+	 * @param string $fname Caller name
+	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @throws DBExpectedError
 	 */
-	public function beginMasterChanges( $fname = __METHOD__ );
+	public function beginMasterChanges( $fname = __METHOD__, $owner = null );
 
 	/**
 	 * Issue COMMIT on all open master connections to flush changes and view snapshots
 	 * @param string $fname Caller name
+	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @throws DBExpectedError
 	 */
-	public function commitMasterChanges( $fname = __METHOD__ );
+	public function commitMasterChanges( $fname = __METHOD__, $owner = null );
 
 	/**
 	 * Consume and run all pending post-COMMIT/ROLLBACK callbacks and commit dangling transactions
 	 *
+	 * @param string $fname Caller name
+	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @return Exception|null The first exception or null if there were none
 	 */
-	public function runMasterTransactionIdleCallbacks();
+	public function runMasterTransactionIdleCallbacks( $fname = __METHOD__, $owner = null );
 
 	/**
 	 * Run all recurring post-COMMIT/ROLLBACK listener callbacks
 	 *
+	 * @param string $fname Caller name
+	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @return Exception|null The first exception or null if there were none
 	 */
-	public function runMasterTransactionListenerCallbacks();
+	public function runMasterTransactionListenerCallbacks( $fname = __METHOD__, $owner = null );
 
 	/**
 	 * Issue ROLLBACK only on master, only if queries were done on connection
 	 * @param string $fname Caller name
+	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @throws DBExpectedError
 	 */
-	public function rollbackMasterChanges( $fname = __METHOD__ );
+	public function rollbackMasterChanges( $fname = __METHOD__, $owner = null );
 
 	/**
 	 * Commit all replica DB transactions so as to flush any REPEATABLE-READ or SSI snapshots
