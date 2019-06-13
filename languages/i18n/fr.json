@@ -2010,7 +2010,7 @@
 	"sharedupload-desc-edit": "Ce fichier provient de : $1. Il peut être utilisé par d'autres projets.\nVous voulez peut-être modifier la description sur sa [$2 page de description].",
 	"sharedupload-desc-create": "Ce fichier provient de : $1. Il peut être utilisé par d'autres projets.\nVous voulez peut-être modifier la description sur sa [$2 page de description].",
 	"filepage-nofile": "Aucun fichier de ce nom n’existe.",
-	"filepage-nofile-link": "Aucun fichier de ce nom n’existe, mais vous pouvez [$1 en importer un].",
+	"filepage-nofile-link": "Aucun fichier de ce nom n’existe, mais vous pouvez [$1 en téléverser un].",
 	"uploadnewversion-linktext": "Importer une nouvelle version de ce fichier",
 	"shared-repo-from": "de : $1",
 	"shared-repo": "un dépôt partagé",

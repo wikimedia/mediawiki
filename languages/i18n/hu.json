@@ -3821,5 +3821,5 @@
 	"passwordpolicies-policyflag-forcechange": "lecserélés követelése bejelentkezéskor",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "lecserélés ajánlása bejelentkezéskor",
 	"unprotected-js": "Biztonsági okokból JavaScript nem tölthető be védtelen lapokról. Kérlek egyedül a MediaWiki névtérben készíts JavaScriptet, vagy szerkesztői allapként.",
-	"userlogout-continue": "Amennyiben ki szeretnél jelentkezni, [$1 használd a kijelentkezési oldalt]."
+	"userlogout-continue": "Biztos ki szeretnél jelentkezni?"
 }

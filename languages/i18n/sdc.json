@@ -1445,5 +1445,6 @@
 	"logentry-newusers-create": "La registhrazioni di l'utenti $1 è isthadda {{GENDER:$2|criadda}}",
 	"logentry-upload-upload": "$1 {{GENDER:$2|à carriggaddu}} $3",
 	"rightsnone": "(nisciunu)",
-	"searchsuggest-search": "Zercha di dentru a {{SITENAME}}"
+	"searchsuggest-search": "Zercha di dentru a {{SITENAME}}",
+	"userlogout-continue": "Bói iscí?"
 }

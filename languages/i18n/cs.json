@@ -43,7 +43,8 @@
 			"Radana",
 			"Jan Růžička",
 			"Jaroslav Cerny",
-			"Slepi"
+			"Slepi",
+			"Tchoř"
 		]
 	},
 	"tog-underline": "Podtrhávat odkazy:",
@@ -1754,7 +1755,7 @@
 	"lockmanager-fail-closelock": "Soubor se zámkem pro „$1“ nelze zavřít.",
 	"lockmanager-fail-deletelock": "Soubor se zámkem pro „$1“ nelze smazat.",
 	"lockmanager-fail-acquirelock": "Zámek pro „$1“ nelze získat.",
-	"lockmanager-fail-openlock": "Soubor zámku „$1“ nelze otevřít. Ujistěte se, že váš adresář nahraných souborů je správně nakonfigurován a že váš webový server má povolení k zápisu do tohoto adresáře. Pro další informace viz https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory.",
+	"lockmanager-fail-openlock": "Soubor zámku „$1“ nelze otevřít. Ujistěte se, že váš adresář nahraných souborů je správně nakonfigurován a že váš webový server má povolení k zápisu do tohoto adresáře. Pro další informace vizte https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory.",
 	"lockmanager-fail-releaselock": "Zámek pro „$1“ nelze uvolnit.",
 	"lockmanager-fail-db-bucket": "Nelze navázat spojení s dostatečným počtem databází zámků v bloku $1.",
 	"lockmanager-fail-db-release": "Uzamčení databáze $1 nelze uvolnit.",
@@ -3852,7 +3853,7 @@
 	"edit-error-long": "Chyby:\n\n$1",
 	"revid": "revize $1",
 	"pageid": "Stránka s ID $1",
-	"interfaceadmin-info": "$1\n\nOprávnění editovat celoprojektové soubory s CSS/JS/JSON bylo nedávno odděleno z oprávnění <code>editinterface</code>. Pokud nerozumíte, proč se vám zobrazuje tato chyba, viz [[mw:MediaWiki_1.32/interface-admin]].",
+	"interfaceadmin-info": "$1\n\nOprávnění editovat celoprojektové soubory s CSS/JS/JSON bylo nedávno odděleno z oprávnění <code>editinterface</code>. Pokud nerozumíte, proč se vám zobrazuje tato chyba, vizte [[mw:MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "Značky &lt;html&gt; nelze používat mimo běžné stránky.",
 	"gotointerwiki": "Opustit {{GRAMMAR:4sg|{{SITENAME}}}}",
 	"gotointerwiki-invalid": "Zadaný název je neplatný.",

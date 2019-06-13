@@ -141,7 +141,8 @@
 			"Romanko Mikhail",
 			"Diralik",
 			"1233qwer1234qwer4",
-			"Саша Волохов"
+			"Саша Волохов",
+			"Serhio Magpie"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -277,7 +278,7 @@
 	"noindex-category": "Неиндексируемые страницы",
 	"broken-file-category": "Страницы с неработающими файловыми ссылками",
 	"categoryviewer-pagedlinks": "($1) ($2)",
-	"category-header-numerals": "$1–$2",
+	"category-header-numerals": "$1—$2",
 	"about": "Описание",
 	"article": "Статья",
 	"newwindow": "(в новом окне)",
