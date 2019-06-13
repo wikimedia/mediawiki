@@ -2822,7 +2822,6 @@ return [
 		'scripts' => [
 			'resources/lib/html5shiv/html5shiv.js'
 		],
-		'raw' => true,
 	],
 
 	/* EasyDeflate */

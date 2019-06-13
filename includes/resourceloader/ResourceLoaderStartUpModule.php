@@ -254,10 +254,11 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				continue;
 			}
 
-			if ( $module->isRaw() ) {
-				// Don't register "raw" modules (like 'startup') client-side because depending on them
-				// is illegal anyway and would only lead to them being loaded a second time,
-				// causing any state to be lost.
+			if ( $module instanceof ResourceLoaderStartUpModule ) {
+				// Don't register 'startup' to the client because loading it lazily or depending
+				// on it doesn't make sense, because the startup module *is* the client.
+				// Registering would be a waste of bandwidth and memory and risks somehow causing
+				// it to load a second time.
 
 				// ATTENTION: Because of the line below, this is not going to cause infinite recursion.
 				// Think carefully before making changes to this code!
@@ -339,13 +340,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		}
 
 		return $out;
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function isRaw() {
-		return true;
 	}
 
 	/**

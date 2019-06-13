@@ -140,9 +140,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/** @var bool Link to raw files in debug mode */
 	protected $debugRaw = true;
 
-	/** @var bool Whether mw.loader.state() call should be omitted */
-	protected $raw = false;
-
 	protected $targets = [ 'desktop' ];
 
 	/** @var bool Whether CSSJanus flipping should be skipped for this module */
@@ -305,7 +302,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 					break;
 				// Single booleans
 				case 'debugRaw':
-				case 'raw':
 				case 'noflip':
 					$this->{$member} = (bool)$option;
 					break;
@@ -514,13 +510,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @return bool
-	 */
-	public function isRaw() {
-		return $this->raw;
-	}
-
-	/**
 	 * Disable module content versioning.
 	 *
 	 * This class uses getDefinitionSummary() instead, to avoid filesystem overhead
@@ -620,7 +609,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			'templates',
 			'skipFunction',
 			'debugRaw',
-			'raw',
 		] as $member ) {
 			$options[$member] = $this->{$member};
 		}
@@ -1004,7 +992,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			|| $this->dependencies
 			|| $this->messages
 			|| $this->skipFunction
-			|| $this->raw
 		);
 		return $canBeStylesOnly ? self::LOAD_STYLES : self::LOAD_GENERAL;
 	}

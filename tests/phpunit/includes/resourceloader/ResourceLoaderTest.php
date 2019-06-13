@@ -171,9 +171,8 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 			'simple scripts' => [ true,
 				[ 'scripts' => 'example.js' ]
 			],
-			'simple scripts, raw and targets' => [ true, [
+			'simple scripts with targets' => [ true, [
 				'scripts' => [ 'a.js', 'b.js' ],
-				'raw' => true,
 				'targets' => [ 'desktop', 'mobile' ],
 			] ],
 			'FileModule' => [ true,

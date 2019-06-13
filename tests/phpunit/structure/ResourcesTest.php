@@ -45,9 +45,9 @@ class ResourcesTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Verify that nothing explicitly depends on raw modules (such as "query").
+	 * Verify that nothing depends on "startup".
 	 *
-	 * Depending on them is unsupported as they are not registered client-side by the startup module.
+	 * Depending on it is unsupported as it cannot be loaded by the client.
 	 *
 	 * @todo Modules can dynamically choose dependencies based on context. This method does not
 	 * test such dependencies. The same goes for testMissingDependencies() and
@@ -58,7 +58,7 @@ class ResourcesTest extends MediaWikiTestCase {
 
 		$illegalDeps = [];
 		foreach ( $data['modules'] as $moduleName => $module ) {
-			if ( $module->isRaw() ) {
+			if ( $module instanceof ResourceLoaderStartUpModule ) {
 				$illegalDeps[] = $moduleName;
 			}
 		}

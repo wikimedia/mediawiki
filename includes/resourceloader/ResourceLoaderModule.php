@@ -336,17 +336,6 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Whether this module's JS expects to work without the client-side ResourceLoader module.
-	 * Returning true from this function will prevent mw.loader.state() call from being
-	 * appended to the bottom of the script.
-	 *
-	 * @return bool
-	 */
-	public function isRaw() {
-		return false;
-	}
-
-	/**
 	 * Get a list of modules this module depends on.
 	 *
 	 * Dependency information is taken into account when loading a module
