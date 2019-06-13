@@ -3222,7 +3222,7 @@ class OutputPage extends ContextSource {
 				),
 				[ 'html5shiv' ],
 				ResourceLoaderModule::TYPE_SCRIPTS,
-				[ 'sync' => true ],
+				[ 'raw' => '1', 'sync' => '1' ],
 				$this->getCSPNonce()
 			) .
 			'<![endif]-->';

@@ -303,7 +303,7 @@ JAVASCRIPT;
 
 		// Async scripts. Once the startup is loaded, inline RLQ scripts will run.
 		// Pass-through a custom 'target' from OutputPage (T143066).
-		$startupQuery = [];
+		$startupQuery = [ 'raw' => '1' ];
 		foreach ( [ 'target', 'safemode' ] as $param ) {
 			if ( $this->options[$param] !== null ) {
 				$startupQuery[$param] = (string)$this->options[$param];
