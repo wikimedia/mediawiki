@@ -65,6 +65,7 @@ class ExtensionProcessor implements Processor {
 	protected static $coreAttributes = [
 		'SkinOOUIThemes',
 		'TrackingCategories',
+		'RestRoutes',
 	];
 
 	/**

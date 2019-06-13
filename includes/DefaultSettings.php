@@ -194,6 +194,13 @@ $wgScript = false;
 $wgLoadScript = false;
 
 /**
+ * The URL path to the REST API
+ * Defaults to "{$wgScriptPath}/rest.php"
+ * @since 1.34
+ */
+$wgRestPath = false;
+
+/**
  * The URL path of the skins directory.
  * Defaults to "{$wgResourceBasePath}/skins".
  * @since 1.3
@@ -8086,10 +8093,10 @@ $wgExemptFromUserRobotsControl = null;
 /** @} */ # End robot policy }
 
 /************************************************************************//**
- * @name   AJAX and API
+ * @name   AJAX, Action API and REST API
  * Note: The AJAX entry point which this section refers to is gradually being
- * replaced by the API entry point, api.php. They are essentially equivalent.
- * Both of them are used for dynamic client-side features, via XHR.
+ * replaced by the Action API entry point, api.php. They are essentially
+ * equivalent. Both of them are used for dynamic client-side features, via XHR.
  * @{
  */
 

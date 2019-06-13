@@ -143,6 +143,9 @@ if ( $wgScript === false ) {
 if ( $wgLoadScript === false ) {
 	$wgLoadScript = "$wgScriptPath/load.php";
 }
+if ( $wgRestPath === false ) {
+	$wgRestPath = "$wgScriptPath/rest.php";
+}
 
 if ( $wgArticlePath === false ) {
 	if ( $wgUsePathInfo ) {
