@@ -14,7 +14,7 @@
  */
 
 /**
- * Debugging: PHP
+ * Debugging for PHP
  */
 
 // Enable showing of errors
@@ -22,7 +22,7 @@ error_reporting( -1 );
 ini_set( 'display_errors', 1 );
 
 /**
- * Debugging: MediaWiki
+ * Debugging for MediaWiki
  */
 global $wgDevelopmentWarnings, $wgShowExceptionDetails, $wgShowHostnames,
 	$wgDebugRawPage, $wgSQLMode, $wgCommandLineMode, $wgDebugLogFile,
@@ -53,9 +53,3 @@ if ( $logDir ) {
 	$wgDebugLogGroups['error'] = "$logDir/mw-error.log";
 }
 unset( $logDir );
-// Make caching faster
-$wgMainCacheType = CACHE_ACCEL;
-$wgMessageCacheType = CACHE_ACCEL;
-$wgParserCacheType = CACHE_ACCEL;
-$wgSessionCacheType = CACHE_ACCEL;
-$wgLanguageConverterCacheType = CACHE_ACCEL;
