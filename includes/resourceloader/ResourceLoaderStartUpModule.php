@@ -425,11 +425,4 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		// and hash it to determine the version (as used by E-Tag HTTP response header).
 		return true;
 	}
-
-	/**
-	 * @return string
-	 */
-	public function getGroup() {
-		return 'startup';
-	}
 }
