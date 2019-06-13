@@ -56,17 +56,6 @@
 		<testsuite name="documentation">
 			<directory>documentation</directory>
 		</testsuite>
-
-		<!-- Unit tests separation -->
-		<testsuite name="unit_includes">
-			<directory>unit/includes</directory>
-		</testsuite>
-		<testsuite name="unit_languages">
-			<directory>unit/languages</directory>
-		</testsuite>
-		<testsuite name="unit_structure">
-			<directory>unit/structure</directory>
-		</testsuite>
 	</testsuites>
 	<groups>
 		<exclude>
