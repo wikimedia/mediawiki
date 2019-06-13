@@ -325,6 +325,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @private For internal use by SpecialJavaScriptTest
 	 * @since 1.32
 	 * @return array
+	 * @codeCoverageIgnore
 	 */
 	public function getBaseModulesInternal() {
 		return $this->getBaseModules();
