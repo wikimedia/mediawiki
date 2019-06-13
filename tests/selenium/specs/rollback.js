@@ -66,7 +66,7 @@ describe( 'Rollback with confirmation', function () {
 		}, 5000, 'Expected rollback page to appear.' );
 	} );
 
-	it( 'should verify rollbacks via GET requests are confirmed on a follow-up page', function () {
+	it.skip( 'should verify rollbacks via GET requests are confirmed on a follow-up page', function () {
 		var rollbackActionUrl = HistoryPage.rollbackLink.getAttribute( 'href' );
 		browser.url( rollbackActionUrl );
 
