@@ -108,8 +108,8 @@ class PHPVersionCheck {
 			'implementation' => 'PHP',
 			'version' => PHP_VERSION,
 			'vendor' => 'the PHP Group',
-			'upstreamSupported' => '5.6.0',
-			'minSupported' => '7.0.13',
+			'upstreamSupported' => '7.1.0',
+			'minSupported' => '7.2.0',
 			'upgradeURL' => 'https://www.php.net/downloads.php',
 		);
 	}
