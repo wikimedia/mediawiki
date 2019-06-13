@@ -133,6 +133,34 @@ class ChangeTags {
 	}
 
 	/**
+	 * Get the message object for the tag's short description.
+	 *
+	 * Checks if message key "mediawiki:tag-$tag" exists. If it does not,
+	 * returns the tag name in a RawMessage. If the message exists, it is
+	 * used, provided it is not disabled. If the message is disabled, we
+	 * consider the tag hidden, and return false.
+	 *
+	 * @since 1.34
+	 * @param string $tag
+	 * @param MessageLocalizer $context
+	 * @return Message|bool Tag description, or false if tag is to be hidden.
+	 */
+	public static function tagShortDescriptionMessage( $tag, MessageLocalizer $context ) {
+		$msg = $context->msg( "tag-$tag" );
+		if ( !$msg->exists() ) {
+			// No such message
+			return new RawMessage( '$1', [ Message::plaintextParam( $tag ) ] );
+		}
+		if ( $msg->isDisabled() ) {
+			// The message exists but is disabled, hide the tag.
+			return false;
+		}
+
+		// Message exists and isn't disabled, use it.
+		return $msg;
+	}
+
+	/**
 	 * Get a short description for a tag.
 	 *
 	 * Checks if message key "mediawiki:tag-$tag" exists. If it does not,
@@ -146,18 +174,8 @@ class ChangeTags {
 	 * @since 1.25 Returns false if tag is to be hidden.
 	 */
 	public static function tagDescription( $tag, MessageLocalizer $context ) {
-		$msg = $context->msg( "tag-$tag" );
-		if ( !$msg->exists() ) {
-			// No such message, so return the HTML-escaped tag name.
-			return htmlspecialchars( $tag );
-		}
-		if ( $msg->isDisabled() ) {
-			// The message exists but is disabled, hide the tag.
-			return false;
-		}
-
-		// Message exists and isn't disabled, use it.
-		return $msg->parse();
+		$msg = self::tagShortDescriptionMessage( $tag, $context );
+		return $msg ? $msg->parse() : false;
 	}
 
 	/**
@@ -1468,6 +1486,7 @@ class ChangeTags {
 		$cache->touchCheckKey( $cache->makeKey( 'active-tags' ) );
 		$cache->touchCheckKey( $cache->makeKey( 'valid-tags-db' ) );
 		$cache->touchCheckKey( $cache->makeKey( 'valid-tags-hook' ) );
+		$cache->touchCheckKey( $cache->makeKey( 'tags-usage-statistics' ) );
 
 		MediaWikiServices::getInstance()->getChangeTagDefStore()->reloadMap();
 	}
@@ -1479,21 +1498,35 @@ class ChangeTags {
 	 * @return array Array of string => int
 	 */
 	public static function tagUsageStatistics() {
-		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->select(
-			'change_tag_def',
-			[ 'ctd_name', 'ctd_count' ],
-			[],
-			__METHOD__,
-			[ 'ORDER BY' => 'ctd_count DESC' ]
+		$fname = __METHOD__;
+
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		return $cache->getWithSetCallback(
+			$cache->makeKey( 'tags-usage-statistics' ),
+			WANObjectCache::TTL_MINUTE * 5,
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
+				$dbr = wfGetDB( DB_REPLICA );
+				$res = $dbr->select(
+					'change_tag_def',
+					[ 'ctd_name', 'ctd_count' ],
+					[],
+					$fname,
+					[ 'ORDER BY' => 'ctd_count DESC' ]
+				);
+
+				$out = [];
+				foreach ( $res as $row ) {
+					$out[$row->ctd_name] = $row->ctd_count;
+				}
+
+				return $out;
+			},
+			[
+				'checkKeys' => [ $cache->makeKey( 'tags-usage-statistics' ) ],
+				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
+				'pcTTL' => WANObjectCache::TTL_PROC_LONG
+			]
 		);
-
-		$out = [];
-		foreach ( $res as $row ) {
-			$out[$row->ctd_name] = $row->ctd_count;
-		}
-
-		return $out;
 	}
 
 	/**
