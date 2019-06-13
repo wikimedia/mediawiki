@@ -46,38 +46,6 @@ use RuntimeException;
  * @since 1.28
  */
 abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAwareInterface {
-	/** Number of times to re-try an operation in case of deadlock */
-	const DEADLOCK_TRIES = 4;
-	/** Minimum time to wait before retry, in microseconds */
-	const DEADLOCK_DELAY_MIN = 500000;
-	/** Maximum time to wait before retry */
-	const DEADLOCK_DELAY_MAX = 1500000;
-
-	/** How long before it is worth doing a dummy query to test the connection */
-	const PING_TTL = 1.0;
-	const PING_QUERY = 'SELECT 1 AS ping';
-
-	const TINY_WRITE_SEC = 0.010;
-	const SLOW_WRITE_SEC = 0.500;
-	const SMALL_WRITE_ROWS = 100;
-
-	/** @var string Lock granularity is on the level of the entire database */
-	const ATTR_DB_LEVEL_LOCKING = 'db-level-locking';
-	/** @var string The SCHEMA keyword refers to a grouping of tables in a database */
-	const ATTR_SCHEMAS_AS_TABLE_GROUPS = 'supports-schemas';
-
-	/** @var int New Database instance will not be connected yet when returned */
-	const NEW_UNCONNECTED = 0;
-	/** @var int New Database instance will already be connected when returned */
-	const NEW_CONNECTED = 1;
-
-	/** @var string The last SQL query attempted */
-	private $lastQuery = '';
-	/** @var float|bool UNIX timestamp of last write query */
-	private $lastWriteTime = false;
-	/** @var string|bool */
-	private $lastPhpError = false;
-
 	/** @var string Server that this instance is currently connected to */
 	protected $server;
 	/** @var string User that this instance is currently connected under the name of */
@@ -92,8 +60,23 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $cliMode;
 	/** @var string Agent name for query profiling */
 	protected $agent;
+	/** @var int Bitfield of class DBO_* constants */
+	protected $flags;
+	/** @var array LoadBalancer tracking information */
+	protected $lbInfo = [];
+	/** @var array|bool Variables use for schema element placeholders */
+	protected $schemaVars = false;
 	/** @var array Parameters used by initConnection() to establish a connection */
 	protected $connectionParams = [];
+	/** @var array SQL variables values to use for all new connections */
+	protected $connectionVariables = [];
+	/** @var string Current SQL query delimiter */
+	protected $delimiter = ';';
+	/** @var string|bool|null Stashed value of html_errors INI setting */
+	protected $htmlErrors;
+	/** @var int */
+	protected $nonNativeInsertSelectBatchSize = 10000;
+
 	/** @var BagOStuff APC cache */
 	protected $srvCache;
 	/** @var LoggerInterface */
@@ -104,177 +87,100 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $errorLogger;
 	/** @var callable Deprecation logging callback */
 	protected $deprecationLogger;
-
-	/** @var object|resource|null Database connection */
-	protected $conn = null;
-	/** @var bool */
-	protected $opened = false;
-
-	/** @var array[] List of (callable, method name, atomic section id) */
-	protected $trxIdleCallbacks = [];
-	/** @var array[] List of (callable, method name, atomic section id) */
-	protected $trxPreCommitCallbacks = [];
-	/** @var array[] List of (callable, method name, atomic section id) */
-	protected $trxEndCallbacks = [];
-	/** @var callable[] Map of (name => callable) */
-	protected $trxRecurringCallbacks = [];
-	/** @var bool Whether to suppress triggering of transaction end callbacks */
-	protected $trxEndCallbacksSuppressed = false;
-
-	/** @var int */
-	protected $flags;
-	/** @var array */
-	protected $lbInfo = [];
-	/** @var array|bool */
-	protected $schemaVars = false;
-	/** @var array */
-	protected $sessionVars = [];
-	/** @var array|null */
-	protected $preparedArgs;
-	/** @var string|bool|null Stashed value of html_errors INI setting */
-	protected $htmlErrors;
-	/** @var string */
-	protected $delimiter = ';';
-	/** @var DatabaseDomain */
-	protected $currentDomain;
-	/** @var integer|null Rows affected by the last query to query() or its CRUD wrappers */
-	protected $affectedRowCount;
-
-	/**
-	 * @var int Transaction status
-	 */
-	protected $trxStatus = self::STATUS_TRX_NONE;
-	/**
-	 * @var Exception|null The last error that caused the status to become STATUS_TRX_ERROR
-	 */
-	protected $trxStatusCause;
-	/**
-	 * @var array|null If wasKnownStatementRollbackError() prevented trxStatus from being set,
-	 *  the relevant details are stored here.
-	 */
-	protected $trxStatusIgnoredCause;
-	/**
-	 * Either 1 if a transaction is active or 0 otherwise.
-	 * The other Trx fields may not be meaningfull if this is 0.
-	 *
-	 * @var int
-	 */
-	protected $trxLevel = 0;
-	/**
-	 * Either a short hexidecimal string if a transaction is active or ""
-	 *
-	 * @var string
-	 * @see Database::trxLevel
-	 */
-	protected $trxShortId = '';
-	/**
-	 * The UNIX time that the transaction started. Callers can assume that if
-	 * snapshot isolation is used, then the data is *at least* up to date to that
-	 * point (possibly more up-to-date since the first SELECT defines the snapshot).
-	 *
-	 * @var float|null
-	 * @see Database::trxLevel
-	 */
-	private $trxTimestamp = null;
-	/** @var float Lag estimate at the time of BEGIN */
-	private $trxReplicaLag = null;
-	/**
-	 * Remembers the function name given for starting the most recent transaction via begin().
-	 * Used to provide additional context for error reporting.
-	 *
-	 * @var string
-	 * @see Database::trxLevel
-	 */
-	private $trxFname = null;
-	/**
-	 * Record if possible write queries were done in the last transaction started
-	 *
-	 * @var bool
-	 * @see Database::trxLevel
-	 */
-	private $trxDoneWrites = false;
-	/**
-	 * Record if the current transaction was started implicitly due to DBO_TRX being set.
-	 *
-	 * @var bool
-	 * @see Database::trxLevel
-	 */
-	private $trxAutomatic = false;
-	/**
-	 * Counter for atomic savepoint identifiers. Reset when a new transaction begins.
-	 *
-	 * @var int
-	 */
-	private $trxAtomicCounter = 0;
-	/**
-	 * Array of levels of atomicity within transactions
-	 *
-	 * @var array List of (name, unique ID, savepoint ID)
-	 */
-	private $trxAtomicLevels = [];
-	/**
-	 * Record if the current transaction was started implicitly by Database::startAtomic
-	 *
-	 * @var bool
-	 */
-	private $trxAutomaticAtomic = false;
-	/**
-	 * Track the write query callers of the current transaction
-	 *
-	 * @var string[]
-	 */
-	private $trxWriteCallers = [];
-	/**
-	 * @var float Seconds spent in write queries for the current transaction
-	 */
-	private $trxWriteDuration = 0.0;
-	/**
-	 * @var int Number of write queries for the current transaction
-	 */
-	private $trxWriteQueryCount = 0;
-	/**
-	 * @var int Number of rows affected by write queries for the current transaction
-	 */
-	private $trxWriteAffectedRows = 0;
-	/**
-	 * @var float Like trxWriteQueryCount but excludes lock-bound, easy to replicate, queries
-	 */
-	private $trxWriteAdjDuration = 0.0;
-	/**
-	 * @var int Number of write queries counted in trxWriteAdjDuration
-	 */
-	private $trxWriteAdjQueryCount = 0;
-	/**
-	 * @var float RTT time estimate
-	 */
-	private $rttEstimate = 0.0;
-
-	/** @var array Map of (name => 1) for locks obtained via lock() */
-	private $namedLocksHeld = [];
-	/** @var array Map of (table name => 1) for TEMPORARY tables */
-	protected $sessionTempTables = [];
-
-	/** @var IDatabase|null Lazy handle to the master DB this server replicates from */
-	private $lazyMasterHandle;
-
-	/** @var float UNIX timestamp */
-	protected $lastPing = 0.0;
-
-	/** @var int[] Prior flags member variable values */
-	private $priorFlags = [];
-
 	/** @var callable|null */
 	protected $profiler;
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
+	/** @var DatabaseDomain */
+	protected $currentDomain;
+	/** @var IDatabase|null Lazy handle to the master DB this server replicates from */
+	private $lazyMasterHandle;
 
-	/** @var int */
-	protected $nonNativeInsertSelectBatchSize = 10000;
+	/** @var object|resource|null Database connection */
+	protected $conn = null;
+	/** @var bool Whether a connection handle is open (connection itself might be dead) */
+	protected $opened = false;
 
-	/** @var string Idiom used when a cancelable atomic section started the transaction */
-	private static $NOT_APPLICABLE = 'n/a';
-	/** @var string Prefix to the atomic section counter used to make savepoint IDs */
-	private static $SAVEPOINT_PREFIX = 'wikimedia_rdbms_atomic';
+	/** @var array Map of (name => 1) for locks obtained via lock() */
+	protected $sessionNamedLocks = [];
+	/** @var array Map of (table name => 1) for TEMPORARY tables */
+	protected $sessionTempTables = [];
+
+	/** @var int Whether there is an active transaction (1 or 0) */
+	protected $trxLevel = 0;
+	/** @var string Hexidecimal string if a transaction is active or empty string otherwise */
+	protected $trxShortId = '';
+	/** @var int Transaction status */
+	protected $trxStatus = self::STATUS_TRX_NONE;
+	/** @var Exception|null The last error that caused the status to become STATUS_TRX_ERROR */
+	protected $trxStatusCause;
+	/** @var array|null Error details of the last statement-only rollback */
+	private $trxStatusIgnoredCause;
+	/** @var float|null UNIX timestamp at the time of BEGIN for the last transaction */
+	private $trxTimestamp = null;
+	/** @var float Replication lag estimate at the time of BEGIN for the last transaction */
+	private $trxReplicaLag = null;
+	/** @var string Name of the function that start the last transaction */
+	private $trxFname = null;
+	/** @var bool Whether possible write queries were done in the last transaction started */
+	private $trxDoneWrites = false;
+	/** @var bool Whether the current transaction was started implicitly due to DBO_TRX */
+	private $trxAutomatic = false;
+	/** @var int Counter for atomic savepoint identifiers (reset with each transaction) */
+	private $trxAtomicCounter = 0;
+	/** @var array List of (name, unique ID, savepoint ID) for each active atomic section level */
+	private $trxAtomicLevels = [];
+	/** @var bool Whether the current transaction was started implicitly by startAtomic() */
+	private $trxAutomaticAtomic = false;
+	/** @var string[] Write query callers of the current transaction */
+	private $trxWriteCallers = [];
+	/** @var float Seconds spent in write queries for the current transaction */
+	private $trxWriteDuration = 0.0;
+	/** @var int Number of write queries for the current transaction */
+	private $trxWriteQueryCount = 0;
+	/** @var int Number of rows affected by write queries for the current transaction */
+	private $trxWriteAffectedRows = 0;
+	/** @var float Like trxWriteQueryCount but excludes lock-bound, easy to replicate, queries */
+	private $trxWriteAdjDuration = 0.0;
+	/** @var int Number of write queries counted in trxWriteAdjDuration */
+	private $trxWriteAdjQueryCount = 0;
+	/** @var array[] List of (callable, method name, atomic section id) */
+	private $trxIdleCallbacks = [];
+	/** @var array[] List of (callable, method name, atomic section id) */
+	private $trxPreCommitCallbacks = [];
+	/** @var array[] List of (callable, method name, atomic section id) */
+	private $trxEndCallbacks = [];
+	/** @var callable[] Map of (name => callable) */
+	private $trxRecurringCallbacks = [];
+	/** @var bool Whether to suppress triggering of transaction end callbacks */
+	private $trxEndCallbacksSuppressed = false;
+
+	/** @var int[] Prior flags member variable values */
+	private $priorFlags = [];
+
+	/** @var integer|null Rows affected by the last query to query() or its CRUD wrappers */
+	protected $affectedRowCount;
+
+	/** @var float UNIX timestamp */
+	private $lastPing = 0.0;
+	/** @var string The last SQL query attempted */
+	private $lastQuery = '';
+	/** @var float|bool UNIX timestamp of last write query */
+	private $lastWriteTime = false;
+	/** @var string|bool */
+	private $lastPhpError = false;
+	/** @var float Query rount trip time estimate */
+	private $lastRoundTripEstimate = 0.0;
+
+	/** @var string Lock granularity is on the level of the entire database */
+	const ATTR_DB_LEVEL_LOCKING = 'db-level-locking';
+	/** @var string The SCHEMA keyword refers to a grouping of tables in a database */
+	const ATTR_SCHEMAS_AS_TABLE_GROUPS = 'supports-schemas';
+
+	/** @var int New Database instance will not be connected yet when returned */
+	const NEW_UNCONNECTED = 0;
+	/** @var int New Database instance will already be connected when returned */
+	const NEW_CONNECTED = 1;
 
 	/** @var int Transaction is in a error state requiring a full or savepoint rollback */
 	const STATUS_TRX_ERROR = 1;
@@ -283,10 +189,30 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var int No transaction is active */
 	const STATUS_TRX_NONE = 3;
 
+	/** @var string Idiom used when a cancelable atomic section started the transaction */
+	private static $NOT_APPLICABLE = 'n/a';
+	/** @var string Prefix to the atomic section counter used to make savepoint IDs */
+	private static $SAVEPOINT_PREFIX = 'wikimedia_rdbms_atomic';
+
 	/** @var int Writes to this temporary table do not affect lastDoneWrites() */
-	const TEMP_NORMAL = 1;
+	private static $TEMP_NORMAL = 1;
 	/** @var int Writes to this temporary table effect lastDoneWrites() */
-	const TEMP_PSEUDO_PERMANENT = 2;
+	private static $TEMP_PSEUDO_PERMANENT = 2;
+
+	/** Number of times to re-try an operation in case of deadlock */
+	private static $DEADLOCK_TRIES = 4;
+	/** Minimum time to wait before retry, in microseconds */
+	private static $DEADLOCK_DELAY_MIN = 500000;
+	/** Maximum time to wait before retry */
+	private static $DEADLOCK_DELAY_MAX = 1500000;
+
+	/** How long before it is worth doing a dummy query to test the connection */
+	private static $PING_TTL = 1.0;
+	private static $PING_QUERY = 'SELECT 1 AS ping';
+
+	private static $TINY_WRITE_SEC = 0.010;
+	private static $SLOW_WRITE_SEC = 0.500;
+	private static $SMALL_WRITE_ROWS = 100;
 
 	/**
 	 * @note exceptions for missing libraries/drivers should be thrown in initConnection()
@@ -312,7 +238,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Disregard deprecated DBO_IGNORE flag (T189999)
 		$this->flags &= ~self::DBO_IGNORE;
 
-		$this->sessionVars = $params['variables'];
+		$this->connectionVariables = $params['variables'];
 
 		$this->srvCache = $params['srvCache'] ?? new HashBagOStuff();
 
@@ -749,7 +675,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$applyTime = max( $this->trxWriteAdjDuration - $rttAdjTotal, 0 );
 		// For omitted queries, make them count as something at least
 		$omitted = $this->trxWriteQueryCount - $this->trxWriteAdjQueryCount;
-		$applyTime += self::TINY_WRITE_SEC * $omitted;
+		$applyTime += self::$TINY_WRITE_SEC * $omitted;
 
 		return $applyTime;
 	}
@@ -1171,7 +1097,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$sql,
 			$matches
 		) ) {
-			$type = $pseudoPermanent ? self::TEMP_PSEUDO_PERMANENT : self::TEMP_NORMAL;
+			$type = $pseudoPermanent ? self::$TEMP_PSEUDO_PERMANENT : self::$TEMP_NORMAL;
 			$this->sessionTempTables[$matches[1]] = $type;
 
 			return $type;
@@ -1252,7 +1178,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			# tests can override this behavior via $flags.
 			$pseudoPermanent = $this->hasFlags( $flags, self::QUERY_PSEUDO_PERMANENT );
 			$tableType = $this->registerTempTableWrite( $sql, $pseudoPermanent );
-			$isPermWrite = ( $tableType !== self::TEMP_NORMAL );
+			$isPermWrite = ( $tableType !== self::$TEMP_NORMAL );
 			# DBConnRef uses QUERY_REPLICA_ROLE to enforce the replica role for raw SQL queries
 			if ( $isPermWrite && $this->hasFlags( $flags, self::QUERY_REPLICA_ROLE ) ) {
 				throw new DBReadOnlyRoleError( $this, "Cannot write; target role is DB_REPLICA" );
@@ -1373,8 +1299,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$recoverableSR = $this->wasKnownStatementRollbackError();
 		}
 
-		if ( $sql === self::PING_QUERY ) {
-			$this->rttEstimate = $queryRuntime;
+		if ( $sql === self::$PING_QUERY ) {
+			$this->lastRoundTripEstimate = $queryRuntime;
 		}
 
 		$this->trxProfiler->recordQueryCompletion(
@@ -1432,13 +1358,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private function updateTrxWriteQueryTime( $sql, $runtime, $affected ) {
 		// Whether this is indicative of replica DB runtime (except for RBR or ws_repl)
 		$indicativeOfReplicaRuntime = true;
-		if ( $runtime > self::SLOW_WRITE_SEC ) {
+		if ( $runtime > self::$SLOW_WRITE_SEC ) {
 			$verb = $this->getQueryVerb( $sql );
 			// insert(), upsert(), replace() are fast unless bulky in size or blocked on locks
 			if ( $verb === 'INSERT' ) {
-				$indicativeOfReplicaRuntime = $this->affectedRows() > self::SMALL_WRITE_ROWS;
+				$indicativeOfReplicaRuntime = $this->affectedRows() > self::$SMALL_WRITE_ROWS;
 			} elseif ( $verb === 'REPLACE' ) {
-				$indicativeOfReplicaRuntime = $this->affectedRows() > self::SMALL_WRITE_ROWS / 2;
+				$indicativeOfReplicaRuntime = $this->affectedRows() > self::$SMALL_WRITE_ROWS / 2;
 			}
 		}
 
@@ -1509,7 +1435,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		# Dropped connections also mean that named locks are automatically released.
 		# Only allow error suppression in autocommit mode or when the lost transaction
 		# didn't matter anyway (aside from DBO_TRX snapshot loss).
-		if ( $this->namedLocksHeld ) {
+		if ( $this->sessionNamedLocks ) {
 			return false; // possible critical section violation
 		} elseif ( $this->sessionTempTables ) {
 			return false; // tables might be queried latter
@@ -1536,7 +1462,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->sessionTempTables = [];
 		// https://dev.mysql.com/doc/refman/5.7/en/miscellaneous-functions.html#function_get-lock
 		// https://www.postgresql.org/docs/9.4/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
-		$this->namedLocksHeld = [];
+		$this->sessionNamedLocks = [];
 		// Session loss implies transaction loss
 		$this->trxLevel = 0;
 		$this->trxAtomicCounter = 0;
@@ -3014,7 +2940,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function textFieldSize( $table, $field ) {
 		$table = $this->tableName( $table );
-		$sql = "SHOW COLUMNS FROM $table LIKE \"$field\";";
+		$sql = "SHOW COLUMNS FROM $table LIKE \"$field\"";
 		$res = $this->query( $sql, __METHOD__ );
 		$row = $this->fetchObject( $res );
 
@@ -3364,7 +3290,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public function deadlockLoop() {
 		$args = func_get_args();
 		$function = array_shift( $args );
-		$tries = self::DEADLOCK_TRIES;
+		$tries = self::$DEADLOCK_TRIES;
 
 		$this->begin( __METHOD__ );
 
@@ -3378,7 +3304,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			} catch ( DBQueryError $e ) {
 				if ( $this->wasDeadlock() ) {
 					// Retry after a randomized delay
-					usleep( mt_rand( self::DEADLOCK_DELAY_MIN, self::DEADLOCK_DELAY_MAX ) );
+					usleep( mt_rand( self::$DEADLOCK_DELAY_MIN, self::$DEADLOCK_DELAY_MAX ) );
 				} else {
 					// Throw the error back up
 					throw $e;
@@ -4027,7 +3953,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
-	final public function rollback( $fname = __METHOD__, $flush = '' ) {
+	final public function rollback( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
 		$trxActive = $this->trxLevel;
 
 		if ( $flush !== self::FLUSHING_INTERNAL
@@ -4181,20 +4107,20 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function ping( &$rtt = null ) {
 		// Avoid hitting the server if it was hit recently
-		if ( $this->isOpen() && ( microtime( true ) - $this->lastPing ) < self::PING_TTL ) {
-			if ( !func_num_args() || $this->rttEstimate > 0 ) {
-				$rtt = $this->rttEstimate;
+		if ( $this->isOpen() && ( microtime( true ) - $this->lastPing ) < self::$PING_TTL ) {
+			if ( !func_num_args() || $this->lastRoundTripEstimate > 0 ) {
+				$rtt = $this->lastRoundTripEstimate;
 				return true; // don't care about $rtt
 			}
 		}
 
 		// This will reconnect if possible or return false if not
 		$this->clearFlag( self::DBO_TRX, self::REMEMBER_PRIOR );
-		$ok = ( $this->query( self::PING_QUERY, __METHOD__, true ) !== false );
+		$ok = ( $this->query( self::$PING_QUERY, __METHOD__, true ) !== false );
 		$this->restoreFlags( self::RESTORE_PRIOR );
 
 		if ( $ok ) {
-			$rtt = $this->rttEstimate;
+			$rtt = $this->lastRoundTripEstimate;
 		}
 
 		return $ok;
@@ -4548,17 +4474,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// RDBMs methods for checking named locks may or may not count this thread itself.
 		// In MySQL, IS_FREE_LOCK() returns 0 if the thread already has the lock. This is
 		// the behavior choosen by the interface for this method.
-		return !isset( $this->namedLocksHeld[$lockName] );
+		return !isset( $this->sessionNamedLocks[$lockName] );
 	}
 
 	public function lock( $lockName, $method, $timeout = 5 ) {
-		$this->namedLocksHeld[$lockName] = 1;
+		$this->sessionNamedLocks[$lockName] = 1;
 
 		return true;
 	}
 
 	public function unlock( $lockName, $method ) {
-		unset( $this->namedLocksHeld[$lockName] );
+		unset( $this->sessionNamedLocks[$lockName] );
 
 		return true;
 	}

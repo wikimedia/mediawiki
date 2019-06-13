@@ -1709,7 +1709,6 @@ MESSAGE;
 	 * @param bool $printable
 	 * @param bool $handheld
 	 * @param array $extraQuery
-	 *
 	 * @return array
 	 */
 	public static function makeLoaderQuery( $modules, $lang, $skin, $user = null,
@@ -1718,9 +1717,17 @@ MESSAGE;
 	) {
 		$query = [
 			'modules' => self::makePackedModulesString( $modules ),
-			'lang' => $lang,
-			'skin' => $skin,
 		];
+		// Keep urls short by omitting query parameters that
+		// match the defaults assumed by ResourceLoaderContext.
+		// Note: This relies on the defaults either being insignificant or forever constant,
+		// as otherwise cached urls could change in meaning when the defaults change.
+		if ( $lang !== 'qqx' ) {
+			$query['lang'] = $lang;
+		}
+		if ( $skin !== 'fallback' ) {
+			$query['skin'] = $skin;
+		}
 		if ( $debug === true ) {
 			$query['debug'] = 'true';
 		}

@@ -85,7 +85,9 @@ abstract class LBFactory implements ILBFactory {
 	/** @var callable[] */
 	private $replicationWaitCallbacks = [];
 
-	/** @var mixed */
+	/** var int An identifier for this class instance */
+	private $id;
+	/** @var int|null Ticket used to delegate transaction ownership */
 	private $ticket;
 	/** @var string|bool String if a requested DBO_TRX transaction round is active */
 	private $trxRoundId = false;
@@ -153,6 +155,7 @@ abstract class LBFactory implements ILBFactory {
 		$this->defaultGroup = $conf['defaultGroup'] ?? null;
 		$this->secret = $conf['secret'] ?? '';
 
+		$this->id = mt_rand();
 		$this->ticket = mt_rand();
 	}
 
@@ -251,7 +254,7 @@ abstract class LBFactory implements ILBFactory {
 		}
 		$this->trxRoundId = $fname;
 		// Set DBO_TRX flags on all appropriate DBs
-		$this->forEachLBCallMethod( 'beginMasterChanges', [ $fname ] );
+		$this->forEachLBCallMethod( 'beginMasterChanges', [ $fname, $this->id ] );
 		$this->trxRoundStage = self::ROUND_CURSORY;
 	}
 
@@ -269,17 +272,17 @@ abstract class LBFactory implements ILBFactory {
 		// Run pre-commit callbacks and suppress post-commit callbacks, aborting on failure
 		do {
 			$count = 0; // number of callbacks executed this iteration
-			$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$count ) {
-				$count += $lb->finalizeMasterChanges();
+			$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$count, $fname ) {
+				$count += $lb->finalizeMasterChanges( $fname, $this->id );
 			} );
 		} while ( $count > 0 );
 		$this->trxRoundId = false;
 		// Perform pre-commit checks, aborting on failure
-		$this->forEachLBCallMethod( 'approveMasterChanges', [ $options ] );
+		$this->forEachLBCallMethod( 'approveMasterChanges', [ $options, $fname, $this->id ] );
 		// Log the DBs and methods involved in multi-DB transactions
 		$this->logIfMultiDbTransaction();
 		// Actually perform the commit on all master DB connections and revert DBO_TRX
-		$this->forEachLBCallMethod( 'commitMasterChanges', [ $fname ] );
+		$this->forEachLBCallMethod( 'commitMasterChanges', [ $fname, $this->id ] );
 		// Run all post-commit callbacks in a separate step
 		$this->trxRoundStage = self::ROUND_COMMIT_CALLBACKS;
 		$e = $this->executePostTransactionCallbacks();
@@ -294,7 +297,7 @@ abstract class LBFactory implements ILBFactory {
 		$this->trxRoundStage = self::ROUND_ROLLING_BACK;
 		$this->trxRoundId = false;
 		// Actually perform the rollback on all master DB connections and revert DBO_TRX
-		$this->forEachLBCallMethod( 'rollbackMasterChanges', [ $fname ] );
+		$this->forEachLBCallMethod( 'rollbackMasterChanges', [ $fname, $this->id ] );
 		// Run all post-commit callbacks in a separate step
 		$this->trxRoundStage = self::ROUND_ROLLBACK_CALLBACKS;
 		$this->executePostTransactionCallbacks();
@@ -305,17 +308,18 @@ abstract class LBFactory implements ILBFactory {
 	 * @return Exception|null
 	 */
 	private function executePostTransactionCallbacks() {
+		$fname = __METHOD__;
 		// Run all post-commit callbacks until new ones stop getting added
 		$e = null; // first callback exception
 		do {
-			$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$e ) {
-				$ex = $lb->runMasterTransactionIdleCallbacks();
+			$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$e, $fname ) {
+				$ex = $lb->runMasterTransactionIdleCallbacks( $fname, $this->id );
 				$e = $e ?: $ex;
 			} );
 		} while ( $this->hasMasterChanges() );
 		// Run all listener callbacks once
-		$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$e ) {
-			$ex = $lb->runMasterTransactionListenerCallbacks();
+		$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$e, $fname ) {
+			$ex = $lb->runMasterTransactionListenerCallbacks( $fname, $this->id );
 			$e = $e ?: $ex;
 		} );
 
@@ -605,7 +609,8 @@ abstract class LBFactory implements ILBFactory {
 				// being called later (but before the first connection attempt) (T192611)
 				$this->getChronologyProtector()->applySessionReplicationPosition( $lb );
 			},
-			'roundStage' => $initStage
+			'roundStage' => $initStage,
+			'ownerId' => $this->id
 		];
 	}
 
@@ -614,7 +619,7 @@ abstract class LBFactory implements ILBFactory {
 	 */
 	protected function initLoadBalancer( ILoadBalancer $lb ) {
 		if ( $this->trxRoundId !== false ) {
-			$lb->beginMasterChanges( $this->trxRoundId ); // set DBO_TRX
+			$lb->beginMasterChanges( $this->trxRoundId, $this->id ); // set DBO_TRX
 		}
 
 		$lb->setTableAliases( $this->tableAliases );
