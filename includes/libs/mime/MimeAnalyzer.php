@@ -755,7 +755,9 @@ EOT;
 		/**
 		 * look for XML formats (XHTML and SVG)
 		 */
+		Wikimedia\suppressWarnings();
 		$xml = new XmlTypeCheck( $file );
+		Wikimedia\restoreWarnings();
 		if ( $xml->wellFormed ) {
 			$xmlTypes = $this->xmlTypes;
 			return $xmlTypes[$xml->getRootElement()] ?? 'application/xml';
