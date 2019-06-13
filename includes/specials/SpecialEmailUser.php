@@ -166,14 +166,10 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * Validate target User
 	 *
 	 * @param string $target Target user name
-	 * @param User|null $sender User sending the email
+	 * @param User $sender User sending the email
 	 * @return User|string User object on success or a string on error
 	 */
-	public static function getTarget( $target, User $sender = null ) {
-		if ( $sender === null ) {
-			wfDeprecated( __METHOD__ . ' without specifying the sending user', '1.30' );
-		}
-
+	public static function getTarget( $target, User $sender ) {
 		if ( $target == '' ) {
 			wfDebug( "Target is empty.\n" );
 
@@ -190,15 +186,11 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * Validate target User
 	 *
 	 * @param User $target Target user
-	 * @param User|null $sender User sending the email
+	 * @param User $sender User sending the email
 	 * @return string Error message or empty string if valid.
 	 * @since 1.30
 	 */
-	public static function validateTarget( $target, User $sender = null ) {
-		if ( $sender === null ) {
-			wfDeprecated( __METHOD__ . ' without specifying the sending user', '1.30' );
-		}
-
+	public static function validateTarget( $target, User $sender ) {
 		if ( !$target instanceof User || !$target->getId() ) {
 			wfDebug( "Target is invalid user.\n" );
 
@@ -217,25 +209,21 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			return 'nowikiemail';
 		}
 
-		if ( $sender !== null && !$target->getOption( 'email-allow-new-users' ) &&
-			$sender->isNewbie()
-		) {
+		if ( !$target->getOption( 'email-allow-new-users' ) && $sender->isNewbie() ) {
 			wfDebug( "User does not allow user emails from new users.\n" );
 
 			return 'nowikiemail';
 		}
 
-		if ( $sender !== null ) {
-			$blacklist = $target->getOption( 'email-blacklist', '' );
-			if ( $blacklist ) {
-				$blacklist = MultiUsernameFilter::splitIds( $blacklist );
-				$lookup = CentralIdLookup::factory();
-				$senderId = $lookup->centralIdFromLocalUser( $sender );
-				if ( $senderId !== 0 && in_array( $senderId, $blacklist ) ) {
-					wfDebug( "User does not allow user emails from this user.\n" );
+		$blacklist = $target->getOption( 'email-blacklist', '' );
+		if ( $blacklist ) {
+			$blacklist = MultiUsernameFilter::splitIds( $blacklist );
+			$lookup = CentralIdLookup::factory();
+			$senderId = $lookup->centralIdFromLocalUser( $sender );
+			if ( $senderId !== 0 && in_array( $senderId, $blacklist ) ) {
+				wfDebug( "User does not allow user emails from this user.\n" );
 
-					return 'nowikiemail';
-				}
+				return 'nowikiemail';
 			}
 		}
 
