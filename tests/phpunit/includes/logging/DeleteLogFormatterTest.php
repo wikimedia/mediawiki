@@ -457,7 +457,7 @@ class DeleteLogFormatterTest extends LogFormatterTestCase {
 				],
 			],
 
-			// Legacy format
+			// Legacy formats
 			[
 				[
 					'type' => 'suppress',
@@ -495,6 +495,27 @@ class DeleteLogFormatterTest extends LogFormatterTestCase {
 					],
 				],
 			],
+			[
+				[
+					'type' => 'delete',
+					'action' => 'revision',
+					'comment' => 'Old rows might lack ofield/nfield (T224815)',
+					'namespace' => NS_MAIN,
+					'title' => 'Page',
+					'params' => [
+						'oldid',
+						'1234',
+					],
+				],
+				[
+					'legacy' => true,
+					'text' => 'User changed visibility of revisions on page Page',
+					'api' => [
+						'type' => 'oldid',
+						'ids' => [ '1234' ],
+					],
+				],
+			]
 		];
 	}
 
