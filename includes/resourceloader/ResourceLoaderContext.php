@@ -134,6 +134,8 @@ class ResourceLoaderContext implements MessageLocalizer {
 	}
 
 	/**
+	 * @deprecated since 1.34 Use ResourceLoaderModule::getConfig instead
+	 * inside module methods. Use ResourceLoader::getConfig elsewhere.
 	 * @return Config
 	 */
 	public function getConfig() {
@@ -148,6 +150,8 @@ class ResourceLoaderContext implements MessageLocalizer {
 	}
 
 	/**
+	 * @deprecated since 1.34 Use ResourceLoaderModule::getLogger instead
+	 * inside module methods. Use ResourceLoader::getLogger elsewhere.
 	 * @since 1.27
 	 * @return \Psr\Log\LoggerInterface
 	 */

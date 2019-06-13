@@ -484,7 +484,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$allInfo = $cache->getWithSetCallback(
-			$cache->makeGlobalKey( 'resourceloader', 'titleinfo', $db->getDomainID(), $hash ),
+			$cache->makeGlobalKey( 'resourceloader-titleinfo', $db->getDomainID(), $hash ),
 			$cache::TTL_HOUR,
 			function ( $curVal, &$ttl, array &$setOpts ) use ( $func, $pageNames, $db, $fname ) {
 				$setOpts += Database::getCacheSetOptions( $db );
@@ -493,7 +493,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			},
 			[
 				'checkKeys' => [
-					$cache->makeGlobalKey( 'resourceloader', 'titleinfo', $db->getDomainID() ) ]
+					$cache->makeGlobalKey( 'resourceloader-titleinfo', $db->getDomainID() ) ]
 			]
 		);
 
@@ -550,7 +550,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 		if ( $purge ) {
 			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-			$key = $cache->makeGlobalKey( 'resourceloader', 'titleinfo', $domain );
+			$key = $cache->makeGlobalKey( 'resourceloader-titleinfo', $domain );
 			$cache->touchCheckKey( $key );
 		}
 	}

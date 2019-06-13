@@ -954,8 +954,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		return $cache->getWithSetCallback(
 			$cache->makeGlobalKey(
-				'resourceloader',
-				'jsparse',
+				'resourceloader-jsparse',
 				self::$parseCacheVersion,
 				md5( $contents ),
 				$fileName

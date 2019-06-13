@@ -258,7 +258,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			}
 
 			if ( $versionHash !== '' && strlen( $versionHash ) !== 7 ) {
-				$context->getLogger()->warning(
+				$this->getLogger()->warning(
 					"Module '{module}' produced an invalid version hash: '{version}'.",
 					[
 						'module' => $name,
