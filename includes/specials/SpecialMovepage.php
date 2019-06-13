@@ -597,7 +597,15 @@ class MovePageForm extends UnlistedSpecialPage {
 		# Do the actual move.
 		$mp = new MovePage( $ot, $nt );
 
+		# check whether the requested actions are permitted / possible
 		$userPermitted = $mp->checkPermissions( $user, $this->reason )->isOK();
+		if ( $ot->isTalkPage() || $nt->isTalkPage() ) {
+			$this->moveTalk = false;
+		}
+		if ( $this->moveSubpages ) {
+			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+			$this->moveSubpages = $permissionManager->userCan( 'move-subpages', $user, $ot );
+		}
 
 		$status = $mp->moveIfAllowed( $user, $this->reason, $createRedirect );
 		if ( !$status->isOK() ) {
@@ -646,19 +654,11 @@ class MovePageForm extends UnlistedSpecialPage {
 		$movePage = $this;
 		Hooks::run( 'SpecialMovepageAfterMove', [ &$movePage, &$ot, &$nt ] );
 
-		# Now we move extra pages we've been asked to move: subpages and talk
-		# pages.  First, if the old page or the new page is a talk page, we
-		# can't move any talk pages: cancel that.
-		if ( $ot->isTalkPage() || $nt->isTalkPage() ) {
-			$this->moveTalk = false;
-		}
-
-		if ( count( $ot->getUserPermissionsErrors( 'move-subpages', $user ) ) ) {
-			$this->moveSubpages = false;
-		}
-
-		/**
-		 * Next make a list of id's.  This might be marginally less efficient
+		/*
+		 * Now we move extra pages we've been asked to move: subpages and talk
+		 * pages.
+		 *
+		 * First, make a list of id's.  This might be marginally less efficient
 		 * than a more direct method, but this is not a highly performance-cri-
 		 * tical code path and readable code is more important here.
 		 *
