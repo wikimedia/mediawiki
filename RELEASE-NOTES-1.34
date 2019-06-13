@@ -258,6 +258,9 @@ because of Phabricator reports.
 * DatabaseBlock::setCookie, DatabaseBlock::getCookieValue,
   DatabaseBlock::getIdFromCookieValue and AbstractBlock::shouldTrackWithCookie
   are moved to internal helper methods for BlockManager::trackBlockWithCookie.
+* ResourceLoaderContext::getConfig and ResourceLoaderContext::getLogger have
+  been deprecated. Inside ResourceLoaderModule subclasses, use the local methods
+  instead. Elsewhere, use the methods from the ResourceLoader class.
 
 === Other changes in 1.34 ===
 * …
