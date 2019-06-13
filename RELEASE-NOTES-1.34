@@ -251,6 +251,7 @@ because of Phabricator reports.
   calls that use an invalid path (i.e., something other than an absolute path,
   protocol-relative URL, or full scheme URL), and will instead pass them to the
   client where they will likely 404. This usage was deprecated in 1.24.
+* Database::reportConnectionError, deprecated in 1.32, has been removed.
 * …
 
 === Deprecations in 1.34 ===

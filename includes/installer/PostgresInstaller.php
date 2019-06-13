@@ -505,6 +505,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
+		/** @var DatabasePostgres $conn */
 		$conn = $status->value;
 
 		// Create the schema if necessary

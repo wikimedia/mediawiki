@@ -229,10 +229,6 @@ class DatabaseTestHelper extends Database {
 		return 'test';
 	}
 
-	function isOpen() {
-		return $this->conn ? true : false;
-	}
-
 	function ping( &$rtt = null ) {
 		$rtt = 0.0;
 		return true;
