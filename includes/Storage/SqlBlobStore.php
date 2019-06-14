@@ -36,7 +36,7 @@ use MWException;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Service for storing and loading Content objects.
@@ -52,7 +52,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	const TEXT_CACHE_GROUP = 'revisiontext:10';
 
 	/**
-	 * @var LoadBalancer
+	 * @var ILoadBalancer
 	 */
 	private $dbLoadBalancer;
 
@@ -92,7 +92,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	private $useExternalStore = false;
 
 	/**
-	 * @param LoadBalancer $dbLoadBalancer A load balancer for acquiring database connections
+	 * @param ILoadBalancer $dbLoadBalancer A load balancer for acquiring database connections
 	 * @param WANObjectCache $cache A cache manager for caching blobs. This can be the local
 	 *        wiki's default instance even if $wikiId refers to a different wiki, since
 	 *        makeGlobalKey() is used to constructed a key that allows cached blobs from the
@@ -102,7 +102,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 * @param bool|string $wikiId The ID of the target wiki database. Use false for the local wiki.
 	 */
 	public function __construct(
-		LoadBalancer $dbLoadBalancer,
+		ILoadBalancer $dbLoadBalancer,
 		WANObjectCache $cache,
 		$wikiId = false
 	) {
@@ -186,7 +186,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	}
 
 	/**
-	 * @return LoadBalancer
+	 * @return ILoadBalancer
 	 */
 	private function getDBLoadBalancer() {
 		return $this->dbLoadBalancer;
