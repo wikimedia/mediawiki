@@ -208,3 +208,7 @@
 	border: 1px solid #5dc9f4;
 	margin-left: 20px;
 }
+
+#p-logo a {
+	background-image: url( images/installer-logo.png );
+}
