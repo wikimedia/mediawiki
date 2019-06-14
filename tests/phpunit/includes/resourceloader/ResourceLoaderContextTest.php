@@ -78,6 +78,38 @@ class ResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( 'zh|fallback|||styles|||||', $ctx->getHash() );
 	}
 
+	public static function provideDirection() {
+		yield 'LTR language' => [
+			[ 'lang' => 'en' ],
+			'ltr',
+		];
+		yield 'RTL language' => [
+			[ 'lang' => 'he' ],
+			'rtl',
+		];
+		yield 'explicit LTR' => [
+			[ 'lang' => 'he', 'dir' => 'ltr' ],
+			'ltr',
+		];
+		yield 'explicit RTL' => [
+			[ 'lang' => 'en', 'dir' => 'rtl' ],
+			'rtl',
+		];
+		// Not supported, but tested to cover the case and detect change
+		yield 'invalid dir' => [
+			[ 'lang' => 'he', 'dir' => 'xyz' ],
+			'rtl',
+		];
+	}
+
+	/**
+	 * @dataProvider provideDirection
+	 */
+	public function testDirection( array $params, $expected ) {
+		$ctx = new ResourceLoaderContext( $this->getResourceLoader(), new FauxRequest( $params ) );
+		$this->assertEquals( $expected, $ctx->getDirection() );
+	}
+
 	public function testShouldInclude() {
 		$ctx = new ResourceLoaderContext( $this->getResourceLoader(), new FauxRequest( [] ) );
 		$this->assertTrue( $ctx->shouldIncludeScripts(), 'Scripts in combined' );
