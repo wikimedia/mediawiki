@@ -208,6 +208,8 @@ class BlockManager {
 			} else {
 				$block = new CompositeBlock( [
 					'address' => $ip,
+					'byText' => 'MediaWiki default',
+					'reason' => wfMessage( 'blockedtext-composite-reason' )->plain(),
 					'originalBlocks' => $blocks,
 				] );
 			}
