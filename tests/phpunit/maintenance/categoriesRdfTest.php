@@ -58,7 +58,7 @@ class CategoriesRdfTest extends MediaWikiLangTestCase {
 			'wgServer' => 'http://acme.test',
 			'wgCanonicalServer' => 'http://acme.test',
 			'wgArticlePath' => '/wiki/$1',
-			'wgRightsUrl' => '//creativecommons.org/licenses/by-sa/3.0/',
+			'wgRightsUrl' => 'https://creativecommons.org/licenses/by-sa/3.0/',
 		] );
 
 		$dumpScript =
