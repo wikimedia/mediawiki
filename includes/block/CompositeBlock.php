@@ -109,10 +109,24 @@ class CompositeBlock extends AbstractBlock {
 	/**
 	 * @inheritDoc
 	 */
+	public function getExpiry() {
+		$maxExpiry = null;
+		foreach ( $this->originalBlocks as $block ) {
+			$expiry = $block->getExpiry();
+			if ( $maxExpiry === null || $expiry === '' || $expiry > $maxExpiry ) {
+				$maxExpiry = $expiry;
+			}
+		}
+		return $maxExpiry;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
 	public function getPermissionsError( IContextSource $context ) {
 		$params = $this->getBlockErrorParams( $context );
 
-		$msg = $this->isSitewide() ? 'blockedtext' : 'blockedtext-partial';
+		$msg = 'blockedtext-composite';
 
 		array_unshift( $params, $msg );
 
