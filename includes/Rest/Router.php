@@ -182,26 +182,57 @@ class Router {
 	}
 
 	/**
+	 * Remove the path prefix $this->rootPath. Return the part of the path with the
+	 * prefix removed, or false if the prefix did not match.
+	 *
+	 * @param string $path
+	 * @return false|string
+	 */
+	private function getRelativePath( $path ) {
+		if ( substr_compare( $path, $this->rootPath, 0, strlen( $this->rootPath ) ) !== 0 ) {
+			return false;
+		}
+		return substr( $path, strlen( $this->rootPath ) );
+	}
+
+	/**
 	 * Find the handler for a request and execute it
 	 *
 	 * @param RequestInterface $request
 	 * @return ResponseInterface
 	 */
 	public function execute( RequestInterface $request ) {
+		$path = $request->getUri()->getPath();
+		$relPath = $this->getRelativePath( $path );
+		if ( $relPath === false ) {
+			return $this->responseFactory->createHttpError( 404 );
+		}
+
 		$matchers = $this->getMatchers();
 		$matcher = $matchers[$request->getMethod()] ?? null;
-		if ( $matcher === null ) {
-			return $this->responseFactory->createHttpError( 404 );
-		}
-		$path = $request->getUri()->getPath();
-		if ( substr_compare( $path, $this->rootPath, 0, strlen( $this->rootPath ) ) !== 0 ) {
-			return $this->responseFactory->createHttpError( 404 );
-		}
-		$relPath = substr( $path, strlen( $this->rootPath ) );
-		$match = $matcher->match( $relPath );
+		$match = $matcher ? $matcher->match( $relPath ) : null;
+
 		if ( !$match ) {
-			return $this->responseFactory->createHttpError( 404 );
+			// Check for 405 wrong method
+			$allowed = [];
+			foreach ( $matchers as $allowedMethod => $allowedMatcher ) {
+				if ( $allowedMethod === $request->getMethod() ) {
+					continue;
+				}
+				if ( $allowedMatcher->match( $relPath ) ) {
+					$allowed[] = $allowedMethod;
+				}
+			}
+			if ( $allowed ) {
+				$response = $this->responseFactory->createHttpError( 405 );
+				$response->setHeader( 'Allow', $allowed );
+				return $response;
+			} else {
+				// Did not match with any other method, must be 404
+				return $this->responseFactory->createHttpError( 404 );
+			}
 		}
+
 		$request->setAttributes( $match['params'] );
 		$spec = $match['userData'];
 		$objectFactorySpec = array_intersect_key( $spec,
