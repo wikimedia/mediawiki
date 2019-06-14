@@ -30,10 +30,6 @@ use Wikimedia\Rdbms\IDatabase;
  */
 
 # Obsolete aliases
-/**
- * @deprecated since 1.28, use DB_REPLICA instead
- */
-define( 'DB_SLAVE', -1 );
 
 /**@{
  * Obsolete IDatabase::makeList() constants
