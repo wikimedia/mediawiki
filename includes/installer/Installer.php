@@ -1803,7 +1803,7 @@ abstract class Installer {
 	/**
 	 * Add an installation step following the given step.
 	 *
-	 * @param callable $callback A valid installation callback array, in this form:
+	 * @param array $callback A valid installation callback array, in this form:
 	 *    [ 'name' => 'some-unique-name', 'callback' => [ $obj, 'function' ] ];
 	 * @param string $findStep The step to find. Omit to put the step at the beginning
 	 */

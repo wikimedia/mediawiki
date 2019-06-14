@@ -1596,6 +1596,10 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * Stub. If a test suite needs to test against a specific database schema, it should
 	 * override this method and return the appropriate information from it.
 	 *
+	 * 'create', 'drop' and 'alter' in the returned array should list all the tables affected
+	 * by the 'scripts', even if the test is only interested in a subset of them, otherwise
+	 * the overrides may not be fully cleaned up, leading to errors later.
+	 *
 	 * @param IMaintainableDatabase $db The DB connection to use for the mock schema.
 	 *        May be used to check the current state of the schema, to determine what
 	 *        overrides are needed.
