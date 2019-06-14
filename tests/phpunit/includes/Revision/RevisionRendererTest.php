@@ -6,6 +6,7 @@ use CommentStoreComment;
 use Content;
 use Language;
 use LogicException;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\RevisionRecord;
@@ -28,6 +29,20 @@ use WikitextContent;
  * @covers \MediaWiki\Revision\RevisionRenderer
  */
 class RevisionRendererTest extends MediaWikiTestCase {
+
+	/** @var PermissionManager|\PHPUnit_Framework_MockObject_MockObject $permissionManagerMock */
+	private $permissionManagerMock;
+
+	protected function setUp() {
+		parent::setUp();
+
+		$this->permissionManagerMock = $this->createMock( PermissionManager::class );
+		$this->overrideMwServices( null, [
+			'PermissionManager' => function (): PermissionManager {
+				return $this->permissionManagerMock;
+			}
+		] );
+	}
 
 	/**
 	 * @param int $articleId
@@ -73,10 +88,10 @@ class RevisionRendererTest extends MediaWikiTestCase {
 					return $mock->getArticleID() === $other->getArticleID();
 				}
 			);
-		$mock->expects( $this->any() )
+		$this->permissionManagerMock->expects( $this->any() )
 			->method( 'userCan' )
 			->willReturnCallback(
-				function ( $perm, User $user ) use ( $mock ) {
+				function ( $perm, User $user ) {
 					return $user->isAllowed( $perm );
 				}
 			);

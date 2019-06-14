@@ -138,8 +138,10 @@ class SpecialUndelete extends SpecialPage {
 	 */
 	protected function isAllowed( $permission, User $user = null ) {
 		$user = $user ?: $this->getUser();
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
 		if ( $this->mTargetObj !== null ) {
-			return $this->mTargetObj->userCan( $permission, $user );
+			return $permissionManager->userCan( $permission, $user, $this->mTargetObj );
 		} else {
 			return $user->isAllowed( $permission );
 		}
