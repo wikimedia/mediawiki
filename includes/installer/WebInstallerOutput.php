@@ -323,13 +323,14 @@ class WebInstallerOutput {
 	public function outputShortHeader() {
 ?>
 <?php echo Html::htmlHeader( $this->getHeadAttribs() ); ?>
+
 <head>
-	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<meta name="robots" content="noindex, nofollow" />
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title><?php $this->outputTitle(); ?></title>
 	<?php echo $this->getCssUrl() . "\n"; ?>
-	<?php echo $this->getJQuery(); ?>
-	<?php echo Html::linkedScript( 'config.js' ); ?>
+	<?php echo $this->getJQuery() . "\n"; ?>
+	<?php echo Html::linkedScript( 'config.js' ) . "\n"; ?>
 </head>
 
 <body style="background-image: none">
