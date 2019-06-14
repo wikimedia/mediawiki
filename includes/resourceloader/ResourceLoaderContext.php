@@ -190,8 +190,10 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 */
 	public function getDirection() {
 		if ( $this->direction === null ) {
-			$this->direction = $this->getRequest()->getRawVal( 'dir' );
-			if ( !$this->direction ) {
+			$direction = $this->getRequest()->getRawVal( 'dir' );
+			if ( $direction === 'ltr' || $direction === 'rtl' ) {
+				$this->direction = $direction;
+			} else {
 				// Determine directionality based on user language (T8100)
 				$this->direction = Language::factory( $this->getLanguage() )->getDir();
 			}

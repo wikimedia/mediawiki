@@ -5,7 +5,7 @@
  * familiarise yourself with that CSS before making any changes to this code.
  *
  * Dual licensed:
- * - CC BY 3.0 <http://creativecommons.org/licenses/by/3.0>
+ * - CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>
  * - GPL2 <http://www.gnu.org/licenses/old-licenses/gpl-2.0.html>
  *
  * @class jQuery.plugin.makeCollapsible
