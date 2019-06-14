@@ -205,6 +205,9 @@ because of Phabricator reports.
 * jquery.ui.effect-bounce, jquery.ui.effect-explode, jquery.ui.effect-fold
   jquery.ui.effect-pulsate, jquery.ui.effect-slide, jquery.ui.effect-transfer,
   which are no longer used, have now been removed.
+* SpecialEmailUser::validateTarget(), ::getTarget() without a sender/user
+  specified, deprecated in 1.30, have been removed.
+* BufferingStatsdDataFactory::getBuffer(), deprecated in 1.30, has been removed.
 * …
 
 === Deprecations in 1.34 ===
