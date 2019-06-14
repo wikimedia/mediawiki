@@ -950,11 +950,11 @@ class User implements IDBAccessObject, UserIdentity {
 			$result = (int)$s->user_id;
 		}
 
-		self::$idCacheByName[$name] = $result;
-
-		if ( count( self::$idCacheByName ) > 1000 ) {
+		if ( count( self::$idCacheByName ) >= 1000 ) {
 			self::$idCacheByName = [];
 		}
+
+		self::$idCacheByName[$name] = $result;
 
 		return $result;
 	}
