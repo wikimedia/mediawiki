@@ -231,7 +231,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		}
 
 		// $scaler will return a MediaTransformError on failure, or false on success.
-		// If the scaler is succesful, it will have created a thumbnail at the destination
+		// If the scaler is successful, it will have created a thumbnail at the destination
 		// path.
 		if ( is_array( $scaler ) && is_callable( $scaler ) ) {
 			// Allow subclasses to specify their own rendering methods.
