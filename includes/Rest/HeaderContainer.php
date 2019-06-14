@@ -10,9 +10,9 @@ namespace MediaWiki\Rest;
  * Unlike PSR-7, the container is mutable.
  */
 class HeaderContainer {
-	private $headerLists;
-	private $headerLines;
-	private $headerNames;
+	private $headerLists = [];
+	private $headerLines = [];
+	private $headerNames = [];
 
 	/**
 	 * Erase any existing headers and replace them with the specified

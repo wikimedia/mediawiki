@@ -47,7 +47,7 @@ class RequestData extends RequestBase {
 	 *     - queryParams: Equivalent to $_GET
 	 *     - uploadedFiles: An array of objects implementing UploadedFileInterface
 	 *     - postParams: Equivalent to $_POST
-	 *     - attributes: The attributes, usually from path template parameters
+	 *     - pathParams: The path template parameters
 	 *     - headers: An array with the the key being the header name
 	 *     - cookiePrefix: A prefix to add to cookie names in getCookie()
 	 */
@@ -61,7 +61,7 @@ class RequestData extends RequestBase {
 		$this->queryParams = $params['queryParams'] ?? [];
 		$this->uploadedFiles = $params['uploadedFiles'] ?? [];
 		$this->postParams = $params['postParams'] ?? [];
-		$this->setAttributes( $params['attributes'] ?? [] );
+		$this->setPathParams( $params['pathParams'] ?? [] );
 		$this->setHeaders( $params['headers'] ?? [] );
 		parent::__construct( $params['cookiePrefix'] ?? '' );
 	}

@@ -208,6 +208,7 @@ because of Phabricator reports.
 * SpecialEmailUser::validateTarget(), ::getTarget() without a sender/user
   specified, deprecated in 1.30, have been removed.
 * BufferingStatsdDataFactory::getBuffer(), deprecated in 1.30, has been removed.
+* The constant DB_SLAVE, deprecated in 1.28, has been removed. Use DB_REPLICA.
 * …
 
 === Deprecations in 1.34 ===

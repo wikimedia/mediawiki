@@ -1,6 +1,0 @@
-[
-	{
-		"path": "/user/{name}/hello",
-		"class": "MediaWiki\\Rest\\Handler\\HelloHandler"
-	}
-]

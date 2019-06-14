@@ -42,6 +42,7 @@ class HeaderContainerTest extends MediaWikiTestCase {
 				[ 'tesT' => [ 'bar' ] ],
 				[ 'tesT' => 'bar' ]
 			],
+			'empty' => [ [], [], [] ],
 		];
 	}
 

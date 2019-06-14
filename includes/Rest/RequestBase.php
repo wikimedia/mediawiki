@@ -12,7 +12,7 @@ abstract class RequestBase implements RequestInterface {
 	private $headerCollection;
 
 	/** @var array */
-	private $attributes = [];
+	private $pathParams = [];
 
 	/** @var string */
 	private $cookiePrefix;
@@ -83,20 +83,16 @@ abstract class RequestBase implements RequestInterface {
 		return $this->headerCollection->getHeaderLine( $name );
 	}
 
-	public function setAttributes( $attributes ) {
-		$this->attributes = $attributes;
+	public function setPathParams( $params ) {
+		$this->pathParams = $params;
 	}
 
-	public function getAttributes() {
-		return $this->attributes;
+	public function getPathParams() {
+		return $this->pathParams;
 	}
 
-	public function getAttribute( $name, $default = null ) {
-		if ( array_key_exists( $name, $this->attributes ) ) {
-			return $this->attributes[$name];
-		} else {
-			return $default;
-		}
+	public function getPathParam( $name ) {
+		return $this->pathParams[$name] ?? null;
 	}
 
 	public function getCookiePrefix() {
