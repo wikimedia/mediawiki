@@ -1099,14 +1099,23 @@ class WikiImporter {
 		} elseif ( !$title->canExist() ) {
 			$this->notice( 'import-error-special', $title->getPrefixedText() );
 			return false;
-		} elseif ( !$title->userCan( 'edit' ) && !$commandLineMode ) {
-			# Do not import if the importing wiki user cannot edit this page
-			$this->notice( 'import-error-edit', $title->getPrefixedText() );
-			return false;
-		} elseif ( !$title->exists() && !$title->userCan( 'create' ) && !$commandLineMode ) {
-			# Do not import if the importing wiki user cannot create this page
-			$this->notice( 'import-error-create', $title->getPrefixedText() );
-			return false;
+		} elseif ( !$commandLineMode ) {
+			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+			$user = RequestContext::getMain()->getUser();
+
+			if ( !$permissionManager->userCan( 'edit', $user, $title ) ) {
+				# Do not import if the importing wiki user cannot edit this page
+				$this->notice( 'import-error-edit', $title->getPrefixedText() );
+
+				return false;
+			}
+
+			if ( !$title->exists() && !$permissionManager->userCan( 'create', $user, $title ) ) {
+				# Do not import if the importing wiki user cannot create this page
+				$this->notice( 'import-error-create', $title->getPrefixedText() );
+
+				return false;
+			}
 		}
 
 		return [ $title, $foreignTitle ];

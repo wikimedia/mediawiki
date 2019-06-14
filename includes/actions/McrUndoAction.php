@@ -336,8 +336,14 @@ class McrUndoAction extends FormAction {
 			$updater->setOriginalRevisionId( false );
 			$updater->setUndidRevisionId( $this->undo );
 
+			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
 			// TODO: Ugh.
-			if ( $wgUseRCPatrol && $this->getTitle()->userCan( 'autopatrol', $this->getUser() ) ) {
+			if ( $wgUseRCPatrol && $permissionManager->userCan(
+				'autopatrol',
+				$this->getUser(),
+				$this->getTitle() )
+			) {
 				$updater->setRcPatrolStatus( RecentChange::PRC_AUTOPATROLLED );
 			}
 

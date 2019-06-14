@@ -27,6 +27,7 @@ use Content;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use MWException;
 use Title;
@@ -521,8 +522,11 @@ abstract class RevisionRecord {
 			} else {
 				$text = $title->getPrefixedText();
 				wfDebug( "Checking for $permissionlist on $text due to $field match on $bitfield\n" );
+
+				$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
 				foreach ( $permissions as $perm ) {
-					if ( $title->userCan( $perm, $user ) ) {
+					if ( $permissionManager->userCan( $perm, $user, $title ) ) {
 						return true;
 					}
 				}
@@ -550,7 +554,7 @@ abstract class RevisionRecord {
 		// null if mSlots is not empty.
 
 		// NOTE: getId() and getPageId() may return null before a revision is saved, so don't
-		//check them.
+		// check them.
 
 		return $this->getTimestamp() !== null
 			&& $this->getComment( self::RAW ) !== null

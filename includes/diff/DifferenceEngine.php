@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\NameTableAccessException;
@@ -538,8 +539,14 @@ class DifferenceEngine extends ContextSource {
 				$samePage = false;
 			}
 
-			if ( $samePage && $this->mNewPage && $this->mNewPage->quickUserCan( 'edit', $user ) ) {
-				if ( $this->mNewRev->isCurrent() && $this->mNewPage->userCan( 'rollback', $user ) ) {
+			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
+			if ( $samePage && $this->mNewPage && $permissionManager->userCan(
+				'edit', $user, $this->mNewPage, PermissionManager::RIGOR_QUICK
+			) ) {
+				if ( $this->mNewRev->isCurrent() && $permissionManager->userCan(
+					'rollback', $user, $this->mNewPage
+				) ) {
 					$rollbackLink = Linker::generateRollback( $this->mNewRev, $this->getContext() );
 					if ( $rollbackLink ) {
 						$out->preventClickjacking();

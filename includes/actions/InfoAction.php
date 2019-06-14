@@ -279,11 +279,13 @@ class InfoAction extends FormlessAction {
 		// Language in which the page content is (supposed to be) written
 		$pageLang = $title->getPageLanguage()->getCode();
 
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
 		$pageLangHtml = $pageLang . ' - ' .
 			Language::fetchLanguageName( $pageLang, $lang->getCode() );
 		// Link to Special:PageLanguage with pre-filled page title if user has permissions
 		if ( $config->get( 'PageLanguageUseDB' )
-			&& $title->userCan( 'pagelang', $user )
+			&& $permissionManager->userCan( 'pagelang', $user, $title )
 		) {
 			$pageLangHtml .= ' ' . $this->msg( 'parentheses' )->rawParams( $linkRenderer->makeLink(
 				SpecialPage::getTitleValueFor( 'PageLanguage', $title->getPrefixedText() ),
@@ -300,7 +302,7 @@ class InfoAction extends FormlessAction {
 		$modelHtml = htmlspecialchars( ContentHandler::getLocalizedName( $title->getContentModel() ) );
 		// If the user can change it, add a link to Special:ChangeContentModel
 		if ( $config->get( 'ContentHandlerUseDB' )
-			&& $title->userCan( 'editcontentmodel', $user )
+			&& $permissionManager->userCan( 'editcontentmodel', $user, $title )
 		) {
 			$modelHtml .= ' ' . $this->msg( 'parentheses' )->rawParams( $linkRenderer->makeLink(
 				SpecialPage::getTitleValueFor( 'ChangeContentModel', $title->getPrefixedText() ),
