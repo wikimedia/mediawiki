@@ -43,7 +43,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 	}
 
 	protected function preText() {
-		$this->getOutput()->addModules( 'mediawiki.special.pageLanguage' );
+		$this->getOutput()->addModules( 'mediawiki.misc-authed-ooui' );
 		return parent::preText();
 	}
 
