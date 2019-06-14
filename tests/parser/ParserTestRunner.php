@@ -797,6 +797,13 @@ class ParserTestRunner {
 
 		$class = $wgParserConf['class'];
 		$parser = new $class( [ 'preprocessorClass' => $preprocessor ] + $wgParserConf );
+		if ( $preprocessor ) {
+			# Suppress deprecation warning for Preprocessor_DOM while testing
+			Wikimedia\suppressWarnings();
+			wfDeprecated( 'Preprocessor_DOM::__construct' );
+			Wikimedia\restoreWarnings();
+			$parser->getPreprocessor();
+		}
 		ParserTestParserHook::setup( $parser );
 
 		return $parser;

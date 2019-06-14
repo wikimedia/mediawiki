@@ -421,21 +421,10 @@ class Parser {
 	 * Which class should we use for the preprocessor if not otherwise specified?
 	 *
 	 * @since 1.34
+	 * @deprecated since 1.34, removing configurability of preprocessor
 	 * @return string
 	 */
 	public static function getDefaultPreprocessorClass() {
-		if ( wfIsHHVM() ) {
-			# Under HHVM Preprocessor_Hash is much faster than Preprocessor_DOM
-			return Preprocessor_Hash::class;
-		}
-		if ( extension_loaded( 'domxml' ) ) {
-			# PECL extension that conflicts with the core DOM extension (T15770)
-			wfDebug( "Warning: you have the obsolete domxml extension for PHP. Please remove it!\n" );
-			return Preprocessor_Hash::class;
-		}
-		if ( extension_loaded( 'dom' ) ) {
-			return Preprocessor_DOM::class;
-		}
 		return Preprocessor_Hash::class;
 	}
 
