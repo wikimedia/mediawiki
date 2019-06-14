@@ -19,6 +19,7 @@
  *
  * @file
  * @ingroup Parser
+ * @deprecated since 1.34, use Preprocessor_Hash
  */
 
 /**
@@ -37,6 +38,7 @@ class Preprocessor_DOM extends Preprocessor {
 	const CACHE_PREFIX = 'preprocess-xml';
 
 	public function __construct( $parser ) {
+		wfDeprecated( __METHOD__, '1.34' ); // T204945
 		$this->parser = $parser;
 		$mem = ini_get( 'memory_limit' );
 		$this->memoryLimit = false;

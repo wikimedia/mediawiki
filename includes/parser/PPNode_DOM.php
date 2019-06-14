@@ -20,6 +20,7 @@
  */
 
 /**
+ * @deprecated since 1.34, use PPNode_Hash_{Tree,Text,Array,Attr}
  * @ingroup Parser
  */
 // phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
