@@ -300,11 +300,10 @@
 				q = {};
 				// using replace to iterate over a string
 				if ( uri.query ) {
-					uri.query.replace( /(?:^|&)([^&=]*)(?:(=)([^&]*))?/g, function ( $0, $1, $2, $3 ) {
-						var k, v;
-						if ( $1 ) {
-							k = Uri.decode( $1 );
-							v = ( $2 === '' || $2 === undefined ) ? null : Uri.decode( $3 );
+					uri.query.replace( /(?:^|&)([^&=]*)(?:(=)([^&]*))?/g, function ( match, k, eq, v ) {
+						if ( k ) {
+							k = Uri.decode( k );
+							v = ( eq === '' || eq === undefined ) ? null : Uri.decode( v );
 
 							// If overrideKeys, always (re)set top level value.
 							// If not overrideKeys but this key wasn't set before, then we set it as well.
