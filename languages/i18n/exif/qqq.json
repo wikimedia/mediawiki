@@ -364,7 +364,7 @@
 	"exif-copyrighted": "Copyright status. This is a true or false field showing either Copyrighted or Public Domain. It should be noted that Copyrighted includes freely-licensed works.",
 	"exif-copyrightowner": "{{exif-qqq}}\n\nCopyright owner. Can have more than one person or entity.",
 	"exif-usageterms": "Terms under which you're allowed to use the image/media.",
-	"exif-webstatement": "{{exif-qqq}}\n\nURL detailing the copyright status of the image, and how you're allowed to use the image. Often this is a link to a creative commons license, however the creative commons people recommend using a page that generally contains specific information about the image, and recommend using {{msg-mw|exif-licenseurl}} for linking to the license. See http://wiki.creativecommons.org/XMP",
+	"exif-webstatement": "{{exif-qqq}}\n\nURL detailing the copyright status of the image, and how you're allowed to use the image. Often this is a link to a creative commons license, however the creative commons people recommend using a page that generally contains specific information about the image, and recommend using {{msg-mw|exif-licenseurl}} for linking to the license. See https://wiki.creativecommons.org/wiki/XMP",
 	"exif-originaldocumentid": "A unique ID of the original document (image) that this document (image) is based on.",
 	"exif-licenseurl": "{{exif-qqq}}\n\nURL for copyright license. This is almost always a creative commons license since this information comes from the creative commons namespace of XMP (but could be a link to any type of license). See also {{msg-mw|exif-webstatement}}",
 	"exif-morepermissionsurl": "A URL where you can \"buy\" (or otherwise negotiate) to get more rights for the image.",
