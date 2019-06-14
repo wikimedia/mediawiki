@@ -30,13 +30,7 @@ class StringStream implements CopyableStreamInterface {
 	}
 
 	public function copyToStream( $stream ) {
-		if ( $this->offset !== 0 ) {
-			$block = substr( $this->contents, $this->offset );
-		} else {
-			$block = $this->contents;
-		}
-		$this->offset = strlen( $this->contents );
-		fwrite( $stream, $block );
+		fwrite( $stream, $this->getContents() );
 	}
 
 	public function __toString() {
@@ -117,6 +111,8 @@ class StringStream implements CopyableStreamInterface {
 	public function read( $length ) {
 		if ( $this->offset === 0 && $length >= strlen( $this->contents ) ) {
 			$ret = $this->contents;
+		} elseif ( $this->offset >= strlen( $this->contents ) ) {
+			$ret = '';
 		} else {
 			$ret = substr( $this->contents, $this->offset, $length );
 		}
@@ -127,6 +123,8 @@ class StringStream implements CopyableStreamInterface {
 	public function getContents() {
 		if ( $this->offset === 0 ) {
 			$ret = $this->contents;
+		} elseif ( $this->offset >= strlen( $this->contents ) ) {
+			$ret = '';
 		} else {
 			$ret = substr( $this->contents, $this->offset );
 		}
