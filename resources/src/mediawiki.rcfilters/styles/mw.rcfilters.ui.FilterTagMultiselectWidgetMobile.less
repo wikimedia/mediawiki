@@ -1,0 +1,35 @@
+@import 'mediawiki.mixins';
+@import 'mediawiki.ui/variables';
+
+.mw-rcfilters-ui-filterTagMultiselectWidget-mobile {
+
+	// Them mobile version of the search input is meant to function
+	// as a button, so styles are modified to that effect. See T224655 for details.
+	.oo-ui-tagMultiselectWidget-input {
+		& .oo-ui-iconElement-icon {
+			opacity: 1;
+			cursor: pointer;
+		}
+
+		&.oo-ui-textInputWidget input[ readonly ] {
+			background-color: @background-color-base;
+			font-weight: bold;
+			cursor: pointer;
+			.mixin-placeholder( { color: @colorText; } );
+		}
+	}
+
+	.mw-rcfilters-ui-filterTagMultiselectWidget-mobile-view {
+		width: 100%;
+		margin-top: -1px;
+
+		& .oo-ui-buttonOptionWidget {
+			width: 50%;
+
+			& .oo-ui-buttonElement-button {
+				width: 100%;
+				text-align: initial;
+			}
+		}
+	}
+}

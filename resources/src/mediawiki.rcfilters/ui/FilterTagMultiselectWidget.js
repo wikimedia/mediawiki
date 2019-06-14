@@ -40,6 +40,7 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 	this.matchingQuery = null;
 	this.currentView = this.model.getCurrentView();
 	this.collapsed = false;
+	this.isMobile = config.isMobile;
 
 	// Parent
 	FilterTagMultiselectWidget.parent.call( this, $.extend( true, {
@@ -55,6 +56,8 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 			filterFromInput: false,
 			hideWhenOutOfView: false,
 			hideOnChoose: false,
+			// Only set width and footers for desktop
+			isMobile: this.isMobile,
 			width: 650,
 			footers: [
 				{
@@ -81,9 +84,17 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 				}
 			]
 		},
+		/**
+		 * In the presence of an onscreen keyboard (i.e. isMobile) the filter input should act as a button
+		 * rather than a text input. Mobile screens are too small to accommodate both an
+		 * onscreen keyboard and a popup-menu, so readyOnly is set to disable the keyboard.
+		 * A different icon and shorter message is used for mobile as well. (See T224655 for details).
+		 */
 		input: {
-			icon: 'menu',
-			placeholder: mw.msg( 'rcfilters-search-placeholder' )
+			icon: this.isMobile ? 'funnel' : 'menu',
+			placeholder: this.isMobile ? mw.msg( 'rcfilters-search-placeholder-mobile' ) : mw.msg( 'rcfilters-search-placeholder' ),
+			readOnly: !!this.isMobile,
+			classes: [ 'oo-ui-tagMultiselectWidget-input' ]
 		}
 	}, config ) );
 
@@ -148,11 +159,14 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 	this.model.connect( this, {
 		initialize: 'onModelInitialize',
 		update: 'onModelUpdate',
-		searchChange: 'onModelSearchChange',
+		searchChange: this.isMobile ? function () {} : 'onModelSearchChange',
 		itemUpdate: 'onModelItemUpdate',
 		highlightChange: 'onModelHighlightChange'
 	} );
-	this.input.connect( this, { change: 'onInputChange' } );
+
+	if ( !this.isMobile ) {
+		this.input.connect( this, { change: 'onInputChange' } );
+	}
 
 	// The filter list and button should appear side by side regardless of how
 	// wide the button is; the button also changes its width depending
@@ -176,46 +190,10 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 	}
 
 	// Add a selector at the right of the input
-	this.viewsSelectWidget = new OO.ui.ButtonSelectWidget( {
-		classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-views-select-widget' ],
-		items: [
-			new OO.ui.ButtonOptionWidget( {
-				framed: false,
-				data: 'namespaces',
-				icon: 'article',
-				label: mw.msg( 'namespaces' ),
-				title: mw.msg( 'rcfilters-view-namespaces-tooltip' )
-			} ),
-			new OO.ui.ButtonOptionWidget( {
-				framed: false,
-				data: 'tags',
-				icon: 'tag',
-				label: mw.msg( 'tags-title' ),
-				title: mw.msg( 'rcfilters-view-tags-tooltip' )
-			} )
-		]
-	} );
+	this.viewsSelectWidget = this.createViewsSelectWidget();
 
-	// Rearrange the UI so the select widget is at the right of the input
-	this.$element.append(
-		$( '<div>' )
-			.addClass( 'mw-rcfilters-ui-table' )
-			.append(
-				$( '<div>' )
-					.addClass( 'mw-rcfilters-ui-row' )
-					.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-views' )
-					.append(
-						$( '<div>' )
-							.addClass( 'mw-rcfilters-ui-cell' )
-							.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-views-input' )
-							.append( this.input.$element ),
-						$( '<div>' )
-							.addClass( 'mw-rcfilters-ui-cell' )
-							.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-views-select' )
-							.append( this.viewsSelectWidget.$element )
-					)
-			)
-	);
+	// change the layout of the viewsSelectWidget
+	this.restructureViewsSelectWidget();
 
 	// Event
 	this.viewsSelectWidget.connect( this, { choose: 'onViewsSelectWidgetChoose' } );
@@ -258,6 +236,11 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 	this.$element
 		.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget' );
 
+	if ( this.isMobile ) {
+		this.$element
+			.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-mobile' );
+	}
+
 	this.reevaluateResetRestoreState();
 };
 
@@ -266,6 +249,78 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 OO.inheritClass( FilterTagMultiselectWidget, OO.ui.MenuTagMultiselectWidget );
 
 /* Methods */
+
+/**
+ * Create a OOUI ButtonSelectWidget. The buttons are framed and have additional CSS
+ * classes applied on mobile.
+ * @return {OO.ui.ButtonSelectWidget}
+ */
+FilterTagMultiselectWidget.prototype.createViewsSelectWidget = function () {
+	return new OO.ui.ButtonSelectWidget( {
+		classes: this.isMobile ?
+			[
+				'mw-rcfilters-ui-table',
+				'mw-rcfilters-ui-filterTagMultiselectWidget-mobile-view'
+			] :
+			[
+				'mw-rcfilters-ui-filterTagMultiselectWidget-views-select-widget'
+			],
+		items: [
+			new OO.ui.ButtonOptionWidget( {
+				framed: !!this.isMobile,
+				data: 'namespaces',
+				icon: 'article',
+				label: mw.msg( 'namespaces' ),
+				classes: this.isMobile ? [ 'mw-rcfilters-ui-cell' ] : []
+			} ),
+			new OO.ui.ButtonOptionWidget( {
+				framed: !!this.isMobile,
+				data: 'tags',
+				icon: 'tag',
+				label: mw.msg( 'tags-title' ),
+				title: mw.msg( 'rcfilters-view-tags-tooltip' ),
+				classes: this.isMobile ? [ 'mw-rcfilters-ui-cell' ] : []
+			} )
+		]
+	} );
+};
+
+/**
+ * Rearrange the DOM structure of the viewsSelectWiget so that on the namespace & tags buttons
+ * are at the right of the input on desktop, and below the input on mobile.
+ */
+FilterTagMultiselectWidget.prototype.restructureViewsSelectWidget = function () {
+	if ( this.isMobile ) {
+		// On mobile, append the search input and the extra buttons below the search input.
+		this.$element.append(
+			$( '<div>' )
+				.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-views-input' )
+				.append( this.input.$element )
+				.append( this.viewsSelectWidget.$element )
+		);
+	} else {
+		// On desktop, rearrange the UI so the select widget is at the right of the input
+		this.$element.append(
+			$( '<div>' )
+				.addClass( 'mw-rcfilters-ui-table' )
+				.append(
+					$( '<div>' )
+						.addClass( 'mw-rcfilters-ui-row' )
+						.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-views' )
+						.append(
+							$( '<div>' )
+								.addClass( 'mw-rcfilters-ui-cell' )
+								.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-views-input' )
+								.append( this.input.$element ),
+							$( '<div>' )
+								.addClass( 'mw-rcfilters-ui-cell' )
+								.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-views-select' )
+								.append( this.viewsSelectWidget.$element )
+						)
+				)
+		);
+	}
+};
 
 /**
  * Respond to view select widget choose event
@@ -333,7 +388,9 @@ FilterTagMultiselectWidget.prototype.onMenuToggle = function ( isVisible ) {
 	FilterTagMultiselectWidget.parent.prototype.onMenuToggle.call( this );
 
 	if ( isVisible ) {
-		this.focus();
+		if ( !this.isMobile ) {
+			this.focus();
+		}
 
 		mw.hook( 'RcFilters.popup.open' ).fire();
 
@@ -360,21 +417,33 @@ FilterTagMultiselectWidget.prototype.onMenuToggle = function ( isVisible ) {
 		this.blur();
 	}
 
-	this.input.setIcon( isVisible ? 'search' : 'menu' );
+	if ( this.isMobile ) {
+		this.input.setIcon( isVisible ? 'close' : 'funnel' );
+	} else {
+		this.input.setIcon( isVisible ? 'search' : 'menu' );
+	}
 };
 
 /**
  * @inheritdoc
  */
 FilterTagMultiselectWidget.prototype.onInputFocus = function () {
-	// Parent
-	FilterTagMultiselectWidget.parent.prototype.onInputFocus.call( this );
+	var scrollToElement = this.isMobile ? this.input.$input : this.$element;
+
+	// treat the input as a menu toggle rather than a text field on mobile
+	if ( this.isMobile ) {
+		this.input.$input.trigger( 'blur' );
+		this.getMenu().toggle();
+	} else {
+		// Parent
+		FilterTagMultiselectWidget.parent.prototype.onInputFocus.call( this );
+	}
 
 	// Only scroll to top of the viewport if:
 	// - The widget is more than 20px from the top
 	// - The widget is not above the top of the viewport (do not scroll downwards)
 	//   (This isn't represented because >20 is, anyways and always, bigger than 0)
-	this.scrollToTop( this.$element, 0, { min: 20, max: Infinity } );
+	this.scrollToTop( scrollToElement, 0, { min: 20, max: Infinity } );
 };
 
 /**
@@ -525,7 +594,10 @@ FilterTagMultiselectWidget.prototype.onMenuChoose = function ( item ) {
 	// Select the tag if it exists, or reset selection otherwise
 	this.selectTag( this.findItemFromData( item.model.getName() ) );
 
-	this.focus();
+	if ( !this.isMobile ) {
+		this.focus();
+	}
+
 };
 
 /**

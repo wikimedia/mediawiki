@@ -47,7 +47,8 @@ FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget(
 		{
 			$overlay: this.$overlay,
 			collapsed: config.collapsed,
-			$wrapper: this.$wrapper
+			$wrapper: this.$wrapper,
+			isMobile: OO.ui.isMobile()
 		}
 	);
 
@@ -82,7 +83,11 @@ FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget(
 		.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top' );
 
 	$bottom = $( '<div>' )
-		.addClass( 'mw-rcfilters-ui-filterWrapperWidget-bottom' )
+		.addClass( OO.ui.isMobile() ?
+			'mw-rcfilters-ui-filterWrapperWidget-bottom ' +
+			'mw-rcfilters-ui-filterWrapperWidget-bottom-mobile' :
+			'mw-rcfilters-ui-filterWrapperWidget-bottom'
+		)
 		.append(
 			this.showNewChangesLink.$element,
 			this.numChangesAndDateWidget.$element

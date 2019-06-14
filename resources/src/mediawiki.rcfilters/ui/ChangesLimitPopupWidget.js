@@ -42,13 +42,14 @@ ChangesLimitPopupWidget = function MwRcfiltersUiChangesLimitPopupWidget( limitMo
 		.addClass( 'mw-rcfilters-ui-changesLimitPopupWidget' )
 		.append(
 			this.valuePicker.$element,
-			new OO.ui.FieldLayout(
-				this.groupByPageCheckbox,
-				{
-					align: 'inline',
-					label: mw.msg( 'rcfilters-group-results-by-page' )
-				}
-			).$element
+			OO.ui.isMobile() ? undefined :
+				new OO.ui.FieldLayout(
+					this.groupByPageCheckbox,
+					{
+						align: 'inline',
+						label: mw.msg( 'rcfilters-group-results-by-page' )
+					}
+				).$element
 		);
 };
 

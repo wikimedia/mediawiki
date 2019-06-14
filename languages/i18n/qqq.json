@@ -1692,6 +1692,7 @@
 	"rcfilters-clear-all-filters": "Title for the button that clears all filters",
 	"rcfilters-show-new-changes": "Label for the button to show new changes. Parameters:\n* $1 - timestamp from which new changes are available. It indicates that clicking the refresh link will bring changes newer than (or equal to) this timestamp. It is formatted according to the user's date, time and timezone preferences",
 	"rcfilters-search-placeholder": "Placeholder for the filter search input. The first \"Filter\" is a verb, and the second \"filter\" is a noun.",
+	"rcfilters-search-placeholder-mobile": "Placeholder for the filter search input for mobile devices.",
 	"rcfilters-invalid-filter": "A label for an invalid filter.",
 	"rcfilters-empty-filter": "Placeholder for the filter list when no filters were chosen.",
 	"rcfilters-filterlist-title": "Title for the filters list.\n{{Identical|Filter}}",
