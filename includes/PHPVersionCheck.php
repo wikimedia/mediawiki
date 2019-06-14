@@ -123,10 +123,7 @@ class PHPVersionCheck {
 		$phpInfo = $this->getPHPInfo();
 		$minimumVersion = $phpInfo['minSupported'];
 		$otherInfo = $this->getPHPInfo( $phpInfo['implementation'] === 'HHVM' ? 'PHP' : 'HHVM' );
-		if (
-			!function_exists( 'version_compare' )
-			|| version_compare( $phpInfo['version'], $minimumVersion ) < 0
-		) {
+		if ( version_compare( $phpInfo['version'], $minimumVersion ) < 0 ) {
 			$shortText = "MediaWiki $this->mwVersion requires at least {$phpInfo['implementation']}"
 				. " version $minimumVersion or {$otherInfo['implementation']} version "
 				. "{$otherInfo['minSupported']}, you are using {$phpInfo['implementation']} "
