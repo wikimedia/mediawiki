@@ -373,6 +373,68 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 			'lessVars' => [ 'key' => 'value' ],
 		];
 		yield 'identical Less variables' => [ $x, $x, true ];
+
+		$a = [
+			'packageFiles' => [ [ 'name' => 'data.json', 'callback' => function () {
+				return [ 'aaa' ];
+			} ] ]
+		];
+		$b = [
+			'packageFiles' => [ [ 'name' => 'data.json', 'callback' => function () {
+				return [ 'bbb' ];
+			} ] ]
+		];
+		yield 'packageFiles with different callback' => [ $a, $b, false ];
+
+		$a = [
+			'packageFiles' => [ [ 'name' => 'aaa.json', 'callback' => function () {
+				return [ 'x' ];
+			} ] ]
+		];
+		$b = [
+			'packageFiles' => [ [ 'name' => 'bbb.json', 'callback' => function () {
+				return [ 'x' ];
+			} ] ]
+		];
+		yield 'packageFiles with different file name and a callback' => [ $a, $b, false ];
+
+		$a = [
+			'packageFiles' => [ [ 'name' => 'data.json', 'versionCallback' => function () {
+				return [ 'A-version' ];
+			}, 'callback' => function () {
+				throw new Exception( 'Unexpected computation' );
+			} ] ]
+		];
+		$b = [
+			'packageFiles' => [ [ 'name' => 'data.json', 'versionCallback' => function () {
+				return [ 'B-version' ];
+			}, 'callback' => function () {
+				throw new Exception( 'Unexpected computation' );
+			} ] ]
+		];
+		yield 'packageFiles with different versionCallback' => [ $a, $b, false ];
+
+		$a = [
+			'packageFiles' => [ [ 'name' => 'aaa.json',
+				'versionCallback' => function () {
+					return [ 'X-version' ];
+				},
+				'callback' => function () {
+					throw new Exception( 'Unexpected computation' );
+				}
+			] ]
+		];
+		$b = [
+			'packageFiles' => [ [ 'name' => 'bbb.json',
+				'versionCallback' => function () {
+					return [ 'X-version' ];
+				},
+				'callback' => function () {
+					throw new Exception( 'Unexpected computation' );
+				}
+			] ]
+		];
+		yield 'packageFiles with different file name and a versionCallback' => [ $a, $b, false ];
 	}
 
 	/**
@@ -471,7 +533,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 					'main' => 'init.js'
 				]
 			],
-			[
+			'package file with callback' => [
 				$base + [
 					'packageFiles' => [
 						[ 'name' => 'foo.json', 'content' => [ 'Hello' => 'world' ] ],
@@ -518,6 +580,34 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 					'lang' => 'fy'
 				]
 			],
+			'package file with callback and versionCallback' => [
+				$base + [
+					'packageFiles' => [
+						[ 'name' => 'bar.js', 'content' => "console.log('Hello');" ],
+						[ 'name' => 'data.json', 'versionCallback' => function ( $context ) {
+							return $context->getLanguage();
+						}, 'callback' => function ( $context ) {
+							return [ 'langCode' => $context->getLanguage() ];
+						} ],
+					]
+				],
+				[
+					'files' => [
+						'bar.js' => [
+							'type' => 'script',
+							'content' => "console.log('Hello');",
+						],
+						'data.json' => [
+							'type' => 'data',
+							'content' => [ 'langCode' => 'fy' ]
+						],
+					],
+					'main' => 'bar.js'
+				],
+				[
+					'lang' => 'fy'
+				]
+			],
 			[
 				$base + [
 					'packageFiles' => [
@@ -526,7 +616,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 				],
 				false
 			],
-			[
+			'package file with invalid callback' => [
 				$base + [
 					'packageFiles' => [
 						[ 'name' => 'foo.json', 'callback' => 'functionThatDoesNotExist142857' ]
