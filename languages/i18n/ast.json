@@ -692,7 +692,7 @@
 	"token_suffix_mismatch": "'''La to edición nun s'aceutó porque'l to navegador mutiló los caráuteres de puntuación nel editor.'''\nLa edición nun foi aceutada pa prevenir corrupciones na páxina de testu.\nDacuando esto pasa por usar un serviciu proxy anónimu basáu en web que tenga fallos.",
 	"edit_form_incomplete": "'''Delles partes del formulariu d'edición nun llegaron al sirvidor; comprueba que les ediciones tean intactes y vuelvi a tentalo.'''",
 	"editing": "Edición de «$1»",
-	"creating": "Creando $1",
+	"creating": "Creación de «$1»",
 	"editingsection": "Editando $1 (seición)",
 	"editingcomment": "Editando $1 (seición nueva)",
 	"editconflict": "Conflictu d'edición: $1",
@@ -3796,5 +3796,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "suxerir cambiu al aniciar sesión",
 	"easydeflate-invaliddeflate": "El conteníu dau nun ta comprimíu correutamente",
 	"unprotected-js": "Por razones de seguridá, JavaScript nun puede cargase dende páxines ensin protexer. Crea javascript sólo nel espaciu de nomes MediaWiki: o como subpáxina d'usuariu",
-	"userlogout-continue": "Si desees zarrar la sesión [$1 sigui na páxina de finar sesión]."
+	"userlogout-continue": "¿Desees zarrar la sesión?"
 }

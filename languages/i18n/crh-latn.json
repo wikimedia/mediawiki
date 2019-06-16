@@ -6,7 +6,8 @@
 			"Urhixidur",
 			"아라",
 			"Macofe",
-			"Stephanecbisson"
+			"Stephanecbisson",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Bağlantılarnıñ tübüni sızuv:",
@@ -1105,7 +1106,7 @@
 	"undelete": "Yoq etilgen saifelerni köster",
 	"undeletepage": "Saifeniñ yoq etilgen versiyalarına köz at ve keri ketir.",
 	"viewdeletedpage": "Yoq etilgen saifelerge baq",
-	"undeletebtn": "Keri ketir!",
+	"undeletebtn": "Keri ketir",
 	"undeletelink": "köster/keri ketir",
 	"undeletecomment": "Sebep:",
 	"undelete-header": "Keçenlerde yoq etilgen saifelerni körmek içün [[Special:Log/delete|yoq etüv jurnalına]] baqıñız.",

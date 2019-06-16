@@ -1424,8 +1424,10 @@
 	"action-deletechangetags": "データベースからタグの削除",
 	"action-purge": "このページのキャッシュ破棄",
 	"action-apihighlimits": "API要求でのより高い制限値の使用",
+	"action-autoconfirmed": "IPベースの速度制限を受けない",
 	"action-bigdelete": "大きな履歴があるページの削除",
 	"action-blockemail": "利用者のメール送信のブロック",
+	"action-bot": "自動処理と認識させる",
 	"action-editprotected": "「{{int:protect-level-sysop}}」の保護を設定されたページの編集",
 	"action-editsemiprotected": "「{{int:protect-level-autoconfirmed}}」の保護を設定されたページの編集",
 	"action-editinterface": "ユーザーインターフェースの編集",
@@ -1439,9 +1441,12 @@
 	"action-editmyuserjson": "自分のJSONファイルの編集",
 	"action-editmyuserjs": "自分のJavaScriptファイルの編集",
 	"action-viewsuppressed": "すべての利用者から隠された版の閲覧",
+	"action-hideuser": "利用者名をブロックして公開記録から隠す",
 	"action-ipblock-exempt": "IPブロック、自動ブロック、広域ブロックの回避",
 	"action-unblockself": "自分に対するブロックの解除",
+	"action-noratelimit": "速度制限を受けない",
 	"action-reupload-own": "自分がアップロードした既存のファイルへの上書き",
+	"action-nominornewtalk": "議論ページの細部の編集をした際に、新着メッセージとして通知しない",
 	"action-markbotedits": "巻き戻しをボットの編集として扱う",
 	"action-patrolmarks": "最近の更新での巡回済み印の閲覧",
 	"action-override-export-depth": "リンク先ページの5階層まで含めた書き出し",
@@ -4046,5 +4051,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "ログイン時に変更を提案",
 	"easydeflate-invaliddeflate": "提供されたコンテンツが適切に圧縮されていません",
 	"unprotected-js": "セキュリティ上の理由から、JavaScriptは保護されていないページからは読み込みできません。MediaWiki: 名前空間内、利用者下位ページのいずれかでのみjavascriptを作成してください。",
-	"userlogout-continue": "ログアウトを行いたい場合、[$1 ログアウトページから実施]してください。"
+	"userlogout-continue": "ログアウトしますか？"
 }
