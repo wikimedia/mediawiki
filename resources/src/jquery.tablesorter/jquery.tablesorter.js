@@ -480,25 +480,37 @@
 	}
 
 	function sortText( a, b ) {
-		return ( ( a < b ) ? -1 : ( ( a > b ) ? 1 : 0 ) );
+		return ts.collator.compare( a, b );
 	}
 
-	function sortTextDesc( a, b ) {
-		return ( ( b < a ) ? -1 : ( ( b > a ) ? 1 : 0 ) );
+	function sortNumeric( a, b ) {
+		return ( ( a < b ) ? -1 : ( ( a > b ) ? 1 : 0 ) );
 	}
 
 	function multisort( table, sortList, cache ) {
 		var i,
-			sortFn = [];
+			sortFn = [],
+			parsers = $( table ).data( 'tablesorter' ).config.parsers;
 
 		for ( i = 0; i < sortList.length; i++ ) {
-			sortFn[ i ] = ( sortList[ i ][ 1 ] ) ? sortTextDesc : sortText;
+			// Android doesn't support Intl.Collator
+			if ( window.Intl && Intl.Collator && parsers[ sortList[ i ][ 0 ] ].type === 'text' ) {
+				sortFn[ i ] = sortText;
+			} else {
+				sortFn[ i ] = sortNumeric;
+			}
 		}
 		cache.normalized.sort( function ( array1, array2 ) {
 			var i, col, ret;
 			for ( i = 0; i < sortList.length; i++ ) {
 				col = sortList[ i ][ 0 ];
-				ret = sortFn[ i ].call( this, array1[ col ], array2[ col ] );
+				if ( sortList[ i ][ 1 ] ) {
+					// descending
+					ret = sortFn[ i ].call( this, array2[ col ], array1[ col ] );
+				} else {
+					// ascending
+					ret = sortFn[ i ].call( this, array1[ col ], array2[ col ] );
+				}
 				if ( ret !== 0 ) {
 					return ret;
 				}
@@ -726,7 +738,7 @@
 		}
 	}
 
-	function buildCollationTable() {
+	function buildCollation() {
 		var key, keys = [];
 		ts.collationTable = mw.config.get( 'tableSorterCollation' );
 		ts.collationRegex = null;
@@ -738,6 +750,14 @@
 			if ( keys.length ) {
 				ts.collationRegex = new RegExp( keys.join( '|' ), 'ig' );
 			}
+		}
+		if ( window.Intl && Intl.Collator ) {
+			ts.collator = new Intl.Collator( [
+				mw.config.get( 'wgPageContentLanguage' ),
+				mw.config.get( 'wgUserLanguage' )
+			], {
+				numeric: true
+			} );
 		}
 	}
 
@@ -879,7 +899,7 @@
 					// may customize tableSorterCollation but load after $.ready(), other
 					// scripts may call .tablesorter() before they have done the
 					// tableSorterCollation customizations.
-					buildCollationTable();
+					buildCollation();
 
 					// Legacy fix of .sortbottoms
 					// Wrap them inside a tfoot (because that's what they actually want to be)
@@ -1084,7 +1104,7 @@
 			buildTransformTable();
 			buildDateTable();
 			cacheRegexs();
-			buildCollationTable();
+			buildCollation();
 
 			return getParserById( id );
 		},
@@ -1110,12 +1130,20 @@
 		},
 		format: function ( s ) {
 			var tsc;
-			s = s.toLowerCase().trim();
+			s = s.trim();
 			if ( ts.collationRegex ) {
 				tsc = ts.collationTable;
 				s = s.replace( ts.collationRegex, function ( match ) {
-					var r = tsc[ match ] ? tsc[ match ] : tsc[ match.toUpperCase() ];
-					return r.toLowerCase();
+					var r,
+						upper = match.toUpperCase(),
+						lower = match.toLowerCase();
+					if ( upper === match && !lower === match ) {
+						r = tsc[ lower ] ? tsc[ lower ] : tsc[ upper ];
+						r = r.toUpperCase();
+					} else {
+						r = tsc[ match.toLowerCase() ];
+					}
+					return r;
 				} );
 			}
 			return s;

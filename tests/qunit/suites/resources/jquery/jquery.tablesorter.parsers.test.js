@@ -74,9 +74,9 @@
 	}
 
 	text = [
-		[ 'Mars', true, 'mars', 'Simple text' ],
-		[ 'Mẘas', true, 'mẘas', 'Non ascii character' ],
-		[ 'A sentence', true, 'a sentence', 'A sentence with space chars' ]
+		[ 'Mars', true, 'Mars', 'Simple text' ],
+		[ 'Mẘas', true, 'Mẘas', 'Non ascii character' ],
+		[ 'A sentence', true, 'A sentence', 'A sentence with space chars' ]
 	];
 	parserTest( 'Textual keys', 'text', text );
 
