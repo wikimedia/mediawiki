@@ -62,7 +62,6 @@ class ResourceLoaderImageTest extends ResourceLoaderTestCase {
 			'he' => 'rtl',
 			'ar' => 'rtl',
 		];
-		static $contexts = [];
 
 		$image = $this->getTestImage( $imageName );
 		$context = $this->getResourceLoaderContext( [
