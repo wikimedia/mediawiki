@@ -1521,7 +1521,7 @@
 	"undelete-revision": "Versión borrata de $1 (editada por $3, o $4 a las $5):",
 	"undeleterevision-missing": "Versión no conforme u no trobata. Regular que o vinclo sía incorrecto u que ixa versión s'haiga restaurato u borrato d'o fichero.",
 	"undelete-nodiff": "No s'ha trobato garra versión anterior.",
-	"undeletebtn": "Restaurar!",
+	"undeletebtn": "Restaurar",
 	"undeletelink": "amostrar/restaurar",
 	"undeleteviewlink": "veyer",
 	"undeleteinvert": "Contornar selección",

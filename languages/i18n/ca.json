@@ -2395,7 +2395,7 @@
 	"undeleterevision-missing": "La revisió no és vàlida o no hi és. Podeu tenir-hi un enllaç incorrecte, o bé pot haver-se restaurat o eliminat de l'arxiu.",
 	"undeleterevision-duplicate-revid": "No s'ha pogut restaurar {{PLURAL:$1|una revisió|$1 revisions}}, perquè {{PLURAL:$1|el seu|els seus}} <code>rev_id</code> ja s'estaven fent servir.",
 	"undelete-nodiff": "No s'ha trobat cap revisió anterior.",
-	"undeletebtn": "Restaura!",
+	"undeletebtn": "Restaura",
 	"undeletelink": "mira/restaura",
 	"undeleteviewlink": "veure",
 	"undeleteinvert": "Invertir selecció",
@@ -3752,5 +3752,6 @@
 	"passwordpolicies-policyflag-forcechange": "cal canviar a l'inici de sessió",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "suggereix canvi a l'inici de sessió",
 	"easydeflate-invaliddeflate": "El contingut proporcionat no està deflactat adequadament",
-	"unprotected-js": "Per motius de seguretat, el JavaScript no es pot carregar de les pàgines desprotegides. Creeu javascript en l'espai de noms MediaWiki o en una subpàgina d'usuari"
+	"unprotected-js": "Per motius de seguretat, el JavaScript no es pot carregar de les pàgines desprotegides. Creeu javascript en l'espai de noms MediaWiki o en una subpàgina d'usuari",
+	"userlogout-continue": "Voleu finalitzar la sessió?"
 }

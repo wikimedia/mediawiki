@@ -12,7 +12,8 @@
 			"Chuvash2014",
 			"Macofe",
 			"Chuvash",
-			"Marat-avgust"
+			"Marat-avgust",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Ссылкăсене аялтан туртса палармалла:",
@@ -815,7 +816,7 @@
 	"undelete": "Кăларса пăрахнă страницăсене пăх",
 	"viewdeletedpage": "Кăларса пăрахнă страницăсене пăх",
 	"undeleterevisions": "$1 {{PLURAL:$1|верси|версисене}} пăса утнă",
-	"undeletebtn": "Каялла тавăр!",
+	"undeletebtn": "Каялла тавăр",
 	"undeleteviewlink": "пăх",
 	"undelete-search-box": "Кăларса пăрахнă страницăсен хушшинчи шырав",
 	"undelete-search-submit": "Шыра",

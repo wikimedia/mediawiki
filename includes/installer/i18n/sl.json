@@ -50,7 +50,7 @@
 	"config-env-bad": "Okolje je pregledano.\nNe morete namestiti MediaWiki.",
 	"config-env-php": "Nameščen je PHP $1.",
 	"config-env-hhvm": "HHVM $1 je nameščen.",
-	"config-unicode-using-intl": "Uporaba [https://pecl.php.net/intl razširitve PECL intl] za normalizacijo unikoda.",
+	"config-unicode-using-intl": "Uporaba [https://php.net/manual/en/book.intl.php PHP-razširitve intl] za normalizacijo unikoda.",
 	"config-memory-raised": "PHP-jev <code>memory_limit</code> je $1, dvignjen na $2.",
 	"config-apc": "[https://www.php.net/apc APC] je nameščen",
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] je nameščen",

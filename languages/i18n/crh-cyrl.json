@@ -10,7 +10,8 @@
 			"Умар",
 			"Macofe",
 			"Danvintius Bookix",
-			"Stephanecbisson"
+			"Stephanecbisson",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Багълантыларнынъ тюбюни сызув:",
@@ -1108,7 +1109,7 @@
 	"undelete": "Ёкъ этильген саифелерни косьтер",
 	"undeletepage": "Саифенинъ ёкъ этильген версияларына козь ат ве кери кетир.",
 	"viewdeletedpage": "Ёкъ этильген саифелерге бакъ",
-	"undeletebtn": "Кери кетир!",
+	"undeletebtn": "Кери кетир",
 	"undeletelink": "косьтер/кери кетир",
 	"undeletecomment": "Себеп:",
 	"undelete-header": "Кеченлерде ёкъ этильген саифелерни корьмек ичюн [[Special:Log/delete|ёкъ этюв журналына]] бакъынъыз.",

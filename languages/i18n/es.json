@@ -3997,5 +3997,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "sugerir cambio al acceder a la cuenta",
 	"easydeflate-invaliddeflate": "El contenido proporcionado no esta comprimido correctamente",
 	"unprotected-js": "Por razones de seguridad, JavaScript no se puede cargar desde páginas desprotegidas. Crea javascript solo en MediaWiki: espacio de nombres o como subpágina de usuario",
-	"userlogout-continue": "Si deseas cerrar sesión, [$1 continúa a la página de cierre de sesión]."
+	"userlogout-continue": "¿Quieres finalizar la sesión?"
 }
