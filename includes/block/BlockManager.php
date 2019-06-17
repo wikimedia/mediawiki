@@ -202,6 +202,9 @@ class BlockManager {
 			] );
 		}
 
+		// Filter out any duplicated blocks, e.g. from the cookie
+		$blocks = $this->getUniqueBlocks( $blocks );
+
 		if ( count( $blocks ) > 0 ) {
 			if ( count( $blocks ) === 1 ) {
 				$block = $blocks[ 0 ];
@@ -217,6 +220,28 @@ class BlockManager {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Given a list of blocks, return a list blocks where each block either has a
+	 * unique ID or has ID null.
+	 *
+	 * @param AbstractBlock[] $blocks
+	 * @return AbstractBlock[]
+	 */
+	private function getUniqueBlocks( $blocks ) {
+		$blockIds = [];
+		$uniqueBlocks = [];
+		foreach ( $blocks as $block ) {
+			$id = $block->getId();
+			if ( $id === null ) {
+				$uniqueBlocks[] = $block;
+			} elseif ( !isset( $blockIds[$id] ) ) {
+				$uniqueBlocks[] = $block;
+				$blockIds[$block->getId()] = true;
+			}
+		}
+		return $uniqueBlocks;
 	}
 
 	/**
