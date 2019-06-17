@@ -50,3 +50,6 @@ if ( $logDir ) {
 	$wgDebugLogGroups['error'] = "$logDir/mw-error.log";
 }
 unset( $logDir );
+
+// Disable rate-limiting
+$wgRateLimits = [];
