@@ -2,9 +2,11 @@
 
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Blocking
@@ -63,26 +65,23 @@ class BlockManagerTest extends MediaWikiTestCase {
 	 * @covers ::shouldApplyCookieBlock
 	 */
 	public function testGetBlockFromCookieValue( $options, $expected ) {
-		$blockManager = $this->getBlockManager( [
-			'wgCookieSetOnAutoblock' => true,
-			'wgCookieSetOnIpBlock' => true,
-		] );
+		$blockManager = TestingAccessWrapper::newFromObject(
+			$this->getBlockManager( [
+				'wgCookieSetOnAutoblock' => true,
+				'wgCookieSetOnIpBlock' => true,
+			] )
+		);
 
 		$block = new DatabaseBlock( array_merge( [
-			'address' => $options[ 'target' ] ?: $this->user,
+			'address' => $options['target'] ?: $this->user,
 			'by' => $this->sysopId,
-		], $options[ 'blockOptions' ] ) );
+		], $options['blockOptions'] ) );
 		$block->insert();
 
-		$class = new ReflectionClass( BlockManager::class );
-		$method = $class->getMethod( 'getBlockFromCookieValue' );
-		$method->setAccessible( true );
-
-		$user = $options[ 'loggedIn' ] ? $this->user : new User();
+		$user = $options['loggedIn'] ? $this->user : new User();
 		$user->getRequest()->setCookie( 'BlockID', $block->getCookieValue() );
 
-		$this->assertSame( $expected, (bool)$method->invoke(
-			$blockManager,
+		$this->assertSame( $expected, (bool)$blockManager->getBlockFromCookieValue(
 			$user,
 			$user->getRequest()
 		) );
@@ -142,16 +141,14 @@ class BlockManagerTest extends MediaWikiTestCase {
 	 * @covers ::isLocallyBlockedProxy
 	 */
 	public function testIsLocallyBlockedProxy( $proxyList, $expected ) {
-		$class = new ReflectionClass( BlockManager::class );
-		$method = $class->getMethod( 'isLocallyBlockedProxy' );
-		$method->setAccessible( true );
-
-		$blockManager = $this->getBlockManager( [
-			'wgProxyList' => $proxyList
-		] );
+		$blockManager = TestingAccessWrapper::newFromObject(
+			$this->getBlockManager( [
+				'wgProxyList' => $proxyList
+			] )
+		);
 
 		$ip = '1.2.3.4';
-		$this->assertSame( $expected, $method->invoke( $blockManager, $ip ) );
+		$this->assertSame( $expected, $blockManager->isLocallyBlockedProxy( $ip ) );
 	}
 
 	public static function provideIsLocallyBlockedProxy() {
@@ -174,16 +171,14 @@ class BlockManagerTest extends MediaWikiTestCase {
 			'addresses in keys: ' . $proxy . ', please move them to values)'
 		);
 
-		$class = new ReflectionClass( BlockManager::class );
-		$method = $class->getMethod( 'isLocallyBlockedProxy' );
-		$method->setAccessible( true );
-
-		$blockManager = $this->getBlockManager( [
-			'wgProxyList' => [ $proxy => 'test' ]
-		] );
+		$blockManager = TestingAccessWrapper::newFromObject(
+			$this->getBlockManager( [
+				'wgProxyList' => [ $proxy => 'test' ]
+			] )
+		);
 
 		$ip = '1.2.3.4';
-		$this->assertSame( true, $method->invoke( $blockManager, $ip ) );
+		$this->assertTrue( $blockManager->isLocallyBlockedProxy( $ip ) );
 	}
 
 	/**
@@ -202,9 +197,7 @@ class BlockManagerTest extends MediaWikiTestCase {
 			->setConstructorArgs( $this->getBlockManagerConstructorArgs( $blockManagerConfig ) )
 			->setMethods( [ 'checkHost' ] )
 			->getMock();
-
-		$blockManager->expects( $this->any() )
-			->method( 'checkHost' )
+		$blockManager->method( 'checkHost' )
 			->will( $this->returnValueMap( [ [
 				$options['dnsblQuery'],
 				$options['dnsblResponse'],
@@ -306,89 +299,406 @@ class BlockManagerTest extends MediaWikiTestCase {
 	public function testGetUniqueBlocks() {
 		$blockId = 100;
 
-		$class = new ReflectionClass( BlockManager::class );
-		$method = $class->getMethod( 'getUniqueBlocks' );
-		$method->setAccessible( true );
-
-		$blockManager = $this->getBlockManager( [] );
+		$blockManager = TestingAccessWrapper::newFromObject( $this->getBlockManager( [] ) );
 
 		$block = $this->getMockBuilder( DatabaseBlock::class )
 			->setMethods( [ 'getId' ] )
 			->getMock();
-		$block->expects( $this->any() )
-			->method( 'getId' )
+		$block->method( 'getId' )
 			->willReturn( $blockId );
 
 		$autoblock = $this->getMockBuilder( DatabaseBlock::class )
 			->setMethods( [ 'getParentBlockId', 'getType' ] )
 			->getMock();
-		$autoblock->expects( $this->any() )
-			->method( 'getParentBlockId' )
+		$autoblock->method( 'getParentBlockId' )
 			->willReturn( $blockId );
-		$autoblock->expects( $this->any() )
-			->method( 'getType' )
+		$autoblock->method( 'getType' )
 			->willReturn( DatabaseBlock::TYPE_AUTO );
 
 		$blocks = [ $block, $block, $autoblock, new SystemBlock() ];
 
-		$this->assertSame( 2, count( $method->invoke( $blockManager, $blocks ) ) );
+		$this->assertSame( 2, count( $blockManager->getUniqueBlocks( $blocks ) ) );
 	}
 
 	/**
-	 * @covers ::trackBlockWithCookie
 	 * @dataProvider provideTrackBlockWithCookie
-	 * @param bool $expectCookieSet
-	 * @param bool $hasCookie
-	 * @param bool $isBlocked
+	 * @covers ::trackBlockWithCookie
 	 */
-	public function testTrackBlockWithCookie( $expectCookieSet, $hasCookie, $isBlocked ) {
-		$blockID = 123;
+	public function testTrackBlockWithCookie( $options, $expectedVal ) {
 		$this->setMwGlobals( 'wgCookiePrefix', '' );
 
 		$request = new FauxRequest();
-		if ( $hasCookie ) {
+		if ( $options['cookieSet'] ) {
 			$request->setCookie( 'BlockID', 'the value does not matter' );
-		}
-
-		if ( $isBlocked ) {
-			$block = $this->getMockBuilder( DatabaseBlock::class )
-				->setMethods( [ 'getType', 'getId' ] )
-				->getMock();
-			$block->method( 'getType' )
-				->willReturn( DatabaseBlock::TYPE_IP );
-			$block->method( 'getId' )
-				->willReturn( $blockID );
-		} else {
-			$block = null;
 		}
 
 		$user = $this->getMockBuilder( User::class )
 			->setMethods( [ 'getBlock', 'getRequest' ] )
 			->getMock();
 		$user->method( 'getBlock' )
-			->willReturn( $block );
+			->willReturn( $options['block'] );
 		$user->method( 'getRequest' )
 			->willReturn( $request );
-		/** @var User $user */
 
 		// Although the block cookie is set via DeferredUpdates, in command line mode updates are
 		// processed immediately
-		$blockManager = $this->getBlockManager( [] );
+		$blockManager = $this->getBlockManager( [
+			'wgSecretKey' => '',
+			'wgCookieSetOnIpBlock' => true,
+		] );
 		$blockManager->trackBlockWithCookie( $user );
 
 		/** @var FauxResponse $response */
 		$response = $request->response();
-		$this->assertCount( $expectCookieSet ? 1 : 0, $response->getCookies() );
-		$this->assertEquals( $expectCookieSet ? $blockID : null, $response->getCookie( 'BlockID' ) );
+		$this->assertCount( $expectedVal ? 1 : 0, $response->getCookies() );
+		$this->assertEquals( $expectedVal ?: null, $response->getCookie( 'BlockID' ) );
 	}
 
 	public function provideTrackBlockWithCookie() {
+		$blockId = 123;
 		return [
-			// $expectCookieSet, $hasCookie, $isBlocked
-			[ false, false, false ],
-			[ false, true, false ],
-			[ true, false, true ],
-			[ false, true, true ],
+			'Block cookie is already set; there is a trackable block' => [
+				[
+					'cookieSet' => true,
+					'block' => $this->getTrackableBlock( $blockId ),
+				],
+				null,
+			],
+			'Block cookie is already set; there is no block' => [
+				[
+					'cookieSet' => true,
+					'block' => null,
+				],
+				null,
+			],
+			'Block cookie is not yet set; there is no block' => [
+				[
+					'cookieSet' => false,
+					'block' => null,
+				],
+				null,
+			],
+			'Block cookie is not yet set; there is a trackable block' => [
+				[
+					'cookieSet' => false,
+					'block' => $this->getTrackableBlock( $blockId ),
+				],
+				$blockId,
+			],
+			'Block cookie is not yet set; there is a composite block with a trackable block' => [
+				[
+					'cookieSet' => false,
+					'block' => new CompositeBlock( [
+						'originalBlocks' => [
+							new SystemBlock(),
+							$this->getTrackableBlock( $blockId ),
+						]
+					] ),
+				],
+				$blockId,
+			],
+			'Block cookie is not yet set; there is a composite block but no trackable block' => [
+				[
+					'cookieSet' => false,
+					'block' => new CompositeBlock( [
+						'originalBlocks' => [
+							new SystemBlock(),
+							new SystemBlock(),
+						]
+					] ),
+				],
+				null,
+			],
 		];
 	}
+
+	private function getTrackableBlock( $blockId ) {
+		$block = $this->getMockBuilder( DatabaseBlock::class )
+			->setMethods( [ 'getType', 'getId' ] )
+			->getMock();
+		$block->method( 'getType' )
+			->willReturn( DatabaseBlock::TYPE_IP );
+		$block->method( 'getId' )
+			->willReturn( $blockId );
+		return $block;
+	}
+
+	/**
+	 * @dataProvider provideSetBlockCookie
+	 * @covers ::setBlockCookie
+	 */
+	public function testSetBlockCookie( $expiryDelta, $expectedExpiryDelta ) {
+		$this->setMwGlobals( [
+			'wgCookiePrefix' => '',
+		] );
+
+		$request = new FauxRequest();
+		$response = $request->response();
+
+		$blockManager = $this->getBlockManager( [
+			'wgSecretKey' => '',
+			'wgCookieSetOnIpBlock' => true,
+		] );
+
+		$now = wfTimestamp();
+
+		$block = new DatabaseBlock( [
+			'expiry' => $expiryDelta === '' ? '' : $now + $expiryDelta
+		] );
+		$blockManager->setBlockCookie( $block, $response );
+		$cookies = $response->getCookies();
+
+		$this->assertEquals(
+			$now + $expectedExpiryDelta,
+			$cookies['BlockID']['expire'],
+			'',
+			60 // Allow actual to be up to 60 seconds later than expected
+		);
+	}
+
+	public static function provideSetBlockCookie() {
+		// Maximum length of a block cookie, defined in BlockManager::setBlockCookie
+		$maxExpiryDelta = ( 24 * 60 * 60 );
+
+		$longExpiryDelta = ( 48 * 60 * 60 );
+		$shortExpiryDelta = ( 12 * 60 * 60 );
+
+		return [
+			'Block has indefinite expiry' => [
+				'',
+				$maxExpiryDelta,
+			],
+			'Block expiry is later than maximum cookie block expiry' => [
+				$longExpiryDelta,
+				$maxExpiryDelta,
+			],
+			'Block expiry is sooner than maximum cookie block expiry' => [
+				$shortExpiryDelta,
+				$shortExpiryDelta,
+			],
+		];
+	}
+
+	/**
+	 * @covers ::shouldTrackBlockWithCookie
+	 */
+	public function testShouldTrackBlockWithCookieSystemBlock() {
+		$blockManager = TestingAccessWrapper::newFromObject( $this->getBlockManager( [] ) );
+		$this->assertFalse( $blockManager->shouldTrackBlockWithCookie(
+			new SystemBlock(),
+			true
+		) );
+	}
+
+	/**
+	 * @dataProvider provideShouldTrackBlockWithCookie
+	 * @covers ::shouldTrackBlockWithCookie
+	 */
+	public function testShouldTrackBlockWithCookie( $options, $expected ) {
+		$block = $this->getMockBuilder( DatabaseBlock::class )
+			->setMethods( [ 'getType', 'isAutoblocking' ] )
+			->getMock();
+		$block->method( 'getType' )
+			->willReturn( $options['type'] );
+		if ( isset( $options['autoblocking'] ) ) {
+			$block->method( 'isAutoblocking' )
+				->willReturn( $options['autoblocking'] );
+		}
+
+		$blockManager = TestingAccessWrapper::newFromObject(
+			$this->getBlockManager( $options['blockManagerConfig'] )
+		);
+
+		$this->assertSame(
+			$expected,
+			$blockManager->shouldTrackBlockWithCookie( $block, $options['isAnon'] )
+		);
+	}
+
+	public static function provideShouldTrackBlockWithCookie() {
+		return [
+			'IP block, anonymous user, IP block cookies enabled' => [
+				[
+					'type' => DatabaseBlock::TYPE_IP,
+					'isAnon' => true,
+					'blockManagerConfig' => [ 'wgCookieSetOnIpBlock' => true ],
+				],
+				true
+			],
+			'IP range block, anonymous user, IP block cookies enabled' => [
+				[
+					'type' => DatabaseBlock::TYPE_RANGE,
+					'isAnon' => true,
+					'blockManagerConfig' => [ 'wgCookieSetOnIpBlock' => true ],
+				],
+				true
+			],
+			'IP block, anonymous user, IP block cookies disabled' => [
+				[
+					'type' => DatabaseBlock::TYPE_IP,
+					'isAnon' => true,
+					'blockManagerConfig' => [ 'wgCookieSetOnIpBlock' => false ],
+				],
+				false
+			],
+			'IP block, logged in user, IP block cookies enabled' => [
+				[
+					'type' => DatabaseBlock::TYPE_IP,
+					'isAnon' => false,
+					'blockManagerConfig' => [ 'wgCookieSetOnIpBlock' => true ],
+				],
+				false
+			],
+			'User block, anonymous, autoblock cookies enabled, block is autoblocking' => [
+				[
+					'type' => DatabaseBlock::TYPE_USER,
+					'isAnon' => true,
+					'blockManagerConfig' => [ 'wgCookieSetOnAutoblock' => true ],
+					'autoblocking' => true,
+				],
+				false
+			],
+			'User block, logged in, autoblock cookies enabled, block is autoblocking' => [
+				[
+					'type' => DatabaseBlock::TYPE_USER,
+					'isAnon' => false,
+					'blockManagerConfig' => [ 'wgCookieSetOnAutoblock' => true ],
+					'autoblocking' => true,
+				],
+				true
+			],
+			'User block, logged in, autoblock cookies disabled, block is autoblocking' => [
+				[
+					'type' => DatabaseBlock::TYPE_USER,
+					'isAnon' => false,
+					'blockManagerConfig' => [ 'wgCookieSetOnAutoblock' => false ],
+					'autoblocking' => true,
+				],
+				false
+			],
+			'User block, logged in, autoblock cookies enabled, block is not autoblocking' => [
+				[
+					'type' => DatabaseBlock::TYPE_USER,
+					'isAnon' => false,
+					'blockManagerConfig' => [ 'wgCookieSetOnAutoblock' => true ],
+					'autoblocking' => false,
+				],
+				false
+			],
+			'Block type is autoblock' => [
+				[
+					'type' => DatabaseBlock::TYPE_AUTO,
+					'isAnon' => true,
+					'blockManagerConfig' => [],
+				],
+				false
+			]
+		];
+	}
+
+	/**
+	 * @covers ::clearBlockCookie
+	 */
+	public function testClearBlockCookie() {
+		$this->setMwGlobals( [
+			'wgCookiePrefix' => '',
+		] );
+
+		$request = new FauxRequest();
+		$response = $request->response();
+		$response->setCookie( 'BlockID', '100' );
+		$this->assertSame( '100', $response->getCookie( 'BlockID' ) );
+
+		BlockManager::clearBlockCookie( $response );
+		$this->assertSame( '', $response->getCookie( 'BlockID' ) );
+	}
+
+	/**
+	 * @dataProvider provideGetIdFromCookieValue
+	 * @covers ::getIdFromCookieValue
+	 */
+	public function testGetIdFromCookieValue( $options, $expected ) {
+		$blockManager = $this->getBlockManager( [
+			'wgSecretKey' => $options['secretKey']
+		] );
+		$this->assertEquals(
+			$expected,
+			$blockManager->getIdFromCookieValue( $options['cookieValue'] )
+		);
+	}
+
+	public static function provideGetIdFromCookieValue() {
+		$blockId = 100;
+		$secretKey = '123';
+		$hmac = MWCryptHash::hmac( $blockId, $secretKey, false );
+		return [
+			'No secret key is set' => [
+				[
+					'secretKey' => '',
+					'cookieValue' => $blockId,
+					'calculatedHmac' => MWCryptHash::hmac( $blockId, '', false ),
+				],
+				$blockId,
+			],
+			'Secret key is set and stored hmac is correct' => [
+				[
+					'secretKey' => $secretKey,
+					'cookieValue' => $blockId . '!' . $hmac,
+					'calculatedHmac' => $hmac,
+				],
+				$blockId,
+			],
+			'Secret key is set and stored hmac is incorrect' => [
+				[
+					'secretKey' => $secretKey,
+					'cookieValue' => $blockId . '!xyz',
+					'calculatedHmac' => $hmac,
+				],
+				null,
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetCookieValue
+	 * @covers ::getCookieValue
+	 */
+	public function testGetCookieValue( $options, $expected ) {
+		$blockManager = $this->getBlockManager( [
+			'wgSecretKey' => $options['secretKey']
+		] );
+
+		$block = $this->getMockBuilder( DatabaseBlock::class )
+			->setMethods( [ 'getId' ] )
+			->getMock();
+		$block->method( 'getId' )
+			->willReturn( $options['blockId'] );
+
+		$this->assertEquals(
+			$expected,
+			$blockManager->getCookieValue( $block )
+		);
+	}
+
+	public static function provideGetCookieValue() {
+		$blockId = 100;
+		return [
+			'Secret key not set' => [
+				[
+					'secretKey' => '',
+					'blockId' => $blockId,
+					'hmac' => MWCryptHash::hmac( $blockId, '', false ),
+				],
+				$blockId,
+			],
+			'Secret key set' => [
+				[
+					'secretKey' => '123',
+					'blockId' => $blockId,
+					'hmac' => MWCryptHash::hmac( $blockId, '123', false ),
+				],
+				$blockId . '!' . MWCryptHash::hmac( $blockId, '123', false ) ],
+		];
+	}
+
 }
