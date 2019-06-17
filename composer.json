@@ -77,7 +77,8 @@
 		"wikimedia/testing-access-wrapper": "~1.0",
 		"wmde/hamcrest-html-matchers": "^0.1.0",
 		"mediawiki/mediawiki-phan-config": "0.6.0",
-		"symfony/yaml": "3.4.28"
+		"symfony/yaml": "3.4.28",
+		"liuggio/fastest": "^1.6"
 	},
 	"replace": {
 		"symfony/polyfill-ctype": "1.99",

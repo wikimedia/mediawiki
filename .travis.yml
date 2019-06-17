@@ -65,7 +65,7 @@ before_script:
   - php -l ./LocalSettings.php
 
 script:
-  - php tests/phpunit/phpunit.php
+  - find tests/phpunit extensions/**/tests/phpunit skins/**/tests/phpunit -name "*Test.php" | ./vendor/liuggio/fastest/fastest "tests/phpunit/phpunit.php {};"
 
 notifications:
   email: false
