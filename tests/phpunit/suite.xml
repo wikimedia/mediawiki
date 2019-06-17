@@ -56,12 +56,13 @@
 		<testsuite name="documentation">
 			<directory>documentation</directory>
 		</testsuite>
+		<testsuite name="unit">
+			<directory>unit</directory>
+		</testsuite>
 	</testsuites>
 	<groups>
 		<exclude>
-			<group>Utility</group>
 			<group>Broken</group>
-			<group>Stub</group>
 		</exclude>
 	</groups>
 	<filter>

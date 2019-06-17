@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="unit/initUnitTests.php"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.8/phpunit.xsd"
+
+		 colors="true"
+		 backupGlobals="false"
+		 convertErrorsToExceptions="true"
+		 convertNoticesToExceptions="true"
+		 convertWarningsToExceptions="true"
+		 forceCoversAnnotation="true"
+		 stopOnFailure="false"
+		 timeoutForSmallTests="10"
+		 timeoutForMediumTests="30"
+		 timeoutForLargeTests="60"
+		 beStrictAboutTestsThatDoNotTestAnything="true"
+		 beStrictAboutOutputDuringTests="true"
+		 beStrictAboutTestSize="true"
+		 verbose="false">
+	<testsuites>
+		<testsuite name="tests">
+			<directory>unit</directory>
+		</testsuite>
+	</testsuites>
+	<groups>
+		<exclude>
+			<group>Broken</group>
+		</exclude>
+	</groups>
+	<filter>
+		<whitelist addUncoveredFilesFromWhitelist="true">
+			<directory suffix=".php">../../includes</directory>
+			<directory suffix=".php">../../languages</directory>
+			<directory suffix=".php">../../maintenance</directory>
+			<exclude>
+				<directory suffix=".php">../../languages/messages</directory>
+				<file>../../languages/data/normalize-ar.php</file>
+				<file>../../languages/data/normalize-ml.php</file>
+			</exclude>
+		</whitelist>
+	</filter>
+</phpunit>
