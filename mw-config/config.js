@@ -14,17 +14,6 @@
 			$label.text( labelText.replace( '$1', value ) );
 		}
 
-		// Set up the help system
-		$( '.config-help-field-data' ).hide()
-			.closest( '.config-help-field-container' ).find( '.config-help-field-hint' )
-			.show()
-			.on( 'click', function () {
-				// FIXME: Use CSS transition
-				// eslint-disable-next-line no-jquery/no-slide
-				$( this ).closest( '.config-help-field-container' ).find( '.config-help-field-data' )
-					.slideToggle( 'fast' );
-			} );
-
 		// Show/hide code for DB-specific options
 		// FIXME: Do we want slow, fast, or even non-animated (instantaneous) showing/hiding here?
 		$( '.dbRadio' ).each( function () {
