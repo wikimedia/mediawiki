@@ -740,6 +740,19 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function __toString() {
+		if ( $this->conn === null ) {
+			// spl_object_id is PHP >= 7.2
+			$id = function_exists( 'spl_object_id' )
+				? spl_object_id( $this )
+				: spl_object_hash( $this );
+
+			return $this->getType() . ' object #' . $id;
+		}
+
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	/**
 	 * Error out if the role is not DB_MASTER
 	 *

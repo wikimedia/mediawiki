@@ -2199,6 +2199,15 @@ interface IDatabase {
 	 * @since 1.31
 	 */
 	public function setIndexAliases( array $aliases );
+
+	/**
+	 * Get a debugging string that mentions the database type, the ID of this instance,
+	 * and the ID of any underlying connection resource or driver object if one is present
+	 *
+	 * @return string "<db type> object #<X>" or "<db type> object #<X> (resource/handle id #<Y>)"
+	 * @since 1.34
+	 */
+	public function __toString();
 }
 
 /**

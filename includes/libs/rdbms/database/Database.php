@@ -4666,12 +4666,24 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->conn;
 	}
 
-	/**
-	 * @since 1.19
-	 * @return string
-	 */
 	public function __toString() {
-		return (string)$this->conn;
+		// spl_object_id is PHP >= 7.2
+		$id = function_exists( 'spl_object_id' )
+			? spl_object_id( $this )
+			: spl_object_hash( $this );
+
+		$description = $this->getType() . ' object #' . $id;
+		if ( is_resource( $this->conn ) ) {
+			$description .= ' (' . (string)$this->conn . ')'; // "resource id #<ID>"
+		} elseif ( is_object( $this->conn ) ) {
+			// spl_object_id is PHP >= 7.2
+			$handleId = function_exists( 'spl_object_id' )
+				? spl_object_id( $this->conn )
+				: spl_object_hash( $this->conn );
+			$description .= " (handle id #$handleId)";
+		}
+
+		return $description;
 	}
 
 	/**

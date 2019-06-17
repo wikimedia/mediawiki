@@ -540,7 +540,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 
 		$toString = (string)$db;
 
-		$this->assertContains( 'SQLite ', $toString );
+		$this->assertContains( 'sqlite object', $toString );
 	}
 
 	/**
