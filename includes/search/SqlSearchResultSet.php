@@ -1,20 +1,22 @@
 <?php
 
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * This class is used for different SQL-based search engines shipped with MediaWiki
  * @ingroup Search
  */
 class SqlSearchResultSet extends SearchResultSet {
-	/** @var ResultWrapper Result object from database */
+	/** @noinspection PhpMissingParentConstructorInspection */
+
+	/** @var IResultWrapper Result object from database */
 	protected $resultSet;
 	/** @var string Requested search query */
 	protected $terms;
 	/** @var int|null Total number of hits for $terms */
 	protected $totalHits;
 
-	function __construct( ResultWrapper $resultSet, $terms, $total = null ) {
+	function __construct( IResultWrapper $resultSet, $terms, $total = null ) {
 		$this->resultSet = $resultSet;
 		$this->terms = $terms;
 		$this->totalHits = $total;
@@ -51,7 +53,7 @@ class SqlSearchResultSet extends SearchResultSet {
 
 	function free() {
 		if ( $this->resultSet === false ) {
-			return false;
+			return;
 		}
 
 		$this->resultSet->free();
