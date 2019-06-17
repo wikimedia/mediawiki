@@ -86,6 +86,10 @@ class LoadBalancerSingle extends LoadBalancer {
 	protected function reallyOpenConnection( array $server, DatabaseDomain $domain ) {
 		return $this->db;
 	}
+
+	public function __destruct() {
+		// do nothing since the connection was injected
+	}
 }
 
 /**
