@@ -1229,11 +1229,13 @@ class ChangeTags {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->startAtomic( __METHOD__ );
 
+		// fetch tag id, this must be done before calling undefineTag(), see T225564
+		$tagId = MediaWikiServices::getInstance()->getChangeTagDefStore()->getId( $tag );
+
 		// set ctd_user_defined = 0
 		self::undefineTag( $tag );
 
 		// delete from change_tag
-		$tagId = MediaWikiServices::getInstance()->getChangeTagDefStore()->getId( $tag );
 		$dbw->delete( 'change_tag', [ 'ct_tag_id' => $tagId ], __METHOD__ );
 		$dbw->delete( 'change_tag_def', [ 'ctd_name' => $tag ], __METHOD__ );
 		$dbw->endAtomic( __METHOD__ );
