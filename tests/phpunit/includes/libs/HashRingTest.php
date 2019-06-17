@@ -316,8 +316,8 @@ EOT;
 
 		// Hash of known correct values from C code
 		$this->assertEquals(
-			'c69ac9eb7a8a630c0cded201cefeaace',
-			md5( $ketama_test( 1e5 ) ),
+			'd1a4912a80e4654ec2e4e462c8b911c6',
+			md5( $ketama_test( 1e3 ) ),
 			'Ketama mode (large, MD5 check)'
 		);
 
