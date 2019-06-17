@@ -89,12 +89,12 @@ class Autopromote {
 
 	/**
 	 * Recursively check a condition.  Conditions are in the form
-	 *   array( '&' or '|' or '^' or '!', cond1, cond2, ... )
+	 *   [ '&' or '|' or '^' or '!', cond1, cond2, ... ]
 	 * where cond1, cond2, ... are themselves conditions; *OR*
 	 *   APCOND_EMAILCONFIRMED, *OR*
-	 *   array( APCOND_EMAILCONFIRMED ), *OR*
-	 *   array( APCOND_EDITCOUNT, number of edits ), *OR*
-	 *   array( APCOND_AGE, seconds since registration ), *OR*
+	 *   [ APCOND_EMAILCONFIRMED ], *OR*
+	 *   [ APCOND_EDITCOUNT, number of edits ], *OR*
+	 *   [ APCOND_AGE, seconds since registration ], *OR*
 	 *   similar constructs defined by extensions.
 	 * This function evaluates the former type recursively, and passes off to
 	 * self::checkCondition for evaluation of the latter type.

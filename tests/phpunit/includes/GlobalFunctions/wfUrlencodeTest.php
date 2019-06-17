@@ -69,7 +69,7 @@ class WfUrlencodeTest extends MediaWikiTestCase {
 			}
 		} else {
 			throw new MWException( __METHOD__ . " given invalid expectation for "
-				. "'$server'. Should be a string or an array( <http server name> => <string> ).\n" );
+				. "'$server'. Should be a string or an array [ <http server name> => <string> ].\n" );
 		}
 	}
 

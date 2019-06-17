@@ -60,7 +60,7 @@ class TrackingCategories {
 
 	/**
 	 * Read the global and extract title objects from the corresponding messages
-	 * @return array Array( 'msg' => Title, 'cats' => Title[] )
+	 * @return array [ 'msg' => Title, 'cats' => Title[] ]
 	 */
 	public function getTrackingCategories() {
 		$categories = array_merge(

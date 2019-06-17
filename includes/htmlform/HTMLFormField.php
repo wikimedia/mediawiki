@@ -866,7 +866,7 @@ abstract class HTMLFormField {
 	 * that return value has no taint.
 	 *
 	 * @param string $value The value of the input
-	 * @return array array( $errors, $errorClass )
+	 * @return array [ $errors, $errorClass ]
 	 * @return-taint none
 	 */
 	public function getErrorsAndErrorClass( $value ) {

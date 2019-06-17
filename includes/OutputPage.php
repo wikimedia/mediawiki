@@ -1723,7 +1723,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the files used on this page
 	 *
-	 * @return array (dbKey => array('time' => MW timestamp or null, 'sha1' => sha1 or ''))
+	 * @return array [ dbKey => [ 'time' => MW timestamp or null, 'sha1' => sha1 or '' ] ]
 	 * @since 1.18
 	 */
 	public function getFileSearchOptions() {

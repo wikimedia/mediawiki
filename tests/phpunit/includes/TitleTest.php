@@ -338,7 +338,7 @@ class TitleTest extends MediaWikiTestCase {
 	public function testWgWhitelistReadRegexp( $whitelistRegexp, $source, $action, $expected ) {
 		// $wgWhitelistReadRegexp must be an array. Since the provided test cases
 		// usually have only one regex, it is more concise to write the lonely regex
-		// as a string. Thus we cast to an array() to honor $wgWhitelistReadRegexp
+		// as a string. Thus we cast to a [] to honor $wgWhitelistReadRegexp
 		// type requisite.
 		if ( is_string( $whitelistRegexp ) ) {
 			$whitelistRegexp = [ $whitelistRegexp ];

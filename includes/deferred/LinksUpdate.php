@@ -965,7 +965,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 
 	/**
 	 * Get an array of existing inline interwiki links, as a 2-D array
-	 * @return array (prefix => array(dbkey => 1))
+	 * @return array [ prefix => [ dbkey => 1 ] ]
 	 */
 	private function getExistingInterwikis() {
 		$res = $this->getDB()->select( 'iwlinks', [ 'iwl_prefix', 'iwl_title' ],
