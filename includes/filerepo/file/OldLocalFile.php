@@ -42,7 +42,7 @@ class OldLocalFile extends LocalFile {
 	 * @param Title $title
 	 * @param FileRepo $repo
 	 * @param string|int|null $time
-	 * @return self
+	 * @return static
 	 * @throws MWException
 	 */
 	static function newFromTitle( $title, $repo, $time = null ) {
@@ -51,27 +51,27 @@ class OldLocalFile extends LocalFile {
 			throw new MWException( __METHOD__ . ' got null for $time parameter' );
 		}
 
-		return new self( $title, $repo, $time, null );
+		return new static( $title, $repo, $time, null );
 	}
 
 	/**
 	 * @param Title $title
 	 * @param FileRepo $repo
 	 * @param string $archiveName
-	 * @return self
+	 * @return static
 	 */
 	static function newFromArchiveName( $title, $repo, $archiveName ) {
-		return new self( $title, $repo, null, $archiveName );
+		return new static( $title, $repo, null, $archiveName );
 	}
 
 	/**
 	 * @param stdClass $row
 	 * @param FileRepo $repo
-	 * @return self
+	 * @return static
 	 */
 	static function newFromRow( $row, $repo ) {
 		$title = Title::makeTitle( NS_FILE, $row->oi_name );
-		$file = new self( $title, $repo, null, $row->oi_archive_name );
+		$file = new static( $title, $repo, null, $row->oi_archive_name );
 		$file->loadFromRow( $row, 'oi_' );
 
 		return $file;
@@ -95,12 +95,12 @@ class OldLocalFile extends LocalFile {
 			$conds['oi_timestamp'] = $dbr->timestamp( $timestamp );
 		}
 
-		$fileQuery = self::getQueryInfo();
+		$fileQuery = static::getQueryInfo();
 		$row = $dbr->selectRow(
 			$fileQuery['tables'], $fileQuery['fields'], $conds, __METHOD__, [], $fileQuery['joins']
 		);
 		if ( $row ) {
-			return self::newFromRow( $row, $repo );
+			return static::newFromRow( $row, $repo );
 		} else {
 			return false;
 		}

@@ -31,31 +31,6 @@ use Wikimedia\Rdbms\DBUnexpectedError;
  * @ingroup FileAbstraction
  */
 class ForeignDBFile extends LocalFile {
-	/**
-	 * @param Title $title
-	 * @param FileRepo $repo
-	 * @param null $unused
-	 * @return ForeignDBFile
-	 */
-	static function newFromTitle( $title, $repo, $unused = null ) {
-		return new self( $title, $repo );
-	}
-
-	/**
-	 * Create a ForeignDBFile from a title
-	 * Do not call this except from inside a repo class.
-	 *
-	 * @param stdClass $row
-	 * @param FileRepo $repo
-	 * @return ForeignDBFile
-	 */
-	static function newFromRow( $row, $repo ) {
-		$title = Title::makeTitle( NS_FILE, $row->img_name );
-		$file = new self( $title, $repo );
-		$file->loadFromRow( $row );
-
-		return $file;
-	}
 
 	/**
 	 * @param string $srcPath
