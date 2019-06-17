@@ -166,7 +166,7 @@ EXAMPLE:
 require 'MemCachedClient.inc.php';
 
 // set the servers, with the last one having an integer weight value of 3
-$options["servers"] = array("10.0.0.15:11000","10.0.0.16:11001",array("10.0.0.17:11002", 3));
+$options["servers"] = ["10.0.0.15:11000","10.0.0.16:11001",["10.0.0.17:11002", 3]];
 $options["debug"] = false;
 
 $memc = new MemCachedClient($options);
@@ -175,7 +175,7 @@ $memc = new MemCachedClient($options);
 /***********************
  * STORE AN ARRAY
  ***********************/
-$myarr = array("one","two", 3);
+$myarr = ["one","two", 3];
 $memc->set("key_one", $myarr);
 $val = $memc->get("key_one");
 print $val[0]."\n";	// prints 'one'

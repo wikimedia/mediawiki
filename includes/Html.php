@@ -518,7 +518,7 @@ class Html {
 					$newValue = [];
 					foreach ( $value as $k => $v ) {
 						if ( is_string( $v ) ) {
-							// String values should be normal `array( 'foo' )`
+							// String values should be normal `[ 'foo' ]`
 							// Just append them
 							if ( !isset( $value[$v] ) ) {
 								// As a special case don't set 'foo' if a

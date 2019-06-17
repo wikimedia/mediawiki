@@ -4537,7 +4537,7 @@ class Language {
 	 *
 	 * @since 1.22
 	 * @param string $code Language code
-	 * @return array Array( fallbacks, site fallbacks )
+	 * @return array [ fallbacks, site fallbacks ]
 	 */
 	public static function getFallbacksIncludingSiteLanguage( $code ) {
 		global $wgLanguageCode;

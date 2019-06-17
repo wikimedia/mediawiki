@@ -1001,12 +1001,12 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Returns $this->getUser()->changeableGroups()
 	 *
-	 * @return array Array(
-	 *   'add' => array( addablegroups ),
-	 *   'remove' => array( removablegroups ),
-	 *   'add-self' => array( addablegroups to self ),
-	 *   'remove-self' => array( removable groups from self )
-	 *  )
+	 * @return array [
+	 *   'add' => [ addablegroups ],
+	 *   'remove' => [ removablegroups ],
+	 *   'add-self' => [ addablegroups to self ],
+	 *   'remove-self' => [ removable groups from self ]
+	 *  ]
 	 */
 	function changeableGroups() {
 		return $this->getUser()->changeableGroups();

@@ -1245,7 +1245,7 @@ class Sanitizer {
 	 *   HTML5 definition of id attribute
 	 *
 	 * @param string $id Id to escape
-	 * @param string|array $options String or array of strings (default is array()):
+	 * @param string|array $options String or array of strings (default is []):
 	 *   'noninitial': This is a non-initial fragment of an id, not a full id,
 	 *       so don't pay attention if the first character isn't valid at the
 	 *       beginning of an id.
@@ -1948,7 +1948,7 @@ class Sanitizer {
 			# rbc
 			'rb'         => $common,
 			'rp'         => $common,
-			'rt'         => $common, # array_merge( $common, array( 'rbspan' ) ),
+			'rt'         => $common, # array_merge( $common, [ 'rbspan' ] ),
 			'rtc'        => $common,
 
 			# MathML root element, where used for extensions

@@ -334,7 +334,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *     to $IP
 	 * @param string|null $remoteBasePath Path to use if not provided in module definition. Defaults
 	 *     to $wgResourceBasePath
-	 * @return array Array( localBasePath, remoteBasePath )
+	 * @return array [ localBasePath, remoteBasePath ]
 	 */
 	public static function extractBasePaths(
 		$options = [],

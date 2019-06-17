@@ -139,7 +139,7 @@
 	"config-missing-db-name": "Musíte zadat hodnotu pro „{{int:config-db-name}}“.",
 	"config-missing-db-host": "Musíte zadat hodnotu pro „{{int:config-db-host}}“.",
 	"config-missing-db-server-oracle": "Musíte zadat hodnotu pro „{{int:config-db-host-oracle}}“.",
-	"config-invalid-db-server-oracle": "Chybné databázové TNS „$1“.\nPoužívejte buď „TNS Name“ nebo „Easy Connect“ (viz [http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle Naming Methods]).",
+	"config-invalid-db-server-oracle": "Chybné databázové TNS „$1“.\nPoužívejte buď „TNS Name“ nebo „Easy Connect“ (vizte [http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle Naming Methods]).",
 	"config-invalid-db-name": "Chybné jméno databáze „$1“.\nPoužívejte pouze ASCII písmena (a-z, A-Z), čísla (0-9), podtržítko (_) a spojovník (-).",
 	"config-invalid-db-prefix": "Chybný databázový prefix „$1“.\nPoužívejte pouze ASCII písmena (a-z, A-Z), čísla (0-9), podtržítko (_) a spojovník (-).",
 	"config-connection-error": "$1.\n\nZkontrolujte server, uživatelské jméno a heslo a zkuste to znovu. Pokud jako adresu databázového serveru používáte „localhost“, zkuste použít „127.0.0.1“ (a naopak).",

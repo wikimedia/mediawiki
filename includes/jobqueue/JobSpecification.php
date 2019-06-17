@@ -27,8 +27,8 @@
  * @code
  * $job = new JobSpecification(
  *		'null',
- *		array( 'lives' => 1, 'usleep' => 100, 'pi' => 3.141569 ),
- *		array( 'removeDuplicates' => 1 )
+ *		[ 'lives' => 1, 'usleep' => 100, 'pi' => 3.141569 ],
+ *		[ 'removeDuplicates' => 1 ]
  * );
  * JobQueueGroup::singleton()->push( $job )
  * @endcode

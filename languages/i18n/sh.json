@@ -1354,7 +1354,7 @@
 	"nchanges": "$1 {{PLURAL:$1|izmjena|izmjene|izmjena}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|izmjena od Vaše posljedne posjete}}",
 	"enhancedrc-history": "historija",
-	"recentchanges": "Nedavne izmjene / Скорашње измене",
+	"recentchanges": "Nedavne promjene / Недавне промене",
 	"recentchanges-legend": "Postavke za Nedavne promjene",
 	"recentchanges-summary": "Na ovoj stranici možete pratiti nedavne izmjene.",
 	"recentchanges-noresult": "Bez promjena tokom cijelog perioda koji ispunjava ove kriterije.",

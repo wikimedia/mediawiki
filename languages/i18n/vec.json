@@ -1730,7 +1730,7 @@
 	"undelete-revision": "Revision scancelà de la pagina $1 (inserìa su $4 el $5) de $3:",
 	"undeleterevision-missing": "Revision mìa valida o mancante. O el colegamento no'l xe mìa giusto, opure la revision la xe stà zà ripristinà o eliminà da l'archivio.",
 	"undelete-nodiff": "No xe stà catà nissuna revision precedente.",
-	"undeletebtn": "RIPRISTINA!",
+	"undeletebtn": "Ripristina",
 	"undeletelink": "varda/ripristina",
 	"undeleteviewlink": "varda",
 	"undeleteinvert": "Inverti selession",

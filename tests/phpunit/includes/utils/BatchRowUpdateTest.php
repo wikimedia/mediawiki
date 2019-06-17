@@ -49,7 +49,7 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 			$this->assertEquals( $response[$pos], $rows, "Testing row in position $pos" );
 			$pos++;
 		}
-		// -1 is because the final array() marks the end and isnt included
+		// -1 is because the final [] marks the end and isn't included
 		$this->assertEquals( count( $response ) - 1, $pos );
 	}
 
