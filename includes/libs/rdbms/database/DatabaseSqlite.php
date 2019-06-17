@@ -217,7 +217,7 @@ class DatabaseSqlite extends Database {
 			$this->query( 'PRAGMA case_sensitive_like = 1' );
 
 			$sync = $this->connectionVariables['synchronous'] ?? null;
-			if ( in_array( $sync, [ 'EXTRA', 'FULL', 'NORMAL' ], true ) ) {
+			if ( in_array( $sync, [ 'EXTRA', 'FULL', 'NORMAL', 'OFF' ], true ) ) {
 				$this->query( "PRAGMA synchronous = $sync" );
 			}
 
