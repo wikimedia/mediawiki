@@ -117,8 +117,8 @@ class LoadBalancer implements ILoadBalancer {
 	private $lastError = 'Unknown error';
 	/** @var string|bool Reason the LB is read-only or false if not */
 	private $readOnlyReason = false;
-	/** @var int Total connections opened */
-	private $connsOpened = 0;
+	/** @var int Total number of new connections ever made with this instance */
+	private $connectionCounter = 0;
 	/** @var bool */
 	private $disabled = false;
 	/** @var bool Whether any connection has been attempted yet */
@@ -199,7 +199,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		$this->waitTimeout = $params['waitTimeout'] ?? self::MAX_WAIT_DEFAULT;
 
-		$this->conns = self::newConnsArray();
+		$this->conns = self::newTrackedConnectionsArray();
 		$this->waitForPos = false;
 		$this->allowLagged = false;
 
@@ -248,7 +248,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->ownerId = $params['ownerId'] ?? null;
 	}
 
-	private static function newConnsArray() {
+	private static function newTrackedConnectionsArray() {
 		return [
 			// Connection were transaction rounds may be applied
 			self::KEY_LOCAL => [],
@@ -834,8 +834,7 @@ class LoadBalancer implements ILoadBalancer {
 		$masterOnly = ( $i === self::DB_MASTER || $i === $this->getWriterIndex() );
 
 		// Number of connections made before getting the server index and handle
-		$priorConnectionsMade = $this->connsOpened;
-
+		$priorConnectionsMade = $this->connectionCounter;
 		// Choose a server if $i is DB_MASTER/DB_REPLICA (might trigger new connections)
 		$serverIndex = $this->getConnectionIndex( $i, $groups, $domain );
 		// Get an open connection to that server (might trigger a new connection)
@@ -852,7 +851,7 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		// Profile any new connections caused by this method
-		if ( $this->connsOpened > $priorConnectionsMade ) {
+		if ( $this->connectionCounter > $priorConnectionsMade ) {
 			$host = $conn->getServer();
 			$dbname = $conn->getDBname();
 			$this->trxProfiler->recordConnection( $host, $dbname, $masterOnly );
@@ -1207,12 +1206,6 @@ class LoadBalancer implements ILoadBalancer {
 		$masterName = $this->getServerName( $this->getWriterIndex() );
 		$server['clusterMasterHost'] = $masterName;
 
-		// Log when many connection are made on requests
-		if ( ++$this->connsOpened >= self::CONN_HELD_WARN_THRESHOLD ) {
-			$this->perfLogger->warning( __METHOD__ . ": " .
-				"{$this->connsOpened}+ connections made (master=$masterName)" );
-		}
-
 		$server['srvCache'] = $this->srvCache;
 		// Set loggers and profilers
 		$server['connLogger'] = $this->connLogger;
@@ -1231,6 +1224,15 @@ class LoadBalancer implements ILoadBalancer {
 		// Create a live connection object
 		try {
 			$db = Database::factory( $server['type'], $server );
+			// Log when many connection are made on requests
+			++$this->connectionCounter;
+			$currentConnCount = $this->getCurrentConnectionCount();
+			if ( $currentConnCount >= self::CONN_HELD_WARN_THRESHOLD ) {
+				$this->perfLogger->warning(
+					__METHOD__ . ": {connections}+ connections made (master={masterdb})",
+					[ 'connections' => $currentConnCount, 'masterdb' => $masterName ]
+				);
+			}
 		} catch ( DBConnectionError $e ) {
 			// FIXME: This is probably the ugliest thing I have ever done to
 			// PHP. I'm half-expecting it to segfault, just out of disgust. -- TS
@@ -1377,8 +1379,7 @@ class LoadBalancer implements ILoadBalancer {
 			$conn->close();
 		} );
 
-		$this->conns = self::newConnsArray();
-		$this->connsOpened = 0;
+		$this->conns = self::newTrackedConnectionsArray();
 	}
 
 	public function closeConnection( IDatabase $conn ) {
@@ -1399,7 +1400,6 @@ class LoadBalancer implements ILoadBalancer {
 					$this->connLogger->debug(
 						__METHOD__ . ": closing connection to database $i at '$host'." );
 					unset( $this->conns[$type][$serverIndex][$i] );
-					--$this->connsOpened;
 					break 2;
 				}
 			}
@@ -1924,6 +1924,20 @@ class LoadBalancer implements ILoadBalancer {
 				}
 			}
 		}
+	}
+
+	/**
+	 * @return int
+	 */
+	private function getCurrentConnectionCount() {
+		$count = 0;
+		foreach ( $this->conns as $connsByServer ) {
+			foreach ( $connsByServer as $serverConns ) {
+				$count += count( $serverConns );
+			}
+		}
+
+		return $count;
 	}
 
 	public function getMaxLag( $domain = false ) {
