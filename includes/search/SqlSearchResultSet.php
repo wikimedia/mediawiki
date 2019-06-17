@@ -11,7 +11,7 @@ class SqlSearchResultSet extends SearchResultSet {
 
 	/** @var IResultWrapper Result object from database */
 	protected $resultSet;
-	/** @var string Requested search query */
+	/** @var string[] Requested search query */
 	protected $terms;
 	/** @var int|null Total number of hits for $terms */
 	protected $totalHits;

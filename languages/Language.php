@@ -2967,8 +2967,8 @@ class Language {
 	}
 
 	/**
-	 * @param array $termsArray
-	 * @return array
+	 * @param string[] $termsArray
+	 * @return string[]
 	 */
 	function convertForSearchResult( $termsArray ) {
 		# some languages, e.g. Chinese, need to do a conversion

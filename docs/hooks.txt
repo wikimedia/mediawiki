@@ -3004,7 +3004,8 @@ $terms: Search terms, for highlighting
 &$titleSnippet: Label for the link representing the search result. Typically the
   article title.
 $result: The SearchResult object
-$terms: String of the search terms entered
+$terms: array of search terms extracted by SearchDatabase search engines
+  (may not be populated by other search engines).
 $specialSearch: The SpecialSearch object
 &$query: Array of query string parameters for the link representing the search
   result.
