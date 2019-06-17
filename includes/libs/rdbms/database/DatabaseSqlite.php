@@ -1120,15 +1120,6 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
-	 * @return string
-	 */
-	public function __toString() {
-		return is_object( $this->conn )
-			? 'SQLite ' . (string)$this->conn->getAttribute( PDO::ATTR_SERVER_VERSION )
-			: '(not connected)';
-	}
-
-	/**
 	 * @return PDO
 	 */
 	protected function getBindingHandle() {
