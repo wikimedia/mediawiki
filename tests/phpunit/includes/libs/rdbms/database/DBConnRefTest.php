@@ -1,9 +1,8 @@
 <?php
 
-use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\FakeResultWrapper;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\ResultWrapper;
 
@@ -40,7 +39,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	 * @return IDatabase
 	 */
 	private function getDatabaseMock() {
-		$db = $this->getMockBuilder( Database::class )
+		$db = $this->getMockBuilder( IDatabase::class )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -60,12 +59,6 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 		$db->method( 'isOpen' )->willReturnCallback( function () use ( &$open ) {
 			return $open;
 		} );
-		$db->method( 'open' )->willReturnCallback( function () use ( &$open ) {
-			$open = true;
-
-			return $open;
-		} );
-		$db->method( '__toString' )->willReturn( 'MOCK_DB' );
 
 		return $db;
 	}

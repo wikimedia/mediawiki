@@ -2718,11 +2718,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$s );
 	}
 
-	public function buildLike() {
-		$params = func_get_args();
-
-		if ( count( $params ) > 0 && is_array( $params[0] ) ) {
-			$params = $params[0];
+	public function buildLike( $param, ...$params ) {
+		if ( is_array( $param ) ) {
+			$params = $param;
+		} else {
+			$params = func_get_args();
 		}
 
 		$s = '';
