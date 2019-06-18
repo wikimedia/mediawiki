@@ -60,6 +60,7 @@ $wgAutoloadClasses += [
 	'MediaWikiPHPUnitResultPrinter' => "$testDir/phpunit/MediaWikiPHPUnitResultPrinter.php",
 	'MediaWikiPHPUnitTestListener' => "$testDir/phpunit/MediaWikiPHPUnitTestListener.php",
 	'MediaWikiTestCase' => "$testDir/phpunit/MediaWikiTestCase.php",
+	'MediaWikiUnitTestCase' => "$testDir/phpunit/MediaWikiUnitTestCase.php",
 	'MediaWikiTestResult' => "$testDir/phpunit/MediaWikiTestResult.php",
 	'MediaWikiTestRunner' => "$testDir/phpunit/MediaWikiTestRunner.php",
 	'PHPUnit4And6Compat' => "$testDir/phpunit/PHPUnit4And6Compat.php",
