@@ -43,8 +43,12 @@ $cfg['file_list'] = array_merge(
 );
 
 $cfg['autoload_internal_extension_signatures'] = [
+	'imagick' => '.phan/internal_stubs/imagick.phan_php',
 	'memcached' => '.phan/internal_stubs/memcached.phan_php',
 	'oci8' => '.phan/internal_stubs/oci8.phan_php',
+	'pcntl' => '.phan/internal_stubs/pcntl.phan_php',
+	'redis' => '.phan/internal_stubs/redis.phan_php',
+	'sockets' => '.phan/internal_stubs/sockets.phan_php',
 	'sqlsrv' => '.phan/internal_stubs/sqlsrv.phan_php',
 	'tideways' => '.phan/internal_stubs/tideways.phan_php',
 ];
