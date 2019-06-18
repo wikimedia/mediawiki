@@ -3,7 +3,7 @@
 /**
  * @covers PasswordFactory
  */
-class PasswordFactoryTest extends MediaWikiTestCase {
+class PasswordFactoryTest extends MediaWikiUnitTestCase {
 	public function testConstruct() {
 		$pf = new PasswordFactory();
 		$this->assertEquals( [ '' ], array_keys( $pf->getTypes() ) );
