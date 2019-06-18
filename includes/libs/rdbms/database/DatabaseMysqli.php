@@ -203,7 +203,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 
 	/**
 	 * @param mysqli_result $res
-	 * @return bool
+	 * @return array|false
 	 */
 	protected function mysqlFetchArray( $res ) {
 		$array = $res->fetch_array();
