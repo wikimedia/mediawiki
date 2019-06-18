@@ -39,7 +39,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 
 	protected $origin = self::ORIGIN_CORE_SITEWIDE;
 
-	/** @var ResourceLoaderImage[]|null */
+	/** @var ResourceLoaderImage[][]|null */
 	protected $imageObjects = null;
 	/** @var array */
 	protected $images = [];

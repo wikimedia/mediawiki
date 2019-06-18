@@ -33,7 +33,7 @@ class ResourceLoaderLessVarFileModule extends ResourceLoaderFileModule {
 	 *
 	 * @param string $blob
 	 * @param array $exclusions
-	 * @return array $blob
+	 * @return object $blob
 	 */
 	protected function excludeMessagesFromBlob( $blob, $exclusions ) {
 		$data = json_decode( $blob, true );
