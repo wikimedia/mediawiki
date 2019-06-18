@@ -43,9 +43,9 @@
 
 /*
  * Special font for numbers in benefits, same as Vector's `@content-heading-font-family`.
- * Needs an ID so that it's more specific than Vector's div#content h3.
+ * Needs to be more specific than Vector's `.mw-body-content h3`.
  */
-#bodyContent .mw-number-text h3 {
+.mw-body-content .mw-number-text h3 {
 	color: #222;
 	margin: 0;
 	padding: 0;
