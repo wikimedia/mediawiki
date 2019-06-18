@@ -54,5 +54,6 @@ if ( $logDir ) {
 }
 unset( $logDir );
 
-// Disable rate-limiting
+// Disable rate-limiting to allow integration tests to run unthrottled
+// in CI and for devs locally (T225796)
 $wgRateLimits = [];
