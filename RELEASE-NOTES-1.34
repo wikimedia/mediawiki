@@ -209,6 +209,8 @@ because of Phabricator reports.
   specified, deprecated in 1.30, have been removed.
 * BufferingStatsdDataFactory::getBuffer(), deprecated in 1.30, has been removed.
 * The constant DB_SLAVE, deprecated in 1.28, has been removed. Use DB_REPLICA.
+* Replacer, DoubleReplacer, HashtableReplacer and RegexlikeReplacer
+  (deprecated in 1.32) have been removed. Closures should be used instead.
 * …
 
 === Deprecations in 1.34 ===
