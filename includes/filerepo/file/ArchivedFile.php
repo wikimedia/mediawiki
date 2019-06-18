@@ -438,7 +438,9 @@ class ArchivedFile {
 	function pageCount() {
 		if ( !isset( $this->pageCount ) ) {
 			// @FIXME: callers expect File objects
+			// @phan-suppress-next-line PhanTypeMismatchArgument
 			if ( $this->getHandler() && $this->handler->isMultiPage( $this ) ) {
+				// @phan-suppress-next-line PhanTypeMismatchArgument
 				$this->pageCount = $this->handler->pageCount( $this );
 			} else {
 				$this->pageCount = false;

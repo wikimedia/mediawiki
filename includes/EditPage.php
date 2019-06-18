@@ -1156,7 +1156,7 @@ class EditPage {
 			$out->showErrorPage(
 				'modeleditnotsupported-title',
 				'modeleditnotsupported-text',
-				$modelName
+				[ $modelName ]
 			);
 			return false;
 		}

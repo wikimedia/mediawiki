@@ -237,6 +237,7 @@ class ApiErrorFormatter {
 	 */
 	public function formatException( $exception, array $options = [] ) {
 		return $this->formatMessage(
+			// @phan-suppress-next-line PhanTypeMismatchArgument
 			$this->getMessageFromException( $exception, $options ),
 			$options['format'] ?? null
 		);

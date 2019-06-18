@@ -96,6 +96,7 @@ class ApiTag extends ApiBase {
 				$valid = RecentChange::newFromId( $id );
 				if ( $valid && $this->getPermissionManager()->isBlockedFrom( $user, $valid->getTitle() ) ) {
 					$idResult['status'] = 'error';
+					// @phan-suppress-next-line PhanTypeMismatchArgument
 					$idResult += $this->getErrorFormatter()->formatMessage( ApiMessage::create(
 						'apierror-blocked',
 						'blocked',
@@ -111,6 +112,7 @@ class ApiTag extends ApiBase {
 					$this->getPermissionManager()->isBlockedFrom( $user, $valid->getPageAsLinkTarget() )
 				) {
 					$idResult['status'] = 'error';
+					// @phan-suppress-next-line PhanTypeMismatchArgument
 					$idResult += $this->getErrorFormatter()->formatMessage( ApiMessage::create(
 							'apierror-blocked',
 							'blocked',

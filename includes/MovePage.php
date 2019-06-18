@@ -83,7 +83,7 @@ class MovePage {
 	 * @param ServiceOptions|null $options
 	 * @param ILoadBalancer|null $loadBalancer
 	 * @param NamespaceInfo|null $nsInfo
-	 * @param WatchedItemStore|null $watchedItems
+	 * @param WatchedItemStoreInterface|null $watchedItems
 	 * @param PermissionManager|null $permMgr
 	 */
 	public function __construct(

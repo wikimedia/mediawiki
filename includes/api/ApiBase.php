@@ -1585,6 +1585,7 @@ abstract class ApiBase extends ContextSource {
 				'integeroutofrange',
 				[ 'min' => $min, 'max' => $max, 'botMax' => $botMax ?: $max ]
 			);
+			// @phan-suppress-next-line PhanTypeMismatchArgument
 			$this->warnOrDie( $msg, $enforceLimits );
 			$value = $min;
 		}
@@ -1606,6 +1607,7 @@ abstract class ApiBase extends ContextSource {
 						'integeroutofrange',
 						[ 'min' => $min, 'max' => $max, 'botMax' => $botMax ?: $max ]
 					);
+					// @phan-suppress-next-line PhanTypeMismatchArgument
 					$this->warnOrDie( $msg, $enforceLimits );
 					$value = $botMax;
 				}
@@ -1616,6 +1618,7 @@ abstract class ApiBase extends ContextSource {
 					'integeroutofrange',
 					[ 'min' => $min, 'max' => $max, 'botMax' => $botMax ?: $max ]
 				);
+				// @phan-suppress-next-line PhanTypeMismatchArgument
 				$this->warnOrDie( $msg, $enforceLimits );
 				$value = $max;
 			}
@@ -2022,6 +2025,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function dieWithException( $exception, array $options = [] ) {
 		$this->dieWithError(
+			// @phan-suppress-next-line PhanTypeMismatchArgument
 			$this->getErrorFormatter()->getMessageFromException( $exception, $options )
 		);
 	}
@@ -2464,6 +2468,7 @@ abstract class ApiBase extends ContextSource {
 					if ( $m ) {
 						$m = new ApiHelpParamValueMessage(
 							$value,
+							// @phan-suppress-next-line PhanTypeMismatchArgument
 							[ $m->getKey(), 'api-help-param-no-description' ],
 							$m->getParams(),
 							isset( $deprecatedValues[$value] )

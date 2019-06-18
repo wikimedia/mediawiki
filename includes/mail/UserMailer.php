@@ -393,6 +393,7 @@ class UserMailer {
 				Wikimedia\restoreWarnings();
 				return Status::newFatal( 'pear-mail-error', $mail_object->getMessage() );
 			}
+			'@phan-var Mail_smtp $mail_object';
 
 			wfDebug( "Sending mail via PEAR::Mail\n" );
 

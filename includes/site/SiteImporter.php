@@ -168,6 +168,7 @@ class SiteImporter {
 		$pathTags = $siteElement->getElementsByTagName( 'path' );
 		for ( $i = 0; $i < $pathTags->length; $i++ ) {
 			$pathElement = $pathTags->item( $i );
+			'@phan-var DOMElement $pathElement';
 			$pathType = $this->getAttributeValue( $pathElement, 'type' );
 			$path = $pathElement->textContent;
 
@@ -177,6 +178,7 @@ class SiteImporter {
 		$idTags = $siteElement->getElementsByTagName( 'localid' );
 		for ( $i = 0; $i < $idTags->length; $i++ ) {
 			$idElement = $idTags->item( $i );
+			'@phan-var DOMElement $idElement';
 			$idType = $this->getAttributeValue( $idElement, 'type' );
 			$id = $idElement->textContent;
 
