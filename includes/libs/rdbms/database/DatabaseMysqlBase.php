@@ -369,7 +369,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * Fetch a result row as an associative and numeric array
 	 *
 	 * @param resource $res Raw result
-	 * @return array
+	 * @return array|false
 	 */
 	abstract protected function mysqlFetchArray( $res );
 
