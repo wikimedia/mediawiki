@@ -30,6 +30,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Database
+ * @group medium
  * @covers \Wikimedia\Rdbms\LoadBalancer
  */
 class LoadBalancerTest extends MediaWikiTestCase {
@@ -112,6 +113,10 @@ class LoadBalancerTest extends MediaWikiTestCase {
 
 		// Simulate web request with DBO_TRX
 		$lb = $this->newMultiServerLocalLoadBalancer( DBO_TRX );
+
+		$this->assertEquals( 8, $lb->getServerCount() );
+		$this->assertTrue( $lb->hasReplicaServers() );
+		$this->assertTrue( $lb->hasStreamingReplicaServers() );
 
 		$dbw = $lb->getConnection( DB_MASTER );
 		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
@@ -260,6 +265,22 @@ class LoadBalancerTest extends MediaWikiTestCase {
 					'vslow' => 100
 				],
 				'flags' => $flags
+			],
+			// Replica DB that only has a copy of some static tables
+			7 => [
+				'host' => $wgDBserver,
+				'dbname' => $wgDBname,
+				'tablePrefix' => $this->dbPrefix(),
+				'user' => $wgDBuser,
+				'password' => $wgDBpassword,
+				'type' => $wgDBtype,
+				'dbDirectory' => $wgSQLiteDataDir,
+				'load' => 0,
+				'groupLoads' => [
+					'archive' => 100
+				],
+				'flags' => $flags,
+				'is static' => true
 			]
 		];
 

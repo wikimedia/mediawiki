@@ -166,15 +166,29 @@ class LoadBalancer implements ILoadBalancer {
 	const ROUND_ERROR = 'error';
 
 	public function __construct( array $params ) {
-		if ( !isset( $params['servers'] ) ) {
-			throw new InvalidArgumentException( __CLASS__ . ': missing "servers" parameter' );
+		if ( !isset( $params['servers'] ) || !count( $params['servers'] ) ) {
+			throw new InvalidArgumentException( 'Missing or empty "servers" parameter' );
 		}
-		$this->servers = $params['servers'];
-		foreach ( $this->servers as $i => $server ) {
+
+		$listKey = -1;
+		$this->servers = [];
+		$this->genericLoads = [];
+		foreach ( $params['servers'] as $i => $server ) {
+			if ( ++$listKey !== $i ) {
+				throw new UnexpectedValueException( 'List expected for "servers" parameter' );
+			}
 			if ( $i == 0 ) {
-				$this->servers[$i]['master'] = true;
+				$server['master'] = true;
 			} else {
-				$this->servers[$i]['replica'] = true;
+				$server['replica'] = true;
+			}
+			$this->servers[$i] = $server;
+
+			$this->genericLoads[$i] = $server['load'];
+			if ( isset( $server['groupLoads'] ) ) {
+				foreach ( $server['groupLoads'] as $group => $ratio ) {
+					$this->groupLoads[$group][$i] = $ratio;
+				}
 			}
 		}
 
@@ -185,17 +199,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		$this->waitTimeout = $params['waitTimeout'] ?? self::MAX_WAIT_DEFAULT;
 
-		$this->conns = [
-			// Connection were transaction rounds may be applied
-			self::KEY_LOCAL => [],
-			self::KEY_FOREIGN_INUSE => [],
-			self::KEY_FOREIGN_FREE => [],
-			// Auto-committing counterpart connections that ignore transaction rounds
-			self::KEY_LOCAL_NOROUND => [],
-			self::KEY_FOREIGN_INUSE_NOROUND => [],
-			self::KEY_FOREIGN_FREE_NOROUND => []
-		];
-		$this->genericLoads = [];
+		$this->conns = self::newConnsArray();
 		$this->waitForPos = false;
 		$this->allowLagged = false;
 
@@ -207,18 +211,6 @@ class LoadBalancer implements ILoadBalancer {
 
 		$this->loadMonitorConfig = $params['loadMonitor'] ?? [ 'class' => 'LoadMonitorNull' ];
 		$this->loadMonitorConfig += [ 'lagWarnThreshold' => $this->maxLag ];
-
-		foreach ( $params['servers'] as $i => $server ) {
-			$this->genericLoads[$i] = $server['load'];
-			if ( isset( $server['groupLoads'] ) ) {
-				foreach ( $server['groupLoads'] as $group => $ratio ) {
-					if ( !isset( $this->groupLoads[$group] ) ) {
-						$this->groupLoads[$group] = [];
-					}
-					$this->groupLoads[$group][$i] = $ratio;
-				}
-			}
-		}
 
 		$this->srvCache = $params['srvCache'] ?? new EmptyBagOStuff();
 		$this->wanCache = $params['wanCache'] ?? WANObjectCache::newEmpty();
@@ -254,6 +246,19 @@ class LoadBalancer implements ILoadBalancer {
 
 		$this->defaultGroup = $params['defaultGroup'] ?? null;
 		$this->ownerId = $params['ownerId'] ?? null;
+	}
+
+	private static function newConnsArray() {
+		return [
+			// Connection were transaction rounds may be applied
+			self::KEY_LOCAL => [],
+			self::KEY_FOREIGN_INUSE => [],
+			self::KEY_FOREIGN_FREE => [],
+			// Auto-committing counterpart connections that ignore transaction rounds
+			self::KEY_LOCAL_NOROUND => [],
+			self::KEY_FOREIGN_INUSE_NOROUND => [],
+			self::KEY_FOREIGN_FREE_NOROUND => []
+		];
 	}
 
 	public function getLocalDomainID() {
@@ -349,7 +354,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		# Unset excessively lagged servers
 		foreach ( $lags as $i => $lag ) {
-			if ( $i != 0 ) {
+			if ( $i !== $this->getWriterIndex() ) {
 				# How much lag this server nominally is allowed to have
 				$maxServerLag = $this->servers[$i]['max lag'] ?? $this->maxLag; // default
 				# Constrain that futher by $maxLag argument
@@ -440,7 +445,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function getReaderIndex( $group = false, $domain = false ) {
-		if ( count( $this->servers ) == 1 ) {
+		if ( $this->getServerCount() == 1 ) {
 			// Skip the load balancing if there's only one server
 			return $this->getWriterIndex();
 		}
@@ -479,7 +484,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		// If data seen by queries is expected to reflect the transactions committed as of
 		// or after a given replication position then wait for the DB to apply those changes
-		if ( $this->waitForPos && $i != $this->getWriterIndex() && !$this->doWait( $i ) ) {
+		if ( $this->waitForPos && $i !== $this->getWriterIndex() && !$this->doWait( $i ) ) {
 			// Data will be outdated compared to what was expected
 			$laggedReplicaMode = true;
 		}
@@ -566,7 +571,7 @@ class LoadBalancer implements ILoadBalancer {
 					// Any server with less lag than it's 'max lag' param is preferable
 					$i = $this->getRandomNonLagged( $currentLoads, $domain );
 				}
-				if ( $i === false && count( $currentLoads ) != 0 ) {
+				if ( $i === false && count( $currentLoads ) ) {
 					// All replica DBs lagged. Switch to read-only mode
 					$this->replLogger->error(
 						__METHOD__ . ": all replica DBs lagged. Switch to read-only mode" );
@@ -661,7 +666,7 @@ class LoadBalancer implements ILoadBalancer {
 		$oldPos = $this->waitForPos;
 		try {
 			$this->waitForPos = $pos;
-			$serverCount = count( $this->servers );
+			$serverCount = $this->getServerCount();
 
 			$ok = true;
 			for ( $i = 1; $i < $serverCount; $i++ ) {
@@ -722,10 +727,10 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	/**
-	 * Wait for a given replica DB to catch up to the master pos stored in $this
+	 * Wait for a given replica DB to catch up to the master pos stored in "waitForPos"
 	 * @param int $index Server index
 	 * @param bool $open Check the server even if a new connection has to be made
-	 * @param int|null $timeout Max seconds to wait; default is "waitTimeout" given to __construct()
+	 * @param int|null $timeout Max seconds to wait; default is "waitTimeout"
 	 * @return bool
 	 */
 	protected function doWait( $index, $open = false, $timeout = null ) {
@@ -826,7 +831,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		$domain = $this->resolveDomainID( $domain );
 		$flags = $this->sanitizeConnectionFlags( $flags );
-		$masterOnly = ( $i == self::DB_MASTER || $i == $this->getWriterIndex() );
+		$masterOnly = ( $i === self::DB_MASTER || $i === $this->getWriterIndex() );
 
 		// Number of connections made before getting the server index and handle
 		$priorConnectionsMade = $this->connsOpened;
@@ -862,7 +867,7 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		$this->enforceConnectionFlags( $conn, $flags );
-		if ( $serverIndex == $this->getWriterIndex() ) {
+		if ( $serverIndex === $this->getWriterIndex() ) {
 			// If the load balancer is read-only, perhaps due to replication lag, then master
 			// DB handles will reflect that. Note that Database::assertIsWritableMaster() takes
 			// care of replica DB handles whereas getReadOnlyReason() would cause infinite loops.
@@ -1317,6 +1322,20 @@ class LoadBalancer implements ILoadBalancer {
 		return count( $this->servers );
 	}
 
+	public function hasReplicaServers() {
+		return ( $this->getServerCount() > 1 );
+	}
+
+	public function hasStreamingReplicaServers() {
+		foreach ( $this->servers as $i => $server ) {
+			if ( $i !== $this->getWriterIndex() && empty( $server['is static'] ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public function getServerName( $i ) {
 		$name = $this->servers[$i]['hostName'] ?? $this->servers[$i]['host'] ?? '';
 
@@ -1336,7 +1355,7 @@ class LoadBalancer implements ILoadBalancer {
 		# master (however unlikely that may be), then we can fetch the position from the replica DB.
 		$masterConn = $this->getAnyOpenConnection( $this->getWriterIndex() );
 		if ( !$masterConn ) {
-			$serverCount = count( $this->servers );
+			$serverCount = $this->getServerCount();
 			for ( $i = 1; $i < $serverCount; $i++ ) {
 				$conn = $this->getAnyOpenConnection( $i );
 				if ( $conn ) {
@@ -1364,14 +1383,7 @@ class LoadBalancer implements ILoadBalancer {
 			$conn->close();
 		} );
 
-		$this->conns = [
-			self::KEY_LOCAL => [],
-			self::KEY_FOREIGN_INUSE => [],
-			self::KEY_FOREIGN_FREE => [],
-			self::KEY_LOCAL_NOROUND => [],
-			self::KEY_FOREIGN_INUSE_NOROUND => [],
-			self::KEY_FOREIGN_FREE_NOROUND => []
-		];
+		$this->conns = self::newConnsArray();
 		$this->connsOpened = 0;
 	}
 
@@ -1785,7 +1797,7 @@ class LoadBalancer implements ILoadBalancer {
 	public function getLaggedReplicaMode( $domain = false ) {
 		if (
 			// Avoid recursion if there is only one DB
-			$this->getServerCount() > 1 &&
+			$this->hasStreamingReplicaServers() &&
 			// Avoid recursion if the (non-zero load) master DB was picked for generic reads
 			$this->genericReadIndex !== $this->getWriterIndex() &&
 			// Stay in lagged replica mode during the load balancer instance lifetime
@@ -1921,20 +1933,18 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function getMaxLag( $domain = false ) {
-		$maxLag = -1;
 		$host = '';
+		$maxLag = -1;
 		$maxIndex = 0;
 
-		if ( $this->getServerCount() <= 1 ) {
-			return [ $host, $maxLag, $maxIndex ]; // no replication = no lag
-		}
-
-		$lagTimes = $this->getLagTimes( $domain );
-		foreach ( $lagTimes as $i => $lag ) {
-			if ( $this->genericLoads[$i] > 0 && $lag > $maxLag ) {
-				$maxLag = $lag;
-				$host = $this->servers[$i]['host'];
-				$maxIndex = $i;
+		if ( $this->hasReplicaServers() ) {
+			$lagTimes = $this->getLagTimes( $domain );
+			foreach ( $lagTimes as $i => $lag ) {
+				if ( $this->genericLoads[$i] > 0 && $lag > $maxLag ) {
+					$maxLag = $lag;
+					$host = $this->servers[$i]['host'];
+					$maxIndex = $i;
+				}
 			}
 		}
 
@@ -1942,7 +1952,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function getLagTimes( $domain = false ) {
-		if ( $this->getServerCount() <= 1 ) {
+		if ( !$this->hasReplicaServers() ) {
 			return [ $this->getWriterIndex() => 0 ]; // no replication = no lag
 		}
 
@@ -1960,11 +1970,13 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function safeGetLag( IDatabase $conn ) {
-		if ( $this->getServerCount() <= 1 ) {
-			return 0;
-		} else {
-			return $conn->getLag();
+		if ( $conn->getLBInfo( 'is static' ) ) {
+			return 0; // static dataset
+		} elseif ( $conn->getLBInfo( 'serverIndex' ) == $this->getWriterIndex() ) {
+			return 0; // this is the master
 		}
+
+		return $conn->getLag();
 	}
 
 	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = null ) {

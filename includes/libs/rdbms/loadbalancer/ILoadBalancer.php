@@ -62,6 +62,8 @@ use InvalidArgumentException;
  *      Note that lag is still possible depending on how wsrep-sync-wait is set server-side.
  *   - Read-only archive clones: set 'is static' in the server configuration maps. This will
  *      treat all such DBs as having 0 lag.
+ *   - Externally updated dataset clones: set 'is static' in the server configuration maps.
+ *      This will treat all such DBs as having 0 lag.
  *   - SQL load balancing proxy: any proxy should handle lag checks on its own, so the 'max lag'
  *      parameter should probably be set to INF in the server configuration maps. This will make
  *      the load balancer ignore whatever it detects as the lag of the logical replica is (which
@@ -148,7 +150,7 @@ interface ILoadBalancer {
 	public function redefineLocalDomain( $domain );
 
 	/**
-	 * Get the index of the reader connection, which may be a replica DB
+	 * Get the server index of the reader connection for a given group
 	 *
 	 * This takes into account load ratios and lag times. It should return a consistent
 	 * index during the life time of the load balancer. This initially checks replica DBs
@@ -306,6 +308,8 @@ interface ILoadBalancer {
 	public function getMaintenanceConnectionRef( $i, $groups = [], $domain = false, $flags = 0 );
 
 	/**
+	 * Get the server index of the master server
+	 *
 	 * @return int
 	 */
 	public function getWriterIndex();
@@ -327,11 +331,43 @@ interface ILoadBalancer {
 	public function isNonZeroLoad( $i );
 
 	/**
-	 * Get the number of defined servers (not the number of open connections)
+	 * Get the number of servers defined in configuration
 	 *
 	 * @return int
 	 */
 	public function getServerCount();
+
+	/**
+	 * Whether there are any replica servers configured
+	 *
+	 * This counts both servers using streaming replication from the master server and
+	 * servers that just have a clone of the static dataset found on the master server
+	 *
+	 * @return int
+	 * @since 1.34
+	 */
+	public function hasReplicaServers();
+
+	/**
+	 * Whether any replica servers use streaming replication from the master server
+	 *
+	 * Generally this is one less than getServerCount(), though it might otherwise
+	 * return a lower number if some of the servers are configured with "is static".
+	 * That flag is used when both the server has no active replication setup and the
+	 * dataset is either read-only or occasionally updated out-of-band. For example,
+	 * a script might import a new geographic information dataset each week by writing
+	 * it to each server and later directing the application to use the new version.
+	 *
+	 * It is possible for some replicas to be configured with "is static" but not
+	 * others, though it generally should either be set for all or none of the replicas.
+	 *
+	 * If this returns zero, this means that there is generally no reason to execute
+	 * replication wait logic for session consistency and lag reduction.
+	 *
+	 * @return int
+	 * @since 1.34
+	 */
+	public function hasStreamingReplicaServers();
 
 	/**
 	 * Get the host name or IP address of the server with the specified index
@@ -581,7 +617,7 @@ interface ILoadBalancer {
 	public function forEachOpenReplicaConnection( $callback, array $params = [] );
 
 	/**
-	 * Get the hostname and lag time of the most-lagged replica DB
+	 * Get the hostname and lag time of the most-lagged replica server
 	 *
 	 * This is useful for maintenance scripts that need to throttle their updates.
 	 * May attempt to open connections to replica DBs on the default DB. If there is
