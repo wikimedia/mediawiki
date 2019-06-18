@@ -27,6 +27,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IResultWrapper;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -299,7 +300,7 @@ class GenerateSitemap extends Maintenance {
 	 * Return a database resolution of all the pages in a given namespace
 	 *
 	 * @param int $namespace Limit the query to this namespace
-	 * @return Resource
+	 * @return IResultWrapper
 	 */
 	function getPageRes( $namespace ) {
 		return $this->dbr->select( 'page',
