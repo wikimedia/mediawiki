@@ -285,7 +285,7 @@ class WebInstallerOutput {
 <?php echo Html::openElement( 'body', [ 'class' => $this->getLanguage()->getDir() ] ) . "\n"; ?>
 <div id="mw-page-base"></div>
 <div id="mw-head-base"></div>
-<div id="content" class="mw-body">
+<div id="content" class="mw-body" role="main">
 <div id="bodyContent" class="mw-body-content">
 
 <h1><?php $this->outputTitle(); ?></h1>
