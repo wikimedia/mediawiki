@@ -30,8 +30,19 @@ class ClassCollectorTest extends PHPUnit\Framework\TestCase {
 				[ 'Example\Foo', 'Bar' ],
 			],
 			[
+				// Support a multiline 'class' statement
+				"namespace Example;\nclass Foo extends\n\tFooBase {\n\t"
+						. "public function x() {}\n}\nclass_alias( 'Example\Foo', 'Bar' );",
+				[ 'Example\Foo', 'Bar' ],
+			],
+			[
 				"class_alias( Foo::class, 'Bar' );",
 				[ 'Bar' ],
+			],
+			[
+				// Support nested class_alias() calls
+					"if ( false ) {\n\tclass_alias( Foo::class, 'Bar' );\n}",
+					[ 'Bar' ],
 			],
 			[
 				// Namespaced class is not currently supported. Must use namespace declaration
