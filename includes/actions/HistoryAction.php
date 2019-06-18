@@ -142,6 +142,7 @@ class HistoryAction extends FormlessAction {
 
 	/**
 	 * Print the history page for an article.
+	 * @return string|null
 	 */
 	function onView() {
 		$out = $this->getOutput();
@@ -151,7 +152,7 @@ class HistoryAction extends FormlessAction {
 		 * Allow client caching.
 		 */
 		if ( $out->checkLastModified( $this->page->getTouched() ) ) {
-			return; // Client cache fresh and headers sent, nothing more to do.
+			return null; // Client cache fresh and headers sent, nothing more to do.
 		}
 
 		$this->preCacheMessages();
@@ -185,7 +186,7 @@ class HistoryAction extends FormlessAction {
 		$feedType = $request->getRawVal( 'feed' );
 		if ( $feedType !== null ) {
 			$this->feed( $feedType );
-			return;
+			return null;
 		}
 
 		$this->addHelpLink(
@@ -216,7 +217,7 @@ class HistoryAction extends FormlessAction {
 				]
 			);
 
-			return;
+			return null;
 		}
 
 		$ts = $this->getTimestampFromRequest( $request );
@@ -300,6 +301,8 @@ class HistoryAction extends FormlessAction {
 			$pager->getNavigationBar()
 		);
 		$out->preventClickjacking( $pager->getPreventClickjacking() );
+
+		return null;
 	}
 
 	/**
