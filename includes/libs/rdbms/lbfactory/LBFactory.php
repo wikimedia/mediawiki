@@ -422,14 +422,20 @@ abstract class LBFactory implements ILBFactory {
 		// time needed to wait on the next clusters.
 		$masterPositions = array_fill( 0, count( $lbs ), false );
 		foreach ( $lbs as $i => $lb ) {
-			if ( !$lb->hasStreamingReplicaServers() ) {
-				continue; // T29975: no replication; avoid getMasterPos() permissions errors
-			} elseif (
-				$opts['ifWritesSince'] &&
-				$lb->lastMasterChangeTimestamp() < $opts['ifWritesSince']
+			if (
+				// No writes to wait on getting replicated
+				!$lb->hasMasterConnection() ||
+				// No replication; avoid getMasterPos() permissions errors (T29975)
+				!$lb->hasStreamingReplicaServers() ||
+				// No writes since the last replication wait
+				(
+					$opts['ifWritesSince'] &&
+					$lb->lastMasterChangeTimestamp() < $opts['ifWritesSince']
+				)
 			) {
-				continue; // no writes since the last wait
+				continue; // no need to wait
 			}
+
 			$masterPositions[$i] = $lb->getMasterPos();
 		}
 

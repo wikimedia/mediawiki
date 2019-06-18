@@ -1452,22 +1452,56 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function getMasterPos() {
-		# If this entire request was served from a replica DB without opening a connection to the
-		# master (however unlikely that may be), then we can fetch the position from the replica DB.
+		$index = $this->getWriterIndex();
+
+		$conn = $this->getAnyOpenConnection( $index );
+		if ( $conn ) {
+			return $conn->getMasterPos();
+		}
+
+		$conn = $this->getConnection( $index, self::CONN_SILENCE_ERRORS );
+		if ( !$conn ) {
+			$this->reportConnectionError();
+			return null; // unreachable due to exception
+		}
+
+		try {
+			$pos = $conn->getMasterPos();
+		} finally {
+			$this->closeConnection( $conn );
+		}
+
+		return $pos;
+	}
+
+	public function getReplicaResumePos() {
+		// Get the position of any existing master server connection
 		$masterConn = $this->getAnyOpenConnection( $this->getWriterIndex() );
-		if ( !$masterConn ) {
-			$serverCount = $this->getServerCount();
-			for ( $i = 1; $i < $serverCount; $i++ ) {
-				$conn = $this->getAnyOpenConnection( $i );
-				if ( $conn ) {
-					return $conn->getReplicaPos();
-				}
-			}
-		} else {
+		if ( $masterConn ) {
 			return $masterConn->getMasterPos();
 		}
 
-		return false;
+		// Get the highest position of any existing replica server connection
+		$highestPos = false;
+		$serverCount = $this->getServerCount();
+		for ( $i = 1; $i < $serverCount; $i++ ) {
+			if ( !empty( $this->servers[$i]['is static'] ) ) {
+				continue; // server does not use replication
+			}
+
+			$conn = $this->getAnyOpenConnection( $i );
+			$pos = $conn ? $conn->getReplicaPos() : false;
+			if ( !$pos ) {
+				continue; // no open connection or could not get position
+			}
+
+			$highestPos = $highestPos ?: $pos;
+			if ( $pos->hasReached( $highestPos ) ) {
+				$highestPos = $pos;
+			}
+		}
+
+		return $highestPos;
 	}
 
 	public function disable() {

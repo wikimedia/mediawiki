@@ -315,6 +315,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 				}
 			) );
 		$lb1->method( 'getMasterPos' )->willReturn( $m1Pos );
+		$lb1->method( 'getReplicaResumePos' )->willReturn( $m1Pos );
 		$lb1->method( 'getServerName' )->with( 0 )->willReturn( 'master1' );
 		// Master DB 2
 		$mockDB2 = $this->getMockBuilder( IDatabase::class )
@@ -342,6 +343,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 			}
 		) );
 		$lb2->method( 'getMasterPos' )->willReturn( $m2Pos );
+		$lb2->method( 'getReplicaResumePos' )->willReturn( $m2Pos );
 		$lb2->method( 'getServerName' )->with( 0 )->willReturn( 'master2' );
 
 		$bag = new HashBagOStuff();

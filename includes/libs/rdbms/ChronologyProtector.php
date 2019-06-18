@@ -177,7 +177,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 
 		$masterName = $lb->getServerName( $lb->getWriterIndex() );
 		if ( $lb->hasStreamingReplicaServers() ) {
-			$pos = $lb->getMasterPos();
+			$pos = $lb->getReplicaResumePos();
 			if ( $pos ) {
 				$this->logger->debug( __METHOD__ . ": LB for '$masterName' has pos $pos\n" );
 				$this->shutdownPositions[$masterName] = $pos;
