@@ -73,14 +73,14 @@ class Command {
 	private $cgroup = false;
 
 	/**
-	 * bitfield with restrictions
+	 * Bitfield with restrictions
 	 *
 	 * @var int
 	 */
 	protected $restrictions = 0;
 
 	/**
-	 * Constructor. Don't call directly, instead use Shell::command()
+	 * Don't call directly, instead use Shell::command()
 	 *
 	 * @throws ShellDisabledError
 	 */
@@ -93,7 +93,7 @@ class Command {
 	}
 
 	/**
-	 * Destructor. Makes sure programmer didn't forget to execute the command after all
+	 * Makes sure the programmer didn't forget to execute the command after all
 	 */
 	public function __destruct() {
 		if ( !$this->everExecuted ) {
