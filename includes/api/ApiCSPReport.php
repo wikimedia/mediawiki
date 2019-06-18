@@ -54,7 +54,7 @@ class ApiCSPReport extends ApiBase {
 			// XXX Is it ok to put untrusted data into log??
 			'csp-report' => $report,
 			'method' => __METHOD__,
-			'user' => $this->getUser()->getName(),
+			'user_id' => $this->getUser()->getId() || 'logged-out',
 			'user-agent' => $userAgent,
 			'source' => $this->getParameter( 'source' ),
 		] );
@@ -176,13 +176,30 @@ class ApiCSPReport extends ApiBase {
 			$flagText = '[' . implode( ', ', $flags ) . ']';
 		}
 
-		$blockedFile = $report['blocked-uri'] ?? 'n/a';
+		$blockedOrigin = isset( $report['blocked-uri'] )
+			? $this->originFromUrl( $report['blocked-uri'] )
+			: 'n/a';
 		$page = $report['document-uri'] ?? 'n/a';
-		$line = isset( $report['line-number'] ) ? ':' . $report['line-number'] : '';
+		$line = isset( $report['line-number'] )
+			? ':' . $report['line-number']
+			: '';
 		$warningText = $flagText .
-			' Received CSP report: <' . $blockedFile .
-			'> blocked from being loaded on <' . $page . '>' . $line;
+			' Received CSP report: <' . $blockedOrigin . '>' .
+			' blocked from being loaded on <' . $page . '>' . $line;
 		return $warningText;
+	}
+
+	/**
+	 * @param string $url
+	 * @return string
+	 */
+	private function originFromUrl( $url ) {
+		$bits = wfParseUrl( $url );
+		unset( $bits['user'], $bits['pass'], $bits['query'], $bits['fragment'] );
+		$bits['path'] = '';
+		$serverUrl = wfAssembleUrl( $bits );
+		// e.g. "https://example.org" from "https://example.org/foo/b?a#r"
+		return $serverUrl;
 	}
 
 	/**
