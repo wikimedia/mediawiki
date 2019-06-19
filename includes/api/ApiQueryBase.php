@@ -21,7 +21,7 @@
  */
 
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * This is a base class for all Query modules.
@@ -368,7 +368,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param array|null &$hookData If set, the ApiQueryBaseBeforeQuery and
 	 *  ApiQueryBaseAfterQuery hooks will be called, and the
 	 *  ApiQueryBaseProcessRow hook will be expected.
-	 * @return ResultWrapper
+	 * @return IResultWrapper
 	 */
 	protected function select( $method, $extraQuery = [], array &$hookData = null ) {
 		$tables = array_merge(
