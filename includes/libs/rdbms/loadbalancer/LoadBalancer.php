@@ -1994,12 +1994,15 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		if ( $pos instanceof DBMasterPos ) {
+			$start = microtime( true );
 			$result = $conn->masterPosWait( $pos, $timeout );
+			$seconds = max( microtime( true ) - $start, 0 );
 			if ( $result == -1 || is_null( $result ) ) {
-				$msg = __METHOD__ . ': timed out waiting on {host} pos {pos}';
+				$msg = __METHOD__ . ': timed out waiting on {host} pos {pos} [{seconds}s]';
 				$this->replLogger->warning( $msg, [
 					'host' => $conn->getServer(),
 					'pos' => $pos,
+					'seconds' => round( $seconds, 6 ),
 					'trace' => ( new RuntimeException() )->getTraceAsString()
 				] );
 				$ok = false;
