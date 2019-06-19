@@ -57,7 +57,8 @@
 			"YvesNevelsteen",
 			"Vlad5250",
 			"Mirin",
-			"Etrapani"
+			"Etrapani",
+			"Taylor"
 		]
 	},
 	"tog-underline": "Substrekado de ligiloj:",
@@ -2725,7 +2726,7 @@
 	"imagetypemismatch": "La nova dosierfinaĵo ne kongruas ĝian dosiertipon.",
 	"imageinvalidfilename": "La cela dosiernomo estas nevalida",
 	"fix-double-redirects": "Ĝisdatigi iujn alidirektilojn kiuj direktas al la originala titolo",
-	"move-leave-redirect": "Forlasi alidirektilon",
+	"move-leave-redirect": "Postlasi alidirektilon",
 	"protectedpagemovewarning": "'''Averto:''' Ĉi tiu paĝo estis ŝlosita tiel nur uzantoj kun administranto-rajtoj povas movi ĝin.\nJen la lasta protokolero por via referenco:",
 	"semiprotectedpagemovewarning": "<strong>Averto:</strong> ĉi tiu paĝo estis ŝlosita tiel, ke ĝin povas movi nur aŭtomate konfirmitaj uzantoj.\nJen por vi la plej nova protokolero:",
 	"move-over-sharedrepo": "[[:$1]] ekzistas en komuna dosierujo. Movado de dosiero al ĉi tiu titolo anstataŭigos la komunan dosieron.",

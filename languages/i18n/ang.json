@@ -17,7 +17,8 @@
 			"WhatamIdoing",
 			"Hogweard",
 			"Amire80",
-			"Pyscowicz"
+			"Pyscowicz",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Mearc under hlencan:",
@@ -849,7 +850,7 @@
 	"restriction-level-sysop": "full borgen",
 	"restriction-level-autoconfirmed": "sāmborgen",
 	"restriction-level-all": "ǣnig emnet",
-	"undeletebtn": "Edstaðola!",
+	"undeletebtn": "Edstaðola",
 	"undeletelink": "sēon/nīwian",
 	"undeleteviewlink": "sēon",
 	"undelete-search-submit": "Sēcan",

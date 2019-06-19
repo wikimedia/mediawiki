@@ -1387,7 +1387,7 @@
 	"rcfilters-activefilters-show-tooltip": "Amosar l'área de Filtros activos",
 	"rcfilters-advancedfilters": "Filtros avanzaos",
 	"rcfilters-limit-title": "Resultancies qu'amosar",
-	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|cambiu|$1 cambios}}, $2",
+	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|cambéu|cambeos}}, $2",
 	"rcfilters-date-popup-title": "Periodu de tiempu a buscar",
 	"rcfilters-days-title": "Últimos díes",
 	"rcfilters-hours-title": "Últimes hores",
