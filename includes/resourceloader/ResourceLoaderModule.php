@@ -146,10 +146,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 			if ( is_string( $deprecationInfo ) ) {
 				$warning .= "\n" . $deprecationInfo;
 			}
-			return Xml::encodeJsCall(
-				'mw.log.warn',
-				[ $warning ]
-			);
+			return 'mw.log.warn(' . ResourceLoader::encodeJsonForScript( $warning ) . ');';
 		} else {
 			return '';
 		}
