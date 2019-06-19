@@ -4150,8 +4150,7 @@ $wgInvalidRedirectTargets = [ 'Filepath', 'Mypage', 'Mytalk', 'Redirect' ];
  *                    temporary storage. Preprocessor_DOM generally uses less memory;
  *                    the speed of the two is roughly the same.
  *
- *                    If this parameter is not given, it uses Preprocessor_DOM if the
- *                    DOM module is available, otherwise it uses Preprocessor_Hash.
+ *                    If this parameter is not given, it uses Preprocessor_Hash.
  *
  * The Preprocessor_DOM class is deprecated, and will be removed in a future
  * release.
