@@ -86,6 +86,8 @@ interface ILoadBalancer {
 
 	/** @var int DB handle should have DBO_TRX disabled and the caller will leave it as such */
 	const CONN_TRX_AUTOCOMMIT = 1;
+	/** @var int Return null on connection failure instead of throwing an exception */
+	const CONN_SILENCE_ERRORS = 2;
 
 	/** @var string Manager of ILoadBalancer instances is running post-commit callbacks */
 	const STAGE_POSTCOMMIT_CALLBACKS = 'stage-postcommit-callbacks';
@@ -148,10 +150,13 @@ interface ILoadBalancer {
 	/**
 	 * Get the index of the reader connection, which may be a replica DB
 	 *
-	 * This takes into account load ratios and lag times. It should
-	 * always return a consistent index during a given invocation.
+	 * This takes into account load ratios and lag times. It should return a consistent
+	 * index during the life time of the load balancer. This initially checks replica DBs
+	 * for connectivity to avoid returning an unusable server. This means that connections
+	 * might be attempted by calling this method (usally one at the most but possibly more).
+	 * Subsequent calls with the same $group will not need to make new connection attempts
+	 * since the acquired connection for each group is preserved.
 	 *
-	 * Side effect: opens connections to databases
 	 * @param string|bool $group Query group, or false for the generic group
 	 * @param string|bool $domain Domain ID, or false for the current domain
 	 * @throws DBError
@@ -224,8 +229,8 @@ interface ILoadBalancer {
 	 *
 	 * @note This method throws DBAccessError if ILoadBalancer::disable() was called
 	 *
-	 * @throws DBError
-	 * @return Database
+	 * @throws DBError If any error occurs that prevents the yielding of a (live) IDatabase
+	 * @return IDatabase|bool This returns false on failure if CONN_SILENCE_ERRORS is set
 	 */
 	public function getConnection( $i, $groups = [], $domain = false, $flags = 0 );
 
@@ -299,31 +304,6 @@ interface ILoadBalancer {
 	 * @return MaintainableDBConnRef
 	 */
 	public function getMaintenanceConnectionRef( $i, $groups = [], $domain = false, $flags = 0 );
-
-	/**
-	 * Open a connection to the server given by the specified index
-	 *
-	 * The index must be an actual index into the array. If a connection to the server is
-	 * already open and not considered an "in use" foreign connection, this simply returns it.
-	 *
-	 * Avoid using CONN_TRX_AUTOCOMMIT for databases with ATTR_DB_LEVEL_LOCKING (e.g. sqlite)
-	 * in order to avoid deadlocks. ILoadBalancer::getServerAttributes() can be used to check
-	 * such flags beforehand.
-	 *
-	 * If the caller uses $domain or sets CONN_TRX_AUTOCOMMIT in $flags, then it must
-	 * also call ILoadBalancer::reuseConnection() on the handle when finished using it.
-	 * In all other cases, this is not necessary, though not harmful either.
-	 * Avoid the use of begin() or startAtomic() on any such connections.
-	 *
-	 * @note This method throws DBAccessError if ILoadBalancer::disable() was called
-	 *
-	 * @param int $i Server index (does not support DB_MASTER/DB_REPLICA)
-	 * @param string|bool $domain Domain ID, or false for the current domain
-	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
-	 * @return Database|bool Returns false on errors
-	 * @throws DBAccessError
-	 */
-	public function openConnection( $i, $domain = false, $flags = 0 );
 
 	/**
 	 * @return int
