@@ -30,6 +30,9 @@ use MediaWiki\MediaWikiServices;
  * of a specific loader request.
  */
 class ResourceLoaderContext implements MessageLocalizer {
+	const DEFAULT_LANG = 'qqx';
+	const DEFAULT_SKIN = 'fallback';
+
 	protected $resourceLoader;
 	protected $request;
 	protected $logger;
@@ -88,7 +91,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 			// The 'skin' parameter is required. (Not yet enforced.)
 			// For requests without a known skin specified,
 			// use MediaWiki's 'fallback' skin for skin-specific decisions.
-			$this->skin = 'fallback';
+			$this->skin = self::DEFAULT_SKIN;
 		}
 	}
 
@@ -178,7 +181,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 			if ( !Language::isValidBuiltInCode( $lang ) ) {
 				// The 'lang' parameter is required. (Not yet enforced.)
 				// If omitted, localise with the dummy language code.
-				$lang = 'qqx';
+				$lang = self::DEFAULT_LANG;
 			}
 			$this->language = $lang;
 		}

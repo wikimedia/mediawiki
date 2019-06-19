@@ -1721,10 +1721,10 @@ MESSAGE;
 		// match the defaults assumed by ResourceLoaderContext.
 		// Note: This relies on the defaults either being insignificant or forever constant,
 		// as otherwise cached urls could change in meaning when the defaults change.
-		if ( $lang !== 'qqx' ) {
+		if ( $lang !== ResourceLoaderContext::DEFAULT_LANG ) {
 			$query['lang'] = $lang;
 		}
-		if ( $skin !== 'fallback' ) {
+		if ( $skin !== ResourceLoaderContext::DEFAULT_SKIN ) {
 			$query['skin'] = $skin;
 		}
 		if ( $debug === true ) {
