@@ -724,6 +724,8 @@
 	"autoblockedtext": "O seu endereço IP foi bloqueado de forma automática porque foi utilizado recentemente por outro utilizador, o qual foi bloqueado por $1.\nO motivo apresentado foi:\n\n:<em>$2</em>\n\n* Início do bloqueio: $8\n* Expiração do bloqueio: $6\n* Destinatário do bloqueio: $7\n\nPode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir o bloqueio.\n\nNote que para utilizar a funcionalidade \"{{int:emailuser}}\" precisa de ter um endereço de correio eletrónico válido nas suas [[Special:Preferences|preferências]] e de não lhe ter sido bloqueado o uso desta funcionalidade.\n\nO seu endereço IP neste momento é $3 e a identificação (ID) do bloqueio é #$5.\nInclua todos os detalhes acima em quaisquer contactos relacionados com este bloqueio, por favor.",
 	"systemblockedtext": "O seu nome de utilizador ou endereço IP foram bloqueados automaticamente pelo MediaWiki.\nO motivo fornecido é:\n\n:<em>$2</em>\n\n* Início do bloqueio: $8\n* Expiração do bloqueio: $6\n* Destinatário do bloqueio: $7\n\nO seu endereço IP atual é $3.\nInclua todos os detalhes acima em quaisquer contactos sobre este assunto, por favor.",
 	"blockednoreason": "sem motivo especificado",
+	"blockedtext-composite": "<strong>O seu nome de utilizador ou endereço IP foram bloqueados.</strong>\n\nO motivo fornecido é:\n\n:<em>$2</em>.\n\n* Início do bloqueio: $8\n* Expiração do bloqueio mais longo: $6\n\nO seu endereço IP atual é $3.\nInclua todos os detalhes acima em quaisquer contactos sobre este assunto, por favor.",
+	"blockedtext-composite-reason": "Existem vários bloqueios da sua conta ou endereço IP",
 	"whitelistedittext": "Precisa de $1 para poder editar páginas.",
 	"confirmedittext": "Precisa de confirmar o seu endereço de correio eletrónico antes de começar a editar páginas.\nIntroduza e valide o endereço através das suas [[Special:Preferences|preferências de utilizador]], por favor.",
 	"nosuchsectiontitle": "Não foi possível encontrar a secção",
@@ -3881,5 +3883,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "sugerir alteração ao iniciar sessão",
 	"easydeflate-invaliddeflate": "O conteúdo fornecido não está devidamente comprimido",
 	"unprotected-js": "Por motivos de segurança o JavaScript de páginas desprotegidas não pode ser carregado. Crie javascript só no espaço nominal/domínio MediaWiki: ou numa subpágina do utilizador",
-	"userlogout-continue": "Se pretende terminar a sessão [$1 prossiga para a página de saída], por favor."
+	"userlogout-continue": "Quer sair?"
 }
