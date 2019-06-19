@@ -2886,21 +2886,6 @@ function wfShorthandToInteger( $string = '', $default = -1 ) {
 }
 
 /**
- * Get the normalised IETF language tag
- * See unit test for examples.
- * See mediawiki.language.bcp47 for the JavaScript implementation.
- *
- * @deprecated since 1.31, use LanguageCode::bcp47() directly.
- *
- * @param string $code The language code.
- * @return string The language code which complying with BCP 47 standards.
- */
-function wfBCP47( $code ) {
-	wfDeprecated( __METHOD__, '1.31' );
-	return LanguageCode::bcp47( $code );
-}
-
-/**
  * Get a specific cache object.
  *
  * @deprecated since 1.32, use ObjectCache::getInstance() instead
