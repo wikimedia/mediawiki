@@ -1644,7 +1644,7 @@ class ApiMain extends ApiBase {
 			'$schema' => '/mediawiki/api/request/0.0.1',
 			'meta' => [
 				'request_id' => WebRequest::getRequestId(),
-				'id' => UIDGenerator::newUUIDv1(),
+				'id' => UIDGenerator::newUUIDv4(),
 				'dt' => wfTimestamp( TS_ISO_8601 ),
 				'domain' => $this->getConfig()->get( 'ServerName' ),
 				'stream' => 'mediawiki.api-request'
