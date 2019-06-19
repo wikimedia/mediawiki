@@ -118,7 +118,7 @@ Deprecation message.' ]
 			. '});</script>' . "\n"
 			. '<link rel="stylesheet" href="/w/load.php?lang=nl&amp;modules=test.styles.deprecated%2Cpure&amp;only=styles"/>' . "\n"
 			. '<style>.private{}</style>' . "\n"
-			. '<script async="" src="/w/load.php?lang=nl&amp;modules=startup&amp;only=scripts"></script>';
+			. '<script async="" src="/w/load.php?lang=nl&amp;modules=startup&amp;only=scripts&amp;raw=1"></script>';
 		// phpcs:enable
 		$expected = self::expandVariables( $expected );
 
@@ -136,7 +136,7 @@ Deprecation message.' ]
 
 		// phpcs:disable Generic.Files.LineLength
 		$expected = '<script>document.documentElement.className=document.documentElement.className.replace(/(^|\s)client-nojs(\s|$)/,"$1client-js$2");</script>' . "\n"
-			. '<script async="" src="/w/load.php?lang=nl&amp;modules=startup&amp;only=scripts&amp;target=example"></script>';
+			. '<script async="" src="/w/load.php?lang=nl&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;target=example"></script>';
 		// phpcs:enable
 
 		$this->assertSame( $expected, (string)$client->getHeadHtml() );
@@ -153,7 +153,7 @@ Deprecation message.' ]
 
 		// phpcs:disable Generic.Files.LineLength
 		$expected = '<script>document.documentElement.className=document.documentElement.className.replace(/(^|\s)client-nojs(\s|$)/,"$1client-js$2");</script>' . "\n"
-			. '<script async="" src="/w/load.php?lang=nl&amp;modules=startup&amp;only=scripts&amp;safemode=1"></script>';
+			. '<script async="" src="/w/load.php?lang=nl&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;safemode=1"></script>';
 		// phpcs:enable
 
 		$this->assertSame( $expected, (string)$client->getHeadHtml() );
@@ -170,7 +170,7 @@ Deprecation message.' ]
 
 		// phpcs:disable Generic.Files.LineLength
 		$expected = '<script>document.documentElement.className=document.documentElement.className.replace(/(^|\s)client-nojs(\s|$)/,"$1client-js$2");</script>' . "\n"
-			. '<script async="" src="/w/load.php?lang=nl&amp;modules=startup&amp;only=scripts"></script>';
+			. '<script async="" src="/w/load.php?lang=nl&amp;modules=startup&amp;only=scripts&amp;raw=1"></script>';
 		// phpcs:enable
 
 		$this->assertSame( $expected, (string)$client->getHeadHtml() );
@@ -224,18 +224,18 @@ Deprecation message.' ]
 			],
 			[
 				'context' => [],
-				// Eg. startup module
-				'modules' => [ 'test.scripts.raw' ],
+				'modules' => [ 'test.scripts' ],
 				'only' => ResourceLoaderModule::TYPE_SCRIPTS,
-				'extra' => [],
-				'output' => '<script async="" src="/w/load.php?lang=nl&amp;modules=test.scripts.raw&amp;only=scripts"></script>',
+				// Eg. startup module
+				'extra' => [ 'raw' => '1' ],
+				'output' => '<script async="" src="/w/load.php?lang=nl&amp;modules=test.scripts&amp;only=scripts&amp;raw=1"></script>',
 			],
 			[
 				'context' => [],
-				'modules' => [ 'test.scripts.raw' ],
+				'modules' => [ 'test.scripts' ],
 				'only' => ResourceLoaderModule::TYPE_SCRIPTS,
-				'extra' => [ 'sync' => '1' ],
-				'output' => '<script src="/w/load.php?lang=nl&amp;modules=test.scripts.raw&amp;only=scripts&amp;sync=1"></script>',
+				'extra' => [ 'raw' => '1', 'sync' => '1' ],
+				'output' => '<script src="/w/load.php?lang=nl&amp;modules=test.scripts&amp;only=scripts&amp;raw=1&amp;sync=1"></script>',
 			],
 			[
 				'context' => [],
@@ -418,7 +418,6 @@ Deprecation message.' ]
 			'test.scripts' => [],
 			'test.scripts.user' => [ 'group' => 'user' ],
 			'test.scripts.user.empty' => [ 'group' => 'user', 'isKnownEmpty' => true ],
-			'test.scripts.raw' => [ 'isRaw' => true ],
 			'test.scripts.shouldembed' => [ 'shouldEmbed' => true ],
 
 			'test.ordering.a' => [ 'shouldEmbed' => false ],

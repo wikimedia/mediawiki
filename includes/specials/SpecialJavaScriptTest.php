@@ -174,7 +174,7 @@ JAVASCRIPT
 		// load before qunit/export.
 		$scripts = $out->makeResourceLoaderLink( 'jquery.qunit',
 			ResourceLoaderModule::TYPE_SCRIPTS,
-			[ 'raw' => true, 'sync' => true ]
+			[ 'raw' => '1', 'sync' => '1' ]
 		);
 
 		$head = implode( "\n", [ $styles, $scripts ] );
