@@ -850,27 +850,44 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 
 		if ( $this->getLBInfo( 'is static' ) === true ) {
+			$this->queryLogger->debug(
+				"Bypassed replication wait; database has a static dataset",
+				$this->getLogContext( [ 'method' => __METHOD__ ] )
+			);
+
 			return 0; // this is a copy of a read-only dataset with no master DB
 		} elseif ( $this->lastKnownReplicaPos && $this->lastKnownReplicaPos->hasReached( $pos ) ) {
+			$this->queryLogger->debug(
+				"Bypassed replication wait; replication already known to have reached $pos",
+				$this->getLogContext( [ 'method' => __METHOD__ ] )
+			);
+
 			return 0; // already reached this point for sure
 		}
 
 		// Call doQuery() directly, to avoid opening a transaction if DBO_TRX is set
 		if ( $pos->getGTIDs() ) {
-			// Ignore GTIDs from domains exclusive to the master DB (presumably inactive)
-			$rpos = $this->getReplicaPos();
-			$gtidsWait = $rpos ? MySQLMasterPos::getCommonDomainGTIDs( $pos, $rpos ) : [];
+			// Get the GTIDs from this replica server too see the domains (channels)
+			$refPos = $this->getReplicaPos();
+			if ( !$refPos ) {
+				$this->queryLogger->error(
+					"Could not get replication position",
+					$this->getLogContext( [ 'method' => __METHOD__ ] )
+				);
+
+				return -1; // this is the master itself?
+			}
+			// GTIDs with domains (channels) that are active and are present on the replica
+			$gtidsWait = $pos::getRelevantActiveGTIDs( $pos, $refPos );
 			if ( !$gtidsWait ) {
 				$this->queryLogger->error(
-					"No GTIDs with the same domain between master ($pos) and replica ($rpos)",
-					$this->getLogContext( [
-						'method' => __METHOD__,
-					] )
+					"No active GTIDs in $pos share a domain with those in $refPos",
+					$this->getLogContext( [ 'method' => __METHOD__, 'activeDomain' => $pos ] )
 				);
 
 				return -1; // $pos is from the wrong cluster?
 			}
-			// Wait on the GTID set (MariaDB only)
+			// Wait on the GTID set
 			$gtidArg = $this->addQuotes( implode( ',', $gtidsWait ) );
 			if ( strpos( $gtidArg, ':' ) !== false ) {
 				// MySQL GTIDs, e.g "source_id:transaction_id"
@@ -886,28 +903,28 @@ abstract class DatabaseMysqlBase extends Database {
 			$sql = "SELECT MASTER_POS_WAIT($encFile, $encPos, $timeout)";
 		}
 
-		list( $res, $err ) = $this->executeQuery( $sql, __METHOD__, self::QUERY_IGNORE_DBO_TRX );
-		$row = $res ? $this->fetchRow( $res ) : false;
-		if ( !$row ) {
-			throw new DBExpectedError( $this, "Replication wait failed: {$err}" );
-		}
+		$res = $this->query( $sql, __METHOD__, self::QUERY_IGNORE_DBO_TRX );
+		$row = $this->fetchRow( $res );
 
 		// Result can be NULL (error), -1 (timeout), or 0+ per the MySQL manual
 		$status = ( $row[0] !== null ) ? intval( $row[0] ) : null;
 		if ( $status === null ) {
-			if ( !$pos->getGTIDs() ) {
-				// T126436: jobs programmed to wait on master positions might be referencing
-				// binlogs with an old master hostname; this makes MASTER_POS_WAIT() return null.
-				// Try to detect this case and treat the replica DB as having reached the given
-				// position (any master switchover already requires that the new master be caught
-				// up before the switch).
-				$replicationPos = $this->getReplicaPos();
-				if ( $replicationPos && !$replicationPos->channelsMatch( $pos ) ) {
-					$this->lastKnownReplicaPos = $replicationPos;
-					$status = 0;
-				}
-			}
+			$this->queryLogger->error(
+				"An error occurred while waiting for replication to reach $pos",
+				$this->getLogContext( [ 'method' => __METHOD__, 'sql' => $sql ] )
+			);
+		} elseif ( $status < 0 ) {
+			$this->queryLogger->error(
+				"Timed out waiting for replication to reach $pos",
+				$this->getLogContext( [
+					'method' => __METHOD__, 'sql' => $sql, 'timeout' => $timeout
+				] )
+			);
 		} elseif ( $status >= 0 ) {
+			$this->queryLogger->debug(
+				"Replication has reached $pos",
+				$this->getLogContext( [ 'method' => __METHOD__ ] )
+			);
 			// Remember that this position was reached to save queries next time
 			$this->lastKnownReplicaPos = $pos;
 		}
