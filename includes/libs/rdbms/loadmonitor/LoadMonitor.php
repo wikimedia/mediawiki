@@ -181,25 +181,21 @@ class LoadMonitor implements ILoadMonitor {
 				continue;
 			}
 
-			if ( $conn->getLBInfo( 'is static' ) ) {
-				$lagTimes[$i] = 0;
-			} else {
-				$lagTimes[$i] = $conn->getLag();
-				if ( $lagTimes[$i] === false ) {
-					$this->replLogger->error(
-						__METHOD__ . ": host {db_server} is not replicating?",
-						[ 'db_server' => $host ]
-					);
-				} elseif ( $lagTimes[$i] > $this->lagWarnThreshold ) {
-					$this->replLogger->warning(
-						"Server {host} has {lag} seconds of lag (>= {maxlag})",
-						[
-							'host' => $host,
-							'lag' => $lagTimes[$i],
-							'maxlag' => $this->lagWarnThreshold
-						]
-					);
-				}
+			$lagTimes[$i] = $conn->getLag();
+			if ( $lagTimes[$i] === false ) {
+				$this->replLogger->error(
+					__METHOD__ . ": host {db_server} is not replicating?",
+					[ 'db_server' => $host ]
+				);
+			} elseif ( $lagTimes[$i] > $this->lagWarnThreshold ) {
+				$this->replLogger->warning(
+					"Server {host} has {lag} seconds of lag (>= {maxlag})",
+					[
+						'host' => $host,
+						'lag' => $lagTimes[$i],
+						'maxlag' => $this->lagWarnThreshold
+					]
+				);
 			}
 
 			if ( $close ) {
