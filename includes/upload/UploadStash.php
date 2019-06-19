@@ -433,7 +433,7 @@ class UploadStash {
 	 * List all files in the stash.
 	 *
 	 * @throws UploadStashNotLoggedInException
-	 * @return array
+	 * @return array|false
 	 */
 	public function listFiles() {
 		if ( !$this->isLoggedIn ) {
