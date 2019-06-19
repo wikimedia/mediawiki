@@ -28,7 +28,7 @@ require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
@@ -429,7 +429,7 @@ class NamespaceDupes extends Maintenance {
 	 * @param string $name Prefix that is being made a namespace
 	 * @param array $options Associative array of validated command-line options
 	 *
-	 * @return ResultWrapper
+	 * @return IResultWrapper
 	 */
 	private function getTargetList( $ns, $name, $options ) {
 		if (
