@@ -89,7 +89,7 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 						// This method runs after the new revisions were committed.
 						// Wait for the replica to catch up so they will all be counted.
 						$dbr->flushSnapshot( $fname );
-						$lb->safeWaitForMasterPos( $dbr );
+						$lb->waitForMasterPos( $dbr );
 					}
 					$affectedInstances[0]->initEditCountInternal();
 				}

@@ -649,8 +649,9 @@ interface ILoadBalancer {
 	 * @param DBMasterPos|bool $pos Master position; default: current position
 	 * @param int $timeout Timeout in seconds [optional]
 	 * @return bool Success
+	 * @since 1.34
 	 */
-	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = 10 );
+	public function waitForMasterPos( IDatabase $conn, $pos = false, $timeout = 10 );
 
 	/**
 	 * Set a callback via IDatabase::setTransactionListener() on
