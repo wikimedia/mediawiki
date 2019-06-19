@@ -211,6 +211,9 @@ because of Phabricator reports.
 * The constant DB_SLAVE, deprecated in 1.28, has been removed. Use DB_REPLICA.
 * Replacer, DoubleReplacer, HashtableReplacer and RegexlikeReplacer
   (deprecated in 1.32) have been removed. Closures should be used instead.
+* OutputPage::addWikiText(), ::addWikiTextWithTitle(), ::addWikiTextTitleTidy(),
+  ::addWikiTextTidy(), ::addWikiTextTitle(), deprecated in 1.32, have been
+  removed.
 * …
 
 === Deprecations in 1.34 ===

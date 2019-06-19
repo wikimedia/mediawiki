@@ -1731,27 +1731,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Convert wikitext to HTML and add it to the buffer
-	 * Default assumes that the current page title will be used.
-	 *
-	 * @param string $text
-	 * @param bool $linestart Is this the start of a line?
-	 * @param bool $interface Is this text in the user interface language?
-	 * @throws MWException
-	 * @deprecated since 1.32 due to untidy output; use
-	 *    addWikiTextAsInterface() if $interface is default value or true,
-	 *    or else addWikiTextAsContent() if $interface is false.
-	 */
-	public function addWikiText( $text, $linestart = true, $interface = true ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		$title = $this->getTitle();
-		if ( !$title ) {
-			throw new MWException( 'Title is null' );
-		}
-		$this->addWikiTextTitleInternal( $text, $title, $linestart, /*tidy*/false, $interface );
-	}
-
-	/**
 	 * Convert wikitext *in the user interface language* to HTML and
 	 * add it to the buffer. The result will not be
 	 * language-converted, as user interface messages are already
@@ -1776,7 +1755,7 @@ class OutputPage extends ContextSource {
 		if ( !$title ) {
 			throw new MWException( 'Title is null' );
 		}
-		$this->addWikiTextTitleInternal( $text, $title, $linestart, /*tidy*/true, /*interface*/true );
+		$this->addWikiTextTitleInternal( $text, $title, $linestart, /*interface*/true );
 	}
 
 	/**
@@ -1797,7 +1776,7 @@ class OutputPage extends ContextSource {
 	) {
 		$this->addWikiTextTitleInternal(
 			$text, $this->getTitle(),
-			/*linestart*/true, /*tidy*/true, /*interface*/true,
+			/*linestart*/true, /*interface*/true,
 			$wrapperClass
 		);
 	}
@@ -1826,79 +1805,7 @@ class OutputPage extends ContextSource {
 		if ( !$title ) {
 			throw new MWException( 'Title is null' );
 		}
-		$this->addWikiTextTitleInternal( $text, $title, $linestart, /*tidy*/true, /*interface*/false );
-	}
-
-	/**
-	 * Add wikitext with a custom Title object
-	 *
-	 * @param string $text Wikitext
-	 * @param Title $title
-	 * @param bool $linestart Is this the start of a line?
-	 * @deprecated since 1.32 due to untidy output; use
-	 *   addWikiTextAsInterface()
-	 */
-	public function addWikiTextWithTitle( $text, Title $title, $linestart = true ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		$this->addWikiTextTitleInternal( $text, $title, $linestart, /*tidy*/false, /*interface*/false );
-	}
-
-	/**
-	 * Add wikitext *in content language* with a custom Title object.
-	 * Output will be tidy.
-	 *
-	 * @param string $text Wikitext in content language
-	 * @param Title $title
-	 * @param bool $linestart Is this the start of a line?
-	 * @deprecated since 1.32 to rename methods consistently; use
-	 *   addWikiTextAsContent()
-	 */
-	function addWikiTextTitleTidy( $text, Title $title, $linestart = true ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		$this->addWikiTextTitleInternal( $text, $title, $linestart, /*tidy*/true, /*interface*/false );
-	}
-
-	/**
-	 * Add wikitext *in content language*. Output will be tidy.
-	 *
-	 * @param string $text Wikitext in content language
-	 * @param bool $linestart Is this the start of a line?
-	 * @deprecated since 1.32 to rename methods consistently; use
-	 *   addWikiTextAsContent()
-	 */
-	public function addWikiTextTidy( $text, $linestart = true ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		$title = $this->getTitle();
-		if ( !$title ) {
-			throw new MWException( 'Title is null' );
-		}
-		$this->addWikiTextTitleInternal( $text, $title, $linestart, /*tidy*/true, /*interface*/false );
-	}
-
-	/**
-	 * Add wikitext with a custom Title object.
-	 * Output is unwrapped.
-	 *
-	 * @param string $text Wikitext
-	 * @param Title $title
-	 * @param bool $linestart Is this the start of a line?
-	 * @param bool $tidy Whether to use tidy.
-	 *             Setting this to false (or omitting it) is deprecated
-	 *             since 1.32; all wikitext should be tidied.
-	 *             For backwards-compatibility with prior MW releases,
-	 *             you may wish to invoke this method but set $tidy=true;
-	 *             this will result in equivalent output to the non-deprecated
-	 *             addWikiTextAsContent()/addWikiTextAsInterface() methods.
-	 * @param bool $interface Whether it is an interface message
-	 *   (for example disables conversion)
-	 * @deprecated since 1.32, use addWikiTextAsContent() or
-	 *   addWikiTextAsInterface() (depending on $interface)
-	 */
-	public function addWikiTextTitle( $text, Title $title, $linestart,
-		$tidy = false, $interface = false
-	) {
-		wfDeprecated( __METHOD__, '1.32' );
-		return $this->addWikiTextTitleInternal( $text, $title, $linestart, $tidy, $interface );
+		$this->addWikiTextTitleInternal( $text, $title, $linestart, /*interface*/false );
 	}
 
 	/**
@@ -1918,14 +1825,10 @@ class OutputPage extends ContextSource {
 	 * @private
 	 */
 	private function addWikiTextTitleInternal(
-		$text, Title $title, $linestart, $tidy, $interface, $wrapperClass = null
+		$text, Title $title, $linestart, $interface, $wrapperClass = null
 	) {
-		if ( !$tidy ) {
-			wfDeprecated( 'disabling tidy', '1.32' );
-		}
-
 		$parserOutput = $this->parseInternal(
-			$text, $title, $linestart, $tidy, $interface, /*language*/null
+			$text, $title, $linestart, true, $interface, /*language*/null
 		);
 
 		$this->addParserOutput( $parserOutput, [
