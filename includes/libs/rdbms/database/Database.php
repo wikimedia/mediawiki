@@ -4245,6 +4245,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function getLag() {
+		if ( $this->getLBInfo( 'master' ) ) {
+			return 0; // this is the master
+		} elseif ( $this->getLBInfo( 'is static' ) ) {
+			return 0; // static dataset
+		}
+
+		return $this->doGetLag();
+	}
+
+	protected function doGetLag() {
 		return 0;
 	}
 

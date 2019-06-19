@@ -605,22 +605,6 @@ interface ILoadBalancer {
 	public function getLagTimes( $domain = false );
 
 	/**
-	 * Get the lag in seconds for a given connection, or zero if this load
-	 * balancer does not have replication enabled.
-	 *
-	 * This should be used in preference to Database::getLag() in cases where
-	 * replication may not be in use, since there is no way to determine if
-	 * replication is in use at the connection level without running
-	 * potentially restricted queries such as SHOW SLAVE STATUS. Using this
-	 * function instead of Database::getLag() avoids a fatal error in this
-	 * case on many installations.
-	 *
-	 * @param IDatabase $conn
-	 * @return int|bool Returns false on error
-	 */
-	public function safeGetLag( IDatabase $conn );
-
-	/**
 	 * Wait for a replica DB to reach a specified master position
 	 *
 	 * This will connect to the master to get an accurate position if $pos is not given
