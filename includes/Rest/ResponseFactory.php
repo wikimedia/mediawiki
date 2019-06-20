@@ -78,7 +78,7 @@ class ResponseFactory {
 	 * the new URL in the future. 301 redirects tend to get cached and are hard to undo.
 	 * Client behavior for methods other than GET/HEAD is not well-defined and this type
 	 * of response should be avoided in such cases.
-	 * @param string $target Redirect URL (can be relative)
+	 * @param string $target Redirect target (an absolute URL)
 	 * @return Response
 	 */
 	public function createPermanentRedirect( $target ) {
@@ -88,11 +88,27 @@ class ResponseFactory {
 	}
 
 	/**
+	 * Creates a temporary (302) redirect.
+	 * HTTP 302 was underspecified and has been superseded by 303 (when the redirected request
+	 * should be a GET, regardless of what the current request is) and 307 (when the method should
+	 * not be changed), but might still be needed for HTTP 1.0 clients or to match legacy behavior.
+	 * @param string $target Redirect target (an absolute URL)
+	 * @return Response
+	 * @see self::createTemporaryRedirect()
+	 * @see self::createSeeOther()
+	 */
+	public function createLegacyTemporaryRedirect( $target ) {
+		$response = $this->createRedirectBase( $target );
+		$response->setStatus( 302 );
+		return $response;
+	}
+
+	/**
 	 * Creates a temporary (307) redirect.
 	 * This indicates that the operation the client was trying to perform can temporarily
 	 * be achieved by using a different URL. Clients will preserve the request method when
 	 * retrying the request with the new URL.
-	 * @param string $target Redirect URL (can be relative)
+	 * @param string $target Redirect target (an absolute URL)
 	 * @return Response
 	 */
 	public function createTemporaryRedirect( $target ) {
@@ -106,7 +122,7 @@ class ResponseFactory {
 	 * This indicates that the target resource might be of interest to the client, without
 	 * necessarily implying that it is the same resource. The client will always use GET
 	 * (or HEAD) when following the redirection. Useful for GET-after-POST.
-	 * @param string $target Redirect URL (can be relative)
+	 * @param string $target Redirect target (an absolute URL)
 	 * @return Response
 	 */
 	public function createSeeOther( $target ) {
