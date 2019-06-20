@@ -56,7 +56,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		);
 
 		// Subclass
-		$module = new ResourceLoaderFileModuleTestModule( $baseParams );
+		$module = new ResourceLoaderFileModuleTestingSubclass( $baseParams );
 		$this->assertNotEquals(
 			$version,
 			json_encode( $module->getVersionHash( $context ) ),
