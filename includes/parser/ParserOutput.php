@@ -26,8 +26,14 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Feature flags to indicate to extensions that MediaWiki core supports and
 	 * uses getText() stateless transforms.
+	 *
+	 * @since 1.31
 	 */
 	const SUPPORTS_STATELESS_TRANSFORMS = 1;
+
+	/**
+	 * @since 1.31
+	 */
 	const SUPPORTS_UNWRAP_TRANSFORM = 1;
 
 	/**
