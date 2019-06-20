@@ -223,25 +223,32 @@ class BlockManager {
 	}
 
 	/**
-	 * Given a list of blocks, return a list blocks where each block either has a
-	 * unique ID or has ID null.
+	 * Given a list of blocks, return a list of unique blocks.
+	 *
+	 * This usually means that each block has a unique ID. For a block with ID null,
+	 * if it's an autoblock, it will be filtered out if the parent block is present;
+	 * if not, it is assumed to be a unique system block, and kept.
 	 *
 	 * @param AbstractBlock[] $blocks
 	 * @return AbstractBlock[]
 	 */
 	private function getUniqueBlocks( $blocks ) {
-		$blockIds = [];
-		$uniqueBlocks = [];
+		$systemBlocks = [];
+		$databaseBlocks = [];
+
 		foreach ( $blocks as $block ) {
-			$id = $block->getId();
-			if ( $id === null ) {
-				$uniqueBlocks[] = $block;
-			} elseif ( !isset( $blockIds[$id] ) ) {
-				$uniqueBlocks[] = $block;
-				$blockIds[$block->getId()] = true;
+			if ( $block instanceof SystemBlock ) {
+				$systemBlocks[] = $block;
+			} elseif ( $block->getType() === DatabaseBlock::TYPE_AUTO ) {
+				if ( !isset( $databaseBlocks[$block->getParentBlockId()] ) ) {
+					$databaseBlocks[$block->getParentBlockId()] = $block;
+				}
+			} else {
+				$databaseBlocks[$block->getId()] = $block;
 			}
 		}
-		return $uniqueBlocks;
+
+		return array_merge( $systemBlocks, $databaseBlocks );
 	}
 
 	/**

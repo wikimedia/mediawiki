@@ -1046,6 +1046,14 @@ class DatabaseBlock extends AbstractBlock {
 	}
 
 	/**
+	 * @since 1.34
+	 * @return int|null If this is an autoblock, ID of the parent block; otherwise null
+	 */
+	public function getParentBlockId() {
+		return $this->mParentBlockId;
+	}
+
+	/**
 	 * Get/set a flag determining whether the master is used for reads
 	 *
 	 * @param bool|null $x
