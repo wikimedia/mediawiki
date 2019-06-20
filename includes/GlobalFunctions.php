@@ -2763,30 +2763,6 @@ function wfWaitForSlaves(
 }
 
 /**
- * Count down from $seconds to zero on the terminal, with a one-second pause
- * between showing each number. For use in command-line scripts.
- *
- * @deprecated since 1.31, use Maintenance::countDown()
- *
- * @codeCoverageIgnore
- * @param int $seconds
- */
-function wfCountDown( $seconds ) {
-	wfDeprecated( __FUNCTION__, '1.31' );
-	for ( $i = $seconds; $i >= 0; $i-- ) {
-		if ( $i != $seconds ) {
-			echo str_repeat( "\x08", strlen( $i + 1 ) );
-		}
-		echo $i;
-		flush();
-		if ( $i ) {
-			sleep( 1 );
-		}
-	}
-	echo "\n";
-}
-
-/**
  * Replace all invalid characters with '-'.
  * Additional characters can be defined in $wgIllegalFileChars (see T22489).
  * By default, $wgIllegalFileChars includes ':', '/', '\'.

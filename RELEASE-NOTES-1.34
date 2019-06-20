@@ -222,6 +222,8 @@ because of Phabricator reports.
 * Parser::fetchFile(), deprecated in 1.32, has been removed. Use the method
   Parser::fetchFileAndTitle() instead.
 * The global function wfBCP47, deprecated in 1.31, has been removed.
+* wfCountDown() function, deprecated in 1.31, has been removed. Use
+  \Maintenance::countDown() method instead.
 * …
 
 === Deprecations in 1.34 ===
