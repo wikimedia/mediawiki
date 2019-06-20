@@ -157,6 +157,12 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 	}
 }
 
+/**
+ * A more constrained and testable variant of ResourceLoaderFileModule.
+ *
+ * - Implements getLessVars() support.
+ * - Disables database persistance of discovered file dependencies.
+ */
 class ResourceLoaderFileTestModule extends ResourceLoaderFileModule {
 	protected $lessVars = [];
 
@@ -171,6 +177,16 @@ class ResourceLoaderFileTestModule extends ResourceLoaderFileModule {
 
 	public function getLessVars( ResourceLoaderContext $context ) {
 		return $this->lessVars;
+	}
+
+	/** @return array */
+	protected function getFileDependencies( ResourceLoaderContext $context ) {
+		// No-op
+		return [];
+	}
+
+	protected function saveFileDependencies( ResourceLoaderContext $context, $refs ) {
+		// No-op
 	}
 }
 

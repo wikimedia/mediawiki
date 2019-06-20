@@ -1,7 +1,6 @@
 <?php
 
 /**
- * @group Database
  * @group ResourceLoader
  */
 class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
@@ -19,11 +18,14 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 			}
 		);
 		$this->setService( 'SkinFactory', $skinFactory );
+
+		// This test is not expected to query any database
+		MediaWiki\MediaWikiServices::disableStorageBackend();
 	}
 
 	private static function getModules() {
 		$base = [
-			'localBasePath' => realpath( __DIR__ ),
+			'localBasePath' => __DIR__,
 		];
 
 		return [
@@ -229,12 +231,12 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	 */
 	public function testMixedCssAnnotations() {
 		$basePath = __DIR__ . '/../../data/css';
-		$testModule = new ResourceLoaderFileModule( [
+		$testModule = new ResourceLoaderFileTestModule( [
 			'localBasePath' => $basePath,
 			'styles' => [ 'test.css' ],
 		] );
 		$testModule->setName( 'testing' );
-		$expectedModule = new ResourceLoaderFileModule( [
+		$expectedModule = new ResourceLoaderFileTestModule( [
 			'localBasePath' => $basePath,
 			'styles' => [ 'expected.css' ],
 		] );
@@ -319,7 +321,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	 */
 	public function testBomConcatenation() {
 		$basePath = __DIR__ . '/../../data/css';
-		$testModule = new ResourceLoaderFileModule( [
+		$testModule = new ResourceLoaderFileTestModule( [
 			'localBasePath' => $basePath,
 			'styles' => [ 'bom.css' ],
 		] );
