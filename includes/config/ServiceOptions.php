@@ -23,6 +23,7 @@ use Wikimedia\Assert\Assert;
  * @since 1.34
  */
 class ServiceOptions {
+	private $keys = [];
 	private $options = [];
 
 	/**
@@ -33,6 +34,7 @@ class ServiceOptions {
 	 * @throws InvalidArgumentException if one of $keys is not found in any of $sources
 	 */
 	public function __construct( array $keys, ...$sources ) {
+		$this->keys = $keys;
 		foreach ( $keys as $key ) {
 			foreach ( $sources as $source ) {
 				if ( $source instanceof Config ) {
@@ -58,20 +60,21 @@ class ServiceOptions {
 	 * @param string[] $expectedKeys
 	 */
 	public function assertRequiredOptions( array $expectedKeys ) {
-		$actualKeys = array_keys( $this->options );
-		$extraKeys = array_diff( $actualKeys, $expectedKeys );
-		$missingKeys = array_diff( $expectedKeys, $actualKeys );
-		Assert::precondition( !$extraKeys && !$missingKeys,
-			(
-			$extraKeys
-				? 'Unsupported options passed: ' . implode( ', ', $extraKeys ) . '!'
-				: ''
-			) . ( $extraKeys && $missingKeys ? ' ' : '' ) . (
-			$missingKeys
-				? 'Required options missing: ' . implode( ', ', $missingKeys ) . '!'
-				: ''
-			)
-		);
+		if ( $this->keys !== $expectedKeys ) {
+			$extraKeys = array_diff( $this->keys, $expectedKeys );
+			$missingKeys = array_diff( $expectedKeys, $this->keys );
+			Assert::precondition( !$extraKeys && !$missingKeys,
+				(
+				$extraKeys
+					? 'Unsupported options passed: ' . implode( ', ', $extraKeys ) . '!'
+					: ''
+				) . ( $extraKeys && $missingKeys ? ' ' : '' ) . (
+				$missingKeys
+					? 'Required options missing: ' . implode( ', ', $missingKeys ) . '!'
+					: ''
+				)
+			);
+		}
 	}
 
 	/**
