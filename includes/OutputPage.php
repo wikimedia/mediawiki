@@ -4018,16 +4018,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Enables/disables section edit links, doesn't override __NOEDITSECTION__
-	 * @param bool $flag
-	 * @since 1.23
-	 * @deprecated since 1.31, use $poOptions to addParserOutput() instead.
-	 */
-	public function enableSectionEditLinks( $flag = true ) {
-		wfDeprecated( __METHOD__, '1.31' );
-	}
-
-	/**
 	 * Helper function to setup the PHP implementation of OOUI to use in this request.
 	 *
 	 * @since 1.26
