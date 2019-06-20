@@ -1570,34 +1570,15 @@ class OutputPageTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideAddWikiText
-	 * @covers OutputPage::addWikiText
 	 * @covers OutputPage::addWikiTextAsInterface
 	 * @covers OutputPage::wrapWikiTextAsInterface
 	 * @covers OutputPage::addWikiTextAsContent
-	 * @covers OutputPage::addWikiTextWithTitle
-	 * @covers OutputPage::addWikiTextTitle
-	 * @covers OutputPage::addWikiTextTidy
-	 * @covers OutputPage::addWikiTextTitleTidy
 	 * @covers OutputPage::getHTML
 	 */
 	public function testAddWikiText( $method, array $args, $expected ) {
 		$op = $this->newInstance();
 		$this->assertSame( '', $op->getHTML() );
 
-		$this->hideDeprecated( 'OutputPage::addWikiText' );
-		$this->hideDeprecated( 'OutputPage::addWikiTextTitle' );
-		$this->hideDeprecated( 'OutputPage::addWikiTextWithTitle' );
-		$this->hideDeprecated( 'OutputPage::addWikiTextTidy' );
-		$this->hideDeprecated( 'OutputPage::addWikiTextTitleTidy' );
-		$this->hideDeprecated( 'disabling tidy' );
-
-		if ( in_array(
-			$method,
-			[ 'addWikiTextWithTitle', 'addWikiTextTitleTidy', 'addWikiTextTitle' ]
-		) && count( $args ) >= 2 && $args[1] === null ) {
-			// Special placeholder because we can't get the actual title in the provider
-			$args[1] = $op->getTitle();
-		}
 		if ( in_array(
 			$method,
 			[ 'addWikiTextAsInterface', 'addWikiTextAsContent' ]
@@ -1612,37 +1593,7 @@ class OutputPageTest extends MediaWikiTestCase {
 
 	public function provideAddWikiText() {
 		$tests = [
-			'addWikiText' => [
-				// Not tidied; this API is deprecated.
-				'Simple wikitext' => [
-					[ "'''Bold'''" ],
-					"<p><b>Bold</b>\n</p>",
-				], 'List at start' => [
-					[ '* List' ],
-					"<ul><li>List</li></ul>\n",
-				], 'List not at start' => [
-					[ '* Not a list', false ],
-					'* Not a list',
-				], 'Non-interface' => [
-					[ "'''Bold'''", true, false ],
-					"<p><b>Bold</b>\n</p>",
-				], 'No section edit links' => [
-					[ '== Title ==' ],
-					"<h2><span class=\"mw-headline\" id=\"Title\">Title</span></h2>",
-				],
-			],
-			'addWikiTextWithTitle' => [
-				// Untidied; this API is deprecated
-				'With title at start' => [
-					[ '* {{PAGENAME}}', Title::newFromText( 'Talk:Some page' ) ],
-					"<ul><li>Some page</li></ul>\n",
-				], 'With title at start' => [
-					[ '* {{PAGENAME}}', Title::newFromText( 'Talk:Some page' ), false ],
-					"* Some page",
-				],
-			],
 			'addWikiTextAsInterface' => [
-				// Preferred interface: output is tidied
 				'Simple wikitext' => [
 					[ "'''Bold'''" ],
 					"<p><b>Bold</b>\n</p>",
@@ -1670,7 +1621,6 @@ class OutputPageTest extends MediaWikiTestCase {
 				],
 			],
 			'addWikiTextAsContent' => [
-				// Preferred interface: output is tidied
 				'SpecialNewimages' => [
 					[ "<p lang='en' dir='ltr'>\nMy message" ],
 					'<p lang="en" dir="ltr">' . "\nMy message</p>"
@@ -1708,41 +1658,6 @@ class OutputPageTest extends MediaWikiTestCase {
 			],
 		];
 
-		// Test all the others on addWikiTextTitle as well
-		foreach ( $tests['addWikiText'] as $key => $val ) {
-			$args = [ $val[0][0], null, $val[0][1] ?? true, false, $val[0][2] ?? true ];
-			$tests['addWikiTextTitle']["$key (addWikiTextTitle)"] =
-				array_merge( [ $args ], array_slice( $val, 1 ) );
-		}
-		foreach ( $tests['addWikiTextWithTitle'] as $key => $val ) {
-			$args = [ $val[0][0], $val[0][1], $val[0][2] ?? true ];
-			$tests['addWikiTextTitle']["$key (addWikiTextTitle)"] =
-				array_merge( [ $args ], array_slice( $val, 1 ) );
-		}
-		foreach ( $tests['addWikiTextAsInterface'] as $key => $val ) {
-			$args = [ $val[0][0], $val[0][2] ?? null, $val[0][1] ?? true, true, true ];
-			$tests['addWikiTextTitle']["$key (addWikiTextTitle)"] =
-				array_merge( [ $args ], array_slice( $val, 1 ) );
-		}
-		foreach ( $tests['addWikiTextAsContent'] as $key => $val ) {
-			$args = [ $val[0][0], $val[0][2] ?? null, $val[0][1] ?? true, true, false ];
-			$tests['addWikiTextTitle']["$key (addWikiTextTitle)"] =
-				array_merge( [ $args ], array_slice( $val, 1 ) );
-		}
-		// addWikiTextTidy / addWikiTextTitleTidy were old aliases of
-		// addWikiTextAsContent
-		foreach ( $tests['addWikiTextAsContent'] as $key => $val ) {
-			if ( count( $val[0] ) > 2 ) {
-				$args = [ $val[0][0], $val[0][2], $val[0][1] ?? true ];
-				$tests['addWikiTextTitleTidy']["$key (addWikiTextTitleTidy)"] =
-					array_merge( [ $args ], array_slice( $val, 1 ) );
-			} else {
-				$args = [ $val[0][0], $val[0][1] ?? true ];
-				$tests['addWikiTextTidy']["$key (addWikiTextTidy)"] =
-					array_merge( [ $args ], array_slice( $val, 1 ) );
-			}
-		}
-
 		// We have to reformat our array to match what PHPUnit wants
 		$ret = [];
 		foreach ( $tests as $key => $subarray ) {
@@ -1753,17 +1668,6 @@ class OutputPageTest extends MediaWikiTestCase {
 		}
 
 		return $ret;
-	}
-
-	/**
-	 * @covers OutputPage::addWikiText
-	 */
-	public function testAddWikiTextNoTitle() {
-		$this->hideDeprecated( 'OutputPage::addWikiText' );
-		$this->setExpectedException( MWException::class, 'Title is null' );
-
-		$op = $this->newInstance( [], null, 'notitle' );
-		$op->addWikiText( 'a' );
 	}
 
 	/**
