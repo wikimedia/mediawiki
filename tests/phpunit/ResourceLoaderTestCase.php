@@ -174,7 +174,7 @@ class ResourceLoaderFileTestModule extends ResourceLoaderFileModule {
 	}
 }
 
-class ResourceLoaderFileModuleTestModule extends ResourceLoaderFileModule {
+class ResourceLoaderFileModuleTestingSubclass extends ResourceLoaderFileModule {
 }
 
 class EmptyResourceLoader extends ResourceLoader {
