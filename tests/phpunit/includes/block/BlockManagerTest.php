@@ -2,6 +2,7 @@
 
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\SystemBlock;
 
 /**
  * @group Blocking
@@ -287,5 +288,39 @@ class BlockManagerTest extends MediaWikiTestCase {
 				false,
 			],
 		];
+	}
+
+	/**
+	 * @covers ::getUniqueBlocks
+	 */
+	public function testGetUniqueBlocks() {
+		$blockId = 100;
+
+		$class = new ReflectionClass( BlockManager::class );
+		$method = $class->getMethod( 'getUniqueBlocks' );
+		$method->setAccessible( true );
+
+		$blockManager = $this->getBlockManager( [] );
+
+		$block = $this->getMockBuilder( DatabaseBlock::class )
+			->setMethods( [ 'getId' ] )
+			->getMock();
+		$block->expects( $this->any() )
+			->method( 'getId' )
+			->willReturn( $blockId );
+
+		$autoblock = $this->getMockBuilder( DatabaseBlock::class )
+			->setMethods( [ 'getParentBlockId', 'getType' ] )
+			->getMock();
+		$autoblock->expects( $this->any() )
+			->method( 'getParentBlockId' )
+			->willReturn( $blockId );
+		$autoblock->expects( $this->any() )
+			->method( 'getType' )
+			->willReturn( DatabaseBlock::TYPE_AUTO );
+
+		$blocks = [ $block, $block, $autoblock, new SystemBlock() ];
+
+		$this->assertSame( 2, count( $method->invoke( $blockManager, $blocks ) ) );
 	}
 }
