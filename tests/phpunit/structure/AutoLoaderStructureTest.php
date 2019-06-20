@@ -198,7 +198,7 @@ class AutoLoaderStructureTest extends MediaWikiTestCase {
 	}
 
 	public function testAutoloadOrder() {
-		$path = realpath( __DIR__ . '/../../..' );
+		$path = __DIR__ . '/../../..';
 		$oldAutoload = file_get_contents( $path . '/autoload.php' );
 		$generator = new AutoloadGenerator( $path, 'local' );
 		$generator->setPsr4Namespaces( AutoLoader::getAutoloadNamespaces() );
