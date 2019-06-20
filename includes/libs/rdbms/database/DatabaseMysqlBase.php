@@ -241,11 +241,8 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @throws DBUnexpectedError
 	 */
 	public function freeResult( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
 		Wikimedia\suppressWarnings();
-		$ok = $this->mysqlFreeResult( $res );
+		$ok = $this->mysqlFreeResult( ResultWrapper::unwrap( $res ) );
 		Wikimedia\restoreWarnings();
 		if ( !$ok ) {
 			throw new DBUnexpectedError( $this, "Unable to free MySQL result" );
@@ -266,11 +263,8 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @throws DBUnexpectedError
 	 */
 	public function fetchObject( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
 		Wikimedia\suppressWarnings();
-		$row = $this->mysqlFetchObject( $res );
+		$row = $this->mysqlFetchObject( ResultWrapper::unwrap( $res ) );
 		Wikimedia\restoreWarnings();
 
 		$errno = $this->lastErrno();
@@ -302,11 +296,8 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @throws DBUnexpectedError
 	 */
 	public function fetchRow( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
 		Wikimedia\suppressWarnings();
-		$row = $this->mysqlFetchArray( $res );
+		$row = $this->mysqlFetchArray( ResultWrapper::unwrap( $res ) );
 		Wikimedia\restoreWarnings();
 
 		$errno = $this->lastErrno();
@@ -338,12 +329,13 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return int
 	 */
 	function numRows( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
+		if ( is_bool( $res ) ) {
+			$n = 0;
+		} else {
+			Wikimedia\suppressWarnings();
+			$n = $this->mysqlNumRows( ResultWrapper::unwrap( $res ) );
+			Wikimedia\restoreWarnings();
 		}
-		Wikimedia\suppressWarnings();
-		$n = !is_bool( $res ) ? $this->mysqlNumRows( $res ) : 0;
-		Wikimedia\restoreWarnings();
 
 		// Unfortunately, mysql_num_rows does not reset the last errno.
 		// We are not checking for any errors here, since
@@ -366,11 +358,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return int
 	 */
 	public function numFields( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		return $this->mysqlNumFields( $res );
+		return $this->mysqlNumFields( ResultWrapper::unwrap( $res ) );
 	}
 
 	/**
@@ -387,11 +375,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return string
 	 */
 	public function fieldName( $res, $n ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		return $this->mysqlFieldName( $res, $n );
+		return $this->mysqlFieldName( ResultWrapper::unwrap( $res ), $n );
 	}
 
 	/**
@@ -410,11 +394,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return string
 	 */
 	public function fieldType( $res, $n ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		return $this->mysqlFieldType( $res, $n );
+		return $this->mysqlFieldType( ResultWrapper::unwrap( $res ), $n );
 	}
 
 	/**
@@ -432,11 +412,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return bool
 	 */
 	public function dataSeek( $res, $row ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		return $this->mysqlDataSeek( $res, $row );
+		return $this->mysqlDataSeek( ResultWrapper::unwrap( $res ), $row );
 	}
 
 	/**
@@ -606,9 +582,9 @@ abstract class DatabaseMysqlBase extends Database {
 		if ( !$res ) {
 			return false;
 		}
-		$n = $this->mysqlNumFields( $res->result );
+		$n = $this->mysqlNumFields( ResultWrapper::unwrap( $res ) );
 		for ( $i = 0; $i < $n; $i++ ) {
-			$meta = $this->mysqlFetchField( $res->result, $i );
+			$meta = $this->mysqlFetchField( ResultWrapper::unwrap( $res ), $i );
 			if ( $field == $meta->name ) {
 				return new MySQLField( $meta );
 			}

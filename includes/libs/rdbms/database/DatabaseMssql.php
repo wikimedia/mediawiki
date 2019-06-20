@@ -229,11 +229,7 @@ class DatabaseMssql extends Database {
 	}
 
 	public function freeResult( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		sqlsrv_free_stmt( $res );
+		sqlsrv_free_stmt( ResultWrapper::unwrap( $res ) );
 	}
 
 	/**
@@ -258,12 +254,9 @@ class DatabaseMssql extends Database {
 	 * @return int
 	 */
 	public function numRows( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
+		$res = ResultWrapper::unwrap( $res );
 
 		$ret = sqlsrv_num_rows( $res );
-
 		if ( $ret === false ) {
 			// we cannot get an amount of rows from this cursor type
 			// has_rows returns bool true/false if the result has rows
@@ -278,11 +271,7 @@ class DatabaseMssql extends Database {
 	 * @return int
 	 */
 	public function numFields( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		return sqlsrv_num_fields( $res );
+		return sqlsrv_num_fields( ResultWrapper::unwrap( $res ) );
 	}
 
 	/**
@@ -291,11 +280,7 @@ class DatabaseMssql extends Database {
 	 * @return int
 	 */
 	public function fieldName( $res, $n ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		return sqlsrv_field_metadata( $res )[$n]['Name'];
+		return sqlsrv_field_metadata( ResultWrapper::unwrap( $res ) )[$n]['Name'];
 	}
 
 	/**
@@ -730,7 +715,7 @@ class DatabaseMssql extends Database {
 			}
 			$this->scrollableCursor = true;
 
-			if ( $ret instanceof ResultWrapper && !is_null( $identity ) ) {
+			if ( $ret instanceof IResultWrapper && !is_null( $identity ) ) {
 				// Then we want to get the identity column value we were assigned and save it off
 				$row = $ret->fetchObject();
 				if ( is_object( $row ) ) {
