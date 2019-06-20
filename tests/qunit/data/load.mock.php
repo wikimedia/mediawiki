@@ -18,9 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @package MediaWiki
  * @author Lupo
- * @since 1.20
  */
 
 // This file doesn't run as part of MediaWiki

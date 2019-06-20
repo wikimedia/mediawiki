@@ -9,11 +9,9 @@ use Wikimedia\TestingAccessWrapper;
  * @author Antoine Musso
  * @author Niklas Laxström
  * @author Santhosh Thottingal
- * @author Timo Tijhof
  * @copyright © 2012, Antoine Musso
  * @copyright © 2012, Niklas Laxström
  * @copyright © 2012, Santhosh Thottingal
- * @copyright © 2012, Timo Tijhof
  */
 class ResourcesTest extends MediaWikiTestCase {
 
