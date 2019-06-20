@@ -88,9 +88,6 @@ class RawAction extends FormlessAction {
 
 		// Set standard Vary headers so cache varies on cookies and such (T125283)
 		$response->header( $this->getOutput()->getVaryHeader() );
-		if ( $config->get( 'UseKeyHeader' ) ) {
-			$response->header( $this->getOutput()->getKeyHeader() );
-		}
 
 		// Output may contain user-specific data;
 		// vary generated content for open sessions on private wikis

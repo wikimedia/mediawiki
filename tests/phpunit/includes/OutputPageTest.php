@@ -1570,34 +1570,15 @@ class OutputPageTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideAddWikiText
-	 * @covers OutputPage::addWikiText
 	 * @covers OutputPage::addWikiTextAsInterface
 	 * @covers OutputPage::wrapWikiTextAsInterface
 	 * @covers OutputPage::addWikiTextAsContent
-	 * @covers OutputPage::addWikiTextWithTitle
-	 * @covers OutputPage::addWikiTextTitle
-	 * @covers OutputPage::addWikiTextTidy
-	 * @covers OutputPage::addWikiTextTitleTidy
 	 * @covers OutputPage::getHTML
 	 */
 	public function testAddWikiText( $method, array $args, $expected ) {
 		$op = $this->newInstance();
 		$this->assertSame( '', $op->getHTML() );
 
-		$this->hideDeprecated( 'OutputPage::addWikiText' );
-		$this->hideDeprecated( 'OutputPage::addWikiTextTitle' );
-		$this->hideDeprecated( 'OutputPage::addWikiTextWithTitle' );
-		$this->hideDeprecated( 'OutputPage::addWikiTextTidy' );
-		$this->hideDeprecated( 'OutputPage::addWikiTextTitleTidy' );
-		$this->hideDeprecated( 'disabling tidy' );
-
-		if ( in_array(
-			$method,
-			[ 'addWikiTextWithTitle', 'addWikiTextTitleTidy', 'addWikiTextTitle' ]
-		) && count( $args ) >= 2 && $args[1] === null ) {
-			// Special placeholder because we can't get the actual title in the provider
-			$args[1] = $op->getTitle();
-		}
 		if ( in_array(
 			$method,
 			[ 'addWikiTextAsInterface', 'addWikiTextAsContent' ]
@@ -1612,37 +1593,7 @@ class OutputPageTest extends MediaWikiTestCase {
 
 	public function provideAddWikiText() {
 		$tests = [
-			'addWikiText' => [
-				// Not tidied; this API is deprecated.
-				'Simple wikitext' => [
-					[ "'''Bold'''" ],
-					"<p><b>Bold</b>\n</p>",
-				], 'List at start' => [
-					[ '* List' ],
-					"<ul><li>List</li></ul>\n",
-				], 'List not at start' => [
-					[ '* Not a list', false ],
-					'* Not a list',
-				], 'Non-interface' => [
-					[ "'''Bold'''", true, false ],
-					"<p><b>Bold</b>\n</p>",
-				], 'No section edit links' => [
-					[ '== Title ==' ],
-					"<h2><span class=\"mw-headline\" id=\"Title\">Title</span></h2>",
-				],
-			],
-			'addWikiTextWithTitle' => [
-				// Untidied; this API is deprecated
-				'With title at start' => [
-					[ '* {{PAGENAME}}', Title::newFromText( 'Talk:Some page' ) ],
-					"<ul><li>Some page</li></ul>\n",
-				], 'With title at start' => [
-					[ '* {{PAGENAME}}', Title::newFromText( 'Talk:Some page' ), false ],
-					"* Some page",
-				],
-			],
 			'addWikiTextAsInterface' => [
-				// Preferred interface: output is tidied
 				'Simple wikitext' => [
 					[ "'''Bold'''" ],
 					"<p><b>Bold</b>\n</p>",
@@ -1670,7 +1621,6 @@ class OutputPageTest extends MediaWikiTestCase {
 				],
 			],
 			'addWikiTextAsContent' => [
-				// Preferred interface: output is tidied
 				'SpecialNewimages' => [
 					[ "<p lang='en' dir='ltr'>\nMy message" ],
 					'<p lang="en" dir="ltr">' . "\nMy message</p>"
@@ -1708,41 +1658,6 @@ class OutputPageTest extends MediaWikiTestCase {
 			],
 		];
 
-		// Test all the others on addWikiTextTitle as well
-		foreach ( $tests['addWikiText'] as $key => $val ) {
-			$args = [ $val[0][0], null, $val[0][1] ?? true, false, $val[0][2] ?? true ];
-			$tests['addWikiTextTitle']["$key (addWikiTextTitle)"] =
-				array_merge( [ $args ], array_slice( $val, 1 ) );
-		}
-		foreach ( $tests['addWikiTextWithTitle'] as $key => $val ) {
-			$args = [ $val[0][0], $val[0][1], $val[0][2] ?? true ];
-			$tests['addWikiTextTitle']["$key (addWikiTextTitle)"] =
-				array_merge( [ $args ], array_slice( $val, 1 ) );
-		}
-		foreach ( $tests['addWikiTextAsInterface'] as $key => $val ) {
-			$args = [ $val[0][0], $val[0][2] ?? null, $val[0][1] ?? true, true, true ];
-			$tests['addWikiTextTitle']["$key (addWikiTextTitle)"] =
-				array_merge( [ $args ], array_slice( $val, 1 ) );
-		}
-		foreach ( $tests['addWikiTextAsContent'] as $key => $val ) {
-			$args = [ $val[0][0], $val[0][2] ?? null, $val[0][1] ?? true, true, false ];
-			$tests['addWikiTextTitle']["$key (addWikiTextTitle)"] =
-				array_merge( [ $args ], array_slice( $val, 1 ) );
-		}
-		// addWikiTextTidy / addWikiTextTitleTidy were old aliases of
-		// addWikiTextAsContent
-		foreach ( $tests['addWikiTextAsContent'] as $key => $val ) {
-			if ( count( $val[0] ) > 2 ) {
-				$args = [ $val[0][0], $val[0][2], $val[0][1] ?? true ];
-				$tests['addWikiTextTitleTidy']["$key (addWikiTextTitleTidy)"] =
-					array_merge( [ $args ], array_slice( $val, 1 ) );
-			} else {
-				$args = [ $val[0][0], $val[0][1] ?? true ];
-				$tests['addWikiTextTidy']["$key (addWikiTextTidy)"] =
-					array_merge( [ $args ], array_slice( $val, 1 ) );
-			}
-		}
-
 		// We have to reformat our array to match what PHPUnit wants
 		$ret = [];
 		foreach ( $tests as $key => $subarray ) {
@@ -1753,17 +1668,6 @@ class OutputPageTest extends MediaWikiTestCase {
 		}
 
 		return $ret;
-	}
-
-	/**
-	 * @covers OutputPage::addWikiText
-	 */
-	public function testAddWikiTextNoTitle() {
-		$this->hideDeprecated( 'OutputPage::addWikiText' );
-		$this->setExpectedException( MWException::class, 'Title is null' );
-
-		$op = $this->newInstance( [], null, 'notitle' );
-		$op->addWikiText( 'a' );
 	}
 
 	/**
@@ -2342,14 +2246,13 @@ class OutputPageTest extends MediaWikiTestCase {
 	 *
 	 * @covers OutputPage::addVaryHeader
 	 * @covers OutputPage::getVaryHeader
-	 * @covers OutputPage::getKeyHeader
 	 *
 	 * @param array[] $calls For each array, call addVaryHeader() with those arguments
 	 * @param string[] $cookies Array of cookie names to vary on
 	 * @param string $vary Text of expected Vary header (including the 'Vary: ')
 	 * @param string $key Text of expected Key header (including the 'Key: ')
 	 */
-	public function testVaryHeaders( array $calls, array $cookies, $vary, $key ) {
+	public function testVaryHeaders( array $calls, array $cookies, $vary ) {
 		// Get rid of default Vary fields
 		$op = $this->getMockBuilder( OutputPage::class )
 			->setConstructorArgs( [ new RequestContext() ] )
@@ -2360,22 +2263,19 @@ class OutputPageTest extends MediaWikiTestCase {
 			->will( $this->returnValue( $cookies ) );
 		TestingAccessWrapper::newFromObject( $op )->mVaryHeader = [];
 
-		$this->hideDeprecated( '$wgUseKeyHeader' );
+		$this->hideDeprecated( 'addVaryHeader $option is ignored' );
 		foreach ( $calls as $call ) {
 			$op->addVaryHeader( ...$call );
 		}
 		$this->assertEquals( $vary, $op->getVaryHeader(), 'Vary:' );
-		$this->assertEquals( $key, $op->getKeyHeader(), 'Key:' );
 	}
 
 	public function provideVaryHeaders() {
-		// note: getKeyHeader() automatically adds Vary: Cookie
 		return [
 			'No header' => [
 				[],
 				[],
 				'Vary: ',
-				'Key: Cookie',
 			],
 			'Single header' => [
 				[
@@ -2383,7 +2283,6 @@ class OutputPageTest extends MediaWikiTestCase {
 				],
 				[],
 				'Vary: Cookie',
-				'Key: Cookie',
 			],
 			'Non-unique headers' => [
 				[
@@ -2393,26 +2292,26 @@ class OutputPageTest extends MediaWikiTestCase {
 				],
 				[],
 				'Vary: Cookie, Accept-Language',
-				'Key: Cookie,Accept-Language',
 			],
 			'Two headers with single options' => [
+				// Options are deprecated since 1.34
 				[
 					[ 'Cookie', [ 'param=phpsessid' ] ],
 					[ 'Accept-Language', [ 'substr=en' ] ],
 				],
 				[],
 				'Vary: Cookie, Accept-Language',
-				'Key: Cookie;param=phpsessid,Accept-Language;substr=en',
 			],
 			'One header with multiple options' => [
+				// Options are deprecated since 1.34
 				[
 					[ 'Cookie', [ 'param=phpsessid', 'param=userId' ] ],
 				],
 				[],
 				'Vary: Cookie',
-				'Key: Cookie;param=phpsessid;param=userId',
 			],
 			'Duplicate option' => [
+				// Options are deprecated since 1.34
 				[
 					[ 'Cookie', [ 'param=phpsessid' ] ],
 					[ 'Cookie', [ 'param=phpsessid' ] ],
@@ -2420,30 +2319,28 @@ class OutputPageTest extends MediaWikiTestCase {
 				],
 				[],
 				'Vary: Cookie, Accept-Language',
-				'Key: Cookie;param=phpsessid,Accept-Language;substr=en',
 			],
 			'Same header, different options' => [
+				// Options are deprecated since 1.34
 				[
 					[ 'Cookie', [ 'param=phpsessid' ] ],
 					[ 'Cookie', [ 'param=userId' ] ],
 				],
 				[],
 				'Vary: Cookie',
-				'Key: Cookie;param=phpsessid;param=userId',
 			],
 			'No header, vary cookies' => [
 				[],
 				[ 'cookie1', 'cookie2' ],
 				'Vary: Cookie',
-				'Key: Cookie;param=cookie1;param=cookie2',
 			],
 			'Cookie header with option plus vary cookies' => [
+				// Options are deprecated since 1.34
 				[
 					[ 'Cookie', [ 'param=cookie1' ] ],
 				],
 				[ 'cookie2', 'cookie3' ],
 				'Vary: Cookie',
-				'Key: Cookie;param=cookie1;param=cookie2;param=cookie3',
 			],
 			'Non-cookie header plus vary cookies' => [
 				[
@@ -2451,16 +2348,15 @@ class OutputPageTest extends MediaWikiTestCase {
 				],
 				[ 'cookie' ],
 				'Vary: Accept-Language, Cookie',
-				'Key: Accept-Language,Cookie;param=cookie',
 			],
 			'Cookie and non-cookie headers plus vary cookies' => [
+				// Options are deprecated since 1.34
 				[
 					[ 'Cookie', [ 'param=cookie1' ] ],
 					[ 'Accept-Language' ],
 				],
 				[ 'cookie2' ],
 				'Vary: Cookie, Accept-Language',
-				'Key: Cookie;param=cookie1;param=cookie2,Accept-Language',
 			],
 		];
 	}
@@ -2513,10 +2409,9 @@ class OutputPageTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideAddAcceptLanguage
 	 * @covers OutputPage::addAcceptLanguage
-	 * @covers OutputPage::getKeyHeader
 	 */
 	public function testAddAcceptLanguage(
-		$code, array $variants, array $expected, array $options = []
+		$code, array $variants, $expected, array $options = []
 	) {
 		$req = new FauxRequest( in_array( 'varianturl', $options ) ? [ 'variant' => 'x' ] : [] );
 		$op = $this->newInstance( [], $req, in_array( 'notitle', $options ) ? 'notitle' : null );
@@ -2540,41 +2435,38 @@ class OutputPageTest extends MediaWikiTestCase {
 
 		// This will run addAcceptLanguage()
 		$op->sendCacheControl();
-
-		$this->hideDeprecated( '$wgUseKeyHeader' );
-		$keyHeader = $op->getKeyHeader();
-
-		if ( !$expected ) {
-			$this->assertFalse( strpos( 'Accept-Language', $keyHeader ) );
-			return;
-		}
-
-		$keyHeader = explode( ' ', $keyHeader, 2 )[1];
-		$keyHeader = explode( ',', $keyHeader );
-
-		$acceptLanguage = null;
-		foreach ( $keyHeader as $item ) {
-			if ( strpos( $item, 'Accept-Language;' ) === 0 ) {
-				$acceptLanguage = $item;
-				break;
-			}
-		}
-
-		$expectedString = 'Accept-Language;substr=' . implode( ';substr=', $expected );
-		$this->assertSame( $expectedString, $acceptLanguage );
+		$this->assertSame( "Vary: $expected", $op->getVaryHeader() );
 	}
 
 	public function provideAddAcceptLanguage() {
 		return [
-			'No variants' => [ 'en', [ 'en' ], [] ],
-			'One simple variant' => [ 'en', [ 'en', 'en-x-piglatin' ], [ 'en-x-piglatin' ] ],
+			'No variants' => [
+				'en',
+				[ 'en' ],
+				'Accept-Encoding, Cookie',
+			],
+			'One simple variant' => [
+				'en',
+				[ 'en', 'en-x-piglatin' ],
+				'Accept-Encoding, Cookie, Accept-Language',
+			],
 			'Multiple variants with BCP47 alternatives' => [
 				'zh',
 				[ 'zh', 'zh-hans', 'zh-cn', 'zh-tw' ],
-				[ 'zh-hans', 'zh-Hans', 'zh-cn', 'zh-Hans-CN', 'zh-tw', 'zh-Hant-TW' ],
+				'Accept-Encoding, Cookie, Accept-Language',
 			],
-			'No title' => [ 'en', [ 'en', 'en-x-piglatin' ], [], [ 'notitle' ] ],
-			'Variant in URL' => [ 'en', [ 'en', 'en-x-piglatin' ], [], [ 'varianturl' ] ],
+			'No title' => [
+				'en',
+				[ 'en', 'en-x-piglatin' ],
+				'Accept-Encoding, Cookie',
+				[ 'notitle' ]
+			],
+			'Variant in URL' => [
+				'en',
+				[ 'en', 'en-x-piglatin' ],
+				'Accept-Encoding, Cookie',
+				[ 'varianturl' ]
+			],
 		];
 	}
 
