@@ -215,6 +215,8 @@ because of Phabricator reports.
 * OutputPage::addWikiText(), ::addWikiTextWithTitle(), ::addWikiTextTitleTidy(),
   ::addWikiTextTidy(), ::addWikiTextTitle(), deprecated in 1.32, have been
   removed.
+* The $wgUseKeyHeader configuration option and the OutputPage::getKeyHeader()
+  method, deprecated in 1.32, have been removed.
 * …
 
 === Deprecations in 1.34 ===

@@ -265,11 +265,12 @@ class OutputPage extends ContextSource {
 	private $mFollowPolicy = 'follow';
 
 	/**
-	 * @var array Headers that cause the cache to vary.  Key is header name, value is an array of
-	 * options for the Key header.
+	 * @var array Headers that cause the cache to vary.  Key is header name,
+	 * value should always be null.  (Value was an array of options for
+	 * the `Key` header, which was deprecated in 1.32 and removed in 1.34.)
 	 */
 	private $mVaryHeader = [
-		'Accept-Encoding' => [ 'match=gzip' ],
+		'Accept-Encoding' => null,
 	];
 
 	/**
@@ -2222,19 +2223,18 @@ class OutputPage extends ContextSource {
 	 * Add an HTTP header that will influence on the cache
 	 *
 	 * @param string $header Header name
-	 * @param string[]|null $option Options for the Key header. See
-	 * https://datatracker.ietf.org/doc/draft-fielding-http-key/
-	 * for the list of valid options.
+	 * @param string[]|null $option Deprecated; formerly options for the
+	 *  Key header, deprecated in 1.32 and removed in 1.34. See
+	 *   https://datatracker.ietf.org/doc/draft-fielding-http-key/
+	 *   for the list of formerly-valid options.
 	 */
 	public function addVaryHeader( $header, array $option = null ) {
+		if ( $option !== null && count( $option ) > 0 ) {
+			wfDeprecated( 'addVaryHeader $option is ignored', '1.34' );
+		}
 		if ( !array_key_exists( $header, $this->mVaryHeader ) ) {
-			$this->mVaryHeader[$header] = [];
+			$this->mVaryHeader[$header] = null;
 		}
-		if ( !is_array( $option ) ) {
-			$option = [];
-		}
-		$this->mVaryHeader[$header] =
-			array_unique( array_merge( $this->mVaryHeader[$header], $option ) );
 	}
 
 	/**
@@ -2278,41 +2278,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Get a complete Key header
-	 *
-	 * @return string
-	 * @deprecated in 1.32; the IETF spec for this header expired w/o becoming
-	 *   a standard.
-	 */
-	public function getKeyHeader() {
-		wfDeprecated( '$wgUseKeyHeader', '1.32' );
-
-		$cvCookies = $this->getCacheVaryCookies();
-
-		$cookiesOption = [];
-		foreach ( $cvCookies as $cookieName ) {
-			$cookiesOption[] = 'param=' . $cookieName;
-		}
-		$this->addVaryHeader( 'Cookie', $cookiesOption );
-
-		foreach ( SessionManager::singleton()->getVaryHeaders() as $header => $options ) {
-			$this->addVaryHeader( $header, $options );
-		}
-
-		$headers = [];
-		foreach ( $this->mVaryHeader as $header => $option ) {
-			$newheader = $header;
-			if ( is_array( $option ) && count( $option ) > 0 ) {
-				$newheader .= ';' . implode( ';', $option );
-			}
-			$headers[] = $newheader;
-		}
-		$key = 'Key: ' . implode( ',', $headers );
-
-		return $key;
-	}
-
-	/**
 	 * T23672: Add Accept-Language to Vary and Key headers if there's no 'variant' parameter in GET.
 	 *
 	 * For example:
@@ -2327,33 +2292,7 @@ class OutputPage extends ContextSource {
 
 		$lang = $title->getPageLanguage();
 		if ( !$this->getRequest()->getCheck( 'variant' ) && $lang->hasVariants() ) {
-			$variants = $lang->getVariants();
-			$aloption = [];
-			foreach ( $variants as $variant ) {
-				if ( $variant === $lang->getCode() ) {
-					continue;
-				}
-
-				// XXX Note that this code is not strictly correct: we
-				// do a case-insensitive match in
-				// LanguageConverter::getHeaderVariant() while the
-				// (abandoned, draft) spec for the `Key` header only
-				// allows case-sensitive matches.  To match the logic
-				// in LanguageConverter::getHeaderVariant() we should
-				// also be looking at fallback variants and deprecated
-				// mediawiki-internal codes, as well as BCP 47
-				// normalized forms.
-
-				$aloption[] = "substr=$variant";
-
-				// IE and some other browsers use BCP 47 standards in their Accept-Language header,
-				// like "zh-CN" or "zh-Hant".  We should handle these too.
-				$variantBCP47 = LanguageCode::bcp47( $variant );
-				if ( $variantBCP47 !== $variant ) {
-					$aloption[] = "substr=$variantBCP47";
-				}
-			}
-			$this->addVaryHeader( 'Accept-Language', $aloption );
+			$this->addVaryHeader( 'Accept-Language' );
 		}
 	}
 
@@ -2463,10 +2402,6 @@ class OutputPage extends ContextSource {
 		# don't serve compressed data to clients who can't handle it
 		# maintain different caches for logged-in users and non-logged in ones
 		$response->header( $this->getVaryHeader() );
-
-		if ( $config->get( 'UseKeyHeader' ) ) {
-			$response->header( $this->getKeyHeader() );
-		}
 
 		if ( $this->mEnableClientCache ) {
 			if (

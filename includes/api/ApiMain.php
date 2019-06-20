@@ -916,32 +916,20 @@ class ApiMain extends ApiBase {
 			return;
 		}
 
-		$useKeyHeader = $config->get( 'UseKeyHeader' );
 		if ( $this->mCacheMode == 'anon-public-user-private' ) {
 			$out->addVaryHeader( 'Cookie' );
 			$response->header( $out->getVaryHeader() );
-			if ( $useKeyHeader ) {
-				$response->header( $out->getKeyHeader() );
-				if ( $out->haveCacheVaryCookies() ) {
-					// Logged in, mark this request private
-					$response->header( "Cache-Control: $privateCache" );
-					return;
-				}
-				// Logged out, send normal public headers below
-			} elseif ( MediaWiki\Session\SessionManager::getGlobalSession()->isPersistent() ) {
+			if ( MediaWiki\Session\SessionManager::getGlobalSession()->isPersistent() ) {
 				// Logged in or otherwise has session (e.g. anonymous users who have edited)
 				// Mark request private
 				$response->header( "Cache-Control: $privateCache" );
 
 				return;
-			} // else no Key and anonymous, send public headers below
+			} // else anonymous, send public headers below
 		}
 
 		// Send public headers
 		$response->header( $out->getVaryHeader() );
-		if ( $useKeyHeader ) {
-			$response->header( $out->getKeyHeader() );
-		}
 
 		// If nobody called setCacheMaxAge(), use the (s)maxage parameters
 		if ( !isset( $this->mCacheControl['s-maxage'] ) ) {

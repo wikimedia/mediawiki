@@ -123,10 +123,6 @@ class OutputHandler {
 		}
 		if ( !$foundVary ) {
 			header( 'Vary: Accept-Encoding' );
-			global $wgUseKeyHeader;
-			if ( $wgUseKeyHeader ) {
-				header( 'Key: Accept-Encoding;match=gzip' );
-			}
 		}
 		return $s;
 	}

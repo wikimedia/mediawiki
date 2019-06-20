@@ -402,6 +402,9 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 * }
 	 * @endcode
 	 *
+	 * Note that the $options parameter to addVaryHeader has been deprecated
+	 * since 1.34, and should be `null` or an empty array.
+	 *
 	 * @protected For use by \MediaWiki\Session\SessionManager only
 	 * @return array
 	 */

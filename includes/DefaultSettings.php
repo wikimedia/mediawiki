@@ -2738,14 +2738,6 @@ $wgUseCdn = false;
 $wgUseESI = false;
 
 /**
- * Send the Key HTTP header for better caching.
- * See https://datatracker.ietf.org/doc/draft-ietf-httpbis-key/ for details.
- * @since 1.27
- * @deprecated in 1.32, the IETF spec expired without becoming a standard.
- */
-$wgUseKeyHeader = false;
-
-/**
  * Add X-Forwarded-Proto to the Vary and Key headers for API requests and
  * RSS/Atom feeds. Use this if you have an SSL termination setup
  * and need to split the cache between HTTP and HTTPS for API requests,
