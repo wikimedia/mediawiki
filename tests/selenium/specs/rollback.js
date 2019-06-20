@@ -120,7 +120,7 @@ describe( 'Rollback without confirmation', function () {
 		}, 5000, 'Expected rollback page to appear.' );
 	} );
 
-	it( 'should perform rollback via GET request without asking the user to confirm', function () {
+	it.skip( 'should perform rollback via GET request without asking the user to confirm', function () {
 		var rollbackActionUrl = HistoryPage.rollbackLink.getAttribute( 'href' );
 		browser.url( rollbackActionUrl );
 
