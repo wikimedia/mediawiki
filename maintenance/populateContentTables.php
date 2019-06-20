@@ -25,7 +25,7 @@ use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -239,12 +239,12 @@ class PopulateContentTables extends Maintenance {
 	}
 
 	/**
-	 * @param ResultWrapper $rows
+	 * @param IResultWrapper $rows
 	 * @param int $startId
 	 * @param string $table
 	 * @return int|null
 	 */
-	private function populateContentTablesForRowBatch( ResultWrapper $rows, $startId, $table ) {
+	private function populateContentTablesForRowBatch( IResultWrapper $rows, $startId, $table ) {
 		$this->beginTransaction( $this->dbw, __METHOD__ );
 
 		if ( $this->contentRowMap === null ) {
