@@ -20,7 +20,7 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -735,7 +735,7 @@ class ApiPageSet extends ApiBase {
 	 * $this->getPageTableFields().
 	 *
 	 * @param IDatabase $db
-	 * @param ResultWrapper $queryResult
+	 * @param IResultWrapper $queryResult
 	 */
 	public function populateFromQueryResult( $db, $queryResult ) {
 		$this->initFromQueryResult( $queryResult );
@@ -854,7 +854,7 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Iterate through the result of the query on 'page' table,
 	 * and for each row create and store title object and save any extra fields requested.
-	 * @param ResultWrapper $res DB Query result
+	 * @param IResultWrapper $res DB Query result
 	 * @param array $remaining Array of either pageID or ns/title elements (optional).
 	 *        If given, any missing items will go to $mMissingPageIDs and $mMissingTitles
 	 * @param bool $processTitles Must be provided together with $remaining.

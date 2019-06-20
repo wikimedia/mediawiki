@@ -25,7 +25,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBQueryError;
 
@@ -186,7 +186,7 @@ class MwSql extends Maintenance {
 
 	/**
 	 * Print the results, callback for $db->sourceStream()
-	 * @param ResultWrapper|bool $res
+	 * @param IResultWrapper|bool $res
 	 * @param IDatabase $db
 	 * @return int|null Number of rows selected or updated, or null if the query was unsuccessful.
 	 */
