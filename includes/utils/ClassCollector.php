@@ -59,6 +59,31 @@ class ClassCollector {
 		$this->alias = null;
 		$this->tokens = [];
 
+		// HACK: The PHP tokenizer is slow (T225730).
+		// Speed it up by reducing the input to the three kinds of statement we care about:
+		// - namespace X;
+		// - [final] [abstract] class X … {}
+		// - class_alias( … );
+		$lines = [];
+		$matches = null;
+		preg_match_all(
+			// phpcs:ignore Generic.Files.LineLength.TooLong
+			'#^\t*(?:namespace |(final )?(abstract )?(class|interface|trait) |class_alias\()[^;{]+[;{]\s*\}?#m',
+			$code,
+			$matches
+		);
+		if ( isset( $matches[0][0] ) ) {
+			foreach ( $matches[0] as $match ) {
+				$match = trim( $match );
+				if ( substr( $match, -1 ) === '{' ) {
+					// Keep it balanced
+					$match .= '}';
+				}
+				$lines[] = $match;
+			}
+		}
+		$code = '<?php ' . implode( "\n", $lines ) . "\n";
+
 		foreach ( token_get_all( $code ) as $token ) {
 			if ( $this->startToken === null ) {
 				$this->tryBeginExpect( $token );
