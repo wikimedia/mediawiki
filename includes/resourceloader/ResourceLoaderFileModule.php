@@ -24,6 +24,12 @@
 
 /**
  * ResourceLoader module based on local JavaScript/CSS files.
+ *
+ * The following public methods can query the database:
+ *
+ * - getDefinitionSummary / … / ResourceLoaderModule::getFileDependencies.
+ * - getVersionHash / getDefinitionSummary / … / ResourceLoaderModule::getFileDependencies.
+ * - getStyles / ResourceLoaderModule::saveFileDependencies.
  */
 class ResourceLoaderFileModule extends ResourceLoaderModule {
 
