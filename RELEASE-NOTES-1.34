@@ -239,6 +239,8 @@ because of Phabricator reports.
 * Skin::getDefaultInstance(), deprecated in 1.27, has been removed. Get the
   instance from MediaWikiServices instead.
 * The UserLoadFromSession hook, deprecated in 1.27, has been removed.
+* The wfResetSessionID global function, deprecated in 1.27, has been removed.
+  Use MediaWiki\Session\SessionManager instead.
 * …
 
 === Deprecations in 1.34 ===

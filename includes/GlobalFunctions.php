@@ -30,7 +30,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\ProcOpenError;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Shell\Shell;
-use Wikimedia\ScopedCallback;
 use Wikimedia\WrappedString;
 use Wikimedia\AtEase\AtEase;
 
@@ -2428,28 +2427,6 @@ function wfRelativePath( $path, $from ) {
 	array_push( $pieces, wfBaseName( $path ) );
 
 	return implode( DIRECTORY_SEPARATOR, $pieces );
-}
-
-/**
- * Reset the session id
- *
- * @deprecated since 1.27, use MediaWiki\Session\SessionManager instead
- * @since 1.22
- */
-function wfResetSessionID() {
-	wfDeprecated( __FUNCTION__, '1.27' );
-	$session = SessionManager::getGlobalSession();
-	$delay = $session->delaySave();
-
-	$session->resetId();
-
-	// Make sure a session is started, since that's what the old
-	// wfResetSessionID() did.
-	if ( session_id() !== $session->getId() ) {
-		wfSetupSession( $session->getId() );
-	}
-
-	ScopedCallback::consume( $delay );
 }
 
 /**
