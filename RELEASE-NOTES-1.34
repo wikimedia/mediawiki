@@ -286,6 +286,8 @@ because of Phabricator reports.
 * The Preprocessor_DOM implementation has been deprecated.  It will be
   removed in a future release.  Use the Preprocessor_Hash implementation
   instead.
+* Sanitizer::attributeWhitelist() and Sanitizer::setupAttributeWhitelist()
+  have been deprecated; they will be made private in the future.
 
 === Other changes in 1.34 ===
 * …

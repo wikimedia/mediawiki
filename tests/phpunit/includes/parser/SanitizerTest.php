@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @todo Tests covering decodeCharReferences can be refactored into a single
  * method and dataprovider.
@@ -249,6 +251,8 @@ class SanitizerTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideDeprecatedAttributes
 	 * @covers Sanitizer::fixTagAttributes
+	 * @covers Sanitizer::validateTagAttributes
+	 * @covers Sanitizer::validateAttributes
 	 */
 	public function testDeprecatedAttributesUnaltered( $inputAttr, $inputEl, $message = '' ) {
 		$this->assertEquals( " $inputAttr",
@@ -271,6 +275,59 @@ class SanitizerTest extends MediaWikiTestCase {
 			[ 'align="center"', 'div' ],
 			[ 'align="left"', 'h1' ],
 			[ 'align="left"', 'p' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideValidateTagAttributes
+	 * @covers Sanitizer::validateTagAttributes
+	 * @covers Sanitizer::validateAttributes
+	 */
+	public function testValidateTagAttributes( $element, $attribs, $expected ) {
+		$actual = Sanitizer::validateTagAttributes( $attribs, $element );
+		$this->assertArrayEquals( $expected, $actual, false, true );
+	}
+
+	public static function provideValidateTagAttributes() {
+		return [
+			[ 'math',
+			  [ 'id' => 'foo bar', 'bogus' => 'stripped', 'data-foo' => 'bar' ],
+			  [ 'id' => 'foo_bar', 'data-foo' => 'bar' ],
+			],
+			[ 'meta',
+			  [ 'id' => 'foo bar', 'itemprop' => 'foo', 'content' => 'bar' ],
+			  [ 'itemprop' => 'foo', 'content' => 'bar' ],
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideAttributeWhitelist
+	 * @covers Sanitizer::attributeWhitelist
+	 */
+	public function testAttributeWhitelist( $element, $attribs ) {
+		$this->hideDeprecated( 'Sanitizer::attributeWhitelist' );
+		$this->hideDeprecated( 'Sanitizer::setupAttributeWhitelist' );
+		$actual = Sanitizer::attributeWhitelist( $element );
+		$this->assertArrayEquals( $attribs, $actual );
+	}
+
+	/**
+	 * @dataProvider provideAttributeWhitelist
+	 * @covers Sanitizer::attributeWhitelistInternal
+	 */
+	public function testAttributeWhitelistInternal( $element, $attribs ) {
+		$sanitizer = TestingAccessWrapper::newFromClass( Sanitizer::class );
+		$actual = $sanitizer->attributeWhitelistInternal( $element );
+		$this->assertArrayEquals( $attribs, array_keys( $actual ) );
+	}
+
+	public function provideAttributeWhitelist() {
+		/** [ <element>, [ <good attribute 1>, <good attribute 2>, ...] ] */
+		return [
+			[ 'math', [ 'class', 'style', 'id', 'title' ] ],
+			[ 'meta', [ 'itemprop', 'content' ] ],
+			[ 'link', [ 'itemprop', 'href', 'title' ] ],
 		];
 	}
 
