@@ -302,6 +302,8 @@ class LBFactoryTest extends MediaWikiTestCase {
 			->getMock();
 		$lb1->method( 'getConnection' )->willReturn( $mockDB1 );
 		$lb1->method( 'getServerCount' )->willReturn( 2 );
+		$lb1->method( 'hasReplicaServers' )->willReturn( true );
+		$lb1->method( 'hasStreamingReplicaServers' )->willReturn( true );
 		$lb1->method( 'getAnyOpenConnection' )->willReturn( $mockDB1 );
 		$lb1->method( 'hasOrMadeRecentMasterChanges' )->will( $this->returnCallback(
 				function () use ( $mockDB1 ) {
@@ -327,6 +329,8 @@ class LBFactoryTest extends MediaWikiTestCase {
 			->getMock();
 		$lb2->method( 'getConnection' )->willReturn( $mockDB2 );
 		$lb2->method( 'getServerCount' )->willReturn( 2 );
+		$lb2->method( 'hasReplicaServers' )->willReturn( true );
+		$lb2->method( 'hasStreamingReplicaServers' )->willReturn( true );
 		$lb2->method( 'getAnyOpenConnection' )->willReturn( $mockDB2 );
 		$lb2->method( 'hasOrMadeRecentMasterChanges' )->will( $this->returnCallback(
 			function () use ( $mockDB2 ) {
@@ -373,6 +377,8 @@ class LBFactoryTest extends MediaWikiTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 		$lb1->method( 'getServerCount' )->willReturn( 2 );
+		$lb1->method( 'hasReplicaServers' )->willReturn( true );
+		$lb1->method( 'hasStreamingReplicaServers' )->willReturn( true );
 		$lb1->method( 'getServerName' )->with( 0 )->willReturn( 'master1' );
 		$lb1->expects( $this->once() )
 			->method( 'waitFor' )->with( $this->equalTo( $m1Pos ) );
@@ -381,6 +387,8 @@ class LBFactoryTest extends MediaWikiTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 		$lb2->method( 'getServerCount' )->willReturn( 2 );
+		$lb2->method( 'hasReplicaServers' )->willReturn( true );
+		$lb2->method( 'hasStreamingReplicaServers' )->willReturn( true );
 		$lb2->method( 'getServerName' )->with( 0 )->willReturn( 'master2' );
 		$lb2->expects( $this->once() )
 			->method( 'waitFor' )->with( $this->equalTo( $m2Pos ) );

@@ -2131,7 +2131,7 @@ class RevisionStore
 		// within web requests to certain avoid bugs like T93866 and T94407.
 		if ( !$rev
 			&& !( $flags & self::READ_LATEST )
-			&& $lb->getServerCount() > 1
+			&& $lb->hasStreamingReplicaServers()
 			&& $lb->hasOrMadeRecentMasterChanges()
 		) {
 			$flags = self::READ_LATEST;
