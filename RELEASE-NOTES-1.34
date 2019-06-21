@@ -227,6 +227,8 @@ because of Phabricator reports.
 * The global function wfBCP47, deprecated in 1.31, has been removed.
 * wfCountDown() function, deprecated in 1.31, has been removed. Use
   \Maintenance::countDown() method instead.
+* OutputPage::wrapWikiMsg() no longer accepts an options parameter. This was
+  deprecated since 1.20.
 * …
 
 === Deprecations in 1.34 ===
