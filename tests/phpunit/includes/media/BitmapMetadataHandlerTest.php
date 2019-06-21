@@ -83,7 +83,7 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 		$this->assertEquals( '1997:03:02 00:01:02', $meta['DateTimeOriginal'] );
 
 		$meta = BitmapMetadataHandler::Jpeg( $this->filePath .
-											 'iptc-timetest-invalid.jpg' );
+			'iptc-timetest-invalid.jpg' );
 
 		// raw date is 1845:03:02 03:01:02-03:00
 		$this->assertEquals( '1845:03:02 00:01:02', $meta['DateTimeOriginal'] );
