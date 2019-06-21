@@ -241,6 +241,8 @@ because of Phabricator reports.
 * The UserLoadFromSession hook, deprecated in 1.27, has been removed.
 * The wfResetSessionID global function, deprecated in 1.27, has been removed.
   Use MediaWiki\Session\SessionManager instead.
+* The wfGetLBFactory global function, deprecated in 1.27, has been removed.
+  Use MediaWikiServices::getInstance()->getDBLoadBalancerFactory().
 * …
 
 === Deprecations in 1.34 ===
