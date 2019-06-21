@@ -236,6 +236,8 @@ because of Phabricator reports.
   TitlePrefixSearch or StringPrefixSearch classes instead.
 * The UserRights hook, deprecated in 1.26, has been removed. Instead, use the
   UserGroupsChanged hook.
+* Skin::getDefaultInstance(), deprecated in 1.27, has been removed. Get the
+  instance from MediaWikiServices instead.
 * …
 
 === Deprecations in 1.34 ===
