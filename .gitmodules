@@ -1165,3 +1165,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-JsonConfig.git
 	branch = REL1_33
 	ignore = dirty
+[submodule "extensions/CategorySortHeaders"]
+	path = extensions/CategorySortHeaders
+	url = https://github.com/wikimedia/mediawiki-extensions-CategorySortHeaders
+	branch = REL1_33
+	ignore = dirty
