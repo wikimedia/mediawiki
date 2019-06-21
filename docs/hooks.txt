@@ -3832,12 +3832,6 @@ message(s).
 &$user: user retrieving new talks messages
 &$talks: array of new talks page(s)
 
-'UserRights': DEPRECATED since 1.26! Use UserGroupsChanged instead.
-After a user's group memberships are changed.
-&$user: User object that was changed
-$add: Array of strings corresponding to groups added
-$remove: Array of strings corresponding to groups removed
-
 'UserSaveOptions': Called just before saving user preferences. Hook handlers can
 either add or manipulate options, or reset one back to it's default to block
 changing it. Hook handlers are also allowed to abort the process by returning

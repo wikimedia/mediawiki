@@ -234,6 +234,8 @@ because of Phabricator reports.
   deprecated in 1.20.
 * PrefixSearch::titleSearch(), deprecated in 1.23, has been removed. Use the
   TitlePrefixSearch or StringPrefixSearch classes instead.
+* The UserRights hook, deprecated in 1.26, has been removed. Instead, use the
+  UserGroupsChanged hook.
 * …
 
 === Deprecations in 1.34 ===
