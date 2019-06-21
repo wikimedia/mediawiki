@@ -3744,14 +3744,6 @@ $name: user name
 $user: user object
 &$s: database query object
 
-'UserLoadFromSession': DEPRECATED since 1.27! Create a
-MediaWiki\Session\SessionProvider instead.
-Called to authenticate users on external/environmental means; occurs before
-session is loaded.
-$user: user object being loaded
-&$result: set this to a boolean value to abort the normal authentication
-  process
-
 'UserLoadOptions': When user options/preferences are being loaded from the
 database.
 $user: User object

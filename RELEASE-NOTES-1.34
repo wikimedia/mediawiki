@@ -238,6 +238,7 @@ because of Phabricator reports.
   UserGroupsChanged hook.
 * Skin::getDefaultInstance(), deprecated in 1.27, has been removed. Get the
   instance from MediaWikiServices instead.
+* The UserLoadFromSession hook, deprecated in 1.27, has been removed.
 * …
 
 === Deprecations in 1.34 ===

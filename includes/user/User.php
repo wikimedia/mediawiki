@@ -1346,13 +1346,6 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool True if the user is logged in, false otherwise.
 	 */
 	private function loadFromSession() {
-		// Deprecated hook
-		$result = null;
-		Hooks::run( 'UserLoadFromSession', [ $this, &$result ], '1.27' );
-		if ( $result !== null ) {
-			return $result;
-		}
-
 		// MediaWiki\Session\Session already did the necessary authentication of the user
 		// returned here, so just use it if applicable.
 		$session = $this->getRequest()->getSession();
