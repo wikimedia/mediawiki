@@ -416,12 +416,11 @@ abstract class LBFactory implements ILBFactory {
 		// time needed to wait on the next clusters.
 		$masterPositions = array_fill( 0, count( $lbs ), false );
 		foreach ( $lbs as $i => $lb ) {
-			if ( $lb->getServerCount() <= 1 ) {
-				// T29975 - Don't try to wait for replica DBs if there are none
-				// Prevents permission error when getting master position
-				continue;
-			} elseif ( $opts['ifWritesSince']
-				&& $lb->lastMasterChangeTimestamp() < $opts['ifWritesSince']
+			if ( !$lb->hasStreamingReplicaServers() ) {
+				continue; // T29975: no replication; avoid getMasterPos() permissions errors
+			} elseif (
+				$opts['ifWritesSince'] &&
+				$lb->lastMasterChangeTimestamp() < $opts['ifWritesSince']
 			) {
 				continue; // no writes since the last wait
 			}
@@ -675,7 +674,7 @@ abstract class LBFactory implements ILBFactory {
 	public function appendShutdownCPIndexAsQuery( $url, $index ) {
 		$usedCluster = 0;
 		$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$usedCluster ) {
-			$usedCluster |= ( $lb->getServerCount() > 1 );
+			$usedCluster |= $lb->hasStreamingReplicaServers();
 		} );
 
 		if ( !$usedCluster ) {
