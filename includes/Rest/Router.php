@@ -237,8 +237,9 @@ class Router {
 		$spec = $match['userData'];
 		$objectFactorySpec = array_intersect_key( $spec,
 			[ 'factory' => true, 'class' => true, 'args' => true ] );
+		/** @var $handler Handler (annotation for PHPStorm) */
 		$handler = ObjectFactory::getObjectFromSpec( $objectFactorySpec );
-		$handler->init( $request, $spec, $this->responseFactory );
+		$handler->init( $this, $request, $spec, $this->responseFactory );
 
 		try {
 			return $this->executeHandler( $handler );

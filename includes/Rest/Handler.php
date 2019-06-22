@@ -3,6 +3,9 @@
 namespace MediaWiki\Rest;
 
 abstract class Handler {
+	/** @var Router */
+	private $router;
+
 	/** @var RequestInterface */
 	private $request;
 
@@ -14,13 +17,23 @@ abstract class Handler {
 
 	/**
 	 * Initialise with dependencies from the Router. This is called after construction.
+	 * @internal
 	 */
-	public function init( RequestInterface $request, array $config,
+	public function init( Router $router, RequestInterface $request, array $config,
 		ResponseFactory $responseFactory
 	) {
+		$this->router = $router;
 		$this->request = $request;
 		$this->config = $config;
 		$this->responseFactory = $responseFactory;
+	}
+
+	/**
+	 * Get the Router. The return type declaration causes it to raise
+	 * a fatal error if init() has not yet been called.
+	 */
+	protected function getRouter(): Router {
+		return $this->router;
 	}
 
 	/**
