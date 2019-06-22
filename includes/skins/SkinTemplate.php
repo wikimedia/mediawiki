@@ -207,21 +207,10 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * initialize various variables and generate the template
-	 *
-	 * @param OutputPage|null $out
+	 * Initialize various variables and generate the template
 	 */
-	function outputPage( OutputPage $out = null ) {
+	function outputPage() {
 		Profiler::instance()->setTemplated( true );
-
-		$oldContext = null;
-		if ( $out !== null ) {
-			// Deprecated since 1.20, note added in 1.25
-			wfDeprecated( __METHOD__, '1.25' );
-			$oldContext = $this->getContext();
-			$this->setContext( $out->getContext() );
-		}
-
 		$out = $this->getOutput();
 
 		$this->initPage( $out );
@@ -231,10 +220,6 @@ class SkinTemplate extends Skin {
 
 		// result may be an error
 		$this->printOrError( $res );
-
-		if ( $oldContext ) {
-			$this->setContext( $oldContext );
-		}
 	}
 
 	/**
