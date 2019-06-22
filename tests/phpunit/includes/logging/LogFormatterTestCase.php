@@ -5,15 +5,11 @@
  */
 abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
 
-	public function doTestLogFormatter( $row, $extra, $userGroups = [] ) {
+	public function doTestLogFormatter( $row, $extra ) {
 		RequestContext::resetMain();
 		$row = $this->expandDatabaseRow( $row, $this->isLegacy( $extra ) );
 
-		$context = new RequestContext();
-		$context->setUser( $this->getTestUser( $userGroups )->getUser() );
-
 		$formatter = LogFormatter::newFromRow( $row );
-		$formatter->setContext( $context );
 
 		$this->assertEquals(
 			$extra['text'],
