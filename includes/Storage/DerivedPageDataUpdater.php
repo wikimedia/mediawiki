@@ -52,6 +52,9 @@ use MWCallableUpdate;
 use ParserCache;
 use ParserOptions;
 use ParserOutput;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use RecentChangesUpdateJob;
 use ResourceLoaderWikiModule;
 use Revision;
@@ -94,7 +97,7 @@ use WikiPage;
  * @since 1.32
  * @ingroup Page
  */
-class DerivedPageDataUpdater implements IDBAccessObject {
+class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 
 	/**
 	 * @var UserIdentity|null
@@ -135,6 +138,11 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 * @var ILBFactory
 	 */
 	private $loadbalancerFactory;
+
+	/**
+	 * @var LoggerInterface
+	 */
+	private $logger;
 
 	/**
 	 * @var string see $wgArticleCountMethod
@@ -293,6 +301,11 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		// XXX only needed for waiting for replicas to catch up; there should be a narrower
 		// interface for that.
 		$this->loadbalancerFactory = $loadbalancerFactory;
+		$this->logger = new NullLogger();
+	}
+
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
 	}
 
 	/**
@@ -850,11 +863,12 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		if ( $stashedEdit ) {
 			/** @var ParserOutput $output */
 			$output = $stashedEdit->output;
-
 			// TODO: this should happen when stashing the ParserOutput, not now!
 			$output->setCacheTime( $stashedEdit->timestamp );
 
 			$renderHints['known-revision-output'] = $output;
+
+			$this->logger->debug( __METHOD__ . ': using stashed edit output...' );
 		}
 
 		// NOTE: we want a canonical rendering, so don't pass $this->user or ParserOptions

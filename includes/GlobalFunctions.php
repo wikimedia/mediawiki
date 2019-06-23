@@ -1882,10 +1882,9 @@ function wfTimestampOrNull( $outputtype = TS_UNIX, $ts = null ) {
 /**
  * Convenience function; returns MediaWiki timestamp for the present time.
  *
- * @return string
+ * @return string TS_MW timestamp
  */
 function wfTimestampNow() {
-	# return NOW
 	return MWTimestamp::now( TS_MW );
 }
 
