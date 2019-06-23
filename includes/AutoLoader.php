@@ -143,6 +143,7 @@ class AutoLoader {
 			'MediaWiki\\Sparql\\' => __DIR__ . '/sparql/',
 			'MediaWiki\\Storage\\' => __DIR__ . '/Storage/',
 			'MediaWiki\\Tidy\\' => __DIR__ . '/tidy/',
+			'Wikimedia\\ParamValidator\\' => __DIR__ . '/libs/ParamValidator/',
 			'Wikimedia\\Services\\' => __DIR__ . '/libs/services/',
 		];
 	}
