@@ -372,7 +372,7 @@
 	"perfcached": "Aşağıdakı məlumatlar keş yaddaşdan götürülmüşdür və bu səbəbdən aktual olmaya bilər. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
 	"perfcachedts": "Aşağıdakı məlumatlar keş yaddaşdan götürülmüşdür və sonuncu dəfə $1 tarixində yenilənmişdir. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 	"querypage-no-updates": "Bu an üçün güncəlləmələr sıradan çıxdı. Buradakı məlumat dərhal yenilənməyəcək.",
-	"viewsource": "Mənbə göstər",
+	"viewsource": "Kodu göstər",
 	"viewsource-title": "$1 üçün mənbəyə bax",
 	"actionthrottled": "Sürət məhdudiyyəti",
 	"actionthrottledtext": "Spamla mübarizə məqsədilə qısa vaxt kəsiyi ərzində bu hərəkətlərin təkrarlanma sayı məhdudlaşdırılıb və siz qoyulan həddi aşmısınız.\nLütfən bir neçə dəqiqə sonra yenidən yoxlayın.",

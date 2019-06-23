@@ -304,7 +304,7 @@
 	"config-install-stats": "شروع آمار",
 	"config-install-keys": "تولید کلیدهای مخفی",
 	"config-install-updates": "جلوگیری از به روز رسانی‌های غیر ضروری در حال اجرا",
-	"config-install-updates-failed": "<strong>خطا:</strong> قراردادن کلیدهای به روز رسانی به داخل جداول با خطای روبرو مواجه شد: $1",
+	"config-install-updates-failed": "<strong>خطا:</strong> قرار دادن کلیدهای روزآمدسازی در جدول‌ها با شکست و این خطا مواجه شد: $1",
 	"config-install-sysop": "ایجاد حساب کاربری مدیر",
 	"config-install-subscribe-fail": "قادر تصدیق اعلام مدیاویکی نیست:$1",
 	"config-install-subscribe-notpossible": "سی‌یوآر‌ال نصب نشده‌است و <code>allow_url_fopen</code> در دسترس نیست.",

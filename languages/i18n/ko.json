@@ -3141,7 +3141,7 @@
 	"confirm-unwatch-top": "이 문서를 주시문서 목록에서 뺄까요?",
 	"confirm-rollback-button": "확인",
 	"confirm-rollback-top": "이 문서의 편집을 되돌리시겠습니까?",
-	"confirm-rollback-bottom": "이 작업은 선택된 변경 사항을 즉시 롤백합니다",
+	"confirm-rollback-bottom": "이 작업은 이 문서의 선택된 변경 사항을 즉시 되돌립니다.",
 	"confirm-mcrrestore-title": "판 복구",
 	"confirm-mcrundo-title": "변경사항 취소",
 	"mcrundofailed": "실행 취소를 실패했습니다",

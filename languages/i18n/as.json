@@ -1618,6 +1618,7 @@
 	"pager-older-n": "{{PLURAL:$1|পুৰণতৰ ১|পুৰণতৰ $1}}",
 	"suppress": "অমনোযোগ",
 	"querypage-disabled": "কাৰ্য্যগত কাৰণত এই বিশেষ পৃষ্ঠাটো নিষ্ক্ৰিয় কৰা হৈছে।",
+	"apihelp-no-such-module": "\"$1\" মডিউল পোৱা নগ'ল।",
 	"apisandbox-results": "ফলাফল",
 	"apisandbox-continue": "অব্যাহত ৰাখক",
 	"booksources": "গ্ৰন্থৰ উৎস সমূহ",
