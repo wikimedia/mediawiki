@@ -291,19 +291,28 @@ class RenderedRevision implements SlotRenderingProvider {
 
 		$this->setRevisionInternal( $rev );
 
-		$this->pruneRevisionSensitiveOutput( $this->revision->getId() );
+		$this->pruneRevisionSensitiveOutput(
+			$this->revision->getId(),
+			$this->revision->getTimestamp()
+		);
 	}
 
 	/**
 	 * Prune any output that depends on the revision ID.
 	 *
-	 * @param int|bool  $actualRevId The actual rev id, to check the used speculative rev ID
+	 * @param int|bool $actualRevId The actual rev id, to check the used speculative rev ID
 	 *        against, or false to not purge on vary-revision-id, or true to purge on
 	 *        vary-revision-id unconditionally.
+	 * @param string|bool $actualRevTimestamp The actual rev timestamp, to check against the
+	 *        parser output revision timestamp, or false to not purge on vary-revision-timestamp
 	 */
-	private function pruneRevisionSensitiveOutput( $actualRevId ) {
+	private function pruneRevisionSensitiveOutput( $actualRevId, $actualRevTimestamp ) {
 		if ( $this->revisionOutput ) {
-			if ( $this->outputVariesOnRevisionMetaData( $this->revisionOutput, $actualRevId ) ) {
+			if ( $this->outputVariesOnRevisionMetaData(
+				$this->revisionOutput,
+				$actualRevId,
+				$actualRevTimestamp
+			) ) {
 				$this->revisionOutput = null;
 			}
 		} else {
@@ -311,7 +320,11 @@ class RenderedRevision implements SlotRenderingProvider {
 		}
 
 		foreach ( $this->slotsOutput as $role => $output ) {
-			if ( $this->outputVariesOnRevisionMetaData( $output, $actualRevId ) ) {
+			if ( $this->outputVariesOnRevisionMetaData(
+				$output,
+				$actualRevId,
+				$actualRevTimestamp
+			) ) {
 				unset( $this->slotsOutput[$role] );
 			}
 		}
@@ -372,19 +385,24 @@ class RenderedRevision implements SlotRenderingProvider {
 	/**
 	 * @param ParserOutput $out
 	 * @param int|bool  $actualRevId The actual rev id, to check the used speculative rev ID
-	 *        against, or false to not purge on vary-revision-id, or true to purge on
+	 *        against, false to not purge on vary-revision-id, or true to purge on
 	 *        vary-revision-id unconditionally.
+	 * @param string|bool $actualRevTimestamp The actual rev timestamp, to check against the
+	 *        parser output revision timestamp, false to not purge on vary-revision-timestamp,
+	 *        or true to purge on vary-revision-timestamp unconditionally.
 	 * @return bool
 	 */
-	private function outputVariesOnRevisionMetaData( ParserOutput $out, $actualRevId ) {
+	private function outputVariesOnRevisionMetaData(
+		ParserOutput $out,
+		$actualRevId,
+		$actualRevTimestamp
+	) {
 		$method = __METHOD__;
 
 		if ( $out->getFlag( 'vary-revision' ) ) {
-			// If {{PAGEID}} resolved to 0 or {{REVISIONTIMESTAMP}} used the current
-			// timestamp rather than that of an actual revision, then those words need
-			// to resolve to the actual page ID or revision timestamp, respectively.
+			// If {{PAGEID}} resolved to 0, then that word need to resolve to the actual page ID
 			$this->saveParseLogger->info(
-				"$method: Prepared output has vary-revision...\n"
+				"$method: Prepared output has vary-revision..."
 			);
 			return true;
 		} elseif ( $out->getFlag( 'vary-revision-id' )
@@ -392,7 +410,16 @@ class RenderedRevision implements SlotRenderingProvider {
 			&& ( $actualRevId === true || $out->getSpeculativeRevIdUsed() !== $actualRevId )
 		) {
 			$this->saveParseLogger->info(
-				"$method: Prepared output has vary-revision-id with wrong ID...\n"
+				"$method: Prepared output has vary-revision-id with wrong ID..."
+			);
+			return true;
+		} elseif ( $out->getFlag( 'vary-revision-timestamp' )
+			&& $actualRevTimestamp !== false
+			&& ( $actualRevTimestamp === true ||
+				$out->getRevisionTimestampUsed() !== $actualRevTimestamp )
+		) {
+			$this->saveParseLogger->info(
+				"$method: Prepared output has vary-revision-timestamp with wrong timestamp..."
 			);
 			return true;
 		} elseif ( $out->getFlag( 'vary-revision-exists' ) ) {
@@ -400,7 +427,7 @@ class RenderedRevision implements SlotRenderingProvider {
 			// Note that edit stashing always uses '-', which can be used for both
 			// edit filter checks and canonical parser cache.
 			$this->saveParseLogger->info(
-				"$method: Prepared output has vary-revision-exists...\n"
+				"$method: Prepared output has vary-revision-exists..."
 			);
 			return true;
 		} else {
@@ -412,7 +439,7 @@ class RenderedRevision implements SlotRenderingProvider {
 			// constructs the ParserOptions: For a null-edit, setCurrentRevisionCallback is called
 			// with the old, existing revision.
 
-			wfDebug( "$method: Keeping prepared output...\n" );
+			$this->saveParseLogger->debug( "$method: Keeping prepared output..." );
 			return false;
 		}
 	}

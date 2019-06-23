@@ -280,6 +280,12 @@ class PageEditStash {
 				"Cache for key '{key}' has vary_revision_id; post-insertion parse possible.",
 				$context
 			);
+		} elseif ( $editInfo->output->getFlag( 'vary-revision-timestamp' ) ) {
+			// Similar to the above if we didn't guess the timestamp correctly.
+			$logger->debug(
+				"Cache for key '{key}' has vary_revision_timestamp; post-insertion parse possible.",
+				$context
+			);
 		}
 
 		return $editInfo;

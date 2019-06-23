@@ -1697,6 +1697,7 @@ class WikiPage implements Page, IDBAccessObject {
 			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()
 		);
 
+		$derivedDataUpdater->setLogger( LoggerFactory::getInstance( 'SaveParse' ) );
 		$derivedDataUpdater->setRcWatchCategoryMembership( $wgRCWatchCategoryMembership );
 		$derivedDataUpdater->setArticleCountMethod( $wgArticleCountMethod );
 
