@@ -409,7 +409,7 @@
 	"virus-badscanner": "Loša konfiguracija: nepoznati skener za viruse: ''$1''",
 	"virus-scanfailed": "skeniranje neuspješno (kod $1)",
 	"virus-unknownscanner": "nepoznati antivirus:",
-	"logouttext": "'''Odjavili ste se.'''\n\nNeke se stranice mogu prikazivati kao da ste još uvijek prijavljeni, sve dok ne očistite međuspremnik svog preglednika.",
+	"logouttext": "<strong>Odjavljeni ste.</strong>\n\nNeke se stranice mogu prikazivati kao da ste još uvijek prijavljeni, sve dok ne očistite međuspremnik svog preglednika.",
 	"logging-out-notify": "Odjavljujemo Vas, molimo pričekajte.",
 	"cannotlogoutnow-title": "Odjava trenutno nije moguća",
 	"cannotlogoutnow-text": "Odjava nije moguća tijekom uporabe $1.",

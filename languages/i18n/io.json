@@ -1317,7 +1317,7 @@
 	"nolinkstoimage": "Nula pagino ligesas ad ica pagino.",
 	"morelinkstoimage": "Videz [[Special:WhatLinksHere/$1|plusa ligili]] ad ica arkivo.",
 	"linkstoimage-redirect": "$1 (arkivo ridirektita) $2",
-	"sharedupload": "Ca arkivo esas de $1 e posible esas uzata da altra projekti.",
+	"sharedupload": "Ca arkivo originis de $1 e posible esas uzata da altra projeti.",
 	"sharedupload-desc-here": "Ca arkivo jacas en $1, e povas uzesar en altra projeti.\nLa deskriptado en lua [$2 pagino di deskriptado] montresas adinfre.",
 	"sharedupload-desc-edit": "Ca arkivo venas de $1 e povas uzesar en altra projeti.\nPosible vu deziros redaktar ibe lua deskripto en [$2 lua deskripto-pagino].",
 	"sharedupload-desc-create": "Ca arkivo venas de $1 e povas uzesar en altra projeti.\nPosible vu deziros redaktar ibe lua deskripto en [$2 lua deskripto-pagino].",

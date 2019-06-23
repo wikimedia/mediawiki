@@ -2608,6 +2608,8 @@
 	"createaccountblock": "registrazione bloccata",
 	"emailblock": "e-mail bloccate",
 	"blocklist-nousertalk": "non può modificare la propria pagina di discussione",
+	"blocklist-editing": "modifica",
+	"blocklist-editing-sitewide": "modifica (sito intero)",
 	"blocklist-editing-page": "pagine",
 	"blocklist-editing-ns": "namespace",
 	"ipblocklist-empty": "L'elenco dei blocchi è vuoto.",
