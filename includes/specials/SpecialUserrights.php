@@ -405,8 +405,6 @@ class UserrightsPage extends SpecialPage {
 		wfDebug( 'newGroups: ' . print_r( $newGroups, true ) . "\n" );
 		wfDebug( 'oldUGMs: ' . print_r( $oldUGMs, true ) . "\n" );
 		wfDebug( 'newUGMs: ' . print_r( $newUGMs, true ) . "\n" );
-		// Deprecated in favor of UserGroupsChanged hook
-		Hooks::run( 'UserRights', [ &$user, $add, $remove ], '1.26' );
 
 		// Only add a log entry if something actually changed
 		if ( $newGroups != $oldGroups || $newUGMs != $oldUGMs ) {
