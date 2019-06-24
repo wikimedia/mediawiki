@@ -34,6 +34,30 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 						'duration' => 'infinite',
 						'flags' => [ 'anononly' ],
 					],
+					'preload' => [ new TitleValue( NS_USER_TALK, 'Logtestuser' ) ],
+				],
+			],
+
+			// With blank page title (T224811)
+			[
+				[
+					'type' => 'block',
+					'action' => 'block',
+					'comment' => 'Block comment',
+					'user' => 0,
+					'user_text' => 'Sysop',
+					'namespace' => NS_USER,
+					'title' => '',
+					'params' => [],
+				],
+				[
+					'text' => 'Sysop blocked (no username available) '
+						. 'with an expiration time of indefinite',
+					'api' => [
+						'duration' => 'infinite',
+						'flags' => [],
+					],
+					'preload' => [],
 				],
 			],
 
