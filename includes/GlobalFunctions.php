@@ -30,7 +30,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\ProcOpenError;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Shell\Shell;
-use Wikimedia\ScopedCallback;
 use Wikimedia\WrappedString;
 use Wikimedia\AtEase\AtEase;
 
@@ -2431,28 +2430,6 @@ function wfRelativePath( $path, $from ) {
 }
 
 /**
- * Reset the session id
- *
- * @deprecated since 1.27, use MediaWiki\Session\SessionManager instead
- * @since 1.22
- */
-function wfResetSessionID() {
-	wfDeprecated( __FUNCTION__, '1.27' );
-	$session = SessionManager::getGlobalSession();
-	$delay = $session->delaySave();
-
-	$session->resetId();
-
-	// Make sure a session is started, since that's what the old
-	// wfResetSessionID() did.
-	if ( session_id() !== $session->getId() ) {
-		wfSetupSession( $session->getId() );
-	}
-
-	ScopedCallback::consume( $delay );
-}
-
-/**
  * Initialise php session
  *
  * @deprecated since 1.27, use MediaWiki\Session\SessionManager instead.
@@ -2598,19 +2575,6 @@ function wfGetLB( $wiki = false ) {
 		$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		return $factory->getMainLB( $wiki );
 	}
-}
-
-/**
- * Get the load balancer factory object
- *
- * @deprecated since 1.27, use MediaWikiServices::getInstance()->getDBLoadBalancerFactory() instead.
- * TODO: Remove in MediaWiki 1.35
- *
- * @return \Wikimedia\Rdbms\LBFactory
- */
-function wfGetLBFactory() {
-	wfDeprecated( __METHOD__, '1.27' );
-	return MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 }
 
 /**
