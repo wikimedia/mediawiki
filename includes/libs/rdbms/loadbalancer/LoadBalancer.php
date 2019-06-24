@@ -1001,11 +1001,8 @@ class LoadBalancer implements ILoadBalancer {
 		if ( isset( $this->conns[$connKey][$i][0] ) ) {
 			$conn = $this->conns[$connKey][$i][0];
 		} else {
-			if ( !isset( $this->servers[$i] ) || !is_array( $this->servers[$i] ) ) {
-				throw new InvalidArgumentException( "No server with index '$i'" );
-			}
 			// Open a new connection
-			$server = $this->servers[$i];
+			$server = $this->getServerInfoStrict( $i );
 			$server['serverIndex'] = $i;
 			$server['autoCommitOnly'] = $autoCommit;
 			$conn = $this->reallyOpenConnection( $server, $this->localDomain );
@@ -1115,11 +1112,8 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		if ( !$conn ) {
-			if ( !isset( $this->servers[$i] ) || !is_array( $this->servers[$i] ) ) {
-				throw new InvalidArgumentException( "No server with index '$i'" );
-			}
 			// Open a new connection
-			$server = $this->servers[$i];
+			$server = $this->getServerInfoStrict( $i );
 			$server['serverIndex'] = $i;
 			$server['foreignPoolRefCount'] = 0;
 			$server['foreign'] = true;
@@ -1337,7 +1331,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function getServerName( $i ) {
-		$name = $this->servers[$i]['hostName'] ?? $this->servers[$i]['host'] ?? '';
+		$name = $this->servers[$i]['hostName'] ?? ( $this->servers[$i]['host'] ?? '' );
 
 		return ( $name != '' ) ? $name : 'localhost';
 	}
@@ -1942,7 +1936,7 @@ class LoadBalancer implements ILoadBalancer {
 			foreach ( $lagTimes as $i => $lag ) {
 				if ( $this->genericLoads[$i] > 0 && $lag > $maxLag ) {
 					$maxLag = $lag;
-					$host = $this->servers[$i]['host'];
+					$host = $this->getServerInfoStrict( $i, 'host' );
 					$maxIndex = $i;
 				}
 			}
@@ -2148,6 +2142,28 @@ class LoadBalancer implements ILoadBalancer {
 		} else {
 			$this->localDomainIdAlias = $this->localDomain->getDatabase();
 		}
+	}
+
+	/**
+	 * @param int $i Server index
+	 * @param string|null $field Server index field [optional]
+	 * @return array|mixed
+	 * @throws InvalidArgumentException
+	 */
+	private function getServerInfoStrict( $i, $field = null ) {
+		if ( !isset( $this->servers[$i] ) || !is_array( $this->servers[$i] ) ) {
+			throw new InvalidArgumentException( "No server with index '$i'" );
+		}
+
+		if ( $field !== null ) {
+			if ( !array_key_exists( $field, $this->servers[$i] ) ) {
+				throw new InvalidArgumentException( "No field '$field' in server index '$i'" );
+			}
+
+			return $this->servers[$i][$field];
+		}
+
+		return $this->servers[$i];
 	}
 
 	function __destruct() {
