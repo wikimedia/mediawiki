@@ -145,6 +145,11 @@ class ListredirectsPage extends QueryPage {
 		}
 	}
 
+	public function execute( $par ) {
+		$this->addHelpLink( 'Help:Redirects' );
+		parent::execute( $par );
+	}
+
 	protected function getGroupName() {
 		return 'pages';
 	}
