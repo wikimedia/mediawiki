@@ -409,7 +409,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * @return array List of files
 	 */
 	protected function getFileDependencies( ResourceLoaderContext $context ) {
-		$vary = $context->getSkin() . '|' . $context->getLanguage();
+		$vary = self::getVary( $context );
 
 		// Try in-object cache first
 		if ( !isset( $this->fileDeps[$vary] ) ) {
@@ -444,7 +444,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * @param string[] $files Array of file names
 	 */
 	public function setFileDependencies( ResourceLoaderContext $context, $files ) {
-		$vary = $context->getSkin() . '|' . $context->getLanguage();
+		$vary = self::getVary( $context );
 		$this->fileDeps[$vary] = $files;
 	}
 
@@ -481,7 +481,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 			}
 
 			// The file deps list has changed, we want to update it.
-			$vary = $context->getSkin() . '|' . $context->getLanguage();
+			$vary = self::getVary( $context );
 			$cache = ObjectCache::getLocalClusterInstance();
 			$key = $cache->makeKey( __METHOD__, $this->getName(), $vary );
 			$scopeLock = $cache->getScopedLock( $key, 0 );
@@ -1016,5 +1016,19 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 */
 	protected static function safeFileHash( $filePath ) {
 		return FileContentsHasher::getFileContentsHash( $filePath );
+	}
+
+	/**
+	 * Get vary string.
+	 *
+	 * @internal For internal use only.
+	 * @param ResourceLoaderContext $context
+	 * @return string Vary string
+	 */
+	public static function getVary( ResourceLoaderContext $context ) {
+		return implode( '|', [
+			$context->getSkin(),
+			$context->getLanguage(),
+		] );
 	}
 }
