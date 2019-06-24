@@ -933,12 +933,16 @@ abstract class ContentHandler {
 			return '';
 		}
 
+		// Set the maximum auto-summary length to the general maximum summary length
+		// T221617
+		$summaryLimit = CommentStore::COMMENT_CHARACTER_LIMIT;
+
 		// Decide what kind of auto-summary is needed.
 		switch ( $changeType ) {
 			case 'new-redirect':
 				$newTarget = $newContent->getRedirectTarget();
 				$truncatedtext = $newContent->getTextForSummary(
-					250
+					$summaryLimit
 					- strlen( wfMessage( 'autoredircomment' )->inContentLanguage()->text() )
 					- strlen( $newTarget->getFullText() )
 				);
@@ -950,7 +954,7 @@ abstract class ContentHandler {
 				$newTarget = $newContent->getRedirectTarget();
 
 				$truncatedtext = $newContent->getTextForSummary(
-					250
+					$summaryLimit
 					- strlen( wfMessage( 'autosumm-changed-redirect-target' )
 						->inContentLanguage()->text() )
 					- strlen( $oldTarget->getFullText() )
@@ -964,7 +968,7 @@ abstract class ContentHandler {
 			case 'removed-redirect':
 				$oldTarget = $oldContent->getRedirectTarget();
 				$truncatedtext = $newContent->getTextForSummary(
-					250
+					$summaryLimit
 					- strlen( wfMessage( 'autosumm-removed-redirect' )
 						->inContentLanguage()->text() )
 					- strlen( $oldTarget->getFullText() ) );
@@ -974,7 +978,7 @@ abstract class ContentHandler {
 			case 'newpage':
 				// If they're making a new article, give its text, truncated, in the summary.
 				$truncatedtext = $newContent->getTextForSummary(
-					200 - strlen( wfMessage( 'autosumm-new' )->inContentLanguage()->text() ) );
+					$summaryLimit - strlen( wfMessage( 'autosumm-new' )->inContentLanguage()->text() ) );
 
 				return wfMessage( 'autosumm-new' )->rawParams( $truncatedtext )
 					->inContentLanguage()->text();
@@ -982,7 +986,7 @@ abstract class ContentHandler {
 				return wfMessage( 'autosumm-blank' )->inContentLanguage()->text();
 			case 'replace':
 				$truncatedtext = $newContent->getTextForSummary(
-					200 - strlen( wfMessage( 'autosumm-replace' )->inContentLanguage()->text() ) );
+					$summaryLimit - strlen( wfMessage( 'autosumm-replace' )->inContentLanguage()->text() ) );
 
 				return wfMessage( 'autosumm-replace' )->rawParams( $truncatedtext )
 					->inContentLanguage()->text();
