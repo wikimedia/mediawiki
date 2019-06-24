@@ -740,6 +740,8 @@
 	"autoblockedtext": "因先前的另一位使用者被 $1 封鎖，您的 IP 位址已被自動封鎖。\n原因是：\n\n:<em>$2</em>\n\n* 封鎖開始時間：$8\n* 封鎖結束時間：$6\n* 相關封鎖對象：$7\n\n您可以聯絡 $1 或其他的 [[{{MediaWiki:Grouppage-sysop}}|管理員]] 討論封鎖的相關問題。\n若您已在 [[Special:Preferences|偏好設定]] 中設定了一個有效的電子郵件地址，且尚未被封鎖郵件功能，則您可透過 \"{{int:emailuser}}\" 的功能來聯絡相關管理員。\n您目前的 IP 位址是 $3，此次封鎖的 ID 為 #$5。\n請您在詢問時附註以上詳細資料。",
 	"systemblockedtext": "您的使用者名稱或 IP 位址已被 MediaWiki 自動封鎖，原因如下：\n\n:<em>$2</em>\n\n* 封鎖開始時間：$8\n* 封鎖結束時間：$6\n* 被封鎖的使用者：$7\n\n您目前的 IP 位址為 $3。\n請在做詢問時附上以上資訊。",
 	"blockednoreason": "未說明原因",
+	"blockedtext-composite": "<strong>您的使用者名稱或 IP 位址已被封鎖。</strong>\n\n原因如下：\n\n:<em>$2</em>\n\n* 封鎖開始時間：$8\n* 最長的封鎖結束時間：$6\n\n您目前的 IP 位址為 $3。\n請在做詢問時附上以上資訊。",
+	"blockedtext-composite-reason": "有多個封鎖目標為您的帳號和/或IP位址",
 	"whitelistedittext": "請先 $1 才可編輯頁面。",
 	"confirmedittext": "在編輯此頁之前您必須確認您的電子郵件地址。\n請透過 [[Special:Preferences|偏好設定]] 設定並驗證您的電子郵件地址。",
 	"nosuchsectiontitle": "找不到章節",
@@ -3904,5 +3906,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "建議在登入時更改",
 	"easydeflate-invaliddeflate": "提供的內容未被正常的壓縮",
 	"unprotected-js": "基於安全因素，JavaScript 不能從未保護的頁面來載入。請僅在 MediaWiki:命名空間或使用者子頁面中建立 JavaScript。",
-	"userlogout-continue": "若您想要登出請[$1 繼續前至登出頁面]。"
+	"userlogout-continue": "您想要登出嗎？"
 }

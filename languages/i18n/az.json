@@ -2480,7 +2480,7 @@
 	"feedback-subject": "Mövzu:",
 	"feedback-submit": "Təsdiq et",
 	"feedback-thanks-title": "Təşəkkür!",
-	"searchsuggest-search": "{{grammar:prepositional|{{SITENAME}}}} axtar",
+	"searchsuggest-search": "{{grammar:prepositional|{{SITENAME}}}} saytında axtar",
 	"api-error-unknown-warning": "Naməlum xəbərdarlıq: \"$1\".",
 	"api-error-unknownerror": "Naməlum xəta: \"$1\".",
 	"duration-seconds": "$1 {{PLURAL:$1|saniyə|saniyə}}",
