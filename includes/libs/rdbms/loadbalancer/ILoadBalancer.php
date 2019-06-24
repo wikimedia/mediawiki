@@ -315,22 +315,6 @@ interface ILoadBalancer {
 	public function getWriterIndex();
 
 	/**
-	 * Returns true if the specified index is a valid server index
-	 *
-	 * @param int $i
-	 * @return bool
-	 */
-	public function haveIndex( $i );
-
-	/**
-	 * Returns true if the specified index is valid and has non-zero load
-	 *
-	 * @param int $i
-	 * @return bool
-	 */
-	public function isNonZeroLoad( $i );
-
-	/**
 	 * Get the number of servers defined in configuration
 	 *
 	 * @return int
