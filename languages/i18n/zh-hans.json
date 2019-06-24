@@ -3961,5 +3961,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "建议在登录时更改",
 	"easydeflate-invaliddeflate": "提供的内容未被适当缩小",
 	"unprotected-js": "基于安全原因，JavaScript不能在未保护页面中载入。请在“MediaWiki:”名字空间或者用户子页面中添加JavaScript。",
-	"userlogout-continue": "如果你希望登出请[$1 点这里]。"
+	"userlogout-continue": "您确定要登出吗？"
 }

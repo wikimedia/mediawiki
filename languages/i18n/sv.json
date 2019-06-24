@@ -82,7 +82,8 @@
 			"Nirmos (Wikimedia)",
 			"Psl85",
 			"Sturban",
-			"Taylor"
+			"Taylor",
+			"Mjälten"
 		]
 	},
 	"tog-underline": "Stryk under länkar:",
@@ -246,7 +247,7 @@
 	"history": "Sidhistorik",
 	"history_short": "Historik",
 	"history_small": "historik",
-	"updatedmarker": "uppdaterad sedan senaste besöket",
+	"updatedmarker": "uppdaterad sedan ditt senaste besök",
 	"printableversion": "Utskriftsvänlig version",
 	"permalink": "Permanent länk",
 	"print": "Skriv ut",
@@ -1565,8 +1566,8 @@
 	"rcfilters-view-tags-tooltip": "Filtrera resultat med redigeringsmärken",
 	"rcfilters-view-return-to-default-tooltip": "Återvänd till huvudfiltreringsmenyn",
 	"rcfilters-view-tags-help-icon-tooltip": "Läs mer om taggade redigeringar",
-	"rcfilters-liveupdates-button": "Liveuppdateringar",
-	"rcfilters-liveupdates-button-title-on": "Stäng av liveuppdateringar",
+	"rcfilters-liveupdates-button": "Realtidsuppdateringar",
+	"rcfilters-liveupdates-button-title-on": "Stäng av uppdateringar i realtid",
 	"rcfilters-liveupdates-button-title-off": "Visa nya ändringar när de händer",
 	"rcfilters-watchlist-markseen-button": "Markera alla ändringar som sedda",
 	"rcfilters-watchlist-edit-watchlist-button": "Redigera din lista över bevakade sidor",
@@ -1712,7 +1713,7 @@
 	"uploaded-setting-href-svg": "Användning av taggen \"set\" för att lägga till attributen \"href\" till överordnade element blockeras.",
 	"uploaded-wrong-setting-svg": "Användning av \"set\"-taggen för att lägga till ett remote-/data-/skriptmål till något attribut är blokerat. Hittade <code>&lt;set to=\"$1\"&gt;</code> i den uppladdade SVG-filen.",
 	"uploaded-setting-handler-svg": "SVG som anger \"handler\"-attributet med remote/data/skript är blockerat. Hittade <code>$1=\"$2\"</code> i den uppladdade SVG-filen.",
-	"uploaded-remote-url-svg": "SVG som anger style-attributet med en fjärr-URL är blockerat. Hittade <code>$1=\"$2\"</code> i den uppladdade SVG-filen.",
+	"uploaded-remote-url-svg": "SVG som anger stilattributet med en fjärr-URL är blockerat. Hittade <code>$1=\"$2\"</code> i den uppladdade SVG-filen.",
 	"uploaded-image-filter-svg": "Hittade bildfilter med URL: <code>&lt;$1 $2=\"$3\"&gt;</code> i den uppladdade SVG-filen.",
 	"uploadscriptednamespace": "Denna SVG-fil innehåller den ogiltiga namnrymden \"<nowiki>$1</nowiki>\".",
 	"uploadinvalidxml": "XML-koden i den uppladdade filen kunde inte tolkas.",
