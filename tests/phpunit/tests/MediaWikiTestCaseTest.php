@@ -167,7 +167,7 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$lb = $lbFactory->newMainLB();
-		$db = $lb->getConnection( DB_REPLICA, DBO_TRX );
+		$db = $lb->getConnection( DB_REPLICA );
 
 		// sanity
 		$this->assertNotSame( $this->db, $db );

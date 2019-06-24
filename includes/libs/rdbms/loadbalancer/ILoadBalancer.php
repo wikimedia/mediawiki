@@ -23,6 +23,7 @@
 namespace Wikimedia\Rdbms;
 
 use Exception;
+use LogicException;
 use InvalidArgumentException;
 
 /**
@@ -85,6 +86,8 @@ interface ILoadBalancer {
 
 	/** @var string Domain specifier when no specific database needs to be selected */
 	const DOMAIN_ANY = '';
+	/** @var bool The generic query group (bool gives b/c with 1.33 method signatures) */
+	const GROUP_GENERIC = false;
 
 	/** @var int DB handle should have DBO_TRX disabled and the caller will leave it as such */
 	const CONN_TRX_AUTOCOMMIT = 1;
@@ -100,25 +103,26 @@ interface ILoadBalancer {
 	 * Construct a manager of IDatabase connection objects
 	 *
 	 * @param array $params Parameter map with keys:
-	 *  - servers : Required. Array of server info structures.
-	 *  - localDomain: A DatabaseDomain or domain ID string.
-	 *  - loadMonitor : Name of a class used to fetch server lag and load.
+	 *  - servers : List of server info structures
+	 *  - localDomain: A DatabaseDomain or domain ID string
+	 *  - loadMonitor : Name of a class used to fetch server lag and load
 	 *  - readOnlyReason : Reason the master DB is read-only if so [optional]
 	 *  - waitTimeout : Maximum time to wait for replicas for consistency [optional]
 	 *  - maxLag: Try to avoid DB replicas with lag above this many seconds [optional]
 	 *  - srvCache : BagOStuff object for server cache [optional]
 	 *  - wanCache : WANObjectCache object [optional]
 	 *  - chronologyCallback: Callback to run before the first connection attempt [optional]
+	 *  - defaultGroup: Default query group; the generic group if not specified [optional]
 	 *  - hostname : The name of the current server [optional]
-	 *  - cliMode: Whether the execution context is a CLI script. [optional]
-	 *  - profiler : Class name or instance with profileIn()/profileOut() methods. [optional]
-	 *  - trxProfiler: TransactionProfiler instance. [optional]
-	 *  - replLogger: PSR-3 logger instance. [optional]
-	 *  - connLogger: PSR-3 logger instance. [optional]
-	 *  - queryLogger: PSR-3 logger instance. [optional]
-	 *  - perfLogger: PSR-3 logger instance. [optional]
-	 *  - errorLogger : Callback that takes an Exception and logs it. [optional]
-	 *  - deprecationLogger: Callback to log a deprecation warning. [optional]
+	 *  - cliMode: Whether the execution context is a CLI script [optional]
+	 *  - profiler : Class name or instance with profileIn()/profileOut() methods [optional]
+	 *  - trxProfiler: TransactionProfiler instance [optional]
+	 *  - replLogger: PSR-3 logger instance [optional]
+	 *  - connLogger: PSR-3 logger instance [optional]
+	 *  - queryLogger: PSR-3 logger instance [optional]
+	 *  - perfLogger: PSR-3 logger instance [optional]
+	 *  - errorLogger : Callback that takes an Exception and logs it [optional]
+	 *  - deprecationLogger: Callback to log a deprecation warning [optional]
 	 *  - roundStage: STAGE_POSTCOMMIT_* class constant; for internal use [optional]
 	 *  - ownerId: integer ID of an LBFactory instance that manages this instance [optional]
 	 * @throws InvalidArgumentException
@@ -159,9 +163,9 @@ interface ILoadBalancer {
 	 * Subsequent calls with the same $group will not need to make new connection attempts
 	 * since the acquired connection for each group is preserved.
 	 *
-	 * @param string|bool $group Query group, or false for the generic group
-	 * @param string|bool $domain Domain ID, or false for the current domain
-	 * @throws DBError
+	 * @param string|bool $group Query group or false for the generic group
+	 * @param string|bool $domain DB domain ID or false for the local domain
+	 * @throws DBError If no live handle can be obtained
 	 * @return bool|int|string
 	 */
 	public function getReaderIndex( $group = false, $domain = false );
@@ -204,7 +208,8 @@ interface ILoadBalancer {
 	 * Get any open connection to a given server index, local or foreign
 	 *
 	 * Use CONN_TRX_AUTOCOMMIT to only look for connections opened with that flag.
-	 * Avoid the use of begin() or startAtomic() on any such connections.
+	 * Avoid the use of transaction methods like IDatabase::begin() or IDatabase::startAtomic()
+	 * on any such connections.
 	 *
 	 * @param int $i Server index or DB_MASTER/DB_REPLICA
 	 * @param int $flags Bitfield of CONN_* class constants
@@ -213,95 +218,136 @@ interface ILoadBalancer {
 	public function getAnyOpenConnection( $i, $flags = 0 );
 
 	/**
-	 * Get a connection handle by server index
+	 * Get a live handle for a real or virtual (DB_MASTER/DB_REPLICA) server index
 	 *
-	 * The CONN_TRX_AUTOCOMMIT flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
-	 * (e.g. sqlite) in order to avoid deadlocks. ILoadBalancer::getServerAttributes()
-	 * can be used to check such flags beforehand.
+	 * The server index, $i, can be one of the following:
+	 *   - DB_REPLICA: a server index will be selected by the load balancer based on read
+	 *      weight, connectivity, and replication lag. Note that the master server might be
+	 *      configured with read weight. If $groups is empty then it means "the generic group",
+	 *      in which case all servers defined with read weight will be considered. Additional
+	 *      query groups can be configured, having their own list of server indexes and read
+	 *      weights. If a query group list is provided in $groups, then each recognized group
+	 *      will be tried, left-to-right, until server index selection succeeds or all groups
+	 *      have been tried, in which case the generic group will be tried.
+	 *   - DB_MASTER: the master server index will be used; the same as getWriterIndex().
+	 *      The value of $groups should be [] when using this server index.
+	 *   - Specific server index: a positive integer can be provided to use the server with
+	 *      that index. An error will be thrown in no such server index is recognized. This
+	 *      server selection method is usually only useful for internal load balancing logic.
+	 *      The value of $groups should be [] when using a specific server index.
 	 *
-	 * If the caller uses $domain or sets CONN_TRX_AUTOCOMMIT in $flags, then it must
-	 * also call ILoadBalancer::reuseConnection() on the handle when finished using it.
-	 * In all other cases, this is not necessary, though not harmful either.
-	 * Avoid the use of begin() or startAtomic() on any such connections.
+	 * Handles acquired by this method, getConnectionRef(), getLazyConnectionRef(), and
+	 * getMaintenanceConnectionRef() use the same set of shared connection pools. Callers that
+	 * get a *local* DB domain handle for the same server will share one handle for all of those
+	 * callers using CONN_TRX_AUTOCOMMIT (via $flags) and one handle for all of those callers not
+	 * using CONN_TRX_AUTOCOMMIT. Callers that get a *foreign* DB domain handle (via $domain) will
+	 * share any handle that has the right CONN_TRX_AUTOCOMMIT mode and is already on the right
+	 * DB domain. Otherwise, one of the "free for reuse" handles will be claimed or a new handle
+	 * will be made if there are none.
+	 *
+	 * Handle sharing is particularly useful when callers get local DB domain (the default),
+	 * transaction round aware (the default), DB_MASTER handles. All such callers will operate
+	 * within a single database transaction as a consequence. Handle sharing is also useful when
+	 * callers get local DB domain (the default), transaction round aware (the default), samely
+	 * query grouped (the default), DB_REPLICA handles. All such callers will operate within a
+	 * single database transaction as a consequence.
+	 *
+	 * Calling functions that use $domain must call reuseConnection() once the last query of the
+	 * function is executed. This lets the load balancer share this handle with other callers
+	 * requesting connections on different database domains.
+	 *
+	 * Use CONN_TRX_AUTOCOMMIT to use a separate pool of only auto-commit handles. This flag
+	 * is ignored for databases with ATTR_DB_LEVEL_LOCKING (e.g. sqlite) in order to avoid
+	 * deadlocks. getServerAttributes() can be used to check such attributes beforehand. Avoid
+	 * using IDatabase::begin() and IDatabase::commit() on such handles. If it is not possible
+	 * to avoid using methods like IDatabase::startAtomic() and IDatabase::endAtomic(), callers
+	 * should at least make sure that the atomic sections are closed on failure via try/catch
+	 * and IDatabase::cancelAtomic().
+	 *
+	 * @see ILoadBalancer::reuseConnection()
+	 * @see ILoadBalancer::getServerAttributes()
 	 *
 	 * @param int $i Server index (overrides $groups) or DB_MASTER/DB_REPLICA
-	 * @param array|string|bool $groups Query group(s), or false for the generic reader
-	 * @param string|bool $domain Domain ID, or false for the current domain
+	 * @param string[]|string $groups Query group(s) or [] to use the default group
+	 * @param string|bool $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants
-	 *
-	 * @note This method throws DBAccessError if ILoadBalancer::disable() was called
-	 *
-	 * @throws DBError If any error occurs that prevents the yielding of a (live) IDatabase
-	 * @return IDatabase|bool This returns false on failure if CONN_SILENCE_ERRORS is set
+	 * @return IDatabase|bool Live connection handle or false on failure
+	 * @throws DBError If no live handle can be obtained and CONN_SILENCE_ERRORS is not set
+	 * @throws DBAccessError If disable() was previously called
 	 */
 	public function getConnection( $i, $groups = [], $domain = false, $flags = 0 );
 
 	/**
-	 * Mark a foreign connection as being available for reuse under a different DB domain
+	 * Mark a live handle as being available for reuse under a different database domain
 	 *
-	 * This mechanism is reference-counted, and must be called the same number of times
-	 * as getConnection() to work.
+	 * This mechanism is reference-counted, and must be called the same number of times as
+	 * getConnection() to work. Never call this on handles acquired via getConnectionRef(),
+	 * getLazyConnectionRef(), and getMaintenanceConnectionRef(), as they already manage
+	 * the logic of calling this method when they fall out of scope in PHP.
+	 *
+	 * @see ILoadBalancer::getConnection()
 	 *
 	 * @param IDatabase $conn
-	 * @throws InvalidArgumentException
+	 * @throws LogicException
 	 */
 	public function reuseConnection( IDatabase $conn );
 
 	/**
-	 * Get a database connection handle reference
-	 *
-	 * The handle's methods simply wrap those of a Database handle
+	 * Get a live database handle reference for a real or virtual (DB_MASTER/DB_REPLICA) server index
 	 *
 	 * The CONN_TRX_AUTOCOMMIT flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
-	 * (e.g. sqlite) in order to avoid deadlocks. ILoadBalancer::getServerAttributes()
+	 * (e.g. sqlite) in order to avoid deadlocks. getServerAttributes()
 	 * can be used to check such flags beforehand. Avoid the use of begin() or startAtomic()
 	 * on any CONN_TRX_AUTOCOMMIT connections.
 	 *
 	 * @see ILoadBalancer::getConnection() for parameter information
 	 *
 	 * @param int $i Server index or DB_MASTER/DB_REPLICA
-	 * @param array|string|bool $groups Query group(s), or false for the generic reader
-	 * @param string|bool $domain Domain ID, or false for the current domain
+	 * @param string[]|string $groups Query group(s) or [] to use the default group
+	 * @param string|bool $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
 	 * @return DBConnRef
 	 */
 	public function getConnectionRef( $i, $groups = [], $domain = false, $flags = 0 );
 
 	/**
-	 * Get a database connection handle reference without connecting yet
+	 * Get a database handle reference for a real or virtual (DB_MASTER/DB_REPLICA) server index
 	 *
-	 * The handle's methods simply wrap those of a Database handle
+	 * The handle's methods simply proxy to those of an underlying IDatabase handle which
+	 * takes care of the actual connection and query logic.
 	 *
 	 * The CONN_TRX_AUTOCOMMIT flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
-	 * (e.g. sqlite) in order to avoid deadlocks. ILoadBalancer::getServerAttributes()
+	 * (e.g. sqlite) in order to avoid deadlocks. getServerAttributes()
 	 * can be used to check such flags beforehand. Avoid the use of begin() or startAtomic()
 	 * on any CONN_TRX_AUTOCOMMIT connections.
 	 *
 	 * @see ILoadBalancer::getConnection() for parameter information
 	 *
 	 * @param int $i Server index or DB_MASTER/DB_REPLICA
-	 * @param array|string|bool $groups Query group(s), or false for the generic reader
-	 * @param string|bool $domain Domain ID, or false for the current domain
+	 * @param string[]|string $groups Query group(s) or [] to use the default group
+	 * @param string|bool $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
 	 * @return DBConnRef
 	 */
 	public function getLazyConnectionRef( $i, $groups = [], $domain = false, $flags = 0 );
 
 	/**
-	 * Get a maintenance database connection handle reference for migrations and schema changes
+	 * Get a live database handle for a real or virtual (DB_MASTER/DB_REPLICA) server index
+	 * that can be used for data migrations and schema changes
 	 *
-	 * The handle's methods simply wrap those of a Database handle
+	 * The handle's methods simply proxy to those of an underlying IDatabase handle which
+	 * takes care of the actual connection and query logic.
 	 *
 	 * The CONN_TRX_AUTOCOMMIT flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
-	 * (e.g. sqlite) in order to avoid deadlocks. ILoadBalancer::getServerAttributes()
+	 * (e.g. sqlite) in order to avoid deadlocks. getServerAttributes()
 	 * can be used to check such flags beforehand. Avoid the use of begin() or startAtomic()
 	 * on any CONN_TRX_AUTOCOMMIT connections.
 	 *
 	 * @see ILoadBalancer::getConnection() for parameter information
 	 *
 	 * @param int $i Server index or DB_MASTER/DB_REPLICA
-	 * @param array|string|bool $groups Query group(s), or false for the generic reader
-	 * @param string|bool $domain Domain ID, or false for the current domain
+	 * @param string[]|string $groups Query group(s) or [] to use the default group
+	 * @param string|bool $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
 	 * @return MaintainableDBConnRef
 	 */
@@ -362,7 +408,7 @@ interface ILoadBalancer {
 	public function getServerName( $i );
 
 	/**
-	 * Return the server info structure for a given index, or false if the index is invalid.
+	 * Return the server info structure for a given index or false if the index is invalid.
 	 * @param int $i
 	 * @return array|bool
 	 * @since 1.31
@@ -544,7 +590,7 @@ interface ILoadBalancer {
 
 	/**
 	 * @note This method will trigger a DB connection if not yet done
-	 * @param string|bool $domain Domain ID, or false for the current domain
+	 * @param string|bool $domain DB domain ID or false for the local domain
 	 * @return bool Whether the database for generic connections this request is highly "lagged"
 	 */
 	public function getLaggedReplicaMode( $domain = false );
@@ -561,7 +607,7 @@ interface ILoadBalancer {
 
 	/**
 	 * @note This method may trigger a DB connection if not yet done
-	 * @param string|bool $domain Domain ID, or false for the current domain
+	 * @param string|bool $domain DB domain ID or false for the local domain
 	 * @param IDatabase|null $conn DB master connection; used to avoid loops [optional]
 	 * @return string|bool Reason the master is read-only or false if it is not
 	 */
@@ -607,7 +653,7 @@ interface ILoadBalancer {
 	 * May attempt to open connections to replica DBs on the default DB. If there is
 	 * no lag, the maximum lag will be reported as -1.
 	 *
-	 * @param bool|string $domain Domain ID, or false for the default database
+	 * @param bool|string $domain Domain ID or false for the default database
 	 * @return array ( host, max lag, index of max lagged host )
 	 */
 	public function getMaxLag( $domain = false );
