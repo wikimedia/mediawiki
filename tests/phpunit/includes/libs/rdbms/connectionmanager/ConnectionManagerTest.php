@@ -13,6 +13,7 @@ use Wikimedia\Rdbms\ConnectionManager;
  * @author Daniel Kinzler
  */
 class ConnectionManagerTest extends \PHPUnit\Framework\TestCase {
+	use \PHPUnit4And6Compat;
 
 	/**
 	 * @return IDatabase|PHPUnit_Framework_MockObject_MockObject
@@ -26,11 +27,7 @@ class ConnectionManagerTest extends \PHPUnit\Framework\TestCase {
 	 * @return LoadBalancer|PHPUnit_Framework_MockObject_MockObject
 	 */
 	private function getLoadBalancerMock() {
-		$lb = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->getMock();
-
-		return $lb;
+		return $this->createMock( LoadBalancer::class );
 	}
 
 	public function testGetReadConnection_nullGroups() {
