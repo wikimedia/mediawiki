@@ -17,13 +17,11 @@ use Wikimedia\Assert\PostconditionException;
  */
 class SlotRoleRegistryTest extends MediaWikiTestCase {
 
+	/**
+	 * @return Title
+	 */
 	private function makeBlankTitleObject() {
-		/** @var Title $title */
-		$title = $this->getMockBuilder( Title::class )
-			->disableOriginalConstructor()
-			->getMock();
-
-		return $title;
+		return $this->createMock( Title::class );
 	}
 
 	private function makeNameTableStore( array $names = [] ) {
