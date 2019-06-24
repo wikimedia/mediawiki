@@ -146,6 +146,7 @@ class ResourceLoaderImage {
 	 *
 	 * @param ResourceLoaderContext $context Any context
 	 * @return string
+	 * @throws MWException If no matching path is found
 	 */
 	public function getPath( ResourceLoaderContext $context ) {
 		$desc = $this->descriptor;
@@ -167,7 +168,11 @@ class ResourceLoaderImage {
 		if ( isset( $desc[$context->getDirection()] ) ) {
 			return $this->basePath . '/' . $desc[$context->getDirection()];
 		}
-		return $this->basePath . '/' . $desc['default'];
+		if ( isset( $desc['default'] ) ) {
+			return $this->basePath . '/' . $desc['default'];
+		} else {
+			throw new MWException( 'No matching path found' );
+		}
 	}
 
 	/**

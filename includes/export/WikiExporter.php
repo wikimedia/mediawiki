@@ -27,7 +27,7 @@
  * @defgroup Dump Dump
  */
 
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -468,7 +468,7 @@ class WikiExporter {
 	 * The result set should be sorted/grouped by page to avoid duplicate
 	 * page records in the output.
 	 *
-	 * @param ResultWrapper $results
+	 * @param IResultWrapper $results
 	 * @param object $lastRow the last row output from the previous call (or null if none)
 	 * @return object the last row processed
 	 */
@@ -517,7 +517,7 @@ class WikiExporter {
 	}
 
 	/**
-	 * @param ResultWrapper $resultset
+	 * @param IResultWrapper $resultset
 	 * @return int the log_id value of the last item output, or null if none
 	 */
 	protected function outputLogStream( $resultset ) {
