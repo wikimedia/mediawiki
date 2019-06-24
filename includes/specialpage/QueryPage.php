@@ -660,7 +660,7 @@ abstract class QueryPage extends SpecialPage {
 		# an OutputPage, and let them get on with it
 		$this->outputResults( $out,
 			$this->getSkin(),
-			$dbr, # Should use a ResultWrapper for this
+			$dbr, # Should use IResultWrapper for this
 			$res,
 			min( $this->numRows, $this->limit ), # do not format the one extra row, if exist
 			$this->offset );
@@ -738,13 +738,13 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
-	 * Creates a new LinkBatch object, adds all pages from the passed ResultWrapper (MUST include
+	 * Creates a new LinkBatch object, adds all pages from the passed result wrapper (MUST include
 	 * title and optional the namespace field) and executes the batch. This operation will pre-cache
 	 * LinkCache information like page existence and information for stub color and redirect hints.
 	 *
-	 * @param IResultWrapper $res The ResultWrapper object to process. Needs to include the title
+	 * @param IResultWrapper $res The result wrapper to process. Needs to include the title
 	 *  field and namespace field, if the $ns parameter isn't set.
-	 * @param null $ns Use this namespace for the given titles in the ResultWrapper object,
+	 * @param null $ns Use this namespace for the given titles in the result wrapper,
 	 *  instead of the namespace value of $res.
 	 */
 	protected function executeLBFromResultWrapper( IResultWrapper $res, $ns = null ) {
