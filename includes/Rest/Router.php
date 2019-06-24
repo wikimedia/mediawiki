@@ -233,7 +233,7 @@ class Router {
 			}
 		}
 
-		$request->setPathParams( $match['params'] );
+		$request->setPathParams( array_map( 'rawurldecode', $match['params'] ) );
 		$spec = $match['userData'];
 		$objectFactorySpec = array_intersect_key( $spec,
 			[ 'factory' => true, 'class' => true, 'args' => true ] );
