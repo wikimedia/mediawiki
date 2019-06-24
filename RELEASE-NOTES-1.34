@@ -230,6 +230,8 @@ because of Phabricator reports.
 * OutputPage::wrapWikiMsg() no longer accepts an options parameter. This was
   deprecated since 1.20.
 * Skin::outputPage() no longer accepts a context. This was deprecated in 1.20.
+* Linker::link() no longer accepts a string for the query array, as was
+  deprecated in 1.20.
 * …
 
 === Deprecations in 1.34 ===

@@ -89,12 +89,6 @@ class Linker {
 			return "<!-- ERROR -->$html";
 		}
 
-		if ( is_string( $query ) ) {
-			// some functions withing core using this still hand over query strings
-			wfDeprecated( __METHOD__ . ' with parameter $query as string (should be array)', '1.20' );
-			$query = wfCgiToArray( $query );
-		}
-
 		$services = MediaWikiServices::getInstance();
 		$options = (array)$options;
 		if ( $options ) {
