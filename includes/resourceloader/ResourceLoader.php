@@ -118,11 +118,10 @@ class ResourceLoader implements LoggerAwareInterface {
 			return;
 		}
 		$dbr = wfGetDB( DB_REPLICA );
-		$skin = $context->getSkin();
 		$lang = $context->getLanguage();
 
 		// Batched version of ResourceLoaderModule::getFileDependencies
-		$vary = "$skin|$lang";
+		$vary = ResourceLoaderModule::getVary( $context );
 		$res = $dbr->select( 'module_deps', [ 'md_module', 'md_deps' ], [
 				'md_module' => $moduleNames,
 				'md_skin' => $vary,
