@@ -299,33 +299,6 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Test that addScriptFile() throws due to deprecation.
-	 *
-	 * @covers OutputPage::addScriptFile
-	 */
-	public function testAddDeprecatedScriptFileWarning() {
-		$this->setExpectedException( PHPUnit_Framework_Error_Deprecated::class,
-			'Use of OutputPage::addScriptFile was deprecated in MediaWiki 1.24.' );
-
-		$op = $this->newInstance();
-		$op->addScriptFile( 'ignored-script.js' );
-	}
-
-	/**
-	 * Test the actual behavior of the method (in the case where it doesn't throw, e.g., in
-	 * production).
-	 *
-	 * @covers OutputPage::addScriptFile
-	 */
-	public function testAddDeprecatedScriptFileNoOp() {
-		$this->hideDeprecated( 'OutputPage::addScriptFile' );
-		$op = $this->newInstance();
-		$op->addScriptFile( 'ignored-script.js' );
-
-		$this->assertNotContains( 'ignored-script.js', '' . $op->getBottomScripts() );
-	}
-
-	/**
 	 * @covers OutputPage::addInlineScript
 	 */
 	public function testAddInlineScript() {
