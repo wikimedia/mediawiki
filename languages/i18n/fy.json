@@ -1557,7 +1557,7 @@
 	"deletecomment": "Reden:",
 	"deleteotherreason": "Oare/eventuele reden:",
 	"deletereasonotherlist": "Oare reden",
-	"deletereason-dropdown": "*Faak-brûkte redenen\n** Frege troch de skriuwer\n** Skeining fan auteursrjocht\n** Fandalisme",
+	"deletereason-dropdown": "* Gongbere wiskredens\n** Spam\n** Fandalisme\n** Skeining fan auteursrjochten\n** Frege troch de skriuwer\n** Misse trochferwizing",
 	"rollback": "Wizigings weromdraaie",
 	"rollback-confirmation-yes": "Weromdraaie",
 	"rollbacklink": "weromdraaie",
