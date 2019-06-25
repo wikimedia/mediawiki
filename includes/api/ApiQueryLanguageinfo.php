@@ -233,7 +233,7 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 		return [
 			"$pathUrl"
 				=> "apihelp-$pathMsg-example-simple",
-			"$pathUrl&{$prefix}prop=autonym|name&lang=de"
+			"$pathUrl&{$prefix}prop=autonym|name&uselang=de"
 				=> "apihelp-$pathMsg-example-autonym-name-de",
 			"$pathUrl&{$prefix}prop=fallbacks|variants&{$prefix}code=oc"
 				=> "apihelp-$pathMsg-example-fallbacks-variants-oc",
