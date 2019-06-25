@@ -2150,7 +2150,10 @@ return [
 		],
 	],
 	'mediawiki.special.pageLanguage' => [
-		'scripts' => 'resources/src/mediawiki.special.pageLanguage.js',
+		'scripts' => [
+			'resources/src/mediawiki.special.mute.js',
+			'resources/src/mediawiki.special.pageLanguage.js'
+		],
 		'dependencies' => [
 			'oojs-ui-core',
 		],

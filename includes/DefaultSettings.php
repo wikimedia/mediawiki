@@ -1690,6 +1690,16 @@ $wgEnableEmail = true;
 $wgEnableUserEmail = true;
 
 /**
+ * Set to true to enable the Special Mute page. This allows users
+ * to mute unwanted communications from other users, and is linked
+ * to from emails originating from Special:Email.
+ *
+ * @since 1.34
+ * @deprecated 1.34
+ */
+$wgEnableSpecialMute = false;
+
+/**
  * Set to true to enable user-to-user e-mail blacklist.
  *
  * @since 1.30
