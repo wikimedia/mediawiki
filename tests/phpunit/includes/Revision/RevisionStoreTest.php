@@ -60,6 +60,8 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 			->disableAutoReturnValueGeneration()
 			->disableOriginalConstructor()->getMock();
 
+		$db->method( 'getDomainId' )->willReturn( 'fake' );
+
 		$this->installMockLoadBalancer( $db );
 		return $db;
 	}
@@ -86,6 +88,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 		$db = $this->installMockDatabase();
 
 		// First query is by page ID. Return result
+
 		$db->expects( $this->at( 0 ) )
 			->method( 'selectRow' )
 			->with(
@@ -136,6 +139,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 			->willReturn( false );
 
 		// Retrying on master...
+
 		// Third query, by page_id again
 		$db->expects( $this->at( 2 ) )
 			->method( 'selectRow' )
@@ -173,6 +177,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 			->willReturn( false );
 
 		// Second select using rev_id, faking no result (db lag?)
+
 		$db->expects( $this->at( 1 ) )
 			->method( 'selectRow' )
 			->with(
@@ -219,6 +224,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 			->willReturn( false );
 
 		// Retrying on master...
+
 		// Third query, by page_id again, still no result
 		$db->expects( $this->at( 2 ) )
 			->method( 'selectRow' )
@@ -229,7 +235,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 			)
 			->willReturn( false );
 
-		// Forth query, by rev_id agin
+		// Forth query, by rev_id again
 		$db->expects( $this->at( 3 ) )
 			->method( 'selectRow' )
 			->with(
