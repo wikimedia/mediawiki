@@ -375,6 +375,15 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$text .= $context->msg( 'emailuserfooter',
 			$from->name, $to->name )->inContentLanguage()->text();
 
+		if ( $config->get( 'EnableSpecialMute' ) ) {
+			$specialMutePage = SpecialPage::getTitleFor( 'Mute', $context->getUser()->getName() );
+			$text .= "\n" . $context->msg(
+				'specialmute-email-footer',
+				$specialMutePage->getCanonicalURL(),
+				$context->getUser()->getName()
+			);
+		}
+
 		// Check and increment the rate limits
 		if ( $context->getUser()->pingLimiter( 'emailuser' ) ) {
 			throw new ThrottledError();

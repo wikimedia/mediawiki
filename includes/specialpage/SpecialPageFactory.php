@@ -232,6 +232,7 @@ class SpecialPageFactory {
 		'EmailAuthentication',
 		'EnableEmail',
 		'EnableJavaScriptTest',
+		'EnableSpecialMute',
 		'PageLanguageUseDB',
 		'SpecialPages',
 	];
@@ -282,9 +283,14 @@ class SpecialPageFactory {
 				$this->list['JavaScriptTest'] = \SpecialJavaScriptTest::class;
 			}
 
+			if ( $this->options->get( 'EnableSpecialMute' ) ) {
+				$this->list['Mute'] = \SpecialMute::class;
+			}
+
 			if ( $this->options->get( 'PageLanguageUseDB' ) ) {
 				$this->list['PageLanguage'] = \SpecialPageLanguage::class;
 			}
+
 			if ( $this->options->get( 'ContentHandlerUseDB' ) ) {
 				$this->list['ChangeContentModel'] = \SpecialChangeContentModel::class;
 			}

@@ -688,8 +688,8 @@ class Linker {
 			$label = $title->getPrefixedText();
 		}
 		$encLabel = htmlspecialchars( $label );
-		$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title );
-		$currentExists = $time ? ( $file != false ) : false;
+		$currentExists = $time
+			&& MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title ) !== false;
 
 		if ( ( $wgUploadMissingFileUrl || $wgUploadNavigationUrl || $wgEnableUploads )
 			&& !$currentExists

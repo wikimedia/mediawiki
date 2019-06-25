@@ -447,6 +447,7 @@ $specialPageAliases = [
 	'Mostlinkedtemplates'       => [ 'MostTranscludedPages', 'MostLinkedTemplates', 'MostUsedTemplates' ],
 	'Mostrevisions'             => [ 'MostRevisions' ],
 	'Movepage'                  => [ 'MovePage' ],
+	'Mute'                      => [ 'Mute' ],
 	'Mycontributions'           => [ 'MyContributions' ],
 	'MyLanguage'                => [ 'MyLanguage' ],
 	'Mypage'                    => [ 'MyPage' ],
