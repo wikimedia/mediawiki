@@ -23,6 +23,7 @@
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Linker\LinkTarget;
+use Wikimedia\IPUtils;
 
 /**
  * A codec for MediaWiki page titles.
@@ -478,7 +479,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		// them all is silly and having some show the edits and others not is
 		// inconsistent. Same for talk/userpages. Keep them normalized instead.
 		if ( $parts['namespace'] == NS_USER || $parts['namespace'] == NS_USER_TALK ) {
-			$dbkey = IP::sanitizeIP( $dbkey );
+			$dbkey = IPUtils::sanitizeIP( $dbkey );
 		}
 
 		// Any remaining initial :s are illegal.

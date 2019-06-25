@@ -21,6 +21,7 @@
  */
 use MediaWiki\ChangeTags\Taggable;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\IPUtils;
 
 /**
  * Utility class for creating new RC entries
@@ -1104,7 +1105,7 @@ class RecentChange implements Taggable {
 	private static function checkIPAddress( $ip ) {
 		global $wgRequest;
 		if ( $ip ) {
-			if ( !IP::isIPAddress( $ip ) ) {
+			if ( !IPUtils::isIPAddress( $ip ) ) {
 				throw new MWException( "Attempt to write \"" . $ip .
 					"\" as an IP address into recent changes" );
 			}

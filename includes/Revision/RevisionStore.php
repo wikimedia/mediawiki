@@ -35,7 +35,6 @@ use DBAccessObjectUtils;
 use Hooks;
 use IDBAccessObject;
 use InvalidArgumentException;
-use IP;
 use LogicException;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Storage\BlobAccessException;
@@ -61,6 +60,7 @@ use Traversable;
 use User;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
+use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
@@ -709,11 +709,11 @@ class RevisionStore
 		RevisionRecord $rev,
 		$revisionId
 	) {
-		if ( $user->getId() === 0 && IP::isValid( $user->getName() ) ) {
+		if ( $user->getId() === 0 && IPUtils::isValid( $user->getName() ) ) {
 			$ipcRow = [
 				'ipc_rev_id'        => $revisionId,
 				'ipc_rev_timestamp' => $dbw->timestamp( $rev->getTimestamp() ),
-				'ipc_hex'           => IP::toHex( $user->getName() ),
+				'ipc_hex'           => IPUtils::toHex( $user->getName() ),
 			];
 			$dbw->insert( 'ip_changes', $ipcRow, __METHOD__ );
 		}

@@ -21,6 +21,8 @@
  * @ingroup Cache
  */
 
+use Wikimedia\IPUtils;
+
 /**
  * Base class for data storage in the file system.
  *
@@ -233,13 +235,13 @@ abstract class FileCacheBase {
 			# Get a large IP range that should include the user  even if that
 			# person's IP address changes
 			$ip = $request->getIP();
-			if ( !IP::isValid( $ip ) ) {
+			if ( !IPUtils::isValid( $ip ) ) {
 				return;
 			}
 
-			$ip = IP::isIPv6( $ip )
-				? IP::sanitizeRange( "$ip/32" )
-				: IP::sanitizeRange( "$ip/16" );
+			$ip = IPUtils::isIPv6( $ip )
+				? IPUtils::sanitizeRange( "$ip/32" )
+				: IPUtils::sanitizeRange( "$ip/16" );
 
 			# Bail out if a request already came from this range...
 			$cache = ObjectCache::getLocalClusterInstance();

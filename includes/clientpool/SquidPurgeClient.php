@@ -20,6 +20,8 @@
  * @file
  */
 
+use Wikimedia\IPUtils;
+
 /**
  * An HTTP 1.0 client built for the purposes of purging Squid and Varnish.
  * Uses asynchronous I/O, allowing purges to be done in a highly parallel
@@ -147,9 +149,9 @@ class SquidPurgeClient {
 	 */
 	protected function getIP() {
 		if ( $this->ip === null ) {
-			if ( IP::isIPv4( $this->host ) ) {
+			if ( IPUtils::isIPv4( $this->host ) ) {
 				$this->ip = $this->host;
-			} elseif ( IP::isIPv6( $this->host ) ) {
+			} elseif ( IPUtils::isIPv6( $this->host ) ) {
 				throw new MWException( '$wgCdnServers does not support IPv6' );
 			} else {
 				Wikimedia\suppressWarnings();

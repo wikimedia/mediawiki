@@ -23,12 +23,12 @@ namespace MediaWiki\Block;
 use CommentStoreComment;
 use IContextSource;
 use InvalidArgumentException;
-use IP;
 use MediaWiki\MediaWikiServices;
 use Message;
 use RequestContext;
 use Title;
 use User;
+use Wikimedia\IPUtils;
 
 /**
  * @since 1.34 Factored out from DatabaseBlock (previously Block).
@@ -378,7 +378,7 @@ abstract class AbstractBlock {
 	public static function parseTarget( $target ) {
 		# We may have been through this before
 		if ( $target instanceof User ) {
-			if ( IP::isValid( $target->getName() ) ) {
+			if ( IPUtils::isValid( $target->getName() ) ) {
 				return [ $target, self::TYPE_IP ];
 			} else {
 				return [ $target, self::TYPE_USER ];
@@ -389,17 +389,17 @@ abstract class AbstractBlock {
 
 		$target = trim( $target );
 
-		if ( IP::isValid( $target ) ) {
+		if ( IPUtils::isValid( $target ) ) {
 			# We can still create a User if it's an IP address, but we need to turn
 			# off validation checking (which would exclude IP addresses)
 			return [
-				User::newFromName( IP::sanitizeIP( $target ), false ),
+				User::newFromName( IPUtils::sanitizeIP( $target ), false ),
 				self::TYPE_IP
 			];
 
-		} elseif ( IP::isValidRange( $target ) ) {
+		} elseif ( IPUtils::isValidRange( $target ) ) {
 			# Can't create a User from an IP range
-			return [ IP::sanitizeRange( $target ), self::TYPE_RANGE ];
+			return [ IPUtils::sanitizeRange( $target ), self::TYPE_RANGE ];
 		}
 
 		# Consider the possibility that this is not a username at all

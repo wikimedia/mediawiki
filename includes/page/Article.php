@@ -27,6 +27,7 @@ use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use Wikimedia\IPUtils;
 
 /**
  * Class for viewing MediaWiki article and history.
@@ -980,7 +981,7 @@ class Article implements Page {
 			$specificTarget = null;
 			$vagueTarget = null;
 			$titleText = $this->getTitle()->getText();
-			if ( IP::isValid( $titleText ) ) {
+			if ( IPUtils::isValid( $titleText ) ) {
 				$vagueTarget = $titleText;
 			} else {
 				$specificTarget = $titleText;
@@ -1171,7 +1172,7 @@ class Article implements Page {
 	public function showViewFooter() {
 		# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
 		if ( $this->getTitle()->getNamespace() == NS_USER_TALK
-			&& IP::isValid( $this->getTitle()->getText() )
+			&& IPUtils::isValid( $this->getTitle()->getText() )
 		) {
 			$this->getContext()->getOutput()->addWikiMsg( 'anontalkpagetext' );
 		}

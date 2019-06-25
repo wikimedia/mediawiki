@@ -2,6 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use Wikimedia\IPUtils;
 
 /**
  * Base class for tests of PageArchive against different database schemas.
@@ -177,7 +178,7 @@ abstract class PageArchiveTestBase extends MediaWikiTestCase {
 		// Should be back in ip_changes
 		$row = $dbr->selectRow( 'ip_changes', [ 'ipc_hex' ], [ 'ipc_rev_id' => $this->ipRev->getId() ] );
 		$this->assertNotFalse( $row, 'row exists in ip_changes table' );
-		$this->assertEquals( IP::toHex( $this->ipEditor ), $row->ipc_hex );
+		$this->assertEquals( IPUtils::toHex( $this->ipEditor ), $row->ipc_hex );
 	}
 
 	abstract protected function getExpectedArchiveRows();

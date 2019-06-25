@@ -33,6 +33,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPSet;
+use Wikimedia\IPUtils;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBExpectedError;
@@ -946,7 +947,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public static function isIP( $name ) {
 		return preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.(?:xxx|\d{1,3})$/', $name )
-			|| IP::isIPv6( $name );
+			|| IPUtils::isIPv6( $name );
 	}
 
 	/**
@@ -956,7 +957,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool
 	 */
 	public function isIPRange() {
-		return IP::isValidRange( $this->mName );
+		return IPUtils::isValidRange( $this->mName );
 	}
 
 	/**
@@ -1840,7 +1841,7 @@ class User implements IDBAccessObject, UserIdentity {
 
 		$found = false;
 		// @todo FIXME: IPv6 ???  (https://bugs.php.net/bug.php?id=33170)
-		if ( IP::isIPv4( $ip ) ) {
+		if ( IPUtils::isIPv4( $ip ) ) {
 			// Reverse IP, T23255
 			$ipReversed = implode( '.', array_reverse( explode( '.', $ip ) ) );
 
@@ -1902,8 +1903,8 @@ class User implements IDBAccessObject, UserIdentity {
 
 		// backward compatibility: move all ip addresses in keys to values
 		foreach ( $wgProxyList as $key => $value ) {
-			$keyIsIP = IP::isIPAddress( $key );
-			$valueIsIP = IP::isIPAddress( $value );
+			$keyIsIP = IPUtils::isIPAddress( $key );
+			$valueIsIP = IPUtils::isIPAddress( $value );
 			if ( $keyIsIP && !$valueIsIP ) {
 				$deprecatedIPEntries[] = $key;
 				$resultProxyList[] = $key;
@@ -1933,7 +1934,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public function isPingLimitable() {
 		global $wgRateLimitsExcludedIPs;
-		if ( IP::isInRanges( $this->getRequest()->getIP(), $wgRateLimitsExcludedIPs ) ) {
+		if ( IPUtils::isInRanges( $this->getRequest()->getIP(), $wgRateLimitsExcludedIPs ) ) {
 			// No other good way currently to disable rate limits
 			// for specific IPs. :P
 			// But this is a crappy hack and should die.
@@ -2006,7 +2007,7 @@ class User implements IDBAccessObject, UserIdentity {
 			// subnet-based limits
 			if ( isset( $limits['subnet'] ) ) {
 				$ip = $this->getRequest()->getIP();
-				$subnet = IP::getSubnet( $ip );
+				$subnet = IPUtils::getSubnet( $ip );
 				if ( $subnet !== false ) {
 					$keys["mediawiki:limiter:$action:subnet:$subnet"] = $limits['subnet'];
 				}
@@ -2053,7 +2054,7 @@ class User implements IDBAccessObject, UserIdentity {
 		// subnet-based limits for all ping-limitable users
 		if ( isset( $limits['subnet-all'] ) ) {
 			$ip = $this->getRequest()->getIP();
-			$subnet = IP::getSubnet( $ip );
+			$subnet = IPUtils::getSubnet( $ip );
 			if ( $subnet !== false ) {
 				// ignore if user limit is more permissive
 				if ( $isNewbie || $userLimit === false
@@ -2190,7 +2191,7 @@ class User implements IDBAccessObject, UserIdentity {
 			return $this->mGlobalBlock ?: null;
 		}
 		// User is already an IP?
-		if ( IP::isIPAddress( $this->getName() ) ) {
+		if ( IPUtils::isIPAddress( $this->getName() ) ) {
 			$ip = $this->getName();
 		} elseif ( !$ip ) {
 			$ip = $this->getRequest()->getIP();
@@ -2288,7 +2289,7 @@ class User implements IDBAccessObject, UserIdentity {
 		$this->load();
 		if ( $this->mName === false ) {
 			// Clean up IPs
-			$this->mName = IP::sanitizeIP( $this->getRequest()->getIP() );
+			$this->mName = IPUtils::sanitizeIP( $this->getRequest()->getIP() );
 		}
 
 		return $this->mName;

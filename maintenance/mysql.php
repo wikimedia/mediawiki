@@ -25,6 +25,7 @@
 
 use MediaWiki\Shell\Shell;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\IPUtils;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -126,7 +127,7 @@ class MysqlMaintenance extends Maintenance {
 
 		// Split host and port as in DatabaseMysqli::mysqlConnect()
 		$realServer = $info['host'];
-		$hostAndPort = IP::splitHostAndPort( $realServer );
+		$hostAndPort = IPUtils::splitHostAndPort( $realServer );
 		$socket = false;
 		$port = false;
 		if ( $hostAndPort ) {

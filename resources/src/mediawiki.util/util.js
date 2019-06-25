@@ -441,7 +441,7 @@ util = {
 	},
 
 	/**
-	 * Note: borrows from IP::isIPv4
+	 * Note: borrows from \Wikimedia\IPUtils::isIPv4
 	 *
 	 * @param {string} address
 	 * @param {boolean} [allowBlock=false]
@@ -462,7 +462,7 @@ util = {
 	},
 
 	/**
-	 * Note: borrows from IP::isIPv6
+	 * Note: borrows from \Wikimedia\IPUtils::isIPv6
 	 *
 	 * @param {string} address
 	 * @param {boolean} [allowBlock=false]

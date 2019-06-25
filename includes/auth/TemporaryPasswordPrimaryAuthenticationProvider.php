@@ -23,6 +23,7 @@ namespace MediaWiki\Auth;
 
 use SpecialPage;
 use User;
+use Wikimedia\IPUtils;
 
 /**
  * A primary authentication provider that uses the temporary password field in
@@ -280,7 +281,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 				if ( !$req->caller ) {
 					return \StatusValue::newFatal( 'passwordreset-nocaller' );
 				}
-				if ( !\IP::isValid( $req->caller ) ) {
+				if ( !IPUtils::isValid( $req->caller ) ) {
 					$caller = User::newFromName( $req->caller );
 					if ( !$caller ) {
 						return \StatusValue::newFatal( 'passwordreset-nosuchcaller', $req->caller );
@@ -470,7 +471,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 				return \Status::newFatal( 'noname' );
 			}
 			$userLanguage = $user->getOption( 'language' );
-			$callerIsAnon = \IP::isValid( $req->caller );
+			$callerIsAnon = IPUtils::isValid( $req->caller );
 			$callerName = $callerIsAnon ? $req->caller : User::newFromName( $req->caller )->getName();
 			$passwordMessage = wfMessage( 'passwordreset-emailelement', $user->getName(),
 				$req->password )->inLanguage( $userLanguage );
