@@ -60,6 +60,8 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 			->disableAutoReturnValueGeneration()
 			->disableOriginalConstructor()->getMock();
 
+		$db->method( 'getDomainId' )->willReturn( 'fake' );
+
 		$this->installMockLoadBalancer( $db );
 		return $db;
 	}
