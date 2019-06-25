@@ -1906,7 +1906,7 @@ class LocalFile extends File {
 	 * @return Status
 	 */
 	function move( $target ) {
-		$localRepo = MediaWikiServices::getInstance()->getRepoGroup();
+		$localRepo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
 			return $this->readOnlyFatalStatus();
 		}
@@ -1923,8 +1923,8 @@ class LocalFile extends File {
 		wfDebugLog( 'imagemove', "Finished moving {$this->name}" );
 
 		// Purge the source and target files...
-		$oldTitleFile = $localRepo->findFile( $this->title );
-		$newTitleFile = $localRepo->findFile( $target );
+		$oldTitleFile = $localRepo->newFile( $this->title );
+		$newTitleFile = $localRepo->newFile( $target );
 		// To avoid slow purges in the transaction, move them outside...
 		DeferredUpdates::addUpdate(
 			new AutoCommitUpdate(
