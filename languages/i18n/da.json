@@ -3504,6 +3504,7 @@
 	"credentialsform-account": "Kontonavn:",
 	"edit-error-short": "Fejl: $1",
 	"edit-error-long": "Fejl:\n\n$1",
+	"specialmute-submit": "Bekræft",
 	"revid": "version $1",
 	"pageid": "side id: $1",
 	"gotointerwiki": "Forlader {{SITENAME}}",
