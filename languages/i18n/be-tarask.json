@@ -3775,6 +3775,7 @@
 	"restrictionsfield-help": "Адзін IP-адрас ці CIDR-дыяпазон на радок. Каб дазволіць усё, ужывайце:<pre>0.0.0.0/0\n::/0</pre>",
 	"edit-error-short": "Памылка: $1",
 	"edit-error-long": "Памылкі:\n\n$1",
+	"specialmute": "Заглушаныя ўдзельнікі",
 	"revid": "вэрсія $1",
 	"pageid": "Ідэнтыфікатар старонкі $1",
 	"interfaceadmin-info": "$1\n\nДазволы на рэдагаваньне агульнасайтавых CSS/JS/JSON-файлаў былі нядаўна вылучаныя з права <code>editinterface</code>. Калі вы не разумееце, чаму атрымліваеце гэтую памылку, глядзіце [[mw:MediaWiki_1.32/interface-admin]].",

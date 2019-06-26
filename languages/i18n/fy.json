@@ -1099,6 +1099,7 @@
 	"rcfilters-filter-previousrevision-label": "Net de lêste ferzje",
 	"rcfilters-filter-previousrevision-description": "Alle wizigings dy't net de \"lêste ferzje\" binne.",
 	"rcfilters-filter-excluded": "Utsein",
+	"rcfilters-tag-prefix-namespace-inverted": "<strong>:net</strong> $1",
 	"rcfilters-exclude-button-off": "Seleksje omkeare",
 	"rcfilters-exclude-button-on": "Omkearde seleksje",
 	"rcfilters-view-tags": "Lebele bewurkings",
