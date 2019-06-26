@@ -2250,7 +2250,6 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @param array[] $calls For each array, call addVaryHeader() with those arguments
 	 * @param string[] $cookies Array of cookie names to vary on
 	 * @param string $vary Text of expected Vary header (including the 'Vary: ')
-	 * @param string $key Text of expected Key header (including the 'Key: ')
 	 */
 	public function testVaryHeaders( array $calls, array $cookies, $vary ) {
 		// Get rid of default Vary fields

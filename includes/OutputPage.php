@@ -2278,7 +2278,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * T23672: Add Accept-Language to Vary and Key headers if there's no 'variant' parameter in GET.
+	 * T23672: Add Accept-Language to Vary header if there's no 'variant' parameter in GET.
 	 *
 	 * For example:
 	 *   /w/index.php?title=Main_page will vary based on Accept-Language; but
