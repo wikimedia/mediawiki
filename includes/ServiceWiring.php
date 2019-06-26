@@ -94,17 +94,11 @@ return [
 		$config = $services->getMainConfig();
 		$context = RequestContext::getMain();
 		return new BlockManager(
+			new ServiceOptions(
+				BlockManager::$constructorOptions, $services->getMainConfig()
+			),
 			$context->getUser(),
-			$context->getRequest(),
-			$config->get( 'ApplyIpBlocksToXff' ),
-			$config->get( 'CookieSetOnAutoblock' ),
-			$config->get( 'CookieSetOnIpBlock' ),
-			$config->get( 'DnsBlacklistUrls' ),
-			$config->get( 'EnableDnsBlacklist' ),
-			$config->get( 'ProxyList' ),
-			$config->get( 'ProxyWhitelist' ),
-			$config->get( 'SecretKey' ),
-			$config->get( 'SoftBlockRanges' )
+			$context->getRequest()
 		);
 	},
 

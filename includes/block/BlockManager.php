@@ -23,6 +23,7 @@ namespace MediaWiki\Block;
 use DateTime;
 use DeferredUpdates;
 use IP;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\User\UserIdentity;
 use MWCryptHash;
 use User;
@@ -44,70 +45,38 @@ class BlockManager {
 	/** @var WebRequest */
 	private $currentRequest;
 
-	/** @var bool */
-	private $applyIpBlocksToXff;
-
-	/** @var bool */
-	private $cookieSetOnAutoblock;
-
-	/** @var bool */
-	private $cookieSetOnIpBlock;
-
-	/** @var array */
-	private $dnsBlacklistUrls;
-
-	/** @var bool */
-	private $enableDnsBlacklist;
-
-	/** @var array */
-	private $proxyList;
-
-	/** @var array */
-	private $proxyWhitelist;
-
-	/** @var string|bool */
-	private $secretKey;
-
-	/** @var array */
-	private $softBlockRanges;
+	/**
+	 * TODO Make this a const when HHVM support is dropped (T192166)
+	 *
+	 * @var array
+	 * @since 1.34
+	 * */
+	public static $constructorOptions = [
+		'ApplyIpBlocksToXff',
+		'CookieSetOnAutoblock',
+		'CookieSetOnIpBlock',
+		'DnsBlacklistUrls',
+		'EnableDnsBlacklist',
+		'ProxyList',
+		'ProxyWhitelist',
+		'SecretKey',
+		'SoftBlockRanges',
+	];
 
 	/**
+	 * @param ServiceOptions $options
 	 * @param User $currentUser
 	 * @param WebRequest $currentRequest
-	 * @param bool $applyIpBlocksToXff
-	 * @param bool $cookieSetOnAutoblock
-	 * @param bool $cookieSetOnIpBlock
-	 * @param string[] $dnsBlacklistUrls
-	 * @param bool $enableDnsBlacklist
-	 * @param string[] $proxyList
-	 * @param string[] $proxyWhitelist
-	 * @param string $secretKey
-	 * @param array $softBlockRanges
 	 */
 	public function __construct(
+		ServiceOptions $options,
 		User $currentUser,
-		WebRequest $currentRequest,
-		$applyIpBlocksToXff,
-		$cookieSetOnAutoblock,
-		$cookieSetOnIpBlock,
-		array $dnsBlacklistUrls,
-		$enableDnsBlacklist,
-		array $proxyList,
-		array $proxyWhitelist,
-		$secretKey,
-		$softBlockRanges
+		WebRequest $currentRequest
 	) {
+		$options->assertRequiredOptions( self::$constructorOptions );
+		$this->options = $options;
 		$this->currentUser = $currentUser;
 		$this->currentRequest = $currentRequest;
-		$this->applyIpBlocksToXff = $applyIpBlocksToXff;
-		$this->cookieSetOnAutoblock = $cookieSetOnAutoblock;
-		$this->cookieSetOnIpBlock = $cookieSetOnIpBlock;
-		$this->dnsBlacklistUrls = $dnsBlacklistUrls;
-		$this->enableDnsBlacklist = $enableDnsBlacklist;
-		$this->proxyList = $proxyList;
-		$this->proxyWhitelist = $proxyWhitelist;
-		$this->secretKey = $secretKey;
-		$this->softBlockRanges = $softBlockRanges;
 	}
 
 	/**
@@ -157,7 +126,7 @@ class BlockManager {
 		}
 
 		// Proxy blocking
-		if ( $ip !== null && !in_array( $ip, $this->proxyWhitelist ) ) {
+		if ( $ip !== null && !in_array( $ip, $this->options->get( 'ProxyWhitelist' ) ) ) {
 			// Local list
 			if ( $this->isLocallyBlockedProxy( $ip ) ) {
 				$blocks[] = new SystemBlock( [
@@ -177,9 +146,9 @@ class BlockManager {
 		}
 
 		// (T25343) Apply IP blocks to the contents of XFF headers, if enabled
-		if ( $this->applyIpBlocksToXff
+		if ( $this->options->get( 'ApplyIpBlocksToXff' )
 			&& $ip !== null
-			&& !in_array( $ip, $this->proxyWhitelist )
+			&& !in_array( $ip, $this->options->get( 'ProxyWhitelist' ) )
 		) {
 			$xff = $request->getHeader( 'X-Forwarded-For' );
 			$xff = array_map( 'trim', explode( ',', $xff ) );
@@ -192,7 +161,7 @@ class BlockManager {
 		// Soft blocking
 		if ( $ip !== null
 			&& $isAnon
-			&& IP::isInRanges( $ip, $this->softBlockRanges )
+			&& IP::isInRanges( $ip, $this->options->get( 'SoftBlockRanges' ) )
 		) {
 			$blocks[] = new SystemBlock( [
 				'address' => $ip,
@@ -295,9 +264,11 @@ class BlockManager {
 				case DatabaseBlock::TYPE_RANGE:
 					// If block is type IP or IP range, load only
 					// if user is not logged in (T152462)
-					return $isAnon && $this->cookieSetOnIpBlock;
+					return $isAnon &&
+						$this->options->get( 'CookieSetOnIpBlock' );
 				case DatabaseBlock::TYPE_USER:
-					return $this->cookieSetOnAutoblock && $block->isAutoblocking();
+					return $block->isAutoblocking() &&
+						$this->options->get( 'CookieSetOnAutoblock' );
 				default:
 					return false;
 			}
@@ -312,20 +283,21 @@ class BlockManager {
 	 * @return bool
 	 */
 	private function isLocallyBlockedProxy( $ip ) {
-		if ( !$this->proxyList ) {
+		$proxyList = $this->options->get( 'ProxyList' );
+		if ( !$proxyList ) {
 			return false;
 		}
 
-		if ( !is_array( $this->proxyList ) ) {
+		if ( !is_array( $proxyList ) ) {
 			// Load values from the specified file
-			$this->proxyList = array_map( 'trim', file( $this->proxyList ) );
+			$proxyList = array_map( 'trim', file( $proxyList ) );
 		}
 
 		$resultProxyList = [];
 		$deprecatedIPEntries = [];
 
 		// backward compatibility: move all ip addresses in keys to values
-		foreach ( $this->proxyList as $key => $value ) {
+		foreach ( $proxyList as $key => $value ) {
 			$keyIsIP = IP::isIPAddress( $key );
 			$valueIsIP = IP::isIPAddress( $value );
 			if ( $keyIsIP && !$valueIsIP ) {
@@ -358,13 +330,13 @@ class BlockManager {
 	 * @return bool True if blacklisted.
 	 */
 	public function isDnsBlacklisted( $ip, $checkWhitelist = false ) {
-		if ( !$this->enableDnsBlacklist ||
-			( $checkWhitelist && in_array( $ip, $this->proxyWhitelist ) )
+		if ( !$this->options->get( 'EnableDnsBlacklist' ) ||
+			( $checkWhitelist && in_array( $ip, $this->options->get( 'ProxyWhitelist' ) ) )
 		) {
 			return false;
 		}
 
-		return $this->inDnsBlacklist( $ip, $this->dnsBlacklistUrls );
+		return $this->inDnsBlacklist( $ip, $this->options->get( 'DnsBlacklistUrls' ) );
 	}
 
 	/**
@@ -506,9 +478,11 @@ class BlockManager {
 			switch ( $block->getType() ) {
 				case DatabaseBlock::TYPE_IP:
 				case DatabaseBlock::TYPE_RANGE:
-					return $isAnon && $this->cookieSetOnIpBlock;
+					return $isAnon && $this->options->get( 'CookieSetOnIpBlock' );
 				case DatabaseBlock::TYPE_USER:
-					return !$isAnon && $this->cookieSetOnAutoblock && $block->isAutoblocking();
+					return !$isAnon &&
+						$this->options->get( 'CookieSetOnAutoblock' ) &&
+						$block->isAutoblocking();
 				default:
 					return false;
 			}
@@ -545,12 +519,12 @@ class BlockManager {
 		// Extract the ID prefix from the cookie value (may be the whole value, if no bang found).
 		$bangPos = strpos( $cookieValue, '!' );
 		$id = ( $bangPos === false ) ? $cookieValue : substr( $cookieValue, 0, $bangPos );
-		if ( !$this->secretKey ) {
+		if ( !$this->options->get( 'SecretKey' ) ) {
 			// If there's no secret key, just use the ID as given.
 			return $id;
 		}
 		$storedHmac = substr( $cookieValue, $bangPos + 1 );
-		$calculatedHmac = MWCryptHash::hmac( $id, $this->secretKey, false );
+		$calculatedHmac = MWCryptHash::hmac( $id, $this->options->get( 'SecretKey' ), false );
 		if ( $calculatedHmac === $storedHmac ) {
 			return $id;
 		} else {
@@ -571,11 +545,11 @@ class BlockManager {
 	 */
 	public function getCookieValue( DatabaseBlock $block ) {
 		$id = $block->getId();
-		if ( !$this->secretKey ) {
+		if ( !$this->options->get( 'SecretKey' ) ) {
 			// If there's no secret key, don't append a HMAC.
 			return $id;
 		}
-		$hmac = MWCryptHash::hmac( $id, $this->secretKey, false );
+		$hmac = MWCryptHash::hmac( $id, $this->options->get( 'SecretKey' ), false );
 		$cookieValue = $id . '!' . $hmac;
 		return $cookieValue;
 	}
