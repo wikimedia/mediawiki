@@ -4204,7 +4204,7 @@
 	"specialmute-error-invalid-user": "The username requested could not be found.",
 	"specialmute-error-email-blacklist-disabled": "Muting users from sending you emails is not enabled.",
 	"specialmute-error-email-preferences": "You must confirm your email address before you can mute a user. You may do so from [[Special:Preferences]].",
-	"specialmute-email-footer": "[$1 Manage email preferences for {{BIDI:$2}}.]",
+	"specialmute-email-footer": "To manage email preferences for {{BIDI:$2}} please visit <$1>.",
 	"specialmute-login-required": "Please log in to change your mute preferences.",
 	"revid": "revision $1",
 	"pageid": "page ID $1",
