@@ -123,6 +123,10 @@ class UpdateMediaWiki extends Maintenance {
 
 		$this->output( "MediaWiki {$wgVersion} Updater\n\n" );
 
+		foreach ( SpecialVersion::getSoftwareInformation() as $name => $version ) {
+			$this->output( "{$name}: {$version}\n" );
+		}
+
 		wfWaitForSlaves();
 
 		if ( !$this->hasOption( 'skip-compat-checks' ) ) {
