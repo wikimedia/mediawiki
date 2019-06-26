@@ -180,6 +180,7 @@
 		<!-- Skip violations in some tests for now -->
 		<exclude-pattern>*/tests/phpunit/includes/GlobalFunctions/*\.php</exclude-pattern>
 		<exclude-pattern>*/tests/phpunit/maintenance/*\.php</exclude-pattern>
+		<exclude-pattern>*/tests/phpunit/integration/includes/GlobalFunctions/*\.php</exclude-pattern>
 	</rule>
 
 	<rule ref="Generic.Files.OneObjectStructurePerFile.MultipleFound">
