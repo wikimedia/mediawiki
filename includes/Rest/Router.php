@@ -4,6 +4,7 @@ namespace MediaWiki\Rest;
 
 use AppendIterator;
 use BagOStuff;
+use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
 use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
 use Wikimedia\ObjectFactory;
 
@@ -40,21 +41,27 @@ class Router {
 	/** @var ResponseFactory */
 	private $responseFactory;
 
+	/** @var BasicAuthorizerInterface */
+	private $basicAuth;
+
 	/**
 	 * @param string[] $routeFiles List of names of JSON files containing routes
 	 * @param array $extraRoutes Extension route array
 	 * @param string $rootPath The base URL path
 	 * @param BagOStuff $cacheBag A cache in which to store the matcher trees
 	 * @param ResponseFactory $responseFactory
+	 * @param BasicAuthorizerInterface $basicAuth
 	 */
 	public function __construct( $routeFiles, $extraRoutes, $rootPath,
-		BagOStuff $cacheBag, ResponseFactory $responseFactory
+		BagOStuff $cacheBag, ResponseFactory $responseFactory,
+		BasicAuthorizerInterface $basicAuth
 	) {
 		$this->routeFiles = $routeFiles;
 		$this->extraRoutes = $extraRoutes;
 		$this->rootPath = $rootPath;
 		$this->cacheBag = $cacheBag;
 		$this->responseFactory = $responseFactory;
+		$this->basicAuth = $basicAuth;
 	}
 
 	/**
@@ -189,7 +196,9 @@ class Router {
 	 * @return false|string
 	 */
 	private function getRelativePath( $path ) {
-		if ( substr_compare( $path, $this->rootPath, 0, strlen( $this->rootPath ) ) !== 0 ) {
+		if ( strlen( $this->rootPath ) > strlen( $path ) ||
+			substr_compare( $path, $this->rootPath, 0, strlen( $this->rootPath ) ) !== 0
+		) {
 			return false;
 		}
 		return substr( $path, strlen( $this->rootPath ) );
@@ -254,6 +263,10 @@ class Router {
 	 * @return ResponseInterface
 	 */
 	private function executeHandler( $handler ): ResponseInterface {
+		$authResult = $this->basicAuth->authorize( $handler->getRequest(), $handler );
+		if ( $authResult ) {
+			return $this->responseFactory->createHttpError( 403, [ 'error' => $authResult ] );
+		}
 		$response = $handler->execute();
 		if ( !( $response instanceof ResponseInterface ) ) {
 			$response = $this->responseFactory->createFromReturnValue( $response );

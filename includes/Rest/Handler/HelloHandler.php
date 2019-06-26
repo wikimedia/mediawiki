@@ -12,4 +12,8 @@ class HelloHandler extends SimpleHandler {
 	public function run( $name ) {
 		return [ 'message' => "Hello, $name!" ];
 	}
+
+	public function needsWriteAccess() {
+		return false;
+	}
 }
