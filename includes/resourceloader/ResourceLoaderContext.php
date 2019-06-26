@@ -410,4 +410,24 @@ class ResourceLoaderContext implements MessageLocalizer {
 		}
 		return $this->hash;
 	}
+
+	/**
+	 * Get the request base parameters, omitting any defaults.
+	 *
+	 * @internal For internal use by ResourceLoaderStartUpModule only
+	 * @return array
+	 */
+	public function getReqBase() {
+		$reqBase = [];
+		if ( $this->getLanguage() !== self::DEFAULT_LANG ) {
+			$reqBase['lang'] = $this->getLanguage();
+		}
+		if ( $this->getSkin() !== self::DEFAULT_SKIN ) {
+			$reqBase['skin'] = $this->getSkin();
+		}
+		if ( $this->getDebug() ) {
+			$reqBase['debug'] = 'true';
+		}
+		return $reqBase;
+	}
 }

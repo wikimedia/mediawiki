@@ -1606,11 +1606,7 @@
 				batch.sort();
 
 				// Query parameters common to all requests
-				reqBase = {
-					skin: mw.config.get( 'skin' ),
-					lang: mw.config.get( 'wgUserLanguage' ),
-					debug: mw.config.get( 'debug' )
-				};
+				reqBase = $VARS.reqBase;
 
 				// Split module list by source and by group.
 				splits = Object.create( null );
