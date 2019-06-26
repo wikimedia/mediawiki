@@ -401,6 +401,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		// Perform replacements for mediawiki.js
 		$mwLoaderPairs = [
+			'$VARS.reqBase' => ResourceLoader::encodeJsonForScript( $context->getReqBase() ),
 			'$VARS.baseModules' => ResourceLoader::encodeJsonForScript( $this->getBaseModules() ),
 			'$VARS.maxQueryLength' => ResourceLoader::encodeJsonForScript(
 				$conf->get( 'ResourceLoaderMaxQueryLength' )
