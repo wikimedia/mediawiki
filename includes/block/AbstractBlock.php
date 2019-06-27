@@ -84,7 +84,7 @@ abstract class AbstractBlock {
 	 *     timestamp string     The time at which the block comes into effect
 	 *     byText string        Username of the blocker (for foreign users)
 	 */
-	function __construct( $options = [] ) {
+	public function __construct( array $options = [] ) {
 		$defaults = [
 			'address'         => '',
 			'by'              => null,

@@ -76,23 +76,23 @@ class BlockManager {
 	 * @param bool $applyIpBlocksToXff
 	 * @param bool $cookieSetOnAutoblock
 	 * @param bool $cookieSetOnIpBlock
-	 * @param array $dnsBlacklistUrls
+	 * @param string[] $dnsBlacklistUrls
 	 * @param bool $enableDnsBlacklist
-	 * @param array $proxyList
-	 * @param array $proxyWhitelist
+	 * @param string[] $proxyList
+	 * @param string[] $proxyWhitelist
 	 * @param string $secretKey
 	 * @param array $softBlockRanges
 	 */
 	public function __construct(
-		$currentUser,
-		$currentRequest,
+		User $currentUser,
+		WebRequest $currentRequest,
 		$applyIpBlocksToXff,
 		$cookieSetOnAutoblock,
 		$cookieSetOnIpBlock,
-		$dnsBlacklistUrls,
+		array $dnsBlacklistUrls,
 		$enableDnsBlacklist,
-		$proxyList,
-		$proxyWhitelist,
+		array $proxyList,
+		array $proxyWhitelist,
 		$secretKey,
 		$softBlockRanges
 	) {
@@ -232,7 +232,7 @@ class BlockManager {
 	 * @param AbstractBlock[] $blocks
 	 * @return AbstractBlock[]
 	 */
-	private function getUniqueBlocks( $blocks ) {
+	private function getUniqueBlocks( array $blocks ) {
 		$systemBlocks = [];
 		$databaseBlocks = [];
 
