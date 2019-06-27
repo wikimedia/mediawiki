@@ -22,6 +22,7 @@
  */
 
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Base search engine base class for database-backed searches
@@ -29,16 +30,18 @@ use Wikimedia\Rdbms\IDatabase;
  * @since 1.23
  */
 abstract class SearchDatabase extends SearchEngine {
-	/**
-	 * @var IDatabase Replica database from which to read results
-	 */
+	/** @var ILoadBalancer */
+	protected $lb;
+	/** @var IDatabase (backwards compatibility) */
 	protected $db;
 
 	/**
-	 * @param IDatabase|null $db The database to search from
+	 * @param ILoadBalancer $lb The load balancer for the DB cluster to search on
 	 */
-	public function __construct( IDatabase $db = null ) {
-		$this->db = $db ?: wfGetDB( DB_REPLICA );
+	public function __construct( ILoadBalancer $lb ) {
+		$this->lb = $lb;
+		// @TODO: remove this deprecated field in 1.35
+		$this->db = $lb->getLazyConnectionRef( DB_REPLICA ); // b/c
 	}
 
 	/**
