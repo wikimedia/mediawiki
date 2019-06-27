@@ -283,7 +283,7 @@
 				}
 				$thead.append( this );
 			} );
-			$table.find( ' > tbody:first' ).before( $thead );
+			$table.find( ' > tbody' ).first().before( $thead );
 		}
 		if ( !$table.get( 0 ).tFoot ) {
 			$tfoot = $( '<tfoot>' );
@@ -322,7 +322,7 @@
 			headerIndex,
 			exploded,
 			$tableHeaders = $( [] ),
-			$tableRows = $( 'thead:eq(0) > tr', table );
+			$tableRows = $( table ).find( 'thead' ).eq( 0 ).find( '> tr' );
 
 		if ( $tableRows.length <= 1 ) {
 			$tableHeaders = $tableRows.children( 'th' );
