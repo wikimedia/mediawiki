@@ -5711,6 +5711,11 @@ $wgRateLimits = [
 		'ip-all' => [ 10, 3600 ],
 		'user' => [ 4, 86400 ]
 	],
+	// since 1.33 - rate limit email confirmations
+	'confirmemail' => [
+		'ip-all' => [ 10, 3600 ],
+		'user' => [ 4, 86400 ]
+	],
 	// Purging pages
 	'purge' => [
 		'ip' => [ 30, 60 ],

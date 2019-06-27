@@ -155,6 +155,13 @@ class EmailConfirmation extends UnlistedSpecialPage {
 			return;
 		}
 
+		// rate limit email confirmations
+		if ( $user->pingLimiter( 'confirmemail' ) ) {
+			$this->getOutput()->addWikiMsg( 'actionthrottledtext' );
+
+			return;
+		}
+
 		$user->confirmEmail();
 		$user->saveSettings();
 		$message = $this->getUser()->isLoggedIn() ? 'confirmemail_loggedin' : 'confirmemail_success';
