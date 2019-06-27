@@ -2986,7 +2986,7 @@ $article: The article object corresponding to the page
 'ShowSearchHit': Customize display of search hit.
 $searchPage: The SpecialSearch instance.
 $result: The SearchResult to show
-$terms: Search terms, for highlighting
+$terms: Search terms, for highlighting (unreliable as search engine dependent).
 &$link: HTML of link to the matching page. May be modified.
 &$redirect: HTML of redirect info. May be modified.
 &$section: HTML of matching section. May be modified.

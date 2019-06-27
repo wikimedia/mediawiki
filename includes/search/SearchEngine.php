@@ -46,7 +46,10 @@ abstract class SearchEngine {
 	/** @var int */
 	protected $offset = 0;
 
-	/** @var string[] */
+	/**
+	 * @var string[]
+	 * @deprecated since 1.34
+	 */
 	protected $searchTerms = [];
 
 	/** @var bool */

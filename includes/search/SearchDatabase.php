@@ -36,6 +36,11 @@ abstract class SearchDatabase extends SearchEngine {
 	protected $db;
 
 	/**
+	 * @var string[] search terms
+	 */
+	protected $searchTerms = [];
+
+	/**
 	 * @param ILoadBalancer $lb The load balancer for the DB cluster to search on
 	 */
 	public function __construct( ILoadBalancer $lb ) {
