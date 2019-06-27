@@ -49,6 +49,13 @@ class ResponseFactoryTest extends MediaWikiTestCase {
 		$this->assertSame( 301, $response->getStatusCode() );
 	}
 
+	public function testCreateLegacyTemporaryRedirect() {
+		$rf = new ResponseFactory;
+		$response = $rf->createLegacyTemporaryRedirect( 'http://www.example.com/' );
+		$this->assertSame( [ 'http://www.example.com/' ], $response->getHeader( 'Location' ) );
+		$this->assertSame( 302, $response->getStatusCode() );
+	}
+
 	public function testCreateTemporaryRedirect() {
 		$rf = new ResponseFactory;
 		$response = $rf->createTemporaryRedirect( 'http://www.example.com/' );
