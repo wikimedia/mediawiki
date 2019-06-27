@@ -71,7 +71,8 @@ class SearchOracle extends SearchDatabase {
 			return new SqlSearchResultSet( false, '' );
 		}
 
-		$resultSet = $this->db->query( $this->getQuery( $this->filter( $term ), true ) );
+		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+		$resultSet = $dbr->query( $this->getQuery( $this->filter( $term ), true ) );
 		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
@@ -86,7 +87,8 @@ class SearchOracle extends SearchDatabase {
 			return new SqlSearchResultSet( false, '' );
 		}
 
-		$resultSet = $this->db->query( $this->getQuery( $this->filter( $term ), false ) );
+		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+		$resultSet = $dbr->query( $this->getQuery( $this->filter( $term ), false ) );
 		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
@@ -101,7 +103,8 @@ class SearchOracle extends SearchDatabase {
 		if ( $this->namespaces === [] ) {
 			$namespaces = '0';
 		} else {
-			$namespaces = $this->db->makeList( $this->namespaces );
+			$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+			$namespaces = $dbr->makeList( $this->namespaces );
 		}
 		return 'AND page_namespace IN (' . $namespaces . ')';
 	}
@@ -114,7 +117,9 @@ class SearchOracle extends SearchDatabase {
 	 * @return string
 	 */
 	private function queryLimit( $sql ) {
-		return $this->db->limitResult( $sql, $this->limit, $this->offset );
+		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+
+		return $dbr->limitResult( $sql, $this->limit, $this->offset );
 	}
 
 	/**
@@ -160,8 +165,11 @@ class SearchOracle extends SearchDatabase {
 	 */
 	function queryMain( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
-		$page = $this->db->tableName( 'page' );
-		$searchindex = $this->db->tableName( 'searchindex' );
+
+		$dbr = $this->lb->getMaintenanceConnectionRef( DB_REPLICA );
+		$page = $dbr->tableName( 'page' );
+		$searchindex = $dbr->tableName( 'searchindex' );
+
 		return 'SELECT page_id, page_namespace, page_title ' .
 			"FROM $page,$searchindex " .
 			'WHERE page_id=si_page AND ' . $match;
@@ -208,8 +216,10 @@ class SearchOracle extends SearchDatabase {
 			}
 		}
 
-		$searchon = $this->db->addQuotes( ltrim( $searchon, ' &' ) );
+		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+		$searchon = $dbr->addQuotes( ltrim( $searchon, ' &' ) );
 		$field = $this->getIndexField( $fulltext );
+
 		return " CONTAINS($field, $searchon, 1) > 0 ";
 	}
 
@@ -230,7 +240,7 @@ class SearchOracle extends SearchDatabase {
 	 * @param string $text
 	 */
 	function update( $id, $title, $text ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->lb->getConnection( DB_MASTER );
 		$dbw->replace( 'searchindex',
 			[ 'si_page' ],
 			[
@@ -258,8 +268,7 @@ class SearchOracle extends SearchDatabase {
 	 * @param string $title
 	 */
 	function updateTitle( $id, $title ) {
-		$dbw = wfGetDB( DB_MASTER );
-
+		$dbw = $this->lb->getConnectionRef( DB_MASTER );
 		$dbw->update( 'searchindex',
 			[ 'si_title' => $title ],
 			[ 'si_page' => $id ],
