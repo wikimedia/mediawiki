@@ -530,7 +530,10 @@ class Parser {
 	 * @param ParserOptions $options
 	 * @param bool $linestart
 	 * @param bool $clearState
-	 * @param int|null $revid Number to pass in {{REVISIONID}}
+	 * @param int|null $revid ID of the revision being rendered. This is used to render
+	 *  REVISION* magic words. 0 means that any current revision will be used. Null means
+	 *  that {{REVISIONID}}/{{REVISIONUSER}} will be empty and {{REVISIONTIMESTAMP}} will
+	 *  use the current timestamp.
 	 * @return ParserOutput A ParserOutput
 	 * @return-taint escaped
 	 */

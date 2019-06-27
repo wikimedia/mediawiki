@@ -329,7 +329,8 @@ class WikitextContent extends TextContent {
 	 * using the global Parser service.
 	 *
 	 * @param Title $title
-	 * @param int|null $revId Revision to pass to the parser (default: null)
+	 * @param int|null $revId ID of the revision being rendered.
+	 *  See Parser::parse() for the ramifications. (default: null)
 	 * @param ParserOptions $options (default: null)
 	 * @param bool $generateHtml (default: true)
 	 * @param ParserOutput &$output ParserOutput representing the HTML form of the text,
