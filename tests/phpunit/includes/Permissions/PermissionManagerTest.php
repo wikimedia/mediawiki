@@ -1105,8 +1105,8 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		] );
 		$this->user->mBlock->mTimestamp = 0;
 		$this->assertEquals( [ [ 'autoblockedtext',
-			'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
-			'Useruser', null, 'infinite', '127.0.8.1',
+			"[[User:Useruser|\u{202A}Useruser\u{202C}]]", 'no reason given', '127.0.0.1',
+			"\u{202A}Useruser\u{202C}", null, 'infinite', '127.0.8.1',
 			$wgLang->timeanddate( wfTimestamp( TS_MW, $prev ), true ) ] ],
 			MediaWikiServices::getInstance()->getPermissionManager()->getPermissionErrors(
 				'move-target', $this->user, $this->title ) );
@@ -1130,8 +1130,8 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			'expiry' => 10,
 		] );
 		$this->assertEquals( [ [ 'blockedtext',
-			'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
-			'Useruser', null, '23:00, 31 December 1969', '127.0.8.1',
+			"[[User:Useruser|\u{202A}Useruser\u{202C}]]", 'no reason given', '127.0.0.1',
+			"\u{202A}Useruser\u{202C}", null, '23:00, 31 December 1969', '127.0.8.1',
 			$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ] ],
 			MediaWikiServices::getInstance()->getPermissionManager()
 				->getPermissionErrors( 'move-target', $this->user, $this->title ) );
@@ -1150,8 +1150,8 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		] );
 
 		$errors = [ [ 'systemblockedtext',
-			'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
-			'Useruser', 'test', 'infinite', '127.0.8.1',
+			"[[User:Useruser|\u{202A}Useruser\u{202C}]]", 'no reason given', '127.0.0.1',
+			"\u{202A}Useruser\u{202C}", 'test', 'infinite', '127.0.8.1',
 			$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ] ];
 
 		$this->assertEquals( $errors,
@@ -1208,8 +1208,8 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		] );
 
 		$errors = [ [ 'blockedtext-partial',
-			'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
-			'Useruser', null, '23:00, 31 December 1969', '127.0.8.1',
+			"[[User:Useruser|\u{202A}Useruser\u{202C}]]", 'no reason given', '127.0.0.1',
+			"\u{202A}Useruser\u{202C}", null, '23:00, 31 December 1969', '127.0.8.1',
 			$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ] ];
 
 		$this->assertEquals( $errors,
@@ -1282,8 +1282,8 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		] );
 
 		$errors = [ [ 'blockedtext',
-			'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
-			'Useruser', null, 'infinite', '127.0.8.1',
+			"[[User:Useruser|\u{202A}Useruser\u{202C}]]", 'no reason given', '127.0.0.1',
+			"\u{202A}Useruser\u{202C}", null, 'infinite', '127.0.8.1',
 			$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ] ];
 
 		$this->assertEquals( $errors,
