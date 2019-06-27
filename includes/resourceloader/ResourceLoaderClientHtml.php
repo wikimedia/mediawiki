@@ -348,7 +348,7 @@ JAVASCRIPT;
 	private static function makeContext( ResourceLoaderContext $mainContext, $group, $type,
 		array $extraQuery = []
 	) {
-		// Create new ResourceLoaderContext so that $extraQuery may trigger isRaw().
+		// Create new ResourceLoaderContext so that $extraQuery is supported (eg. for 'sync=1').
 		$req = new FauxRequest( array_merge( $mainContext->getRequest()->getValues(), $extraQuery ) );
 		// Set 'only' if not combined
 		$req->setVal( 'only', $type === ResourceLoaderModule::TYPE_COMBINED ? null : $type );
@@ -434,12 +434,6 @@ JAVASCRIPT;
 							);
 						}
 					} else {
-						// See if we have one or more raw modules
-						$isRaw = false;
-						foreach ( $moduleSet as $key => $module ) {
-							$isRaw |= $module->isRaw();
-						}
-
 						// Special handling for the user group; because users might change their stuff
 						// on-wiki like user pages, or user preferences; we need to find the highest
 						// timestamp of these user-changeable modules so we can ensure cache misses on change
@@ -455,9 +449,15 @@ JAVASCRIPT;
 						// Decide whether to use 'style' or 'script' element
 						if ( $only === ResourceLoaderModule::TYPE_STYLES ) {
 							$chunk = Html::linkedStyle( $url );
-						} elseif ( $context->getRaw() || $isRaw ) {
+						} elseif ( $context->getRaw() ) {
+							// This request is asking for the module to be delivered standalone,
+							// (aka "raw") without communicating to any mw.loader client.
+							// Use cases:
+							// - startup (naturally because this is what will define mw.loader)
+							// - html5shiv (loads synchronously in old IE before the async startup module arrives)
+							// - QUnit (needed in SpecialJavaScriptTest before async startup)
 							$chunk = Html::element( 'script', [
-								// In SpecialJavaScriptTest, QUnit must load synchronous
+								// The 'sync' option is only supported in combination with 'raw'.
 								'async' => !isset( $extraQuery['sync'] ),
 								'src' => $url
 							] );

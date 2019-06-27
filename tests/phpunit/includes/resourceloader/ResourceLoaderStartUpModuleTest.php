@@ -185,23 +185,6 @@ mw.loader.register( [
 ] );',
 			] ],
 			[ [
-				'msg' => 'Omit raw modules from registry',
-				'modules' => [
-					'test.raw' => new ResourceLoaderTestModule( [ 'isRaw' => true ] ),
-					'test.blank' => new ResourceLoaderTestModule(),
-				],
-				'out' => '
-mw.loader.addSource( {
-    "local": "/w/load.php"
-} );
-mw.loader.register( [
-    [
-        "test.blank",
-        "{blankVer}"
-    ]
-] );',
-			] ],
-			[ [
 				'msg' => 'Version falls back gracefully if getVersionHash throws',
 				'modules' => [
 					'test.fail' => (
