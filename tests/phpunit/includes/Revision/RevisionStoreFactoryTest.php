@@ -55,7 +55,7 @@ class RevisionStoreFactoryTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStoreFactory::getRevisionStore
 	 */
 	public function testGetRevisionStore(
-		$wikiId,
+		$dbDomain,
 		$mcrMigrationStage = MIGRATION_OLD,
 		$contentHandlerUseDb = true
 	) {
@@ -81,14 +81,14 @@ class RevisionStoreFactoryTest extends MediaWikiTestCase {
 			$contentHandlerUseDb
 		);
 
-		$store = $factory->getRevisionStore( $wikiId );
+		$store = $factory->getRevisionStore( $dbDomain );
 		$wrapper = TestingAccessWrapper::newFromObject( $store );
 
 		// ensure the correct object type is returned
 		$this->assertInstanceOf( RevisionStore::class, $store );
 
 		// ensure the RevisionStore is for the given wikiId
-		$this->assertSame( $wikiId, $wrapper->wikiId );
+		$this->assertSame( $dbDomain, $wrapper->dbDomain );
 
 		// ensure all other required services are correctly set
 		$this->assertSame( $cache, $wrapper->cache );

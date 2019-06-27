@@ -877,7 +877,7 @@ EOF
 
 		$bClocks = $b->mParseStartTime;
 
-		$a->mergeInternalMetaDataFrom( $b->object, 'b' );
+		$a->mergeInternalMetaDataFrom( $b->object );
 		$mergedClocks = $a->mParseStartTime;
 
 		foreach ( $mergedClocks as $clock => $timestamp ) {
@@ -890,7 +890,7 @@ EOF
 		$a->resetParseStartTime();
 		$aClocks = $a->mParseStartTime;
 
-		$a->mergeInternalMetaDataFrom( $b->object, 'b' );
+		$a->mergeInternalMetaDataFrom( $b->object );
 		$mergedClocks = $a->mParseStartTime;
 
 		foreach ( $mergedClocks as $clock => $timestamp ) {
@@ -902,7 +902,7 @@ EOF
 		$a = new ParserOutput();
 		$a = TestingAccessWrapper::newFromObject( $a );
 
-		$a->mergeInternalMetaDataFrom( $b->object, 'b' );
+		$a->mergeInternalMetaDataFrom( $b->object );
 		$mergedClocks = $a->mParseStartTime;
 
 		foreach ( $mergedClocks as $clock => $timestamp ) {
