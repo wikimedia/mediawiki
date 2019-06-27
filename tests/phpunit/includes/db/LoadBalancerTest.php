@@ -167,7 +167,9 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		] );
 	}
 
-	private function newMultiServerLocalLoadBalancer( $lbExtra = [], $srvExtra = [] ) {
+	private function newMultiServerLocalLoadBalancer(
+		$lbExtra = [], $srvExtra = [], $masterOnly = false
+	) {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
 
 		$servers = [
@@ -180,7 +182,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 				'password' => $wgDBpassword,
 				'type' => $wgDBtype,
 				'dbDirectory' => $wgSQLiteDataDir,
-				'load' => 0,
+				'load' => $masterOnly ? 100 : 0,
 			],
 			// Main replica DBs
 			1 => $srvExtra + [
@@ -191,7 +193,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 				'password' => $wgDBpassword,
 				'type' => $wgDBtype,
 				'dbDirectory' => $wgSQLiteDataDir,
-				'load' => 100,
+				'load' => $masterOnly ? 0 : 100,
 			],
 			2 => $srvExtra + [
 				'host' => $wgDBserver,
@@ -201,7 +203,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 				'password' => $wgDBpassword,
 				'type' => $wgDBtype,
 				'dbDirectory' => $wgSQLiteDataDir,
-				'load' => 100,
+				'load' => $masterOnly ? 0 : 100,
 			],
 			// RC replica DBs
 			3 => $srvExtra + [
@@ -617,5 +619,12 @@ class LoadBalancerTest extends MediaWikiTestCase {
 
 		$this->assertEquals( $vslowIndexPicked, $lbWrapper->getExistingReaderIndex( 'vslow' ) );
 		$this->assertEquals( 6, $vslowIndexPicked );
+	}
+
+	public function testNonZeroMasterLoad() {
+		$lb = $this->newMultiServerLocalLoadBalancer( [], [ 'flags' => DBO_DEFAULT ], true );
+		// Make sure that no infinite loop occurs (T226678)
+		$rGeneric = $lb->getConnectionRef( DB_REPLICA );
+		$this->assertEquals( $lb->getWriterIndex(), $rGeneric->getLBInfo( 'serverIndex' ) );
 	}
 }

@@ -159,7 +159,8 @@ class LoadMonitor implements ILoadMonitor {
 			if ( $conn ) {
 				$close = false; // already open
 			} else {
-				$conn = $this->parent->getConnection( $i, [], ILoadBalancer::DOMAIN_ANY, $flags );
+				// Get a connection to this server without triggering other server connections
+				$conn = $this->parent->getServerConnection( $i, ILoadBalancer::DOMAIN_ANY, $flags );
 				$close = true; // new connection
 			}
 

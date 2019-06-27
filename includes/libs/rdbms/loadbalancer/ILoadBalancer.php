@@ -93,6 +93,8 @@ interface ILoadBalancer {
 	const CONN_TRX_AUTOCOMMIT = 1;
 	/** @var int Return null on connection failure instead of throwing an exception */
 	const CONN_SILENCE_ERRORS = 2;
+	/** @var int Caller is requesting the master DB server for possibly writes */
+	const CONN_INTENT_WRITABLE = 4;
 
 	/** @var string Manager of ILoadBalancer instances is running post-commit callbacks */
 	const STAGE_POSTCOMMIT_CALLBACKS = 'stage-postcommit-callbacks';
@@ -271,11 +273,32 @@ interface ILoadBalancer {
 	 * @param string[]|string $groups Query group(s) or [] to use the default group
 	 * @param string|bool $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants
-	 * @return IDatabase|bool Live connection handle or false on failure
+	 *
+	 * @note This method throws DBAccessError if ILoadBalancer::disable() was called
+	 *
+	 * @return IDatabase|bool This returns false on failure if CONN_SILENCE_ERRORS is set
 	 * @throws DBError If no live handle can be obtained and CONN_SILENCE_ERRORS is not set
 	 * @throws DBAccessError If disable() was previously called
+	 * @throws InvalidArgumentException
 	 */
 	public function getConnection( $i, $groups = [], $domain = false, $flags = 0 );
+
+	/**
+	 * Get a live handle for a server index
+	 *
+	 * This is a simpler version of getConnection() that does not accept virtual server
+	 * indexes (e.g. DB_MASTER/DB_REPLICA), does not assure that master DB handles have
+	 * read-only mode when there is high replication lag, and can only trigger attempts
+	 * to connect to a single server (the one with the specified server index).
+	 *
+	 * @see ILoadBalancer::getConnection()
+	 *
+	 * @param int $i Specific server index
+	 * @param string $domain Resolved DB domain
+	 * @param int $flags Bitfield of class CONN_* constants
+	 * @return IDatabase|bool
+	 */
+	public function getServerConnection( $i, $domain, $flags = 0 );
 
 	/**
 	 * Mark a live handle as being available for reuse under a different database domain
