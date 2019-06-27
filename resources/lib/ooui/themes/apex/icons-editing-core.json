@@ -17,6 +17,9 @@
 		"link": {
 			"file": "../wikimediaui/images/icons/link.svg"
 		},
+		"unLink": {
+			"file": "../wikimediaui/images/icons/unLink.svg"
+		},
 		"linkExternal": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/linkExternal-ltr.svg",

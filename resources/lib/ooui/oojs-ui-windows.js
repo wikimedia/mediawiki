@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.32.1
+ * OOUI v0.33.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-06-05T16:24:08Z
+ * Date: 2019-06-27T03:27:26Z
  */
 ( function ( OO ) {
 
@@ -3234,6 +3234,9 @@ OO.ui.ProcessDialog = function OoUiProcessDialog( config ) {
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-processDialog' );
+	if ( OO.ui.isMobile() ) {
+		this.$element.addClass( 'oo-ui-isMobile' );
+	}
 };
 
 /* Setup */
@@ -3328,21 +3331,24 @@ OO.ui.ProcessDialog.prototype.initialize = function () {
  * @inheritdoc
  */
 OO.ui.ProcessDialog.prototype.getActionWidgetConfig = function ( config ) {
-	var isMobile = OO.ui.isMobile();
+	function checkFlag( flag ) {
+		return config.flags === flag ||
+			( Array.isArray( config.flags ) && config.flags.indexOf( flag ) !== -1 );
+	}
 
-	// Default to unframed on mobile
-	config = $.extend( { framed: !isMobile }, config );
-	// Change back buttons to icon only on mobile
-	if (
-		isMobile &&
-		(
-			config.flags === 'back' ||
-			( Array.isArray( config.flags ) && config.flags.indexOf( 'back' ) !== -1 )
-		)
-	) {
+	// Default to unframed.
+	config = $.extend( { framed: false }, config );
+	if ( checkFlag( 'close' ) ) {
+		// Change close buttons to icon only.
+		$.extend( config, {
+			icon: 'close',
+			invisibleLabel: true
+		} );
+	} else if ( OO.ui.isMobile() && checkFlag( 'back' ) ) {
+		// Change back buttons to icon only.
 		$.extend( config, {
 			icon: 'previous',
-			label: ''
+			invisibleLabel: true
 		} );
 	}
 

@@ -1,4 +1,54 @@
 # OOUI Release History
+## v0.33.0 / 2019-06-26
+### Breaking changes
+* [BREAKING CHANGE] Element: Drop `getJQuery`, unused, useless since approximately 2015 (Ed Sanders)
+* [BREAKING CHANGE] Element: Drop support for `$`, deprecated since 2015 (James D. Forrester)
+* [BREAKING CHANGE] Make OO.ui.throttle always work asynchronously (David Chan)
+* [BREAKING CHANGE] Toolbar: Drop support for unnamed groups, deprecated since v0.27.1 (James D. Forrester)
+* [BREAKING CHANGE] core: Drop OO.ui.now(), deprecated since 0.31.1 (James D. Forrester)
+* [BREAKING CHANGE] {Icon,Iindicator}Element: Drop get$1Title, deprecated in 0.30.0 (James D. Forrester)
+* [BREAKING CHANGE] Drop textures, deprecated since 0.31.1 (James D. Forrester)
+
+### Features
+* Add 'close' action flag and use close icon on mobile (Ed Sanders)
+* Add a MessageWidget (Moriel Schottlender)
+
+### Styles
+* Fix positioning of TabSelectWidget gradient (Ed Sanders)
+* MessageWidget: Add `box-sizing` rule (Moriel Schottlender)
+* ProcessDialog: Increase title size, and align to left on mobile (Volker E.)
+* ProcessDialog: Use frameless actions and icons on desktop (Volker E.)
+* WikimediaUI theme: Apply primary flag to ButtonWidget (frameless) (Volker E.)
+* WikimediaUI theme: Converge appearance of mobile & desktop ProcessDialog (Volker E.)
+* WikimediaUI theme: Make ProcessDialog action icon buttons square (Volker E.)
+* WikimediaUI theme: Use `bold` for primary tools (Volker E.)
+* icons: Create 'unLink' icon (Ed Sanders)
+* icons: Use square dot in 'infoFilled' icon (Bartosz Dziewoński)
+
+### Code
+* ActionFieldLayout: Fix `z-index` hack for invalid input element (Bartosz Dziewoński)
+* FieldLayout: Use the newly created MessageWidget in notices (Moriel Schottlender)
+* Hide tool shortcuts on mobile (Ed Sanders)
+* PHP FlaggedElement: Fix `clearFlags()` method (Bartosz Dziewoński)
+* ProcessDialog: Keep labels for screen readers on mobile (Volker E.)
+* TextInputWidget: Fix Firefox proprietary appearance (Volker E.)
+* build: Remove outdated comment (Bartosz Dziewoński)
+* build: Update 'WikimediaUI-Base' to latest v0.14.0 and amend variables (Volker E.)
+* build: Updating 'mediawiki/mediawiki-codesniffer' to 26.0.0 (libraryupgrader)
+* demos: Add matomo/piwik tracking code for page views (Francisco Dans)
+* demos: Create Demo.LinkedFieldsetLayout to provide links to demo sections (Ed Sanders)
+* demos: Don't add top margin at first child paragraph (Volker E.)
+* demos: Don't load Piwik analytics when testing locally (Bartosz Dziewoński)
+* demos: Fix Piwik analytics tracking using the wrong URL (Bartosz Dziewoński)
+* demos: Fix RTL issues and link/show code positions (Volker E.)
+* demos: Fix appearance of TagMultiselect- & NumberInputWidget combo (Volker E.)
+* demos: Fix links to sections on mobile (Bartosz Dziewoński)
+* demos: Load 'demo.css' early on (Volker E.)
+* demos: Style the MessageWidget to fit a smaller width (Moriel Schottlender)
+* package-lock.json: npm audit bump (James D. Forrester)
+* package.json: Hard-code jsduck fewer times (James D. Forrester)
+
+
 ## v0.32.1 / 2019-06-04
 ### Features
 * Add 'helpInline' support to FieldsetLayout (Ed Sanders)

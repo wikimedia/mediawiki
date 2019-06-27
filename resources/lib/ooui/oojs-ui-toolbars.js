@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.32.1
+ * OOUI v0.33.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-06-05T16:24:08Z
+ * Date: 2019-06-27T03:27:26Z
  */
 ( function ( OO ) {
 
@@ -500,12 +500,7 @@ OO.ui.Toolbar.prototype.setup = function ( groups ) {
 			groupConfig.type : defaultType;
 		toolGroup = this.getToolGroupFactory().create( type, this, groupConfig );
 		items.push( toolGroup );
-		if ( groupConfig.name ) {
-			this.groupsByName[ groupConfig.name ] = toolGroup;
-		} else {
-			// Groups without name are deprecated
-			OO.ui.warnDeprecation( 'Toolgroups must have a \'name\' property' );
-		}
+		this.groupsByName[ groupConfig.name ] = toolGroup;
 		toolGroup.connect( this, {
 			active: 'onToolGroupActive'
 		} );
@@ -710,6 +705,13 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 		.addClass( 'oo-ui-tool-link' )
 		.append( this.checkIcon.$element, this.$icon, this.$title, this.$accel )
 		.attr( 'role', 'button' );
+
+	// Don't show keyboard shortcuts on mobile as users are unlikely to have
+	// a physical keyboard, and likely to have limited screen space.
+	if ( !OO.ui.isMobile() ) {
+		this.$link.append( this.$accel );
+	}
+
 	this.$element
 		.data( 'oo-ui-tool', this )
 		.addClass( 'oo-ui-tool' )
