@@ -813,9 +813,11 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * @deprecated since 1.34, use getSearchLink() instead.
 	 * @return string
 	 */
 	function escapeSearchLink() {
+		wfDeprecated( __METHOD__, '1.34' );
 		return htmlspecialchars( $this->getSearchLink() );
 	}
 
