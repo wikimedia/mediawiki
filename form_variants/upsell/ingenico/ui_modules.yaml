@@ -1,0 +1,3 @@
+scripts:
+    - ext.donationInterface.ingenico-hosted
+    - ext.donationInterface.recurringUpsell
