@@ -239,14 +239,6 @@ interface IDatabase {
 	public function setLazyMasterHandle( IDatabase $conn );
 
 	/**
-	 * Returns true if this database does an implicit sort when doing GROUP BY
-	 *
-	 * @return bool
-	 * @deprecated Since 1.30; only use grouped or aggregated fields in the SELECT
-	 */
-	public function implicitGroupby();
-
-	/**
 	 * Returns true if this database does an implicit order by when the column has an index
 	 * For example: SELECT page_title FROM page LIMIT 1
 	 *
@@ -259,15 +251,6 @@ interface IDatabase {
 	 * @return string SQL text or empty string if there was no such query
 	 */
 	public function lastQuery();
-
-	/**
-	 * Returns true if the connection may have been used for write queries.
-	 * Should return true if unsure.
-	 *
-	 * @return bool
-	 * @deprecated Since 1.31; use lastDoneWrites()
-	 */
-	public function doneWrites();
 
 	/**
 	 * Returns the last time the connection may have been used for write queries.
@@ -389,14 +372,6 @@ interface IDatabase {
 	 * @return string
 	 */
 	public function getDomainID();
-
-	/**
-	 * Alias for getDomainID()
-	 *
-	 * @return string
-	 * @deprecated 1.30
-	 */
-	public function getWikiID();
 
 	/**
 	 * Get the type of the DBMS, as it appears in $wgDBtype.

@@ -316,6 +316,17 @@ because of Phabricator reports.
 * UploadBase:: and UploadFromChunks::stashFileGetKey() and stashSession(),
   deprecated in 1.28, have been removed. Instead, please use the getFileKey()
   method on the response from doStashFile().
+* LBFactory::setDomainPrefix() and LoadBalancer::setDomainPrefix(), deprecated
+  in 1.33, have been removed. Use setLocalDomainPrefix() instead.
+* IDatabase::implicitGroupby(), deprecated in 1.30, has been removed.
+* IDatabase::doneWrites(), deprecated in 1.31, has been removed.
+  Use IDatabase::lastDoneWrites() instead.
+* Database::reportConnectionError(), deprecated in 1.32, has been removed.
+* LoadBalancer::laggedSlaveUsed(), deprecated in 1.28, has been removed.
+  Use LoadBalancer::laggedReplicaUsed() instead.
+* Database::getProperty(), deprecated in 1.28, has been removed.
+* IDatabase::getWikiId(), deprecated in 1.30, has been removed.
+  Use IDatabase::getDomainID() instead.
 * …
 
 === Deprecations in 1.34 ===

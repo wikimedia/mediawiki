@@ -613,20 +613,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->lazyMasterHandle;
 	}
 
-	public function implicitGroupby() {
-		return true;
-	}
-
 	public function implicitOrderby() {
 		return true;
 	}
 
 	public function lastQuery() {
 		return $this->lastQuery;
-	}
-
-	public function doneWrites() {
-		return (bool)$this->lastWriteTime;
 	}
 
 	public function lastDoneWrites() {
@@ -779,21 +771,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return (bool)( $this->flags & $flag );
 	}
 
-	/**
-	 * @param string $name Class field name
-	 * @return mixed
-	 * @deprecated Since 1.28
-	 */
-	public function getProperty( $name ) {
-		return $this->$name;
-	}
-
 	public function getDomainID() {
 		return $this->currentDomain->getId();
-	}
-
-	final public function getWikiID() {
-		return $this->getDomainID();
 	}
 
 	/**

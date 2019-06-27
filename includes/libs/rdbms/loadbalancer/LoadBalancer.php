@@ -1922,15 +1922,6 @@ class LoadBalancer implements ILoadBalancer {
 		return $this->laggedReplicaMode;
 	}
 
-	/**
-	 * @return bool
-	 * @since 1.27
-	 * @deprecated Since 1.28; use laggedReplicaUsed()
-	 */
-	public function laggedSlaveUsed() {
-		return $this->laggedReplicaUsed();
-	}
-
 	public function getReadOnlyReason( $domain = false, IDatabase $conn = null ) {
 		if ( $this->readOnlyReason !== false ) {
 			return $this->readOnlyReason;
@@ -2201,14 +2192,6 @@ class LoadBalancer implements ILoadBalancer {
 
 	public function setIndexAliases( array $aliases ) {
 		$this->indexAliases = $aliases;
-	}
-
-	/**
-	 * @param string $prefix
-	 * @deprecated Since 1.33
-	 */
-	public function setDomainPrefix( $prefix ) {
-		$this->setLocalDomainPrefix( $prefix );
 	}
 
 	public function setLocalDomainPrefix( $prefix ) {

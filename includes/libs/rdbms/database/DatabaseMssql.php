@@ -59,10 +59,6 @@ class DatabaseMssql extends Database {
 	/** @var string[] */
 	protected $ignoreErrors = [];
 
-	public function implicitGroupby() {
-		return false;
-	}
-
 	public function implicitOrderby() {
 		return false;
 	}
