@@ -2902,7 +2902,6 @@ return [
 			'oojs-ui-core.styles',
 			'oojs-ui-core.icons',
 			'oojs-ui.styles.indicators',
-			'oojs-ui.styles.textures',
 			'mediawiki.language',
 		],
 		'messages' => [
@@ -3011,10 +3010,6 @@ return [
 	'oojs-ui.styles.indicators' => [
 		'class' => ResourceLoaderOOUIImageModule::class,
 		'themeImages' => 'indicators',
-	],
-	'oojs-ui.styles.textures' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
-		'themeImages' => 'textures',
 	],
 	'oojs-ui.styles.icons-accessibility' => [
 		'class' => ResourceLoaderOOUIImageModule::class,

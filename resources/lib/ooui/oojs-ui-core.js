@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.32.1
+ * OOUI v0.33.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-06-05T16:24:08Z
+ * Date: 2019-06-27T03:27:26Z
  */
 ( function ( OO ) {
 
@@ -292,7 +292,7 @@ OO.ui.warnDeprecation = function ( message ) {
  */
 OO.ui.throttle = function ( func, wait ) {
 	var context, args, timeout,
-		previous = 0,
+		previous = Date.now() - wait,
 		run = function () {
 			timeout = null;
 			previous = Date.now();
@@ -304,31 +304,15 @@ OO.ui.throttle = function ( func, wait ) {
 		// period. If it's less, run the function immediately. If it's more,
 		// set a timeout for the remaining time -- but don't replace an
 		// existing timeout, since that'd indefinitely prolong the wait.
-		var remaining = wait - ( Date.now() - previous );
+		var remaining = Math.max( wait - ( Date.now() - previous ), 0 );
 		context = this;
 		args = arguments;
-		if ( remaining <= 0 ) {
-			// Note: unless wait was ridiculously large, this means we'll
-			// automatically run the first time the function was called in a
-			// given period. (If you provide a wait period larger than the
-			// current Unix timestamp, you *deserve* unexpected behavior.)
-			clearTimeout( timeout );
-			run();
-		} else if ( !timeout ) {
+		if ( !timeout ) {
+			// If time is up, do setTimeout( run, 0 ) so the function
+			// always runs asynchronously, just like Promise#then .
 			timeout = setTimeout( run, remaining );
 		}
 	};
-};
-
-/**
- * A (possibly faster) way to get the current timestamp as an integer.
- *
- * @deprecated Since 0.31.1; use `Date.now()` instead.
- * @return {number} Current timestamp, in milliseconds since the Unix epoch
- */
-OO.ui.now = function () {
-	OO.ui.warnDeprecation( 'OO.ui.now() is deprecated, use Date.now() instead' );
-	return Date.now();
 };
 
 /**
@@ -613,10 +597,6 @@ OO.ui.Element = function OoUiElement( config ) {
 	config = config || {};
 
 	// Properties
-	this.$ = function () {
-		OO.ui.warnDeprecation( 'this.$ is deprecated, use global $ instead' );
-		return $.apply( this, arguments );
-	};
 	this.elementId = null;
 	this.visible = true;
 	this.data = config.data;
@@ -891,29 +871,6 @@ OO.ui.Element.static.reusePreInfuseDOM = function ( node, config ) {
  */
 OO.ui.Element.static.gatherPreInfuseState = function () {
 	return {};
-};
-
-/**
- * Get a jQuery function within a specific document.
- *
- * @static
- * @param {jQuery|HTMLElement|HTMLDocument|Window} context Context to bind the function to
- * @param {jQuery} [$iframe] HTML iframe element that contains the document, omit if document is
- *   not in an iframe
- * @return {Function} Bound jQuery function
- */
-OO.ui.Element.static.getJQuery = function ( context, $iframe ) {
-	function wrapper( selector ) {
-		return $( selector, wrapper.context );
-	}
-
-	wrapper.context = this.getDocument( context );
-
-	if ( $iframe ) {
-		wrapper.$iframe = $iframe;
-	}
-
-	return wrapper;
 };
 
 /**
@@ -3053,16 +3010,6 @@ OO.ui.mixin.IconElement.prototype.getIcon = function () {
 };
 
 /**
- * Get the icon title. The title text is displayed when a user moves the mouse over the icon.
- *
- * @return {string} Icon title text
- * @deprecated
- */
-OO.ui.mixin.IconElement.prototype.getIconTitle = function () {
-	return this.iconTitle;
-};
-
-/**
  * IndicatorElement is often mixed into other classes to generate an indicator.
  * Indicators are small graphics that are generally used in two ways:
  *
@@ -3194,18 +3141,6 @@ OO.ui.mixin.IndicatorElement.prototype.setIndicator = function ( indicator ) {
  */
 OO.ui.mixin.IndicatorElement.prototype.getIndicator = function () {
 	return this.indicator;
-};
-
-/**
- * Get the indicator title.
- *
- * The title is displayed when a user moves the mouse over the indicator.
- *
- * @return {string} Indicator title text
- * @deprecated
- */
-OO.ui.mixin.IndicatorElement.prototype.getIndicatorTitle = function () {
-	return this.indicatorTitle;
 };
 
 /**
@@ -4273,6 +4208,125 @@ OO.mixinClass( OO.ui.LabelWidget, OO.ui.mixin.TitledElement );
  * @inheritdoc
  */
 OO.ui.LabelWidget.static.tagName = 'label';
+
+/**
+ * MessageWidget produces a visual component for sending a notice to the user
+ * with an icon and distinct design noting its purpose. The MessageWidget changes
+ * its visual presentation based on the type chosen, which also denotes its UX
+ * purpose.
+ *
+ * @class
+ * @extends OO.ui.Widget
+ * @mixins OO.ui.mixin.IconElement
+ * @mixins OO.ui.mixin.LabelElement
+ * @mixins OO.ui.mixin.TitledElement
+ * @mixins OO.ui.mixin.FlaggedElement
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {string} [type='notice'] The type of the notice widget. This will also
+ *  impact the flags that the widget receives (and hence its CSS design) as well
+ *  as the icon that appears. Available types:
+ *  'notice', 'error', 'warning', 'success'
+ * @cfg {boolean} [inline] Set the notice as an inline notice. The default
+ *  is not inline, or 'boxed' style.
+ */
+OO.ui.MessageWidget = function OoUiMessageWidget( config ) {
+	// Configuration initialization
+	config = config || {};
+
+	// Parent constructor
+	OO.ui.MessageWidget.parent.call( this, config );
+
+	// Mixin constructors
+	OO.ui.mixin.IconElement.call( this, config );
+	OO.ui.mixin.LabelElement.call( this, config );
+	OO.ui.mixin.TitledElement.call( this, config );
+	OO.ui.mixin.FlaggedElement.call( this, config );
+
+	// Set type
+	this.setType( config.type );
+	this.setInline( config.inline );
+
+	// Build the widget
+	this.$element
+		.append( this.$icon, this.$label )
+		.addClass( 'oo-ui-messageWidget' );
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.MessageWidget, OO.ui.Widget );
+OO.mixinClass( OO.ui.MessageWidget, OO.ui.mixin.IconElement );
+OO.mixinClass( OO.ui.MessageWidget, OO.ui.mixin.LabelElement );
+OO.mixinClass( OO.ui.MessageWidget, OO.ui.mixin.TitledElement );
+OO.mixinClass( OO.ui.MessageWidget, OO.ui.mixin.FlaggedElement );
+
+/* Static Properties */
+
+/**
+ * An object defining the icon name per defined type.
+ *
+ * @static
+ * @property {Object}
+ */
+OO.ui.MessageWidget.static.iconMap = {
+	notice: 'infoFilled',
+	error: 'error',
+	warning: 'alert',
+	success: 'check'
+};
+
+/* Methods */
+
+/**
+ * Set the inline state of the widget.
+ *
+ * @param {boolean} inline Widget is inline
+ */
+OO.ui.MessageWidget.prototype.setInline = function ( inline ) {
+	inline = !!inline;
+
+	if ( this.inline !== inline ) {
+		this.inline = inline;
+		this.$element
+			.toggleClass( 'oo-ui-messageWidget-block', !this.inline );
+	}
+};
+/**
+ * Set the widget type. The given type must belong to the list of
+ * legal types set by OO.ui.MessageWidget.static.iconMap
+ *
+ * @param  {string} [type] Given type. Defaults to 'notice'
+ */
+OO.ui.MessageWidget.prototype.setType = function ( type ) {
+	// Validate type
+	if ( Object.keys( this.constructor.static.iconMap ).indexOf( type ) === -1 ) {
+		type = 'notice'; // Default
+	}
+
+	if ( this.type !== type ) {
+
+		// Flags
+		this.clearFlags();
+		this.setFlags( type );
+
+		// Set the icon and its variant
+		this.setIcon( this.constructor.static.iconMap[ type ] );
+		this.$icon.removeClass( 'oo-ui-image-' + this.type );
+		this.$icon.addClass( 'oo-ui-image-' + type );
+
+		if ( type === 'error' ) {
+			this.$element.attr( 'role', 'alert' );
+			this.$element.removeAttr( 'aria-live' );
+		} else {
+			this.$element.removeAttr( 'role' );
+			this.$element.attr( 'aria-live', 'polite' );
+		}
+
+		this.type = type;
+	}
+};
 
 /**
  * PendingElement is a mixin that is used to create elements that notify users that something is
@@ -11986,7 +12040,7 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	this.successMessages = [];
 	this.notices = [];
 	this.$field = this.isFieldInline() ? $( '<span>' ) : $( '<div>' );
-	this.$messages = $( '<ul>' );
+	this.$messages = $( '<div>' );
 	this.$header = $( '<span>' );
 	this.$body = $( '<div>' );
 	this.align = null;
@@ -12081,26 +12135,11 @@ OO.ui.FieldLayout.prototype.isFieldInline = function () {
  * @return {jQuery}
  */
 OO.ui.FieldLayout.prototype.makeMessage = function ( kind, text ) {
-	var $listItem, $icon, message;
-	$listItem = $( '<li>' );
-	if ( kind === 'error' ) {
-		$icon = new OO.ui.IconWidget( { icon: 'error', flags: [ 'error' ] } ).$element;
-		$listItem.attr( 'role', 'alert' );
-	} else if ( kind === 'warning' ) {
-		$icon = new OO.ui.IconWidget( { icon: 'alert', flags: [ 'warning' ] } ).$element;
-		$listItem.attr( 'role', 'alert' );
-	} else if ( kind === 'success' ) {
-		$icon = new OO.ui.IconWidget( { icon: 'check', flags: [ 'success' ] } ).$element;
-	} else if ( kind === 'notice' ) {
-		$icon = new OO.ui.IconWidget( { icon: 'notice' } ).$element;
-	} else {
-		$icon = '';
-	}
-	message = new OO.ui.LabelWidget( { label: text } );
-	$listItem
-		.append( $icon, message.$element )
-		.addClass( 'oo-ui-fieldLayout-messages-' + kind );
-	return $listItem;
+	return new OO.ui.MessageWidget( {
+		type: kind,
+		inline: true,
+		label: text
+	} ).$element;
 };
 
 /**

@@ -27,7 +27,7 @@ trait ResourceLoaderOOUIModule {
 	protected static $knownScriptsModules = [ 'core' ];
 	protected static $knownStylesModules = [ 'core', 'widgets', 'toolbars', 'windows' ];
 	protected static $knownImagesModules = [
-		'indicators', 'textures',
+		'indicators',
 		// Extra icons
 		'icons-accessibility',
 		'icons-alerts',
