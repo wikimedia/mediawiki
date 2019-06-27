@@ -27,9 +27,9 @@
 
 namespace Wikimedia\Rdbms;
 
-use Wikimedia;
 use Exception;
 use stdClass;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * @ingroup Database
@@ -78,18 +78,13 @@ class DatabaseMssql extends Database {
 	}
 
 	protected function open( $server, $user, $password, $dbName, $schema, $tablePrefix ) {
-		# Test for driver support, to avoid suppressed fatal error
+		// Test for driver support, to avoid suppressed fatal error
 		if ( !function_exists( 'sqlsrv_connect' ) ) {
 			throw new DBConnectionError(
 				$this,
 				"Microsoft SQL Server Native (sqlsrv) functions missing.
 				You can download the driver from: http://go.microsoft.com/fwlink/?LinkId=123470\n"
 			);
-		}
-
-		# e.g. the class is being loaded
-		if ( !strlen( $user ) ) {
-			return null;
 		}
 
 		$this->close();
@@ -110,15 +105,19 @@ class DatabaseMssql extends Database {
 			$connectionInfo['PWD'] = $password;
 		}
 
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$this->conn = sqlsrv_connect( $server, $connectionInfo );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		if ( $this->conn === false ) {
-			throw new DBConnectionError( $this, $this->lastError() );
+			$error = $this->lastError();
+			$this->connLogger->error(
+				"Error connecting to {db_server}: {error}",
+				$this->getLogContext( [ 'method' => __METHOD__, 'error' => $error ] )
+			);
+			throw new DBConnectionError( $this, $error );
 		}
 
-		$this->opened = true;
 		$this->currentDomain = new DatabaseDomain(
 			( $dbName != '' ) ? $dbName : null,
 			null,

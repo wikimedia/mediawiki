@@ -459,13 +459,6 @@ class OutputPage extends ContextSource {
 	 * @param string|null $unused Previously used to change the cache-busting query parameter
 	 */
 	public function addScriptFile( $file, $unused = null ) {
-		if ( substr( $file, 0, 1 ) !== '/' && !preg_match( '#^[a-z]*://#i', $file ) ) {
-			// This is not an absolute path, protocol-relative url, or full scheme url,
-			// presumed to be an old call intended to include a file from /w/skins/common,
-			// which doesn't exist anymore as of MediaWiki 1.24 per T71277. Ignore.
-			wfDeprecated( __METHOD__, '1.24' );
-			return;
-		}
 		$this->addScript( Html::linkedScript( $file, $this->getCSPNonce() ) );
 	}
 

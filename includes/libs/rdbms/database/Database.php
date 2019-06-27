@@ -74,7 +74,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $delimiter = ';';
 	/** @var string|bool|null Stashed value of html_errors INI setting */
 	protected $htmlErrors;
-	/** @var int */
+	/** @var int Row batch size to use for emulated INSERT SELECT queries */
 	protected $nonNativeInsertSelectBatchSize = 10000;
 
 	/** @var BagOStuff APC cache */
@@ -93,13 +93,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $trxProfiler;
 	/** @var DatabaseDomain */
 	protected $currentDomain;
+	/** @var object|resource|null Database connection */
+	protected $conn;
+
 	/** @var IDatabase|null Lazy handle to the master DB this server replicates from */
 	private $lazyMasterHandle;
-
-	/** @var object|resource|null Database connection */
-	protected $conn = null;
-	/** @var bool Whether a connection handle is open (connection itself might be dead) */
-	protected $opened = false;
 
 	/** @var array Map of (name => 1) for locks obtained via lock() */
 	protected $sessionNamedLocks = [];
@@ -308,7 +306,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string $dbName Database name
 	 * @param string|null $schema Database schema name
 	 * @param string $tablePrefix Table prefix
-	 * @return bool
 	 * @throws DBConnectionError
 	 */
 	abstract protected function open( $server, $user, $password, $dbName, $schema, $tablePrefix );
@@ -721,7 +718,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function isOpen() {
-		return $this->opened;
+		return (bool)$this->conn;
 	}
 
 	public function setFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
@@ -865,7 +862,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	final public function close() {
 		$exception = null; // error to throw after disconnecting
 
-		$wasOpen = $this->opened;
+		$wasOpen = (bool)$this->conn;
 		// This should mostly do nothing if the connection is already closed
 		if ( $this->conn ) {
 			// Roll back any dangling transaction first
@@ -914,7 +911,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		$this->conn = false;
-		$this->opened = false;
 
 		// Throw any unexpected errors after having disconnected
 		if ( $exception instanceof Exception ) {
@@ -977,16 +973,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return bool Whether connection was closed successfully
 	 */
 	abstract protected function closeConnection();
-
-	/**
-	 * @deprecated since 1.32
-	 * @param string $error Fallback message, if none is given by DB
-	 * @throws DBConnectionError
-	 */
-	public function reportConnectionError( $error = 'Unknown error' ) {
-		call_user_func( $this->deprecationLogger, 'Use of ' . __METHOD__ . ' is deprecated.' );
-		throw new DBConnectionError( $this, $this->lastError() ?: $error );
-	}
 
 	/**
 	 * Run a query and return a DBMS-dependent wrapper or boolean
@@ -1194,8 +1180,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Send the query to the server and fetch any corresponding errors
 		list( $ret, $err, $errno, $recoverableSR, $recoverableCL, $reconnected ) =
 			$this->executeQueryAttempt( $sql, $commentedSql, $isPermWrite, $fname, $flags );
+
 		// Check if the query failed due to a recoverable connection loss
-		if ( $ret === false && $recoverableCL && $reconnected ) {
+		$allowRetry = !$this->hasFlags( $flags, self::QUERY_NO_RETRY );
+		if ( $ret === false && $recoverableCL && $reconnected && $allowRetry ) {
 			// Silently resend the query to the server since it is safe and possible
 			list( $ret, $err, $errno, $recoverableSR, $recoverableCL ) =
 				$this->executeQueryAttempt( $sql, $commentedSql, $isPermWrite, $fname, $flags );
@@ -4134,7 +4122,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	protected function replaceLostConnection( $fname ) {
 		$this->closeConnection();
-		$this->opened = false;
 		$this->conn = false;
 
 		$this->handleSessionLossPreconnect();
@@ -4708,7 +4695,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		if ( $this->isOpen() ) {
 			// Open a new connection resource without messing with the old one
-			$this->opened = false;
 			$this->conn = false;
 			$this->trxEndCallbacks = []; // don't copy
 			$this->handleSessionLossPreconnect(); // no trx or locks anymore
@@ -4755,7 +4741,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->closeConnection();
 			Wikimedia\restoreWarnings();
 			$this->conn = false;
-			$this->opened = false;
 		}
 	}
 }

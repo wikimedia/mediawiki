@@ -106,6 +106,8 @@ interface IDatabase {
 	/** @var int Enable compression in connection protocol */
 	const DBO_COMPRESS = 512;
 
+	/** @var int Idiom for "no special flags" */
+	const QUERY_NORMAL = 0;
 	/** @var int Ignore query errors and return false when they happen */
 	const QUERY_SILENCE_ERRORS = 1; // b/c for 1.32 query() argument; note that (int)true = 1
 	/**
@@ -117,6 +119,8 @@ interface IDatabase {
 	const QUERY_REPLICA_ROLE = 4;
 	/** @var int Ignore the current presence of any DBO_TRX flag */
 	const QUERY_IGNORE_DBO_TRX = 8;
+	/** @var int Do not try to retry the query if the connection was lost */
+	const QUERY_NO_RETRY = 16;
 
 	/** @var bool Parameter to unionQueries() for UNION ALL */
 	const UNION_ALL = true;

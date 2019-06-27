@@ -87,7 +87,7 @@ class DatabasePostgres extends Database {
 	}
 
 	protected function open( $server, $user, $password, $dbName, $schema, $tablePrefix ) {
-		# Test for Postgres support, to avoid suppressed fatal error
+		// Test for Postgres support, to avoid suppressed fatal error
 		if ( !function_exists( 'pg_connect' ) ) {
 			throw new DBConnectionError(
 				$this,
@@ -143,23 +143,36 @@ class DatabasePostgres extends Database {
 			throw new DBConnectionError( $this, str_replace( "\n", ' ', $phpError ) );
 		}
 
-		$this->opened = true;
+		try {
+			// If called from the command-line (e.g. importDump), only show errors.
+			// No transaction should be open at this point, so the problem of the SET
+			// effects being rolled back should not be an issue.
+			// See https://www.postgresql.org/docs/8.3/sql-set.html
+			$variables = [];
+			if ( $this->cliMode ) {
+				$variables['client_min_messages'] = 'ERROR';
+			}
+			$variables += [
+				'client_encoding' => 'UTF8',
+				'datestyle' => 'ISO, YMD',
+				'timezone' => 'GMT',
+				'standard_conforming_strings' => 'on',
+				'bytea_output' => 'escape'
+			];
+			foreach ( $variables as $var => $val ) {
+				$this->query(
+					'SET ' . $this->addIdentifierQuotes( $var ) . ' = ' . $this->addQuotes( $val ),
+					__METHOD__,
+					self::QUERY_IGNORE_DBO_TRX | self::QUERY_NO_RETRY
+				);
+			}
 
-		# If called from the command-line (e.g. importDump), only show errors
-		if ( $this->cliMode ) {
-			$this->doQuery( "SET client_min_messages = 'ERROR'" );
+			$this->determineCoreSchema( $schema );
+			$this->currentDomain = new DatabaseDomain( $dbName, $schema, $tablePrefix );
+		} catch ( Exception $e ) {
+			// Connection was not fully initialized and is not safe for use
+			$this->conn = false;
 		}
-
-		$this->query( "SET client_encoding='UTF8'", __METHOD__ );
-		$this->query( "SET datestyle = 'ISO, YMD'", __METHOD__ );
-		$this->query( "SET timezone = 'GMT'", __METHOD__ );
-		$this->query( "SET standard_conforming_strings = on", __METHOD__ );
-		$this->query( "SET bytea_output = 'escape'", __METHOD__ ); // PHP bug 53127
-
-		$this->determineCoreSchema( $schema );
-		$this->currentDomain = new DatabaseDomain( $dbName, $schema, $tablePrefix );
-
-		return (bool)$this->conn;
 	}
 
 	protected function relationSchemaQualifier() {
@@ -981,7 +994,7 @@ __INDEXATTR__;
 	 * @return string Default schema for the current session
 	 */
 	public function getCurrentSchema() {
-		$res = $this->query( "SELECT current_schema()", __METHOD__ );
+		$res = $this->query( "SELECT current_schema()", __METHOD__, self::QUERY_IGNORE_DBO_TRX );
 		$row = $this->fetchRow( $res );
 
 		return $row[0];
@@ -998,7 +1011,11 @@ __INDEXATTR__;
 	 * @return array List of actual schemas for the current sesson
 	 */
 	public function getSchemas() {
-		$res = $this->query( "SELECT current_schemas(false)", __METHOD__ );
+		$res = $this->query(
+			"SELECT current_schemas(false)",
+			__METHOD__,
+			self::QUERY_IGNORE_DBO_TRX
+		);
 		$row = $this->fetchRow( $res );
 		$schemas = [];
 
@@ -1017,7 +1034,7 @@ __INDEXATTR__;
 	 * @return array How to search for table names schemas for the current user
 	 */
 	public function getSearchPath() {
-		$res = $this->query( "SHOW search_path", __METHOD__ );
+		$res = $this->query( "SHOW search_path", __METHOD__, self::QUERY_IGNORE_DBO_TRX );
 		$row = $this->fetchRow( $res );
 
 		/* PostgreSQL returns SHOW values as strings */
@@ -1033,7 +1050,11 @@ __INDEXATTR__;
 	 * @param array $search_path List of schemas to be searched by default
 	 */
 	private function setSearchPath( $search_path ) {
-		$this->query( "SET search_path = " . implode( ", ", $search_path ) );
+		$this->query(
+			"SET search_path = " . implode( ", ", $search_path ),
+			__METHOD__,
+			self::QUERY_IGNORE_DBO_TRX
+		);
 	}
 
 	/**
@@ -1051,7 +1072,15 @@ __INDEXATTR__;
 	 * @param string $desiredSchema
 	 */
 	public function determineCoreSchema( $desiredSchema ) {
-		$this->begin( __METHOD__, self::TRANSACTION_INTERNAL );
+		if ( $this->trxLevel ) {
+			// We do not want the schema selection to change on ROLLBACK or INSERT SELECT.
+			// See https://www.postgresql.org/docs/8.3/sql-set.html
+			throw new DBUnexpectedError(
+				$this,
+				__METHOD__ . ": a transaction is currently active."
+			);
+		}
+
 		if ( $this->schemaExists( $desiredSchema ) ) {
 			if ( in_array( $desiredSchema, $this->getSchemas() ) ) {
 				$this->coreSchema = $desiredSchema;
@@ -1064,8 +1093,7 @@ __INDEXATTR__;
 				 * Fixes T17816
 				 */
 				$search_path = $this->getSearchPath();
-				array_unshift( $search_path,
-					$this->addIdentifierQuotes( $desiredSchema ) );
+				array_unshift( $search_path, $this->addIdentifierQuotes( $desiredSchema ) );
 				$this->setSearchPath( $search_path );
 				$this->coreSchema = $desiredSchema;
 				$this->queryLogger->debug(
@@ -1077,8 +1105,6 @@ __INDEXATTR__;
 				"Schema \"" . $desiredSchema . "\" not found, using current \"" .
 				$this->coreSchema . "\"\n" );
 		}
-		/* Commit SET otherwise it will be rollbacked on error or IGNORE SELECT */
-		$this->commit( __METHOD__, self::FLUSHING_INTERNAL );
 	}
 
 	/**
@@ -1243,10 +1269,14 @@ SQL;
 			return false; // short-circuit
 		}
 
-		$exists = $this->selectField(
-			'"pg_catalog"."pg_namespace"', 1, [ 'nspname' => $schema ], __METHOD__ );
+		$res = $this->query(
+			"SELECT 1 FROM pg_catalog.pg_namespace " .
+			"WHERE nspname = " . $this->addQuotes( $schema ) . " LIMIT 1",
+			__METHOD__,
+			self::QUERY_IGNORE_DBO_TRX
+		);
 
-		return (bool)$exists;
+		return ( $this->numRows( $res ) > 0 );
 	}
 
 	/**
