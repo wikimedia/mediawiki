@@ -26,6 +26,7 @@ use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
 use MWException;
+use stdClass;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -45,8 +46,8 @@ class BlockRestrictionStore {
 	 */
 	private $loadBalancer;
 
-	/*
-	 * @param LoadBalancer $loadBalancer load balancer for acquiring database connections
+	/**
+	 * @param ILoadBalancer $loadBalancer load balancer for acquiring database connections
 	 */
 	public function __construct( ILoadBalancer $loadBalancer ) {
 		$this->loadBalancer = $loadBalancer;
@@ -224,7 +225,7 @@ class BlockRestrictionStore {
 	 * Delete the restrictions.
 	 *
 	 * @since 1.33
-	 * @param Restriction[]|null $restrictions
+	 * @param Restriction[] $restrictions
 	 * @throws MWException
 	 * @return bool
 	 */
@@ -435,10 +436,10 @@ class BlockRestrictionStore {
 	/**
 	 * Convert a result row from the database into a restriction object.
 	 *
-	 * @param \stdClass $row
+	 * @param stdClass $row
 	 * @return Restriction|null
 	 */
-	private function rowToRestriction( \stdClass $row ) {
+	private function rowToRestriction( stdClass $row ) {
 		if ( array_key_exists( (int)$row->ir_type, $this->types ) ) {
 			$class = $this->types[ (int)$row->ir_type ];
 			return call_user_func( [ $class, 'newFromRow' ], $row );
