@@ -292,6 +292,7 @@ class RenderedRevision implements SlotRenderingProvider {
 		$this->setRevisionInternal( $rev );
 
 		$this->pruneRevisionSensitiveOutput(
+			$this->revision->getPageId(),
 			$this->revision->getId(),
 			$this->revision->getTimestamp()
 		);
@@ -300,16 +301,25 @@ class RenderedRevision implements SlotRenderingProvider {
 	/**
 	 * Prune any output that depends on the revision ID.
 	 *
+	 * @param int|bool $actualPageId The actual page id, to check the used speculative page ID
+	 *        against; false, to not purge on vary-page-id; true, to purge on vary-page-id
+	 *        unconditionally.
 	 * @param int|bool $actualRevId The actual rev id, to check the used speculative rev ID
-	 *        against, or false to not purge on vary-revision-id, or true to purge on
+	 *        against,; false, to not purge on vary-revision-id; true, to purge on
 	 *        vary-revision-id unconditionally.
 	 * @param string|bool $actualRevTimestamp The actual rev timestamp, to check against the
-	 *        parser output revision timestamp, or false to not purge on vary-revision-timestamp
+	 *        parser output revision timestamp; false, to not purge on vary-revision-timestamp;
+	 *        true, to purge on vary-revision-timestamp unconditionally.
 	 */
-	private function pruneRevisionSensitiveOutput( $actualRevId, $actualRevTimestamp ) {
+	private function pruneRevisionSensitiveOutput(
+		$actualPageId,
+		$actualRevId,
+		$actualRevTimestamp
+	) {
 		if ( $this->revisionOutput ) {
 			if ( $this->outputVariesOnRevisionMetaData(
 				$this->revisionOutput,
+				$actualPageId,
 				$actualRevId,
 				$actualRevTimestamp
 			) ) {
@@ -322,6 +332,7 @@ class RenderedRevision implements SlotRenderingProvider {
 		foreach ( $this->slotsOutput as $role => $output ) {
 			if ( $this->outputVariesOnRevisionMetaData(
 				$output,
+				$actualPageId,
 				$actualRevId,
 				$actualRevTimestamp
 			) ) {
@@ -384,16 +395,20 @@ class RenderedRevision implements SlotRenderingProvider {
 
 	/**
 	 * @param ParserOutput $out
-	 * @param int|bool  $actualRevId The actual rev id, to check the used speculative rev ID
-	 *        against, false to not purge on vary-revision-id, or true to purge on
+	 * @param int|bool $actualPageId The actual page id, to check the used speculative page ID
+	 *        against; false, to not purge on vary-page-id; true, to purge on vary-page-id
+	 *        unconditionally.
+	 * @param int|bool $actualRevId The actual rev id, to check the used speculative rev ID
+	 *        against,; false, to not purge on vary-revision-id; true, to purge on
 	 *        vary-revision-id unconditionally.
 	 * @param string|bool $actualRevTimestamp The actual rev timestamp, to check against the
-	 *        parser output revision timestamp, false to not purge on vary-revision-timestamp,
-	 *        or true to purge on vary-revision-timestamp unconditionally.
+	 *        parser output revision timestamp; false, to not purge on vary-revision-timestamp;
+	 *        true, to purge on vary-revision-timestamp unconditionally.
 	 * @return bool
 	 */
 	private function outputVariesOnRevisionMetaData(
 		ParserOutput $out,
+		$actualPageId,
 		$actualRevId,
 		$actualRevTimestamp
 	) {
@@ -419,6 +434,13 @@ class RenderedRevision implements SlotRenderingProvider {
 				$out->getRevisionTimestampUsed() !== $actualRevTimestamp )
 		) {
 			$logger->info( "$varyMsg (vary-revision-timestamp and wrong timestamp)", $context );
+			return true;
+		} elseif (
+			$out->getFlag( 'vary-page-id' )
+			&& $actualPageId !== false
+			&& ( $actualPageId === true || $out->getSpeculativePageIdUsed() !== $actualPageId )
+		) {
+			$logger->info( "$varyMsg (vary-page-id and wrong ID)", $context );
 			return true;
 		} elseif ( $out->getFlag( 'vary-revision-exists' ) ) {
 			// If {{REVISIONID}} resolved to '', it now needs to resolve to '-'.

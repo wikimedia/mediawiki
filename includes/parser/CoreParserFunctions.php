@@ -1187,39 +1187,44 @@ class CoreParserFunctions {
 	 */
 	public static function pageid( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( is_null( $t ) ) {
+		if ( !$t ) {
 			return '';
+		} elseif ( !$t->canExist() || $t->isExternal() ) {
+			return 0; // e.g. special page or interwiki link
 		}
-		// Use title from parser to have correct pageid after edit
+
+		$parserOutput = $parser->getOutput();
+
 		if ( $t->equals( $parser->getTitle() ) ) {
-			$t = $parser->getTitle();
-			return $t->getArticleID();
+			// Revision is for the same title that is currently being parsed.
+			// Use the title from Parser in case a new page ID was injected into it.
+			$parserOutput->setFlag( 'vary-page-id' );
+			$id = $parser->getTitle()->getArticleID();
+			if ( $id ) {
+				$parserOutput->setSpeculativePageIdUsed( $id );
+			}
+
+			return $id;
 		}
 
-		// These can't have ids
-		if ( !$t->canExist() || $t->isExternal() ) {
-			return 0;
-		}
-
-		// Check the link cache, maybe something already looked it up.
+		// Check the link cache for the title
 		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 		$pdbk = $t->getPrefixedDBkey();
 		$id = $linkCache->getGoodLinkID( $pdbk );
-		if ( $id != 0 ) {
-			$parser->mOutput->addLink( $t, $id );
-			return $id;
-		}
-		if ( $linkCache->isBadLink( $pdbk ) ) {
-			$parser->mOutput->addLink( $t, 0 );
+		if ( $id != 0 || $linkCache->isBadLink( $pdbk ) ) {
+			$parserOutput->addLink( $t, $id );
+
 			return $id;
 		}
 
 		// We need to load it from the DB, so mark expensive
 		if ( $parser->incrementExpensiveFunctionCount() ) {
 			$id = $t->getArticleID();
-			$parser->mOutput->addLink( $t, $id );
+			$parserOutput->addLink( $t, $id );
+
 			return $id;
 		}
+
 		return null;
 	}
 

@@ -210,9 +210,16 @@ class ParserOutput extends CacheTime {
 	 */
 	private $mFlags = [];
 
+	/** @var string[] */
+	private static $speculativeFields = [
+		'speculativePageIdUsed',
+		'speculativeRevIdUsed',
+		'revisionTimestampUsed'
+	];
 	/** @var int|null Assumed rev ID for {{REVISIONID}} if no revision is set */
-	private $mSpeculativeRevId;
-
+	private $speculativeRevIdUsed;
+	/** @var int|null Assumed page ID for {{PAGEID}} if no revision is set */
+	private $speculativePageIdUsed;
 	/** @var int|null Assumed rev timestamp for {{REVISIONTIMESTAMP}} if no revision is set */
 	private $revisionTimestampUsed;
 
@@ -440,7 +447,7 @@ class ParserOutput extends CacheTime {
 	 * @since 1.28
 	 */
 	public function setSpeculativeRevIdUsed( $id ) {
-		$this->mSpeculativeRevId = $id;
+		$this->speculativeRevIdUsed = $id;
 	}
 
 	/**
@@ -448,7 +455,23 @@ class ParserOutput extends CacheTime {
 	 * @since 1.28
 	 */
 	public function getSpeculativeRevIdUsed() {
-		return $this->mSpeculativeRevId;
+		return $this->speculativeRevIdUsed;
+	}
+
+	/**
+	 * @param int $id
+	 * @since 1.34
+	 */
+	public function setSpeculativePageIdUsed( $id ) {
+		$this->speculativePageIdUsed = $id;
+	}
+
+	/**
+	 * @return int|null
+	 * @since 1.34
+	 */
+	public function getSpeculativePageIdUsed() {
+		return $this->speculativePageIdUsed;
 	}
 
 	/**
@@ -1320,18 +1343,13 @@ class ParserOutput extends CacheTime {
 		$this->mWarnings = self::mergeMap( $this->mWarnings, $source->mWarnings ); // don't use getter
 		$this->mTimestamp = $this->useMaxValue( $this->mTimestamp, $source->getTimestamp() );
 
-		if ( $this->mSpeculativeRevId && $source->mSpeculativeRevId
-			&& $this->mSpeculativeRevId !== $source->mSpeculativeRevId
-		) {
-			wfLogWarning(
-				'Inconsistent speculative revision ID encountered while merging parser output!'
-			);
+		foreach ( self::$speculativeFields as $field ) {
+			if ( $this->$field && $source->$field && $this->$field !== $source->$field ) {
+				wfLogWarning( __METHOD__ . ": inconsistent '$field' properties!" );
+			}
+			$this->$field = $this->useMaxValue( $this->$field, $source->$field );
 		}
 
-		$this->mSpeculativeRevId = $this->useMaxValue(
-			$this->mSpeculativeRevId,
-			$source->getSpeculativeRevIdUsed()
-		);
 		$this->mParseStartTime = $this->useEachMinValue(
 			$this->mParseStartTime,
 			$source->mParseStartTime

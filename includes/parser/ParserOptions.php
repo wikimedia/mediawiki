@@ -62,6 +62,7 @@ class ParserOptions {
 	private static $lazyOptions = [
 		'dateformat' => [ __CLASS__, 'initDateFormat' ],
 		'speculativeRevId' => [ __CLASS__, 'initSpeculativeRevId' ],
+		'speculativePageId' => [ __CLASS__, 'initSpeculativePageId' ],
 	];
 
 	/**
@@ -116,11 +117,6 @@ class ParserOptions {
 	 * Appended to the options hash
 	 */
 	private $mExtraKey = '';
-
-	/**
-	 * @name Option accessors
-	 * @{
-	 */
 
 	/**
 	 * Fetch an option and track that is was accessed
@@ -857,6 +853,20 @@ class ParserOptions {
 	}
 
 	/**
+	 * A guess for {{PAGEID}}, calculated using the callback provided via
+	 * setSpeculativeRevPageCallback(). For consistency, the value will be calculated upon the
+	 * first call of this method, and re-used for subsequent calls.
+	 *
+	 * If no callback was defined via setSpeculativePageIdCallback(), this method will return false.
+	 *
+	 * @since 1.34
+	 * @return int|false
+	 */
+	public function getSpeculativePageId() {
+		return $this->getOption( 'speculativePageId' );
+	}
+
+	/**
 	 * Callback registered with ParserOptions::$lazyOptions, triggered by getSpeculativeRevId().
 	 *
 	 * @param ParserOptions $popt
@@ -871,27 +881,40 @@ class ParserOptions {
 	}
 
 	/**
-	 * Callback to generate a guess for {{REVISIONID}}
-	 * @since 1.28
-	 * @deprecated since 1.32, use getSpeculativeRevId() instead!
-	 * @return callable|null
+	 * Callback registered with ParserOptions::$lazyOptions, triggered by getSpeculativePageId().
+	 *
+	 * @param ParserOptions $popt
+	 * @return bool|false
 	 */
-	public function getSpeculativeRevIdCallback() {
-		return $this->getOption( 'speculativeRevIdCallback' );
+	private static function initSpeculativePageId( ParserOptions $popt ) {
+		$cb = $popt->getOption( 'speculativePageIdCallback' );
+		$id = $cb ? $cb() : null;
+
+		// returning null would result in this being re-called every access
+		return $id ?? false;
 	}
 
 	/**
 	 * Callback to generate a guess for {{REVISIONID}}
-	 * @since 1.28
-	 * @param callable|null $x New value (null is no change)
+	 * @param callable|null $x New value
 	 * @return callable|null Old value
+	 * @since 1.28
 	 */
 	public function setSpeculativeRevIdCallback( $x ) {
 		$this->setOption( 'speculativeRevId', null ); // reset
-		return $this->setOptionLegacy( 'speculativeRevIdCallback', $x );
+		return $this->setOption( 'speculativeRevIdCallback', $x );
 	}
 
-	/**@}*/
+	/**
+	 * Callback to generate a guess for {{PAGEID}}
+	 * @param callable|null $x New value
+	 * @return callable|null Old value
+	 * @since 1.34
+	 */
+	public function setSpeculativePageIdCallback( $x ) {
+		$this->setOption( 'speculativePageId', null ); // reset
+		return $this->setOption( 'speculativePageIdCallback', $x );
+	}
 
 	/**
 	 * Timestamp used for {{CURRENTDAY}} etc.
@@ -1102,6 +1125,8 @@ class ParserOptions {
 				'templateCallback' => [ Parser::class, 'statelessFetchTemplate' ],
 				'speculativeRevIdCallback' => null,
 				'speculativeRevId' => null,
+				'speculativePageIdCallback' => null,
+				'speculativePageId' => null,
 			];
 
 			Hooks::run( 'ParserOptionsRegister', [
