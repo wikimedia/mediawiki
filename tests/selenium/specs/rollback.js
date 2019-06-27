@@ -38,7 +38,7 @@ describe( 'Rollback with confirmation', function () {
 		HistoryPage.open( name );
 	} );
 
-	it( 'should offer rollback options for admin users', function () {
+	it.skip( 'should offer rollback options for admin users', function () {
 		assert.strictEqual( HistoryPage.rollback.getText(), 'rollback 1 edit' );
 
 		HistoryPage.rollback.click();
