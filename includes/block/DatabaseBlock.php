@@ -265,7 +265,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * Load blocks from the database which target the specific target exactly, or which cover the
 	 * vague target.
 	 *
-	 * @param User|String|null $specificTarget
+	 * @param User|string|null $specificTarget
 	 * @param int|null $specificType
 	 * @param bool $fromMaster
 	 * @param User|string|null $vagueTarget Also search for blocks affecting this target.  Doesn't
@@ -369,7 +369,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @param DatabaseBlock[] $blocks These should not include autoblocks or ID blocks
 	 * @return DatabaseBlock|null The block with the most specific target
 	 */
-	protected static function chooseMostSpecificBlock( $blocks ) {
+	protected static function chooseMostSpecificBlock( array $blocks ) {
 		if ( count( $blocks ) === 1 ) {
 			return $blocks[0];
 		}
@@ -535,7 +535,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return bool|array False on failure, assoc array on success:
 	 * 	('id' => block ID, 'autoIds' => array of autoblock IDs)
 	 */
-	public function insert( $dbw = null ) {
+	public function insert( IDatabase $dbw = null ) {
 		global $wgBlockDisablesLogin;
 
 		if ( !$this->getBlocker() || $this->getBlocker()->getName() === '' ) {

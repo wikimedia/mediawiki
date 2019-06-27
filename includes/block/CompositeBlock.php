@@ -43,7 +43,7 @@ class CompositeBlock extends AbstractBlock {
 	 * @param array $options Parameters of the block:
 	 *     originalBlocks Block[] Blocks that this block is composed from
 	 */
-	function __construct( $options = [] ) {
+	public function __construct( array $options = [] ) {
 		parent::__construct( $options );
 
 		$defaults = [

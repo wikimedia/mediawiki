@@ -45,7 +45,7 @@ class SystemBlock extends AbstractBlock {
 	 *                          in the database. Value is a string to return
 	 *                          from self::getSystemBlockType().
 	 */
-	function __construct( $options = [] ) {
+	public function __construct( array $options = [] ) {
 		parent::__construct( $options );
 
 		$defaults = [
