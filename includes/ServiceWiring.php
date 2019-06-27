@@ -439,7 +439,8 @@ return [
 			wfUrlProtocols(),
 			$services->getSpecialPageFactory(),
 			$services->getLinkRendererFactory(),
-			$services->getNamespaceInfo()
+			$services->getNamespaceInfo(),
+			LoggerFactory::getInstance( 'Parser' )
 		);
 	},
 

@@ -23,6 +23,8 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Special\SpecialPageFactory;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 
 /**
  * @since 1.32
@@ -49,6 +51,9 @@ class ParserFactory {
 	/** @var NamespaceInfo */
 	private $nsInfo;
 
+	/** @var LoggerInterface */
+	private $logger;
+
 	/**
 	 * Old parameter list, which we support for backwards compatibility, were:
 	 *   array $parserConf See $wgParserConf documentation
@@ -71,12 +76,18 @@ class ParserFactory {
 	 * @param SpecialPageFactory $spFactory
 	 * @param LinkRendererFactory $linkRendererFactory
 	 * @param NamespaceInfo|LinkRendererFactory|null $nsInfo
+	 * @param LoggerInterface|null $logger
 	 * @since 1.32
 	 */
 	public function __construct(
-		$svcOptions, MagicWordFactory $magicWordFactory, Language $contLang,
-		$urlProtocols, SpecialPageFactory $spFactory, $linkRendererFactory,
-		$nsInfo = null
+		$svcOptions,
+		MagicWordFactory $magicWordFactory,
+		Language $contLang,
+		$urlProtocols,
+		SpecialPageFactory $spFactory,
+		$linkRendererFactory,
+		$nsInfo = null,
+		$logger = null
 	) {
 		// @todo Do we need to retain compat for constructing this class directly?
 		if ( !$nsInfo ) {
@@ -107,6 +118,7 @@ class ParserFactory {
 		$this->specialPageFactory = $spFactory;
 		$this->linkRendererFactory = $linkRendererFactory;
 		$this->nsInfo = $nsInfo;
+		$this->logger = $logger ?: new NullLogger();
 	}
 
 	/**
@@ -114,8 +126,16 @@ class ParserFactory {
 	 * @since 1.32
 	 */
 	public function create() : Parser {
-		return new Parser( $this->svcOptions, $this->magicWordFactory, $this->contLang, $this,
-			$this->urlProtocols, $this->specialPageFactory, $this->linkRendererFactory,
-			$this->nsInfo );
+		return new Parser(
+			$this->svcOptions,
+			$this->magicWordFactory,
+			$this->contLang,
+			$this,
+			$this->urlProtocols,
+			$this->specialPageFactory,
+			$this->linkRendererFactory,
+			$this->nsInfo,
+			$this->logger
+		);
 	}
 }

@@ -316,7 +316,7 @@ class RenderedRevision implements SlotRenderingProvider {
 				$this->revisionOutput = null;
 			}
 		} else {
-			$this->saveParseLogger->debug( __METHOD__ . ": no prepared revision output...\n" );
+			$this->saveParseLogger->debug( __METHOD__ . ": no prepared revision output" );
 		}
 
 		foreach ( $this->slotsOutput as $role => $output ) {
@@ -397,38 +397,34 @@ class RenderedRevision implements SlotRenderingProvider {
 		$actualRevId,
 		$actualRevTimestamp
 	) {
-		$method = __METHOD__;
+		$logger = $this->saveParseLogger;
+		$varyMsg = __METHOD__ . ": cannot use prepared output for '{title}'";
+		$context = [ 'title' => $this->title->getPrefixedText() ];
 
 		if ( $out->getFlag( 'vary-revision' ) ) {
 			// If {{PAGEID}} resolved to 0, then that word need to resolve to the actual page ID
-			$this->saveParseLogger->info(
-				"$method: Prepared output has vary-revision..."
-			);
+			$logger->info( "$varyMsg (vary-revision)", $context );
 			return true;
-		} elseif ( $out->getFlag( 'vary-revision-id' )
+		} elseif (
+			$out->getFlag( 'vary-revision-id' )
 			&& $actualRevId !== false
 			&& ( $actualRevId === true || $out->getSpeculativeRevIdUsed() !== $actualRevId )
 		) {
-			$this->saveParseLogger->info(
-				"$method: Prepared output has vary-revision-id with wrong ID..."
-			);
+			$logger->info( "$varyMsg (vary-revision-id and wrong ID)", $context );
 			return true;
-		} elseif ( $out->getFlag( 'vary-revision-timestamp' )
+		} elseif (
+			$out->getFlag( 'vary-revision-timestamp' )
 			&& $actualRevTimestamp !== false
 			&& ( $actualRevTimestamp === true ||
 				$out->getRevisionTimestampUsed() !== $actualRevTimestamp )
 		) {
-			$this->saveParseLogger->info(
-				"$method: Prepared output has vary-revision-timestamp with wrong timestamp..."
-			);
+			$logger->info( "$varyMsg (vary-revision-timestamp and wrong timestamp)", $context );
 			return true;
 		} elseif ( $out->getFlag( 'vary-revision-exists' ) ) {
 			// If {{REVISIONID}} resolved to '', it now needs to resolve to '-'.
 			// Note that edit stashing always uses '-', which can be used for both
 			// edit filter checks and canonical parser cache.
-			$this->saveParseLogger->info(
-				"$method: Prepared output has vary-revision-exists..."
-			);
+			$logger->info( "$varyMsg (vary-revision-exists)", $context );
 			return true;
 		} elseif (
 			$out->getFlag( 'vary-revision-sha1' ) &&
@@ -436,22 +432,18 @@ class RenderedRevision implements SlotRenderingProvider {
 		) {
 			// If a self-transclusion used the proposed page text, it must match the final
 			// page content after PST transformations and automatically merged edit conflicts
-			$this->saveParseLogger->info(
-				"$method: Prepared output has vary-revision-sha1 with wrong SHA-1..."
-			);
+			$logger->info( "$varyMsg (vary-revision-sha1 with wrong SHA-1)" );
 			return true;
-		} else {
-			// NOTE: In the original fix for T135261, the output was discarded if 'vary-user' was
-			// set for a null-edit. The reason was that the original rendering in that case was
-			// targeting the user making the null-edit, not the user who made the original edit,
-			// causing {{REVISIONUSER}} to return the wrong name.
-			// This case is now expected to be handled by the code in RevisionRenderer that
-			// constructs the ParserOptions: For a null-edit, setCurrentRevisionCallback is called
-			// with the old, existing revision.
-
-			$this->saveParseLogger->debug( "$method: Keeping prepared output..." );
-			return false;
 		}
-	}
 
+		// NOTE: In the original fix for T135261, the output was discarded if 'vary-user' was
+		// set for a null-edit. The reason was that the original rendering in that case was
+		// targeting the user making the null-edit, not the user who made the original edit,
+		// causing {{REVISIONUSER}} to return the wrong name.
+		// This case is now expected to be handled by the code in RevisionRenderer that
+		// constructs the ParserOptions: For a null-edit, setCurrentRevisionCallback is called
+		// with the old, existing revision.
+		$logger->debug( __METHOD__ . ": reusing prepared output for '{title}'", $context );
+		return false;
+	}
 }

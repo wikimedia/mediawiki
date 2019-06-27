@@ -26,7 +26,9 @@ use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Special\SpecialPageFactory;
+use Psr\Log\NullLogger;
 use Wikimedia\ScopedCallback;
+use Psr\Log\LoggerInterface;
 
 /**
  * @defgroup Parser Parser
@@ -294,6 +296,9 @@ class Parser {
 	/** @var NamespaceInfo */
 	private $nsInfo;
 
+	/** @var LoggerInterface */
+	private $logger;
+
 	/**
 	 * TODO Make this a const when HHVM support is dropped (T192166)
 	 *
@@ -333,11 +338,18 @@ class Parser {
 	 * @param SpecialPageFactory|null $spFactory
 	 * @param LinkRendererFactory|null $linkRendererFactory
 	 * @param NamespaceInfo|null $nsInfo
+	 * @param LoggerInterface|null $logger
 	 */
 	public function __construct(
-		$svcOptions = null, MagicWordFactory $magicWordFactory = null,
-		Language $contLang = null, ParserFactory $factory = null, $urlProtocols = null,
-		SpecialPageFactory $spFactory = null, $linkRendererFactory = null, $nsInfo = null
+		$svcOptions = null,
+		MagicWordFactory $magicWordFactory = null,
+		Language $contLang = null,
+		ParserFactory $factory = null,
+		$urlProtocols = null,
+		SpecialPageFactory $spFactory = null,
+		$linkRendererFactory = null,
+		$nsInfo = null,
+		$logger = null
 	) {
 		$services = MediaWikiServices::getInstance();
 		if ( !$svcOptions || is_array( $svcOptions ) ) {
@@ -382,6 +394,7 @@ class Parser {
 		$this->specialPageFactory = $spFactory ?? $services->getSpecialPageFactory();
 		$this->linkRendererFactory = $linkRendererFactory ?? $services->getLinkRendererFactory();
 		$this->nsInfo = $nsInfo ?? $services->getNamespaceInfo();
+		$this->logger = $logger ?: new NullLogger();
 	}
 
 	/**
@@ -2776,8 +2789,7 @@ class Parser {
 					# which means the user is previewing a new page.
 					# The vary-revision flag must be set, because the magic word
 					# will have a different value once the page is saved.
-					$this->mOutput->setFlag( 'vary-revision' );
-					wfDebug( __METHOD__ . ": {{PAGEID}} used in a new page, setting vary-revision" );
+					$this->setOutputFlag( 'vary-revision', '{{PAGEID}} on new page' );
 				}
 				$value = $pageid ?: null;
 				break;
@@ -2793,15 +2805,13 @@ class Parser {
 					if ( $this->getRevisionId() || $this->mOptions->getSpeculativeRevId() ) {
 						$value = '-';
 					} else {
-						$this->mOutput->setFlag( 'vary-revision-exists' );
-						wfDebug( __METHOD__ . ": {{REVISIONID}} used, setting vary-revision-exists" );
+						$this->setOutputFlag( 'vary-revision-exists', '{{REVISIONID}} used' );
 						$value = '';
 					}
 				} else {
 					# Inform the edit saving system that getting the canonical output after
 					# revision insertion requires another parse using the actual revision ID
-					$this->mOutput->setFlag( 'vary-revision-id' );
-					wfDebug( __METHOD__ . ": {{REVISIONID}} used, setting vary-revision-id" );
+					$this->setOutputFlag( 'vary-revision-id', '{{REVISIONID}} used' );
 					$value = $this->getRevisionId();
 					if ( $value === 0 ) {
 						$rev = $this->getRevisionObject();
@@ -2836,8 +2846,7 @@ class Parser {
 			case 'revisionuser':
 				# Inform the edit saving system that getting the canonical output after
 				# revision insertion requires a parse that used the actual user ID
-				$this->mOutput->setFlag( 'vary-user' );
-				wfDebug( __METHOD__ . ": {{REVISIONUSER}} used, setting vary-user" );
+				$this->setOutputFlag( 'vary-user', '{{REVISIONUSER}} used' );
 				$value = $this->getRevisionUser();
 				break;
 			case 'revisionsize':
@@ -3007,8 +3016,7 @@ class Parser {
 			if ( $resNow !== $resThen ) {
 				# Inform the edit saving system that getting the canonical output after
 				# revision insertion requires a parse that used an actual revision timestamp
-				$this->mOutput->setFlag( 'vary-revision-timestamp' );
-				wfDebug( __METHOD__ . ": $variable used, setting vary-revision-timestamp" );
+				$this->setOutputFlag( 'vary-revision-timestamp', "$variable used" );
 			}
 		}
 
@@ -3105,8 +3113,10 @@ class Parser {
 		if ( $frame === false ) {
 			$frame = $this->getPreprocessor()->newFrame();
 		} elseif ( !( $frame instanceof PPFrame ) ) {
-			wfDebug( __METHOD__ . " called using plain parameters instead of "
-				. "a PPFrame instance. Creating custom frame.\n" );
+			$this->logger->debug(
+				__METHOD__ . " called using plain parameters instead of " .
+				"a PPFrame instance. Creating custom frame."
+			);
 			$frame = $this->getPreprocessor()->newCustomFrame( $frame );
 		}
 
@@ -3407,8 +3417,10 @@ class Parser {
 					}
 				} elseif ( $this->nsInfo->isNonincludable( $title->getNamespace() ) ) {
 					$found = false; # access denied
-					wfDebug( __METHOD__ . ": template inclusion denied for " .
-						$title->getPrefixedDBkey() . "\n" );
+					$this->logger->debug(
+						__METHOD__ .
+						": template inclusion denied for " . $title->getPrefixedDBkey()
+					);
 				} else {
 					list( $text, $title ) = $this->getTemplateDom( $title );
 					if ( $text !== false ) {
@@ -3446,7 +3458,7 @@ class Parser {
 				$this->addTrackingCategory( 'template-loop-category' );
 				$this->mOutput->addWarning( wfMessage( 'template-loop-warning',
 					wfEscapeWikiText( $titleText ) )->text() );
-				wfDebug( __METHOD__ . ": template loop broken at '$titleText'\n" );
+				$this->logger->debug( __METHOD__ . ": template loop broken at '$titleText'" );
 			}
 		}
 
@@ -3740,8 +3752,7 @@ class Parser {
 				$this->mOutput->addTemplate( $dep['title'], $dep['page_id'], $dep['rev_id'] );
 				if ( $dep['title']->equals( $this->getTitle() ) ) {
 					// Self-transclusion; final result may change based on the new page version
-					$this->mOutput->setFlag( 'vary-revision' );
-					wfDebug( __METHOD__ . ": self transclusion, setting vary-revision" );
+					$this->setOutputFlag( 'vary-revision', 'Self transclusion' );
 				}
 			}
 		}
@@ -4685,7 +4696,7 @@ class Parser {
 				'~~~' => $sigText
 			] );
 			# The main two signature forms used above are time-sensitive
-			$this->mOutput->setFlag( 'user-signature' );
+			$this->setOutputFlag( 'user-signature', 'User signature detected' );
 		}
 
 		# Context links ("pipe tricks"): [[|name]] and [[name (context)|]]
@@ -4750,7 +4761,7 @@ class Parser {
 
 		if ( mb_strlen( $nickname ) > $this->svcOptions->get( 'MaxSigChars' ) ) {
 			$nickname = $username;
-			wfDebug( __METHOD__ . ": $username has overlong signature.\n" );
+			$this->logger->debug( __METHOD__ . ": $username has overlong signature." );
 		} elseif ( $fancySig !== false ) {
 			# Sig. might contain markup; validate this
 			if ( $this->validateSig( $nickname ) !== false ) {
@@ -4759,7 +4770,7 @@ class Parser {
 			} else {
 				# Failed to validate; fall back to the default
 				$nickname = $username;
-				wfDebug( __METHOD__ . ": $username has bad XML tags in signature.\n" );
+				$this->logger->debug( __METHOD__ . ": $username has bad XML tags in signature." );
 			}
 		}
 
@@ -5256,7 +5267,8 @@ class Parser {
 									$handlerOptions[$paramName] = $match;
 								} else {
 									// Guess not, consider it as caption.
-									wfDebug( "$parameterMatch failed parameter validation\n" );
+									$this->logger->debug(
+										"$parameterMatch failed parameter validation" );
 									$label = $parameterMatch;
 								}
 						}
@@ -5642,7 +5654,7 @@ class Parser {
 	 * @deprecated since 1.28; use getOutput()->updateCacheExpiry()
 	 */
 	public function disableCache() {
-		wfDebug( "Parser output marked as uncacheable.\n" );
+		$this->logger->debug( "Parser output marked as uncacheable." );
 		if ( !$this->mOutput ) {
 			throw new MWException( __METHOD__ .
 				" can only be called when actually parsing something" );
@@ -6447,5 +6459,15 @@ class Parser {
 	public function enableOOUI() {
 		OutputPage::setupOOUI();
 		$this->mOutput->setEnableOOUI( true );
+	}
+
+	/**
+	 * @param string $flag
+	 * @param string $reason
+	 */
+	protected function setOutputFlag( $flag, $reason ) {
+		$this->mOutput->setFlag( $flag );
+		$name = $this->mTitle->getPrefixedText();
+		$this->logger->debug( __METHOD__ . ": set $flag flag on '$name'; $reason" );
 	}
 }
