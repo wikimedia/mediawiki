@@ -21,6 +21,7 @@
  * @ingroup Database
  */
 
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
@@ -68,10 +69,10 @@ class DatabaseOracle extends Database {
 	}
 
 	function __destruct() {
-		if ( $this->opened ) {
-			Wikimedia\suppressWarnings();
+		if ( $this->conn ) {
+			AtEase::suppressWarnings();
 			$this->close();
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 		}
 	}
 
@@ -158,8 +159,6 @@ class DatabaseOracle extends Database {
 		if ( !$this->conn ) {
 			throw new DBConnectionError( $this, $this->lastError() );
 		}
-
-		$this->opened = true;
 
 		# removed putenv calls because they interfere with the system globaly
 		$this->doQuery( 'ALTER SESSION SET NLS_TIMESTAMP_FORMAT=\'DD-MM-YYYY HH24:MI:SS.FF6\'' );

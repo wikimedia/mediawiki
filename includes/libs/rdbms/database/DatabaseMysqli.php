@@ -125,21 +125,6 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		return false;
 	}
 
-	protected function connectInitCharset() {
-		// already done in mysqlConnect()
-		return true;
-	}
-
-	/**
-	 * @param string $charset
-	 * @return bool
-	 */
-	protected function mysqlSetCharset( $charset ) {
-		$conn = $this->getBindingHandle();
-
-		return $conn->set_charset( $charset );
-	}
-
 	/**
 	 * @return bool
 	 */
