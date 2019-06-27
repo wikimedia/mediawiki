@@ -219,23 +219,26 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * Returns wiki text showing the third party software versions (apache, php, mysql).
+	 * @since 1.34
 	 *
-	 * @return string
+	 * @return array
 	 */
-	public static function softwareInformation() {
+	public static function getSoftwareInformation() {
 		$dbr = wfGetDB( DB_REPLICA );
 
 		// Put the software in an array of form 'name' => 'version'. All messages should
 		// be loaded here, so feel free to use wfMessage in the 'name'. Raw HTML or
 		// wikimarkup can be used.
-		$software = [];
-		$software['[https://www.mediawiki.org/ MediaWiki]'] = self::getVersionLinked();
+		$software = [
+			'[https://www.mediawiki.org/ MediaWiki]' => self::getVersionLinked()
+		];
+
 		if ( wfIsHHVM() ) {
 			$software['[https://hhvm.com/ HHVM]'] = HHVM_VERSION . " (" . PHP_SAPI . ")";
 		} else {
 			$software['[https://php.net/ PHP]'] = PHP_VERSION . " (" . PHP_SAPI . ")";
 		}
+
 		$software[$dbr->getSoftwareLink()] = $dbr->getServerInfo();
 
 		if ( defined( 'INTL_ICU_VERSION' ) ) {
@@ -245,18 +248,27 @@ class SpecialVersion extends SpecialPage {
 		// Allow a hook to add/remove items.
 		Hooks::run( 'SoftwareInfo', [ &$software ] );
 
+		return $software;
+	}
+
+	/**
+	 * Returns HTML showing the third party software versions (apache, php, mysql).
+	 *
+	 * @return string HTML table
+	 */
+	public static function softwareInformation() {
 		$out = Xml::element(
 				'h2',
 				[ 'id' => 'mw-version-software' ],
 				wfMessage( 'version-software' )->text()
 			) .
-				Xml::openElement( 'table', [ 'class' => 'wikitable plainlinks', 'id' => 'sv-software' ] ) .
-				"<tr>
-					<th>" . wfMessage( 'version-software-product' )->text() . "</th>
-					<th>" . wfMessage( 'version-software-version' )->text() . "</th>
-				</tr>\n";
+			Xml::openElement( 'table', [ 'class' => 'wikitable plainlinks', 'id' => 'sv-software' ] ) .
+			"<tr>
+				<th>" . wfMessage( 'version-software-product' )->text() . "</th>
+				<th>" . wfMessage( 'version-software-version' )->text() . "</th>
+			</tr>\n";
 
-		foreach ( $software as $name => $version ) {
+		foreach ( self::getSoftwareInformation() as $name => $version ) {
 			$out .= "<tr>
 					<td>" . $name . "</td>
 					<td dir=\"ltr\">" . $version . "</td>
