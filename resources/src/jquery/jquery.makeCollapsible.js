@@ -270,7 +270,7 @@
 						}
 					} else {
 						// The toggle-link will be in one of the cells (td or th) of the first row
-						$firstItem = $collapsible.find( 'tr:first th, tr:first td' );
+						$firstItem = $collapsible.find( 'tr' ).first().find( 'th, td' );
 						$toggle = $firstItem.find( '> .mw-collapsible-toggle' );
 
 						// If theres no toggle link, add it to the last cell
@@ -288,7 +288,7 @@
 					$collapsible.before( $toggle );
 				} else if ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) {
 					// The toggle-link will be in the first list-item
-					$firstItem = $collapsible.find( 'li:first' );
+					$firstItem = $collapsible.find( 'li' ).first();
 					$toggle = $firstItem.find( '> .mw-collapsible-toggle' );
 
 					// If theres no toggle link, add it
