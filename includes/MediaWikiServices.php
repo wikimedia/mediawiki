@@ -33,9 +33,8 @@ use MediaWiki\Revision\RevisionStore;
 use OldRevisionImporter;
 use MediaWiki\Revision\RevisionStoreFactory;
 use UploadRevisionImporter;
-use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\ILoadBalancer;
 use LinkCache;
-use Wikimedia\Rdbms\LoadBalancer;
 use MediaHandlerFactory;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Linker\LinkRenderer;
@@ -62,6 +61,7 @@ use SkinFactory;
 use TitleFormatter;
 use TitleParser;
 use VirtualRESTServiceClient;
+use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Services\SalvageableService;
 use Wikimedia\Services\ServiceContainer;
 use Wikimedia\Services\NoSuchServiceException;
@@ -549,7 +549,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.28
-	 * @return LoadBalancer The main DB load balancer for the local wiki.
+	 * @return ILoadBalancer The main DB load balancer for the local wiki.
 	 */
 	public function getDBLoadBalancer() {
 		return $this->getService( 'DBLoadBalancer' );
