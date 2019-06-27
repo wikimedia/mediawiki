@@ -1047,9 +1047,6 @@ MESSAGE;
 			$states[$name] = 'missing';
 		}
 
-		// Generate output
-		$isRaw = false;
-
 		$filter = $context->getOnly() === 'styles' ? 'minify-css' : 'minify-js';
 
 		foreach ( $modules as $name => $module ) {
@@ -1128,12 +1125,11 @@ MESSAGE;
 				$states[$name] = 'error';
 				unset( $modules[$name] );
 			}
-			$isRaw |= $module->isRaw();
 		}
 
 		// Update module states
-		if ( $context->shouldIncludeScripts() && !$context->getRaw() && !$isRaw ) {
-			if ( count( $modules ) && $context->getOnly() === 'scripts' ) {
+		if ( $context->shouldIncludeScripts() && !$context->getRaw() ) {
+			if ( $modules && $context->getOnly() === 'scripts' ) {
 				// Set the state of modules loaded as only scripts to ready as
 				// they don't have an mw.loader.implement wrapper that sets the state
 				foreach ( $modules as $name => $module ) {
@@ -1142,7 +1138,7 @@ MESSAGE;
 			}
 
 			// Set the state of modules we didn't respond to with mw.loader.implement
-			if ( count( $states ) ) {
+			if ( $states ) {
 				$stateScript = self::makeLoaderStateScript( $states );
 				if ( !$context->getDebug() ) {
 					$stateScript = self::filter( 'minify-js', $stateScript );
