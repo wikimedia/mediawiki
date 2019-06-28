@@ -81,7 +81,7 @@ class CategoryMembershipChangeJob extends Job {
 	public function run() {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$lb = $lbFactory->getMainLB();
-		$dbw = $lb->getConnection( DB_MASTER );
+		$dbw = $lb->getConnectionRef( DB_MASTER );
 
 		$this->ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
 
@@ -92,7 +92,7 @@ class CategoryMembershipChangeJob extends Job {
 		}
 
 		// Cut down on the time spent in waitForMasterPos() in the critical section
-		$dbr = $lb->getConnection( DB_REPLICA, [ 'recentchanges' ] );
+		$dbr = $lb->getConnectionRef( DB_REPLICA, [ 'recentchanges' ] );
 		if ( !$lb->waitForMasterPos( $dbr ) ) {
 			$this->setLastError( "Timed out while pre-waiting for replica DB to catch up" );
 			return false;

@@ -240,7 +240,7 @@ class SearchOracle extends SearchDatabase {
 	 * @param string $text
 	 */
 	function update( $id, $title, $text ) {
-		$dbw = $this->lb->getConnection( DB_MASTER );
+		$dbw = $this->lb->getMaintenanceConnectionRef( DB_MASTER );
 		$dbw->replace( 'searchindex',
 			[ 'si_page' ],
 			[

@@ -1588,7 +1588,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$baseRevId = null;
 		if ( $edittime && $sectionId !== 'new' ) {
 			$lb = $this->getDBLoadBalancer();
-			$dbr = $lb->getConnection( DB_REPLICA );
+			$dbr = $lb->getConnectionRef( DB_REPLICA );
 			$rev = Revision::loadFromTimestamp( $dbr, $this->mTitle, $edittime );
 			// Try the master if this thread may have just added it.
 			// This could be abstracted into a Revision method, but we don't want
@@ -1597,7 +1597,7 @@ class WikiPage implements Page, IDBAccessObject {
 				&& $lb->getServerCount() > 1
 				&& $lb->hasOrMadeRecentMasterChanges()
 			) {
-				$dbw = $lb->getConnection( DB_MASTER );
+				$dbw = $lb->getConnectionRef( DB_MASTER );
 				$rev = Revision::loadFromTimestamp( $dbw, $this->mTitle, $edittime );
 			}
 			if ( $rev ) {

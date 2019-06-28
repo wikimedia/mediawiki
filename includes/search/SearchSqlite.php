@@ -33,11 +33,15 @@ class SearchSqlite extends SearchDatabase {
 	 * Whether fulltext search is supported by current schema
 	 * @return bool
 	 */
-	function fulltextSearchSupported() {
+	private function fulltextSearchSupported() {
+		// Avoid getConnectionRef() in order to get DatabaseSqlite specifically
 		/** @var DatabaseSqlite $dbr */
 		$dbr = $this->lb->getConnection( DB_REPLICA );
-
-		return $dbr->checkForEnabledSearch();
+		try {
+			return $dbr->checkForEnabledSearch();
+		} finally {
+			$this->lb->reuseConnection( $dbr );
+		}
 	}
 
 	/**
@@ -285,7 +289,7 @@ class SearchSqlite extends SearchDatabase {
 	 * @param string $title
 	 * @param string $text
 	 */
-	function update( $id, $title, $text ) {
+	public function update( $id, $title, $text ) {
 		if ( !$this->fulltextSearchSupported() ) {
 			return;
 		}
@@ -308,7 +312,7 @@ class SearchSqlite extends SearchDatabase {
 	 * @param int $id
 	 * @param string $title
 	 */
-	function updateTitle( $id, $title ) {
+	public function updateTitle( $id, $title ) {
 		if ( !$this->fulltextSearchSupported() ) {
 			return;
 		}

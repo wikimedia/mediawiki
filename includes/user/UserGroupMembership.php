@@ -256,7 +256,7 @@ class UserGroupMembership {
 
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
-		$dbw = $services->getDBLoadBalancer()->getConnection( DB_MASTER );
+		$dbw = $services->getDBLoadBalancer()->getConnectionRef( DB_MASTER );
 
 		$lockKey = "{$dbw->getDomainID()}:UserGroupMembership:purge"; // per-wiki
 		$scopedLock = $dbw->getScopedLockAndFlush( $lockKey, __METHOD__, 0 );

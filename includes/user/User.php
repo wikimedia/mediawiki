@@ -2584,7 +2584,7 @@ class User implements IDBAccessObject, UserIdentity {
 		if ( $mode === 'refresh' ) {
 			$cache->delete( $key, 1 ); // low tombstone/"hold-off" TTL
 		} else {
-			$lb->getConnection( DB_MASTER )->onTransactionPreCommitOrIdle(
+			$lb->getConnectionRef( DB_MASTER )->onTransactionPreCommitOrIdle(
 				function () use ( $cache, $key ) {
 					$cache->delete( $key );
 				},
