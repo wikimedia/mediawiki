@@ -298,7 +298,7 @@
 		// can change where they are output).
 
 		if ( !document.getElementById( 'p-lang' ) && document.getElementById( 'p-tb' ) && mw.config.get( 'skin' ) === 'vector' ) {
-			$( '.portal:last' ).after(
+			$( '.portal' ).last().after(
 				$( '<div>' ).attr( {
 					class: 'portal',
 					id: 'p-lang',

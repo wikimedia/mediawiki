@@ -609,7 +609,7 @@ Title.newFromFileName = function ( uncleanName ) {
 /**
  * Get the file title from an image element
  *
- *     var title = mw.Title.newFromImg( $( 'img:first' ) );
+ *     var title = mw.Title.newFromImg( imageNode );
  *
  * @static
  * @param {HTMLElement|jQuery} img The image to use as a base
