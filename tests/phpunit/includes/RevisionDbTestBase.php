@@ -1539,8 +1539,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	public function testUserCanBitfield( $bitField, $field, $userGroups, $title, $expected ) {
 		$title = Title::newFromText( $title );
 
-		$this->setMwGlobals(
-			'wgGroupPermissions',
+		$this->setGroupPermissions(
 			[
 				'sysop' => [
 					'deletedtext' => true,
@@ -1592,8 +1591,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	 * @covers Revision::userCan
 	 */
 	public function testUserCan( $bitField, $field, $userGroups, $expected ) {
-		$this->setMwGlobals(
-			'wgGroupPermissions',
+		$this->setGroupPermissions(
 			[
 				'sysop' => [
 					'deletedtext' => true,

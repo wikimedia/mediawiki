@@ -1446,6 +1446,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		];
 		$block = new DatabaseBlock( $blockOptions );
 		$block->insert();
+		$this->resetServices();
 		$status = $this->manager->checkAccountCreatePermissions( $user );
 		$this->assertFalse( $status->isOK() );
 		$this->assertTrue( $status->hasMessage( 'cantcreateaccount-text' ) );
@@ -1472,12 +1473,12 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			],
 			'wgProxyWhitelist' => [],
 		] );
-		$this->overrideMwServices();
+		$this->resetServices();
 		$status = $this->manager->checkAccountCreatePermissions( new \User );
 		$this->assertFalse( $status->isOK() );
 		$this->assertTrue( $status->hasMessage( 'sorbs_create_account_reason' ) );
 		$this->setMwGlobals( 'wgProxyWhitelist', [ '127.0.0.1' ] );
-		$this->overrideMwServices();
+		$this->resetServices();
 		$status = $this->manager->checkAccountCreatePermissions( new \User );
 		$this->assertTrue( $status->isGood() );
 	}
@@ -2365,6 +2366,8 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$this->mergeMwGlobalArrayValue( 'wgObjectCaches',
 			[ __METHOD__ => [ 'class' => 'HashBagOStuff' ] ] );
 		$this->setMwGlobals( [ 'wgMainCacheType' => __METHOD__ ] );
+		// Supply services with updated globals
+		$this->resetServices();
 
 		// Set up lots of mocks...
 		$mocks = [];

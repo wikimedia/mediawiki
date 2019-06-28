@@ -6,7 +6,6 @@ use CommentStoreComment;
 use Content;
 use Language;
 use LogicException;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\RevisionRecord;
@@ -20,7 +19,6 @@ use ParserOptions;
 use ParserOutput;
 use PHPUnit\Framework\MockObject\MockObject;
 use Title;
-use User;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use WikitextContent;
@@ -29,20 +27,6 @@ use WikitextContent;
  * @covers \MediaWiki\Revision\RevisionRenderer
  */
 class RevisionRendererTest extends MediaWikiTestCase {
-
-	/** @var PermissionManager|\PHPUnit_Framework_MockObject_MockObject $permissionManagerMock */
-	private $permissionManagerMock;
-
-	protected function setUp() {
-		parent::setUp();
-
-		$this->permissionManagerMock = $this->createMock( PermissionManager::class );
-		$this->overrideMwServices( null, [
-			'PermissionManager' => function (): PermissionManager {
-				return $this->permissionManagerMock;
-			}
-		] );
-	}
 
 	/**
 	 * @param int $articleId
@@ -88,13 +72,9 @@ class RevisionRendererTest extends MediaWikiTestCase {
 					return $mock->getArticleID() === $other->getArticleID();
 				}
 			);
-		$this->permissionManagerMock->expects( $this->any() )
-			->method( 'userCan' )
-			->willReturnCallback(
-				function ( $perm, User $user ) {
-					return $user->isAllowed( $perm );
-				}
-			);
+		$mock->expects( $this->any() )
+			->method( 'getRestrictions' )
+			->willReturn( [] );
 
 		return $mock;
 	}
@@ -383,6 +363,7 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$sysop = $this->getTestUser( [ 'sysop' ] )->getUser(); // privileged!
 		$rr = $renderer->getRenderedRevision( $rev, $options, $sysop );
 
+		$this->assertNotNull( $rr, 'getRenderedRevision' );
 		$this->assertTrue( $rr->isContentDeleted(), 'isContentDeleted' );
 
 		$this->assertSame( $rev, $rr->getRevision() );

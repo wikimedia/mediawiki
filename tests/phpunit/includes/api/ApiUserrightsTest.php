@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @group API
@@ -36,6 +37,8 @@ class ApiUserrightsTest extends ApiTestCase {
 		if ( $remove ) {
 			$this->mergeMwGlobalArrayValue( 'wgRemoveGroups', [ 'bureaucrat' => $remove ] );
 		}
+
+		$this->resetServices();
 	}
 
 	/**
@@ -75,6 +78,7 @@ class ApiUserrightsTest extends ApiTestCase {
 		$res = $this->doApiRequestWithToken( $params );
 
 		$user->clearInstanceCache();
+		MediaWikiServices::getInstance()->getPermissionManager()->invalidateUsersRightsCache();
 		$this->assertSame( $expectedGroups, $user->getGroups() );
 
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
@@ -217,6 +221,7 @@ class ApiUserrightsTest extends ApiTestCase {
 		ChangeTags::defineTag( 'custom tag' );
 
 		$this->setGroupPermissions( 'user', 'applychangetags', false );
+		$this->resetServices();
 
 		$this->doFailedRightsChange(
 			'You do not have permission to apply change tags along with your changes.',
