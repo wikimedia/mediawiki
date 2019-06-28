@@ -34,55 +34,42 @@ use InvalidArgumentException;
 class LBFactoryMulti extends LBFactory {
 	/** @var array A map of database names to section names */
 	private $sectionsByDB;
-
 	/**
 	 * @var array A 2-d map. For each section, gives a map of server names to
 	 * load ratios
 	 */
 	private $sectionLoads;
-
 	/**
 	 * @var array[] Server info associative array
 	 * @note The host, hostName and load entries will be overridden
 	 */
 	private $serverTemplate;
 
-	// Optional settings
-
 	/** @var array A 3-d map giving server load ratios for each section and group */
 	private $groupLoadsBySection = [];
-
 	/** @var array A 3-d map giving server load ratios by DB name */
 	private $groupLoadsByDB = [];
-
 	/** @var array A map of hostname to IP address */
 	private $hostsByName = [];
-
 	/** @var array A map of external storage cluster name to server load map */
 	private $externalLoads = [];
-
 	/**
 	 * @var array A set of server info keys overriding serverTemplate for
 	 * external storage
 	 */
 	private $externalTemplateOverrides;
-
 	/**
 	 * @var array A 2-d map overriding serverTemplate and
 	 * externalTemplateOverrides on a server-by-server basis. Applies to both
 	 * core and external storage
 	 */
 	private $templateOverridesByServer;
-
 	/** @var array A 2-d map overriding the server info by section */
 	private $templateOverridesBySection;
-
 	/** @var array A 2-d map overriding the server info by external storage cluster */
 	private $templateOverridesByCluster;
-
 	/** @var array An override array for all master servers */
 	private $masterTemplateOverrides;
-
 	/**
 	 * @var array|bool A map of section name to read-only message. Missing or
 	 * false for read/write
@@ -91,16 +78,12 @@ class LBFactoryMulti extends LBFactory {
 
 	/** @var LoadBalancer[] */
 	private $mainLBs = [];
-
 	/** @var LoadBalancer[] */
 	private $extLBs = [];
-
 	/** @var string */
 	private $loadMonitorClass = 'LoadMonitor';
-
 	/** @var string */
 	private $lastDomain;
-
 	/** @var string */
 	private $lastSection;
 
@@ -191,22 +174,19 @@ class LBFactoryMulti extends LBFactory {
 		if ( $this->lastDomain === $domain ) {
 			return $this->lastSection;
 		}
-		list( $dbName, ) = $this->getDBNameAndPrefix( $domain );
-		$section = $this->sectionsByDB[$dbName] ?? 'DEFAULT';
+
+		$database = $this->getDatabaseFromDomain( $domain );
+		$section = $this->sectionsByDB[$database] ?? 'DEFAULT';
 		$this->lastSection = $section;
 		$this->lastDomain = $domain;
 
 		return $section;
 	}
 
-	/**
-	 * @param bool|string $domain
-	 * @return LoadBalancer
-	 */
 	public function newMainLB( $domain = false ) {
-		list( $dbName, ) = $this->getDBNameAndPrefix( $domain );
+		$database = $this->getDatabaseFromDomain( $domain );
 		$section = $this->getSectionForDomain( $domain );
-		$groupLoads = $this->groupLoadsByDB[$dbName] ?? [];
+		$groupLoads = $this->groupLoadsByDB[$database] ?? [];
 
 		if ( isset( $this->groupLoadsBySection[$section] ) ) {
 			$groupLoads = array_merge_recursive(
@@ -232,10 +212,6 @@ class LBFactoryMulti extends LBFactory {
 		);
 	}
 
-	/**
-	 * @param DatabaseDomain|string|bool $domain Domain ID, or false for the current domain
-	 * @return LoadBalancer
-	 */
 	public function getMainLB( $domain = false ) {
 		$section = $this->getSectionForDomain( $domain );
 		if ( !isset( $this->mainLBs[$section] ) ) {
@@ -379,23 +355,14 @@ class LBFactoryMulti extends LBFactory {
 
 	/**
 	 * @param DatabaseDomain|string|bool $domain Domain ID, or false for the current domain
-	 * @return array [database name, table prefix]
+	 * @return string
 	 */
-	private function getDBNameAndPrefix( $domain = false ) {
-		$domain = ( $domain === false )
-			? $this->localDomain
-			: DatabaseDomain::newFromId( $domain );
-
-		return [ $domain->getDatabase(), $domain->getTablePrefix() ];
+	private function getDatabaseFromDomain( $domain = false ) {
+		return ( $domain === false )
+			? $this->localDomain->getDatabase()
+			: DatabaseDomain::newFromId( $domain )->getDatabase();
 	}
 
-	/**
-	 * Execute a function for each tracked load balancer
-	 * The callback is called with the load balancer as the first parameter,
-	 * and $params passed as the subsequent parameters.
-	 * @param callable $callback
-	 * @param array $params
-	 */
 	public function forEachLB( $callback, array $params = [] ) {
 		foreach ( $this->mainLBs as $lb ) {
 			$callback( $lb, ...$params );
