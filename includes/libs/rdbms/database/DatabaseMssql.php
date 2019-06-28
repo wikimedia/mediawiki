@@ -28,6 +28,7 @@
 namespace Wikimedia\Rdbms;
 
 use Exception;
+use RuntimeException;
 use stdClass;
 use Wikimedia\AtEase\AtEase;
 
@@ -1071,13 +1072,10 @@ class DatabaseMssql extends Database {
 		$this->query( 'ROLLBACK TRANSACTION ' . $this->addIdentifierQuotes( $identifier ), $fname );
 	}
 
-	/**
-	 * Begin a transaction, committing any previously open transaction
-	 * @param string $fname
-	 */
 	protected function doBegin( $fname = __METHOD__ ) {
-		sqlsrv_begin_transaction( $this->conn );
-		$this->trxLevel = 1;
+		if ( !sqlsrv_begin_transaction( $this->conn ) ) {
+			$this->reportQueryError( $this->lastError(), $this->lastErrno(), 'BEGIN', $fname );
+		}
 	}
 
 	/**
@@ -1085,8 +1083,9 @@ class DatabaseMssql extends Database {
 	 * @param string $fname
 	 */
 	protected function doCommit( $fname = __METHOD__ ) {
-		sqlsrv_commit( $this->conn );
-		$this->trxLevel = 0;
+		if ( !sqlsrv_commit( $this->conn ) ) {
+			$this->reportQueryError( $this->lastError(), $this->lastErrno(), 'COMMIT', $fname );
+		}
 	}
 
 	/**
@@ -1095,8 +1094,17 @@ class DatabaseMssql extends Database {
 	 * @param string $fname
 	 */
 	protected function doRollback( $fname = __METHOD__ ) {
-		sqlsrv_rollback( $this->conn );
-		$this->trxLevel = 0;
+		if ( !sqlsrv_rollback( $this->conn ) ) {
+			$this->queryLogger->error(
+				"{fname}\t{db_server}\t{errno}\t{error}\t",
+				$this->getLogContext( [
+					'errno' => $this->lastErrno(),
+					'error' => $this->lastError(),
+					'fname' => $fname,
+					'trace' => ( new RuntimeException() )->getTraceAsString()
+				] )
+			);
+		}
 	}
 
 	/**

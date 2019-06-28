@@ -815,7 +815,6 @@ class DatabaseSqlite extends Database {
 		} else {
 			$this->query( 'BEGIN', $fname );
 		}
-		$this->trxLevel = 1;
 	}
 
 	/**

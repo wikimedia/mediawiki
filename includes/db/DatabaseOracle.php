@@ -178,7 +178,7 @@ class DatabaseOracle extends Database {
 	}
 
 	function execFlags() {
-		return $this->trxLevel ? OCI_NO_AUTO_COMMIT : OCI_COMMIT_ON_SUCCESS;
+		return $this->trxLevel() ? OCI_NO_AUTO_COMMIT : OCI_COMMIT_ON_SUCCESS;
 	}
 
 	/**
@@ -548,7 +548,7 @@ class DatabaseOracle extends Database {
 			}
 		}
 
-		if ( !$this->trxLevel ) {
+		if ( !$this->trxLevel() ) {
 			oci_commit( $this->conn );
 		}
 
@@ -942,26 +942,24 @@ class DatabaseOracle extends Database {
 	}
 
 	protected function doBegin( $fname = __METHOD__ ) {
-		$this->trxLevel = 1;
-		$this->doQuery( 'SET CONSTRAINTS ALL DEFERRED' );
+		$this->query( 'SET CONSTRAINTS ALL DEFERRED' );
 	}
 
 	protected function doCommit( $fname = __METHOD__ ) {
-		if ( $this->trxLevel ) {
+		if ( $this->trxLevel() ) {
 			$ret = oci_commit( $this->conn );
 			if ( !$ret ) {
 				throw new DBUnexpectedError( $this, $this->lastError() );
 			}
-			$this->trxLevel = 0;
-			$this->doQuery( 'SET CONSTRAINTS ALL IMMEDIATE' );
+			$this->query( 'SET CONSTRAINTS ALL IMMEDIATE' );
 		}
 	}
 
 	protected function doRollback( $fname = __METHOD__ ) {
-		if ( $this->trxLevel ) {
+		if ( $this->trxLevel() ) {
 			oci_rollback( $this->conn );
-			$this->trxLevel = 0;
-			$this->doQuery( 'SET CONSTRAINTS ALL IMMEDIATE' );
+			$ignoreErrors = true;
+			$this->query( 'SET CONSTRAINTS ALL IMMEDIATE', $fname, $ignoreErrors );
 		}
 	}
 
@@ -1338,7 +1336,7 @@ class DatabaseOracle extends Database {
 			}
 		}
 
-		if ( !$this->trxLevel ) {
+		if ( !$this->trxLevel() ) {
 			oci_commit( $this->conn );
 		}
 
