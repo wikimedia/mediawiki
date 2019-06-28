@@ -2768,7 +2768,7 @@
 	"pageinfo-authors": "Skirtingų autorių skaičius",
 	"pageinfo-recent-edits": "Paskutinųjų keitimų skaičius (per $1 laikotarpį)",
 	"pageinfo-recent-authors": "Pastarųjų skirtingų redaguotojų skaičius",
-	"pageinfo-magic-words": "Magiškas(-i) {{PLURAL:$1|žodis|žodžiai}} ($1)",
+	"pageinfo-magic-words": "Magiški {{PLURAL:$1|žodis|žodžiai}} ($1)",
 	"pageinfo-hidden-categories": "{{PLURAL:$1|Paslėpta kategorija|Paslėptos kategorijos|Paslėptų kategorijų}} ($1)",
 	"pageinfo-templates": "{{PLURAL:$1|Įtrauktas šablonas|Įtraukti šablonai|Įtrauktų šablonų}} ($1)",
 	"pageinfo-transclusions": "{{PLURAL:$1|Įtrauktas puslapis|Įtraukti puslapiai|Įtrauktų puslapių}} ($1)",

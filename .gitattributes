@@ -10,4 +10,4 @@ package.json export-ignore
 README.mediawiki export-ignore
 Gemfile* export-ignore
 vendor/pear/net_smtp/README.rst export-ignore
-
+phpunit.xml.dist export-ignore

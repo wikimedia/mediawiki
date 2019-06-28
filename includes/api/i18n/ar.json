@@ -412,6 +412,7 @@
 	"apihelp-query-param-indexpageids": "تضمين قسم إضافي لمعرفات الصفحات يسرد جميع معرفات الصفحات التي تم إرجاعها.",
 	"apihelp-query-param-export": "تصدير المراجعات الحالية لجميع الصفحات المعينة أو المولدة.",
 	"apihelp-query-param-exportnowrap": "إعادة تصدير XML دون التفاف عليه في نتيجة XML (نفس شكل [[Special:Export|خاص:تصدير]]). يمكن استخدامها فقط مع $1export.",
+	"apihelp-query-param-exportschema": "استهداف الإصدار المحدد من تنسيق تفريغ XML عند التصدير، يمكن استخدامه مع <var>$1export</var> فقط.",
 	"apihelp-query-param-iwurl": "ما إذا كنت تريد الحصول على المسار الكامل إذا كان العنوان رابط إنترويكي.",
 	"apihelp-query-param-rawcontinue": "إرجاع <samp>query-continue</samp> بيانات خام للاستمرار.",
 	"apihelp-query-example-revisions": "جلب [[Special:ApiHelp/query+siteinfo|معلومات الموقع]] و[[Special:ApiHelp/query+revisions|مراجعات]] <kbd>Main Page</kbd>.",

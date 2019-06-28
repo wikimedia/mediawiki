@@ -807,7 +807,9 @@ if ( $wgRequest->getCookie( 'UseDC', '' ) === 'master' ) {
 
 // Useful debug output
 if ( $wgCommandLineMode ) {
-	wfDebug( "\n\nStart command line script $self\n" );
+	if ( isset( $self ) ) {
+		wfDebug( "\n\nStart command line script $self\n" );
+	}
 } else {
 	$debug = "\n\nStart request {$wgRequest->getMethod()} {$wgRequest->getRequestURL()}\n";
 

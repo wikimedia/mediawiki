@@ -116,7 +116,11 @@
 		"test": [
 			"composer lint",
 			"composer phpcs"
-		]
+		],
+		"phpunit": "vendor/bin/phpunit",
+		"phpunit:unit": "vendor/bin/phpunit --colors=always --testsuite=unit",
+		"phpunit:integration": "vendor/bin/phpunit --colors=always --testsuite=integration",
+		"phpunit:coverage": "php -d zend_extensions=xdebug.so vendor/bin/phpunit --testsuite=unit --exclude-group Dump,Broken,ParserFuzz,Stub"
 	},
 	"config": {
 		"optimize-autoloader": true,
