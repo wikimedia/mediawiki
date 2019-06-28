@@ -1753,8 +1753,10 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 */
 	public function testNewMutableRevisionFromArray_legacyEncoding( array $array ) {
 		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
-		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		$blobStore = new SqlBlobStore( $lb, $cache );
+		$services = MediaWikiServices::getInstance();
+		$lb = $services->getDBLoadBalancer();
+		$access = $services->getExternalStoreAccess();
+		$blobStore = new SqlBlobStore( $lb, $access, $cache );
 		$blobStore->setLegacyEncoding( 'windows-1252', Language::factory( 'en' ) );
 
 		$factory = $this->getMockBuilder( BlobStoreFactory::class )

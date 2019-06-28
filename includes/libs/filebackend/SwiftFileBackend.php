@@ -297,7 +297,7 @@ class SwiftFileBackend extends FileBackendStore {
 		$method = __METHOD__;
 		$handler = function ( array $request, StatusValue $status ) use ( $method, $params ) {
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $request['response'];
-			if ( $rcode === 201 ) {
+			if ( $rcode === 201 || $rcode === 202 ) {
 				// good
 			} elseif ( $rcode === 412 ) {
 				$status->fatal( 'backend-fail-contenttype', $params['dst'] );
@@ -360,7 +360,7 @@ class SwiftFileBackend extends FileBackendStore {
 		$method = __METHOD__;
 		$handler = function ( array $request, StatusValue $status ) use ( $method, $params ) {
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $request['response'];
-			if ( $rcode === 201 ) {
+			if ( $rcode === 201 || $rcode === 202 ) {
 				// good
 			} elseif ( $rcode === 412 ) {
 				$status->fatal( 'backend-fail-contenttype', $params['dst'] );

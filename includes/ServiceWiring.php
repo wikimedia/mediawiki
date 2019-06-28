@@ -82,6 +82,7 @@ return [
 	'BlobStoreFactory' => function ( MediaWikiServices $services ) : BlobStoreFactory {
 		return new BlobStoreFactory(
 			$services->getDBLoadBalancerFactory(),
+			$services->getExternalStoreAccess(),
 			$services->getMainWANObjectCache(),
 			new ServiceOptions( BlobStoreFactory::$constructorOptions,
 				$services->getMainConfig() ),
@@ -201,11 +202,22 @@ return [
 		return new EventRelayerGroup( $services->getMainConfig()->get( 'EventRelayerConfig' ) );
 	},
 
+	'ExternalStoreAccess' => function ( MediaWikiServices $services ) : ExternalStoreAccess {
+		return new ExternalStoreAccess(
+			$services->getExternalStoreFactory(),
+			LoggerFactory::getInstance( 'ExternalStore' )
+		);
+	},
+
 	'ExternalStoreFactory' => function ( MediaWikiServices $services ) : ExternalStoreFactory {
 		$config = $services->getMainConfig();
+		$writeStores = $config->get( 'DefaultExternalStore' );
 
 		return new ExternalStoreFactory(
-			$config->get( 'ExternalStores' )
+			$config->get( 'ExternalStores' ),
+			( $writeStores !== false ) ? (array)$writeStores : [],
+			$services->getDBLoadBalancer()->getLocalDomainID(),
+			LoggerFactory::getInstance( 'ExternalStore' )
 		);
 	},
 

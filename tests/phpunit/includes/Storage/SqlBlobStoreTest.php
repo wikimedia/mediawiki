@@ -24,6 +24,7 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 
 		$store = new SqlBlobStore(
 			$services->getDBLoadBalancer(),
+			$services->getExternalStoreAccess(),
 			$services->getMainWANObjectCache()
 		);
 

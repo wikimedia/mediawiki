@@ -572,6 +572,14 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.34
+	 * @return \ExternalStoreAccess
+	 */
+	public function getExternalStoreAccess() {
+		return $this->getService( 'ExternalStoreAccess' );
+	}
+
+	/**
 	 * @since 1.31
 	 * @return \ExternalStoreFactory
 	 */

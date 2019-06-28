@@ -116,24 +116,24 @@ class RevisionStoreFactory {
 	/**
 	 * @since 1.32
 	 *
-	 * @param bool|string $wikiId false for the current domain / wikid
+	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one
 	 *
 	 * @return RevisionStore for the given wikiId with all necessary services and a logger
 	 */
-	public function getRevisionStore( $wikiId = false ) {
-		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
+	public function getRevisionStore( $dbDomain = false ) {
+		Assert::parameterType( 'string|boolean', $dbDomain, '$dbDomain' );
 
 		$store = new RevisionStore(
-			$this->dbLoadBalancerFactory->getMainLB( $wikiId ),
-			$this->blobStoreFactory->newSqlBlobStore( $wikiId ),
+			$this->dbLoadBalancerFactory->getMainLB( $dbDomain ),
+			$this->blobStoreFactory->newSqlBlobStore( $dbDomain ),
 			$this->cache, // Pass local cache instance; Leave cache sharing to RevisionStore.
 			$this->commentStore,
-			$this->nameTables->getContentModels( $wikiId ),
-			$this->nameTables->getSlotRoles( $wikiId ),
+			$this->nameTables->getContentModels( $dbDomain ),
+			$this->nameTables->getSlotRoles( $dbDomain ),
 			$this->slotRoleRegistry,
 			$this->mcrMigrationStage,
 			$this->actorMigration,
-			$wikiId
+			$dbDomain
 		);
 
 		$store->setLogger( $this->loggerProvider->getLogger( 'RevisionStore' ) );

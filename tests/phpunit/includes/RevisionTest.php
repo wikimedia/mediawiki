@@ -438,10 +438,11 @@ class RevisionTest extends MediaWikiTestCase {
 		$lb = $this->getMockBuilder( LoadBalancer::class )
 			->disableOriginalConstructor()
 			->getMock();
-
+		$access = MediaWikiServices::getInstance()->getExternalStoreAccess();
 		$cache = $this->getWANObjectCache();
 
-		$blobStore = new SqlBlobStore( $lb, $cache );
+		$blobStore = new SqlBlobStore( $lb, $access, $cache );
+
 		return $blobStore;
 	}
 
@@ -807,7 +808,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function testGetRevisionText_external_noOldId() {
 		$this->setService(
 			'ExternalStoreFactory',
-			new ExternalStoreFactory( [ 'ForTesting' ] )
+			new ExternalStoreFactory( [ 'ForTesting' ], [ 'ForTesting://cluster1' ], 'test-id' )
 		);
 		$this->assertSame(
 			'AAAABBAAA',
@@ -829,14 +830,15 @@ class RevisionTest extends MediaWikiTestCase {
 
 		$this->setService(
 			'ExternalStoreFactory',
-			new ExternalStoreFactory( [ 'ForTesting' ] )
+			new ExternalStoreFactory( [ 'ForTesting' ], [ 'ForTesting://cluster1' ], 'test-id' )
 		);
 
 		$lb = $this->getMockBuilder( LoadBalancer::class )
 			->disableOriginalConstructor()
 			->getMock();
+		$access = MediaWikiServices::getInstance()->getExternalStoreAccess();
 
-		$blobStore = new SqlBlobStore( $lb, $cache );
+		$blobStore = new SqlBlobStore( $lb, $access, $cache );
 		$this->setService( 'BlobStoreFactory', $this->mockBlobStoreFactory( $blobStore ) );
 
 		$this->assertSame(

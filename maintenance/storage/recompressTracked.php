@@ -69,6 +69,7 @@ class RecompressTracked {
 	public $replicaId = false;
 	public $noCount = false;
 	public $debugLog, $infoLog, $criticalLog;
+	/** @var ExternalStoreDB */
 	public $store;
 
 	private static $optionsWithArgs = [
@@ -109,7 +110,8 @@ class RecompressTracked {
 		foreach ( $options as $name => $value ) {
 			$this->$name = $value;
 		}
-		$this->store = new ExternalStoreDB;
+		$esFactory = MediaWikiServices::getInstance()->getExternalStoreFactory();
+		$this->store = $esFactory->getStore( 'DB' );
 		if ( !$this->isChild ) {
 			$GLOBALS['wgDebugLogPrefix'] = "RCT M: ";
 		} elseif ( $this->replicaId !== false ) {

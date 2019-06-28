@@ -87,7 +87,7 @@ class RevisionStore
 	/**
 	 * @var bool|string
 	 */
-	private $wikiId;
+	private $dbDomain;
 
 	/**
 	 * @var boolean
@@ -142,7 +142,7 @@ class RevisionStore
 	 * @param ILoadBalancer $loadBalancer
 	 * @param SqlBlobStore $blobStore
 	 * @param WANObjectCache $cache A cache for caching revision rows. This can be the local
-	 *        wiki's default instance even if $wikiId refers to a different wiki, since
+	 *        wiki's default instance even if $dbDomain refers to a different wiki, since
 	 *        makeGlobalKey() is used to constructed a key that allows cached revision rows from
 	 *        the same database to be re-used between wikis. For example, enwiki and frwiki will
 	 *        use the same cache keys for revision rows from the wikidatawiki database, regardless
@@ -153,8 +153,7 @@ class RevisionStore
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param int $mcrMigrationStage An appropriate combination of SCHEMA_COMPAT_XXX flags
 	 * @param ActorMigration $actorMigration
-	 * @param bool|string $wikiId
-	 *
+	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
@@ -166,9 +165,9 @@ class RevisionStore
 		SlotRoleRegistry $slotRoleRegistry,
 		$mcrMigrationStage,
 		ActorMigration $actorMigration,
-		$wikiId = false
+		$dbDomain = false
 	) {
-		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
+		Assert::parameterType( 'string|boolean', $dbDomain, '$dbDomain' );
 		Assert::parameterType( 'integer', $mcrMigrationStage, '$mcrMigrationStage' );
 		Assert::parameter(
 			( $mcrMigrationStage & SCHEMA_COMPAT_READ_BOTH ) !== SCHEMA_COMPAT_READ_BOTH,
@@ -207,7 +206,7 @@ class RevisionStore
 		$this->slotRoleRegistry = $slotRoleRegistry;
 		$this->mcrMigrationStage = $mcrMigrationStage;
 		$this->actorMigration = $actorMigration;
-		$this->wikiId = $wikiId;
+		$this->dbDomain = $dbDomain;
 		$this->logger = new NullLogger();
 	}
 
@@ -227,7 +226,7 @@ class RevisionStore
 	 * @throws RevisionAccessException
 	 */
 	private function assertCrossWikiContentLoadingIsSafe() {
-		if ( $this->wikiId !== false && $this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_OLD ) ) {
+		if ( $this->dbDomain !== false && $this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_OLD ) ) {
 			throw new RevisionAccessException(
 				"Cross-wiki content loading is not supported by the pre-MCR schema"
 			);
@@ -285,7 +284,7 @@ class RevisionStore
 	 */
 	private function getDBConnection( $mode, $groups = [] ) {
 		$lb = $this->getDBLoadBalancer();
-		return $lb->getConnection( $mode, $groups, $this->wikiId );
+		return $lb->getConnection( $mode, $groups, $this->dbDomain );
 	}
 
 	/**
@@ -313,7 +312,7 @@ class RevisionStore
 	 */
 	private function getDBConnectionRef( $mode ) {
 		$lb = $this->getDBLoadBalancer();
-		return $lb->getConnectionRef( $mode, [], $this->wikiId );
+		return $lb->getConnectionRef( $mode, [], $this->dbDomain );
 	}
 
 	/**
@@ -341,7 +340,7 @@ class RevisionStore
 			$queryFlags = self::READ_NORMAL;
 		}
 
-		$canUseTitleNewFromId = ( $pageId !== null && $pageId > 0 && $this->wikiId === false );
+		$canUseTitleNewFromId = ( $pageId !== null && $pageId > 0 && $this->dbDomain === false );
 		list( $dbMode, $dbOptions ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
 		$titleFlags = ( $dbMode == DB_MASTER ? Title::GAID_FOR_UPDATE : 0 );
 
@@ -631,7 +630,7 @@ class RevisionStore
 			$comment,
 			(object)$revisionRow,
 			new RevisionSlots( $newSlots ),
-			$this->wikiId
+			$this->dbDomain
 		);
 
 		return $rev;
@@ -813,9 +812,11 @@ class RevisionStore
 						throw new MWException( 'Failed to get database lock for T202032' );
 					}
 					$fname = __METHOD__;
-					$dbw->onTransactionResolution( function ( $trigger, $dbw ) use ( $fname ) {
-						$dbw->unlock( 'fix-for-T202032', $fname );
-					} );
+					$dbw->onTransactionResolution(
+						function ( $trigger, IDatabase $dbw ) use ( $fname ) {
+							$dbw->unlock( 'fix-for-T202032', $fname );
+						}
+					);
 
 					$dbw->delete( 'revision', [ 'rev_id' => $revisionRow['rev_id'] ], __METHOD__ );
 
@@ -1782,7 +1783,7 @@ class RevisionStore
 				$row->ar_user ?? null,
 				$row->ar_user_text ?? null,
 				$row->ar_actor ?? null,
-				$this->wikiId
+				$this->dbDomain
 			);
 		} catch ( InvalidArgumentException $ex ) {
 			wfWarn( __METHOD__ . ': ' . $title->getPrefixedDBkey() . ': ' . $ex->getMessage() );
@@ -1795,7 +1796,7 @@ class RevisionStore
 
 		$slots = $this->newRevisionSlots( $row->ar_rev_id, $row, null, $queryFlags, $title );
 
-		return new RevisionArchiveRecord( $title, $user, $comment, $row, $slots, $this->wikiId );
+		return new RevisionArchiveRecord( $title, $user, $comment, $row, $slots, $this->dbDomain );
 	}
 
 	/**
@@ -1863,7 +1864,7 @@ class RevisionStore
 				$row->rev_user ?? null,
 				$row->rev_user_text ?? null,
 				$row->rev_actor ?? null,
-				$this->wikiId
+				$this->dbDomain
 			);
 		} catch ( InvalidArgumentException $ex ) {
 			wfWarn( __METHOD__ . ': ' . $title->getPrefixedDBkey() . ': ' . $ex->getMessage() );
@@ -1886,11 +1887,11 @@ class RevisionStore
 						[ 'rev_id' => intval( $revId ) ]
 					);
 				},
-				$title, $user, $comment, $row, $slots, $this->wikiId
+				$title, $user, $comment, $row, $slots, $this->dbDomain
 			);
 		} else {
 			$rev = new RevisionStoreRecord(
-				$title, $user, $comment, $row, $slots, $this->wikiId );
+				$title, $user, $comment, $row, $slots, $this->dbDomain );
 		}
 		return $rev;
 	}
@@ -1975,7 +1976,7 @@ class RevisionStore
 			}
 		}
 
-		$revision = new MutableRevisionRecord( $title, $this->wikiId );
+		$revision = new MutableRevisionRecord( $title, $this->dbDomain );
 		$this->initializeMutableRevisionFromArray( $revision, $fields );
 
 		if ( isset( $fields['content'] ) && is_array( $fields['content'] ) ) {
@@ -2006,7 +2007,7 @@ class RevisionStore
 		// remote wiki with unsuppressed ids, due to issues described in T222212.
 		if ( isset( $fields['user'] ) &&
 			( $fields['user'] instanceof UserIdentity ) &&
-			( $this->wikiId === false ||
+			( $this->dbDomain === false ||
 				( !$fields['user']->getId() && !$fields['user']->getActorId() ) )
 		) {
 			$user = $fields['user'];
@@ -2016,7 +2017,7 @@ class RevisionStore
 					$fields['user'] ?? null,
 					$fields['user_text'] ?? null,
 					$fields['actor'] ?? null,
-					$this->wikiId
+					$this->dbDomain
 				);
 			} catch ( InvalidArgumentException $ex ) {
 				$user = null;
@@ -2247,7 +2248,7 @@ class RevisionStore
 	 * @throws MWException
 	 */
 	private function checkDatabaseWikiId( IDatabase $db ) {
-		$storeWiki = $this->wikiId;
+		$storeWiki = $this->dbDomain;
 		$dbWiki = $db->getDomainID();
 
 		if ( $dbWiki === $storeWiki ) {
