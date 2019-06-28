@@ -381,7 +381,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				'specialmute-email-footer',
 				$specialMutePage->getCanonicalURL(),
 				$context->getUser()->getName()
-			);
+			)->inContentLanguage()->text();
 		}
 
 		// Check and increment the rate limits
