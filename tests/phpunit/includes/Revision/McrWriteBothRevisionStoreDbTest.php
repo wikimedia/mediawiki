@@ -183,4 +183,14 @@ class McrWriteBothRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		$this->assertRevisionExistsInDatabase( $return );
 	}
 
+	/**
+	 * Conditions to use together with getSlotsQueryInfo() when selecting slot rows for a given
+	 * revision.
+	 *
+	 * @return array
+	 */
+	protected function getSlotRevisionConditions( $revId ) {
+		return [ 'rev_id' => $revId ];
+	}
+
 }

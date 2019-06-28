@@ -63,6 +63,7 @@ use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\ResultWrapper;
 
 /**
  * Service for looking up page revisions.
@@ -1606,10 +1607,11 @@ class RevisionStore
 	/**
 	 * @param int $revId The revision to load slots for.
 	 * @param int $queryFlags
+	 * @param Title $title
 	 *
 	 * @return SlotRecord[]
 	 */
-	private function loadSlotRecords( $revId, $queryFlags ) {
+	private function loadSlotRecords( $revId, $queryFlags, Title $title ) {
 		$revQuery = self::getSlotsQueryInfo( [ 'content' ] );
 
 		list( $dbMode, $dbOptions ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
@@ -1626,12 +1628,45 @@ class RevisionStore
 			$revQuery['joins']
 		);
 
+		$slots = $this->constructSlotRecords( $revId, $res, $queryFlags, $title );
+
+		return $slots;
+	}
+
+	/**
+	 * Factory method for SlotRecords based on known slot rows.
+	 *
+	 * @param int $revId The revision to load slots for.
+	 * @param object[]|ResultWrapper $slotRows
+	 * @param int $queryFlags
+	 * @param Title $title
+	 *
+	 * @return SlotRecord[]
+	 */
+	private function constructSlotRecords( $revId, $slotRows, $queryFlags, Title $title ) {
 		$slots = [];
 
-		foreach ( $res as $row ) {
-			// resolve role names and model names from in-memory cache, instead of joining.
-			$row->role_name = $this->slotRoleStore->getName( (int)$row->slot_role_id );
-			$row->model_name = $this->contentModelStore->getName( (int)$row->content_model );
+		foreach ( $slotRows as $row ) {
+			// Resolve role names and model names from in-memory cache, if they were not joined in.
+			if ( !isset( $row->role_name ) ) {
+				$row->role_name = $this->slotRoleStore->getName( (int)$row->slot_role_id );
+			}
+
+			if ( !isset( $row->model_name ) ) {
+				if ( isset( $row->content_model ) ) {
+					$row->model_name = $this->contentModelStore->getName( (int)$row->content_model );
+				} else {
+					// We may get here if $row->model_name is set but null, perhaps because it
+					// came from rev_content_model, which is NULL for the default model.
+					$slotRoleHandler = $this->slotRoleRegistry->getRoleHandler( $row->role_name );
+					$row->model_name = $slotRoleHandler->getDefaultModel( $title );
+				}
+			}
+
+			if ( !isset( $row->content_id ) && isset( $row->rev_text_id ) ) {
+				$row->slot_content_id
+					= $this->emulateContentId( intval( $row->rev_text_id ) );
+			}
 
 			$contentCallback = function ( SlotRecord $slot ) use ( $queryFlags ) {
 				return $this->loadSlotContent( $slot, null, null, null, $queryFlags );
@@ -1650,13 +1685,14 @@ class RevisionStore
 	}
 
 	/**
-	 * Factory method for RevisionSlots.
+	 * Factory method for RevisionSlots based on a revision ID.
 	 *
 	 * @note If other code has a need to construct RevisionSlots objects, this should be made
 	 * public, since RevisionSlots instances should not be constructed directly.
 	 *
 	 * @param int $revId
 	 * @param object $revisionRow
+	 * @param object[]|null $slotRows
 	 * @param int $queryFlags
 	 * @param Title $title
 	 *
@@ -1666,10 +1702,15 @@ class RevisionStore
 	private function newRevisionSlots(
 		$revId,
 		$revisionRow,
+		$slotRows,
 		$queryFlags,
 		Title $title
 	) {
-		if ( !$this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_NEW ) ) {
+		if ( $slotRows ) {
+			$slots = new RevisionSlots(
+				$this->constructSlotRecords( $revId, $slotRows, $queryFlags, $title )
+			);
+		} elseif ( !$this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_NEW ) ) {
 			$mainSlot = $this->emulateMainSlot_1_29( $revisionRow, $queryFlags, $title );
 			// @phan-suppress-next-line PhanTypeInvalidCallableArraySize false positive
 			$slots = new RevisionSlots( [ SlotRecord::MAIN => $mainSlot ] );
@@ -1677,8 +1718,8 @@ class RevisionStore
 			// XXX: do we need the same kind of caching here
 			// that getKnownCurrentRevision uses (if $revId == page_latest?)
 
-			$slots = new RevisionSlots( function () use( $revId, $queryFlags ) {
-				return $this->loadSlotRecords( $revId, $queryFlags );
+			$slots = new RevisionSlots( function () use( $revId, $queryFlags, $title ) {
+				return $this->loadSlotRecords( $revId, $queryFlags, $title );
 			} );
 		}
 
@@ -1752,7 +1793,7 @@ class RevisionStore
 		// Legacy because $row may have come from self::selectFields()
 		$comment = $this->commentStore->getCommentLegacy( $db, 'ar_comment', $row, true );
 
-		$slots = $this->newRevisionSlots( $row->ar_rev_id, $row, $queryFlags, $title );
+		$slots = $this->newRevisionSlots( $row->ar_rev_id, $row, null, $queryFlags, $title );
 
 		return new RevisionArchiveRecord( $title, $user, $comment, $row, $slots, $this->wikiId );
 	}
@@ -1762,7 +1803,7 @@ class RevisionStore
 	 *
 	 * MCR migration note: this replaces Revision::newFromRow
 	 *
-	 * @param object $row
+	 * @param object $row A database row generated from a query based on getQueryInfo()
 	 * @param int $queryFlags
 	 * @param Title|null $title
 	 * @param bool $fromCache if true, the returned RevisionRecord will ensure that no stale
@@ -1771,6 +1812,32 @@ class RevisionStore
 	 */
 	public function newRevisionFromRow(
 		$row,
+		$queryFlags = 0,
+		Title $title = null,
+		$fromCache = false
+	) {
+		return $this->newRevisionFromRowAndSlots( $row, null, $queryFlags, $title, $fromCache );
+	}
+
+	/**
+	 * @param object $row A database row generated from a query based on getQueryInfo()
+	 * @param null|object[] $slotRows Database rows generated from a query based on
+	 *        getSlotsQueryInfo with the 'content' flag set.
+	 * @param int $queryFlags
+	 * @param Title|null $title
+	 * @param bool $fromCache if true, the returned RevisionRecord will ensure that no stale
+	 *   data is returned from getters, by querying the database as needed
+	 *
+	 * @return RevisionRecord
+	 * @throws MWException
+	 * @see RevisionFactory::newRevisionFromRow
+	 *
+	 * MCR migration note: this replaces Revision::newFromRow
+	 *
+	 */
+	public function newRevisionFromRowAndSlots(
+		$row,
+		$slotRows,
 		$queryFlags = 0,
 		Title $title = null,
 		$fromCache = false
@@ -1807,7 +1874,7 @@ class RevisionStore
 		// Legacy because $row may have come from self::selectFields()
 		$comment = $this->commentStore->getCommentLegacy( $db, 'rev_comment', $row, true );
 
-		$slots = $this->newRevisionSlots( $row->rev_id, $row, $queryFlags, $title );
+		$slots = $this->newRevisionSlots( $row->rev_id, $row, $slotRows, $queryFlags, $title );
 
 		// If this is a cached row, instantiate a cache-aware revision class to avoid stale data.
 		if ( $fromCache ) {
@@ -2405,21 +2472,24 @@ class RevisionStore
 
 		if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_OLD ) ) {
 			$db = $this->getDBConnectionRef( DB_REPLICA );
-			$ret['tables']['slots'] = 'revision';
+			$ret['tables'][] = 'revision';
 
-			$ret['fields']['slot_revision_id'] = 'slots.rev_id';
+			$ret['fields']['slot_revision_id'] = 'rev_id';
 			$ret['fields']['slot_content_id'] = 'NULL';
-			$ret['fields']['slot_origin'] = 'slots.rev_id';
+			$ret['fields']['slot_origin'] = 'rev_id';
 			$ret['fields']['role_name'] = $db->addQuotes( SlotRecord::MAIN );
 
 			if ( in_array( 'content', $options, true ) ) {
-				$ret['fields']['content_size'] = 'slots.rev_len';
-				$ret['fields']['content_sha1'] = 'slots.rev_sha1';
+				$ret['fields']['content_size'] = 'rev_len';
+				$ret['fields']['content_sha1'] = 'rev_sha1';
 				$ret['fields']['content_address']
-					= $db->buildConcat( [ $db->addQuotes( 'tt:' ), 'slots.rev_text_id' ] );
+					= $db->buildConcat( [ $db->addQuotes( 'tt:' ), 'rev_text_id' ] );
+
+				// Allow the content_id field to be emulated later
+				$ret['fields']['rev_text_id'] = 'rev_text_id';
 
 				if ( $this->contentHandlerUseDB ) {
-					$ret['fields']['model_name'] = 'slots.rev_content_model';
+					$ret['fields']['model_name'] = 'rev_content_model';
 				} else {
 					$ret['fields']['model_name'] = 'NULL';
 				}

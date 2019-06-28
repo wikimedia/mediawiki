@@ -177,7 +177,7 @@ class XmlDumpWriter {
 	 */
 	public function openPage( $row ) {
 		$out = "  <page>\n";
-		$this->currentTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
+		$this->currentTitle = Title::newFromRow( $row );
 		$canonicalTitle = self::canonicalTitle( $this->currentTitle );
 		$out .= '    ' . Xml::elementClean( 'title', [], $canonicalTitle ) . "\n";
 		$out .= '    ' . Xml::element( 'ns', [], strval( $row->page_namespace ) ) . "\n";
@@ -237,10 +237,21 @@ class XmlDumpWriter {
 	 * data filled in from the given database row.
 	 *
 	 * @param object $row
+	 * @param null|object[] $slotRows
+	 *
 	 * @return string
+	 * @throws FatalError
+	 * @throws MWException
 	 * @private
 	 */
-	function writeRevision( $row ) {
+	function writeRevision( $row, $slotRows = null ) {
+		$rev = $this->getRevisionStore()->newRevisionFromRowAndSlots(
+			$row,
+			$slotRows,
+			0,
+			$this->currentTitle
+		);
+
 		$out = "    <revision>\n";
 		$out .= "      " . Xml::element( 'id', null, strval( $row->rev_id ) ) . "\n";
 		if ( isset( $row->rev_parent_id ) && $row->rev_parent_id ) {
@@ -311,7 +322,6 @@ class XmlDumpWriter {
 				strval( $text ) ) . "\n";
 		} elseif ( isset( $row->_load_content ) ) {
 			// TODO: make this fully MCR aware, see T174031
-			$rev = $this->getRevisionStore()->newRevisionFromRow( $row, 0, $this->currentTitle );
 			$slot = $rev->getSlot( 'main' );
 			try {
 				$content = $slot->getContent();
@@ -350,7 +360,6 @@ class XmlDumpWriter {
 		} else {
 			// Backwards-compatible stub output for MCR aware schema
 			// TODO: MCR: emit content addresses instead of text ids, see T174031, T199121
-			$rev = $this->getRevisionStore()->newRevisionFromRow( $row, 0, $this->currentTitle );
 			$slot = $rev->getSlot( 'main' );
 
 			// Note that this is currently the ONLY reason we have a BlobStore here at all.

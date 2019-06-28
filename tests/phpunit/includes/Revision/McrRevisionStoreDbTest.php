@@ -187,4 +187,14 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		$this->assertRevisionRecordsEqual( $return, $loaded );
 	}
 
+	/**
+	 * Conditions to use together with getSlotsQueryInfo() when selecting slot rows for a given
+	 * revision.
+	 *
+	 * @return array
+	 */
+	protected function getSlotRevisionConditions( $revId ) {
+		return [ 'slot_revision_id' => $revId ];
+	}
+
 }
