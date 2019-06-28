@@ -27,13 +27,13 @@
 namespace MediaWiki\Storage;
 
 use DBAccessObjectUtils;
-use ExternalStore;
 use IDBAccessObject;
 use IExpiringStore;
 use InvalidArgumentException;
 use Language;
 use MWException;
 use WANObjectCache;
+use ExternalStoreAccess;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -57,12 +57,17 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	private $dbLoadBalancer;
 
 	/**
+	 * @var ExternalStoreAccess
+	 */
+	private $extStoreAccess;
+
+	/**
 	 * @var WANObjectCache
 	 */
 	private $cache;
 
 	/**
-	 * @var bool|string Wiki ID
+	 * @var string|bool DB domain ID of a wiki or false for the local one
 	 */
 	private $dbDomain;
 
@@ -93,6 +98,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 
 	/**
 	 * @param ILoadBalancer $dbLoadBalancer A load balancer for acquiring database connections
+	 * @param ExternalStoreAccess $extStoreAccess Access layer for external storage
 	 * @param WANObjectCache $cache A cache manager for caching blobs. This can be the local
 	 *        wiki's default instance even if $dbDomain refers to a different wiki, since
 	 *        makeGlobalKey() is used to constructed a key that allows cached blobs from the
@@ -103,10 +109,12 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 */
 	public function __construct(
 		ILoadBalancer $dbLoadBalancer,
+		ExternalStoreAccess $extStoreAccess,
 		WANObjectCache $cache,
 		$dbDomain = false
 	) {
 		$this->dbLoadBalancer = $dbLoadBalancer;
+		$this->extStoreAccess = $extStoreAccess;
 		$this->cache = $cache;
 		$this->dbDomain = $dbDomain;
 	}
@@ -219,7 +227,10 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 			# Write to external storage if required
 			if ( $this->useExternalStore ) {
 				// Store and get the URL
-				$data = ExternalStore::insertToDefault( $data, [ 'wiki' => $this->dbDomain ] );
+				$data = $this->extStoreAccess->insert( $data, [ 'domain' => $this->dbDomain ] );
+				if ( !$data ) {
+					throw new BlobAccessException( "Failed to store text to external storage" );
+				}
 				if ( $flags ) {
 					$flags .= ',';
 				}
@@ -412,14 +423,15 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 					$this->getCacheTTL(),
 					function () use ( $url, $flags ) {
 						// Ignore $setOpts; blobs are immutable and negatives are not cached
-						$blob = ExternalStore::fetchFromURL( $url, [ 'wiki' => $this->dbDomain ] );
+						$blob = $this->extStoreAccess
+							->fetchFromURL( $url, [ 'domain' => $this->dbDomain ] );
 
 						return $blob === false ? false : $this->decompressData( $blob, $flags );
 					},
 					[ 'pcGroup' => self::TEXT_CACHE_GROUP, 'pcTTL' => WANObjectCache::TTL_PROC_LONG ]
 				);
 			} else {
-				$blob = ExternalStore::fetchFromURL( $url, [ 'wiki' => $this->dbDomain ] );
+				$blob = $this->extStoreAccess->fetchFromURL( $url, [ 'domain' => $this->dbDomain ] );
 				return $blob === false ? false : $this->decompressData( $blob, $flags );
 			}
 		} else {
@@ -623,7 +635,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	}
 
 	public function isReadOnly() {
-		if ( $this->useExternalStore && ExternalStore::defaultStoresAreReadOnly() ) {
+		if ( $this->useExternalStore && $this->extStoreAccess->isReadOnly() ) {
 			return true;
 		}
 

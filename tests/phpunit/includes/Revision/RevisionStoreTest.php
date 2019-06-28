@@ -450,9 +450,12 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		}
 
 		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
-		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$services = MediaWikiServices::getInstance();
+		$lb = $services->getDBLoadBalancer();
+		$access = $services->getExternalStoreAccess();
 
-		$blobStore = new SqlBlobStore( $lb, $cache );
+		$blobStore = new SqlBlobStore( $lb, $access, $cache );
+
 		$blobStore->setLegacyEncoding( $encoding, Language::factory( $locale ) );
 
 		$store = $this->getRevisionStore( $lb, $blobStore, $cache );
@@ -480,9 +483,11 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		];
 
 		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
-		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$services = MediaWikiServices::getInstance();
+		$lb = $services->getDBLoadBalancer();
+		$access = $services->getExternalStoreAccess();
 
-		$blobStore = new SqlBlobStore( $lb, $cache );
+		$blobStore = new SqlBlobStore( $lb, $access, $cache );
 		$blobStore->setLegacyEncoding( 'windows-1252', Language::factory( 'en' ) );
 
 		$store = $this->getRevisionStore( $lb, $blobStore, $cache );

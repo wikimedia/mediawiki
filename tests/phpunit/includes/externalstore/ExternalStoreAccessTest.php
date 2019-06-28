@@ -1,97 +1,55 @@
 <?php
 
+use Wikimedia\Rdbms\LBFactory;
+
 /**
- * @covers ExternalStoreFactory
  * @covers ExternalStoreAccess
  */
-class ExternalStoreFactoryTest extends MediaWikiTestCase {
+class ExternalStoreAccessTest extends MediaWikiTestCase {
 
 	use MediaWikiCoversValidator;
 
 	/**
-	 * @expectedException ExternalStoreException
+	 * @covers ExternalStoreAccess::isReadOnly
 	 */
-	public function testExternalStoreFactory_noStores1() {
-		$factory = new ExternalStoreFactory( [], [], 'test-id' );
-		$factory->getStore( 'ForTesting' );
-	}
-
-	/**
-	 * @expectedException ExternalStoreException
-	 */
-	public function testExternalStoreFactory_noStores2() {
-		$factory = new ExternalStoreFactory( [], [], 'test-id' );
-		$factory->getStore( 'foo' );
-	}
-
-	public function provideStoreNames() {
-		yield 'Same case as construction' => [ 'ForTesting' ];
-		yield 'All lower case' => [ 'fortesting' ];
-		yield 'All upper case' => [ 'FORTESTING' ];
-		yield 'Mix of cases' => [ 'FOrTEsTInG' ];
-	}
-
-	/**
-	 * @dataProvider provideStoreNames
-	 */
-	public function testExternalStoreFactory_someStore_protoMatch( $proto ) {
-		$factory = new ExternalStoreFactory( [ 'ForTesting' ], [], 'test-id' );
-		$store = $factory->getStore( $proto );
-		$this->assertInstanceOf( ExternalStoreForTesting::class, $store );
-	}
-
-	/**
-	 * @dataProvider provideStoreNames
-	 * @expectedException ExternalStoreException
-	 */
-	public function testExternalStoreFactory_someStore_noProtoMatch( $proto ) {
-		$factory = new ExternalStoreFactory( [ 'SomeOtherClassName' ], [], 'test-id' );
-		$factory->getStore( $proto );
-	}
-
-	/**
-	 * @covers ExternalStoreFactory::getProtocols
-	 * @covers ExternalStoreFactory::getWriteBaseUrls
-	 * @covers ExternalStoreFactory::getStore
-	 */
-	public function testStoreFactoryBasic() {
+	public function testBasic() {
 		$active = [ 'memory' ];
 		$defaults = [ 'memory://cluster1', 'memory://cluster2' ];
 		$esFactory = new ExternalStoreFactory( $active, $defaults, 'db-prefix' );
+		$access = new ExternalStoreAccess( $esFactory );
 
-		$this->assertEquals( $active, $esFactory->getProtocols() );
-		$this->assertEquals( $defaults, $esFactory->getWriteBaseUrls() );
+		$this->assertEquals( false, $access->isReadOnly() );
 
 		/** @var ExternalStoreMemory $store */
 		$store = $esFactory->getStore( 'memory' );
 		$this->assertInstanceOf( ExternalStoreMemory::class, $store );
-		$this->assertEquals( false, $store->isReadOnly( 'cluster1' ) );
-		$this->assertEquals( false, $store->isReadOnly( 'cluster2' ) );
-		$this->assertEquals( true, $store->isReadOnly( 'clusterOld' ) );
 
-		$lb = $this->getMockBuilder( \Wikimedia\Rdbms\LoadBalancer::class )
+		$lb = $this->getMockBuilder( LoadBalancer::class )
 			->disableOriginalConstructor()->getMock();
 		$lb->expects( $this->any() )->method( 'getReadOnlyReason' )->willReturn( 'Locked' );
-		$lbFactory = $this->getMockBuilder( \Wikimedia\Rdbms\LBFactory::class )
+		$lb->expects( $this->any() )->method( 'getServerInfo' )->willReturn( [] );
+
+		$lbFactory = $this->getMockBuilder( LBFactory::class )
 			->disableOriginalConstructor()->getMock();
 		$lbFactory->expects( $this->any() )->method( 'getExternalLB' )->willReturn( $lb );
 
 		$this->setService( 'DBLoadBalancerFactory', $lbFactory );
 
 		$active = [ 'db', 'mwstore' ];
-		$defaults = [ 'db://clusterX' ];
+		$defaults = [ 'DB://clusterX' ];
 		$esFactory = new ExternalStoreFactory( $active, $defaults, 'db-prefix' );
-		$this->assertEquals( $active, $esFactory->getProtocols() );
-		$this->assertEquals( $defaults, $esFactory->getWriteBaseUrls() );
+		$access = new ExternalStoreAccess( $esFactory );
+		$this->assertEquals( true, $access->isReadOnly() );
 
 		$store->clear();
 	}
 
 	/**
-	 * @covers ExternalStoreFactory::getStoreForUrl
-	 * @covers ExternalStoreFactory::getStoreLocationFromUrl
+	 * @covers ExternalStoreAccess::fetchFromURL
+	 * @covers ExternalStoreAccess::fetchFromURLs
+	 * @covers ExternalStoreAccess::insert
 	 */
-	public function testStoreFactoryReadWrite() {
+	public function testReadWrite() {
 		$active = [ 'memory' ]; // active store types
 		$defaults = [ 'memory://cluster1', 'memory://cluster2' ];
 		$esFactory = new ExternalStoreFactory( $active, $defaults, 'db-prefix' );

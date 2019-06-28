@@ -24,6 +24,7 @@ use Language;
 use MediaWiki\Config\ServiceOptions;
 use WANObjectCache;
 use Wikimedia\Rdbms\ILBFactory;
+use ExternalStoreAccess;
 
 /**
  * Service for instantiating BlobStores
@@ -38,6 +39,11 @@ class BlobStoreFactory {
 	 * @var ILBFactory
 	 */
 	private $lbFactory;
+
+	/**
+	 * @var ExternalStoreAccess
+	 */
+	private $extStoreAccess;
 
 	/**
 	 * @var WANObjectCache
@@ -69,6 +75,7 @@ class BlobStoreFactory {
 
 	public function __construct(
 		ILBFactory $lbFactory,
+		ExternalStoreAccess $extStoreAccess,
 		WANObjectCache $cache,
 		ServiceOptions $options,
 		Language $contLang
@@ -76,6 +83,7 @@ class BlobStoreFactory {
 		$options->assertRequiredOptions( self::$constructorOptions );
 
 		$this->lbFactory = $lbFactory;
+		$this->extStoreAccess = $extStoreAccess;
 		$this->cache = $cache;
 		$this->options = $options;
 		$this->contLang = $contLang;
@@ -103,6 +111,7 @@ class BlobStoreFactory {
 		$lb = $this->lbFactory->getMainLB( $dbDomain );
 		$store = new SqlBlobStore(
 			$lb,
+			$this->extStoreAccess,
 			$this->cache,
 			$dbDomain
 		);

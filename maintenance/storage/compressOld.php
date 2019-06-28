@@ -188,7 +188,9 @@ class CompressOld extends Maintenance {
 
 		# Store in external storage if required
 		if ( $extdb !== '' ) {
-			$storeObj = new ExternalStoreDB;
+			$esFactory = MediaWikiServices::getInstance()->getExternalStoreFactory();
+			/** @var ExternalStoreDB $storeObj */
+			$storeObj = $esFactory->getStore( 'DB' );
 			$compress = $storeObj->store( $extdb, $compress );
 			if ( $compress === false ) {
 				$this->error( "Unable to store object" );
@@ -232,7 +234,9 @@ class CompressOld extends Maintenance {
 
 		# Set up external storage
 		if ( $extdb != '' ) {
-			$storeObj = new ExternalStoreDB;
+			$esFactory = MediaWikiServices::getInstance()->getExternalStoreFactory();
+			/** @var ExternalStoreDB $storeObj */
+			$storeObj = $esFactory->getStore( 'DB' );
 		}
 
 		# Get all articles by page_id
