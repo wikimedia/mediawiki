@@ -35,15 +35,7 @@ abstract class QuorumLockManager extends LockManager {
 	/** @var array Map of degraded buckets */
 	protected $degradedBuckets = []; // (bucket index => UNIX timestamp)
 
-	final protected function doLock( array $paths, $type ) {
-		return $this->doLockByType( [ $type => $paths ] );
-	}
-
-	final protected function doUnlock( array $paths, $type ) {
-		return $this->doUnlockByType( [ $type => $paths ] );
-	}
-
-	protected function doLockByType( array $pathsByType ) {
+	final protected function doLockByType( array $pathsByType ) {
 		$status = StatusValue::newGood();
 
 		$pathsToLock = []; // (bucket => type => paths)
@@ -278,4 +270,12 @@ abstract class QuorumLockManager extends LockManager {
 	 * @return StatusValue
 	 */
 	abstract protected function releaseAllLocks();
+
+	final protected function doLock( array $paths, $type ) {
+		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
+	}
+
+	final protected function doUnlock( array $paths, $type ) {
+		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
+	}
 }
