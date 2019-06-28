@@ -441,6 +441,7 @@ class ApiQuery extends ApiBase {
 		$exporter = new WikiExporter( $this->getDB() );
 		$sink = new DumpStringOutput;
 		$exporter->setOutputSink( $sink );
+		$exporter->setSchemaVersion( $this->mParams['exportschema'] );
 		$exporter->openStream();
 		foreach ( $exportTitles as $title ) {
 			$exporter->pageByTitle( $title );
@@ -479,6 +480,10 @@ class ApiQuery extends ApiBase {
 			'indexpageids' => false,
 			'export' => false,
 			'exportnowrap' => false,
+			'exportschema' => [
+				ApiBase::PARAM_DFLT => WikiExporter::schemaVersion(),
+				ApiBase::PARAM_TYPE => XmlDumpWriter::$supportedSchemas,
+			],
 			'iwurl' => false,
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
