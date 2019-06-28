@@ -64,21 +64,43 @@
 			[ 'Günther' ],
 			[ 'Peter' ],
 			[ 'Björn' ],
+			[ 'ä' ],
+			[ 'z' ],
 			[ 'Bjorn' ],
+			[ 'BjÖrn' ],
+			[ 'apfel' ],
 			[ 'Apfel' ],
 			[ 'Äpfel' ],
 			[ 'Strasse' ],
 			[ 'Sträßschen' ]
 		],
-		umlautWordsSorted = [
+		umlautWordsSortedEn = [
+			[ 'ä' ],
 			[ 'Äpfel' ],
+			[ 'apfel' ],
 			[ 'Apfel' ],
 			[ 'Björn' ],
+			[ 'BjÖrn' ],
 			[ 'Bjorn' ],
 			[ 'Günther' ],
 			[ 'Peter' ],
 			[ 'Sträßschen' ],
-			[ 'Strasse' ]
+			[ 'Strasse' ],
+			[ 'z' ]
+		],
+		umlautWordsSortedSv = [
+			[ 'apfel' ],
+			[ 'Apfel' ],
+			[ 'Bjorn' ],
+			[ 'Björn' ],
+			[ 'BjÖrn' ],
+			[ 'Günther' ],
+			[ 'Peter' ],
+			[ 'Strasse' ],
+			[ 'Sträßschen' ],
+			[ 'z' ],
+			[ 'ä' ], // ä sorts after z in Swedish
+			[ 'Äpfel' ]
 		],
 
 		// Data set "digraph"
@@ -702,7 +724,7 @@
 		'Accented Characters with custom collation',
 		[ 'Name' ],
 		umlautWords,
-		umlautWordsSorted,
+		umlautWordsSortedEn,
 		function ( $table ) {
 			mw.config.set( 'tableSorterCollation', {
 				ä: 'ae',
@@ -710,6 +732,19 @@
 				ß: 'ss',
 				ü: 'ue'
 			} );
+
+			$table.tablesorter();
+			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
+		}
+	);
+
+	tableTest(
+		'Accented Characters Swedish locale',
+		[ 'Name' ],
+		umlautWords,
+		umlautWordsSortedSv,
+		function ( $table ) {
+			mw.config.set( 'wgPageContentLanguage', 'sv' );
 
 			$table.tablesorter();
 			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
