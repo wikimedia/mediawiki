@@ -13,7 +13,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @group medium
  */
-class DatabaseSqliteTest extends MediaWikiTestCase {
+class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	/** @var DatabaseSqlite */
 	protected $db;
 

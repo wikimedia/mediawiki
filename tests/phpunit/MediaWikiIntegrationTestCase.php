@@ -13,8 +13,14 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @since 1.18
+ *
+ * Extend this class if you are testing classes which access global variables, methods, services
+ * or a storage backend.
+ *
+ * Consider using MediaWikiUnitTestCase and mocking dependencies if your code uses dependency
+ * injection and does not access any globals.
  */
-abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
+abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 	use PHPUnit4And6Compat;
@@ -160,8 +166,22 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		}
 	}
 
+	private static function initializeForStandardPhpunitEntrypointIfNeeded() {
+		if ( function_exists( 'wfRequireOnceInGlobalScope' ) ) {
+			$IP = realpath( __DIR__ . '/../..' );
+			wfRequireOnceInGlobalScope( "$IP/includes/Defines.php" );
+			wfRequireOnceInGlobalScope( "$IP/includes/DefaultSettings.php" );
+			wfRequireOnceInGlobalScope( "$IP/includes/GlobalFunctions.php" );
+			wfRequireOnceInGlobalScope( "$IP/includes/Setup.php" );
+			wfRequireOnceInGlobalScope( "$IP/tests/common/TestsAutoLoader.php" );
+			TestSetup::applyInitialConfig();
+		}
+	}
+
 	public static function setUpBeforeClass() {
 		parent::setUpBeforeClass();
+		\PHPUnit\Framework\Assert::assertFileExists( 'LocalSettings.php' );
+		self::initializeForStandardPhpunitEntrypointIfNeeded();
 
 		// Get the original service locator
 		if ( !self::$originalServices ) {
@@ -2522,3 +2542,5 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		) );
 	}
 }
+
+class_alias( 'MediaWikiIntegrationTestCase', 'MediaWikiTestCase' );

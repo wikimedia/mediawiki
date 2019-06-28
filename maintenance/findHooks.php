@@ -82,7 +82,7 @@ class FindHooks extends Maintenance {
 			"$IP/",
 		];
 		$extraFiles = [
-			"$IP/tests/phpunit/MediaWikiTestCase.php",
+			"$IP/tests/phpunit/MediaWikiIntegrationTestCase.php",
 		];
 
 		foreach ( $recurseDirs as $dir ) {
