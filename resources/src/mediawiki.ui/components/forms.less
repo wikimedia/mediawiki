@@ -115,22 +115,22 @@
 		.box-sizing( border-box );
 		font-size: 0.9em;
 		margin: 0 0 1em 0;
-		padding: 0.5em;
+		padding: 0.5em 1em;
 		word-wrap: break-word;
 	}
 
 	// Colours taken from those for .errorbox in shared.css
 	.error {
-		color: @colorErrorText;
-		border: 1px solid #fac5c5;
-		background-color: #fae3e3;
+		background-color: @backgroundColorError;
+		color: @colorTextEmphasized;
+		border: 1px solid @borderColorError;
 	}
 
 	// Colours taken from those for .warningbox in shared.css
 	.warning {
-		color: @colorWarningText;
-		border: 1px solid #fde29b;
-		background-color: #fdf1d1;
+		background-color: @backgroundColorWarning;
+		color: @colorTextEmphasized;
+		border: 1px solid @borderColorWarning;
 	}
 
 	// This specifies styling for individual field validation error messages.
