@@ -29,9 +29,9 @@ use Wikimedia\WrappedString;
 use Wikimedia\WrappedStringList;
 
 /**
- * This class should be covered by a general architecture document which does
- * not exist as of January 2011.  This is one of the Core classes and should
- * be read at least once by any new developers.
+ * This is one of the Core classes and should
+ * be read at least once by any new developers. Also documented at
+ * https://www.mediawiki.org/wiki/Manual:Architectural_modules/OutputPage
  *
  * This class is used to prepare the final rendering. A skin is then
  * applied to the output parameters (links, javascript, html, categories ...).
