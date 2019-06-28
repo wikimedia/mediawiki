@@ -64,7 +64,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	/**
 	 * @var bool|string Wiki ID
 	 */
-	private $wikiId;
+	private $dbDomain;
 
 	/**
 	 * @var int
@@ -94,21 +94,21 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	/**
 	 * @param ILoadBalancer $dbLoadBalancer A load balancer for acquiring database connections
 	 * @param WANObjectCache $cache A cache manager for caching blobs. This can be the local
-	 *        wiki's default instance even if $wikiId refers to a different wiki, since
+	 *        wiki's default instance even if $dbDomain refers to a different wiki, since
 	 *        makeGlobalKey() is used to constructed a key that allows cached blobs from the
 	 *        same database to be re-used between wikis. For example, enwiki and frwiki will
 	 *        use the same cache keys for blobs from the wikidatawiki database, regardless of
 	 *        the cache's default key space.
-	 * @param bool|string $wikiId The ID of the target wiki database. Use false for the local wiki.
+	 * @param bool|string $dbDomain The ID of the target wiki database. Use false for the local wiki.
 	 */
 	public function __construct(
 		ILoadBalancer $dbLoadBalancer,
 		WANObjectCache $cache,
-		$wikiId = false
+		$dbDomain = false
 	) {
 		$this->dbLoadBalancer = $dbLoadBalancer;
 		$this->cache = $cache;
-		$this->wikiId = $wikiId;
+		$this->dbDomain = $dbDomain;
 	}
 
 	/**
@@ -199,7 +199,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 */
 	private function getDBConnection( $index ) {
 		$lb = $this->getDBLoadBalancer();
-		return $lb->getConnection( $index, [], $this->wikiId );
+		return $lb->getConnection( $index, [], $this->dbDomain );
 	}
 
 	/**
@@ -219,7 +219,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 			# Write to external storage if required
 			if ( $this->useExternalStore ) {
 				// Store and get the URL
-				$data = ExternalStore::insertToDefault( $data );
+				$data = ExternalStore::insertToDefault( $data, [ 'wiki' => $this->dbDomain ] );
 				if ( $flags ) {
 					$flags .= ',';
 				}
@@ -368,7 +368,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 		return $this->cache->makeGlobalKey(
 			'BlobStore',
 			'address',
-			$this->dbLoadBalancer->resolveDomainID( $this->wikiId ),
+			$this->dbLoadBalancer->resolveDomainID( $this->dbDomain ),
 			$blobAddress
 		);
 	}
@@ -412,14 +412,14 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 					$this->getCacheTTL(),
 					function () use ( $url, $flags ) {
 						// Ignore $setOpts; blobs are immutable and negatives are not cached
-						$blob = ExternalStore::fetchFromURL( $url, [ 'wiki' => $this->wikiId ] );
+						$blob = ExternalStore::fetchFromURL( $url, [ 'wiki' => $this->dbDomain ] );
 
 						return $blob === false ? false : $this->decompressData( $blob, $flags );
 					},
 					[ 'pcGroup' => self::TEXT_CACHE_GROUP, 'pcTTL' => WANObjectCache::TTL_PROC_LONG ]
 				);
 			} else {
-				$blob = ExternalStore::fetchFromURL( $url, [ 'wiki' => $this->wikiId ] );
+				$blob = ExternalStore::fetchFromURL( $url, [ 'wiki' => $this->dbDomain ] );
 				return $blob === false ? false : $this->decompressData( $blob, $flags );
 			}
 		} else {
