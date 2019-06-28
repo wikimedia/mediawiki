@@ -757,58 +757,6 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		);
 	}
 
-	/**
-	 * Returns array key value pairs of properties and their descriptions
-	 *
-	 * @deprecated since 1.25
-	 * @param string $modulePrefix
-	 * @return array
-	 */
-	private static function getProperties( $modulePrefix = '' ) {
-		return [
-			'timestamp' => ' timestamp     - Adds timestamp for the uploaded version',
-			'user' => ' user          - Adds the user who uploaded the image version',
-			'userid' => ' userid        - Add the user ID that uploaded the image version',
-			'comment' => ' comment       - Comment on the version',
-			'parsedcomment' => ' parsedcomment - Parse the comment on the version',
-			'canonicaltitle' => ' canonicaltitle - Adds the canonical title of the image file',
-			'url' => ' url           - Gives URL to the image and the description page',
-			'size' => ' size          - Adds the size of the image in bytes, ' .
-				'its height and its width. Page count and duration are added if applicable',
-			'dimensions' => ' dimensions    - Alias for size', // B/C with Allimages
-			'sha1' => ' sha1          - Adds SHA-1 hash for the image',
-			'mime' => ' mime          - Adds MIME type of the image',
-			'thumbmime' => ' thumbmime     - Adds MIME type of the image thumbnail' .
-				' (requires url and param ' . $modulePrefix . 'urlwidth)',
-			'mediatype' => ' mediatype     - Adds the media type of the image',
-			'metadata' => ' metadata      - Lists Exif metadata for the version of the image',
-			'commonmetadata' => ' commonmetadata - Lists file format generic metadata ' .
-				'for the version of the image',
-			'extmetadata' => ' extmetadata   - Lists formatted metadata combined ' .
-				'from multiple sources. Results are HTML formatted.',
-			'archivename' => ' archivename   - Adds the file name of the archive ' .
-				'version for non-latest versions',
-			'bitdepth' => ' bitdepth      - Adds the bit depth of the version',
-			'uploadwarning' => ' uploadwarning - Used by the Special:Upload page to ' .
-				'get information about an existing file. Not intended for use outside MediaWiki core',
-		];
-	}
-
-	/**
-	 * Returns the descriptions for the properties provided by getPropertyNames()
-	 *
-	 * @deprecated since 1.25
-	 * @param array $filter List of properties to filter out
-	 * @param string $modulePrefix
-	 * @return array
-	 */
-	public static function getPropertyDescriptions( $filter = [], $modulePrefix = '' ) {
-		return array_merge(
-			[ 'What image information to get:' ],
-			array_values( array_diff_key( static::getProperties( $modulePrefix ), array_flip( $filter ) ) )
-		);
-	}
-
 	protected function getExamplesMessages() {
 		return [
 			'action=query&titles=File:Albert%20Einstein%20Head.jpg&prop=imageinfo'
