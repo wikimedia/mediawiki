@@ -73,7 +73,7 @@ class ConnectionManager {
 	 * @param int $i
 	 * @param string[]|null $groups
 	 *
-	 * @return Database
+	 * @return IDatabase
 	 */
 	private function getConnection( $i, array $groups = null ) {
 		$groups = $groups === null ? $this->groups : $groups;
@@ -97,7 +97,7 @@ class ConnectionManager {
 	 *
 	 * @since 1.29
 	 *
-	 * @return Database
+	 * @return IDatabase
 	 */
 	public function getWriteConnection() {
 		return $this->getConnection( DB_MASTER );
@@ -111,7 +111,7 @@ class ConnectionManager {
 	 *
 	 * @param string[]|null $groups
 	 *
-	 * @return Database
+	 * @return IDatabase
 	 */
 	public function getReadConnection( array $groups = null ) {
 		$groups = $groups === null ? $this->groups : $groups;

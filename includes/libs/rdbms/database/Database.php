@@ -105,9 +105,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var array Map of (table name => 1) for TEMPORARY tables */
 	protected $sessionTempTables = [];
 
-	/** @var int Whether there is an active transaction (1 or 0) */
-	protected $trxLevel = 0;
-	/** @var string Hexidecimal string if a transaction is active or empty string otherwise */
+	/** @var string ID of the active transaction or the empty string otherwise */
 	protected $trxShortId = '';
 	/** @var int Transaction status */
 	protected $trxStatus = self::STATUS_TRX_NONE;
@@ -512,12 +510,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $res;
 	}
 
-	public function trxLevel() {
-		return $this->trxLevel;
+	final public function trxLevel() {
+		return ( $this->trxShortId != '' ) ? 1 : 0;
 	}
 
 	public function trxTimestamp() {
-		return $this->trxLevel ? $this->trxTimestamp : null;
+		return $this->trxLevel() ? $this->trxTimestamp : null;
 	}
 
 	/**
@@ -620,11 +618,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function writesPending() {
-		return $this->trxLevel && $this->trxDoneWrites;
+		return $this->trxLevel() && $this->trxDoneWrites;
 	}
 
 	public function writesOrCallbacksPending() {
-		return $this->trxLevel && (
+		return $this->trxLevel() && (
 			$this->trxDoneWrites ||
 			$this->trxIdleCallbacks ||
 			$this->trxPreCommitCallbacks ||
@@ -634,7 +632,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function preCommitCallbacksPending() {
-		return $this->trxLevel && $this->trxPreCommitCallbacks;
+		return $this->trxLevel() && $this->trxPreCommitCallbacks;
 	}
 
 	/**
@@ -652,7 +650,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function pendingWriteQueryDuration( $type = self::ESTIMATE_TOTAL ) {
-		if ( !$this->trxLevel ) {
+		if ( !$this->trxLevel() ) {
 			return false;
 		} elseif ( !$this->trxDoneWrites ) {
 			return 0.0;
@@ -682,7 +680,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function pendingWriteCallers() {
-		return $this->trxLevel ? $this->trxWriteCallers : [];
+		return $this->trxLevel() ? $this->trxWriteCallers : [];
 	}
 
 	public function pendingWriteRowsAffected() {
@@ -871,7 +869,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// This should mostly do nothing if the connection is already closed
 		if ( $this->conn ) {
 			// Roll back any dangling transaction first
-			if ( $this->trxLevel ) {
+			if ( $this->trxLevel() ) {
 				if ( $this->trxAtomicLevels ) {
 					// Cannot let incomplete atomic sections be committed
 					$levels = $this->flatAtomicSectionList();
@@ -1158,7 +1156,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	final protected function executeQuery( $sql, $fname, $flags ) {
 		$this->assertHasConnectionHandle();
 
-		$priorTransaction = $this->trxLevel;
+		$priorTransaction = $this->trxLevel();
 
 		if ( $this->isWriteQuery( $sql ) ) {
 			# In theory, non-persistent writes are allowed in read-only mode, but due to things
@@ -1248,7 +1246,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Keep track of whether the transaction has write queries pending
 		if ( $isPermWrite ) {
 			$this->lastWriteTime = microtime( true );
-			if ( $this->trxLevel && !$this->trxDoneWrites ) {
+			if ( $this->trxLevel() && !$this->trxDoneWrites ) {
 				$this->trxDoneWrites = true;
 				$this->trxProfiler->transactionWritingIn(
 					$this->server, $this->getDomainID(), $this->trxShortId );
@@ -1278,7 +1276,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		if ( $ret !== false ) {
 			$this->lastPing = $startTime;
-			if ( $isPermWrite && $this->trxLevel ) {
+			if ( $isPermWrite && $this->trxLevel() ) {
 				$this->updateTrxWriteQueryTime( $sql, $queryRuntime, $this->affectedRows() );
 				$this->trxWriteCallers[] = $fname;
 			}
@@ -1327,7 +1325,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	private function beginIfImplied( $sql, $fname ) {
 		if (
-			!$this->trxLevel &&
+			!$this->trxLevel() &&
 			$this->getFlag( self::DBO_TRX ) &&
 			$this->isTransactableQuery( $sql )
 		) {
@@ -1457,7 +1455,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// https://www.postgresql.org/docs/9.4/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$this->sessionNamedLocks = [];
 		// Session loss implies transaction loss
-		$this->trxLevel = 0;
+		$oldTrxShortId = $this->consumeTrxShortId();
 		$this->trxAtomicCounter = 0;
 		$this->trxIdleCallbacks = []; // T67263; transaction already lost
 		$this->trxPreCommitCallbacks = []; // T67263; transaction already lost
@@ -1466,7 +1464,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->trxProfiler->transactionWritingOut(
 				$this->server,
 				$this->getDomainID(),
-				$this->trxShortId,
+				$oldTrxShortId,
 				$this->pendingWriteQueryDuration( self::ESTIMATE_TOTAL ),
 				$this->trxWriteAffectedRows
 			);
@@ -1490,6 +1488,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		} catch ( Exception $ex ) {
 			// Already logged; move on...
 		}
+	}
+
+	/**
+	 * Reset the transaction ID and return the old one
+	 *
+	 * @return string The old transaction ID or the empty string if there wasn't one
+	 */
+	private function consumeTrxShortId() {
+		$old = $this->trxShortId;
+		$this->trxShortId = '';
+
+		return $old;
 	}
 
 	/**
@@ -1989,7 +1999,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public function lockForUpdate(
 		$table, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
-		if ( !$this->trxLevel && !$this->getFlag( self::DBO_TRX ) ) {
+		if ( !$this->trxLevel() && !$this->getFlag( self::DBO_TRX ) ) {
 			throw new DBUnexpectedError(
 				$this,
 				__METHOD__ . ': no transaction is active nor is DBO_TRX set'
@@ -3336,21 +3346,21 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function onTransactionResolution( callable $callback, $fname = __METHOD__ ) {
-		if ( !$this->trxLevel ) {
+		if ( !$this->trxLevel() ) {
 			throw new DBUnexpectedError( $this, "No transaction is active." );
 		}
 		$this->trxEndCallbacks[] = [ $callback, $fname, $this->currentAtomicSectionId() ];
 	}
 
 	final public function onTransactionCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
-		if ( !$this->trxLevel && $this->getTransactionRoundId() ) {
+		if ( !$this->trxLevel() && $this->getTransactionRoundId() ) {
 			// Start an implicit transaction similar to how query() does
 			$this->begin( __METHOD__, self::TRANSACTION_INTERNAL );
 			$this->trxAutomatic = true;
 		}
 
 		$this->trxIdleCallbacks[] = [ $callback, $fname, $this->currentAtomicSectionId() ];
-		if ( !$this->trxLevel ) {
+		if ( !$this->trxLevel() ) {
 			$this->runOnTransactionIdleCallbacks( self::TRIGGER_IDLE );
 		}
 	}
@@ -3360,13 +3370,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function onTransactionPreCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
-		if ( !$this->trxLevel && $this->getTransactionRoundId() ) {
+		if ( !$this->trxLevel() && $this->getTransactionRoundId() ) {
 			// Start an implicit transaction similar to how query() does
 			$this->begin( __METHOD__, self::TRANSACTION_INTERNAL );
 			$this->trxAutomatic = true;
 		}
 
-		if ( $this->trxLevel ) {
+		if ( $this->trxLevel() ) {
 			$this->trxPreCommitCallbacks[] = [ $callback, $fname, $this->currentAtomicSectionId() ];
 		} else {
 			// No transaction is active nor will start implicitly, so make one for this callback
@@ -3382,7 +3392,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function onAtomicSectionCancel( callable $callback, $fname = __METHOD__ ) {
-		if ( !$this->trxLevel || !$this->trxAtomicLevels ) {
+		if ( !$this->trxLevel() || !$this->trxAtomicLevels ) {
 			throw new DBUnexpectedError( $this, "No atomic section is open (got $fname)." );
 		}
 		$this->trxSectionCancelCallbacks[] = [ $callback, $fname, $this->currentAtomicSectionId() ];
@@ -3392,7 +3402,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return AtomicSectionIdentifier|null ID of the topmost atomic section level
 	 */
 	private function currentAtomicSectionId() {
-		if ( $this->trxLevel && $this->trxAtomicLevels ) {
+		if ( $this->trxLevel() && $this->trxAtomicLevels ) {
 			$levelInfo = end( $this->trxAtomicLevels );
 
 			return $levelInfo[1];
@@ -3518,7 +3528,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @throws Exception
 	 */
 	public function runOnTransactionIdleCallbacks( $trigger ) {
-		if ( $this->trxLevel ) { // sanity
+		if ( $this->trxLevel() ) { // sanity
 			throw new DBUnexpectedError( $this, __METHOD__ . ': a transaction is still open.' );
 		}
 
@@ -3749,7 +3759,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	) {
 		$savepointId = $cancelable === self::ATOMIC_CANCELABLE ? self::$NOT_APPLICABLE : null;
 
-		if ( !$this->trxLevel ) {
+		if ( !$this->trxLevel() ) {
 			$this->begin( $fname, self::TRANSACTION_INTERNAL ); // sets trxAutomatic
 			// If DBO_TRX is set, a series of startAtomic/endAtomic pairs will result
 			// in all changes being in one transaction to keep requests transactional.
@@ -3775,7 +3785,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function endAtomic( $fname = __METHOD__ ) {
-		if ( !$this->trxLevel || !$this->trxAtomicLevels ) {
+		if ( !$this->trxLevel() || !$this->trxAtomicLevels ) {
 			throw new DBUnexpectedError( $this, "No atomic section is open (got $fname)." );
 		}
 
@@ -3811,7 +3821,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	final public function cancelAtomic(
 		$fname = __METHOD__, AtomicSectionIdentifier $sectionId = null
 	) {
-		if ( !$this->trxLevel || !$this->trxAtomicLevels ) {
+		if ( !$this->trxLevel() || !$this->trxAtomicLevels ) {
 			throw new DBUnexpectedError( $this, "No atomic section is open (got $fname)." );
 		}
 
@@ -3916,7 +3926,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		// Protect against mismatched atomic section, transaction nesting, and snapshot loss
-		if ( $this->trxLevel ) {
+		if ( $this->trxLevel() ) {
 			if ( $this->trxAtomicLevels ) {
 				$levels = $this->flatAtomicSectionList();
 				$msg = "$fname: Got explicit BEGIN while atomic section(s) $levels are open.";
@@ -3936,6 +3946,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->assertHasConnectionHandle();
 
 		$this->doBegin( $fname );
+		$this->trxShortId = sprintf( '%06x', mt_rand( 0, 0xffffff ) );
 		$this->trxStatus = self::STATUS_TRX_OK;
 		$this->trxStatusIgnoredCause = null;
 		$this->trxAtomicCounter = 0;
@@ -3944,7 +3955,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->trxDoneWrites = false;
 		$this->trxAutomaticAtomic = false;
 		$this->trxAtomicLevels = [];
-		$this->trxShortId = sprintf( '%06x', mt_rand( 0, 0xffffff ) );
 		$this->trxWriteDuration = 0.0;
 		$this->trxWriteQueryCount = 0;
 		$this->trxWriteAffectedRows = 0;
@@ -3966,10 +3976,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * @see Database::begin()
 	 * @param string $fname
+	 * @throws DBError
 	 */
 	protected function doBegin( $fname ) {
 		$this->query( 'BEGIN', $fname );
-		$this->trxLevel = 1;
 	}
 
 	final public function commit( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
@@ -3978,7 +3988,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw new DBUnexpectedError( $this, "$fname: invalid flush parameter '$flush'." );
 		}
 
-		if ( $this->trxLevel && $this->trxAtomicLevels ) {
+		if ( $this->trxLevel() && $this->trxAtomicLevels ) {
 			// There are still atomic sections open; this cannot be ignored
 			$levels = $this->flatAtomicSectionList();
 			throw new DBUnexpectedError(
@@ -3988,7 +3998,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		if ( $flush === self::FLUSHING_INTERNAL || $flush === self::FLUSHING_ALL_PEERS ) {
-			if ( !$this->trxLevel ) {
+			if ( !$this->trxLevel() ) {
 				return; // nothing to do
 			} elseif ( !$this->trxAutomatic ) {
 				throw new DBUnexpectedError(
@@ -3996,7 +4006,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					"$fname: Flushing an explicit transaction, getting out of sync."
 				);
 			}
-		} elseif ( !$this->trxLevel ) {
+		} elseif ( !$this->trxLevel() ) {
 			$this->queryLogger->error(
 				"$fname: No transaction to commit, something got out of sync." );
 			return; // nothing to do
@@ -4013,6 +4023,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$writeTime = $this->pendingWriteQueryDuration( self::ESTIMATE_DB_APPLY );
 		$this->doCommit( $fname );
+		$oldTrxShortId = $this->consumeTrxShortId();
 		$this->trxStatus = self::STATUS_TRX_NONE;
 
 		if ( $this->trxDoneWrites ) {
@@ -4020,7 +4031,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->trxProfiler->transactionWritingOut(
 				$this->server,
 				$this->getDomainID(),
-				$this->trxShortId,
+				$oldTrxShortId,
 				$writeTime,
 				$this->trxWriteAffectedRows
 			);
@@ -4038,16 +4049,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * @see Database::commit()
 	 * @param string $fname
+	 * @throws DBError
 	 */
 	protected function doCommit( $fname ) {
-		if ( $this->trxLevel ) {
+		if ( $this->trxLevel() ) {
 			$this->query( 'COMMIT', $fname );
-			$this->trxLevel = 0;
 		}
 	}
 
 	final public function rollback( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
-		$trxActive = $this->trxLevel;
+		$trxActive = $this->trxLevel();
 
 		if ( $flush !== self::FLUSHING_INTERNAL
 			&& $flush !== self::FLUSHING_ALL_PEERS
@@ -4063,6 +4074,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->assertHasConnectionHandle();
 
 			$this->doRollback( $fname );
+			$oldTrxShortId = $this->consumeTrxShortId();
 			$this->trxStatus = self::STATUS_TRX_NONE;
 			$this->trxAtomicLevels = [];
 			// Estimate the RTT via a query now that trxStatus is OK
@@ -4072,7 +4084,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->trxProfiler->transactionWritingOut(
 					$this->server,
 					$this->getDomainID(),
-					$this->trxShortId,
+					$oldTrxShortId,
 					$writeTime,
 					$this->trxWriteAffectedRows
 				);
@@ -4106,13 +4118,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * @see Database::rollback()
 	 * @param string $fname
+	 * @throws DBError
 	 */
 	protected function doRollback( $fname ) {
-		if ( $this->trxLevel ) {
+		if ( $this->trxLevel() ) {
 			# Disconnects cause rollback anyway, so ignore those errors
 			$ignoreErrors = true;
 			$this->query( 'ROLLBACK', $fname, $ignoreErrors );
-			$this->trxLevel = 0;
 		}
 	}
 
@@ -4130,7 +4142,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function explicitTrxActive() {
-		return $this->trxLevel && ( $this->trxAtomicLevels || !$this->trxAutomatic );
+		return $this->trxLevel() && ( $this->trxAtomicLevels || !$this->trxAutomatic );
 	}
 
 	public function duplicateTableStructure(
@@ -4282,7 +4294,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @since 1.27
 	 */
 	final protected function getRecordedTransactionLagStatus() {
-		return ( $this->trxLevel && $this->trxReplicaLag !== null )
+		return ( $this->trxLevel() && $this->trxReplicaLag !== null )
 			? [ 'lag' => $this->trxReplicaLag, 'since' => $this->trxTimestamp() ]
 			: null;
 	}
@@ -4830,7 +4842,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Run a few simple sanity checks and close dangling connections
 	 */
 	public function __destruct() {
-		if ( $this->trxLevel && $this->trxDoneWrites ) {
+		if ( $this->trxLevel() && $this->trxDoneWrites ) {
 			trigger_error( "Uncommitted DB writes (transaction from {$this->trxFname})." );
 		}
 

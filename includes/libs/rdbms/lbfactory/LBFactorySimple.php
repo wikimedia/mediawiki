@@ -70,20 +70,12 @@ class LBFactorySimple extends LBFactory {
 		$this->loadMonitorClass = $conf['loadMonitorClass'] ?? 'LoadMonitor';
 	}
 
-	/**
-	 * @param bool|string $domain
-	 * @return LoadBalancer
-	 */
 	public function newMainLB( $domain = false ) {
 		return $this->newLoadBalancer( $this->servers );
 	}
 
-	/**
-	 * @param bool|string $domain
-	 * @return LoadBalancer
-	 */
 	public function getMainLB( $domain = false ) {
-		if ( !isset( $this->mainLB ) ) {
+		if ( !$this->mainLB ) {
 			$this->mainLB = $this->newMainLB( $domain );
 		}
 
@@ -132,14 +124,6 @@ class LBFactorySimple extends LBFactory {
 		return $lb;
 	}
 
-	/**
-	 * Execute a function for each tracked load balancer
-	 * The callback is called with the load balancer as the first parameter,
-	 * and $params passed as the subsequent parameters.
-	 *
-	 * @param callable $callback
-	 * @param array $params
-	 */
 	public function forEachLB( $callback, array $params = [] ) {
 		if ( isset( $this->mainLB ) ) {
 			$callback( $this->mainLB, ...$params );

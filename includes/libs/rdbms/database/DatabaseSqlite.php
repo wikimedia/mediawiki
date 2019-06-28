@@ -173,18 +173,8 @@ class DatabaseSqlite extends Database {
 			throw new DBExpectedError( $this, __CLASS__ . ": domain schemas are not supported." );
 		}
 
-		$fileName = self::generateFileName( $this->dbDir, $dbName );
-		if ( !is_readable( $fileName ) ) {
-			$error = "SQLite database file not readable";
-			$this->connLogger->error(
-				"Error connecting to {db_server}: {error}",
-				$this->getLogContext( [ 'method' => __METHOD__, 'error' => $error ] )
-			);
-			throw new DBConnectionError( $this, $error );
-		}
-
 		// Only $dbName is used, the other parameters are irrelevant for SQLite databases
-		$this->openFile( $fileName, $dbName, $tablePrefix );
+		$this->openFile( self::generateFileName( $this->dbDir, $dbName ), $dbName, $tablePrefix );
 	}
 
 	/**
@@ -196,6 +186,15 @@ class DatabaseSqlite extends Database {
 	 * @throws DBConnectionError
 	 */
 	protected function openFile( $fileName, $dbName, $tablePrefix ) {
+		if ( !$this->hasMemoryPath() && !is_readable( $fileName ) ) {
+			$error = "SQLite database file not readable";
+			$this->connLogger->error(
+				"Error connecting to {db_server}: {error}",
+				$this->getLogContext( [ 'method' => __METHOD__, 'error' => $error ] )
+			);
+			throw new DBConnectionError( $this, $error );
+		}
+
 		$this->dbPath = $fileName;
 		try {
 			$this->conn = new PDO(
@@ -772,6 +771,17 @@ class DatabaseSqlite extends Database {
 		return false;
 	}
 
+	public function serverIsReadOnly() {
+		return ( !$this->hasMemoryPath() && !is_writable( $this->dbPath ) );
+	}
+
+	/**
+	 * @return bool
+	 */
+	private function hasMemoryPath() {
+		return ( strpos( $this->dbPath, ':memory:' ) === 0 );
+	}
+
 	/**
 	 * @return string Wikitext of a link to the server software's web site
 	 */
@@ -815,7 +825,6 @@ class DatabaseSqlite extends Database {
 		} else {
 			$this->query( 'BEGIN', $fname );
 		}
-		$this->trxLevel = 1;
 	}
 
 	/**

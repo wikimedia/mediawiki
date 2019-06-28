@@ -140,7 +140,7 @@ interface ILBFactory {
 	/**
 	 * Get cached (tracked) load balancers for all main database clusters
 	 *
-	 * @return LoadBalancer[] Map of (cluster name => LoadBalancer)
+	 * @return ILoadBalancer[] Map of (cluster name => ILoadBalancer)
 	 * @since 1.29
 	 */
 	public function getAllMainLBs();
@@ -148,7 +148,7 @@ interface ILBFactory {
 	/**
 	 * Get cached (tracked) load balancers for all external database clusters
 	 *
-	 * @return LoadBalancer[] Map of (cluster name => LoadBalancer)
+	 * @return ILoadBalancer[] Map of (cluster name => ILoadBalancer)
 	 * @since 1.29
 	 */
 	public function getAllExternalLBs();

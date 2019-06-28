@@ -1072,7 +1072,7 @@ __INDEXATTR__;
 	 * @param string $desiredSchema
 	 */
 	public function determineCoreSchema( $desiredSchema ) {
-		if ( $this->trxLevel ) {
+		if ( $this->trxLevel() ) {
 			// We do not want the schema selection to change on ROLLBACK or INSERT SELECT.
 			// See https://www.postgresql.org/docs/8.3/sql-set.html
 			throw new DBUnexpectedError(
