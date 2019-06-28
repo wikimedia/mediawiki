@@ -30,6 +30,7 @@
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ScopedCallback;
+use Psr\Log\NullLogger;
 
 /**
  * @brief Base class for all file backend classes (including multi-write backends).
@@ -190,7 +191,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 		if ( !is_callable( $this->profiler ) ) {
 			$this->profiler = null;
 		}
-		$this->logger = $config['logger'] ?? new \Psr\Log\NullLogger();
+		$this->logger = $config['logger'] ?? new NullLogger();
 		$this->statusWrapper = $config['statusWrapper'] ?? null;
 		$this->tmpDirectory = $config['tmpDirectory'] ?? null;
 	}

@@ -21,6 +21,7 @@
  */
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 
 /**
  * Implements functions related to MIME types such as detection and mapping to file extension
@@ -199,7 +200,7 @@ EOT;
 		$this->detectCallback = $params['detectCallback'] ?? null;
 		$this->guessCallback = $params['guessCallback'] ?? null;
 		$this->extCallback = $params['extCallback'] ?? null;
-		$this->logger = $params['logger'] ?? new \Psr\Log\NullLogger();
+		$this->logger = $params['logger'] ?? new NullLogger();
 
 		$this->loadFiles();
 	}
