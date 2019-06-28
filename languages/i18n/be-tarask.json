@@ -3776,6 +3776,8 @@
 	"edit-error-short": "Памылка: $1",
 	"edit-error-long": "Памылкі:\n\n$1",
 	"specialmute": "Заглушаныя ўдзельнікі",
+	"specialmute-success": "Вашыя налады заглушэньня былі пасьпяхова абноўленыя. Глядзіце ўсіх заглушаных удзельнікаў на старонцы [[Special:Preferences]].",
+	"specialmute-submit": "Пацьвердзіць",
 	"revid": "вэрсія $1",
 	"pageid": "Ідэнтыфікатар старонкі $1",
 	"interfaceadmin-info": "$1\n\nДазволы на рэдагаваньне агульнасайтавых CSS/JS/JSON-файлаў былі нядаўна вылучаныя з права <code>editinterface</code>. Калі вы не разумееце, чаму атрымліваеце гэтую памылку, глядзіце [[mw:MediaWiki_1.32/interface-admin]].",
