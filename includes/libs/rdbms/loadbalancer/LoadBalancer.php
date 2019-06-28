@@ -1306,10 +1306,24 @@ class LoadBalancer implements ILoadBalancer {
 		return 0;
 	}
 
+	/**
+	 * Returns true if the specified index is a valid server index
+	 *
+	 * @param int $i
+	 * @return bool
+	 * @deprecated Since 1.34
+	 */
 	public function haveIndex( $i ) {
 		return array_key_exists( $i, $this->servers );
 	}
 
+	/**
+	 * Returns true if the specified index is valid and has non-zero load
+	 *
+	 * @param int $i
+	 * @return bool
+	 * @deprecated Since 1.34
+	 */
 	public function isNonZeroLoad( $i ) {
 		return array_key_exists( $i, $this->servers ) && $this->genericLoads[$i] != 0;
 	}
