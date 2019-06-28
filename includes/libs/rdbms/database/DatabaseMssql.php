@@ -374,6 +374,17 @@ class DatabaseMssql extends Database {
 		return $statementOnly;
 	}
 
+	public function serverIsReadOnly() {
+		$encDatabase = $this->addQuotes( $this->getDBname() );
+		$res = $this->query(
+			"SELECT IS_READ_ONLY FROM SYS.DATABASES WHERE NAME = $encDatabase",
+			__METHOD__
+		);
+		$row = $this->fetchObject( $res );
+
+		return $row ? (bool)$row->IS_READ_ONLY : false;
+	}
+
 	/**
 	 * @return int
 	 */
