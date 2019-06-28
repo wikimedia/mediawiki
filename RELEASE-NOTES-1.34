@@ -327,6 +327,8 @@ because of Phabricator reports.
   engines.
 * Skin::escapeSearchLink() is deprecated. Use Skin::getSearchLink() or the skin
   template option 'searchaction' instead.
+* LoadBalancer::haveIndex() and LoadBalancer::isNonZeroLoad() have
+  been deprecated.
 
 === Other changes in 1.34 ===
 * …
