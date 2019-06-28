@@ -184,4 +184,43 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 		$this->assertSame( 'TEST', $value, 'Copied Data' );
 	}
 
+	public function testResetServices() {
+		$services = MediaWikiServices::getInstance();
+
+		// override a service instance
+		$myReadOnlyMode = $this->getMockBuilder( ReadOnlyMode::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$this->setService( 'ReadOnlyMode', $myReadOnlyMode );
+
+		// sanity check
+		$this->assertSame( $myReadOnlyMode, $services->getService( 'ReadOnlyMode' ) );
+
+		// define a custom service
+		$services->defineService(
+			'_TEST_ResetService_Dummy',
+			function ( MediaWikiServices $services ) {
+				$conf = $services->getMainConfig();
+				return (object)[ 'lang' => $conf->get( 'LanguageCode' ) ];
+			}
+		);
+
+		// sanity check
+		$lang = $services->getMainConfig()->get( 'LanguageCode' );
+		$dummy = $services->getService( '_TEST_ResetService_Dummy' );
+		$this->assertSame( $lang, $dummy->lang );
+
+		// the actual test: change config, reset services.
+		$this->setMwGlobals( 'wgLanguageCode', 'qqx' );
+		$this->resetServices();
+
+		// the overridden service instance should still be there
+		$this->assertSame( $myReadOnlyMode, $services->getService( 'ReadOnlyMode' ) );
+
+		// our custom service should have been re-created with the new language code
+		$dummy2 = $services->getService( '_TEST_ResetService_Dummy' );
+		$this->assertNotSame( $dummy2, $dummy );
+		$this->assertSame( 'qqx', $dummy2->lang );
+	}
+
 }

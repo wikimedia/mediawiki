@@ -668,14 +668,22 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * Sets a service, maintaining a stashed version of the previous service to be
-	 * restored in tearDown
+	 * restored in tearDown.
+	 *
+	 * @note Tests must not call overrideMwServices() after calling setService(), since that would
+	 *       lose the new service instance. Since 1.34, resetServices() can be used instead, which
+	 *       would reset other services, but retain any services set using setService().
+	 *       This means that once a service is set using this method, it cannot be reverted to
+	 *       the original service within the same test method. The original service is restored
+	 *       in tearDown after the test method has terminated.
+	 *
+	 * @param string $name
+	 * @param object $service The service instance, or a callable that returns the service instance.
 	 *
 	 * @since 1.27
 	 *
-	 * @param string $name
-	 * @param object $object
 	 */
-	protected function setService( $name, $object ) {
+	protected function setService( $name, $service ) {
 		if ( !$this->localServices ) {
 			throw new Exception( __METHOD__ . ' must be called after MediaWikiTestCase::run()' );
 		}
@@ -685,18 +693,24 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 				. 'instance has been replaced by test code.' );
 		}
 
+		if ( is_callable( $service ) ) {
+			$instantiator = $service;
+		} else {
+			$instantiator = function () use ( $service ) {
+				return $service;
+			};
+		}
+
 		$this->overriddenServices[] = $name;
 
 		$this->localServices->disableService( $name );
 		$this->localServices->redefineService(
 			$name,
-			function () use ( $object ) {
-				return $object;
-			}
+			$instantiator
 		);
 
 		if ( $name === 'ContentLanguage' ) {
-			$this->doSetMwGlobals( [ 'wgContLang' => $object ] );
+			$this->doSetMwGlobals( [ 'wgContLang' => $this->localServices->getContentLanguage() ] );
 		}
 	}
 
@@ -706,6 +720,9 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 *
 	 * The key is added to the array of globals that will be reset afterwards
 	 * in the tearDown().
+	 *
+	 * It may be necessary to call resetServices() to allow any changed configuration variables
+	 * to take effect on services that get initialized based on these variables.
 	 *
 	 * @par Example
 	 * @code
@@ -731,7 +748,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 *  if an array is given as first argument).
 	 *
 	 * @note To allow changes to global variables to take effect on global service instances,
-	 *       call overrideMwServices().
+	 *       call resetServices().
 	 *
 	 * @since 1.21
 	 */
@@ -890,13 +907,16 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * Useful for setting some entries in a configuration array, instead of
 	 * setting the entire array.
 	 *
+	 * It may be necessary to call resetServices() to allow any changed configuration variables
+	 * to take effect on services that get initialized based on these variables.
+	 *
 	 * @param string $name The name of the global, as in wgFooBar
 	 * @param array $values The array containing the entries to set in that global
 	 *
 	 * @throws MWException If the designated global is not an array.
 	 *
 	 * @note To allow changes to global variables to take effect on global service instances,
-	 *       call overrideMwServices().
+	 *       call resetServices().
 	 *
 	 * @since 1.21
 	 */
@@ -919,9 +939,53 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Stashes the global instance of MediaWikiServices, and installs a new one,
-	 * allowing test cases to override settings and services.
-	 * The previous instance of MediaWikiServices will be restored on tearDown.
+	 * Resets service instances in the global instance of MediaWikiServices.
+	 *
+	 * In contrast to overrideMwServices(), this does not create a new MediaWikiServices instance,
+	 * and it preserves any service instances set via setService().
+	 *
+	 * The primary use case for this method is to allow changes to global configuration variables
+	 * to take effect on services that get initialized based on these global configuration
+	 * variables. Similarly, it may be necessary to call resetServices() after calling setService(),
+	 * so the newly set service gets picked up by any other service definitions that may use it.
+	 *
+	 * @see MediaWikiServices::resetServiceForTesting.
+	 *
+	 * @since 1.34
+	 */
+	protected function resetServices() {
+		// Reset but don't destroy service instances supplied via setService().
+		foreach ( $this->overriddenServices as $name ) {
+			$this->localServices->resetServiceForTesting( $name, false );
+		}
+
+		// Reset all services with the destroy flag set.
+		// This will not have any effect on services that had already been reset above.
+		foreach ( $this->localServices->getServiceNames() as $name ) {
+			$this->localServices->resetServiceForTesting( $name, true );
+		}
+
+		self::resetGlobalParser();
+	}
+
+	/**
+	 * Installs a new global instance of MediaWikiServices, allowing test cases to override
+	 * settings and services.
+	 *
+	 * This method can be used to set up specific services or configuration as a fixture.
+	 * It should not be used to reset services in between stages of a test - instead, the test
+	 * should either be split, or resetServices() should be used.
+	 *
+	 * If called with no parameters, this method restores all services to their default state.
+	 * This is done automatically before each test to isolate tests from any modification
+	 * to settings and services that may have been applied by previous tests.
+	 * That means that the effect of calling overrideMwServices() is undone before the next
+	 * call to a test method.
+	 *
+	 * @note Calling this after having called setService() in the same test method (or the
+	 *       associated setUp) will result in an MWException.
+	 *       Tests should use either overrideMwServices() or setService(), but not mix both.
+	 *       Since 1.34, resetServices() is available as an alternative compatible with setService().
 	 *
 	 * @since 1.27
 	 *
@@ -1128,9 +1192,16 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		$this->setMwGlobals( 'wgGroupPermissions', $newPermissions );
+
+		// Reset services so they pick up the new permissions.
+		// Resetting just PermissionManager is not sufficient, since other services may
+		// have the old instance of PermissionManager injected.
+		$this->resetServices();
 	}
 
 	/**
+	 *
+	 * @since 1.34
 	 * Sets the logger for a specified channel, for the duration of the test.
 	 * @since 1.27
 	 * @param string $channel
@@ -1138,7 +1209,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	protected function setLogger( $channel, LoggerInterface $logger ) {
 		// TODO: Once loggers are managed by MediaWikiServices, use
-		//       overrideMwServices() to set loggers.
+		//       resetServiceForTesting() to set loggers.
 
 		$provider = LoggerFactory::getProvider();
 		$wrappedProvider = TestingAccessWrapper::newFromObject( $provider );
