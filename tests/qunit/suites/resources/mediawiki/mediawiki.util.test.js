@@ -388,7 +388,7 @@
 			'Default modules', 't-rldm-nonexistent', 'List of all default modules ', 'd', '#t-rl-nonexistent' );
 		assert.strictEqual(
 			tbRLDMnonexistentid,
-			$( '#p-test-tb li:last' )[ 0 ],
+			$( '#p-test-tb li' ).last()[ 0 ],
 			'Next node as non-matching CSS selector falls back to appending'
 		);
 
@@ -396,7 +396,7 @@
 			'Default modules', 't-rldm-empty-jquery', 'List of all default modules ', 'd', $( '#t-rl-nonexistent' ) );
 		assert.strictEqual(
 			tbRLDMemptyjquery,
-			$( '#p-test-tb li:last' )[ 0 ],
+			$( '#p-test-tb li' ).last()[ 0 ],
 			'Next node as empty jQuery object falls back to appending'
 		);
 	} );

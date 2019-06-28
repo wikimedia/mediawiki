@@ -199,7 +199,7 @@
 		getExpiryInputs().on( 'input change', updateExpiry );
 		getLevelSelectors().on( 'change', updateLevels );
 
-		$( '#mwProtectSet > tbody > tr:first' ).after( $row );
+		$( '#mwProtectSet > tbody > tr' ).first().after( $row );
 
 		// If there is only one protection type, there is nothing to chain
 		if ( $( '[id ^= mw-protect-table-]' ).length > 1 ) {

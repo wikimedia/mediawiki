@@ -237,7 +237,7 @@
 		if ( !result.get || selected.get( 0 ) !== result.get( 0 ) ) {
 			if ( result === 'prev' ) {
 				if ( selected.hasClass( 'suggestions-special' ) ) {
-					result = context.data.$container.find( '.suggestions-result:last' );
+					result = context.data.$container.find( '.suggestions-result' ).last();
 				} else {
 					result = selected.prev();
 					if ( !( result.length && result.hasClass( 'suggestions-result' ) ) ) {
@@ -250,14 +250,14 @@
 						if ( context.data.$container.find( '.suggestions-special' ).html() !== '' ) {
 							result = context.data.$container.find( '.suggestions-special' );
 						} else {
-							result = context.data.$container.find( '.suggestions-results .suggestions-result:last' );
+							result = context.data.$container.find( '.suggestions-results .suggestions-result' ).last();
 						}
 					}
 				}
 			} else if ( result === 'next' ) {
 				if ( selected.length === 0 ) {
 					// No item selected, go to the first one
-					result = context.data.$container.find( '.suggestions-results .suggestions-result:first' );
+					result = context.data.$container.find( '.suggestions-results .suggestions-result' ).first();
 					if ( result.length === 0 && context.data.$container.find( '.suggestions-special' ).html() !== '' ) {
 						// No suggestion exists, go to the special one directly
 						result = context.data.$container.find( '.suggestions-special' );

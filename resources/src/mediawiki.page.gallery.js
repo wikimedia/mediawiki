@@ -45,8 +45,8 @@
 				// Note that if we do have a real image, using this method will generally
 				// give the same answer, but can be different in the case of a very
 				// narrow image where extra padding is added.
-				imgHeight = $this.children().children( 'div:first' ).height();
-				imgWidth = $this.children().children( 'div:first' ).width();
+				imgHeight = $this.children().children( 'div' ).first().height();
+				imgWidth = $this.children().children( 'div' ).first().width();
 			}
 
 			// Hack to make an edge case work ok
