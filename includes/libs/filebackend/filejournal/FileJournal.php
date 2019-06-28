@@ -26,6 +26,8 @@
  * @ingroup FileJournal
  */
 
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+
 /**
  * @brief Class for handling file operation journaling.
  *
@@ -37,7 +39,6 @@
 abstract class FileJournal {
 	/** @var string */
 	protected $backend;
-
 	/** @var int */
 	protected $ttlDays;
 
@@ -63,7 +64,7 @@ abstract class FileJournal {
 		$class = $config['class'];
 		$jrn = new $class( $config );
 		if ( !$jrn instanceof self ) {
-			throw new InvalidArgumentException( "Class given is not an instance of FileJournal." );
+			throw new InvalidArgumentException( "$class is not an instance of " . __CLASS__ );
 		}
 		$jrn->backend = $backend;
 
@@ -82,7 +83,9 @@ abstract class FileJournal {
 		}
 		$s = Wikimedia\base_convert( sha1( $s ), 16, 36, 31 );
 
-		return substr( Wikimedia\base_convert( wfTimestamp( TS_MW ), 10, 36, 9 ) . $s, 0, 31 );
+		$timestamp = ConvertibleTimestamp::convert( TS_MW, time() );
+
+		return substr( Wikimedia\base_convert( $timestamp, 10, 36, 9 ) . $s, 0, 31 );
 	}
 
 	/**
