@@ -71,7 +71,7 @@ FormWrapperWidget.prototype.onFormSubmit = function ( e ) {
 	$( e.target ).find( 'input:not([type="hidden"],[type="submit"]), select' ).each( function () {
 		var value = '';
 
-		if ( !$( this ).is( ':checkbox' ) || $( this ).is( ':checked' ) ) {
+		if ( !$( this ).is( '[type="checkbox"]' ) || $( this ).is( ':checked' ) ) {
 			value = $( this ).val();
 		}
 
