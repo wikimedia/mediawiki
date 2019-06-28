@@ -138,6 +138,34 @@ class DumpAsserter {
 	}
 
 	/**
+	 * Asserts that the xml reader is at an element of given name, and that element
+	 * is an empty tag.
+	 *
+	 * @param string $name The name of the element to check for
+	 *   (e.g.: "text" for <text/>)
+	 * @param bool $skip (optional) if true, skip past the found element
+	 * @param bool $skip_ws (optional) if true, also skip past white spaces that trail the
+	 *   closing element.
+	 */
+	public function assertEmptyNode( $name, $skip = true, $skip_ws = true ) {
+		$this->assertNodeStart( $name, false );
+		Assert::assertFalse( $this->xml->hasValue, "$name tag has content" );
+
+		if ( $skip ) {
+			Assert::assertTrue( $this->xml->read(), "Skipping $name tag" );
+			if ( ( $this->xml->nodeType == XMLReader::END_ELEMENT )
+				&& ( $this->xml->name == $name )
+			) {
+				$this->xml->read();
+			}
+
+			if ( $skip_ws ) {
+				$this->skipWhitespace();
+			}
+		}
+	}
+
+	/**
 	 * Asserts that the xml reader is at an closing element of given name, and optionally
 	 * skips past it.
 	 *
@@ -246,6 +274,11 @@ class DumpAsserter {
 		$this->assertTextNode( "comment", $summary );
 		$this->skipWhitespace();
 
+		if ( $this->schemaVersion >= XML_DUMP_SCHEMA_VERSION_11 ) {
+			$this->assertTextNode( "origin", false );
+			$this->skipWhitespace();
+		}
+
 		$this->assertTextNode( "model", $model );
 		$this->skipWhitespace();
 
@@ -258,9 +291,16 @@ class DumpAsserter {
 			$this->assertText( $id, $text_id, $text_bytes, $text );
 		} else {
 			$text_found = false;
+			if ( $this->schemaVersion >= XML_DUMP_SCHEMA_VERSION_11 ) {
+				Assert::fail( 'Missing text node' );
+			}
 		}
 
-		$this->assertTextNode( "sha1", $text_sha1 );
+		if ( $text_sha1 ) {
+			$this->assertTextNode( "sha1", $text_sha1 );
+		} else {
+			$this->assertEmptyNode( "sha1" );
+		}
 
 		if ( !$text_found ) {
 			$this->assertText( $id, $text_id, $text_bytes, $text );
@@ -278,17 +318,9 @@ class DumpAsserter {
 		}
 
 		if ( $text === false ) {
-			// Testing for a stub
 			Assert::assertEquals( $this->xml->getAttribute( "id" ), $text_id,
 				"Text id of revision " . $id );
-			Assert::assertFalse( $this->xml->hasValue, "Revision has text" );
-			Assert::assertTrue( $this->xml->read(), "Skipping text start tag" );
-			if ( ( $this->xml->nodeType == XMLReader::END_ELEMENT )
-				&& ( $this->xml->name == "text" )
-			) {
-				$this->xml->read();
-			}
-			$this->skipWhitespace();
+			$this->assertEmptyNode( "text" );
 		} else {
 			// Testing for a real dump
 			Assert::assertTrue( $this->xml->read(), "Skipping text start tag" );

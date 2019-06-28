@@ -281,7 +281,7 @@ TEXT
 		$this->finalOptionCheck();
 
 		// we only want this so we know how to close a stream :-P
-		$this->xmlwriterobj = new XmlDumpWriter();
+		$this->xmlwriterobj = new XmlDumpWriter( XmlDumpWriter::WRITE_CONTENT, $this->schemaVersion );
 
 		$input = fopen( $this->input, "rt" );
 		$this->readDump( $input );

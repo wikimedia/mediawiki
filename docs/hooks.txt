@@ -3985,8 +3985,9 @@ $title: The title of the page.
 add extra metadata.
 &$obj: The XmlDumpWriter object.
 &$out: The text being output.
-$row: The database row for the revision.
-$text: The revision text.
+$row: The database row for the revision being dumped. DEPRECATED, use $rev instead.
+$text: The revision text to be dumped. DEPRECATED, use $rev instead.
+$rev: The RevisionRecord that is being dumped to XML
 
 More hooks might be available but undocumented, you can execute
 "php maintenance/findHooks.php" to find hidden ones.
