@@ -35,7 +35,7 @@ class FakeResultWrapper extends ResultWrapper {
 
 		$this->next();
 
-		return is_object( $row ) ? (array)$row : $row;
+		return is_object( $row ) ? get_object_vars( $row ) : $row;
 	}
 
 	function seek( $pos ) {

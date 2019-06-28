@@ -630,7 +630,7 @@
 								e.keyCode === OO.ui.Keys.UP ? -1 : 1, 'wrap' )
 						);
 					}
-					if ( $field.is( ':input' ) ) {
+					if ( $field.is( 'input' ) ) {
 						$field.trigger( 'select' );
 					}
 					return false;
@@ -652,7 +652,7 @@
 			if ( this.getValueAsDate() === null ) {
 				this.setValue( this.formatter.getDefaultDate() );
 			}
-			if ( $field.is( ':input' ) ) {
+			if ( $field.is( 'input' ) ) {
 				$field.trigger( 'select' );
 			}
 
