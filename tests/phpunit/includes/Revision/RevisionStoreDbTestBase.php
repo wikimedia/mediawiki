@@ -897,12 +897,71 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		}
 
 		if ( $revMain->hasContentId() ) {
-			$this->assertSame( $revMain->getContentId(), $recMain->getContentId(), 'getContentId' );
+			// XXX: the content ID value is ill-defined when SCHEMA_COMPAT_WRITE_BOTH and
+			//      SCHEMA_COMPAT_READ_OLD is set, since revision insertion will report the
+			//      content ID used with the new schema, while loading the revision from the
+			//      old schema will report an emulated ID.
+			if ( $this->getMcrMigrationStage() & SCHEMA_COMPAT_READ_NEW ) {
+				$this->assertSame( $revMain->getContentId(), $recMain->getContentId(), 'getContentId' );
+			}
 		}
 	}
 
 	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRowAndSlots
+	 * @covers \MediaWiki\Revision\RevisionStore::getQueryInfo
+	 */
+	public function testNewRevisionFromRowAndSlot_getQueryInfo() {
+		$page = $this->getTestPage();
+		$text = __METHOD__ . 'o-ö';
+		/** @var Revision $rev */
+		$rev = $page->doEditContent(
+			new WikitextContent( $text ),
+			__METHOD__ . 'a'
+		)->value['revision'];
+
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$info = $store->getQueryInfo();
+		$row = $this->db->selectRow(
+			$info['tables'],
+			$info['fields'],
+			[ 'rev_id' => $rev->getId() ],
+			__METHOD__,
+			[],
+			$info['joins']
+		);
+
+		$info = $store->getSlotsQueryInfo( [ 'content' ] );
+		$slotRows = $this->db->select(
+			$info['tables'],
+			$info['fields'],
+			$this->getSlotRevisionConditions( $rev->getId() ),
+			__METHOD__,
+			[],
+			$info['joins']
+		);
+
+		$record = $store->newRevisionFromRowAndSlots(
+			$row,
+			iterator_to_array( $slotRows ),
+			[],
+			$page->getTitle()
+		);
+		$this->assertRevisionRecordMatchesRevision( $rev, $record );
+		$this->assertSame( $text, $rev->getContent()->serialize() );
+	}
+
+	/**
+	 * Conditions to use together with getSlotsQueryInfo() when selecting slot rows for a given
+	 * revision.
+	 *
+	 * @return array
+	 */
+	abstract protected function getSlotRevisionConditions( $revId );
+
+	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRow
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRowAndSlots
 	 * @covers \MediaWiki\Revision\RevisionStore::getQueryInfo
 	 */
 	public function testNewRevisionFromRow_getQueryInfo() {
@@ -935,6 +994,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRow
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRowAndSlots
 	 */
 	public function testNewRevisionFromRow_anonEdit() {
 		$page = $this->getTestPage();
@@ -957,6 +1017,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRow
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRowAndSlots
 	 */
 	public function testNewRevisionFromRow_anonEdit_legacyEncoding() {
 		$this->setMwGlobals( 'wgLegacyEncoding', 'windows-1252' );
@@ -981,6 +1042,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRow
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRowAndSlots
 	 */
 	public function testNewRevisionFromRow_userEdit() {
 		$page = $this->getTestPage();
@@ -1105,6 +1167,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRow
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRowAndSlots
 	 */
 	public function testNewRevisionFromRow_no_user() {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();

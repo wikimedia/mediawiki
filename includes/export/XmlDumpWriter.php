@@ -23,20 +23,45 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Revision\SuppressedDataException;
 use MediaWiki\Storage\SqlBlobStore;
+use Wikimedia\Assert\Assert;
 
 /**
  * @ingroup Dump
  */
 class XmlDumpWriter {
+
+	/** Output serialized revision content. */
+	const WRITE_CONTENT = 0;
+
+	/** Only output subs for revision content. */
+	const WRITE_STUB = 1;
+
+	/**
+	 * Only output subs for revision content, indicating that the content has been
+	 * deleted/suppressed. For internal use only.
+	 */
+	const WRITE_STUB_DELETED = 2;
+
 	/**
 	 * @var string[] the schema versions supported for output
 	 * @final
 	 */
 	public static $supportedSchemas = [
 		XML_DUMP_SCHEMA_VERSION_10,
+		XML_DUMP_SCHEMA_VERSION_11
 	];
+
+	/**
+	 * @var string which schema version the generated XML should comply to.
+	 * One of the values from self::$supportedSchemas, using the SCHEMA_VERSION_XX
+	 * constants.
+	 */
+	private $schemaVersion;
 
 	/**
 	 * Title of the currently processed page
@@ -44,6 +69,40 @@ class XmlDumpWriter {
 	 * @var Title|null
 	 */
 	private $currentTitle = null;
+
+	/**
+	 * @var int Whether to output revision content or just stubs. WRITE_CONTENT or WRITE_STUB.
+	 */
+	private $contentMode;
+
+	/**
+	 * XmlDumpWriter constructor.
+	 *
+	 * @param int $contentMode WRITE_CONTENT or WRITE_STUB.
+	 * @param string $schemaVersion which schema version the generated XML should comply to.
+	 * One of the values from self::$supportedSchemas, using the XML_DUMP_SCHEMA_VERSION_XX
+	 * constants.
+	 */
+	public function __construct(
+		$contentMode = self::WRITE_CONTENT,
+		$schemaVersion = XML_DUMP_SCHEMA_VERSION_11
+	) {
+		Assert::parameter(
+			in_array( $contentMode, [ self::WRITE_CONTENT, self::WRITE_STUB ] ),
+			'$contentMode',
+			'must be one of the following constants: WRITE_CONTENT or WRITE_STUB.'
+		);
+
+		Assert::parameter(
+			in_array( $schemaVersion, self::$supportedSchemas ),
+			'$schemaVersion',
+			'must be one of the following schema versions: '
+				. implode( ',', self::$supportedSchemas )
+		);
+
+		$this->contentMode = $contentMode;
+		$this->schemaVersion = $schemaVersion;
+	}
 
 	/**
 	 * Opens the XML output stream's root "<mediawiki>" element.
@@ -56,7 +115,7 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	function openStream() {
-		$ver = WikiExporter::schemaVersion();
+		$ver = $this->schemaVersion;
 		return Xml::element( 'mediawiki', [
 			'xmlns'              => "http://www.mediawiki.org/xml/export-$ver/",
 			'xmlns:xsi'          => "http://www.w3.org/2001/XMLSchema-instance",
@@ -177,7 +236,7 @@ class XmlDumpWriter {
 	 */
 	public function openPage( $row ) {
 		$out = "  <page>\n";
-		$this->currentTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
+		$this->currentTitle = Title::newFromRow( $row );
 		$canonicalTitle = self::canonicalTitle( $this->currentTitle );
 		$out .= '    ' . Xml::elementClean( 'title', [], $canonicalTitle ) . "\n";
 		$out .= '    ' . Xml::element( 'ns', [], strval( $row->page_namespace ) ) . "\n";
@@ -237,144 +296,204 @@ class XmlDumpWriter {
 	 * data filled in from the given database row.
 	 *
 	 * @param object $row
+	 * @param null|object[] $slotRows
+	 *
 	 * @return string
+	 * @throws FatalError
+	 * @throws MWException
 	 * @private
 	 */
-	function writeRevision( $row ) {
+	function writeRevision( $row, $slotRows = null ) {
+		$rev = $this->getRevisionStore()->newRevisionFromRowAndSlots(
+			$row,
+			$slotRows,
+			0,
+			$this->currentTitle
+		);
+
 		$out = "    <revision>\n";
-		$out .= "      " . Xml::element( 'id', null, strval( $row->rev_id ) ) . "\n";
-		if ( isset( $row->rev_parent_id ) && $row->rev_parent_id ) {
-			$out .= "      " . Xml::element( 'parentid', null, strval( $row->rev_parent_id ) ) . "\n";
+		$out .= "      " . Xml::element( 'id', null, strval( $rev->getId() ) ) . "\n";
+
+		if ( $rev->getParentId() ) {
+			$out .= "      " . Xml::element( 'parentid', null, strval( $rev->getParentId() ) ) . "\n";
 		}
 
-		$out .= $this->writeTimestamp( $row->rev_timestamp );
+		$out .= $this->writeTimestamp( $rev->getTimestamp() );
 
-		if ( isset( $row->rev_deleted ) && ( $row->rev_deleted & Revision::DELETED_USER ) ) {
+		if ( $rev->isDeleted( Revision::DELETED_USER ) ) {
 			$out .= "      " . Xml::element( 'contributor', [ 'deleted' => 'deleted' ] ) . "\n";
 		} else {
 			// empty values get written out as uid 0, see T224221
-			$out .= $this->writeContributor( $row->rev_user ?: 0, $row->rev_user_text );
+			$user = $rev->getUser();
+			$out .= $this->writeContributor(
+				$user ? $user->getId() : 0,
+				$user ? $user->getName() : ''
+			);
 		}
 
-		if ( isset( $row->rev_minor_edit ) && $row->rev_minor_edit ) {
+		if ( $rev->isMinor() ) {
 			$out .= "      <minor/>\n";
 		}
-		if ( isset( $row->rev_deleted ) && ( $row->rev_deleted & Revision::DELETED_COMMENT ) ) {
+		if ( $rev->isDeleted( Revision::DELETED_COMMENT ) ) {
 			$out .= "      " . Xml::element( 'comment', [ 'deleted' => 'deleted' ] ) . "\n";
 		} else {
-			$comment = CommentStore::getStore()->getComment( 'rev_comment', $row )->text;
-			if ( $comment != '' ) {
-				$out .= "      " . Xml::elementClean( 'comment', [], strval( $comment ) ) . "\n";
-			}
+			$out .= "      "
+				. Xml::elementClean( 'comment', [], strval( $rev->getComment()->text ) )
+				. "\n";
 		}
 
-		// TODO: rev_content_model no longer exists with MCR, see T174031
-		if ( isset( $row->rev_content_model ) && !is_null( $row->rev_content_model ) ) {
-			$content_model = strval( $row->rev_content_model );
-		} else {
-			// probably using $wgContentHandlerUseDB = false;
-			$content_model = ContentHandler::getDefaultModelFor( $this->currentTitle );
+		$contentMode = $rev->isDeleted( Revision::DELETED_TEXT ) ? self::WRITE_STUB_DELETED
+			: $this->contentMode;
+
+		foreach ( $rev->getSlots()->getSlots() as $slot ) {
+			$out .= $this->writeSlot( $slot, $contentMode );
 		}
 
-		$content_handler = ContentHandler::getForModelID( $content_model );
-
-		// TODO: rev_content_format no longer exists with MCR, see T174031
-		if ( isset( $row->rev_content_format ) && !is_null( $row->rev_content_format ) ) {
-			$content_format = strval( $row->rev_content_format );
-		} else {
-			// probably using $wgContentHandlerUseDB = false;
-			$content_format = $content_handler->getDefaultFormat();
-		}
-
-		$out .= "      " . Xml::element( 'model', null, strval( $content_model ) ) . "\n";
-		$out .= "      " . Xml::element( 'format', null, strval( $content_format ) ) . "\n";
-
-		$text = '';
-		if ( isset( $row->rev_deleted ) && ( $row->rev_deleted & Revision::DELETED_TEXT ) ) {
-			$out .= "      " . Xml::element( 'text', [ 'deleted' => 'deleted' ] ) . "\n";
-		} elseif ( isset( $row->old_text ) ) {
-			// Raw text from the database may have invalid chars
-			$text = strval( Revision::getRevisionText( $row ) );
-			try {
-				$text = $content_handler->exportTransform( $text, $content_format );
-			}
-			catch ( Exception $ex ) {
-				if ( $ex instanceof MWException || $ex instanceof RuntimeException ) {
-					// leave text as is; that's the way it goes
-					wfLogWarning( 'exportTransform failed on text for revid ' . $row->rev_id . "\n" );
-				} else {
-					throw $ex;
-				}
-			}
-			$out .= "      " . Xml::elementClean( 'text',
-				[ 'xml:space' => 'preserve', 'bytes' => intval( $row->rev_len ) ],
-				strval( $text ) ) . "\n";
-		} elseif ( isset( $row->_load_content ) ) {
-			// TODO: make this fully MCR aware, see T174031
-			$rev = $this->getRevisionStore()->newRevisionFromRow( $row, 0, $this->currentTitle );
-			$slot = $rev->getSlot( 'main' );
-			try {
-				$content = $slot->getContent();
-
-				if ( $content instanceof TextContent ) {
-					// HACK: For text based models, bypass the serialization step.
-					// This allows extensions (like Flow)that use incompatible combinations
-					// of serialization format and content model.
-					$text = $content->getNativeData();
-				} else {
-					$text = $content->serialize( $content_format );
-				}
-				$text = $content_handler->exportTransform( $text, $content_format );
-				$out .= "      " . Xml::elementClean( 'text',
-					[ 'xml:space' => 'preserve', 'bytes' => intval( $slot->getSize() ) ],
-					strval( $text ) ) . "\n";
-			}
-			catch ( Exception $ex ) {
-				if ( $ex instanceof MWException || $ex instanceof RuntimeException ) {
-					// there's no provsion in the schema for an attribute that will let
-					// the user know this element was unavailable due to error; an empty
-					// tag is the best we can do
-					$out .= "      " . Xml::element( 'text' ) . "\n";
-					wfLogWarning( 'failed to load content for revid ' . $row->rev_id . "\n" );
-				} else {
-					throw $ex;
-				}
-			}
-		} elseif ( isset( $row->rev_text_id ) ) {
-			// Stub output for pre-MCR schema
-			// TODO: MCR: rev_text_id only exists in the pre-MCR schema. Remove this when
-			// we drop support for the old schema.
-			$out .= "      " . Xml::element( 'text',
-				[ 'id' => $row->rev_text_id, 'bytes' => intval( $row->rev_len ) ],
-				"" ) . "\n";
-		} else {
-			// Backwards-compatible stub output for MCR aware schema
-			// TODO: MCR: emit content addresses instead of text ids, see T174031, T199121
-			$rev = $this->getRevisionStore()->newRevisionFromRow( $row, 0, $this->currentTitle );
-			$slot = $rev->getSlot( 'main' );
-
-			// Note that this is currently the ONLY reason we have a BlobStore here at all.
-			// When removing this line, check whether the BlobStore has become unused.
-			$textId = $this->getBlobStore()->getTextIdFromAddress( $slot->getAddress() );
-			$out .= "      " . Xml::element( 'text',
-					[ 'id' => $textId, 'bytes' => intval( $slot->getSize() ) ],
-					"" ) . "\n";
-		}
-
-		if ( isset( $row->rev_sha1 )
-			&& $row->rev_sha1
-			&& !( $row->rev_deleted & Revision::DELETED_TEXT )
-		) {
-			$out .= "      " . Xml::element( 'sha1', null, strval( $row->rev_sha1 ) ) . "\n";
-		} else {
+		if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$out .= "      <sha1/>\n";
+		} else {
+			$out .= "      " . Xml::element( 'sha1', null, strval( $rev->getSha1() ) ) . "\n";
 		}
 
 		// Avoid PHP 7.1 warning from passing $this by reference
 		$writer = $this;
-		Hooks::run( 'XmlDumpWriterWriteRevision', [ &$writer, &$out, $row, $text ] );
+		$text = $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
+		Hooks::run( 'XmlDumpWriterWriteRevision', [ &$writer, &$out, $row, $text, $rev ] );
 
 		$out .= "    </revision>\n";
+
+		return $out;
+	}
+
+	/**
+	 * @param SlotRecord $slot
+	 * @param int $contentMode see the WRITE_XXX constants
+	 *
+	 * @return string
+	 */
+	private function writeSlot( SlotRecord $slot, $contentMode ) {
+		$isMain = $slot->getRole() === SlotRecord::MAIN;
+		$isV11 = $this->schemaVersion >= XML_DUMP_SCHEMA_VERSION_11;
+
+		if ( !$isV11 && !$isMain ) {
+			// ignore extra slots
+			return '';
+		}
+
+		$out = '';
+		$indent = '      ';
+
+		if ( !$isMain ) {
+			// non-main slots are wrapped into an additional element.
+			$out .= '      ' . Xml::openElement( 'content' ) . "\n";
+			$indent .= '  ';
+			$out .= $indent . Xml::element( 'role', null, strval( $slot->getRole() ) ) . "\n";
+		}
+
+		if ( $isV11 ) {
+			$out .= $indent . Xml::element( 'origin', null, strval( $slot->getOrigin() ) ) . "\n";
+		}
+
+		$contentModel = $slot->getModel();
+		$contentHandler = ContentHandler::getForModelID( $contentModel );
+		$contentFormat = $contentHandler->getDefaultFormat();
+
+		// XXX: The content format is only relevant when actually outputting serialized content.
+		// It should probably be an attribute on the text tag.
+		$out .= $indent . Xml::element( 'model', null, strval( $contentModel ) ) . "\n";
+		$out .= $indent . Xml::element( 'format', null, strval( $contentFormat ) ) . "\n";
+
+		$textAttributes = [
+			'xml:space' => 'preserve',
+			'bytes' => $slot->getSize(),
+		];
+
+		if ( $isV11 ) {
+			$textAttributes['sha1'] = $slot->getSha1();
+		}
+
+		if ( $contentMode === self::WRITE_CONTENT ) {
+			try {
+				// write <text> tag
+				$out .= $this->writeText( $slot->getContent(), $textAttributes, $indent );
+			} catch ( SuppressedDataException $ex ) {
+				// NOTE: this shouldn't happen, since the caller is supposed to have checked
+				// for suppressed content!
+				// write <text> placeholder tag
+				$textAttributes['deleted'] = 'deleted';
+				$out .= $indent . Xml::element( 'text', $textAttributes ) . "\n";
+			}
+			catch ( Exception $ex ) {
+				if ( $ex instanceof MWException || $ex instanceof RuntimeException ) {
+					// there's no provision in the schema for an attribute that will let
+					// the user know this element was unavailable due to error; an empty
+					// tag is the best we can do
+					$out .= $indent . Xml::element( 'text' ) . "\n";
+					wfLogWarning(
+						'failed to load content slot ' . $slot->getRole() . ' for revision '
+						. $slot->getRevision() . "\n"
+					);
+				} else {
+					throw $ex;
+				}
+			}
+		} elseif ( $contentMode === self::WRITE_STUB_DELETED ) {
+			// write <text> placeholder tag
+			$textAttributes['deleted'] = 'deleted';
+			$out .= $indent . Xml::element( 'text', $textAttributes ) . "\n";
+		} else {
+			// write <text> stub tag
+			if ( $isV11 ) {
+				$textAttributes['location'] = $slot->getAddress();
+			}
+
+			// Output the numerical text ID if possible, for backwards compatibility.
+			// Note that this is currently the ONLY reason we have a BlobStore here at all.
+			// When removing this line, check whether the BlobStore has become unused.
+			$textId = $this->getBlobStore()->getTextIdFromAddress( $slot->getAddress() );
+			if ( $textId ) {
+				$textAttributes['id'] = $textId;
+			} elseif ( !$isV11 ) {
+				throw new InvalidArgumentException(
+					'Cannot produce stubs for non-text-table content blobs with schema version '
+					. $this->schemaVersion
+				);
+			}
+
+			$out .= $indent . Xml::element( 'text', $textAttributes ) . "\n";
+		}
+
+		if ( !$isMain ) {
+			$out .= '      ' . Xml::closeElement( 'content' ) . "\n";
+		}
+
+		return $out;
+	}
+
+	/**
+	 * @param Content $content
+	 * @param string[] $textAttributes
+	 * @param string $indent
+	 *
+	 * @return string
+	 */
+	private function writeText( Content $content, $textAttributes, $indent ) {
+		$out = '';
+
+		$contentHandler = $content->getContentHandler();
+		$contentFormat = $contentHandler->getDefaultFormat();
+
+		if ( $content instanceof TextContent ) {
+			// HACK: For text based models, bypass the serialization step. This allows extensions (like Flow)
+			// that use incompatible combinations of serialization format and content model.
+			$data = $content->getNativeData();
+		} else {
+			$data = $content->serialize( $contentFormat );
+		}
+
+		$data = $contentHandler->exportTransform( $data, $contentFormat );
+		$textAttributes['bytes'] = $size = strlen( $data ); // make sure to use the actual size
+		$out .= $indent . Xml::elementClean( 'text', $textAttributes, strval( $data ) ) . "\n";
 
 		return $out;
 	}

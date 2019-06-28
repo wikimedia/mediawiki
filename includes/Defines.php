@@ -322,4 +322,5 @@ define( 'MIGRATION_NEW', 0x30000000 | SCHEMA_COMPAT_NEW );
  * were already unsupported at the time these constants were introduced.
  */
 define( 'XML_DUMP_SCHEMA_VERSION_10', '0.10' );
+define( 'XML_DUMP_SCHEMA_VERSION_11', '0.11' );
 /**@}*/

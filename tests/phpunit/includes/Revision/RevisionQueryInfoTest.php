@@ -731,13 +731,13 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 			[],
 			[
 				'tables' => [
-					'slots' => 'revision',
+					'revision',
 				],
 				'fields' => array_merge(
 					[
-						'slot_revision_id' => 'slots.rev_id',
+						'slot_revision_id' => 'rev_id',
 						'slot_content_id' => 'NULL',
-						'slot_origin' => 'slots.rev_id',
+						'slot_origin' => 'rev_id',
 						'role_name' => $db->addQuotes( SlotRecord::MAIN ),
 					]
 				),
@@ -752,19 +752,20 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 			[ 'content' ],
 			[
 				'tables' => [
-					'slots' => 'revision',
+					'revision',
 				],
 				'fields' => array_merge(
 					[
-						'slot_revision_id' => 'slots.rev_id',
+						'slot_revision_id' => 'rev_id',
 						'slot_content_id' => 'NULL',
-						'slot_origin' => 'slots.rev_id',
+						'slot_origin' => 'rev_id',
 						'role_name' => $db->addQuotes( SlotRecord::MAIN ),
-						'content_size' => 'slots.rev_len',
-						'content_sha1' => 'slots.rev_sha1',
+						'content_size' => 'rev_len',
+						'content_sha1' => 'rev_sha1',
 						'content_address' => $db->buildConcat( [
-							$db->addQuotes( 'tt:' ), 'slots.rev_text_id' ] ),
-						'model_name' => 'slots.rev_content_model',
+							$db->addQuotes( 'tt:' ), 'rev_text_id' ] ),
+						'rev_text_id' => 'rev_text_id',
+						'model_name' => 'rev_content_model',
 					]
 				),
 				'joins' => [],
@@ -778,19 +779,20 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 			[ 'content', 'model', 'role' ],
 			[
 				'tables' => [
-					'slots' => 'revision',
+					'revision',
 				],
 				'fields' => array_merge(
 					[
-						'slot_revision_id' => 'slots.rev_id',
+						'slot_revision_id' => 'rev_id',
 						'slot_content_id' => 'NULL',
-						'slot_origin' => 'slots.rev_id',
+						'slot_origin' => 'rev_id',
 						'role_name' => $db->addQuotes( SlotRecord::MAIN ),
-						'content_size' => 'slots.rev_len',
-						'content_sha1' => 'slots.rev_sha1',
+						'content_size' => 'rev_len',
+						'content_sha1' => 'rev_sha1',
 						'content_address' => $db->buildConcat( [
-							$db->addQuotes( 'tt:' ), 'slots.rev_text_id' ] ),
-						'model_name' => 'slots.rev_content_model',
+							$db->addQuotes( 'tt:' ), 'rev_text_id' ] ),
+						'rev_text_id' => 'rev_text_id',
+						'model_name' => 'rev_content_model',
 					]
 				),
 				'joins' => [],
@@ -804,13 +806,13 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 			[],
 			[
 				'tables' => [
-					'slots' => 'revision',
+					'revision',
 				],
 				'fields' => array_merge(
 					[
-						'slot_revision_id' => 'slots.rev_id',
+						'slot_revision_id' => 'rev_id',
 						'slot_content_id' => 'NULL',
-						'slot_origin' => 'slots.rev_id',
+						'slot_origin' => 'rev_id',
 						'role_name' => $db->addQuotes( SlotRecord::MAIN ),
 					]
 				),
@@ -825,19 +827,20 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 			[ 'content' ],
 			[
 				'tables' => [
-					'slots' => 'revision',
+					'revision',
 				],
 				'fields' => array_merge(
 					[
-						'slot_revision_id' => 'slots.rev_id',
+						'slot_revision_id' => 'rev_id',
 						'slot_content_id' => 'NULL',
-						'slot_origin' => 'slots.rev_id',
+						'slot_origin' => 'rev_id',
 						'role_name' => $db->addQuotes( SlotRecord::MAIN ),
-						'content_size' => 'slots.rev_len',
-						'content_sha1' => 'slots.rev_sha1',
+						'content_size' => 'rev_len',
+						'content_sha1' => 'rev_sha1',
 						'content_address' =>
-							$db->buildConcat( [ $db->addQuotes( 'tt:' ), 'slots.rev_text_id' ] ),
-						'model_name' => 'slots.rev_content_model',
+							$db->buildConcat( [ $db->addQuotes( 'tt:' ), 'rev_text_id' ] ),
+						'rev_text_id' => 'rev_text_id',
+						'model_name' => 'rev_content_model',
 					]
 				),
 				'joins' => [],

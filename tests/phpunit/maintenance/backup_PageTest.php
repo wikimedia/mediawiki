@@ -5,8 +5,11 @@ namespace MediaWiki\Tests\Maintenance;
 use DumpBackup;
 use Exception;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWikiTestCase;
 use MWException;
+use RequestContext;
+use RevisionDeleter;
 use Title;
 use WikiExporter;
 use Wikimedia\Rdbms\IDatabase;
@@ -76,6 +79,17 @@ class BackupDumperPageTest extends DumpTestCase {
 				"BackupDumperTestP2Text4 some additional Text  ",
 				"BackupDumperTestP2Summary4 extra " );
 			$this->pageId2 = $page->getId();
+
+			$revDel = RevisionDeleter::createList(
+				'revision',
+				RequestContext::getMain(),
+				$this->pageTitle2,
+				[ $this->revId2_2 ]
+			);
+			$revDel->setVisibility( [
+				'value' => [ RevisionRecord::DELETED_TEXT => 1 ],
+				'comment' => 'testing!'
+			] );
 
 			$this->pageTitle3 = Title::newFromText( 'BackupDumperTestP3', $this->namespace );
 			$page = WikiPage::factory( $this->pageTitle3 );
@@ -232,10 +246,10 @@ class BackupDumperPageTest extends DumpTestCase {
 		$asserter->assertRevision(
 			$this->revId2_2,
 			"BackupDumperTestP2Summary2",
-			$this->textId2_2,
-			23,
-			"b7vj5ks32po5m1z1t1br4o7scdwwy95",
-			"BackupDumperTestP2Text2",
+			null, // deleted!
+			false, // deleted!
+			null, // deleted!
+			false, // deleted!
 			$this->revId2_1
 		);
 		$asserter->assertRevision(
@@ -346,10 +360,10 @@ class BackupDumperPageTest extends DumpTestCase {
 		$asserter->assertRevision(
 			$this->revId2_2,
 			"BackupDumperTestP2Summary2",
-			$this->textId2_2,
-			23,
-			"b7vj5ks32po5m1z1t1br4o7scdwwy95",
-			false,
+			null, // deleted!
+			false, // deleted!
+			null, // deleted!
+			false, // deleted!
 			$this->revId2_1
 		);
 		$asserter->assertRevision(
@@ -622,10 +636,10 @@ class BackupDumperPageTest extends DumpTestCase {
 		$asserter->assertRevision(
 			$this->revId2_2,
 			"BackupDumperTestP2Summary2",
-			$this->textId2_2,
-			23,
-			"b7vj5ks32po5m1z1t1br4o7scdwwy95",
-			false,
+			null, // deleted!
+			false, // deleted!
+			null, // deleted!
+			false, // deleted!
 			$this->revId2_1
 		);
 		$asserter->assertRevision(
