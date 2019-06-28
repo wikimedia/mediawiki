@@ -491,12 +491,12 @@ class User implements IDBAccessObject, UserIdentity {
 
 	/**
 	 * @since 1.27
-	 * @param string $wikiId
+	 * @param string $dbDomain
 	 * @param int $userId
 	 */
-	public static function purge( $wikiId, $userId ) {
+	public static function purge( $dbDomain, $userId ) {
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-		$key = $cache->makeGlobalKey( 'user', 'id', $wikiId, $userId );
+		$key = $cache->makeGlobalKey( 'user', 'id', $dbDomain, $userId );
 		$cache->delete( $key );
 	}
 
@@ -680,16 +680,16 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param int|null $userId User ID, if known
 	 * @param string|null $userName User name, if known
 	 * @param int|null $actorId Actor ID, if known
-	 * @param bool|string $wikiId remote wiki to which the User/Actor ID applies, or false if none
+	 * @param bool|string $dbDomain remote wiki to which the User/Actor ID applies, or false if none
 	 * @return User
 	 */
-	public static function newFromAnyId( $userId, $userName, $actorId, $wikiId = false ) {
+	public static function newFromAnyId( $userId, $userName, $actorId, $dbDomain = false ) {
 		global $wgActorTableSchemaMigrationStage;
 
 		// Stop-gap solution for the problem described in T222212.
 		// Force the User ID and Actor ID to zero for users loaded from the database
 		// of another wiki, to prevent subtle data corruption and confusing failure modes.
-		if ( $wikiId !== false ) {
+		if ( $dbDomain !== false ) {
 			$userId = 0;
 			$actorId = 0;
 		}
