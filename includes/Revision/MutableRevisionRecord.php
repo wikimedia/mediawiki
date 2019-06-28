@@ -70,15 +70,14 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * in RevisionStore instead.
 	 *
 	 * @param Title $title The title of the page this Revision is associated with.
-	 * @param bool|string $wikiId the wiki ID of the site this Revision belongs to,
-	 *        or false for the local site.
+	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one.
 	 *
 	 * @throws MWException
 	 */
-	function __construct( Title $title, $wikiId = false ) {
+	function __construct( Title $title, $dbDomain = false ) {
 		$slots = new MutableRevisionSlots();
 
-		parent::__construct( $title, $slots, $wikiId );
+		parent::__construct( $title, $slots, $dbDomain );
 
 		$this->mSlots = $slots; // redundant, but nice for static analysis
 	}

@@ -94,17 +94,16 @@ abstract class RevisionRecord {
 	 *
 	 * @param Title $title The title of the page this Revision is associated with.
 	 * @param RevisionSlots $slots The slots of this revision.
-	 * @param bool|string $wikiId the wiki ID of the site this Revision belongs to,
-	 *        or false for the local site.
+	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one.
 	 *
 	 * @throws MWException
 	 */
-	function __construct( Title $title, RevisionSlots $slots, $wikiId = false ) {
-		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
+	function __construct( Title $title, RevisionSlots $slots, $dbDomain = false ) {
+		Assert::parameterType( 'string|boolean', $dbDomain, '$dbDomain' );
 
 		$this->mTitle = $title;
 		$this->mSlots = $slots;
-		$this->mWiki = $wikiId;
+		$this->mWiki = $dbDomain;
 
 		// XXX: this is a sensible default, but we may not have a Title object here in the future.
 		$this->mPageId = $title->getArticleID();
