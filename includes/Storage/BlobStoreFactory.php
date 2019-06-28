@@ -84,27 +84,27 @@ class BlobStoreFactory {
 	/**
 	 * @since 1.31
 	 *
-	 * @param bool|string $wikiId The ID of the target wiki database. Use false for the local wiki.
+	 * @param bool|string $dbDomain The ID of the target wiki database. Use false for the local wiki.
 	 *
 	 * @return BlobStore
 	 */
-	public function newBlobStore( $wikiId = false ) {
-		return $this->newSqlBlobStore( $wikiId );
+	public function newBlobStore( $dbDomain = false ) {
+		return $this->newSqlBlobStore( $dbDomain );
 	}
 
 	/**
 	 * @internal Please call newBlobStore and use the BlobStore interface.
 	 *
-	 * @param bool|string $wikiId The ID of the target wiki database. Use false for the local wiki.
+	 * @param bool|string $dbDomain The ID of the target wiki database. Use false for the local wiki.
 	 *
 	 * @return SqlBlobStore
 	 */
-	public function newSqlBlobStore( $wikiId = false ) {
-		$lb = $this->lbFactory->getMainLB( $wikiId );
+	public function newSqlBlobStore( $dbDomain = false ) {
+		$lb = $this->lbFactory->getMainLB( $dbDomain );
 		$store = new SqlBlobStore(
 			$lb,
 			$this->cache,
-			$wikiId
+			$dbDomain
 		);
 
 		$store->setCompressBlobs( $this->options->get( 'CompressRevisions' ) );

@@ -66,7 +66,7 @@ class NameTableStore {
 	/**
 	 * @param ILoadBalancer $dbLoadBalancer A load balancer for acquiring database connections
 	 * @param WANObjectCache $cache A cache manager for caching data. This can be the local
-	 *        wiki's default instance even if $wikiId refers to a different wiki, since
+	 *        wiki's default instance even if $dbDomain refers to a different wiki, since
 	 *        makeGlobalKey() is used to constructed a key that allows cached names from
 	 *        the same database to be re-used between wikis. For example, enwiki and frwiki will
 	 *        use the same cache keys for names from the wikidatawiki database, regardless
