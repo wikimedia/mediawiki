@@ -82,16 +82,15 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 				$affectedInstances = $info['instances'];
 				// Lazy initialization check...
 				if ( $dbw->affectedRows() == 0 ) {
-					// No rows will be "affected" if user_editcount is NULL.
-					// Check if the generic "replica" connection is not the master.
+					// The user_editcount is probably NULL (e.g. not initialized).
+					// Since this update runs after the new revisions were committed,
+					// wait for the replica DB to catch up so they will be counted.
 					$dbr = $lb->getConnection( DB_REPLICA );
-					if ( $dbr !== $dbw ) {
-						// This method runs after the new revisions were committed.
-						// Wait for the replica to catch up so they will all be counted.
-						$dbr->flushSnapshot( $fname );
-						$lb->waitForMasterPos( $dbr );
-					}
-					$affectedInstances[0]->initEditCountInternal();
+					// If $dbr is actually the master DB, then clearing the snapshot is
+					// is harmless and waitForMasterPos() will just no-op.
+					$dbr->flushSnapshot( $fname );
+					$lb->waitForMasterPos( $dbr );
+					$affectedInstances[0]->initEditCountInternal( $dbr );
 				}
 				$newCount = (int)$dbw->selectField(
 					'user',
