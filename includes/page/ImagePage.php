@@ -27,6 +27,8 @@ use Wikimedia\Rdbms\ResultWrapper;
  * Class for viewing MediaWiki file description pages
  *
  * @ingroup Media
+ *
+ * @property WikiFilePage $mPage Set by overwritten newPage() in this class
  */
 class ImagePage extends Article {
 	/** @var File|false */
@@ -40,11 +42,6 @@ class ImagePage extends Article {
 
 	/** @var bool */
 	protected $mExtraDescription = false;
-
-	/**
-	 * @var WikiFilePage
-	 */
-	protected $mPage;
 
 	/**
 	 * @param Title $title
