@@ -625,8 +625,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			[],
 			Xml::label(
 				$this->msg( 'namespace' )->text(),
-				'namespace',
-				''
+				'namespace'
 			) . "\u{00A0}" .
 			Html::namespaceSelector(
 				[ 'selected' => $this->opts['namespace'], 'all' => '', 'in-user-lang' => true ],
