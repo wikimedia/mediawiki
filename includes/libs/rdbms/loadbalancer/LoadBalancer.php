@@ -127,9 +127,9 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var bool Whether any connection has been attempted yet */
 	private $connectionAttempted = false;
 
-	/** @var int|null An integer ID of the managing LBFactory instance or null */
+	/** @var int|null Integer ID of the managing LBFactory instance or null if none */
 	private $ownerId;
-	/** @var string|bool String if a requested DBO_TRX transaction round is active */
+	/** @var string|bool Explicit DBO_TRX transaction round active or false if none */
 	private $trxRoundId = false;
 	/** @var string Stage of the current transaction round in the transaction round life-cycle */
 	private $trxRoundStage = self::ROUND_CURSORY;

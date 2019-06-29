@@ -649,15 +649,15 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function commit( $fname = __METHOD__, $flush = '' ) {
+	public function commit( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function rollback( $fname = __METHOD__, $flush = '' ) {
+	public function rollback( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function flushSnapshot( $fname = __METHOD__ ) {
+	public function flushSnapshot( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 

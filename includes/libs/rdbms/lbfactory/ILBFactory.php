@@ -180,6 +180,8 @@ interface ILBFactory {
 	/**
 	 * Commit all replica DB transactions so as to flush any REPEATABLE-READ or SSI snapshot
 	 *
+	 * This is useful for getting rid of stale data from an implicit transaction round
+	 *
 	 * @param string $fname Caller name
 	 */
 	public function flushReplicaSnapshots( $fname = __METHOD__ );
