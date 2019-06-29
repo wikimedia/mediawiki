@@ -101,7 +101,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		return ( $n !== false && $n !== null ) ? $n : false;
 	}
 
-	public function changeTTL( $key, $exptime = 0, $flags = 0 ) {
+	protected function doChangeTTL( $key, $exptime, $flags ) {
 		return $this->client->touch(
 			$this->validateKeyEncoding( $key ),
 			$this->fixExpiry( $exptime )

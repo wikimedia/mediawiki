@@ -236,7 +236,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 		return $res;
 	}
 
-	public function setMulti( array $data, $exptime = 0, $flags = 0 ) {
+	public function doSetMulti( array $data, $exptime = 0, $flags = 0 ) {
 		return $this->doWrite(
 			$this->cacheIndexes,
 			$this->usesAsyncWritesGivenFlags( $flags ),
@@ -245,7 +245,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 		);
 	}
 
-	public function deleteMulti( array $data, $flags = 0 ) {
+	public function doDeleteMulti( array $data, $flags = 0 ) {
 		return $this->doWrite(
 			$this->cacheIndexes,
 			$this->usesAsyncWritesGivenFlags( $flags ),
@@ -359,6 +359,10 @@ class MultiWriteBagOStuff extends BagOStuff {
 	}
 
 	protected function doDelete( $key, $flags = 0 ) {
+		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
+	}
+
+	protected function doChangeTTL( $key, $exptime, $flags ) {
 		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
 	}
 

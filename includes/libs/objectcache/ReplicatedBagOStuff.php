@@ -126,11 +126,11 @@ class ReplicatedBagOStuff extends BagOStuff {
 			: $this->readStore->getMulti( $keys, $flags );
 	}
 
-	public function setMulti( array $data, $exptime = 0, $flags = 0 ) {
+	public function doSetMulti( array $data, $exptime = 0, $flags = 0 ) {
 		return $this->writeStore->setMulti( $data, $exptime, $flags );
 	}
 
-	public function deleteMulti( array $keys, $flags = 0 ) {
+	public function doDeleteMulti( array $keys, $flags = 0 ) {
 		return $this->writeStore->deleteMulti( $keys, $flags );
 	}
 
@@ -178,6 +178,10 @@ class ReplicatedBagOStuff extends BagOStuff {
 	}
 
 	protected function doDelete( $key, $flags = 0 ) {
+		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
+	}
+
+	protected function doChangeTTL( $key, $exptime, $flags ) {
 		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
 	}
 
