@@ -466,7 +466,7 @@ class WikiImporter {
 
 	/**
 	 * Notify the callback function when a new "<page>" is reached.
-	 * @param Title $title
+	 * @param array $title
 	 */
 	function pageCallback( $title ) {
 		if ( isset( $this->mPageCallback ) ) {

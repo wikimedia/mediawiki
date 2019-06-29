@@ -352,7 +352,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.12.2
-	 * @param array $params
+	 * @param string $params
 	 */
 	public function setParams( $params ) {
 		$this->params = $params;

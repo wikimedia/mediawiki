@@ -29,13 +29,13 @@ class ApiImportReporter extends ImportReporter {
 
 	/**
 	 * @param Title $title
-	 * @param Title $origTitle
+	 * @param ForeignTitle $foreignTitle
 	 * @param int $revisionCount
 	 * @param int $successCount
 	 * @param array $pageInfo
 	 * @return void
 	 */
-	public function reportPage( $title, $origTitle, $revisionCount, $successCount, $pageInfo ) {
+	public function reportPage( $title, $foreignTitle, $revisionCount, $successCount, $pageInfo ) {
 		// Add a result entry
 		$r = [];
 
@@ -51,7 +51,7 @@ class ApiImportReporter extends ImportReporter {
 		$this->mResultArr[] = $r;
 
 		// Piggyback on the parent to do the logging
-		parent::reportPage( $title, $origTitle, $revisionCount, $successCount, $pageInfo );
+		parent::reportPage( $title, $foreignTitle, $revisionCount, $successCount, $pageInfo );
 	}
 
 	public function getData() {
