@@ -367,6 +367,16 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Get the localStorage key for the entire module store. The key references
+	 * $wgDBname to prevent clashes between wikis under the same web domain.
+	 *
+	 * @return string localStorage item key for JavaScript
+	 */
+	private function getStoreKey() {
+		return 'MediaWikiModuleStore:' . $this->getConfig()->get( 'DBname' );
+	}
+
+	/**
 	 * Get the key on which the JavaScript module cache (mw.loader.store) will vary.
 	 *
 	 * @param ResourceLoaderContext $context
@@ -412,6 +422,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'$VARS.maxQueryLength' => ResourceLoader::encodeJsonForScript(
 				$conf->get( 'ResourceLoaderMaxQueryLength' )
 			),
+			'$VARS.storeKey' => ResourceLoader::encodeJsonForScript( $this->getStoreKey() ),
 			'$VARS.storeVary' => ResourceLoader::encodeJsonForScript( $this->getStoreVary( $context ) ),
 		];
 		$profilerStubs = [
