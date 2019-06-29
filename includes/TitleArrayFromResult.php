@@ -41,7 +41,7 @@ class TitleArrayFromResult extends TitleArray implements Countable {
 	}
 
 	/**
-	 * @param bool|IResultWrapper $row
+	 * @param bool|stdClass $row
 	 * @return void
 	 */
 	protected function setCurrent( $row ) {
