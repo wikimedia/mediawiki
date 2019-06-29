@@ -4863,6 +4863,7 @@ class Language {
 	public function viewPrevNext( Title $title, $offset, $limit,
 		array $query = [], $atend = false
 	) {
+		wfDeprecated( __METHOD__, '1.34' );
 		// @todo FIXME: Why on earth this needs one message for the text and another one for tooltip?
 
 		# Make 'previous' link
