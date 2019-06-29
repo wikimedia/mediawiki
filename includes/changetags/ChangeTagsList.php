@@ -68,7 +68,7 @@ abstract class ChangeTagsList extends RevisionListBase {
 	 *
 	 * @param array $tagsToAdd
 	 * @param array $tagsToRemove
-	 * @param array $params
+	 * @param string|null $params
 	 * @param string $reason
 	 * @param User $user
 	 * @return Status
