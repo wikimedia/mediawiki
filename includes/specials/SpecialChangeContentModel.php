@@ -101,7 +101,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 				throw new ErrorPageError(
 					'changecontentmodel-emptymodels-title',
 					'changecontentmodel-emptymodels-text',
-					$this->title->getPrefixedText()
+					[ $this->title->getPrefixedText() ]
 				);
 			}
 			$fields['pagetitle']['readonly'] = true;
