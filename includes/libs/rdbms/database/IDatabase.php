@@ -2112,7 +2112,7 @@ interface IDatabase {
 	 *
 	 * @param string $lockName Name of lock to aquire
 	 * @param string $method Name of the calling method
-	 * @param int $timeout Acquisition timeout in seconds
+	 * @param int $timeout Acquisition timeout in seconds (0 means non-blocking)
 	 * @return bool
 	 * @throws DBError
 	 */
