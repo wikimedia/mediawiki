@@ -436,7 +436,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$this->getStyleFiles( $context ),
 			$context
 		);
-		// Collect referenced files
+
+		// Track indirect file dependencies so that ResourceLoaderStartUpModule can check for
+		// on-disk file changes to any of this files without having to recompute the file list
 		$this->saveFileDependencies( $context, $this->localFileRefs );
 
 		return $styles;
@@ -527,7 +529,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Helper method for getDefinitionSummary.
 	 *
-	 * @see ResourceLoaderModule::getFileDependencies
 	 * @param ResourceLoaderContext $context
 	 * @return string
 	 */

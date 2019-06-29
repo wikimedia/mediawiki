@@ -20,10 +20,13 @@
  * @author Trevor Parscal
  */
 
+use MediaWiki\HeaderCallback;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\DependencyStore\DependencyStore;
+use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WrappedString;
@@ -47,6 +50,8 @@ class ResourceLoader implements LoggerAwareInterface {
 	protected $config;
 	/** @var MessageBlobStore */
 	protected $blobStore;
+	/** @var DependencyStore */
+	protected $depStore;
 
 	/** @var LoggerInterface */
 	private $logger;
@@ -63,7 +68,6 @@ class ResourceLoader implements LoggerAwareInterface {
 	protected $testModuleNames = [];
 	/** @var string[] List of module names that contain QUnit test suites */
 	protected $testSuiteModuleNames = [];
-
 	/** @var array Map of (source => path); E.g. [ 'source-id' => 'http://.../load.php' ] */
 	protected $sources = [];
 	/** @var array Errors accumulated during current respond() call */
@@ -71,79 +75,69 @@ class ResourceLoader implements LoggerAwareInterface {
 	/** @var string[] Extra HTTP response headers from modules loaded in makeModuleResponse() */
 	protected $extraHeaders = [];
 
+	/** @var array Map of (module-variant => buffered DependencyStore updates) */
+	private $depStoreUpdateBuffer = [];
+
 	/** @var bool */
 	protected static $debugMode = null;
 
 	/** @var int */
 	const CACHE_VERSION = 8;
 
+	/** @var string */
+	private const RL_DEP_STORE_PREFIX = 'ResourceLoaderModule';
+	/** @var int Expiry (in seconds) of indirect dependency information for modules */
+	private const RL_MODULE_DEP_TTL = BagOStuff::TTL_WEEK;
+
 	/** @var string JavaScript / CSS pragma to disable minification. * */
 	const FILTER_NOMIN = '/*@nomin*/';
 
 	/**
-	 * Load information stored in the database about modules.
+	 * Load information stored in the database and dependency tracking store about modules
 	 *
-	 * This method grabs modules dependencies from the database and updates modules
-	 * objects.
-	 *
-	 * This is not inside the module code because it is much faster to
-	 * request all of the information at once than it is to have each module
-	 * requests its own information. This sacrifice of modularity yields a substantial
-	 * performance improvement.
-	 *
-	 * @param array $moduleNames List of module names to preload information for
-	 * @param ResourceLoaderContext $context Context to load the information within
+	 * @param string[] $moduleNames Module names
+	 * @param ResourceLoaderContext $context ResourceLoader-specific context of the request
 	 */
 	public function preloadModuleInfo( array $moduleNames, ResourceLoaderContext $context ) {
-		if ( !$moduleNames ) {
-			// Or else Database*::select() will explode, plus it's cheaper!
-			return;
-		}
-		$dbr = wfGetDB( DB_REPLICA );
-		$lang = $context->getLanguage();
-
-		// Batched version of ResourceLoaderModule::getFileDependencies
+		// Load all tracked indirect file dependencies for the modules
 		$vary = ResourceLoaderModule::getVary( $context );
-		$res = $dbr->select( 'module_deps', [ 'md_module', 'md_deps' ], [
-				'md_module' => $moduleNames,
-				'md_skin' => $vary,
-			], __METHOD__
-		);
-
-		// Prime in-object cache for file dependencies
-		$modulesWithDeps = [];
-		foreach ( $res as $row ) {
-			$module = $this->getModule( $row->md_module );
-			if ( $module ) {
-				$module->setFileDependencies( $context, ResourceLoaderModule::expandRelativePaths(
-					json_decode( $row->md_deps, true )
-				) );
-				$modulesWithDeps[] = $row->md_module;
-			}
+		$entitiesByModule = [];
+		foreach ( $moduleNames as $moduleName ) {
+			$entitiesByModule[$moduleName] = "$moduleName|$vary";
 		}
-		// Register the absence of a dependency row too
-		foreach ( array_diff( $moduleNames, $modulesWithDeps ) as $name ) {
-			$module = $this->getModule( $name );
+		$depsByEntity = $this->depStore->retrieveMulti(
+			self::RL_DEP_STORE_PREFIX,
+			$entitiesByModule
+		);
+		// Inject the indirect file dependencies for all the modules
+		foreach ( $moduleNames as $moduleName ) {
+			$module = $this->getModule( $moduleName );
 			if ( $module ) {
-				$module->setFileDependencies( $context, [] );
+				$entity = $entitiesByModule[$moduleName];
+				$deps = $depsByEntity[$entity];
+				$paths = ResourceLoaderModule::expandRelativePaths( $deps['paths'] );
+				$module->setFileDependencies( $context, $paths );
 			}
 		}
 
 		// Batched version of ResourceLoaderWikiModule::getTitleInfo
+		$dbr = wfGetDB( DB_REPLICA );
 		ResourceLoaderWikiModule::preloadTitleInfo( $context, $dbr, $moduleNames );
 
 		// Prime in-object cache for message blobs for modules with messages
-		$modules = [];
-		foreach ( $moduleNames as $name ) {
-			$module = $this->getModule( $name );
+		$modulesWithMessages = [];
+		foreach ( $moduleNames as $moduleName ) {
+			$module = $this->getModule( $moduleName );
 			if ( $module && $module->getMessages() ) {
-				$modules[$name] = $module;
+				$modulesWithMessages[$moduleName] = $module;
 			}
 		}
+		// Prime in-object cache for message blobs for modules with messages
+		$lang = $context->getLanguage();
 		$store = $this->getMessageBlobStore();
-		$blobs = $store->getBlobs( $modules, $lang );
-		foreach ( $blobs as $name => $blob ) {
-			$modules[$name]->setMessageBlob( $blob, $lang );
+		$blobs = $store->getBlobs( $modulesWithMessages, $lang );
+		foreach ( $blobs as $moduleName => $blob ) {
+			$modulesWithMessages[$moduleName]->setMessageBlob( $blob, $lang );
 		}
 	}
 
@@ -218,8 +212,13 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * Register core modules and runs registration hooks.
 	 * @param Config|null $config
 	 * @param LoggerInterface|null $logger [optional]
+	 * @param DependencyStore|null $tracker [optional]
 	 */
-	public function __construct( Config $config = null, LoggerInterface $logger = null ) {
+	public function __construct(
+		Config $config = null,
+		LoggerInterface $logger = null,
+		DependencyStore $tracker = null
+	) {
 		$this->logger = $logger ?: new NullLogger();
 		$services = MediaWikiServices::getInstance();
 
@@ -238,6 +237,9 @@ class ResourceLoader implements LoggerAwareInterface {
 		$this->setMessageBlobStore(
 			new MessageBlobStore( $this, $this->logger, $services->getMainWANObjectCache() )
 		);
+
+		$tracker = $tracker ?: new KeyValueDependencyStore( new HashBagOStuff() );
+		$this->setDependencyStore( $tracker );
 	}
 
 	/**
@@ -277,6 +279,14 @@ class ResourceLoader implements LoggerAwareInterface {
 	 */
 	public function setMessageBlobStore( MessageBlobStore $blobStore ) {
 		$this->blobStore = $blobStore;
+	}
+
+	/**
+	 * @since 1.35
+	 * @param DependencyStore $tracker
+	 */
+	public function setDependencyStore( DependencyStore $tracker ) {
+		$this->depStore = $tracker;
 	}
 
 	/**
@@ -506,10 +516,82 @@ class ResourceLoader implements LoggerAwareInterface {
 			$object->setConfig( $this->getConfig() );
 			$object->setLogger( $this->logger );
 			$object->setName( $name );
+			$object->setDependencyAccessCallbacks(
+				[ $this, 'loadModuleDependenciesInternal' ],
+				[ $this, 'saveModuleDependenciesInternal' ]
+			);
 			$this->modules[$name] = $object;
 		}
 
 		return $this->modules[$name];
+	}
+
+	/**
+	 * @param string $moduleName Module name
+	 * @param string $variant Language/skin variant
+	 * @return string[] List of absolute file paths
+	 * @private
+	 */
+	public function loadModuleDependenciesInternal( $moduleName, $variant ) {
+		$deps = $this->depStore->retrieve( self::RL_DEP_STORE_PREFIX, "$moduleName|$variant" );
+
+		return ResourceLoaderModule::expandRelativePaths( $deps['paths'] );
+	}
+
+	/**
+	 * @param string $moduleName Module name
+	 * @param string $variant Language/skin variant
+	 * @param string[] $paths List of relative paths referenced during computation
+	 * @param string[] $priorPaths List of relative paths tracked in the dependency store
+	 * @private
+	 */
+	public function saveModuleDependenciesInternal( $moduleName, $variant, $paths, $priorPaths ) {
+		$hasPendingUpdate = (bool)$this->depStoreUpdateBuffer;
+		$entity = "$moduleName|$variant";
+
+		if ( array_diff( $paths, $priorPaths ) || array_diff( $priorPaths, $paths ) ) {
+			// Dependency store needs to be updated with the new path list
+			if ( $paths ) {
+				$deps = $this->depStore->newEntityDependencies( $paths, time() );
+				$this->depStoreUpdateBuffer[$entity] = $deps;
+			} else {
+				$this->depStoreUpdateBuffer[$entity] = null;
+			}
+		} elseif ( $priorPaths ) {
+			// Dependency store needs to store the existing path list for longer
+			$this->depStoreUpdateBuffer[$entity] = '*';
+		}
+
+		// Use a DeferrableUpdate to flush the buffered dependency updates...
+		if ( !$hasPendingUpdate ) {
+			DeferredUpdates::addCallableUpdate( function () {
+				$updatesByEntity = $this->depStoreUpdateBuffer;
+				$this->depStoreUpdateBuffer = []; // consume
+				$cache = ObjectCache::getLocalClusterInstance();
+
+				$scopeLocks = [];
+				$depsByEntity = [];
+				$entitiesUnreg = [];
+				$entitiesRenew = [];
+				foreach ( $updatesByEntity as $entity => $update ) {
+					$scopeLocks[$entity] = $cache->getScopedLock( "rl-deps:$entity", 0 );
+					if ( !$scopeLocks[$entity] ) {
+						continue; // avoid duplicate write request slams (T124649)
+					} elseif ( $update === null ) {
+						$entitiesUnreg[] = $entity;
+					} elseif ( $update === '*' ) {
+						$entitiesRenew[] = $entity;
+					} else {
+						$depsByEntity[$entity] = $update;
+					}
+				}
+
+				$ttl = self::RL_MODULE_DEP_TTL;
+				$this->depStore->storeMulti( self::RL_DEP_STORE_PREFIX, $depsByEntity, $ttl );
+				$this->depStore->remove( self::RL_DEP_STORE_PREFIX, $entitiesUnreg );
+				$this->depStore->renew( self::RL_DEP_STORE_PREFIX, $entitiesRenew, $ttl );
+			} );
+		}
 	}
 
 	/**
@@ -865,7 +947,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	protected function sendResponseHeaders(
 		ResourceLoaderContext $context, $etag, $errors, array $extra = []
 	) {
-		\MediaWiki\HeaderCallback::warnIfHeadersSent();
+		HeaderCallback::warnIfHeadersSent();
 		$rlMaxage = $this->config->get( 'ResourceLoaderMaxage' );
 		// Use a short cache expiry so that updates propagate to clients quickly, if:
 		// - No version specified (shared resources, e.g. stylesheets)

@@ -26,7 +26,6 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\RelPath;
-use Wikimedia\ScopedCallback;
 
 /**
  * Abstraction for ResourceLoader modules, with name registration and maxage functionality.
@@ -62,6 +61,11 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	protected $versionHash = [];
 	/** @var array Map of (context hash => cached module content) */
 	protected $contents = [];
+
+	/** @var callback Function of (module name, variant) to get indirect file dependencies */
+	private $depLoadCallback;
+	/** @var callback Function of (module name, variant) to get indirect file dependencies */
+	private $depSaveCallback;
 
 	/** @var string|bool Deprecation string or true if deprecated; false otherwise */
 	protected $deprecated = false;
@@ -111,6 +115,18 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 */
 	public function setName( $name ) {
 		$this->name = $name;
+	}
+
+	/**
+	 * Inject the functions that load/save the indirect file path dependency list from storage
+	 *
+	 * @param callable $loadCallback Function of (module name, variant)
+	 * @param callable $saveCallback Function of (module name, variant, current paths, stored paths)
+	 * @since 1.35
+	 */
+	public function setDependencyAccessCallbacks( callable $loadCallback, callable $saveCallback ) {
+		$this->depLoadCallback = $loadCallback;
+		$this->depSaveCallback = $saveCallback;
 	}
 
 	/**
@@ -390,125 +406,89 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get the files this module depends on indirectly for a given skin.
+	 * Get the indirect dependencies for this module persuant to the skin/language context
 	 *
-	 * These are only image files referenced by the module's stylesheet.
+	 * These are only image files referenced by the module's stylesheet
+	 *
+	 * If niether setFileDependencies() nor setDependencyLoadCallback() was called, this
+	 * will simply return a placeholder with an empty file list
+	 *
+	 * @see ResourceLoader::setFileDependencies()
+	 * @see ResourceLoader::saveFileDependencies()
 	 *
 	 * @param ResourceLoaderContext $context
-	 * @return array List of files
+	 * @return string[] List of absolute file paths
+	 * @throws RuntimeException When setFileDependencies() has not yet been called
 	 */
 	protected function getFileDependencies( ResourceLoaderContext $context ) {
-		$vary = self::getVary( $context );
+		$variant = self::getVary( $context );
 
-		// Try in-object cache first
-		if ( !isset( $this->fileDeps[$vary] ) ) {
-			$dbr = wfGetDB( DB_REPLICA );
-			$deps = $dbr->selectField( 'module_deps',
-				'md_deps',
-				[
-					'md_module' => $this->getName(),
-					'md_skin' => $vary,
-				],
-				__METHOD__
-			);
-
-			if ( $deps !== null ) {
-				$this->fileDeps[$vary] = self::expandRelativePaths(
-					(array)json_decode( $deps, true )
-				);
+		if ( !isset( $this->fileDeps[$variant] ) ) {
+			if ( $this->depLoadCallback ) {
+				$this->fileDeps[$variant] =
+					call_user_func( $this->depLoadCallback, $this->getName(), $variant );
 			} else {
-				$this->fileDeps[$vary] = [];
+				$this->getLogger()->info( __METHOD__ . ": no callback registered" );
+				$this->fileDeps[$variant] = [];
 			}
 		}
-		return $this->fileDeps[$vary];
+
+		return $this->fileDeps[$variant];
 	}
 
 	/**
-	 * Set in-object cache for file dependencies.
+	 * Set the indirect dependencies for this module persuant to the skin/language context
 	 *
-	 * This is used to retrieve data in batches. See ResourceLoader::preloadModuleInfo().
-	 * To save the data, use saveFileDependencies().
+	 * These are only image files referenced by the module's stylesheet
+	 *
+	 * @see ResourceLoader::getFileDependencies()
+	 * @see ResourceLoader::saveFileDependencies()
 	 *
 	 * @param ResourceLoaderContext $context
-	 * @param string[] $files Array of file names
+	 * @param string[] $paths List of absolute file paths
 	 */
-	public function setFileDependencies( ResourceLoaderContext $context, $files ) {
-		$vary = self::getVary( $context );
-		$this->fileDeps[$vary] = $files;
+	public function setFileDependencies( ResourceLoaderContext $context, array $paths ) {
+		$variant = self::getVary( $context );
+		$this->fileDeps[$variant] = $paths;
 	}
 
 	/**
-	 * Set the files this module depends on indirectly for a given skin.
+	 * Save the indirect dependencies for this module persuant to the skin/language context
 	 *
+	 * @param ResourceLoaderContext $context
+	 * @param string[] $curFileRefs List of newly computed indirect file dependencies
 	 * @since 1.27
-	 * @param ResourceLoaderContext $context
-	 * @param array $localFileRefs List of files
 	 */
-	protected function saveFileDependencies( ResourceLoaderContext $context, array $localFileRefs ) {
+	protected function saveFileDependencies( ResourceLoaderContext $context, array $curFileRefs ) {
+		if ( !$this->depSaveCallback ) {
+			$this->getLogger()->info( __METHOD__ . ": no callback registered" );
+
+			return;
+		}
+
 		try {
-			// Related bugs and performance considerations:
-			// 1. Don't needlessly change the database value with the same list in a
-			//    different order or with duplicates.
+			// Pitfalls and performance considerations:
+			// 1. Don't keep updating the tracked paths due to duplicates or sorting.
 			// 2. Use relative paths to avoid ghost entries when $IP changes. (T111481)
-			// 3. Don't needlessly replace the database with the same value
+			// 3. Don't needlessly replace tracked paths with the same value
 			//    just because $IP changed (e.g. when upgrading a wiki).
 			// 4. Don't create an endless replace loop on every request for this
 			//    module when '../' is used anywhere. Even though both are expanded
 			//    (one expanded by getFileDependencies from the DB, the other is
 			//    still raw as originally read by RL), the latter has not
 			//    been normalized yet.
-
-			// Normalise
-			$localFileRefs = array_values( array_unique( $localFileRefs ) );
-			sort( $localFileRefs );
-			$localPaths = self::getRelativePaths( $localFileRefs );
-			$storedPaths = self::getRelativePaths( $this->getFileDependencies( $context ) );
-
-			if ( $localPaths === $storedPaths ) {
-				// Unchanged. Avoid needless database query (especially master conn!).
-				return;
-			}
-
-			// The file deps list has changed, we want to update it.
-			$vary = self::getVary( $context );
-			$cache = ObjectCache::getLocalClusterInstance();
-			$key = $cache->makeKey( __METHOD__, $this->getName(), $vary );
-			$scopeLock = $cache->getScopedLock( $key, 0 );
-			if ( !$scopeLock ) {
-				// Another request appears to be doing this update already.
-				// Avoid write slams (T124649).
-				return;
-			}
-
-			// No needless escaping as this isn't HTML output.
-			// Only stored in the database and parsed in PHP.
-			$deps = json_encode( $localPaths, JSON_UNESCAPED_SLASHES );
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->upsert( 'module_deps',
-				[
-					'md_module' => $this->getName(),
-					'md_skin' => $vary,
-					'md_deps' => $deps,
-				],
-				[ [ 'md_module', 'md_skin' ] ],
-				[
-					'md_deps' => $deps,
-				],
-				__METHOD__
+			call_user_func(
+				$this->depSaveCallback,
+				$this->getName(),
+				self::getVary( $context ),
+				self::getRelativePaths( $curFileRefs ),
+				self::getRelativePaths( $this->getFileDependencies( $context ) )
 			);
-
-			if ( $dbw->trxLevel() ) {
-				$dbw->onTransactionResolution(
-					function () use ( &$scopeLock ) {
-						ScopedCallback::consume( $scopeLock ); // release after commit
-					},
-					__METHOD__
-				);
-			}
 		} catch ( Exception $e ) {
-			// Probably a DB failure. Either the read query from getFileDependencies(),
-			// or the write query above.
-			$this->getLogger()->error( "Failed to update DB: $e", [ 'exception' => $e ] );
+			$this->getLogger()->warning(
+				__METHOD__ . ": failed to update dependencies: {$e->getMessage()}",
+				[ 'exception' => $e ]
+			);
 		}
 	}
 
