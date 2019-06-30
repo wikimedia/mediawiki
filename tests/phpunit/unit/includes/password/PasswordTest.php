@@ -1,5 +1,7 @@
 <?php
 /**
+ * Testing framework for the Password infrastructure
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -16,31 +18,16 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Testing
  */
-
-use PHPUnit\Framework\TestCase;
 
 /**
- * Base class for unit tests.
- *
- * Extend this class if you are testing classes which use dependency injection and do not access
- * global functions, variables, services or a storage backend.
+ * @covers InvalidPassword
  */
-abstract class MediaWikiUnitTestCase extends TestCase {
-	use PHPUnit4And6Compat;
-	use MediaWikiCoversValidator;
-	use MediaWikiGroupValidator;
+class PasswordTest extends \MediaWikiUnitTestCase {
+	public function testInvalidPlaintext() {
+		$passwordFactory = new PasswordFactory();
+		$invalid = $passwordFactory->newFromPlaintext( null );
 
-	/**
-	 * @throws ReflectionException
-	 */
-	protected function setUp() {
-		parent::setUp();
-		if ( $this->isTestInDatabaseGroup() ) {
-			throw new \Exception( get_class( $this ) .
-			  ' extends MediaWikiUnitTestCase, and may not have the @group Database annotation.' );
-		}
+		$this->assertInstanceOf( InvalidPassword::class, $invalid );
 	}
-
 }

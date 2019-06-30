@@ -24,6 +24,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 	use PHPUnit4And6Compat;
+	use MediaWikiGroupValidator;
 
 	/**
 	 * The original service locator. This is overridden during setUp().
@@ -1317,17 +1318,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	public function needsDB() {
 		// If the test says it uses database tables, it needs the database
 		return $this->tablesUsed || $this->isTestInDatabaseGroup();
-	}
-
-	/**
-	 * @return bool
-	 * @since 1.32
-	 */
-	protected function isTestInDatabaseGroup() {
-		// If the test class says it belongs to the Database group, it needs the database.
-		// NOTE: This ONLY checks for the group in the class level doc comment.
-		$rc = new ReflectionClass( $this );
-		return (bool)preg_match( '/@group +Database/im', $rc->getDocComment() );
 	}
 
 	/**
