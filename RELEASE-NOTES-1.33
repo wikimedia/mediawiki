@@ -6,6 +6,7 @@ MediaWiki 1.33 is a pre-release testing branch, and is not recommended for use
 in production.
 
 === Changes since MediaWiki 1.32.0-rc.0 ===
+* (T202211) Fix SQLite patch-(page|template)links-fix-pk.sql column order.
 
 == MediaWiki 1.33.0-rc.0 ==
 
