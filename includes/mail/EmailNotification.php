@@ -407,7 +407,7 @@ class EmailNotification {
 	 * @param User $user
 	 * @param string $source
 	 */
-	function compose( $user, $source ) {
+	private function compose( $user, $source ) {
 		global $wgEnotifImpersonal;
 
 		if ( !$this->composed_common ) {
@@ -424,7 +424,7 @@ class EmailNotification {
 	/**
 	 * Send any queued mails
 	 */
-	function sendMails() {
+	private function sendMails() {
 		global $wgEnotifImpersonal;
 		if ( $wgEnotifImpersonal ) {
 			$this->sendImpersonal( $this->mailTargets );
@@ -440,9 +440,8 @@ class EmailNotification {
 	 * @param User $watchingUser
 	 * @param string $source
 	 * @return Status
-	 * @private
 	 */
-	function sendPersonalised( $watchingUser, $source ) {
+	private function sendPersonalised( $watchingUser, $source ) {
 		global $wgEnotifUseRealName;
 		// From the PHP manual:
 		//   Note: The to parameter cannot be an address in the form of
@@ -481,7 +480,7 @@ class EmailNotification {
 	 * @param MailAddress[] $addresses
 	 * @return Status|null
 	 */
-	function sendImpersonal( $addresses ) {
+	private function sendImpersonal( $addresses ) {
 		if ( empty( $addresses ) ) {
 			return null;
 		}

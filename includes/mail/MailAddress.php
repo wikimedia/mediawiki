@@ -71,7 +71,7 @@ class MailAddress {
 	 * Return formatted and quoted address to insert into SMTP headers
 	 * @return string
 	 */
-	function toString() {
+	public function toString() {
 		if ( !$this->address ) {
 			return '';
 		}
@@ -94,7 +94,7 @@ class MailAddress {
 		return "$quoted <{$this->address}>";
 	}
 
-	function __toString() {
+	public function __toString() {
 		return $this->toString();
 	}
 }
