@@ -13,8 +13,8 @@ CREATE TABLE /*_*/templatelinks_tmp (
   PRIMARY KEY (tl_from,tl_namespace,tl_title)
 ) /*$wgDBTableOptions*/;
 
-INSERT INTO /*_*/templatelinks_tmp
-	SELECT * FROM /*_*/templatelinks;
+INSERT INTO /*_*/templatelinks_tmp (tl_from, tl_from_namespace, tl_namespace, tl_title)
+	SELECT tl_from, tl_from_namespace, tl_namespace, tl_title FROM /*_*/templatelinks;
 
 DROP TABLE /*_*/templatelinks;
 
