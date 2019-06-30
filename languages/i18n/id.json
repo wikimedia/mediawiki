@@ -64,7 +64,8 @@
 			"Bagas Chrisara",
 			"Pebaryan",
 			"Veracious",
-			"Mnam23"
+			"Mnam23",
+			"Shirayuki"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -3130,7 +3131,7 @@
 	"metadata-expand": "Tampilkan rincian tambahan",
 	"metadata-collapse": "Sembunyikan rincian tambahan",
 	"metadata-fields": "Bidang metadata gambar yang tercantum dalam pesan ini akan dimasukkan pada tampilan halaman gambar ketika tabel metadata diciutkan.\nData lain akan disembunyikan secara bawaan.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
-	"metadata-langitem": "'''$2:''' $1",
+	"metadata-langitem": "<strong>$2:</strong> $1",
 	"metadata-langitem-default": "$1",
 	"namespacesall": "semua",
 	"monthsall": "semua",

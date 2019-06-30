@@ -415,6 +415,7 @@
 	"apihelp-query-param-indexpageids": "Inclua uma seção adicional de pageids listando todas as IDs de página retornadas.",
 	"apihelp-query-param-export": "Exporte as revisões atuais de todas as páginas dadas ou geradas.",
 	"apihelp-query-param-exportnowrap": "Retorna o XML de exportação sem envolvê-lo em um resultado XML (mesmo formato que [[Special:Export]]). Só pode ser usado com $1export.",
+	"apihelp-query-param-exportschema": "Segmente a versão fornecida do formato de dump XML ao exportar. Só pode ser usado com <var>$1export</var>.",
 	"apihelp-query-param-iwurl": "Obter o URL completo se o título for um link interwiki.",
 	"apihelp-query-param-rawcontinue": "Retorne os dados de <samp>query-continue</samp> para continuar.",
 	"apihelp-query-example-revisions": "Obter [[Special:ApiHelp/query+siteinfo|site info]] e [[Special:ApiHelp/query+revisions|revisions]] da <kbd>Main Page</kbd>.",

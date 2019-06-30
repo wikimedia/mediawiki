@@ -10,7 +10,8 @@
 			"Macofe",
 			"Matma Rex",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"Wladek92"
 		]
 	},
 	"tog-underline": "Solegnér los lims :",
@@ -2609,7 +2610,7 @@
 	"metadata-expand": "Montrar los dètalys de més",
 	"metadata-collapse": "Cachiér los dètalys de més",
 	"metadata-fields": "Los champs de mètabalyês d’émâge listâs dens cél mèssâjo seront rapondus dedens la pâge de dèscripcion de l’émâge quand la trâbla de mètabalyês serat rèduita.\nLos ôtros champs seront cachiês per dèfôt.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
-	"metadata-langitem": "'''$2 :''' $1",
+	"metadata-langitem": "<strong>$2 :</strong> $1",
 	"namespacesall": "Tôs",
 	"monthsall": "tôs",
 	"confirmemail": "Confirmar l’adrèce èlèctronica",
