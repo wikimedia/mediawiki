@@ -61,7 +61,6 @@
 		"giorgiosironi/eris": "^0.10.0",
 		"hamcrest/hamcrest-php": "^2.0",
 		"jakub-onderka/php-parallel-lint": "0.9.2",
-		"jetbrains/phpstorm-stubs": "dev-master#38ff1a581b297f7901e961b8c923862ea80c3b96",
 		"justinrainbow/json-schema": "~5.2",
 		"mediawiki/mediawiki-codesniffer": "22.0.0",
 		"monolog/monolog": "~1.22.1",
