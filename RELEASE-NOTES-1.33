@@ -6,6 +6,13 @@ MediaWiki 1.33 is a pre-release testing branch, and is not recommended for use
 in production.
 
 === Changes since MediaWiki 1.32.0-rc.0 ===
+* (T225558) Update installer link to PHP intl.
+* (T225901) Only attempt to deduplicate if there is data in archive and revision
+  tables.
+* (T225564) Fetch tag ID before calling undefineTag().
+* (T225496) Detect APC for MainCacheType in CLI installer.
+* Call unpack() with correct parameters in MimeAnalyzer.php for PHP 7.0 support.
+* (T212613) Style change tags correctly on Special:Newpages.
 * (T202211) Fix SQLite patch-(page|template)links-fix-pk.sql column order.
 
 == MediaWiki 1.33.0-rc.0 ==
