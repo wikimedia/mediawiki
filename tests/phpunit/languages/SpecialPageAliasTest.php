@@ -11,7 +11,7 @@
  *
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
-class SpecialPageAliasTest extends MediaWikiTestCase {
+class SpecialPageAliasTest extends \MediaWikiUnitTestCase {
 
 	/**
 	 * @coversNothing

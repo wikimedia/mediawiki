@@ -19,28 +19,20 @@
  * @ingroup Testing
  */
 
-use PHPUnit\Framework\TestCase;
-
 /**
- * Base class for unit tests.
- *
- * Extend this class if you are testing classes which use dependency injection and do not access
- * global functions, variables, services or a storage backend.
+ * Trait that provides methods to check if group annotations are valid.
  */
-abstract class MediaWikiUnitTestCase extends TestCase {
-	use PHPUnit4And6Compat;
-	use MediaWikiCoversValidator;
-	use MediaWikiGroupValidator;
+trait MediaWikiGroupValidator {
 
 	/**
+	 * @return bool
 	 * @throws ReflectionException
+	 * @since 1.34
 	 */
-	protected function setUp() {
-		parent::setUp();
-		if ( $this->isTestInDatabaseGroup() ) {
-			throw new \Exception( get_class( $this ) .
-			  ' extends MediaWikiUnitTestCase, and may not have the @group Database annotation.' );
-		}
+	public function isTestInDatabaseGroup() {
+		// If the test class says it belongs to the Database group, it needs the database.
+		// NOTE: This ONLY checks for the group in the class level doc comment.
+		$rc = new ReflectionClass( $this );
+		return (bool)preg_match( '/@group +Database/im', $rc->getDocComment() );
 	}
-
 }

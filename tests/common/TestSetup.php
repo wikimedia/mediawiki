@@ -18,6 +18,9 @@ class TestSetup {
 		global $wgSessionProviders, $wgSessionPbkdf2Iterations;
 		global $wgJobTypeConf;
 		global $wgAuthManagerConfig;
+		global $wgShowExceptionDetails;
+
+		$wgShowExceptionDetails = true;
 
 		// wfWarn should cause tests to fail
 		$wgDevelopmentWarnings = true;

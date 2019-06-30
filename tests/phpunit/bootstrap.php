@@ -65,3 +65,4 @@ require_once "$IP/tests/common/TestSetup.php";
 
 wfRequireOnceInGlobalScope( "$IP/includes/AutoLoader.php" );
 wfRequireOnceInGlobalScope( "$IP/tests/common/TestsAutoLoader.php" );
+wfRequireOnceInGlobalScope( "$IP/includes/Defines.php" );
