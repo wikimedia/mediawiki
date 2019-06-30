@@ -13,8 +13,8 @@ CREATE TABLE /*_*/pagelinks_tmp (
   PRIMARY KEY (pl_from,pl_namespace,pl_title)
 ) /*$wgDBTableOptions*/;
 
-INSERT INTO /*_*/pagelinks_tmp
-	SELECT * FROM /*_*/pagelinks;
+INSERT INTO /*_*/pagelinks_tmp (pl_from, pl_from_namespace, pl_namespace, pl_title)
+	SELECT pl_from, pl_from_namespace, pl_namespace, pl_title FROM /*_*/pagelinks;
 
 DROP TABLE /*_*/pagelinks;
 
