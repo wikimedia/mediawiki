@@ -64,7 +64,7 @@ class UserMailer {
 	 *
 	 * @return string
 	 */
-	static function arrayToHeaderString( $headers, $endl = PHP_EOL ) {
+	private static function arrayToHeaderString( $headers, $endl = PHP_EOL ) {
 		$strings = [];
 		foreach ( $headers as $name => $value ) {
 			// Prevent header injection by stripping newlines from value
@@ -79,7 +79,7 @@ class UserMailer {
 	 *
 	 * @return string
 	 */
-	static function makeMsgId() {
+	private static function makeMsgId() {
 		global $wgSMTP, $wgServer;
 
 		$domainId = WikiMap::getCurrentWikiDbDomain()->getId();
@@ -465,7 +465,7 @@ class UserMailer {
 	 * @param int $code Error number
 	 * @param string $string Error message
 	 */
-	static function errorHandler( $code, $string ) {
+	private static function errorHandler( $code, $string ) {
 		self::$mErrorString = preg_replace( '/^mail\(\)(\s*\[.*?\])?: /', '', $string );
 	}
 
