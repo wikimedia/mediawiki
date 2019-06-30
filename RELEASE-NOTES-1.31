@@ -3,6 +3,7 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.31.2 ===
+* (T202211) Fix SQLite patch-(image|page|template)links-fix-pk.sql column order.
 
 == MediaWiki 1.31.2 ==
 
