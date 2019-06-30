@@ -158,7 +158,7 @@
 	"searcharticle": "رۉ",
 	"history": "ڤیرگار ھ بألگە",
 	"history_short": "ڤیرگار",
-	"updatedmarker": "بروز وابی تا موقع آخرین سیل کردن مو",
+	"updatedmarker": "بهروز وابی تا موقع آخرین سیل کردن مو",
 	"printableversion": "ڤیرژین سی چاپ",
 	"permalink": "لینکل دائمی",
 	"print": "چاپ",
@@ -652,5 +652,6 @@
 	"logentry-newusers-create": "حسآۉ کارڤأر $1 ڤابیە {{GENDER:$2|راس ڤیدھ }}",
 	"logentry-upload-upload": "$1 {{GENDER:$2|بلم گیر کردھ ۉابی}} $3",
 	"searchsuggest-search": "جۉستأن",
+	"specialmute": "بی‌صدا",
 	"userlogout-continue": "ایخیت برِیِتو وَدَر"
 }

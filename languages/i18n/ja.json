@@ -95,7 +95,8 @@
 			"Suyama",
 			"고솜",
 			"Wat",
-			"Puntti ja"
+			"Puntti ja",
+			"マツムシ"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -740,6 +741,8 @@
 	"autoblockedtext": "このIPアドレスは、$1によりブロックされた利用者によって使用されたため、自動的にブロックされています。\n理由は次の通りです。\n\n:<em>$2</em>\n\n* ブロック開始日時: $8\n* ブロック解除予定: $6\n* ブロック対象: $7\n\n$1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこのブロックについて問い合わせることができます。\n\nただし、[[Special:Preferences|個人設定]]に正しいメールアドレスが登録されていない場合、またはメール送信がブロックされている場合、「{{int:emailuser}}」機能を使用できないことに注意してください。\n\n現在ご使用中のIPアドレスは$3 、このブロックIDは#$5です。\nお問い合わせの際は、上記の情報を必ず書いてください。",
 	"systemblockedtext": "あなたの利用者名またはIPアドレスはMediaWikiによって自動的にブロックされています。\n理由は次の通りです。\n\n:<em>$2</em>\n\n* ブロック開始日時: $8\n* ブロック解除予定: $6\n* ブロック対象: $7\n\nあなたの現在のIPアドレスは $3 です。\nお問い合わせの際は、上記の詳細情報をすべて含めてください。",
 	"blockednoreason": "理由が設定されていません",
+	"blockedtext-composite": "<strong>あなたのアカウントまたはIPアドレスはブロックされています</strong>\n\n理由:\n\n:<em>$2</em>.\n\n* ブロック開始日: $8\n* ブロックの有効期限: $6\n\nあなたの現在のIPアドレスは$3です。\n上記の詳細は,ご質問にお答えください。",
+	"blockedtext-composite-reason": "アカウントまたはIPアドレスに対して複数のブロックが存在します",
 	"whitelistedittext": "このページを編集するには$1してください。",
 	"confirmedittext": "ページの編集を始める前にメールアドレスの確認をする必要があります。\n[[Special:Preferences|個人設定]]でメールアドレスを設定し、確認を行ってください。",
 	"nosuchsectiontitle": "節が見つかりません",
@@ -4022,6 +4025,9 @@
 	"restrictionsfield-help": "一行につき、単一の IP アドレス、もしくは CIDR による範囲。全帯域からの接続を許可する場合: <pre>0.0.0.0/0\n::/0</pre>",
 	"edit-error-short": "エラー: $1",
 	"edit-error-long": "エラー:\n\n\n\n$1",
+	"specialmute": "ミュート",
+	"specialmute-label-mute-email": "この利用者からのウィキメールをミュートする",
+	"specialmute-error-invalid-user": "あなたが要求した利用者名は見つかりませんでした。",
 	"revid": "版 $1",
 	"pageid": "ページID $1",
 	"interfaceadmin-info": "$1\n\nサイト全体のCSS/JavaScriptの編集権限は、最近<code>editinterface</code> 権限から分離されました。なぜこのエラーが表示されたのかわからない場合は、[[mw:MediaWiki_1.32/interface-admin]]をご覧ください。",

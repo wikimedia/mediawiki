@@ -3923,7 +3923,7 @@
 	"specialmute-error-invalid-user": "لا يمكن العثور على اسم المستخدم المطلوب.",
 	"specialmute-error-email-blacklist-disabled": "لم يتم تمكين كتم المستخدمين من إرسال رسائل البريد الإلكتروني إليك.",
 	"specialmute-error-email-preferences": "يجب تأكيد عنوان بريدك الإلكتروني قبل أن تتمكن من كتم صوت المستخدم، يمكنك القيام بذلك من [[Special:Preferences]].",
-	"specialmute-email-footer": "[$1 إدارة تفضيلات البريد الإلكتروني لـ{{BIDI:$2}}.]",
+	"specialmute-email-footer": "لإدارة تفضيلات البريد الإلكتروني لـ{{BIDI:$2}}؛ تُرجَى زيارة <$1>",
 	"specialmute-login-required": "يُرجَى تسجيل الدخول لتغيير تفضيلات الصمت الخاصة بك.",
 	"revid": "المراجعة $1",
 	"pageid": "معرف الصفحة $1",

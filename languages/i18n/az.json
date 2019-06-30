@@ -1512,7 +1512,7 @@
 	"nmembers": "$1 {{PLURAL:$1|üzv|üzv}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|üzv|üzvlər}}",
 	"nrevisions": "$1 dəyişiklik",
-	"nimagelinks": "$1 səhifədə istifadə olunmur",
+	"nimagelinks": "$1 səhifədə istifadə olunur",
 	"ntransclusions": "$1 səhifədə istifadə olunur",
 	"specialpage-empty": "Bu səhifə boşdur.",
 	"lonelypages": "Yetim səhifələr",
