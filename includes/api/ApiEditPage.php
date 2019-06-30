@@ -367,21 +367,6 @@ class ApiEditPage extends ApiBase {
 		$ep->importFormData( $req );
 		$content = $ep->textbox1;
 
-		// Run hooks
-		// Handle APIEditBeforeSave parameters
-		$r = [];
-		// Deprecated in favour of EditFilterMergedContent
-		if ( !Hooks::run( 'APIEditBeforeSave', [ $ep, $content, &$r ], '1.28' ) ) {
-			if ( count( $r ) ) {
-				$r['result'] = 'Failure';
-				$apiResult->addValue( null, $this->getModuleName(), $r );
-
-				return;
-			}
-
-			$this->dieWithError( 'hookaborted' );
-		}
-
 		// Do the actual save
 		$oldRevId = $articleObject->getRevIdFetched();
 		$result = null;
