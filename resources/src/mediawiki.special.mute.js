@@ -2,7 +2,7 @@
 	'use strict';
 
 	$( function () {
-		var $inputs = $( '#mw-specialmute-form input:checkbox' ),
+		var $inputs = $( '#mw-specialmute-form input[type="checkbox"]' ),
 			saveButton, $saveButton = $( '#save' );
 
 		function isFormChanged() {
