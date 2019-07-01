@@ -25,6 +25,7 @@ use Wikimedia\AtEase\AtEase;
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -99,7 +100,7 @@ class LocalFile extends File {
 	/** @var int Number of line to return by nextHistoryLine() (constructor) */
 	private $historyLine;
 
-	/** @var int Result of the query for the file's history (nextHistoryLine) */
+	/** @var IResultWrapper|null Result of the query for the file's history (nextHistoryLine) */
 	private $historyRes;
 
 	/** @var string Major MIME type */

@@ -29,13 +29,13 @@ use Wikimedia\Rdbms\FakeResultWrapper;
  * @ingroup Media
  */
 class WikiFilePage extends WikiPage {
-	/** @var File */
+	/** @var File|false */
 	protected $mFile = false;
-	/** @var LocalRepo */
+	/** @var LocalRepo|null */
 	protected $mRepo = null;
 	/** @var bool */
 	protected $mFileLoaded = false;
-	/** @var array */
+	/** @var array|null */
 	protected $mDupes = null;
 
 	public function __construct( $title ) {
