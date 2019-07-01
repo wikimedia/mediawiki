@@ -346,6 +346,10 @@ class MediaWiki {
 			return false;
 		}
 
+		if ( $this->config->get( 'MainPageIsDomainRoot' ) && $request->getRequestURL() === '/' ) {
+			return false;
+		}
+
 		if ( $title->isSpecialPage() ) {
 			list( $name, $subpage ) = MediaWikiServices::getInstance()->getSpecialPageFactory()->
 				resolveAlias( $title->getDBkey() );

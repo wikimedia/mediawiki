@@ -2061,7 +2061,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return string String of the URL.
 	 */
 	public function getLocalURL( $query = '', $query2 = false ) {
-		global $wgArticlePath, $wgScript, $wgServer, $wgRequest;
+		global $wgArticlePath, $wgScript, $wgServer, $wgRequest, $wgMainPageIsDomainRoot;
 
 		$query = self::fixUrlQueryArgs( $query, $query2 );
 
@@ -2138,6 +2138,11 @@ class Title implements LinkTarget, IDBAccessObject {
 				$url = $wgServer . $url;
 			}
 		}
+
+		if ( $wgMainPageIsDomainRoot && $this->isMainPage() && $query === '' ) {
+			return '/';
+		}
+
 		// Avoid PHP 7.1 warning from passing $this by reference
 		$titleRef = $this;
 		Hooks::run( 'GetLocalURL', [ &$titleRef, &$url, $query ] );
