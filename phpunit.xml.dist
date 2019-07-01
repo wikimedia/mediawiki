@@ -23,9 +23,11 @@
 	<testsuites>
 		<testsuite name="unit">
 			<directory>tests/phpunit/unit</directory>
+			<directory>**/**/tests/phpunit/unit</directory>
 		</testsuite>
 		<testsuite name="integration">
 			<directory>tests/phpunit/integration</directory>
+			<directory>**/**/tests/phpunit/integration</directory>
 		</testsuite>
 	</testsuites>
 	<groups>

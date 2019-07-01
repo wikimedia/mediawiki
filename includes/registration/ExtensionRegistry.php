@@ -300,6 +300,13 @@ class ExtensionRegistry {
 			}
 
 			$dir = dirname( $path );
+			self::exportAutoloadClassesAndNamespaces(
+				$dir,
+				$info,
+				$autoloadClasses,
+				$autoloadNamespaces
+			);
+
 			if ( isset( $info['AutoloadClasses'] ) ) {
 				$autoload = $this->processAutoLoader( $dir, $info['AutoloadClasses'] );
 				$GLOBALS['wgAutoloadClasses'] += $autoload;
@@ -345,6 +352,28 @@ class ExtensionRegistry {
 		$data['autoloaderPaths'] = $autoloaderPaths;
 		$data['autoloaderNS'] = $autoloadNamespaces;
 		return $data;
+	}
+
+	/**
+	 * Export autoload classes and namespaces for a given directory and parsed JSON info file.
+	 *
+	 * @param string $dir
+	 * @param array $info
+	 * @param array &$autoloadClasses
+	 * @param array &$autoloadNamespaces
+	 */
+	public static function exportAutoloadClassesAndNamespaces(
+		$dir, $info, &$autoloadClasses = [], &$autoloadNamespaces = []
+	) {
+		if ( isset( $info['AutoloadClasses'] ) ) {
+			$autoload = self::processAutoLoader( $dir, $info['AutoloadClasses'] );
+			$GLOBALS['wgAutoloadClasses'] += $autoload;
+			$autoloadClasses += $autoload;
+		}
+		if ( isset( $info['AutoloadNamespaces'] ) ) {
+			$autoloadNamespaces += self::processAutoLoader( $dir, $info['AutoloadNamespaces'] );
+			AutoLoader::$psr4Namespaces += $autoloadNamespaces;
+		}
 	}
 
 	protected function exportExtractedData( array $info ) {
@@ -511,7 +540,7 @@ class ExtensionRegistry {
 	 * @param array $files
 	 * @return array
 	 */
-	protected function processAutoLoader( $dir, array $files ) {
+	protected static function processAutoLoader( $dir, array $files ) {
 		// Make paths absolute, relative to the JSON file
 		foreach ( $files as &$file ) {
 			$file = "$dir/$file";
