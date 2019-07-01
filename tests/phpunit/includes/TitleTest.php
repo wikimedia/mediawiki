@@ -494,8 +494,22 @@ class TitleTest extends MediaWikiTestCase {
 	 */
 	public function testGetBaseText( $title, $expected, $msg = '' ) {
 		$title = Title::newFromText( $title );
-		$this->assertEquals( $expected,
+		$this->assertSame( $expected,
 			$title->getBaseText(),
+			$msg
+		);
+	}
+
+	/**
+	 * @dataProvider provideBaseTitleCases
+	 * @covers Title::getBaseTitle
+	 */
+	public function testGetBaseTitle( $title, $expected, $msg = '' ) {
+		$title = Title::newFromText( $title );
+		$base = $title->getBaseTitle();
+		$this->assertTrue( $base->isValid(), $msg );
+		$this->assertTrue(
+			$base->equals( Title::makeTitleSafe( $title->getNamespace(), $expected ) ),
 			$msg
 		);
 	}
@@ -504,7 +518,7 @@ class TitleTest extends MediaWikiTestCase {
 		return [
 			# Title, expected base, optional message
 			[ 'User:John_Doe/subOne/subTwo', 'John Doe/subOne' ],
-			[ 'User:Foo/Bar/Baz', 'Foo/Bar' ],
+			[ 'User:Foo / Bar / Baz', 'Foo / Bar ' ],
 		];
 	}
 
@@ -520,11 +534,25 @@ class TitleTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @dataProvider provideRootTitleCases
+	 * @covers Title::getRootTitle
+	 */
+	public function testGetRootTitle( $title, $expected, $msg = '' ) {
+		$title = Title::newFromText( $title );
+		$root = $title->getRootTitle();
+		$this->assertTrue( $root->isValid(), $msg );
+		$this->assertTrue(
+			$root->equals( Title::makeTitleSafe( $title->getNamespace(), $expected ) ),
+			$msg
+		);
+	}
+
 	public static function provideRootTitleCases() {
 		return [
 			# Title, expected base, optional message
 			[ 'User:John_Doe/subOne/subTwo', 'John Doe' ],
-			[ 'User:Foo/Bar/Baz', 'Foo' ],
+			[ 'User:Foo / Bar / Baz', 'Foo ' ],
 		];
 	}
 
@@ -709,6 +737,12 @@ class TitleTest extends MediaWikiTestCase {
 			[ Title::makeTitle( NS_MAIN, '|' ), false ],
 			[ Title::makeTitle( NS_MAIN, '#' ), false ],
 			[ Title::makeTitle( NS_MAIN, 'Test' ), true ],
+			[ Title::makeTitle( NS_MAIN, ' Test' ), false ],
+			[ Title::makeTitle( NS_MAIN, '_Test' ), false ],
+			[ Title::makeTitle( NS_MAIN, 'Test ' ), false ],
+			[ Title::makeTitle( NS_MAIN, 'Test_' ), false ],
+			[ Title::makeTitle( NS_MAIN, "Test\nthis" ), false ],
+			[ Title::makeTitle( NS_MAIN, "Test\tthis" ), false ],
 			[ Title::makeTitle( -33, 'Test' ), false ],
 			[ Title::makeTitle( 77663399, 'Test' ), false ],
 		];
