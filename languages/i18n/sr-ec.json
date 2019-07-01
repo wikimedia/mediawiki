@@ -41,7 +41,8 @@
 			"Fitoschido",
 			"Stalker",
 			"Vlad5250",
-			"Петар Петковић"
+			"Петар Петковић",
+			"Shirayuki"
 		]
 	},
 	"tog-underline": "Подвлачење веза:",
@@ -3078,7 +3079,7 @@
 	"metadata-expand": "Прикажи детаље",
 	"metadata-collapse": "Сакриј додатне детаље",
 	"metadata-fields": "Поља за метаподатке слике наведена у овој поруци ће бити укључена на страници за слике када се скупи табела метаподатака. Остала поља ће бити сакривена по подразумеваним поставкама.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
-	"metadata-langitem": "'''$2:''' $1",
+	"metadata-langitem": "<strong>$2:</strong> $1",
 	"metadata-langitem-default": "$1",
 	"namespacesall": "сви",
 	"monthsall": "све",

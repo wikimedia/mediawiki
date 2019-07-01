@@ -142,7 +142,8 @@
 			"Diralik",
 			"1233qwer1234qwer4",
 			"Саша Волохов",
-			"Serhio Magpie"
+			"Serhio Magpie",
+			"ЛингвоЧел"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -4012,7 +4013,7 @@
 	"specialmute-header": "Пожалуйста, выберите настройки уведомлений от {{BIDI:[[User:$1]]}}.",
 	"specialmute-error-invalid-user": "Указанное вами имя участника не может быть найдено.",
 	"specialmute-error-email-preferences": "Вы должны подтвердить вашу электронную почту, прежде чем отключить уведомление от других. Это можно сделать на странице [[Special:Preferences]].",
-	"specialmute-email-footer": "[$1 Управление настройками эл. почты для {{BIDI:$2}}.]",
+	"specialmute-email-footer": "Для управления настройками эл. почты для {{BIDI:$2}}, пожалуйста, посмотрите <$1>.",
 	"specialmute-login-required": "Пожалуйста, войдите, чтобы совершить изменения.",
 	"revid": "версия $1",
 	"pageid": "ID страницы $1",

@@ -3967,7 +3967,7 @@
 	"specialmute-error-invalid-user": "O nome de usuário solicitado não foi encontrado.",
 	"specialmute-error-email-blacklist-disabled": "O silenciamento de usuários do envio de e-mails não está ativado.",
 	"specialmute-error-email-preferences": "Você deve confirmar seu endereço de e-mail antes de poder silenciar um usuário. Você pode fazer isso de [[Special:Preferences]].",
-	"specialmute-email-footer": "[$1 Gerenciar preferências de email para {{BIDI:$2}}.]",
+	"specialmute-email-footer": "Para gerenciar as preferências de e-mail para {{BIDI:$2}} por favor visite <$1>.",
 	"specialmute-login-required": "Por favor, entre para alterar suas preferências de mudo.",
 	"revid": "revisão $1",
 	"pageid": "ID da página $1",
