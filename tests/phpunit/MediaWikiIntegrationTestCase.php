@@ -181,7 +181,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 	public static function setUpBeforeClass() {
 		parent::setUpBeforeClass();
-		\PHPUnit\Framework\Assert::assertFileExists( 'LocalSettings.php' );
 		self::initializeForStandardPhpunitEntrypointIfNeeded();
 
 		// Get the original service locator
