@@ -825,8 +825,26 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
+	 * Get essential data about getRcFiltersConfigVars() for change detection.
+	 *
+	 * @internal For use by Resources.php only.
+	 * @see ResourceLoaderModule::getDefinitionSummary() and ResourceLoaderModule::getVersionHash()
+	 * @param ResourceLoaderContext $context
+	 * @return array
+	 */
+	public static function getRcFiltersConfigSummary( ResourceLoaderContext $context ) {
+		return [
+			// Reduce version computation by avoiding Message parsing
+			'RCFiltersChangeTags' => self::getChangeTagListSummary( $context ),
+			'StructuredChangeFiltersEditWatchlistUrl' =>
+				SpecialPage::getTitleFor( 'EditWatchlist' )->getLocalURL()
+		];
+	}
+
+	/**
 	 * Get config vars to export with the mediawiki.rcfilters.filters.ui module.
 	 *
+	 * @internal For use by Resources.php only.
 	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
@@ -839,70 +857,105 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Fetch the change tags list for the front end
+	 * Get (cheap to compute) information about change tags.
+	 *
+	 * Returns an array of associative arrays with information about each tag:
+	 * - name: Tag name (string)
+	 * - labelMsg: Short description message (Message object)
+	 * - descriptionMsg: Long description message (Message object)
+	 * - cssClass: CSS class to use for RC entries with this tag
+	 * - hits: Number of RC entries that have this tag
 	 *
 	 * @param ResourceLoaderContext $context
-	 * @return array Tag data
+	 * @return array[] Information about each tag
+	 */
+	protected static function getChangeTagInfo( ResourceLoaderContext $context ) {
+		$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
+		$softwareActivatedTags = array_fill_keys( ChangeTags::listSoftwareActivatedTags(), 0 );
+
+		$tagStats = ChangeTags::tagUsageStatistics();
+		$tagHitCounts = array_merge( $explicitlyDefinedTags, $softwareActivatedTags, $tagStats );
+
+		$result = [];
+		foreach ( $tagHitCounts as $tagName => $hits ) {
+			if (
+				(
+					// Only get active tags
+					isset( $explicitlyDefinedTags[ $tagName ] ) ||
+					isset( $softwareActivatedTags[ $tagName ] )
+				) &&
+				// Only get tags with more than 0 hits
+				$hits > 0
+			) {
+				$labelMsg = ChangeTags::tagShortDescriptionMessage( $tagName, $context );
+				if ( $labelMsg === false ) {
+					// Tag is hidden, skip it
+					continue;
+				}
+				$result[] = [
+					'name' => $tagName,
+					// 'label' and 'description' filled in by getChangeTagList()
+					'labelMsg' => $labelMsg,
+					'descriptionMsg' => ChangeTags::tagLongDescriptionMessage( $tagName, $context ),
+					'cssClass' => Sanitizer::escapeClass( 'mw-tag-' . $tagName ),
+					'hits' => $hits,
+				];
+			}
+		}
+		return $result;
+	}
+
+	/**
+	 * Get information about change tags for use in getRcFiltersConfigSummary().
+	 *
+	 * This expands labelMsg and descriptionMsg to the raw values of each message, which captures
+	 * changes in the messages but avoids the expensive step of parsing them.
+	 *
+	 * @param ResourceLoaderContext $context
+	 * @return array[] Result of getChangeTagInfo(), with messages expanded to raw contents
+	 */
+	protected static function getChangeTagListSummary( ResourceLoaderContext $context ) {
+		$tags = self::getChangeTagInfo( $context );
+		foreach ( $tags as &$tagInfo ) {
+			$tagInfo['labelMsg'] = $tagInfo['labelMsg']->plain();
+			if ( $tagInfo['descriptionMsg'] ) {
+				$tagInfo['descriptionMsg'] = $tagInfo['descriptionMsg']->plain();
+			}
+		}
+		return $tags;
+	}
+
+	/**
+	 * Get information about change tags to export to JS via getRcFiltersConfigVars().
+	 *
+	 * This removes labelMsg and descriptionMsg, and adds label and description, which are parsed,
+	 * stripped and (in the case of description) truncated versions of these messages. Message
+	 * parsing is expensive, so to detect whether the tag list has changed, use
+	 * getChangeTagListSummary() instead.
+	 *
+	 * @param ResourceLoaderContext $context
+	 * @return array[] Result of getChangeTagInfo(), with messages parsed, stripped and truncated
 	 */
 	protected static function getChangeTagList( ResourceLoaderContext $context ) {
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-		return $cache->getWithSetCallback(
-			$cache->makeKey( 'changeslistspecialpage-changetags', $context->getLanguage() ),
-			$cache::TTL_MINUTE * 10,
-			function () use ( $context ) {
-				$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
-				$softwareActivatedTags = array_fill_keys( ChangeTags::listSoftwareActivatedTags(), 0 );
+		$tags = self::getChangeTagInfo( $context );
+		$language = Language::factory( $context->getLanguage() );
+		foreach ( $tags as &$tagInfo ) {
+			$tagInfo['label'] = Sanitizer::stripAllTags( $tagInfo['labelMsg']->parse() );
+			$tagInfo['description'] = $tagInfo['descriptionMsg'] ?
+				$language->truncateForVisual(
+					Sanitizer::stripAllTags( $tagInfo['descriptionMsg']->parse() ),
+					self::TAG_DESC_CHARACTER_LIMIT
+				) :
+				'';
+			unset( $tagInfo['labelMsg'] );
+			unset( $tagInfo['descriptionMsg'] );
+		}
 
-				$tagStats = ChangeTags::tagUsageStatistics();
-				$tagHitCounts = array_merge( $explicitlyDefinedTags, $softwareActivatedTags, $tagStats );
-
-				// Sort by hits (disabled for now)
-				//arsort( $tagHitCounts );
-
-				// HACK work around ChangeTags::truncateTagDescription() requiring a RequestContext
-				$fakeContext = RequestContext::newExtraneousContext( Title::newFromText( 'Dwimmerlaik' ) );
-				$fakeContext->setLanguage( Language::factory( $context->getLanguage() ) );
-
-				// Build the list and data
-				$result = [];
-				foreach ( $tagHitCounts as $tagName => $hits ) {
-					if (
-						(
-							// Only get active tags
-							isset( $explicitlyDefinedTags[ $tagName ] ) ||
-							isset( $softwareActivatedTags[ $tagName ] )
-						) &&
-						// Only get tags with more than 0 hits
-						$hits > 0
-					) {
-						$result[] = [
-							'name' => $tagName,
-							'label' => Sanitizer::stripAllTags(
-								ChangeTags::tagDescription( $tagName, $context )
-							),
-							'description' =>
-								ChangeTags::truncateTagDescription(
-									$tagName,
-									self::TAG_DESC_CHARACTER_LIMIT,
-									$fakeContext
-								),
-							'cssClass' => Sanitizer::escapeClass( 'mw-tag-' . $tagName ),
-							'hits' => $hits,
-						];
-					}
-				}
-
-				// Instead of sorting by hit count (disabled, see above), sort by display name
-				usort( $result, function ( $a, $b ) {
-					return strcasecmp( $a['label'], $b['label'] );
-				} );
-
-				return $result;
-			},
-			[
-				'lockTSE' => 30
-			]
-		);
+		// Instead of sorting by hit count (disabled for now), sort by display name
+		usort( $tags, function ( $a, $b ) {
+			return strcasecmp( $a['label'], $b['label'] );
+		} );
+		return $tags;
 	}
 
 	/**

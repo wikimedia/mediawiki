@@ -1819,7 +1819,10 @@ return [
 			'ui/RclTargetPageWidget.js',
 			'ui/RclToOrFromWidget.js',
 			'ui/WatchlistTopSectionWidget.js',
-			[ 'name' => 'config.json', 'callback' => 'ChangesListSpecialPage::getRcFiltersConfigVars' ],
+			[ 'name' => 'config.json',
+				'versionCallback' => 'ChangesListSpecialPage::getRcFiltersConfigSummary',
+				'callback' => 'ChangesListSpecialPage::getRcFiltersConfigVars',
+			],
 		],
 		'styles' => [
 			'styles/mw.rcfilters.mixins.less',
