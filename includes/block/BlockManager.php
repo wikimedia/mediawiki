@@ -21,6 +21,7 @@
 namespace MediaWiki\Block;
 
 use DateTime;
+use DeferredUpdates;
 use IP;
 use MediaWiki\User\UserIdentity;
 use MWCryptHash;
@@ -431,26 +432,38 @@ class BlockManager {
 	 * @param User $user
 	 */
 	public function trackBlockWithCookie( User $user ) {
-		$block = $user->getBlock();
 		$request = $user->getRequest();
-		$response = $request->response();
-		$isAnon = $user->isAnon();
+		if ( $request->getCookie( 'BlockID' ) !== null ) {
+			// User already has a block cookie
+			return;
+		}
 
-		if ( $block && $request->getCookie( 'BlockID' ) === null ) {
-			if ( $block instanceof CompositeBlock ) {
-				// TODO: Improve on simply tracking the first trackable block (T225654)
-				foreach ( $block->getOriginalBlocks() as $originalBlock ) {
-					if ( $this->shouldTrackBlockWithCookie( $originalBlock, $isAnon ) ) {
-						$this->setBlockCookie( $originalBlock, $response );
-						return;
+		// Defer checks until the user has been fully loaded to avoid circular dependency
+		// of User on itself
+		DeferredUpdates::addCallableUpdate(
+			function () use ( $user, $request ) {
+				$block = $user->getBlock();
+				$response = $request->response();
+				$isAnon = $user->isAnon();
+
+				if ( $block ) {
+					if ( $block instanceof CompositeBlock ) {
+						// TODO: Improve on simply tracking the first trackable block (T225654)
+						foreach ( $block->getOriginalBlocks() as $originalBlock ) {
+							if ( $this->shouldTrackBlockWithCookie( $originalBlock, $isAnon ) ) {
+								$this->setBlockCookie( $originalBlock, $response );
+								return;
+							}
+						}
+					} else {
+						if ( $this->shouldTrackBlockWithCookie( $block, $isAnon ) ) {
+							$this->setBlockCookie( $block, $response );
+						}
 					}
 				}
-			} else {
-				if ( $this->shouldTrackBlockWithCookie( $block, $isAnon ) ) {
-					$this->setBlockCookie( $block, $response );
-				}
-			}
-		}
+			},
+			DeferredUpdates::PRESEND
+		);
 	}
 
 	/**

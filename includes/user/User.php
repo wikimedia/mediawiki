@@ -1280,12 +1280,11 @@ class User implements IDBAccessObject, UserIdentity {
 		$user = $session->getUser();
 		if ( $user->isLoggedIn() ) {
 			$this->loadFromUserObject( $user );
-			if ( $user->getBlock() ) {
-				// If this user is autoblocked, set a cookie to track the block. This has to be done on
-				// every session load, because an autoblocked editor might not edit again from the same
-				// IP address after being blocked.
-				MediaWikiServices::getInstance()->getBlockManager()->trackBlockWithCookie( $this );
-			}
+
+			// If this user is autoblocked, set a cookie to track the block. This has to be done on
+			// every session load, because an autoblocked editor might not edit again from the same
+			// IP address after being blocked.
+			MediaWikiServices::getInstance()->getBlockManager()->trackBlockWithCookie( $this );
 
 			// Other code expects these to be set in the session, so set them.
 			$session->set( 'wsUserID', $this->getId() );
