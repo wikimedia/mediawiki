@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\Permissions\PermissionManager;
+use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Linker\LinkTarget;
@@ -851,7 +852,10 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * Returns true if the title is valid, false if it is invalid.
 	 *
-	 * Valid titles can be round-tripped via makeTitleSafe() and newFromText().
+	 * Valid titles can be round-tripped via makeTitle() and newFromText().
+	 * Their DB key can be used in the database, though it may not have the correct
+	 * capitalization.
+	 *
 	 * Invalid titles may get returned from makeTitle(), and it may be useful to
 	 * allow them to exist, e.g. in order to process log entries about pages in
 	 * namespaces that belong to extensions that are no longer installed.
@@ -870,10 +874,23 @@ class Title implements LinkTarget, IDBAccessObject {
 
 		try {
 			$services->getTitleParser()->parseTitle( $this->mDbkeyform, $this->mNamespace );
-			return true;
 		} catch ( MalformedTitleException $ex ) {
 			return false;
 		}
+
+		try {
+			// Title value applies basic syntax checks. Should perhaps be moved elsewhere.
+			new TitleValue(
+				$this->mNamespace,
+				$this->mDbkeyform,
+				$this->mFragment,
+				$this->mInterwiki
+			);
+		} catch ( InvalidArgumentException $ex ) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
@@ -1728,6 +1745,9 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * Get the root page name text without a namespace, i.e. the leftmost part before any slashes
 	 *
+	 * @note the return value may contain trailing whitespace and is thus
+	 * not safe for use with makeTitle or TitleValue.
+	 *
 	 * @par Example:
 	 * @code
 	 * Title::newFromText('User:Foo/Bar/Baz')->getRootText();
@@ -1761,11 +1781,19 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @since 1.20
 	 */
 	public function getRootTitle() {
-		return self::makeTitle( $this->mNamespace, $this->getRootText() );
+		$title = self::makeTitleSafe( $this->mNamespace, $this->getRootText() );
+		Assert::postcondition(
+			$title !== null,
+			'makeTitleSafe() should always return a Title for the text returned by getRootText().'
+		);
+		return $title;
 	}
 
 	/**
 	 * Get the base page name without a namespace, i.e. the part before the subpage name
+	 *
+	 * @note the return value may contain trailing whitespace and is thus
+	 * not safe for use with makeTitle or TitleValue.
 	 *
 	 * @par Example:
 	 * @code
@@ -1794,7 +1822,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	}
 
 	/**
-	 * Get the base page name title, i.e. the part before the subpage name
+	 * Get the base page name title, i.e. the part before the subpage name.
 	 *
 	 * @par Example:
 	 * @code
@@ -1806,7 +1834,12 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @since 1.20
 	 */
 	public function getBaseTitle() {
-		return self::makeTitle( $this->mNamespace, $this->getBaseText() );
+		$title = self::makeTitleSafe( $this->mNamespace, $this->getBaseText() );
+		Assert::postcondition(
+			$title !== null,
+			'makeTitleSafe() should always return a Title for the text returned by getBaseText().'
+		);
+		return $title;
 	}
 
 	/**
