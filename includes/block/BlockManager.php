@@ -439,7 +439,7 @@ class BlockManager {
 		}
 
 		// Defer checks until the user has been fully loaded to avoid circular dependency
-		// of User on itself
+		// of User on itself (T180050 and T226777)
 		DeferredUpdates::addCallableUpdate(
 			function () use ( $user, $request ) {
 				$block = $user->getBlock();
