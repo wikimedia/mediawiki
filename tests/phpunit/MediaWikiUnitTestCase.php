@@ -30,17 +30,5 @@ use PHPUnit\Framework\TestCase;
 abstract class MediaWikiUnitTestCase extends TestCase {
 	use PHPUnit4And6Compat;
 	use MediaWikiCoversValidator;
-	use MediaWikiGroupValidator;
-
-	/**
-	 * @throws ReflectionException
-	 */
-	protected function setUp() {
-		parent::setUp();
-		if ( $this->isTestInDatabaseGroup() ) {
-			throw new \Exception( get_class( $this ) .
-			  ' extends MediaWikiUnitTestCase, and may not have the @group Database annotation.' );
-		}
-	}
 
 }
