@@ -66,3 +66,23 @@ require_once "$IP/tests/common/TestSetup.php";
 wfRequireOnceInGlobalScope( "$IP/includes/AutoLoader.php" );
 wfRequireOnceInGlobalScope( "$IP/tests/common/TestsAutoLoader.php" );
 wfRequireOnceInGlobalScope( "$IP/includes/Defines.php" );
+wfRequireOnceInGlobalScope( "$IP/includes/DefaultSettings.php" );
+
+// Load extensions/skins present in filesystem so that classes can be discovered.
+$directoryToJsonMap = [
+	'extensions' => [ 'extension.json', 'extension-wip.json' ],
+	'skins' => [ 'skin.json', 'skin-wip.json' ]
+];
+foreach ( $directoryToJsonMap as $directory => $jsonFile ) {
+	foreach ( new DirectoryIterator( __DIR__ . '/../../' . $directory ) as $iterator ) {
+		foreach ( $jsonFile as $file ) {
+			$jsonPath = $iterator->getPathname() . '/' . $file;
+			if ( file_exists( $jsonPath ) ) {
+				$json = file_get_contents( $jsonPath );
+				$info = json_decode( $json, true );
+				$dir = dirname( $jsonPath );
+				ExtensionRegistry::exportAutoloadClassesAndNamespaces( $dir, $info );
+			}
+		}
+	}
+}
