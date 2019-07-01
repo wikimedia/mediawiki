@@ -254,6 +254,10 @@ because of Phabricator reports.
 * Database::reportConnectionError, deprecated in 1.32, has been removed.
 * APIEditBeforeSave hook, deprecated in 1.28, has been removed. Please see
   EditFilterMergedContent hook for an alternative way to use this feature.
+* API module methods getDescription(), getParamDescription(), & getExamples(),
+  all deprecated in 1.25 and ignored, have been removed.
+* The API module method getDescriptionMessage(), deprecated in 1.30, has been
+  removed.
 * …
 
 === Deprecations in 1.34 ===
