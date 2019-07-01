@@ -323,4 +323,62 @@ class BlockManagerTest extends MediaWikiTestCase {
 
 		$this->assertSame( 2, count( $method->invoke( $blockManager, $blocks ) ) );
 	}
+
+	/**
+	 * @covers ::trackBlockWithCookie
+	 * @dataProvider provideTrackBlockWithCookie
+	 * @param bool $expectCookieSet
+	 * @param bool $hasCookie
+	 * @param bool $isBlocked
+	 */
+	public function testTrackBlockWithCookie( $expectCookieSet, $hasCookie, $isBlocked ) {
+		$blockID = 123;
+		$this->setMwGlobals( 'wgCookiePrefix', '' );
+
+		$request = new FauxRequest();
+		if ( $hasCookie ) {
+			$request->setCookie( 'BlockID', 'the value does not matter' );
+		}
+
+		if ( $isBlocked ) {
+			$block = $this->getMockBuilder( DatabaseBlock::class )
+				->setMethods( [ 'getType', 'getId' ] )
+				->getMock();
+			$block->method( 'getType' )
+				->willReturn( DatabaseBlock::TYPE_IP );
+			$block->method( 'getId' )
+				->willReturn( $blockID );
+		} else {
+			$block = null;
+		}
+
+		$user = $this->getMockBuilder( User::class )
+			->setMethods( [ 'getBlock', 'getRequest' ] )
+			->getMock();
+		$user->method( 'getBlock' )
+			->willReturn( $block );
+		$user->method( 'getRequest' )
+			->willReturn( $request );
+		/** @var User $user */
+
+		// Although the block cookie is set via DeferredUpdates, in command line mode updates are
+		// processed immediately
+		$blockManager = $this->getBlockManager( [] );
+		$blockManager->trackBlockWithCookie( $user );
+
+		/** @var FauxResponse $response */
+		$response = $request->response();
+		$this->assertCount( $expectCookieSet ? 1 : 0, $response->getCookies() );
+		$this->assertEquals( $expectCookieSet ? $blockID : null, $response->getCookie( 'BlockID' ) );
+	}
+
+	public function provideTrackBlockWithCookie() {
+		return [
+			// $expectCookieSet, $hasCookie, $isBlocked
+			[ false, false, false ],
+			[ false, true, false ],
+			[ true, false, true ],
+			[ false, true, true ],
+		];
+	}
 }
