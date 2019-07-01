@@ -1037,9 +1037,18 @@ function wfLogDBError( $text, array $context = [] ) {
  * @param int $callerOffset How far up the call stack is the original
  *    caller. 2 = function that called the function that called
  *    wfDeprecated (Added in 1.20).
+ *
+ * @throws Exception If the MediaWiki version number is not a string or boolean.
  */
 function wfDeprecated( $function, $version = false, $component = false, $callerOffset = 2 ) {
-	MWDebug::deprecated( $function, $version, $component, $callerOffset + 1 );
+	if ( is_string( $version ) || is_bool( $version ) ) {
+		MWDebug::deprecated( $function, $version, $component, $callerOffset + 1 );
+	} else {
+		throw new Exception(
+			"MediaWiki version must either be a string or a boolean. " .
+			"Example valid version: '1.33'"
+		);
+	}
 }
 
 /**
