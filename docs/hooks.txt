@@ -3200,6 +3200,10 @@ $request: WebRequest object for getting the value provided by the current user
 &$oldTitle: old title (object)
 &$newTitle: new title (object)
 
+'SpecialMuteModifyFormFields': Add more fields to Special:Mute
+$sp: SpecialPage object, for context
+&$fields: Current HTMLForm fields descriptors
+
 'SpecialNewpagesConditions': Called when building sql query for
 Special:NewPages.
 &$special: NewPagesPager object (subclass of ReverseChronologicalPager)

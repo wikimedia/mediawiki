@@ -28,6 +28,8 @@ use MediaWiki\Preferences\MultiUsernameFilter;
  */
 class SpecialMute extends FormSpecialPage {
 
+	const PAGE_NAME = 'Mute';
+
 	/** @var User */
 	private $target;
 
@@ -51,7 +53,7 @@ class SpecialMute extends FormSpecialPage {
 
 		$this->centralIdLookup = CentralIdLookup::factory();
 
-		parent::__construct( 'Mute', '', false );
+		parent::__construct( self::PAGE_NAME, '', false );
 	}
 
 	/**
@@ -66,7 +68,7 @@ class SpecialMute extends FormSpecialPage {
 		parent::execute( $par );
 
 		$out = $this->getOutput();
-		$out->addModules( 'mediawiki.special.pageLanguage' );
+		$out->addModules( 'mediawiki.misc-authed-ooui' );
 	}
 
 	/**
@@ -97,10 +99,12 @@ class SpecialMute extends FormSpecialPage {
 	 * @return bool
 	 */
 	public function onSubmit( array $data, HTMLForm $form = null ) {
-		if ( !empty( $data['MuteEmail'] ) ) {
-			$this->muteEmailsFromTarget();
-		} else {
-			$this->unmuteEmailsFromTarget();
+		foreach ( $data as $userOption => $value ) {
+			if ( $value ) {
+				$this->muteTarget( $userOption );
+			} else {
+				$this->unmuteTarget( $userOption );
+			}
 		}
 
 		return true;
@@ -114,10 +118,12 @@ class SpecialMute extends FormSpecialPage {
 	}
 
 	/**
-	 * Un-mute emails from target
+	 * Un-mute target
+	 *
+	 * @param string $userOption up_property key that holds the blacklist
 	 */
-	private function unmuteEmailsFromTarget() {
-		$blacklist = $this->getBlacklist();
+	private function unmuteTarget( $userOption ) {
+		$blacklist = $this->getBlacklist( $userOption );
 
 		$key = array_search( $this->targetCentralId, $blacklist );
 		if ( $key !== false ) {
@@ -125,24 +131,25 @@ class SpecialMute extends FormSpecialPage {
 			$blacklist = implode( "\n", $blacklist );
 
 			$user = $this->getUser();
-			$user->setOption( 'email-blacklist', $blacklist );
+			$user->setOption( $userOption, $blacklist );
 			$user->saveSettings();
 		}
 	}
 
 	/**
-	 * Mute emails from target
+	 * Mute target
+	 * @param string $userOption up_property key that holds the blacklist
 	 */
-	private function muteEmailsFromTarget() {
+	private function muteTarget( $userOption ) {
 		// avoid duplicates just in case
-		if ( !$this->isTargetBlacklisted() ) {
-			$blacklist = $this->getBlacklist();
+		if ( !$this->isTargetBlacklisted( $userOption ) ) {
+			$blacklist = $this->getBlacklist( $userOption );
 
 			$blacklist[] = $this->targetCentralId;
 			$blacklist = implode( "\n", $blacklist );
 
 			$user = $this->getUser();
-			$user->setOption( 'email-blacklist', $blacklist );
+			$user->setOption( $userOption, $blacklist );
 			$user->saveSettings();
 		}
 	}
@@ -150,30 +157,38 @@ class SpecialMute extends FormSpecialPage {
 	/**
 	 * @inheritDoc
 	 */
-	protected function alterForm( HTMLForm $form ) {
+	protected function getForm() {
+		$form = parent::getForm();
 		$form->setId( 'mw-specialmute-form' );
 		$form->setHeaderText( $this->msg( 'specialmute-header', $this->target )->parse() );
 		$form->setSubmitTextMsg( 'specialmute-submit' );
 		$form->setSubmitID( 'save' );
+
+		return $form;
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	protected function getFormFields() {
-		if ( !$this->enableUserEmailBlacklist || !$this->enableUserEmail ) {
-			throw new ErrorPageError( 'specialmute', 'specialmute-error-email-blacklist-disabled' );
+		$fields = [];
+		if (
+			$this->enableUserEmailBlacklist &&
+			$this->enableUserEmail &&
+			$this->getUser()->getEmailAuthenticationTimestamp()
+		) {
+			$fields['email-blacklist'] = [
+				'type' => 'check',
+				'label-message' => 'specialmute-label-mute-email',
+				'default' => $this->isTargetBlacklisted( 'email-blacklist' ),
+			];
 		}
 
-		if ( !$this->getUser()->getEmailAuthenticationTimestamp() ) {
-			throw new ErrorPageError( 'specialmute', 'specialmute-error-email-preferences' );
-		}
+		Hooks::run( 'SpecialMuteModifyFormFields', [ $this, &$fields ] );
 
-		$fields['MuteEmail'] = [
-			'type' => 'check',
-			'label-message' => 'specialmute-label-mute-email',
-			'default' => $this->isTargetBlacklisted(),
-		];
+		if ( count( $fields ) == 0 ) {
+			throw new ErrorPageError( 'specialmute', 'specialmute-error-no-options' );
+		}
 
 		return $fields;
 	}
@@ -192,18 +207,20 @@ class SpecialMute extends FormSpecialPage {
 	}
 
 	/**
+	 * @param string $userOption
 	 * @return bool
 	 */
-	private function isTargetBlacklisted() {
-		$blacklist = $this->getBlacklist();
-		return in_array( $this->targetCentralId, $blacklist );
+	public function isTargetBlacklisted( $userOption ) {
+		$blacklist = $this->getBlacklist( $userOption );
+		return in_array( $this->targetCentralId, $blacklist, true );
 	}
 
 	/**
+	 * @param string $userOption
 	 * @return array
 	 */
-	private function getBlacklist() {
-		$blacklist = $this->getUser()->getOption( 'email-blacklist' );
+	private function getBlacklist( $userOption ) {
+		$blacklist = $this->getUser()->getOption( $userOption );
 		if ( !$blacklist ) {
 			return [];
 		}
