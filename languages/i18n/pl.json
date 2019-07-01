@@ -3902,7 +3902,7 @@
 	"specialmute-error-invalid-user": "Pożądana nazwa użytkownika nie została odnaleziona.",
 	"specialmute-error-email-blacklist-disabled": "Ignorowanie e-maili od użytkowników nie jest włączone.",
 	"specialmute-error-email-preferences": "Musisz potwierdzić swój adres e-mail zanim będziesz {{GENDER:|mógł|mogła}} ignorować użytkownika. Możesz to zrobić w [[Special:Preferences|preferencjach]].",
-	"specialmute-email-footer": "[$1 Zarządzaj preferencjami ignorowania dla {{BIDI:$2}}.]",
+	"specialmute-email-footer": "Aby zarządzać preferencjami ignorowania dla {{BIDI:$2}} odwiedź <$1>.",
 	"specialmute-login-required": "Zaloguj się, aby zmienić swoje preferencje wyignorowania.",
 	"revid": "wersja $1",
 	"pageid": "ID strony: $1",

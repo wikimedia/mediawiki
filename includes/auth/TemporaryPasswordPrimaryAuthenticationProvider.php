@@ -206,7 +206,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		list( $db, $options ) = \DBAccessObjectUtils::getDBOptions( $flags );
 		return (bool)wfGetDB( $db )->selectField(
 			[ 'user' ],
-			[ 'user_id' ],
+			'user_id',
 			[ 'user_name' => $username ],
 			__METHOD__,
 			$options

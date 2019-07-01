@@ -24,7 +24,8 @@
 			"Blakegripling ph",
 			"LR Guanzon",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"Shirayuki"
 		]
 	},
 	"tog-underline": "Pagsasalungguhit ng kawing:",
@@ -2329,7 +2330,7 @@
 	"metadata-expand": "Ipakita ang karugtong na mga detalye",
 	"metadata-collapse": "Itago ang karugtong na mga detalye",
 	"metadata-fields": "Ang mga hanay ng pook ng metadatos ng larawan na nakatala sa mensaheng ito ay masasama sa ipinapakitang pahina ng larawan kapag tumiklop ang tabla ng metadatos.\nLikas na nakatakdang itago ang iba pa.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
-	"metadata-langitem": "'''$2:''' $1",
+	"metadata-langitem": "<strong>$2:</strong> $1",
 	"metadata-langitem-default": "$1",
 	"namespacesall": "lahat",
 	"monthsall": "lahat",

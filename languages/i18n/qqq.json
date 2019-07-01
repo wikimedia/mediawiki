@@ -2472,7 +2472,7 @@
 	"listgrouprights-members": "Used on [[Special:ListGroupRights]] and [[Special:Statistics]] as a link to [[Special:ListUsers|Special:ListUsers/\"group\"]], a list of members in that group.",
 	"listgrouprights-right-display": "{{optional}}\nParameters:\n* $1 - the text from the \"right-...\" messages, i.e. {{msg-mw|Right-edit}}\n* $2 - the codename of this right",
 	"listgrouprights-right-revoked": "{{optional}}\nParameters:\n* $1 - the text from the \"right-...\" messages, i.e. {{msg-mw|Right-edit}}\n* $2 - the codename of this right",
-	"listgrouprights-addgroup": "This is an individual right for groups, used on [[Special:ListGroupRights]].\n* $1 - an enumeration of group names\n* $2 - the number of group names in $1\nSee also:\n* {{msg-mw|listgrouprights-removegroup}}\n{{Related|Listgrouprights}}",
+	"listgrouprights-addgroup": "This is the individual right to add users to groups, used on [[Special:ListGroupRights]].\n* $1 - an enumeration of group names\n* $2 - the number of group names in $1\nSee also:\n* {{msg-mw|listgrouprights-removegroup}}\n{{Related|Listgrouprights}}",
 	"listgrouprights-removegroup": "This is an individual right for groups, used on [[Special:ListGroupRights]].\n* $1 - an enumeration of group names\n* $2 - the number of group names in $1\nSee also:\n* {{msg-mw|listgrouprights-addgroup}}",
 	"listgrouprights-addgroup-all": "Used on [[Special:ListGroupRights]].\n{{Related|Listgrouprights}}",
 	"listgrouprights-removegroup-all": "Used on [[Special:ListGroupRights]].\n{{Related|Listgrouprights}}",

@@ -3936,6 +3936,8 @@
 	"edit-error-long": "错误：\n\n$1",
 	"specialmute": "屏蔽",
 	"specialmute-submit": "确认",
+	"specialmute-label-mute-email": "屏蔽该用户的邮件",
+	"specialmute-error-invalid-user": "未找到您请求的用户名。",
 	"revid": "修订版本$1",
 	"pageid": "页面ID$1",
 	"interfaceadmin-info": "$1\n\n编辑全站CSS/JS/JSON文件的权限刚刚从<code>editinterface</code>权限中拆分。如果您不知道为何收到此错误，请参见[[mw:MediaWiki_1.32/interface-admin]]。",

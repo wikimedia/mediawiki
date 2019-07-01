@@ -79,7 +79,8 @@
 			"Esk78",
 			"Vlad5250",
 			"Олександр М.",
-			"Gzhegozh"
+			"Gzhegozh",
+			"Shirayuki"
 		]
 	},
 	"tog-underline": "Підкреслювання посилань:",
@@ -3157,7 +3158,7 @@
 	"metadata-expand": "Показати додаткові дані",
 	"metadata-collapse": "Приховати додаткові дані",
 	"metadata-fields": "Поля метаданих зображення, перелічені в наступному списку, будуть відображатись на сторінці опису зображення при згорнутій таблиці метаданих. Решта полів будуть приховані за замовчуванням.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
-	"metadata-langitem": "'''$2:''' $1",
+	"metadata-langitem": "<strong>$2:</strong> $1",
 	"metadata-langitem-default": "$1",
 	"namespacesall": "всі",
 	"monthsall": "всі",

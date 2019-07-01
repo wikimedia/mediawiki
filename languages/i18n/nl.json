@@ -3874,7 +3874,7 @@
 	"specialmute-error-invalid-user": "De ingevoerde gebruikersnaam kon niet worden gevonden.",
 	"specialmute-error-email-blacklist-disabled": "Het negeren van e-mails verstuurd door andere gebruikers is niet ingeschakeld.",
 	"specialmute-error-email-preferences": "U moet uw e-mailadres bevestigen voordat u een gebruiker kunt negeren. U kunt dit doen in [[Special:Preferences|uw voorkeuren]].",
-	"specialmute-email-footer": "[$1 E-mail voorkeuren beheren voor {{BIDI:$2}}.]",
+	"specialmute-email-footer": "Om uw e-mailvoorkeuren voor {{BIDI:$2}} te beheren gaat u naar <$1>.",
 	"specialmute-login-required": "U moet aanmelden om voorkeuren voor het negeren van gebruikers in te stellen.",
 	"revid": "versie $1",
 	"pageid": "Pagina-ID $1",

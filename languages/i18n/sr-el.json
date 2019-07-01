@@ -32,7 +32,8 @@
 			"Acamicamacaraca",
 			"Fitoschido",
 			"BadDog",
-			"Vlad5250"
+			"Vlad5250",
+			"Shirayuki"
 		]
 	},
 	"tog-underline": "Podvlačenje veza:",
@@ -3029,7 +3030,7 @@
 	"metadata-expand": "Prikaži detalje",
 	"metadata-collapse": "Sakrij dodatne detalje",
 	"metadata-fields": "Polja za metapodatke slike navedena u ovoj poruci će biti uključena na stranici za slike kada se skupi tabela metapodataka. Ostala polja će biti sakrivena po podrazumevanim postavkama.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
-	"metadata-langitem": "'''$2:''' $1",
+	"metadata-langitem": "<strong>$2:</strong> $1",
 	"metadata-langitem-default": "$1",
 	"namespacesall": "svi",
 	"monthsall": "sve",
