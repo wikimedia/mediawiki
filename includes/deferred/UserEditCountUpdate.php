@@ -95,7 +95,7 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 				}
 				$newCount = (int)$dbw->selectField(
 					'user',
-					[ 'user_editcount' ],
+					'user_editcount',
 					[ 'user_id' => $userId ],
 					$fname
 				);
