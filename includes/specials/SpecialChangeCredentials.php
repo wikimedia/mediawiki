@@ -49,27 +49,6 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 		return $params;
 	}
 
-	public function onAuthChangeFormFields(
-		array $requests, array $fieldInfo, array &$formDescriptor, $action
-	) {
-		// This method is never called for remove actions.
-
-		$extraFields = [];
-		Hooks::run( 'ChangePasswordForm', [ &$extraFields ], '1.27' );
-		foreach ( $extraFields as $extra ) {
-			list( $name, $label, $type, $default ) = $extra;
-			$formDescriptor[$name] = [
-				'type' => $type,
-				'name' => $name,
-				'label-message' => $label,
-				'default' => $default,
-			];
-
-		}
-
-		return parent::onAuthChangeFormFields( $requests, $fieldInfo, $formDescriptor, $action );
-	}
-
 	public function execute( $subPage ) {
 		$this->setHeaders();
 		$this->outputHeader();

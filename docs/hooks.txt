@@ -944,12 +944,6 @@ No return data is accepted; this hook is for auditing only.
 $req: AuthenticationRequest object describing the change (and target user)
 $status: StatusValue with the result of the action
 
-'ChangePasswordForm': DEPRECATED since 1.27! Use AuthChangeFormFields or
-security levels. For extensions that need to add a field to the ChangePassword
-form via the Preferences form.
-&$extraFields: An array of arrays that hold fields like would be passed to the
-  pretty function.
-
 'ChangesListInitRows': Batch process change list rows prior to rendering.
 $changesList: ChangesList instance
 $rows: The data that will be rendered. May be a \Wikimedia\Rdbms\IResultWrapper
