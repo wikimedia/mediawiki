@@ -391,27 +391,30 @@ class LanguageConverter {
 		   IMPORTANT: Beware of failure from pcre.backtrack_limit (T124404).
 		   Minimize use of backtracking where possible.
 		*/
-		$marker = '|' . Parser::MARKER_PREFIX . '[^\x7f]++\x7f';
+		static $reg;
+		if ( $reg === null ) {
+			$marker = '|' . Parser::MARKER_PREFIX . '[^\x7f]++\x7f';
 
-		// this one is needed when the text is inside an HTML markup
-		$htmlfix = '|<[^>\004]++(?=\004$)|^[^<>]*+>';
+			// this one is needed when the text is inside an HTML markup
+			$htmlfix = '|<[^>\004]++(?=\004$)|^[^<>]*+>';
 
-		// Optimize for the common case where these tags have
-		// few or no children. Thus try and possesively get as much as
-		// possible, and only engage in backtracking when we hit a '<'.
+			// Optimize for the common case where these tags have
+			// few or no children. Thus try and possesively get as much as
+			// possible, and only engage in backtracking when we hit a '<'.
 
-		// disable convert to variants between <code> tags
-		$codefix = '<code>[^<]*+(?:(?:(?!<\/code>).)[^<]*+)*+<\/code>|';
-		// disable conversion of <script> tags
-		$scriptfix = '<script[^>]*+>[^<]*+(?:(?:(?!<\/script>).)[^<]*+)*+<\/script>|';
-		// disable conversion of <pre> tags
-		$prefix = '<pre[^>]*+>[^<]*+(?:(?:(?!<\/pre>).)[^<]*+)*+<\/pre>|';
-		// The "|.*+)" at the end, is in case we missed some part of html syntax,
-		// we will fail securely (hopefully) by matching the rest of the string.
-		$htmlFullTag = '<(?:[^>=]*+(?>[^>=]*+=\s*+(?:"[^"]*"|\'[^\']*\'|[^\'">\s]*+))*+[^>=]*+>|.*+)|';
+			// disable convert to variants between <code> tags
+			$codefix = '<code>[^<]*+(?:(?:(?!<\/code>).)[^<]*+)*+<\/code>|';
+			// disable conversion of <script> tags
+			$scriptfix = '<script[^>]*+>[^<]*+(?:(?:(?!<\/script>).)[^<]*+)*+<\/script>|';
+			// disable conversion of <pre> tags
+			$prefix = '<pre[^>]*+>[^<]*+(?:(?:(?!<\/pre>).)[^<]*+)*+<\/pre>|';
+			// The "|.*+)" at the end, is in case we missed some part of html syntax,
+			// we will fail securely (hopefully) by matching the rest of the string.
+			$htmlFullTag = '<(?:[^>=]*+(?>[^>=]*+=\s*+(?:"[^"]*"|\'[^\']*\'|[^\'">\s]*+))*+[^>=]*+>|.*+)|';
 
-		$reg = '/' . $codefix . $scriptfix . $prefix . $htmlFullTag .
-			'&[a-zA-Z#][a-z0-9]++;' . $marker . $htmlfix . '|\004$/s';
+			$reg = '/' . $codefix . $scriptfix . $prefix . $htmlFullTag .
+				 '&[a-zA-Z#][a-z0-9]++;' . $marker . $htmlfix . '|\004$/s';
+		}
 		$startPos = 0;
 		$sourceBlob = '';
 		$literalBlob = '';
