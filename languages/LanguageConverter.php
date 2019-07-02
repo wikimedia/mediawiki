@@ -426,8 +426,9 @@ class LanguageConverter {
 
 		// We add a marker (\004) at the end of text, to ensure we always match the
 		// entire text (Otherwise, pcre.backtrack_limit might cause silent failure)
+		$textWithMarker = $text . "\004";
 		while ( $startPos < strlen( $text ) ) {
-			if ( preg_match( $reg, $text . "\004", $markupMatches, PREG_OFFSET_CAPTURE, $startPos ) ) {
+			if ( preg_match( $reg, $textWithMarker, $markupMatches, PREG_OFFSET_CAPTURE, $startPos ) ) {
 				$elementPos = $markupMatches[0][1];
 				$element = $markupMatches[0][0];
 				if ( $element === "\004" ) {
