@@ -32,38 +32,62 @@ class ReleaseNotesTest extends MediaWikiTestCase {
 		foreach ( $notesFiles as $index => $fileName ) {
 			$this->assertFileLength( "Release Notes", $fileName );
 		}
+	}
 
-		// Also test the README and similar files
-		$otherFiles = [
-			"$IP/COPYING",
-			"$IP/FAQ",
-			"$IP/HISTORY",
-			"$IP/INSTALL",
-			"$IP/README",
-			"$IP/SECURITY"
+	public static function provideFilesAtRoot() {
+		global $IP;
+
+		$rootFiles = [
+			"COPYING",
+			"FAQ",
+			"HISTORY",
+			"INSTALL",
+			"README",
+			"SECURITY",
 		];
 
-		foreach ( $otherFiles as $index => $fileName ) {
-			$this->assertFileLength( "Help", $fileName );
+		$testCases = [];
+		foreach ( $rootFiles as $rootFile ) {
+			$testCases["$rootFile file"] = [ "$IP/$rootFile" ];
 		}
+		return $testCases;
+	}
+
+	/**
+	 * @dataProvider provideFilesAtRoot
+	 * @coversNothing
+	 */
+	public function testRootFilesHaveProperLineLength( $fileName ) {
+		$this->assertFileLength( "Help", $fileName );
 	}
 
 	private function assertFileLength( $type, $fileName ) {
-		$file = file( $fileName, FILE_IGNORE_NEW_LINES );
+		$lines = file( $fileName, FILE_IGNORE_NEW_LINES );
 
-		$this->assertFalse(
-			!$file,
+		$this->assertNotFalse(
+			$lines,
 			"$type file '$fileName' is inaccessible."
 		);
 
-		foreach ( $file as $i => $line ) {
+		$errors = [];
+		foreach ( $lines as $i => $line ) {
 			$num = $i + 1;
-			$this->assertLessThanOrEqual(
-				// FILE_IGNORE_NEW_LINES drops the \n at the EOL, so max length is 80 not 81.
-				80,
-				mb_strlen( $line ),
-				"$type file '$fileName' line $num, is longer than 80 chars:\n\t'$line'"
-			);
+
+			// FILE_IGNORE_NEW_LINES drops the \n at the EOL, so max length is 80 not 81.
+			$max_length = 80;
+
+			$length = mb_strlen( $line );
+			if ( $length <= $max_length ) {
+				continue;
+			}
+			$errors[] = "line $num: length $length > $max_length:\n$line";
 		}
+		# Use assertSame() instead of assertEqual(), to show the full line in the diff
+		$this->assertSame(
+			[],
+			$errors,
+			"$type file '$fileName' lines " .
+			"have at most $max_length characters"
+		);
 	}
 }
