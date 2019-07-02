@@ -27,7 +27,7 @@
  *
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class CachingSiteStoreTest extends MediaWikiTestCase {
+class CachingSiteStoreTest extends \MediaWikiUnitTestCase {
 
 	/**
 	 * @covers CachingSiteStore::getSites

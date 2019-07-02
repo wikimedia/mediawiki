@@ -7,12 +7,11 @@ use GuzzleHttp\Psr7\Uri;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
-use MediaWikiTestCase;
 
 /**
  * @covers \MediaWiki\Rest\Handler\HelloHandler
  */
-class HelloHandlerTest extends MediaWikiTestCase {
+class HelloHandlerTest extends \MediaWikiUnitTestCase {
 	public static function provideTestViaRouter() {
 		return [
 			'normal' => [

@@ -6,7 +6,6 @@ use EmptyBagOStuff;
 use GuzzleHttp\Psr7\Uri;
 use GuzzleHttp\Psr7\Stream;
 use MediaWiki\Rest\Handler;
-use MediaWikiTestCase;
 use MediaWiki\Rest\EntryPoint;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\ResponseFactory;
@@ -17,7 +16,7 @@ use WebResponse;
  * @covers \MediaWiki\Rest\EntryPoint
  * @covers \MediaWiki\Rest\Router
  */
-class EntryPointTest extends MediaWikiTestCase {
+class EntryPointTest extends \MediaWikiUnitTestCase {
 	private static $mockHandler;
 
 	private function createRouter() {
