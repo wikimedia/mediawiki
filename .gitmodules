@@ -777,11 +777,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-PageForms
 	branch = REL1_33
 	ignore = dirty
-[submodule "skins/DarkVector"]
-	path = skins/DarkVector
-	url = https://github.com/dolfinus/DarkVector
-	branch = master
-	ignore = dirty
 [submodule "skins/Timeless"]
 	path = skins/Timeless
 	url = https://github.com/wikimedia/mediawiki-skins-Timeless
