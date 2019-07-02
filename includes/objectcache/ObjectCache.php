@@ -382,6 +382,7 @@ class ObjectCache {
 	 * @deprecated Since 1.28 Use MediaWikiServices::getInstance()->getMainObjectStash()
 	 */
 	public static function getMainStashInstance() {
+		wfDeprecated( __METHOD__, '1.28' );
 		return MediaWikiServices::getInstance()->getMainObjectStash();
 	}
 
