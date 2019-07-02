@@ -3,12 +3,12 @@
 /**
  * @group Media
  */
-class GIFMetadataExtractorTest extends MediaWikiTestCase {
+class GIFMetadataExtractorTest extends \MediaWikiUnitTestCase {
 
 	protected function setUp() {
 		parent::setUp();
 
-		$this->mediaPath = __DIR__ . '/../../data/media/';
+		$this->mediaPath = __DIR__ . '/../../../data/media/';
 	}
 
 	/**
