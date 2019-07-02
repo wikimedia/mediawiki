@@ -4197,7 +4197,7 @@
 	"edit-error-short": "Error: $1",
 	"edit-error-long": "Errors:\n\n$1",
 	"specialmute": "Mute",
-	"specialmute-success": "Your mute preferences have been successfully updated. See all muted users in [[Special:Preferences]].",
+	"specialmute-success": "Your mute preferences have been updated. See all muted users in [[Special:Preferences|your preferences]].",
 	"specialmute-submit": "Confirm",
 	"specialmute-label-mute-email": "Mute emails from this user",
 	"specialmute-header": "Please select your mute preferences for {{BIDI:[[User:$1]]}}.",
