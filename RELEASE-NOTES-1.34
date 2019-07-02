@@ -258,6 +258,8 @@ because of Phabricator reports.
   all deprecated in 1.25 and ignored, have been removed.
 * The API module method getDescriptionMessage(), deprecated in 1.30, has been
   removed.
+* The JavaScript global variable wgLoadScript has been removed. Use
+  mw.util.wikiScript( 'load' ) instead.
 * …
 
 === Deprecations in 1.34 ===

@@ -70,7 +70,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		// Build list of variables
 		$skin = $context->getSkin();
 		$vars = [
-			'wgLoadScript' => $conf->get( 'LoadScript' ),
 			'debug' => $context->getDebug(),
 			'skin' => $skin,
 			'stylepath' => $conf->get( 'StylePath' ),
