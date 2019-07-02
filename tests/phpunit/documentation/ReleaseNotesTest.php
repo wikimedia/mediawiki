@@ -46,11 +46,9 @@ class ReleaseNotesTest extends MediaWikiTestCase {
 			"SECURITY",
 		];
 
-		$testCases = [];
 		foreach ( $rootFiles as $rootFile ) {
-			$testCases["$rootFile file"] = [ "$IP/$rootFile" ];
+			yield "$rootFile file" => [ "$IP/$rootFile" ];
 		}
-		return $testCases;
 	}
 
 	/**
@@ -82,9 +80,10 @@ class ReleaseNotesTest extends MediaWikiTestCase {
 			}
 			$errors[] = "line $num: length $length > $max_length:\n$line";
 		}
-		# Using assertSame() to show the full line
+		# Use assertSame() instead of assertEqual(), to show the full line in the diff
 		$this->assertSame(
-			[], $errors,
+			[],
+			$errors,
 			"$type file '$fileName' lines " .
 			"have at most $max_length characters"
 		);
