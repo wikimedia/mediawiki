@@ -29,7 +29,7 @@ Some specific notes for MediaWiki 1.33 upgrades are below:
 
 For notes on 1.32.x and older releases, see HISTORY.
 
-=== Changes since MediaWiki 1.32.0-rc.0 ===
+=== Changes since MediaWiki 1.33.0-rc.0 ===
 * (T225558) Update installer link to PHP intl.
 * (T225901) Only attempt to deduplicate if there is data in archive and revision
   tables.
