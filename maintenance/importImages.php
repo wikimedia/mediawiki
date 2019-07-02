@@ -129,7 +129,7 @@ class ImportImages extends Maintenance {
 
 		$processed = $added = $ignored = $skipped = $overwritten = $failed = 0;
 
-		$this->output( "Import Images\n\n" );
+		$this->output( "Importing Files\n\n" );
 
 		$dir = $this->getArg( 0 );
 
