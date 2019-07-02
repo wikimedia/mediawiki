@@ -141,9 +141,7 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 			}
 
 			if ( $any ) {
-				$this->getOutput()->addModules( [
-					'mediawiki.special.changecredentials.js'
-				] );
+				$this->getOutput()->addModules( 'mediawiki.misc-authed-ooui' );
 			}
 
 			return $descriptor;
