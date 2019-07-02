@@ -3569,14 +3569,6 @@ $props: (array|null) File properties, as returned by
   MessageSpecifier instance (you might want to use ApiMessage to provide machine
   -readable details for the API).
 
-'UploadVerification': DEPRECATED since 1.28! Use UploadVerifyFile instead.
-Additional chances to reject an uploaded file.
-$saveName: (string) destination file name
-$tempName: (string) filesystem path to the temporary file for checks
-&$error: (string) output: message key for message to show if upload canceled by
-  returning false. May also be an array, where the first element is the message
-  key and the remaining elements are used as parameters to the message.
-
 'UploadVerifyFile': extra file verification, based on MIME type, etc. Preferred
 in most cases over UploadVerification.
 $upload: (object) an instance of UploadBase, with all info about the upload

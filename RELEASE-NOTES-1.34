@@ -305,6 +305,8 @@ because of Phabricator reports.
   deprecated since 1.33.
 * The static properties mw.Api.errors and mw.Api.warnings, deprecated in 1.29,
   have been removed.
+* The UploadVerification hook, deprecated in 1.28, has been removed. Instead,
+  use the UploadVerifyFile hook.
 * …
 
 === Deprecations in 1.34 ===
