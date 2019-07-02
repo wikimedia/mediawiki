@@ -13,7 +13,6 @@ use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\SqlBlobStore;
-use MediaWikiTestCase;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use WANObjectCache;
@@ -21,7 +20,7 @@ use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 
-class RevisionStoreFactoryTest extends MediaWikiTestCase {
+class RevisionStoreFactoryTest extends \MediaWikiUnitTestCase {
 
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStoreFactory::__construct
