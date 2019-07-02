@@ -3626,7 +3626,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Actually run any "atomic section cancel" callbacks.
 	 *
 	 * @param int $trigger IDatabase::TRIGGER_* constant
-	 * @param AtomicSectionIdentifier[]|null $sectionId Section IDs to cancel,
+	 * @param AtomicSectionIdentifier[]|null $sectionIds Section IDs to cancel,
 	 *  null on transaction rollback
 	 */
 	private function runOnAtomicSectionCancelCallbacks(
