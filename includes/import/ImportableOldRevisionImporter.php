@@ -1,7 +1,7 @@
 <?php
 
 use Psr\Log\LoggerInterface;
-use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * @since 1.31
@@ -19,19 +19,19 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 	private $doUpdates;
 
 	/**
-	 * @var LoadBalancer
+	 * @var ILoadBalancer
 	 */
 	private $loadBalancer;
 
 	/**
 	 * @param bool $doUpdates
 	 * @param LoggerInterface $logger
-	 * @param LoadBalancer $loadBalancer
+	 * @param ILoadBalancer $loadBalancer
 	 */
 	public function __construct(
 		$doUpdates,
 		LoggerInterface $logger,
-		LoadBalancer $loadBalancer
+		ILoadBalancer $loadBalancer
 	) {
 		$this->doUpdates = $doUpdates;
 		$this->logger = $logger;
