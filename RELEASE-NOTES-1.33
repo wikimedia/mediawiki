@@ -61,7 +61,7 @@ For notes on 1.32.x and older releases, see HISTORY.
   password is not in the large blacklist. This is enabled by default for the
   built-in user groups bureaucrat, sysop, interface-admin, and bot. To configure
   this for other user groups, set the `PasswordNotInLargeBlacklist` flag `true`.
-* wgPasswordDefault – There is a new password type configuration using Argon2
+* $wgPasswordDefault – There is a new password type configuration using Argon2
   password hashing (which requires PHP 7.2 and above). It's designed to resist
   timing attacks, and (on systems with PHP 7.3+) GPU hacking; if you configure
   argon2 to be used, by default, it will automatically choose the best available
