@@ -722,11 +722,6 @@
 	url = https://github.com/Telshin/Spoilers
 	branch = master
 	ignore = dirty
-[submodule "extensions/Duplicator"]
-	path = extensions/Duplicator
-	url = https://github.com/wikimedia/mediawiki-extensions-Duplicator
-	branch = REL1_33
-	ignore = dirty
 [submodule "extensions/SimpleChanges"]
 	path = extensions/SimpleChanges
 	url = https://github.com/wikimedia/mediawiki-extensions-SimpleChanges
