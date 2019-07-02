@@ -28,7 +28,8 @@
 			"Wxyveronica",
 			"WhitePhosphorus",
 			"科劳",
-			"SolidBlock"
+			"SolidBlock",
+			"神樂坂秀吉"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|文档]]\n* [[mw:Special:MyLanguage/API:FAQ|常见问题]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 邮件列表]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 程序错误与功能请求]\n</div>\n<strong>状态信息：</strong>MediaWiki API是一个成熟稳定的，不断受到支持和改进的界面。尽管我们尽力避免，但偶尔也需要作出重大更新；请订阅[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 邮件列表]以便获得更新通知。\n\n<strong>错误请求：</strong>当API收到错误请求时，HTTP header将会返回一个包含\"MediaWiki-API-Error\"的值，随后header的值与error code将会送回并设置为相同的值。详细信息请参阅[[mw:Special:MyLanguage/API:Errors_and_warnings|API：错误与警告]]。\n\n<p class=\"mw-apisandbox-link\"><strong>测试中：</strong>测试API请求的易用性，请参见[[Special:ApiSandbox]]。</p>",
@@ -308,7 +309,7 @@
 	"apihelp-opensearch-param-warningsaserror": "如果警告通过<kbd>format=json</kbd>提升，返回一个API错误而不是忽略它们。",
 	"apihelp-opensearch-example-te": "查找以<kbd>Te</kbd>开头的页面。",
 	"apihelp-options-summary": "更改当前用户的参数设置。",
-	"apihelp-options-extended-description": "只有注册在核心或者已安装扩展中的选项，或者具有<code>userjs-</code>键值前缀（旨在被用户脚本使用）的选项可被设置。",
+	"apihelp-options-extended-description": "只有注册在核心或者已安装扩展中的选项，或者具有<code>userjs-</code>键值前缀（旨在使用于用户脚本）的选项可设置。",
 	"apihelp-options-param-reset": "将参数设置重置为网站默认值。",
 	"apihelp-options-param-resetkinds": "当<var>$1reset</var>选项被设置时，要重置的选项类型列表。",
 	"apihelp-options-param-change": "更改列表，以name=value格式化（例如skin=vector）。如果没提供值（甚至没有等号），例如optionname|otheroption|...，选项将重置为默认值。如果任何传递的值包含管道字符（<kbd>|</kbd>），请改用[[Special:ApiHelp/main#main/datatypes|替代多值分隔符]]以正确操作。",
