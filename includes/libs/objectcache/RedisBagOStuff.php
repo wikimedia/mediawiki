@@ -89,10 +89,12 @@ class RedisBagOStuff extends BagOStuff {
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$casToken = null;
 
-		list( $server, $conn ) = $this->getConnection( $key );
+		$conn = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
 		}
+
+		$e = null;
 		try {
 			$value = $conn->get( $key );
 			$casToken = $value;
@@ -102,16 +104,20 @@ class RedisBagOStuff extends BagOStuff {
 			$this->handleException( $conn, $e );
 		}
 
-		$this->logRequest( 'get', $key, $server, $result );
+		$this->logRequest( 'get', $key, $conn->getServer(), $e );
+
 		return $result;
 	}
 
 	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
-		list( $server, $conn ) = $this->getConnection( $key );
+		$conn = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
 		}
+
 		$ttl = $this->convertToRelative( $exptime );
+
+		$e = null;
 		try {
 			if ( $ttl ) {
 				$result = $conn->setex( $key, $ttl, $this->serialize( $value ) );
@@ -123,52 +129,61 @@ class RedisBagOStuff extends BagOStuff {
 			$this->handleException( $conn, $e );
 		}
 
-		$this->logRequest( 'set', $key, $server, $result );
+		$this->logRequest( 'set', $key, $conn->getServer(), $e );
+
 		return $result;
 	}
 
 	protected function doDelete( $key, $flags = 0 ) {
-		list( $server, $conn ) = $this->getConnection( $key );
+		$conn = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
 		}
+
+		$e = null;
 		try {
-			$conn->delete( $key );
-			// Return true even if the key didn't exist
-			$result = true;
+			// Note that redis does not return false if the key was not there
+			$result = ( $conn->delete( $key ) !== false );
 		} catch ( RedisException $e ) {
 			$result = false;
 			$this->handleException( $conn, $e );
 		}
 
-		$this->logRequest( 'delete', $key, $server, $result );
+		$this->logRequest( 'delete', $key, $conn->getServer(), $e );
+
 		return $result;
 	}
 
 	protected function doGetMulti( array $keys, $flags = 0 ) {
-		$batches = [];
+		/** @var RedisConnRef[]|Redis[] $conns */
 		$conns = [];
+		$batches = [];
 		foreach ( $keys as $key ) {
-			list( $server, $conn ) = $this->getConnection( $key );
-			if ( !$conn ) {
-				continue;
+			$conn = $this->getConnection( $key );
+			if ( $conn ) {
+				$server = $conn->getServer();
+				$conns[$server] = $conn;
+				$batches[$server][] = $key;
 			}
-			$conns[$server] = $conn;
-			$batches[$server][] = $key;
 		}
+
 		$result = [];
 		foreach ( $batches as $server => $batchKeys ) {
 			$conn = $conns[$server];
+
+			$e = null;
 			try {
+				// Avoid mget() to reduce CPU hogging from a single request
 				$conn->multi( Redis::PIPELINE );
 				foreach ( $batchKeys as $key ) {
 					$conn->get( $key );
 				}
 				$batchResult = $conn->exec();
 				if ( $batchResult === false ) {
-					$this->debug( "multi request to $server failed" );
+					$this->logRequest( 'get', implode( ',', $batchKeys ), $server, true );
 					continue;
 				}
+
 				foreach ( $batchResult as $i => $value ) {
 					if ( $value !== false ) {
 						$result[$batchKeys[$i]] = $this->unserialize( $value );
@@ -177,41 +192,47 @@ class RedisBagOStuff extends BagOStuff {
 			} catch ( RedisException $e ) {
 				$this->handleException( $conn, $e );
 			}
+
+			$this->logRequest( 'get', implode( ',', $batchKeys ), $server, $e );
 		}
 
-		$this->debug( "getMulti for " . count( $keys ) . " keys " .
-			"returned " . count( $result ) . " results" );
 		return $result;
 	}
 
-	protected function doSetMulti( array $data, $expiry = 0, $flags = 0 ) {
-		$batches = [];
+	protected function doSetMulti( array $data, $exptime = 0, $flags = 0 ) {
+		/** @var RedisConnRef[]|Redis[] $conns */
 		$conns = [];
+		$batches = [];
 		foreach ( $data as $key => $value ) {
-			list( $server, $conn ) = $this->getConnection( $key );
-			if ( !$conn ) {
-				continue;
+			$conn = $this->getConnection( $key );
+			if ( $conn ) {
+				$server = $conn->getServer();
+				$conns[$server] = $conn;
+				$batches[$server][] = $key;
 			}
-			$conns[$server] = $conn;
-			$batches[$server][] = $key;
 		}
 
-		$expiry = $this->convertToRelative( $expiry );
+		$ttl = $this->convertToRelative( $exptime );
+		$op = $ttl ? 'setex' : 'set';
+
 		$result = true;
 		foreach ( $batches as $server => $batchKeys ) {
 			$conn = $conns[$server];
+
+			$e = null;
 			try {
+				// Avoid mset() to reduce CPU hogging from a single request
 				$conn->multi( Redis::PIPELINE );
 				foreach ( $batchKeys as $key ) {
-					if ( $expiry ) {
-						$conn->setex( $key, $expiry, $this->serialize( $data[$key] ) );
+					if ( $ttl ) {
+						$conn->setex( $key, $ttl, $this->serialize( $data[$key] ) );
 					} else {
 						$conn->set( $key, $this->serialize( $data[$key] ) );
 					}
 				}
 				$batchResult = $conn->exec();
 				if ( $batchResult === false ) {
-					$this->debug( "setMulti request to $server failed" );
+					$this->logRequest( $op, implode( ',', $batchKeys ), $server, true );
 					continue;
 				}
 				$result = $result && !in_array( false, $batchResult, true );
@@ -219,48 +240,106 @@ class RedisBagOStuff extends BagOStuff {
 				$this->handleException( $conn, $e );
 				$result = false;
 			}
+
+			$this->logRequest( $op, implode( ',', $batchKeys ), $server, $e );
 		}
 
 		return $result;
 	}
 
 	protected function doDeleteMulti( array $keys, $flags = 0 ) {
-		$batches = [];
+		/** @var RedisConnRef[]|Redis[] $conns */
 		$conns = [];
+		$batches = [];
 		foreach ( $keys as $key ) {
-			list( $server, $conn ) = $this->getConnection( $key );
-			if ( !$conn ) {
-				continue;
+			$conn = $this->getConnection( $key );
+			if ( $conn ) {
+				$server = $conn->getServer();
+				$conns[$server] = $conn;
+				$batches[$server][] = $key;
 			}
-			$conns[$server] = $conn;
-			$batches[$server][] = $key;
 		}
 
 		$result = true;
 		foreach ( $batches as $server => $batchKeys ) {
 			$conn = $conns[$server];
+
+			$e = null;
 			try {
+				// Avoid delete() with array to reduce CPU hogging from a single request
 				$conn->multi( Redis::PIPELINE );
 				foreach ( $batchKeys as $key ) {
 					$conn->delete( $key );
 				}
 				$batchResult = $conn->exec();
 				if ( $batchResult === false ) {
-					$this->debug( "deleteMulti request to $server failed" );
+					$this->logRequest( 'delete', implode( ',', $batchKeys ), $server, true );
 					continue;
 				}
+				// Note that redis does not return false if the key was not there
 				$result = $result && !in_array( false, $batchResult, true );
 			} catch ( RedisException $e ) {
 				$this->handleException( $conn, $e );
 				$result = false;
 			}
+
+			$this->logRequest( 'delete', implode( ',', $batchKeys ), $server, $e );
+		}
+
+		return $result;
+	}
+
+	public function changeTTLMulti( array $keys, $exptime, $flags = 0 ) {
+		/** @var RedisConnRef[]|Redis[] $conns */
+		$conns = [];
+		$batches = [];
+		foreach ( $keys as $key ) {
+			$conn = $this->getConnection( $key );
+			if ( $conn ) {
+				$server = $conn->getServer();
+				$conns[$server] = $conn;
+				$batches[$server][] = $key;
+			}
+		}
+
+		$relative = $this->expiryIsRelative( $exptime );
+		$op = ( $exptime == 0 ) ? 'persist' : ( $relative ? 'expire' : 'expireAt' );
+
+		$result = true;
+		foreach ( $batches as $server => $batchKeys ) {
+			$conn = $conns[$server];
+
+			$e = null;
+			try {
+				$conn->multi( Redis::PIPELINE );
+				foreach ( $batchKeys as $key ) {
+					if ( $exptime == 0 ) {
+						$conn->persist( $key );
+					} elseif ( $relative ) {
+						$conn->expire( $key, $this->convertToRelative( $exptime ) );
+					} else {
+						$conn->expireAt( $key, $this->convertToExpiry( $exptime ) );
+					}
+				}
+				$batchResult = $conn->exec();
+				if ( $batchResult === false ) {
+					$this->logRequest( $op, implode( ',', $batchKeys ), $server, true );
+					continue;
+				}
+				$result = in_array( false, $batchResult, true ) ? false : $result;
+			} catch ( RedisException $e ) {
+				$this->handleException( $conn, $e );
+				$result = false;
+			}
+
+			$this->logRequest( $op, implode( ',', $batchKeys ), $server, $e );
 		}
 
 		return $result;
 	}
 
 	public function add( $key, $value, $expiry = 0, $flags = 0 ) {
-		list( $server, $conn ) = $this->getConnection( $key );
+		$conn = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
 		}
@@ -277,13 +356,13 @@ class RedisBagOStuff extends BagOStuff {
 			$this->handleException( $conn, $e );
 		}
 
-		$this->logRequest( 'add', $key, $server, $result );
+		$this->logRequest( 'add', $key, $conn->getServer(), $result );
 
 		return $result;
 	}
 
 	public function incr( $key, $value = 1 ) {
-		list( $server, $conn ) = $this->getConnection( $key );
+		$conn = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
 		}
@@ -313,13 +392,13 @@ class RedisBagOStuff extends BagOStuff {
 			$this->handleException( $conn, $e );
 		}
 
-		$this->logRequest( 'incr', $key, $server, $result );
+		$this->logRequest( 'incr', $key, $conn->getServer(), $result );
 
 		return $result;
 	}
 
 	public function incrWithInit( $key, $exptime, $value = 1, $init = 1 ) {
-		list( $server, $conn ) = $this->getConnection( $key );
+		$conn = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
 		}
@@ -333,7 +412,7 @@ class RedisBagOStuff extends BagOStuff {
 			$batchResult = $conn->exec();
 			if ( $batchResult === false ) {
 				$result = false;
-				$this->debug( "incrWithInit request to $server failed" );
+				$this->debug( "incrWithInit request to {$conn->getServer()} failed" );
 			} else {
 				$result = end( $batchResult );
 			}
@@ -342,13 +421,13 @@ class RedisBagOStuff extends BagOStuff {
 			$this->handleException( $conn, $e );
 		}
 
-		$this->logRequest( 'incr', $key, $server, $result );
+		$this->logRequest( 'incr', $key, $conn->getServer(), $result );
 
 		return $result;
 	}
 
 	protected function doChangeTTL( $key, $exptime, $flags ) {
-		list( $server, $conn ) = $this->getConnection( $key );
+		$conn = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
 		}
@@ -357,13 +436,13 @@ class RedisBagOStuff extends BagOStuff {
 		try {
 			if ( $exptime == 0 ) {
 				$result = $conn->persist( $key );
-				$this->logRequest( 'persist', $key, $server, $result );
+				$this->logRequest( 'persist', $key, $conn->getServer(), $result );
 			} elseif ( $relative ) {
 				$result = $conn->expire( $key, $this->convertToRelative( $exptime ) );
-				$this->logRequest( 'expire', $key, $server, $result );
+				$this->logRequest( 'expire', $key, $conn->getServer(), $result );
 			} else {
 				$result = $conn->expireAt( $key, $this->convertToExpiry( $exptime ) );
-				$this->logRequest( 'expireAt', $key, $server, $result );
+				$this->logRequest( 'expireAt', $key, $conn->getServer(), $result );
 			}
 		} catch ( RedisException $e ) {
 			$result = false;
@@ -374,9 +453,8 @@ class RedisBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * Get a Redis object with a connection suitable for fetching the specified key
 	 * @param string $key
-	 * @return array (server, RedisConnRef) or (false, false)
+	 * @return RedisConnRef|Redis|null Redis handle wrapper for the key or null on failure
 	 */
 	protected function getConnection( $key ) {
 		$candidates = array_keys( $this->serverTagMap );
@@ -402,7 +480,9 @@ class RedisBagOStuff extends BagOStuff {
 			// by now in such cases.
 			if ( $this->automaticFailover && $candidates ) {
 				try {
-					if ( $this->getMasterLinkStatus( $conn ) === 'down' ) {
+					/** @var string[] $info */
+					$info = $conn->info();
+					if ( ( $info['master_link_status'] ?? null ) === 'down' ) {
 						// If the master cannot be reached, fail-over to the next server.
 						// If masters are in data-center A, and replica DBs in data-center B,
 						// this helps avoid the case were fail-over happens in A but not
@@ -411,28 +491,17 @@ class RedisBagOStuff extends BagOStuff {
 					}
 				} catch ( RedisException $e ) {
 					// Server is not accepting commands
-					$this->handleException( $conn, $e );
+					$this->redisPool->handleError( $conn, $e );
 					continue;
 				}
 			}
 
-			return [ $server, $conn ];
+			return $conn;
 		}
 
 		$this->setLastError( BagOStuff::ERR_UNREACHABLE );
 
-		return [ false, false ];
-	}
-
-	/**
-	 * Check the master link status of a Redis server that is configured as a replica DB.
-	 * @param RedisConnRef $conn
-	 * @return string|null Master link status (either 'up' or 'down'), or null
-	 *  if the server is not a replica DB.
-	 */
-	protected function getMasterLinkStatus( RedisConnRef $conn ) {
-		$info = $conn->info();
-		return $info['master_link_status'] ?? null;
+		return null;
 	}
 
 	/**
@@ -451,20 +520,19 @@ class RedisBagOStuff extends BagOStuff {
 	 * @param RedisConnRef $conn
 	 * @param RedisException $e
 	 */
-	protected function handleException( RedisConnRef $conn, $e ) {
+	protected function handleException( RedisConnRef $conn, RedisException $e ) {
 		$this->setLastError( BagOStuff::ERR_UNEXPECTED );
 		$this->redisPool->handleError( $conn, $e );
 	}
 
 	/**
 	 * Send information about a single request to the debug log
-	 * @param string $method
-	 * @param string $key
+	 * @param string $op
+	 * @param string $keys
 	 * @param string $server
-	 * @param bool $result
+	 * @param Exception|bool|null $e
 	 */
-	public function logRequest( $method, $key, $server, $result ) {
-		$this->debug( "$method $key on $server: " .
-			( $result === false ? "failure" : "success" ) );
+	public function logRequest( $op, $keys, $server, $e = null ) {
+		$this->debug( "$op($keys) on $server: " . ( $e ? "failure" : "success" ) );
 	}
 }

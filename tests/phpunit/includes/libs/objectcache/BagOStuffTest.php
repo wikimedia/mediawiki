@@ -150,11 +150,14 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$this->assertFalse( $this->cache->get( $key2 ) );
 		$this->assertFalse( $this->cache->get( $key3 ) );
 
-		$this->cache->setMulti( [
-			$key1 => 1,
-			$key2 => 2,
-			$key3 => 3
-		] );
+		$ok = $this->cache->setMulti( [ $key1 => 1, $key2 => 2, $key3 => 3 ] );
+
+		$this->assertTrue( $ok, "setMulti() succeeded" );
+		$this->assertEquals(
+			3,
+			count( $this->cache->getMulti( [ $key1, $key2, $key3 ] ) ),
+			"setMulti() succeeded via getMulti() check"
+		);
 
 		$ok = $this->cache->changeTTLMulti( [ $key1, $key2, $key3 ], 300 );
 		$this->assertTrue( $ok, "TTL bumped for all keys" );
