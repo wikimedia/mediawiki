@@ -63,6 +63,9 @@ $wgPasswordPolicy['policies']['default']['PasswordNotInLargeBlacklist'] = false;
 * Introduced $wgVerifyMimeTypeIE to allow disabling the MSIE 6/7 file type
   detection heuristic on upload, which is more conservative than the checks
   that were changed above.
+* $wgExternalDiffEngine — Setting this to a string value of 'wikidiff',
+  'wikidiff2', or 'wikidiff3' will no longer work. This legacy behaviour was
+  deprecated in MediaWiki 1.27, 1.32, and 1.27, respectively.
 * $wgSkipSkin — Setting this instead of $wgSkipSkins, deprecated in 1.23, is now
   hard-deprecated.
 * $wgLocalInterwiki — Setting this instead of $wgLocalInterwikis, deprecated in

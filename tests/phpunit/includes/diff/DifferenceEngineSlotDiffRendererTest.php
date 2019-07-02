@@ -33,12 +33,4 @@ class DifferenceEngineSlotDiffRendererTest extends MediaWikiIntegrationTestCase 
 		$slotDiffRenderer = new DifferenceEngineSlotDiffRenderer( $differenceEngine );
 		$slotDiffRenderer->addModules( $output );
 	}
-
-	public function testGetExtraCacheKeys() {
-		$differenceEngine = new CustomDifferenceEngine();
-		$slotDiffRenderer = new DifferenceEngineSlotDiffRenderer( $differenceEngine );
-		$extraCacheKeys = $slotDiffRenderer->getExtraCacheKeys();
-		$this->assertSame( [ 'foo' ], $extraCacheKeys );
-	}
-
 }
