@@ -1,15 +1,6 @@
-= MediaWiki 1.33 =
+== MediaWiki 1.33 ==
 
-THIS IS NOT A RELEASE YET
-
-MediaWiki 1.33 is a pre-release testing branch, and is not recommended for use
-in production.
-
-=== Changes since MediaWiki 1.32.0-rc.0 ===
-
-== MediaWiki 1.33.0-rc.0 ==
-
-== Upgrading notes for 1.33 ==
+=== Upgrading notes for 1.33 ===
 1.33 has several database changes since 1.32, and will not work without schema
 updates. Note that due to changes to some very large tables like the revision
 table, the schema update may take quite long (minutes on a medium sized site,
@@ -38,6 +29,18 @@ Some specific notes for MediaWiki 1.33 upgrades are below:
 
 For notes on 1.32.x and older releases, see HISTORY.
 
+=== Changes since MediaWiki 1.32.0-rc.0 ===
+* (T225558) Update installer link to PHP intl.
+* (T225901) Only attempt to deduplicate if there is data in archive and revision
+  tables.
+* (T225564) Fetch tag ID before calling undefineTag().
+* (T225496) Detect APC for MainCacheType in CLI installer.
+* Call unpack() with correct parameters in MimeAnalyzer.php for PHP 7.0 support.
+* (T212613) Style change tags correctly on Special:Newpages.
+* (T202211) Fix SQLite patch-(page|template)links-fix-pk.sql column order.
+
+== MediaWiki 1.33.0-rc.0 ==
+
 === Configuration changes for system administrators in 1.33 ===
 ==== New configuration ====
 * $wgEnablePartialBlocks – This enables the Partial Blocks feature, which gives
@@ -53,7 +56,7 @@ For notes on 1.32.x and older releases, see HISTORY.
   password is not in the large blacklist. This is enabled by default for the
   built-in user groups bureaucrat, sysop, interface-admin, and bot. To configure
   this for other user groups, set the `PasswordNotInLargeBlacklist` flag `true`.
-* wgPasswordDefault – There is a new password type configuration using Argon2
+* $wgPasswordDefault – There is a new password type configuration using Argon2
   password hashing (which requires PHP 7.2 and above). It's designed to resist
   timing attacks, and (on systems with PHP 7.3+) GPU hacking; if you configure
   argon2 to be used, by default, it will automatically choose the best available
