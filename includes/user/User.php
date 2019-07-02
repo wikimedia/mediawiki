@@ -3463,7 +3463,7 @@ class User implements IDBAccessObject, UserIdentity {
 
 			if ( $count === null ) {
 				// it has not been initialized. do so.
-				$count = $this->initEditCountInternal();
+				$count = $this->initEditCountInternal( $dbr );
 			}
 			$this->mEditCount = $count;
 		}
@@ -5023,14 +5023,13 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Initialize user_editcount from data out of the revision table
 	 *
-	 * This method should not be called outside User/UserEditCountUpdate
-	 *
+	 * @internal This method should not be called outside User/UserEditCountUpdate
+	 * @param IDatabase $dbr Replica database
 	 * @return int Number of edits
 	 */
-	public function initEditCountInternal() {
+	public function initEditCountInternal( IDatabase $dbr ) {
 		// Pull from a replica DB to be less cruel to servers
 		// Accuracy isn't the point anyway here
-		$dbr = wfGetDB( DB_REPLICA );
 		$actorWhere = ActorMigration::newMigration()->getWhere( $dbr, 'rev_user', $this );
 		$count = (int)$dbr->selectField(
 			[ 'revision' ] + $actorWhere['tables'],
