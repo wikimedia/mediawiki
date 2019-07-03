@@ -800,6 +800,65 @@ class TitleTest extends MediaWikiTestCase {
 			'Virtual namespace cannot have talk page' => [
 				Title::makeTitle( NS_MEDIA, 'Kitten.jpg' ), false
 			],
+			'Relative link has no talk page' => [
+				Title::makeTitle( NS_MAIN, '', 'Kittens' ), false
+			],
+			'Interwiki link has no talk page' => [
+				Title::makeTitle( NS_MAIN, 'Kittens', '', 'acme' ), false
+			],
+		];
+	}
+
+	public function provideIsWatchable() {
+		return [
+			'User page is watchable' => [
+				Title::makeTitle( NS_USER, 'Jane' ), true
+			],
+			'Talke page is watchable' => [
+				Title::makeTitle( NS_TALK, 'Foo' ), true
+			],
+			'Special page is not watchable' => [
+				Title::makeTitle( NS_SPECIAL, 'Thing' ), false
+			],
+			'Virtual namespace is not watchable' => [
+				Title::makeTitle( NS_MEDIA, 'Kitten.jpg' ), false
+			],
+			'Relative link is not watchable' => [
+				Title::makeTitle( NS_MAIN, '', 'Kittens' ), false
+			],
+			'Interwiki link is not watchable' => [
+				Title::makeTitle( NS_MAIN, 'Kittens', '', 'acme' ), false
+			],
+		];
+	}
+
+	public static function provideGetTalkPage_good() {
+		return [
+			[ Title::makeTitle( NS_MAIN, 'Test' ), Title::makeTitle( NS_TALK, 'Test' ) ],
+			[ Title::makeTitle( NS_TALK, 'Test' ), Title::makeTitle( NS_TALK, 'Test' ) ],
+		];
+	}
+
+	public static function provideGetTalkPage_bad() {
+		return [
+			[ Title::makeTitle( NS_SPECIAL, 'Test' ) ],
+			[ Title::makeTitle( NS_MEDIA, 'Test' ) ],
+			[ Title::makeTitle( NS_MAIN, '', 'Kittens' ) ],
+			[ Title::makeTitle( NS_MAIN, 'Kittens', '', 'acme' ) ],
+		];
+	}
+
+	public static function provideGetSubjectPage_good() {
+		return [
+			[ Title::makeTitle( NS_TALK, 'Test' ), Title::makeTitle( NS_MAIN, 'Test' ) ],
+			[ Title::makeTitle( NS_MAIN, 'Test' ), Title::makeTitle( NS_MAIN, 'Test' ) ],
+		];
+	}
+
+	public static function provideGetOtherPage_good() {
+		return [
+			[ Title::makeTitle( NS_MAIN, 'Test' ), Title::makeTitle( NS_TALK, 'Test' ) ],
+			[ Title::makeTitle( NS_TALK, 'Test' ), Title::makeTitle( NS_MAIN, 'Test' ) ],
 		];
 	}
 
@@ -815,31 +874,44 @@ class TitleTest extends MediaWikiTestCase {
 		$this->assertSame( $expected, $actual, $title->getPrefixedDBkey() );
 	}
 
-	public static function provideGetTalkPage_good() {
-		return [
-			[ Title::makeTitle( NS_MAIN, 'Test' ), Title::makeTitle( NS_TALK, 'Test' ) ],
-			[ Title::makeTitle( NS_TALK, 'Test' ), Title::makeTitle( NS_TALK, 'Test' ) ],
-		];
+	/**
+	 * @dataProvider provideIsWatchable
+	 * @covers Title::isWatchable
+	 *
+	 * @param Title $title
+	 * @param bool $expected
+	 */
+	public function testIsWatchable( Title $title, $expected ) {
+		$actual = $title->canHaveTalkPage();
+		$this->assertSame( $expected, $actual, $title->getPrefixedDBkey() );
 	}
 
 	/**
 	 * @dataProvider provideGetTalkPage_good
 	 * @covers Title::getTalkPageIfDefined
 	 */
-	public function testGetTalkPageIfDefined_good( Title $title ) {
-		$talk = $title->getTalkPageIfDefined();
-		$this->assertInstanceOf(
-			Title::class,
-			$talk,
-			$title->getPrefixedDBKey()
-		);
+	public function testGetTalkPage_good( Title $title, Title $expected ) {
+		$actual = $title->getTalkPage();
+		$this->assertTrue( $expected->equals( $actual ), $title->getPrefixedDBkey() );
 	}
 
-	public static function provideGetTalkPage_bad() {
-		return [
-			[ Title::makeTitle( NS_SPECIAL, 'Test' ) ],
-			[ Title::makeTitle( NS_MEDIA, 'Test' ) ],
-		];
+	/**
+	 * @dataProvider provideGetTalkPage_bad
+	 * @covers Title::getTalkPageIfDefined
+	 */
+	public function testGetTalkPage_bad( Title $title ) {
+		$this->setExpectedException( MWException::class );
+		$title->getTalkPage();
+	}
+
+	/**
+	 * @dataProvider provideGetTalkPage_good
+	 * @covers Title::getTalkPageIfDefined
+	 */
+	public function testGetTalkPageIfDefined_good( Title $title, Title $expected ) {
+		$actual = $title->getTalkPageIfDefined();
+		$this->assertNotNull( $actual, $title->getPrefixedDBkey() );
+		$this->assertTrue( $expected->equals( $actual ), $title->getPrefixedDBkey() );
 	}
 
 	/**
@@ -850,8 +922,35 @@ class TitleTest extends MediaWikiTestCase {
 		$talk = $title->getTalkPageIfDefined();
 		$this->assertNull(
 			$talk,
-			$title->getPrefixedDBKey()
+			$title->getPrefixedDBkey()
 		);
+	}
+
+	/**
+	 * @dataProvider provideGetSubjectPage_good
+	 * @covers Title::getSubjectPage
+	 */
+	public function testGetSubjectPage_good( Title $title, Title $expected ) {
+		$actual = $title->getSubjectPage();
+		$this->assertTrue( $expected->equals( $actual ), $title->getPrefixedDBkey() );
+	}
+
+	/**
+	 * @dataProvider provideGetOtherPage_good
+	 * @covers Title::getOtherPage
+	 */
+	public function testGetOtherPage_good( Title $title, Title $expected ) {
+		$actual = $title->getOtherPage();
+		$this->assertTrue( $expected->equals( $actual ), $title->getPrefixedDBkey() );
+	}
+
+	/**
+	 * @dataProvider provideGetTalkPage_bad
+	 * @covers Title::getOtherPage
+	 */
+	public function testGetOtherPage_bad( Title $title ) {
+		$this->setExpectedException( MWException::class );
+		$title->getOtherPage();
 	}
 
 	public function provideCreateFragmentTitle() {
