@@ -124,9 +124,13 @@ class FSLockManager extends LockManager {
 			} else {
 				Wikimedia\suppressWarnings();
 				$handle = fopen( $this->getLockPath( $path ), 'a+' );
-				if ( !$handle ) { // lock dir missing?
-					mkdir( $this->lockDir, 0777, true );
-					$handle = fopen( $this->getLockPath( $path ), 'a+' ); // try again
+				if ( !$handle && !is_dir( $this->lockDir ) ) {
+					// Create the lock directory in case it is missing
+					if ( mkdir( $this->lockDir, 0777, true ) ) {
+						$handle = fopen( $this->getLockPath( $path ), 'a+' ); // try again
+					} else {
+						$this->logger->error( "Cannot create directory '{$this->lockDir}'." );
+					}
 				}
 				Wikimedia\restoreWarnings();
 			}
