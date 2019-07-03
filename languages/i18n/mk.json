@@ -3919,7 +3919,7 @@
 	"specialmute-error-invalid-user": "Не можев да го најдам корисничкото име.",
 	"specialmute-error-email-blacklist-disabled": "Исклучувањето на е-пошта од корисници не е овозможено.",
 	"specialmute-error-email-preferences": "Ќе мора да ја потврдите вашата е-пошта пред да исклучите известувања од други. Тоа се прави на страницата [[Special:Preferences]].",
-	"specialmute-email-footer": "[$1 Раководење со поставки за е-пошта од {{BIDI:$2}}.]",
+	"specialmute-email-footer": "За нагодување на поставките за {{BIDI:$2}}, појдете на <$1>.",
 	"specialmute-login-required": "Најавете се за да ги направите промените.",
 	"revid": "преработка $1",
 	"pageid": "назнака на страницата $1",

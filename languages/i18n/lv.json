@@ -2932,6 +2932,7 @@
 	"credentialsform-account": "Konta nosaukums:",
 	"edit-error-short": "Kļūda: $1",
 	"edit-error-long": "Kļūdas:\n\n$1",
+	"specialmute-submit": "Apstiprināt",
 	"revid": "versija $1",
 	"pageid": "lapas ID $1",
 	"gotointerwiki-invalid": "Norādītais nosaukums ir nederīgs.",
