@@ -272,6 +272,8 @@ because of Phabricator reports.
   0..(numRows-1).
 * The ChangePasswordForm hook, deprecated in 1.27, has been removed. Use the
   AuthChangeFormFields hook or security levels instead.
+* WikiMap::getWikiIdFromDomain(), deprecated in 1.33, has been removed.
+  Use WikiMap::getWikiIdFromDbDomain() instead.
 * …
 
 === Deprecations in 1.34 ===
