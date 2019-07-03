@@ -37,6 +37,8 @@ trait ApiMessageTrait {
 		'badipaddress' => 'invalidip',
 		'blankpage' => 'emptypage',
 		'blockedtext' => 'blocked',
+		'blockedtext-composite' => 'blocked',
+		'blockedtext-partial' => 'blocked',
 		'cannotdelete' => 'cantdelete',
 		'cannotundelete' => 'cantundelete',
 		'cantmove-titleprotected' => 'protectedtitle',

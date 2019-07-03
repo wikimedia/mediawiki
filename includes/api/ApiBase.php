@@ -280,9 +280,10 @@ abstract class ApiBase extends ContextSource {
 	/** $var array Map of web UI block messages to corresponding API messages and codes */
 	private static $blockMsgMap = [
 		'blockedtext' => [ 'apierror-blocked', 'blocked' ],
-		'blockedtext-partial' => [ 'apierror-blocked', 'blocked' ],
+		'blockedtext-partial' => [ 'apierror-blocked-partial', 'blocked' ],
 		'autoblockedtext' => [ 'apierror-autoblocked', 'autoblocked' ],
 		'systemblockedtext' => [ 'apierror-systemblocked', 'blocked' ],
+		'blockedtext-composite' => [ 'apierror-blocked', 'blocked' ],
 	];
 
 	/** @var ApiMain */
