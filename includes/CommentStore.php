@@ -197,7 +197,7 @@ class CommentStore {
 	 * @since 1.31 Method signature changed, $key parameter added (with deprecated back compat)
 	 * @param string|null $key A key such as "rev_comment" identifying the comment
 	 *  field being fetched.
-	 * @return array With three keys:
+	 * @return array[] With three keys:
 	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
 	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
 	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
