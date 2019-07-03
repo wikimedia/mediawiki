@@ -286,6 +286,10 @@ class SvgHandler extends ImageHandler {
 			Wikimedia\restoreWarnings();
 		} );
 		if ( !$ok ) {
+			// Fallback because symlink often fails on Windows
+			$ok = copy( $srcPath, $lnPath );
+		}
+		if ( !$ok ) {
 			wfDebugLog( 'thumbnail',
 				sprintf( 'Thumbnail failed on %s: could not link %s to %s',
 					wfHostname(), $lnPath, $srcPath ) );
