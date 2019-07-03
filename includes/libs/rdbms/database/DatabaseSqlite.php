@@ -23,6 +23,7 @@
  */
 namespace Wikimedia\Rdbms;
 
+use NullLockManager;
 use PDO;
 use PDOException;
 use Exception;
@@ -39,7 +40,7 @@ class DatabaseSqlite extends Database {
 	/** @var bool Whether full text is enabled */
 	private static $fulltextEnabled = null;
 
-	/** @var string Directory */
+	/** @var string|null Directory */
 	protected $dbDir;
 	/** @var string File name for SQLite database file */
 	protected $dbPath;
@@ -91,10 +92,16 @@ class DatabaseSqlite extends Database {
 			$this->queryLogger->warning( "Invalid SQLite transaction mode provided." );
 		}
 
-		$this->lockMgr = new FSLockManager( [
-			'domain' => $lockDomain,
-			'lockDirectory' => "{$this->dbDir}/locks"
-		] );
+		if ( $this->hasProcessMemoryPath() ) {
+			$this->lockMgr = new NullLockManager( [ 'domain' => $lockDomain ] );
+		} else {
+			$this->lockMgr = new FSLockManager( [
+				'domain' => $lockDomain,
+				'lockDirectory' => is_string( $this->dbDir )
+					? "{$this->dbDir}/locks"
+					: dirname( $this->dbPath ) . "/locks"
+			] );
+		}
 
 		parent::__construct( $p );
 	}
@@ -186,7 +193,7 @@ class DatabaseSqlite extends Database {
 	 * @throws DBConnectionError
 	 */
 	protected function openFile( $fileName, $dbName, $tablePrefix ) {
-		if ( !$this->hasMemoryPath() && !is_readable( $fileName ) ) {
+		if ( !$this->hasProcessMemoryPath() && !is_readable( $fileName ) ) {
 			$error = "SQLite database file not readable";
 			$this->connLogger->error(
 				"Error connecting to {db_server}: {error}",
@@ -772,13 +779,13 @@ class DatabaseSqlite extends Database {
 	}
 
 	public function serverIsReadOnly() {
-		return ( !$this->hasMemoryPath() && !is_writable( $this->dbPath ) );
+		return ( !$this->hasProcessMemoryPath() && !is_writable( $this->dbPath ) );
 	}
 
 	/**
 	 * @return bool
 	 */
-	private function hasMemoryPath() {
+	private function hasProcessMemoryPath() {
 		return ( strpos( $this->dbPath, ':memory:' ) === 0 );
 	}
 
@@ -974,17 +981,19 @@ class DatabaseSqlite extends Database {
 	}
 
 	public function lock( $lockName, $method, $timeout = 5 ) {
-		if ( !is_dir( "{$this->dbDir}/locks" ) ) { // create dir as needed
-			if ( !is_writable( $this->dbDir ) || !mkdir( "{$this->dbDir}/locks" ) ) {
-				throw new DBError( $this, "Cannot create directory \"{$this->dbDir}/locks\"." );
-			}
+		// Give better error message for permission problems than just returning false
+		if (
+			!is_dir( "{$this->dbDir}/locks" ) &&
+			( !is_writable( $this->dbDir ) || !mkdir( "{$this->dbDir}/locks" ) )
+		) {
+			throw new DBError( $this, "Cannot create directory \"{$this->dbDir}/locks\"." );
 		}
 
 		return $this->lockMgr->lock( [ $lockName ], LockManager::LOCK_EX, $timeout )->isOK();
 	}
 
 	public function unlock( $lockName, $method ) {
-		return $this->lockMgr->unlock( [ $lockName ], LockManager::LOCK_EX )->isOK();
+		return $this->lockMgr->unlock( [ $lockName ], LockManager::LOCK_EX )->isGood();
 	}
 
 	/**
