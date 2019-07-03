@@ -11,7 +11,7 @@ doi|https://dx.doi.org/$1|0|
 drumcorpswiki|http://www.drumcorpswiki.com/$1|0|http://drumcorpswiki.com/api.php
 dwjwiki|http://www.suberic.net/cgi-bin/dwj/wiki.cgi?$1|0|
 elibre|http://enciclopedia.us.es/index.php/$1|0|http://enciclopedia.us.es/api.php
-emacswiki|https://www.emacswiki.org/cgi-bin/wiki.pl?$1|0|
+emacswiki|https://www.emacswiki.org/emacs/$1|0|
 foldoc|https://foldoc.org/?$1|0|
 foxwiki|https://fox.wikis.com/wc.dll?Wiki~$1|0|
 freebsdman|https://www.FreeBSD.org/cgi/man.cgi?apropos=1&query=$1|0|
