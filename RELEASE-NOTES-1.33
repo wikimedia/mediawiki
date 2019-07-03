@@ -4,6 +4,9 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.33.0 ===
 
+* A change that kept people with a database table prefix that didn't
+  end with an underscore from updating was reverted.
+
 == MediaWiki 1.33 ==
 
 === Upgrading notes for 1.33 ===
