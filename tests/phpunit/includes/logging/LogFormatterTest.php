@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\User\UserIdentityValue;
+
 /**
  * @group Database
  */
@@ -218,6 +220,23 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	 * @covers LogFormatter::newFromEntry
 	 * @covers LogFormatter::getActionText
 	 */
+	public function testLogParamsTypeUserLink_empty() {
+		$params = [ '4:user-link:userLink' => ':' ];
+
+		$entry = $this->newLogEntry( 'param', $params );
+		$formatter = LogFormatter::newFromEntry( $entry );
+
+		$this->context->setLanguage( Language::factory( 'qqx' ) );
+		$formatter->setContext( $this->context );
+
+		$logParam = $formatter->getActionText();
+		$this->assertContains( '(empty-username)', $logParam );
+	}
+
+	/**
+	 * @covers LogFormatter::newFromEntry
+	 * @covers LogFormatter::getActionText
+	 */
 	public function testLogParamsTypeTitleLink() {
 		$params = [ '4:title-link:titleLink' => $this->title->getText() ];
 		$expected = Linker::link( $this->title, null, [], [] );
@@ -246,6 +265,20 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$logParam = $formatter->getActionText();
 
 		$this->assertEquals( $expected, $logParam );
+	}
+
+	/**
+	 * @covers LogFormatter::getPerformerElement
+	 */
+	public function testGetPerformerElement() {
+		$entry = $this->newLogEntry( 'param', [] );
+		$entry->setPerformer( new UserIdentityValue( 1328435, 'Test', 0 ) );
+
+		$formatter = LogFormatter::newFromEntry( $entry );
+		$formatter->setContext( $this->context );
+
+		$element = $formatter->getPerformerElement();
+		$this->assertContains( 'User:Test', $element );
 	}
 
 	/**
