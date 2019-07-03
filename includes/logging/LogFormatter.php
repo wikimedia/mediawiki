@@ -613,9 +613,13 @@ class LogFormatter {
 				$this->setShowUserToolLinks( false );
 
 				$user = User::newFromName( $value );
-				$value = Message::rawParam( $this->makeUserLink( $user ) );
 
-				$this->setShowUserToolLinks( $saveLinkFlood );
+				if ( !$user ) {
+					$value = $this->msg( 'empty-username' )->text();
+				} else {
+					$value = Message::rawParam( $this->makeUserLink( $user ) );
+					$this->setShowUserToolLinks( $saveLinkFlood );
+				}
 				break;
 			case 'title':
 				$title = Title::newFromText( $value );
