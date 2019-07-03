@@ -188,7 +188,7 @@
 			if ( str === 'index' ) {
 				return mw.config.get( 'wgScript' );
 			} else if ( str === 'load' ) {
-				return mw.config.get( 'wgLoadScript' );
+				return config.LoadScript;
 			} else {
 				return mw.config.get( 'wgScriptPath' ) + '/' + str + '.php';
 			}

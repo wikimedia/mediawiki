@@ -1262,7 +1262,10 @@ return [
 		'remoteBasePath' => "$wgResourceBasePath/resources/src",
 		'packageFiles' => [
 			'mediawiki.util.js',
-			[ 'name' => 'config.json', 'config' => [ 'FragmentMode' ] ],
+			[ 'name' => 'config.json', 'config' => [
+				'FragmentMode',
+				'LoadScript',
+			] ],
 		],
 		'dependencies' => [
 			'jquery.accessKeyLabel',

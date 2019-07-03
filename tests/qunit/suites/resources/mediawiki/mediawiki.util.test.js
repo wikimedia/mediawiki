@@ -232,11 +232,12 @@
 	} );
 
 	QUnit.test( 'wikiScript', function ( assert ) {
+		mw.util.setOptionsForTest( {
+			LoadScript: '/w/l.php'
+		} );
 		mw.config.set( {
 			// customized wgScript for T41103
 			wgScript: '/w/i.php',
-			// customized wgLoadScript for T41103
-			wgLoadScript: '/w/l.php',
 			wgScriptPath: '/w'
 		} );
 
@@ -246,8 +247,8 @@
 		assert.strictEqual( util.wikiScript( 'index' ), mw.config.get( 'wgScript' ),
 			'wikiScript( index ) returns wgScript'
 		);
-		assert.strictEqual( util.wikiScript( 'load' ), mw.config.get( 'wgLoadScript' ),
-			'wikiScript( load ) returns wgLoadScript'
+		assert.strictEqual( util.wikiScript( 'load' ), '/w/l.php',
+			'wikiScript( load ) returns /w/l.php'
 		);
 		assert.strictEqual( util.wikiScript( 'api' ), '/w/api.php', 'API path' );
 	} );
