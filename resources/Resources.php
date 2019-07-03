@@ -1365,6 +1365,7 @@ return [
 	],
 	'mediawiki.action.edit.preview' => [
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.edit.preview.js',
+		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.preview.css',
 		'dependencies' => [
 			'jquery.spinner',
 			'jquery.textSelection',
