@@ -1145,14 +1145,16 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * Can this title have a corresponding talk page?
 	 *
-	 * @see NamespaceInfo::hasTalkNamespace
+	 * False for relative section links (with getText() === ''),
+	 * interwiki links (with getInterwiki() !== ''), and pages in NS_SPECIAL.
+	 *
+	 * @see NamespaceInfo::canHaveTalkPage
 	 * @since 1.30
 	 *
 	 * @return bool True if this title either is a talk page or can have a talk page associated.
 	 */
 	public function canHaveTalkPage() {
-		return MediaWikiServices::getInstance()->getNamespaceInfo()->
-			hasTalkNamespace( $this->mNamespace );
+		return MediaWikiServices::getInstance()->getNamespaceInfo()->canHaveTalkPage( $this );
 	}
 
 	/**
@@ -1167,11 +1169,15 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * Can this title be added to a user's watchlist?
 	 *
+	 * False for relative section links (with getText() === ''),
+	 * interwiki links (with getInterwiki() !== ''), and pages in NS_SPECIAL.
+	 *
 	 * @return bool
 	 */
 	public function isWatchable() {
-		return !$this->isExternal() && MediaWikiServices::getInstance()->getNamespaceInfo()->
-			isWatchable( $this->mNamespace );
+		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		return $this->getText() !== '' && !$this->isExternal() &&
+			$nsInfo->isWatchable( $this->mNamespace );
 	}
 
 	/**
@@ -1532,8 +1538,11 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * Get a Title object associated with the talk page of this article
 	 *
-	 * @deprecated since 1.34, use NamespaceInfo::getTalkPage
+	 * @deprecated since 1.34, use getTalkPageIfDefined() or NamespaceInfo::getTalkPage()
+	 *             with NamespaceInfo::canHaveTalkPage().
 	 * @return Title The object for the talk page
+	 * @throws MWException if $target doesn't have talk pages, e.g. because it's in NS_SPECIAL
+	 *         or because it's a relative link, or an interwiki link.
 	 */
 	public function getTalkPage() {
 		return self::castFromLinkTarget(
