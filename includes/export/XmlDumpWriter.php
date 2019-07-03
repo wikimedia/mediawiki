@@ -337,9 +337,11 @@ class XmlDumpWriter {
 		if ( $rev->isDeleted( Revision::DELETED_COMMENT ) ) {
 			$out .= "      " . Xml::element( 'comment', [ 'deleted' => 'deleted' ] ) . "\n";
 		} else {
-			$out .= "      "
-				. Xml::elementClean( 'comment', [], strval( $rev->getComment()->text ) )
-				. "\n";
+			if ( $rev->getComment()->text != '' ) {
+				$out .= "      "
+					. Xml::elementClean( 'comment', [], strval( $rev->getComment()->text ) )
+					. "\n";
+			}
 		}
 
 		$contentMode = $rev->isDeleted( Revision::DELETED_TEXT ) ? self::WRITE_STUB_DELETED
