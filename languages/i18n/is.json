@@ -2231,6 +2231,7 @@
 	"mycontris": "Framlög",
 	"anoncontribs": "Framlög",
 	"contribsub2": "Eftir {{GENDER:$3|$1}} ($2)",
+	"contributions-subtitle": "Fyrir {{GENDER:$3|$1}}",
 	"contributions-userdoesnotexist": "Notandaaðgangurinn \"$1\" er ekki skráður.",
 	"nocontribs": "Engar breytingar fundnar sem passa við þessa viðmiðun.",
 	"uctop": "núverandi",
