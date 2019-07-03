@@ -476,7 +476,7 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 			new TitleValue( 1, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
 		] );
 
-		ObjectCache::getMainWANInstance()->clearProcessCache();
+		MediaWikiServices::getInstance()->getMainWANObjectCache()->clearProcessCache();
 		$result = $this->doListWatchlistRawRequest( [
 			'wrowner' => $otherUser->getName(),
 			'wrtoken' => '1234567890',

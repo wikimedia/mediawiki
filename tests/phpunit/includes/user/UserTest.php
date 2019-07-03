@@ -1138,7 +1138,8 @@ class UserTest extends MediaWikiTestCase {
 		$this->db->delete( 'actor', [ 'actor_user' => $id ], __METHOD__ );
 		User::purge( $domain, $id );
 		// Because WANObjectCache->delete() stupidly doesn't delete from the process cache.
-		ObjectCache::getMainWANInstance()->clearProcessCache();
+
+		MediaWikiServices::getInstance()->getMainWANObjectCache()->clearProcessCache();
 
 		$user = User::newFromId( $id );
 		$this->assertFalse( $user->getActorId() > 0, 'No Actor ID by default if none in database' );
