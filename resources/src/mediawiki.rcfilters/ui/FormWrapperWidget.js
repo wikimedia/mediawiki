@@ -67,15 +67,19 @@ FormWrapperWidget.prototype.onLinkClick = function ( e ) {
 FormWrapperWidget.prototype.onFormSubmit = function ( e ) {
 	var data = {};
 
-	// Collect all data from form
-	$( e.target ).find( 'input:not([type="hidden"],[type="submit"]), select' ).each( function () {
-		var value = '';
-
-		if ( !$( this ).is( '[type="checkbox"]' ) || $( this ).is( ':checked' ) ) {
-			value = $( this ).val();
+	// Collect all data from the form
+	$( e.target ).find( 'input, select' ).each( function () {
+		if ( this.type === 'hidden' || this.type === 'submit' ) {
+			return;
 		}
 
-		data[ $( this ).prop( 'name' ) ] = value;
+		if ( this.type === 'checkbox' && !this.checked ) {
+			// Use a fixed value for unchecked checkboxes.
+			data[ this.name ] = '';
+		} else {
+			// Use the live value for select, checked checkboxes, or non-checkbox input.
+			data[ this.name ] = $( this ).val();
+		}
 	} );
 
 	this.controller.updateChangesList( data );
