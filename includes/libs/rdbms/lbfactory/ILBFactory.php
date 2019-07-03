@@ -419,8 +419,18 @@ interface ILBFactory {
 	 * indexes were not yet built on all DBs. After all the Y-named ones are added by the DBA,
 	 * the aliases can be removed, and then the old X-named indexes dropped.
 	 *
-	 * @param string[] $aliases
+	 * @param string[] $aliases Map of (index alias => index name)
 	 * @since 1.31
 	 */
 	public function setIndexAliases( array $aliases );
+
+	/**
+	 * Convert certain database domains to alternative ones.
+	 *
+	 * This can be used for backwards compatibility logic.
+	 *
+	 * @param DatabaseDomain[]|string[] $aliases Map of (domain alias => domain)
+	 * @since 1.35
+	 */
+	public function setDomainAliases( array $aliases );
 }

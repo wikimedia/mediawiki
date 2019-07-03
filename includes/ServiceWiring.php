@@ -228,9 +228,13 @@ return [
 			$services->getMainObjectStash(),
 			$services->getMainWANObjectCache()
 		);
-		$class = MWLBFactory::getLBFactoryClass( $lbConf );
 
-		return new $class( $lbConf );
+		$class = MWLBFactory::getLBFactoryClass( $lbConf );
+		$instance = new $class( $lbConf );
+
+		MWLBFactory::setDomainAliases( $instance );
+
+		return $instance;
 	},
 
 	'EventRelayerGroup' => function ( MediaWikiServices $services ) : EventRelayerGroup {

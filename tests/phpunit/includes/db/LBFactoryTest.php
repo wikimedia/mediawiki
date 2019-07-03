@@ -42,43 +42,6 @@ use Wikimedia\Rdbms\MySQLMasterPos;
  * @covers \Wikimedia\Rdbms\LBFactoryMulti
  */
 class LBFactoryTest extends MediaWikiTestCase {
-
-	/**
-	 * @covers MWLBFactory::getLBFactoryClass()
-	 * @dataProvider getLBFactoryClassProvider
-	 */
-	public function testGetLBFactoryClass( $expected, $deprecated ) {
-		$mockDB = $this->getMockBuilder( IDatabase::class )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$config = [
-			'class'          => $deprecated,
-			'connection'     => $mockDB,
-			# Various other parameters required:
-			'sectionsByDB'   => [],
-			'sectionLoads'   => [],
-			'serverTemplate' => [],
-		];
-
-		$this->hideDeprecated( '$wgLBFactoryConf must be updated. See RELEASE-NOTES for details' );
-		$result = MWLBFactory::getLBFactoryClass( $config );
-
-		$this->assertEquals( $expected, $result );
-	}
-
-	public function getLBFactoryClassProvider() {
-		return [
-			# Format: new class, old class
-			[ Wikimedia\Rdbms\LBFactorySimple::class, 'LBFactory_Simple' ],
-			[ Wikimedia\Rdbms\LBFactorySingle::class, 'LBFactory_Single' ],
-			[ Wikimedia\Rdbms\LBFactoryMulti::class, 'LBFactory_Multi' ],
-			[ Wikimedia\Rdbms\LBFactorySimple::class, 'LBFactorySimple' ],
-			[ Wikimedia\Rdbms\LBFactorySingle::class, 'LBFactorySingle' ],
-			[ Wikimedia\Rdbms\LBFactoryMulti::class, 'LBFactoryMulti' ],
-		];
-	}
-
 	/**
 	 * @covers \Wikimedia\Rdbms\LBFactory::getLocalDomainID()
 	 * @covers \Wikimedia\Rdbms\LBFactory::resolveDomainID()
@@ -815,5 +778,25 @@ class LBFactoryTest extends MediaWikiTestCase {
 			LBFactory::getCPInfoFromCookieValue( "5@$time#$agentId", $time + 11 - 10 )['clientId'],
 			'Stale (client ID)'
 		);
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\LBFactory::setDomainAliases()
+	 * @covers \Wikimedia\Rdbms\LBFactory::resolveDomainID()
+	 */
+	public function testSetDomainAliases() {
+		$lb = $this->newLBFactoryMulti();
+		$origDomain = $lb->getLocalDomainID();
+
+		$this->assertEquals( $origDomain, $lb->resolveDomainID( false ) );
+		$this->assertEquals( "db-prefix_", $lb->resolveDomainID( "db-prefix_" ) );
+
+		$lb->setDomainAliases( [
+			'alias-db' => 'realdb',
+			'alias-db-prefix_' => 'realdb-realprefix_'
+		] );
+
+		$this->assertEquals( 'realdb', $lb->resolveDomainID( 'alias-db' ) );
+		$this->assertEquals( "realdb-realprefix_", $lb->resolveDomainID( "alias-db-prefix_" ) );
 	}
 }

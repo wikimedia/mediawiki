@@ -33,9 +33,9 @@ use UnexpectedValueException;
  * @ingroup Database
  */
 class LBFactoryMulti extends LBFactory {
-	/** @var LoadBalancer[] */
+	/** @var LoadBalancer[] Tracked main load balancer instances */
 	private $mainLBs = [];
-	/** @var LoadBalancer[] */
+	/** @var LoadBalancer[] Tracked external load balancer instances */
 	private $externalLBs = [];
 
 	/** @var string[] Map of (hostname => IP address) */
@@ -62,14 +62,8 @@ class LBFactoryMulti extends LBFactory {
 	private $templateOverridesByServer = [];
 	/** @var string[]|bool[] A map of section name to read-only message */
 	private $readOnlyBySection = [];
-
-	/** @var string An ILoadMonitor class */
-	private $loadMonitorClass;
-
-	/** @var string */
-	private $lastDomain;
-	/** @var string */
-	private $lastSection;
+	/** @var string LoadMonitor class to use within LoadBalancer instances */
+	private $loadMonitorClass = LoadMonitor::class;
 
 	/**
 	 * Template override precedence (highest => lowest):
@@ -158,14 +152,14 @@ class LBFactoryMulti extends LBFactory {
 	}
 
 	public function newMainLB( $domain = false, $owner = null ) {
-		$section = $this->getSectionForDomain( $domain );
+		$domainInstance = $this->resolveDomainInstance( $domain );
+		$database = $domainInstance->getDatabase();
+		$section = $this->getSectionFromDatabase( $database );
 		if ( !isset( $this->groupLoadsBySection[$section][ILoadBalancer::GROUP_GENERIC] ) ) {
 			throw new UnexpectedValueException( "Section '$section' has no hosts defined." );
 		}
-
-		$dbGroupLoads = $this->groupLoadsByDB[$this->getDomainDatabase( $domain )] ?? [];
+		$dbGroupLoads = $this->groupLoadsByDB[$database] ?? [];
 		unset( $dbGroupLoads[ILoadBalancer::GROUP_GENERIC] ); // cannot override
-
 		return $this->newLoadBalancer(
 			array_merge(
 				$this->serverTemplate,
@@ -181,7 +175,8 @@ class LBFactoryMulti extends LBFactory {
 	}
 
 	public function getMainLB( $domain = false ) {
-		$section = $this->getSectionForDomain( $domain );
+		$domainInstance = $this->resolveDomainInstance( $domain );
+		$section = $this->getSectionFromDatabase( $domainInstance->getDatabase() );
 
 		if ( !isset( $this->mainLBs[$section] ) ) {
 			$this->mainLBs[$section] = $this->newMainLB( $domain, $this->getOwnershipId() );
@@ -194,7 +189,6 @@ class LBFactoryMulti extends LBFactory {
 		if ( !isset( $this->externalLoads[$cluster] ) ) {
 			throw new InvalidArgumentException( "Unknown cluster '$cluster'" );
 		}
-
 		return $this->newLoadBalancer(
 			array_merge(
 				$this->serverTemplate,
@@ -246,27 +240,10 @@ class LBFactoryMulti extends LBFactory {
 	}
 
 	/**
-	 * @param bool|string $domain
-	 * @return string
-	 */
-	private function getSectionForDomain( $domain = false ) {
-		if ( $this->lastDomain === $domain ) {
-			return $this->lastSection;
-		}
-
-		$database = $this->getDomainDatabase( $domain );
-		$section = $this->sectionsByDB[$database] ?? self::CLUSTER_MAIN_DEFAULT;
-		$this->lastSection = $section;
-		$this->lastDomain = $domain;
-
-		return $section;
-	}
-
-	/**
 	 * Make a new load balancer object based on template and load array
 	 *
-	 * @param array $serverTemplate Server config map
-	 * @param int[][] $groupLoads Map of (group => host => load)
+	 * @param array $serverTemplate
+	 * @param array $groupLoads
 	 * @param string|bool $readOnlyReason
 	 * @param int|null $owner
 	 * @return LoadBalancer
@@ -275,7 +252,7 @@ class LBFactoryMulti extends LBFactory {
 		$lb = new LoadBalancer( array_merge(
 			$this->baseLoadBalancerParams( $owner ),
 			[
-				'servers' => $this->makeServerArray( $serverTemplate, $groupLoads ),
+				'servers' => $this->makeServerConfigArrays( $serverTemplate, $groupLoads ),
 				'loadMonitor' => [ 'class' => $this->loadMonitorClass ],
 				'readOnlyReason' => $readOnlyReason
 			]
@@ -292,18 +269,16 @@ class LBFactoryMulti extends LBFactory {
 	 * @param int[][] $groupLoads Map of (group => host => load)
 	 * @return array[] List of server config maps
 	 */
-	private function makeServerArray( array $serverTemplate, array $groupLoads ) {
+	private function makeServerConfigArrays( array $serverTemplate, array $groupLoads ) {
 		// The master server is the first host explicitly listed in the generic load group
 		if ( !$groupLoads[ILoadBalancer::GROUP_GENERIC] ) {
 			throw new UnexpectedValueException( "Empty generic load array; no master defined." );
 		}
-
-		$groupLoadsByHost = $this->reindexGroupLoads( $groupLoads );
+		$groupLoadsByHost = $this->reindexGroupLoadsByHost( $groupLoads );
 		// Get the ordered map of (host => load); the master server is first
 		$genericLoads = $groupLoads[ILoadBalancer::GROUP_GENERIC];
 		// Implictly append any hosts that only appear in custom load groups
 		$genericLoads += array_fill_keys( array_keys( $groupLoadsByHost ), 0 );
-
 		$servers = [];
 		foreach ( $genericLoads as $host => $load ) {
 			$servers[] = array_merge(
@@ -327,25 +302,22 @@ class LBFactoryMulti extends LBFactory {
 	 * @param int[][] $groupLoads Map of (group => host => load)
 	 * @return int[][] Map of (host => group => load)
 	 */
-	private function reindexGroupLoads( array $groupLoads ) {
-		$reindexed = [];
-
+	private function reindexGroupLoadsByHost( $groupLoads ) {
+		$groupLoadsByHost = [];
 		foreach ( $groupLoads as $group => $loadByHost ) {
 			foreach ( $loadByHost as $host => $load ) {
-				$reindexed[$host][$group] = $load;
+				$groupLoadsByHost[$host][$group] = $load;
 			}
 		}
 
-		return $reindexed;
+		return $groupLoadsByHost;
 	}
 
 	/**
-	 * @param DatabaseDomain|string|bool $domain Domain ID, or false for the current domain
-	 * @return string
+	 * @param string $database
+	 * @return string Section name
 	 */
-	private function getDomainDatabase( $domain = false ) {
-		return ( $domain === false )
-			? $this->localDomain->getDatabase()
-			: DatabaseDomain::newFromId( $domain )->getDatabase();
+	private function getSectionFromDatabase( $database ) {
+		return $this->sectionsByDB[$database] ?? 'DEFAULT';
 	}
 }
