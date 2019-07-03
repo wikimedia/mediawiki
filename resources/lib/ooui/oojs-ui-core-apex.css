@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.33.0
+ * OOUI v0.33.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-06-27T03:27:33Z
+ * Date: 2019-07-03T21:05:15Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -486,35 +486,12 @@
   color: #ccc;
 }
 .oo-ui-fieldLayout-messages {
-  list-style: none none;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   max-width: 50em;
   margin: 0.25em 0 0 0.25em;
   padding: 0;
-}
-.oo-ui-fieldLayout-messages > [class|='oo-ui-fieldLayout-messages'] {
-  color: #000;
-  display: table;
-  margin: 0.625em 0 0;
-  padding: 0;
-}
-.oo-ui-fieldLayout-messages > [class|='oo-ui-fieldLayout-messages']:first-child {
-  margin-top: 0.3125em;
-}
-.oo-ui-fieldLayout-messages .oo-ui-fieldLayout-messages-error {
-  color: #d45353;
-}
-.oo-ui-fieldLayout-messages .oo-ui-iconWidget.oo-ui-iconElement-icon {
-  background-position: 0 0;
-  display: table-cell;
-}
-.oo-ui-fieldLayout-messages .oo-ui-labelWidget {
-  display: table-cell;
-  padding-left: 0.5em;
-  line-height: 1.5;
-  vertical-align: middle;
 }
 
 .oo-ui-actionFieldLayout-input,
@@ -798,7 +775,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   background-color: #fafafa;
   border-color: #ccc;
 }
-.oo-ui-messageWidget.oo-ui-flaggedElement-error {
+.oo-ui-messageWidget.oo-ui-flaggedElement-error:not( .oo-ui-messageWidget-block ) {
   color: #d45353;
 }
 .oo-ui-messageWidget.oo-ui-flaggedElement-success:not( .oo-ui-messageWidget-block ) {
