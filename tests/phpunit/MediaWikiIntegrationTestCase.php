@@ -180,7 +180,13 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	public static function setUpBeforeClass() {
+		global $IP;
 		parent::setUpBeforeClass();
+		if ( !file_exists( "$IP/LocalSettings.php" ) ) {
+			echo 'A working MediaWiki installation with a configured LocalSettings.php file is'
+			. ' required for tests that extend ' . self::class;
+			die();
+		}
 		self::initializeForStandardPhpunitEntrypointIfNeeded();
 
 		// Get the original service locator

@@ -60,6 +60,7 @@
 		<exclude-pattern>maintenance/doMaintenance\.php</exclude-pattern>
 		<exclude-pattern>maintenance/mergeMessageFileList\.php</exclude-pattern>
 		<exclude-pattern>maintenance/commandLine\.inc</exclude-pattern>
+		<exclude-pattern>tests/phpunit/MediaWikiIntegrationTestCase\.php</exclude-pattern>
 	</rule>
 	<rule ref="Generic.Files.LineLength">
 		<exclude-pattern>*/languages/messages/Messages*\.php</exclude-pattern>
