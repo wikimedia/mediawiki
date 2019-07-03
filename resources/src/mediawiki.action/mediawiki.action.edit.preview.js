@@ -71,11 +71,7 @@
 			$spinner.show();
 		}
 
-		// Can't use fadeTo because it calls show(), and we might want to keep some elements hidden
-		// (e.g. empty #catlinks)
-		// FIXME: Use CSS transition
-		// eslint-disable-next-line no-jquery/no-animate
-		$copyElements.animate( { opacity: 0.4 }, 'fast' );
+		$copyElements.addClass( [ 'mw-preview-copyelements', 'mw-preview-copyelements-loading' ] );
 
 		api = new mw.Api();
 		postData = {
@@ -259,11 +255,7 @@
 			mw.hook( 'wikipage.editform' ).fire( $editform );
 		} ).always( function () {
 			$spinner.hide();
-			// FIXME: Use CSS transition
-			// eslint-disable-next-line no-jquery/no-animate
-			$copyElements.animate( {
-				opacity: 1
-			}, 'fast' );
+			$copyElements.removeClass( 'mw-preview-copyelements-loading' );
 		} ).fail( function ( code, result ) {
 			// This just shows the error for whatever request failed first
 			var errorMsg = 'API error: ' + code;
