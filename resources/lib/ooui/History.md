@@ -1,4 +1,20 @@
 # OOUI Release History
+## v0.33.1 / 2019-07-03
+### Styles
+* MessageWidget: Use emphasized color for boxed 'error' type (Volker E.)
+* ProcessDialog: Use 'framed' ButtonElements everywhere (Volker E.)
+* WikimediaUI theme: Amend ProcessDialog ActionWidget appearance (Volker E.)
+* WikimediaUI theme: De-emphasize 'close' and 'back' actions in ProcessDialog (Volker E.)
+
+### Code
+* FieldLayout: Clean up more unnecessary LESS styles (Bartosz Dziewoński)
+* FieldWidget: Clean up unnecessary LESS styles (Moriel Schottlender)
+* WikimediaUI theme: Variablize `border-style-base` (Volker E.)
+* demos: Remove special-case for FormLayout (Bartosz Dziewoński)
+* demos: Simplify demo console setup (Bartosz Dziewoński)
+* demos: Use the new workaround for links to anchors with fixed header everywhere (Bartosz Dziewoński)
+
+
 ## v0.33.0 / 2019-06-26
 ### Breaking changes
 * [BREAKING CHANGE] Element: Drop `getJQuery`, unused, useless since approximately 2015 (Ed Sanders)

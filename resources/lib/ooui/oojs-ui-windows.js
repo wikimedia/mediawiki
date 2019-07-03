@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.33.0
+ * OOUI v0.33.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-06-27T03:27:26Z
+ * Date: 2019-07-03T21:05:08Z
  */
 ( function ( OO ) {
 
@@ -3337,7 +3337,7 @@ OO.ui.ProcessDialog.prototype.getActionWidgetConfig = function ( config ) {
 	}
 
 	// Default to unframed.
-	config = $.extend( { framed: false }, config );
+	config = $.extend( { framed: true }, config );
 	if ( checkFlag( 'close' ) ) {
 		// Change close buttons to icon only.
 		$.extend( config, {
