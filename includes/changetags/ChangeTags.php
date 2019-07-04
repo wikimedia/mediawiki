@@ -149,7 +149,13 @@ class ChangeTags {
 		$msg = $context->msg( "tag-$tag" );
 		if ( !$msg->exists() ) {
 			// No such message
-			return new RawMessage( '$1', [ Message::plaintextParam( $tag ) ] );
+			return ( new RawMessage( '$1', [ Message::plaintextParam( $tag ) ] ) )
+				// HACK MessageLocalizer doesn't have a way to set the right language on a RawMessage,
+				// so extract the language from $msg and use that.
+				// The language doesn't really matter, but we need to set it to avoid requesting
+				// the user's language from session-less entry points (T227233)
+				->inLanguage( $msg->getLanguage() );
+
 		}
 		if ( $msg->isDisabled() ) {
 			// The message exists but is disabled, hide the tag.
