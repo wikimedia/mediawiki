@@ -2148,7 +2148,7 @@
 					 * @return {string} localStorage item key
 					 */
 					getStoreKey: function () {
-						return 'MediaWikiModuleStore:' + mw.config.get( 'wgDBname' );
+						return $VARS.storeKey;
 					},
 
 					/**
