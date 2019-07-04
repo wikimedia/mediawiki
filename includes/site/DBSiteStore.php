@@ -1,6 +1,6 @@
 <?php
 
-use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Represents the site configuration of a wiki.
@@ -38,7 +38,7 @@ class DBSiteStore implements SiteStore {
 	protected $sites = null;
 
 	/**
-	 * @var LoadBalancer
+	 * @var ILoadBalancer
 	 */
 	private $dbLoadBalancer;
 
@@ -48,9 +48,9 @@ class DBSiteStore implements SiteStore {
 	 * @todo inject some kind of connection manager that is aware of the target wiki,
 	 * instead of injecting a LoadBalancer.
 	 *
-	 * @param LoadBalancer $dbLoadBalancer
+	 * @param ILoadBalancer $dbLoadBalancer
 	 */
-	public function __construct( LoadBalancer $dbLoadBalancer ) {
+	public function __construct( ILoadBalancer $dbLoadBalancer ) {
 		$this->dbLoadBalancer = $dbLoadBalancer;
 	}
 

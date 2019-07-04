@@ -63,7 +63,7 @@ use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Service for looking up page revisions.
@@ -1638,7 +1638,7 @@ class RevisionStore
 	 * Factory method for SlotRecords based on known slot rows.
 	 *
 	 * @param int $revId The revision to load slots for.
-	 * @param object[]|ResultWrapper $slotRows
+	 * @param object[]|IResultWrapper $slotRows
 	 * @param int $queryFlags
 	 * @param Title $title
 	 *
