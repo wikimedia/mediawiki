@@ -22,8 +22,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 		// Make a few edits for us to play with
 		for ( $i = 1; $i <= 5; $i++ ) {
 			self::editPage( self::$page, MWCryptRand::generateHex( 10 ), 'summary' );
-			$this->revs[] = Title::newFromText( self::$page )
-				->getLatestRevID( Title::GAID_FOR_UPDATE );
+			$this->revs[] = Title::newFromText( self::$page )->getLatestRevID( Title::READ_LATEST );
 		}
 	}
 

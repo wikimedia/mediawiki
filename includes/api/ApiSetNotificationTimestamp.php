@@ -93,7 +93,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 			$titles = $pageSet->getGoodTitles();
 			$title = reset( $titles );
 			if ( $title ) {
-				$revid = $title->getNextRevisionID( $params['newerthanrevid'], Title::GAID_FOR_UPDATE );
+				$revid = $title->getNextRevisionID( $params['newerthanrevid'], Title::READ_LATEST );
 				if ( $revid ) {
 					$timestamp = $dbw->timestamp(
 						MediaWikiServices::getInstance()->getRevisionStore()->getTimestampFromId( $title, $revid )

@@ -3717,7 +3717,7 @@ class User implements IDBAccessObject, UserIdentity {
 
 				// If there is a new, unseen, revision, use its timestamp
 				$nextid = $oldid
-					? $title->getNextRevisionID( $oldid, Title::GAID_FOR_UPDATE )
+					? $title->getNextRevisionID( $oldid, Title::READ_LATEST )
 					: null;
 				if ( $nextid ) {
 					$this->setNewtalk( true, Revision::newFromId( $nextid ) );

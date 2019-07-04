@@ -1005,7 +1005,7 @@ class Revision implements IDBAccessObject {
 
 		$comment = CommentStoreComment::newUnsavedComment( $summary, null );
 
-		$title = Title::newFromID( $pageId, Title::GAID_FOR_UPDATE );
+		$title = Title::newFromID( $pageId, Title::READ_LATEST );
 		if ( $title === null ) {
 			return null;
 		}
