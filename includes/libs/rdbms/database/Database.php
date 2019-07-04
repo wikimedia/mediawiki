@@ -994,8 +994,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * For SELECT queries, this returns either:
 	 *   - a) A driver-specific value/resource, only on success. This can be iterated
 	 *        over by calling fetchObject()/fetchRow() until there are no more rows.
-	 *        Alternatively, the result can be passed to resultObject() to obtain a
-	 *        ResultWrapper instance which can then be iterated over via "foreach".
+	 *        Alternatively, the result can be passed to resultObject() to obtain an
+	 *        IResultWrapper instance which can then be iterated over via "foreach".
 	 *   - b) False, on any query failure
 	 *
 	 * For non-SELECT queries, this returns either:
@@ -1076,9 +1076,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * @param string $sql A SQL query
 	 * @param bool $pseudoPermanent Treat any table from CREATE TEMPORARY as pseudo-permanent
-	 * @return int|null A self::TEMP_* constant for temp table operations or null otherwise
+	 * @return array A n-tuple of:
+	 *   - int|null: A self::TEMP_* constant for temp table operations or null otherwise
+	 *   - string|null: The name of the new temporary table $sql creates, or null
+	 *   - string|null: The name of the temporary table that $sql drops, or null
 	 */
-	protected function registerTempTableWrite( $sql, $pseudoPermanent ) {
+	protected function getTempWrites( $sql, $pseudoPermanent ) {
 		static $qt = '[`"\']?(\w+)[`"\']?'; // quoted table
 
 		if ( preg_match(
@@ -1087,33 +1090,46 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$matches
 		) ) {
 			$type = $pseudoPermanent ? self::$TEMP_PSEUDO_PERMANENT : self::$TEMP_NORMAL;
-			$this->sessionTempTables[$matches[1]] = $type;
 
-			return $type;
+			return [ $type, $matches[1], null ];
 		} elseif ( preg_match(
 			'/^DROP\s+(?:TEMPORARY\s+)?TABLE\s+(?:IF\s+EXISTS\s+)?' . $qt . '/i',
 			$sql,
 			$matches
 		) ) {
-			$type = $this->sessionTempTables[$matches[1]] ?? null;
-			unset( $this->sessionTempTables[$matches[1]] );
-
-			return $type;
+			return [ $this->sessionTempTables[$matches[1]] ?? null, null, $matches[1] ];
 		} elseif ( preg_match(
 			'/^TRUNCATE\s+(?:TEMPORARY\s+)?TABLE\s+(?:IF\s+EXISTS\s+)?' . $qt . '/i',
 			$sql,
 			$matches
 		) ) {
-			return $this->sessionTempTables[$matches[1]] ?? null;
+			return [ $this->sessionTempTables[$matches[1]] ?? null, null, null ];
 		} elseif ( preg_match(
 			'/^(?:(?:INSERT|REPLACE)\s+(?:\w+\s+)?INTO|UPDATE|DELETE\s+FROM)\s+' . $qt . '/i',
 			$sql,
 			$matches
 		) ) {
-			return $this->sessionTempTables[$matches[1]] ?? null;
+			return [ $this->sessionTempTables[$matches[1]] ?? null, null, null ];
 		}
 
-		return null;
+		return [ null, null, null ];
+	}
+
+	/**
+	 * @param IResultWrapper|bool $ret
+	 * @param int|null $tmpType TEMP_NORMAL or TEMP_PSEUDO_PERMANENT
+	 * @param string|null $tmpNew Name of created temp table
+	 * @param string|null $tmpDel Name of dropped temp table
+	 */
+	protected function registerTempWrites( $ret, $tmpType, $tmpNew, $tmpDel ) {
+		if ( $ret !== false ) {
+			if ( $tmpNew !== null ) {
+				$this->sessionTempTables[$tmpNew] = $tmpType;
+			}
+			if ( $tmpDel !== null ) {
+				unset( $this->sessionTempTables[$tmpDel] );
+			}
+		}
 	}
 
 	public function query( $sql, $fname = __METHOD__, $flags = 0 ) {
@@ -1159,28 +1175,32 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$priorTransaction = $this->trxLevel();
 
 		if ( $this->isWriteQuery( $sql ) ) {
-			# In theory, non-persistent writes are allowed in read-only mode, but due to things
-			# like https://bugs.mysql.com/bug.php?id=33669 that might not work anyway...
+			// In theory, non-persistent writes are allowed in read-only mode, but due to things
+			// like https://bugs.mysql.com/bug.php?id=33669 that might not work anyway...
 			$this->assertIsWritableMaster();
-			# Do not treat temporary table writes as "meaningful writes" since they are only
-			# visible to one session and are not permanent. Profile them as reads. Integration
-			# tests can override this behavior via $flags.
+			// Do not treat temporary table writes as "meaningful writes" since they are only
+			// visible to one session and are not permanent. Profile them as reads. Integration
+			// tests can override this behavior via $flags.
 			$pseudoPermanent = $this->hasFlags( $flags, self::QUERY_PSEUDO_PERMANENT );
-			$tableType = $this->registerTempTableWrite( $sql, $pseudoPermanent );
-			$isPermWrite = ( $tableType !== self::$TEMP_NORMAL );
-			# DBConnRef uses QUERY_REPLICA_ROLE to enforce the replica role for raw SQL queries
+			list( $tmpType, $tmpNew, $tmpDel ) = $this->getTempWrites( $sql, $pseudoPermanent );
+			$isPermWrite = ( $tmpType !== self::$TEMP_NORMAL );
+			// DBConnRef uses QUERY_REPLICA_ROLE to enforce the replica role for raw SQL queries
 			if ( $isPermWrite && $this->hasFlags( $flags, self::QUERY_REPLICA_ROLE ) ) {
 				throw new DBReadOnlyRoleError( $this, "Cannot write; target role is DB_REPLICA" );
 			}
 		} else {
+			// No permanent writes in this query
 			$isPermWrite = false;
+			// No temporary tables written to either
+			list( $tmpType, $tmpNew, $tmpDel ) = [ null, null, null ];
 		}
 
 		// Add trace comment to the begin of the sql string, right after the operator.
 		// Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (T44598)
 		$commentedSql = preg_replace( '/\s|$/', " /* $fname {$this->agent} */ ", $sql, 1 );
 
-		// Send the query to the server and fetch any corresponding errors
+		// Send the query to the server and fetch any corresponding errors.
+		// This also doubles as a "ping" to see if the connection was dropped.
 		list( $ret, $err, $errno, $recoverableSR, $recoverableCL, $reconnected ) =
 			$this->executeQueryAttempt( $sql, $commentedSql, $isPermWrite, $fname, $flags );
 
@@ -1191,6 +1211,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			list( $ret, $err, $errno, $recoverableSR, $recoverableCL ) =
 				$this->executeQueryAttempt( $sql, $commentedSql, $isPermWrite, $fname, $flags );
 		}
+
+		// Register creation and dropping of temporary tables
+		$this->registerTempWrites( $ret, $tmpType, $tmpNew, $tmpDel );
 
 		$corruptedTrx = false;
 
@@ -4185,9 +4208,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	abstract protected function fetchAffectedRowCount();
 
 	/**
-	 * Take the result from a query, and wrap it in a ResultWrapper if
-	 * necessary. Boolean values are passed through as is, to indicate success
-	 * of write queries or failure.
+	 * Take a query result and wrap it in an iterable result wrapper if necessary.
+	 * Booleans are passed through as-is to indicate success/failure of write queries.
 	 *
 	 * Once upon a time, Database::query() returned a bare MySQL result
 	 * resource, and it was necessary to call this function to convert it to
@@ -4199,12 +4221,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	protected function resultObject( $result ) {
 		if ( !$result ) {
-			return false;
-		} elseif ( $result instanceof ResultWrapper ) {
+			return false; // failed query
+		} elseif ( $result instanceof IResultWrapper ) {
 			return $result;
 		} elseif ( $result === true ) {
-			// Successful write query
-			return $result;
+			return $result; // succesful write query
 		} else {
 			return new ResultWrapper( $this, $result );
 		}

@@ -355,9 +355,9 @@ class DatabaseSqlite extends Database {
 			return false;
 		}
 
-		$r = $res instanceof ResultWrapper ? $res->result : $res;
-		$this->lastAffectedRowCount = $r->rowCount();
-		$res = new ResultWrapper( $this, $r->fetchAll() );
+		$resource = ResultWrapper::unwrap( $res );
+		$this->lastAffectedRowCount = $resource->rowCount();
+		$res = new ResultWrapper( $this, $resource->fetchAll() );
 
 		return $res;
 	}
@@ -367,9 +367,7 @@ class DatabaseSqlite extends Database {
 	 */
 	function freeResult( $res ) {
 		if ( $res instanceof ResultWrapper ) {
-			$res->result = null;
-		} else {
-			$res = null;
+			$res->free();
 		}
 	}
 
@@ -378,15 +376,11 @@ class DatabaseSqlite extends Database {
 	 * @return stdClass|bool
 	 */
 	function fetchObject( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$r =& $res->result;
-		} else {
-			$r =& $res;
-		}
+		$resource =& ResultWrapper::unwrap( $res );
 
-		$cur = current( $r );
+		$cur = current( $resource );
 		if ( is_array( $cur ) ) {
-			next( $r );
+			next( $resource );
 			$obj = new stdClass;
 			foreach ( $cur as $k => $v ) {
 				if ( !is_numeric( $k ) ) {
@@ -405,14 +399,10 @@ class DatabaseSqlite extends Database {
 	 * @return array|bool
 	 */
 	function fetchRow( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$r =& $res->result;
-		} else {
-			$r =& $res;
-		}
-		$cur = current( $r );
+		$resource =& ResultWrapper::unwrap( $res );
+		$cur = current( $resource );
 		if ( is_array( $cur ) ) {
-			next( $r );
+			next( $resource );
 
 			return $cur;
 		}
@@ -428,9 +418,9 @@ class DatabaseSqlite extends Database {
 	 */
 	function numRows( $res ) {
 		// false does not implement Countable
-		$r = $res instanceof ResultWrapper ? $res->result : $res;
+		$resource = ResultWrapper::unwrap( $res );
 
-		return is_array( $r ) ? count( $r ) : 0;
+		return is_array( $resource ) ? count( $resource ) : 0;
 	}
 
 	/**
@@ -438,10 +428,10 @@ class DatabaseSqlite extends Database {
 	 * @return int
 	 */
 	function numFields( $res ) {
-		$r = $res instanceof ResultWrapper ? $res->result : $res;
-		if ( is_array( $r ) && count( $r ) > 0 ) {
+		$resource = ResultWrapper::unwrap( $res );
+		if ( is_array( $resource ) && count( $resource ) > 0 ) {
 			// The size of the result array is twice the number of fields. (T67578)
-			return count( $r[0] ) / 2;
+			return count( $resource[0] ) / 2;
 		} else {
 			// If the result is empty return 0
 			return 0;
@@ -454,9 +444,9 @@ class DatabaseSqlite extends Database {
 	 * @return bool
 	 */
 	function fieldName( $res, $n ) {
-		$r = $res instanceof ResultWrapper ? $res->result : $res;
-		if ( is_array( $r ) ) {
-			$keys = array_keys( $r[0] );
+		$resource = ResultWrapper::unwrap( $res );
+		if ( is_array( $resource ) ) {
+			$keys = array_keys( $resource[0] );
 
 			return $keys[$n];
 		}
@@ -495,15 +485,11 @@ class DatabaseSqlite extends Database {
 	 * @param int $row
 	 */
 	function dataSeek( $res, $row ) {
-		if ( $res instanceof ResultWrapper ) {
-			$r =& $res->result;
-		} else {
-			$r =& $res;
-		}
-		reset( $r );
+		$resource =& ResultWrapper::unwrap( $res );
+		reset( $resource );
 		if ( $row > 0 ) {
 			for ( $i = 0; $i < $row; $i++ ) {
-				next( $r );
+				next( $resource );
 			}
 		}
 	}
