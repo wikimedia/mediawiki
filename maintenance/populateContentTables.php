@@ -21,6 +21,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\Assert\Assert;
@@ -40,6 +41,9 @@ class PopulateContentTables extends Maintenance {
 
 	/** @var NameTableStore */
 	private $contentModelStore;
+
+	/** @var BlobStore */
+	private $blobStore;
 
 	/** @var int */
 	private $mainRoleId;
@@ -67,6 +71,7 @@ class PopulateContentTables extends Maintenance {
 	private function initServices() {
 		$this->dbw = $this->getDB( DB_MASTER );
 		$this->contentModelStore = MediaWikiServices::getInstance()->getContentModelStore();
+		$this->blobStore = MediaWikiServices::getInstance()->getBlobStore();
 		$this->mainRoleId = MediaWikiServices::getInstance()->getSlotRoleStore()
 			->acquireId( SlotRecord::MAIN );
 	}
@@ -262,13 +267,16 @@ class PopulateContentTables extends Maintenance {
 
 				Assert::invariant( $revisionId !== null, 'rev_id must not be null' );
 
-				$modelId = $this->contentModelStore->acquireId( $this->getContentModel( $row ) );
+				$model = $this->getContentModel( $row );
+				$modelId = $this->contentModelStore->acquireId( $model );
 				$address = SqlBlobStore::makeAddressFromTextId( $row->text_id );
 
 				$key = "{$modelId}:{$address}";
 				$contentKeys[$revisionId] = $key;
 
 				if ( !isset( $map[$key] ) ) {
+					$this->fillMissingFields( $row, $model, $address );
+
 					$map[$key] = false;
 					$contentRows[] = [
 						'content_size' => (int)$row->len,
@@ -344,6 +352,40 @@ class PopulateContentTables extends Maintenance {
 	 */
 	private function writeln( $msg ) {
 		$this->output( "$msg\n" );
+	}
+
+	/**
+	 * Compute any missing fields in $row.
+	 * The way the missing values are computed must correspond to the way this is done in SlotRecord.
+	 *
+	 * @param object $row to be modified
+	 * @param string $model
+	 * @param string $address
+	 */
+	private function fillMissingFields( $row, $model, $address ) {
+		if ( !isset( $row->content_model ) ) {
+			// just for completeness
+			$row->content_model = $model;
+		}
+
+		if ( isset( $row->len ) && isset( $row->sha1 ) && $row->sha1 !== '' ) {
+			// No need to load the content, quite now.
+			return;
+		}
+
+		$blob = $this->blobStore->getBlob( $address );
+
+		if ( !isset( $row->len ) ) {
+			// NOTE: The nominal size of the content may not be the length of the raw blob.
+			$handler = ContentHandler::getForModelID( $model );
+			$content = $handler->unserializeContent( $blob );
+
+			$row->len = $content->getSize();
+		}
+
+		if ( !isset( $row->sha1 ) || $row->sha1 === '' ) {
+			$row->sha1 = SlotRecord::base36Sha1( $blob );
+		}
 	}
 }
 
