@@ -338,6 +338,7 @@ class SqlBagOStuff extends BagOStuff {
 
 		$result = true;
 		$exptime = (int)$expiry;
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
 		foreach ( $keysByTable as $serverIndex => $serverKeys ) {
 			$db = null;
@@ -406,6 +407,7 @@ class SqlBagOStuff extends BagOStuff {
 	protected function cas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
 		$db = null;
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
 		try {
 			$db = $this->getDB( $serverIndex );
@@ -457,6 +459,7 @@ class SqlBagOStuff extends BagOStuff {
 		}
 
 		$result = true;
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
 		foreach ( $keysByTable as $serverIndex => $serverKeys ) {
 			$db = null;
@@ -495,6 +498,7 @@ class SqlBagOStuff extends BagOStuff {
 	public function incr( $key, $step = 1 ) {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
 		$db = null;
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
 		try {
 			$db = $this->getDB( $serverIndex );
@@ -553,6 +557,7 @@ class SqlBagOStuff extends BagOStuff {
 	public function changeTTL( $key, $exptime = 0, $flags = 0 ) {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
 		$db = null;
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
 		try {
 			$db = $this->getDB( $serverIndex );
@@ -635,6 +640,7 @@ class SqlBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	public function deleteObjectsExpiringBefore( $timestamp, $progressCallback = false ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
 		for ( $serverIndex = 0; $serverIndex < $this->numServers; $serverIndex++ ) {
 			$db = null;
@@ -713,6 +719,7 @@ class SqlBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	public function deleteAll() {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
 		for ( $serverIndex = 0; $serverIndex < $this->numServers; $serverIndex++ ) {
 			$db = null;
@@ -727,6 +734,68 @@ class SqlBagOStuff extends BagOStuff {
 			}
 		}
 		return true;
+	}
+
+	public function lock( $key, $timeout = 6, $expiry = 6, $rclass = '' ) {
+		// Avoid deadlocks and allow lock reentry if specified
+		if ( isset( $this->locks[$key] ) ) {
+			if ( $rclass != '' && $this->locks[$key]['class'] === $rclass ) {
+				++$this->locks[$key]['depth'];
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		list( $serverIndex ) = $this->getTableByKey( $key );
+		try {
+			$db = $this->getDB( $serverIndex );
+			$ok = $db->lock( $key, __METHOD__, $timeout );
+			if ( $ok ) {
+				$this->locks[$key] = [ 'class' => $rclass, 'depth' => 1 ];
+			}
+
+			$this->logger->warning(
+				__METHOD__ . " failed due to timeout for {key}.",
+				[ 'key' => $key, 'timeout' => $timeout ]
+			);
+
+			return $ok;
+		} catch ( DBError $e ) {
+			$this->handleWriteError( $e, $db, $serverIndex );
+			$ok = false;
+		}
+
+		return $ok;
+	}
+
+	public function unlock( $key ) {
+		if ( !isset( $this->locks[$key] ) ) {
+			return false;
+		}
+
+		if ( --$this->locks[$key]['depth'] <= 0 ) {
+			unset( $this->locks[$key] );
+
+			list( $serverIndex ) = $this->getTableByKey( $key );
+			try {
+				$db = $this->getDB( $serverIndex );
+				$ok = $db->unlock( $key, __METHOD__ );
+				if ( !$ok ) {
+					$this->logger->warning(
+						__METHOD__ . ' failed to release lock for {key}.',
+						[ 'key' => $key ]
+					);
+				}
+			} catch ( DBError $e ) {
+				$this->handleWriteError( $e, $db, $serverIndex );
+				$ok = false;
+			}
+		} else {
+			$ok = false;
+		}
+
+		return $ok;
 	}
 
 	/**
@@ -790,8 +859,8 @@ class SqlBagOStuff extends BagOStuff {
 	 * @param int $serverIndex
 	 * @throws Exception
 	 */
-	protected function handleWriteError( DBError $exception, IDatabase $db = null, $serverIndex ) {
-		if ( !$db ) {
+	protected function handleWriteError( DBError $exception, $db, $serverIndex ) {
+		if ( !( $db instanceof IDatabase ) ) {
 			$this->markServerDown( $exception, $serverIndex );
 		}
 

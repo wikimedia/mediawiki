@@ -590,7 +590,11 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * @return bool Success
 	 */
 	public function unlock( $key ) {
-		if ( isset( $this->locks[$key] ) && --$this->locks[$key]['depth'] <= 0 ) {
+		if ( !isset( $this->locks[$key] ) ) {
+			return false;
+		}
+
+		if ( --$this->locks[$key]['depth'] <= 0 ) {
 			unset( $this->locks[$key] );
 
 			$ok = $this->doDelete( "{$key}:lock" );
