@@ -831,27 +831,25 @@ class Html {
 	 * @return array
 	 */
 	public static function namespaceSelectorOptions( array $params = [] ) {
-		$options = [];
-
 		if ( !isset( $params['exclude'] ) || !is_array( $params['exclude'] ) ) {
 			$params['exclude'] = [];
 		}
 
-		if ( isset( $params['all'] ) ) {
-			// add an option that would let the user select all namespaces.
-			// Value is provided by user, the name shown is localized for the user.
-			$options[$params['all']] = wfMessage( 'namespacesall' )->text();
-		}
 		if ( $params['in-user-lang'] ?? false ) {
 			global $wgLang;
 			$lang = $wgLang;
 		} else {
 			$lang = MediaWikiServices::getInstance()->getContentLanguage();
 		}
-		// Add all namespaces as options
-		$options += $lang->getFormattedNamespaces();
 
 		$optionsOut = [];
+		if ( isset( $params['all'] ) ) {
+			// add an option that would let the user select all namespaces.
+			// Value is provided by user, the name shown is localized for the user.
+			$optionsOut[$params['all']] = wfMessage( 'namespacesall' )->text();
+		}
+		// Add all namespaces as options
+		$options = $lang->getFormattedNamespaces();
 		// Filter out namespaces below 0 and massage labels
 		foreach ( $options as $nsId => $nsName ) {
 			if ( $nsId < NS_MAIN || in_array( $nsId, $params['exclude'] ) ) {

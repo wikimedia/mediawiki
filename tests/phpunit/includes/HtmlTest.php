@@ -481,6 +481,26 @@ class HtmlTest extends MediaWikiTestCase {
 			),
 			'Namespace selector namespace filtering.'
 		);
+		$this->assertEquals(
+			'<select id="namespace" name="namespace">' . "\n" .
+				'<option value="" selected="">todos</option>' . "\n" .
+				'<option value="2">User</option>' . "\n" .
+				'<option value="4">MyWiki</option>' . "\n" .
+				'<option value="5">MyWiki Talk</option>' . "\n" .
+				'<option value="6">File</option>' . "\n" .
+				'<option value="7">File talk</option>' . "\n" .
+				'<option value="8">MediaWiki</option>' . "\n" .
+				'<option value="9">MediaWiki talk</option>' . "\n" .
+				'<option value="10">Template</option>' . "\n" .
+				'<option value="11">Template talk</option>' . "\n" .
+				'<option value="14">Category</option>' . "\n" .
+				'<option value="15">Category talk</option>' . "\n" .
+				'</select>',
+			Html::namespaceSelector(
+				[ 'exclude' => [ 0, 1, 3, 100, 101 ], 'all' => '' ]
+			),
+			'Namespace selector namespace filtering with empty custom "all" option.'
+		);
 	}
 
 	/**
