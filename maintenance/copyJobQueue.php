@@ -57,8 +57,9 @@ class CopyJobQueue extends Maintenance {
 			? JobQueueGroup::singleton()->getQueueTypes()
 			: [ $this->getOption( 'type' ) ];
 
+		$dbDomain = WikiMap::getCurrentWikiDbDomain()->getId();
 		foreach ( $types as $type ) {
-			$baseConfig = [ 'type' => $type, 'wiki' => wfWikiID() ];
+			$baseConfig = [ 'type' => $type, 'domain' => $dbDomain ];
 			$src = JobQueue::factory( $baseConfig + $wgJobQueueMigrationConfig[$srcKey] );
 			$dst = JobQueue::factory( $baseConfig + $wgJobQueueMigrationConfig[$dstKey] );
 
