@@ -507,18 +507,18 @@ class UserrightsPage extends SpecialPage {
 		$parts = explode( $this->getConfig()->get( 'UserrightsInterwikiDelimiter' ), $username );
 		if ( count( $parts ) < 2 ) {
 			$name = trim( $username );
-			$wikiId = '';
+			$dbDomain = '';
 		} else {
-			list( $name, $wikiId ) = array_map( 'trim', $parts );
+			list( $name, $dbDomain ) = array_map( 'trim', $parts );
 
-			if ( WikiMap::isCurrentWikiId( $wikiId ) ) {
-				$wikiId = '';
+			if ( WikiMap::isCurrentWikiId( $dbDomain ) ) {
+				$dbDomain = '';
 			} else {
 				if ( $writing && !$this->getUser()->isAllowed( 'userrights-interwiki' ) ) {
 					return Status::newFatal( 'userrights-no-interwiki' );
 				}
-				if ( !UserRightsProxy::validDatabase( $wikiId ) ) {
-					return Status::newFatal( 'userrights-nodatabase', $wikiId );
+				if ( !UserRightsProxy::validDatabase( $dbDomain ) ) {
+					return Status::newFatal( 'userrights-nodatabase', $dbDomain );
 				}
 			}
 		}
@@ -532,10 +532,10 @@ class UserrightsPage extends SpecialPage {
 			// We'll do a lookup for the name internally.
 			$id = intval( substr( $name, 1 ) );
 
-			if ( $wikiId == '' ) {
+			if ( $dbDomain == '' ) {
 				$name = User::whoIs( $id );
 			} else {
-				$name = UserRightsProxy::whoIs( $wikiId, $id );
+				$name = UserRightsProxy::whoIs( $dbDomain, $id );
 			}
 
 			if ( !$name ) {
@@ -549,10 +549,10 @@ class UserrightsPage extends SpecialPage {
 			}
 		}
 
-		if ( $wikiId == '' ) {
+		if ( $dbDomain == '' ) {
 			$user = User::newFromName( $name );
 		} else {
-			$user = UserRightsProxy::newFromName( $wikiId, $name );
+			$user = UserRightsProxy::newFromName( $dbDomain, $name );
 		}
 
 		if ( !$user || $user->isAnon() ) {
