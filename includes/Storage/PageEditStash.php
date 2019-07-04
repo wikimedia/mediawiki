@@ -269,23 +269,28 @@ class PageEditStash {
 
 		if ( $editInfo->output->getFlag( 'vary-revision' ) ) {
 			// This can be used for the initial parse, e.g. for filters or doEditContent(),
-			// but a second parse will be triggered in doEditUpdates(). This is not optimal.
+			// but a second parse will be triggered in doEditUpdates() no matter what
 			$logger->info(
-				"Cache for key '{key}' has vary_revision; post-insertion parse inevitable.",
+				"Cache for key '{key}' has 'vary-revision'; post-insertion parse inevitable.",
 				$context
 			);
-		} elseif ( $editInfo->output->getFlag( 'vary-revision-id' ) ) {
-			// Similar to the above if we didn't guess the ID correctly.
-			$logger->debug(
-				"Cache for key '{key}' has vary_revision_id; post-insertion parse possible.",
-				$context
-			);
-		} elseif ( $editInfo->output->getFlag( 'vary-revision-timestamp' ) ) {
-			// Similar to the above if we didn't guess the timestamp correctly.
-			$logger->debug(
-				"Cache for key '{key}' has vary_revision_timestamp; post-insertion parse possible.",
-				$context
-			);
+		} else {
+			static $flagsMaybeReparse = [
+				// Similar to the above if we didn't guess the ID correctly
+				'vary-revision-id',
+				// Similar to the above if we didn't guess the timestamp correctly
+				'vary-revision-timestamp',
+				// Similar to the above if we didn't guess the content correctly
+				'vary-revision-sha1'
+			];
+			foreach ( $flagsMaybeReparse as $flag ) {
+				if ( $editInfo->output->getFlag( $flag ) ) {
+					$logger->debug(
+						"Cache for key '{key}' has $flag; post-insertion parse possible.",
+						$context
+					);
+				}
+			}
 		}
 
 		return $editInfo;

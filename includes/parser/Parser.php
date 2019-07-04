@@ -3692,6 +3692,18 @@ class Parser {
 	}
 
 	/**
+	 * @param Title $title
+	 * @return bool
+	 * @since 1.34
+	 */
+	public function isCurrentRevisionOfTitleCached( $title ) {
+		return (
+			$this->currentRevisionCache &&
+			$this->currentRevisionCache->has( $title->getPrefixedText() )
+		);
+	}
+
+	/**
 	 * Wrapper around Revision::newFromTitle to allow passing additional parameters
 	 * without passing them on to it.
 	 *
@@ -3725,8 +3737,7 @@ class Parser {
 			foreach ( $stuff['deps'] as $dep ) {
 				$this->mOutput->addTemplate( $dep['title'], $dep['page_id'], $dep['rev_id'] );
 				if ( $dep['title']->equals( $this->getTitle() ) ) {
-					// If we transclude ourselves, the final result
-					// will change based on the new version of the page
+					// Self-transclusion; final result may change based on the new page version
 					$this->mOutput->setFlag( 'vary-revision' );
 					wfDebug( __METHOD__ . ": self transclusion, setting vary-revision" );
 				}
