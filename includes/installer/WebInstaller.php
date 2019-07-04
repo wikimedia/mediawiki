@@ -1092,11 +1092,11 @@ class WebInstaller extends Installer {
 	/**
 	 * Helper for Installer::docLink()
 	 *
+	 * @internal For use by WebInstallerOutput
 	 * @param string $page
-	 *
 	 * @return string
 	 */
-	protected function getDocUrl( $page ) {
+	public function getDocUrl( $page ) {
 		$query = [ 'page' => $page ];
 
 		if ( in_array( $this->currentPageName, $this->pageSequence ) ) {
@@ -1119,6 +1119,20 @@ class WebInstaller extends Installer {
 		$url = $this->getDocUrl( $attribs['href'] );
 
 		return Html::element( 'a', [ 'href' => $url ], $linkText );
+	}
+
+	/**
+	 * Helper for sidebar links.
+	 *
+	 * @internal For use in WebInstallerOutput class
+	 * @param string $url
+	 * @param string $linkText
+	 * @return string HTML
+	 */
+	public function makeLinkItem( $url, $linkText ) {
+		return Html::rawElement( 'li', [],
+			Html::element( 'a', [ 'href' => $url ], $linkText )
+		);
 	}
 
 	/**
