@@ -373,11 +373,13 @@ TEXT
 				$pageRatePart = '-';
 				$revRatePart = '-';
 			}
+
+			$dbDomain = WikiMap::getCurrentWikiDbDomain()->getId();
 			$this->progress( sprintf(
 				"%s: %s (ID %d) %d pages (%0.1f|%0.1f/sec all|curr), "
 					. "%d revs (%0.1f|%0.1f/sec all|curr), %0.1f%%|%0.1f%% "
 					. "prefetched (all|curr), ETA %s [max %d]",
-				$now, wfWikiID(), $this->ID, $this->pageCount, $pageRate,
+				$now, $dbDomain, $this->ID, $this->pageCount, $pageRate,
 				$pageRatePart, $this->revCount, $revRate, $revRatePart,
 				$fetchRate, $fetchRatePart, $etats, $this->maxCount
 			) );

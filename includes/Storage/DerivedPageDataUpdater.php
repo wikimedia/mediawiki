@@ -344,14 +344,6 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	}
 
 	/**
-	 * @return bool|string
-	 */
-	private function getWikiId() {
-		// TODO: get from RevisionStore
-		return false;
-	}
-
-	/**
 	 * Checks whether this DerivedPageDataUpdater can be re-used for running updates targeting
 	 * the given revision.
 	 *
@@ -1574,7 +1566,10 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 
 		// TODO: In the wiring, register a listener for this on the new PageEventEmitter
 		ResourceLoaderWikiModule::invalidateModuleCache(
-			$title, $oldLegacyRevision, $legacyRevision, $this->getWikiId() ?: wfWikiID()
+			$title,
+			$oldLegacyRevision,
+			$legacyRevision,
+			$this->loadbalancerFactory->getLocalDomainID()
 		);
 
 		$this->doTransition( 'done' );
