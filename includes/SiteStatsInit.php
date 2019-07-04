@@ -191,7 +191,7 @@ class SiteStatsInit {
 
 	/**
 	 * @param int $index
-	 * @param string[] $groups
+	 * @param string[]|string $groups
 	 * @return IDatabase
 	 */
 	private static function getDB( $index, $groups = [] ) {

@@ -22,7 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**
@@ -313,7 +313,7 @@ class HistoryAction extends FormlessAction {
 	 * @param int $limit The limit number of revisions to get
 	 * @param int $offset
 	 * @param int $direction Either self::DIR_PREV or self::DIR_NEXT
-	 * @return ResultWrapper
+	 * @return IResultWrapper
 	 */
 	function fetchRevisions( $limit, $offset, $direction ) {
 		// Fail if article doesn't exist.

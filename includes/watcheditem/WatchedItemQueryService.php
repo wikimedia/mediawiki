@@ -4,7 +4,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Class performing complex database queries related to WatchedItems.
@@ -53,7 +53,7 @@ class WatchedItemQueryService {
 	const SORT_DESC = 'DESC';
 
 	/**
-	 * @var LoadBalancer
+	 * @var ILoadBalancer
 	 */
 	private $loadBalancer;
 
@@ -70,7 +70,7 @@ class WatchedItemQueryService {
 	private $watchedItemStore;
 
 	public function __construct(
-		LoadBalancer $loadBalancer,
+		ILoadBalancer $loadBalancer,
 		CommentStore $commentStore,
 		ActorMigration $actorMigration,
 		WatchedItemStoreInterface $watchedItemStore
