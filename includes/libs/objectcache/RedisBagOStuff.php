@@ -427,7 +427,7 @@ class RedisBagOStuff extends BagOStuff {
 	 * not. The safest response for us is to explicitly destroy the connection
 	 * object and let it be reopened during the next request.
 	 * @param RedisConnRef $conn
-	 * @param Exception $e
+	 * @param RedisException $e
 	 */
 	protected function handleException( RedisConnRef $conn, $e ) {
 		$this->setLastError( BagOStuff::ERR_UNEXPECTED );

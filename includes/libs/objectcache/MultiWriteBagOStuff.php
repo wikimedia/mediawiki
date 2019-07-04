@@ -299,7 +299,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 * @param int[] $indexes List of backing cache indexes
 	 * @param bool $asyncWrites
 	 * @param string $method Method name of backing caches
-	 * @param array[] $args Arguments to the method of backing caches
+	 * @param array $args Arguments to the method of backing caches
 	 * @return bool
 	 */
 	protected function doWrite( $indexes, $asyncWrites, $method, array $args ) {
