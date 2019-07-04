@@ -714,7 +714,7 @@
 	ignore = dirty
 [submodule "extensions/News"]
 	path = extensions/News
-	url = https://github.com/wikimedia/mediawiki-extensions-News
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/News
 	branch = REL1_33
 	ignore = dirty
 [submodule "extensions/Spoilers"]
