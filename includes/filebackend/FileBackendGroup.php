@@ -123,8 +123,28 @@ class FileBackendGroup {
 			}
 			$class = $config['class'];
 
-			// @FIXME: ideally this would default to the DB domain (which includes the schema)
-			$config['domainId'] = $config['domainId'] ?? ( $config['wikiId'] ?? wfWikiID() );
+			if ( isset( $config['domainId'] ) ) {
+				$domainId = $config['domainId'];
+			} elseif ( isset( $config['wikiId'] ) ) {
+				$domainId = $config['wikiId']; // b/c
+			} else {
+				// Only use the raw database/prefix for backwards compatibility
+				$ld = WikiMap::getCurrentWikiDbDomain();
+				$domainId = strlen( $ld->getTablePrefix() )
+					? "{$ld->getDatabase()}-{$ld->getTablePrefix()}"
+					: $ld->getDatabase();
+				// If the local wiki ID and local domain ID do not match, probably due to a
+				// non-default schema, issue a warning. A non-default schema indicates that
+				// it might be used to disambiguate different wikis.
+				$wikiId = WikiMap::getWikiIdFromDbDomain( $ld );
+				if ( $ld->getSchema() !== null && $domainId !== $wikiId ) {
+					wfWarn(
+						"\$wgFileBackend entry '$name' should have 'domainId' set.\n" .
+						"Legacy default 'domainId' is '$domainId' but wiki ID is '$wikiId'."
+					);
+				}
+			}
+			$config['domainId'] = $domainId;
 			$config['readOnly'] = $config['readOnly'] ?? $readOnlyReason;
 
 			unset( $config['class'] ); // backend won't need this
