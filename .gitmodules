@@ -489,7 +489,7 @@
 	ignore = dirty
 [submodule "extensions/Tabs"]
 	path = extensions/Tabs
-	url = https://github.com/wikimedia/mediawiki-extensions-Tabs
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Tabs
 	branch = REL1_33
 	ignore = dirty
 [submodule "extensions/RandomSelection"]
