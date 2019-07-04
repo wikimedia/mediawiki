@@ -445,19 +445,6 @@
 		libs: {},
 
 		/**
-		 * Access container for deprecated functionality that can be moved from
-		 * from their legacy location and attached to this object (e.g. a global
-		 * function that is deprecated and as stop-gap can be exposed through here).
-		 *
-		 * This was reserved for future use but never ended up being used.
-		 *
-		 * @deprecated since 1.22 Let deprecated identifiers keep their original name
-		 *  and use mw.log#deprecate to create an access container for tracking.
-		 * @property
-		 */
-		legacy: {},
-
-		/**
 		 * Store for messages.
 		 *
 		 * @property {mw.Map}
