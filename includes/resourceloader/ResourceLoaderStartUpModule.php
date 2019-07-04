@@ -105,7 +105,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgCaseSensitiveNamespaces' => $caseSensitiveNamespaces,
 			'wgLegalTitleChars' => Title::convertByteClassToUnicodeClass( Title::legalChars() ),
 			'wgIllegalFileChars' => Title::convertByteClassToUnicodeClass( $illegalFileChars ),
-			'wgResourceLoaderStorageVersion' => $conf->get( 'ResourceLoaderStorageVersion' ),
 			'wgResourceLoaderStorageEnabled' => $conf->get( 'ResourceLoaderStorageEnabled' ),
 			'wgForeignUploadTargets' => $conf->get( 'ForeignUploadTargets' ),
 			'wgEnableUploads' => $conf->get( 'EnableUploads' ),
@@ -368,6 +367,30 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Get the localStorage key for the entire module store. The key references
+	 * $wgDBname to prevent clashes between wikis under the same web domain.
+	 *
+	 * @return string localStorage item key for JavaScript
+	 */
+	private function getStoreKey() {
+		return 'MediaWikiModuleStore:' . $this->getConfig()->get( 'DBname' );
+	}
+
+	/**
+	 * Get the key on which the JavaScript module cache (mw.loader.store) will vary.
+	 *
+	 * @param ResourceLoaderContext $context
+	 * @return string String of concatenated vary conditions
+	 */
+	private function getStoreVary( ResourceLoaderContext $context ) {
+		return implode( ':', [
+			$context->getSkin(),
+			$this->getConfig()->get( 'ResourceLoaderStorageVersion' ),
+			$context->getLanguage(),
+		] );
+	}
+
+	/**
 	 * @param ResourceLoaderContext $context
 	 * @return string JavaScript code
 	 */
@@ -399,6 +422,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'$VARS.maxQueryLength' => ResourceLoader::encodeJsonForScript(
 				$conf->get( 'ResourceLoaderMaxQueryLength' )
 			),
+			'$VARS.storeKey' => ResourceLoader::encodeJsonForScript( $this->getStoreKey() ),
+			'$VARS.storeVary' => ResourceLoader::encodeJsonForScript( $this->getStoreVary( $context ) ),
 		];
 		$profilerStubs = [
 			'$CODE.profileExecuteStart();' => 'mw.loader.profiler.onExecuteStart( module );',
