@@ -51,10 +51,11 @@ class Title implements LinkTarget, IDBAccessObject {
 	const CACHE_MAX = 1000;
 
 	/**
-	 * Used to be GAID_FOR_UPDATE define. Used with getArticleID() and friends
-	 * to use the master DB
+	 * Used to be GAID_FOR_UPDATE define(). Used with getArticleID() and friends
+	 * to use the master DB and inject it into link cache.
+	 * @deprecated since 1.34, use Title::READ_LATEST instead.
 	 */
-	const GAID_FOR_UPDATE = 1;
+	const GAID_FOR_UPDATE = 512;
 
 	/**
 	 * Flag for use with factory methods like newFromLinkTarget() that have
@@ -74,25 +75,18 @@ class Title implements LinkTarget, IDBAccessObject {
 
 	/** @var string Text form (spaces not underscores) of the main part */
 	public $mTextform = '';
-
 	/** @var string URL-encoded form of the main part */
 	public $mUrlform = '';
-
 	/** @var string Main part with underscores */
 	public $mDbkeyform = '';
-
 	/** @var string Database key with the initial letter in the case specified by the user */
 	protected $mUserCaseDBKey;
-
 	/** @var int Namespace index, i.e. one of the NS_xxxx constants */
 	public $mNamespace = NS_MAIN;
-
 	/** @var string Interwiki prefix */
 	public $mInterwiki = '';
-
 	/** @var bool Was this Title created from a string with a local interwiki prefix? */
 	private $mLocalInterwiki = false;
-
 	/** @var string Title fragment (i.e. the bit after the #) */
 	public $mFragment = '';
 
@@ -467,16 +461,18 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * Create a new Title from an article ID
 	 *
 	 * @param int $id The page_id corresponding to the Title to create
-	 * @param int $flags Use Title::GAID_FOR_UPDATE to use master
+	 * @param int $flags Bitfield of class READ_* constants
 	 * @return Title|null The new object, or null on an error
 	 */
 	public static function newFromID( $id, $flags = 0 ) {
-		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_REPLICA );
-		$row = $db->selectRow(
+		$flags |= ( $flags & self::GAID_FOR_UPDATE ) ? self::READ_LATEST : 0; // b/c
+		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
+		$row = wfGetDB( $index )->selectRow(
 			'page',
 			self::getSelectFields(),
 			[ 'page_id' => $id ],
-			__METHOD__
+			__METHOD__,
+			$options
 		);
 		if ( $row !== false ) {
 			$title = self::newFromRow( $row );
@@ -545,10 +541,10 @@ class Title implements LinkTarget, IDBAccessObject {
 			if ( isset( $row->page_latest ) ) {
 				$this->mLatestID = (int)$row->page_latest;
 			}
-			if ( !$this->mForcedContentModel && isset( $row->page_content_model ) ) {
-				$this->mContentModel = (string)$row->page_content_model;
-			} elseif ( !$this->mForcedContentModel ) {
-				$this->mContentModel = false; # initialized lazily in getContentModel()
+			if ( isset( $row->page_content_model ) ) {
+				$this->lazyFillContentModel( $row->page_content_model );
+			} else {
+				$this->lazyFillContentModel( false ); // lazily-load getContentModel()
 			}
 			if ( isset( $row->page_lang ) ) {
 				$this->mDbPageLanguage = (string)$row->page_lang;
@@ -561,9 +557,7 @@ class Title implements LinkTarget, IDBAccessObject {
 			$this->mLength = 0;
 			$this->mRedirect = false;
 			$this->mLatestID = 0;
-			if ( !$this->mForcedContentModel ) {
-				$this->mContentModel = false; # initialized lazily in getContentModel()
-			}
+			$this->lazyFillContentModel( false ); // lazily-load getContentModel()
 		}
 	}
 
@@ -598,7 +592,6 @@ class Title implements LinkTarget, IDBAccessObject {
 		$t->mArticleID = ( $ns >= 0 ) ? -1 : 0;
 		$t->mUrlform = wfUrlencode( $t->mDbkeyform );
 		$t->mTextform = strtr( $title, '_', ' ' );
-		$t->mContentModel = false; # initialized lazily in getContentModel()
 		return $t;
 	}
 
@@ -676,7 +669,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * Get the prefixed DB key associated with an ID
 	 *
 	 * @param int $id The page_id of the article
-	 * @return Title|null An object representing the article, or null if no such article was found
+	 * @return string|null An object representing the article, or null if no such article was found
 	 */
 	public static function nameOf( $id ) {
 		$dbr = wfGetDB( DB_REPLICA );
@@ -691,8 +684,7 @@ class Title implements LinkTarget, IDBAccessObject {
 			return null;
 		}
 
-		$n = self::makeName( $s->page_namespace, $s->page_title );
-		return $n;
+		return self::makeName( $s->page_namespace, $s->page_title );
 	}
 
 	/**
@@ -1051,21 +1043,31 @@ class Title implements LinkTarget, IDBAccessObject {
 	 *
 	 * @todo Deprecate this in favor of SlotRecord::getModel()
 	 *
-	 * @param int $flags A bit field; may be Title::GAID_FOR_UPDATE to select for update
+	 * @param int $flags Either a bitfield of class READ_* constants or GAID_FOR_UPDATE
 	 * @return string Content model id
 	 */
 	public function getContentModel( $flags = 0 ) {
-		if ( !$this->mForcedContentModel
-			&& ( !$this->mContentModel || $flags === self::GAID_FOR_UPDATE )
-			&& $this->getArticleID( $flags )
+		if ( $this->mForcedContentModel ) {
+			if ( !$this->mContentModel ) {
+				throw new RuntimeException( 'Got out of sync; an empty model is being forced' );
+			}
+			// Content model is locked to the currently loaded one
+			return $this->mContentModel;
+		}
+
+		if ( DBAccessObjectUtils::hasFlags( $flags, self::READ_LATEST ) ) {
+			$this->lazyFillContentModel( $this->loadFieldFromDB( 'page_content_model', $flags ) );
+		} elseif (
+			( !$this->mContentModel || $flags & self::GAID_FOR_UPDATE ) &&
+			$this->getArticleId( $flags )
 		) {
 			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 			$linkCache->addLinkObj( $this ); # in case we already had an article ID
-			$this->mContentModel = $linkCache->getGoodLinkFieldObj( $this, 'model' );
+			$this->lazyFillContentModel( $linkCache->getGoodLinkFieldObj( $this, 'model' ) );
 		}
 
 		if ( !$this->mContentModel ) {
-			$this->mContentModel = ContentHandler::getDefaultModelFor( $this );
+			$this->lazyFillContentModel( ContentHandler::getDefaultModelFor( $this ) );
 		}
 
 		return $this->mContentModel;
@@ -1082,19 +1084,36 @@ class Title implements LinkTarget, IDBAccessObject {
 	}
 
 	/**
-	 * Set a proposed content model for the page for permissions
-	 * checking. This does not actually change the content model
-	 * of a title!
+	 * Set a proposed content model for the page for permissions checking
 	 *
-	 * Additionally, you should make sure you've checked
-	 * ContentHandler::canBeUsedOn() first.
+	 * This does not actually change the content model of a title in the DB.
+	 * It only affects this particular Title instance. The content model is
+	 * forced to remain this value until another setContentModel() call.
+	 *
+	 * ContentHandler::canBeUsedOn() should be checked before calling this
+	 * if there is any doubt regarding the applicability of the content model
 	 *
 	 * @since 1.28
 	 * @param string $model CONTENT_MODEL_XXX constant
 	 */
 	public function setContentModel( $model ) {
+		if ( (string)$model === '' ) {
+			throw new InvalidArgumentException( "Missing CONTENT_MODEL_* constant" );
+		}
+
 		$this->mContentModel = $model;
 		$this->mForcedContentModel = true;
+	}
+
+	/**
+	 * If the content model field is not frozen then update it with a retreived value
+	 *
+	 * @param string|bool $model CONTENT_MODEL_XXX constant or false
+	 */
+	private function lazyFillContentModel( $model ) {
+		if ( !$this->mForcedContentModel ) {
+			$this->mContentModel = ( $model === false ) ? false : (string)$model;
+		}
 	}
 
 	/**
@@ -2796,10 +2815,7 @@ class Title implements LinkTarget, IDBAccessObject {
 			return;
 		}
 
-		// TODO: should probably pass $flags into getArticleID, but it seems hacky
-		// to mix READ_LATEST and GAID_FOR_UPDATE, even if they have the same value.
-		// Maybe deprecate GAID_FOR_UPDATE now that we implement IDBAccessObject?
-		$id = $this->getArticleID();
+		$id = $this->getArticleID( $flags );
 		if ( $id ) {
 			$fname = __METHOD__;
 			$loadRestrictionsFromDb = function ( IDatabase $dbr ) use ( $fname, $id ) {
@@ -3023,24 +3039,28 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * Get the article ID for this Title from the link cache,
 	 * adding it if necessary
 	 *
-	 * @param int $flags A bit field; may be Title::GAID_FOR_UPDATE to select
-	 *  for update
+	 * @param int $flags Either a bitfield of class READ_* constants or GAID_FOR_UPDATE
 	 * @return int The ID
 	 */
 	public function getArticleID( $flags = 0 ) {
 		if ( $this->mNamespace < 0 ) {
 			$this->mArticleID = 0;
+
 			return $this->mArticleID;
 		}
+
 		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 		if ( $flags & self::GAID_FOR_UPDATE ) {
 			$oldUpdate = $linkCache->forUpdate( true );
 			$linkCache->clearLink( $this );
 			$this->mArticleID = $linkCache->addLinkObj( $this );
 			$linkCache->forUpdate( $oldUpdate );
+		} elseif ( DBAccessObjectUtils::hasFlags( $flags, self::READ_LATEST ) ) {
+			$this->mArticleID = (int)$this->loadFieldFromDB( 'page_id', $flags );
 		} elseif ( $this->mArticleID == -1 ) {
 			$this->mArticleID = $linkCache->addLinkObj( $this );
 		}
+
 		return $this->mArticleID;
 	}
 
@@ -3048,33 +3068,27 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * Is this an article that is a redirect page?
 	 * Uses link cache, adding it if necessary
 	 *
-	 * @param int $flags A bit field; may be Title::GAID_FOR_UPDATE to select for update
+	 * @param int $flags Either a bitfield of class READ_* constants or GAID_FOR_UPDATE
 	 * @return bool
 	 */
 	public function isRedirect( $flags = 0 ) {
-		if ( !is_null( $this->mRedirect ) ) {
-			return $this->mRedirect;
-		}
-		if ( !$this->getArticleID( $flags ) ) {
-			$this->mRedirect = false;
-			return $this->mRedirect;
-		}
+		if ( DBAccessObjectUtils::hasFlags( $flags, self::READ_LATEST ) ) {
+			$this->mRedirect = (bool)$this->loadFieldFromDB( 'page_is_redirect', $flags );
+		} else {
+			if ( $this->mRedirect !== null ) {
+				return $this->mRedirect;
+			} elseif ( !$this->getArticleID( $flags ) ) {
+				$this->mRedirect = false;
 
-		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
-		$linkCache->addLinkObj( $this ); # in case we already had an article ID
-		$cached = $linkCache->getGoodLinkFieldObj( $this, 'redirect' );
-		if ( $cached === null ) {
-			# Trust LinkCache's state over our own
-			# LinkCache is telling us that the page doesn't exist, despite there being cached
-			# data relating to an existing page in $this->mArticleID. Updaters should clear
-			# LinkCache as appropriate, or use $flags = Title::GAID_FOR_UPDATE. If that flag is
-			# set, then LinkCache will definitely be up to date here, since getArticleID() forces
-			# LinkCache to refresh its data from the master.
-			$this->mRedirect = false;
-			return $this->mRedirect;
-		}
+				return $this->mRedirect;
+			}
 
-		$this->mRedirect = (bool)$cached;
+			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
+			$linkCache->addLinkObj( $this ); // in case we already had an article ID
+			// Note that LinkCache returns null if it thinks the page does not exist;
+			// always trust the state of LinkCache over that of this Title instance.
+			$this->mRedirect = (bool)$linkCache->getGoodLinkFieldObj( $this, 'redirect' );
+		}
 
 		return $this->mRedirect;
 	}
@@ -3083,27 +3097,26 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * What is the length of this page?
 	 * Uses link cache, adding it if necessary
 	 *
-	 * @param int $flags A bit field; may be Title::GAID_FOR_UPDATE to select for update
+	 * @param int $flags Either a bitfield of class READ_* constants or GAID_FOR_UPDATE
 	 * @return int
 	 */
 	public function getLength( $flags = 0 ) {
-		if ( $this->mLength != -1 ) {
-			return $this->mLength;
-		}
-		if ( !$this->getArticleID( $flags ) ) {
-			$this->mLength = 0;
-			return $this->mLength;
-		}
-		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
-		$linkCache->addLinkObj( $this ); # in case we already had an article ID
-		$cached = $linkCache->getGoodLinkFieldObj( $this, 'length' );
-		if ( $cached === null ) {
-			# Trust LinkCache's state over our own, as for isRedirect()
-			$this->mLength = 0;
-			return $this->mLength;
-		}
+		if ( DBAccessObjectUtils::hasFlags( $flags, self::READ_LATEST ) ) {
+			$this->mLength = (int)$this->loadFieldFromDB( 'page_len', $flags );
+		} else {
+			if ( $this->mLength != -1 ) {
+				return $this->mLength;
+			} elseif ( !$this->getArticleID( $flags ) ) {
+				$this->mLength = 0;
+				return $this->mLength;
+			}
 
-		$this->mLength = intval( $cached );
+			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
+			$linkCache->addLinkObj( $this ); // in case we already had an article ID
+			// Note that LinkCache returns null if it thinks the page does not exist;
+			// always trust the state of LinkCache over that of this Title instance.
+			$this->mLength = (int)$linkCache->getGoodLinkFieldObj( $this, 'length' );
+		}
 
 		return $this->mLength;
 	}
@@ -3111,49 +3124,46 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * What is the page_latest field for this page?
 	 *
-	 * @param int $flags A bit field; may be Title::GAID_FOR_UPDATE to select for update
+	 * @param int $flags Either a bitfield of class READ_* constants or GAID_FOR_UPDATE
 	 * @return int Int or 0 if the page doesn't exist
 	 */
 	public function getLatestRevID( $flags = 0 ) {
-		if ( !( $flags & self::GAID_FOR_UPDATE ) && $this->mLatestID !== false ) {
-			return intval( $this->mLatestID );
-		}
-		if ( !$this->getArticleID( $flags ) ) {
-			$this->mLatestID = 0;
-			return $this->mLatestID;
-		}
-		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
-		$linkCache->addLinkObj( $this ); # in case we already had an article ID
-		$cached = $linkCache->getGoodLinkFieldObj( $this, 'revision' );
-		if ( $cached === null ) {
-			# Trust LinkCache's state over our own, as for isRedirect()
-			$this->mLatestID = 0;
-			return $this->mLatestID;
-		}
+		if ( DBAccessObjectUtils::hasFlags( $flags, self::READ_LATEST ) ) {
+			$this->mLatestID = (int)$this->loadFieldFromDB( 'page_latest', $flags );
+		} else {
+			if ( $this->mLatestID !== false ) {
+				return (int)$this->mLatestID;
+			} elseif ( !$this->getArticleID( $flags ) ) {
+				$this->mLatestID = 0;
 
-		$this->mLatestID = intval( $cached );
+				return $this->mLatestID;
+			}
+
+			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
+			$linkCache->addLinkObj( $this ); // in case we already had an article ID
+			// Note that LinkCache returns null if it thinks the page does not exist;
+			// always trust the state of LinkCache over that of this Title instance.
+			$this->mLatestID = (int)$linkCache->getGoodLinkFieldObj( $this, 'revision' );
+		}
 
 		return $this->mLatestID;
 	}
 
 	/**
-	 * This clears some fields in this object, and clears any associated
-	 * keys in the "bad links" section of the link cache.
+	 * Inject a page ID, reset DB-loaded fields, and clear the link cache for this title
 	 *
-	 * - This is called from WikiPage::doEditContent() and WikiPage::insertOn() to allow
-	 * loading of the new page_id. It's also called from
-	 * WikiPage::doDeleteArticleReal()
+	 * This can be called on page insertion to allow loading of the new page_id without
+	 * having to create a new Title instance. Likewise with deletion.
 	 *
-	 * @param int $newid The new Article ID
+	 * @note This overrides Title::setContentModel()
+	 *
+	 * @param int|bool $id Page ID, 0 for non-existant, or false for "unknown" (lazy-load)
 	 */
-	public function resetArticleID( $newid ) {
-		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
-		$linkCache->clearLink( $this );
-
-		if ( $newid === false ) {
+	public function resetArticleID( $id ) {
+		if ( $id === false ) {
 			$this->mArticleID = -1;
 		} else {
-			$this->mArticleID = intval( $newid );
+			$this->mArticleID = (int)$id;
 		}
 		$this->mRestrictionsLoaded = false;
 		$this->mRestrictions = [];
@@ -3162,10 +3172,13 @@ class Title implements LinkTarget, IDBAccessObject {
 		$this->mLength = -1;
 		$this->mLatestID = false;
 		$this->mContentModel = false;
+		$this->mForcedContentModel = false;
 		$this->mEstimateRevisions = null;
 		$this->mPageLanguage = null;
 		$this->mDbPageLanguage = false;
 		$this->mIsBigDeletion = null;
+
+		MediaWikiServices::getInstance()->getLinkCache()->clearLink( $this );
 	}
 
 	public static function clearCaches() {
@@ -3499,6 +3512,7 @@ class Title implements LinkTarget, IDBAccessObject {
 
 		$mp = MediaWikiServices::getInstance()->getMovePageFactory()->newMovePage( $this, $nt );
 		$method = $auth ? 'moveIfAllowed' : 'move';
+		/** @var Status $status */
 		$status = $mp->$method( $wgUser, $reason, $createRedirect, $changeTags );
 		if ( $status->isOK() ) {
 			return true;
@@ -3531,6 +3545,7 @@ class Title implements LinkTarget, IDBAccessObject {
 
 		$mp = new MovePage( $this, $nt );
 		$method = $auth ? 'moveSubpagesIfAllowed' : 'moveSubpages';
+		/** @var Status $result */
 		$result = $mp->$method( $wgUser, $reason, $createRedirect, $changeTags );
 
 		if ( !$result->isOK() ) {
@@ -3539,6 +3554,7 @@ class Title implements LinkTarget, IDBAccessObject {
 
 		$retval = [];
 		foreach ( $result->getValue() as $key => $status ) {
+			/** @var Status $status */
 			if ( $status->isOK() ) {
 				$retval[$key] = $status->getValue();
 			} else {
@@ -3549,8 +3565,9 @@ class Title implements LinkTarget, IDBAccessObject {
 	}
 
 	/**
-	 * Checks if this page is just a one-rev redirect.
-	 * Adds lock, so don't use just for light purposes.
+	 * Locks the page row and check if this page is single revision redirect
+	 *
+	 * This updates the cached fields of this instance via Title::loadFromRow()
 	 *
 	 * @return bool
 	 */
@@ -3730,24 +3747,22 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * Get next/previous revision ID relative to another revision ID
 	 * @param int $revId Revision ID. Get the revision that was before this one.
-	 * @param int $flags Title::GAID_FOR_UPDATE
+	 * @param int $flags Bitfield of class READ_* constants
 	 * @param string $dir 'next' or 'prev'
 	 * @return int|bool New revision ID, or false if none exists
 	 */
 	private function getRelativeRevisionID( $revId, $flags, $dir ) {
 		$rl = MediaWikiServices::getInstance()->getRevisionLookup();
-		$rlFlags = $flags === self::GAID_FOR_UPDATE ? IDBAccessObject::READ_LATEST : 0;
-		$rev = $rl->getRevisionById( $revId, $rlFlags );
+		$rev = $rl->getRevisionById( $revId, $flags );
 		if ( !$rev ) {
 			return false;
 		}
-		$oldRev = $dir === 'next'
-			? $rl->getNextRevision( $rev, $rlFlags )
-			: $rl->getPreviousRevision( $rev, $rlFlags );
-		if ( !$oldRev ) {
-			return false;
-		}
-		return $oldRev->getId();
+
+		$oldRev = ( $dir === 'next' )
+			? $rl->getNextRevision( $rev, $flags )
+			: $rl->getPreviousRevision( $rev, $flags );
+
+		return $oldRev ? $oldRev->getId() : false;
 	}
 
 	/**
@@ -3755,7 +3770,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 *
 	 * @deprecated since 1.34, use RevisionLookup::getPreviousRevision
 	 * @param int $revId Revision ID. Get the revision that was before this one.
-	 * @param int $flags Title::GAID_FOR_UPDATE
+	 * @param int $flags Bitfield of class READ_* constants
 	 * @return int|bool Old revision ID, or false if none exists
 	 */
 	public function getPreviousRevisionID( $revId, $flags = 0 ) {
@@ -3767,7 +3782,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 *
 	 * @deprecated since 1.34, use RevisionLookup::getNextRevision
 	 * @param int $revId Revision ID. Get the revision that was after this one.
-	 * @param int $flags Title::GAID_FOR_UPDATE
+	 * @param int $flags Bitfield of class READ_* constants
 	 * @return int|bool Next revision ID, or false if none exists
 	 */
 	public function getNextRevisionID( $revId, $flags = 0 ) {
@@ -3777,21 +3792,26 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * Get the first revision of the page
 	 *
-	 * @param int $flags Title::GAID_FOR_UPDATE
+	 * @param int $flags Bitfield of class READ_* constants
 	 * @return Revision|null If page doesn't exist
 	 */
 	public function getFirstRevision( $flags = 0 ) {
 		$pageId = $this->getArticleID( $flags );
 		if ( $pageId ) {
-			$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_REPLICA );
+			$flags |= ( $flags & self::GAID_FOR_UPDATE ) ? self::READ_LATEST : 0; // b/c
+			list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
 			$revQuery = Revision::getQueryInfo();
-			$row = $db->selectRow( $revQuery['tables'], $revQuery['fields'],
+			$row = wfGetDB( $index )->selectRow(
+				$revQuery['tables'], $revQuery['fields'],
 				[ 'rev_page' => $pageId ],
 				__METHOD__,
-				[
-					'ORDER BY' => 'rev_timestamp ASC, rev_id ASC',
-					'IGNORE INDEX' => [ 'revision' => 'rev_timestamp' ], // See T159319
-				],
+				array_merge(
+					[
+						'ORDER BY' => 'rev_timestamp ASC, rev_id ASC',
+						'IGNORE INDEX' => [ 'revision' => 'rev_timestamp' ], // See T159319
+					],
+					$options
+				),
 				$revQuery['joins']
 			);
 			if ( $row ) {
@@ -3804,7 +3824,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * Get the oldest revision timestamp of this page
 	 *
-	 * @param int $flags Title::GAID_FOR_UPDATE
+	 * @param int $flags Bitfield of class READ_* constants
 	 * @return string|null MW timestamp
 	 */
 	public function getEarliestRevTime( $flags = 0 ) {
@@ -4035,8 +4055,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * If you want to know if a title can be meaningfully viewed, you should
 	 * probably call the isKnown() method instead.
 	 *
-	 * @param int $flags An optional bit field; may be Title::GAID_FOR_UPDATE to check
-	 *   from master/for update
+	 * @param int $flags Either a bitfield of class READ_* constants or GAID_FOR_UPDATE
 	 * @return bool
 	 */
 	public function exists( $flags = 0 ) {
@@ -4630,6 +4649,27 @@ class Title implements LinkTarget, IDBAccessObject {
 
 		Hooks::run( 'TitleGetEditNotices', [ $this, $oldid, &$notices ] );
 		return $notices;
+	}
+
+	/**
+	 * @param int $flags Bitfield of class READ_* constants
+	 * @return string|bool
+	 */
+	private function loadFieldFromDB( $field, $flags ) {
+		if ( !in_array( $field, self::getSelectFields(), true ) ) {
+			return false; // field does not exist
+		}
+
+		$flags |= ( $flags & self::GAID_FOR_UPDATE ) ? self::READ_LATEST : 0; // b/c
+		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
+
+		return wfGetDB( $index )->selectField(
+			'page',
+			$field,
+			$this->pageCond(),
+			__METHOD__,
+			$options
+		);
 	}
 
 	/**
