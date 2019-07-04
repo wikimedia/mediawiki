@@ -3012,6 +3012,7 @@ class OutputPage extends ContextSource {
 	 * @return string The doctype, opening "<html>", and head element.
 	 */
 	public function headElement( Skin $sk, $includeStyle = true ) {
+		$config = $this->getConfig();
 		$userdir = $this->getLanguage()->getDir();
 		$sitedir = MediaWikiServices::getInstance()->getContentLanguage()->getDir();
 
@@ -3026,7 +3027,7 @@ class OutputPage extends ContextSource {
 			$this->setHTMLTitle( $this->msg( 'pagetitle', $this->getPageTitle() )->inContentLanguage() );
 		}
 
-		if ( !Html::isXmlMimeType( $this->getConfig()->get( 'MimeType' ) ) ) {
+		if ( !Html::isXmlMimeType( $config->get( 'MimeType' ) ) ) {
 			// Add <meta charset="UTF-8">
 			// This should be before <title> since it defines the charset used by
 			// text including the text inside <title>.
@@ -3044,18 +3045,15 @@ class OutputPage extends ContextSource {
 		$pieces = array_merge( $pieces, array_values( $this->getHeadLinksArray() ) );
 		$pieces = array_merge( $pieces, array_values( $this->mHeadItems ) );
 
+		// This library is intended to run on older browsers that MediaWiki no longer
+		// supports as Grade A. For these Grade C browsers, we provide an experience
+		// using only HTML and CSS. Where standards-compliant browsers are able to style
+		// unknown HTML elements without issue, old IE ignores these styles.
+		// The html5shiv library fixes that.
 		// Use an IE conditional comment to serve the script only to old IE
+		$shivUrl = $config->get( 'ResourceBasePath' ) . '/resources/lib/html5shiv/html5shiv.js';
 		$pieces[] = '<!--[if lt IE 9]>' .
-			ResourceLoaderClientHtml::makeLoad(
-				new ResourceLoaderContext(
-					$this->getResourceLoader(),
-					new FauxRequest( [] )
-				),
-				[ 'html5shiv' ],
-				ResourceLoaderModule::TYPE_SCRIPTS,
-				[ 'raw' => '1', 'sync' => '1' ],
-				$this->getCSPNonce()
-			) .
+			Html::linkedScript( $shivUrl, $this->getCSPNonce() ) .
 			'<![endif]-->';
 
 		$pieces[] = Html::closeElement( 'head' );
