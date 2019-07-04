@@ -1006,16 +1006,16 @@ class Html {
 	}
 
 	/**
-	 * Get HTML for an info box with an icon.
+	 * Get HTML for an information message box with an icon.
 	 *
-	 * @param string $text Wikitext, get this with wfMessage()->plain()
+	 * @internal For use by the WebInstaller class.
+	 * @param string $rawHtml HTML
 	 * @param string $icon Path to icon file (used as 'src' attribute)
 	 * @param string $alt Alternate text for the icon
 	 * @param string $class Additional class name to add to the wrapper div
-	 *
-	 * @return string
+	 * @return string HTML
 	 */
-	static function infoBox( $text, $icon, $alt, $class = '' ) {
+	public static function infoBox( $rawHtml, $icon, $alt, $class = '' ) {
 		$s = self::openElement( 'div', [ 'class' => "mw-infobox $class" ] );
 
 		$s .= self::openElement( 'div', [ 'class' => 'mw-infobox-left' ] ) .
@@ -1028,7 +1028,7 @@ class Html {
 				self::closeElement( 'div' );
 
 		$s .= self::openElement( 'div', [ 'class' => 'mw-infobox-right' ] ) .
-				$text .
+				$rawHtml .
 				self::closeElement( 'div' );
 		$s .= self::element( 'div', [ 'style' => 'clear: left;' ], ' ' );
 
