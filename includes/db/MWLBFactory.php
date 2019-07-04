@@ -70,6 +70,7 @@ abstract class MWLBFactory {
 	 * @param BagOStuff $mainStash
 	 * @param WANObjectCache $wanCache
 	 * @return array
+	 * @internal For use with service wiring
 	 */
 	public static function applyDefaultConfig(
 		array $lbConf,
@@ -152,8 +153,11 @@ abstract class MWLBFactory {
 			$serversCheck = [ $lbConf['serverTemplate'] ] ?? [];
 		}
 
-		self::assertValidServerConfigs( $serversCheck, $options->get( 'DBname' ),
-			$options->get( 'DBprefix' ) );
+		self::assertValidServerConfigs(
+			$serversCheck,
+			$options->get( 'DBname' ),
+			$options->get( 'DBprefix' )
+		);
 
 		$lbConf = self::injectObjectCaches( $lbConf, $srvCace, $mainStash, $wanCache );
 
@@ -164,7 +168,7 @@ abstract class MWLBFactory {
 	 * @return array
 	 */
 	private static function getDbTypesWithSchemas() {
-		return [ 'postgres', 'msssql' ];
+		return [ 'postgres', 'mssql' ];
 	}
 
 	/**
@@ -328,6 +332,7 @@ abstract class MWLBFactory {
 	 *
 	 * @param array $config (e.g. $wgLBFactoryConf)
 	 * @return string Class name
+	 * @internal For use with service wiring
 	 */
 	public static function getLBFactoryClass( array $config ) {
 		// For configuration backward compatibility after removing
@@ -365,13 +370,9 @@ abstract class MWLBFactory {
 	/**
 	 * @param LBFactory $lbFactory
 	 * @param string $dbType 'mysql', 'sqlite', etc.
+	 * @internal For use with service wiring
 	 */
 	public static function setSchemaAliases( LBFactory $lbFactory, $dbType ) {
-		if ( $dbType instanceof Config ) {
-			// Before 1.34 this took a whole Config just to get $dbType
-			wfDeprecated( __METHOD__ . ' with Config argument', '1.34' );
-			$dbType = $dbType->get( 'DBtype' );
-		}
 		if ( $dbType === 'mysql' ) {
 			/**
 			 * When SQLite indexes were introduced in r45764, it was noted that
@@ -398,6 +399,7 @@ abstract class MWLBFactory {
 	/**
 	 * Log a database deprecation warning
 	 * @param string $msg Deprecation message
+	 * @internal For use with service wiring
 	 */
 	public static function logDeprecation( $msg ) {
 		global $wgDevelopmentWarnings;

@@ -28,7 +28,7 @@ class DBConnRef implements IDatabase {
 
 	/**
 	 * @param ILoadBalancer $lb Connection manager for $conn
-	 * @param Database|array $conn Database or (server index, query groups, domain, flags)
+	 * @param IDatabase|array $conn Database or (server index, query groups, domain, flags)
 	 * @param int $role The type of connection asked for; one of DB_MASTER/DB_REPLICA
 	 * @internal This method should not be called outside of LoadBalancer
 	 */
