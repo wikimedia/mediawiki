@@ -148,7 +148,6 @@ class WebInstaller extends Installer {
 
 		// Add parser hooks
 		$parser = MediaWikiServices::getInstance()->getParser();
-		$parser->setHook( 'downloadlink', [ $this, 'downloadLinkHook' ] );
 		$parser->setHook( 'doclink', [ $this, 'docLink' ] );
 	}
 
@@ -660,13 +659,15 @@ class WebInstaller extends Installer {
 	/**
 	 * Get HTML for an information message box with an icon.
 	 *
-	 * @param string $text Wikitext to be parsed (from Message::plain).
+	 * @param string|HtmlArmor $text Wikitext to be parsed (from Message::plain) or raw HTML.
 	 * @param string|bool $icon Icon name, file in mw-config/images. Default: false
 	 * @param string|bool $class Additional class name to add to the wrapper div. Default: false.
 	 * @return string HTML
 	 */
 	public function getInfoBox( $text, $icon = false, $class = false ) {
-		$html = $this->parse( $text, true );
+		$html = ( $text instanceof HtmlArmor ) ?
+			HtmlArmor::getHtml( $text ) :
+			$this->parse( $text, true );
 		$icon = ( $icon == false ) ?
 			'images/info-32.png' :
 			'images/' . $icon;
@@ -1121,15 +1122,12 @@ class WebInstaller extends Installer {
 	}
 
 	/**
-	 * Helper for "Download LocalSettings" link on WebInstall_Complete
+	 * Helper for "Download LocalSettings" link.
 	 *
-	 * @param string $text Unused
-	 * @param string[] $attribs Unused
-	 * @param Parser $parser Unused
-	 *
+	 * @internal For use in WebInstallerComplete class
 	 * @return string Html for download link
 	 */
-	public function downloadLinkHook( $text, $attribs, $parser ) {
+	public function makeDownloadLinkHtml() {
 		$anchor = Html::rawElement( 'a',
 			[ 'href' => $this->getUrl( [ 'localsettings' => 1 ] ) ],
 			wfMessage( 'config-download-localsettings' )->parse()
