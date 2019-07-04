@@ -90,7 +90,10 @@ class DatabaseDomain {
 			$schema = null;
 		}
 
-		return new self( $database, $schema, $prefix );
+		$instance = new self( $database, $schema, $prefix );
+		$instance->equivalentString = (string)$domain;
+
+		return $instance;
 	}
 
 	/**
