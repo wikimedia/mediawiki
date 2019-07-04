@@ -2157,9 +2157,7 @@
 					 * @return {string} String of concatenated vary conditions.
 					 */
 					getVary: function () {
-						return mw.config.get( 'skin' ) + ':' +
-							mw.config.get( 'wgResourceLoaderStorageVersion' ) + ':' +
-							mw.config.get( 'wgUserLanguage' );
+						return $VARS.storeVary;
 					},
 
 					/**
