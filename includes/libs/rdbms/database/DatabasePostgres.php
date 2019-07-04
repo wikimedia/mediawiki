@@ -274,11 +274,8 @@ class DatabasePostgres extends Database {
 	}
 
 	public function freeResult( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
 		Wikimedia\suppressWarnings();
-		$ok = pg_free_result( $res );
+		$ok = pg_free_result( ResultWrapper::unwrap( $res ) );
 		Wikimedia\restoreWarnings();
 		if ( !$ok ) {
 			throw new DBUnexpectedError( $this, "Unable to free Postgres result\n" );
@@ -286,11 +283,8 @@ class DatabasePostgres extends Database {
 	}
 
 	public function fetchObject( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
 		Wikimedia\suppressWarnings();
-		$row = pg_fetch_object( $res );
+		$row = pg_fetch_object( ResultWrapper::unwrap( $res ) );
 		Wikimedia\restoreWarnings();
 		# @todo FIXME: HACK HACK HACK HACK debug
 
@@ -308,11 +302,8 @@ class DatabasePostgres extends Database {
 	}
 
 	public function fetchRow( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
 		Wikimedia\suppressWarnings();
-		$row = pg_fetch_array( $res );
+		$row = pg_fetch_array( ResultWrapper::unwrap( $res ) );
 		Wikimedia\restoreWarnings();
 
 		$conn = $this->getBindingHandle();
@@ -331,11 +322,8 @@ class DatabasePostgres extends Database {
 			return 0;
 		}
 
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
 		Wikimedia\suppressWarnings();
-		$n = pg_num_rows( $res );
+		$n = pg_num_rows( ResultWrapper::unwrap( $res ) );
 		Wikimedia\restoreWarnings();
 
 		$conn = $this->getBindingHandle();
@@ -350,19 +338,11 @@ class DatabasePostgres extends Database {
 	}
 
 	public function numFields( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		return pg_num_fields( $res );
+		return pg_num_fields( ResultWrapper::unwrap( $res ) );
 	}
 
 	public function fieldName( $res, $n ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		return pg_field_name( $res, $n );
+		return pg_field_name( ResultWrapper::unwrap( $res ), $n );
 	}
 
 	public function insertId() {
@@ -372,11 +352,7 @@ class DatabasePostgres extends Database {
 	}
 
 	public function dataSeek( $res, $row ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		return pg_result_seek( $res, $row );
+		return pg_result_seek( ResultWrapper::unwrap( $res ), $row );
 	}
 
 	public function lastError() {
@@ -1307,11 +1283,7 @@ SQL;
 	 * @return string
 	 */
 	public function fieldType( $res, $index ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		return pg_field_type( $res, $index );
+		return pg_field_type( ResultWrapper::unwrap( $res ), $index );
 	}
 
 	public function encodeBlob( $b ) {

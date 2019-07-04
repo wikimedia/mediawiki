@@ -253,11 +253,7 @@ class DatabaseOracle extends Database {
 	 * @param IResultWrapper|ORAResult $res
 	 */
 	function freeResult( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		$res->free();
+		ResultWrapper::unwrap( $res )->free();
 	}
 
 	/**
@@ -265,11 +261,7 @@ class DatabaseOracle extends Database {
 	 * @return stdClass|bool
 	 */
 	function fetchObject( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		return $res->fetchObject();
+		return ResultWrapper::unwrap( $res )->fetchObject();
 	}
 
 	/**
@@ -277,11 +269,7 @@ class DatabaseOracle extends Database {
 	 * @return stdClass|bool
 	 */
 	function fetchRow( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		return $res->fetchRow();
+		return ResultWrapper::unwrap( $res )->fetchRow();
 	}
 
 	/**
@@ -289,11 +277,7 @@ class DatabaseOracle extends Database {
 	 * @return int
 	 */
 	function numRows( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		return $res->numRows();
+		return ResultWrapper::unwrap( $res )->numRows();
 	}
 
 	/**
@@ -301,11 +285,7 @@ class DatabaseOracle extends Database {
 	 * @return int
 	 */
 	function numFields( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		return $res->numFields();
+		return ResultWrapper::unwrap( $res )->numFields();
 	}
 
 	function fieldName( $stmt, $n ) {
@@ -326,7 +306,7 @@ class DatabaseOracle extends Database {
 		if ( $res instanceof ORAResult ) {
 			$res->seek( $row );
 		} else {
-			$res->result->seek( $row );
+			ResultWrapper::unwrap( $res )->seek( $row );
 		}
 	}
 

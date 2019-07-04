@@ -176,11 +176,11 @@ class AllMessagesTablePager extends TablePager {
 	 */
 	function reallyDoQuery( $offset, $limit, $order ) {
 		$asc = ( $order === self::QUERY_ASCENDING );
-		$result = new FakeResultWrapper( [] );
 
 		$messageNames = $this->getAllMessages( $order );
 		$statuses = self::getCustomisedStatuses( $messageNames, $this->langcode, $this->foreign );
 
+		$rows = [];
 		$count = 0;
 		foreach ( $messageNames as $key ) {
 			$customised = isset( $statuses['pages'][$key] );
@@ -190,7 +190,7 @@ class AllMessagesTablePager extends TablePager {
 			) {
 				$actual = $this->msg( $key )->inLanguage( $this->lang )->plain();
 				$default = $this->msg( $key )->inLanguage( $this->lang )->useDatabase( false )->plain();
-				$result->result[] = [
+				$rows[] = [
 					'am_title' => $key,
 					'am_actual' => $actual,
 					'am_default' => $default,
@@ -205,7 +205,7 @@ class AllMessagesTablePager extends TablePager {
 			}
 		}
 
-		return $result;
+		return new FakeResultWrapper( $rows );
 	}
 
 	protected function getStartBody() {

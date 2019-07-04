@@ -8,21 +8,29 @@ use stdClass;
  * Overloads the relevant methods of the real ResultsWrapper so it
  * doesn't go anywhere near an actual database.
  */
-class FakeResultWrapper extends ResultWrapper {
-	/** @var stdClass[]|array[] $result */
+class FakeResultWrapper implements IResultWrapper {
+	/** @var stdClass[]|array[] */
+	protected $result;
+
+	/** @var int */
+	protected $pos = 0;
 
 	/**
-	 * @param stdClass[]|array[] $rows
+	 * @param stdClass[]|array[]|FakeResultWrapper $result
 	 */
-	function __construct( array $rows ) {
-		parent::__construct( null, $rows );
+	public function __construct( $result ) {
+		if ( $result instanceof self ) {
+			$this->result = $result->result;
+		} else {
+			$this->result = $result;
+		}
 	}
 
-	function numRows() {
+	public function numRows() {
 		return count( $this->result );
 	}
 
-	function fetchObject() {
+	public function fetchObject() {
 		$current = $this->current();
 
 		$this->next();
@@ -30,7 +38,7 @@ class FakeResultWrapper extends ResultWrapper {
 		return $current;
 	}
 
-	function fetchRow() {
+	public function fetchRow() {
 		$row = $this->valid() ? $this->result[$this->pos] : false;
 
 		$this->next();
@@ -38,35 +46,35 @@ class FakeResultWrapper extends ResultWrapper {
 		return is_object( $row ) ? get_object_vars( $row ) : $row;
 	}
 
-	function seek( $pos ) {
+	public function seek( $pos ) {
 		$this->pos = $pos;
 	}
 
-	function free() {
+	public function free() {
 		$this->result = null;
 	}
 
-	function rewind() {
+	public function rewind() {
 		$this->pos = 0;
 	}
 
-	function current() {
+	public function current() {
 		$row = $this->valid() ? $this->result[$this->pos] : false;
 
 		return is_array( $row ) ? (object)$row : $row;
 	}
 
-	function key() {
+	public function key() {
 		return $this->pos;
 	}
 
-	function next() {
+	public function next() {
 		$this->pos++;
 
 		return $this->current();
 	}
 
-	function valid() {
+	public function valid() {
 		return array_key_exists( $this->pos, $this->result );
 	}
 }

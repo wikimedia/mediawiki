@@ -994,8 +994,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * For SELECT queries, this returns either:
 	 *   - a) A driver-specific value/resource, only on success. This can be iterated
 	 *        over by calling fetchObject()/fetchRow() until there are no more rows.
-	 *        Alternatively, the result can be passed to resultObject() to obtain a
-	 *        ResultWrapper instance which can then be iterated over via "foreach".
+	 *        Alternatively, the result can be passed to resultObject() to obtain an
+	 *        IResultWrapper instance which can then be iterated over via "foreach".
 	 *   - b) False, on any query failure
 	 *
 	 * For non-SELECT queries, this returns either:
@@ -4208,9 +4208,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	abstract protected function fetchAffectedRowCount();
 
 	/**
-	 * Take the result from a query, and wrap it in a ResultWrapper if
-	 * necessary. Boolean values are passed through as is, to indicate success
-	 * of write queries or failure.
+	 * Take a query result and wrap it in an iterable result wrapper if necessary.
+	 * Booleans are passed through as-is to indicate success/failure of write queries.
 	 *
 	 * Once upon a time, Database::query() returned a bare MySQL result
 	 * resource, and it was necessary to call this function to convert it to
@@ -4222,12 +4221,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	protected function resultObject( $result ) {
 		if ( !$result ) {
-			return false;
-		} elseif ( $result instanceof ResultWrapper ) {
+			return false; // failed query
+		} elseif ( $result instanceof IResultWrapper ) {
 			return $result;
 		} elseif ( $result === true ) {
-			// Successful write query
-			return $result;
+			return $result; // succesful write query
 		} else {
 			return new ResultWrapper( $this, $result );
 		}
