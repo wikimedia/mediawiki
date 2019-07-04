@@ -146,9 +146,8 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 				) .
 				$this->getFooterText( $key );
 
-			$tabPanels[] = new OOUI\TabPanelLayout( [
+			$tabPanels[] = new OOUI\TabPanelLayout( 'mw-prefsection-' . $key, [
 				'classes' => [ 'mw-htmlform-autoinfuse-lazy' ],
-				'name' => 'mw-prefsection-' . $key,
 				'label' => $label,
 				'content' => new OOUI\FieldsetLayout( [
 					'classes' => [ 'mw-prefs-section-fieldset' ],
