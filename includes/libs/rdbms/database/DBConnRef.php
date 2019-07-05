@@ -5,8 +5,23 @@ namespace Wikimedia\Rdbms;
 use InvalidArgumentException;
 
 /**
- * Helper class to handle automatically marking connections as reusable (via RAII pattern)
- * as well handling deferring the actual network connection until the handle is used
+ * Helper class used for automatically marking an IDatabase connection as reusable (once it no
+ * longer matters which DB domain is selected) and for deferring the actual network connection
+ *
+ * This uses an RAII-style pattern where calling code is expected to keep the returned reference
+ * handle as a function variable that falls out of scope when no longer needed. This avoids the
+ * need for matching reuseConnection() calls for every "return" statement as well as the tedious
+ * use of try/finally.
+ *
+ * @par Example:
+ * @code
+ *     function getRowData() {
+ *         $conn = $this->lb->getConnectedRef( DB_REPLICA );
+ *         $row = $conn->select( ... );
+ *         return $row ? (array)$row : false;
+ *         // $conn falls out of scope and $this->lb->reuseConnection() gets called
+ *     }
+ * @endcode
  *
  * @ingroup Database
  * @since 1.22

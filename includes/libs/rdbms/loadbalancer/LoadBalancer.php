@@ -28,6 +28,7 @@ use BagOStuff;
 use EmptyBagOStuff;
 use WANObjectCache;
 use ArrayUtils;
+use LogicException;
 use UnexpectedValueException;
 use InvalidArgumentException;
 use RuntimeException;
@@ -84,8 +85,10 @@ class LoadBalancer implements ILoadBalancer {
 	private $loadMonitorConfig;
 	/** @var string Alternate local DB domain instead of DatabaseDomain::getId() */
 	private $localDomainIdAlias;
-	/** @var int */
+	/** @var int Amount of replication lag, in seconds, that is considered "high" */
 	private $maxLag;
+	/** @var string|bool The query group list to be used by default */
+	private $defaultGroup;
 
 	/** @var string Current server name */
 	private $hostname;
@@ -101,11 +104,11 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var array[] Map of (name => callable) */
 	private $trxRecurringCallbacks = [];
 
-	/** @var Database DB connection object that caused a problem */
+	/** @var Database Connection handle that caused a problem */
 	private $errorConnection;
-	/** @var int The generic (not query grouped) replica DB index */
+	/** @var int The generic (not query grouped) replica server index */
 	private $genericReadIndex = -1;
-	/** @var int[] The group replica DB indexes keyed by group */
+	/** @var int[] The group replica server indexes keyed by group */
 	private $readIndexByGroup = [];
 	/** @var bool|DBMasterPos Replication sync position or false if not set */
 	private $waitForPos;
@@ -113,9 +116,9 @@ class LoadBalancer implements ILoadBalancer {
 	private $laggedReplicaMode = false;
 	/** @var bool Whether the generic reader fell back to a lagged replica DB */
 	private $allReplicasDownMode = false;
-	/** @var string The last DB selection or connection error */
+	/** @var string The last DB domain selection or connection error */
 	private $lastError = 'Unknown error';
-	/** @var string|bool Reason the LB is read-only or false if not */
+	/** @var string|bool Reason this instance is read-only or false if not */
 	private $readOnlyReason = false;
 	/** @var int Total number of new connections ever made with this instance */
 	private $connectionCounter = 0;
@@ -130,9 +133,6 @@ class LoadBalancer implements ILoadBalancer {
 	private $trxRoundId = false;
 	/** @var string Stage of the current transaction round in the transaction round life-cycle */
 	private $trxRoundStage = self::ROUND_CURSORY;
-
-	/** @var string|null */
-	private $defaultGroup = null;
 
 	/** @var int Warn when this many connection are held */
 	const CONN_HELD_WARN_THRESHOLD = 10;
@@ -244,7 +244,7 @@ class LoadBalancer implements ILoadBalancer {
 			}
 		}
 
-		$this->defaultGroup = $params['defaultGroup'] ?? null;
+		$this->defaultGroup = $params['defaultGroup'] ?? self::GROUP_GENERIC;
 		$this->ownerId = $params['ownerId'] ?? null;
 	}
 
@@ -272,6 +272,30 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		return (string)$domain;
+	}
+
+	/**
+	 * @param string[]|string|bool $groups Query group list or false for the default
+	 * @param int $i Specific server index or DB_MASTER/DB_REPLICA
+	 * @return string[]|bool[] Query group list
+	 */
+	private function resolveGroups( $groups, $i ) {
+		if ( $groups === false ) {
+			$resolvedGroups = [ $this->defaultGroup ];
+		} elseif ( is_string( $groups ) ) {
+			$resolvedGroups = [ $groups ];
+		} elseif ( is_array( $groups ) ) {
+			$resolvedGroups = $groups ?: [ $this->defaultGroup ];
+		} else {
+			throw new InvalidArgumentException( "Invalid query groups provided" );
+		}
+
+		if ( $groups && $i > 0 ) {
+			$groupList = implode( ', ', $groups );
+			throw new LogicException( "Got query groups ($groupList) with a server index (#$i)" );
+		}
+
+		return $resolvedGroups;
 	}
 
 	/**
@@ -399,43 +423,42 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	/**
-	 * @param int $i
-	 * @param array $groups
+	 * Get the server index to use for a specified server index and query group list
+	 *
+	 * @param int $i Specific server index or DB_MASTER/DB_REPLICA
+	 * @param string[]|bool[] $groups Resolved query group list (non-empty)
 	 * @param string|bool $domain
-	 * @return int The index of a specific server (replica DBs are checked for connectivity)
+	 * @return int A specific server index (replica DBs are checked for connectivity)
 	 */
-	private function getConnectionIndex( $i, $groups, $domain ) {
-		// Check one "group" per default: the generic pool
-		$defaultGroups = $this->defaultGroup ? [ $this->defaultGroup ] : [ false ];
-
-		$groups = ( $groups === false || $groups === [] )
-			? $defaultGroups
-			: (array)$groups;
-
+	private function getConnectionIndex( $i, array $groups, $domain ) {
 		if ( $i === self::DB_MASTER ) {
 			$i = $this->getWriterIndex();
 		} elseif ( $i === self::DB_REPLICA ) {
-			# Try to find an available server in any the query groups (in order)
+			// Find an available server in any of the query groups (in order)
 			foreach ( $groups as $group ) {
 				$groupIndex = $this->getReaderIndex( $group, $domain );
 				if ( $groupIndex !== false ) {
-					$i = $groupIndex;
+					$i = $groupIndex; // group connection succeeded
 					break;
 				}
 			}
+		} elseif ( !isset( $this->servers[$i] ) ) {
+			throw new UnexpectedValueException( "Invalid server index index #$i" );
 		}
 
-		# Operation-based index
 		if ( $i === self::DB_REPLICA ) {
-			$this->lastError = 'Unknown error'; // reset error string
-			# Try the general server pool if $groups are unavailable.
-			$i = ( $groups === [ false ] )
-				? false // don't bother with this if that is what was tried above
-				: $this->getReaderIndex( false, $domain );
-			# Couldn't find a working server in getReaderIndex()?
+			// No specific server was yet found
+			$this->lastError = 'Unknown error'; // set here in case of worse failure
+			// Either make one last connection attempt or give up
+			$i = in_array( $this->defaultGroup, $groups, true )
+				// Connection attempt already included the default query group; give up
+				? false
+				// Connection attempt was for other query groups; try the default one
+				: $this->getReaderIndex( $this->defaultGroup, $domain );
+
 			if ( $i === false ) {
+				// Still coundn't find a working non-zero read load server
 				$this->lastError = 'No working replica DB server: ' . $this->lastError;
-				// Throw an exception
 				$this->reportConnectionError();
 				return null; // unreachable due to exception
 			}
@@ -456,7 +479,7 @@ class LoadBalancer implements ILoadBalancer {
 			return $index;
 		}
 
-		if ( $group !== false ) {
+		if ( $group !== self::GROUP_GENERIC ) {
 			// Use the server weight array for this load group
 			if ( isset( $this->groupLoads[$group] ) ) {
 				$loads = $this->groupLoads[$group];
@@ -492,7 +515,7 @@ class LoadBalancer implements ILoadBalancer {
 		// Cache the reader index for future DB_REPLICA handles
 		$this->setExistingReaderIndex( $group, $i );
 		// Record whether the generic reader index is in "lagged replica DB" mode
-		if ( $group === false && $laggedReplicaMode ) {
+		if ( $group === self::GROUP_GENERIC && $laggedReplicaMode ) {
 			$this->laggedReplicaMode = true;
 		}
 
@@ -509,7 +532,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @return int Server index or -1 if none was chosen
 	 */
 	protected function getExistingReaderIndex( $group ) {
-		if ( $group === false ) {
+		if ( $group === self::GROUP_GENERIC ) {
 			$index = $this->genericReadIndex;
 		} else {
 			$index = $this->readIndexByGroup[$group] ?? -1;
@@ -529,7 +552,7 @@ class LoadBalancer implements ILoadBalancer {
 			throw new UnexpectedValueException( "Cannot set a negative read server index" );
 		}
 
-		if ( $group === false ) {
+		if ( $group === self::GROUP_GENERIC ) {
 			$this->genericReadIndex = $index;
 		} else {
 			$this->readIndexByGroup[$group] = $index;
@@ -704,7 +727,9 @@ class LoadBalancer implements ILoadBalancer {
 		$i = ( $i === self::DB_MASTER ) ? $this->getWriterIndex() : $i;
 		$autocommit = ( ( $flags & self::CONN_TRX_AUTOCOMMIT ) == self::CONN_TRX_AUTOCOMMIT );
 
+		$conn = false;
 		foreach ( $this->conns as $connsByServer ) {
+			// Get the connection array server indexes to inspect
 			if ( $i === self::DB_REPLICA ) {
 				$indexes = array_keys( $connsByServer );
 			} else {
@@ -712,18 +737,47 @@ class LoadBalancer implements ILoadBalancer {
 			}
 
 			foreach ( $indexes as $index ) {
-				foreach ( $connsByServer[$index] as $conn ) {
-					if ( !$conn->isOpen() ) {
-						continue; // some sort of error occured?
-					}
-					if ( !$autocommit || $conn->getLBInfo( 'autoCommitOnly' ) ) {
-						return $conn;
-					}
+				$conn = $this->pickAnyOpenConnection( $connsByServer[$index], $autocommit );
+				if ( $conn ) {
+					break;
 				}
 			}
 		}
 
-		return false;
+		if ( $conn ) {
+			$this->enforceConnectionFlags( $conn, $flags );
+		}
+
+		return $conn;
+	}
+
+	/**
+	 * @param IDatabase[] $candidateConns
+	 * @param bool $autocommit Whether to only look for auto-commit connections
+	 * @return IDatabase|false An appropriate open connection or false if none found
+	 */
+	private function pickAnyOpenConnection( $candidateConns, $autocommit ) {
+		$conn = false;
+
+		foreach ( $candidateConns as $candidateConn ) {
+			if ( !$candidateConn->isOpen() ) {
+				continue; // some sort of error occured?
+			} elseif (
+				$autocommit &&
+				(
+					// Connection is transaction round aware
+					!$candidateConn->getLBInfo( 'autoCommitOnly' ) ||
+					// Some sort of error left a transaction open?
+					$candidateConn->trxLevel()
+				)
+			) {
+				continue; // some sort of error left a transaction open?
+			}
+
+			$conn = $candidateConn;
+		}
+
+		return $conn;
 	}
 
 	/**
@@ -823,12 +877,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function getConnection( $i, $groups = [], $domain = false, $flags = 0 ) {
-		if ( !is_int( $i ) ) {
-			throw new InvalidArgumentException( "Cannot connect without a server index" );
-		} elseif ( $groups && $i > 0 ) {
-			throw new InvalidArgumentException( "Got query groups with server index #$i" );
-		}
-
+		$groups = $this->resolveGroups( $groups, $i );
 		$domain = $this->resolveDomainID( $domain );
 		$flags = $this->sanitizeConnectionFlags( $flags );
 		$masterOnly = ( $i === self::DB_MASTER || $i === $this->getWriterIndex() );
@@ -896,7 +945,7 @@ class LoadBalancer implements ILoadBalancer {
 			// Database instance to this method. Any caller passing in a DBConnRef is broken.
 			$this->connLogger->error(
 				__METHOD__ . ": got DBConnRef instance.\n" .
-				( new RuntimeException() )->getTraceAsString() );
+				( new LogicException() )->getTraceAsString() );
 
 			return;
 		}
@@ -1154,14 +1203,9 @@ class LoadBalancer implements ILoadBalancer {
 	 * Test if the specified index represents an open connection
 	 *
 	 * @param int $index Server index
-	 * @private
 	 * @return bool
 	 */
 	private function isOpen( $index ) {
-		if ( !is_int( $index ) ) {
-			return false;
-		}
-
 		return (bool)$this->getAnyOpenConnection( $index );
 	}
 
