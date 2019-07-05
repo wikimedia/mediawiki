@@ -20,6 +20,8 @@
  * @file
  * @author Niklas Laxström
  */
+
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -856,7 +858,7 @@ class Message implements MessageSpecifier, Serializable {
 	public function toString( $format = null ) {
 		if ( $format === null ) {
 			$ex = new LogicException( __METHOD__ . ' using implicit format: ' . $this->format );
-			\MediaWiki\Logger\LoggerFactory::getInstance( 'message-format' )->warning(
+			LoggerFactory::getInstance( 'message-format' )->warning(
 				$ex->getMessage(), [ 'exception' => $ex, 'format' => $this->format, 'key' => $this->key ] );
 			$format = $this->format;
 		}
@@ -1206,7 +1208,7 @@ class Message implements MessageSpecifier, Serializable {
 				if ( !is_scalar( $param ) ) {
 					$param = serialize( $param );
 				}
-				\MediaWiki\Logger\LoggerFactory::getInstance( 'Bug58676' )->warning(
+				LoggerFactory::getInstance( 'Bug58676' )->warning(
 					'Invalid parameter for message "{msgkey}": {param}',
 					[
 						'exception' => new Exception,
