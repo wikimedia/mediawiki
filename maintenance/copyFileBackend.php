@@ -121,7 +121,6 @@ class CopyFileBackend extends Maintenance {
 			}
 			if ( count( $batchPaths ) ) { // left-overs
 				$this->copyFileBatch( array_keys( $batchPaths ), $backendRel, $src, $dst );
-				$batchPaths = []; // done
 			}
 			$this->output( "\tCopied $count file(s).\n" );
 
@@ -148,7 +147,6 @@ class CopyFileBackend extends Maintenance {
 				}
 				if ( count( $batchPaths ) ) { // left-overs
 					$this->delFileBatch( array_keys( $batchPaths ), $backendRel, $dst );
-					$batchPaths = []; // done
 				}
 
 				$this->output( "\tDeleted $count file(s).\n" );
@@ -212,7 +210,7 @@ class CopyFileBackend extends Maintenance {
 		$ops = [];
 		$fsFiles = [];
 		$copiedRel = []; // for output message
-		$wikiId = $src->getWikiId();
+		$domainId = $src->getDomainId();
 
 		// Download the batch of source files into backend cache...
 		if ( $this->hasOption( 'missingonly' ) ) {
@@ -232,7 +230,7 @@ class CopyFileBackend extends Maintenance {
 			$srcPath = $src->getRootStoragePath() . "/$backendRel/$srcPathRel";
 			$dstPath = $dst->getRootStoragePath() . "/$backendRel/$srcPathRel";
 			if ( $this->hasOption( 'utf8only' ) && !mb_check_encoding( $srcPath, 'UTF-8' ) ) {
-				$this->error( "$wikiId: Detected illegal (non-UTF8) path for $srcPath." );
+				$this->error( "$domainId: Detected illegal (non-UTF8) path for $srcPath." );
 				continue;
 			} elseif ( !$this->hasOption( 'missingonly' )
 				&& $this->filesAreSame( $src, $dst, $srcPath, $dstPath )
@@ -246,24 +244,24 @@ class CopyFileBackend extends Maintenance {
 			if ( !$fsFile ) {
 				$src->clearCache( [ $srcPath ] );
 				if ( $src->fileExists( [ 'src' => $srcPath, 'latest' => 1 ] ) === false ) {
-					$this->error( "$wikiId: File '$srcPath' was listed but does not exist." );
+					$this->error( "$domainId: File '$srcPath' was listed but does not exist." );
 				} else {
-					$this->error( "$wikiId: Could not get local copy of $srcPath." );
+					$this->error( "$domainId: Could not get local copy of $srcPath." );
 				}
 				continue;
 			} elseif ( !$fsFile->exists() ) {
 				// FSFileBackends just return the path for getLocalReference() and paths with
 				// illegal slashes may get normalized to a different path. This can cause the
 				// local reference to not exist...skip these broken files.
-				$this->error( "$wikiId: Detected possible illegal path for $srcPath." );
+				$this->error( "$domainId: Detected possible illegal path for $srcPath." );
 				continue;
 			}
 			$fsFiles[] = $fsFile; // keep TempFSFile objects alive as needed
 			// Note: prepare() is usually fast for key/value backends
 			$status = $dst->prepare( [ 'dir' => dirname( $dstPath ), 'bypassReadOnly' => 1 ] );
 			if ( !$status->isOK() ) {
-				$this->error( print_r( $status->getErrorsArray(), true ) );
-				$this->fatalError( "$wikiId: Could not copy $srcPath to $dstPath." );
+				$this->error( print_r( Status::wrap( $status )->getWikiText(), true ) );
+				$this->fatalError( "$domainId: Could not copy $srcPath to $dstPath." );
 			}
 			$ops[] = [ 'op' => 'store',
 				'src' => $fsFile->getPath(), 'dst' => $dstPath, 'overwrite' => 1 ];
@@ -279,8 +277,8 @@ class CopyFileBackend extends Maintenance {
 		}
 		$elapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
 		if ( !$status->isOK() ) {
-			$this->error( print_r( $status->getErrorsArray(), true ) );
-			$this->fatalError( "$wikiId: Could not copy file batch." );
+			$this->error( print_r( Status::wrap( $status )->getWikiText(), true ) );
+			$this->fatalError( "$domainId: Could not copy file batch." );
 		} elseif ( count( $copiedRel ) ) {
 			$this->output( "\n\tCopied these file(s) [{$elapsed_ms}ms]:\n\t" .
 				implode( "\n\t", $copiedRel ) . "\n\n" );
@@ -298,7 +296,7 @@ class CopyFileBackend extends Maintenance {
 	) {
 		$ops = [];
 		$deletedRel = []; // for output message
-		$wikiId = $dst->getWikiId();
+		$domainId = $dst->getDomainId();
 
 		// Determine what files need to be copied over...
 		foreach ( $dstPathsRel as $dstPathRel ) {
@@ -316,8 +314,8 @@ class CopyFileBackend extends Maintenance {
 		}
 		$elapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
 		if ( !$status->isOK() ) {
-			$this->error( print_r( $status->getErrorsArray(), true ) );
-			$this->fatalError( "$wikiId: Could not delete file batch." );
+			$this->error( print_r( Status::wrap( $status )->getWikiText(), true ) );
+			$this->fatalError( "$domainId: Could not delete file batch." );
 		} elseif ( count( $deletedRel ) ) {
 			$this->output( "\n\tDeleted these file(s) [{$elapsed_ms}ms]:\n\t" .
 				implode( "\n\t", $deletedRel ) . "\n\n" );
