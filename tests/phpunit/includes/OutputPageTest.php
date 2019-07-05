@@ -2674,11 +2674,11 @@ class OutputPageTest extends MediaWikiTestCase {
 		return [
 			'empty' => [
 				'exemptStyleModules' => [],
-				'<meta name="ResourceLoaderDynamicStyles" content=""/>',
+				'',
 			],
 			'empty sets' => [
 				'exemptStyleModules' => [ 'site' => [], 'noscript' => [], 'private' => [], 'user' => [] ],
-				'<meta name="ResourceLoaderDynamicStyles" content=""/>',
+				'',
 			],
 			'default logged-out' => [
 				'exemptStyleModules' => [ 'site' => [ 'site.styles' ] ],
