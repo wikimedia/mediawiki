@@ -415,6 +415,8 @@ because of Phabricator reports.
   template option 'searchaction' instead.
 * LoadBalancer::haveIndex() and LoadBalancer::isNonZeroLoad() have
   been deprecated.
+* FileBackend::getWikiId() has been deprecated.
+  Use FileBackend::getDomainId() instead.
 * User::getRights() and User::$mRights have been deprecated. Use
   PermissionManager::getUserPermissions() instead.
 * The LocalisationCacheRecache hook no longer allows purging of message blobs

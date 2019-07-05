@@ -225,6 +225,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * Alias to getDomainId()
 	 * @return string
 	 * @since 1.20
+	 * @deprecated Since 1.34 Use getDomainId()
 	 */
 	final public function getWikiId() {
 		return $this->getDomainId();
