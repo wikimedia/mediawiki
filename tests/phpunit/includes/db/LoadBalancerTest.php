@@ -112,7 +112,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		global $wgDBserver;
 
 		// Simulate web request with DBO_TRX
-		$lb = $this->newMultiServerLocalLoadBalancer( DBO_TRX );
+		$lb = $this->newMultiServerLocalLoadBalancer( [], [ 'flags' => DBO_TRX ] );
 
 		$this->assertEquals( 8, $lb->getServerCount() );
 		$this->assertTrue( $lb->hasReplicaServers() );
@@ -167,12 +167,12 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		] );
 	}
 
-	private function newMultiServerLocalLoadBalancer( $flags = DBO_DEFAULT ) {
+	private function newMultiServerLocalLoadBalancer( $lbExtra = [], $srvExtra = [] ) {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
 
 		$servers = [
 			// Master DB
-			0 => [
+			0 => $srvExtra + [
 				'host' => $wgDBserver,
 				'dbname' => $wgDBname,
 				'tablePrefix' => $this->dbPrefix(),
@@ -181,10 +181,9 @@ class LoadBalancerTest extends MediaWikiTestCase {
 				'type' => $wgDBtype,
 				'dbDirectory' => $wgSQLiteDataDir,
 				'load' => 0,
-				'flags' => $flags
 			],
 			// Main replica DBs
-			1 => [
+			1 => $srvExtra + [
 				'host' => $wgDBserver,
 				'dbname' => $wgDBname,
 				'tablePrefix' => $this->dbPrefix(),
@@ -193,9 +192,8 @@ class LoadBalancerTest extends MediaWikiTestCase {
 				'type' => $wgDBtype,
 				'dbDirectory' => $wgSQLiteDataDir,
 				'load' => 100,
-				'flags' => $flags
 			],
-			2 => [
+			2 => $srvExtra + [
 				'host' => $wgDBserver,
 				'dbname' => $wgDBname,
 				'tablePrefix' => $this->dbPrefix(),
@@ -204,10 +202,9 @@ class LoadBalancerTest extends MediaWikiTestCase {
 				'type' => $wgDBtype,
 				'dbDirectory' => $wgSQLiteDataDir,
 				'load' => 100,
-				'flags' => $flags
 			],
 			// RC replica DBs
-			3 => [
+			3 => $srvExtra + [
 				'host' => $wgDBserver,
 				'dbname' => $wgDBname,
 				'tablePrefix' => $this->dbPrefix(),
@@ -220,10 +217,9 @@ class LoadBalancerTest extends MediaWikiTestCase {
 					'recentchanges' => 100,
 					'watchlist' => 100
 				],
-				'flags' => $flags
 			],
 			// Logging replica DBs
-			4 => [
+			4 => $srvExtra + [
 				'host' => $wgDBserver,
 				'dbname' => $wgDBname,
 				'tablePrefix' => $this->dbPrefix(),
@@ -235,9 +231,8 @@ class LoadBalancerTest extends MediaWikiTestCase {
 				'groupLoads' => [
 					'logging' => 100
 				],
-				'flags' => $flags
 			],
-			5 => [
+			5 => $srvExtra + [
 				'host' => $wgDBserver,
 				'dbname' => $wgDBname,
 				'tablePrefix' => $this->dbPrefix(),
@@ -249,10 +244,9 @@ class LoadBalancerTest extends MediaWikiTestCase {
 				'groupLoads' => [
 					'logging' => 100
 				],
-				'flags' => $flags
 			],
 			// Maintenance query replica DBs
-			6 => [
+			6 => $srvExtra + [
 				'host' => $wgDBserver,
 				'dbname' => $wgDBname,
 				'tablePrefix' => $this->dbPrefix(),
@@ -264,10 +258,9 @@ class LoadBalancerTest extends MediaWikiTestCase {
 				'groupLoads' => [
 					'vslow' => 100
 				],
-				'flags' => $flags
 			],
 			// Replica DB that only has a copy of some static tables
-			7 => [
+			7 => $srvExtra + [
 				'host' => $wgDBserver,
 				'dbname' => $wgDBname,
 				'tablePrefix' => $this->dbPrefix(),
@@ -279,12 +272,11 @@ class LoadBalancerTest extends MediaWikiTestCase {
 				'groupLoads' => [
 					'archive' => 100
 				],
-				'flags' => $flags,
 				'is static' => true
 			]
 		];
 
-		return new LoadBalancer( [
+		return new LoadBalancer( $lbExtra + [
 			'servers' => $servers,
 			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() ),
 			'queryLogger' => MediaWiki\Logger\LoggerFactory::getInstance( 'DBQuery' ),
@@ -585,7 +577,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 	}
 
 	public function testQueryGroupIndex() {
-		$lb = $this->newMultiServerLocalLoadBalancer();
+		$lb = $this->newMultiServerLocalLoadBalancer( [ 'defaultGroup' => false ] );
 		/** @var LoadBalancer $lbWrapper */
 		$lbWrapper = TestingAccessWrapper::newFromObject( $lb );
 
