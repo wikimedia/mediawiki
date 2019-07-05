@@ -121,13 +121,13 @@ class FileRepo {
 	/** @var bool Whether all zones should be private (e.g. private wiki repo) */
 	protected $isPrivate;
 
-	/** @var array callable Override these in the base class */
+	/** @var callable Override these in the base class */
 	protected $fileFactory = [ UnregisteredLocalFile::class, 'newFromTitle' ];
-	/** @var array callable|bool Override these in the base class */
+	/** @var callable|false Override these in the base class */
 	protected $oldFileFactory = false;
-	/** @var array callable|bool Override these in the base class */
+	/** @var callable|false Override these in the base class */
 	protected $fileFactoryKey = false;
-	/** @var array callable|bool Override these in the base class */
+	/** @var callable|false Override these in the base class */
 	protected $oldFileFactoryKey = false;
 
 	/** @var string URL of where to proxy thumb.php requests to.
@@ -230,7 +230,7 @@ class FileRepo {
 	/**
 	 * Check if a single zone or list of zones is defined for usage
 	 *
-	 * @param array $doZones Only do a particular zones
+	 * @param string[]|string $doZones Only do a particular zones
 	 * @throws MWException
 	 * @return Status
 	 */
@@ -734,7 +734,7 @@ class FileRepo {
 	/**
 	 * Make an url to this repo
 	 *
-	 * @param string $query Query string to append
+	 * @param string|string[] $query Query string to append
 	 * @param string $entry Entry point; defaults to index
 	 * @return string|bool False on failure
 	 */
@@ -1739,7 +1739,7 @@ class FileRepo {
 	/**
 	 * Create a new good result
 	 *
-	 * @param null|string $value
+	 * @param null|mixed $value
 	 * @return Status
 	 */
 	public function newGood( $value = null ) {
