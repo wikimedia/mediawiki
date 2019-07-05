@@ -513,10 +513,13 @@ abstract class AbstractBlock {
 	 * @return array
 	 */
 	public function getBlockErrorParams( IContextSource $context ) {
+		$lang = $context->getLanguage();
+
 		$blocker = $this->getBlocker();
 		if ( $blocker instanceof User ) { // local user
 			$blockerUserpage = $blocker->getUserPage();
-			$link = "[[{$blockerUserpage->getPrefixedText()}|{$blockerUserpage->getText()}]]";
+			$blockerText = $lang->embedBidi( $blockerUserpage->getText() );
+			$link = "[[{$blockerUserpage->getPrefixedText()}|{$blockerText}]]";
 		} else { // foreign user
 			$link = $blocker;
 		}
@@ -528,19 +531,18 @@ abstract class AbstractBlock {
 
 		/* $ip returns who *is* being blocked, $intended contains who was meant to be blocked.
 		 * This could be a username, an IP range, or a single IP. */
-		$intended = $this->getTarget();
-		$lang = $context->getLanguage();
+		$intended = (string)$this->getTarget();
 
 		return [
 			$link,
 			$reason,
 			$context->getRequest()->getIP(),
-			$this->getByName(),
+			$lang->embedBidi( $this->getByName() ),
 			// TODO: SystemBlock replaces this with the system block type. Clean up
 			// error params so that this is not necessary.
 			$this->getId(),
 			$lang->formatExpiry( $this->getExpiry() ),
-			(string)$intended,
+			$lang->embedBidi( $intended ),
 			$lang->userTimeAndDate( $this->getTimestamp(), $context->getUser() ),
 		];
 	}
