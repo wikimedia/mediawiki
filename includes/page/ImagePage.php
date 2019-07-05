@@ -29,7 +29,7 @@ use Wikimedia\Rdbms\ResultWrapper;
  * @ingroup Media
  */
 class ImagePage extends Article {
-	/** @var File */
+	/** @var File|false */
 	private $displayImg;
 
 	/** @var FileRepo */
@@ -801,7 +801,7 @@ EOT
 	}
 
 	/**
-	 * @param string $target
+	 * @param string|string[] $target
 	 * @param int $limit
 	 * @return ResultWrapper
 	 */

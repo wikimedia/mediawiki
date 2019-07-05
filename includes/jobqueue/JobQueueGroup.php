@@ -271,10 +271,10 @@ class JobQueueGroup {
 	/**
 	 * Acknowledge that a job was completed
 	 *
-	 * @param Job $job
+	 * @param RunnableJob $job
 	 * @return void
 	 */
-	public function ack( Job $job ) {
+	public function ack( RunnableJob $job ) {
 		$this->get( $job->getType() )->ack( $job );
 	}
 
@@ -282,10 +282,10 @@ class JobQueueGroup {
 	 * Register the "root job" of a given job into the queue for de-duplication.
 	 * This should only be called right *after* all the new jobs have been inserted.
 	 *
-	 * @param Job $job
+	 * @param RunnableJob $job
 	 * @return bool
 	 */
-	public function deduplicateRootJob( Job $job ) {
+	public function deduplicateRootJob( RunnableJob $job ) {
 		return $this->get( $job->getType() )->deduplicateRootJob( $job );
 	}
 
