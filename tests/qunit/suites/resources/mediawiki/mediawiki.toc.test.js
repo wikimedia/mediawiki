@@ -26,10 +26,12 @@
 
 		assert.strictEqual( $toggleLink.length, 1, 'Toggle link is added to the table of contents' );
 
+		// eslint-disable-next-line no-jquery/no-class-state
 		assert.strictEqual( $toc.hasClass( 'tochidden' ), false, 'The table of contents is now visible' );
 
 		$toggleLink.trigger( 'click' );
 		return $tocList.promise().then( function () {
+			// eslint-disable-next-line no-jquery/no-class-state
 			assert.strictEqual( $toc.hasClass( 'tochidden' ), true, 'The table of contents is now hidden' );
 			$toggleLink.trigger( 'click' );
 			return $tocList.promise();

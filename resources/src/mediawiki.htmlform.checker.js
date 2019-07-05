@@ -171,6 +171,7 @@
 			};
 			if (
 				$oldErrorBox !== $errorBox &&
+				// eslint-disable-next-line no-jquery/no-class-state
 				( $oldErrorBox.hasClass( 'error' ) || $oldErrorBox.hasClass( 'warning' ) )
 			) {
 				// eslint-disable-next-line no-jquery/no-slide

@@ -170,6 +170,7 @@
 				context.data.prevText = '';
 			} else if (
 				val !== context.data.prevText ||
+				// eslint-disable-next-line no-jquery/no-sizzle
 				!context.data.$container.is( ':visible' )
 			) {
 				context.data.prevText = val;
@@ -508,6 +509,7 @@
 	 */
 	function keypress( e, context, key ) {
 		var selected,
+			// eslint-disable-next-line no-jquery/no-sizzle
 			wasVisible = context.data.$container.is( ':visible' ),
 			preventDefault = false;
 

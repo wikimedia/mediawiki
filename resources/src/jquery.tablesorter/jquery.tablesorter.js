@@ -83,6 +83,7 @@
 		// eslint-disable-next-line no-jquery/no-map-util
 		return $.map( node.childNodes, function ( elem ) {
 			if ( elem.nodeType === Node.ELEMENT_NODE ) {
+				// eslint-disable-next-line no-jquery/no-class-state
 				if ( $( elem ).hasClass( 'reference' ) ) {
 					return null;
 				}
@@ -112,6 +113,7 @@
 
 		while ( i < l ) {
 			// if this is a child row, continue to the next row (as buildCache())
+			// eslint-disable-next-line no-jquery/no-class-state
 			if ( rows[ rowIndex ] && !$( rows[ rowIndex ] ).hasClass( config.cssChildRow ) ) {
 				if ( rowIndex !== lastRowIndex ) {
 					lastRowIndex = rowIndex;
@@ -216,6 +218,7 @@
 
 			// if this is a child row, add it to the last row's children and
 			// continue to the next row
+			// eslint-disable-next-line no-jquery/no-class-state
 			if ( $row.hasClass( config.cssChildRow ) ) {
 				cache.row[ cache.row.length - 1 ] = cache.row[ cache.row.length - 1 ].add( $row );
 				// go to the next for loop
@@ -378,6 +381,7 @@
 			$cell = $( this );
 			columns = [];
 
+			// eslint-disable-next-line no-jquery/no-class-state
 			if ( !$cell.hasClass( config.unsortableClass ) ) {
 				$cell
 					.addClass( config.cssHeader )
@@ -715,6 +719,7 @@
 
 			$row = $rows.eq( i );
 			// if this is a child row, continue to the next row (as buildCache())
+			// eslint-disable-next-line no-jquery/no-class-state
 			if ( $row.hasClass( config.cssChildRow ) ) {
 				// go to the next for loop
 				continue;

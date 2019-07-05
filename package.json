@@ -11,7 +11,7 @@
     "selenium-test": "wdio ./tests/selenium/wdio.conf.js"
   },
   "devDependencies": {
-    "eslint-config-wikimedia": "0.12.0",
+    "eslint-config-wikimedia": "0.13.0",
     "grunt": "1.0.4",
     "grunt-banana-checker": "0.7.0",
     "grunt-contrib-copy": "1.0.0",

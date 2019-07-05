@@ -160,7 +160,7 @@ exports.config = {
 	beforeTest: function ( test ) {
 		if ( process.env.DISPLAY && process.env.DISPLAY.startsWith( ':' ) ) {
 			var logBuffer;
-			let videoPath = filePath( test, logPath, 'mp4' );
+			const videoPath = filePath( test, logPath, 'mp4' );
 			const { spawn } = require( 'child_process' );
 			ffmpeg = spawn( 'ffmpeg', [
 				'-f', 'x11grab', //  grab the X11 display
@@ -173,7 +173,7 @@ exports.config = {
 			] );
 
 			logBuffer = function ( buffer, prefix ) {
-				let lines = buffer.toString().trim().split( '\n' );
+				const lines = buffer.toString().trim().split( '\n' );
 				lines.forEach( function ( line ) {
 					console.log( prefix + line );
 				} );
@@ -215,7 +215,7 @@ exports.config = {
 			return;
 		}
 		// save screenshot
-		let screenshotfile = filePath( test, logPath, 'png' );
+		const screenshotfile = filePath( test, logPath, 'png' );
 		browser.saveScreenshot( screenshotfile );
 		console.log( '\n\tScreenshot location:', screenshotfile, '\n' );
 	}

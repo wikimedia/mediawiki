@@ -48,7 +48,7 @@ describe( 'Page', function () {
 	} );
 
 	it( 'should be re-creatable', function () {
-		let initialContent = Util.getTestString( 'initialContent-' );
+		const initialContent = Util.getTestString( 'initialContent-' );
 
 		// create
 		browser.call( function () {
@@ -75,7 +75,7 @@ describe( 'Page', function () {
 		} );
 
 		// edit
-		let editContent = Util.getTestString( 'editContent-' );
+		const editContent = Util.getTestString( 'editContent-' );
 		EditPage.edit( name, editContent );
 
 		// check

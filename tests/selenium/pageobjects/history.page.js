@@ -29,7 +29,7 @@ class HistoryPage extends Page {
 	}
 
 	vandalizePage( name, content ) {
-		let vandalUsername = 'Evil_' + browser.options.username;
+		const vandalUsername = 'Evil_' + browser.options.username;
 
 		browser.call( function () {
 			return Api.edit( name, content );
