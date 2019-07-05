@@ -22,7 +22,7 @@ module.exports = {
 		password = browser.options.password,
 		baseUrl = browser.options.baseUrl
 	) {
-		let bot = new MWBot();
+		const bot = new MWBot();
 
 		return bot.loginGetEditToken( {
 			apiUrl: `${baseUrl}/api.php`,
@@ -43,7 +43,7 @@ module.exports = {
 	 * @return {Object} Promise for API action=delete response data.
 	 */
 	delete( title, reason ) {
-		let bot = new MWBot();
+		const bot = new MWBot();
 
 		return bot.loginGetEditToken( {
 			apiUrl: `${browser.options.baseUrl}/api.php`,
@@ -64,7 +64,7 @@ module.exports = {
 	 * @return {Object} Promise for API action=createaccount response data.
 	 */
 	createAccount( username, password ) {
-		let bot = new MWBot();
+		const bot = new MWBot();
 
 		// Log in as admin
 		return bot.loginGetCreateaccountToken( {
@@ -94,7 +94,7 @@ module.exports = {
 	 * @return {Object} Promise for API action=block response data.
 	 */
 	blockUser( username, expiry ) {
-		let bot = new MWBot();
+		const bot = new MWBot();
 
 		// Log in as admin
 		return bot.loginGetEditToken( {
@@ -122,7 +122,7 @@ module.exports = {
 	 * @return {Object} Promise for API action=unblock response data.
 	 */
 	unblockUser( username ) {
-		let bot = new MWBot();
+		const bot = new MWBot();
 
 		// Log in as admin
 		return bot.loginGetEditToken( {

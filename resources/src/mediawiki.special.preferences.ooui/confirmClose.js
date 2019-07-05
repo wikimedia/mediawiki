@@ -10,6 +10,7 @@
 		// (This function could be changed to infuse and check OOUI widgets, but that would only make it
 		// slower and more complicated. It works fine to treat them as HTML elements.)
 		function isPrefsChanged() {
+			// eslint-disable-next-line no-jquery/no-sizzle
 			var inputs = $( '#mw-prefs-form :input[name]' ),
 				input, $input, inputType,
 				index, optIndex,

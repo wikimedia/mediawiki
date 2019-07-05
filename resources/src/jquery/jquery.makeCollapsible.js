@@ -122,6 +122,7 @@
 		if ( options.wasCollapsed !== undefined ) {
 			wasCollapsed = options.wasCollapsed;
 		} else {
+			// eslint-disable-next-line no-jquery/no-class-state
 			wasCollapsed = $collapsible.hasClass( 'mw-collapsed' );
 		}
 
@@ -338,6 +339,7 @@
 			} );
 
 			// Initial state
+			// eslint-disable-next-line no-jquery/no-class-state
 			if ( options.collapsed || $collapsible.hasClass( 'mw-collapsed' ) ) {
 				// One toggler can hook to multiple elements, and one element can have
 				// multiple togglers. This is the sanest way to handle that.

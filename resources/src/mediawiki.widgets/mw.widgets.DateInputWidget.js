@@ -579,6 +579,7 @@
 		if (
 			!this.isDisabled() &&
 			e.which === 1 &&
+			// eslint-disable-next-line no-jquery/no-class-state
 			$( e.target ).hasClass( targetClass )
 		) {
 			this.deactivate( true );

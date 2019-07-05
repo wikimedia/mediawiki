@@ -634,6 +634,7 @@
 		$table.find( 'tr > th' ).eq( 1 ).trigger( 'click' );
 
 		assert.strictEqual(
+			// eslint-disable-next-line no-jquery/no-class-state
 			$cell.hasClass( 'headerSortUp' ) || $cell.hasClass( 'headerSortDown' ),
 			false,
 			'after sort: no class headerSortUp or headerSortDown'
@@ -751,6 +752,7 @@
 			mw.config.set( 'wgPageContentLanguage', 'sv' );
 
 			$table.tablesorter();
+			// eslint-disable-next-line no-jquery/no-sizzle
 			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
 		}
 	);

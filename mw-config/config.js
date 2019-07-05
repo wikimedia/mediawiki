@@ -23,6 +23,7 @@
 		$( '.dbRadio' ).on( 'click', function () {
 			var $checked = $( '.dbRadio:checked' ),
 				$wrapper = $( document.getElementById( $checked.attr( 'rel' ) ) );
+			// eslint-disable-next-line no-jquery/no-sizzle
 			if ( $wrapper.is( ':hidden' ) ) {
 				// FIXME: Use CSS transition
 				// eslint-disable-next-line no-jquery/no-animate-toggle
