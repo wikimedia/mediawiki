@@ -367,7 +367,7 @@ abstract class HTMLFormField {
 	 * or the input's default value if it has not been set.
 	 *
 	 * @param WebRequest $request
-	 * @return string The value
+	 * @return mixed The value
 	 */
 	public function loadDataFromRequest( $request ) {
 		if ( $request->getCheck( $this->mName ) ) {
@@ -653,7 +653,7 @@ abstract class HTMLFormField {
 
 	/**
 	 * Get a FieldLayout (or subclass thereof) to wrap this field in when using OOUI output.
-	 * @param string $inputField
+	 * @param OOUI\Widget $inputField
 	 * @param array $config
 	 * @return OOUI\FieldLayout|OOUI\ActionFieldLayout
 	 */
@@ -1032,7 +1032,7 @@ abstract class HTMLFormField {
 	 * Recursively forces values in an array to strings, because issues arise
 	 * with integer 0 as a value.
 	 *
-	 * @param array $array
+	 * @param array|string $array
 	 * @return array|string
 	 */
 	public static function forceToStringRecursive( $array ) {
