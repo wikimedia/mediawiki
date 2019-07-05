@@ -3712,43 +3712,54 @@ class OutputPage extends ContextSource {
 	 */
 	protected function buildExemptModules() {
 		$chunks = [];
-		// Things that go after the ResourceLoaderDynamicStyles marker
-		$append = [];
 
-		// We want site, private and user styles to override dynamically added styles from
-		// general modules, but we want dynamically added styles to override statically added
-		// style modules. So the order has to be:
-		// - page style modules (formatted by ResourceLoaderClientHtml::getHeadHtml())
-		// - dynamically loaded styles (added by mw.loader before ResourceLoaderDynamicStyles)
-		// - ResourceLoaderDynamicStyles marker
-		// - site/private/user styles
+		// Requirements:
+		// - Within modules provided by the software (core, skin, extensions),
+		//   styles from skin stylesheets should be overridden by styles
+		//   from modules dynamically loaded with JavaScript.
+		// - Styles from site-specific, private, and user modules should override
+		//   both of the above.
+		//
+		// The effective order for stylesheets must thus be:
+		// 1. Page style modules, formatted server-side by ResourceLoaderClientHtml.
+		// 2. Dynamically-loaded styles, inserted client-side by mw.loader.
+		// 3. Styles that are site-specific, private or from the user, formatted
+		//    server-side by this function.
+		//
+		// The 'ResourceLoaderDynamicStyles' marker helps JavaScript know where
+		// point #2 is.
 
 		// Add legacy styles added through addStyle()/addInlineStyle() here
 		$chunks[] = implode( '', $this->buildCssLinksArray() ) . $this->mInlineStyles;
 
-		$chunks[] = Html::element(
-			'meta',
-			[ 'name' => 'ResourceLoaderDynamicStyles', 'content' => '' ]
-		);
-
+		// Things that go after the ResourceLoaderDynamicStyles marker
+		$append = [];
 		$separateReq = [ 'site.styles', 'user.styles' ];
 		foreach ( $this->rlExemptStyleModules as $group => $moduleNames ) {
-			// Combinable modules
-			$chunks[] = $this->makeResourceLoaderLink(
-				array_diff( $moduleNames, $separateReq ),
-				ResourceLoaderModule::TYPE_STYLES
-			);
-
-			foreach ( array_intersect( $moduleNames, $separateReq ) as $name ) {
-				// These require their own dedicated request in order to support "@import"
-				// syntax, which is incompatible with concatenation. (T147667, T37562)
-				$chunks[] = $this->makeResourceLoaderLink( $name,
+			if ( $moduleNames ) {
+				$append[] = $this->makeResourceLoaderLink(
+					array_diff( $moduleNames, $separateReq ),
 					ResourceLoaderModule::TYPE_STYLES
 				);
+
+				foreach ( array_intersect( $moduleNames, $separateReq ) as $name ) {
+					// These require their own dedicated request in order to support "@import"
+					// syntax, which is incompatible with concatenation. (T147667, T37562)
+					$append[] = $this->makeResourceLoaderLink( $name,
+						ResourceLoaderModule::TYPE_STYLES
+					);
+				}
 			}
 		}
+		if ( $append ) {
+			$chunks[] = Html::element(
+				'meta',
+				[ 'name' => 'ResourceLoaderDynamicStyles', 'content' => '' ]
+			);
+			$chunks = array_merge( $chunks, $append );
+		}
 
-		return self::combineWrappedStrings( array_merge( $chunks, $append ) );
+		return self::combineWrappedStrings( $chunks );
 	}
 
 	/**
