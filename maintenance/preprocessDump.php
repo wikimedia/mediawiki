@@ -73,8 +73,9 @@ class PreprocessDump extends DumpIterator {
 			$name = Preprocessor_DOM::class;
 		}
 
-		MediaWikiServices::getInstance()->getParser()->firstCallInit();
-		$this->mPreprocessor = new $name( $this );
+		$parser = MediaWikiServices::getInstance()->getParser();
+		$parser->firstCallInit();
+		$this->mPreprocessor = new $name( $parser );
 	}
 
 	/**
