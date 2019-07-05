@@ -56,6 +56,7 @@ class SpecialUnblock extends SpecialPage {
 
 		$this->setHeaders();
 		$this->outputHeader();
+		$this->addHelpLink( 'Help:Blocking users' );
 
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'unblockip' ) );
