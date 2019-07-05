@@ -431,6 +431,7 @@
 	mw.widgets.MediaSearchWidget.prototype.runLayoutQueue = function () {
 		var i, len;
 
+		// eslint-disable-next-line no-jquery/no-sizzle
 		if ( this.$element.is( ':visible' ) ) {
 			for ( i = 0, len = this.layoutQueue.length; i < len; i++ ) {
 				this.layoutQueue.pop()();

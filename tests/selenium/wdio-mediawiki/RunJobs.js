@@ -3,7 +3,7 @@ const MWBot = require( 'mwbot' ),
 	MAINPAGE_REQUESTS_MAX_RUNS = 10; // (arbitrary) safe-guard against endless execution
 
 function getJobCount() {
-	let bot = new MWBot( {
+	const bot = new MWBot( {
 		apiUrl: `${browser.options.baseUrl}/api.php`
 	} );
 	return bot.request( {
@@ -20,7 +20,7 @@ function log( message ) {
 }
 
 function runThroughMainPageRequests( runCount = 1 ) {
-	let page = new Page();
+	const page = new Page();
 	log( `through requests to the main page (run ${runCount}).` );
 
 	page.openTitle( '' );

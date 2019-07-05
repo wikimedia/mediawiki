@@ -711,6 +711,7 @@ FilterTagMultiselectWidget.prototype.createTagItemWidget = function ( data ) {
 
 FilterTagMultiselectWidget.prototype.emphasize = function () {
 	if (
+		// eslint-disable-next-line no-jquery/no-class-state
 		!this.$handle.hasClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-animate' )
 	) {
 		this.$handle

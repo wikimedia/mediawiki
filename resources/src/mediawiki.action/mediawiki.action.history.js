@@ -80,15 +80,21 @@ $( function () {
 			$copyAction = $copyForm.find( '> [name="action"]' );
 
 			// Remove action=historysubmit and ids[..]=..
+			// eslint-disable-next-line no-jquery/no-class-state
 			if ( $historySubmitter.hasClass( 'mw-history-compareselectedversions-button' ) ) {
 				$copyAction.remove();
 				$copyForm.find( 'input[name^="ids["]:checked' ).prop( 'checked', false );
 
 			// Remove diff=&oldid=, change action=historysubmit to revisiondelete, remove revisiondelete
-			} else if ( $historySubmitter.hasClass( 'mw-history-revisiondelete-button' ) ||
-					$historySubmitter.hasClass( 'mw-history-editchangetags-button' ) ) {
+			} else if (
+				// eslint-disable-next-line no-jquery/no-class-state
+				$historySubmitter.hasClass( 'mw-history-revisiondelete-button' ) ||
+				// eslint-disable-next-line no-jquery/no-class-state
+				$historySubmitter.hasClass( 'mw-history-editchangetags-button' )
+			) {
 				$copyRadios.remove();
 				$copyAction.val( $historySubmitter.attr( 'name' ) );
+				// eslint-disable-next-line no-jquery/no-sizzle
 				$copyForm.find( ':submit' ).remove();
 			}
 

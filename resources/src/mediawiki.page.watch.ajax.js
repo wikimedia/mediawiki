@@ -131,6 +131,7 @@
 
 			$link = $( this );
 
+			// eslint-disable-next-line no-jquery/no-class-state
 			if ( $link.hasClass( 'loading' ) ) {
 				return;
 			}

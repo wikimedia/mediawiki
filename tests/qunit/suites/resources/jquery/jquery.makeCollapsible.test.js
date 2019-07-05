@@ -217,6 +217,7 @@
 			'<div>' + loremIpsum + '</div>'
 		);
 
+		// eslint-disable-next-line no-jquery/no-class-state
 		assert.assertTrue( $collapsible.hasClass( 'mw-collapsible' ), 'mw-collapsible class present' );
 	} );
 
@@ -226,6 +227,7 @@
 			{ collapsed: true }
 		);
 
+		// eslint-disable-next-line no-jquery/no-class-state
 		assert.assertTrue( $collapsible.hasClass( 'mw-collapsed' ), 'mw-collapsed class present' );
 	} );
 
@@ -388,9 +390,13 @@
 			.appendTo( '#qunit-fixture' ).makeCollapsible();
 
 		$collapsible1.on( 'afterCollapse.mw-collapsible', function () {
+			// eslint-disable-next-line no-jquery/no-class-state
 			assert.assertTrue( $collapsible1.hasClass( 'mw-collapsed' ), 'after collapsing: parent is collapsed' );
+			// eslint-disable-next-line no-jquery/no-class-state
 			assert.assertFalse( $collapsible2.hasClass( 'mw-collapsed' ), 'after collapsing: child is not collapsed' );
+			// eslint-disable-next-line no-jquery/no-class-state
 			assert.assertTrue( $collapsible1.find( '> .mw-collapsible-toggle' ).hasClass( 'mw-collapsible-toggle-collapsed' ) );
+			// eslint-disable-next-line no-jquery/no-class-state
 			assert.assertFalse( $collapsible2.find( '> .mw-collapsible-toggle' ).hasClass( 'mw-collapsible-toggle-collapsed' ) );
 		} ).find( '> .mw-collapsible-toggle a' ).trigger( 'click' );
 	} );

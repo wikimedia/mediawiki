@@ -329,6 +329,7 @@
 			$portlet.removeClass( 'emptyPortlet' );
 
 			// Setup the list item (and a span if $portlet is a Vector tab)
+			// eslint-disable-next-line no-jquery/no-class-state
 			if ( $portlet.hasClass( 'vectorTabs' ) ) {
 				item = $( '<li>' ).append( $( '<span>' ).append( link )[ 0 ] )[ 0 ];
 			} else {
