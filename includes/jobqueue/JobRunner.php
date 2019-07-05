@@ -23,7 +23,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Logger\LoggerFactory;
-use Liuggio\StatsdClient\Factory\StatsdDataFactory;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ScopedCallback;
@@ -265,13 +265,13 @@ class JobRunner implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @param Job $job
+	 * @param RunnableJob $job
 	 * @param LBFactory $lbFactory
-	 * @param StatsdDataFactory $stats
+	 * @param StatsdDataFactoryInterface $stats
 	 * @param float $popTime
 	 * @return array Map of status/error/timeMs
 	 */
-	private function executeJob( Job $job, LBFactory $lbFactory, $stats, $popTime ) {
+	private function executeJob( RunnableJob $job, LBFactory $lbFactory, $stats, $popTime ) {
 		$jType = $job->getType();
 		$msg = $job->toString() . " STARTING";
 		$this->logger->debug( $msg, [
@@ -367,11 +367,11 @@ class JobRunner implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @param Job $job
+	 * @param RunnableJob $job
 	 * @return int Seconds for this runner to avoid doing more jobs of this type
 	 * @see $wgJobBackoffThrottling
 	 */
-	private function getBackoffTimeToWait( Job $job ) {
+	private function getBackoffTimeToWait( RunnableJob $job ) {
 		$throttling = $this->config->get( 'JobBackoffThrottling' );
 
 		if ( !isset( $throttling[$job->getType()] ) || $job instanceof DuplicateJob ) {
@@ -526,11 +526,11 @@ class JobRunner implements LoggerAwareInterface {
 	 * $wgJobSerialCommitThreshold for more.
 	 *
 	 * @param LBFactory $lbFactory
-	 * @param Job $job
+	 * @param RunnableJob $job
 	 * @param string $fnameTrxOwner
 	 * @throws DBError
 	 */
-	private function commitMasterChanges( LBFactory $lbFactory, Job $job, $fnameTrxOwner ) {
+	private function commitMasterChanges( LBFactory $lbFactory, RunnableJob $job, $fnameTrxOwner ) {
 		$syncThreshold = $this->config->get( 'JobSerialCommitThreshold' );
 
 		$time = false;
