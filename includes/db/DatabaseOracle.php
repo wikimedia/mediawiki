@@ -62,7 +62,7 @@ class DatabaseOracle extends Database {
 	 * @param array $params Additional parameters include:
 	 *   - keywordTableMap : Map of reserved table names to alternative table names to use
 	 */
-	function __construct( array $params ) {
+	public function __construct( array $params ) {
 		$this->keywordTableMap = $params['keywordTableMap'] ?? [];
 		$params['tablePrefix'] = strtoupper( $params['tablePrefix'] );
 		parent::__construct( $params );
@@ -95,6 +95,15 @@ class DatabaseOracle extends Database {
 				"Oracle functions missing, have you compiled PHP with the --with-oci8 option?\n " .
 					"(Note: if you recently installed PHP, you may need to restart your webserver\n " .
 					"and database)\n" );
+		}
+
+		if ( $schema !== null ) {
+			// We use the *database* aspect of $domain for schema, not the domain schema
+			throw new DBExpectedError(
+				$this,
+				__CLASS__ . ": cannot use schema '$schema'; " .
+				"the database component '$dbName' is actually interpreted as the Oracle schema."
+			);
 		}
 
 		$this->close();
@@ -1028,7 +1037,11 @@ class DatabaseOracle extends Database {
 	protected function doSelectDomain( DatabaseDomain $domain ) {
 		if ( $domain->getSchema() !== null ) {
 			// We use the *database* aspect of $domain for schema, not the domain schema
-			throw new DBExpectedError( $this, __CLASS__ . ": domain schemas are not supported." );
+			throw new DBExpectedError(
+				$this,
+				__CLASS__ . ": domain '{$domain->getId()}' has a schema component; " .
+				"the database component is actually interpreted as the Oracle schema."
+			);
 		}
 
 		$database = $domain->getDatabase();

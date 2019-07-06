@@ -97,6 +97,8 @@ class DatabasePostgres extends Database {
 			);
 		}
 
+		$this->close();
+
 		$this->server = $server;
 		$this->user = $user;
 		$this->password = $password;
@@ -120,9 +122,8 @@ class DatabasePostgres extends Database {
 		}
 
 		$this->connectString = $this->makeConnectionString( $connectVars );
-		$this->close();
-		$this->installErrorHandler();
 
+		$this->installErrorHandler();
 		try {
 			// Use new connections to let LoadBalancer/LBFactory handle reuse
 			$this->conn = pg_connect( $this->connectString, PGSQL_CONNECT_FORCE_NEW );
@@ -130,7 +131,6 @@ class DatabasePostgres extends Database {
 			$this->restoreErrorHandler();
 			throw $ex;
 		}
-
 		$phpError = $this->restoreErrorHandler();
 
 		if ( !$this->conn ) {
@@ -1053,7 +1053,7 @@ __INDEXATTR__;
 			// See https://www.postgresql.org/docs/8.3/sql-set.html
 			throw new DBUnexpectedError(
 				$this,
-				__METHOD__ . ": a transaction is currently active."
+				__METHOD__ . ": a transaction is currently active"
 			);
 		}
 
