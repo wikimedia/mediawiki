@@ -28,12 +28,19 @@
  * @author Michael Dale
  */
 class UploadFromChunks extends UploadFromFile {
+	/** @var LocalRepo */
+	private $repo;
+	/** @var UploadStash */
+	public $stash;
+	/** @var User */
+	public $user;
+
 	protected $mOffset;
 	protected $mChunkIndex;
 	protected $mFileKey;
 	protected $mVirtualTempPath;
-	/** @var LocalRepo */
-	private $repo;
+
+	/** @noinspection PhpMissingParentConstructorInspection */
 
 	/**
 	 * Setup local pointers to stash, repo and user (similar to UploadFromStash)
