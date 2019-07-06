@@ -42,11 +42,13 @@ class SiteStatsUpdateTest extends MediaWikiTestCase {
 		$fi = SiteStats::images();
 		$ai = SiteStats::articles();
 
+		$this->assertEquals( 0, DeferredUpdates::pendingUpdatesCount() );
+
 		$dbw->begin( __METHOD__ ); // block opportunistic updates
 
-		$update = SiteStatsUpdate::factory( [ 'pages' => 2, 'images' => 1, 'edits' => 2 ] );
-		$this->assertEquals( 0, DeferredUpdates::pendingUpdatesCount() );
-		$update->doUpdate();
+		DeferredUpdates::addUpdate(
+			SiteStatsUpdate::factory( [ 'pages' => 2, 'images' => 1, 'edits' => 2 ] )
+		);
 		$this->assertEquals( 1, DeferredUpdates::pendingUpdatesCount() );
 
 		// Still the same
