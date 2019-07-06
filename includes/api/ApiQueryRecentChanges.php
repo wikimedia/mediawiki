@@ -200,12 +200,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 
 			// Check permissions
-			if ( isset( $show['patrolled'] )
-				|| isset( $show['!patrolled'] )
-				|| isset( $show['unpatrolled'] )
-				|| isset( $show['autopatrolled'] )
-				|| isset( $show['!autopatrolled'] )
-			) {
+			if ( $this->includesPatrollingFlags( $show ) ) {
 				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
 					$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'permissiondenied' );
 				}
@@ -620,13 +615,23 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		return $vals;
 	}
 
+	/**
+	 * @param array $flagsArray flipped array (string flags are keys)
+	 * @return bool
+	 */
+	private function includesPatrollingFlags( array $flagsArray ) {
+		return isset( $flagsArray['patrolled'] ) ||
+			isset( $flagsArray['!patrolled'] ) ||
+			isset( $flagsArray['unpatrolled'] ) ||
+			isset( $flagsArray['autopatrolled'] ) ||
+			isset( $flagsArray['!autopatrolled'] );
+	}
+
 	public function getCacheMode( $params ) {
-		if ( isset( $params['show'] ) ) {
-			foreach ( $params['show'] as $show ) {
-				if ( $show === 'patrolled' || $show === '!patrolled' ) {
-					return 'private';
-				}
-			}
+		if ( isset( $params['show'] ) &&
+			$this->includesPatrollingFlags( array_flip( $params['show'] ) )
+		) {
+			return 'private';
 		}
 		if ( isset( $params['token'] ) ) {
 			return 'private';

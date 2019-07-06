@@ -14,6 +14,10 @@ class ApiBlockTest extends ApiTestCase {
 		parent::setUp();
 
 		$this->mUser = $this->getMutableTestUser()->getUser();
+		$this->setMwGlobals( 'wgBlockCIDRLimit', [
+			'IPv4' => 16,
+			'IPv6' => 19,
+		] );
 	}
 
 	protected function tearDown() {
@@ -41,7 +45,6 @@ class ApiBlockTest extends ApiTestCase {
 		$tokens = $this->getTokens();
 
 		$this->assertNotNull( $this->mUser, 'Sanity check' );
-		$this->assertNotSame( 0, $this->mUser->getId(), 'Sanity check' );
 
 		$this->assertArrayHasKey( 'blocktoken', $tokens, 'Sanity check' );
 
@@ -231,5 +234,19 @@ class ApiBlockTest extends ApiTestCase {
 			false,
 			self::$users['sysop']->getUser()
 		);
+	}
+
+	public function testRangeBlock() {
+		$this->mUser = User::newFromName( '128.0.0.0/16', false );
+		$this->doBlock();
+	}
+
+	/**
+	 * @expectedException ApiUsageException
+	 * @expectedExceptionMessage Range blocks larger than /16 are not allowed.
+	 */
+	public function testVeryLargeRangeBlock() {
+		$this->mUser = User::newFromName( '128.0.0.0/1', false );
+		$this->doBlock();
 	}
 }
