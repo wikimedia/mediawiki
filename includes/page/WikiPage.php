@@ -2811,9 +2811,9 @@ class WikiPage implements Page, IDBAccessObject {
 			$status->value = $logid;
 
 			// Show log excerpt on 404 pages rather than just a link
-			$cache = MediaWikiServices::getInstance()->getMainObjectStash();
-			$key = $cache->makeKey( 'page-recent-delete', md5( $logTitle->getPrefixedText() ) );
-			$cache->set( $key, 1, $cache::TTL_DAY );
+			$dbCache = ObjectCache::getInstance( 'db-replicated' );
+			$key = $dbCache->makeKey( 'page-recent-delete', md5( $logTitle->getPrefixedText() ) );
+			$dbCache->set( $key, 1, $dbCache::TTL_DAY );
 		}
 
 		return $status;
