@@ -2820,14 +2820,7 @@ return [
 		],
 	],
 
-	/**
-	 * html5shiv
-	 *
-	 * This library is intended to run on older browsers
-	 * that MediaWiki no longer supports as Grade A, and
-	 * is not loaded through the normal module loading
-	 * system.
-	 */
+	// @todo FIXME: Remove 7 days after Ib0020b6bd0156 is deployed to all wikis.
 	'html5shiv' => [
 		'scripts' => [
 			'resources/lib/html5shiv/html5shiv.js'
