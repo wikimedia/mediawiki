@@ -33,9 +33,9 @@ class JobQueueMemory extends JobQueue {
 	protected static $data = [];
 
 	public function __construct( array $params ) {
-		parent::__construct( $params );
+		$params['wanCache'] = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
 
-		$this->dupCache = new HashBagOStuff();
+		parent::__construct( $params );
 	}
 
 	/**
