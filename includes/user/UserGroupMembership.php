@@ -250,7 +250,7 @@ class UserGroupMembership {
 		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
 		$dbw = $services->getDBLoadBalancer()->getConnection( DB_MASTER );
 
-		$lockKey = $dbw->getDomainID() . ':usergroups-prune'; // specific to this wiki
+		$lockKey = "{$dbw->getDomainID()}:UserGroupMembership:purge"; // per-wiki
 		$scopedLock = $dbw->getScopedLockAndFlush( $lockKey, __METHOD__, 0 );
 		if ( !$scopedLock ) {
 			return false; // already running
