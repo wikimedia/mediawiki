@@ -9,9 +9,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Shell
  */
-class CommandFactoryTest extends PHPUnit\Framework\TestCase {
-
-	use MediaWikiCoversValidator;
+class CommandFactoryTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @covers MediaWiki\Shell\CommandFactory::create

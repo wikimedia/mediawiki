@@ -5,9 +5,7 @@
  * @todo all test methods in this class should be refactored and...
  *    use a single test method and a single data provider...
  */
-class SanitizerValidateEmailTest extends PHPUnit\Framework\TestCase {
-
-	use MediaWikiCoversValidator;
+class SanitizerValidateEmailTest extends MediaWikiUnitTestCase {
 
 	private function checkEmail( $addr, $expected = true, $msg = '' ) {
 		if ( $msg == '' ) {

@@ -3,7 +3,7 @@
 /**
  * @covers DerivativeRequest
  */
-class DerivativeRequestTest extends PHPUnit\Framework\TestCase {
+class DerivativeRequestTest extends MediaWikiUnitTestCase {
 
 	public function testSetIp() {
 		$original = new WebRequest();
