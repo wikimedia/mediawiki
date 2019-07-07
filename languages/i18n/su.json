@@ -2691,7 +2691,7 @@
 	"monthsall": "kabéh",
 	"confirmemail": "Konfirmasi alamat surélék",
 	"confirmemail_noemail": "Alamat surélék anu didaptarkeun dina [[Special:Preferences|préferénsi pamaké]] anjeun teu sah.",
-	"confirmemail_text": "{{SITENAME}} téh anjeun kudu ngonfirmasi alamat surélék sangkan bisa migunakeun fiturna.\nKlik tombol di handap pikeun ngirimkeun talatah nu eusina konfirmasieun kana alamat anjeun. Eusi talatahna ngandung tutumbu kodeu; muatkeun tumbuna kana panyungsi anjeun pikeun ngonfirmasi yén alamat surélék anjeun sah.",
+	"confirmemail_text": "{{SITENAME}} téh anjeun kudu ngonfirmasi alamat surélék sangkan bisa migunakeun fiturna.\nKlik tombol di handap pikeun ngirimkeun talatah nu eusina konfirmasieun kana alamat anjeun.\nEusi talatahna ngandung tutumbu kodeu;\nmuatkeun tumbuna kana panyungsi anjeun pikeun ngonfirmasi yén alamat surélék anjeun sah.",
 	"confirmemail_pending": "Kecap sandi konfirmasi geus dikirimkeun ka alamat surélék anjeun; mun anyar nyieun akun, mangga antos sababaraha menit saméméh mundut kecap sandi anyar.",
 	"confirmemail_send": "Kirimkeun surat konfirmasi sandi",
 	"confirmemail_sent": "Surélék konfirmasi geus dikirim.",

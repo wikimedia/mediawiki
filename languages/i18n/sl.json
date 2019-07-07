@@ -3767,7 +3767,7 @@
 	"edit-error-short": "Napaka: $1",
 	"edit-error-long": "Napake:\n\n$1",
 	"specialmute": "Utišaj",
-	"specialmute-success": "Vaše nastavitve utišanja smo uspešno posodobili. Oglejte si vse utišane uporabnike na strani [[Special:Preferences]].",
+	"specialmute-success": "Vaše nastavitve utišanja smo uspešno posodobili. Oglejte si vse utišane uporabnike v [[Special:Preferences|svojih nastavitvah]].",
 	"specialmute-submit": "Potrdi",
 	"specialmute-label-mute-email": "Utišaj e-pošto tega uporabnika",
 	"specialmute-header": "Prosimo, izberite svoje nastavitve utišanja za uporabnika {{BIDI:[[User:$1]]}}.",

@@ -4062,7 +4062,7 @@
 	"edit-error-short": "Erreur : $1",
 	"edit-error-long": "Erreurs :\n\n$1",
 	"specialmute": "Muet",
-	"specialmute-success": "Vos préférences de mise en sourdine on bien été mises à jour. Voyez tous les utilisateurs impliqués dans [[Special:Preferences]].",
+	"specialmute-success": "Vos préférences de mise en sourdine on été mises à jour. Voyez tous les utilisateurs impliqués dans [[Special:Preferences|vos préférences]].",
 	"specialmute-submit": "Confirmer",
 	"specialmute-label-mute-email": "Mettre en sourdine les courriels de cet utilisateur",
 	"specialmute-header": "Veuillez sélectionner vos préférences de mise en sourdine pour {{BIDI:[[User:$1]]}}.",
