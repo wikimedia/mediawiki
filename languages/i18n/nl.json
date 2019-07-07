@@ -3867,7 +3867,7 @@
 	"edit-error-short": "Fout: $1",
 	"edit-error-long": "Fouten:\n\n$1",
 	"specialmute": "Negeren",
-	"specialmute-success": "Het bijwerken van uw voorkeur voor het negeren is geslaagd. Bekijk een lijst met alle genegeerde gebruikers in [[Special:Preferences|uw voorkeuren]].",
+	"specialmute-success": "Uw voorkeuren voor het negeren zijn bijgewerkt. Bekijk een lijst met alle genegeerde gebruikers in [[Special:Preferences|uw voorkeuren]].",
 	"specialmute-submit": "Bevestig",
 	"specialmute-label-mute-email": "Negeer e-mails van deze gebruiker",
 	"specialmute-header": "Selecteer uw voorkeur voor het negeren van {{BIDI:[[User:$1]]}}.",

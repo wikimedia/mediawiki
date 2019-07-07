@@ -3916,7 +3916,7 @@
 	"edit-error-short": "خطأ: $1",
 	"edit-error-long": "الأخطاء:\n\n$1",
 	"specialmute": "كتم الصوت",
-	"specialmute-success": "تم تحديث تفضيلات كتم الصوت بنجاح، شاهد كل المستخدمين الصامتين في [[Special:Preferences]].",
+	"specialmute-success": "تم تحديث تفضيلات كتم الصوت بنجاح، شاهد كل المستخدمين الصامتين في [[Special:Preferences|تفضيلاتك]].",
 	"specialmute-submit": "تأكيد",
 	"specialmute-label-mute-email": "كتم رسائل البريد الإلكتروني من هذا المستخدم",
 	"specialmute-header": "يُرجَى تحديد تفضيلات كتم الصوت لـ{{BIDI:[[User:$1]]}}.",

@@ -3961,7 +3961,7 @@
 	"edit-error-short": "Erro: $1",
 	"edit-error-long": "Erros:\n$1",
 	"specialmute": "Silenciar",
-	"specialmute-success": "Suas preferências de silêncio foram atualizadas com sucesso. Ver todos os usuários silenciados em [[Special:Preferences]].",
+	"specialmute-success": "Suas preferências de silêncio foram atualizadas com sucesso. Ver todos os usuários silenciados nas [[Special:Preferences|suas preferencias]].",
 	"specialmute-submit": "Confirmar",
 	"specialmute-label-mute-email": "Silenciar e-mails deste usuário",
 	"specialmute-header": "Por favor, selecione suas preferências de mudo para {{BIDI:[[User:$1]]}}.",

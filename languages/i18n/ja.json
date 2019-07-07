@@ -96,7 +96,8 @@
 			"고솜",
 			"Wat",
 			"Puntti ja",
-			"マツムシ"
+			"マツムシ",
+			"神樂坂秀吉"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -1068,7 +1069,7 @@
 	"search-interwiki-more-results": "結果をさらに取得",
 	"search-relatedarticle": "関連",
 	"searchrelated": "関連",
-	"searchall": "すべて",
+	"searchall": "全て",
 	"showingresults": "<strong>$2</strong> 件目以降の最大 {{PLURAL:$1|<strong>$1</strong> 件の結果}}を表示しています。",
 	"showingresultsinrange": "<strong>$2</strong> 件目から<strong>$3</strong> 件目までの範囲内で最大 {{PLURAL:$1|<strong>$1</strong> 件の結果}}を表示しています。",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> 件中の <strong>$1</strong> 件目|<strong>$3</strong> 件中の <strong>$1</strong> 件目から <strong>$2</strong> 件目}}",
@@ -1078,7 +1079,7 @@
 	"powersearch-ns": "名前空間を指定して検索:",
 	"powersearch-togglelabel": "チェックを入れる:",
 	"powersearch-toggleall": "すべて",
-	"powersearch-togglenone": "すべて外す",
+	"powersearch-togglenone": "全て外す",
 	"powersearch-remember": "この選択を今後の検索のために記憶させる",
 	"search-external": "外部検索",
 	"searchdisabled": "{{SITENAME}}の検索機能は無効化されています。\nさしあたってはGoogleなどで検索できます。\nただし外部の検索エンジンの索引にある{{SITENAME}}のコンテンツは古い場合があります。",
