@@ -1001,7 +1001,7 @@ class ChangeTags {
 		}
 		$logEntry->setParameters( $params );
 		$logEntry->setRelations( [ 'Tag' => $tag ] );
-		$logEntry->setTags( $logEntryTags );
+		$logEntry->addTags( $logEntryTags );
 
 		$logId = $logEntry->insert( $dbw );
 		$logEntry->publish( $logId );

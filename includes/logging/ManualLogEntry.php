@@ -191,18 +191,20 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 			wfDebug( 'Overwriting existing ManualLogEntry tags' );
 		}
 		$this->tags = [];
-		if ( $tags !== null ) {
-			$this->addTags( $tags );
-		}
+		$this->addTags( $tags );
 	}
 
 	/**
 	 * Add change tags for the log entry
 	 *
 	 * @since 1.33
-	 * @param string|string[] $tags Tags to apply
+	 * @param string|string[]|null $tags Tags to apply
 	 */
 	public function addTags( $tags ) {
+		if ( $tags === null ) {
+			return;
+		}
+
 		if ( is_string( $tags ) ) {
 			$tags = [ $tags ];
 		}

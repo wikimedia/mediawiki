@@ -598,7 +598,7 @@ class MovePage {
 				'4::oldtitle' => $this->oldTitle->getPrefixedText(),
 			] );
 			$logEntry->setRelations( [ 'pr_id' => $logRelationsValues ] );
-			$logEntry->setTags( $changeTags );
+			$logEntry->addTags( $changeTags );
 			$logId = $logEntry->insert();
 			$logEntry->publish( $logId );
 		}
@@ -895,7 +895,7 @@ class MovePage {
 		# Log the move
 		$logid = $logEntry->insert();
 
-		$logEntry->setTags( $changeTags );
+		$logEntry->addTags( $changeTags );
 		$logEntry->publish( $logid );
 
 		return $nullRevision;
