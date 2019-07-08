@@ -77,10 +77,14 @@
 	QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		setup: function () {
 			$.fn.updateTooltipAccessKeys.setTestMode( true );
+			this.origConfig = mw.util.setOptionsForTest( {
+				FragmentMode: [ 'legacy', 'html5' ],
+				LoadScript: '/w/load.php'
+			} );
 		},
 		teardown: function () {
 			$.fn.updateTooltipAccessKeys.setTestMode( false );
-			mw.util.resetOptionsForTest();
+			mw.util.setOptionsForTest( this.origConfig );
 		},
 		messages: {
 			// Used by accessKeyLabel in test for addPortletLink
