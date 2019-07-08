@@ -48,14 +48,14 @@ class WebInstallerComplete extends WebInstallerPage {
 				wfMessage( $msg,
 					$lsUrl,
 					$this->getVar( 'wgServer' ) .
-					$this->getVar( 'wgScriptPath' ) . '/index.php',
+						$this->getVar( 'wgScriptPath' ) . '/index.php',
 					'<downloadlink/>',
 					$location ?: ''
 				)->plain(), 'tick-32.png'
 			)
 		);
 		$this->addHTML( $this->parent->getInfoBox(
-			wfMessage( 'config-extension-link' )->text() ) );
+			wfMessage( 'config-extension-link' )->plain() ) );
 
 		$this->parent->restoreLinkPopups();
 		$this->endForm( false, false );

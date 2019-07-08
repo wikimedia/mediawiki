@@ -55,7 +55,7 @@ class WebInstallerDBConnect extends WebInstallerPage {
 			$dbSupport .= wfMessage( "config-dbsupport-$type" )->plain() . "\n";
 		}
 		$this->addHTML( $this->parent->getInfoBox(
-			wfMessage( 'config-support-info', trim( $dbSupport ) )->text() ) );
+			wfMessage( 'config-support-info', trim( $dbSupport ) )->plain() ) );
 
 		// It's possible that the library for the default DB type is not compiled in.
 		// In that case, instead select the first supported DB type in the list.
