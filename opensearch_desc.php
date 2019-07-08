@@ -48,17 +48,16 @@ print Xml::openElement( 'OpenSearchDescription',
 		'xmlns' => 'http://a9.com/-/spec/opensearch/1.1/',
 		'xmlns:moz' => 'http://www.mozilla.org/2006/browser/search/' ] );
 
-/* The spec says the ShortName must be no longer than 16 characters,
- * but 16 is *realllly* short. In practice, browsers don't appear to care
- * when we give them a longer string, so we're no longer attempting to trim.
- *
- * Note: ShortName and the <link title=""> need to match; they are used as
- * a key for identifying if the search engine has been added already, *and*
- * as the display name presented to the end-user.
- *
- * Behavior seems about the same between Firefox and IE 7/8 here.
- * 'Description' doesn't appear to be used by either.
- */
+// The spec says the ShortName must be no longer than 16 characters,
+// but 16 is *realllly* short. In practice, browsers don't appear to care
+// when we give them a longer string, so we're no longer attempting to trim.
+//
+// Note: ShortName and the <link title=""> need to match; they are used as
+// a key for identifying if the search engine has been added already, *and*
+// as the display name presented to the end-user.
+//
+// Behavior seems about the same between Firefox and IE 7/8 here.
+// 'Description' doesn't appear to be used by either.
 $fullName = wfMessage( 'opensearch-desc' )->inContentLanguage()->text();
 print Xml::element( 'ShortName', null, $fullName );
 print Xml::element( 'Description', null, $fullName );
