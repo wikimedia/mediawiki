@@ -117,10 +117,10 @@
 			"composer lint",
 			"composer phpcs"
 		],
-		"phpunit": "vendor/bin/phpunit",
-		"phpunit:unit": "vendor/bin/phpunit --colors=always --testsuite=core:unit,extensions:unit,skins:unit",
-		"phpunit:integration": "vendor/bin/phpunit --colors=always --testsuite=core:integration,extensions:integration,skins:integration",
-		"phpunit:coverage": "vendor/bin/phpunit --testsuite=core:unit --exclude-group Dump,Broken,ParserFuzz,Stub"
+		"phpunit": "phpunit",
+		"phpunit:unit": "phpunit --colors=always --testsuite=core:unit,extensions:unit,skins:unit",
+		"phpunit:integration": "phpunit --colors=always --testsuite=core:integration,extensions:integration,skins:integration",
+		"phpunit:coverage": "phpunit --testsuite=core:unit --exclude-group Dump,Broken,ParserFuzz,Stub"
 	},
 	"config": {
 		"optimize-autoloader": true,
