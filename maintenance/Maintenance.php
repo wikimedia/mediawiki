@@ -1737,7 +1737,7 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 	protected function updateSkippedMessage() {
 		$key = $this->getUpdateKey();
 
-		return "Update '{$key}' already logged as completed.";
+		return "Update '{$key}' already logged as completed. Use --force to run it again.";
 	}
 
 	/**
