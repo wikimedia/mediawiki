@@ -46,7 +46,9 @@ class SqlBagOStuff extends BagOStuff {
 	/** @var int */
 	protected $lastExpireAll = 0;
 	/** @var int */
-	protected $purgePeriod = 100;
+	protected $purgePeriod = 10;
+	/** @var int */
+	protected $purgeLimit = 100;
 	/** @var int */
 	protected $shards = 1;
 	/** @var string */
@@ -77,12 +79,13 @@ class SqlBagOStuff extends BagOStuff {
 	 *                  when a cluster is replicated to another site (with different host names)
 	 *                  but each server has a corresponding replica in the other cluster.
 	 *
-	 *   - purgePeriod: The average number of object cache requests in between
+	 *   - purgePeriod: The average number of object cache writes in between
 	 *                  garbage collection operations, where expired entries
 	 *                  are removed from the database. Or in other words, the
 	 *                  reciprocal of the probability of purging on any given
-	 *                  request. If this is set to zero, purging will never be
-	 *                  done.
+	 *                  write. If this is set to zero, purging will never be done.
+	 *
+	 *   - purgeLimit:  Maximum number of rows to purge at once.
 	 *
 	 *   - tableName:   The table name to use, default is "objectcache".
 	 *
@@ -134,6 +137,9 @@ class SqlBagOStuff extends BagOStuff {
 		}
 		if ( isset( $params['purgePeriod'] ) ) {
 			$this->purgePeriod = intval( $params['purgePeriod'] );
+		}
+		if ( isset( $params['purgeLimit'] ) ) {
+			$this->purgeLimit = intval( $params['purgeLimit'] );
 		}
 		if ( isset( $params['tableName'] ) ) {
 			$this->tableName = $params['tableName'];
@@ -269,8 +275,6 @@ class SqlBagOStuff extends BagOStuff {
 			list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
 			$keysByTable[$serverIndex][$tableName][] = $key;
 		}
-
-		$this->garbageCollect(); // expire old entries if any
 
 		$dataRows = [];
 		foreach ( $keysByTable as $serverIndex => $serverKeys ) {
@@ -617,7 +621,7 @@ class SqlBagOStuff extends BagOStuff {
 			// Disabled
 			return;
 		}
-		// Only purge on one in every $this->purgePeriod requests.
+		// Only purge on one in every $this->purgePeriod writes
 		if ( $this->purgePeriod !== 1 && mt_rand( 0, $this->purgePeriod - 1 ) ) {
 			return;
 		}
@@ -625,7 +629,11 @@ class SqlBagOStuff extends BagOStuff {
 		// Avoid repeating the delete within a few seconds
 		if ( $now > ( $this->lastExpireAll + 1 ) ) {
 			$this->lastExpireAll = $now;
-			$this->expireAll();
+			$this->deleteObjectsExpiringBefore(
+				wfTimestamp( TS_MW, $now ),
+				false,
+				$this->purgeLimit
+			);
 		}
 	}
 
@@ -633,15 +641,15 @@ class SqlBagOStuff extends BagOStuff {
 		$this->deleteObjectsExpiringBefore( wfTimestampNow() );
 	}
 
-	/**
-	 * Delete objects from the database which expire before a certain date.
-	 * @param string $timestamp
-	 * @param bool|callable $progressCallback
-	 * @return bool
-	 */
-	public function deleteObjectsExpiringBefore( $timestamp, $progressCallback = false ) {
+	public function deleteObjectsExpiringBefore(
+		$timestamp,
+		$progressCallback = false,
+		$limit = INF
+	) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
+
+		$count = 0;
 		for ( $serverIndex = 0; $serverIndex < $this->numServers; $serverIndex++ ) {
 			$db = null;
 			try {
@@ -661,7 +669,8 @@ class SqlBagOStuff extends BagOStuff {
 							[ 'keyname', 'exptime' ],
 							$conds,
 							__METHOD__,
-							[ 'LIMIT' => 100, 'ORDER BY' => 'exptime' ] );
+							[ 'LIMIT' => 100, 'ORDER BY' => 'exptime' ]
+						);
 						if ( $rows === false || !$rows->numRows() ) {
 							break;
 						}
@@ -684,9 +693,14 @@ class SqlBagOStuff extends BagOStuff {
 								'exptime < ' . $db->addQuotes( $dbTimestamp ),
 								'keyname' => $keys
 							],
-							__METHOD__ );
+							__METHOD__
+						);
+						$count += $db->affectedRows();
+						if ( $count >= $limit ) {
+							return true;
+						}
 
-						if ( $progressCallback ) {
+						if ( is_callable( $progressCallback ) ) {
 							if ( intval( $totalSeconds ) === 0 ) {
 								$percent = 0;
 							} else {
@@ -710,6 +724,7 @@ class SqlBagOStuff extends BagOStuff {
 				return false;
 			}
 		}
+
 		return true;
 	}
 

@@ -208,18 +208,10 @@ class MultiWriteBagOStuff extends BagOStuff {
 		return $this->caches[0]->unlock( $key );
 	}
 
-	/**
-	 * Delete objects expiring before a certain date.
-	 *
-	 * Succeed if any of the child caches succeed.
-	 * @param string $date
-	 * @param bool|callable $progressCallback
-	 * @return bool
-	 */
-	public function deleteObjectsExpiringBefore( $date, $progressCallback = false ) {
+	public function deleteObjectsExpiringBefore( $date, $progressCallback = false, $limit = INF ) {
 		$ret = false;
 		foreach ( $this->caches as $cache ) {
-			if ( $cache->deleteObjectsExpiringBefore( $date, $progressCallback ) ) {
+			if ( $cache->deleteObjectsExpiringBefore( $date, $progressCallback, $limit ) ) {
 				$ret = true;
 			}
 		}
