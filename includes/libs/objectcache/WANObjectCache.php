@@ -113,7 +113,7 @@ use Psr\Log\NullLogger;
  * @ingroup Cache
  * @since 1.26
  */
-class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
+class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInterface {
 	/** @var BagOStuff The local datacenter cache */
 	protected $cache;
 	/** @var MapCacheLRU[] Map of group PHP instance caches */
