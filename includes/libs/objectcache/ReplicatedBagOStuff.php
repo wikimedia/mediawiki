@@ -108,7 +108,7 @@ class ReplicatedBagOStuff extends BagOStuff {
 		return $this->writeStore->unlock( $key );
 	}
 
-	public function deleteObjectsExpiringBefore( $date, $progressCallback = false ) {
+	public function deleteObjectsExpiringBefore( $date, $progressCallback = false, $limit = INF ) {
 		return $this->writeStore->deleteObjectsExpiringBefore( $date, $progressCallback );
 	}
 
