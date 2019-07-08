@@ -21,13 +21,23 @@
 		<ini name="memory_limit" value="512M" />
 	</php>
 	<testsuites>
-		<testsuite name="unit">
+		<testsuite name="core:unit">
 			<directory>tests/phpunit/unit</directory>
-			<directory>**/**/tests/phpunit/unit</directory>
 		</testsuite>
-		<testsuite name="integration">
+		<testsuite name="extensions:unit">
+			<directory>extensions/**/tests/phpunit/unit</directory>
+		</testsuite>
+		<testsuite name="skins:unit">
+			<directory>skins/**/tests/phpunit/unit</directory>
+		</testsuite>
+		<testsuite name="core:integration">
 			<directory>tests/phpunit/integration</directory>
-			<directory>**/**/tests/phpunit/integration</directory>
+		</testsuite>
+		<testsuite name="extensions:integration">
+			<directory>extensions/**/tests/phpunit/integration</directory>
+		</testsuite>
+		<testsuite name="skins:integration">
+			<directory>skins/**/tests/phpunit/integration</directory>
 		</testsuite>
 	</testsuites>
 	<groups>
