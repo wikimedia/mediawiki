@@ -263,6 +263,8 @@ because of Phabricator reports.
 * ResourceLoader no longer creates the 'mw.legacy' placeholder object. It has
   been unused since 1.16 and was deprecated in 1.22. To deprecate a property
   in JavaScript, use mw.log.deprecate() instead.
+* The 'user.groups' module, deprecated in 1.28, was removed.
+  Use the 'user' module instead.
 * …
 
 === Deprecations in 1.34 ===
