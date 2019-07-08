@@ -658,22 +658,21 @@ class WebInstaller extends Installer {
 	}
 
 	/**
-	 * Get HTML for an info box with an icon.
+	 * Get HTML for an information message box with an icon.
 	 *
-	 * @param string $text Wikitext, get this with wfMessage()->plain()
+	 * @param string $text Wikitext to be parsed (from Message::plain).
 	 * @param string|bool $icon Icon name, file in mw-config/images. Default: false
 	 * @param string|bool $class Additional class name to add to the wrapper div. Default: false.
-	 *
-	 * @return string
+	 * @return string HTML
 	 */
 	public function getInfoBox( $text, $icon = false, $class = false ) {
-		$text = $this->parse( $text, true );
+		$html = $this->parse( $text, true );
 		$icon = ( $icon == false ) ?
 			'images/info-32.png' :
 			'images/' . $icon;
 		$alt = wfMessage( 'config-information' )->text();
 
-		return Html::infoBox( $text, $icon, $alt, $class );
+		return Html::infoBox( $html, $icon, $alt, $class );
 	}
 
 	/**
