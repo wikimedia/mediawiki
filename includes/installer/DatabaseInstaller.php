@@ -49,7 +49,7 @@ abstract class DatabaseInstaller {
 	/**
 	 * @var string Set by subclasses
 	 */
-	protected static $notMinimumVerisonMessage;
+	protected static $notMinimumVersionMessage;
 
 	/**
 	 * The database connection.
@@ -82,7 +82,7 @@ abstract class DatabaseInstaller {
 	public static function meetsMinimumRequirement( $serverVersion ) {
 		if ( version_compare( $serverVersion, static::$minimumVersion ) < 0 ) {
 			return Status::newFatal(
-				static::$notMinimumVerisonMessage, static::$minimumVersion, $serverVersion
+				static::$notMinimumVersionMessage, static::$minimumVersion, $serverVersion
 			);
 		}
 

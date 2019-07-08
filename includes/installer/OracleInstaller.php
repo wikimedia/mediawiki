@@ -47,7 +47,7 @@ class OracleInstaller extends DatabaseInstaller {
 	];
 
 	public static $minimumVersion = '9.0.1'; // 9iR1
-	protected static $notMinimumVerisonMessage = 'config-oracle-old';
+	protected static $notMinimumVersionMessage = 'config-oracle-old';
 
 	protected $connError = null;
 
