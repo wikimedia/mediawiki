@@ -1,5 +1,6 @@
 const assert = require( 'assert' ),
 	Api = require( 'wdio-mediawiki/Api' ),
+	BlankPage = require( 'wdio-mediawiki/BlankPage' ),
 	DeletePage = require( '../pageobjects/delete.page' ),
 	RestorePage = require( '../pageobjects/restore.page' ),
 	EditPage = require( '../pageobjects/edit.page' ),
@@ -14,7 +15,7 @@ describe( 'Page', function () {
 
 	before( function () {
 		// disable VisualEditor welcome dialog
-		UserLoginPage.open();
+		BlankPage.open();
 		browser.localStorage( 'POST', { key: 've-beta-welcome-dialog', value: '1' } );
 	} );
 
