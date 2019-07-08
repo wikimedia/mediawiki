@@ -295,7 +295,7 @@ class Names {
 		'mh' => 'Ebon', # Marshallese
 		'mhr' => 'олык марий', # Eastern Mari
 		'mi' => 'Māori', # Maori
-		'min' => 'Baso Minangkabau', # Minangkabau
+		'min' => 'Minangkabau', # Minangkabau
 		'mk' => 'македонски', # Macedonian
 		'ml' => 'മലയാളം', # Malayalam
 		'mn' => 'монгол', # Halh Mongolian (Cyrillic) (ISO 639-3: khk)
