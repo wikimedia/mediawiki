@@ -275,30 +275,6 @@ class SanitizerUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * Test escapeIdReferenceList for consistency with escapeIdForAttribute
-	 *
-	 * @dataProvider provideEscapeIdReferenceList
-	 * @covers Sanitizer::escapeIdReferenceList
-	 */
-	public function testEscapeIdReferenceList( $referenceList, $id1, $id2 ) {
-		$this->assertEquals(
-			Sanitizer::escapeIdReferenceList( $referenceList ),
-			Sanitizer::escapeIdForAttribute( $id1 )
-				. ' '
-				. Sanitizer::escapeIdForAttribute( $id2 )
-		);
-	}
-
-	public static function provideEscapeIdReferenceList() {
-		/** [ <reference list>, <individual id 1>, <individual id 2> ] */
-		return [
-			[ 'foo bar', 'foo', 'bar' ],
-			[ '#1 #2', '#1', '#2' ],
-			[ '+1 +2', '+1', '+2' ],
-		];
-	}
-
-	/**
 	 * @dataProvider provideIsReservedDataAttribute
 	 * @covers Sanitizer::isReservedDataAttribute
 	 */
