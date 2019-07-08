@@ -2,8 +2,7 @@
 	'use strict';
 
 	var util,
-		config = require( './config.json' ),
-		origConfig = config;
+		config = require( './config.json' );
 
 	/**
 	 * Encode the string like PHP's rawurlencode
@@ -49,22 +48,6 @@
 	 * @singleton
 	 */
 	util = {
-
-		/* Main body */
-
-		setOptionsForTest: function ( opts ) {
-			if ( !window.QUnit ) {
-				throw new Error( 'Modifying options not allowed outside unit tests' );
-			}
-			config = $.extend( {}, config, opts );
-		},
-
-		resetOptionsForTest: function () {
-			if ( !window.QUnit ) {
-				throw new Error( 'Resetting options not allowed outside unit tests' );
-			}
-			config = origConfig;
-		},
 
 		/**
 		 * Encode the string like PHP's rawurlencode
@@ -532,6 +515,15 @@
 				util.isIPv6Address( address, allowBlock );
 		}
 	};
+
+	// Not allowed outside unit tests
+	if ( window.QUnit ) {
+		util.setOptionsForTest = function ( opts ) {
+			var oldConfig = config;
+			config = $.extend( {}, config, opts );
+			return oldConfig;
+		};
+	}
 
 	/**
 	 * Initialisation of mw.util.$content
