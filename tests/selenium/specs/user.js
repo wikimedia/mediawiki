@@ -1,4 +1,5 @@
 const assert = require( 'assert' ),
+	BlankPage = require( 'wdio-mediawiki/BlankPage' ),
 	CreateAccountPage = require( '../pageobjects/createaccount.page' ),
 	PreferencesPage = require( '../pageobjects/preferences.page' ),
 	UserLoginPage = require( 'wdio-mediawiki/LoginPage' ),
@@ -11,7 +12,7 @@ describe( 'User', function () {
 
 	before( function () {
 		// disable VisualEditor welcome dialog
-		UserLoginPage.open();
+		BlankPage.open();
 		browser.localStorage( 'POST', { key: 've-beta-welcome-dialog', value: '1' } );
 	} );
 
