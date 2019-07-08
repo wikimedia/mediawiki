@@ -61,7 +61,7 @@ use Wikimedia\WaitConditionLoop;
  *
  * @ingroup Cache
  */
-abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
+abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInterface {
 	/** @var array[] Lock tracking */
 	protected $locks = [];
 	/** @var int ERR_* class constant */
