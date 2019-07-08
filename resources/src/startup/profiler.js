@@ -1,7 +1,6 @@
 /*!
  * Augment mw.loader to facilitate module-level profiling.
  *
- * @author Timo Tijhof
  * @since 1.32
  */
 /* global mw */

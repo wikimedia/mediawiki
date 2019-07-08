@@ -17,7 +17,6 @@
  *   symbols being documented but not declared or defined.
  *
  * Copyright (C) 2012 Tamas Imrei <tamas.imrei@gmail.com> https://virtualtee.blogspot.com/
- * Copyright (C) 2015 Timo Tijhof
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
