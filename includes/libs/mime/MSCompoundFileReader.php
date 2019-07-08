@@ -333,7 +333,7 @@ class MSCompoundFileReader {
 				continue;
 			}
 
-			$name = iconv( 'UTF-16', 'UTF-8', substr( $entry['name_raw'], 0, $entry['name_length'] - 2 ) );
+			$name = iconv( 'UTF-16LE', 'UTF-8', substr( $entry['name_raw'], 0, $entry['name_length'] - 2 ) );
 
 			$clsid = $this->decodeClsid( $entry['clsid'] );
 			if ( $type == self::TYPE_ROOT && isset( self::$mimesByClsid[$clsid] ) ) {
