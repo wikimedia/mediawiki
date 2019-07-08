@@ -39,11 +39,6 @@ return [
 		'class' => ResourceLoaderWikiModule::class,
 		'styles' => [ 'MediaWiki:Filepage.css' ],
 	],
-	'user.groups' => [
-		// Merged into 'user' since MediaWiki 1.28 - kept for back-compat
-		'dependencies' => 'user',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 
 	// Scripts managed by the current user (stored in their user space)
 	'user' => [ 'class' => ResourceLoaderUserModule::class ],
