@@ -771,7 +771,7 @@
 	"anontalkpagetext": "----\n<em>这是一个还未建立账户的匿名用户的讨论页, 因此我们只能用IP地址来与他们联络。</em>该IP地址可能由几名用户共享。如果您是一名匿名用户并认为此页上的评语与您无关，请[[Special:CreateAccount|创建新账户]]或[[Special:UserLogin|登录]]以避免在未来与其他匿名用户混淆。",
 	"noarticletext": "本页面目前没有内容。您可以在其他页面中[[Special:Search/{{PAGENAME}}|搜索本页标题]]、<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索相关日志]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 创建本页面]</span>。",
 	"noarticletext-nopermission": "本页面目前没有内容。您可以在其他页面中[[Special:Search/{{PAGENAME}}|搜索本页标题]]或<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索相关日志]</span>，但您没有权限创建本页面。",
-	"missing-revision": "“{{FULLPAGENAME}}”的版本#$1不存在。\n\n这通常是因为进入了一个已被删除的页面的历史链接。\n详细信息可以在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中找到。",
+	"missing-revision": "“{{FULLPAGENAME}}”的版本#$1不存在。\n\n这通常是因为进入了一个已被删除的页面的历史链接。详细信息可以在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中找到。",
 	"userpage-userdoesnotexist": "用户账户“$1”没有注册。请在创建/编辑本页前检查。",
 	"userpage-userdoesnotexist-view": "用户账户“$1”没有被注册。",
 	"blocked-notice-logextract": "这位用户目前已被封禁。以下提供最近的封禁日志以供参考：",
@@ -3968,5 +3968,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "建议在登录时更改",
 	"easydeflate-invaliddeflate": "提供的内容未被适当缩小",
 	"unprotected-js": "基于安全原因，JavaScript不能在未保护页面中载入。请在“MediaWiki:”名字空间或者用户子页面中添加JavaScript。",
-	"userlogout-continue": "您确定要登出吗？"
+	"userlogout-continue": "您确定要退出登录吗？"
 }

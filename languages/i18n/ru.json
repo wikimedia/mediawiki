@@ -143,7 +143,8 @@
 			"1233qwer1234qwer4",
 			"Саша Волохов",
 			"Serhio Magpie",
-			"ЛингвоЧел"
+			"ЛингвоЧел",
+			"OlegVeliky"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -1105,7 +1106,7 @@
 	"search-file-match": "(совпадает с содержимым файла)",
 	"search-suggest": "Возможно, вы имели в виду «$1».",
 	"search-rewritten": "Показаны результаты для $1. Искать вместо этого $2.",
-	"search-interwiki-caption": "Результаты братских проектов",
+	"search-interwiki-caption": "Результаты родственных проектов",
 	"search-interwiki-default": "Результаты из $1:",
 	"search-interwiki-more": "(ещё)",
 	"search-interwiki-more-results": "ещё результаты",
