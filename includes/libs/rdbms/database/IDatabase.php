@@ -1944,7 +1944,7 @@ interface IDatabase {
 	 *
 	 * @throws DBError
 	 */
-	public function commit( $fname = __METHOD__, $flush = '' );
+	public function commit( $fname = __METHOD__, $flush = self::FLUSHING_ONE );
 
 	/**
 	 * Rollback a transaction previously started using begin().
@@ -1966,7 +1966,7 @@ interface IDatabase {
 	 * @throws DBError
 	 * @since 1.23 Added $flush parameter
 	 */
-	public function rollback( $fname = __METHOD__, $flush = '' );
+	public function rollback( $fname = __METHOD__, $flush = self::FLUSHING_ONE );
 
 	/**
 	 * Commit any transaction but error out if writes or callbacks are pending
@@ -1977,10 +1977,20 @@ interface IDatabase {
 	 * useful to call on a replica DB after waiting on replication to catch up to the master.
 	 *
 	 * @param string $fname Calling function name
+	 * @param string $flush Flush flag, set to situationally valid IDatabase::FLUSHING_*
+	 *   constant to disable warnings about explicitly committing implicit transactions,
+	 *   or calling commit when no transaction is in progress.
+	 *
+	 *   This will trigger an exception if there is an ongoing explicit transaction.
+	 *
+	 *   Only set the flush flag if you are sure that these warnings are not applicable,
+	 *   and no explicit transactions are open.
+	 *
 	 * @throws DBError
 	 * @since 1.28
+	 * @since 1.34 Added $flush parameter
 	 */
-	public function flushSnapshot( $fname = __METHOD__ );
+	public function flushSnapshot( $fname = __METHOD__, $flush = self::FLUSHING_ONE );
 
 	/**
 	 * Convert a timestamp in one of the formats accepted by wfTimestamp()

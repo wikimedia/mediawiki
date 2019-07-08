@@ -1702,7 +1702,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			$this->fail( 'Test exception not thrown' );
 		} catch ( DBTransactionError $ex ) {
 			$this->assertSame(
-				'Cannot execute query from ' . __METHOD__ . ' while transaction status is ERROR.',
+				'Cannot execute query from ' . __METHOD__ . ' while transaction status is ERROR',
 				$ex->getMessage()
 			);
 		}
@@ -1819,7 +1819,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		} catch ( DBUnexpectedError $e ) {
 			$m = __METHOD__;
 			$this->assertSame(
-				"Invalid atomic section ended (got {$m}_X but expected {$m}).",
+				"Invalid atomic section ended (got {$m}_X but expected {$m})",
 				$e->getMessage()
 			);
 		}
@@ -1934,7 +1934,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( DBUnexpectedError $ex ) {
 			$this->assertSame(
-				'No atomic section is open (got ' . __METHOD__ . ').',
+				'No atomic section is open (got ' . __METHOD__ . ')',
 				$ex->getMessage()
 			);
 		}
@@ -1953,7 +1953,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		} catch ( DBUnexpectedError $ex ) {
 			$this->assertSame(
 				'Invalid atomic section ended (got ' . __METHOD__ . ' but expected ' .
-					__METHOD__ . 'X).',
+					__METHOD__ . 'X)',
 				$ex->getMessage()
 			);
 		}
@@ -1970,7 +1970,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( DBTransactionError $ex ) {
 			$this->assertSame(
-				'Cannot execute query from ' . __METHOD__ . ' while transaction status is ERROR.',
+				'Cannot execute query from ' . __METHOD__ . ' while transaction status is ERROR',
 				$ex->getMessage()
 			);
 		}
@@ -1986,7 +1986,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( DBUnexpectedError $ex ) {
 			$this->assertSame(
-				'No atomic section is open (got ' . __METHOD__ . ').',
+				'No atomic section is open (got ' . __METHOD__ . ')',
 				$ex->getMessage()
 			);
 		}
@@ -2074,7 +2074,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( DBTransactionError $e ) {
 			$this->assertEquals(
-				'Cannot execute query from ' . __METHOD__ . ' while transaction status is ERROR.',
+				'Cannot execute query from ' . __METHOD__ . ' while transaction status is ERROR',
 				$e->getMessage()
 			);
 		}
@@ -2083,7 +2083,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( DBTransactionError $e ) {
 			$this->assertEquals(
-				'Cannot execute query from ' . __METHOD__ . ' while transaction status is ERROR.',
+				'Cannot execute query from ' . __METHOD__ . ' while transaction status is ERROR',
 				$e->getMessage()
 			);
 		}
@@ -2187,7 +2187,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( DBUnexpectedError $ex ) {
 			$this->assertSame(
-				"Wikimedia\Rdbms\Database::close: transaction is still open (from $fname).",
+				"Wikimedia\Rdbms\Database::close: transaction is still open (from $fname)",
 				$ex->getMessage()
 			);
 		}
@@ -2216,7 +2216,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		} catch ( DBUnexpectedError $ex ) {
 			$this->assertSame(
 				'Wikimedia\Rdbms\Database::close: atomic sections ' .
-				'DatabaseSQLTest::testPrematureClose2 are still open.',
+				'DatabaseSQLTest::testPrematureClose2 are still open',
 				$ex->getMessage()
 			);
 		}
@@ -2239,7 +2239,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		} catch ( DBUnexpectedError $ex ) {
 			$this->assertSame(
 				'Wikimedia\Rdbms\Database::close: ' .
-				'mass commit/rollback of peer transaction required (DBO_TRX set).',
+				'mass commit/rollback of peer transaction required (DBO_TRX set)',
 				$ex->getMessage()
 			);
 		}

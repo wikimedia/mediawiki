@@ -234,6 +234,12 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	public function flushReplicaSnapshots( $fname = __METHOD__ ) {
+		if ( $this->trxRoundId !== false && $this->trxRoundId !== $fname ) {
+			$this->queryLogger->warning(
+				"$fname: transaction round '{$this->trxRoundId}' still running",
+				[ 'trace' => ( new RuntimeException() )->getTraceAsString() ]
+			);
+		}
 		$this->forEachLBCallMethod( 'flushReplicaSnapshots', [ $fname ] );
 	}
 
@@ -249,7 +255,7 @@ abstract class LBFactory implements ILBFactory {
 		if ( $this->trxRoundId !== false ) {
 			throw new DBTransactionError(
 				null,
-				"$fname: transaction round '{$this->trxRoundId}' already started."
+				"$fname: transaction round '{$this->trxRoundId}' already started"
 			);
 		}
 		$this->trxRoundId = $fname;
@@ -264,7 +270,7 @@ abstract class LBFactory implements ILBFactory {
 		if ( $this->trxRoundId !== false && $this->trxRoundId !== $fname ) {
 			throw new DBTransactionError(
 				null,
-				"$fname: transaction round '{$this->trxRoundId}' still running."
+				"$fname: transaction round '{$this->trxRoundId}' still running"
 			);
 		}
 		/** @noinspection PhpUnusedLocalVariableInspection */
@@ -456,8 +462,10 @@ abstract class LBFactory implements ILBFactory {
 
 	public function getEmptyTransactionTicket( $fname ) {
 		if ( $this->hasMasterChanges() ) {
-			$this->queryLogger->error( __METHOD__ . ": $fname does not have outer scope.\n" .
-				( new RuntimeException() )->getTraceAsString() );
+			$this->queryLogger->error(
+				__METHOD__ . ": $fname does not have outer scope",
+				[ 'trace' => ( new RuntimeException() )->getTraceAsString() ]
+			);
 
 			return null;
 		}
@@ -467,8 +475,10 @@ abstract class LBFactory implements ILBFactory {
 
 	final public function commitAndWaitForReplication( $fname, $ticket, array $opts = [] ) {
 		if ( $ticket !== $this->ticket ) {
-			$this->perfLogger->error( __METHOD__ . ": $fname does not have outer scope.\n" .
-				( new RuntimeException() )->getTraceAsString() );
+			$this->perfLogger->error(
+				__METHOD__ . ": $fname does not have outer scope",
+				[ 'trace' => ( new RuntimeException() )->getTraceAsString() ]
+			);
 
 			return false;
 		}
@@ -476,7 +486,7 @@ abstract class LBFactory implements ILBFactory {
 		// The transaction owner and any caller with the empty transaction ticket can commit
 		// so that getEmptyTransactionTicket() callers don't risk seeing DBTransactionError.
 		if ( $this->trxRoundId !== false && $fname !== $this->trxRoundId ) {
-			$this->queryLogger->info( "$fname: committing on behalf of {$this->trxRoundId}." );
+			$this->queryLogger->info( "$fname: committing on behalf of {$this->trxRoundId}" );
 			$fnameEffective = $this->trxRoundId;
 		} else {
 			$fnameEffective = $fname;
@@ -530,11 +540,13 @@ abstract class LBFactory implements ILBFactory {
 		} elseif ( $this->memStash instanceof EmptyBagOStuff ) {
 			// No where to store any DB positions and wait for them to appear
 			$this->chronProt->setEnabled( false );
-			$this->replLogger->info( 'Cannot use ChronologyProtector with EmptyBagOStuff.' );
+			$this->replLogger->info( 'Cannot use ChronologyProtector with EmptyBagOStuff' );
 		}
 
-		$this->replLogger->debug( __METHOD__ . ': using request info ' .
-			json_encode( $this->requestInfo, JSON_PRETTY_PRINT ) );
+		$this->replLogger->debug(
+			__METHOD__ . ': request info ' .
+			json_encode( $this->requestInfo, JSON_PRETTY_PRINT )
+		);
 
 		return $this->chronProt;
 	}
@@ -726,7 +738,7 @@ abstract class LBFactory implements ILBFactory {
 
 	public function setRequestInfo( array $info ) {
 		if ( $this->chronProt ) {
-			throw new LogicException( 'ChronologyProtector already initialized.' );
+			throw new LogicException( 'ChronologyProtector already initialized' );
 		}
 
 		$this->requestInfo = $info + $this->requestInfo;

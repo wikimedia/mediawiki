@@ -673,7 +673,9 @@ interface ILoadBalancer {
 	/**
 	 * Wait for a replica DB to reach a specified master position
 	 *
-	 * This will connect to the master to get an accurate position if $pos is not given
+	 * If $conn is not a replica server connection, then this will return true.
+	 * Otherwise, if $pos is not provided, this will connect to the master server
+	 * to get an accurate position.
 	 *
 	 * @param IDatabase $conn Replica DB
 	 * @param DBMasterPos|bool $pos Master position; default: current position
