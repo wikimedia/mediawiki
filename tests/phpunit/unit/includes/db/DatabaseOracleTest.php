@@ -1,9 +1,6 @@
 <?php
 
-class DatabaseOracleTest extends PHPUnit\Framework\TestCase {
-
-	use MediaWikiCoversValidator;
-	use PHPUnit4And6Compat;
+class DatabaseOracleTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @return PHPUnit_Framework_MockObject_MockObject|DatabaseOracle

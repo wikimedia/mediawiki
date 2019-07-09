@@ -12,9 +12,7 @@
  * @group IP
  * @covers AvroValidator
  */
-class AvroValidatorTest extends PHPUnit\Framework\TestCase {
-
-	use MediaWikiCoversValidator;
+class AvroValidatorTest extends MediaWikiUnitTestCase {
 
 	public function setUp() {
 		if ( !class_exists( 'AvroSchema' ) ) {

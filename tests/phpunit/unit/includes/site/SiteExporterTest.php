@@ -27,10 +27,7 @@
  *
  * @author Daniel Kinzler
  */
-class SiteExporterTest extends PHPUnit\Framework\TestCase {
-
-	use MediaWikiCoversValidator;
-	use PHPUnit4And6Compat;
+class SiteExporterTest extends MediaWikiUnitTestCase {
 
 	public function testConstructor_InvalidArgument() {
 		$this->setExpectedException( InvalidArgumentException::class );
@@ -67,7 +64,7 @@ class SiteExporterTest extends PHPUnit\Framework\TestCase {
 		$this->assertContains( '</sites>', $xml );
 
 		// NOTE: HHVM (at least on wmf Jenkins) doesn't like file URLs.
-		$xsdFile = __DIR__ . '/../../../../docs/sitelist-1.0.xsd';
+		$xsdFile = __DIR__ . '/../../../../../docs/sitelist-1.0.xsd';
 		$xsdData = file_get_contents( $xsdFile );
 
 		$document = new DOMDocument();
