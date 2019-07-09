@@ -148,7 +148,6 @@ class WebInstaller extends Installer {
 
 		// Add parser hooks
 		$parser = MediaWikiServices::getInstance()->getParser();
-		$parser->setHook( 'downloadlink', [ $this, 'downloadLinkHook' ] );
 		$parser->setHook( 'doclink', [ $this, 'docLink' ] );
 	}
 
@@ -658,22 +657,23 @@ class WebInstaller extends Installer {
 	}
 
 	/**
-	 * Get HTML for an info box with an icon.
+	 * Get HTML for an information message box with an icon.
 	 *
-	 * @param string $text Wikitext, get this with wfMessage()->plain()
+	 * @param string|HtmlArmor $text Wikitext to be parsed (from Message::plain) or raw HTML.
 	 * @param string|bool $icon Icon name, file in mw-config/images. Default: false
 	 * @param string|bool $class Additional class name to add to the wrapper div. Default: false.
-	 *
-	 * @return string
+	 * @return string HTML
 	 */
 	public function getInfoBox( $text, $icon = false, $class = false ) {
-		$text = $this->parse( $text, true );
+		$html = ( $text instanceof HtmlArmor ) ?
+			HtmlArmor::getHtml( $text ) :
+			$this->parse( $text, true );
 		$icon = ( $icon == false ) ?
 			'images/info-32.png' :
 			'images/' . $icon;
 		$alt = wfMessage( 'config-information' )->text();
 
-		return Html::infoBox( $text, $icon, $alt, $class );
+		return Html::infoBox( $html, $icon, $alt, $class );
 	}
 
 	/**
@@ -1092,11 +1092,11 @@ class WebInstaller extends Installer {
 	/**
 	 * Helper for Installer::docLink()
 	 *
+	 * @internal For use by WebInstallerOutput
 	 * @param string $page
-	 *
 	 * @return string
 	 */
-	protected function getDocUrl( $page ) {
+	public function getDocUrl( $page ) {
 		$query = [ 'page' => $page ];
 
 		if ( in_array( $this->currentPageName, $this->pageSequence ) ) {
@@ -1122,15 +1122,26 @@ class WebInstaller extends Installer {
 	}
 
 	/**
-	 * Helper for "Download LocalSettings" link on WebInstall_Complete
+	 * Helper for sidebar links.
 	 *
-	 * @param string $text Unused
-	 * @param string[] $attribs Unused
-	 * @param Parser $parser Unused
+	 * @internal For use in WebInstallerOutput class
+	 * @param string $url
+	 * @param string $linkText
+	 * @return string HTML
+	 */
+	public function makeLinkItem( $url, $linkText ) {
+		return Html::rawElement( 'li', [],
+			Html::element( 'a', [ 'href' => $url ], $linkText )
+		);
+	}
+
+	/**
+	 * Helper for "Download LocalSettings" link.
 	 *
+	 * @internal For use in WebInstallerComplete class
 	 * @return string Html for download link
 	 */
-	public function downloadLinkHook( $text, $attribs, $parser ) {
+	public function makeDownloadLinkHtml() {
 		$anchor = Html::rawElement( 'a',
 			[ 'href' => $this->getUrl( [ 'localsettings' => 1 ] ) ],
 			wfMessage( 'config-download-localsettings' )->parse()

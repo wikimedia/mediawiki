@@ -299,11 +299,27 @@ class WebInstallerOutput {
 	</div>
 <?php
 	$message = wfMessage( 'config-sidebar' )->plain();
+	// Section 1: External links
+	// @todo FIXME: Migrate to plain link label messages (T227297).
 	foreach ( explode( '----', $message ) as $section ) {
 		echo '<div class="portal"><div class="body">';
 		echo $this->parent->parse( $section, true );
 		echo '</div></div>';
 	}
+	// Section 2: Installer pages
+	echo '<div class="portal"><div class="body"><ul>';
+	foreach ( [
+		'config-sidebar-readme' => 'Readme',
+		'config-sidebar-relnotes' => 'ReleaseNotes',
+		'config-sidebar-license' => 'Copying',
+		'config-sidebar-upgrade' => 'UpgradeDoc',
+	] as $msgKey => $pageName ) {
+		echo $this->parent->makeLinkItem(
+			$this->parent->getDocUrl( $pageName ),
+			wfMessage( $msgKey )->text()
+		);
+	}
+	echo '</ul></div></div>';
 ?>
 </div>
 

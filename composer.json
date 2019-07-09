@@ -120,7 +120,7 @@
 		"phpunit": "phpunit",
 		"phpunit:unit": "phpunit --colors=always --testsuite=core:unit,extensions:unit,skins:unit",
 		"phpunit:integration": "phpunit --colors=always --testsuite=core:integration,extensions:integration,skins:integration",
-		"phpunit:coverage": "phpunit --testsuite=core:unit --exclude-group Dump,Broken,ParserFuzz,Stub"
+		"phpunit:coverage": "phpunit --testsuite=core:unit --exclude-group Dump,Broken"
 	},
 	"config": {
 		"optimize-autoloader": true,
