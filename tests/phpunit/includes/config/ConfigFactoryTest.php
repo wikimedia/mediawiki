@@ -2,7 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 
-class ConfigFactoryTest extends \MediaWikiUnitTestCase {
+class ConfigFactoryTest extends \MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers ConfigFactory::register
