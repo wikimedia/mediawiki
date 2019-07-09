@@ -35,7 +35,7 @@ use WANObjectCache;
  */
 class LoadMonitor implements ILoadMonitor {
 	/** @var ILoadBalancer */
-	protected $parent;
+	protected $lb;
 	/** @var BagOStuff */
 	protected $srvCache;
 	/** @var WANObjectCache */
@@ -64,7 +64,7 @@ class LoadMonitor implements ILoadMonitor {
 	public function __construct(
 		ILoadBalancer $lb, BagOStuff $srvCache, WANObjectCache $wCache, array $options = []
 	) {
-		$this->parent = $lb;
+		$this->lb = $lb;
 		$this->srvCache = $srvCache;
 		$this->wanCache = $wCache;
 		$this->replLogger = new NullLogger();
@@ -85,7 +85,7 @@ class LoadMonitor implements ILoadMonitor {
 			if ( isset( $newScalesByServer[$i] ) ) {
 				$weightByServer[$i] = $weight * $newScalesByServer[$i];
 			} else { // server recently added to config?
-				$host = $this->parent->getServerName( $i );
+				$host = $this->lb->getServerName( $i );
 				$this->replLogger->error( __METHOD__ . ": host $host not in cache" );
 			}
 		}
@@ -96,7 +96,7 @@ class LoadMonitor implements ILoadMonitor {
 	}
 
 	protected function getServerStates( array $serverIndexes, $domain ) {
-		$writerIndex = $this->parent->getWriterIndex();
+		$writerIndex = $this->lb->getWriterIndex();
 		if ( count( $serverIndexes ) == 1 && reset( $serverIndexes ) == $writerIndex ) {
 			# Single server only, just return zero without caching
 			return [
@@ -146,7 +146,7 @@ class LoadMonitor implements ILoadMonitor {
 		$weightScales = [];
 		$movAveRatio = $this->movingAveRatio;
 		foreach ( $serverIndexes as $i ) {
-			if ( $i == $this->parent->getWriterIndex() ) {
+			if ( $i == $this->lb->getWriterIndex() ) {
 				$lagTimes[$i] = 0; // master always has no lag
 				$weightScales[$i] = 1.0; // nominal weight
 				continue;
@@ -155,12 +155,12 @@ class LoadMonitor implements ILoadMonitor {
 			# Handles with open transactions are avoided since they might be subject
 			# to REPEATABLE-READ snapshots, which could affect the lag estimate query.
 			$flags = ILoadBalancer::CONN_TRX_AUTOCOMMIT | ILoadBalancer::CONN_SILENCE_ERRORS;
-			$conn = $this->parent->getAnyOpenConnection( $i, $flags );
+			$conn = $this->lb->getAnyOpenConnection( $i, $flags );
 			if ( $conn ) {
 				$close = false; // already open
 			} else {
 				// Get a connection to this server without triggering other server connections
-				$conn = $this->parent->getServerConnection( $i, ILoadBalancer::DOMAIN_ANY, $flags );
+				$conn = $this->lb->getServerConnection( $i, ILoadBalancer::DOMAIN_ANY, $flags );
 				$close = true; // new connection
 			}
 
@@ -171,7 +171,7 @@ class LoadMonitor implements ILoadMonitor {
 			// Scale from 10% to 100% of nominal weight
 			$weightScales[$i] = max( $newWeight, 0.10 );
 
-			$host = $this->parent->getServerName( $i );
+			$host = $this->lb->getServerName( $i );
 
 			if ( !$conn ) {
 				$lagTimes[$i] = false;
@@ -204,7 +204,7 @@ class LoadMonitor implements ILoadMonitor {
 				# Note that the caller will pick one of these DBs and reconnect,
 				# which is slightly inefficient, but this only matters for the lag
 				# time cache miss cache, which is far less common that cache hits.
-				$this->parent->closeConnection( $conn );
+				$this->lb->closeConnection( $conn );
 			}
 		}
 
@@ -236,7 +236,7 @@ class LoadMonitor implements ILoadMonitor {
 		return $this->srvCache->makeGlobalKey(
 			'lag-times',
 			self::VERSION,
-			$this->parent->getServerName( $this->parent->getWriterIndex() ),
+			$this->lb->getServerName( $this->lb->getWriterIndex() ),
 			implode( '-', $serverIndexes )
 		);
 	}
