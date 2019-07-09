@@ -1,6 +1,6 @@
 <?php
 
-class RemexDriverTest extends MediaWikiTestCase {
+class RemexDriverTest extends MediaWikiUnitTestCase {
 	private static $remexTidyTestData = [
 		[
 			'Empty string',

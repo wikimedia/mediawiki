@@ -3,10 +3,7 @@
 /**
  * @covers VersionChecker
  */
-class VersionCheckerTest extends PHPUnit\Framework\TestCase {
-
-	use MediaWikiCoversValidator;
-	use PHPUnit4And6Compat;
+class VersionCheckerTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideMediaWikiCheck

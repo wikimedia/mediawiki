@@ -3,9 +3,7 @@
 /**
  * @covers ClassCollector
  */
-class ClassCollectorTest extends PHPUnit\Framework\TestCase {
-
-	use MediaWikiCoversValidator;
+class ClassCollectorTest extends MediaWikiUnitTestCase {
 
 	public static function provideCases() {
 		return [

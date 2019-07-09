@@ -3,9 +3,7 @@
 /**
  * @covers MWCallableUpdate
  */
-class MWCallableUpdateTest extends PHPUnit\Framework\TestCase {
-
-	use MediaWikiCoversValidator;
+class MWCallableUpdateTest extends MediaWikiUnitTestCase {
 
 	public function testDoUpdate() {
 		$ran = 0;

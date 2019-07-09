@@ -5,9 +5,7 @@
  *
  * @covers MWCryptHash
  */
-class MWCryptHashTest extends PHPUnit\Framework\TestCase {
-
-	use MediaWikiCoversValidator;
+class MWCryptHashTest extends MediaWikiUnitTestCase {
 
 	public function testHashLength() {
 		if ( MWCryptHash::hashAlgo() !== 'whirlpool' ) {
