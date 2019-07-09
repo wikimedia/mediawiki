@@ -878,6 +878,14 @@ EOT;
 
 		$mime = 'application/zip';
 		$opendocTypes = [
+			# In OASIS Open Document Format v1.2, Database front end document
+			# has a recommended MIME type of:
+			# application/vnd.oasis.opendocument.base
+			# Despite the type registered at the IANA being 'database' which is
+			# supposed to be normative.
+			# T35515
+			'base',
+
 			'chart-template',
 			'chart',
 			'formula-template',
@@ -895,7 +903,10 @@ EOT;
 			'text-web',
 			'text' ];
 
-		// https://lists.oasis-open.org/archives/office/200505/msg00006.html
+		// The list of document types is available in OASIS Open Document
+		// Format version 1.2 under Appendix C. It is not normative though,
+		// supposedly types registered at the IANA should be.
+		// http://docs.oasis-open.org/office/v1.2/os/OpenDocument-v1.2-os-part1.html
 		$types = '(?:' . implode( '|', $opendocTypes ) . ')';
 		$opendocRegex = "/^mimetype(application\/vnd\.oasis\.opendocument\.$types)/";
 

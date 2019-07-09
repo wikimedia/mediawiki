@@ -137,4 +137,30 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 		$actualType = $this->doGuessMimeType( [ $file, 'doc' ] );
 		$this->assertEquals( 'application/msword', $actualType );
 	}
+
+	/**
+	 * @covers MimeAnalyzer::detectZipType
+	 * @dataProvider provideOpendocumentsformatHeaders
+	 */
+	function testDetectZipTypeRecognizesOpendocuments( $expected, $header ) {
+		$this->assertEquals(
+			$expected,
+			$this->mimeAnalyzer->detectZipType( $header )
+		);
+	}
+
+	/**
+	 * An ODF file is a ZIP file of multiple files. The first one being
+	 * 'mimetype' and is not compressed.
+	 */
+	function provideOpendocumentsformatHeaders() {
+		$thirtychars = str_repeat( 0, 30 );
+		return [
+			'Database front end document header based on ODF 1.2' => [
+				'application/vnd.oasis.opendocument.base',
+				$thirtychars . 'mimetypeapplication/vnd.oasis.opendocument.basePK',
+			],
+		];
+	}
+
 }
