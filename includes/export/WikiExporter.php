@@ -67,6 +67,15 @@ class WikiExporter {
 	/** @var XmlDumpWriter */
 	private $writer;
 
+	/** @var IDatabase */
+	protected $db;
+
+	/** @var array|int */
+	protected $history;
+
+	/** @var array|null */
+	protected $limitNamespaces;
+
 	/**
 	 * Returns the default export schema version, as defined by $wgXmlDumpSchemaVersion.
 	 * @return string
@@ -87,8 +96,11 @@ class WikiExporter {
 	 * @param null|array $limitNamespaces Comma-separated list of namespace numbers
 	 *   to limit results
 	 */
-	function __construct( $db, $history = self::CURRENT, $text = self::TEXT,
-			$limitNamespaces = null
+	function __construct(
+		$db,
+		$history = self::CURRENT,
+		$text = self::TEXT,
+		$limitNamespaces = null
 	) {
 		$this->db = $db;
 		$this->history = $history;
