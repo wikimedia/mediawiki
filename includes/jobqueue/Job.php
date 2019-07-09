@@ -52,9 +52,6 @@ abstract class Job implements RunnableJob {
 	/** @var int Bitfield of JOB_* class constants */
 	protected $executionFlags = 0;
 
-	/** @var int Job must not be wrapped in the usual explicit LBFactory transaction round */
-	const JOB_NO_EXPLICIT_TRX_ROUND = 1;
-
 	/**
 	 * Create the appropriate object to handle a specific job
 	 *
@@ -154,11 +151,6 @@ abstract class Job implements RunnableJob {
 		}
 	}
 
-	/**
-	 * @param int $flag JOB_* class constant
-	 * @return bool
-	 * @since 1.31
-	 */
 	public function hasExecutionFlag( $flag ) {
 		return ( $this->executionFlags & $flag ) === $flag;
 	}
@@ -234,20 +226,10 @@ abstract class Job implements RunnableJob {
 			: null;
 	}
 
-	/**
-	 * @return string|null Id of the request that created this job. Follows
-	 *  jobs recursively, allowing to track the id of the request that started a
-	 *  job when jobs insert jobs which insert other jobs.
-	 * @since 1.27
-	 */
 	public function getRequestId() {
 		return $this->params['requestId'] ?? null;
 	}
 
-	/**
-	 * @return int|null UNIX timestamp of when the job was runnable, or null
-	 * @since 1.26
-	 */
 	public function getReadyTimestamp() {
 		return $this->getReleaseTimestamp() ?: $this->getQueuedTimestamp();
 	}
@@ -267,19 +249,10 @@ abstract class Job implements RunnableJob {
 		return $this->removeDuplicates;
 	}
 
-	/**
-	 * @return bool Whether this job can be retried on failure by job runners
-	 * @since 1.21
-	 */
 	public function allowRetries() {
 		return true;
 	}
 
-	/**
-	 * @return int Number of actually "work items" handled in this job
-	 * @see $wgJobBackoffThrottling
-	 * @since 1.23
-	 */
 	public function workItemCount() {
 		return 1;
 	}
@@ -380,20 +353,12 @@ abstract class Job implements RunnableJob {
 		$this->teardownCallbacks[] = $callback;
 	}
 
-	/**
-	 * Do any final cleanup after run(), deferred updates, and all DB commits happen
-	 * @param bool $status Whether the job, its deferred updates, and DB commit all succeeded
-	 * @since 1.27
-	 */
 	public function teardown( $status ) {
 		foreach ( $this->teardownCallbacks as $callback ) {
 			call_user_func( $callback, $status );
 		}
 	}
 
-	/**
-	 * @return string
-	 */
 	public function toString() {
 		$paramString = '';
 		if ( $this->params ) {
