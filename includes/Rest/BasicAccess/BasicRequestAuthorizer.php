@@ -6,8 +6,8 @@ use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\RequestInterface;
 
 /**
- * A request authorizer which checks needsReadAccess() in the
- * handler and calls isReadAllowed() in the subclass
+ * A request authorizer which checks needsReadAccess() and needsWriteAccess() in the
+ * handler and calls isReadAllowed() and/or isWriteAllowed() in the subclass
  * accordingly.
  *
  * @internal
@@ -34,6 +34,9 @@ abstract class BasicRequestAuthorizer {
 		if ( $this->handler->needsReadAccess() && !$this->isReadAllowed() ) {
 			return 'rest-read-denied';
 		}
+		if ( $this->handler->needsWriteAccess() && !$this->isWriteAllowed() ) {
+			return 'rest-write-denied';
+		}
 		return null;
 	}
 
@@ -43,4 +46,11 @@ abstract class BasicRequestAuthorizer {
 	 * @return bool
 	 */
 	abstract protected function isReadAllowed();
+
+	/**
+	 * Check if the current user is allowed to write to the wiki
+	 *
+	 * @return bool
+	 */
+	abstract protected function isWriteAllowed();
 }
