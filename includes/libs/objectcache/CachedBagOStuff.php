@@ -82,9 +82,18 @@ class CachedBagOStuff extends HashBagOStuff {
 		$this->backend->setDebug( $bool );
 	}
 
-	public function deleteObjectsExpiringBefore( $date, $progressCallback = false, $limit = INF ) {
-		parent::deleteObjectsExpiringBefore( $date, $progressCallback, $limit );
-		return $this->backend->deleteObjectsExpiringBefore( $date, $progressCallback, $limit );
+	public function deleteObjectsExpiringBefore(
+		$timestamp,
+		callable $progressCallback = null,
+		$limit = INF
+	) {
+		parent::deleteObjectsExpiringBefore( $timestamp, $progressCallback, $limit );
+
+		return $this->backend->deleteObjectsExpiringBefore(
+			$timestamp,
+			$progressCallback,
+			$limit
+		);
 	}
 
 	public function makeKeyInternal( $keyspace, $args ) {
