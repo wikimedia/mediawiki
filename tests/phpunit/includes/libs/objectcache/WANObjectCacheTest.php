@@ -47,18 +47,26 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	 * @param int $ttl
 	 */
 	public function testSetAndGet( $value, $ttl ) {
+		$cache = $this->cache;
+
 		$curTTL = null;
 		$asOf = null;
-		$key = $this->cache->makeKey( 'x', wfRandomString() );
+		$key = $cache->makeKey( 'x', wfRandomString() );
 
-		$this->cache->get( $key, $curTTL, [], $asOf );
+		$cache->get( $key, $curTTL, [], $asOf );
 		$this->assertNull( $curTTL, "Current TTL is null" );
 		$this->assertNull( $asOf, "Current as-of-time is infinite" );
 
 		$t = microtime( true );
-		$this->cache->set( $key, $value, $ttl );
 
-		$this->assertEquals( $value, $this->cache->get( $key, $curTTL, [], $asOf ) );
+		$cache->set( $key, $value, $cache::TTL_UNCACHEABLE );
+		$cache->get( $key, $curTTL, [], $asOf );
+		$this->assertNull( $curTTL, "Current TTL is null (TTL_UNCACHEABLE)" );
+		$this->assertNull( $asOf, "Current as-of-time is infinite (TTL_UNCACHEABLE)" );
+
+		$cache->set( $key, $value, $ttl );
+
+		$this->assertEquals( $value, $cache->get( $key, $curTTL, [], $asOf ) );
 		if ( is_infinite( $ttl ) || $ttl == 0 ) {
 			$this->assertTrue( is_infinite( $curTTL ), "Current TTL is infinite" );
 		} else {
@@ -157,7 +165,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( 6, $hit, "New values cached" );
 
 		foreach ( $keys as $i => $key ) {
-			// Should evict from process cache
+			// Should not evict from process cache
 			$this->cache->delete( $key );
 			$mockWallClock += 0.001; // cached values will be newer than tombstone
 			// Get into cache (specific process cache group)
@@ -192,7 +200,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @dataProvider getWithSetCallback_provider
 	 * @covers WANObjectCache::getWithSetCallback()
-	 * @covers WANObjectCache::doGetWithSetCallback()
+	 * @covers WANObjectCache::fetchOrRegenerate()
 	 * @param array $extOpts
 	 * @param bool $versioned
 	 */
@@ -268,11 +276,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 		$curTTL = null;
 		$v = $cache->get( $key, $curTTL, [ $cKey1, $cKey2 ] );
-		if ( $versioned ) {
-			$this->assertEquals( $value, $v[$cache::VFLD_DATA], "Value returned" );
-		} else {
-			$this->assertEquals( $value, $v, "Value returned" );
-		}
+		$this->assertEquals( $value, $v, "Value returned" );
 		$this->assertLessThanOrEqual( 0, $curTTL, "Value has current TTL < 0 due to check keys" );
 
 		$wasSet = 0;
@@ -378,7 +382,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @dataProvider getWithSetCallback_provider
 	 * @covers WANObjectCache::getWithSetCallback()
-	 * @covers WANObjectCache::doGetWithSetCallback()
+	 * @covers WANObjectCache::fetchOrRegenerate()
 	 * @param array $extOpts
 	 * @param bool $versioned
 	 */
@@ -545,15 +549,6 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers WANObjectCache::getWithSetCallback()
-	 * @covers WANObjectCache::doGetWithSetCallback()
-	 */
-	public function testGetWithSetCallback_invalidCallback() {
-		$this->setExpectedException( InvalidArgumentException::class );
-		$this->cache->getWithSetCallback( 'key', 30, 'invalid callback' );
-	}
-
-	/**
 	 * @dataProvider getMultiWithSetCallback_provider
 	 * @covers WANObjectCache::getMultiWithSetCallback
 	 * @covers WANObjectCache::makeMultiKeys
@@ -606,15 +601,16 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$value = "@efef$";
 		$keyedIds = new ArrayIterator( [ $keyB => 'efef' ] );
 		$v = $cache->getMultiWithSetCallback(
-			$keyedIds, 30, $genFunc, [ 'lowTTL' => 0, 'lockTSE' => 5, ] + $extOpts );
+			$keyedIds, 30, $genFunc, [ 'lowTTL' => 0, 'lockTSE' => 5 ] + $extOpts );
 		$this->assertEquals( $value, $v[$keyB], "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value regenerated" );
-		$this->assertEquals( 0, $cache->getWarmupKeyMisses(), "Keys warmed yet in process cache" );
+		$this->assertEquals( 0, $cache->getWarmupKeyMisses(), "Keys warmed in warmup cache" );
+
 		$v = $cache->getMultiWithSetCallback(
-			$keyedIds, 30, $genFunc, [ 'lowTTL' => 0, 'lockTSE' => 5, ] + $extOpts );
+			$keyedIds, 30, $genFunc, [ 'lowTTL' => 0, 'lockTSE' => 5 ] + $extOpts );
 		$this->assertEquals( $value, $v[$keyB], "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value not regenerated" );
-		$this->assertEquals( 0, $cache->getWarmupKeyMisses(), "Keys warmed in process cache" );
+		$this->assertEquals( 0, $cache->getWarmupKeyMisses(), "Keys warmed in warmup cache" );
 
 		$mockWallClock += 1;
 
@@ -649,11 +645,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 		$curTTL = null;
 		$v = $cache->get( $keyC, $curTTL, [ $cKey1, $cKey2 ] );
-		if ( $versioned ) {
-			$this->assertEquals( $value, $v[$cache::VFLD_DATA], "Value returned" );
-		} else {
-			$this->assertEquals( $value, $v, "Value returned" );
-		}
+		$this->assertEquals( $value, $v, "Value returned" );
 		$this->assertLessThanOrEqual( 0, $curTTL, "Value has current TTL < 0 due to check keys" );
 
 		$wasSet = 0;
@@ -780,12 +772,13 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			$keyedIds, 30, $genFunc, [ 'lowTTL' => 0 ] + $extOpts );
 		$this->assertEquals( $value, $v[$keyB], "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value regenerated" );
-		$this->assertEquals( 0, $cache->getWarmupKeyMisses(), "Keys warmed yet in process cache" );
+		$this->assertEquals( 0, $cache->getWarmupKeyMisses(), "Keys warmed in warmup cache" );
+
 		$v = $cache->getMultiWithUnionSetCallback(
 			$keyedIds, 30, $genFunc, [ 'lowTTL' => 0 ] + $extOpts );
 		$this->assertEquals( $value, $v[$keyB], "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value not regenerated" );
-		$this->assertEquals( 0, $cache->getWarmupKeyMisses(), "Keys warmed in process cache" );
+		$this->assertEquals( 0, $cache->getWarmupKeyMisses(), "Keys warmed in warmup cache" );
 
 		$mockWallClock += 1;
 
@@ -818,11 +811,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 		$curTTL = null;
 		$v = $cache->get( $keyC, $curTTL, [ $cKey1, $cKey2 ] );
-		if ( $versioned ) {
-			$this->assertEquals( $value, $v[$cache::VFLD_DATA], "Value returned" );
-		} else {
-			$this->assertEquals( $value, $v, "Value returned" );
-		}
+		$this->assertEquals( $value, $v, "Value returned" );
 		$this->assertLessThanOrEqual( 0, $curTTL, "Value has current TTL < 0 due to check keys" );
 
 		$wasSet = 0;
@@ -880,7 +869,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers WANObjectCache::getWithSetCallback()
-	 * @covers WANObjectCache::doGetWithSetCallback()
+	 * @covers WANObjectCache::fetchOrRegenerate()
 	 */
 	public function testLockTSE() {
 		$cache = $this->cache;
@@ -924,7 +913,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers WANObjectCache::getWithSetCallback()
-	 * @covers WANObjectCache::doGetWithSetCallback()
+	 * @covers WANObjectCache::fetchOrRegenerate()
 	 * @covers WANObjectCache::set()
 	 */
 	public function testLockTSESlow() {
@@ -1005,7 +994,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers WANObjectCache::getWithSetCallback()
-	 * @covers WANObjectCache::doGetWithSetCallback()
+	 * @covers WANObjectCache::fetchOrRegenerate()
 	 */
 	public function testBusyValue() {
 		$cache = $this->cache;
@@ -1283,7 +1272,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @dataProvider getWithSetCallback_versions_provider
 	 * @covers WANObjectCache::getWithSetCallback()
-	 * @covers WANObjectCache::doGetWithSetCallback()
+	 * @covers WANObjectCache::fetchOrRegenerate()
 	 * @param array $extOpts
 	 * @param bool $versioned
 	 */
@@ -1523,7 +1512,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->internalCache->set(
 			WANObjectCache::VALUE_KEY_PREFIX . $vKey1,
 			[
-				WANObjectCache::FLD_VERSION => WANObjectCache::VERSION,
+				WANObjectCache::FLD_FORMAT_VERSION => WANObjectCache::VERSION,
 				WANObjectCache::FLD_VALUE => $value,
 				WANObjectCache::FLD_TTL => 3600,
 				WANObjectCache::FLD_TIME => $goodTime
@@ -1532,7 +1521,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->internalCache->set(
 			WANObjectCache::VALUE_KEY_PREFIX . $vKey2,
 			[
-				WANObjectCache::FLD_VERSION => WANObjectCache::VERSION,
+				WANObjectCache::FLD_FORMAT_VERSION => WANObjectCache::VERSION,
 				WANObjectCache::FLD_VALUE => $value,
 				WANObjectCache::FLD_TTL => 3600,
 				WANObjectCache::FLD_TIME => $badTime
@@ -1569,7 +1558,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			->setMethods( [ 'get', 'changeTTL' ] )->getMock();
 		$backend->expects( $this->once() )->method( 'get' )
 			->willReturn( [
-				WANObjectCache::FLD_VERSION => WANObjectCache::VERSION,
+				WANObjectCache::FLD_FORMAT_VERSION => WANObjectCache::VERSION,
 				WANObjectCache::FLD_VALUE => 'value',
 				WANObjectCache::FLD_TTL => 3600,
 				WANObjectCache::FLD_TIME => 300,
