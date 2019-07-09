@@ -652,15 +652,19 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 
 	/**
 	 * Delete all objects expiring before a certain date.
-	 * @param string $date The reference date in MW format
-	 * @param callable|bool $progressCallback Optional, a function which will be called
+	 * @param string|int $timestamp The reference date in MW or TS_UNIX format
+	 * @param callable|null $progressCallback Optional, a function which will be called
 	 *     regularly during long-running operations with the percentage progress
 	 *     as the first parameter. [optional]
 	 * @param int $limit Maximum number of keys to delete [default: INF]
 	 *
 	 * @return bool Success, false if unimplemented
 	 */
-	public function deleteObjectsExpiringBefore( $date, $progressCallback = false, $limit = INF ) {
+	public function deleteObjectsExpiringBefore(
+		$timestamp,
+		callable $progressCallback = null,
+		$limit = INF
+	) {
 		// stub
 		return false;
 	}

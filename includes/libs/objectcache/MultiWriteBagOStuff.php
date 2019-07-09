@@ -208,10 +208,14 @@ class MultiWriteBagOStuff extends BagOStuff {
 		return $this->caches[0]->unlock( $key );
 	}
 
-	public function deleteObjectsExpiringBefore( $date, $progressCallback = false, $limit = INF ) {
+	public function deleteObjectsExpiringBefore(
+		$timestamp,
+		callable $progressCallback = null,
+		$limit = INF
+	) {
 		$ret = false;
 		foreach ( $this->caches as $cache ) {
-			if ( $cache->deleteObjectsExpiringBefore( $date, $progressCallback, $limit ) ) {
+			if ( $cache->deleteObjectsExpiringBefore( $timestamp, $progressCallback, $limit ) ) {
 				$ret = true;
 			}
 		}
