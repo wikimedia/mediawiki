@@ -123,7 +123,6 @@ class HistoryPager extends ReverseChronologicalPager {
 	 */
 	function formatRow( $row ) {
 		if ( $this->lastRow ) {
-			$latest = ( $this->counter == 1 && $this->mIsFirst );
 			$firstInList = $this->counter == 1;
 			$this->counter++;
 
@@ -131,8 +130,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				? $this->getTitle()->getNotificationTimestamp( $this->getUser() )
 				: false;
 
-			$s = $this->historyLine(
-				$this->lastRow, $row, $notifTimestamp, $latest, $firstInList );
+			$s = $this->historyLine( $this->lastRow, $row, $notifTimestamp, false, $firstInList );
 		} else {
 			$s = '';
 		}
@@ -236,7 +234,6 @@ class HistoryPager extends ReverseChronologicalPager {
 
 	protected function getEndBody() {
 		if ( $this->lastRow ) {
-			$latest = $this->counter == 1 && $this->mIsFirst;
 			$firstInList = $this->counter == 1;
 			if ( $this->mIsBackwards ) {
 				# Next row is unknown, but for UI reasons, probably exists if an offset has been specified
@@ -255,8 +252,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				? $this->getTitle()->getNotificationTimestamp( $this->getUser() )
 				: false;
 
-			$s = $this->historyLine(
-				$this->lastRow, $next, $notifTimestamp, $latest, $firstInList );
+			$s = $this->historyLine( $this->lastRow, $next, $notifTimestamp, false, $firstInList );
 		} else {
 			$s = '';
 		}
@@ -295,13 +291,13 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @param mixed $next The database row corresponding to the next line
 	 *   (chronologically previous)
 	 * @param bool|string $notificationtimestamp
-	 * @param bool $latest Whether this row corresponds to the page's latest revision.
+	 * @param bool $dummy Unused.
 	 * @param bool $firstInList Whether this row corresponds to the first
 	 *   displayed on this history page.
 	 * @return string HTML output for the row
 	 */
 	function historyLine( $row, $next, $notificationtimestamp = false,
-		$latest = false, $firstInList = false ) {
+		$dummy = false, $firstInList = false ) {
 		$rev = new Revision( $row, 0, $this->getTitle() );
 
 		if ( is_object( $next ) ) {
@@ -310,7 +306,8 @@ class HistoryPager extends ReverseChronologicalPager {
 			$prevRev = null;
 		}
 
-		$curlink = $this->curLink( $rev, $latest );
+		$latest = $rev->getId() === $this->getWikiPage()->getLatest();
+		$curlink = $this->curLink( $rev );
 		$lastlink = $this->lastLink( $rev, $next );
 		$curLastlinks = Html::rawElement( 'span', [], $curlink ) .
 			Html::rawElement( 'span', [], $lastlink );
@@ -483,12 +480,12 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * Create a diff-to-current link for this revision for this page
 	 *
 	 * @param Revision $rev
-	 * @param bool $latest This is the latest revision of the page?
 	 * @return string
 	 */
-	function curLink( $rev, $latest ) {
+	function curLink( $rev ) {
 		$cur = $this->historyPage->message['cur'];
-		if ( $latest || !$rev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
+		$latest = $this->getWikiPage()->getLatest();
+		if ( $latest === $rev->getId() || !$rev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
 			return $cur;
 		} else {
 			return MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
@@ -496,7 +493,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				new HtmlArmor( $cur ),
 				[],
 				[
-					'diff' => $this->getWikiPage()->getLatest(),
+					'diff' => $latest,
 					'oldid' => $rev->getId()
 				]
 			);
