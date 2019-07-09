@@ -20,7 +20,7 @@ use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 
-class RevisionStoreFactoryTest extends \MediaWikiUnitTestCase {
+class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStoreFactory::__construct

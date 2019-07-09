@@ -31,4 +31,26 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 	use PHPUnit4And6Compat;
 	use MediaWikiCoversValidator;
 
+	private $unitGlobals = [];
+
+	protected function setUp() {
+		parent::setUp();
+		$reflection = new ReflectionClass( $this );
+		if ( strpos( $reflection->getFilename(), '/unit/' ) === false ) {
+			$this->fail( 'This unit test needs to be in "tests/phpunit/unit" !' );
+		}
+		$this->unitGlobals = $GLOBALS;
+		unset( $GLOBALS );
+		$GLOBALS = [];
+		// Add back the minimal set of globals needed for unit tests to run for core +
+		// extensions/skins.
+		foreach ( [ 'wgAutoloadClasses', 'wgAutoloadLocalClasses', 'IP' ] as $requiredGlobal ) {
+			$GLOBALS[$requiredGlobal] = $this->unitGlobals[ $requiredGlobal ];
+		}
+	}
+
+	protected function tearDown() {
+		$GLOBALS = $this->unitGlobals;
+		parent::tearDown();
+	}
 }

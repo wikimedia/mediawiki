@@ -4,7 +4,7 @@
  * @group Media
  * @covers SVGMetadataExtractor
  */
-class SVGMetadataExtractorTest extends \MediaWikiUnitTestCase {
+class SVGMetadataExtractorTest extends \MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideSvgFiles
@@ -46,7 +46,7 @@ class SVGMetadataExtractorTest extends \MediaWikiUnitTestCase {
 	}
 
 	public static function provideSvgFiles() {
-		$base = __DIR__ . '/../../../data/media';
+		$base = __DIR__ . '/../../data/media';
 
 		return [
 			[
@@ -143,7 +143,7 @@ class SVGMetadataExtractorTest extends \MediaWikiUnitTestCase {
 	}
 
 	public static function provideSvgFilesWithXMLMetadata() {
-		$base = __DIR__ . '/../../../data/media';
+		$base = __DIR__ . '/../../data/media';
 		// phpcs:disable Generic.Files.LineLength
 		$metadata = '<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
       <ns4:Work xmlns:ns4="http://creativecommons.org/ns#" rdf:about="">

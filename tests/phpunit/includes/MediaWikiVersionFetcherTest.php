@@ -10,7 +10,7 @@
  *
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class MediaWikiVersionFetcherTest extends \MediaWikiUnitTestCase {
+class MediaWikiVersionFetcherTest extends \MediaWikiIntegrationTestCase {
 
 	public function testReturnsResult() {
 		global $wgVersion;
