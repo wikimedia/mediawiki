@@ -1102,6 +1102,7 @@
 	"group-autoconfirmed": "தானாக உறுதியளிக்கப்பட்ட பயனர்கள்",
 	"group-bot": "தானியங்கிகள்",
 	"group-sysop": "நிர்வாகிகள்",
+	"group-interface-admin": "இடைமுக நிர்வாகிகள்",
 	"group-bureaucrat": "அதிகாரிகள்",
 	"group-suppress": "கவனக்குறைவுகள்",
 	"group-all": "(அனைத்து)",

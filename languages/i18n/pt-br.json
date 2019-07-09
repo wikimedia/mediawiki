@@ -3331,6 +3331,7 @@
 	"watchlisttools-view": "Ver alterações relevantes",
 	"watchlisttools-edit": "Ver e editar a lista de páginas vigiadas",
 	"watchlisttools-raw": "Edição crua da lista de páginas vigiadas",
+	"hebrew-calendar-m7-gen": "Nissan",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|discussão]])",
 	"timezone-local": "Local",
 	"duplicate-defaultsort": "Aviso: A chave de ordenação padrão \"$2\" sobrepõe-se à anterior chave de ordenação padrão \"$1\".",

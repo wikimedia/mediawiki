@@ -753,6 +753,7 @@
 	"apihelp-query+filearchive-example-simple": "Mostrar una lista de todos los archivos eliminados.",
 	"apihelp-query+filerepoinfo-summary": "Devuelve metainformación sobre los repositorios de imágenes configurados en el wiki.",
 	"apihelp-query+filerepoinfo-param-prop": "Qué propiedades del repositorio obtener (las propiedades disponibles pueden variar en otras wikis).",
+	"apihelp-query+filerepoinfo-paramvalue-prop-favicon": "URL del favicono del wiki del repositorio, proveniente de <var>[[mw:Special:MyLanguage/Manual:$wgFavicon|$wgFavicon]]</var>.",
 	"apihelp-query+filerepoinfo-paramvalue-prop-rootUrl": "Ruta de la URL raíz para las rutas de las imágenes.",
 	"apihelp-query+filerepoinfo-paramvalue-prop-scriptDirUrl": "Ruta de la URL raíz para la instalación MediaWiki del wiki del repositorio.",
 	"apihelp-query+filerepoinfo-paramvalue-prop-server": "<var>[[mw:Special:MyLanguage/Manual:$wgServer|$wgServer]]</var> o equivalente del wiki del repositorio.",

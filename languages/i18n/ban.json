@@ -447,7 +447,7 @@
 	"recentchanges-feed-description": "molihang pagentosan anyar ring wiki ring \"umpan\" puniki",
 	"recentchanges-label-newpage": "Uahan puniki makarya kaca anyar",
 	"recentchanges-label-minor": "Punika uahan alit",
-	"recentchanges-label-bot": "penguwahan puniki kalaksanayang antuk bot",
+	"recentchanges-label-bot": "Uahan puniki kalaksanayang antuk bot",
 	"recentchanges-label-unpatrolled": "Uahan puniki durung kapatroli",
 	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (taler cingak [[Special:NewPages|bacakan kaca anyar]])",
