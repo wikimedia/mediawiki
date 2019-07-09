@@ -50,6 +50,9 @@ class Preprocessor_Hash extends Preprocessor {
 	const CACHE_PREFIX = 'preprocess-hash';
 	const CACHE_VERSION = 2;
 
+	/**
+	 * @param Parser $parser
+	 */
 	public function __construct( $parser ) {
 		$this->parser = $parser;
 	}

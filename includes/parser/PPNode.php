@@ -36,20 +36,20 @@ interface PPNode {
 	/**
 	 * Get an array-type node containing the children of this node.
 	 * Returns false if this is not a tree node.
-	 * @return PPNode
+	 * @return false|PPNode
 	 */
 	public function getChildren();
 
 	/**
 	 * Get the first child of a tree node. False if there isn't one.
 	 *
-	 * @return PPNode
+	 * @return false|PPNode
 	 */
 	public function getFirstChild();
 
 	/**
 	 * Get the next sibling of any node. False if there isn't one
-	 * @return PPNode
+	 * @return false|PPNode
 	 */
 	public function getNextSibling();
 
@@ -57,7 +57,7 @@ interface PPNode {
 	 * Get all children of this tree node which have a given name.
 	 * Returns an array-type node, or false if this is not a tree node.
 	 * @param string $type
-	 * @return bool|PPNode
+	 * @return false|PPNode
 	 */
 	public function getChildrenOfType( $type );
 
