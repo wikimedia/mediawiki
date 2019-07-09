@@ -33,6 +33,9 @@
  * @since 1.33
  */
 interface RunnableJob extends IJobSpecification {
+	/** @var int Job must not be wrapped in the usual explicit LBFactory transaction round */
+	const JOB_NO_EXPLICIT_TRX_ROUND = 1;
+
 	/**
 	 * Run the job
 	 * @return bool Success
@@ -51,4 +54,55 @@ interface RunnableJob extends IJobSpecification {
 	 * @return mixed|null The prior field value; null if missing
 	 */
 	public function setMetadata( $field, $value );
+
+	/**
+	 * @param int $flag JOB_* class constant
+	 * @return bool
+	 * @since 1.31
+	 */
+	public function hasExecutionFlag( $flag );
+
+	/**
+	 * @return string|null Id of the request that created this job. Follows
+	 *  jobs recursively, allowing to track the id of the request that started a
+	 *  job when jobs insert jobs which insert other jobs.
+	 * @since 1.27
+	 */
+	public function getRequestId();
+
+	/**
+	 * @return bool Whether this job can be retried on failure by job runners
+	 * @since 1.21
+	 */
+	public function allowRetries();
+
+	/**
+	 * @return int Number of actually "work items" handled in this job
+	 * @see $wgJobBackoffThrottling
+	 * @since 1.23
+	 */
+	public function workItemCount();
+
+	/**
+	 * @return int|null UNIX timestamp of when the job was runnable, or null
+	 * @since 1.26
+	 */
+	public function getReadyTimestamp();
+
+	/**
+	 * Do any final cleanup after run(), deferred updates, and all DB commits happen
+	 * @param bool $status Whether the job, its deferred updates, and DB commit all succeeded
+	 * @since 1.27
+	 */
+	public function tearDown( $status );
+
+	/**
+	 * @return string
+	 */
+	public function getLastError();
+
+	/**
+	 * @return string Debugging string describing the job
+	 */
+	public function toString();
 }
