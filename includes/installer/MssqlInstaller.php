@@ -52,7 +52,7 @@ class MssqlInstaller extends DatabaseInstaller {
 	// SQL Server 2005 RTM
 	// @todo Are SQL Express version numbers different?)
 	public static $minimumVersion = '9.00.1399';
-	protected static $notMinimumVerisonMessage = 'config-mssql-old';
+	protected static $notMinimumVersionMessage = 'config-mssql-old';
 
 	// These are schema-level privs
 	// Note: the web user will be created will full permissions if possible, this permission
