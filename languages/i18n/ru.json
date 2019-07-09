@@ -4008,7 +4008,7 @@
 	"edit-error-short": "Ошибка: $1",
 	"edit-error-long": "Ошибки:\n\n$1",
 	"specialmute": "Откл. уведомления",
-	"specialmute-success": "Изменения были успешно сделаны. Просмотрите всех отключённых участников на [[Special:Preferences]].",
+	"specialmute-success": "Изменения были успешно сделаны. Просмотрите всех отключённых участников на [[Special:Preferences|ваших настройках]].",
 	"specialmute-submit": "Подтвердить",
 	"specialmute-label-mute-email": "Отключить эл. почту от этого участника",
 	"specialmute-header": "Пожалуйста, выберите настройки уведомлений от {{BIDI:[[User:$1]]}}.",

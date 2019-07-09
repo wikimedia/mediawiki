@@ -3907,5 +3907,5 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "Änderung bei der Anmeldung vorschlagen",
 	"easydeflate-invaliddeflate": "Der angegebene Inhalt ist nicht ordnungsgemäß komprimiert",
 	"unprotected-js": "Aus Sicherheitsgründen kann JavaScript-Code nicht mehr von ungeschützten Seiten geladen werden. Erstelle die JavaScript-Seite bitte ausschließlich im Namensraum „MediaWiki“ oder als Benutzerunterseite.",
-	"userlogout-continue": "Falls du dich abmelden möchtest, [$1 fahre bitte auf der Abmeldeseite fort]."
+	"userlogout-continue": "Möchtest du dich abmelden?"
 }
