@@ -21,6 +21,8 @@
  * @ingroup Pager
  */
 
+use MediaWiki\Linker\LinkRenderer;
+
 /**
  * Table-based display with a user-selectable sort order
  * @ingroup Pager
@@ -32,10 +34,8 @@ abstract class TablePager extends IndexPager {
 	/** @var stdClass */
 	protected $mCurrentRow;
 
-	public function __construct( IContextSource $context = null ) {
-		if ( $context ) {
-			$this->setContext( $context );
-		}
+	public function __construct( IContextSource $context = null, LinkRenderer $linkRenderer = null ) {
+		parent::__construct( $context, $linkRenderer );
 
 		$this->mSort = $this->getRequest()->getText( 'sort' );
 		if ( !array_key_exists( $this->mSort, $this->getFieldNames() )
@@ -48,8 +48,6 @@ abstract class TablePager extends IndexPager {
 		} elseif ( $this->getRequest()->getBool( 'desc' ) ) {
 			$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 		} /* Else leave it at whatever the class default is */
-
-		parent::__construct();
 	}
 
 	/**

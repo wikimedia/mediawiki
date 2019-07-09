@@ -235,7 +235,7 @@ class AllMessagesTablePager extends TablePager {
 	}
 
 	function formatValue( $field, $value ) {
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$linkRenderer = $this->getLinkRenderer();
 		switch ( $field ) {
 			case 'am_title' :
 				$title = Title::makeTitle( NS_MEDIAWIKI, $value . $this->suffix );
@@ -256,8 +256,7 @@ class AllMessagesTablePager extends TablePager {
 					$title = $linkRenderer->makeKnownLink( $title, $this->getLanguage()->lcfirst( $value ) );
 				} else {
 					$title = $linkRenderer->makeBrokenLink(
-						$title,
-						$this->getLanguage()->lcfirst( $value )
+						$title, $this->getLanguage()->lcfirst( $value )
 					);
 				}
 				if ( $this->mCurrentRow->am_talk_exists ) {

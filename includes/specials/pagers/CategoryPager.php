@@ -26,26 +26,19 @@ use MediaWiki\Linker\LinkRenderer;
 class CategoryPager extends AlphabeticPager {
 
 	/**
-	 * @var LinkRenderer
-	 */
-	protected $linkRenderer;
-
-	/**
 	 * @param IContextSource $context
 	 * @param string $from
 	 * @param LinkRenderer $linkRenderer
 	 */
 	public function __construct( IContextSource $context, $from, LinkRenderer $linkRenderer
 	) {
-		parent::__construct( $context );
+		parent::__construct( $context, $linkRenderer );
 		$from = str_replace( ' ', '_', $from );
 		if ( $from !== '' ) {
 			$from = Title::capitalize( $from, NS_CATEGORY );
 			$this->setOffset( $from );
 			$this->setIncludeOffset( true );
 		}
-
-		$this->linkRenderer = $linkRenderer;
 	}
 
 	function getQueryInfo() {
@@ -85,7 +78,7 @@ class CategoryPager extends AlphabeticPager {
 	function formatRow( $result ) {
 		$title = new TitleValue( NS_CATEGORY, $result->cat_title );
 		$text = $title->getText();
-		$link = $this->linkRenderer->makeLink( $title, $text );
+		$link = $this->getLinkRenderer()->makeLink( $title, $text );
 
 		$count = $this->msg( 'nmembers' )->numParams( $result->cat_pages )->escaped();
 		return Html::rawElement( 'li', null, $this->getLanguage()->specialList( $link, $count ) ) . "\n";

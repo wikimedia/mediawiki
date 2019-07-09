@@ -289,7 +289,7 @@ class DeletedContribsPager extends IndexPager {
 	function formatRevisionRow( $row ) {
 		$page = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$linkRenderer = $this->getLinkRenderer();
 
 		$rev = new Revision( [
 			'title' => $page,
