@@ -27,7 +27,7 @@
 class PPNode_DOM implements PPNode {
 
 	/**
-	 * @var DOMElement
+	 * @var DOMElement|DOMNodeList
 	 */
 	public $node;
 	public $xpath;
@@ -59,21 +59,21 @@ class PPNode_DOM implements PPNode {
 	}
 
 	/**
-	 * @return bool|PPNode_DOM
+	 * @return false|PPNode_DOM
 	 */
 	public function getChildren() {
 		return $this->node->childNodes ? new self( $this->node->childNodes ) : false;
 	}
 
 	/**
-	 * @return bool|PPNode_DOM
+	 * @return false|PPNode_DOM
 	 */
 	public function getFirstChild() {
 		return $this->node->firstChild ? new self( $this->node->firstChild ) : false;
 	}
 
 	/**
-	 * @return bool|PPNode_DOM
+	 * @return false|PPNode_DOM
 	 */
 	public function getNextSibling() {
 		return $this->node->nextSibling ? new self( $this->node->nextSibling ) : false;
@@ -82,7 +82,7 @@ class PPNode_DOM implements PPNode {
 	/**
 	 * @param string $type
 	 *
-	 * @return bool|PPNode_DOM
+	 * @return false|PPNode_DOM
 	 */
 	public function getChildrenOfType( $type ) {
 		return new self( $this->getXPath()->query( $type, $this->node ) );
