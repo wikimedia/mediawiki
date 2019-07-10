@@ -540,6 +540,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 	protected function setUp() {
 		parent::setUp();
+		$reflection = new ReflectionClass( $this );
+		// TODO: Eventually we should assert for test presence in /integration/
+		if ( strpos( $reflection->getFilename(), '/unit/' ) !== false ) {
+			$this->fail( 'This integration test should not be in "tests/phpunit/unit" !' );
+		}
 		$this->called['setUp'] = true;
 
 		$this->phpErrorLevel = intval( ini_get( 'error_reporting' ) );
