@@ -13,7 +13,7 @@ use MediaWiki\Rest\Router;
 /**
  * @covers \MediaWiki\Rest\Router
  */
-class RouterTest extends \MediaWikiTestCase {
+class RouterTest extends \MediaWikiUnitTestCase {
 	/** @return Router */
 	private function createRouter( $authError = null ) {
 		return new Router(
