@@ -76,7 +76,7 @@
 		"wikimedia/avro": "1.8.0",
 		"wikimedia/testing-access-wrapper": "~1.0",
 		"wmde/hamcrest-html-matchers": "^0.1.0",
-		"mediawiki/mediawiki-phan-config": "0.6.0",
+		"mediawiki/mediawiki-phan-config": "0.6.1",
 		"symfony/yaml": "3.4.28",
 		"johnkary/phpunit-speedtrap": "^1.0 | ^2.0"
 	},
