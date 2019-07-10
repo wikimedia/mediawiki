@@ -1560,6 +1560,7 @@ $wgAutoloadLocalClasses = [
 	'UploadStashWrongOwnerException' => __DIR__ . '/includes/upload/exception/UploadStashWrongOwnerException.php',
 	'UploadStashZeroLengthFileException' => __DIR__ . '/includes/upload/exception/UploadStashZeroLengthFileException.php',
 	'UppercaseCollation' => __DIR__ . '/includes/collation/UppercaseCollation.php',
+	'UppercaseTitlesForUnicodeTransition' => __DIR__ . '/maintenance/uppercaseTitlesForUnicodeTransition.php',
 	'User' => __DIR__ . '/includes/user/User.php',
 	'UserArray' => __DIR__ . '/includes/user/UserArray.php',
 	'UserArrayFromResult' => __DIR__ . '/includes/user/UserArrayFromResult.php',
