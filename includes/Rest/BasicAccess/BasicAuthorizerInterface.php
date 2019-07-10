@@ -14,7 +14,7 @@ use MediaWiki\Rest\RequestInterface;
 interface BasicAuthorizerInterface {
 	/**
 	 * Determine whether a request should be permitted, given the handler's
-	 * needsReadAccess().
+	 * needsReadAccess() and needsWriteAccess().
 	 *
 	 * If the request should be permitted, return null. If the request should
 	 * be denied, return a string error identifier.
