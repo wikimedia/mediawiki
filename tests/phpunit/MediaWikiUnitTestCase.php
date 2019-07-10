@@ -44,8 +44,8 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		$GLOBALS = [];
 		// Add back the minimal set of globals needed for unit tests to run for core +
 		// extensions/skins.
-		foreach ( [ 'wgAutoloadClasses', 'wgAutoloadLocalClasses', 'IP' ] as $requiredGlobal ) {
-			$GLOBALS[$requiredGlobal] = $this->unitGlobals[ $requiredGlobal ];
+		foreach ( $this->unitGlobals['wgPhpUnitBootstrapGlobals'] ?? [] as $key => $value ) {
+			$GLOBALS[ $key ] = $this->unitGlobals[ $key ];
 		}
 	}
 
