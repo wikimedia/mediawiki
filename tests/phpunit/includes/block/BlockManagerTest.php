@@ -3,6 +3,8 @@
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @group Blocking
@@ -36,17 +38,29 @@ class BlockManagerTest extends MediaWikiTestCase {
 	}
 
 	private function getBlockManager( $overrideConfig ) {
-		$blockManagerConfig = array_merge( $this->blockManagerConfig, $overrideConfig );
 		return new BlockManager(
-			$this->user,
-			$this->user->getRequest(),
-			...array_values( $blockManagerConfig )
+			...$this->getBlockManagerConstructorArgs( $overrideConfig )
 		);
+	}
+
+	private function getBlockManagerConstructorArgs( $overrideConfig ) {
+		$blockManagerConfig = array_merge( $this->blockManagerConfig, $overrideConfig );
+		$this->setMwGlobals( $blockManagerConfig );
+		$this->overrideMwServices();
+		return [
+			new ServiceOptions(
+				BlockManager::$constructorOptions,
+				MediaWikiServices::getInstance()->getMainConfig()
+			),
+			$this->user,
+			$this->user->getRequest()
+		];
 	}
 
 	/**
 	 * @dataProvider provideGetBlockFromCookieValue
 	 * @covers ::getBlockFromCookieValue
+	 * @covers ::shouldApplyCookieBlock
 	 */
 	public function testGetBlockFromCookieValue( $options, $expected ) {
 		$blockManager = $this->getBlockManager( [
@@ -178,18 +192,14 @@ class BlockManagerTest extends MediaWikiTestCase {
 	 * @covers ::inDnsBlacklist
 	 */
 	public function testIsDnsBlacklisted( $options, $expected ) {
-		$blockManagerConfig = array_merge( $this->blockManagerConfig, [
+		$blockManagerConfig = [
 			'wgEnableDnsBlacklist' => true,
 			'wgDnsBlacklistUrls' => $options['blacklist'],
 			'wgProxyWhitelist' => $options['whitelist'],
-		] );
+		];
 
 		$blockManager = $this->getMockBuilder( BlockManager::class )
-			->setConstructorArgs(
-				array_merge( [
-					$this->user,
-					$this->user->getRequest(),
-				], $blockManagerConfig ) )
+			->setConstructorArgs( $this->getBlockManagerConstructorArgs( $blockManagerConfig ) )
 			->setMethods( [ 'checkHost' ] )
 			->getMock();
 
