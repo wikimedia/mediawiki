@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.33.1
+ * OOUI v0.33.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-07-03T21:05:15Z
+ * Date: 2019-07-10T12:25:14Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -493,6 +493,13 @@
   margin: 0.25em 0 0 0.25em;
   padding: 0;
 }
+.oo-ui-fieldLayout-messages > .oo-ui-messageWidget {
+  margin-left: 0.15625em;
+  margin-right: 0.15625em;
+}
+.oo-ui-fieldLayout-messages > .oo-ui-messageWidget:first-child {
+  margin-top: 0.3125em;
+}
 
 .oo-ui-actionFieldLayout-input,
 .oo-ui-actionFieldLayout-button {
@@ -749,11 +756,20 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 0.3125em 0.78125em;
   font-weight: bold;
 }
 .oo-ui-messageWidget .oo-ui-labelElement-label {
   display: block;
+}
+.oo-ui-messageWidget .oo-ui-iconElement-icon {
+  display: block;
+  float: left;
+  margin: 0;
+}
+.oo-ui-messageWidget .oo-ui-labelElement-label {
+  margin-top: 0.15625em;
+  margin-left: 2.5em;
+  line-height: 1.4;
 }
 .oo-ui-messageWidget.oo-ui-messageWidget-block {
   border: 1px solid;
@@ -781,15 +797,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-messageWidget.oo-ui-flaggedElement-success:not( .oo-ui-messageWidget-block ) {
   color: #34782b;
 }
-.oo-ui-messageWidget .oo-ui-iconElement-icon {
-  display: block;
-  float: left;
-  margin: 0;
-}
-.oo-ui-messageWidget .oo-ui-labelElement-label {
-  margin-top: 0.15625em;
-  margin-left: 2.5em;
-  line-height: 1.4;
+.oo-ui-messageWidget + .oo-ui-messageWidget {
+  margin-top: 0.625em;
 }
 
 .oo-ui-iconWidget {

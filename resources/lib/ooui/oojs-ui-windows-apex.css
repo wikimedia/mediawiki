@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.33.1
+ * OOUI v0.33.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-07-03T21:05:15Z
+ * Date: 2019-07-10T12:25:14Z
  */
 
 .oo-ui-window {
@@ -239,7 +239,6 @@
 .oo-ui-processDialog-navigation {
   position: relative;
   height: 3.4em;
-  padding: 0 1em;
 }
 .oo-ui-processDialog-location {
   padding: 0.75em 0;
@@ -336,9 +335,8 @@
   text-align: left;
   margin: 1em;
   padding: 1em;
-  border: 1px solid #ff9e9e;
-  background-color: #fff7f7;
-  border-radius: 3px;
+  border: 1px solid #d45353;
+  background-color: #ffdcdc;
 }
 .oo-ui-processDialog.oo-ui-isMobile .oo-ui-processDialog-location {
   text-align: left;

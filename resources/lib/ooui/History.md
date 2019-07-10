@@ -1,4 +1,22 @@
 # OOUI Release History
+## v0.33.2 / 2019-07-09
+### Styles
+* MessageWidget: Amend icon position and `margin` handling (Volker E.)
+* ProcessDialog: Fix icon+label `padding` (Ed Sanders)
+* ProcessDialog: Fix title alignment on mobile (Ed Sanders)
+* ProcessDialog: Match styling of error messages to new MessageWidget design (Bartosz Dziewoński)
+
+### Code
+* Avoid Sizzle selectors (Ed Sanders)
+* Element: Implement `#setScrollLeft` and use where needed (Bartosz Dziewoński)
+* Scroll tab to centre on mobile (Ed Sanders)
+* demos: Fix PositionSelectWidget radio size (Bartosz Dziewoński)
+* demos: Fix PositionSelectWidget styling in RTL (Ed Sanders)
+* demos: Remove unnecessary 'flags' config options (Bartosz Dziewoński)
+* docs: Fix MenuSelectWidget 'width' documentation (Bartosz Dziewoński)
+* docs: Fix weird whitespace in code example (Bartosz Dziewoński)
+
+
 ## v0.33.1 / 2019-07-03
 ### Styles
 * MessageWidget: Use emphasized color for boxed 'error' type (Volker E.)
