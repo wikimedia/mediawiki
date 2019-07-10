@@ -43,6 +43,8 @@ class McTest extends Maintenance {
 	public function execute() {
 		global $wgMainCacheType, $wgMemCachedTimeout, $wgObjectCaches;
 
+		$memcachedTypes = [ CACHE_MEMCACHED, 'memcached-php', 'memcached-pecl' ];
+
 		$cache = $this->getOption( 'cache' );
 		$iterations = $this->getOption( 'i', 100 );
 		if ( $cache ) {
@@ -52,7 +54,7 @@ class McTest extends Maintenance {
 			$servers = $wgObjectCaches[$cache]['servers'];
 		} elseif ( $this->hasArg( 0 ) ) {
 			$servers = [ $this->getArg( 0 ) ];
-		} elseif ( $wgMainCacheType === CACHE_MEMCACHED ) {
+		} elseif ( in_array( $wgMainCacheType, $memcachedTypes, true ) ) {
 			global $wgMemCachedServers;
 			$servers = $wgMemCachedServers;
 		} elseif ( isset( $wgObjectCaches[$wgMainCacheType]['servers'] ) ) {

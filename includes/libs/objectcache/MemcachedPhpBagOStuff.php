@@ -33,7 +33,6 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 	/**
 	 * Available parameters are:
 	 *   - servers:             The list of IP:port combinations holding the memcached servers.
-	 *   - debug:               Whether to set the debug flag in the underlying client.
 	 *   - persistent:          Whether to use a persistent connection
 	 *   - compress_threshold:  The minimum size an object must be before it is compressed
 	 *   - timeout:             The read timeout in microseconds
@@ -43,11 +42,15 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 	 */
 	function __construct( $params ) {
 		parent::__construct( $params );
-		$params = $this->applyDefaultParams( $params );
+
+		// Default class-specific parameters
+		$params += [
+			'compress_threshold' => 1500,
+			'connect_timeout' => 0.5
+		];
 
 		$this->client = new MemcachedClient( $params );
 		$this->client->set_servers( $params['servers'] );
-		$this->client->set_debug( $params['debug'] );
 	}
 
 	public function setDebug( $debug ) {
