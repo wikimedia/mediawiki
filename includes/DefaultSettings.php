@@ -2416,11 +2416,11 @@ $wgObjectCaches = [
 		'class'       => ReplicatedBagOStuff::class,
 		'readFactory' => [
 			'class' => SqlBagOStuff::class,
-			'args'  => [ [ 'slaveOnly' => true ] ]
+			'args'  => [ [ 'replicaOnly' => true ] ]
 		],
 		'writeFactory' => [
 			'class' => SqlBagOStuff::class,
-			'args'  => [ [ 'slaveOnly' => false ] ]
+			'args'  => [ [ 'replicaOnly' => false ] ]
 		],
 		'loggroup'  => 'SQLBagOStuff',
 		'reportDupes' => false
