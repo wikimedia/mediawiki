@@ -110,7 +110,7 @@ class SqlBagOStuff extends BagOStuff {
 	 *                  MySQL bugs 61735 <https://bugs.mysql.com/bug.php?id=61735>
 	 *                  and 61736 <https://bugs.mysql.com/bug.php?id=61736>.
 	 *
-	 *   - slaveOnly:   Whether to only use replica DBs and avoid triggering
+	 *   - replicaOnly: Whether to only use replica DBs and avoid triggering
 	 *                  garbage collection logic of expired items. This only
 	 *                  makes sense if the primary DB is used and only if get()
 	 *                  calls will be used. This is used by ReplicatedBagOStuff.
@@ -162,7 +162,8 @@ class SqlBagOStuff extends BagOStuff {
 		if ( isset( $params['syncTimeout'] ) ) {
 			$this->syncTimeout = $params['syncTimeout'];
 		}
-		$this->replicaOnly = !empty( $params['slaveOnly'] );
+		// Backwards-compatibility for < 1.34
+		$this->replicaOnly = $params['replicaOnly'] ?? ( $params['slaveOnly'] ?? false );
 	}
 
 	/**
@@ -609,8 +610,6 @@ class SqlBagOStuff extends BagOStuff {
 		if (
 			// Random purging is enabled
 			$this->purgePeriod &&
-			// This is not using a replica DB
-			!$this->replicaOnly &&
 			// Only purge on one in every $this->purgePeriod writes
 			mt_rand( 0, $this->purgePeriod - 1 ) == 0 &&
 			// Avoid repeating the delete within a few seconds
