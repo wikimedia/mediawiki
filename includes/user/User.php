@@ -243,10 +243,19 @@ class User implements IDBAccessObject, UserIdentity {
 		return (string)$this->getName();
 	}
 
-	public function __get( $name ) {
+	public function &__get( $name ) {
 		// A shortcut for $mRights deprecation phase
 		if ( $name === 'mRights' ) {
-			return $this->getRights();
+			$copy = $this->getRights();
+			return $copy;
+		} elseif ( !property_exists( $this, $name ) ) {
+			// T227688 - do not break $u->foo['bar'] = 1
+			wfLogWarning( 'tried to get non-existent property' );
+			$this->$name = null;
+			return $this->$name;
+		} else {
+			wfLogWarning( 'tried to get non-visible property' );
+			return null;
 		}
 	}
 
@@ -258,6 +267,10 @@ class User implements IDBAccessObject, UserIdentity {
 				$this,
 				is_null( $value ) ? [] : $value
 			);
+		} elseif ( !property_exists( $this, $name ) ) {
+			$this->$name = $value;
+		} else {
+			wfLogWarning( 'tried to set non-visible property' );
 		}
 	}
 
