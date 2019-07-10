@@ -1121,7 +1121,7 @@ class Linker {
 		) {
 			$userId = $rev->getUser( Revision::FOR_THIS_USER );
 			$userText = $rev->getUserText( Revision::FOR_THIS_USER );
-			if ( $userId && $userText ) {
+			if ( $userId || (string)$userText !== '' ) {
 				$link = self::userLink( $userId, $userText )
 					. self::userToolLinks( $userId, $userText, false, 0, null,
 						$useParentheses );
