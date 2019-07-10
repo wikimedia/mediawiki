@@ -31,10 +31,8 @@ class SampleTest extends MediaWikiLangTestCase {
 
 	/**
 	 * Name tests so that PHPUnit can turn them into sentences when
-	 * they run.  While MediaWiki isn't strictly an Agile Programming
-	 * project, you are encouraged to use the naming described under
-	 * "Agile Documentation" at
-	 * https://www.phpunit.de/manual/3.4/en/other-uses-for-tests.html
+	 * they run. You are encouraged to use the naming described at:
+	 * https://phpunit.de/manual/6.5/en/other-uses-for-tests.html
 	 */
 	public function testTitleObjectStringConversion() {
 		$title = Title::newFromText( "text" );
@@ -47,7 +45,7 @@ class SampleTest extends MediaWikiLangTestCase {
 
 	/**
 	 * If you want to run the same test with a variety of data, use a data provider.
-	 * see: https://www.phpunit.de/manual/3.4/en/writing-tests-for-phpunit.html
+	 * See https://phpunit.de/manual/6.5/en/writing-tests-for-phpunit.html
 	 */
 	public static function provideTitles() {
 		return [
@@ -62,7 +60,7 @@ class SampleTest extends MediaWikiLangTestCase {
 	/**
 	 * phpcs:disable Generic.Files.LineLength
 	 * @dataProvider provideTitles
-	 * See https://phpunit.de/manual/3.7/en/appendixes.annotations.html#appendixes.annotations.dataProvider
+	 * See https://phpunit.de/manual/6.5/en/appendixes.annotations.html#appendixes.annotations.dataProvider
 	 * phpcs:enable
 	 */
 	public function testCreateBasicListOfTitles( $titleName, $ns, $text ) {
@@ -91,7 +89,7 @@ class SampleTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @depends testSetUpMainPageTitleForNextTest
-	 * See https://phpunit.de/manual/3.7/en/appendixes.annotations.html#appendixes.annotations.depends
+	 * See https://phpunit.de/manual/6.5/en/appendixes.annotations.html#appendixes.annotations.depends
 	 */
 	public function testCheckMainPageTitleIsConsideredLocal( $title ) {
 		$this->assertTrue( $title->isLocal() );
@@ -99,7 +97,7 @@ class SampleTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @expectedException InvalidArgumentException
-	 * See https://phpunit.de/manual/3.7/en/appendixes.annotations.html#appendixes.annotations.expectedException
+	 * See https://phpunit.de/manual/6.5/en/appendixes.annotations.html#appendixes.annotations.expectedException
 	 */
 	public function testTitleObjectFromObject() {
 		$title = Title::newFromText( Title::newFromText( "test" ) );
