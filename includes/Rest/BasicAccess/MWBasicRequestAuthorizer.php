@@ -8,7 +8,7 @@ use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\RequestInterface;
 
 /**
- * The concrete implementation of basic read restrictions in MediaWiki
+ * The concrete implementation of basic read/write restrictions in MediaWiki
  *
  * @internal
  */
@@ -30,6 +30,10 @@ class MWBasicRequestAuthorizer extends BasicRequestAuthorizer {
 	protected function isReadAllowed() {
 		return $this->permissionManager->isEveryoneAllowed( 'read' )
 		   || $this->isAllowed( 'read' );
+	}
+
+	protected function isWriteAllowed() {
+		return $this->isAllowed( 'writeapi' );
 	}
 
 	private function isAllowed( $action ) {
