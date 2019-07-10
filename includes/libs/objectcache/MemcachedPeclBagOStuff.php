@@ -32,83 +32,104 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 
 	/**
 	 * Available parameters are:
-	 *   - servers:             The list of IP:port combinations holding the memcached servers.
-	 *   - persistent:          Whether to use a persistent connection
-	 *   - compress_threshold:  The minimum size an object must be before it is compressed
-	 *   - timeout:             The read timeout in microseconds
-	 *   - connect_timeout:     The connect timeout in seconds
-	 *   - retry_timeout:       Time in seconds to wait before retrying a failed connect attempt
-	 *   - server_failure_limit:  Limit for server connect failures before it is removed
-	 *   - serializer:          May be either "php" or "igbinary". Igbinary produces more compact
-	 *                          values, but serialization is much slower unless the php.ini option
-	 *                          igbinary.compact_strings is off.
-	 *   - use_binary_protocol  Whether to enable the binary protocol (default is ASCII) (boolean)
+	 *   - servers:              List of IP:port combinations holding the memcached servers.
+	 *   - persistent:           Whether to use a persistent connection
+	 *   - compress_threshold:   The minimum size an object must be before it is compressed
+	 *   - timeout:              The read timeout in microseconds
+	 *   - connect_timeout:      The connect timeout in seconds
+	 *   - retry_timeout:        Time in seconds to wait before retrying a failed connect attempt
+	 *   - server_failure_limit: Limit for server connect failures before it is removed
+	 *   - serializer:           Either "php" or "igbinary". Igbinary produces more compact
+	 *                           values, but serialization is much slower unless the php.ini
+	 *                           option igbinary.compact_strings is off.
+	 *   - use_binary_protocol   Whether to enable the binary protocol (default is ASCII)
+	 *   - allow_tcp_nagle_delay Whether to permit Nagle's algorithm for reducing packet count
 	 * @param array $params
-	 * @throws InvalidArgumentException
 	 */
 	function __construct( $params ) {
 		parent::__construct( $params );
-		$params = $this->applyDefaultParams( $params );
+
+		// Default class-specific parameters
+		$params += [
+			'compress_threshold' => 1500,
+			'connect_timeout' => 0.5,
+			'serializer' => 'php',
+			'use_binary_protocol' => false,
+			'allow_tcp_nagle_delay' => true
+		];
 
 		if ( $params['persistent'] ) {
 			// The pool ID must be unique to the server/option combination.
 			// The Memcached object is essentially shared for each pool ID.
 			// We can only reuse a pool ID if we keep the config consistent.
-			$this->client = new Memcached( md5( serialize( $params ) ) );
-			if ( count( $this->client->getServerList() ) ) {
-				$this->logger->debug( __METHOD__ . ": persistent Memcached object already loaded." );
-				return; // already initialized; don't add duplicate servers
-			}
+			$connectionPoolId = md5( serialize( $params ) );
+			$client = new Memcached( $connectionPoolId );
+			$this->initializeClient( $client, $params );
 		} else {
-			$this->client = new Memcached;
+			$client = new Memcached;
+			$this->initializeClient( $client, $params );
 		}
 
-		if ( $params['use_binary_protocol'] ) {
-			$this->client->setOption( Memcached::OPT_BINARY_PROTOCOL, true );
-		}
-
-		if ( isset( $params['retry_timeout'] ) ) {
-			$this->client->setOption( Memcached::OPT_RETRY_TIMEOUT, $params['retry_timeout'] );
-		}
-
-		if ( isset( $params['server_failure_limit'] ) ) {
-			$this->client->setOption( Memcached::OPT_SERVER_FAILURE_LIMIT, $params['server_failure_limit'] );
-		}
+		$this->client = $client;
 
 		// The compression threshold is an undocumented php.ini option for some
 		// reason. There's probably not much harm in setting it globally, for
 		// compatibility with the settings for the PHP client.
 		ini_set( 'memcached.compression_threshold', $params['compress_threshold'] );
+	}
 
-		// Set timeouts
-		$this->client->setOption( Memcached::OPT_CONNECT_TIMEOUT, $params['connect_timeout'] * 1000 );
-		$this->client->setOption( Memcached::OPT_SEND_TIMEOUT, $params['timeout'] );
-		$this->client->setOption( Memcached::OPT_RECV_TIMEOUT, $params['timeout'] );
-		$this->client->setOption( Memcached::OPT_POLL_TIMEOUT, $params['timeout'] / 1000 );
+	/**
+	 * Initialize the client only if needed and reuse it otherwise.
+	 * This avoids duplicate servers in the list and new connections.
+	 *
+	 * @param Memcached $client
+	 * @param array $params
+	 * @throws RuntimeException
+	 */
+	private function initializeClient( Memcached $client, array $params ) {
+		if ( $client->getServerList() ) {
+			$this->logger->debug( __METHOD__ . ": pre-initialized client instance." );
 
-		// Set libketama mode since it's recommended by the documentation and
-		// is as good as any. There's no way to configure libmemcached to use
-		// hashes identical to the ones currently in use by the PHP client, and
-		// even implementing one of the libmemcached hashes in pure PHP for
-		// forwards compatibility would require MemcachedClient::get_sock() to be
-		// rewritten.
-		$this->client->setOption( Memcached::OPT_LIBKETAMA_COMPATIBLE, true );
+			return; // preserve persistent handle
+		}
 
-		// Set the serializer
-		$ok = false;
+		$this->logger->debug( __METHOD__ . ": initializing new client instance." );
+
+		$options = [
+			// Network protocol (ASCII or binary)
+			Memcached::OPT_BINARY_PROTOCOL => $params['use_binary_protocol'],
+			// Set various network timeouts
+			Memcached::OPT_CONNECT_TIMEOUT => $params['connect_timeout'] * 1000,
+			Memcached::OPT_SEND_TIMEOUT => $params['timeout'],
+			Memcached::OPT_RECV_TIMEOUT => $params['timeout'],
+			Memcached::OPT_POLL_TIMEOUT => $params['timeout'] / 1000,
+			// Avoid pointless delay when sending/fetching large blobs
+			Memcached::OPT_TCP_NODELAY => !$params['allow_tcp_nagle_delay'],
+			// Set libketama mode since it's recommended by the documentation
+			Memcached::OPT_LIBKETAMA_COMPATIBLE => true
+		];
+		if ( isset( $params['retry_timeout'] ) ) {
+			$options[Memcached::OPT_RETRY_TIMEOUT] = $params['retry_timeout'];
+		}
+		if ( isset( $params['server_failure_limit'] ) ) {
+			$options[Memcached::OPT_SERVER_FAILURE_LIMIT] = $params['server_failure_limit'];
+		}
 		if ( $params['serializer'] === 'php' ) {
-			$ok = $this->client->setOption( Memcached::OPT_SERIALIZER, Memcached::SERIALIZER_PHP );
+			$options[Memcached::OPT_SERIALIZER] = Memcached::SERIALIZER_PHP;
 		} elseif ( $params['serializer'] === 'igbinary' ) {
 			if ( !Memcached::HAVE_IGBINARY ) {
-				throw new InvalidArgumentException(
+				throw new RuntimeException(
 					__CLASS__ . ': the igbinary extension is not available ' .
 					'but igbinary serialization was requested.'
 				);
 			}
-			$ok = $this->client->setOption( Memcached::OPT_SERIALIZER, Memcached::SERIALIZER_IGBINARY );
+			$options[Memcached::OPT_SERIALIZER] = Memcached::SERIALIZER_IGBINARY;
 		}
-		if ( !$ok ) {
-			throw new InvalidArgumentException( __CLASS__ . ': invalid serializer parameter' );
+
+		if ( !$client->setOptions( $options ) ) {
+			throw new RuntimeException(
+				"Invalid options: " . json_encode( $options, JSON_PRETTY_PRINT )
+			);
 		}
 
 		$servers = [];
@@ -121,26 +142,16 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 				$servers[] = [ $host, false ]; // (ip or path, port)
 			}
 		}
-		$this->client->addServers( $servers );
-	}
 
-	protected function applyDefaultParams( $params ) {
-		$params = parent::applyDefaultParams( $params );
-
-		if ( !isset( $params['use_binary_protocol'] ) ) {
-			$params['use_binary_protocol'] = false;
+		if ( !$client->addServers( $servers ) ) {
+			throw new RuntimeException( "Failed to inject server address list" );
 		}
-
-		if ( !isset( $params['serializer'] ) ) {
-			$params['serializer'] = 'php';
-		}
-
-		return $params;
 	}
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$this->debug( "get($key)" );
 		if ( defined( Memcached::class . '::GET_EXTENDED' ) ) { // v3.0.0
+			/** @noinspection PhpUndefinedClassConstantInspection */
 			$flags = Memcached::GET_EXTENDED;
 			$res = $this->client->get( $this->validateKeyEncoding( $key ), null, $flags );
 			if ( is_array( $res ) ) {

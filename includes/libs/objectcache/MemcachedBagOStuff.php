@@ -35,20 +35,6 @@ abstract class MemcachedBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * Fill in some defaults for missing keys in $params.
-	 *
-	 * @param array $params
-	 * @return array
-	 */
-	protected function applyDefaultParams( $params ) {
-		return $params + [
-			'compress_threshold' => 1500,
-			'connect_timeout' => 0.5,
-			'debug' => false
-		];
-	}
-
-	/**
 	 * Construct a cache key.
 	 *
 	 * @since 1.27
