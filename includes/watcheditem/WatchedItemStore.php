@@ -1120,6 +1120,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 
 		$oldRev = $this->revisionLookup->getRevisionById( $oldid );
+		if ( !$oldRev ) {
+			// Oldid given but does not exist (probably deleted)
+			return false;
+		}
+
 		$nextRev = $this->revisionLookup->getNextRevision( $oldRev );
 		if ( !$nextRev ) {
 			// Oldid given and is the latest revision for this title; clear the timestamp.
