@@ -129,6 +129,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 
 		$dbr = $lb->getConnection( DB_REPLICA );
 		$this->assertTrue( $dbr->getLBInfo( 'replica' ), 'replica shows as replica' );
+		$this->assertTrue( $dbr->isReadOnly(), 'replica shows as replica' );
 		$this->assertEquals(
 			( $wgDBserver != '' ) ? $wgDBserver : 'localhost',
 			$dbr->getLBInfo( 'clusterMasterHost' ),

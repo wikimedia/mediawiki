@@ -4780,8 +4780,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	protected function getReadOnlyReason() {
 		$reason = $this->getLBInfo( 'readOnlyReason' );
+		if ( is_string( $reason ) ) {
+			return $reason;
+		} elseif ( $this->getLBInfo( 'replica' ) ) {
+			return "Server is configured in the role of a read-only replica database.";
+		}
 
-		return is_string( $reason ) ? $reason : false;
+		return false;
 	}
 
 	public function setTableAliases( array $aliases ) {
