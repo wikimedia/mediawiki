@@ -96,6 +96,35 @@ abstract class Handler {
 	}
 
 	/**
+	 * Indicates whether this route requires read rights.
+	 *
+	 * The handler should override this if it does not need to read from the
+	 * wiki. This is uncommon, but may be useful for login and other account
+	 * management APIs.
+	 *
+	 * @return bool
+	 */
+	public function needsReadAccess() {
+		return true;
+	}
+
+	/**
+	 * Indicates whether this route requires write access.
+	 *
+	 * The handler should override this if the route does not need to write to
+	 * the database.
+	 *
+	 * This should return true for routes that may require synchronous database writes.
+	 * Modules that do not need such writes should also not rely on master database access,
+	 * since only read queries are needed and each master DB is a single point of failure.
+	 *
+	 * @return bool
+	 */
+	public function needsWriteAccess() {
+		return true;
+	}
+
+	/**
 	 * Execute the handler. This is called after parameter validation. The
 	 * return value can either be a Response or any type accepted by
 	 * ResponseFactory::createFromReturnValue().

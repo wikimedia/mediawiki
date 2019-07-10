@@ -4,6 +4,7 @@ namespace MediaWiki\Rest;
 
 use ExtensionRegistry;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Rest\BasicAccess\MWBasicAuthorizer;
 use RequestContext;
 use Title;
 use WebResponse;
@@ -35,13 +36,17 @@ class EntryPoint {
 			'cookiePrefix' => $conf->get( 'CookiePrefix' )
 		] );
 
+		$authorizer = new MWBasicAuthorizer( RequestContext::getMain()->getUser(),
+			$services->getPermissionManager() );
+
 		global $IP;
 		$router = new Router(
 			[ "$IP/includes/Rest/coreRoutes.json" ],
 			ExtensionRegistry::getInstance()->getAttribute( 'RestRoutes' ),
 			$conf->get( 'RestPath' ),
 			$services->getLocalServerObjectCache(),
-			new ResponseFactory
+			new ResponseFactory,
+			$authorizer
 		);
 
 		$entryPoint = new self(

@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Rest;
 use EmptyBagOStuff;
 use GuzzleHttp\Psr7\Uri;
 use GuzzleHttp\Psr7\Stream;
+use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\EntryPoint;
 use MediaWiki\Rest\RequestData;
@@ -25,7 +26,8 @@ class EntryPointTest extends \MediaWikiUnitTestCase {
 			[],
 			'/rest',
 			new EmptyBagOStuff(),
-			new ResponseFactory() );
+			new ResponseFactory(),
+			new StaticBasicAuthorizer() );
 	}
 
 	private function createWebResponse() {
