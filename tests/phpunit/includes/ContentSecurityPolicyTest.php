@@ -13,6 +13,10 @@ class ContentSecurityPolicyTest extends MediaWikiTestCase {
 			'wgAllowExternalImagesFrom' => [],
 			'wgAllowImageTag' => false,
 			'wgEnableImageWhitelist' => false,
+			'wgLoadScript' => false,
+			'wgExtensionAssetsPath' => false,
+			'wgStylePath' => false,
+			'wgResourceBasePath' => null,
 			'wgCrossSiteAJAXdomains' => [
 				'sister-site.somewhere.com',
 				'*.wikipedia.org',
@@ -45,6 +49,29 @@ class ContentSecurityPolicyTest extends MediaWikiTestCase {
 		$this->csp = TestingAccessWrapper::newFromObject( $csp );
 
 		return parent::setUp();
+	}
+
+	/**
+	 * @covers ContentSecurityPolicy::getAdditionalSelfUrls
+	 */
+	public function testGetAdditionalSelfUrlsRespectsUrlSettings() {
+		$this->setMwGlobals( 'wgLoadScript', 'https://wgLoadScript.example.org/load.php' );
+		$this->setMwGlobals( 'wgExtensionAssetsPath',
+			'https://wgExtensionAssetsPath.example.org/assets/' );
+		$this->setMwGlobals( 'wgStylePath', 'https://wgStylePath.example.org/style/' );
+		$this->setMwGlobals( 'wgResourceBasePath', 'https://wgResourceBasePath.example.org/resources/' );
+
+		$this->assertEquals(
+			[
+				'https://upload.wikimedia.org',
+				'https://commons.wikimedia.org',
+				'https://wgLoadScript.example.org',
+				'https://wgExtensionAssetsPath.example.org',
+				'https://wgStylePath.example.org',
+				'https://wgResourceBasePath.example.org',
+			],
+			array_values( $this->csp->getAdditionalSelfUrls() )
+		);
 	}
 
 	/**
