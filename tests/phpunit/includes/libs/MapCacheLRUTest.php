@@ -74,6 +74,21 @@ class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 	 * @covers MapCacheLRU::get()
 	 * @covers MapCacheLRU::set()
 	 */
+	function testMissing() {
+		$raw = [ 'a' => 1, 'b' => 2, 'c' => 3 ];
+		$cache = MapCacheLRU::newFromArray( $raw, 3 );
+
+		$this->assertFalse( $cache->has( 'd' ) );
+		$this->assertNull( $cache->get( 'd' ) );
+		$this->assertNull( $cache->get( 'd', 0.0, null ) );
+		$this->assertFalse( $cache->get( 'd', 0.0, false ) );
+	}
+
+	/**
+	 * @covers MapCacheLRU::has()
+	 * @covers MapCacheLRU::get()
+	 * @covers MapCacheLRU::set()
+	 */
 	function testLRU() {
 		$raw = [ 'a' => 1, 'b' => 2, 'c' => 3 ];
 		$cache = MapCacheLRU::newFromArray( $raw, 3 );
