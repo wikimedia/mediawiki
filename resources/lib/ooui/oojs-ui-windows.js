@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.33.1
+ * OOUI v0.33.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-07-03T21:05:08Z
+ * Date: 2019-07-10T12:25:07Z
  */
 ( function ( OO ) {
 
@@ -120,10 +120,12 @@ OO.ui.ActionWidget.prototype.getModes = function () {
  *     MyProcessDialog.static.name = 'myProcessDialog';
  *     // An action set that uses modes ('edit' and 'help' mode, in this example).
  *     MyProcessDialog.static.actions = [
- *         { action: 'continue', modes: 'edit', label: 'Continue',
- *           flags: [
- *               'primary', 'progressive'
- *         ] },
+ *         {
+ *           action: 'continue',
+ *           modes: 'edit',
+ *           label: 'Continue',
+ *           flags: [ 'primary', 'progressive' ]
+ *         },
  *         { action: 'help', modes: 'edit', label: 'Help' },
  *         { modes: 'edit', label: 'Cancel', flags: 'safe' },
  *         { action: 'back', modes: 'help', label: 'Back', flags: 'safe' }
@@ -3439,13 +3441,13 @@ OO.ui.ProcessDialog.prototype.fitLabel = function () {
 		navigationWidth = size.width - 20;
 	}
 
-	safeWidth = this.$safeActions.is( ':visible' ) ? this.$safeActions.width() : 0;
-	primaryWidth = this.$primaryActions.is( ':visible' ) ? this.$primaryActions.width() : 0;
+	safeWidth = this.$safeActions.width();
+	primaryWidth = this.$primaryActions.width();
 	biggerWidth = Math.max( safeWidth, primaryWidth );
 
 	labelWidth = this.title.$element.width();
 
-	if ( 2 * biggerWidth + labelWidth < navigationWidth ) {
+	if ( !OO.ui.isMobile() && 2 * biggerWidth + labelWidth < navigationWidth ) {
 		// We have enough space to center the label
 		leftWidth = rightWidth = biggerWidth;
 	} else {

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.33.1
+ * OOUI v0.33.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-07-03T21:05:08Z
+ * Date: 2019-07-10T12:25:07Z
  */
 ( function ( OO ) {
 
@@ -3798,6 +3798,40 @@ OO.inheritClass( OO.ui.TabOptionWidget, OO.ui.OptionWidget );
  * @inheritdoc
  */
 OO.ui.TabOptionWidget.static.highlightable = false;
+
+/**
+ * @static
+ * @inheritdoc
+ */
+OO.ui.TabOptionWidget.static.scrollIntoViewOnSelect = true;
+
+/**
+ * Center tab horizontally after selecting on mobile
+ *
+ * @param {Object} [config] Configuration options
+ * @return {jQuery.Promise} Promise which resolves when the scroll is complete
+ */
+OO.ui.TabOptionWidget.prototype.scrollElementIntoView = function ( config ) {
+	var padding;
+	if ( !OO.ui.isMobile() || !this.getElementGroup() ) {
+		// Parent method
+		return OO.ui.TabOptionWidget.super.prototype.scrollElementIntoView.call( this );
+	} else {
+		padding = Math.max( (
+			this.getElementGroup().$element[ 0 ].clientWidth - this.$element[ 0 ].clientWidth
+		) / 2, 0 );
+		// Parent method
+		return OO.ui.TabOptionWidget.super.prototype.scrollElementIntoView.call( this, $.extend(
+			{
+				padding: {
+					left: padding,
+					right: padding
+				}
+			},
+			config
+		) );
+	}
+};
 
 /**
  * TabSelectWidget is a list that contains {@link OO.ui.TabOptionWidget tab options}
