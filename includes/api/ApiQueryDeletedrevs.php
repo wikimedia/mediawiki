@@ -104,27 +104,12 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->dieWithError( 'user and excludeuser cannot be used together', 'badparams' );
 		}
 
-		$this->addTables( 'archive' );
-		$this->addFields( [ 'ar_title', 'ar_namespace', 'ar_timestamp', 'ar_deleted', 'ar_id' ] );
-
-		$this->addFieldsIf( 'ar_parent_id', $fld_parentid );
-		$this->addFieldsIf( 'ar_rev_id', $fld_revid );
-		if ( $fld_user || $fld_userid ) {
-			$actorQuery = ActorMigration::newMigration()->getJoin( 'ar_user' );
-			$this->addTables( $actorQuery['tables'] );
-			$this->addFields( $actorQuery['fields'] );
-			$this->addJoinConds( $actorQuery['joins'] );
-		}
-		$this->addFieldsIf( 'ar_minor_edit', $fld_minor );
-		$this->addFieldsIf( 'ar_len', $fld_len );
-		$this->addFieldsIf( 'ar_sha1', $fld_sha1 );
-
-		if ( $fld_comment || $fld_parsedcomment ) {
-			$commentQuery = $commentStore->getJoin( 'ar_comment' );
-			$this->addTables( $commentQuery['tables'] );
-			$this->addFields( $commentQuery['fields'] );
-			$this->addJoinConds( $commentQuery['joins'] );
-		}
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$arQuery = $revisionStore->getArchiveQueryInfo();
+		$this->addTables( $arQuery['tables'] );
+		$this->addFields( $arQuery['fields'] );
+		$this->addJoinConds( $arQuery['joins'] );
+		$this->addFields( [ 'ar_title', 'ar_namespace' ] );
 
 		if ( $fld_tags ) {
 			$this->addFields( [ 'ts_tags' => ChangeTags::makeTagSummarySubquery( 'archive' ) ] );
@@ -144,14 +129,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			}
 		}
 
+		// This means stricter restrictions
 		if ( $fld_content ) {
-			$this->addTables( 'text' );
-			$this->addJoinConds(
-				[ 'text' => [ 'LEFT JOIN', [ 'ar_text_id=old_id' ] ] ]
-			);
-			$this->addFields( [ 'ar_text_id', 'old_text', 'old_flags' ] );
-
-			// This also means stricter restrictions
 			$this->checkUserRightsAny( [ 'deletedtext', 'undelete' ] );
 		}
 		// Check limits
@@ -365,7 +344,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					$anyHidden = true;
 				}
 				if ( Revision::userCanBitfield( $row->ar_deleted, Revision::DELETED_TEXT, $user ) ) {
-					ApiResult::setContentValue( $rev, 'text', Revision::getRevisionText( $row ) );
+					ApiResult::setContentValue( $rev, 'text', Revision::getRevisionText( $row, 'ar_' ) );
 				}
 			}
 
