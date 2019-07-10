@@ -149,7 +149,7 @@ class HashBagOStuff extends BagOStuff {
 	 * @return bool
 	 * @since 1.27
 	 */
-	protected function hasKey( $key ) {
+	public function hasKey( $key ) {
 		return isset( $this->bag[$key] );
 	}
 }
