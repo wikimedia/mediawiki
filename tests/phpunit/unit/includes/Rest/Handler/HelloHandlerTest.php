@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Rest\Handler;
 
 use EmptyBagOStuff;
 use GuzzleHttp\Psr7\Uri;
+use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
@@ -52,7 +53,8 @@ class HelloHandlerTest extends \MediaWikiUnitTestCase {
 			[],
 			'/rest',
 			new EmptyBagOStuff(),
-			new ResponseFactory() );
+			new ResponseFactory(),
+			new StaticBasicAuthorizer() );
 		$request = new RequestData( $requestInfo );
 		$response = $router->execute( $request );
 		if ( isset( $responseInfo['statusCode'] ) ) {

@@ -4,6 +4,7 @@ namespace MediaWiki\Rest;
 
 use ExtensionRegistry;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Rest\BasicAccess\MWBasicAuthorizer;
 use RequestContext;
 use Title;
 use WebResponse;
@@ -31,9 +32,18 @@ class EntryPoint {
 		$services = MediaWikiServices::getInstance();
 		$conf = $services->getMainConfig();
 
+		if ( !$conf->get( 'EnableRestAPI' ) ) {
+			wfHttpError( 403, 'Access Denied',
+				'Set $wgEnableRestAPI to true to enable the experimental REST API' );
+			return;
+		}
+
 		$request = new RequestFromGlobals( [
 			'cookiePrefix' => $conf->get( 'CookiePrefix' )
 		] );
+
+		$authorizer = new MWBasicAuthorizer( RequestContext::getMain()->getUser(),
+			$services->getPermissionManager() );
 
 		global $IP;
 		$router = new Router(
@@ -41,7 +51,8 @@ class EntryPoint {
 			ExtensionRegistry::getInstance()->getAttribute( 'RestRoutes' ),
 			$conf->get( 'RestPath' ),
 			$services->getLocalServerObjectCache(),
-			new ResponseFactory
+			new ResponseFactory,
+			$authorizer
 		);
 
 		$entryPoint = new self(
