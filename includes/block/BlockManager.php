@@ -253,7 +253,8 @@ class BlockManager {
 	}
 
 	/**
-	 * Try to load a block from an ID given in a cookie value.
+	 * Try to load a block from an ID given in a cookie value. If the block is invalid
+	 * or doesn't exist, remove the cookie.
 	 *
 	 * @param UserIdentity $user
 	 * @param WebRequest $request
@@ -263,43 +264,43 @@ class BlockManager {
 		UserIdentity $user,
 		WebRequest $request
 	) {
-		$blockCookieVal = $request->getCookie( 'BlockID' );
-		$response = $request->response();
+		$blockCookieId = $this->getIdFromCookieValue( $request->getCookie( 'BlockID' ) );
 
-		// Make sure there's something to check. The cookie value must start with a number.
-		if ( strlen( $blockCookieVal ) < 1 || !is_numeric( substr( $blockCookieVal, 0, 1 ) ) ) {
-			return false;
-		}
-		// Load the block from the ID in the cookie.
-		$blockCookieId = $this->getIdFromCookieValue( $blockCookieVal );
 		if ( $blockCookieId !== null ) {
-			// An ID was found in the cookie.
 			// TODO: remove dependency on DatabaseBlock
-			$tmpBlock = DatabaseBlock::newFromID( $blockCookieId );
-			if ( $tmpBlock instanceof DatabaseBlock ) {
-				switch ( $tmpBlock->getType() ) {
-					case DatabaseBlock::TYPE_USER:
-						$blockIsValid = !$tmpBlock->isExpired() && $tmpBlock->isAutoblocking();
-						$useBlockCookie = ( $this->cookieSetOnAutoblock === true );
-						break;
-					case DatabaseBlock::TYPE_IP:
-					case DatabaseBlock::TYPE_RANGE:
-						// If block is type IP or IP range, load only if user is not logged in (T152462)
-						$blockIsValid = !$tmpBlock->isExpired() && $user->getId() === 0;
-						$useBlockCookie = ( $this->cookieSetOnIpBlock === true );
-						break;
-					default:
-						$blockIsValid = false;
-						$useBlockCookie = false;
-				}
-
-				if ( $blockIsValid && $useBlockCookie ) {
-					// Use the block.
-					return $tmpBlock;
-				}
+			$block = DatabaseBlock::newFromID( $blockCookieId );
+			if (
+				$block instanceof DatabaseBlock &&
+				$this->shouldApplyCookieBlock( $block, $user->isAnon() )
+			) {
+				return $block;
 			}
-			// If the block is invalid or doesn't exist, remove the cookie.
-			$this->clearBlockCookie( $response );
+			$this->clearBlockCookie( $request->response() );
+		}
+
+		return false;
+	}
+
+	/**
+	 * Check if the block loaded from the cookie should be applied.
+	 *
+	 * @param DatabaseBlock $block
+	 * @param bool $isAnon The user is logged out
+	 * @return bool The block sould be applied
+	 */
+	private function shouldApplyCookieBlock( DatabaseBlock $block, $isAnon ) {
+		if ( !$block->isExpired() ) {
+			switch ( $block->getType() ) {
+				case DatabaseBlock::TYPE_IP:
+				case DatabaseBlock::TYPE_RANGE:
+					// If block is type IP or IP range, load only
+					// if user is not logged in (T152462)
+					return $isAnon && $this->cookieSetOnIpBlock;
+				case DatabaseBlock::TYPE_USER:
+					return $this->cookieSetOnAutoblock && $block->isAutoblocking();
+				default:
+					return false;
+			}
 		}
 		return false;
 	}
@@ -536,6 +537,11 @@ class BlockManager {
 	 * @return int|null The block ID, or null if the HMAC is present and invalid.
 	 */
 	public function getIdFromCookieValue( $cookieValue ) {
+		// The cookie value must start with a number
+		if ( !is_numeric( substr( $cookieValue, 0, 1 ) ) ) {
+			return null;
+		}
+
 		// Extract the ID prefix from the cookie value (may be the whole value, if no bang found).
 		$bangPos = strpos( $cookieValue, '!' );
 		$id = ( $bangPos === false ) ? $cookieValue : substr( $cookieValue, 0, $bangPos );

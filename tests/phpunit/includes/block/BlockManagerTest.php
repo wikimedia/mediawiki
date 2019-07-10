@@ -47,6 +47,7 @@ class BlockManagerTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideGetBlockFromCookieValue
 	 * @covers ::getBlockFromCookieValue
+	 * @covers ::shouldApplyCookieBlock
 	 */
 	public function testGetBlockFromCookieValue( $options, $expected ) {
 		$blockManager = $this->getBlockManager( [
