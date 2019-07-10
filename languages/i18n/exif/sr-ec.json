@@ -209,7 +209,7 @@
 	"exif-photometricinterpretation-2": "RGB",
 	"exif-photometricinterpretation-3": "Палета",
 	"exif-photometricinterpretation-4": "Маска транспарентности",
-	"exif-photometricinterpretation-5": "Одвојено (вероватно CMYK)",
+	"exif-photometricinterpretation-5": "Раздвојено (вероватно CMYK)",
 	"exif-photometricinterpretation-6": "YCbCr",
 	"exif-photometricinterpretation-8": "CIE L*a*b*",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (ICC кодирање)",

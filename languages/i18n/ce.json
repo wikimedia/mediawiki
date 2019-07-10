@@ -1987,6 +1987,7 @@
 	"mycontris": "Сан къинхьегам",
 	"anoncontribs": "Къинхьегам",
 	"contribsub2": "Къинхьегам $1 ($2)",
+	"contributions-subtitle": "{{GENDER:$3|$1}} кхуьна",
 	"contributions-userdoesnotexist": "«$1» иштта декъашхочун дӀаяздар дац.",
 	"nocontribs": "Дехарца хийцамаш цакарий.",
 	"uctop": "карара",
