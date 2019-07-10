@@ -185,7 +185,7 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	public function setMulti( array $data, $expiry = 0, $flags = 0 ) {
+	public function doSetMulti( array $data, $expiry = 0, $flags = 0 ) {
 		$batches = [];
 		$conns = [];
 		foreach ( $data as $key => $value ) {
@@ -229,7 +229,7 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	public function deleteMulti( array $keys, $flags = 0 ) {
+	public function doDeleteMulti( array $keys, $flags = 0 ) {
 		$batches = [];
 		$conns = [];
 		foreach ( $keys as $key ) {
@@ -325,7 +325,7 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	public function changeTTL( $key, $exptime = 0, $flags = 0 ) {
+	protected function doChangeTTL( $key, $exptime, $flags ) {
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
