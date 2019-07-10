@@ -4206,6 +4206,7 @@
 	"specialmute-error-email-preferences": "You must confirm your email address before you can mute a user. You may do so from [[Special:Preferences]].",
 	"specialmute-email-footer": "To manage email preferences for {{BIDI:$2}} please visit <$1>.",
 	"specialmute-login-required": "Please log in to change your mute preferences.",
+	"mute-preferences": "Mute preferences",
 	"revid": "revision $1",
 	"pageid": "page ID $1",
 	"interfaceadmin-info": "$1\n\nPermissions for editing of sitewide CSS/JS/JSON files were recently separated from the <code>editinterface</code> right. If you do not understand why you are getting this error, see [[mw:MediaWiki_1.32/interface-admin]].",
