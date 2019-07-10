@@ -258,6 +258,7 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 */
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		if (
+			is_int( $value ) || // avoid breaking incr()/decr()
 			( $flags & self::WRITE_ALLOW_SEGMENTS ) != self::WRITE_ALLOW_SEGMENTS ||
 			is_infinite( $this->segmentationSize )
 		) {
@@ -294,6 +295,7 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 			$segmentHashes[] = $hash;
 		}
 
+		$flags &= ~self::WRITE_ALLOW_SEGMENTS; // sanity
 		$ok = $this->setMulti( $chunksByKey, $exptime, $flags );
 		if ( $ok ) {
 			// Only when all segments are stored should the main key be changed
@@ -503,6 +505,16 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 * @since 1.28
 	 */
 	public function changeTTL( $key, $exptime = 0, $flags = 0 ) {
+		return $this->doChangeTTL( $key, $exptime, $flags );
+	}
+
+	/**
+	 * @param string $key
+	 * @param int $exptime
+	 * @param int $flags
+	 * @return bool
+	 */
+	protected function doChangeTTL( $key, $exptime, $flags ) {
 		$expiry = $this->convertToExpiry( $exptime );
 		$delete = ( $expiry != 0 && $expiry < $this->getCurrentTime() );
 
@@ -673,7 +685,7 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 * Get an associative array containing the item for each of the keys that have items.
 	 * @param string[] $keys List of keys
 	 * @param int $flags Bitfield; supports READ_LATEST [optional]
-	 * @return array
+	 * @return array Map of (key => value) for existing keys
 	 */
 	public function getMulti( array $keys, $flags = 0 ) {
 		$valuesBykey = $this->doGetMulti( $keys, $flags );
@@ -689,7 +701,7 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 * Get an associative array containing the item for each of the keys that have items.
 	 * @param string[] $keys List of keys
 	 * @param int $flags Bitfield; supports READ_LATEST [optional]
-	 * @return array
+	 * @return array Map of (key => value) for existing keys
 	 */
 	protected function doGetMulti( array $keys, $flags = 0 ) {
 		$res = [];
@@ -714,11 +726,21 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 * @return bool Success
 	 * @since 1.24
 	 */
-	public function setMulti( array $data, $exptime = 0, $flags = 0 ) {
+	final public function setMulti( array $data, $exptime = 0, $flags = 0 ) {
 		if ( ( $flags & self::WRITE_ALLOW_SEGMENTS ) === self::WRITE_ALLOW_SEGMENTS ) {
 			throw new InvalidArgumentException( __METHOD__ . ' got WRITE_ALLOW_SEGMENTS' );
 		}
 
+		return $this->doSetMulti( $data, $exptime, $flags );
+	}
+
+	/**
+	 * @param mixed[] $data Map of (key => value)
+	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
+	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 * @return bool Success
+	 */
+	protected function doSetMulti( array $data, $exptime = 0, $flags = 0 ) {
 		$res = true;
 		foreach ( $data as $key => $value ) {
 			$res = $this->doSet( $key, $value, $exptime, $flags ) && $res;
@@ -737,10 +759,43 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 * @return bool Success
 	 * @since 1.33
 	 */
-	public function deleteMulti( array $keys, $flags = 0 ) {
+	final public function deleteMulti( array $keys, $flags = 0 ) {
+		if ( ( $flags & self::WRITE_ALLOW_SEGMENTS ) === self::WRITE_ALLOW_SEGMENTS ) {
+			throw new InvalidArgumentException( __METHOD__ . ' got WRITE_ALLOW_SEGMENTS' );
+		}
+
+		return $this->doDeleteMulti( $keys, $flags );
+	}
+
+	/**
+	 * @param string[] $keys List of keys
+	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 * @return bool Success
+	 */
+	protected function doDeleteMulti( array $keys, $flags = 0 ) {
 		$res = true;
 		foreach ( $keys as $key ) {
 			$res = $this->doDelete( $key, $flags ) && $res;
+		}
+
+		return $res;
+	}
+
+	/**
+	 * Change the expiration of multiple keys that exist
+	 *
+	 * @see BagOStuff::changeTTL()
+	 *
+	 * @param string[] $keys List of keys
+	 * @param int $exptime TTL or UNIX timestamp
+	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants (since 1.33)
+	 * @return bool Success
+	 * @since 1.34
+	 */
+	public function changeTTLMulti( array $keys, $exptime, $flags = 0 ) {
+		$res = true;
+		foreach ( $keys as $key ) {
+			$res = $this->doChangeTTL( $key, $exptime, $flags ) && $res;
 		}
 
 		return $res;
@@ -898,16 +953,23 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	}
 
 	/**
-	 * Convert an optionally relative time to an absolute time
-	 * @param int $exptime
+	 * Convert an optionally relative timestamp to an absolute time
+	 *
+	 * The input value will be cast to an integer and interpreted as follows:
+	 *   - zero: no expiry; return zero (e.g. TTL_INDEFINITE)
+	 *   - negative: relative TTL; return UNIX timestamp offset by this value
+	 *   - positive (< 10 years): relative TTL; return UNIX timestamp offset by this value
+	 *   - positive (>= 10 years): absolute UNIX timestamp; return this value
+	 *
+	 * @param int $exptime Absolute TTL or 0 for indefinite
 	 * @return int
 	 */
 	protected function convertToExpiry( $exptime ) {
-		if ( $this->expiryIsRelative( $exptime ) ) {
-			return (int)$this->getCurrentTime() + $exptime;
-		} else {
-			return $exptime;
-		}
+		$exptime = (int)$exptime; // sanity
+
+		return $this->expiryIsRelative( $exptime )
+			? (int)$this->getCurrentTime() + $exptime
+			: $exptime;
 	}
 
 	/**

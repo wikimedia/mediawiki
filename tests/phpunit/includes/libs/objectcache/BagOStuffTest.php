@@ -130,6 +130,56 @@ class BagOStuffTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers BagOStuff::changeTTLMulti
+	 */
+	public function testChangeTTLMulti() {
+		$key1 = $this->cache->makeKey( 'test-key1' );
+		$key2 = $this->cache->makeKey( 'test-key2' );
+		$key3 = $this->cache->makeKey( 'test-key3' );
+		$key4 = $this->cache->makeKey( 'test-key4' );
+
+		// cleanup
+		$this->cache->delete( $key1 );
+		$this->cache->delete( $key2 );
+		$this->cache->delete( $key3 );
+		$this->cache->delete( $key4 );
+
+		$ok = $this->cache->changeTTLMulti( [ $key1, $key2, $key3 ], 30 );
+		$this->assertFalse( $ok, "No keys found" );
+		$this->assertFalse( $this->cache->get( $key1 ) );
+		$this->assertFalse( $this->cache->get( $key2 ) );
+		$this->assertFalse( $this->cache->get( $key3 ) );
+
+		$this->cache->setMulti( [
+			$key1 => 1,
+			$key2 => 2,
+			$key3 => 3
+		] );
+
+		$ok = $this->cache->changeTTLMulti( [ $key1, $key2, $key3 ], 300 );
+		$this->assertTrue( $ok, "TTL bumped for all keys" );
+		$this->assertEquals( 1, $this->cache->get( $key1 ) );
+		$this->assertEquals( 2, $this->cache->get( $key2 ) );
+		$this->assertEquals( 3, $this->cache->get( $key3 ) );
+
+		$ok = $this->cache->changeTTLMulti( [ $key1, $key2, $key3 ], time() + 86400 );
+		$this->assertTrue( $ok, "Expiry set for all keys" );
+
+		$ok = $this->cache->changeTTLMulti( [ $key1, $key2, $key3, $key4 ], 300 );
+		$this->assertFalse( $ok, "One key missing" );
+
+		$this->assertEquals( 2, $this->cache->incr( $key1 ) );
+		$this->assertEquals( 3, $this->cache->incr( $key2 ) );
+		$this->assertEquals( 4, $this->cache->incr( $key3 ) );
+
+		// cleanup
+		$this->cache->delete( $key1 );
+		$this->cache->delete( $key2 );
+		$this->cache->delete( $key3 );
+		$this->cache->delete( $key4 );
+	}
+
+	/**
 	 * @covers BagOStuff::add
 	 */
 	public function testAdd() {
@@ -304,6 +354,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 
 		$this->cache->set( $key, 666, 10, BagOStuff::WRITE_ALLOW_SEGMENTS );
 
+		$this->assertEquals( 666, $this->cache->get( $key ) );
 		$this->assertEquals( 667, $this->cache->incr( $key ) );
 		$this->assertEquals( 667, $this->cache->get( $key ) );
 

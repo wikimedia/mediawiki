@@ -68,7 +68,16 @@ class SqlBagOStuff extends BagOStuff {
 	protected $connFailureErrors = [];
 
 	/** @var int */
-	const GARBAGE_COLLECT_DELAY_SEC = 1;
+	private static $GARBAGE_COLLECT_DELAY_SEC = 1;
+
+	/** @var string */
+	private static $OP_SET = 'set';
+	/** @var string */
+	private static $OP_ADD = 'add';
+	/** @var string */
+	private static $OP_TOUCH = 'touch';
+	/** @var string */
+	private static $OP_DELETE = 'delete';
 
 	/**
 	 * Constructor. Parameters are:
@@ -311,7 +320,7 @@ class SqlBagOStuff extends BagOStuff {
 			if ( isset( $dataRows[$key] ) ) { // HIT?
 				$row = $dataRows[$key];
 				$this->debug( "get: retrieved data; expiry time is " . $row->exptime );
-				$db = null;
+				$db = null; // in case of connection failure
 				try {
 					$db = $this->getDB( $row->serverIndex );
 					if ( $this->isExpired( $db, $row->exptime ) ) { // MISS
@@ -330,59 +339,51 @@ class SqlBagOStuff extends BagOStuff {
 		return $values;
 	}
 
-	public function setMulti( array $data, $expiry = 0, $flags = 0 ) {
-		return $this->insertMulti( $data, $expiry, $flags, true );
+	public function doSetMulti( array $data, $exptime = 0, $flags = 0 ) {
+		return $this->modifyMulti( $data, $exptime, $flags, self::$OP_SET );
 	}
 
-	private function insertMulti( array $data, $expiry, $flags, $replace ) {
+	/**
+	 * @param mixed[]|null[] $data Map of (key => new value or null)
+	 * @param int $exptime UNIX timestamp, TTL in seconds, or 0 (no expiration)
+	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 * @param string $op Cache operation
+	 * @return bool
+	 */
+	private function modifyMulti( array $data, $exptime, $flags, $op ) {
 		$keysByTable = [];
 		foreach ( $data as $key => $value ) {
 			list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
 			$keysByTable[$serverIndex][$tableName][] = $key;
 		}
 
+		$exptime = $this->convertToExpiry( $exptime );
+
 		$result = true;
-		$exptime = (int)$expiry;
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
 		foreach ( $keysByTable as $serverIndex => $serverKeys ) {
-			$db = null;
+			$db = null; // in case of connection failure
 			try {
 				$db = $this->getDB( $serverIndex );
-				$this->occasionallyGarbageCollect( $db );
+				$this->occasionallyGarbageCollect( $db ); // expire old entries if any
+				$dbExpiry = $exptime ? $db->timestamp( $exptime ) : $this->getMaxDateTime( $db );
 			} catch ( DBError $e ) {
 				$this->handleWriteError( $e, $db, $serverIndex );
 				$result = false;
 				continue;
 			}
 
-			if ( $exptime < 0 ) {
-				$exptime = 0;
-			}
-
-			if ( $exptime == 0 ) {
-				$encExpiry = $this->getMaxDateTime( $db );
-			} else {
-				$exptime = $this->convertToExpiry( $exptime );
-				$encExpiry = $db->timestamp( $exptime );
-			}
 			foreach ( $serverKeys as $tableName => $tableKeys ) {
-				$rows = [];
-				foreach ( $tableKeys as $key ) {
-					$rows[] = [
-						'keyname' => $key,
-						'value' => $db->encodeBlob( $this->serialize( $data[$key] ) ),
-						'exptime' => $encExpiry,
-					];
-				}
-
 				try {
-					if ( $replace ) {
-						$db->replace( $tableName, [ 'keyname' ], $rows, __METHOD__ );
-					} else {
-						$db->insert( $tableName, $rows, __METHOD__, [ 'IGNORE' ] );
-						$result = ( $db->affectedRows() > 0 && $result );
-					}
+					$result = $this->updateTableKeys(
+						$op,
+						$db,
+						$tableName,
+						$tableKeys,
+						$data,
+						$dbExpiry
+					) && $result;
 				} catch ( DBError $e ) {
 					$this->handleWriteError( $e, $db, $serverIndex );
 					$result = false;
@@ -398,37 +399,88 @@ class SqlBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
-		$ok = $this->insertMulti( [ $key => $value ], $exptime, $flags, true );
+	/**
+	 * @param string $op
+	 * @param IDatabase $db
+	 * @param string $table
+	 * @param string[] $tableKeys Keys in $data to update
+	 * @param mixed[]|null[] $data Map of (key => new value or null)
+	 * @param string $dbExpiry DB-encoded expiry
+	 * @return bool
+	 * @throws DBError
+	 * @throws InvalidArgumentException
+	 */
+	private function updateTableKeys( $op, $db, $table, $tableKeys, $data, $dbExpiry ) {
+		$success = true;
 
-		return $ok;
+		if ( $op === self::$OP_ADD ) {
+			$rows = [];
+			foreach ( $tableKeys as $key ) {
+				$rows[] = [
+					'keyname' => $key,
+					'value' => $db->encodeBlob( $this->serialize( $data[$key] ) ),
+					'exptime' => $dbExpiry
+				];
+			}
+			$db->delete(
+				$table,
+				[
+					'keyname' => $tableKeys,
+					'exptime <= ' . $db->addQuotes( $db->timestamp() )
+				],
+				__METHOD__
+			);
+			$db->insert( $table, $rows, __METHOD__, [ 'IGNORE' ] );
+
+			$success = ( $db->affectedRows() == count( $rows ) );
+		} elseif ( $op === self::$OP_SET ) {
+			$rows = [];
+			foreach ( $tableKeys as $key ) {
+				$rows[] = [
+					'keyname' => $key,
+					'value' => $db->encodeBlob( $this->serialize( $data[$key] ) ),
+					'exptime' => $dbExpiry
+				];
+			}
+			$db->replace( $table, [ 'keyname' ], $rows, __METHOD__ );
+		} elseif ( $op === self::$OP_DELETE ) {
+			$db->delete( $table, [ 'keyname' => $tableKeys ], __METHOD__ );
+		} elseif ( $op === self::$OP_TOUCH ) {
+			$db->update(
+				$table,
+				[ 'exptime' => $dbExpiry ],
+				[
+					'keyname' => $tableKeys,
+					'exptime > ' . $db->addQuotes( $db->timestamp() )
+				],
+				__METHOD__
+			);
+
+			$success = ( $db->affectedRows() == count( $tableKeys ) );
+		} else {
+			throw new InvalidArgumentException( "Invalid operation '$op'" );
+		}
+
+		return $success;
+	}
+
+	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
+		return $this->modifyMulti( [ $key => $value ], $exptime, $flags, self::$OP_SET );
 	}
 
 	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
-		$added = $this->insertMulti( [ $key => $value ], $exptime, $flags, false );
-
-		return $added;
+		return $this->modifyMulti( [ $key => $value ], $exptime, $flags, self::$OP_ADD );
 	}
 
 	protected function cas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
-		$db = null;
+		$exptime = $this->convertToExpiry( $exptime );
+
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
+		$db = null; // in case of connection failure
 		try {
 			$db = $this->getDB( $serverIndex );
-			$exptime = intval( $exptime );
-
-			if ( $exptime < 0 ) {
-				$exptime = 0;
-			}
-
-			if ( $exptime == 0 ) {
-				$encExpiry = $this->getMaxDateTime( $db );
-			} else {
-				$exptime = $this->convertToExpiry( $exptime );
-				$encExpiry = $db->timestamp( $exptime );
-			}
 			// (T26425) use a replace if the db supports it instead of
 			// delete/insert to avoid clashes with conflicting keynames
 			$db->update(
@@ -436,11 +488,14 @@ class SqlBagOStuff extends BagOStuff {
 				[
 					'keyname' => $key,
 					'value' => $db->encodeBlob( $this->serialize( $value ) ),
-					'exptime' => $encExpiry
+					'exptime' => $exptime
+						? $db->timestamp( $exptime )
+						: $this->getMaxDateTime( $db )
 				],
 				[
 					'keyname' => $key,
-					'value' => $db->encodeBlob( $casToken )
+					'value' => $db->encodeBlob( $casToken ),
+					'exptime > ' . $db->addQuotes( $db->timestamp() )
 				],
 				__METHOD__
 			);
@@ -453,102 +508,51 @@ class SqlBagOStuff extends BagOStuff {
 		return (bool)$db->affectedRows();
 	}
 
-	public function deleteMulti( array $keys, $flags = 0 ) {
-		return $this->purgeMulti( $keys, $flags );
-	}
-
-	public function purgeMulti( array $keys, $flags = 0 ) {
-		$keysByTable = [];
-		foreach ( $keys as $key ) {
-			list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
-			$keysByTable[$serverIndex][$tableName][] = $key;
-		}
-
-		$result = true;
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$silenceScope = $this->silenceTransactionProfiler();
-		foreach ( $keysByTable as $serverIndex => $serverKeys ) {
-			$db = null;
-			try {
-				$db = $this->getDB( $serverIndex );
-			} catch ( DBError $e ) {
-				$this->handleWriteError( $e, $db, $serverIndex );
-				$result = false;
-				continue;
-			}
-
-			foreach ( $serverKeys as $tableName => $tableKeys ) {
-				try {
-					$db->delete( $tableName, [ 'keyname' => $tableKeys ], __METHOD__ );
-				} catch ( DBError $e ) {
-					$this->handleWriteError( $e, $db, $serverIndex );
-					$result = false;
-				}
-
-			}
-		}
-
-		if ( ( $flags & self::WRITE_SYNC ) == self::WRITE_SYNC ) {
-			$result = $this->waitForReplication() && $result;
-		}
-
-		return $result;
+	public function doDeleteMulti( array $keys, $flags = 0 ) {
+		return $this->modifyMulti(
+			array_fill_keys( $keys, null ),
+			0,
+			$flags,
+			self::$OP_DELETE
+		);
 	}
 
 	protected function doDelete( $key, $flags = 0 ) {
-		$ok = $this->purgeMulti( [ $key ], $flags );
-
-		return $ok;
+		return $this->modifyMulti( [ $key => null ], 0, $flags, self::$OP_DELETE );
 	}
 
 	public function incr( $key, $step = 1 ) {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
-		$db = null;
+
+		$newCount = false;
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
+		$db = null; // in case of connection failure
 		try {
 			$db = $this->getDB( $serverIndex );
-			$step = intval( $step );
-			$row = $db->selectRow(
+			$encTimestamp = $db->addQuotes( $db->timestamp() );
+			$db->update(
 				$tableName,
-				[ 'value', 'exptime' ],
-				[ 'keyname' => $key ],
-				__METHOD__,
-				[ 'FOR UPDATE' ]
+				[ 'value = value + ' . (int)$step ],
+				[ 'keyname' => $key, "exptime > $encTimestamp" ],
+				__METHOD__
 			);
-			if ( $row === false ) {
-				// Missing
-				return false;
-			}
-			$db->delete( $tableName, [ 'keyname' => $key ], __METHOD__ );
-			if ( $this->isExpired( $db, $row->exptime ) ) {
-				// Expired, do not reinsert
-				return false;
-			}
-
-			$oldValue = intval( $this->unserialize( $db->decodeBlob( $row->value ) ) );
-			$newValue = $oldValue + $step;
-			$db->insert(
-				$tableName,
-				[
-					'keyname' => $key,
-					'value' => $db->encodeBlob( $this->serialize( $newValue ) ),
-					'exptime' => $row->exptime
-				],
-				__METHOD__,
-				[ 'IGNORE' ]
-			);
-
-			if ( $db->affectedRows() == 0 ) {
-				// Race condition. See T30611
-				$newValue = false;
+			if ( $db->affectedRows() > 0 ) {
+				$newValue = $db->selectField(
+					$tableName,
+					'value',
+					[ 'keyname' => $key, "exptime > $encTimestamp" ],
+					__METHOD__
+				);
+				if ( $this->isInteger( $newValue ) ) {
+					$newCount = (int)$newValue;
+				}
 			}
 		} catch ( DBError $e ) {
 			$this->handleWriteError( $e, $db, $serverIndex );
-			return false;
 		}
 
-		return $newValue;
+		return $newCount;
 	}
 
 	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
@@ -560,41 +564,17 @@ class SqlBagOStuff extends BagOStuff {
 		return $ok;
 	}
 
-	public function changeTTL( $key, $exptime = 0, $flags = 0 ) {
-		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
-		$db = null;
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$silenceScope = $this->silenceTransactionProfiler();
-		try {
-			$db = $this->getDB( $serverIndex );
-			if ( $exptime == 0 ) {
-				$timestamp = $this->getMaxDateTime( $db );
-			} else {
-				$timestamp = $db->timestamp( $this->convertToExpiry( $exptime ) );
-			}
-			$db->update(
-				$tableName,
-				[ 'exptime' => $timestamp ],
-				[ 'keyname' => $key, 'exptime > ' . $db->addQuotes( $db->timestamp( time() ) ) ],
-				__METHOD__
-			);
-			if ( $db->affectedRows() == 0 ) {
-				$exists = (bool)$db->selectField(
-					$tableName,
-					1,
-					[ 'keyname' => $key, 'exptime' => $timestamp ],
-					__METHOD__,
-					[ 'FOR UPDATE' ]
-				);
+	public function changeTTLMulti( array $keys, $exptime, $flags = 0 ) {
+		return $this->modifyMulti(
+			array_fill_keys( $keys, null ),
+			$exptime,
+			$flags,
+			self::$OP_TOUCH
+		);
+	}
 
-				return $exists;
-			}
-		} catch ( DBError $e ) {
-			$this->handleWriteError( $e, $db, $serverIndex );
-			return false;
-		}
-
-		return true;
+	protected function doChangeTTL( $key, $exptime, $flags ) {
+		return $this->modifyMulti( [ $key => null ], $exptime, $flags, self::$OP_TOUCH );
 	}
 
 	/**
@@ -634,7 +614,7 @@ class SqlBagOStuff extends BagOStuff {
 			// Only purge on one in every $this->purgePeriod writes
 			mt_rand( 0, $this->purgePeriod - 1 ) == 0 &&
 			// Avoid repeating the delete within a few seconds
-			( time() - $this->lastGarbageCollect ) > self::GARBAGE_COLLECT_DELAY_SEC
+			( time() - $this->lastGarbageCollect ) > self::$GARBAGE_COLLECT_DELAY_SEC
 		) {
 			$garbageCollector = function () use ( $db ) {
 				$this->deleteServerObjectsExpiringBefore( $db, time(), null, $this->purgeLimit );
@@ -668,7 +648,7 @@ class SqlBagOStuff extends BagOStuff {
 
 		$keysDeletedCount = 0;
 		foreach ( $serverIndexes as $numServersDone => $serverIndex ) {
-			$db = null;
+			$db = null; // in case of connection failure
 			try {
 				$db = $this->getDB( $serverIndex );
 				$this->deleteServerObjectsExpiringBefore(
@@ -773,7 +753,7 @@ class SqlBagOStuff extends BagOStuff {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
 		for ( $serverIndex = 0; $serverIndex < $this->numServers; $serverIndex++ ) {
-			$db = null;
+			$db = null; // in case of connection failure
 			try {
 				$db = $this->getDB( $serverIndex );
 				for ( $i = 0; $i < $this->shards; $i++ ) {
@@ -800,7 +780,7 @@ class SqlBagOStuff extends BagOStuff {
 
 		list( $serverIndex ) = $this->getTableByKey( $key );
 
-		$db = null;
+		$db = null; // in case of connection failure
 		try {
 			$db = $this->getDB( $serverIndex );
 			$ok = $db->lock( $key, __METHOD__, $timeout );
@@ -832,7 +812,7 @@ class SqlBagOStuff extends BagOStuff {
 
 			list( $serverIndex ) = $this->getTableByKey( $key );
 
-			$db = null;
+			$db = null; // in case of connection failure
 			try {
 				$db = $this->getDB( $serverIndex );
 				$ok = $db->unlock( $key, __METHOD__ );
@@ -846,11 +826,11 @@ class SqlBagOStuff extends BagOStuff {
 				$this->handleWriteError( $e, $db, $serverIndex );
 				$ok = false;
 			}
-		} else {
-			$ok = false;
+
+			return $ok;
 		}
 
-		return $ok;
+		return true;
 	}
 
 	/**
@@ -859,16 +839,19 @@ class SqlBagOStuff extends BagOStuff {
 	 * in storage requirements.
 	 *
 	 * @param mixed $data
-	 * @return string
+	 * @return string|int
 	 */
 	protected function serialize( $data ) {
-		$serial = serialize( $data );
-
-		if ( function_exists( 'gzdeflate' ) ) {
-			return gzdeflate( $serial );
-		} else {
-			return $serial;
+		if ( is_int( $data ) ) {
+			return $data;
 		}
+
+		$serial = serialize( $data );
+		if ( function_exists( 'gzdeflate' ) ) {
+			$serial = gzdeflate( $serial );
+		}
+
+		return $serial;
 	}
 
 	/**
@@ -877,6 +860,10 @@ class SqlBagOStuff extends BagOStuff {
 	 * @return mixed
 	 */
 	protected function unserialize( $serial ) {
+		if ( $this->isInteger( $serial ) ) {
+			return (int)$serial;
+		}
+
 		if ( function_exists( 'gzinflate' ) ) {
 			Wikimedia\suppressWarnings();
 			$decomp = gzinflate( $serial );
@@ -887,9 +874,7 @@ class SqlBagOStuff extends BagOStuff {
 			}
 		}
 
-		$ret = unserialize( $serial );
-
-		return $ret;
+		return unserialize( $serial );
 	}
 
 	/**
