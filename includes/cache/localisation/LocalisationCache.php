@@ -22,6 +22,7 @@
 
 use CLDRPluralRuleParser\Evaluator;
 use CLDRPluralRuleParser\Error as CLDRPluralRuleError;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -68,6 +69,11 @@ class LocalisationCache {
 	 * @var LCStore
 	 */
 	private $store;
+
+	/**
+	 * @var \Psr\Log\LoggerInterface
+	 */
+	private $logger;
 
 	/**
 	 * A 2-d associative array, code/key, where presence indicates that the item
@@ -193,6 +199,7 @@ class LocalisationCache {
 		global $wgCacheDirectory;
 
 		$this->conf = $conf;
+		$this->logger = LoggerFactory::getInstance( 'localisation' );
 
 		$directory = !empty( $conf['storeDirectory'] ) ? $conf['storeDirectory'] : $wgCacheDirectory;
 		$storeArg = [];
@@ -227,8 +234,7 @@ class LocalisationCache {
 					);
 			}
 		}
-
-		wfDebugLog( 'caches', static::class . ": using store $storeClass" );
+		$this->logger->debug( static::class . ": using store $storeClass" );
 
 		$this->store = new $storeClass( $storeArg );
 		foreach ( [ 'manualRecache', 'forceRecache' ] as $var ) {
@@ -401,7 +407,7 @@ class LocalisationCache {
 	 */
 	public function isExpired( $code ) {
 		if ( $this->forceRecache && !isset( $this->recachedLangs[$code] ) ) {
-			wfDebug( __METHOD__ . "($code): forced reload\n" );
+			$this->logger->debug( __METHOD__ . "($code): forced reload\n" );
 
 			return true;
 		}
@@ -411,7 +417,7 @@ class LocalisationCache {
 		$preload = $this->store->get( $code, 'preload' );
 		// Different keys may expire separately for some stores
 		if ( $deps === null || $keys === null || $preload === null ) {
-			wfDebug( __METHOD__ . "($code): cache missing, need to make one\n" );
+			$this->logger->debug( __METHOD__ . "($code): cache missing, need to make one\n" );
 
 			return true;
 		}
@@ -422,7 +428,7 @@ class LocalisationCache {
 			// anymore (e.g. uninstalled extensions)
 			// When this happens, always expire the cache
 			if ( !$dep instanceof CacheDependency || $dep->isExpired() ) {
-				wfDebug( __METHOD__ . "($code): cache for $code expired due to " .
+				$this->logger->debug( __METHOD__ . "($code): cache for $code expired due to " .
 					get_class( $dep ) . "\n" );
 
 				return true;
@@ -590,7 +596,7 @@ class LocalisationCache {
 		try {
 			$compiledRules = Evaluator::compile( $rules );
 		} catch ( CLDRPluralRuleError $e ) {
-			wfDebugLog( 'l10n', $e->getMessage() );
+			$this->logger->debug( $e->getMessage() );
 
 			return [];
 		}
@@ -830,10 +836,10 @@ class LocalisationCache {
 		# Load the primary localisation from the source file
 		$data = $this->readSourceFilesAndRegisterDeps( $code, $deps );
 		if ( $data === false ) {
-			wfDebug( __METHOD__ . ": no localisation file for $code, using fallback to en\n" );
+			$this->logger->debug( __METHOD__ . ": no localisation file for $code, using fallback to en\n" );
 			$coreData['fallback'] = 'en';
 		} else {
-			wfDebug( __METHOD__ . ": got localisation for $code from source\n" );
+			$this->logger->debug( __METHOD__ . ": got localisation for $code from source\n" );
 
 			# Merge primary localisation
 			foreach ( $data as $key => $value ) {
