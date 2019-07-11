@@ -50,6 +50,7 @@ class SpecialTags extends SpecialPage {
 	function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
+		$this->addHelpLink( 'Manual:Tags' );
 
 		$request = $this->getRequest();
 		switch ( $par ) {

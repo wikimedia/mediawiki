@@ -22,7 +22,8 @@
 			"Tosky",
 			"Selven",
 			"Sarah Bernabei",
-			"ArTrix"
+			"ArTrix",
+			"Annibale covini gerolamo"
 		]
 	},
 	"config-desc": "Programma di installazione per MediaWiki",
@@ -66,6 +67,7 @@
 	"config-sidebar": "* [https://www.mediawiki.org Pagina principale MediaWiki]\n* [https://www.mediawiki.org/Special:MyLanguage/Help:Contents Guida ai contenuti per utenti]\n* [https://www.mediawiki.org/Special:MyLanguage/Manual:Contents Guida ai contenuti per admin]\n* [https://www.mediawiki.org/Special:MyLanguage/Manual:FAQ FAQ]",
 	"config-sidebar-readme": "Leggimi",
 	"config-sidebar-relnotes": "Note di versione",
+	"config-sidebar-license": "copiando",
 	"config-sidebar-upgrade": "Aggiornamento",
 	"config-env-good": "L'ambiente è stato controllato.\nÈ possibile installare MediaWiki.",
 	"config-env-bad": "L'ambiente è stato controllato.\nNon è possibile installare MediaWiki.",
