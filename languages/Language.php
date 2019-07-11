@@ -2592,39 +2592,35 @@ class Language {
 	}
 
 	/**
-	 * Make a string's first character uppercase
-	 *
 	 * @param string $str
-	 *
-	 * @return string
+	 * @return string The string with uppercase conversion applied to the first character
 	 */
 	public function ucfirst( $str ) {
-		$o = ord( $str );
-		if ( $o < 96 ) { // if already uppercase...
-			return $str;
-		} elseif ( $o < 128 ) {
-			return ucfirst( $str ); // use PHP's ucfirst()
-		} else {
-			// fall back to more complex logic in case of multibyte strings
-			return $this->uc( $str, true );
+		$octetCode = ord( $str );
+		// See https://en.wikipedia.org/wiki/ASCII#Printable_characters
+		if ( $octetCode < 96 ) {
+			// Assume this is an uppercase/uncased ASCII character
+			return (string)$str;
+		} elseif ( $octetCode < 128 ) {
+			//  Assume this is a lowercase/uncased ASCII character
+			return ucfirst( $str );
 		}
+
+		return $this->isMultibyte( $str )
+			// Assume this is a multibyte character and mb_internal_encoding() is appropriate
+			? $this->mbUpperChar( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 )
+			// Assume this is a non-multibyte character and LC_CASE is appropriate
+			: ucfirst( $str );
 	}
 
 	/**
-	 * Convert a string to uppercase
-	 *
 	 * @param string $str
-	 * @param bool $first
-	 *
-	 * @return string
+	 * @param bool $first Whether to uppercase only the first character
+	 * @return string The string with uppercase conversion applied
 	 */
 	public function uc( $str, $first = false ) {
 		if ( $first ) {
-			if ( $this->isMultibyte( $str ) ) {
-				return $this->mbUpperChar( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 );
-			} else {
-				return ucfirst( $str );
-			}
+			return $this->ucfirst( $str );
 		} else {
 			return $this->isMultibyte( $str ) ? mb_strtoupper( $str ) : strtoupper( $str );
 		}
@@ -2645,43 +2641,40 @@ class Language {
 	 */
 	protected function mbUpperChar( $char ) {
 		global $wgOverrideUcfirstCharacters;
-		if ( array_key_exists( $char, $wgOverrideUcfirstCharacters ) ) {
-			return $wgOverrideUcfirstCharacters[$char];
-		} else {
-			return mb_strtoupper( $char );
-		}
+
+		return $wgOverrideUcfirstCharacters[$char] ?? mb_strtoupper( $char );
 	}
 
 	/**
 	 * @param string $str
-	 * @return mixed|string
+	 * @return string The string with lowercase conversion applied to the first character
 	 */
-	function lcfirst( $str ) {
-		$o = ord( $str );
-		if ( !$o ) {
-			return strval( $str );
-		} elseif ( $o >= 128 ) {
-			return $this->lc( $str, true );
-		} elseif ( $o > 96 ) {
-			return $str;
-		} else {
-			$str[0] = strtolower( $str[0] );
-			return $str;
+	public function lcfirst( $str ) {
+		$octetCode = ord( $str );
+		// See https://en.wikipedia.org/wiki/ASCII#Printable_characters
+		if ( $octetCode < 96 ) {
+			// Assume this is an uppercase/uncased ASCII character
+			return lcfirst( $str );
+		} elseif ( $octetCode < 128 ) {
+			// Assume this is a lowercase/uncased ASCII character
+			return (string)$str;
 		}
+
+		return $this->isMultibyte( $str )
+			// Assume this is a multibyte character and mb_internal_encoding() is appropriate
+			? mb_strtolower( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 )
+			// Assume this is a non-multibyte character and LC_CASE is appropriate
+			: lcfirst( $str );
 	}
 
 	/**
 	 * @param string $str
-	 * @param bool $first
-	 * @return mixed|string
+	 * @param bool $first Whether to lowercase only the first character
+	 * @return string The string with lowercase conversion applied
 	 */
-	function lc( $str, $first = false ) {
+	public function lc( $str, $first = false ) {
 		if ( $first ) {
-			if ( $this->isMultibyte( $str ) ) {
-				return mb_strtolower( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 );
-			} else {
-				return strtolower( substr( $str, 0, 1 ) ) . substr( $str, 1 );
-			}
+			return $this->lcfirst( $str );
 		} else {
 			return $this->isMultibyte( $str ) ? mb_strtolower( $str ) : strtolower( $str );
 		}
