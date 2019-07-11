@@ -297,13 +297,13 @@ class ResourceLoader implements LoggerAwareInterface {
 	/**
 	 * Register a module with the ResourceLoader system.
 	 *
-	 * @param mixed $name Name of module as a string or List of name/object pairs as an array
-	 * @param array|null $info Module info array. For backwards compatibility with 1.17alpha,
-	 *   this may also be a ResourceLoaderModule object. Optional when using
-	 *   multiple-registration calling style.
+	 * @param string|array[] $name Module name as a string or, array of module info arrays
+	 *  keyed by name.
+	 * @param array|null $info Module info array. When using the first parameter to register
+	 *  multiple modules at once, this parameter is optional.
 	 * @throws MWException If a duplicate module registration is attempted
 	 * @throws MWException If a module name contains illegal characters (pipes or commas)
-	 * @throws MWException If something other than a ResourceLoaderModule is being registered
+	 * @throws InvalidArgumentException If the module info is not an array
 	 */
 	public function register( $name, $info = null ) {
 		$moduleSkinStyles = $this->config->get( 'ResourceModuleSkinStyles' );
@@ -320,29 +320,21 @@ class ResourceLoader implements LoggerAwareInterface {
 				);
 			}
 
-			// Check $name for validity
+			// Check validity
 			if ( !self::isValidModuleName( $name ) ) {
 				throw new MWException( "ResourceLoader module name '$name' is invalid, "
 					. "see ResourceLoader::isValidModuleName()" );
 			}
-
-			// Attach module
-			if ( $info instanceof ResourceLoaderModule ) {
-				$this->moduleInfos[$name] = [ 'object' => $info ];
-				$info->setName( $name );
-				$this->modules[$name] = $info;
-			} elseif ( is_array( $info ) ) {
-				// New calling convention
-				$this->moduleInfos[$name] = $info;
-			} else {
-				throw new MWException(
-					'ResourceLoader module info type error for module \'' . $name .
-					'\': expected ResourceLoaderModule or array (got: ' . gettype( $info ) . ')'
+			if ( !is_array( $info ) ) {
+				throw new InvalidArgumentException(
+					'Invalid module info for "' . $name . '": expected array, got ' . gettype( $info )
 				);
 			}
 
-			// Last-minute changes
+			// Attach module
+			$this->moduleInfos[$name] = $info;
 
+			// Last-minute changes
 			// Apply custom skin-defined styles to existing modules.
 			if ( $this->isFileModule( $name ) ) {
 				foreach ( $moduleSkinStyles as $skinName => $skinStyles ) {
@@ -528,23 +520,18 @@ class ResourceLoader implements LoggerAwareInterface {
 				// No such module
 				return null;
 			}
-			// Construct the requested object
+			// Construct the requested module object
 			$info = $this->moduleInfos[$name];
-			/** @var ResourceLoaderModule $object */
-			if ( isset( $info['object'] ) ) {
-				// Object given in info array
-				$object = $info['object'];
-			} elseif ( isset( $info['factory'] ) ) {
+			if ( isset( $info['factory'] ) ) {
+				/** @var ResourceLoaderModule $object */
 				$object = call_user_func( $info['factory'], $info );
-				$object->setConfig( $this->getConfig() );
-				$object->setLogger( $this->logger );
 			} else {
 				$class = $info['class'] ?? ResourceLoaderFileModule::class;
 				/** @var ResourceLoaderModule $object */
 				$object = new $class( $info );
-				$object->setConfig( $this->getConfig() );
-				$object->setLogger( $this->logger );
 			}
+			$object->setConfig( $this->getConfig() );
+			$object->setLogger( $this->logger );
 			$object->setName( $name );
 			$this->modules[$name] = $object;
 		}
@@ -563,9 +550,6 @@ class ResourceLoader implements LoggerAwareInterface {
 			return false;
 		}
 		$info = $this->moduleInfos[$name];
-		if ( isset( $info['object'] ) ) {
-			return false;
-		}
 		return !isset( $info['factory'] ) && (
 			// The implied default for 'class' is ResourceLoaderFileModule
 			!isset( $info['class'] ) ||

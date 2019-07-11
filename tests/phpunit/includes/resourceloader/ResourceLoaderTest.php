@@ -113,7 +113,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 */
 	public function testRegisterInvalidType() {
 		$resourceLoader = new EmptyResourceLoader();
-		$this->setExpectedException( MWException::class, 'ResourceLoader module info type error' );
+		$this->setExpectedException( InvalidArgumentException::class, 'Invalid module info' );
 		$resourceLoader->register( 'test', new stdClass() );
 	}
 
