@@ -11,6 +11,8 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;
 	use PHPUnit4And6Compat;
 
+	const NAME = 'test.blobstore';
+
 	protected function setUp() {
 		parent::setUp();
 		// MediaWiki's test wrapper sets $wgMainWANCache to CACHE_NONE.
@@ -24,12 +26,15 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testBlobCreation() {
-		$module = $this->makeModule( [ 'mainpage' ] );
 		$rl = new EmptyResourceLoader();
-		$rl->register( $module->getName(), $module );
+		$rl->register( self::NAME, [
+			'factory' => function () {
+				return $this->makeModule( [ 'mainpage' ] );
+			}
+		] );
 
 		$blobStore = $this->makeBlobStore( null, $rl );
-		$blob = $blobStore->getBlob( $module, 'en' );
+		$blob = $blobStore->getBlob( $rl->getModule( self::NAME ), 'en' );
 
 		$this->assertEquals( '{"mainpage":"Main Page"}', $blob, 'Generated blob' );
 	}
@@ -37,7 +42,6 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 	public function testBlobCreation_empty() {
 		$module = $this->makeModule( [] );
 		$rl = new EmptyResourceLoader();
-		$rl->register( $module->getName(), $module );
 
 		$blobStore = $this->makeBlobStore( null, $rl );
 		$blob = $blobStore->getBlob( $module, 'en' );
@@ -48,7 +52,6 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 	public function testBlobCreation_unknownMessage() {
 		$module = $this->makeModule( [ 'i-dont-exist', 'mainpage', 'i-dont-exist2' ] );
 		$rl = new EmptyResourceLoader();
-		$rl->register( $module->getName(), $module );
 		$blobStore = $this->makeBlobStore( null, $rl );
 
 		// Generating a blob should continue without errors,
@@ -58,9 +61,15 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testMessageCachingAndPurging() {
-		$module = $this->makeModule( [ 'example' ] );
 		$rl = new EmptyResourceLoader();
-		$rl->register( $module->getName(), $module );
+		// Register it so that MessageBlobStore::updateMessage can
+		// discover it from the registry as a module that uses this message.
+		$rl->register( self::NAME, [
+			'factory' => function () {
+				return $this->makeModule( [ 'example' ] );
+			}
+		] );
+		$module = $rl->getModule( self::NAME );
 		$blobStore = $this->makeBlobStore( [ 'fetchMessage' ], $rl );
 
 		// Advance this new WANObjectCache instance to a normal state,
@@ -105,7 +114,6 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 	public function testPurgeEverything() {
 		$module = $this->makeModule( [ 'example' ] );
 		$rl = new EmptyResourceLoader();
-		$rl->register( $module->getName(), $module );
 		$blobStore = $this->makeBlobStore( [ 'fetchMessage' ], $rl );
 		// Advance this new WANObjectCache instance to a normal state.
 		$blobStore->getBlob( $module, 'en' );
@@ -139,7 +147,6 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 		// Arrange version 1 of a module
 		$module = $this->makeModule( [ 'foo' ] );
 		$rl = new EmptyResourceLoader();
-		$rl->register( $module->getName(), $module );
 		$blobStore = $this->makeBlobStore( [ 'fetchMessage' ], $rl );
 		$blobStore->expects( $this->once() )
 			->method( 'fetchMessage' )
@@ -158,7 +165,6 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 		// We do not receive purges for this because no messages were changed.
 		$module = $this->makeModule( [ 'foo', 'bar' ] );
 		$rl = new EmptyResourceLoader();
-		$rl->register( $module->getName(), $module );
 		$blobStore = $this->makeBlobStore( [ 'fetchMessage' ], $rl );
 		$blobStore->expects( $this->exactly( 2 ) )
 			->method( 'fetchMessage' )
@@ -191,7 +197,7 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 
 	private function makeModule( array $messages ) {
 		$module = new ResourceLoaderTestModule( [ 'messages' => $messages ] );
-		$module->setName( 'test.blobstore' );
+		$module->setName( self::NAME );
 		return $module;
 	}
 }

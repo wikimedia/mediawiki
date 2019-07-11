@@ -74,24 +74,15 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoader::register
 	 * @covers ResourceLoader::getModule
 	 */
-	public function testRegisterValidObject() {
-		$module = new ResourceLoaderTestModule();
-		$resourceLoader = new EmptyResourceLoader();
-		$resourceLoader->register( 'test', $module );
-		$this->assertEquals( $module, $resourceLoader->getModule( 'test' ) );
-	}
-
-	/**
-	 * @covers ResourceLoader::register
-	 * @covers ResourceLoader::getModule
-	 */
 	public function testRegisterValidArray() {
-		$module = new ResourceLoaderTestModule();
 		$resourceLoader = new EmptyResourceLoader();
 		// Covers case of register() setting $rl->moduleInfos,
 		// but $rl->modules lazy-populated by getModule()
-		$resourceLoader->register( 'test', [ 'object' => $module ] );
-		$this->assertEquals( $module, $resourceLoader->getModule( 'test' ) );
+		$resourceLoader->register( 'test', [ 'class' => ResourceLoaderTestModule::class ] );
+		$this->assertInstanceOf(
+			ResourceLoaderTestModule::class,
+			$resourceLoader->getModule( 'test' )
+		);
 	}
 
 	/**
@@ -99,10 +90,12 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 * @group medium
 	 */
 	public function testRegisterEmptyString() {
-		$module = new ResourceLoaderTestModule();
 		$resourceLoader = new EmptyResourceLoader();
-		$resourceLoader->register( '', $module );
-		$this->assertEquals( $module, $resourceLoader->getModule( '' ) );
+		$resourceLoader->register( '', [ 'class' => ResourceLoaderTestModule::class ] );
+		$this->assertInstanceOf(
+			ResourceLoaderTestModule::class,
+			$resourceLoader->getModule( '' )
+		);
 	}
 
 	/**
@@ -112,7 +105,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	public function testRegisterInvalidName() {
 		$resourceLoader = new EmptyResourceLoader();
 		$this->setExpectedException( MWException::class, "name 'test!invalid' is invalid" );
-		$resourceLoader->register( 'test!invalid', new ResourceLoaderTestModule() );
+		$resourceLoader->register( 'test!invalid', [] );
 	}
 
 	/**
@@ -133,11 +126,13 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 			->method( 'warning' );
 		$resourceLoader = new EmptyResourceLoader( null, $logger );
 
-		$module1 = new ResourceLoaderTestModule();
-		$module2 = new ResourceLoaderTestModule();
-		$resourceLoader->register( 'test', $module1 );
-		$resourceLoader->register( 'test', $module2 );
-		$this->assertSame( $module2, $resourceLoader->getModule( 'test' ) );
+		$resourceLoader->register( 'test', [ 'class' => ResourceLoaderSkinModule::class ] );
+		$resourceLoader->register( 'test', [ 'class' => ResourceLoaderStartUpModule::class ] );
+		$this->assertInstanceOf(
+			ResourceLoaderStartUpModule::class,
+			$resourceLoader->getModule( 'test' ),
+			'last one wins'
+		);
 	}
 
 	/**
@@ -146,8 +141,8 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	public function testGetModuleNames() {
 		// Use an empty one so that core and extension modules don't get in.
 		$resourceLoader = new EmptyResourceLoader();
-		$resourceLoader->register( 'test.foo', new ResourceLoaderTestModule() );
-		$resourceLoader->register( 'test.bar', new ResourceLoaderTestModule() );
+		$resourceLoader->register( 'test.foo', [] );
+		$resourceLoader->register( 'test.bar', [] );
 		$this->assertEquals(
 			[ 'startup', 'test.foo', 'test.bar' ],
 			$resourceLoader->getModuleNames()
@@ -155,15 +150,21 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	}
 
 	public function provideTestIsFileModule() {
-		$fileModuleObj = $this->getMockBuilder( ResourceLoaderFileModule::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$fileModuleObj = $this->createMock( ResourceLoaderFileModule::class );
 		return [
-			'object' => [ false,
-				new ResourceLoaderTestModule()
+			'factory ignored' => [ false,
+				[
+					'factory' => function () {
+						return new ResourceLoaderTestModule();
+					}
+				]
 			],
-			'FileModule object' => [ false,
-				$fileModuleObj
+			'factory ignored (actual FileModule)' => [ false,
+				[
+					'factory' => function () use ( $fileModuleObj ) {
+						return $fileModuleObj;
+					}
+				]
 			],
 			'simple empty' => [ true,
 				[]
@@ -214,7 +215,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 */
 	public function testIsModuleRegistered() {
 		$rl = new EmptyResourceLoader();
-		$rl->register( 'test', new ResourceLoaderTestModule() );
+		$rl->register( 'test', [] );
 		$this->assertTrue( $rl->isModuleRegistered( 'test' ) );
 		$this->assertFalse( $rl->isModuleRegistered( 'test.unknown' ) );
 	}
@@ -709,9 +710,13 @@ END
 			// Disable log from outputErrorAndLog
 			->setMethods( [ 'outputErrorAndLog' ] )->getMock();
 		$rl->register( [
-			'foo' => self::getSimpleModuleMock(),
-			'ferry' => self::getFailFerryMock(),
-			'bar' => self::getSimpleModuleMock(),
+			'foo' => [ 'class' => ResourceLoaderTestModule::class ],
+			'ferry' => [
+				'factory' => function () {
+					return self::getFailFerryMock();
+				}
+			],
+			'bar' => [ 'class' => ResourceLoaderTestModule::class ],
 		] );
 		$context = $this->getResourceLoaderContext( [], $rl );
 
@@ -800,7 +805,6 @@ END
 		$modules = array_map( function ( $script ) {
 			return self::getSimpleModuleMock( $script );
 		}, $scripts );
-		$rl->register( $modules );
 
 		$context = $this->getResourceLoaderContext(
 			[
@@ -845,7 +849,6 @@ END
 			'bar' => self::getSimpleModuleMock( 'bar();' ),
 		];
 		$rl = new EmptyResourceLoader();
-		$rl->register( $modules );
 		$context = $this->getResourceLoaderContext(
 			[
 				'modules' => 'foo|ferry|bar',
@@ -885,7 +888,6 @@ END
 			'bar' => self::getSimpleStyleModuleMock( '.bar{}' ),
 		];
 		$rl = new EmptyResourceLoader();
-		$rl->register( $modules );
 		$context = $this->getResourceLoaderContext(
 			[
 				'modules' => 'foo|ferry|bar',
@@ -922,9 +924,15 @@ END
 		// provide the full Config object here.
 		$rl = new EmptyResourceLoader( MediaWikiServices::getInstance()->getMainConfig() );
 		$rl->register( [
-			'foo' => self::getSimpleModuleMock( 'foo();' ),
-			'ferry' => self::getFailFerryMock(),
-			'bar' => self::getSimpleModuleMock( 'bar();' ),
+			'foo' => [ 'factory' => function () {
+				return self::getSimpleModuleMock( 'foo();' );
+			} ],
+			'ferry' => [ 'factory' => function () {
+				return self::getFailFerryMock();
+			} ],
+			'bar' => [ 'factory' => function () {
+				return self::getSimpleModuleMock( 'bar();' );
+			} ],
 		] );
 		$context = $this->getResourceLoaderContext(
 			[
@@ -981,15 +989,12 @@ END
 		] );
 
 		$rl = new EmptyResourceLoader();
-		$rl->register( [
-			'foo' => $module,
-		] );
 		$context = $this->getResourceLoaderContext(
 			[ 'modules' => 'foo', 'only' => 'scripts' ],
 			$rl
 		);
 
-		$modules = [ 'foo' => $rl->getModule( 'foo' ) ];
+		$modules = [ 'foo' => $module ];
 		$response = $rl->makeModuleResponse( $context, $modules );
 		$extraHeaders = TestingAccessWrapper::newFromObject( $rl )->extraHeaders;
 
@@ -1022,13 +1027,12 @@ END
 		] );
 
 		$rl = new EmptyResourceLoader();
-		$rl->register( [ 'foo' => $foo, 'bar' => $bar ] );
 		$context = $this->getResourceLoaderContext(
 			[ 'modules' => 'foo|bar', 'only' => 'scripts' ],
 			$rl
 		);
 
-		$modules = [ 'foo' => $rl->getModule( 'foo' ), 'bar' => $rl->getModule( 'bar' ) ];
+		$modules = [ 'foo' => $foo, 'bar' => $bar ];
 		$response = $rl->makeModuleResponse( $context, $modules );
 		$extraHeaders = TestingAccessWrapper::newFromObject( $rl )->extraHeaders;
 		$this->assertEquals(
@@ -1073,7 +1077,11 @@ END
 				'makeModuleResponse',
 			] )
 			->getMock();
-		$rl->register( 'test', $module );
+		$rl->register( 'test', [
+			'factory' => function () use ( $module ) {
+				return $module;
+			}
+		] );
 		$context = $this->getResourceLoaderContext(
 			[ 'modules' => 'test', 'only' => null ],
 			$rl
@@ -1102,7 +1110,11 @@ END
 				'sendResponseHeaders',
 			] )
 			->getMock();
-		$rl->register( 'test', $module );
+		$rl->register( 'test', [
+			'factory' => function () use ( $module ) {
+				return $module;
+			}
+		] );
 		$context = $this->getResourceLoaderContext( [ 'modules' => 'test' ], $rl );
 		// Disable logging from outputErrorAndLog
 		$this->setLogger( 'exception', new Psr\Log\NullLogger() );

@@ -101,6 +101,7 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 	protected $type = ResourceLoaderModule::LOAD_GENERAL;
 	protected $targets = [ 'phpunit' ];
 	protected $shouldEmbed = null;
+	protected $mayValidateScript = false;
 
 	public function __construct( $options = [] ) {
 		foreach ( $options as $key => $value ) {
@@ -109,7 +110,14 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 	}
 
 	public function getScript( ResourceLoaderContext $context ) {
-		return $this->validateScriptFile( 'input', $this->script );
+		if ( $this->mayValidateScript ) {
+			// This enables the validation check that replaces invalid
+			// scripts with a warning message.
+			// Based on $wgResourceLoaderValidateJS
+			return $this->validateScriptFile( 'input', $this->script );
+		} else {
+			return $this->script;
+		}
 	}
 
 	public function getStyles( ResourceLoaderContext $context ) {

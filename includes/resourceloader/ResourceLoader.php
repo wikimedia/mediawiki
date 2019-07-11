@@ -566,7 +566,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		if ( isset( $info['object'] ) ) {
 			return false;
 		}
-		return (
+		return !isset( $info['factory'] ) && (
 			// The implied default for 'class' is ResourceLoaderFileModule
 			!isset( $info['class'] ) ||
 			// Explicit default
