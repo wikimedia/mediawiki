@@ -214,10 +214,13 @@ class ResourceLoaderImage {
 			'image' => $this->getName(),
 			'variant' => $variant,
 			'format' => $format,
-			'lang' => $context->getLanguage(),
-			'skin' => $context->getSkin(),
-			'version' => $context->getVersion(),
 		];
+		if ( $this->varyOnLanguage() ) {
+			$query['lang'] = $context->getLanguage();
+		}
+		// The following parameters are at the end to keep the original order of the parameters.
+		$query['skin'] = $context->getSkin();
+		$query['version'] = $context->getVersion();
 
 		return wfAppendQuery( $script, $query );
 	}
@@ -445,5 +448,17 @@ class ResourceLoaderImage {
 
 			return $png ?: false;
 		}
+	}
+
+	/**
+	 * Check if the image depends on the language.
+	 *
+	 * @return bool
+	 */
+	private function varyOnLanguage() {
+		return is_array( $this->descriptor ) && (
+			isset( $this->descriptor['ltr'] ) ||
+			isset( $this->descriptor['rtl'] ) ||
+			isset( $this->descriptor['lang'] ) );
 	}
 }
