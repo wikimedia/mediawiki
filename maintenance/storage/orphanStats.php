@@ -57,12 +57,12 @@ class OrphanStats extends Maintenance {
 		$hashes = [];
 		$maxSize = 0;
 
-		foreach ( $res as $boRow ) {
-			$extDB = $this->getDB( $boRow->bo_cluster );
+		foreach ( $res as $row ) {
+			$extDB = $this->getDB( $row->bo_cluster );
 			$blobRow = $extDB->selectRow(
 				'blobs',
 				'*',
-				[ 'blob_id' => $boRow->bo_blob_id ],
+				[ 'blob_id' => $row->bo_blob_id ],
 				__METHOD__
 			);
 

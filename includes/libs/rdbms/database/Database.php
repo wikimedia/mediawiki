@@ -4290,8 +4290,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->server,
 				$this->user,
 				$this->password,
-				$this->getDBname(),
-				$this->dbSchema(),
+				$this->currentDomain->getDatabase(),
+				$this->currentDomain->getSchema(),
 				$this->tablePrefix()
 			);
 			$this->lastPing = microtime( true );
@@ -4868,8 +4868,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->server,
 				$this->user,
 				$this->password,
-				$this->getDBname(),
-				$this->dbSchema(),
+				$this->currentDomain->getDatabase(),
+				$this->currentDomain->getSchema(),
 				$this->tablePrefix()
 			);
 			$this->lastPing = microtime( true );
