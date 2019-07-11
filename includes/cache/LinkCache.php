@@ -306,7 +306,7 @@ class LinkCache {
 
 	private function isCacheable( LinkTarget $title ) {
 		$ns = $title->getNamespace();
-		if ( in_array( $ns, [ NS_TEMPLATE, NS_FILE, NS_CATEGORY ] ) ) {
+		if ( in_array( $ns, [ NS_TEMPLATE, NS_FILE, NS_CATEGORY, NS_MEDIAWIKI ] ) ) {
 			return true;
 		}
 		// Focus on transcluded pages more than the main content
