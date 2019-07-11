@@ -154,8 +154,7 @@ class Html {
 	 * Returns an HTML link element in a string styled as a button
 	 * (when $wgUseMediaWikiUIEverywhere is enabled).
 	 *
-	 * @param string $contents The raw HTML contents of the element: *not*
-	 *   escaped!
+	 * @param string $text The text of the element. Will be escaped (not raw HTML)
 	 * @param array $attrs Associative array of attributes, e.g., [
 	 *   'href' => 'https://www.mediawiki.org/' ]. See expandAttributes() for
 	 *   further documentation.
@@ -163,10 +162,10 @@ class Html {
 	 * @see https://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
 	 * @return string Raw HTML
 	 */
-	public static function linkButton( $contents, array $attrs, array $modifiers = [] ) {
+	public static function linkButton( $text, array $attrs, array $modifiers = [] ) {
 		return self::element( 'a',
 			self::buttonAttributes( $attrs, $modifiers ),
-			$contents
+			$text
 		);
 	}
 
