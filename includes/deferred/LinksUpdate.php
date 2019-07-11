@@ -212,7 +212,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	 * @since 1.27
 	 */
 	public static function acquirePageLock( IDatabase $dbw, $pageId, $why = 'atomicity' ) {
-		$key = "LinksUpdate:$why:pageid:$pageId";
+		$key = "{$dbw->getDomainID()}:LinksUpdate:$why:pageid:$pageId"; // per-wiki
 		$scopedLock = $dbw->getScopedLockAndFlush( $key, __METHOD__, 15 );
 		if ( !$scopedLock ) {
 			$logger = LoggerFactory::getInstance( 'SecondaryDataUpdate' );
