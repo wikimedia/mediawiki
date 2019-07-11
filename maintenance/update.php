@@ -263,7 +263,7 @@ class UpdateMediaWiki extends Maintenance {
 				isset( $param['require'] ) ? $param['require'] : false,
 				isset( $param['withArg'] ) ? $param['withArg'] : false,
 				isset( $param['shortName'] ) ? $param['shortName'] : false,
-				$param['multiOccurrence'] ?? false
+				isset( $param['multiOccurrence'] ) ? $param['multiOccurrence'] : false
 			);
 		}
 
