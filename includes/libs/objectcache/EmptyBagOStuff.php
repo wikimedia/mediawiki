@@ -33,7 +33,7 @@ class EmptyBagOStuff extends BagOStuff {
 		return false;
 	}
 
-	protected function doSet( $key, $value, $exp = 0, $flags = 0 ) {
+	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
 		return true;
 	}
 

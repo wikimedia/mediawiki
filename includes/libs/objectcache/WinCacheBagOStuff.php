@@ -67,8 +67,8 @@ class WinCacheBagOStuff extends BagOStuff {
 		return $success;
 	}
 
-	protected function doSet( $key, $value, $expire = 0, $flags = 0 ) {
-		$result = wincache_ucache_set( $key, $this->serialize( $value ), $expire );
+	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
+		$result = wincache_ucache_set( $key, $this->serialize( $value ), $exptime );
 
 		// false positive, wincache_ucache_set returns an empty array
 		// in some circumstances.

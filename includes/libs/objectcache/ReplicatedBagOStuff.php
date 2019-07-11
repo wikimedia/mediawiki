@@ -110,14 +110,10 @@ class ReplicatedBagOStuff extends BagOStuff {
 
 	public function deleteObjectsExpiringBefore(
 		$timestamp,
-		callable $progressCallback = null,
+		callable $progress = null,
 		$limit = INF
 	) {
-		return $this->writeStore->deleteObjectsExpiringBefore(
-			$timestamp,
-			$progressCallback,
-			$limit
-		);
+		return $this->writeStore->deleteObjectsExpiringBefore( $timestamp, $progress, $limit );
 	}
 
 	public function getMulti( array $keys, $flags = 0 ) {
@@ -126,12 +122,16 @@ class ReplicatedBagOStuff extends BagOStuff {
 			: $this->readStore->getMulti( $keys, $flags );
 	}
 
-	public function doSetMulti( array $data, $exptime = 0, $flags = 0 ) {
+	public function setMulti( array $data, $exptime = 0, $flags = 0 ) {
 		return $this->writeStore->setMulti( $data, $exptime, $flags );
 	}
 
-	public function doDeleteMulti( array $keys, $flags = 0 ) {
+	public function deleteMulti( array $keys, $flags = 0 ) {
 		return $this->writeStore->deleteMulti( $keys, $flags );
+	}
+
+	public function changeTTLMulti( array $keys, $exptime, $flags = 0 ) {
+		return $this->writeStore->changeTTLMulti( $keys, $exptime, $flags );
 	}
 
 	public function incr( $key, $value = 1 ) {
@@ -186,6 +186,14 @@ class ReplicatedBagOStuff extends BagOStuff {
 	}
 
 	protected function doGetMulti( array $keys, $flags = 0 ) {
+		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
+	}
+
+	protected function doSetMulti( array $keys, $exptime = 0, $flags = 0 ) {
+		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
+	}
+
+	protected function doDeleteMulti( array $keys, $flags = 0 ) {
 		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
 	}
 
