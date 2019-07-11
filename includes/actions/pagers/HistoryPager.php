@@ -185,34 +185,40 @@ class HistoryPager extends ReverseChronologicalPager {
 		$s .= Html::hidden( 'type', 'revision' ) . "\n";
 
 		// Button container stored in $this->buttons for re-use in getEndBody()
-		$this->buttons = Html::openElement( 'div', [ 'class' => 'mw-history-compareselectedversions' ] );
-		$className = 'historysubmit mw-history-compareselectedversions-button';
-		$attrs = [ 'class' => $className ]
-			+ Linker::tooltipAndAccesskeyAttribs( 'compareselectedversions' );
-		$this->buttons .= $this->submitButton( $this->msg( 'compareselectedversions' )->text(),
-			$attrs
-		) . "\n";
+		$this->buttons = '';
+		if ( $this->getNumRows() > 0 ) {
+			$this->buttons .= Html::openElement(
+				'div', [ 'class' => 'mw-history-compareselectedversions' ] );
+			$className = 'historysubmit mw-history-compareselectedversions-button';
+			$attrs = [ 'class' => $className ]
+				+ Linker::tooltipAndAccesskeyAttribs( 'compareselectedversions' );
+			$this->buttons .= $this->submitButton( $this->msg( 'compareselectedversions' )->text(),
+				$attrs
+			) . "\n";
 
-		$user = $this->getUser();
-		$actionButtons = '';
-		if ( $user->isAllowed( 'deleterevision' ) ) {
-			$actionButtons .= $this->getRevisionButton( 'revisiondelete', 'showhideselectedversions' );
-		}
-		if ( $this->showTagEditUI ) {
-			$actionButtons .= $this->getRevisionButton( 'editchangetags', 'history-edit-tags' );
-		}
-		if ( $actionButtons ) {
-			$this->buttons .= Xml::tags( 'div', [ 'class' =>
-				'mw-history-revisionactions' ], $actionButtons );
-		}
+			$user = $this->getUser();
+			$actionButtons = '';
+			if ( $user->isAllowed( 'deleterevision' ) ) {
+				$actionButtons .= $this->getRevisionButton(
+					'revisiondelete', 'showhideselectedversions' );
+			}
+			if ( $this->showTagEditUI ) {
+				$actionButtons .= $this->getRevisionButton(
+					'editchangetags', 'history-edit-tags' );
+			}
+			if ( $actionButtons ) {
+				$this->buttons .= Xml::tags( 'div', [ 'class' =>
+					'mw-history-revisionactions' ], $actionButtons );
+			}
 
-		if ( $user->isAllowed( 'deleterevision' ) || $this->showTagEditUI ) {
-			$this->buttons .= ( new ListToggle( $this->getOutput() ) )->getHTML();
+			if ( $user->isAllowed( 'deleterevision' ) || $this->showTagEditUI ) {
+				$this->buttons .= ( new ListToggle( $this->getOutput() ) )->getHTML();
+			}
+
+			$this->buttons .= '</div>';
+
+			$s .= $this->buttons;
 		}
-
-		$this->buttons .= '</div>';
-
-		$s .= $this->buttons;
 		$s .= '<ul id="pagehistory">' . "\n";
 
 		return $s;
