@@ -2295,34 +2295,6 @@ class Title implements LinkTarget, IDBAccessObject {
 	}
 
 	/**
-	 * Add the resulting error code to the errors array
-	 *
-	 * @param array $errors List of current errors
-	 * @param array|string|MessageSpecifier|false $result Result of errors
-	 *
-	 * @return array List of errors
-	 */
-	private function resultToError( $errors, $result ) {
-		if ( is_array( $result ) && count( $result ) && !is_array( $result[0] ) ) {
-			// A single array representing an error
-			$errors[] = $result;
-		} elseif ( is_array( $result ) && is_array( $result[0] ) ) {
-			// A nested array representing multiple errors
-			$errors = array_merge( $errors, $result );
-		} elseif ( $result !== '' && is_string( $result ) ) {
-			// A string representing a message-id
-			$errors[] = [ $result ];
-		} elseif ( $result instanceof MessageSpecifier ) {
-			// A message specifier representing an error
-			$errors[] = [ $result ];
-		} elseif ( $result === false ) {
-			// a generic "We don't want them to do that"
-			$errors[] = [ 'badaccess-group0' ];
-		}
-		return $errors;
-	}
-
-	/**
 	 * Get a filtered list of all restriction types supported by this wiki.
 	 * @param bool $exists True to get all restriction types that apply to
 	 * titles that do exist, False for all restriction types that apply to
@@ -2949,7 +2921,7 @@ class Title implements LinkTarget, IDBAccessObject {
 			$this->mHasSubpages = false;
 			$subpages = $this->getSubpages( 1 );
 			if ( $subpages instanceof TitleArray ) {
-				$this->mHasSubpages = (bool)$subpages->count();
+				$this->mHasSubpages = (bool)$subpages->current();
 			}
 		}
 

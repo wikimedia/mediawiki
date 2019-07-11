@@ -149,7 +149,7 @@ class CreateAndPromote extends Maintenance {
 
 		if ( !$exists ) {
 			# Increment site_stats.ss_users
-			$ssu = new SiteStatsUpdate( 0, 0, 0, 0, 1 );
+			$ssu = SiteStatsUpdate::factory( [ 'users' => 1 ] );
 			$ssu->doUpdate();
 		}
 
