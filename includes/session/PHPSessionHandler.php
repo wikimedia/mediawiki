@@ -41,7 +41,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 	/** @var bool */
 	protected $warn = true;
 
-	/** @var SessionManager|null */
+	/** @var SessionManagerInterface|null */
 	protected $manager;
 
 	/** @var BagOStuff|null */
@@ -53,7 +53,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 	/** @var array Track original session fields for later modification check */
 	protected $sessionFieldCache = [];
 
-	protected function __construct( SessionManager $manager ) {
+	protected function __construct( SessionManagerInterface $manager ) {
 		$this->setEnableFlags(
 			\RequestContext::getMain()->getConfig()->get( 'PHPSessionHandling' )
 		);
@@ -105,9 +105,9 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 
 	/**
 	 * Install a session handler for the current web request
-	 * @param SessionManager $manager
+	 * @param SessionManagerInterface $manager
 	 */
-	public static function install( SessionManager $manager ) {
+	public static function install( SessionManagerInterface $manager ) {
 		if ( self::$instance ) {
 			$manager->setupPHPSessionHandler( self::$instance );
 			return;
@@ -151,12 +151,12 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 	/**
 	 * Set the manager, store, and logger
 	 * @private Use self::install().
-	 * @param SessionManager $manager
+	 * @param SessionManagerInterface $manager
 	 * @param BagOStuff $store
 	 * @param LoggerInterface $logger
 	 */
 	public function setManager(
-		SessionManager $manager, BagOStuff $store, LoggerInterface $logger
+		SessionManagerInterface $manager, BagOStuff $store, LoggerInterface $logger
 	) {
 		if ( $this->manager !== $manager ) {
 			// Close any existing session before we change stores
