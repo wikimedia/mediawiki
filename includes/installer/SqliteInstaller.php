@@ -406,6 +406,7 @@ EOT;
 		'type' => 'sqlite',
 		'dbname' => \"{\$wgDBname}_jobqueue\",
 		'tablePrefix' => '',
+		'variables' => [ 'synchronous' => 'NORMAL' ],
 		'dbDirectory' => \$wgSQLiteDataDir,
 		'trxMode' => 'IMMEDIATE',
 		'flags' => 0
