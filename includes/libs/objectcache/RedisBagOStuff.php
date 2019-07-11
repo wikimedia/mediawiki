@@ -106,15 +106,15 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	protected function doSet( $key, $value, $expiry = 0, $flags = 0 ) {
+	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
 		}
-		$expiry = $this->convertToRelative( $expiry );
+		$ttl = $this->convertToRelative( $exptime );
 		try {
-			if ( $expiry ) {
-				$result = $conn->setex( $key, $expiry, $this->serialize( $value ) );
+			if ( $ttl ) {
+				$result = $conn->setex( $key, $ttl, $this->serialize( $value ) );
 			} else {
 				// No expiry, that is very different from zero expiry in Redis
 				$result = $conn->set( $key, $this->serialize( $value ) );
@@ -146,7 +146,7 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	public function doGetMulti( array $keys, $flags = 0 ) {
+	protected function doGetMulti( array $keys, $flags = 0 ) {
 		$batches = [];
 		$conns = [];
 		foreach ( $keys as $key ) {
@@ -185,7 +185,7 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	public function doSetMulti( array $data, $expiry = 0, $flags = 0 ) {
+	protected function doSetMulti( array $data, $expiry = 0, $flags = 0 ) {
 		$batches = [];
 		$conns = [];
 		foreach ( $data as $key => $value ) {
@@ -229,7 +229,7 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	public function doDeleteMulti( array $keys, $flags = 0 ) {
+	protected function doDeleteMulti( array $keys, $flags = 0 ) {
 		$batches = [];
 		$conns = [];
 		foreach ( $keys as $key ) {

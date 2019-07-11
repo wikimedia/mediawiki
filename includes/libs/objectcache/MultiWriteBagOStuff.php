@@ -210,12 +210,12 @@ class MultiWriteBagOStuff extends BagOStuff {
 
 	public function deleteObjectsExpiringBefore(
 		$timestamp,
-		callable $progressCallback = null,
+		callable $progress = null,
 		$limit = INF
 	) {
 		$ret = false;
 		foreach ( $this->caches as $cache ) {
-			if ( $cache->deleteObjectsExpiringBefore( $timestamp, $progressCallback, $limit ) ) {
+			if ( $cache->deleteObjectsExpiringBefore( $timestamp, $progress, $limit ) ) {
 				$ret = true;
 			}
 		}
@@ -236,7 +236,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 		return $res;
 	}
 
-	public function doSetMulti( array $data, $exptime = 0, $flags = 0 ) {
+	public function setMulti( array $data, $exptime = 0, $flags = 0 ) {
 		return $this->doWrite(
 			$this->cacheIndexes,
 			$this->usesAsyncWritesGivenFlags( $flags ),
@@ -245,7 +245,16 @@ class MultiWriteBagOStuff extends BagOStuff {
 		);
 	}
 
-	public function doDeleteMulti( array $data, $flags = 0 ) {
+	public function deleteMulti( array $data, $flags = 0 ) {
+		return $this->doWrite(
+			$this->cacheIndexes,
+			$this->usesAsyncWritesGivenFlags( $flags ),
+			__FUNCTION__,
+			func_get_args()
+		);
+	}
+
+	public function changeTTLMulti( array $keys, $exptime, $flags = 0 ) {
 		return $this->doWrite(
 			$this->cacheIndexes,
 			$this->usesAsyncWritesGivenFlags( $flags ),
@@ -370,11 +379,19 @@ class MultiWriteBagOStuff extends BagOStuff {
 		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
 	}
 
+	protected function doSetMulti( array $keys, $exptime = 0, $flags = 0 ) {
+		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
+	}
+
+	protected function doDeleteMulti( array $keys, $flags = 0 ) {
+		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
+	}
+
 	protected function serialize( $value ) {
 		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
 	}
 
-	protected function unserialize( $value ) {
+	protected function unserialize( $blob ) {
 		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
 	}
 }

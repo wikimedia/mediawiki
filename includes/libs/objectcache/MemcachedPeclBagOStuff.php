@@ -261,7 +261,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $result;
 	}
 
-	public function doGetMulti( array $keys, $flags = 0 ) {
+	protected function doGetMulti( array $keys, $flags = 0 ) {
 		$this->debug( 'getMulti(' . implode( ', ', $keys ) . ')' );
 		foreach ( $keys as $key ) {
 			$this->validateKeyEncoding( $key );
@@ -270,7 +270,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $this->checkResult( false, $result );
 	}
 
-	public function doSetMulti( array $data, $exptime = 0, $flags = 0 ) {
+	protected function doSetMulti( array $data, $exptime = 0, $flags = 0 ) {
 		$this->debug( 'setMulti(' . implode( ', ', array_keys( $data ) ) . ')' );
 		foreach ( array_keys( $data ) as $key ) {
 			$this->validateKeyEncoding( $key );
@@ -279,7 +279,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $this->checkResult( false, $result );
 	}
 
-	public function doDeleteMulti( array $keys, $flags = 0 ) {
+	protected function doDeleteMulti( array $keys, $flags = 0 ) {
 		$this->debug( 'deleteMulti(' . implode( ', ', $keys ) . ')' );
 		foreach ( $keys as $key ) {
 			$this->validateKeyEncoding( $key );
