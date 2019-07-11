@@ -19,6 +19,8 @@
  *
  * @file
  */
+
+use MediaWiki\Logger\LoggerFactory;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -100,7 +102,7 @@ class JobQueueRedis extends JobQueue {
 				"Non-daemonized mode is no longer supported. Please install the " .
 				"mediawiki/services/jobrunner service and update \$wgJobTypeConf as needed." );
 		}
-		$this->logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'redis' );
+		$this->logger = LoggerFactory::getInstance( 'redis' );
 	}
 
 	protected function supportedOrders() {
@@ -134,7 +136,7 @@ class JobQueueRedis extends JobQueue {
 		try {
 			return $conn->lSize( $this->getQueueKey( 'l-unclaimed' ) );
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $conn, $e );
+			throw $this->handleErrorAndMakeException( $conn, $e );
 		}
 	}
 
@@ -152,7 +154,7 @@ class JobQueueRedis extends JobQueue {
 
 			return array_sum( $conn->exec() );
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $conn, $e );
+			throw $this->handleErrorAndMakeException( $conn, $e );
 		}
 	}
 
@@ -166,7 +168,7 @@ class JobQueueRedis extends JobQueue {
 		try {
 			return $conn->zSize( $this->getQueueKey( 'z-delayed' ) );
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $conn, $e );
+			throw $this->handleErrorAndMakeException( $conn, $e );
 		}
 	}
 
@@ -180,7 +182,7 @@ class JobQueueRedis extends JobQueue {
 		try {
 			return $conn->zSize( $this->getQueueKey( 'z-abandoned' ) );
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $conn, $e );
+			throw $this->handleErrorAndMakeException( $conn, $e );
 		}
 	}
 
@@ -235,7 +237,7 @@ class JobQueueRedis extends JobQueue {
 				throw new RedisException( $err );
 			}
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $conn, $e );
+			throw $this->handleErrorAndMakeException( $conn, $e );
 		}
 	}
 
@@ -332,7 +334,7 @@ LUA;
 				$job = $this->getJobFromFields( $item ); // may be false
 			} while ( !$job ); // job may be false if invalid
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $conn, $e );
+			throw $this->handleErrorAndMakeException( $conn, $e );
 		}
 
 		return $job;
@@ -426,7 +428,7 @@ LUA;
 
 			$this->incrStats( 'acks', $this->type );
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $conn, $e );
+			throw $this->handleErrorAndMakeException( $conn, $e );
 		}
 
 		return true;
@@ -457,7 +459,7 @@ LUA;
 			// Update the timestamp of the last root job started at the location...
 			return $conn->set( $key, $params['rootJobTimestamp'], self::ROOTJOB_TTL ); // 2 weeks
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $conn, $e );
+			throw $this->handleErrorAndMakeException( $conn, $e );
 		}
 	}
 
@@ -478,8 +480,7 @@ LUA;
 			// Get the last time this root job was enqueued
 			$timestamp = $conn->get( $this->getRootJobCacheKey( $params['rootJobSignature'] ) );
 		} catch ( RedisException $e ) {
-			$timestamp = false;
-			$this->throwRedisException( $conn, $e );
+			throw $this->handleErrorAndMakeException( $conn, $e );
 		}
 
 		// Check if a new root job was started at the location after this one's...
@@ -507,7 +508,7 @@ LUA;
 
 			return $ok;
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $conn, $e );
+			throw $this->handleErrorAndMakeException( $conn, $e );
 		}
 	}
 
@@ -521,7 +522,7 @@ LUA;
 		try {
 			$uids = $conn->lRange( $this->getQueueKey( 'l-unclaimed' ), 0, -1 );
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $conn, $e );
+			throw $this->handleErrorAndMakeException( $conn, $e );
 		}
 
 		return $this->getJobIterator( $conn, $uids );
@@ -537,7 +538,7 @@ LUA;
 		try {
 			$uids = $conn->zRange( $this->getQueueKey( 'z-delayed' ), 0, -1 );
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $conn, $e );
+			throw $this->handleErrorAndMakeException( $conn, $e );
 		}
 
 		return $this->getJobIterator( $conn, $uids );
@@ -553,7 +554,7 @@ LUA;
 		try {
 			$uids = $conn->zRange( $this->getQueueKey( 'z-claimed' ), 0, -1 );
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $conn, $e );
+			throw $this->handleErrorAndMakeException( $conn, $e );
 		}
 
 		return $this->getJobIterator( $conn, $uids );
@@ -569,7 +570,7 @@ LUA;
 		try {
 			$uids = $conn->zRange( $this->getQueueKey( 'z-abandoned' ), 0, -1 );
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $conn, $e );
+			throw $this->handleErrorAndMakeException( $conn, $e );
 		}
 
 		return $this->getJobIterator( $conn, $uids );
@@ -616,7 +617,7 @@ LUA;
 				}
 			}
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $conn, $e );
+			throw $this->handleErrorAndMakeException( $conn, $e );
 		}
 
 		return $sizes;
@@ -626,12 +627,12 @@ LUA;
 	 * This function should not be called outside JobQueueRedis
 	 *
 	 * @param string $uid
-	 * @param RedisConnRef $conn
+	 * @param RedisConnRef|Redis $conn
 	 * @return RunnableJob|bool Returns false if the job does not exist
 	 * @throws JobQueueError
 	 * @throws UnexpectedValueException
 	 */
-	public function getJobFromUidInternal( $uid, RedisConnRef $conn ) {
+	public function getJobFromUidInternal( $uid, $conn ) {
 		try {
 			$data = $conn->hGet( $this->getQueueKey( 'h-data' ), $uid );
 			if ( $data === false ) {
@@ -653,7 +654,7 @@ LUA;
 
 			return $job;
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $conn, $e );
+			throw $this->handleErrorAndMakeException( $conn, $e );
 		}
 	}
 
@@ -672,7 +673,7 @@ LUA;
 				$queues[] = $this->decodeQueueName( $queue );
 			}
 		} catch ( RedisException $e ) {
-			$this->throwRedisException( $conn, $e );
+			throw $this->handleErrorAndMakeException( $conn, $e );
 		}
 
 		return $queues;
@@ -754,7 +755,7 @@ LUA;
 	/**
 	 * Get a connection to the server that handles all sub-queues for this queue
 	 *
-	 * @return RedisConnRef
+	 * @return RedisConnRef|Redis
 	 * @throws JobQueueConnectionError
 	 */
 	protected function getConnection() {
@@ -770,11 +771,11 @@ LUA;
 	/**
 	 * @param RedisConnRef $conn
 	 * @param RedisException $e
-	 * @throws JobQueueError
+	 * @return JobQueueError
 	 */
-	protected function throwRedisException( RedisConnRef $conn, $e ) {
+	protected function handleErrorAndMakeException( RedisConnRef $conn, $e ) {
 		$this->redisPool->handleError( $conn, $e );
-		throw new JobQueueError( "Redis server error: {$e->getMessage()}\n" );
+		return new JobQueueError( "Redis server error: {$e->getMessage()}\n" );
 	}
 
 	/**
