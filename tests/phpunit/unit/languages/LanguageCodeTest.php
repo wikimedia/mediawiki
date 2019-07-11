@@ -6,9 +6,7 @@
  *
  * @author Thiemo Kreuz
  */
-class LanguageCodeTest extends PHPUnit\Framework\TestCase {
-
-	use MediaWikiCoversValidator;
+class LanguageCodeTest extends MediaWikiUnitTestCase {
 
 	public function testConstructor() {
 		$instance = new LanguageCode();
