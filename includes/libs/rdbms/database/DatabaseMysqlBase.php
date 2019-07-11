@@ -24,7 +24,7 @@ namespace Wikimedia\Rdbms;
 
 use DateTime;
 use DateTimeZone;
-use Wikimedia;
+use Wikimedia\AtEase\AtEase;
 use InvalidArgumentException;
 use Exception;
 use RuntimeException;
@@ -244,9 +244,9 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @throws DBUnexpectedError
 	 */
 	public function freeResult( $res ) {
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$ok = $this->mysqlFreeResult( ResultWrapper::unwrap( $res ) );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		if ( !$ok ) {
 			throw new DBUnexpectedError( $this, "Unable to free MySQL result" );
 		}
@@ -266,9 +266,9 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @throws DBUnexpectedError
 	 */
 	public function fetchObject( $res ) {
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$row = $this->mysqlFetchObject( ResultWrapper::unwrap( $res ) );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		$errno = $this->lastErrno();
 		// Unfortunately, mysql_fetch_object does not reset the last errno.
@@ -299,9 +299,9 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @throws DBUnexpectedError
 	 */
 	public function fetchRow( $res ) {
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$row = $this->mysqlFetchArray( ResultWrapper::unwrap( $res ) );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		$errno = $this->lastErrno();
 		// Unfortunately, mysql_fetch_array does not reset the last errno.
@@ -335,9 +335,9 @@ abstract class DatabaseMysqlBase extends Database {
 		if ( is_bool( $res ) ) {
 			$n = 0;
 		} else {
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			$n = $this->mysqlNumRows( ResultWrapper::unwrap( $res ) );
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 		}
 
 		// Unfortunately, mysql_num_rows does not reset the last errno.
@@ -433,12 +433,12 @@ abstract class DatabaseMysqlBase extends Database {
 	public function lastError() {
 		if ( $this->conn ) {
 			# Even if it's non-zero, it can still be invalid
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			$error = $this->mysqlError( $this->conn );
 			if ( !$error ) {
 				$error = $this->mysqlError();
 			}
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 		} else {
 			$error = $this->mysqlError();
 		}
