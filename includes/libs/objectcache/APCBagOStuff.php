@@ -33,7 +33,7 @@
  *
  * @ingroup Cache
  */
-class APCBagOStuff extends BagOStuff {
+class APCBagOStuff extends MediumSpecificBagOStuff {
 	/** @var bool Whether to trust the APC implementation to serialization */
 	private $nativeSerialize;
 

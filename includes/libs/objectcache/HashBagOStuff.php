@@ -28,7 +28,7 @@
  *
  * @ingroup Cache
  */
-class HashBagOStuff extends BagOStuff {
+class HashBagOStuff extends MediumSpecificBagOStuff {
 	/** @var mixed[] */
 	protected $bag = [];
 	/** @var int Max entries allowed */

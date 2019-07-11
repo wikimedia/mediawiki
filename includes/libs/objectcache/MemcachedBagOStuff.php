@@ -26,7 +26,7 @@
  *
  * @ingroup Cache
  */
-abstract class MemcachedBagOStuff extends BagOStuff {
+abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 	function __construct( array $params ) {
 		parent::__construct( $params );
 
