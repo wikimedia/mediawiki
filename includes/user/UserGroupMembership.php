@@ -159,7 +159,15 @@ class UserGroupMembership {
 		}
 
 		// Purge old, expired memberships from the DB
-		JobQueueGroup::singleton()->push( new UserGroupExpiryJob() );
+		$hasExpiredRow = $dbw->selectField(
+			'user_groups',
+			'1',
+			[ 'ug_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ],
+			__METHOD__
+		);
+		if ( $hasExpiredRow ) {
+			JobQueueGroup::singleton()->lazyPush( new UserGroupExpiryJob() );
+		}
 
 		// Check that the values make sense
 		if ( $this->group === null ) {
