@@ -203,7 +203,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	}
 
 	/**
-	 * Acquire a lock for performing link table updates for a page on a DB
+	 * Acquire a session-level lock for performing link table updates for a page on a DB
 	 *
 	 * @param IDatabase $dbw
 	 * @param int $pageId
