@@ -266,6 +266,7 @@ because of Phabricator reports.
   in JavaScript, use mw.log.deprecate() instead.
 * The 'user.groups' module, deprecated in 1.28, was removed.
   Use the 'user' module instead.
+* The ability to override User::$mRights has been removed.
 * …
 
 === Deprecations in 1.34 ===
@@ -343,6 +344,8 @@ because of Phabricator reports.
   template option 'searchaction' instead.
 * LoadBalancer::haveIndex() and LoadBalancer::isNonZeroLoad() have
   been deprecated.
+* User::getRights() and User::$mRights have been deprecated. Use
+  PermissionManager::getUserPermissions() instead.
 
 === Other changes in 1.34 ===
 * …
