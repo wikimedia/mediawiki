@@ -163,6 +163,11 @@ class BrokenRedirectsPage extends QueryPage {
 		return $out;
 	}
 
+	public function execute( $par ) {
+		$this->addHelpLink( 'Help:Redirects' );
+		parent::execute( $par );
+	}
+
 	/**
 	 * Cache page content model for performance
 	 *

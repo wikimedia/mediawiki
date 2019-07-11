@@ -198,6 +198,11 @@ class DoubleRedirectsPage extends QueryPage {
 		return ( "{$linkA} {$edit} {$arr} {$linkB} {$arr} {$linkC}" );
 	}
 
+	public function execute( $par ) {
+		$this->addHelpLink( 'Help:Redirects' );
+		parent::execute( $par );
+	}
+
 	/**
 	 * Cache page content model and gender distinction for performance
 	 *
