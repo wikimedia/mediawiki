@@ -29,7 +29,6 @@ use PDOException;
 use Exception;
 use LockManager;
 use FSLockManager;
-use InvalidArgumentException;
 use RuntimeException;
 use stdClass;
 
@@ -37,12 +36,9 @@ use stdClass;
  * @ingroup Database
  */
 class DatabaseSqlite extends Database {
-	/** @var bool Whether full text is enabled */
-	private static $fulltextEnabled = null;
-
-	/** @var string|null Directory */
+	/** @var string|null Directory for SQLite database files listed under their DB name */
 	protected $dbDir;
-	/** @var string File name for SQLite database file */
+	/** @var string|null Explicit path for the SQLite database file */
 	protected $dbPath;
 	/** @var string Transaction mode */
 	protected $trxMode;
@@ -61,49 +57,40 @@ class DatabaseSqlite extends Database {
 	/** @var array List of shared database already attached to this connection */
 	private $alreadyAttached = [];
 
+	/** @var bool Whether full text is enabled */
+	private static $fulltextEnabled = null;
+
 	/**
 	 * Additional params include:
 	 *   - dbDirectory : directory containing the DB and the lock file directory
-	 *                   [defaults to $wgSQLiteDataDir]
 	 *   - dbFilePath  : use this to force the path of the DB file
 	 *   - trxMode     : one of (deferred, immediate, exclusive)
 	 * @param array $p
 	 */
-	function __construct( array $p ) {
+	public function __construct( array $p ) {
 		if ( isset( $p['dbFilePath'] ) ) {
 			$this->dbPath = $p['dbFilePath'];
-			$lockDomain = md5( $this->dbPath );
-			// Use "X" for things like X.sqlite and ":memory:" for RAM-only DBs
-			if ( !isset( $p['dbname'] ) || !strlen( $p['dbname'] ) ) {
-				$p['dbname'] = preg_replace( '/\.sqlite\d?$/', '', basename( $this->dbPath ) );
+			if ( !strlen( $p['dbname'] ) ) {
+				$p['dbname'] = self::generateDatabaseName( $this->dbPath );
 			}
 		} elseif ( isset( $p['dbDirectory'] ) ) {
 			$this->dbDir = $p['dbDirectory'];
-			$lockDomain = $p['dbname'];
-		} else {
-			throw new InvalidArgumentException( "Need 'dbDirectory' or 'dbFilePath' parameter." );
 		}
 
-		$this->trxMode = isset( $p['trxMode'] ) ? strtoupper( $p['trxMode'] ) : null;
-		if ( $this->trxMode &&
-			!in_array( $this->trxMode, [ 'DEFERRED', 'IMMEDIATE', 'EXCLUSIVE' ] )
-		) {
-			$this->trxMode = null;
-			$this->queryLogger->warning( "Invalid SQLite transaction mode provided." );
-		}
+		// Set a dummy user to make initConnection() trigger open()
+		parent::__construct( [ 'user' => '@' ] + $p );
 
-		if ( $this->hasProcessMemoryPath() ) {
-			$this->lockMgr = new NullLockManager( [ 'domain' => $lockDomain ] );
-		} else {
+		$this->trxMode = strtoupper( $p['trxMode'] ?? '' );
+
+		$lockDirectory = $this->getLockFileDirectory();
+		if ( $lockDirectory !== null ) {
 			$this->lockMgr = new FSLockManager( [
-				'domain' => $lockDomain,
-				'lockDirectory' => is_string( $this->dbDir )
-					? "{$this->dbDir}/locks"
-					: dirname( $this->dbPath ) . "/locks"
+				'domain' => $this->getDomainID(),
+				'lockDirectory' => $lockDirectory
 			] );
+		} else {
+			$this->lockMgr = new NullLockManager( [ 'domain' => $this->getDomainID() ] );
 		}
-
-		parent::__construct( $p );
 	}
 
 	protected static function getAttributes() {
@@ -129,38 +116,10 @@ class DatabaseSqlite extends Database {
 		return $db;
 	}
 
-	protected function doInitConnection() {
-		if ( $this->dbPath !== null ) {
-			// Standalone .sqlite file mode.
-			$this->openFile(
-				$this->dbPath,
-				$this->connectionParams['dbname'],
-				$this->connectionParams['tablePrefix']
-			);
-		} elseif ( $this->dbDir !== null ) {
-			// Stock wiki mode using standard file names per DB
-			if ( strlen( $this->connectionParams['dbname'] ) ) {
-				$this->open(
-					$this->connectionParams['host'],
-					$this->connectionParams['user'],
-					$this->connectionParams['password'],
-					$this->connectionParams['dbname'],
-					$this->connectionParams['schema'],
-					$this->connectionParams['tablePrefix']
-				);
-			} else {
-				// Caller will manually call open() later?
-				$this->connLogger->debug( __METHOD__ . ': no database opened.' );
-			}
-		} else {
-			throw new InvalidArgumentException( "Need 'dbDirectory' or 'dbFilePath' parameter." );
-		}
-	}
-
 	/**
 	 * @return string
 	 */
-	function getType() {
+	public function getType() {
 		return 'sqlite';
 	}
 
@@ -169,31 +128,35 @@ class DatabaseSqlite extends Database {
 	 *
 	 * @return bool
 	 */
-	function implicitGroupby() {
+	public function implicitGroupby() {
 		return false;
 	}
 
 	protected function open( $server, $user, $pass, $dbName, $schema, $tablePrefix ) {
 		$this->close();
 
+		// Note that for SQLite, $server, $user, and $pass are ignored
+
 		if ( $schema !== null ) {
-			throw new DBExpectedError( $this, __CLASS__ . ": domain schemas are not supported." );
+			throw new DBExpectedError( $this, __CLASS__ . ": cannot use schemas ('$schema')" );
 		}
 
-		// Only $dbName is used, the other parameters are irrelevant for SQLite databases
-		$this->openFile( self::generateFileName( $this->dbDir, $dbName ), $dbName, $tablePrefix );
-	}
+		if ( $this->dbPath !== null ) {
+			$path = $this->dbPath;
+		} elseif ( $this->dbDir !== null ) {
+			$path = self::generateFileName( $this->dbDir, $dbName );
+		} else {
+			throw new DBExpectedError( $this, __CLASS__ . ": DB path or directory required" );
+		}
 
-	/**
-	 * Opens a database file
-	 *
-	 * @param string $fileName
-	 * @param string $dbName
-	 * @param string $tablePrefix
-	 * @throws DBConnectionError
-	 */
-	protected function openFile( $fileName, $dbName, $tablePrefix ) {
-		if ( !$this->hasProcessMemoryPath() && !is_readable( $fileName ) ) {
+		if ( !in_array( $this->trxMode, [ '', 'DEFERRED', 'IMMEDIATE', 'EXCLUSIVE' ], true ) ) {
+			throw new DBExpectedError(
+				$this,
+				__CLASS__ . ": invalid transaction mode '{$this->trxMode}'"
+			);
+		}
+
+		if ( !self::isProcessMemoryPath( $path ) && !is_readable( $path ) ) {
 			$error = "SQLite database file not readable";
 			$this->connLogger->error(
 				"Error connecting to {db_server}: {error}",
@@ -202,20 +165,17 @@ class DatabaseSqlite extends Database {
 			throw new DBConnectionError( $this, $error );
 		}
 
-		$this->dbPath = $fileName;
 		try {
-			$this->conn = new PDO(
-				"sqlite:$fileName",
+			$conn = new PDO(
+				"sqlite:$path",
 				'',
 				'',
 				[ PDO::ATTR_PERSISTENT => (bool)( $this->flags & self::DBO_PERSISTENT ) ]
 			);
-			$error = 'unknown error';
+			// Set error codes only, don't raise exceptions
+			$conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
 		} catch ( PDOException $e ) {
 			$error = $e->getMessage();
-		}
-
-		if ( !$this->conn ) {
 			$this->connLogger->error(
 				"Error connecting to {db_server}: {error}",
 				$this->getLogContext( [ 'method' => __METHOD__, 'error' => $error ] )
@@ -223,19 +183,17 @@ class DatabaseSqlite extends Database {
 			throw new DBConnectionError( $this, $error );
 		}
 
+		$this->conn = $conn;
+		$this->currentDomain = new DatabaseDomain( $dbName, null, $tablePrefix );
+
 		try {
-			// Set error codes only, don't raise exceptions
-			$this->conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
-
-			$this->currentDomain = new DatabaseDomain( $dbName, null, $tablePrefix );
-
 			$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_NO_RETRY;
 			// Enforce LIKE to be case sensitive, just like MySQL
 			$this->query( 'PRAGMA case_sensitive_like = 1', __METHOD__, $flags );
 			// Apply an optimizations or requirements regarding fsync() usage
 			$sync = $this->connectionVariables['synchronous'] ?? null;
 			if ( in_array( $sync, [ 'EXTRA', 'FULL', 'NORMAL', 'OFF' ], true ) ) {
-				$this->query( "PRAGMA synchronous = $sync", __METHOD__ );
+				$this->query( "PRAGMA synchronous = $sync", __METHOD__, $flags );
 			}
 		} catch ( Exception $e ) {
 			// Connection was not fully initialized and is not safe for use
@@ -245,11 +203,25 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
-	 * @return string SQLite DB file path
+	 * @return string|null SQLite DB file path
+	 * @throws DBUnexpectedError
 	 * @since 1.25
 	 */
 	public function getDbFilePath() {
-		return $this->dbPath;
+		return $this->dbPath ?? self::generateFileName( $this->dbDir, $this->getDBname() );
+	}
+
+	/**
+	 * @return string|null Lock file directory
+	 */
+	public function getLockFileDirectory() {
+		if ( $this->dbPath !== null && !self::isProcessMemoryPath( $this->dbPath ) ) {
+			return dirname( $this->dbPath ) . '/locks';
+		} elseif ( $this->dbDir !== null && !self::isProcessMemoryPath( $this->dbDir ) ) {
+			return $this->dbDir . '/locks';
+		}
+
+		return null;
 	}
 
 	/**
@@ -265,11 +237,48 @@ class DatabaseSqlite extends Database {
 	/**
 	 * Generates a database file name. Explicitly public for installer.
 	 * @param string $dir Directory where database resides
-	 * @param string $dbName Database name
+	 * @param string|bool $dbName Database name (or false from Database::factory, validated here)
 	 * @return string
+	 * @throws DBUnexpectedError
 	 */
 	public static function generateFileName( $dir, $dbName ) {
+		if ( $dir == '' ) {
+			throw new DBUnexpectedError( null, __CLASS__ . ": no DB directory specified" );
+		} elseif ( self::isProcessMemoryPath( $dir ) ) {
+			throw new DBUnexpectedError(
+				null,
+				__CLASS__ . ": cannot use process memory directory '$dir'"
+			);
+		} elseif ( !strlen( $dbName ) ) {
+			throw new DBUnexpectedError( null, __CLASS__ . ": no DB name specified" );
+		}
+
 		return "$dir/$dbName.sqlite";
+	}
+
+	/**
+	 * @param string $path
+	 * @return string
+	 */
+	private static function generateDatabaseName( $path ) {
+		if ( preg_match( '/^(:memory:$|file::memory:)/', $path ) ) {
+			// E.g. "file::memory:?cache=shared" => ":memory":
+			return ':memory:';
+		} elseif ( preg_match( '/^file::([^?]+)\?mode=memory(&|$)/', $path, $m ) ) {
+			// E.g. "file:memdb1?mode=memory" => ":memdb1:"
+			return ":{$m[1]}:";
+		} else {
+			// E.g. "/home/.../some_db.sqlite3" => "some_db"
+			return preg_replace( '/\.sqlite\d?$/', '', basename( $path ) );
+		}
+	}
+
+	/**
+	 * @param string $path
+	 * @return bool
+	 */
+	private static function isProcessMemoryPath( $path ) {
+		return preg_match( '/^(:memory:$|file:(:memory:|[^?]+\?mode=memory(&|$)))/', $path );
 	}
 
 	/**
@@ -322,13 +331,11 @@ class DatabaseSqlite extends Database {
 	 * @param string $fname Calling function name
 	 * @return IResultWrapper
 	 */
-	function attachDatabase( $name, $file = false, $fname = __METHOD__ ) {
-		if ( !$file ) {
-			$file = self::generateFileName( $this->dbDir, $name );
-		}
-		$file = $this->addQuotes( $file );
+	public function attachDatabase( $name, $file = false, $fname = __METHOD__ ) {
+		$file = is_string( $file ) ? $file : self::generateFileName( $this->dbDir, $name );
+		$encFile = $this->addQuotes( $file );
 
-		return $this->query( "ATTACH DATABASE $file AS $name", $fname );
+		return $this->query( "ATTACH DATABASE $encFile AS $name", $fname );
 	}
 
 	protected function isWriteQuery( $sql ) {
@@ -765,14 +772,9 @@ class DatabaseSqlite extends Database {
 	}
 
 	public function serverIsReadOnly() {
-		return ( !$this->hasProcessMemoryPath() && !is_writable( $this->dbPath ) );
-	}
+		$path = $this->getDbFilePath();
 
-	/**
-	 * @return bool
-	 */
-	private function hasProcessMemoryPath() {
-		return ( strpos( $this->dbPath, ':memory:' ) === 0 );
+		return ( !self::isProcessMemoryPath( $path ) && !is_writable( $path ) );
 	}
 
 	/**
@@ -813,7 +815,7 @@ class DatabaseSqlite extends Database {
 	}
 
 	protected function doBegin( $fname = '' ) {
-		if ( $this->trxMode ) {
+		if ( $this->trxMode != '' ) {
 			$this->query( "BEGIN {$this->trxMode}", $fname );
 		} else {
 			$this->query( 'BEGIN', $fname );
@@ -967,15 +969,15 @@ class DatabaseSqlite extends Database {
 	}
 
 	public function lock( $lockName, $method, $timeout = 5 ) {
-		// Give better error message for permission problems than just returning false
+		$status = $this->lockMgr->lock( [ $lockName ], LockManager::LOCK_EX, $timeout );
 		if (
-			!is_dir( "{$this->dbDir}/locks" ) &&
-			( !is_writable( $this->dbDir ) || !mkdir( "{$this->dbDir}/locks" ) )
+			$this->lockMgr instanceof FSLockManager &&
+			$status->hasMessage( 'lockmanager-fail-openlock' )
 		) {
-			throw new DBError( $this, "Cannot create directory \"{$this->dbDir}/locks\"." );
+			throw new DBError( $this, "Cannot create directory \"{$this->getLockFileDirectory()}\"" );
 		}
 
-		return $this->lockMgr->lock( [ $lockName ], LockManager::LOCK_EX, $timeout )->isOK();
+		return $status->isOK();
 	}
 
 	public function unlock( $lockName, $method ) {
