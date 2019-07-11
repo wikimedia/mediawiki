@@ -96,7 +96,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 *   - sslCiphers : array list of allowable ciphers [default: null]
 	 * @param array $params
 	 */
-	function __construct( array $params ) {
+	public function __construct( array $params ) {
 		$this->lagDetectionMethod = $params['lagDetectionMethod'] ?? 'Seconds_Behind_Master';
 		$this->lagDetectionOptions = $params['lagDetectionOptions'] ?? [];
 		$this->useGTIDs = !empty( $params['useGTIDs' ] );
@@ -125,7 +125,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$this->close();
 
 		if ( $schema !== null ) {
-			throw new DBExpectedError( $this, __CLASS__ . ": domain schemas are not supported." );
+			throw new DBExpectedError( $this, __CLASS__ . ": cannot use schemas ('$schema')" );
 		}
 
 		$this->server = $server;
@@ -194,7 +194,10 @@ abstract class DatabaseMysqlBase extends Database {
 
 	protected function doSelectDomain( DatabaseDomain $domain ) {
 		if ( $domain->getSchema() !== null ) {
-			throw new DBExpectedError( $this, __CLASS__ . ": domain schemas are not supported." );
+			throw new DBExpectedError(
+				$this,
+				__CLASS__ . ": domain '{$domain->getId()}' has a schema component"
+			);
 		}
 
 		$database = $domain->getDatabase();

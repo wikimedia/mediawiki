@@ -1165,7 +1165,10 @@ class DatabaseMssql extends Database {
 
 	protected function doSelectDomain( DatabaseDomain $domain ) {
 		if ( $domain->getSchema() !== null ) {
-			throw new DBExpectedError( $this, __CLASS__ . ": domain schemas are not supported." );
+			throw new DBExpectedError(
+				$this,
+				__CLASS__ . ": domain '{$domain->getId()}' has a schema component"
+			);
 		}
 
 		$database = $domain->getDatabase();
