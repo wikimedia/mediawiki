@@ -158,6 +158,7 @@ class SpecialUndelete extends SpecialPage {
 
 		$this->setHeaders();
 		$this->outputHeader();
+		$this->addHelpLink( 'Help:Deletion_and_undeletion' );
 
 		$this->loadRequest( $par );
 		$this->checkPermissions(); // Needs to be after mTargetObj is set

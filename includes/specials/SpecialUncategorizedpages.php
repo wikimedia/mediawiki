@@ -35,6 +35,7 @@ class UncategorizedPagesPage extends PageQueryPage {
 
 	function __construct( $name = 'Uncategorizedpages' ) {
 		parent::__construct( $name );
+		$this->addHelpLink( 'Help:Categories' );
 	}
 
 	function sortDescending() {
