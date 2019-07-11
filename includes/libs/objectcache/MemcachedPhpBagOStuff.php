@@ -111,7 +111,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		);
 	}
 
-	public function doGetMulti( array $keys, $flags = 0 ) {
+	protected function doGetMulti( array $keys, $flags = 0 ) {
 		foreach ( $keys as $key ) {
 			$this->validateKeyEncoding( $key );
 		}

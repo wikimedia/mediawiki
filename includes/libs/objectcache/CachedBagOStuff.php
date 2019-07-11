@@ -83,16 +83,12 @@ class CachedBagOStuff extends BagOStuff {
 
 	public function deleteObjectsExpiringBefore(
 		$timestamp,
-		callable $progressCallback = null,
+		callable $progress = null,
 		$limit = INF
 	) {
-		$this->procCache->deleteObjectsExpiringBefore( $timestamp, $progressCallback, $limit );
+		$this->procCache->deleteObjectsExpiringBefore( $timestamp, $progress, $limit );
 
-		return $this->backend->deleteObjectsExpiringBefore(
-			$timestamp,
-			$progressCallback,
-			$limit
-		);
+		return $this->backend->deleteObjectsExpiringBefore( $timestamp, $progress, $limit );
 	}
 
 	// These just call the backend (tested elsewhere)

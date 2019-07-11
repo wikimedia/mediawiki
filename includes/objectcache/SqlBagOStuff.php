@@ -340,7 +340,7 @@ class SqlBagOStuff extends BagOStuff {
 		return $values;
 	}
 
-	public function doSetMulti( array $data, $exptime = 0, $flags = 0 ) {
+	protected function doSetMulti( array $data, $exptime = 0, $flags = 0 ) {
 		return $this->modifyMulti( $data, $exptime, $flags, self::$OP_SET );
 	}
 
@@ -509,7 +509,7 @@ class SqlBagOStuff extends BagOStuff {
 		return (bool)$db->affectedRows();
 	}
 
-	public function doDeleteMulti( array $keys, $flags = 0 ) {
+	protected function doDeleteMulti( array $keys, $flags = 0 ) {
 		return $this->modifyMulti(
 			array_fill_keys( $keys, null ),
 			0,
@@ -565,7 +565,7 @@ class SqlBagOStuff extends BagOStuff {
 		return $ok;
 	}
 
-	public function changeTTLMulti( array $keys, $exptime, $flags = 0 ) {
+	protected function doChangeTTLMulti( array $keys, $exptime, $flags = 0 ) {
 		return $this->modifyMulti(
 			array_fill_keys( $keys, null ),
 			$exptime,
@@ -634,7 +634,7 @@ class SqlBagOStuff extends BagOStuff {
 
 	public function deleteObjectsExpiringBefore(
 		$timestamp,
-		callable $progressCallback = null,
+		callable $progress = null,
 		$limit = INF
 	) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
@@ -653,7 +653,7 @@ class SqlBagOStuff extends BagOStuff {
 				$this->deleteServerObjectsExpiringBefore(
 					$db,
 					$timestamp,
-					$progressCallback,
+					$progress,
 					$limit,
 					$numServersDone,
 					$keysDeletedCount

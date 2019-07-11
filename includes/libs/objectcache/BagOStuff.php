@@ -407,7 +407,7 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
 	 * @return bool Success
 	 */
-	protected function mergeViaCas( $key, $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
+	final protected function mergeViaCas( $key, callable $callback, $exptime, $attempts, $flags ) {
 		do {
 			$casToken = null; // passed by reference
 			// Get the old value and CAS token from cache
@@ -665,19 +665,18 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	/**
 	 * Delete all objects expiring before a certain date.
 	 * @param string|int $timestamp The reference date in MW or TS_UNIX format
-	 * @param callable|null $progressCallback Optional, a function which will be called
+	 * @param callable|null $progress Optional, a function which will be called
 	 *     regularly during long-running operations with the percentage progress
 	 *     as the first parameter. [optional]
 	 * @param int $limit Maximum number of keys to delete [default: INF]
 	 *
-	 * @return bool Success, false if unimplemented
+	 * @return bool Success; false if unimplemented
 	 */
 	public function deleteObjectsExpiringBefore(
 		$timestamp,
-		callable $progressCallback = null,
+		callable $progress = null,
 		$limit = INF
 	) {
-		// stub
 		return false;
 	}
 
@@ -726,11 +725,10 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 * @return bool Success
 	 * @since 1.24
 	 */
-	final public function setMulti( array $data, $exptime = 0, $flags = 0 ) {
+	public function setMulti( array $data, $exptime = 0, $flags = 0 ) {
 		if ( ( $flags & self::WRITE_ALLOW_SEGMENTS ) === self::WRITE_ALLOW_SEGMENTS ) {
 			throw new InvalidArgumentException( __METHOD__ . ' got WRITE_ALLOW_SEGMENTS' );
 		}
-
 		return $this->doSetMulti( $data, $exptime, $flags );
 	}
 
@@ -745,7 +743,6 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 		foreach ( $data as $key => $value ) {
 			$res = $this->doSet( $key, $value, $exptime, $flags ) && $res;
 		}
-
 		return $res;
 	}
 
@@ -759,11 +756,10 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 * @return bool Success
 	 * @since 1.33
 	 */
-	final public function deleteMulti( array $keys, $flags = 0 ) {
+	public function deleteMulti( array $keys, $flags = 0 ) {
 		if ( ( $flags & self::WRITE_ALLOW_SEGMENTS ) === self::WRITE_ALLOW_SEGMENTS ) {
 			throw new InvalidArgumentException( __METHOD__ . ' got WRITE_ALLOW_SEGMENTS' );
 		}
-
 		return $this->doDeleteMulti( $keys, $flags );
 	}
 
@@ -777,7 +773,6 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 		foreach ( $keys as $key ) {
 			$res = $this->doDelete( $key, $flags ) && $res;
 		}
-
 		return $res;
 	}
 
@@ -853,7 +848,7 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 * @param mixed $mainValue
 	 * @return string|null|bool The combined string, false if missing, null on error
 	 */
-	protected function resolveSegments( $key, $mainValue ) {
+	final protected function resolveSegments( $key, $mainValue ) {
 		if ( SerializedValueContainer::isUnified( $mainValue ) ) {
 			return $this->unserialize( $mainValue->{SerializedValueContainer::UNIFIED_DATA} );
 		}
@@ -929,7 +924,7 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 * @param callable $workCallback
 	 * @since 1.28
 	 */
-	public function addBusyCallback( callable $workCallback ) {
+	final public function addBusyCallback( callable $workCallback ) {
 		$this->busyCallbacks[] = $workCallback;
 	}
 
@@ -938,9 +933,7 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 */
 	protected function debug( $text ) {
 		if ( $this->debugMode ) {
-			$this->logger->debug( "{class} debug: $text", [
-				'class' => static::class,
-			] );
+			$this->logger->debug( "{class} debug: $text", [ 'class' => static::class ] );
 		}
 	}
 
@@ -948,7 +941,7 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 * @param int $exptime
 	 * @return bool
 	 */
-	protected function expiryIsRelative( $exptime ) {
+	final protected function expiryIsRelative( $exptime ) {
 		return ( $exptime != 0 && $exptime < ( 10 * self::TTL_YEAR ) );
 	}
 
@@ -964,9 +957,7 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 * @param int $exptime Absolute TTL or 0 for indefinite
 	 * @return int
 	 */
-	protected function convertToExpiry( $exptime ) {
-		$exptime = (int)$exptime; // sanity
-
+	final protected function convertToExpiry( $exptime ) {
 		return $this->expiryIsRelative( $exptime )
 			? (int)$this->getCurrentTime() + $exptime
 			: $exptime;
@@ -979,16 +970,10 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 * @param int $exptime
 	 * @return int
 	 */
-	protected function convertToRelative( $exptime ) {
-		if ( $exptime >= ( 10 * self::TTL_YEAR ) ) {
-			$exptime -= (int)$this->getCurrentTime();
-			if ( $exptime <= 0 ) {
-				$exptime = 1;
-			}
-			return $exptime;
-		} else {
-			return $exptime;
-		}
+	final protected function convertToRelative( $exptime ) {
+		return $this->expiryIsRelative( $exptime )
+			? (int)$exptime
+			: max( $exptime - (int)$this->getCurrentTime(), 1 );
 	}
 
 	/**
@@ -997,7 +982,7 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 * @param mixed $value
 	 * @return bool
 	 */
-	protected function isInteger( $value ) {
+	final protected function isInteger( $value ) {
 		if ( is_int( $value ) ) {
 			return true;
 		} elseif ( !is_string( $value ) ) {
@@ -1080,7 +1065,7 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 * @param BagOStuff[] $bags
 	 * @return int[] Resulting flag map (class ATTR_* constant => class QOS_* constant)
 	 */
-	protected function mergeFlagMaps( array $bags ) {
+	final protected function mergeFlagMaps( array $bags ) {
 		$map = [];
 		foreach ( $bags as $bag ) {
 			foreach ( $bag->attrMap as $attr => $rank ) {
