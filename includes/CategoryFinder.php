@@ -213,14 +213,14 @@ class CategoryFinder {
 			/* WHERE  */ [ 'cl_from' => $this->next ],
 			__METHOD__ . '-1'
 		);
-		foreach ( $res as $o ) {
-			$k = $o->cl_to;
+		foreach ( $res as $row ) {
+			$k = $row->cl_to;
 
 			# Update parent tree
-			if ( !isset( $this->parents[$o->cl_from] ) ) {
-				$this->parents[$o->cl_from] = [];
+			if ( !isset( $this->parents[$row->cl_from] ) ) {
+				$this->parents[$row->cl_from] = [];
 			}
-			$this->parents[$o->cl_from][$k] = $o;
+			$this->parents[$row->cl_from][$k] = $row;
 
 			# Ignore those we already have
 			if ( in_array( $k, $this->deadend ) ) {
@@ -245,9 +245,9 @@ class CategoryFinder {
 				/* WHERE  */ [ 'page_namespace' => NS_CATEGORY, 'page_title' => $layer ],
 				__METHOD__ . '-2'
 			);
-			foreach ( $res as $o ) {
-				$id = $o->page_id;
-				$name = $o->page_title;
+			foreach ( $res as $row ) {
+				$id = $row->page_id;
+				$name = $row->page_title;
 				$this->name2id[$name] = $id;
 				$this->next[] = $id;
 				unset( $layer[$name] );
