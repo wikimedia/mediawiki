@@ -46,10 +46,12 @@
 		</exclude>
 	</groups>
 	<filter>
-		<whitelist addUncoveredFilesFromWhitelist="true">
+		<whitelist addUncoveredFilesFromWhitelist="false">
 			<directory suffix=".php">includes</directory>
 			<directory suffix=".php">languages</directory>
 			<directory suffix=".php">maintenance</directory>
+			<directory suffix=".php">extensions</directory>
+			<directory suffix=".php">skins</directory>
 			<exclude>
 				<directory suffix=".php">languages/messages</directory>
 				<file>languages/data/normalize-ar.php</file>
