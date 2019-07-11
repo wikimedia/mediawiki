@@ -365,18 +365,6 @@ class ObjectCache {
 	/**
 	 * Get the cache object for the main stash.
 	 *
-	 * Stash objects are BagOStuff instances suitable for storing light
-	 * weight data that is not canonically stored elsewhere (such as RDBMS).
-	 * Stashes should be configured to propagate changes to all data-centers.
-	 *
-	 * Callers should be prepared for:
-	 *   - a) Writes to be slower in non-"primary" (e.g. HTTP GET/HEAD only) DCs
-	 *   - b) Reads to be eventually consistent, e.g. for get()/getMulti()
-	 * In general, this means avoiding updates on idempotent HTTP requests and
-	 * avoiding an assumption of perfect serializability (or accepting anomalies).
-	 * Reads may be eventually consistent or data might rollback as nodes flap.
-	 * Callers can use BagOStuff:READ_LATEST to see the latest available data.
-	 *
 	 * @return BagOStuff
 	 * @since 1.26
 	 * @deprecated Since 1.28 Use MediaWikiServices::getInstance()->getMainObjectStash()
