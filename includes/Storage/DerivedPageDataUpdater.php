@@ -79,7 +79,7 @@ use WikiPage;
  *
  * DerivedPageDataUpdater instances are designed to be cached inside a WikiPage instance,
  * and re-used by callback code over the course of an update operation. It's a stepping stone
- * one the way to a more complete refactoring of WikiPage.
+ * on the way to a more complete refactoring of WikiPage.
  *
  * When using a DerivedPageDataUpdater, the following life cycle must be observed:
  * grabCurrentRevision (optional), prepareContent (optional), prepareUpdate (required
@@ -580,7 +580,6 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 */
 	public function isContentDeleted() {
 		if ( $this->revision ) {
-			// XXX: if that revision is the current revision, this should be skipped
 			return $this->revision->isDeleted( RevisionRecord::DELETED_TEXT );
 		} else {
 			// If the content has not been saved yet, it cannot have been deleted yet.
