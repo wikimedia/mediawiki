@@ -31,6 +31,7 @@
 class UncategorizedImagesPage extends ImageQueryPage {
 	function __construct( $name = 'Uncategorizedimages' ) {
 		parent::__construct( $name );
+		$this->addHelpLink( 'Help:Categories' );
 	}
 
 	function sortDescending() {
