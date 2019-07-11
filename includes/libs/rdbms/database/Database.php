@@ -198,19 +198,23 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var int Writes to this temporary table effect lastDoneWrites() */
 	private static $TEMP_PSEUDO_PERMANENT = 2;
 
-	/** Number of times to re-try an operation in case of deadlock */
+	/** @var int Number of times to re-try an operation in case of deadlock */
 	private static $DEADLOCK_TRIES = 4;
-	/** Minimum time to wait before retry, in microseconds */
+	/** @var int Minimum time to wait before retry, in microseconds */
 	private static $DEADLOCK_DELAY_MIN = 500000;
-	/** Maximum time to wait before retry */
+	/** @var int Maximum time to wait before retry */
 	private static $DEADLOCK_DELAY_MAX = 1500000;
 
-	/** How long before it is worth doing a dummy query to test the connection */
+	/** @var int How long before it is worth doing a dummy query to test the connection */
 	private static $PING_TTL = 1.0;
+	/** @var string Dummy SQL query */
 	private static $PING_QUERY = 'SELECT 1 AS ping';
 
+	/** @var float Guess of how many seconds it takes to replicate a small insert */
 	private static $TINY_WRITE_SEC = 0.010;
+	/** @var float Consider a write slow if it took more than this many seconds */
 	private static $SLOW_WRITE_SEC = 0.500;
+	/** @var float Assume an insert of this many rows or less should be fast to replicate */
 	private static $SMALL_WRITE_ROWS = 100;
 
 	/**
@@ -301,10 +305,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Open a new connection to the database (closing any existing one)
 	 *
-	 * @param string $server Database server host
-	 * @param string $user Database user name
-	 * @param string $password Database user password
-	 * @param string $dbName Database name
+	 * @param string|null $server Database server host
+	 * @param string|null $user Database user name
+	 * @param string|null $password Database user password
+	 * @param string|null $dbName Database name
 	 * @param string|null $schema Database schema name
 	 * @param string $tablePrefix Table prefix
 	 * @throws DBConnectionError
@@ -316,8 +320,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * This also connects to the database immediately upon object construction
 	 *
-	 * @param string $dbType A possible DB type (sqlite, mysql, postgres,...)
-	 * @param array $p Parameter map with keys:
+	 * @param string $type A possible DB type (sqlite, mysql, postgres,...)
+	 * @param array $params Parameter map with keys:
 	 *   - host : The hostname of the DB server
 	 *   - user : The name of the database user the client operates under
 	 *   - password : The password for the database user
@@ -356,45 +360,51 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @throws InvalidArgumentException If the database driver or extension cannot be found
 	 * @since 1.18
 	 */
-	final public static function factory( $dbType, $p = [], $connect = self::NEW_CONNECTED ) {
-		$class = self::getClass( $dbType, $p['driver'] ?? null );
+	final public static function factory( $type, $params = [], $connect = self::NEW_CONNECTED ) {
+		$class = self::getClass( $type, $params['driver'] ?? null );
 
 		if ( class_exists( $class ) && is_subclass_of( $class, IDatabase::class ) ) {
-			// Resolve some defaults for b/c
-			$p['host'] = $p['host'] ?? false;
-			$p['user'] = $p['user'] ?? false;
-			$p['password'] = $p['password'] ?? false;
-			$p['dbname'] = $p['dbname'] ?? false;
-			$p['flags'] = $p['flags'] ?? 0;
-			$p['variables'] = $p['variables'] ?? [];
-			$p['tablePrefix'] = $p['tablePrefix'] ?? '';
-			$p['schema'] = $p['schema'] ?? null;
-			$p['cliMode'] = $p['cliMode'] ?? ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
-			$p['agent'] = $p['agent'] ?? '';
-			if ( !isset( $p['connLogger'] ) ) {
-				$p['connLogger'] = new NullLogger();
-			}
-			if ( !isset( $p['queryLogger'] ) ) {
-				$p['queryLogger'] = new NullLogger();
-			}
-			$p['profiler'] = $p['profiler'] ?? null;
-			if ( !isset( $p['trxProfiler'] ) ) {
-				$p['trxProfiler'] = new TransactionProfiler();
-			}
-			if ( !isset( $p['errorLogger'] ) ) {
-				$p['errorLogger'] = function ( Exception $e ) {
+			$params += [
+				'host' => null,
+				'user' => null,
+				'password' => null,
+				'dbname' => null,
+				'schema' => null,
+				'tablePrefix' => '',
+				'flags' => 0,
+				'variables' => [],
+				'cliMode' => ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' ),
+				'agent' => basename( $_SERVER['SCRIPT_NAME'] ) . '@' . gethostname()
+			];
+
+			$normalizedParams = [
+				// Configuration
+				'host' => strlen( $params['host'] ) ? $params['host'] : null,
+				'user' => strlen( $params['user'] ) ? $params['user'] : null,
+				'password' => is_string( $params['password'] ) ? $params['password'] : null,
+				'dbname' => strlen( $params['dbname'] ) ? $params['dbname'] : null,
+				'schema' => strlen( $params['schema'] ) ? $params['schema'] : null,
+				'tablePrefix' => (string)$params['tablePrefix'],
+				'flags' => (int)$params['flags'],
+				'variables' => $params['variables'],
+				'cliMode' => (bool)$params['cliMode'],
+				'agent' => (string)$params['agent'],
+				// Objects and callbacks
+				'profiler' => $params['profiler'] ?? null,
+				'trxProfiler' => $params['trxProfiler'] ?? new TransactionProfiler(),
+				'connLogger' => $params['connLogger'] ?? new NullLogger(),
+				'queryLogger' => $params['queryLogger'] ?? new NullLogger(),
+				'errorLogger' => $params['errorLogger'] ?? function ( Exception $e ) {
 					trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
-				};
-			}
-			if ( !isset( $p['deprecationLogger'] ) ) {
-				$p['deprecationLogger'] = function ( $msg ) {
+				},
+				'deprecationLogger' => $params['deprecationLogger'] ?? function ( $msg ) {
 					trigger_error( $msg, E_USER_DEPRECATED );
-				};
-			}
+				}
+			] + $params;
 
 			/** @var Database $conn */
-			$conn = new $class( $p );
-			if ( $connect == self::NEW_CONNECTED ) {
+			$conn = new $class( $normalizedParams );
+			if ( $connect === self::NEW_CONNECTED ) {
 				$conn->initConnection();
 			}
 		} else {
