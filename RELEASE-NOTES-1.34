@@ -277,7 +277,8 @@ because of Phabricator reports.
   in JavaScript, use mw.log.deprecate() instead.
 * The 'user.groups' module, deprecated in 1.28, was removed.
   Use the 'user' module instead.
-* The ability to override User::$mRights has been removed.
+* The ability to override User::$mRights has been removed. Use
+  PermissionManager::addTemporaryUserRights() instead.
 * Previously, when iterating ResultWrapper with foreach() or a similar
   construct, the range of the index was 1..numRows. This has been fixed to be
   0..(numRows-1).

@@ -32,6 +32,7 @@ use RequestContext;
 use SpecialPage;
 use Title;
 use User;
+use Wikimedia\ScopedCallback;
 use WikiPage;
 
 /**
@@ -83,6 +84,12 @@ class PermissionManager {
 
 	/** @var string[][] Cached user rights */
 	private $usersRights = null;
+
+	/**
+	 * Temporary user rights, valid for the current request only.
+	 * @var string[][][] userid => override group => rights
+	 */
+	private $temporaryUserRights = [];
 
 	/** @var string[] Cached rights for isEveryoneAllowed */
 	private $cachedRights = [];
@@ -1223,7 +1230,11 @@ class PermissionManager {
 				);
 			}
 		}
-		return $this->usersRights[ $user->getId() ];
+		$rights = $this->usersRights[ $user->getId() ];
+		foreach ( $this->temporaryUserRights[ $user->getId() ] ?? [] as $overrides ) {
+			$rights = array_values( array_unique( array_merge( $rights, $overrides ) ) );
+		}
+		return $rights;
 	}
 
 	/**
@@ -1389,6 +1400,33 @@ class PermissionManager {
 			Hooks::run( 'UserGetAllRights', [ &$this->allRights ] );
 		}
 		return $this->allRights;
+	}
+
+	/**
+	 * Add temporary user rights, only valid for the current scope.
+	 * This is meant for making it possible to programatically trigger certain actions that
+	 * the user wouldn't be able to trigger themselves; e.g. allow users without the bot right
+	 * to make bot-flagged actions through certain special pages.
+	 * Returns a "scope guard" variable; whenever that variable goes out of scope or is consumed
+	 * via ScopedCallback::consume(), the temporary rights are revoked.
+	 * @param UserIdentity $user
+	 * @param string|string[] $rights
+	 * @return ScopedCallback
+	 */
+	public function addTemporaryUserRights( UserIdentity $user, $rights ) {
+		$nextKey = count( $this->temporaryUserRights[$user->getId()] ?? [] );
+		$this->temporaryUserRights[$user->getId()][$nextKey] = (array)$rights;
+		return new ScopedCallback( [ $this, 'revokeTemporaryUserRights' ], [ $user->getId(), $nextKey ] );
+	}
+
+	/**
+	 * Revoke rights added by addTemporaryUserRights().
+	 * @param int $userId
+	 * @param int $rightsGroupKey Key in self::$temporaryUserRights
+	 * @internal For use by addTemporaryUserRights() only.
+	 */
+	public function revokeTemporaryUserRights( $userId, $rightsGroupKey ) {
+		unset( $this->temporaryUserRights[$userId][$rightsGroupKey] );
 	}
 
 	/**
