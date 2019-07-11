@@ -31,22 +31,19 @@ use Exception;
  * @ingroup Database
  */
 class DatabasePostgres extends Database {
-	/** @var int|bool */
-	protected $port;
-
-	/** @var resource */
-	protected $lastResultHandle = null;
-
-	/** @var float|string */
-	private $numericVersion = null;
-	/** @var string Connect string to open a PostgreSQL connection */
-	private $connectString;
+	/** @var int|null */
+	private $port;
 	/** @var string */
 	private $coreSchema;
 	/** @var string */
 	private $tempSchema;
 	/** @var string[] Map of (reserved table name => alternate table name) */
 	private $keywordTableMap = [];
+	/** @var float|string */
+	private $numericVersion;
+
+	/** @var resource|null */
+	private $lastResultHandle;
 
 	/**
 	 * @see Database::__construct()
@@ -54,7 +51,7 @@ class DatabasePostgres extends Database {
 	 *   - keywordTableMap : Map of reserved table names to alternative table names to use
 	 */
 	public function __construct( array $params ) {
-		$this->port = $params['port'] ?? false;
+		$this->port = intval( $params['port'] ?? null );
 		$this->keywordTableMap = $params['keywordTableMap'] ?? [];
 
 		parent::__construct( $params );
@@ -87,13 +84,11 @@ class DatabasePostgres extends Database {
 	}
 
 	protected function open( $server, $user, $password, $dbName, $schema, $tablePrefix ) {
-		// Test for Postgres support, to avoid suppressed fatal error
 		if ( !function_exists( 'pg_connect' ) ) {
-			throw new DBConnectionError(
-				$this,
+			throw $this->newExceptionAfterConnectError(
 				"Postgres functions missing, have you compiled PHP with the --with-pgsql\n" .
 				"option? (Note: if you recently installed PHP, you may need to restart your\n" .
-				"webserver and database)\n"
+				"webserver and database)"
 			);
 		}
 
@@ -104,60 +99,47 @@ class DatabasePostgres extends Database {
 		$this->password = $password;
 
 		$connectVars = [
-			// pg_connect() user $user as the default database. Since a database is *required*,
-			// at least pick a "don't care" database that is more likely to exist. This case
-			// arrises when LoadBalancer::getConnection( $i, [], '' ) is used.
+			// pg_connect() user $user as the default database. Since a database is required,
+			// then pick a "don't care" database that is more likely to exist than that one.
 			'dbname' => strlen( $dbName ) ? $dbName : 'postgres',
 			'user' => $user,
 			'password' => $password
 		];
-		if ( $server != false && $server != '' ) {
+		if ( strlen( $server ) ) {
 			$connectVars['host'] = $server;
 		}
-		if ( (int)$this->port > 0 ) {
-			$connectVars['port'] = (int)$this->port;
+		if ( $this->port > 0 ) {
+			$connectVars['port'] = $this->port;
 		}
-		if ( $this->flags & self::DBO_SSL ) {
+		if ( $this->getFlag( self::DBO_SSL ) ) {
 			$connectVars['sslmode'] = 'require';
 		}
-
-		$this->connectString = $this->makeConnectionString( $connectVars );
+		$connectString = $this->makeConnectionString( $connectVars );
 
 		$this->installErrorHandler();
 		try {
-			// Use new connections to let LoadBalancer/LBFactory handle reuse
-			$this->conn = pg_connect( $this->connectString, PGSQL_CONNECT_FORCE_NEW );
-		} catch ( Exception $ex ) {
+			$this->conn = pg_connect( $connectString, PGSQL_CONNECT_FORCE_NEW ) ?: null;
+		} catch ( Exception $e ) {
 			$this->restoreErrorHandler();
-			throw $ex;
+			throw $this->newExceptionAfterConnectError( $e->getMessage() );
 		}
-		$phpError = $this->restoreErrorHandler();
+		$error = $this->restoreErrorHandler();
 
 		if ( !$this->conn ) {
-			$this->queryLogger->debug(
-				"DB connection error\n" .
-				"Server: $server, Database: $dbName, User: $user, Password: " .
-				substr( $password, 0, 3 ) . "...\n"
-			);
-			$this->queryLogger->debug( $this->lastError() . "\n" );
-			throw new DBConnectionError( $this, str_replace( "\n", ' ', $phpError ) );
+			throw $this->newExceptionAfterConnectError( $error ?: $this->lastError() );
 		}
 
 		try {
-			// If called from the command-line (e.g. importDump), only show errors.
-			// No transaction should be open at this point, so the problem of the SET
-			// effects being rolled back should not be an issue.
+			// Since no transaction is active at this point, any SET commands should apply
+			// for the entire session (e.g. will not be reverted on transaction rollback).
 			// See https://www.postgresql.org/docs/8.3/sql-set.html
-			$variables = [];
-			if ( $this->cliMode ) {
-				$variables['client_min_messages'] = 'ERROR';
-			}
-			$variables += [
+			$variables = [
 				'client_encoding' => 'UTF8',
 				'datestyle' => 'ISO, YMD',
 				'timezone' => 'GMT',
 				'standard_conforming_strings' => 'on',
-				'bytea_output' => 'escape'
+				'bytea_output' => 'escape',
+				'client_min_messages' => 'ERROR'
 			];
 			foreach ( $variables as $var => $val ) {
 				$this->query(
@@ -166,12 +148,10 @@ class DatabasePostgres extends Database {
 					self::QUERY_IGNORE_DBO_TRX | self::QUERY_NO_RETRY
 				);
 			}
-
 			$this->determineCoreSchema( $schema );
 			$this->currentDomain = new DatabaseDomain( $dbName, $schema, $tablePrefix );
 		} catch ( Exception $e ) {
-			// Connection was not fully initialized and is not safe for use
-			$this->conn = false;
+			throw $this->newExceptionAfterConnectError( $e->getMessage() );
 		}
 	}
 
@@ -1026,7 +1006,7 @@ __INDEXATTR__;
 	 * Values may contain magic keywords like "$user"
 	 * @since 1.19
 	 *
-	 * @param array $search_path List of schemas to be searched by default
+	 * @param string[] $search_path List of schemas to be searched by default
 	 */
 	private function setSearchPath( $search_path ) {
 		$this->query(
@@ -1066,11 +1046,7 @@ __INDEXATTR__;
 				$this->queryLogger->debug(
 					"Schema \"" . $desiredSchema . "\" already in the search path\n" );
 			} else {
-				/**
-				 * Prepend our schema (e.g. 'mediawiki') in front
-				 * of the search path
-				 * Fixes T17816
-				 */
+				// Prepend the desired schema to the search path (T17816)
 				$search_path = $this->getSearchPath();
 				array_unshift( $search_path, $this->addIdentifierQuotes( $desiredSchema ) );
 				$this->setSearchPath( $search_path );

@@ -54,14 +54,14 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	/**
 	 * @param string $realServer
 	 * @param string|null $dbName
-	 * @return bool|mysqli
+	 * @return mysqli|null
 	 * @throws DBConnectionError
 	 */
 	protected function mysqlConnect( $realServer, $dbName ) {
-		# Avoid suppressed fatal error, which is very hard to track down
 		if ( !function_exists( 'mysqli_init' ) ) {
-			throw new DBConnectionError( $this, "MySQLi functions missing,"
-				. " have you compiled PHP with the --with-mysqli option?\n" );
+			throw $this->newExceptionAfterConnectError(
+				"MySQLi functions missing, have you compiled PHP with the --with-mysqli option?"
+			);
 		}
 
 		// Other than mysql_connect, mysqli_real_connect expects an explicit port
@@ -84,7 +84,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		$mysqli = mysqli_init();
 
 		$connFlags = 0;
-		if ( $this->flags & self::DBO_SSL ) {
+		if ( $this->getFlag( self::DBO_SSL ) ) {
 			$connFlags |= MYSQLI_CLIENT_SSL;
 			$mysqli->ssl_set(
 				$this->sslKeyPath,
@@ -94,10 +94,10 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 				$this->sslCiphers
 			);
 		}
-		if ( $this->flags & self::DBO_COMPRESS ) {
+		if ( $this->getFlag( self::DBO_COMPRESS ) ) {
 			$connFlags |= MYSQLI_CLIENT_COMPRESS;
 		}
-		if ( $this->flags & self::DBO_PERSISTENT ) {
+		if ( $this->getFlag( self::DBO_PERSISTENT ) ) {
 			$realServer = 'p:' . $realServer;
 		}
 
@@ -122,7 +122,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 			return $mysqli;
 		}
 
-		return false;
+		return null;
 	}
 
 	/**

@@ -2052,23 +2052,21 @@ $wgSharedSchema = false;
  *                  sent to it. It will be excluded from lag checks in maintenance scripts.
  *                  The only way it can receive traffic is if groupLoads is used.
  *
- *   - groupLoads:  array of load ratios, the key is the query group name. A query may belong
- *                  to several groups, the most specific group defined here is used.
+ *   - groupLoads:  (optional) Array of load ratios, the key is the query group name. A query
+ *                  may belong to several groups, the most specific group defined here is used.
  *
- *   - flags:       bit field
- *                  - DBO_DEFAULT -- turns on DBO_TRX only if "cliMode" is off (recommended)
- *                  - DBO_DEBUG -- equivalent of $wgDebugDumpSql
- *                  - DBO_TRX -- wrap entire request in a transaction
- *                  - DBO_NOBUFFER -- turn off buffering (not useful in LocalSettings.php)
- *                  - DBO_PERSISTENT -- enables persistent database connections
- *                  - DBO_SSL -- uses SSL/TLS encryption in database connections, if available
- *                  - DBO_COMPRESS -- uses internal compression in database connections,
- *                                    if available
+ *   - flags:       (optional) Bit field of properties:
+ *                  - DBO_DEFAULT:    Transactionalize web requests and use autocommit otherwise
+ *                  - DBO_DEBUG:      Equivalent of $wgDebugDumpSql
+ *                  - DBO_SSL:        Use TLS connection encryption if available
+ *                  - DBO_COMPRESS:   Use protocol compression with database connections
+ *                  - DBO_PERSISTENT: Enables persistent database connections
  *
  *   - max lag:     (optional) Maximum replication lag before a replica DB goes out of rotation
  *   - is static:   (optional) Set to true if the dataset is static and no replication is used.
  *   - cliMode:     (optional) Connection handles will not assume that requests are short-lived
  *                  nor that INSERT..SELECT can be rewritten into a buffered SELECT and INSERT.
+ *                  This is what DBO_DEFAULT uses to determine when a web request is present.
  *                  [Default: uses value of $wgCommandLineMode]
  *
  *   These and any other user-defined properties will be assigned to the mLBInfo member
@@ -2137,34 +2135,6 @@ $wgDBerrorLog = false;
  * @since 1.20
  */
 $wgDBerrorLogTZ = false;
-
-/**
- * Set true to enable Oracle DCRP (supported from 11gR1 onward)
- *
- * To use this feature set to true and use a datasource defined as
- * POOLED (i.e. in tnsnames definition set server=pooled in connect_data
- * block).
- *
- * Starting from 11gR1 you can use DCRP (Database Resident Connection
- * Pool) that maintains established sessions and reuses them on new
- * connections.
- *
- * Not completely tested, but it should fall back on normal connection
- * in case the pool is full or the datasource is not configured as
- * pooled.
- * And the other way around; using oci_pconnect on a non pooled
- * datasource should produce a normal connection.
- *
- * When it comes to frequent shortlived DB connections like with MW
- * Oracle tends to s***. The problem is the driver connects to the
- * database reasonably fast, but establishing a session takes time and
- * resources. MW does not rely on session state (as it does not use
- * features such as package variables) so establishing a valid session
- * is in this case an unwanted overhead that just slows things down.
- *
- * @warning EXPERIMENTAL!
- */
-$wgDBOracleDRCP = false;
 
 /**
  * Other wikis on this site, can be administered from a single developer account.

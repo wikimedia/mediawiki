@@ -60,6 +60,9 @@ class DatabaseSqlite extends Database {
 	/** @var bool Whether full text is enabled */
 	private static $fulltextEnabled = null;
 
+	/** @var string[] See https://www.sqlite.org/lang_transaction.html */
+	private static $VALID_TRX_MODES = [ '', 'DEFERRED', 'IMMEDIATE', 'EXCLUSIVE' ];
+
 	/**
 	 * Additional params include:
 	 *   - dbDirectory : directory containing the DB and the lock file directory
@@ -77,8 +80,7 @@ class DatabaseSqlite extends Database {
 			$this->dbDir = $p['dbDirectory'];
 		}
 
-		// Set a dummy user to make initConnection() trigger open()
-		parent::__construct( [ 'user' => '@' ] + $p );
+		parent::__construct( $p );
 
 		$this->trxMode = strtoupper( $p['trxMode'] ?? '' );
 
@@ -138,7 +140,7 @@ class DatabaseSqlite extends Database {
 		// Note that for SQLite, $server, $user, and $pass are ignored
 
 		if ( $schema !== null ) {
-			throw new DBExpectedError( $this, __CLASS__ . ": cannot use schemas ('$schema')" );
+			throw $this->newExceptionAfterConnectError( "Got schema '$schema'; not supported." );
 		}
 
 		if ( $this->dbPath !== null ) {
@@ -146,59 +148,45 @@ class DatabaseSqlite extends Database {
 		} elseif ( $this->dbDir !== null ) {
 			$path = self::generateFileName( $this->dbDir, $dbName );
 		} else {
-			throw new DBExpectedError( $this, __CLASS__ . ": DB path or directory required" );
-		}
-
-		if ( !in_array( $this->trxMode, [ '', 'DEFERRED', 'IMMEDIATE', 'EXCLUSIVE' ], true ) ) {
-			throw new DBExpectedError(
-				$this,
-				__CLASS__ . ": invalid transaction mode '{$this->trxMode}'"
-			);
+			throw $this->newExceptionAfterConnectError( "DB path or directory required" );
 		}
 
 		if ( !self::isProcessMemoryPath( $path ) && !is_readable( $path ) ) {
-			$error = "SQLite database file not readable";
-			$this->connLogger->error(
-				"Error connecting to {db_server}: {error}",
-				$this->getLogContext( [ 'method' => __METHOD__, 'error' => $error ] )
-			);
-			throw new DBConnectionError( $this, $error );
+			throw $this->newExceptionAfterConnectError( 'SQLite database file is not readable' );
+		} elseif ( !in_array( $this->trxMode, self::$VALID_TRX_MODES, true ) ) {
+			throw $this->newExceptionAfterConnectError( "Got mode '{$this->trxMode}' for BEGIN" );
+		}
+
+		$attributes = [];
+		if ( $this->getFlag( self::DBO_PERSISTENT ) ) {
+			// Persistent connections can avoid some schema index reading overhead.
+			// On the other hand, they can cause horrible contention with DBO_TRX.
+			if ( $this->getFlag( self::DBO_TRX ) ) {
+				$this->connLogger->warning( __METHOD__ . ": DBO_PERSISTENT mixed with DBO_TRX" );
+			} else {
+				$attributes[PDO::ATTR_PERSISTENT] = true;
+			}
 		}
 
 		try {
-			$conn = new PDO(
-				"sqlite:$path",
-				'',
-				'',
-				[ PDO::ATTR_PERSISTENT => (bool)( $this->flags & self::DBO_PERSISTENT ) ]
-			);
-			// Set error codes only, don't raise exceptions
-			$conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
+			$this->conn = new PDO( "sqlite:$path", null, null, $attributes );
 		} catch ( PDOException $e ) {
-			$error = $e->getMessage();
-			$this->connLogger->error(
-				"Error connecting to {db_server}: {error}",
-				$this->getLogContext( [ 'method' => __METHOD__, 'error' => $error ] )
-			);
-			throw new DBConnectionError( $this, $error );
+			throw $this->newExceptionAfterConnectError( $e->getMessage() );
 		}
 
-		$this->conn = $conn;
 		$this->currentDomain = new DatabaseDomain( $dbName, null, $tablePrefix );
 
 		try {
 			$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_NO_RETRY;
 			// Enforce LIKE to be case sensitive, just like MySQL
 			$this->query( 'PRAGMA case_sensitive_like = 1', __METHOD__, $flags );
-			// Apply an optimizations or requirements regarding fsync() usage
+			// Apply optimizations or requirements regarding fsync() usage
 			$sync = $this->connectionVariables['synchronous'] ?? null;
 			if ( in_array( $sync, [ 'EXTRA', 'FULL', 'NORMAL', 'OFF' ], true ) ) {
 				$this->query( "PRAGMA synchronous = $sync", __METHOD__, $flags );
 			}
 		} catch ( Exception $e ) {
-			// Connection was not fully initialized and is not safe for use
-			$this->conn = false;
-			throw $e;
+			throw $this->newExceptionAfterConnectError( $e->getMessage() );
 		}
 	}
 

@@ -28,7 +28,6 @@ use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\ResultWrapper;
 use Wikimedia\Rdbms\IResultWrapper;
-use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\DBUnexpectedError;
 use Wikimedia\Rdbms\DBExpectedError;
 
@@ -90,91 +89,90 @@ class DatabaseOracle extends Database {
 
 	protected function open( $server, $user, $password, $dbName, $schema, $tablePrefix ) {
 		if ( !function_exists( 'oci_connect' ) ) {
-			throw new DBConnectionError(
-				$this,
+			throw $this->newExceptionAfterConnectError(
 				"Oracle functions missing, have you compiled PHP with the --with-oci8 option?\n " .
-					"(Note: if you recently installed PHP, you may need to restart your webserver\n " .
-					"and database)\n" );
-		}
-
-		if ( $schema !== null ) {
-			// We use the *database* aspect of $domain for schema, not the domain schema
-			throw new DBExpectedError(
-				$this,
-				__CLASS__ . ": cannot use schema '$schema'; " .
-				"the database component '$dbName' is actually interpreted as the Oracle schema."
+				"(Note: if you recently installed PHP, you may need to restart your webserver\n " .
+				"and database)"
 			);
 		}
 
 		$this->close();
+
+		if ( $schema !== null ) {
+			// This uses the *database* aspect of $domain for schema, not the domain schema
+			throw $this->newExceptionAfterConnectError(
+				"Got schema '$schema'; not supported. " .
+				"The database component '$dbName' is actually interpreted as the Oracle schema."
+			);
+		}
+
 		$this->user = $user;
 		$this->password = $password;
-		if ( !$server ) {
-			// Backward compatibility (server used to be null and TNS was supplied in dbname)
+		if ( strlen( $server ) ) {
+			// Transparent Network Substrate (TNS) endpoint
+			$this->server = $server;
+			// Database name, defaulting to the user name
+			$realDatabase = strlen( $dbName ) ? $dbName : $user;
+		} else {
+			// Backward compatibility; $server used to be null and $dbName was the TNS
 			$this->server = $dbName;
 			$realDatabase = $user;
-		} else {
-			// $server now holds the TNS endpoint
-			$this->server = $server;
-			// $dbName is schema name if different from username
-			$realDatabase = $dbName ?: $user;
 		}
-
-		if ( !strlen( $user ) ) { # e.g. the class is being loaded
-			return null;
-		}
-
 		$session_mode = ( $this->flags & DBO_SYSDBA ) ? OCI_SYSDBA : OCI_DEFAULT;
 
-		Wikimedia\suppressWarnings();
-		if ( $this->flags & DBO_PERSISTENT ) {
-			$this->conn = oci_pconnect(
-				$this->user,
-				$this->password,
-				$this->server,
-				$this->defaultCharset,
-				$session_mode
-			);
-		} elseif ( $this->flags & DBO_DEFAULT ) {
-			$this->conn = oci_new_connect(
-				$this->user,
-				$this->password,
-				$this->server,
-				$this->defaultCharset,
-				$session_mode
-			);
-		} else {
-			$this->conn = oci_connect(
-				$this->user,
-				$this->password,
-				$this->server,
-				$this->defaultCharset,
-				$session_mode
-			);
+		$this->installErrorHandler();
+		try {
+			$this->conn = $this->getFlag( DBO_PERSISTENT )
+				? oci_pconnect(
+					$this->user,
+					$this->password,
+					$this->server,
+					$this->defaultCharset,
+					$session_mode
+				)
+				: oci_new_connect(
+					$this->user,
+					$this->password,
+					$this->server,
+					$this->defaultCharset,
+					$session_mode
+				);
+		} catch ( Exception $e ) {
+			$this->restoreErrorHandler();
+			throw $this->newExceptionAfterConnectError( $e->getMessage() );
 		}
-		Wikimedia\restoreWarnings();
-
-		if ( $this->user != $realDatabase ) {
-			// change current schema in session
-			$this->selectDB( $realDatabase );
-		} else {
-			$this->currentDomain = new DatabaseDomain(
-				$realDatabase,
-				null,
-				$tablePrefix
-			);
-		}
+		$error = $this->restoreErrorHandler();
 
 		if ( !$this->conn ) {
-			throw new DBConnectionError( $this, $this->lastError() );
+			throw $this->newExceptionAfterConnectError( $error ?: $this->lastError() );
 		}
 
-		# removed putenv calls because they interfere with the system globaly
-		$this->doQuery( 'ALTER SESSION SET NLS_TIMESTAMP_FORMAT=\'DD-MM-YYYY HH24:MI:SS.FF6\'' );
-		$this->doQuery( 'ALTER SESSION SET NLS_TIMESTAMP_TZ_FORMAT=\'DD-MM-YYYY HH24:MI:SS.FF6\'' );
-		$this->doQuery( 'ALTER SESSION SET NLS_NUMERIC_CHARACTERS=\'.,\'' );
-
-		return (bool)$this->conn;
+		try {
+			if ( $this->user != $realDatabase ) {
+				// Change current schema for the entire session
+				$this->selectDomain( new DatabaseDomain(
+					$realDatabase,
+					$this->currentDomain->getSchema(),
+					$this->currentDomain->getTablePrefix()
+				) );
+			} else {
+				$this->currentDomain = new DatabaseDomain( $realDatabase, null, $tablePrefix );
+			}
+			$set = [
+				'NLS_TIMESTAMP_FORMAT' => 'DD-MM-YYYY HH24:MI:SS.FF6',
+				'NLS_TIMESTAMP_TZ_FORMAT' => 'DD-MM-YYYY HH24:MI:SS.FF6',
+				'NLS_NUMERIC_CHARACTERS' => '.,'
+			];
+			foreach ( $set as $var => $val ) {
+				$this->query(
+					"ALTER SESSION SET {$var}=" . $this->addQuotes( $val ),
+					__METHOD__,
+					self::QUERY_IGNORE_DBO_TRX | self::QUERY_NO_RETRY
+				);
+			}
+		} catch ( Exception $e ) {
+			throw $this->newExceptionAfterConnectError( $e->getMessage() );
+		}
 	}
 
 	/**
