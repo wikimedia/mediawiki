@@ -73,22 +73,6 @@ define( 'NS_HELP', 12 );
 define( 'NS_HELP_TALK', 13 );
 define( 'NS_CATEGORY', 14 );
 define( 'NS_CATEGORY_TALK', 15 );
-
-/**
- * NS_IMAGE and NS_IMAGE_TALK are the pre-v1.14 names for NS_FILE and
- * NS_FILE_TALK respectively, and are kept for compatibility.
- *
- * When writing code that should be compatible with older MediaWiki
- * versions, either stick to the old names or define the new constants
- * yourself, if they're not defined already.
- *
- * @deprecated since 1.14
- */
-define( 'NS_IMAGE', NS_FILE );
-/**
- * @deprecated since 1.14
- */
-define( 'NS_IMAGE_TALK', NS_FILE_TALK );
 /**@}*/
 
 /**@{
