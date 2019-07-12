@@ -230,7 +230,6 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 		$module::$returnFetchTitleInfo = $titleInfo;
 
 		$rl = new EmptyResourceLoader();
-		$rl->register( 'testmodule', $module );
 		$context = new ResourceLoaderContext( $rl, new FauxRequest() );
 
 		TestResourceLoaderWikiModule::invalidateModuleCache(
@@ -253,20 +252,16 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoaderWikiModule::preloadTitleInfo
 	 */
 	public function testGetPreloadedBadTitle() {
-		// Mock values
-		$pages = [
-			// Covers else branch for invalid page name
-			'[x]' => [ 'type' => 'styles' ],
-		];
-		$titleInfo = [];
-
-		// Set up objects
-		$module = $this->getMockBuilder( TestResourceLoaderWikiModule::class )
-			->setMethods( [ 'getPages' ] )->getMock();
-		$module->method( 'getPages' )->willReturn( $pages );
-		$module::$returnFetchTitleInfo = $titleInfo;
+		// Set up
+		TestResourceLoaderWikiModule::$returnFetchTitleInfo = [];
 		$rl = new EmptyResourceLoader();
-		$rl->register( 'testmodule', $module );
+		$rl->getConfig()->set( 'UseSiteJs', true );
+		$rl->getConfig()->set( 'UseSiteCss', true );
+		$rl->register( 'testmodule', [
+			'class' => TestResourceLoaderWikiModule::class,
+			// Covers preloadTitleInfo branch for invalid page name
+			'styles' => [ '[x]' ],
+		] );
 		$context = new ResourceLoaderContext( $rl, new FauxRequest() );
 
 		// Act
@@ -277,8 +272,8 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 		);
 
 		// Assert
-		$module = TestingAccessWrapper::newFromObject( $module );
-		$this->assertEquals( $titleInfo, $module->getTitleInfo( $context ), 'Title info' );
+		$module = TestingAccessWrapper::newFromObject( $rl->getModule( 'testmodule' ) );
+		$this->assertSame( [], $module->getTitleInfo( $context ), 'Title info' );
 	}
 
 	/**
@@ -371,7 +366,6 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 		$module->method( 'getPages' )->willReturn( $pages );
 
 		$rl = new EmptyResourceLoader();
-		$rl->register( 'testmodule', $module );
 		$context = new DerivativeResourceLoaderContext(
 			new ResourceLoaderContext( $rl, new FauxRequest() )
 		);
