@@ -87,7 +87,7 @@ in the load balancer, usually indicating a replication environment.' );
 				$delta = microtime( true ) - $start;
 				$rate = ( $delta == 0.0 ) ? 0.0 : $migrated / $delta;
 				$this->output( sprintf( "%s %d (%0.1f%%) done in %0.1f secs (%0.3f accounts/sec).\n",
-					wfWikiID(),
+					WikiMap::getCurrentWikiDbDomain()->getId(),
 					$migrated,
 					min( $max, $lastUser ) / $lastUser * 100.0,
 					$delta,

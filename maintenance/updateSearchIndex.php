@@ -61,7 +61,8 @@ class UpdateSearchIndex extends Maintenance {
 	}
 
 	public function execute() {
-		$posFile = $this->getOption( 'p', 'searchUpdate.' . wfWikiID() . '.pos' );
+		$dbDomain = WikiMap::getCurrentWikiDbDomain()->getId();
+		$posFile = $this->getOption( 'p', 'searchUpdate.' . rawurlencode( $dbDomain ) . '.pos' );
 		$end = $this->getOption( 'e', wfTimestampNow() );
 		if ( $this->hasOption( 's' ) ) {
 			$start = $this->getOption( 's' );
