@@ -520,7 +520,7 @@
 [submodule "extensions/Comments"]
 	path = extensions/Comments
 	url = https://github.com/wikimedia/mediawiki-extensions-Comments.git
-	branch = REL1_33
+	branch = master
 	ignore = dirty
 [submodule "extensions/ScratchBlocks"]
 	path = extensions/ScratchBlocks
