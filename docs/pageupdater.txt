@@ -161,11 +161,11 @@ Calling prepareUpdate() with the same parameters again has no effect.
 Calling it again with mismatching parameters, or calling it with parameters mismatching
 the ones prepareContent() was called with, triggers a LogicException.
 
-- getSecondaryDataUpdtes() returns DataUpdates that represent derived data for the revision.
+- getSecondaryDataUpdates() returns DataUpdates that represent derived data for the revision.
 These may be used to update such data, e.g. in ApiPurge, RefreshLinksJob, and the refreshLinks
 script.
 
-- doUpdates() triggers the updates defined by getSecondaryDataUpdtes(), and also causes
+- doUpdates() triggers the updates defined by getSecondaryDataUpdates(), and also causes
 updates to cached artifacts in the ParserCache, the CDN layer, etc. This is primarily
 used by PageUpdater, but also by PageArchive during undeletion, and when importing
 revisions from XML. doUpdates() can only be called after prepareUpdate() was used to
