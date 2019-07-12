@@ -4711,12 +4711,6 @@ $wgRemoveCredentialsBlacklist = [
 ];
 
 /**
- * For compatibility with old installations set to false
- * @deprecated since 1.24 will be removed in future
- */
-$wgPasswordSalt = true;
-
-/**
  * Specifies the minimal length of a user password. If set to 0, empty pass-
  * words are allowed.
  * @deprecated since 1.26, use $wgPasswordPolicy's MinimalPasswordLength.
