@@ -56,6 +56,8 @@ For notes on 1.33.x and older releases, see HISTORY.
   hard-deprecated.
 * $wgLocalInterwiki — Setting this instead of $wgLocalInterwikis, deprecated in
   1.23, is now hard-deprecated.
+* $wgProfileOnly — Setting this, deprecated in 1.23, is now hard-deprecated.
+  Instead, set the log file in $wgDebugLogGroups['profileoutput'].
 * …
 
 ==== Removed configuration ====
