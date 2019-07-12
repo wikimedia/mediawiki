@@ -2537,35 +2537,42 @@ class OutputPageTest extends MediaWikiTestCase {
 		$rl = $out->getResourceLoader();
 		$rl->setMessageBlobStore( $this->createMock( MessageBlobStore::class ) );
 		$rl->register( [
-			'test.foo' => new ResourceLoaderTestModule( [
+			'test.foo' => [
+				'class' => ResourceLoaderTestModule::class,
 				'script' => 'mw.test.foo( { a: true } );',
 				'styles' => '.mw-test-foo { content: "style"; }',
-			] ),
-			'test.bar' => new ResourceLoaderTestModule( [
+			],
+			'test.bar' => [
+				'class' => ResourceLoaderTestModule::class,
 				'script' => 'mw.test.bar( { a: true } );',
 				'styles' => '.mw-test-bar { content: "style"; }',
-			] ),
-			'test.baz' => new ResourceLoaderTestModule( [
+			],
+			'test.baz' => [
+				'class' => ResourceLoaderTestModule::class,
 				'script' => 'mw.test.baz( { a: true } );',
 				'styles' => '.mw-test-baz { content: "style"; }',
-			] ),
-			'test.quux' => new ResourceLoaderTestModule( [
+			],
+			'test.quux' => [
+				'class' => ResourceLoaderTestModule::class,
 				'script' => 'mw.test.baz( { token: 123 } );',
 				'styles' => '/* pref-animate=off */ .mw-icon { transition: none; }',
 				'group' => 'private',
-			] ),
-			'test.noscript' => new ResourceLoaderTestModule( [
+			],
+			'test.noscript' => [
+				'class' => ResourceLoaderTestModule::class,
 				'styles' => '.stuff { color: red; }',
 				'group' => 'noscript',
-			] ),
-			'test.group.foo' => new ResourceLoaderTestModule( [
+			],
+			'test.group.foo' => [
+				'class' => ResourceLoaderTestModule::class,
 				'script' => 'mw.doStuff( "foo" );',
 				'group' => 'foo',
-			] ),
-			'test.group.bar' => new ResourceLoaderTestModule( [
+			],
+			'test.group.bar' => [
+				'class' => ResourceLoaderTestModule::class,
 				'script' => 'mw.doStuff( "bar" );',
 				'group' => 'bar',
-			] ),
+			],
 		] );
 		$links = $method->invokeArgs( $out, $args );
 		$actualHtml = strval( $links );
@@ -2648,17 +2655,16 @@ class OutputPageTest extends MediaWikiTestCase {
 			->setConstructorArgs( [ $ctx ] )
 			->setMethods( [ 'buildCssLinksArray' ] )
 			->getMock();
-		$op->expects( $this->any() )
-			->method( 'buildCssLinksArray' )
+		$op->method( 'buildCssLinksArray' )
 			->willReturn( [] );
 		$rl = $op->getResourceLoader();
 		$rl->setMessageBlobStore( $this->createMock( MessageBlobStore::class ) );
 
 		// Register custom modules
 		$rl->register( [
-			'example.site.a' => new ResourceLoaderTestModule( [ 'group' => 'site' ] ),
-			'example.site.b' => new ResourceLoaderTestModule( [ 'group' => 'site' ] ),
-			'example.user' => new ResourceLoaderTestModule( [ 'group' => 'user' ] ),
+			'example.site.a' => [ 'class' => ResourceLoaderTestModule::class, 'group' => 'site' ],
+			'example.site.b' => [ 'class' => ResourceLoaderTestModule::class, 'group' => 'site' ],
+			'example.user' => [ 'class' => ResourceLoaderTestModule::class, 'group' => 'user' ],
 		] );
 
 		$op = TestingAccessWrapper::newFromObject( $op );
