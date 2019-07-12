@@ -188,18 +188,23 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 
 	/** Idiom for getWithSetCallback() meaning "no minimum required as-of timestamp" */
 	const MIN_TIMESTAMP_NONE = 0.0;
+	/** @var int One second into the UNIX timestamp epoch */
+	const EPOCH_UNIX_ONE_SECOND = 1.0;
 
 	/** Tiny negative float to use when CTL comes up >= 0 due to clock skew */
 	const TINY_NEGATIVE = -0.000001;
 	/** Tiny positive float to use when using "minTime" to assert an inequality */
 	const TINY_POSTIVE = 0.000001;
 
-	/** Milliseconds of delay after get() where set() storms are a consideration with 'lockTSE' */
+	/** Milliseconds of delay after get() where set() storms are a consideration with "lockTSE" */
 	const SET_DELAY_HIGH_MS = 50;
 	/** Min millisecond set() backoff for keys in hold-off (far less than INTERIM_KEY_TTL) */
 	const RECENT_SET_LOW_MS = 50;
 	/** Max millisecond set() backoff for keys in hold-off (far less than INTERIM_KEY_TTL) */
 	const RECENT_SET_HIGH_MS = 100;
+
+	/** @var int Seconds needed for value generation considered slow */
+	const GENERATION_SLOW_SEC = 3;
 
 	/** Parameter to get()/getMulti() to return extra information by reference */
 	const PASS_BY_REF = -1;
@@ -207,12 +212,16 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	/** Cache format version number */
 	const VERSION = 1;
 
-	const FLD_VERSION = 0; // key to cache version number
+	const FLD_FORMAT_VERSION = 0; // key to WAN cache version number
 	const FLD_VALUE = 1; // key to the cached value
 	const FLD_TTL = 2; // key to the original TTL
-	const FLD_TIME = 3; // key to the cache time
+	const FLD_TIME = 3; // key to the cache timestamp
 	const FLD_FLAGS = 4; // key to the flags bitfield (reserved number)
-	const FLD_HOLDOFF = 5; // key to any hold-off TTL
+	const FLD_VALUE_VERSION = 5; // key to collection cache version number
+	const FLD_GENERATION_TIME = 6; // key to how long it took to generate the value
+
+	const PURGE_TIME = 0; // key to the tombstone entry timestamp
+	const PURGE_HOLDOFF = 1; // key to the tombstone entry hold-off TTL
 
 	const VALUE_KEY_PREFIX = 'WANCache:v:';
 	const INTERIM_KEY_PREFIX = 'WANCache:i:';
@@ -221,9 +230,6 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	const COOLOFF_KEY_PREFIX = 'WANCache:c:';
 
 	const PURGE_VAL_PREFIX = 'PURGED:';
-
-	const VFLD_DATA = 'WOC:d'; // key to the value of versioned data
-	const VFLD_VERSION = 'WOC:v'; // key to the version of the value present
 
 	const PC_PRIMARY = 'primary:1000'; // process cache name and max key count
 
@@ -256,7 +262,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		$this->region = $params['region'] ?? 'main';
 		$this->cluster = $params['cluster'] ?? 'wan-main';
 		$this->mcrouterAware = !empty( $params['mcrouterAware'] );
-		$this->epoch = $params['epoch'] ?? 1.0;
+		$this->epoch = $params['epoch'] ?? self::EPOCH_UNIX_ONE_SECOND;
 
 		$this->setLogger( $params['logger'] ?? new NullLogger() );
 		$this->stats = $params['stats'] ?? new NullStatsdDataFactory();
@@ -314,11 +320,12 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * Consider using getWithSetCallback() instead of get() and set() cycles.
 	 * That method has cache slam avoiding features for hot/expensive keys.
 	 *
-	 * Pass $info as WANObjectCache::PASS_BY_REF to transform it into a cache key info map.
+	 * Pass $info as WANObjectCache::PASS_BY_REF to transform it into a cache key metadata map.
 	 * This map includes the following metadata:
 	 *   - asOf: UNIX timestamp of the value or null if the key is nonexistant
 	 *   - tombAsOf: UNIX timestamp of the tombstone or null if the key is not tombstoned
 	 *   - lastCKPurge: UNIX timestamp of the highest check key or null if none provided
+	 *   - version: cached value version number or null if the key is nonexistant
 	 *
 	 * Otherwise, $info will transform into the cached value timestamp.
 	 *
@@ -339,7 +346,8 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 			$info = [
 				'asOf' => $infoByKey[$key]['asOf'] ?? null,
 				'tombAsOf' => $infoByKey[$key]['tombAsOf'] ?? null,
-				'lastCKPurge' => $infoByKey[$key]['lastCKPurge'] ?? null
+				'lastCKPurge' => $infoByKey[$key]['lastCKPurge'] ?? null,
+				'version' => $infoByKey[$key]['version'] ?? null
 			];
 		} else {
 			$info = $infoByKey[$key]['asOf'] ?? null; // b/c
@@ -352,7 +360,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * Fetch the value of several keys from cache
 	 *
 	 * Pass $info as WANObjectCache::PASS_BY_REF to transform it into a map of cache keys
-	 * to cache key info maps, each having the same style as those of WANObjectCache::get().
+	 * to cache key metadata maps, each having the same style as those of WANObjectCache::get().
 	 * All the cache keys listed in $keys will have an entry.
 	 *
 	 * Othwerwise, $info will transform into a map of (cache key => cached value timestamp).
@@ -420,9 +428,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		// Get the main cache value for each key and validate them
 		foreach ( $valueKeys as $vKey ) {
 			$key = substr( $vKey, $vPrefixLen ); // unprefix
-			list( $value, $curTTL, $asOf, $tombAsOf ) = isset( $wrappedValues[$vKey] )
-				? $this->unwrap( $wrappedValues[$vKey], $now )
-				: [ false, null, null, null ]; // not found
+			list( $value, $keyInfo ) = $this->unwrap( $wrappedValues[$vKey] ?? false, $now );
 			// Force dependent keys to be seen as stale for a while after purging
 			// to reduce race conditions involving stale data getting cached
 			$purgeValues = $purgeValuesForAll;
@@ -432,26 +438,27 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 
 			$lastCKPurge = null; // timestamp of the highest check key
 			foreach ( $purgeValues as $purge ) {
-				$lastCKPurge = max( $purge[self::FLD_TIME], $lastCKPurge );
-				$safeTimestamp = $purge[self::FLD_TIME] + $purge[self::FLD_HOLDOFF];
-				if ( $value !== false && $safeTimestamp >= $asOf ) {
+				$lastCKPurge = max( $purge[self::PURGE_TIME], $lastCKPurge );
+				$safeTimestamp = $purge[self::PURGE_TIME] + $purge[self::PURGE_HOLDOFF];
+				if ( $value !== false && $safeTimestamp >= $keyInfo['asOf'] ) {
 					// How long ago this value was invalidated by *this* check key
-					$ago = min( $purge[self::FLD_TIME] - $now, self::TINY_NEGATIVE );
+					$ago = min( $purge[self::PURGE_TIME] - $now, self::TINY_NEGATIVE );
 					// How long ago this value was invalidated by *any* known check key
-					$curTTL = min( $curTTL, $ago );
+					$keyInfo['curTTL'] = min( $keyInfo['curTTL'], $ago );
 				}
 			}
+			$keyInfo[ 'lastCKPurge'] = $lastCKPurge;
 
 			if ( $value !== false ) {
 				$result[$key] = $value;
 			}
-			if ( $curTTL !== null ) {
-				$curTTLs[$key] = $curTTL;
+			if ( $keyInfo['curTTL'] !== null ) {
+				$curTTLs[$key] = $keyInfo['curTTL'];
 			}
 
 			$infoByKey[$key] = ( $info === self::PASS_BY_REF )
-				? [ 'asOf' => $asOf, 'tombAsOf' => $tombAsOf, 'lastCKPurge' => $lastCKPurge ]
-				: $asOf; // b/c
+				? $keyInfo
+				: $keyInfo['asOf']; // b/c
 		}
 
 		$info = $infoByKey;
@@ -520,8 +527,9 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * @param mixed $value
 	 * @param int $ttl Seconds to live. Special values are:
 	 *   - WANObjectCache::TTL_INDEFINITE: Cache forever (default)
+	 *   - WANObjectCache::TTL_UNCACHEABLE: Do not cache (if the key exists, it is not deleted)
 	 * @param array $opts Options map:
-	 *   - lag: seconds of replica DB lag. Typically, this is either the replica DB lag
+	 *   - lag: Seconds of replica DB lag. Typically, this is either the replica DB lag
 	 *      before the data was read or, if applicable, the replica DB lag before
 	 *      the snapshot-isolated transaction the data was read from started.
 	 *      Use false to indicate that replication is not running.
@@ -530,37 +538,48 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 *      the current time the data was read or (if applicable) the time when
 	 *      the snapshot-isolated transaction the data was read from started.
 	 *      Default: 0 seconds
-	 *   - pending: whether this data is possibly from an uncommitted write transaction.
+	 *   - pending: Whether this data is possibly from an uncommitted write transaction.
 	 *      Generally, other threads should not see values from the future and
 	 *      they certainly should not see ones that ended up getting rolled back.
 	 *      Default: false
-	 *   - lockTSE: if excessive replication/snapshot lag is detected, then store the value
+	 *   - lockTSE: If excessive replication/snapshot lag is detected, then store the value
 	 *      with this TTL and flag it as stale. This is only useful if the reads for this key
 	 *      use getWithSetCallback() with "lockTSE" set. Note that if "staleTTL" is set
 	 *      then it will still add on to this TTL in the excessive lag scenario.
 	 *      Default: WANObjectCache::TSE_NONE
-	 *   - staleTTL: seconds to keep the key around if it is stale. The get()/getMulti()
+	 *   - staleTTL: Seconds to keep the key around if it is stale. The get()/getMulti()
 	 *      methods return such stale values with a $curTTL of 0, and getWithSetCallback()
 	 *      will call the regeneration callback in such cases, passing in the old value
 	 *      and its as-of time to the callback. This is useful if adaptiveTTL() is used
 	 *      on the old value's as-of time when it is verified as still being correct.
-	 *      Default: WANObjectCache::STALE_TTL_NONE.
-	 *   - creating: optimize for the case where the key does not already exist.
+	 *      Default: WANObjectCache::STALE_TTL_NONE
+	 *   - creating: Optimize for the case where the key does not already exist.
 	 *      Default: false
+	 *   - version: Integer version number signifiying the format of the value.
+	 *      Default: null
+	 *   - walltime: How long the value took to generate in seconds. Default: 0.0
 	 * @note Options added in 1.28: staleTTL
 	 * @note Options added in 1.33: creating
+	 * @note Options added in 1.34: version, walltime
 	 * @return bool Success
 	 */
 	final public function set( $key, $value, $ttl = self::TTL_INDEFINITE, array $opts = [] ) {
 		$now = $this->getCurrentTime();
+		$lag = $opts['lag'] ?? 0;
+		$age = isset( $opts['since'] ) ? max( 0, $now - $opts['since'] ) : 0;
+		$pending = $opts['pending'] ?? false;
 		$lockTSE = $opts['lockTSE'] ?? self::TSE_NONE;
 		$staleTTL = $opts['staleTTL'] ?? self::STALE_TTL_NONE;
-		$age = isset( $opts['since'] ) ? max( 0, $now - $opts['since'] ) : 0;
 		$creating = $opts['creating'] ?? false;
-		$lag = $opts['lag'] ?? 0;
+		$version = $opts['version'] ?? null;
+		$walltime = $opts['walltime'] ?? 0.0;
+
+		if ( $ttl < 0 ) {
+			return true;
+		}
 
 		// Do not cache potentially uncommitted data as it might get rolled back
-		if ( !empty( $opts['pending'] ) ) {
+		if ( $pending ) {
 			$this->logger->info(
 				'Rejected set() for {cachekey} due to pending writes.',
 				[ 'cachekey' => $key ]
@@ -619,7 +638,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		}
 
 		// Wrap that value with time/TTL/version metadata
-		$wrapped = $this->wrap( $value, $logicalTTL ?: $ttl, $now );
+		$wrapped = $this->wrap( $value, $logicalTTL ?: $ttl, $version, $now, $walltime );
 		$storeTTL = $ttl + $staleTTL;
 
 		if ( $creating ) {
@@ -812,7 +831,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		foreach ( $rawKeys as $key => $rawKey ) {
 			$purge = $this->parsePurgeValue( $rawValues[$rawKey] );
 			if ( $purge !== false ) {
-				$time = $purge[self::FLD_TIME];
+				$time = $purge[self::PURGE_TIME];
 			} else {
 				// Casting assures identical floats for the next getCheckKeyTime() calls
 				$now = (string)$this->getCurrentTime();
@@ -1216,62 +1235,36 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		$version = $opts['version'] ?? null;
 		$pcTTL = $opts['pcTTL'] ?? self::TTL_UNCACHEABLE;
 
-		// Try the process cache if enabled and the cache callback is not within a cache callback.
-		// Process cache use in nested callbacks is not lag-safe with regard to HOLDOFF_TTL since
-		// the in-memory value is further lagged than the shared one since it uses a blind TTL.
+		// Use the process cache if requested as long as no outer cache callback is running.
+		// Nested callback process cache use is not lag-safe with regard to HOLDOFF_TTL since
+		// process cached values are more lagged than persistent ones as they are not purged.
 		if ( $pcTTL >= 0 && $this->callbackDepth == 0 ) {
-			$procCache = $this->getProcessCache( $opts['pcGroup'] ?? self::PC_PRIMARY );
-			if ( $procCache->has( $key, $pcTTL ) ) {
-				return $procCache->get( $key );
+			$pCache = $this->getProcessCache( $opts['pcGroup'] ?? self::PC_PRIMARY );
+			$cached = $pCache->get( $this->getProcessCacheKey( $key, $version ), INF, false );
+			if ( $cached !== false ) {
+				return $cached;
 			}
 		} else {
-			$procCache = null;
+			$pCache = null;
 		}
 
-		if ( $version !== null ) {
-			$curAsOf = self::PASS_BY_REF;
-			$curValue = $this->doGetWithSetCallback(
-				$key,
+		$res = $this->fetchOrRegenerate( $key, $ttl, $callback, $opts );
+		list( $value, $valueVersion, $curAsOf ) = $res;
+		if ( $valueVersion !== $version ) {
+			// Current value has a different version; use the variant key for this version.
+			// Regenerate the variant value if it is not newer than the main value at $key
+			// so that purges to the main key propagate to the variant value.
+			list( $value ) = $this->fetchOrRegenerate(
+				$this->makeGlobalKey( 'WANCache-key-variant', md5( $key ), $version ),
 				$ttl,
-				// Wrap the value in an array with version metadata but hide it from $callback
-				function ( $oldValue, &$ttl, &$setOpts, $oldAsOf ) use ( $callback, $version ) {
-					if ( $this->isVersionedValue( $oldValue, $version ) ) {
-						$oldData = $oldValue[self::VFLD_DATA];
-					} else {
-						// VFLD_DATA is not set if an old, unversioned, key is present
-						$oldData = false;
-						$oldAsOf = null;
-					}
-
-					return [
-						self::VFLD_DATA => $callback( $oldData, $ttl, $setOpts, $oldAsOf ),
-						self::VFLD_VERSION => $version
-					];
-				},
-				$opts,
-				$curAsOf
+				$callback,
+				[ 'version' => null, 'minAsOf' => $curAsOf ] + $opts
 			);
-			if ( $this->isVersionedValue( $curValue, $version ) ) {
-				// Current value has the requested version; use it
-				$value = $curValue[self::VFLD_DATA];
-			} else {
-				// Current value has a different version; use the variant key for this version.
-				// Regenerate the variant value if it is not newer than the main value at $key
-				// so that purges to they key propagate to the variant value.
-				$value = $this->doGetWithSetCallback(
-					$this->makeGlobalKey( 'WANCache-key-variant', md5( $key ), $version ),
-					$ttl,
-					$callback,
-					[ 'version' => null, 'minAsOf' => $curAsOf ] + $opts
-				);
-			}
-		} else {
-			$value = $this->doGetWithSetCallback( $key, $ttl, $callback, $opts );
 		}
 
 		// Update the process cache if enabled
-		if ( $procCache && $value !== false ) {
-			$procCache->set( $key, $value );
+		if ( $pCache && $value !== false ) {
+			$pCache->set( $this->getProcessCacheKey( $key, $version ), $value );
 		}
 
 		return $value;
@@ -1286,77 +1279,80 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * @param int $ttl
 	 * @param callable $callback
 	 * @param array $opts Options map for getWithSetCallback()
-	 * @param float|null &$asOf Cache generation timestamp of returned value [returned]
-	 * @return mixed
+	 * @return array Ordered list of the following:
+	 *   - Cached or regenerated value
+	 *   - Cached or regenerated value version number or null if not versioned
+	 *   - Timestamp of the cached value or null if there is no value
 	 * @note Callable type hints are not used to avoid class-autoloading
 	 */
-	protected function doGetWithSetCallback( $key, $ttl, $callback, array $opts, &$asOf = null ) {
-		$lowTTL = $opts['lowTTL'] ?? min( self::LOW_TTL, $ttl );
-		$lockTSE = $opts['lockTSE'] ?? self::TSE_NONE;
-		$staleTTL = $opts['staleTTL'] ?? self::STALE_TTL_NONE;
-		$graceTTL = $opts['graceTTL'] ?? self::GRACE_TTL_NONE;
+	private function fetchOrRegenerate( $key, $ttl, $callback, array $opts ) {
 		$checkKeys = $opts['checkKeys'] ?? [];
-		$busyValue = $opts['busyValue'] ?? null;
-		$popWindow = $opts['hotTTR'] ?? self::HOT_TTR;
-		$ageNew = $opts['ageNew'] ?? self::AGE_NEW;
+		$graceTTL = $opts['graceTTL'] ?? self::GRACE_TTL_NONE;
 		$minAsOf = $opts['minAsOf'] ?? self::MIN_TIMESTAMP_NONE;
+		$hotTTR = $opts['hotTTR'] ?? self::HOT_TTR;
+		$lowTTL = $opts['lowTTL'] ?? min( self::LOW_TTL, $ttl );
+		$ageNew = $opts['ageNew'] ?? self::AGE_NEW;
 		$touchedCb = $opts['touchedCallback'] ?? null;
 		$initialTime = $this->getCurrentTime();
 
 		$kClass = $this->determineKeyClassForStats( $key );
 
-		// Get the current key value and metadata
+		// Get the current key value and its metadata
 		$curTTL = self::PASS_BY_REF;
 		$curInfo = self::PASS_BY_REF; /** @var array $curInfo */
 		$curValue = $this->get( $key, $curTTL, $checkKeys, $curInfo );
 		// Apply any $touchedCb invalidation timestamp to get the "last purge timestamp"
 		list( $curTTL, $LPT ) = $this->resolveCTL( $curValue, $curTTL, $curInfo, $touchedCb );
-		// Best possible return value and its corresponding "as of" timestamp
-		$value = $curValue;
-		$asOf = $curInfo['asOf'];
-
-		// Determine if a cached value regeneration is needed or desired
+		// Use the cached value if it exists and is not due for synchronous regeneration
 		if (
-			$this->isValid( $value, $asOf, $minAsOf ) &&
+			$this->isValid( $curValue, $curInfo['asOf'], $minAsOf ) &&
 			$this->isAliveOrInGracePeriod( $curTTL, $graceTTL )
 		) {
 			$preemptiveRefresh = (
 				$this->worthRefreshExpiring( $curTTL, $lowTTL ) ||
-				$this->worthRefreshPopular( $asOf, $ageNew, $popWindow, $initialTime )
+				$this->worthRefreshPopular( $curInfo['asOf'], $ageNew, $hotTTR, $initialTime )
 			);
-
 			if ( !$preemptiveRefresh ) {
 				$this->stats->increment( "wanobjectcache.$kClass.hit.good" );
 
-				return $value;
+				return [ $curValue, $curInfo['version'], $curInfo['asOf'] ];
 			} elseif ( $this->scheduleAsyncRefresh( $key, $ttl, $callback, $opts ) ) {
 				$this->stats->increment( "wanobjectcache.$kClass.hit.refresh" );
 
-				return $value;
+				return [ $curValue, $curInfo['version'], $curInfo['asOf'] ];
 			}
 		}
 
+		// Determine if there is stale or volatile cached value that is still usable
 		$isKeyTombstoned = ( $curInfo['tombAsOf'] !== null );
 		if ( $isKeyTombstoned ) {
-			// Get the interim key value since the key is tombstoned (write-holed)
-			list( $value, $asOf ) = $this->getInterimValue( $key, $minAsOf );
+			// Key is write-holed; use the (volatile) interim key as an alternative
+			list( $possValue, $possInfo ) = $this->getInterimValue( $key, $minAsOf );
 			// Update the "last purge time" since the $touchedCb timestamp depends on $value
-			$LPT = $this->resolveTouched( $value, $LPT, $touchedCb );
+			$LPT = $this->resolveTouched( $possValue, $LPT, $touchedCb );
+		} else {
+			$possValue = $curValue;
+			$possInfo = $curInfo;
 		}
 
-		// Reduce mutex and cache set spam while keys are in the tombstone/holdoff period by
-		// checking if $value was genereated by a recent thread much less than a second ago.
+		// Avoid overhead from callback runs, regeneration locks, and cache sets during
+		// hold-off periods for the key by reusing very recently generated cached values
 		if (
-			$this->isValid( $value, $asOf, $minAsOf, $LPT ) &&
-			$this->isVolatileValueAgeNegligible( $initialTime - $asOf )
+			$this->isValid( $possValue, $possInfo['asOf'], $minAsOf, $LPT ) &&
+			$this->isVolatileValueAgeNegligible( $initialTime - $possInfo['asOf'] )
 		) {
 			$this->stats->increment( "wanobjectcache.$kClass.hit.volatile" );
 
-			return $value;
+			return [ $possValue, $possInfo['version'], $curInfo['asOf'] ];
 		}
 
-		// Decide if only one thread should handle regeneration at a time
-		$useMutex =
+		$lockTSE = $opts['lockTSE'] ?? self::TSE_NONE;
+		$busyValue = $opts['busyValue'] ?? null;
+		$staleTTL = $opts['staleTTL'] ?? self::STALE_TTL_NONE;
+		$version = $opts['version'] ?? null;
+
+		// Determine whether one thread per datacenter should handle regeneration at a time
+		$useRegenerationLock =
 			// Note that since tombstones no-op set(), $lockTSE and $curTTL cannot be used to
 			// deduce the key hotness because |$curTTL| will always keep increasing until the
 			// tombstone expires or is overwritten by a new tombstone. Also, even if $lockTSE
@@ -1369,67 +1365,77 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 			( $curTTL !== null && $curTTL <= 0 && abs( $curTTL ) <= $lockTSE ) ||
 			// Assume a key is hot if there is no value and a busy fallback is given.
 			// This avoids stampedes on eviction or preemptive regeneration taking too long.
-			( $busyValue !== null && $value === false );
+			( $busyValue !== null && $possValue === false );
 
-		$hasLock = false;
-		if ( $useMutex ) {
-			// Attempt to acquire a non-blocking lock specific to the local datacenter
-			if ( $this->cache->add( self::MUTEX_KEY_PREFIX . $key, 1, self::LOCK_TTL ) ) {
-				// Lock acquired; this thread will recompute the value and update cache
-				$hasLock = true;
-			} elseif ( $this->isValid( $value, $asOf, $minAsOf ) ) {
-				// Not acquired and stale cache value exists; use the stale value
-				$this->stats->increment( "wanobjectcache.$kClass.hit.stale" );
+		// If a regeneration lock is required, threads that do not get the lock will use any
+		// available stale or volatile value. If there is none, then the cheap/placeholder
+		// value from $busyValue will be used if provided; failing that, all threads will try
+		// to regenerate the value and ignore the lock.
+		if ( $useRegenerationLock ) {
+			$hasLock = $this->cache->add( self::MUTEX_KEY_PREFIX . $key, 1, self::LOCK_TTL );
+			if ( !$hasLock ) {
+				if ( $this->isValid( $possValue, $possInfo['asOf'], $minAsOf ) ) {
+					$this->stats->increment( "wanobjectcache.$kClass.hit.stale" );
 
-				return $value;
-			} else {
-				// Lock not acquired and no stale value exists
-				if ( $busyValue !== null ) {
-					// Use the busy fallback value if nothing else
+					return [ $possValue, $possInfo['version'], $curInfo['asOf'] ];
+				} elseif ( $busyValue !== null ) {
 					$miss = is_infinite( $minAsOf ) ? 'renew' : 'miss';
 					$this->stats->increment( "wanobjectcache.$kClass.$miss.busy" );
 
-					return is_callable( $busyValue ) ? $busyValue() : $busyValue;
+					return [
+						is_callable( $busyValue ) ? $busyValue() : $busyValue,
+						$version,
+						$curInfo['asOf']
+					];
 				}
 			}
+		} else {
+			$hasLock = false;
 		}
 
-		if ( !is_callable( $callback ) ) {
-			throw new InvalidArgumentException( "Invalid cache miss callback provided." );
-		}
-
-		$preCallbackTime = $this->getCurrentTime();
-		// Generate the new value from the callback...
+		// Generate the new value given any prior value with a matching version
 		$setOpts = [];
+		$preCallbackTime = $this->getCurrentTime();
 		++$this->callbackDepth;
 		try {
-			$value = call_user_func_array( $callback, [ $curValue, &$ttl, &$setOpts, $asOf ] );
+			$value = $callback(
+				( $curInfo['version'] === $version ) ? $curValue : false,
+				$ttl,
+				$setOpts,
+				( $curInfo['version'] === $version ) ? $curInfo['asOf'] : null
+			);
 		} finally {
 			--$this->callbackDepth;
 		}
-		$valueIsCacheable = ( $value !== false && $ttl >= 0 );
+		$postCallbackTime = $this->getCurrentTime();
 
-		if ( $valueIsCacheable ) {
-			$ago = max( $this->getCurrentTime() - $initialTime, 0.0 );
-			$this->stats->timing( "wanobjectcache.$kClass.regen_set_delay", 1e3 * $ago );
+		// How long it took to fetch, validate, and generate the value
+		$elapsed = max( $postCallbackTime - $initialTime, 0.0 );
 
+		// Attempt to save the newly generated value if applicable
+		if (
+			// Callback yielded a cacheable value
+			( $value !== false && $ttl >= 0 ) &&
+			// Current thread was not raced out of a regeneration lock or key is tombstoned
+			( !$useRegenerationLock || $hasLock || $isKeyTombstoned ) &&
+			// Key does not appear to be undergoing a set() stampede
+			$this->checkAndSetCooloff( $key, $kClass, $elapsed, $lockTSE, $hasLock )
+		) {
+			// How long it took to generate the value
+			$walltime = max( $postCallbackTime - $preCallbackTime, 0.0 );
+			// If the key is write-holed then use the (volatile) interim key as an alternative
 			if ( $isKeyTombstoned ) {
-				if ( $this->checkAndSetCooloff( $key, $kClass, $ago, $lockTSE, $hasLock ) ) {
-					// Use the interim key value since the key is tombstoned (write-holed)
-					$tempTTL = max( self::INTERIM_KEY_TTL, (int)$lockTSE );
-					$this->setInterimValue( $key, $value, $tempTTL, $this->getCurrentTime() );
-				}
-			} elseif ( !$useMutex || $hasLock ) {
-				if ( $this->checkAndSetCooloff( $key, $kClass, $ago, $lockTSE, $hasLock ) ) {
-					$setOpts['creating'] = ( $curValue === false );
-					// Save the value unless a lock-winning thread is already expected to do that
-					$setOpts['lockTSE'] = $lockTSE;
-					$setOpts['staleTTL'] = $staleTTL;
-					// Use best known "since" timestamp if not provided
-					$setOpts += [ 'since' => $preCallbackTime ];
-					// Update the cache; this will fail if the key is tombstoned
-					$this->set( $key, $value, $ttl, $setOpts );
-				}
+				$this->setInterimValue( $key, $value, $lockTSE, $version, $walltime );
+			} else {
+				$finalSetOpts = [
+					'since' => $setOpts['since'] ?? $preCallbackTime,
+					'version' => $version,
+					'staleTTL' => $staleTTL,
+					'lockTSE' => $lockTSE, // informs lag vs performance trade-offs
+					'creating' => ( $curValue === false ), // optimization
+					'walltime' => $walltime
+				] + $setOpts;
+				$this->set( $key, $value, $ttl, $finalSetOpts );
 			}
 		}
 
@@ -1440,7 +1446,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		$miss = is_infinite( $minAsOf ) ? 'renew' : 'miss';
 		$this->stats->increment( "wanobjectcache.$kClass.$miss.compute" );
 
-		return $value;
+		return [ $value, $version, $curInfo['asOf'] ];
 	}
 
 	/**
@@ -1460,6 +1466,8 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * @return bool Whether it is OK to proceed with a key set operation
 	 */
 	private function checkAndSetCooloff( $key, $kClass, $elapsed, $lockTSE, $hasLock ) {
+		$this->stats->timing( "wanobjectcache.$kClass.regen_set_delay", 1e3 * $elapsed );
+
 		// If $lockTSE is set, the lock was bypassed because there was no stale/interim value,
 		// and $elapsed indicates that regeration is slow, then there is a risk of set()
 		// stampedes with large blobs. With a typical scale-out infrastructure, CPU and query
@@ -1494,13 +1502,9 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * @return array (current time left or null, UNIX timestamp of last purge or null)
 	 * @note Callable type hints are not used to avoid class-autoloading
 	 */
-	protected function resolveCTL( $value, $curTTL, $curInfo, $touchedCallback ) {
+	private function resolveCTL( $value, $curTTL, $curInfo, $touchedCallback ) {
 		if ( $touchedCallback === null || $value === false ) {
 			return [ $curTTL, max( $curInfo['tombAsOf'], $curInfo['lastCKPurge'] ) ];
-		}
-
-		if ( !is_callable( $touchedCallback ) ) {
-			throw new InvalidArgumentException( "Invalid expiration callback provided." );
 		}
 
 		$touched = $touchedCallback( $value );
@@ -1518,53 +1522,49 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * @return float|null UNIX timestamp of last purge or null
 	 * @note Callable type hints are not used to avoid class-autoloading
 	 */
-	protected function resolveTouched( $value, $lastPurge, $touchedCallback ) {
-		if ( $touchedCallback === null || $value === false ) {
-			return $lastPurge;
-		}
-
-		if ( !is_callable( $touchedCallback ) ) {
-			throw new InvalidArgumentException( "Invalid expiration callback provided." );
-		}
-
-		return max( $touchedCallback( $value ), $lastPurge );
+	private function resolveTouched( $value, $lastPurge, $touchedCallback ) {
+		return ( $touchedCallback === null || $value === false )
+			? $lastPurge // nothing to derive the "touched timestamp" from
+			: max( $touchedCallback( $value ), $lastPurge );
 	}
 
 	/**
 	 * @param string $key
 	 * @param float $minAsOf Minimum acceptable "as of" timestamp
-	 * @return array (cached value or false, cached value timestamp or null)
+	 * @return array (cached value or false, cache key metadata map)
 	 */
-	protected function getInterimValue( $key, $minAsOf ) {
-		if ( !$this->useInterimHoldOffCaching ) {
-			return [ false, null ]; // disabled
+	private function getInterimValue( $key, $minAsOf ) {
+		$now = $this->getCurrentTime();
+
+		if ( $this->useInterimHoldOffCaching ) {
+			$wrapped = $this->cache->get( self::INTERIM_KEY_PREFIX . $key );
+
+			list( $value, $keyInfo ) = $this->unwrap( $wrapped, $now );
+			if ( $this->isValid( $value, $keyInfo['asOf'], $minAsOf ) ) {
+				return [ $value, $keyInfo ];
+			}
 		}
 
-		$wrapped = $this->cache->get( self::INTERIM_KEY_PREFIX . $key );
-		list( $value ) = $this->unwrap( $wrapped, $this->getCurrentTime() );
-		$valueAsOf = $wrapped[self::FLD_TIME] ?? null;
-		if ( $this->isValid( $value, $valueAsOf, $minAsOf ) ) {
-			return [ $value, $valueAsOf ];
-		}
-
-		return [ false, null ];
+		return $this->unwrap( false, $now );
 	}
 
 	/**
 	 * @param string $key
 	 * @param mixed $value
-	 * @param int $tempTTL
-	 * @param float $newAsOf
+	 * @param int $ttl
+	 * @param int|null $version Value version number
+	 * @param float $walltime How long it took to generate the value in seconds
 	 */
-	protected function setInterimValue( $key, $value, $tempTTL, $newAsOf ) {
-		$wrapped = $this->wrap( $value, $tempTTL, $newAsOf );
+	private function setInterimValue( $key, $value, $ttl, $version, $walltime ) {
+		$ttl = max( self::INTERIM_KEY_TTL, (int)$ttl );
 
+		$wrapped = $this->wrap( $value, $ttl, $version, $this->getCurrentTime(), $walltime );
 		$this->cache->merge(
 			self::INTERIM_KEY_PREFIX . $key,
 			function () use ( $wrapped ) {
 				return $wrapped;
 			},
-			$tempTTL,
+			$ttl,
 			1
 		);
 	}
@@ -1639,13 +1639,11 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		ArrayIterator $keyedIds, $ttl, callable $callback, array $opts = []
 	) {
 		$valueKeys = array_keys( $keyedIds->getArrayCopy() );
-		$checkKeys = $opts['checkKeys'] ?? [];
-		$pcTTL = $opts['pcTTL'] ?? self::TTL_UNCACHEABLE;
 
 		// Load required keys into process cache in one go
 		$this->warmupCache = $this->getRawKeysForWarmup(
-			$this->getNonProcessCachedKeys( $valueKeys, $opts, $pcTTL ),
-			$checkKeys
+			$this->getNonProcessCachedKeys( $valueKeys, $opts ),
+			$opts['checkKeys'] ?? []
 		);
 		$this->warmupKeyMisses = 0;
 
@@ -1736,12 +1734,11 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		$idsByValueKey = $keyedIds->getArrayCopy();
 		$valueKeys = array_keys( $idsByValueKey );
 		$checkKeys = $opts['checkKeys'] ?? [];
-		$pcTTL = $opts['pcTTL'] ?? self::TTL_UNCACHEABLE;
 		unset( $opts['lockTSE'] ); // incompatible
 		unset( $opts['busyValue'] ); // incompatible
 
 		// Load required keys into process cache in one go
-		$keysGet = $this->getNonProcessCachedKeys( $valueKeys, $opts, $pcTTL );
+		$keysGet = $this->getNonProcessCachedKeys( $valueKeys, $opts );
 		$this->warmupCache = $this->getRawKeysForWarmup( $keysGet, $checkKeys );
 		$this->warmupKeyMisses = 0;
 
@@ -1838,7 +1835,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 */
 	final public function reapCheckKey( $key, $purgeTimestamp, &$isStale = false ) {
 		$purge = $this->parsePurgeValue( $this->cache->get( self::TIME_KEY_PREFIX . $key ) );
-		if ( $purge && $purge[self::FLD_TIME] < $purgeTimestamp ) {
+		if ( $purge && $purge[self::PURGE_TIME] < $purgeTimestamp ) {
 			$isStale = true;
 			$this->logger->warning( "Reaping stale check key '$key'." );
 			$ok = $this->cache->changeTTL( self::TIME_KEY_PREFIX . $key, self::TTL_SECOND );
@@ -2049,7 +2046,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * This must set the key to "PURGED:<UNIX timestamp>:<holdoff>"
 	 *
 	 * @param string $key Cache key
-	 * @param int $ttl How long to keep the tombstone [seconds]
+	 * @param int $ttl Seconds to keep the tombstone around
 	 * @param int $holdoff HOLDOFF_* constant controlling how long to ignore sets for this key
 	 * @return bool Success
 	 */
@@ -2095,10 +2092,11 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 
 	/**
 	 * @param string $key
-	 * @param int $ttl
+	 * @param int $ttl Seconds to live
 	 * @param callable $callback
 	 * @param array $opts
 	 * @return bool Success
+	 * @note Callable type hints are not used to avoid class-autoloading
 	 */
 	private function scheduleAsyncRefresh( $key, $ttl, $callback, $opts ) {
 		if ( !$this->asyncHandler ) {
@@ -2108,7 +2106,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		$func = $this->asyncHandler;
 		$func( function () use ( $key, $ttl, $callback, $opts ) {
 			$opts['minAsOf'] = INF; // force a refresh
-			$this->doGetWithSetCallback( $key, $ttl, $callback, $opts );
+			$this->fetchOrRegenerate( $key, $ttl, $callback, $opts );
 		} );
 
 		return true;
@@ -2127,7 +2125,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * @param int $graceTTL Consider using stale values if $curTTL is greater than this
 	 * @return bool
 	 */
-	protected function isAliveOrInGracePeriod( $curTTL, $graceTTL ) {
+	private function isAliveOrInGracePeriod( $curTTL, $graceTTL ) {
 		if ( $curTTL > 0 ) {
 			return true;
 		} elseif ( $graceTTL <= 0 ) {
@@ -2235,62 +2233,76 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	}
 
 	/**
-	 * Do not use this method outside WANObjectCache
-	 *
 	 * @param mixed $value
-	 * @param int $ttl [0=forever]
+	 * @param int $ttl Seconds to live or zero for "indefinite"
+	 * @param int|null $version Value version number or null if not versioned
 	 * @param float $now Unix Current timestamp just before calling set()
+	 * @param float $walltime How long it took to generate the value in seconds
 	 * @return array
 	 */
-	protected function wrap( $value, $ttl, $now ) {
-		return [
-			self::FLD_VERSION => self::VERSION,
+	private function wrap( $value, $ttl, $version, $now, $walltime ) {
+		// Returns keys in ascending integer order for PHP7 array packing:
+		// https://nikic.github.io/2014/12/22/PHPs-new-hashtable-implementation.html
+		$wrapped = [
+			self::FLD_FORMAT_VERSION => self::VERSION,
 			self::FLD_VALUE => $value,
 			self::FLD_TTL => $ttl,
 			self::FLD_TIME => $now
 		];
+		if ( $version !== null ) {
+			$wrapped[self::FLD_VALUE_VERSION] = $version;
+		}
+		if ( $walltime >= self::GENERATION_SLOW_SEC ) {
+			$wrapped[self::FLD_GENERATION_TIME] = $walltime;
+		}
+
+		return $wrapped;
 	}
 
 	/**
-	 * Do not use this method outside WANObjectCache
-	 *
-	 * The cached value will be false if absent/tombstoned/malformed
-	 *
-	 * @param array|string|bool $wrapped
+	 * @param array|string|bool $wrapped The entry at a cache key
 	 * @param float $now Unix Current timestamp (preferrably pre-query)
-	 * @return array (cached value or false, current TTL, value timestamp, tombstone timestamp)
+	 * @return array (value or false if absent/tombstoned/malformed, value metadata map).
+	 * The cache key metadata includes the following metadata:
+	 *   - asOf: UNIX timestamp of the value or null if there is no value
+	 *   - curTTL: remaining time-to-live (negative if tombstoned) or null if there is no value
+	 *   - version: value version number or null if the if there is no value
+	 *   - tombAsOf: UNIX timestamp of the tombstone or null if there is no tombstone
 	 */
-	protected function unwrap( $wrapped, $now ) {
-		// Check if the value is a tombstone
-		$purge = $this->parsePurgeValue( $wrapped );
-		if ( $purge !== false ) {
-			// Purged values should always have a negative current $ttl
-			$curTTL = min( $purge[self::FLD_TIME] - $now, self::TINY_NEGATIVE );
-			return [ false, $curTTL, null, $purge[self::FLD_TIME] ];
-		}
+	private function unwrap( $wrapped, $now ) {
+		$value = false;
+		$info = [ 'asOf' => null, 'curTTL' => null, 'version' => null, 'tombAsOf' => null ];
 
-		if ( !is_array( $wrapped ) // not found
-			|| !isset( $wrapped[self::FLD_VERSION] ) // wrong format
-			|| $wrapped[self::FLD_VERSION] !== self::VERSION // wrong version
-		) {
-			return [ false, null, null, null ];
-		}
-
-		if ( $wrapped[self::FLD_TTL] > 0 ) {
-			// Get the approximate time left on the key
-			$age = $now - $wrapped[self::FLD_TIME];
-			$curTTL = max( $wrapped[self::FLD_TTL] - $age, 0.0 );
+		if ( is_array( $wrapped ) ) {
+			// Entry expected to be a cached value; validate it
+			if (
+				( $wrapped[self::FLD_FORMAT_VERSION] ?? null ) === self::VERSION &&
+				$wrapped[self::FLD_TIME] >= $this->epoch
+			) {
+				if ( $wrapped[self::FLD_TTL] > 0 ) {
+					// Get the approximate time left on the key
+					$age = $now - $wrapped[self::FLD_TIME];
+					$curTTL = max( $wrapped[self::FLD_TTL] - $age, 0.0 );
+				} else {
+					// Key had no TTL, so the time left is unbounded
+					$curTTL = INF;
+				}
+				$value = $wrapped[self::FLD_VALUE];
+				$info['version'] = $wrapped[self::FLD_VALUE_VERSION] ?? null;
+				$info['asOf'] = $wrapped[self::FLD_TIME];
+				$info['curTTL'] = $curTTL;
+			}
 		} else {
-			// Key had no TTL, so the time left is unbounded
-			$curTTL = INF;
+			// Entry expected to be a tombstone; parse it
+			$purge = $this->parsePurgeValue( $wrapped );
+			if ( $purge !== false ) {
+				// Tombstoned keys should always have a negative current $ttl
+				$info['curTTL'] = min( $purge[self::PURGE_TIME] - $now, self::TINY_NEGATIVE );
+				$info['tombAsOf'] = $purge[self::PURGE_TIME];
+			}
 		}
 
-		if ( $wrapped[self::FLD_TIME] < $this->epoch ) {
-			// Values this old are ignored
-			return [ false, null, null, null ];
-		}
-
-		return [ $wrapped[self::FLD_VALUE], $curTTL, $wrapped[self::FLD_TIME], null ];
+		return [ $value, $info ];
 	}
 
 	/**
@@ -2311,7 +2323,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * @param string $key String of the format <scope>:<class>[:<class or variable>]...
 	 * @return string A collection name to describe this class of key
 	 */
-	protected function determineKeyClassForStats( $key ) {
+	private function determineKeyClassForStats( $key ) {
 		$parts = explode( ':', $key, 3 );
 
 		return $parts[1] ?? $parts[0]; // sanity
@@ -2322,7 +2334,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * @return array|bool Array containing a UNIX timestamp (float) and holdoff period (integer),
 	 *  or false if value isn't a valid purge value
 	 */
-	protected function parsePurgeValue( $value ) {
+	private function parsePurgeValue( $value ) {
 		if ( !is_string( $value ) ) {
 			return false;
 		}
@@ -2345,8 +2357,8 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		}
 
 		return [
-			self::FLD_TIME => (float)$segments[1],
-			self::FLD_HOLDOFF => (int)$segments[2],
+			self::PURGE_TIME => (float)$segments[1],
+			self::PURGE_HOLDOFF => (int)$segments[2],
 		];
 	}
 
@@ -2355,50 +2367,46 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * @param int $holdoff In seconds
 	 * @return string Wrapped purge value
 	 */
-	protected function makePurgeValue( $timestamp, $holdoff ) {
+	private function makePurgeValue( $timestamp, $holdoff ) {
 		return self::PURGE_VAL_PREFIX . (float)$timestamp . ':' . (int)$holdoff;
-	}
-
-	/**
-	 * @param mixed $value
-	 * @param int $version
-	 * @return bool
-	 */
-	protected function isVersionedValue( $value, $version ) {
-		return (
-			is_array( $value ) &&
-			array_key_exists( self::VFLD_DATA, $value ) &&
-			array_key_exists( self::VFLD_VERSION, $value ) &&
-			$value[self::VFLD_VERSION] === $version
-		);
 	}
 
 	/**
 	 * @param string $group
 	 * @return MapCacheLRU
 	 */
-	protected function getProcessCache( $group ) {
+	private function getProcessCache( $group ) {
 		if ( !isset( $this->processCaches[$group] ) ) {
-			list( , $n ) = explode( ':', $group );
-			$this->processCaches[$group] = new MapCacheLRU( (int)$n );
+			list( , $size ) = explode( ':', $group );
+			$this->processCaches[$group] = new MapCacheLRU( (int)$size );
 		}
 
 		return $this->processCaches[$group];
 	}
 
 	/**
+	 * @param string $key
+	 * @param int $version
+	 * @return string
+	 */
+	private function getProcessCacheKey( $key, $version ) {
+		return $key . ' ' . (int)$version;
+	}
+
+	/**
 	 * @param array $keys
 	 * @param array $opts
-	 * @param int $pcTTL
-	 * @return array List of keys
+	 * @return string[] List of keys
 	 */
-	private function getNonProcessCachedKeys( array $keys, array $opts, $pcTTL ) {
+	private function getNonProcessCachedKeys( array $keys, array $opts ) {
+		$pcTTL = $opts['pcTTL'] ?? self::TTL_UNCACHEABLE;
+
 		$keysFound = [];
-		if ( isset( $opts['pcTTL'] ) && $opts['pcTTL'] > 0 && $this->callbackDepth == 0 ) {
-			$pcGroup = $opts['pcGroup'] ?? self::PC_PRIMARY;
-			$procCache = $this->getProcessCache( $pcGroup );
+		if ( $pcTTL > 0 && $this->callbackDepth == 0 ) {
+			$version = $opts['version'] ?? null;
+			$pCache = $this->getProcessCache( $opts['pcGroup'] ?? self::PC_PRIMARY );
 			foreach ( $keys as $key ) {
-				if ( $procCache->has( $key, $pcTTL ) ) {
+				if ( $pCache->has( $this->getProcessCacheKey( $key, $version ), $pcTTL ) ) {
 					$keysFound[] = $key;
 				}
 			}
