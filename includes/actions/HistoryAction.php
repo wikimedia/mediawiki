@@ -148,10 +148,17 @@ class HistoryAction extends FormlessAction {
 		$out = $this->getOutput();
 		$request = $this->getRequest();
 
-		/**
-		 * Allow client caching.
-		 */
-		if ( $out->checkLastModified( $this->page->getTouched() ) ) {
+		// Allow client-side HTTP caching of the history page.
+		// But, always ignore this cache if the (logged-in) user has this page on their watchlist
+		// and has one or more unseen revisions. Otherwise, we might be showing stale update markers.
+		// The Last-Modified for the history page does not change when user's markers are cleared,
+		// so going from "some unseen" to "all seen" would not clear the cache.
+		// But, when all of the revisions are marked as seen, then only way for new unseen revision
+		// markers to appear, is for the page to be edited, which updates page_touched/Last-Modified.
+		if (
+			!$this->hasUnseenRevisionMarkers() &&
+			$out->checkLastModified( $this->page->getTouched() )
+		) {
 			return null; // Client cache fresh and headers sent, nothing more to do.
 		}
 
@@ -303,6 +310,16 @@ class HistoryAction extends FormlessAction {
 		$out->preventClickjacking( $pager->getPreventClickjacking() );
 
 		return null;
+	}
+
+	/**
+	 * @return bool Page is watched by and has unseen revision for the user
+	 */
+	private function hasUnseenRevisionMarkers() {
+		return (
+			$this->getContext()->getConfig()->get( 'ShowUpdatedMarker' ) &&
+			$this->getTitle()->getNotificationTimestamp( $this->getUser() )
+		);
 	}
 
 	/**
