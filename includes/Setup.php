@@ -585,12 +585,6 @@ if ( $wgUseFileCache || $wgUseCdn ) {
 	$wgDebugToolbar = false;
 }
 
-// We always output HTML5 since 1.22, overriding these is no longer supported
-// we set them here for extensions that depend on its value.
-$wgHtml5 = true;
-$wgXhtmlDefaultNamespace = 'http://www.w3.org/1999/xhtml';
-$wgJsMimeType = 'text/javascript';
-
 // Blacklisted file extensions shouldn't appear on the "allowed" list
 $wgFileExtensions = array_values( array_diff( $wgFileExtensions, $wgFileBlacklist ) );
 
