@@ -54,6 +54,8 @@ For notes on 1.33.x and older releases, see HISTORY.
   that were changed above.
 * $wgSkipSkin — Setting this instead of $wgSkipSkins, deprecated in 1.23, is now
   hard-deprecated.
+* $wgLocalInterwiki — Setting this instead of $wgLocalInterwikis, deprecated in
+  1.23, is now hard-deprecated.
 * …
 
 ==== Removed configuration ====

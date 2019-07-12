@@ -402,6 +402,8 @@ $wgSkipSkins[] = 'fallback';
 $wgSkipSkins[] = 'apioutput';
 
 if ( $wgLocalInterwiki ) {
+	// Hard deprecated in 1.34.
+	wfDeprecated( '$wgLocalInterwiki – use $wgLocalInterwikis instead', '1.23' );
 	array_unshift( $wgLocalInterwikis, $wgLocalInterwiki );
 }
 
