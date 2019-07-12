@@ -374,7 +374,7 @@ Deprecation message.' ]
 	}
 
 	private static function makeModule( array $options = [] ) {
-		return new ResourceLoaderTestModule( $options );
+		return $options + [ 'class' => ResourceLoaderTestModule::class ];
 	}
 
 	private static function makeSampleModules() {

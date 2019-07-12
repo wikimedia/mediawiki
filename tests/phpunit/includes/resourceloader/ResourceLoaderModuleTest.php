@@ -86,6 +86,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		$context = $this->getResourceLoaderContext();
 
 		$module = new ResourceLoaderTestModule( [
+			'mayValidateScript' => true,
 			'script' => "var a = 'this is';\n {\ninvalid"
 		] );
 		$this->assertEquals(
