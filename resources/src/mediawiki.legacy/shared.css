@@ -354,7 +354,7 @@ a.new {
 	font-weight: bold;
 }
 
-/* success and error messages */
+/* Error, warning and success messages */
 .error,
 .warning,
 .success {
@@ -366,11 +366,11 @@ a.new {
 }
 
 .warning {
-	color: #705000;
+	color: #ac6600;
 }
 
 .success {
-	color: #009000;
+	color: #14866d;
 }
 
 .errorbox,
@@ -380,15 +380,13 @@ a.new {
 	padding: 0.5em 1em;
 	margin-bottom: 1em;
 	display: inline-block;
-	zoom: 1;
-	*display: inline; /* stylelint-disable-line declaration-block-no-duplicate-properties */
 }
 
 .errorbox h2,
 .warningbox h2,
 .successbox h2 {
-	font-size: 1em;
 	color: inherit;
+	font-size: 1em;
 	font-weight: bold;
 	display: inline;
 	margin: 0 0.5em 0 0;
@@ -396,26 +394,26 @@ a.new {
 }
 
 .errorbox {
-	color: #d33;
-	border-color: #fac5c5;
-	background-color: #fae3e3;
+	background-color: #fee7e6;
+	color: #000;
+	border-color: #d33;
 }
 
 .warningbox {
-	color: #705000;
-	border-color: #fde29b;
-	background-color: #fdf1d1;
+	background-color: #fef6e7;
+	color: #000;
+	border-color: #fc3;
 }
 
 .successbox {
-	color: #008000;
-	border-color: #b7fdb5;
-	background-color: #e1fddf;
+	background-color: #d5fdf4;
+	color: #000;
+	border-color: #14866d;
 }
 
 /* general info/warning box for SP */
 .mw-infobox {
-	border: 2px solid #ff7f00;
+	border: 2px solid #fc3;
 	margin: 0.5em;
 	clear: left;
 	overflow: hidden;
