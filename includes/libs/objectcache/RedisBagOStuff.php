@@ -116,7 +116,6 @@ class RedisBagOStuff extends BagOStuff {
 			if ( $ttl ) {
 				$result = $conn->setex( $key, $ttl, $this->serialize( $value ) );
 			} else {
-				// No expiry, that is very different from zero expiry in Redis
 				$result = $conn->set( $key, $this->serialize( $value ) );
 			}
 		} catch ( RedisException $e ) {
@@ -215,11 +214,7 @@ class RedisBagOStuff extends BagOStuff {
 					$this->debug( "setMulti request to $server failed" );
 					continue;
 				}
-				foreach ( $batchResult as $value ) {
-					if ( $value === false ) {
-						$result = false;
-					}
-				}
+				$result = $result && !in_array( false, $batchResult, true );
 			} catch ( RedisException $e ) {
 				$this->handleException( $conn, $e );
 				$result = false;
@@ -254,11 +249,7 @@ class RedisBagOStuff extends BagOStuff {
 					$this->debug( "deleteMulti request to $server failed" );
 					continue;
 				}
-				foreach ( $batchResult as $value ) {
-					if ( $value === false ) {
-						$result = false;
-					}
-				}
+				$result = $result && !in_array( false, $batchResult, true );
 			} catch ( RedisException $e ) {
 				$this->handleException( $conn, $e );
 				$result = false;
@@ -273,55 +264,86 @@ class RedisBagOStuff extends BagOStuff {
 		if ( !$conn ) {
 			return false;
 		}
-		$expiry = $this->convertToRelative( $expiry );
+
+		$ttl = $this->convertToRelative( $expiry );
 		try {
-			if ( $expiry ) {
-				$result = $conn->set(
-					$key,
-					$this->serialize( $value ),
-					[ 'nx', 'ex' => $expiry ]
-				);
-			} else {
-				$result = $conn->setnx( $key, $this->serialize( $value ) );
-			}
+			$result = $conn->set(
+				$key,
+				$this->serialize( $value ),
+				$ttl ? [ 'nx', 'ex' => $ttl ] : [ 'nx' ]
+			);
 		} catch ( RedisException $e ) {
 			$result = false;
 			$this->handleException( $conn, $e );
 		}
 
 		$this->logRequest( 'add', $key, $server, $result );
+
 		return $result;
 	}
 
-	/**
-	 * Non-atomic implementation of incr().
-	 *
-	 * Probably all callers actually want incr() to atomically initialise
-	 * values to zero if they don't exist, as provided by the Redis INCR
-	 * command. But we are constrained by the memcached-like interface to
-	 * return null in that case. Once the key exists, further increments are
-	 * atomic.
-	 * @param string $key Key to increase
-	 * @param int $value Value to add to $key (Default 1)
-	 * @return int|bool New value or false on failure
-	 */
 	public function incr( $key, $value = 1 ) {
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
 		}
+
 		try {
-			if ( !$conn->exists( $key ) ) {
-				return false;
+			$conn->watch( $key );
+			if ( $conn->exists( $key ) ) {
+				$conn->multi( Redis::MULTI );
+				$conn->incrBy( $key, $value );
+				$batchResult = $conn->exec();
+				if ( $batchResult === false ) {
+					$result = false;
+				} else {
+					$result = end( $batchResult );
+				}
+			} else {
+				$result = false;
+				$conn->unwatch();
 			}
-			// @FIXME: on races, the key may have a 0 TTL
-			$result = $conn->incrBy( $key, $value );
+		} catch ( RedisException $e ) {
+			try {
+				$conn->unwatch(); // sanity
+			} catch ( RedisException $ex ) {
+				// already errored
+			}
+			$result = false;
+			$this->handleException( $conn, $e );
+		}
+
+		$this->logRequest( 'incr', $key, $server, $result );
+
+		return $result;
+	}
+
+	public function incrWithInit( $key, $exptime, $value = 1, $init = 1 ) {
+		list( $server, $conn ) = $this->getConnection( $key );
+		if ( !$conn ) {
+			return false;
+		}
+
+		$ttl = $this->convertToRelative( $exptime );
+		$preIncrInit = $init - $value;
+		try {
+			$conn->multi( Redis::MULTI );
+			$conn->set( $key, $preIncrInit, $ttl ? [ 'nx', 'ex' => $ttl ] : [ 'nx' ] );
+			$conn->incrBy( $key, $value );
+			$batchResult = $conn->exec();
+			if ( $batchResult === false ) {
+				$result = false;
+				$this->debug( "incrWithInit request to $server failed" );
+			} else {
+				$result = end( $batchResult );
+			}
 		} catch ( RedisException $e ) {
 			$result = false;
 			$this->handleException( $conn, $e );
 		}
 
 		$this->logRequest( 'incr', $key, $server, $result );
+
 		return $result;
 	}
 
