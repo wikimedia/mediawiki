@@ -36,11 +36,6 @@
 		assert.ok( window.$, '$ defined' );
 		assert.strictEqual( window.$, window.jQuery, '$ alias to jQuery' );
 
-		this.suppressWarnings();
-		assert.ok( window.$j, '$j defined' );
-		assert.strictEqual( window.$j, window.jQuery, '$j alias to jQuery' );
-		this.restoreWarnings();
-
 		// window.mw and window.mediaWiki are not deprecated, but for some reason
 		// PhantomJS is triggerring the accessors on all mw.* properties in this test,
 		// and with that lots of unrelated deprecation notices.
