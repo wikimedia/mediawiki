@@ -393,6 +393,8 @@ $wgDefaultUserOptions['watchlistdays'] = min(
 unset( $rcMaxAgeDays );
 
 if ( $wgSkipSkin ) {
+	// Hard deprecated in 1.34.
+	wfDeprecated( '$wgSkipSkin – use $wgSkipSkins instead', '1.23' );
 	$wgSkipSkins[] = $wgSkipSkin;
 }
 
