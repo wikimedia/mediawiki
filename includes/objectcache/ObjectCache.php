@@ -323,7 +323,7 @@ class ObjectCache {
 	 * @throws UnexpectedValueException
 	 */
 	public static function newWANCacheFromParams( array $params ) {
-		global $wgCommandLineMode;
+		global $wgCommandLineMode, $wgSecretKey;
 
 		$services = MediaWikiServices::getInstance();
 		$params['cache'] = self::newFromParams( $params['store'] );
@@ -334,6 +334,7 @@ class ObjectCache {
 			// Let pre-emptive refreshes happen post-send on HTTP requests
 			$params['asyncHandler'] = [ DeferredUpdates::class, 'addCallableUpdate' ];
 		}
+		$params['secret'] = $params['secret'] ?? $wgSecretKey;
 		$class = $params['class'];
 
 		return new $class( $params );
