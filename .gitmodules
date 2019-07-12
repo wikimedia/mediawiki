@@ -415,7 +415,7 @@
 [submodule "extensions/VoteNY"]
 	path = extensions/VoteNY
 	url = https://github.com/wikimedia/mediawiki-extensions-VoteNY.git
-	branch = REL1_33
+	branch = master
 	ignore = dirty
 [submodule "skins/Metrolook"]
 	path = skins/Metrolook
