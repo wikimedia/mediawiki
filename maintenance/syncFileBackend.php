@@ -49,7 +49,11 @@ class SyncFileBackend extends Maintenance {
 		$src = FileBackendGroup::singleton()->get( $this->getOption( 'src' ) );
 
 		$posDir = $this->getOption( 'posdir' );
-		$posFile = $posDir ? $posDir . '/' . wfWikiID() : false;
+		if ( $posDir != '' ) {
+			$posFile = "$posDir/" . rawurlencode( $src->getDomainId() );
+		} else {
+			$posFile = false;
+		}
 
 		if ( $this->hasOption( 'posdump' ) ) {
 			// Just dump the current position into the specified position dir

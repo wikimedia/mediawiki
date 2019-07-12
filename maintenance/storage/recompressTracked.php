@@ -148,7 +148,7 @@ class RecompressTracked {
 		if ( $this->replicaId !== false ) {
 			$header .= "({$this->replicaId})";
 		}
-		$header .= ' ' . wfWikiID();
+		$header .= ' ' . WikiMap::getCurrentWikiDbDomain()->getId();
 		LegacyLogger::emit( sprintf( "%-50s %s\n", $header, $msg ), $file );
 	}
 

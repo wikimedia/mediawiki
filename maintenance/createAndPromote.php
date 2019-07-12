@@ -103,11 +103,12 @@ class CreateAndPromote extends Maintenance {
 
 			return;
 		} elseif ( count( $promotions ) !== 0 ) {
+			$dbDomain = WikiMap::getCurrentWikiDbDomain()->getId();
 			$promoText = "User:{$username} into " . implode( ', ', $promotions ) . "...\n";
 			if ( $exists ) {
-				$this->output( wfWikiID() . ": Promoting $promoText" );
+				$this->output( "$dbDomain: Promoting $promoText" );
 			} else {
-				$this->output( wfWikiID() . ": Creating and promoting $promoText" );
+				$this->output( "$dbDomain: Creating and promoting $promoText" );
 			}
 		}
 
