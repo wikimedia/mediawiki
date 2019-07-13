@@ -20,7 +20,6 @@
  * @file
  * @ingroup Upload
  */
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 
 /**
@@ -42,13 +41,36 @@ abstract class UploadBase {
 	protected $mTempPath;
 	/** @var TempFSFile|null Wrapper to handle deleting the temp file */
 	protected $tempFileObj;
-
-	protected $mDesiredDestName, $mDestName, $mRemoveTempFile, $mSourceType;
-	protected $mTitle = false, $mTitleError = 0;
-	protected $mFilteredName, $mFinalExtension;
-	protected $mLocalFile, $mStashFile, $mFileSize, $mFileProps;
+	/** @var string|null */
+	protected $mDesiredDestName;
+	/** @var string|null */
+	protected $mDestName;
+	/** @var string|null */
+	protected $mRemoveTempFile;
+	/** @var string|null */
+	protected $mSourceType;
+	/** @var Title|bool */
+	protected $mTitle = false;
+	/** @var int */
+	protected $mTitleError = 0;
+	/** @var string|null */
+	protected $mFilteredName;
+	/** @var string|null */
+	protected $mFinalExtension;
+	/** @var LocalFile */
+	protected $mLocalFile;
+	/** @var UploadStashFile */
+	protected $mStashFile;
+	/** @var int|null */
+	protected $mFileSize;
+	/** @var array|null */
+	protected $mFileProps;
+	/** @var string[] */
 	protected $mBlackListedExtensions;
-	protected $mJavaDetected, $mSVGNSError;
+	/** @var bool|null */
+	protected $mJavaDetected;
+	/** @var string|null */
+	protected $mSVGNSError;
 
 	protected static $safeXmlEncodings = [
 		'UTF-8',
@@ -1508,7 +1530,7 @@ abstract class UploadBase {
 	 * @todo Replace this with a whitelist filter!
 	 * @param string $element
 	 * @param array $attribs
-	 * @param array|null $data
+	 * @param string|null $data
 	 * @return bool|array
 	 */
 	public function checkSvgScriptCallback( $element, $attribs, $data = null ) {
@@ -2191,10 +2213,10 @@ abstract class UploadBase {
 	 * @return Status[]|bool
 	 */
 	public static function getSessionStatus( User $user, $statusKey ) {
-		$cache = MediaWikiServices::getInstance()->getMainObjectStash();
-		$key = $cache->makeKey( 'uploadstatus', $user->getId() ?: md5( $user->getName() ), $statusKey );
+		$store = self::getUploadSessionStore();
+		$key = self::getUploadSessionKey( $store, $user, $statusKey );
 
-		return $cache->get( $key );
+		return $store->get( $key );
 	}
 
 	/**
@@ -2202,19 +2224,42 @@ abstract class UploadBase {
 	 *
 	 * The value will be set in cache for 1 day
 	 *
+	 * Avoid triggering this method on HTTP GET/HEAD requests
+	 *
 	 * @param User $user
 	 * @param string $statusKey
 	 * @param array|bool $value
 	 * @return void
 	 */
 	public static function setSessionStatus( User $user, $statusKey, $value ) {
-		$cache = MediaWikiServices::getInstance()->getMainObjectStash();
-		$key = $cache->makeKey( 'uploadstatus', $user->getId() ?: md5( $user->getName() ), $statusKey );
+		$store = self::getUploadSessionStore();
+		$key = self::getUploadSessionKey( $store, $user, $statusKey );
 
 		if ( $value === false ) {
-			$cache->delete( $key );
+			$store->delete( $key );
 		} else {
-			$cache->set( $key, $value, $cache::TTL_DAY );
+			$store->set( $key, $value, $store::TTL_DAY );
 		}
+	}
+
+	/**
+	 * @param BagOStuff $store
+	 * @param User $user
+	 * @param string $statusKey
+	 * @return string
+	 */
+	private static function getUploadSessionKey( BagOStuff $store, User $user, $statusKey ) {
+		return $store->makeKey(
+			'uploadstatus',
+			$user->getId() ?: md5( $user->getName() ),
+			$statusKey
+		);
+	}
+
+	/**
+	 * @return BagOStuff
+	 */
+	private static function getUploadSessionStore() {
+		return ObjectCache::getInstance( 'db-replicated' );
 	}
 }
