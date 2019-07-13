@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
@@ -575,6 +576,41 @@ class TitleTest extends MediaWikiTestCase {
 			[ 'User:John_Doe/subOne/subTwo', 'subTwo' ],
 			[ 'User:John_Doe/subOne', 'subOne' ],
 		];
+	}
+
+	public function provideSubpage() {
+		// NOTE: avoid constructing Title objects in the provider, since it may access the database.
+		return [
+			[ 'Foo', 'x', new TitleValue( NS_MAIN, 'Foo/x' ) ],
+			[ 'Foo#bar', 'x', new TitleValue( NS_MAIN, 'Foo/x' ) ],
+			[ 'User:Foo', 'x', new TitleValue( NS_USER, 'Foo/x' ) ],
+			[ 'wiki:User:Foo', 'x', new TitleValue( NS_MAIN, 'User:Foo/x', '', 'wiki' ) ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideSubpage
+	 * @covers Title::getSubpage
+	 */
+	public function testSubpage( $title, $sub, LinkTarget $expected ) {
+		$interwikiLookup = $this->getMock( InterwikiLookup::class );
+		$interwikiLookup->expects( $this->any() )
+			->method( 'isValidInterwiki' )
+			->willReturnCallback(
+				function ( $prefix ) {
+					return $prefix == 'wiki';
+				}
+			);
+
+		$this->setService( 'InterwikiLookup', $interwikiLookup );
+
+		$title = Title::newFromText( $title );
+		$expected = Title::newFromLinkTarget( $expected );
+		$actual = $title->getSubpage( $sub );
+
+		// NOTE: convert to string for comparison
+		$this->assertSame( $expected->getPrefixedText(), $actual->getPrefixedText(), 'text form' );
+		$this->assertTrue( $expected->equals( $actual ), 'Title equality' );
 	}
 
 	public static function provideNewFromTitleValue() {
