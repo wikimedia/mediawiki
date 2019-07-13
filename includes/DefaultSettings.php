@@ -6331,11 +6331,6 @@ $wgShowDebug = false;
 $wgDebugTimestamps = false;
 
 /**
- * Print HTTP headers for every request in the debug information.
- */
-$wgDebugPrintHttpHeaders = true;
-
-/**
  * Show the contents of $wgHooks in Special:Version
  */
 $wgSpecialVersionShowHooks = false;
