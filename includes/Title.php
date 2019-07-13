@@ -1770,6 +1770,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		if (
 			!MediaWikiServices::getInstance()->getNamespaceInfo()->
 				hasSubpages( $this->mNamespace )
+			|| strtok( $this->getText(), '/' ) === false
 		) {
 			return $this->getText();
 		}
