@@ -359,6 +359,7 @@ class ObjectCache {
 	 * @deprecated Since 1.28 Use MediaWikiServices::getInstance()->getMainWANObjectCache()
 	 */
 	public static function getMainWANInstance() {
+		wfDeprecated( __METHOD__, '1.28' );
 		return MediaWikiServices::getInstance()->getMainWANObjectCache();
 	}
 
