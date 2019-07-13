@@ -270,6 +270,8 @@ because of Phabricator reports.
 * Previously, when iterating ResultWrapper with foreach() or a similar
   construct, the range of the index was 1..numRows. This has been fixed to be
   0..(numRows-1).
+* The ChangePasswordForm hook, deprecated in 1.27, has been removed. Use the
+  AuthChangeFormFields hook or security levels instead.
 * …
 
 === Deprecations in 1.34 ===
