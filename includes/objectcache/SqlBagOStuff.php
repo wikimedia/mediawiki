@@ -174,19 +174,20 @@ class SqlBagOStuff extends BagOStuff {
 	 * @throws MWException
 	 */
 	protected function getDB( $serverIndex ) {
-		if ( !isset( $this->conns[$serverIndex] ) ) {
-			if ( $serverIndex >= $this->numServers ) {
-				throw new MWException( __METHOD__ . ": Invalid server index \"$serverIndex\"" );
-			}
+		if ( $serverIndex >= $this->numServers ) {
+			throw new MWException( __METHOD__ . ": Invalid server index \"$serverIndex\"" );
+		}
 
-			# Don't keep timing out trying to connect for each call if the DB is down
-			if ( isset( $this->connFailureErrors[$serverIndex] )
-				&& ( time() - $this->connFailureTimes[$serverIndex] ) < 60
-			) {
-				throw $this->connFailureErrors[$serverIndex];
-			}
+		# Don't keep timing out trying to connect for each call if the DB is down
+		if (
+			isset( $this->connFailureErrors[$serverIndex] ) &&
+			( time() - $this->connFailureTimes[$serverIndex] ) < 60
+		) {
+			throw $this->connFailureErrors[$serverIndex];
+		}
 
-			if ( $this->serverInfos ) {
+		if ( $this->serverInfos ) {
+			if ( !isset( $this->conns[$serverIndex] ) ) {
 				// Use custom database defined by server connection info
 				$info = $this->serverInfos[$serverIndex];
 				$type = $info['type'] ?? 'mysql';
@@ -194,25 +195,26 @@ class SqlBagOStuff extends BagOStuff {
 				$this->logger->debug( __CLASS__ . ": connecting to $host" );
 				$db = Database::factory( $type, $info );
 				$db->clearFlag( DBO_TRX ); // auto-commit mode
-			} else {
-				// Use the main LB database
-				$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-				$index = $this->replicaOnly ? DB_REPLICA : DB_MASTER;
-				if ( $lb->getServerType( $lb->getWriterIndex() ) !== 'sqlite' ) {
-					// Keep a separate connection to avoid contention and deadlocks
-					$db = $lb->getConnection( $index, [], false, $lb::CONN_TRX_AUTOCOMMIT );
-				} else {
-					// However, SQLite has the opposite behavior due to DB-level locking.
-					// Stock sqlite MediaWiki installs use a separate sqlite cache DB instead.
-					$db = $lb->getConnection( $index );
-				}
+				$this->conns[$serverIndex] = $db;
 			}
-
-			$this->logger->debug( sprintf( "Connection %s will be used for SqlBagOStuff", $db ) );
-			$this->conns[$serverIndex] = $db;
+			$db = $this->conns[$serverIndex];
+		} else {
+			// Use the main LB database
+			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+			$index = $this->replicaOnly ? DB_REPLICA : DB_MASTER;
+			if ( $lb->getServerType( $lb->getWriterIndex() ) !== 'sqlite' ) {
+				// Keep a separate connection to avoid contention and deadlocks
+				$db = $lb->getConnection( $index, [], false, $lb::CONN_TRX_AUTOCOMMIT );
+			} else {
+				// However, SQLite has the opposite behavior due to DB-level locking.
+				// Stock sqlite MediaWiki installs use a separate sqlite cache DB instead.
+				$db = $lb->getConnection( $index );
+			}
 		}
 
-		return $this->conns[$serverIndex];
+		$this->logger->debug( sprintf( "Connection %s will be used for SqlBagOStuff", $db ) );
+
+		return $db;
 	}
 
 	/**
