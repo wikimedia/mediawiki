@@ -1656,7 +1656,7 @@ class ParserTestRunner {
 
 		// Wipe WANObjectCache process cache, which is invalidated by article insertion
 		// due to T144706
-		ObjectCache::getMainWANInstance()->clearProcessCache();
+		MediaWikiServices::getInstance()->getMainWANObjectCache()->clearProcessCache();
 
 		$this->executeSetupSnippets( $teardown );
 	}
