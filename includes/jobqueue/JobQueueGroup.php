@@ -121,7 +121,6 @@ class JobQueueGroup {
 		$services = MediaWikiServices::getInstance();
 		$conf['stats'] = $services->getStatsdDataFactory();
 		$conf['wanCache'] = $services->getMainWANObjectCache();
-		$conf['stash'] = $services->getMainObjectStash();
 
 		return JobQueue::factory( $conf );
 	}
