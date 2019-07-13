@@ -2756,30 +2756,27 @@ function wfStripIllegalFilenameChars( $name ) {
 }
 
 /**
- * Set PHP's memory limit to the larger of php.ini or $wgMemoryLimit
+ * Raise PHP's memory limit (if needed).
  *
- * @return int Resulting value of the memory limit.
+ * @internal For use by Setup.php
  */
-function wfMemoryLimit() {
-	global $wgMemoryLimit;
-	$memlimit = wfShorthandToInteger( ini_get( 'memory_limit' ) );
-	if ( $memlimit != -1 ) {
-		$conflimit = wfShorthandToInteger( $wgMemoryLimit );
-		if ( $conflimit == -1 ) {
+function wfMemoryLimit( $newLimit ) {
+	$oldLimit = wfShorthandToInteger( ini_get( 'memory_limit' ) );
+	// If the INI config is already unlimited, there is nothing larger
+	if ( $oldLimit != -1 ) {
+		$newLimit = wfShorthandToInteger( $newLimit );
+		if ( $newLimit == -1 ) {
 			wfDebug( "Removing PHP's memory limit\n" );
 			Wikimedia\suppressWarnings();
-			ini_set( 'memory_limit', $conflimit );
+			ini_set( 'memory_limit', $newLimit );
 			Wikimedia\restoreWarnings();
-			return $conflimit;
-		} elseif ( $conflimit > $memlimit ) {
-			wfDebug( "Raising PHP's memory limit to $conflimit bytes\n" );
+		} elseif ( $newLimit > $oldLimit ) {
+			wfDebug( "Raising PHP's memory limit to $newLimit bytes\n" );
 			Wikimedia\suppressWarnings();
-			ini_set( 'memory_limit', $conflimit );
+			ini_set( 'memory_limit', $newLimit );
 			Wikimedia\restoreWarnings();
-			return $conflimit;
 		}
 	}
-	return $memlimit;
 }
 
 /**
