@@ -30,7 +30,7 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
-use Wikimedia;
+use Wikimedia\AtEase\AtEase;
 use BagOStuff;
 use HashBagOStuff;
 use LogicException;
@@ -4439,9 +4439,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$fname = false,
 		callable $inputCallback = null
 	) {
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$fp = fopen( $filename, 'r' );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		if ( $fp === false ) {
 			throw new RuntimeException( "Could not open \"{$filename}\"" );
@@ -4913,10 +4913,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $this->conn ) {
 			// Avoid connection leaks for sanity. Normally, resources close at script completion.
 			// The connection might already be closed in zend/hhvm by now, so suppress warnings.
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			$this->closeConnection();
-			Wikimedia\restoreWarnings();
-			$this->conn = false;
+			AtEase::restoreWarnings();
+			$this->conn = null;
 		}
 	}
 }

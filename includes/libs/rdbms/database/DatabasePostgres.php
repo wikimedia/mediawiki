@@ -24,7 +24,7 @@ namespace Wikimedia\Rdbms;
 
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WaitConditionLoop;
-use Wikimedia;
+use Wikimedia\AtEase\AtEase;
 use Exception;
 
 /**
@@ -274,18 +274,18 @@ class DatabasePostgres extends Database {
 	}
 
 	public function freeResult( $res ) {
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$ok = pg_free_result( ResultWrapper::unwrap( $res ) );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		if ( !$ok ) {
 			throw new DBUnexpectedError( $this, "Unable to free Postgres result\n" );
 		}
 	}
 
 	public function fetchObject( $res ) {
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$row = pg_fetch_object( ResultWrapper::unwrap( $res ) );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		# @todo FIXME: HACK HACK HACK HACK debug
 
 		# @todo hashar: not sure if the following test really trigger if the object
@@ -302,9 +302,9 @@ class DatabasePostgres extends Database {
 	}
 
 	public function fetchRow( $res ) {
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$row = pg_fetch_array( ResultWrapper::unwrap( $res ) );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		$conn = $this->getBindingHandle();
 		if ( pg_last_error( $conn ) ) {
@@ -322,9 +322,9 @@ class DatabasePostgres extends Database {
 			return 0;
 		}
 
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$n = pg_num_rows( ResultWrapper::unwrap( $res ) );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		$conn = $this->getBindingHandle();
 		if ( pg_last_error( $conn ) ) {
