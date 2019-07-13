@@ -55,7 +55,7 @@ if ( ini_get( 'mbstring.func_overload' ) ) {
 // Start the autoloader, so that extensions can derive classes from core files
 require_once "$IP/includes/AutoLoader.php";
 
-// Load up some global defines
+// Load global constants
 require_once "$IP/includes/Defines.php";
 
 // Load default settings
@@ -89,8 +89,16 @@ if ( !interface_exists( 'Psr\Log\LoggerInterface' ) ) {
 	die( 1 );
 }
 
+/**
+ * Changes to the PHP environment that don't vary on configuration.
+ */
+
 // Install a header callback
 MediaWiki\HeaderCallback::register();
+
+// Set the encoding used by reading HTTP input, writing HTTP output.
+// This is also the default for mbstring functions.
+mb_internal_encoding( 'UTF-8' );
 
 /**
  * Load LocalSettings.php
@@ -127,8 +135,6 @@ $ps_setup = Profiler::instance()->scopedProfileIn( $fname );
 ExtensionRegistry::getInstance()->loadFromQueue();
 // Don't let any other extensions load
 ExtensionRegistry::getInstance()->finish();
-
-mb_internal_encoding( 'UTF-8' );
 
 // Set the configured locale on all requests for consisteny
 putenv( "LC_ALL=$wgShellLocale" );
@@ -754,7 +760,9 @@ Profiler::instance()->scopedProfileOut( $ps_default2 );
 $ps_misc = Profiler::instance()->scopedProfileIn( $fname . '-misc' );
 
 // Raise the memory limit if it's too low
-wfMemoryLimit();
+// Note, this makes use of wfDebug, and thus should not be before
+// MWDebug::init() is called.
+wfMemoryLimit( $wgMemoryLimit );
 
 /**
  * Set up the timezone, suppressing the pseudo-security warning in PHP 5.1+
