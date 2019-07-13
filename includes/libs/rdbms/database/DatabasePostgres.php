@@ -884,9 +884,12 @@ __INDEXATTR__;
 	}
 
 	/**
+	 * @param string $prefix Only show tables with this prefix, e.g. mw_
+	 * @param string $fname Calling function name
+	 * @return string[]
 	 * @suppress SecurityCheck-SQLInjection array_map not recognized T204911
 	 */
-	public function listTables( $prefix = null, $fname = __METHOD__ ) {
+	public function listTables( $prefix = '', $fname = __METHOD__ ) {
 		$eschemas = implode( ',', array_map( [ $this, 'addQuotes' ], $this->getCoreSchemas() ) );
 		$result = $this->query(
 			"SELECT DISTINCT tablename FROM pg_tables WHERE schemaname IN ($eschemas)", $fname );
@@ -895,7 +898,7 @@ __INDEXATTR__;
 		foreach ( $result as $table ) {
 			$vars = get_object_vars( $table );
 			$table = array_pop( $vars );
-			if ( !$prefix || strpos( $table, $prefix ) === 0 ) {
+			if ( $prefix == '' || strpos( $table, $prefix ) === 0 ) {
 				$endArray[] = $table;
 			}
 		}
