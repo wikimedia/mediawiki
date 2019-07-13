@@ -762,7 +762,7 @@ $ps_misc = Profiler::instance()->scopedProfileIn( $fname . '-misc' );
 // Raise the memory limit if it's too low
 // Note, this makes use of wfDebug, and thus should not be before
 // MWDebug::init() is called.
-wfMemoryLimit();
+wfMemoryLimit( $wgMemoryLimit );
 
 /**
  * Set up the timezone, suppressing the pseudo-security warning in PHP 5.1+
