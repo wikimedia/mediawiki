@@ -1887,7 +1887,12 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @since 1.20
 	 */
 	public function getSubpage( $text ) {
-		return self::makeTitleSafe( $this->mNamespace, $this->getText() . '/' . $text );
+		return self::makeTitleSafe(
+			$this->mNamespace,
+			$this->getText() . '/' . $text,
+			'',
+			$this->mInterwiki
+		);
 	}
 
 	/**
