@@ -445,7 +445,7 @@ class RevisionStore
 	 */
 	public function insertRevisionOn( RevisionRecord $rev, IDatabase $dbw ) {
 		// TODO: pass in a DBTransactionContext instead of a database connection.
-		$this->checkDatabaseWikiId( $dbw );
+		$this->checkDatabaseDomain( $dbw );
 
 		$slotRoles = $rev->getSlotRoles();
 
@@ -1073,7 +1073,7 @@ class RevisionStore
 		$minor,
 		User $user
 	) {
-		$this->checkDatabaseWikiId( $dbw );
+		$this->checkDatabaseDomain( $dbw );
 
 		$pageId = $title->getArticleID();
 
@@ -2247,32 +2247,14 @@ class RevisionStore
 	 * @param IDatabase $db
 	 * @throws MWException
 	 */
-	private function checkDatabaseWikiId( IDatabase $db ) {
-		$storeWiki = $this->dbDomain;
-		$dbWiki = $db->getDomainID();
-
-		if ( $dbWiki === $storeWiki ) {
+	private function checkDatabaseDomain( IDatabase $db ) {
+		$dbDomain = $db->getDomainID();
+		$storeDomain = $this->loadBalancer->resolveDomainID( $this->dbDomain );
+		if ( $dbDomain === $storeDomain ) {
 			return;
 		}
 
-		$storeWiki = $storeWiki ?: $this->loadBalancer->getLocalDomainID();
-		// @FIXME: when would getDomainID() be false here?
-		$dbWiki = $dbWiki ?: wfWikiID();
-
-		if ( $dbWiki === $storeWiki ) {
-			return;
-		}
-
-		// HACK: counteract encoding imposed by DatabaseDomain
-		$storeWiki = str_replace( '?h', '-', $storeWiki );
-		$dbWiki = str_replace( '?h', '-', $dbWiki );
-
-		if ( $dbWiki === $storeWiki ) {
-			return;
-		}
-
-		throw new MWException( "RevisionStore for $storeWiki "
-			. "cannot be used with a DB connection for $dbWiki" );
+		throw new MWException( "DB connection domain '$dbDomain' does not match '$storeDomain'" );
 	}
 
 	/**
@@ -2288,7 +2270,7 @@ class RevisionStore
 	 * @return object|false data row as a raw object
 	 */
 	private function fetchRevisionRowFromConds( IDatabase $db, $conditions, $flags = 0 ) {
-		$this->checkDatabaseWikiId( $db );
+		$this->checkDatabaseDomain( $db );
 
 		$revQuery = $this->getQueryInfo( [ 'page', 'user' ] );
 		$options = [];
@@ -2608,7 +2590,7 @@ class RevisionStore
 	 *         of the corresponding revision.
 	 */
 	public function listRevisionSizes( IDatabase $db, array $revIds ) {
-		$this->checkDatabaseWikiId( $db );
+		$this->checkDatabaseDomain( $db );
 
 		$revLens = [];
 		if ( !$revIds ) {
@@ -2745,7 +2727,7 @@ class RevisionStore
 	 * @return int
 	 */
 	private function getPreviousRevisionId( IDatabase $db, RevisionRecord $rev ) {
-		$this->checkDatabaseWikiId( $db );
+		$this->checkDatabaseDomain( $db );
 
 		if ( $rev->getPageId() === null ) {
 			return 0;
@@ -2804,7 +2786,7 @@ class RevisionStore
 	 * @return int
 	 */
 	public function countRevisionsByPageId( IDatabase $db, $id ) {
-		$this->checkDatabaseWikiId( $db );
+		$this->checkDatabaseDomain( $db );
 
 		$row = $db->selectRow( 'revision',
 			[ 'revCount' => 'COUNT(*)' ],
@@ -2853,7 +2835,7 @@ class RevisionStore
 	 * @return bool True if the given user was the only one to edit since the given timestamp
 	 */
 	public function userWasLastToEdit( IDatabase $db, $pageId, $userId, $since ) {
-		$this->checkDatabaseWikiId( $db );
+		$this->checkDatabaseDomain( $db );
 
 		if ( !$userId ) {
 			return false;

@@ -185,7 +185,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideDomainCheck
-	 * @covers \MediaWiki\Revision\RevisionStore::checkDatabaseWikiId
+	 * @covers \MediaWiki\Revision\RevisionStore::checkDatabaseDomain
 	 */
 	public function testDomainCheck( $wikiId, $dbName, $dbPrefix ) {
 		$this->setMwGlobals(
