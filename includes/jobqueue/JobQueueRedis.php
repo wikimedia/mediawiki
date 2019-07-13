@@ -451,7 +451,7 @@ LUA;
 
 		$conn = $this->getConnection();
 		try {
-			$timestamp = $conn->get( $key ); // current last timestamp of this job
+			$timestamp = $conn->get( $key ); // last known timestamp of such a root job
 			if ( $timestamp && $timestamp >= $params['rootJobTimestamp'] ) {
 				return true; // a newer version of this root job was enqueued
 			}
