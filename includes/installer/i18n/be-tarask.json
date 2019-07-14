@@ -51,6 +51,8 @@
 	"config-sidebar": "* [https://www.mediawiki.org Хатняя старонка MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Даведка для ўдзельнікаў]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Даведка для адміністратараў]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Адказы на частыя пытаньні]",
 	"config-sidebar-readme": "Прачытай мяне",
 	"config-sidebar-relnotes": "Заўвагі да выпуску",
+	"config-sidebar-license": "Капіяваньне",
+	"config-sidebar-upgrade": "Абнаўленьне",
 	"config-env-good": "Асяродзьдзе было праверанае.\nВы можаце ўсталёўваць MediaWiki.",
 	"config-env-bad": "Асяродзьдзе было праверанае.\nУсталяваньне MediaWiki немагчымае.",
 	"config-env-php": "Усталяваны PHP $1.",
