@@ -109,7 +109,7 @@ class PageEditStash {
 		// the stash request finishes parsing. For the lock acquisition below, there is not much
 		// need to duplicate parsing of the same content/user/summary bundle, so try to avoid
 		// blocking at all here.
-		$dbw = $this->lb->getConnection( DB_MASTER );
+		$dbw = $this->lb->getConnectionRef( DB_MASTER );
 		if ( !$dbw->lock( $key, $fname, 0 ) ) {
 			// De-duplicate requests on the same key
 			return self::ERROR_BUSY;
@@ -357,7 +357,8 @@ class PageEditStash {
 	 * @return string|null TS_MW timestamp or null
 	 */
 	private function lastEditTime( User $user ) {
-		$db = $this->lb->getConnection( DB_REPLICA );
+		$db = $this->lb->getConnectionRef( DB_REPLICA );
+
 		$actorQuery = ActorMigration::newMigration()->getWhere( $db, 'rc_user', $user, false );
 		$time = $db->selectField(
 			[ 'recentchanges' ] + $actorQuery['tables'],

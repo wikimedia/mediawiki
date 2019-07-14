@@ -75,7 +75,7 @@ class DBSiteStore implements SiteStore {
 	protected function loadSites() {
 		$this->sites = new SiteList();
 
-		$dbr = $this->dbLoadBalancer->getConnection( DB_REPLICA );
+		$dbr = $this->dbLoadBalancer->getConnectionRef( DB_REPLICA );
 
 		$res = $dbr->select(
 			'sites',
@@ -178,7 +178,7 @@ class DBSiteStore implements SiteStore {
 			return true;
 		}
 
-		$dbw = $this->dbLoadBalancer->getConnection( DB_MASTER );
+		$dbw = $this->dbLoadBalancer->getConnectionRef( DB_MASTER );
 
 		$dbw->startAtomic( __METHOD__ );
 
@@ -269,7 +269,7 @@ class DBSiteStore implements SiteStore {
 	 * @return bool Success
 	 */
 	public function clear() {
-		$dbw = $this->dbLoadBalancer->getConnection( DB_MASTER );
+		$dbw = $this->dbLoadBalancer->getConnectionRef( DB_MASTER );
 
 		$dbw->startAtomic( __METHOD__ );
 		$ok = $dbw->delete( 'sites', '*', __METHOD__ );

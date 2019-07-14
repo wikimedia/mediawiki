@@ -102,7 +102,7 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 		$services = MediaWikiServices::getInstance();
 		$config = $services->getMainConfig();
 
-		$dbw = $services->getDBLoadBalancer()->getConnection( DB_MASTER );
+		$dbw = $services->getDBLoadBalancer()->getConnectionRef( DB_MASTER );
 		$lockKey = $dbw->getDomainID() . ':site_stats'; // prepend wiki ID
 		$pd = [];
 		if ( $config->get( 'SiteStatsAsyncFactor' ) ) {
@@ -151,7 +151,7 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 		$services = MediaWikiServices::getInstance();
 		$config = $services->getMainConfig();
 
-		$dbr = $services->getDBLoadBalancer()->getConnection( DB_REPLICA, 'vslow' );
+		$dbr = $services->getDBLoadBalancer()->getConnectionRef( DB_REPLICA, 'vslow' );
 		# Get non-bot users than did some recent action other than making accounts.
 		# If account creation is included, the number gets inflated ~20+ fold on enwiki.
 		$rcQuery = RecentChange::getQueryInfo();

@@ -67,7 +67,7 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 	 */
 	public function doUpdate() {
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		$dbw = $lb->getConnection( DB_MASTER );
+		$dbw = $lb->getConnectionRef( DB_MASTER );
 		$fname = __METHOD__;
 
 		( new AutoCommitUpdate( $dbw, __METHOD__, function () use ( $lb, $dbw, $fname ) {
@@ -85,8 +85,8 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 					// The user_editcount is probably NULL (e.g. not initialized).
 					// Since this update runs after the new revisions were committed,
 					// wait for the replica DB to catch up so they will be counted.
-					$dbr = $lb->getConnection( DB_REPLICA );
-					// If $dbr is actually the master DB, then clearing the snapshot is
+					$dbr = $lb->getConnectionRef( DB_REPLICA );
+					// If $dbr is actually the master DB, then clearing the snapshot
 					// is harmless and waitForMasterPos() will just no-op.
 					$dbr->flushSnapshot( $fname );
 					$lb->waitForMasterPos( $dbr );
