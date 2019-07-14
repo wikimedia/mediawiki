@@ -57,7 +57,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	/** @var float */
 	protected $connTimeout = 10;
 	/** @var float */
-	protected $reqTimeout = 300;
+	protected $reqTimeout = 900;
 	/** @var bool */
 	protected $usePipelining = false;
 	/** @var int */
