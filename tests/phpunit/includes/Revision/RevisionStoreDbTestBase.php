@@ -23,6 +23,7 @@ use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiTestCase;
 use PHPUnit_Framework_MockObject_MockObject;
+use Psr\Log\NullLogger;
 use Revision;
 use TestUserRegistry;
 use Title;
@@ -146,7 +147,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			->getMock();
 
 		$lb->method( 'reallyOpenConnection' )->willReturnCallback(
-			function ( array $server, $dbNameOverride ) {
+			function () use ( $server ) {
 				return $this->getDatabaseMock( $server );
 			}
 		);
@@ -207,10 +208,11 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 				'cliMode' => true,
 				'agent' => '',
 				'load' => 100,
+				'srvCache' => new HashBagOStuff(),
 				'profiler' => null,
 				'trxProfiler' => new TransactionProfiler(),
-				'connLogger' => new \Psr\Log\NullLogger(),
-				'queryLogger' => new \Psr\Log\NullLogger(),
+				'connLogger' => new NullLogger(),
+				'queryLogger' => new NullLogger(),
 				'errorLogger' => function () {
 				},
 				'deprecationLogger' => function () {
