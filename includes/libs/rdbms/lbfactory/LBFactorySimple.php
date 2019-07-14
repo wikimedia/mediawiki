@@ -58,20 +58,11 @@ class LBFactorySimple extends LBFactory {
 		parent::__construct( $conf );
 
 		$this->mainServers = $conf['servers'] ?? [];
-		foreach ( $this->mainServers as $i => $server ) {
-			if ( $i == 0 ) {
-				$this->mainServers[$i]['master'] = true;
-			} else {
-				$this->mainServers[$i]['replica'] = true;
-			}
-		}
-
 		foreach ( ( $conf['externalClusters'] ?? [] ) as $cluster => $servers ) {
 			foreach ( $servers as $index => $server ) {
 				$this->externalServersByCluster[$cluster][$index] = $server;
 			}
 		}
-
 		$this->loadMonitorClass = $conf['loadMonitorClass'] ?? LoadMonitor::class;
 	}
 

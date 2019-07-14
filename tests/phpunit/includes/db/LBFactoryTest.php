@@ -23,6 +23,7 @@
  * @copyright © 2013 Wikimedia Foundation Inc.
  */
 
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\LBFactory;
@@ -102,10 +103,12 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$lb = $factory->getMainLB();
 
 		$dbw = $lb->getConnection( DB_MASTER );
-		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
+		$this->assertEquals(
+			$dbw::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'master shows as master' );
 
 		$dbr = $lb->getConnection( DB_REPLICA );
-		$this->assertTrue( $dbr->getLBInfo( 'master' ), 'DB_REPLICA also gets the master' );
+		$this->assertEquals(
+			$dbr::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'replica shows as replica' );
 
 		$this->assertSame( 'my_test_wiki', $factory->resolveDomainID( 'my_test_wiki' ) );
 		$this->assertSame( $factory->getLocalDomainID(), $factory->resolveDomainID( false ) );
@@ -146,18 +149,22 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$lb = $factory->getMainLB();
 
 		$dbw = $lb->getConnection( DB_MASTER );
-		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
+		$this->assertEquals(
+			$dbw::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'master shows as master' );
 		$this->assertEquals(
 			( $wgDBserver != '' ) ? $wgDBserver : 'localhost',
-			$dbw->getLBInfo( 'clusterMasterHost' ),
+			$dbw->getTopologyRootMaster(),
 			'cluster master set' );
 
 		$dbr = $lb->getConnection( DB_REPLICA );
-		$this->assertTrue( $dbr->getLBInfo( 'replica' ), 'replica shows as replica' );
+		$this->assertEquals(
+			$dbr::ROLE_STREAMING_REPLICA, $dbr->getTopologyRole(), 'replica shows as replica' );
+
 		$this->assertEquals(
 			( $wgDBserver != '' ) ? $wgDBserver : 'localhost',
-			$dbr->getLBInfo( 'clusterMasterHost' ),
-			'cluster master set' );
+			$dbr->getTopologyRootMaster(),
+			'cluster master set'
+		);
 
 		$factory->shutdown();
 	}
@@ -166,10 +173,12 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$factory = $this->newLBFactoryMultiLBs();
 
 		$dbw = $factory->getMainLB()->getConnection( DB_MASTER );
-		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
+		$this->assertEquals(
+			$dbw::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'master shows as master' );
 
 		$dbr = $factory->getMainLB()->getConnection( DB_REPLICA );
-		$this->assertTrue( $dbr->getLBInfo( 'replica' ), 'replica shows as replica' );
+		$this->assertEquals(
+			$dbr::ROLE_STREAMING_REPLICA, $dbr->getTopologyRole(), 'replica shows as replica' );
 
 		// Destructor should trigger without round stage errors
 		unset( $factory );
@@ -473,7 +482,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		unset( $db );
 
 		/** @var IMaintainableDatabase $db */
-		$db = $lb->getConnection( DB_MASTER, [], '' );
+		$db = $lb->getConnection( DB_MASTER, [], $lb::DOMAIN_ANY );
 
 		$this->assertSame(
 			'',
@@ -552,7 +561,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		);
 		$lb = $factory->getMainLB();
 		/** @var IMaintainableDatabase $db */
-		$db = $lb->getConnection( DB_MASTER, [], '' );
+		$db = $lb->getConnection( DB_MASTER, [], $lb::DOMAIN_ANY );
 
 		$this->assertSame( '', $db->getDomainID(), "Null domain used" );
 
@@ -620,16 +629,16 @@ class LBFactoryTest extends MediaWikiTestCase {
 		);
 		$lb = $factory->getMainLB();
 		/** @var IDatabase $db */
-		$db = $lb->getConnection( DB_MASTER, [], '' );
+		$db = $lb->getConnection( DB_MASTER, [], $lb::DOMAIN_ANY );
 
-		\Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		try {
-			$this->assertFalse( $db->selectDB( 'garbage-db' ) );
+			$this->assertFalse( $db->selectDomain( 'garbagedb' ) );
 			$this->fail( "No error thrown." );
 		} catch ( \Wikimedia\Rdbms\DBQueryError $e ) {
-			$this->assertRegExp( '/[\'"]garbage-db[\'"]/', $e->getMessage() );
+			$this->assertRegExp( '/[\'"]garbagedb[\'"]/', $e->getMessage() );
 		}
-		\Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 	}
 
 	/**
@@ -648,12 +657,12 @@ class LBFactoryTest extends MediaWikiTestCase {
 		);
 		$lb = $factory->getMainLB();
 
-		if ( !$lb->getConnection( DB_MASTER )->databasesAreIndependent() ) {
-			$this->markTestSkipped( "Not applicable per databasesAreIndependent()" );
+		if ( !$factory->getMainLB()->getServerAttributes( 0 )[Database::ATTR_DB_IS_FILE] ) {
+			$this->markTestSkipped( "Not applicable per ATTR_DB_IS_FILE" );
 		}
 
 		/** @var IDatabase $db */
-		$lb->getConnection( DB_MASTER, [], '' );
+		$this->assertNotNull( $lb->getConnection( DB_MASTER, [], $lb::DOMAIN_ANY ) );
 	}
 
 	/**
@@ -677,7 +686,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		}
 
 		$db = $lb->getConnection( DB_MASTER );
-		$db->selectDB( 'garbage-db' );
+		$db->selectDomain( 'garbage-db' );
 	}
 
 	/**
