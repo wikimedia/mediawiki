@@ -287,15 +287,6 @@ class WikiMap {
 	}
 
 	/**
-	 * @param string $domain
-	 * @return string
-	 * @deprecated Since 1.33; use getWikiIdFromDbDomain()
-	 */
-	public static function getWikiIdFromDomain( $domain ) {
-		return self::getWikiIdFromDbDomain( $domain );
-	}
-
-	/**
 	 * @return DatabaseDomain Database domain of the current wiki
 	 * @since 1.33
 	 */
@@ -311,7 +302,7 @@ class WikiMap {
 	 * @since 1.33
 	 */
 	public static function isCurrentWikiDbDomain( $domain ) {
-		return self::getCurrentWikiDbDomain()->equals( DatabaseDomain::newFromId( $domain ) );
+		return self::getCurrentWikiDbDomain()->equals( $domain );
 	}
 
 	/**

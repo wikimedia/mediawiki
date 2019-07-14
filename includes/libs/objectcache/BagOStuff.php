@@ -682,25 +682,33 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 
 	/**
 	 * Get an associative array containing the item for each of the keys that have items.
-	 * @param string[] $keys List of keys
+	 * @param string[] $keys List of keys; can be a map of (unused => key) for convenience
 	 * @param int $flags Bitfield; supports READ_LATEST [optional]
-	 * @return array Map of (key => value) for existing keys
+	 * @return mixed[] Map of (key => value) for existing keys; preserves the order of $keys
 	 */
 	public function getMulti( array $keys, $flags = 0 ) {
-		$valuesBykey = $this->doGetMulti( $keys, $flags );
-		foreach ( $valuesBykey as $key => $value ) {
+		$foundByKey = $this->doGetMulti( $keys, $flags );
+
+		$res = [];
+		foreach ( $keys as $key ) {
 			// Resolve one blob at a time (avoids too much I/O at once)
-			$valuesBykey[$key] = $this->resolveSegments( $key, $value );
+			if ( array_key_exists( $key, $foundByKey ) ) {
+				// A value should not appear in the key if a segment is missing
+				$value = $this->resolveSegments( $key, $foundByKey[$key] );
+				if ( $value !== false ) {
+					$res[$key] = $value;
+				}
+			}
 		}
 
-		return $valuesBykey;
+		return $res;
 	}
 
 	/**
 	 * Get an associative array containing the item for each of the keys that have items.
 	 * @param string[] $keys List of keys
 	 * @param int $flags Bitfield; supports READ_LATEST [optional]
-	 * @return array Map of (key => value) for existing keys
+	 * @return mixed[] Map of (key => value) for existing keys
 	 */
 	protected function doGetMulti( array $keys, $flags = 0 ) {
 		$res = [];
