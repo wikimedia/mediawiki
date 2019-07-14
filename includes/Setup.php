@@ -820,13 +820,9 @@ if ( $wgCommandLineMode ) {
 	}
 } else {
 	$debug = "\n\nStart request {$wgRequest->getMethod()} {$wgRequest->getRequestURL()}\n";
-
-	if ( $wgDebugPrintHttpHeaders ) {
-		$debug .= "HTTP HEADERS:\n";
-
-		foreach ( $wgRequest->getAllHeaders() as $name => $value ) {
-			$debug .= "$name: $value\n";
-		}
+	$debug .= "HTTP HEADERS:\n";
+	foreach ( $wgRequest->getAllHeaders() as $name => $value ) {
+		$debug .= "$name: $value\n";
 	}
 	wfDebug( $debug );
 }
