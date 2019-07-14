@@ -554,6 +554,10 @@ class TitleTest extends MediaWikiTestCase {
 			# Title, expected base, optional message
 			[ 'User:John_Doe/subOne/subTwo', 'John Doe' ],
 			[ 'User:Foo / Bar / Baz', 'Foo ' ],
+			[ 'Talk:////', '////' ],
+			[ 'Template:////', '////' ],
+			[ 'Template:Foo////', 'Foo' ],
+			[ 'Template:Foo////Bar', 'Foo' ],
 		];
 	}
 
