@@ -51,7 +51,7 @@ class ClearWatchlistNotificationsJob extends Job implements GenericParameterJob 
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$rowsPerQuery = $services->getMainConfig()->get( 'UpdateRowsPerQuery' );
 
-		$dbw = $lbFactory->getMainLB()->getConnection( DB_MASTER );
+		$dbw = $lbFactory->getMainLB()->getConnectionRef( DB_MASTER );
 		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
 		$timestamp = $this->params['timestamp'] ?? null;
 		if ( $timestamp === null ) {

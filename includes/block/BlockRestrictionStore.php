@@ -66,7 +66,7 @@ class BlockRestrictionStore {
 			return [];
 		}
 
-		$db = $db ?: $this->loadBalancer->getConnection( DB_REPLICA );
+		$db = $db ?: $this->loadBalancer->getConnectionRef( DB_REPLICA );
 
 		$result = $db->select(
 			[ 'ipblocks_restrictions', 'page' ],
@@ -104,7 +104,7 @@ class BlockRestrictionStore {
 			return false;
 		}
 
-		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
 
 		$dbw->insert(
 			'ipblocks_restrictions',
@@ -125,7 +125,7 @@ class BlockRestrictionStore {
 	 * @return bool
 	 */
 	public function update( array $restrictions ) {
-		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
 
 		$dbw->startAtomic( __METHOD__ );
 
@@ -197,7 +197,7 @@ class BlockRestrictionStore {
 
 		$parentBlockId = (int)$parentBlockId;
 
-		$db = $this->loadBalancer->getConnection( DB_MASTER );
+		$db = $this->loadBalancer->getConnectionRef( DB_MASTER );
 
 		$db->startAtomic( __METHOD__ );
 
@@ -230,7 +230,7 @@ class BlockRestrictionStore {
 	 * @return bool
 	 */
 	public function delete( array $restrictions ) {
-		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
 		$result = true;
 		foreach ( $restrictions as $restriction ) {
 			if ( !$restriction instanceof Restriction ) {
@@ -260,7 +260,7 @@ class BlockRestrictionStore {
 	 * @return bool
 	 */
 	public function deleteByBlockId( $blockId ) {
-		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
 		return $dbw->delete(
 			'ipblocks_restrictions',
 			[ 'ir_ipb_id' => $blockId ],
@@ -277,7 +277,7 @@ class BlockRestrictionStore {
 	 * @return bool
 	 */
 	public function deleteByParentBlockId( $parentBlockId ) {
-		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
 		return $dbw->deleteJoin(
 			'ipblocks_restrictions',
 			'ipblocks',
