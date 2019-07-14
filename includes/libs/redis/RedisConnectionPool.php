@@ -23,6 +23,7 @@
 
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 
 /**
  * Helper class to manage Redis connections.
@@ -81,7 +82,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 				__CLASS__ . ' requires a Redis client library. ' .
 				'See https://www.mediawiki.org/wiki/Redis#Setup' );
 		}
-		$this->logger = $options['logger'] ?? new \Psr\Log\NullLogger();
+		$this->logger = $options['logger'] ?? new NullLogger();
 		$this->connectTimeout = $options['connectTimeout'];
 		$this->readTimeout = $options['readTimeout'];
 		$this->persistent = $options['persistent'];

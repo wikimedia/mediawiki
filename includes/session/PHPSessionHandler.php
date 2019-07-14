@@ -25,6 +25,7 @@ namespace MediaWiki\Session;
 
 use Psr\Log\LoggerInterface;
 use BagOStuff;
+use Psr\Log\NullLogger;
 
 /**
  * Adapter for PHP's session handling
@@ -299,7 +300,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 		}
 		// Anything deleted in $_SESSION and unchanged in Session should be deleted too
 		// (but not if $_SESSION can't represent it at all)
-		\Wikimedia\PhpSessionSerializer::setLogger( new \Psr\Log\NullLogger() );
+		\Wikimedia\PhpSessionSerializer::setLogger( new NullLogger() );
 		foreach ( $cache as $key => $value ) {
 			if ( !array_key_exists( $key, $data ) && $session->exists( $key ) &&
 				\Wikimedia\PhpSessionSerializer::encode( [ $key => true ] )
