@@ -29,7 +29,8 @@
 			"WhitePhosphorus",
 			"科劳",
 			"SolidBlock",
-			"神樂坂秀吉"
+			"神樂坂秀吉",
+			"94rain"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|文档]]\n* [[mw:Special:MyLanguage/API:FAQ|常见问题]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 邮件列表]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 程序错误与功能请求]\n</div>\n<strong>状态信息：</strong>MediaWiki API是一个成熟稳定的，不断受到支持和改进的界面。尽管我们尽力避免，但偶尔也需要作出重大更新；请订阅[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 邮件列表]以便获得更新通知。\n\n<strong>错误请求：</strong>当API收到错误请求时，HTTP header将会返回一个包含\"MediaWiki-API-Error\"的值，随后header的值与error code将会送回并设置为相同的值。详细信息请参阅[[mw:Special:MyLanguage/API:Errors_and_warnings|API：错误与警告]]。\n\n<p class=\"mw-apisandbox-link\"><strong>测试中：</strong>测试API请求的易用性，请参见[[Special:ApiSandbox]]。</p>",
@@ -1401,7 +1402,7 @@
 	"apihelp-upload-param-comment": "上传注释。如果没有指定<var>$1text</var>，那么它也被用于新文件的初始页面文本。",
 	"apihelp-upload-param-tags": "更改标签以应用于上传日志记录和文件页面修订中。",
 	"apihelp-upload-param-text": "用于新文件的初始页面文本。",
-	"apihelp-upload-param-watch": "关注页面。",
+	"apihelp-upload-param-watch": "监视页面。",
 	"apihelp-upload-param-watchlist": "无条件地将页面加入至当前用户的监视列表或将其移除，使用设置或不更改监视。",
 	"apihelp-upload-param-ignorewarnings": "忽略任何警告。",
 	"apihelp-upload-param-file": "文件内容。",

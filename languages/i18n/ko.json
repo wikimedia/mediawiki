@@ -76,7 +76,8 @@
 			"Delim",
 			"Comjun04",
 			"Son77391",
-			"Jango"
+			"Jango",
+			"D6283"
 		]
 	},
 	"tog-underline": "링크에 밑줄 긋기:",
@@ -3483,7 +3484,7 @@
 	"logentry-block-block": "$1님이 {{GENDER:$4|$3}}님을 $5 {{GENDER:$2|차단했습니다}} $6",
 	"logentry-block-unblock": "$1님이 {{GENDER:$4|$3}}님의 {{GENDER:$2|차단을 해제했습니다}}",
 	"logentry-block-reblock": "$1 님이 {{GENDER:$4|$3}} 님의 차단 기간을 $5(으)로 {{GENDER:$2|바꾸었습니다}} $6",
-	"logentry-partialblock-block": "$1님이 {{GENDER:$4|$3}}님을 $7 {{PLURAL:$8|문서를|문서들을}} 편집하지 못하도록 $5 {{GENDER:$2|차단}}했습니다. $6",
+	"logentry-partialblock-block": "$1님이 {{GENDER:$4|$3}}님을 $7 편집하지 못하도록 $5 {{GENDER:$2|차단}}했습니다. $6",
 	"logentry-suppress-block": "$1님이 {{GENDER:$4|$3}} 사용자를 $5 {{GENDER:$2|차단했습니다}} $6",
 	"logentry-suppress-reblock": "$1 님이 {{GENDER:$4|$3}} 님의 차단 기간을 $5(으)로 {{GENDER:$2|바꾸었습니다}} $6",
 	"logentry-import-upload": "$1님이 $3 문서를 파일 올리기로 {{GENDER:$2|가져왔습니다}}",
@@ -3827,7 +3828,7 @@
 	"edit-error-short": "오류: $1",
 	"edit-error-long": "오류:\n\n$1",
 	"specialmute": "알림 미표시",
-	"specialmute-success": "알림 미표시 환경 설정이 성공적으로 업데이트되었습니다. [[Special:Preferences]]에서 알림이 표시되지 않는 모든 사용자를 확인하십시오.",
+	"specialmute-success": "알림 미표시 환경 설정이 업데이트되었습니다. [[Special:Preferences|환경 설정]]에서 알림이 표시되지 않는 모든 사용자를 확인하십시오.",
 	"specialmute-submit": "확인",
 	"specialmute-label-mute-email": "이 사용자의 이메일 알림을 표시하지 않습니다",
 	"specialmute-header": "{{BIDI:[[User:$1]]}}의 알림 미표시 환경 설정을 선택해 주십시오.",

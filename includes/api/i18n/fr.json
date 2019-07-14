@@ -33,7 +33,8 @@
 			"Kenjiraw",
 			"Framawiki",
 			"Epok",
-			"Derugon"
+			"Derugon",
+			"Lucas Werkmeister (WMDE)"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentation]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Liste de diffusion]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annonces de l’API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bogues et demandes]\n</div>\n<strong>État :</strong> L’API MediaWiki est une interface stable et mature qui est supportée et améliorée de façon active. Bien que nous essayions de l’éviter, nous pouvons avoir parfois besoin de faire des modifications impactantes ; inscrivez-vous à [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la liste de diffusion mediawiki-api-announce] pour être informé des mises à jour.\n\n<strong>Requêtes erronées :</strong> Si des requêtes erronées sont envoyées à l’API, un entête HTTP sera renvoyé avec la clé « MediaWiki-API-Error ». La valeur de cet entête et le code d’erreur renvoyé prendront la même valeur. Pour plus d’information, voyez [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Errors and warnings]].\n\n<p class=\"mw-apisandbox-link\"><strong>Test :</strong> Pour faciliter le test des requêtes à l’API, voyez [[Special:ApiSandbox]].</p>",
@@ -935,7 +936,7 @@
 	"apihelp-query+languageinfo-paramvalue-prop-code": "Le code de langue (ce code est spécifique à MédiaWiki, bien qu’il y ait des recouvrements avec d’autres standards).",
 	"apihelp-query+languageinfo-paramvalue-prop-bcp47": "Le code de langue BCP-47.",
 	"apihelp-query+languageinfo-paramvalue-prop-dir": "La direction d’écriture de la langue (<code>ltr</code> ou <code>rtl</code>).",
-	"apihelp-query+languageinfo-paramvalue-prop-autonym": "L’autonyme d'une langue, c’est-à-dire son nom dans cette langue.",
+	"apihelp-query+languageinfo-paramvalue-prop-autonym": "L’autonyme d’une langue, c’est-à-dire son nom dans cette langue.",
 	"apihelp-query+languageinfo-paramvalue-prop-name": "Le nom de la langue dans la langue spécifiée par le paramètre <var>lilang</var>, avec application des langues de secours si besoin.",
 	"apihelp-query+languageinfo-paramvalue-prop-fallbacks": "Les codes de langue des langues de secours configurées pour cette langue. Le secours implicite final en 'en' n’est pas inclus (mais certaines langues peuvent avoir 'en' en secours explicitement).",
 	"apihelp-query+languageinfo-paramvalue-prop-variants": "Les codes de langue des variantes supportées par cette langue.",

@@ -74,7 +74,8 @@
 			"Weblars",
 			"Kranix",
 			"Psl85",
-			"Dipsacus fullonum"
+			"Dipsacus fullonum",
+			"Fugithora"
 		]
 	},
 	"tog-underline": "Understreg link:",
@@ -240,7 +241,7 @@
 	"history": "Sidehistorik",
 	"history_short": "Historik",
 	"history_small": "historik",
-	"updatedmarker": "opdateret siden seneste besøg",
+	"updatedmarker": "opdateret siden dit seneste besøg",
 	"printableversion": "Udskriftsvenlig udgave",
 	"permalink": "Permanent link",
 	"print": "Udskriv",
@@ -451,6 +452,8 @@
 	"virus-scanfailed": "scan fejlede (fejlkode $1)",
 	"virus-unknownscanner": "ukendt antivirus:",
 	"logouttext": "<strong>Du er nu logget af.</strong>\n\nBemærk, at nogle sider stadigvæk kan vises som om du var logget på, indtil du tømmer din browsers cache.",
+	"logging-out-notify": "Du bliver logget ud, vent venligst.",
+	"logout-failed": "Kan ikke logge ud nu: $1",
 	"cannotlogoutnow-title": "Kan ikke logge af på nuværende tidspunkt",
 	"cannotlogoutnow-text": "Det er ikke muligt at logge af når du bruger $1.",
 	"welcomeuser": "Velkommen, $1!",
