@@ -134,6 +134,8 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	protected $asyncHandler;
 	/** @var float Unix timestamp of the oldest possible valid values */
 	protected $epoch;
+	/** @var string Stable secret used for hasing long strings into key components */
+	protected $secret;
 
 	/** @var int Callback stack depth for getWithSetCallback() */
 	private $callbackDepth = 0;
@@ -256,6 +258,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 *       is configured to interpret /<region>/<cluster>/ key prefixes as routes. This
 	 *       requires that "region" and "cluster" are both set above. [optional]
 	 *   - epoch: lowest UNIX timestamp a value/tombstone must have to be valid. [optional]
+	 *   - secret: stable secret used for hashing long strings into key components. [optional]
 	 */
 	public function __construct( array $params ) {
 		$this->cache = $params['cache'];
@@ -263,6 +266,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		$this->cluster = $params['cluster'] ?? 'wan-main';
 		$this->mcrouterAware = !empty( $params['mcrouterAware'] );
 		$this->epoch = $params['epoch'] ?? self::EPOCH_UNIX_ONE_SECOND;
+		$this->secret = $params['secret'] ?? (string)$this->epoch;
 
 		$this->setLogger( $params['logger'] ?? new NullLogger() );
 		$this->stats = $params['stats'] ?? new NullStatsdDataFactory();
@@ -331,7 +335,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 *
 	 * @param string $key Cache key made from makeKey() or makeGlobalKey()
 	 * @param mixed|null &$curTTL Approximate TTL left on the key if present/tombstoned [returned]
-	 * @param array $checkKeys List of "check" keys
+	 * @param string[] $checkKeys The "check" keys used to validate the value
 	 * @param mixed|null &$info Key info if WANObjectCache::PASS_BY_REF [returned]
 	 * @return mixed Value of cache key or false on failure
 	 */
@@ -366,14 +370,17 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * Othwerwise, $info will transform into a map of (cache key => cached value timestamp).
 	 * Only the cache keys listed in $keys that exists or are tombstoned will have an entry.
 	 *
+	 * $checkKeys holds the "check" keys used to validate values of applicable keys. The integer
+	 * indexes hold "check" keys that apply to all of $keys while the string indexes hold "check"
+	 * keys that only apply to the cache key with that name.
+	 *
 	 * @see WANObjectCache::get()
 	 *
-	 * @param array $keys List of cache keys made from makeKey() or makeGlobalKey()
+	 * @param string[] $keys List of cache keys made from makeKey() or makeGlobalKey()
 	 * @param mixed|null &$curTTLs Map of (key => TTL left) for existing/tombstoned keys [returned]
-	 * @param array $checkKeys List of check keys to apply to all $keys. May also apply "check"
-	 *  keys to specific cache keys only by using cache keys as keys in the $checkKeys array.
+	 * @param string[]|string[][] $checkKeys Map of (integer or cache key => "check" key(s))
 	 * @param mixed|null &$info Map of (key => info) if WANObjectCache::PASS_BY_REF [returned]
-	 * @return array Map of (key => value) for keys that exist and are not tombstoned
+	 * @return mixed[] Map of (key => value) for existing values; order of $keys is preserved
 	 */
 	final public function getMulti(
 		array $keys,
@@ -468,10 +475,10 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 
 	/**
 	 * @since 1.27
-	 * @param array $timeKeys List of prefixed time check keys
-	 * @param array $wrappedValues
+	 * @param string[] $timeKeys List of prefixed time check keys
+	 * @param mixed[] $wrappedValues
 	 * @param float $now
-	 * @return array List of purge value arrays
+	 * @return array[] List of purge value arrays
 	 */
 	private function processCheckKeys( array $timeKeys, array $wrappedValues, $now ) {
 		$purgeValues = [];
@@ -814,7 +821,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * @see WANObjectCache::getCheckKeyTime()
 	 * @see WANObjectCache::getWithSetCallback()
 	 *
-	 * @param array $keys
+	 * @param string[] $keys
 	 * @return float[] Map of (key => UNIX timestamp)
 	 * @since 1.31
 	 */
@@ -1594,7 +1601,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 *         // Map of cache keys to entity IDs
 	 *         $cache->makeMultiKeys(
 	 *             $this->fileVersionIds(),
-	 *             function ( $id, WANObjectCache $cache ) {
+	 *             function ( $id ) use ( $cache ) {
 	 *                 return $cache->makeKey( 'file-version', $id );
 	 *             }
 	 *         ),
@@ -1633,17 +1640,15 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * @param int $ttl Seconds to live for key updates
 	 * @param callable $callback Callback the yields entity regeneration callbacks
 	 * @param array $opts Options map
-	 * @return array Map of (cache key => value) in the same order as $keyedIds
+	 * @return mixed[] Map of (cache key => value) in the same order as $keyedIds
 	 * @since 1.28
 	 */
 	final public function getMultiWithSetCallback(
 		ArrayIterator $keyedIds, $ttl, callable $callback, array $opts = []
 	) {
-		$valueKeys = array_keys( $keyedIds->getArrayCopy() );
-
 		// Load required keys into process cache in one go
 		$this->warmupCache = $this->getRawKeysForWarmup(
-			$this->getNonProcessCachedKeys( $valueKeys, $opts ),
+			$this->getNonProcessCachedMultiKeys( $keyedIds, $opts ),
 			$opts['checkKeys'] ?? []
 		);
 		$this->warmupKeyMisses = 0;
@@ -1686,7 +1691,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 *         // Map of cache keys to entity IDs
 	 *         $cache->makeMultiKeys(
 	 *             $this->fileVersionIds(),
-	 *             function ( $id, WANObjectCache $cache ) {
+	 *             function ( $id ) use ( $cache ) {
 	 *                 return $cache->makeKey( 'file-version', $id );
 	 *             }
 	 *         ),
@@ -1726,21 +1731,19 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * @param int $ttl Seconds to live for key updates
 	 * @param callable $callback Callback the yields entity regeneration callbacks
 	 * @param array $opts Options map
-	 * @return array Map of (cache key => value) in the same order as $keyedIds
+	 * @return mixed[] Map of (cache key => value) in the same order as $keyedIds
 	 * @since 1.30
 	 */
 	final public function getMultiWithUnionSetCallback(
 		ArrayIterator $keyedIds, $ttl, callable $callback, array $opts = []
 	) {
-		$idsByValueKey = $keyedIds->getArrayCopy();
-		$valueKeys = array_keys( $idsByValueKey );
 		$checkKeys = $opts['checkKeys'] ?? [];
 		unset( $opts['lockTSE'] ); // incompatible
 		unset( $opts['busyValue'] ); // incompatible
 
 		// Load required keys into process cache in one go
-		$keysGet = $this->getNonProcessCachedKeys( $valueKeys, $opts );
-		$this->warmupCache = $this->getRawKeysForWarmup( $keysGet, $checkKeys );
+		$keysByIdGet = $this->getNonProcessCachedMultiKeys( $keyedIds, $opts );
+		$this->warmupCache = $this->getRawKeysForWarmup( $keysByIdGet, $checkKeys );
 		$this->warmupKeyMisses = 0;
 
 		// IDs of entities known to be in need of regeneration
@@ -1749,10 +1752,10 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		// Find out which keys are missing/deleted/stale
 		$curTTLs = [];
 		$asOfs = [];
-		$curByKey = $this->getMulti( $keysGet, $curTTLs, $checkKeys, $asOfs );
-		foreach ( $keysGet as $key ) {
+		$curByKey = $this->getMulti( $keysByIdGet, $curTTLs, $checkKeys, $asOfs );
+		foreach ( $keysByIdGet as $id => $key ) {
 			if ( !array_key_exists( $key, $curByKey ) || $curTTLs[$key] < 0 ) {
-				$idsRegen[] = $idsByValueKey[$key];
+				$idsRegen[] = $id;
 			}
 		}
 
@@ -1784,7 +1787,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 
 		// Run the cache-aside logic using warmupCache instead of persistent cache queries
 		$values = [];
-		foreach ( $idsByValueKey as $key => $id ) { // preserve order
+		foreach ( $keyedIds as $key => $id ) { // preserve order
 			$values[$key] = $this->getWithSetCallback( $key, $ttl, $func, $opts );
 		}
 
@@ -1875,18 +1878,133 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	}
 
 	/**
-	 * @param array $entities List of entity IDs
-	 * @param callable $keyFunc Callback yielding a key from (entity ID, this WANObjectCache)
-	 * @return ArrayIterator Iterator yielding (cache key => entity ID) in $entities order
+	 * Hash a possibly long string into a suitable component for makeKey()/makeGlobalKey()
+	 *
+	 * @param string $component A raw component used in building a cache key
+	 * @return string 64 character HMAC using a stable secret for public collision resistance
+	 * @since 1.34
+	 */
+	public function hash256( $component ) {
+		return hash_hmac( 'sha256', $component, $this->secret );
+	}
+
+	/**
+	 * Get an iterator of (cache key => entity ID) for a list of entity IDs
+	 *
+	 * The callback takes an ID string and returns a key via makeKey()/makeGlobalKey().
+	 * There should be no network nor filesystem I/O used in the callback. The entity
+	 * ID/key mapping must be 1:1 or an exception will be thrown. If hashing is needed,
+	 * then use the hash256() method.
+	 *
+	 * Example usage for the default keyspace:
+	 * @code
+	 *     $keyedIds = $cache->makeMultiKeys(
+	 *         $modules,
+	 *         function ( $module ) use ( $cache ) {
+	 *             return $cache->makeKey( 'module-info', $module );
+	 *         }
+	 *     );
+	 * @endcode
+	 *
+	 * Example usage for mixed default and global keyspace:
+	 * @code
+	 *     $keyedIds = $cache->makeMultiKeys(
+	 *         $filters,
+	 *         function ( $filter ) use ( $cache ) {
+	 *             return ( strpos( $filter, 'central:' ) === 0 )
+	 *                 ? $cache->makeGlobalKey( 'regex-filter', $filter )
+	 *                 : $cache->makeKey( 'regex-filter', $filter )
+	 *         }
+	 *     );
+	 * @endcode
+	 *
+	 * Example usage with hashing:
+	 * @code
+	 *     $keyedIds = $cache->makeMultiKeys(
+	 *         $urls,
+	 *         function ( $url ) use ( $cache ) {
+	 *             return $cache->makeKey( 'url-info', $cache->hash256( $url ) );
+	 *         }
+	 *     );
+	 * @endcode
+	 *
+	 * @see WANObjectCache::makeKey()
+	 * @see WANObjectCache::makeGlobalKey()
+	 * @see WANObjectCache::hash256()
+	 *
+	 * @param string[]|int[] $ids List of entity IDs
+	 * @param callable $keyCallback Function returning makeKey()/makeGlobalKey() on the input ID
+	 * @return ArrayIterator Iterator of (cache key => ID); order of $ids is preserved
+	 * @throws UnexpectedValueException
 	 * @since 1.28
 	 */
-	final public function makeMultiKeys( array $entities, callable $keyFunc ) {
-		$map = [];
-		foreach ( $entities as $entity ) {
-			$map[$keyFunc( $entity, $this )] = $entity;
+	final public function makeMultiKeys( array $ids, $keyCallback ) {
+		$idByKey = [];
+		foreach ( $ids as $id ) {
+			// Discourage triggering of automatic makeKey() hashing in some backends
+			if ( strlen( $id ) > 64 ) {
+				$this->logger->warning( __METHOD__ . ": long ID '$id'; use hash256()" );
+			}
+			$key = $keyCallback( $id, $this );
+			// Edge case: ignore key collisions due to duplicate $ids like "42" and 42
+			if ( !isset( $idByKey[$key] ) ) {
+				$idByKey[$key] = $id;
+			} elseif ( (string)$id !== (string)$idByKey[$key] ) {
+				throw new UnexpectedValueException(
+					"Cache key collision; IDs ('$id','{$idByKey[$key]}') map to '$key'"
+				);
+			}
 		}
 
-		return new ArrayIterator( $map );
+		return new ArrayIterator( $idByKey );
+	}
+
+	/**
+	 * Get an (ID => value) map from (i) a non-unique list of entity IDs, and (ii) the list
+	 * of corresponding entity values by first appearance of each ID in the entity ID list
+	 *
+	 * For use with getMultiWithSetCallback() and getMultiWithUnionSetCallback().
+	 *
+	 * *Only* use this method if the entity ID/key mapping is trivially 1:1 without exception.
+	 * Key generation method must utitilize the *full* entity ID in the key (not a hash of it).
+	 *
+	 * Example usage:
+	 * @code
+	 *     $poems = $cache->getMultiWithSetCallback(
+	 *         $cache->makeMultiKeys(
+	 *             $uuids,
+	 *             function ( $uuid ) use ( $cache ) {
+	 *                 return $cache->makeKey( 'poem', $uuid );
+	 *             }
+	 *         ),
+	 *         $cache::TTL_DAY,
+	 *         function ( $uuid ) use ( $url ) {
+	 *             return $this->http->run( [ 'method' => 'GET', 'url' => "$url/$uuid" ] );
+	 *         }
+	 *     );
+	 *     $poemsByUUID = $cache->multiRemap( $uuids, $poems );
+	 * @endcode
+	 *
+	 * @see WANObjectCache::makeMultiKeys()
+	 * @see WANObjectCache::getMultiWithSetCallback()
+	 * @see WANObjectCache::getMultiWithUnionSetCallback()
+	 *
+	 * @param string[]|int[] $ids Entity ID list makeMultiKeys()
+	 * @param mixed[] $res Result of getMultiWithSetCallback()/getMultiWithUnionSetCallback()
+	 * @return mixed[] Map of (ID => value); order of $ids is preserved
+	 * @since 1.34
+	 */
+	final public function multiRemap( array $ids, array $res ) {
+		if ( count( $ids ) !== count( $res ) ) {
+			// If makeMultiKeys() is called on a list of non-unique IDs, then the resulting
+			// ArrayIterator will have less entries due to "first appearance" de-duplication
+			$ids = array_keys( array_flip( $ids ) );
+			if ( count( $ids ) !== count( $res ) ) {
+				throw new UnexpectedValueException( "Multi-key result does not match ID list" );
+			}
+		}
+
+		return array_combine( $ids, $res );
 	}
 
 	/**
@@ -2307,9 +2425,9 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	}
 
 	/**
-	 * @param array $keys
+	 * @param string[] $keys
 	 * @param string $prefix
-	 * @return string[]
+	 * @return string[] Prefix keys; the order of $keys is preserved
 	 */
 	protected static function prefixCacheKeys( array $keys, $prefix ) {
 		$res = [];
@@ -2395,31 +2513,31 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	}
 
 	/**
-	 * @param array $keys
+	 * @param ArrayIterator $keys
 	 * @param array $opts
-	 * @return string[] List of keys
+	 * @return string[] Map of (ID => cache key)
 	 */
-	private function getNonProcessCachedKeys( array $keys, array $opts ) {
+	private function getNonProcessCachedMultiKeys( ArrayIterator $keys, array $opts ) {
 		$pcTTL = $opts['pcTTL'] ?? self::TTL_UNCACHEABLE;
 
-		$keysFound = [];
+		$keysMissing = [];
 		if ( $pcTTL > 0 && $this->callbackDepth == 0 ) {
 			$version = $opts['version'] ?? null;
 			$pCache = $this->getProcessCache( $opts['pcGroup'] ?? self::PC_PRIMARY );
-			foreach ( $keys as $key ) {
-				if ( $pCache->has( $this->getProcessCacheKey( $key, $version ), $pcTTL ) ) {
-					$keysFound[] = $key;
+			foreach ( $keys as $key => $id ) {
+				if ( !$pCache->has( $this->getProcessCacheKey( $key, $version ), $pcTTL ) ) {
+					$keysMissing[$id] = $key;
 				}
 			}
 		}
 
-		return array_diff( $keys, $keysFound );
+		return $keysMissing;
 	}
 
 	/**
-	 * @param array $keys
-	 * @param array $checkKeys
-	 * @return array Map of (cache key => mixed)
+	 * @param string[] $keys
+	 * @param string[]|string[][] $checkKeys
+	 * @return string[] List of cache keys
 	 */
 	private function getRawKeysForWarmup( array $keys, array $checkKeys ) {
 		if ( !$keys ) {

@@ -11,7 +11,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers WANObjectCache::getWarmupKeyMisses
  * @covers WANObjectCache::prefixCacheKeys
  * @covers WANObjectCache::getProcessCache
- * @covers WANObjectCache::getNonProcessCachedKeys
+ * @covers WANObjectCache::getNonProcessCachedMultiKeys
  * @covers WANObjectCache::getRawKeysForWarmup
  * @covers WANObjectCache::getInterimValue
  * @covers WANObjectCache::setInterimValue
@@ -1072,7 +1072,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$cache->set( $key2, $value2, 10 );
 
 		$curTTLs = [];
-		$this->assertEquals(
+		$this->assertSame(
 			[ $key1 => $value1, $key2 => $value2 ],
 			$cache->getMulti( [ $key1, $key2, $key3 ], $curTTLs ),
 			'Result array populated'
@@ -1088,7 +1088,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$mockWallClock += 1;
 
 		$curTTLs = [];
-		$this->assertEquals(
+		$this->assertSame(
 			[ $key1 => $value1, $key2 => $value2 ],
 			$cache->getMulti( [ $key1, $key2, $key3 ], $curTTLs, [ $cKey1, $cKey2 ] ),
 			"Result array populated even with new check keys"
@@ -1149,7 +1149,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			'key2' => $check2,
 			'key3' => $check3,
 		] );
-		$this->assertEquals(
+		$this->assertSame(
 			[ 'key1' => $value1, 'key2' => $value2 ],
 			$result,
 			'Initial values'
@@ -1169,7 +1169,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			'key2' => $check2,
 			'key3' => $check3,
 		] );
-		$this->assertEquals(
+		$this->assertSame(
 			[ 'key1' => $value1, 'key2' => $value2 ],
 			$result,
 			'key1 expired by check1, but value still provided'
@@ -1838,6 +1838,137 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		] ) );
 
 		$this->assertEquals( $class, $wanCache->determineKeyClassForStats( $key ) );
+	}
+
+	/**
+	 * @covers WANObjectCache::makeMultiKeys
+	 */
+	public function testMakeMultiKeys() {
+		$cache = $this->cache;
+
+		$ids = [ 1, 2, 3, 4, 4, 5, 6, 6, 7, 7 ];
+		$keyCallback = function ( $id, WANObjectCache $cache ) {
+			return $cache->makeKey( 'key', $id );
+		};
+		$keyedIds = $cache->makeMultiKeys( $ids, $keyCallback );
+
+		$expected = [
+			"local:key:1" => 1,
+			"local:key:2" => 2,
+			"local:key:3" => 3,
+			"local:key:4" => 4,
+			"local:key:5" => 5,
+			"local:key:6" => 6,
+			"local:key:7" => 7
+		];
+		$this->assertSame( $expected, iterator_to_array( $keyedIds ) );
+
+		$ids = [ '1', '2', '3', '4', '4', '5', '6', '6', '7', '7' ];
+		$keyCallback = function ( $id, WANObjectCache $cache ) {
+			return $cache->makeGlobalKey( 'key', $id, 'a', $id, 'b' );
+		};
+		$keyedIds = $cache->makeMultiKeys( $ids, $keyCallback );
+
+		$expected = [
+			"global:key:1:a:1:b" => '1',
+			"global:key:2:a:2:b" => '2',
+			"global:key:3:a:3:b" => '3',
+			"global:key:4:a:4:b" => '4',
+			"global:key:5:a:5:b" => '5',
+			"global:key:6:a:6:b" => '6',
+			"global:key:7:a:7:b" => '7'
+		];
+		$this->assertSame( $expected, iterator_to_array( $keyedIds ) );
+	}
+
+	/**
+	 * @covers WANObjectCache::makeMultiKeys
+	 */
+	public function testMakeMultiKeysIntString() {
+		$cache = $this->cache;
+		$ids = [ 1, 2, 3, 4, '4', 5, 6, 6, 7, '7' ];
+		$keyCallback = function ( $id, WANObjectCache $cache ) {
+			return $cache->makeGlobalKey( 'key', $id, 'a', $id, 'b' );
+		};
+
+		$keyedIds = $cache->makeMultiKeys( $ids, $keyCallback );
+
+		$expected = [
+			"global:key:1:a:1:b" => 1,
+			"global:key:2:a:2:b" => 2,
+			"global:key:3:a:3:b" => 3,
+			"global:key:4:a:4:b" => 4,
+			"global:key:5:a:5:b" => 5,
+			"global:key:6:a:6:b" => 6,
+			"global:key:7:a:7:b" => 7
+		];
+		$this->assertSame( $expected, iterator_to_array( $keyedIds ) );
+	}
+
+	/**
+	 * @covers WANObjectCache::makeMultiKeys
+	 * @expectedException UnexpectedValueException
+	 */
+	public function testMakeMultiKeysCollision() {
+		$ids = [ 1, 2, 3, 4, '4', 5, 6, 6, 7 ];
+
+		$this->cache->makeMultiKeys(
+			$ids,
+			function ( $id ) {
+				return "keymod:" . $id % 3;
+			}
+		);
+	}
+
+	/**
+	 * @covers WANObjectCache::multiRemap
+	 */
+	public function testMultiRemap() {
+		$a = [ 'a', 'b', 'c' ];
+		$res = [ 'keyA' => 1, 'keyB' => 2, 'keyC' => 3 ];
+
+		$this->assertEquals(
+			[ 'a' => 1, 'b' => 2, 'c' => 3 ],
+			$this->cache->multiRemap( $a, $res )
+		);
+
+		$a = [ 'a', 'b', 'c', 'c', 'd' ];
+		$res = [ 'keyA' => 1, 'keyB' => 2, 'keyC' => 3, 'keyD' => 4 ];
+
+		$this->assertEquals(
+			[ 'a' => 1, 'b' => 2, 'c' => 3, 'd' => 4 ],
+			$this->cache->multiRemap( $a, $res )
+		);
+	}
+
+	/**
+	 * @covers WANObjectCache::hash256
+	 */
+	public function testHash256() {
+		$bag = new HashBagOStuff();
+		$cache = new WANObjectCache( [ 'cache' => $bag, 'epoch' => 5 ] );
+		$this->assertEquals(
+			'f402bce76bfa1136adc705d8d5719911ce1fe61f0ad82ddf79a15f3c4de6ec4c',
+			$cache->hash256( 'x' )
+		);
+
+		$cache = new WANObjectCache( [ 'cache' => $bag, 'epoch' => 50 ] );
+		$this->assertEquals(
+			'f79a126722f0a682c4c500509f1b61e836e56c4803f92edc89fc281da5caa54e',
+			$cache->hash256( 'x' )
+		);
+
+		$cache = new WANObjectCache( [ 'cache' => $bag, 'secret' => 'garden' ] );
+		$this->assertEquals(
+			'48cd57016ffe29981a1114c45e5daef327d30fc6206cb73edc3cb94b4d8fe093',
+			$cache->hash256( 'x' )
+		);
+
+		$cache = new WANObjectCache( [ 'cache' => $bag, 'secret' => 'garden', 'epoch' => 3 ] );
+		$this->assertEquals(
+			'48cd57016ffe29981a1114c45e5daef327d30fc6206cb73edc3cb94b4d8fe093',
+			$cache->hash256( 'x' )
+		);
 	}
 }
 
