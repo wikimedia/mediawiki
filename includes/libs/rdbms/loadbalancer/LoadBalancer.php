@@ -73,8 +73,6 @@ class LoadBalancer implements ILoadBalancer {
 
 	/** @var array[] Map of (server index => server config array) */
 	private $servers;
-	/** @var float[] Map of (server index => weight) */
-	private $genericLoads;
 	/** @var array[] Map of (group => server index => weight) */
 	private $groupLoads;
 	/** @var bool Whether to disregard replica DB lag as a factor in replica DB selection */
@@ -87,7 +85,7 @@ class LoadBalancer implements ILoadBalancer {
 	private $localDomainIdAlias;
 	/** @var int Amount of replication lag, in seconds, that is considered "high" */
 	private $maxLag;
-	/** @var string|bool The query group list to be used by default */
+	/** @var string|null Default query group to use with getConnection() */
 	private $defaultGroup;
 
 	/** @var string Current server name */
@@ -106,8 +104,6 @@ class LoadBalancer implements ILoadBalancer {
 
 	/** @var Database Connection handle that caused a problem */
 	private $errorConnection;
-	/** @var int The generic (not query grouped) replica server index */
-	private $genericReadIndex = -1;
 	/** @var int[] The group replica server indexes keyed by group */
 	private $readIndexByGroup = [];
 	/** @var bool|DBMasterPos Replication sync position or false if not set */
@@ -170,7 +166,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		$listKey = -1;
 		$this->servers = [];
-		$this->genericLoads = [];
+		$this->groupLoads = [ self::GROUP_GENERIC => [] ];
 		foreach ( $params['servers'] as $i => $server ) {
 			if ( ++$listKey !== $i ) {
 				throw new UnexpectedValueException( 'List expected for "servers" parameter' );
@@ -181,12 +177,10 @@ class LoadBalancer implements ILoadBalancer {
 				$server['replica'] = true;
 			}
 			$this->servers[$i] = $server;
-
-			$this->genericLoads[$i] = $server['load'];
-			if ( isset( $server['groupLoads'] ) ) {
-				foreach ( $server['groupLoads'] as $group => $ratio ) {
-					$this->groupLoads[$group][$i] = $ratio;
-				}
+			$serverGroupLoads = [ self::GROUP_GENERIC => $server['load'] ];
+			$serverGroupLoads += ( $server['groupLoads'] ?? [] );
+			foreach ( $serverGroupLoads as $group => $ratio ) {
+				$this->groupLoads[$group][$i] = $ratio;
 			}
 		}
 
@@ -242,7 +236,9 @@ class LoadBalancer implements ILoadBalancer {
 			}
 		}
 
-		$this->defaultGroup = $params['defaultGroup'] ?? self::GROUP_GENERIC;
+		$group = $params['defaultGroup'] ?? self::GROUP_GENERIC;
+		$this->defaultGroup = isset( $this->groupLoads[$group] ) ? $group : self::GROUP_GENERIC;
+
 		$this->ownerId = $params['ownerId'] ?? null;
 	}
 
@@ -273,24 +269,27 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	/**
-	 * @param string[]|string|bool $groups Query group list or false for the default
+	 * Resolve $groups into a list of query groups defining as having database servers
+	 *
+	 * @param string[]|string|bool $groups Query group(s) in preference order, [], or false
 	 * @param int $i Specific server index or DB_MASTER/DB_REPLICA
-	 * @return string[]|bool[] Query group list
+	 * @return string[] Non-empty group list in preference order with the default group appended
 	 */
 	private function resolveGroups( $groups, $i ) {
-		if ( $groups === false ) {
-			$resolvedGroups = [ $this->defaultGroup ];
-		} elseif ( is_string( $groups ) ) {
-			$resolvedGroups = [ $groups ];
-		} elseif ( is_array( $groups ) ) {
-			$resolvedGroups = $groups ?: [ $this->defaultGroup ];
-		} else {
-			throw new InvalidArgumentException( "Invalid query groups provided" );
+		// If a specific replica server was specified, then $groups makes no sense
+		if ( $i > 0 && $groups !== [] && $groups !== false ) {
+			$list = implode( ', ', (array)$groups );
+			throw new LogicException( "Query group(s) ($list) given with server index (#$i)" );
 		}
 
-		if ( $groups !== [] && $groups !== false && $i > 0 ) {
-			$groupList = implode( ', ', $groups );
-			throw new LogicException( "Got query groups ($groupList) with a server index (#$i)" );
+		if ( $groups === [] || $groups === false || $groups === $this->defaultGroup ) {
+			$resolvedGroups = [ $this->defaultGroup ]; // common case
+		} elseif ( is_string( $groups ) && isset( $this->groupLoads[$groups] ) ) {
+			$resolvedGroups = [ $groups, $this->defaultGroup ];
+		} elseif ( is_array( $groups ) ) {
+			$resolvedGroups = array_keys( array_flip( $groups ) + [ self::GROUP_GENERIC => 1 ] );
+		} else {
+			$resolvedGroups = [ $this->defaultGroup ];
 		}
 
 		return $resolvedGroups;
@@ -431,7 +430,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * Get the server index to use for a specified server index and query group list
 	 *
 	 * @param int $i Specific server index or DB_MASTER/DB_REPLICA
-	 * @param string[]|bool[] $groups Resolved query group list (non-empty)
+	 * @param string[] $groups Non-empty query group list in preference order
 	 * @param string|bool $domain
 	 * @return int A specific server index (replica DBs are checked for connectivity)
 	 */
@@ -439,7 +438,6 @@ class LoadBalancer implements ILoadBalancer {
 		if ( $i === self::DB_MASTER ) {
 			$i = $this->getWriterIndex();
 		} elseif ( $i === self::DB_REPLICA ) {
-			// Find an available server in any of the query groups (in order)
 			foreach ( $groups as $group ) {
 				$groupIndex = $this->getReaderIndex( $group, $domain );
 				if ( $groupIndex !== false ) {
@@ -452,21 +450,10 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		if ( $i === self::DB_REPLICA ) {
-			// No specific server was yet found
 			$this->lastError = 'Unknown error'; // set here in case of worse failure
-			// Either make one last connection attempt or give up
-			$i = in_array( $this->defaultGroup, $groups, true )
-				// Connection attempt already included the default query group; give up
-				? false
-				// Connection attempt was for other query groups; try the default one
-				: $this->getReaderIndex( $this->defaultGroup, $domain );
-
-			if ( $i === false ) {
-				// Still coundn't find a working non-zero read load server
-				$this->lastError = 'No working replica DB server: ' . $this->lastError;
-				$this->reportConnectionError();
-				return null; // unreachable due to exception
-			}
+			$this->lastError = 'No working replica DB server: ' . $this->lastError;
+			$this->reportConnectionError();
+			return null; // unreachable due to exception
 		}
 
 		return $i;
@@ -478,25 +465,21 @@ class LoadBalancer implements ILoadBalancer {
 			return $this->getWriterIndex();
 		}
 
+		$group = is_string( $group ) ? $group : self::GROUP_GENERIC;
+
 		$index = $this->getExistingReaderIndex( $group );
 		if ( $index >= 0 ) {
 			// A reader index was already selected and "waitForPos" was handled
 			return $index;
 		}
 
-		if ( $group !== self::GROUP_GENERIC ) {
-			// Use the server weight array for this load group
-			if ( isset( $this->groupLoads[$group] ) ) {
-				$loads = $this->groupLoads[$group];
-			} else {
-				// No loads for this group, return false and the caller can use some other group
-				$this->connLogger->info( __METHOD__ . ": no loads for group $group" );
-
-				return false;
-			}
+		// Use the server weight array for this load group
+		if ( isset( $this->groupLoads[$group] ) ) {
+			$loads = $this->groupLoads[$group];
 		} else {
-			// Use the generic load group
-			$loads = $this->genericLoads;
+			$this->connLogger->info( __METHOD__ . ": no loads for group $group" );
+
+			return false;
 		}
 
 		// Scale the configured load ratios according to each server's load and state
@@ -533,35 +516,24 @@ class LoadBalancer implements ILoadBalancer {
 	/**
 	 * Get the server index chosen by the load balancer for use with the given query group
 	 *
-	 * @param string|bool $group Query group; use false for the generic group
+	 * @param string $group Query group; use false for the generic group
 	 * @return int Server index or -1 if none was chosen
 	 */
 	protected function getExistingReaderIndex( $group ) {
-		if ( $group === self::GROUP_GENERIC ) {
-			$index = $this->genericReadIndex;
-		} else {
-			$index = $this->readIndexByGroup[$group] ?? -1;
-		}
-
-		return $index;
+		return $this->readIndexByGroup[$group] ?? -1;
 	}
 
 	/**
 	 * Set the server index chosen by the load balancer for use with the given query group
 	 *
-	 * @param string|bool $group Query group; use false for the generic group
+	 * @param string $group Query group; use false for the generic group
 	 * @param int $index The index of a specific server
 	 */
 	private function setExistingReaderIndex( $group, $index ) {
 		if ( $index < 0 ) {
 			throw new UnexpectedValueException( "Cannot set a negative read server index" );
 		}
-
-		if ( $group === self::GROUP_GENERIC ) {
-			$this->genericReadIndex = $index;
-		} else {
-			$this->readIndexByGroup[$group] = $index;
-		}
+		$this->readIndexByGroup[$group] = $index;
 	}
 
 	/**
@@ -653,7 +625,8 @@ class LoadBalancer implements ILoadBalancer {
 		try {
 			$this->waitForPos = $pos;
 			// If a generic reader connection was already established, then wait now
-			if ( $this->genericReadIndex > 0 && !$this->doWait( $this->genericReadIndex ) ) {
+			$i = $this->getExistingReaderIndex( self::GROUP_GENERIC );
+			if ( $i > 0 && !$this->doWait( $i ) ) {
 				$this->laggedReplicaMode = true;
 			}
 			// Otherwise, wait until a connection is established in getReaderIndex()
@@ -668,10 +641,10 @@ class LoadBalancer implements ILoadBalancer {
 		try {
 			$this->waitForPos = $pos;
 
-			$i = $this->genericReadIndex;
+			$i = $this->getExistingReaderIndex( self::GROUP_GENERIC );
 			if ( $i <= 0 ) {
 				// Pick a generic replica DB if there isn't one yet
-				$readLoads = $this->genericLoads;
+				$readLoads = $this->groupLoads[self::GROUP_GENERIC];
 				unset( $readLoads[$this->getWriterIndex()] ); // replica DBs only
 				$readLoads = array_filter( $readLoads ); // with non-zero load
 				$i = ArrayUtils::pickRandom( $readLoads );
@@ -700,7 +673,7 @@ class LoadBalancer implements ILoadBalancer {
 
 			$ok = true;
 			for ( $i = 1; $i < $serverCount; $i++ ) {
-				if ( $this->genericLoads[$i] > 0 ) {
+				if ( $this->groupLoads[self::GROUP_GENERIC][$i] > 0 ) {
 					$start = microtime( true );
 					$ok = $this->doWait( $i, true, $timeout ) && $ok;
 					$timeout -= intval( microtime( true ) - $start );
@@ -1416,7 +1389,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @deprecated Since 1.34
 	 */
 	public function isNonZeroLoad( $i ) {
-		return array_key_exists( $i, $this->servers ) && $this->genericLoads[$i] != 0;
+		return ( isset( $this->servers[$i] ) && $this->groupLoads[self::GROUP_GENERIC][$i] > 0 );
 	}
 
 	public function getServerCount() {
@@ -2081,7 +2054,7 @@ class LoadBalancer implements ILoadBalancer {
 		if ( $this->hasReplicaServers() ) {
 			$lagTimes = $this->getLagTimes( $domain );
 			foreach ( $lagTimes as $i => $lag ) {
-				if ( $this->genericLoads[$i] > 0 && $lag > $maxLag ) {
+				if ( $this->groupLoads[self::GROUP_GENERIC][$i] > 0 && $lag > $maxLag ) {
 					$maxLag = $lag;
 					$host = $this->getServerInfoStrict( $i, 'host' );
 					$maxIndex = $i;
