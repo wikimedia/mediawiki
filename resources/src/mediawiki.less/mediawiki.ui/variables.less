@@ -65,8 +65,26 @@
 @colorButtonTextHighlight: @colorGray4;
 @colorButtonTextActive: @colorGray1;
 @colorDisabledText: @colorGray7;
-@colorErrorText: #d33;
-@colorWarningText: #705000;
+
+// Messages
+// Messages: Error
+@backgroundColorError: #fee7e6;
+// Use only for inlined messages, boxed messages require `@colorTextEmphasized` for
+// minimum contrast ratio.
+@colorError: #d33;
+@borderColorError: @colorError;
+// Messages: Warning
+@backgroundColorWarning: #fef6e7;
+@colorWarning: @colorTextEmphasized;
+@borderColorWarning: #fc3;
+// Messages: Success
+@backgroundColorSuccess: #d5fdf4;
+@colorSuccess: #14866d;
+@borderColorSuccess: @colorSuccess;
+
+// FIXME: Remove after a few weeks, when extensions got updated
+@colorErrorText: @colorError;
+@colorWarningText: @colorWarning;
 
 // UI colors
 @backgroundColorInputBinaryChecked: @colorProgressive;
@@ -105,9 +123,3 @@
 
 // Form input sizes, equal to OOUI at 14px base font-size
 @sizeInputBinary: 1.5625em;
-
-// Messages
-@backgroundColorError: #fee7e6;
-@borderColorError: #d33;
-@backgroundColorWarning: #fef6e7;
-@borderColorWarning: #fc3;
