@@ -1423,6 +1423,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		) {
 			// How long it took to generate the value
 			$walltime = max( $postCallbackTime - $preCallbackTime, 0.0 );
+			$this->stats->timing( "wanobjectcache.$kClass.regen_walltime", 1e3 * $walltime );
 			// If the key is write-holed then use the (volatile) interim key as an alternative
 			if ( $isKeyTombstoned ) {
 				$this->setInterimValue( $key, $value, $lockTSE, $version, $walltime );
