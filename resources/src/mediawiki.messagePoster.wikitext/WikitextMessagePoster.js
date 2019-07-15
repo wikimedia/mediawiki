@@ -21,20 +21,29 @@
 
 	/**
 	 * @inheritdoc
+	 * @param {string} subject Section title.
+	 * @param {string} body Message body, as wikitext. Signature code will automatically be added unless the message already contains the string ~~~.
+	 * @param {Object} [options] Message options:
+	 * @param {string} [options.tags] [Change tags](https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Tags) to add to the message's revision, pipe-separated.
 	 */
-	WikitextMessagePoster.prototype.post = function ( subject, body ) {
-		mw.messagePoster.WikitextMessagePoster.parent.prototype.post.call( this, subject, body );
+	WikitextMessagePoster.prototype.post = function ( subject, body, options ) {
+		var additionalParams;
+		mw.messagePoster.WikitextMessagePoster.parent.prototype.post.call( this, subject, body, options );
 
 		// Add signature if needed
 		if ( body.indexOf( '~~~' ) === -1 ) {
 			body += '\n\n~~~~';
 		}
 
+		additionalParams = { redirect: true };
+		if ( options.tags !== undefined ) {
+			additionalParams.tags = options.tags;
+		}
 		return this.api.newSection(
 			this.title,
 			subject,
 			body,
-			{ redirect: true }
+			additionalParams
 		).then( function ( resp, jqXHR ) {
 			if ( resp.edit.result === 'Success' ) {
 				return $.Deferred().resolve( resp, jqXHR );
