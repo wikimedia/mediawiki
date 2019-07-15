@@ -586,11 +586,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return null;
 	}
 
-	public function setLBInfo( $name, $value = null ) {
-		if ( is_null( $value ) ) {
-			$this->lbInfo = $name;
+	public function setLBInfo( $nameOrArray, $value = null ) {
+		if ( is_array( $nameOrArray ) ) {
+			$this->lbInfo = $nameOrArray;
+		} elseif ( is_string( $nameOrArray ) ) {
+			if ( $value !== null ) {
+				$this->lbInfo[$nameOrArray] = $value;
+			} else {
+				unset( $this->lbInfo[$nameOrArray] );
+			}
 		} else {
-			$this->lbInfo[$name] = $value;
+			throw new InvalidArgumentException( "Got non-string key" );
 		}
 	}
 
