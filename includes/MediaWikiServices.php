@@ -18,6 +18,7 @@ use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\Http\HttpRequestFactory;
+use Wikimedia\Message\IMessageFormatterFactory;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\PreferencesFactory;
@@ -707,6 +708,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getMessageCache() : MessageCache {
 		return $this->getService( 'MessageCache' );
+	}
+
+	/**
+	 * @since 1.34
+	 * @return IMessageFormatterFactory
+	 */
+	public function getMessageFormatterFactory() {
+		return $this->getService( 'MessageFormatterFactory' );
 	}
 
 	/**
