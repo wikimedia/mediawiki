@@ -78,10 +78,6 @@ class SpecialChangeEmail extends FormSpecialPage {
 			throw new PermissionsError( 'viewmyprivateinfo' );
 		}
 
-		if ( $user->isBlockedFromEmailuser() ) {
-			throw new UserBlockedError( $user->getBlock() );
-		}
-
 		parent::checkExecutePermissions( $user );
 	}
 
