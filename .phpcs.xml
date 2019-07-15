@@ -179,6 +179,7 @@
 		<exclude-pattern>*/maintenance/storage/recompressTracked\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/storage/trackBlobs\.php</exclude-pattern>
 		<!-- Skip violations in some tests for now -->
+		<exclude-pattern>*/tests/phpunit/unit/includes/GlobalFunctions/*\.php</exclude-pattern>
 		<exclude-pattern>*/tests/phpunit/includes/GlobalFunctions/*\.php</exclude-pattern>
 		<exclude-pattern>*/tests/phpunit/maintenance/*\.php</exclude-pattern>
 		<exclude-pattern>*/tests/phpunit/integration/includes/GlobalFunctions/*\.php</exclude-pattern>
