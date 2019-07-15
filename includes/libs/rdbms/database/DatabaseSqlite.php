@@ -289,7 +289,11 @@ class DatabaseSqlite extends Database {
 		if ( self::$fulltextEnabled === null ) {
 			self::$fulltextEnabled = false;
 			$table = $this->tableName( 'searchindex' );
-			$res = $this->query( "SELECT sql FROM sqlite_master WHERE tbl_name = '$table'", __METHOD__ );
+			$res = $this->query(
+				"SELECT sql FROM sqlite_master WHERE tbl_name = '$table'",
+				__METHOD__,
+				self::QUERY_IGNORE_DBO_TRX
+			);
 			if ( $res ) {
 				$row = $res->fetchRow();
 				self::$fulltextEnabled = stristr( $row['sql'], 'fts' ) !== false;
@@ -335,7 +339,11 @@ class DatabaseSqlite extends Database {
 		$file = is_string( $file ) ? $file : self::generateFileName( $this->dbDir, $name );
 		$encFile = $this->addQuotes( $file );
 
-		return $this->query( "ATTACH DATABASE $encFile AS $name", $fname );
+		return $this->query(
+			"ATTACH DATABASE $encFile AS $name",
+			$fname,
+			self::QUERY_IGNORE_DBO_TRX
+		);
 	}
 
 	protected function isWriteQuery( $sql ) {
@@ -541,7 +549,10 @@ class DatabaseSqlite extends Database {
 
 		$encTable = $this->addQuotes( $tableRaw );
 		$res = $this->query(
-			"SELECT 1 FROM sqlite_master WHERE type='table' AND name=$encTable" );
+			"SELECT 1 FROM sqlite_master WHERE type='table' AND name=$encTable",
+			__METHOD__,
+			self::QUERY_IGNORE_DBO_TRX
+		);
 
 		return $res->numRows() ? true : false;
 	}
@@ -558,7 +569,7 @@ class DatabaseSqlite extends Database {
 	 */
 	function indexInfo( $table, $index, $fname = __METHOD__ ) {
 		$sql = 'PRAGMA index_info(' . $this->addQuotes( $this->indexName( $index ) ) . ')';
-		$res = $this->query( $sql, $fname );
+		$res = $this->query( $sql, $fname, self::QUERY_IGNORE_DBO_TRX );
 		if ( !$res || $res->numRows() == 0 ) {
 			return false;
 		}
@@ -804,7 +815,7 @@ class DatabaseSqlite extends Database {
 	function fieldInfo( $table, $field ) {
 		$tableName = $this->tableName( $table );
 		$sql = 'PRAGMA table_info(' . $this->addQuotes( $tableName ) . ')';
-		$res = $this->query( $sql, __METHOD__ );
+		$res = $this->query( $sql, __METHOD__, self::QUERY_IGNORE_DBO_TRX );
 		foreach ( $res as $row ) {
 			if ( $row->name == $field ) {
 				return new SQLiteField( $row, $tableName );
@@ -1112,7 +1123,7 @@ class DatabaseSqlite extends Database {
 		}
 		$sql = "DROP TABLE " . $this->tableName( $tableName );
 
-		return $this->query( $sql, $fName );
+		return $this->query( $sql, $fName, self::QUERY_IGNORE_DBO_TRX );
 	}
 
 	public function setTableAliases( array $aliases ) {
@@ -1129,7 +1140,11 @@ class DatabaseSqlite extends Database {
 	public function resetSequenceForTable( $table, $fname = __METHOD__ ) {
 		$encTable = $this->addIdentifierQuotes( 'sqlite_sequence' );
 		$encName = $this->addQuotes( $this->tableName( $table, 'raw' ) );
-		$this->query( "DELETE FROM $encTable WHERE name = $encName", $fname );
+		$this->query(
+			"DELETE FROM $encTable WHERE name = $encName",
+			$fname,
+			self::QUERY_IGNORE_DBO_TRX
+		);
 	}
 
 	public function databasesAreIndependent() {

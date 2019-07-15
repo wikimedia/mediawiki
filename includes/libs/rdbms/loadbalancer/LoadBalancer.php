@@ -1861,7 +1861,7 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		if ( $conn->getFlag( $conn::DBO_TRX ) ) {
-			$conn->setLBInfo( 'trxRoundId', false );
+			$conn->setLBInfo( 'trxRoundId', null ); // remove the round ID
 		}
 
 		if ( $conn->getFlag( $conn::DBO_DEFAULT ) ) {
