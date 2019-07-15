@@ -35,6 +35,14 @@ in sending the value to the backend server.
 * Type: Measure (in milliseconds).
 * Variable `kClass`: The first part of your cache key.
 
+#### `wanobjectcache.{kClass}.regen_walltime`
+
+Upon cache miss, this measures the time spent in `WANObjectCache::getWithSetCallback()`
+from the start of the callback to right after the new value has been computed.
+
+* Type: Measure (in milliseconds).
+* Variable `kClass`: The first part of your cache key.
+
 #### `wanobjectcache.{kClass}.ck_touch.{result}`
 
 Call counter from `WANObjectCache::touchCheckKey()`.
