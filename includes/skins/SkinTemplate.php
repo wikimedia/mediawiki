@@ -256,7 +256,7 @@ class SkinTemplate extends Skin {
 	 * @return QuickTemplate The template to be executed by outputPage
 	 */
 	protected function prepareQuickTemplate() {
-		global $wgScript, $wgStylePath, $wgMimeType, $wgJsMimeType,
+		global $wgScript, $wgStylePath, $wgMimeType,
 			$wgSitename, $wgLogo, $wgMaxCredits,
 			$wgShowCreditsIfMax, $wgArticlePath,
 			$wgScriptPath, $wgServer;
@@ -306,7 +306,6 @@ class SkinTemplate extends Skin {
 		}
 
 		$tpl->set( 'mimetype', $wgMimeType );
-		$tpl->set( 'jsmimetype', $wgJsMimeType );
 		$tpl->set( 'charset', 'UTF-8' );
 		$tpl->set( 'wgScript', $wgScript );
 		$tpl->set( 'skinname', $this->skinname );
