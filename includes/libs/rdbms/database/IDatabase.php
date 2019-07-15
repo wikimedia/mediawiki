@@ -223,14 +223,12 @@ interface IDatabase {
 	public function getLBInfo( $name = null );
 
 	/**
-	 * Set the LB info array, or a member of it. If called with one parameter,
-	 * the LB info array is set to that parameter. If it is called with two
-	 * parameters, the member with the given name is set to the given value.
+	 * Set the entire array or a particular key of the managing load balancer info array
 	 *
-	 * @param array|string $name
-	 * @param array|null $value
+	 * @param array|string $nameOrArray The new array or the name of a key to set
+	 * @param array|null $value If $nameOrArray is a string, the new key value (null to unset)
 	 */
-	public function setLBInfo( $name, $value = null );
+	public function setLBInfo( $nameOrArray, $value = null );
 
 	/**
 	 * Set a lazy-connecting DB handle to the master DB (for replication status purposes)
@@ -1158,7 +1156,7 @@ interface IDatabase {
 	/**
 	 * Change the current database
 	 *
-	 * This should not be called outside LoadBalancer for connections managed by a LoadBalancer
+	 * This should only be called by a load balancer or if the handle is not attached to one
 	 *
 	 * @param string $db
 	 * @return bool True unless an exception was thrown
@@ -1171,9 +1169,9 @@ interface IDatabase {
 	/**
 	 * Set the current domain (database, schema, and table prefix)
 	 *
-	 * This will throw an error for some database types if the database unspecified
+	 * This will throw an error for some database types if the database is unspecified
 	 *
-	 * This should not be called outside LoadBalancer for connections managed by a LoadBalancer
+	 * This should only be called by a load balancer or if the handle is not attached to one
 	 *
 	 * @param string|DatabaseDomain $domain
 	 * @since 1.32

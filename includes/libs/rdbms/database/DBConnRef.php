@@ -130,7 +130,7 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function setLBInfo( $name, $value = null ) {
+	public function setLBInfo( $nameOrArray, $value = null ) {
 		// Disallow things that might confuse the LoadBalancer tracking
 		throw new DBUnexpectedError( $this, "Changing LB info is disallowed to enable reuse." );
 	}

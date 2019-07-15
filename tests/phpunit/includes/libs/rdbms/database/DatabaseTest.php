@@ -704,4 +704,31 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $oldDomain, $this->db->getDomainId() );
 	}
 
+	/**
+	 * @covers Wikimedia\Rdbms\Database::getLBInfo
+	 * @covers Wikimedia\Rdbms\Database::setLBInfo
+	 */
+	public function testGetSetLBInfo() {
+		$db = $this->getMockDB();
+
+		$this->assertEquals( [], $db->getLBInfo() );
+		$this->assertNull( $db->getLBInfo( 'pringles' ) );
+
+		$db->setLBInfo( 'soda', 'water' );
+		$this->assertEquals( [ 'soda' => 'water' ], $db->getLBInfo() );
+		$this->assertNull( $db->getLBInfo( 'pringles' ) );
+		$this->assertEquals( 'water', $db->getLBInfo( 'soda' ) );
+
+		$db->setLBInfo( 'basketball', 'Lebron' );
+		$this->assertEquals( [ 'soda' => 'water', 'basketball' => 'Lebron' ], $db->getLBInfo() );
+		$this->assertEquals( 'water', $db->getLBInfo( 'soda' ) );
+		$this->assertEquals( 'Lebron', $db->getLBInfo( 'basketball' ) );
+
+		$db->setLBInfo( 'soda', null );
+		$this->assertEquals( [ 'basketball' => 'Lebron' ], $db->getLBInfo() );
+
+		$db->setLBInfo( [ 'King' => 'James' ] );
+		$this->assertNull( $db->getLBInfo( 'basketball' ) );
+		$this->assertEquals( [ 'King' => 'James' ], $db->getLBInfo() );
+	}
 }
