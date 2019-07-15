@@ -22,6 +22,7 @@
 	 * @param {string} body Body, as wikitext.  Signature code will automatically be added
 	 *   by MessagePosters that require one, unless the message already contains the string
 	 *   ~~~.
+	 * @param {Object} [options] Message options. See MessagePoster implementations for details.
 	 * @return {jQuery.Promise} Promise completing when the post succeeds or fails.
 	 *   For failure, will be rejected with three arguments:
 	 *
