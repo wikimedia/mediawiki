@@ -93,6 +93,33 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 	}
 
 	/**
+	 * @dataProvider provideGetType
+	 */
+	public function testGetType( $params, $expected ) {
+		$module = new ResourceLoaderWikiModule( $params );
+		$this->assertSame( $expected, $module->getType() );
+	}
+
+	public static function provideGetType() {
+		yield 'empty' => [
+			[],
+			ResourceLoaderWikiModule::LOAD_GENERAL,
+		];
+		yield 'scripts' => [
+			[ 'scripts' => [ 'Example.js' ] ],
+			ResourceLoaderWikiModule::LOAD_GENERAL,
+		];
+		yield 'styles' => [
+			[ 'styles' => [ 'Example.css' ] ],
+			ResourceLoaderWikiModule::LOAD_STYLES,
+		];
+		yield 'styles and scripts' => [
+			[ 'styles' => [ 'Example.css' ], 'scripts' => [ 'Example.js' ] ],
+			ResourceLoaderWikiModule::LOAD_GENERAL,
+		];
+	}
+
+	/**
 	 * @dataProvider provideIsKnownEmpty
 	 */
 	public function testIsKnownEmpty( $titleInfo, $group, $dependencies, $expected ) {
