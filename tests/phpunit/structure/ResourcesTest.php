@@ -45,53 +45,43 @@ class ResourcesTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Verify that nothing depends on "startup".
+	 * Verify that all modules specified as dependencies of other modules actually
+	 * exist and are not illegal.
 	 *
-	 * Depending on it is unsupported as it cannot be loaded by the client.
-	 *
-	 * @todo Modules can dynamically choose dependencies based on context. This method does not
-	 * test such dependencies. The same goes for testMissingDependencies() and
-	 * testUnsatisfiableDependencies().
+	 * @todo Modules can dynamically choose dependencies based on context. This method
+	 * does not find all such variations. The same applies to testUnsatisfiableDependencies().
 	 */
-	public function testIllegalDependencies() {
+	public function testValidDependencies() {
 		$data = self::getAllModules();
+		$knownDeps = array_keys( $data['modules'] );
+		$illegalDeps = [ 'startup' ];
 
-		$illegalDeps = [];
-		foreach ( $data['modules'] as $moduleName => $module ) {
-			if ( $module instanceof ResourceLoaderStartUpModule ) {
-				$illegalDeps[] = $moduleName;
-			}
-		}
-
-		/** @var ResourceLoaderModule $module */
-		foreach ( $data['modules'] as $moduleName => $module ) {
-			foreach ( $illegalDeps as $illegalDep ) {
-				$this->assertNotContains(
-					$illegalDep,
-					$module->getDependencies( $data['context'] ),
-					"Module '$moduleName' must not depend on '$illegalDep'"
-				);
-			}
-		}
-	}
-
-	/**
-	 * Verify that all modules specified as dependencies of other modules actually exist.
-	 */
-	public function testMissingDependencies() {
-		$data = self::getAllModules();
-		$validDeps = array_keys( $data['modules'] );
+		// Avoid an assert for each module to keep the test fast.
+		// Instead, perform a single assertion against everything at once.
+		// When all is good, actual/expected are both empty arrays.
+		// When we find issues, add the violations to 'actual' and add an empty
+		// key to 'expected'. These keys in expected are because the PHPUnit diff
+		// (as of 6.5) only goes one level deep.
+		$actualUnknown = [];
+		$expectedUnknown = [];
+		$actualIllegal = [];
+		$expectedIllegal = [];
 
 		/** @var ResourceLoaderModule $module */
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			foreach ( $module->getDependencies( $data['context'] ) as $dep ) {
-				$this->assertContains(
-					$dep,
-					$validDeps,
-					"The module '$dep' required by '$moduleName' must exist"
-				);
+				if ( !in_array( $dep, $knownDeps, true ) ) {
+					$actualUnknown[$moduleName][] = $dep;
+					$expectedUnknown[$moduleName] = [];
+				}
+				if ( in_array( $dep, $illegalDeps, true ) ) {
+					$actualIllegal[$moduleName][] = $dep;
+					$expectedIllegal[$moduleName] = [];
+				}
 			}
 		}
+		$this->assertEquals( $expectedUnknown, $actualUnknown, 'Dependencies that do not exist' );
+		$this->assertEquals( $expectedIllegal, $actualIllegal, 'Dependencies that are not legal' );
 	}
 
 	/**
