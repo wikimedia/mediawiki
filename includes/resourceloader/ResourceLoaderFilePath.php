@@ -65,6 +65,20 @@ class ResourceLoaderFilePath {
 	/**
 	 * @return string
 	 */
+	public function getLocalBasePath() {
+		return $this->localBasePath;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getRemoteBasePath() {
+		return $this->remoteBasePath;
+	}
+
+	/**
+	 * @return string
+	 */
 	public function getPath() {
 		return $this->path;
 	}

@@ -130,7 +130,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 		$this->definition = null;
 
 		if ( isset( $options['data'] ) ) {
-			$dataPath = $this->localBasePath . '/' . $options['data'];
+			$dataPath = $this->getLocalPath( $options['data'] );
 			$data = json_decode( file_get_contents( $dataPath ), true );
 			$options = array_merge( $data, $options );
 		}
@@ -259,7 +259,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 				$this->images[$skin] = $this->images['default'] ?? [];
 			}
 			foreach ( $this->images[$skin] as $name => $options ) {
-				$fileDescriptor = is_string( $options ) ? $options : $options['file'];
+				$fileDescriptor = is_array( $options ) ? $options['file'] : $options;
 
 				$allowedVariants = array_merge(
 					( is_array( $options ) && isset( $options['variants'] ) ) ? $options['variants'] : [],
@@ -450,6 +450,18 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 		}
 		$files = array_values( array_unique( $files ) );
 		return array_map( [ __CLASS__, 'safeFileHash' ], $files );
+	}
+
+	/**
+	 * @param string|ResourceLoaderFilePath $path
+	 * @return string
+	 */
+	protected function getLocalPath( $path ) {
+		if ( $path instanceof ResourceLoaderFilePath ) {
+			return $path->getLocalPath();
+		}
+
+		return "{$this->localBasePath}/$path";
 	}
 
 	/**
