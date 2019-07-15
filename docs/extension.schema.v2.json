@@ -801,6 +801,30 @@
 			"type": "object",
 			"description": "Map of skin names to OOUI themes to use. Same format as ResourceLoaderOOUIModule::$builtinSkinThemeMap."
 		},
+		"OOUIThemePaths": {
+			"type": "object",
+			"description": "Map of custom OOUI theme names to paths to load them from. Same format as ResourceLoaderOOUIModule::$builtinThemePaths.",
+			"patternProperties": {
+				"^[A-Za-z]+$": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"scripts": {
+							"type": "string",
+							"description": "Path to script file."
+						},
+						"styles": {
+							"type": "string",
+							"description": "Path to style files. '{module}' will be replaced with the module's name."
+						},
+						"images": {
+							"type": [ "string", "null" ],
+							"description": "Path to images (optional). '{module}' will be replaced with the module's name."
+						}
+					}
+				}
+			}
+		},
 		"PasswordPolicy": {
 			"type": "object",
 			"description": "Password policies"
