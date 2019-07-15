@@ -222,6 +222,8 @@ because of Phabricator reports.
   specified, deprecated in 1.30, have been removed.
 * BufferingStatsdDataFactory::getBuffer(), deprecated in 1.30, has been removed.
 * The constant DB_SLAVE, deprecated in 1.28, has been removed. Use DB_REPLICA.
+* The constants NS_IMAGE and NS_IMAGE_TALK, deprecated in 1.14, have been
+  removed. Use NS_FILE and NS_FILE_TALK respectively.
 * Replacer, DoubleReplacer, HashtableReplacer and RegexlikeReplacer
   (deprecated in 1.32) have been removed. Closures should be used instead.
 * OutputPage::addWikiText(), ::addWikiTextWithTitle(), ::addWikiTextTitleTidy(),
