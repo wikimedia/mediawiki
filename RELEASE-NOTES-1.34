@@ -362,6 +362,8 @@ because of Phabricator reports.
   been deprecated.
 * User::getRights() and User::$mRights have been deprecated. Use
   PermissionManager::getUserPermissions() instead.
+* The LocalisationCacheRecache hook no longer allows purging of message blobs
+  to be prevented. Modifying the $purgeBlobs parameter now has no effect.
 
 === Other changes in 1.34 ===
 * …
