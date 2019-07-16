@@ -285,6 +285,9 @@ because of Phabricator reports.
   which were deprecated and ignored by core since 1.22, are no longer set to any
   value, and SkinTemplate no longer emits a 'jsmimetype' key. Any extensions not
   updated since 2013 to cope with this deprecation may now break.
+* (T222637) Passing ResourceLoaderModule objects to ResourceLoader::register()
+  or $wgResourceModules is no longer supported.
+  Use the 'class' or 'factory' option of the array format instead.
 * …
 
 === Deprecations in 1.34 ===
