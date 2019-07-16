@@ -2,6 +2,11 @@
  * JavaScript for Special:MovePage
  */
 ( function () {
+
+	if ( mw.config.get( 'wgCanonicalSpecialPageName' ) !== 'Movepage' ) {
+		return;
+	}
+
 	$( function () {
 		var summaryCodePointLimit = mw.config.get( 'wgCommentCodePointLimit' ),
 			summaryByteLimit = mw.config.get( 'wgCommentByteLimit' ),
