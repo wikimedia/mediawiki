@@ -1004,8 +1004,8 @@ class LocalisationCache {
 			$allData['list'][$key] = array_keys( $allData[$key] );
 		}
 		# Run hooks
-		$purgeBlobs = true;
-		Hooks::run( 'LocalisationCacheRecache', [ $this, $code, &$allData, &$purgeBlobs ] );
+		$unused = true; // Used to be $purgeBlobs, removed in 1.34
+		Hooks::run( 'LocalisationCacheRecache', [ $this, $code, &$allData, &$unused ] );
 
 		if ( is_null( $allData['namespaceNames'] ) ) {
 			throw new MWException( __METHOD__ . ': Localisation data failed sanity check! ' .
@@ -1037,7 +1037,7 @@ class LocalisationCache {
 		# Clear out the MessageBlobStore
 		# HACK: If using a null (i.e. disabled) storage backend, we
 		# can't write to the MessageBlobStore either
-		if ( $purgeBlobs && !$this->store instanceof LCStoreNull ) {
+		if ( !$this->store instanceof LCStoreNull ) {
 			$blobStore = MediaWikiServices::getInstance()->getResourceLoader()->getMessageBlobStore();
 			$blobStore->clear();
 		}
