@@ -1277,6 +1277,7 @@ class SkinTemplate extends Skin {
 		$nav_urls['contributions'] = false;
 		$nav_urls['log'] = false;
 		$nav_urls['blockip'] = false;
+		$nav_urls['mute'] = false;
 		$nav_urls['emailuser'] = false;
 		$nav_urls['userrights'] = false;
 
@@ -1354,6 +1355,13 @@ class SkinTemplate extends Skin {
 			}
 
 			if ( !$user->isAnon() ) {
+				if ( $this->getUser()->isRegistered() && $this->getConfig()->get( 'EnableSpecialMute' ) ) {
+					$nav_urls['mute'] = [
+						'text' => $this->msg( 'mute-preferences' )->text(),
+						'href' => self::makeSpecialUrlSubpage( 'Mute', $rootUser )
+					];
+				}
+
 				$sur = new UserrightsPage;
 				$sur->setContext( $this->getContext() );
 				$canChange = $sur->userCanChangeRights( $user );

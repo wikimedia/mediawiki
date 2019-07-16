@@ -85,7 +85,7 @@ abstract class BaseTemplate extends QuickTemplate {
 				$toolbox['feeds']['links'][$key]['class'] = 'feedlink';
 			}
 		}
-		foreach ( [ 'contributions', 'log', 'blockip', 'emailuser',
+		foreach ( [ 'contributions', 'log', 'blockip', 'emailuser', 'mute',
 			'userrights', 'upload', 'specialpages' ] as $special
 		) {
 			if ( isset( $this->data['nav_urls'][$special] ) && $this->data['nav_urls'][$special] ) {

@@ -4415,6 +4415,7 @@
 	"specialmute-error-email-preferences": "Error displayed when the user has not confirmed their email address.",
 	"specialmute-email-footer": "Email footer in plain text linking to [[Special:Mute]] preselecting the sender to manage muting options.\n* $1 - Url linking to [[Special:Mute]].\n* $2 - The user sending the email.",
 	"specialmute-login-required": "Error displayed when a user tries to access [[Special:Mute]] before logging in.",
+	"mute-preferences": "Link in the sidebar to manage muting preferences for a user. It links to [[Special:Mute]] with the user in context as the subpage.",
 	"revid": "Used to format a revision ID number in text. Parameters:\n* $1 - Revision ID number.\n{{Identical|Revision}}",
 	"pageid": "Used to format a page ID number in text. Parameters:\n* $1 - Page ID number.",
 	"interfaceadmin-info": "Part of the error message shown when someone with the <code>editinterface</code> right but without the appropriate <code>editsite*</code> right tries to edit a sitewide CSS/JSON/JS page.",
