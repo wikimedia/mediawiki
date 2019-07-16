@@ -1259,11 +1259,9 @@ MESSAGE;
 	 * @return string JavaScript code
 	 */
 	public static function makeMessageSetScript( $messages ) {
-		return Xml::encodeJsCall(
-			'mw.messages.set',
-			[ (object)$messages ],
-			self::inDebugMode()
-		);
+		return 'mw.messages.set('
+			. self::encodeJsonForScript( (object)$messages )
+			. ');';
 	}
 
 	/**
@@ -1347,11 +1345,9 @@ MESSAGE;
 		if ( !is_array( $states ) ) {
 			$states = [ $states => $state ];
 		}
-		return Xml::encodeJsCall(
-			'mw.loader.state',
-			[ $states ],
-			self::inDebugMode()
-		);
+		return 'mw.loader.state('
+			. self::encodeJsonForScript( $states )
+			. ');';
 	}
 
 	private static function isEmptyObject( stdClass $obj ) {
@@ -1435,11 +1431,9 @@ MESSAGE;
 
 		array_walk( $modules, [ self::class, 'trimArray' ] );
 
-		return Xml::encodeJsCall(
-			'mw.loader.register',
-			[ $modules ],
-			self::inDebugMode()
-		);
+		return 'mw.loader.register('
+			. self::encodeJsonForScript( $modules )
+			. ');';
 	}
 
 	/**
@@ -1460,11 +1454,9 @@ MESSAGE;
 		if ( !is_array( $sources ) ) {
 			$sources = [ $sources => $loadUrl ];
 		}
-		return Xml::encodeJsCall(
-			'mw.loader.addSource',
-			[ $sources ],
-			self::inDebugMode()
-		);
+		return 'mw.loader.addSource('
+			. self::encodeJsonForScript( $sources )
+			. ');';
 	}
 
 	/**
