@@ -29,7 +29,7 @@ class RouterTest extends \MediaWikiUnitTestCase {
 			[],
 			'/rest',
 			new \EmptyBagOStuff(),
-			new ResponseFactory(),
+			new ResponseFactory( [] ),
 			new StaticBasicAuthorizer( $authError ),
 			$objectFactory,
 			new Validator( $objectFactory, $request, new User )

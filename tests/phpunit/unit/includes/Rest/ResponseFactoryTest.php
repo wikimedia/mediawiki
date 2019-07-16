@@ -6,6 +6,8 @@ use ArrayIterator;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWikiUnitTestCase;
+use Wikimedia\Message\ITextFormatter;
+use Wikimedia\Message\MessageValue;
 
 /** @covers \MediaWiki\Rest\ResponseFactory */
 class ResponseFactoryTest extends MediaWikiUnitTestCase {
@@ -18,14 +20,27 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 		];
 	}
 
+	private function createResponseFactory() {
+		$fakeTextFormatter = new class implements ITextFormatter {
+			function getLangCode() {
+				return 'qqx';
+			}
+
+			function format( MessageValue $message ) {
+				return $message->getKey();
+			}
+		};
+		return new ResponseFactory( [ $fakeTextFormatter ] );
+	}
+
 	/** @dataProvider provideEncodeJson */
 	public function testEncodeJson( $input, $expected ) {
-		$rf = new ResponseFactory;
+		$rf = $this->createResponseFactory();
 		$this->assertSame( $expected, $rf->encodeJson( $input ) );
 	}
 
 	public function testCreateJson() {
-		$rf = new ResponseFactory;
+		$rf = $this->createResponseFactory();
 		$response = $rf->createJson( [] );
 		$response->getBody()->rewind();
 		$this->assertSame( 'application/json', $response->getHeaderLine( 'Content-Type' ) );
@@ -35,7 +50,7 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testCreateNoContent() {
-		$rf = new ResponseFactory;
+		$rf = $this->createResponseFactory();
 		$response = $rf->createNoContent();
 		$this->assertSame( [], $response->getHeader( 'Content-Type' ) );
 		$this->assertSame( 0, $response->getBody()->getSize() );
@@ -43,35 +58,35 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testCreatePermanentRedirect() {
-		$rf = new ResponseFactory;
+		$rf = $this->createResponseFactory();
 		$response = $rf->createPermanentRedirect( 'http://www.example.com/' );
 		$this->assertSame( [ 'http://www.example.com/' ], $response->getHeader( 'Location' ) );
 		$this->assertSame( 301, $response->getStatusCode() );
 	}
 
 	public function testCreateLegacyTemporaryRedirect() {
-		$rf = new ResponseFactory;
+		$rf = $this->createResponseFactory();
 		$response = $rf->createLegacyTemporaryRedirect( 'http://www.example.com/' );
 		$this->assertSame( [ 'http://www.example.com/' ], $response->getHeader( 'Location' ) );
 		$this->assertSame( 302, $response->getStatusCode() );
 	}
 
 	public function testCreateTemporaryRedirect() {
-		$rf = new ResponseFactory;
+		$rf = $this->createResponseFactory();
 		$response = $rf->createTemporaryRedirect( 'http://www.example.com/' );
 		$this->assertSame( [ 'http://www.example.com/' ], $response->getHeader( 'Location' ) );
 		$this->assertSame( 307, $response->getStatusCode() );
 	}
 
 	public function testCreateSeeOther() {
-		$rf = new ResponseFactory;
+		$rf = $this->createResponseFactory();
 		$response = $rf->createSeeOther( 'http://www.example.com/' );
 		$this->assertSame( [ 'http://www.example.com/' ], $response->getHeader( 'Location' ) );
 		$this->assertSame( 303, $response->getStatusCode() );
 	}
 
 	public function testCreateNotModified() {
-		$rf = new ResponseFactory;
+		$rf = $this->createResponseFactory();
 		$response = $rf->createNotModified();
 		$this->assertSame( 0, $response->getBody()->getSize() );
 		$this->assertSame( 304, $response->getStatusCode() );
@@ -79,12 +94,12 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 
 	/** @expectedException \InvalidArgumentException */
 	public function testCreateHttpErrorInvalid() {
-		$rf = new ResponseFactory;
+		$rf = $this->createResponseFactory();
 		$rf->createHttpError( 200 );
 	}
 
 	public function testCreateHttpError() {
-		$rf = new ResponseFactory;
+		$rf = $this->createResponseFactory();
 		$response = $rf->createHttpError( 415, [ 'message' => '...' ] );
 		$this->assertSame( 415, $response->getStatusCode() );
 		$body = $response->getBody();
@@ -95,7 +110,7 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testCreateFromExceptionUnlogged() {
-		$rf = new ResponseFactory;
+		$rf = $this->createResponseFactory();
 		$response = $rf->createFromException( new HttpException( 'hello', 415 ) );
 		$this->assertSame( 415, $response->getStatusCode() );
 		$body = $response->getBody();
@@ -106,7 +121,7 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testCreateFromExceptionLogged() {
-		$rf = new ResponseFactory;
+		$rf = $this->createResponseFactory();
 		$response = $rf->createFromException( new \Exception( "hello", 415 ) );
 		$this->assertSame( 500, $response->getStatusCode() );
 		$body = $response->getBody();
@@ -131,7 +146,7 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 
 	/** @dataProvider provideCreateFromReturnValue */
 	public function testCreateFromReturnValue( $input, $expected ) {
-		$rf = new ResponseFactory;
+		$rf = $this->createResponseFactory();
 		$response = $rf->createFromReturnValue( $input );
 		$body = $response->getBody();
 		$body->rewind();
@@ -140,7 +155,17 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 
 	/** @expectedException \InvalidArgumentException */
 	public function testCreateFromReturnValueInvalid() {
-		$rf = new ResponseFactory;
+		$rf = $this->createResponseFactory();
 		$rf->createFromReturnValue( new ArrayIterator );
+	}
+
+	public function testCreateLocalizedHttpError() {
+		$rf = $this->createResponseFactory();
+		$response = $rf->createLocalizedHttpError( 404, new MessageValue( 'rftest' ) );
+		$body = $response->getBody();
+		$body->rewind();
+		$this->assertSame(
+			'{"messageTranslations":{"qqx":"rftest"},"httpCode":404,"httpReason":"Not Found"}',
+			$body->getContents() );
 	}
 }

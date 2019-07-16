@@ -5,18 +5,30 @@ namespace MediaWiki\Rest;
 use Exception;
 use HttpStatus;
 use InvalidArgumentException;
+use LanguageCode;
 use MWExceptionHandler;
 use stdClass;
 use Throwable;
+use Wikimedia\Message\ITextFormatter;
+use Wikimedia\Message\MessageValue;
 
 /**
  * Generates standardized response objects.
  */
 class ResponseFactory {
-
 	const CT_PLAIN = 'text/plain; charset=utf-8';
 	const CT_HTML = 'text/html; charset=utf-8';
 	const CT_JSON = 'application/json';
+
+	/** @var ITextFormatter[] */
+	private $textFormatters;
+
+	/**
+	 * @param ITextFormatter[] $textFormatters
+	 */
+	public function __construct( $textFormatters ) {
+		$this->textFormatters = $textFormatters;
+	}
 
 	/**
 	 * Encode a stdClass object or array to a JSON string
@@ -168,12 +180,22 @@ class ResponseFactory {
 	}
 
 	/**
+	 * Create an HTTP 4xx or 5xx response with error message localisation
+	 */
+	public function createLocalizedHttpError( $errorCode, MessageValue $messageValue ) {
+		return $this->createHttpError( $errorCode, $this->formatMessage( $messageValue ) );
+	}
+
+	/**
 	 * Turn an exception into a JSON error response.
 	 * @param Exception|Throwable $exception
 	 * @return Response
 	 */
 	public function createFromException( $exception ) {
-		if ( $exception instanceof HttpException ) {
+		if ( $exception instanceof LocalizedHttpException ) {
+			$response = $this->createLocalizedHttpError( $exception->getCode(),
+				$exception->getMessageValue() );
+		} elseif ( $exception instanceof HttpException ) {
 			// FIXME can HttpException represent 2xx or 3xx responses?
 			$response = $this->createHttpError(
 				$exception->getCode(),
@@ -238,6 +260,20 @@ class ResponseFactory {
 	protected function getHyperLink( $url ) {
 		$url = htmlspecialchars( $url );
 		return "<!doctype html><title>Redirect</title><a href=\"$url\">$url</a>";
+	}
+
+	public function formatMessage( MessageValue $messageValue ) {
+		if ( !$this->textFormatters ) {
+			// For unit tests
+			return [];
+		}
+		$translations = [];
+		foreach ( $this->textFormatters as $formatter ) {
+			$lang = LanguageCode::bcp47( $formatter->getLangCode() );
+			$messageText = $formatter->format( $messageValue );
+			$translations[$lang] = $messageText;
+		}
+		return [ 'messageTranslations' => $translations ];
 	}
 
 }

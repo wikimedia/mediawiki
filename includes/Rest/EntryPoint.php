@@ -10,6 +10,7 @@ use MediaWiki\Rest\Validator\Validator;
 use RequestContext;
 use Title;
 use WebResponse;
+use Wikimedia\Message\ITextFormatter;
 
 class EntryPoint {
 	/** @var RequestInterface */
@@ -49,6 +50,8 @@ class EntryPoint {
 			'cookiePrefix' => $conf->get( 'CookiePrefix' )
 		] );
 
+		$responseFactory = new ResponseFactory( self::getTextFormatters( $services ) );
+
 		// @phan-suppress-next-line PhanAccessMethodInternal
 		$authorizer = new MWBasicAuthorizer( $context->getUser(),
 			$services->getPermissionManager() );
@@ -62,7 +65,7 @@ class EntryPoint {
 			ExtensionRegistry::getInstance()->getAttribute( 'RestRoutes' ),
 			$conf->get( 'RestPath' ),
 			$services->getLocalServerObjectCache(),
-			new ResponseFactory,
+			$responseFactory,
 			$authorizer,
 			$objectFactory,
 			$restValidator
@@ -74,6 +77,25 @@ class EntryPoint {
 			$wgRequest->response(),
 			$router );
 		$entryPoint->execute();
+	}
+
+	/**
+	 * Get a TextFormatter array from MediaWikiServices
+	 *
+	 * @param MediaWikiServices $services
+	 * @return ITextFormatter[]
+	 */
+	public static function getTextFormatters( MediaWikiServices $services ) {
+		$langs = array_unique( [
+			$services->getMainConfig()->get( 'ContLang' )->getCode(),
+			'en'
+		] );
+		$textFormatters = [];
+		$factory = $services->getMessageFormatterFactory();
+		foreach ( $langs as $lang ) {
+			$textFormatters[] = $factory->getTextFormatter( $lang );
+		}
+		return $textFormatters;
 	}
 
 	public function __construct( RequestContext $context, RequestInterface $request,

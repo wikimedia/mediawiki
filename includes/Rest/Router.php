@@ -4,6 +4,7 @@ namespace MediaWiki\Rest;
 
 use AppendIterator;
 use BagOStuff;
+use Wikimedia\Message\MessageValue;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
 use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
 use MediaWiki\Rest\Validator\Validator;
@@ -226,7 +227,10 @@ class Router {
 		$path = $request->getUri()->getPath();
 		$relPath = $this->getRelativePath( $path );
 		if ( $relPath === false ) {
-			return $this->responseFactory->createHttpError( 404 );
+			return $this->responseFactory->createLocalizedHttpError( 404,
+				( new MessageValue( 'rest-prefix-mismatch' ) )
+					->plaintextParams( $path, $this->rootPath )
+			);
 		}
 
 		$matchers = $this->getMatchers();
@@ -245,12 +249,20 @@ class Router {
 				}
 			}
 			if ( $allowed ) {
-				$response = $this->responseFactory->createHttpError( 405 );
+				$response = $this->responseFactory->createLocalizedHttpError( 405,
+					( new MessageValue( 'rest-wrong-method' ) )
+						->textParams( $request->getMethod() )
+						->commaListParams( $allowed )
+						->numParams( count( $allowed ) )
+				);
 				$response->setHeader( 'Allow', $allowed );
 				return $response;
 			} else {
 				// Did not match with any other method, must be 404
-				return $this->responseFactory->createHttpError( 404 );
+				return $this->responseFactory->createLocalizedHttpError( 404,
+					( new MessageValue( 'rest-no-match' ) )
+						->plaintextParams( $relPath )
+				);
 			}
 		}
 
@@ -272,6 +284,7 @@ class Router {
 
 	/**
 	 * Execute a fully-constructed handler
+	 *
 	 * @param Handler $handler
 	 * @return ResponseInterface
 	 */
