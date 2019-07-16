@@ -99,11 +99,19 @@ try {
 	$success = $maintenance->execute();
 } catch ( Exception $ex ) {
 	$success = false;
+	$exReportMessage = '';
 	while ( $ex ) {
 		$cls = get_class( $ex );
-		print "$cls from line {$ex->getLine()} of {$ex->getFile()}: {$ex->getMessage()}\n";
-		print $ex->getTraceAsString() . "\n";
+		$exReportMessage .= "$cls from line {$ex->getLine()} of {$ex->getFile()}: {$ex->getMessage()}\n";
+		$exReportMessage .= $ex->getTraceAsString() . "\n";
 		$ex = $ex->getPrevious();
+	}
+	// Print the exception to stderr if possible, don't mix it in
+	// with stdout output.
+	if ( defined( 'STDERR' ) ) {
+		fwrite( STDERR, $exReportMessage );
+	} else {
+		echo $exReportMessage;
 	}
 }
 
