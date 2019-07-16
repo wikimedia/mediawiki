@@ -95,6 +95,8 @@ interface ILoadBalancer {
 	const CONN_SILENCE_ERRORS = 2;
 	/** @var int Caller is requesting the master DB server for possibly writes */
 	const CONN_INTENT_WRITABLE = 4;
+	/** @var int Bypass and update any server-side read-only mode state cache */
+	const CONN_REFRESH_READ_ONLY = 8;
 
 	/** @var string Manager of ILoadBalancer instances is running post-commit callbacks */
 	const STAGE_POSTCOMMIT_CALLBACKS = 'stage-postcommit-callbacks';
@@ -661,10 +663,9 @@ interface ILoadBalancer {
 	/**
 	 * @note This method may trigger a DB connection if not yet done
 	 * @param string|bool $domain DB domain ID or false for the local domain
-	 * @param IDatabase|null $conn DB master connection; used to avoid loops [optional]
 	 * @return string|bool Reason the master is read-only or false if it is not
 	 */
-	public function getReadOnlyReason( $domain = false, IDatabase $conn = null );
+	public function getReadOnlyReason( $domain = false );
 
 	/**
 	 * Disables/enables lag checks
