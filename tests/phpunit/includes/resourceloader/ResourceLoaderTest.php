@@ -560,12 +560,12 @@ END
 	 */
 	public function testMakeLoaderRegisterScript() {
 		$this->assertEquals(
-			'mw.loader.register( [
+			'mw.loader.register([
     [
         "test.name",
         "1234567"
     ]
-] );',
+]);',
 			ResourceLoader::makeLoaderRegisterScript( [
 				[ 'test.name', '1234567' ],
 			] ),
@@ -573,7 +573,7 @@ END
 		);
 
 		$this->assertEquals(
-			'mw.loader.register( [
+			'mw.loader.register([
     [
         "test.foo",
         "100"
@@ -601,7 +601,7 @@ END
         null,
         "return true;"
     ]
-] );',
+]);',
 			ResourceLoader::makeLoaderRegisterScript( [
 				[ 'test.foo', '100' , [], null, null ],
 				[ 'test.bar', '200', [ 'test.unknown' ], null ],
@@ -617,29 +617,29 @@ END
 	 */
 	public function testMakeLoaderSourcesScript() {
 		$this->assertEquals(
-			'mw.loader.addSource( {
+			'mw.loader.addSource({
     "local": "/w/load.php"
-} );',
+});',
 			ResourceLoader::makeLoaderSourcesScript( 'local', '/w/load.php' )
 		);
 		$this->assertEquals(
-			'mw.loader.addSource( {
+			'mw.loader.addSource({
     "local": "/w/load.php"
-} );',
+});',
 			ResourceLoader::makeLoaderSourcesScript( [ 'local' => '/w/load.php' ] )
 		);
 		$this->assertEquals(
-			'mw.loader.addSource( {
+			'mw.loader.addSource({
     "local": "/w/load.php",
     "example": "https://example.org/w/load.php"
-} );',
+});',
 			ResourceLoader::makeLoaderSourcesScript( [
 				'local' => '/w/load.php',
 				'example' => 'https://example.org/w/load.php'
 			] )
 		);
 		$this->assertEquals(
-			'mw.loader.addSource( [] );',
+			'mw.loader.addSource([]);',
 			ResourceLoader::makeLoaderSourcesScript( [] )
 		);
 	}
@@ -747,9 +747,9 @@ END
 				'modules' => [
 					'foo' => 'foo()',
 				],
-				'expected' => "foo()\n" . 'mw.loader.state( {
+				'expected' => "foo()\n" . 'mw.loader.state({
     "foo": "ready"
-} );',
+});',
 				'minified' => "foo()\n" . 'mw.loader.state({"foo":"ready"});',
 				'message' => 'Script without semi-colon',
 			],
@@ -758,10 +758,10 @@ END
 					'foo' => 'foo()',
 					'bar' => 'bar()',
 				],
-				'expected' => "foo()\nbar()\n" . 'mw.loader.state( {
+				'expected' => "foo()\nbar()\n" . 'mw.loader.state({
     "foo": "ready",
     "bar": "ready"
-} );',
+});',
 				'minified' => "foo()\nbar()\n" . 'mw.loader.state({"foo":"ready","bar":"ready"});',
 				'message' => 'Two scripts without semi-colon',
 			],
@@ -769,9 +769,9 @@ END
 				'modules' => [
 					'foo' => "foo()\n// bar();"
 				],
-				'expected' => "foo()\n// bar();\n" . 'mw.loader.state( {
+				'expected' => "foo()\n// bar();\n" . 'mw.loader.state({
     "foo": "ready"
-} );',
+});',
 				'minified' => "foo()\n" . 'mw.loader.state({"foo":"ready"});',
 				'message' => 'Script with semi-colon in comment (T162719)',
 			],
@@ -866,11 +866,11 @@ END
 		$this->assertCount( 1, $errors );
 		$this->assertRegExp( '/Ferry not found/', $errors[0] );
 		$this->assertEquals(
-			"foo();\nbar();\n" . 'mw.loader.state( {
+			"foo();\nbar();\n" . 'mw.loader.state({
     "ferry": "error",
     "foo": "ready",
     "bar": "ready"
-} );',
+});',
 			$response
 		);
 	}

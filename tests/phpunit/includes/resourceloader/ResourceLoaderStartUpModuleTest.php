@@ -14,10 +14,10 @@ class ResourceLoaderStartUpModuleTest extends ResourceLoaderTestCase {
 				'msg' => 'Empty registry',
 				'modules' => [],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [] );'
+});
+mw.loader.register([]);'
 			] ],
 			[ [
 				'msg' => 'Basic registry',
@@ -25,15 +25,15 @@ mw.loader.register( [] );'
 					'test.blank' => [ 'class' => ResourceLoaderTestModule::class ],
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.blank",
         "{blankVer}"
     ]
-] );',
+]);',
 			] ],
 			[ [
 				'msg' => 'Optimise the dependency tree (basic case)',
@@ -56,10 +56,10 @@ mw.loader.register( [
 					],
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "a",
         "{blankVer}",
@@ -83,7 +83,7 @@ mw.loader.register( [
         "d",
         "{blankVer}"
     ]
-] );',
+]);',
 			] ],
 			[ [
 				'msg' => 'Optimise the dependency tree (tolerate unknown deps)',
@@ -102,10 +102,10 @@ mw.loader.register( [
 					],
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "a",
         "{blankVer}",
@@ -126,7 +126,7 @@ mw.loader.register( [
         "c",
         "{blankVer}"
     ]
-] );',
+]);',
 			] ],
 			[ [
 				// Regression test for T223402.
@@ -154,10 +154,10 @@ mw.loader.register( [
 					],
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "top",
         "{blankVer}",
@@ -192,7 +192,7 @@ mw.loader.register( [
         "util",
         "{blankVer}"
     ]
-] );',
+]);',
 			] ],
 			[ [
 				// Regression test for T223402.
@@ -208,10 +208,10 @@ mw.loader.register( [
 					],
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "top",
         "{blankVer}",
@@ -224,7 +224,7 @@ mw.loader.register( [
         "util",
         "{blankVer}"
     ]
-] );',
+]);',
 			] ],
 			[ [
 				'msg' => 'Version falls back gracefully if getVersionHash throws',
@@ -241,18 +241,18 @@ mw.loader.register( [
 					]
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.fail",
         ""
     ]
-] );
-mw.loader.state( {
+]);
+mw.loader.state({
     "test.fail": "error"
-} );',
+});',
 			] ],
 			[ [
 				'msg' => 'Use version from getVersionHash',
@@ -267,15 +267,15 @@ mw.loader.state( {
 					]
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.version",
         "1234567"
     ]
-] );',
+]);',
 			] ],
 			[ [
 				'msg' => 'Re-hash version from getVersionHash if too long',
@@ -290,15 +290,15 @@ mw.loader.register( [
 					],
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.version",
         "016es8l"
     ]
-] );',
+]);',
 			] ],
 			[ [
 				'msg' => 'Group signature',
@@ -314,10 +314,10 @@ mw.loader.register( [
 					],
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.blank",
         "{blankVer}"
@@ -334,7 +334,7 @@ mw.loader.register( [
         [],
         "x-bar"
     ]
-] );'
+]);'
 			] ],
 			[ [
 				'msg' => 'Different target (non-test should not be registered)',
@@ -346,15 +346,15 @@ mw.loader.register( [
 					],
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.blank",
         "{blankVer}"
     ]
-] );'
+]);'
 			] ],
 			[ [
 				'msg' => 'Safemode disabled (default; register all modules)',
@@ -375,10 +375,10 @@ mw.loader.register( [
 					],
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.blank",
         "{blankVer}"
@@ -395,7 +395,7 @@ mw.loader.register( [
         "test.user",
         "{blankVer}"
     ]
-] );'
+]);'
 			] ],
 			[ [
 				'msg' => 'Safemode enabled (filter modules with user/site origin)',
@@ -417,10 +417,10 @@ mw.loader.register( [
 					],
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.blank",
         "{blankVer}"
@@ -429,7 +429,7 @@ mw.loader.register( [
         "test.core-generated",
         "{blankVer}"
     ]
-] );'
+]);'
 			] ],
 			[ [
 				'msg' => 'Foreign source',
@@ -446,11 +446,11 @@ mw.loader.register( [
 					],
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php",
     "example": "http://example.org/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.blank",
         "{blankVer}",
@@ -458,7 +458,7 @@ mw.loader.register( [
         null,
         "example"
     ]
-] );'
+]);'
 			] ],
 			[ [
 				'msg' => 'Conditional dependency function',
@@ -487,10 +487,10 @@ mw.loader.register( [
 					],
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.x.core",
         "{blankVer}"
@@ -520,7 +520,7 @@ mw.loader.register( [
             2
         ]
     ]
-] );',
+]);',
 			] ],
 			[ [
 				// This may seem like an edge case, but a plain MediaWiki core install
@@ -593,11 +593,11 @@ mw.loader.register( [
 					],
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php",
     "example": "http://example.org/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.blank",
         "{blankVer}"
@@ -661,7 +661,7 @@ mw.loader.register( [
         "x-bar",
         "example"
     ]
-] );'
+]);'
 			] ],
 		];
 	}
@@ -748,10 +748,10 @@ mw.loader.register( [
 		$rl->register( $modules );
 		$module = new ResourceLoaderStartUpModule();
 		$out =
-'mw.loader.addSource( {
+'mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.blank",
         "{blankVer}"
@@ -766,7 +766,7 @@ mw.loader.register( [
         null,
         "return !!(    window.JSON \u0026\u0026    JSON.parse \u0026\u0026    JSON.stringify);"
     ]
-] );';
+]);';
 
 		$this->assertEquals(
 			self::expandPlaceholders( $out ),
