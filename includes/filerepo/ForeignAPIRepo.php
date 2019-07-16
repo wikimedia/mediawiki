@@ -580,7 +580,7 @@ class ForeignAPIRepo extends FileRepo {
 
 				return $html;
 			},
-			[ 'pcTTL' => WANObjectCache::TTL_PROC_LONG ]
+			[ 'pcGroup' => 'http-get:3', 'pcTTL' => WANObjectCache::TTL_PROC_LONG ]
 		);
 	}
 
