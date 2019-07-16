@@ -39,6 +39,19 @@ class SpecialGoToInterwiki extends UnlistedSpecialPage {
 	}
 
 	public function execute( $par ) {
+		// Allow forcing an interstitial for local interwikis. This is used
+		// when a redirect page is reached via a special page which resolves
+		// to a user-dependent value (as defined by
+		// RedirectSpecialPage::personallyIdentifiableTarget). See the hack
+		// for avoiding T109724 in MediaWiki::performRequest (which also
+		// explains why we can't use a query parameter instead).
+		//
+		// HHVM dies when substr_compare is used on an empty string so ensure it's not.
+		$force = ( substr_compare( $par ?: 'x', 'force/', 0, 6 ) === 0 );
+		if ( $force ) {
+			$par = substr( $par, 6 );
+		}
+
 		$this->setHeaders();
 		$target = Title::newFromText( $par );
 		// Disallow special pages as a precaution against
@@ -50,9 +63,9 @@ class SpecialGoToInterwiki extends UnlistedSpecialPage {
 		}
 
 		$url = $target->getFullURL();
-		if ( !$target->isExternal() || $target->isLocal() ) {
+		if ( !$target->isExternal() || ( $target->isLocal() && !$force ) ) {
 			// Either a normal page, or a local interwiki.
-			// just redirect.
+			// Just redirect.
 			$this->getOutput()->redirect( $url, '301' );
 		} else {
 			$this->getOutput()->addWikiMsg(
