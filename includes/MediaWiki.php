@@ -260,16 +260,8 @@ class MediaWiki {
 					) {
 						list( , $subpage ) = $spFactory->resolveAlias( $title->getDBkey() );
 						$target = $specialPage->getRedirect( $subpage );
-						// Target can also be true. We let that case fall through to normal processing.
+						// target can also be true. We let that case fall through to normal processing.
 						if ( $target instanceof Title ) {
-							if ( $target->isExternal() ) {
-								// Handle interwiki redirects
-								$target = SpecialPage::getTitleFor(
-									'GoToInterwiki',
-									$target->getPrefixedDBkey()
-								);
-							}
-
 							$query = $specialPage->getRedirectQuery( $subpage ) ?: [];
 							$request = new DerivativeRequest( $this->context->getRequest(), $query );
 							$request->setRequestURL( $this->context->getRequest()->getRequestURL() );
