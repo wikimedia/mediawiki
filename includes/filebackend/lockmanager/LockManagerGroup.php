@@ -121,10 +121,13 @@ class LockManagerGroup {
 			$config = $this->managers[$name]['config'];
 			if ( $class === DBLockManager::class ) {
 				$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-				$lb = $lbFactory->newMainLB( $config['domain'] );
-				$dbw = $lb->getLazyConnectionRef( DB_MASTER, [], $config['domain'] );
-
-				$config['dbServers']['localDBMaster'] = $dbw;
+				$lb = $lbFactory->getMainLB( $config['domain'] );
+				$config['dbServers']['localDBMaster'] = $lb->getLazyConnectionRef(
+					DB_MASTER,
+					[],
+					$config['domain'],
+					$lb::CONN_TRX_AUTOCOMMIT
+				);
 				$config['srvCache'] = ObjectCache::getLocalServerInstance( 'hash' );
 			}
 			$config['logger'] = LoggerFactory::getInstance( 'LockManager' );
