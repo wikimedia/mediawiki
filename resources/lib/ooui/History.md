@@ -1,4 +1,28 @@
 # OOUI Release History
+## v0.33.3 / 2019-07-16
+### Styles
+* MessageWidget: Apply `bold` only to inline message types (Volker E.)
+* MessageWidget: Slightly reduce vertical `padding` to align to guidelines (Volker E.)
+* ProcessDialog: Make "back" buttons icon-only on desktop too (Bartosz Dziewoński)
+* WikimediaUI theme: Apply frameless appearance to icon-only dialog actions (Ed Sanders)
+* WikimediaUI theme: Fix frameless TabOptionWidget size (Volker E.)
+* WikimediaUI theme: Fix icon+label padding in process dialog on mobile too (Bartosz Dziewoński)
+* WikimediaUI theme: Make icon-only actions background `transparent` by default (Volker E.)
+* icons: Fix 'help' RTL position (Volker E.)
+
+### Code
+* MenuSelectWidget: Don't highlight items when menu is closed (Bartosz Dziewoński)
+* WikimediaUI theme: Simplify some complicated styles (Bartosz Dziewoński)
+* WindowManager: Prevent iOS Safari from scrolling the page behind the dialog (try#2) (Bartosz Dziewoński)
+* build: Re-crush icons with SVGO (Volker E.)
+* demos: Fix backwards-compatibility with some old URL formats (Bartosz Dziewoński)
+* demos: Load images from the bulk URL rather than 16 individual stylesheets (James D. Forrester)
+* demos: Simplify Demo#normalizeQuery (Bartosz Dziewoński)
+* docs: Fix copy-paste mistake in TagMultiselectWidget (Bartosz Dziewoński)
+* icons: Alter SVG syntax in 'logoWikidata', 'logoWikimedia' for variant support (Bartosz Dziewoński)
+* icons: Combine 'articleNotFound' paths & remove inappropriate `fill` attribute (Volker E.)
+
+
 ## v0.33.2 / 2019-07-09
 ### Styles
 * MessageWidget: Amend icon position and `margin` handling (Volker E.)
