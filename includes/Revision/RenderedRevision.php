@@ -430,6 +430,16 @@ class RenderedRevision implements SlotRenderingProvider {
 				"$method: Prepared output has vary-revision-exists..."
 			);
 			return true;
+		} elseif (
+			$out->getFlag( 'vary-revision-sha1' ) &&
+			$out->getRevisionUsedSha1Base36() !== $this->revision->getSha1()
+		) {
+			// If a self-transclusion used the proposed page text, it must match the final
+			// page content after PST transformations and automatically merged edit conflicts
+			$this->saveParseLogger->info(
+				"$method: Prepared output has vary-revision-sha1 with wrong SHA-1..."
+			);
+			return true;
 		} else {
 			// NOTE: In the original fix for T135261, the output was discarded if 'vary-user' was
 			// set for a null-edit. The reason was that the original rendering in that case was

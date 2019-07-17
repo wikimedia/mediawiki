@@ -25,6 +25,7 @@
  * @file
  * @ingroup Testing
  */
+
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Tidy\TidyDriverBase;
@@ -129,6 +130,9 @@ class ParserTestRunner {
 	 */
 	private $keepUploads;
 
+	/** @var Title */
+	private $defaultTitle;
+
 	/**
 	 * @param TestRecorder $recorder
 	 * @param array $options
@@ -165,6 +169,8 @@ class ParserTestRunner {
 		if ( isset( $options['upload-dir'] ) ) {
 			$this->uploadDir = $options['upload-dir'];
 		}
+
+		$this->defaultTitle = Title::newFromText( 'Parser test' );
 	}
 
 	/**
@@ -839,10 +845,43 @@ class ParserTestRunner {
 			$options->setTidy( true );
 		}
 
-		if ( isset( $opts['title'] ) ) {
-			$titleText = $opts['title'];
-		} else {
-			$titleText = 'Parser test';
+		$revId = 1337; // see Parser::getRevisionId()
+		$title = isset( $opts['title'] )
+			? Title::newFromText( $opts['title'] )
+			: $this->defaultTitle;
+
+		if ( isset( $opts['lastsavedrevision'] ) ) {
+			$content = new WikitextContent( $test['input'] );
+			$title = Title::newFromRow( (object)[
+				'page_id' => 187,
+				'page_len' => $content->getSize(),
+				'page_latest' => 1337,
+				'page_namespace' => $title->getNamespace(),
+				'page_title' => $title->getDBkey(),
+				'page_is_redirect' => 0
+			] );
+			$rev = new Revision(
+				[
+					'id' => $title->getLatestRevID(),
+					'page' => $title->getArticleID(),
+					'user' => $user,
+					'content' => $content,
+					'timestamp' => $this->getFakeTimestamp(),
+					'title' => $title
+				],
+				Revision::READ_LATEST,
+				$title
+			);
+			$oldCallback = $options->getCurrentRevisionCallback();
+			$options->setCurrentRevisionCallback(
+				function ( Title $t, $parser ) use ( $title, $rev, $oldCallback ) {
+					if ( $t->equals( $title ) ) {
+						return $rev;
+					} else {
+						return call_user_func( $oldCallback, $t, $parser );
+					}
+				}
+			);
 		}
 
 		if ( isset( $opts['maxincludesize'] ) ) {
@@ -855,7 +894,6 @@ class ParserTestRunner {
 		$local = isset( $opts['local'] );
 		$preprocessor = $opts['preprocessor'] ?? null;
 		$parser = $this->getParser( $preprocessor );
-		$title = Title::newFromText( $titleText );
 
 		if ( isset( $opts['styletag'] ) ) {
 			// For testing the behavior of <style> (including those deduplicated
@@ -887,7 +925,7 @@ class ParserTestRunner {
 		} elseif ( isset( $opts['preload'] ) ) {
 			$out = $parser->getPreloadText( $test['input'], $title, $options );
 		} else {
-			$output = $parser->parse( $test['input'], $title, $options, true, true, 1337 );
+			$output = $parser->parse( $test['input'], $title, $options, true, true, $revId );
 			$out = $output->getText( [
 				'allowTOC' => !isset( $opts['notoc'] ),
 				'unwrap' => !isset( $opts['wrap'] ),
