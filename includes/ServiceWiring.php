@@ -91,7 +91,6 @@ return [
 	},
 
 	'BlockManager' => function ( MediaWikiServices $services ) : BlockManager {
-		$config = $services->getMainConfig();
 		$context = RequestContext::getMain();
 		return new BlockManager(
 			new ServiceOptions(
