@@ -86,8 +86,8 @@ interface ILoadBalancer {
 
 	/** @var string Domain specifier when no specific database needs to be selected */
 	const DOMAIN_ANY = '';
-	/** @var bool The generic query group (bool gives b/c with 1.33 method signatures) */
-	const GROUP_GENERIC = false;
+	/** @var string The generic query group */
+	const GROUP_GENERIC = '';
 
 	/** @var int DB handle should have DBO_TRX disabled and the caller will leave it as such */
 	const CONN_TRX_AUTOCOMMIT = 1;
@@ -270,7 +270,7 @@ interface ILoadBalancer {
 	 * @see ILoadBalancer::getServerAttributes()
 	 *
 	 * @param int $i Server index (overrides $groups) or DB_MASTER/DB_REPLICA
-	 * @param string[]|string $groups Query group(s) or [] to use the default group
+	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
 	 * @param string|bool $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants
 	 *
@@ -326,7 +326,7 @@ interface ILoadBalancer {
 	 * @see ILoadBalancer::getConnection() for parameter information
 	 *
 	 * @param int $i Server index or DB_MASTER/DB_REPLICA
-	 * @param string[]|string $groups Query group(s) or [] to use the default group
+	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
 	 * @param string|bool $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
 	 * @return DBConnRef
@@ -347,7 +347,7 @@ interface ILoadBalancer {
 	 * @see ILoadBalancer::getConnection() for parameter information
 	 *
 	 * @param int $i Server index or DB_MASTER/DB_REPLICA
-	 * @param string[]|string $groups Query group(s) or [] to use the default group
+	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
 	 * @param string|bool $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
 	 * @return DBConnRef
@@ -369,7 +369,7 @@ interface ILoadBalancer {
 	 * @see ILoadBalancer::getConnection() for parameter information
 	 *
 	 * @param int $i Server index or DB_MASTER/DB_REPLICA
-	 * @param string[]|string $groups Query group(s) or [] to use the default group
+	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
 	 * @param string|bool $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
 	 * @return MaintainableDBConnRef
