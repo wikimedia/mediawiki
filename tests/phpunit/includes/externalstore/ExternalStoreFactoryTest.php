@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Rdbms\LBFactory;
+
 /**
  * @covers ExternalStoreFactory
  * @covers ExternalStoreAccess
@@ -55,9 +57,18 @@ class ExternalStoreFactoryTest extends MediaWikiTestCase {
 	 * @covers ExternalStoreFactory::getStore
 	 */
 	public function testStoreFactoryBasic() {
-		$active = [ 'memory' ];
-		$defaults = [ 'memory://cluster1', 'memory://cluster2' ];
+		$active = [ 'memory', 'mwstore' ];
+		$defaults = [ 'memory://cluster1', 'memory://cluster2', 'mwstore://memstore1' ];
 		$esFactory = new ExternalStoreFactory( $active, $defaults, 'db-prefix' );
+		$this->setMwGlobals( 'wgFileBackends', [
+			[
+				'name' => 'memstore1',
+				'class' => 'MemoryFileBackend',
+				'domain' => 'its-all-in-your-head',
+				'readOnly' => 'reason is a lie',
+				'lockManager' => 'nullLockManager'
+			]
+		] );
 
 		$this->assertEquals( $active, $esFactory->getProtocols() );
 		$this->assertEquals( $defaults, $esFactory->getWriteBaseUrls() );
@@ -65,14 +76,16 @@ class ExternalStoreFactoryTest extends MediaWikiTestCase {
 		/** @var ExternalStoreMemory $store */
 		$store = $esFactory->getStore( 'memory' );
 		$this->assertInstanceOf( ExternalStoreMemory::class, $store );
-		$this->assertEquals( false, $store->isReadOnly( 'cluster1' ) );
-		$this->assertEquals( false, $store->isReadOnly( 'cluster2' ) );
-		$this->assertEquals( true, $store->isReadOnly( 'clusterOld' ) );
+		$this->assertFalse( $store->isReadOnly( 'cluster1' ), "Location is writable" );
+		$this->assertFalse( $store->isReadOnly( 'cluster2' ), "Location is writable" );
+
+		$mwStore = $esFactory->getStore( 'mwstore' );
+		$this->assertTrue( $mwStore->isReadOnly( 'memstore1' ), "Location is read-only" );
 
 		$lb = $this->getMockBuilder( \Wikimedia\Rdbms\LoadBalancer::class )
 			->disableOriginalConstructor()->getMock();
 		$lb->expects( $this->any() )->method( 'getReadOnlyReason' )->willReturn( 'Locked' );
-		$lbFactory = $this->getMockBuilder( \Wikimedia\Rdbms\LBFactory::class )
+		$lbFactory = $this->getMockBuilder( LBFactory::class )
 			->disableOriginalConstructor()->getMock();
 		$lbFactory->expects( $this->any() )->method( 'getExternalLB' )->willReturn( $lb );
 

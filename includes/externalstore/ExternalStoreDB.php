@@ -156,13 +156,6 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		$lb = $this->getLoadBalancer( $cluster );
 		$domainId = $this->getDomainId( $lb->getServerInfo( $lb->getWriterIndex() ) );
 
-		if ( !in_array( $cluster, $this->writableLocations, true ) ) {
-			$this->logger->debug( "read only external store\n" );
-			$lb->allowLagged( true );
-		} else {
-			$this->logger->debug( "writable external store\n" );
-		}
-
 		$db = $lb->getConnectionRef( DB_REPLICA, [], $domainId );
 		$db->clearFlag( DBO_TRX ); // sanity
 

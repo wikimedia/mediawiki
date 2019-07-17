@@ -89,7 +89,7 @@ class ExternalStoreAccess implements LoggerAwareInterface {
 	 *
 	 * @param string $data
 	 * @param array $params Map of context parameters; same as ExternalStoreFactory::getStore()
-	 * @param string[]|null $tryStores Refer to $wgDefaultExternalStore
+	 * @param string[]|null $tryStores Base URLs to try, e.g. [ "DB://cluster1" ]
 	 * @return string|bool The URL of the stored data item, or false on error
 	 * @throws ExternalStoreException
 	 */
@@ -142,16 +142,22 @@ class ExternalStoreAccess implements LoggerAwareInterface {
 	}
 
 	/**
+	 * @param string[]|string|null $storeUrls Base URL(s) to check, e.g. [ "DB://cluster1" ]
 	 * @return bool Whether all the default insertion stores are marked as read-only
 	 * @throws ExternalStoreException
 	 */
-	public function isReadOnly() {
-		$writableStores = $this->storeFactory->getWriteBaseUrls();
-		if ( !$writableStores ) {
+	public function isReadOnly( $storeUrls = null ) {
+		if ( $storeUrls === null ) {
+			$storeUrls = $this->storeFactory->getWriteBaseUrls();
+		} else {
+			$storeUrls = is_array( $storeUrls ) ? $storeUrls : [ $storeUrls ];
+		}
+
+		if ( !$storeUrls ) {
 			return false; // no stores exists which can be "read only"
 		}
 
-		foreach ( $writableStores as $storeUrl ) {
+		foreach ( $storeUrls as $storeUrl ) {
 			$store = $this->storeFactory->getStoreForUrl( $storeUrl );
 			$location = $this->storeFactory->getStoreLocationFromUrl( $storeUrl );
 			if ( $store !== false && !$store->isReadOnly( $location ) ) {

@@ -42,8 +42,6 @@ abstract class ExternalStoreMedium implements LoggerAwareInterface {
 	protected $dbDomain;
 	/** @var bool Whether this was factoried with an explicit DB domain */
 	protected $isDbDomainExplicit;
-	/** @var string[] Writable locations */
-	protected $writableLocations = [];
 
 	/** @var LoggerInterface */
 	protected $logger;
@@ -51,7 +49,6 @@ abstract class ExternalStoreMedium implements LoggerAwareInterface {
 	/**
 	 * @param array $params Usage context options for this instance:
 	 *   - domain: the DB domain ID of the wiki the content is for [required]
-	 *   - writableLocations: locations that are writable [required]
 	 *   - logger: LoggerInterface instance [optional]
 	 *   - isDomainImplicit: whether this was factoried without an explicit DB domain [optional]
 	 */
@@ -65,7 +62,6 @@ abstract class ExternalStoreMedium implements LoggerAwareInterface {
 		}
 
 		$this->logger = $params['logger'] ?? new NullLogger();
-		$this->writableLocations = $params['writableLocations'] ?? [];
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -118,6 +114,6 @@ abstract class ExternalStoreMedium implements LoggerAwareInterface {
 	 * @since 1.31
 	 */
 	public function isReadOnly( $location ) {
-		return !in_array( $location, $this->writableLocations, true );
+		return false;
 	}
 }
