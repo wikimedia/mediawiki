@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.33.2
+ * OOUI v0.33.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-07-10T12:25:14Z
+ * Date: 2019-07-16T21:33:43Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -964,10 +964,11 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-messageWidget.oo-ui-messageWidget-block {
   border: 1px solid;
-  padding: 1.42857143em 1.71428571em;
+  padding: 1.14285714em 1.71428571em;
+  font-weight: normal;
 }
 .oo-ui-messageWidget.oo-ui-messageWidget-block > .oo-ui-iconElement-icon {
-  background-position: 0 1.42857143em;
+  background-position: 0 1.14285714em;
 }
 .oo-ui-messageWidget.oo-ui-messageWidget-block.oo-ui-flaggedElement-error {
   background-color: #fee7e6;

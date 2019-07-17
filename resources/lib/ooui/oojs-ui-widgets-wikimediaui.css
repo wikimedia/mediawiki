@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.33.2
+ * OOUI v0.33.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-07-10T12:25:14Z
+ * Date: 2019-07-16T21:33:43Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -702,8 +702,8 @@
   border-bottom-color: #36c;
 }
 .oo-ui-tabSelectWidget-frameless .oo-ui-tabOptionWidget {
-  margin: 0.42857143em 0.42857143em 0 0;
-  border-width: 0;
+  margin: 0.42857143em 0.42857143em -1px 0;
+  border-width: 1px 0;
   box-shadow: inset 0 0 0 0 #36c;
   -webkit-transition: color 100ms, box-shadow 100ms;
   -moz-transition: color 100ms, box-shadow 100ms;
