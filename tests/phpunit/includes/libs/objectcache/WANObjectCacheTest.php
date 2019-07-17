@@ -128,73 +128,147 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertFalse( $this->cache->get( $key ), "Stale set() value ignored" );
 	}
 
-	public function testProcessCache() {
+	/**
+	 * @covers WANObjectCache::getWithSetCallback
+	 */
+	public function testProcessCacheLruAndDelete() {
+		$cache = $this->cache;
 		$mockWallClock = 1549343530.2053;
-		$this->cache->setMockTime( $mockWallClock );
+		$cache->setMockTime( $mockWallClock );
 
 		$hit = 0;
-		$callback = function () use ( &$hit ) {
+		$fn = function () use ( &$hit ) {
 			++$hit;
 			return 42;
 		};
-		$keys = [ wfRandomString(), wfRandomString(), wfRandomString() ];
-		$groups = [ 'thiscache:1', 'thatcache:1', 'somecache:1' ];
+		$keysA = [ wfRandomString(), wfRandomString(), wfRandomString() ];
+		$keysB = [ wfRandomString(), wfRandomString(), wfRandomString() ];
+		$pcg = [ 'thiscache:1', 'thatcache:1', 'somecache:1' ];
 
-		foreach ( $keys as $i => $key ) {
-			$this->cache->getWithSetCallback(
-				$key, 100, $callback, [ 'pcTTL' => 5, 'pcGroup' => $groups[$i] ] );
+		foreach ( $keysA as $i => $key ) {
+			$cache->getWithSetCallback( $key, 100, $fn, [ 'pcTTL' => 5, 'pcGroup' => $pcg[$i] ] );
 		}
-		$this->assertEquals( 3, $hit );
+		$this->assertEquals( 3, $hit, "Values not cached yet" );
 
-		foreach ( $keys as $i => $key ) {
-			$this->cache->getWithSetCallback(
-				$key, 100, $callback, [ 'pcTTL' => 5, 'pcGroup' => $groups[$i] ] );
+		foreach ( $keysA as $i => $key ) {
+			// Should not evict from process cache
+			$cache->delete( $key );
+			$cache->getWithSetCallback( $key, 100, $fn, [ 'pcTTL' => 5, 'pcGroup' => $pcg[$i] ] );
 		}
-		$this->assertEquals( 3, $hit, "Values cached" );
+		$this->assertEquals( 3, $hit, "Values cached; not cleared by delete()" );
 
-		foreach ( $keys as $i => $key ) {
-			$this->cache->getWithSetCallback(
-				"$key-2", 100, $callback, [ 'pcTTL' => 5, 'pcGroup' => $groups[$i] ] );
+		foreach ( $keysB as $i => $key ) {
+			$cache->getWithSetCallback( $key, 100, $fn, [ 'pcTTL' => 5, 'pcGroup' => $pcg[$i] ] );
 		}
-		$this->assertEquals( 6, $hit );
+		$this->assertEquals( 6, $hit, "New values not cached yet" );
 
-		foreach ( $keys as $i => $key ) {
-			$this->cache->getWithSetCallback(
-				"$key-2", 100, $callback, [ 'pcTTL' => 5, 'pcGroup' => $groups[$i] ] );
+		foreach ( $keysB as $i => $key ) {
+			$cache->getWithSetCallback( $key, 100, $fn, [ 'pcTTL' => 5, 'pcGroup' => $pcg[$i] ] );
 		}
 		$this->assertEquals( 6, $hit, "New values cached" );
 
-		foreach ( $keys as $i => $key ) {
-			// Should not evict from process cache
-			$this->cache->delete( $key );
-			$mockWallClock += 0.001; // cached values will be newer than tombstone
-			// Get into cache (specific process cache group)
-			$this->cache->getWithSetCallback(
-				$key, 100, $callback, [ 'pcTTL' => 5, 'pcGroup' => $groups[$i] ] );
+		foreach ( $keysA as $i => $key ) {
+			$cache->getWithSetCallback( $key, 100, $fn, [ 'pcTTL' => 5, 'pcGroup' => $pcg[$i] ] );
 		}
-		$this->assertEquals( 9, $hit, "Values evicted by delete()" );
+		$this->assertEquals( 9, $hit, "Prior values evicted by new values" );
+	}
 
-		// Get into cache (default process cache group)
-		$key = reset( $keys );
-		$this->cache->getWithSetCallback( $key, 100, $callback, [ 'pcTTL' => 5 ] );
-		$this->assertEquals( 9, $hit, "Value recently interim-cached" );
+	/**
+	 * @covers WANObjectCache::getWithSetCallback
+	 */
+	public function testProcessCacheInterimKeys() {
+		$cache = $this->cache;
+		$mockWallClock = 1549343530.2053;
+		$cache->setMockTime( $mockWallClock );
+
+		$hit = 0;
+		$fn = function () use ( &$hit ) {
+			++$hit;
+			return 42;
+		};
+		$keysA = [ wfRandomString(), wfRandomString(), wfRandomString() ];
+		$pcg = [ 'thiscache:1', 'thatcache:1', 'somecache:1' ];
+
+		foreach ( $keysA as $i => $key ) {
+			$cache->delete( $key ); // tombstone key
+			$mockWallClock += 0.001; // cached values will be newer than tombstone
+			// Get into process cache (specific group) and interim cache
+			$cache->getWithSetCallback( $key, 100, $fn, [ 'pcTTL' => 5, 'pcGroup' => $pcg[$i] ] );
+		}
+		$this->assertEquals( 3, $hit );
+
+		// Get into process cache (default group)
+		$key = reset( $keysA );
+		$cache->getWithSetCallback( $key, 100, $fn, [ 'pcTTL' => 5 ] );
+		$this->assertEquals( 3, $hit, "Value recently interim-cached" );
 
 		$mockWallClock += 0.2; // interim key not brand new
-		$this->cache->clearProcessCache();
-		$this->cache->getWithSetCallback( $key, 100, $callback, [ 'pcTTL' => 5 ] );
-		$this->assertEquals( 10, $hit, "Value calculated (interim key not recent and reset)" );
-		$this->cache->getWithSetCallback( $key, 100, $callback, [ 'pcTTL' => 5 ] );
-		$this->assertEquals( 10, $hit, "Value process cached" );
+		$cache->clearProcessCache();
+		$cache->getWithSetCallback( $key, 100, $fn, [ 'pcTTL' => 5 ] );
+		$this->assertEquals( 4, $hit, "Value calculated (interim key not recent and reset)" );
+		$cache->getWithSetCallback( $key, 100, $fn, [ 'pcTTL' => 5 ] );
+		$this->assertEquals( 4, $hit, "Value process cached" );
+	}
 
-		$mockWallClock += 0.2; // interim key not brand new
-		$outerCallback = function () use ( &$callback, $key ) {
-			$v = $this->cache->getWithSetCallback( $key, 100, $callback, [ 'pcTTL' => 5 ] );
+	/**
+	 * @covers WANObjectCache::getWithSetCallback
+	 */
+	public function testProcessCacheNesting() {
+		$cache = $this->cache;
+		$mockWallClock = 1549343530.2053;
+		$cache->setMockTime( $mockWallClock );
+
+		$keyOuter = "outer-" . wfRandomString();
+		$keyInner = "inner-" . wfRandomString();
+
+		$innerHit = 0;
+		$innerFn = function () use ( &$innerHit ) {
+			++$innerHit;
+			return 42;
+		};
+
+		$outerHit = 0;
+		$outerFn = function () use ( $keyInner, $innerFn, $cache, &$outerHit ) {
+			++$outerHit;
+			$v = $cache->getWithSetCallback( $keyInner, 100, $innerFn, [ 'pcTTL' => 5 ] );
 
 			return 43 + $v;
 		};
-		// Outer key misses and refuses inner key process cache value
-		$this->cache->getWithSetCallback( "$key-miss-outer", 100, $outerCallback );
-		$this->assertEquals( 11, $hit, "Nested callback value process cache skipped" );
+
+		$cache->getWithSetCallback( $keyInner, 100, $innerFn, [ 'pcTTL' => 5 ] );
+		$cache->getWithSetCallback( $keyInner, 100, $innerFn, [ 'pcTTL' => 5 ] );
+
+		$this->assertEquals( 1, $innerHit, "Inner callback value cached" );
+		$cache->delete( $keyInner, $cache::HOLDOFF_NONE );
+		$mockWallClock += 1;
+
+		$cache->getWithSetCallback( $keyInner, 100, $innerFn, [ 'pcTTL' => 5 ] );
+		$this->assertEquals( 1, $innerHit, "Inner callback process cached" );
+
+		// Outer key misses and inner key process cache value is refused
+		$cache->getWithSetCallback( $keyOuter, 100, $outerFn );
+
+		$this->assertEquals( 1, $outerHit, "Outer callback value not yet cached" );
+		$this->assertEquals( 2, $innerHit, "Inner callback value process cache skipped" );
+
+		$cache->getWithSetCallback( $keyOuter, 100, $outerFn );
+
+		$this->assertEquals( 1, $outerHit, "Outer callback value cached" );
+
+		$cache->delete( $keyInner, $cache::HOLDOFF_NONE );
+		$cache->delete( $keyOuter, $cache::HOLDOFF_NONE );
+		$mockWallClock += 1;
+		$cache->clearProcessCache();
+		$cache->getWithSetCallback( $keyOuter, 100, $outerFn );
+
+		$this->assertEquals( 2, $outerHit, "Outer callback value not yet cached" );
+		$this->assertEquals( 3, $innerHit, "Inner callback value not yet cached" );
+
+		$cache->delete( $keyInner, $cache::HOLDOFF_NONE );
+		$mockWallClock += 1;
+		$cache->getWithSetCallback( $keyInner, 100, $innerFn, [ 'pcTTL' => 5 ] );
+
+		$this->assertEquals( 3, $innerHit, "Inner callback value process cached" );
 	}
 
 	/**
