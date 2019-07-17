@@ -17,6 +17,7 @@ use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
+use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -40,11 +41,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 * @var User
 	 */
 	protected $user, $anonUser, $userUser, $altUser;
-
-	/**
-	 * @var PermissionManager
-	 */
-	protected $permissionManager;
 
 	/** Constant for self::testIsBlockedFrom */
 	const USER_TALK_PAGE = '<user talk page>';
@@ -1651,6 +1647,41 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$result = MediaWikiServices::getInstance()->getPermissionManager()
 								   ->isEveryoneAllowed( 'test' );
 		$this->assertFalse( $result );
+	}
+
+	/**
+	 * @covers \MediaWiki\Permissions\PermissionManager::addTemporaryUserRights
+	 * @covers \MediaWiki\Permissions\PermissionManager::revokeTemporaryUserRights
+	 */
+	public function testTemporaryUserRights() {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$this->overrideUserPermissions( $this->user, [ 'read', 'edit' ] );
+		// sanity checks
+		$this->assertEquals( [ 'read', 'edit' ], $permissionManager->getUserPermissions( $this->user ) );
+		$this->assertFalse( $permissionManager->userHasRight( $this->user, 'move' ) );
+
+		$scope = $permissionManager->addTemporaryUserRights( $this->user, [ 'move', 'delete' ] );
+		$this->assertEquals( [ 'read', 'edit', 'move', 'delete' ],
+			$permissionManager->getUserPermissions( $this->user ) );
+		$this->assertTrue( $permissionManager->userHasRight( $this->user, 'move' ) );
+
+		$scope2 = $permissionManager->addTemporaryUserRights( $this->user, [ 'delete', 'upload' ] );
+		$this->assertEquals( [ 'read', 'edit', 'move', 'delete', 'upload' ],
+			$permissionManager->getUserPermissions( $this->user ) );
+
+		ScopedCallback::consume( $scope );
+		$this->assertEquals( [ 'read', 'edit', 'delete', 'upload' ],
+			$permissionManager->getUserPermissions( $this->user ) );
+		ScopedCallback::consume( $scope2 );
+		$this->assertEquals( [ 'read', 'edit' ],
+			$permissionManager->getUserPermissions( $this->user ) );
+		$this->assertFalse( $permissionManager->userHasRight( $this->user, 'move' ) );
+
+		( function () use ( $permissionManager ) {
+			$scope = $permissionManager->addTemporaryUserRights( $this->user, 'move' );
+			$this->assertTrue( $permissionManager->userHasRight( $this->user, 'move' ) );
+		} )();
+		$this->assertFalse( $permissionManager->userHasRight( $this->user, 'move' ) );
 	}
 
 }
