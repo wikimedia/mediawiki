@@ -20,6 +20,7 @@
  * @file
  * @ingroup FileBackend
  */
+
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -119,6 +120,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return StatusValue
 	 */
 	final public function createInternal( array $params ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		if ( strlen( $params['content'] ) > $this->maxFileSizeInternal() ) {
 			$status = $this->newStatus( 'backend-fail-maxsize',
@@ -160,6 +162,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return StatusValue
 	 */
 	final public function storeInternal( array $params ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		if ( filesize( $params['src'] ) > $this->maxFileSizeInternal() ) {
 			$status = $this->newStatus( 'backend-fail-maxsize',
@@ -202,6 +205,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return StatusValue
 	 */
 	final public function copyInternal( array $params ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = $this->doCopyInternal( $params );
 		$this->clearCache( [ $params['dst'] ] );
@@ -234,6 +238,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return StatusValue
 	 */
 	final public function deleteInternal( array $params ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = $this->doDeleteInternal( $params );
 		$this->clearCache( [ $params['src'] ] );
@@ -268,6 +273,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return StatusValue
 	 */
 	final public function moveInternal( array $params ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = $this->doMoveInternal( $params );
 		$this->clearCache( [ $params['src'], $params['dst'] ] );
@@ -314,6 +320,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return StatusValue
 	 */
 	final public function describeInternal( array $params ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		if ( count( $params['headers'] ) ) {
 			$status = $this->doDescribeInternal( $params );
@@ -347,10 +354,12 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final public function concatenate( array $params ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = $this->newStatus();
 
 		// Try to lock the source files for the scope of this function
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scopeLockS = $this->getScopedFileLocks( $params['srcs'], LockManager::LOCK_UW, $status );
 		if ( $status->isOK() ) {
 			// Actually do the file concatenation...
@@ -440,6 +449,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final protected function doPrepare( array $params ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = $this->newStatus();
 
@@ -475,6 +485,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final protected function doSecure( array $params ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = $this->newStatus();
 
@@ -510,6 +521,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final protected function doPublish( array $params ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = $this->newStatus();
 
@@ -545,6 +557,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final protected function doClean( array $params ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = $this->newStatus();
 
@@ -569,6 +582,7 @@ abstract class FileBackendStore extends FileBackend {
 
 		// Attempt to lock this directory...
 		$filesLockEx = [ $params['dir'] ];
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scopedLockE = $this->getScopedFileLocks( $filesLockEx, LockManager::LOCK_EX, $status );
 		if ( !$status->isOK() ) {
 			return $status; // abort
@@ -601,6 +615,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final public function fileExists( array $params ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		$stat = $this->getFileStat( $params );
 
@@ -608,6 +623,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final public function getFileTimestamp( array $params ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		$stat = $this->getFileStat( $params );
 
@@ -615,6 +631,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final public function getFileSize( array $params ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		$stat = $this->getFileStat( $params );
 
@@ -626,6 +643,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $path === null ) {
 			return false; // invalid storage path
 		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 
 		$latest = !empty( $params['latest'] ); // use latest data?
@@ -699,6 +717,7 @@ abstract class FileBackendStore extends FileBackend {
 	abstract protected function doGetFileStat( array $params );
 
 	public function getFileContentsMulti( array $params ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 
 		$params = $this->setConcurrencyFlags( $params );
@@ -728,6 +747,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $path === null ) {
 			return false; // invalid storage path
 		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		$latest = !empty( $params['latest'] ); // use latest data?
 		if ( $this->cheapCache->hasField( $path, 'xattr', self::CACHE_TTL ) ) {
@@ -759,6 +779,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $path === null ) {
 			return false; // invalid storage path
 		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		$latest = !empty( $params['latest'] ); // use latest data?
 		if ( $this->cheapCache->hasField( $path, 'sha1', self::CACHE_TTL ) ) {
@@ -790,6 +811,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final public function getFileProps( array $params ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		$fsFile = $this->getLocalReference( $params );
 		$props = $fsFile ? $fsFile->getProps() : FSFile::placeholderProps();
@@ -798,6 +820,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final public function getLocalReferenceMulti( array $params ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 
 		$params = $this->setConcurrencyFlags( $params );
@@ -841,6 +864,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final public function getLocalCopyMulti( array $params ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 
 		$params = $this->setConcurrencyFlags( $params );
@@ -866,6 +890,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final public function streamFile( array $params ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = $this->newStatus();
 
@@ -1089,6 +1114,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final protected function doOperationsInternal( array $ops, array $opts ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = $this->newStatus();
 
@@ -1103,7 +1129,7 @@ abstract class FileBackendStore extends FileBackend {
 			// Build up a list of files to lock...
 			$paths = $this->getPathsToLockForOpsInternal( $performOps );
 			// Try to lock those files for the scope of this function...
-
+			/** @noinspection PhpUnusedLocalVariableInspection */
 			$scopeLock = $this->getScopedFileLocks( $paths, 'mixed', $status );
 			if ( !$status->isOK() ) {
 				return $status; // abort
@@ -1156,6 +1182,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final protected function doQuickOperationsInternal( array $ops ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = $this->newStatus();
 
@@ -1222,6 +1249,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @throws FileBackendError
 	 */
 	final public function executeOpHandlesInternal( array $fileOpHandles ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 
 		foreach ( $fileOpHandles as $fileOpHandle ) {
@@ -1250,7 +1278,7 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	protected function doExecuteOpHandlesInternal( array $fileOpHandles ) {
 		if ( count( $fileOpHandles ) ) {
-			throw new LogicException( "Backend does not support asynchronous operations." );
+			throw new FileBackendError( "Backend does not support asynchronous operations." );
 		}
 
 		return [];
@@ -1326,6 +1354,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final public function preloadFileStat( array $params ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		$success = true; // no network errors
 
@@ -1672,6 +1701,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param array $items
 	 */
 	final protected function primeContainerCache( array $items ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 
 		$paths = []; // list of storage paths
@@ -1769,6 +1799,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param array $items List of storage paths
 	 */
 	final protected function primeFileCache( array $items ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 
 		$paths = []; // list of storage paths
