@@ -1241,18 +1241,18 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	final public function getWithSetCallback( $key, $ttl, $callback, array $opts = [] ) {
 		$version = $opts['version'] ?? null;
 		$pcTTL = $opts['pcTTL'] ?? self::TTL_UNCACHEABLE;
+		$pCache = ( $pcTTL >= 0 )
+			? $this->getProcessCache( $opts['pcGroup'] ?? self::PC_PRIMARY )
+			: null;
 
 		// Use the process cache if requested as long as no outer cache callback is running.
 		// Nested callback process cache use is not lag-safe with regard to HOLDOFF_TTL since
 		// process cached values are more lagged than persistent ones as they are not purged.
-		if ( $pcTTL >= 0 && $this->callbackDepth == 0 ) {
-			$pCache = $this->getProcessCache( $opts['pcGroup'] ?? self::PC_PRIMARY );
+		if ( $pCache && $this->callbackDepth == 0 ) {
 			$cached = $pCache->get( $this->getProcessCacheKey( $key, $version ), INF, false );
 			if ( $cached !== false ) {
 				return $cached;
 			}
-		} else {
-			$pCache = null;
 		}
 
 		$res = $this->fetchOrRegenerate( $key, $ttl, $callback, $opts );
