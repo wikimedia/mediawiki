@@ -85,7 +85,7 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 		return true;
 	}
 
-	public function incr( $key, $value = 1 ) {
+	public function incr( $key, $value = 1, $flags = 0 ) {
 		// https://github.com/krakjoe/apcu/issues/166
 		if ( apcu_exists( $key . self::KEY_SUFFIX ) ) {
 			return apcu_inc( $key . self::KEY_SUFFIX, $value );
@@ -94,7 +94,7 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 		}
 	}
 
-	public function decr( $key, $value = 1 ) {
+	public function decr( $key, $value = 1, $flags = 0 ) {
 		// https://github.com/krakjoe/apcu/issues/166
 		if ( apcu_exists( $key . self::KEY_SUFFIX ) ) {
 			return apcu_dec( $key . self::KEY_SUFFIX, $value );

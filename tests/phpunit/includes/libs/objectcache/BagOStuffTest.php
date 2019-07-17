@@ -290,6 +290,10 @@ class BagOStuffTest extends MediaWikiTestCase {
 
 		$val = $this->cache->incrWithInit( $key, 0, 1, 3 );
 		$this->assertEquals( 4, $val, "Correct init value" );
+		$this->cache->delete( $key );
+
+		$val = $this->cache->incrWithInit( $key, 0, 5 );
+		$this->assertEquals( 5, $val, "Correct init value" );
 	}
 
 	/**

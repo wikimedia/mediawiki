@@ -250,7 +250,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $this->checkResult( $key, $result );
 	}
 
-	public function incr( $key, $value = 1 ) {
+	public function incr( $key, $value = 1, $flags = 0 ) {
 		$this->debug( "incr($key)" );
 
 		$result = $this->acquireSyncClient()->increment( $key, $value );
@@ -258,7 +258,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $this->checkResult( $key, $result );
 	}
 
-	public function decr( $key, $value = 1 ) {
+	public function decr( $key, $value = 1, $flags = 0 ) {
 		$this->debug( "decr($key)" );
 
 		$result = $this->acquireSyncClient()->decrement( $key, $value );
