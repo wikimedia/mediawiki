@@ -16,6 +16,31 @@
 			pageRestrictionsWidget, namespaceRestrictionsWidget, createAccountWidget, data,
 			enablePartialBlocks, blockAllowsUTEdit, userChangedCreateAccount, updatingBlockOptions;
 
+		function preserveSelectedStateOnDisable( widget ) {
+			var widgetWasSelected;
+
+			if ( !widget ) {
+				return;
+			}
+
+			// 'disable' event fires if disabled state changes
+			widget.on( 'disable', function ( disabled ) {
+				if ( disabled ) {
+					// Disabling an enabled widget
+					// Save selected and set selected to false
+					widgetWasSelected = widget.isSelected();
+					widget.setSelected( false );
+				} else {
+					// Enabling a disabled widget
+					// Set selected to the saved value
+					if ( widgetWasSelected !== undefined ) {
+						widget.setSelected( widgetWasSelected );
+					}
+					widgetWasSelected = undefined;
+				}
+			} );
+		}
+
 		function updateBlockOptions() {
 			var blocktarget = blockTargetWidget.getValue().trim(),
 				isEmpty = blocktarget === '',
@@ -31,27 +56,15 @@
 				isSitewide = editingIsSelected && editingRestrictionValue === 'sitewide';
 
 			enableAutoblockWidget.setDisabled( isNonEmptyIp );
-			if ( enableAutoblockWidget.isDisabled() ) {
-				enableAutoblockWidget.setSelected( false );
-			}
 
 			anonOnlyWidget.setDisabled( !isIp && !isEmpty );
-			if ( anonOnlyWidget.isDisabled() ) {
-				anonOnlyWidget.setSelected( false );
-			}
 
 			if ( hideUserWidget ) {
 				hideUserWidget.setDisabled( isNonEmptyIp || !isIndefinite || !isSitewide );
-				if ( hideUserWidget.isDisabled() ) {
-					hideUserWidget.setSelected( false );
-				}
 			}
 
 			if ( watchUserWidget ) {
 				watchUserWidget.setDisabled( isIpRange && !isEmpty );
-				if ( watchUserWidget.isDisabled() ) {
-					watchUserWidget.setSelected( false );
-				}
 			}
 
 			if ( enablePartialBlocks ) {
@@ -123,6 +136,13 @@
 			if ( blockAllowsUTEdit ) {
 				preventTalkPageEditWidget = infuseIfExists( $( '#mw-input-wpDisableUTEdit' ) );
 			}
+
+			// When disabling checkboxes, preserve their selected state in case they are re-enabled
+			preserveSelectedStateOnDisable( enableAutoblockWidget );
+			preserveSelectedStateOnDisable( anonOnlyWidget );
+			preserveSelectedStateOnDisable( watchUserWidget );
+			preserveSelectedStateOnDisable( hideUserWidget );
+			preserveSelectedStateOnDisable( preventTalkPageEditWidget );
 
 			updateBlockOptions();
 		}
