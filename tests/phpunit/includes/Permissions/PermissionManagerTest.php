@@ -1651,9 +1651,8 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers \MediaWiki\Permissions\PermissionManager::addTemporaryUserRights
-	 * @covers \MediaWiki\Permissions\PermissionManager::revokeTemporaryUserRights
 	 */
-	public function testTemporaryUserRights() {
+	public function testAddTemporaryUserRights() {
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$this->overrideUserPermissions( $this->user, [ 'read', 'edit' ] );
 		// sanity checks
