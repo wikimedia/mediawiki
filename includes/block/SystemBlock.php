@@ -76,7 +76,8 @@ class SystemBlock extends AbstractBlock {
 	 */
 	public function getPermissionsError( IContextSource $context ) {
 		$params = $this->getBlockErrorParams( $context );
-		// TODO: Clean up error messages params so we don't have to do this
+
+		// TODO: Clean up error messages params so we don't have to do this (T227174)
 		$params[ 4 ] = $this->getSystemBlockType();
 
 		$msg = 'systemblockedtext';

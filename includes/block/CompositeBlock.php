@@ -121,10 +121,38 @@ class CompositeBlock extends AbstractBlock {
 	}
 
 	/**
+	 * Get the IDs for the original blocks, ignoring any that are null
+	 *
+	 * @return int[]
+	 */
+	protected function getIds() {
+		$ids = [];
+		foreach ( $this->originalBlocks as $block ) {
+			$id = $block->getId();
+			if ( $id !== null ) {
+				$ids[] = $id;
+			}
+		}
+		return $ids;
+	}
+
+	/**
 	 * @inheritDoc
 	 */
 	public function getPermissionsError( IContextSource $context ) {
 		$params = $this->getBlockErrorParams( $context );
+
+		$ids = implode( ', ', array_map( function ( $id ) {
+			return '#' . $id;
+		}, $this->getIds() ) );
+		if ( $ids === '' ) {
+			$idsMsg = $context->msg( 'blockedtext-composite-no-ids' )->plain();
+		} else {
+			$idsMsg = $context->msg( 'blockedtext-composite-ids', [ $ids ] )->plain();
+		}
+
+		// TODO: Clean up error messages params so we don't have to do this (T227174)
+		$params[ 4 ] = $idsMsg;
 
 		$msg = 'blockedtext-composite';
 
