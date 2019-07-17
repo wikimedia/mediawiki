@@ -55,7 +55,7 @@ class ExternalStoreFactory implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @return string[] List of base URLs for writes, e.g. [ "DB://cluster1" ]
+	 * @return string[] List of default base URLs for writes, e.g. [ "DB://cluster1" ]
 	 * @since 1.34
 	 */
 	public function getWriteBaseUrls() {
@@ -87,14 +87,6 @@ class ExternalStoreFactory implements LoggerAwareInterface {
 		if ( !isset( $params['domain'] ) || $params['domain'] === false ) {
 			$params['domain'] = $this->localDomainId; // default
 			$params['isDomainImplicit'] = true; // b/c for ExternalStoreDB
-		}
-		$params['writableLocations'] = [];
-		// Determine the locations for this protocol/store still receiving writes
-		foreach ( $this->writeBaseUrls as $storeUrl ) {
-			list( $storeProto, $storePath ) = self::splitStorageUrl( $storeUrl );
-			if ( $protoLowercase === strtolower( $storeProto ) ) {
-				$params['writableLocations'][] = $storePath;
-			}
 		}
 		// @TODO: ideally, this class should not hardcode what classes need what backend factory
 		// objects. For now, inject the factory instances into __construct() for those that do.
