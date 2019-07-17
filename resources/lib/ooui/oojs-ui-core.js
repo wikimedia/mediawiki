@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.33.2
+ * OOUI v0.33.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-07-10T12:25:07Z
+ * Date: 2019-07-16T21:33:36Z
  */
 ( function ( OO ) {
 
@@ -7938,7 +7938,8 @@ OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
 
 		if (
 			this.highlightOnFilter &&
-			!( this.lastHighlightedItem && this.lastHighlightedItem.isVisible() )
+			!( this.lastHighlightedItem && this.lastHighlightedItem.isVisible() ) &&
+			this.isVisible()
 		) {
 			// Highlight the first item on the list
 			item = null;
@@ -7952,7 +7953,6 @@ OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
 			this.highlightItem( item );
 			this.lastHighlightedItem = item;
 		}
-
 	}
 
 	// Reevaluate clipping
