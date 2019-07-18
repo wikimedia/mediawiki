@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Permissions\PermissionManager;
 
 /**
  * Special page allowing users with the appropriate permissions to view
@@ -66,6 +67,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	/** @var string */
 	private $otherReason;
 
+	/** @var PermissionManager */
+	private $permissionManager;
+
 	/**
 	 * UI labels for each type.
 	 */
@@ -107,8 +111,15 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		],
 	];
 
-	public function __construct() {
+	/**
+	 * @inheritDoc
+	 *
+	 * @param PermissionManager $permissionManager
+	 */
+	public function __construct( PermissionManager $permissionManager ) {
 		parent::__construct( 'Revisiondelete', 'deleterevision' );
+
+		$this->permissionManager = $permissionManager;
 	}
 
 	public function doesWrites() {
@@ -123,13 +134,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 		$output = $this->getOutput();
 		$user = $this->getUser();
-
-		// Check blocks
-		// @TODO Use PermissionManager::isBlockedFrom() instead.
-		$block = $user->getBlock();
-		if ( $block ) {
-			throw new UserBlockedError( $block );
-		}
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -178,6 +182,11 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$output->addWikiMsg( 'undelete-header' );
 
 			return;
+		}
+
+		// Check blocks
+		if ( $this->permissionManager->isBlockedFrom( $user, $this->targetObj ) ) {
+			throw new UserBlockedError( $user->getBlock() );
 		}
 
 		$this->typeLabels = self::$UILabels[$this->typeName];
