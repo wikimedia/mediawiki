@@ -823,7 +823,7 @@ class CoreParserFunctions {
 		}
 
 		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $title );
+		$rev = self::getCachedRevisionObject( $parser, $title, 'vary-revision-sha1' );
 		$length = $rev ? $rev->getSize() : 0;
 		if ( $length === null ) {
 			// We've had bugs where rev_len was not being recorded for empty pages, see T135414
@@ -1126,41 +1126,56 @@ class CoreParserFunctions {
 	 *
 	 * @param Parser $parser
 	 * @param Title $title
+	 * @param string $vary ParserOuput vary-* flag
 	 * @return Revision
 	 * @since 1.23
 	 */
-	private static function getCachedRevisionObject( $parser, $title = null ) {
-		if ( is_null( $title ) ) {
+	private static function getCachedRevisionObject( $parser, $title, $vary ) {
+		if ( !$title ) {
 			return null;
 		}
 
-		// Use the revision from the parser itself, when param is the current page
-		// and the revision is the current one
-		if ( $title->equals( $parser->getTitle() ) ) {
-			$parserRev = $parser->getRevisionObject();
-			if ( $parserRev && $parserRev->isCurrent() ) {
-				// force reparse after edit with vary-revision flag
-				$parser->getOutput()->setFlag( 'vary-revision' );
-				wfDebug( __METHOD__ . ": use current revision from parser, setting vary-revision...\n" );
-				return $parserRev;
+		$revision = null;
+
+		$isSelfReferential = $title->equals( $parser->getTitle() );
+		if ( $isSelfReferential ) {
+			// Revision is for the same title that is currently being parsed. Only use the last
+			// saved revision, regardless of Parser::getRevisionId() or fake revision injection
+			// callbacks against the current title.
+			$parserRevision = $parser->getRevisionObject();
+			if ( $parserRevision && $parserRevision->isCurrent() ) {
+				$revision = $parserRevision;
+				wfDebug( __METHOD__ . ": used current revision, setting $vary" );
 			}
 		}
 
-		// Normalize name for cache
-		$page = $title->getPrefixedDBkey();
-
-		if ( !( $parser->currentRevisionCache && $parser->currentRevisionCache->has( $page ) )
-			&& !$parser->incrementExpensiveFunctionCount() ) {
-			return null;
+		$parserOutput = $parser->getOutput();
+		if ( !$revision ) {
+			if (
+				!$parser->isCurrentRevisionOfTitleCached( $title ) &&
+				!$parser->incrementExpensiveFunctionCount()
+			) {
+				return null; // not allowed
+			}
+			// Get the current revision, ignoring Parser::getRevisionId() being null/old
+			$revision = $parser->fetchCurrentRevisionOfTitle( $title );
+			// Register dependency in templatelinks
+			$parserOutput->addTemplate(
+				$title,
+				$revision ? $revision->getPage() : 0,
+				$revision ? $revision->getId() : 0
+			);
 		}
-		$rev = $parser->fetchCurrentRevisionOfTitle( $title );
-		$pageID = $rev ? $rev->getPage() : 0;
-		$revID = $rev ? $rev->getId() : 0;
 
-		// Register dependency in templatelinks
-		$parser->getOutput()->addTemplate( $title, $pageID, $revID );
+		if ( $isSelfReferential ) {
+			// Upon page save, the result of the parser function using this might change
+			$parserOutput->setFlag( $vary );
+			if ( $vary === 'vary-revision-sha1' && $revision ) {
+				$parserOutput->setRevisionUsedSha1Base36( $revision->getSha1() );
+			}
+		}
 
-		return $rev;
+		return $revision;
 	}
 
 	/**
@@ -1221,7 +1236,7 @@ class CoreParserFunctions {
 			return '';
 		}
 		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $t );
+		$rev = self::getCachedRevisionObject( $parser, $t, 'vary-revision-id' );
 		return $rev ? $rev->getId() : '';
 	}
 
@@ -1238,7 +1253,7 @@ class CoreParserFunctions {
 			return '';
 		}
 		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $t );
+		$rev = self::getCachedRevisionObject( $parser, $t, 'vary-revision-timestamp' );
 		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'j' ) : '';
 	}
 
@@ -1255,7 +1270,7 @@ class CoreParserFunctions {
 			return '';
 		}
 		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $t );
+		$rev = self::getCachedRevisionObject( $parser, $t, 'vary-revision-timestamp' );
 		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'd' ) : '';
 	}
 
@@ -1272,7 +1287,7 @@ class CoreParserFunctions {
 			return '';
 		}
 		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $t );
+		$rev = self::getCachedRevisionObject( $parser, $t, 'vary-revision-timestamp' );
 		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'm' ) : '';
 	}
 
@@ -1289,7 +1304,7 @@ class CoreParserFunctions {
 			return '';
 		}
 		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $t );
+		$rev = self::getCachedRevisionObject( $parser, $t, 'vary-revision-timestamp' );
 		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'n' ) : '';
 	}
 
@@ -1306,7 +1321,7 @@ class CoreParserFunctions {
 			return '';
 		}
 		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $t );
+		$rev = self::getCachedRevisionObject( $parser, $t, 'vary-revision-timestamp' );
 		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'Y' ) : '';
 	}
 
@@ -1323,7 +1338,7 @@ class CoreParserFunctions {
 			return '';
 		}
 		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $t );
+		$rev = self::getCachedRevisionObject( $parser, $t, 'vary-revision-timestamp' );
 		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'YmdHis' ) : '';
 	}
 
@@ -1340,7 +1355,7 @@ class CoreParserFunctions {
 			return '';
 		}
 		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $t );
+		$rev = self::getCachedRevisionObject( $parser, $t, 'vary-user' );
 		return $rev ? $rev->getUserText() : '';
 	}
 

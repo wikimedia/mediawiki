@@ -10813,7 +10813,21 @@ parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! end
 
 !! test
-Magic Word: {{REVISIONID}}
+Magic Word: {{REVISIONID}} on latest revision
+!! options
+lastsavedrevision
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONID}}
+!! html/*
+<p>1337
+</p>
+flags=vary-revision-id
+!! end
+
+!! test
+Magic Word: {{REVISIONID}} on non-latest revision
 !! options
 parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 showflags
@@ -10823,6 +10837,143 @@ showflags
 <p>1337
 </p>
 flags=vary-revision-id
+!! end
+
+!! test
+Magic Word: {{REVISIONTIMESTAMP}} on latest revision
+!! options
+lastsavedrevision
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONTIMESTAMP}}
+!! html/*
+<p>19700101000203
+</p>
+flags=
+!! end
+
+!! test
+Magic Word: {{REVISIONTIMESTAMP}} on non-existing page
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONTIMESTAMP}}
+!! html/*
+<p>123
+</p>
+flags=vary-revision-timestamp
+!! end
+
+!! test
+Magic Word: {{REVISIONUSER}} on latest revision
+!! options
+lastsavedrevision
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONUSER}}
+!! html/*
+<p>127.0.0.1
+</p>
+flags=vary-user
+!! end
+
+!! test
+Parser Function: {{REVISIONID:{{PAGENAME}}}} on latest revision
+!! options
+lastsavedrevision
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONID:{{PAGENAME}}}}
+!! html/*
+<p>1337
+</p>
+flags=vary-revision-id
+!! end
+
+!! test
+Parser Function: {{REVISIONID:{{PAGENAME}}}} on non-saved revision
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONID:{{PAGENAME}}}}
+!! html/*
+
+flags=vary-revision-id
+!! end
+
+!! test
+Parser Function: {{REVISIONTIMESTAMP:{{PAGENAME}}}} on latest revision
+!! options
+lastsavedrevision
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONTIMESTAMP:{{PAGENAME}}}}
+!! html/*
+<p>19700101000203
+</p>
+flags=vary-revision-timestamp
+!! end
+
+!! test
+Parser Function: {{REVISIONDAY:{{PAGENAME}}}} on latest revision
+!! options
+lastsavedrevision
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONDAY:{{PAGENAME}}}}
+!! html/*
+<p>1
+</p>
+flags=vary-revision-timestamp
+!! end
+
+!! test
+Parser Function: {{REVISIONMONTH:{{PAGENAME}}}} on latest revision
+!! options
+lastsavedrevision
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONMONTH:{{PAGENAME}}}}
+!! html/*
+<p>01
+</p>
+flags=vary-revision-timestamp
+!! end
+
+!! test
+Parser Function: {{REVISIONYEAR:{{PAGENAME}}}} on latest revision
+!! options
+lastsavedrevision
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONYEAR:{{PAGENAME}}}}
+!! html/*
+<p>1970
+</p>
+flags=vary-revision-timestamp
+!! end
+
+!! test
+Parser Function: {{PAGESIZE:{{PAGENAME}}}} on latest revision
+!! options
+lastsavedrevision
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{PAGESIZE:{{PAGENAME}}}}
+!! html/*
+<p>25
+</p>
+flags=vary-revision-sha1
 !! end
 
 !! test

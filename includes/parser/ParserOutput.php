@@ -216,6 +216,9 @@ class ParserOutput extends CacheTime {
 	/** @var int|null Assumed rev timestamp for {{REVISIONTIMESTAMP}} if no revision is set */
 	private $revisionTimestampUsed;
 
+	/** @var string|null SHA-1 base 36 hash of any self-transclusion */
+	private $revisionUsedSha1Base36;
+
 	/** string CSS classes to use for the wrapping div, stored in the array keys.
 	 * If no class is given, no wrapper is added.
 	 */
@@ -462,6 +465,33 @@ class ParserOutput extends CacheTime {
 	 */
 	public function getRevisionTimestampUsed() {
 		return $this->revisionTimestampUsed;
+	}
+
+	/**
+	 * @param string $hash Lowercase SHA-1 base 36 hash
+	 * @since 1.34
+	 */
+	public function setRevisionUsedSha1Base36( $hash ) {
+		if ( $hash === null ) {
+			return; // e.g. RevisionRecord::getSha1() returned null
+		}
+
+		if (
+			$this->revisionUsedSha1Base36 !== null &&
+			$this->revisionUsedSha1Base36 !== $hash
+		) {
+			$this->revisionUsedSha1Base36 = ''; // mismatched
+		} else {
+			$this->revisionUsedSha1Base36 = $hash;
+		}
+	}
+
+	/**
+	 * @return string|null Lowercase SHA-1 base 36 hash, null if unused, or "" on inconsistency
+	 * @since 1.34
+	 */
+	public function getRevisionUsedSha1Base36() {
+		return $this->revisionUsedSha1Base36;
 	}
 
 	public function &getLanguageLinks() {
