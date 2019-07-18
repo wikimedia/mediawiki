@@ -437,28 +437,23 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		$ttl = $this->getExpirationAsTTL( $exptime );
-
 		try {
-			if ( $init === $step && $exptime == self::TTL_INDEFINITE ) {
-				$newValue = $conn->incrBy( $key, $step );
-			} else {
-				$conn->multi( Redis::PIPELINE );
-				$conn->set(
-					$key,
-					(string)( $init - $step ),
-					$ttl ? [ 'nx', 'ex' => $ttl ] : [ 'nx' ]
-				);
-				$conn->incrBy( $key, $step );
-				$batchResult = $conn->exec();
-				$newValue = ( $batchResult === false ) ? false : $batchResult[1];
-				$this->logRequest( 'incrWithInit', $key, $conn->getServer(), $newValue === false );
-			}
+			static $script =
+			/** @lang Lua */
+<<<LUA
+			if redis.call( 'exists', KEYS[1] ) == 1 then
+				return redis.call( 'incrBy', KEYS[1], ARGV[2] )
+			end
+			return redis.call( 'setex', KEYS[1], ARGV[1], ARGV[3] )
+LUA;
+			$result = $conn->eval( $script, [ $key, $ttl, $step, $init ], 1 );
 		} catch ( RedisException $e ) {
-			$newValue = false;
+			$result = false;
 			$this->handleException( $conn, $e );
 		}
+		$this->logRequest( 'incrWithInit', $key, $conn->getServer(), $result );
 
-		return $newValue;
+		return $result;
 	}
 
 	protected function doChangeTTL( $key, $exptime, $flags ) {
