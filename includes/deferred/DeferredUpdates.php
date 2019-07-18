@@ -28,6 +28,7 @@ use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\DBTransactionError;
 
 /**
  * Class for managing the deferred updates
@@ -352,28 +353,30 @@ class DeferredUpdates {
 	 * @since 1.34
 	 */
 	public static function attemptUpdate( DeferrableUpdate $update, ILBFactory $lbFactory ) {
-		if ( $update instanceof DataUpdate ) {
-			$update->setTransactionTicket( $lbFactory->getEmptyTransactionTicket( __METHOD__ ) );
+		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
+		if ( !$ticket || $lbFactory->hasTransactionRound() ) {
+			throw new DBTransactionError( null, "A database transaction round is pending." );
 		}
 
-		if (
+		if ( $update instanceof DataUpdate ) {
+			$update->setTransactionTicket( $ticket );
+		}
+
+		$fnameTrxOwner = get_class( $update ) . '::doUpdate';
+		$useExplicitTrxRound = !(
 			$update instanceof TransactionRoundAwareUpdate &&
 			$update->getTransactionRoundRequirement() == $update::TRX_ROUND_ABSENT
-		) {
-			$fnameTrxOwner = null;
+		);
+		// Flush any pending changes left over from an implicit transaction round
+		if ( $useExplicitTrxRound ) {
+			$lbFactory->beginMasterChanges( $fnameTrxOwner ); // new explicit round
 		} else {
-			$fnameTrxOwner = get_class( $update ) . '::doUpdate';
+			$lbFactory->commitMasterChanges( $fnameTrxOwner ); // new implicit round
 		}
-
-		if ( $fnameTrxOwner !== null ) {
-			$lbFactory->beginMasterChanges( $fnameTrxOwner );
-		}
-
+		// Run the update after any stale master view snapshots have been flushed
 		$update->doUpdate();
-
-		if ( $fnameTrxOwner !== null ) {
-			$lbFactory->commitMasterChanges( $fnameTrxOwner );
-		}
+		// Commit any pending changes from the explicit or implicit transaction round
+		$lbFactory->commitMasterChanges( $fnameTrxOwner );
 	}
 
 	/**
