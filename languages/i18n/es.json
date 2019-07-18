@@ -193,7 +193,7 @@
 			"Johny Weissmuller Jr"
 		]
 	},
-	"tog-underline": "Enlaces que se van a subrayar:",
+	"tog-underline": "Subrayar enlaces:",
 	"tog-hideminor": "Ocultar las ediciones menores en cambios recientes",
 	"tog-hidepatrolled": "Ocultar las ediciones verificadas de cambios recientes",
 	"tog-newpageshidepatrolled": "Ocultar, de la lista de páginas nuevas, las páginas verificadas",
@@ -835,7 +835,8 @@
 	"autoblockedtext": "Tu dirección IP ha sido bloqueada automáticamente porque fue utilizada por otro usuario, que resultó bloqueado por $1.\nEl motivo dado es el siguiente:\n\n:<em>$2</em>\n\n* Inicio del bloqueo: $8\n* Caducidad del bloqueo: $6\n* Bloqueo destinado a: $7\n\nPuedes contactar con $1 o con otro de los [[{{MediaWiki:Grouppage-sysop}}|administradores]] para discutir el bloqueo.\n\nObserva que no puedes utilizar la función «{{int:emailuser}}» a menos que hayas registrado una dirección de correo electrónico válida en tus [[Special:Preferences|preferencias de usuario]] y la función no haya sido también bloqueada.\n\nTu dirección IP actual es $3, y el identificador del bloqueo es n.º $5.\nIncluye todos los datos aquí mostrados en cualquier consulta que hagas.",
 	"systemblockedtext": "Tu nombre de usuario o dirección IP ha sido bloqueado automáticamente por el software MediaWiki.\nLa razón dada es:\n\n:<em>$2</em>\n\n* Inicio del bloqueo: $8\n* Caducidad de bloqueo: $6\n* Destinatario del bloqueo: $7\n\nTu dirección IP actual es $3.\nPor favor, incluye todos los datos aquí mostrados en cualquier consulta que hagas.",
 	"blockednoreason": "no se ha especificado el motivo",
-	"blockedtext-composite": "<strong>Tu nombre de usuario o dirección IP han sido bloqueados.</strong>\n\nLa razón es:\n\n:<em>$2</em>.\n\n* Inicio del bloqueo: $8\n* Vencimiento del bloqueo más largo: $6\n\nTu dirección IP actual es $3.\nPor favor, incluye todos los detalles anteriores en cualquier consulta que realices.",
+	"blockedtext-composite": "<strong>Tu nombre de usuario o dirección IP han sido bloqueados.</strong>\n\nLa razón es:\n\n:<em>$2</em>.\n\n* Inicio del bloqueo: $8\n* Vencimiento del bloqueo más largo: $6\n\n* $5\n\nTu dirección IP actual es $3.\nPor favor, incluye todos los detalles anteriores en cualquier consulta que realices.",
+	"blockedtext-composite-no-ids": "Tu dirección IP figura en varias listas negras",
 	"blockedtext-composite-reason": "Hay múltiples bloques contra tu cuenta y/o dirección IP.",
 	"whitelistedittext": "Tienes que $1 para editar páginas.",
 	"confirmedittext": "Debes confirmar tu dirección de correo electrónico antes de poder editar páginas. Por favor, configura y confirma tu dirección de correo a través de tus [[Special:Preferences|preferencias de usuario]].",
