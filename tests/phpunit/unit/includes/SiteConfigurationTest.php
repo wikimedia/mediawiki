@@ -171,7 +171,7 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 		$this->assertEquals(
 			'wiki',
 			$this->mConf->get( 'SimpleKey', 'eswiki', 'wiki' ),
-			'get(): simple setting on an non-existing wiki'
+			'get(): simple setting on a non-existing wiki'
 		);
 
 		// Fallback
@@ -209,12 +209,12 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 		$this->assertEquals(
 			'wiki',
 			$this->mConf->get( 'Fallback', 'eswiki', 'wiki' ),
-			'get(): fallback setting on an non-existing wiki'
+			'get(): fallback setting on a non-existing wiki'
 		);
 		$this->assertEquals(
 			'tag',
 			$this->mConf->get( 'Fallback', 'eswiki', 'wiki', [], [ 'tag' ] ),
-			'get(): fallback setting on an non-existing wiki (with wiki tag)'
+			'get(): fallback setting on a non-existing wiki (with wiki tag)'
 		);
 
 		// Merging
@@ -263,12 +263,12 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 		$this->assertEquals(
 			$common,
 			$this->mConf->get( 'MergeIt', 'eswiki', 'wiki' ),
-			'get(): merging setting on an non-existing wiki'
+			'get(): merging setting on a non-existing wiki'
 		);
 		$this->assertEquals(
 			$commonTag,
 			$this->mConf->get( 'MergeIt', 'eswiki', 'wiki', [], [ 'tag' ] ),
-			'get(): merging setting on an non-existing wiki (with tag)'
+			'get(): merging setting on a non-existing wiki (with tag)'
 		);
 	}
 
@@ -324,7 +324,7 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 		$this->assertEquals(
 			'es wiki eswiki',
 			$this->mConf->get( 'WithParams', 'eswiki', 'wiki' ),
-			'get(): parameter replacement on an non-existing wiki'
+			'get(): parameter replacement on a non-existing wiki'
 		);
 	}
 
