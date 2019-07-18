@@ -716,6 +716,7 @@ class GlobalTest extends MediaWikiTestCase {
 	 */
 	public function testWfGlobalCacheKey() {
 		$cache = ObjectCache::getLocalClusterInstance();
+		$this->hideDeprecated( 'wfGlobalCacheKey' );
 		$this->assertEquals(
 			$cache->makeGlobalKey( 'foo', 123, 'bar' ),
 			wfGlobalCacheKey( 'foo', 123, 'bar' )
