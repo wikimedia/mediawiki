@@ -82,8 +82,10 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		}
 
 		$mysqli = mysqli_init();
-
-		$connFlags = 0;
+		// Make affectedRows() for UPDATE reflect the number of matching rows, regardless
+		// of whether any column values changed. This is what callers want to know and is
+		// consistent with what Postgres, SQLite, and SQL Server return.
+		$connFlags = MYSQLI_CLIENT_FOUND_ROWS;
 		if ( $this->getFlag( self::DBO_SSL ) ) {
 			$connFlags |= MYSQLI_CLIENT_SSL;
 			$mysqli->ssl_set(
