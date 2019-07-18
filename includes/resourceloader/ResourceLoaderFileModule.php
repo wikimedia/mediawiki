@@ -1159,11 +1159,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 						throw new MWException( __METHOD__ . ": invalid versionCallback for file" .
 							" \"{$fileInfo['name']}\" in module \"{$this->getName()}\"" );
 					}
-					$expanded['definitionSummary'] = ( $fileInfo['versionCallback'] )( $context );
+					$expanded['definitionSummary'] =
+						( $fileInfo['versionCallback'] )( $context, $this->getConfig() );
 					// Don't invoke 'callback' here as it may be expensive (T223260).
 					$expanded['callback'] = $fileInfo['callback'];
 				} else {
-					$expanded['content'] = ( $fileInfo['callback'] )( $context );
+					$expanded['content'] = ( $fileInfo['callback'] )( $context, $this->getConfig() );
 				}
 			} elseif ( isset( $fileInfo['config'] ) ) {
 				if ( $type !== 'data' ) {
@@ -1240,7 +1241,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				$fileInfo['content'] = $content;
 				unset( $fileInfo['filePath'] );
 			} elseif ( isset( $fileInfo['callback'] ) ) {
-				$fileInfo['content'] = ( $fileInfo['callback'] )( $context );
+				$fileInfo['content'] = ( $fileInfo['callback'] )( $context, $this->getConfig() );
 				unset( $fileInfo['callback'] );
 			}
 
