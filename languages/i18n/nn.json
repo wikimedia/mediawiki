@@ -2686,7 +2686,7 @@
 	"watchlisttools-edit": "Vis og endre overvakingslista",
 	"watchlisttools-raw": "Endre på overvakingslista i råformat",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|diskusjon]])",
-	"duplicate-defaultsort": "Åtvaring: Standardsorteringa «$2» tar over for den tidlegare sorteringa «$1».",
+	"duplicate-defaultsort": "<strong>Åtvaring:</strong> Standardsorteringa «$2» tar over for den tidlegare sorteringa «$1».",
 	"restricted-displaytitle": "<strong>Åtvaring:</strong> Visingstittelen «$1» vart sett bort frå sidan han ikkje svarar til den faktiske tittelen til sida.",
 	"version": "Versjon",
 	"version-extensions": "Installerte utvidingar",
