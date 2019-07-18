@@ -429,7 +429,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 				// accidentally returning it so best check and fix
 				$status = Status::wrap( $status );
 			} elseif ( is_string( $status ) ) {
-				$status = Status::newFatal( new RawMessage( '$1', $status ) );
+				$status = Status::newFatal( new RawMessage( '$1', [ $status ] ) );
 			} elseif ( is_array( $status ) ) {
 				if ( is_string( reset( $status ) ) ) {
 					$status = Status::newFatal( ...$status );
