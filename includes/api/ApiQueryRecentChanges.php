@@ -312,12 +312,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 			/* Add fields to our query if they are specified as a needed parameter. */
 			$this->addFieldsIf( [ 'rc_this_oldid', 'rc_last_oldid' ], $this->fld_ids );
-			if ( $this->fld_user || $this->fld_userid ) {
-				$actorQuery = ActorMigration::newMigration()->getJoin( 'rc_user' );
-				$this->addTables( $actorQuery['tables'] );
-				$this->addFields( $actorQuery['fields'] );
-				$this->addJoinConds( $actorQuery['joins'] );
-			}
 			$this->addFieldsIf( [ 'rc_minor', 'rc_type', 'rc_bot' ], $this->fld_flags );
 			$this->addFieldsIf( [ 'rc_old_len', 'rc_new_len' ], $this->fld_sizes );
 			$this->addFieldsIf( [ 'rc_patrolled', 'rc_log_type' ], $this->fld_patrolled );
@@ -403,6 +397,14 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addTables( $commentQuery['tables'] );
 			$this->addFields( $commentQuery['fields'] );
 			$this->addJoinConds( $commentQuery['joins'] );
+		}
+
+		if ( $this->fld_user || $this->fld_userid || !is_null( $this->token ) ) {
+			// Token needs rc_user for RecentChange::newFromRow/User::newFromAnyId (T228425)
+			$actorQuery = ActorMigration::newMigration()->getJoin( 'rc_user' );
+			$this->addTables( $actorQuery['tables'] );
+			$this->addFields( $actorQuery['fields'] );
+			$this->addJoinConds( $actorQuery['joins'] );
 		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
