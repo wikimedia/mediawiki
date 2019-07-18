@@ -2521,6 +2521,7 @@ function wfForeignMemcKey( $db, $prefix, ...$args ) {
  * @return string
  */
 function wfGlobalCacheKey( ...$args ) {
+	wfDeprecated( __METHOD__, '1.30' );
 	return ObjectCache::getLocalClusterInstance()->makeGlobalKey( ...$args );
 }
 
