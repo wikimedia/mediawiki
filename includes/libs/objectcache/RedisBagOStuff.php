@@ -368,54 +368,11 @@ class RedisBagOStuff extends BagOStuff {
 		}
 
 		try {
-			$conn->watch( $key );
-			if ( $conn->exists( $key ) ) {
-				$conn->multi( Redis::MULTI );
-				$conn->incrBy( $key, $value );
-				$batchResult = $conn->exec();
-				if ( $batchResult === false ) {
-					$result = false;
-				} else {
-					$result = end( $batchResult );
-				}
-			} else {
-				$result = false;
-				$conn->unwatch();
+			if ( !$conn->exists( $key ) ) {
+				return false;
 			}
-		} catch ( RedisException $e ) {
-			try {
-				$conn->unwatch(); // sanity
-			} catch ( RedisException $ex ) {
-				// already errored
-			}
-			$result = false;
-			$this->handleException( $conn, $e );
-		}
-
-		$this->logRequest( 'incr', $key, $conn->getServer(), $result );
-
-		return $result;
-	}
-
-	public function incrWithInit( $key, $exptime, $value = 1, $init = 1 ) {
-		$conn = $this->getConnection( $key );
-		if ( !$conn ) {
-			return false;
-		}
-
-		$ttl = $this->convertToRelative( $exptime );
-		$preIncrInit = $init - $value;
-		try {
-			$conn->multi( Redis::MULTI );
-			$conn->set( $key, $preIncrInit, $ttl ? [ 'nx', 'ex' => $ttl ] : [ 'nx' ] );
-			$conn->incrBy( $key, $value );
-			$batchResult = $conn->exec();
-			if ( $batchResult === false ) {
-				$result = false;
-				$this->debug( "incrWithInit request to {$conn->getServer()} failed" );
-			} else {
-				$result = end( $batchResult );
-			}
+			// @FIXME: on races, the key may have a 0 TTL
+			$result = $conn->incrBy( $key, $value );
 		} catch ( RedisException $e ) {
 			$result = false;
 			$this->handleException( $conn, $e );
