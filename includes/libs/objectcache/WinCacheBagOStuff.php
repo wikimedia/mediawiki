@@ -32,7 +32,7 @@ class WinCacheBagOStuff extends BagOStuff {
 		$casToken = null;
 
 		$blob = wincache_ucache_get( $key );
-		if ( !is_string( $blob ) ) {
+		if ( !is_string( $blob ) && !is_int( $blob ) ) {
 			return false;
 		}
 
