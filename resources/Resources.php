@@ -1526,7 +1526,9 @@ return [
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.jqueryMsg",
 		'packageFiles' => [
 			'mediawiki.jqueryMsg.js',
-			[ 'name' => 'parserDefaults.json', 'callback' => function ( ResourceLoaderContext $context ) {
+			[ 'name' => 'parserDefaults.json', 'callback' => function (
+				ResourceLoaderContext $context, Config $config
+			) {
 				$tagData = Sanitizer::getRecognizedTagData();
 				$allowedHtmlElements = array_merge(
 					array_keys( $tagData['htmlpairs'] ),
@@ -1537,7 +1539,7 @@ return [
 				);
 
 				$magicWords = [
-					'SITENAME' => $context->getConfig()->get( 'Sitename' ),
+					'SITENAME' => $config->get( 'Sitename' ),
 				];
 				Hooks::run( 'ResourceLoaderJqueryMsgModuleMagicWords', [ $context, &$magicWords ] );
 
