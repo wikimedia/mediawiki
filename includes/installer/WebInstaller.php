@@ -145,10 +145,6 @@ class WebInstaller extends Installer {
 		parent::__construct();
 		$this->output = new WebInstallerOutput( $this );
 		$this->request = $request;
-
-		// Add parser hooks
-		$parser = MediaWikiServices::getInstance()->getParser();
-		$parser->setHook( 'doclink', [ $this, 'docLink' ] );
 	}
 
 	/**
@@ -1090,7 +1086,7 @@ class WebInstaller extends Installer {
 	}
 
 	/**
-	 * Helper for Installer::docLink()
+	 * Helper for WebInstallerOutput
 	 *
 	 * @internal For use by WebInstallerOutput
 	 * @param string $page
@@ -1104,21 +1100,6 @@ class WebInstaller extends Installer {
 		}
 
 		return $this->getUrl( $query );
-	}
-
-	/**
-	 * Extension tag hook for a documentation link.
-	 *
-	 * @param string $linkText
-	 * @param string[] $attribs
-	 * @param Parser $parser Unused
-	 *
-	 * @return string
-	 */
-	public function docLink( $linkText, $attribs, $parser ) {
-		$url = $this->getDocUrl( $attribs['href'] );
-
-		return Html::element( 'a', [ 'href' => $url ], $linkText );
 	}
 
 	/**
