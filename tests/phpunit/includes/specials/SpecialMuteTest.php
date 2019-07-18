@@ -35,10 +35,15 @@ class SpecialMuteTest extends SpecialPageTestBase {
 
 	/**
 	 * @covers SpecialMute::execute
-	 * @expectedExceptionMessage Muting users from sending you emails is not enabled
+	 * @expectedExceptionMessage Mute features are unavailable
 	 * @expectedException ErrorPageError
 	 */
 	public function testEmailBlacklistNotEnabled() {
+		$this->setTemporaryHook(
+			'SpecialMuteModifyFormFields',
+			null
+		);
+
 		$this->setMwGlobals( [
 			'wgEnableUserEmailBlacklist' => false
 		] );
@@ -72,7 +77,7 @@ class SpecialMuteTest extends SpecialPageTestBase {
 		$loggedInUser->confirmEmail();
 		$loggedInUser->saveSettings();
 
-		$fauxRequest = new FauxRequest( [ 'wpMuteEmail' => 1 ], true );
+		$fauxRequest = new FauxRequest( [ 'wpemail-blacklist' => true ], true );
 		list( $html, ) = $this->executeSpecialPage(
 			$targetUser->getName(), $fauxRequest, 'qqx', $loggedInUser
 		);
@@ -99,7 +104,7 @@ class SpecialMuteTest extends SpecialPageTestBase {
 		$loggedInUser->confirmEmail();
 		$loggedInUser->saveSettings();
 
-		$fauxRequest = new FauxRequest( [ 'wpMuteEmail' => false ], true );
+		$fauxRequest = new FauxRequest( [ 'wpemail-blacklist' => false ], true );
 		list( $html, ) = $this->executeSpecialPage(
 			$targetUser->getName(), $fauxRequest, 'qqx', $loggedInUser
 		);

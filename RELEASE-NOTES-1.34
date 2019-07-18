@@ -77,6 +77,8 @@ For notes on 1.33.x and older releases, see HISTORY.
   of headers in private wikis.
 * Language::formatTimePeriod now supports the new 'avoidhours' option to output
   strings like "5 days ago" instead of "5 days 13 hours ago".
+* (T220163) Added SpecialMuteModifyFormFields hook to allow extensions
+  to add fields to Special:Mute.
 
 === External library changes in 1.34 ===
 
