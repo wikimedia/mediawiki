@@ -298,6 +298,8 @@ because of Phabricator reports.
 * The parameter $lang of the functions generateTOC and tocList in Linker and
   DummyLinker must be in type Language when present. Other types are
   deprecated since 1.33.
+* The static properties mw.Api.errors and mw.Api.warnings, deprecated in 1.29,
+  have been removed.
 * …
 
 === Deprecations in 1.34 ===

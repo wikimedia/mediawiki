@@ -63,7 +63,7 @@
 	"config-help-restart": "Message in warning box in MediaWiki installer.",
 	"config-restart": "Button text to confirm the installation procedure has to be restarted.",
 	"config-welcome": "Notice that the installer is about to check as to whether MediaWiki can be installed.",
-	"config-copyright": "This message follows {{msg-mw|config-env-good}}.\n\nParameters:\n* $1 - copyright and author list",
+	"config-welcome-section-copyright": "This message follows {{msg-mw|config-env-good}}.\n\nParameters:\n* $1 - copyright and author list\n* $2 - Link to the installer page that contains the license text\n",
 	"config-sidebar": "Maximum width for words is 24 characters. Only visible part of the translation counts to this limit.",
 	"config-sidebar-readme": "Link in sidebar to read the README documentation",
 	"config-sidebar-relnotes": "Link in sidebar to read the RELEASE-NOTES documentation",
