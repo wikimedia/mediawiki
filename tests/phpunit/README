@@ -1,12 +1,12 @@
 == MediaWiki PHPUnit Tests ==
 
-The unit tests for MediaWiki are implemented using the PHPUnit testing
+The unit and integration tests for MediaWiki are implemented using the PHPUnit testing
 framework and require PHPUnit to run.
 
 
 === WARNING ===
 
-Some of the unit tests are DESTRUCTIVE and WILL ALTER YOUR WIKI'S CONTENTS.
+Some of the integration tests are DESTRUCTIVE and WILL ALTER YOUR WIKI'S CONTENTS.
 
 DO NOT RUN THESE TESTS ON A PRODUCTION SYSTEM OR ON ANY SYSTEM WHERE YOU NEED
 TO RETAIN YOUR DATA.
