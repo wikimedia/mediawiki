@@ -97,14 +97,15 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	/** @var int[] Map of (ATTR_* class constant => QOS_* class constant) */
 	protected $attrMap = [];
 
-	/** Bitfield constants for get()/getMulti() */
-	const READ_LATEST = 1; // use latest data for replicated stores
-	const READ_VERIFIED = 2; // promise that caller can tell when keys are stale
-	/** Bitfield constants for set()/merge() */
-	const WRITE_SYNC = 4; // synchronously write to all locations for replicated stores
-	const WRITE_CACHE_ONLY = 8; // Only change state of the in-memory cache
-	const WRITE_ALLOW_SEGMENTS = 16; // Allow partitioning of the value if it is large
-	const WRITE_PRUNE_SEGMENTS = 32; // Delete all partition segments of the value
+	/** Bitfield constants for get()/getMulti(); these are only advisory */
+	const READ_LATEST = 1; // if supported, avoid reading stale data due to replication
+	const READ_VERIFIED = 2; // promise that the caller handles detection of staleness
+	/** Bitfield constants for set()/merge(); these are only advisory */
+	const WRITE_SYNC = 4; // if supported, block until the write is fully replicated
+	const WRITE_CACHE_ONLY = 8; // only change state of the in-memory cache
+	const WRITE_ALLOW_SEGMENTS = 16; // allow partitioning of the value if it is large
+	const WRITE_PRUNE_SEGMENTS = 32; // delete all the segments if the value is partitioned
+	const WRITE_BACKGROUND = 64; // if supported,
 
 	/** @var string Component to use for key construction of blob segment keys */
 	const SEGMENT_COMPONENT = 'segment';
@@ -727,6 +728,8 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 *
 	 * This does not support WRITE_ALLOW_SEGMENTS to avoid excessive read I/O
 	 *
+	 * WRITE_BACKGROUND can be used for bulk insertion where the response is not vital
+	 *
 	 * @param mixed[] $data Map of (key => value)
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants (since 1.33)
@@ -758,6 +761,8 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 * Batch deletion
 	 *
 	 * This does not support WRITE_ALLOW_SEGMENTS to avoid excessive read I/O
+	 *
+	 * WRITE_BACKGROUND can be used for bulk deletion where the response is not vital
 	 *
 	 * @param string[] $keys List of keys
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
