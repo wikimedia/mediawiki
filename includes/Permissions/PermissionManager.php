@@ -1409,24 +1409,20 @@ class PermissionManager {
 	 * to make bot-flagged actions through certain special pages.
 	 * Returns a "scope guard" variable; whenever that variable goes out of scope or is consumed
 	 * via ScopedCallback::consume(), the temporary rights are revoked.
+	 *
+	 * @since 1.34
+	 *
 	 * @param UserIdentity $user
 	 * @param string|string[] $rights
 	 * @return ScopedCallback
 	 */
 	public function addTemporaryUserRights( UserIdentity $user, $rights ) {
-		$nextKey = count( $this->temporaryUserRights[$user->getId()] ?? [] );
-		$this->temporaryUserRights[$user->getId()][$nextKey] = (array)$rights;
-		return new ScopedCallback( [ $this, 'revokeTemporaryUserRights' ], [ $user->getId(), $nextKey ] );
-	}
-
-	/**
-	 * Revoke rights added by addTemporaryUserRights().
-	 * @param int $userId
-	 * @param int $rightsGroupKey Key in self::$temporaryUserRights
-	 * @internal For use by addTemporaryUserRights() only.
-	 */
-	public function revokeTemporaryUserRights( $userId, $rightsGroupKey ) {
-		unset( $this->temporaryUserRights[$userId][$rightsGroupKey] );
+		$userId = $user->getId();
+		$nextKey = count( $this->temporaryUserRights[$userId] ?? [] );
+		$this->temporaryUserRights[$userId][$nextKey] = (array)$rights;
+		return new ScopedCallback( function () use ( $userId, $nextKey ) {
+			unset( $this->temporaryUserRights[$userId][$nextKey] );
+		} );
 	}
 
 	/**
