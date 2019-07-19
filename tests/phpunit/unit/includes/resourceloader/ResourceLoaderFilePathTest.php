@@ -3,7 +3,7 @@
 /**
  * @covers ResourceLoaderFilePath
  */
-class ResourceLoaderFilePathTest extends PHPUnit\Framework\TestCase {
+class ResourceLoaderFilePathTest extends MediaWikiUnitTestCase {
 
 	public function testConstructor() {
 		$path = new ResourceLoaderFilePath( 'dummy/path', '/local', '/remote' );
