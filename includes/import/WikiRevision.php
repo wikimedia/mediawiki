@@ -636,7 +636,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.12.2
-	 * @deprecated in 1.31. Use UploadImporter::import
+	 * @deprecated in 1.31. Use UploadRevisionImporter::import
 	 * @return bool
 	 */
 	public function importUpload() {
@@ -647,7 +647,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.12.2
-	 * @deprecated in 1.31. Use UploadImporter::downloadSource
+	 * @deprecated in 1.31. No replacement
 	 * @return bool|string
 	 */
 	public function downloadSource() {
