@@ -139,9 +139,9 @@ class ImportableUploadRevisionImporter implements UploadRevisionImporter {
 
 	/**
 	 * @deprecated DO NOT CALL ME.
-	 * This method was introduced when factoring UploadImporter out of WikiRevision.
-	 * It only has 1 use by the deprecated downloadSource method in WikiRevision.
-	 * Do not use this in new code.
+	 * This method was introduced when factoring (Importable)UploadRevisionImporter out of
+	 * WikiRevision. It only has 1 use by the deprecated downloadSource method in WikiRevision.
+	 * Do not use this in new code, it will be made private soon.
 	 *
 	 * @param ImportableUploadRevision $wikiRevision
 	 *
