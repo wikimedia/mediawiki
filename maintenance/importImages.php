@@ -32,9 +32,9 @@
  * @author Mij <mij@bitchx.it>
  */
 
-use MediaWiki\MediaWikiServices;
-
 require_once __DIR__ . '/Maintenance.php';
+
+use MediaWiki\MediaWikiServices;
 
 class ImportImages extends Maintenance {
 
@@ -127,6 +127,8 @@ class ImportImages extends Maintenance {
 	public function execute() {
 		global $wgFileExtensions, $wgUser, $wgRestrictionLevels;
 
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
 		$processed = $added = $ignored = $skipped = $overwritten = $failed = 0;
 
 		$this->output( "Importing Files\n\n" );
@@ -213,10 +215,12 @@ class ImportImages extends Maintenance {
 
 				if ( $checkUserBlock && ( ( $processed % $checkUserBlock ) == 0 ) ) {
 					$user->clearInstanceCache( 'name' ); // reload from DB!
-					// @TODO Use PermissionManager::isBlockedFrom() instead.
-					if ( $user->getBlock() ) {
-						$this->output( $user->getName() . " was blocked! Aborting.\n" );
-						break;
+					if ( $permissionManager->isBlockedFrom( $user, $title ) ) {
+						$this->output(
+							"{$user->getName()} is blocked from {$title->getPrefixedText()}! skipping.\n"
+						);
+						$skipped++;
+						continue;
 					}
 				}
 
