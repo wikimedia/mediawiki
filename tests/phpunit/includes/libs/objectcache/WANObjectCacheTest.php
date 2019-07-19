@@ -1070,7 +1070,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	 * @covers WANObjectCache::getWithSetCallback()
 	 * @covers WANObjectCache::fetchOrRegenerate()
 	 */
-	public function testBusyValue() {
+	public function testBusyValueBasic() {
 		$cache = $this->cache;
 		$key = wfRandomString();
 		$value = wfRandomString();
@@ -1080,7 +1080,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$cache->setMockTime( $mockWallClock );
 
 		$calls = 0;
-		$func = function () use ( &$calls, $value, $cache, $key ) {
+		$func = function () use ( &$calls, $value ) {
 			++$calls;
 			return $value;
 		};
@@ -1123,6 +1123,52 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			[ 'busyValue' => $busyValue, 'checkKeys' => $checkKeys ] );
 		$this->assertEquals( $value, $ret, 'Callback was not used; used interim' );
 		$this->assertEquals( 3, $calls, 'Callback was not used; used interim' );
+	}
+
+	public function getBusyValues_Provider() {
+		$hash = new HashBagOStuff( [] );
+
+		return [
+			[
+				function () {
+					return "Saint Oliver Plunckett";
+				},
+				'Saint Oliver Plunckett'
+			],
+			[ 'strlen', 'strlen' ],
+			[ 'WANObjectCache::newEmpty', 'WANObjectCache::newEmpty' ],
+			[ [ 'WANObjectCache', 'newEmpty' ], [ 'WANObjectCache', 'newEmpty' ] ],
+			[ [ $hash, 'getLastError' ], [ $hash, 'getLastError' ] ],
+			[ [ 1, 2, 3 ], [ 1, 2, 3 ] ]
+		];
+	}
+
+	/**
+	 * @covers WANObjectCache::getWithSetCallback()
+	 * @covers WANObjectCache::fetchOrRegenerate()
+	 * @dataProvider getBusyValues_Provider
+	 * @param mixed $busyValue
+	 * @param mixed $expected
+	 */
+	public function testBusyValueTypes( $busyValue, $expected ) {
+		$cache = $this->cache;
+		$key = wfRandomString();
+
+		$mockWallClock = 1549343530.2053;
+		$cache->setMockTime( $mockWallClock );
+
+		$calls = 0;
+		$func = function () use ( &$calls ) {
+			++$calls;
+			return 418;
+		};
+
+		// Acquire a lock to verify that getWithSetCallback uses busyValue properly
+		$this->internalCache->add( 'WANCache:m:' . $key, 1, 0 );
+
+		$ret = $cache->getWithSetCallback( $key, 30, $func, [ 'busyValue' => $busyValue ] );
+		$this->assertSame( $expected, $ret, 'busyValue used as expected' );
+		$this->assertSame( 0, $calls, 'busyValue was used' );
 	}
 
 	/**
