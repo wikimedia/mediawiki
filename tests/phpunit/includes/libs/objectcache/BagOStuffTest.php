@@ -6,6 +6,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @author Matthias Mullie <mmullie@wikimedia.org>
  * @group BagOStuff
+ * @covers BagOStuff
  */
 class BagOStuffTest extends MediaWikiTestCase {
 	/** @var BagOStuff */
@@ -31,8 +32,8 @@ class BagOStuffTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers BagOStuff::makeGlobalKey
-	 * @covers BagOStuff::makeKeyInternal
+	 * @covers MediumSpecificBagOStuff::makeGlobalKey
+	 * @covers MediumSpecificBagOStuff::makeKeyInternal
 	 */
 	public function testMakeKey() {
 		$cache = ObjectCache::newFromId( 'hash' );
@@ -65,8 +66,8 @@ class BagOStuffTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers BagOStuff::merge
-	 * @covers BagOStuff::mergeViaCas
+	 * @covers MediumSpecificBagOStuff::merge
+	 * @covers MediumSpecificBagOStuff::mergeViaCas
 	 */
 	public function testMerge() {
 		$key = $this->cache->makeKey( self::TEST_KEY );
@@ -109,7 +110,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers BagOStuff::changeTTL
+	 * @covers MediumSpecificBagOStuff::changeTTL
 	 */
 	public function testChangeTTL() {
 		$key = $this->cache->makeKey( self::TEST_KEY );
@@ -130,7 +131,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers BagOStuff::changeTTLMulti
+	 * @covers MediumSpecificBagOStuff::changeTTLMulti
 	 */
 	public function testChangeTTLMulti() {
 		$key1 = $this->cache->makeKey( 'test-key1' );
@@ -183,7 +184,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers BagOStuff::add
+	 * @covers MediumSpecificBagOStuff::add
 	 */
 	public function testAdd() {
 		$key = $this->cache->makeKey( self::TEST_KEY );
@@ -193,7 +194,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers BagOStuff::get
+	 * @covers MediumSpecificBagOStuff::get
 	 */
 	public function testGet() {
 		$value = [ 'this' => 'is', 'a' => 'test' ];
@@ -204,9 +205,9 @@ class BagOStuffTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers BagOStuff::get
-	 * @covers BagOStuff::set
-	 * @covers BagOStuff::getWithSetCallback
+	 * @covers MediumSpecificBagOStuff::get
+	 * @covers MediumSpecificBagOStuff::set
+	 * @covers MediumSpecificBagOStuff::getWithSetCallback
 	 */
 	public function testGetWithSetCallback() {
 		$key = $this->cache->makeKey( self::TEST_KEY );
@@ -223,7 +224,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers BagOStuff::incr
+	 * @covers MediumSpecificBagOStuff::incr
 	 */
 	public function testIncr() {
 		$key = $this->cache->makeKey( self::TEST_KEY );
@@ -235,7 +236,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers BagOStuff::incrWithInit
+	 * @covers MediumSpecificBagOStuff::incrWithInit
 	 */
 	public function testIncrWithInit() {
 		$key = $this->cache->makeKey( self::TEST_KEY );
@@ -247,7 +248,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers BagOStuff::getMulti
+	 * @covers MediumSpecificBagOStuff::getMulti
 	 */
 	public function testGetMulti() {
 		$value1 = [ 'this' => 'is', 'a' => 'test' ];
@@ -287,8 +288,8 @@ class BagOStuffTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers BagOStuff::setMulti
-	 * @covers BagOStuff::deleteMulti
+	 * @covers MediumSpecificBagOStuff::setMulti
+	 * @covers MediumSpecificBagOStuff::deleteMulti
 	 */
 	public function testSetDeleteMulti() {
 		$map = [
@@ -319,10 +320,10 @@ class BagOStuffTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers BagOStuff::get
-	 * @covers BagOStuff::getMulti
-	 * @covers BagOStuff::merge
-	 * @covers BagOStuff::delete
+	 * @covers MediumSpecificBagOStuff::get
+	 * @covers MediumSpecificBagOStuff::getMulti
+	 * @covers MediumSpecificBagOStuff::merge
+	 * @covers MediumSpecificBagOStuff::delete
 	 */
 	public function testSetSegmentable() {
 		$key = $this->cache->makeKey( self::TEST_KEY );
@@ -369,7 +370,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers BagOStuff::getScopedLock
+	 * @covers MediumSpecificBagOStuff::getScopedLock
 	 */
 	public function testGetScopedLock() {
 		$key = $this->cache->makeKey( self::TEST_KEY );
@@ -393,8 +394,8 @@ class BagOStuffTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers BagOStuff::__construct
-	 * @covers BagOStuff::trackDuplicateKeys
+	 * @covers MediumSpecificBagOStuff::__construct
+	 * @covers MediumSpecificBagOStuff::trackDuplicateKeys
 	 */
 	public function testReportDupes() {
 		$logger = $this->createMock( Psr\Log\NullLogger::class );
@@ -418,8 +419,8 @@ class BagOStuffTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers BagOStuff::lock()
-	 * @covers BagOStuff::unlock()
+	 * @covers MediumSpecificBagOStuff::lock()
+	 * @covers MediumSpecificBagOStuff::unlock()
 	 */
 	public function testLocking() {
 		$key = 'test';

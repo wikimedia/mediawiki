@@ -28,7 +28,7 @@
  * @ingroup Cache
  * @ingroup Redis
  */
-class RedisBagOStuff extends BagOStuff {
+class RedisBagOStuff extends MediumSpecificBagOStuff {
 	/** @var RedisConnectionPool */
 	protected $redisPool;
 	/** @var array List of server names */

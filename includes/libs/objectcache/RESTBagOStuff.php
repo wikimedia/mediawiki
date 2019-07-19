@@ -44,7 +44,7 @@ use Psr\Log\LoggerInterface;
  * $wgSessionCacheType = 'sessions';
  * @endcode
  */
-class RESTBagOStuff extends BagOStuff {
+class RESTBagOStuff extends MediumSpecificBagOStuff {
 	/**
 	 * Default connection timeout in seconds. The kernel retransmits the SYN
 	 * packet after 1 second, so 1.2 seconds allows for 1 retransmit without

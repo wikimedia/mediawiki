@@ -27,7 +27,7 @@
  *
  * @ingroup Cache
  */
-class WinCacheBagOStuff extends BagOStuff {
+class WinCacheBagOStuff extends MediumSpecificBagOStuff {
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$casToken = null;
 

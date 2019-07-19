@@ -69,9 +69,10 @@ class ReplicatedBagOStuff extends BagOStuff {
 		$this->attrMap = $this->mergeFlagMaps( [ $this->readStore, $this->writeStore ] );
 	}
 
-	public function setDebug( $debug ) {
-		$this->writeStore->setDebug( $debug );
-		$this->readStore->setDebug( $debug );
+	public function setDebug( $enabled ) {
+		parent::setDebug( $enabled );
+		$this->writeStore->setDebug( $enabled );
+		$this->readStore->setDebug( $enabled );
 	}
 
 	public function get( $key, $flags = 0 ) {
@@ -169,39 +170,13 @@ class ReplicatedBagOStuff extends BagOStuff {
 		return $this->writeStore->makeGlobalKey( ...func_get_args() );
 	}
 
-	protected function doGet( $key, $flags = 0, &$casToken = null ) {
-		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
+	public function addBusyCallback( callable $workCallback ) {
+		$this->writeStore->addBusyCallback( $workCallback );
 	}
 
-	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
-		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
-	}
-
-	protected function doDelete( $key, $flags = 0 ) {
-		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
-	}
-
-	protected function doChangeTTL( $key, $exptime, $flags ) {
-		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
-	}
-
-	protected function doGetMulti( array $keys, $flags = 0 ) {
-		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
-	}
-
-	protected function doSetMulti( array $keys, $exptime = 0, $flags = 0 ) {
-		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
-	}
-
-	protected function doDeleteMulti( array $keys, $flags = 0 ) {
-		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
-	}
-
-	protected function serialize( $value ) {
-		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
-	}
-
-	protected function unserialize( $blob ) {
-		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
+	public function setMockTime( &$time ) {
+		parent::setMockTime( $time );
+		$this->writeStore->setMockTime( $time );
+		$this->readStore->setMockTime( $time );
 	}
 }

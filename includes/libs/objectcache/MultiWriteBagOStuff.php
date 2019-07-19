@@ -40,7 +40,8 @@ class MultiWriteBagOStuff extends BagOStuff {
 	/** @var int[] List of all backing cache indexes */
 	protected $cacheIndexes = [];
 
-	const UPGRADE_TTL = 3600; // TTL when a key is copied to a higher cache tier
+	/** @var int TTL when a key is copied to a higher cache tier */
+	private static $UPGRADE_TTL = 3600;
 
 	/**
 	 * $params include:
@@ -97,9 +98,10 @@ class MultiWriteBagOStuff extends BagOStuff {
 		$this->cacheIndexes = array_keys( $this->caches );
 	}
 
-	public function setDebug( $debug ) {
+	public function setDebug( $enabled ) {
+		parent::setDebug( $enabled );
 		foreach ( $this->caches as $cache ) {
-			$cache->setDebug( $debug );
+			$cache->setDebug( $enabled );
 		}
 	}
 
@@ -131,7 +133,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 				$this->asyncWrites,
 				'set',
 				// @TODO: consider using self::WRITE_ALLOW_SEGMENTS here?
-				[ $key, $value, self::UPGRADE_TTL ]
+				[ $key, $value, self::$UPGRADE_TTL ]
 			);
 		}
 
@@ -359,39 +361,15 @@ class MultiWriteBagOStuff extends BagOStuff {
 		return $this->caches[0]->makeGlobalKey( ...func_get_args() );
 	}
 
-	protected function doGet( $key, $flags = 0, &$casToken = null ) {
-		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
+	public function addBusyCallback( callable $workCallback ) {
+		$this->caches[0]->addBusyCallback( $workCallback );
 	}
 
-	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
-		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
-	}
-
-	protected function doDelete( $key, $flags = 0 ) {
-		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
-	}
-
-	protected function doChangeTTL( $key, $exptime, $flags ) {
-		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
-	}
-
-	protected function doGetMulti( array $keys, $flags = 0 ) {
-		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
-	}
-
-	protected function doSetMulti( array $keys, $exptime = 0, $flags = 0 ) {
-		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
-	}
-
-	protected function doDeleteMulti( array $keys, $flags = 0 ) {
-		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
-	}
-
-	protected function serialize( $value ) {
-		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
-	}
-
-	protected function unserialize( $blob ) {
-		throw new LogicException( __METHOD__ . ': proxy class does not need this method.' );
+	public function setMockTime( &$time ) {
+		parent::setMockTime( $time );
+		foreach ( $this->caches as $cache ) {
+			$cache->setMockTime( $time );
+			$cache->setMockTime( $time );
+		}
 	}
 }
