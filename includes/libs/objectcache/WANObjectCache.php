@@ -1374,30 +1374,25 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 			// This avoids stampedes on eviction or preemptive regeneration taking too long.
 			( $busyValue !== null && $possValue === false );
 
-		// If a regeneration lock is required, threads that do not get the lock will use any
-		// available stale or volatile value. If there is none, then the cheap/placeholder
-		// value from $busyValue will be used if provided; failing that, all threads will try
-		// to regenerate the value and ignore the lock.
-		if ( $useRegenerationLock ) {
-			$hasLock = $this->cache->add( self::MUTEX_KEY_PREFIX . $key, 1, self::LOCK_TTL );
-			if ( !$hasLock ) {
-				if ( $this->isValid( $possValue, $possInfo['asOf'], $minAsOf ) ) {
-					$this->stats->increment( "wanobjectcache.$kClass.hit.stale" );
+		// If a regeneration lock is required, threads that do not get the lock will try to use
+		// the stale value, the interim value, or the $busyValue placeholder, in that order. If
+		// none of those are set then all threads will bypass the lock and regenerate the value.
+		$hasLock = $useRegenerationLock && $this->claimStampedeLock( $key );
+		if ( $useRegenerationLock && !$hasLock ) {
+			if ( $this->isValid( $possValue, $possInfo['asOf'], $minAsOf ) ) {
+				$this->stats->increment( "wanobjectcache.$kClass.hit.stale" );
 
-					return [ $possValue, $possInfo['version'], $curInfo['asOf'] ];
-				} elseif ( $busyValue !== null ) {
-					$miss = is_infinite( $minAsOf ) ? 'renew' : 'miss';
-					$this->stats->increment( "wanobjectcache.$kClass.$miss.busy" );
+				return [ $possValue, $possInfo['version'], $curInfo['asOf'] ];
+			} elseif ( $busyValue !== null ) {
+				$miss = is_infinite( $minAsOf ) ? 'renew' : 'miss';
+				$this->stats->increment( "wanobjectcache.$kClass.$miss.busy" );
 
-					return [
-						is_callable( $busyValue ) ? $busyValue() : $busyValue,
-						$version,
-						$curInfo['asOf']
-					];
-				}
+				return [
+					is_callable( $busyValue ) ? $busyValue() : $busyValue,
+					$version,
+					$curInfo['asOf']
+				];
 			}
-		} else {
-			$hasLock = false;
 		}
 
 		// Generate the new value given any prior value with a matching version
@@ -1447,14 +1442,34 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 			}
 		}
 
-		if ( $hasLock ) {
-			$this->cache->changeTTL( self::MUTEX_KEY_PREFIX . $key, (int)$initialTime - 60 );
-		}
+		$this->yieldStampedeLock( $key, $hasLock );
 
 		$miss = is_infinite( $minAsOf ) ? 'renew' : 'miss';
 		$this->stats->increment( "wanobjectcache.$kClass.$miss.compute" );
 
 		return [ $value, $version, $curInfo['asOf'] ];
+	}
+
+	/**
+	 * @param string $key
+	 * @return bool Success
+	 */
+	private function claimStampedeLock( $key ) {
+		// Note that locking is not bypassed due to I/O errors; this avoids stampedes
+		return $this->cache->add( self::MUTEX_KEY_PREFIX . $key, 1, self::LOCK_TTL );
+	}
+
+	/**
+	 * @param string $key
+	 * @param bool $hasLock
+	 */
+	private function yieldStampedeLock( $key, $hasLock ) {
+		if ( $hasLock ) {
+			// The backend might be a mcrouter proxy set to broadcast DELETE to *all* the local
+			// datacenter cache servers via OperationSelectorRoute (for increased consistency).
+			// Since that would be excessive for these locks, use TOUCH to expire the key.
+			$this->cache->changeTTL( self::MUTEX_KEY_PREFIX . $key, $this->getCurrentTime() - 60 );
+		}
 	}
 
 	/**
