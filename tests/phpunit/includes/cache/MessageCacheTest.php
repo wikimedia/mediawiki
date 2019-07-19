@@ -204,7 +204,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		];
 	}
 
-	public function testNoDBAccess() {
+	public function testNoDBAccessContentLanguage() {
 		global $wgContLanguageCode;
 
 		$dbr = wfGetDB( DB_REPLICA );
@@ -218,7 +218,22 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 
 		$dbr->restoreFlags();
 
-		$this->assertEquals( 0, $dbr->trxLevel(), "No DB read queries" );
+		$this->assertEquals( 0, $dbr->trxLevel(), "No DB read queries (content language)" );
+	}
+
+	public function testNoDBAccessNonContentLanguage() {
+		$dbr = wfGetDB( DB_REPLICA );
+
+		MessageCache::singleton()->getMsgFromNamespace( 'allpages/nl', 'nl' );
+
+		$this->assertEquals( 0, $dbr->trxLevel() );
+		$dbr->setFlag( DBO_TRX, $dbr::REMEMBER_PRIOR ); // make queries trigger TRX
+
+		MessageCache::singleton()->getMsgFromNamespace( 'go/nl', 'nl' );
+
+		$dbr->restoreFlags();
+
+		$this->assertEquals( 0, $dbr->trxLevel(), "No DB read queries (non-content language)" );
 	}
 
 	/**
