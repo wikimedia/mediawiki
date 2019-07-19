@@ -1,3 +1,9 @@
+## 0.4.0 / 2019-07-18
+
+* Util: Added a `waitForModuleState()` method.
+* Api: Added optional `username`, `password` and `baseUrl` parameters to `edit()` method.
+* RunJobs: Unpublished `getJobCount()`, `log()`, `runThroughMainPageRequests()` methods.
+
 ## 0.3.0 / 2019-01-25
 
 * RunJobs: Added initial version.

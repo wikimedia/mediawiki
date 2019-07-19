@@ -22,7 +22,7 @@ Utilities to interact with the MediaWiki API. Uses the [mwbot](https://github.co
 Actions are performed logged-in using `browser.options.username` and `browser.options.password`,
 which typically come from `MEDIAWIKI_USER` and `MEDIAWIKI_PASSWORD` environment variables.
 
-* `edit(title, content)`
+* `edit(title, content [, string username [, string password [, string baseUrl ] ] ])`
 * `delete(title, reason)`
 * `createAccount(username, password)`
 * `blockUser(username, expiry)`
@@ -32,6 +32,13 @@ which typically come from `MEDIAWIKI_USER` and `MEDIAWIKI_PASSWORD` environment 
 
 Use the static `RunJobs.run()` method to ensure that any queued jobs are executed before
 making assertions that depend on its outcome.
+
+### Util
+
+`Util` is a collection of popular utility methods.
+
+* `getTestString([ string prefix ])`
+* `waitForModuleState(string moduleName [, string moduleStatus [, number timeout ] ])`
 
 ## Versioning
 
