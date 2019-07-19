@@ -39,8 +39,7 @@ class ApiCSPReportTest extends MediaWikiIntegrationTestCase {
 						'<https://blocked.test> blocked from being loaded on <https://doc.test/path>:4',
 					[
 						'method' => 'ApiCSPReport::execute',
-						// FIXME
-						'user_id' => true,
+						'user_id' => 'logged-out',
 						'user-agent' => 'Test/0.0',
 						'source' => 'internal'
 					]
