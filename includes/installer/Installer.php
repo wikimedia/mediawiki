@@ -1821,6 +1821,10 @@ abstract class Installer {
 
 		// Don't try to use any object cache for SessionManager either.
 		$GLOBALS['wgSessionCacheType'] = CACHE_NONE;
+
+		// Set a dummy $wgServer to bypass the check in Setup.php, the
+		// web installer will automatically detect it and not use this value.
+		$GLOBALS['wgServer'] = 'https://🌻.invalid';
 	}
 
 	/**

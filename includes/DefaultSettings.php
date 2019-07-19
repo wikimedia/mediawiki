@@ -95,15 +95,14 @@ $wgAssumeProxiesUseDefaultProtocolPorts = true;
  * $wgServer = 'http://example.com';
  * @endcode
  *
- * This is usually detected correctly by MediaWiki. If MediaWiki detects the
- * wrong server, it will redirect incorrectly after you save a page. In that
- * case, set this variable to fix it.
+ * This must be set in LocalSettings.php. The MediaWiki installer does this
+ * automatically since 1.18.
  *
  * If you want to use protocol-relative URLs on your wiki, set this to a
  * protocol-relative URL like '//example.com' and set $wgCanonicalServer
  * to a fully qualified URL.
  */
-$wgServer = WebRequest::detectServer();
+$wgServer = false;
 
 /**
  * Canonical URL of the server, to use in IRC feeds and notification e-mails.

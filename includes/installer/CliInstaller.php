@@ -278,7 +278,8 @@ class CliInstaller extends Installer {
 	}
 
 	protected function envGetDefaultServer() {
-		return null; // Do not guess if installing from CLI
+		// Use a basic value if the user didn't pass in --server
+		return 'http://localhost';
 	}
 
 	public function dirIsExecutable( $dir, $url ) {

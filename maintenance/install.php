@@ -60,6 +60,12 @@ class CommandLineInstaller extends Maintenance {
 			false,
 			true
 		);
+		$this->addOption(
+			'server',
+			'The base URL of the web server the wiki will be on (http://localhost)',
+			false,
+			true
+		);
 
 		$this->addOption( 'lang', 'The language to use (en)', false, true );
 		/* $this->addOption( 'cont-lang', 'The content language (en)', false, true ); */
