@@ -2652,6 +2652,7 @@
 	"changecontentmodel": "Title of the change content model special page",
 	"changecontentmodel-legend": "Legend of the fieldset on the change content model special page",
 	"changecontentmodel-title-label": "Label for the input field where the target page title should be entered\n{{Identical|Page title}}",
+	"changecontentmodel-current-label": "Label for the current content model",
 	"changecontentmodel-model-label": "Label of the dropdown listing available content model types the user can change a page to",
 	"changecontentmodel-reason-label": "{{Identical|Reason}}",
 	"changecontentmodel-submit": "Label of the form \"submit\" button for [[Special:ChangeContentModel]]\n{{Identical|Change}}",

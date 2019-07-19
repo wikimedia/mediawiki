@@ -2443,6 +2443,7 @@
 	"changecontentmodel" : "Change content model of a page",
 	"changecontentmodel-legend": "Change content model",
 	"changecontentmodel-title-label": "Page title",
+	"changecontentmodel-current-label": "Current content model:",
 	"changecontentmodel-model-label": "New content model",
 	"changecontentmodel-reason-label": "Reason:",
 	"changecontentmodel-submit": "Change",
