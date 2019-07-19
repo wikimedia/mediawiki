@@ -76,6 +76,10 @@ $wgPasswordPolicy['policies']['default']['PasswordNotInLargeBlacklist'] = false;
   containing some HTML markup in metadata. As a result, the $wgAllowTitlesInSVG
   setting is no longer applied and is now always true. Note that MSIE 7 may
   still be able to misinterpret certain malformed PNG files as HTML.
+* (T30798) $wgServer must now always be set in LocalSettings.php. This is most
+  likely the case already for any wiki installed after 1.18. The autodetection
+  system was informally deprecated since 1.18 and vulnerable to cache poisoning
+  attacks. Older wikis may need to update their LocalSettings.php file.
 * Introduced $wgVerifyMimeTypeIE to allow disabling the MSIE 6/7 file type
   detection heuristic on upload, which is more conservative than the checks
   that were changed above.

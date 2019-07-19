@@ -629,6 +629,15 @@ define( 'MW_SERVICE_BOOTSTRAP_COMPLETE', 1 );
 
 MWExceptionHandler::installHandler();
 
+// T30798: $wgServer must be explicitly set
+if ( $wgServer === false ) {
+	throw new FatalError(
+		'$wgServer must be set in LocalSettings.php. ' .
+		'See <a href="https://www.mediawiki.org/wiki/Manual:$wgServer">' .
+		'https://www.mediawiki.org/wiki/Manual:$wgServer</a>.'
+	);
+}
+
 // T48998: Bail out early if $wgArticlePath is non-absolute
 foreach ( [ 'wgArticlePath', 'wgVariantArticlePath' ] as $varName ) {
 	if ( $$varName && !preg_match( '/^(https?:\/\/|\/)/', $$varName ) ) {
