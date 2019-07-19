@@ -20,7 +20,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Revision\RevisionStore;
 
 /**
  * @ingroup API
@@ -28,7 +27,9 @@ use MediaWiki\Revision\RevisionStore;
  */
 class ApiTag extends ApiBase {
 
-	/** @var RevisionStore */
+	use ApiBlockInfoTrait;
+
+	/** @var \MediaWiki\Revision\RevisionStore */
 	private $revisionStore;
 
 	public function execute() {
@@ -40,9 +41,9 @@ class ApiTag extends ApiBase {
 		// make sure the user is allowed
 		$this->checkUserRightsAny( 'changetags' );
 
-		// @TODO Use PermissionManager::isBlockedFrom() instead.
+		// Fail early if the user is sitewide blocked.
 		$block = $user->getBlock();
-		if ( $block ) {
+		if ( $block && $block->isSitewide() ) {
 			$this->dieBlocked( $block );
 		}
 
@@ -85,6 +86,7 @@ class ApiTag extends ApiBase {
 	}
 
 	protected function processIndividual( $type, $params, $id ) {
+		$user = $this->getUser();
 		$idResult = [ $type => $id ];
 
 		// validate the ID
@@ -92,9 +94,30 @@ class ApiTag extends ApiBase {
 		switch ( $type ) {
 			case 'rcid':
 				$valid = RecentChange::newFromId( $id );
+				if ( $valid && $this->getPermissionManager()->isBlockedFrom( $user, $valid->getTitle() ) ) {
+					$idResult['status'] = 'error';
+					$idResult += $this->getErrorFormatter()->formatMessage( ApiMessage::create(
+						'apierror-blocked',
+						'blocked',
+						[ 'blockinfo' => $this->getBlockDetails( $user->getBlock() ) ]
+					) );
+					return $idResult;
+				}
 				break;
 			case 'revid':
 				$valid = $this->revisionStore->getRevisionById( $id );
+				if (
+					$valid &&
+					$this->getPermissionManager()->isBlockedFrom( $user, $valid->getPageAsLinkTarget() )
+				) {
+					$idResult['status'] = 'error';
+					$idResult += $this->getErrorFormatter()->formatMessage( ApiMessage::create(
+							'apierror-blocked',
+							'blocked',
+							[ 'blockinfo' => $this->getBlockDetails( $user->getBlock() ) ]
+					) );
+					return $idResult;
+				}
 				break;
 			case 'logid':
 				$valid = self::validateLogId( $id );

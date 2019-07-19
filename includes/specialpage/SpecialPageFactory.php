@@ -192,7 +192,12 @@ class SpecialPageFactory {
 		'ApiHelp' => \SpecialApiHelp::class,
 		'Blankpage' => \SpecialBlankpage::class,
 		'Diff' => \SpecialDiff::class,
-		'EditTags' => \SpecialEditTags::class,
+		'EditTags' => [
+			'class' => \SpecialEditTags::class,
+			'services' => [
+				'PermissionManager',
+			],
+		],
 		'Emailuser' => \SpecialEmailUser::class,
 		'Movepage' => \MovePageForm::class,
 		'Mycontributions' => \SpecialMycontributions::class,

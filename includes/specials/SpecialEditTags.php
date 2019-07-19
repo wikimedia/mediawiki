@@ -19,6 +19,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Permissions\PermissionManager;
+
 /**
  * Special page for adding and removing change tags to individual revisions.
  * A lot of this is copied out of SpecialRevisiondelete.
@@ -51,8 +53,18 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	/** @var string */
 	private $reason;
 
-	public function __construct() {
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/**
+	 * @inheritDoc
+	 *
+	 * @param PermissionManager $permissionManager
+	 */
+	public function __construct( PermissionManager $permissionManager ) {
 		parent::__construct( 'EditTags', 'changetags' );
+
+		$this->permissionManager = $permissionManager;
 	}
 
 	public function doesWrites() {
@@ -66,13 +78,6 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$output = $this->getOutput();
 		$user = $this->getUser();
 		$request = $this->getRequest();
-
-		// Check blocks
-		// @TODO Use PermissionManager::isBlockedFrom() instead.
-		$block = $user->getBlock();
-		if ( $block ) {
-			throw new UserBlockedError( $block );
-		}
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -132,6 +137,12 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			$output->addWikiMsg( 'undelete-header' );
 			return;
 		}
+
+		// Check blocks
+		if ( $this->permissionManager->isBlockedFrom( $user, $this->targetObj ) ) {
+			throw new UserBlockedError( $user->getBlock() );
+		}
+
 		// Give a link to the logs/hist for this page
 		$this->showConvenienceLinks();
 
