@@ -1,53 +1,23 @@
 <?php
 
+/**
+ * @covers ResourceLoaderFilePath
+ */
 class ResourceLoaderFilePathTest extends PHPUnit\Framework\TestCase {
-	/**
-	 * @covers ResourceLoaderFilePath::__construct
-	 */
+
 	public function testConstructor() {
-		$resourceLoaderFilePath = new ResourceLoaderFilePath(
-			'dummy/path', 'localBasePath', 'remoteBasePath'
-		);
+		$path = new ResourceLoaderFilePath( 'dummy/path', '/local', '/remote' );
 
-		$this->assertInstanceOf( ResourceLoaderFilePath::class, $resourceLoaderFilePath );
+		$this->assertInstanceOf( ResourceLoaderFilePath::class, $path );
 	}
 
-	/**
-	 * @covers ResourceLoaderFilePath::getLocalPath
-	 */
-	public function testGetLocalPath() {
-		$resourceLoaderFilePath = new ResourceLoaderFilePath(
-			'dummy/path', 'localBasePath', 'remoteBasePath'
-		);
+	public function testGetters() {
+		$path = new ResourceLoaderFilePath( 'dummy/path', '/local', '/remote' );
 
-		$this->assertSame(
-			'localBasePath/dummy/path', $resourceLoaderFilePath->getLocalPath()
-		);
-	}
-
-	/**
-	 * @covers ResourceLoaderFilePath::getRemotePath
-	 */
-	public function testGetRemotePath() {
-		$resourceLoaderFilePath = new ResourceLoaderFilePath(
-			'dummy/path', 'localBasePath', 'remoteBasePath'
-		);
-
-		$this->assertSame(
-			'remoteBasePath/dummy/path', $resourceLoaderFilePath->getRemotePath()
-		);
-	}
-
-	/**
-	 * @covers ResourceLoaderFilePath::getPath
-	 */
-	public function testGetPath() {
-		$resourceLoaderFilePath = new ResourceLoaderFilePath(
-			'dummy/path', 'localBasePath', 'remoteBasePath'
-		);
-
-		$this->assertSame(
-			'dummy/path', $resourceLoaderFilePath->getPath()
-		);
+		$this->assertSame( '/local/dummy/path', $path->getLocalPath() );
+		$this->assertSame( '/remote/dummy/path', $path->getRemotePath() );
+		$this->assertSame( '/local', $path->getLocalBasePath() );
+		$this->assertSame( '/remote', $path->getRemoteBasePath() );
+		$this->assertSame( 'dummy/path', $path->getPath() );
 	}
 }
