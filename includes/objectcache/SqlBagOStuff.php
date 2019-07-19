@@ -36,7 +36,7 @@ use Wikimedia\WaitConditionLoop;
  *
  * @ingroup Cache
  */
-class SqlBagOStuff extends BagOStuff {
+class SqlBagOStuff extends MediumSpecificBagOStuff {
 	/** @var array[] (server index => server config) */
 	protected $serverInfos;
 	/** @var string[] (server index => tag/host name) */
@@ -55,8 +55,6 @@ class SqlBagOStuff extends BagOStuff {
 	protected $tableName = 'objectcache';
 	/** @var bool */
 	protected $replicaOnly = false;
-	/** @var int */
-	protected $syncTimeout = 3;
 
 	/** @var LoadBalancer|null */
 	protected $separateMainLB;
@@ -158,9 +156,6 @@ class SqlBagOStuff extends BagOStuff {
 		}
 		if ( isset( $params['shards'] ) ) {
 			$this->shards = intval( $params['shards'] );
-		}
-		if ( isset( $params['syncTimeout'] ) ) {
-			$this->syncTimeout = $params['syncTimeout'];
 		}
 		// Backwards-compatibility for < 1.34
 		$this->replicaOnly = $params['replicaOnly'] ?? ( $params['slaveOnly'] ?? false );

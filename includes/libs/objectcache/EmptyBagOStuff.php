@@ -26,7 +26,7 @@
  *
  * @ingroup Cache
  */
-class EmptyBagOStuff extends BagOStuff {
+class EmptyBagOStuff extends MediumSpecificBagOStuff {
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$casToken = null;
 
