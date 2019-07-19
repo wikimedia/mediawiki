@@ -28,7 +28,7 @@ class HTMLNamespacesMultiselectField extends HTMLSelectNamespace {
 	}
 
 	public function validate( $value, $alldata ) {
-		if ( !$this->mParams['exists'] ) {
+		if ( !$this->mParams['exists'] || $value === '' ) {
 			return true;
 		}
 
