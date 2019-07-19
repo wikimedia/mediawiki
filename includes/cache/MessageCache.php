@@ -525,9 +525,8 @@ class MessageCache {
 			__METHOD__ . "($code)-big"
 		);
 		foreach ( $res as $row ) {
-			$name = $this->contLang->lcfirst( $row->page_title );
 			// Include entries/stubs for all keys in $mostused in adaptive mode
-			if ( $wgAdaptiveMessageCache || $this->isMainCacheable( $name, $overridable ) ) {
+			if ( $wgAdaptiveMessageCache || $this->isMainCacheable( $row->page_title, $overridable ) ) {
 				$cache[$row->page_title] = '!TOO BIG';
 			}
 			// At least include revision ID so page changes are reflected in the hash
@@ -549,9 +548,8 @@ class MessageCache {
 			$revQuery['joins']
 		);
 		foreach ( $res as $row ) {
-			$name = $this->contLang->lcfirst( $row->page_title );
 			// Include entries/stubs for all keys in $mostused in adaptive mode
-			if ( $wgAdaptiveMessageCache || $this->isMainCacheable( $name, $overridable ) ) {
+			if ( $wgAdaptiveMessageCache || $this->isMainCacheable( $row->page_title, $overridable ) ) {
 				try {
 					$rev = $revisionStore->newRevisionFromRow( $row );
 					$content = $rev->getContent( MediaWiki\Revision\SlotRecord::MAIN );
@@ -592,14 +590,17 @@ class MessageCache {
 	}
 
 	/**
-	 * @param string $name Message name with lowercase first letter
+	 * @param string $name Message name (possibly with /code suffix)
 	 * @param array $overridable Map of (key => unused) for software-defined messages
 	 * @return bool
 	 */
 	private function isMainCacheable( $name, array $overridable ) {
+		// Convert first letter to lowercase, and strip /code suffix
+		$name = $this->contLang->lcfirst( $name );
+		$msg = preg_replace( '/\/[a-z0-9-]{2,}$/', '', $name );
 		// Include common conversion table pages. This also avoids problems with
 		// Installer::parse() bailing out due to disallowed DB queries (T207979).
-		return ( isset( $overridable[$name] ) || strpos( $name, 'conversiontable/' ) === 0 );
+		return ( isset( $overridable[$msg] ) || strpos( $name, 'conversiontable/' ) === 0 );
 	}
 
 	/**
@@ -1069,8 +1070,7 @@ class MessageCache {
 			);
 		} else {
 			// Message page either does not exist or does not override a software message
-			$name = $this->contLang->lcfirst( $title );
-			if ( !$this->isMainCacheable( $name, $this->overridable ) ) {
+			if ( !$this->isMainCacheable( $title, $this->overridable ) ) {
 				// Message page does not override any software-defined message. A custom
 				// message might be defined to have content or settings specific to the wiki.
 				// Load the message page, utilizing the individual message cache as needed.
