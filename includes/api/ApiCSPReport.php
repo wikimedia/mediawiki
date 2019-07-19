@@ -54,7 +54,7 @@ class ApiCSPReport extends ApiBase {
 			// XXX Is it ok to put untrusted data into log??
 			'csp-report' => $report,
 			'method' => __METHOD__,
-			'user_id' => $this->getUser()->getId() || 'logged-out',
+			'user_id' => $this->getUser()->getId() ?: 'logged-out',
 			'user-agent' => $userAgent,
 			'source' => $this->getParameter( 'source' ),
 		] );
