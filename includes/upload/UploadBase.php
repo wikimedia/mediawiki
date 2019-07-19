@@ -379,13 +379,6 @@ abstract class UploadBase {
 			return $result;
 		}
 
-		$error = '';
-		if ( !Hooks::run( 'UploadVerification',
-			[ $this->mDestName, $this->mTempPath, &$error ], '1.28' )
-		) {
-			return [ 'status' => self::HOOK_ABORTED, 'error' => $error ];
-		}
-
 		return [ 'status' => self::OK ];
 	}
 
@@ -1129,6 +1122,8 @@ abstract class UploadBase {
 	 * @throws UploadStashNotLoggedInException
 	 */
 	public function stashFile( User $user = null ) {
+		wfDeprecated( __METHOD__, '1.28' );
+
 		return $this->doStashFile( $user );
 	}
 
@@ -1144,29 +1139,6 @@ abstract class UploadBase {
 		$this->mStashFile = $file;
 
 		return $file;
-	}
-
-	/**
-	 * Stash a file in a temporary directory, returning a key which can be used
-	 * to find the file again. See stashFile().
-	 *
-	 * @deprecated since 1.28
-	 * @return string File key
-	 */
-	public function stashFileGetKey() {
-		wfDeprecated( __METHOD__, '1.28' );
-		return $this->doStashFile()->getFileKey();
-	}
-
-	/**
-	 * alias for stashFileGetKey, for backwards compatibility
-	 *
-	 * @deprecated since 1.28
-	 * @return string File key
-	 */
-	public function stashSession() {
-		wfDeprecated( __METHOD__, '1.28' );
-		return $this->doStashFile()->getFileKey();
 	}
 
 	/**

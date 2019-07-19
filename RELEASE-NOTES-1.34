@@ -305,6 +305,11 @@ because of Phabricator reports.
   deprecated since 1.33.
 * The static properties mw.Api.errors and mw.Api.warnings, deprecated in 1.29,
   have been removed.
+* The UploadVerification hook, deprecated in 1.28, has been removed. Instead,
+  use the UploadVerifyFile hook.
+* UploadBase:: and UploadFromChunks::stashFileGetKey() and stashSession(),
+  deprecated in 1.28, have been removed. Instead, please use the getFileKey()
+  method on the response from doStashFile().
 * …
 
 === Deprecations in 1.34 ===
