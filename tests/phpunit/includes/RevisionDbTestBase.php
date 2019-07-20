@@ -1468,7 +1468,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			$rev->getPage(),
 			$rev->getId()
 		);
-		$cache->delete( $key, WANObjectCache::HOLDOFF_NONE );
+		$cache->delete( $key, WANObjectCache::HOLDOFF_TTL_NONE );
 		$this->assertFalse( $cache->get( $key ) );
 
 		++$now;
