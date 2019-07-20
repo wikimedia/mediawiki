@@ -858,11 +858,11 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * Make a global cache key.
 	 *
 	 * @param string $class Key class
-	 * @param string|null $component [optional] Key component (starting with a key collection name)
-	 * @return string Colon-delimited list of $keyspace followed by escaped components of $args
+	 * @param string ...$components Key components (starting with a key collection name)
+	 * @return string Colon-delimited list of $keyspace followed by escaped components
 	 * @since 1.27
 	 */
-	public function makeGlobalKey( $class, $component = null ) {
+	public function makeGlobalKey( $class, ...$components ) {
 		return $this->makeKeyInternal( 'global', func_get_args() );
 	}
 
@@ -870,11 +870,11 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * Make a cache key, scoped to this instance's keyspace.
 	 *
 	 * @param string $class Key class
-	 * @param string|null $component [optional] Key component (starting with a key collection name)
-	 * @return string Colon-delimited list of $keyspace followed by escaped components of $args
+	 * @param string ...$components Key components (starting with a key collection name)
+	 * @return string Colon-delimited list of $keyspace followed by escaped components
 	 * @since 1.27
 	 */
-	public function makeKey( $class, $component = null ) {
+	public function makeKey( $class, ...$components ) {
 		return $this->makeKeyInternal( $this->keyspace, func_get_args() );
 	}
 

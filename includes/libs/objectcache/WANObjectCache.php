@@ -1873,22 +1873,22 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	/**
 	 * @see BagOStuff::makeKey()
 	 * @param string $class Key class
-	 * @param string|null $component [optional] Key component (starting with a key collection name)
-	 * @return string Colon-delimited list of $keyspace followed by escaped components of $args
+	 * @param string ...$components Key components (starting with a key collection name)
+	 * @return string Colon-delimited list of $keyspace followed by escaped components
 	 * @since 1.27
 	 */
-	public function makeKey( $class, $component = null ) {
+	public function makeKey( $class, ...$components ) {
 		return $this->cache->makeKey( ...func_get_args() );
 	}
 
 	/**
 	 * @see BagOStuff::makeGlobalKey()
 	 * @param string $class Key class
-	 * @param string|null $component [optional] Key component (starting with a key collection name)
-	 * @return string Colon-delimited list of $keyspace followed by escaped components of $args
+	 * @param string ...$components Key components (starting with a key collection name)
+	 * @return string Colon-delimited list of $keyspace followed by escaped components
 	 * @since 1.27
 	 */
-	public function makeGlobalKey( $class, $component = null ) {
+	public function makeGlobalKey( $class, ...$components ) {
 		return $this->cache->makeGlobalKey( ...func_get_args() );
 	}
 

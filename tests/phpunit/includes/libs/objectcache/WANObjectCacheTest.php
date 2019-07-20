@@ -1865,6 +1865,10 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	 * @covers WANObjectCache::makeKey
 	 */
 	public function testMakeKey() {
+		if ( defined( 'HHVM_VERSION' ) ) {
+			$this->markTestSkipped( 'HHVM Reflection buggy' );
+		}
+
 		$backend = $this->getMockBuilder( HashBagOStuff::class )
 			->setMethods( [ 'makeKey' ] )->getMock();
 		$backend->expects( $this->once() )->method( 'makeKey' )
@@ -1881,6 +1885,10 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	 * @covers WANObjectCache::makeGlobalKey
 	 */
 	public function testMakeGlobalKey() {
+		if ( defined( 'HHVM_VERSION' ) ) {
+			$this->markTestSkipped( 'HHVM Reflection buggy' );
+		}
+
 		$backend = $this->getMockBuilder( HashBagOStuff::class )
 			->setMethods( [ 'makeGlobalKey' ] )->getMock();
 		$backend->expects( $this->once() )->method( 'makeGlobalKey' )

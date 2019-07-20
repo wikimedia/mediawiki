@@ -145,15 +145,15 @@ class CachedBagOStuff extends BagOStuff {
 	}
 
 	public function makeKeyInternal( $keyspace, $args ) {
-		return $this->backend->makeKeyInternal( ...func_get_args() );
+		return $this->backend->makeKeyInternal( $keyspace, $args );
 	}
 
-	public function makeKey( $class, $component = null ) {
-		return $this->backend->makeKey( ...func_get_args() );
+	public function makeKey( $class, ...$components ) {
+		return $this->backend->makeKey( $class, ...$components );
 	}
 
-	public function makeGlobalKey( $class, $component = null ) {
-		return $this->backend->makeGlobalKey( ...func_get_args() );
+	public function makeGlobalKey( $class, ...$components ) {
+		return $this->backend->makeGlobalKey( $class, ...$components );
 	}
 
 	public function getLastError() {
