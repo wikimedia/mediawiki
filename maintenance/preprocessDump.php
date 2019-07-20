@@ -26,6 +26,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
 
 require_once __DIR__ . '/dumpIterator.php';
 
@@ -81,7 +82,7 @@ class PreprocessDump extends DumpIterator {
 	 * @param Revision $rev
 	 */
 	public function processRevision( $rev ) {
-		$content = $rev->getContent( Revision::RAW );
+		$content = $rev->getContent( RevisionRecord::RAW );
 
 		if ( $content->getModel() !== CONTENT_MODEL_WIKITEXT ) {
 			return;
