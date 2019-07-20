@@ -67,6 +67,7 @@ class FirejailCommandTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
+	 * @requires OS Linux
 	 * @covers \MediaWiki\Shell\FirejailCommand::buildFinalCommand()
 	 * @dataProvider provideBuildFinalCommand
 	 */
