@@ -263,6 +263,7 @@ return [
 
 	'LocalServerObjectCache' => function ( MediaWikiServices $services ) : BagOStuff {
 		$cacheId = \ObjectCache::detectLocalServerCache();
+
 		return \ObjectCache::newFromId( $cacheId );
 	},
 
@@ -621,9 +622,10 @@ return [
 	'SiteStore' => function ( MediaWikiServices $services ) : SiteStore {
 		$rawSiteStore = new DBSiteStore( $services->getDBLoadBalancer() );
 
-		// TODO: replace wfGetCache with a CacheFactory service.
-		// TODO: replace wfIsHHVM with a capabilities service.
-		$cache = wfGetCache( wfIsHHVM() ? CACHE_ACCEL : CACHE_ANYTHING );
+		$cache = $services->getLocalServerObjectCache();
+		if ( $cache instanceof EmptyBagOStuff ) {
+			$cache = ObjectCache::getLocalClusterInstance();
+		}
 
 		return new CachingSiteStore( $rawSiteStore, $cache );
 	},
