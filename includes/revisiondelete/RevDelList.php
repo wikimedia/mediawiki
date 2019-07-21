@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
 
 /**
  * Abstract base class for a list of deletable items. The list class
@@ -195,7 +196,7 @@ abstract class RevDelList extends RevisionListBase {
 				$status->failCount++;
 				continue;
 			// Cannot just "hide from Sysops" without hiding any fields
-			} elseif ( $newBits == Revision::DELETED_RESTRICTED ) {
+			} elseif ( $newBits == RevisionRecord::DELETED_RESTRICTED ) {
 				$itemStatus->warning(
 					'revdelete-only-restricted', $item->formatDate(), $item->formatTime() );
 				$status->failCount++;

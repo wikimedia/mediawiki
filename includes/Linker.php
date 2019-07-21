@@ -2108,7 +2108,7 @@ class Linker {
 			return '';
 		}
 
-		if ( !$rev->userCan( Revision::DELETED_RESTRICTED, $user ) ) {
+		if ( !$rev->userCan( RevisionRecord::DELETED_RESTRICTED, $user ) ) {
 			return self::revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
 		}
 		$prefixedDbKey = MediaWikiServices::getInstance()->getTitleFormatter()->
@@ -2131,7 +2131,7 @@ class Linker {
 			];
 		}
 		return self::revDeleteLink( $query,
-			$rev->isDeleted( Revision::DELETED_RESTRICTED ), $canHide );
+			$rev->isDeleted( RevisionRecord::DELETED_RESTRICTED ), $canHide );
 	}
 
 	/**

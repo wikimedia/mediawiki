@@ -1372,7 +1372,7 @@ class EditPage {
 			$handler = ContentHandler::getForModelID( $this->contentModel );
 			return $handler->makeEmptyContent();
 		}
-		$content = $revision->getContent( Revision::FOR_THIS_USER, $user );
+		$content = $revision->getContent( RevisionRecord::FOR_THIS_USER, $user );
 		return $content;
 	}
 

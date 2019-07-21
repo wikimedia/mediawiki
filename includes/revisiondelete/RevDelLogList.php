@@ -19,6 +19,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\Storage\RevisionRecord;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -91,7 +92,7 @@ class RevDelLogList extends RevDelList {
 	}
 
 	public function getSuppressBit() {
-		return Revision::DELETED_RESTRICTED;
+		return RevisionRecord::DELETED_RESTRICTED;
 	}
 
 	public function getLogAction() {
