@@ -1349,6 +1349,35 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * @covers WANObjectCache::get()
+	 * @covers WANObjectCache::processCheckKeys()
+	 */
+	public function testCheckKeyHoldoff() {
+		$cache = $this->cache;
+		$key = wfRandomString();
+		$checkKey = wfRandomString();
+
+		$mockWallClock = 1549343530.2053;
+		$cache->setMockTime( $mockWallClock );
+		$cache->touchCheckKey( $checkKey, 8 );
+
+		$mockWallClock += 1;
+		$cache->set( $key, 1, 60 );
+		$this->assertEquals( 1, $cache->get( $key, $curTTL, [ $checkKey ] ) );
+		$this->assertLessThan( 0, $curTTL, "Key in hold-off due to check key" );
+
+		$mockWallClock += 3;
+		$cache->set( $key, 1, 60 );
+		$this->assertEquals( 1, $cache->get( $key, $curTTL, [ $checkKey ] ) );
+		$this->assertLessThan( 0, $curTTL, "Key in hold-off due to check key" );
+
+		$mockWallClock += 10;
+		$cache->set( $key, 1, 60 );
+		$this->assertEquals( 1, $cache->get( $key, $curTTL, [ $checkKey ] ) );
+		$this->assertGreaterThan( 0, $curTTL, "Key not in hold-off due to check key" );
+	}
+
+	/**
 	 * @covers WANObjectCache::delete
 	 * @covers WANObjectCache::relayDelete
 	 * @covers WANObjectCache::relayPurge

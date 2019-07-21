@@ -506,6 +506,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 			}
 			$purgeValues[] = $purge;
 		}
+
 		return $purgeValues;
 	}
 
@@ -2207,14 +2208,14 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 			// Wildcards select all matching routes, e.g. the WAN cluster on all DCs
 			$ok = $this->cache->set(
 				"/*/{$this->cluster}/{$key}",
-				$this->makePurgeValue( $this->getCurrentTime(), self::HOLDOFF_TTL_NONE ),
+				$this->makePurgeValue( $this->getCurrentTime(), $holdoff ),
 				$ttl
 			);
 		} else {
-			// This handles the mcrouter and the single-DC case
+			// Some other proxy handles broadcasting or there is only one datacenter
 			$ok = $this->cache->set(
 				$key,
-				$this->makePurgeValue( $this->getCurrentTime(), self::HOLDOFF_TTL_NONE ),
+				$this->makePurgeValue( $this->getCurrentTime(), $holdoff ),
 				$ttl
 			);
 		}
