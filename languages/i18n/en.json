@@ -442,7 +442,7 @@
 	"createaccountmail": "Use a temporary random password and send it to the specified email address",
 	"createaccountmail-help": "Can be used to create account for another person without learning the password.",
 	"createacct-realname": "Real name (optional)",
-	"createacct-reason": "Reason",
+	"createacct-reason": "Reason (publicly logged)",
 	"createacct-reason-ph": "Why you are creating another account",
 	"createacct-reason-help": "Message shown in the account creation log",
 	"createacct-imgcaptcha-help": "",
