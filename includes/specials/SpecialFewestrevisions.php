@@ -49,14 +49,15 @@ class FewestrevisionsPage extends QueryPage {
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
 				'value' => 'COUNT(*)',
-				'redirect' => 'page_is_redirect'
 			],
 			'conds' => [
 				'page_namespace' => MediaWikiServices::getInstance()->getNamespaceInfo()->
 					getContentNamespaces(),
-				'page_id = rev_page' ],
+				'page_id = rev_page',
+				'page_is_redirect = 0',
+			],
 			'options' => [
-				'GROUP BY' => [ 'page_namespace', 'page_title', 'page_is_redirect' ]
+				'GROUP BY' => [ 'page_namespace', 'page_title' ]
 			]
 		];
 	}
