@@ -813,7 +813,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @since 1.21
 	 */
-	public function getContent( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+	public function getContent( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
 			return $this->mLastRevision->getContent( $audience, $user );
@@ -851,7 +851,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   to the $audience parameter
 	 * @return int User ID for the user that made the last article revision
 	 */
-	public function getUser( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+	public function getUser( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
 			return $this->mLastRevision->getUser( $audience, $user );
@@ -870,7 +870,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   to the $audience parameter
 	 * @return User|null
 	 */
-	public function getCreator( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+	public function getCreator( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		$revision = $this->getOldestRevision();
 		if ( $revision ) {
 			$userName = $revision->getUserText( $audience, $user );
@@ -889,7 +889,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   to the $audience parameter
 	 * @return string Username of the user that made the last article revision
 	 */
-	public function getUserText( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+	public function getUserText( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
 			return $this->mLastRevision->getUserText( $audience, $user );
@@ -908,7 +908,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return string|null Comment stored for the last article revision, or null if the specified
 	 *  audience does not have access to the comment.
 	 */
-	public function getComment( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+	public function getComment( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
 			return $this->mLastRevision->getComment( $audience, $user );

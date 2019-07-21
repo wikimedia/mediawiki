@@ -2414,7 +2414,7 @@ class Article implements Page {
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getComment
 	 */
-	public function getComment( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+	public function getComment( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		return $this->mPage->getComment( $audience, $user );
 	}
 
@@ -2446,7 +2446,7 @@ class Article implements Page {
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getCreator
 	 */
-	public function getCreator( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+	public function getCreator( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		return $this->mPage->getCreator( $audience, $user );
 	}
 
@@ -2558,7 +2558,7 @@ class Article implements Page {
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getUser
 	 */
-	public function getUser( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+	public function getUser( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		return $this->mPage->getUser( $audience, $user );
 	}
 
@@ -2566,7 +2566,7 @@ class Article implements Page {
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getUserText
 	 */
-	public function getUserText( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+	public function getUserText( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		return $this->mPage->getUserText( $audience, $user );
 	}
 

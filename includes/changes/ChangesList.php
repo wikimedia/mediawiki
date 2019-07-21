@@ -614,7 +614,7 @@ class ChangesList extends ContextSource {
 	 * @return string
 	 */
 	public function insertComment( $rc ) {
-		if ( $this->isDeleted( $rc, Revision::DELETED_COMMENT ) ) {
+		if ( $this->isDeleted( $rc, RevisionRecord::DELETED_COMMENT ) ) {
 			return ' <span class="history-deleted">' .
 				$this->msg( 'rev-deleted-comment' )->escaped() . '</span>';
 		} else {

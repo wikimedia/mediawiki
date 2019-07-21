@@ -1869,13 +1869,17 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		if ( $this->mOldRev ) {
-			$this->mOldContent = $this->mOldRev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
+			$this->mOldContent = $this->mOldRev->getContent(
+				RevisionRecord::FOR_THIS_USER, $this->getUser()
+			);
 			if ( $this->mOldContent === null ) {
 				return false;
 			}
 		}
 
-		$this->mNewContent = $this->mNewRev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
+		$this->mNewContent = $this->mNewRev->getContent(
+			RevisionRecord::FOR_THIS_USER, $this->getUser()
+		);
 		Hooks::run( 'DifferenceEngineLoadTextAfterNewContentIsLoaded', [ $this ] );
 		if ( $this->mNewContent === null ) {
 			return false;
@@ -1900,7 +1904,9 @@ class DifferenceEngine extends ContextSource {
 			return false;
 		}
 
-		$this->mNewContent = $this->mNewRev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
+		$this->mNewContent = $this->mNewRev->getContent(
+			RevisionRecord::FOR_THIS_USER, $this->getUser()
+		);
 
 		Hooks::run( 'DifferenceEngineAfterLoadNewText', [ $this ] );
 
