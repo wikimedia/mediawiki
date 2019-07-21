@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Storage\RevisionRecord;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -136,8 +138,8 @@ class CleanupSpam extends Maintenance {
 		$rev = Revision::newFromTitle( $title );
 		$currentRevId = $rev->getId();
 
-		while ( $rev && ( $rev->isDeleted( Revision::DELETED_TEXT )
-			|| LinkFilter::matchEntry( $rev->getContent( Revision::RAW ), $domain, $protocol ) )
+		while ( $rev && ( $rev->isDeleted( RevisionRecord::DELETED_TEXT )
+			|| LinkFilter::matchEntry( $rev->getContent( RevisionRecord::RAW ), $domain, $protocol ) )
 		) {
 			$rev = $rev->getPrevious();
 		}
@@ -152,7 +154,7 @@ class CleanupSpam extends Maintenance {
 			$page = WikiPage::factory( $title );
 			if ( $rev ) {
 				// Revert to this revision
-				$content = $rev->getContent( Revision::RAW );
+				$content = $rev->getContent( RevisionRecord::RAW );
 
 				$this->output( "reverting\n" );
 				$page->doEditContent(

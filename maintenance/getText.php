@@ -23,6 +23,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Storage\RevisionRecord;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -51,8 +53,8 @@ class GetTextMaint extends Maintenance {
 			$this->fatalError( "Page $titleText does not exist.\n" );
 		}
 		$content = $rev->getContent( $this->hasOption( 'show-private' )
-			? Revision::RAW
-			: Revision::FOR_PUBLIC );
+			? RevisionRecord::RAW
+			: RevisionRecord::FOR_PUBLIC );
 
 		if ( $content === false ) {
 			$titleText = $title->getPrefixedText();
