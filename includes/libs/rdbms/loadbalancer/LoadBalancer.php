@@ -656,7 +656,7 @@ class LoadBalancer implements ILoadBalancer {
 				$ok = true; // no applicable loads
 			}
 		} finally {
-			# Restore the old position, as this is not used for lag-protection but for throttling
+			// Restore the old position; this is used for throttling, not lag-protection
 			$this->waitForPos = $oldPos;
 		}
 
@@ -673,7 +673,7 @@ class LoadBalancer implements ILoadBalancer {
 
 			$ok = true;
 			for ( $i = 1; $i < $serverCount; $i++ ) {
-				if ( $this->groupLoads[self::GROUP_GENERIC][$i] > 0 ) {
+				if ( $this->serverHasLoadInAnyGroup( $i ) ) {
 					$start = microtime( true );
 					$ok = $this->doWait( $i, true, $timeout ) && $ok;
 					$timeout -= intval( microtime( true ) - $start );
@@ -683,11 +683,25 @@ class LoadBalancer implements ILoadBalancer {
 				}
 			}
 		} finally {
-			# Restore the old position, as this is not used for lag-protection but for throttling
+			// Restore the old position; this is used for throttling, not lag-protection
 			$this->waitForPos = $oldPos;
 		}
 
 		return $ok;
+	}
+
+	/**
+	 * @param int $i Specific server index
+	 * @return bool
+	 */
+	private function serverHasLoadInAnyGroup( $i ) {
+		foreach ( $this->groupLoads as $loadsByIndex ) {
+			if ( ( $loadsByIndex[$i] ?? 0 ) > 0 ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
