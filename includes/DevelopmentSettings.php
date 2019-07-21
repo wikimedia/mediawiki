@@ -59,4 +59,4 @@ unset( $logDir );
 $wgRateLimits = [];
 
 // Disable legacy javascript globals in CI and for devs (T72470)
-$wgLegacyJavaScriptGlobals = true;
+$wgLegacyJavaScriptGlobals = false;
