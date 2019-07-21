@@ -42,7 +42,7 @@ class OrphanStats extends Maintenance {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$lb = $lbFactory->getExternalLB( $cluster );
 
-		return $lb->getConnection( DB_REPLICA );
+		return $lb->getMaintenanceConnectionRef( DB_REPLICA );
 	}
 
 	public function execute() {

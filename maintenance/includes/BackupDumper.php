@@ -30,7 +30,7 @@ require_once __DIR__ . '/../../includes/export/WikiExporter.php';
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LoadBalancer;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
  * @ingroup Dump
@@ -68,7 +68,7 @@ abstract class BackupDumper extends Maintenance {
 	/**
 	 * The dependency-injected database to use.
 	 *
-	 * @var IDatabase|null
+	 * @var IMaintainableDatabase|null
 	 *
 	 * @see self::setDB
 	 */
@@ -328,7 +328,7 @@ abstract class BackupDumper extends Maintenance {
 	 * @todo Fixme: the --server parameter is currently not respected, as it
 	 * doesn't seem terribly easy to ask the load balancer for a particular
 	 * connection by name.
-	 * @return IDatabase
+	 * @return IMaintainableDatabase
 	 */
 	function backupDb() {
 		if ( $this->forcedDb !== null ) {
@@ -337,7 +337,7 @@ abstract class BackupDumper extends Maintenance {
 
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$this->lb = $lbFactory->newMainLB();
-		$db = $this->lb->getConnection( DB_REPLICA, 'dump' );
+		$db = $this->lb->getMaintenanceConnectionRef( DB_REPLICA, 'dump' );
 
 		// Discourage the server from disconnecting us if it takes a long time
 		// to read out the big ol' batch query.
@@ -350,10 +350,9 @@ abstract class BackupDumper extends Maintenance {
 	 * Force the dump to use the provided database connection for database
 	 * operations, wherever possible.
 	 *
-	 * @param IDatabase|null $db (Optional) the database connection to use. If null, resort to
-	 *   use the globally provided ways to get database connections.
+	 * @param IMaintainableDatabase $db The database connection to use
 	 */
-	function setDB( IDatabase $db = null ) {
+	function setDB( IMaintainableDatabase $db ) {
 		parent::setDB( $db );
 		$this->forcedDb = $db;
 	}

@@ -22,10 +22,10 @@
  * @ingroup Maintenance ExternalStorage
  */
 
+use Wikimedia\Rdbms\IMaintainableDatabase;
 use MediaWiki\Logger\LegacyLogger;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
-use Wikimedia\Rdbms\IDatabase;
 
 $optionsWithArgs = RecompressTracked::getOptionsWithArgs();
 require __DIR__ . '/../commandLine.inc';
@@ -275,6 +275,7 @@ class RecompressTracked {
 	/**
 	 * Dispatch a command to the next available replica DB.
 	 * This may block until a replica DB finishes its work and becomes available.
+	 * @param array ...$args
 	 */
 	function dispatch( ...$args ) {
 		$pipes = $this->replicaPipes;
@@ -647,13 +648,13 @@ class RecompressTracked {
 	/**
 	 * Gets a DB master connection for the given external cluster name
 	 * @param string $cluster
-	 * @return IDatabase
+	 * @return IMaintainableDatabase
 	 */
 	function getExtDB( $cluster ) {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$lb = $lbFactory->getExternalLB( $cluster );
 
-		return $lb->getConnection( DB_MASTER );
+		return $lb->getMaintenanceConnectionRef( DB_MASTER );
 	}
 
 	/**
