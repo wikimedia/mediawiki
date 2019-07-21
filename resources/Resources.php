@@ -1968,6 +1968,8 @@ return [
 		'lessMessages' => [
 			'parentheses-start',
 			'parentheses-end',
+			'brackets-start',
+			'brackets-end',
 			'pipe-separator'
 		],
 		'skinStyles' => [

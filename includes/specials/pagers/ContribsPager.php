@@ -646,7 +646,8 @@ class ContribsPager extends RangeChronologicalPager {
 					&& $page->quickUserCan( 'edit', $user )
 				) {
 					$this->preventClickjacking();
-					$topmarktext .= ' ' . Linker::generateRollback( $rev, $this->getContext() );
+					$topmarktext .= ' ' . Linker::generateRollback( $rev, $this->getContext(),
+						[ 'noBrackets' ] );
 				}
 			}
 			# Is there a visible previous revision?
