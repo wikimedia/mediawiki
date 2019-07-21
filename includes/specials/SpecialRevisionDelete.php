@@ -532,7 +532,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 					$bitfield & $field
 				);
 
-				if ( $field == Revision::DELETED_RESTRICTED ) {
+				if ( $field == RevisionRecord::DELETED_RESTRICTED ) {
 					$innerHTML = "<b>$innerHTML</b>";
 				}
 
@@ -563,7 +563,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				$line .= '<td class="mw-revdel-checkbox">' . Xml::radio( $name, 0, $selected == 0 ) . '</td>';
 				$line .= '<td class="mw-revdel-checkbox">' . Xml::radio( $name, 1, $selected == 1 ) . '</td>';
 				$label = $this->msg( $message )->escaped();
-				if ( $field == Revision::DELETED_RESTRICTED ) {
+				if ( $field == RevisionRecord::DELETED_RESTRICTED ) {
 					$label = "<b>$label</b>";
 				}
 				$line .= "<td>$label</td>";
@@ -601,7 +601,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				. $this->otherReason;
 		}
 		# Can the user set this field?
-		if ( $bitParams[Revision::DELETED_RESTRICTED] == 1
+		if ( $bitParams[RevisionRecord::DELETED_RESTRICTED] == 1
 			&& !$this->getUser()->isAllowed( 'suppressrevision' )
 		) {
 			throw new PermissionsError( 'suppressrevision' );
@@ -664,8 +664,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			}
 			$bitfield[$field] = $val;
 		}
-		if ( !isset( $bitfield[Revision::DELETED_RESTRICTED] ) ) {
-			$bitfield[Revision::DELETED_RESTRICTED] = 0;
+		if ( !isset( $bitfield[RevisionRecord::DELETED_RESTRICTED] ) ) {
+			$bitfield[RevisionRecord::DELETED_RESTRICTED] = 0;
 		}
 
 		return $bitfield;

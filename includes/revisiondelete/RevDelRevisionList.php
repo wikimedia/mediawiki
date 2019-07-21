@@ -168,7 +168,7 @@ class RevDelRevisionList extends RevDelList {
 	}
 
 	public function getSuppressBit() {
-		return Revision::DELETED_RESTRICTED;
+		return RevisionRecord::DELETED_RESTRICTED;
 	}
 
 	public function doPreCommitUpdates() {

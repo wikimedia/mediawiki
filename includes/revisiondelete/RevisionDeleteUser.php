@@ -53,9 +53,9 @@ class RevisionDeleteUser {
 			$dbw = wfGetDB( DB_MASTER );
 		}
 
-		# To suppress, we OR the current bitfields with Revision::DELETED_USER
+		# To suppress, we OR the current bitfields with RevisionRecord::DELETED_USER
 		# to put a 1 in the username *_deleted bit. To unsuppress we AND the
-		# current bitfields with the inverse of Revision::DELETED_USER. The
+		# current bitfields with the inverse of RevisionRecord::DELETED_USER. The
 		# username bit is made to 0 (x & 0 = 0), while others are unchanged (x & 1 = x).
 		# The same goes for the sysop-restricted *_deleted bit.
 		$delUser = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
