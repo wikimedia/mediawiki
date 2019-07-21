@@ -45,7 +45,6 @@ class UserDupes {
 	private $outputCallback;
 
 	/**
-	 * UserDupes constructor.
 	 * @param IMaintainableDatabase &$database
 	 * @param callback $outputCallback
 	 */

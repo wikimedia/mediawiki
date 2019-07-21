@@ -28,6 +28,7 @@ require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
@@ -558,8 +559,12 @@ class NamespaceDupes extends Maintenance {
 	 * @return bool
 	 */
 	private function canMerge( $id, LinkTarget $linkTarget, &$logStatus ) {
-		$latestDest = Revision::newFromTitle( $linkTarget, 0, Revision::READ_LATEST );
-		$latestSource = Revision::newFromPageId( $id, 0, Revision::READ_LATEST );
+		$latestDest = Revision::newFromTitle(
+			$linkTarget, 0, RevisionRecord::READ_LATEST
+		);
+		$latestSource = Revision::newFromPageId(
+			$id, 0, RevisionRecord::READ_LATEST
+		);
 		if ( $latestSource->getTimestamp() > $latestDest->getTimestamp() ) {
 			$logStatus = 'cannot merge since source is later';
 			return false;
