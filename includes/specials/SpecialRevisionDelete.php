@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Storage\RevisionRecord;
+
 /**
  * Special page allowing users with the appropriate permissions to view
  * and hide revisions. Log items can also be hidden.
@@ -197,12 +199,12 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			[ $this->typeLabels['check-label'], 'wpHidePrimary',
 				RevisionDeleter::getRevdelConstant( $this->typeName )
 			],
-			[ 'revdelete-hide-comment', 'wpHideComment', Revision::DELETED_COMMENT ],
-			[ 'revdelete-hide-user', 'wpHideUser', Revision::DELETED_USER ]
+			[ 'revdelete-hide-comment', 'wpHideComment', RevisionRecord::DELETED_COMMENT ],
+			[ 'revdelete-hide-user', 'wpHideUser', RevisionRecord::DELETED_USER ]
 		];
 		if ( $user->isAllowed( 'suppressrevision' ) ) {
 			$this->checks[] = [ 'revdelete-hide-restricted',
-				'wpHideRestricted', Revision::DELETED_RESTRICTED ];
+				'wpHideRestricted', RevisionRecord::DELETED_RESTRICTED ];
 		}
 
 		# Either submit or create our form

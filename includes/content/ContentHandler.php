@@ -26,6 +26,7 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\Storage\RevisionRecord;
 use Wikimedia\Assert\Assert;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -1025,7 +1026,7 @@ abstract class ContentHandler {
 			[ 'rev_user_text' => $revQuery['fields']['rev_user_text'] ],
 			[
 				'rev_page' => $title->getArticleID(),
-				$dbr->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0'
+				$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . ' = 0'
 			],
 			__METHOD__,
 			[ 'LIMIT' => 20 ],

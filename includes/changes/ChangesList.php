@@ -23,6 +23,7 @@
  */
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
 use Wikimedia\Rdbms\IResultWrapper;
 
 class ChangesList extends ContextSource {
@@ -409,7 +410,7 @@ class ChangesList extends ContextSource {
 	public static function revDateLink( Revision $rev, User $user, Language $lang, $title = null ) {
 		$ts = $rev->getTimestamp();
 		$date = $lang->userTimeAndDate( $ts, $user );
-		if ( $rev->userCan( Revision::DELETED_TEXT, $user ) ) {
+		if ( $rev->userCan( RevisionRecord::DELETED_TEXT, $user ) ) {
 			$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
 				$title ?? $rev->getTitle(),
 				$date,
@@ -419,7 +420,7 @@ class ChangesList extends ContextSource {
 		} else {
 			$link = htmlspecialchars( $date );
 		}
-		if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
+		if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 			$link = "<span class=\"history-deleted mw-changeslist-date\">$link</span>";
 		}
 		return $link;
@@ -468,7 +469,7 @@ class ChangesList extends ContextSource {
 			$rc->mAttribs['rc_type'] == RC_CATEGORIZE
 		) {
 			$diffLink = $this->message['diff'];
-		} elseif ( !self::userCan( $rc, Revision::DELETED_TEXT, $this->getUser() ) ) {
+		} elseif ( !self::userCan( $rc, RevisionRecord::DELETED_TEXT, $this->getUser() ) ) {
 			$diffLink = $this->message['diff'];
 		} else {
 			$query = [
@@ -524,7 +525,7 @@ class ChangesList extends ContextSource {
 			[ 'class' => 'mw-changeslist-title' ],
 			$params
 		);
-		if ( $this->isDeleted( $rc, Revision::DELETED_TEXT ) ) {
+		if ( $this->isDeleted( $rc, RevisionRecord::DELETED_TEXT ) ) {
 			$articlelink = '<span class="history-deleted">' . $articlelink . '</span>';
 		}
 		# To allow for boldening pages watched by this user
@@ -576,7 +577,7 @@ class ChangesList extends ContextSource {
 	 * @param RecentChange &$rc
 	 */
 	public function insertUserRelatedLinks( &$s, &$rc ) {
-		if ( $this->isDeleted( $rc, Revision::DELETED_USER ) ) {
+		if ( $this->isDeleted( $rc, RevisionRecord::DELETED_USER ) ) {
 			$s .= ' <span class="history-deleted">' .
 				$this->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		} else {

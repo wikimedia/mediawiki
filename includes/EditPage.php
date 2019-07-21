@@ -25,6 +25,7 @@ use MediaWiki\EditPage\TextboxBuilder;
 use MediaWiki\EditPage\TextConflictHelper;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -1222,8 +1223,8 @@ class EditPage {
 				# the revisions exist and they were not deleted.
 				# Otherwise, $content will be left as-is.
 				if ( !is_null( $undorev ) && !is_null( $oldrev ) &&
-					!$undorev->isDeleted( Revision::DELETED_TEXT ) &&
-					!$oldrev->isDeleted( Revision::DELETED_TEXT )
+					!$undorev->isDeleted( RevisionRecord::DELETED_TEXT ) &&
+					!$oldrev->isDeleted( RevisionRecord::DELETED_TEXT )
 				) {
 					if ( WikiPage::hasDifferencesOutsideMainSlot( $undorev, $oldrev )
 						|| !$this->isSupportedContentModel( $oldrev->getContentModel() )
@@ -1245,7 +1246,7 @@ class EditPage {
 					}
 
 					if ( $undoMsg === null ) {
-						$oldContent = $this->page->getContent( Revision::RAW );
+						$oldContent = $this->page->getContent( RevisionRecord::RAW );
 						$popts = ParserOptions::newFromUserAndLang(
 							$user, MediaWikiServices::getInstance()->getContentLanguage() );
 						$newContent = $content->preSaveTransform( $this->mTitle, $user, $popts );
@@ -1405,7 +1406,7 @@ class EditPage {
 	 */
 	protected function getCurrentContent() {
 		$rev = $this->page->getRevision();
-		$content = $rev ? $rev->getContent( Revision::RAW ) : null;
+		$content = $rev ? $rev->getContent( RevisionRecord::RAW ) : null;
 
 		if ( $content === false || $content === null ) {
 			$handler = ContentHandler::getForModelID( $this->contentModel );
@@ -1496,7 +1497,7 @@ class EditPage {
 		}
 
 		$parserOptions = ParserOptions::newFromUser( $user );
-		$content = $page->getContent( Revision::RAW );
+		$content = $page->getContent( RevisionRecord::RAW );
 
 		if ( !$content ) {
 			// TODO: somehow show a warning to the user!
@@ -3139,12 +3140,12 @@ ERROR;
 				if ( $revision ) {
 					// Let sysop know that this will make private content public if saved
 
-					if ( !$revision->userCan( Revision::DELETED_TEXT, $user ) ) {
+					if ( !$revision->userCan( RevisionRecord::DELETED_TEXT, $user ) ) {
 						$out->wrapWikiMsg(
 							"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
 							'rev-deleted-text-permission'
 						);
-					} elseif ( $revision->isDeleted( Revision::DELETED_TEXT ) ) {
+					} elseif ( $revision->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 						$out->wrapWikiMsg(
 							"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
 							'rev-deleted-text-view'

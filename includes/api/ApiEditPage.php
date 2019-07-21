@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Storage\RevisionRecord;
+
 /**
  * A module that allows for editing and creating pages.
  *
@@ -193,14 +195,14 @@ class ApiEditPage extends ApiBase {
 				$undoafterRev = Revision::newFromId( $params['undoafter'] );
 			}
 			$undoRev = Revision::newFromId( $params['undo'] );
-			if ( is_null( $undoRev ) || $undoRev->isDeleted( Revision::DELETED_TEXT ) ) {
+			if ( is_null( $undoRev ) || $undoRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 				$this->dieWithError( [ 'apierror-nosuchrevid', $params['undo'] ] );
 			}
 
 			if ( $params['undoafter'] == 0 ) {
 				$undoafterRev = $undoRev->getPrevious();
 			}
-			if ( is_null( $undoafterRev ) || $undoafterRev->isDeleted( Revision::DELETED_TEXT ) ) {
+			if ( is_null( $undoafterRev ) || $undoafterRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 				$this->dieWithError( [ 'apierror-nosuchrevid', $params['undoafter'] ] );
 			}
 

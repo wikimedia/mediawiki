@@ -387,11 +387,11 @@ class SpecialUndelete extends SpecialPage {
 			return;
 		}
 
-		if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
-			if ( !$rev->userCan( Revision::DELETED_TEXT, $user ) ) {
+		if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
+			if ( !$rev->userCan( RevisionRecord::DELETED_TEXT, $user ) ) {
 				$out->wrapWikiMsg(
 					"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-				$rev->isDeleted( Revision::DELETED_RESTRICTED ) ?
+				$rev->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ?
 					'rev-suppressed-text-permission' : 'rev-deleted-text-permission'
 				);
 
@@ -400,7 +400,7 @@ class SpecialUndelete extends SpecialPage {
 
 			$out->wrapWikiMsg(
 				"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-				$rev->isDeleted( Revision::DELETED_RESTRICTED ) ?
+				$rev->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ?
 					'rev-suppressed-text-view' : 'rev-deleted-text-view'
 			);
 			$out->addHTML( '<br />' );
@@ -932,7 +932,7 @@ class SpecialUndelete extends SpecialPage {
 		if ( $this->mCanView ) {
 			$titleObj = $this->getPageTitle();
 			# Last link
-			if ( !$rev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
+			if ( !$rev->userCan( RevisionRecord::DELETED_TEXT, $this->getUser() ) ) {
 				$pageLink = htmlspecialchars( $this->getLanguage()->userTimeAndDate( $ts, $user ) );
 				$last = $this->msg( 'diff' )->escaped();
 			} elseif ( $remaining > 0 || ( $earliestLiveTime && $ts > $earliestLiveTime ) ) {
@@ -1055,7 +1055,7 @@ class SpecialUndelete extends SpecialPage {
 		$user = $this->getUser();
 		$time = $this->getLanguage()->userTimeAndDate( $ts, $user );
 
-		if ( !$rev->userCan( Revision::DELETED_TEXT, $user ) ) {
+		if ( !$rev->userCan( RevisionRecord::DELETED_TEXT, $user ) ) {
 			return '<span class="history-deleted">' . $time . '</span>';
 		}
 
@@ -1069,7 +1069,7 @@ class SpecialUndelete extends SpecialPage {
 			]
 		);
 
-		if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
+		if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 			$link = '<span class="history-deleted">' . $link . '</span>';
 		}
 

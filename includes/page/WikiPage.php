@@ -1176,7 +1176,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$conds[] = 'NOT(' . $actorMigration->getWhere( $dbr, 'rev_user', $user )['conds'] . ')';
 
 		// Username hidden?
-		$conds[] = "{$dbr->bitAnd( 'rev_deleted', Revision::DELETED_USER )} = 0";
+		$conds[] = "{$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER )} = 0";
 
 		$jconds = [
 			'user' => [ 'LEFT JOIN', $actorQuery['fields']['rev_user'] . ' = user_id' ],
@@ -2695,7 +2695,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// we need to remember the old content so we can use it to generate all deletion updates.
 		$revision = $this->getRevision();
 		try {
-			$content = $this->getContent( Revision::RAW );
+			$content = $this->getContent( RevisionRecord::RAW );
 		} catch ( Exception $ex ) {
 			wfLogWarning( __METHOD__ . ': failed to load content during deletion! '
 				. $ex->getMessage() );
@@ -2844,7 +2844,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Bitfields to further suppress the content
 		if ( $suppress ) {
-			$bitfield = Revision::SUPPRESSED_ALL;
+			$bitfield = RevisionRecord::SUPPRESSED_ALL;
 			$revQuery['fields'] = array_diff( $revQuery['fields'], [ 'rev_deleted' ] );
 		}
 
@@ -3768,7 +3768,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$slotContent = [ SlotRecord::MAIN => $rev ];
 		} else {
 			$slotContent = array_map( function ( SlotRecord $slot ) {
-				return $slot->getContent( Revision::RAW );
+				return $slot->getContent( RevisionRecord::RAW );
 			}, $rev->getSlots()->getSlots() );
 		}
 

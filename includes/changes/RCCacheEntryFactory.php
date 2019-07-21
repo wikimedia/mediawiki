@@ -20,6 +20,7 @@
  * @file
  */
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Storage\RevisionRecord;
 
 class RCCacheEntryFactory {
 
@@ -79,7 +80,7 @@ class RCCacheEntryFactory {
 		// Make user links
 		$cacheEntry->userlink = $this->getUserLink( $cacheEntry );
 
-		if ( !ChangesList::isDeleted( $cacheEntry, Revision::DELETED_USER ) ) {
+		if ( !ChangesList::isDeleted( $cacheEntry, RevisionRecord::DELETED_USER ) ) {
 			$cacheEntry->usertalklink = Linker::userToolLinks(
 				$cacheEntry->mAttribs['rc_user'],
 				$cacheEntry->mAttribs['rc_user_text'],
@@ -104,7 +105,7 @@ class RCCacheEntryFactory {
 	 * @return bool
 	 */
 	private function showDiffLinks( RecentChange $cacheEntry, User $user ) {
-		return ChangesList::userCan( $cacheEntry, Revision::DELETED_TEXT, $user );
+		return ChangesList::userCan( $cacheEntry, RevisionRecord::DELETED_TEXT, $user );
 	}
 
 	/**
@@ -281,7 +282,7 @@ class RCCacheEntryFactory {
 	 * @return string
 	 */
 	private function getUserLink( RecentChange $cacheEntry ) {
-		if ( ChangesList::isDeleted( $cacheEntry, Revision::DELETED_USER ) ) {
+		if ( ChangesList::isDeleted( $cacheEntry, RevisionRecord::DELETED_USER ) ) {
 			$userLink = ' <span class="history-deleted">' .
 				$this->context->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		} else {

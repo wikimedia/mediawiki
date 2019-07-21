@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
 
 /**
  * Helper class for file deletion
@@ -195,7 +196,7 @@ class LocalFileDeleteBatch {
 
 		// Bitfields to further suppress the content
 		if ( $this->suppress ) {
-			$bitfield = Revision::SUPPRESSED_ALL;
+			$bitfield = RevisionRecord::SUPPRESSED_ALL;
 		} else {
 			$bitfield = 'oi_deleted';
 		}

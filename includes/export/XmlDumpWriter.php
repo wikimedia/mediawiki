@@ -320,7 +320,7 @@ class XmlDumpWriter {
 
 		$out .= $this->writeTimestamp( $rev->getTimestamp() );
 
-		if ( $rev->isDeleted( Revision::DELETED_USER ) ) {
+		if ( $rev->isDeleted( RevisionRecord::DELETED_USER ) ) {
 			$out .= "      " . Xml::element( 'contributor', [ 'deleted' => 'deleted' ] ) . "\n";
 		} else {
 			// empty values get written out as uid 0, see T224221
@@ -334,7 +334,7 @@ class XmlDumpWriter {
 		if ( $rev->isMinor() ) {
 			$out .= "      <minor/>\n";
 		}
-		if ( $rev->isDeleted( Revision::DELETED_COMMENT ) ) {
+		if ( $rev->isDeleted( RevisionRecord::DELETED_COMMENT ) ) {
 			$out .= "      " . Xml::element( 'comment', [ 'deleted' => 'deleted' ] ) . "\n";
 		} else {
 			if ( $rev->getComment()->text != '' ) {
@@ -344,14 +344,14 @@ class XmlDumpWriter {
 			}
 		}
 
-		$contentMode = $rev->isDeleted( Revision::DELETED_TEXT ) ? self::WRITE_STUB_DELETED
+		$contentMode = $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ? self::WRITE_STUB_DELETED
 			: $this->contentMode;
 
 		foreach ( $rev->getSlots()->getSlots() as $slot ) {
 			$out .= $this->writeSlot( $slot, $contentMode );
 		}
 
-		if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
+		if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 			$out .= "      <sha1/>\n";
 		} else {
 			$out .= "      " . Xml::element( 'sha1', null, strval( $rev->getSha1() ) ) . "\n";

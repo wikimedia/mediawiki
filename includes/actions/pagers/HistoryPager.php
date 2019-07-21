@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * @ingroup Pager
@@ -409,8 +410,8 @@ class HistoryPager extends ReverseChronologicalPager {
 				}
 			}
 
-			if ( !$rev->isDeleted( Revision::DELETED_TEXT )
-				&& !$prevRev->isDeleted( Revision::DELETED_TEXT )
+			if ( !$rev->isDeleted( RevisionRecord::DELETED_TEXT )
+				&& !$prevRev->isDeleted( RevisionRecord::DELETED_TEXT )
 			) {
 				# Create undo tooltip for the first (=latest) line only
 				$undoTooltip = $latest
@@ -491,7 +492,9 @@ class HistoryPager extends ReverseChronologicalPager {
 	function curLink( $rev ) {
 		$cur = $this->historyPage->message['cur'];
 		$latest = $this->getWikiPage()->getLatest();
-		if ( $latest === $rev->getId() || !$rev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
+		if ( $latest === $rev->getId()
+			|| !$rev->userCan( RevisionRecord::DELETED_TEXT, $this->getUser() )
+		) {
 			return $cur;
 		} else {
 			return MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
@@ -539,8 +542,8 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		$nextRev = new Revision( $next, 0, $this->getTitle() );
 
-		if ( !$prevRev->userCan( Revision::DELETED_TEXT, $this->getUser() )
-			|| !$nextRev->userCan( Revision::DELETED_TEXT, $this->getUser() )
+		if ( !$prevRev->userCan( RevisionRecord::DELETED_TEXT, $this->getUser() )
+			|| !$nextRev->userCan( RevisionRecord::DELETED_TEXT, $this->getUser() )
 		) {
 			return $last;
 		}
@@ -579,7 +582,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				$checkmark = [ 'checked' => 'checked' ];
 			} else {
 				# Check visibility of old revisions
-				if ( !$rev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
+				if ( !$rev->userCan( RevisionRecord::DELETED_TEXT, $this->getUser() ) ) {
 					$radio['disabled'] = 'disabled';
 					$checkmark = []; // We will check the next possible one
 				} elseif ( !$this->oldIdChecked ) {

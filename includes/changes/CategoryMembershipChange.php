@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\Storage\RevisionRecord;
+
 /**
  * Helper class for category membership changes
  *
@@ -158,7 +161,7 @@ class CategoryMembershipChange {
 		$revision,
 		$added
 	) {
-		$deleted = $revision ? $revision->getVisibility() & Revision::SUPPRESSED_USER : 0;
+		$deleted = $revision ? $revision->getVisibility() & RevisionRecord::SUPPRESSED_USER : 0;
 		$newRevId = $revision ? $revision->getId() : 0;
 
 		/**
@@ -214,9 +217,9 @@ class CategoryMembershipChange {
 	 */
 	private function getUser() {
 		if ( $this->revision ) {
-			$userId = $this->revision->getUser( Revision::RAW );
+			$userId = $this->revision->getUser( RevisionRecord::RAW );
 			if ( $userId === 0 ) {
-				return User::newFromName( $this->revision->getUserText( Revision::RAW ), false );
+				return User::newFromName( $this->revision->getUserText( RevisionRecord::RAW ), false );
 			} else {
 				return User::newFromId( $userId );
 			}

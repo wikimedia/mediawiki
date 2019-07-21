@@ -24,6 +24,7 @@
  * @ingroup Pager
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -347,10 +348,13 @@ class ContribsPager extends RangeChronologicalPager {
 
 		// Paranoia: avoid brute force searches (T19342)
 		if ( !$user->isAllowed( 'deletedhistory' ) ) {
-			$queryInfo['conds'][] = $this->mDb->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0';
+			$queryInfo['conds'][] = $this->mDb->bitAnd(
+				'rev_deleted', RevisionRecord::DELETED_USER
+				) . ' = 0';
 		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
-			$queryInfo['conds'][] = $this->mDb->bitAnd( 'rev_deleted', Revision::SUPPRESSED_USER ) .
-				' != ' . Revision::SUPPRESSED_USER;
+			$queryInfo['conds'][] = $this->mDb->bitAnd(
+				'rev_deleted', RevisionRecord::SUPPRESSED_USER
+				) . ' != ' . RevisionRecord::SUPPRESSED_USER;
 		}
 
 		// $this->getIndexField() must be in the result rows, as reallyDoQuery() tries to access it.
@@ -646,7 +650,7 @@ class ContribsPager extends RangeChronologicalPager {
 				}
 			}
 			# Is there a visible previous revision?
-			if ( $rev->userCan( Revision::DELETED_TEXT, $user ) && $rev->getParentId() !== 0 ) {
+			if ( $rev->userCan( RevisionRecord::DELETED_TEXT, $user ) && $rev->getParentId() !== 0 ) {
 				$difftext = $linkRenderer->makeKnownLink(
 					$page,
 					new HtmlArmor( $this->messages['diff'] ),
@@ -696,7 +700,7 @@ class ContribsPager extends RangeChronologicalPager {
 			# Note that only unprivileged users have rows with hidden user names excluded.
 			# When querying for an IP range, we want to always show user and user talk links.
 			$userlink = '';
-			if ( ( $this->contribs == 'newbie' && !$rev->isDeleted( Revision::DELETED_USER ) )
+			if ( ( $this->contribs == 'newbie' && !$rev->isDeleted( RevisionRecord::DELETED_USER ) )
 				|| $this->isQueryableRange( $this->target ) ) {
 				$userlink = ' <span class="mw-changeslist-separator"></span> '
 					. $lang->getDirMark()
@@ -756,7 +760,7 @@ class ContribsPager extends RangeChronologicalPager {
 			];
 
 			# Denote if username is redacted for this edit
-			if ( $rev->isDeleted( Revision::DELETED_USER ) ) {
+			if ( $rev->isDeleted( RevisionRecord::DELETED_USER ) ) {
 				$templateParams['rev-deleted-user-contribs'] =
 					$this->msg( 'rev-deleted-user-contribs' )->escaped();
 			}

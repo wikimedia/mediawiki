@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\Storage\RevisionRecord;
+
 /**
  * Generates a list of changes using an Enhanced system (uses javascript).
  *
@@ -409,7 +412,7 @@ class EnhancedChangesList extends ChangesList {
 		if ( $type == RC_LOG ) {
 			$link = htmlspecialchars( $rcObj->timestamp );
 			# Revision link
-		} elseif ( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() ) ) {
+		} elseif ( !ChangesList::userCan( $rcObj, RevisionRecord::DELETED_TEXT, $this->getUser() ) ) {
 			$link = Html::element( 'span', [ 'class' => 'history-deleted' ], $rcObj->timestamp );
 		} else {
 			$link = $this->linkRenderer->makeKnownLink(
@@ -418,7 +421,7 @@ class EnhancedChangesList extends ChangesList {
 				[],
 				$params
 			);
-			if ( static::isDeleted( $rcObj, Revision::DELETED_TEXT ) ) {
+			if ( static::isDeleted( $rcObj, RevisionRecord::DELETED_TEXT ) ) {
 				$link = '<span class="history-deleted">' . $link . '</span> ';
 			}
 		}
@@ -552,7 +555,7 @@ class EnhancedChangesList extends ChangesList {
 			if (
 				$isnew ||
 				$rcObj->mAttribs['rc_type'] == RC_CATEGORIZE ||
-				!ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() )
+				!ChangesList::userCan( $rcObj, RevisionRecord::DELETED_TEXT, $this->getUser() )
 			) {
 				$links['total-changes'] = Html::rawElement( 'span', [], $nchanges[$n] );
 			} else {

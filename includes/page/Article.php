@@ -454,7 +454,9 @@ class Article implements Page {
 		$this->mRevIdFetched = $this->mRevision->getId();
 		$this->fetchResult = Status::newGood( $this->mRevision );
 
-		if ( !$this->mRevision->userCan( Revision::DELETED_TEXT, $this->getContext()->getUser() ) ) {
+		if (
+			!$this->mRevision->userCan( RevisionRecord::DELETED_TEXT, $this->getContext()->getUser() )
+		) {
 			wfDebug( __METHOD__ . " failed to retrieve content of revision " .
 				$this->mRevision->getId() . "\n" );
 
@@ -466,7 +468,7 @@ class Article implements Page {
 
 		if ( Hooks::isRegistered( 'ArticleAfterFetchContentObject' ) ) {
 			$contentObject = $this->mRevision->getContent(
-				Revision::FOR_THIS_USER,
+				RevisionRecord::FOR_THIS_USER,
 				$this->getContext()->getUser()
 			);
 
@@ -489,7 +491,7 @@ class Article implements Page {
 
 		// For B/C only
 		$this->mContentObject = $this->mRevision->getContent(
-			Revision::FOR_THIS_USER,
+			RevisionRecord::FOR_THIS_USER,
 			$this->getContext()->getUser()
 		);
 
@@ -1481,7 +1483,7 @@ class Article implements Page {
 	 * @return bool True if the view is allowed, false if not.
 	 */
 	public function showDeletedRevisionHeader() {
-		if ( !$this->mRevision->isDeleted( Revision::DELETED_TEXT ) ) {
+		if ( !$this->mRevision->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 			// Not deleted
 			return true;
 		}
@@ -1489,7 +1491,7 @@ class Article implements Page {
 		$outputPage = $this->getContext()->getOutput();
 		$user = $this->getContext()->getUser();
 		// If the user is not allowed to see it...
-		if ( !$this->mRevision->userCan( Revision::DELETED_TEXT, $user ) ) {
+		if ( !$this->mRevision->userCan( RevisionRecord::DELETED_TEXT, $user ) ) {
 			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
 				'rev-deleted-text-permission' );
 
@@ -1499,7 +1501,7 @@ class Article implements Page {
 			# Give explanation and add a link to view the revision...
 			$oldid = intval( $this->getOldID() );
 			$link = $this->getTitle()->getFullURL( "oldid={$oldid}&unhide=1" );
-			$msg = $this->mRevision->isDeleted( Revision::DELETED_RESTRICTED ) ?
+			$msg = $this->mRevision->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ?
 				'rev-suppressed-text-unhide' : 'rev-deleted-text-unhide';
 			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
 				[ $msg, $link ] );
@@ -1507,7 +1509,7 @@ class Article implements Page {
 			return false;
 		// We are allowed to see...
 		} else {
-			$msg = $this->mRevision->isDeleted( Revision::DELETED_RESTRICTED ) ?
+			$msg = $this->mRevision->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ?
 				'rev-suppressed-text-view' : 'rev-deleted-text-view';
 			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", $msg );
 

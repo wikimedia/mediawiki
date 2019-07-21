@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Storage\RevisionRecord;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
@@ -3947,17 +3948,18 @@ class Title implements LinkTarget, IDBAccessObject {
 		if ( $old->getId() === $new->getId() ) {
 			return ( $old_cmp === '>' && $new_cmp === '<' ) ?
 				[] :
-				[ $old->getUserText( Revision::RAW ) ];
+				[ $old->getUserText( RevisionRecord::RAW ) ];
 		} elseif ( $old->getId() === $new->getParentId() ) {
 			if ( $old_cmp === '>=' && $new_cmp === '<=' ) {
-				$authors[] = $old->getUserText( Revision::RAW );
-				if ( $old->getUserText( Revision::RAW ) != $new->getUserText( Revision::RAW ) ) {
-					$authors[] = $new->getUserText( Revision::RAW );
+				$authors[] = $oldUserText = $old->getUserText( RevisionRecord::RAW );
+				$newUserText = $new->getUserText( RevisionRecord::RAW );
+				if ( $oldUserText != $newUserText ) {
+					$authors[] = $newUserText;
 				}
 			} elseif ( $old_cmp === '>=' ) {
-				$authors[] = $old->getUserText( Revision::RAW );
+				$authors[] = $old->getUserText( RevisionRecord::RAW );
 			} elseif ( $new_cmp === '<=' ) {
-				$authors[] = $new->getUserText( Revision::RAW );
+				$authors[] = $new->getUserText( RevisionRecord::RAW );
 			}
 			return $authors;
 		}

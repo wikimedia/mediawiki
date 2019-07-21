@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
 
 /**
  * @ingroup API
@@ -105,7 +106,7 @@ class ApiParse extends ApiBase {
 				}
 
 				$this->checkTitleUserPermissions( $rev->getTitle(), 'read' );
-				if ( !$rev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
+				if ( !$rev->userCan( RevisionRecord::DELETED_TEXT, $this->getUser() ) ) {
 					$this->dieWithError(
 						[ 'apierror-permissiondenied', $this->msg( 'action-deletedtext' ) ]
 					);
@@ -562,23 +563,23 @@ class ApiParse extends ApiBase {
 		WikiPage $page, $popts, $suppressCache, $pageId, $rev, $getContent
 	) {
 		$revId = $rev ? $rev->getId() : null;
-		$isDeleted = $rev && $rev->isDeleted( Revision::DELETED_TEXT );
+		$isDeleted = $rev && $rev->isDeleted( RevisionRecord::DELETED_TEXT );
 
 		if ( $getContent || $this->section !== false || $isDeleted ) {
 			if ( $rev ) {
-				$this->content = $rev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
+				$this->content = $rev->getContent( RevisionRecord::FOR_THIS_USER, $this->getUser() );
 				if ( !$this->content ) {
 					$this->dieWithError( [ 'apierror-missingcontent-revid', $revId ] );
 				}
 			} else {
-				$this->content = $page->getContent( Revision::FOR_THIS_USER, $this->getUser() );
+				$this->content = $page->getContent( RevisionRecord::FOR_THIS_USER, $this->getUser() );
 				if ( !$this->content ) {
 					$this->dieWithError( [ 'apierror-missingcontent-pageid', $page->getId() ] );
 				}
 			}
 			$this->contentIsDeleted = $isDeleted;
 			$this->contentIsSuppressed = $rev &&
-				$rev->isDeleted( Revision::DELETED_TEXT | Revision::DELETED_RESTRICTED );
+				$rev->isDeleted( RevisionRecord::DELETED_TEXT | RevisionRecord::DELETED_RESTRICTED );
 		}
 
 		if ( $this->section !== false ) {

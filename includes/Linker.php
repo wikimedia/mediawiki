@@ -21,6 +21,7 @@
  */
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
 
 /**
  * Some internal bits split of from Skin.php. These functions are used
@@ -1093,15 +1094,15 @@ class Linker {
 	 * @return string HTML fragment
 	 */
 	public static function revUserLink( $rev, $isPublic = false ) {
-		if ( $rev->isDeleted( Revision::DELETED_USER ) && $isPublic ) {
+		if ( $rev->isDeleted( RevisionRecord::DELETED_USER ) && $isPublic ) {
 			$link = wfMessage( 'rev-deleted-user' )->escaped();
-		} elseif ( $rev->userCan( Revision::DELETED_USER ) ) {
-			$link = self::userLink( $rev->getUser( Revision::FOR_THIS_USER ),
-				$rev->getUserText( Revision::FOR_THIS_USER ) );
+		} elseif ( $rev->userCan( RevisionRecord::DELETED_USER ) ) {
+			$link = self::userLink( $rev->getUser( RevisionRecord::FOR_THIS_USER ),
+				$rev->getUserText( RevisionRecord::FOR_THIS_USER ) );
 		} else {
 			$link = wfMessage( 'rev-deleted-user' )->escaped();
 		}
-		if ( $rev->isDeleted( Revision::DELETED_USER ) ) {
+		if ( $rev->isDeleted( RevisionRecord::DELETED_USER ) ) {
 			return '<span class="history-deleted">' . $link . '</span>';
 		}
 		return $link;
@@ -1116,11 +1117,11 @@ class Linker {
 	 * @return string HTML
 	 */
 	public static function revUserTools( $rev, $isPublic = false, $useParentheses = true ) {
-		if ( $rev->userCan( Revision::DELETED_USER ) &&
-			( !$rev->isDeleted( Revision::DELETED_USER ) || !$isPublic )
+		if ( $rev->userCan( RevisionRecord::DELETED_USER ) &&
+			( !$rev->isDeleted( RevisionRecord::DELETED_USER ) || !$isPublic )
 		) {
-			$userId = $rev->getUser( Revision::FOR_THIS_USER );
-			$userText = $rev->getUserText( Revision::FOR_THIS_USER );
+			$userId = $rev->getUser( RevisionRecord::FOR_THIS_USER );
+			$userText = $rev->getUserText( RevisionRecord::FOR_THIS_USER );
 			if ( $userId || (string)$userText !== '' ) {
 				$link = self::userLink( $userId, $userText )
 					. self::userToolLinks( $userId, $userText, false, 0, null,
@@ -1132,7 +1133,7 @@ class Linker {
 			$link = wfMessage( 'rev-deleted-user' )->escaped();
 		}
 
-		if ( $rev->isDeleted( Revision::DELETED_USER ) ) {
+		if ( $rev->isDeleted( RevisionRecord::DELETED_USER ) ) {
 			return ' <span class="history-deleted mw-userlink">' . $link . '</span>';
 		}
 		return $link;
@@ -1571,18 +1572,18 @@ class Linker {
 	public static function revComment( Revision $rev, $local = false, $isPublic = false,
 		$useParentheses = true
 	) {
-		if ( $rev->getComment( Revision::RAW ) == "" ) {
+		if ( $rev->getComment( RevisionRecord::RAW ) == "" ) {
 			return "";
 		}
-		if ( $rev->isDeleted( Revision::DELETED_COMMENT ) && $isPublic ) {
+		if ( $rev->isDeleted( RevisionRecord::DELETED_COMMENT ) && $isPublic ) {
 			$block = " <span class=\"comment\">" . wfMessage( 'rev-deleted-comment' )->escaped() . "</span>";
-		} elseif ( $rev->userCan( Revision::DELETED_COMMENT ) ) {
-			$block = self::commentBlock( $rev->getComment( Revision::FOR_THIS_USER ),
+		} elseif ( $rev->userCan( RevisionRecord::DELETED_COMMENT ) ) {
+			$block = self::commentBlock( $rev->getComment( RevisionRecord::FOR_THIS_USER ),
 				$rev->getTitle(), $local, null, $useParentheses );
 		} else {
 			$block = " <span class=\"comment\">" . wfMessage( 'rev-deleted-comment' )->escaped() . "</span>";
 		}
-		if ( $rev->isDeleted( Revision::DELETED_COMMENT ) ) {
+		if ( $rev->isDeleted( RevisionRecord::DELETED_COMMENT ) ) {
 			return " <span class=\"history-deleted comment\">$block</span>";
 		}
 		return $block;
@@ -1875,10 +1876,10 @@ class Linker {
 		$editCount = 0;
 		$moreRevs = false;
 		foreach ( $res as $row ) {
-			if ( $rev->getUserText( Revision::RAW ) != $row->rev_user_text ) {
+			if ( $rev->getUserText( RevisionRecord::RAW ) != $row->rev_user_text ) {
 				if ( $verify &&
-					( $row->rev_deleted & Revision::DELETED_TEXT
-						|| $row->rev_deleted & Revision::DELETED_USER
+					( $row->rev_deleted & RevisionRecord::DELETED_TEXT
+						|| $row->rev_deleted & RevisionRecord::DELETED_USER
 				) ) {
 					// If the user or the text of the revision we might rollback
 					// to is deleted in some way we can't rollback. Similar to

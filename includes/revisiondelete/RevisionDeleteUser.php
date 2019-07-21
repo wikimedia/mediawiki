@@ -21,6 +21,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\Storage\RevisionRecord;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -57,8 +58,8 @@ class RevisionDeleteUser {
 		# current bitfields with the inverse of Revision::DELETED_USER. The
 		# username bit is made to 0 (x & 0 = 0), while others are unchanged (x & 1 = x).
 		# The same goes for the sysop-restricted *_deleted bit.
-		$delUser = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
-		$delAction = LogPage::DELETED_ACTION | Revision::DELETED_RESTRICTED;
+		$delUser = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
+		$delAction = LogPage::DELETED_ACTION | RevisionRecord::DELETED_RESTRICTED;
 		if ( $op === '&' ) {
 			$delUser = $dbw->bitNot( $delUser );
 			$delAction = $dbw->bitNot( $delAction );
