@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
 use Wikimedia\Rdbms\Database;
 
 /**
@@ -543,7 +544,7 @@ class InfoAction extends FormlessAction {
 		$batch = new LinkBatch;
 
 		if ( $firstRev ) {
-			$firstRevUser = $firstRev->getUserText( Revision::FOR_THIS_USER );
+			$firstRevUser = $firstRev->getUserText( RevisionRecord::FOR_THIS_USER );
 			if ( $firstRevUser !== '' ) {
 				$firstRevUserTitle = Title::makeTitle( NS_USER, $firstRevUser );
 				$batch->addObj( $firstRevUserTitle );
@@ -552,7 +553,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		if ( $lastRev ) {
-			$lastRevUser = $lastRev->getUserText( Revision::FOR_THIS_USER );
+			$lastRevUser = $lastRev->getUserText( RevisionRecord::FOR_THIS_USER );
 			if ( $lastRevUser !== '' ) {
 				$lastRevUserTitle = Title::makeTitle( NS_USER, $lastRevUser );
 				$batch->addObj( $lastRevUserTitle );

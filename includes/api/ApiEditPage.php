@@ -54,7 +54,7 @@ class ApiEditPage extends ApiBase {
 				$oldTitle = $titleObj;
 
 				$titles = Revision::newFromTitle( $oldTitle, false, Revision::READ_LATEST )
-					->getContent( Revision::FOR_THIS_USER, $user )
+					->getContent( RevisionRecord::FOR_THIS_USER, $user )
 					->getRedirectChain();
 				// array_shift( $titles );
 

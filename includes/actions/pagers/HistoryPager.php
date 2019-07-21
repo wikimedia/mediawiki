@@ -339,7 +339,9 @@ class HistoryPager extends ReverseChronologicalPager {
 			$this->preventClickjacking();
 			// If revision was hidden from sysops and we don't need the checkbox
 			// for anything else, disable it
-			if ( !$this->showTagEditUI && !$rev->userCan( Revision::DELETED_RESTRICTED, $user ) ) {
+			if ( !$this->showTagEditUI
+				&& !$rev->userCan( RevisionRecord::DELETED_RESTRICTED, $user )
+			) {
 				$del = Xml::check( 'deleterevisions', false, [ 'disabled' => 'disabled' ] );
 			// Otherwise, enable the checkbox...
 			} else {
@@ -349,14 +351,14 @@ class HistoryPager extends ReverseChronologicalPager {
 		// User can only view deleted revisions...
 		} elseif ( $rev->getVisibility() && $user->isAllowed( 'deletedhistory' ) ) {
 			// If revision was hidden from sysops, disable the link
-			if ( !$rev->userCan( Revision::DELETED_RESTRICTED, $user ) ) {
+			if ( !$rev->userCan( RevisionRecord::DELETED_RESTRICTED, $user ) ) {
 				$del = Linker::revDeleteLinkDisabled( false );
 			// Otherwise, show the link...
 			} else {
 				$query = [ 'type' => 'revision',
 					'target' => $this->getTitle()->getPrefixedDBkey(), 'ids' => $rev->getId() ];
 				$del .= Linker::revDeleteLink( $query,
-					$rev->isDeleted( Revision::DELETED_RESTRICTED ), false );
+					$rev->isDeleted( RevisionRecord::DELETED_RESTRICTED ), false );
 			}
 		}
 		if ( $del ) {
