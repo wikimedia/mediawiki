@@ -195,8 +195,8 @@ class SiteStatsInit {
 	 * @return IDatabase
 	 */
 	private static function getDB( $index, $groups = [] ) {
-		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-
-		return $lb->getConnection( $index, $groups );
+		return MediaWikiServices::getInstance()
+			->getDBLoadBalancer()
+			->getConnectionRef( $index, $groups );
 	}
 }
