@@ -177,7 +177,7 @@ class MessageBlobStore implements LoggerAwareInterface {
 		// - This global check key invalidates message blobs for all modules for all wikis
 		//   in cache contexts (e.g. languages, skins). Setting a hold-off on this key could
 		//   cause a cache stampede since no values would be stored for several seconds.
-		$cache->touchCheckKey( $cache->makeGlobalKey( __CLASS__ ), $cache::HOLDOFF_NONE );
+		$cache->touchCheckKey( $cache->makeGlobalKey( __CLASS__ ), $cache::HOLDOFF_TTL_NONE );
 	}
 
 	/**

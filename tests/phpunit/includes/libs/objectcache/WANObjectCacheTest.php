@@ -767,8 +767,8 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$localBag = $this->getMockBuilder( HashBagOStuff::class )
 			->setMethods( [ 'getMulti' ] )->getMock();
 		$localBag->expects( $this->exactly( 1 ) )->method( 'getMulti' )->willReturn( [
-			WANObjectCache::VALUE_KEY_PREFIX . 'k1' => 'val-id1',
-			WANObjectCache::VALUE_KEY_PREFIX . 'k2' => 'val-id2'
+			'WANCache:v:' . 'k1' => 'val-id1',
+			'WANCache:v:' . 'k2' => 'val-id2'
 		] );
 		$wanCache = new WANObjectCache( [ 'cache' => $localBag ] );
 
@@ -964,7 +964,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( 1, $calls, 'Value was populated' );
 
 		// Acquire the mutex to verify that getWithSetCallback uses lockTSE properly
-		$this->internalCache->add( $cache::MUTEX_KEY_PREFIX . $key, 1, 0 );
+		$this->internalCache->add( 'WANCache:m:' . $key, 1, 0 );
 
 		$checkKeys = [ wfRandomString() ]; // new check keys => force misses
 		$ret = $cache->getWithSetCallback( $key, 30, $func,
@@ -1026,7 +1026,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 		$mockWallClock += 2; // low logical TTL expired
 		// Acquire a lock to verify that getWithSetCallback uses lockTSE properly
-		$this->internalCache->add( $cache::MUTEX_KEY_PREFIX . $key, 1, 0 );
+		$this->internalCache->add( 'WANCache:m:' . $key, 1, 0 );
 
 		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5 ] );
 		$this->assertEquals( $value, $ret );
@@ -1034,7 +1034,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 		$mockWallClock += 301; // physical TTL expired
 		// Acquire a lock to verify that getWithSetCallback uses lockTSE properly
-		$this->internalCache->add( $cache::MUTEX_KEY_PREFIX . $key, 1, 0 );
+		$this->internalCache->add( 'WANCache:m:' . $key, 1, 0 );
 
 		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5 ] );
 		$this->assertEquals( $value, $ret );
@@ -1092,7 +1092,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$mockWallClock += 0.2; // interim keys not brand new
 
 		// Acquire a lock to verify that getWithSetCallback uses busyValue properly
-		$this->internalCache->add( $cache::MUTEX_KEY_PREFIX . $key, 1, 0 );
+		$this->internalCache->add( 'WANCache:m:' . $key, 1, 0 );
 
 		$checkKeys = [ wfRandomString() ]; // new check keys => force misses
 		$ret = $cache->getWithSetCallback( $key, 30, $func,
@@ -1111,14 +1111,14 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( $busyValue, $ret, 'Callback was not used; used busy value' );
 		$this->assertEquals( 2, $calls, 'Callback was not used; used busy value' );
 
-		$this->internalCache->delete( $cache::MUTEX_KEY_PREFIX . $key );
+		$this->internalCache->delete( 'WANCache:m:' . $key );
 		$mockWallClock += 0.001; // cached values will be newer than tombstone
 		$ret = $cache->getWithSetCallback( $key, 30, $func,
 			[ 'lockTSE' => 30, 'busyValue' => $busyValue, 'checkKeys' => $checkKeys ] );
 		$this->assertEquals( $value, $ret, 'Callback was used; saved interim' );
 		$this->assertEquals( 3, $calls, 'Callback was used; saved interim' );
 
-		$this->internalCache->add( $cache::MUTEX_KEY_PREFIX . $key, 1, 0 );
+		$this->internalCache->add( 'WANCache:m:' . $key, 1, 0 );
 		$ret = $cache->getWithSetCallback( $key, 30, $func,
 			[ 'busyValue' => $busyValue, 'checkKeys' => $checkKeys ] );
 		$this->assertEquals( $value, $ret, 'Callback was not used; used interim' );
@@ -1208,7 +1208,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		// Fake initial check key to be set in the past. Otherwise we'd have to sleep for
 		// several seconds during the test to assert the behaviour.
 		foreach ( [ $checkAll, $check1, $check2 ] as $checkKey ) {
-			$cache->touchCheckKey( $checkKey, WANObjectCache::HOLDOFF_NONE );
+			$cache->touchCheckKey( $checkKey, WANObjectCache::HOLDOFF_TTL_NONE );
 		}
 
 		$mockWallClock += 0.100;
@@ -1330,7 +1330,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertLessThan( 0, $curTTL, "Deleted key is tombstoned and has current TTL < 0" );
 
 		$this->cache->set( $key, $value );
-		$this->cache->delete( $key, WANObjectCache::HOLDOFF_NONE );
+		$this->cache->delete( $key, WANObjectCache::HOLDOFF_TTL_NONE );
 
 		$curTTL = null;
 		$v = $this->cache->get( $key, $curTTL );
@@ -1462,10 +1462,10 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$v = $cache->getWithSetCallback( $key, 60, $func );
 		$this->assertEquals( 3, $wasCalled, 'Value regenerated (got mutex)' ); // sets interim
 		// Lock up the mutex so interim cache is used
-		$this->internalCache->add( $cache::MUTEX_KEY_PREFIX . $key, 1, 0 );
+		$this->internalCache->add( 'WANCache:m:' . $key, 1, 0 );
 		$v = $cache->getWithSetCallback( $key, 60, $func );
 		$this->assertEquals( 3, $wasCalled, 'Value interim cached (failed mutex)' );
-		$this->internalCache->delete( $cache::MUTEX_KEY_PREFIX . $key );
+		$this->internalCache->delete( 'WANCache:m:' . $key );
 
 		$cache->useInterimHoldOffCaching( false );
 
@@ -1482,7 +1482,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$v = $cache->getWithSetCallback( $key, 60, $func );
 		$this->assertEquals( 4, $wasCalled, 'Value still regenerated (got mutex)' );
 		// Lock up the mutex so interim cache is used
-		$this->internalCache->add( $cache::MUTEX_KEY_PREFIX . $key, 1, 0 );
+		$this->internalCache->add( 'WANCache:m:' . $key, 1, 0 );
 		$v = $cache->getWithSetCallback( $key, 60, $func );
 		$this->assertEquals( 5, $wasCalled, 'Value still regenerated (failed mutex)' );
 	}
@@ -1548,16 +1548,16 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 		// Two check keys are newer (given hold-off) than $key, another is older
 		$this->internalCache->set(
-			WANObjectCache::TIME_KEY_PREFIX . $tKey2,
-			WANObjectCache::PURGE_VAL_PREFIX . ( $priorTime - 3 )
+			'WANCache:t:' . $tKey2,
+			'PURGED:' . ( $priorTime - 3 )
 		);
 		$this->internalCache->set(
-			WANObjectCache::TIME_KEY_PREFIX . $tKey2,
-			WANObjectCache::PURGE_VAL_PREFIX . ( $priorTime - 5 )
+			'WANCache:t:' . $tKey2,
+			'PURGED:' . ( $priorTime - 5 )
 		);
 		$this->internalCache->set(
-			WANObjectCache::TIME_KEY_PREFIX . $tKey1,
-			WANObjectCache::PURGE_VAL_PREFIX . ( $priorTime - 30 )
+			'WANCache:t:' . $tKey1,
+			'PURGED:' . ( $priorTime - 30 )
 		);
 		$this->cache->set( $key, $value, 30 );
 
@@ -1584,30 +1584,30 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$badTime = microtime( true ) - 300;
 
 		$this->internalCache->set(
-			WANObjectCache::VALUE_KEY_PREFIX . $vKey1,
+			'WANCache:v:' . $vKey1,
 			[
-				WANObjectCache::FLD_FORMAT_VERSION => WANObjectCache::VERSION,
-				WANObjectCache::FLD_VALUE => $value,
-				WANObjectCache::FLD_TTL => 3600,
-				WANObjectCache::FLD_TIME => $goodTime
+				0 => 1,
+				1 => $value,
+				2 => 3600,
+				3 => $goodTime
 			]
 		);
 		$this->internalCache->set(
-			WANObjectCache::VALUE_KEY_PREFIX . $vKey2,
+			'WANCache:v:' . $vKey2,
 			[
-				WANObjectCache::FLD_FORMAT_VERSION => WANObjectCache::VERSION,
-				WANObjectCache::FLD_VALUE => $value,
-				WANObjectCache::FLD_TTL => 3600,
-				WANObjectCache::FLD_TIME => $badTime
+				0 => 1,
+				1 => $value,
+				2 => 3600,
+				3 => $badTime
 			]
 		);
 		$this->internalCache->set(
-			WANObjectCache::TIME_KEY_PREFIX . $tKey1,
-			WANObjectCache::PURGE_VAL_PREFIX . $goodTime
+			'WANCache:t:' . $tKey1,
+			'PURGED:' . $goodTime
 		);
 		$this->internalCache->set(
-			WANObjectCache::TIME_KEY_PREFIX . $tKey2,
-			WANObjectCache::PURGE_VAL_PREFIX . $badTime
+			'WANCache:t:' . $tKey2,
+			'PURGED:' . $badTime
 		);
 
 		$this->assertEquals( $value, $this->cache->get( $vKey1 ) );
@@ -1632,10 +1632,10 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			->setMethods( [ 'get', 'changeTTL' ] )->getMock();
 		$backend->expects( $this->once() )->method( 'get' )
 			->willReturn( [
-				WANObjectCache::FLD_FORMAT_VERSION => WANObjectCache::VERSION,
-				WANObjectCache::FLD_VALUE => 'value',
-				WANObjectCache::FLD_TTL => 3600,
-				WANObjectCache::FLD_TIME => 300,
+				0 => 1,
+				1 => 'value',
+				2 => 3600,
+				3 => 300,
 			] );
 		$backend->expects( $this->once() )->method( 'changeTTL' )
 			->willReturn( false );
@@ -1721,7 +1721,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		] );
 
 		$localBag->expects( $this->once() )->method( 'set' )
-			->with( "/*/mw-wan/" . $wanCache::VALUE_KEY_PREFIX . "test" );
+			->with( "/*/mw-wan/" . 'WANCache:v:' . "test" );
 
 		$wanCache->delete( 'test' );
 	}
@@ -1737,7 +1737,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		] );
 
 		$localBag->expects( $this->once() )->method( 'set' )
-			->with( "/*/mw-wan/" . $wanCache::TIME_KEY_PREFIX . "test" );
+			->with( "/*/mw-wan/" . 'WANCache:t:' . "test" );
 
 		$wanCache->touchCheckKey( 'test' );
 	}
@@ -1753,7 +1753,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		] );
 
 		$localBag->expects( $this->once() )->method( 'delete' )
-			->with( "/*/mw-wan/" . $wanCache::TIME_KEY_PREFIX . "test" );
+			->with( "/*/mw-wan/" . 'WANCache:t:' . "test" );
 
 		$wanCache->resetCheckKey( 'test' );
 	}
