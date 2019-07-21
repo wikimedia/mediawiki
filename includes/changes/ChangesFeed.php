@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
 
 /**
  * Feed to Special:RecentChanges and Special:RecentChangesLinked.
@@ -117,7 +118,7 @@ class ChangesFeed {
 				FeedUtils::formatDiff( $obj ),
 				$url,
 				$obj->rc_timestamp,
-				( $obj->rc_deleted & Revision::DELETED_USER )
+				( $obj->rc_deleted & RevisionRecord::DELETED_USER )
 					? wfMessage( 'rev-deleted-user' )->escaped() : $obj->rc_user_text,
 				$talkpage
 			);

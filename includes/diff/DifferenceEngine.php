@@ -508,7 +508,7 @@ class DifferenceEngine extends ContextSource {
 
 		# Check if one of the revisions is deleted/suppressed
 		$deleted = $suppressed = false;
-		$allowed = $this->mNewRev->userCan( Revision::DELETED_TEXT, $user );
+		$allowed = $this->mNewRev->userCan( RevisionRecord::DELETED_TEXT, $user );
 
 		$revisionTools = [];
 
@@ -554,8 +554,8 @@ class DifferenceEngine extends ContextSource {
 					}
 				}
 
-				if ( !$this->mOldRev->isDeleted( Revision::DELETED_TEXT ) &&
-					!$this->mNewRev->isDeleted( Revision::DELETED_TEXT )
+				if ( !$this->mOldRev->isDeleted( RevisionRecord::DELETED_TEXT ) &&
+					!$this->mNewRev->isDeleted( RevisionRecord::DELETED_TEXT )
 				) {
 					$undoLink = Html::element( 'a', [
 							'href' => $this->mNewPage->getLocalURL( [
@@ -605,15 +605,15 @@ class DifferenceEngine extends ContextSource {
 			Hooks::run( 'DifferenceEngineOldHeader', [ $this, &$oldHeader, $prevlink, $oldminor,
 				$diffOnly, $ldel, $this->unhide ] );
 
-			if ( $this->mOldRev->isDeleted( Revision::DELETED_TEXT ) ) {
+			if ( $this->mOldRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 				$deleted = true; // old revisions text is hidden
-				if ( $this->mOldRev->isDeleted( Revision::DELETED_RESTRICTED ) ) {
+				if ( $this->mOldRev->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ) {
 					$suppressed = true; // also suppressed
 				}
 			}
 
 			# Check if this user can see the revisions
-			if ( !$this->mOldRev->userCan( Revision::DELETED_TEXT, $user ) ) {
+			if ( !$this->mOldRev->userCan( RevisionRecord::DELETED_TEXT, $user ) ) {
 				$allowed = false;
 			}
 		}
@@ -675,9 +675,9 @@ class DifferenceEngine extends ContextSource {
 		Hooks::run( 'DifferenceEngineNewHeader', [ $this, &$newHeader, $formattedRevisionTools,
 			$nextlink, $rollback, $newminor, $diffOnly, $rdel, $this->unhide ] );
 
-		if ( $this->mNewRev->isDeleted( Revision::DELETED_TEXT ) ) {
+		if ( $this->mNewRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 			$deleted = true; // new revisions text is hidden
-			if ( $this->mNewRev->isDeleted( Revision::DELETED_RESTRICTED ) ) {
+			if ( $this->mNewRev->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ) {
 				$suppressed = true; // also suppressed
 			}
 		}
@@ -1011,11 +1011,11 @@ class DifferenceEngine extends ContextSource {
 			if ( !$this->loadRevisionData() ) {
 				return false;
 			} elseif ( $this->mOldRev &&
-				!$this->mOldRev->userCan( Revision::DELETED_TEXT, $this->getUser() )
+				!$this->mOldRev->userCan( RevisionRecord::DELETED_TEXT, $this->getUser() )
 			) {
 				return false;
 			} elseif ( $this->mNewRev &&
-				!$this->mNewRev->userCan( Revision::DELETED_TEXT, $this->getUser() )
+				!$this->mNewRev->userCan( RevisionRecord::DELETED_TEXT, $this->getUser() )
 			) {
 				return false;
 			}
@@ -1465,7 +1465,7 @@ class DifferenceEngine extends ContextSource {
 			$users = $this->mNewPage->getAuthorsBetween( $oldRev, $newRev, $limit );
 			$numUsers = count( $users );
 
-			if ( $numUsers == 1 && $users[0] == $newRev->getUserText( Revision::RAW ) ) {
+			if ( $numUsers == 1 && $users[0] == $newRev->getUserText( RevisionRecord::RAW ) ) {
 				$numUsers = 0; // special case to say "by the same user" instead of "by one other user"
 			}
 
@@ -1530,7 +1530,7 @@ class DifferenceEngine extends ContextSource {
 		$header = Linker::linkKnown( $title, $header, [],
 			[ 'oldid' => $rev->getId() ] );
 
-		if ( $rev->userCan( Revision::DELETED_TEXT, $user ) ) {
+		if ( $rev->userCan( RevisionRecord::DELETED_TEXT, $user ) ) {
 			$editQuery = [ 'action' => 'edit' ];
 			if ( !$rev->isCurrent() ) {
 				$editQuery['oldid'] = $rev->getId();
@@ -1545,7 +1545,7 @@ class DifferenceEngine extends ContextSource {
 				[ 'class' => 'mw-diff-edit' ],
 				$editLink
 			);
-			if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
+			if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 				$header = Html::rawElement(
 					'span',
 					[ 'class' => 'history-deleted' ],

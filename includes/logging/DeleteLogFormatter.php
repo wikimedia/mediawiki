@@ -23,6 +23,8 @@
  * @since 1.22
  */
 
+use MediaWiki\Storage\RevisionRecord;
+
 /**
  * This class formats delete log entries.
  *
@@ -280,10 +282,10 @@ class DeleteLogFormatter extends LogFormatter {
 			];
 
 			static $fields = [
-				Revision::DELETED_TEXT => 'content',
-				Revision::DELETED_COMMENT => 'comment',
-				Revision::DELETED_USER => 'user',
-				Revision::DELETED_RESTRICTED => 'restricted',
+				RevisionRecord::DELETED_TEXT => 'content',
+				RevisionRecord::DELETED_COMMENT => 'comment',
+				RevisionRecord::DELETED_USER => 'user',
+				RevisionRecord::DELETED_RESTRICTED => 'restricted',
 			];
 
 			if ( isset( $rawParams['6::ofield'] ) ) {

@@ -21,6 +21,7 @@
 use MediaWiki\MediaWikiServices;
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Storage\RevisionRecord;
 
 /**
  * Base class for language conversion.
@@ -1043,7 +1044,7 @@ class LanguageConverter {
 				$revision = Revision::newFromTitle( $title );
 				if ( $revision ) {
 					if ( $revision->getContentModel() == CONTENT_MODEL_WIKITEXT ) {
-						$txt = $revision->getContent( Revision::RAW )->getText();
+						$txt = $revision->getContent( RevisionRecord::RAW )->getText();
 					}
 
 					// @todo in the future, use a specialized content model, perhaps based on json!

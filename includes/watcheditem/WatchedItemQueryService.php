@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Storage\RevisionRecord;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
@@ -566,9 +567,9 @@ class WatchedItemQueryService {
 		// Avoid brute force searches (T19342)
 		$bitmask = 0;
 		if ( !$user->isAllowed( 'deletedhistory' ) ) {
-			$bitmask = Revision::DELETED_USER;
+			$bitmask = RevisionRecord::DELETED_USER;
 		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
-			$bitmask = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
+			$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
 		}
 		if ( $bitmask ) {
 			$conds[] = $db->bitAnd( 'rc_deleted', $bitmask ) . " != $bitmask";

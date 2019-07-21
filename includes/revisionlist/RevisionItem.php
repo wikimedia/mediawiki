@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Storage\RevisionRecord;
+
 /**
  * Item class for a live revision table row
  */
@@ -53,15 +55,19 @@ class RevisionItem extends RevisionItemBase {
 	}
 
 	public function canView() {
-		return $this->revision->userCan( Revision::DELETED_RESTRICTED, $this->context->getUser() );
+		return $this->revision->userCan(
+			RevisionRecord::DELETED_RESTRICTED, $this->context->getUser()
+		);
 	}
 
 	public function canViewContent() {
-		return $this->revision->userCan( Revision::DELETED_TEXT, $this->context->getUser() );
+		return $this->revision->userCan(
+			RevisionRecord::DELETED_TEXT, $this->context->getUser()
+		);
 	}
 
 	public function isDeleted() {
-		return $this->revision->isDeleted( Revision::DELETED_TEXT );
+		return $this->revision->isDeleted( RevisionRecord::DELETED_TEXT );
 	}
 
 	/**

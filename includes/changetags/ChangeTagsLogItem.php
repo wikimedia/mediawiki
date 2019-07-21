@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
 
 /**
  * Item class for a logging table row with its associated change tags.
@@ -49,7 +50,9 @@ class ChangeTagsLogItem extends RevisionItemBase {
 	}
 
 	public function canView() {
-		return LogEventsList::userCan( $this->row, Revision::SUPPRESSED_ALL, $this->list->getUser() );
+		return LogEventsList::userCan(
+			$this->row, RevisionRecord::SUPPRESSED_ALL, $this->list->getUser()
+		);
 	}
 
 	public function canViewContent() {

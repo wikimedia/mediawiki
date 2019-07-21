@@ -22,6 +22,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableAccessException;
+use MediaWiki\Storage\RevisionRecord;
 
 /**
  * Query module to enumerate all deleted revisions.
@@ -197,9 +198,9 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			// (shouldn't be able to get here without 'deletedhistory', but
 			// check it again just in case)
 			if ( !$user->isAllowed( 'deletedhistory' ) ) {
-				$bitmask = Revision::DELETED_USER;
+				$bitmask = RevisionRecord::DELETED_USER;
 			} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
-				$bitmask = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
+				$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
 			} else {
 				$bitmask = 0;
 			}
@@ -288,11 +289,11 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				$rev['parentid'] = (int)$row->ar_parent_id;
 			}
 			if ( $fld_user || $fld_userid ) {
-				if ( $row->ar_deleted & Revision::DELETED_USER ) {
+				if ( $row->ar_deleted & RevisionRecord::DELETED_USER ) {
 					$rev['userhidden'] = true;
 					$anyHidden = true;
 				}
-				if ( Revision::userCanBitfield( $row->ar_deleted, Revision::DELETED_USER, $user ) ) {
+				if ( Revision::userCanBitfield( $row->ar_deleted, RevisionRecord::DELETED_USER, $user ) ) {
 					if ( $fld_user ) {
 						$rev['user'] = $row->ar_user_text;
 					}
@@ -303,11 +304,11 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			}
 
 			if ( $fld_comment || $fld_parsedcomment ) {
-				if ( $row->ar_deleted & Revision::DELETED_COMMENT ) {
+				if ( $row->ar_deleted & RevisionRecord::DELETED_COMMENT ) {
 					$rev['commenthidden'] = true;
 					$anyHidden = true;
 				}
-				if ( Revision::userCanBitfield( $row->ar_deleted, Revision::DELETED_COMMENT, $user ) ) {
+				if ( Revision::userCanBitfield( $row->ar_deleted, RevisionRecord::DELETED_COMMENT, $user ) ) {
 					$comment = $commentStore->getComment( 'ar_comment', $row )->text;
 					if ( $fld_comment ) {
 						$rev['comment'] = $comment;
@@ -326,11 +327,11 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				$rev['len'] = $row->ar_len;
 			}
 			if ( $fld_sha1 ) {
-				if ( $row->ar_deleted & Revision::DELETED_TEXT ) {
+				if ( $row->ar_deleted & RevisionRecord::DELETED_TEXT ) {
 					$rev['sha1hidden'] = true;
 					$anyHidden = true;
 				}
-				if ( Revision::userCanBitfield( $row->ar_deleted, Revision::DELETED_TEXT, $user ) ) {
+				if ( Revision::userCanBitfield( $row->ar_deleted, RevisionRecord::DELETED_TEXT, $user ) ) {
 					if ( $row->ar_sha1 != '' ) {
 						$rev['sha1'] = Wikimedia\base_convert( $row->ar_sha1, 36, 16, 40 );
 					} else {
@@ -339,11 +340,11 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				}
 			}
 			if ( $fld_content ) {
-				if ( $row->ar_deleted & Revision::DELETED_TEXT ) {
+				if ( $row->ar_deleted & RevisionRecord::DELETED_TEXT ) {
 					$rev['texthidden'] = true;
 					$anyHidden = true;
 				}
-				if ( Revision::userCanBitfield( $row->ar_deleted, Revision::DELETED_TEXT, $user ) ) {
+				if ( Revision::userCanBitfield( $row->ar_deleted, RevisionRecord::DELETED_TEXT, $user ) ) {
 					ApiResult::setContentValue( $rev, 'text', Revision::getRevisionText( $row, 'ar_' ) );
 				}
 			}
@@ -358,7 +359,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				}
 			}
 
-			if ( $anyHidden && ( $row->ar_deleted & Revision::DELETED_RESTRICTED ) ) {
+			if ( $anyHidden && ( $row->ar_deleted & RevisionRecord::DELETED_RESTRICTED ) ) {
 				$rev['suppressed'] = true;
 			}
 

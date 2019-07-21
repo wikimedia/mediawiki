@@ -28,6 +28,7 @@
  */
 
 use MediaWiki\MediaWikiServices as MediaWikiServicesAlias;
+use MediaWiki\Storage\RevisionRecord;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -253,7 +254,7 @@ class WikiExporter {
 				'rev_user' => $revQuery['fields']['rev_user'],
 			],
 			[
-				$this->db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0',
+				$this->db->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . ' = 0',
 				$cond,
 			],
 			__METHOD__,

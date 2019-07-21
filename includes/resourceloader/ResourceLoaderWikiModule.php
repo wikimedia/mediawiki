@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Storage\RevisionRecord;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
@@ -220,7 +221,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			if ( !$revision ) {
 				return null;
 			}
-			$content = $revision->getContent( Revision::RAW );
+			$content = $revision->getContent( RevisionRecord::RAW );
 
 			if ( !$content ) {
 				$this->getLogger()->error(
