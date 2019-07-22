@@ -443,14 +443,6 @@ class SpecialSearch extends SpecialPage {
 			$term, $this->offset, $titleMatches, $textMatches
 		) );
 
-		if ( $titleMatches ) {
-			$titleMatches->free();
-		}
-
-		if ( $textMatches ) {
-			$textMatches->free();
-		}
-
 		$out->addHTML( '<div class="mw-search-visualclear"></div>' );
 
 		// prev/next links

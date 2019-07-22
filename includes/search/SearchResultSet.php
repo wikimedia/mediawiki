@@ -234,9 +234,9 @@ class SearchResultSet implements Countable, IteratorAggregate {
 
 	/**
 	 * Frees the result set, if applicable.
+	 * @deprecated noop since 1.34
 	 */
 	function free() {
-		// ...
 	}
 
 	/**
