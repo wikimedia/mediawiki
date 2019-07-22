@@ -3,7 +3,8 @@
 		"authors": [
 			"KhayR",
 			"Seb35",
-			"Ильнар"
+			"Ильнар",
+			"Ерней"
 		]
 	},
 	"config-desc": "MediaWiki йөкләүче",
@@ -39,12 +40,12 @@
 	"config-db-host": "Мәгълүмат базасы хосты:",
 	"config-db-host-oracle": "TNS мәгълүмат базасы:",
 	"config-db-wiki-settings": "Бу вики идентификациясе",
-	"config-db-name": "Мәгълүмат базасы исеме:",
+	"config-db-name": "Мәгълүматлар базасы исеме (сызыкчасыз):",
 	"config-db-name-oracle": "Мәгълүмат базасы төзелеше:",
 	"config-db-username": "Мәгълүмат базасын кулланучы исеме:",
 	"config-db-password": "Мәгълүмат базасының серсүзе:",
 	"config-db-port": "Мәгълүмат базасы порты:",
-	"config-db-schema": "MediaWiki өчен төзелеш:",
+	"config-db-schema": "MediaWiki өчен (сызыкчасыз) төзелеш:",
 	"config-type-mysql": "MariaDB, MySQL яисә ярашлы",
 	"config-type-mssql": "Microsoft SQL Server",
 	"config-header-mysql": "MariaDB/MySQL көйләнмәләре",

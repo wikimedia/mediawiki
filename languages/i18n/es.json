@@ -190,7 +190,8 @@
 			"Ryo567",
 			"Agusbou2015",
 			"Waldyrious",
-			"Johny Weissmuller Jr"
+			"Johny Weissmuller Jr",
+			"Dark Dragoon"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -3974,11 +3975,10 @@
 	"edit-error-short": "Error: $1",
 	"edit-error-long": "Errores:\n\n$1",
 	"specialmute": "Silenciar",
-	"specialmute-success": "\nTus preferencias de silencio han sido actualizadas. Mira todos los usuarios silenciados en [[Especial: Preferencias|tus preferencias]].",
+	"specialmute-success": "Tus preferencias de silencio han sido actualizadas. Mira todos los usuarios silenciados en [[Especial:Preferencias|tus preferencias]].",
 	"specialmute-submit": "Confirmar",
 	"specialmute-label-mute-email": "Silenciar los correos electrónicos de este usuario",
 	"specialmute-error-invalid-user": "No se encontró el nombre de usuario solicitado.",
-	"specialmute-error-email-preferences": "Debes confirmar tu dirección de correo electrónico antes de que puedas silenciar a un usuario. Puedes hacerlo desde [[Special:Preferences|tus preferencias]].",
 	"revid": "revisión $1",
 	"pageid": "ID de página $1",
 	"interfaceadmin-info": "$1\n\nLos permisos para editar los archivos con formato CSS, JS y JSON en todo el sitio han sido recientemente separados del permiso <code>editinterface</code>. Si no comprendes por qué recibes este error, por favor lee [[mw:MediaWiki_1.32/interface-admin]].",

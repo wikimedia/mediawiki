@@ -45,7 +45,7 @@
 	"config-help-restart": "Želite počistiti vse shranjene podatke, ki ste jih vnesti, in ponovno začeti s postopkom namestitve?",
 	"config-restart": "Da, ponovno zaženi",
 	"config-welcome": "=== Pregledi okolja ===\nIzvedli bomo osnovne preglede, da vidimo, če je okolje primerno za namestitev MediaWiki.\nPosredujte rezultate teh pregledov, če med namestitvijo potrebujete pomoč.",
-	"config-sidebar": "* [https://www.mediawiki.org Domača stran MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Vodnik za uporabnike]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Vodnik za administratorje]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Pogosto zastavljena vprašanja]\n----\n* <doclink href=Readme>Beri me</doclink>\n* <doclink href=ReleaseNotes>Opombe ob izidu</doclink>\n* <doclink href=Copying>Kopiranje</doclink>\n* <doclink href=UpgradeDoc>Nadgrajevanje</doclink>",
+	"config-sidebar": "* [https://www.mediawiki.org Domača stran MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Vodnik za uporabnike]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Vodnik za administratorje]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Pogosto zastavljena vprašanja]",
 	"config-env-good": "Okolje je pregledano.\nLahko namestite MediaWiki.",
 	"config-env-bad": "Okolje je pregledano.\nNe morete namestiti MediaWiki.",
 	"config-env-php": "Nameščen je PHP $1.",

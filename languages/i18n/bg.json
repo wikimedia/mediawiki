@@ -3411,6 +3411,9 @@
 	"mediastatistics-header-video": "Видео",
 	"mediastatistics-header-multimedia": "Мултимедия",
 	"mediastatistics-header-office": "Офис",
+	"mediastatistics-header-text": "Текстови",
+	"mediastatistics-header-executable": "Изпълними",
+	"mediastatistics-header-archive": "Компресирани формати",
 	"mediastatistics-header-total": "Всички файлове",
 	"json-error-state-mismatch": "Невалиден или грешно структуриран JSON",
 	"json-error-ctrl-char": "Грешка в контролния знак. Вероятно е неправилно кодиран",
@@ -3442,6 +3445,9 @@
 	"mw-widgets-abandonedit-discard": "Отказване на редакциите",
 	"mw-widgets-abandonedit-keep": "Продължаване на редактирането",
 	"mw-widgets-abandonedit-title": "Сигурни ли сте?",
+	"mw-widgets-copytextlayout-copy": "Копиране",
+	"mw-widgets-copytextlayout-copy-fail": "Неуспех при копиране в системния буфер.",
+	"mw-widgets-copytextlayout-copy-success": "Копирано в системния буфер.",
 	"mw-widgets-dateinput-no-date": "Не е избрана дата",
 	"mw-widgets-dateinput-placeholder-day": "ГГГГ-ММ-ДД",
 	"mw-widgets-dateinput-placeholder-month": "ГГГГ-ММ",
@@ -3537,6 +3543,7 @@
 	"restrictionsfield-label": "Позволени IP-диапазони:",
 	"edit-error-short": "Грешка: $1",
 	"edit-error-long": "Грешки:\n\n$1",
+	"specialmute-submit": "Потвърждаване",
 	"revid": "версия $1",
 	"pageid": "ID на страницата $1",
 	"interfaceadmin-info": "$1\n\nПравата за редактиране на CSS/JS/JSON в целия сайт наскоро бяха отделени от правата <code>editinterface</code>. Ако не разбирате защо получавате тази грешка, погледнете [[mw:MediaWiki_1.32/interface-admin]].",
@@ -3555,5 +3562,7 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Паролата не може да съвпада с пароли от черния списък",
 	"passwordpolicies-policy-maximalpasswordlength": "Паролата трябва да бъде по-малко от $1 {{PLURAL:$1|знак|знака}}",
 	"passwordpolicies-policy-passwordcannotbepopular": "Паролата не може да бъде {{PLURAL:$1|най-популярната такава|от списъка на най-популярните $1 пароли}}",
-	"passwordpolicies-policyflag-forcechange": "трябва да бъде променена при влизане"
+	"passwordpolicies-policyflag-forcechange": "трябва да бъде променена при влизане",
+	"passwordpolicies-policyflag-suggestchangeonlogin": "предложи промяна при вход",
+	"userlogout-continue": "Искате да излезете?"
 }
