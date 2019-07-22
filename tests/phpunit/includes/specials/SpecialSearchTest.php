@@ -13,6 +13,27 @@ class SpecialSearchTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers SpecialSearch::load
+	 * @covers SpecialSearch::showResults
+	 */
+	public function testValidateSortOrder() {
+		$ctx = new RequestContext();
+		$ctx->setRequest( new FauxRequest( [
+			'search' => 'foo',
+			'fulltext' => 1,
+			'sort' => 'invalid',
+		] ) );
+		$sp = Title::makeTitle( NS_SPECIAL, 'Search' );
+		MediaWikiServices::getInstance()
+			->getSpecialPageFactory()
+			->executePath( $sp, $ctx );
+		$html = $ctx->getOutput()->getHTML();
+		$this->assertRegExp( '/class="warningbox"/', $html, 'must contain warnings' );
+		$this->assertRegExp( '/Sort order of invalid is unrecognized/',
+			$html, 'must tell user sort order is invalid' );
+	}
+
+	/**
+	 * @covers SpecialSearch::load
 	 * @dataProvider provideSearchOptionsTests
 	 * @param array $requested Request parameters. For example:
 	 *   [ 'ns5' => true, 'ns6' => true ]. Null to use default options.
