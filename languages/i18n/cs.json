@@ -1246,6 +1246,7 @@
 	"right-editmyusercss": "Editace vlastních uživatelských CSS souborů",
 	"right-editmyuserjson": "Editace vlastních uživatelských souborů s JSONem",
 	"right-editmyuserjs": "Editace vlastních uživatelských JavaScriptových souborů",
+	"right-editmyuserjsredirect": "Editace vlastních uživatelských JavaScriptových souborů, které nejsou přesměrování",
 	"right-viewmywatchlist": "Prohlížení vlastního seznamu sledovaných stránek",
 	"right-editmywatchlist": "Editace vlastního seznamu sledovaných stránek. Uvědomte si, že některé akce do něj mohou přidat stránky i bez tohoto oprávnění.",
 	"right-viewmyprivateinfo": "Prohlížení vlastních soukromých údajů (např. e-mailová adresa, skutečné jméno)",
@@ -1376,6 +1377,7 @@
 	"action-editmyusercss": "upravovat vlastní uživatelské CSS soubory",
 	"action-editmyuserjson": "upravovat vlastní uživatelské JSON soubory",
 	"action-editmyuserjs": "upravovat vlastní uživatelský JavaScript",
+	"action-editmyuserjsredirect": "editovat vlastní uživatelské JavaScriptové soubory, které nejsou přesměrování",
 	"action-viewsuppressed": "prohlížet revize skryté všem uživatelům",
 	"action-hideuser": "zablokovat uživatelské jméno a skrýt jej",
 	"action-ipblock-exempt": "obcházet blokování IP adres, jejich rozsahů a autobloků",
@@ -3880,6 +3882,7 @@
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Heslo nesmí být v seznamu 100 000 nejčastěji používaných hesel.",
 	"passwordpolicies-policyflag-forcechange": "nutné změnit při přihlášení",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "navrhnout změnu při přihlášení",
+	"mycustomjsredirectprotected": "Nemáte oprávnění editovat tuto stránku s JavaScriptem, protože je to přesměrování mimo váš uživatelský prostor.",
 	"easydeflate-invaliddeflate": "Poskytnutý obsah nebyl správně zkomprimován",
 	"unprotected-js": "Z bezpečnostních důvodů nelze načítat JavaScript z nechráněných stran. Vyrábějte prosím JavaScriptové skripty jen ve jmenném prostoru MediaWiki: nebo jako uživatelskou podstránku",
 	"userlogout-continue": "Chcete se odhlásit?"

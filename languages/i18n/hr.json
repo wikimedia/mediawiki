@@ -3432,7 +3432,6 @@
 	"specialmute-success": "Vaše postavke utišavanja su uspješno ažurirane. Vidite sve utišane korisnike ovdje: [[Special:Preferences]].",
 	"specialmute-submit": "Potvrdi",
 	"specialmute-error-invalid-user": "Korisničko ime koje ste tražili nije moguće pronaći.",
-	"specialmute-error-email-preferences": "Morate potvrditi svoju adresu e-pošte prije nego što možete utišati ovoga korisnika. To možete učiniti putem [[Special:Preferences]].",
 	"specialmute-login-required": "Molimo Vas, prijavite se da biste promijenili postavke.",
 	"gotointerwiki": "Napuštate projekt {{SITENAME}}",
 	"gotointerwiki-invalid": "Navedeni naslov nije valjan.",

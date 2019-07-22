@@ -459,7 +459,7 @@
 	"createacct-benefit-heading": "{{SITENAME}}係由你同其他人貢獻。",
 	"createacct-benefit-body1": "{{PLURAL:$1|次編輯|次編輯}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|版|版}}",
-	"createacct-benefit-body3": "最近{{PLURAL:$1|貢獻者|貢獻者}}",
+	"createacct-benefit-body3": "位最近{{PLURAL:$1|貢獻者}}",
 	"badretype": "你入嘅密碼前後不一。",
 	"usernameinprogress": "呢個名嘅戶口已經開緊。\n請等等。",
 	"userexists": "你入嘅用戶名已經有人用咗。\n唔該揀過個名啦。",

@@ -3,7 +3,8 @@
 		"authors": [
 			"Conquistador",
 			"Kolega2357",
-			"OC Ripper"
+			"OC Ripper",
+			"Vlad5250"
 		]
 	},
 	"exif-imagewidth": "Širina",
@@ -189,7 +190,15 @@
 	"exif-compression-3": "CCITT Group 3 faks kodiranje",
 	"exif-compression-4": "CCITT Group 4 faks kodiranje",
 	"exif-copyrighted-true": "Pod autorskim pravima",
-	"exif-copyrighted-false": "Javno vlasništvo",
+	"exif-copyrighted-false": "Autorskopravni status nije postavljen",
+	"exif-photometricinterpretation-0": "Crno-bijelo (bijela je 0)",
+	"exif-photometricinterpretation-1": "Crno-bijelo (crna je 0)",
+	"exif-photometricinterpretation-3": "Paleta",
+	"exif-photometricinterpretation-4": "Maska prozirnosti",
+	"exif-photometricinterpretation-5": "Odvojeno (vjerojatno CMYK)",
+	"exif-photometricinterpretation-8": "CIE L*a*b*",
+	"exif-photometricinterpretation-9": "CIE L*a*b* (ICC kodiranje)",
+	"exif-photometricinterpretation-10": "CIE L*a*b* (ITU kodiranje)",
 	"exif-unknowndate": "Nepoznat datum",
 	"exif-orientation-1": "Normalna",
 	"exif-orientation-2": "Horizontalno preokrenuto",

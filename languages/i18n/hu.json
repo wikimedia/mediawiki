@@ -3800,8 +3800,6 @@
 	"specialmute-submit": "Megerősítés",
 	"specialmute-label-mute-email": "E-mailek némítása ettől a felhasználótól",
 	"specialmute-error-invalid-user": "A kért felhasználónév nem található.",
-	"specialmute-error-email-blacklist-disabled": "Felhasználók e-mailküldési lehetőségének némítása nincs bekapcsolva.",
-	"specialmute-error-email-preferences": "Először meg kell erősítened az e-mail-címedet, mielőtt lenémíthatnál egy felhasználót. Ezt a [[Special:Preferences]] oldalon tudod megtenni.",
 	"specialmute-email-footer": "[$1 {{BIDI:$2}} e-mail beállításainak kezelése.]",
 	"specialmute-login-required": "Kérjük, jelentkezz be a némítási beállításaid módosításához.",
 	"revid": "$1 változat",

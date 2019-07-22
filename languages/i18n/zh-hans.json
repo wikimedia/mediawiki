@@ -3941,8 +3941,6 @@
 	"specialmute-submit": "确认",
 	"specialmute-label-mute-email": "屏蔽该用户的邮件",
 	"specialmute-error-invalid-user": "未找到您请求的用户名。",
-	"specialmute-error-email-blacklist-disabled": "沉默向你发电子邮件的用户的功能没启用。",
-	"specialmute-error-email-preferences": "你需要去确认你的电子邮件地址才能沉默用户提醒。你可能需要去[[Special:Preferences|参数设置]]进行设置。",
 	"specialmute-login-required": "请登录以更改您的沉默用户提醒设置。",
 	"revid": "修订版本$1",
 	"pageid": "页面ID$1",

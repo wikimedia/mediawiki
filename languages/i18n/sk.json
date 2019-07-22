@@ -40,7 +40,8 @@
 			"Fitoschido",
 			"Matěj Suchánek",
 			"Vlad5250",
-			"Robert Važan"
+			"Robert Važan",
+			"Vegetator"
 		]
 	},
 	"tog-underline": "Podčiarkovať odkazy:",
@@ -909,6 +910,7 @@
 	"diff-multi-manyusers": "({{PLURAL:$1|$1 medziľahlá revízia|$1 medziľahlé revízie|$1 medziľahlých revízií}} od viac ako {{PLURAL:$2|$2 používateľa|$2 používateľov}} {{PLURAL:$1|nie je zobrazená|nie sú zobrazené|nie je zobrazených}})",
 	"difference-missing-revision": "{{PLURAL:$2|$2 revízia|$2 revízie|$2 revízií}} pre požadovaný rozdiel ($1) {{PLURAL:$2|neexistuje|neexistujú|neexistuje}}.\n\nPravdepodobne ste nasledovali zastaraný odkaz na rozdiel revízií, z ktorých niektorá bola medzičasom odstránená.\nPodrobnosti nájdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zázname zmazaní].",
 	"searchresults": "Výsledky vyhľadávania",
+	"search-filter-title-prefix-reset": "Vybrať na všetkých stránkach",
 	"searchresults-title": "Výsledky hľadania „$1“",
 	"titlematches": "Vyhovujúce názvy stránok",
 	"textmatches": "Zhody v textoch stránok",
