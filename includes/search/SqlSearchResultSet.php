@@ -66,14 +66,6 @@ class SqlSearchResultSet extends SearchResultSet {
 		return $this->results;
 	}
 
-	function free() {
-		if ( $this->resultSet === false ) {
-			return;
-		}
-
-		$this->resultSet->free();
-	}
-
 	function getTotalHits() {
 		if ( !is_null( $this->totalHits ) ) {
 			return $this->totalHits;
