@@ -377,9 +377,9 @@ class SpecialSearch extends SpecialPage {
 
 		$hasErrors = $textStatus && $textStatus->getErrors() !== [];
 		$hasOtherResults = $textMatches &&
-			$textMatches->hasInterwikiResults( SearchResultSet::INLINE_RESULTS );
+			$textMatches->hasInterwikiResults( ISearchResultSet::INLINE_RESULTS );
 
-		if ( $textMatches && $textMatches->hasInterwikiResults( SearchResultSet::SECONDARY_RESULTS ) ) {
+		if ( $textMatches && $textMatches->hasInterwikiResults( ISearchResultSet::SECONDARY_RESULTS ) ) {
 			$out->addHTML( '<div class="searchresults mw-searchresults-has-iw">' );
 		} else {
 			$out->addHTML( '<div class="searchresults">' );
@@ -473,8 +473,8 @@ class SpecialSearch extends SpecialPage {
 	/**
 	 * @param Title $title
 	 * @param int $num The number of search results found
-	 * @param null|SearchResultSet $titleMatches Results from title search
-	 * @param null|SearchResultSet $textMatches Results from text search
+	 * @param null|ISearchResultSet $titleMatches Results from title search
+	 * @param null|ISearchResultSet $textMatches Results from text search
 	 */
 	protected function showCreateLink( $title, $num, $titleMatches, $textMatches ) {
 		// show direct page/create link if applicable

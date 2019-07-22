@@ -24,19 +24,7 @@
 /**
  * @ingroup Search
  */
-class SearchResultSet implements Countable, IteratorAggregate {
-
-	/**
-	 * Identifier for interwiki results that are displayed only together with existing main wiki
-	 * results.
-	 */
-	const SECONDARY_RESULTS = 0;
-
-	/**
-	 * Identifier for interwiki results that can be displayed even if no existing main wiki results
-	 * exist.
-	 */
-	const INLINE_RESULTS = 1;
+class SearchResultSet implements ISearchResultSet {
 
 	protected $containedSyntax = false;
 
@@ -179,7 +167,7 @@ class SearchResultSet implements Countable, IteratorAggregate {
 	 * Return a result set of hits on other (multiple) wikis associated with this one
 	 *
 	 * @param int $type
-	 * @return SearchResultSet[]
+	 * @return ISearchResultSet[]
 	 */
 	function getInterwikiResults( $type = self::SECONDARY_RESULTS ) {
 		return null;

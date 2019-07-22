@@ -659,6 +659,7 @@ $wgAutoloadLocalClasses = [
 	'IP' => __DIR__ . '/includes/libs/IP.php',
 	'IPTC' => __DIR__ . '/includes/media/IPTC.php',
 	'IRCColourfulRCFeedFormatter' => __DIR__ . '/includes/rcfeed/IRCColourfulRCFeedFormatter.php',
+	'ISearchResultSet' => __DIR__ . '/includes/search/ISearchResultSet.php',
 	'IStoreKeyEncoder' => __DIR__ . '/includes/libs/objectcache/IStoreKeyEncoder.php',
 	'IcuCollation' => __DIR__ . '/includes/collation/IcuCollation.php',
 	'IdentityCollation' => __DIR__ . '/includes/collation/IdentityCollation.php',

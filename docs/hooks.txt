@@ -3304,8 +3304,8 @@ $opts: Array: key => value of hidden options for inclusion in custom forms
 
 'SpecialSearchResults': Called before search result display
 $term: string of search term
-&$titleMatches: empty or SearchResultSet object
-&$textMatches: empty or SearchResultSet object
+&$titleMatches: empty or ISearchResultSet object
+&$textMatches: empty or ISearchResultSet object
 
 'SpecialSearchResultsPrepend': Called immediately before returning HTML
 on the search results page.  Useful for including an external search

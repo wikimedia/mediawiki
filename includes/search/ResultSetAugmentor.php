@@ -6,8 +6,8 @@
 interface ResultSetAugmentor {
 	/**
 	 * Produce data to augment search result set.
-	 * @param SearchResultSet $resultSet
+	 * @param ISearchResultSet $resultSet
 	 * @return array Data for all results
 	 */
-	public function augmentAll( SearchResultSet $resultSet );
+	public function augmentAll( ISearchResultSet $resultSet );
 }

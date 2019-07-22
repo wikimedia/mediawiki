@@ -79,7 +79,7 @@ abstract class SearchEngine {
 	 * be converted to final in 1.34. Override self::doSearchText().
 	 *
 	 * @param string $term Raw search term
-	 * @return SearchResultSet|Status|null
+	 * @return ISearchResultSet|Status|null
 	 */
 	public function searchText( $term ) {
 		return $this->maybePaginate( function () use ( $term ) {
@@ -91,7 +91,7 @@ abstract class SearchEngine {
 	 * Perform a full text search query and return a result set.
 	 *
 	 * @param string $term Raw search term
-	 * @return SearchResultSet|Status|null
+	 * @return ISearchResultSet|Status|null
 	 * @since 1.32
 	 */
 	protected function doSearchText( $term ) {
@@ -136,7 +136,7 @@ abstract class SearchEngine {
 	 * be converted to final in 1.34. Override self::doSearchTitle().
 	 *
 	 * @param string $term Raw search term
-	 * @return SearchResultSet|null
+	 * @return ISearchResultSet|null
 	 */
 	public function searchTitle( $term ) {
 		return $this->maybePaginate( function () use ( $term ) {
@@ -148,7 +148,7 @@ abstract class SearchEngine {
 	 * Perform a title-only search query and return a result set.
 	 *
 	 * @param string $term Raw search term
-	 * @return SearchResultSet|null
+	 * @return ISearchResultSet|null
 	 * @since 1.32
 	 */
 	protected function doSearchTitle( $term ) {
@@ -161,7 +161,7 @@ abstract class SearchEngine {
 	 * explicitly implement their own pagination.
 	 *
 	 * @param Closure $fn Takes no arguments
-	 * @return SearchResultSet|Status<SearchResultSet>|null Result of calling $fn
+	 * @return ISearchResultSet|Status<ISearchResultSet>|null Result of calling $fn
 	 */
 	private function maybePaginate( Closure $fn ) {
 		if ( $this instanceof PaginatingSearchEngine ) {
@@ -175,10 +175,10 @@ abstract class SearchEngine {
 		}
 
 		$resultSet = null;
-		if ( $resultSetOrStatus instanceof SearchResultSet ) {
+		if ( $resultSetOrStatus instanceof ISearchResultSet ) {
 			$resultSet = $resultSetOrStatus;
 		} elseif ( $resultSetOrStatus instanceof Status &&
-			$resultSetOrStatus->getValue() instanceof SearchResultSet
+			$resultSetOrStatus->getValue() instanceof ISearchResultSet
 		) {
 			$resultSet = $resultSetOrStatus->getValue();
 		}
@@ -784,9 +784,9 @@ abstract class SearchEngine {
 	/**
 	 * Augment search results with extra data.
 	 *
-	 * @param SearchResultSet $resultSet
+	 * @param ISearchResultSet $resultSet
 	 */
-	public function augmentSearchResults( SearchResultSet $resultSet ) {
+	public function augmentSearchResults( ISearchResultSet $resultSet ) {
 		$setAugmentors = [];
 		$rowAugmentors = [];
 		Hooks::run( "SearchResultsAugment", [ &$setAugmentors, &$rowAugmentors ] );

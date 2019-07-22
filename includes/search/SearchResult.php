@@ -66,10 +66,10 @@ class SearchResult {
 	 * Return a new SearchResult and initializes it with a title.
 	 *
 	 * @param Title $title
-	 * @param SearchResultSet|null $parentSet
+	 * @param ISearchResultSet|null $parentSet
 	 * @return SearchResult
 	 */
-	public static function newFromTitle( $title, SearchResultSet $parentSet = null ) {
+	public static function newFromTitle( $title, ISearchResultSet $parentSet = null ) {
 		$result = new static();
 		$result->initFromTitle( $title );
 		if ( $parentSet ) {
