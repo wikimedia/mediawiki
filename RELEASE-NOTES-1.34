@@ -378,6 +378,7 @@ because of Phabricator reports.
   and should no longer be passed. Search engine implemenations should be
   responsible for carrying relevant information needed for highlighting with
   their own SearchResultSet/SearchResult sub-classes.
+* SearchResultSet::free() method is deprecated.
 * SearchEngine::$searchTerms protected field is deprecated. Moved to
   SearchDatabase.
 * The use of the $terms param in the ShowSearchHit and ShowSearchHitTitle

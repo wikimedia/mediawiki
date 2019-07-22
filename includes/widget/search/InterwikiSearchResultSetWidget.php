@@ -82,7 +82,7 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 			$iwResultItemOutput = '';
 
 			foreach ( $results as $result ) {
-				$iwResultItemOutput .= $this->resultWidget->render( $result, $term, $position++ );
+				$iwResultItemOutput .= $this->resultWidget->render( $result, $position++ );
 			}
 
 			$footerHtml = $this->footerHtml( $term, $iwPrefix );
