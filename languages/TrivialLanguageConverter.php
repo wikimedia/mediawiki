@@ -20,6 +20,8 @@
  * @file
  * @ingroup Language
  */
+use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 
 /**
  * A trivial language converter.
@@ -36,13 +38,20 @@
  */
 
 class TrivialLanguageConverter implements ILanguageConverter {
+
 	/**
 	 * @var Language
 	 */
 	protected $language;
 
+	/**
+	 * @var TitleFormatter
+	 */
+	private $titleFormatter;
+
 	public function __construct( $langobj ) {
 		$this->language = $langobj;
+		$this->titleFormatter = MediaWikiServices::getInstance()->getTitleFormatter();
 	}
 
 	public function autoConvert( $text, $variant = false ) {
@@ -62,11 +71,11 @@ class TrivialLanguageConverter implements ILanguageConverter {
 	}
 
 	/**
-	 * @param Title $t
+	 * @param LinkTarget $linkTarget
 	 * @return mixed
 	 */
-	public function convertTitle( $t ) {
-		return $t->getPrefixedText();
+	public function convertTitle( LinkTarget $linkTarget ) {
+		return $this->titleFormatter->getPrefixedText( $linkTarget );
 	}
 
 	public function convertNamespace( $index, $variant = null ) {
@@ -131,7 +140,7 @@ class TrivialLanguageConverter implements ILanguageConverter {
 		return $text;
 	}
 
-	public function updateConversionTable( Title $title ) {
+	public function updateConversionTable( LinkTarget $linkTarget ) {
 	}
 
 	/**

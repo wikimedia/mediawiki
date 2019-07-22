@@ -30,6 +30,7 @@ use CLDRPluralRuleParser\Evaluator;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\Assert;
 
@@ -4242,10 +4243,10 @@ class Language {
 	 *
 	 * @deprecated since 1.35 use LanguageConverter::updateConversionTable instead
 	 *
-	 * @param Title $title The Title of the page being updated
+	 * @param LinkTarget $linkTarget The LinkTarget of the page being updated
 	 */
-	public function updateConversionTable( Title $title ) {
-		$this->getConverter()->updateConversionTable( $title );
+	public function updateConversionTable( LinkTarget $linkTarget ) {
+		$this->getConverter()->updateConversionTable( $linkTarget );
 	}
 
 	/**

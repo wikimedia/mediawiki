@@ -180,6 +180,7 @@ $wgAutoloadClasses += [
 	'MediaWiki\Tests\Revision\RevisionStoreRecordTest' => "$testDir/phpunit/includes/Revision/RevisionStoreRecordTest.php",
 
 	# tests/phpunit/languages
+	'DummyConverter' => "$testDir/phpunit/mocks/languages/DummyConverter.php",
 	'LanguageClassesTestCase' => "$testDir/phpunit/languages/LanguageClassesTestCase.php",
 	'LanguageConverterTestTrait' => "$testDir/phpunit/languages/LanguageConverterTestTrait.php",
 
