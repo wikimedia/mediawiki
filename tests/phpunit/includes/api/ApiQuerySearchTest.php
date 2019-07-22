@@ -54,7 +54,7 @@ class ApiQuerySearchTest extends ApiTestCase {
 			'one wiki response' => [
 				[ 'utwiki' => [ 'Qwerty' ] ],
 				[
-					SearchResultSet::SECONDARY_RESULTS => [
+					ISearchResultSet::SECONDARY_RESULTS => [
 						'utwiki' => new MockSearchResultSet( [
 							$this->mockResultClosure(
 								'Qwerty',

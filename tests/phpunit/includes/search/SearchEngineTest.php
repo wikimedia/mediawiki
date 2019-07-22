@@ -38,7 +38,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			'wgCapitalLinks' => true,
 			'wgCapitalLinkOverrides' => [
 				NS_CATEGORY => false // for testCompletionSearchMustRespectCapitalLinkOverrides
-			]
+			],
 		] );
 
 		$lb = LoadBalancerSingle::newFromConnection( $this->db );
@@ -64,7 +64,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			'wgCapitalLinks' => true,
 			'wgCapitalLinkOverrides' => [
 				NS_CATEGORY => false // for testCompletionSearchMustRespectCapitalLinkOverrides
-			]
+			],
 		] );
 
 		$this->insertPage( 'Not_Main_Page', 'This is not a main page' );
@@ -283,7 +283,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			$mockField =
 				$this->getMockBuilder( SearchIndexFieldDefinition::class )->setConstructorArgs( [
 					$name,
-					$type
+					$type,
 				] )->getMock();
 
 			$mockField->expects( $this->any() )->method( 'getMapping' )->willReturn( [
@@ -346,8 +346,9 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		$setAugmentor = $this->createMock( ResultSetAugmentor::class );
 		$setAugmentor->expects( $this->once() )
 			->method( 'augmentAll' )
-			->willReturnCallback( function ( SearchResultSet $resultSet ) {
+			->willReturnCallback( function ( ISearchResultSet $resultSet ) {
 				$data = [];
+				/** @var SearchResult $result */
 				foreach ( $resultSet as $result ) {
 					$id = $result->getTitle()->getArticleID();
 					$data[$id] = "Result:$id:" . $result->getTitle()->getText();
@@ -405,7 +406,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 				[
 					'query' => 'foo',
 				],
-				false
+				false,
 			],
 			'empty' => [
 				[
@@ -445,34 +446,34 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 					'query' => 'all:test',
 					'withAll' => false,
 				],
-				false
+				false,
 			],
 			'ns only' => [
 				[
 					'query' => 'help:',
 				],
-				[ '', [ NS_HELP ] ]
+				[ '', [ NS_HELP ] ],
 			],
 			'all only' => [
 				[
 					'query' => 'all:',
 					'withAll' => true,
 				],
-				[ '', null ]
+				[ '', null ],
 			],
 			'all wins over namespace when first' => [
 				[
 					'query' => 'all:help:test',
 					'withAll' => true,
 				],
-				[ 'help:test', null ]
+				[ 'help:test', null ],
 			],
 			'ns wins over all when first' => [
 				[
 					'query' => 'help:all:test',
 					'withAll' => true,
 				],
-				[ 'all:test', [ NS_HELP ] ]
+				[ 'all:test', [ NS_HELP ] ],
 			],
 		];
 	}

@@ -180,13 +180,13 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$canAddInterwiki = (bool)$params['enablerewrites'] && ( $resultPageSet === null );
 		if ( $canAddInterwiki ) {
 			$this->addInterwikiResults( $matches, $apiResult, $prop, 'additional',
-				SearchResultSet::INLINE_RESULTS );
+				ISearchResultSet::INLINE_RESULTS );
 		}
 
 		// Interwiki results outside main result set
 		if ( $interwiki && $resultPageSet === null ) {
 			$this->addInterwikiResults( $matches, $apiResult, $prop, 'interwiki',
-				SearchResultSet::SECONDARY_RESULTS );
+				ISearchResultSet::SECONDARY_RESULTS );
 		}
 
 		if ( $resultPageSet === null ) {
@@ -278,7 +278,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 	/**
 	 * Add interwiki results as a section in query results.
-	 * @param SearchResultSet $matches
+	 * @param ISearchResultSet $matches
 	 * @param ApiResult       $apiResult
 	 * @param array           $prop Props to extract (as keys)
 	 * @param string          $section Section name where results would go
@@ -286,7 +286,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	 * @return int|null Number of total hits in the data or null if none was produced
 	 */
 	private function addInterwikiResults(
-		SearchResultSet $matches, ApiResult $apiResult, $prop,
+		ISearchResultSet $matches, ApiResult $apiResult, $prop,
 		$section, $type
 	) {
 		$totalhits = null;

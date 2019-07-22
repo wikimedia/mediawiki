@@ -51,7 +51,7 @@ abstract class SearchDatabase extends SearchEngine {
 
 	/**
 	 * @param string $term
-	 * @return SearchResultSet|Status|null
+	 * @return ISearchResultSet|Status|null
 	 */
 	final public function doSearchText( $term ) {
 		return $this->doSearchTextInDB( $this->extractNamespacePrefix( $term ) );
@@ -67,7 +67,7 @@ abstract class SearchDatabase extends SearchEngine {
 
 	/**
 	 * @param string $term
-	 * @return SearchResultSet|null
+	 * @return ISearchResultSet|null
 	 */
 	final public function doSearchTitle( $term ) {
 		return $this->doSearchTitleInDB( $this->extractNamespacePrefix( $term ) );

@@ -5,7 +5,7 @@ use MediaWiki\MediaWikiServices;
 class MockSearchEngine extends SearchEngine {
 	/** @var SearchResult[][] */
 	private static $results = [];
-	/** @var SearchResultSet[][] */
+	/** @var ISearchResultSet[][] */
 	private static $interwikiResults = [];
 
 	public static function clearMockResults() {
@@ -33,7 +33,7 @@ class MockSearchEngine extends SearchEngine {
 	}
 
 	/**
-	 * @param SearchResultSet[][] $interwikiResults
+	 * @param ISearchResultSet[][] $interwikiResults
 	 */
 	public static function setMockInterwikiResults( array $interwikiResults ) {
 		self::$interwikiResults = $interwikiResults;

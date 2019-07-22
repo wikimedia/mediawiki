@@ -4,13 +4,13 @@ namespace MediaWiki\Widget\Search;
 
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkRenderer;
-use SearchResultSet;
+use ISearchResultSet;
 use SpecialSearch;
 use Title;
 use Html;
 
 /**
- * Renders one or more SearchResultSets into a sidebar grouped by
+ * Renders one or more ISearchResultSets into a sidebar grouped by
  * interwiki prefix. Includes a per-wiki header indicating where
  * the results are from.
  *
@@ -43,7 +43,7 @@ class SimpleSearchResultSetWidget implements SearchResultSetWidget {
 
 	/**
 	 * @param string $term User provided search term
-	 * @param SearchResultSet|SearchResultSet[] $resultSets List of interwiki
+	 * @param ISearchResultSet|ISearchResultSet[] $resultSets List of interwiki
 	 *  results to render.
 	 * @return string HTML
 	 */

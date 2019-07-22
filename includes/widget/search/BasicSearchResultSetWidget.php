@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Widget\Search;
 
+use ISearchResultSet;
 use MediaWiki\MediaWikiServices;
 use Message;
-use SearchResultSet;
 use SpecialSearch;
 use Status;
 
@@ -33,23 +33,23 @@ class BasicSearchResultSetWidget {
 	/**
 	 * @param string $term The search term to highlight
 	 * @param int $offset The offset of the first result in the result set
-	 * @param SearchResultSet|null $titleResultSet Results of searching only page titles
-	 * @param SearchResultSet|null $textResultSet Results of general full text search.
+	 * @param ISearchResultSet|null $titleResultSet Results of searching only page titles
+	 * @param ISearchResultSet|null $textResultSet Results of general full text search.
 	 * @return string HTML
 	 */
 	public function render(
 		$term,
 		$offset,
-		SearchResultSet $titleResultSet = null,
-		SearchResultSet $textResultSet = null
+		ISearchResultSet $titleResultSet = null,
+		ISearchResultSet $textResultSet = null
 	) {
 		$hasTitle = $titleResultSet ? $titleResultSet->numRows() > 0 : false;
 		$hasText = $textResultSet ? $textResultSet->numRows() > 0 : false;
 		$hasSecondary = $textResultSet
-			? $textResultSet->hasInterwikiResults( SearchResultSet::SECONDARY_RESULTS )
+			? $textResultSet->hasInterwikiResults( ISearchResultSet::SECONDARY_RESULTS )
 			: false;
 		$hasSecondaryInline = $textResultSet
-			? $textResultSet->hasInterwikiResults( SearchResultSet::INLINE_RESULTS )
+			? $textResultSet->hasInterwikiResults( ISearchResultSet::INLINE_RESULTS )
 			: false;
 
 		if ( !$hasTitle && !$hasText && !$hasSecondary && !$hasSecondaryInline ) {
@@ -71,7 +71,7 @@ class BasicSearchResultSetWidget {
 		}
 
 		if ( $hasSecondaryInline ) {
-			$iwResults = $textResultSet->getInterwikiResults( SearchResultSet::INLINE_RESULTS );
+			$iwResults = $textResultSet->getInterwikiResults( ISearchResultSet::INLINE_RESULTS );
 			foreach ( $iwResults as $interwiki => $results ) {
 				if ( $results instanceof Status || $results->numRows() === 0 ) {
 					// ignore bad interwikis for now
@@ -88,7 +88,7 @@ class BasicSearchResultSetWidget {
 		if ( $hasSecondary ) {
 			$out .= $this->sidebarWidget->render(
 				$term,
-				$textResultSet->getInterwikiResults( SearchResultSet::SECONDARY_RESULTS )
+				$textResultSet->getInterwikiResults( ISearchResultSet::SECONDARY_RESULTS )
 			);
 		}
 
@@ -112,11 +112,11 @@ class BasicSearchResultSetWidget {
 	}
 
 	/**
-	 * @param SearchResultSet $resultSet The search results to render
+	 * @param ISearchResultSet $resultSet The search results to render
 	 * @param int $offset Offset of the first result in $resultSet
 	 * @return string HTML
 	 */
-	protected function renderResultSet( SearchResultSet $resultSet, $offset ) {
+	protected function renderResultSet( ISearchResultSet $resultSet, $offset ) {
 		$hits = [];
 		foreach ( $resultSet as $result ) {
 			$hits[] = $this->resultWidget->render( $result, $offset++ );
