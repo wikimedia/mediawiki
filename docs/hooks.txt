@@ -1527,6 +1527,7 @@ $user: User the list is being fetched for
 &$skin: Skin object to be used with the list
 &$list: List object (defaults to NULL, change it to an object instance and
   return false override the list derivative used)
+$groups Array of ChangesListFilterGroup objects (added in 1.34)
 
 'FileDeleteComplete': When a file is deleted.
 &$file: reference to the deleted file
