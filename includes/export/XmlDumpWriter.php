@@ -359,7 +359,10 @@ class XmlDumpWriter {
 
 		// Avoid PHP 7.1 warning from passing $this by reference
 		$writer = $this;
-		$text = $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
+		$text = '';
+		if ( $contentMode === self::WRITE_CONTENT ) {
+			$text = $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
+		}
 		Hooks::run( 'XmlDumpWriterWriteRevision', [ &$writer, &$out, $row, $text, $rev ] );
 
 		$out .= "    </revision>\n";
