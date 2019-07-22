@@ -135,6 +135,7 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 			'disabled' => $disabled,
 			'textinput' => $textAttribs,
 			'dropdowninput' => $dropdownAttribs,
+			'required' => $this->mParams[ 'required' ] ?? false,
 			'or' => true,
 		] );
 	}
