@@ -369,13 +369,6 @@ class RecentChange implements Taggable {
 	public function save( $send = self::SEND_FEED ) {
 		global $wgPutIPinRC, $wgUseEnotif, $wgShowUpdatedMarker;
 
-		if ( is_string( $send ) ) {
-			// Callers used to pass undocumented strings like 'noudp'
-			// or 'pleasedontudp' instead of self::SEND_NONE (true).
-			// @deprecated since 1.31 Use SEND_NONE instead.
-			$send = self::SEND_NONE;
-		}
-
 		$dbw = wfGetDB( DB_MASTER );
 		if ( !is_array( $this->mExtra ) ) {
 			$this->mExtra = [];
