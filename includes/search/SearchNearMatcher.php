@@ -39,10 +39,10 @@ class SearchNearMatcher {
 
 	/**
 	 * Do a near match (see SearchEngine::getNearMatch) and wrap it into a
-	 * SearchResultSet.
+	 * ISearchResultSet.
 	 *
 	 * @param string $searchterm
-	 * @return SearchResultSet
+	 * @return ISearchResultSet
 	 */
 	public function getNearMatchResultSet( $searchterm ) {
 		return new SearchNearMatchResultSet( $this->getNearMatch( $searchterm ) );

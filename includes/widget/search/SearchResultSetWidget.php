@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Widget\Search;
 
-use SearchResultSet;
+use ISearchResultSet;
 
 /**
  * Renders a set of search results to HTML
@@ -10,7 +10,7 @@ use SearchResultSet;
 interface SearchResultSetWidget {
 	/**
 	 * @param string $term User provided search term
-	 * @param SearchResultSet|SearchResultSet[] $resultSets List of interwiki
+	 * @param ISearchResultSet|ISearchResultSet[] $resultSets List of interwiki
 	 *  results to render.
 	 * @return string HTML
 	 */
