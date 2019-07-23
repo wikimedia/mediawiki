@@ -547,7 +547,8 @@ class DifferenceEngine extends ContextSource {
 				if ( $this->mNewRev->isCurrent() && $permissionManager->userCan(
 					'rollback', $user, $this->mNewPage
 				) ) {
-					$rollbackLink = Linker::generateRollback( $this->mNewRev, $this->getContext() );
+					$rollbackLink = Linker::generateRollback( $this->mNewRev, $this->getContext(),
+						[ 'noBrackets' ] );
 					if ( $rollbackLink ) {
 						$out->preventClickjacking();
 						$rollback = "\u{00A0}\u{00A0}\u{00A0}" . $rollbackLink;
