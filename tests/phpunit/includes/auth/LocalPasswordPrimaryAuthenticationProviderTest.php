@@ -336,15 +336,6 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		);
 
 		// Correct handling of really old password hashes
-		$this->config->set( 'PasswordSalt', false );
-		$password = md5( 'FooBar' );
-		$dbw->update( 'user', [ 'user_password' => $password ], [ 'user_name' => $userName ] );
-		$req->password = 'FooBar';
-		$this->assertEquals(
-			AuthenticationResponse::newPass( $userName ),
-			$provider->beginPrimaryAuthentication( $reqs )
-		);
-
 		$this->config->set( 'PasswordSalt', true );
 		$password = md5( "$id-" . md5( 'FooBar' ) );
 		$dbw->update( 'user', [ 'user_password' => $password ], [ 'user_name' => $userName ] );
