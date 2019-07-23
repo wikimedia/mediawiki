@@ -90,7 +90,7 @@ For notes on 1.33.x and older releases, see HISTORY.
 
 ==== Changed external libraries ====
 * Updated Mustache from 1.0.0 to v3.0.1.
-* Updated OOUI from v0.31.3 to v0.33.2.
+* Updated OOUI from v0.31.3 to v0.33.4.
 * Updated composer/semver from 1.4.2 to 1.5.0.
 * Updated composer/spdx-licenses from 1.4.0 to 1.5.1 (dev-only).
 * Updated mediawiki/codesniffer from 25.0.0 to 26.0.0 (dev-only).

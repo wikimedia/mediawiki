@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.33.3
+ * OOUI v0.33.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-07-16T21:33:43Z
+ * Date: 2019-07-23T03:23:40Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -87,6 +87,14 @@
 }
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button:hover > .oo-ui-labelElement-label,
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button:focus > .oo-ui-labelElement-label {
+  color: #000;
+}
+.oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button:hover {
+  background-color: #fafafa;
+  color: #000;
+}
+.oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button:active {
+  background-color: #ddd;
   color: #000;
 }
 .oo-ui-buttonElement-frameless.oo-ui-labelElement:first-child,

@@ -34,6 +34,9 @@
 		"bell": {
 			"file": "images/icons/bell.svg"
 		},
+		"bellOutline": {
+			"file": "images/icons/bellOutline.svg"
+		},
 		"error": {
 			"file": "images/icons/error.svg",
 			"variants": [
