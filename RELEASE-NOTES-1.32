@@ -13,6 +13,7 @@ This is a maintenance release of the MediaWiki 1.32 branch.
 * (T225496) Detect APC for MainCacheType in CLI installer.
 * (T226766) Remove jetbrains/phpstorm-stubs from composer dev dependancies.
 * (T202211) Fix SQLite patch-(image|page|template)links-fix-pk.sql column order.
+* (T207100) Updated LanguageTr for dotted and dotless I in PHP 7.3.
 
 == MediaWiki 1.32.2 ==
 

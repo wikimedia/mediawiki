@@ -24,21 +24,33 @@
 /**
  * Turkish (Türkçe)
  *
- * Turkish has two different i, one with a dot and another without a dot. They
- * are totally different letters in this language, so we have to override the
+ * The Turkish language, like other Turkic languages, distinguishes
+ * a dotted letter 'i' from a dotless letter 'ı' (U+0131 LATIN SMALL LETTER DOTLESS I).
+ * In these languages, each has an equivalent uppercase mapping:
+ * ı (U+0131 LATIN SMALL LETTER DOTLESS I) -> I (U+0049 LATIN CAPITAL LETTER I),
+ * i (U+0069 LATIN SMALL LETTER I) -> İ (U+0130 LATIN CAPITAL LETTER I WITH DOT ABOVE).
+ *
+ * Unicode CaseFolding.txt defines this case as type 'T', a special case for Turkic languages:
+ * tr and az. PHP 7.3 parser ignores this special cases. so we have to override the
  * ucfirst and lcfirst methods.
+ *
  * See https://en.wikipedia.org/wiki/Dotted_and_dotless_I and T30040
  * @ingroup Language
  */
 class LanguageTr extends Language {
+
+	private $uc = [ 'I', 'İ' ];
+	private $lc = [ 'ı', 'i' ];
 
 	/**
 	 * @param string $string
 	 * @return string
 	 */
 	public function ucfirst( $string ) {
-		if ( strlen( $string ) && $string[0] == 'i' ) {
-			return 'İ' . substr( $string, 1 );
+		$first = mb_substr( $string, 0, 1 );
+		if ( in_array( $first, $this->lc ) ) {
+			$first = str_replace( $this->lc, $this->uc, $first );
+			return $first . mb_substr( $string, 1 );
 		}
 		return parent::ucfirst( $string );
 	}
@@ -48,8 +60,10 @@ class LanguageTr extends Language {
 	 * @return mixed|string
 	 */
 	function lcfirst( $string ) {
-		if ( strlen( $string ) && $string[0] == 'I' ) {
-			return 'ı' . substr( $string, 1 );
+		$first = mb_substr( $string, 0, 1 );
+		if ( in_array( $first, $this->uc ) ) {
+			$first = str_replace( $this->uc, $this->lc, $first );
+			return $first . mb_substr( $string, 1 );
 		}
 		return parent::lcfirst( $string );
 	}
