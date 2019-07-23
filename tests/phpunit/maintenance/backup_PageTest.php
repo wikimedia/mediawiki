@@ -6,6 +6,7 @@ use DumpBackup;
 use Exception;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWikiTestCase;
 use MWException;
 use RequestContext;
@@ -28,13 +29,14 @@ class BackupDumperPageTest extends DumpTestCase {
 
 	// We'll add several pages, revision and texts. The following variables hold the
 	// corresponding ids.
-	private $pageId1, $pageId2, $pageId3, $pageId4;
-	private $pageTitle1, $pageTitle2, $pageTitle3, $pageTitle4;
+	private $pageId1, $pageId2, $pageId3, $pageId4, $pageId5;
+	private $pageTitle1, $pageTitle2, $pageTitle3, $pageTitle4, $pageTitle5;
 	private $revId1_1, $textId1_1;
 	private $revId2_1, $textId2_1, $revId2_2, $textId2_2;
 	private $revId2_3, $textId2_3, $revId2_4, $textId2_4;
 	private $revId3_1, $textId3_1, $revId3_2, $textId3_2;
 	private $revId4_1, $textId4_1;
+	private $revId5_1, $textId5_1;
 	private $namespace, $talk_namespace;
 
 	/**
@@ -106,11 +108,53 @@ class BackupDumperPageTest extends DumpTestCase {
 				"Talk about BackupDumperTestP1 Text1",
 				"Talk BackupDumperTestP1 Summary1" );
 			$this->pageId4 = $page->getId();
+
+			$this->pageTitle5 = Title::newFromText( 'BackupDumperTestP5' );
+			$page = WikiPage::factory( $this->pageTitle5 );
+			list( $this->revId5_1, $this->textId5_1 ) = $this->addRevision( $page,
+				"BackupDumperTestP5 Text1",
+				"BackupDumperTestP5 Summary1" );
+			$this->pageId5 = $page->getId();
+
+			$this->corruptRevisionData( $page->getRevision()->getRevisionRecord() );
 		} catch ( Exception $e ) {
 			// We'd love to pass $e directly. However, ... see
 			// documentation of exceptionFromAddDBData in
 			// DumpTestCase
 			$this->exceptionFromAddDBData = $e;
+		}
+	}
+
+	/**
+	 * Corrupt the information about the given revision in the database.
+	 *
+	 * @param RevisionRecord $revision
+	 */
+	private function corruptRevisionData( RevisionRecord $revision ) {
+		global $wgMultiContentRevisionSchemaMigrationStage;
+
+		if ( ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
+			$this->db->update(
+				'revision',
+				[
+					'rev_text_id' => 0,
+					'rev_sha1' => '',
+					'rev_len' => '0',
+				],
+				[ 'rev_id' => $revision->getId() ]
+			);
+		}
+
+		if ( ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) ) {
+			$this->db->update(
+				'content',
+				[
+					'content_address' => 'tt:0',
+					'content_sha1' => '',
+					'content_size' => '0',
+				],
+				[ 'content_id' => $revision->getSlot( SlotRecord::MAIN )->getContentId() ]
+			);
 		}
 	}
 
@@ -201,11 +245,14 @@ class BackupDumperPageTest extends DumpTestCase {
 		$dumper = $this->newDumpBackup(
 			[ '--full', '--quiet', '--output', 'file:' . $fname, '--schema-version', $schemaVersion ],
 			$this->pageId1,
-			$this->pageId4 + 1
+			$this->pageId5 + 1
 		);
 
-		// Performing the dump
+		// Performing the dump. Suppress warnings, since we want to test
+		// accessing broken revision data (page 5).
+		$this->setMwGlobals( 'wgDevelopmentWarnings', false );
 		$dumper->execute();
+		$this->setMwGlobals( 'wgDevelopmentWarnings', true );
 
 		// Checking the dumped data
 		$this->assertDumpSchema( $fname, $this->getXmlSchemaPath( $schemaVersion ) );
@@ -295,6 +342,26 @@ class BackupDumperPageTest extends DumpTestCase {
 		);
 		$asserter->assertPageEnd();
 
+		// Page 5 (broken revision data)
+		$asserter->assertPageStart(
+			$this->pageId5,
+			$this->namespace,
+			$this->pageTitle5->getPrefixedText()
+		);
+		$asserter->assertRevision(
+			$this->revId5_1,
+			"BackupDumperTestP5 Summary1",
+			null,
+			0,
+			"",
+			false,
+			false,
+			CONTENT_MODEL_WIKITEXT,
+			CONTENT_FORMAT_WIKITEXT,
+			$schemaVersion
+		);
+		$asserter->assertPageEnd();
+
 		$asserter->assertDumpEnd();
 
 		// FIXME: add multi-slot test case!
@@ -317,11 +384,14 @@ class BackupDumperPageTest extends DumpTestCase {
 				'--schema-version', $schemaVersion,
 			],
 			$this->pageId1,
-			$this->pageId4 + 1
+			$this->pageId5 + 1
 		);
 
-		// Performing the dump
+		// Performing the dump. Suppress warnings, since we want to test
+		// accessing broken revision data (page 5).
+		$this->setMwGlobals( 'wgDevelopmentWarnings', false );
 		$dumper->execute();
+		$this->setMwGlobals( 'wgDevelopmentWarnings', true );
 
 		// Checking the dumped data
 		$this->assertDumpSchema( $fname, $this->getXmlSchemaPath( $schemaVersion ) );
@@ -401,6 +471,21 @@ class BackupDumperPageTest extends DumpTestCase {
 			$this->textId4_1,
 			35,
 			"nktofwzd0tl192k3zfepmlzxoax1lpe"
+		);
+		$asserter->assertPageEnd();
+
+		// Page 5 (broken revision data)
+		$asserter->assertPageStart(
+			$this->pageId5,
+			$this->namespace,
+			$this->pageTitle5->getPrefixedText()
+		);
+		$asserter->assertRevision(
+			$this->revId5_1,
+			"BackupDumperTestP5 Summary1",
+			null,
+			0,
+			""
 		);
 		$asserter->assertPageEnd();
 

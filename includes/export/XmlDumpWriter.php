@@ -292,6 +292,34 @@ class XmlDumpWriter {
 	}
 
 	/**
+	 * Invokes the given method on the given object, catching and logging any storage related
+	 * exceptions.
+	 *
+	 * @param object $obj
+	 * @param string $method
+	 * @param array $args
+	 * @param string $warning The warning to output in case of a storage related exception.
+	 *
+	 * @return mixed Returns the method's return value,
+	 *         or null in case of a storage related exception.
+	 * @throws Exception
+	 */
+	private function invokeLenient( $obj, $method, $args = [], $warning ) {
+		try {
+			return call_user_func_array( [ $obj, $method ], $args );
+		} catch ( SuppressedDataException $ex ) {
+			return null;
+		} catch ( Exception $ex ) {
+			if ( $ex instanceof MWException || $ex instanceof RuntimeException ) {
+				MWDebug::warning( $warning . ': ' . $ex->getMessage() );
+				return null;
+			} else {
+				throw $ex;
+			}
+		}
+	}
+
+	/**
 	 * Dumps a "<revision>" section on the output stream, with
 	 * data filled in from the given database row.
 	 *
@@ -354,14 +382,28 @@ class XmlDumpWriter {
 		if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 			$out .= "      <sha1/>\n";
 		} else {
-			$out .= "      " . Xml::element( 'sha1', null, strval( $rev->getSha1() ) ) . "\n";
+			$sha1 = $this->invokeLenient(
+				$rev,
+				'getSha1',
+				[],
+				'failed to determine sha1 for revision ' . $rev->getId()
+			);
+			$out .= "      " . Xml::element( 'sha1', null, strval( $sha1 ) ) . "\n";
 		}
 
 		// Avoid PHP 7.1 warning from passing $this by reference
 		$writer = $this;
 		$text = '';
 		if ( $contentMode === self::WRITE_CONTENT ) {
-			$text = $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
+			/** @var Content $content */
+			$content = $this->invokeLenient(
+				$rev,
+				'getContent',
+				[ SlotRecord::MAIN, RevisionRecord::RAW ],
+				'Failed to load main slot content of revision ' . $rev->getId()
+			);
+
+			$text = $content ? $content->serialize() : '';
 		}
 		Hooks::run( 'XmlDumpWriterWriteRevision', [ &$writer, &$out, $row, $text, $rev ] );
 
@@ -410,37 +452,38 @@ class XmlDumpWriter {
 
 		$textAttributes = [
 			'xml:space' => 'preserve',
-			'bytes' => $slot->getSize(),
+			'bytes' => $this->invokeLenient(
+				$slot,
+				'getSize',
+				[],
+				'failed to determine size for slot ' . $slot->getRole() . ' of revision '
+				. $slot->getRevision()
+			) ?: '0'
 		];
 
 		if ( $isV11 ) {
-			$textAttributes['sha1'] = $slot->getSha1();
+			$textAttributes['sha1'] = $this->invokeLenient(
+				$slot,
+				'getSha1',
+				[],
+				'failed to determine sha1 for slot ' . $slot->getRole() . ' of revision '
+				. $slot->getRevision()
+			) ?: '';
 		}
 
 		if ( $contentMode === self::WRITE_CONTENT ) {
-			try {
-				// write <text> tag
-				$out .= $this->writeText( $slot->getContent(), $textAttributes, $indent );
-			} catch ( SuppressedDataException $ex ) {
-				// NOTE: this shouldn't happen, since the caller is supposed to have checked
-				// for suppressed content!
-				// write <text> placeholder tag
-				$textAttributes['deleted'] = 'deleted';
+			$content = $this->invokeLenient(
+				$slot,
+				'getContent',
+				[],
+				'failed to load content for slot ' . $slot->getRole() . ' of revision '
+				. $slot->getRevision()
+			);
+
+			if ( $content === null ) {
 				$out .= $indent . Xml::element( 'text', $textAttributes ) . "\n";
-			}
-			catch ( Exception $ex ) {
-				if ( $ex instanceof MWException || $ex instanceof RuntimeException ) {
-					// there's no provision in the schema for an attribute that will let
-					// the user know this element was unavailable due to error; an empty
-					// tag is the best we can do
-					$out .= $indent . Xml::element( 'text' ) . "\n";
-					wfLogWarning(
-						'failed to load content slot ' . $slot->getRole() . ' for revision '
-						. $slot->getRevision() . "\n"
-					);
-				} else {
-					throw $ex;
-				}
+			} else {
+				$out .= $this->writeText( $content, $textAttributes, $indent );
 			}
 		} elseif ( $contentMode === self::WRITE_STUB_DELETED ) {
 			// write <text> placeholder tag
@@ -455,14 +498,21 @@ class XmlDumpWriter {
 			// Output the numerical text ID if possible, for backwards compatibility.
 			// Note that this is currently the ONLY reason we have a BlobStore here at all.
 			// When removing this line, check whether the BlobStore has become unused.
-			$textId = $this->getBlobStore()->getTextIdFromAddress( $slot->getAddress() );
+			try {
+				// NOTE: this will only work for addresses of the form "tt:12345".
+				// If we want to support other kinds of addresses in the future,
+				// we will have to silently ignore failures here.
+				// For now, this fails for "tt:0", which is present in the WMF production
+				// database of of Juli 2019, due to data corruption.
+				$textId = $this->getBlobStore()->getTextIdFromAddress( $slot->getAddress() );
+			} catch ( InvalidArgumentException $ex ) {
+				MWDebug::warning( 'Bad content address for slot ' . $slot->getRole()
+					. ' of revision ' . $slot->getRevision() . ': ' . $ex->getMessage() );
+				$textId = 0;
+			}
+
 			if ( $textId ) {
 				$textAttributes['id'] = $textId;
-			} elseif ( !$isV11 ) {
-				throw new InvalidArgumentException(
-					'Cannot produce stubs for non-text-table content blobs with schema version '
-					. $this->schemaVersion
-				);
 			}
 
 			$out .= $indent . Xml::element( 'text', $textAttributes ) . "\n";
