@@ -86,6 +86,10 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	 * @return PHPUnit_Framework_MockObject_MockObject|HashBagOStuff
 	 */
 	private function getMockCache() {
+		if ( defined( 'HHVM_VERSION' ) ) {
+			$this->markTestSkipped( 'HHVM Reflection buggy' );
+		}
+
 		$mock = $this->getMockBuilder( HashBagOStuff::class )
 			->disableOriginalConstructor()
 			->setMethods( [ 'get', 'set', 'delete', 'makeKey' ] )
