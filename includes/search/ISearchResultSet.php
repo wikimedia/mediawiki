@@ -19,7 +19,7 @@ interface ISearchResultSet extends \Countable, \IteratorAggregate {
 	/**
 	 * @return int
 	 */
-	function numRows();
+	public function numRows();
 
 	/**
 	 * Some search modes return a total hit count for the query
@@ -31,7 +31,7 @@ interface ISearchResultSet extends \Countable, \IteratorAggregate {
 	 *
 	 * @return int|null
 	 */
-	function getTotalHits();
+	public function getTotalHits();
 
 	/**
 	 * Some search modes will run an alternative query that it thinks gives
@@ -40,19 +40,19 @@ interface ISearchResultSet extends \Countable, \IteratorAggregate {
 	 *
 	 * @return bool
 	 */
-	function hasRewrittenQuery();
+	public function hasRewrittenQuery();
 
 	/**
 	 * @return string|null The search the query was internally rewritten to,
 	 *  or null when the result of the original query was returned.
 	 */
-	function getQueryAfterRewrite();
+	public function getQueryAfterRewrite();
 
 	/**
 	 * @return string|null Same as self::getQueryAfterRewrite(), but in HTML
 	 *  and with changes highlighted. Null when the query was not rewritten.
 	 */
-	function getQueryAfterRewriteSnippet();
+	public function getQueryAfterRewriteSnippet();
 
 	/**
 	 * Some search modes return a suggested alternate term if there are
@@ -60,17 +60,17 @@ interface ISearchResultSet extends \Countable, \IteratorAggregate {
 	 *
 	 * @return bool
 	 */
-	function hasSuggestion();
+	public function hasSuggestion();
 
 	/**
 	 * @return string|null Suggested query, null if none
 	 */
-	function getSuggestionQuery();
+	public function getSuggestionQuery();
 
 	/**
 	 * @return string HTML highlighted suggested query, '' if none
 	 */
-	function getSuggestionSnippet();
+	public function getSuggestionSnippet();
 
 	/**
 	 * Return a result set of hits on other (multiple) wikis associated with this one
@@ -78,7 +78,7 @@ interface ISearchResultSet extends \Countable, \IteratorAggregate {
 	 * @param int $type
 	 * @return ISearchResultSet[]
 	 */
-	function getInterwikiResults( $type = self::SECONDARY_RESULTS );
+	public function getInterwikiResults( $type = self::SECONDARY_RESULTS );
 
 	/**
 	 * Check if there are results on other wikis
@@ -86,7 +86,7 @@ interface ISearchResultSet extends \Countable, \IteratorAggregate {
 	 * @param int $type
 	 * @return bool
 	 */
-	function hasInterwikiResults( $type = self::SECONDARY_RESULTS );
+	public function hasInterwikiResults( $type = self::SECONDARY_RESULTS );
 
 	/**
 	 * Did the search contain search syntax?  If so, Special:Search won't offer

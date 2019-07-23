@@ -86,11 +86,11 @@ class SearchResultSet implements ISearchResultSet {
 	 * @return string[]
 	 * @deprecated since 1.34 (use SqlSearchResult)
 	 */
-	function termMatches() {
+	public function termMatches() {
 		return [];
 	}
 
-	function numRows() {
+	public function numRows() {
 		return $this->count();
 	}
 
@@ -108,7 +108,7 @@ class SearchResultSet implements ISearchResultSet {
 	 *
 	 * @return int
 	 */
-	function getTotalHits() {
+	public function getTotalHits() {
 		return null;
 	}
 
@@ -119,7 +119,7 @@ class SearchResultSet implements ISearchResultSet {
 	 *
 	 * @return bool
 	 */
-	function hasRewrittenQuery() {
+	public function hasRewrittenQuery() {
 		return false;
 	}
 
@@ -127,7 +127,7 @@ class SearchResultSet implements ISearchResultSet {
 	 * @return string|null The search the query was internally rewritten to,
 	 *  or null when the result of the original query was returned.
 	 */
-	function getQueryAfterRewrite() {
+	public function getQueryAfterRewrite() {
 		return null;
 	}
 
@@ -135,7 +135,7 @@ class SearchResultSet implements ISearchResultSet {
 	 * @return string|null Same as self::getQueryAfterRewrite(), but in HTML
 	 *  and with changes highlighted. Null when the query was not rewritten.
 	 */
-	function getQueryAfterRewriteSnippet() {
+	public function getQueryAfterRewriteSnippet() {
 		return null;
 	}
 
@@ -145,21 +145,21 @@ class SearchResultSet implements ISearchResultSet {
 	 *
 	 * @return bool
 	 */
-	function hasSuggestion() {
+	public function hasSuggestion() {
 		return false;
 	}
 
 	/**
 	 * @return string|null Suggested query, null if none
 	 */
-	function getSuggestionQuery() {
+	public function getSuggestionQuery() {
 		return null;
 	}
 
 	/**
 	 * @return string HTML highlighted suggested query, '' if none
 	 */
-	function getSuggestionSnippet() {
+	public function getSuggestionSnippet() {
 		return '';
 	}
 
@@ -169,7 +169,7 @@ class SearchResultSet implements ISearchResultSet {
 	 * @param int $type
 	 * @return ISearchResultSet[]
 	 */
-	function getInterwikiResults( $type = self::SECONDARY_RESULTS ) {
+	public function getInterwikiResults( $type = self::SECONDARY_RESULTS ) {
 		return null;
 	}
 
@@ -179,7 +179,7 @@ class SearchResultSet implements ISearchResultSet {
 	 * @param int $type
 	 * @return bool
 	 */
-	function hasInterwikiResults( $type = self::SECONDARY_RESULTS ) {
+	public function hasInterwikiResults( $type = self::SECONDARY_RESULTS ) {
 		return false;
 	}
 
@@ -224,7 +224,7 @@ class SearchResultSet implements ISearchResultSet {
 	 * Frees the result set, if applicable.
 	 * @deprecated noop since 1.34
 	 */
-	function free() {
+	public function free() {
 	}
 
 	/**
