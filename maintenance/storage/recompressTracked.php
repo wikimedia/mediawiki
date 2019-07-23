@@ -218,6 +218,8 @@ class RecompressTracked {
 	 * writing are all slow.
 	 */
 	function startReplicaProcs() {
+		$wiki = WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() );
+
 		$cmd = 'php ' . Shell::escape( __FILE__ );
 		foreach ( self::$cmdLineOptionMap as $cmdOption => $classOption ) {
 			if ( $cmdOption == 'replica-id' ) {
@@ -229,7 +231,7 @@ class RecompressTracked {
 			}
 		}
 		$cmd .= ' --child' .
-			' --wiki ' . Shell::escape( wfWikiID() ) .
+			' --wiki ' . Shell::escape( $wiki ) .
 			' ' . Shell::escape( ...$this->destClusters );
 
 		$this->replicaPipes = $this->replicaProcs = [];

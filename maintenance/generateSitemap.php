@@ -188,18 +188,20 @@ class GenerateSitemap extends Maintenance {
 			$this->fatalError( "Can not create directory $fspath." );
 		}
 
+		$dbDomain = WikiMap::getCurrentWikiDbDomain()->getId();
 		$this->fspath = realpath( $fspath ) . DIRECTORY_SEPARATOR;
 		$this->urlpath = $this->getOption( 'urlpath', "" );
 		if ( $this->urlpath !== "" && substr( $this->urlpath, -1 ) !== '/' ) {
 			$this->urlpath .= '/';
 		}
-		$this->identifier = $this->getOption( 'identifier', wfWikiID() );
+		$this->identifier = $this->getOption( 'identifier', $dbDomain );
 		$this->compress = $this->getOption( 'compress', 'yes' ) !== 'no';
 		$this->skipRedirects = $this->hasOption( 'skip-redirects' );
 		$this->dbr = $this->getDB( DB_REPLICA );
 		$this->generateNamespaces();
 		$this->timestamp = wfTimestamp( TS_ISO_8601, wfTimestampNow() );
-		$this->findex = fopen( "{$this->fspath}sitemap-index-{$this->identifier}.xml", 'wb' );
+		$encIdentifier = rawurlencode( $this->identifier );
+		$this->findex = fopen( "{$this->fspath}sitemap-index-{$encIdentifier}.xml", 'wb' );
 		$this->main();
 	}
 
