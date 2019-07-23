@@ -39,8 +39,6 @@ class RemoveUnusedAccounts extends Maintenance {
 	}
 
 	public function execute() {
-		$actorTableSchemaMigrationStage = $this->getConfig()->get( 'ActorTableSchemaMigrationStage' );
-
 		$this->output( "Remove unused accounts\n\n" );
 
 		# Do an initial scan for inactive accounts and report the result
@@ -48,18 +46,14 @@ class RemoveUnusedAccounts extends Maintenance {
 		$delUser = [];
 		$delActor = [];
 		$dbr = $this->getDB( DB_REPLICA );
-		if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
-			$res = $dbr->select(
-				[ 'user', 'actor' ],
-				[ 'user_id', 'user_name', 'user_touched', 'actor_id' ],
-				'',
-				__METHOD__,
-				[],
-				[ 'actor' => [ 'LEFT JOIN', 'user_id = actor_user' ] ]
-			);
-		} else {
-			$res = $dbr->select( 'user', [ 'user_id', 'user_name', 'user_touched' ], '', __METHOD__ );
-		}
+		$res = $dbr->select(
+			[ 'user', 'actor' ],
+			[ 'user_id', 'user_name', 'user_touched', 'actor_id' ],
+			'',
+			__METHOD__,
+			[],
+			[ 'actor' => [ 'LEFT JOIN', 'user_id = actor_user' ] ]
+		);
 		if ( $this->hasOption( 'ignore-groups' ) ) {
 			$excludedGroups = explode( ',', $this->getOption( 'ignore-groups' ) );
 		} else {
@@ -94,30 +88,22 @@ class RemoveUnusedAccounts extends Maintenance {
 			$this->output( "\nDeleting unused accounts..." );
 			$dbw = $this->getDB( DB_MASTER );
 			$dbw->delete( 'user', [ 'user_id' => $delUser ], __METHOD__ );
-			if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
-				# Keep actor rows referenced from ipblocks
-				$keep = $dbw->selectFieldValues(
-					'ipblocks', 'ipb_by_actor', [ 'ipb_by_actor' => $delActor ], __METHOD__
-				);
-				$del = array_diff( $delActor, $keep );
-				if ( $del ) {
-					$dbw->delete( 'actor', [ 'actor_id' => $del ], __METHOD__ );
-				}
-				if ( $keep ) {
-					$dbw->update( 'actor', [ 'actor_user' => 0 ], [ 'actor_id' => $keep ], __METHOD__ );
-				}
+			# Keep actor rows referenced from ipblocks
+			$keep = $dbw->selectFieldValues(
+				'ipblocks', 'ipb_by_actor', [ 'ipb_by_actor' => $delActor ], __METHOD__
+			);
+			$del = array_diff( $delActor, $keep );
+			if ( $del ) {
+				$dbw->delete( 'actor', [ 'actor_id' => $del ], __METHOD__ );
+			}
+			if ( $keep ) {
+				$dbw->update( 'actor', [ 'actor_user' => 0 ], [ 'actor_id' => $keep ], __METHOD__ );
 			}
 			$dbw->delete( 'user_groups', [ 'ug_user' => $delUser ], __METHOD__ );
 			$dbw->delete( 'user_former_groups', [ 'ufg_user' => $delUser ], __METHOD__ );
 			$dbw->delete( 'user_properties', [ 'up_user' => $delUser ], __METHOD__ );
-			if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
-				$dbw->delete( 'logging', [ 'log_actor' => $delActor ], __METHOD__ );
-				$dbw->delete( 'recentchanges', [ 'rc_actor' => $delActor ], __METHOD__ );
-			}
-			if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
-				$dbw->delete( 'logging', [ 'log_user' => $delUser ], __METHOD__ );
-				$dbw->delete( 'recentchanges', [ 'rc_user' => $delUser ], __METHOD__ );
-			}
+			$dbw->delete( 'logging', [ 'log_actor' => $delActor ], __METHOD__ );
+			$dbw->delete( 'recentchanges', [ 'rc_actor' => $delActor ], __METHOD__ );
 			$this->output( "done.\n" );
 			# Update the site_stats.ss_users field
 			$users = $dbw->selectField( 'user', 'COUNT(*)', [], __METHOD__ );

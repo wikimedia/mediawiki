@@ -79,19 +79,16 @@ class ActiveUsersPager extends UsersPager {
 	function getQueryInfo( $data = null ) {
 		$dbr = $this->getDatabase();
 
-		$useActor = (bool)(
-			$this->getConfig()->get( 'ActorTableSchemaMigrationStage' ) & SCHEMA_COMPAT_READ_NEW
-		);
-
 		$activeUserSeconds = $this->getConfig()->get( 'ActiveUserDays' ) * 86400;
 		$timestamp = $dbr->timestamp( wfTimestamp( TS_UNIX ) - $activeUserSeconds );
 		$fname = __METHOD__ . ' (' . $this->getSqlComment() . ')';
 
 		// Inner subselect to pull the active users out of querycachetwo
-		$tables = [ 'querycachetwo', 'user' ];
-		$fields = [ 'qcc_title', 'user_id' ];
+		$tables = [ 'querycachetwo', 'user', 'actor' ];
+		$fields = [ 'qcc_title', 'user_id', 'actor_id' ];
 		$jconds = [
 			'user' => [ 'JOIN', 'user_name = qcc_title' ],
+			'actor' => [ 'JOIN', 'actor_user = user_id' ],
 		];
 		$conds = [
 			'qcc_type' => 'activeusers',
@@ -126,20 +123,12 @@ class ActiveUsersPager extends UsersPager {
 					'ipblocks', '1', [ 'ipb_user=user_id', 'ipb_deleted' => 1 ]
 				) . ')';
 		}
-		if ( $useActor ) {
-			$tables[] = 'actor';
-			$jconds['actor'] = [
-				'JOIN',
-				'actor_user = user_id',
-			];
-			$fields[] = 'actor_id';
-		}
 		$subquery = $dbr->buildSelectSubquery( $tables, $fields, $conds, $fname, $options, $jconds );
 
 		// Outer query to select the recent edit counts for the selected active users
 		$tables = [ 'qcc_users' => $subquery, 'recentchanges' ];
 		$jconds = [ 'recentchanges' => [ 'LEFT JOIN', [
-			$useActor ? 'rc_actor = actor_id' : 'rc_user_text = qcc_title',
+			'rc_actor = actor_id',
 			'rc_type != ' . $dbr->addQuotes( RC_EXTERNAL ), // Don't count wikidata.
 			'rc_type != ' . $dbr->addQuotes( RC_CATEGORIZE ), // Don't count categorization changes.
 			'rc_log_type IS NULL OR rc_log_type != ' . $dbr->addQuotes( 'newusers' ),

@@ -77,9 +77,7 @@ use Wikimedia\ObjectFactory;
 
 return [
 	'ActorMigration' => function ( MediaWikiServices $services ) : ActorMigration {
-		return new ActorMigration(
-			$services->getMainConfig()->get( 'ActorTableSchemaMigrationStage' )
-		);
+		return new ActorMigration( SCHEMA_COMPAT_NEW );
 	},
 
 	'BadFileLookup' => function ( MediaWikiServices $services ) : BadFileLookup {

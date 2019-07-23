@@ -244,9 +244,7 @@ CREATE TABLE archive (
   ar_parent_id      INTEGER          NULL,
   ar_sha1           TEXT         NOT NULL DEFAULT '',
   ar_comment_id     INTEGER      NOT NULL,
-  ar_user           INTEGER      NOT NULL DEFAULT 0 REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
-  ar_user_text      TEXT         NOT NULL DEFAULT '',
-  ar_actor          INTEGER      NOT NULL DEFAULT 0,
+  ar_actor          INTEGER      NOT NULL,
   ar_timestamp      TIMESTAMPTZ  NOT NULL,
   ar_minor_edit     SMALLINT     NOT NULL  DEFAULT 0,
   ar_rev_id         INTEGER      NOT NULL,
@@ -258,7 +256,6 @@ CREATE TABLE archive (
 );
 ALTER SEQUENCE archive_ar_id_seq OWNED BY archive.ar_id;
 CREATE INDEX archive_name_title_timestamp ON archive (ar_namespace,ar_title,ar_timestamp);
-CREATE INDEX archive_user_text            ON archive (ar_user_text);
 CREATE INDEX archive_actor                ON archive (ar_actor);
 CREATE UNIQUE INDEX ar_revid_uniq ON archive (ar_rev_id);
 
@@ -404,9 +401,7 @@ CREATE TABLE ipblocks (
   ipb_id                INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('ipblocks_ipb_id_seq'),
   ipb_address           TEXT             NULL,
   ipb_user              INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
-  ipb_by                INTEGER      NOT NULL  DEFAULT 0 REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  ipb_by_text           TEXT         NOT NULL  DEFAULT '',
-  ipb_by_actor          INTEGER      NOT NULL  DEFAULT 0,
+  ipb_by_actor          INTEGER      NOT NULL,
   ipb_reason_id         INTEGER      NOT NULL,
   ipb_timestamp         TIMESTAMPTZ  NOT NULL,
   ipb_auto              SMALLINT     NOT NULL  DEFAULT 0,
@@ -448,9 +443,7 @@ CREATE TABLE image (
   img_major_mime   TEXT                DEFAULT 'unknown',
   img_minor_mime   TEXT                DEFAULT 'unknown',
   img_description_id INTEGER NOT NULL,
-  img_user         INTEGER   NOT NULL  DEFAULT 0 REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
-  img_user_text    TEXT      NOT NULL  DEFAULT '',
-  img_actor        INTEGER   NOT NULL  DEFAULT 0,
+  img_actor        INTEGER   NOT NULL,
   img_timestamp    TIMESTAMPTZ,
   img_sha1         TEXT      NOT NULL  DEFAULT ''
 );
@@ -466,9 +459,7 @@ CREATE TABLE oldimage (
   oi_height        INTEGER      NOT NULL,
   oi_bits          SMALLINT         NULL,
   oi_description_id INTEGER     NOT NULL,
-  oi_user          INTEGER      NOT NULL DEFAULT 0  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
-  oi_user_text     TEXT         NOT NULL DEFAULT '',
-  oi_actor         INTEGER      NOT NULL DEFAULT 0,
+  oi_actor         INTEGER      NOT NULL,
   oi_timestamp     TIMESTAMPTZ      NULL,
   oi_metadata      BYTEA        NOT NULL DEFAULT '',
   oi_media_type    TEXT             NULL,
@@ -502,9 +493,7 @@ CREATE TABLE filearchive (
   fa_major_mime         TEXT                   DEFAULT 'unknown',
   fa_minor_mime         TEXT                   DEFAULT 'unknown',
   fa_description_id     INTEGER      NOT NULL,
-  fa_user               INTEGER      NOT NULL DEFAULT 0 REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
-  fa_user_text          TEXT         NOT NULL DEFAULT '',
-  fa_actor              INTEGER      NOT NULL DEFAULT 0,
+  fa_actor              INTEGER      NOT NULL,
   fa_timestamp          TIMESTAMPTZ,
   fa_deleted            SMALLINT     NOT NULL DEFAULT 0,
   fa_sha1               TEXT         NOT NULL DEFAULT ''
@@ -548,9 +537,7 @@ CREATE SEQUENCE recentchanges_rc_id_seq;
 CREATE TABLE recentchanges (
   rc_id              INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('recentchanges_rc_id_seq'),
   rc_timestamp       TIMESTAMPTZ  NOT NULL,
-  rc_user            INTEGER      NOT NULL  DEFAULT 0 REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
-  rc_user_text       TEXT         NOT NULL  DEFAULT '',
-  rc_actor           INTEGER      NOT NULL  DEFAULT 0,
+  rc_actor           INTEGER      NOT NULL,
   rc_namespace       SMALLINT     NOT NULL,
   rc_title           TEXT         NOT NULL,
   rc_comment_id      INTEGER      NOT NULL,
@@ -646,27 +633,21 @@ CREATE TABLE logging (
   log_type        TEXT         NOT NULL,
   log_action      TEXT         NOT NULL,
   log_timestamp   TIMESTAMPTZ  NOT NULL,
-  log_user        INTEGER      NOT NULL DEFAULT 0 REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
-  log_actor       INTEGER      NOT NULL DEFAULT 0,
+  log_actor       INTEGER      NOT NULL,
   log_namespace   SMALLINT     NOT NULL,
   log_title       TEXT         NOT NULL,
   log_comment_id  INTEGER      NOT NULL,
   log_params      TEXT,
   log_deleted     SMALLINT     NOT NULL DEFAULT 0,
-  log_user_text   TEXT         NOT NULL DEFAULT '',
   log_page        INTEGER
 );
 ALTER SEQUENCE logging_log_id_seq OWNED BY logging.log_id;
 CREATE INDEX logging_type_name ON logging (log_type, log_timestamp);
-CREATE INDEX logging_user_time ON logging (log_timestamp, log_user);
 CREATE INDEX logging_actor_time_backwards ON logging (log_timestamp, log_actor);
 CREATE INDEX logging_page_time ON logging (log_namespace, log_title, log_timestamp);
 CREATE INDEX logging_times ON logging (log_timestamp);
-CREATE INDEX logging_user_type_time ON logging (log_user, log_type, log_timestamp);
 CREATE INDEX logging_actor_type_time ON logging (log_actor, log_type, log_timestamp);
 CREATE INDEX logging_page_id_time ON logging (log_page, log_timestamp);
-CREATE INDEX logging_user_text_type_time ON logging (log_user_text, log_type, log_timestamp);
-CREATE INDEX logging_user_text_time ON logging (log_user_text, log_timestamp);
 CREATE INDEX logging_actor_time ON logging (log_actor, log_timestamp);
 CREATE INDEX logging_type_action ON logging (log_type, log_action, log_timestamp);
 

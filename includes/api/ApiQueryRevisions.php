@@ -85,8 +85,6 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	}
 
 	protected function run( ApiPageSet $resultPageSet = null ) {
-		global $wgActorTableSchemaMigrationStage;
-
 		$params = $this->extractRequestParams( false );
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 
@@ -137,9 +135,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		$idField = 'rev_id';
 		$tsField = 'rev_timestamp';
 		$pageField = 'rev_page';
-		if ( $params['user'] !== null &&
-			( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW )
-		) {
+		if ( $params['user'] !== null ) {
 			// We're going to want to use the page_actor_timestamp index (on revision_actor_temp)
 			// so use that table's denormalized fields.
 			$idField = 'revactor_rev';

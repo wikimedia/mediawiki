@@ -97,27 +97,17 @@ class NewFilesPager extends RangeChronologicalPager {
 		}
 
 		if ( $opts->getValue( 'hidepatrolled' ) ) {
-			global $wgActorTableSchemaMigrationStage;
-
 			$tables[] = 'recentchanges';
 			$conds['rc_type'] = RC_LOG;
 			$conds['rc_log_type'] = 'upload';
 			$conds['rc_patrolled'] = RecentChange::PRC_UNPATROLLED;
 			$conds['rc_namespace'] = NS_FILE;
 
-			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
-				$jcond = 'rc_actor = ' . $imgQuery['fields']['img_actor'];
-			} else {
-				$rcQuery = ActorMigration::newMigration()->getJoin( 'rc_user' );
-				$tables += $rcQuery['tables'];
-				$jconds += $rcQuery['joins'];
-				$jcond = $rcQuery['fields']['rc_user'] . ' = ' . $imgQuery['fields']['img_user'];
-			}
 			$jconds['recentchanges'] = [
 				'JOIN',
 				[
 					'rc_title = img_name',
-					$jcond,
+					'rc_actor = ' . $imgQuery['fields']['img_actor'],
 					'rc_timestamp = img_timestamp'
 				]
 			];

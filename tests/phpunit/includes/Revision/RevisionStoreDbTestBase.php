@@ -81,7 +81,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->setMwGlobals( [
 			'wgMultiContentRevisionSchemaMigrationStage' => $this->getMcrMigrationStage(),
 			'wgContentHandlerUseDB' => $this->getContentHandlerUseDB(),
-			'wgActorTableSchemaMigrationStage' => SCHEMA_COMPAT_NEW,
 		] );
 	}
 
@@ -1791,8 +1790,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::getKnownCurrentRevision
 	 */
 	public function testGetKnownCurrentRevision_userNameChange() {
-		global $wgActorTableSchemaMigrationStage;
-
 		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
 		$this->setService( 'MainWANObjectCache', $cache );
 
@@ -1811,11 +1808,9 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->db->update( 'user',
 			[ 'user_name' => $newUserName ],
 			[ 'user_id' => $rev->getUser()->getId() ] );
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
-			$this->db->update( 'actor',
-				[ 'actor_name' => $newUserName ],
-				[ 'actor_user' => $rev->getUser()->getId() ] );
-		}
+		$this->db->update( 'actor',
+			[ 'actor_name' => $newUserName ],
+			[ 'actor_user' => $rev->getUser()->getId() ] );
 
 		// Reload the revision and regrab the user name.
 		$revAfter = $store->getKnownCurrentRevision( $page->getTitle(), $rev->getId() );
@@ -1864,8 +1859,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRow
 	 */
 	public function testNewRevisionFromRow_userNameChange() {
-		global $wgActorTableSchemaMigrationStage;
-
 		$page = $this->getTestPage();
 		$text = __METHOD__;
 		/** @var Revision $rev */
@@ -1895,11 +1888,9 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->db->update( 'user',
 			[ 'user_name' => $newUserName ],
 			[ 'user_id' => $record->getUser()->getId() ] );
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
-			$this->db->update( 'actor',
-				[ 'actor_name' => $newUserName ],
-				[ 'actor_user' => $record->getUser()->getId() ] );
-		}
+		$this->db->update( 'actor',
+			[ 'actor_name' => $newUserName ],
+			[ 'actor_user' => $record->getUser()->getId() ] );
 
 		// Reload the record, passing $fromCache as true to force fresh info from the db,
 		// and regrab the user name

@@ -107,46 +107,6 @@ class OldLocalFile extends LocalFile {
 	}
 
 	/**
-	 * Fields in the oldimage table
-	 * @deprecated since 1.31, use self::getQueryInfo() instead.
-	 * @return string[]
-	 */
-	static function selectFields() {
-		global $wgActorTableSchemaMigrationStage;
-
-		wfDeprecated( __METHOD__, '1.31' );
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
-			// If code is using this instead of self::getQueryInfo(), there's a
-			// decent chance it's going to try to directly access
-			// $row->oi_user or $row->oi_user_text and we can't give it
-			// useful values here once those aren't being used anymore.
-			throw new BadMethodCallException(
-				'Cannot use ' . __METHOD__
-					. ' when $wgActorTableSchemaMigrationStage has SCHEMA_COMPAT_READ_NEW'
-			);
-		}
-
-		return [
-			'oi_name',
-			'oi_archive_name',
-			'oi_size',
-			'oi_width',
-			'oi_height',
-			'oi_metadata',
-			'oi_bits',
-			'oi_media_type',
-			'oi_major_mime',
-			'oi_minor_mime',
-			'oi_user',
-			'oi_user_text',
-			'oi_actor' => 'NULL',
-			'oi_timestamp',
-			'oi_deleted',
-			'oi_sha1',
-		] + MediaWikiServices::getInstance()->getCommentStore()->getFields( 'oi_description' );
-	}
-
-	/**
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new oldlocalfile object.
 	 * @since 1.31

@@ -64,7 +64,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Version number to tag cached versions of serialized User objects. Should be increased when
 	 * {@link $mCacheVars} or one of it's members changes.
 	 */
-	const VERSION = 13;
+	const VERSION = 14;
 
 	/**
 	 * Exclude user options that are set to their default value.
@@ -327,22 +327,6 @@ class User implements IDBAccessObject, UserIdentity {
 			case 'defaults':
 				$this->loadDefaults();
 				break;
-			case 'name':
-				// Make sure this thread sees its own changes
-				$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-				if ( $lb->hasOrMadeRecentMasterChanges() ) {
-					$flags |= self::READ_LATEST;
-					$this->queryFlagsUsed = $flags;
-				}
-
-				$this->mId = self::idFromName( $this->mName, $flags );
-				if ( !$this->mId ) {
-					// Nonexistent user placeholder object
-					$this->loadDefaults( $this->mName );
-				} else {
-					$this->loadFromId( $flags );
-				}
-				break;
 			case 'id':
 				// Make sure this thread sees its own changes, if the ID isn't 0
 				if ( $this->mId != 0 ) {
@@ -356,6 +340,7 @@ class User implements IDBAccessObject, UserIdentity {
 				$this->loadFromId( $flags );
 				break;
 			case 'actor':
+			case 'name':
 				// Make sure this thread sees its own changes
 				$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 				if ( $lb->hasOrMadeRecentMasterChanges() ) {
@@ -366,20 +351,20 @@ class User implements IDBAccessObject, UserIdentity {
 				list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
 				$row = wfGetDB( $index )->selectRow(
 					'actor',
-					[ 'actor_user', 'actor_name' ],
-					[ 'actor_id' => $this->mActorId ],
+					[ 'actor_id', 'actor_user', 'actor_name' ],
+					$this->mFrom === 'name' ? [ 'actor_name' => $this->mName ] : [ 'actor_id' => $this->mActorId ],
 					__METHOD__,
 					$options
 				);
 
 				if ( !$row ) {
 					// Ugh.
-					$this->loadDefaults();
+					$this->loadDefaults( $this->mFrom === 'name' ? $this->mName : false );
 				} elseif ( $row->actor_user ) {
 					$this->mId = $row->actor_user;
 					$this->loadFromId( $flags );
 				} else {
-					$this->loadDefaults( $row->actor_name );
+					$this->loadDefaults( $row->actor_name, $row->actor_id );
 				}
 				break;
 			case 'session':
@@ -567,17 +552,6 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return User The corresponding User object
 	 */
 	public static function newFromActorId( $id ) {
-		global $wgActorTableSchemaMigrationStage;
-
-		// Technically we shouldn't allow this without SCHEMA_COMPAT_READ_NEW,
-		// but it does little harm and might be needed for write callers loading a User.
-		if ( !( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_NEW ) ) {
-			throw new BadMethodCallException(
-				'Cannot use ' . __METHOD__
-					. ' when $wgActorTableSchemaMigrationStage lacks SCHEMA_COMPAT_NEW'
-			);
-		}
-
 		$u = new User;
 		$u->mActorId = $id;
 		$u->mFrom = 'actor';
@@ -620,8 +594,6 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return User
 	 */
 	public static function newFromAnyId( $userId, $userName, $actorId, $dbDomain = false ) {
-		global $wgActorTableSchemaMigrationStage;
-
 		// Stop-gap solution for the problem described in T222212.
 		// Force the User ID and Actor ID to zero for users loaded from the database
 		// of another wiki, to prevent subtle data corruption and confusing failure modes.
@@ -633,9 +605,7 @@ class User implements IDBAccessObject, UserIdentity {
 		$user = new User;
 		$user->mFrom = 'defaults';
 
-		// Technically we shouldn't allow this without SCHEMA_COMPAT_READ_NEW,
-		// but it does little harm and might be needed for write callers loading a User.
-		if ( ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_NEW ) && $actorId !== null ) {
+		if ( $actorId !== null ) {
 			$user->mActorId = (int)$actorId;
 			if ( $user->mActorId !== 0 ) {
 				$user->mFrom = 'actor';
@@ -1220,11 +1190,12 @@ class User implements IDBAccessObject, UserIdentity {
 	 *       the constructor does that instead.
 	 *
 	 * @param string|bool $name
+	 * @param int|null $actorId
 	 */
-	public function loadDefaults( $name = false ) {
+	public function loadDefaults( $name = false, $actorId = null ) {
 		$this->mId = 0;
 		$this->mName = $name;
-		$this->mActorId = null;
+		$this->mActorId = $actorId;
 		$this->mRealName = '';
 		$this->mEmail = '';
 		$this->mOptionOverrides = null;
@@ -1375,8 +1346,6 @@ class User implements IDBAccessObject, UserIdentity {
 	 *  user_properties   Array with properties out of the user_properties table
 	 */
 	protected function loadFromRow( $row, $data = null ) {
-		global $wgActorTableSchemaMigrationStage;
-
 		if ( !is_object( $row ) ) {
 			throw new InvalidArgumentException( '$row must be an object' );
 		}
@@ -1385,18 +1354,14 @@ class User implements IDBAccessObject, UserIdentity {
 
 		$this->mGroupMemberships = null; // deferred
 
-		// Technically we shouldn't allow this without SCHEMA_COMPAT_READ_NEW,
-		// but it does little harm and might be needed for write callers loading a User.
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_NEW ) {
-			if ( isset( $row->actor_id ) ) {
-				$this->mActorId = (int)$row->actor_id;
-				if ( $this->mActorId !== 0 ) {
-					$this->mFrom = 'actor';
-				}
-				$this->setItemLoaded( 'actor' );
-			} else {
-				$all = false;
+		if ( isset( $row->actor_id ) ) {
+			$this->mActorId = (int)$row->actor_id;
+			if ( $this->mActorId !== 0 ) {
+				$this->mFrom = 'actor';
 			}
+			$this->setItemLoaded( 'actor' );
+		} else {
+			$all = false;
 		}
 
 		if ( isset( $row->user_name ) && $row->user_name !== '' ) {
@@ -2214,7 +2179,9 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return int The user's ID; 0 if the user is anonymous or nonexistent
 	 */
 	public function getId() {
-		if ( $this->mId === null && $this->mName !== null && self::isIP( $this->mName ) ) {
+		if ( $this->mId === null && $this->mName !== null &&
+			( self::isIP( $this->mName ) || ExternalUserNames::isExternal( $this->mName ) )
+		) {
 			// Special case, we know the user is anonymous
 			return 0;
 		}
@@ -2280,62 +2247,43 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return int The actor's ID, or 0 if no actor ID exists and $dbw was null
 	 */
 	public function getActorId( IDatabase $dbw = null ) {
-		global $wgActorTableSchemaMigrationStage;
-
-		// Technically we should always return 0 without SCHEMA_COMPAT_READ_NEW,
-		// but it does little harm and might be needed for write callers loading a User.
-		if ( !( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) ) {
-			return 0;
-		}
-
 		if ( !$this->isItemLoaded( 'actor' ) ) {
 			$this->load();
 		}
 
-		// Currently $this->mActorId might be null if $this was loaded from a
-		// cache entry that was written when $wgActorTableSchemaMigrationStage
-		// was SCHEMA_COMPAT_OLD. Once that is no longer a possibility (i.e. when
-		// User::VERSION is incremented after $wgActorTableSchemaMigrationStage
-		// has been removed), that condition may be removed.
-		if ( $this->mActorId === null || !$this->mActorId && $dbw ) {
+		if ( !$this->mActorId && $dbw ) {
 			$q = [
 				'actor_user' => $this->getId() ?: null,
 				'actor_name' => (string)$this->getName(),
 			];
-			if ( $dbw ) {
-				if ( $q['actor_user'] === null && self::isUsableName( $q['actor_name'] ) ) {
-					throw new CannotCreateActorException(
-						'Cannot create an actor for a usable name that is not an existing user'
-					);
-				}
-				if ( $q['actor_name'] === '' ) {
-					throw new CannotCreateActorException( 'Cannot create an actor for a user with no name' );
-				}
-				$dbw->insert( 'actor', $q, __METHOD__, [ 'IGNORE' ] );
-				if ( $dbw->affectedRows() ) {
-					$this->mActorId = (int)$dbw->insertId();
-				} else {
-					// Outdated cache?
-					// Use LOCK IN SHARE MODE to bypass any MySQL REPEATABLE-READ snapshot.
-					$this->mActorId = (int)$dbw->selectField(
-						'actor',
-						'actor_id',
-						$q,
-						__METHOD__,
-						[ 'LOCK IN SHARE MODE' ]
-					);
-					if ( !$this->mActorId ) {
-						throw new CannotCreateActorException(
-							"Cannot create actor ID for user_id={$this->getId()} user_name={$this->getName()}"
-						);
-					}
-				}
-				$this->invalidateCache();
-			} else {
-				list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $this->queryFlagsUsed );
-				$db = wfGetDB( $index );
-				$this->mActorId = (int)$db->selectField( 'actor', 'actor_id', $q, __METHOD__, $options );
+			if ( $q['actor_user'] === null && self::isUsableName( $q['actor_name'] ) ) {
+				throw new CannotCreateActorException(
+					'Cannot create an actor for a usable name that is not an existing user'
+				);
 			}
+			if ( $q['actor_name'] === '' ) {
+				throw new CannotCreateActorException( 'Cannot create an actor for a user with no name' );
+			}
+			$dbw->insert( 'actor', $q, __METHOD__, [ 'IGNORE' ] );
+			if ( $dbw->affectedRows() ) {
+				$this->mActorId = (int)$dbw->insertId();
+			} else {
+				// Outdated cache?
+				// Use LOCK IN SHARE MODE to bypass any MySQL REPEATABLE-READ snapshot.
+				$this->mActorId = (int)$dbw->selectField(
+					'actor',
+					'actor_id',
+					$q,
+					__METHOD__,
+					[ 'LOCK IN SHARE MODE' ]
+				);
+				if ( !$this->mActorId ) {
+					throw new CannotCreateActorException(
+						"Cannot create actor ID for user_id={$this->getId()} user_name={$this->getName()}"
+					);
+				}
+			}
+			$this->invalidateCache();
 			$this->setItemLoaded( 'actor' );
 		}
 
@@ -3979,8 +3927,6 @@ class User implements IDBAccessObject, UserIdentity {
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) use ( $newTouched ) {
-			global $wgActorTableSchemaMigrationStage;
-
 			$dbw->update( 'user',
 				[ /* SET */
 					'user_name' => $this->mName,
@@ -4010,14 +3956,12 @@ class User implements IDBAccessObject, UserIdentity {
 				);
 			}
 
-			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
-				$dbw->update(
-					'actor',
-					[ 'actor_name' => $this->mName ],
-					[ 'actor_user' => $this->mId ],
-					$fname
-				);
-			}
+			$dbw->update(
+				'actor',
+				[ 'actor_name' => $this->mName ],
+				[ 'actor_user' => $this->mId ],
+				$fname
+			);
 		} );
 
 		$this->mTouched = $newTouched;
@@ -4216,16 +4160,12 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param IDatabase $dbw Writable database handle
 	 */
 	private function updateActorId( IDatabase $dbw ) {
-		global $wgActorTableSchemaMigrationStage;
-
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
-			$dbw->insert(
-				'actor',
-				[ 'actor_user' => $this->mId, 'actor_name' => $this->mName ],
-				__METHOD__
-			);
-			$this->mActorId = (int)$dbw->insertId();
-		}
+		$dbw->insert(
+			'actor',
+			[ 'actor_user' => $this->mId, 'actor_name' => $this->mName ],
+			__METHOD__
+		);
+		$this->mActorId = (int)$dbw->insertId();
 	}
 
 	/**
@@ -5296,10 +5236,8 @@ class User implements IDBAccessObject, UserIdentity {
 	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
 	 */
 	public static function getQueryInfo() {
-		global $wgActorTableSchemaMigrationStage;
-
 		$ret = [
-			'tables' => [ 'user' ],
+			'tables' => [ 'user', 'user_actor' => 'actor' ],
 			'fields' => [
 				'user_id',
 				'user_name',
@@ -5312,20 +5250,12 @@ class User implements IDBAccessObject, UserIdentity {
 				'user_email_token_expires',
 				'user_registration',
 				'user_editcount',
+				'user_actor.actor_id',
 			],
-			'joins' => [],
+			'joins' => [
+				'user_actor' => [ 'JOIN', 'user_actor.actor_user = user_id' ],
+			],
 		];
-
-		// Technically we shouldn't allow this without SCHEMA_COMPAT_READ_NEW,
-		// but it does little harm and might be needed for write callers loading a User.
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_NEW ) {
-			$ret['tables']['user_actor'] = 'actor';
-			$ret['fields'][] = 'user_actor.actor_id';
-			$ret['joins']['user_actor'] = [
-				( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) ? 'JOIN' : 'LEFT JOIN',
-				[ 'user_actor.actor_user = user_id' ]
-			];
-		}
 
 		return $ret;
 	}

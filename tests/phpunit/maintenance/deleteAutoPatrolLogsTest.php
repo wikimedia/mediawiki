@@ -37,7 +37,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 		$logs[] = [
 			'log_type' => 'patrol',
 			'log_action' => 'patrol',
-			'log_user' => 7251,
+			'log_actor' => 7251,
 			'log_params' => '',
 			'log_timestamp' => $dbw->timestamp( '20041223210426' ),
 			'log_namespace' => NS_MAIN,
@@ -49,7 +49,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 		$logs[] = [
 			'log_type' => 'patrol',
 			'log_action' => 'autopatrol',
-			'log_user' => 7252,
+			'log_actor' => 7252,
 			'log_params' => '',
 			'log_timestamp' => $dbw->timestamp( '20051223210426' ),
 			'log_namespace' => NS_MAIN,
@@ -61,7 +61,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 		$logs[] = [
 			'log_type' => 'block',
 			'log_action' => 'block',
-			'log_user' => 7253,
+			'log_actor' => 7253,
 			'log_params' => '',
 			'log_timestamp' => $dbw->timestamp( '20061223210426' ),
 			'log_namespace' => NS_MAIN,
@@ -73,7 +73,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 		$logs[] = [
 			'log_type' => 'patrol',
 			'log_action' => 'patrol',
-			'log_user' => 7253,
+			'log_actor' => 7253,
 			'log_params' => 'nanana',
 			'log_timestamp' => $dbw->timestamp( '20061223210426' ),
 			'log_namespace' => NS_MAIN,
@@ -85,7 +85,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 		$logs[] = [
 			'log_type' => 'patrol',
 			'log_action' => 'autopatrol',
-			'log_user' => 7254,
+			'log_actor' => 7254,
 			'log_params' => '',
 			'log_timestamp' => $dbw->timestamp( '20071223210426' ),
 			'log_namespace' => NS_MAIN,
@@ -97,7 +97,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 		$logs[] = [
 			'log_type' => 'patrol',
 			'log_action' => 'patrol',
-			'log_user' => 7255,
+			'log_actor' => 7255,
 			'log_params' => serialize( [ '6::auto' => true ] ),
 			'log_timestamp' => $dbw->timestamp( '20081223210426' ),
 			'log_namespace' => NS_MAIN,
@@ -109,7 +109,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 		$logs[] = [
 			'log_type' => 'patrol',
 			'log_action' => 'patrol',
-			'log_user' => 7256,
+			'log_actor' => 7256,
 			'log_params' => serialize( [ '6::auto' => false ] ),
 			'log_timestamp' => $dbw->timestamp( '20091223210426' ),
 			'log_namespace' => NS_MAIN,
@@ -121,7 +121,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 		$logs[] = [
 			'log_type' => 'patrol',
 			'log_action' => 'patrol',
-			'log_user' => 7257,
+			'log_actor' => 7257,
 			'log_params' => "9227851\n0\n1",
 			'log_timestamp' => $dbw->timestamp( '20081223210426' ),
 			'log_namespace' => NS_MAIN,
@@ -133,7 +133,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 		$logs[] = [
 			'log_type' => 'patrol',
 			'log_action' => 'patrol',
-			'log_user' => 7258,
+			'log_actor' => 7258,
 			'log_params' => "9227851\n0\n0",
 			'log_timestamp' => $dbw->timestamp( '20091223210426' ),
 			'log_namespace' => NS_MAIN,
@@ -149,47 +149,47 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			(object)[
 				'log_type' => 'patrol',
 				'log_action' => 'patrol',
-				'log_user' => '7251',
+				'log_actor' => '7251',
 			],
 			(object)[
 				'log_type' => 'patrol',
 				'log_action' => 'autopatrol',
-				'log_user' => '7252',
+				'log_actor' => '7252',
 			],
 			(object)[
 				'log_type' => 'block',
 				'log_action' => 'block',
-				'log_user' => '7253',
+				'log_actor' => '7253',
 			],
 			(object)[
 				'log_type' => 'patrol',
 				'log_action' => 'patrol',
-				'log_user' => '7253',
+				'log_actor' => '7253',
 			],
 			(object)[
 				'log_type' => 'patrol',
 				'log_action' => 'autopatrol',
-				'log_user' => '7254',
+				'log_actor' => '7254',
 			],
 			(object)[
 				'log_type' => 'patrol',
 				'log_action' => 'patrol',
-				'log_user' => '7255',
+				'log_actor' => '7255',
 			],
 			(object)[
 				'log_type' => 'patrol',
 				'log_action' => 'patrol',
-				'log_user' => '7256',
+				'log_actor' => '7256',
 			],
 			(object)[
 				'log_type' => 'patrol',
 				'log_action' => 'patrol',
-				'log_user' => '7257',
+				'log_actor' => '7257',
 			],
 			(object)[
 				'log_type' => 'patrol',
 				'log_action' => 'patrol',
-				'log_user' => '7258',
+				'log_actor' => '7258',
 			],
 		];
 
@@ -266,7 +266,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 
 		$remainingLogs = wfGetDB( DB_REPLICA )->select(
 			[ 'logging' ],
-			[ 'log_type', 'log_action', 'log_user' ],
+			[ 'log_type', 'log_action', 'log_actor' ],
 			[],
 			__METHOD__,
 			[ 'ORDER BY' => 'log_id' ]
@@ -288,7 +288,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 
 		$remainingLogs = wfGetDB( DB_REPLICA )->select(
 			[ 'logging' ],
-			[ 'log_type', 'log_action', 'log_user' ],
+			[ 'log_type', 'log_action', 'log_actor' ],
 			[],
 			__METHOD__,
 			[ 'ORDER BY' => 'log_id' ]
@@ -297,12 +297,12 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 		$deleted = [
 			'log_type' => 'patrol',
 			'log_action' => 'autopatrol',
-			'log_user' => '7254',
+			'log_actor' => '7254',
 		];
 		$notDeleted = [
 			'log_type' => 'patrol',
 			'log_action' => 'autopatrol',
-			'log_user' => '7252',
+			'log_actor' => '7252',
 		];
 
 		$remainingLogs = array_map(
