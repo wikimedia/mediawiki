@@ -8,6 +8,9 @@
 		"userAvatar": {
 			"file": "../wikimediaui/images/icons/userAvatar.svg"
 		},
+		"userAvatarOutline": {
+			"file": "../wikimediaui/images/icons/userAvatarOutline.svg"
+		},
 		"userTalk": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/userTalk-ltr.svg",
