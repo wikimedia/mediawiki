@@ -107,16 +107,14 @@ The new option is NOT validated.' );
 
 				$userValue = $user->getOption( $option );
 				if ( $userValue <> $defaultOptions[$option] ) {
-					// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-					@$ret[$option][$userValue]++;
+					$ret[$option][$userValue] = ( $ret[$option][$userValue] ?? 0 ) + 1;
 				}
 			} else {
 
 				foreach ( $defaultOptions as $name => $defaultValue ) {
 					$userValue = $user->getOption( $name );
 					if ( $userValue != $defaultValue ) {
-						// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-						@$ret[$name][$userValue]++;
+						$ret[$option][$userValue] = ( $ret[$option][$userValue] ?? 0 ) + 1;
 					}
 				}
 			}
