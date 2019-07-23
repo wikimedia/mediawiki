@@ -69,9 +69,9 @@ class CleanupSpam extends Maintenance {
 			// Clean up spam on all wikis
 			$this->output( "Finding spam on " . count( $wgLocalDatabases ) . " wikis\n" );
 			$found = false;
-			foreach ( $wgLocalDatabases as $wikiID ) {
+			foreach ( $wgLocalDatabases as $wikiId ) {
 				/** @var Database $dbr */
-				$dbr = $this->getDB( DB_REPLICA, [], $wikiID );
+				$dbr = $this->getDB( DB_REPLICA, [], $wikiId );
 
 				foreach ( $protConds as $conds ) {
 					$count = $dbr->selectField(
@@ -84,9 +84,9 @@ class CleanupSpam extends Maintenance {
 						$found = true;
 						$cmd = wfShellWikiCmd(
 							"$IP/maintenance/cleanupSpam.php",
-							[ '--wiki', $wikiID, $spec ]
+							[ '--wiki', $wikiId, $spec ]
 						);
-						passthru( "$cmd | sed 's/^/$wikiID:  /'" );
+						passthru( "$cmd | sed 's/^/$wikiId:  /'" );
 					}
 				}
 			}

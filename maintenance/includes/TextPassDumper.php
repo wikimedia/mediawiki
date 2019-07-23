@@ -759,6 +759,7 @@ TEXT
 	function openSpawn() {
 		global $IP;
 
+		$wiki = WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() );
 		if ( count( $this->php ) == 2 ) {
 			$mwscriptpath = $this->php[1];
 		} else {
@@ -771,14 +772,14 @@ TEXT
 						$this->php[0],
 						$mwscriptpath,
 						"fetchText.php",
-						'--wiki', wfWikiID() ] ) );
+						'--wiki', $wiki ] ) );
 		} else {
 			$cmd = implode( " ",
 				array_map( [ Shell::class, 'escape' ],
 					[
 						$this->php[0],
 						"$IP/maintenance/fetchText.php",
-						'--wiki', wfWikiID() ] ) );
+						'--wiki', $wiki ] ) );
 		}
 		$spec = [
 			0 => [ "pipe", "r" ],

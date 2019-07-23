@@ -44,10 +44,10 @@ class ClearInterwikiCache extends Maintenance {
 			$prefixes[] = $row->iw_prefix;
 		}
 
-		foreach ( $wgLocalDatabases as $db ) {
-			$this->output( "$db..." );
+		foreach ( $wgLocalDatabases as $wikiId ) {
+			$this->output( "$wikiId..." );
 			foreach ( $prefixes as $prefix ) {
-				$wgMemc->delete( "$db:interwiki:$prefix" );
+				$wgMemc->delete( "$wikiId:interwiki:$prefix" );
 			}
 			$this->output( "done\n" );
 		}
