@@ -37,10 +37,11 @@ class DeleteFileOp extends FileOp {
 		$srcExists = $this->fileExists( $this->params['src'], $predicates );
 		if ( $srcExists === false ) {
 			if ( $this->getParam( 'ignoreMissingSource' ) ) {
-				$this->doOperation = false; // no-op
+				$this->cancelled = true; // no-op
 				// Update file existence predicates (cache 404s)
-				$predicates['exists'][$this->params['src']] = false;
-				$predicates['sha1'][$this->params['src']] = false;
+				$predicates[self::ASSUMED_EXISTS][$this->params['src']] = false;
+				$predicates[self::ASSUMED_SIZE][$this->params['src']] = false;
+				$predicates[self::ASSUMED_SHA1][$this->params['src']] = false;
 
 				return $status; // nothing to do
 			} else {
@@ -53,9 +54,11 @@ class DeleteFileOp extends FileOp {
 
 			return $status;
 		}
-		// Update file existence predicates
-		$predicates['exists'][$this->params['src']] = false;
-		$predicates['sha1'][$this->params['src']] = false;
+
+		// Update file existence predicates since the operation is expected to be allowed to run
+		$predicates[self::ASSUMED_EXISTS][$this->params['src']] = false;
+		$predicates[self::ASSUMED_SIZE][$this->params['src']] = false;
+		$predicates[self::ASSUMED_SHA1][$this->params['src']] = false;
 
 		return $status; // safe to call attempt()
 	}

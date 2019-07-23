@@ -1992,6 +1992,7 @@
 	"backend-fail-backup": "Parameters:\n* $1 - a filename\n{{Related|Backend-fail}}",
 	"backend-fail-notexists": "Parameters:\n* $1 - a filename\n{{Related|Backend-fail}}",
 	"backend-fail-hashes": "Definition of \"[[w:en:Hash_function|hashes]]\".\n{{Related|Backend-fail}}",
+	"backend-fail-sizes": "Used as an error message.\n{{Related|Backend-fail}}",
 	"backend-fail-notsame": "Parameters:\n* $1 is a filename.\n{{Related|Backend-fail}}",
 	"backend-fail-invalidpath": "Parameters:\n* $1 - a storage path\n{{Related|Backend-fail}}",
 	"backend-fail-delete": "Parameters:\n* $1 - a file path\n{{Related|Backend-fail}}",
