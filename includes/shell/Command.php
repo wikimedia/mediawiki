@@ -446,8 +446,9 @@ class Command {
 			// stream_select parameter names are from the POV of us being able to do the operation;
 			// proc_open desriptor types are from the POV of the process doing it.
 			// So $writePipes is passed as the $read parameter and $readPipes as $write.
-			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-			$numReadyPipes = @stream_select( $writePipes, $readPipes, $emptyArray, $timeout );
+			AtEase::suppressWarnings();
+			$numReadyPipes = stream_select( $writePipes, $readPipes, $emptyArray, $timeout );
+			AtEase::restoreWarnings();
 			if ( $numReadyPipes === false ) {
 				$error = error_get_last();
 				if ( strncmp( $error['message'], $eintrMessage, strlen( $eintrMessage ) ) == 0 ) {
