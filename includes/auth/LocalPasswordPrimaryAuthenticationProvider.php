@@ -113,11 +113,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 		// Check for *really* old password hashes that don't even have a type
 		// The old hash format was just an md5 hex hash, with no type information
 		if ( preg_match( '/^[0-9a-f]{32}$/', $row->user_password ) ) {
-			if ( $this->config->get( 'PasswordSalt' ) ) {
-				$row->user_password = ":B:{$row->user_id}:{$row->user_password}";
-			} else {
-				$row->user_password = ":A:{$row->user_password}";
-			}
+			$row->user_password = ":B:{$row->user_id}:{$row->user_password}";
 		}
 
 		$status = $this->checkPasswordValidity( $username, $req->password );

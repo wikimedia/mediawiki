@@ -162,11 +162,11 @@ class ReplicatedBagOStuff extends BagOStuff {
 		return $this->writeStore->makeKeyInternal( ...func_get_args() );
 	}
 
-	public function makeKey( $class, $component = null ) {
+	public function makeKey( $class, ...$components ) {
 		return $this->writeStore->makeKey( ...func_get_args() );
 	}
 
-	public function makeGlobalKey( $class, $component = null ) {
+	public function makeGlobalKey( $class, ...$components ) {
 		return $this->writeStore->makeGlobalKey( ...func_get_args() );
 	}
 
