@@ -38,6 +38,9 @@ interface ILBFactory {
 	/** @var int Save DB positions, waiting on all DCs */
 	const SHUTDOWN_CHRONPROT_SYNC = 2;
 
+	/** @var string Default main LB cluster name (do not change this) */
+	const CLUSTER_MAIN_DEFAULT = 'DEFAULT';
+
 	/**
 	 * Construct a manager of ILoadBalancer objects
 	 *
