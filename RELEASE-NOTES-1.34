@@ -82,6 +82,8 @@ For notes on 1.33.x and older releases, see HISTORY.
   strings like "5 days ago" instead of "5 days 13 hours ago".
 * (T220163) Added SpecialMuteModifyFormFields hook to allow extensions
   to add fields to Special:Mute.
+* (T100896) Skin authors can define custom OOUI themes using OOUIThemePaths.
+  See <https://www.mediawiki.org/wiki/OOUI/Themes> for details.
 
 === External library changes in 1.34 ===
 
