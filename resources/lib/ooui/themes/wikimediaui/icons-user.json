@@ -31,6 +31,9 @@
 		"userAvatar": {
 			"file": "images/icons/userAvatar.svg"
 		},
+		"userAvatarOutline": {
+			"file": "images/icons/userAvatarOutline.svg"
+		},
 		"userTalk": {
 			"file": {
 				"ltr": "images/icons/userTalk-ltr.svg",

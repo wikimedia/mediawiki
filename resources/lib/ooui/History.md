@@ -1,4 +1,11 @@
 # OOUI Release History
+## v0.33.4 / 2019-07-22
+### Styles
+* Frameless buttons should feature hover and active states (Volker E.)
+* Revert "WikimediaUI theme: Apply primary flag to ButtonWidget (frameless)" (Volker E.)
+* icons: Add 'bellOutline' and 'userAvatarOutline' and amend 'search' (Volker E.)
+
+
 ## v0.33.3 / 2019-07-16
 ### Styles
 * MessageWidget: Apply `bold` only to inline message types (Volker E.)
