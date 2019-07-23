@@ -262,7 +262,7 @@
 	"changepassword": "Чажыт сөстү өскертири",
 	"resetpass_text": "<!-- Маңаа сөзүглелди немерелээри -->",
 	"resetpass_header": "Чажыт сөстү катап чогаадып кылыры",
-	"oldpassword": "Эгри чажыт сөзүңер:",
+	"oldpassword": "Эрги уруң (чажыт сөс):",
 	"newpassword": "Чаа чажыт сөзүңер:",
 	"retypenew": "Чажыт сөзүңерни катап бижиңер:",
 	"resetpass_submit": "Чажыт сөстү чоогадып кылыр база кирер.",
@@ -358,7 +358,7 @@
 	"page_first": "бирги",
 	"page_last": "сөөлгү",
 	"histlegend": "Версиялар шилиири: деңнээр дээн арыныңар версияларын имнеңеш, бээр базыптыңар '''{{int:compare-submit}}'''.<br />\nТайылбыр: '''({{int:cur}})''' — амгы версиядан ылгавыр; '''({{int:last}})''' — эрткен версиядан ылгавыр;  '''{{int:minoreditletter}}''' — биче өскерилгелер.",
-	"history-fieldset-title": "Каралаары төөгүзү",
+	"history-fieldset-title": "Эдилгелерни шүүр",
 	"history-show-deleted": "Чүгле казыттынган",
 	"histfirst": "Эң эрги",
 	"histlast": "Эң чаа",
@@ -637,7 +637,7 @@
 	"unusedcategories": "Ажыглаваан бөлүктер",
 	"unusedimages": "Ажыглаваан файлдар",
 	"wantedcategories": "Күзээринге бөлүктер",
-	"wantedpages": "Күзээрүнге арыннар",
+	"wantedpages": "Күзээн арыннар",
 	"mostlinked": "Эң холбаалар арыннар",
 	"mostlinkedcategories": "Эң холбаалар бөлүктер",
 	"mostlinkedtemplates": "Эң холбаалар майыктар",
@@ -961,5 +961,7 @@
 	"duration-years": "$1 {{PLURAL:$1|чыл|чыл}}",
 	"duration-decades": "$1 {{PLURAL:$1|1=он хонук|он хонук}}",
 	"duration-centuries": "$1 {{PLURAL:$1|1=чүс чыл|чүс чыл}}",
-	"mw-widgets-abandonedit-title": "Бүзүрелдиг-дир бе?"
+	"mw-widgets-abandonedit-title": "Бүзүрелдиг-дир бе?",
+	"mw-widgets-dateinput-no-date": "Ай-хүн шилитинмээн",
+	"date-range-to": "Ай-хүнге чедир:"
 }
