@@ -20,6 +20,8 @@
  * @file
  * @ingroup Deployment
  */
+
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LBFactorySingle;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
@@ -359,8 +361,8 @@ abstract class DatabaseInstaller {
 			throw new MWException( __METHOD__ . ': unexpected DB connection error' );
 		}
 
-		\MediaWiki\MediaWikiServices::resetGlobalInstance();
-		$services = \MediaWiki\MediaWikiServices::getInstance();
+		MediaWikiServices::resetGlobalInstance();
+		$services = MediaWikiServices::getInstance();
 
 		$connection = $status->value;
 		$services->redefineService( 'DBLoadBalancerFactory', function () use ( $connection ) {
