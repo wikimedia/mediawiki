@@ -289,7 +289,8 @@ class PermissionManager {
 	}
 
 	/**
-	 * Check if user is blocked from editing a particular article
+	 * Check if user is blocked from editing a particular article. If the user does not
+	 * have a block, this will return false.
 	 *
 	 * @param User $user
 	 * @param LinkTarget $page Title to check
@@ -298,27 +299,29 @@ class PermissionManager {
 	 * @return bool
 	 */
 	public function isBlockedFrom( User $user, LinkTarget $page, $fromReplica = false ) {
-		$blocked = $user->isHidden();
+		$block = $user->getBlock( $fromReplica );
+		if ( !$block ) {
+			return false;
+		}
 
 		// TODO: remove upon further migration to LinkTarget
 		$title = Title::newFromLinkTarget( $page );
 
+		$blocked = $user->isHidden();
 		if ( !$blocked ) {
-			$block = $user->getBlock( $fromReplica );
-			if ( $block ) {
-				// Special handling for a user's own talk page. The block is not aware
-				// of the user, so this must be done here.
-				if ( $title->equals( $user->getTalkPage() ) ) {
-					$blocked = $block->appliesToUsertalk( $title );
-				} else {
-					$blocked = $block->appliesToTitle( $title );
-				}
+			// Special handling for a user's own talk page. The block is not aware
+			// of the user, so this must be done here.
+			if ( $title->equals( $user->getTalkPage() ) ) {
+				$blocked = $block->appliesToUsertalk( $title );
+			} else {
+				$blocked = $block->appliesToTitle( $title );
 			}
 		}
 
 		// only for the purpose of the hook. We really don't need this here.
 		$allowUsertalk = $user->isAllowUsertalk();
 
+		// Allow extensions to let a blocked user access a particular page
 		Hooks::run( 'UserIsBlockedFrom', [ $user, $title, &$blocked, &$allowUsertalk ] );
 
 		return $blocked;

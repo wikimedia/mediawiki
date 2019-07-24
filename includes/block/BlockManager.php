@@ -23,6 +23,7 @@ namespace MediaWiki\Block;
 use DateTime;
 use DateTimeZone;
 use DeferredUpdates;
+use Hooks;
 use IP;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Permissions\PermissionManager;
@@ -184,6 +185,7 @@ class BlockManager {
 		// Filter out any duplicated blocks, e.g. from the cookie
 		$blocks = $this->getUniqueBlocks( $blocks );
 
+		$block = null;
 		if ( count( $blocks ) > 0 ) {
 			if ( count( $blocks ) === 1 ) {
 				$block = $blocks[ 0 ];
@@ -195,10 +197,11 @@ class BlockManager {
 					'originalBlocks' => $blocks,
 				] );
 			}
-			return $block;
 		}
 
-		return null;
+		Hooks::run( 'GetUserBlock', [ clone $user, $ip, &$block ] );
+
+		return $block;
 	}
 
 	/**
@@ -227,7 +230,7 @@ class BlockManager {
 			}
 		}
 
-		return array_merge( $systemBlocks, $databaseBlocks );
+		return array_values( array_merge( $systemBlocks, $databaseBlocks ) );
 	}
 
 	/**

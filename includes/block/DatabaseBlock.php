@@ -93,7 +93,6 @@ class DatabaseBlock extends AbstractBlock {
 	 *     anonOnly bool        Only disallow anonymous actions
 	 *     createAccount bool   Disallow creation of new accounts
 	 *     enableAutoblock bool Enable automatic blocking
-	 *     hideName bool        Hide the target user name
 	 *     blockEmail bool      Disallow sending emails
 	 *     allowUsertalk bool   Allow the target to edit its own talk page
 	 *     sitewide bool        Disallow editing all pages and all contribution
@@ -112,7 +111,6 @@ class DatabaseBlock extends AbstractBlock {
 			'anonOnly'        => false,
 			'createAccount'   => false,
 			'enableAutoblock' => false,
-			'hideName'        => false,
 			'blockEmail'      => false,
 			'allowUsertalk'   => false,
 			'sitewide'        => true,
@@ -129,7 +127,6 @@ class DatabaseBlock extends AbstractBlock {
 
 		# Boolean settings
 		$this->mAuto = (bool)$options['auto'];
-		$this->setHideName( (bool)$options['hideName'] );
 		$this->isHardblock( !$options['anonOnly'] );
 		$this->isAutoblocking( (bool)$options['enableAutoblock'] );
 		$this->isSitewide( (bool)$options['sitewide'] );
