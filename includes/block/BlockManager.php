@@ -293,32 +293,7 @@ class BlockManager {
 			$proxyList = array_map( 'trim', file( $proxyList ) );
 		}
 
-		$resultProxyList = [];
-		$deprecatedIPEntries = [];
-
-		// backward compatibility: move all ip addresses in keys to values
-		foreach ( $proxyList as $key => $value ) {
-			$keyIsIP = IP::isIPAddress( $key );
-			$valueIsIP = IP::isIPAddress( $value );
-			if ( $keyIsIP && !$valueIsIP ) {
-				$deprecatedIPEntries[] = $key;
-				$resultProxyList[] = $key;
-			} elseif ( $keyIsIP && $valueIsIP ) {
-				$deprecatedIPEntries[] = $key;
-				$resultProxyList[] = $key;
-				$resultProxyList[] = $value;
-			} else {
-				$resultProxyList[] = $value;
-			}
-		}
-
-		if ( $deprecatedIPEntries ) {
-			wfDeprecated(
-				'IP addresses in the keys of $wgProxyList (found the following IP addresses in keys: ' .
-				implode( ', ', $deprecatedIPEntries ) . ', please move them to values)', '1.30' );
-		}
-
-		$proxyListIPSet = new IPSet( $resultProxyList );
+		$proxyListIPSet = new IPSet( $proxyList );
 		return $proxyListIPSet->match( $ip );
 	}
 

@@ -161,27 +161,6 @@ class BlockManagerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers ::isLocallyBlockedProxy
-	 */
-	public function testIsLocallyBlockedProxyDeprecated() {
-		$proxy = '1.2.3.4';
-
-		$this->hideDeprecated(
-			'IP addresses in the keys of $wgProxyList (found the following IP ' .
-			'addresses in keys: ' . $proxy . ', please move them to values)'
-		);
-
-		$blockManager = TestingAccessWrapper::newFromObject(
-			$this->getBlockManager( [
-				'wgProxyList' => [ $proxy => 'test' ]
-			] )
-		);
-
-		$ip = '1.2.3.4';
-		$this->assertTrue( $blockManager->isLocallyBlockedProxy( $ip ) );
-	}
-
-	/**
 	 * @dataProvider provideIsDnsBlacklisted
 	 * @covers ::isDnsBlacklisted
 	 * @covers ::inDnsBlacklist
