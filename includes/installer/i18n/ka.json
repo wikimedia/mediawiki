@@ -46,7 +46,6 @@
 	"config-invalid-db-type": "არასწორი მონაცემთა ბაზის ტიპი",
 	"config-sqlite-readonly": "ფაილი <code>$1</code> ჩასაწერად მიუწვდომელია.",
 	"config-mysql-innodb": "InnoDB",
-	"config-mysql-myisam": "MyISAM",
 	"config-site-name": "ვიკის სახელი:",
 	"config-site-name-blank": "შეიყვანეთ ვებ-გვერდის სახელი.",
 	"config-project-namespace": "პროექტის სახელთა სივრცე:",

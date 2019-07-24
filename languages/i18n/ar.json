@@ -1041,6 +1041,8 @@
 	"search-interwiki-more": "(المزيد)",
 	"search-interwiki-more-results": "المزيد من النتائج",
 	"search-relatedarticle": "مرتبطة",
+	"search-invalid-sort-order": "ترتيب فرز $1 غير معروفP سيتم تطبيق الفرز الافتراضي، ترتيبات الفرز الصالحة هي: $2",
+	"search-unknown-profile": "لم يتم التعرف على ملف تعريف البحث $1؛ سيتم تطبيق ملف تعريف البحث الافتراضي.",
 	"searchrelated": "مرتبطة",
 	"searchall": "الكل",
 	"showingresults": "معروض بالأسفل {{PLURAL:$1|<strong>1</strong> نتيجة}} بدءا من رقم <strong>$2</strong>.",

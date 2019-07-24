@@ -56,7 +56,6 @@
 	"config-header-oracle": "Ajusti por Oracle-sistemo:",
 	"config-header-mssql": "Ajusti por Microsoft SQL Server",
 	"config-invalid-db-type": "Nevalida tipo di datumaro.",
-	"config-mysql-myisam": "MyISAM",
 	"config-ns-generic": "Projeto",
 	"config-ns-site-name": "Sama kam la wiki-nomo: $1",
 	"config-ns-other": "Altra (definez precise)",

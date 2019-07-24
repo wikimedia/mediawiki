@@ -146,7 +146,6 @@
 	"config-db-web-no-create-privs": "Nalog koji ste naveli za instalaciju nema dovoljne privilegije da otvori nalog.\nNalog koji ovde navedete već mora da postoji.",
 	"config-mysql-engine": "Mehanizam skladišta:",
 	"config-mysql-innodb": "InnoDB (preporučeno)",
-	"config-mysql-myisam": "MyISAM",
 	"config-mssql-auth": "Tip potvrde identiteta:",
 	"config-mssql-sqlauth": "SQL Server potvrda identiteta",
 	"config-mssql-windowsauth": "Windows potvrda identiteta",

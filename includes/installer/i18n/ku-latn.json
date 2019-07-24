@@ -40,7 +40,6 @@
 	"config-sqlite-readonly": "Dosyeya <code>$1</code> ne nivîsbar e.",
 	"config-db-web-account": "Hesabê danegehê bô têgihiştina tora înternetê",
 	"config-mysql-innodb": "InnoDB",
-	"config-mysql-myisam": "MyISAM",
 	"config-site-name": "Navê wîkiyê:",
 	"config-site-name-blank": "Navê malperek têkeve.",
 	"config-ns-generic": "Proje",

@@ -96,8 +96,6 @@
 	"config-db-web-create": "Ciptakan akaun jika belum wujud",
 	"config-mysql-engine": "Enjin storan:",
 	"config-mysql-innodb": "InnoDB",
-	"config-mysql-myisam": "MyISAM",
-	"config-mysql-only-myisam-dep": "<strong>Amaran:</strong> MyISAM ialah satu-satunya enjin storan yang terdapat untuk MySQL di mesin ini, dan penggunaannya dengan MediaWiki tidak digalakkan kerana:\n* ia tidak menyokong keserempakan (''concurrency'') disebabkan penguncian jadual\n* ia lebih terdedah kepada korupsi daripada enjin-enjin lain\n* pangkalan kod MediaWiki tidak sentiasa mengendalikan MyISAM seperti yang diharapkan\n\nPemasangan MySQL anda tidak menyokong InnoDB. Mungkin tiba masanya untuk naik taraf.",
 	"config-mssql-auth": "Jenis pengesahan:",
 	"config-site-name": "Nama wiki:",
 	"config-site-name-help": "Ini akan dipaparkan pada bar tajuk perisian pelayar dan tempat-tempat lain yang berkenaan.",

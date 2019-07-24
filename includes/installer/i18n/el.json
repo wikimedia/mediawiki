@@ -142,7 +142,6 @@
 	"config-db-web-create": "Να δημιουργηθεί ο λογαριασμός αν δεν υπάρχει ήδη",
 	"config-mysql-engine": "Μηχανή αποθήκευσης:",
 	"config-mysql-innodb": "InnoDB",
-	"config-mysql-myisam": "MyISAM",
 	"config-mysql-engine-help": "Το <strong>InnoDB</strong> είναι σχεδόν πάντα η καλύτερη επιλογή, αφού έχει καλή υποστήριξη ταυτόχρονης λειτουργίας.\n\nΤο <strong>MyISAM</strong> μπορεί να είναι ταχύτερο σε εγκαταστάσεις του ενός χρήστη ή μόνο ανάγνωσης. \nΟι βάσεις δεδομένων MyISAM τείνουν να φθείρονται συχνότερα από τις βάσεις δεδομένων InnoDB.",
 	"config-mssql-auth": "Τύπος ελέγχου ταυτότητας:",
 	"config-mssql-sqlauth": "Έλεγχος ταυτότητας του SQL Server",

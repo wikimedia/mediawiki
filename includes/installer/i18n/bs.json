@@ -104,7 +104,6 @@
 	"config-db-web-create": "Napravi račun ako već ne postoji",
 	"config-mysql-engine": "Skladišni pogon:",
 	"config-mysql-innodb": "InnoDB",
-	"config-mysql-myisam": "MyISAM",
 	"config-mssql-auth": "Vrsta autentifikacije:",
 	"config-site-name": "Ime wikija:",
 	"config-site-name-blank": "Upišite ime sajta.",

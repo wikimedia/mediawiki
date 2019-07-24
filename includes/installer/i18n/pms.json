@@ -151,8 +151,6 @@
 	"config-db-web-no-create-privs": "Ël cont ch'a l'ha specificà për l'instalassion a l'ha pa basta 'd privilegi për creé un cont.\nËl cont ch'a spessìfica ambelessì a dev già esiste.",
 	"config-mysql-engine": "Motor ëd memorisassion:",
 	"config-mysql-innodb": "InnoDB",
-	"config-mysql-myisam": "MyISAM",
-	"config-mysql-myisam-dep": "'''Avis''': A l'ha selessionà MyISAM com motor ëd memorisassion për MySQL, che a l'é pa arcomandà da dovré con MediaWiki, përchè:\n* a sopòrta a pen-a la contemporanità për via ëd saradure ëd tàula\n* a l'é pi soget a la corussion che j'àutri motor\n* ël còdes bas ëd MediaWiki pa sempe a gestiss MyISAM com a dovrìa\n\nSe soa istalassion MySQL a manten InnoDB, a l'é fortement arcomandà ch'a serna pitòst col-lì.\nSe soa istalassion MySQL a manten nen InnoDB, a peul esse ch'a sia ël moment ëd n'agiornament.",
 	"config-mysql-engine-help": "'''InnoDB''' a l'é scasi sempe la mej opsion, da già ch'a l'ha un bon manteniment dla concorensa.\n\n'''MyISAM''' a peul esse pi lest an instalassion për n'utent sol o mach an letura.\nLa base ëd dàit MyISAM a tira a corompse pi 'd soens che la base ëd dàit InnoDB.",
 	"config-site-name": "Nòm ëd la wiki:",
 	"config-site-name-help": "Sòn a comparirà ant la bara dël tìtol dël navigador e an vàire d'àutri pòst.",

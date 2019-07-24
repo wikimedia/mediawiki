@@ -49,7 +49,6 @@
 	"config-invalid-db-type": "Type de base de données non valide",
 	"config-sqlite-name-help": "Choisir un nom qui identifie ton wiki.\nFait user pas ni d'espaces ni des traits d'union\nIl va user pour fichier de données SQLite.",
 	"config-mysql-innodb": "InnoDB",
-	"config-mysql-myisam": "MyISAM",
 	"config-site-name": "Nom du wiki:",
 	"config-ns-generic": "Projet",
 	"config-ns-other-default": "MonWiki",

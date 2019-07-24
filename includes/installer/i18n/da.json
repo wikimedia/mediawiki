@@ -69,7 +69,6 @@
 	"config-sqlite-cant-create-db": "Kunne ikke oprette databasefilen <code>$1</code>.",
 	"config-db-web-create": "Opret kontoen hvis den ikke allerede findes",
 	"config-mysql-innodb": "InnoDB (anbefalet)",
-	"config-mysql-myisam": "MyISAM",
 	"config-mssql-windowsauth": "Windows-godkendelse",
 	"config-site-name": "Navn på wiki:",
 	"config-site-name-blank": "Indtast et hjemmesidenavn.",

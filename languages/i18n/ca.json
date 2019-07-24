@@ -277,7 +277,7 @@
 	"pool-servererror": "El servei de recompte de la reserva no és disponible ($1).",
 	"poolcounter-usage-error": "Error d'ús: $1",
 	"aboutsite": "Quant al projecte {{SITENAME}}",
-	"aboutpage": "Project:Quant al",
+	"aboutpage": "Project:Quant a",
 	"copyright": "El contingut està disponible sota la llicència $1 si no s'indica el contrari.",
 	"copyrightpage": "{{ns:project}}:Drets d'autor",
 	"currentevents": "Actualitat",

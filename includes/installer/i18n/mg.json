@@ -60,7 +60,6 @@
 	"config-header-mssql": "Parametatry ny lohamilina Microsoft SQL Server",
 	"config-invalid-db-type": "Karazana banky angona tsy ekena.",
 	"config-mysql-innodb": "innoDB",
-	"config-mysql-myisam": "MyISAM",
 	"config-ns-generic": "Tetikasa",
 	"config-ns-other": "Hafa (lazao)",
 	"config-admin-name": "Ny anaranao :",

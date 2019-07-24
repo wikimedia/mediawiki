@@ -17,7 +17,8 @@
 			"Amjad Khan",
 			"Zakiy",
 			"Vlad5250",
-			"S Kartika"
+			"S Kartika",
+			"NoiX180"
 		]
 	},
 	"tog-underline": "Garisbawahi tautan:",
@@ -1966,7 +1967,7 @@
 	"tags": "Tag parubahan nan sah",
 	"tag-filter": "[[Special:Tags|Tag]] sariang:",
 	"tag-filter-submit": "Sariang",
-	"tag-list-wrapper": "[[Istimewa:Tag|{{PLURAL:$1|Tag}}]]: $2",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag}}]]: $2",
 	"tags-title": "Tag",
 	"tags-intro": "Laman ko barisi daftar tag nan dapek ditandoi dek parangkaik lunak jo suntiangan dan maknanyo.",
 	"tags-tag": "Namo tag",

@@ -1144,6 +1144,8 @@
 	"search-interwiki-more": "(plus)",
 	"search-interwiki-more-results": "résultats supplémentaires",
 	"search-relatedarticle": "Reliés",
+	"search-invalid-sort-order": "L’ordre de tri de $1 n’est pas reconnu, le tri par défaut sera appliqué. Les ordres de tri valides sont : $2",
+	"search-unknown-profile": "Le profil de recherche de $1 n’est pas reconnu, le profil de recherche par défaut sera appliqué.",
 	"searchrelated": "reliés",
 	"searchall": "tout",
 	"showingresults": "Affichage de <strong>$1</strong> résultat{{PLURAL:$1||s}} à partir du n°<strong>$2</strong>.",

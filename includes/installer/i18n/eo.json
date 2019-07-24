@@ -75,7 +75,6 @@
 	"config-regenerate": "Refari dosieron LocalSettings.php →",
 	"config-mysql-engine": "Konservada modulo:",
 	"config-mysql-innodb": "InnoDB (rekomendata)",
-	"config-mysql-myisam": "MyISAM",
 	"config-mssql-auth": "Speco de aŭtentokontrolo:",
 	"config-mssql-sqlauth": "Aŭtentokontrolo de Microsoft SQL-Servilo",
 	"config-mssql-windowsauth": "Aŭtentokontrolo de Windows",

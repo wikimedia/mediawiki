@@ -87,7 +87,6 @@
 	"config-regenerate": "LocalSettings.php পুনরূত্পাদিত করুন →",
 	"config-mysql-engine": "সংগ্রহস্থল ইঞ্জিন:",
 	"config-mysql-innodb": "InnoDB (সুপারিশকৃত)",
-	"config-mysql-myisam": "MyISAM",
 	"config-mssql-windowsauth": "উইন্ডোজ প্রমাণীকরণ",
 	"config-site-name": "উইকির নাম:",
 	"config-site-name-blank": "একটি সাইটের নাম প্রবেশ করান।",

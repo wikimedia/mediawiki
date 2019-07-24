@@ -1065,6 +1065,7 @@
 	"search-interwiki-more": "(więcej)",
 	"search-interwiki-more-results": "Więcej wyników",
 	"search-relatedarticle": "Pokrewne",
+	"search-invalid-sort-order": "Kolejność sortowania $1 jest nierozpoznawana. Zastosowane zostanie domyślne sortowanie. Właściwymi kolejnościami są: $2",
 	"searchrelated": "pokrewne",
 	"searchall": "wszystkie",
 	"showingresults": "Poniżej znajduje się lista {{PLURAL:$1|z '''1''' wynikiem|'''$1''' wyników}}, rozpoczynając od wyniku numer '''$2'''.",

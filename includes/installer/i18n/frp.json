@@ -67,7 +67,6 @@
 	"config-db-web-create": "Féte lo compto s’ègziste p’oncor",
 	"config-mysql-engine": "Motor de stocâjo :",
 	"config-mysql-innodb": "InnoDB",
-	"config-mysql-myisam": "MyISAM",
 	"config-site-name": "Nom du vouiqui :",
 	"config-site-name-blank": "Buchiéd un nom de seto.",
 	"config-project-namespace": "Èspâço de noms du projèt :",

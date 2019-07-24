@@ -62,7 +62,6 @@
 	"config-db-web-account": "ජාල ප්‍රවේශනය සඳහා දත්ත සංචිත ගිණුම",
 	"config-mysql-engine": "ආචයන එන්ජිම:",
 	"config-mysql-innodb": "InnoDB",
-	"config-mysql-myisam": "MyISAM",
 	"config-mssql-windowsauth": "windows සහතික කිරීම.",
 	"config-site-name": "විකියෙහි නම:",
 	"config-site-name-blank": "අඩවි නාමයක් යොදන්න.",
