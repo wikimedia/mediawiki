@@ -310,7 +310,8 @@ class XmlDumpWriter {
 		} catch ( SuppressedDataException $ex ) {
 			return null;
 		} catch ( Exception $ex ) {
-			if ( $ex instanceof MWException || $ex instanceof RuntimeException ) {
+			if ( $ex instanceof MWException || $ex instanceof RuntimeException ||
+				$ex instanceof InvalidArgumentException ) {
 				MWDebug::warning( $warning . ': ' . $ex->getMessage() );
 				return null;
 			} else {
