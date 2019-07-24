@@ -407,7 +407,7 @@ class LocalisationCache {
 	 */
 	public function isExpired( $code ) {
 		if ( $this->forceRecache && !isset( $this->recachedLangs[$code] ) ) {
-			$this->logger->debug( __METHOD__ . "($code): forced reload\n" );
+			$this->logger->debug( __METHOD__ . "($code): forced reload" );
 
 			return true;
 		}
@@ -417,7 +417,7 @@ class LocalisationCache {
 		$preload = $this->store->get( $code, 'preload' );
 		// Different keys may expire separately for some stores
 		if ( $deps === null || $keys === null || $preload === null ) {
-			$this->logger->debug( __METHOD__ . "($code): cache missing, need to make one\n" );
+			$this->logger->debug( __METHOD__ . "($code): cache missing, need to make one" );
 
 			return true;
 		}
@@ -429,7 +429,7 @@ class LocalisationCache {
 			// When this happens, always expire the cache
 			if ( !$dep instanceof CacheDependency || $dep->isExpired() ) {
 				$this->logger->debug( __METHOD__ . "($code): cache for $code expired due to " .
-					get_class( $dep ) . "\n" );
+					get_class( $dep ) );
 
 				return true;
 			}
@@ -836,10 +836,10 @@ class LocalisationCache {
 		# Load the primary localisation from the source file
 		$data = $this->readSourceFilesAndRegisterDeps( $code, $deps );
 		if ( $data === false ) {
-			$this->logger->debug( __METHOD__ . ": no localisation file for $code, using fallback to en\n" );
+			$this->logger->debug( __METHOD__ . ": no localisation file for $code, using fallback to en" );
 			$coreData['fallback'] = 'en';
 		} else {
-			$this->logger->debug( __METHOD__ . ": got localisation for $code from source\n" );
+			$this->logger->debug( __METHOD__ . ": got localisation for $code from source" );
 
 			# Merge primary localisation
 			foreach ( $data as $key => $value ) {
