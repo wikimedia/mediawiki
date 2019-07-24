@@ -5467,7 +5467,7 @@ $wgAutoConfirmCount = 0;
  *  - [ APCOND_IPINRANGE, range ]:
  *      true if the user has an IP address in the range of the passed parameter
  *  - [ APCOND_BLOCKED ]:
- *      true if the user is blocked
+ *      true if the user is sitewide blocked
  *  - [ APCOND_ISBOT ]:
  *      true if the user is a bot
  *  - similar constructs can be defined by extensions
