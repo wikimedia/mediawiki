@@ -79,7 +79,7 @@ class SpecialSearch extends SpecialPage {
 	/**
 	 * @var string
 	 */
-	protected $sort;
+	protected $sort = SearchEngine::DEFAULT_SORT;
 
 	/**
 	 * @var bool
@@ -91,6 +91,12 @@ class SpecialSearch extends SpecialPage {
 	 * @var SearchEngineConfig
 	 */
 	protected $searchConfig;
+
+	/**
+	 * @var Status Holds any parameter validation errors that should
+	 *  be displayed back to the user.
+	 */
+	private $loadStatus;
 
 	const NAMESPACES_CURRENT = 'sense';
 
@@ -204,6 +210,8 @@ class SpecialSearch extends SpecialPage {
 	 * @see tests/phpunit/includes/specials/SpecialSearchTest.php
 	 */
 	public function load() {
+		$this->loadStatus = new Status();
+
 		$request = $this->getRequest();
 		list( $this->limit, $this->offset ) = $request->getLimitOffset( 20, '' );
 		$this->mPrefix = $request->getVal( 'prefix', '' );
@@ -211,8 +219,13 @@ class SpecialSearch extends SpecialPage {
 			$this->setExtraParam( 'prefix', $this->mPrefix );
 		}
 
-		$this->sort = $request->getVal( 'sort', SearchEngine::DEFAULT_SORT );
-		if ( $this->sort !== SearchEngine::DEFAULT_SORT ) {
+		$sort = $request->getVal( 'sort', SearchEngine::DEFAULT_SORT );
+		$validSorts = $this->getSearchEngine()->getValidSorts();
+		if ( !in_array( $sort, $validSorts ) ) {
+			$this->loadStatus->warning( 'search-invalid-sort-order', $sort,
+				implode( ', ', $validSorts ) );
+		} elseif ( $sort !== $this->sort ) {
+			$this->sort = $sort;
 			$this->setExtraParam( 'sort', $this->sort );
 		}
 
@@ -247,6 +260,7 @@ class SpecialSearch extends SpecialPage {
 			$this->namespaces = $profiles[$profile]['namespaces'];
 		} else {
 			// Unknown profile requested
+			$this->loadStatus->warning( 'search-unknown-profile', $profile );
 			$profile = 'default';
 			$this->namespaces = $profiles['default']['namespaces'];
 		}
@@ -375,7 +389,7 @@ class SpecialSearch extends SpecialPage {
 			$out->addHTML( $dymWidget->render( $term, $textMatches ) );
 		}
 
-		$hasErrors = $textStatus && $textStatus->getErrors() !== [];
+		$hasSearchErrors = $textStatus && $textStatus->getErrors() !== [];
 		$hasOtherResults = $textMatches &&
 			$textMatches->hasInterwikiResults( ISearchResultSet::INLINE_RESULTS );
 
@@ -385,7 +399,12 @@ class SpecialSearch extends SpecialPage {
 			$out->addHTML( '<div class="searchresults">' );
 		}
 
-		if ( $hasErrors ) {
+		if ( $hasSearchErrors || $this->loadStatus->getErrors() ) {
+			if ( $textStatus === null ) {
+				$textStatus = $this->loadStatus;
+			} else {
+				$textStatus->merge( $this->loadStatus );
+			}
 			list( $error, $warning ) = $textStatus->splitByErrorType();
 			if ( $error->getErrors() ) {
 				$out->addHTML( Html::errorBox(
@@ -405,7 +424,7 @@ class SpecialSearch extends SpecialPage {
 		Hooks::run( 'SpecialSearchResults', [ $term, &$titleMatches, &$textMatches ] );
 
 		// If we have no results and have not already displayed an error message
-		if ( $num === 0 && !$hasErrors ) {
+		if ( $num === 0 && !$hasSearchErrors ) {
 			$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>", [
 				$hasOtherResults ? 'search-nonefound-thiswiki' : 'search-nonefound',
 				wfEscapeWikiText( $term )

@@ -1025,6 +1025,8 @@
 	"search-interwiki-more": "(more)",
 	"search-interwiki-more-results": "more results",
 	"search-relatedarticle": "Related",
+	"search-invalid-sort-order": "Sort order of $1 is unrecognized, default sorting will be applied. Valid sort orders are: $2",
+	"search-unknown-profile": "Search profile of $1 is unrecognized, default search profile will be applied.",
 	"searchrelated": "related",
 	"searchall": "all",
 	"showingresults": "Showing below up to {{PLURAL:$1|<strong>1</strong> result|<strong>$1</strong> results}} starting with #<strong>$2</strong>.",
