@@ -12,6 +12,8 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\SqlBlobStore;
+use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\MaintainableDBConnRef;
 use MediaWikiTestCase;
 use MWException;
 use Title;
@@ -75,6 +77,17 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	private function getMockDatabase() {
 		return $this->getMockBuilder( IDatabase::class )
 			->disableOriginalConstructor()->getMock();
+	}
+
+	/**
+	 * @param ILoadBalancer $mockLoadBalancer
+	 * @param Database $db
+	 * @return callable
+	 */
+	private function getMockDBConnRefCallback( ILoadBalancer $mockLoadBalancer, IDatabase $db ) {
+		return function ( $i, $g, $domain, $flg ) use ( $mockLoadBalancer, $db ) {
+			return new MaintainableDBConnRef( $mockLoadBalancer, $db, $i );
+		};
 	}
 
 	/**
@@ -158,10 +171,14 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		$this->setService( 'DBLoadBalancer', $mockLoadBalancer );
 
 		$db = $this->getMockDatabase();
-		// Title calls wfGetDB() which uses a regular Connection
+		// RevisionStore uses getConnectionRef
+		$mockLoadBalancer->expects( $this->any() )
+			->method( 'getConnectionRef' )
+			->willReturnCallback( $this->getMockDBConnRefCallback( $mockLoadBalancer, $db ) );
+		// Title calls wfGetDB() which uses getMaintenanceConnectionRef
 		$mockLoadBalancer->expects( $this->atLeastOnce() )
-			->method( 'getConnection' )
-			->willReturn( $db );
+			->method( 'getMaintenanceConnectionRef' )
+			->willReturnCallback( $this->getMockDBConnRefCallback( $mockLoadBalancer, $db ) );
 
 		// First call to Title::newFromID, faking no result (db lag?)
 		$db->expects( $this->at( 0 ) )
@@ -192,15 +209,15 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		$this->setService( 'DBLoadBalancer', $mockLoadBalancer );
 
 		$db = $this->getMockDatabase();
-		// Title calls wfGetDB() which uses a regular Connection
+		// Title calls wfGetDB() which uses getMaintenanceConnectionRef
 		// Assert that the first call uses a REPLICA and the second falls back to master
-		$mockLoadBalancer->expects( $this->exactly( 2 ) )
-			->method( 'getConnection' )
-			->willReturn( $db );
-		// RevisionStore getTitle uses a ConnectionRef
 		$mockLoadBalancer->expects( $this->atLeastOnce() )
 			->method( 'getConnectionRef' )
-			->willReturn( $db );
+			->willReturnCallback( $this->getMockDBConnRefCallback( $mockLoadBalancer, $db ) );
+		// Title calls wfGetDB() which uses getMaintenanceConnectionRef
+		$mockLoadBalancer->expects( $this->exactly( 2 ) )
+			->method( 'getMaintenanceConnectionRef' )
+			->willReturnCallback( $this->getMockDBConnRefCallback( $mockLoadBalancer, $db ) );
 
 		// First call to Title::newFromID, faking no result (db lag?)
 		$db->expects( $this->at( 0 ) )
@@ -251,14 +268,14 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		$this->setService( 'DBLoadBalancer', $mockLoadBalancer );
 
 		$db = $this->getMockDatabase();
-		// Title calls wfGetDB() which uses a regular Connection
-		$mockLoadBalancer->expects( $this->atLeastOnce() )
-			->method( 'getConnection' )
-			->willReturn( $db );
-		// RevisionStore getTitle uses a ConnectionRef
 		$mockLoadBalancer->expects( $this->atLeastOnce() )
 			->method( 'getConnectionRef' )
-			->willReturn( $db );
+			->willReturnCallback( $this->getMockDBConnRefCallback( $mockLoadBalancer, $db ) );
+		// Title calls wfGetDB() which uses getMaintenanceConnectionRef
+		// RevisionStore getTitle uses getMaintenanceConnectionRef
+		$mockLoadBalancer->expects( $this->atLeastOnce() )
+			->method( 'getMaintenanceConnectionRef' )
+			->willReturnCallback( $this->getMockDBConnRefCallback( $mockLoadBalancer, $db ) );
 
 		// First call to Title::newFromID, faking no result (db lag?)
 		$db->expects( $this->at( 0 ) )
@@ -299,15 +316,15 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		$this->setService( 'DBLoadBalancer', $mockLoadBalancer );
 
 		$db = $this->getMockDatabase();
-		// Title calls wfGetDB() which uses a regular Connection
 		// Assert that the first call uses a REPLICA and the second falls back to master
-		$mockLoadBalancer->expects( $this->exactly( 2 ) )
-			->method( 'getConnection' )
-			->willReturn( $db );
-		// RevisionStore getTitle uses a ConnectionRef
+		// RevisionStore uses getMaintenanceConnectionRef
 		$mockLoadBalancer->expects( $this->atLeastOnce() )
 			->method( 'getConnectionRef' )
-			->willReturn( $db );
+			->willReturnCallback( $this->getMockDBConnRefCallback( $mockLoadBalancer, $db ) );
+		// Title calls wfGetDB() which uses getMaintenanceConnectionRef
+		$mockLoadBalancer->expects( $this->exactly( 2 ) )
+			->method( 'getMaintenanceConnectionRef' )
+			->willReturnCallback( $this->getMockDBConnRefCallback( $mockLoadBalancer, $db ) );
 
 		// First call to Title::newFromID, faking no result (db lag?)
 		$db->expects( $this->at( 0 ) )
@@ -368,12 +385,14 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		$this->setService( 'DBLoadBalancer', $mockLoadBalancer );
 
 		$db = $this->getMockDatabase();
-		// Title calls wfGetDB() which uses a regular Connection
+		// Title calls wfGetDB() which uses getMaintenanceConnectionRef
 		// Assert that the first call uses a REPLICA and the second falls back to master
 
 		// RevisionStore getTitle uses getConnectionRef
-		// Title::newFromID uses getConnection
-		foreach ( [ 'getConnection', 'getConnectionRef' ] as $method ) {
+		// Title::newFromID uses getMaintenanceConnectionRef
+		foreach ( [
+			'getConnectionRef', 'getMaintenanceConnectionRef'
+		] as $method ) {
 			$mockLoadBalancer->expects( $this->exactly( 2 ) )
 				->method( $method )
 				->willReturnCallback( function ( $masterOrReplica ) use ( $db ) {
