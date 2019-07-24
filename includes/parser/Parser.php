@@ -890,7 +890,7 @@ class Parser {
 	/**
 	 * Accessor for the Title object
 	 *
-	 * @return Title
+	 * @return Title|null
 	 */
 	public function getTitle() {
 		return $this->mTitle;
