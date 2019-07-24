@@ -39,7 +39,6 @@
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] je wjinstalowóny",
 	"config-diff3-bad": "Felënk GNU diff3.",
 	"config-mysql-innodb": "InnoDB",
-	"config-mysql-myisam": "MyISAM",
 	"config-site-name": "Miono wiki:",
 	"config-site-name-blank": "Wpiszë miono starnów.",
 	"config-ns-other-default": "MòjôWiki",

@@ -115,7 +115,6 @@
 	"config-db-web-create": "Creați contul dacă nu există deja",
 	"config-mysql-engine": "Motor de stocare:",
 	"config-mysql-innodb": "InnoDB (recomandat)",
-	"config-mysql-myisam": "MyISAM",
 	"config-mssql-auth": "Tip de autentificare:",
 	"config-site-name": "Numele wikiului:",
 	"config-site-name-blank": "Introduceți un nume pentru sit.",

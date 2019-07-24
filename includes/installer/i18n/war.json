@@ -60,7 +60,6 @@
 	"config-sqlite-cant-create-db": "Diri nakakahimo hin database file nga <code>$1</code>.",
 	"config-db-web-account": "Database account para han web access",
 	"config-mysql-innodb": "InnoDB",
-	"config-mysql-myisam": "MyISAM",
 	"config-site-name": "Ngaran han wiki:",
 	"config-ns-generic": "Proyekto",
 	"config-ns-site-name": "Kapareho han wiki nga ngaran: $1",

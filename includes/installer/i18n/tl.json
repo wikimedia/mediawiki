@@ -155,8 +155,6 @@
 	"config-db-web-no-create-privs": "Ang tinukoy mong account na iluluklok ay walang sapat na mga pribilehiyo upang makalikha ng isang account.\nAng account na tutukuyin mo rito ay umiiral na dapat.",
 	"config-mysql-engine": "Makinang imbakan:",
 	"config-mysql-innodb": "InnoDB",
-	"config-mysql-myisam": "MyISAM",
-	"config-mysql-myisam-dep": "'''Babala''': Pinili mo ang MyISAM bilang makinang imbakan para sa MySQL, na hindi iminumungkahi para gamitin sa MediaWiki, sapagkat:\n* bahagya lamang itong sumusuporta ng pagkakasundu-sundo dahil sa pagkakandado ng talahanayan\n* mas malaki ang pagkakataon na kapitan ng sira kaysa sa ibang mga makina\n* ang himpilang kodigo ng MediaWiki ay hindi palaging humahawak ng MyISAM ayon sa nararapat\n\nKung ang iyong nakaluklok na MySQL ay sumusuporta ng InnoDB, higit na iminumungkahi na piliin mo iyon sa halip.\nKung ang iyong nakaluklok na MySQL ay hindi sumusuporta ng InnoDB, marahil ay panahon na para sa isang pagtataas ng uri.",
 	"config-mysql-engine-help": "Ang '''InnoDB''' ay ang halos palaging pinaka mainam na mapipili, dahil mayroon itong mabuting suporta ng pagkakasundu-sundo.\n\nMaaaring mas mabilis ang '''MyISAM''' sa mga pagluluklok na pang-isahang tagagamit o mababasa lamang.\nMay gawi ang mga kalipunan ng dato ng MyISAM na masira nang mas madalas kaysa sa mga kalipunan ng dato ng InnoDB.",
 	"config-site-name": "Pangalan ng wiki:",
 	"config-site-name-help": "Lilitaw ito sa bareta ng pamagat ng pantingin-tingin at sa samu't saring ibang mga lugar.",

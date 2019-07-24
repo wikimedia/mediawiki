@@ -43,7 +43,6 @@
 	"config-header-oracle": "Oracle iestatījumi",
 	"config-header-mssql": "Microsoft SQL servera iestatījumi",
 	"config-mysql-innodb": "InnoDB",
-	"config-mysql-myisam": "MyISAM",
 	"config-mssql-windowsauth": "Windows Autentifikācija",
 	"config-ns-generic": "Projekts",
 	"config-ns-site-name": "Tāds pats kā viki nosaukums: $1",

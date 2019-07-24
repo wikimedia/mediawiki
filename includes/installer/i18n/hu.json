@@ -163,8 +163,6 @@
 	"config-db-web-no-create-privs": "A telepítéshez megadott fiók nem rendelkezik megfelelő jogosultságokkal új felhasználó létrehozásához.\nAz itt megadott fióknak léteznie kell.",
 	"config-mysql-engine": "Tárolómotor:",
 	"config-mysql-innodb": "InnoDB",
-	"config-mysql-myisam": "MyISAM",
-	"config-mysql-myisam-dep": "'''Figyelmeztetés''': A MyISAM tárolómotort választottad, ami nem ajánlott a MediaWiki használatánál, mert:\n* nagyon rosszul kezeli a párhuzamos lekéréseket a táblák zárolása miatt\n* sokkal nagyobb az esélye az adatkorrupció kialakulásának\n* a MediaWiki kódbázisa nem mindig úgy kezeli a MyISAM-ot, ahogyan kellene\n\nHa a feltelepített MySQL támogatja az InnoDB-t, erősen ajánlott, hogy inkább azt válaszd.\nHa nem, akkor lehet, hogy itt az ideje a frissítésnek.",
 	"config-mysql-engine-help": "A legtöbb esetben az '''InnoDB''' a legjobb választás, mivel megfelelően támogatja a párhuzamosságot.\n\nA '''MyISAM''' gyorsabb megoldás lehet egyfelhasználós vagy csak olvasható környezetekben, azonban a MyISAM-adatbázisok sokkal gyakrabban sérülnek meg, mint az InnoDB-adatbázisok.",
 	"config-mssql-auth": "Hitelesítés típusa:",
 	"config-mssql-sqlauth": "SQL Server hitelesítés",

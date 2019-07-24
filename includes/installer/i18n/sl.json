@@ -105,7 +105,6 @@
 	"config-db-web-create": "Ustvari račun, če že ne obstaja",
 	"config-mysql-engine": "Pogon skladiščenja:",
 	"config-mysql-innodb": "InnoDB (priporočeno)",
-	"config-mysql-myisam": "MyISAM",
 	"config-mssql-auth": "Tip avtentikacije:",
 	"config-site-name": "Ime wikija:",
 	"config-site-name-help": "To bo prikazano v naslovni vrstici brskalnika in na drugih različnih mestih.",

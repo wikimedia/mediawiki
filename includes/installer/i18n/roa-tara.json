@@ -58,7 +58,6 @@
 	"config-header-mssql": "'Mbostaziune de Microsoft SQL Server",
 	"config-invalid-db-type": "Tipe de database invalide.",
 	"config-mysql-innodb": "InnoDB (conzigliate)",
-	"config-mysql-myisam": "MyISAM",
 	"config-ns-generic": "Proggette",
 	"config-admin-email": "Indirizze e-mail:",
 	"config-install-step-done": "fatte",

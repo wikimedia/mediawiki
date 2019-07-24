@@ -74,7 +74,6 @@
 	"config-db-web-account": "Databasisgebruiker vir toegang tot die web",
 	"config-mysql-engine": "Stoor-enjin:",
 	"config-mysql-innodb": "InnoDB",
-	"config-mysql-myisam": "MyISAM",
 	"config-site-name": "Naam van die wiki:",
 	"config-site-name-blank": "Verskaf 'n naam vir u webwerf.",
 	"config-project-namespace": "Projeknaamruimte:",

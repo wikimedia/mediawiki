@@ -124,7 +124,6 @@
 	"config-db-web-no-create-privs": "స్థాపన కోసం మీరిచ్చిన ఖాతాకు ఓ కొత్త ఖాతాను సృష్టించే అనుమతులు లేవు.\nఇక్కడ మీరిచ్చే ఖాతా తప్పనిసరిగా ఈసరికే ఉనికిలో ఉండాలి.",
 	"config-mysql-engine": "స్టోరేజీ ఇంజను:",
 	"config-mysql-innodb": "InnoDB",
-	"config-mysql-myisam": "MyISAM",
 	"config-mssql-auth": "ఆథెంటికేషన్ రకం:",
 	"config-mssql-sqlauth": "SQL Server ఆథెంటికేషన్",
 	"config-mssql-windowsauth": "విండోస్ ఆథెంటికేషన్",

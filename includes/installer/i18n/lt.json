@@ -99,7 +99,6 @@
 	"config-db-web-create": "Sukurti paskyrą, jeigu jos nėra",
 	"config-mysql-engine": "Saugojimo variklis:",
 	"config-mysql-innodb": "InnoDB",
-	"config-mysql-myisam": "MyISAM",
 	"config-mssql-auth": "Autentifikavimo tipas:",
 	"config-mssql-sqlauth": "SQL Serverio autentifikavimas",
 	"config-mssql-windowsauth": "Windows autentifikavimas",

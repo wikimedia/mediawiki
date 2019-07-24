@@ -59,7 +59,6 @@
 	"config-show-table-status": "«<code>SHOW TABLE STATUS</code>» таләбе эшләнмәде!",
 	"config-mysql-engine": "Саклау системасы:",
 	"config-mysql-innodb": "InnoDB (тәкъдим ителә)",
-	"config-mysql-myisam": "MyISAM",
 	"config-mssql-auth": "Аутентификация төре:",
 	"config-mssql-sqlauth": "SQL Server чынлыгын раслау",
 	"config-mssql-windowsauth": "Windows чынлыгын раслау",

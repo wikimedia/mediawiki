@@ -155,7 +155,6 @@
 	"config-db-web-no-create-privs": "Kurulum için belirlediğiniz hesap, hesap yaratımı için gerekli izinlere sahip değil.\nBurada belirttiğiniz hesap halihazırda var olmalı.",
 	"config-mysql-engine": "Depolama motoru:",
 	"config-mysql-innodb": "InnoDB (önerilen)",
-	"config-mysql-myisam": "MyISAM",
 	"config-mssql-auth": "Kimlik doğrulama türü:",
 	"config-mssql-install-auth": "Kurulum işlemi sırasında veritabanına bağlanmak için kullanılacak doğrulama türünü seçin.\n\"{{int:config-mssql-windowsauth}}\"'ı seçerseniz,ağ sunucusu olarak çalışan kullanıcının kimlik bilgileri kullanılacaktır.",
 	"config-mssql-sqlauth": "SQL Server kimlik doğrulaması",

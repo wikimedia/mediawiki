@@ -125,7 +125,6 @@
 	"config-db-web-no-create-privs": "Konto, kotrež sy za instalaciju podał, nima dosć woprawnjenjow, zo by konto wutworiło.\nKonto, kotrež tu podawaće, dyrbi hižo eksistować.",
 	"config-mysql-engine": "Składowanska mašina:",
 	"config-mysql-innodb": "InnoDB",
-	"config-mysql-myisam": "MyISAM",
 	"config-site-name": "Mjeno wikija:",
 	"config-site-name-help": "To zjewi so w titulowej lejstwje wobhladaka kaž tež na wšelakich druhich městnach.",
 	"config-site-name-blank": "Zapodaj sydłowe mjeno.",

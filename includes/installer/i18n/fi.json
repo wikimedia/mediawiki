@@ -171,7 +171,6 @@
 	"config-db-web-no-create-privs": "Tilillä jota käytetään asennuksessa ei ole oikeuksia luoda uutta tiliä.\nTähän määriteltävä tili täytyy olla jo olemassa.",
 	"config-mysql-engine": "Tallennusmoottori",
 	"config-mysql-innodb": "InnoDB (suositeltu)",
-	"config-mysql-myisam": "MyISAM",
 	"config-mssql-auth": "Varmennuksen tyyppi:",
 	"config-mssql-install-auth": "Valitse varmennuksen tyyppi, jota käytetään yhdistäessä tietokantaan asennuksen aikana.\nJos valitset \"{{int:config-mssql-windowsauth}}\", käytetään verkkopalvelimen käyttäjän kirjautumistietoja.",
 	"config-mssql-web-auth": "Valitse varmennuksen tyyppi, jota verkkopalvelin käyttää yhdistäessään tietokantapalvelimeen wikin tavallisen toiminnan aikana.\nJos valitset \"{{int:config-mssql-windowsauth}}\", käytetään verkkopalvelimen käyttäjän kirjautumistietoja.",

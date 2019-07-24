@@ -152,7 +152,6 @@
 	"config-db-web-no-create-privs": "Налог који сте навели за инсталацију нема довољне привилегије да отвори налог.\nНалог који овде наведете већ мора да постоји.",
 	"config-mysql-engine": "Механизам складишта:",
 	"config-mysql-innodb": "InnoDB (препоручено)",
-	"config-mysql-myisam": "MyISAM",
 	"config-mssql-auth": "Тип потврде идентитета:",
 	"config-mssql-sqlauth": "SQL Server потврда идентитета",
 	"config-mssql-windowsauth": "Windows потврда идентитета",

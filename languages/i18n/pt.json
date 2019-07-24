@@ -1053,6 +1053,8 @@
 	"search-interwiki-more": "(mais)",
 	"search-interwiki-more-results": "mais resultados",
 	"search-relatedarticle": "Relacionado",
+	"search-invalid-sort-order": "A ordenação $1 não é reconhecida, será aplicada a ordenação padrão. As ordenações válidas são: $2",
+	"search-unknown-profile": "O perfil de pesquisa $1 não é reconhecido, será aplicado o perfil de pesquisa padrão.",
 	"searchrelated": "relacionados",
 	"searchall": "todos",
 	"showingresults": "{{PLURAL:$1|É apresentado <strong>um</strong> resultado|São apresentados até <strong>$1</strong> resultados}} abaixo{{PLURAL:$1||, começando pelo <strong>$2</strong>º}}.",

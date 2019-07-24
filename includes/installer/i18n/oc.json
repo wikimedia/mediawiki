@@ -91,7 +91,6 @@
 	"config-db-web-create": "Creatz lo compte se existís pas ja",
 	"config-mysql-engine": "Motor d'emmagazinatge :",
 	"config-mysql-innodb": "InnoDB",
-	"config-mysql-myisam": "MyISAM",
 	"config-mssql-auth": "Tipe d’autentificacion :",
 	"config-mssql-sqlauth": "Autentificacion de SQL Server",
 	"config-mssql-windowsauth": "Autentificacion Windows",

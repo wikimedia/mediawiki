@@ -111,7 +111,6 @@
 	"config-db-web-account-same": "Dee selwechte Kont wéi bei der Installatioun benotzen",
 	"config-db-web-create": "De Kont uleeë wann et e net scho gëtt",
 	"config-mysql-innodb": "InnoDB (recommandéiert)",
-	"config-mysql-myisam": "MyISAM",
 	"config-mssql-auth": "Typ vun der Authentifikatioun:",
 	"config-mssql-sqlauth": "SOL-Server-Authentifikatioun",
 	"config-mssql-windowsauth": "Windows-Authentifikatioun",

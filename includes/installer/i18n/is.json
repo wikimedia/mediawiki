@@ -62,7 +62,6 @@
 	"config-db-web-account": "Gagnagrunnsreikningur fyrir vefaðgang",
 	"config-mysql-engine": "Gagnagrunnshýsing:",
 	"config-mysql-innodb": "InnoDB (mælt með)",
-	"config-mysql-myisam": "MyISAM",
 	"config-mssql-auth": "Tegund auðkenningar:",
 	"config-mssql-sqlauth": "SQL Server auðkenning",
 	"config-mssql-windowsauth": "Windows auðkenning",

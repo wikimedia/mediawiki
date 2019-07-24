@@ -58,7 +58,6 @@
 	"config-missing-db-server-oracle": "\"{{int:config-db-host-oracle}}\" rë jew erc gerek keno",
 	"config-mysql-engine": "Motorë depok kerdışi",
 	"config-mysql-innodb": "InnoDB",
-	"config-mysql-myisam": "MyISAM",
 	"config-mssql-sqlauth": "SQL Server araştnayış",
 	"config-mssql-windowsauth": "Windows kamiye araştnayış",
 	"config-site-name": "Namey wiki:",

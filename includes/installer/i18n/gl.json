@@ -7,7 +7,8 @@
 			"Vivaelcelta",
 			"Macofe",
 			"Banjo",
-			"Seb35"
+			"Seb35",
+			"Maria zaos"
 		]
 	},
 	"config-desc": "O programa de instalación de MediaWiki",
@@ -47,7 +48,7 @@
 	"config-help-restart": "Quere eliminar todos os datos gardados e reiniciar o proceso de instalación?",
 	"config-restart": "Si, reiniciala",
 	"config-welcome": "=== Comprobación da contorna ===\nCómpre realizar agora unhas comprobacións básicas para ver se a contorna é axeitada para a instalación de MediaWiki.\nLembre incluír esta información se necesita axuda para completar a instalación.",
-	"config-welcome-section-copyright": "=== Dereitos de autor e termos de uso ===\n\n$1\n\nEste programa é software libre; pode redistribuílo e/ou modificalo segundo os termos da licenza pública xeral GNU publicada pola Free Software Foundation; versión 2 ou (na súa escolla) calquera outra posterior.\n\nEste programa distribúese coa esperanza de que poida ser útil, pero <strong>sen garantía ningunha</strong>; nin sequera a garantía implícita de <strong>comercialización</strong> ou <strong>adecuación a unha finalidade específica</strong>.\nOlle a licenza pública xeral GNU para obter máis detalles.\n\nDebería recibir [$2 unha copia da licenza pública xeral GNU] xunto ao programa; se non é así, escriba á Free Software Foundation, Inc., rúa Franklin, número 51, quinto andar, Boston, Massachusetts, 02110-1301, Estados Unidos de América ou [https://www.gnu.org/copyleft/gpl.html lea a licenza en liña].",
+	"config-welcome-section-copyright": "=== Dereitos de autoría e termos de uso ===\n\n$1\n\nEste programa é software libre; pode redistribuílo e/ou modificalo segundo os termos da licenza pública xeral GNU publicada pola Free Software Foundation; versión 2 ou (na súa escolla) calquera outra posterior.\n\nEste programa distribúese coa esperanza de que poida ser útil, pero <strong>sen garantía ningunha</strong>; nin sequera a garantía implícita de <strong>comercialización</strong> ou <strong>adecuación a unha finalidade específica</strong>.\nOlle a licenza pública xeral GNU para obter máis detalles.\n\nDebería recibir [$2 unha copia da licenza pública xeral GNU] xunto ao programa; se non é así, escriba á Free Software Foundation, Inc., rúa Franklin, número 51, quinto andar, Boston, Massachusetts, 02110-1301, Estados Unidos de América ou [https://www.gnu.org/copyleft/gpl.html lea a licenza en liña].",
 	"config-sidebar": "* [https://www.mediawiki.org/wiki/MediaWiki/gl Páxina principal de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Guía de usuario]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Guía de administrador]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Preguntas máis frecuentes]\n----\n* <doclink href=Readme>Léame</doclink>\n* <doclink href=ReleaseNotes>Notas de lanzamento</doclink>\n* <doclink href=Copying>Copia</doclink>\n* <doclink href=UpgradeDoc>Actualizacións</doclink>",
 	"config-env-good": "Rematou a comprobación da contorna.\nPode instalar MediaWiki.",
 	"config-env-bad": "Rematou a comprobación da contorna.\nNon pode instalar MediaWiki.",
@@ -164,9 +165,6 @@
 	"config-db-web-no-create-privs": "A conta que especificou para a instalación non ten os privilexios suficientes para crear unha conta.\nA conta que se especifique aquí xa debe existir.",
 	"config-mysql-engine": "Motor de almacenamento:",
 	"config-mysql-innodb": "InnoDB (recomendado)",
-	"config-mysql-myisam": "MyISAM",
-	"config-mysql-myisam-dep": "<strong>Atención:</strong> Seleccionou MyISAM como o motor de almacenamento para MySQL, unha combinación non recomendada para MediaWiki, porque:\n* practicamente non soporta os accesos simultáneos debido ao bloqueo de táboas\n* é máis propenso a corromperse ca outros motores\n* o código base de MediaWiki non sempre manexa o MyISAM como debera\n\nSe a súa instalación MySQL soporta InnoDB, recoméndase elixilo no canto de MyISAM.\nSe a súa instalación MySQL non soporta InnoDB, quizais sexa boa idea realizar unha actualización.",
-	"config-mysql-only-myisam-dep": "<strong>Atención:</strong> MyISAM é o único motor de almacenamento para MySQL nesta máquina, unha combinación non recomendada para MediaWiki, porque:\n* practicamente non soporta os accesos simultáneos debido ao bloqueo de táboas\n* é máis propenso a corromperse ca outros motores\n* o código base de MediaWiki non sempre manexa o MyISAM como debera\n\nA súa instalación MySQL non soporta InnoDB, quizais sexa boa idea realizar unha actualización.",
 	"config-mysql-engine-help": "<strong>InnoDB</strong> é case sempre a mellor opción, dado que soporta ben os accesos simultáneos.\n\n<strong>MyISAM</strong> é máis rápido en instalacións de usuario único e de só lectura.\nAs bases de datos MyISAM tenden a se corromper máis a miúdo ca as bases de datos InnoDB.",
 	"config-mssql-auth": "Tipo de autenticación:",
 	"config-mssql-install-auth": "Seleccione o tipo de autenticación que se utilizará para conectarse á base de datos durante o proceso de instalación.\nSe selecciona \"{{int:config-mssql-windowsauth}}\", usaranse as credenciais do usuario co que se está a executar o servidor web.",

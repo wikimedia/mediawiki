@@ -154,7 +154,6 @@
 	"config-db-web-no-create-privs": "La cuenta qu'especificasti pa la instalación nun tien permisos abondo pa crear una cuenta.\nLa cuenta qu'especifiques equí yá tien d'esistir.",
 	"config-mysql-engine": "Motor d'almacenamientu:",
 	"config-mysql-innodb": "InnoDB (aconséyase)",
-	"config-mysql-myisam": "MyISAM",
 	"config-mssql-auth": "Triba d'autenticación:",
 	"config-mssql-sqlauth": "Autenticación de SQL Server",
 	"config-mssql-windowsauth": "Autenticación de Windows",
