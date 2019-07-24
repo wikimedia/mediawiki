@@ -161,11 +161,9 @@ class UserrightsPage extends SpecialPage {
 			 * allow them to change any user rights.
 			 */
 			if ( !$user->isAllowed( 'userrights' ) ) {
-				// @TODO Should the user be blocked from changing user rights if they
-				//       are partially blocked?
 				$block = $user->getBlock();
-				if ( $block ) {
-					throw new UserBlockedError( $user->getBlock() );
+				if ( $block && $block->isSitewide() ) {
+					throw new UserBlockedError( $block );
 				}
 			}
 
