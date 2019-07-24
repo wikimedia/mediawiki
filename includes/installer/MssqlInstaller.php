@@ -212,6 +212,7 @@ class MssqlInstaller extends DatabaseInstaller {
 		}
 
 		try {
+			/** @var DatabaseMssql $db */
 			$db = Database::factory( 'mssql', [
 				'host' => $this->getVar( 'wgDBserver' ),
 				'port' => $this->getVar( 'wgDBport' ),
@@ -236,7 +237,7 @@ class MssqlInstaller extends DatabaseInstaller {
 
 		$status = $this->getConnection();
 		if ( !$status->isOK() ) {
-			$this->parent->showStatusError( $status );
+			$this->parent->showStatusMessage( $status );
 
 			return;
 		}
@@ -594,7 +595,7 @@ class MssqlInstaller extends DatabaseInstaller {
 
 		// Try to grant to all the users we know exist or we were able to create
 		$this->db->selectDB( $dbName );
-		foreach ( $grantableNames as $name ) {
+		if ( $grantableNames ) {
 			try {
 				// First try to grant full permissions
 				$fullPrivArr = [
