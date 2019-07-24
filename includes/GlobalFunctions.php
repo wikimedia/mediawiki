@@ -2563,10 +2563,10 @@ function wfWikiID() {
  * @todo Replace calls to wfGetDB with calls to LoadBalancer::getConnection()
  *       on an injected instance of LoadBalancer.
  *
- * @return \Wikimedia\Rdbms\DBConnRef
+ * @return \Wikimedia\Rdbms\Database
  */
 function wfGetDB( $db, $groups = [], $wiki = false ) {
-	return wfGetLB( $wiki )->getMaintenanceConnectionRef( $db, $groups, $wiki );
+	return wfGetLB( $wiki )->getConnection( $db, $groups, $wiki );
 }
 
 /**
