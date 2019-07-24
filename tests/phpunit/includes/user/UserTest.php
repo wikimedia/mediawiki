@@ -1021,18 +1021,6 @@ class UserTest extends MediaWikiTestCase {
 			]
 		);
 		$this->assertTrue( User::isLocallyBlockedProxy( $ip ) );
-
-		$this->hideDeprecated(
-			'IP addresses in the keys of $wgProxyList (found the following IP ' .
-			'addresses in keys: ' . $blockListEntry . ', please move them to values)'
-		);
-		$this->setMwGlobals(
-			'wgProxyList',
-			[
-				$blockListEntry => 'test'
-			]
-		);
-		$this->assertTrue( User::isLocallyBlockedProxy( $ip ) );
 	}
 
 	/**
