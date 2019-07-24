@@ -396,6 +396,9 @@ because of Phabricator reports.
   PermissionManager::getUserPermissions() instead.
 * The LocalisationCacheRecache hook no longer allows purging of message blobs
   to be prevented. Modifying the $purgeBlobs parameter now has no effect.
+* The use of $wgProxyList with IP addresses in the array keys, deprecated in
+  1.30, was removed. Instead, $wgProxyList should be an array with IP addresses
+  as the values, or a string path to a file containing one IP address per line.
 
 === Other changes in 1.34 ===
 * …
