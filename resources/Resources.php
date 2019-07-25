@@ -1740,6 +1740,7 @@ return [
 	/* MediaWiki Special pages */
 
 	'mediawiki.rcfilters.filters.base.styles' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'skinStyles' => [
 			'default' => 'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.less',
 		],
@@ -1753,6 +1754,7 @@ return [
 		],
 	],
 	'mediawiki.rcfilters.filters.dm' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'localBasePath' => "$IP/resources/src/mediawiki.rcfilters",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.rcfilters",
 		'packageFiles' => [
@@ -1783,6 +1785,7 @@ return [
 		],
 	],
 	'mediawiki.rcfilters.filters.ui' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'localBasePath' => "$IP/resources/src/mediawiki.rcfilters",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.rcfilters",
 		'packageFiles' => [
