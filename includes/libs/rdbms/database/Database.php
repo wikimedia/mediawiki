@@ -1343,7 +1343,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Avoid the overhead of logging calls unless debug mode is enabled
 		if ( $this->getFlag( self::DBO_DEBUG ) ) {
 			$this->queryLogger->debug(
-				"{method} [{runtime}s]: $sql",
+				"{method} [{runtime}s] {db_host}: $sql",
 				[
 					'method' => $fname,
 					'db_host' => $this->getServer(),
