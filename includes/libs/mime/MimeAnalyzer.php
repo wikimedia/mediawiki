@@ -806,10 +806,10 @@ EOT;
 
 		// Check for ZIP variants (before getimagesize)
 		$eocdrPos = strpos( $tail, "PK\x05\x06" );
-		if ( $eocdrPos !== false ) {
+		if ( $eocdrPos !== false && $eocdrPos <= strlen( $tail ) - 22 ) {
 			$this->logger->info( __METHOD__ . ": ZIP signature present in $file\n" );
 			// Check if it really is a ZIP file, make sure the EOCDR is at the end (T40432)
-			$commentLength = unpack( "n", substr( $tail, $eocdrPos + 20 ) )[0];
+			$commentLength = unpack( "n", substr( $tail, $eocdrPos + 20 ) )[1];
 			if ( $eocdrPos + 22 + $commentLength !== strlen( $tail ) ) {
 				$this->logger->info( __METHOD__ . ": ZIP EOCDR not at end. Not a ZIP file." );
 			} else {
