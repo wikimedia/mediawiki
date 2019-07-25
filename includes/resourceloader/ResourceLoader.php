@@ -480,7 +480,6 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @return array
 	 */
 	public function getTestModuleNames( $framework = 'all' ) {
-		/** @todo api siteinfo prop testmodulenames modulenames */
 		if ( $framework == 'all' ) {
 			return $this->testModuleNames;
 		} elseif ( isset( $this->testModuleNames[$framework] )

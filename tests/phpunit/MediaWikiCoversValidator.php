@@ -33,7 +33,7 @@ trait MediaWikiCoversValidator {
 	 */
 	public function testValidCovers() {
 		$methods = get_class_methods( $this );
-		$class = get_class( $this );
+		$class = static::class;
 		$bad = '';
 		foreach ( $methods as $method ) {
 			if ( strpos( $method, 'test' ) === 0 ) {
