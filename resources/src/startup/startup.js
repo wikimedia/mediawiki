@@ -113,7 +113,6 @@ if ( !isCompatible( navigator.userAgent ) ) {
 	 */
 	( function () {
 		/* global mw */
-		mw.config = new mw.Map( $VARS.wgLegacyJavaScriptGlobals );
 
 		$CODE.registrations();
 
