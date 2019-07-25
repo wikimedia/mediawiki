@@ -3,7 +3,8 @@
 		"authors": [
 			"Don Alessandro",
 			"Ильнар",
-			"Рашат Якупов"
+			"Рашат Якупов",
+			"Ерней"
 		]
 	},
 	"exif-imagewidth": "Киңлек",
@@ -27,8 +28,8 @@
 	"exif-colorspace": "Төсләр тирәлеге",
 	"exif-componentsconfiguration": "Төсләр төзелешенең конфигурациясе",
 	"exif-compressedbitsperpixel": "Кысылудан соң төснең тирәнлеге",
-	"exif-pixelxdimension": "Рәсемнең киңлеге",
-	"exif-pixelydimension": "Рәсемнең биеклеге",
+	"exif-pixelxdimension": "Сурәт киңлеге",
+	"exif-pixelydimension": "Сурәт биеклеге",
 	"exif-usercomment": "Өстәмә җавап",
 	"exif-relatedsoundfile": "Тавыш файлы җавабы",
 	"exif-datetimeoriginal": "Чын вакыты",
