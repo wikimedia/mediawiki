@@ -163,4 +163,40 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 		];
 	}
 
+	function providePngZipConfusion() {
+		return [
+			[
+				'An invalid ZIP file due to the signature being too close to the ' .
+					'end to accomodate an EOCDR',
+				'zip-sig-near-end.png',
+				'image/png',
+			],
+			[
+				'An invalid ZIP file due to the comment length running beyond the ' .
+					'end of the file',
+				'zip-comment-overflow.png',
+				'image/png',
+			],
+			[
+				'A ZIP file similar to the above, but without either of those two ' .
+					'problems. Not a valid ZIP file, but it passes MimeAnalyzer\'s ' .
+					'definition of a ZIP file. This is mostly a sanity check of the ' .
+					'above two tests.',
+				'zip-kind-of-valid.png',
+				'application/zip',
+			],
+			[
+				'As above with non-zero comment length',
+				'zip-kind-of-valid-2.png',
+				'application/zip',
+			],
+		];
+	}
+
+	/** @dataProvider providePngZipConfusion */
+	function testPngZipConfusion( $description, $fileName, $expectedType ) {
+		$file = __DIR__ . '/../../../data/media/' . $fileName;
+		$actualType = $this->doGuessMimeType( [ $file, 'png' ] );
+		$this->assertEquals( $expectedType, $actualType, $description );
+	}
 }
