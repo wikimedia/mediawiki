@@ -383,7 +383,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @param UserIdentity $user
-	 * @param TitleValue[] $titles
+	 * @param LinkTarget[] $titles
 	 * @return bool
 	 * @throws MWException
 	 */
