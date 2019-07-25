@@ -113,6 +113,9 @@ class BagOStuffTest extends MediaWikiTestCase {
 	 * @covers MediumSpecificBagOStuff::changeTTL
 	 */
 	public function testChangeTTL() {
+		$now = 1563892142;
+		$this->cache->setMockTime( $now );
+
 		$key = $this->cache->makeKey( self::TEST_KEY );
 		$value = 'meow';
 
@@ -126,7 +129,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$this->assertFalse( $this->cache->changeTTL( $key, 15 ) );
 
 		$this->cache->add( $key, $value, 5 );
-		$this->assertTrue( $this->cache->changeTTL( $key, time() - 3600 ) );
+		$this->assertTrue( $this->cache->changeTTL( $key, $now - 3600 ) );
 		$this->assertFalse( $this->cache->get( $key ) );
 	}
 
@@ -134,6 +137,9 @@ class BagOStuffTest extends MediaWikiTestCase {
 	 * @covers MediumSpecificBagOStuff::changeTTLMulti
 	 */
 	public function testChangeTTLMulti() {
+		$now = 1563892142;
+		$this->cache->setMockTime( $now );
+
 		$key1 = $this->cache->makeKey( 'test-key1' );
 		$key2 = $this->cache->makeKey( 'test-key2' );
 		$key3 = $this->cache->makeKey( 'test-key3' );
@@ -166,7 +172,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$this->assertEquals( 2, $this->cache->get( $key2 ) );
 		$this->assertEquals( 3, $this->cache->get( $key3 ) );
 
-		$ok = $this->cache->changeTTLMulti( [ $key1, $key2, $key3 ], time() + 86400 );
+		$ok = $this->cache->changeTTLMulti( [ $key1, $key2, $key3 ], $now + 86400 );
 		$this->assertTrue( $ok, "Expiry set for all keys" );
 
 		$ok = $this->cache->changeTTLMulti( [ $key1, $key2, $key3, $key4 ], 300 );
@@ -210,17 +216,28 @@ class BagOStuffTest extends MediaWikiTestCase {
 	 * @covers MediumSpecificBagOStuff::getWithSetCallback
 	 */
 	public function testGetWithSetCallback() {
+		$now = 1563892142;
+		$this->cache->setMockTime( $now );
 		$key = $this->cache->makeKey( self::TEST_KEY );
+
+		$this->assertFalse( $this->cache->get( $key ), "No value" );
+
 		$value = $this->cache->getWithSetCallback(
 			$key,
 			30,
-			function () {
+			function ( &$ttl ) {
+				$ttl = 10;
+
 				return 'hello kitty';
 			}
 		);
 
 		$this->assertEquals( 'hello kitty', $value );
-		$this->assertEquals( $value, $this->cache->get( $key ) );
+		$this->assertEquals( $value, $this->cache->get( $key ), "Value set" );
+
+		$now += 11;
+
+		$this->assertFalse( $this->cache->get( $key ), "Value expired" );
 	}
 
 	/**

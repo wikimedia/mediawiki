@@ -115,7 +115,8 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	/**
 	 * Get an item with the given key, regenerating and setting it if not found
 	 *
-	 * Nothing is stored nor deleted if the callback returns false
+	 * The callback can take $ttl as argument by reference and modify it.
+	 * Nothing is stored nor deleted if the callback returns false.
 	 *
 	 * @param string $key
 	 * @param int $ttl Time-to-live (seconds)
@@ -128,10 +129,7 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 		$value = $this->get( $key, $flags );
 
 		if ( $value === false ) {
-			if ( !is_callable( $callback ) ) {
-				throw new InvalidArgumentException( "Invalid cache miss callback provided." );
-			}
-			$value = call_user_func( $callback );
+			$value = $callback( $ttl );
 			if ( $value !== false ) {
 				$this->set( $key, $value, $ttl, $flags );
 			}
