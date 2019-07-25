@@ -2186,15 +2186,13 @@
 							/Firefox/.test( navigator.userAgent ) ||
 
 							// Disabled by configuration.
-							!mw.config.get( 'wgResourceLoaderStorageEnabled' )
+							!mw.config.get( 'wgResourceLoaderStorageEnabled' ) ||
+
+							// Disable module store in debug mode context
+							mw.config.get( 'debug' )
 						) {
 							// Clear any previous store to free up space. (T66721)
 							this.clear();
-							this.enabled = false;
-							return;
-						}
-						if ( mw.config.get( 'debug' ) ) {
-							// Disable module store in debug mode
 							this.enabled = false;
 							return;
 						}
