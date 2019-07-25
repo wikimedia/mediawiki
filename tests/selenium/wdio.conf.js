@@ -56,19 +56,10 @@ exports.config = {
 	// ==================
 	specs: [
 		relPath( './tests/selenium/wdio-mediawiki/specs/*.js' ),
-		relPath( './tests/selenium/specs/**/*.js' ),
-		relPath( './extensions/*/tests/selenium/specs/**/*.js' ),
-		relPath( './extensions/VisualEditor/modules/ve-mw/tests/selenium/specs/**/*.js' ),
-		relPath( './extensions/Wikibase/repo/tests/selenium/specs/**/*.js' ),
-		relPath( './skins/*/tests/selenium/specs/**/*.js' )
+		relPath( './tests/selenium/specs/**/*.js' )
 	],
 	// Patterns to exclude
 	exclude: [
-		relPath( './extensions/CirrusSearch/tests/selenium/specs/**/*.js' ),
-		// Disabled because these tests modify LocalSettings.php, see T199116 for the long-term fix.
-		relPath( './extensions/FileImporter/tests/selenium/specs/**/*.js' ),
-		// Disabled per T222517
-		relPath( './skins/MinervaNeue/tests/selenium/specs/**/*.js' )
 	],
 
 	// ============
