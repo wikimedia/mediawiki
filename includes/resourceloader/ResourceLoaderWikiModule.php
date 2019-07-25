@@ -412,6 +412,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		return $titleInfo;
 	}
 
+	/** @return array */
 	protected static function fetchTitleInfo( IDatabase $db, array $pages, $fname = __METHOD__ ) {
 		$titleInfo = [];
 		$batch = new LinkBatch;

@@ -311,37 +311,41 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 
 	public static function provideGetContent() {
 		yield 'Bad title' => [ null, '[x]' ];
-		yield 'Dead redirect' => [ null, [
-			'text' => 'Dead redirect',
-			'title' => 'Dead_redirect',
-			'redirect' => 1,
-		] ];
-		yield 'Bad content model' => [ null, [
-			'text' => 'MediaWiki:Wikitext',
-			'ns' => NS_MEDIAWIKI,
-			'title' => 'Wikitext',
-		] ];
+
 		yield 'No JS content found' => [ null, [
-			'text' => 'MediaWiki:Script.js',
+			'text' => 'MediaWiki:Foo.js',
 			'ns' => NS_MEDIAWIKI,
-			'title' => 'Script.js',
+			'title' => 'Foo.js',
 		] ];
-		yield 'No CSS content found' => [ null, [
-			'text' => 'MediaWiki:Styles.css',
+
+		yield 'JS content' => [ 'code;', [
+			'text' => 'MediaWiki:Foo.js',
 			'ns' => NS_MEDIAWIKI,
-			'title' => 'Script.css',
-		] ];
+			'title' => 'Foo.js',
+		], new JavaScriptContent( 'code;' ) ];
+
+		yield 'CSS content' => [ 'code {}', [
+			'text' => 'MediaWiki:Foo.css',
+			'ns' => NS_MEDIAWIKI,
+			'title' => 'Foo.css',
+		], new CssContent( 'code {}' ) ];
+
+		yield 'Wikitext content' => [ null, [
+			'text' => 'MediaWiki:Foo',
+			'ns' => NS_MEDIAWIKI,
+			'title' => 'Foo',
+		], new WikitextContent( 'code;' ) ];
 	}
 
 	/**
 	 * @dataProvider provideGetContent
 	 */
-	public function testGetContent( $expected, $title ) {
+	public function testGetContent( $expected, $title, Content $contentObj = null ) {
 		$context = $this->getResourceLoaderContext( [], new EmptyResourceLoader );
 		$module = $this->getMockBuilder( ResourceLoaderWikiModule::class )
 			->setMethods( [ 'getContentObj' ] )->getMock();
 		$module->method( 'getContentObj' )
-			->willReturn( null );
+			->willReturn( $contentObj );
 
 		if ( is_array( $title ) ) {
 			$title += [ 'ns' => NS_MAIN, 'id' => 1, 'len' => 1, 'redirect' => 0 ];
