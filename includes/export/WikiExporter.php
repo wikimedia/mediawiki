@@ -125,7 +125,7 @@ class WikiExporter {
 	 * various row objects and XML output for filtering. Filters
 	 * can be chained or used as callbacks.
 	 *
-	 * @param DumpOutput &$sink
+	 * @param DumpOutput|DumpFilter &$sink
 	 */
 	public function setOutputSink( &$sink ) {
 		$this->sink =& $sink;
@@ -240,7 +240,7 @@ class WikiExporter {
 	 * Not called by default (depends on $this->list_authors)
 	 * Can be set by Special:Export when not exporting whole history
 	 *
-	 * @param array $cond
+	 * @param string $cond
 	 */
 	protected function do_list_authors( $cond ) {
 		$this->author_list = "<contributors>";

@@ -27,7 +27,10 @@
  * @ingroup Dump
  */
 class DumpFileOutput extends DumpOutput {
-	protected $handle = false, $filename;
+	/** @var resource|false */
+	protected $handle = false;
+	/** @var string */
+	protected $filename;
 
 	/**
 	 * @param string $file
@@ -73,7 +76,7 @@ class DumpFileOutput extends DumpOutput {
 	}
 
 	/**
-	 * @param array $newname
+	 * @param string|string[] $newname
 	 * @return string
 	 * @throws MWException
 	 */
