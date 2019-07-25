@@ -803,6 +803,10 @@ abstract class SearchEngine {
 			$setAugmentors[$name] = new PerRowAugmentor( $row );
 		}
 
+		/**
+		 * @var string $name
+		 * @var ResultSetAugmentor $augmentor
+		 */
 		foreach ( $setAugmentors as $name => $augmentor ) {
 			$data = $augmentor->augmentAll( $resultSet );
 			if ( $data ) {

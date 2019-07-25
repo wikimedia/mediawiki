@@ -3,8 +3,8 @@
 class SearchResultSetTest extends MediaWikiTestCase {
 	/**
 	 * @covers SearchResultSet::getIterator
-	 * @covers SearchResultSet::next
-	 * @covers SearchResultSet::rewind
+	 * @covers BaseSearchResultSet::next
+	 * @covers BaseSearchResultSet::rewind
 	 */
 	public function testIterate() {
 		$result = SearchResult::newFromTitle( Title::newMainPage() );
@@ -17,8 +17,8 @@ class SearchResultSetTest extends MediaWikiTestCase {
 		}
 		$this->assertEquals( 1, $count );
 
-		$this->hideDeprecated( 'SearchResultSet::rewind' );
-		$this->hideDeprecated( 'SearchResultSet::next' );
+		$this->hideDeprecated( 'BaseSearchResultSet::rewind' );
+		$this->hideDeprecated( 'BaseSearchResultSet::next' );
 		$resultSet->rewind();
 		$count = 0;
 		while ( ( $iterResult = $resultSet->next() ) !== false ) {
