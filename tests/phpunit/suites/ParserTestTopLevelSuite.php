@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -137,7 +138,8 @@ class ParserTestTopLevelSuite extends PHPUnit_Framework_TestSuite {
 	public function setUp() {
 		wfDebug( __METHOD__ );
 
-		$db = wfGetDB( DB_MASTER );
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$db = $lb->getConnection( DB_MASTER );
 		$type = $db->getType();
 		$prefix = $type === 'oracle' ?
 			MediaWikiTestCase::ORA_DB_PREFIX : MediaWikiTestCase::DB_PREFIX;
