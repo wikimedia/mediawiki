@@ -2180,16 +2180,12 @@
 						}
 
 						if (
+							!$VARS.storeEnabled ||
+
 							// Disabled because localStorage quotas are tight and (in Firefox's case)
 							// shared by multiple origins.
 							// See T66721, and <https://bugzilla.mozilla.org/show_bug.cgi?id=1064466>.
-							/Firefox/.test( navigator.userAgent ) ||
-
-							// Disabled by configuration.
-							!mw.config.get( 'wgResourceLoaderStorageEnabled' ) ||
-
-							// Disable module store in debug mode context
-							mw.config.get( 'debug' )
+							/Firefox/.test( navigator.userAgent )
 						) {
 							// Clear any previous store to free up space. (T66721)
 							this.clear();
