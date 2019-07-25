@@ -1302,7 +1302,7 @@ class ParserTestRunner {
 	public function setupDatabase( $nextTeardown = null ) {
 		global $wgDBprefix;
 
-		$this->db = wfGetDB( DB_MASTER );
+		$this->db = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_MASTER );
 		$dbType = $this->db->getType();
 
 		if ( $dbType == 'oracle' ) {
