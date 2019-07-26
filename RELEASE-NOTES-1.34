@@ -61,6 +61,10 @@ For notes on 1.33.x and older releases, see HISTORY.
   1.23, is now hard-deprecated.
 * $wgProfileOnly — Setting this, deprecated in 1.23, is now hard-deprecated.
   Instead, set the log file in $wgDebugLogGroups['profileoutput'].
+* $wgProxyList — Setting this to an array with IP addresses in the array keys,
+  which was deprecated in 1.30, no longer works. Instead, $wgProxyList should be
+  an array with IP addresses as the values, or a string path to a file
+  containing one IP address per line.
 * …
 
 ==== Removed configuration ====
@@ -411,9 +415,6 @@ because of Phabricator reports.
   PermissionManager::getUserPermissions() instead.
 * The LocalisationCacheRecache hook no longer allows purging of message blobs
   to be prevented. Modifying the $purgeBlobs parameter now has no effect.
-* The use of $wgProxyList with IP addresses in the array keys, deprecated in
-  1.30, was removed. Instead, $wgProxyList should be an array with IP addresses
-  as the values, or a string path to a file containing one IP address per line.
 * SVGMetadataExtractor::getMetadata has been deprecated. Instead, you should
   use SVGReader->getMetadata() directly.
 
