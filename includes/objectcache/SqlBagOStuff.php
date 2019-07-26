@@ -27,6 +27,7 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\DBConnectionError;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\ScopedCallback;
 use Wikimedia\WaitConditionLoop;
@@ -165,7 +166,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * Get a connection to the specified database
 	 *
 	 * @param int $serverIndex
-	 * @return Database
+	 * @return IMaintainableDatabase
 	 * @throws MWException
 	 */
 	protected function getDB( $serverIndex ) {
@@ -199,11 +200,11 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$index = $this->replicaOnly ? DB_REPLICA : DB_MASTER;
 			if ( $lb->getServerType( $lb->getWriterIndex() ) !== 'sqlite' ) {
 				// Keep a separate connection to avoid contention and deadlocks
-				$db = $lb->getConnection( $index, [], false, $lb::CONN_TRX_AUTOCOMMIT );
+				$db = $lb->getConnectionRef( $index, [], false, $lb::CONN_TRX_AUTOCOMMIT );
 			} else {
 				// However, SQLite has the opposite behavior due to DB-level locking.
 				// Stock sqlite MediaWiki installs use a separate sqlite cache DB instead.
-				$db = $lb->getConnection( $index );
+				$db = $lb->getConnectionRef( $index );
 			}
 		}
 

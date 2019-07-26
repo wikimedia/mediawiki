@@ -284,7 +284,7 @@ class RevisionStore
 	 */
 	private function getDBConnection( $mode, $groups = [] ) {
 		$lb = $this->getDBLoadBalancer();
-		return $lb->getConnection( $mode, $groups, $this->dbDomain );
+		return $lb->getConnectionRef( $mode, $groups, $this->dbDomain );
 	}
 
 	/**
