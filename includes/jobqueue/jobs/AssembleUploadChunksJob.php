@@ -76,7 +76,9 @@ class AssembleUploadChunksJob extends Job {
 
 			// We can only get warnings like 'duplicate' after concatenating the chunks
 			$status = Status::newGood();
-			$status->value = [ 'warnings' => $upload->checkWarnings() ];
+			$status->value = [
+				'warnings' => UploadBase::makeWarningsSerializable( $upload->checkWarnings() )
+			];
 
 			// We have a new filekey for the fully concatenated file
 			$newFileKey = $upload->getStashFile()->getFileKey();

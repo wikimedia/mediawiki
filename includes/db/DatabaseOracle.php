@@ -79,10 +79,6 @@ class DatabaseOracle extends Database {
 		return 'oracle';
 	}
 
-	function implicitGroupby() {
-		return false;
-	}
-
 	function implicitOrderby() {
 		return false;
 	}

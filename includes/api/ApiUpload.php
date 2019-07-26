@@ -658,7 +658,7 @@ class ApiUpload extends ApiBase {
 	 * @return array
 	 */
 	protected function getApiWarnings() {
-		$warnings = $this->mUpload->checkWarnings();
+		$warnings = UploadBase::makeWarningsSerializable( $this->mUpload->checkWarnings() );
 
 		return $this->transformWarnings( $warnings );
 	}
@@ -670,9 +670,8 @@ class ApiUpload extends ApiBase {
 
 			if ( isset( $warnings['duplicate'] ) ) {
 				$dupes = [];
-				/** @var File $dupe */
 				foreach ( $warnings['duplicate'] as $dupe ) {
-					$dupes[] = $dupe->getName();
+					$dupes[] = $dupe['fileName'];
 				}
 				ApiResult::setIndexedTagName( $dupes, 'duplicate' );
 				$warnings['duplicate'] = $dupes;
@@ -681,27 +680,24 @@ class ApiUpload extends ApiBase {
 			if ( isset( $warnings['exists'] ) ) {
 				$warning = $warnings['exists'];
 				unset( $warnings['exists'] );
-				/** @var LocalFile $localFile */
 				$localFile = $warning['normalizedFile'] ?? $warning['file'];
-				$warnings[$warning['warning']] = $localFile->getName();
+				$warnings[$warning['warning']] = $localFile['fileName'];
 			}
 
 			if ( isset( $warnings['no-change'] ) ) {
-				/** @var File $file */
 				$file = $warnings['no-change'];
 				unset( $warnings['no-change'] );
 
 				$warnings['nochange'] = [
-					'timestamp' => wfTimestamp( TS_ISO_8601, $file->getTimestamp() )
+					'timestamp' => wfTimestamp( TS_ISO_8601, $file['timestamp'] )
 				];
 			}
 
 			if ( isset( $warnings['duplicate-version'] ) ) {
 				$dupes = [];
-				/** @var File $dupe */
 				foreach ( $warnings['duplicate-version'] as $dupe ) {
 					$dupes[] = [
-						'timestamp' => wfTimestamp( TS_ISO_8601, $dupe->getTimestamp() )
+						'timestamp' => wfTimestamp( TS_ISO_8601, $dupe['timestamp'] )
 					];
 				}
 				unset( $warnings['duplicate-version'] );
