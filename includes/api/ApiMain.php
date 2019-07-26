@@ -593,9 +593,13 @@ class ApiMain extends ApiBase {
 		// Printer may not be initialized if the extractRequestParams() fails for the main module
 		$this->createErrorPrinter();
 
+		// Get desired HTTP code from an ApiUsageException. Don't use codes from other
+		// exception types, as they are unlikely to be intended as an HTTP code.
+		$httpCode = $e instanceof ApiUsageException ? $e->getCode() : 0;
+
 		$failed = false;
 		try {
-			$this->printResult( $e->getCode() );
+			$this->printResult( $httpCode );
 		} catch ( ApiUsageException $ex ) {
 			// The error printer itself is failing. Try suppressing its request
 			// parameters and redo.
@@ -617,10 +621,10 @@ class ApiMain extends ApiBase {
 			$this->mPrinter = null;
 			$this->createErrorPrinter();
 			$this->mPrinter->forceDefaultParams();
-			if ( $e->getCode() ) {
+			if ( $httpCode ) {
 				$response->statusHeader( 200 ); // Reset in case the fallback doesn't want a non-200
 			}
-			$this->printResult( $e->getCode() );
+			$this->printResult( $httpCode );
 		}
 	}
 
