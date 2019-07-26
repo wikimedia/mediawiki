@@ -271,7 +271,7 @@ class PageEditStash {
 			// This can be used for the initial parse, e.g. for filters or doEditContent(),
 			// but a second parse will be triggered in doEditUpdates() no matter what
 			$logger->info(
-				"Cache for key '{key}' has 'vary-revision'; post-insertion parse inevitable.",
+				"Cache for key '{key}' has vary-revision; post-insertion parse inevitable.",
 				$context
 			);
 		} else {
@@ -281,7 +281,9 @@ class PageEditStash {
 				// Similar to the above if we didn't guess the timestamp correctly
 				'vary-revision-timestamp',
 				// Similar to the above if we didn't guess the content correctly
-				'vary-revision-sha1'
+				'vary-revision-sha1',
+				// Similar to the above if we didn't guess page ID correctly
+				'vary-page-id'
 			];
 			foreach ( $flagsMaybeReparse as $flag ) {
 				if ( $editInfo->output->getFlag( $flag ) ) {

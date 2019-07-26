@@ -2783,15 +2783,16 @@ class Parser {
 				$value = wfEscapeWikiText( $subjPage->getPrefixedURL() );
 				break;
 			case 'pageid': // requested in T25427
-				$pageid = $this->getTitle()->getArticleID();
-				if ( $pageid == 0 ) {
-					# 0 means the page doesn't exist in the database,
-					# which means the user is previewing a new page.
-					# The vary-revision flag must be set, because the magic word
-					# will have a different value once the page is saved.
-					$this->setOutputFlag( 'vary-revision', '{{PAGEID}} on new page' );
+				# Inform the edit saving system that getting the canonical output
+				# after page insertion requires a parse that used that exact page ID
+				$this->setOutputFlag( 'vary-page-id', '{{PAGEID}} used' );
+				$value = $this->mTitle->getArticleID();
+				if ( !$value ) {
+					$value = $this->mOptions->getSpeculativePageId();
+					if ( $value ) {
+						$this->mOutput->setSpeculativePageIdUsed( $value );
+					}
 				}
-				$value = $pageid ?: null;
 				break;
 			case 'revisionid':
 				if (
@@ -2810,7 +2811,7 @@ class Parser {
 					}
 				} else {
 					# Inform the edit saving system that getting the canonical output after
-					# revision insertion requires another parse using the actual revision ID
+					# revision insertion requires a parse that used that exact revision ID
 					$this->setOutputFlag( 'vary-revision-id', '{{REVISIONID}} used' );
 					$value = $this->getRevisionId();
 					if ( $value === 0 ) {
@@ -5934,19 +5935,21 @@ class Parser {
 	 * @since 1.23 (public since 1.23)
 	 */
 	public function getRevisionObject() {
-		if ( !is_null( $this->mRevisionObject ) ) {
+		if ( $this->mRevisionObject ) {
 			return $this->mRevisionObject;
 		}
 
 		// NOTE: try to get the RevisionObject even if mRevisionId is null.
-		// This is useful when parsing revision that has not yet been saved.
+		// This is useful when parsing a revision that has not yet been saved.
 		// However, if we get back a saved revision even though we are in
 		// preview mode, we'll have to ignore it, see below.
 		// NOTE: This callback may be used to inject an OLD revision that was
 		// already loaded, so "current" is a bit of a misnomer. We can't just
 		// skip it if mRevisionId is set.
 		$rev = call_user_func(
-			$this->mOptions->getCurrentRevisionCallback(), $this->getTitle(), $this
+			$this->mOptions->getCurrentRevisionCallback(),
+			$this->getTitle(),
+			$this
 		);
 
 		if ( $this->mRevisionId === null && $rev && $rev->getId() ) {

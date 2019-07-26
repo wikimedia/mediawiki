@@ -130,6 +130,9 @@ class RevisionRenderer {
 		$options->setSpeculativeRevIdCallback( function () use ( $dbIndex ) {
 			return $this->getSpeculativeRevId( $dbIndex );
 		} );
+		$options->setSpeculativePageIdCallback( function () use ( $dbIndex ) {
+			return $this->getSpeculativePageId( $dbIndex );
+		} );
 
 		if ( !$rev->getId() && $rev->getTimestamp() ) {
 			// This is an unsaved revision with an already determined timestamp.
@@ -166,13 +169,33 @@ class RevisionRenderer {
 		// HACK: But don't use a fresh connection in unit tests, since it would not have
 		// the fake tables. This should be handled by the LoadBalancer!
 		$flags = defined( 'MW_PHPUNIT_TEST' ) || $dbIndex === DB_REPLICA
-			? 0 : ILoadBalancer::CONN_TRX_AUTOCOMMIT;
+			? 0
+			: ILoadBalancer::CONN_TRX_AUTOCOMMIT;
 
 		$db = $this->loadBalancer->getConnectionRef( $dbIndex, [], $this->dbDomain, $flags );
 
 		return 1 + (int)$db->selectField(
 			'revision',
 			'MAX(rev_id)',
+			[],
+			__METHOD__
+		);
+	}
+
+	private function getSpeculativePageId( $dbIndex ) {
+		// Use a fresh master connection in order to see the latest data, by avoiding
+		// stale data from REPEATABLE-READ snapshots.
+		// HACK: But don't use a fresh connection in unit tests, since it would not have
+		// the fake tables. This should be handled by the LoadBalancer!
+		$flags = defined( 'MW_PHPUNIT_TEST' ) || $dbIndex === DB_REPLICA
+			? 0
+			: ILoadBalancer::CONN_TRX_AUTOCOMMIT;
+
+		$db = $this->loadBalancer->getConnectionRef( $dbIndex, [], $this->wikiId, $flags );
+
+		return 1 + (int)$db->selectField(
+			'page',
+			'MAX(page_id)',
 			[],
 			__METHOD__
 		);
