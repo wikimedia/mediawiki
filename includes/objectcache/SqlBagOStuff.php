@@ -67,7 +67,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	protected $connFailureErrors = [];
 
 	/** @var int */
-	private static $GARBAGE_COLLECT_DELAY_SEC = 1;
+	private static $GC_DELAY_SEC = 1;
 
 	/** @var string */
 	private static $OP_SET = 'set';
@@ -177,7 +177,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		# Don't keep timing out trying to connect for each call if the DB is down
 		if (
 			isset( $this->connFailureErrors[$serverIndex] ) &&
-			( time() - $this->connFailureTimes[$serverIndex] ) < 60
+			( $this->getCurrentTime() - $this->connFailureTimes[$serverIndex] ) < 60
 		) {
 			throw $this->connFailureErrors[$serverIndex];
 		}
@@ -356,7 +356,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$keysByTable[$serverIndex][$tableName][] = $key;
 		}
 
-		$exptime = $this->convertToExpiry( $exptime );
+		$exptime = $this->getExpirationAsTimestamp( $exptime );
 
 		$result = true;
 		/** @noinspection PhpUnusedLocalVariableInspection */
@@ -473,7 +473,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 	protected function cas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
-		$exptime = $this->convertToExpiry( $exptime );
+		$exptime = $this->getExpirationAsTimestamp( $exptime );
 
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
@@ -563,7 +563,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return $ok;
 	}
 
-	protected function doChangeTTLMulti( array $keys, $exptime, $flags = 0 ) {
+	public function changeTTLMulti( array $keys, $exptime, $flags = 0 ) {
 		return $this->modifyMulti(
 			array_fill_keys( $keys, null ),
 			$exptime,
@@ -584,7 +584,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	protected function isExpired( $db, $exptime ) {
 		return (
 			$exptime != $this->getMaxDateTime( $db ) &&
-			wfTimestamp( TS_UNIX, $exptime ) < time()
+			wfTimestamp( TS_UNIX, $exptime ) < $this->getCurrentTime()
 		);
 	}
 
@@ -593,7 +593,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * @return string
 	 */
 	protected function getMaxDateTime( $db ) {
-		if ( time() > 0x7fffffff ) {
+		if ( (int)$this->getCurrentTime() > 0x7fffffff ) {
 			return $db->timestamp( 1 << 62 );
 		} else {
 			return $db->timestamp( 0x7fffffff );
@@ -611,14 +611,18 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			// Only purge on one in every $this->purgePeriod writes
 			mt_rand( 0, $this->purgePeriod - 1 ) == 0 &&
 			// Avoid repeating the delete within a few seconds
-			( time() - $this->lastGarbageCollect ) > self::$GARBAGE_COLLECT_DELAY_SEC
+			( $this->getCurrentTime() - $this->lastGarbageCollect ) > self::$GC_DELAY_SEC
 		) {
 			$garbageCollector = function () use ( $db ) {
-				$this->deleteServerObjectsExpiringBefore( $db, time(), null, $this->purgeLimit );
+				$this->deleteServerObjectsExpiringBefore(
+					$db, $this->getCurrentTime(),
+					null,
+					$this->purgeLimit
+				);
 				$this->lastGarbageCollect = time();
 			};
 			if ( $this->asyncHandler ) {
-				$this->lastGarbageCollect = time(); // avoid duplicate enqueues
+				$this->lastGarbageCollect = $this->getCurrentTime(); // avoid duplicate enqueues
 				( $this->asyncHandler )( $garbageCollector );
 			} else {
 				$garbageCollector();
@@ -627,7 +631,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	public function expireAll() {
-		$this->deleteObjectsExpiringBefore( time() );
+		$this->deleteObjectsExpiringBefore( $this->getCurrentTime() );
 	}
 
 	public function deleteObjectsExpiringBefore(
@@ -927,8 +931,9 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	protected function markServerDown( DBError $exception, $serverIndex ) {
 		unset( $this->conns[$serverIndex] ); // bug T103435
 
+		$now = $this->getCurrentTime();
 		if ( isset( $this->connFailureTimes[$serverIndex] ) ) {
-			if ( time() - $this->connFailureTimes[$serverIndex] >= 60 ) {
+			if ( $now - $this->connFailureTimes[$serverIndex] >= 60 ) {
 				unset( $this->connFailureTimes[$serverIndex] );
 				unset( $this->connFailureErrors[$serverIndex] );
 			} else {
@@ -936,7 +941,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				return;
 			}
 		}
-		$now = time();
 		$this->logger->info( __METHOD__ . ": Server #$serverIndex down until " . ( $now + 60 ) );
 		$this->connFailureTimes[$serverIndex] = $now;
 		$this->connFailureErrors[$serverIndex] = $exception;

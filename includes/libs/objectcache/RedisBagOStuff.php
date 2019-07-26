@@ -115,7 +115,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 			return false;
 		}
 
-		$ttl = $this->convertToRelative( $exptime );
+		$ttl = $this->getExpirationAsTTL( $exptime );
 
 		$e = null;
 		try {
@@ -212,7 +212,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 			}
 		}
 
-		$ttl = $this->convertToRelative( $exptime );
+		$ttl = $this->getExpirationAsTTL( $exptime );
 		$op = $ttl ? 'setex' : 'set';
 
 		$result = true;
@@ -302,8 +302,10 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 			}
 		}
 
-		$relative = $this->expiryIsRelative( $exptime );
-		$op = ( $exptime == 0 ) ? 'persist' : ( $relative ? 'expire' : 'expireAt' );
+		$relative = $this->isRelativeExpiration( $exptime );
+		$op = ( $exptime == self::TTL_INDEFINITE )
+			? 'persist'
+			: ( $relative ? 'expire' : 'expireAt' );
 
 		$result = true;
 		foreach ( $batches as $server => $batchKeys ) {
@@ -313,12 +315,12 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 			try {
 				$conn->multi( Redis::PIPELINE );
 				foreach ( $batchKeys as $key ) {
-					if ( $exptime == 0 ) {
+					if ( $exptime == self::TTL_INDEFINITE ) {
 						$conn->persist( $key );
 					} elseif ( $relative ) {
-						$conn->expire( $key, $this->convertToRelative( $exptime ) );
+						$conn->expire( $key, $this->getExpirationAsTTL( $exptime ) );
 					} else {
-						$conn->expireAt( $key, $this->convertToExpiry( $exptime ) );
+						$conn->expireAt( $key, $this->getExpirationAsTimestamp( $exptime ) );
 					}
 				}
 				$batchResult = $conn->exec();
@@ -344,7 +346,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 			return false;
 		}
 
-		$ttl = $this->convertToRelative( $expiry );
+		$ttl = $this->getExpirationAsTTL( $expiry );
 		try {
 			$result = $conn->set(
 				$key,
@@ -389,16 +391,16 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 			return false;
 		}
 
-		$relative = $this->expiryIsRelative( $exptime );
+		$relative = $this->isRelativeExpiration( $exptime );
 		try {
-			if ( $exptime == 0 ) {
+			if ( $exptime == self::TTL_INDEFINITE ) {
 				$result = $conn->persist( $key );
 				$this->logRequest( 'persist', $key, $conn->getServer(), $result );
 			} elseif ( $relative ) {
-				$result = $conn->expire( $key, $this->convertToRelative( $exptime ) );
+				$result = $conn->expire( $key, $this->getExpirationAsTTL( $exptime ) );
 				$this->logRequest( 'expire', $key, $conn->getServer(), $result );
 			} else {
-				$result = $conn->expireAt( $key, $this->convertToExpiry( $exptime ) );
+				$result = $conn->expireAt( $key, $this->getExpirationAsTimestamp( $exptime ) );
 				$this->logRequest( 'expireAt', $key, $conn->getServer(), $result );
 			}
 		} catch ( RedisException $e ) {

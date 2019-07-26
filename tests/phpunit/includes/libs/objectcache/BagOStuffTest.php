@@ -146,10 +146,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$key4 = $this->cache->makeKey( 'test-key4' );
 
 		// cleanup
-		$this->cache->delete( $key1 );
-		$this->cache->delete( $key2 );
-		$this->cache->delete( $key3 );
-		$this->cache->delete( $key4 );
+		$this->cache->deleteMulti( [ $key1, $key2, $key3, $key4 ] );
 
 		$ok = $this->cache->changeTTLMulti( [ $key1, $key2, $key3 ], 30 );
 		$this->assertFalse( $ok, "No keys found" );
@@ -158,7 +155,6 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$this->assertFalse( $this->cache->get( $key3 ) );
 
 		$ok = $this->cache->setMulti( [ $key1 => 1, $key2 => 2, $key3 => 3 ] );
-
 		$this->assertTrue( $ok, "setMulti() succeeded" );
 		$this->assertEquals(
 			3,
@@ -172,21 +168,24 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$this->assertEquals( 2, $this->cache->get( $key2 ) );
 		$this->assertEquals( 3, $this->cache->get( $key3 ) );
 
-		$ok = $this->cache->changeTTLMulti( [ $key1, $key2, $key3 ], $now + 86400 );
-		$this->assertTrue( $ok, "Expiry set for all keys" );
-
 		$ok = $this->cache->changeTTLMulti( [ $key1, $key2, $key3, $key4 ], 300 );
 		$this->assertFalse( $ok, "One key missing" );
+		$this->assertEquals( 1, $this->cache->get( $key1 ), "Key still live" );
+
+		$now = microtime( true ); // real time
+		$ok = $this->cache->setMulti( [ $key1 => 1, $key2 => 2, $key3 => 3 ] );
+		$this->assertTrue( $ok, "setMulti() succeeded" );
+
+		$ok = $this->cache->changeTTLMulti( [ $key1, $key2, $key3 ], $now + 86400 );
+		$this->assertTrue( $ok, "Expiry set for all keys" );
+		$this->assertEquals( 1, $this->cache->get( $key1 ), "Key still live" );
 
 		$this->assertEquals( 2, $this->cache->incr( $key1 ) );
 		$this->assertEquals( 3, $this->cache->incr( $key2 ) );
 		$this->assertEquals( 4, $this->cache->incr( $key3 ) );
 
 		// cleanup
-		$this->cache->delete( $key1 );
-		$this->cache->delete( $key2 );
-		$this->cache->delete( $key3 );
-		$this->cache->delete( $key4 );
+		$this->cache->deleteMulti( [ $key1, $key2, $key3, $key4 ] );
 	}
 
 	/**
@@ -217,12 +216,13 @@ class BagOStuffTest extends MediaWikiTestCase {
 	 */
 	public function testGetWithSetCallback() {
 		$now = 1563892142;
-		$this->cache->setMockTime( $now );
-		$key = $this->cache->makeKey( self::TEST_KEY );
+		$cache = new HashBagOStuff( [] );
+		$cache->setMockTime( $now );
+		$key = $cache->makeKey( self::TEST_KEY );
 
-		$this->assertFalse( $this->cache->get( $key ), "No value" );
+		$this->assertFalse( $cache->get( $key ), "No value" );
 
-		$value = $this->cache->getWithSetCallback(
+		$value = $cache->getWithSetCallback(
 			$key,
 			30,
 			function ( &$ttl ) {
@@ -233,11 +233,11 @@ class BagOStuffTest extends MediaWikiTestCase {
 		);
 
 		$this->assertEquals( 'hello kitty', $value );
-		$this->assertEquals( $value, $this->cache->get( $key ), "Value set" );
+		$this->assertEquals( $value, $cache->get( $key ), "Value set" );
 
 		$now += 11;
 
-		$this->assertFalse( $this->cache->get( $key ), "Value expired" );
+		$this->assertFalse( $cache->get( $key ), "Value expired" );
 	}
 
 	/**

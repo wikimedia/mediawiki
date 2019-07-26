@@ -407,12 +407,13 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	protected function doChangeTTL( $key, $exptime, $flags ) {
-		$expiry = $this->convertToExpiry( $exptime );
-		$delete = ( $expiry != 0 && $expiry < $this->getCurrentTime() );
-
 		if ( !$this->lock( $key, 0 ) ) {
 			return false;
 		}
+
+		$expiry = $this->getExpirationAsTimestamp( $exptime );
+		$delete = ( $expiry != self::TTL_INDEFINITE && $expiry < $this->getCurrentTime() );
+
 		// Use doGet() to avoid having to trigger resolveSegments()
 		$blob = $this->doGet( $key, self::READ_LATEST );
 		if ( $blob ) {
@@ -784,9 +785,10 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	/**
 	 * @param int $exptime
 	 * @return bool
+	 * @since 1.34
 	 */
-	final protected function expiryIsRelative( $exptime ) {
-		return ( $exptime != 0 && $exptime < ( 10 * self::TTL_YEAR ) );
+	final protected function isRelativeExpiration( $exptime ) {
+		return ( $exptime != self::TTL_INDEFINITE && $exptime < ( 10 * self::TTL_YEAR ) );
 	}
 
 	/**
@@ -799,11 +801,16 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 *   - positive (>= 10 years): absolute UNIX timestamp; return this value
 	 *
 	 * @param int $exptime
-	 * @return int Absolute TTL or 0 for indefinite
+	 * @return int Expiration timestamp or TTL_INDEFINITE for indefinite
+	 * @since 1.34
 	 */
-	final protected function convertToExpiry( $exptime ) {
-		return $this->expiryIsRelative( $exptime )
-			? (int)$this->getCurrentTime() + $exptime
+	final protected function getExpirationAsTimestamp( $exptime ) {
+		if ( $exptime == self::TTL_INDEFINITE ) {
+			return $exptime;
+		}
+
+		return $this->isRelativeExpiration( $exptime )
+			? intval( $this->getCurrentTime() + $exptime )
 			: $exptime;
 	}
 
@@ -818,12 +825,17 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 *   - positive (>= 10 years): absolute UNIX timestamp; return offset to current time
 	 *
 	 * @param int $exptime
-	 * @return int Relative TTL or 0 for indefinite
+	 * @return int Relative TTL or TTL_INDEFINITE for indefinite
+	 * @since 1.34
 	 */
-	final protected function convertToRelative( $exptime ) {
-		return $this->expiryIsRelative( $exptime ) || !$exptime
-			? (int)$exptime
-			: max( $exptime - (int)$this->getCurrentTime(), 1 );
+	final protected function getExpirationAsTTL( $exptime ) {
+		if ( $exptime == self::TTL_INDEFINITE ) {
+			return $exptime;
+		}
+
+		return $this->isRelativeExpiration( $exptime )
+			? $exptime
+			: (int)max( $exptime - $this->getCurrentTime(), 1 );
 	}
 
 	/**
