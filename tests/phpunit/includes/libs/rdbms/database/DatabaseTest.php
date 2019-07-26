@@ -568,62 +568,74 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	public function testFlagSetting() {
 		$db = $this->db;
 		$origTrx = $db->getFlag( DBO_TRX );
-		$origSsl = $db->getFlag( DBO_SSL );
+		$origNoBuffer = $db->getFlag( DBO_NOBUFFER );
 
 		$origTrx
 			? $db->clearFlag( DBO_TRX, $db::REMEMBER_PRIOR )
 			: $db->setFlag( DBO_TRX, $db::REMEMBER_PRIOR );
 		$this->assertEquals( !$origTrx, $db->getFlag( DBO_TRX ) );
 
-		$origSsl
-			? $db->clearFlag( DBO_SSL, $db::REMEMBER_PRIOR )
-			: $db->setFlag( DBO_SSL, $db::REMEMBER_PRIOR );
-		$this->assertEquals( !$origSsl, $db->getFlag( DBO_SSL ) );
+		$origNoBuffer
+			? $db->clearFlag( DBO_NOBUFFER, $db::REMEMBER_PRIOR )
+			: $db->setFlag( DBO_NOBUFFER, $db::REMEMBER_PRIOR );
+		$this->assertEquals( !$origNoBuffer, $db->getFlag( DBO_NOBUFFER ) );
 
 		$db->restoreFlags( $db::RESTORE_INITIAL );
 		$this->assertEquals( $origTrx, $db->getFlag( DBO_TRX ) );
-		$this->assertEquals( $origSsl, $db->getFlag( DBO_SSL ) );
+		$this->assertEquals( $origNoBuffer, $db->getFlag( DBO_NOBUFFER ) );
 
 		$origTrx
 			? $db->clearFlag( DBO_TRX, $db::REMEMBER_PRIOR )
 			: $db->setFlag( DBO_TRX, $db::REMEMBER_PRIOR );
-		$origSsl
-			? $db->clearFlag( DBO_SSL, $db::REMEMBER_PRIOR )
-			: $db->setFlag( DBO_SSL, $db::REMEMBER_PRIOR );
+		$origNoBuffer
+			? $db->clearFlag( DBO_NOBUFFER, $db::REMEMBER_PRIOR )
+			: $db->setFlag( DBO_NOBUFFER, $db::REMEMBER_PRIOR );
 
 		$db->restoreFlags();
-		$this->assertEquals( $origSsl, $db->getFlag( DBO_SSL ) );
+		$this->assertEquals( $origNoBuffer, $db->getFlag( DBO_NOBUFFER ) );
 		$this->assertEquals( !$origTrx, $db->getFlag( DBO_TRX ) );
 
 		$db->restoreFlags();
-		$this->assertEquals( $origSsl, $db->getFlag( DBO_SSL ) );
+		$this->assertEquals( $origNoBuffer, $db->getFlag( DBO_NOBUFFER ) );
 		$this->assertEquals( $origTrx, $db->getFlag( DBO_TRX ) );
 	}
 
-	/**
-	 * @expectedException UnexpectedValueException
-	 * @covers Wikimedia\Rdbms\Database::setFlag
-	 */
-	public function testDBOIgnoreSet() {
-		$db = $this->getMockBuilder( DatabaseMysqli::class )
-			->disableOriginalConstructor()
-			->setMethods( null )
-			->getMock();
-
-		$db->setFlag( Database::DBO_IGNORE );
+	public function provideImmutableDBOFlags() {
+		return [
+			[ Database::DBO_IGNORE ],
+			[ Database::DBO_DEFAULT ],
+			[ Database::DBO_PERSISTENT ]
+		];
 	}
 
 	/**
-	 * @expectedException UnexpectedValueException
-	 * @covers Wikimedia\Rdbms\Database::clearFlag
+	 * @expectedException DBUnexpectedError
+	 * @covers Wikimedia\Rdbms\Database::setFlag
+	 * @dataProvider provideImmutableDBOFlags
+	 * @param int $flag
 	 */
-	public function testDBOIgnoreClear() {
+	public function testDBOCannotSet( $flag ) {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
 			->setMethods( null )
 			->getMock();
 
-		$db->clearFlag( Database::DBO_IGNORE );
+		$db->setFlag( $flag );
+	}
+
+	/**
+	 * @expectedException DBUnexpectedError
+	 * @covers Wikimedia\Rdbms\Database::clearFlag
+	 * @dataProvider provideImmutableDBOFlags
+	 * @param int $flag
+	 */
+	public function testDBOCannotClear( $flag ) {
+		$db = $this->getMockBuilder( DatabaseMysqli::class )
+			->disableOriginalConstructor()
+			->setMethods( null )
+			->getMock();
+
+		$db->clearFlag( $flag );
 	}
 
 	/**

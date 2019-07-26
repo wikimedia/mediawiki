@@ -87,7 +87,7 @@ interface IDatabase {
 	/** @var int Combine list with OR clauses */
 	const LIST_OR = 4;
 
-	/** @var int Enable debug logging */
+	/** @var int Enable debug logging of all SQL queries */
 	const DBO_DEBUG = 1;
 	/** @var int Disable query buffering (only one result set can be iterated at a time) */
 	const DBO_NOBUFFER = 2;
@@ -336,13 +336,7 @@ interface IDatabase {
 	/**
 	 * Set a flag for this connection
 	 *
-	 * @param int $flag DBO_* constants from Defines.php:
-	 *   - DBO_DEBUG: output some debug info (same as debug())
-	 *   - DBO_NOBUFFER: don't buffer results (inverse of bufferResults())
-	 *   - DBO_TRX: automatically start transactions
-	 *   - DBO_DEFAULT: automatically sets DBO_TRX if not in command line mode
-	 *       and removes it in command line mode
-	 *   - DBO_PERSISTENT: use persistant database connection
+	 * @param int $flag IDatabase::DBO_DEBUG, IDatabase::DBO_NOBUFFER, or IDatabase::DBO_TRX
 	 * @param string $remember IDatabase::REMEMBER_* constant [default: REMEMBER_NOTHING]
 	 */
 	public function setFlag( $flag, $remember = self::REMEMBER_NOTHING );
@@ -350,13 +344,7 @@ interface IDatabase {
 	/**
 	 * Clear a flag for this connection
 	 *
-	 * @param int $flag DBO_* constants from Defines.php:
-	 *   - DBO_DEBUG: output some debug info (same as debug())
-	 *   - DBO_NOBUFFER: don't buffer results (inverse of bufferResults())
-	 *   - DBO_TRX: automatically start transactions
-	 *   - DBO_DEFAULT: automatically sets DBO_TRX if not in command line mode
-	 *       and removes it in command line mode
-	 *   - DBO_PERSISTENT: use persistant database connection
+	 * @param int $flag IDatabase::DBO_DEBUG, IDatabase::DBO_NOBUFFER, or IDatabase::DBO_TRX
 	 * @param string $remember IDatabase::REMEMBER_* constant [default: REMEMBER_NOTHING]
 	 */
 	public function clearFlag( $flag, $remember = self::REMEMBER_NOTHING );
@@ -372,11 +360,7 @@ interface IDatabase {
 	/**
 	 * Returns a boolean whether the flag $flag is set for this connection
 	 *
-	 * @param int $flag DBO_* constants from Defines.php:
-	 *   - DBO_DEBUG: output some debug info (same as debug())
-	 *   - DBO_NOBUFFER: don't buffer results (inverse of bufferResults())
-	 *   - DBO_TRX: automatically start transactions
-	 *   - DBO_PERSISTENT: use persistant database connection
+	 * @param int $flag One of the class IDatabase::DBO_* constants
 	 * @return bool
 	 */
 	public function getFlag( $flag );

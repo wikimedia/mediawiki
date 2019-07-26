@@ -79,53 +79,50 @@ class DatabaseMssql extends Database {
 	}
 
 	protected function open( $server, $user, $password, $dbName, $schema, $tablePrefix ) {
-		// Test for driver support, to avoid suppressed fatal error
 		if ( !function_exists( 'sqlsrv_connect' ) ) {
 			throw new DBConnectionError(
 				$this,
-				"Microsoft SQL Server Native (sqlsrv) functions missing.
-				You can download the driver from: http://go.microsoft.com/fwlink/?LinkId=123470\n"
+				"Microsoft SQL Server Native (sqlsrv) functions missing.\n
+				You can download the driver from: http://go.microsoft.com/fwlink/?LinkId=123470"
 			);
 		}
 
 		$this->close();
+
+		if ( $schema !== null ) {
+			throw $this->newExceptionAfterConnectError( "Got schema '$schema'; not supported." );
+		}
+
 		$this->server = $server;
 		$this->user = $user;
 		$this->password = $password;
 
 		$connectionInfo = [];
-
-		if ( $dbName != '' ) {
+		if ( strlen( $dbName ) ) {
 			$connectionInfo['Database'] = $dbName;
 		}
-
-		// Decide which auth scenerio to use
-		// if we are using Windows auth, then don't add credentials to $connectionInfo
 		if ( !$this->useWindowsAuth ) {
 			$connectionInfo['UID'] = $user;
 			$connectionInfo['PWD'] = $password;
 		}
 
 		AtEase::suppressWarnings();
-		$this->conn = sqlsrv_connect( $server, $connectionInfo );
+		$this->conn = sqlsrv_connect( $server, $connectionInfo ) ?: null;
 		AtEase::restoreWarnings();
 
-		if ( $this->conn === false ) {
-			$error = $this->lastError();
-			$this->connLogger->error(
-				"Error connecting to {db_server}: {error}",
-				$this->getLogContext( [ 'method' => __METHOD__, 'error' => $error ] )
-			);
-			throw new DBConnectionError( $this, $error );
+		if ( !$this->conn ) {
+			throw $this->newExceptionAfterConnectError( $this->lastError() );
 		}
 
-		$this->currentDomain = new DatabaseDomain(
-			( $dbName != '' ) ? $dbName : null,
-			null,
-			$tablePrefix
-		);
-
-		return (bool)$this->conn;
+		try {
+			$this->currentDomain = new DatabaseDomain(
+				strlen( $dbName ) ? $dbName : null,
+				null,
+				$tablePrefix
+			);
+		} catch ( Exception $e ) {
+			throw $this->newExceptionAfterConnectError( $e->getMessage() );
+		}
 	}
 
 	/**

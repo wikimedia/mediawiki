@@ -61,7 +61,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $cliMode;
 	/** @var string Agent name for query profiling */
 	protected $agent;
-	/** @var int Bitfield of class DBO_* constants */
+	/** @var int Bit field of class DBO_* constants */
 	protected $flags;
 	/** @var array LoadBalancer tracking information */
 	protected $lbInfo = [];
@@ -217,6 +217,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var float Assume an insert of this many rows or less should be fast to replicate */
 	private static $SMALL_WRITE_ROWS = 100;
 
+	/** @var string[] List of DBO_* flags that can be changed after connection */
+	protected static $MUTABLE_FLAGS = [
+		'DBO_DEBUG',
+		'DBO_NOBUFFER',
+		'DBO_TRX',
+		'DBO_DDLMODE',
+	];
+	/** @var int Bit field of all DBO_* flags that can be changed after connection */
+	protected static $DBO_MUTABLE = (
+		self::DBO_DEBUG | self::DBO_NOBUFFER | self::DBO_TRX | self::DBO_DDLMODE
+	);
+
 	/**
 	 * @note exceptions for missing libraries/drivers should be thrown in initConnection()
 	 * @param array $params Parameters passed from Database::factory()
@@ -283,23 +295,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Actually connect to the database over the wire (or to local files)
 	 *
-	 * @throws InvalidArgumentException
 	 * @throws DBConnectionError
 	 * @since 1.31
 	 */
 	protected function doInitConnection() {
-		if ( strlen( $this->connectionParams['user'] ) ) {
-			$this->open(
-				$this->connectionParams['host'],
-				$this->connectionParams['user'],
-				$this->connectionParams['password'],
-				$this->connectionParams['dbname'],
-				$this->connectionParams['schema'],
-				$this->connectionParams['tablePrefix']
-			);
-		} else {
-			throw new InvalidArgumentException( "No database user provided" );
-		}
+		$this->open(
+			$this->connectionParams['host'],
+			$this->connectionParams['user'],
+			$this->connectionParams['password'],
+			$this->connectionParams['dbname'],
+			$this->connectionParams['schema'],
+			$this->connectionParams['tablePrefix']
+		);
 	}
 
 	/**
@@ -335,7 +342,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *      equivalent to a "database" in MySQL. Note that MySQL and SQLite do not use schemas.
 	 *   - tablePrefix : Optional table prefix that is implicitly added on to all table names
 	 *      recognized in queries. This can be used in place of schemas for handle site farms.
-	 *   - flags : Optional bitfield of DBO_* constants that define connection, protocol,
+	 *   - flags : Optional bit field of DBO_* constants that define connection, protocol,
 	 *      buffering, and transaction behavior. It is STRONGLY adviced to leave the DBO_DEFAULT
 	 *      flag in place UNLESS this this database simply acts as a key/value store.
 	 *   - driver: Optional name of a specific DB client driver. For MySQL, there is only the
@@ -741,24 +748,32 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function setFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
-		if ( ( $flag & self::DBO_IGNORE ) ) {
-			throw new UnexpectedValueException( "Modifying DBO_IGNORE is not allowed" );
+		if ( $flag & ~static::$DBO_MUTABLE ) {
+			throw new DBUnexpectedError(
+				$this,
+				"Got $flag (allowed: " . implode( ', ', static::$MUTABLE_FLAGS ) . ')'
+			);
 		}
 
 		if ( $remember === self::REMEMBER_PRIOR ) {
 			array_push( $this->priorFlags, $this->flags );
 		}
+
 		$this->flags |= $flag;
 	}
 
 	public function clearFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
-		if ( ( $flag & self::DBO_IGNORE ) ) {
-			throw new UnexpectedValueException( "Modifying DBO_IGNORE is not allowed" );
+		if ( $flag & ~static::$DBO_MUTABLE ) {
+			throw new DBUnexpectedError(
+				$this,
+				"Got $flag (allowed: " . implode( ', ', static::$MUTABLE_FLAGS ) . ')'
+			);
 		}
 
 		if ( $remember === self::REMEMBER_PRIOR ) {
 			array_push( $this->priorFlags, $this->flags );
 		}
+
 		$this->flags &= ~$flag;
 	}
 
@@ -776,7 +791,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function getFlag( $flag ) {
-		return (bool)( $this->flags & $flag );
+		return ( ( $this->flags & $flag ) === $flag );
 	}
 
 	/**
@@ -929,7 +944,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$closed = true; // already closed; nothing to do
 		}
 
-		$this->conn = false;
+		$this->conn = null;
 
 		// Throw any unexpected errors after having disconnected
 		if ( $exception instanceof Exception ) {
@@ -1177,7 +1192,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * @param string $sql Original SQL query
 	 * @param string $fname Name of the calling function
-	 * @param int $flags Bitfield of class QUERY_* constants
+	 * @param int $flags Bit field of class QUERY_* constants
 	 * @return array An n-tuple of:
 	 *   - mixed|bool: An object, resource, or true on success; false on failure
 	 *   - string: The result of calling lastError()
@@ -1265,7 +1280,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string $commentedSql SQL query with debugging/trace comment
 	 * @param bool $isPermWrite Whether the query is a (non-temporary table) write
 	 * @param string $fname Name of the calling function
-	 * @param int $flags Bitfield of class QUERY_* constants
+	 * @param int $flags Bit field of class QUERY_* constants
 	 * @return array An n-tuple of:
 	 *   - mixed|bool: An object, resource, or true on success; false on failure
 	 *   - string: The result of calling lastError()
@@ -1570,9 +1585,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $ignore ) {
 			$this->queryLogger->debug( "SQL ERROR (ignored): $error" );
 		} else {
-			$exception = $this->getQueryExceptionAndLog( $error, $errno, $sql, $fname );
-
-			throw $exception;
+			throw $this->getQueryExceptionAndLog( $error, $errno, $sql, $fname );
 		}
 	}
 
@@ -1584,19 +1597,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return DBError
 	 */
 	private function getQueryExceptionAndLog( $error, $errno, $sql, $fname ) {
-		$sql1line = mb_substr( str_replace( "\n", "\\n", $sql ), 0, 5 * 1024 );
 		$this->queryLogger->error(
 			"{fname}\t{db_server}\t{errno}\t{error}\t{sql1line}",
 			$this->getLogContext( [
 				'method' => __METHOD__,
 				'errno' => $errno,
 				'error' => $error,
-				'sql1line' => $sql1line,
+				'sql1line' => mb_substr( str_replace( "\n", "\\n", $sql ), 0, 5 * 1024 ),
 				'fname' => $fname,
 				'trace' => ( new RuntimeException() )->getTraceAsString()
 			] )
 		);
-		$this->queryLogger->debug( "SQL ERROR: " . $error . "" );
+
 		if ( $this->wasQueryTimeout( $error, $errno ) ) {
 			$e = new DBQueryTimeoutError( $this, $error, $errno, $sql, $fname );
 		} elseif ( $this->wasConnectionError( $errno ) ) {
@@ -1606,6 +1618,25 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		return $e;
+	}
+
+	/**
+	 * @param string $error
+	 * @return DBConnectionError
+	 */
+	final protected function newExceptionAfterConnectError( $error ) {
+		// Connection was not fully initialized and is not safe for use
+		$this->conn = null;
+
+		$this->connLogger->error(
+			"Error connecting to {db_server} as user {db_user}: {error}",
+			$this->getLogContext( [
+				'error' => $error,
+				'trace' => ( new RuntimeException() )->getTraceAsString()
+			] )
+		);
+
+		return new DBConnectionError( $this, $error );
 	}
 
 	public function freeResult( $res ) {
@@ -4297,7 +4328,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	protected function replaceLostConnection( $fname ) {
 		$this->closeConnection();
-		$this->conn = false;
+		$this->conn = null;
 
 		$this->handleSessionLossPreconnect();
 
@@ -4876,7 +4907,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		if ( $this->isOpen() ) {
 			// Open a new connection resource without messing with the old one
-			$this->conn = false;
+			$this->conn = null;
 			$this->trxEndCallbacks = []; // don't copy
 			$this->trxSectionCancelCallbacks = []; // don't copy
 			$this->handleSessionLossPreconnect(); // no trx or locks anymore

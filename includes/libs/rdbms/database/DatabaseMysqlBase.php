@@ -125,7 +125,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$this->close();
 
 		if ( $schema !== null ) {
-			throw new DBExpectedError( $this, __CLASS__ . ": cannot use schemas ('$schema')" );
+			throw $this->newExceptionAfterConnectError( "Got schema '$schema'; not supported." );
 		}
 
 		$this->server = $server;
@@ -135,23 +135,14 @@ abstract class DatabaseMysqlBase extends Database {
 		$this->installErrorHandler();
 		try {
 			$this->conn = $this->mysqlConnect( $this->server, $dbName );
-		} catch ( Exception $ex ) {
+		} catch ( Exception $e ) {
 			$this->restoreErrorHandler();
-			throw $ex;
+			throw $this->newExceptionAfterConnectError( $e->getMessage() );
 		}
 		$error = $this->restoreErrorHandler();
 
-		# Always log connection errors
 		if ( !$this->conn ) {
-			$error = $error ?: $this->lastError();
-			$this->connLogger->error(
-				"Error connecting to {db_server}: {error}",
-				$this->getLogContext( [ 'method' => __METHOD__, 'error' => $error ] )
-			);
-			$this->connLogger->debug( "DB connection error\n" .
-				"Server: $server, User: $user, Password: " .
-				substr( $password, 0, 3 ) . "..., error: " . $error . "\n" );
-			throw new DBConnectionError( $this, $error );
+			throw $this->newExceptionAfterConnectError( $error ?: $this->lastError() );
 		}
 
 		try {
@@ -160,7 +151,6 @@ abstract class DatabaseMysqlBase extends Database {
 				null,
 				$tablePrefix
 			);
-
 			// Abstract over any insane MySQL defaults
 			$set = [ 'group_concat_max_len = 262144' ];
 			// Set SQL mode, default is turning them all off, can be overridden or skipped with null
@@ -185,11 +175,8 @@ abstract class DatabaseMysqlBase extends Database {
 				);
 			}
 		} catch ( Exception $e ) {
-			// Connection was not fully initialized and is not safe for use
-			$this->conn = false;
+			throw $this->newExceptionAfterConnectError( $e->getMessage() );
 		}
-
-		return true;
 	}
 
 	protected function doSelectDomain( DatabaseDomain $domain ) {
@@ -234,7 +221,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 *
 	 * @param string $realServer
 	 * @param string|null $dbName
-	 * @return mixed Raw connection
+	 * @return mixed|null Driver connection handle
 	 * @throws DBConnectionError
 	 */
 	abstract protected function mysqlConnect( $realServer, $dbName );
