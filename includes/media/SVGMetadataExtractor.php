@@ -27,9 +27,17 @@
 
 /**
  * @ingroup Media
+ * @deprecated since 1.34
  */
 class SVGMetadataExtractor {
-	static function getMetadata( $filename ) {
+	/**
+	 * @param string $filename
+	 * @return array
+	 * @deprecated since 1.34, use SVGReader->getMetadata() directly
+	 */
+	public static function getMetadata( $filename ) {
+		wfDeprecated( __METHOD__, '1.34' );
+
 		$svg = new SVGReader( $filename );
 
 		return $svg->getMetadata();

@@ -438,8 +438,10 @@ class SvgHandler extends ImageHandler {
 	 */
 	public function getMetadata( $file, $filename ) {
 		$metadata = [ 'version' => self::SVG_METADATA_VERSION ];
+
 		try {
-			$metadata += SVGMetadataExtractor::getMetadata( $filename );
+			$svgReader = new SVGReader( $filename );
+			$metadata += $svgReader->getMetadata();
 		} catch ( Exception $e ) { // @todo SVG specific exceptions
 			// File not found, broken, etc.
 			$metadata['error'] = [

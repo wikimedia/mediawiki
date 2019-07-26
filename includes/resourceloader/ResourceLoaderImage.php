@@ -437,7 +437,8 @@ class ResourceLoaderImage {
 
 			file_put_contents( $tempFilenameSvg, $svg );
 
-			$metadata = SVGMetadataExtractor::getMetadata( $tempFilenameSvg );
+			$svgReader = new SVGReader( $tempFilenameSvg );
+			$metadata = $svgReader->getMetadata();
 			if ( !isset( $metadata['width'] ) || !isset( $metadata['height'] ) ) {
 				unlink( $tempFilenameSvg );
 				return false;
