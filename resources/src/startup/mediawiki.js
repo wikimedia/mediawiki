@@ -432,8 +432,7 @@
 		 *
 		 * @property {mw.Map} config
 		 */
-		// Dummy placeholder later assigned in ResourceLoaderStartUpModule
-		config: null,
+		config: new Map( $VARS.wgLegacyJavaScriptGlobals ),
 
 		/**
 		 * Empty object for third-party libraries, for cases where you don't

@@ -426,6 +426,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'$VARS.storeEnabled' => ResourceLoader::encodeJsonForScript(
 				$conf->get( 'ResourceLoaderStorageEnabled' ) && !$context->getDebug()
 			),
+			'$VARS.wgLegacyJavaScriptGlobals' => ResourceLoader::encodeJsonForScript(
+				$conf->get( 'LegacyJavaScriptGlobals' )
+			),
 			'$VARS.storeKey' => ResourceLoader::encodeJsonForScript( $this->getStoreKey() ),
 			'$VARS.storeVary' => ResourceLoader::encodeJsonForScript( $this->getStoreVary( $context ) ),
 		];
@@ -446,9 +449,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		// Perform string replacements for startup.js
 		$pairs = [
-			'$VARS.wgLegacyJavaScriptGlobals' => ResourceLoader::encodeJsonForScript(
-				$conf->get( 'LegacyJavaScriptGlobals' )
-			),
 			'$VARS.configuration' => ResourceLoader::encodeJsonForScript(
 				$this->getConfigSettings( $context )
 			),
