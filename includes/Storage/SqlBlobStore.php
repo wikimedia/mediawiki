@@ -207,7 +207,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 */
 	private function getDBConnection( $index ) {
 		$lb = $this->getDBLoadBalancer();
-		return $lb->getConnection( $index, [], $this->dbDomain );
+		return $lb->getConnectionRef( $index, [], $this->dbDomain );
 	}
 
 	/**
