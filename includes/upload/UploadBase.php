@@ -705,6 +705,33 @@ abstract class UploadBase {
 	}
 
 	/**
+	 * Convert the warnings array returned by checkWarnings() to something that
+	 * can be serialized. File objects will be converted to an associative array
+	 * with the following keys:
+	 *
+	 *   - fileName: The name of the file
+	 *   - timestamp: The upload timestamp
+	 *
+	 * @param mixed[] $warnings
+	 * @return mixed[]
+	 */
+	public static function makeWarningsSerializable( $warnings ) {
+		array_walk_recursive( $warnings, function ( &$param, $key ) {
+			if ( $param instanceof File ) {
+				$param = [
+					'fileName' => $param->getName(),
+					'timestamp' => $param->getTimestamp()
+				];
+			} elseif ( is_object( $param ) ) {
+				throw new InvalidArgumentException(
+					'UploadBase::makeWarningsSerializable: ' .
+					'Unexpected object of class ' . get_class( $param ) );
+			}
+		} );
+		return $warnings;
+	}
+
+	/**
 	 * Check whether the resulting filename is different from the desired one,
 	 * but ignore things like ucfirst() and spaces/underscore things
 	 *
