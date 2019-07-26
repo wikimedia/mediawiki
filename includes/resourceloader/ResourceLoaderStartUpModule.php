@@ -105,7 +105,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgCaseSensitiveNamespaces' => $caseSensitiveNamespaces,
 			'wgLegalTitleChars' => Title::convertByteClassToUnicodeClass( Title::legalChars() ),
 			'wgIllegalFileChars' => Title::convertByteClassToUnicodeClass( $illegalFileChars ),
-			'wgResourceLoaderStorageEnabled' => $conf->get( 'ResourceLoaderStorageEnabled' ),
 			'wgForeignUploadTargets' => $conf->get( 'ForeignUploadTargets' ),
 			'wgEnableUploads' => $conf->get( 'EnableUploads' ),
 			'wgCommentByteLimit' => null,
@@ -421,6 +420,11 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'$VARS.baseModules' => ResourceLoader::encodeJsonForScript( $this->getBaseModules() ),
 			'$VARS.maxQueryLength' => ResourceLoader::encodeJsonForScript(
 				$conf->get( 'ResourceLoaderMaxQueryLength' )
+			),
+			// The client-side module cache can be disabled by site configuration.
+			// It is also always disabled in debug mode.
+			'$VARS.storeEnabled' => ResourceLoader::encodeJsonForScript(
+				$conf->get( 'ResourceLoaderStorageEnabled' ) && !$context->getDebug()
 			),
 			'$VARS.storeKey' => ResourceLoader::encodeJsonForScript( $this->getStoreKey() ),
 			'$VARS.storeVary' => ResourceLoader::encodeJsonForScript( $this->getStoreVary( $context ) ),
