@@ -289,8 +289,8 @@
 				// Can't, sorry.
 			},
 			apiCheckValid: function () {
-				var ok = this.getValue() !== null || suppressErrors;
-				this.setIcon( ok ? null : 'alert' );
+				var ok = this.getValue() !== null && this.getValue() !== undefined || suppressErrors;
+				this.info.setIcon( ok ? null : 'alert' );
 				this.setTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
 				return $.Deferred().resolve( ok ).promise();
 			}
