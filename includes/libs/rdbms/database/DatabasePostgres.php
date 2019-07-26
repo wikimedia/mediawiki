@@ -61,10 +61,6 @@ class DatabasePostgres extends Database {
 		return 'postgres';
 	}
 
-	public function implicitGroupby() {
-		return false;
-	}
-
 	public function implicitOrderby() {
 		return false;
 	}

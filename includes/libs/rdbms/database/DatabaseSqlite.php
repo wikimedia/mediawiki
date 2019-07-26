@@ -125,15 +125,6 @@ class DatabaseSqlite extends Database {
 		return 'sqlite';
 	}
 
-	/**
-	 * @todo Check if it should be true like parent class
-	 *
-	 * @return bool
-	 */
-	public function implicitGroupby() {
-		return false;
-	}
-
 	protected function open( $server, $user, $pass, $dbName, $schema, $tablePrefix ) {
 		$this->close();
 

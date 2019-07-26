@@ -140,19 +140,11 @@ class DBConnRef implements IDatabase {
 		throw new DBUnexpectedError( $this, "Database injection is disallowed to enable reuse." );
 	}
 
-	public function implicitGroupby() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function implicitOrderby() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
 	public function lastQuery() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	public function doneWrites() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
@@ -216,13 +208,6 @@ class DBConnRef implements IDatabase {
 		}
 
 		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	/**
-	 * @codeCoverageIgnore
-	 */
-	public function getWikiID() {
-		return $this->getDomainID();
 	}
 
 	public function getType() {
