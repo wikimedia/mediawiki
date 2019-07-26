@@ -175,7 +175,6 @@ div.magnify a {
 
 	/* Use same SVG support hack as mediawiki.legacy's shared.css */
 	background-image: url( images/magnify-clip-ltr.png );
-	/* @embed */
 	background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-ltr.svg );
 	/* Don't annoy people who copy-paste everything too much */
 	-moz-user-select: none;
@@ -206,7 +205,6 @@ img.thumbborder {
 .mw-content-ltr div.magnify a {
 	/* Use same SVG support hack as mediawiki.legacy's shared.css */
 	background-image: url( images/magnify-clip-ltr.png );
-	/* @embed */
 	background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-ltr.svg );
 }
 
@@ -226,7 +224,6 @@ img.thumbborder {
 .mw-content-rtl div.magnify a {
 	/* Use same SVG support hack as mediawiki.legacy's shared.css */
 	background-image: url( images/magnify-clip-rtl.png );
-	/* @embed */
 	background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-rtl.svg );
 }
 
