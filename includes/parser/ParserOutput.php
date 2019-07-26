@@ -216,6 +216,7 @@ class ParserOutput extends CacheTime {
 		'speculativeRevIdUsed',
 		'revisionTimestampUsed'
 	];
+
 	/** @var int|null Assumed rev ID for {{REVISIONID}} if no revision is set */
 	private $speculativeRevIdUsed;
 	/** @var int|null Assumed page ID for {{PAGEID}} if no revision is set */
