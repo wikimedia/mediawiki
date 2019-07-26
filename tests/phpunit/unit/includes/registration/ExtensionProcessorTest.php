@@ -215,6 +215,7 @@ class ExtensionProcessorTest extends \MediaWikiUnitTestCase {
 				'Bar' => [ 'value' => 'somevalue' ],
 				'Foo' => [ 'value' => 10 ],
 				'Path' => [ 'value' => 'foo.txt', 'path' => true ],
+				'PathArray' => [ 'value' => [ 'foo.bar', 'bar.foo', 'bar/foo.txt' ], 'path' => true ],
 				'Namespaces' => [
 					'value' => [
 						'10' => true,
@@ -237,6 +238,14 @@ class ExtensionProcessorTest extends \MediaWikiUnitTestCase {
 		$this->assertEquals( 'somevalue', $extracted['globals']['wgBar'] );
 		$this->assertEquals( 10, $extracted['globals']['wgFoo'] );
 		$this->assertEquals( "{$this->dirname}/foo.txt", $extracted['globals']['wgPath'] );
+		$this->assertEquals(
+			[
+				"{$this->dirname}/foo.bar",
+				"{$this->dirname}/bar.foo",
+				"{$this->dirname}/bar/foo.txt"
+			],
+			$extracted['globals']['wgPathArray']
+		);
 		// Custom prefix:
 		$this->assertEquals( 'somevalue', $extracted['globals']['egBar'] );
 		$this->assertSame(
