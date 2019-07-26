@@ -312,7 +312,7 @@ abstract class QueryPage extends SpecialPage {
 				$num = $res->numRows();
 				# Fetch results
 				$vals = [];
-				foreach ( $res as $row ) {
+				foreach ( $res as $i => $row ) {
 					if ( isset( $row->value ) ) {
 						if ( $this->usesTimestamps() ) {
 							$value = wfTimestamp( TS_UNIX,
@@ -321,7 +321,7 @@ abstract class QueryPage extends SpecialPage {
 							$value = intval( $row->value ); // T16414
 						}
 					} else {
-						$value = 0;
+						$value = $i;
 					}
 
 					$vals[] = [
