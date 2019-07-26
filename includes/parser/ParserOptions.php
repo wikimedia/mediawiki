@@ -870,7 +870,7 @@ class ParserOptions {
 	 * Callback registered with ParserOptions::$lazyOptions, triggered by getSpeculativeRevId().
 	 *
 	 * @param ParserOptions $popt
-	 * @return bool|false
+	 * @return int|false
 	 */
 	private static function initSpeculativeRevId( ParserOptions $popt ) {
 		$cb = $popt->getOption( 'speculativeRevIdCallback' );
@@ -884,7 +884,7 @@ class ParserOptions {
 	 * Callback registered with ParserOptions::$lazyOptions, triggered by getSpeculativePageId().
 	 *
 	 * @param ParserOptions $popt
-	 * @return bool|false
+	 * @return int|false
 	 */
 	private static function initSpeculativePageId( ParserOptions $popt ) {
 		$cb = $popt->getOption( 'speculativePageIdCallback' );
