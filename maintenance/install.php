@@ -115,7 +115,12 @@ class CommandLineInstaller extends Maintenance {
 			$this->setPassOption();
 		}
 
-		$installer = InstallerOverrides::getCliInstaller( $siteName, $adminName, $this->mOptions );
+		try {
+			$installer = InstallerOverrides::getCliInstaller( $siteName, $adminName, $this->mOptions );
+		} catch ( \MediaWiki\Installer\InstallException $e ) {
+			$this->output( $e->getStatus()->getMessage()->parse() . "\n" );
+			return false;
+		}
 
 		$status = $installer->doEnvironmentChecks();
 		if ( $status->isGood() ) {
@@ -123,17 +128,21 @@ class CommandLineInstaller extends Maintenance {
 		} else {
 			$installer->showStatusMessage( $status );
 
-			return;
+			return false;
 		}
 		if ( !$envChecksOnly ) {
-			$installer->execute();
+			$status = $installer->execute();
+			if ( !$status->isGood() ) {
+				return false;
+			}
 			$installer->writeConfigurationFile( $this->getOption( 'confpath', $IP ) );
+			$installer->showMessage(
+				'config-install-success',
+				$installer->getVar( 'wgServer' ),
+				$installer->getVar( 'wgScriptPath' )
+			);
 		}
-		$installer->showMessage(
-			'config-install-success',
-			$installer->getVar( 'wgServer' ),
-			$installer->getVar( 'wgScriptPath' )
-		);
+		return true;
 	}
 
 	private function setDbPassOption() {
