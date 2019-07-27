@@ -144,30 +144,34 @@ class ConvertLinks extends Maintenance {
 			$this->output( "Loading IDs from $cur table...\n" );
 			$this->performanceLog( $fh, "Reading $numRows rows from cur table...\n" );
 			$this->performanceLog( $fh, "rows read vs seconds elapsed:\n" );
+			$contentLang = MediaWikiServices::getInstance()->getContentLanguage();
 
-			$dbw->bufferResults( false );
-			$res = $dbw->query( "SELECT cur_namespace,cur_title,cur_id FROM $cur" );
 			$ids = [];
-
-			foreach ( $res as $row ) {
-				$title = $row->cur_title;
-				if ( $row->cur_namespace ) {
-					$title = MediaWikiServices::getInstance()->getContentLanguage()->
-						getNsText( $row->cur_namespace ) . ":$title";
-				}
-				$ids[$title] = $row->cur_id;
-				$curRowsRead++;
-				if ( $reportCurReadProgress ) {
-					if ( ( $curRowsRead % $curReadReportInterval ) == 0 ) {
-						$this->performanceLog(
-							$fh,
-							$curRowsRead . " " . ( microtime( true ) - $baseTime ) . "\n"
-						);
-						$this->output( "\t$curRowsRead rows of $cur table read.\n" );
+			$lastId = 0;
+			do {
+				$res = $dbw->query(
+					"SELECT cur_namespace,cur_title,cur_id FROM $cur " .
+					"WHERE cur_id > $lastId ORDER BY cur_id LIMIT 10000"
+				);
+				foreach ( $res as $row ) {
+					$title = $row->cur_title;
+					if ( $row->cur_namespace ) {
+						$title = $contentLang->getNsText( $row->cur_namespace ) . ":$title";
 					}
+					$ids[$title] = $row->cur_id;
+					$curRowsRead++;
+					if ( $reportCurReadProgress ) {
+						if ( ( $curRowsRead % $curReadReportInterval ) == 0 ) {
+							$this->performanceLog(
+								$fh,
+								$curRowsRead . " " . ( microtime( true ) - $baseTime ) . "\n"
+							);
+							$this->output( "\t$curRowsRead rows of $cur table read.\n" );
+						}
+					}
+					$lastId = $row->cur_id;
 				}
-			}
-			$dbw->bufferResults( true );
+			} while ( $res->numRows() > 0 );
 			$this->output( "Finished loading IDs.\n\n" );
 			$this->performanceLog(
 				$fh,
