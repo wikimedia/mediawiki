@@ -21,7 +21,8 @@
 			"Wehwei",
 			"Wwycheuk",
 			"蘭斯特",
-			"Kly"
+			"Kly",
+			"Winston Sung"
 		]
 	},
 	"config-desc": "MediaWiki 安裝程式",
@@ -274,7 +275,7 @@
 	"config-memcache-badport": "Memcached 埠號應介於 $1 到 $2 之間。",
 	"config-extensions": "擴充套件",
 	"config-extensions-help": "已在您的 <code>./extensions</code> 目錄中發現下列擴充套件。\n\n這些擴充套件可能需要做額外的設定，但您可以現在先開啟功能。",
-	"config-skins": "外觀",
+	"config-skins": "佈景主題",
 	"config-skins-help": "系統偵測到您於 <code>./skins</code> 資料夾中含有外觀如上清單。 您必須開啟其中一項並設為預設值。",
 	"config-skins-use-as-default": "使用此外觀作為預設",
 	"config-skins-missing": "沒有發現任何外觀；MediaWiki 在您安裝一些恰當的外觀前將會使用備用外觀。",
