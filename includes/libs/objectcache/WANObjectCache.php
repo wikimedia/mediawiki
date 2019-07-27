@@ -1182,10 +1182,11 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 *      being no stale value available until after a thread completes the callback.
 	 *      Use WANObjectCache::TSE_NONE to disable this logic.
 	 *      Default: WANObjectCache::TSE_NONE.
-	 *   - busyValue: If no value exists and another thread is currently regenerating it, use this
-	 *      as a fallback value (or a callback to generate such a value). This assures that cache
-	 *      stampedes cannot happen if the value falls out of cache. This can be used as insurance
-	 *      against cache regeneration becoming very slow for some reason (greater than the TTL).
+	 *   - busyValue: Specify a placeholder value to use when no value exists and another thread
+	 *      is currently regenerating it. This assures that cache stampedes cannot happen if the
+	 *      value falls out of cache. This also mitigates stampedes when value regeneration
+	 *      becomes very slow (greater than $ttl/"lowTTL"). If this is a closure, then it will
+	 *      be invoked to get the placeholder when needed.
 	 *      Default: null.
 	 *   - pcTTL: Process cache the value in this PHP instance for this many seconds. This avoids
 	 *      network I/O when a key is read several times. This will not cache when the callback
@@ -1301,7 +1302,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * @return array Ordered list of the following:
 	 *   - Cached or regenerated value
 	 *   - Cached or regenerated value version number or null if not versioned
-	 *   - Timestamp of the cached value or null if there is no value
+	 *   - Timestamp of the current cached value at the key or null if there is no value
 	 * @note Callable type hints are not used to avoid class-autoloading
 	 */
 	private function fetchOrRegenerate( $key, $ttl, $callback, array $opts ) {
@@ -1399,11 +1400,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 				$miss = is_infinite( $minAsOf ) ? 'renew' : 'miss';
 				$this->stats->increment( "wanobjectcache.$kClass.$miss.busy" );
 
-				return [
-					is_callable( $busyValue ) ? $busyValue() : $busyValue,
-					$version,
-					$curInfo['asOf']
-				];
+				return [ $this->resolveBusyValue( $busyValue ), $version, $curInfo['asOf'] ];
 			}
 		}
 
@@ -1602,6 +1599,14 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 			$ttl,
 			1
 		);
+	}
+
+	/**
+	 * @param mixed $busyValue
+	 * @return mixed
+	 */
+	private function resolveBusyValue( $busyValue ) {
+		return ( $busyValue instanceof Closure ) ? $busyValue() : $busyValue;
 	}
 
 	/**
