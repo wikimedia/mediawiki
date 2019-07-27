@@ -159,11 +159,24 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		$ctx = $this->getResourceLoaderContext();
 		$this->assertEquals(
 			"/* eslint-disable */\nmw.foo()\n" .
+			"/* eslint-disable */\nmw.foo()\n// mw.bar();\n",
+			$module->getScript( $ctx ),
+			'scripts with newline at the end are concatenated without a newline'
+		);
+
+		$module = new ResourceLoaderFileModule( [
+			'localBasePath' => __DIR__ . '/../../data/resourceloader',
+			'scripts' => [ 'script-nosemi-nonl.js', 'script-comment-nonl.js' ],
+		] );
+		$module->setName( 'testing' );
+		$ctx = $this->getResourceLoaderContext();
+		$this->assertEquals(
+			"/* eslint-disable */\nmw.foo()" .
 			"\n" .
-			"/* eslint-disable */\nmw.foo()\n// mw.bar();\n" .
+			"/* eslint-disable */\nmw.foo()\n// mw.bar();" .
 			"\n",
 			$module->getScript( $ctx ),
-			'scripts are concatenated with a new-line'
+			'scripts without newline at the end are concatenated with a newline'
 		);
 	}
 

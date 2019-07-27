@@ -770,11 +770,8 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 			// line break as separator which matches JavaScript native logic for implicitly
 			// ending statements even if a semi-colon is missing.
 			// Bugs: T29054, T162719.
-			if ( is_string( $scripts )
-				&& strlen( $scripts )
-				&& substr( $scripts, -1 ) !== "\n"
-			) {
-				$scripts .= "\n";
+			if ( is_string( $scripts ) ) {
+				$scripts = ResourceLoader::ensureNewline( $scripts );
 			}
 		}
 		$content['scripts'] = $scripts;
