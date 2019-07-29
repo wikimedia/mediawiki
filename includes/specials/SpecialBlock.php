@@ -1130,8 +1130,6 @@ class SpecialBlock extends FormSpecialPage {
 		if ( $performer->getBlock() ) {
 			if ( $target instanceof User && $target->getId() == $performer->getId() ) {
 				# User is trying to unblock themselves
-				// @TODO Ensure that the block does not apply to the `unblockself`
-				//       right.
 				if ( $performer->isAllowed( 'unblockself' ) ) {
 					return true;
 					# User blocked themselves and is now trying to reverse it
