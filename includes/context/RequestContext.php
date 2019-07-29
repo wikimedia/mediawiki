@@ -371,33 +371,27 @@ class RequestContext implements IContextSource, MutableContext {
 			Hooks::run( 'RequestContextCreateSkin', [ $this, &$skin ] );
 			$factory = MediaWikiServices::getInstance()->getSkinFactory();
 
-			// If the hook worked try to set a skin from it
 			if ( $skin instanceof Skin ) {
+				// The hook provided a skin object
 				$this->skin = $skin;
 			} elseif ( is_string( $skin ) ) {
+				// The hook provided a skin name
 				// Normalize the key, just in case the hook did something weird.
 				$normalized = Skin::normalizeKey( $skin );
 				$this->skin = $factory->makeSkin( $normalized );
-			}
-
-			// If this is still null (the hook didn't run or didn't work)
-			// then go through the normal processing to load a skin
-			if ( $this->skin === null ) {
+			} else {
+				// No hook override, go through normal processing
 				if ( !in_array( 'skin', $this->getConfig()->get( 'HiddenPrefs' ) ) ) {
-					# get the user skin
 					$userSkin = $this->getUser()->getOption( 'skin' );
 					$userSkin = $this->getRequest()->getVal( 'useskin', $userSkin );
 				} else {
-					# if we're not allowing users to override, then use the default
 					$userSkin = $this->getConfig()->get( 'DefaultSkin' );
 				}
 
-				// Normalize the key in case the user is passing gibberish
-				// or has old preferences (T71566).
+				// Normalize the key in case the user is passing gibberish query params
+				// or has old user preferences (T71566).
+				// Skin::normalizeKey will also validate it, so makeSkin() won't throw.
 				$normalized = Skin::normalizeKey( $userSkin );
-
-				// Skin::normalizeKey will also validate it, so
-				// this won't throw an exception
 				$this->skin = $factory->makeSkin( $normalized );
 			}
 
