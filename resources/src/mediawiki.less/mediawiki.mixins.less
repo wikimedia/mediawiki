@@ -12,11 +12,20 @@
 	background-image: e( '/* @embed */' ) url( @url );
 }
 
-.vertical-gradient( @startColor: gray, @endColor: white, @startPos: 0, @endPos: 100% ) {
-	background-color: @endColor;
-	background-image: -webkit-linear-gradient( top, @startColor @startPos, @endColor @endPos ); // Safari 5.1+, Chrome 10+
-	background-image: -moz-linear-gradient( top, @startColor @startPos, @endColor @endPos ); // Firefox 3.6+
-	background-image: linear-gradient( @startColor @startPos, @endColor @endPos ); // Standard
+.horizontal-gradient( @startColor: #808080, @endColor: #fff, @startPos: 0, @endPos: 100% ) {
+	background-color: average( @startColor, @endColor );
+	background-image: -webkit-gradient( linear, left top, right top, color-stop( @startPos, @startColor ), color-stop( @endPos, @endColor ) );
+	background-image: -webkit-linear-gradient( left, @startColor @startPos, @endColor @endPos );
+	background-image: -moz-linear-gradient( left, @startColor @startPos, @endColor @endPos );
+	background-image: linear-gradient( to right, @startColor @startPos, @endColor @endPos );
+}
+
+.vertical-gradient( @startColor: #808080, @endColor: #fff, @startPos: 0, @endPos: 100% ) {
+	background-color: average( @startColor, @endColor );
+	background-image: -webkit-gradient( linear, right top, right bottom, color-stop( @startPos, @startColor ), color-stop( @endPos, @endColor ) );
+	background-image: -webkit-linear-gradient( top, @startColor @startPos, @endColor @endPos );
+	background-image: -moz-linear-gradient( top, @startColor @startPos, @endColor @endPos );
+	background-image: linear-gradient( to bottom, @startColor @startPos, @endColor @endPos );
 }
 
 // SVG support using a transparent gradient to guarantee cross-browser
