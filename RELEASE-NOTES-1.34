@@ -417,6 +417,11 @@ because of Phabricator reports.
   to be prevented. Modifying the $purgeBlobs parameter now has no effect.
 * SVGMetadataExtractor::getMetadata has been deprecated. Instead, you should
   use SVGReader->getMetadata() directly.
+* The following public properties on AbstractBlock are deprecated: $mReason,
+  $mTimestamp, $mExpiry, $mHideName. Use the getters/setters instead.
+* The following public properties on DatabaseBlock are deprecated: $mAuto,
+  $mParentBlockId. To check for an autoblock use DatabaseBlock::getType; to
+  check for the parent ID, use DatabaseBlock::getParentBlockId.
 
 === Other changes in 1.34 ===
 * …

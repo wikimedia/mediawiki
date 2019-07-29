@@ -53,10 +53,16 @@ use Wikimedia\Rdbms\IDatabase;
  * @since 1.34 Renamed from Block.
  */
 class DatabaseBlock extends AbstractBlock {
-	/** @var bool */
+	/**
+	 * @deprecated since 1.34. Use getType to check whether a block is autoblocking.
+	 * @var bool
+	 */
 	public $mAuto;
 
-	/** @var int */
+	/**
+	 * @deprecated since 1.34. Use getParentBlockId instead.
+	 * @var int
+	 */
 	public $mParentBlockId;
 
 	/** @var int */
