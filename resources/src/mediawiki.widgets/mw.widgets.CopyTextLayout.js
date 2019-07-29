@@ -54,7 +54,7 @@
 
 		// Events
 		this.button.connect( this, { click: 'onButtonClick' } );
-		this.textInput.$input.on( 'click', this.onInputClick.bind( this ) );
+		this.textInput.$input.on( 'focus', this.onInputFocus.bind( this ) );
 
 		this.$element.addClass( 'mw-widget-copyTextLayout' );
 	};
@@ -90,10 +90,12 @@
 	};
 
 	/**
-	 * Handle button click events
+	 * Handle text widget focus events
 	 */
-	mw.widgets.CopyTextLayout.prototype.onInputClick = function () {
-		this.selectText();
+	mw.widgets.CopyTextLayout.prototype.onInputFocus = function () {
+		if ( !this.selecting ) {
+			this.selectText();
+		}
 	};
 
 	/**
@@ -104,7 +106,9 @@
 			scrollTop = input.scrollTop,
 			scrollLeft = input.scrollLeft;
 
+		this.selecting = true;
 		this.textInput.select();
+		this.selecting = false;
 
 		// Restore scroll position
 		input.scrollTop = scrollTop;
