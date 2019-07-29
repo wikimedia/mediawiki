@@ -37,8 +37,8 @@
 			hash ^= str.charCodeAt( i );
 		}
 
-		hash = ( hash >>> 0 ).toString( 36 );
-		while ( hash.length < 7 ) {
+		hash = ( hash >>> 0 ).toString( 36 ).slice( 0, 5 );
+		while ( hash.length < 5 ) {
 			hash = '0' + hash;
 		}
 		/* eslint-enable no-bitwise */
@@ -1606,9 +1606,9 @@
 
 						// In addition to currReqBase, doRequest() will also add 'modules' and 'version'.
 						// > '&modules='.length === 9
-						// > '&version=1234567'.length === 16
-						// > 9 + 16 = 25
-						currReqBaseLength = makeQueryString( currReqBase ).length + 25;
+						// > '&version=12345'.length === 14
+						// > 9 + 14 = 23
+						currReqBaseLength = makeQueryString( currReqBase ).length + 23;
 
 						// We may need to split up the request to honor the query string length limit,
 						// so build it piece by piece.

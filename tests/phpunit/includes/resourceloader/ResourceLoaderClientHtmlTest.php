@@ -242,14 +242,14 @@ Deprecation message.' ]
 				'modules' => [ 'test.scripts.user' ],
 				'only' => ResourceLoaderModule::TYPE_SCRIPTS,
 				'extra' => [],
-				'output' => '<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?lang=nl\u0026modules=test.scripts.user\u0026only=scripts\u0026user=Example\u0026version=0a56zyi");});</script>',
+				'output' => '<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?lang=nl\u0026modules=test.scripts.user\u0026only=scripts\u0026user=Example\u0026version={blankCombi}");});</script>',
 			],
 			[
 				'context' => [],
 				'modules' => [ 'test.user' ],
 				'only' => ResourceLoaderModule::TYPE_COMBINED,
 				'extra' => [],
-				'output' => '<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?lang=nl\u0026modules=test.user\u0026user=Example\u0026version=0a56zyi");});</script>',
+				'output' => '<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?lang=nl\u0026modules=test.user\u0026user=Example\u0026version={blankCombi}");});</script>',
 			],
 			[
 				'context' => [ 'debug' => 'true' ],
@@ -278,7 +278,7 @@ Deprecation message.' ]
 				'modules' => [ 'test.shouldembed' ],
 				'only' => ResourceLoaderModule::TYPE_COMBINED,
 				'extra' => [],
-				'output' => '<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("test.shouldembed@09p30q0",null,{"css":[]});});</script>',
+				'output' => '<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("test.shouldembed@{blankVer}",null,{"css":[]});});</script>',
 			],
 			[
 				'context' => [],
@@ -299,7 +299,7 @@ Deprecation message.' ]
 				'modules' => [ 'test', 'test.shouldembed' ],
 				'only' => ResourceLoaderModule::TYPE_COMBINED,
 				'extra' => [],
-				'output' => '<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?lang=nl\u0026modules=test");mw.loader.implement("test.shouldembed@09p30q0",null,{"css":[]});});</script>',
+				'output' => '<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?lang=nl\u0026modules=test");mw.loader.implement("test.shouldembed@{blankVer}",null,{"css":[]});});</script>',
 			],
 			[
 				'context' => [],
@@ -351,6 +351,7 @@ Deprecation message.' ]
 
 	private static function expandVariables( $text ) {
 		return strtr( $text, [
+			'{blankCombi}' => ResourceLoaderTestCase::BLANK_COMBI,
 			'{blankVer}' => ResourceLoaderTestCase::BLANK_VERSION
 		] );
 	}

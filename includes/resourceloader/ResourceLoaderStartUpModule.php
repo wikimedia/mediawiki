@@ -291,7 +291,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				$states[$name] = 'error';
 			}
 
-			if ( $versionHash !== '' && strlen( $versionHash ) !== 7 ) {
+			if ( $versionHash !== '' && strlen( $versionHash ) !== ResourceLoader::HASH_LENGTH ) {
 				$e = new RuntimeException( "Badly formatted module version hash" );
 				$resourceLoader->outputErrorAndLog( $e,
 						"Module '{module}' produced an invalid version hash: '{version}'.",
