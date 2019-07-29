@@ -269,9 +269,7 @@ class RawAction extends FormlessAction {
 	 * @return string
 	 */
 	public function getContentType() {
-		// Use getRawVal instead of getVal because we only
-		// need to match against known strings, there is no
-		// storing of localised content or other user input.
+		// Optimisation: Avoid slow getVal(), this isn't user-generated content.
 		$ctype = $this->getRequest()->getRawVal( 'ctype' );
 
 		if ( $ctype == '' ) {

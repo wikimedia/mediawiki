@@ -238,7 +238,8 @@ class ApiMain extends ApiBase {
 
 		// Setup uselang. This doesn't use $this->getParameter()
 		// because we're not ready to handle errors yet.
-		$uselang = $request->getVal( 'uselang', self::API_DEFAULT_USELANG );
+		// Optimisation: Avoid slow getVal(), this isn't user-generated content.
+		$uselang = $request->getRawVal( 'uselang', self::API_DEFAULT_USELANG );
 		if ( $uselang === 'user' ) {
 			// Assume the parent context is going to return the user language
 			// for uselang=user (see T85635).
@@ -257,8 +258,9 @@ class ApiMain extends ApiBase {
 
 		// Set up the error formatter. This doesn't use $this->getParameter()
 		// because we're not ready to handle errors yet.
-		$errorFormat = $request->getVal( 'errorformat', 'bc' );
-		$errorLangCode = $request->getVal( 'errorlang', 'uselang' );
+		// Optimisation: Avoid slow getVal(), this isn't user-generated content.
+		$errorFormat = $request->getRawVal( 'errorformat', 'bc' );
+		$errorLangCode = $request->getRawVal( 'errorlang', 'uselang' );
 		$errorsUseDB = $request->getCheck( 'errorsuselocal' );
 		if ( in_array( $errorFormat, [ 'plaintext', 'wikitext', 'html', 'raw', 'none' ], true ) ) {
 			if ( $errorLangCode === 'uselang' ) {
