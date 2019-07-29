@@ -25,13 +25,13 @@ use Wikimedia\Assert\Assert;
 /**
  * Renders a diff for a single slot (that is, a diff between two content objects).
  *
- * Callers should obtain this class by invoking ContentHandler::getSlotDiffRendererClass
+ * Callers should obtain instances of this class by invoking ContentHandler::getSlotDiffRenderer
  * on the content handler of the new content object (ie. the one shown on the right side
  * of the diff), or of the old one if the new one does not exist.
  *
  * The default implementation just does a text diff on the native text representation.
  * Content handler extensions can subclass this to provide a more appropriate diff method by
- * overriding ContentHandler::getSlotDiffRendererClass. Other extensions that want to interfere
+ * overriding ContentHandler::getSlotDiffRendererInternal. Other extensions that want to interfere
  * with diff generation in some way can use the GetSlotDiffRenderer hook.
  *
  * @ingroup DifferenceEngine
