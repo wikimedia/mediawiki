@@ -152,8 +152,11 @@ class DatabaseSqlite extends Database {
 		if ( $this->getFlag( self::DBO_PERSISTENT ) ) {
 			// Persistent connections can avoid some schema index reading overhead.
 			// On the other hand, they can cause horrible contention with DBO_TRX.
-			if ( $this->getFlag( self::DBO_TRX ) ) {
-				$this->connLogger->warning( __METHOD__ . ": DBO_PERSISTENT mixed with DBO_TRX" );
+			if ( $this->getFlag( self::DBO_TRX ) || $this->getFlag( self::DBO_DEFAULT ) ) {
+				$this->connLogger->warning(
+					__METHOD__ . ": ignoring DBO_PERSISTENT due to DBO_TRX or DBO_DEFAULT",
+					$this->getLogContext()
+				);
 			} else {
 				$attributes[PDO::ATTR_PERSISTENT] = true;
 			}
