@@ -104,7 +104,7 @@ class SearchResult {
 	 *
 	 * @return bool
 	 */
-	function isBrokenTitle() {
+	public function isBrokenTitle() {
 		return is_null( $this->mTitle );
 	}
 
@@ -113,14 +113,14 @@ class SearchResult {
 	 *
 	 * @return bool
 	 */
-	function isMissingRevision() {
+	public function isMissingRevision() {
 		return !$this->mRevision && !$this->mImage;
 	}
 
 	/**
 	 * @return Title
 	 */
-	function getTitle() {
+	public function getTitle() {
 		return $this->mTitle;
 	}
 
@@ -128,7 +128,7 @@ class SearchResult {
 	 * Get the file for this page, if one exists
 	 * @return File|null
 	 */
-	function getFile() {
+	public function getFile() {
 		return $this->mImage;
 	}
 
@@ -150,35 +150,35 @@ class SearchResult {
 	 * @param string[] $terms Terms to highlight (this parameter is deprecated and ignored)
 	 * @return string Highlighted text snippet, null (and not '') if not supported
 	 */
-	function getTextSnippet( $terms = [] ) {
+	public function getTextSnippet( $terms = [] ) {
 		return '';
 	}
 
 	/**
 	 * @return string Highlighted title, '' if not supported
 	 */
-	function getTitleSnippet() {
+	public function getTitleSnippet() {
 		return '';
 	}
 
 	/**
 	 * @return string Highlighted redirect name (redirect to this page), '' if none or not supported
 	 */
-	function getRedirectSnippet() {
+	public function getRedirectSnippet() {
 		return '';
 	}
 
 	/**
 	 * @return Title|null Title object for the redirect to this page, null if none or not supported
 	 */
-	function getRedirectTitle() {
+	public function getRedirectTitle() {
 		return null;
 	}
 
 	/**
 	 * @return string Highlighted relevant section name, null if none or not supported
 	 */
-	function getSectionSnippet() {
+	public function getSectionSnippet() {
 		return '';
 	}
 
@@ -186,7 +186,7 @@ class SearchResult {
 	 * @return Title|null Title object (pagename+fragment) for the section,
 	 *  null if none or not supported
 	 */
-	function getSectionTitle() {
+	public function getSectionTitle() {
 		return null;
 	}
 
@@ -200,7 +200,7 @@ class SearchResult {
 	/**
 	 * @return string Timestamp
 	 */
-	function getTimestamp() {
+	public function getTimestamp() {
 		if ( $this->mRevision ) {
 			return $this->mRevision->getTimestamp();
 		} elseif ( $this->mImage ) {
@@ -212,7 +212,7 @@ class SearchResult {
 	/**
 	 * @return int Number of words
 	 */
-	function getWordCount() {
+	public function getWordCount() {
 		$this->initText();
 		return str_word_count( $this->mText );
 	}
@@ -220,7 +220,7 @@ class SearchResult {
 	/**
 	 * @return int Size in bytes
 	 */
-	function getByteSize() {
+	public function getByteSize() {
 		$this->initText();
 		return strlen( $this->mText );
 	}
@@ -228,14 +228,14 @@ class SearchResult {
 	/**
 	 * @return string Interwiki prefix of the title (return iw even if title is broken)
 	 */
-	function getInterwikiPrefix() {
+	public function getInterwikiPrefix() {
 		return '';
 	}
 
 	/**
 	 * @return string Interwiki namespace of the title (since we likely can't resolve it locally)
 	 */
-	function getInterwikiNamespaceText() {
+	public function getInterwikiNamespaceText() {
 		return '';
 	}
 
@@ -243,7 +243,7 @@ class SearchResult {
 	 * Did this match file contents (eg: PDF/DJVU)?
 	 * @return bool
 	 */
-	function isFileMatch() {
+	public function isFileMatch() {
 		return false;
 	}
 
