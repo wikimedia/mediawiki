@@ -3742,21 +3742,22 @@ class Parser {
 		// Defaults to Parser::statelessFetchTemplate()
 		$templateCb = $this->mOptions->getTemplateCallback();
 		$stuff = call_user_func( $templateCb, $title, $this );
-		// We use U+007F DELETE to distinguish strip markers from regular text.
+		$rev = $stuff['revision'] ?? null;
 		$text = $stuff['text'];
 		if ( is_string( $stuff['text'] ) ) {
+			// We use U+007F DELETE to distinguish strip markers from regular text
 			$text = strtr( $text, "\x7f", "?" );
 		}
 		$finalTitle = $stuff['finalTitle'] ?? $title;
-		if ( isset( $stuff['deps'] ) ) {
-			foreach ( $stuff['deps'] as $dep ) {
-				$this->mOutput->addTemplate( $dep['title'], $dep['page_id'], $dep['rev_id'] );
-				if ( $dep['title']->equals( $this->getTitle() ) ) {
-					// Self-transclusion; final result may change based on the new page version
-					$this->setOutputFlag( 'vary-revision', 'Self transclusion' );
-				}
+		foreach ( ( $stuff['deps'] ?? [] ) as $dep ) {
+			$this->mOutput->addTemplate( $dep['title'], $dep['page_id'], $dep['rev_id'] );
+			if ( $dep['title']->equals( $this->getTitle() ) && $rev instanceof Revision ) {
+				// Self-transclusion; final result may change based on the new page version
+				$this->setOutputFlag( 'vary-revision-sha1', 'Self transclusion' );
+				$this->getOutput()->setRevisionUsedSha1Base36( $rev->getSha1() );
 			}
 		}
+
 		return [ $text, $finalTitle ];
 	}
 
@@ -3782,6 +3783,7 @@ class Parser {
 		$text = $skip = false;
 		$finalTitle = $title;
 		$deps = [];
+		$rev = null;
 
 		# Loop to fetch the article, with up to 1 redirect
 		for ( $i = 0; $i < 2 && is_object( $title ); $i++ ) {
@@ -3817,13 +3819,15 @@ class Parser {
 			$deps[] = [
 				'title' => $title,
 				'page_id' => $title->getArticleID(),
-				'rev_id' => $rev_id ];
+				'rev_id' => $rev_id
+			];
 			if ( $rev && !$title->equals( $rev->getTitle() ) ) {
 				# We fetched a rev from a different title; register it too...
 				$deps[] = [
 					'title' => $rev->getTitle(),
 					'page_id' => $rev->getPage(),
-					'rev_id' => $rev_id ];
+					'rev_id' => $rev_id
+				];
 			}
 
 			if ( $rev ) {
@@ -3857,9 +3861,11 @@ class Parser {
 			$title = $content->getRedirectTarget();
 		}
 		return [
+			'revision' => $rev,
 			'text' => $text,
 			'finalTitle' => $finalTitle,
-			'deps' => $deps ];
+			'deps' => $deps
+		];
 	}
 
 	/**
