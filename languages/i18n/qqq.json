@@ -4402,6 +4402,8 @@
 	"linkaccounts": "Title of the special page [[Special:LinkAccounts]] which allows the user to connect the local user accounts with external ones such as Google or Facebook.",
 	"linkaccounts-success-text": "Text shown on top of the form after a successful action.",
 	"linkaccounts-submit": "Text of the main submit button on [[Special:LinkAccounts]] (when there is one)",
+	"cannotunlink-no-provider-title": "Error page title shown when the user visits [[Special:UnlinkAccounts]] but there is no external account that could be unlinked.",
+	"cannotunlink-no-provider": "Error message shown when the user visits [[Special:UnlinkAccounts]] but there is no external account that could be unlinked.",
 	"unlinkaccounts": "Title of the special page [[Special:UnlinkAccounts]] which allows the user to remove linked remote accounts.",
 	"unlinkaccounts-success": "Account unlinking form success message",
 	"authenticationdatachange-ignored": "Shown when authentication data change was unsuccessful due to configuration problems.\n\nCf. e.g. {{msg-mw|Passwordreset-ignored}}.",
