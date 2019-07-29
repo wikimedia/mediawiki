@@ -31,13 +31,22 @@ use User;
  * @since 1.34 Factored out from DatabaseBlock (previously Block).
  */
 abstract class AbstractBlock {
-	/** @var string */
+	/**
+	 * @deprecated since 1.34. Use getReason and setReason instead.
+	 * @var string
+	 */
 	public $mReason;
 
-	/** @var string */
+	/**
+	 * @deprecated since 1.34. Use getTimestamp and setTimestamp instead.
+	 * @var string
+	 */
 	public $mTimestamp;
 
-	/** @var string */
+	/**
+	 * @deprecated since 1.34. Use getExpiry and setExpiry instead.
+	 * @var string
+	 */
 	public $mExpiry = '';
 
 	/** @var bool */
@@ -49,7 +58,10 @@ abstract class AbstractBlock {
 	/** @var bool */
 	protected $blockCreateAccount = false;
 
-	/** @var bool */
+	/**
+	 * @deprecated since 1.34. Use getHideName and setHideName instead.
+	 * @var bool
+	 */
 	public $mHideName = false;
 
 	/** @var User|string */

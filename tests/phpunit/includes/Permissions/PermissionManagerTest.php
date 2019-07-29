@@ -1161,7 +1161,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			'auto' => true,
 			'expiry' => 0
 		] );
-		$this->user->mBlock->mTimestamp = 0;
+		$this->user->mBlock->setTimestamp( 0 );
 		$this->assertEquals( [ [ 'autoblockedtext',
 			"[[User:Useruser|\u{202A}Useruser\u{202C}]]", 'no reason given', '127.0.0.1',
 			"\u{202A}Useruser\u{202C}", null, 'infinite', '127.0.8.1',
