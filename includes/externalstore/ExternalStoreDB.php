@@ -154,12 +154,13 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 */
 	public function getSlave( $cluster ) {
 		$lb = $this->getLoadBalancer( $cluster );
-		$domainId = $this->getDomainId( $lb->getServerInfo( $lb->getWriterIndex() ) );
 
-		$db = $lb->getConnectionRef( DB_REPLICA, [], $domainId );
-		$db->clearFlag( DBO_TRX ); // sanity
-
-		return $db;
+		return $lb->getConnectionRef(
+			DB_REPLICA,
+			[],
+			$this->getDomainId( $lb->getServerInfo( $lb->getWriterIndex() ) ),
+			$lb::CONN_TRX_AUTOCOMMIT
+		);
 	}
 
 	/**
@@ -170,12 +171,13 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 */
 	public function getMaster( $cluster ) {
 		$lb = $this->getLoadBalancer( $cluster );
-		$domainId = $this->getDomainId( $lb->getServerInfo( $lb->getWriterIndex() ) );
 
-		$db = $lb->getMaintenanceConnectionRef( DB_MASTER, [], $domainId );
-		$db->clearFlag( DBO_TRX ); // sanity
-
-		return $db;
+		return $lb->getMaintenanceConnectionRef(
+			DB_MASTER,
+			[],
+			$this->getDomainId( $lb->getServerInfo( $lb->getWriterIndex() ) ),
+			$lb::CONN_TRX_AUTOCOMMIT
+		);
 	}
 
 	/**
