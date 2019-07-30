@@ -6,6 +6,12 @@ return [
 
 	/* Utilities */
 
+	'jquery.qunit' => [
+		'scripts' => 'resources/lib/qunitjs/qunit.js',
+		'styles' => 'resources/lib/qunitjs/qunit.css',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+
 	'test.sinonjs' => [
 		'scripts' => [
 			'tests/qunit/suites/resources/test.sinonjs/index.js',

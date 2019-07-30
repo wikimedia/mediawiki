@@ -266,11 +266,6 @@ return [
 		'scripts' => 'resources/src/jquery/jquery.mw-jump.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'jquery.qunit' => [
-		'scripts' => 'resources/lib/qunitjs/qunit.js',
-		'styles' => 'resources/lib/qunitjs/qunit.css',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'jquery.spinner' => [
 		'scripts' => 'resources/src/jquery.spinner/spinner.js',
 		'styles' => 'resources/src/jquery.spinner/spinner.less',
