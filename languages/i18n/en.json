@@ -1483,6 +1483,7 @@
 	"rcfilters-clear-all-filters": "Clear all filters",
 	"rcfilters-show-new-changes": "View new changes since $1",
 	"rcfilters-search-placeholder": "Filter changes (use menu or search for filter name)",
+	"rcfilters-search-placeholder-mobile": "Filters",
 	"rcfilters-invalid-filter": "Invalid filter",
 	"rcfilters-empty-filter": "No active filters. All contributions are shown.",
 	"rcfilters-filterlist-title": "Filters",
