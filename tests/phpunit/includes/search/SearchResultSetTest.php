@@ -29,8 +29,8 @@ class SearchResultSetTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers SearchResultSet::augmentResult
-	 * @covers SearchResultSet::setAugmentedData
+	 * @covers SearchResultSetTrait::augmentResult
+	 * @covers SearchResultSetTrait::setAugmentedData
 	 */
 	public function testDelayedResultAugment() {
 		$result = SearchResult::newFromTitle( Title::newMainPage() );
