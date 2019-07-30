@@ -1856,6 +1856,7 @@ return [
 			'styles/mw.rcfilters.ui.RclToOrFromWidget.less',
 			'styles/mw.rcfilters.ui.RclTargetPageWidget.less',
 			'styles/mw.rcfilters.ui.WatchlistTopSectionWidget.less',
+			'styles/mw.rcfilters.ui.FilterTagMultiselectWidgetMobile.less'
 		],
 		'skinStyles' => [
 			'vector' => [
@@ -1903,6 +1904,7 @@ return [
 			'rcfilters-clear-all-filters',
 			'rcfilters-show-new-changes',
 			'rcfilters-search-placeholder',
+			'rcfilters-search-placeholder-mobile',
 			'rcfilters-invalid-filter',
 			'rcfilters-empty-filter',
 			'rcfilters-filterlist-title',
@@ -1964,6 +1966,7 @@ return [
 			'oojs-ui.styles.icons-interactions',
 			'oojs-ui.styles.icons-layout',
 			'oojs-ui.styles.icons-media',
+			'oojs-ui-windows.icons'
 		],
 	],
 	'mediawiki.interface.helpers.styles' => [

@@ -14,6 +14,8 @@ var FilterMenuHeaderWidget = require( './FilterMenuHeaderWidget.js' ),
  * @param {mw.rcfilters.Controller} controller Controller
  * @param {mw.rcfilters.dm.FiltersViewModel} model View model
  * @param {Object} [config] Configuration object
+ * @cfg {boolean} [isMobile] a boolean flag determining whether the menu
+ * should display a header or not (the header is omitted on mobile).
  * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
  * @cfg {Object[]} [footers] An array of objects defining the footers for
  *  this menu, with a definition whether they appear per specific views.
@@ -46,7 +48,7 @@ MenuSelectWidget = function MwRcfiltersUiMenuSelectWidget( controller, model, co
 	// Parent
 	MenuSelectWidget.parent.call( this, $.extend( config, {
 		$autoCloseIgnore: this.$overlay,
-		width: 650,
+		width: config.isMobile ? undefined : 650,
 		// Our filtering is done through the model
 		filterFromInput: false
 	} ) );
@@ -54,16 +56,21 @@ MenuSelectWidget = function MwRcfiltersUiMenuSelectWidget( controller, model, co
 		$( '<div>' )
 			.addClass( 'mw-rcfilters-ui-menuSelectWidget-group' )
 	);
-	this.setClippableElement( this.$body );
-	this.setClippableContainer( this.$element );
 
-	header = new FilterMenuHeaderWidget(
-		this.controller,
-		this.model,
-		{
-			$overlay: this.$overlay
-		}
-	);
+	if ( !config.isMobile ) {
+		// When hiding the header (i.e. mobile mode) avoid problems
+		// with clippable and the menu's fixed width.
+		this.setClippableElement( this.$body );
+		this.setClippableContainer( this.$element );
+
+		header = new FilterMenuHeaderWidget(
+			this.controller,
+			this.model,
+			{
+				$overlay: this.$overlay
+			}
+		);
+	}
 
 	this.noResults = new OO.ui.LabelWidget( {
 		label: mw.msg( 'rcfilters-filterlist-noresults' ),
@@ -79,7 +86,7 @@ MenuSelectWidget = function MwRcfiltersUiMenuSelectWidget( controller, model, co
 	// Initialization
 	this.$element
 		.addClass( 'mw-rcfilters-ui-menuSelectWidget' )
-		.append( header.$element )
+		.append( config.isMobile ? undefined : header.$element )
 		.append(
 			this.$body
 				.append( this.$group, this.noResults.$element )
@@ -87,7 +94,7 @@ MenuSelectWidget = function MwRcfiltersUiMenuSelectWidget( controller, model, co
 
 	// Append all footers; we will control their visibility
 	// based on view
-	config.footers = config.footers || [];
+	config.footers = config.isMobile ? [] : config.footers || [];
 	config.footers.forEach( function ( footerData ) {
 		var isSticky = footerData.sticky === undefined ? true : !!footerData.sticky,
 			adjustedData = {
