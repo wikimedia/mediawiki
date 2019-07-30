@@ -768,10 +768,6 @@ return [
 	],
 
 	/* MediaWiki */
-	'mediawiki.apihelp' => [
-		'styles' => 'resources/src/mediawiki.apihelp.css',
-		'targets' => [ 'desktop' ],
-	],
 	'mediawiki.template' => [
 		'scripts' => 'resources/src/mediawiki.template.js',
 		'targets' => [ 'desktop', 'mobile' ],
@@ -790,7 +786,10 @@ return [
 		'dependencies' => 'mediawiki.template',
 	],
 	'mediawiki.apipretty' => [
-		'styles' => 'resources/src/mediawiki.apipretty.css',
+		'styles' => [
+			'resources/src/mediawiki.apipretty/apipretty.css',
+			'resources/src/mediawiki.apipretty/apihelp.css',
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.api' => [
