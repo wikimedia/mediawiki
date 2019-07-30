@@ -1295,7 +1295,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		// Display the skin if the user has set it as a preference already before it was hidden.
 		$currentUserSkin = $user->getOption( 'skin' );
 		if ( isset( $allInstalledSkins[$currentUserSkin] )
-			&& $context->msg( "skinname-$useSkin" )->exists()
+			&& $context->msg( "skinname-$currentUserSkin" )->exists()
 		) {
 			$validSkinNames[$currentUserSkin] = $currentUserSkin;
 		}
