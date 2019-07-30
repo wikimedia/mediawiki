@@ -2947,6 +2947,7 @@
 	"block-log-flags-angry-autoblock": "Used as a block log flag in [[Special:Log/block]].\n{{Related|Block-log-flags}}",
 	"block-log-flags-hiddenname": "Used as a block log flag in [[Special:Log/block]] and in [[Special:Block]].\n\n{{Related|Block-log-flags}}",
 	"range_block_disabled": "Used as error message in [[Special:Block]].\n\nSee also:\n* {{msg-mw|Range block disabled}}\n* {{msg-mw|Ip range invalid}}\n* {{msg-mw|Ip range toolarge}}",
+	"ipb-prevent-user-talk-edit": "Used as error message in [[Special:Block]] if invalid options are selected regarding \"Edit own user talk\".\n\nSee also:\n{{msg-mw|ipb-disableusertalk}}",
 	"ipb_expiry_invalid": "Used as error message in [[Special:Block]].",
 	"ipb_expiry_old": "Used as error message in [[Special:Block]], if the expiry time is in the past.\n{{Identical|protect_expiry_old}}",
 	"ipb_expiry_temp": "Warning message displayed on [[Special:Block]] if the option \"hide username\" is selected but the expiry time is not infinite.",
