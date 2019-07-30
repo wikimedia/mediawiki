@@ -24,7 +24,8 @@
 /**
  * @ingroup Search
  */
-class SearchResultSet implements ISearchResultSet {
+class SearchResultSet extends BaseSearchResultSet {
+	use SearchResultSetTrait;
 
 	protected $containedSyntax = false;
 
@@ -43,23 +44,9 @@ class SearchResultSet implements ISearchResultSet {
 	protected $results;
 
 	/**
-	 * Set of result's extra data, indexed per result id
-	 * and then per data item name.
-	 * The structure is:
-	 * PAGE_ID => [ augmentor name => data, ... ]
-	 * @var array[]
-	 */
-	protected $extraData = [];
-
-	/**
 	 * @var boolean True when there are more pages of search results available.
 	 */
 	private $hasMoreResults;
-
-	/**
-	 * @var ArrayIterator|null Iterator supporting BC iteration methods
-	 */
-	private $bcIterator;
 
 	/**
 	 * @param bool $containedSyntax True when query is not requesting a simple
@@ -76,18 +63,6 @@ class SearchResultSet implements ISearchResultSet {
 		}
 		$this->containedSyntax = $containedSyntax;
 		$this->hasMoreResults = $hasMoreResults;
-	}
-
-	/**
-	 * Fetch an array of regular expression fragments for matching
-	 * the search terms as parsed by this engine in a text extract.
-	 * STUB
-	 *
-	 * @return string[]
-	 * @deprecated since 1.34 (use SqlSearchResult)
-	 */
-	public function termMatches() {
-		return [];
 	}
 
 	public function numRows() {
@@ -184,50 +159,6 @@ class SearchResultSet implements ISearchResultSet {
 	}
 
 	/**
-	 * Fetches next search result, or false.
-	 * @deprecated since 1.32; Use self::extractResults() or foreach
-	 * @return SearchResult|false
-	 */
-	public function next() {
-		wfDeprecated( __METHOD__, '1.32' );
-		$it = $this->bcIterator();
-		$searchResult = $it->current();
-		$it->next();
-		return $searchResult ?? false;
-	}
-
-	/**
-	 * Rewind result set back to beginning
-	 * @deprecated since 1.32; Use self::extractResults() or foreach
-	 */
-	public function rewind() {
-		wfDeprecated( __METHOD__, '1.32' );
-		$this->bcIterator()->rewind();
-	}
-
-	private function bcIterator() {
-		if ( $this->bcIterator === null ) {
-			$this->bcIterator = 'RECURSION';
-			$this->bcIterator = $this->getIterator();
-		} elseif ( $this->bcIterator === 'RECURSION' ) {
-			// Either next/rewind or extractResults must be implemented.  This
-			// class was potentially instantiated directly. It should be
-			// abstract with abstract methods to enforce this but that's a
-			// breaking change...
-			wfDeprecated( static::class . ' without implementing extractResults', '1.32' );
-			$this->bcIterator = new ArrayIterator( [] );
-		}
-		return $this->bcIterator;
-	}
-
-	/**
-	 * Frees the result set, if applicable.
-	 * @deprecated noop since 1.34
-	 */
-	public function free() {
-	}
-
-	/**
 	 * Did the search contain search syntax?  If so, Special:Search won't offer
 	 * the user a link to a create a page named by the search string because the
 	 * name would contain the search syntax.
@@ -303,44 +234,5 @@ class SearchResultSet implements ISearchResultSet {
 			}
 		}
 		return $this->titles;
-	}
-
-	/**
-	 * Sets augmented data for result set.
-	 * @param string $name Extra data item name
-	 * @param array[] $data Extra data as PAGEID => data
-	 */
-	public function setAugmentedData( $name, $data ) {
-		foreach ( $data as $id => $resultData ) {
-			$this->extraData[$id][$name] = $resultData;
-		}
-	}
-
-	/**
-	 * Returns extra data for specific result and store it in SearchResult object.
-	 * @param SearchResult $result
-	 */
-	public function augmentResult( SearchResult $result ) {
-		$id = $result->getTitle()->getArticleID();
-		if ( $id === -1 ) {
-			return;
-		}
-		$result->setExtensionData( function () use ( $id ) {
-			return $this->extraData[$id] ?? [];
-		} );
-	}
-
-	/**
-	 * @return int|null The offset the current page starts at. Typically
-	 *  this should be null to allow the UI to decide on its own, but in
-	 *  special cases like interleaved AB tests specifying explicitly is
-	 *  necessary.
-	 */
-	public function getOffset() {
-		return null;
-	}
-
-	final public function getIterator() {
-		return new ArrayIterator( $this->extractResults() );
 	}
 }

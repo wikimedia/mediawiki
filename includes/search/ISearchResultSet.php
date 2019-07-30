@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * A set of SearchEngine results.
+ * Must not be directly implemented by extension, please extend BaseSearchResultSet instead.
+ * This interface must only be used for type hinting.
+ *
+ * @see BaseSearchResultSet
  * @ingroup Search
  */
 interface ISearchResultSet extends \Countable, \IteratorAggregate {
