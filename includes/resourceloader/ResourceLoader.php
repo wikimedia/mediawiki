@@ -58,11 +58,10 @@ class ResourceLoader implements LoggerAwareInterface {
 	protected $config;
 
 	/**
-	 * Associative array mapping framework ids to a list of names of test suite modules
-	 * like [ 'qunit' => [ 'mediawiki.tests.qunit.suites', 'ext.foo.tests', ... ], ... ]
-	 * @var array
+	 * List of module names that contain QUnit test suites
+	 * @var string[]
 	 */
-	protected $testModuleNames = [];
+	protected $testSuiteModuleNames = [];
 
 	/**
 	 * E.g. [ 'source-id' => 'http://.../load.php' ]
@@ -374,6 +373,7 @@ class ResourceLoader implements LoggerAwareInterface {
 
 	/**
 	 * @internal For use by ServiceWiring only
+	 * @codeCoverageIgnore
 	 */
 	public function registerTestModules() {
 		global $IP;
@@ -384,39 +384,37 @@ class ResourceLoader implements LoggerAwareInterface {
 				. 'Edit your <code>LocalSettings.php</code> to enable it.' );
 		}
 
-		$testModules = [
-			'qunit' => [],
-		];
+		// This has a 'qunit' key for compat with the below hook.
+		$testModulesMeta = [ 'qunit' => [] ];
 
 		// Get test suites from extensions
 		// Avoid PHP 7.1 warning from passing $this by reference
 		$rl = $this;
-		Hooks::run( 'ResourceLoaderTestModules', [ &$testModules, &$rl ] );
+		Hooks::run( 'ResourceLoaderTestModules', [ &$testModulesMeta, &$rl ] );
 		$extRegistry = ExtensionRegistry::getInstance();
 		// In case of conflict, the deprecated hook has precedence.
-		$testModules['qunit'] += $extRegistry->getAttribute( 'QUnitTestModules' );
+		$testModules = $testModulesMeta['qunit'] + $extRegistry->getAttribute( 'QUnitTestModules' );
 
-		// Add the QUnit testrunner as implicit dependency to extension test suites.
-		foreach ( $testModules['qunit'] as &$module ) {
-			// Shuck any single-module dependency as an array
+		$testSuiteModuleNames = [];
+		foreach ( $testModules as $name => &$module ) {
+			// Turn any single-module dependency into an array
 			if ( isset( $module['dependencies'] ) && is_string( $module['dependencies'] ) ) {
 				$module['dependencies'] = [ $module['dependencies'] ];
 			}
 
+			// Ensure the testrunner loads before any test suites
 			$module['dependencies'][] = 'test.mediawiki.qunit.testrunner';
+
+			// Keep track of the test suites to load on SpecialJavaScriptTest
+			$testSuiteModuleNames[] = $name;
 		}
 
-		// Get core test suites
-		$testModules['qunit'] =
-			( include "$IP/tests/qunit/QUnitTestResources.php" ) + $testModules['qunit'];
+		// Core test suites (their names have further precedence).
+		$testModules = ( include "$IP/tests/qunit/QUnitTestResources.php" ) + $testModules;
+		$testSuiteModuleNames[] = 'test.mediawiki.qunit.suites';
 
-		foreach ( $testModules as $id => $names ) {
-			// Register test modules
-			$this->register( $testModules[$id] );
-
-			// Keep track of their names so that they can be loaded together
-			$this->testModuleNames[$id] = array_keys( $testModules[$id] );
-		}
+		$this->register( $testModules );
+		$this->testSuiteModuleNames = $testSuiteModuleNames;
 	}
 
 	/**
@@ -470,25 +468,14 @@ class ResourceLoader implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get a list of test module names for one (or all) frameworks.
+	 * Get a list of module names with QUnit test suites.
 	 *
-	 * If the given framework id is unknkown, or if the in-object variable is not an array,
-	 * then it will return an empty array.
-	 *
-	 * @param string $framework Get only the test module names for one
-	 *   particular framework (optional)
+	 * @internal For use by SpecialJavaScriptTest only
 	 * @return array
+	 * @codeCoverageIgnore
 	 */
-	public function getTestModuleNames( $framework = 'all' ) {
-		if ( $framework == 'all' ) {
-			return $this->testModuleNames;
-		} elseif ( isset( $this->testModuleNames[$framework] )
-			&& is_array( $this->testModuleNames[$framework] )
-		) {
-			return $this->testModuleNames[$framework];
-		} else {
-			return [];
-		}
+	public function getTestSuiteModuleNames() {
+		return $this->testSuiteModuleNames;
 	}
 
 	/**
