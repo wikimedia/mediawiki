@@ -4056,6 +4056,8 @@
 	"linkaccounts": "Lier les comptes",
 	"linkaccounts-success-text": "Le compte a été lié.",
 	"linkaccounts-submit": "Lier les comptes",
+	"cannotunlink-no-provider-title": "Il n’y a pas de compte lier à délier",
+	"cannotunlink-no-provider": "Il n’y a pas de compte lié qui puisse être délié.",
 	"unlinkaccounts": "Dissocier les comptes",
 	"unlinkaccounts-success": "Le compte a été dissocié.",
 	"authenticationdatachange-ignored": "Les modifications de données d’authentification n’ont pas été gérées. Peut-être aucun fournisseur n’a-t-il été configuré ?",
