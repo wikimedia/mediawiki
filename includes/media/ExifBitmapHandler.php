@@ -166,7 +166,7 @@ class ExifBitmapHandler extends BitmapHandler {
 	 *
 	 * @param File|FSFile $image
 	 * @param string $path
-	 * @return array
+	 * @return array|false
 	 */
 	function getImageSize( $image, $path ) {
 		$gis = parent::getImageSize( $image, $path );

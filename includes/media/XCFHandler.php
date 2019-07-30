@@ -58,7 +58,7 @@ class XCFHandler extends BitmapHandler {
 	 *
 	 * @param File|FSFile $image
 	 * @param string $filename
-	 * @return array
+	 * @return array|false
 	 */
 	function getImageSize( $image, $filename ) {
 		$header = self::getXCFMetaData( $filename );
