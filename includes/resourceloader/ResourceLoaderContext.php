@@ -96,19 +96,6 @@ class ResourceLoaderContext implements MessageLocalizer {
 	}
 
 	/**
-	 * Reverse the process done by ResourceLoader::makePackedModulesString().
-	 *
-	 * @deprecated since 1.33 Use ResourceLoader::expandModuleNames instead.
-	 * @param string $modules Packed module name list
-	 * @return array Array of module names
-	 * @codeCoverageIgnore
-	 */
-	public static function expandModuleNames( $modules ) {
-		wfDeprecated( __METHOD__, '1.33' );
-		return ResourceLoader::expandModuleNames( $modules );
-	}
-
-	/**
 	 * Return a dummy ResourceLoaderContext object suitable for passing into
 	 * things that don't "really" need a context.
 	 *
