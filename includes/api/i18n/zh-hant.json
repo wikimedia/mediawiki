@@ -67,7 +67,7 @@
 	"apihelp-clearhasmsg-example-1": "清除目前使用者的 <code>hasmsg</code> 標記。",
 	"apihelp-clientlogin-summary": "使用互動流程來登入 wiki。",
 	"apihelp-clientlogin-example-login": "開始以使用者 <kbd>Example</kbd> 與密碼 <kbd>ExamplePassword</kbd> 來登入至 wiki 的過程。",
-	"apihelp-clientlogin-example-login2": "在 <samp>UI</samp> 回應雙重認證後繼續登入，提供 <kbd>987654</kbd> 的 <var>OATHToken</var>。",
+	"apihelp-clientlogin-example-login2": "在 <samp>UI</samp> 回應雙因素驗證後繼續登入，提供 <kbd>987654</kbd> 的 <var>OATHToken</var>。",
 	"apihelp-compare-summary": "比較 2 個頁面間的差異。",
 	"apihelp-compare-extended-description": "\"from\" 以及 \"to\" 的修訂編號，頁面標題或頁面 ID 為必填。",
 	"apihelp-compare-param-fromtitle": "要比對的第一個標題。",

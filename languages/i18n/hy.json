@@ -787,7 +787,7 @@
 	"search-result-category-size": "{{PLURAL:$1|անդամ}} ({{PLURAL:$2|ենթակատեգորիա}}, {{PLURAL:$3|նիշք}})",
 	"search-redirect": "(վերահղում $1 էջից)",
 	"search-section": "(բաժին $1)",
-	"search-category": "(կատեգորիա $1)",
+	"search-category": "(կատեգորիա  $1)",
 	"search-file-match": "(համապատասխանում է նիշքի բովանդակությանը)",
 	"search-suggest": "Գուցե նկատի ունե՞ք՝ $1",
 	"search-interwiki-caption": "Կից նախագծեր",

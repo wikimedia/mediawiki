@@ -65,7 +65,8 @@
 			"Pebaryan",
 			"Veracious",
 			"Mnam23",
-			"Shirayuki"
+			"Shirayuki",
+			"ArlandGa"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -230,7 +231,7 @@
 	"history": "Riwayat halaman",
 	"history_short": "Versi terdahulu",
 	"history_small": "riwayat",
-	"updatedmarker": "berubah sejak kunjungan terakhir saya",
+	"updatedmarker": "dimutakhirkan sejak kunjungan terakhir saya",
 	"printableversion": "Versi cetak",
 	"permalink": "Pranala permanen",
 	"print": "Cetak",
@@ -709,6 +710,7 @@
 	"autoblockedtext": "Alamat IP Anda telah terblokir secara otomatis karena digunakan oleh pengguna lain, yang diblokir oleh $1. Pemblokiran dilakukan dengan alasan:\n\n:<em>$2</em>\n\n* Diblokir sejak: $8\n* Blokir kedaluwarsa pada: $6\n* Sasaran pemblokiran: $7\n\nAnda dapat menghubungi $1 atau [[{{MediaWiki:Grouppage-sysop}}|pengurus]] lainnya untuk membicarakan pemblokiran ini.\n\nAnda tidak dapat menggunakan fitur \"{{int:emailuser}}\" kecuali Anda telah memasukkan alamat surel yang sah di [[Special:Preferences|preferensi akun]] Anda dan Anda tidak diblokir untuk menggunakannya.\n\nAlamat IP Anda saat ini adalah $3, dan ID pemblokiran adalah #$5.\nTolong sertakan informasi-informasi ini dalam setiap pertanyaan Anda.",
 	"systemblockedtext": "Nama pengguna atau alamat IP Anda telah diblokir secara otomatis oleh MediaWiki.\nAlasan yang diberikan adalah:\n\n:<em>$2</em>\n\n* Diblokir sejak: $8\n* Blokir kedaluwarsa pada: $6\n* Sasaran pemblokiran: $7\n\nAlamat IP Anda saat ini adalah $3\nMohon sertakan semua perincian di atas dalam setiap pertanyaan yang Anda ajukan.",
 	"blockednoreason": "tidak ada alasan yang diberikan",
+	"blockedtext-composite-no-ids": "Alamat IP Anda muncul dalam daftar hitam ganda",
 	"blockedtext-composite-reason": "Ada pemblokiran berganda terhadap akun Anda dan/atau alamat IP Anda.",
 	"whitelistedittext": "Anda harus $1 untuk dapat menyunting halaman.",
 	"confirmedittext": "Anda harus mengkonfirmasikan dulu alamat surel Anda sebelum menyunting halaman.\nHarap masukkan dan validasikan alamat surel Anda melalui [[Special:Preferences|halaman preferensi pengguna]] Anda.",
@@ -3767,7 +3769,7 @@
 	"mw-widgets-abandonedit-title": "Apakah Anda yakin?",
 	"mw-widgets-copytextlayout-copy": "Salin",
 	"mw-widgets-copytextlayout-copy-fail": "Gagal menyalin ke papan klip.",
-	"mw-widgets-copytextlayout-copy-success": "Salin ke papan klip.",
+	"mw-widgets-copytextlayout-copy-success": "Disalin ke papan klip.",
 	"mw-widgets-dateinput-no-date": "Tanggal tidak ada yang terpilih",
 	"mw-widgets-dateinput-placeholder-day": "TTTT-BB-HH",
 	"mw-widgets-dateinput-placeholder-month": "TTTT-BB",
@@ -3900,6 +3902,7 @@
 	"linkaccounts": "Tautkan akun",
 	"linkaccounts-success-text": "Akun telah ditautkan.",
 	"linkaccounts-submit": "Tautkan akun",
+	"cannotunlink-no-provider": "Tidak ada akun yang tertaut yang dapat dibatalkan tautannya.",
 	"unlinkaccounts": "Lepastautkan akun",
 	"unlinkaccounts-success": "Akun berikut telah dilepastautkan.",
 	"authenticationdatachange-ignored": "Otentikasi perubahan data tidak dijalankan. Mungkin tidak ada provider yang diatur?",

@@ -3449,7 +3449,7 @@
 	"tags-edit-reason": "Syy:",
 	"tags-edit-revision-submit": "Toteuta muutokset {{PLURAL:$1|tähän versioon|$1 versioon}}",
 	"tags-edit-logentry-submit": "Lähetä muutoksesi {{PLURAL:$1|tähän lokimerkintään|$1 lokimerkintään}}",
-	"tags-edit-success": "Muutokset on tehty.",
+	"tags-edit-success": "Muutokset toteutettiin.",
 	"tags-edit-failure": "Muutoksia ei voitu toteuttaa: $1",
 	"tags-edit-nooldid-title": "Kohdeversio ei ole kelvollinen",
 	"tags-edit-nooldid-text": "Et ole joko määrittänyt sitä kohdeversiota, johon tämä toimenpide kohdistuu, tai sitten määrättyä versiota ei ole olemassa.",
