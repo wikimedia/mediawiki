@@ -53,7 +53,7 @@ class BmpHandler extends BitmapHandler {
 	 *
 	 * @param File|FSFile $image
 	 * @param string $filename
-	 * @return array
+	 * @return array|false
 	 */
 	function getImageSize( $image, $filename ) {
 		$f = fopen( $filename, 'rb' );

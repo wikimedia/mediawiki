@@ -61,7 +61,7 @@ class DjVuImage {
 
 	/**
 	 * Return data in the style of getimagesize()
-	 * @return array|bool Array or false on failure
+	 * @return array|false Array or false on failure
 	 */
 	public function getImageSize() {
 		$data = $this->getInfo();

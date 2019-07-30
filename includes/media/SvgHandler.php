@@ -381,7 +381,7 @@ class SvgHandler extends ImageHandler {
 	 * @param File|FSFile $file
 	 * @param string $path Unused
 	 * @param bool|array $metadata
-	 * @return array
+	 * @return array|false
 	 */
 	function getImageSize( $file, $path, $metadata = false ) {
 		if ( $metadata === false && $file instanceof File ) {
