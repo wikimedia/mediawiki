@@ -23,7 +23,7 @@
 
 /**
  * Object handling generic submission, CSRF protection, layout and
- * other logic for UI forms. in a reusable manner.
+ * other logic for UI forms in a reusable manner.
  *
  * In order to generate the form, the HTMLForm object takes an array
  * structure detailing the form fields available. Each element of the
