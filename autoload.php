@@ -181,6 +181,7 @@ $wgAutoloadLocalClasses = [
 	'BadTitleError' => __DIR__ . '/includes/exception/BadTitleError.php',
 	'BagOStuff' => __DIR__ . '/includes/libs/objectcache/BagOStuff.php',
 	'BaseDump' => __DIR__ . '/includes/export/BaseDump.php',
+	'BaseSearchResultSet' => __DIR__ . '/includes/search/BaseSearchResultSet.php',
 	'BaseTemplate' => __DIR__ . '/includes/skins/BaseTemplate.php',
 	'BashkirUppercaseCollation' => __DIR__ . '/includes/collation/BashkirUppercaseCollation.php',
 	'BatchRowIterator' => __DIR__ . '/includes/utils/BatchRowIterator.php',
