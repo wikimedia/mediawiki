@@ -103,7 +103,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 		$query['only'] = 'scripts';
 		$startupContext = new ResourceLoaderContext( $rl, new FauxRequest( $query ) );
 
-		$modules = $rl->getTestModuleNames( 'qunit' );
+		$modules = $rl->getTestSuiteModuleNames();
 
 		// Disable autostart because we load modules asynchronously. By default, QUnit would start
 		// at domready when there are no tests loaded and also fire 'QUnit.done' which then instructs
@@ -170,7 +170,7 @@ JAVASCRIPT
 		);
 
 		// Use 'raw' because QUnit loads before ResourceLoader initialises (omit mw.loader.state call)
-		// Use 'test' to ensure OutputPage doesn't use the "async" attribute because QUnit must
+		// Use 'sync' to ensure OutputPage doesn't use the "async" attribute because QUnit must
 		// load before qunit/export.
 		$scripts = $out->makeResourceLoaderLink( 'jquery.qunit',
 			ResourceLoaderModule::TYPE_SCRIPTS,
