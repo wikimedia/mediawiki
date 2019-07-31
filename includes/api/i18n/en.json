@@ -980,7 +980,7 @@
 	"apihelp-query+languageinfo-paramvalue-prop-bcp47": "The BCP-47 language code.",
 	"apihelp-query+languageinfo-paramvalue-prop-dir": "The writing direction of the language (either <code>ltr</code> or <code>rtl</code>).",
 	"apihelp-query+languageinfo-paramvalue-prop-autonym": "The autonym of the language, that is, the name in that language.",
-	"apihelp-query+languageinfo-paramvalue-prop-name": "The name of the language in the language specified by the <var>lilang</var> parameter, with language fallbacks applied if necessary.",
+	"apihelp-query+languageinfo-paramvalue-prop-name": "The name of the language in the language specified by the <var>uselang</var> parameter, with language fallbacks applied if necessary.",
 	"apihelp-query+languageinfo-paramvalue-prop-fallbacks": "The language codes of the fallback languages configured for this language. The implicit final fallback to 'en' is not included (but some languages may fall back to 'en' explicitly).",
 	"apihelp-query+languageinfo-paramvalue-prop-variants": "The language codes of the variants supported by this language.",
 	"apihelp-query+languageinfo-param-code": "Language codes of the languages that should be returned, or <code>*</code> for all languages.",
