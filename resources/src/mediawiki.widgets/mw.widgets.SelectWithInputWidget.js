@@ -38,15 +38,17 @@
 	 * @cfg {Object} [textinput] Config for the text input
 	 * @cfg {boolean} [or=false] Config for whether the widget is dropdown AND input
 	 *                           or dropdown OR input
+	 * @cfg {boolean} [required=false] Config for whether input is required
 	 */
 	mw.widgets.SelectWithInputWidget = function MwWidgetsSelectWithInputWidget( config ) {
 		// Config initialization
-		config = $.extend( { or: false }, config );
+		config = $.extend( { or: false, required: false }, config );
 
 		// Properties
 		this.textinput = new OO.ui.TextInputWidget( config.textinput );
 		this.dropdowninput = new OO.ui.DropdownInputWidget( config.dropdowninput );
 		this.or = config.or;
+		this.required = config.required;
 
 		// Events
 		this.dropdowninput.on( 'change', this.onChange.bind( this ) );
@@ -126,6 +128,10 @@
 		// is required. However, validity is not checked for disabled fields, as these are not
 		// submitted with the form. So we should also disable fields when hiding them.
 		this.textinput.setDisabled( textinputIsHidden || disabled );
+		// If the widget is required, set the text field as required, but only if the widget is visible.
+		if ( this.required ) {
+			this.textinput.setRequired( !this.textinput.isDisabled() );
+		}
 	};
 
 	/**

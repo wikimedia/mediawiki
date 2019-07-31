@@ -130,6 +130,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			'textinput' => $textAttribs,
 			'dropdowninput' => $dropdownInputAttribs,
 			'or' => false,
+			'required' => $this->mParams[ 'required' ] ?? false,
 			'classes' => [ 'mw-htmlform-select-and-other-field' ],
 			'data' => [
 				'maxlengthUnit' => $this->mParams['maxlength-unit'] ?? 'bytes'
