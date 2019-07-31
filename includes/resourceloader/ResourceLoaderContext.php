@@ -140,8 +140,10 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 * @deprecated since 1.34 Use ResourceLoaderModule::getConfig instead
 	 * inside module methods. Use ResourceLoader::getConfig elsewhere.
 	 * @return Config
+	 * @codeCoverageIgnore
 	 */
 	public function getConfig() {
+		wfDeprecated( __METHOD__, '1.34' );
 		return $this->getResourceLoader()->getConfig();
 	}
 
