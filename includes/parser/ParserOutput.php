@@ -213,12 +213,12 @@ class ParserOutput extends CacheTime {
 	/** @var string[] */
 	private static $speculativeFields = [
 		'speculativePageIdUsed',
-		'speculativeRevIdUsed',
+		'mSpeculativeRevId',
 		'revisionTimestampUsed'
 	];
 
 	/** @var int|null Assumed rev ID for {{REVISIONID}} if no revision is set */
-	private $speculativeRevIdUsed;
+	private $mSpeculativeRevId;
 	/** @var int|null Assumed page ID for {{PAGEID}} if no revision is set */
 	private $speculativePageIdUsed;
 	/** @var int|null Assumed rev timestamp for {{REVISIONTIMESTAMP}} if no revision is set */
@@ -448,7 +448,7 @@ class ParserOutput extends CacheTime {
 	 * @since 1.28
 	 */
 	public function setSpeculativeRevIdUsed( $id ) {
-		$this->speculativeRevIdUsed = $id;
+		$this->mSpeculativeRevId = $id;
 	}
 
 	/**
@@ -456,7 +456,7 @@ class ParserOutput extends CacheTime {
 	 * @since 1.28
 	 */
 	public function getSpeculativeRevIdUsed() {
-		return $this->speculativeRevIdUsed;
+		return $this->mSpeculativeRevId;
 	}
 
 	/**
