@@ -294,6 +294,8 @@ because of Phabricator reports.
   in JavaScript, use mw.log.deprecate() instead.
 * The 'user.groups' module, deprecated in 1.28, was removed.
   Use the 'user' module instead.
+* The ResourceLoaderContext::expandModuleNames method, deprecated in 1.33, was
+  removed. Use ResourceLoader::expandModuleNames instead.
 * The ability to override User::$mRights has been removed. Use
   PermissionManager::addTemporaryUserRights() instead.
 * Previously, when iterating ResultWrapper with foreach() or a similar
