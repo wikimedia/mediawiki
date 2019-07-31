@@ -2739,6 +2739,7 @@
 	"block-log-flags-angry-autoblock": "enhanced autoblock enabled",
 	"block-log-flags-hiddenname": "username hidden",
 	"range_block_disabled": "The administrator ability to create range blocks is disabled.",
+	"ipb-prevent-user-talk-edit": "Editing their own talk page must be allowed for a partial block, unless it includes a restriction on the User Talk namespace.",
 	"ipb_expiry_invalid": "Expiry time invalid.",
 	"ipb_expiry_old": "Expiry time is in the past.",
 	"ipb_expiry_temp": "Hidden username blocks must be permanent.",

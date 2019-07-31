@@ -265,6 +265,7 @@ class ApiBlockTest extends ApiTestCase {
 			'partial' => true,
 			'pagerestrictions' => $title,
 			'namespacerestrictions' => $namespace,
+			'allowusertalk' => true,
 		] );
 
 		$block = DatabaseBlock::newFromTarget( $this->mUser->getName() );

@@ -754,8 +754,6 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return bool|array
 	 */
 	public static function processForm( array $data, IContextSource $context ) {
-		global $wgBlockAllowsUTEdit, $wgHideUserContribLimit;
-
 		$performer = $context->getUser();
 		$enablePartialBlocks = $context->getConfig()->get( 'EnablePartialBlocks' );
 		$isPartialBlock = $enablePartialBlocks &&
@@ -843,21 +841,31 @@ class SpecialBlock extends FormSpecialPage {
 			}
 
 			# Recheck params here...
+			$hideUserContribLimit = $context->getConfig()->get( 'HideUserContribLimit' );
 			if ( $type != DatabaseBlock::TYPE_USER ) {
 				$data['HideUser'] = false; # IP users should not be hidden
 			} elseif ( !wfIsInfinity( $data['Expiry'] ) ) {
 				# Bad expiry.
 				return [ 'ipb_expiry_temp' ];
-			} elseif ( $wgHideUserContribLimit !== false
-				&& $user->getEditCount() > $wgHideUserContribLimit
+			} elseif ( $hideUserContribLimit !== false
+				&& $user->getEditCount() > $hideUserContribLimit
 			) {
 				# Typically, the user should have a handful of edits.
 				# Disallow hiding users with many edits for performance.
 				return [ [ 'ipb_hide_invalid',
-					Message::numParam( $wgHideUserContribLimit ) ] ];
+					Message::numParam( $hideUserContribLimit ) ] ];
 			} elseif ( !$data['Confirm'] ) {
 				return [ 'ipb-confirmhideuser', 'ipb-confirmaction' ];
 			}
+		}
+
+		$blockAllowsUTEdit = $context->getConfig()->get( 'BlockAllowsUTEdit' );
+		$userTalkEditAllowed = !$blockAllowsUTEdit || !$data['DisableUTEdit'];
+		if ( !$userTalkEditAllowed &&
+			$isPartialBlock &&
+			!in_array( NS_USER_TALK, explode( "\n", $data['NamespaceRestrictions'] ) )
+		) {
+			return [ 'ipb-prevent-user-talk-edit' ];
 		}
 
 		# Create block object.
@@ -867,7 +875,7 @@ class SpecialBlock extends FormSpecialPage {
 		$block->setReason( $data['Reason'][0] );
 		$block->setExpiry( $expiryTime );
 		$block->isCreateAccountBlocked( $data['CreateAccount'] );
-		$block->isUsertalkEditAllowed( !$wgBlockAllowsUTEdit || !$data['DisableUTEdit'] );
+		$block->isUsertalkEditAllowed( $userTalkEditAllowed );
 		$block->isEmailBlocked( $data['DisableEmail'] );
 		$block->isHardblock( $data['HardBlock'] );
 		$block->isAutoblocking( $data['AutoBlock'] );
