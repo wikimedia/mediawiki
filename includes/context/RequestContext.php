@@ -332,7 +332,8 @@ class RequestContext implements IContextSource, MutableContext {
 				$request = $this->getRequest();
 				$user = $this->getUser();
 
-				$code = $request->getVal( 'uselang', 'user' );
+				// Optimisation: Avoid slow getVal(), this isn't user-generated content.
+				$code = $request->getRawVal( 'uselang', 'user' );
 				if ( $code === 'user' ) {
 					$code = $user->getOption( 'language' );
 				}
@@ -383,7 +384,8 @@ class RequestContext implements IContextSource, MutableContext {
 				// No hook override, go through normal processing
 				if ( !in_array( 'skin', $this->getConfig()->get( 'HiddenPrefs' ) ) ) {
 					$userSkin = $this->getUser()->getOption( 'skin' );
-					$userSkin = $this->getRequest()->getVal( 'useskin', $userSkin );
+					// Optimisation: Avoid slow getVal(), this isn't user-generated content.
+					$userSkin = $this->getRequest()->getRawVal( 'useskin', $userSkin );
 				} else {
 					$userSkin = $this->getConfig()->get( 'DefaultSkin' );
 				}
