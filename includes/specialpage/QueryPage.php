@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -373,6 +374,23 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	function getRecacheDB() {
 		return wfGetDB( DB_REPLICA, [ $this->getName(), 'QueryPage::recache', 'vslow' ] );
+	}
+
+	/**
+	 * Remove a cached result.
+	 * Useful for interactive backlogs where the user can fix problems in-place.
+	 * @param LinkTarget $title The page to remove.
+	 * @since 1.34
+	 */
+	public function delete( LinkTarget $title ) {
+		if ( $this->isCached() ) {
+			$dbw = wfGetDB( DB_MASTER );
+			$dbw->delete( 'querycache', [
+				'qc_type' => $this->getName(),
+				'qc_namespace' => $title->getNamespace(),
+				'qc_title' => $title->getDBkey(),
+			], __METHOD__ );
+		}
 	}
 
 	/**
