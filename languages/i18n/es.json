@@ -3963,6 +3963,8 @@
 	"linkaccounts": "Vincular cuentas",
 	"linkaccounts-success-text": "La cuenta fue vinculada.",
 	"linkaccounts-submit": "Vincular cuentas",
+	"cannotunlink-no-provider-title": "No hay cuentas enlazadas que desenlazar",
+	"cannotunlink-no-provider": "No hay cuentas enlazadas que puedan desenlazarse.",
 	"unlinkaccounts": "Desvincular cuentas",
 	"unlinkaccounts-success": "Se ha desvinculado la cuenta.",
 	"authenticationdatachange-ignored": "El cambio den los datos de autentificacion no fue realizado. ¿Tal vez, no se configuró un proveedor?",
