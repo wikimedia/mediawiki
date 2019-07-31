@@ -1484,6 +1484,7 @@
 	"rcfilters-clear-all-filters": "مسح كل المرشحات",
 	"rcfilters-show-new-changes": "عرض التغييرات الجديدة منذ $1",
 	"rcfilters-search-placeholder": "رشح التغييرات (استخدم القائمة أو ابحث عن اسم المرشح)",
+	"rcfilters-search-placeholder-mobile": "مرشحات",
 	"rcfilters-invalid-filter": "مرشح غير صحيح",
 	"rcfilters-empty-filter": "لا مرشحات فعالة. كل المساهمات معروضة.",
 	"rcfilters-filterlist-title": "مرشحات",

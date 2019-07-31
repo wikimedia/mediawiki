@@ -1445,6 +1445,7 @@
 	"rcfilters-clear-all-filters": "מחיקת כל המסננים",
 	"rcfilters-show-new-changes": "הצגת השינויים החדשים מאז $1",
 	"rcfilters-search-placeholder": "סינון שינויים (ניתן להשתמש בתפריט או לחפש שם מסנן)",
+	"rcfilters-search-placeholder-mobile": "מסננים",
 	"rcfilters-invalid-filter": "מסנן בלתי־תקין",
 	"rcfilters-empty-filter": "אין מסננים פעילים. כל התרומות מוצגות.",
 	"rcfilters-filterlist-title": "מסננים",

@@ -3861,6 +3861,8 @@
 	"linkaccounts": "Accounts koppelen",
 	"linkaccounts-success-text": "Het account is gekoppeld.",
 	"linkaccounts-submit": "Accounts koppelen",
+	"cannotunlink-no-provider-title": "Er zijn geen accounts om te ontkoppelen",
+	"cannotunlink-no-provider": "Er zijn geen gekoppelde accounts die ontkoppelt kunnen worden.",
 	"unlinkaccounts": "Accounts ontkoppelen",
 	"unlinkaccounts-success": "Het account is ontkoppeld.",
 	"authenticationdatachange-ignored": "De wijziging van de authenticatiegegevens is niet afgehandeld. Misschien is er geen provider geconfigureerd?",
