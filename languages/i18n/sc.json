@@ -11,7 +11,8 @@
 			"Uharteko",
 			"Taxandru",
 			"Macofe",
-			"Zoranzoki21"
+			"Zoranzoki21",
+			"Pierpao"
 		]
 	},
 	"tog-underline": "Sutalìnia sos ligòngios",
@@ -927,7 +928,7 @@
 	"listfiles-delete": "Cantzella",
 	"listfiles_search_for": "Chirca figuras pro nùmene:",
 	"imgfile": "file",
-	"listfiles": "Lista de is files",
+	"listfiles": "Lista de is documentos",
 	"listfiles_thumb": "Miniatura",
 	"listfiles_date": "Data",
 	"listfiles_name": "Nùmene",
