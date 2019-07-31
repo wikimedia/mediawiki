@@ -392,6 +392,78 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	/**
+	 * @dataProvider provideProcessFormErrors
+	 * @covers ::processForm()
+	 */
+	public function testProcessFormErrors( $data, $expected, $config = [] ) {
+		$defaultConfig = [
+			'wgEnablePartialBlocks' => true,
+			'wgBlockAllowsUTEdit' => true,
+		];
+
+		$this->setMwGlobals( array_merge( $defaultConfig, $config ) );
+
+		$defaultData = [
+			'Target' => '1.2.3.4',
+			'Expiry' => 'infinity',
+			'Reason' => [ 'bad reason' ],
+			'Confirm' => false,
+			'PageRestrictions' => '',
+			'NamespaceRestrictions' => '',
+		];
+
+		$context = RequestContext::getMain();
+		$page = $this->newSpecialPage();
+		$result = $page->processForm( array_merge( $defaultData, $data ), $context );
+
+		$this->assertEquals( $result[0], $expected );
+	}
+
+	public function provideProcessFormErrors() {
+		return [
+			'Invalid expiry' => [
+				[
+					'Expiry' => 'invalid',
+				],
+				'ipb_expiry_invalid',
+			],
+			'Expiry is in the past' => [
+				[
+					'Expiry' => 'yesterday',
+				],
+				'ipb_expiry_old',
+			],
+			'HideUser with wrong permissions' => [
+				[
+					'HideUser' => 1,
+				],
+				'badaccess-group0',
+			],
+			'Bad ip address' => [
+				[
+					'Target' => '1.2.3.4/1234',
+				],
+				'badipaddress',
+			],
+			'Edit user talk page invalid with no restrictions' => [
+				[
+					'EditingRestriction' => 'partial',
+					'DisableUTEdit' => 1,
+				],
+				'ipb-prevent-user-talk-edit',
+			],
+			'Edit user talk page invalid with namespace restriction != NS_USER_TALK ' => [
+				[
+					'EditingRestriction' => 'partial',
+					'DisableUTEdit' => 1,
+					'NamespaceRestrictions' => NS_USER
+				],
+				'ipb-prevent-user-talk-edit',
+			],
+		];
+	}
+
+	/**
 	 * @dataProvider provideCheckUnblockSelf
 	 * @covers ::checkUnblockSelf
 	 */
