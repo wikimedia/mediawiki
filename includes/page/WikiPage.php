@@ -1063,6 +1063,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Insert or update the redirect table entry for this page to indicate it redirects to $rt
 	 * @param Title $rt Redirect target
 	 * @param int|null $oldLatest Prior page_latest for check and set
+	 * @return bool Success
 	 */
 	public function insertRedirectEntry( Title $rt, $oldLatest = null ) {
 		$dbw = wfGetDB( DB_MASTER );
@@ -1089,9 +1090,14 @@ class WikiPage implements Page, IDBAccessObject {
 				],
 				__METHOD__
 			);
+			$success = true;
+		} else {
+			$success = false;
 		}
 
 		$dbw->endAtomic( __METHOD__ );
+
+		return $success;
 	}
 
 	/**
@@ -1456,18 +1462,19 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		if ( $isRedirect ) {
-			$this->insertRedirectEntry( $redirectTitle );
+			$success = $this->insertRedirectEntry( $redirectTitle );
 		} else {
 			// This is not a redirect, remove row from redirect table
 			$where = [ 'rd_from' => $this->getId() ];
 			$dbw->delete( 'redirect', $where, __METHOD__ );
+			$success = true;
 		}
 
 		if ( $this->getTitle()->getNamespace() == NS_FILE ) {
 			RepoGroup::singleton()->getLocalRepo()->invalidateImageRedirect( $this->getTitle() );
 		}
 
-		return ( $dbw->affectedRows() != 0 );
+		return $success;
 	}
 
 	/**
