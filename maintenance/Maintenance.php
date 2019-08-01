@@ -1529,7 +1529,7 @@ abstract class Maintenance {
 			$title = $titleObj->getPrefixedDBkey();
 			$this->output( "$title..." );
 			# Update searchindex
-			$u = new SearchUpdate( $pageId, $titleObj->getText(), $rev->getContent() );
+			$u = new SearchUpdate( $pageId, $titleObj, $rev->getContent() );
 			$u->doUpdate();
 			$this->output( "\n" );
 		}
