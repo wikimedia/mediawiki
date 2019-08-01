@@ -1326,9 +1326,18 @@ class ParserOutput extends CacheTime {
 	}
 
 	public function __sleep() {
-		return array_diff(
-			array_keys( get_object_vars( $this ) ),
-			[ 'mParseStartTime' ]
+		return array_filter( array_keys( get_object_vars( $this ) ),
+			function ( $field ) {
+				if ( $field === 'mParseStartTime' ) {
+					return false;
+				} elseif ( strpos( $field, "\0" ) !== false ) {
+					// Unserializing unknown private fields in HHVM causes
+					// member variables with nulls in their names (T229366)
+					return false;
+				} else {
+					return true;
+				}
+			}
 		);
 	}
 
