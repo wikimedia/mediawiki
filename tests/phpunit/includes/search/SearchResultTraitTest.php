@@ -1,12 +1,14 @@
 <?php
 
-class SearchResultTest extends MediawikiTestCase {
+class SearchResultTraitTest extends MediawikiTestCase {
 	/**
-	 * @covers SearchResult::getExtensionData
-	 * @covers SearchResult::setExtensionData
+	 * @covers SearchResultTrait::getExtensionData
+	 * @covers SearchResultTrait::setExtensionData
 	 */
 	public function testExtensionData() {
-		$result = SearchResult::newFromTitle( Title::newMainPage() );
+		$result = new class() {
+			use SearchResultTrait;
+		};
 		$this->assertEquals( [], $result->getExtensionData(), 'starts empty' );
 
 		$data = [ 'hello' => 'world' ];
@@ -19,13 +21,15 @@ class SearchResultTest extends MediawikiTestCase {
 	}
 
 	/**
-	 * @covers SearchResult::getExtensionData
-	 * @covers SearchResult::setExtensionData
+	 * @covers SearchResultTrait::getExtensionData
+	 * @covers SearchResultTrait::setExtensionData
 	 */
 	public function testExtensionDataArrayBC() {
-		$result = SearchResult::newFromTitle( Title::newMainPage() );
+		$result = new class() {
+			use SearchResultTrait;
+		};
 		$data = [ 'hello' => 'world' ];
-		$this->hideDeprecated( 'SearchResult::setExtensionData with array argument' );
+		$this->hideDeprecated( 'SearchResultTrait::setExtensionData with array argument' );
 		$this->assertEquals( [], $result->getExtensionData(), 'starts empty' );
 		$result->setExtensionData( $data );
 		$this->assertEquals( $data, $result->getExtensionData(), 'can set extension data' );

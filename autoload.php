@@ -1316,6 +1316,7 @@ $wgAutoloadLocalClasses = [
 	'SearchResult' => __DIR__ . '/includes/search/SearchResult.php',
 	'SearchResultSet' => __DIR__ . '/includes/search/SearchResultSet.php',
 	'SearchResultSetTrait' => __DIR__ . '/includes/search/SearchResultSetTrait.php',
+	'SearchResultTrait' => __DIR__ . '/includes/search/SearchResultTrait.php',
 	'SearchSqlite' => __DIR__ . '/includes/search/SearchSqlite.php',
 	'SearchSuggestion' => __DIR__ . '/includes/search/SearchSuggestion.php',
 	'SearchSuggestionSet' => __DIR__ . '/includes/search/SearchSuggestionSet.php',
