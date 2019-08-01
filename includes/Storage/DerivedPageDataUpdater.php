@@ -1484,7 +1484,6 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 
 		$id = $this->getPageId();
 		$title = $this->getTitle();
-		$dbKey = $title->getPrefixedDBkey();
 		$shortTitle = $title->getDBkey();
 
 		if ( !$title->exists() ) {
@@ -1522,7 +1521,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		// TODO: make search infrastructure aware of slots!
 		$mainSlot = $this->revision->getSlot( SlotRecord::MAIN );
 		if ( !$mainSlot->isInherited() && !$this->isContentDeleted() ) {
-			DeferredUpdates::addUpdate( new SearchUpdate( $id, $dbKey, $mainSlot->getContent() ) );
+			DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $mainSlot->getContent() ) );
 		}
 
 		// If this is another user's talk page, update newtalk.
