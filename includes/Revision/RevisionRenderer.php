@@ -191,7 +191,7 @@ class RevisionRenderer {
 			? 0
 			: ILoadBalancer::CONN_TRX_AUTOCOMMIT;
 
-		$db = $this->loadBalancer->getConnectionRef( $dbIndex, [], $this->wikiId, $flags );
+		$db = $this->loadBalancer->getConnectionRef( $dbIndex, [], $this->dbDomain, $flags );
 
 		return 1 + (int)$db->selectField(
 			'page',
