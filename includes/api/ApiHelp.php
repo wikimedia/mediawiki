@@ -100,7 +100,7 @@ class ApiHelp extends ApiBase {
 		$out = $context->getOutput();
 		$out->addModuleStyles( [
 			'mediawiki.hlist',
-			'mediawiki.apihelp',
+			'mediawiki.apipretty',
 		] );
 		if ( !empty( $options['toc'] ) ) {
 			$out->addModuleStyles( 'mediawiki.toc.styles' );
