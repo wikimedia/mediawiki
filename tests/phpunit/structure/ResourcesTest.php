@@ -36,14 +36,6 @@ class ResourcesTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function testVersionHash() {
-		$data = self::getAllModules();
-		foreach ( $data['modules'] as $moduleName => $module ) {
-			$version = $module->getVersionHash( $data['context'] );
-			$this->assertEquals( 7, strlen( $version ), "$moduleName must use ResourceLoader::makeHash" );
-		}
-	}
-
 	/**
 	 * Verify that all modules specified as dependencies of other modules actually
 	 * exist and are not illegal.
