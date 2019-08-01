@@ -224,7 +224,7 @@ class MessageBlobStore implements LoggerAwareInterface {
 			}
 		}
 
-		$json = FormatJson::encode( (object)$messages );
+		$json = FormatJson::encode( (object)$messages, false, FormatJson::UTF8_OK );
 		// @codeCoverageIgnoreStart
 		if ( $json === false ) {
 			$this->logger->warning( 'Failed to encode message blob for {module} ({lang})', [
