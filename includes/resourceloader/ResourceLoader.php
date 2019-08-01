@@ -36,65 +36,41 @@ use Wikimedia\WrappedString;
  *    https://www.mediawiki.org/wiki/ResourceLoader
  */
 class ResourceLoader implements LoggerAwareInterface {
-	/** @var int */
-	const CACHE_VERSION = 8;
+	/** @var Config $config */
+	protected $config;
+	/** @var MessageBlobStore */
+	protected $blobStore;
+
+	/** @var LoggerInterface */
+	private $logger;
+
+	/** @var ResourceLoaderModule[] Map of (module name => ResourceLoaderModule) */
+	protected $modules = [];
+	/** @var array[] Map of (module name => associative info array) */
+	protected $moduleInfos = [];
+	/**
+	 * Associative array mapping framework ids to a list of names of test suite modules
+	 * like [ 'qunit' => [ 'mediawiki.tests.qunit.suites', 'ext.foo.tests', ... ], ... ]
+	 * @var array
+	 */
+	protected $testModuleNames = [];
+	/** @var string[] List of module names that contain QUnit test suites */
+	protected $testSuiteModuleNames = [];
+
+	/** @var array Map of (source => path); E.g. [ 'source-id' => 'http://.../load.php' ] */
+	protected $sources = [];
+	/** @var array Errors accumulated during current respond() call */
+	protected $errors = [];
+	/** @var string[] Extra HTTP response headers from modules loaded in makeModuleResponse() */
+	protected $extraHeaders = [];
 
 	/** @var bool */
 	protected static $debugMode = null;
 
-	/**
-	 * Module name/ResourceLoaderModule object pairs
-	 * @var array
-	 */
-	protected $modules = [];
+	/** @var int */
+	const CACHE_VERSION = 8;
 
-	/**
-	 * Associative array mapping module name to info associative array
-	 * @var array
-	 */
-	protected $moduleInfos = [];
-
-	/** @var Config $config */
-	protected $config;
-
-	/**
-	 * List of module names that contain QUnit test suites
-	 * @var string[]
-	 */
-	protected $testSuiteModuleNames = [];
-
-	/**
-	 * E.g. [ 'source-id' => 'http://.../load.php' ]
-	 * @var array
-	 */
-	protected $sources = [];
-
-	/**
-	 * Errors accumulated during current respond() call.
-	 * @var array
-	 */
-	protected $errors = [];
-
-	/**
-	 * List of extra HTTP response headers provided by loaded modules.
-	 *
-	 * Populated by makeModuleResponse().
-	 *
-	 * @var array
-	 */
-	protected $extraHeaders = [];
-
-	/**
-	 * @var MessageBlobStore
-	 */
-	protected $blobStore;
-
-	/**
-	 * @var LoggerInterface
-	 */
-	private $logger;
-
-	/** @var string JavaScript / CSS pragma to disable minification. **/
+	/** @var string JavaScript / CSS pragma to disable minification. * */
 	const FILTER_NOMIN = '/*@nomin*/';
 
 	/**
