@@ -29,6 +29,9 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Search
  */
 class SearchHighlighter {
+	const DEFAULT_CONTEXT_LINES = 2;
+	const DEFAULT_CONTEXT_CHARS = 75;
+
 	protected $mCleanWikitext = true;
 
 	/**
@@ -50,7 +53,12 @@ class SearchHighlighter {
 	 * @param int $contextchars
 	 * @return string
 	 */
-	public function highlightText( $text, $terms, $contextlines, $contextchars ) {
+	public function highlightText(
+		$text,
+		$terms,
+		$contextlines = self::DEFAULT_CONTEXT_LINES,
+		$contextchars = self::DEFAULT_CONTEXT_CHARS
+	) {
 		global $wgSearchHighlightBoundaries;
 
 		if ( $text == '' ) {
@@ -507,7 +515,12 @@ class SearchHighlighter {
 	 * @param int $contextchars
 	 * @return string
 	 */
-	public function highlightSimple( $text, $terms, $contextlines, $contextchars ) {
+	public function highlightSimple(
+		$text,
+		$terms,
+		$contextlines = self::DEFAULT_CONTEXT_LINES,
+		$contextchars = self::DEFAULT_CONTEXT_CHARS
+	) {
 		$lines = explode( "\n", $text );
 
 		$terms = implode( '|', $terms );
@@ -557,7 +570,11 @@ class SearchHighlighter {
 	 * @param int $contextchars Average number of characters per line
 	 * @return string
 	 */
-	public function highlightNone( $text, $contextlines, $contextchars ) {
+	public function highlightNone(
+		$text,
+		$contextlines = self::DEFAULT_CONTEXT_LINES,
+		$contextchars = self::DEFAULT_CONTEXT_CHARS
+	) {
 		$match = [];
 		$text = ltrim( $text ) . "\n"; // make sure the preg_match may find the last line
 		$text = str_replace( "\n\n", "\n", $text ); // remove empty lines
