@@ -21,6 +21,7 @@
  * @ingroup Deployment
  */
 
+use MediaWiki\Installer\InstallException;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -51,6 +52,7 @@ class CliInstaller extends Installer {
 	 * @param string $siteName
 	 * @param string|null $admin
 	 * @param array $options
+	 * @throws InstallException
 	 */
 	function __construct( $siteName, $admin = null, array $options = [] ) {
 		global $wgContLang;
@@ -114,7 +116,7 @@ class CliInstaller extends Installer {
 			$status = $this->validateExtensions(
 				'extension', 'extensions', $options['extensions'] );
 			if ( !$status->isOK() ) {
-				$this->showStatusMessage( $status );
+				throw new InstallException( $status );
 			}
 			$this->setVar( '_Extensions', $status->value );
 		} elseif ( isset( $options['with-extensions'] ) ) {
@@ -125,7 +127,7 @@ class CliInstaller extends Installer {
 		if ( isset( $options['skins'] ) ) {
 			$status = $this->validateExtensions( 'skin', 'skins', $options['skins'] );
 			if ( !$status->isOK() ) {
-				$this->showStatusMessage( $status );
+				throw new InstallException( $status );
 			}
 			$skins = $status->value;
 		} else {
@@ -176,15 +178,23 @@ class CliInstaller extends Installer {
 
 		$vars = Installer::getExistingLocalSettings();
 		if ( $vars ) {
-			$this->showStatusMessage(
-				Status::newFatal( "config-localsettings-cli-upgrade" )
-			);
+			$status = Status::newFatal( "config-localsettings-cli-upgrade" );
+			$this->showStatusMessage( $status );
+			return $status;
 		}
 
-		$this->performInstallation(
+		$result = $this->performInstallation(
 			[ $this, 'startStage' ],
 			[ $this, 'endStage' ]
 		);
+		// PerformInstallation bails on a fatal, so make sure the last item
+		// completed before giving 'next.' Likewise, only provide back on failure
+		$lastStepStatus = end( $result );
+		if ( $lastStepStatus->isOk() ) {
+			return Status::newGood();
+		} else {
+			return $lastStepStatus;
+		}
 	}
 
 	/**
@@ -247,11 +257,6 @@ class CliInstaller extends Installer {
 			foreach ( $warnings as $w ) {
 				$this->showMessage( ...$w );
 			}
-		}
-
-		if ( !$status->isOK() ) {
-			echo "\n";
-			exit( 1 );
 		}
 	}
 
