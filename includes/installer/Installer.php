@@ -756,6 +756,8 @@ abstract class Installer {
 	 */
 	protected function envCheckDB() {
 		global $wgLang;
+		/** @var string|null $dbType The user-specified database type */
+		$dbType = $this->getVar( 'wgDBtype' );
 
 		$allNames = [];
 
@@ -768,25 +770,27 @@ abstract class Installer {
 		$databases = $this->getCompiledDBs();
 
 		$databases = array_flip( $databases );
+		$ok = true;
 		foreach ( array_keys( $databases ) as $db ) {
 			$installer = $this->getDBInstaller( $db );
 			$status = $installer->checkPrerequisites();
 			if ( !$status->isGood() ) {
+				if ( !$this instanceof WebInstaller && $db === $dbType ) {
+					// Strictly check the key database type instead of just outputting message
+					// Note: No perform this check run from the web installer, since this method always called by
+					// the welcome page under web installation, so $dbType will always be 'mysql'
+					$ok = false;
+				}
 				$this->showStatusMessage( $status );
-			}
-			if ( !$status->isOK() ) {
 				unset( $databases[$db] );
 			}
 		}
 		$databases = array_flip( $databases );
 		if ( !$databases ) {
 			$this->showError( 'config-no-db', $wgLang->commaList( $allNames ), count( $allNames ) );
-
-			// @todo FIXME: This only works for the web installer!
 			return false;
 		}
-
-		return true;
+		return $ok;
 	}
 
 	/**
@@ -1586,7 +1590,7 @@ abstract class Installer {
 	 * @param callable $startCB A callback array for the beginning of each step
 	 * @param callable $endCB A callback array for the end of each step
 	 *
-	 * @return array Array of Status objects
+	 * @return Status[] Array of Status objects
 	 */
 	public function performInstallation( $startCB, $endCB ) {
 		$installResults = [];
