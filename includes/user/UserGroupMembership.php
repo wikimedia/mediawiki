@@ -148,72 +148,66 @@ class UserGroupMembership {
 	 * the function fails if there is a conflicting membership entry (same user and
 	 * group) already in the table.
 	 *
-	 * @throws MWException
+	 * @throws UnexpectedValueException
 	 * @param bool $allowUpdate Whether to perform "upsert" instead of INSERT
 	 * @param IDatabase|null $dbw If you have one available
 	 * @return bool Whether or not anything was inserted
 	 */
 	public function insert( $allowUpdate = false, IDatabase $dbw = null ) {
-		if ( $dbw === null ) {
-			$dbw = wfGetDB( DB_MASTER );
-		}
-
-		// Purge old, expired memberships from the DB
-		$hasExpiredRow = $dbw->selectField(
-			'user_groups',
-			'1',
-			[ 'ug_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ],
-			__METHOD__
-		);
-		if ( $hasExpiredRow ) {
-			JobQueueGroup::singleton()->lazyPush( new UserGroupExpiryJob() );
-		}
-
-		// Check that the values make sense
 		if ( $this->group === null ) {
 			throw new UnexpectedValueException(
-				'Don\'t try inserting an uninitialized UserGroupMembership object' );
+				'Cannot insert an uninitialized UserGroupMembership instance'
+			);
 		} elseif ( $this->userId <= 0 ) {
 			throw new UnexpectedValueException(
 				'UserGroupMembership::insert() needs a positive user ID. ' .
-				'Did you forget to add your User object to the database before calling addGroup()?' );
+				'Perhaps addGroup() was called before the user was added to the database.'
+			);
 		}
 
+		$dbw = $dbw ?: wfGetDB( DB_MASTER );
 		$row = $this->getDatabaseArray( $dbw );
+
+		$dbw->startAtomic( __METHOD__ );
 		$dbw->insert( 'user_groups', $row, __METHOD__, [ 'IGNORE' ] );
 		$affected = $dbw->affectedRows();
-
-		// Don't collide with expired user group memberships
-		// Do this after trying to insert, in order to avoid locking
 		if ( !$affected ) {
-			$conds = [
-				'ug_user' => $row['ug_user'],
-				'ug_group' => $row['ug_group'],
-			];
-			// if we're unconditionally updating, check that the expiry is not already the
-			// same as what we are trying to update it to; otherwise, only update if
-			// the expiry date is in the past
+			// Conflicting row already exists; it should be overriden if it is either expired
+			// or if $allowUpdate is true and the current row is different than the loaded row.
+			$conds = [ 'ug_user' => $row['ug_user'], 'ug_group' => $row['ug_group'] ];
 			if ( $allowUpdate ) {
-				if ( $this->expiry ) {
-					$conds[] = 'ug_expiry IS NULL OR ug_expiry != ' .
-						$dbw->addQuotes( $dbw->timestamp( $this->expiry ) );
-				} else {
-					$conds[] = 'ug_expiry IS NOT NULL';
-				}
+				// Update the current row if its expiry does not match that of the loaded row
+				$conds[] = $this->expiry
+					? 'ug_expiry IS NULL OR ug_expiry != ' .
+						$dbw->addQuotes( $dbw->timestamp( $this->expiry ) )
+					: 'ug_expiry IS NOT NULL';
 			} else {
+				// Update the current row if it is expired
 				$conds[] = 'ug_expiry < ' . $dbw->addQuotes( $dbw->timestamp() );
 			}
-
-			$row = $dbw->selectRow( 'user_groups', $this::selectFields(), $conds, __METHOD__ );
-			if ( $row ) {
-				$dbw->update(
-					'user_groups',
-					[ 'ug_expiry' => $this->expiry ? $dbw->timestamp( $this->expiry ) : null ],
-					[ 'ug_user' => $row->ug_user, 'ug_group' => $row->ug_group ],
-					__METHOD__ );
-				$affected = $dbw->affectedRows();
-			}
+			$dbw->update(
+				'user_groups',
+				[ 'ug_expiry' => $this->expiry ? $dbw->timestamp( $this->expiry ) : null ],
+				$conds,
+				__METHOD__
+			);
+			$affected = $dbw->affectedRows();
 		}
+		$dbw->endAtomic( __METHOD__ );
+
+		// Purge old, expired memberships from the DB
+		$fname = __METHOD__;
+		DeferredUpdates::addCallableUpdate( function () use ( $dbw, $fname ) {
+			$hasExpiredRow = $dbw->selectField(
+				'user_groups',
+				'1',
+				[ 'ug_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ],
+				$fname
+			);
+			if ( $hasExpiredRow ) {
+				JobQueueGroup::singleton()->push( new UserGroupExpiryJob() );
+			}
+		} );
 
 		return $affected > 0;
 	}
