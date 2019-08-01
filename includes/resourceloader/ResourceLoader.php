@@ -725,6 +725,8 @@ class ResourceLoader implements LoggerAwareInterface {
 			if ( $this->tryRespondFromFileCache( $fileCache, $context, $etag ) ) {
 				return; // output handled
 			}
+		} else {
+			$fileCache = null;
 		}
 
 		// Generate a response
@@ -739,15 +741,17 @@ class ResourceLoader implements LoggerAwareInterface {
 			}
 		}
 
-		// Save response to file cache unless there are errors
-		if ( isset( $fileCache ) && !$this->errors && $missing === [] ) {
-			// Cache single modules and images...and other requests if there are enough hits
-			if ( ResourceFileCache::useFileCache( $context ) ) {
-				if ( $fileCache->isCacheWorthy() ) {
-					$fileCache->saveText( $response );
-				} else {
-					$fileCache->incrMissesRecent( $context->getRequest() );
-				}
+		// Consider saving the response to file cache (unless there are errors).
+		if ( $fileCache &&
+			!$this->errors &&
+			$missing === [] &&
+			ResourceFileCache::useFileCache( $context )
+		) {
+			if ( $fileCache->isCacheWorthy() ) {
+				// There were enough hits, save the response to the cache
+				$fileCache->saveText( $response );
+			} else {
+				$fileCache->incrMissesRecent( $context->getRequest() );
 			}
 		}
 
