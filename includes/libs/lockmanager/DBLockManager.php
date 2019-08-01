@@ -150,12 +150,12 @@ abstract class DBLockManager extends QuorumLockManager {
 			} elseif ( is_array( $this->dbServers[$lockDb] ) ) {
 				// Parameters to construct a new database connection
 				$config = $this->dbServers[$lockDb];
+				$config['flags'] = ( $config['flags'] ?? 0 );
+				$config['flags'] &= ~( IDatabase::DBO_TRX | IDatabase::DBO_DEFAULT );
 				$db = Database::factory( $config['type'], $config );
 			} else {
 				throw new UnexpectedValueException( "No server called '$lockDb'." );
 			}
-
-			$db->clearFlag( DBO_TRX );
 			# If the connection drops, try to avoid letting the DB rollback
 			# and release the locks before the file operations are finished.
 			# This won't handle the case of DB server restarts however.

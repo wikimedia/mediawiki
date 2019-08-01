@@ -2137,27 +2137,23 @@
 					 * @return {Object} Module store contents.
 					 */
 					toJSON: function () {
-						return { items: mw.loader.store.items, vary: mw.loader.store.getVary() };
+						return { items: mw.loader.store.items, vary: mw.loader.store.vary };
 					},
 
 					/**
-					 * Get the localStorage key for the entire module store. The key references
+					 * The localStorage key for the entire module store. The key references
 					 * $wgDBname to prevent clashes between wikis which share a common host.
 					 *
-					 * @return {string} localStorage item key
+					 * @property {string}
 					 */
-					getStoreKey: function () {
-						return $VARS.storeKey;
-					},
+					key: $VARS.storeKey,
 
 					/**
-					 * Get a key on which to vary the module cache.
+					 * A string containing various factors on which to the module cache should vary.
 					 *
-					 * @return {string} String of concatenated vary conditions.
+					 * @property {string}
 					 */
-					getVary: function () {
-						return $VARS.storeVary;
-					},
+					vary: $VARS.storeVary,
 
 					/**
 					 * Initialize the store.
@@ -2194,12 +2190,12 @@
 
 						try {
 							// This a string we stored, or `null` if the key does not (yet) exist.
-							raw = localStorage.getItem( this.getStoreKey() );
+							raw = localStorage.getItem( this.key );
 							// If we get here, localStorage is available; mark enabled
 							this.enabled = true;
 							// If null, JSON.parse() will cast to string and re-parse, still null.
 							data = JSON.parse( raw );
-							if ( data && typeof data.items === 'object' && data.vary === this.getVary() ) {
+							if ( data && typeof data.items === 'object' && data.vary === this.vary ) {
 								this.items = data.items;
 								return;
 							}
@@ -2215,7 +2211,7 @@
 						//    The store was enabled, and `items` starts fresh.
 						//
 						// 2. localStorage contained parseable data under our store key,
-						//    but it's not applicable to our current context (see getVary).
+						//    but it's not applicable to our current context (see #vary).
 						//    The store was enabled, and `items` starts fresh.
 						//
 						// 3. JSON.parse threw (localStorage contained corrupt data).
@@ -2377,7 +2373,7 @@
 					clear: function () {
 						this.items = {};
 						try {
-							localStorage.removeItem( this.getStoreKey() );
+							localStorage.removeItem( this.key );
 						} catch ( e ) {}
 					},
 
@@ -2426,7 +2422,7 @@
 								mw.loader.store.set( mw.loader.store.queue.shift() );
 							}
 
-							key = mw.loader.store.getStoreKey();
+							key = mw.loader.store.key;
 							try {
 								// Replacing the content of the module store might fail if the new
 								// contents would exceed the browser's localStorage size limit. To

@@ -340,7 +340,7 @@
 			if ( stats.enabled ) {
 				$.extend( stats, mw.loader.store.stats );
 				try {
-					raw = localStorage.getItem( mw.loader.store.getStoreKey() );
+					raw = localStorage.getItem( mw.loader.store.key );
 					stats.totalSizeInBytes = byteLength( raw );
 					stats.totalSize = humanSize( byteLength( raw ) );
 				} catch ( e ) {}
