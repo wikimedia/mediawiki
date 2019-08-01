@@ -283,8 +283,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			}
 
 			if ( $versionHash !== '' && strlen( $versionHash ) !== 7 ) {
-				$this->getLogger()->warning(
-					"Module '{module}' produced an invalid version hash: '{version}'.",
+				$e = new RuntimeException( "Badly formatted module version hash" );
+				$resourceLoader->outputErrorAndLog( $e,
+						"Module '{module}' produced an invalid version hash: '{version}'.",
 					[
 						'module' => $name,
 						'version' => $versionHash,
