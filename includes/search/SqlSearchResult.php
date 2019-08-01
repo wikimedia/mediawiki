@@ -51,18 +51,15 @@ class SqlSearchResult extends SearchResult {
 		global $wgAdvancedSearchHighlighting;
 		$this->initText();
 
-		// TODO: make highliter take a content object. Make ContentHandler a factory for SearchHighliter.
-		list( $contextlines, $contextchars ) = $this->searchEngine->userHighlightPrefs();
-
 		$h = new SearchHighlighter();
 		if ( count( $this->terms ) > 0 ) {
 			if ( $wgAdvancedSearchHighlighting ) {
-				return $h->highlightText( $this->mText, $this->terms, $contextlines, $contextchars );
+				return $h->highlightText( $this->mText, $this->terms );
 			} else {
-				return $h->highlightSimple( $this->mText, $this->terms, $contextlines, $contextchars );
+				return $h->highlightSimple( $this->mText, $this->terms );
 			}
 		} else {
-			return $h->highlightNone( $this->mText, $contextlines, $contextchars );
+			return $h->highlightNone( $this->mText );
 		}
 	}
 

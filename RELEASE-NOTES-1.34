@@ -424,6 +424,10 @@ because of Phabricator reports.
 * The following public properties on DatabaseBlock are deprecated: $mAuto,
   $mParentBlockId. To check for an autoblock use DatabaseBlock::getType; to
   check for the parent ID, use DatabaseBlock::getParentBlockId.
+* SearchEngine::userHighlightPrefs() is deprecated, simply stop passing
+  $contextlines and $contextchars to the SearchHighlighter methods, they will
+  use proper defaults defined in SearchHighlighter::DEFAULT_CONTEXT_LINES and
+  DEFAULT_CONTEXT_CHARS.
 
 === Other changes in 1.34 ===
 * …
