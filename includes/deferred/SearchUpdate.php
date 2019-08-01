@@ -37,7 +37,7 @@ class SearchUpdate implements DeferrableUpdate {
 	/** @var Title Title we're updating */
 	private $title;
 
-	/** @var Content|bool Content of the page (not text) */
+	/** @var Content|null Content of the page (not text) */
 	private $content;
 
 	/** @var WikiPage **/
@@ -45,30 +45,30 @@ class SearchUpdate implements DeferrableUpdate {
 
 	/**
 	 * @param int $id Page id to update
-	 * @param Title|string $title Title of page to update
-	 * @param Content|string|bool $c Content of the page to update. Default: false.
-	 *  If a Content object, text will be gotten from it. String is for back-compat.
-	 *  Passing false tells the backend to just update the title, not the content
+	 * @param Title $title Title of page to update
+	 * @param Content|null $c Content of the page to update.
 	 */
-	public function __construct( $id, $title, $c = false ) {
+	public function __construct( $id, $title, $c = null ) {
 		if ( is_string( $title ) ) {
-			$nt = Title::newFromText( $title );
+			wfDeprecated( __METHOD__ . " with a string for the title", 1.34 );
+			$this->title = Title::newFromText( $title );
+			if ( $this->title === null ) {
+				throw new InvalidArgumentException( "Cannot construct the title: $title" );
+			}
 		} else {
-			$nt = $title;
+			$this->title = $title;
 		}
 
-		if ( $nt ) {
-			$this->id = $id;
-			// is_string() check is back-compat for ApprovedRevs
-			if ( is_string( $c ) ) {
-				$this->content = new TextContent( $c );
-			} else {
-				$this->content = $c ?: false;
-			}
-			$this->title = $nt;
-		} else {
-			wfDebug( "SearchUpdate object created with invalid title '$title'\n" );
+		$this->id = $id;
+		// is_string() check is back-compat for ApprovedRevs
+		if ( is_string( $c ) ) {
+			wfDeprecated( __METHOD__ . " with a string for the content", 1.34 );
+			$c = new TextContent( $c );
+		} elseif ( is_bool( $c ) ) {
+			wfDeprecated( __METHOD__ . " with a boolean for the content", 1.34 );
+			$c = null;
 		}
+		$this->content = $c;
 	}
 
 	/**
@@ -94,7 +94,7 @@ class SearchUpdate implements DeferrableUpdate {
 			if ( $this->getLatestPage() === null ) {
 				$search->delete( $this->id, $normalTitle );
 				continue;
-			} elseif ( $this->content === false ) {
+			} elseif ( $this->content === null ) {
 				$search->updateTitle( $this->id, $normalTitle );
 				continue;
 			}

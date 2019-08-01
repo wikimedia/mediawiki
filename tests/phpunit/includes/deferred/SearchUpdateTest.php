@@ -12,8 +12,7 @@ class SearchUpdateTest extends MediaWikiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		$this->setMwGlobals( 'wgSearchType', 'MockSearch' );
-		$this->su = new SearchUpdate( 0, "" );
+		$this->su = new SearchUpdate( 0, Title::newMainPage() );
 	}
 
 	public function updateText( $text ) {
