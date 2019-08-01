@@ -117,12 +117,14 @@ class FileBackendGroup {
 			}
 			$name = $config['name'];
 			if ( isset( $this->backends[$name] ) ) {
-				throw new LogicException( "Backend with name `{$name}` already registered." );
+				throw new LogicException( "Backend with name '$name' already registered." );
 			} elseif ( !isset( $config['class'] ) ) {
-				throw new InvalidArgumentException( "Backend with name `{$name}` has no class." );
+				throw new InvalidArgumentException( "Backend with name '$name' has no class." );
 			}
 			$class = $config['class'];
 
+			// @FIXME: ideally this would default to the DB domain (which includes the schema)
+			$config['domainId'] = $config['domainId'] ?? ( $config['wikiId'] ?? wfWikiID() );
 			$config['readOnly'] = $config['readOnly'] ?? $readOnlyReason;
 
 			unset( $config['class'] ); // backend won't need this
@@ -172,40 +174,40 @@ class FileBackendGroup {
 	 */
 	public function config( $name ) {
 		if ( !isset( $this->backends[$name] ) ) {
-			throw new InvalidArgumentException( "No backend defined with the name `$name`." );
+			throw new InvalidArgumentException( "No backend defined with the name '$name'." );
 		}
-		$class = $this->backends[$name]['class'];
 
 		$config = $this->backends[$name]['config'];
-		$config['class'] = $class;
-		if ( isset( $config['domainId'] ) ) {
-			$domain = $config['domainId'];
-		} else {
-			// @FIXME: this does not include the domain for b/c but it ideally should
-			$domain = $config['wikiId'] ?? wfWikiID();
-		}
-		// Set default parameter values
-		$config += [
-			'domainId' => $domain, // e.g. "my_wiki-en_"
-			'mimeCallback' => [ $this, 'guessMimeInternal' ],
-			'obResetFunc' => 'wfResetOutputBuffers',
-			'streamMimeFunc' => [ StreamFile::class, 'contentTypeFromPath' ],
-			'tmpDirectory' => wfTempDir(),
-			'statusWrapper' => [ Status::class, 'wrap' ],
-			'wanCache' => MediaWikiServices::getInstance()->getMainWANObjectCache(),
-			'srvCache' => ObjectCache::getLocalServerInstance( 'hash' ),
-			'logger' => LoggerFactory::getInstance( 'FileOperation' ),
-			'profiler' => function ( $section ) {
-				return Profiler::instance()->scopedProfileIn( $section );
-			}
-		];
-		$config['lockManager'] =
-			LockManagerGroup::singleton( $domain )->get( $config['lockManager'] );
-		$config['fileJournal'] = isset( $config['fileJournal'] )
-			? FileJournal::factory( $config['fileJournal'], $name )
-			: FileJournal::factory( [ 'class' => NullFileJournal::class ], $name );
+		$services = MediaWikiServices::getInstance();
 
-		return $config;
+		return array_merge(
+			// Default backend parameters
+			[
+				'mimeCallback' => [ $this, 'guessMimeInternal' ],
+				'obResetFunc' => 'wfResetOutputBuffers',
+				'streamMimeFunc' => [ StreamFile::class, 'contentTypeFromPath' ],
+				'tmpDirectory' => wfTempDir(),
+				'statusWrapper' => [ Status::class, 'wrap' ],
+				'wanCache' => $services->getMainWANObjectCache(),
+				'srvCache' => ObjectCache::getLocalServerInstance( 'hash' ),
+				'logger' => LoggerFactory::getInstance( 'FileOperation' ),
+				'profiler' => function ( $section ) {
+					return Profiler::instance()->scopedProfileIn( $section );
+				}
+			],
+			// Configured backend parameters
+			$config,
+			// Resolved backend parameters
+			[
+				'class' => $this->backends[$name]['class'],
+				'lockManager' =>
+					LockManagerGroup::singleton( $config['domainId'] )
+						->get( $config['lockManager'] ),
+				'fileJournal' => isset( $config['fileJournal'] )
+					? FileJournal::factory( $config['fileJournal'], $name )
+					: FileJournal::factory( [ 'class' => NullFileJournal::class ], $name )
+			]
+		);
 	}
 
 	/**
