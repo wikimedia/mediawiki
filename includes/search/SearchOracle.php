@@ -64,11 +64,11 @@ class SearchOracle extends SearchDatabase {
 	 * Perform a full text search query and return a result set.
 	 *
 	 * @param string $term Raw search term
-	 * @return SqlSearchResultSet
+	 * @return SqlSearchResultSet|null
 	 */
 	protected function doSearchTextInDB( $term ) {
 		if ( $term == '' ) {
-			return new SqlSearchResultSet( false, '' );
+			return null;
 		}
 
 		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
@@ -80,11 +80,11 @@ class SearchOracle extends SearchDatabase {
 	 * Perform a title-only search query and return a result set.
 	 *
 	 * @param string $term Raw search term
-	 * @return SqlSearchResultSet
+	 * @return SqlSearchResultSet|null
 	 */
 	protected function doSearchTitleInDB( $term ) {
 		if ( $term == '' ) {
-			return new SqlSearchResultSet( false, '' );
+			return null;
 		}
 
 		$dbr = $this->lb->getConnectionRef( DB_REPLICA );

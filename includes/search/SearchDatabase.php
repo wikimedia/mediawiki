@@ -61,7 +61,7 @@ abstract class SearchDatabase extends SearchEngine {
 	 * Perform a full text search query and return a result set.
 	 *
 	 * @param string $term Raw search term
-	 * @return SqlSearchResultSet
+	 * @return SqlSearchResultSet|null
 	 */
 	abstract protected function doSearchTextInDB( $term );
 
@@ -77,7 +77,7 @@ abstract class SearchDatabase extends SearchEngine {
 	 * Perform a title-only search query and return a result set.
 	 *
 	 * @param string $term Raw search term
-	 * @return SqlSearchResultSet
+	 * @return SqlSearchResultSet|null
 	 */
 	abstract protected function doSearchTitleInDB( $term );
 
