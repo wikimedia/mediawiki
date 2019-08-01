@@ -454,7 +454,7 @@ class RenderedRevision implements SlotRenderingProvider {
 		) {
 			// If a self-transclusion used the proposed page text, it must match the final
 			// page content after PST transformations and automatically merged edit conflicts
-			$logger->info( "$varyMsg (vary-revision-sha1 with wrong SHA-1)" );
+			$logger->info( "$varyMsg (vary-revision-sha1 with wrong SHA-1)", $context );
 			return true;
 		}
 
