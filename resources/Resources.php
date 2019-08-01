@@ -1154,6 +1154,7 @@ return [
 			'upload-form-label-usage-filename',
 			'action-upload',
 			'apierror-mustbeloggedin',
+			'apierror-permissiondenied',
 			'badaccess-groups',
 			'apierror-timeout',
 			'apierror-offline',
