@@ -139,16 +139,16 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.base' => [
-		'scripts' => [
-			// This MUST be kept in sync with maintenance/jsduck/eg-iframe.html
-			'resources/src/mediawiki.base/mediawiki.errorLogger.js',
-			'resources/src/mediawiki.base/mediawiki.base.js',
-		],
-		'dependencies' => 'jquery',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
-	'mediawiki.legacy.wikibits' => [
-		'scripts' => 'resources/src/mediawiki.legacy/wikibits.js',
+		'scripts' => array_merge(
+			[
+				// This MUST be kept in sync with maintenance/jsduck/eg-iframe.html
+				'resources/src/mediawiki.base/mediawiki.errorLogger.js',
+				'resources/src/mediawiki.base/mediawiki.base.js',
+			],
+			$GLOBALS['wgIncludeLegacyJavaScript']
+				? [ 'resources/src/mediawiki.base/legacy.wikibits.js' ]
+				: []
+		),
 		'dependencies' => 'jquery',
 		'targets' => [ 'desktop', 'mobile' ],
 	],

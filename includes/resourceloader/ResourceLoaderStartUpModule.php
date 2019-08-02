@@ -346,13 +346,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	private function getBaseModules() {
-		global $wgIncludeLegacyJavaScript;
-
 		$baseModules = [ 'jquery', 'mediawiki.base' ];
-		if ( $wgIncludeLegacyJavaScript ) {
-			$baseModules[] = 'mediawiki.legacy.wikibits';
-		}
-
 		return $baseModules;
 	}
 
