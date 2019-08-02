@@ -93,8 +93,8 @@ class MediaWikiShell extends Maintenance {
 		}
 		if ( $d > 1 ) {
 			# Set DBO_DEBUG (equivalent of $wgDebugDumpSql)
-			wfGetDB( DB_MASTER )->setFlag( DBO_DEBUG );
-			wfGetDB( DB_REPLICA )->setFlag( DBO_DEBUG );
+			$this->getDB( DB_MASTER )->setFlag( DBO_DEBUG );
+			$this->getDB( DB_REPLICA )->setFlag( DBO_DEBUG );
 		}
 	}
 

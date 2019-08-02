@@ -240,7 +240,7 @@ TEXT
 		}
 
 		try {
-			$this->db = $this->lb->getConnection( DB_REPLICA, 'dump' );
+			$this->db = $this->lb->getMaintenanceConnectionRef( DB_REPLICA, 'dump' );
 		} catch ( Exception $e ) {
 			throw new MWException( __METHOD__
 				. " rotating DB failed to obtain new database (" . $e->getMessage() . ")" );
