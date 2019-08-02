@@ -150,10 +150,16 @@ class MovePageForm extends UnlistedSpecialPage {
 		$out->addModules( 'mediawiki.misc-authed-ooui' );
 		$this->addHelpLink( 'Help:Moving a page' );
 
-		$out->addWikiMsg( $this->getConfig()->get( 'FixDoubleRedirects' ) ?
-			'movepagetext' :
-			'movepagetext-noredirectfixer'
-		);
+		$handlerSupportsRedirects = ContentHandler::getForTitle( $this->oldTitle )
+			->supportsRedirects();
+
+		if ( $this->getConfig()->get( 'FixDoubleRedirects' ) ) {
+			$out->addWikiMsg( 'movepagetext' );
+		} else {
+			$out->addWikiMsg( $handlerSupportsRedirects ?
+				'movepagetext-noredirectfixer' :
+				'movepagetext-noredirectsupport' );
+		}
 
 		if ( $this->oldTitle->getNamespace() == NS_USER && !$this->oldTitle->isSubpage() ) {
 			$out->wrapWikiMsg(
@@ -306,8 +312,6 @@ class MovePageForm extends UnlistedSpecialPage {
 			}
 		}
 
-		$handler = ContentHandler::getForTitle( $this->oldTitle );
-
 		$out->enableOOUI();
 		$fields = [];
 
@@ -371,7 +375,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		if ( $user->isAllowed( 'suppressredirect' ) ) {
-			if ( $handler->supportsRedirects() ) {
+			if ( $handlerSupportsRedirects ) {
 				$isChecked = $this->leaveRedirect;
 				$isDisabled = false;
 			} else {
