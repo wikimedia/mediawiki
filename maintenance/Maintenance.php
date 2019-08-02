@@ -1366,28 +1366,34 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Returns a database to be used by current maintenance script. It can be set by setDB().
-	 * If not set, wfGetDB() will be used.
-	 * This function has the same parameters as wfGetDB()
+	 * Returns a database to be used by current maintenance script.
+	 *
+	 * This uses the main LBFactory instance by default unless overriden via setDB().
+	 *
+	 * This function has the same parameters as LoadBalancer::getConnection().
 	 *
 	 * @param int $db DB index (DB_REPLICA/DB_MASTER)
 	 * @param string|string[] $groups default: empty array
-	 * @param string|bool $wiki default: current wiki
+	 * @param string|bool $dbDomain default: current wiki
 	 * @return IMaintainableDatabase
 	 */
-	protected function getDB( $db, $groups = [], $wiki = false ) {
+	protected function getDB( $db, $groups = [], $dbDomain = false ) {
 		if ( $this->mDb === null ) {
-			return wfGetDB( $db, $groups, $wiki );
+			return MediaWikiServices::getInstance()
+				->getDBLoadBalancerFactory()
+				->getMainLB( $dbDomain )
+				->getMaintenanceConnectionRef( $db, $groups, $dbDomain );
 		}
+
 		return $this->mDb;
 	}
 
 	/**
 	 * Sets database object to be returned by getDB().
 	 *
-	 * @param IDatabase $db
+	 * @param IMaintainableDatabase $db
 	 */
-	public function setDB( IDatabase $db ) {
+	public function setDB( IMaintainableDatabase $db ) {
 		$this->mDb = $db;
 	}
 

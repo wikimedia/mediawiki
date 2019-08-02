@@ -232,7 +232,7 @@ class TrackBlobs {
 		$pos = $dbw->getMasterPos();
 		$dbr->masterPosWait( $pos, 100000 );
 
-		$textClause = $this->getTextClause( $this->clusters );
+		$textClause = $this->getTextClause();
 		$startId = 0;
 		$endId = $dbr->selectField( 'text', 'MAX(old_id)', '', __METHOD__ );
 		$rowsInserted = 0;
@@ -325,9 +325,9 @@ class TrackBlobs {
 			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 			$lb = $lbFactory->getExternalLB( $cluster );
 			try {
-				$extDB = $lb->getConnection( DB_REPLICA );
+				$extDB = $lb->getMaintenanceConnectionRef( DB_REPLICA );
 			} catch ( DBConnectionError $e ) {
-				if ( strpos( $e->error, 'Unknown database' ) !== false ) {
+				if ( strpos( $e->getMessage(), 'Unknown database' ) !== false ) {
 					echo "No database on $cluster\n";
 				} else {
 					echo "Error on $cluster: " . $e->getMessage() . "\n";
@@ -362,8 +362,8 @@ class TrackBlobs {
 
 				foreach ( $res as $row ) {
 					gmp_setbit( $actualBlobs, $row->blob_id );
+					$startId = $row->blob_id;
 				}
-				$startId = $row->blob_id;
 
 				++$batchesDone;
 				if ( $batchesDone >= $this->reportingInterval ) {
