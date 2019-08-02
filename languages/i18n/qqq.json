@@ -3458,7 +3458,6 @@
 	"newimages-legend": "Caption of the fieldset for the filter on [[Special:NewImages]]\n\n{{Identical|Filter}}",
 	"newimages-label": "Caption of the filter editbox on [[Special:NewImages]]",
 	"newimages-user": "Caption of the username/IP address editbox on [[Special:NewImages]]",
-	"newimages-newbies": "Used as label for a checkbox. When checked, [[Special:NewImages]] will only display uploads by new users.",
 	"newimages-showbots": "Used as label for a checkbox. When checked, [[Special:NewImages]] will also display uploads by users in the bots group.",
 	"newimages-hidepatrolled": "Used as label for a checkbox. When checked, [[Special:NewImages]] will not display patrolled uploads.\n\nCf. {{msg-mw|tog-hidepatrolled}} and {{msg-mw|apihelp-feedrecentchanges-param-hidepatrolled}}.",
 	"newimages-mediatype": "Used as label for a multiselect where users can select the media types to display.",
