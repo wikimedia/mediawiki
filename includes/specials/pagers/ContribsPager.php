@@ -42,12 +42,6 @@ class ContribsPager extends RangeChronologicalPager {
 	private $target;
 
 	/**
-	 * @var string Set to "newbie" to list contributions from the most recent 1% registered users.
-	 *  $this->target is ignored then. Defaults to "users".
-	 */
-	private $contribs;
-
-	/**
 	 * @var string|int A single namespace number, or an empty string for all namespaces
 	 */
 	private $namespace = '';
@@ -104,11 +98,10 @@ class ContribsPager extends RangeChronologicalPager {
 	private $templateParser;
 
 	public function __construct( IContextSource $context, array $options ) {
-		// Set ->target and ->contribs before calling parent::__construct() so
+		// Set ->target before calling parent::__construct() so
 		// parent can call $this->getIndexField() and get the right result. Set
 		// the rest too just to keep things simple.
 		$this->target = $options['target'] ?? '';
-		$this->contribs = $options['contribs'] ?? 'users';
 		$this->namespace = $options['namespace'] ?? '';
 		$this->tagFilter = $options['tagfilter'] ?? false;
 		$this->nsInvert = $options['nsInvert'] ?? false;
@@ -249,10 +242,6 @@ class ContribsPager extends RangeChronologicalPager {
 	 * @return string
 	 */
 	private function getTargetTable() {
-		if ( $this->contribs == 'newbie' ) {
-			return 'revision';
-		}
-
 		$user = User::newFromName( $this->target, false );
 		$ipRangeConds = $user->isAnon() ? $this->getIpRangeConds( $this->mDb, $this->target ) : null;
 		if ( $ipRangeConds ) {
@@ -279,53 +268,25 @@ class ContribsPager extends RangeChronologicalPager {
 		];
 
 		// WARNING: Keep this in sync with getTargetTable()!
-
-		if ( $this->contribs == 'newbie' ) {
-			$max = $this->mDb->selectField( 'user', 'max(user_id)', '', __METHOD__ );
-			$queryInfo['conds'][] = $revQuery['fields']['rev_user'] . ' >' . (int)( $max - $max / 100 );
-			# ignore local groups with the bot right
-			# @todo FIXME: Global groups may have 'bot' rights
-			$groupsWithBotPermission = MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->getGroupsWithPermission( 'bot' );
-			if ( count( $groupsWithBotPermission ) ) {
-				$queryInfo['tables'][] = 'user_groups';
-				$queryInfo['conds'][] = 'ug_group IS NULL';
-				$queryInfo['join_conds']['user_groups'] = [
-					'LEFT JOIN', [
-						'ug_user = ' . $revQuery['fields']['rev_user'],
-						'ug_group' => $groupsWithBotPermission,
-						'ug_expiry IS NULL OR ug_expiry >= ' .
-							$this->mDb->addQuotes( $this->mDb->timestamp() )
-					]
-				];
-			}
-			// (T140537) Disallow looking too far in the past for 'newbies' queries. If the user requested
-			// a timestamp offset far in the past such that there are no edits by users with user_ids in
-			// the range, we would end up scanning all revisions from that offset until start of time.
-			$queryInfo['conds'][] = 'rev_timestamp > ' .
-				$this->mDb->addQuotes( $this->mDb->timestamp( wfTimestamp() - 30 * 24 * 60 * 60 ) );
+		$user = User::newFromName( $this->target, false );
+		$ipRangeConds = $user->isAnon() ? $this->getIpRangeConds( $this->mDb, $this->target ) : null;
+		if ( $ipRangeConds ) {
+			$queryInfo['tables'][] = 'ip_changes';
+			$queryInfo['join_conds']['ip_changes'] = [
+				'LEFT JOIN', [ 'ipc_rev_id = rev_id' ]
+			];
+			$queryInfo['conds'][] = $ipRangeConds;
 		} else {
-			$user = User::newFromName( $this->target, false );
-			$ipRangeConds = $user->isAnon() ? $this->getIpRangeConds( $this->mDb, $this->target ) : null;
-			if ( $ipRangeConds ) {
-				$queryInfo['tables'][] = 'ip_changes';
-				$queryInfo['join_conds']['ip_changes'] = [
-					'LEFT JOIN', [ 'ipc_rev_id = rev_id' ]
-				];
-				$queryInfo['conds'][] = $ipRangeConds;
+			// tables and joins are already handled by Revision::getQueryInfo()
+			$conds = ActorMigration::newMigration()->getWhere( $this->mDb, 'rev_user', $user );
+			$queryInfo['conds'][] = $conds['conds'];
+			// Force the appropriate index to avoid bad query plans (T189026)
+			if ( isset( $conds['orconds']['actor'] ) ) {
+				// @todo: This will need changing when revision_actor_temp goes away
+				$queryInfo['options']['USE INDEX']['temp_rev_user'] = 'actor_timestamp';
 			} else {
-				// tables and joins are already handled by Revision::getQueryInfo()
-				$conds = ActorMigration::newMigration()->getWhere( $this->mDb, 'rev_user', $user );
-				$queryInfo['conds'][] = $conds['conds'];
-				// Force the appropriate index to avoid bad query plans (T189026)
-				if ( isset( $conds['orconds']['actor'] ) ) {
-					// @todo: This will need changing when revision_actor_temp goes away
-					$queryInfo['options']['USE INDEX']['temp_rev_user'] = 'actor_timestamp';
-				} else {
-					$queryInfo['options']['USE INDEX']['revision'] =
-						isset( $conds['orconds']['userid'] ) ? 'user_timestamp' : 'usertext_timestamp';
-				}
+				$queryInfo['options']['USE INDEX']['revision'] =
+					isset( $conds['orconds']['userid'] ) ? 'user_timestamp' : 'usertext_timestamp';
 			}
 		}
 
@@ -481,13 +442,6 @@ class ContribsPager extends RangeChronologicalPager {
 	/**
 	 * @return string
 	 */
-	public function getContribs() {
-		return $this->contribs;
-	}
-
-	/**
-	 * @return string
-	 */
 	public function getTarget() {
 		return $this->target;
 	}
@@ -544,10 +498,7 @@ class ContribsPager extends RangeChronologicalPager {
 			}
 			if ( isset( $row->rev_id ) ) {
 				$this->mParentLens[$row->rev_id] = $row->rev_len;
-				if ( $this->contribs === 'newbie' ) { // multiple users
-					$batch->add( NS_USER, $row->user_name );
-					$batch->add( NS_USER_TALK, $row->user_name );
-				} elseif ( $isIpRange ) {
+				if ( $isIpRange ) {
 					// If this is an IP range, batch the IP's talk page
 					$batch->add( NS_USER_TALK, $row->rev_user_text );
 				}
@@ -702,12 +653,9 @@ class ContribsPager extends RangeChronologicalPager {
 			$comment = $lang->getDirMark() . Linker::revComment( $rev, false, true, false );
 			$d = ChangesList::revDateLink( $rev, $user, $lang, $page );
 
-			# Show user names for /newbies as there may be different users.
-			# Note that only unprivileged users have rows with hidden user names excluded.
 			# When querying for an IP range, we want to always show user and user talk links.
 			$userlink = '';
-			if ( ( $this->contribs == 'newbie' && !$rev->isDeleted( RevisionRecord::DELETED_USER ) )
-				|| $this->isQueryableRange( $this->target ) ) {
+			if ( $this->isQueryableRange( $this->target ) ) {
 				$userlink = ' <span class="mw-changeslist-separator"></span> '
 					. $lang->getDirMark()
 					. Linker::userLink( $rev->getUser(), $rev->getUserText() );

@@ -203,8 +203,6 @@ class SpecialContributions extends IncludableSpecialPage {
 			}
 			$pager = new ContribsPager( $this->getContext(), [
 				'target' => $target,
-				// Temporary, until newbie feature is fully removed from ContribsPager
-				'contribs' => 'user',
 				'namespace' => $this->opts['namespace'],
 				'tagfilter' => $this->opts['tagfilter'],
 				'start' => $this->opts['start'],
