@@ -107,7 +107,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			$fields['pagetitle']['readonly'] = true;
 			$fields += [
 				'currentmodel' => [
-					'type' => 'info',
+					'type' => 'text',
 					'name' => 'currentcontentmodel',
 					'default' => $this->title->getContentModel(),
 					'label-message' => 'changecontentmodel-current-label',
