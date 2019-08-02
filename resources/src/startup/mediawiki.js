@@ -361,12 +361,7 @@
 	 * @class mw
 	 */
 	mw = {
-		redefineFallbacksForTest: function () {
-			if ( !window.QUnit ) {
-				throw new Error( 'Not allowed' );
-			}
-			defineFallbacks();
-		},
+		redefineFallbacksForTest: window.QUnit && defineFallbacks,
 
 		/**
 		 * Get the current time, measured in milliseconds since January 1, 1970 (UTC).
@@ -1052,7 +1047,7 @@
 					}
 
 					if ( !hasOwn.call( scriptFiles, fileName ) ) {
-						throw new Error( 'Cannot require() undefined file ' + fileName );
+						throw new Error( 'Cannot require undefined file ' + fileName );
 					}
 					if ( hasOwn.call( moduleObj.packageExports, fileName ) ) {
 						// File has already been executed, return the cached result
@@ -1251,7 +1246,7 @@
 					cssPending = 0;
 
 				if ( registry[ module ].state !== 'loaded' ) {
-					throw new Error( 'Module in state "' + registry[ module ].state + '" may not be executed: ' + module );
+					throw new Error( 'Module in state "' + registry[ module ].state + '" may not execute: ' + module );
 				}
 
 				registry[ module ].state = 'executing';
@@ -1307,8 +1302,7 @@
 							} else {
 								mainScript = script.files[ script.main ];
 								if ( typeof mainScript !== 'function' ) {
-									throw new Error( 'Main file ' + script.main + ' in module ' + module +
-										' must be of type function, found ' + typeof mainScript );
+									throw new Error( 'Main file in module ' + module + ' must be a function' );
 								}
 								// jQuery parameters are not passed for multi-file modules
 								mainScript(
@@ -2001,6 +1995,7 @@
 				 * @param {string} [type='text/javascript'] MIME type to use if calling with a URL of an
 				 *  external script or style; acceptable values are "text/css" and
 				 *  "text/javascript"; if no type is provided, text/javascript is assumed.
+				 * @throws {Error} If type is invalid
 				 */
 				load: function ( modules, type ) {
 					if ( typeof modules === 'string' && /^(https?:)?\/?\//.test( modules ) ) {
@@ -2015,7 +2010,7 @@
 							addScript( modules );
 						} else {
 							// Unknown type
-							throw new Error( 'type must be text/css or text/javascript, found ' + type );
+							throw new Error( 'Invalid type ' + type );
 						}
 					} else {
 						// One or more modules
