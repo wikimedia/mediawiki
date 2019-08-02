@@ -1,5 +1,5 @@
 <?php
-/** Manipuri/Meitei (মেইতেই লোন্)
+/** Manipuri/Meitei (ꯃꯤꯇꯩ ꯂꯣꯟ)
  *
  * To improve a translation please visit https://translatewiki.net
  *
