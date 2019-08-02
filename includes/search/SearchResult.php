@@ -138,8 +138,8 @@ class SearchResult {
 	protected function initText() {
 		if ( !isset( $this->mText ) ) {
 			if ( $this->mRevision != null ) {
-				$this->mText = $this->searchEngine->getTextFromContent(
-						$this->mTitle, $this->mRevision->getContent() );
+				$content = $this->mRevision->getContent();
+				$this->mText = $content !== null ? $content->getTextForSearchIndex() : '';
 			} else { // TODO: can we fetch raw wikitext for commons images?
 				$this->mText = '';
 			}

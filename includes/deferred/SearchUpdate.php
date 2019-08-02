@@ -99,10 +99,8 @@ class SearchUpdate implements DeferrableUpdate {
 				continue;
 			}
 
-			$text = $search->getTextFromContent( $this->title, $this->content );
-			if ( !$search->textAlreadyUpdatedForIndex() ) {
-				$text = $this->updateText( $text, $search );
-			}
+			$text = $this->content !== null ? $this->content->getTextForSearchIndex() : '';
+			$text = $this->updateText( $text, $search );
 
 			# Perform the actual update
 			$search->update( $this->id, $normalTitle, $search->normalizeText( $text ) );
