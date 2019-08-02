@@ -430,6 +430,11 @@ because of Phabricator reports.
   DEFAULT_CONTEXT_CHARS.
 * SearchUpdate constructor: passing a string as the title param and or a boolean
   or a string as the content will produce a deprecation warning.
+* SearchEngine::getTextFromContent() is deprecated, use getTextForSearchIndex()
+  directly from the Content object.
+* SearchEngine::textAlreadyUpdatedForIndex() is deprecated, given the
+  deprecation above this method is no longer needed/called and should not be
+  implemented by SearchEngine implementation.
 
 === Other changes in 1.34 ===
 * …

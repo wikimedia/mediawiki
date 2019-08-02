@@ -489,6 +489,7 @@ abstract class SearchEngine {
 	 * @param Title $t Title we're indexing
 	 * @param Content|null $c Content of the page to index
 	 * @return string
+	 * @deprecated since 1.34 use Content::getTextForSearchIndex directly
 	 */
 	public function getTextFromContent( Title $t, Content $c = null ) {
 		return $c ? $c->getTextForSearchIndex() : '';
@@ -500,6 +501,7 @@ abstract class SearchEngine {
 	 * rather silly handling, it should return true here instead.
 	 *
 	 * @return bool
+	 * @deprecated since 1.34 no longer needed since getTextFromContent is being deprecated
 	 */
 	public function textAlreadyUpdatedForIndex() {
 		return false;
