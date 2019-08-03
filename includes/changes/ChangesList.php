@@ -662,15 +662,20 @@ class ChangesList extends ContextSource {
 	 * field of this revision, if it's marked as deleted.
 	 * @param RCCacheEntry|RecentChange $rc
 	 * @param int $field
-	 * @param User|null $user User object to check, or null to use $wgUser
+	 * @param User|null $user User object to check against. If null, the global RequestContext's
+	 * User is assumed instead.
 	 * @return bool
 	 */
 	public static function userCan( $rc, $field, User $user = null ) {
+		if ( $user === null ) {
+			$user = RequestContext::getMain()->getUser();
+		}
+
 		if ( $rc->mAttribs['rc_type'] == RC_LOG ) {
 			return LogEventsList::userCanBitfield( $rc->mAttribs['rc_deleted'], $field, $user );
-		} else {
-			return Revision::userCanBitfield( $rc->mAttribs['rc_deleted'], $field, $user );
 		}
+
+		return RevisionRecord::userCanBitfield( $rc->mAttribs['rc_deleted'], $field, $user );
 	}
 
 	/**
