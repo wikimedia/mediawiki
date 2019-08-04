@@ -277,17 +277,6 @@ class RevisionStore
 	}
 
 	/**
-	 * @param int $mode DB_MASTER or DB_REPLICA
-	 * @param array $groups
-	 *
-	 * @return IDatabase
-	 */
-	private function getDBConnection( $mode, $groups = [] ) {
-		$lb = $this->getDBLoadBalancer();
-		return $lb->getConnectionRef( $mode, $groups, $this->dbDomain );
-	}
-
-	/**
 	 * @param int $queryFlags a bit field composed of READ_XXX flags
 	 *
 	 * @return DBConnRef
@@ -298,21 +287,14 @@ class RevisionStore
 	}
 
 	/**
-	 * @param IDatabase $connection
-	 */
-	private function releaseDBConnection( IDatabase $connection ) {
-		$lb = $this->getDBLoadBalancer();
-		$lb->reuseConnection( $connection );
-	}
-
-	/**
 	 * @param int $mode DB_MASTER or DB_REPLICA
 	 *
+	 * @param array $groups
 	 * @return DBConnRef
 	 */
-	private function getDBConnectionRef( $mode ) {
+	private function getDBConnectionRef( $mode, $groups = [] ) {
 		$lb = $this->getDBLoadBalancer();
-		return $lb->getConnectionRef( $mode, [], $this->dbDomain );
+		return $lb->getConnectionRef( $mode, $groups, $this->dbDomain );
 	}
 
 	/**
@@ -1154,7 +1136,7 @@ class RevisionStore
 	 */
 	public function getRecentChange( RevisionRecord $rev, $flags = 0 ) {
 		list( $dbType, ) = DBAccessObjectUtils::getDBOptions( $flags );
-		$db = $this->getDBConnection( $dbType );
+		$db = $this->getDBConnectionRef( $dbType );
 
 		$userIdentity = $rev->getUser( RevisionRecord::RAW );
 
@@ -1175,8 +1157,6 @@ class RevisionStore
 			__METHOD__,
 			$dbType
 		);
-
-		$this->releaseDBConnection( $db );
 
 		// XXX: cache this locally? Glue it to the RevisionRecord?
 		return $rc;
@@ -1593,7 +1573,7 @@ class RevisionStore
 	 * @return RevisionRecord|null
 	 */
 	public function getRevisionByTimestamp( $title, $timestamp ) {
-		$db = $this->getDBConnection( DB_REPLICA );
+		$db = $this->getDBConnectionRef( DB_REPLICA );
 		return $this->newRevisionFromConds(
 			[
 				'rev_timestamp' => $db->timestamp( $timestamp ),
@@ -2203,9 +2183,8 @@ class RevisionStore
 			&& $lb->hasOrMadeRecentMasterChanges()
 		) {
 			$flags = self::READ_LATEST;
-			$dbw = $this->getDBConnection( DB_MASTER );
+			$dbw = $this->getDBConnectionRef( DB_MASTER );
 			$rev = $this->loadRevisionFromConds( $dbw, $conditions, $flags, $title );
-			$this->releaseDBConnection( $dbw );
 		}
 
 		return $rev;
@@ -2574,7 +2553,7 @@ class RevisionStore
 	 *         of the corresponding revision.
 	 */
 	public function getRevisionSizes( array $revIds ) {
-		return $this->listRevisionSizes( $this->getDBConnection( DB_REPLICA ), $revIds );
+		return $this->listRevisionSizes( $this->getDBConnectionRef( DB_REPLICA ), $revIds );
 	}
 
 	/**
@@ -2634,7 +2613,7 @@ class RevisionStore
 		}
 
 		list( $dbType, ) = DBAccessObjectUtils::getDBOptions( $flags );
-		$db = $this->getDBConnection( $dbType, [ 'contributions' ] );
+		$db = $this->getDBConnectionRef( $dbType, [ 'contributions' ] );
 
 		$ts = $this->getTimestampFromId( $rev->getId(), $flags );
 		if ( $ts === false ) {
