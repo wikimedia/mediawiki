@@ -29,6 +29,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
+		$this->addHelpLink( 'Help:Managing_files' );
 
 		if ( $this->including() ) {
 			$userName = $par;
