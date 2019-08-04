@@ -12,6 +12,7 @@ use Psr\Log\NullLogger;
 use WANObjectCache;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\MaintainableDBConnRef;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -51,8 +52,10 @@ class NameTableStoreTest extends MediaWikiTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 		$mock->expects( $this->any() )
-			->method( 'getConnection' )
-			->willReturn( $db );
+			->method( 'getConnectionRef' )
+			->willReturnCallback( function ( $i ) use ( $mock, $db ) {
+				return new MaintainableDBConnRef( $mock, $db, $i );
+			} );
 		return $mock;
 	}
 

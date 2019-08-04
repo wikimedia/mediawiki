@@ -111,7 +111,7 @@ class NameTableStore {
 	 * @return IDatabase
 	 */
 	private function getDBConnection( $index, $flags = 0 ) {
-		return $this->loadBalancer->getConnection( $index, [], $this->domain, $flags );
+		return $this->loadBalancer->getConnectionRef( $index, [], $this->domain, $flags );
 	}
 
 	/**
