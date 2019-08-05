@@ -16,7 +16,8 @@
 			"שמזן",
 			"Or",
 			"Umherirrender",
-			"Strayblues"
+			"Strayblues",
+			"Steeve815"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|תיעוד]]\n* [[mw:Special:MyLanguage/API:FAQ|שאלות נפוצות]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api רשימת דיוור]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce הודעות על API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R באגים ובקשות]\n</div>\n<strong>מצב:</strong> ה־API של מדיה־ויקי הוא ממשק ותיק ויציב שנתמך ומשתפר באופן סדיר. למרות שאנחנו משתדלים להימנע מכך, לעתים עלינו לבצע שינויים שעלולים לשבש דברים בפונקציונליות הזו; באפשרותך לעשות מינוי ל[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ רשימת הדיוור mediawiki-api-announce] כדי לקבל הודעות על עדכונים.\n\n<strong>בקשות שגויות:</strong> כשבקשות שגויות נשלחות ל־API, תישלח כותרת HTTP עם המפתח \"MediaWiki-API-Error\", ואז גם הערך של הכותרת וגם קוד השגיאה יוגדרו לאותו ערך. למידע נוסף, אפשר לעיין בדף [[mw:Special:MyLanguage/API:Errors_and_warnings|API: שגיאות ואזהרות]].\n\n<p class=\"mw-apisandbox-link\"><strong>בדיקה:</strong> לבדיקה קלה יותר של בקשות, אפשר להשתמש ב[[Special:ApiSandbox|ארגז החול של API]].</p>",
@@ -912,6 +913,9 @@
 	"apihelp-query+langlinks-param-inlanguagecode": "קוד שפה בשביל שמות שפות מתורגמות.",
 	"apihelp-query+langlinks-example-simple": "קבלת קישורים בין־לשוניים מהדף <kbd>Main Page</kbd>.",
 	"apihelp-query+languageinfo-summary": "מחזירה מידע על שפות זמינות.",
+	"apihelp-query+languageinfo-param-prop": "איזה מידע לקבל עבור כל שפה.",
+	"apihelp-query+languageinfo-paramvalue-prop-dir": "כיוון הכתיבה של השפה (<code>ltr</code> או <code>rtl</code>).",
+	"apihelp-query+languageinfo-example-simple": "קבלת קודי שפה של כל השפות הנתמכות.",
 	"apihelp-query+links-summary": "החזרת כל הקישורים מהדפים שצוינו.",
 	"apihelp-query+links-param-namespace": "להציג קישורים רק במרחבי השם האלה.",
 	"apihelp-query+links-param-limit": "כמה קישורים להחזיר.",

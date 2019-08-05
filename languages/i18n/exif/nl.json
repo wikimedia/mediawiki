@@ -8,7 +8,8 @@
 			"SPQRobin",
 			"Siebrand",
 			"Sjoerddebruin",
-			"Slomox"
+			"Slomox",
+			"Romaine"
 		]
 	},
 	"exif-imagewidth": "Breedte",
@@ -199,6 +200,7 @@
 	"exif-photometricinterpretation-3": "Palet",
 	"exif-photometricinterpretation-4": "Transparantiemasker",
 	"exif-photometricinterpretation-5": "Gescheiden (waarschijnlijk CMYK)",
+	"exif-photometricinterpretation-8": "CIE L*a*b*",
 	"exif-unknowndate": "Datum onbekend",
 	"exif-orientation-1": "Normaal",
 	"exif-orientation-2": "Horizontaal gespiegeld",

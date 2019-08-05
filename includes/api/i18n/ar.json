@@ -914,7 +914,7 @@
 	"apihelp-query+languageinfo-paramvalue-prop-bcp47": "رمز لغة BCP-47.",
 	"apihelp-query+languageinfo-paramvalue-prop-dir": "اتجاه كتابة اللغة (إما <code>ltr</code> أو <code>rtl</code>).",
 	"apihelp-query+languageinfo-paramvalue-prop-autonym": "الاسم الداخلي للغة، أي: الاسم بتلك اللغة.",
-	"apihelp-query+languageinfo-paramvalue-prop-name": "اسم اللغة ياللغة المحددة بواسطة الوسيط <var>lilang</var>، مع تطبيق احتياطات اللغة إذا لزم الأمر.",
+	"apihelp-query+languageinfo-paramvalue-prop-name": "اسم اللغة ياللغة المحددة بواسطة الوسيط <var>uselang</var>، مع تطبيق احتياطات اللغة إذا لزم الأمر.",
 	"apihelp-query+languageinfo-paramvalue-prop-fallbacks": "رموز لغة اللغات الاحتياطية التي تم تكوينها لهذه اللغة، لا يتم تضمين الإرجاع النهائي الضمني إلى \"en\" (ولكن قد ترجع بعض اللغات إلى \"en\" بشكل صريح).",
 	"apihelp-query+languageinfo-paramvalue-prop-variants": "رموز اللغات للمتغيرات التي تدعمها هذه اللغة.",
 	"apihelp-query+languageinfo-param-code": "رموز اللغات التي يجب إرجاعها، أو <code>*</code> لجميع اللغات.",

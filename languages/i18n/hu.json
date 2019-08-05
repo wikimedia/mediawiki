@@ -1448,6 +1448,7 @@
 	"rcfilters-clear-all-filters": "Összes szűrő kikapcsolása",
 	"rcfilters-show-new-changes": "$1 óta történt friss változtatások megtekintése",
 	"rcfilters-search-placeholder": "Változtatások szűrése (használd a menüt vagy keress szűrőkre)",
+	"rcfilters-search-placeholder-mobile": "Szűrők",
 	"rcfilters-invalid-filter": "Érvénytelen szűrő",
 	"rcfilters-empty-filter": "Nincs aktív szűrő. Minden közreműködés látható.",
 	"rcfilters-filterlist-title": "Szűrők",

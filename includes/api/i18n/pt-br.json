@@ -917,7 +917,7 @@
 	"apihelp-query+languageinfo-paramvalue-prop-bcp47": "O código do idioma BCP-47.",
 	"apihelp-query+languageinfo-paramvalue-prop-dir": "A direção de escrita do idioma (<code>ltr</code>, da esquerda para a direita, ou <code>rtl</code>, da direita para a esquerda).",
 	"apihelp-query+languageinfo-paramvalue-prop-autonym": "O autônimo do idioma, isto é, o seu nome nesse idioma.",
-	"apihelp-query+languageinfo-paramvalue-prop-name": "O nome do idioma no idioma especificado pelo parâmetro <var>lilang</var>, com a aplicação de idiomas de recurso se necessário.",
+	"apihelp-query+languageinfo-paramvalue-prop-name": "O nome do idioma no idioma especificado pelo parâmetro <var>uselang</var>, com a aplicação de idiomas de recurso se necessário.",
 	"apihelp-query+languageinfo-paramvalue-prop-fallbacks": "Os códigos de idioma das idiomas de recurso configuradas para esta língua. O recurso final implícito para 'en' não é incluído (mas algum idiomas podem especificar 'en' como último recurso explicitamente).",
 	"apihelp-query+languageinfo-paramvalue-prop-variants": "Os códigos de idioma das variantes suportadas por esse idioma.",
 	"apihelp-query+languageinfo-param-code": "Códigos de idioma dos idiomas que devem ser devolvidas, ou <code>*</code> para todos os idiomas.",
