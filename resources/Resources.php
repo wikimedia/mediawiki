@@ -2820,13 +2820,6 @@ return [
 		],
 	],
 
-	// @todo FIXME: Remove 7 days after Ib0020b6bd0156 is deployed to all wikis.
-	'html5shiv' => [
-		'scripts' => [
-			'resources/lib/html5shiv/html5shiv.js'
-		],
-	],
-
 	/* EasyDeflate */
 
 	'easy-deflate.core' => [

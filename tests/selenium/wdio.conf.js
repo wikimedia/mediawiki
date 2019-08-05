@@ -52,14 +52,10 @@ exports.config = {
 
 	// ==================
 	// Test Files
-	// FIXME: The non-core patterns to be removed once T199116 is fixed.
 	// ==================
 	specs: [
 		relPath( './tests/selenium/wdio-mediawiki/specs/*.js' ),
 		relPath( './tests/selenium/specs/**/*.js' )
-	],
-	// Patterns to exclude
-	exclude: [
 	],
 
 	// ============
