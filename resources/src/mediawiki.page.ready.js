@@ -56,22 +56,25 @@
 
 		// Turn logout to a POST action
 		$( '#pt-logout a' ).on( 'click', function ( e ) {
-			var api = new mw.Api(), returnUrl;
-			returnUrl = $( '#pt-logout a' ).attr( 'href' );
+			var api = new mw.Api(),
+				returnUrl = $( '#pt-logout a' ).attr( 'href' );
 			mw.notify(
 				mw.message( 'logging-out-notify' ),
 				{ tag: 'logout', autoHide: false }
 			);
 			api.postWithToken( 'csrf', {
 				action: 'logout'
-			} ).done( function () {
-				window.location = returnUrl;
-			} ).fail( function ( e ) {
-				mw.notify(
-					mw.message( 'logout-failed', e ),
-					{ type: 'error', tag: 'logout', autoHide: false }
-				);
-			} );
+			} ).then(
+				function () {
+					location.href = returnUrl;
+				},
+				function ( e ) {
+					mw.notify(
+						mw.message( 'logout-failed', e ),
+						{ type: 'error', tag: 'logout', autoHide: false }
+					);
+				}
+			);
 			e.preventDefault();
 		} );
 	} );
