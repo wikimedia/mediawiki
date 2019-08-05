@@ -50,6 +50,7 @@ class LanguageConverter {
 		'tg',
 		'uz',
 		'zh',
+		'cdo',
 	];
 
 	public $mMainLanguageCode;
