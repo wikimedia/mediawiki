@@ -5796,6 +5796,7 @@ $wgGrantPermissions = [];
 // @TODO: clean up grants
 // @TODO: auto-include read/editsemiprotected rights?
 
+$wgGrantPermissions['basic']['autocreateaccount'] = true;
 $wgGrantPermissions['basic']['autoconfirmed'] = true;
 $wgGrantPermissions['basic']['autopatrol'] = true;
 $wgGrantPermissions['basic']['editsemiprotected'] = true;
