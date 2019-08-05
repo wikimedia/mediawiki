@@ -54,7 +54,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	protected $securityLevel;
 
 	/** @var bool True if the user if creating an account for someone else. Flag used for internal
-	 * communication, only set at the very end. */
+	 * communication, only set at the very end.
+	 */
 	protected $proxyAccountCreation;
 	/** @var User FIXME another flag for passing data. */
 	protected $targetUser;

@@ -251,7 +251,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	const PARAM_TEMPLATE_VARS = 25;
 
-	/**@}*/
+	/** @} */
 
 	const ALL_DEFAULT_STRING = '*';
 
@@ -506,7 +506,7 @@ abstract class ApiBase extends ContextSource {
 		return null;
 	}
 
-	/**@}*/
+	/** @} */
 
 	/************************************************************************//**
 	 * @name   Data access methods
@@ -711,7 +711,7 @@ abstract class ApiBase extends ContextSource {
 		return MediaWikiServices::getInstance()->getPermissionManager();
 	}
 
-	/**@}*/
+	/** @} */
 
 	/************************************************************************//**
 	 * @name   Parameter handling
@@ -1729,7 +1729,7 @@ abstract class ApiBase extends ContextSource {
 		);
 	}
 
-	/**@}*/
+	/** @} */
 
 	/************************************************************************//**
 	 * @name   Utility methods
@@ -1904,7 +1904,7 @@ abstract class ApiBase extends ContextSource {
 		} );
 	}
 
-	/**@}*/
+	/** @} */
 
 	/************************************************************************//**
 	 * @name   Warning and error reporting
@@ -2249,7 +2249,7 @@ abstract class ApiBase extends ContextSource {
 		wfDebugLog( 'api-feature-usage', $s, 'private', $ctx );
 	}
 
-	/**@}*/
+	/** @} */
 
 	/************************************************************************//**
 	 * @name   Help message generation
@@ -2629,7 +2629,7 @@ abstract class ApiBase extends ContextSource {
 	public function modifyHelp( array &$help, array $options, array &$tocData ) {
 	}
 
-	/**@}*/
+	/** @} */
 }
 
 /**

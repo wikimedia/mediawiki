@@ -58,7 +58,8 @@ class LogPage {
 	private $type;
 
 	/** @var string One of '', 'block', 'protect', 'rights', 'delete',
-	 *   'upload', 'move', 'move_redir' */
+	 *   'upload', 'move', 'move_redir'
+	 */
 	private $action;
 
 	/** @var string Comment associated with action */

@@ -54,7 +54,8 @@ class OutputPage extends ContextSource {
 	protected $mCanonicalUrl = false;
 
 	/**
-	 * @var string The contents of <h1> */
+	 * @var string The contents of <h1>
+	 */
 	private $mPageTitle = '';
 
 	/**

@@ -97,7 +97,7 @@ class RevisionStoreCacheRecord extends RevisionStoreRecord {
 
 	/**
 	 * Load a fresh row from the database to ensure we return updated information
-
+	 *
 	 * @throws RevisionAccessException if the row could not be loaded
 	 */
 	private function loadFreshRow() {

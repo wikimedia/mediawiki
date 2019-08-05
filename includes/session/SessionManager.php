@@ -939,6 +939,6 @@ final class SessionManager implements SessionManagerInterface {
 		self::$globalSessionRequest = null;
 	}
 
-	/**@}*/
+	/** @} */
 
 }

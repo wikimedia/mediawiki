@@ -707,7 +707,8 @@ class ChangesList extends ContextSource {
 		) {
 			$title = $rc->getTitle();
 			/** Check for rollback permissions, disallow special pages, and only
-			 * show a link on the top-most revision */
+			 * show a link on the top-most revision
+			 */
 			if ( $title->quickUserCan( 'rollback', $this->getUser() ) ) {
 				$rev = new Revision( [
 					'title' => $title,

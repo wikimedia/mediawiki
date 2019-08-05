@@ -4,7 +4,7 @@ use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Tests for CategoryChangesAsRdf recent changes exporter.
- *  @covers CategoryChangesAsRdf
+ * @covers CategoryChangesAsRdf
  */
 class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 

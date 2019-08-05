@@ -55,7 +55,7 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Parser
  */
 class MagicWord {
-	/**#@-*/
+	/** #@- */
 
 	/** @var string */
 	public $mId;
@@ -93,7 +93,7 @@ class MagicWord {
 	/** @var Language */
 	private $contLang;
 
-	/**#@-*/
+	/** #@- */
 
 	/**
 	 * Create a new MagicWord object

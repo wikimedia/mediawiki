@@ -45,7 +45,8 @@ class FileRepo {
 	const NAME_AND_TIME_ONLY = 1;
 
 	/** @var bool Whether to fetch commons image description pages and display
-	 *    them on the local wiki */
+	 *    them on the local wiki
+	 */
 	public $fetchDescription;
 
 	/** @var int */
@@ -67,7 +68,8 @@ class FileRepo {
 	protected $thumbScriptUrl;
 
 	/** @var bool Whether to skip media file transformation on parse and rely
-	 *    on a 404 handler instead. */
+	 *    on a 404 handler instead.
+	 */
 	protected $transformVia404;
 
 	/** @var string URL of image description pages, e.g.

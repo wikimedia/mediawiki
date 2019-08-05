@@ -18,7 +18,7 @@
  * @file
  */
 
-/**@{
+/** @{
  * Media types.
  * This defines constants for the value returned by File::getMediaType()
  */
@@ -45,4 +45,4 @@ define( 'MEDIATYPE_EXECUTABLE', 'EXECUTABLE' );
 define( 'MEDIATYPE_ARCHIVE', 'ARCHIVE' );
 // 3D file types (stl)
 define( 'MEDIATYPE_3D', '3D' );
-/**@}*/
+/** @} */

@@ -82,7 +82,7 @@ abstract class RevisionRecord {
 	/** @var CommentStoreComment|null */
 	protected $mComment;
 
-	/**  @var Title */
+	/** @var Title */
 	protected $mTitle; // TODO: we only need the title for permission checks!
 
 	/** @var RevisionSlots */
