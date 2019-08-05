@@ -25,7 +25,8 @@
 			"LR Guanzon",
 			"Fitoschido",
 			"Vlad5250",
-			"Shirayuki"
+			"Shirayuki",
+			"Brazal.dang"
 		]
 	},
 	"tog-underline": "Pagsasalungguhit ng kawing:",
@@ -180,6 +181,7 @@
 	"returnto": "Bumalik sa $1.",
 	"tagline": "Mula sa {{SITENAME}}",
 	"help": "Tulong",
+	"help-mediawiki": "Tulong patungkol sa MediaWiki",
 	"search": "Paghahanap",
 	"search-ignored-headings": " #<!-- leave this line exactly as it is --> <pre>\n# Headings that will be ignored by search.\n# Changes to this take effect as soon as the page with the heading is indexed.\n# You can force page reindexing by doing a null edit.\n# The syntax is as follows:\n#   * Everything from a \"#\" character to the end of the line is a comment.\n#   * Every non-blank line is the exact title to ignore, case and everything.\nMga sanggunian\nMga panlabas na kawing\nMakita rin\n #</pre> <!-- leave this line exactly as it is -->",
 	"searchbutton": "Maghanap",
@@ -346,6 +348,7 @@
 	"badarticleerror": "Hindi maisasagawa ang gawaing ito sa pahinang ito.",
 	"cannotdelete": "Hindi mabura ang pahina o talaksang \"$1\".\nMaaaring ibinura na ito ng iba.",
 	"cannotdelete-title": "Hindi maibura ang pahinang \"$1\"",
+	"delete-scheduled": "Ang pahinang \"$1\" ay nakatakda nang tanggalin.\nMaging mapagpasensiya.",
 	"delete-hook-aborted": "Pinigil ng sungkit ang pagbura.\nWalang ibinigay na paliwanag.",
 	"no-null-revision": "Hindi makalikha ng bagong \"null\" para sa pahina na \"$1\"",
 	"badtitle": "Hindi kanais-nais na pamagat",
@@ -375,7 +378,9 @@
 	"cascadeprotected": "Nakasanggalang ang pahinang ito mula sa mga pagbabago, dahil kabilang ito sa sumusunod na {{PLURAL:$1|pahinang|mga pahinang}} nakasanggalang sa pamamagitan ng binuhay na opsyong \"nahuhulog\" (kumakaskada):\n$2",
 	"namespaceprotected": "Wala kang pahintulot na magbago ng mga pahinang nasa ngalan-espasyong '''$1'''.",
 	"customcssprotected": "Wala kang pahintulot na baguhin ang pahina ng CSS na ito, dahil naglalaman ito ng mga katakdaang pansarili ng ibang tagagamit.",
+	"customjsonprotected": "Wala kang pahintulot na baguhin ang pahina ng JSON na ito, dahil naglalaman ito ng mga katakdaang pansarili ng ibang tagagamit.",
 	"customjsprotected": "Wala kang pahintulot na baguhin ang pahina ng JavaScript na ito, dahil naglalaman ito ng mga katakdaang pansarili ng ibang tagagamit.",
+	"sitecssprotected": "Wala kang pahintulot na baguhin an CSS na pahina na to dahil maaaring makaapekto sa ibang bisita.",
 	"mycustomcssprotected": "Wala kang pahintulot na baguhin itong pahinang CSS.",
 	"mycustomjsprotected": "Wala kang pahintulot na baguhin itong pahinang JavaScript.",
 	"myprivateinfoprotected": "Wala kang pahintulot na baguhin ang iyong pribadong impormasyon.",
@@ -1128,6 +1133,7 @@
 	"rcfilters-savedqueries-cancel-label": "Balewalain",
 	"rcfilters-restore-default-filters": "Ibalik ang mga napagkaukulang 'filters'",
 	"rcfilters-clear-all-filters": "Burahin lahat ng mga 'filters'",
+	"rcfilters-search-placeholder-mobile": "Pansala",
 	"rcfilters-empty-filter": "Walang aktibong panangga. Lahat ay ipinamalas.",
 	"rcfilters-view-tags": "Mga minarkahang pagbabago",
 	"rcnotefrom": "Nasa ibaba ang {{PLURAL:$5|pagbabago|mga pagbabago}} mula noong <strong>$3, $4</strong> (ipinapakita hanggang <strong>$1</strong>).",
@@ -2701,5 +2707,6 @@
 	"randomrootpage": "Alin mang pinag-ugatang/pinagmulang pahina",
 	"authprovider-resetpass-skip-label": "Laktawan",
 	"edit-error-long": "Mga kamalian:",
+	"mute-preferences": "Tanggalin ang mga nais",
 	"gotointerwiki-invalid": "Di-wasto ang tinukoy na pamagat."
 }

@@ -2354,6 +2354,7 @@
 	"changecontentmodel": "Ŝanĝi la enhavomodelon de paĝo",
 	"changecontentmodel-legend": "Ŝanĝi la enhavomodelon",
 	"changecontentmodel-title-label": "Titolo de paĝo",
+	"changecontentmodel-current-label": "Aktuala enhavmodelo:",
 	"changecontentmodel-model-label": "Nova enhavomodelo",
 	"changecontentmodel-reason-label": "Kialo:",
 	"changecontentmodel-submit": "Ŝanĝi",
