@@ -122,9 +122,12 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 
 			$title = Title::makeTitle( $row->namespace, $row->title );
 			if ( is_null( $resultPageSet ) ) {
-				$data = [ 'value' => $row->value ];
-				if ( $qp->usesTimestamps() ) {
-					$data['timestamp'] = wfTimestamp( TS_ISO_8601, $row->value );
+				$data = [];
+				if ( isset( $row->value ) ) {
+					$data['value'] = $row->value;
+					if ( $qp->usesTimestamps() ) {
+						$data['timestamp'] = wfTimestamp( TS_ISO_8601, $row->value );
+					}
 				}
 				self::addTitleInfo( $data, $title );
 

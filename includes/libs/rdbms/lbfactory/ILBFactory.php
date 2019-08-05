@@ -31,9 +31,12 @@ use InvalidArgumentException;
  * @since 1.28
  */
 interface ILBFactory {
+	/** @var int Don't save DB positions at all */
 	const SHUTDOWN_NO_CHRONPROT = 0; // don't save DB positions at all
-	const SHUTDOWN_CHRONPROT_ASYNC = 1; // save DB positions, but don't wait on remote DCs
-	const SHUTDOWN_CHRONPROT_SYNC = 2; // save DB positions, waiting on all DCs
+	/** @var int Save DB positions, but don't wait on remote DCs */
+	const SHUTDOWN_CHRONPROT_ASYNC = 1;
+	/** @var int Save DB positions, waiting on all DCs */
+	const SHUTDOWN_CHRONPROT_SYNC = 2;
 
 	/**
 	 * Construct a manager of ILoadBalancer objects
@@ -140,6 +143,8 @@ interface ILBFactory {
 	/**
 	 * Get cached (tracked) load balancers for all main database clusters
 	 *
+	 * The default cluster name is ILoadBalancer::CLUSTER_MAIN_DEFAULT
+	 *
 	 * @return ILoadBalancer[] Map of (cluster name => ILoadBalancer)
 	 * @since 1.29
 	 */
@@ -154,7 +159,8 @@ interface ILBFactory {
 	public function getAllExternalLBs();
 
 	/**
-	 * Execute a function for each tracked load balancer
+	 * Execute a function for each currently tracked (instantiated) load balancer
+	 *
 	 * The callback is called with the load balancer as the first parameter,
 	 * and $params passed as the subsequent parameters.
 	 *
@@ -164,7 +170,8 @@ interface ILBFactory {
 	public function forEachLB( $callback, array $params = [] );
 
 	/**
-	 * Prepare all tracked load balancers for shutdown
+	 * Prepare all currently tracked (instantiated) load balancers for shutdown
+	 *
 	 * @param int $mode One of the class SHUTDOWN_* constants
 	 * @param callable|null $workCallback Work to mask ChronologyProtector writes
 	 * @param int|null &$cpIndex Position key write counter for ChronologyProtector

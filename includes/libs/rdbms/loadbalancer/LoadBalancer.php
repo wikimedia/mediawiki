@@ -177,11 +177,10 @@ class LoadBalancer implements ILoadBalancer {
 				$server['replica'] = true;
 			}
 			$this->servers[$i] = $server;
-			$serverGroupLoads = [ self::GROUP_GENERIC => $server['load'] ];
-			$serverGroupLoads += ( $server['groupLoads'] ?? [] );
-			foreach ( $serverGroupLoads as $group => $ratio ) {
+			foreach ( ( $server['groupLoads'] ?? [] ) as $group => $ratio ) {
 				$this->groupLoads[$group][$i] = $ratio;
 			}
+			$this->groupLoads[self::GROUP_GENERIC][$i] = $server['load'];
 		}
 
 		$localDomain = isset( $params['localDomain'] )
