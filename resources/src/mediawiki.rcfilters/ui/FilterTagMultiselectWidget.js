@@ -384,6 +384,9 @@ FilterTagMultiselectWidget.prototype.onSavedQueriesItemUpdate = function ( item 
  * @param {boolean} isVisible Menu is visible
  */
 FilterTagMultiselectWidget.prototype.onMenuToggle = function ( isVisible ) {
+
+	var scrollToElement = this.isMobile ? this.input.$input : this.$element;
+
 	// Parent
 	FilterTagMultiselectWidget.parent.prototype.onMenuToggle.call( this );
 
@@ -404,6 +407,13 @@ FilterTagMultiselectWidget.prototype.onMenuToggle = function ( isVisible ) {
 				}.bind( this )
 			);
 		}
+
+		// Only scroll to top of the viewport if:
+		// - The widget is more than 20px from the top
+		// - The widget is not above the top of the viewport (do not scroll downwards)
+		//   (This isn't represented because >20 is, anyways and always, bigger than 0)
+		this.scrollToTop( scrollToElement, 0, { min: 20, max: Infinity } );
+
 	} else {
 		// Clear selection
 		this.selectTag( null );
@@ -428,7 +438,6 @@ FilterTagMultiselectWidget.prototype.onMenuToggle = function ( isVisible ) {
  * @inheritdoc
  */
 FilterTagMultiselectWidget.prototype.onInputFocus = function () {
-	var scrollToElement = this.isMobile ? this.input.$input : this.$element;
 
 	// treat the input as a menu toggle rather than a text field on mobile
 	if ( this.isMobile ) {
@@ -438,12 +447,6 @@ FilterTagMultiselectWidget.prototype.onInputFocus = function () {
 		// Parent
 		FilterTagMultiselectWidget.parent.prototype.onInputFocus.call( this );
 	}
-
-	// Only scroll to top of the viewport if:
-	// - The widget is more than 20px from the top
-	// - The widget is not above the top of the viewport (do not scroll downwards)
-	//   (This isn't represented because >20 is, anyways and always, bigger than 0)
-	this.scrollToTop( scrollToElement, 0, { min: 20, max: Infinity } );
 };
 
 /**
