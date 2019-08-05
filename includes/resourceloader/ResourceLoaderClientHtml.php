@@ -235,7 +235,7 @@ class ResourceLoaderClientHtml {
 		// Change "client-nojs" class to client-js. This allows easy toggling of UI components.
 		// This must happen synchronously on every page view to avoid flashes of wrong content.
 		// See also #getDocumentAttributes() and /resources/src/startup.js.
-		$script = <<<JAVASCRIPT
+		$script = <<<'JAVASCRIPT'
 document.documentElement.className = document.documentElement.className
 	.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );
 JAVASCRIPT;
@@ -265,14 +265,11 @@ RLPAGEMODULES = {$pageModulesJson};
 JAVASCRIPT;
 		}
 
-		if ( $this->context->getDebug() ) {
-			$chunks[] = Html::inlineScript( $script, $nonce );
-		} else {
-			$chunks[] = Html::inlineScript(
-				ResourceLoader::filter( 'minify-js', $script, [ 'cache' => false ] ),
-				$nonce
-			);
+		if ( !$this->context->getDebug() ) {
+			$script = ResourceLoader::filter( 'minify-js', $script, [ 'cache' => false ] );
 		}
+
+		$chunks[] = Html::inlineScript( $script, $nonce );
 
 		// Inline RLQ: Embedded modules
 		if ( $data['embed']['general'] ) {
