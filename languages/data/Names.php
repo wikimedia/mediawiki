@@ -110,7 +110,9 @@ class Names {
 		'bxr' => 'буряад', # Buryat (Russia)
 		'ca' => 'català', # Catalan
 		'cbk-zam' => 'Chavacano de Zamboanga', # Zamboanga Chavacano
-		'cdo' => 'Mìng-dĕ̤ng-ngṳ̄', # Min Dong
+		'cdo' => '閩東語/Mìng-dĕ̤ng-ngṳ̄', # Min Dong
+		'cdo-latn' => 'Mìng-dĕ̤ng-ngṳ̄ Bàng-uâ-cê', # Min Dong - Foochow Romanized
+		'cdo-hani' => '閩東語漢字', # Min Dong - Chinese characters
 		'ce' => 'нохчийн', # Chechen
 		'ceb' => 'Cebuano', # Cebuano
 		'ch' => 'Chamoru', # Chamorro
