@@ -430,15 +430,6 @@
 		config: new Map( $VARS.wgLegacyJavaScriptGlobals ),
 
 		/**
-		 * Empty object for third-party libraries, for cases where you don't
-		 * want to add a new global, or the global is bad and needs containment
-		 * or wrapping.
-		 *
-		 * @property
-		 */
-		libs: {},
-
-		/**
 		 * Store for messages.
 		 *
 		 * @property {mw.Map}
@@ -2472,10 +2463,7 @@
 			 * @property {mw.Map}
 			 */
 			tokens: new Map()
-		},
-
-		// OOUI widgets specific to MediaWiki
-		widgets: {}
+		}
 
 	};
 
