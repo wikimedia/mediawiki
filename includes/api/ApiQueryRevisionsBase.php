@@ -43,7 +43,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	const IS_DELETED = 1; // Whether the field is revision-deleted
 	const CANNOT_VIEW = 2; // Whether the user cannot view the field due to revdel
 
-	/**@}*/
+	/** @} */
 
 	protected $limit, $diffto, $difftotext, $difftotextpst, $expandTemplates, $generateXML,
 		$section, $parseContent, $fetchContent, $contentFormat, $setParsedLimit = true,

@@ -514,7 +514,7 @@ class ApiResult implements ApiSerializable {
 			self::OVERRIDE | self::NO_SIZE_CHECK );
 	}
 
-	/**@}*/
+	/** @} */
 
 	/************************************************************************//**
 	 * @name   Metadata
@@ -777,7 +777,7 @@ class ApiResult implements ApiSerializable {
 		self::setArrayTypeRecursive( $arr, $tag, $kvpKeyName );
 	}
 
-	/**@}*/
+	/** @} */
 
 	/************************************************************************//**
 	 * @name   Utility
@@ -1217,7 +1217,7 @@ class ApiResult implements ApiSerializable {
 		}
 	}
 
-	/**@}*/
+	/** @} */
 
 }
 

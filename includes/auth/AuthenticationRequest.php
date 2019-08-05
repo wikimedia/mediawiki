@@ -47,7 +47,8 @@ abstract class AuthenticationRequest {
 
 	/** Indicates that the request is required by a primary authentication
 	 * provider. Since the user can choose which primary to authenticate with,
-	 * the request might or might not end up being actually required. */
+	 * the request might or might not end up being actually required.
+	 */
 	const PRIMARY_REQUIRED = 2;
 
 	/** @var string|null The AuthManager::ACTION_* constant this request was
@@ -57,14 +58,16 @@ abstract class AuthenticationRequest {
 	public $action = null;
 
 	/** @var int For login, continue, and link actions, one of self::OPTIONAL,
-	 * self::REQUIRED, or self::PRIMARY_REQUIRED */
+	 * self::REQUIRED, or self::PRIMARY_REQUIRED
+	 */
 	public $required = self::REQUIRED;
 
 	/** @var string|null Return-to URL, in case of redirect */
 	public $returnToUrl = null;
 
 	/** @var string|null Username. See AuthenticationProvider::getAuthenticationRequests()
-	 * for details of what this means and how it behaves. */
+	 * for details of what this means and how it behaves.
+	 */
 	public $username = null;
 
 	/**

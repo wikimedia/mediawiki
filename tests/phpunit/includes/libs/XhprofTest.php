@@ -55,7 +55,7 @@ class XhprofTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * Data provider for testCallAny().
-	*/
+	 */
 	public function provideCallAny() {
 		return [
 			[

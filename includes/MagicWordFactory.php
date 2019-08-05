@@ -32,7 +32,7 @@
  * @ingroup Parser
  */
 class MagicWordFactory {
-	/**#@-*/
+	/** #@- */
 
 	/** @var bool */
 	private $mVariableIDsInitialised = false;
@@ -196,7 +196,7 @@ class MagicWordFactory {
 	/** @var Language */
 	private $contLang;
 
-	/**#@-*/
+	/** #@- */
 
 	/**
 	 * @param Language $contLang Content language

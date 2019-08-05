@@ -3,7 +3,7 @@
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IDatabase;
 
-/**@{
+/** @{
  * Database related constants
  */
 define( 'DBO_DEBUG', IDatabase::DBO_DEBUG );
@@ -16,12 +16,12 @@ define( 'DBO_SYSDBA', IDatabase::DBO_SYSDBA );
 define( 'DBO_DDLMODE', IDatabase::DBO_DDLMODE );
 define( 'DBO_SSL', IDatabase::DBO_SSL );
 define( 'DBO_COMPRESS', IDatabase::DBO_COMPRESS );
-/**@}*/
+/** @} */
 
-/**@{
+/** @{
  * Valid database indexes
  * Operation-based indexes
  */
 define( 'DB_REPLICA', ILoadBalancer::DB_REPLICA );
 define( 'DB_MASTER', ILoadBalancer::DB_MASTER );
-/**@}*/
+/** @} */

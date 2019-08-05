@@ -198,7 +198,7 @@ class DifferenceEngine extends ContextSource {
 	 */
 	protected $isSlotDiffRenderer = false;
 
-	/**#@-*/
+	/** #@- */
 
 	/**
 	 * @param IContextSource|null $context Context to use, anything else will be ignored

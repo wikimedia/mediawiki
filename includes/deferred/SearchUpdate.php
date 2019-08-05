@@ -40,7 +40,7 @@ class SearchUpdate implements DeferrableUpdate {
 	/** @var Content|null Content of the page (not text) */
 	private $content;
 
-	/** @var WikiPage **/
+	/** @var WikiPage */
 	private $page;
 
 	/**

@@ -58,7 +58,7 @@ class CategoryFinder {
 	/** @var array Array of article/category IDs */
 	protected $next = [];
 
-	/** @var int Max layer depth **/
+	/** @var int Max layer depth */
 	protected $maxdepth = -1;
 
 	/** @var array Array of DBKEY category names */

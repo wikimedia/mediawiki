@@ -44,7 +44,8 @@ class FormOptions implements ArrayAccess {
 	/** Integer type, maps guessType() to WebRequest::getInt() */
 	const INT = 1;
 	/** Float type, maps guessType() to WebRequest::getFloat()
-	 * @since 1.23 */
+	 * @since 1.23
+	 */
 	const FLOAT = 4;
 	/** Boolean type, maps guessType() to WebRequest::getBool() */
 	const BOOL = 2;
@@ -53,7 +54,8 @@ class FormOptions implements ArrayAccess {
 	 */
 	const INTNULL = 3;
 	/** Array type, maps guessType() to WebRequest::getArray()
-	 * @since 1.29 */
+	 * @since 1.29
+	 */
 	const ARR = 5;
 	/* @} */
 

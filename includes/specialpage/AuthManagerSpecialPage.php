@@ -13,7 +13,8 @@ use MediaWiki\Session\Token;
  */
 abstract class AuthManagerSpecialPage extends SpecialPage {
 	/** @var string[] The list of actions this special page deals with. Subclasses should override
-	 * this. */
+	 * this.
+	 */
 	protected static $allowedActions = [
 		AuthManager::ACTION_LOGIN, AuthManager::ACTION_LOGIN_CONTINUE,
 		AuthManager::ACTION_CREATE, AuthManager::ACTION_CREATE_CONTINUE,
