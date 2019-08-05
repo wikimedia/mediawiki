@@ -1206,6 +1206,7 @@
 	"rcfilters-clear-all-filters": "Noņemt visus filtrus",
 	"rcfilters-show-new-changes": "Skatīt jaunās izmaiņas kopš $1",
 	"rcfilters-search-placeholder": "Filtrēt pēdējās izmaiņas (pārlūko vai sāc rakstīt)",
+	"rcfilters-search-placeholder-mobile": "Filtri",
 	"rcfilters-invalid-filter": "Nederīgs filtrs",
 	"rcfilters-empty-filter": "Nav aktīvu filtru. Tiek rādītas visas izmaiņas.",
 	"rcfilters-filterlist-title": "Filtri",

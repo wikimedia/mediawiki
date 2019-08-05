@@ -25,7 +25,8 @@
 			"Sagsag",
 			"Bodhisattwa",
 			"Vlad5250",
-			"ৰাজীৱ গোস্বামী"
+			"ৰাজীৱ গোস্বামী",
+			"আফতাবুজ্জামান"
 		]
 	},
 	"tog-underline": "সংযোগসমূহ অধোৰেখিত কৰক:",
@@ -1761,7 +1762,7 @@
 	"enotif_body_intro_changed": "{{SITENAME}}ৰ পৃষ্ঠা $1, $PAGEEDITDATE তাৰিখে {{gender:$2|$2}}ৰ দ্বাৰা সলনি কৰা হৈছিল, বৰ্তমানৰ সংস্কৰণৰ বাবে $3 চাওক।",
 	"enotif_lastvisited": "আপোনাৰ শেষ পৰিদৰ্শনৰ পিছত হোৱা সকলো সালসলনিৰ বাবে $1 চাওক ।",
 	"enotif_lastdiff": "এই পৰিৱৰ্তনটো চাবৰ বাবে $1 চাওক ।",
-	"enotif_anon_editor": "বেনামী সদস্য $1",
+	"enotif_anon_editor": "নামহীন ব্যবহারকারী $1",
 	"enotif_body": "প্ৰিয় $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nসম্পাদকৰ সাৰাংশ: $PAGESUMMARY $PAGEMINOREDIT\n\nসম্পাদকজনক যোগাযোগ কৰক:\nমেইল: $PAGEEDITOR_EMAIL\nৱিকি: $PAGEEDITOR_WIKI\n\nআপুনি এই পৃষ্ঠাটো প্ৰৱেশ কৰি নোচোৱালৈকে আন সালসলনিৰ কোনো জাননী দিয়া নহ’ব। আপুনি আপোনাৰ লক্ষ্য-তালিকাৰ পৃষ্ঠাবোৰৰ জাননী ফ্লেগ পূৰ্বৰ অৱস্থালৈও ঘূৰাই নিব পাৰে ।\n\nআপোনাৰ {{SITENAME}} জাননী ব্যৱস্থা\n\n--\nআপোনাৰ ই-মেইল জাননী ছেটিং সলনি কৰিবলৈ চাওক\n{{canonicalurl:{{#special:Preferences}}}}\n\nআপোনাৰ লক্ষ্য-তালিকাৰ ছেটিং সলনি কৰিবলৈ চাওক\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nআপোনাৰ লক্ষ্য-তালিকাৰ পৰা পৃষ্ঠা বিলোপ কৰিবলৈ চাওক\n$UNWATCHURL\n\nপ্ৰতিক্ৰিয়া আৰু অধিক সহযোগিতাৰ বাবে:\n$HELPPAGE",
 	"created": "সৃষ্টি কৰা হ’ল",
 	"changed": "সলোৱা হৈছে",

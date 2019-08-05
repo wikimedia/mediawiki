@@ -1473,6 +1473,7 @@
 	"rcfilters-clear-all-filters": "필터 모두 지우기",
 	"rcfilters-show-new-changes": "$1 이후 새 변경사항 보기",
 	"rcfilters-search-placeholder": "필터 변경(메뉴를 사용하거나 필터 이름을 검색하세요)",
+	"rcfilters-search-placeholder-mobile": "필터",
 	"rcfilters-invalid-filter": "유효하지 않은 필터",
 	"rcfilters-empty-filter": "활성화된 필터가 없습니다. 모든 기여가 표시됩니다.",
 	"rcfilters-filterlist-title": "필터",

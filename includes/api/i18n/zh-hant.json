@@ -920,7 +920,7 @@
 	"apihelp-query+languageinfo-paramvalue-prop-bcp47": "BCP-47 語言代碼。",
 	"apihelp-query+languageinfo-paramvalue-prop-dir": "語言的書寫方向（<code>ltr</code> 或 <code>rtl</code>）。",
 	"apihelp-query+languageinfo-paramvalue-prop-autonym": "語言的本語稱呼，也就是該語言用自己語言本身寫出的名稱。",
-	"apihelp-query+languageinfo-paramvalue-prop-name": "在由 <var>lilang</var> 參數所指定語言裡的語言名稱，如有需要可套用語言遞補。",
+	"apihelp-query+languageinfo-paramvalue-prop-name": "在由 <var>uselang</var> 參數所指定語言裡的語言名稱，如有需要可套用語言遞補。",
 	"apihelp-query+languageinfo-paramvalue-prop-fallbacks": "替此語言設置的遞補語言之語言代碼。「en」不包括在內含的最後遞補（但一些語言可明確地指定「en」為最後遞補）。",
 	"apihelp-query+languageinfo-paramvalue-prop-variants": "由此語言所支援的變體語言代碼。",
 	"apihelp-query+languageinfo-param-code": "所應要回傳的語言該語言代碼，或是以 <code>*</code> 來表示為全部語言。",

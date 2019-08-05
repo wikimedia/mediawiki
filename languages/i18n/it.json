@@ -3871,5 +3871,5 @@
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "La password non può essere nell'elenco delle 100 000 password utilizzate più comunemente.",
 	"easydeflate-invaliddeflate": "Il contenuto fornito non è compresso correttamente",
 	"unprotected-js": "Per motivi di sicurezza, non è possibile caricare JavaScript da pagine non protette. Crea javascript solo nel namespace MediaWiki o come sottopagina Utente",
-	"userlogout-continue": "Vuoi uscire?"
+	"userlogout-continue": "Vuoi davvero uscire?"
 }

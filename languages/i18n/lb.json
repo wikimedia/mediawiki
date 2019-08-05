@@ -1311,6 +1311,7 @@
 	"rcfilters-clear-all-filters": "All Filteren eidelmaachen",
 	"rcfilters-show-new-changes": "Nei Ännerungen zanter $1 weisen",
 	"rcfilters-search-placeholder": "Ännerunge filteren (benotzt de Menü oder sicht nom Numm vum Filter)",
+	"rcfilters-search-placeholder-mobile": "Filteren",
 	"rcfilters-invalid-filter": "Net valabele Filter",
 	"rcfilters-empty-filter": "Keen aktive Filter. All Kontributioune gi gewisen.",
 	"rcfilters-filterlist-title": "Filteren",
