@@ -44,6 +44,9 @@
 		}
 
 		&.oo-ui-tagMultiselectWidget-outlined {
+			// per T177206#4271707 we avoid keeping the collapsed element to take the whole width of the screen
+			// we are providing enough cues (keeping the labels) for it to be clear that the panel gets compacted
+			// to the left and the user not to feel lost with the transition.
 			width: unset;
 			max-width: 100%;
 		}
