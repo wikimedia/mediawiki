@@ -15,6 +15,7 @@
 		"resources/src/jquery/jquery.color.js",
 		"resources/src/jquery/jquery.highlightText.js",
 		"resources/src/jquery/jquery.mw-jump.js",
+		"resources/src/mediawiki.base/legacy.wikibits.js",
 		"resources/src/mediawiki.legacy",
 		"resources/src/mediawiki.libs.jpegmeta/jpegmeta.js",
 		"resources/src/mediawiki.skinning",
