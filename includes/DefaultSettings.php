@@ -1563,7 +1563,7 @@ $wgUseTinyRGBForJPGThumbnails = false;
  *   - captionLength:  Length to truncate filename to in caption when using "showfilename".
  *                     A value of 'true' will truncate the filename to one line using CSS
  *                     and will be the behaviour after deprecation.
- * @deprecated since 1.28
+ *                     @deprecated since 1.28
  *   - showBytes:      Show the filesize in bytes in categories
  *   - showDimensions: Show the dimensions (width x height) in categories
  *   - mode:           Gallery mode
