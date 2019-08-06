@@ -236,7 +236,6 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param int $dbIndex DB_MASTER or DB_REPLICA
 	 *
 	 * @return IDatabase
-	 * @throws MWException
 	 */
 	private function getConnectionRef( $dbIndex ) {
 		return $this->loadBalancer->getConnectionRef( $dbIndex, [ 'watchlist' ] );
@@ -385,7 +384,6 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param UserIdentity $user
 	 * @param LinkTarget[] $titles
 	 * @return bool
-	 * @throws MWException
 	 */
 	public function removeWatchBatchForUser( UserIdentity $user, array $titles ) {
 		if ( $this->readOnlyMode->isReadOnly() ) {
@@ -718,7 +716,6 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @since 1.27
 	 * @param UserIdentity $user
 	 * @param LinkTarget $target
-	 * @throws MWException
 	 */
 	public function addWatch( UserIdentity $user, LinkTarget $target ) {
 		$this->addWatchBatchForUser( $user, [ $target ] );
@@ -729,7 +726,6 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param UserIdentity $user
 	 * @param LinkTarget[] $targets
 	 * @return bool
-	 * @throws MWException
 	 */
 	public function addWatchBatchForUser( UserIdentity $user, array $targets ) {
 		if ( $this->readOnlyMode->isReadOnly() ) {
@@ -790,7 +786,6 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param UserIdentity $user
 	 * @param LinkTarget $target
 	 * @return bool
-	 * @throws MWException
 	 */
 	public function removeWatch( UserIdentity $user, LinkTarget $target ) {
 		return $this->removeWatchBatchForUser( $user, [ $target ] );
@@ -1035,18 +1030,18 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 				if ( $seenTime > $value->get( $subKey ) ) {
 					// Revision is newer than the last one seen
 					$value->set( $subKey, $seenTime );
-					$this->latestUpdateCache->set( $key, $value, IExpiringStore::TTL_PROC_LONG );
+					$this->latestUpdateCache->set( $key, $value, BagOStuff::TTL_PROC_LONG );
 				} elseif ( $seenTime === false ) {
 					// Revision does not exist
 					$value->set( $subKey, wfTimestamp( TS_MW ) );
-					$this->latestUpdateCache->set( $key, $value, IExpiringStore::TTL_PROC_LONG );
+					$this->latestUpdateCache->set( $key, $value, BagOStuff::TTL_PROC_LONG );
 				} else {
 					return false; // nothing to update
 				}
 
 				return $value;
 			},
-			IExpiringStore::TTL_HOUR
+			BagOStuff::TTL_HOUR
 		);
 
 		// If the page is watched by the user (or may be watched), update the timestamp
@@ -1076,7 +1071,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 		return $this->latestUpdateCache->getWithSetCallback(
 			$key,
-			IExpiringStore::TTL_PROC_LONG,
+			BagOStuff::TTL_PROC_LONG,
 			function () use ( $key ) {
 				return $this->stash->get( $key ) ?: null;
 			}
