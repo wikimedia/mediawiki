@@ -31,13 +31,20 @@ use MediaWiki\MediaWikiServices;
  * @ingroup SpecialPage
  */
 class SpecialVersion extends SpecialPage {
+
+	/**
+	 * @var bool
+	 */
 	protected $firstExtOpened = false;
 
 	/**
-	 * Stores the current rev id/SHA hash of MediaWiki core
+	 * @var string The current rev id/SHA hash of MediaWiki core
 	 */
 	protected $coreId = '';
 
+	/**
+	 * @var string[]|false Lazy initialized key/value with message content
+	 */
 	protected static $extensionTypes = false;
 
 	public function __construct() {
@@ -379,7 +386,7 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @since 1.17
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public static function getExtensionTypes() {
 		if ( self::$extensionTypes === false ) {
