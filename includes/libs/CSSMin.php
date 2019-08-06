@@ -29,7 +29,7 @@
  */
 class CSSMin {
 
-	/** @var string Strip marker for comments. **/
+	/** @var string Strip marker for comments. */
 	const PLACEHOLDER = "\x7fPLACEHOLDER\x7f";
 
 	/**

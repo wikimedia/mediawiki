@@ -34,7 +34,8 @@ use MediaWiki\MediaWikiServices;
  */
 class SpecialBlock extends FormSpecialPage {
 	/** @var User|string|null User to be blocked, as passed either by parameter (url?wpTarget=Foo)
-	 * or as subpage (Special:Block/Foo) */
+	 * or as subpage (Special:Block/Foo)
+	 */
 	protected $target;
 
 	/** @var int DatabaseBlock::TYPE_ constant */

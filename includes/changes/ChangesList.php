@@ -451,9 +451,9 @@ class ChangesList extends ContextSource {
 	public function insertLog( &$s, $title, $logtype ) {
 		$page = new LogPage( $logtype );
 		$logname = $page->getName()->setContext( $this->getContext() )->text();
-		$s .= $this->msg( 'parentheses' )->rawParams(
-			$this->linkRenderer->makeKnownLink( $title, $logname )
-		)->escaped();
+		$s .= Html::rawElement( 'span', [
+			'class' => 'mw-changeslist-links'
+		], $this->linkRenderer->makeKnownLink( $title, $logname ) );
 	}
 
 	/**
@@ -605,7 +605,9 @@ class ChangesList extends ContextSource {
 		$formatter->setShowUserToolLinks( true );
 		$mark = $this->getLanguage()->getDirMark();
 
-		return $formatter->getActionText() . " $mark" . $formatter->getComment();
+		return Html::openElement( 'span', [ 'class' => 'mw-changeslist-log-entry' ] )
+			. $formatter->getActionText() . " $mark" . $formatter->getComment()
+			. Html::closeElement( 'span' );
 	}
 
 	/**
@@ -705,7 +707,8 @@ class ChangesList extends ContextSource {
 		) {
 			$title = $rc->getTitle();
 			/** Check for rollback permissions, disallow special pages, and only
-			 * show a link on the top-most revision */
+			 * show a link on the top-most revision
+			 */
 			if ( $title->quickUserCan( 'rollback', $this->getUser() ) ) {
 				$rev = new Revision( [
 					'title' => $title,

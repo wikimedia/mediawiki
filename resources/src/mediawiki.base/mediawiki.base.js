@@ -237,6 +237,18 @@
 	 */
 
 	/**
+	 * Empty object for third-party libraries, for cases where you don't
+	 * want to add a new global, or the global is bad and needs containment
+	 * or wrapping.
+	 *
+	 * @property
+	 */
+	mw.libs = {};
+
+	// OOUI widgets specific to MediaWiki
+	mw.widgets = {};
+
+	/**
 	 * @inheritdoc mw.inspect#runReports
 	 * @method
 	 */

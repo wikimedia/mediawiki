@@ -34,7 +34,7 @@
  * @deprecated since 1.34, no longer used
  */
 class MWMessagePack {
-	/** @var bool|null Whether current system is bigendian. **/
+	/** @var bool|null Whether current system is bigendian. */
 	public static $bigendian = null;
 
 	/**

@@ -3155,7 +3155,7 @@
 	"htmlform-int-toolow": "Vrijednost koju ste naveli je ispod minimuma od $1",
 	"htmlform-int-toohigh": "Vrijednost koju ste naveli je iznad maksimuma od $1",
 	"htmlform-required": "Ova je vrijednost potrebna",
-	"htmlform-submit": "Unesi",
+	"htmlform-submit": "Potvrdi",
 	"htmlform-reset": "Poništi izmjene",
 	"htmlform-selectorother-other": "Drugi",
 	"htmlform-no": "Ne",
@@ -3446,5 +3446,6 @@
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Da biste se prijavili, zaporka mora sadržavati najmanje {{PLURAL:$1|1 znak|$1 znaka|$1 znakova}}",
 	"passwordpolicies-policy-passwordcannotmatchusername": "Zaporka ne može biti ista kao i suradničko ime",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Zaporka se ne može podudarati sa zaporkama na crnoj listi",
-	"passwordpolicies-policy-maximalpasswordlength": "Zaporka mora biti kraća od {{PLURAL:$1|1 znaka|$1 znaka|$1 znakova}}"
+	"passwordpolicies-policy-maximalpasswordlength": "Zaporka mora biti kraća od {{PLURAL:$1|1 znaka|$1 znaka|$1 znakova}}",
+	"userlogout-continue": "Želite se odjaviti?"
 }

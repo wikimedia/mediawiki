@@ -333,7 +333,7 @@ class CSSMinTest extends MediaWikiTestCase {
 	 * Cases with empty url() for CSSMin::remap.
 	 *
 	 * Regression test for T191237.
-   *
+	 *
 	 * @dataProvider provideRemapEmptyUrl
 	 * @covers CSSMin
 	 */

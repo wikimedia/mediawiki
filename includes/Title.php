@@ -182,7 +182,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	private $mPageLanguage = false;
 
 	/** @var string|bool|null The page language code from the database, null if not saved in
-	 * the database or false if not loaded, yet. */
+	 * the database or false if not loaded, yet.
+	 */
 	private $mDbPageLanguage = false;
 
 	/** @var TitleValue|null A corresponding TitleValue object */

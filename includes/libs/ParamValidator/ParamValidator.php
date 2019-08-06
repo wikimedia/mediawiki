@@ -166,7 +166,7 @@ class ParamValidator {
 	 */
 	const PARAM_IGNORE_INVALID_VALUES = 'param-ignore-invalid-values';
 
-	/**@}*/
+	/** @} */
 
 	/** Magic "all values" value when PARAM_ALL is true. */
 	const ALL_DEFAULT_STRING = '*';

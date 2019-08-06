@@ -50,7 +50,7 @@ class BlockManager {
 	 *
 	 * @var array
 	 * @since 1.34
-	 * */
+	 */
 	public static $constructorOptions = [
 		'ApplyIpBlocksToXff',
 		'CookieSetOnAutoblock',

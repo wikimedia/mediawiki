@@ -78,7 +78,7 @@ abstract class ApiQueryBase extends ApiBase {
 	public function requestExtraData( $pageSet ) {
 	}
 
-	/**@}*/
+	/** @} */
 
 	/************************************************************************//**
 	 * @name   Data access
@@ -131,7 +131,7 @@ abstract class ApiQueryBase extends ApiBase {
 		return $this->getQuery()->getPageSet();
 	}
 
-	/**@}*/
+	/** @} */
 
 	/************************************************************************//**
 	 * @name   Querying
@@ -465,7 +465,7 @@ abstract class ApiQueryBase extends ApiBase {
 		}
 	}
 
-	/**@}*/
+	/** @} */
 
 	/************************************************************************//**
 	 * @name   Utility methods
@@ -608,5 +608,5 @@ abstract class ApiQueryBase extends ApiBase {
 		);
 	}
 
-	/**@}*/
+	/** @} */
 }

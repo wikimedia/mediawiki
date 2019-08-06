@@ -389,6 +389,11 @@ because of Phabricator reports.
 * The .background-size() LESS mixin, deprecated in 1.27, has been removed.
 * ReadOnlyMode::clearCache() and ConfiguredReadOnlyMode::clearCache() have been
   removed. Use MediaWikiTestCase::overrideMwServices() instead.
+* Support for the 'aggregator' option of JobQueue (and thus $wgJobTypeConf) was
+  removed. The JobQueueAggregator interface and JobQueueAggregatorRedis class
+  have also been removed. They were experimentally developed for use by the
+  Wikimedia Foundation, but were never used, with no known use cases. (Note that
+  this does not affect JobQueueRedis which is still supported.)
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected

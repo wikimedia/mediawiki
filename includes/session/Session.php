@@ -694,6 +694,6 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 		$this->remove( $offset );
 	}
 
-	/**@}*/
+	/** @} */
 
 }

@@ -225,7 +225,7 @@ class SpecialPageFactory {
 	 *
 	 * @var array
 	 * @since 1.33
-	 * */
+	 */
 	public static $constructorOptions = [
 		'ContentHandlerUseDB',
 		'DisableInternalSearch',

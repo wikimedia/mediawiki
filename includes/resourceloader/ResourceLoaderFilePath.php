@@ -34,7 +34,8 @@ class ResourceLoaderFilePath {
 	protected $remoteBasePath;
 
 	/**
-	 * @var string Path to the file */
+	 * @var string Path to the file
+	 */
 	protected $path;
 
 	/**
