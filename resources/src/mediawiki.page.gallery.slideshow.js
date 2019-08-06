@@ -212,7 +212,7 @@
 
 		// Make the image smaller in case the current image
 		// size is larger than the original file size.
-		this.getImageInfo( this.$thumbnail ).done( function ( info ) {
+		this.getImageInfo( this.$thumbnail ).then( function ( info ) {
 			// NOTE: There will be a jump when resizing the window
 			// because the cache is cleared and this a new network request.
 			if (
@@ -299,9 +299,8 @@
 	 *  element once the image has loaded.
 	 */
 	mw.GallerySlideshow.prototype.loadImage = function ( $img ) {
-		var img, d = $.Deferred();
-
-		this.getImageInfo( $img ).done( function ( info ) {
+		return this.getImageInfo( $img ).then( function ( info ) {
+			var img, d = $.Deferred();
 			img = new Image();
 			img.src = info.thumburl;
 			img.onload = function () {
@@ -310,11 +309,8 @@
 			img.onerror = function () {
 				d.reject();
 			};
-		} ).fail( function () {
-			d.reject();
+			return d.promise();
 		} );
-
-		return d.promise();
 	};
 
 	/**
