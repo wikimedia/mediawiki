@@ -9,7 +9,7 @@ if ( $wgLogo == "$wgResourceBasePath/resources/assets/wiki.png" ){
 }
 
 if ( $wgFavicon == '/favicon.ico' ){
-	$wgFavicon = "$wgResourceBasePath/skins/BlueSpiceCalumma/resources/images/favicon.ico";
+	$wgFavicon = "$wgResourceBasePath/skins/BlueSpiceCalumma/resources/images/common/favicon.ico";
 }
 
 /*
