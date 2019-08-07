@@ -4,8 +4,12 @@ $GLOBALS['wgSkipSkins'] = [ 'chameleon' ];
 $GLOBALS['wgDefaultSkin'] = "bluespicecalumma";
 
 global $wgLogo, $wgResourceBasePath, $wgScriptPath;
-if( $wgLogo == "$wgResourceBasePath/resources/assets/wiki.png" ){
-    $wgLogo = "$wgResourceBasePath/skins/BlueSpiceCalumma/resources/images/common/logo/bs3_logo.png";
+if ( $wgLogo == "$wgResourceBasePath/resources/assets/wiki.png" ){
+	$wgLogo = "$wgResourceBasePath/skins/BlueSpiceCalumma/resources/images/common/logo/bs3_logo.png";
+}
+
+if ( $wgFavicon == '/favicon.ico' ){
+	$wgFavicon = "$wgResourceBasePath/skins/BlueSpiceCalumma/resources/images/common/favicon.ico";
 }
 
 /*
@@ -36,4 +40,3 @@ $GLOBALS['wgFooterIcons']['poweredby'] += [
 		'width' => '149'
 	]
 ];
-
