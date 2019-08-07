@@ -24,6 +24,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableAccessException;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IDatabase;
 
 class ChangeTags {
 	/**
@@ -358,7 +359,7 @@ class ChangeTags {
 			);
 		}
 
-		$prevTags = self::getPrevTags( $rc_id, $log_id, $rev_id );
+		$prevTags = self::getTags( $dbw, $rc_id, $rev_id, $log_id );
 
 		// add tags
 		$tagsToAdd = array_values( array_diff( $tagsToAdd, $prevTags ) );
@@ -452,21 +453,36 @@ class ChangeTags {
 		return [ $tagsToAdd, $tagsToRemove, $prevTags ];
 	}
 
-	private static function getPrevTags( $rc_id = null, $log_id = null, $rev_id = null ) {
+	/**
+	 * Return all the tags associated with the given recent change ID,
+	 * revision ID, and/or log entry ID.
+	 *
+	 * @param IDatabase $db the database to query
+	 * @param int|null $rc_id
+	 * @param int|null $rev_id
+	 * @param int|null $log_id
+	 * @return string[]
+	 */
+	public static function getTags( IDatabase $db, $rc_id = null, $rev_id = null, $log_id = null ) {
 		$conds = array_filter(
 			[
 				'ct_rc_id' => $rc_id,
-				'ct_log_id' => $log_id,
 				'ct_rev_id' => $rev_id,
+				'ct_log_id' => $log_id,
 			]
 		);
 
-		$dbw = wfGetDB( DB_MASTER );
-		$tagIds = $dbw->selectFieldValues( 'change_tag', 'ct_tag_id', $conds, __METHOD__ );
+		$tagIds = $db->selectFieldValues(
+			'change_tag',
+			'ct_tag_id',
+			$conds,
+			__METHOD__
+		);
 
 		$tags = [];
+		$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
 		foreach ( $tagIds as $tagId ) {
-			$tags[] = MediaWikiServices::getInstance()->getChangeTagDefStore()->getName( (int)$tagId );
+			$tags[] = $changeTagDefStore->getName( (int)$tagId );
 		}
 
 		return $tags;
