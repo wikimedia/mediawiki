@@ -2390,6 +2390,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->doSelectDomain( DatabaseDomain::newFromId( $domain ) );
 	}
 
+	/**
+	 * @param DatabaseDomain $domain
+	 * @throws DBConnectionError
+	 * @throws DBError
+	 * @since 1.32
+	 */
 	protected function doSelectDomain( DatabaseDomain $domain ) {
 		$this->currentDomain = $domain;
 	}

@@ -645,17 +645,18 @@ class LBFactoryTest extends MediaWikiTestCase {
 	 * @covers \Wikimedia\Rdbms\DatabasePostgres::selectDB
 	 * @expectedException \Wikimedia\Rdbms\DBConnectionError
 	 */
-	public function testInvalidSelectDBIndependant() {
+	public function testInvalidSelectDBIndependent() {
 		$dbname = 'unittest-domain'; // explodes if DB is selected
 		$factory = $this->newLBFactoryMulti(
 			[ 'localDomain' => ( new DatabaseDomain( $dbname, null, '' ) )->getId() ],
 			[
-				'dbname' => 'do_not_select_me' // explodes if DB is selected
+				// Explodes with SQLite and Postgres during open/USE
+				'dbname' => 'bad_dir/do_not_select_me'
 			]
 		);
 		$lb = $factory->getMainLB();
 
-		if ( !wfGetDB( DB_MASTER )->databasesAreIndependent() ) {
+		if ( !$lb->getConnection( DB_MASTER )->databasesAreIndependent() ) {
 			$this->markTestSkipped( "Not applicable per databasesAreIndependent()" );
 		}
 
@@ -666,26 +667,25 @@ class LBFactoryTest extends MediaWikiTestCase {
 	/**
 	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::selectDB
 	 * @covers \Wikimedia\Rdbms\DatabasePostgres::selectDB
-	 * @expectedException \Wikimedia\Rdbms\DBConnectionError
+	 * @expectedException \Wikimedia\Rdbms\DBExpectedError
 	 */
-	public function testInvalidSelectDBIndependant2() {
+	public function testInvalidSelectDBIndependent2() {
 		$dbname = 'unittest-domain'; // explodes if DB is selected
 		$factory = $this->newLBFactoryMulti(
 			[ 'localDomain' => ( new DatabaseDomain( $dbname, null, '' ) )->getId() ],
 			[
-				'dbname' => 'do_not_select_me' // explodes if DB is selected
+				// Explodes with SQLite and Postgres during open/USE
+				'dbname' => 'bad_dir/do_not_select_me'
 			]
 		);
 		$lb = $factory->getMainLB();
 
-		if ( !wfGetDB( DB_MASTER )->databasesAreIndependent() ) {
+		if ( !$lb->getConnection( DB_MASTER )->databasesAreIndependent() ) {
 			$this->markTestSkipped( "Not applicable per databasesAreIndependent()" );
 		}
 
 		$db = $lb->getConnection( DB_MASTER );
-		\Wikimedia\suppressWarnings();
 		$db->selectDB( 'garbage-db' );
-		\Wikimedia\restoreWarnings();
 	}
 
 	/**
