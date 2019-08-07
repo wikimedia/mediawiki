@@ -21,8 +21,9 @@
  */
 
 /**
- * Redis-based caching module for redis server >= 2.6.12
+ * Redis-based caching module for redis server >= 2.6.12 and phpredis >= 2.2.4
  *
+ * @see https://github.com/phpredis/phpredis/blob/d310ed7c8/Changelog.md
  * @note Avoid use of Redis::MULTI transactions for twemproxy support
  *
  * @ingroup Cache
@@ -143,7 +144,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 		$e = null;
 		try {
 			// Note that redis does not return false if the key was not there
-			$result = ( $conn->delete( $key ) !== false );
+			$result = ( $conn->del( $key ) !== false );
 		} catch ( RedisException $e ) {
 			$result = false;
 			$this->handleException( $conn, $e );
@@ -269,7 +270,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 				// Avoid delete() with array to reduce CPU hogging from a single request
 				$conn->multi( Redis::PIPELINE );
 				foreach ( $batchKeys as $key ) {
-					$conn->delete( $key );
+					$conn->del( $key );
 				}
 				$batchResult = $conn->exec();
 				if ( $batchResult === false ) {
