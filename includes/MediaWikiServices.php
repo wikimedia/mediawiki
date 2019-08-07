@@ -68,6 +68,7 @@ use Wikimedia\Services\NoSuchServiceException;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MagicWordFactory;
 use MediaWiki\Storage\PageEditStash;
+use HtmlCacheUpdater;
 
 /**
  * Service locator for MediaWiki core services.
@@ -593,6 +594,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getGenderCache() {
 		return $this->getService( 'GenderCache' );
+	}
+
+	/**
+	 * @return HtmlCacheUpdater
+	 * @since 1.34
+	 */
+	public function getHtmlCacheUpdater() {
+		return $this->getService( 'HtmlCacheUpdater' );
 	}
 
 	/**

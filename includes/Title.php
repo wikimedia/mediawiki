@@ -3432,12 +3432,10 @@ class Title implements LinkTarget, IDBAccessObject {
 
 	/**
 	 * Purge all applicable CDN URLs
+	 * @deprecated 1.34 Use HtmlCacheUpdater
 	 */
 	public function purgeSquid() {
-		DeferredUpdates::addUpdate(
-			new CdnCacheUpdate( $this->getCdnUrls() ),
-			DeferredUpdates::PRESEND
-		);
+		MediaWikiServices::getInstance()->getHtmlCacheUpdater()->purge( $this->getCdnUrls() );
 	}
 
 	/**
@@ -4245,12 +4243,21 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * on the number of links. Typically called on create and delete.
 	 */
 	public function touchLinks() {
-		DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this, 'pagelinks', 'page-touch' ) );
+		$jobs = [];
+		$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
+			$this,
+			'pagelinks',
+			[ 'causeAction' => 'page-touch' ]
+		);
 		if ( $this->mNamespace == NS_CATEGORY ) {
-			DeferredUpdates::addUpdate(
-				new HTMLCacheUpdate( $this, 'categorylinks', 'category-touch' )
+			$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
+				$this,
+				'categorylinks',
+				[ 'causeAction' => 'category-touch' ]
 			);
 		}
+
+		JobQueueGroup::singleton()->lazyPush( $jobs );
 	}
 
 	/**
