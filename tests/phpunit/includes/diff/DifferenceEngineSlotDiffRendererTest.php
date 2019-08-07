@@ -3,7 +3,7 @@
 /**
  * @covers DifferenceEngineSlotDiffRenderer
  */
-class DifferenceEngineSlotDiffRendererTest extends \MediaWikiUnitTestCase {
+class DifferenceEngineSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetDiff() {
 		$differenceEngine = new CustomDifferenceEngine();

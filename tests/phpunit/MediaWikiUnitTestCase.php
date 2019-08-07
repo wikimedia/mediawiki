@@ -34,28 +34,87 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 	use MediaWikiCoversValidator;
 	use MediaWikiTestCaseTrait;
 
-	private $unitGlobals = [];
+	private static $originalGlobals;
+	private static $unitGlobals;
 
-	protected function setUp() {
-		parent::setUp();
-		$reflection = new ReflectionClass( $this );
+	public static function setUpBeforeClass() {
+		parent::setUpBeforeClass();
+
+		$reflection = new ReflectionClass( static::class );
 		$dirSeparator = DIRECTORY_SEPARATOR;
 		if ( stripos( $reflection->getFilename(), "${dirSeparator}unit${dirSeparator}" ) === false ) {
-			$this->fail( 'This unit test needs to be in "tests/phpunit/unit"!' );
+			self::fail( 'This unit test needs to be in "tests/phpunit/unit"!' );
 		}
-		$this->unitGlobals = $GLOBALS;
-		unset( $GLOBALS );
-		$GLOBALS = [];
-		// Add back the minimal set of globals needed for unit tests to run for core +
-		// extensions/skins.
-		foreach ( $this->unitGlobals['wgPhpUnitBootstrapGlobals'] ?? [] as $key => $value ) {
-			$GLOBALS[ $key ] = $this->unitGlobals[ $key ];
+
+		if ( defined( 'HHVM_VERSION' ) ) {
+			// There are a number of issues we encountered in trying to make this
+			// work on HHVM. Specifically, once an MediaWikiIntegrationTestCase executes
+			// before us, the original globals go missing. This might have to do with
+			// one of the non-unit tests passing GLOBALS somewhere and causing HHVM
+			// to get confused somehow.
+			return;
+		}
+
+		self::$unitGlobals =& TestSetup::$bootstrapGlobals;
+		// The autoloader may change between bootstrap and the first test,
+		// so (lazily) capture these here instead.
+		self::$unitGlobals['wgAutoloadClasses'] =& $GLOBALS['wgAutoloadClasses'];
+		self::$unitGlobals['wgAutoloadLocalClasses'] =& $GLOBALS['wgAutoloadLocalClasses'];
+		// This value should always be true.
+		self::$unitGlobals['wgAutoloadAttemptLowercase'] = true;
+
+		// Would be nice if we coud simply replace $GLOBALS as a whole,
+		// but unsetting or re-assigning that breaks the reference of this magic
+		// variable. Thus we have to modify it in place.
+		self::$originalGlobals = [];
+		foreach ( $GLOBALS as $key => $_ ) {
+			// Stash current values
+			self::$originalGlobals[$key] =& $GLOBALS[$key];
+
+			// Remove globals not part of the snapshot (see bootstrap.php, phpunit.php).
+			// Support: HHVM (avoid self-ref)
+			if ( $key !== 'GLOBALS' && !array_key_exists( $key, self::$unitGlobals ) ) {
+				unset( $GLOBALS[$key] );
+			}
+		}
+		// Restore values from the early snapshot
+		// Not by ref because tests must not be able to modify the snapshot.
+		foreach ( self::$unitGlobals as $key => $value ) {
+			$GLOBALS[ $key ] = $value;
 		}
 	}
 
 	protected function tearDown() {
-		$GLOBALS = $this->unitGlobals;
+		if ( !defined( 'HHVM_VERSION' ) ) {
+			// Quick reset between tests
+			foreach ( $GLOBALS as $key => $_ ) {
+				if ( $key !== 'GLOBALS' && !array_key_exists( $key, self::$unitGlobals ) ) {
+					unset( $GLOBALS[$key] );
+				}
+			}
+			foreach ( self::$unitGlobals as $key => $value ) {
+				$GLOBALS[ $key ] = $value;
+			}
+		}
+
 		parent::tearDown();
+	}
+
+	public static function tearDownAfterClass() {
+		if ( !defined( 'HHVM_VERSION' ) ) {
+			// Remove globals created by the test
+			foreach ( $GLOBALS as $key => $_ ) {
+				if ( $key !== 'GLOBALS' && !array_key_exists( $key, self::$originalGlobals ) ) {
+					unset( $GLOBALS[$key] );
+				}
+			}
+			// Restore values (including reference!)
+			foreach ( self::$originalGlobals as $key => &$value ) {
+				$GLOBALS[ $key ] =& $value;
+			}
+		}
+
+		parent::tearDownAfterClass();
 	}
 
 	/**

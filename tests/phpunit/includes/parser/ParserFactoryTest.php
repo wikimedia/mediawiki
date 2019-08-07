@@ -3,7 +3,7 @@
 /**
  * @covers ParserFactory
  */
-class ParserFactoryTest extends MediaWikiUnitTestCase {
+class ParserFactoryTest extends MediaWikiIntegrationTestCase {
 	use FactoryArgTestTrait;
 
 	protected static function getFactoryClass() {
