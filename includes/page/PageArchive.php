@@ -756,14 +756,10 @@ class PageArchive {
 
 			Hooks::run( 'ArticleUndelete',
 				[ &$this->title, $created, $comment, $oldPageId, $restoredPages ] );
-
 			if ( $this->title->getNamespace() == NS_FILE ) {
-				$job = HTMLCacheUpdateJob::newForBacklinks(
-					$this->title,
-					'imagelinks',
-					[ 'causeAction' => 'imagelinks', 'causeAgent' => 'file-restore' ]
+				DeferredUpdates::addUpdate(
+					new HTMLCacheUpdate( $this->title, 'imagelinks', 'file-restore' )
 				);
-				JobQueueGroup::singleton()->lazyPush( $job );
 			}
 		}
 

@@ -1047,7 +1047,10 @@ class LocalFile extends File {
 		$this->purgeThumbnails( $options );
 
 		// Purge CDN cache for this file
-		MediaWikiServices::getInstance()->getHtmlCacheUpdater()->purge( $this->getUrl() );
+		DeferredUpdates::addUpdate(
+			new CdnCacheUpdate( [ $this->getUrl() ] ),
+			DeferredUpdates::PRESEND
+		);
 	}
 
 	/**
@@ -1070,7 +1073,7 @@ class LocalFile extends File {
 		foreach ( $files as $file ) {
 			$urls[] = $this->getArchiveThumbUrl( $archiveName, $file );
 		}
-		MediaWikiServices::getInstance()->getHtmlCacheUpdater()->purge( $urls );
+		DeferredUpdates::addUpdate( new CdnCacheUpdate( $urls ), DeferredUpdates::PRESEND );
 	}
 
 	/**
@@ -1102,7 +1105,7 @@ class LocalFile extends File {
 		$this->purgeThumbList( $dir, $files );
 
 		// Purge the CDN
-		MediaWikiServices::getInstance()->getHtmlCacheUpdater()->purge( $urls );
+		DeferredUpdates::addUpdate( new CdnCacheUpdate( $urls ), DeferredUpdates::PRESEND );
 	}
 
 	/**
@@ -1722,9 +1725,8 @@ class LocalFile extends File {
 						}
 					} else {
 						# Existing file page: invalidate description page cache
-						$title = $wikiPage->getTitle();
-						$title->invalidateCache();
-						MediaWikiServices::getInstance()->getHtmlCacheUpdater()->purge( $title );
+						$wikiPage->getTitle()->invalidateCache();
+						$wikiPage->getTitle()->purgeSquid();
 						# Allow the new file version to be patrolled from the page footer
 						Article::purgePatrolFooterCache( $descId );
 					}
@@ -1772,8 +1774,10 @@ class LocalFile extends File {
 						# Delete old thumbnails
 						$this->purgeThumbnails();
 						# Remove the old file from the CDN cache
-						MediaWikiServices::getInstance()
-							->getHtmlCacheUpdater()->purge( $this->getUrl() );
+						DeferredUpdates::addUpdate(
+							new CdnCacheUpdate( [ $this->getUrl() ] ),
+							DeferredUpdates::PRESEND
+						);
 					} else {
 						# Update backlink pages pointing to this title if created
 						LinksUpdate::queueRecursiveJobsForTable(
@@ -1796,12 +1800,9 @@ class LocalFile extends File {
 		}
 
 		# Invalidate cache for all pages using this file
-		$job = HTMLCacheUpdateJob::newForBacklinks(
-			$this->getTitle(),
-			'imagelinks',
-			[ 'causeAction' => 'file-upload', 'causeAgent' => $user->getName() ]
+		DeferredUpdates::addUpdate(
+			new HTMLCacheUpdate( $this->getTitle(), 'imagelinks', 'file-upload' )
 		);
-		JobQueueGroup::singleton()->lazyPush( $job );
 
 		return Status::newGood();
 	}
@@ -2003,7 +2004,7 @@ class LocalFile extends File {
 		foreach ( $archiveNames as $archiveName ) {
 			$purgeUrls[] = $this->getArchiveUrl( $archiveName );
 		}
-		MediaWikiServices::getInstance()->getHtmlCacheUpdater()->purge( $purgeUrls );
+		DeferredUpdates::addUpdate( new CdnCacheUpdate( $purgeUrls ), DeferredUpdates::PRESEND );
 
 		return $status;
 	}
@@ -2040,8 +2041,10 @@ class LocalFile extends File {
 			$this->purgeDescription();
 		}
 
-		$url = $this->getArchiveUrl( $archiveName );
-		MediaWikiServices::getInstance()->getHtmlCacheUpdater()->purge( $url );
+		DeferredUpdates::addUpdate(
+			new CdnCacheUpdate( [ $this->getArchiveUrl( $archiveName ) ] ),
+			DeferredUpdates::PRESEND
+		);
 
 		return $status;
 	}

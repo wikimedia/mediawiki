@@ -25,7 +25,7 @@
 use MediaWiki\MediaWikiServices;
 
 /**
- * Job to purge the HTML/file cache for all pages that link to or use another page or file
+ * Job to purge the cache for all pages that link to or use another page or file
  *
  * This job comes in a few variants:
  *   - a) Recursive jobs to purge caches for backlink pages for a given title.
@@ -110,7 +110,7 @@ class HTMLCacheUpdateJob extends Job {
 	 * @param array $pages Map of (page ID => (namespace, DB key)) entries
 	 */
 	protected function invalidateTitles( array $pages ) {
-		global $wgUpdateRowsPerQuery, $wgPageLanguageUseDB;
+		global $wgUpdateRowsPerQuery, $wgUseFileCache, $wgPageLanguageUseDB;
 
 		// Get all page IDs in this query into an array
 		$pageIds = array_keys( $pages );
@@ -160,11 +160,20 @@ class HTMLCacheUpdateJob extends Job {
 			__METHOD__
 		) );
 
-		// Update CDN and file caches (avoiding secondary purge overhead)
-		MediaWikiServices::getInstance()->getHtmlCacheUpdater()->purge(
-			$titleArray,
-			HtmlCacheUpdater::IMMEDIATE_WITHOUT_REBOUND
-		);
+		// Update CDN; call purge() directly so as to not bother with secondary purges
+		$urls = [];
+		foreach ( $titleArray as $title ) {
+			/** @var Title $title */
+			$urls = array_merge( $urls, $title->getCdnUrls() );
+		}
+		CdnCacheUpdate::purge( $urls );
+
+		// Update file cache
+		if ( $wgUseFileCache ) {
+			foreach ( $titleArray as $title ) {
+				HTMLFileCache::clearFileCache( $title );
+			}
+		}
 	}
 
 	public function getDeduplicationInfo() {

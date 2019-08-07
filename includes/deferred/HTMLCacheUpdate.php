@@ -22,32 +22,39 @@
  */
 
 /**
- * Class to invalidate the HTML/file cache of all the pages linking to a given title.
+ * Class to invalidate the HTML cache of all the pages linking to a given title.
  *
  * @ingroup Cache
- * @deprecated Since 1.34; Enqueue jobs from HTMLCacheUpdateJob::newForBacklinks instead
  */
 class HTMLCacheUpdate extends DataUpdate {
 	/** @var Title */
-	private $title;
+	public $mTitle;
+
 	/** @var string */
-	private $table;
+	public $mTable;
 
 	/**
-	 * @param Title $title
+	 * @param Title $titleTo
 	 * @param string $table
+	 * @param string $causeAction Triggering action
+	 * @param string $causeAgent Triggering user
 	 */
-	public function __construct( Title $title, $table ) {
-		$this->title = $title;
-		$this->table = $table;
+	function __construct(
+		Title $titleTo, $table, $causeAction = 'unknown', $causeAgent = 'unknown'
+	) {
+		$this->mTitle = $titleTo;
+		$this->mTable = $table;
+		$this->causeAction = $causeAction;
+		$this->causeAgent = $causeAgent;
 	}
 
 	public function doUpdate() {
 		$job = HTMLCacheUpdateJob::newForBacklinks(
-			$this->title,
-			$this->table,
+			$this->mTitle,
+			$this->mTable,
 			[ 'causeAction' => $this->getCauseAction(), 'causeAgent' => $this->getCauseAgent() ]
 		);
+
 		JobQueueGroup::singleton()->lazyPush( $job );
 	}
 }

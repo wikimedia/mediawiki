@@ -122,7 +122,10 @@ class RevDelFileList extends RevDelList {
 			$file->purgeOldThumbnails( $archiveName );
 			$purgeUrls[] = $file->getArchiveUrl( $archiveName );
 		}
-		MediaWikiServices::getInstance()->getHtmlCacheUpdater()->purge( $purgeUrls );
+		DeferredUpdates::addUpdate(
+			new CdnCacheUpdate( $purgeUrls ),
+			DeferredUpdates::PRESEND
+		);
 
 		return Status::newGood();
 	}
