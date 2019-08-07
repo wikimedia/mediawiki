@@ -220,32 +220,20 @@ class HTMLFileCache extends FileCacheBase {
 	}
 
 	/**
-	 * @param string[] $prefixedDbKeys List of prefixed DB keys for pages to purge
-	 * @since 1.34
-	 */
-	public static function purge( array $prefixedDbKeys ) {
-		foreach ( $prefixedDbKeys as $prefixedDbKey ) {
-			foreach ( self::cacheablePageActions() as $type ) {
-				$fc = new self( $prefixedDbKey, $type );
-				$fc->clearCache();
-			}
-		}
-	}
-
-	/**
 	 * Clear the file caches for a page for all actions
-	 * @param Traversable|Title[]|Title $titles
+	 * @param Title $title
 	 * @return bool Whether $wgUseFileCache is enabled
 	 */
-	public static function clearFileCache( $titles ) {
+	public static function clearFileCache( Title $title ) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
+
 		if ( !$config->get( 'UseFileCache' ) ) {
 			return false;
 		}
 
-		$titleIterator = ( $titles instanceof Title ) ? [ $titles ] : $titles;
-		foreach ( $titleIterator as $title ) {
-			self::purge( [ $title->getPrefixedDBkey() ] );
+		foreach ( self::cacheablePageActions() as $type ) {
+			$fc = new self( $title, $type );
+			$fc->clearCache();
 		}
 
 		return true;

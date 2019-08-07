@@ -176,12 +176,9 @@ class WikiFilePage extends WikiPage {
 
 		if ( $this->mFile->exists() ) {
 			wfDebug( 'ImagePage::doPurge purging ' . $this->mFile->getName() . "\n" );
-			$job = HTMLCacheUpdateJob::newForBacklinks(
-				$this->mTitle,
-				'imagelinks',
-				[ 'causeAction' => 'file-purge' ]
+			DeferredUpdates::addUpdate(
+				new HTMLCacheUpdate( $this->mTitle, 'imagelinks', 'file-purge' )
 			);
-			JobQueueGroup::singleton()->lazyPush( $job );
 		} else {
 			wfDebug( 'ImagePage::doPurge no image for '
 				. $this->mFile->getName() . "; limiting purge to cache only\n" );

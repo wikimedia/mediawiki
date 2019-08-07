@@ -92,8 +92,6 @@ For notes on 1.33.x and older releases, see HISTORY.
   to add fields to Special:Mute.
 * (T100896) Skin authors can define custom OOUI themes using OOUIThemePaths.
   See <https://www.mediawiki.org/wiki/OOUI/Themes> for details.
-* The HtmlCacheUpdater service was added to unify the logic of purging CDN cache
-  and HTML file cache to simplify callers and make them more consistent.
 
 === External library changes in 1.34 ===
 
@@ -437,7 +435,6 @@ because of Phabricator reports.
 * SearchEngine::textAlreadyUpdatedForIndex() is deprecated, given the
   deprecation above this method is no longer needed/called and should not be
   implemented by SearchEngine implementation.
-* Title::purgeSquid is deprecated. Use MediaWikiServices::getHtmlCacheUpdater.
 
 === Other changes in 1.34 ===
 * …

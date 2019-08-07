@@ -1066,7 +1066,6 @@ class LinksUpdate extends DataUpdate {
 	private function invalidateProperties( $changed ) {
 		global $wgPagePropLinkInvalidations;
 
-		$jobs = [];
 		foreach ( $changed as $name => $value ) {
 			if ( isset( $wgPagePropLinkInvalidations[$name] ) ) {
 				$inv = $wgPagePropLinkInvalidations[$name];
@@ -1074,16 +1073,12 @@ class LinksUpdate extends DataUpdate {
 					$inv = [ $inv ];
 				}
 				foreach ( $inv as $table ) {
-					$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
-						$this->mTitle,
-						$table,
-						[ 'causeAction' => 'page-props' ]
+					DeferredUpdates::addUpdate(
+						new HTMLCacheUpdate( $this->mTitle, $table, 'page-props' )
 					);
 				}
 			}
 		}
-
-		JobQueueGroup::singleton()->lazyPush( $jobs );
 	}
 
 	/**
