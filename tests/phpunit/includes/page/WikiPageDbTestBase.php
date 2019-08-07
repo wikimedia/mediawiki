@@ -1593,9 +1593,9 @@ more stuff
 
 	public function provideUpdateRedirectOn() {
 		yield [ '#REDIRECT [[Foo]]', true, null, true, true, 0 ];
-		yield [ '#REDIRECT [[Foo]]', true, 'Foo', true, false, 1 ];
+		yield [ '#REDIRECT [[Foo]]', true, 'Foo', true, true, 1 ];
 		yield [ 'SomeText', false, null, false, true, 0 ];
-		yield [ 'SomeText', false, 'Foo', false, false, 1 ];
+		yield [ 'SomeText', false, 'Foo', false, true, 1 ];
 	}
 
 	/**
