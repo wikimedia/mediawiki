@@ -1715,10 +1715,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$startOpts .= ' /*! STRAIGHT_JOIN */';
 		}
 
-		if ( isset( $noKeyOptions['HIGH_PRIORITY'] ) ) {
-			$startOpts .= ' HIGH_PRIORITY';
-		}
-
 		if ( isset( $noKeyOptions['SQL_BIG_RESULT'] ) ) {
 			$startOpts .= ' SQL_BIG_RESULT';
 		}

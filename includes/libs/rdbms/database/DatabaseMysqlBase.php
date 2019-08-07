@@ -1088,13 +1088,6 @@ abstract class DatabaseMysqlBase extends Database {
 	/**
 	 * @return string
 	 */
-	function lowPriorityOption() {
-		return 'LOW_PRIORITY';
-	}
-
-	/**
-	 * @return string
-	 */
 	public function getSoftwareLink() {
 		// MariaDB includes its name in its version string; this is how MariaDB's version of
 		// the mysql command-line client identifies MariaDB servers (see mariadb_connection()
