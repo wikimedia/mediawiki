@@ -494,7 +494,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 	}
 
-	public function testFilterUserExpLevelRegistrered() {
+	public function testFilterUserExpLevelRegistered() {
 		$this->assertConditions(
 			[
 				# expected
@@ -507,7 +507,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 	}
 
-	public function testFilterUserExpLevelUnregistrered() {
+	public function testFilterUserExpLevelUnregistered() {
 		$this->assertConditions(
 			[
 				# expected
@@ -520,7 +520,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 	}
 
-	public function testFilterUserExpLevelRegistreredOrLearner() {
+	public function testFilterUserExpLevelRegisteredOrLearner() {
 		$this->assertConditions(
 			[
 				# expected
@@ -533,7 +533,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 	}
 
-	public function testFilterUserExpLevelUnregistreredOrExperienced() {
+	public function testFilterUserExpLevelUnregisteredOrExperienced() {
 		$conds = $this->buildQuery( [ 'userExpLevel' => 'unregistered;experienced' ] );
 
 		$this->assertRegExp(
