@@ -1888,6 +1888,36 @@ $wgUsersNotifiedOnAllChanges = [];
  */
 
 /**
+ * Current wiki database name
+ *
+ * Should be alphanumeric, without spaces nor hyphens.
+ * This is used to determine the current/local wiki ID (WikiMap::getCurrentWikiDbDomain).
+ *
+ * This should still be set even if $wgLBFactoryConf is configured.
+ */
+$wgDBname = 'my_wiki';
+
+/**
+ * Current wiki database schema name
+ *
+ * Should be alphanumeric, without spaces nor hyphens.
+ * This is used to determine the current/local wiki ID (WikiMap::getCurrentWikiDbDomain).
+ *
+ * This should still be set even if $wgLBFactoryConf is configured.
+ */
+$wgDBmwschema = null;
+
+/**
+ * Current wiki database table name prefix
+ *
+ * Should be alphanumeric, without spaces nor hyphens, preferably ending in an underscore.
+ * This is used to determine the current/local wiki ID (WikiMap::getCurrentWikiDbDomain).
+ *
+ * This should still be set even if $wgLBFactoryConf is configured.
+ */
+$wgDBprefix = '';
+
+/**
  * Database host name or IP address
  */
 $wgDBserver = 'localhost';
@@ -1896,11 +1926,6 @@ $wgDBserver = 'localhost';
  * Database port number (for PostgreSQL and Microsoft SQL Server).
  */
 $wgDBport = 5432;
-
-/**
- * Name of the database; this should be alphanumeric and not contain spaces nor hyphens
- */
-$wgDBname = 'my_wiki';
 
 /**
  * Database username
@@ -1965,13 +1990,6 @@ $wgSearchType = null;
 $wgSearchTypeAlternatives = null;
 
 /**
- * Table name prefix.
- * Should be alphanumeric plus underscores, and not contain spaces nor hyphens.
- * Suggested format ends with an underscore.
- */
-$wgDBprefix = '';
-
-/**
  * MySQL table options to use during installation or update
  */
 $wgDBTableOptions = 'ENGINE=InnoDB, DEFAULT CHARSET=binary';
@@ -1983,11 +2001,6 @@ $wgDBTableOptions = 'ENGINE=InnoDB, DEFAULT CHARSET=binary';
  * String override can be used for some additional fun :-)
  */
 $wgSQLMode = '';
-
-/**
- * Mediawiki schema; this should be alphanumeric and not contain spaces nor hyphens
- */
-$wgDBmwschema = null;
 
 /**
  * Default group to use when getting database connections.
