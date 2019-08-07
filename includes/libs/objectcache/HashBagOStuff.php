@@ -81,7 +81,7 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 		unset( $this->bag[$key] );
 		$this->bag[$key] = [
 			self::KEY_VAL => $value,
-			self::KEY_EXP => $this->convertToExpiry( $exptime ),
+			self::KEY_EXP => $this->getExpirationAsTimestamp( $exptime ),
 			self::KEY_CAS => $this->token . ':' . ++self::$casCounter
 		];
 

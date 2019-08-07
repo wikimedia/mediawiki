@@ -200,6 +200,7 @@ class SpecialPageFactory {
 		'Mytalk' => \SpecialMytalk::class,
 		'Myuploads' => \SpecialMyuploads::class,
 		'AllMyUploads' => \SpecialAllMyUploads::class,
+		'NewSection' => \SpecialNewSection::class,
 		'PermanentLink' => \SpecialPermanentLink::class,
 		'Redirect' => \SpecialRedirect::class,
 		'Revisiondelete' => \SpecialRevisionDelete::class,

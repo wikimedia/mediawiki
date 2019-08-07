@@ -454,6 +454,7 @@ $specialPageAliases = [
 	'Mytalk'                    => [ 'MyTalk' ],
 	'Myuploads'                 => [ 'MyUploads', 'MyFiles' ],
 	'Newimages'                 => [ 'NewFiles', 'NewImages' ],
+	'NewSection'                => [ 'NewSection', 'Newsection' ],
 	'Newpages'                  => [ 'NewPages' ],
 	'PagesWithProp'             => [ 'PagesWithProp', 'Pageswithprop', 'PagesByProp', 'Pagesbyprop' ],
 	'PageData'                  => [ 'PageData' ],

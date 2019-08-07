@@ -142,7 +142,12 @@ class DatabaseSqlite extends Database {
 			throw $this->newExceptionAfterConnectError( "DB path or directory required" );
 		}
 
-		if ( !self::isProcessMemoryPath( $path ) && !is_readable( $path ) ) {
+		// Check if the database file already exists but is non-readable
+		if (
+			!self::isProcessMemoryPath( $path ) &&
+			file_exists( $path ) &&
+			!is_readable( $path )
+		) {
 			throw $this->newExceptionAfterConnectError( 'SQLite database file is not readable' );
 		} elseif ( !in_array( $this->trxMode, self::$VALID_TRX_MODES, true ) ) {
 			throw $this->newExceptionAfterConnectError( "Got mode '{$this->trxMode}' for BEGIN" );
@@ -163,6 +168,7 @@ class DatabaseSqlite extends Database {
 		}
 
 		try {
+			// Open the database file, creating it if it does not yet exist
 			$this->conn = new PDO( "sqlite:$path", null, null, $attributes );
 		} catch ( PDOException $e ) {
 			throw $this->newExceptionAfterConnectError( $e->getMessage() );
@@ -449,6 +455,36 @@ class DatabaseSqlite extends Database {
 		}
 
 		return false;
+	}
+
+	protected function doSelectDomain( DatabaseDomain $domain ) {
+		if ( $domain->getSchema() !== null ) {
+			throw new DBExpectedError(
+				$this,
+				__CLASS__ . ": domain '{$domain->getId()}' has a schema component"
+			);
+		}
+
+		$database = $domain->getDatabase();
+		// A null database means "don't care" so leave it as is and update the table prefix
+		if ( $database === null ) {
+			$this->currentDomain = new DatabaseDomain(
+				$this->currentDomain->getDatabase(),
+				null,
+				$domain->getTablePrefix()
+			);
+
+			return true;
+		}
+
+		if ( $database !== $this->getDBname() ) {
+			throw new DBExpectedError(
+				$this,
+				__CLASS__ . ": cannot change database (got '$database')"
+			);
+		}
+
+		return true;
 	}
 
 	/**
@@ -765,6 +801,8 @@ class DatabaseSqlite extends Database {
 	}
 
 	public function serverIsReadOnly() {
+		$this->assertHasConnectionHandle();
+
 		$path = $this->getDbFilePath();
 
 		return ( !self::isProcessMemoryPath( $path ) && !is_writable( $path ) );

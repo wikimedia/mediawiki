@@ -97,7 +97,8 @@
 			"Wat",
 			"Puntti ja",
 			"マツムシ",
-			"神樂坂秀吉"
+			"神樂坂秀吉",
+			"Yuukin0248"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -2415,6 +2416,7 @@
 	"changecontentmodel": "ページのコンテンツ・モデルの変更",
 	"changecontentmodel-legend": "コンテンツモデルを変更",
 	"changecontentmodel-title-label": "ページ名",
+	"changecontentmodel-current-label": "現在のコンテンツモデル",
 	"changecontentmodel-model-label": "新しい コンテンツ モデル",
 	"changecontentmodel-reason-label": "理由:",
 	"changecontentmodel-submit": "変更",
@@ -4030,7 +4032,7 @@
 	"edit-error-short": "エラー: $1",
 	"edit-error-long": "エラー:\n\n\n\n$1",
 	"specialmute": "ミュート",
-	"specialmute-success": "ミュートの個人設定が更新されました。[[Special:Preferences|ご自分の個人設定ページ]]でミューとした利用者の一覧を確認できます。",
+	"specialmute-success": "ミュートの個人設定が更新されました。[[Special:Preferences|個人設定]]からミュートした利用者の一覧を確認できます。",
 	"specialmute-submit": "確定",
 	"specialmute-label-mute-email": "この利用者からのウィキメールをミュートする",
 	"specialmute-header": "<b>{{BIDI:[[User:$1|$1]]}}</b>さんに対するミュートを個人設定で選択してください。",

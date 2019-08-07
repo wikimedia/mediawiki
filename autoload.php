@@ -1404,6 +1404,7 @@ $wgAutoloadLocalClasses = [
 	'SpecialMytalk' => __DIR__ . '/includes/specials/redirects/SpecialMytalk.php',
 	'SpecialMyuploads' => __DIR__ . '/includes/specials/redirects/SpecialMyuploads.php',
 	'SpecialNewFiles' => __DIR__ . '/includes/specials/SpecialNewimages.php',
+	'SpecialNewSection' => __DIR__ . '/includes/specials/SpecialNewSection.php',
 	'SpecialNewpages' => __DIR__ . '/includes/specials/SpecialNewpages.php',
 	'SpecialPage' => __DIR__ . '/includes/specialpage/SpecialPage.php',
 	'SpecialPageAction' => __DIR__ . '/includes/actions/SpecialPageAction.php',

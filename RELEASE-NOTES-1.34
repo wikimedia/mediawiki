@@ -82,6 +82,11 @@ For notes on 1.33.x and older releases, see HISTORY.
 === New user-facing features in 1.34 ===
 * Special:Mute has been added as a quick way for users to block unwanted emails
   from other users originating from Special:EmailUser.
+* (T207577) Special:NewSection has been created as a shortcut to creating a new
+  section on a page. When linked to, its subpage is used as the target
+  ([[Special:NewSection/Test]] redirects to creating a new section in "Test").
+  Otherwise, it displays a basic interface to allow the end user to specify
+  the target manually.
 
 === New developer features in 1.34 ===
 * The ImgAuthModifyHeaders hook was added to img_auth.php to allow modification
@@ -413,6 +418,8 @@ because of Phabricator reports.
   template option 'searchaction' instead.
 * LoadBalancer::haveIndex() and LoadBalancer::isNonZeroLoad() have
   been deprecated.
+* FileBackend::getWikiId() has been deprecated.
+  Use FileBackend::getDomainId() instead.
 * User::getRights() and User::$mRights have been deprecated. Use
   PermissionManager::getUserPermissions() instead.
 * The LocalisationCacheRecache hook no longer allows purging of message blobs

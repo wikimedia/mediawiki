@@ -22,6 +22,8 @@
 /**
  * @ingroup Pager
  */
+use MediaWiki\MediaWikiServices;
+
 class NewPagesPager extends ReverseChronologicalPager {
 
 	/**
@@ -50,9 +52,6 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$conds = [];
 		$conds['rc_new'] = 1;
 
-		$namespace = $this->opts->getValue( 'namespace' );
-		$namespace = ( $namespace === 'all' ) ? false : intval( $namespace );
-
 		$username = $this->opts->getValue( 'username' );
 		$user = Title::makeTitleSafe( NS_USER, $username );
 
@@ -62,14 +61,6 @@ class NewPagesPager extends ReverseChronologicalPager {
 				$conds[] = 'page_len <= ' . $size;
 			} else {
 				$conds[] = 'page_len >= ' . $size;
-			}
-		}
-
-		if ( $namespace !== false ) {
-			if ( $this->opts->getValue( 'invert' ) ) {
-				$conds[] = 'rc_namespace != ' . $this->mDb->addQuotes( $namespace );
-			} else {
-				$conds['rc_namespace'] = $namespace;
 			}
 		}
 
@@ -83,6 +74,8 @@ class NewPagesPager extends ReverseChronologicalPager {
 			# If anons cannot make new pages, don't "exclude logged in users"!
 			$conds[] = ActorMigration::newMigration()->isAnon( $rcQuery['fields']['rc_user'] );
 		}
+
+		$conds = array_merge( $conds, $this->getNamespaceCond() );
 
 		# If this user cannot see patrolled edits or they are off, don't do dumb queries!
 		if ( $this->opts->getValue( 'hidepatrolled' ) && $this->getUser()->useNPPatrol() ) {
@@ -128,6 +121,32 @@ class NewPagesPager extends ReverseChronologicalPager {
 		);
 
 		return $info;
+	}
+
+	// Based on ContribsPager.php
+	function getNamespaceCond() {
+		$namespace = $this->opts->getValue( 'namespace' );
+		if ( $namespace === 'all' || $namespace === '' ) {
+			return [];
+		}
+
+		$namespace = intval( $namespace );
+		$invert = $this->opts->getValue( 'invert' );
+		$associated = $this->opts->getValue( 'associated' );
+
+		$eq_op = $invert ? '!=' : '=';
+		$bool_op = $invert ? 'AND' : 'OR';
+
+		if ( !$associated ) {
+			return [ "rc_namespace $eq_op " . $this->mDb->addQuotes( $namespace ) ];
+		}
+
+		$associatedNS = MediaWikiServices::getInstance()->getNamespaceInfo()->getAssociated( $namespace );
+		return [
+			"rc_namespace $eq_op " . $this->mDb->addQuotes( $namespace ) .
+			$bool_op .
+			" rc_namespace $eq_op " . $this->mDb->addQuotes( $associatedNS )
+		];
 	}
 
 	function getIndexField() {

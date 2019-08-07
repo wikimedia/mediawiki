@@ -101,13 +101,12 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 	 * discarded immediately because the expiry is in the past.
 	 * Clamp expires >30d at 30d, unless they're >=1e9 in which
 	 * case they are likely to really be absolute (1e9 = 2011-09-09)
-	 * @param int $expiry
+	 * @param int $exptime
 	 * @return int
 	 */
-	function fixExpiry( $expiry ) {
-		if ( $expiry > 2592000 && $expiry < 1000000000 ) {
-			$expiry = 2592000;
-		}
-		return (int)$expiry;
+	protected function fixExpiry( $exptime ) {
+		return ( $exptime > self::TTL_MONTH && !$this->isRelativeExpiration( $exptime ) )
+			? self::TTL_MONTH
+			: (int)$exptime;
 	}
 }

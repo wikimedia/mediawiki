@@ -130,7 +130,7 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 
 		if ( $value === false ) {
 			$value = $callback( $ttl );
-			if ( $value !== false ) {
+			if ( $value !== false && $ttl >= 0 ) {
 				$this->set( $key, $value, $ttl, $flags );
 			}
 		}

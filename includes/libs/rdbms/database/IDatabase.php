@@ -1119,8 +1119,8 @@ interface IDatabase {
 	 *
 	 * @param string $db
 	 * @return bool True unless an exception was thrown
-	 * @throws DBConnectionError If databasesAreIndependent() is true and an error occurs
-	 * @throws DBError
+	 * @throws DBConnectionError If databasesAreIndependent() is true and connection change fails
+	 * @throws DBError On query error or if database changes are disallowed
 	 * @deprecated Since 1.32 Use selectDomain() instead
 	 */
 	public function selectDB( $db );
@@ -1133,8 +1133,9 @@ interface IDatabase {
 	 * This should only be called by a load balancer or if the handle is not attached to one
 	 *
 	 * @param string|DatabaseDomain $domain
+	 * @throws DBConnectionError If databasesAreIndependent() is true and connection change fails
+	 * @throws DBError On query error, if domain changes are disallowed, or the domain is invalid
 	 * @since 1.32
-	 * @throws DBConnectionError
 	 */
 	public function selectDomain( $domain );
 

@@ -1004,6 +1004,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			|| $this->dependencies
 			|| $this->messages
 			|| $this->skipFunction
+			|| $this->packageFiles
 		);
 		return $canBeStylesOnly ? self::LOAD_STYLES : self::LOAD_GENERAL;
 	}
