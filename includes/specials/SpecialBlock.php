@@ -761,9 +761,6 @@ class SpecialBlock extends FormSpecialPage {
 			isset( $data['EditingRestriction'] ) &&
 			$data['EditingRestriction'] === 'partial';
 
-		// Handled by field validator callback
-		// self::validateTargetField( $data['Target'] );
-
 		# This might have been a hidden field or a checkbox, so interesting data
 		# can come from it
 		$data['Confirm'] = !in_array( $data['Confirm'], [ '', '0', null, false ], true );
