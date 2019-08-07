@@ -60,7 +60,8 @@ class SpecialNewSection extends RedirectSpecialPage {
 	}
 
 	public function onFormSubmit( $formData ) {
-		$page = $formData['page'];
+		$title = $formData['page'];
+		$page = Title::newFromText( $title );
 		$query = [ 'action' => 'edit', 'section' => 'new' ];
 		$url = $page->getFullUrlForRedirect( $query );
 		$this->getOutput()->redirect( $url );
