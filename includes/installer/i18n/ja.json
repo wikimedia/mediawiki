@@ -25,7 +25,8 @@
 			"Omotecho",
 			"Yusuke1109",
 			"Aefgh39622",
-			"Tomri5"
+			"Tomri5",
+			"Afaz"
 		]
 	},
 	"config-desc": "MediaWiki のインストーラー",
@@ -90,7 +91,7 @@
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] がインストール済み",
 	"config-no-cache-apcu": "<strong>警告:</strong> [https://www.php.net/apcu APCu]、 [https://www.iis.net/downloads/microsoft/wincache-extension WinCache] のいずれも見つかりませんでした。\nオブジェクトのキャッシュは有効化されません。",
 	"config-mod-security": "<strong>警告:</strong> あなたのウェブサーバーでは [https://modsecurity.org/ mod_security] が有効になっています。正しく構成されていない場合は、MediaWiki や利用者にコンテンツの投稿を許可するその他のソフトウェアに問題が発生する場合があります。\n[https://modsecurity.org/documentation/ mod_security の説明文書]を確認するか、ランダムなエラーが発生した場合はあなたのホストのサポートにお問い合わせください。",
-	"config-diff3-bad": "GNU diff3 が見つかりません。",
+	"config-diff3-bad": "GNU diff3テキスト比較ユーティリティが見つかりません。無視することもできますが、その場合編集の競合が頻繁に発生する可能性があります。",
 	"config-git": "バージョン管理ソフトウェア Git が見つかりました: <code>$1</code>",
 	"config-git-bad": "バージョン管理ソフトウェア Git が見つかりません。これを無視することもできますが、Special:Version にコミットのハッシュが表示されないことにご注意ください。",
 	"config-imagemagick": "ImageMagickが見つかりました: <code>$1</code>。\nアップロードが有効であれば、画像のサムネイルを利用できます。",
@@ -336,6 +337,7 @@
 	"config-skins-screenshots": "$1 (スクリーンショット: $2)",
 	"config-extensions-requires": "$1（$2が必要）",
 	"config-screenshot": "スクリーンショット",
+	"config-extension-not-found": "拡張機能「$1」の登録ファイルは見つかりませんでした",
 	"config-extension-dependency": "拡張機能「$1」のインストール中に依存関係エラーが発生しました: $2",
 	"mainpagetext": "<strong>MediaWiki はインストール済みです。</strong>",
 	"mainpagedocfooter": "ウィキソフトウェアの使い方に関する情報は[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 利用者案内]を参照してください。\n\n== はじめましょう ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings/ja 設定の一覧]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/ja MediaWiki よくある質問と回答]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki リリース情報メーリングリスト]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation/ja MediaWiki のあなたの言語へのローカライズ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam あなたのウィキでスパムと戦う方法を学ぶ]"

@@ -15,7 +15,8 @@
 			"Omotecho",
 			"Yusuke1109",
 			"Suyama",
-			"Yuukin0248"
+			"Yuukin0248",
+			"Afaz"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|説明文書]]\n* [[mw:Special:MyLanguage/API:FAQ|よくある質問]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api メーリングリスト]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API 告知]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R バグの報告とリクエスト]\n</div>\n<strong>状態:</strong> MediaWiki APIは、積極的にサポートされ、改善された成熟した安定したインターフェースです。避けようとはしていますが、時には壊れた変更が加えられるかもしれません。アップデートの通知を受け取るには、[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce メーリングリスト]に参加してください。\n\n<strong>誤ったリクエスト:</strong> 誤ったリクエストが API に送られた場合、\"MediaWiki-API-Error\" HTTP ヘッダーが送信され、そのヘッダーの値と送り返されるエラーコードは同じ値にセットされます。より詳しい情報は [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]] を参照してください。\n\n<p class=\"mw-apisandbox-link\"><strong>テスト:</strong> API のリクエストのテストは、[[Special:ApiSandbox]]で簡単に行えます。</p>",
@@ -166,7 +167,7 @@
 	"apihelp-feedrecentchanges-param-feedformat": "フィードの形式。",
 	"apihelp-feedrecentchanges-param-namespace": "この名前空間の結果のみに絞り込む。",
 	"apihelp-feedrecentchanges-param-invert": "選択されたものを除く、すべての名前空間。",
-	"apihelp-feedrecentchanges-param-associated": "関連する（トークまたはメイン）名前空間を含めます。",
+	"apihelp-feedrecentchanges-param-associated": "関連する（トークまたは標準）名前空間を含めます。",
 	"apihelp-feedrecentchanges-param-days": "結果を絞り込む日数。",
 	"apihelp-feedrecentchanges-param-limit": "返す結果の最大数。",
 	"apihelp-feedrecentchanges-param-from": "これ以降の編集を表示する。",
