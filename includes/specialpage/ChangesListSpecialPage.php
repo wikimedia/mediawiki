@@ -1504,12 +1504,17 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$namespaces = explode( ';', $opts[ 'namespace' ] );
 
 			if ( $opts[ 'associated' ] ) {
+				$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 				$associatedNamespaces = array_map(
-					function ( $ns ) {
-						return MediaWikiServices::getInstance()->getNamespaceInfo()->
-							getAssociated( $ns );
+					function ( $ns ) use ( $namespaceInfo ){
+						return $namespaceInfo->getAssociated( $ns );
 					},
-					$namespaces
+					array_filter(
+						$namespaces,
+						function ( $ns ) use ( $namespaceInfo ) {
+							return $namespaceInfo->hasTalkNamespace( $ns );
+						}
+					)
 				);
 				$namespaces = array_unique( array_merge( $namespaces, $associatedNamespaces ) );
 			}

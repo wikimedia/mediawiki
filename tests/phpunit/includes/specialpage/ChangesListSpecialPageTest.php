@@ -169,6 +169,19 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 	}
 
+	public function testRcNsFilterAssociatedSpecial() {
+		$this->assertConditions(
+			[ # expected
+			  "rc_namespace IN ('-1','0','1')",
+			],
+			[
+				'namespace' => '1;-1',
+				'associated' => 1,
+			],
+			"rc conditions with associated and special namespace"
+		);
+	}
+
 	public function testRcNsFilterMultipleAssociatedInvert() {
 		$this->assertConditions(
 			[ # expected
