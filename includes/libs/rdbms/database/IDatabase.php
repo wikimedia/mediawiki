@@ -716,8 +716,6 @@ interface IDatabase {
 	 *    - SQL_BUFFER_RESULT
 	 *    - SQL_SMALL_RESULT
 	 *    - SQL_CALC_FOUND_ROWS
-	 *    - SQL_CACHE
-	 *    - SQL_NO_CACHE
 	 *
 	 * @param string|array $join_conds Join conditions
 	 *

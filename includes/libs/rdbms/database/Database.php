@@ -1731,14 +1731,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$startOpts .= ' SQL_CALC_FOUND_ROWS';
 		}
 
-		if ( isset( $noKeyOptions['SQL_CACHE'] ) ) {
-			$startOpts .= ' SQL_CACHE';
-		}
-
-		if ( isset( $noKeyOptions['SQL_NO_CACHE'] ) ) {
-			$startOpts .= ' SQL_NO_CACHE';
-		}
-
 		if ( isset( $options['USE INDEX'] ) && is_string( $options['USE INDEX'] ) ) {
 			$useIndex = $this->useIndexClause( $options['USE INDEX'] );
 		} else {
