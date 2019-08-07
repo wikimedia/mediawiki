@@ -785,7 +785,6 @@ class DatabaseMssql extends Database {
 	 *
 	 * @param array $options An array of UPDATE options, can be:
 	 *                   - IGNORE: Ignore unique key conflicts
-	 *                   - LOW_PRIORITY: MySQL-specific, see MySQL manual.
 	 * @return bool
 	 * @throws DBUnexpectedError
 	 * @throws Exception

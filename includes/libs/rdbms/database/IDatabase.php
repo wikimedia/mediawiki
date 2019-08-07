@@ -679,9 +679,13 @@ interface IDatabase {
 	 *     and then the first rows are taken until the limit is reached. LIMIT
 	 *     is applied to a result set after OFFSET.
 	 *
-	 *   - FOR UPDATE: Boolean: lock the returned rows so that they can't be
+	 *   - LOCK IN SHARE MODE: Boolean: lock the returned rows so that they can't be
 	 *     changed until the next COMMIT. Cannot be used with aggregate functions
 	 *     (COUNT, MAX, etc., but also DISTINCT).
+	 *
+	 *   - FOR UPDATE: Boolean: lock the returned rows so that they can't be
+	 *     changed nor read with LOCK IN SHARE MODE until the next COMMIT.
+	 *     Cannot be used with aggregate functions (COUNT, MAX, etc., but also DISTINCT).
 	 *
 	 *   - DISTINCT: Boolean: return only unique result rows.
 	 *
@@ -707,16 +711,11 @@ interface IDatabase {
 	 * And also the following boolean MySQL extensions, see the MySQL manual
 	 * for documentation:
 	 *
-	 *    - LOCK IN SHARE MODE
 	 *    - STRAIGHT_JOIN
-	 *    - HIGH_PRIORITY
 	 *    - SQL_BIG_RESULT
 	 *    - SQL_BUFFER_RESULT
 	 *    - SQL_SMALL_RESULT
 	 *    - SQL_CALC_FOUND_ROWS
-	 *    - SQL_CACHE
-	 *    - SQL_NO_CACHE
-	 *
 	 *
 	 * @param string|array $join_conds Join conditions
 	 *
@@ -929,7 +928,6 @@ interface IDatabase {
 	 *   for logging and profiling.
 	 * @param array $options An array of UPDATE options, can be:
 	 *   - IGNORE: Ignore unique key conflicts
-	 *   - LOW_PRIORITY: MySQL-specific, see MySQL manual.
 	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 * @throws DBError
 	 */
