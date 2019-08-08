@@ -622,7 +622,7 @@ class EditPage {
 			wfDebug( __METHOD__ . ": User can't edit\n" );
 
 			if ( $this->context->getUser()->getBlock() ) {
-				// track block with a cookie if it doesn't exists already
+				// Track block with a cookie if it doesn't exist already
 				MediaWikiServices::getInstance()->getBlockManager()
 					->trackBlockWithCookie( $this->context->getUser() );
 

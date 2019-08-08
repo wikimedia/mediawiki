@@ -15817,7 +15817,7 @@ parsoid=wt2html,wt2wt,html2html
 ###################
 
 !! test
-Link to image page- image page normally doesn't exists, hence edit link
+Link to image page- image page normally doesn't exist, hence edit link
 Add test with existing image page
 #<p><a href="/wiki/File:Test" title="Image:Test">Image:test</a>
 !! wikitext
