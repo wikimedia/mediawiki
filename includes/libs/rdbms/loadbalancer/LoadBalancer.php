@@ -592,8 +592,7 @@ class LoadBalancer implements ILoadBalancer {
 			$this->connLogger->debug( __METHOD__ . ": Using reader #$i: $serverName..." );
 
 			// Get a connection to this server without triggering other server connections
-			$flags = self::CONN_SILENCE_ERRORS;
-			$conn = $this->getServerConnection( $i, $domain, $flags );
+			$conn = $this->getServerConnection( $i, $domain, self::CONN_SILENCE_ERRORS );
 			if ( !$conn ) {
 				$this->connLogger->warning( __METHOD__ . ": Failed connecting to $i/$domain" );
 				unset( $currentLoads[$i] ); // avoid this server next iteration
@@ -1919,13 +1918,8 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		if ( $this->hasStreamingReplicaServers() ) {
-			try {
-				// Set "laggedReplicaMode"
-				$this->getReaderIndex( self::GROUP_GENERIC, $domain );
-			} catch ( DBConnectionError $e ) {
-				// Sanity: avoid expensive re-connect attempts and failures
-				$this->laggedReplicaMode = true;
-			}
+			// This will set "laggedReplicaMode" as needed
+			$this->getReaderIndex( self::GROUP_GENERIC, $domain );
 		}
 
 		return $this->laggedReplicaMode;
