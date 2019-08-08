@@ -690,9 +690,9 @@ class JobQueueDB extends JobQueue {
 					$dbw->update( 'job',
 						[
 							'job_token' => '',
-							'job_token_timestamp' => $dbw->timestamp( $now ) ], // time of release
-						[
-							'job_id' => $ids ],
+							'job_token_timestamp' => $dbw->timestamp( $now ) // time of release
+						],
+						[ 'job_id' => $ids, "job_token != ''" ],
 						__METHOD__
 					);
 					$affected = $dbw->affectedRows();
