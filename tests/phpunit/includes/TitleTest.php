@@ -810,7 +810,7 @@ class TitleTest extends MediaWikiTestCase {
 		// Tell Title it doesn't know whether it exists
 		$title->mArticleID = -1;
 
-		// Tell the link cache it doesn't exists when it really does
+		// Tell the link cache it doesn't exist when it really does
 		$linkCache->clearLink( $title );
 		$linkCache->addBadLinkObj( $title );
 
