@@ -783,12 +783,12 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param int $exptime
-	 * @return bool
+	 * @param int|float $exptime
+	 * @return bool Whether the expiry is non-infinite, and, negative or not a UNIX timestamp
 	 * @since 1.34
 	 */
 	final protected function isRelativeExpiration( $exptime ) {
-		return ( $exptime != self::TTL_INDEFINITE && $exptime < ( 10 * self::TTL_YEAR ) );
+		return ( $exptime !== self::TTL_INDEFINITE && $exptime < ( 10 * self::TTL_YEAR ) );
 	}
 
 	/**

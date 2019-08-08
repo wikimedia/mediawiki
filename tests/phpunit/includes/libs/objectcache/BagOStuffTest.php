@@ -112,21 +112,48 @@ class BagOStuffTest extends MediaWikiTestCase {
 	/**
 	 * @covers MediumSpecificBagOStuff::changeTTL
 	 */
-	public function testChangeTTL() {
-		$now = 1563892142;
+	public function testChangeTTLRenew() {
+		$now = microtime( true ); // need real time
+		$this->cache->setMockTime( $now );
+
+		$key = $this->cache->makeKey( self::TEST_KEY );
+		$value = 'meow';
+
+		$this->cache->add( $key, $value, 60 );
+		$this->assertEquals( $value, $this->cache->get( $key ) );
+		$this->assertTrue( $this->cache->changeTTL( $key, 120 ) );
+		$this->assertTrue( $this->cache->changeTTL( $key, 120 ) );
+		$this->assertTrue( $this->cache->changeTTL( $key, 0 ) );
+		$this->assertEquals( $this->cache->get( $key ), $value );
+
+		$this->cache->delete( $key );
+		$this->assertFalse( $this->cache->changeTTL( $key, 15 ) );
+	}
+
+	/**
+	 * @covers MediumSpecificBagOStuff::changeTTL
+	 */
+	public function testChangeTTLExpireRel() {
+		$now = microtime( true ); // need real time
 		$this->cache->setMockTime( $now );
 
 		$key = $this->cache->makeKey( self::TEST_KEY );
 		$value = 'meow';
 
 		$this->cache->add( $key, $value, 5 );
-		$this->assertEquals( $value, $this->cache->get( $key ) );
-		$this->assertTrue( $this->cache->changeTTL( $key, 10 ) );
-		$this->assertTrue( $this->cache->changeTTL( $key, 10 ) );
-		$this->assertTrue( $this->cache->changeTTL( $key, 0 ) );
-		$this->assertEquals( $this->cache->get( $key ), $value );
-		$this->cache->delete( $key );
-		$this->assertFalse( $this->cache->changeTTL( $key, 15 ) );
+		$this->assertTrue( $this->cache->changeTTL( $key, -3600 ) );
+		$this->assertFalse( $this->cache->get( $key ) );
+	}
+
+	/**
+	 * @covers MediumSpecificBagOStuff::changeTTL
+	 */
+	public function testChangeTTLExpireAbs() {
+		$now = microtime( true ); // need real time
+		$this->cache->setMockTime( $now );
+
+		$key = $this->cache->makeKey( self::TEST_KEY );
+		$value = 'meow';
 
 		$this->cache->add( $key, $value, 5 );
 		$this->assertTrue( $this->cache->changeTTL( $key, $now - 3600 ) );
