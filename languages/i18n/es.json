@@ -839,7 +839,7 @@
 	"blockedtext-composite": "<strong>Tu nombre de usuario o dirección IP han sido bloqueados.</strong>\n\nLa razón es:\n\n:<em>$2</em>.\n\n* Inicio del bloqueo: $8\n* Vencimiento del bloqueo más largo: $6\n\n* $5\n\nTu dirección IP actual es $3.\nPor favor, incluye todos los detalles anteriores en cualquier consulta que realices.",
 	"blockedtext-composite-ids": "Identificadores de bloqueo relevantes: $1 (tu dirección IP puede encontrarse también en alguna lista negra)",
 	"blockedtext-composite-no-ids": "Tu dirección IP figura en varias listas negras",
-	"blockedtext-composite-reason": "Existen múltiples bloqueos contra tu cuenta y/o dirección IP",
+	"blockedtext-composite-reason": "Existen varios bloqueos contra tu cuenta o dirección IP",
 	"whitelistedittext": "Tienes que $1 para editar páginas.",
 	"confirmedittext": "Debes confirmar tu dirección de correo electrónico antes de poder editar páginas. Por favor, configura y confirma tu dirección de correo a través de tus [[Special:Preferences|preferencias de usuario]].",
 	"nosuchsectiontitle": "Sección no encontrada",
