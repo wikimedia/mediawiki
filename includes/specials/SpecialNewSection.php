@@ -52,6 +52,7 @@ class SpecialNewSection extends RedirectSpecialPage {
 				'type' => 'text',
 				'name' => 'page',
 				'label-message' => 'newsection-page',
+				'required' => true,
 			],
 		], $this->getContext(), 'newsection' );
 		$form->setSubmitTextMsg( 'newsection-submit' );
