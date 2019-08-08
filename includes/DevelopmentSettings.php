@@ -27,7 +27,7 @@ ini_set( 'display_errors', 1 );
 
 global $wgDevelopmentWarnings, $wgShowExceptionDetails, $wgShowHostnames,
 	$wgDebugRawPage, $wgCommandLineMode, $wgDebugLogFile,
-	$wgDBerrorLog, $wgDebugLogGroups;
+	$wgDBerrorLog, $wgDebugLogGroups, $wgLocalisationCacheConf;
 
 // Use of wfWarn() should cause tests to fail
 $wgDevelopmentWarnings = true;
@@ -74,3 +74,6 @@ $wgSQLMode = 'TRADITIONAL';
 
 // Disable legacy javascript globals in CI and for devs (T72470)
 $wgLegacyJavaScriptGlobals = false;
+
+// Localisation Cache to StaticArray (T218207)
+$wgLocalisationCacheConf['store'] = 'array';
