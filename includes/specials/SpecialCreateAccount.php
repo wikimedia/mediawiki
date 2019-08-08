@@ -64,7 +64,7 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		$user = $this->getUser();
 		$status = AuthManager::singleton()->checkAccountCreatePermissions( $user );
 		if ( !$status->isGood() ) {
-			// track block with a cookie if it doesn't exists already
+			// Track block with a cookie if it doesn't exist already
 			if ( $user->isBlockedFromCreateAccount() ) {
 				MediaWikiServices::getInstance()->getBlockManager()->trackBlockWithCookie( $user );
 			}

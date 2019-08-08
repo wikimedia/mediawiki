@@ -286,7 +286,7 @@ class SpecialContributions extends IncludableSpecialPage {
 	 */
 	protected function contributionsSub( $userObj ) {
 		if ( $userObj->isAnon() ) {
-			// Show a warning message that the user being searched for doesn't exists.
+			// Show a warning message that the user being searched for doesn't exist.
 			// User::isIP returns true for IP address and usemod IPs like '123.123.123.xxx',
 			// but returns false for IP ranges. We don't want to suggest either of these are
 			// valid usernames which we would with the 'contributions-userdoesnotexist' message.
