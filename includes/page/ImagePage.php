@@ -736,13 +736,10 @@ EOT
 	}
 
 	/**
-	 * Print out the various links at the bottom of the image page, e.g. reupload,
-	 * external editing (and instructions link) etc.
+	 * Add the re-upload link (or message about not being able to re-upload) to the output.
 	 */
 	protected function uploadLinksBox() {
-		global $wgEnableUploads;
-
-		if ( !$wgEnableUploads ) {
+		if ( !$this->getContext()->getConfig()->get( 'EnableUploads' ) ) {
 			return;
 		}
 
@@ -751,27 +748,27 @@ EOT
 			return;
 		}
 
-		$out = $this->getContext()->getOutput();
-		$out->addHTML( "<ul>\n" );
-
-		# "Upload a new version of this file" link
 		$canUpload = $this->getTitle()->quickUserCan( 'upload', $this->getContext()->getUser() );
 		if ( $canUpload && UploadBase::userCanReUpload(
 				$this->getContext()->getUser(),
 				$this->mPage->getFile() )
 		) {
+			// "Upload a new version of this file" link
 			$ulink = Linker::makeExternalLink(
 				$this->getUploadUrl(),
 				$this->getContext()->msg( 'uploadnewversion-linktext' )->text()
 			);
-			$out->addHTML( "<li id=\"mw-imagepage-reupload-link\">"
-				. "<div class=\"plainlinks\">{$ulink}</div></li>\n" );
+			$attrs = [ 'class' => 'plainlinks', 'id' => 'mw-imagepage-reupload-link' ];
+			$linkPara = Html::rawElement( 'p', $attrs, $ulink );
 		} else {
-			$out->addHTML( "<li id=\"mw-imagepage-upload-disallowed\">"
-				. $this->getContext()->msg( 'upload-disallowed-here' )->escaped() . "</li>\n" );
+			// "You cannot overwrite this file." message
+			$attrs = [ 'id' => 'mw-imagepage-upload-disallowed' ];
+			$msg = $this->getContext()->msg( 'upload-disallowed-here' )->text();
+			$linkPara = Html::element( 'p', $attrs, $msg );
 		}
 
-		$out->addHTML( "</ul>\n" );
+		$uploadLinks = Html::rawElement( 'div', [ 'class' => 'mw-imagepage-upload-links' ], $linkPara );
+		$this->getContext()->getOutput()->addHTML( $uploadLinks );
 	}
 
 	/**
