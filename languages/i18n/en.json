@@ -1908,7 +1908,7 @@
 	"filehist-filesize": "File size",
 	"filehist-comment": "Comment",
 	"imagelinks": "File usage",
-	"linkstoimage": "The following {{PLURAL:$1|page uses|$1 pages uses}} this file:",
+	"linkstoimage": "The following {{PLURAL:$1|page uses|$1 pages use}} this file:",
 	"linkstoimage-more": "More than $1 {{PLURAL:$1|page uses|pages use}} this file.\nThe following list shows the {{PLURAL:$1|first page|first $1 pages}} that use this file only.\nA [[Special:WhatLinksHere/$2|full list]] is available.",
 	"nolinkstoimage": "There are no pages that use this file.",
 	"morelinkstoimage": "View [[Special:WhatLinksHere/$1|more links]] to this file.",
