@@ -51,6 +51,34 @@ class NamespaceInfo {
 	private $options;
 
 	/**
+	 * Definitions of the NS_ constants are in Defines.php
+	 *
+	 * @todo Make this const when HHVM support is dropped (T192166)
+	 *
+	 * @var array
+	 * @internal
+	 */
+	public static $canonicalNames = [
+		NS_MEDIA            => 'Media',
+		NS_SPECIAL          => 'Special',
+		NS_TALK             => 'Talk',
+		NS_USER             => 'User',
+		NS_USER_TALK        => 'User_talk',
+		NS_PROJECT          => 'Project',
+		NS_PROJECT_TALK     => 'Project_talk',
+		NS_FILE             => 'File',
+		NS_FILE_TALK        => 'File_talk',
+		NS_MEDIAWIKI        => 'MediaWiki',
+		NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
+		NS_TEMPLATE         => 'Template',
+		NS_TEMPLATE_TALK    => 'Template_talk',
+		NS_HELP             => 'Help',
+		NS_HELP_TALK        => 'Help_talk',
+		NS_CATEGORY         => 'Category',
+		NS_CATEGORY_TALK    => 'Category_talk',
+	];
+
+	/**
 	 * TODO Make this const when HHVM support is dropped (T192166)
 	 *
 	 * @since 1.34
@@ -641,5 +669,16 @@ class NamespaceInfo {
 		} else {
 			return 'page';
 		}
+	}
+
+	/**
+	 * Retrieve the indexes for the namespaces defined by core.
+	 *
+	 * @since 1.34
+	 *
+	 * @return int[]
+	 */
+	public static function getCommonNamespaces() {
+		return array_keys( self::$canonicalNames );
 	}
 }
