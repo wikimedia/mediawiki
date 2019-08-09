@@ -284,7 +284,7 @@
 	"config-skins-must-enable-some": "Musisz wybrać co najmniej jedną skórkę, aby ją włączyć.",
 	"config-skins-must-enable-default": "Skórka wybrana jako domyślna musi być włączona.",
 	"config-install-alreadydone": "'''Uwaga''' – wydaje się, że MediaWiki jest już zainstalowane, a obecnie próbujesz zainstalować je ponownie.\nPrzejdź do następnej strony.",
-	"config-install-begin": "Po naciśnięciu \"{{int:config-continue}}\", rozpocznie się instalacja MediaWiki.\nJeśli nadal chcesz dokonać zmian, naciśnij \"{{int:config-back}}\".",
+	"config-install-begin": "Po naciśnięciu „{{int:config-continue}}”, rozpocznie się instalacja MediaWiki.\nJeśli nadal chcesz dokonać zmian, naciśnij „{{int:config-back}}”.",
 	"config-install-step-done": "gotowe",
 	"config-install-step-failed": "nieudane",
 	"config-install-extensions": "Dołączanie rozszerzeń",

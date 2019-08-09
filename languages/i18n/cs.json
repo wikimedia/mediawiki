@@ -2339,6 +2339,7 @@
 	"changecontentmodel": "Změnit model obsahu stránky",
 	"changecontentmodel-legend": "Změnit model obsahu",
 	"changecontentmodel-title-label": "Název stránky",
+	"changecontentmodel-current-label": "Současný model obsahu:",
 	"changecontentmodel-model-label": "Nový model obsahu",
 	"changecontentmodel-reason-label": "Důvod:",
 	"changecontentmodel-submit": "Změnit",
