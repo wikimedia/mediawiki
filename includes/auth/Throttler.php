@@ -127,14 +127,16 @@ class Throttler implements LoggerAwareInterface {
 				continue;
 			}
 
-			$throttleKey = $this->cache->makeGlobalKey( 'throttler', $this->type, $index, $ipKey, $userKey );
+			$throttleKey = $this->cache->makeGlobalKey(
+				'throttler',
+				$this->type,
+				$index,
+				$ipKey,
+				$userKey
+			);
 			$throttleCount = $this->cache->get( $throttleKey );
-
-			if ( !$throttleCount ) { // counter not started yet
-				$this->cache->add( $throttleKey, 1, $expiry );
-			} elseif ( $throttleCount < $count ) { // throttle limited not yet reached
-				$this->cache->incr( $throttleKey );
-			} else { // throttled
+			if ( $throttleCount && $throttleCount >= $count ) {
+				// Throttle limited reached
 				$this->logRejection( [
 					'throttle' => $this->type,
 					'index' => $index,
@@ -147,13 +149,12 @@ class Throttler implements LoggerAwareInterface {
 					// @codeCoverageIgnoreEnd
 				] );
 
-				return [
-					'throttleIndex' => $index,
-					'count' => $count,
-					'wait' => $expiry,
-				];
+				return [ 'throttleIndex' => $index, 'count' => $count, 'wait' => $expiry ];
+			} else {
+				$this->cache->incrWithInit( $throttleKey, $expiry, 1 );
 			}
 		}
+
 		return false;
 	}
 
