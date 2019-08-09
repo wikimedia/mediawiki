@@ -323,7 +323,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 			unset( $currentValue ); // free RAM in case the value is large
 
 			$this->clearLastError();
-			if ( $value === false ) {
+			if ( $value === false || $exptime < 0 ) {
 				$success = true; // do nothing
 			} elseif ( $hadNoCurrentValue ) {
 				// Try to create the key, failing if it gets created in the meantime
