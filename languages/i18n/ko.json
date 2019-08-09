@@ -3422,6 +3422,8 @@
 	"permanentlink": "고유 링크",
 	"permanentlink-revid": "판 ID",
 	"permanentlink-submit": "판으로 이동",
+	"newsection": "새 문단",
+	"newsection-submit": "문서로 이동",
 	"dberr-problems": "죄송합니다! 이 사이트에 기술적인 문제가 발생하고 있습니다.",
 	"dberr-again": "잠시 기다리고 나서 다시 불러오세요.",
 	"dberr-info": "(데이터베이스 서버에 연결할 수 없습니다: $1)",
