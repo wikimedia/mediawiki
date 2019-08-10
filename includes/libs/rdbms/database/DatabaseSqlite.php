@@ -270,28 +270,6 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
-	 * Check if the searchindext table is FTS enabled.
-	 * @return bool False if not enabled.
-	 */
-	public function checkForEnabledSearch() {
-		if ( self::$fulltextEnabled === null ) {
-			self::$fulltextEnabled = false;
-			$table = $this->tableName( 'searchindex' );
-			$res = $this->query(
-				"SELECT sql FROM sqlite_master WHERE tbl_name = '$table'",
-				__METHOD__,
-				self::QUERY_IGNORE_DBO_TRX
-			);
-			if ( $res ) {
-				$row = $res->fetchRow();
-				self::$fulltextEnabled = stristr( $row['sql'], 'fts' ) !== false;
-			}
-		}
-
-		return self::$fulltextEnabled;
-	}
-
-	/**
 	 * Returns version of currently supported SQLite fulltext search module or false if none present.
 	 * @return string
 	 */

@@ -356,7 +356,14 @@ EOT;
 		global $IP;
 
 		$module = DatabaseSqlite::getFulltextSearchModule();
-		$fts3tTable = $this->db->checkForEnabledSearch();
+		$searchIndexSql = (string)$this->db->selectField(
+			$this->db->addIdentifierQuotes( 'sqlite_master' ),
+			'sql',
+			[ 'tbl_name' => $this->db->tableName( 'searchindex', 'raw' ) ],
+			__METHOD__
+		);
+		$fts3tTable = ( stristr( $searchIndexSql, 'fts' ) !== false );
+
 		if ( $fts3tTable && !$module ) {
 			$status->warning( 'config-sqlite-fts3-downgrade' );
 			$this->db->sourceFile( "$IP/maintenance/sqlite/archives/searchindex-no-fts.sql" );
