@@ -62,7 +62,11 @@ class SpecialNewSection extends RedirectSpecialPage {
 
 	public function onFormSubmit( $formData ) {
 		$title = $formData['page'];
-		$page = Title::newFromText( $title );
+		try {
+			$page = Title::newFromTextThrow( $title );
+		} catch ( MalformedTitleException $e ) {
+			return Status::newFatal( $e->getMessageObject() );
+		}
 		$query = [ 'action' => 'edit', 'section' => 'new' ];
 		$url = $page->getFullUrlForRedirect( $query );
 		$this->getOutput()->redirect( $url );
