@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\DatabaseSqlite;
 
 /**
  * Search engine hook for SQLite
@@ -34,14 +33,15 @@ class SearchSqlite extends SearchDatabase {
 	 * @return bool
 	 */
 	private function fulltextSearchSupported() {
-		// Avoid getConnectionRef() in order to get DatabaseSqlite specifically
-		/** @var DatabaseSqlite $dbr */
-		$dbr = $this->lb->getConnection( DB_REPLICA );
-		try {
-			return $dbr->checkForEnabledSearch();
-		} finally {
-			$this->lb->reuseConnection( $dbr );
-		}
+		$dbr = $this->lb->getMaintenanceConnectionRef( DB_REPLICA );
+		$sql = (string)$dbr->selectField(
+			$dbr->addIdentifierQuotes( 'sqlite_master' ),
+			'sql',
+			[ 'tbl_name' => $dbr->tableName( 'searchindex', 'raw' ) ],
+			__METHOD__
+		);
+
+		return ( stristr( $sql, 'fts' ) !== false );
 	}
 
 	/**
