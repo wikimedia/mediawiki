@@ -21,7 +21,9 @@
  * @author Niklas Laxström
  * @ingroup Cache
  */
+
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Caches user genders when needed to use correct namespace aliases.
@@ -37,8 +39,12 @@ class GenderCache {
 	/** @var NamespaceInfo */
 	private $nsInfo;
 
-	public function __construct( NamespaceInfo $nsInfo = null ) {
+	/** @var ILoadBalancer|null */
+	private $loadBalancer;
+
+	public function __construct( NamespaceInfo $nsInfo = null, ILoadBalancer $loadBalancer = null ) {
 		$this->nsInfo = $nsInfo ?? MediaWikiServices::getInstance()->getNamespaceInfo();
+		$this->loadBalancer = $loadBalancer;
 	}
 
 	/**
@@ -164,7 +170,13 @@ class GenderCache {
 			return;
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
+		// Only query database, when load balancer is provided by service wiring
+		// This maybe not happen when running as part of the installer
+		if ( $this->loadBalancer === null ) {
+			return;
+		}
+
+		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 		$table = [ 'user', 'user_properties' ];
 		$fields = [ 'user_name', 'up_value' ];
 		$conds = [ 'user_name' => $usersToCheck ];
