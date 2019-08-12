@@ -17,7 +17,7 @@ class RCFeedIntegrationTest extends MediaWikiTestCase {
 			'wgServerName' => 'example.org',
 			'wgScriptPath' => '/w',
 			'wgDBname' => 'example',
-			'wgDBprefix' => '',
+			'wgDBprefix' => $this->dbPrefix(),
 			'wgRCFeeds' => [],
 			'wgRCEngines' => [],
 		] );
@@ -57,7 +57,7 @@ class RCFeedIntegrationTest extends MediaWikiTestCase {
 						'server_url' => 'https://example.org',
 						'server_name' => 'example.org',
 						'server_script_path' => '/w',
-						'wiki' => 'example',
+						'wiki' => 'example-' . $this->dbPrefix(),
 					] ),
 					$line
 				);
