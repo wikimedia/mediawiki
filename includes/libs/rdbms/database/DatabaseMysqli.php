@@ -64,9 +64,14 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 			);
 		}
 
-		// Other than mysql_connect, mysqli_real_connect expects an explicit port
-		// and socket parameters. So we need to parse the port and socket out of
-		// $realServer
+		// Other than mysql_connect, mysqli_real_connect expects an explicit port number
+		// e.g. "localhost:1234" or "127.0.0.1:1234"
+		// or Unix domain socket path
+		// e.g. "localhost:/socket_path" or "localhost:/foo/bar:bar:bar"
+		// colons are known to be used by Google AppEngine,
+		// see <https://cloud.google.com/sql/docs/mysql/connect-app-engine>
+		//
+		// We need to parse the port or socket path out of $realServer
 		$port = null;
 		$socket = null;
 		$hostAndPort = IP::splitHostAndPort( $realServer );
@@ -75,9 +80,9 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 			if ( $hostAndPort[1] ) {
 				$port = $hostAndPort[1];
 			}
-		} elseif ( substr_count( $realServer, ':' ) == 1 ) {
-			// If we have a colon and something that's not a port number
-			// inside the hostname, assume it's the socket location
+		} elseif ( substr_count( $realServer, ':/' ) == 1 ) {
+			// If we have a colon slash instead of a colon and a port number
+			// after the ip or hostname, assume it's the Unix domain socket path
 			list( $realServer, $socket ) = explode( ':', $realServer, 2 );
 		}
 
