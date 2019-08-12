@@ -2342,6 +2342,7 @@
 	"changecontentmodel": "שינוי מודל התוכן של דף",
 	"changecontentmodel-legend": "שינוי מודל התוכן",
 	"changecontentmodel-title-label": "שם הדף",
+	"changecontentmodel-current-label": "מודל התוכן הנוכחי:",
 	"changecontentmodel-model-label": "מודל התוכן החדש",
 	"changecontentmodel-reason-label": "סיבה:",
 	"changecontentmodel-submit": "שינוי",

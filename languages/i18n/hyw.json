@@ -947,7 +947,7 @@
 	"pageinfo-hidden-categories": "Թաքուն {{PLURAL:$1|խմբաւորում|խմբաւորումներ}} ($1)",
 	"pageinfo-templates": "Օգտագործուած {{PLURAL:$1|կաղապար|կաղապարներ}} ($1)",
 	"pageinfo-toolboxlink": "‎Էջի մասին տեղեկութիւն",
-	"pageinfo-redirectsto": "Վերայղում է դեպի",
+	"pageinfo-redirectsto": "Կը վերայղուի դէպի",
 	"pageinfo-contentpage": "Իբրեւ բովանդակութեան էջ հաշուըւած",
 	"pageinfo-contentpage-yes": "Այո",
 	"pageinfo-protect-cascading-yes": "Այո",
