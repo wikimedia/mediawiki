@@ -2359,7 +2359,7 @@
 	"delete-warning-toobig": "La cronologia di questa pagina è molto lunga (oltre $1 {{PLURAL:$1|versione|versioni}}). La sua cancellazione può creare dei problemi di funzionamento al database di {{SITENAME}}; procedere con cautela.",
 	"deleteprotected": "Non puoi cancellare questa pagina perché è stata protetta.",
 	"deleting-backlinks-warning": "<strong>Attenzione:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|altre pagine]] contengono collegamenti o inclusioni alla pagina che stai per cancellare.",
-	"deleting-subpages-warning": "<strong>Attenzione:</strong> la pagina che stai per cancellare ha [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|una sotto-pagina|$1 sotto-pagine|51=più di 50 sotto-pagine}}]].",
+	"deleting-subpages-warning": "<strong>Attenzione:</strong> la pagina che stai per cancellare ha [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|una sottopagina|$1 sottopagine|51=più di 50 sottopagine}}]].",
 	"rollback": "Annulla le modifiche",
 	"rollback-confirmation-confirm": "Per favore conferma:",
 	"rollback-confirmation-yes": "Rollback",
