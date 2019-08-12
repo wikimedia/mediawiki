@@ -96,17 +96,24 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	/**
-	 * TTLs higher than 30 days will be detected as absolute TTLs
-	 * (UNIX timestamps), and will result in the cache entry being
-	 * discarded immediately because the expiry is in the past.
-	 * Clamp expires >30d at 30d, unless they're >=1e9 in which
-	 * case they are likely to really be absolute (1e9 = 2011-09-09)
-	 * @param int $exptime
+	 * @param int|float $exptime
 	 * @return int
 	 */
 	protected function fixExpiry( $exptime ) {
-		return ( $exptime > self::TTL_MONTH && !$this->isRelativeExpiration( $exptime ) )
-			? self::TTL_MONTH
-			: (int)$exptime;
+		if ( $exptime < 0 ) {
+			// The PECL driver does not seem to like negative relative values
+			$expiresAt = $this->getCurrentTime() + $exptime;
+		} elseif ( $this->isRelativeExpiration( $exptime ) ) {
+			// TTLs higher than 30 days will be detected as absolute TTLs
+			// (UNIX timestamps), and will result in the cache entry being
+			// discarded immediately because the expiry is in the past.
+			// Clamp expires >30d at 30d, unless they're >=1e9 in which
+			// case they are likely to really be absolute (1e9 = 2011-09-09)
+			$expiresAt = min( $exptime, self::TTL_MONTH );
+		} else {
+			$expiresAt = $exptime;
+		}
+
+		return (int)$expiresAt;
 	}
 }
