@@ -100,6 +100,7 @@ $specialPageAliases = [
 	'Mytalk'                    => [ 'Meine_Diskussionsseite' ],
 	'Myuploads'                 => [ 'Meine_hochgeladenen_Dateien' ],
 	'Newimages'                 => [ 'Neue_Dateien' ],
+	'NewSection'                => [ 'Neuer_Abschnitt' ],
 	'Newpages'                  => [ 'Neue_Seiten' ],
 	'PagesWithProp'             => [ 'Seiten_mit_Eigenschaften' ],
 	'PageLanguage'              => [ 'Seitensprache' ],
