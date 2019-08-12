@@ -468,8 +468,7 @@ class Parser {
 	 */
 	public function clearState() {
 		$this->firstCallInit();
-		$this->mOutput = new ParserOutput;
-		$this->mOptions->registerWatcher( [ $this->mOutput, 'recordOption' ] );
+		$this->resetOutput();
 		$this->mAutonumber = 0;
 		$this->mIncludeCount = [];
 		$this->mLinkHolders = new LinkHolderArray( $this );
@@ -510,6 +509,14 @@ class Parser {
 		// Avoid PHP 7.1 warning from passing $this by reference
 		$parser = $this;
 		Hooks::run( 'ParserClearState', [ &$parser ] );
+	}
+
+	/**
+	 * Reset the ParserOutput
+	 */
+	public function resetOutput() {
+		$this->mOutput = new ParserOutput;
+		$this->mOptions->registerWatcher( [ $this->mOutput, 'recordOption' ] );
 	}
 
 	/**
@@ -1175,6 +1182,15 @@ class Parser {
 	 */
 	public function getStripList() {
 		return $this->mStripList;
+	}
+
+	/**
+	 * Get the StripState
+	 *
+	 * @return StripState
+	 */
+	public function getStripState() {
+		return $this->mStripState;
 	}
 
 	/**
@@ -4857,11 +4873,15 @@ class Parser {
 	 * @param ParserOptions $options
 	 * @param int $outputType
 	 * @param bool $clearState
+	 * @param int|null $revId
 	 */
 	public function startExternalParse( Title $title = null, ParserOptions $options,
-		$outputType, $clearState = true
+		$outputType, $clearState = true, $revId = null
 	) {
 		$this->startParse( $title, $options, $outputType, $clearState );
+		if ( $revId !== null ) {
+			$this->mRevisionId = $revId;
+		}
 	}
 
 	/**
