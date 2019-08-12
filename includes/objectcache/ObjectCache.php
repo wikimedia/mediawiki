@@ -178,7 +178,8 @@ class ObjectCache {
 		} elseif ( isset( $params['class'] ) ) {
 			$class = $params['class'];
 			// Automatically set the 'async' update handler
-			$params['asyncHandler'] = $params['asyncHandler'] ?? 'DeferredUpdates::addCallableUpdate';
+			$params['asyncHandler'] = $params['asyncHandler']
+				?? [ DeferredUpdates::class, 'addCallableUpdate' ];
 			// Enable reportDupes by default
 			$params['reportDupes'] = $params['reportDupes'] ?? true;
 			// Do b/c logic for SqlBagOStuff
