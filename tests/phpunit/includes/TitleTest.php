@@ -296,9 +296,15 @@ class TitleTest extends MediaWikiTestCase {
 	 * @covers Title::isValidMoveOperation
 	 */
 	public function testIsValidMoveOperation( $source, $target, $expected ) {
+		global $wgMultiContentRevisionSchemaMigrationStage;
+
 		$this->hideDeprecated( 'Title::isValidMoveOperation' );
 
-		$this->setMwGlobals( 'wgContentHandlerUseDB', false );
+		if ( $wgMultiContentRevisionSchemaMigrationStage === SCHEMA_COMPAT_OLD ) {
+			// We can only set this to false with the old schema
+			$this->setMwGlobals( 'wgContentHandlerUseDB', false );
+		}
+
 		$title = Title::newFromText( $source );
 		$nt = Title::newFromText( $target );
 		$errors = $title->isValidMoveOperation( $nt, false );
@@ -313,16 +319,24 @@ class TitleTest extends MediaWikiTestCase {
 	}
 
 	public static function provideTestIsValidMoveOperation() {
-		return [
+		global $wgMultiContentRevisionSchemaMigrationStage;
+		$ret = [
 			// for Title::isValidMoveOperation
 			[ 'Some page', '', 'badtitletext' ],
 			[ 'Test', 'Test', 'selfmove' ],
 			[ 'Special:FooBar', 'Test', 'immobile-source-namespace' ],
 			[ 'Test', 'Special:FooBar', 'immobile-target-namespace' ],
-			[ 'MediaWiki:Common.js', 'Help:Some wikitext page', 'bad-target-model' ],
 			[ 'Page', 'File:Test.jpg', 'nonfile-cannot-move-to-file' ],
 			[ 'File:Test.jpg', 'Page', 'imagenocrossnamespace' ],
 		];
+		if ( $wgMultiContentRevisionSchemaMigrationStage === SCHEMA_COMPAT_OLD ) {
+			// The error can only occur if $wgContentHandlerUseDB is false, which doesn't work with
+			// the new schema, so omit the test in that case
+			array_push( $ret,
+				[ 'MediaWiki:Common.js', 'Help:Some wikitext page', 'bad-target-model' ]
+			);
+		}
+		return $ret;
 	}
 
 	/**

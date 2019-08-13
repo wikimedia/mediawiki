@@ -27,7 +27,6 @@ class MergeHistoryTest extends MediaWikiTestCase {
 	 * @param string|bool $error Expected error for test (or true for no error)
 	 */
 	public function testIsValidMerge( $source, $dest, $timestamp, $error ) {
-		$this->setMwGlobals( 'wgContentHandlerUseDB', false );
 		if ( $timestamp === true ) {
 			// Although this timestamp is after the latest timestamp of both pages,
 			// MergeHistory should select the latest source timestamp up to this which should
