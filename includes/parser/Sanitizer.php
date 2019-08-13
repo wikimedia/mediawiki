@@ -2036,6 +2036,7 @@ class Sanitizer {
 	 *
 	 * @param string $html HTML fragment
 	 * @return string
+	 * @return-taint tainted
 	 */
 	static function stripAllTags( $html ) {
 		// Use RemexHtml to tokenize $html and extract the text
