@@ -9,6 +9,7 @@ use ConfigFactory;
 use CryptHKDF;
 use DateFormatterFactory;
 use EventRelayerGroup;
+use FileBackendGroup;
 use GenderCache;
 use GlobalVarConfig;
 use Hooks;
@@ -613,6 +614,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getExternalStoreFactory() {
 		return $this->getService( 'ExternalStoreFactory' );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return FileBackendGroup
+	 */
+	public function getFileBackendGroup() : FileBackendGroup {
+		return $this->getService( 'FileBackendGroup' );
 	}
 
 	/**

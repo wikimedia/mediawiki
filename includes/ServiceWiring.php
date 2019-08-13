@@ -239,6 +239,40 @@ return [
 		);
 	},
 
+	'FileBackendGroup' => function ( MediaWikiServices $services ) : FileBackendGroup {
+		$mainConfig = $services->getMainConfig();
+
+		$ld = WikiMap::getCurrentWikiDbDomain();
+		$fallbackWikiId = WikiMap::getWikiIdFromDbDomain( $ld );
+		// If the local wiki ID and local domain ID do not match, probably due to a non-default
+		// schema, issue a warning. A non-default schema indicates that it might be used to
+		// disambiguate different wikis.
+		$legacyDomainId = strlen( $ld->getTablePrefix() )
+			? "{$ld->getDatabase()}-{$ld->getTablePrefix()}"
+			: $ld->getDatabase();
+		if ( $ld->getSchema() !== null && $legacyDomainId !== $fallbackWikiId ) {
+			wfWarn(
+				"Legacy default 'domainId' is '$legacyDomainId' but wiki ID is '$fallbackWikiId'."
+			);
+		}
+
+		$cache = $services->getLocalServerObjectCache();
+		if ( $cache instanceof EmptyBagOStuff ) {
+			$cache = new HashBagOStuff;
+		}
+
+		return new FileBackendGroup(
+			new ServiceOptions( FileBackendGroup::CONSTRUCTOR_OPTIONS, $mainConfig,
+				[ 'fallbackWikiId' => $fallbackWikiId ] ),
+			$services->getConfiguredReadOnlyMode(),
+			$cache,
+			$services->getMainWANObjectCache(),
+			$services->getMimeAnalyzer(),
+			$services->getLockManagerGroupFactory(),
+			$services->getTempFSFileFactory()
+		);
+	},
+
 	'GenderCache' => function ( MediaWikiServices $services ) : GenderCache {
 		$nsInfo = $services->getNamespaceInfo();
 		// Database layer may be disabled, so processing without database connection

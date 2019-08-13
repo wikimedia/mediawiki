@@ -169,7 +169,8 @@ class FileRepo {
 		if ( $info['backend'] instanceof FileBackend ) {
 			$this->backend = $info['backend']; // useful for testing
 		} else {
-			$this->backend = FileBackendGroup::singleton()->get( $info['backend'] );
+			$this->backend =
+				MediaWikiServices::getInstance()->getFileBackendGroup()->get( $info['backend'] );
 		}
 
 		// Optional settings that can have no value

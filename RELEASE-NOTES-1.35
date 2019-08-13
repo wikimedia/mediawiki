@@ -113,6 +113,10 @@ because of Phabricator reports.
   methods on the LanguageFallback class: getFirst, getAll, and
   getAllIncludingSiteLanguage.
 * Title::countRevisionsBetween has been deprecated and moved into RevisionStore.
+* FileBackendGroup::singleton() is deprecated. Use MediaWikiServices instead.
+* FileBackendGroup::destroySingleton() is deprecated. Test frameworks should
+  instead reset MediaWikiServices between test runs.
+  (MediaWikiIntegrationTestCase does this automatically.)
 * AbstractBlock::getReason is deprecated, since reasons are actually stored as
   CommentStoreComments, and getReason returns a string with no caller control
   over language or formatting. Instead use AbstractBlock::getReasonComment,

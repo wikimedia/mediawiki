@@ -19,8 +19,10 @@
  * @ingroup Testing
  */
 
+use MediaWiki\Logger\LoggerFactory;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Exception;
+use Wikimedia\ObjectFactory;
 
 /**
  * Base class for unit tests.
@@ -107,6 +109,11 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 				$exception
 			);
 		}
+
+		// Don't let LoggerFactory::getProvider() access globals or other things we don't want.
+		LoggerFactory::registerProvider( ObjectFactory::getObjectFromSpec( [
+			'class' => \MediaWiki\Logger\NullSpi::class
+		] ) );
 	}
 
 	protected function tearDown() {

@@ -375,7 +375,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		JobQueueGroup::destroySingletons();
 
 		ObjectCache::clear();
-		FileBackendGroup::destroySingleton();
 		DeferredUpdates::clearPendingUpdates();
 
 		// TODO: move global state into MediaWikiServices
