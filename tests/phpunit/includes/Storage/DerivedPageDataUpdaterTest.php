@@ -946,6 +946,21 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @throws \MWException
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::isCountable
+	 */
+	public function testIsCountableNoModifiedSlots() {
+		$page = $this->getPage( __METHOD__ );
+		$content = [ 'main' => new WikitextContent( '[[Test]]' ) ];
+		$rev = $this->createRevision( $page, 'first', $content );
+		$nullRevision = MutableRevisionRecord::newFromParentRevision( $rev );
+		$nullRevision->setId( 14 );
+		$updater = $this->getDerivedPageDataUpdater( $page, $nullRevision );
+		$updater->prepareUpdate( $nullRevision );
+		$this->assertTrue( $updater->isCountable() );
+	}
+
+	/**
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doUpdates()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doSecondaryDataUpdates()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParserCacheUpdate()
