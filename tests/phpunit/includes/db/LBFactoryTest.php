@@ -451,8 +451,6 @@ class LBFactoryTest extends MediaWikiTestCase {
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection
 	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::doSelectDomain
 	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::selectDB
-	 * @covers \Wikimedia\Rdbms\DatabaseMssql::selectDB
-	 * @covers DatabaseOracle::selectDB
 	 */
 	public function testNiceDomains() {
 		global $wgDBname;
@@ -538,8 +536,6 @@ class LBFactoryTest extends MediaWikiTestCase {
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection
 	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::doSelectDomain
 	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::selectDB
-	 * @covers \Wikimedia\Rdbms\DatabaseMssql::selectDB
-	 * @covers DatabaseOracle::selectDB
 	 */
 	public function testTrickyDomain() {
 		global $wgDBname;
@@ -611,8 +607,6 @@ class LBFactoryTest extends MediaWikiTestCase {
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection
 	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::doSelectDomain
 	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::selectDB
-	 * @covers \Wikimedia\Rdbms\DatabaseMssql::selectDB
-	 * @covers DatabaseOracle::selectDB
 	 */
 	public function testInvalidSelectDB() {
 		if ( wfGetDB( DB_MASTER )->databasesAreIndependent() ) {
@@ -692,8 +686,6 @@ class LBFactoryTest extends MediaWikiTestCase {
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::redefineLocalDomain
 	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::selectDB
-	 * @covers \Wikimedia\Rdbms\DatabaseMssql::selectDB
-	 * @covers DatabaseOracle::selectDB
 	 */
 	public function testRedefineLocalDomain() {
 		global $wgDBname;

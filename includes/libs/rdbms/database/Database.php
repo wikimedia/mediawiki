@@ -453,7 +453,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// we auto-detect the first available driver. For types without built-in support,
 		// an class named "Database<Type>" us used, eg. DatabaseFoo for type 'foo'.
 		static $builtinTypes = [
-			'mssql' => DatabaseMssql::class,
 			'mysql' => [ 'mysqli' => DatabaseMysqli::class ],
 			'sqlite' => DatabaseSqlite::class,
 			'postgres' => DatabasePostgres::class,

@@ -9,7 +9,6 @@ use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Rdbms\DatabaseSqlite;
 use Wikimedia\Rdbms\DatabasePostgres;
-use Wikimedia\Rdbms\DatabaseMssql;
 use Wikimedia\Rdbms\DBUnexpectedError;
 
 class DatabaseTest extends PHPUnit\Framework\TestCase {
@@ -37,7 +36,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertInstanceOf( DatabasePostgres::class, Database::factory( 'Postgres', $p, $m ) );
 
 		$x = $p + [ 'port' => 10000, 'UseWindowsAuth' => false ];
-		$this->assertInstanceOf( DatabaseMssql::class, Database::factory( 'mssql', $x, $m ) );
 
 		$x = $p + [ 'dbFilePath' => 'some/file.sqlite' ];
 		$this->assertInstanceOf( DatabaseSqlite::class, Database::factory( 'sqlite', $x, $m ) );
