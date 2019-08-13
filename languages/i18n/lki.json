@@ -14,7 +14,8 @@
 			"Fitoschido",
 			"Matěj Suchánek",
 			"Physicsch",
-			"FarsiNevis"
+			"FarsiNevis",
+			"Iriman"
 		]
 	},
 	"tog-underline": "خط کیشائن ژێر پیوندەل:",
@@ -745,7 +746,7 @@
 	"undo-failure": "به علت تعارض با ویرایش‌های میانی، این ویرایش را نمی‌توان خنثی کرد.",
 	"undo-norev": "این ویرایش را نمی‌توان خنثی کرد چون وجود ندارد یا حذف شده‌است.",
 	"undo-nochange": "به نظر می‌رسد ویرایش از پیش واگردانی شده است.",
-	"undo-summary": "خنثی‌سازی ویرایش $1 توسط [[Special:Contributions/$2|$2]] ([[User talk:$2|بحث]])",
+	"undo-summary": "خنثی‌سازی ویرایش $1 از  [[Special:Contributions/$2|$2]] ([[User talk:$2|بحث]])",
 	"undo-summary-username-hidden": "خنثی‌سازی نسخهٔ $1 به دست یک کاربر پنهان‌شده",
 	"cantcreateaccount-text": "امكان ساختن حساب کاربری از این این نشانی آی‌پی ('''$1''') توسط [[User:$3|$3]] سلب شده است.\n\nدلیل ارائه شده توسط $3 چنین است: $2",
 	"cantcreateaccount-range-text": "ایجاد حساب از آدرس آی‌پی در مجموعه‌ی <strong>$1</strong>، که شامل آدرس آی‌پی شما (<strong>$4</strong>) است، توسط [[User:$3|$3]] متوقف شده‌است.\nدلیل ارائه شده توسط $3، $2 است.",

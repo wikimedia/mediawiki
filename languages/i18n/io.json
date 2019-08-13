@@ -1441,6 +1441,7 @@
 	"move": "Movar",
 	"movethispage": "Rinomizar ica pagino",
 	"unusedimagestext": "La sequanta arkivi existas, ma ne esas enterigita en irga pagino.\nVoluntez remarkar ke altra ret-siti povus ligesar ad arkivo per direta URL, e do ol povus esar listizita hike malgre ke on aktive uzas lo.",
+	"unusedcategoriestext": "La sequanta pagini pri kategorii ja existas, tamen nula artiklo o kategorio uzas li.",
 	"notargettitle": "Ne esas vakua pagino",
 	"notargettext": "Vu ne definis en qua pagino agar ica funciono.",
 	"nopagetitle": "La pagino ne existas",

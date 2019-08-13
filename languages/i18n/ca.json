@@ -3273,6 +3273,7 @@
 	"specialpages-group-developer": "Eines de desenvolupador",
 	"blankpage": "Pàgina en blanc",
 	"intentionallyblankpage": "Pàgina intencionadament en blanc",
+	"disabledspecialpage-disabled": "Un administrador del sistema ha desactivat aquesta pàgina.",
 	"external_image_whitelist": " #Deixeu aquesta línia exactament igual com està.<pre>\n#Poseu fragments d'expressions regulars (regex) (només la part entre els //) a sota.\n#Aquests fragments es correspondran amb els URL d'imatges externes.\n#Es mostraran com a imatges si coincideixen, i si no es mostraran com a enllaços.\n#Les línies que comencen amb un # es tracten com a comentaris.\n#S'hi distingeixen majúscules i minúscules.\n\n#Poseu tots els fragments regex al damunt d'aquesta línia. Deixeu aquesta línia exactament com està.</pre>",
 	"tags": "Etiquetes de canvi vàlides",
 	"tag-filter": "Filtre d'[[Special:Tags|etiquetes]]:",
