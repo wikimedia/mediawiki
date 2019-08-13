@@ -2368,6 +2368,7 @@
 	"changecontentmodel": "문서의 콘텐츠 모델을 변경",
 	"changecontentmodel-legend": "콘텐츠 모델 변경",
 	"changecontentmodel-title-label": "문서 제목",
+	"changecontentmodel-current-label": "현재의 콘텐츠 모델:",
 	"changecontentmodel-model-label": "새 콘텐츠 모델",
 	"changecontentmodel-reason-label": "이유:",
 	"changecontentmodel-submit": "바꾸기",

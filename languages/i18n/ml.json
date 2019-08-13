@@ -1400,6 +1400,7 @@
 	"rcfilters-clear-all-filters": "എല്ലാ അരിപ്പകളും ഒഴിവാക്കുക",
 	"rcfilters-show-new-changes": "$1 മുതലുള്ള പുതിയ മാറ്റങ്ങൾ കാണുക",
 	"rcfilters-search-placeholder": "സമീപകാലമാറ്റങ്ങൾ അരിച്ചെടുക്കുക (മെനു ഉപയോഗിക്കുക അല്ലെങ്കിൽ അരിപ്പയുടെ പേരുപയോഗിച്ച് തിരയുക)",
+	"rcfilters-search-placeholder-mobile": "അരിപ്പകൾ",
 	"rcfilters-invalid-filter": "അസാധുവായ അരിപ്പ",
 	"rcfilters-empty-filter": "സജീവ അരിപ്പകൾ ഇല്ല. എല്ലാ സംഭാവനകളും പ്രദർശിപ്പിക്കുന്നു.",
 	"rcfilters-filterlist-title": "അരിപ്പകൾ",

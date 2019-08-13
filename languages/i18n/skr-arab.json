@@ -1079,6 +1079,8 @@
 	"tags-active-no": "کو",
 	"tags-hitcount": "$1 {{PLURAL:$1|تبدیلی|تبدیلیاں}}",
 	"diff-form": "فرق",
+	"newsection": "نواں سیکشن",
+	"newsection-submit": "ورقے تے ونڄو",
 	"logentry-delete-delete": "$1 {{GENDER:$2|مٹایا ڳیا}} ورقہ $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|بحال تھی ڳیوہے}} page $3 ($4)",
 	"revdelete-content-hid": "مواد لکیا",
