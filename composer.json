@@ -62,6 +62,7 @@
 	"require-dev": {
 		"cache/integration-tests": "0.16.0",
 		"composer/spdx-licenses": "1.5.1",
+		"doctrine/dbal": "2.9.3",
 		"giorgiosironi/eris": "^0.10.0",
 		"hamcrest/hamcrest-php": "^2.0",
 		"jakub-onderka/php-console-highlighter": "0.3.2",
