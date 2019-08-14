@@ -105,8 +105,6 @@ abstract class Installer {
 	protected static $dbTypes = [
 		'mysql',
 		'postgres',
-		'oracle',
-		'mssql',
 		'sqlite',
 	];
 
