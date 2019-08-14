@@ -61,10 +61,6 @@ class SearchEngineFactory {
 				return SearchMySQL::class;
 			case 'postgres':
 				return SearchPostgres::class;
-			case 'mssql':
-				return SearchMssql::class;
-			case 'oracle':
-				return SearchOracle::class;
 			default:
 				return SearchEngineDummy::class;
 		}
