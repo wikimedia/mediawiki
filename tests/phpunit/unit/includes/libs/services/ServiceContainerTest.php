@@ -66,6 +66,32 @@ class ServiceContainerTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( 1, $count, 'instantiator should be called exactly once!' );
 	}
 
+	public function testGetServiceRecursionCheck() {
+		$services = $this->newServiceContainer();
+
+		$services->defineService( 'service1', function ( ServiceContainer $services ) {
+			$services->getService( 'service2' );
+		} );
+
+		$services->defineService( 'service2', function ( ServiceContainer $services ) {
+			$services->getService( 'service3' );
+		} );
+
+		$services->defineService( 'service3', function ( ServiceContainer $services ) {
+			$services->getService( 'service1' );
+		} );
+
+		$exceptionThrown = false;
+		try {
+			$services->getService( 'service1' );
+		} catch ( RuntimeException $e ) {
+			$exceptionThrown = true;
+			$this->assertSame( 'Circular dependency when creating service! ' .
+				'service1 -> service2 -> service3 -> service1', $e->getMessage() );
+		}
+		$this->assertTrue( $exceptionThrown, 'RuntimeException must be thrown' );
+	}
+
 	public function testGetService_fail_unknown() {
 		$services = $this->newServiceContainer();
 

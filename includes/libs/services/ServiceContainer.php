@@ -6,6 +6,7 @@ use InvalidArgumentException;
 use Psr\Container\ContainerInterface;
 use RuntimeException;
 use Wikimedia\Assert\Assert;
+use Wikimedia\ScopedCallback;
 
 /**
  * Generic service container.
@@ -76,6 +77,11 @@ class ServiceContainer implements ContainerInterface, DestructibleService {
 	 * @var bool
 	 */
 	private $destroyed = false;
+
+	/**
+	 * @var array Set of services currently being created, to detect loops
+	 */
+	private $servicesBeingCreated = [];
 
 	/**
 	 * @param array $extraInstantiationParams Any additional parameters to be passed to the
@@ -433,10 +439,20 @@ class ServiceContainer implements ContainerInterface, DestructibleService {
 	 * @param string $name
 	 *
 	 * @throws InvalidArgumentException if $name is not a known service.
+	 * @throws RuntimeException if a circular dependency is detected.
 	 * @return object
 	 */
 	private function createService( $name ) {
 		if ( isset( $this->serviceInstantiators[$name] ) ) {
+			if ( isset( $this->servicesBeingCreated[$name] ) ) {
+				throw new RuntimeException( "Circular dependency when creating service! " .
+					implode( ' -> ', array_keys( $this->servicesBeingCreated ) ) . " -> $name" );
+			}
+			$this->servicesBeingCreated[$name] = true;
+			$removeFromStack = new ScopedCallback( function () use ( $name ) {
+				unset( $this->servicesBeingCreated[$name] );
+			} );
+
 			$service = ( $this->serviceInstantiators[$name] )(
 				$this,
 				...$this->extraInstantiationParams
@@ -457,6 +473,8 @@ class ServiceContainer implements ContainerInterface, DestructibleService {
 					}
 				}
 			}
+
+			$removeFromStack->consume();
 
 			// NOTE: when adding more wiring logic here, make sure importWiring() is kept in sync!
 		} else {
