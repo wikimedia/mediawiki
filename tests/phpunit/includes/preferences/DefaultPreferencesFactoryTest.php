@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Auth\AuthManager;
-use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use Wikimedia\TestingAccessWrapper;
@@ -29,6 +28,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Preferences
  */
 class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
+	use TestAllServiceOptionsUsed;
 
 	/** @var IContextSource */
 	protected $context;
@@ -60,7 +60,8 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 			->method( $this->anythingBut( 'getValidNamespaces', '__destruct' ) );
 
 		return new DefaultPreferencesFactory(
-			new ServiceOptions( DefaultPreferencesFactory::$constructorOptions, $this->config ),
+			new LoggedServiceOptions( self::$serviceOptionsAccessLog,
+				DefaultPreferencesFactory::$constructorOptions, $this->config ),
 			new Language(),
 			AuthManager::singleton(),
 			MediaWikiServices::getInstance()->getLinkRenderer(),
@@ -236,5 +237,12 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 		$form->show();
 		$form->trySubmit();
 		$this->assertEquals( 12, $user->getOption( 'rclimit' ) );
+	}
+
+	/**
+	 * @coversNothing
+	 */
+	public function testAllServiceOptionsUsed() {
+		$this->assertAllServiceOptionsUsed( [ 'EnotifMinorEdits', 'EnotifRevealEditorAddress' ] );
 	}
 }
