@@ -301,17 +301,17 @@ class PermissionManager {
 		$blocked = $user->isHidden();
 
 		// TODO: remove upon further migration to LinkTarget
-		$page = Title::newFromLinkTarget( $page );
+		$title = Title::newFromLinkTarget( $page );
 
 		if ( !$blocked ) {
 			$block = $user->getBlock( $fromReplica );
 			if ( $block ) {
 				// Special handling for a user's own talk page. The block is not aware
 				// of the user, so this must be done here.
-				if ( $page->equals( $user->getTalkPage() ) ) {
-					$blocked = $block->appliesToUsertalk( $page );
+				if ( $title->equals( $user->getTalkPage() ) ) {
+					$blocked = $block->appliesToUsertalk( $title );
 				} else {
-					$blocked = $block->appliesToTitle( $page );
+					$blocked = $block->appliesToTitle( $title );
 				}
 			}
 		}
@@ -319,7 +319,7 @@ class PermissionManager {
 		// only for the purpose of the hook. We really don't need this here.
 		$allowUsertalk = $user->isAllowUsertalk();
 
-		Hooks::run( 'UserIsBlockedFrom', [ $user, $page, &$blocked, &$allowUsertalk ] );
+		Hooks::run( 'UserIsBlockedFrom', [ $user, $title, &$blocked, &$allowUsertalk ] );
 
 		return $blocked;
 	}
@@ -423,21 +423,21 @@ class PermissionManager {
 		LinkTarget $page
 	) {
 		// TODO: remove when LinkTarget usage will expand further
-		$page = Title::newFromLinkTarget( $page );
+		$title = Title::newFromLinkTarget( $page );
 		// Use getUserPermissionsErrors instead
 		$result = '';
-		if ( !Hooks::run( 'userCan', [ &$page, &$user, $action, &$result ] ) ) {
+		if ( !Hooks::run( 'userCan', [ &$title, &$user, $action, &$result ] ) ) {
 			return $result ? [] : [ [ 'badaccess-group0' ] ];
 		}
 		// Check getUserPermissionsErrors hook
-		if ( !Hooks::run( 'getUserPermissionsErrors', [ &$page, &$user, $action, &$result ] ) ) {
+		if ( !Hooks::run( 'getUserPermissionsErrors', [ &$title, &$user, $action, &$result ] ) ) {
 			$errors = $this->resultToError( $errors, $result );
 		}
 		// Check getUserPermissionsErrorsExpensive hook
 		if (
 			$rigor !== self::RIGOR_QUICK
 			&& !( $short && count( $errors ) > 0 )
-			&& !Hooks::run( 'getUserPermissionsErrorsExpensive', [ &$page, &$user, $action, &$result ] )
+			&& !Hooks::run( 'getUserPermissionsErrorsExpensive', [ &$title, &$user, $action, &$result ] )
 		) {
 			$errors = $this->resultToError( $errors, $result );
 		}
@@ -498,7 +498,7 @@ class PermissionManager {
 		LinkTarget $page
 	) {
 		// TODO: remove when LinkTarget usage will expand further
-		$page = Title::newFromLinkTarget( $page );
+		$title = Title::newFromLinkTarget( $page );
 
 		$whitelisted = false;
 		if ( User::isEveryoneAllowed( 'read' ) ) {
@@ -507,9 +507,9 @@ class PermissionManager {
 		} elseif ( $user->isAllowed( 'read' ) ) {
 			# If the user is allowed to read pages, he is allowed to read all pages
 			$whitelisted = true;
-		} elseif ( $this->isSameSpecialPage( 'Userlogin', $page )
-				   || $this->isSameSpecialPage( 'PasswordReset', $page )
-				   || $this->isSameSpecialPage( 'Userlogout', $page )
+		} elseif ( $this->isSameSpecialPage( 'Userlogin', $title )
+				   || $this->isSameSpecialPage( 'PasswordReset', $title )
+				   || $this->isSameSpecialPage( 'Userlogout', $title )
 		) {
 			# Always grant access to the login page.
 			# Even anons need to be able to log in.
@@ -517,22 +517,22 @@ class PermissionManager {
 		} elseif ( is_array( $this->whitelistRead ) && count( $this->whitelistRead ) ) {
 			# Time to check the whitelist
 			# Only do these checks is there's something to check against
-			$name = $page->getPrefixedText();
-			$dbName = $page->getPrefixedDBkey();
+			$name = $title->getPrefixedText();
+			$dbName = $title->getPrefixedDBkey();
 
 			// Check for explicit whitelisting with and without underscores
 			if ( in_array( $name, $this->whitelistRead, true )
 				 || in_array( $dbName, $this->whitelistRead, true ) ) {
 				$whitelisted = true;
-			} elseif ( $page->getNamespace() == NS_MAIN ) {
+			} elseif ( $title->getNamespace() == NS_MAIN ) {
 				# Old settings might have the title prefixed with
 				# a colon for main-namespace pages
 				if ( in_array( ':' . $name, $this->whitelistRead ) ) {
 					$whitelisted = true;
 				}
-			} elseif ( $page->isSpecialPage() ) {
+			} elseif ( $title->isSpecialPage() ) {
 				# If it's a special page, ditch the subpage bit and check again
-				$name = $page->getDBkey();
+				$name = $title->getDBkey();
 				list( $name, /* $subpage */ ) =
 					$this->specialPageFactory->resolveAlias( $name );
 				if ( $name ) {
@@ -546,7 +546,7 @@ class PermissionManager {
 
 		if ( !$whitelisted && is_array( $this->whitelistReadRegexp )
 			 && !empty( $this->whitelistReadRegexp ) ) {
-			$name = $page->getPrefixedText();
+			$name = $title->getPrefixedText();
 			// Check for regex whitelisting
 			foreach ( $this->whitelistReadRegexp as $listItem ) {
 				if ( preg_match( $listItem, $name ) ) {
@@ -558,7 +558,7 @@ class PermissionManager {
 
 		if ( !$whitelisted ) {
 			# If the title is not whitelisted, give extensions a chance to do so...
-			Hooks::run( 'TitleReadWhitelist', [ $page, $user, &$whitelisted ] );
+			Hooks::run( 'TitleReadWhitelist', [ $title, $user, &$whitelisted ] );
 			if ( !$whitelisted ) {
 				$errors[] = $this->missingPermissionError( $action, $short );
 			}
@@ -715,40 +715,40 @@ class PermissionManager {
 		LinkTarget $page
 	) {
 		// TODO: remove when LinkTarget usage will expand further
-		$page = Title::newFromLinkTarget( $page );
+		$title = Title::newFromLinkTarget( $page );
 
 		if ( !Hooks::run( 'TitleQuickPermissions',
-			[ $page, $user, $action, &$errors, ( $rigor !== self::RIGOR_QUICK ), $short ] )
+			[ $title, $user, $action, &$errors, ( $rigor !== self::RIGOR_QUICK ), $short ] )
 		) {
 			return $errors;
 		}
 
-		$isSubPage = $this->nsInfo->hasSubpages( $page->getNamespace() ) ?
-			strpos( $page->getText(), '/' ) !== false : false;
+		$isSubPage = $this->nsInfo->hasSubpages( $title->getNamespace() ) ?
+			strpos( $title->getText(), '/' ) !== false : false;
 
 		if ( $action == 'create' ) {
 			if (
-				( $this->nsInfo->isTalk( $page->getNamespace() ) &&
+				( $this->nsInfo->isTalk( $title->getNamespace() ) &&
 					!$user->isAllowed( 'createtalk' ) ) ||
-				( !$this->nsInfo->isTalk( $page->getNamespace() ) &&
+				( !$this->nsInfo->isTalk( $title->getNamespace() ) &&
 					!$user->isAllowed( 'createpage' ) )
 			) {
 				$errors[] = $user->isAnon() ? [ 'nocreatetext' ] : [ 'nocreate-loggedin' ];
 			}
 		} elseif ( $action == 'move' ) {
 			if ( !$user->isAllowed( 'move-rootuserpages' )
-				 && $page->getNamespace() == NS_USER && !$isSubPage ) {
+				 && $title->getNamespace() == NS_USER && !$isSubPage ) {
 				// Show user page-specific message only if the user can move other pages
 				$errors[] = [ 'cant-move-user-page' ];
 			}
 
 			// Check if user is allowed to move files if it's a file
-			if ( $page->getNamespace() == NS_FILE && !$user->isAllowed( 'movefile' ) ) {
+			if ( $title->getNamespace() == NS_FILE && !$user->isAllowed( 'movefile' ) ) {
 				$errors[] = [ 'movenotallowedfile' ];
 			}
 
 			// Check if user is allowed to move category pages if it's a category page
-			if ( $page->getNamespace() == NS_CATEGORY && !$user->isAllowed( 'move-categorypages' ) ) {
+			if ( $title->getNamespace() == NS_CATEGORY && !$user->isAllowed( 'move-categorypages' ) ) {
 				$errors[] = [ 'cant-move-category-page' ];
 			}
 
@@ -768,11 +768,11 @@ class PermissionManager {
 				// User can't move anything
 				$errors[] = [ 'movenotallowed' ];
 			} elseif ( !$user->isAllowed( 'move-rootuserpages' )
-					   && $page->getNamespace() == NS_USER && !$isSubPage ) {
+					   && $title->getNamespace() == NS_USER && !$isSubPage ) {
 				// Show user page-specific message only if the user can move other pages
 				$errors[] = [ 'cant-move-to-user-page' ];
 			} elseif ( !$user->isAllowed( 'move-categorypages' )
-					   && $page->getNamespace() == NS_CATEGORY ) {
+					   && $title->getNamespace() == NS_CATEGORY ) {
 				// Show category page-specific message only if the user can move other pages
 				$errors[] = [ 'cant-move-to-category-page' ];
 			}
@@ -810,8 +810,8 @@ class PermissionManager {
 		LinkTarget $page
 	) {
 		// TODO: remove & rework upon further use of LinkTarget
-		$page = Title::newFromLinkTarget( $page );
-		foreach ( $page->getRestrictions( $action ) as $right ) {
+		$title = Title::newFromLinkTarget( $page );
+		foreach ( $title->getRestrictions( $action ) as $right ) {
 			// Backwards compatibility, rewrite sysop -> editprotected
 			if ( $right == 'sysop' ) {
 				$right = 'editprotected';
@@ -825,7 +825,7 @@ class PermissionManager {
 			}
 			if ( !$user->isAllowed( $right ) ) {
 				$errors[] = [ 'protectedpagetext', $right, $action ];
-			} elseif ( $page->areRestrictionsCascading() && !$user->isAllowed( 'protect' ) ) {
+			} elseif ( $title->areRestrictionsCascading() && !$user->isAllowed( 'protect' ) ) {
 				$errors[] = [ 'protectedpagetext', 'protect', $action ];
 			}
 		}
@@ -858,14 +858,14 @@ class PermissionManager {
 		LinkTarget $page
 	) {
 		// TODO: remove & rework upon further use of LinkTarget
-		$page = Title::newFromLinkTarget( $page );
-		if ( $rigor !== self::RIGOR_QUICK && !$page->isUserConfigPage() ) {
+		$title = Title::newFromLinkTarget( $page );
+		if ( $rigor !== self::RIGOR_QUICK && !$title->isUserConfigPage() ) {
 			# We /could/ use the protection level on the source page, but it's
 			# fairly ugly as we have to establish a precedence hierarchy for pages
 			# included by multiple cascade-protected pages. So just restrict
 			# it to people with 'protect' permission, as they could remove the
 			# protection anyway.
-			list( $cascadingSources, $restrictions ) = $page->getCascadeProtectionSources();
+			list( $cascadingSources, $restrictions ) = $title->getCascadeProtectionSources();
 			# Cascading protection depends on more than this page...
 			# Several cascading protected pages may include this page...
 			# Check each cascading level
@@ -922,15 +922,15 @@ class PermissionManager {
 		global $wgDeleteRevisionsLimit, $wgLang;
 
 		// TODO: remove & rework upon further use of LinkTarget
-		$page = Title::newFromLinkTarget( $page );
+		$title = Title::newFromLinkTarget( $page );
 
 		if ( $action == 'protect' ) {
-			if ( count( $this->getPermissionErrorsInternal( 'edit', $user, $page, $rigor, true ) ) ) {
+			if ( count( $this->getPermissionErrorsInternal( 'edit', $user, $title, $rigor, true ) ) ) {
 				// If they can't edit, they shouldn't protect.
 				$errors[] = [ 'protect-cantedit' ];
 			}
 		} elseif ( $action == 'create' ) {
-			$title_protection = $page->getTitleProtection();
+			$title_protection = $title->getTitleProtection();
 			if ( $title_protection ) {
 				if ( $title_protection['permission'] == ''
 					 || !$user->isAllowed( $title_protection['permission'] )
@@ -945,41 +945,41 @@ class PermissionManager {
 			}
 		} elseif ( $action == 'move' ) {
 			// Check for immobile pages
-			if ( !$this->nsInfo->isMovable( $page->getNamespace() ) ) {
+			if ( !$this->nsInfo->isMovable( $title->getNamespace() ) ) {
 				// Specific message for this case
-				$errors[] = [ 'immobile-source-namespace', $page->getNsText() ];
-			} elseif ( !$page->isMovable() ) {
+				$errors[] = [ 'immobile-source-namespace', $title->getNsText() ];
+			} elseif ( !$title->isMovable() ) {
 				// Less specific message for rarer cases
 				$errors[] = [ 'immobile-source-page' ];
 			}
 		} elseif ( $action == 'move-target' ) {
-			if ( !$this->nsInfo->isMovable( $page->getNamespace() ) ) {
-				$errors[] = [ 'immobile-target-namespace', $page->getNsText() ];
-			} elseif ( !$page->isMovable() ) {
+			if ( !$this->nsInfo->isMovable( $title->getNamespace() ) ) {
+				$errors[] = [ 'immobile-target-namespace', $title->getNsText() ];
+			} elseif ( !$title->isMovable() ) {
 				$errors[] = [ 'immobile-target-page' ];
 			}
 		} elseif ( $action == 'delete' ) {
-			$tempErrors = $this->checkPageRestrictions( 'edit', $user, [], $rigor, true, $page );
+			$tempErrors = $this->checkPageRestrictions( 'edit', $user, [], $rigor, true, $title );
 			if ( !$tempErrors ) {
 				$tempErrors = $this->checkCascadingSourcesRestrictions( 'edit',
-					$user, $tempErrors, $rigor, true, $page );
+					$user, $tempErrors, $rigor, true, $title );
 			}
 			if ( $tempErrors ) {
 				// If protection keeps them from editing, they shouldn't be able to delete.
 				$errors[] = [ 'deleteprotected' ];
 			}
 			if ( $rigor !== self::RIGOR_QUICK && $wgDeleteRevisionsLimit
-				 && !$this->userCan( 'bigdelete', $user, $page ) && $page->isBigDeletion()
+				 && !$this->userCan( 'bigdelete', $user, $title ) && $title->isBigDeletion()
 			) {
 				$errors[] = [ 'delete-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) ];
 			}
 		} elseif ( $action === 'undelete' ) {
-			if ( count( $this->getPermissionErrorsInternal( 'edit', $user, $page, $rigor, true ) ) ) {
+			if ( count( $this->getPermissionErrorsInternal( 'edit', $user, $title, $rigor, true ) ) ) {
 				// Undeleting implies editing
 				$errors[] = [ 'undelete-cantedit' ];
 			}
-			if ( !$page->exists()
-				 && count( $this->getPermissionErrorsInternal( 'create', $user, $page, $rigor, true ) )
+			if ( !$title->exists()
+				 && count( $this->getPermissionErrorsInternal( 'create', $user, $title, $rigor, true ) )
 			) {
 				// Undeleting where nothing currently exists implies creating
 				$errors[] = [ 'undelete-cantcreate' ];
@@ -1013,19 +1013,19 @@ class PermissionManager {
 		LinkTarget $page
 	) {
 		// TODO: remove & rework upon further use of LinkTarget
-		$page = Title::newFromLinkTarget( $page );
+		$title = Title::newFromLinkTarget( $page );
 
 		# Only 'createaccount' can be performed on special pages,
 		# which don't actually exist in the DB.
-		if ( $page->getNamespace() == NS_SPECIAL && $action !== 'createaccount' ) {
+		if ( $title->getNamespace() == NS_SPECIAL && $action !== 'createaccount' ) {
 			$errors[] = [ 'ns-specialprotected' ];
 		}
 
 		# Check $wgNamespaceProtection for restricted namespaces
-		if ( $page->isNamespaceProtected( $user ) ) {
-			$ns = $page->getNamespace() == NS_MAIN ?
-				wfMessage( 'nstab-main' )->text() : $page->getNsText();
-			$errors[] = $page->getNamespace() == NS_MEDIAWIKI ?
+		if ( $title->isNamespaceProtected( $user ) ) {
+			$ns = $title->getNamespace() == NS_MAIN ?
+				wfMessage( 'nstab-main' )->text() : $title->getNsText();
+			$errors[] = $title->getNamespace() == NS_MEDIAWIKI ?
 				[ 'protectedinterface', $action ] : [ 'namespaceprotected', $ns, $action ];
 		}
 
@@ -1057,19 +1057,19 @@ class PermissionManager {
 		LinkTarget $page
 	) {
 		// TODO: remove & rework upon further use of LinkTarget
-		$page = Title::newFromLinkTarget( $page );
+		$title = Title::newFromLinkTarget( $page );
 
 		if ( $action != 'patrol' ) {
 			$error = null;
 			// Sitewide CSS/JSON/JS changes, like all NS_MEDIAWIKI changes, also require the
 			// editinterface right. That's implemented as a restriction so no check needed here.
-			if ( $page->isSiteCssConfigPage() && !$user->isAllowed( 'editsitecss' ) ) {
+			if ( $title->isSiteCssConfigPage() && !$user->isAllowed( 'editsitecss' ) ) {
 				$error = [ 'sitecssprotected', $action ];
-			} elseif ( $page->isSiteJsonConfigPage() && !$user->isAllowed( 'editsitejson' ) ) {
+			} elseif ( $title->isSiteJsonConfigPage() && !$user->isAllowed( 'editsitejson' ) ) {
 				$error = [ 'sitejsonprotected', $action ];
-			} elseif ( $page->isSiteJsConfigPage() && !$user->isAllowed( 'editsitejs' ) ) {
+			} elseif ( $title->isSiteJsConfigPage() && !$user->isAllowed( 'editsitejs' ) ) {
 				$error = [ 'sitejsprotected', $action ];
-			} elseif ( $page->isRawHtmlMessage() ) {
+			} elseif ( $title->isRawHtmlMessage() ) {
 				// Raw HTML can be used to deploy CSS or JS so require rights for both.
 				if ( !$user->isAllowed( 'editsitejs' ) ) {
 					$error = [ 'sitejsprotected', $action ];
@@ -1117,7 +1117,7 @@ class PermissionManager {
 		LinkTarget $page
 	) {
 		// TODO: remove & rework upon further use of LinkTarget
-		$page = Title::newFromLinkTarget( $page );
+		$title = Title::newFromLinkTarget( $page );
 
 		# Protect css/json/js subpages of user pages
 		# XXX: this might be better using restrictions
@@ -1126,29 +1126,29 @@ class PermissionManager {
 			return $errors;
 		}
 
-		if ( preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $page->getText() ) ) {
+		if ( preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $title->getText() ) ) {
 			// Users need editmyuser* to edit their own CSS/JSON/JS subpages.
 			if (
-				$page->isUserCssConfigPage()
+				$title->isUserCssConfigPage()
 				&& !$user->isAllowedAny( 'editmyusercss', 'editusercss' )
 			) {
 				$errors[] = [ 'mycustomcssprotected', $action ];
 			} elseif (
-				$page->isUserJsonConfigPage()
+				$title->isUserJsonConfigPage()
 				&& !$user->isAllowedAny( 'editmyuserjson', 'edituserjson' )
 			) {
 				$errors[] = [ 'mycustomjsonprotected', $action ];
 			} elseif (
-				$page->isUserJsConfigPage()
+				$title->isUserJsConfigPage()
 				&& !$user->isAllowedAny( 'editmyuserjs', 'edituserjs' )
 			) {
 				$errors[] = [ 'mycustomjsprotected', $action ];
 			} elseif (
-				$page->isUserJsConfigPage()
+				$title->isUserJsConfigPage()
 				&& !$user->isAllowedAny( 'edituserjs', 'editmyuserjsredirect' )
 			) {
 				// T207750 - do not allow users to edit a redirect if they couldn't edit the target
-				$rev = $this->revisionLookup->getRevisionByTitle( $page );
+				$rev = $this->revisionLookup->getRevisionByTitle( $title );
 				$content = $rev ? $rev->getContent( 'main', RevisionRecord::RAW ) : null;
 				$target = $content ? $content->getUltimateRedirectTarget() : null;
 				if ( $target && (
@@ -1165,17 +1165,17 @@ class PermissionManager {
 			// and only very highly privileged users could remove it.
 			if ( !in_array( $action, [ 'delete', 'deleterevision', 'suppressrevision' ], true ) ) {
 				if (
-					$page->isUserCssConfigPage()
+					$title->isUserCssConfigPage()
 					&& !$user->isAllowed( 'editusercss' )
 				) {
 					$errors[] = [ 'customcssprotected', $action ];
 				} elseif (
-					$page->isUserJsonConfigPage()
+					$title->isUserJsonConfigPage()
 					&& !$user->isAllowed( 'edituserjson' )
 				) {
 					$errors[] = [ 'customjsonprotected', $action ];
 				} elseif (
-					$page->isUserJsConfigPage()
+					$title->isUserJsConfigPage()
 					&& !$user->isAllowed( 'edituserjs' )
 				) {
 					$errors[] = [ 'customjsprotected', $action ];
