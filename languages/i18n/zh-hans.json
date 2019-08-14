@@ -117,7 +117,8 @@
 			"Ps2049",
 			"Suchichi02",
 			"神樂坂秀吉",
-			"WQL"
+			"WQL",
+			"Looong"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -243,7 +244,7 @@
 	"hidden-categories": "{{PLURAL:$1|隐藏分类}}",
 	"hidden-category-category": "隐藏分类",
 	"category-subcat-count": "{{PLURAL:$2|本分类只有以下子分类。|本分类有以下$1个子分类，共有$2个子分类。}}",
-	"category-subcat-count-limited": "此分类有以下{{PLURAL:$1|子分类|$1个子分类}}。",
+	"category-subcat-count-limited": "此分类有以下$1个子分类或多个$1子分类。",
 	"category-article-count": "{{PLURAL:$2|本分类只含有以下页面。|以下{{PLURAL:$1|页面|$1个页面}}属于本分类，共$2个页面。}}",
 	"category-article-count-limited": "以下{{PLURAL:$1|页面|$1个页面}}属于当前分类。",
 	"category-file-count": "{{PLURAL:$2|本分类只含有以下文件。|以下{{PLURAL:$1|文件|$1个文件}}属于本分类，共$2个文件。}}",
@@ -318,8 +319,8 @@
 	"redirectedfrom": "（重定向自$1）",
 	"redirectpagesub": "重定向页面",
 	"redirectto": "重定向至：",
-	"lastmodifiedat": "此页面最后编辑于$1 $2。",
-	"viewcount": "此页面已经被访问过{{PLURAL:$1|$1次}}。",
+	"lastmodifiedat": "在$2，此页面最后编辑于$1。",
+	"viewcount": "此页面已经被访问过$1次。",
 	"protectedpage": "受保护页面",
 	"jumpto": "跳转至：",
 	"jumptonavigation": "导航",
@@ -2749,7 +2750,7 @@
 	"movepagetext": "您可以使用下面的表单来重命名一个页面，同时将其所有版本历史移动到新页面。旧标题将会被重定向到新标题。您可以自动更新链接至原标题的重定向。如果您不选择这样做的话，请检查[[Special:DoubleRedirects|双重]]或[[Special:BrokenRedirects|损坏重定向]]链接。您有责任确保链接会被正确指向他们应该被指向的地方。\n\n注意：如果已存在使用新标题的页面，此页面将<strong>不会</strong>被移动，除非新页面是重定向，并且没有过去的编辑历史。这意味着您可在误操作后将页面移回原处，同时，您无法覆盖现有页面。\n\n<strong>注意：</strong>对这样一个经常被访问的页面而言这可能是一个重大且唐突的更改；请在行动前先了解您的修改可能带来的一切后果。",
 	"movepagetext-noredirectfixer": "用下面的表单来重命名一个页面，并将其版本历史同时移动到新页面。老的页面将成为新页面的重定向页。请检查[[Special:DoubleRedirects|双重重定向]]或[[Special:BrokenRedirects|损坏重定向]]链接。您应当负责确定所有链接依然会链到指定的页面。\n\n注意如果新页面已经有内容的话，页面将<strong>不会</strong>被移动，除非新页面无内容或是重定向页，而且没有版本历史。这意味着您可在误操作后将页面移回原处，同时，您无法覆盖现有页面。\n\n<strong>注意：</strong>对一个经常被访问的页面而言这可能是一个重大且唐突的更改；请在行动前先确定您了解其所可能带来的后果。",
 	"movepagetalktext": "如果您勾选此框，相关联的讨论页将被自动移动到新的标题，除非这里已经有了一个非空讨论页。\n\n在这种情况下，如有需要，您将不得不手动移动或合并页面。",
-	"moveuserpage-warning": "'''警告：'''你将移动一个用户页面。请注意，只有该页面会被移动，该用户''不''会被更名。",
+	"moveuserpage-warning": "'''警告：'''你将移动一个用户页面。请注意，只有该页面会被移动，该用户'''不会'''被更名。",
 	"movecategorypage-warning": "<strong>警告：</strong>您将移动分类页面。请注意只有此页面将会移动，旧有分类的任何页面将<em>不会</em>同步移动。",
 	"movenologintext": "您必须是一名登记用户并且[[Special:UserLogin|登录]]\n后才可移动一个页面。",
 	"movenotallowed": "您没有权限移动页面。",
