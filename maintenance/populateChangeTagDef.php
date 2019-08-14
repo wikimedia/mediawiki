@@ -74,12 +74,15 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 	private function setUserDefinedTags() {
 		$dbr = $this->lbFactory->getMainLB()->getConnection( DB_REPLICA );
 
-		$userTags = $dbr->selectFieldValues(
-			'valid_tag',
-			'vt_tag',
-			[],
-			__METHOD__
-		);
+		$userTags = null;
+		if ( $dbr->tableExists( 'valid_tag' ) ) {
+			$userTags = $dbr->selectFieldValues(
+				'valid_tag',
+				'vt_tag',
+				[],
+				__METHOD__
+			);
+		}
 
 		if ( empty( $userTags ) ) {
 			$this->output( "No user defined tags to set, moving on...\n" );
