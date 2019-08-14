@@ -341,7 +341,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 	private function assertWriteAllowed( Database $db ) {
 		$table = $db->tableName( 'some_table' );
 		// Trigger a transaction so that rollback() will remove all the tables.
-		// Don't do this for MySQL as they auto-commit transactions for DDL
+		// Don't do this for MySQL as it auto-commits transactions for DDL
 		// statements such as CREATE TABLE.
 		$useAtomicSection = in_array( $db->getType(), [ 'sqlite', 'postgres' ], true );
 		try {

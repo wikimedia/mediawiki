@@ -340,6 +340,8 @@ because of Phabricator reports.
 * Database::getProperty(), deprecated in 1.28, has been removed.
 * IDatabase::getWikiId(), deprecated in 1.30, has been removed.
   Use IDatabase::getDomainID() instead.
+* (T191231) Support for using Oracle or MSSQL as database backends has been
+  dropped.
 * …
 
 === Deprecations in 1.34 ===
