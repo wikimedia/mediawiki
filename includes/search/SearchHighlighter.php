@@ -74,8 +74,8 @@ class SearchHighlighter {
 			3 => "/(\n\\{\\|)|(\n\\|\\})/" ]; // table
 
 		// @todo FIXME: This should prolly be a hook or something
-		// instead of hardcoding a class name from the Cite extension
-		if ( class_exists( 'Cite' ) ) {
+		// instead of hardcoding the name of the Cite extension
+		if ( \ExtensionRegistry::getInstance()->isLoaded( 'Cite' ) ) {
 			$spat .= '|(<ref>)'; // references via cite extension
 			$endPatterns[4] = '/(<ref>)|(<\/ref>)/';
 		}
