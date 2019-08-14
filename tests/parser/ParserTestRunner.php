@@ -1265,7 +1265,7 @@ class ParserTestRunner {
 			$tables[] = 'revision_actor_temp';
 		}
 
-		if ( in_array( $this->db->getType(), [ 'mysql', 'sqlite', 'oracle' ] ) ) {
+		if ( in_array( $this->db->getType(), [ 'mysql', 'sqlite' ] ) ) {
 			array_push( $tables, 'searchindex' );
 		}
 
@@ -1305,11 +1305,7 @@ class ParserTestRunner {
 		$this->db = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_MASTER );
 		$dbType = $this->db->getType();
 
-		if ( $dbType == 'oracle' ) {
-			$suspiciousPrefixes = [ 'pt_', MediaWikiTestCase::ORA_DB_PREFIX ];
-		} else {
-			$suspiciousPrefixes = [ 'parsertest_', MediaWikiTestCase::DB_PREFIX ];
-		}
+		$suspiciousPrefixes = [ 'parsertest_', MediaWikiTestCase::DB_PREFIX ];
 		if ( in_array( $wgDBprefix, $suspiciousPrefixes ) ) {
 			throw new MWException( "\$wgDBprefix=$wgDBprefix suggests DB setup is already done" );
 		}
@@ -1324,22 +1320,12 @@ class ParserTestRunner {
 		}
 
 		$temporary = $this->useTemporaryTables || $dbType == 'postgres';
-		$prefix = $dbType != 'oracle' ? 'parsertest_' : 'pt_';
+		$prefix = 'parsertest_';
 
 		$this->dbClone = new CloneDatabase( $this->db, $this->listTables(), $prefix );
 		$this->dbClone->useTemporaryTables( $temporary );
 		$this->dbClone->cloneTableStructure();
 		CloneDatabase::changePrefix( $prefix );
-
-		if ( $dbType == 'oracle' ) {
-			$this->db->query( 'BEGIN FILL_WIKI_INFO; END;' );
-			# Insert 0 user to prevent FK violations
-
-			# Anonymous user
-			$this->db->insert( 'user', [
-				'user_id' => 0,
-				'user_name' => 'Anonymous' ] );
-		}
 
 		$teardown[] = function () {
 			$this->teardownDatabase();
@@ -1542,15 +1528,7 @@ class ParserTestRunner {
 		$tables = $this->listTables();
 
 		foreach ( $tables as $table ) {
-			if ( $this->db->getType() == 'oracle' ) {
-				$this->db->query( "DROP TABLE pt_$table DROP CONSTRAINTS" );
-			} else {
-				$this->db->query( "DROP TABLE `parsertest_$table`" );
-			}
-		}
-
-		if ( $this->db->getType() == 'oracle' ) {
-			$this->db->query( 'BEGIN FILL_WIKI_INFO; END;' );
+			$this->db->query( "DROP TABLE `parsertest_$table`" );
 		}
 	}
 

@@ -136,10 +136,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	private $overriddenServices = [];
 
 	/**
-	 * Table name prefixes. Oracle likes it shorter.
+	 * Table name prefix.
 	 */
 	const DB_PREFIX = 'unittest_';
-	const ORA_DB_PREFIX = 'ut_';
 
 	/**
 	 * @var array
@@ -149,7 +148,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		'mysql',
 		'sqlite',
 		'postgres',
-		'oracle'
 	];
 
 	public function __construct( $name = null, array $data = [], $dataName = '' ) {
@@ -1321,7 +1319,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @since 1.32
 	 */
 	public static function getTestPrefixFor( IDatabase $db ) {
-		return $db->getType() == 'oracle' ? self::ORA_DB_PREFIX : self::DB_PREFIX;
+		return self::DB_PREFIX;
 	}
 
 	/**
@@ -1414,32 +1412,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @since 1.32
 	 */
 	protected function addCoreDBData() {
-		if ( $this->db->getType() == 'oracle' ) {
-			# Insert 0 user to prevent FK violations
-			# Anonymous user
-			if ( !$this->db->selectField( 'user', '1', [ 'user_id' => 0 ] ) ) {
-				$this->db->insert( 'user', [
-					'user_id' => 0,
-					'user_name' => 'Anonymous' ], __METHOD__, [ 'IGNORE' ] );
-			}
-
-			# Insert 0 page to prevent FK violations
-			# Blank page
-			if ( !$this->db->selectField( 'page', '1', [ 'page_id' => 0 ] ) ) {
-				$this->db->insert( 'page', [
-					'page_id' => 0,
-					'page_namespace' => 0,
-					'page_title' => ' ',
-					'page_restrictions' => null,
-					'page_is_redirect' => 0,
-					'page_is_new' => 0,
-					'page_random' => 0,
-					'page_touched' => $this->db->timestamp(),
-					'page_latest' => 0,
-					'page_len' => 0 ], __METHOD__, [ 'IGNORE' ] );
-			}
-		}
-
 		SiteStatsInit::doPlaceholderInit();
 
 		User::resetIdByNameCache();
@@ -1523,7 +1495,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$prefix = self::getTestPrefixFor( $db );
 		}
 
-		if ( ( $db->getType() == 'oracle' || !self::$useTemporaryTables ) && self::$reuseDB ) {
+		if ( !self::$useTemporaryTables && self::$reuseDB ) {
 			$db->tablePrefix( $prefix );
 			return false;
 		}
@@ -1610,12 +1582,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		if ( !self::setupDatabaseWithTestPrefix( $db, $prefix ) ) {
 			return;
-		}
-
-		// Assuming this isn't needed for External Store database, and not sure if the procedure
-		// would be available there.
-		if ( $db->getType() == 'oracle' ) {
-			$db->query( 'BEGIN FILL_WIKI_INFO; END;', __METHOD__ );
 		}
 
 		Hooks::run( 'UnitTestsAfterDatabaseSetup', [ $db, $prefix ] );
@@ -1931,7 +1897,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				$tablesUsed = array_unique( array_merge( $tablesUsed, $pageTables ) );
 			}
 
-			// Postgres, Oracle, and MSSQL all use mwuser/pagecontent
+			// Postgres uses mwuser/pagecontent
 			// instead of user/text. But Postgres does not remap the
 			// table name in tableExists(), so we mark the real table
 			// names as being used.
@@ -1974,7 +1940,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			return;
 		}
 
-		$truncate = in_array( $db->getType(), [ 'oracle', 'mysql' ] );
+		$truncate = in_array( $db->getType(), [ 'mysql' ] );
 
 		if ( $truncate ) {
 			$db->query( 'TRUNCATE TABLE ' . $db->tableName( $tableName ), __METHOD__ );
