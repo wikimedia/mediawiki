@@ -69,6 +69,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 	function execute( $par ) {
 		$this->getOutput()->disallowUserJs();
 		$this->requireLogin();
+		$this->addHelpLink( 'Manual:Bot_passwords' );
 
 		$par = trim( $par );
 		if ( strlen( $par ) === 0 ) {

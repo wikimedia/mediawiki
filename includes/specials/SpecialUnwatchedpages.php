@@ -102,6 +102,7 @@ class UnwatchedpagesPage extends QueryPage {
 	public function execute( $par ) {
 		parent::execute( $par );
 		$this->getOutput()->addModules( 'mediawiki.special.unwatchedPages' );
+		$this->addHelpLink( 'Help:Watchlist' );
 	}
 
 	/**

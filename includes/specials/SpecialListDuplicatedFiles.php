@@ -100,6 +100,11 @@ class ListDuplicatedFilesPage extends QueryPage {
 		return $msg->parse();
 	}
 
+	public function execute( $par ) {
+		$this->addHelpLink( 'Help:Managing_files' );
+		parent::execute( $par );
+	}
+
 	protected function getGroupName() {
 		return 'media';
 	}
