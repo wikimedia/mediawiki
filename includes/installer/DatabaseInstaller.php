@@ -447,8 +447,7 @@ abstract class DatabaseInstaller {
 	 * @return string
 	 */
 	public function getReadableName() {
-		// Messages: config-type-mysql, config-type-postgres, config-type-sqlite,
-		// config-type-oracle
+		// Messages: config-type-mysql, config-type-postgres, config-type-sqlite
 		return wfMessage( 'config-type-' . $this->getName() )->text();
 	}
 

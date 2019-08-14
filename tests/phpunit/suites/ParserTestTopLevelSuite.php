@@ -141,8 +141,7 @@ class ParserTestTopLevelSuite extends PHPUnit_Framework_TestSuite {
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		$db = $lb->getConnection( DB_MASTER );
 		$type = $db->getType();
-		$prefix = $type === 'oracle' ?
-			MediaWikiTestCase::ORA_DB_PREFIX : MediaWikiTestCase::DB_PREFIX;
+		$prefix = MediaWikiTestCase::DB_PREFIX;
 		$this->oldTablePrefix = $db->tablePrefix();
 		MediaWikiTestCase::setupTestDB( $db, $prefix );
 		CloneDatabase::changePrefix( $prefix );
