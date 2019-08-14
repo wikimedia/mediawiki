@@ -1015,7 +1015,8 @@
 			fn();
 		} );
 
-		mw.loader.register( name, 'x', [], 'private' );
+		// See ResourceLoaderStartUpModule::$groupIds
+		mw.loader.register( name, 'x', [], 1 );
 		assert.strictEqual( mw.loader.store.get( name ), false, 'Not in store' );
 
 		mw.loader.implement( name, function () {} );
@@ -1037,7 +1038,8 @@
 			fn();
 		} );
 
-		mw.loader.register( name, 'y', [], 'user' );
+		// See ResourceLoaderStartUpModule::$groupIds
+		mw.loader.register( name, 'y', [], 0 );
 		assert.strictEqual( mw.loader.store.get( name ), false, 'Not in store' );
 
 		mw.loader.implement( name, function () {} );
