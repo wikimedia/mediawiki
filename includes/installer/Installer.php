@@ -759,8 +759,7 @@ abstract class Installer {
 
 		$allNames = [];
 
-		// Messages: config-type-mysql, config-type-postgres, config-type-oracle,
-		// config-type-sqlite
+		// Messages: config-type-mysql, config-type-postgres, config-type-sqlite
 		foreach ( self::getDBTypes() as $name ) {
 			$allNames[] = wfMessage( "config-type-$name" )->text();
 		}
