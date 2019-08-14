@@ -3438,7 +3438,7 @@
 	"logentry-delete-restore-nocount": "$1 {{GENDER:$2|helyreállította}} a következő lapot: $3",
 	"restore-count-revisions": "$1 lapváltozat",
 	"restore-count-files": "$1 fájl",
-	"logentry-delete-event": "$1 megváltoztatta {{PLURAL:$5|egy napló bejegyzés|$5 napló bejegyzés}} láthatóságát a(z) $3 című lapon: $4",
+	"logentry-delete-event": "$1 megváltoztatta {{PLURAL:$5|egy naplóbejegyzés|$5 naplóbejegyzés}} láthatóságát a(z) $3 című lapon: $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2|módosította}} a(z) $3 című lap {{PLURAL:$5|egy|$5}} lapváltozatának láthatóságát: $4",
 	"logentry-delete-event-legacy": "$1 {{GENDER:$2|módosította}} a(z) $3 című lap naplóbejegyzéseinek láthatóságát",
 	"logentry-delete-revision-legacy": "$1 {{GENDER:$2|módosította}} a(z) $3 című lap lapváltozatainak láthatóságát",
