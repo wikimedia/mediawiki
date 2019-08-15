@@ -340,7 +340,7 @@ class Category {
 		$dbw->lockForUpdate( 'category', [ 'cat_title' => $this->mName ], __METHOD__ );
 
 		// Lock all the `categorylinks` records and gaps for this category;
-		// this is a separate query due to postgres/oracle limitations
+		// this is a separate query due to postgres limitations
 		$dbw->selectRowCount(
 			[ 'categorylinks', 'page' ],
 			'*',

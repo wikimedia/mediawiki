@@ -1818,7 +1818,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->selectOptionsIncludeLocking( $options ) &&
 			$this->selectFieldsOrOptionsAggregate( $vars, $options )
 		) {
-			// Some DB types (postgres/oracle) disallow FOR UPDATE with aggregate
+			// Some DB types (e.g. postgres) disallow FOR UPDATE with aggregate
 			// functions. Discourage use of such queries to encourage compatibility.
 			call_user_func(
 				$this->deprecationLogger,

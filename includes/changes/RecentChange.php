@@ -391,7 +391,7 @@ class RecentChange implements Taggable {
 		}
 
 		# If our database is strict about IP addresses, use NULL instead of an empty string
-		$strictIPs = in_array( $dbw->getType(), [ 'oracle', 'postgres' ] ); // legacy
+		$strictIPs = $dbw->getType() === 'postgres'; // legacy
 		if ( $strictIPs && $this->mAttribs['rc_ip'] == '' ) {
 			unset( $this->mAttribs['rc_ip'] );
 		}

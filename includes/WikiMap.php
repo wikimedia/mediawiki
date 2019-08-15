@@ -260,7 +260,6 @@ class WikiMap {
 	 *
 	 * @see $wgDBmwschema
 	 * @see PostgresInstaller
-	 * @see MssqlInstaller
 	 *
 	 * @param string|DatabaseDomain $domain
 	 * @return string

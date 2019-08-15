@@ -168,7 +168,7 @@ abstract class MWLBFactory {
 	 * @return array
 	 */
 	private static function getDbTypesWithSchemas() {
-		return [ 'postgres', 'mssql' ];
+		return [ 'postgres' ];
 	}
 
 	/**
@@ -192,16 +192,6 @@ abstract class MWLBFactory {
 				'port' => $options->get( 'DBport' ),
 				// Work around the reserved word usage in MediaWiki schema
 				'keywordTableMap' => [ 'user' => 'mwuser', 'text' => 'pagecontent' ]
-			];
-		} elseif ( $server['type'] === 'oracle' ) {
-			$server += [
-				// Work around the reserved word usage in MediaWiki schema
-				'keywordTableMap' => [ 'user' => 'mwuser', 'text' => 'pagecontent' ]
-			];
-		} elseif ( $server['type'] === 'mssql' ) {
-			$server += [
-				'port' => $options->get( 'DBport' ),
-				'useWindowsAuth' => $options->get( 'DBWindowsAuthentication' )
 			];
 		}
 

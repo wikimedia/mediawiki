@@ -424,7 +424,7 @@ class JobQueueDB extends JobQueue {
 			if ( $dbw->getType() === 'mysql' ) {
 				// Per https://bugs.mysql.com/bug.php?id=6980, we can't use subqueries on the
 				// same table being changed in an UPDATE query in MySQL (gives Error: 1093).
-				// Oracle and Postgre have no such limitation. However, MySQL offers an
+				// Postgres has no such limitation. However, MySQL offers an
 				// alternative here by supporting ORDER BY + LIMIT for UPDATE queries.
 				$dbw->query( "UPDATE {$dbw->tableName( 'job' )} " .
 					"SET " .

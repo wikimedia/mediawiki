@@ -99,9 +99,9 @@ interface IDatabase {
 	const DBO_DEFAULT = 16;
 	/** @var int Use DB persistent connections if possible */
 	const DBO_PERSISTENT = 32;
-	/** @var int DBA session mode; mostly for Oracle */
+	/** @var int DBA session mode; was used by Oracle */
 	const DBO_SYSDBA = 64;
-	/** @var int Schema file mode; mostly for Oracle */
+	/** @var int Schema file mode; was used by Oracle */
 	const DBO_DDLMODE = 128;
 	/** @var int Enable SSL/TLS in connection protocol */
 	const DBO_SSL = 256;
@@ -1186,10 +1186,10 @@ interface IDatabase {
 	/**
 	 * Deprecated method, calls should be removed.
 	 *
-	 * This was formerly used for PostgreSQL and Oracle to handle
+	 * This was formerly used for PostgreSQL to handle
 	 * self::insertId() auto-incrementing fields. It is no longer necessary
 	 * since DatabasePostgres::insertId() has been reimplemented using
-	 * `lastval()` and Oracle has been reimplemented using triggers.
+	 * `lastval()`
 	 *
 	 * Implementations should return null if inserting `NULL` into an
 	 * auto-incrementing field works, otherwise it should return an instance of
