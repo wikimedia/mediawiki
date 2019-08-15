@@ -242,27 +242,6 @@ class SqliteInstaller extends DatabaseInstaller {
 		$this->setVar( 'wgDBpassword', '' );
 		$this->setupSchemaVars();
 
-		# Create the global cache DB
-		try {
-			$conn = Database::factory(
-				'sqlite', [ 'dbname' => 'wikicache', 'dbDirectory' => $dir ] );
-			# @todo: don't duplicate objectcache definition, though it's very simple
-			$sql =
-<<<EOT
-	CREATE TABLE IF NOT EXISTS objectcache (
-		keyname BLOB NOT NULL default '' PRIMARY KEY,
-		value BLOB,
-		exptime TEXT
-	)
-EOT;
-			$conn->query( $sql );
-			$conn->query( "CREATE INDEX IF NOT EXISTS exptime ON objectcache (exptime)" );
-			$conn->query( "PRAGMA journal_mode=WAL" ); // this is permanent
-			$conn->close();
-		} catch ( DBConnectionError $e ) {
-			return Status::newFatal( 'config-sqlite-connection-error', $e->getMessage() );
-		}
-
 		# Create the l10n cache DB
 		try {
 			$conn = Database::factory(
