@@ -1967,6 +1967,7 @@ return [
 	'mediawiki.interface.helpers.styles' => [
 		'class' => ResourceLoaderLessVarFileModule::class,
 		'lessMessages' => [
+			'comma-separator',
 			'parentheses-start',
 			'parentheses-end',
 			'brackets-start',
