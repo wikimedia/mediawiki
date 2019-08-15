@@ -322,6 +322,20 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'user_properties', 'user_properties_user_property', 'PRIMARY', false,
 				'patch-user_properties-fix-pk.sql' ],
 			[ 'addTable', 'comment', 'patch-comment-table.sql' ],
+			[ 'addTable', 'revision_comment_temp', 'patch-revision_comment_temp-table.sql' ],
+			// image_comment_temp is no longer needed when upgrading to MW 1.31 or newer,
+			// as it is dropped later in the update process as part of 'migrateImageCommentTemp'.
+			// File kept on disk and the updater entry here for historical purposes.
+			// [ 'addTable', 'image_comment_temp', 'patch-image_comment_temp-table.sql' ],
+			[ 'addField', 'archive', 'ar_comment_id', 'patch-archive-ar_comment_id.sql' ],
+			[ 'addField', 'filearchive', 'fa_description_id', 'patch-filearchive-fa_description_id.sql' ],
+			[ 'modifyField', 'image', 'img_description', 'patch-image-img_description-default.sql' ],
+			[ 'addField', 'ipblocks', 'ipb_reason_id', 'patch-ipblocks-ipb_reason_id.sql' ],
+			[ 'addField', 'logging', 'log_comment_id', 'patch-logging-log_comment_id.sql' ],
+			[ 'addField', 'oldimage', 'oi_description_id', 'patch-oldimage-oi_description_id.sql' ],
+			[ 'addField', 'protected_titles', 'pt_reason_id', 'patch-protected_titles-pt_reason_id.sql' ],
+			[ 'addField', 'recentchanges', 'rc_comment_id', 'patch-recentchanges-rc_comment_id.sql' ],
+			[ 'modifyField', 'revision', 'rev_comment', 'patch-revision-rev_comment-default.sql' ],
 
 			// This field was added in 1.31, but is put here so it can be used by 'migrateComments'
 			[ 'addField', 'image', 'img_description_id', 'patch-image-img_description_id.sql' ],
