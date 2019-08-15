@@ -256,7 +256,7 @@ class WikiMap {
 	 * Get the wiki ID of a database domain
 	 *
 	 * This is like DatabaseDomain::getId() without encoding (for legacy reasons) and
-	 * without the schema if it is the generic installer default of "mediawiki"/"dbo"
+	 * without the schema if it is the generic installer default of "mediawiki"
 	 *
 	 * @see $wgDBmwschema
 	 * @see PostgresInstaller
@@ -272,7 +272,7 @@ class WikiMap {
 		// the installer default then it is probably the case that the schema is the same for
 		// all wikis in the farm. Historically, any wiki farm had to make the database/prefix
 		// combination unique per wiki. Ommit the schema if it does not seem wiki specific.
-		if ( !in_array( $domain->getSchema(), [ null, 'mediawiki', 'dbo' ], true ) ) {
+		if ( !in_array( $domain->getSchema(), [ null, 'mediawiki' ], true ) ) {
 			// This means a site admin may have specifically taylored the schemas.
 			// Domain IDs might use the form <DB>-<project>- or <DB>-<project>-<language>_,
 			// meaning that the schema portion must be accounted for to disambiguate wikis.
