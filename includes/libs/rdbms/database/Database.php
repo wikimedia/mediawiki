@@ -515,6 +515,27 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->getServerVersion();
 	}
 
+	/**
+	 * Turns buffering of SQL result sets on (true) or off (false). Default is "on".
+	 *
+	 * Unbuffered queries are very troublesome in MySQL:
+	 *
+	 *   - If another query is executed while the first query is being read
+	 *     out, the first query is killed. This means you can't call normal
+	 *     Database functions while you are reading an unbuffered query result
+	 *     from a normal Database connection.
+	 *
+	 *   - Unbuffered queries cause the MySQL server to use large amounts of
+	 *     memory and to hold broad locks which block other queries.
+	 *
+	 * If you want to limit client-side memory, it's almost always better to
+	 * split up queries into batches using a LIMIT clause than to switch off
+	 * buffering.
+	 *
+	 * @param null|bool $buffer
+	 * @return bool The previous value of the flag
+	 * @deprecated Since 1.34 Use query batching
+	 */
 	public function bufferResults( $buffer = null ) {
 		$res = !$this->getFlag( self::DBO_NOBUFFER );
 		if ( $buffer !== null ) {
