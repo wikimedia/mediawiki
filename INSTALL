@@ -11,8 +11,6 @@ Required software:
 ** MySQL 5.5.8 or higher
 ** PostgreSQL 9.2 or higher
 ** SQLite 3.8.0 or higher
-** Oracle 9.0.1 or higher
-** Microsoft SQL Server 2005 (9.00.1399)
 
 MediaWiki is developed and tested mainly on Unix/Linux platforms, but should
 work on Windows as well.
