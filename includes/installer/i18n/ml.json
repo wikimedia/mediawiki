@@ -42,7 +42,6 @@
 	"config-db-type": "ഡേറ്റാബേസ് തരം:",
 	"config-db-host": "ഡേറ്റാബേസ് ഹോസ്റ്റ്:",
 	"config-db-name": "ഡേറ്റാബേസിന്റെ പേര്:",
-	"config-db-name-oracle": "ഡേറ്റാബേസ് സ്കീമ:",
 	"config-db-install-account": "ഇൻസ്റ്റലേഷനുള്ള ഉപയോക്തൃ അംഗത്വം",
 	"config-db-username": "ഡേറ്റാബേസ് ഉപയോക്തൃനാമം:",
 	"config-db-password": "ഡേറ്റാബേസ് രഹസ്യവാക്ക്:",

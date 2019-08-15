@@ -35,7 +35,6 @@
 	"config-apcu": "[https://www.php.net/apcu APCu] نصب بیه.",
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] نصب بیه.",
 	"config-diff3-bad": "GNU diff3 پیدا نیه.",
-	"config-mssql-auth": "نوع تأیید:",
 	"config-ns-generic": "پروژه",
 	"config-ns-other": "دیگه ( تعیین هاکنین)",
 	"config-ns-other-default": "مه‌ویکی",
