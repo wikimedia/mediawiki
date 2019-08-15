@@ -380,24 +380,39 @@ class BagOStuffTest extends MediaWikiTestCase {
 			return $oldValue . '!';
 		};
 
-		foreach ( [ $tiny, $small, $big ] as $value ) {
+		$cases = [ 'tiny' => $tiny, 'small' => $small, 'big' => $big ];
+		foreach ( $cases as $case => $value ) {
 			$this->cache->set( $key, $value, 10, BagOStuff::WRITE_ALLOW_SEGMENTS );
-			$this->assertEquals( $value, $this->cache->get( $key ) );
-			$this->assertEquals( $value, $this->cache->getMulti( [ $key ] )[$key] );
+			$this->assertEquals( $value, $this->cache->get( $key ), "get $case" );
+			$this->assertEquals( $value, $this->cache->getMulti( [ $key ] )[$key], "get $case" );
 
-			$this->assertTrue( $this->cache->merge( $key, $callback, 5 ) );
-			$this->assertEquals( "$value!", $this->cache->get( $key ) );
-			$this->assertEquals( "$value!", $this->cache->getMulti( [ $key ] )[$key] );
+			$this->assertTrue(
+				$this->cache->merge( $key, $callback, 5, 1, BagOStuff::WRITE_ALLOW_SEGMENTS ),
+				"merge $case"
+			);
+			$this->assertEquals(
+				"$value!",
+				$this->cache->get( $key ),
+				"merged $case"
+			);
+			$this->assertEquals(
+				"$value!",
+				$this->cache->getMulti( [ $key ] )[$key],
+				"merged $case"
+			);
 
-			$this->assertTrue( $this->cache->deleteMulti( [ $key ] ) );
-			$this->assertFalse( $this->cache->get( $key ) );
-			$this->assertEquals( [], $this->cache->getMulti( [ $key ] ) );
+			$this->assertTrue( $this->cache->deleteMulti( [ $key ] ), "delete $case" );
+			$this->assertFalse( $this->cache->get( $key ), "deleted $case" );
+			$this->assertEquals( [], $this->cache->getMulti( [ $key ] ), "deletd $case" );
 
 			$this->cache->set( $key, "@$value", 10, BagOStuff::WRITE_ALLOW_SEGMENTS );
-			$this->assertEquals( "@$value", $this->cache->get( $key ) );
-			$this->assertTrue( $this->cache->delete( $key, BagOStuff::WRITE_PRUNE_SEGMENTS ) );
-			$this->assertFalse( $this->cache->get( $key ) );
-			$this->assertEquals( [], $this->cache->getMulti( [ $key ] ) );
+			$this->assertEquals( "@$value", $this->cache->get( $key ), "get $case" );
+			$this->assertTrue(
+				$this->cache->delete( $key, BagOStuff::WRITE_PRUNE_SEGMENTS ),
+				"prune $case"
+			);
+			$this->assertFalse( $this->cache->get( $key ), "pruned $case" );
+			$this->assertEquals( [], $this->cache->getMulti( [ $key ] ), "pruned $case" );
 		}
 
 		$this->cache->set( $key, 666, 10, BagOStuff::WRITE_ALLOW_SEGMENTS );

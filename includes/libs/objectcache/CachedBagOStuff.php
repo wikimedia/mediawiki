@@ -79,7 +79,7 @@ class CachedBagOStuff extends BagOStuff {
 			}
 		}
 
-		$valuesByKeyFetched = $this->backend->getMulti( $keys, $flags );
+		$valuesByKeyFetched = $this->backend->getMulti( $keysMissing, $flags );
 		$this->setMulti( $valuesByKeyFetched, self::TTL_INDEFINITE, self::WRITE_CACHE_ONLY );
 
 		return $valuesByKeyCached + $valuesByKeyFetched;

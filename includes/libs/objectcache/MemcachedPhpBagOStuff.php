@@ -76,7 +76,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		return $this->client->delete( $this->validateKeyEncoding( $key ) );
 	}
 
-	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
+	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
 		return $this->client->add(
 			$this->validateKeyEncoding( $key ),
 			$value,
@@ -84,7 +84,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		);
 	}
 
-	protected function cas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
+	protected function doCas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
 		return $this->client->cas(
 			$casToken,
 			$this->validateKeyEncoding( $key ),
