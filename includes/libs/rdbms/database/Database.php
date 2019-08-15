@@ -250,8 +250,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->flags |= self::DBO_TRX;
 			}
 		}
-		// Disregard deprecated DBO_IGNORE flag (T189999)
-		$this->flags &= ~self::DBO_IGNORE;
 
 		$this->connectionVariables = $params['variables'];
 
@@ -516,35 +514,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Turns buffering of SQL result sets on (true) or off (false). Default is "on".
+	 * Backwards-compatibility no-op method for disabling query buffering
 	 *
-	 * Unbuffered queries are very troublesome in MySQL:
-	 *
-	 *   - If another query is executed while the first query is being read
-	 *     out, the first query is killed. This means you can't call normal
-	 *     Database functions while you are reading an unbuffered query result
-	 *     from a normal Database connection.
-	 *
-	 *   - Unbuffered queries cause the MySQL server to use large amounts of
-	 *     memory and to hold broad locks which block other queries.
-	 *
-	 * If you want to limit client-side memory, it's almost always better to
-	 * split up queries into batches using a LIMIT clause than to switch off
-	 * buffering.
-	 *
-	 * @param null|bool $buffer
-	 * @return bool The previous value of the flag
-	 * @deprecated Since 1.34 Use query batching
+	 * @param null|bool $buffer Whether to buffer queries (ignored)
+	 * @return bool Whether buffering was already enabled (always true)
+	 * @deprecated Since 1.34 Use query batching; this no longer does anything
 	 */
 	public function bufferResults( $buffer = null ) {
-		$res = !$this->getFlag( self::DBO_NOBUFFER );
-		if ( $buffer !== null ) {
-			$buffer
-				? $this->clearFlag( self::DBO_NOBUFFER )
-				: $this->setFlag( self::DBO_NOBUFFER );
-		}
-
-		return $res;
+		return true;
 	}
 
 	final public function trxLevel() {

@@ -89,9 +89,9 @@ interface IDatabase {
 
 	/** @var int Enable debug logging of all SQL queries */
 	const DBO_DEBUG = 1;
-	/** @var int Disable query buffering (only one result set can be iterated at a time) */
+	/** @var int Unused since 1.34 */
 	const DBO_NOBUFFER = 2;
-	/** @var int Ignore query errors (internal use only!) */
+	/** @var int Unused since 1.31 */
 	const DBO_IGNORE = 4;
 	/** @var int Automatically start a transaction before running a query if none is active */
 	const DBO_TRX = 8;
@@ -297,7 +297,7 @@ interface IDatabase {
 	/**
 	 * Set a flag for this connection
 	 *
-	 * @param int $flag IDatabase::DBO_DEBUG, IDatabase::DBO_NOBUFFER, or IDatabase::DBO_TRX
+	 * @param int $flag One of (IDatabase::DBO_DEBUG, IDatabase::DBO_TRX)
 	 * @param string $remember IDatabase::REMEMBER_* constant [default: REMEMBER_NOTHING]
 	 */
 	public function setFlag( $flag, $remember = self::REMEMBER_NOTHING );
@@ -305,7 +305,7 @@ interface IDatabase {
 	/**
 	 * Clear a flag for this connection
 	 *
-	 * @param int $flag IDatabase::DBO_DEBUG, IDatabase::DBO_NOBUFFER, or IDatabase::DBO_TRX
+	 * @param int $flag One of (IDatabase::DBO_DEBUG, IDatabase::DBO_TRX)
 	 * @param string $remember IDatabase::REMEMBER_* constant [default: REMEMBER_NOTHING]
 	 */
 	public function clearFlag( $flag, $remember = self::REMEMBER_NOTHING );
