@@ -313,7 +313,7 @@ class ParserTestRunner {
 			'class' => NullLockManager::class,
 		] ];
 		$reset = function () {
-			LockManagerGroup::destroySingletons();
+			MediaWikiServices::getInstance()->resetServiceForTesting( 'LockManagerGroupFactory' );
 		};
 		$setup[] = $reset;
 		$teardown[] = $reset;
