@@ -45,6 +45,7 @@ class SpecialBlockList extends SpecialPage {
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
+		$this->addHelpLink( 'Help:Blocking_users' );
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'ipblocklist' ) );
 		$out->addModuleStyles( [ 'mediawiki.special' ] );

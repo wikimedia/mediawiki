@@ -39,6 +39,7 @@ class SpecialTrackingCategories extends SpecialPage {
 	function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
+		$this->addHelpLink( 'Help:Categories' );
 		$this->getOutput()->allowClickjacking();
 		$this->getOutput()->addModuleStyles( 'jquery.tablesorter.styles' );
 		$this->getOutput()->addModules( 'jquery.tablesorter' );

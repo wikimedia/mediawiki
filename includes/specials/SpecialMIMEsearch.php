@@ -163,6 +163,7 @@ class MIMEsearchPage extends QueryPage {
 	}
 
 	public function execute( $par ) {
+		$this->addHelpLink( 'Help:Managing_files' );
 		$this->mime = $par ?: $this->getRequest()->getText( 'mime' );
 		$this->mime = trim( $this->mime );
 		list( $this->major, $this->minor ) = File::splitMime( $this->mime );
