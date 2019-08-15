@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -206,6 +207,19 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 				'invert' => 1,
 			],
 			"rc conditions with multiple namespaces inverted"
+		);
+	}
+
+	public function testRcNsFilterAllContents() {
+		$namespaces = MediaWikiServices::getInstance()->getNamespaceInfo()->getSubjectNamespaces();
+		$this->assertConditions(
+			[ # expected
+				'rc_namespace IN (' . $this->db->makeList( $namespaces ) . ')',
+			],
+			[
+				'namespace' => 'all-contents',
+			],
+			"rc conditions with all-contents"
 		);
 	}
 

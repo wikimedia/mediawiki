@@ -1793,6 +1793,8 @@
 	"rcfilters-filter-showlinkedto-label": "Label that indicates that the page is showing changes that link TO the target page. Used on [[Special:Recentchangeslinked]] when structured filters are enabled.",
 	"rcfilters-filter-showlinkedto-option-label": "Menu option to show changes TO the target page. Used on [[Special:Recentchangeslinked]] when structured filters are enabled.",
 	"rcfilters-target-page-placeholder": "Placeholder text for the title lookup [[Special:Recentchangeslinked]] when structured filters are enabled.",
+	"rcfilters-allcontents-label": "Label of the filter for all content namespaces on [[Special:Recentchanges]] or [[Special:Watchlist]] when structured filters are enabled.",
+	"rcfilters-alldiscussions-label": "Label of the filter for all discussion namespaces on [[Special:Recentchanges]] or [[Special:Watchlist]] when structured filters are enabled.",
 	"rcnotefrom": "This message is displayed at [[Special:RecentChanges]] when viewing recentchanges from some specific time.\n\nThe corresponding message is {{msg-mw|Rclistfrom}}.\n\nParameters:\n* $1 - the maximum number of changes that are displayed\n* $2 - (Optional) a date and time\n* $3 - a date\n* $4 - a time\n* $5 - Number of changes are displayed, for use with PLURAL",
 	"rclistfromreset": "Used on [[Special:RecentChanges]] to reset a selection of a certain date range.",
 	"rclistfrom": "Used on [[Special:RecentChanges]]. Parameters:\n* $1 - (Currently not use) date and time. The date and the time adds to the rclistfrom description.\n* $2 - time. The time adds to the rclistfrom link description (with split of date and time).\n* $3 - date. The date adds to the rclistfrom link description (with split of date and time).\n\nThe corresponding message is {{msg-mw|Rcnotefrom}}.",

@@ -1934,6 +1934,8 @@ return [
 			'rcfilters-filter-showlinkedto-label',
 			'rcfilters-filter-showlinkedto-option-label',
 			'rcfilters-target-page-placeholder',
+			'rcfilters-allcontents-label',
+			'rcfilters-alldiscussions-label',
 			'blanknamespace',
 			'namespaces',
 			'tags-title',

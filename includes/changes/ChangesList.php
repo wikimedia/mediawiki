@@ -232,6 +232,13 @@ class ChangesList extends ContextSource {
 		$classes[] = Sanitizer::escapeClass( self::CSS_CLASS_PREFIX . 'ns-' .
 			$rc->mAttribs['rc_namespace'] );
 
+		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		$classes[] = Sanitizer::escapeClass(
+			self::CSS_CLASS_PREFIX .
+			'ns-' .
+			( $nsInfo->isTalk( $rc->mAttribs['rc_namespace'] ) ? 'talk' : 'subject' )
+		);
+
 		if ( $this->filterGroups !== null ) {
 			foreach ( $this->filterGroups as $filterGroup ) {
 				foreach ( $filterGroup->getFilters() as $filter ) {
