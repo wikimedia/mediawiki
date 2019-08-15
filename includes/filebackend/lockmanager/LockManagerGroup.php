@@ -104,25 +104,10 @@ class LockManagerGroup {
 		// Lazy-load the actual lock manager instance
 		if ( !isset( $this->managers[$name]['instance'] ) ) {
 			$class = $this->managers[$name]['class'];
+			'@phan-var string $class';
 			$config = $this->managers[$name]['config'];
-			if ( $class === DBLockManager::class ) {
-				$lb = $this->lbFactory->getMainLB( $config['domain'] );
-				$config['dbServers']['localDBMaster'] = $lb->getLazyConnectionRef(
-					DB_MASTER,
-					[],
-					$config['domain'],
-					$lb::CONN_TRX_AUTOCOMMIT
-				);
-				$config['srvCache'] = ObjectCache::getLocalServerInstance( 'hash' );
-			}
 			$config['logger'] = LoggerFactory::getInstance( 'LockManager' );
 
-			// XXX Looks like phan is right, we are trying to instantiate an abstract class and it
-			// throws. Did this ever work? Presumably we need to detect the right subclass? Or
-			// should we just get rid of this? It looks like it never worked since it was first
-			// introduced by 0cf832a3394 in 2016, so if no one's complained until now, clearly it
-			// can't be very useful?
-			// @phan-suppress-next-line PhanTypeInstantiateAbstract
 			$this->managers[$name]['instance'] = new $class( $config );
 		}
 

@@ -41,7 +41,7 @@ class LockManagerGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 		LockManagerGroup::destroySingletons();
 
 		$this->assertSame(
-			null,
+			WikiMap::getCurrentWikiDbDomain()->getId(),
 			LockManagerGroup::singleton( null )->config( 'a' )['domain']
 		);
 	}
