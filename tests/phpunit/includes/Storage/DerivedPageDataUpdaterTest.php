@@ -875,6 +875,77 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * * @covers \MediaWiki\Storage\DerivedPageDataUpdater::isCountable
+	 */
+	public function testIsCountableNotContentPage() {
+		$updater = $this->getDerivedPageDataUpdater(
+			Title::newFromText( 'Main_Page', NS_TALK )
+		);
+		self::assertFalse( $updater->isCountable() );
+	}
+
+	public function provideIsCountable() {
+		yield 'deleted revision' => [
+			'$articleCountMethod' => 'any',
+			'$wikitextContent' => 'Test',
+			'$revisionVisibility' => RevisionRecord::SUPPRESSED_ALL,
+			'$isCountable' => false
+		];
+		yield 'redirect' => [
+			'$articleCountMethod' => 'any',
+			'$wikitextContent' => '#REDIRECT [[Main_Page]]',
+			'$revisionVisibility' => 0,
+			'$isCountable' => false
+		];
+		yield 'no links count method any' => [
+			'$articleCountMethod' => 'any',
+			'$wikitextContent' => 'Test',
+			'$revisionVisibility' => 0,
+			'$isCountable' => true
+		];
+		yield 'no links count method link' => [
+			'$articleCountMethod' => 'link',
+			'$wikitextContent' => 'Test',
+			'$revisionVisibility' => 0,
+			'$isCountable' => false
+		];
+		yield 'with links count method link' => [
+			'$articleCountMethod' => 'link',
+			'$wikitextContent' => '[[Test]]',
+			'$revisionVisibility' => 0,
+			'$isCountable' => true
+		];
+	}
+
+	/**
+	 * @dataProvider provideIsCountable
+	 *
+	 * @param string $articleCountMethod
+	 * @param string $wikitextContent
+	 * @param int $revisionVisibility
+	 * @param bool $isCountable
+	 * @throws \MWException
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::isCountable
+	 */
+	public function testIsCountable(
+		$articleCountMethod,
+		$wikitextContent,
+		$revisionVisibility,
+		$isCountable
+	) {
+		$this->setMwGlobals( [ 'wgArticleCountMethod' => $articleCountMethod ] );
+		$title = $this->getTitle( 'Main_Page' );
+		$content = new WikitextContent( $wikitextContent );
+		$update = new RevisionSlotsUpdate();
+		$update->modifyContent( SlotRecord::MAIN, $content );
+		$revision = $this->makeRevision( $title, $update, User::newFromName( 'Alice' ), 'rev1', 13 );
+		$revision->setVisibility( $revisionVisibility );
+		$updater = $this->getDerivedPageDataUpdater( $title );
+		$updater->prepareUpdate( $revision );
+		self::assertSame( $isCountable, $updater->isCountable() );
+	}
+
+	/**
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doUpdates()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doSecondaryDataUpdates()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParserCacheUpdate()
