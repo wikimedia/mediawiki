@@ -41,7 +41,6 @@
 	"config-diff3-bad": "GNU diff3 neet gevónje.",
 	"config-db-type": "Databanksaort:",
 	"config-db-host": "Databankgashieër:",
-	"config-db-host-oracle": "Databank-TNS:",
 	"config-db-wiki-settings": "Identificeer deze wiki",
 	"config-db-name": "Databanknaam:",
 	"mainpagetext": "<strong>MediaWiki software geïnsjtalleerd.</strong>",

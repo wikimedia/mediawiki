@@ -62,7 +62,6 @@
 	"config-memory-bad": "'''هشدار:''' PHP's <code>memory_limit</code> نسخهٔ $1 است.\nاین ممکن است خیلی پایین باشد.\nممکن است نصب با مشکل رو‌به‌رو شود.",
 	"config-db-type": "نوع پایگاه اطلاعات:",
 	"config-db-host": "میزبان پایگاه اطلاعات:",
-	"config-db-host-oracle": "ای ویکیۀ  شناسایی کۀ.",
 	"config-db-name": "نام پایگاه اطلاعات:",
 	"config-upgrade-done": "تکمیل ارتقاء.\nاکنون شما می‌توانید [$1 start using your wiki].\nاگر می‌خواهید پوشهٔ <code>LocalSettings.php</code> را احیا کنید،دکمهٔ زیر را کلیک کنید.\nاین ''' توصیه نمی‌شود ''' مگر اینکه با ویکی خود مشکل داشته باشید.",
 	"config-site-name-blank": "نام سایتئ وارد کۀن.",
