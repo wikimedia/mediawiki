@@ -20,6 +20,7 @@
  * @file
  */
 use MediaWiki\ChangeTags\Taggable;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Utility class for creating new RC entries
@@ -608,8 +609,9 @@ class RecentChange implements Taggable {
 		}
 		// Users without the 'autopatrol' right can't patrol their
 		// own revisions
-		if ( $user->getName() === $this->getAttribute( 'rc_user_text' )
-			&& !$user->isAllowed( 'autopatrol' )
+		if ( $user->getName() === $this->getAttribute( 'rc_user_text' ) &&
+				!MediaWikiServices::getInstance()->getPermissionManager()
+					->userHasRight( $user, 'autopatrol' )
 		) {
 			$errors[] = [ 'markedaspatrollederror-noautopatrol' ];
 		}
@@ -857,6 +859,7 @@ class RecentChange implements Taggable {
 		$type, $action, $target, $logComment, $params, $newId = 0, $actionCommentIRC = '',
 		$revId = 0, $isPatrollable = false ) {
 		global $wgRequest;
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		# # Get pageStatus for email notification
 		switch ( $type . '-' . $action ) {
@@ -881,7 +884,8 @@ class RecentChange implements Taggable {
 		}
 
 		// Allow unpatrolled status for patrollable log entries
-		$markPatrolled = $isPatrollable ? $user->isAllowed( 'autopatrol' ) : true;
+		$canAutopatrol = $permissionManager->userHasRight( $user, 'autopatrol' );
+		$markPatrolled = $isPatrollable ? $canAutopatrol : true;
 
 		$rc = new RecentChange;
 		$rc->mTitle = $target;
@@ -902,7 +906,8 @@ class RecentChange implements Taggable {
 			'rc_comment_data' => null,
 			'rc_this_oldid' => $revId,
 			'rc_last_oldid' => 0,
-			'rc_bot' => $user->isAllowed( 'bot' ) ? (int)$wgRequest->getBool( 'bot', true ) : 0,
+			'rc_bot' => $permissionManager->userHasRight( $user, 'bot' ) ?
+				(int)$wgRequest->getBool( 'bot', true ) : 0,
 			'rc_ip' => self::checkIPAddress( $ip ),
 			'rc_patrolled' => $markPatrolled ? self::PRC_AUTOPATROLLED : self::PRC_UNPATROLLED,
 			'rc_new' => 0, # obsolete

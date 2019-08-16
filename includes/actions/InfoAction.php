@@ -345,7 +345,7 @@ class InfoAction extends FormlessAction {
 
 		$unwatchedPageThreshold = $config->get( 'UnwatchedPageThreshold' );
 		if (
-			$user->isAllowed( 'unwatchedpages' ) ||
+			$services->getPermissionManager()->userHasRight( $user, 'unwatchedpages' ) ||
 			( $unwatchedPageThreshold !== false &&
 				$pageCounts['watchers'] >= $unwatchedPageThreshold )
 		) {
@@ -360,7 +360,7 @@ class InfoAction extends FormlessAction {
 			) {
 				$minToDisclose = $config->get( 'UnwatchedPageSecret' );
 				if ( $pageCounts['visitingWatchers'] > $minToDisclose ||
-					$user->isAllowed( 'unwatchedpages' ) ) {
+					$services->getPermissionManager()->userHasRight( $user, 'unwatchedpages' ) ) {
 					$pageInfo['header-basic'][] = [
 						$this->msg( 'pageinfo-visiting-watchers' ),
 						$lang->formatNum( $pageCounts['visitingWatchers'] )

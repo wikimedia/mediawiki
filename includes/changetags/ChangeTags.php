@@ -520,7 +520,9 @@ class ChangeTags {
 	 */
 	public static function canAddTagsAccompanyingChange( array $tags, User $user = null ) {
 		if ( !is_null( $user ) ) {
-			if ( !$user->isAllowed( 'applychangetags' ) ) {
+			if ( !MediaWikiServices::getInstance()->getPermissionManager()
+					->userHasRight( $user, 'applychangetags' )
+			) {
 				return Status::newFatal( 'tags-apply-no-permission' );
 			} elseif ( $user->getBlock() ) {
 				// @TODO Ensure that the block does not apply to the `applychangetags`
@@ -595,7 +597,9 @@ class ChangeTags {
 		User $user = null
 	) {
 		if ( !is_null( $user ) ) {
-			if ( !$user->isAllowed( 'changetags' ) ) {
+			if ( !MediaWikiServices::getInstance()->getPermissionManager()
+					->userHasRight( $user, 'changetags' )
+			) {
 				return Status::newFatal( 'tags-update-no-permission' );
 			} elseif ( $user->getBlock() ) {
 				// @TODO Ensure that the block does not apply to the `changetags`
@@ -1015,7 +1019,9 @@ class ChangeTags {
 	 */
 	public static function canActivateTag( $tag, User $user = null ) {
 		if ( !is_null( $user ) ) {
-			if ( !$user->isAllowed( 'managechangetags' ) ) {
+			if ( !MediaWikiServices::getInstance()->getPermissionManager()
+					->userHasRight( $user, 'managechangetags' )
+			) {
 				return Status::newFatal( 'tags-manage-no-permission' );
 			} elseif ( $user->getBlock() ) {
 				// @TODO Ensure that the block does not apply to the `managechangetags`
@@ -1089,7 +1095,9 @@ class ChangeTags {
 	 */
 	public static function canDeactivateTag( $tag, User $user = null ) {
 		if ( !is_null( $user ) ) {
-			if ( !$user->isAllowed( 'managechangetags' ) ) {
+			if ( !MediaWikiServices::getInstance()->getPermissionManager()
+					->userHasRight( $user, 'managechangetags' )
+			) {
 				return Status::newFatal( 'tags-manage-no-permission' );
 			} elseif ( $user->getBlock() ) {
 				// @TODO Ensure that the block does not apply to the `managechangetags`
@@ -1188,7 +1196,9 @@ class ChangeTags {
 	 */
 	public static function canCreateTag( $tag, User $user = null ) {
 		if ( !is_null( $user ) ) {
-			if ( !$user->isAllowed( 'managechangetags' ) ) {
+			if ( !MediaWikiServices::getInstance()->getPermissionManager()
+					->userHasRight( $user, 'managechangetags' )
+			) {
 				return Status::newFatal( 'tags-manage-no-permission' );
 			} elseif ( $user->getBlock() ) {
 				// @TODO Ensure that the block does not apply to the `managechangetags`
@@ -1308,7 +1318,9 @@ class ChangeTags {
 		$tagUsage = self::tagUsageStatistics();
 
 		if ( !is_null( $user ) ) {
-			if ( !$user->isAllowed( 'deletechangetags' ) ) {
+			if ( !MediaWikiServices::getInstance()->getPermissionManager()
+					->userHasRight( $user, 'deletechangetags' )
+			) {
 				return Status::newFatal( 'tags-delete-no-permission' );
 			} elseif ( $user->getBlock() ) {
 				// @TODO Ensure that the block does not apply to the `deletechangetags`
@@ -1566,6 +1578,8 @@ class ChangeTags {
 	 * @return bool
 	 */
 	public static function showTagEditingUI( User $user ) {
-		return $user->isAllowed( 'changetags' ) && (bool)self::listExplicitlyDefinedTags();
+		return MediaWikiServices::getInstance()->getPermissionManager()
+				   ->userHasRight( $user, 'changetags' ) &&
+			   (bool)self::listExplicitlyDefinedTags();
 	}
 }

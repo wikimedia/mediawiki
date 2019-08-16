@@ -55,7 +55,8 @@ class BlockManagerTest extends MediaWikiTestCase {
 				MediaWikiServices::getInstance()->getMainConfig()
 			),
 			$this->user,
-			$this->user->getRequest()
+			$this->user->getRequest(),
+			MediaWikiServices::getInstance()->getPermissionManager()
 		];
 	}
 

@@ -77,8 +77,9 @@ class MovePage {
 		}
 
 		$tp = $this->newTitle->getTitleProtection();
-		if ( $tp !== false && !$user->isAllowed( $tp['permission'] ) ) {
-				$status->fatal( 'cantmove-titleprotected' );
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( $tp !== false && !$permissionManager->userHasRight( $user, $tp['permission'] ) ) {
+			$status->fatal( 'cantmove-titleprotected' );
 		}
 
 		Hooks::run( 'MovePageCheckPermissions',
@@ -287,7 +288,8 @@ class MovePage {
 		}
 
 		// Check suppressredirect permission
-		if ( !$user->isAllowed( 'suppressredirect' ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( !$permissionManager->userHasRight( $user, 'suppressredirect' ) ) {
 			$createRedirect = true;
 		}
 

@@ -67,7 +67,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		}
 
 		// If user can't undelete, no tokens
-		if ( !$user->isAllowed( 'undelete' ) ) {
+		if ( !$this->getPermissionManager()->userHasRight( $user, 'undelete' ) ) {
 			$fld_token = false;
 		}
 
@@ -197,7 +197,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			// Paranoia: avoid brute force searches (T19342)
 			// (shouldn't be able to get here without 'deletedhistory', but
 			// check it again just in case)
-			if ( !$user->isAllowed( 'deletedhistory' ) ) {
+			if ( !$this->getPermissionManager()->userHasRight( $user, 'deletedhistory' ) ) {
 				$bitmask = RevisionRecord::DELETED_USER;
 			} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 				$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;

@@ -978,7 +978,9 @@ class Linker {
 
 			$items[] = self::link( $contribsPage, wfMessage( 'contribslink' )->escaped(), $attribs );
 		}
-		if ( $blockable && $wgUser->isAllowed( 'block' ) ) {
+		$userCanBlock = MediaWikiServices::getInstance()->getPermissionManager()
+			->userHasRight( $wgUser, 'block' );
+		if ( $blockable && $userCanBlock ) {
 			$items[] = self::blockLink( $userId, $userText );
 		}
 
@@ -2103,8 +2105,10 @@ class Linker {
 	 * @return string HTML fragment
 	 */
 	public static function getRevDeleteLink( User $user, Revision $rev, LinkTarget $title ) {
-		$canHide = $user->isAllowed( 'deleterevision' );
-		if ( !$canHide && !( $rev->getVisibility() && $user->isAllowed( 'deletedhistory' ) ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$canHide = $permissionManager->userHasRight( $user, 'deleterevision' );
+		$canHideHistory = $permissionManager->userHasRight( $user, 'deletedhistory' );
+		if ( !$canHide && !( $rev->getVisibility() && $canHideHistory ) ) {
 			return '';
 		}
 

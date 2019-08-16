@@ -76,7 +76,8 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	 */
 	public static function getRollbackToken( $pageid, $title, $rev ) {
 		global $wgUser;
-		if ( !$wgUser->isAllowed( 'rollback' ) ) {
+		if ( !MediaWikiServices::getInstance()->getPermissionManager()
+				->userHasRight( $wgUser, 'rollback' ) ) {
 			return false;
 		}
 
@@ -332,7 +333,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			}
 			if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
 				// Paranoia: avoid brute force searches (T19342)
-				if ( !$this->getUser()->isAllowed( 'deletedhistory' ) ) {
+				if ( !$this->getPermissionManager()->userHasRight( $this->getUser(), 'deletedhistory' ) ) {
 					$bitmask = RevisionRecord::DELETED_USER;
 				} elseif ( !$this->getUser()->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 					$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;

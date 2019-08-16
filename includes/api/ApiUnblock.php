@@ -41,7 +41,7 @@ class ApiUnblock extends ApiBase {
 
 		$this->requireOnlyOneParameter( $params, 'id', 'user', 'userid' );
 
-		if ( !$user->isAllowed( 'block' ) ) {
+		if ( !$this->getPermissionManager()->userHasRight( $user, 'block' ) ) {
 			$this->dieWithError( 'apierror-permissiondenied-unblock', 'permissiondenied' );
 		}
 		# T17810: blocked admins should have limited access here

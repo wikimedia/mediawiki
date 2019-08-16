@@ -24,6 +24,7 @@ use DateTime;
 use DeferredUpdates;
 use IP;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserIdentity;
 use MWCryptHash;
 use User;
@@ -44,6 +45,9 @@ class BlockManager {
 
 	/** @var WebRequest */
 	private $currentRequest;
+
+	/** @var PermissionManager */
+	private $permissionManager;
 
 	/**
 	 * TODO Make this a const when HHVM support is dropped (T192166)
@@ -67,16 +71,19 @@ class BlockManager {
 	 * @param ServiceOptions $options
 	 * @param User $currentUser
 	 * @param WebRequest $currentRequest
+	 * @param PermissionManager $permissionManager
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		User $currentUser,
-		WebRequest $currentRequest
+		WebRequest $currentRequest,
+		PermissionManager $permissionManager
 	) {
 		$options->assertRequiredOptions( self::$constructorOptions );
 		$this->options = $options;
 		$this->currentUser = $currentUser;
 		$this->currentRequest = $currentRequest;
+		$this->permissionManager = $permissionManager;
 	}
 
 	/**
@@ -110,7 +117,8 @@ class BlockManager {
 		$globalUserName = $sessionUser->isSafeToLoad()
 			? $sessionUser->getName()
 			: IP::sanitizeIP( $this->currentRequest->getIP() );
-		if ( $user->getName() === $globalUserName && !$user->isAllowed( 'ipblock-exempt' ) ) {
+		if ( $user->getName() === $globalUserName &&
+			 !$this->permissionManager->userHasRight( $user, 'ipblock-exempt' ) ) {
 			$ip = $this->currentRequest->getIP();
 		}
 

@@ -111,7 +111,8 @@ class RawAction extends FormlessAction {
 			$rootPage = strtok( $title->getText(), '/' );
 			$userFromTitle = User::newFromName( $rootPage, 'usable' );
 			if ( !$userFromTitle || $userFromTitle->getId() === 0 ) {
-				$elevated = $this->getUser()->isAllowed( 'editinterface' );
+				$elevated = MediaWikiServices::getInstance()->getPermissionManager()
+					->userHasRight( $this->getUser(), 'editinterface' );
 				$elevatedText = $elevated ? 'by elevated ' : '';
 				$log = LoggerFactory::getInstance( "security" );
 				$log->warning(

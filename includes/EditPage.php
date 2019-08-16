@@ -1593,7 +1593,8 @@ class EditPage {
 		// This is needed since PageUpdater no longer checks these rights!
 
 		// Allow bots to exempt some edits from bot flagging
-		$bot = $this->context->getUser()->isAllowed( 'bot' ) && $this->bot;
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$bot = $permissionManager->userHasRight( $this->context->getUser(), 'bot' ) && $this->bot;
 		$status = $this->internalAttemptSave( $resultDetails, $bot );
 
 		Hooks::run( 'EditPage::attemptSave:after', [ $this, $status, $resultDetails ] );
@@ -1870,6 +1871,7 @@ ERROR;
 	public function internalAttemptSave( &$result, $bot = false ) {
 		$status = Status::newGood();
 		$user = $this->context->getUser();
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		if ( !Hooks::run( 'EditPage::attemptSave', [ $this ] ) ) {
 			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving\n" );
@@ -1918,7 +1920,7 @@ ERROR;
 		# Check image redirect
 		if ( $this->mTitle->getNamespace() == NS_FILE &&
 			$textbox_content->isRedirect() &&
-			!$user->isAllowed( 'upload' )
+			!$permissionManager->userHasRight( $user, 'upload' )
 		) {
 				$code = $user->isAnon() ? self::AS_IMAGE_REDIRECT_ANON : self::AS_IMAGE_REDIRECT_LOGGED;
 				$status->setResult( false, $code );
@@ -1968,7 +1970,7 @@ ERROR;
 			return $status;
 		}
 
-		if ( $user->isBlockedFrom( $this->mTitle ) ) {
+		if ( $permissionManager->isBlockedFrom( $user, $this->mTitle ) ) {
 			// Auto-block user's IP if the account was "hard" blocked
 			if ( !wfReadOnly() ) {
 				$user->spreadAnyEditBlock();
@@ -1988,7 +1990,7 @@ ERROR;
 			return $status;
 		}
 
-		if ( !$user->isAllowed( 'edit' ) ) {
+		if ( !$permissionManager->userHasRight( $user, 'edit' ) ) {
 			if ( $user->isAnon() ) {
 				$status->setResult( false, self::AS_READ_ONLY_PAGE_ANON );
 				return $status;
@@ -1999,15 +2001,13 @@ ERROR;
 			}
 		}
 
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-
 		$changingContentModel = false;
 		if ( $this->contentModel !== $this->mTitle->getContentModel() ) {
 			if ( !$config->get( 'ContentHandlerUseDB' ) ) {
 				$status->fatal( 'editpage-cannot-use-custom-model' );
 				$status->value = self::AS_CANNOT_USE_CUSTOM_MODEL;
 				return $status;
-			} elseif ( !$user->isAllowed( 'editcontentmodel' ) ) {
+			} elseif ( !$permissionManager->userHasRight( $user, 'editcontentmodel' ) ) {
 				$status->setResult( false, self::AS_NO_CHANGE_CONTENT_MODEL );
 				return $status;
 			}
@@ -4159,7 +4159,8 @@ ERROR;
 
 		$user = $this->context->getUser();
 		// don't show the minor edit checkbox if it's a new page or section
-		if ( !$this->isNew && $user->isAllowed( 'minoredit' ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( !$this->isNew && $permissionManager->userHasRight( $user, 'minoredit' ) ) {
 			$checkboxes['wpMinoredit'] = [
 				'id' => 'wpMinoredit',
 				'label-message' => 'minoredit',
