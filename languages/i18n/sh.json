@@ -2666,7 +2666,7 @@
 	"move-talk-subpages": "Premjesti podstranice stranice za razgovor (sve do $1)",
 	"movepage-page-exists": "Stranica $1 već postoji i ne može biti automatski zamijenjena.",
 	"movepage-page-moved": "Stranica $1 je premještena na $2.",
-	"movepage-page-unmoved": "Stranica $1 ne može biti premještena na $2.",
+	"movepage-page-unmoved": "Stranica $1 ne može biti premještena u $2.",
 	"movepage-max-pages": "Maksimum od $1 {{PLURAL:$1|stranice|stranice|stranica}} je premješteno i više nije moguće premjestiti automatski.",
 	"movelogpage": "Evidencija premještanja",
 	"movelogpagetext": "Ispod je spisak stranica koje su premještene.",
