@@ -168,7 +168,7 @@ class RecentChangesUpdateJob extends Job {
 			],
 			__METHOD__,
 			[
-				'GROUP BY' => [ 'rc_user_text' ],
+				'GROUP BY' => [ $actorQuery['fields']['rc_user_text'] ],
 				'ORDER BY' => 'NULL' // avoid filesort
 			],
 			$actorQuery['joins']
