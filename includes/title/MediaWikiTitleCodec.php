@@ -186,6 +186,40 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	}
 
 	/**
+	 * Given a namespace and title, return a TitleValue if valid, or null if invalid.
+	 *
+	 * @param int $namespace
+	 * @param string $text
+	 * @param string $fragment
+	 * @param string $interwiki
+	 *
+	 * @return TitleValue|null
+	 */
+	public function makeTitleValueSafe( $namespace, $text, $fragment = '', $interwiki = '' ) {
+		if ( !$this->nsInfo->exists( $namespace ) ) {
+			return null;
+		}
+
+		$canonicalNs = $this->nsInfo->getCanonicalName( $namespace );
+		$fullText = $canonicalNs == '' ? $text : "$canonicalNs:$text";
+		if ( strval( $interwiki ) != '' ) {
+			$fullText = "$interwiki:$fullText";
+		}
+		if ( strval( $fragment ) != '' ) {
+			$fullText .= '#' . $fragment;
+		}
+
+		try {
+			$parts = $this->splitTitleString( $fullText );
+		} catch ( MalformedTitleException $e ) {
+			return null;
+		}
+
+		return new TitleValue(
+			$parts['namespace'], $parts['dbkey'], $parts['fragment'], $parts['interwiki'] );
+	}
+
+	/**
 	 * @see TitleFormatter::getText()
 	 *
 	 * @param LinkTarget $title
