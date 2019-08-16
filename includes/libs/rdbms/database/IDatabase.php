@@ -452,8 +452,10 @@ interface IDatabase {
 	public function lastError();
 
 	/**
-	 * Get the number of rows affected by the last write query
-	 * @see https://www.php.net/mysql_affected_rows
+	 * Get the number of rows affected by the last write query.
+	 * Similar to https://www.php.net/mysql_affected_rows but includes rows matched
+	 * but not changed (ie. an UPDATE which sets all fields to the same value they already have).
+	 * To get the old mysql_affected_rows behavior, include non-equality of the fields in WHERE.
 	 *
 	 * @return int
 	 */
