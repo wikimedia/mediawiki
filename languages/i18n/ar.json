@@ -510,7 +510,7 @@
 	"createacct-another-continue-submit": "مواصلة إنشاء الحساب",
 	"createacct-benefit-heading": "{{SITENAME}} موقع يساهم فيه أشخاص مثلك.",
 	"createacct-benefit-body1": "{{PLURAL:$1|تحريرا|تحريرات}}",
-	"createacct-benefit-body2": "{{PLURAL:$1|صفحة}}",
+	"createacct-benefit-body2": "{{PLURAL:$1|مقالة}}",
 	"createacct-benefit-body3": "آخر {{PLURAL:$1|مساهم|مساهمين}}",
 	"badretype": "كلمات السر التي أدخلتها لا تتطابق.",
 	"usernameinprogress": "إن عملية إنشاء حساب لاسم المستخدم هذا جارية بالفعل. برجاء الانتظار.",
