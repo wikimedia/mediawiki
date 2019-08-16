@@ -40,15 +40,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 * @return mysqli_result|bool
 	 */
 	protected function doQuery( $sql ) {
-		$conn = $this->getBindingHandle();
-
-		if ( $this->getFlag( self::DBO_NOBUFFER ) ) {
-			$ret = $conn->query( $sql, MYSQLI_USE_RESULT );
-		} else {
-			$ret = $conn->query( $sql );
-		}
-
-		return $ret;
+		return $this->getBindingHandle()->query( $sql );
 	}
 
 	/**
