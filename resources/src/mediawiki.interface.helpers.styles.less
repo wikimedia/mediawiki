@@ -47,3 +47,13 @@
 		content: '';
 	}
 }
+
+.mw-tag-marker {
+	&:after {
+		content: '@{msg-comma-separator}';
+	}
+
+	&:last-child:after {
+		content: '';
+	}
+}
