@@ -880,6 +880,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\DB\\PatchFileLocation' => __DIR__ . '/includes/db/PatchFileLocation.php',
 	'MediaWiki\\Diff\\ComplexityException' => __DIR__ . '/includes/diff/ComplexityException.php',
 	'MediaWiki\\Diff\\WordAccumulator' => __DIR__ . '/includes/diff/WordAccumulator.php',
+	'MediaWiki\\FileBackend\\FSFile\\TempFSFileFactory' => __DIR__ . '/includes/libs/filebackend/fsfile/TempFSFileFactory.php',
 	'MediaWiki\\HeaderCallback' => __DIR__ . '/includes/HeaderCallback.php',
 	'MediaWiki\\Http\\HttpRequestFactory' => __DIR__ . '/includes/http/HttpRequestFactory.php',
 	'MediaWiki\\Installer\\InstallException' => __DIR__ . '/includes/installer/InstallException.php',

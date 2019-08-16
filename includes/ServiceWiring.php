@@ -43,6 +43,7 @@ use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
@@ -713,6 +714,10 @@ return [
 		return new BufferingStatsdDataFactory(
 			rtrim( $services->getMainConfig()->get( 'StatsdMetricPrefix' ), '.' )
 		);
+	},
+
+	'TempFSFileFactory' => function ( MediaWikiServices $services ) : TempFSFileFactory {
+		return new TempFSFileFactory( $services->getMainConfig()->get( 'TmpDirectory' ) );
 	},
 
 	'TitleFormatter' => function ( MediaWikiServices $services ) : TitleFormatter {

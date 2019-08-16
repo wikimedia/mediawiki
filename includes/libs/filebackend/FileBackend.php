@@ -27,6 +27,7 @@
  * @file
  * @ingroup FileBackend
  */
+use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ScopedCallback;
@@ -106,8 +107,8 @@ abstract class FileBackend implements LoggerAwareInterface {
 	/** @var int How many operations can be done in parallel */
 	protected $concurrency;
 
-	/** @var string Temporary file directory */
-	protected $tmpDirectory;
+	/** @var TempFSFileFactory */
+	protected $tmpFileFactory;
 
 	/** @var LockManager */
 	protected $lockManager;
@@ -152,8 +153,10 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *   - parallelize : When to do file operations in parallel (when possible).
 	 *      Allowed values are "implicit", "explicit" and "off".
 	 *   - concurrency : How many file operations can be done in parallel.
-	 *   - tmpDirectory : Directory to use for temporary files. If this is not set or null,
-	 *      then the backend will try to discover a usable temporary directory.
+	 *   - tmpDirectory : Directory to use for temporary files.
+	 *   - tmpFileFactory : Optional TempFSFileFactory object. Only has an effect if tmpDirectory is
+	 *      not set. If both are unset or null, then the backend will try to discover a usable
+	 *      temporary directory.
 	 *   - obResetFunc : alternative callback to clear the output buffer
 	 *   - streamMimeFunc : alternative method to determine the content type from the path
 	 *   - logger : Optional PSR logger object.
@@ -193,7 +196,12 @@ abstract class FileBackend implements LoggerAwareInterface {
 		}
 		$this->logger = $config['logger'] ?? new NullLogger();
 		$this->statusWrapper = $config['statusWrapper'] ?? null;
-		$this->tmpDirectory = $config['tmpDirectory'] ?? null;
+		// tmpDirectory gets precedence for backward compatibility
+		if ( isset( $config['tmpDirectory'] ) ) {
+			$this->tmpFileFactory = new TempFSFileFactory( $config['tmpDirectory'] );
+		} else {
+			$this->tmpFileFactory = $config['tmpFileFactory'] ?? new TempFSFileFactory();
+		}
 	}
 
 	public function setLogger( LoggerInterface $logger ) {

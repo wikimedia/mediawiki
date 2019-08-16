@@ -186,7 +186,7 @@ class FileBackendGroup {
 				'mimeCallback' => [ $this, 'guessMimeInternal' ],
 				'obResetFunc' => 'wfResetOutputBuffers',
 				'streamMimeFunc' => [ StreamFile::class, 'contentTypeFromPath' ],
-				'tmpDirectory' => wfTempDir(),
+				'tmpFileFactory' => MediaWikiServices::getInstance()->getTempFSFileFactory(),
 				'statusWrapper' => [ Status::class, 'wrap' ],
 				'wanCache' => $services->getMainWANObjectCache(),
 				'srvCache' => ObjectCache::getLocalServerInstance( 'hash' ),
@@ -241,7 +241,8 @@ class FileBackendGroup {
 		if ( !$type && $fsPath ) {
 			$type = $magic->guessMimeType( $fsPath, false );
 		} elseif ( !$type && strlen( $content ) ) {
-			$tmpFile = TempFSFile::factory( 'mime_', '', wfTempDir() );
+			$tmpFile = MediaWikiServices::getInstance()->getTempFSFileFactory()
+				->newTempFSFile( 'mime_', '' );
 			file_put_contents( $tmpFile->getPath(), $content );
 			$type = $magic->guessMimeType( $tmpFile->getPath(), false );
 		}

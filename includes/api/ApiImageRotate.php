@@ -101,7 +101,8 @@ class ApiImageRotate extends ApiBase {
 				continue;
 			}
 			$ext = strtolower( pathinfo( "$srcPath", PATHINFO_EXTENSION ) );
-			$tmpFile = TempFSFile::factory( 'rotate_', $ext, wfTempDir() );
+			$tmpFile = MediaWikiServices::getInstance()->getTempFSFileFactory()
+				->newTempFSFile( 'rotate_', $ext );
 			$dstPath = $tmpFile->getPath();
 			$err = $handler->rotate( $file, [
 				'srcPath' => $srcPath,
