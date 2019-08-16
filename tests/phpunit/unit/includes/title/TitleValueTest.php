@@ -29,6 +29,8 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 	public function goodConstructorProvider() {
 		return [
 			[ NS_MAIN, '', 'fragment', '', true, false ],
+			[ NS_MAIN, '', '', 'interwiki', false, true ],
+			[ NS_MAIN, '', 'fragment', 'interwiki', true, true ],
 			[ NS_USER, 'TestThis', 'stuff', '', true, false ],
 			[ NS_USER, 'TestThis', '', 'baz', false, true ],
 			[ NS_MAIN, 'foo bar', '', '', false, false ],
@@ -63,6 +65,7 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 			[ NS_MAIN, 5, 'fragment', '' ],
 			[ NS_MAIN, null, 'fragment', '' ],
 			[ NS_USER, '', 'fragment', '' ],
+			[ NS_USER, '', '', 'interwiki' ],
 			[ NS_MAIN, 'bar_', '', '' ],
 			[ NS_MAIN, '_foo', '', '' ],
 			[ NS_MAIN, ' eek ', '', '' ],

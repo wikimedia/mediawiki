@@ -43,4 +43,16 @@ interface TitleParser {
 	 * @return TitleValue
 	 */
 	public function parseTitle( $text, $defaultNamespace = NS_MAIN );
+
+	/**
+	 * Given a namespace and title, return a TitleValue if valid, or null if invalid.
+	 *
+	 * @param int $namespace
+	 * @param string $text
+	 * @param string $fragment
+	 * @param string $interwiki
+	 *
+	 * @return TitleValue|null
+	 */
+	public function makeTitleValueSafe( $namespace, $text, $fragment = '', $interwiki = '' );
 }

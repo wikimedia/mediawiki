@@ -102,8 +102,12 @@ class TitleValue implements LinkTarget {
 		// Sanity check, no full validation or normalization applied here!
 		Assert::parameter( !preg_match( '/^[_ ]|[\r\n\t]|[_ ]$/', $title ), '$title',
 			"invalid name '$title'" );
-		Assert::parameter( $title !== '' || ( $fragment !== '' && $namespace === NS_MAIN ),
-			'$title', 'should not be empty unless namespace is main and fragment is non-empty' );
+		Assert::parameter(
+			$title !== '' ||
+				( $namespace === NS_MAIN && ( $fragment !== '' || $interwiki !== '' ) ),
+			'$title',
+			'should not be empty unless namespace is main and fragment or interwiki is non-empty'
+		);
 
 		$this->namespace = $namespace;
 		$this->dbkey = strtr( $title, ' ', '_' );
