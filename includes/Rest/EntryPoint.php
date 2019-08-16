@@ -3,6 +3,7 @@
 namespace MediaWiki\Rest;
 
 use ExtensionRegistry;
+use MediaWiki;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\BasicAccess\MWBasicAuthorizer;
 use RequestContext;
@@ -16,6 +17,8 @@ class EntryPoint {
 	private $webResponse;
 	/** @var Router */
 	private $router;
+	/** @var RequestContext */
+	private $context;
 
 	public static function main() {
 		// URL safety checks
@@ -24,10 +27,12 @@ class EntryPoint {
 			return;
 		}
 
+		$context = RequestContext::getMain();
+
 		// Set $wgTitle and the title in RequestContext, as in api.php
 		global $wgTitle;
 		$wgTitle = Title::makeTitle( NS_SPECIAL, 'Badtitle/rest.php' );
-		RequestContext::getMain()->setTitle( $wgTitle );
+		$context->setTitle( $wgTitle );
 
 		$services = MediaWikiServices::getInstance();
 		$conf = $services->getMainConfig();
@@ -42,7 +47,7 @@ class EntryPoint {
 			'cookiePrefix' => $conf->get( 'CookiePrefix' )
 		] );
 
-		$authorizer = new MWBasicAuthorizer( RequestContext::getMain()->getUser(),
+		$authorizer = new MWBasicAuthorizer( $context->getUser(),
 			$services->getPermissionManager() );
 
 		global $IP;
@@ -56,21 +61,24 @@ class EntryPoint {
 		);
 
 		$entryPoint = new self(
+			$context,
 			$request,
 			$wgRequest->response(),
 			$router );
 		$entryPoint->execute();
 	}
 
-	public function __construct( RequestInterface $request, WebResponse $webResponse,
-		Router $router
+	public function __construct( RequestContext $context, RequestInterface $request,
+		WebResponse $webResponse, Router $router
 	) {
+		$this->context = $context;
 		$this->request = $request;
 		$this->webResponse = $webResponse;
 		$this->router = $router;
 	}
 
 	public function execute() {
+		ob_start();
 		$response = $this->router->execute( $this->request );
 
 		$this->webResponse->header(
@@ -91,10 +99,13 @@ class EntryPoint {
 		}
 
 		// Clear all errors that might have been displayed if display_errors=On
-		ob_clean();
+		ob_end_clean();
 
 		$stream = $response->getBody();
 		$stream->rewind();
+
+		MediaWiki::preOutputCommit( $this->context );
+
 		if ( $stream instanceof CopyableStreamInterface ) {
 			$stream->copyToStream( fopen( 'php://output', 'w' ) );
 		} else {
@@ -106,5 +117,8 @@ class EntryPoint {
 				echo $buffer;
 			}
 		}
+
+		$mw = new MediaWiki;
+		$mw->doPostOutputShutdown( 'fast' );
 	}
 }
