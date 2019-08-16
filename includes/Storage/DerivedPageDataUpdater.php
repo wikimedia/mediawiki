@@ -659,7 +659,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			$hasLinks = (bool)count( $this->getCanonicalParserOutput()->getLinks() );
 		}
 
-		foreach ( $this->getModifiedSlotRoles() as $role ) {
+		foreach ( $this->getSlots()->getSlotRoles() as $role ) {
 			$roleHandler = $this->slotRoleRegistry->getRoleHandler( $role );
 			if ( $roleHandler->supportsArticleCount() ) {
 				$content = $this->getRawContent( $role );
