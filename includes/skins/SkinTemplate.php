@@ -62,12 +62,10 @@ class SkinTemplate extends Skin {
 	 * roughly equivalent to PHPTAL 0.7.
 	 *
 	 * @param string $classname
-	 * @param bool|string $repository Subdirectory where we keep template files
-	 * @param bool|string $cache_dir
 	 * @return QuickTemplate
 	 * @private
 	 */
-	function setupTemplate( $classname, $repository = false, $cache_dir = false ) {
+	function setupTemplate( $classname ) {
 		return new $classname( $this->getConfig() );
 	}
 
@@ -179,7 +177,7 @@ class SkinTemplate extends Skin {
 		$user = $this->getUser();
 		$title = $this->getTitle();
 
-		$tpl = $this->setupTemplate( $this->template, 'skins' );
+		$tpl = $this->setupTemplate( $this->template );
 
 		$this->thispage = $title->getPrefixedDBkey();
 		$this->titletxt = $title->getPrefixedText();
