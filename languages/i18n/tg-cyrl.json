@@ -17,7 +17,8 @@
 			"Vashgird",
 			"Fitoschido",
 			"TajikMaterialist",
-			"Vlad5250"
+			"Vlad5250",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Пайвандҳо хаткашида:",
@@ -213,7 +214,7 @@
 	"redirectedfrom": "(Тағйири масир аз $1)",
 	"redirectpagesub": "Саҳифаи равонакунӣ",
 	"redirectto": "Тағйири масир ба:",
-	"lastmodifiedat": "Ин саҳифапо бори охир дар $1, $2 вироиш карда буданд.",
+	"lastmodifiedat": "Ин саҳифаро бори охир дар $1, $2 вироиш карда буданд.",
 	"viewcount": "Ин саҳифа {{PLURAL:$1|бор|$1 бор}} дида шудааст.",
 	"protectedpage": "Саҳифаи муҳофизатшуда",
 	"jumpto": "Ҷаҳиш ба:",
