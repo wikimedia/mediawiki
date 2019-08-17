@@ -33,8 +33,11 @@ require_once __DIR__ . '/Maintenance.php';
 class McTest extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->addDescription( "Makes several 'set', 'incr' and 'get' requests on every"
-			. " memcached server and shows a report" );
+		$this->addDescription(
+			"Makes several operation requests on every cache server and shows a report.\n" .
+			"This tests both per-key and batched *Multi() methods as well as WRITE_BACKGROUND.\n" .
+			"\"IB\" means \"immediate blocking\" and \"DB\" means \"deferred blocking.\""
+		);
 		$this->addOption( 'i', 'Number of iterations', false, true );
 		$this->addOption( 'cache', 'Use servers from this $wgObjectCaches store', false, true );
 		$this->addOption( 'driver', 'Either "php" or "pecl"', false, true );
@@ -76,37 +79,47 @@ class McTest extends Maintenance {
 			$this->fatalError( "Invalid driver type '$type'" );
 		}
 
+		$this->output( "Warming up connections to cache servers..." );
+		$mccByServer = [];
 		foreach ( $servers as $server ) {
-			$this->output( str_pad( $server, $maxSrvLen ) . "\n" );
-
 			/** @var BagOStuff $mcc */
-			$mcc = new $class( [
+			$mccByServer[$server] = new $class( [
 				'servers' => [ $server ],
 				'persistent' => true,
+				'allow_tcp_nagle_delay' => false,
 				'timeout' => $wgMemCachedTimeout
 			] );
+			$mccByServer[$server]->get( 'key' );
+		}
+		$this->output( "done\n" );
+		$this->output( "Single and batched operation profiling/test results:\n" );
 
-			$this->benchmarkSingleKeyOps( $mcc, $iterations );
-			$this->benchmarkMultiKeyOpsImmediateBlocking( $mcc, $iterations );
-			$this->benchmarkMultiKeyOpsDeferredBlocking( $mcc, $iterations );
+		$valueByKey = [];
+		for ( $i = 1; $i <= $iterations; $i++ ) {
+			$valueByKey["test$i"] = 'S' . str_pad( $i, 2048 );
+		}
+
+		foreach ( $mccByServer as $server => $mcc ) {
+			$this->output( str_pad( $server, $maxSrvLen ) . "\n" );
+			$this->benchmarkSingleKeyOps( $mcc, $valueByKey );
+			$this->benchmarkMultiKeyOpsImmediateBlocking( $mcc, $valueByKey );
+			$this->benchmarkMultiKeyOpsDeferredBlocking( $mcc, $valueByKey );
 		}
 	}
 
 	/**
 	 * @param BagOStuff $mcc
-	 * @param int $iterations
+	 * @param array $valueByKey
 	 */
-	private function benchmarkSingleKeyOps( $mcc, $iterations ) {
+	private function benchmarkSingleKeyOps( BagOStuff $mcc, array $valueByKey ) {
 		$add = 0;
 		$set = 0;
 		$incr = 0;
 		$get = 0;
 		$delete = 0;
 
-		$keys = [];
-		for ( $i = 1; $i <= $iterations; $i++ ) {
-			$keys[] = "test$i";
-		}
+		$i = count( $valueByKey );
+		$keys = array_keys( $valueByKey );
 
 		// Clear out any old values
 		$mcc->deleteMulti( $keys );
@@ -153,43 +166,40 @@ class McTest extends Maintenance {
 		$delMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
 
 		$this->output(
-			" add: $add/$iterations {$addMs}ms   " .
-			"set: $set/$iterations {$setMs}ms   " .
-			"incr: $incr/$iterations {$incrMs}ms   " .
-			"get: $get/$iterations ({$getMs}ms)   " .
-			"delete: $delete/$iterations ({$delMs}ms)\n"
+			" add: $add/$i {$addMs}ms   " .
+			"set: $set/$i {$setMs}ms   " .
+			"incr: $incr/$i {$incrMs}ms   " .
+			"get: $get/$i ({$getMs}ms)   " .
+			"delete: $delete/$i ({$delMs}ms)\n"
 		);
 	}
 
 	/**
 	 * @param BagOStuff $mcc
-	 * @param int $iterations
+	 * @param array $valueByKey
 	 */
-	private function benchmarkMultiKeyOpsImmediateBlocking( $mcc, $iterations ) {
-		$keysByValue = [];
-		for ( $i = 1; $i <= $iterations; $i++ ) {
-			$keysByValue["test$i"] = 'S' . str_pad( $i, 2048 );
-		}
-		$keyList = array_keys( $keysByValue );
+	private function benchmarkMultiKeyOpsImmediateBlocking( BagOStuff $mcc, array $valueByKey ) {
+		$keys = array_keys( $valueByKey );
+		$iterations = count( $valueByKey );
 
 		$time_start = microtime( true );
-		$mSetOk = $mcc->setMulti( $keysByValue ) ? 'S' : 'F';
+		$mSetOk = $mcc->setMulti( $valueByKey ) ? '✓' : '✗';
 		$mSetMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
 
 		$time_start = microtime( true );
-		$found = $mcc->getMulti( $keyList );
+		$found = $mcc->getMulti( $keys );
 		$mGetMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
 		$mGetOk = 0;
 		foreach ( $found as $key => $value ) {
-			$mGetOk += ( $value === $keysByValue[$key] );
+			$mGetOk += ( $value === $valueByKey[$key] );
 		}
 
 		$time_start = microtime( true );
-		$mChangeTTLOk = $mcc->changeTTLMulti( $keyList, 3600 ) ? 'S' : 'F';
+		$mChangeTTLOk = $mcc->changeTTLMulti( $keys, 3600 ) ? '✓' : '✗';
 		$mChangeTTTMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
 
 		$time_start = microtime( true );
-		$mDelOk = $mcc->deleteMulti( $keyList ) ? 'S' : 'F';
+		$mDelOk = $mcc->deleteMulti( $keys ) ? '✓' : '✗';
 		$mDelMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
 
 		$this->output(
@@ -202,34 +212,31 @@ class McTest extends Maintenance {
 
 	/**
 	 * @param BagOStuff $mcc
-	 * @param int $iterations
+	 * @param array $valueByKey
 	 */
-	private function benchmarkMultiKeyOpsDeferredBlocking( $mcc, $iterations ) {
+	private function benchmarkMultiKeyOpsDeferredBlocking( BagOStuff $mcc, array $valueByKey ) {
+		$keys = array_keys( $valueByKey );
+		$iterations = count( $valueByKey );
 		$flags = $mcc::WRITE_BACKGROUND;
-		$keysByValue = [];
-		for ( $i = 1; $i <= $iterations; $i++ ) {
-			$keysByValue["test$i"] = 'A' . str_pad( $i, 2048 );
-		}
-		$keyList = array_keys( $keysByValue );
 
 		$time_start = microtime( true );
-		$mSetOk = $mcc->setMulti( $keysByValue, 0, $flags ) ? 'S' : 'F';
+		$mSetOk = $mcc->setMulti( $valueByKey, 0, $flags ) ? '✓' : '✗';
 		$mSetMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
 
 		$time_start = microtime( true );
-		$found = $mcc->getMulti( $keyList );
+		$found = $mcc->getMulti( $keys );
 		$mGetMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
 		$mGetOk = 0;
 		foreach ( $found as $key => $value ) {
-			$mGetOk += ( $value === $keysByValue[$key] );
+			$mGetOk += ( $value === $valueByKey[$key] );
 		}
 
 		$time_start = microtime( true );
-		$mChangeTTLOk = $mcc->changeTTLMulti( $keyList, 3600, $flags ) ? 'S' : 'F';
+		$mChangeTTLOk = $mcc->changeTTLMulti( $keys, 3600, $flags ) ? '✓' : '✗';
 		$mChangeTTTMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
 
 		$time_start = microtime( true );
-		$mDelOk = $mcc->deleteMulti( $keyList, $flags ) ? 'S' : 'F';
+		$mDelOk = $mcc->deleteMulti( $keys, $flags ) ? '✓' : '✗';
 		$mDelMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
 
 		$this->output(
