@@ -2732,6 +2732,8 @@
 	"diff-form-submit": "Parādīt atšķirības",
 	"permanentlink": "Pastāvīgā saite",
 	"permanentlink-revid": "Versijas ID",
+	"newsection": "Jauna sadaļa",
+	"newsection-page": "Mērķa lapa",
 	"dberr-problems": "Atvainojiet!\nŠai vietnei ir radušās tehniskas problēmas.",
 	"dberr-again": "Uzgaidiet dažas minūtes un pārlādējiet šo lapu.",
 	"dberr-info": "(Nevar piekļūt datubāzei: $1)",
