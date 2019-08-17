@@ -99,6 +99,12 @@ class MessageCache {
 	protected $contLang;
 
 	/**
+	 * Track which languages have been loaded by load().
+	 * @var array
+	 */
+	private $loadedLanguages = [];
+
+	/**
 	 * Singleton instance
 	 *
 	 * @var MessageCache $instance
@@ -264,22 +270,11 @@ class MessageCache {
 		}
 
 		# Don't do double loading...
-		if ( $this->cache->has( $code ) && $mode != self::FOR_UPDATE ) {
+		if ( isset( $this->loadedLanguages[$code] ) && $mode != self::FOR_UPDATE ) {
 			return true;
 		}
 
 		$this->overridable = array_flip( Language::getMessageKeysFor( $code ) );
-
-		// T208897 array_flip can fail and return null
-		if ( is_null( $this->overridable ) ) {
-			LoggerFactory::getInstance( 'MessageCache' )->error(
-				__METHOD__ . ': $this->overridable is null',
-				[
-					'message_keys' => Language::getMessageKeysFor( $code ),
-					'code' => $code
-				]
-			);
-		}
 
 		# 8 lines of code just to say (once) that message cache is disabled
 		if ( $this->mDisable ) {
@@ -396,6 +391,9 @@ class MessageCache {
 			wfDebugLog( 'MessageCacheError', __METHOD__ . ": Failed to load $code\n" );
 			# This used to throw an exception, but that led to nasty side effects like
 			# the whole wiki being instantly down if the memcached server died
+		} else {
+			# All good, just record the success
+			$this->loadedLanguages[$code] = true;
 		}
 
 		if ( !$this->cache->has( $code ) ) { // sanity
@@ -1301,6 +1299,7 @@ class MessageCache {
 			$this->wanCache->touchCheckKey( $this->getCheckKey( $code ) );
 		}
 		$this->cache->clear();
+		$this->loadedLanguages = [];
 	}
 
 	/**
