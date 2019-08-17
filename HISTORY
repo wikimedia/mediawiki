@@ -2234,7 +2234,7 @@ This is a security and maintenance release of the MediaWiki 1.29 branch.
 * (T194605, CVE-2018-0505) SECURITY: BotPasswords can bypass CentralAuth's
   account lock.
 * (T180551) Fix LanguageSrTest for language converter
-* (T180552) Fix langauge converter parser test with self-close tags
+* (T180552) Fix language converter parser test with self-close tags
 * (T180537) Remove $wgAuth usage from wrapOldPasswords.php
 * (T180485) InputBox: Have inputbox langconvert certain attributes
 * (T161732, T181547) Upgraded Moment.js from v2.15.0 to v2.19.3.
