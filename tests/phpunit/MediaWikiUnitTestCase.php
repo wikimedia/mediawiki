@@ -26,10 +26,13 @@ use PHPUnit\Framework\TestCase;
  *
  * Extend this class if you are testing classes which use dependency injection and do not access
  * global functions, variables, services or a storage backend.
+ *
+ * @since 1.34
  */
 abstract class MediaWikiUnitTestCase extends TestCase {
 	use PHPUnit4And6Compat;
 	use MediaWikiCoversValidator;
+	use MediaWikiTestCaseTrait;
 
 	private $unitGlobals = [];
 
@@ -38,7 +41,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		$reflection = new ReflectionClass( $this );
 		$dirSeparator = DIRECTORY_SEPARATOR;
 		if ( strpos( $reflection->getFilename(), "${dirSeparator}unit${dirSeparator}" ) === false ) {
-			$this->fail( 'This unit test needs to be in "tests/phpunit/unit" !' );
+			$this->fail( 'This unit test needs to be in "tests/phpunit/unit"!' );
 		}
 		$this->unitGlobals = $GLOBALS;
 		unset( $GLOBALS );
@@ -53,5 +56,20 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 	protected function tearDown() {
 		$GLOBALS = $this->unitGlobals;
 		parent::tearDown();
+	}
+
+	/**
+	 * Create a temporary hook handler which will be reset by tearDown.
+	 * This replaces other handlers for the same hook.
+	 * @param string $hookName Hook name
+	 * @param mixed $handler Value suitable for a hook handler
+	 * @since 1.34
+	 */
+	protected function setTemporaryHook( $hookName, $handler ) {
+		// This will be reset by tearDown() when it restores globals. We don't want to use
+		// Hooks::register()/clear() because they won't replace other handlers for the same hook,
+		// which doesn't match behavior of MediaWikiIntegrationTestCase.
+		global $wgHooks;
+		$wgHooks[$hookName] = [ $handler ];
 	}
 }

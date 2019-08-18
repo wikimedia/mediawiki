@@ -19,6 +19,7 @@
  * @ingroup Parser
  */
 
+use MediaWiki\BadFileLookup;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\MediaWikiServices;
@@ -54,6 +55,9 @@ class ParserFactory {
 	/** @var LoggerInterface */
 	private $logger;
 
+	/** @var BadFileLookup */
+	private $badFileLookup;
+
 	/**
 	 * Old parameter list, which we support for backwards compatibility, were:
 	 *   array $parserConf See $wgParserConf documentation
@@ -77,6 +81,7 @@ class ParserFactory {
 	 * @param LinkRendererFactory $linkRendererFactory
 	 * @param NamespaceInfo|LinkRendererFactory|null $nsInfo
 	 * @param LoggerInterface|null $logger
+	 * @param BadFileLookup|null $badFileLookup
 	 * @since 1.32
 	 */
 	public function __construct(
@@ -87,7 +92,8 @@ class ParserFactory {
 		SpecialPageFactory $spFactory,
 		$linkRendererFactory,
 		$nsInfo = null,
-		$logger = null
+		$logger = null,
+		BadFileLookup $badFileLookup = null
 	) {
 		// @todo Do we need to retain compat for constructing this class directly?
 		if ( !$nsInfo ) {
@@ -119,6 +125,8 @@ class ParserFactory {
 		$this->linkRendererFactory = $linkRendererFactory;
 		$this->nsInfo = $nsInfo;
 		$this->logger = $logger ?: new NullLogger();
+		$this->badFileLookup = $badFileLookup ??
+			MediaWikiServices::getInstance()->getBadFileLookup();
 	}
 
 	/**
@@ -135,7 +143,8 @@ class ParserFactory {
 			$this->specialPageFactory,
 			$this->linkRendererFactory,
 			$this->nsInfo,
-			$this->logger
+			$this->logger,
+			$this->badFileLookup
 		);
 	}
 }

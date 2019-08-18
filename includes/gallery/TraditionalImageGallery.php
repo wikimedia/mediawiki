@@ -111,8 +111,8 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				if ( $this->mParser instanceof Parser ) {
 					$this->mParser->addTrackingCategory( 'broken-file-category' );
 				}
-			} elseif ( $this->mHideBadImages
-				&& wfIsBadImage( $nt->getDBkey(), $this->getContextTitle() )
+			} elseif ( $this->mHideBadImages && MediaWikiServices::getInstance()->getBadFileLookup()
+				->isBadFile( $nt->getDBkey(), $this->getContextTitle() )
 			) {
 				# The image is blacklisted, just show it as a text link.
 				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: ' .
