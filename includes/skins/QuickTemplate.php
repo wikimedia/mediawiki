@@ -131,7 +131,7 @@ abstract class QuickTemplate {
 	 * @param string $msgKey
 	 */
 	function msgWiki( $msgKey ) {
-		// TODO: Add wfDeprecated( __METHOD__, '1.33' ) after 1.33 got released
+		wfDeprecated( __METHOD__, '1.33' );
 		global $wgOut;
 
 		$text = wfMessage( $msgKey )->plain();
