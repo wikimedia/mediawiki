@@ -2996,6 +2996,15 @@ $wgHideInterlanguageLinks = false;
 $wgExtraInterlanguageLinkPrefixes = [];
 
 /**
+ * Map of interlanguage link codes to language codes. This is useful to override
+ * what is shown as the language name when the interwiki code does not match it
+ * exactly
+
+ * @since 1.34
+ */
+$wgInterlanguageLinkCodeMap = [];
+
+/**
  * List of language names or overrides for default names in Names.php
  */
 $wgExtraLanguageNames = [];
