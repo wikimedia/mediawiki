@@ -62,7 +62,8 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	protected $nsInfo;
 
 	/**
-	 * @param Language $language The language object to use for localizing namespace names.
+	 * @param Language $language The language object to use for localizing namespace names,
+	 *   capitalization, etc.
 	 * @param GenderCache $genderCache The gender cache for generating gendered namespace names
 	 * @param string[]|string $localInterwikis
 	 * @param InterwikiLookup|null $interwikiLookup
@@ -467,8 +468,8 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		# and [[Foo]] point to the same place.  Don't force it for interwikis, since the
 		# other site might be case-sensitive.
 		$parts['user_case_dbkey'] = $dbkey;
-		if ( $parts['interwiki'] === '' ) {
-			$dbkey = Title::capitalize( $dbkey, $parts['namespace'] );
+		if ( $parts['interwiki'] === '' && $this->nsInfo->isCapitalized( $parts['namespace'] ) ) {
+			$dbkey = $this->language->ucfirst( $dbkey );
 		}
 
 		# Can't make a link to a namespace alone... "empty" local links can only be
