@@ -92,9 +92,8 @@ class ApiEditPage extends ApiBase {
 		$name = $titleObj->getPrefixedDBkey();
 		$model = $contentHandler->getModelID();
 
-		if ( $params['undo'] > 0 ) {
-			// allow undo via api
-		} elseif ( $contentHandler->supportsDirectApiEditing() === false ) {
+		// always allow undo via api, T230702
+		if ( !( $params['undo'] > 0 ) && $contentHandler->supportsDirectApiEditing() === false ) {
 			$this->dieWithError( [ 'apierror-no-direct-editing', $model, $name ] );
 		}
 
