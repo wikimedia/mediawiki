@@ -688,13 +688,14 @@ class Linker {
 		if ( $label == '' ) {
 			$label = $title->getPrefixedText();
 		}
+		$repoGroup = MediaWikiServices::getInstance()->getRepoGroup();
 		$currentExists = $time
-			&& MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title ) !== false;
+			&& $repoGroup->findFile( $title ) !== false;
 
 		if ( ( $wgUploadMissingFileUrl || $wgUploadNavigationUrl || $wgEnableUploads )
 			&& !$currentExists
 		) {
-			if ( RepoGroup::singleton()->getLocalRepo()->checkRedirect( $title ) ) {
+			if ( $repoGroup->getLocalRepo()->checkRedirect( $title ) ) {
 				// We already know it's a redirect, so mark it accordingly
 				return self::link(
 					$title,

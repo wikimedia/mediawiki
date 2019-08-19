@@ -305,8 +305,9 @@ class MovePageForm extends UnlistedSpecialPage {
 		// mediawiki.special.movePage module
 
 		$immovableNamespaces = [];
+		$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 		foreach ( array_keys( $this->getLanguage()->getNamespaces() ) as $nsId ) {
-			if ( !MediaWikiServices::getInstance()->getNamespaceInfo()->isMovable( $nsId ) ) {
+			if ( !$namespaceInfo->isMovable( $nsId ) ) {
 				$immovableNamespaces[] = $nsId;
 			}
 		}
@@ -534,11 +535,14 @@ class MovePageForm extends UnlistedSpecialPage {
 			return;
 		}
 
+		$services = MediaWikiServices::getInstance();
+
 		# Show a warning if the target file exists on a shared repo
+		$repoGroup = $services->getRepoGroup();
 		if ( $nt->getNamespace() == NS_FILE
 			&& !( $this->moveOverShared && $user->isAllowed( 'reupload-shared' ) )
-			&& !RepoGroup::singleton()->getLocalRepo()->findFile( $nt )
-			&& MediaWikiServices::getInstance()->getRepoGroup()->findFile( $nt )
+			&& !$repoGroup->getLocalRepo()->findFile( $nt )
+			&& $repoGroup->findFile( $nt )
 		) {
 			$this->showForm( [ [ 'file-exists-sharedrepo' ] ] );
 
@@ -568,8 +572,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 			// Delete an associated image if there is
 			if ( $nt->getNamespace() == NS_FILE ) {
-				$file = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
-					->newFile( $nt );
+				$file = $repoGroup->getLocalRepo()->newFile( $nt );
 				$file->load( File::READ_LATEST );
 				if ( $file->exists() ) {
 					$file->delete( $reason, false, $user );
@@ -604,7 +607,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			$this->moveTalk = false;
 		}
 		if ( $this->moveSubpages ) {
-			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+			$permissionManager = $services->getPermissionManager();
 			$this->moveSubpages = $permissionManager->userCan( 'move-subpages', $user, $ot );
 		}
 
@@ -670,7 +673,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		 */
 
 		// @todo FIXME: Use Title::moveSubpages() here
-		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		$nsInfo = $services->getNamespaceInfo();
 		$dbr = wfGetDB( DB_MASTER );
 		if ( $this->moveSubpages && (
 			$nsInfo->hasSubpages( $nt->getNamespace() ) || (
