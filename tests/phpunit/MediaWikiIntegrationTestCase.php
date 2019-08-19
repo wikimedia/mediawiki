@@ -1501,7 +1501,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		if ( !isset( $db->_originalTablePrefix ) ) {
 			$oldPrefix = $db->tablePrefix();
-
 			if ( $oldPrefix === $prefix ) {
 				// table already has the correct prefix, but presumably no cloned tables
 				$oldPrefix = self::$oldTablePrefix;
@@ -1511,11 +1510,13 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$tablesCloned = self::listTables( $db );
 			$dbClone = new CloneDatabase( $db, $tablesCloned, $prefix, $oldPrefix );
 			$dbClone->useTemporaryTables( self::$useTemporaryTables );
-
 			$dbClone->cloneTableStructure();
 
 			$db->tablePrefix( $prefix );
 			$db->_originalTablePrefix = $oldPrefix;
+
+			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+			$lb->setTempTablesOnlyMode( self::$useTemporaryTables, $lb->getLocalDomainID() );
 		}
 
 		return true;
@@ -1862,8 +1863,10 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		$dbClone = new CloneDatabase( $db, $tables, $db->tablePrefix(), $db->_originalTablePrefix );
 		$dbClone->useTemporaryTables( self::$useTemporaryTables );
-
 		$dbClone->cloneTableStructure();
+
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$lb->setTempTablesOnlyMode( self::$useTemporaryTables, $lb->getLocalDomainID() );
 	}
 
 	/**

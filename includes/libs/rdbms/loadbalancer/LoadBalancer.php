@@ -101,6 +101,8 @@ class LoadBalancer implements ILoadBalancer {
 	private $indexAliases = [];
 	/** @var array[] Map of (name => callable) */
 	private $trxRecurringCallbacks = [];
+	/** @var bool[] Map of (domain => whether to use "temp tables only" mode) */
+	private $tempTablesOnlyMode = [];
 
 	/** @var Database Connection handle that caused a problem */
 	private $errorConnection;
@@ -297,9 +299,10 @@ class LoadBalancer implements ILoadBalancer {
 	/**
 	 * @param int $flags Bitfield of class CONN_* constants
 	 * @param int $i Specific server index or DB_MASTER/DB_REPLICA
+	 * @param string $domain Database domain
 	 * @return int Sanitized bitfield
 	 */
-	private function sanitizeConnectionFlags( $flags, $i ) {
+	private function sanitizeConnectionFlags( $flags, $i, $domain ) {
 		// Whether an outside caller is explicitly requesting the master database server
 		if ( $i === self::DB_MASTER || $i === $this->getWriterIndex() ) {
 			$flags |= self::CONN_INTENT_WRITABLE;
@@ -320,6 +323,12 @@ class LoadBalancer implements ILoadBalancer {
 				$flags &= ~self::CONN_TRX_AUTOCOMMIT;
 				$type = $this->getServerType( $this->getWriterIndex() );
 				$this->connLogger->info( __METHOD__ . ": CONN_TRX_AUTOCOMMIT disallowed ($type)" );
+			} elseif ( isset( $this->tempTablesOnlyMode[$domain] ) ) {
+				// T202116: integration tests are active and queries should be all be using
+				// temporary clone tables (via prefix). Such tables are not visible accross
+				// different connections nor can there be REPEATABLE-READ snapshot staleness,
+				// so use the same connection for everything.
+				$flags &= ~self::CONN_TRX_AUTOCOMMIT;
 			}
 		}
 
@@ -875,7 +884,7 @@ class LoadBalancer implements ILoadBalancer {
 	public function getConnection( $i, $groups = [], $domain = false, $flags = 0 ) {
 		$domain = $this->resolveDomainID( $domain );
 		$groups = $this->resolveGroups( $groups, $i );
-		$flags = $this->sanitizeConnectionFlags( $flags, $i );
+		$flags = $this->sanitizeConnectionFlags( $flags, $i, $domain );
 		// If given DB_MASTER/DB_REPLICA, resolve it to a specific server index. Resolving
 		// DB_REPLICA might trigger getServerConnection() calls due to the getReaderIndex()
 		// connectivity checks or LoadMonitor::scaleLoads() server state cache regeneration.
@@ -2243,6 +2252,17 @@ class LoadBalancer implements ILoadBalancer {
 		$this->closeAll();
 
 		$this->setLocalDomain( DatabaseDomain::newFromId( $domain ) );
+	}
+
+	public function setTempTablesOnlyMode( $value, $domain ) {
+		$old = $this->tempTablesOnlyMode[$domain] ?? false;
+		if ( $value ) {
+			$this->tempTablesOnlyMode[$domain] = true;
+		} else {
+			unset( $this->tempTablesOnlyMode[$domain] );
+		}
+
+		return $old;
 	}
 
 	/**
