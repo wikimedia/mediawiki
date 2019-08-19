@@ -116,7 +116,7 @@ abstract class RedirectSpecialArticle extends RedirectSpecialPage {
 		// Avoid double redirect for action=edit&redlink=1 for existing pages
 		// (compare to the check in EditPage::edit)
 		if (
-			$query &&
+			$query && isset( $query['action'] ) && isset( $query['redlink'] ) &&
 			( $query['action'] === 'edit' || $query['action'] === 'submit' ) &&
 			(bool)$query['redlink'] &&
 			$title instanceof Title &&
