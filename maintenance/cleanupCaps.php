@@ -163,7 +163,7 @@ class CleanupCaps extends TableCleanup {
 			$mp = MediaWikiServices::getInstance()->getMovePageFactory()
 				->newMovePage( $current, $target );
 			$status = $mp->move( $this->user, $reason, $createRedirect );
-			$ok = $status->isOK() ? 'OK' : $status->getWikiText( false, false, 'en' );
+			$ok = $status->isOK() ? 'OK' : $status->getMessage( false, false, 'en' )->text();
 			$this->output( "\"$display\" -> \"$targetDisplay\": $ok\n" );
 		}
 

@@ -122,7 +122,7 @@ class EditCLI extends Maintenance {
 			$exit = 1;
 		}
 		if ( !$status->isGood() ) {
-			$this->output( $status->getWikiText( false, false, 'en' ) . "\n" );
+			$this->output( $status->getMessage( false, false, 'en' )->text() . "\n" );
 		}
 		exit( $exit );
 	}

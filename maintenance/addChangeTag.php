@@ -52,7 +52,7 @@ class AddChangeTag extends Maintenance {
 		);
 
 		if ( !$status->isGood() ) {
-			$this->fatalError( $status->getWikiText( null, null, 'en' ) );
+			$this->fatalError( $status->getMessage( false, false, 'en' )->text() );
 		}
 
 		$this->output( "$tag was created.\n" );
