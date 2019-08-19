@@ -3231,7 +3231,7 @@
 	"duplicate-defaultsort": "'''Varning:''' Standardsorteringsnyckeln \"$2\" tar över från den tidigare standardsorteringsnyckeln \"$1\".",
 	"duplicate-displaytitle": "<strong>Varning:</strong> Visningstiteln \"$2\" skriver över den tidigare visningstiteln \"$1\".",
 	"restricted-displaytitle": "<strong>Varning:</strong> Visningstiteln \"$1\" ignorerades eftersom den inte motsvarar sidans riktiga titel.",
-	"invalid-indicator-name": "<p>Fel:</strong> Sidstatus-indikatorernas <code>namn</code>-attributet får inte vara tomt.",
+	"invalid-indicator-name": "<p>Fel:</strong> Sidstatus-indikatorernas <code>name</code>-attribut får inte vara tomt.",
 	"version": "Version",
 	"version-extensions": "Installerade programtillägg",
 	"version-skins": "Installerade utseenden",

@@ -16,7 +16,8 @@
 			"唐吉訶德的侍從",
 			"飞舞回堂前",
 			"Macofe",
-			"Ruthven"
+			"Ruthven",
+			"Tacsipacsi"
 		]
 	},
 	"tog-underline": "Lièn-chiap kâ-tái sien:",
@@ -1420,6 +1421,7 @@
 	"recreate": "重建",
 	"confirm_purge_button": "做得",
 	"confirm-purge-top": "Chhîn-chhù pún-chông chhòng-chhùn？",
+	"colon-separator": ":&#32;",
 	"imgmultipageprev": "← sông yit-chông",
 	"imgmultipagenext": "hâ yit-chông →",
 	"imgmultigo": "確定!",

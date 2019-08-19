@@ -2477,6 +2477,7 @@
 	"redirect-lookup": "Opzeuken:",
 	"redirect-value": "Weerde:",
 	"redirect-user": "Gebrukersnummer",
+	"redirect-page": "Syde-ID",
 	"redirect-revision": "Ziedversie",
 	"redirect-file": "Bestaandsnaam",
 	"redirect-not-exists": "Weerde niet evunnen",
@@ -2676,5 +2677,6 @@
 	"mw-widgets-abandonedit": "Bi'j der wisse van da'j de naokiekmodus verlaoten willen zonder eerst op te slaon?",
 	"mw-widgets-abandonedit-discard": "Wiezigingen vortsmieten",
 	"mw-widgets-abandonedit-keep": "Verdan gaon mit bewarken",
-	"mw-widgets-abandonedit-title": "Wee'j t zeker?"
+	"mw-widgets-abandonedit-title": "Wee'j t zeker?",
+	"randomrootpage": "Willeköärige stamsyde"
 }
