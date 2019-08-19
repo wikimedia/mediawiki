@@ -319,6 +319,20 @@ return [
 		);
 	},
 
+	'MessageCache' => function ( MediaWikiServices $services ) : MessageCache {
+		$mainConfig = $services->getMainConfig();
+		return new MessageCache(
+			$services->getMainWANObjectCache(),
+			ObjectCache::getInstance( $mainConfig->get( 'MessageCacheType' ) ),
+			$mainConfig->get( 'UseLocalMessageCache' )
+				? $services->getLocalServerObjectCache()
+				: new EmptyBagOStuff(),
+			$mainConfig->get( 'UseDatabaseMessages' ),
+			$mainConfig->get( 'MsgCacheExpiry' ),
+			$services->getContentLanguage()
+		);
+	},
+
 	'MimeAnalyzer' => function ( MediaWikiServices $services ) : MimeAnalyzer {
 		$logger = LoggerFactory::getInstance( 'Mime' );
 		$mainConfig = $services->getMainConfig();

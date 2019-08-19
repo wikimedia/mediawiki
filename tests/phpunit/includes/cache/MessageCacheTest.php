@@ -13,7 +13,6 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	protected function setUp() {
 		parent::setUp();
 		$this->configureLanguages();
-		MessageCache::destroyInstance();
 		MessageCache::singleton()->enable();
 	}
 
@@ -25,6 +24,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		// let's choose e.g. German (de)
 		$this->setUserLang( 'de' );
 		$this->setContentLang( 'de' );
+		$this->resetServices();
 	}
 
 	function addDBDataOnce() {
@@ -152,7 +152,6 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		] );
 		$this->overrideMwServices();
 
-		MessageCache::destroyInstance();
 		$messageCache = MessageCache::singleton();
 		$messageCache->enable();
 
@@ -260,7 +259,6 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		$importer->import( $importRevision );
 
 		// Now, load the message from the wiki page
-		MessageCache::destroyInstance();
 		$messageCache = MessageCache::singleton();
 		$messageCache->enable();
 		$messageCache = TestingAccessWrapper::newFromObject( $messageCache );
