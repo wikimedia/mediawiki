@@ -9,6 +9,8 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkTarget;
 
 class NamespaceInfoTest extends MediaWikiTestCase {
+	use TestAllServiceOptionsUsed;
+
 	/**********************************************************************************************
 	 * Shared code
 	 * %{
@@ -63,8 +65,11 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	];
 
 	private function newObj( array $options = [] ) : NamespaceInfo {
-		return new NamespaceInfo( new ServiceOptions( NamespaceInfo::$constructorOptions,
-			$options, self::$defaultOptions ) );
+		return new NamespaceInfo( new LoggedServiceOptions(
+			self::$serviceOptionsAccessLog,
+			NamespaceInfo::$constructorOptions,
+			$options, self::$defaultOptions
+		) );
 	}
 
 	// %} End shared code
@@ -1342,6 +1347,13 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	}
 
 	// %} End restriction levels
+
+	/**
+	 * @coversNothing
+	 */
+	public function testAllServiceOptionsUsed() {
+		$this->assertAllServiceOptionsUsed();
+	}
 }
 
 /**
