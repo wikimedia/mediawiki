@@ -3461,7 +3461,7 @@ class Title implements LinkTarget, IDBAccessObject {
 			return [ [ 'badtitletext' ] ];
 		}
 
-		$mp = new MovePage( $this, $nt );
+		$mp = MediaWikiServices::getInstance()->getMovePageFactory()->newMovePage( $this, $nt );
 		$errors = $mp->isValidMove()->getErrorsArray();
 		if ( $auth ) {
 			$errors = wfMergeErrorArrays(
@@ -3493,7 +3493,7 @@ class Title implements LinkTarget, IDBAccessObject {
 
 		global $wgUser;
 
-		$mp = new MovePage( $this, $nt );
+		$mp = MediaWikiServices::getInstance()->getMovePageFactory()->newMovePage( $this, $nt );
 		$method = $auth ? 'moveIfAllowed' : 'move';
 		$status = $mp->$method( $wgUser, $reason, $createRedirect, $changeTags );
 		if ( $status->isOK() ) {

@@ -913,6 +913,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\MediaWikiServices' => __DIR__ . '/includes/MediaWikiServices.php',
 	'MediaWiki\\Navigation\\PrevNextNavigationRenderer' => __DIR__ . '/includes/Navigation/PrevNextNavigationRenderer.php',
 	'MediaWiki\\OutputHandler' => __DIR__ . '/includes/OutputHandler.php',
+	'MediaWiki\\Page\\MovePageFactory' => __DIR__ . '/includes/page/MovePageFactory.php',
 	'MediaWiki\\ProcOpenError' => __DIR__ . '/includes/exception/ProcOpenError.php',
 	'MediaWiki\\Search\\ParserOutputSearchDataExtractor' => __DIR__ . '/includes/search/ParserOutputSearchDataExtractor.php',
 	'MediaWiki\\Services\\CannotReplaceActiveServiceException' => __DIR__ . '/includes/libs/services/CannotReplaceActiveServiceException.php',

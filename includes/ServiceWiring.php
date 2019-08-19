@@ -50,6 +50,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
@@ -389,6 +390,17 @@ return [
 		}
 
 		return new MimeAnalyzer( $params );
+	},
+
+	'MovePageFactory' => function ( MediaWikiServices $services ) : MovePageFactory {
+		return new MovePageFactory(
+			new ServiceOptions( MovePageFactory::$constructorOptions, $services->getMainConfig() ),
+			$services->getDBLoadBalancer(),
+			$services->getNamespaceInfo(),
+			$services->getWatchedItemStore(),
+			$services->getPermissionManager(),
+			$services->getRepoGroup()
+		);
 	},
 
 	'NamespaceInfo' => function ( MediaWikiServices $services ) : NamespaceInfo {

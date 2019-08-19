@@ -74,6 +74,7 @@ $wgAutoloadClasses += [
 	'TestUserRegistry' => "$testDir/phpunit/includes/TestUserRegistry.php",
 
 	# tests/phpunit/includes
+	'FactoryArgTestTrait' => "$testDir/phpunit/unit/includes/FactoryArgTestTrait.php",
 	'PageArchiveTestBase' => "$testDir/phpunit/includes/page/PageArchiveTestBase.php",
 	'RevisionDbTestBase' => "$testDir/phpunit/includes/RevisionDbTestBase.php",
 	'RevisionTestModifyableContent' => "$testDir/phpunit/includes/RevisionTestModifyableContent.php",
@@ -102,6 +103,10 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes/changes
 	'TestRecentChangesHelper' => "$testDir/phpunit/includes/changes/TestRecentChangesHelper.php",
+
+	# tests/phpunit/includes/config
+	'TestAllServiceOptionsUsed' => "$testDir/phpunit/includes/config/TestAllServiceOptionsUsed.php",
+	'LoggedServiceOptions' => "$testDir/phpunit/includes/config/LoggedServiceOptions.php",
 
 	# tests/phpunit/includes/content
 	'DummyContentHandlerForTesting' =>

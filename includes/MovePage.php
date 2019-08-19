@@ -19,9 +19,13 @@
  * @file
  */
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\MovePageFactory;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\LoadBalancer;
 
 /**
  * Handles the backend logic of moving a page from one title
@@ -41,9 +45,69 @@ class MovePage {
 	 */
 	protected $newTitle;
 
-	public function __construct( Title $oldTitle, Title $newTitle ) {
+	/**
+	 * @var ServiceOptions
+	 */
+	protected $options;
+
+	/**
+	 * @var LoadBalancer
+	 */
+	protected $loadBalancer;
+
+	/**
+	 * @var NamespaceInfo
+	 */
+	protected $nsInfo;
+
+	/**
+	 * @var WatchedItemStore
+	 */
+	protected $watchedItems;
+
+	/**
+	 * @var PermissionManager
+	 */
+	protected $permMgr;
+
+	/**
+	 * @var RepoGroup
+	 */
+	protected $repoGroup;
+
+	/**
+	 * Calling this directly is deprecated in 1.34. Use MovePageFactory instead.
+	 *
+	 * @param Title $oldTitle
+	 * @param Title $newTitle
+	 * @param ServiceOptions|null $options
+	 * @param LoadBalancer|null $loadBalancer
+	 * @param NamespaceInfo|null $nsInfo
+	 * @param WatchedItemStore|null $watchedItems
+	 * @param PermissionManager|null $permMgr
+	 */
+	public function __construct(
+		Title $oldTitle,
+		Title $newTitle,
+		ServiceOptions $options = null,
+		LoadBalancer $loadBalancer = null,
+		NamespaceInfo $nsInfo = null,
+		WatchedItemStore $watchedItems = null,
+		PermissionManager $permMgr = null,
+		RepoGroup $repoGroup = null
+	) {
 		$this->oldTitle = $oldTitle;
 		$this->newTitle = $newTitle;
+		$this->options = $options ??
+			new ServiceOptions( MovePageFactory::$constructorOptions,
+				MediaWikiServices::getInstance()->getMainConfig() );
+		$this->loadBalancer =
+			$loadBalancer ?? MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$this->nsInfo = $nsInfo ?? MediaWikiServices::getInstance()->getNamespaceInfo();
+		$this->watchedItems =
+			$watchedItems ?? MediaWikiServices::getInstance()->getWatchedItemStore();
+		$this->permMgr = $permMgr ?? MediaWikiServices::getInstance()->getPermissionManager();
+		$this->repoGroup = $repoGroup ?? MediaWikiServices::getInstance()->getRepoGroup();
 	}
 
 	/**
@@ -58,10 +122,10 @@ class MovePage {
 		$status = new Status();
 
 		$errors = wfMergeErrorArrays(
-			$this->oldTitle->getUserPermissionsErrors( 'move', $user ),
-			$this->oldTitle->getUserPermissionsErrors( 'edit', $user ),
-			$this->newTitle->getUserPermissionsErrors( 'move-target', $user ),
-			$this->newTitle->getUserPermissionsErrors( 'edit', $user )
+			$this->permMgr->getPermissionErrors( 'move', $user, $this->oldTitle ),
+			$this->permMgr->getPermissionErrors( 'edit', $user, $this->oldTitle ),
+			$this->permMgr->getPermissionErrors( 'move-target', $user, $this->newTitle ),
+			$this->permMgr->getPermissionErrors( 'edit', $user, $this->newTitle )
 		);
 
 		// Convert into a Status object
@@ -96,44 +160,41 @@ class MovePage {
 	 * @return Status
 	 */
 	public function isValidMove() {
-		global $wgContentHandlerUseDB;
 		$status = new Status();
 
 		if ( $this->oldTitle->equals( $this->newTitle ) ) {
 			$status->fatal( 'selfmove' );
+		} elseif ( $this->newTitle->getArticleID() && !$this->isValidMoveTarget() ) {
+			// The move is allowed only if (1) the target doesn't exist, or (2) the target is a
+			// redirect to the source, and has no history (so we can undo bad moves right after
+			// they're done).
+			$status->fatal( 'articleexists' );
 		}
-		if ( !$this->oldTitle->isMovable() ) {
+
+		// @todo If the old title is invalid, maybe we should check if it somehow exists in the
+		// database and allow moving it to a valid name? Why prohibit the move from an empty name
+		// without checking in the database?
+		if ( $this->oldTitle->getDBkey() == '' ) {
+			$status->fatal( 'badarticleerror' );
+		} elseif ( $this->oldTitle->isExternal() ) {
+			$status->fatal( 'immobile-source-namespace-iw' );
+		} elseif ( !$this->oldTitle->isMovable() ) {
 			$status->fatal( 'immobile-source-namespace', $this->oldTitle->getNsText() );
+		} elseif ( !$this->oldTitle->exists() ) {
+			$status->fatal( 'movepage-source-doesnt-exist' );
 		}
+
 		if ( $this->newTitle->isExternal() ) {
 			$status->fatal( 'immobile-target-namespace-iw' );
-		}
-		if ( !$this->newTitle->isMovable() ) {
+		} elseif ( !$this->newTitle->isMovable() ) {
 			$status->fatal( 'immobile-target-namespace', $this->newTitle->getNsText() );
 		}
-
-		$oldid = $this->oldTitle->getArticleID();
-
-		if ( $this->newTitle->getDBkey() === '' ) {
-			$status->fatal( 'articleexists' );
-		}
-		if (
-			( $this->oldTitle->getDBkey() == '' ) ||
-			( !$oldid ) ||
-			( $this->newTitle->getDBkey() == '' )
-		) {
-			$status->fatal( 'badarticleerror' );
-		}
-
-		# The move is allowed only if (1) the target doesn't exist, or
-		# (2) the target is a redirect to the source, and has no history
-		# (so we can undo bad moves right after they're done).
-		if ( $this->newTitle->getArticleID() && !$this->isValidMoveTarget() ) {
-			$status->fatal( 'articleexists' );
+		if ( !$this->newTitle->isValid() ) {
+			$status->fatal( 'movepage-invalid-target-title' );
 		}
 
 		// Content model checks
-		if ( !$wgContentHandlerUseDB &&
+		if ( !$this->options->get( 'ContentHandlerUseDB' ) &&
 			$this->oldTitle->getContentModel() !== $this->newTitle->getContentModel() ) {
 			// can't move a page if that would change the page's content model
 			$status->fatal(
@@ -174,7 +235,14 @@ class MovePage {
 	 */
 	protected function isValidFileMove() {
 		$status = new Status();
-		$file = wfLocalFile( $this->oldTitle );
+
+		if ( !$this->newTitle->inNamespace( NS_FILE ) ) {
+			$status->fatal( 'imagenocrossnamespace' );
+			// No need for further errors about the target filename being wrong
+			return $status;
+		}
+
+		$file = $this->repoGroup->getLocalRepo()->newFile( $this->oldTitle );
 		$file->load( File::READ_LATEST );
 		if ( $file->exists() ) {
 			if ( $this->newTitle->getText() != wfStripIllegalFilenameChars( $this->newTitle->getText() ) ) {
@@ -183,10 +251,6 @@ class MovePage {
 			if ( !File::checkExtensionCompatibility( $file, $this->newTitle->getDBkey() ) ) {
 				$status->fatal( 'imagetypemismatch' );
 			}
-		}
-
-		if ( !$this->newTitle->inNamespace( NS_FILE ) ) {
-			$status->fatal( 'imagenocrossnamespace' );
 		}
 
 		return $status;
@@ -202,7 +266,7 @@ class MovePage {
 	protected function isValidMoveTarget() {
 		# Is it an existing file?
 		if ( $this->newTitle->inNamespace( NS_FILE ) ) {
-			$file = wfLocalFile( $this->newTitle );
+			$file = $this->repoGroup->getLocalRepo()->newFile( $this->newTitle );
 			$file->load( File::READ_LATEST );
 			if ( $file->exists() ) {
 				wfDebug( __METHOD__ . ": file exists\n" );
@@ -430,8 +494,6 @@ class MovePage {
 	 * @return Status
 	 */
 	private function moveUnsafe( User $user, $reason, $createRedirect, array $changeTags ) {
-		global $wgCategoryCollation;
-
 		$status = Status::newGood();
 		Hooks::run( 'TitleMove', [ $this->oldTitle, $this->newTitle, $user, $reason, &$status ] );
 		if ( !$status->isOK() ) {
@@ -439,7 +501,7 @@ class MovePage {
 			return $status;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
 		$dbw->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 
 		Hooks::run( 'TitleMoveStarting', [ $this->oldTitle, $this->newTitle, $user ] );
@@ -461,9 +523,7 @@ class MovePage {
 			[ 'cl_from' => $pageid ],
 			__METHOD__
 		);
-		$services = MediaWikiServices::getInstance();
-		$type = $services->getNamespaceInfo()->
-			getCategoryLinkType( $this->newTitle->getNamespace() );
+		$type = $this->nsInfo->getCategoryLinkType( $this->newTitle->getNamespace() );
 		foreach ( $prefixes as $prefixRow ) {
 			$prefix = $prefixRow->cl_sortkey_prefix;
 			$catTo = $prefixRow->cl_to;
@@ -471,7 +531,7 @@ class MovePage {
 				[
 					'cl_sortkey' => Collation::singleton()->getSortKey(
 							$this->newTitle->getCategorySortkey( $prefix ) ),
-					'cl_collation' => $wgCategoryCollation,
+					'cl_collation' => $this->options->get( 'CategoryCollation' ),
 					'cl_type' => $type,
 					'cl_timestamp=cl_timestamp' ],
 				[
@@ -563,13 +623,10 @@ class MovePage {
 		# Update watchlists
 		$oldtitle = $this->oldTitle->getDBkey();
 		$newtitle = $this->newTitle->getDBkey();
-		$oldsnamespace = $services->getNamespaceInfo()->
-			getSubject( $this->oldTitle->getNamespace() );
-		$newsnamespace = $services->getNamespaceInfo()->
-			getSubject( $this->newTitle->getNamespace() );
+		$oldsnamespace = $this->nsInfo->getSubject( $this->oldTitle->getNamespace() );
+		$newsnamespace = $this->nsInfo->getSubject( $this->newTitle->getNamespace() );
 		if ( $oldsnamespace != $newsnamespace || $oldtitle != $newtitle ) {
-			$services->getWatchedItemStore()->duplicateAllAssociatedEntries(
-				$this->oldTitle, $this->newTitle );
+			$this->watchedItems->duplicateAllAssociatedEntries( $this->oldTitle, $this->newTitle );
 		}
 
 		// If it is a file then move it last.
@@ -630,15 +687,15 @@ class MovePage {
 			$oldTitle->getPrefixedText()
 		);
 
-		$file = wfLocalFile( $oldTitle );
+		$file = $this->repoGroup->getLocalRepo()->newFile( $oldTitle );
 		$file->load( File::READ_LATEST );
 		if ( $file->exists() ) {
 			$status = $file->move( $newTitle );
 		}
 
 		// Clear RepoGroup process cache
-		RepoGroup::singleton()->clearCache( $oldTitle );
-		RepoGroup::singleton()->clearCache( $newTitle ); # clear false negative cache
+		$this->repoGroup->clearCache( $oldTitle );
+		$this->repoGroup->clearCache( $newTitle ); # clear false negative cache
 		return $status;
 	}
 
@@ -739,7 +796,7 @@ class MovePage {
 			$comment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $reason;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
 
 		$oldpage = WikiPage::factory( $this->oldTitle );
 		$oldcountable = $oldpage->isCountable();

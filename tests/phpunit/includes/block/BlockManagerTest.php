@@ -4,7 +4,6 @@ use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\SystemBlock;
-use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
@@ -14,6 +13,7 @@ use Wikimedia\TestingAccessWrapper;
  * @coversDefaultClass \MediaWiki\Block\BlockManager
  */
 class BlockManagerTest extends MediaWikiTestCase {
+	use TestAllServiceOptionsUsed;
 
 	/** @var User */
 	protected $user;
@@ -50,7 +50,8 @@ class BlockManagerTest extends MediaWikiTestCase {
 		$this->setMwGlobals( $blockManagerConfig );
 		$this->overrideMwServices();
 		return [
-			new ServiceOptions(
+			new LoggedServiceOptions(
+				self::$serviceOptionsAccessLog,
 				BlockManager::$constructorOptions,
 				MediaWikiServices::getInstance()->getMainConfig()
 			),
@@ -680,4 +681,10 @@ class BlockManagerTest extends MediaWikiTestCase {
 		];
 	}
 
+	/**
+	 * @coversNothing
+	 */
+	public function testAllServiceOptionsUsed() {
+		$this->assertAllServiceOptionsUsed( [ 'ApplyIpBlocksToXff', 'SoftBlockRanges' ] );
+	}
 }
