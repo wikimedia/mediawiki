@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Linker\LinkRenderer;
 use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**
@@ -58,9 +59,12 @@ class AllMessagesTablePager extends TablePager {
 	/**
 	 * @param IContextSource|null $context
 	 * @param FormOptions $opts
+	 * @param LinkRenderer $linkRenderer
 	 */
-	public function __construct( IContextSource $context = null, FormOptions $opts ) {
-		parent::__construct( $context );
+	public function __construct( IContextSource $context = null, FormOptions $opts,
+		LinkRenderer $linkRenderer
+	) {
+		parent::__construct( $context, $linkRenderer );
 
 		$this->mIndexField = 'am_title';
 		// FIXME: Why does this need to be set to DIR_DESCENDING to produce ascending ordering?

@@ -22,6 +22,7 @@
 /**
  * @ingroup Pager
  */
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
@@ -51,7 +52,7 @@ class ImageListPager extends TablePager {
 	protected $mTableName = 'image';
 
 	public function __construct( IContextSource $context, $userName = null, $search = '',
-		$including = false, $showAll = false
+		$including = false, $showAll = false, LinkRenderer $linkRenderer
 	) {
 		$this->setContext( $context );
 
@@ -96,7 +97,7 @@ class ImageListPager extends TablePager {
 			$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 		}
 
-		parent::__construct();
+		parent::__construct( $context, $linkRenderer );
 	}
 
 	/**

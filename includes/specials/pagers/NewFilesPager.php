@@ -22,6 +22,7 @@
 /**
  * @ingroup Pager
  */
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 
 class NewFilesPager extends RangeChronologicalPager {
@@ -39,9 +40,12 @@ class NewFilesPager extends RangeChronologicalPager {
 	/**
 	 * @param IContextSource $context
 	 * @param FormOptions $opts
+	 * @param LinkRenderer $linkRenderer
 	 */
-	public function __construct( IContextSource $context, FormOptions $opts ) {
-		parent::__construct( $context );
+	public function __construct( IContextSource $context, FormOptions $opts,
+		LinkRenderer $linkRenderer
+	) {
+		parent::__construct( $context, $linkRenderer );
 
 		$this->opts = $opts;
 		$this->setLimit( $opts->getValue( 'limit' ) );

@@ -24,6 +24,7 @@
  * @ingroup Pager
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Storage\RevisionRecord;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
@@ -97,7 +98,9 @@ class ContribsPager extends RangeChronologicalPager {
 	 */
 	private $templateParser;
 
-	public function __construct( IContextSource $context, array $options ) {
+	public function __construct( IContextSource $context, array $options,
+		LinkRenderer $linkRenderer = null
+	) {
 		// Set ->target before calling parent::__construct() so
 		// parent can call $this->getIndexField() and get the right result. Set
 		// the rest too just to keep things simple.
@@ -112,7 +115,7 @@ class ContribsPager extends RangeChronologicalPager {
 		$this->newOnly = !empty( $options['newOnly'] );
 		$this->hideMinor = !empty( $options['hideMinor'] );
 
-		parent::__construct( $context );
+		parent::__construct( $context, $linkRenderer );
 
 		$msgs = [
 			'diff',
