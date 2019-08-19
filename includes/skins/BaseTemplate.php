@@ -466,6 +466,10 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @return string
 	 */
 	function makeListItem( $key, $item, $options = [] ) {
+		// In case this is still set from SkinTemplate, we don't want it to appear in
+		// the HTML output (normally removed in SkinTemplate::buildContentActionUrls())
+		unset( $item['redundant'] );
+
 		if ( isset( $item['links'] ) ) {
 			$links = [];
 			foreach ( $item['links'] as $linkKey => $link ) {
