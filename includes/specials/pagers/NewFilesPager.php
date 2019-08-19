@@ -64,11 +64,11 @@ class NewFilesPager extends RangeChronologicalPager {
 	function getQueryInfo() {
 		$opts = $this->opts;
 		$conds = [];
-		$imgQuery = LocalFile::getQueryInfo();
-		$tables = $imgQuery['tables'];
-		$fields = [ 'img_name', 'img_timestamp' ] + $imgQuery['fields'];
+		$actorQuery = ActorMigration::newMigration()->getJoin( 'img_user' );
+		$tables = [ 'image' ] + $actorQuery['tables'];
+		$fields = [ 'img_name', 'img_timestamp' ] + $actorQuery['fields'];
 		$options = [];
-		$jconds = $imgQuery['joins'];
+		$jconds = $actorQuery['joins'];
 
 		$user = $opts->getValue( 'user' );
 		if ( $user !== '' ) {
@@ -89,7 +89,7 @@ class NewFilesPager extends RangeChronologicalPager {
 					'LEFT JOIN',
 					[
 						'ug_group' => $groupsWithBotPermission,
-						'ug_user = ' . $imgQuery['fields']['img_user'],
+						'ug_user = ' . $actorQuery['fields']['img_user'],
 						'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
 					]
 				];
@@ -107,7 +107,7 @@ class NewFilesPager extends RangeChronologicalPager {
 				'JOIN',
 				[
 					'rc_title = img_name',
-					'rc_actor = ' . $imgQuery['fields']['img_actor'],
+					'rc_actor = ' . $actorQuery['fields']['img_actor'],
 					'rc_timestamp = img_timestamp'
 				]
 			];
