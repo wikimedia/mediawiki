@@ -40,6 +40,7 @@ use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MWException;
+use MessageCache;
 use MimeAnalyzer;
 use NamespaceInfo;
 use ObjectCache;
@@ -687,6 +688,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getMediaHandlerFactory() {
 		return $this->getService( 'MediaHandlerFactory' );
+	}
+
+	/**
+	 * @since 1.34
+	 * @return MessageCache
+	 */
+	public function getMessageCache() : MessageCache {
+		return $this->getService( 'MessageCache' );
 	}
 
 	/**

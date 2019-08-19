@@ -3,7 +3,6 @@
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Database
@@ -20,12 +19,6 @@ class TitleTest extends MediaWikiTestCase {
 		] );
 		$this->setUserLang( 'en' );
 		$this->setContentLang( 'en' );
-	}
-
-	protected function tearDown() {
-		// For testNewMainPage
-		MessageCache::destroyInstance();
-		parent::tearDown();
 	}
 
 	/**
@@ -1302,10 +1295,11 @@ class TitleTest extends MediaWikiTestCase {
 	 * @covers Title::newMainPage
 	 */
 	public function testNewMainPage() {
-		$msgCache = TestingAccessWrapper::newFromClass( MessageCache::class );
-		$msgCache->instance = $this->createMock( MessageCache::class );
-		$msgCache->instance->method( 'get' )->willReturn( 'Foresheet' );
-		$msgCache->instance->method( 'transform' )->willReturn( 'Foresheet' );
+		$mock = $this->createMock( MessageCache::class );
+		$mock->method( 'get' )->willReturn( 'Foresheet' );
+		$mock->method( 'transform' )->willReturn( 'Foresheet' );
+
+		$this->setService( 'MessageCache', $mock );
 
 		$this->assertSame(
 			'Foresheet',
