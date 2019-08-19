@@ -563,6 +563,7 @@
 	"perfcached": "Like {{msg-mw|perfcachedts}} but used when we do not know how long ago page was cached (unlikely to happen).\n\nParameters:\n* $1 - the max result cut off ($wgQueryCacheLimit)",
 	"perfcachedts": "Used on pages that list page lists for which the displayed data is cached. Parameters:\n* $1 - a time stamp (date and time combined)\n* $2 - a date (optional)\n* $3 - a time (optional)\n* $4 - the cut off limit for cached results ($wgQueryCacheLimit). If there are more then this many results for the query, only the first $4 of those will be listed on the page. Usually $4 is about 1000.",
 	"querypage-no-updates": "Text on some special pages, e.g. [[Special:FewestRevisions]].",
+	"querypage-updates-periodical": "Text on some special pages which are configurated with a periodical run of a maintenance script.\n\nSee also {{msg-mw|querypage-no-updates}}.",
 	"viewsource": "The text displayed in place of the {{msg-mw|Edit}} tab when the user has no permission to edit the page.\n\nSee also:\n* {{msg-mw|Viewsource}}\n* {{msg-mw|Accesskey-ca-viewsource}}\n* {{msg-mw|Tooltip-ca-viewsource}}\n{{Identical|View source}}",
 	"viewsource-title": "Page title shown when trying to edit a protected page. Parameters:\n* $1 - the name of the page",
 	"actionthrottled": "This is the title of an error page. Read it in combination with {{msg-mw|actionthrottledtext}}.",
