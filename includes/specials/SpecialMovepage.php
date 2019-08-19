@@ -419,9 +419,7 @@ class MovePageForm extends UnlistedSpecialPage {
 					'name' => 'wpMovesubpages',
 					'id' => 'wpMovesubpages',
 					'value' => '1',
-					# Don't check the box if we only have talk subpages to
-					# move and we aren't moving the talk page.
-					'selected' => $this->moveSubpages && ( $this->oldTitle->hasSubpages() || $this->moveTalk ),
+					'selected' => true, // T222953 Always check the box
 				] ),
 				[
 					'label' => new OOUI\HtmlSnippet(
