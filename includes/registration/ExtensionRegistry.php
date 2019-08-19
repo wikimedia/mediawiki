@@ -307,16 +307,6 @@ class ExtensionRegistry {
 				$autoloadNamespaces
 			);
 
-			if ( isset( $info['AutoloadClasses'] ) ) {
-				$autoload = $this->processAutoLoader( $dir, $info['AutoloadClasses'] );
-				$GLOBALS['wgAutoloadClasses'] += $autoload;
-				$autoloadClasses += $autoload;
-			}
-			if ( isset( $info['AutoloadNamespaces'] ) ) {
-				$autoloadNamespaces += $this->processAutoLoader( $dir, $info['AutoloadNamespaces'] );
-				AutoLoader::$psr4Namespaces += $autoloadNamespaces;
-			}
-
 			// get all requirements/dependencies for this extension
 			$requires = $processor->getRequirements( $info, $this->checkDev );
 
