@@ -109,10 +109,10 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 			// with the database write operation, because the writes are queued
 			// in the pipe buffer. This can improve performance by up to a
 			// factor of 2.
-			global $wgDBuser, $wgDBserver, $wgDBpassword, $wgDBname;
-			$cmd = 'mysql -u' . Shell::escape( $wgDBuser ) .
-				' -h' . Shell::escape( $wgDBserver ) .
-				' -p' . Shell::escape( $wgDBpassword, $wgDBname );
+			$config = $this->getConfig();
+			$cmd = 'mysql -u' . Shell::escape( $config->get( 'DBuser' ) ) .
+				' -h' . Shell::escape( $config->get( 'DBserver' ) ) .
+				' -p' . Shell::escape( $config->get( 'DBpassword' ), $config->get( 'DBname' ) );
 			$this->output( "Using pipe method\n" );
 			$pipe = popen( $cmd, 'w' );
 		}

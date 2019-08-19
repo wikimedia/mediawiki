@@ -79,11 +79,12 @@ class CheckDependencies extends Maintenance {
 	}
 
 	private function loadThing( &$dependencies, $name, $extensions, $skins ) {
-		global $wgExtensionDirectory, $wgStyleDirectory;
+		$extDir = $this->getConfig()->get( 'ExtensionDirectory' );
+		$styleDir = $this->getConfig()->get( 'StyleDirectory' );
 		$queue = [];
 		$missing = false;
 		foreach ( $extensions as $extension ) {
-			$path = "$wgExtensionDirectory/$extension/extension.json";
+			$path = "$extDir/$extension/extension.json";
 			if ( file_exists( $path ) ) {
 				// 1 is ignored
 				$queue[$path] = 1;
@@ -95,7 +96,7 @@ class CheckDependencies extends Maintenance {
 		}
 
 		foreach ( $skins as $skin ) {
-			$path = "$wgStyleDirectory/$skin/skin.json";
+			$path = "$styleDir/$skin/skin.json";
 			if ( file_exists( $path ) ) {
 				$queue[$path] = 1;
 				$this->addToDependencies( $dependencies, [], [ $skin ], $name );

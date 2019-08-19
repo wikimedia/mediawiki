@@ -102,8 +102,6 @@ class NamespaceDupes extends Maintenance {
 	 * @return bool
 	 */
 	private function checkAll( $options ) {
-		global $wgNamespaceAliases, $wgCapitalLinks;
-
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		$spaces = [];
 
@@ -129,7 +127,7 @@ class NamespaceDupes extends Maintenance {
 				$spaces[$name] = $ns;
 			}
 		}
-		foreach ( $wgNamespaceAliases as $name => $ns ) {
+		foreach ( $this->getConfig()->get( 'NamespaceAliases' ) as $name => $ns ) {
 			$spaces[$name] = $ns;
 		}
 		foreach ( $contLang->getNamespaceAliases() as $name => $ns ) {
@@ -138,6 +136,7 @@ class NamespaceDupes extends Maintenance {
 
 		// We'll need to check for lowercase keys as well,
 		// since we're doing case-sensitive searches in the db.
+		$capitalLinks = $this->getConfig()->get( 'CapitalLinks' );
 		foreach ( $spaces as $name => $ns ) {
 			$moreNames = [];
 			$moreNames[] = $contLang->uc( $name );
@@ -146,7 +145,7 @@ class NamespaceDupes extends Maintenance {
 			$moreNames[] = $contLang->ucwords( $contLang->lc( $name ) );
 			$moreNames[] = $contLang->ucwordbreaks( $name );
 			$moreNames[] = $contLang->ucwordbreaks( $contLang->lc( $name ) );
-			if ( !$wgCapitalLinks ) {
+			if ( !$capitalLinks ) {
 				foreach ( $moreNames as $altName ) {
 					$moreNames[] = $contLang->lcfirst( $altName );
 				}
