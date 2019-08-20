@@ -41,7 +41,7 @@ class EmptyBagOStuff extends MediumSpecificBagOStuff {
 		return true;
 	}
 
-	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
+	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
 		return true;
 	}
 

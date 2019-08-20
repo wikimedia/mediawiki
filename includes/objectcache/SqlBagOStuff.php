@@ -467,11 +467,11 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return $this->modifyMulti( [ $key => $value ], $exptime, $flags, self::$OP_SET );
 	}
 
-	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
+	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
 		return $this->modifyMulti( [ $key => $value ], $exptime, $flags, self::$OP_ADD );
 	}
 
-	protected function cas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
+	protected function doCas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
 		$exptime = $this->getExpirationAsTimestamp( $exptime );
 

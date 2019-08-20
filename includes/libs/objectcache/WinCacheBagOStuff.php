@@ -28,6 +28,11 @@
  * @ingroup Cache
  */
 class WinCacheBagOStuff extends MediumSpecificBagOStuff {
+	public function __construct( array $params = [] ) {
+		$params['segmentationSize'] = $params['segmentationSize'] ?? INF;
+		parent::__construct( $params );
+	}
+
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$casToken = null;
 
@@ -44,7 +49,7 @@ class WinCacheBagOStuff extends MediumSpecificBagOStuff {
 		return $value;
 	}
 
-	protected function cas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
+	protected function doCas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
 		if ( !wincache_lock( $key ) ) { // optimize with FIFO lock
 			return false;
 		}
@@ -76,7 +81,7 @@ class WinCacheBagOStuff extends MediumSpecificBagOStuff {
 		return ( $result === [] || $result === true );
 	}
 
-	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
+	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
 		if ( wincache_ucache_exists( $key ) ) {
 			return false; // avoid warnings
 		}

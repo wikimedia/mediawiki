@@ -94,7 +94,7 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 		return true;
 	}
 
-	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
+	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
 		if ( $this->hasKey( $key ) && !$this->expire( $key ) ) {
 			return false; // key already set
 		}

@@ -214,7 +214,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 			: $this->checkResult( $key, $result );
 	}
 
-	protected function cas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
+	protected function doCas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
 		$this->debug( "cas($key)" );
 
 		$result = $this->acquireSyncClient()->cas(
@@ -238,7 +238,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 			: $this->checkResult( $key, $result );
 	}
 
-	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
+	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
 		$this->debug( "add($key)" );
 
 		$result = $this->acquireSyncClient()->add(
