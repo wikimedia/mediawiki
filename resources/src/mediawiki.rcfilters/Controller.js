@@ -58,6 +58,7 @@ OO.initClass( Controller );
  */
 Controller.prototype.initialize = function ( filterStructure, namespaceStructure, tagList, conditionalViews ) {
 	var parsedSavedQueries, pieces,
+		nsAllContents, nsAllDiscussions,
 		displayConfig = mw.config.get( 'StructuredChangeFiltersDisplayConfig' ),
 		defaultSavedQueryExists = mw.config.get( 'wgStructuredChangeFiltersDefaultSavedQueryExists' ),
 		controller = this,
@@ -67,20 +68,38 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 
 	// Prepare views
 	if ( namespaceStructure ) {
-		items = [];
+		nsAllContents = {
+			name: 'all-contents',
+			label: mw.msg( 'rcfilters-allcontents-label' ),
+			description: '',
+			identifiers: [ 'subject' ],
+			cssClass: 'mw-changeslist-ns-subject',
+			subset: []
+		};
+		nsAllDiscussions = {
+			name: 'all-discussions',
+			label: mw.msg( 'rcfilters-alldiscussions-label' ),
+			description: '',
+			identifiers: [ 'talk' ],
+			cssClass: 'mw-changeslist-ns-talk',
+			subset: []
+		};
+		items = [ nsAllContents, nsAllDiscussions ];
 		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( namespaceStructure, function ( namespaceID, label ) {
 			// Build and clean up the individual namespace items definition
-			items.push( {
-				name: namespaceID,
-				label: label || mw.msg( 'blanknamespace' ),
-				description: '',
-				identifiers: [
-					mw.Title.isTalkNamespace( namespaceID ) ?
-						'talk' : 'subject'
-				],
-				cssClass: 'mw-changeslist-ns-' + namespaceID
-			} );
+			var isTalk = mw.Title.isTalkNamespace( namespaceID ),
+				nsFilter = {
+					name: namespaceID,
+					label: label || mw.msg( 'blanknamespace' ),
+					description: '',
+					identifiers: [
+						isTalk ? 'talk' : 'subject'
+					],
+					cssClass: 'mw-changeslist-ns-' + namespaceID
+				};
+			items.push( nsFilter );
+			( isTalk ? nsAllDiscussions : nsAllContents ).subset.push( { filter: namespaceID } );
 		} );
 
 		views.namespaces = {
