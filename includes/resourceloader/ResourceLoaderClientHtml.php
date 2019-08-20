@@ -143,15 +143,15 @@ class ResourceLoaderClientHtml {
 
 			$group = $module->getGroup();
 			$context = $this->getContext( $group, ResourceLoaderModule::TYPE_COMBINED );
-			if ( $module->isKnownEmpty( $context ) ) {
-				// Avoid needless request or embed for empty module
-				$data['states'][$name] = 'ready';
-				continue;
-			}
+			$shouldEmbed = $module->shouldEmbedModule( $this->context );
 
-			if ( $group === 'user' || $module->shouldEmbedModule( $this->context ) ) {
-				// Call makeLoad() to decide how to load these, instead of
-				// loading via mw.loader.load().
+			if ( ( $group === 'user' || $shouldEmbed ) && $module->isKnownEmpty( $context ) ) {
+				// This is a user-specific or embedded module, which means its output
+				// can be specific to the current page or user. As such, we can optimise
+				// the way we load it based on the current version of the module.
+				// Avoid needless embed for empty module, preset ready state.
+				$data['states'][$name] = 'ready';
+			} elseif ( $group === 'user' || $shouldEmbed ) {
 				// - For group=user: We need to provide a pre-generated load.php
 				//   url to the client that has the 'user' and 'version' parameters
 				//   filled in. Without this, the client would wrongly use the static
@@ -187,15 +187,30 @@ class ResourceLoaderClientHtml {
 
 			$group = $module->getGroup();
 			$context = $this->getContext( $group, ResourceLoaderModule::TYPE_STYLES );
-			// Avoid needless request for empty module
-			if ( !$module->isKnownEmpty( $context ) ) {
-				if ( $module->shouldEmbedModule( $this->context ) ) {
-					// Embed via style element
+			if ( $module->shouldEmbedModule( $this->context ) ) {
+				// Avoid needless embed for private embeds we know are empty.
+				// (Set "ready" state directly instead, which we do a few lines above.)
+				if ( !$module->isKnownEmpty( $context ) ) {
+					// Embed via <style> element
 					$data['embed']['styles'][] = $name;
-				} else {
-					// Load from load.php?only=styles via <link rel=stylesheet>
-					$data['styles'][] = $name;
 				}
+			// For other style modules, always request them, regardless of whether they are
+			// currently known to be empty. Because:
+			// 1. Those modules are requested in batch, so there is no extra request overhead
+			//    or extra HTML element to be avoided.
+			// 2. Checking isKnownEmpty for those can be expensive and slow down page view
+			//    generation (T230260).
+			// 3. We don't want cached HTML to vary on the current state of a module.
+			//    If the module becomes non-empty a few minutes later, it should start working
+			//    on cached HTML without requiring a purge.
+			//
+			// But, user-specific modules:
+			// * ... are used on page views not publicly cached.
+			// * ... are in their own group and thus a require a request we can avoid
+			// * ... have known-empty status preloaded by ResourceLoader.
+			} elseif ( $group !== 'user' || !$module->isKnownEmpty( $context ) ) {
+				// Load from load.php?only=styles via <link rel=stylesheet>
+				$data['styles'][] = $name;
 			}
 			$deprecation = $module->getDeprecationInformation();
 			if ( $deprecation ) {
