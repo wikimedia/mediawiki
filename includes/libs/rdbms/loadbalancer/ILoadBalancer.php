@@ -167,8 +167,7 @@ interface ILoadBalancer {
 	 *
 	 * @param string|bool $group Query group or false for the generic group
 	 * @param string|bool $domain DB domain ID or false for the local domain
-	 * @throws DBError If no live handle can be obtained
-	 * @return bool|int|string
+	 * @return int|bool Returns false if no live handle can be obtained
 	 */
 	public function getReaderIndex( $group = false, $domain = false );
 
