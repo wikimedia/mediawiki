@@ -1503,6 +1503,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		if ( $opts[ 'namespace' ] !== '' ) {
 			$namespaces = explode( ';', $opts[ 'namespace' ] );
 
+			$namespaces = $this->expandSymbolicNamespaceFilters( $namespaces );
+
 			if ( $opts[ 'associated' ] ) {
 				$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 				$associatedNamespaces = array_map(
@@ -1947,5 +1949,22 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	public function getDefaultDays() {
 		return floatval( $this->getUser()->getOption( static::$daysPreferenceName ) );
+	}
+
+	private function expandSymbolicNamespaceFilters( array $namespaces ) {
+		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		$symbolicFilters = [
+			'all-contents' => $nsInfo->getSubjectNamespaces(),
+			'all-discussions' => $nsInfo->getTalkNamespaces(),
+		];
+		$additionalNamespaces = [];
+		foreach ( $symbolicFilters as $name => $values ) {
+			if ( in_array( $name, $namespaces ) ) {
+				$additionalNamespaces = array_merge( $additionalNamespaces, $values );
+			}
+		}
+		$namespaces = array_diff( $namespaces, array_keys( $symbolicFilters ) );
+		$namespaces = array_merge( $namespaces, $additionalNamespaces );
+		return array_unique( $namespaces );
 	}
 }
