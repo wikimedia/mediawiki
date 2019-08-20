@@ -26,6 +26,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$this->db = $this->getMockBuilder( DatabaseSqlite::class )
 			->setConstructorArgs( [ [
 				'dbFilePath' => ':memory:',
+				'dbname' => 'Foo',
 				'schema' => false,
 				'host' => false,
 				'user' => false,
