@@ -73,7 +73,7 @@ class APCBagOStuff extends MediumSpecificBagOStuff {
 		return true;
 	}
 
-	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
+	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
 		return apc_add(
 			$key . self::KEY_SUFFIX,
 			$this->nativeSerialize ? $value : $this->serialize( $value ),

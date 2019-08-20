@@ -164,7 +164,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 		return $this->handleError( "Failed to store $key", $rcode, $rerr, $rhdrs, $rbody );
 	}
 
-	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
+	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
 		// @TODO: make this atomic
 		if ( $this->get( $key ) === false ) {
 			return $this->set( $key, $value, $exptime, $flags );

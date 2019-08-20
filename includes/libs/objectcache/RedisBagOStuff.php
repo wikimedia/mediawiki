@@ -341,7 +341,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 		return $result;
 	}
 
-	public function add( $key, $value, $expiry = 0, $flags = 0 ) {
+	protected function doAdd( $key, $value, $expiry = 0, $flags = 0 ) {
 		$conn = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
