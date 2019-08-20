@@ -21,6 +21,7 @@
 namespace MediaWiki\Block;
 
 use DateTime;
+use DateTimeZone;
 use DeferredUpdates;
 use IP;
 use MediaWiki\Config\ServiceOptions;
@@ -435,7 +436,11 @@ class BlockManager {
 		}
 
 		// Set the cookie. Reformat the MediaWiki datetime as a Unix timestamp for the cookie.
-		$expiryValue = DateTime::createFromFormat( 'YmdHis', $expiryTime )->format( 'U' );
+		$expiryValue = DateTime::createFromFormat(
+			'YmdHis',
+			$expiryTime,
+			new DateTimeZone( 'UTC' )
+		)->format( 'U' );
 		$cookieOptions = [ 'httpOnly' => false ];
 		$cookieValue = $this->getCookieValue( $block );
 		$response->setCookie( 'BlockID', $cookieValue, $expiryValue, $cookieOptions );
