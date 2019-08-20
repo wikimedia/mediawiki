@@ -52,11 +52,6 @@ class SearchResult {
 	protected $mText;
 
 	/**
-	 * @var SearchEngine
-	 */
-	protected $searchEngine;
-
-	/**
 	 * A function returning a set of extension data.
 	 * @var Closure|null
 	 */
@@ -96,7 +91,6 @@ class SearchResult {
 				$this->mImage = $services->getRepoGroup()->findFile( $this->mTitle );
 			}
 		}
-		$this->searchEngine = $services->newSearchEngine();
 	}
 
 	/**
