@@ -59,7 +59,7 @@ interface LogEntry {
 	public function getParameters();
 
 	/**
-	 * Get the user for performed this action.
+	 * Get the user who performed this action.
 	 *
 	 * @return User
 	 */
