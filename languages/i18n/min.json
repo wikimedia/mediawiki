@@ -383,7 +383,7 @@
 	"virus-badscanner": "Kasalahan konfigurasi: pamindai virus indak dikenal: ''$1''",
 	"virus-scanfailed": "Pamindaian gagal (kode $1)",
 	"virus-unknownscanner": "Antivirus indak dikenal:",
-	"logouttext": "<strong>Sanak alah kalua log</strong\n\nMohon diingek kalau babarapo laman mungkin masih tampil cando Sanak alun kalua log. Silakan untuak mambarasiahan singgahan panjalajah web Sanak.",
+	"logouttext": "<strong>Sanak alah kalua log</strong>\n\nMohon diingek kalau babarapo laman mungkin masih tampil cando Sanak alun kalua log. Silakan untuak mambarasiahan singgahan panjalajah web Sanak.",
 	"cannotlogoutnow-title": "Indak bisa kalua kini",
 	"cannotlogoutnow-text": "Indak bisa kalua katiko manggunoan $1.",
 	"welcomeuser": "Salamaik datang, $1!",
