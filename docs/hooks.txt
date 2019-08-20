@@ -91,23 +91,29 @@ title-reversing if-blocks spread all over the codebase in showAnArticle,
 deleteAnArticle, exportArticle, etc., we can concentrate it all in an extension
 file:
 
-	function reverseArticleTitle( $article ) {
+	function onArticleShow( &$article ) {
 		# ...
 	}
 
-	function reverseForExport( $article ) {
+	function onArticleDelete( &$article ) {
 		# ...
 	}
 
-The setup function for the extension just has to add its hook functions to the
-appropriate events:
+	function onArticleExport( &$article ) {
+		# ...
+	}
 
-	setupTitleReversingExtension() {
-		global $wgHooks;
+General practice is to have a dedicated file for functions activated by hooks,
+which functions named 'onHookName'. In the example above, the file
+'ReverseHooks.php' includes the functions that should be activated by the
+'ArticleShow', 'ArticleDelete', and 'ArticleExport' hooks. The 'extension.json'
+file with the extension's registration just has to add its hook functions
+to the appropriate events:
 
-		$wgHooks['ArticleShow'][] = 'reverseArticleTitle';
-		$wgHooks['ArticleDelete'][] = 'reverseArticleTitle';
-		$wgHooks['ArticleExport'][] = 'reverseForExport';
+	"Hooks": {
+		"ArticleShow": "ReverseHooks:onArticleShow",
+		"ArticleDelete": "ReverseHooks::onArticleDelete",
+		"ArticleExport": "ReverseHooks::onArticleExport"
 	}
 
 Having all this code related to the title-reversion option in one place means
