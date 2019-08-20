@@ -99,13 +99,19 @@ class SpecialMute extends FormSpecialPage {
 	 * @return bool
 	 */
 	public function onSubmit( array $data, HTMLForm $form = null ) {
+		$hookData = [];
 		foreach ( $data as $userOption => $value ) {
+			$hookData[$userOption]['before'] = $this->isTargetBlacklisted( $userOption );
 			if ( $value ) {
 				$this->muteTarget( $userOption );
 			} else {
 				$this->unmuteTarget( $userOption );
 			}
+			$hookData[$userOption]['after'] = (bool)$value;
 		}
+
+		// NOTE: this hook is temporary
+		Hooks::run( 'SpecialMuteSubmit', [ $hookData ] );
 
 		return true;
 	}

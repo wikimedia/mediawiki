@@ -3211,6 +3211,9 @@ $request: WebRequest object for getting the value provided by the current user
 $sp: SpecialPage object, for context
 &$fields: Current HTMLForm fields descriptors
 
+'SpecialMuteSubmit': DEPRECATED since 1.34! Used only for instrumentation on SpecialMute
+$data: Array containing information about submitted options on SpecialMute form
+
 'SpecialNewpagesConditions': Called when building sql query for
 Special:NewPages.
 &$special: NewPagesPager object (subclass of ReverseChronologicalPager)
