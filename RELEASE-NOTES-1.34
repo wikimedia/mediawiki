@@ -345,6 +345,9 @@ because of Phabricator reports.
   dropped.
 * MessageCache::destroyInstance() has been removed. Instead, call
   MediaWikiTestCase::resetServices().
+* SearchResult protected field $searchEngine is removed and no longer
+  initialized after calling SearchResult::initFromTitle().
+* …
 
 === Deprecations in 1.34 ===
 * The MWNamespace class is deprecated. Use NamespaceInfo.
