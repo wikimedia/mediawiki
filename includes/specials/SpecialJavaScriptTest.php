@@ -111,7 +111,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 		$qunitConfig = 'QUnit.config.autostart = false;'
 			. 'if (window.__karma__) {'
 			// karma-qunit's use of autostart=false and QUnit.start conflicts with ours.
-			// Hack around this by replacing 'karma.loaded' with a no-op and perfom its duty of calling
+			// Hack around this by replacing 'karma.loaded' with a no-op and perform its duty of calling
 			// `__karma__.start()` ourselves. See <https://github.com/karma-runner/karma-qunit/issues/27>.
 			. 'window.__karma__.loaded = function () {};'
 			. '}';
