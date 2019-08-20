@@ -23,7 +23,7 @@
 	 * @cfg {boolean} [redirect] Page is a redirect
 	 * @cfg {boolean} [disambiguation] Page is a disambiguation page
 	 * @cfg {string} [query] Matching query string to highlight
-	 * @cfg {string} [compare] String comparison function for query highlighting
+	 * @cfg {Function} [compare] String comparison function for query highlighting
 	 */
 	mw.widgets.TitleOptionWidget = function MwWidgetsTitleOptionWidget( config ) {
 		var icon;
