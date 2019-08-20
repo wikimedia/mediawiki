@@ -1015,7 +1015,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * Keeps track of all used files and adds them to localFileRefs.
 	 *
 	 * @since 1.22
-	 * @since 1.27 Added $context paramter.
+	 * @since 1.27 Added $context parameter.
 	 * @throws Exception If less.php encounters a parse error
 	 * @param string $fileName File path of LESS source
 	 * @param ResourceLoaderContext $context Context in which to generate script

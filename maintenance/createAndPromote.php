@@ -114,7 +114,7 @@ class CreateAndPromote extends Maintenance {
 
 		if ( !$exists ) {
 			// Create the user via AuthManager as there may be various side
-			// effects that are perfomed by the configured AuthManager chain.
+			// effects that are performed by the configured AuthManager chain.
 			$status = MediaWiki\Auth\AuthManager::singleton()->autoCreateUser(
 				$user,
 				MediaWiki\Auth\AuthManager::AUTOCREATE_SOURCE_MAINT,
