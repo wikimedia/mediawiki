@@ -224,7 +224,7 @@ class BlockManager {
 
 	/**
 	 * Try to load a block from an ID given in a cookie value. If the block is invalid
-	 * or doesn't exist, remove the cookie.
+	 * doesn't exist, or the cookie value is malformed, remove the cookie.
 	 *
 	 * @param UserIdentity $user
 	 * @param WebRequest $request
@@ -234,9 +234,13 @@ class BlockManager {
 		UserIdentity $user,
 		WebRequest $request
 	) {
-		$blockCookieId = $this->getIdFromCookieValue( $request->getCookie( 'BlockID' ) );
+		$cookieValue = $request->getCookie( 'BlockID' );
+		if ( is_null( $cookieValue ) ) {
+			return false;
+		}
 
-		if ( $blockCookieId !== null ) {
+		$blockCookieId = $this->getIdFromCookieValue( $cookieValue );
+		if ( !is_null( $blockCookieId ) ) {
 			// TODO: remove dependency on DatabaseBlock
 			$block = DatabaseBlock::newFromID( $blockCookieId );
 			if (
@@ -245,8 +249,9 @@ class BlockManager {
 			) {
 				return $block;
 			}
-			$this->clearBlockCookie( $request->response() );
 		}
+
+		$this->clearBlockCookie( $request->response() );
 
 		return false;
 	}
