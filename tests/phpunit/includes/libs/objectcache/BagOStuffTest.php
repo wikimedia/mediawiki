@@ -19,9 +19,10 @@ class BagOStuffTest extends MediaWikiTestCase {
 
 		// type defined through parameter
 		if ( $this->getCliArg( 'use-bagostuff' ) !== null ) {
-			$name = $this->getCliArg( 'use-bagostuff' );
+			global $wgObjectCaches;
 
-			$this->cache = ObjectCache::newFromId( $name );
+			$id = $this->getCliArg( 'use-bagostuff' );
+			$this->cache = ObjectCache::newFromParams( $wgObjectCaches[$id] );
 		} else {
 			// no type defined - use simple hash
 			$this->cache = new HashBagOStuff;
@@ -36,7 +37,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 	 * @covers MediumSpecificBagOStuff::makeKeyInternal
 	 */
 	public function testMakeKey() {
-		$cache = ObjectCache::newFromId( 'hash' );
+		$cache = new HashBagOStuff();
 
 		$localKey = $cache->makeKey( 'first', 'second', 'third' );
 		$globalKey = $cache->makeGlobalKey( 'first', 'second', 'third' );

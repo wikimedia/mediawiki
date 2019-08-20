@@ -268,9 +268,10 @@ return [
 	},
 
 	'LocalServerObjectCache' => function ( MediaWikiServices $services ) : BagOStuff {
+		$config = $services->getMainConfig();
 		$cacheId = \ObjectCache::detectLocalServerCache();
 
-		return \ObjectCache::newFromId( $cacheId );
+		return \ObjectCache::newFromParams( $config->get( 'ObjectCaches' )[$cacheId] );
 	},
 
 	'MagicWordFactory' => function ( MediaWikiServices $services ) : MagicWordFactory {
