@@ -1244,11 +1244,12 @@ class PermissionManager {
 	 */
 	public function getUserPermissions( UserIdentity $user ) {
 		$user = User::newFromIdentity( $user );
-		if ( !isset( $this->usersRights[ $user->getId() ] ) ) {
-			$this->usersRights[ $user->getId() ] = $this->getGroupPermissions(
+		$rightsCacheKey = $this->getRightsCacheKey( $user );
+		if ( !isset( $this->usersRights[ $rightsCacheKey ] ) ) {
+			$this->usersRights[ $rightsCacheKey ] = $this->getGroupPermissions(
 				$user->getEffectiveGroups()
 			);
-			Hooks::run( 'UserGetRights', [ $user, &$this->usersRights[ $user->getId() ] ] );
+			Hooks::run( 'UserGetRights', [ $user, &$this->usersRights[ $rightsCacheKey ] ] );
 
 			// Deny any rights denied by the user's session, unless this
 			// endpoint has no sessions.
@@ -1256,17 +1257,17 @@ class PermissionManager {
 				// FIXME: $user->getRequest().. need to be replaced with something else
 				$allowedRights = $user->getRequest()->getSession()->getAllowedUserRights();
 				if ( $allowedRights !== null ) {
-					$this->usersRights[ $user->getId() ] = array_intersect(
-						$this->usersRights[ $user->getId() ],
+					$this->usersRights[ $rightsCacheKey ] = array_intersect(
+						$this->usersRights[ $rightsCacheKey ],
 						$allowedRights
 					);
 				}
 			}
 
-			Hooks::run( 'UserGetRightsRemove', [ $user, &$this->usersRights[ $user->getId() ] ] );
+			Hooks::run( 'UserGetRightsRemove', [ $user, &$this->usersRights[ $rightsCacheKey ] ] );
 			// Force reindexation of rights when a hook has unset one of them
-			$this->usersRights[ $user->getId() ] = array_values(
-				array_unique( $this->usersRights[ $user->getId() ] )
+			$this->usersRights[ $rightsCacheKey ] = array_values(
+				array_unique( $this->usersRights[ $rightsCacheKey ] )
 			);
 
 			if (
@@ -1275,13 +1276,13 @@ class PermissionManager {
 				$user->getBlock()
 			) {
 				$anon = new User;
-				$this->usersRights[ $user->getId() ] = array_intersect(
-					$this->usersRights[ $user->getId() ],
+				$this->usersRights[ $rightsCacheKey ] = array_intersect(
+					$this->usersRights[ $rightsCacheKey ],
 					$this->getUserPermissions( $anon )
 				);
 			}
 		}
-		$rights = $this->usersRights[ $user->getId() ];
+		$rights = $this->usersRights[ $rightsCacheKey ];
 		foreach ( $this->temporaryUserRights[ $user->getId() ] ?? [] as $overrides ) {
 			$rights = array_values( array_unique( array_merge( $rights, $overrides ) ) );
 		}
@@ -1298,12 +1299,22 @@ class PermissionManager {
 	 */
 	public function invalidateUsersRightsCache( $user = null ) {
 		if ( $user !== null ) {
-			if ( isset( $this->usersRights[ $user->getId() ] ) ) {
-				unset( $this->usersRights[$user->getId()] );
+			$rightsCacheKey = $this->getRightsCacheKey( $user );
+			if ( isset( $this->usersRights[ $rightsCacheKey ] ) ) {
+				unset( $this->usersRights[ $rightsCacheKey ] );
 			}
 		} else {
 			$this->usersRights = null;
 		}
+	}
+
+	/**
+	 * Gets a unique key for user rights cache.
+	 * @param UserIdentity $user
+	 * @return string
+	 */
+	private function getRightsCacheKey( UserIdentity $user ) {
+		return $user->isRegistered() ? "u:{$user->getId()}" : "anon:{$user->getName()}";
 	}
 
 	/**
@@ -1583,7 +1594,8 @@ class PermissionManager {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
 			throw new Exception( __METHOD__ . ' can not be called outside of tests' );
 		}
-		$this->usersRights[ $user->getId() ] = is_array( $rights ) ? $rights : [ $rights ];
+		$this->usersRights[ $this->getRightsCacheKey( $user ) ] =
+			is_array( $rights ) ? $rights : [ $rights ];
 	}
 
 }

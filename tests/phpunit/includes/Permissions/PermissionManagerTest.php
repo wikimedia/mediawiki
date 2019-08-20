@@ -1865,4 +1865,26 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			->getPermissionManager()
 			->getNamespaceRestrictionLevels( $ns, $user ) );
 	}
+
+	/**
+	 * @covers \MediaWiki\Permissions\PermissionManager::getRightsCacheKey
+	 * @throws \Exception
+	 */
+	public function testAnonPermissionsNotClash() {
+		$user1 = User::newFromName( 'User1' );
+		$user2 = User::newFromName( 'User2' );
+		$pm = MediaWikiServices::getInstance()->getPermissionManager();
+		$pm->overrideUserRightsForTesting( $user2, [] );
+		$this->assertNotSame( $pm->getUserPermissions( $user1 ), $pm->getUserPermissions( $user2 ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Permissions\PermissionManager::getRightsCacheKey
+	 */
+	public function testAnonPermissionsNotClashOneRegistered() {
+		$user1 = User::newFromName( 'User1' );
+		$user2 = $this->getTestSysop()->getUser();
+		$pm = MediaWikiServices::getInstance()->getPermissionManager();
+		$this->assertNotSame( $pm->getUserPermissions( $user1 ), $pm->getUserPermissions( $user2 ) );
+	}
 }
