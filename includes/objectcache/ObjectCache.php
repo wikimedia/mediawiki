@@ -119,7 +119,7 @@ class ObjectCache {
 	 * @return BagOStuff
 	 * @throws InvalidArgumentException
 	 */
-	public static function newFromId( $id ) {
+	private static function newFromId( $id ) {
 		global $wgObjectCaches;
 
 		if ( !isset( $wgObjectCaches[$id] ) ) {
@@ -146,7 +146,7 @@ class ObjectCache {
 	 *
 	 * @return string
 	 */
-	public static function getDefaultKeyspace() {
+	private static function getDefaultKeyspace() {
 		global $wgCachePrefix;
 
 		$keyspace = $wgCachePrefix;
@@ -297,7 +297,7 @@ class ObjectCache {
 	 * @return WANObjectCache
 	 * @throws UnexpectedValueException
 	 */
-	public static function newWANCacheFromId( $id ) {
+	private static function newWANCacheFromId( $id ) {
 		global $wgWANObjectCaches, $wgObjectCaches;
 
 		if ( !isset( $wgWANObjectCaches[$id] ) ) {
