@@ -217,6 +217,9 @@ $wgAutoloadClasses += [
 	'MockSearchResultSet' => "$testDir/phpunit/mocks/search/MockSearchResultSet.php",
 	'MockSearchResult' => "$testDir/phpunit/mocks/search/MockSearchResult.php",
 
+	# tests/phpunit/unit/includes/libs/filebackend/fsfile
+	'TempFSFileTestTrait' => "$testDir/phpunit/unit/includes/libs/filebackend/fsfile/TempFSFileTestTrait.php",
+
 	# tests/suites
 	'ParserTestFileSuite' => "$testDir/phpunit/suites/ParserTestFileSuite.php",
 	'ParserTestTopLevelSuite' => "$testDir/phpunit/suites/ParserTestTopLevelSuite.php",
