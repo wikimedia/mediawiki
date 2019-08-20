@@ -148,7 +148,7 @@ parent of $revision parameter passed to prepareUpdate().
 transformation (PST) and allow subsequent access to the canonical ParserOutput of the
 revision. getSlots() and getCanonicalParserOutput() as well as getSecondaryDataUpdates()
 may be used after prepareContent() was called. Calling prepareContent() with the same
-parameters again has no effect. Calling it again with mismatching paramters, or calling
+parameters again has no effect. Calling it again with mismatching parameters, or calling
 it after prepareUpdate() was called, triggers a LogicException.
 
 - prepareUpdate() is called after the new revision has been created. This may happen

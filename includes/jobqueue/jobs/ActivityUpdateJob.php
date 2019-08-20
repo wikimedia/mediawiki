@@ -42,7 +42,7 @@ class ActivityUpdateJob extends Job {
 		static $required = [ 'type', 'userid', 'notifTime', 'curTime' ];
 		$missing = implode( ', ', array_diff( $required, array_keys( $this->params ) ) );
 		if ( $missing != '' ) {
-			throw new InvalidArgumentException( "Missing paramter(s) $missing" );
+			throw new InvalidArgumentException( "Missing parameter(s) $missing" );
 		}
 
 		$this->removeDuplicates = true;
