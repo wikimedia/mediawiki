@@ -38,6 +38,7 @@ class SpecialApiSandbox extends SpecialPage {
 		$out->addJsConfigVars( 'apihighlimits', $this->getUser()->isAllowed( 'apihighlimits' ) );
 		$out->addModuleStyles( [
 			'mediawiki.special',
+			'mediawiki.hlist',
 		] );
 		$out->addModules( [
 			'mediawiki.special.apisandbox',
