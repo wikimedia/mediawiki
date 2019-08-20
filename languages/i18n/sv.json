@@ -1323,7 +1323,7 @@
 	"grant-group-customization": "Anpassning och inställningar",
 	"grant-group-administration": "Utför administrativa åtgärder",
 	"grant-group-private-information": "Få tillgång till privat data om dig",
-	"grant-group-other": "Diverse aktivitet",
+	"grant-group-other": "Övrig aktivitet",
 	"grant-blockusers": "Blockera och avblockera användare",
 	"grant-createaccount": "Skapa konton",
 	"grant-createeditmovepage": "Skapa, redigera och flytta sidor",

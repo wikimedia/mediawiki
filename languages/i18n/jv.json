@@ -1288,7 +1288,7 @@
 	"rcfilters-savedqueries-already-saved": "Saringan iki wis kasimpen. Ganti setèlané panjenengan saperlu nggawé Saringan Kasimpen kang anyar.",
 	"rcfilters-restore-default-filters": "Pulihaké saringan gawan",
 	"rcfilters-clear-all-filters": "Resiki kabèh saringan",
-	"rcfilters-show-new-changes": "Deleng owah-owahan anyar dhéwé",
+	"rcfilters-show-new-changes": "Deleng owah-owahan anyar kawit $1",
 	"rcfilters-search-placeholder": "Owah-owahan saringan (anggo menu utawa golèk jeneng saringan)",
 	"rcfilters-invalid-filter": "Saringan ora sah",
 	"rcfilters-empty-filter": "Ora ana saringan kang aktif. Kabèh sumbangan katuduhaké.",
