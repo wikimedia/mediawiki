@@ -19,6 +19,8 @@
  *
  * @file
  */
+
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -100,9 +102,9 @@ class HTTPFileStreamer {
 				is_int( $header ) ? HttpStatus::header( $header ) : header( $header );
 			};
 
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$info = stat( $this->path );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		if ( !is_array( $info ) ) {
 			if ( $sendErrors ) {

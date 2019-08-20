@@ -21,6 +21,8 @@
  * @ingroup FileBackend
  */
 
+use Wikimedia\AtEase\AtEase;
+
 /**
  * Simulation of a backend storage in memory.
  *
@@ -70,9 +72,9 @@ class MemoryFileBackend extends FileBackendStore {
 			return $status;
 		}
 
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$data = file_get_contents( $params['src'] );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		if ( $data === false ) { // source doesn't exist?
 			$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
 

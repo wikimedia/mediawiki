@@ -22,6 +22,8 @@
  * @author Russ Nelson
  */
 
+use Wikimedia\AtEase\AtEase;
+
 /**
  * @brief Class for an OpenStack Swift (or Ceph RGW) based file backend.
  *
@@ -326,9 +328,9 @@ class SwiftFileBackend extends FileBackendStore {
 			return $status;
 		}
 
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$sha1Hash = sha1_file( $params['src'] );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		if ( $sha1Hash === false ) { // source doesn't exist?
 			$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
 
