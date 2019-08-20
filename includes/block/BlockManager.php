@@ -29,6 +29,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserIdentity;
 use MWCryptHash;
+use Psr\Log\LoggerInterface;
 use User;
 use WebRequest;
 use WebResponse;
@@ -59,17 +60,23 @@ class BlockManager {
 		'SoftBlockRanges',
 	];
 
+	/** @var LoggerInterface */
+	private $logger;
+
 	/**
 	 * @param ServiceOptions $options
 	 * @param PermissionManager $permissionManager
+	 * @param LoggerInterface $logger
 	 */
 	public function __construct(
 		ServiceOptions $options,
-		PermissionManager $permissionManager
+		PermissionManager $permissionManager,
+		LoggerInterface $logger
 	) {
 		$options->assertRequiredOptions( self::$constructorOptions );
 		$this->options = $options;
 		$this->permissionManager = $permissionManager;
+		$this->logger = $logger;
 	}
 
 	/**
@@ -392,15 +399,14 @@ class BlockManager {
 				$ipList = $this->checkHost( $hostname );
 
 				if ( $ipList ) {
-					wfDebugLog(
-						'dnsblacklist',
+					$this->logger->info(
 						"Hostname $hostname is {$ipList[0]}, it's a proxy says $basename!"
 					);
 					$found = true;
 					break;
 				}
 
-				wfDebugLog( 'dnsblacklist', "Requested $hostname, not found in $basename." );
+				$this->logger->debug( "Requested $hostname, not found in $basename." );
 			}
 		}
 
