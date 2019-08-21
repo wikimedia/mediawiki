@@ -1726,6 +1726,11 @@ $contentHandler: ContentHandler for which the slot diff renderer is fetched.
 &$slotDiffRenderer: SlotDiffRenderer to change or replace.
 $context: IContextSource
 
+'GetUserBlock': Modify the block found by the block manager. This may be a
+single block or a composite block made from multiple blocks; the original
+blocks can be seen using CompositeBlock::getOriginalBlocks()
+&$block: AbstractBlock object
+
 'getUserPermissionsErrors': Add a permissions error when permissions errors are
 checked for. Use instead of userCan for most cases. Return false if the user
 can't do it, and populate $result with the reason in the form of
@@ -3700,7 +3705,7 @@ $newUGMs: An associative array (group name => UserGroupMembership object) of
 the user's current group memberships.
 
 'UserIsBlockedFrom': Check if a user is blocked from a specific page (for
-specific block exemptions).
+specific block exemptions if a user is already blocked).
 $user: User in question
 $title: Title of the page in question
 &$blocked: Out-param, whether or not the user is blocked from that page.

@@ -96,6 +96,7 @@ abstract class AbstractBlock {
 	 *     reason string        Reason of the block
 	 *     timestamp string     The time at which the block comes into effect
 	 *     byText string        Username of the blocker (for foreign users)
+	 *     hideName bool        Hide the target user name
 	 */
 	public function __construct( array $options = [] ) {
 		$defaults = [
@@ -104,6 +105,7 @@ abstract class AbstractBlock {
 			'reason'          => '',
 			'timestamp'       => '',
 			'byText'          => '',
+			'hideName'        => false,
 		];
 
 		$options += $defaults;
@@ -120,6 +122,7 @@ abstract class AbstractBlock {
 
 		$this->setReason( $options['reason'] );
 		$this->setTimestamp( wfTimestamp( TS_MW, $options['timestamp'] ) );
+		$this->setHideName( (bool)$options['hideName'] );
 	}
 
 	/**

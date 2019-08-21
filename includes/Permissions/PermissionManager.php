@@ -22,6 +22,7 @@ namespace MediaWiki\Permissions;
 use Action;
 use Exception;
 use Hooks;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -54,35 +55,33 @@ class PermissionManager {
 	/** @var string Does cheap and expensive checks, using the master as needed */
 	const RIGOR_SECURE = 'secure';
 
+	/**
+	 * TODO Make this const when HHVM support is dropped (T192166)
+	 *
+	 * @since 1.34
+	 * @var array
+	 */
+	public static $constructorOptions = [
+		'WhitelistRead',
+		'WhitelistReadRegexp',
+		'EmailConfirmToEdit',
+		'BlockDisablesLogin',
+		'GroupPermissions',
+		'RevokePermissions',
+		'AvailableRights'
+	];
+
+	/** @var ServiceOptions */
+	private $options;
+
 	/** @var SpecialPageFactory */
 	private $specialPageFactory;
 
 	/** @var RevisionLookup */
 	private $revisionLookup;
 
-	/** @var string[] List of pages names anonymous user may see */
-	private $whitelistRead;
-
-	/** @var string[] Whitelists publicly readable titles with regular expressions */
-	private $whitelistReadRegexp;
-
-	/** @var bool Require users to confirm email address before they can edit */
-	private $emailConfirmToEdit;
-
-	/** @var bool If set to true, blocked users will no longer be allowed to log in */
-	private $blockDisablesLogin;
-
 	/** @var NamespaceInfo */
 	private $nsInfo;
-
-	/** @var string[][] Access rights for groups and users in these groups */
-	private $groupPermissions;
-
-	/** @var string[][] Permission keys revoked from users in each group */
-	private $revokePermissions;
-
-	/** @var string[] A list of available rights, in addition to the ones defined by the core */
-	private $availableRights;
 
 	/** @var string[] Cached results of getAllRights() */
 	private $allRights = false;
@@ -189,38 +188,21 @@ class PermissionManager {
 	];
 
 	/**
+	 * @param ServiceOptions $options
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param RevisionLookup $revisionLookup
-	 * @param string[] $whitelistRead
-	 * @param string[] $whitelistReadRegexp
-	 * @param bool $emailConfirmToEdit
-	 * @param bool $blockDisablesLogin
-	 * @param string[][] $groupPermissions
-	 * @param string[][] $revokePermissions
-	 * @param string[] $availableRights
 	 * @param NamespaceInfo $nsInfo
 	 */
 	public function __construct(
+		ServiceOptions $options,
 		SpecialPageFactory $specialPageFactory,
 		RevisionLookup $revisionLookup,
-		$whitelistRead,
-		$whitelistReadRegexp,
-		$emailConfirmToEdit,
-		$blockDisablesLogin,
-		$groupPermissions,
-		$revokePermissions,
-		$availableRights,
 		NamespaceInfo $nsInfo
 	) {
+		$options->assertRequiredOptions( self::$constructorOptions );
+		$this->options = $options;
 		$this->specialPageFactory = $specialPageFactory;
 		$this->revisionLookup = $revisionLookup;
-		$this->whitelistRead = $whitelistRead;
-		$this->whitelistReadRegexp = $whitelistReadRegexp;
-		$this->emailConfirmToEdit = $emailConfirmToEdit;
-		$this->blockDisablesLogin = $blockDisablesLogin;
-		$this->groupPermissions = $groupPermissions;
-		$this->revokePermissions = $revokePermissions;
-		$this->availableRights = $availableRights;
 		$this->nsInfo = $nsInfo;
 	}
 
@@ -289,7 +271,8 @@ class PermissionManager {
 	}
 
 	/**
-	 * Check if user is blocked from editing a particular article
+	 * Check if user is blocked from editing a particular article. If the user does not
+	 * have a block, this will return false.
 	 *
 	 * @param User $user
 	 * @param LinkTarget $page Title to check
@@ -298,27 +281,29 @@ class PermissionManager {
 	 * @return bool
 	 */
 	public function isBlockedFrom( User $user, LinkTarget $page, $fromReplica = false ) {
-		$blocked = $user->isHidden();
+		$block = $user->getBlock( $fromReplica );
+		if ( !$block ) {
+			return false;
+		}
 
 		// TODO: remove upon further migration to LinkTarget
 		$title = Title::newFromLinkTarget( $page );
 
+		$blocked = $user->isHidden();
 		if ( !$blocked ) {
-			$block = $user->getBlock( $fromReplica );
-			if ( $block ) {
-				// Special handling for a user's own talk page. The block is not aware
-				// of the user, so this must be done here.
-				if ( $title->equals( $user->getTalkPage() ) ) {
-					$blocked = $block->appliesToUsertalk( $title );
-				} else {
-					$blocked = $block->appliesToTitle( $title );
-				}
+			// Special handling for a user's own talk page. The block is not aware
+			// of the user, so this must be done here.
+			if ( $title->equals( $user->getTalkPage() ) ) {
+				$blocked = $block->appliesToUsertalk( $title );
+			} else {
+				$blocked = $block->appliesToTitle( $title );
 			}
 		}
 
 		// only for the purpose of the hook. We really don't need this here.
 		$allowUsertalk = $user->isAllowUsertalk();
 
+		// Allow extensions to let a blocked user access a particular page
 		Hooks::run( 'UserIsBlockedFrom', [ $user, $title, &$blocked, &$allowUsertalk ] );
 
 		return $blocked;
@@ -500,6 +485,7 @@ class PermissionManager {
 		// TODO: remove when LinkTarget usage will expand further
 		$title = Title::newFromLinkTarget( $page );
 
+		$whiteListRead = $this->options->get( 'WhitelistRead' );
 		$whitelisted = false;
 		if ( $this->isEveryoneAllowed( 'read' ) ) {
 			# Shortcut for public wikis, allows skipping quite a bit of code
@@ -514,20 +500,20 @@ class PermissionManager {
 			# Always grant access to the login page.
 			# Even anons need to be able to log in.
 			$whitelisted = true;
-		} elseif ( is_array( $this->whitelistRead ) && count( $this->whitelistRead ) ) {
+		} elseif ( is_array( $whiteListRead ) && count( $whiteListRead ) ) {
 			# Time to check the whitelist
 			# Only do these checks is there's something to check against
 			$name = $title->getPrefixedText();
 			$dbName = $title->getPrefixedDBkey();
 
 			// Check for explicit whitelisting with and without underscores
-			if ( in_array( $name, $this->whitelistRead, true )
-				 || in_array( $dbName, $this->whitelistRead, true ) ) {
+			if ( in_array( $name, $whiteListRead, true )
+				 || in_array( $dbName, $whiteListRead, true ) ) {
 				$whitelisted = true;
 			} elseif ( $title->getNamespace() == NS_MAIN ) {
 				# Old settings might have the title prefixed with
 				# a colon for main-namespace pages
-				if ( in_array( ':' . $name, $this->whitelistRead ) ) {
+				if ( in_array( ':' . $name, $whiteListRead ) ) {
 					$whitelisted = true;
 				}
 			} elseif ( $title->isSpecialPage() ) {
@@ -537,18 +523,19 @@ class PermissionManager {
 					$this->specialPageFactory->resolveAlias( $name );
 				if ( $name ) {
 					$pure = SpecialPage::getTitleFor( $name )->getPrefixedText();
-					if ( in_array( $pure, $this->whitelistRead, true ) ) {
+					if ( in_array( $pure, $whiteListRead, true ) ) {
 						$whitelisted = true;
 					}
 				}
 			}
 		}
 
-		if ( !$whitelisted && is_array( $this->whitelistReadRegexp )
-			 && !empty( $this->whitelistReadRegexp ) ) {
+		$whitelistReadRegexp = $this->options->get( 'WhitelistReadRegexp' );
+		if ( !$whitelisted && is_array( $whitelistReadRegexp )
+			 && !empty( $whitelistReadRegexp ) ) {
 			$name = $title->getPrefixedText();
 			// Check for regex whitelisting
-			foreach ( $this->whitelistReadRegexp as $listItem ) {
+			foreach ( $whitelistReadRegexp as $listItem ) {
 				if ( preg_match( $listItem, $name ) ) {
 					$whitelisted = true;
 					break;
@@ -636,11 +623,11 @@ class PermissionManager {
 		}
 
 		// Optimize for a very common case
-		if ( $action === 'read' && !$this->blockDisablesLogin ) {
+		if ( $action === 'read' && !$this->options->get( 'BlockDisablesLogin' ) ) {
 			return $errors;
 		}
 
-		if ( $this->emailConfirmToEdit
+		if ( $this->options->get( 'EmailConfirmToEdit' )
 			 && !$user->isEmailConfirmed()
 			 && $action === 'edit'
 		) {
@@ -1246,7 +1233,7 @@ class PermissionManager {
 
 			if (
 				$user->isLoggedIn() &&
-				$this->blockDisablesLogin &&
+				$this->options->get( 'BlockDisablesLogin' ) &&
 				$user->getBlock()
 			) {
 				$anon = new User;
@@ -1296,10 +1283,10 @@ class PermissionManager {
 	 * @return bool
 	 */
 	public function groupHasPermission( $group, $role ) {
-		return isset( $this->groupPermissions[$group][$role] ) &&
-			   $this->groupPermissions[$group][$role] &&
-			   !( isset( $this->revokePermissions[$group][$role] ) &&
-				  $this->revokePermissions[$group][$role] );
+		$groupPermissions = $this->options->get( 'GroupPermissions' );
+		$revokePermissions = $this->options->get( 'RevokePermissions' );
+		return isset( $groupPermissions[$group][$role] ) && $groupPermissions[$group][$role] &&
+			   !( isset( $revokePermissions[$group][$role] ) && $revokePermissions[$group][$role] );
 	}
 
 	/**
@@ -1314,17 +1301,17 @@ class PermissionManager {
 		$rights = [];
 		// grant every granted permission first
 		foreach ( $groups as $group ) {
-			if ( isset( $this->groupPermissions[$group] ) ) {
+			if ( isset( $this->options->get( 'GroupPermissions' )[$group] ) ) {
 				$rights = array_merge( $rights,
 					// array_filter removes empty items
-					array_keys( array_filter( $this->groupPermissions[$group] ) ) );
+					array_keys( array_filter( $this->options->get( 'GroupPermissions' )[$group] ) ) );
 			}
 		}
 		// now revoke the revoked permissions
 		foreach ( $groups as $group ) {
-			if ( isset( $this->revokePermissions[$group] ) ) {
+			if ( isset( $this->options->get( 'RevokePermissions' )[$group] ) ) {
 				$rights = array_diff( $rights,
-					array_keys( array_filter( $this->revokePermissions[$group] ) ) );
+					array_keys( array_filter( $this->options->get( 'RevokePermissions' )[$group] ) ) );
 			}
 		}
 		return array_unique( $rights );
@@ -1340,7 +1327,7 @@ class PermissionManager {
 	 */
 	public function getGroupsWithPermission( $role ) {
 		$allowedGroups = [];
-		foreach ( array_keys( $this->groupPermissions ) as $group ) {
+		foreach ( array_keys( $this->options->get( 'GroupPermissions' ) ) as $group ) {
 			if ( $this->groupHasPermission( $group, $role ) ) {
 				$allowedGroups[] = $group;
 			}
@@ -1370,14 +1357,14 @@ class PermissionManager {
 			return $this->cachedRights[$right];
 		}
 
-		if ( !isset( $this->groupPermissions['*'][$right] )
-			 || !$this->groupPermissions['*'][$right] ) {
+		if ( !isset( $this->options->get( 'GroupPermissions' )['*'][$right] )
+			 || !$this->options->get( 'GroupPermissions' )['*'][$right] ) {
 			$this->cachedRights[$right] = false;
 			return false;
 		}
 
 		// If it's revoked anywhere, then everyone doesn't have it
-		foreach ( $this->revokePermissions as $rights ) {
+		foreach ( $this->options->get( 'RevokePermissions' ) as $rights ) {
 			if ( isset( $rights[$right] ) && $rights[$right] ) {
 				$this->cachedRights[$right] = false;
 				return false;
@@ -1415,10 +1402,10 @@ class PermissionManager {
 	 */
 	public function getAllPermissions() {
 		if ( $this->allRights === false ) {
-			if ( count( $this->availableRights ) ) {
+			if ( count( $this->options->get( 'AvailableRights' ) ) ) {
 				$this->allRights = array_unique( array_merge(
 					$this->coreRights,
-					$this->availableRights
+					$this->options->get( 'AvailableRights' )
 				) );
 			} else {
 				$this->allRights = $this->coreRights;
