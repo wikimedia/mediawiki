@@ -453,6 +453,7 @@ because of Phabricator reports.
 * MessageCache::singleton() is deprecated. Use
   MediaWikiServices::getMessageCache().
 * Constructing MovePage directly is deprecated. Use MovePageFactory.
+* TempFSFile::factory() has been deprecated. Use TempFSFileFactory instead.
 
 === Other changes in 1.34 ===
 * …

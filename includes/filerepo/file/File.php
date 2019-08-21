@@ -1352,7 +1352,8 @@ abstract class File implements IDBAccessObject {
 	 */
 	protected function makeTransformTmpFile( $thumbPath ) {
 		$thumbExt = FileBackend::extensionFromPath( $thumbPath );
-		return TempFSFile::factory( 'transform_', $thumbExt, wfTempDir() );
+		return MediaWikiServices::getInstance()->getTempFSFileFactory()
+			->newTempFSFile( 'transform_', $thumbExt );
 	}
 
 	/**
