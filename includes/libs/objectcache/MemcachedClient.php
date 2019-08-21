@@ -417,25 +417,6 @@ class MemcachedClient {
 		return false;
 	}
 
-	/**
-	 * @param string $key
-	 * @param int $timeout
-	 * @return bool
-	 */
-	public function lock( $key, $timeout = 0 ) {
-		/* stub */
-		return true;
-	}
-
-	/**
-	 * @param string $key
-	 * @return bool
-	 */
-	public function unlock( $key ) {
-		/* stub */
-		return true;
-	}
-
 	// }}}
 	// {{{ disconnect_all()
 
