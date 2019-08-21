@@ -299,7 +299,7 @@ class Names {
 		'mk' => 'македонски', # Macedonian
 		'ml' => 'മലയാളം', # Malayalam
 		'mn' => 'монгол', # Halh Mongolian (Cyrillic) (ISO 639-3: khk)
-		'mni' => 'মেইতেই লোন্', # Manipuri/Meitei
+		'mni' => 'ꯃꯤꯇꯩ ꯂꯣꯟ', # Manipuri/Meitei
 		'mnw' => 'ဘာသာ မန်', # Mon, T201583
 		'mo' => 'молдовеняскэ', # Moldovan, deprecated (ISO 639-2: ro-Cyrl-MD)
 		'mr' => 'मराठी', # Marathi
