@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MediaWikiServices;
 
 /**
  * A special page that lists existing blocks
@@ -139,7 +140,10 @@ class SpecialBlockList extends SpecialPage {
 		$conds = [];
 		$db = $this->getDB();
 		# Is the user allowed to see hidden blocks?
-		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
+		if ( !MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->userHasRight( $this->getUser(), 'hideuser' )
+		) {
 			$conds['ipb_deleted'] = 0;
 		}
 

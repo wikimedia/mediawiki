@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Handles searching prefixes of user names
  *
@@ -46,7 +48,10 @@ class UserNamePrefixSearch {
 		$joinConds = [];
 
 		// Filter out hidden user names
-		if ( $audience === 'public' || !$audience->isAllowed( 'hideuser' ) ) {
+		if ( $audience === 'public' || !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $audience, 'hideuser' )
+		) {
 			$tables[] = 'ipblocks';
 			$cond['ipb_deleted'] = [ 0, null ];
 			$joinConds['ipblocks'] = [ 'LEFT JOIN', 'user_id=ipb_user' ];

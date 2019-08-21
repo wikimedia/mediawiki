@@ -233,7 +233,10 @@ class LogEventsList extends ContextSource {
 		foreach ( LogPage::validTypes() as $type ) {
 			$page = new LogPage( $type );
 			$restriction = $page->getRestriction();
-			if ( $this->getUser()->isAllowed( $restriction ) ) {
+			if ( MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $this->getUser(), $restriction )
+			) {
 				$typesByName[$type] = $page->getName()->text();
 			}
 		}
@@ -450,11 +453,12 @@ class LogEventsList extends ContextSource {
 		}
 
 		$del = '';
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		// Don't show useless checkbox to people who cannot hide log entries
-		if ( $user->isAllowed( 'deletedhistory' ) ) {
-			$canHide = $user->isAllowed( 'deletelogentry' );
-			$canViewSuppressedOnly = $user->isAllowed( 'viewsuppressed' ) &&
-				!$user->isAllowed( 'suppressrevision' );
+		if ( $permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
+			$canHide = $permissionManager->userHasRight( $user, 'deletelogentry' );
+			$canViewSuppressedOnly = $permissionManager->userHasRight( $user, 'viewsuppressed' ) &&
+				!$permissionManager->userHasRight( $user, 'suppressrevision' );
 			$entryIsSuppressed = self::isDeleted( $row, LogPage::DELETED_RESTRICTED );
 			$canViewThisSuppressedEntry = $canViewSuppressedOnly && $entryIsSuppressed;
 			if ( $row->log_deleted || $canHide ) {
@@ -508,7 +512,9 @@ class LogEventsList extends ContextSource {
 				in_array( $row->log_action, $action ) : $row->log_action == $action;
 			if ( $match && $right ) {
 				global $wgUser;
-				$match = $wgUser->isAllowed( $right );
+				$match = MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->userHasRight( $wgUser, $right );
 			}
 		}
 
@@ -572,7 +578,10 @@ class LogEventsList extends ContextSource {
 			$user = $wgUser;
 		}
 		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogRestrictions' );
-		if ( isset( $logRestrictions[$type] ) && !$user->isAllowed( $logRestrictions[$type] ) ) {
+		if ( isset( $logRestrictions[$type] ) && !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $user, $logRestrictions[$type] )
+		) {
 			return false;
 		}
 		return true;
@@ -783,7 +792,10 @@ class LogEventsList extends ContextSource {
 
 		// Don't show private logs to unprivileged users
 		foreach ( $wgLogRestrictions as $logType => $right ) {
-			if ( $audience == 'public' || !$user->isAllowed( $right ) ) {
+			if ( $audience == 'public' || !MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->userHasRight( $user, $right )
+			) {
 				$hiddenLogs[] = $logType;
 			}
 		}

@@ -185,7 +185,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		if (
 			!$this->including() &&
 			$this->getUser()->isLoggedIn() &&
-			$this->getUser()->isAllowed( 'viewmywatchlist' )
+			MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $this->getUser(), 'viewmywatchlist' )
 		) {
 			$this->registerFiltersFromDefinitions( [ $this->watchlistFilterGroupDefinition ] );
 			$watchlistGroup = $this->getFilterGroup( 'watchlist' );
@@ -279,7 +281,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$join_conds = array_merge( $join_conds, $rcQuery['joins'] );
 
 		// JOIN on watchlist for users
-		if ( $user->isLoggedIn() && $user->isAllowed( 'viewmywatchlist' ) ) {
+		if ( $user->isLoggedIn() && MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $user, 'viewmywatchlist' )
+		) {
 			$tables[] = 'watchlist';
 			$fields[] = 'wl_user';
 			$fields[] = 'wl_notificationtimestamp';

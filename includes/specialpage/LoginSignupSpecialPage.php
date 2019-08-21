@@ -975,7 +975,11 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			}
 		}
 		if ( !$this->isSignup() && $this->showExtraInformation() ) {
-			$passwordReset = new PasswordReset( $this->getConfig(), AuthManager::singleton() );
+			$passwordReset = new PasswordReset(
+				$this->getConfig(),
+				AuthManager::singleton(),
+				MediaWikiServices::getInstance()->getPermissionManager()
+			);
 			if ( $passwordReset->isAllowed( $this->getUser() )->isGood() ) {
 				$fieldDefinitions['passwordReset'] = [
 					'type' => 'info',
@@ -1072,7 +1076,10 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	private function showCreateAccountLink() {
 		if ( $this->isSignup() ) {
 			return true;
-		} elseif ( $this->getUser()->isAllowed( 'createaccount' ) ) {
+		} elseif ( MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->userHasRight( $this->getUser(), 'createaccount' )
+		) {
 			return true;
 		} else {
 			return false;

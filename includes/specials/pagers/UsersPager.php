@@ -23,6 +23,8 @@
  * @ingroup Pager
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This class is used to get a list of user. The ones with specials
  * rights (sysop, bureaucrat, developer) will have them displayed
@@ -123,7 +125,10 @@ class UsersPager extends AlphabeticPager {
 		$conds = [];
 
 		// Don't show hidden names
-		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
+		if ( !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $this->getUser(), 'hideuser' )
+		) {
 			$conds[] = 'ipb_deleted IS NULL OR ipb_deleted = 0';
 		}
 

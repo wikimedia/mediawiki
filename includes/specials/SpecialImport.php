@@ -135,18 +135,19 @@ class SpecialImport extends SpecialPage {
 		}
 
 		$user = $this->getUser();
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		if ( !$user->matchEditToken( $request->getVal( 'editToken' ) ) ) {
 			$source = Status::newFatal( 'import-token-mismatch' );
 		} elseif ( $this->sourceName === 'upload' ) {
 			$isUpload = true;
 			$this->usernamePrefix = $this->fullInterwikiPrefix = $request->getVal( 'usernamePrefix' );
-			if ( $user->isAllowed( 'importupload' ) ) {
+			if ( $permissionManager->userHasRight( $user, 'importupload' ) ) {
 				$source = ImportStreamSource::newFromUpload( "xmlimport" );
 			} else {
 				throw new PermissionsError( 'importupload' );
 			}
 		} elseif ( $this->sourceName === 'interwiki' ) {
-			if ( !$user->isAllowed( 'import' ) ) {
+			if ( !$permissionManager->userHasRight( $user, 'import' ) ) {
 				throw new PermissionsError( 'import' );
 			}
 			$this->interwiki = $this->fullInterwikiPrefix = $request->getVal( 'interwiki' );
@@ -325,10 +326,11 @@ class SpecialImport extends SpecialPage {
 	private function showForm() {
 		$action = $this->getPageTitle()->getLocalURL( [ 'action' => 'submit' ] );
 		$user = $this->getUser();
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$out = $this->getOutput();
 		$this->addHelpLink( 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Help:Import', true );
 
-		if ( $user->isAllowed( 'importupload' ) ) {
+		if ( $permissionManager->userHasRight( $user, 'importupload' ) ) {
 			$mappingSelection = $this->getMappingFormPart( 'upload' );
 			$out->addHTML(
 				Xml::fieldset( $this->msg( 'import-upload' )->text() ) .
@@ -401,7 +403,7 @@ class SpecialImport extends SpecialPage {
 			$out->addWikiMsg( 'importnosources' );
 		}
 
-		if ( $user->isAllowed( 'import' ) && !empty( $this->importSources ) ) {
+		if ( $permissionManager->userHasRight( $user, 'import' ) && !empty( $this->importSources ) ) {
 			# Show input field for import depth only if $wgExportMaxLinkDepth > 0
 			$importDepth = '';
 			if ( $this->getConfig()->get( 'ExportMaxLinkDepth' ) > 0 ) {

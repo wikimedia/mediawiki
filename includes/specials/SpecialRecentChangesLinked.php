@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This is to display changes made to all articles linked in an article.
  *
@@ -91,7 +93,10 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 
 		// left join with watchlist table to highlight watched rows
 		$uid = $this->getUser()->getId();
-		if ( $uid && $this->getUser()->isAllowed( 'viewmywatchlist' ) ) {
+		if ( $uid && MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $this->getUser(), 'viewmywatchlist' )
+		) {
 			$tables[] = 'watchlist';
 			$select[] = 'wl_user';
 			$join_conds['watchlist'] = [ 'LEFT JOIN', [

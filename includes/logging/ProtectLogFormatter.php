@@ -101,7 +101,10 @@ class ProtectLogFormatter extends LogFormatter {
 		];
 
 		// Show change protection link
-		if ( $this->context->getUser()->isAllowed( 'protect' ) ) {
+		if ( !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $this->context->getUser(), 'protect' )
+		) {
 			$links[] = $linkRenderer->makeKnownLink(
 				$title,
 				$this->msg( 'protect_change' )->text(),

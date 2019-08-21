@@ -1531,7 +1531,9 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		if ( $this->options['changed']
 			&& $title->getNamespace() == NS_USER_TALK
 			&& $shortTitle != $legacyUser->getTitleKey()
-			&& !( $this->revision->isMinor() && $legacyUser->isAllowed( 'nominornewtalk' ) )
+			&& !( $this->revision->isMinor() && MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->userHasRight( $legacyUser, 'nominornewtalk' ) )
 		) {
 			$recipient = User::newFromName( $shortTitle, false );
 			if ( !$recipient ) {

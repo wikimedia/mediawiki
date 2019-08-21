@@ -327,7 +327,9 @@ class SpecialExport extends SpecialPage {
 	 * @return bool
 	 */
 	private function userCanOverrideExportDepth() {
-		return $this->getUser()->isAllowed( 'override-export-depth' );
+		return MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->userHasRight( $this->getUser(), 'override-export-depth' );
 	}
 
 	/**

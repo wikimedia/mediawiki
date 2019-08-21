@@ -129,7 +129,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			$this->ids
 		);
 
-		$this->isAllowed = $user->isAllowed( 'changetags' );
+		$this->isAllowed = $this->permissionManager->userHasRight( $user, 'changetags' );
 
 		$this->reason = $request->getVal( 'wpReason' );
 		// We need a target page!

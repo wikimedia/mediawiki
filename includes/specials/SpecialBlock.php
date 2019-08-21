@@ -25,6 +25,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 
 /**
  * A special page that allows users with 'block' right to block users from
@@ -269,7 +270,10 @@ class SpecialBlock extends FormSpecialPage {
 		];
 
 		# Allow some users to hide name from block log, blocklist and listusers
-		if ( $user->isAllowed( 'hideuser' ) ) {
+		if ( MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->userHasRight( $user, 'hideuser' )
+		) {
 			$a['HideUser'] = [
 				'type' => 'check',
 				'label-message' => 'ipbhidename',
@@ -363,7 +367,10 @@ class SpecialBlock extends FormSpecialPage {
 
 			// If the username was hidden (ipb_deleted == 1), don't show the reason
 			// unless this user also has rights to hideuser: T37839
-			if ( !$block->getHideName() || $this->getUser()->isAllowed( 'hideuser' ) ) {
+			if ( !$block->getHideName() || MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->userHasRight( $this->getUser(), 'hideuser' )
+			) {
 				$fields['Reason']['default'] = $block->getReason();
 			} else {
 				$fields['Reason']['default'] = '';
@@ -545,7 +552,8 @@ class SpecialBlock extends FormSpecialPage {
 		$user = $this->getUser();
 
 		# Link to edit the block dropdown reasons, if applicable
-		if ( $user->isAllowed( 'editinterface' ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( $permissionManager->userHasRight( $user, 'editinterface' ) ) {
 			$links[] = $linkRenderer->makeKnownLink(
 				$this->msg( 'ipbreason-dropdown' )->inContentLanguage()->getTitle(),
 				$this->msg( 'ipb-edit-dropdown' )->text(),
@@ -579,7 +587,7 @@ class SpecialBlock extends FormSpecialPage {
 			$text .= $out;
 
 			# Add suppression block entries if allowed
-			if ( $user->isAllowed( 'suppressionlog' ) ) {
+			if ( $permissionManager->userHasRight( $user, 'suppressionlog' ) ) {
 				LogEventsList::showLogExtract(
 					$out,
 					'suppress',
@@ -828,7 +836,10 @@ class SpecialBlock extends FormSpecialPage {
 		}
 
 		if ( $data['HideUser'] ) {
-			if ( !$performer->isAllowed( 'hideuser' ) ) {
+			if ( !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $performer, 'hideuser' )
+			) {
 				# this codepath is unreachable except by a malicious user spoofing forms,
 				# or by race conditions (user has hideuser and block rights, loads block form,
 				# and loses hideuser rights before submission); so need to fail completely
@@ -938,7 +949,10 @@ class SpecialBlock extends FormSpecialPage {
 				}
 				# If the name was hidden and the blocking user cannot hide
 				# names, then don't allow any block changes...
-				if ( $currentBlock->getHideName() && !$performer->isAllowed( 'hideuser' ) ) {
+				if ( $currentBlock->getHideName() && !MediaWikiServices::getInstance()
+						->getPermissionManager()
+						->userHasRight( $performer, 'hideuser' )
+				) {
 					return [ 'cant-see-hidden-user' ];
 				}
 
@@ -1106,13 +1120,15 @@ class SpecialBlock extends FormSpecialPage {
 
 	/**
 	 * Can we do an email block?
-	 * @param User $user The sysop wanting to make a block
+	 * @param UserIdentity $user The sysop wanting to make a block
 	 * @return bool
 	 */
-	public static function canBlockEmail( $user ) {
+	public static function canBlockEmail( UserIdentity $user ) {
 		global $wgEnableUserEmail, $wgSysopEmailBans;
 
-		return ( $wgEnableUserEmail && $wgSysopEmailBans && $user->isAllowed( 'blockemail' ) );
+		return ( $wgEnableUserEmail && $wgSysopEmailBans && MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $user, 'blockemail' ) );
 	}
 
 	/**
@@ -1138,7 +1154,10 @@ class SpecialBlock extends FormSpecialPage {
 		if ( $performer->getBlock() ) {
 			if ( $target instanceof User && $target->getId() == $performer->getId() ) {
 				# User is trying to unblock themselves
-				if ( $performer->isAllowed( 'unblockself' ) ) {
+				if ( MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->userHasRight( $performer, 'unblockself' )
+				) {
 					return true;
 					# User blocked themselves and is now trying to reverse it
 				} elseif ( $performer->blockedBy() === $performer->getName() ) {
