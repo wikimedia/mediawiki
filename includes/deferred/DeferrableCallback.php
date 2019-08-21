@@ -9,5 +9,5 @@ interface DeferrableCallback {
 	/**
 	 * @return string Originating method name
 	 */
-	function getOrigin();
+	public function getOrigin();
 }

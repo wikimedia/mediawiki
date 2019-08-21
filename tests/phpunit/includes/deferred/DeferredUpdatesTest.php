@@ -373,4 +373,27 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 		DeferredUpdates::tryOpportunisticExecute( 'run' );
 		$this->assertEquals( [ 'oti', 1, 2 ], $calls );
 	}
+
+	/**
+	 * @covers DeferredUpdates::attemptUpdate
+	 */
+	public function testCallbackUpdateRounds() {
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+
+		$fname = __METHOD__;
+		$called = false;
+		DeferredUpdates::attemptUpdate(
+			new MWCallableUpdate(
+				function () use ( $lbFactory, $fname, &$called ) {
+					$lbFactory->flushReplicaSnapshots( $fname );
+					$lbFactory->commitMasterChanges( $fname );
+					$called = true;
+				},
+				$fname
+			),
+			$lbFactory
+		);
+
+		$this->assertTrue( $called, "Callback ran" );
+	}
 }

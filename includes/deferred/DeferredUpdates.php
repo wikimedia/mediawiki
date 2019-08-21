@@ -362,11 +362,16 @@ class DeferredUpdates {
 			$update->setTransactionTicket( $ticket );
 		}
 
-		$fnameTrxOwner = get_class( $update ) . '::doUpdate';
+		// Designate $update::doUpdate() as the write round owner
+		$fnameTrxOwner = ( $update instanceof DeferrableCallback )
+			? $update->getOrigin()
+			: get_class( $update ) . '::doUpdate';
+		// Determine whether the write round will be explicit or implicit
 		$useExplicitTrxRound = !(
 			$update instanceof TransactionRoundAwareUpdate &&
 			$update->getTransactionRoundRequirement() == $update::TRX_ROUND_ABSENT
 		);
+
 		// Flush any pending changes left over from an implicit transaction round
 		if ( $useExplicitTrxRound ) {
 			$lbFactory->beginMasterChanges( $fnameTrxOwner ); // new explicit round
