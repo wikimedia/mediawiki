@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Permissions;
 use Action;
 use ContentHandler;
 use FauxRequest;
+use LoggedServiceOptions;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
@@ -14,6 +15,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
+use TestAllServiceOptionsUsed;
 use Wikimedia\ScopedCallback;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\TestUtils;
@@ -30,6 +32,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MediaWiki\Permissions\PermissionManager
  */
 class PermissionManagerTest extends MediaWikiLangTestCase {
+	use TestAllServiceOptionsUsed;
 
 	/**
 	 * @var string
@@ -725,15 +728,21 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 				}
 			} );
 		$permissionManager = new PermissionManager(
+			new LoggedServiceOptions(
+				self::$serviceOptionsAccessLog,
+				PermissionManager::$constructorOptions,
+				[
+					'WhitelistRead' => [],
+					'WhitelistReadRegexp' => [],
+					'EmailConfirmToEdit' => false,
+					'BlockDisablesLogin' => false,
+					'GroupPermissions' => [],
+					'RevokePermissions' => [],
+					'AvailableRights' => []
+				]
+			),
 			$services->getSpecialPageFactory(),
 			$revisionLookup,
-			[],
-			[],
-			false,
-			false,
-			[],
-			[],
-			[],
 			MediaWikiServices::getInstance()->getNamespaceInfo()
 		);
 		$this->setService( 'PermissionManager', $permissionManager );
