@@ -431,6 +431,8 @@ because of Phabricator reports.
   engines.
 * Skin::escapeSearchLink() is deprecated. Use Skin::getSearchLink() or the skin
   template option 'searchaction' instead.
+* Skin::getRevisionId() and Skin::isRevisionCurrent() have been deprecated.
+  Use OutputPage::getRevisionId() and OutputPage::isRevisionCurrent() instead.
 * LoadBalancer::haveIndex() and LoadBalancer::isNonZeroLoad() have
   been deprecated.
 * FileBackend::getWikiId() has been deprecated.

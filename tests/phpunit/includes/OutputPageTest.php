@@ -3030,6 +3030,35 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @param int $titleLastRevision Last Title revision to set
+	 * @param int $outputRevision Revision stored in OutputPage
+	 * @param bool $expectedResult Expected result of $output->isRevisionCurrent call
+	 * @covers OutputPage::isRevisionCurrent
+	 * @dataProvider provideIsRevisionCurrent
+	 */
+	public function testIsRevisionCurrent( $titleLastRevision, $outputRevision, $expectedResult ) {
+		$titleMock = $this->getMock( Title::class, [], [], '', false );
+		$titleMock->expects( $this->any() )
+			->method( 'getLatestRevID' )
+			->willReturn( $titleLastRevision );
+
+		$output = $this->newInstance( [], null, [ 'notitle' => true ] );
+		$output->setTitle( $titleMock );
+		$output->setRevisionId( $outputRevision );
+		$this->assertEquals( $expectedResult, $output->isRevisionCurrent() );
+	}
+
+	public function provideIsRevisionCurrent() {
+		return [
+			[ 10, null, true ],
+			[ 42, 42, true ],
+			[ null, 0, true ],
+			[ 42, 47, false ],
+			[ 47, 42, false ]
+		];
+	}
+
+	/**
 	 * @return OutputPage
 	 */
 	private function newInstance( $config = [], WebRequest $request = null, $options = [] ) {
