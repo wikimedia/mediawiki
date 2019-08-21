@@ -110,7 +110,7 @@ class ThumbnailImage extends MediaTransformOutput {
 	 * @return string
 	 */
 	function toHtml( $options = [] ) {
-		global $wgPriorityHints, $wgPriorityHintsRatio, $wgElementTiming;
+		global $wgPriorityHints, $wgPriorityHintsRatio, $wgElementTiming, $wgNativeImageLazyLoading;
 
 		if ( func_num_args() == 2 ) {
 			throw new MWException( __METHOD__ . ' called in the old style' );
@@ -125,6 +125,10 @@ class ThumbnailImage extends MediaTransformOutput {
 			'src' => $this->url,
 			'decoding' => 'async',
 		];
+
+		if ( $wgNativeImageLazyLoading ) {
+			$attribs['loading'] = 'lazy';
+		}
 
 		$elementTimingName = 'thumbnail';
 
