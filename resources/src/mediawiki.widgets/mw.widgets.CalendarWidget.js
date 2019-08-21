@@ -177,6 +177,7 @@
 		switch ( this.displayLayer ) {
 			case 'month':
 				this.labelButton.setLabel( this.moment.format( 'MMMM YYYY' ) );
+				this.labelButton.toggle( true );
 				this.upButton.toggle( true );
 
 				// First week displayed is the first week spanned by the month, unless it begins on Monday, in
@@ -216,6 +217,7 @@
 
 			case 'year':
 				this.labelButton.setLabel( this.moment.format( 'YYYY' ) );
+				this.labelButton.toggle( true );
 				this.upButton.toggle( true );
 
 				currentMonth = moment( this.moment ).startOf( 'year' );
@@ -248,6 +250,7 @@
 
 			case 'duodecade':
 				this.labelButton.setLabel( null );
+				this.labelButton.toggle( false );
 				this.upButton.toggle( false );
 
 				currentYear = moment( { year: Math.floor( this.moment.year() / 20 ) * 20 } );
@@ -318,6 +321,8 @@
 			framed: false,
 			classes: [ 'mw-widget-calendarWidget-labelButton' ]
 		} );
+		// FIXME This button is actually not clickable because labelButton covers it,
+		// should it just be a plain icon?
 		this.upButton = new OO.ui.ButtonWidget( {
 			tabIndex: -1,
 			framed: false,
@@ -345,8 +350,8 @@
 		this.$header.append(
 			this.prevButton.$element,
 			this.nextButton.$element,
-			this.upButton.$element,
-			this.labelButton.$element
+			this.labelButton.$element,
+			this.upButton.$element
 		);
 	};
 
