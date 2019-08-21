@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 /**
  * Backend for uploading files from a HTTP resource.
  *
@@ -201,7 +204,8 @@ class UploadFromUrl extends UploadBase {
 	 * @return string Path to the file
 	 */
 	protected function makeTemporaryFile() {
-		$tmpFile = TempFSFile::factory( 'URL', 'urlupload_', wfTempDir() );
+		$tmpFile = MediaWikiServices::getInstance()->getTempFSFileFactory()
+			->newTempFSFile( 'URL', 'urlupload_' );
 		$tmpFile->bind( $this );
 
 		return $tmpFile->getPath();

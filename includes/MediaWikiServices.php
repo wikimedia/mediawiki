@@ -16,6 +16,7 @@ use IBufferingStatsdDataFactory;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockRestrictionStore;
+use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
@@ -962,6 +963,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getStatsdDataFactory() {
 		return $this->getService( 'StatsdDataFactory' );
+	}
+
+	/**
+	 * @since 1.34
+	 * @return TempFSFileFactory
+	 */
+	public function getTempFSFileFactory() : TempFSFileFactory {
+		return $this->getService( 'TempFSFileFactory' );
 	}
 
 	/**

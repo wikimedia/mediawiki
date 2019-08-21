@@ -168,7 +168,7 @@ class MemoryFileBackend extends FileBackendStore {
 			} else {
 				// Create a new temporary file with the same extension...
 				$ext = FileBackend::extensionFromPath( $src );
-				$fsFile = TempFSFile::factory( 'localcopy_', $ext, $this->tmpDirectory );
+				$fsFile = $this->tmpFileFactory->newTempFSFile( 'localcopy_', $ext );
 				if ( $fsFile ) {
 					$bytes = file_put_contents( $fsFile->getPath(), $this->files[$src]['data'] );
 					if ( $bytes !== strlen( $this->files[$src]['data'] ) ) {
