@@ -63,9 +63,10 @@ class ApiMove extends ApiBase {
 			&& !RepoGroup::singleton()->getLocalRepo()->findFile( $toTitle )
 			&& MediaWikiServices::getInstance()->getRepoGroup()->findFile( $toTitle )
 		) {
-			if ( !$params['ignorewarnings'] && $user->isAllowed( 'reupload-shared' ) ) {
+			if ( !$params['ignorewarnings'] &&
+				 $this->getPermissionManager()->userHasRight( $user, 'reupload-shared' ) ) {
 				$this->dieWithError( 'apierror-fileexists-sharedrepo-perm' );
-			} elseif ( !$user->isAllowed( 'reupload-shared' ) ) {
+			} elseif ( !$this->getPermissionManager()->userHasRight( $user, 'reupload-shared' ) ) {
 				$this->dieWithError( 'apierror-cantoverwrite-sharedfile' );
 			}
 		}
@@ -185,7 +186,7 @@ class ApiMove extends ApiBase {
 		}
 
 		// Check suppressredirect permission
-		if ( !$user->isAllowed( 'suppressredirect' ) ) {
+		if ( !$this->getPermissionManager()->userHasRight( $user, 'suppressredirect' ) ) {
 			$createRedirect = true;
 		}
 

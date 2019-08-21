@@ -176,7 +176,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$this->addWhereIf( 'ipb_range_end > ipb_range_start', isset( $show['range'] ) );
 		}
 
-		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
+		if ( !$this->getPermissionManager()->userHasRight( $this->getUser(), 'hideuser' ) ) {
 			$this->addWhereFld( 'ipb_deleted', 0 );
 		}
 

@@ -361,7 +361,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		// Paranoia: avoid brute force searches (T19342)
 		if ( !is_null( $params['user'] ) || !is_null( $params['excludeuser'] ) ) {
-			if ( !$user->isAllowed( 'deletedhistory' ) ) {
+			if ( !$this->getPermissionManager()->userHasRight( $user, 'deletedhistory' ) ) {
 				$bitmask = RevisionRecord::DELETED_USER;
 			} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 				$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
@@ -374,7 +374,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		}
 		if ( $this->getRequest()->getCheck( 'namespace' ) ) {
 			// LogPage::DELETED_ACTION hides the affected page, too.
-			if ( !$user->isAllowed( 'deletedhistory' ) ) {
+			if ( !$this->getPermissionManager()->userHasRight( $user, 'deletedhistory' ) ) {
 				$bitmask = LogPage::DELETED_ACTION;
 			} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 				$bitmask = LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED;

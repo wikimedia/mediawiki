@@ -29,7 +29,6 @@ class ApiImport extends ApiBase {
 
 	public function execute() {
 		$this->useTransactionalTimeLimit();
-
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
@@ -37,7 +36,7 @@ class ApiImport extends ApiBase {
 
 		$isUpload = false;
 		if ( isset( $params['interwikisource'] ) ) {
-			if ( !$user->isAllowed( 'import' ) ) {
+			if ( !$this->getPermissionManager()->userHasRight( $user, 'import' ) ) {
 				$this->dieWithError( 'apierror-cantimport' );
 			}
 			if ( !isset( $params['interwikipage'] ) ) {
@@ -52,7 +51,7 @@ class ApiImport extends ApiBase {
 			$usernamePrefix = $params['interwikisource'];
 		} else {
 			$isUpload = true;
-			if ( !$user->isAllowed( 'importupload' ) ) {
+			if ( !$this->getPermissionManager()->userHasRight( $user, 'importupload' ) ) {
 				$this->dieWithError( 'apierror-cantimport-upload' );
 			}
 			$source = ImportStreamSource::newFromUpload( 'xml' );

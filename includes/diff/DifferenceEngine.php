@@ -401,7 +401,8 @@ class DifferenceEngine extends ContextSource {
 	 * @return string|bool Link HTML or false
 	 */
 	public function deletedLink( $id ) {
-		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( $permissionManager->userHasRight( $this->getUser(), 'deletedhistory' ) ) {
 			$dbr = wfGetDB( DB_REPLICA );
 			$arQuery = Revision::getArchiveQueryInfo();
 			$row = $dbr->selectRow(
@@ -803,7 +804,8 @@ class DifferenceEngine extends ContextSource {
 			// Build the link
 			if ( $rcid ) {
 				$this->getOutput()->preventClickjacking();
-				if ( $user->isAllowed( 'writeapi' ) ) {
+				if ( MediaWikiServices::getInstance()->getPermissionManager()
+						->userHasRight( $user, 'writeapi' ) ) {
 					$this->getOutput()->addModules( 'mediawiki.page.patrol.ajax' );
 				}
 

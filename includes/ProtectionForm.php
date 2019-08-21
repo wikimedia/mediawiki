@@ -553,7 +553,8 @@ class ProtectionForm {
 		}
 		$out .= Xml::closeElement( 'fieldset' );
 
-		if ( $user->isAllowed( 'editinterface' ) ) {
+		if ( MediaWikiServices::getInstance()->getPermissionManager()
+				->userHasRight( $user, 'editinterface' ) ) {
 			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 			$link = $linkRenderer->makeKnownLink(
 				$context->msg( 'protect-dropdown' )->inContentLanguage()->getTitle(),

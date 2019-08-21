@@ -98,7 +98,8 @@ return [
 				BlockManager::$constructorOptions, $services->getMainConfig()
 			),
 			$context->getUser(),
-			$context->getRequest()
+			$context->getRequest(),
+			$services->getPermissionManager()
 		);
 	},
 

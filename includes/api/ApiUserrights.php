@@ -51,7 +51,7 @@ class ApiUserrights extends ApiBase {
 
 		// Deny if the user is blocked and doesn't have the full 'userrights' permission.
 		// This matches what Special:UserRights does for the web UI.
-		if ( !$pUser->isAllowed( 'userrights' ) ) {
+		if ( !$this->getPermissionManager()->userHasRight( $pUser, 'userrights' ) ) {
 			$block = $pUser->getBlock();
 			if ( $block && $block->isSitewide() ) {
 				$this->dieBlocked( $block );

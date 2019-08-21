@@ -2506,8 +2506,9 @@ class Title implements LinkTarget, IDBAccessObject {
 		global $wgNamespaceProtection;
 
 		if ( isset( $wgNamespaceProtection[$this->mNamespace] ) ) {
+			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 			foreach ( (array)$wgNamespaceProtection[$this->mNamespace] as $right ) {
-				if ( $right != '' && !$user->isAllowed( $right ) ) {
+				if ( !$permissionManager->userHasRight( $user, $right ) ) {
 					return true;
 				}
 			}

@@ -23,6 +23,7 @@ namespace MediaWiki\Block;
 use IContextSource;
 use InvalidArgumentException;
 use IP;
+use MediaWiki\MediaWikiServices;
 use RequestContext;
 use Title;
 use User;
@@ -279,8 +280,9 @@ abstract class AbstractBlock {
 		if ( !$res && $blockDisablesLogin ) {
 			// If a block would disable login, then it should
 			// prevent any right that all users cannot do
+			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 			$anon = new User;
-			$res = $anon->isAllowed( $right ) ? $res : true;
+			$res = $permissionManager->userHasRight( $anon, $right ) ? $res : true;
 		}
 
 		return $res;
@@ -339,8 +341,9 @@ abstract class AbstractBlock {
 		if ( !$res && $blockDisablesLogin ) {
 			// If a block would disable login, then it should
 			// prevent any action that all users cannot do
+			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 			$anon = new User;
-			$res = $anon->isAllowed( $action ) ? $res : true;
+			$res = $permissionManager->userHasRight( $anon, $action ) ? $res : true;
 		}
 
 		return $res;

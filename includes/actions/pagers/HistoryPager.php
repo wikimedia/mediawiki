@@ -172,6 +172,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @return string HTML output
 	 */
 	protected function getStartBody() {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$this->lastRow = false;
 		$this->counter = 1;
 		$this->oldIdChecked = 0;
@@ -197,7 +198,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 			$user = $this->getUser();
 			$actionButtons = '';
-			if ( $user->isAllowed( 'deleterevision' ) ) {
+			if ( $permissionManager->userHasRight( $user, 'deleterevision' ) ) {
 				$actionButtons .= $this->getRevisionButton(
 					'revisiondelete', 'showhideselectedversions' );
 			}
@@ -210,7 +211,7 @@ class HistoryPager extends ReverseChronologicalPager {
 					'mw-history-revisionactions' ], $actionButtons );
 			}
 
-			if ( $user->isAllowed( 'deleterevision' ) || $this->showTagEditUI ) {
+			if ( $permissionManager->userHasRight( $user, 'deleterevision' ) || $this->showTagEditUI ) {
 				$this->buttons .= ( new ListToggle( $this->getOutput() ) )->getHTML();
 			}
 
@@ -305,6 +306,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 */
 	function historyLine( $row, $next, $notificationtimestamp = false,
 		$dummy = false, $firstInList = false ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$rev = new Revision( $row, 0, $this->getTitle() );
 
 		if ( is_object( $next ) ) {
@@ -332,7 +334,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		$del = '';
 		$user = $this->getUser();
-		$canRevDelete = $user->isAllowed( 'deleterevision' );
+		$canRevDelete = $permissionManager->userHasRight( $user, 'deleterevision' );
 		// Show checkboxes for each revision, to allow for revision deletion and
 		// change tags
 		if ( $canRevDelete || $this->showTagEditUI ) {
@@ -349,7 +351,8 @@ class HistoryPager extends ReverseChronologicalPager {
 					[ 'name' => 'ids[' . $rev->getId() . ']' ] );
 			}
 		// User can only view deleted revisions...
-		} elseif ( $rev->getVisibility() && $user->isAllowed( 'deletedhistory' ) ) {
+		} elseif ( $rev->getVisibility() &&
+				   $permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
 			// If revision was hidden from sysops, disable the link
 			if ( !$rev->userCan( RevisionRecord::DELETED_RESTRICTED, $user ) ) {
 				$del = Linker::revDeleteLinkDisabled( false );

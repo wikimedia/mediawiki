@@ -408,7 +408,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		// Don't include any revisions where we're not supposed to be able to
 		// see the username.
 		$user = $this->getUser();
-		if ( !$user->isAllowed( 'deletedhistory' ) ) {
+		if ( !$this->getPermissionManager()->userHasRight( $user, 'deletedhistory' ) ) {
 			$bitmask = RevisionRecord::DELETED_USER;
 		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 			$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;

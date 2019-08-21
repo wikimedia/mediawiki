@@ -79,7 +79,9 @@ class FileDeleteForm {
 		$this->oldimage = $wgRequest->getText( 'oldimage', false );
 		$token = $wgRequest->getText( 'wpEditToken' );
 		# Flag to hide all contents of the archived revisions
-		$suppress = $wgRequest->getCheck( 'wpSuppress' ) && $wgUser->isAllowed( 'suppressrevision' );
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$suppress = $wgRequest->getCheck( 'wpSuppress' ) &&
+					$permissionManager->userHasRight( $wgUser, 'suppressrevision' );
 
 		if ( $this->oldimage ) {
 			$this->oldfile = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName(
@@ -245,6 +247,7 @@ class FileDeleteForm {
 	 */
 	private function showForm() {
 		global $wgOut, $wgUser, $wgRequest;
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		$wgOut->addModules( 'mediawiki.action.delete.file' );
 
@@ -296,7 +299,7 @@ class FileDeleteForm {
 			]
 		);
 
-		if ( $wgUser->isAllowed( 'suppressrevision' ) ) {
+		if ( $permissionManager->userHasRight( $wgUser, 'suppressrevision' ) ) {
 			$fields[] = new OOUI\FieldLayout(
 				new OOUI\CheckboxInputWidget( [
 					'name' => 'wpSuppress',
@@ -370,7 +373,7 @@ class FileDeleteForm {
 			] )
 		);
 
-		if ( $wgUser->isAllowed( 'editinterface' ) ) {
+		if ( $permissionManager->userHasRight( $wgUser, 'editinterface' ) ) {
 			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 			$link = $linkRenderer->makeKnownLink(
 				$wgOut->msg( 'filedelete-reason-dropdown' )->inContentLanguage()->getTitle(),

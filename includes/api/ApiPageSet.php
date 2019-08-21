@@ -971,7 +971,8 @@ class ApiPageSet extends ApiBase {
 		// If the user can see deleted revisions, pull out the corresponding
 		// titles from the archive table and include them too. We ignore
 		// ar_page_id because deleted revisions are tied by title, not page_id.
-		if ( $goodRemaining && $this->getUser()->isAllowed( 'deletedhistory' ) ) {
+		if ( $goodRemaining &&
+			 $this->getPermissionManager()->userHasRight( $this->getUser(), 'deletedhistory' ) ) {
 			$tables = [ 'archive' ];
 			$fields = [ 'ar_rev_id', 'ar_namespace', 'ar_title' ];
 			$where = [ 'ar_rev_id' => array_keys( $goodRemaining ) ];
