@@ -498,17 +498,12 @@ return [
 	},
 
 	'PermissionManager' => function ( MediaWikiServices $services ) : PermissionManager {
-		$config = $services->getMainConfig();
 		return new PermissionManager(
+			new ServiceOptions(
+				PermissionManager::$constructorOptions, $services->getMainConfig()
+			),
 			$services->getSpecialPageFactory(),
 			$services->getRevisionLookup(),
-			$config->get( 'WhitelistRead' ),
-			$config->get( 'WhitelistReadRegexp' ),
-			$config->get( 'EmailConfirmToEdit' ),
-			$config->get( 'BlockDisablesLogin' ),
-			$config->get( 'GroupPermissions' ),
-			$config->get( 'RevokePermissions' ),
-			$config->get( 'AvailableRights' ),
 			$services->getNamespaceInfo()
 		);
 	},
