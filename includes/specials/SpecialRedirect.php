@@ -79,6 +79,11 @@ class SpecialRedirect extends FormSpecialPage {
 		if ( $user->isAnon() ) {
 			return null;
 		}
+		if ( $user->isHidden() && !MediaWikiServices::getInstance()->getPermissionManager()
+			->userHasRight( $this->getUser(), 'hideuser' )
+		) {
+			throw new PermissionsError( null, [ 'badaccess-group0' ] );
+		}
 		$userpage = Title::makeTitle( NS_USER, $username );
 
 		return $userpage->getFullURL( '', false, PROTO_CURRENT );
