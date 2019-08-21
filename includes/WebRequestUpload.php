@@ -102,6 +102,20 @@ class WebRequestUpload {
 	}
 
 	/**
+	 * Return the client specified content type
+	 *
+	 * @since 1.35
+	 * @return string|null Type or null if non-existent
+	 */
+	public function getType() {
+		if ( !$this->exists() ) {
+			return null;
+		}
+
+		return $this->fileInfo['type'];
+	}
+
+	/**
 	 * Return the upload error. See link for explanation
 	 * https://www.php.net/manual/en/features.file-upload.errors.php
 	 *

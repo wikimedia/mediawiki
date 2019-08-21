@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\NameTableAccessException;
 
@@ -588,6 +589,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			],
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'interwiki' ],
 				ApiBase::PARAM_ISMULTI => true
 			],
 			'userids' => [

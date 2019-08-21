@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\NameTableAccessException;
 
@@ -313,13 +314,13 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 			if ( $params['user'] !== null ) {
 				$actorQuery = ActorMigration::newMigration()
-					->getWhere( $db, 'rev_user', User::newFromName( $params['user'], false ) );
+					->getWhere( $db, 'rev_user', $params['user'] );
 				$this->addTables( $actorQuery['tables'] );
 				$this->addJoinConds( $actorQuery['joins'] );
 				$this->addWhere( $actorQuery['conds'] );
 			} elseif ( $params['excludeuser'] !== null ) {
 				$actorQuery = ActorMigration::newMigration()
-					->getWhere( $db, 'rev_user', User::newFromName( $params['excludeuser'], false ) );
+					->getWhere( $db, 'rev_user', $params['excludeuser'] );
 				$this->addTables( $actorQuery['tables'] );
 				$this->addJoinConds( $actorQuery['joins'] );
 				$this->addWhere( 'NOT(' . $actorQuery['conds'] . ')' );
@@ -489,10 +490,14 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			],
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
 				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'singlepageonly' ] ],
 			],
 			'excludeuser' => [
 				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
 				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'singlepageonly' ] ],
 			],
 			'tag' => null,

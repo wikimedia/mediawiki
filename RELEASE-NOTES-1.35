@@ -142,9 +142,39 @@ For notes on 1.34.x and older releases, see HISTORY.
   It was previously used by $wgEnableOpenSearchSuggest to partially
   disable the API if set to false. Specifically, it would deny internal
   frontend requests carrying this parameter, whilst accepting other requests.
+* Integer-type parameters are now validated for syntax rather than being
+  interpreted in surprising ways. For example, the following will now return a
+  badinteger error:
+  * "1.9" (formerly interpreted as "1")
+  * " 1" (formerly interpreted as "1")
+  * "1e1" (formerly interpreted as "1" or "10", depending on the PHP version)
+  * "1foobar" (formerly interpreted as "1")
+  * "foobar" (formerly intepreted as "0")
+* Error codes for many parameter validation failures are changing.
+* action=paraminfo no longer returns "enforcerange" for numeric-typed
+  parameters. Ranges should be assumed to be enforced.
+* Many user-type parameters now accept a user ID, formatted like "#12345".
 * …
 
 === Action API internal changes in 1.35 ===
+* The Action API now uses the Wikimedia\ParamValidator library for parameter
+  validation, which brings some new features and changes. For the most part
+  existing module code should work as it did before, but see subsequent notes
+  for changes.
+  * The values for all ApiBase PARAM_* constants have changed. Code should have
+    been using the constants rather than hard-coding the values.
+  * Several ApiBase PARAM_* constants have been deprecated, see the in-class
+    documentation for details. Use the equivalent ParamValidator constants
+    instead.
+  * The value returned for 'upload'-type parameters has changed from
+    WebRequestUpload to Psr\Http\Message\UploadedFileInterface.
+* Validation of 'user'-type parameters is more flexible. PARAM constants exist
+  to specify the type of "user" allowed and to request UserIdentity objects
+  rather than name strings. The default is to accept all types (name, IP,
+  range, and interwiki) that were formerly accepted.
+* Maximum limits are no longer ignored in "internal mode".
+* The $paramName to ApiBase::handleParamNormalization() should now include the
+  prefix.
 * …
 
 === Languages updated in 1.35 ===
@@ -332,6 +362,20 @@ because of Phabricator reports.
 * As part of dropping security support for IE 6 and IE 7,
   WebRequest::checkUrlExtension() has been deprecated, and now always returns
   true.
+* The following ApiBase::PARAM_* constants have been deprecated in favor of
+  equivalent ParamValidator constants: PARAM_DFLT, PARAM_ISMULTI, PARAM_TYPE,
+  PARAM_MAX, PARAM_MAX2, PARAM_MIN, PARAM_ALLOW_DUPLICATES, PARAM_DEPRECATED,
+  PARAM_REQUIRED, PARAM_SUBMODULE_MAP, PARAM_SUBMODULE_PARAM_PREFIX, PARAM_ALL,
+  PARAM_EXTRA_NAMESPACES, PARAM_SENSITIVE, PARAM_DEPRECATED_VALUES,
+  PARAM_ISMULTI_LIMIT1, PARAM_ISMULTI_LIMIT2, PARAM_MAX_BYTES, PARAM_MAX_CHARS.
+* ApiBase::explodeMultiValue() is deprecated. Use
+  ParamValidator::explodeMultiValue() instead.
+* ApiBase::parseMultiValue() is deprecated. No replacement is provided;
+  generally this sort of thing should be handled by fully validating the
+  parameter.
+* ApiBase::validateLimit() and ApiBase::validateTimestamp() are deprecated.
+  Use ApiParamValidator::validateValue() with an appropriate settings array
+  instead.
 * $wgMemc is deprecated, use
   MediaWikiServices::getInstance()->getLocalServerObjectCache() instead.
 * ImagePage::getImageLimitsFromOptions() is deprecated. Use static function

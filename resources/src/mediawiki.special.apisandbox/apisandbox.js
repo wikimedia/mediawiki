@@ -477,9 +477,7 @@
 					widget.getValidity = widget.input.getValidity.bind( widget.input );
 					widget.paramInfo = pi;
 					$.extend( widget, WidgetMethods.textInputWidget );
-					if ( Util.apiBool( pi.enforcerange ) ) {
-						widget.setRange( pi.min || -Infinity, pi.max || Infinity );
-					}
+					widget.setRange( pi.min || -Infinity, pi.max || Infinity );
 					multiModeAllowed = true;
 					multiModeInput = widget;
 					break;
@@ -1437,27 +1435,17 @@
 				break;
 
 			case 'limit':
-				if ( ppi.highmax !== undefined ) {
-					$descriptionContainer.append( $( '<div>' )
-						.addClass( 'info' )
-						.append(
-							Util.parseMsg(
-								'api-help-param-limit2', ppi.max, ppi.highmax
-							),
-							' ',
-							Util.parseMsg( 'apisandbox-param-limit' )
-						)
-					);
-				} else {
-					$descriptionContainer.append( $( '<div>' )
-						.addClass( 'info' )
-						.append(
-							Util.parseMsg( 'api-help-param-limit', ppi.max ),
-							' ',
-							Util.parseMsg( 'apisandbox-param-limit' )
-						)
-					);
-				}
+				$descriptionContainer.append( $( '<div>' )
+					.addClass( 'info' )
+					.append(
+						Util.parseMsg(
+							'paramvalidator-help-type-number-minmax', 1,
+							ppi.min, ppi.highmax !== undefined ? ppi.highmax : ppi.max
+						),
+						' ',
+						Util.parseMsg( 'apisandbox-param-limit' )
+					)
+				);
 				break;
 
 			case 'integer':
@@ -1472,7 +1460,7 @@
 					$descriptionContainer.append( $( '<div>' )
 						.addClass( 'info' )
 						.append( Util.parseMsg(
-							'api-help-param-integer-' + tmp,
+							'paramvalidator-help-type-number-' + tmp,
 							Util.apiBool( ppi.multi ) ? 2 : 1,
 							ppi.min, ppi.max
 						) )
@@ -1499,7 +1487,7 @@
 			}
 			if ( count > ppi.lowlimit ) {
 				tmp.push(
-					mw.message( 'api-help-param-multi-max', ppi.lowlimit, ppi.highlimit ).parse()
+					mw.message( 'paramvalidator-help-multi-max', ppi.lowlimit, ppi.highlimit ).parse()
 				);
 			}
 			if ( tmp.length ) {
@@ -1512,13 +1500,13 @@
 		if ( 'maxbytes' in ppi ) {
 			$descriptionContainer.append( $( '<div>' )
 				.addClass( 'info' )
-				.append( Util.parseMsg( 'api-help-param-maxbytes', ppi.maxbytes ) )
+				.append( Util.parseMsg( 'paramvalidator-help-type-string-maxbytes', ppi.maxbytes ) )
 			);
 		}
 		if ( 'maxchars' in ppi ) {
 			$descriptionContainer.append( $( '<div>' )
 				.addClass( 'info' )
-				.append( Util.parseMsg( 'api-help-param-maxchars', ppi.maxchars ) )
+				.append( Util.parseMsg( 'paramvalidator-help-type-string-maxchars', ppi.maxchars ) )
 			);
 		}
 		if ( ppi.usedTemplateVars && ppi.usedTemplateVars.length ) {

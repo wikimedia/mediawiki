@@ -21,8 +21,10 @@
  * @defgroup API API
  */
 
+use MediaWiki\Api\Validator\ApiParamValidator;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Session\SessionManager;
 use Wikimedia\Timestamp\TimestampException;
 
@@ -144,7 +146,7 @@ class ApiMain extends ApiBase {
 	 */
 	private $mPrinter;
 
-	private $mModuleMgr, $mResult, $mErrorFormatter = null;
+	private $mModuleMgr, $mResult, $mErrorFormatter = null, $mParamValidator;
 	/** @var ApiContinuationManager|null */
 	private $mContinuationManager;
 	private $mAction;
@@ -236,6 +238,10 @@ class ApiMain extends ApiBase {
 				$request->response()->header( 'MediaWiki-Login-Suppressed: true' );
 			}
 		}
+
+		$this->mParamValidator = new ApiParamValidator(
+			$this, MediaWikiServices::getInstance()->getObjectFactory()
+		);
 
 		$this->mResult = new ApiResult( $this->getConfig()->get( 'APIMaxResultSize' ) );
 
@@ -380,6 +386,14 @@ class ApiMain extends ApiBase {
 			);
 		}
 		$this->mContinuationManager = $manager;
+	}
+
+	/**
+	 * Get the parameter validator
+	 * @return ApiParamValidator
+	 */
+	public function getParamValidator() : ApiParamValidator {
+		return $this->mParamValidator;
 	}
 
 	/**
@@ -1788,7 +1802,8 @@ class ApiMain extends ApiBase {
 	 * @return bool
 	 */
 	public function getCheck( $name ) {
-		return $this->getVal( $name, null ) !== null;
+		$this->mParamsUsed[$name] = true;
+		return $this->getRequest()->getCheck( $name );
 	}
 
 	/**
@@ -1888,6 +1903,7 @@ class ApiMain extends ApiBase {
 			],
 			'assertuser' => [
 				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name' ],
 			],
 			'requestid' => null,
 			'servedby' => false,
@@ -1990,7 +2006,25 @@ class ApiMain extends ApiBase {
 				$headline = '<div id="main/datatypes"></div>' . $headline;
 			}
 			$help['datatypes'] .= $headline;
-			$help['datatypes'] .= $this->msg( 'api-help-datatypes' )->parseAsBlock();
+			$help['datatypes'] .= $this->msg( 'api-help-datatypes-top' )->parseAsBlock();
+			$help['datatypes'] .= '<dl>';
+			foreach ( $this->getParamValidator()->knownTypes() as $type ) {
+				$m = $this->msg( "api-help-datatype-$type" );
+				if ( !$m->isDisabled() ) {
+					$id = "main/datatype/$type";
+					$help['datatypes'] .= '<dt id="' . htmlspecialchars( $id ) . '">';
+					$encId = Sanitizer::escapeIdForAttribute( $id, Sanitizer::ID_PRIMARY );
+					if ( $encId !== $id ) {
+						$help['datatypes'] .= '<span id="' . htmlspecialchars( $encId ) . '"></span>';
+					}
+					$encId2 = Sanitizer::escapeIdForAttribute( $id, Sanitizer::ID_FALLBACK );
+					if ( $encId2 !== $id && $encId2 !== $encId ) {
+						$help['datatypes'] .= '<span id="' . htmlspecialchars( $encId2 ) . '"></span>';
+					}
+					$help['datatypes'] .= htmlspecialchars( $type ) . '</dt><dd>' . $m->parseAsBlock() . "</dd>";
+				}
+			}
+			$help['datatypes'] .= '</dl>';
 			if ( !isset( $tocData['main/datatypes'] ) ) {
 				$tocnumber[$level]++;
 				$tocData['main/datatypes'] = [

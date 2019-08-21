@@ -504,9 +504,12 @@ class ChangeTags {
 	 */
 	protected static function restrictedTagError( $msgOne, $msgMulti, $tags ) {
 		$lang = RequestContext::getMain()->getLanguage();
+		$tags = array_values( $tags );
 		$count = count( $tags );
-		return Status::newFatal( ( $count > 1 ) ? $msgMulti : $msgOne,
+		$status = Status::newFatal( ( $count > 1 ) ? $msgMulti : $msgOne,
 			$lang->commaList( $tags ), $count );
+		$status->value = $tags;
+		return $status;
 	}
 
 	/**

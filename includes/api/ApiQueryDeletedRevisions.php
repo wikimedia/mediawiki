@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\NameTableAccessException;
 
@@ -120,14 +121,14 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 		if ( $params['user'] !== null ) {
 			// Don't query by user ID here, it might be able to use the ar_usertext_timestamp index.
 			$actorQuery = ActorMigration::newMigration()
-				->getWhere( $db, 'ar_user', User::newFromName( $params['user'], false ), false );
+				->getWhere( $db, 'ar_user', $params['user'], false );
 			$this->addTables( $actorQuery['tables'] );
 			$this->addJoinConds( $actorQuery['joins'] );
 			$this->addWhere( $actorQuery['conds'] );
 		} elseif ( $params['excludeuser'] !== null ) {
 			// Here there's no chance of using ar_usertext_timestamp.
 			$actorQuery = ActorMigration::newMigration()
-				->getWhere( $db, 'ar_user', User::newFromName( $params['excludeuser'], false ) );
+				->getWhere( $db, 'ar_user', $params['excludeuser'] );
 			$this->addTables( $actorQuery['tables'] );
 			$this->addJoinConds( $actorQuery['joins'] );
 			$this->addWhere( 'NOT(' . $actorQuery['conds'] . ')' );
@@ -277,10 +278,14 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 			],
 			'tag' => null,
 			'user' => [
-				ApiBase::PARAM_TYPE => 'user'
+				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
 			],
 			'excludeuser' => [
-				ApiBase::PARAM_TYPE => 'user'
+				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
 			],
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',

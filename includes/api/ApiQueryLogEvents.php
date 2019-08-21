@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Storage\NameTableAccessException;
 
 /**
@@ -179,9 +180,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		if ( $user !== null ) {
 			// Note the joins in $q are the same as those from ->getJoin() above
 			// so we only need to add 'conds' here.
-			$q = $actorMigration->getWhere(
-				$db, 'log_user', User::newFromName( $params['user'], false )
-			);
+			$q = $actorMigration->getWhere( $db, 'log_user', $params['user'] );
 			$this->addWhere( $q['conds'] );
 
 			// T71222: MariaDB's optimizer, at least 10.1.37 and .38, likes to choose a wildly bad plan for
@@ -447,6 +446,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			],
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
 			],
 			'title' => null,
 			'namespace' => [

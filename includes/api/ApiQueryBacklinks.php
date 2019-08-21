@@ -20,6 +20,9 @@
  * @file
  */
 
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+
 /**
  * This is a three-in-one module to query:
  *   * backlinks  - links pointing to the given page,
@@ -352,8 +355,15 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$this->params['limit'] = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
 			$result->addParsedLimit( $this->getModuleName(), $this->params['limit'] );
 		} else {
-			$this->params['limit'] = (int)$this->params['limit'];
-			$this->validateLimit( 'limit', $this->params['limit'], 1, $userMax, $botMax );
+			$this->params['limit'] = $this->getMain()->getParamValidator()->validateValue(
+				$this, 'limit', (int)$this->params['limit'], [
+					ParamValidator::PARAM_TYPE => 'limit',
+					IntegerDef::PARAM_MIN => 1,
+					IntegerDef::PARAM_MAX => $userMax,
+					IntegerDef::PARAM_MAX2 => $botMax,
+					IntegerDef::PARAM_IGNORE_RANGE => true,
+				]
+			);
 		}
 
 		$this->rootTitle = $this->getTitleFromTitleOrPageId( $this->params );

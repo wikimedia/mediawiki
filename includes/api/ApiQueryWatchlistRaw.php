@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 
 /**
  * This query action allows clients to retrieve a list of pages
@@ -181,7 +182,8 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 				]
 			],
 			'owner' => [
-				ApiBase::PARAM_TYPE => 'user'
+				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name' ],
 			],
 			'token' => [
 				ApiBase::PARAM_TYPE => 'string',

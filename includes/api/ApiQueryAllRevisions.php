@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -140,11 +141,11 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 
 		if ( $params['user'] !== null ) {
 			$actorQuery = ActorMigration::newMigration()
-				->getWhere( $db, 'rev_user', User::newFromName( $params['user'], false ) );
+				->getWhere( $db, 'rev_user', $params['user'] );
 			$this->addWhere( $actorQuery['conds'] );
 		} elseif ( $params['excludeuser'] !== null ) {
 			$actorQuery = ActorMigration::newMigration()
-				->getWhere( $db, 'rev_user', User::newFromName( $params['excludeuser'], false ) );
+				->getWhere( $db, 'rev_user', $params['excludeuser'] );
 			$this->addWhere( 'NOT(' . $actorQuery['conds'] . ')' );
 		}
 
@@ -265,6 +266,8 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		$ret = parent::getAllowedParams() + [
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
 			],
 			'namespace' => [
 				ApiBase::PARAM_ISMULTI => true,
@@ -287,6 +290,8 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 			],
 			'excludeuser' => [
 				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
 			],
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',

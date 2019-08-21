@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 
 /**
  * API module that facilitates the blocking of users. Requires API write mode
@@ -186,9 +187,11 @@ class ApiBlock extends ApiBase {
 		$params = [
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'cidr', 'id' ],
 			],
 			'userid' => [
 				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_DEPRECATED => true,
 			],
 			'expiry' => 'never',
 			'reason' => '',
