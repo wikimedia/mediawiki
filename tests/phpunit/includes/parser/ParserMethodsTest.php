@@ -234,6 +234,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$po = new ParserOptions( $frank );
 
 		yield 'current' => [ $text, $po, 0, 'user:CurrentAuthor;id:200;time:20160606000000;' ];
+		yield 'current' => [ $text, $po, null, 'user:;id:;time:' ];
 		yield 'current with ID' => [ $text, $po, 200, 'user:CurrentAuthor;id:200;time:20160606000000;' ];
 
 		$text = '* user:{{REVISIONUSER}};id:{{REVISIONID}};time:{{REVISIONTIMESTAMP}};';

@@ -529,7 +529,7 @@ abstract class AbstractContent implements Content {
 	 * @since 1.24
 	 *
 	 * @param Title $title Context title for parsing
-	 * @param int|null $revId Revision ID (for {{REVISIONID}})
+	 * @param int|null $revId Revision ID being rendered
 	 * @param ParserOptions|null $options
 	 * @param bool $generateHtml Whether or not to generate HTML
 	 *
@@ -575,7 +575,8 @@ abstract class AbstractContent implements Content {
 	 * @since 1.24
 	 *
 	 * @param Title $title Context title for parsing
-	 * @param int|null $revId Revision ID (for {{REVISIONID}})
+	 * @param int|null $revId ID of the revision being rendered.
+	 *  See Parser::parse() for the ramifications.
 	 * @param ParserOptions $options
 	 * @param bool $generateHtml Whether or not to generate HTML
 	 * @param ParserOutput &$output The output object to fill (reference).

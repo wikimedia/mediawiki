@@ -269,7 +269,8 @@ interface Content {
 	 *       may call ParserOutput::recordOption() on the output object.
 	 *
 	 * @param Title $title The page title to use as a context for rendering.
-	 * @param int|null $revId Optional revision ID being rendered.
+	 * @param int|null $revId ID of the revision being rendered.
+	 *  See Parser::parse() for the ramifications. (default: null)
 	 * @param ParserOptions|null $options Any parser options.
 	 * @param bool $generateHtml Whether to generate HTML (default: true). If false,
 	 *        the result of calling getText() on the ParserOutput object returned by
