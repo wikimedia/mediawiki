@@ -4279,10 +4279,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		// This will reconnect if possible or return false if not
-		$this->clearFlag( self::DBO_TRX, self::REMEMBER_PRIOR );
-		$ok = ( $this->query( self::$PING_QUERY, __METHOD__, true ) !== false );
-		$this->restoreFlags( self::RESTORE_PRIOR );
-
+		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_SILENCE_ERRORS;
+		$ok = ( $this->query( self::$PING_QUERY, __METHOD__, $flags ) !== false );
 		if ( $ok ) {
 			$rtt = $this->lastRoundTripEstimate;
 		}
