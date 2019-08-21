@@ -1584,6 +1584,8 @@
 	"rcfilters-filter-showlinkedto-label": "عرض التغييرات في الصفحات الموصولة بصفحة",
 	"rcfilters-filter-showlinkedto-option-label": "<strong>الصفحات الموصولة إلى</strong> الصفحة المختارة",
 	"rcfilters-target-page-placeholder": "أدخل اسم صفحة (أو تصنيف)",
+	"rcfilters-allcontents-label": "جميع المحتويات",
+	"rcfilters-alldiscussions-label": "جميع النقاشات",
 	"rcnotefrom": "بالأسفل {{PLURAL:$5|التغيير|التغييرات}} منذ <strong>$3، $4</strong> (إلى <strong>$1</strong> معروضة).",
 	"rclistfromreset": "إعادة ضبط خيار التاريخ",
 	"rclistfrom": "أظهر التغييرات بدءًا من $3 $2",

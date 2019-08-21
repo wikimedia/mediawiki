@@ -1641,6 +1641,8 @@
 	"rcfilters-filter-showlinkedto-label": "Mostrar alterações nas páginas que ligam para",
 	"rcfilters-filter-showlinkedto-option-label": "<strong>Páginas que ligam para</strong> página selecionada",
 	"rcfilters-target-page-placeholder": "Introduzir o nome de uma página (ou categoria)",
+	"rcfilters-allcontents-label": "Todo o conteúdo",
+	"rcfilters-alldiscussions-label": "Todas as discussões",
 	"rcnotefrom": "Abaixo {{PLURAL:$5|é a mudança|são as mudanças}} desde <strong>$3, $4</strong> (up to <strong>$1</strong> shown).",
 	"rclistfromreset": "Redefinir seleção da data",
 	"rclistfrom": "Mostrar as novas alterações a partir das $2 de $3",
