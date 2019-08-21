@@ -225,7 +225,8 @@ class ApiQueryUsers extends ApiQueryBase {
 				}
 
 				if ( isset( $this->prop['rights'] ) ) {
-					$data[$key]['rights'] = $user->getRights();
+					$data[$key]['rights'] = $this->getPermissionManager()
+						->getUserPermissions( $user );
 				}
 				if ( $row->ipb_deleted ) {
 					$data[$key]['hidden'] = true;
