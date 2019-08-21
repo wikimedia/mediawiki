@@ -54,14 +54,12 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 		'ExtraNamespaces' => [],
 		'ExtraSignatureNamespaces' => [],
 		'NamespaceContentModels' => [],
-		'NamespaceProtection' => [],
 		'NamespacesWithSubpages' => [
 			NS_TALK => true,
 			NS_USER => true,
 			NS_USER_TALK => true,
 		],
 		'NonincludableNamespaces' => [],
-		'RestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ],
 	];
 
 	private function newObj( array $options = [] ) : NamespaceInfo {
@@ -1245,53 +1243,17 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	 */
 
 	/**
-	 * This mock user can only have isAllowed() called on it.
-	 *
-	 * @param array $groups Groups for the mock user to have
-	 * @return User
-	 */
-	private function getMockUser( array $groups = [] ) : User {
-		$groups[] = '*';
-
-		$mock = $this->createMock( User::class );
-		$mock->method( 'isAllowed' )->will( $this->returnCallback(
-			function ( $action ) use ( $groups ) {
-				global $wgGroupPermissions, $wgRevokePermissions;
-				if ( $action == '' ) {
-					return true;
-				}
-				foreach ( $wgRevokePermissions as $group => $rights ) {
-					if ( !in_array( $group, $groups ) ) {
-						continue;
-					}
-					if ( isset( $rights[$action] ) && $rights[$action] ) {
-						return false;
-					}
-				}
-				foreach ( $wgGroupPermissions as $group => $rights ) {
-					if ( !in_array( $group, $groups ) ) {
-						continue;
-					}
-					if ( isset( $rights[$action] ) && $rights[$action] ) {
-						return true;
-					}
-				}
-				return false;
-			}
-		) );
-		$mock->expects( $this->never() )->method( $this->anythingBut( 'isAllowed' ) );
-		return $mock;
-	}
-
-	/**
+	 * TODO: This is superceeded by PermissionManagerTest::testGetNamespaceRestrictionLevels
+	 * Remove when deprecated method is removed.
 	 * @dataProvider provideGetRestrictionLevels
-	 * @covers NamespaceInfo::getRestrictionLevels
+	 * @covers       NamespaceInfo::getRestrictionLevels
 	 *
 	 * @param array $expected
 	 * @param int $ns
-	 * @param User|null $user
+	 * @param array|null $groups
+	 * @throws MWException
 	 */
-	public function testGetRestrictionLevels( array $expected, $ns, User $user = null ) {
+	public function testGetRestrictionLevels( array $expected, $ns, array $groups = null ) {
 		$this->setMwGlobals( [
 			'wgGroupPermissions' => [
 				'*' => [ 'edit' => true ],
@@ -1305,14 +1267,17 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 			'wgRevokePermissions' => [
 				'noeditsemiprotected' => [ 'editsemiprotected' => true ],
 			],
-		] );
-		$obj = $this->newObj( [
-			'NamespaceProtection' => [
+			'wgNamespaceProtection' => [
 				NS_MAIN => 'autoconfirmed',
 				NS_USER => 'sysop',
 				101 => [ 'editsemiprotected', 'privileged' ],
 			],
+			'wgRestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ],
+			'wgAutopromote' => []
 		] );
+		$this->resetServices();
+		$obj = $this->newObj();
+		$user = is_null( $groups ) ? null : $this->getTestUser( $groups )->getUser();
 		$this->assertSame( $expected, $obj->getRestrictionLevels( $ns, $user ) );
 	}
 
@@ -1322,26 +1287,26 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 			'Restricted to autoconfirmed' => [ [ '', 'sysop' ], NS_MAIN ],
 			'Restricted to sysop' => [ [ '' ], NS_USER ],
 			'Restricted to someone in two groups' => [ [ '', 'sysop' ], 101 ],
-			'No special permissions' => [ [ '' ], NS_TALK, $this->getMockUser() ],
+			'No special permissions' => [ [ '' ], NS_TALK, [] ],
 			'autoconfirmed' => [
 				[ '', 'autoconfirmed' ],
 				NS_TALK,
-				$this->getMockUser( [ 'autoconfirmed' ] )
+				[ 'autoconfirmed' ]
 			],
 			'autoconfirmed revoked' => [
 				[ '' ],
 				NS_TALK,
-				$this->getMockUser( [ 'autoconfirmed', 'noeditsemiprotected' ] )
+				[ 'autoconfirmed', 'noeditsemiprotected' ]
 			],
 			'sysop' => [
 				[ '', 'autoconfirmed', 'sysop' ],
 				NS_TALK,
-				$this->getMockUser( [ 'sysop' ] )
+				[ 'sysop' ]
 			],
 			'sysop with autoconfirmed revoked (a bit silly)' => [
 				[ '', 'sysop' ],
 				NS_TALK,
-				$this->getMockUser( [ 'sysop', 'noeditsemiprotected' ] )
+				[ 'sysop', 'noeditsemiprotected' ]
 			],
 		];
 	}

@@ -318,8 +318,9 @@ class MWNamespace {
 	 * @return array
 	 */
 	public static function getRestrictionLevels( $index, User $user = null ) {
-		return MediaWikiServices::getInstance()->getNamespaceInfo()->
-			getRestrictionLevels( $index, $user );
+		return MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->getNamespaceRestrictionLevels( $index, $user );
 	}
 
 	/**

@@ -15,6 +15,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
+use MWException;
 use TestAllServiceOptionsUsed;
 use Wikimedia\ScopedCallback;
 use MediaWiki\Session\SessionId;
@@ -738,7 +739,9 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 					'BlockDisablesLogin' => false,
 					'GroupPermissions' => [],
 					'RevokePermissions' => [],
-					'AvailableRights' => []
+					'AvailableRights' => [],
+					'NamespaceProtection' => [],
+					'RestrictionLevels' => []
 				]
 			),
 			$services->getSpecialPageFactory(),
@@ -1788,4 +1791,75 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		return $revision;
 	}
 
+	public function provideGetRestrictionLevels() {
+		return [
+			'No namespace restriction' => [ [ '', 'autoconfirmed', 'sysop' ], NS_TALK ],
+			'Restricted to autoconfirmed' => [ [ '', 'sysop' ], NS_MAIN ],
+			'Restricted to sysop' => [ [ '' ], NS_USER ],
+			'Restricted to someone in two groups' => [ [ '', 'sysop' ], 101 ],
+			'No special permissions' => [
+				[ '' ],
+				NS_TALK,
+				[]
+			],
+			'autoconfirmed' => [
+				[ '', 'autoconfirmed' ],
+				NS_TALK,
+				[ 'autoconfirmed' ]
+			],
+			'autoconfirmed revoked' => [
+				[ '' ],
+				NS_TALK,
+				[ 'autoconfirmed', 'noeditsemiprotected' ]
+			],
+			'sysop' => [
+				[ '', 'autoconfirmed', 'sysop' ],
+				NS_TALK,
+				[ 'sysop' ]
+			],
+			'sysop with autoconfirmed revoked (a bit silly)' => [
+				[ '', 'sysop' ],
+				NS_TALK,
+				[ 'sysop', 'noeditsemiprotected' ]
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetRestrictionLevels
+	 * @covers       \MediaWiki\Permissions\PermissionManager::getNamespaceRestrictionLevels
+	 *
+	 * @param array $expected
+	 * @param int $ns
+	 * @param array|null $userGroups
+	 * @throws MWException
+	 */
+	public function testGetRestrictionLevels( array $expected, $ns, array $userGroups = null ) {
+		$this->setMwGlobals( [
+			'wgGroupPermissions' => [
+				'*' => [ 'edit' => true ],
+				'autoconfirmed' => [ 'editsemiprotected' => true ],
+				'sysop' => [
+					'editsemiprotected' => true,
+					'editprotected' => true,
+				],
+				'privileged' => [ 'privileged' => true ],
+			],
+			'wgRevokePermissions' => [
+				'noeditsemiprotected' => [ 'editsemiprotected' => true ],
+			],
+			'wgNamespaceProtection' => [
+				NS_MAIN => 'autoconfirmed',
+				NS_USER => 'sysop',
+				101 => [ 'editsemiprotected', 'privileged' ],
+			],
+			'wgRestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ],
+			'wgAutopromote' => []
+		] );
+		$this->resetServices();
+		$user = is_null( $userGroups ) ? null : $this->getTestUser( $userGroups )->getUser();
+		$this->assertSame( $expected, MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->getNamespaceRestrictionLevels( $ns, $user ) );
+	}
 }
