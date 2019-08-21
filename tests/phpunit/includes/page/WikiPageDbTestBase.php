@@ -1434,7 +1434,13 @@ more stuff
 							. " nonumy eirmod tempor invidunt ut labore et dolore magna "
 							. "aliquyam erat, sed diam voluptua. At vero eos et accusam "
 							. "et justo duo dolores et ea rebum. Stet clita kasd gubergren, "
-							. "no sea  takimata sanctus est Lorem ipsum dolor sit amet.'",
+							. "no sea  takimata sanctus est Lorem ipsum dolor sit amet. "
+							. " this here is some more filler content added to try and "
+							. "reach the maximum automatic summary length so that this is"
+							. " truncated ipot sodit colrad ut ad olve amit basul dat"
+							. "Dorbet romt crobit trop bri. DannyS712 put me here lor pe"
+							. " ode quob zot bozro see also T22281 for background pol sup"
+							. "Lorem ipsum dolor sit amet'",
 						null
 					],
 				],
