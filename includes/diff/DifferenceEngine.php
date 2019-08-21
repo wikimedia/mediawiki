@@ -556,8 +556,8 @@ class DifferenceEngine extends ContextSource {
 					}
 				}
 
-				if ( !$this->mOldRev->isDeleted( RevisionRecord::DELETED_TEXT ) &&
-					!$this->mNewRev->isDeleted( RevisionRecord::DELETED_TEXT )
+				if ( $this->userCanEdit( $this->mOldRev ) &&
+					$this->userCanEdit( $this->mNewRev )
 				) {
 					$undoLink = Html::element( 'a', [
 							'href' => $this->mNewPage->getLocalURL( [
@@ -1501,6 +1501,24 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
+	 * @param Revision $rev
+	 * @return bool whether the user can see and edit the revision.
+	 */
+	private function userCanEdit( Revision $rev ) {
+		$user = $this->getUser();
+
+		if ( !$rev->getContentHandler()->supportsDirectEditing() ) {
+			return false;
+		}
+
+		if ( !$rev->userCan( RevisionRecord::DELETED_TEXT, $user ) ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
 	 * Get a header for a specified revision.
 	 *
 	 * @param Revision $rev
@@ -1533,7 +1551,7 @@ class DifferenceEngine extends ContextSource {
 		$header = Linker::linkKnown( $title, $header, [],
 			[ 'oldid' => $rev->getId() ] );
 
-		if ( $rev->userCan( RevisionRecord::DELETED_TEXT, $user ) ) {
+		if ( $this->userCanEdit( $rev ) ) {
 			$editQuery = [ 'action' => 'edit' ];
 			if ( !$rev->isCurrent() ) {
 				$editQuery['oldid'] = $rev->getId();

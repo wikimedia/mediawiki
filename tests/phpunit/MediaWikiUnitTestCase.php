@@ -72,4 +72,34 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		global $wgHooks;
 		$wgHooks[$hookName] = [ $handler ];
 	}
+
+	protected function getMockMessage( $text, ...$params ) {
+		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
+			$params = $params[0];
+		}
+
+		$msg = $this->getMockBuilder( Message::class )
+			->disableOriginalConstructor()
+			->setMethods( [] )
+			->getMock();
+
+		$msg->method( 'toString' )->willReturn( $text );
+		$msg->method( '__toString' )->willReturn( $text );
+		$msg->method( 'text' )->willReturn( $text );
+		$msg->method( 'parse' )->willReturn( $text );
+		$msg->method( 'plain' )->willReturn( $text );
+		$msg->method( 'parseAsBlock' )->willReturn( $text );
+		$msg->method( 'escaped' )->willReturn( $text );
+
+		$msg->method( 'title' )->willReturn( $msg );
+		$msg->method( 'inLanguage' )->willReturn( $msg );
+		$msg->method( 'inContentLanguage' )->willReturn( $msg );
+		$msg->method( 'useDatabase' )->willReturn( $msg );
+		$msg->method( 'setContext' )->willReturn( $msg );
+
+		$msg->method( 'exists' )->willReturn( true );
+		$msg->method( 'content' )->willReturn( new MessageContent( $msg ) );
+
+		return $msg;
+	}
 }

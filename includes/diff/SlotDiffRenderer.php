@@ -44,7 +44,7 @@ abstract class SlotDiffRenderer {
 	 * must have the same content model that was used to obtain this diff renderer.
 	 * @param Content|null $oldContent
 	 * @param Content|null $newContent
-	 * @return string
+	 * @return string HTML, one or more <tr> tags.
 	 */
 	abstract public function getDiff( Content $oldContent = null, Content $newContent = null );
 
