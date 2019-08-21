@@ -105,6 +105,7 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * TODO: Remove. This is the same as PermissionManagerTest::testGetUserPermissions
 	 * @covers User::getRights
 	 */
 	public function testUserPermissions() {
@@ -116,6 +117,7 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * TODO: Remove. This is the same as PermissionManagerTest::testGetUserPermissionsHooks
 	 * @covers User::getRights
 	 */
 	public function testUserGetRightsHooks() {

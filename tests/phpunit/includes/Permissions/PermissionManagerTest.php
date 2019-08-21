@@ -1548,7 +1548,8 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$user = $this->getTestUser( [ 'unittesters', 'testwriters' ] )->getUser();
 		$userWrapper = TestingAccessWrapper::newFromObject( $user );
 
-		$rights = MediaWikiServices::getInstance()->getPermissionManager()
+		$rights = MediaWikiServices::getInstance()
+			->getPermissionManager()
 			->getUserPermissions( $user );
 		$this->assertContains( 'test', $rights, 'sanity check' );
 		$this->assertContains( 'runtest', $rights, 'sanity check' );
@@ -1556,13 +1557,14 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->assertNotContains( 'nukeworld', $rights, 'sanity check' );
 
 		// Add a hook manipluating the rights
-		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'UserGetRights' => [ function ( $user, &$rights ) {
+		$this->setTemporaryHook( 'UserGetRights', function ( $user, &$rights ) {
 			$rights[] = 'nukeworld';
 			$rights = array_diff( $rights, [ 'writetest' ] );
-		} ] ] );
+		} );
 
 		$this->resetServices();
-		$rights = MediaWikiServices::getInstance()->getPermissionManager()
+		$rights = MediaWikiServices::getInstance()
+			->getPermissionManager()
 			->getUserPermissions( $user );
 		$this->assertContains( 'test', $rights );
 		$this->assertContains( 'runtest', $rights );
@@ -1585,7 +1587,8 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$userWrapper->mRequest = $mockRequest;
 
 		$this->resetServices();
-		$rights = MediaWikiServices::getInstance()->getPermissionManager()
+		$rights = MediaWikiServices::getInstance()
+			->getPermissionManager()
 			->getUserPermissions( $user );
 		$this->assertContains( 'test', $rights );
 		$this->assertNotContains( 'runtest', $rights );
