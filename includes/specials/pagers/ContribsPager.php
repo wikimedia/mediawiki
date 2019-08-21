@@ -351,7 +351,10 @@ class ContribsPager extends RangeChronologicalPager {
 			$queryInfo['conds'][] = $this->mDb->bitAnd(
 				'rev_deleted', RevisionRecord::DELETED_USER
 				) . ' = 0';
-		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
+		} elseif ( !MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' )
+		) {
 			$queryInfo['conds'][] = $this->mDb->bitAnd(
 				'rev_deleted', RevisionRecord::SUPPRESSED_USER
 				) . ' != ' . RevisionRecord::SUPPRESSED_USER;

@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Form to edit user preferences.
  *
@@ -71,7 +73,10 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	 * @return string
 	 */
 	function getButtons() {
-		if ( !$this->getModifiedUser()->isAllowedAny( 'editmyprivateinfo', 'editmyoptions' ) ) {
+		if ( !MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->userHasAnyRight( $this->getModifiedUser(), 'editmyprivateinfo', 'editmyoptions' )
+		) {
 			return '';
 		}
 

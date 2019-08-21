@@ -238,7 +238,9 @@ abstract class Skin extends ContextSource {
 
 		// Add various resources if required
 		if ( $user->isLoggedIn()
-			&& $user->isAllowedAll( 'writeapi', 'viewmywatchlist', 'editmywatchlist' )
+			&& MediaWikiServices::getInstance()
+				 ->getPermissionManager()
+				 ->userHasAllRights( $user, 'writeapi', 'viewmywatchlist', 'editmywatchlist' )
 			&& $this->getRelevantTitle()->canExist()
 		) {
 			$modules['watch'][] = 'mediawiki.page.watch.ajax';

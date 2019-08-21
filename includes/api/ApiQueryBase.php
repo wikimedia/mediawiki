@@ -600,7 +600,8 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return bool
 	 */
 	public function userCanSeeRevDel() {
-		return $this->getUser()->isAllowedAny(
+		return $this->getPermissionManager()->userHasAnyRight(
+			$this->getUser(),
 			'deletedhistory',
 			'deletedtext',
 			'suppressrevision',

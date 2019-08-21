@@ -3601,32 +3601,28 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Check if user is allowed to access a feature / make an action
 	 *
+	 * @deprecated since 1.34, use MediaWikiServices::getInstance()
+	 * ->getPermissionManager()->userHasAnyRights(...) instead
+	 *
 	 * @param string $permissions,... Permissions to test
 	 * @return bool True if user is allowed to perform *any* of the given actions
 	 */
 	public function isAllowedAny() {
-		$permissions = func_get_args();
-		foreach ( $permissions as $permission ) {
-			if ( $this->isAllowed( $permission ) ) {
-				return true;
-			}
-		}
-		return false;
+		return MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->userHasAnyRight( $this, ...func_get_args() );
 	}
 
 	/**
-	 *
+	 * @deprecated since 1.34, use MediaWikiServices::getInstance()
+	 * ->getPermissionManager()->userHasAllRights(...) instead
 	 * @param string $permissions,... Permissions to test
 	 * @return bool True if the user is allowed to perform *all* of the given actions
 	 */
 	public function isAllowedAll() {
-		$permissions = func_get_args();
-		foreach ( $permissions as $permission ) {
-			if ( !$this->isAllowed( $permission ) ) {
-				return false;
-			}
-		}
-		return true;
+		return MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->userHasAllRights( $this, ...func_get_args() );
 	}
 
 	/**

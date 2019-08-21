@@ -827,7 +827,7 @@ class PermissionManager {
 	 * Check restrictions on cascading pages.
 	 *
 	 * @param string $action The action to check
-	 * @param User $user User to check
+	 * @param UserIdentity $user User to check
 	 * @param array $errors List of current errors
 	 * @param string $rigor One of PermissionManager::RIGOR_ constants
 	 *   - RIGOR_QUICK  : does cheap permission checks from replica DBs (usable for GUI creation)
@@ -841,7 +841,7 @@ class PermissionManager {
 	 */
 	private function checkCascadingSourcesRestrictions(
 		$action,
-		User $user,
+		UserIdentity $user,
 		$errors,
 		$rigor,
 		$short,
@@ -870,7 +870,7 @@ class PermissionManager {
 					if ( $right == 'autoconfirmed' ) {
 						$right = 'editsemiprotected';
 					}
-					if ( $right != '' && !$user->isAllowedAll( 'protect', $right ) ) {
+					if ( $right != '' && !$this->userHasAllRights( $user, 'protect', $right ) ) {
 						$wikiPages = '';
 						/** @var Title $wikiPage */
 						foreach ( $cascadingSources as $wikiPage ) {
@@ -1086,7 +1086,7 @@ class PermissionManager {
 	 * Check CSS/JSON/JS sub-page permissions
 	 *
 	 * @param string $action The action to check
-	 * @param User $user User to check
+	 * @param UserIdentity $user User to check
 	 * @param array $errors List of current errors
 	 * @param string $rigor One of PermissionManager::RIGOR_ constants
 	 *   - RIGOR_QUICK  : does cheap permission checks from replica DBs (usable for GUI creation)
@@ -1100,7 +1100,7 @@ class PermissionManager {
 	 */
 	private function checkUserConfigPermissions(
 		$action,
-		User $user,
+		UserIdentity $user,
 		$errors,
 		$rigor,
 		$short,
@@ -1120,22 +1120,22 @@ class PermissionManager {
 			// Users need editmyuser* to edit their own CSS/JSON/JS subpages.
 			if (
 				$title->isUserCssConfigPage()
-				&& !$user->isAllowedAny( 'editmyusercss', 'editusercss' )
+				&& !$this->userHasAnyRight( $user, 'editmyusercss', 'editusercss' )
 			) {
 				$errors[] = [ 'mycustomcssprotected', $action ];
 			} elseif (
 				$title->isUserJsonConfigPage()
-				&& !$user->isAllowedAny( 'editmyuserjson', 'edituserjson' )
+				&& !$this->userHasAnyRight( $user, 'editmyuserjson', 'edituserjson' )
 			) {
 				$errors[] = [ 'mycustomjsonprotected', $action ];
 			} elseif (
 				$title->isUserJsConfigPage()
-				&& !$user->isAllowedAny( 'editmyuserjs', 'edituserjs' )
+				&& !$this->userHasAnyRight( $user, 'editmyuserjs', 'edituserjs' )
 			) {
 				$errors[] = [ 'mycustomjsprotected', $action ];
 			} elseif (
 				$title->isUserJsConfigPage()
-				&& !$user->isAllowedAny( 'edituserjs', 'editmyuserjsredirect' )
+				&& !$this->userHasAnyRight( $user, 'edituserjs', 'editmyuserjsredirect' )
 			) {
 				// T207750 - do not allow users to edit a redirect if they couldn't edit the target
 				$rev = $this->revisionLookup->getRevisionByTitle( $title );
@@ -1193,6 +1193,40 @@ class PermissionManager {
 		// Use strict parameter to avoid matching numeric 0 accidentally inserted
 		// by misconfiguration: 0 == 'foo'
 		return in_array( $action, $this->getUserPermissions( $user ), true );
+	}
+
+	/**
+	 * Check if user is allowed to make any action
+	 *
+	 * @param UserIdentity $user
+	 * @param string[] ...$actions
+	 * @return bool True if user is allowed to perform *any* of the given actions
+	 * @since 1.34
+	 */
+	public function userHasAnyRight( UserIdentity $user, ...$actions ) {
+		foreach ( $actions as $action ) {
+			if ( $this->userHasRight( $user, $action ) ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Check if user is allowed to make all actions
+	 *
+	 * @param UserIdentity $user
+	 * @param string[] ...$actions
+	 * @return bool True if user is allowed to perform *all* of the given actions
+	 * @since 1.34
+	 */
+	public function userHasAllRights( UserIdentity $user, ...$actions ) {
+		foreach ( $actions as $action ) {
+			if ( !$this->userHasRight( $user, $action ) ) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
