@@ -70,6 +70,7 @@ use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\Storage\PageEditStash;
+use Wikimedia\ObjectFactory;
 
 return [
 	'ActorMigration' => function ( MediaWikiServices $services ) : ActorMigration {
@@ -478,6 +479,10 @@ return [
 			$services->getMainWANObjectCache(),
 			LoggerFactory::getInstance( 'NameTableSqlStore' )
 		);
+	},
+
+	'ObjectFactory' => function ( MediaWikiServices $services ) : ObjectFactory {
+		return new ObjectFactory( $services );
 	},
 
 	'OldRevisionImporter' => function ( MediaWikiServices $services ) : OldRevisionImporter {

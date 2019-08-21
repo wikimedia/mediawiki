@@ -100,6 +100,8 @@ For notes on 1.33.x and older releases, see HISTORY.
   See <https://www.mediawiki.org/wiki/OOUI/Themes> for details.
 * (T229035) The GetUserBlock hook was added. Use this instead of
   GetBlockedStatus.
+* ObjectFactory is available as a service. When used as a service, the object
+  specs can now specify needed DI services.
 
 === External library changes in 1.34 ===
 
