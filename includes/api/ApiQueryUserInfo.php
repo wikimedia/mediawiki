@@ -159,8 +159,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['rights'] ) ) {
-			// User::getRights() may return duplicate values, strip them
-			$vals['rights'] = array_values( array_unique( $user->getRights() ) );
+			$vals['rights'] = $this->getPermissionManager()->getUserPermissions( $user );
 			ApiResult::setArrayType( $vals['rights'], 'array' ); // even if empty
 			ApiResult::setIndexedTagName( $vals['rights'], 'r' ); // even if empty
 		}
