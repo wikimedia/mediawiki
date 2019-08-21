@@ -90,6 +90,9 @@ class EntryPoint {
 				$cookie['options'] );
 		}
 
+		// Clear all errors that might have been displayed if display_errors=On
+		ob_clean();
+
 		$stream = $response->getBody();
 		$stream->rewind();
 		if ( $stream instanceof CopyableStreamInterface ) {
