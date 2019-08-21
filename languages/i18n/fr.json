@@ -1691,6 +1691,8 @@
 	"rcfilters-filter-showlinkedto-label": "Montrer les modifications des pages pointant vers",
 	"rcfilters-filter-showlinkedto-option-label": "<strong>Pages pointant vers</strong> la page sélectionnée",
 	"rcfilters-target-page-placeholder": "Entrer un nom de page (ou une catégorie)",
+	"rcfilters-allcontents-label": "Tous les contenus",
+	"rcfilters-alldiscussions-label": "Toutes les discussions",
 	"rcnotefrom": "Ci-dessous {{PLURAL:$5|la modification effectuée|les modifications effectuées}} depuis le <strong>$3, $4</strong> (affichées jusqu’à <strong>$1</strong>).",
 	"rclistfromreset": "Réinitialiser la sélection de la date",
 	"rclistfrom": "Afficher les nouvelles modifications depuis le $3 à $2",

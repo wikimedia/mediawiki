@@ -1522,6 +1522,8 @@
 	"rcfilters-filter-showlinkedto-label": "Pokaži spremembe na straneh, ki kažejo na",
 	"rcfilters-filter-showlinkedto-option-label": "<strong>Strani, ki kažejo na</strong> izbrano stran",
 	"rcfilters-target-page-placeholder": "Vnesite ime strani (ali kategorije)",
+	"rcfilters-allcontents-label": "Vse vsebine",
+	"rcfilters-alldiscussions-label": "Vse razprave",
 	"rcnotefrom": "{{PLURAL:$5|Navedena je sprememba|Navedeni sta spremembi|Navedene so spremembe}} od <strong>$3 $4</strong> dalje (prikazujem jih do <strong>$1</strong>).",
 	"rclistfromreset": "Ponastavi izbiro datuma",
 	"rclistfrom": "Prikaži spremembe od $3 $2 naprej",

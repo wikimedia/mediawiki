@@ -1395,6 +1395,8 @@
 	"rcfilters-preference-label": "Déi verbessert Versioun vun de rezenten Ännerunge verstoppen",
 	"rcfilters-watchlist-preference-label": "Den Interface ouni JavaScript benotzen",
 	"rcfilters-target-page-placeholder": "Gitt en Numm vun enger Säit (oder enger Kategorie) an",
+	"rcfilters-allcontents-label": "All Inhalter",
+	"rcfilters-alldiscussions-label": "All Diskussiounen",
 	"rcnotefrom": "Hei drënner {{PLURAL:$5|gëtt d'Ännerung|ginn d'Ännerungen}} zanter <strong>$3, $4</strong> (maximal <strong>$1</strong> Ännerunge gi gewisen).",
 	"rclistfromreset": "Eraussiche vum Datum zrécksetzen",
 	"rclistfrom": "Nei Ännerunge vum $3 $2 u weisen",

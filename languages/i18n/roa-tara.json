@@ -1459,6 +1459,8 @@
 	"rcfilters-watchlist-markseen-button": "Signe tutte le cangiaminde cumme 'ndrucate",
 	"rcfilters-watchlist-edit-watchlist-button": "Cange l'elenghe de le pàggene condrollate",
 	"rcfilters-preference-help": "Careche le urteme cangiaminde senze filtre de recerche o funziune de evidenziazione.",
+	"rcfilters-allcontents-label": "Tutte le condenute",
+	"rcfilters-alldiscussions-label": "Tutte le 'ngazzaminde",
 	"rcnotefrom": "Sotte {{PLURAL:$5|ste 'u cangiamende|stonne le cangiaminde}} da <strong>$3, $4</strong> ('nzigne a <strong>$1</strong> fatte vedè).",
 	"rclistfrom": "Fà vedè le urteme cangiaminde partenne da $3 $2",
 	"rcshowhideminor": "$1 cangiaminde stuèdeche",
