@@ -98,7 +98,8 @@ class ApiBlock extends ApiBase {
 			}
 		}
 
-		if ( $params['hidename'] && !$user->isAllowed( 'hideuser' ) ) {
+		if ( $params['hidename'] &&
+			 !$this->getPermissionManager()->userHasRight( $user, 'hideuser' ) ) {
 			$this->dieWithError( 'apierror-canthide' );
 		}
 		if ( $params['noemail'] && !SpecialBlock::canBlockEmail( $user ) ) {

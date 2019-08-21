@@ -166,34 +166,30 @@ class WatchActionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers WatchAction::doWatch()
+	 * @throws Exception
 	 */
 	public function testDoWatchNoCheckRights() {
-		$notPermittedUser = $this->getMock( User::class );
-		$notPermittedUser->method( 'isAllowed' )->willReturn( false );
-
+		$notPermittedUser = $this->getUser( null, null, [] );
 		$actual = WatchAction::doWatch( $this->testWikiPage->getTitle(), $notPermittedUser, false );
-
 		$this->assertTrue( $actual->isGood() );
 	}
 
 	/**
 	 * @covers WatchAction::doWatch()
+	 * @throws Exception
 	 */
 	public function testDoWatchUserNotPermittedStatusNotGood() {
-		$notPermittedUser = $this->getMock( User::class );
-		$notPermittedUser->method( 'isAllowed' )->willReturn( false );
-
+		$notPermittedUser = $this->getUser( null, null, [] );
 		$actual = WatchAction::doWatch( $this->testWikiPage->getTitle(), $notPermittedUser, true );
-
 		$this->assertFalse( $actual->isGood() );
 	}
 
 	/**
 	 * @covers WatchAction::doWatch()
+	 * @throws Exception
 	 */
 	public function testDoWatchCallsUserAddWatch() {
-		$permittedUser = $this->getMock( User::class );
-		$permittedUser->method( 'isAllowed' )->willReturn( true );
+		$permittedUser = $this->getUser( null, null, [ 'editmywatchlist' ] );
 		$permittedUser->expects( $this->once() )
 			->method( 'addWatch' )
 			->with( $this->equalTo( $this->testWikiPage->getTitle() ), $this->equalTo( true ) );
@@ -205,11 +201,10 @@ class WatchActionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers WatchAction::doUnWatch()
+	 * @throws Exception
 	 */
 	public function testDoUnWatchWithoutRights() {
-		$notPermittedUser = $this->getMock( User::class );
-		$notPermittedUser->method( 'isAllowed' )->willReturn( false );
-
+		$notPermittedUser = $this->getUser( null, null, [] );
 		$actual = WatchAction::doUnWatch( $this->testWikiPage->getTitle(), $notPermittedUser );
 
 		$this->assertFalse( $actual->isGood() );
@@ -219,8 +214,7 @@ class WatchActionTest extends MediaWikiTestCase {
 	 * @covers WatchAction::doUnWatch()
 	 */
 	public function testDoUnWatchUserHookAborted() {
-		$permittedUser = $this->getMock( User::class );
-		$permittedUser->method( 'isAllowed' )->willReturn( true );
+		$permittedUser = $this->getUser( null, null, [ 'editmywatchlist' ] );
 		Hooks::register( 'UnwatchArticle', function () {
 			return false;
 		} );
@@ -235,10 +229,10 @@ class WatchActionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers WatchAction::doUnWatch()
+	 * @throws Exception
 	 */
 	public function testDoUnWatchCallsUserRemoveWatch() {
-		$permittedUser = $this->getMock( User::class );
-		$permittedUser->method( 'isAllowed' )->willReturn( true );
+		$permittedUser = $this->getUser( null, null,  [ 'editmywatchlist' ] );
 		$permittedUser->expects( $this->once() )
 			->method( 'removeWatch' )
 			->with( $this->equalTo( $this->testWikiPage->getTitle() ) );
@@ -250,9 +244,10 @@ class WatchActionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers WatchAction::getWatchToken()
+	 * @throws Exception
 	 */
 	public function testGetWatchTokenNormalizesToWatch() {
-		$user = $this->getMock( User::class );
+		$user = $this->getUser( null, null );
 		$user->expects( $this->once() )
 			->method( 'getEditToken' )
 			->with( $this->equalTo( 'watch' ) );
@@ -262,9 +257,10 @@ class WatchActionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers WatchAction::getWatchToken()
+	 * @throws Exception
 	 */
 	public function testGetWatchTokenProxiesUserGetEditToken() {
-		$user = $this->getMock( User::class );
+		$user = $this->getUser( null, null );
 		$user->expects( $this->once() )->method( 'getEditToken' );
 
 		WatchAction::getWatchToken( $this->watchAction->getTitle(), $user );
@@ -272,9 +268,10 @@ class WatchActionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers WatchAction::doWatchOrUnwatch()
+	 * @throws Exception
 	 */
 	public function testDoWatchOrUnwatchUserNotLoggedIn() {
-		$user = $this->getLoggedInIsWatchedUser( false );
+		$user = $this->getUser( false );
 		$user->expects( $this->never() )->method( 'removeWatch' );
 		$user->expects( $this->never() )->method( 'addWatch' );
 
@@ -285,9 +282,10 @@ class WatchActionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers WatchAction::doWatchOrUnwatch()
+	 * @throws Exception
 	 */
 	public function testDoWatchOrUnwatchSkipsIfAlreadyWatched() {
-		$user = $this->getLoggedInIsWatchedUser();
+		$user = $this->getUser();
 		$user->expects( $this->never() )->method( 'removeWatch' );
 		$user->expects( $this->never() )->method( 'addWatch' );
 
@@ -298,9 +296,10 @@ class WatchActionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers WatchAction::doWatchOrUnwatch()
+	 * @throws Exception
 	 */
 	public function testDoWatchOrUnwatchSkipsIfAlreadyUnWatched() {
-		$user = $this->getLoggedInIsWatchedUser( true, false );
+		$user = $this->getUser( true, false );
 		$user->expects( $this->never() )->method( 'removeWatch' );
 		$user->expects( $this->never() )->method( 'addWatch' );
 
@@ -311,9 +310,10 @@ class WatchActionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers WatchAction::doWatchOrUnwatch()
+	 * @throws Exception
 	 */
 	public function testDoWatchOrUnwatchWatchesIfWatch() {
-		$user = $this->getLoggedInIsWatchedUser( true, false );
+		$user = $this->getUser( true, false );
 		$user->expects( $this->never() )->method( 'removeWatch' );
 		$user->expects( $this->once() )
 			->method( 'addWatch' )
@@ -326,10 +326,10 @@ class WatchActionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers WatchAction::doWatchOrUnwatch()
+	 * @throws Exception
 	 */
 	public function testDoWatchOrUnwatchUnwatchesIfUnwatch() {
-		$user = $this->getLoggedInIsWatchedUser();
-		$user->method( 'isAllowed' )->willReturn( true );
+		$user = $this->getUser( true, true, [ 'editmywatchlist' ] );
 		$user->expects( $this->never() )->method( 'addWatch' );
 		$user->expects( $this->once() )
 			->method( 'removeWatch' )
@@ -343,13 +343,20 @@ class WatchActionTest extends MediaWikiTestCase {
 	/**
 	 * @param bool $isLoggedIn Whether the user should be "marked" as logged in
 	 * @param bool $isWatched The value any call to isWatched should return
+	 * @param array $permissions The permissions of the user
 	 * @return PHPUnit_Framework_MockObject_MockObject
+	 * @throws Exception
 	 */
-	private function getLoggedInIsWatchedUser( $isLoggedIn = true, $isWatched = true ) {
+	private function getUser(
+		$isLoggedIn = true,
+		$isWatched = true,
+		$permissions = []
+	) {
 		$user = $this->getMock( User::class );
+		$user->method( 'getId' )->willReturn( 42 );
 		$user->method( 'isLoggedIn' )->willReturn( $isLoggedIn );
 		$user->method( 'isWatched' )->willReturn( $isWatched );
-
+		$this->overrideUserPermissions( $user, $permissions );
 		return $user;
 	}
 

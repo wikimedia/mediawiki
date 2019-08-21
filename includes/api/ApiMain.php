@@ -1410,8 +1410,8 @@ class ApiMain extends ApiBase {
 	 */
 	protected function checkExecutePermissions( $module ) {
 		$user = $this->getUser();
-		if ( $module->isReadMode() && !User::isEveryoneAllowed( 'read' ) &&
-			!$user->isAllowed( 'read' )
+		if ( $module->isReadMode() && !$this->getPermissionManager()->isEveryoneAllowed( 'read' ) &&
+			!$this->getPermissionManager()->userHasRight( $user, 'read' )
 		) {
 			$this->dieWithError( 'apierror-readapidenied' );
 		}
@@ -1419,7 +1419,7 @@ class ApiMain extends ApiBase {
 		if ( $module->isWriteMode() ) {
 			if ( !$this->mEnableWrite ) {
 				$this->dieWithError( 'apierror-noapiwrite' );
-			} elseif ( !$user->isAllowed( 'writeapi' ) ) {
+			} elseif ( !$this->getPermissionManager()->userHasRight( $user, 'writeapi' ) ) {
 				$this->dieWithError( 'apierror-writeapidenied' );
 			} elseif ( $this->getRequest()->getHeader( 'Promise-Non-Write-API-Action' ) ) {
 				$this->dieWithError( 'apierror-promised-nonwrite-api' );
@@ -1504,7 +1504,7 @@ class ApiMain extends ApiBase {
 					}
 					break;
 				case 'bot':
-					if ( !$user->isAllowed( 'bot' ) ) {
+					if ( !$this->getPermissionManager()->userHasRight( $user, 'bot' ) ) {
 						$this->dieWithError( 'apierror-assertbotfailed' );
 					}
 					break;
@@ -2052,7 +2052,8 @@ class ApiMain extends ApiBase {
 	 */
 	public function canApiHighLimits() {
 		if ( !isset( $this->mCanApiHighLimits ) ) {
-			$this->mCanApiHighLimits = $this->getUser()->isAllowed( 'apihighlimits' );
+			$this->mCanApiHighLimits = $this->getPermissionManager()
+				->userHasRight( $this->getUser(), 'apihighlimits' );
 		}
 
 		return $this->mCanApiHighLimits;

@@ -20,6 +20,8 @@
  * @ingroup Actions
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Page addition to a user's watchlist
  *
@@ -116,7 +118,8 @@ class WatchAction extends FormAction {
 		User $user,
 		$checkRights = User::CHECK_USER_RIGHTS
 	) {
-		if ( $checkRights && !$user->isAllowed( 'editmywatchlist' ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( $checkRights && !$permissionManager->userHasRight( $user, 'editmywatchlist' ) ) {
 			return User::newFatalPermissionDeniedStatus( 'editmywatchlist' );
 		}
 
@@ -140,7 +143,9 @@ class WatchAction extends FormAction {
 	 * @return Status
 	 */
 	public static function doUnwatch( Title $title, User $user ) {
-		if ( !$user->isAllowed( 'editmywatchlist' ) ) {
+		if ( !MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->userHasRight( $user, 'editmywatchlist' ) ) {
 			return User::newFatalPermissionDeniedStatus( 'editmywatchlist' );
 		}
 

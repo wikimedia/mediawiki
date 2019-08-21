@@ -460,7 +460,7 @@ abstract class ApiQueryBase extends ApiBase {
 		$this->addJoinConds( $joinConds );
 
 		// Don't show hidden names
-		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
+		if ( !$this->getPermissionManager()->userHasRight( $this->getUser(), 'hideuser' ) ) {
 			$this->addWhere( 'ipb_deleted = 0 OR ipb_deleted IS NULL' );
 		}
 	}

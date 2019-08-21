@@ -501,10 +501,10 @@ class PermissionManager {
 		$title = Title::newFromLinkTarget( $page );
 
 		$whitelisted = false;
-		if ( User::isEveryoneAllowed( 'read' ) ) {
+		if ( $this->isEveryoneAllowed( 'read' ) ) {
 			# Shortcut for public wikis, allows skipping quite a bit of code
 			$whitelisted = true;
-		} elseif ( $user->isAllowed( 'read' ) ) {
+		} elseif ( $this->userHasRight( $user, 'read' ) ) {
 			# If the user is allowed to read pages, he is allowed to read all pages
 			$whitelisted = true;
 		} elseif ( $this->isSameSpecialPage( 'Userlogin', $title )
@@ -729,33 +729,35 @@ class PermissionManager {
 		if ( $action == 'create' ) {
 			if (
 				( $this->nsInfo->isTalk( $title->getNamespace() ) &&
-					!$user->isAllowed( 'createtalk' ) ) ||
+					!$this->userHasRight( $user, 'createtalk' ) ) ||
 				( !$this->nsInfo->isTalk( $title->getNamespace() ) &&
-					!$user->isAllowed( 'createpage' ) )
+					!$this->userHasRight( $user, 'createpage' ) )
 			) {
 				$errors[] = $user->isAnon() ? [ 'nocreatetext' ] : [ 'nocreate-loggedin' ];
 			}
 		} elseif ( $action == 'move' ) {
-			if ( !$user->isAllowed( 'move-rootuserpages' )
+			if ( !$this->userHasRight( $user, 'move-rootuserpages' )
 				 && $title->getNamespace() == NS_USER && !$isSubPage ) {
 				// Show user page-specific message only if the user can move other pages
 				$errors[] = [ 'cant-move-user-page' ];
 			}
 
 			// Check if user is allowed to move files if it's a file
-			if ( $title->getNamespace() == NS_FILE && !$user->isAllowed( 'movefile' ) ) {
+			if ( $title->getNamespace() == NS_FILE &&
+					!$this->userHasRight( $user, 'movefile' ) ) {
 				$errors[] = [ 'movenotallowedfile' ];
 			}
 
 			// Check if user is allowed to move category pages if it's a category page
-			if ( $title->getNamespace() == NS_CATEGORY && !$user->isAllowed( 'move-categorypages' ) ) {
+			if ( $title->getNamespace() == NS_CATEGORY &&
+					!$this->userHasRight( $user, 'move-categorypages' ) ) {
 				$errors[] = [ 'cant-move-category-page' ];
 			}
 
-			if ( !$user->isAllowed( 'move' ) ) {
+			if ( !$this->userHasRight( $user, 'move' ) ) {
 				// User can't move anything
-				$userCanMove = User::groupHasPermission( 'user', 'move' );
-				$autoconfirmedCanMove = User::groupHasPermission( 'autoconfirmed', 'move' );
+				$userCanMove = $this->groupHasPermission( 'user', 'move' );
+				$autoconfirmedCanMove = $this->groupHasPermission( 'autoconfirmed', 'move' );
 				if ( $user->isAnon() && ( $userCanMove || $autoconfirmedCanMove ) ) {
 					// custom message if logged-in users without any special rights can move
 					$errors[] = [ 'movenologintext' ];
@@ -764,19 +766,19 @@ class PermissionManager {
 				}
 			}
 		} elseif ( $action == 'move-target' ) {
-			if ( !$user->isAllowed( 'move' ) ) {
+			if ( !$this->userHasRight( $user, 'move' ) ) {
 				// User can't move anything
 				$errors[] = [ 'movenotallowed' ];
-			} elseif ( !$user->isAllowed( 'move-rootuserpages' )
+			} elseif ( !$this->userHasRight( $user, 'move-rootuserpages' )
 					   && $title->getNamespace() == NS_USER && !$isSubPage ) {
 				// Show user page-specific message only if the user can move other pages
 				$errors[] = [ 'cant-move-to-user-page' ];
-			} elseif ( !$user->isAllowed( 'move-categorypages' )
+			} elseif ( !$this->userHasRight( $user, 'move-categorypages' )
 					   && $title->getNamespace() == NS_CATEGORY ) {
 				// Show category page-specific message only if the user can move other pages
 				$errors[] = [ 'cant-move-to-category-page' ];
 			}
-		} elseif ( !$user->isAllowed( $action ) ) {
+		} elseif ( !$this->userHasRight( $user, $action ) ) {
 			$errors[] = $this->missingPermissionError( $action, $short );
 		}
 
@@ -823,9 +825,10 @@ class PermissionManager {
 			if ( $right == '' ) {
 				continue;
 			}
-			if ( !$user->isAllowed( $right ) ) {
+			if ( !$this->userHasRight( $user, $right ) ) {
 				$errors[] = [ 'protectedpagetext', $right, $action ];
-			} elseif ( $title->areRestrictionsCascading() && !$user->isAllowed( 'protect' ) ) {
+			} elseif ( $title->areRestrictionsCascading() &&
+					   !$this->userHasRight( $user, 'protect' ) ) {
 				$errors[] = [ 'protectedpagetext', 'protect', $action ];
 			}
 		}
@@ -933,7 +936,7 @@ class PermissionManager {
 			$title_protection = $title->getTitleProtection();
 			if ( $title_protection ) {
 				if ( $title_protection['permission'] == ''
-					 || !$user->isAllowed( $title_protection['permission'] )
+					 || !$this->userHasRight( $user, $title_protection['permission'] )
 				) {
 					$errors[] = [
 						'titleprotected',
@@ -1063,23 +1066,23 @@ class PermissionManager {
 			$error = null;
 			// Sitewide CSS/JSON/JS changes, like all NS_MEDIAWIKI changes, also require the
 			// editinterface right. That's implemented as a restriction so no check needed here.
-			if ( $title->isSiteCssConfigPage() && !$user->isAllowed( 'editsitecss' ) ) {
+			if ( $title->isSiteCssConfigPage() && !$this->userHasRight( $user, 'editsitecss' ) ) {
 				$error = [ 'sitecssprotected', $action ];
-			} elseif ( $title->isSiteJsonConfigPage() && !$user->isAllowed( 'editsitejson' ) ) {
+			} elseif ( $title->isSiteJsonConfigPage() && !$this->userHasRight( $user, 'editsitejson' ) ) {
 				$error = [ 'sitejsonprotected', $action ];
-			} elseif ( $title->isSiteJsConfigPage() && !$user->isAllowed( 'editsitejs' ) ) {
+			} elseif ( $title->isSiteJsConfigPage() && !$this->userHasRight( $user, 'editsitejs' ) ) {
 				$error = [ 'sitejsprotected', $action ];
 			} elseif ( $title->isRawHtmlMessage() ) {
 				// Raw HTML can be used to deploy CSS or JS so require rights for both.
-				if ( !$user->isAllowed( 'editsitejs' ) ) {
+				if ( !$this->userHasRight( $user, 'editsitejs' ) ) {
 					$error = [ 'sitejsprotected', $action ];
-				} elseif ( !$user->isAllowed( 'editsitecss' ) ) {
+				} elseif ( !$this->userHasRight( $user, 'editsitecss' ) ) {
 					$error = [ 'sitecssprotected', $action ];
 				}
 			}
 
 			if ( $error ) {
-				if ( $user->isAllowed( 'editinterface' ) ) {
+				if ( $this->userHasRight( $user, 'editinterface' ) ) {
 					// Most users / site admins will probably find out about the new, more restrictive
 					// permissions by failing to edit something. Give them more info.
 					// TODO remove this a few release cycles after 1.32
@@ -1166,17 +1169,17 @@ class PermissionManager {
 			if ( !in_array( $action, [ 'delete', 'deleterevision', 'suppressrevision' ], true ) ) {
 				if (
 					$title->isUserCssConfigPage()
-					&& !$user->isAllowed( 'editusercss' )
+					&& !$this->userHasRight( $user, 'editusercss' )
 				) {
 					$errors[] = [ 'customcssprotected', $action ];
 				} elseif (
 					$title->isUserJsonConfigPage()
-					&& !$user->isAllowed( 'edituserjson' )
+					&& !$this->userHasRight( $user, 'edituserjson' )
 				) {
 					$errors[] = [ 'customjsonprotected', $action ];
 				} elseif (
 					$title->isUserJsConfigPage()
-					&& !$user->isAllowed( 'edituserjs' )
+					&& !$this->userHasRight( $user, 'edituserjs' )
 				) {
 					$errors[] = [ 'customjsprotected', $action ];
 				}

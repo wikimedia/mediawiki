@@ -180,7 +180,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 		if ( isset( $this->prop['preferencestoken'] ) &&
 			!$this->lacksSameOriginSecurity() &&
-			$user->isAllowed( 'editmyoptions' )
+			$this->getPermissionManager()->userHasRight( $user, 'editmyoptions' )
 		) {
 			$vals['preferencestoken'] = $user->getEditToken( '', $this->getMain()->getRequest() );
 		}
@@ -201,7 +201,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$vals['realname'] = $user->getRealName();
 		}
 
-		if ( $user->isAllowed( 'viewmyprivateinfo' ) && isset( $this->prop['email'] ) ) {
+		if ( $this->getPermissionManager()->userHasRight( $user, 'viewmyprivateinfo' ) &&
+				isset( $this->prop['email'] ) ) {
 			$vals['email'] = $user->getEmail();
 			$auth = $user->getEmailAuthenticationTimestamp();
 			if ( $auth !== null ) {

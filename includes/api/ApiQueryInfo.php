@@ -135,7 +135,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		// but that's too expensive for this purpose
 		// and would break caching
 		global $wgUser;
-		if ( !$wgUser->isAllowed( 'edit' ) ) {
+		if ( !MediaWikiServices::getInstance()->getPermissionManager()
+				->userHasRight( $wgUser, 'edit' ) ) {
 			return false;
 		}
 
@@ -152,7 +153,8 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	public static function getDeleteToken( $pageid, $title ) {
 		global $wgUser;
-		if ( !$wgUser->isAllowed( 'delete' ) ) {
+		if ( !MediaWikiServices::getInstance()->getPermissionManager()
+				->userHasRight( $wgUser, 'delete' ) ) {
 			return false;
 		}
 
@@ -169,7 +171,8 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	public static function getProtectToken( $pageid, $title ) {
 		global $wgUser;
-		if ( !$wgUser->isAllowed( 'protect' ) ) {
+		if ( !MediaWikiServices::getInstance()->getPermissionManager()
+				->userHasRight( $wgUser, 'protect' ) ) {
 			return false;
 		}
 
@@ -186,7 +189,8 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	public static function getMoveToken( $pageid, $title ) {
 		global $wgUser;
-		if ( !$wgUser->isAllowed( 'move' ) ) {
+		if ( !MediaWikiServices::getInstance()->getPermissionManager()
+				->userHasRight( $wgUser, 'move' ) ) {
 			return false;
 		}
 
@@ -203,7 +207,8 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	public static function getBlockToken( $pageid, $title ) {
 		global $wgUser;
-		if ( !$wgUser->isAllowed( 'block' ) ) {
+		if ( !MediaWikiServices::getInstance()->getPermissionManager()
+				->userHasRight( $wgUser, 'block' ) ) {
 			return false;
 		}
 
@@ -808,7 +813,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$user = $this->getUser();
 
 		if ( $user->isAnon() || count( $this->everything ) == 0
-			|| !$user->isAllowed( 'viewmywatchlist' )
+			|| !$this->getPermissionManager()->userHasRight( $user, 'viewmywatchlist' )
 		) {
 			return;
 		}
@@ -843,7 +848,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		$user = $this->getUser();
-		$canUnwatchedpages = $user->isAllowed( 'unwatchedpages' );
+		$canUnwatchedpages = $this->getPermissionManager()->userHasRight( $user, 'unwatchedpages' );
 		$unwatchedPageThreshold = $this->getConfig()->get( 'UnwatchedPageThreshold' );
 		if ( !$canUnwatchedpages && !is_int( $unwatchedPageThreshold ) ) {
 			return;
@@ -873,7 +878,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$user = $this->getUser();
 		$db = $this->getDB();
 
-		$canUnwatchedpages = $user->isAllowed( 'unwatchedpages' );
+		$canUnwatchedpages = $this->getPermissionManager()->userHasRight( $user, 'unwatchedpages' );
 		$unwatchedPageThreshold = $this->getConfig()->get( 'UnwatchedPageThreshold' );
 		if ( !$canUnwatchedpages && !is_int( $unwatchedPageThreshold ) ) {
 			return;

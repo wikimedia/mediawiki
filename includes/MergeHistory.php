@@ -178,7 +178,8 @@ class MergeHistory {
 		}
 
 		// Check mergehistory permission
-		if ( !$user->isAllowed( 'mergehistory' ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( !$permissionManager->userHasRight( $user, 'mergehistory' ) ) {
 			// User doesn't have the right to merge histories
 			$status->fatal( 'mergehistory-fail-permission' );
 		}
