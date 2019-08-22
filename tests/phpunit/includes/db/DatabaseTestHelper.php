@@ -1,5 +1,6 @@
 <?php
 
+use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\Database;
@@ -43,19 +44,31 @@ class DatabaseTestHelper extends Database {
 	protected $unionSupportsOrderAndLimit = true;
 
 	public function __construct( $testName, array $opts = [] ) {
+		parent::__construct( $opts + [
+			'host' => null,
+			'user' => null,
+			'password' => null,
+			'dbname' => null,
+			'schema' => null,
+			'tablePrefix' => '',
+			'flags' => 0,
+			'cliMode' => $opts['cliMode'] ?? true,
+			'agent' => '',
+			'srvCache' => new HashBagOStuff(),
+			'profiler' => null,
+			'trxProfiler' => new TransactionProfiler(),
+			'connLogger' => new NullLogger(),
+			'queryLogger' => new NullLogger(),
+			'errorLogger' => function ( Exception $e ) {
+				wfWarn( get_class( $e ) . ": {$e->getMessage()}" );
+			},
+			'deprecationLogger' => function ( $msg ) {
+				wfWarn( $msg );
+			}
+		] );
+
 		$this->testName = $testName;
 
-		$this->profiler = null;
-		$this->trxProfiler = new TransactionProfiler();
-		$this->cliMode = $opts['cliMode'] ?? true;
-		$this->connLogger = new \Psr\Log\NullLogger();
-		$this->queryLogger = new \Psr\Log\NullLogger();
-		$this->errorLogger = function ( Exception $e ) {
-			wfWarn( get_class( $e ) . ": {$e->getMessage()}" );
-		};
-		$this->deprecationLogger = function ( $msg ) {
-			wfWarn( $msg );
-		};
 		$this->currentDomain = DatabaseDomain::newUnspecified();
 		$this->open( 'localhost', 'testuser', 'password', 'testdb', null, '' );
 	}
