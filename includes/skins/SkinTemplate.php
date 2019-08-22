@@ -585,6 +585,7 @@ class SkinTemplate extends Skin {
 		$request = $this->getRequest();
 		$pageurl = $title->getLocalURL();
 		$authManager = AuthManager::singleton();
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		/* set up the default links for the personal toolbar */
 		$personal_urls = [];
@@ -704,7 +705,7 @@ class SkinTemplate extends Skin {
 			];
 
 			// No need to show Talk and Contributions to anons if they can't contribute!
-			if ( User::groupHasPermission( '*', 'edit' ) ) {
+			if ( $permissionManager->groupHasPermission( '*', 'edit' ) ) {
 				// Because of caching, we can't link directly to the IP talk and
 				// contributions pages. Instead we use the special page shortcuts
 				// (which work correctly regardless of caching). This means we can't
@@ -732,7 +733,7 @@ class SkinTemplate extends Skin {
 			}
 
 			if ( $authManager->canAuthenticateNow() ) {
-				$key = User::groupHasPermission( '*', 'read' )
+				$key = $permissionManager->groupHasPermission( '*', 'read' )
 					? 'login'
 					: 'login-private';
 				$personal_urls[$key] = $login_url;

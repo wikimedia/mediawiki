@@ -90,7 +90,8 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		if ( !is_null( $params['rights'] ) && count( $params['rights'] ) ) {
 			$groups = [];
 			foreach ( $params['rights'] as $r ) {
-				$groups = array_merge( $groups, User::getGroupsWithPermission( $r ) );
+				$groups = array_merge( $groups, $this->getPermissionManager()
+					->getGroupsWithPermission( $r ) );
 			}
 
 			// no group with the given right(s) exists, no need for a query
@@ -312,7 +313,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				}
 
 				if ( $fld_rights ) {
-					$data['rights'] = User::getGroupPermissions( $groups );
+					$data['rights'] = $this->getPermissionManager()->getGroupPermissions( $groups );
 					ApiResult::setIndexedTagName( $data['rights'], 'r' );
 					ApiResult::setArrayType( $data['rights'], 'array' );
 				}

@@ -367,7 +367,9 @@ class RebuildRecentchanges extends Maintenance {
 		# @NOTE: users with 'bot' rights choose when edits are bot edits or not. That information
 		# may be lost at this point (aside from joining on the patrol log table entries).
 		$botgroups = [ 'bot' ];
-		$autopatrolgroups = $wgUseRCPatrol ? User::getGroupsWithPermission( 'autopatrol' ) : [];
+		$autopatrolgroups = $wgUseRCPatrol ? MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->getGroupsWithPermission( 'autopatrol' ) : [];
 
 		# Flag our recent bot edits
 		if ( $botgroups ) {
