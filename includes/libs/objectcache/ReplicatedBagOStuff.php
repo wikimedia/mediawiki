@@ -76,7 +76,7 @@ class ReplicatedBagOStuff extends BagOStuff {
 	}
 
 	public function get( $key, $flags = 0 ) {
-		return ( ( $flags & self::READ_LATEST ) == self::READ_LATEST )
+		return $this->fieldHasFlags( $flags, self::READ_LATEST )
 			? $this->writeStore->get( $key, $flags )
 			: $this->readStore->get( $key, $flags );
 	}
@@ -118,7 +118,7 @@ class ReplicatedBagOStuff extends BagOStuff {
 	}
 
 	public function getMulti( array $keys, $flags = 0 ) {
-		return ( ( $flags & self::READ_LATEST ) == self::READ_LATEST )
+		return $this->fieldHasFlags( $flags, self::READ_LATEST )
 			? $this->writeStore->getMulti( $keys, $flags )
 			: $this->readStore->getMulti( $keys, $flags );
 	}

@@ -479,6 +479,16 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	}
 
 	/**
+	 * @param int $field
+	 * @param int $flags
+	 * @return bool
+	 * @since 1.34
+	 */
+	final protected function fieldHasFlags( $field, $flags ) {
+		return ( ( $field & $flags ) === $flags );
+	}
+
+	/**
 	 * Merge the flag maps of one or more BagOStuff objects into a "lowest common denominator" map
 	 *
 	 * @param BagOStuff[] $bags

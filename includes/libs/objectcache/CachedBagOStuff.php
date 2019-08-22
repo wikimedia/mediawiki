@@ -87,7 +87,7 @@ class CachedBagOStuff extends BagOStuff {
 
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		$this->procCache->set( $key, $value, $exptime, $flags );
-		if ( ( $flags & self::WRITE_CACHE_ONLY ) != self::WRITE_CACHE_ONLY ) {
+		if ( !$this->fieldHasFlags( $flags, self::WRITE_CACHE_ONLY ) ) {
 			$this->backend->set( $key, $value, $exptime, $flags );
 		}
 
@@ -96,7 +96,7 @@ class CachedBagOStuff extends BagOStuff {
 
 	public function delete( $key, $flags = 0 ) {
 		$this->procCache->delete( $key, $flags );
-		if ( ( $flags & self::WRITE_CACHE_ONLY ) != self::WRITE_CACHE_ONLY ) {
+		if ( !$this->fieldHasFlags( $flags, self::WRITE_CACHE_ONLY ) ) {
 			$this->backend->delete( $key, $flags );
 		}
 
@@ -166,7 +166,8 @@ class CachedBagOStuff extends BagOStuff {
 
 	public function setMulti( array $data, $exptime = 0, $flags = 0 ) {
 		$this->procCache->setMulti( $data, $exptime, $flags );
-		if ( ( $flags & self::WRITE_CACHE_ONLY ) != self::WRITE_CACHE_ONLY ) {
+
+		if ( !$this->fieldHasFlags( $flags, self::WRITE_CACHE_ONLY ) ) {
 			return $this->backend->setMulti( $data, $exptime, $flags );
 		}
 
@@ -175,7 +176,8 @@ class CachedBagOStuff extends BagOStuff {
 
 	public function deleteMulti( array $keys, $flags = 0 ) {
 		$this->procCache->deleteMulti( $keys, $flags );
-		if ( ( $flags & self::WRITE_CACHE_ONLY ) != self::WRITE_CACHE_ONLY ) {
+
+		if ( !$this->fieldHasFlags( $flags, self::WRITE_CACHE_ONLY ) ) {
 			return $this->backend->deleteMulti( $keys, $flags );
 		}
 
@@ -184,7 +186,8 @@ class CachedBagOStuff extends BagOStuff {
 
 	public function changeTTLMulti( array $keys, $exptime, $flags = 0 ) {
 		$this->procCache->changeTTLMulti( $keys, $exptime, $flags );
-		if ( ( $flags & self::WRITE_CACHE_ONLY ) != self::WRITE_CACHE_ONLY ) {
+
+		if ( !$this->fieldHasFlags( $flags, self::WRITE_CACHE_ONLY ) ) {
 			return $this->backend->changeTTLMulti( $keys, $exptime, $flags );
 		}
 

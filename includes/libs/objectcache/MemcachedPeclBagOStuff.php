@@ -332,7 +332,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 
 		// The PECL implementation is a naïve for-loop so use async I/O to pipeline;
 		// https://github.com/php-memcached-dev/php-memcached/blob/master/php_memcached.c#L1852
-		if ( ( $flags & self::WRITE_BACKGROUND ) == self::WRITE_BACKGROUND ) {
+		if ( $this->fieldHasFlags( $flags, self::WRITE_BACKGROUND ) ) {
 			$client = $this->acquireAsyncClient();
 			$result = $client->setMulti( $data, $exptime );
 			$this->releaseAsyncClient( $client );
@@ -352,7 +352,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 
 		// The PECL implementation is a naïve for-loop so use async I/O to pipeline;
 		// https://github.com/php-memcached-dev/php-memcached/blob/7443d16d02fb73cdba2e90ae282446f80969229c/php_memcached.c#L1852
-		if ( ( $flags & self::WRITE_BACKGROUND ) == self::WRITE_BACKGROUND ) {
+		if ( $this->fieldHasFlags( $flags, self::WRITE_BACKGROUND ) ) {
 			$client = $this->acquireAsyncClient();
 			$resultArray = $client->deleteMulti( $keys ) ?: [];
 			$this->releaseAsyncClient( $client );
