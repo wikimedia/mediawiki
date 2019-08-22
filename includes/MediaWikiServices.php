@@ -14,6 +14,7 @@ use GlobalVarConfig;
 use Hooks;
 use IBufferingStatsdDataFactory;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use LocalisationCache;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
@@ -647,6 +648,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getLinkRendererFactory() {
 		return $this->getService( 'LinkRendererFactory' );
+	}
+
+	/**
+	 * @since 1.34
+	 * @return LocalisationCache
+	 */
+	public function getLocalisationCache() : LocalisationCache {
+		return $this->getService( 'LocalisationCache' );
 	}
 
 	/**
