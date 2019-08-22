@@ -1077,7 +1077,8 @@ abstract class ContentHandler {
 		}
 
 		// Max content length = max comment length - length of the comment (excl. $1)
-		$text = $content ? $content->getTextForSummary( 255 - ( strlen( $reason ) - 2 ) ) : '';
+		$maxLength = CommentStore::COMMENT_CHARACTER_LIMIT - ( strlen( $reason ) - 2 );
+		$text = $content ? $content->getTextForSummary( $maxLength ) : '';
 
 		// Now replace the '$1' placeholder
 		$reason = str_replace( '$1', $text, $reason );
