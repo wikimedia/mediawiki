@@ -21,6 +21,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This class checks if user can get extra rights
  * because of conditions specified in $wgAutopromote
@@ -200,7 +202,9 @@ class Autopromote {
 			case APCOND_BLOCKED:
 				return $user->getBlock() && $user->getBlock()->isSitewide();
 			case APCOND_ISBOT:
-				return in_array( 'bot', User::getGroupPermissions( $user->getGroups() ) );
+				return in_array( 'bot', MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->getGroupPermissions( $user->getGroups() ) );
 			default:
 				$result = null;
 				Hooks::run( 'AutopromoteCondition', [ $cond[0],

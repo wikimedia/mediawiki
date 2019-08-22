@@ -87,7 +87,9 @@ class NewFilesPager extends RangeChronologicalPager {
 		}
 
 		if ( !$opts->getValue( 'showbots' ) ) {
-			$groupsWithBotPermission = User::getGroupsWithPermission( 'bot' );
+			$groupsWithBotPermission = MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->getGroupsWithPermission( 'bot' );
 
 			if ( count( $groupsWithBotPermission ) ) {
 				$dbr = wfGetDB( DB_REPLICA );

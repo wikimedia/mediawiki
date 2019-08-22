@@ -91,6 +91,7 @@ function wfThumbHandle404() {
  */
 function wfStreamThumb( array $params ) {
 	global $wgVaryOnXFP;
+	$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 	$headers = []; // HTTP headers to send
 
@@ -154,9 +155,8 @@ function wfStreamThumb( array $params ) {
 
 	// Check permissions if there are read restrictions
 	$varyHeader = [];
-	if ( !in_array( 'read', User::getGroupPermissions( [ '*' ] ), true ) ) {
+	if ( !in_array( 'read', $permissionManager->getGroupPermissions( [ '*' ] ), true ) ) {
 		$user = RequestContext::getMain()->getUser();
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$imgTitle = $img->getTitle();
 
 		if ( !$imgTitle || !$permissionManager->userCan( 'read', $user, $imgTitle ) ) {

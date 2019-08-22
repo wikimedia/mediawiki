@@ -68,7 +68,9 @@ class NewPagesPager extends ReverseChronologicalPager {
 			$conds[] = ActorMigration::newMigration()->getWhere(
 				$this->mDb, 'rc_user', User::newFromName( $user->getText(), false ), false
 			)['conds'];
-		} elseif ( User::groupHasPermission( '*', 'createpage' ) &&
+		} elseif ( MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->groupHasPermission( '*', 'createpage' ) &&
 			$this->opts->getValue( 'hideliu' )
 		) {
 			# If anons cannot make new pages, don't "exclude logged in users"!

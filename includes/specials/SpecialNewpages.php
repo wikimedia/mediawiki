@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A special page that list newly created pages
  *
@@ -184,7 +186,9 @@ class SpecialNewpages extends IncludableSpecialPage {
 		}
 
 		// Disable some if needed
-		if ( !User::groupHasPermission( '*', 'createpage' ) ) {
+		if ( !MediaWikiServices::getInstance()->getPermissionManager()
+				->groupHasPermission( '*', 'createpage' )
+		) {
 			unset( $filters['hideliu'] );
 		}
 		if ( !$this->getUser()->useNPPatrol() ) {

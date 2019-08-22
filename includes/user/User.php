@@ -5351,7 +5351,9 @@ class User implements IDBAccessObject, UserIdentity {
 		global $wgLang;
 
 		$groups = [];
-		foreach ( self::getGroupsWithPermission( $permission ) as $group ) {
+		foreach ( MediaWikiServices::getInstance()
+					  ->getPermissionManager()
+					  ->getGroupsWithPermission( $permission ) as $group ) {
 			$groups[] = UserGroupMembership::getLink( $group, RequestContext::getMain(), 'wiki' );
 		}
 

@@ -1939,7 +1939,7 @@ class ApiMain extends ApiBase {
 
 			$groups = array_map( function ( $group ) {
 				return $group == '*' ? 'all' : $group;
-			}, User::getGroupsWithPermission( $right ) );
+			}, $this->getPermissionManager()->getGroupsWithPermission( $right ) );
 
 			$help['permissions'] .= Html::rawElement( 'dd', null,
 				$this->msg( 'api-help-permissions-granted-to' )

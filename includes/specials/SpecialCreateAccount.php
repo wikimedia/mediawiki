@@ -51,7 +51,9 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 	}
 
 	public function isRestricted() {
-		return !User::groupHasPermission( '*', 'createaccount' );
+		return !MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->groupHasPermission( '*', 'createaccount' );
 	}
 
 	public function userCanExecute( User $user ) {
