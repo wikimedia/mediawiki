@@ -24,14 +24,15 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( "This file is part of MediaWiki, it is not a valid entry point" );
 }
 
+use MediaWiki\BadFileLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ProcOpenError;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Shell\Shell;
-use Wikimedia\WrappedString;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\WrappedString;
 
 /**
  * Load an extension
@@ -2907,72 +2908,27 @@ function wfUnpack( $format, $data, $length = false ) {
  *    * Any subsequent links on the same line are considered to be exceptions,
  *      i.e. articles where the image may occur inline.
  *
+ * @deprecated since 1.34, use the BadFileLookup service directly instead
+ *
  * @param string $name The image name to check
  * @param Title|bool $contextTitle The page on which the image occurs, if known
  * @param string|null $blacklist Wikitext of a file blacklist
  * @return bool
  */
 function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
-	# Handle redirects; callers almost always hit wfFindFile() anyway,
-	# so just use that method because it has a fast process cache.
-	$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $name ); // get the final name
-	$name = $file ? $file->getTitle()->getDBkey() : $name;
-
-	# Run the extension hook
-	$bad = false;
-	if ( !Hooks::run( 'BadImage', [ $name, &$bad ] ) ) {
-		return (bool)$bad;
+	$services = MediaWikiServices::getInstance();
+	if ( $blacklist !== null ) {
+		wfDeprecated( __METHOD__ . ' with $blacklist parameter', '1.34' );
+		return ( new BadFileLookup(
+			function () use ( $blacklist ) {
+				return $blacklist;
+			},
+			$services->getLocalServerObjectCache(),
+			$services->getRepoGroup(),
+			$services->getTitleParser()
+		) )->isBadFile( $name, $contextTitle ?: null );
 	}
-
-	$cache = ObjectCache::getLocalServerInstance( 'hash' );
-	$key = $cache->makeKey(
-		'bad-image-list', ( $blacklist === null ) ? 'default' : md5( $blacklist )
-	);
-	$badImages = $cache->get( $key );
-
-	if ( $badImages === false ) { // cache miss
-		if ( $blacklist === null ) {
-			$blacklist = wfMessage( 'bad_image_list' )->inContentLanguage()->plain(); // site list
-		}
-		# Build the list now
-		$badImages = [];
-		$lines = explode( "\n", $blacklist );
-		foreach ( $lines as $line ) {
-			# List items only
-			if ( substr( $line, 0, 1 ) !== '*' ) {
-				continue;
-			}
-
-			# Find all links
-			$m = [];
-			if ( !preg_match_all( '/\[\[:?(.*?)\]\]/', $line, $m ) ) {
-				continue;
-			}
-
-			$exceptions = [];
-			$imageDBkey = false;
-			foreach ( $m[1] as $i => $titleText ) {
-				$title = Title::newFromText( $titleText );
-				if ( !is_null( $title ) ) {
-					if ( $i == 0 ) {
-						$imageDBkey = $title->getDBkey();
-					} else {
-						$exceptions[$title->getPrefixedDBkey()] = true;
-					}
-				}
-			}
-
-			if ( $imageDBkey !== false ) {
-				$badImages[$imageDBkey] = $exceptions;
-			}
-		}
-		$cache->set( $key, $badImages, 60 );
-	}
-
-	$contextKey = $contextTitle ? $contextTitle->getPrefixedDBkey() : false;
-	$bad = isset( $badImages[$name] ) && !isset( $badImages[$name][$contextKey] );
-
-	return $bad;
+	return $services->getBadFileLookup()->isBadFile( $name, $contextTitle ?: null );
 }
 
 /**

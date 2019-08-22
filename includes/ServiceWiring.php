@@ -39,6 +39,7 @@
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\BadFileLookup;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Config\ConfigRepository;
@@ -74,6 +75,17 @@ return [
 	'ActorMigration' => function ( MediaWikiServices $services ) : ActorMigration {
 		return new ActorMigration(
 			$services->getMainConfig()->get( 'ActorTableSchemaMigrationStage' )
+		);
+	},
+
+	'BadFileLookup' => function ( MediaWikiServices $services ) : BadFileLookup {
+		return new BadFileLookup(
+			function () {
+				return wfMessage( 'bad_image_list' )->inContentLanguage()->plain();
+			},
+			$services->getLocalServerObjectCache(),
+			$services->getRepoGroup(),
+			$services->getTitleParser()
 		);
 	},
 

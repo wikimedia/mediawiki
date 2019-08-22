@@ -5,28 +5,55 @@
  * @group Database
  */
 class GlobalWithDBTest extends MediaWikiTestCase {
-	/**
-	 * @dataProvider provideWfIsBadImageList
-	 * @covers ::wfIsBadImage
-	 */
-	public function testWfIsBadImage( $name, $title, $blacklist, $expected, $desc ) {
-		$this->assertEquals( $expected, wfIsBadImage( $name, $title, $blacklist ), $desc );
+	private function setUpBadImageTests( $name ) {
+		if ( in_array( $name, [
+			'Hook bad.jpg',
+			'Redirect to bad.jpg',
+			'Redirect_to_good.jpg',
+			'Redirect to hook bad.jpg',
+			'Redirect to hook good.jpg',
+		] ) ) {
+			$this->markTestSkipped( "Didn't get RepoGroup working properly yet" );
+		}
+
+		// Don't try to fetch the files from Commons or anything, please
+		$this->setMwGlobals( 'wgForeignFileRepos', [] );
+		// We need to reset services immediately so that editPage() doesn't use the old RepoGroup
+		// and hit the network
+		$this->resetServices();
+
+		// XXX How do we get file redirects to work?
+		$this->editPage( 'File:Redirect to bad.jpg', '#REDIRECT [[Bad.jpg]]' );
+		$this->editPage( 'File:Redirect to good.jpg', '#REDIRECT [[Good.jpg]]' );
+		$this->editPage( 'File:Redirect to hook bad.jpg', '#REDIRECT [[Hook bad.jpg]]' );
+		$this->editPage( 'File:Redirect to hook good.jpg', '#REDIRECT [[Hook good.jpg]]' );
+
+		$this->setTemporaryHook( 'BadImage', 'BadFileLookupTest::badImageHook' );
 	}
 
-	public static function provideWfIsBadImageList() {
-		$blacklist = '* [[File:Bad.jpg]] except [[Nasty page]]';
+	/**
+	 * @dataProvider BadFileLookupTest::provideIsBadFile
+	 * @covers ::wfIsBadImage
+	 */
+	public function testWfIsBadImage( $name, $title, $expected ) {
+		$this->setUpBadImageTests( $name );
 
-		return [
-			[ 'Bad.jpg', false, $blacklist, true,
-				'Called on a bad image' ],
-			[ 'Bad.jpg', Title::makeTitle( NS_MAIN, 'A page' ), $blacklist, true,
-				'Called on a bad image' ],
-			[ 'NotBad.jpg', false, $blacklist, false,
-				'Called on a non-bad image' ],
-			[ 'Bad.jpg', Title::makeTitle( NS_MAIN, 'Nasty page' ), $blacklist, false,
-				'Called on a bad image but is on a whitelisted page' ],
-			[ 'File:Bad.jpg', false, $blacklist, false,
-				'Called on a bad image with File:' ],
-		];
+		$this->editPage( 'MediaWiki:Bad image list', BadFileLookupTest::BLACKLIST );
+		$this->resetServices();
+		// Enable messages from MediaWiki namespace
+		MessageCache::singleton()->enable();
+
+		$this->assertEquals( $expected, wfIsBadImage( $name, $title ) );
+	}
+
+	/**
+	 * @dataProvider BadFileLookupTest::provideIsBadFile
+	 * @covers ::wfIsBadImage
+	 */
+	public function testWfIsBadImage_blacklistParam( $name, $title, $expected ) {
+		$this->setUpBadImageTests( $name );
+
+		$this->hideDeprecated( 'wfIsBadImage with $blacklist parameter' );
+		$this->assertSame( $expected, wfIsBadImage( $name, $title, BadFileLookupTest::BLACKLIST ) );
 	}
 }

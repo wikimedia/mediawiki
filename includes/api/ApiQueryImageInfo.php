@@ -144,7 +144,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					$info['imagerepository'] = $img->getRepoName();
 				}
 				if ( isset( $prop['badfile'] ) ) {
-					$info['badfile'] = (bool)wfIsBadImage( $title, $badFileContextTitle );
+					$info['badfile'] = (bool)MediaWikiServices::getInstance()->getBadFileLookup()
+						->isBadFile( $title, $badFileContextTitle );
 				}
 
 				$fit = $result->addValue( [ 'query', 'pages' ], (int)$pageId, $info );

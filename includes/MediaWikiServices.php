@@ -430,6 +430,14 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.34
+	 * @return BadFileLookup
+	 */
+	public function getBadFileLookup() : BadFileLookup {
+		return $this->getService( 'BadFileLookup' );
+	}
+
+	/**
 	 * @since 1.31
 	 * @return BlobStore
 	 */
