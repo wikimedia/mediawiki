@@ -2666,6 +2666,8 @@ class OutputPage extends ContextSource {
 	 * @param string|null $action Action that was denied or null if unknown
 	 */
 	public function showPermissionsErrorPage( array $errors, $action = null ) {
+		$services = MediaWikiServices::getInstance();
+		$permissionManager = $services->getPermissionManager();
 		foreach ( $errors as $key => $error ) {
 			$errors[$key] = (array)$error;
 		}
@@ -2675,11 +2677,12 @@ class OutputPage extends ContextSource {
 		// 1. the user is not logged in
 		// 2. the only error is insufficient permissions (i.e. no block or something else)
 		// 3. the error can be avoided simply by logging in
+
 		if ( in_array( $action, [ 'read', 'edit', 'createpage', 'createtalk', 'upload' ] )
 			&& $this->getUser()->isAnon() && count( $errors ) == 1 && isset( $errors[0][0] )
 			&& ( $errors[0][0] == 'badaccess-groups' || $errors[0][0] == 'badaccess-group0' )
-			&& ( User::groupHasPermission( 'user', $action )
-			|| User::groupHasPermission( 'autoconfirmed', $action ) )
+			&& ( $permissionManager->groupHasPermission( 'user', $action )
+				|| $permissionManager->groupHasPermission( 'autoconfirmed', $action ) )
 		) {
 			$displayReturnto = null;
 
@@ -2715,8 +2718,6 @@ class OutputPage extends ContextSource {
 				}
 			}
 
-			$services = MediaWikiServices::getInstance();
-
 			$title = SpecialPage::getTitleFor( 'Userlogin' );
 			$linkRenderer = $services->getLinkRenderer();
 			$loginUrl = $title->getLinkURL( $query, false, PROTO_RELATIVE );
@@ -2729,8 +2730,6 @@ class OutputPage extends ContextSource {
 
 			$this->prepareErrorPage( $this->msg( 'loginreqtitle' ) );
 			$this->addHTML( $this->msg( $msg )->rawParams( $loginLink )->params( $loginUrl )->parse() );
-
-			$permissionManager = $services->getPermissionManager();
 
 			# Don't return to a page the user can't read otherwise
 			# we'll end up in a pointless loop

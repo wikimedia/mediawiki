@@ -285,7 +285,9 @@ class ContribsPager extends RangeChronologicalPager {
 			$queryInfo['conds'][] = $revQuery['fields']['rev_user'] . ' >' . (int)( $max - $max / 100 );
 			# ignore local groups with the bot right
 			# @todo FIXME: Global groups may have 'bot' rights
-			$groupsWithBotPermission = User::getGroupsWithPermission( 'bot' );
+			$groupsWithBotPermission = MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->getGroupsWithPermission( 'bot' );
 			if ( count( $groupsWithBotPermission ) ) {
 				$queryInfo['tables'][] = 'user_groups';
 				$queryInfo['conds'][] = 'ug_group IS NULL';

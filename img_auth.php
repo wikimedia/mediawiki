@@ -53,9 +53,10 @@ $mediawiki->doPostOutputShutdown( 'fast' );
 
 function wfImageAuthMain() {
 	global $wgImgAuthUrlPathMap;
+	$permissionManager = \MediaWiki\MediaWikiServices::getInstance()->getPermissionManager();
 
 	$request = RequestContext::getMain()->getRequest();
-	$publicWiki = in_array( 'read', User::getGroupPermissions( [ '*' ] ), true );
+	$publicWiki = in_array( 'read', $permissionManager->getGroupPermissions( [ '*' ] ), true );
 
 	// Get the requested file path (source file or thumbnail)
 	$matches = WebRequest::getPathInfo();
@@ -160,7 +161,6 @@ function wfImageAuthMain() {
 
 		// Check user authorization for this title
 		// Checks Whitelist too
-		$permissionManager = \MediaWiki\MediaWikiServices::getInstance()->getPermissionManager();
 
 		if ( !$permissionManager->userCan( 'read', $user, $title ) ) {
 			wfForbidden( 'img-auth-accessdenied', 'img-auth-noread', $name );
