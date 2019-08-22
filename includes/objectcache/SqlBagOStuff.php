@@ -504,7 +504,12 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			return false;
 		}
 
-		return (bool)$db->affectedRows();
+		$success = (bool)$db->affectedRows();
+		if ( $this->fieldHasFlags( $flags, self::WRITE_SYNC ) ) {
+			$success = $this->waitForReplication() && $success;
+		}
+
+		return $success;
 	}
 
 	protected function doDeleteMulti( array $keys, $flags = 0 ) {
@@ -552,15 +557,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		return $newCount;
-	}
-
-	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
-		$ok = $this->mergeViaCas( $key, $callback, $exptime, $attempts, $flags );
-		if ( $this->fieldHasFlags( $flags, self::WRITE_SYNC ) ) {
-			$ok = $this->waitForReplication() && $ok;
-		}
-
-		return $ok;
 	}
 
 	public function changeTTLMulti( array $keys, $exptime, $flags = 0 ) {
