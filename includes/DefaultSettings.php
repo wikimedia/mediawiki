@@ -2636,6 +2636,8 @@ $wgLocalisationCacheConf = [
 	'store' => 'detect',
 	'storeClass' => false,
 	'storeDirectory' => false,
+	'storeServer' => [],
+	'forceRecache' => false,
 	'manualRecache' => false,
 ];
 

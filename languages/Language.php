@@ -75,10 +75,8 @@ class Language {
 	 */
 	public $transformData = [];
 
-	/**
-	 * @var LocalisationCache
-	 */
-	public static $dataCache;
+	/** @var LocalisationCache */
+	private $localisationCache;
 
 	public static $mLangObjCache = [];
 
@@ -283,12 +281,12 @@ class Language {
 	 * @since 1.32
 	 */
 	public static function clearCaches() {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new MWException( __METHOD__ . ' must not be used outside tests' );
+		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MEDIAWIKI_INSTALL' ) ) {
+			throw new MWException( __METHOD__ . ' must not be used outside tests/installer' );
 		}
-		self::$dataCache = null;
-		// Reinitialize $dataCache, since it's expected to always be available
-		self::getLocalisationCache();
+		if ( !defined( 'MEDIAWIKI_INSTALL' ) ) {
+			MediaWikiServices::getInstance()->resetServiceForTesting( 'LocalisationCache' );
+		}
 		self::$mLangObjCache = [];
 		self::$fallbackLanguageCache = [];
 		self::$grammarTransformations = null;
@@ -443,15 +441,11 @@ class Language {
 	/**
 	 * Get the LocalisationCache instance
 	 *
+	 * @deprecated since 1.34, use MediaWikiServices
 	 * @return LocalisationCache
 	 */
 	public static function getLocalisationCache() {
-		if ( is_null( self::$dataCache ) ) {
-			global $wgLocalisationCacheConf;
-			$class = $wgLocalisationCacheConf['class'];
-			self::$dataCache = new $class( $wgLocalisationCacheConf );
-		}
-		return self::$dataCache;
+		return MediaWikiServices::getInstance()->getLocalisationCache();
 	}
 
 	function __construct() {
@@ -462,7 +456,7 @@ class Language {
 		} else {
 			$this->mCode = str_replace( '_', '-', strtolower( substr( static::class, 8 ) ) );
 		}
-		self::getLocalisationCache();
+		$this->localisationCache = MediaWikiServices::getInstance()->getLocalisationCache();
 	}
 
 	/**
@@ -494,7 +488,7 @@ class Language {
 	 * @return array
 	 */
 	public function getBookstoreList() {
-		return self::$dataCache->getItem( $this->mCode, 'bookstoreList' );
+		return $this->localisationCache->getItem( $this->mCode, 'bookstoreList' );
 	}
 
 	/**
@@ -511,7 +505,7 @@ class Language {
 				getCanonicalNamespaces();
 
 			$this->namespaceNames = $wgExtraNamespaces +
-				self::$dataCache->getItem( $this->mCode, 'namespaceNames' );
+				$this->localisationCache->getItem( $this->mCode, 'namespaceNames' );
 			$this->namespaceNames += $validNamespaces;
 
 			$this->namespaceNames[NS_PROJECT] = $wgMetaNamespace;
@@ -618,7 +612,7 @@ class Language {
 		global $wgExtraGenderNamespaces;
 
 		$ns = $wgExtraGenderNamespaces +
-			(array)self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
+			(array)$this->localisationCache->getItem( $this->mCode, 'namespaceGenderAliases' );
 
 		return $ns[$index][$gender] ?? $this->getNsText( $index );
 	}
@@ -640,7 +634,7 @@ class Language {
 			return false;
 		} else {
 			// Check what is in i18n files
-			$aliases = self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
+			$aliases = $this->localisationCache->getItem( $this->mCode, 'namespaceGenderAliases' );
 			return count( $aliases ) > 0;
 		}
 	}
@@ -664,7 +658,7 @@ class Language {
 	 */
 	public function getNamespaceAliases() {
 		if ( is_null( $this->namespaceAliases ) ) {
-			$aliases = self::$dataCache->getItem( $this->mCode, 'namespaceAliases' );
+			$aliases = $this->localisationCache->getItem( $this->mCode, 'namespaceAliases' );
 			if ( !$aliases ) {
 				$aliases = [];
 			} else {
@@ -678,8 +672,8 @@ class Language {
 			}
 
 			global $wgExtraGenderNamespaces;
-			$genders = $wgExtraGenderNamespaces +
-				(array)self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
+			$genders = $wgExtraGenderNamespaces + (array)$this->localisationCache
+				->getItem( $this->mCode, 'namespaceGenderAliases' );
 			foreach ( $genders as $index => $forms ) {
 				foreach ( $forms as $alias ) {
 					$aliases[$alias] = $index;
@@ -780,21 +774,21 @@ class Language {
 	 * @return string[]|bool List of date format preference keys, or false if disabled.
 	 */
 	public function getDatePreferences() {
-		return self::$dataCache->getItem( $this->mCode, 'datePreferences' );
+		return $this->localisationCache->getItem( $this->mCode, 'datePreferences' );
 	}
 
 	/**
 	 * @return array
 	 */
 	function getDateFormats() {
-		return self::$dataCache->getItem( $this->mCode, 'dateFormats' );
+		return $this->localisationCache->getItem( $this->mCode, 'dateFormats' );
 	}
 
 	/**
 	 * @return array|string
 	 */
 	public function getDefaultDateFormat() {
-		$df = self::$dataCache->getItem( $this->mCode, 'defaultDateFormat' );
+		$df = $this->localisationCache->getItem( $this->mCode, 'defaultDateFormat' );
 		if ( $df === 'dmy or mdy' ) {
 			global $wgAmericanDates;
 			return $wgAmericanDates ? 'mdy' : 'dmy';
@@ -807,7 +801,7 @@ class Language {
 	 * @return array
 	 */
 	public function getDatePreferenceMigrationMap() {
-		return self::$dataCache->getItem( $this->mCode, 'datePreferenceMigrationMap' );
+		return $this->localisationCache->getItem( $this->mCode, 'datePreferenceMigrationMap' );
 	}
 
 	/**
@@ -2274,7 +2268,8 @@ class Language {
 		}
 
 		if ( !isset( $this->dateFormatStrings[$type][$pref] ) ) {
-			$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
+			$df =
+				$this->localisationCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
 
 			if ( $type === 'pretty' && $df === null ) {
 				$df = $this->getDateFormatString( 'date', $pref );
@@ -2282,7 +2277,8 @@ class Language {
 
 			if ( !$wasDefault && $df === null ) {
 				$pref = $this->getDefaultDateFormat();
-				$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
+				$df = $this->getLocalisationCache()
+					->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
 			}
 
 			$this->dateFormatStrings[$type][$pref] = $df;
@@ -2646,14 +2642,14 @@ class Language {
 	 * @return string|null
 	 */
 	public function getMessage( $key ) {
-		return self::$dataCache->getSubitem( $this->mCode, 'messages', $key );
+		return $this->localisationCache->getSubitem( $this->mCode, 'messages', $key );
 	}
 
 	/**
 	 * @return array
 	 */
 	function getAllMessages() {
-		return self::$dataCache->getItem( $this->mCode, 'messages' );
+		return $this->localisationCache->getItem( $this->mCode, 'messages' );
 	}
 
 	/**
@@ -2895,7 +2891,7 @@ class Language {
 	 * @return string
 	 */
 	function fallback8bitEncoding() {
-		return self::$dataCache->getItem( $this->mCode, 'fallback8bitEncoding' );
+		return $this->localisationCache->getItem( $this->mCode, 'fallback8bitEncoding' );
 	}
 
 	/**
@@ -3085,7 +3081,7 @@ class Language {
 	 * @return bool
 	 */
 	function isRTL() {
-		return self::$dataCache->getItem( $this->mCode, 'rtl' );
+		return $this->localisationCache->getItem( $this->mCode, 'rtl' );
 	}
 
 	/**
@@ -3161,7 +3157,7 @@ class Language {
 	 * @return array
 	 */
 	function capitalizeAllNouns() {
-		return self::$dataCache->getItem( $this->mCode, 'capitalizeAllNouns' );
+		return $this->localisationCache->getItem( $this->mCode, 'capitalizeAllNouns' );
 	}
 
 	/**
@@ -3194,7 +3190,7 @@ class Language {
 	 * @return bool
 	 */
 	function linkPrefixExtension() {
-		return self::$dataCache->getItem( $this->mCode, 'linkPrefixExtension' );
+		return $this->localisationCache->getItem( $this->mCode, 'linkPrefixExtension' );
 	}
 
 	/**
@@ -3202,7 +3198,7 @@ class Language {
 	 * @return array
 	 */
 	function getMagicWords() {
-		return self::$dataCache->getItem( $this->mCode, 'magicWords' );
+		return $this->localisationCache->getItem( $this->mCode, 'magicWords' );
 	}
 
 	/**
@@ -3212,7 +3208,7 @@ class Language {
 	 */
 	function getMagic( $mw ) {
 		$rawEntry = $this->mMagicExtensions[$mw->mId] ??
-			self::$dataCache->getSubitem( $this->mCode, 'magicWords', $mw->mId );
+			$this->localisationCache->getSubitem( $this->mCode, 'magicWords', $mw->mId );
 
 		if ( !is_array( $rawEntry ) ) {
 			wfWarn( "\"$rawEntry\" is not a valid magic word for \"$mw->mId\"" );
@@ -3247,7 +3243,7 @@ class Language {
 		if ( is_null( $this->mExtendedSpecialPageAliases ) ) {
 			// Initialise array
 			$this->mExtendedSpecialPageAliases =
-				self::$dataCache->getItem( $this->mCode, 'specialPageAliases' );
+				$this->localisationCache->getItem( $this->mCode, 'specialPageAliases' );
 		}
 
 		return $this->mExtendedSpecialPageAliases;
@@ -3412,28 +3408,28 @@ class Language {
 	 * @return string
 	 */
 	function digitGroupingPattern() {
-		return self::$dataCache->getItem( $this->mCode, 'digitGroupingPattern' );
+		return $this->localisationCache->getItem( $this->mCode, 'digitGroupingPattern' );
 	}
 
 	/**
 	 * @return array
 	 */
 	function digitTransformTable() {
-		return self::$dataCache->getItem( $this->mCode, 'digitTransformTable' );
+		return $this->localisationCache->getItem( $this->mCode, 'digitTransformTable' );
 	}
 
 	/**
 	 * @return array
 	 */
 	function separatorTransformTable() {
-		return self::$dataCache->getItem( $this->mCode, 'separatorTransformTable' );
+		return $this->localisationCache->getItem( $this->mCode, 'separatorTransformTable' );
 	}
 
 	/**
 	 * @return int|null
 	 */
 	function minimumGroupingDigits() {
-		return self::$dataCache->getItem( $this->mCode, 'minimumGroupingDigits' );
+		return $this->localisationCache->getItem( $this->mCode, 'minimumGroupingDigits' );
 	}
 
 	/**
@@ -4333,7 +4329,7 @@ class Language {
 	 * @return string
 	 */
 	public function linkTrail() {
-		return self::$dataCache->getItem( $this->mCode, 'linkTrail' );
+		return $this->localisationCache->getItem( $this->mCode, 'linkTrail' );
 	}
 
 	/**
@@ -4343,7 +4339,7 @@ class Language {
 	 * @return string
 	 */
 	public function linkPrefixCharset() {
-		return self::$dataCache->getItem( $this->mCode, 'linkPrefixCharset' );
+		return $this->localisationCache->getItem( $this->mCode, 'linkPrefixCharset' );
 	}
 
 	/**
@@ -4933,11 +4929,13 @@ class Language {
 	 * @return array Associative array with plural form, and plural rule as key-value pairs
 	 */
 	public function getCompiledPluralRules() {
-		$pluralRules = self::$dataCache->getItem( strtolower( $this->mCode ), 'compiledPluralRules' );
+		$pluralRules =
+			$this->localisationCache->getItem( strtolower( $this->mCode ), 'compiledPluralRules' );
 		$fallbacks = self::getFallbacksFor( $this->mCode );
 		if ( !$pluralRules ) {
 			foreach ( $fallbacks as $fallbackCode ) {
-				$pluralRules = self::$dataCache->getItem( strtolower( $fallbackCode ), 'compiledPluralRules' );
+				$pluralRules = $this->localisationCache
+					->getItem( strtolower( $fallbackCode ), 'compiledPluralRules' );
 				if ( $pluralRules ) {
 					break;
 				}
@@ -4952,11 +4950,13 @@ class Language {
 	 * @return array Associative array with plural form number and plural rule as key-value pairs
 	 */
 	public function getPluralRules() {
-		$pluralRules = self::$dataCache->getItem( strtolower( $this->mCode ), 'pluralRules' );
+		$pluralRules =
+			$this->localisationCache->getItem( strtolower( $this->mCode ), 'pluralRules' );
 		$fallbacks = self::getFallbacksFor( $this->mCode );
 		if ( !$pluralRules ) {
 			foreach ( $fallbacks as $fallbackCode ) {
-				$pluralRules = self::$dataCache->getItem( strtolower( $fallbackCode ), 'pluralRules' );
+				$pluralRules = $this->localisationCache
+					->getItem( strtolower( $fallbackCode ), 'pluralRules' );
 				if ( $pluralRules ) {
 					break;
 				}
@@ -4971,11 +4971,13 @@ class Language {
 	 * @return array Associative array with plural form number and plural rule type as key-value pairs
 	 */
 	public function getPluralRuleTypes() {
-		$pluralRuleTypes = self::$dataCache->getItem( strtolower( $this->mCode ), 'pluralRuleTypes' );
+		$pluralRuleTypes =
+			$this->localisationCache->getItem( strtolower( $this->mCode ), 'pluralRuleTypes' );
 		$fallbacks = self::getFallbacksFor( $this->mCode );
 		if ( !$pluralRuleTypes ) {
 			foreach ( $fallbacks as $fallbackCode ) {
-				$pluralRuleTypes = self::$dataCache->getItem( strtolower( $fallbackCode ), 'pluralRuleTypes' );
+				$pluralRuleTypes = $this->localisationCache
+					->getItem( strtolower( $fallbackCode ), 'pluralRuleTypes' );
 				if ( $pluralRuleTypes ) {
 					break;
 				}
