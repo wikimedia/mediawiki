@@ -40,7 +40,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 abstract class FileJournal {
 	/** @var string */
 	protected $backend;
-	/** @var int */
+	/** @var int|false */
 	protected $ttlDays;
 
 	/**
@@ -153,7 +153,7 @@ abstract class FileJournal {
 	 * A starting change ID and/or limit can be specified.
 	 *
 	 * @param int|null $start Starting change ID or null
-	 * @param int $limit Maximum number of items to return
+	 * @param int $limit Maximum number of items to return (0 = unlimited)
 	 * @param string|null &$next Updated to the ID of the next entry.
 	 * @return array List of associative arrays, each having:
 	 *     id         : unique, monotonic, ID for this change

@@ -10,6 +10,7 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @since 1.18
@@ -656,6 +657,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 			$this->fail( $message );
 		}
+
+		// If anything faked the time, reset it
+		ConvertibleTimestamp::setFakeTime( false );
 
 		parent::tearDown();
 	}
