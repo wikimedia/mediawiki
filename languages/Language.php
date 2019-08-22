@@ -27,6 +27,7 @@
  */
 
 use CLDRPluralRuleParser\Evaluator;
+use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
 
@@ -86,19 +87,24 @@ class Language {
 	/** @var LanguageNameUtils */
 	private $langNameUtils;
 
+	/** @var LanguageFallback */
+	private $langFallback;
+
 	public static $mLangObjCache = [];
 
 	/**
 	 * Return a fallback chain for messages in getFallbacksFor
 	 * @since 1.32
+	 * @deprecated since 1.35, use LanguageFallback::MESSAGES
 	 */
-	const MESSAGES_FALLBACKS = 0;
+	const MESSAGES_FALLBACKS = LanguageFallback::MESSAGES;
 
 	/**
 	 * Return a strict fallback chain in getFallbacksFor
 	 * @since 1.32
+	 * @deprecated since 1.35, use LanguageFallback::STRICT
 	 */
-	const STRICT_FALLBACKS = 1;
+	const STRICT_FALLBACKS = LanguageFallback::STRICT;
 
 	// TODO Make these const once we drop HHVM support (T192166)
 	public static $mWeekdayMsgs = [
@@ -170,14 +176,6 @@ class Language {
 		'minutes' => 60,
 		'seconds' => 1,
 	];
-
-	/**
-	 * Cache for language fallbacks.
-	 * @see Language::getFallbacksIncludingSiteLanguage
-	 * @since 1.21
-	 * @var array
-	 */
-	private static $fallbackLanguageCache = [];
 
 	/**
 	 * Cache for grammar rules data
@@ -262,7 +260,7 @@ class Language {
 		}
 
 		// Keep trying the fallback list until we find an existing class
-		$fallbacks = self::getFallbacksFor( $code );
+		$fallbacks = MediaWikiServices::getInstance()->getLanguageFallback()->getAll( $code );
 		foreach ( $fallbacks as $fallbackCode ) {
 			if ( !$langNameUtils->isValidBuiltInCode( $fallbackCode ) ) {
 				throw new MWException( "Invalid fallback '$fallbackCode' in fallback sequence for '$code'" );
@@ -289,11 +287,11 @@ class Language {
 			throw new MWException( __METHOD__ . ' must not be used outside tests/installer' );
 		}
 		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
-			MediaWikiServices::getInstance()->resetServiceForTesting( 'LocalisationCache' );
+			MediaWikiServices::getInstance()->resetServiceForTesting( 'LanguageFallback' );
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'LanguageNameUtils' );
+			MediaWikiServices::getInstance()->resetServiceForTesting( 'LocalisationCache' );
 		}
 		self::$mLangObjCache = [];
-		self::$fallbackLanguageCache = [];
 		self::$grammarTransformations = null;
 	}
 
@@ -435,9 +433,11 @@ class Language {
 		} else {
 			$this->mCode = str_replace( '_', '-', strtolower( substr( static::class, 8 ) ) );
 		}
+		// These will be ported to injection at some point.
 		$services = MediaWikiServices::getInstance();
 		$this->localisationCache = $services->getLocalisationCache();
 		$this->langNameUtils = $services->getLanguageNameUtils();
+		$this->langFallback = $services->getLanguageFallback();
 	}
 
 	/**
@@ -462,7 +462,7 @@ class Language {
 	 * @since 1.19
 	 */
 	public function getFallbackLanguages() {
-		return self::getFallbacksFor( $this->mCode );
+		return $this->langFallback->getAll( $this->mCode );
 	}
 
 	/**
@@ -4379,76 +4379,45 @@ class Language {
 	/**
 	 * Get the first fallback for a given language.
 	 *
-	 * @param string $code
+	 * @deprecated since 1.35, use LanguageFallback::getFirst
 	 *
-	 * @return bool|string
+	 * @param string $code
+	 * @return string|false False if no fallbacks
 	 */
 	public static function getFallbackFor( $code ) {
-		$fallbacks = self::getFallbacksFor( $code );
-		if ( $fallbacks ) {
-			return $fallbacks[0];
-		}
-		return false;
+		return MediaWikiServices::getInstance()->getLanguageFallback()->getFirst( $code )
+			?? false;
 	}
 
 	/**
 	 * Get the ordered list of fallback languages.
 	 *
+	 * @deprecated since 1.35, use LanguageFallback::getAll
+	 *
 	 * @since 1.19
 	 * @param string $code Language code
 	 * @param int $mode Fallback mode, either MESSAGES_FALLBACKS (which always falls back to 'en'),
-	 * or STRICT_FALLBACKS (whic honly falls back to 'en' when explicitly defined)
-	 * @throws MWException
+	 *   or STRICT_FALLBACKS (which only falls back to 'en' when explicitly defined)
+	 * @throws InvalidArgumentException
 	 * @return array List of language codes
 	 */
 	public static function getFallbacksFor( $code, $mode = self::MESSAGES_FALLBACKS ) {
-		if ( $code === 'en' || !self::isValidBuiltInCode( $code ) ) {
-			return [];
-		}
-		switch ( $mode ) {
-			case self::MESSAGES_FALLBACKS:
-				// For unknown languages, fallbackSequence returns an empty array,
-				// hardcode fallback to 'en' in that case as English messages are
-				// always defined.
-				return self::getLocalisationCache()->getItem( $code, 'fallbackSequence' ) ?: [ 'en' ];
-			case self::STRICT_FALLBACKS:
-				// Use this mode when you don't want to fallback to English unless
-				// explicitly defined, for example when you have language-variant icons
-				// and an international language-independent fallback.
-				return self::getLocalisationCache()->getItem( $code, 'originalFallbackSequence' );
-			default:
-				throw new MWException( "Invalid fallback mode \"$mode\"" );
-		}
+		return MediaWikiServices::getInstance()->getLanguageFallback()->getAll( $code, $mode );
 	}
 
 	/**
 	 * Get the ordered list of fallback languages, ending with the fallback
 	 * language chain for the site language.
 	 *
+	 * @deprecated since 1.35, use LanguageFallback::getAllIncludingSiteLanguage
+	 *
 	 * @since 1.22
 	 * @param string $code Language code
 	 * @return array [ fallbacks, site fallbacks ]
 	 */
 	public static function getFallbacksIncludingSiteLanguage( $code ) {
-		global $wgLanguageCode;
-
-		// Usually, we will only store a tiny number of fallback chains, so we
-		// keep them in static memory.
-		$cacheKey = "{$code}-{$wgLanguageCode}";
-
-		if ( !array_key_exists( $cacheKey, self::$fallbackLanguageCache ) ) {
-			$fallbacks = self::getFallbacksFor( $code );
-
-			// Append the site's fallback chain, including the site language itself
-			$siteFallbacks = self::getFallbacksFor( $wgLanguageCode );
-			array_unshift( $siteFallbacks, $wgLanguageCode );
-
-			// Eliminate any languages already included in the chain
-			$siteFallbacks = array_diff( $siteFallbacks, $fallbacks );
-
-			self::$fallbackLanguageCache[$cacheKey] = [ $fallbacks, $siteFallbacks ];
-		}
-		return self::$fallbackLanguageCache[$cacheKey];
+		return MediaWikiServices::getInstance()->getLanguageFallback()
+			->getAllIncludingSiteLanguage( $code );
 	}
 
 	/**
@@ -4825,7 +4794,7 @@ class Language {
 	public function getCompiledPluralRules() {
 		$pluralRules =
 			$this->localisationCache->getItem( strtolower( $this->mCode ), 'compiledPluralRules' );
-		$fallbacks = self::getFallbacksFor( $this->mCode );
+		$fallbacks = $this->langFallback->getAll( $this->mCode );
 		if ( !$pluralRules ) {
 			foreach ( $fallbacks as $fallbackCode ) {
 				$pluralRules = $this->localisationCache
@@ -4846,7 +4815,7 @@ class Language {
 	public function getPluralRules() {
 		$pluralRules =
 			$this->localisationCache->getItem( strtolower( $this->mCode ), 'pluralRules' );
-		$fallbacks = self::getFallbacksFor( $this->mCode );
+		$fallbacks = $this->langFallback->getAll( $this->mCode );
 		if ( !$pluralRules ) {
 			foreach ( $fallbacks as $fallbackCode ) {
 				$pluralRules = $this->localisationCache
@@ -4867,7 +4836,7 @@ class Language {
 	public function getPluralRuleTypes() {
 		$pluralRuleTypes =
 			$this->localisationCache->getItem( strtolower( $this->mCode ), 'pluralRuleTypes' );
-		$fallbacks = self::getFallbacksFor( $this->mCode );
+		$fallbacks = $this->langFallback->getAll( $this->mCode );
 		if ( !$pluralRuleTypes ) {
 			foreach ( $fallbacks as $fallbackCode ) {
 				$pluralRuleTypes = $this->localisationCache

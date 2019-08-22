@@ -57,6 +57,7 @@ use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
@@ -261,6 +262,14 @@ return [
 			$config->get( 'InterwikiCache' ),
 			$config->get( 'InterwikiScopes' ),
 			$config->get( 'InterwikiFallbackSite' )
+		);
+	},
+
+	'LanguageFallback' => function ( MediaWikiServices $services ) : LanguageFallback {
+		return new LanguageFallback(
+			$services->getMainConfig()->get( 'LanguageCode' ),
+			$services->getLocalisationCache(),
+			$services->getLanguageNameUtils()
 		);
 	},
 
