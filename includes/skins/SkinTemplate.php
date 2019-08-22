@@ -1082,7 +1082,10 @@ class SkinTemplate extends Skin {
 				}
 
 				// Checks if the user is logged in
-				if ( $this->loggedin && $user->isAllowedAll( 'viewmywatchlist', 'editmywatchlist' ) ) {
+				if ( $this->loggedin && MediaWikiServices::getInstance()
+						->getPermissionManager()
+						->userHasAllRights( $user, 'viewmywatchlist', 'editmywatchlist' )
+				) {
 					/**
 					 * The following actions use messages which, if made particular to
 					 * the any specific skins, would break the Ajax code which makes this

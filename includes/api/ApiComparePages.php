@@ -231,7 +231,9 @@ class ApiComparePages extends ApiBase {
 	 */
 	private function getRevisionById( $id ) {
 		$rev = $this->revisionStore->getRevisionById( $id );
-		if ( !$rev && $this->getUser()->isAllowedAny( 'deletedtext', 'undelete' ) ) {
+		if ( !$rev && $this->getPermissionManager()
+				->userHasAnyRight( $this->getUser(), 'deletedtext', 'undelete' )
+		) {
 			// Try the 'archive' table
 			$arQuery = $this->revisionStore->getArchiveQueryInfo();
 			$row = $this->getDB()->selectRow(

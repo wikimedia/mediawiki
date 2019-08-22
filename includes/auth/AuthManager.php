@@ -1639,8 +1639,9 @@ class AuthManager implements LoggerAwareInterface {
 
 		// Is the IP user able to create accounts?
 		$anon = new User;
-		if ( $source !== self::AUTOCREATE_SOURCE_MAINT &&
-			!$anon->isAllowedAny( 'createaccount', 'autocreateaccount' )
+		if ( $source !== self::AUTOCREATE_SOURCE_MAINT && !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasAnyRight( $anon, 'createaccount', 'autocreateaccount' )
 		) {
 			$this->logger->debug( __METHOD__ . ': IP lacks the ability to create or autocreate accounts', [
 				'username' => $username,

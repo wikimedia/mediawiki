@@ -29,8 +29,6 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		// Set up groups and rights
 		$this->mUserMock->expects( $this->any() )
 			->method( 'getEffectiveGroups' )->will( $this->returnValue( [ '*', 'user' ] ) );
-		$this->mUserMock->expects( $this->any() )
-			->method( 'isAllowedAny' )->will( $this->returnValue( true ) );
 
 		// Set up callback for User::getOptionKinds
 		$this->mUserMock->expects( $this->any() )
@@ -49,6 +47,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->mContext->getContext()->setTitle( Title::newFromText( 'Test' ) );
 		$this->mContext->setUser( $this->mUserMock );
 
+		$this->overrideUserPermissions( $this->mUserMock, [ 'editmyoptions' ] );
 		$main = new ApiMain( $this->mContext );
 
 		// Empty session

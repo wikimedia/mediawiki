@@ -565,7 +565,9 @@ class LogEventsList extends ContextSource {
 			}
 			$permissionlist = implode( ', ', $permissions );
 			wfDebug( "Checking for $permissionlist due to $field match on $bitfield\n" );
-			return $user->isAllowedAny( ...$permissions );
+			return MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasAnyRight( $user, ...$permissions );
 		}
 		return true;
 	}

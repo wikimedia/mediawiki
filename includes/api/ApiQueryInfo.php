@@ -250,7 +250,9 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	public static function getImportToken( $pageid, $title ) {
 		global $wgUser;
-		if ( !$wgUser->isAllowedAny( 'import', 'importupload' ) ) {
+		if ( !MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->userHasAnyRight( $wgUser, 'import', 'importupload' ) ) {
 			return false;
 		}
 
