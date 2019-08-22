@@ -129,6 +129,11 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		$revision->insertOn( $dbw );
 		$changed = $page->updateIfNewerOn( $dbw, $revision );
 
+		$tags = $importableRevision->getTags();
+		if ( $tags !== [] ) {
+			ChangeTags::addTags( $tags, null, $revision->getId() );
+		}
+
 		if ( $changed !== false && $this->doUpdates ) {
 			$this->logger->debug( __METHOD__ . ": running updates\n" );
 			// countable/oldcountable stuff is handled in WikiImporter::finishImportPage

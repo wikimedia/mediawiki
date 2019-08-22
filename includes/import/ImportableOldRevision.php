@@ -65,4 +65,10 @@ interface ImportableOldRevision {
 	 */
 	public function getSha1Base36();
 
+	/**
+	 * @since 1.34
+	 * @return string[]
+	 */
+	public function getTags();
+
 }
