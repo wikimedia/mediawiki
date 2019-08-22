@@ -12,7 +12,8 @@
 			"Si Gam Acèh",
 			"아라",
 			"Macofe",
-			"Rachmat04"
+			"Rachmat04",
+			"Martin Urbanec"
 		]
 	},
 	"tog-underline": "Bôh garéh yup peunawôt:",
@@ -958,7 +959,7 @@
 	"booksources-search-legend": "Mita bak nè kitab",
 	"booksources-search": "Mita",
 	"specialloguserlabel": "Ureuëng ngui:",
-	"speciallogtitlelabel": "Sasaran (judu atawa {{ns:ureueng ngui}}:nan ureueng ngui keu ureueng ngui)",
+	"speciallogtitlelabel": "Sasaran (judu atawa {{ns:user}}:nan ureueng ngui keu ureueng ngui)",
 	"log": "Log",
 	"all-logs-page": "Ban dum log umom",
 	"allpages": "Ban dum laman",

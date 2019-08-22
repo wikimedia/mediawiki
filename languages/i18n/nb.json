@@ -1010,7 +1010,7 @@
 	"search-category": "(kategori $1)",
 	"search-file-match": "(matcher filinnhold)",
 	"search-suggest": "Mente du: $1",
-	"search-rewritten": "Viser resultatet for $1. Søk i stedet for $2.",
+	"search-rewritten": "Viser resultater for $1. Søk etter $2 i stedet.",
 	"search-interwiki-caption": "Resultater fra søsterprosjekter",
 	"search-interwiki-default": "Resultater fra $1:",
 	"search-interwiki-more": "(mer)",

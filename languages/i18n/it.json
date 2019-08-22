@@ -1605,6 +1605,7 @@
 	"rcfilters-filter-showlinkedto-label": "Mostra le modifiche alle pagine che collegano a",
 	"rcfilters-filter-showlinkedto-option-label": "<strong>Pagine con collegamenti a</strong> la pagina selezionata",
 	"rcfilters-target-page-placeholder": "Inserisci il nome di una pagina (o categoria)",
+	"rcfilters-alldiscussions-label": "Tutte le discussioni",
 	"rcnotefrom": "Di seguito {{PLURAL:$5|è elencata la modifica apportata|sono elencate le modifiche apportate}} a partire da <strong>$3, $4</strong> (mostrate fino a <strong>$1</strong>).",
 	"rclistfromreset": "Reimposta la selezione della data",
 	"rclistfrom": "Mostra le nuove modifiche a partire daː $2, $3",
