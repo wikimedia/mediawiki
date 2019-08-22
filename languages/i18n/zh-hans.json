@@ -1624,6 +1624,8 @@
 	"rcfilters-filter-showlinkedto-label": "显示链接到该页面的页面上的更改",
 	"rcfilters-filter-showlinkedto-option-label": "<strong>链接到</strong>选定页面的页面",
 	"rcfilters-target-page-placeholder": "输入页面（或分类）名称",
+	"rcfilters-allcontents-label": "所有内容",
+	"rcfilters-alldiscussions-label": "所有讨论",
 	"rcnotefrom": "下面{{PLURAL:$5|是}}<strong>$3 $4</strong>之后的更改（最多显示<strong>$1</strong>个）。",
 	"rclistfromreset": "重置时间选择",
 	"rclistfrom": "显示$3 $2之后的新更改",
