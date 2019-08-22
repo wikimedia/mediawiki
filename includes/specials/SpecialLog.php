@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Timestamp\TimestampException;
 
 /**
@@ -264,7 +265,9 @@ class SpecialLog extends SpecialPage {
 
 	private function getActionButtons( $formcontents ) {
 		$user = $this->getUser();
-		$canRevDelete = $user->isAllowedAll( 'deletedhistory', 'deletelogentry' );
+		$canRevDelete = MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->userHasAllRights( $user, 'deletedhistory', 'deletelogentry' );
 		$showTagEditUI = ChangeTags::showTagEditingUI( $user );
 		# If the user doesn't have the ability to delete log entries nor edit tags,
 		# don't bother showing them the button(s).

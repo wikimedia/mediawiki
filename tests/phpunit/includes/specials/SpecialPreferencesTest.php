@@ -24,7 +24,6 @@ class SpecialPreferencesTest extends MediaWikiTestCase {
 	public function testT43337() {
 		// Set a low limit
 		$this->setMwGlobals( 'wgMaxSigChars', 2 );
-
 		$user = $this->createMock( User::class );
 		$user->expects( $this->any() )
 			->method( 'isAnon' )
@@ -46,6 +45,10 @@ class SpecialPreferencesTest extends MediaWikiTestCase {
 		# Needs to return something
 		$user->method( 'getOptions' )
 			->willReturn( [] );
+
+		// isAnyAllowed used to return null from the mock,
+		// thus revoke it's permissions.
+		$this->overrideUserPermissions( $user, [] );
 
 		# Forge a request to call the special page
 		$context = new RequestContext();

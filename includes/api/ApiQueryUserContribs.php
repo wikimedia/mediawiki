@@ -410,7 +410,9 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		$user = $this->getUser();
 		if ( !$this->getPermissionManager()->userHasRight( $user, 'deletedhistory' ) ) {
 			$bitmask = RevisionRecord::DELETED_USER;
-		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
+		} elseif ( !$this->getPermissionManager()
+			->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' )
+		) {
 			$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
 		} else {
 			$bitmask = 0;

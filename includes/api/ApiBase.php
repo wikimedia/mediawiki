@@ -2126,7 +2126,9 @@ abstract class ApiBase extends ContextSource {
 			$user = $this->getUser();
 		}
 		$rights = (array)$rights;
-		if ( !$user->isAllowedAny( ...$rights ) ) {
+		if ( !$this->getPermissionManager()
+				->userHasAnyRight( $user, ...$rights )
+		) {
 			$this->dieWithError( [ 'apierror-permissiondenied', $this->msg( "action-{$rights[0]}" ) ] );
 		}
 	}

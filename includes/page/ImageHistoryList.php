@@ -91,7 +91,9 @@ class ImageHistoryList extends ContextSource {
 		. Xml::openElement( 'table', [ 'class' => 'wikitable filehistory' ] ) . "\n"
 		. '<tr><th></th>'
 		. ( $this->current->isLocal()
-		&& ( $this->getUser()->isAllowedAny( 'delete', 'deletedhistory' ) ) ? '<th></th>' : '' )
+		&& ( MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasAnyRight( $this->getUser(), 'delete', 'deletedhistory' ) ) ? '<th></th>' : '' )
 		. '<th>' . $this->msg( 'filehist-datetime' )->escaped() . '</th>'
 		. ( $this->showThumb ? '<th>' . $this->msg( 'filehist-thumb' )->escaped() . '</th>' : '' )
 		. '<th>' . $this->msg( 'filehist-dimensions' )->escaped() . '</th>'
@@ -126,7 +128,10 @@ class ImageHistoryList extends ContextSource {
 		$row = $selected = '';
 
 		// Deletion link
-		if ( $local && ( $user->isAllowedAny( 'delete', 'deletedhistory' ) ) ) {
+		if ( $local && ( MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasAnyRight( $user, 'delete', 'deletedhistory' ) )
+		) {
 			$row .= '<td>';
 			# Link to remove from history
 			if ( $user->isAllowed( 'delete' ) ) {

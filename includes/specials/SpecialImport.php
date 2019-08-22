@@ -24,6 +24,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 
 /**
@@ -76,7 +77,10 @@ class SpecialImport extends SpecialPage {
 		Hooks::run( 'ImportSources', [ &$this->importSources ] );
 
 		$user = $this->getUser();
-		if ( !$user->isAllowedAny( 'import', 'importupload' ) ) {
+		if ( !MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->userHasAnyRight( $user, 'import', 'importupload' )
+		) {
 			throw new PermissionsError( 'import' );
 		}
 

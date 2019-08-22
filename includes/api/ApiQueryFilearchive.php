@@ -116,7 +116,9 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		// Exclude files this user can't view.
 		if ( !$this->getPermissionManager()->userHasRight( $user, 'deletedtext' ) ) {
 			$bitmask = File::DELETED_FILE;
-		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
+		} elseif ( !$this->getPermissionManager()
+			->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' )
+		) {
 			$bitmask = File::DELETED_FILE | File::DELETED_RESTRICTED;
 		} else {
 			$bitmask = 0;

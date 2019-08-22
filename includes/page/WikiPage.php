@@ -3249,7 +3249,10 @@ class WikiPage implements Page, IDBAccessObject {
 			$flags |= EDIT_MINOR;
 		}
 
-		if ( $bot && ( $guser->isAllowedAny( 'markbotedits', 'bot' ) ) ) {
+		if ( $bot && ( MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasAnyRight( $guser, 'markbotedits', 'bot' ) )
+		) {
 			$flags |= EDIT_FORCE_BOT;
 		}
 
