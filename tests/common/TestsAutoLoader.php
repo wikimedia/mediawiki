@@ -61,6 +61,7 @@ $wgAutoloadClasses += [
 	'MediaWikiPHPUnitResultPrinter' => "$testDir/phpunit/MediaWikiPHPUnitResultPrinter.php",
 	'MediaWikiPHPUnitTestListener' => "$testDir/phpunit/MediaWikiPHPUnitTestListener.php",
 	'MediaWikiTestCase' => "$testDir/phpunit/MediaWikiIntegrationTestCase.php",
+	'MediaWikiTestCaseTrait' => "$testDir/phpunit/MediaWikiTestCaseTrait.php",
 	'MediaWikiUnitTestCase' => "$testDir/phpunit/MediaWikiUnitTestCase.php",
 	'MediaWikiIntegrationTestCase' => "$testDir/phpunit/MediaWikiIntegrationTestCase.php",
 	'MediaWikiTestResult' => "$testDir/phpunit/MediaWikiTestResult.php",
@@ -216,6 +217,9 @@ $wgAutoloadClasses += [
 	'MockSearchEngine' => "$testDir/phpunit/mocks/search/MockSearchEngine.php",
 	'MockSearchResultSet' => "$testDir/phpunit/mocks/search/MockSearchResultSet.php",
 	'MockSearchResult' => "$testDir/phpunit/mocks/search/MockSearchResult.php",
+
+	# tests/phpunit/unit/includes
+	'BadFileLookupTest' => "$testDir/phpunit/unit/includes/BadFileLookupTest.php",
 
 	# tests/phpunit/unit/includes/libs/filebackend/fsfile
 	'TempFSFileTestTrait' => "$testDir/phpunit/unit/includes/libs/filebackend/fsfile/TempFSFileTestTrait.php",

@@ -20,6 +20,7 @@
  * @file
  * @ingroup Parser
  */
+use MediaWiki\BadFileLookup;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
@@ -299,6 +300,9 @@ class Parser {
 	/** @var LoggerInterface */
 	private $logger;
 
+	/** @var BadFileLookup */
+	private $badFileLookup;
+
 	/**
 	 * TODO Make this a const when HHVM support is dropped (T192166)
 	 *
@@ -339,6 +343,7 @@ class Parser {
 	 * @param LinkRendererFactory|null $linkRendererFactory
 	 * @param NamespaceInfo|null $nsInfo
 	 * @param LoggerInterface|null $logger
+	 * @param BadFileLookup|null $badFileLookup
 	 */
 	public function __construct(
 		$svcOptions = null,
@@ -349,7 +354,8 @@ class Parser {
 		SpecialPageFactory $spFactory = null,
 		$linkRendererFactory = null,
 		$nsInfo = null,
-		$logger = null
+		$logger = null,
+		BadFileLookup $badFileLookup = null
 	) {
 		if ( !$svcOptions || is_array( $svcOptions ) ) {
 			// Pre-1.34 calling convention is the first parameter is just ParserConf, the seventh is
@@ -396,6 +402,8 @@ class Parser {
 			MediaWikiServices::getInstance()->getLinkRendererFactory();
 		$this->nsInfo = $nsInfo ?? MediaWikiServices::getInstance()->getNamespaceInfo();
 		$this->logger = $logger ?: new NullLogger();
+		$this->badFileLookup = $badFileLookup ??
+			MediaWikiServices::getInstance()->getBadFileLookup();
 	}
 
 	/**
@@ -2501,7 +2509,7 @@ class Parser {
 				}
 
 				if ( $ns == NS_FILE ) {
-					if ( !wfIsBadImage( $nt->getDBkey(), $this->mTitle ) ) {
+					if ( !$this->badFileLookup->isBadFile( $nt->getDBkey(), $this->mTitle ) ) {
 						if ( $wasblank ) {
 							# if no parameters were passed, $text
 							# becomes something like "File:Foo.png",

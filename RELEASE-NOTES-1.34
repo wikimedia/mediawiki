@@ -458,6 +458,7 @@ because of Phabricator reports.
   MediaWikiServices::getMessageCache().
 * Constructing MovePage directly is deprecated. Use MovePageFactory.
 * TempFSFile::factory() has been deprecated. Use TempFSFileFactory instead.
+* wfIsBadImage() is deprecated. Use the BadFileLookup service instead.
 
 === Other changes in 1.34 ===
 * …
