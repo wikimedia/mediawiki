@@ -261,8 +261,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 							// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
 							// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
 							// Unicode codepoints.
-							// "- 155" is to leave room for the auto-generated part of the log entry.
-							'maxlength' => CommentStore::COMMENT_CHARACTER_LIMIT - 155,
+							'maxlength' => CommentStore::COMMENT_CHARACTER_LIMIT,
 						] ) .
 					'</td>' .
 				"</tr><tr>\n" .
