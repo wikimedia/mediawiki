@@ -68,7 +68,9 @@ class PermissionManager {
 		'BlockDisablesLogin',
 		'GroupPermissions',
 		'RevokePermissions',
-		'AvailableRights'
+		'AvailableRights',
+		'NamespaceProtection',
+		'RestrictionLevels'
 	];
 
 	/** @var ServiceOptions */
@@ -1449,6 +1451,85 @@ class PermissionManager {
 			Hooks::run( 'UserGetAllRights', [ &$this->allRights ] );
 		}
 		return $this->allRights;
+	}
+
+	/**
+	 * Determine which restriction levels it makes sense to use in a namespace,
+	 * optionally filtered by a user's rights.
+	 *
+	 * @param int $index Index to check
+	 * @param UserIdentity|null $user User to check
+	 * @return array
+	 */
+	public function getNamespaceRestrictionLevels( $index, UserIdentity $user = null ) {
+		if ( !isset( $this->options->get( 'NamespaceProtection' )[$index] ) ) {
+			// All levels are valid if there's no namespace restriction.
+			// But still filter by user, if necessary
+			$levels = $this->options->get( 'RestrictionLevels' );
+			if ( $user ) {
+				$levels = array_values( array_filter( $levels, function ( $level ) use ( $user ) {
+					$right = $level;
+					if ( $right == 'sysop' ) {
+						$right = 'editprotected'; // BC
+					}
+					if ( $right == 'autoconfirmed' ) {
+						$right = 'editsemiprotected'; // BC
+					}
+					return $this->userHasRight( $user, $right );
+				} ) );
+			}
+			return $levels;
+		}
+
+		// $wgNamespaceProtection can require one or more rights to edit the namespace, which
+		// may be satisfied by membership in multiple groups each giving a subset of those rights.
+		// A restriction level is redundant if, for any one of the namespace rights, all groups
+		// giving that right also give the restriction level's right. Or, conversely, a
+		// restriction level is not redundant if, for every namespace right, there's at least one
+		// group giving that right without the restriction level's right.
+		//
+		// First, for each right, get a list of groups with that right.
+		$namespaceRightGroups = [];
+		foreach ( (array)$this->options->get( 'NamespaceProtection' )[$index] as $right ) {
+			if ( $right == 'sysop' ) {
+				$right = 'editprotected'; // BC
+			}
+			if ( $right == 'autoconfirmed' ) {
+				$right = 'editsemiprotected'; // BC
+			}
+			if ( $right != '' ) {
+				$namespaceRightGroups[$right] = $this->getGroupsWithPermission( $right );
+			}
+		}
+
+		// Now, go through the protection levels one by one.
+		$usableLevels = [ '' ];
+		foreach ( $this->options->get( 'RestrictionLevels' ) as $level ) {
+			$right = $level;
+			if ( $right == 'sysop' ) {
+				$right = 'editprotected'; // BC
+			}
+			if ( $right == 'autoconfirmed' ) {
+				$right = 'editsemiprotected'; // BC
+			}
+
+			if ( $right != '' &&
+				 !isset( $namespaceRightGroups[$right] ) &&
+				 ( !$user || $this->userHasRight( $user, $right ) )
+			) {
+				// Do any of the namespace rights imply the restriction right? (see explanation above)
+				foreach ( $namespaceRightGroups as $groups ) {
+					if ( !array_diff( $groups, $this->getGroupsWithPermission( $right ) ) ) {
+						// Yes, this one does.
+						continue 2;
+					}
+				}
+				// No, keep the restriction level
+				$usableLevels[] = $level;
+			}
+		}
+
+		return $usableLevels;
 	}
 
 	/**

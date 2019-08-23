@@ -75,8 +75,8 @@ class TextboxBuilder {
 	public function getTextboxProtectionCSSClasses( Title $title ) {
 		$classes = []; // Textarea CSS
 		if ( $title->isProtected( 'edit' ) &&
-			MediaWikiServices::getInstance()->getNamespaceInfo()->
-			getRestrictionLevels( $title->getNamespace() ) !== [ '' ]
+			MediaWikiServices::getInstance()->getPermissionManager()
+				->getNamespaceRestrictionLevels( $title->getNamespace() ) !== [ '' ]
 		) {
 			# Is the title semi-protected?
 			if ( $title->isSemiProtected() ) {

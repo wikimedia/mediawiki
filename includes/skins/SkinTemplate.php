@@ -1069,8 +1069,8 @@ class SkinTemplate extends Skin {
 				}
 
 				if ( $title->quickUserCan( 'protect', $user ) && $title->getRestrictionTypes() &&
-					MediaWikiServices::getInstance()->getNamespaceInfo()->
-						getRestrictionLevels( $title->getNamespace(), $user ) !== [ '' ]
+					MediaWikiServices::getInstance()->getPermissionManager()
+						->getNamespaceRestrictionLevels( $title->getNamespace(), $user ) !== [ '' ]
 				) {
 					$mode = $title->isProtected() ? 'unprotect' : 'protect';
 					$content_navigation['actions'][$mode] = [
