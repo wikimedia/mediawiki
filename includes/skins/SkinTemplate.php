@@ -371,7 +371,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'credits', false );
 		$tpl->set( 'numberofwatchingusers', false );
 		if ( $title->exists() ) {
-			if ( $out->isArticle() && $this->isRevisionCurrent() ) {
+			if ( $out->isArticle() && $out->isRevisionCurrent() ) {
 				if ( $wgMaxCredits != 0 ) {
 					/** @var CreditsAction $action */
 					$action = Action::factory(
@@ -975,7 +975,7 @@ class SkinTemplate extends Skin {
 					// Whether to show the "Add a new section" tab
 					// Checks if this is a current rev of talk page and is not forced to be hidden
 					$showNewSection = !$out->forceHideNewSectionLink()
-						&& ( ( $isTalk && $this->isRevisionCurrent() ) || $out->showNewSectionLink() );
+						&& ( ( $isTalk && $out->isRevisionCurrent() ) || $out->showNewSectionLink() );
 					$section = $request->getVal( 'section' );
 
 					if ( $title->exists()
@@ -1295,7 +1295,7 @@ class SkinTemplate extends Skin {
 
 		if ( $out->isArticle() ) {
 			// Also add a "permalink" while we're at it
-			$revid = $this->getRevisionId();
+			$revid = $this->getOutput()->getRevisionId();
 			if ( $revid ) {
 				$nav_urls['permalink'] = [
 					'text' => $this->msg( 'permalink' )->text(),

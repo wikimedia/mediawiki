@@ -24,6 +24,8 @@ use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
  * @ingroup FileBackend
  */
 
+use Wikimedia\AtEase\AtEase;
+
 /**
  * This class is used to hold the location and do limited manipulation
  * of files stored temporarily (this will be whatever wfTempDir() returns)
@@ -38,7 +40,9 @@ class TempFSFile extends FSFile {
 	protected static $pathsCollect = null;
 
 	/**
-	 * Do not call directly. Use TempFSFileFactory.
+	 * Do not call directly. Use TempFSFileFactory
+	 *
+	 * @param string $path
 	 */
 	public function __construct( $path ) {
 		parent::__construct( $path );
@@ -110,9 +114,9 @@ class TempFSFile extends FSFile {
 	 */
 	public function purge() {
 		$this->canDelete = false; // done
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$ok = unlink( $this->path );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		unset( self::$pathsCollect[$this->path] );
 
@@ -172,9 +176,9 @@ class TempFSFile extends FSFile {
 	 */
 	public static function purgeAllOnShutdown() {
 		foreach ( self::$pathsCollect as $path => $unused ) {
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			unlink( $path );
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 		}
 	}
 
