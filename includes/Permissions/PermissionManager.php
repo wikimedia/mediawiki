@@ -1199,11 +1199,12 @@ class PermissionManager {
 	 * Check if user is allowed to make any action
 	 *
 	 * @param UserIdentity $user
-	 * @param string[] ...$actions
+	 * // TODO: HHVM can't create mocks with variable params @param string ...$actions
 	 * @return bool True if user is allowed to perform *any* of the given actions
 	 * @since 1.34
 	 */
-	public function userHasAnyRight( UserIdentity $user, ...$actions ) {
+	public function userHasAnyRight( UserIdentity $user ) {
+		$actions = array_slice( func_get_args(), 1 );
 		foreach ( $actions as $action ) {
 			if ( $this->userHasRight( $user, $action ) ) {
 				return true;
@@ -1216,11 +1217,12 @@ class PermissionManager {
 	 * Check if user is allowed to make all actions
 	 *
 	 * @param UserIdentity $user
-	 * @param string[] ...$actions
+	 * // TODO: HHVM can't create mocks with variable params @param string ...$actions
 	 * @return bool True if user is allowed to perform *all* of the given actions
 	 * @since 1.34
 	 */
-	public function userHasAllRights( UserIdentity $user, ...$actions ) {
+	public function userHasAllRights( UserIdentity $user ) {
+		$actions = array_slice( func_get_args(), 1 );
 		foreach ( $actions as $action ) {
 			if ( !$this->userHasRight( $user, $action ) ) {
 				return false;
