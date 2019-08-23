@@ -3311,12 +3311,10 @@ class OutputPage extends ContextSource {
 			$vars['wgUserVariant'] = $contLang->getPreferredVariant();
 		}
 		// Same test as SkinTemplate
-		$vars['wgIsProbablyEditable'] = $title->quickUserCan( 'edit', $user )
-			&& ( $title->exists() || $title->quickUserCan( 'create', $user ) );
+		$vars['wgIsProbablyEditable'] = $this->userCanEditOrCreate( $user, $title );
 
-		$vars['wgRelevantPageIsProbablyEditable'] = $relevantTitle
-			&& $relevantTitle->quickUserCan( 'edit', $user )
-			&& ( $relevantTitle->exists() || $relevantTitle->quickUserCan( 'create', $user ) );
+		$vars['wgRelevantPageIsProbablyEditable'] = $relevantTitle &&
+			$this->userCanEditOrCreate( $user, $relevantTitle );
 
 		foreach ( $title->getRestrictionTypes() as $type ) {
 			// Following keys are set in $vars:
@@ -3384,6 +3382,21 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * @param User $user
+	 * @param LinkTarget $title
+	 * @return bool
+	 */
+	private function userCanEditOrCreate(
+		User $user,
+		LinkTarget $title
+	) {
+		$pm = MediaWikiServices::getInstance()->getPermissionManager();
+		return $pm->quickUserCan( 'edit', $user, $title )
+		&& ( $this->getTitle()->exists() ||
+			 $pm->quickUserCan( 'create', $user, $title ) );
+	}
+
+	/**
 	 * @return array Array in format "link name or number => 'link html'".
 	 */
 	public function getHeadLinksArray() {
@@ -3447,11 +3460,7 @@ class OutputPage extends ContextSource {
 
 		# Universal edit button
 		if ( $config->get( 'UniversalEditButton' ) && $this->isArticleRelated() ) {
-			$user = $this->getUser();
-			if ( $this->getTitle()->quickUserCan( 'edit', $user )
-				&& ( $this->getTitle()->exists() ||
-					$this->getTitle()->quickUserCan( 'create', $user ) )
-			) {
+			if ( $this->userCanEditOrCreate( $this->getUser(), $this->getTitle() ) ) {
 				// Original UniversalEditButton
 				$msg = $this->msg( 'edit' )->text();
 				$tags['universal-edit-button'] = Html::element( 'link', [

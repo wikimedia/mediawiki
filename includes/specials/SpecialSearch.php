@@ -518,7 +518,8 @@ class SpecialSearch extends SpecialPage {
 				$messageName = 'searchmenu-exists';
 				$linkClass = 'mw-search-exists';
 			} elseif ( ContentHandler::getForTitle( $title )->supportsDirectEditing()
-				&& $title->quickUserCan( 'create', $this->getUser() )
+				&& MediaWikiServices::getInstance()->getPermissionManager()->quickUserCan( 'create',
+					$this->getUser(), $title )
 			) {
 				$messageName = 'searchmenu-new';
 			}

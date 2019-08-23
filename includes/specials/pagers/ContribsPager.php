@@ -573,6 +573,7 @@ class ContribsPager extends RangeChronologicalPager {
 		$attribs = [];
 
 		$linkRenderer = $this->getLinkRenderer();
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		$page = null;
 		// Create a title for the revision if possible
@@ -598,8 +599,9 @@ class ContribsPager extends RangeChronologicalPager {
 				$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
 				$classes[] = 'mw-contributions-current';
 				# Add rollback link
-				if ( !$row->page_is_new && $page->quickUserCan( 'rollback', $user )
-					&& $page->quickUserCan( 'edit', $user )
+				if ( !$row->page_is_new &&
+					$permissionManager->quickUserCan( 'rollback', $user, $page ) &&
+					$permissionManager->quickUserCan( 'edit', $user, $page )
 				) {
 					$this->preventClickjacking();
 					$topmarktext .= ' ' . Linker::generateRollback( $rev, $this->getContext(),

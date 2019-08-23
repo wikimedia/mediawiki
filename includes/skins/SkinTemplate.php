@@ -884,6 +884,7 @@ class SkinTemplate extends Skin {
 		$out = $this->getOutput();
 		$request = $this->getRequest();
 		$user = $this->getUser();
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		$content_navigation = [
 			'namespaces' => [],
@@ -895,7 +896,7 @@ class SkinTemplate extends Skin {
 		// parameters
 		$action = $request->getVal( 'action', 'view' );
 
-		$userCanRead = $title->quickUserCan( 'read', $user );
+		$userCanRead = $permissionManager->quickUserCan( 'read', $user, $title );
 
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$skinTemplate = $this;
@@ -965,8 +966,9 @@ class SkinTemplate extends Skin {
 				}
 
 				// Checks if user can edit the current page if it exists or create it otherwise
-				if ( $title->quickUserCan( 'edit', $user )
-					&& ( $title->exists() || $title->quickUserCan( 'create', $user ) )
+				if ( $permissionManager->quickUserCan( 'edit', $user, $title ) &&
+					 ( $title->exists() ||
+						 $permissionManager->quickUserCan( 'create', $user, $title ) )
 				) {
 					// Builds CSS class for talk page links
 					$isTalkClass = $isTalk ? ' istalk' : '';
@@ -1031,7 +1033,7 @@ class SkinTemplate extends Skin {
 						'href' => $title->getLocalURL( 'action=history' ),
 					];
 
-					if ( $title->quickUserCan( 'delete', $user ) ) {
+					if ( $permissionManager->quickUserCan( 'delete', $user, $title ) ) {
 						$content_navigation['actions']['delete'] = [
 							'class' => ( $onPage && $action == 'delete' ) ? 'selected' : false,
 							'text' => wfMessageFallback( "$skname-action-delete", 'delete' )
@@ -1040,7 +1042,7 @@ class SkinTemplate extends Skin {
 						];
 					}
 
-					if ( $title->quickUserCan( 'move', $user ) ) {
+					if ( $permissionManager->quickUserCan( 'move', $user, $title ) ) {
 						$moveTitle = SpecialPage::getTitleFor( 'Movepage', $title->getPrefixedDBkey() );
 						$content_navigation['actions']['move'] = [
 							'class' => $this->getTitle()->isSpecial( 'Movepage' ) ? 'selected' : false,
@@ -1051,13 +1053,14 @@ class SkinTemplate extends Skin {
 					}
 				} else {
 					// article doesn't exist or is deleted
-					if ( $title->quickUserCan( 'deletedhistory', $user ) ) {
+					if ( $permissionManager->quickUserCan( 'deletedhistory', $user, $title ) ) {
 						$n = $title->isDeleted();
 						if ( $n ) {
 							$undelTitle = SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedDBkey() );
 							// If the user can't undelete but can view deleted
 							// history show them a "View .. deleted" tab instead.
-							$msgKey = $title->quickUserCan( 'undelete', $user ) ? 'undelete' : 'viewdeleted';
+							$msgKey = $permissionManager->quickUserCan( 'undelete',
+								$user, $title ) ? 'undelete' : 'viewdeleted';
 							$content_navigation['actions']['undelete'] = [
 								'class' => $this->getTitle()->isSpecial( 'Undelete' ) ? 'selected' : false,
 								'text' => wfMessageFallback( "$skname-action-$msgKey", "{$msgKey}_short" )
@@ -1068,9 +1071,10 @@ class SkinTemplate extends Skin {
 					}
 				}
 
-				if ( $title->quickUserCan( 'protect', $user ) && $title->getRestrictionTypes() &&
-					MediaWikiServices::getInstance()->getPermissionManager()
-						->getNamespaceRestrictionLevels( $title->getNamespace(), $user ) !== [ '' ]
+				if ( $permissionManager->quickUserCan( 'protect', $user, $title ) &&
+					 $title->getRestrictionTypes() &&
+					 $permissionManager->getNamespaceRestrictionLevels( $title->getNamespace(),
+						 $user ) !== [ '' ]
 				) {
 					$mode = $title->isProtected() ? 'unprotect' : 'protect';
 					$content_navigation['actions'][$mode] = [
@@ -1082,9 +1086,8 @@ class SkinTemplate extends Skin {
 				}
 
 				// Checks if the user is logged in
-				if ( $this->loggedin && MediaWikiServices::getInstance()
-						->getPermissionManager()
-						->userHasAllRights( $user, 'viewmywatchlist', 'editmywatchlist' )
+				if ( $this->loggedin && $permissionManager->userHasAllRights( $user,
+						'viewmywatchlist', 'editmywatchlist' )
 				) {
 					/**
 					 * The following actions use messages which, if made particular to

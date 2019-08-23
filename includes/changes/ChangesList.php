@@ -716,7 +716,9 @@ class ChangesList extends ContextSource {
 			/** Check for rollback permissions, disallow special pages, and only
 			 * show a link on the top-most revision
 			 */
-			if ( $title->quickUserCan( 'rollback', $this->getUser() ) ) {
+			if ( MediaWikiServices::getInstance()->getPermissionManager()
+				->quickUserCan( 'rollback', $this->getUser(), $title )
+			) {
 				$rev = new Revision( [
 					'title' => $title,
 					'id' => $rc->mAttribs['rc_this_oldid'],
