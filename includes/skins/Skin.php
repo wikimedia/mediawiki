@@ -308,6 +308,7 @@ abstract class Skin extends ContextSource {
 	/**
 	 * Get the current revision ID
 	 *
+	 * @deprecated since 1.34, use OutputPage::getRevisionId instead
 	 * @return int
 	 */
 	public function getRevisionId() {
@@ -317,11 +318,11 @@ abstract class Skin extends ContextSource {
 	/**
 	 * Whether the revision displayed is the latest revision of the page
 	 *
+	 * @deprecated since 1.34, use OutputPage::isRevisionCurrent instead
 	 * @return bool
 	 */
 	public function isRevisionCurrent() {
-		$revID = $this->getRevisionId();
-		return $revID == 0 || $revID == $this->getTitle()->getLatestRevID();
+		return $this->getOutput()->isRevisionCurrent();
 	}
 
 	/**
@@ -701,7 +702,7 @@ abstract class Skin extends ContextSource {
 	 * @return string HTML text with an URL
 	 */
 	function printSource() {
-		$oldid = $this->getRevisionId();
+		$oldid = $this->getOutput()->getRevisionId();
 		if ( $oldid ) {
 			$canonicalUrl = $this->getTitle()->getCanonicalURL( 'oldid=' . $oldid );
 			$url = htmlspecialchars( wfExpandIRI( $canonicalUrl ) );
@@ -830,7 +831,7 @@ abstract class Skin extends ContextSource {
 	function getCopyright( $type = 'detect' ) {
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( $type == 'detect' ) {
-			if ( !$this->isRevisionCurrent()
+			if ( !$this->getOutput()->isRevisionCurrent()
 				&& !$this->msg( 'history_copyright' )->inContentLanguage()->isDisabled()
 			) {
 				$type = 'history';
@@ -934,7 +935,8 @@ abstract class Skin extends ContextSource {
 
 		# No cached timestamp, load it from the database
 		if ( $timestamp === null ) {
-			$timestamp = Revision::getTimestampFromId( $this->getTitle(), $this->getRevisionId() );
+			$timestamp = Revision::getTimestampFromId( $this->getTitle(),
+				$this->getOutput()->getRevisionId() );
 		}
 
 		if ( $timestamp ) {
@@ -1088,8 +1090,8 @@ abstract class Skin extends ContextSource {
 	function editUrlOptions() {
 		$options = [ 'action' => 'edit' ];
 
-		if ( !$this->isRevisionCurrent() ) {
-			$options['oldid'] = intval( $this->getRevisionId() );
+		if ( !$this->getOutput()->isRevisionCurrent() ) {
+			$options['oldid'] = intval( $this->getOutput()->getRevisionId() );
 		}
 
 		return $options;

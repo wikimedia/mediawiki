@@ -1662,6 +1662,16 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Whether the revision displayed is the latest revision of the page
+	 *
+	 * @since 1.34
+	 * @return bool
+	 */
+	public function isRevisionCurrent() {
+		return $this->mRevisionId == 0 || $this->mRevisionId == $this->getTitle()->getLatestRevID();
+	}
+
+	/**
 	 * Set the timestamp of the revision which will be displayed. This is used
 	 * to avoid a extra DB call in Skin::lastModified().
 	 *
