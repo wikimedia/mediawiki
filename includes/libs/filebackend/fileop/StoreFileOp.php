@@ -21,6 +21,8 @@
  * @ingroup FileBackend
  */
 
+use Wikimedia\AtEase\AtEase;
+
 /**
  * Store a file into the backend from a file on the file system.
  * Parameters for this operation are outlined in FileBackend::doOperations().
@@ -77,9 +79,9 @@ class StoreFileOp extends FileOp {
 	}
 
 	protected function getSourceSha1Base36() {
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$hash = sha1_file( $this->params['src'] );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		if ( $hash !== false ) {
 			$hash = Wikimedia\base_convert( $hash, 16, 36, 31 );
 		}
