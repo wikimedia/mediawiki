@@ -391,7 +391,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			}
 		}
 
-		if ( ( $flags & self::WRITE_SYNC ) == self::WRITE_SYNC ) {
+		if ( $this->fieldHasFlags( $flags, self::WRITE_SYNC ) ) {
 			$result = $this->waitForReplication() && $result;
 		}
 
@@ -556,7 +556,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
 		$ok = $this->mergeViaCas( $key, $callback, $exptime, $attempts, $flags );
-		if ( ( $flags & self::WRITE_SYNC ) == self::WRITE_SYNC ) {
+		if ( $this->fieldHasFlags( $flags, self::WRITE_SYNC ) ) {
 			$ok = $this->waitForReplication() && $ok;
 		}
 

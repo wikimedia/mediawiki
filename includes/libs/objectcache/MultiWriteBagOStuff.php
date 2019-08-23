@@ -106,7 +106,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	}
 
 	public function get( $key, $flags = 0 ) {
-		if ( ( $flags & self::READ_LATEST ) == self::READ_LATEST ) {
+		if ( $this->fieldHasFlags( $flags, self::READ_LATEST ) ) {
 			// If the latest write was a delete(), we do NOT want to fallback
 			// to the other tiers and possibly see the old value. Also, this
 			// is used by merge(), which only needs to hit the primary.
@@ -125,7 +125,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 
 		if ( $value !== false
 			&& $missIndexes
-			&& ( $flags & self::READ_VERIFIED ) == self::READ_VERIFIED
+			&& $this->fieldHasFlags( $flags, self::READ_VERIFIED )
 		) {
 			// Backfill the value to the higher (and often faster/smaller) cache tiers
 			$this->doWrite(
@@ -346,7 +346,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	protected function usesAsyncWritesGivenFlags( $flags ) {
-		return ( ( $flags & self::WRITE_SYNC ) == self::WRITE_SYNC ) ? false : $this->asyncWrites;
+		return $this->fieldHasFlags( $flags, self::WRITE_SYNC ) ? false : $this->asyncWrites;
 	}
 
 	public function makeKeyInternal( $keyspace, $args ) {
