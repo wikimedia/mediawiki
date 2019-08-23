@@ -65,6 +65,7 @@ use SkinFactory;
 use TitleFormatter;
 use TitleParser;
 use VirtualRESTServiceClient;
+use Wikimedia\ObjectFactory;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Services\SalvageableService;
 use Wikimedia\Services\ServiceContainer;
@@ -747,6 +748,17 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getNameTableStoreFactory() {
 		return $this->getService( 'NameTableStoreFactory' );
+	}
+
+	/**
+	 * ObjectFactory is intended for instantiating "handlers" from declarative definitions,
+	 * such as Action API modules, special pages, or REST API handlers.
+	 *
+	 * @since 1.34
+	 * @return ObjectFactory
+	 */
+	public function getObjectFactory() {
+		return $this->getService( 'ObjectFactory' );
 	}
 
 	/**
