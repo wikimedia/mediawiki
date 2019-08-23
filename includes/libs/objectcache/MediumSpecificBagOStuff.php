@@ -188,7 +188,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @return bool True if the item was deleted or not found, false on failure
 	 */
 	public function delete( $key, $flags = 0 ) {
-		if ( ( $flags & self::WRITE_PRUNE_SEGMENTS ) != self::WRITE_PRUNE_SEGMENTS ) {
+		if ( !$this->fieldHasFlags( $flags, self::WRITE_PRUNE_SEGMENTS ) ) {
 			return $this->doDelete( $key, $flags );
 		}
 
@@ -598,9 +598,10 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @since 1.24
 	 */
 	public function setMulti( array $data, $exptime = 0, $flags = 0 ) {
-		if ( ( $flags & self::WRITE_ALLOW_SEGMENTS ) === self::WRITE_ALLOW_SEGMENTS ) {
+		if ( $this->fieldHasFlags( $flags, self::WRITE_ALLOW_SEGMENTS ) ) {
 			throw new InvalidArgumentException( __METHOD__ . ' got WRITE_ALLOW_SEGMENTS' );
 		}
+
 		return $this->doSetMulti( $data, $exptime, $flags );
 	}
 
@@ -615,6 +616,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		foreach ( $data as $key => $value ) {
 			$res = $this->doSet( $key, $value, $exptime, $flags ) && $res;
 		}
+
 		return $res;
 	}
 
@@ -629,9 +631,10 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @since 1.33
 	 */
 	public function deleteMulti( array $keys, $flags = 0 ) {
-		if ( ( $flags & self::WRITE_ALLOW_SEGMENTS ) === self::WRITE_ALLOW_SEGMENTS ) {
-			throw new InvalidArgumentException( __METHOD__ . ' got WRITE_ALLOW_SEGMENTS' );
+		if ( $this->fieldHasFlags( $flags, self::WRITE_PRUNE_SEGMENTS ) ) {
+			throw new InvalidArgumentException( __METHOD__ . ' got WRITE_PRUNE_SEGMENTS' );
 		}
+
 		return $this->doDeleteMulti( $keys, $flags );
 	}
 
@@ -807,7 +810,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		$usable = true;
 
 		if (
-			( $flags & self::WRITE_ALLOW_SEGMENTS ) === self::WRITE_ALLOW_SEGMENTS &&
+			$this->fieldHasFlags( $flags, self::WRITE_ALLOW_SEGMENTS ) &&
 			!is_int( $value ) && // avoid breaking incr()/decr()
 			is_finite( $this->segmentationSize )
 		) {
