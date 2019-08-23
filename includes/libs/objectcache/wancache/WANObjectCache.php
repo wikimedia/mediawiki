@@ -137,6 +137,8 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	protected $epoch;
 	/** @var string Stable secret used for hasing long strings into key components */
 	protected $secret;
+	/** @var bool Whether to use Hash Tags and Hash Stops in key names */
+	protected $coalesceKeys;
 
 	/** @var int Callback stack depth for getWithSetCallback() */
 	private $callbackDepth = 0;
@@ -239,12 +241,18 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	/** @var int Key to how long it took to generate the value */
 	private static $FLD_GENERATION_TIME = 6;
 
-	private static $VALUE_KEY_PREFIX = 'WANCache:v:';
-	private static $INTERIM_KEY_PREFIX = 'WANCache:i:';
-	private static $TIME_KEY_PREFIX = 'WANCache:t:';
-	private static $MUTEX_KEY_PREFIX = 'WANCache:m:';
-	private static $COOLOFF_KEY_PREFIX = 'WANCache:c:';
+	/** @var string Single character value mutex key component */
+	private static $TYPE_VALUE = 'v';
+	/** @var string Single character timestamp key component */
+	private static $TYPE_TIMESTAMP = 't';
+	/** @var string Single character mutex key component */
+	private static $TYPE_MUTEX = 'm';
+	/** @var string Single character interium key component */
+	private static $TYPE_INTERIM = 'i';
+	/** @var string Single character cool-off key component */
+	private static $TYPE_COOLOFF = 'c';
 
+	/** @var string Prefix for tombstone key values */
 	private static $PURGE_VAL_PREFIX = 'PURGED:';
 
 	/**
@@ -271,6 +279,9 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 *       requires that "region" and "cluster" are both set above. [optional]
 	 *   - epoch: lowest UNIX timestamp a value/tombstone must have to be valid. [optional]
 	 *   - secret: stable secret used for hashing long strings into key components. [optional]
+	 *   - coalesceKeys: whether to use Hash Tags and Hash Stops in key names so that related
+	 *       keys use the same cache server. This can reduce network overhead and reduce the
+	 *       chance the a single down cache server causes disruption. [default: false]
 	 */
 	public function __construct( array $params ) {
 		$this->cache = $params['cache'];
@@ -279,6 +290,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		$this->mcrouterAware = !empty( $params['mcrouterAware'] );
 		$this->epoch = $params['epoch'] ?? 0;
 		$this->secret = $params['secret'] ?? (string)$this->epoch;
+		$this->coalesceKeys = $params['coalesce'] ?? false;
 
 		$this->setLogger( $params['logger'] ?? new NullLogger() );
 		$this->stats = $params['stats'] ?? new NullStatsdDataFactory();
@@ -405,14 +417,13 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		$curTTLs = [];
 		$infoByKey = [];
 
-		$vPrefixLen = strlen( self::$VALUE_KEY_PREFIX );
-		$valueKeys = self::prefixCacheKeys( $keys, self::$VALUE_KEY_PREFIX );
+		$valueKeys = $this->makeSisterKeys( $keys, self::$TYPE_VALUE );
 
 		$checkKeysForAll = [];
 		$checkKeysByKey = [];
 		$checkKeysFlat = [];
 		foreach ( $checkKeys as $i => $checkKeyGroup ) {
-			$prefixed = self::prefixCacheKeys( (array)$checkKeyGroup, self::$TIME_KEY_PREFIX );
+			$prefixed = $this->makeSisterKeys( (array)$checkKeyGroup, self::$TYPE_TIMESTAMP );
 			$checkKeysFlat = array_merge( $checkKeysFlat, $prefixed );
 			// Are these check keys for a specific cache key, or for all keys being fetched?
 			if ( is_int( $i ) ) {
@@ -447,7 +458,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 
 		// Get the main cache value for each key and validate them
 		foreach ( $valueKeys as $vKey ) {
-			$key = substr( $vKey, $vPrefixLen ); // unprefix
+			$key = $this->extractBaseKey( $vKey ); // unprefix
 			list( $value, $keyInfo ) = $this->unwrap(
 				array_key_exists( $vKey, $wrappedValues ) ? $wrappedValues[$vKey] : false,
 				$now
@@ -669,10 +680,14 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		$storeTTL = $ttl + $staleTTL;
 
 		if ( $creating ) {
-			$ok = $this->cache->add( self::$VALUE_KEY_PREFIX . $key, $wrapped, $storeTTL );
+			$ok = $this->cache->add(
+				$this->makeSisterKey( $key, self::$TYPE_VALUE ),
+				$wrapped,
+				$storeTTL
+			);
 		} else {
 			$ok = $this->cache->merge(
-				self::$VALUE_KEY_PREFIX . $key,
+				$this->makeSisterKey( $key, self::$TYPE_VALUE ),
 				function ( $cache, $key, $cWrapped ) use ( $wrapped ) {
 					// A string value means that it is a tombstone; do nothing in that case
 					return ( is_string( $cWrapped ) ) ? false : $wrapped;
@@ -749,10 +764,14 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	final public function delete( $key, $ttl = self::HOLDOFF_TTL ) {
 		if ( $ttl <= 0 ) {
 			// Publish the purge to all datacenters
-			$ok = $this->relayDelete( self::$VALUE_KEY_PREFIX . $key );
+			$ok = $this->relayDelete( $this->makeSisterKey( $key, self::$TYPE_VALUE ) );
 		} else {
 			// Publish the purge to all datacenters
-			$ok = $this->relayPurge( self::$VALUE_KEY_PREFIX . $key, $ttl, self::HOLDOFF_TTL_NONE );
+			$ok = $this->relayPurge(
+				$this->makeSisterKey( $key, self::$TYPE_VALUE ),
+				$ttl,
+				self::HOLDOFF_TTL_NONE
+			);
 		}
 
 		$kClass = $this->determineKeyClassForStats( $key );
@@ -848,7 +867,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	final public function getMultiCheckKeyTime( array $keys ) {
 		$rawKeys = [];
 		foreach ( $keys as $key ) {
-			$rawKeys[$key] = self::$TIME_KEY_PREFIX . $key;
+			$rawKeys[$key] = $this->makeSisterKey( $key, self::$TYPE_TIMESTAMP );
 		}
 
 		$rawValues = $this->cache->getMulti( $rawKeys );
@@ -912,7 +931,11 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 */
 	final public function touchCheckKey( $key, $holdoff = self::HOLDOFF_TTL ) {
 		// Publish the purge to all datacenters
-		$ok = $this->relayPurge( self::$TIME_KEY_PREFIX . $key, self::$CHECK_KEY_TTL, $holdoff );
+		$ok = $this->relayPurge(
+			$this->makeSisterKey( $key, self::$TYPE_TIMESTAMP ),
+			self::$CHECK_KEY_TTL,
+			$holdoff
+		);
 
 		$kClass = $this->determineKeyClassForStats( $key );
 		$this->stats->increment( "wanobjectcache.$kClass.ck_touch." . ( $ok ? 'ok' : 'error' ) );
@@ -949,7 +972,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 */
 	final public function resetCheckKey( $key ) {
 		// Publish the purge to all datacenters
-		$ok = $this->relayDelete( self::$TIME_KEY_PREFIX . $key );
+		$ok = $this->relayDelete( $this->makeSisterKey( $key, self::$TYPE_TIMESTAMP ) );
 
 		$kClass = $this->determineKeyClassForStats( $key );
 		$this->stats->increment( "wanobjectcache.$kClass.ck_reset." . ( $ok ? 'ok' : 'error' ) );
@@ -1495,7 +1518,11 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 */
 	private function claimStampedeLock( $key ) {
 		// Note that locking is not bypassed due to I/O errors; this avoids stampedes
-		return $this->cache->add( self::$MUTEX_KEY_PREFIX . $key, 1, self::$LOCK_TTL );
+		return $this->cache->add(
+			$this->makeSisterKey( $key, self::$TYPE_MUTEX ),
+			1,
+			self::$LOCK_TTL
+		);
 	}
 
 	/**
@@ -1507,8 +1534,73 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 			// The backend might be a mcrouter proxy set to broadcast DELETE to *all* the local
 			// datacenter cache servers via OperationSelectorRoute (for increased consistency).
 			// Since that would be excessive for these locks, use TOUCH to expire the key.
-			$this->cache->changeTTL( self::$MUTEX_KEY_PREFIX . $key, $this->getCurrentTime() - 60 );
+			$this->cache->changeTTL(
+				$this->makeSisterKey( $key, self::$TYPE_MUTEX ),
+				$this->getCurrentTime() - 60
+			);
 		}
+	}
+
+	/**
+	 * Get cache keys that should be collocated with their corresponding base keys
+	 *
+	 * @param string[] $baseKeys Cache keys made from makeKey()/makeGlobalKey()
+	 * @param string $type Consistent hashing agnostic suffix character matching [a-zA-Z]
+	 * @return string[] List of cache keys
+	 */
+	private function makeSisterKeys( array $baseKeys, $type ) {
+		$keys = [];
+		foreach ( $baseKeys as $baseKey ) {
+			$keys[] = $this->makeSisterKey( $baseKey, $type );
+		}
+
+		return $keys;
+	}
+
+	/**
+	 * Get a cache key that should be collocated with a base key
+	 *
+	 * @param string $baseKey Cache key made from makeKey()/makeGlobalKey()
+	 * @param string $type Consistent hashing agnostic suffix character matching [a-zA-Z]
+	 * @return string Cache key
+	 */
+	private function makeSisterKey( $baseKey, $type ) {
+		if ( !$this->coalesceKeys ) {
+			// Old key style: "WANCache:<character>:<base key>"
+			return 'WANCache:' . $type . ':' . $baseKey;
+		}
+
+		return $this->mcrouterAware
+			// https://github.com/facebook/mcrouter/wiki/Key-syntax
+			// Note that the prefix prevents callers from making route keys.
+			? 'WANCache:' . $baseKey . '|#|' . $type
+			// https://redis.io/topics/cluster-spec
+			// https://github.com/twitter/twemproxy/blob/master/notes/recommendation.md
+			// https://github.com/Netflix/dynomite/blob/master/notes/recommendation.md
+			: 'WANCache:{' . $baseKey . '}:' . $type;
+	}
+
+	/**
+	 * Get a cache key that should be collocated with a base key
+	 *
+	 * @param string $sisterKey Cache key made from makeSisterKey()
+	 * @return string Original cache key made from makeKey()/makeGlobalKey()
+	 */
+	private function extractBaseKey( $sisterKey ) {
+		if ( !$this->coalesceKeys ) {
+			// Old key style: "WANCache:<character>:<base key>"
+			return substr( $sisterKey, 11 );
+		}
+
+		return $this->mcrouterAware
+			// Key style: "WANCache:<base key>|#|<character>"
+			// https://github.com/facebook/mcrouter/wiki/Key-syntax
+			? substr( $sisterKey, 9, -4 )
+			// Key style: "WANCache:{<base key>}:<character>"
+			// https://redis.io/topics/cluster-spec
+			// https://github.com/twitter/twemproxy/blob/master/notes/recommendation.md
+			// https://github.com/Netflix/dynomite/blob/master/notes/recommendation.md
+			: substr( $sisterKey, 10, -3 );
 	}
 
 	/**
@@ -1544,7 +1636,11 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 
 		$this->cache->clearLastError();
 		if (
-			!$this->cache->add( self::$COOLOFF_KEY_PREFIX . $key, 1, self::$COOLOFF_TTL ) &&
+			!$this->cache->add(
+				$this->makeSisterKey( $key, self::$TYPE_COOLOFF ),
+				1,
+				self::$COOLOFF_TTL
+			) &&
 			// Don't treat failures due to I/O errors as the key being in cooloff
 			$this->cache->getLastError() === BagOStuff::ERR_NONE
 		) {
@@ -1599,7 +1695,9 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		$now = $this->getCurrentTime();
 
 		if ( $this->useInterimHoldOffCaching ) {
-			$wrapped = $this->cache->get( self::$INTERIM_KEY_PREFIX . $key );
+			$wrapped = $this->cache->get(
+				$this->makeSisterKey( $key, self::$TYPE_INTERIM )
+			);
 
 			list( $value, $keyInfo ) = $this->unwrap( $wrapped, $now );
 			if ( $this->isValid( $value, $keyInfo['asOf'], $minAsOf ) ) {
@@ -1622,7 +1720,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 
 		$wrapped = $this->wrap( $value, $ttl, $version, $this->getCurrentTime(), $walltime );
 		$this->cache->merge(
-			self::$INTERIM_KEY_PREFIX . $key,
+			$this->makeSisterKey( $key, self::$TYPE_INTERIM ),
 			function () use ( $wrapped ) {
 				return $wrapped;
 			},
@@ -1888,12 +1986,15 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 */
 	final public function reap( $key, $purgeTimestamp, &$isStale = false ) {
 		$minAsOf = $purgeTimestamp + self::HOLDOFF_TTL;
-		$wrapped = $this->cache->get( self::$VALUE_KEY_PREFIX . $key );
+		$wrapped = $this->cache->get( $this->makeSisterKey( $key, self::$TYPE_VALUE ) );
 		if ( is_array( $wrapped ) && $wrapped[self::$FLD_TIME] < $minAsOf ) {
 			$isStale = true;
 			$this->logger->warning( "Reaping stale value key '$key'." );
 			$ttlReap = self::HOLDOFF_TTL; // avoids races with tombstone creation
-			$ok = $this->cache->changeTTL( self::$VALUE_KEY_PREFIX . $key, $ttlReap );
+			$ok = $this->cache->changeTTL(
+				$this->makeSisterKey( $key, self::$TYPE_VALUE ),
+				$ttlReap
+			);
 			if ( !$ok ) {
 				$this->logger->error( "Could not complete reap of key '$key'." );
 			}
@@ -1916,11 +2017,16 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * @since 1.28
 	 */
 	final public function reapCheckKey( $key, $purgeTimestamp, &$isStale = false ) {
-		$purge = $this->parsePurgeValue( $this->cache->get( self::$TIME_KEY_PREFIX . $key ) );
+		$purge = $this->parsePurgeValue(
+			$this->cache->get( $this->makeSisterKey( $key, self::$TYPE_TIMESTAMP ) )
+		);
 		if ( $purge && $purge[self::$PURGE_TIME] < $purgeTimestamp ) {
 			$isStale = true;
 			$this->logger->warning( "Reaping stale check key '$key'." );
-			$ok = $this->cache->changeTTL( self::$TIME_KEY_PREFIX . $key, self::TTL_SECOND );
+			$ok = $this->cache->changeTTL(
+				$this->makeSisterKey( $key, self::$TYPE_TIMESTAMP ),
+				self::TTL_SECOND
+			);
 			if ( !$ok ) {
 				$this->logger->error( "Could not complete reap of check key '$key'." );
 			}
@@ -2242,7 +2348,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 *
 	 * This must set the key to "PURGED:<UNIX timestamp>:<holdoff>"
 	 *
-	 * @param string $key Cache key
+	 * @param string $key Sister cache key
 	 * @param int $ttl Seconds to keep the tombstone around
 	 * @param int $holdoff HOLDOFF_* constant controlling how long to ignore sets for this key
 	 * @return bool Success
@@ -2271,7 +2377,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	/**
 	 * Do the actual async bus delete of a key
 	 *
-	 * @param string $key Cache key
+	 * @param string $key Sister cache key
 	 * @return bool Success
 	 */
 	protected function relayDelete( $key ) {
@@ -2526,20 +2632,6 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	}
 
 	/**
-	 * @param string[] $keys
-	 * @param string $prefix
-	 * @return string[] Prefix keys; the order of $keys is preserved
-	 */
-	protected static function prefixCacheKeys( array $keys, $prefix ) {
-		$res = [];
-		foreach ( $keys as $key ) {
-			$res[] = $prefix . $key;
-		}
-
-		return $res;
-	}
-
-	/**
 	 * @param string $key String of the format <scope>:<class>[:<class or variable>]...
 	 * @return string A collection name to describe this class of key
 	 */
@@ -2651,21 +2743,18 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 			return [];
 		}
 
-		$keysWarmUp = [];
 		// Get all the value keys to fetch...
-		foreach ( $keys as $key ) {
-			$keysWarmUp[] = self::$VALUE_KEY_PREFIX . $key;
-		}
+		$keysWarmUp = $this->makeSisterKeys( $keys, self::$TYPE_VALUE );
 		// Get all the check keys to fetch...
 		foreach ( $checkKeys as $i => $checkKeyOrKeys ) {
 			if ( is_int( $i ) ) {
 				// Single check key that applies to all value keys
-				$keysWarmUp[] = self::$TIME_KEY_PREFIX . $checkKeyOrKeys;
+				$keysWarmUp[] = $this->makeSisterKey( $checkKeyOrKeys, self::$TYPE_TIMESTAMP );
 			} else {
 				// List of check keys that apply to value key $i
 				$keysWarmUp = array_merge(
 					$keysWarmUp,
-					self::prefixCacheKeys( $checkKeyOrKeys, self::$TIME_KEY_PREFIX )
+					$this->makeSisterKeys( $checkKeyOrKeys, self::$TYPE_TIMESTAMP )
 				);
 			}
 		}
@@ -2674,6 +2763,16 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		$warmupCache += array_fill_keys( $keysWarmUp, false );
 
 		return $warmupCache;
+	}
+
+	/**
+	 * Set/clear the mcrouter support flag for testing
+	 *
+	 * @param bool $enabled
+	 * @since 1.35
+	 */
+	public function setMcRouterAware( $enabled ) {
+		$this->mcrouterAware = $enabled;
 	}
 
 	/**
