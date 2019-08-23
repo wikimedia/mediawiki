@@ -505,7 +505,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 * @covers MediaWiki\Permissions\PermissionManager::checkSpecialsAndNSPermissions
 	 */
 	public function testSpecialsAndNSPermissions() {
-		global $wgNamespaceProtection;
 		$this->setUser( $this->userName );
 
 		$this->setTitle( NS_SPECIAL );
@@ -526,10 +525,13 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			MediaWikiServices::getInstance()->getPermissionManager()
 				->getPermissionErrors( 'bogus', $this->user, $this->title ) );
 
-		$wgNamespaceProtection[NS_USER] = [ 'bogus' ];
+		$this->mergeMwGlobalArrayValue( 'wgNamespaceProtection', [
+			NS_USER => [ 'bogus' ]
+		] );
+		$this->resetServices();
+		$this->overrideUserPermissions( $this->user, '' );
 
 		$this->setTitle( NS_USER );
-		$this->overrideUserPermissions( $this->user, '' );
 		$this->assertEquals( [ [ 'badaccess-group0' ],
 			[ 'namespaceprotected', 'User', 'bogus' ] ],
 			MediaWikiServices::getInstance()->getPermissionManager()
@@ -547,9 +549,10 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			MediaWikiServices::getInstance()->getPermissionManager()
 				->getPermissionErrors( 'bogus', $this->user, $this->title ) );
 
-		$wgNamespaceProtection = null;
-
+		$this->setMwGlobals( 'wgNamespaceProtection', null );
+		$this->resetServices();
 		$this->overrideUserPermissions( $this->user, 'bogus' );
+
 		$this->assertEquals( [],
 			MediaWikiServices::getInstance()->getPermissionManager()
 				->getPermissionErrors( 'bogus', $this->user, $this->title ) );

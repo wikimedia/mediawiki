@@ -984,7 +984,7 @@ class PermissionManager {
 	 * Check permissions on special pages & namespaces
 	 *
 	 * @param string $action The action to check
-	 * @param User $user User to check
+	 * @param UserIdentity $user User to check
 	 * @param array $errors List of current errors
 	 * @param string $rigor One of PermissionManager::RIGOR_ constants
 	 *   - RIGOR_QUICK  : does cheap permission checks from replica DBs (usable for GUI creation)
@@ -998,7 +998,7 @@ class PermissionManager {
 	 */
 	private function checkSpecialsAndNSPermissions(
 		$action,
-		User $user,
+		UserIdentity $user,
 		$errors,
 		$rigor,
 		$short,
@@ -1014,7 +1014,7 @@ class PermissionManager {
 		}
 
 		# Check $wgNamespaceProtection for restricted namespaces
-		if ( $title->isNamespaceProtected( $user ) ) {
+		if ( $this->isNamespaceProtected( $title->getNamespace(), $user ) ) {
 			$ns = $title->getNamespace() == NS_MAIN ?
 				wfMessage( 'nstab-main' )->text() : $title->getNsText();
 			$errors[] = $title->getNamespace() == NS_MEDIAWIKI ?
@@ -1451,6 +1451,20 @@ class PermissionManager {
 			Hooks::run( 'UserGetAllRights', [ &$this->allRights ] );
 		}
 		return $this->allRights;
+	}
+
+	/**
+	 * Determines if $user is unable to edit pages in namespace because it has been protected.
+	 * @param $index
+	 * @param UserIdentity $user
+	 * @return bool
+	 */
+	private function isNamespaceProtected( $index, UserIdentity $user ) {
+		$namespaceProtection = $this->options->get( 'NamespaceProtection' );
+		if ( isset( $namespaceProtection[$index] ) ) {
+			return !$this->userHasAllRights( $user, ...(array)$namespaceProtection[$index] );
+		}
+		return false;
 	}
 
 	/**
