@@ -104,6 +104,7 @@ class BlockManager {
 	 */
 	public function getUserBlock( User $user, $fromReplica ) {
 		$isAnon = $user->getId() === 0;
+		$fromMaster = !$fromReplica;
 
 		// TODO: If $user is the current user, we should use the current request. Otherwise,
 		// we should not look for XFF or cookie blocks.
@@ -127,7 +128,7 @@ class BlockManager {
 		// User/IP blocking
 		// After this, $blocks is an array of blocks or an empty array
 		// TODO: remove dependency on DatabaseBlock
-		$blocks = DatabaseBlock::newListFromTarget( $user, $ip, !$fromReplica );
+		$blocks = DatabaseBlock::newListFromTarget( $user, $ip, $fromMaster );
 
 		// Cookie blocking
 		$cookieBlock = $this->getBlockFromCookieValue( $user, $request );
@@ -164,7 +165,7 @@ class BlockManager {
 			$xff = array_map( 'trim', explode( ',', $xff ) );
 			$xff = array_diff( $xff, [ $ip ] );
 			// TODO: remove dependency on DatabaseBlock
-			$xffblocks = DatabaseBlock::getBlocksForIPList( $xff, $isAnon, !$fromReplica );
+			$xffblocks = DatabaseBlock::getBlocksForIPList( $xff, $isAnon, $fromMaster );
 			$blocks = array_merge( $blocks, $xffblocks );
 		}
 
