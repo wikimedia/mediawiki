@@ -41,16 +41,6 @@ use Wikimedia\IPSet;
  * @since 1.34 Refactored from User and Block.
  */
 class BlockManager {
-	// TODO: This should be UserIdentity instead of User
-	/** @var User */
-	private $currentUser;
-
-	/** @var WebRequest */
-	private $currentRequest;
-
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/**
 	 * TODO Make this a const when HHVM support is dropped (T192166)
 	 *
@@ -71,20 +61,14 @@ class BlockManager {
 
 	/**
 	 * @param ServiceOptions $options
-	 * @param User $currentUser
-	 * @param WebRequest $currentRequest
 	 * @param PermissionManager $permissionManager
 	 */
 	public function __construct(
 		ServiceOptions $options,
-		User $currentUser,
-		WebRequest $currentRequest,
 		PermissionManager $permissionManager
 	) {
 		$options->assertRequiredOptions( self::$constructorOptions );
 		$this->options = $options;
-		$this->currentUser = $currentUser;
-		$this->currentRequest = $currentRequest;
 		$this->permissionManager = $permissionManager;
 	}
 
@@ -93,94 +77,63 @@ class BlockManager {
 	 * return a composite block that combines the strictest features of the applicable
 	 * blocks.
 	 *
-	 * TODO: $user should be UserIdentity instead of User
+	 * Different blocks may be sought, depending on the user and their permissions. The
+	 * user may be:
+	 * (1) The global user (and can be affected by IP blocks). The global request object
+	 * is needed for checking the IP address, the XFF header and the cookies.
+	 * (2) The global user (and exempt from IP blocks). The global request object is
+	 * needed for checking the cookies.
+	 * (3) Another user (not the global user). No request object is available or needed;
+	 * just look for a block against the user account.
+	 *
+	 * Cases #1 and #2 check whether the global user is blocked in practice; the block
+	 * may due to their user account being blocked or to an IP address block or cookie
+	 * block (or multiple of these). Case #3 simply checks whether a user's account is
+	 * blocked, and does not determine whether the person using that account is affected
+	 * in practice by any IP address or cookie blocks.
 	 *
 	 * @internal This should only be called by User::getBlockedStatus
 	 * @param User $user
+	 * @param WebRequest|null $request The global request object if the user is the
+	 *  global user (cases #1 and #2), otherwise null (case #3). The IP address and
+	 *  information from the request header are needed to find some types of blocks.
 	 * @param bool $fromReplica Whether to check the replica DB first.
 	 *  To improve performance, non-critical checks are done against replica DBs.
 	 *  Check when actually saving should be done against master.
 	 * @return AbstractBlock|null The most relevant block, or null if there is no block.
 	 */
-	public function getUserBlock( User $user, $fromReplica ) {
-		$isAnon = $user->getId() === 0;
+	public function getUserBlock( User $user, $request, $fromReplica ) {
 		$fromMaster = !$fromReplica;
-
-		// TODO: If $user is the current user, we should use the current request. Otherwise,
-		// we should not look for XFF or cookie blocks.
-		$request = $user->getRequest();
-
-		# We only need to worry about passing the IP address to the block generator if the
-		# user is not immune to autoblocks/hardblocks, and they are the current user so we
-		# know which IP address they're actually coming from
 		$ip = null;
-		$sessionUser = $this->currentUser;
-		// the session user is set up towards the end of Setup.php. Until then,
-		// assume it's a logged-out user.
-		$globalUserName = $sessionUser->isSafeToLoad()
-			? $sessionUser->getName()
-			: IP::sanitizeIP( $this->currentRequest->getIP() );
-		if ( $user->getName() === $globalUserName &&
-			 !$this->permissionManager->userHasRight( $user, 'ipblock-exempt' ) ) {
-			$ip = $this->currentRequest->getIP();
-		}
 
-		// User/IP blocking
-		// After this, $blocks is an array of blocks or an empty array
-		// TODO: remove dependency on DatabaseBlock
-		$blocks = DatabaseBlock::newListFromTarget( $user, $ip, $fromMaster );
+		// If this is the global user, they may be affected by IP blocks (case #1),
+		// or they may be exempt (case #2). If affected, look for additional blocks
+		// against the IP address.
+		$checkIpBlocks = $request &&
+			!$this->permissionManager->userHasRight( $user, 'ipblock-exempt' );
 
-		// Cookie blocking
-		$cookieBlock = $this->getBlockFromCookieValue( $user, $request );
-		if ( $cookieBlock instanceof AbstractBlock ) {
-			$blocks[] = $cookieBlock;
-		}
+		if ( $request && $checkIpBlocks ) {
 
-		// Proxy blocking
-		if ( $ip !== null && !in_array( $ip, $this->options->get( 'ProxyWhitelist' ) ) ) {
-			// Local list
-			if ( $this->isLocallyBlockedProxy( $ip ) ) {
-				$blocks[] = new SystemBlock( [
-					'byText' => wfMessage( 'proxyblocker' )->text(),
-					'reason' => wfMessage( 'proxyblockreason' )->plain(),
-					'address' => $ip,
-					'systemBlock' => 'proxy',
-				] );
-			} elseif ( $isAnon && $this->isDnsBlacklisted( $ip ) ) {
-				$blocks[] = new SystemBlock( [
-					'byText' => wfMessage( 'sorbs' )->text(),
-					'reason' => wfMessage( 'sorbsreason' )->plain(),
-					'address' => $ip,
-					'systemBlock' => 'dnsbl',
-				] );
-			}
-		}
+			// Case #1: checking the global user, including IP blocks
+			$ip = $request->getIP();
+			// TODO: remove dependency on DatabaseBlock (T221075)
+			$blocks = DatabaseBlock::newListFromTarget( $user, $ip, $fromMaster );
+			$this->getAdditionalIpBlocks( $blocks, $request, !$user->isRegistered(), $fromMaster );
+			$this->getCookieBlock( $blocks, $user, $request );
 
-		// (T25343) Apply IP blocks to the contents of XFF headers, if enabled
-		if ( $this->options->get( 'ApplyIpBlocksToXff' )
-			&& $ip !== null
-			&& !in_array( $ip, $this->options->get( 'ProxyWhitelist' ) )
-		) {
-			$xff = $request->getHeader( 'X-Forwarded-For' );
-			$xff = array_map( 'trim', explode( ',', $xff ) );
-			$xff = array_diff( $xff, [ $ip ] );
-			// TODO: remove dependency on DatabaseBlock
-			$xffblocks = DatabaseBlock::getBlocksForIPList( $xff, $isAnon, $fromMaster );
-			$blocks = array_merge( $blocks, $xffblocks );
-		}
+		} elseif ( $request ) {
 
-		// Soft blocking
-		if ( $ip !== null
-			&& $isAnon
-			&& IP::isInRanges( $ip, $this->options->get( 'SoftBlockRanges' ) )
-		) {
-			$blocks[] = new SystemBlock( [
-				'address' => $ip,
-				'byText' => 'MediaWiki default',
-				'reason' => wfMessage( 'softblockrangesreason', $ip )->plain(),
-				'anonOnly' => true,
-				'systemBlock' => 'wgSoftBlockRanges',
-			] );
+			// Case #2: checking the global user, but they are exempt from IP blocks
+			// TODO: remove dependency on DatabaseBlock (T221075)
+			$blocks = DatabaseBlock::newListFromTarget( $user, null, $fromMaster );
+			$this->getCookieBlock( $blocks, $user, $request );
+
+		} else {
+
+			// Case #3: checking whether a user's account is blocked
+			// TODO: remove dependency on DatabaseBlock (T221075)
+			$blocks = DatabaseBlock::newListFromTarget( $user, null, $fromMaster );
+
 		}
 
 		// Filter out any duplicated blocks, e.g. from the cookie
@@ -203,6 +156,77 @@ class BlockManager {
 		Hooks::run( 'GetUserBlock', [ clone $user, $ip, &$block ] );
 
 		return $block;
+	}
+
+	/**
+	 * Get the cookie block, if there is one.
+	 *
+	 * @param AbstractBlock[] &$blocks
+	 * @param UserIdentity $user
+	 * @param WebRequest $request
+	 * @return void
+	 */
+	private function getCookieBlock( &$blocks, UserIdentity $user, WebRequest $request ) {
+		$cookieBlock = $this->getBlockFromCookieValue( $user, $request );
+		if ( $cookieBlock instanceof DatabaseBlock ) {
+			$blocks[] = $cookieBlock;
+		}
+	}
+
+	/**
+	 * Check for any additional blocks against the IP address or any IPs in the XFF header.
+	 *
+	 * @param AbstractBlock[] &$blocks Blocks found so far
+	 * @param WebRequest $request
+	 * @param bool $isAnon The user is logged out
+	 * @param bool $fromMaster
+	 * @return void
+	 */
+	private function getAdditionalIpBlocks( &$blocks, WebRequest $request, $isAnon, $fromMaster ) {
+		$ip = $request->getIP();
+
+		// Proxy blocking
+		if ( !in_array( $ip, $this->options->get( 'ProxyWhitelist' ) ) ) {
+			// Local list
+			if ( $this->isLocallyBlockedProxy( $ip ) ) {
+				$blocks[] = new SystemBlock( [
+					'byText' => wfMessage( 'proxyblocker' )->text(),
+					'reason' => wfMessage( 'proxyblockreason' )->plain(),
+					'address' => $ip,
+					'systemBlock' => 'proxy',
+				] );
+			} elseif ( $isAnon && $this->isDnsBlacklisted( $ip ) ) {
+				$blocks[] = new SystemBlock( [
+					'byText' => wfMessage( 'sorbs' )->text(),
+					'reason' => wfMessage( 'sorbsreason' )->plain(),
+					'address' => $ip,
+					'systemBlock' => 'dnsbl',
+				] );
+			}
+		}
+
+		// Soft blocking
+		if ( $isAnon && IP::isInRanges( $ip, $this->options->get( 'SoftBlockRanges' ) ) ) {
+			$blocks[] = new SystemBlock( [
+				'address' => $ip,
+				'byText' => 'MediaWiki default',
+				'reason' => wfMessage( 'softblockrangesreason', $ip )->plain(),
+				'anonOnly' => true,
+				'systemBlock' => 'wgSoftBlockRanges',
+			] );
+		}
+
+		// (T25343) Apply IP blocks to the contents of XFF headers, if enabled
+		if ( $this->options->get( 'ApplyIpBlocksToXff' )
+			&& !in_array( $ip, $this->options->get( 'ProxyWhitelist' ) )
+		) {
+			$xff = $request->getHeader( 'X-Forwarded-For' );
+			$xff = array_map( 'trim', explode( ',', $xff ) );
+			$xff = array_diff( $xff, [ $ip ] );
+			// TODO: remove dependency on DatabaseBlock (T221075)
+			$xffblocks = DatabaseBlock::getBlocksForIPList( $xff, $isAnon, $fromMaster );
+			$blocks = array_merge( $blocks, $xffblocks );
+		}
 	}
 
 	/**
@@ -255,7 +279,7 @@ class BlockManager {
 
 		$blockCookieId = $this->getIdFromCookieValue( $cookieValue );
 		if ( !is_null( $blockCookieId ) ) {
-			// TODO: remove dependency on DatabaseBlock
+			// TODO: remove dependency on DatabaseBlock (T221075)
 			$block = DatabaseBlock::newFromID( $blockCookieId );
 			if (
 				$block instanceof DatabaseBlock &&

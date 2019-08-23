@@ -109,13 +109,10 @@ return [
 	},
 
 	'BlockManager' => function ( MediaWikiServices $services ) : BlockManager {
-		$context = RequestContext::getMain();
 		return new BlockManager(
 			new ServiceOptions(
 				BlockManager::$constructorOptions, $services->getMainConfig()
 			),
-			$context->getUser(),
-			$context->getRequest(),
 			$services->getPermissionManager()
 		);
 	},
