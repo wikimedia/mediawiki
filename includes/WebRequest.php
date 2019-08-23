@@ -395,18 +395,25 @@ class WebRequest {
 		# https://www.php.net/variables.external#language.variables.external.dot-in-names
 		# Work around PHP *feature* to avoid *bugs* elsewhere.
 		$name = strtr( $name, '.', '_' );
-		if ( isset( $arr[$name] ) ) {
-			$data = $arr[$name];
-			if ( isset( $_GET[$name] ) && is_string( $data ) ) {
-				# Check for alternate/legacy character encoding.
-				$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-				$data = $contLang->checkTitleEncoding( $data );
-			}
-			$data = $this->normalizeUnicode( $data );
-			return $data;
-		} else {
+
+		if ( !isset( $arr[$name] ) ) {
 			return $default;
 		}
+
+		$data = $arr[$name];
+		# Optimisation: Skip UTF-8 normalization and legacy transcoding for simple ASCII strings.
+		$isAsciiStr = ( is_string( $data ) && preg_match( '/[^\x20-\x7E]/', $data ) === 0 );
+		if ( !$isAsciiStr ) {
+			if ( isset( $_GET[$name] ) && is_string( $data ) ) {
+				# Check for alternate/legacy character encoding.
+				$data = MediaWikiServices::getInstance()
+					->getContentLanguage()
+					->checkTitleEncoding( $data );
+			}
+			$data = $this->normalizeUnicode( $data );
+		}
+
+		return $data;
 	}
 
 	/**
