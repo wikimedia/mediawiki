@@ -3,6 +3,24 @@
 use Wikimedia\TestingAccessWrapper;
 
 class LanguageTest extends LanguageClassesTestCase {
+	use LanguageNameUtilsTestTrait;
+
+	/** @var array Copy of $wgHooks from before we unset LanguageGetTranslatedLanguageNames */
+	private $origHooks;
+
+	public function setUp() {
+		global $wgHooks;
+
+		parent::setUp();
+
+		// Don't allow installed hooks to run, except if a test restores them via origHooks (needed
+		// for testIsKnownLanguageTag_cldr)
+		$this->origHooks = $wgHooks;
+		$newHooks = $wgHooks;
+		unset( $newHooks['LanguageGetTranslatedLanguageNames'] );
+		$this->setMwGlobals( 'wgHooks', $newHooks );
+	}
+
 	/**
 	 * @covers Language::convertDoubleWidth
 	 * @covers Language::normalizeForSearch
@@ -508,84 +526,6 @@ class LanguageTest extends LanguageClassesTestCase {
 			Language::isWellFormedLanguageTag( 'pa_guru', true ),
 			'pa_guru is a well-formed language tag in lenient mode'
 		);
-	}
-
-	/**
-	 * Test Language::isValidBuiltInCode()
-	 * @dataProvider provideLanguageCodes
-	 * @covers Language::isValidBuiltInCode
-	 */
-	public function testBuiltInCodeValidation( $code, $expected, $message = '' ) {
-		$this->assertEquals( $expected,
-			(bool)Language::isValidBuiltInCode( $code ),
-			"validating code $code $message"
-		);
-	}
-
-	public static function provideLanguageCodes() {
-		return [
-			[ 'fr', true, 'Two letters, minor case' ],
-			[ 'EN', false, 'Two letters, upper case' ],
-			[ 'tyv', true, 'Three letters' ],
-			[ 'be-tarask', true, 'With dash' ],
-			[ 'be-x-old', true, 'With extension (two dashes)' ],
-			[ 'be_tarask', false, 'Reject underscores' ],
-		];
-	}
-
-	/**
-	 * Test Language::isKnownLanguageTag()
-	 * @dataProvider provideKnownLanguageTags
-	 * @covers Language::isKnownLanguageTag
-	 */
-	public function testKnownLanguageTag( $code, $message = '' ) {
-		$this->assertTrue(
-			(bool)Language::isKnownLanguageTag( $code ),
-			"validating code $code - $message"
-		);
-	}
-
-	public static function provideKnownLanguageTags() {
-		return [
-			[ 'fr', 'simple code' ],
-			[ 'bat-smg', 'an MW legacy tag' ],
-			[ 'sgs', 'an internal standard MW name, for which a legacy tag is used externally' ],
-		];
-	}
-
-	/**
-	 * @covers Language::isKnownLanguageTag
-	 */
-	public function testKnownCldrLanguageTag() {
-		if ( !class_exists( 'LanguageNames' ) ) {
-			$this->markTestSkipped( 'The LanguageNames class is not available. '
-				. 'The CLDR extension is probably not installed.' );
-		}
-
-		$this->assertTrue(
-			(bool)Language::isKnownLanguageTag( 'pal' ),
-			'validating code "pal" an ancient language, which probably will '
-				. 'not appear in Names.php, but appears in CLDR in English'
-		);
-	}
-
-	/**
-	 * Negative tests for Language::isKnownLanguageTag()
-	 * @dataProvider provideUnKnownLanguageTags
-	 * @covers Language::isKnownLanguageTag
-	 */
-	public function testUnknownLanguageTag( $code, $message = '' ) {
-		$this->assertFalse(
-			(bool)Language::isKnownLanguageTag( $code ),
-			"checking that code $code is invalid - $message"
-		);
-	}
-
-	public static function provideUnknownLanguageTags() {
-		return [
-			[ 'mw', 'non-existent two-letter code' ],
-			[ 'foo"<bar', 'very invalid language code' ],
-		];
 	}
 
 	/**
@@ -1824,33 +1764,11 @@ class LanguageTest extends LanguageClassesTestCase {
 		$lang->getGrammarTransformations();
 		$this->assertNotNull( $languageClass->grammarTransformations );
 
-		// Populate $languageNameCache
-		Language::fetchLanguageNames();
-		$this->assertNotNull( $languageClass->languageNameCache );
-
 		Language::clearCaches();
 
 		$this->assertCount( 0, Language::$mLangObjCache );
 		$this->assertCount( 0, $languageClass->fallbackLanguageCache );
 		$this->assertNull( $languageClass->grammarTransformations );
-		$this->assertNull( $languageClass->languageNameCache );
-	}
-
-	/**
-	 * @dataProvider provideIsSupportedLanguage
-	 * @covers Language::isSupportedLanguage
-	 */
-	public function testIsSupportedLanguage( $code, $expected, $comment ) {
-		$this->assertEquals( $expected, Language::isSupportedLanguage( $code ), $comment );
-	}
-
-	public static function provideIsSupportedLanguage() {
-		return [
-			[ 'en', true, 'is supported language' ],
-			[ 'fi', true, 'is supported language' ],
-			[ 'bunny', false, 'is not supported language' ],
-			[ 'FI', false, 'is not supported language, input should be in lower case' ],
-		];
 	}
 
 	/**
@@ -1955,5 +1873,83 @@ class LanguageTest extends LanguageClassesTestCase {
 			// but they do affect non-ascii ones
 			[ 'èl', 'Ll' , 'Non-ASCII is overridden', [ 'è' => 'L' ] ],
 		];
+	}
+
+	// The following methods are for LanguageNameUtilsTestTrait
+
+	private function isSupportedLanguage( $code ) {
+		return Language::isSupportedLanguage( $code );
+	}
+
+	private function isValidCode( $code ) {
+		return Language::isValidCode( $code );
+	}
+
+	private function isValidBuiltInCode( $code ) {
+		return Language::isValidBuiltInCode( $code );
+	}
+
+	private function isKnownLanguageTag( $code ) {
+		return Language::isKnownLanguageTag( $code );
+	}
+
+	/**
+	 * Call getLanguageName() and getLanguageNames() using the Language static methods.
+	 *
+	 * @param array $options To set globals for testing Language
+	 * @param string $expected
+	 * @param string $code
+	 * @param mixed ...$otherArgs Optionally, pass $inLanguage and/or $include.
+	 */
+	private function assertGetLanguageNames( array $options, $expected, $code, ...$otherArgs ) {
+		if ( $options ) {
+			foreach ( $options as $key => $val ) {
+				$this->setMwGlobals( "wg$key", $val );
+			}
+			$this->resetServices();
+		}
+		$this->assertSame( $expected,
+			Language::fetchLanguageNames( ...$otherArgs )[strtolower( $code )] ?? '' );
+		$this->assertSame( $expected, Language::fetchLanguageName( $code, ...$otherArgs ) );
+	}
+
+	private function getLanguageNames( ...$args ) {
+		return Language::fetchLanguageNames( ...$args );
+	}
+
+	private function getLanguageName( ...$args ) {
+		return Language::fetchLanguageName( ...$args );
+	}
+
+	private static function getFileName( ...$args ) {
+		return Language::getFileName( ...$args );
+	}
+
+	private static function getMessagesFileName( $code ) {
+		return Language::getMessagesFileName( $code );
+	}
+
+	private static function getJsonMessagesFileName( $code ) {
+		return Language::getJsonMessagesFileName( $code );
+	}
+
+	/**
+	 * @todo This really belongs in the cldr extension's tests.
+	 *
+	 * @covers MediaWiki\Languages\LanguageNameUtils::isKnownLanguageTag
+	 * @covers Language::isKnownLanguageTag
+	 */
+	public function testIsKnownLanguageTag_cldr() {
+		if ( !class_exists( 'LanguageNames' ) ) {
+			$this->markTestSkipped( 'The LanguageNames class is not available. '
+				. 'The CLDR extension is probably not installed.' );
+		}
+
+		// We need to restore the extension's hook that we removed.
+		$this->setMwGlobals( 'wgHooks', $this->origHooks );
+
+		// "pal" is an ancient language, which probably will not appear in Names.php, but appears in
+		// CLDR in English
+		$this->assertTrue( Language::isKnownLanguageTag( 'pal' ) );
 	}
 }

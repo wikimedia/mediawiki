@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Languages\LanguageNameUtils;
 use Psr\Log\NullLogger;
 
 /**
@@ -24,6 +25,37 @@ class LocalisationCacheTest extends MediaWikiTestCase {
 	protected function getMockLocalisationCache() {
 		global $IP;
 
+		$mockLangNameUtils = $this->createMock( LanguageNameUtils::class );
+		$mockLangNameUtils->method( 'isValidBuiltInCode' )->will( $this->returnCallback(
+			function ( $code ) {
+				// Copy-paste, but it's only one line
+				return (bool)preg_match( '/^[a-z0-9-]{2,}$/', $code );
+			}
+		) );
+		$mockLangNameUtils->method( 'isSupportedLanguage' )->will( $this->returnCallback(
+			function ( $code ) {
+				return in_array( $code, [
+					'ar',
+					'arz',
+					'ba',
+					'de',
+					'en',
+					'ksh',
+					'ru',
+				] );
+			}
+		) );
+		$mockLangNameUtils->method( 'getMessagesFileName' )->will( $this->returnCallback(
+			function ( $code ) {
+				global $IP;
+				$code = str_replace( '-', '_', ucfirst( $code ) );
+				return "$IP/languages/messages/Messages$code.php";
+			}
+		) );
+		$mockLangNameUtils->expects( $this->never() )->method( $this->anythingBut(
+			'isValidBuiltInCode', 'isSupportedLanguage', 'getMessagesFileName'
+		) );
+
 		$lc = $this->getMockBuilder( LocalisationCache::class )
 			->setConstructorArgs( [
 				new ServiceOptions( LocalisationCache::$constructorOptions, [
@@ -33,7 +65,9 @@ class LocalisationCacheTest extends MediaWikiTestCase {
 					'MessagesDirs' => [],
 				] ),
 				new LCStoreDB( [] ),
-				new NullLogger
+				new NullLogger,
+				[],
+				$mockLangNameUtils
 			] )
 			->setMethods( [ 'getMessagesDirs' ] )
 			->getMock();
