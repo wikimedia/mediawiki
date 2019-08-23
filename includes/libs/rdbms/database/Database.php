@@ -47,37 +47,6 @@ use Throwable;
  * @since 1.28
  */
 abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAwareInterface {
-	/** @var string Server that this instance is currently connected to */
-	protected $server;
-	/** @var string User that this instance is currently connected under the name of */
-	protected $user;
-	/** @var string Password used to establish the current connection */
-	protected $password;
-	/** @var array[] Map of (table => (dbname, schema, prefix) map) */
-	protected $tableAliases = [];
-	/** @var string[] Map of (index alias => index) */
-	protected $indexAliases = [];
-	/** @var bool Whether this PHP instance is for a CLI script */
-	protected $cliMode;
-	/** @var string Agent name for query profiling */
-	protected $agent;
-	/** @var int Bit field of class DBO_* constants */
-	protected $flags;
-	/** @var array LoadBalancer tracking information */
-	protected $lbInfo = [];
-	/** @var array|bool Variables use for schema element placeholders */
-	protected $schemaVars = false;
-	/** @var array Parameters used by initConnection() to establish a connection */
-	protected $connectionParams = [];
-	/** @var array SQL variables values to use for all new connections */
-	protected $connectionVariables = [];
-	/** @var string Current SQL query delimiter */
-	protected $delimiter = ';';
-	/** @var string|bool|null Stashed value of html_errors INI setting */
-	protected $htmlErrors;
-	/** @var int Row batch size to use for emulated INSERT SELECT queries */
-	protected $nonNativeInsertSelectBatchSize = 10000;
-
 	/** @var BagOStuff APC cache */
 	protected $srvCache;
 	/** @var LoggerInterface */
@@ -92,13 +61,50 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $profiler;
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
+
 	/** @var DatabaseDomain */
 	protected $currentDomain;
+
 	/** @var object|resource|null Database connection */
 	protected $conn;
 
 	/** @var IDatabase|null Lazy handle to the master DB this server replicates from */
 	private $lazyMasterHandle;
+
+	/** @var string Server that this instance is currently connected to */
+	protected $server;
+	/** @var string User that this instance is currently connected under the name of */
+	protected $user;
+	/** @var string Password used to establish the current connection */
+	protected $password;
+	/** @var bool Whether this PHP instance is for a CLI script */
+	protected $cliMode;
+	/** @var string Agent name for query profiling */
+	protected $agent;
+	/** @var array Parameters used by initConnection() to establish a connection */
+	protected $connectionParams;
+	/** @var string[]|int[]|float[] SQL variables values to use for all new connections */
+	protected $connectionVariables;
+	/** @var int Row batch size to use for emulated INSERT SELECT queries */
+	protected $nonNativeInsertSelectBatchSize;
+
+	/** @var int Current bit field of class DBO_* constants */
+	protected $flags;
+	/** @var array Current LoadBalancer tracking information */
+	protected $lbInfo = [];
+	/** @var string Current SQL query delimiter */
+	protected $delimiter = ';';
+	/** @var array[] Current map of (table => (dbname, schema, prefix) map) */
+	protected $tableAliases = [];
+	/** @var string[] Current map of (index alias => index) */
+	protected $indexAliases = [];
+	/** @var array|null Current variables use for schema element placeholders */
+	protected $schemaVars;
+
+	/** @var string|bool|null Stashed value of html_errors INI setting */
+	private $htmlErrors;
+	/** @var int[] Prior flags member variable values */
+	private $priorFlags = [];
 
 	/** @var array Map of (name => 1) for locks obtained via lock() */
 	protected $sessionNamedLocks = [];
@@ -106,11 +112,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $sessionTempTables = [];
 
 	/** @var string ID of the active transaction or the empty string otherwise */
-	protected $trxShortId = '';
+	private $trxShortId = '';
 	/** @var int Transaction status */
-	protected $trxStatus = self::STATUS_TRX_NONE;
+	private $trxStatus = self::STATUS_TRX_NONE;
 	/** @var Exception|null The last error that caused the status to become STATUS_TRX_ERROR */
-	protected $trxStatusCause;
+	private $trxStatusCause;
 	/** @var array|null Error details of the last statement-only rollback */
 	private $trxStatusIgnoredCause;
 	/** @var float|null UNIX timestamp at the time of BEGIN for the last transaction */
@@ -153,9 +159,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private $trxRecurringCallbacks = [];
 	/** @var bool Whether to suppress triggering of transaction end callbacks */
 	private $trxEndCallbacksSuppressed = false;
-
-	/** @var int[] Prior flags member variable values */
-	private $priorFlags = [];
 
 	/** @var integer|null Rows affected by the last query to query() or its CRUD wrappers */
 	protected $affectedRowCount;
@@ -233,15 +236,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @note exceptions for missing libraries/drivers should be thrown in initConnection()
 	 * @param array $params Parameters passed from Database::factory()
 	 */
-	protected function __construct( array $params ) {
+	public function __construct( array $params ) {
+		$this->connectionParams = [];
 		foreach ( [ 'host', 'user', 'password', 'dbname', 'schema', 'tablePrefix' ] as $name ) {
 			$this->connectionParams[$name] = $params[$name];
 		}
-
+		$this->connectionVariables = $params['variables'] ?? [];
 		$this->cliMode = $params['cliMode'];
-		// Agent name is added to SQL queries in a comment, so make sure it can't break out
-		$this->agent = str_replace( '/', '-', $params['agent'] );
-
+		$this->agent = $params['agent'];
 		$this->flags = $params['flags'];
 		if ( $this->flags & self::DBO_DEFAULT ) {
 			if ( $this->cliMode ) {
@@ -250,21 +252,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->flags |= self::DBO_TRX;
 			}
 		}
-
-		$this->connectionVariables = $params['variables'];
+		$this->nonNativeInsertSelectBatchSize = $params['nonNativeInsertSelectBatchSize'] ?? 10000;
 
 		$this->srvCache = $params['srvCache'] ?? new HashBagOStuff();
-
 		$this->profiler = is_callable( $params['profiler'] ) ? $params['profiler'] : null;
 		$this->trxProfiler = $params['trxProfiler'];
 		$this->connLogger = $params['connLogger'];
 		$this->queryLogger = $params['queryLogger'];
 		$this->errorLogger = $params['errorLogger'];
 		$this->deprecationLogger = $params['deprecationLogger'];
-
-		if ( isset( $params['nonNativeInsertSelectBatchSize'] ) ) {
-			$this->nonNativeInsertSelectBatchSize = $params['nonNativeInsertSelectBatchSize'];
-		}
 
 		// Set initial dummy domain until open() sets the final DB/prefix
 		$this->currentDomain = new DatabaseDomain(
@@ -395,6 +391,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				'cliMode' => (bool)$params['cliMode'],
 				'agent' => (string)$params['agent'],
 				// Objects and callbacks
+				'srvCache' => $params['srvCache'] ?? new HashBagOStuff(),
 				'profiler' => $params['profiler'] ?? null,
 				'trxProfiler' => $params['trxProfiler'] ?? new TransactionProfiler(),
 				'connLogger' => $params['connLogger'] ?? new NullLogger(),
@@ -491,7 +488,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @return array Map of (Database::ATTR_* constant => value
+	 * @return array Map of (Database::ATTR_* constant => value)
 	 * @since 1.31
 	 */
 	protected static function getAttributes() {
@@ -965,7 +962,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @throws DBReadOnlyError
 	 */
 	protected function assertIsWritableMaster() {
-		if ( $this->getLBInfo( 'replica' ) === true ) {
+		if ( $this->getLBInfo( 'replica' ) ) {
 			throw new DBReadOnlyRoleError(
 				$this,
 				'Write operations are not allowed on replica database connections'
@@ -1148,7 +1145,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Send the query to the server and fetch any corresponding errors
 		list( $ret, $err, $errno, $unignorable ) = $this->executeQuery( $sql, $fname, $flags );
 		if ( $ret === false ) {
-			$ignoreErrors = $this->hasFlags( $flags, self::QUERY_SILENCE_ERRORS );
+			$ignoreErrors = $this->fieldHasBit( $flags, self::QUERY_SILENCE_ERRORS );
 			// Throw an error unless both the ignore flag was set and a rollback is not needed
 			$this->reportQueryError( $err, $errno, $sql, $fname, $ignoreErrors && !$unignorable );
 		}
@@ -1188,11 +1185,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// Do not treat temporary table writes as "meaningful writes" since they are only
 			// visible to one session and are not permanent. Profile them as reads. Integration
 			// tests can override this behavior via $flags.
-			$pseudoPermanent = $this->hasFlags( $flags, self::QUERY_PSEUDO_PERMANENT );
+			$pseudoPermanent = $this->fieldHasBit( $flags, self::QUERY_PSEUDO_PERMANENT );
 			list( $tmpType, $tmpNew, $tmpDel ) = $this->getTempWrites( $sql, $pseudoPermanent );
 			$isPermWrite = ( $tmpType !== self::$TEMP_NORMAL );
 			// DBConnRef uses QUERY_REPLICA_ROLE to enforce the replica role for raw SQL queries
-			if ( $isPermWrite && $this->hasFlags( $flags, self::QUERY_REPLICA_ROLE ) ) {
+			if ( $isPermWrite && $this->fieldHasBit( $flags, self::QUERY_REPLICA_ROLE ) ) {
 				throw new DBReadOnlyRoleError( $this, "Cannot write; target role is DB_REPLICA" );
 			}
 		} else {
@@ -1203,8 +1200,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		// Add trace comment to the begin of the sql string, right after the operator.
-		// Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (T44598)
-		$commentedSql = preg_replace( '/\s|$/', " /* $fname {$this->agent} */ ", $sql, 1 );
+		// Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (T44598).
+		$encAgent = str_replace( '/', '-', $this->agent );
+		$commentedSql = preg_replace( '/\s|$/', " /* $fname $encAgent */ ", $sql, 1 );
 
 		// Send the query to the server and fetch any corresponding errors.
 		// This also doubles as a "ping" to see if the connection was dropped.
@@ -1212,7 +1210,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->executeQueryAttempt( $sql, $commentedSql, $isPermWrite, $fname, $flags );
 
 		// Check if the query failed due to a recoverable connection loss
-		$allowRetry = !$this->hasFlags( $flags, self::QUERY_NO_RETRY );
+		$allowRetry = !$this->fieldHasBit( $flags, self::QUERY_NO_RETRY );
 		if ( $ret === false && $recoverableCL && $reconnected && $allowRetry ) {
 			// Silently resend the query to the server since it is safe and possible
 			list( $ret, $err, $errno, $recoverableSR, $recoverableCL ) =
@@ -1283,7 +1281,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			}
 		}
 
-		$prefix = !is_null( $this->getLBInfo( 'master' ) ) ? 'query-m: ' : 'query: ';
+		$prefix = $this->getLBInfo( 'master' ) ? 'query-m: ' : 'query: ';
 		$generalizedSql = new GeneralizedSql( $sql, $this->trxShortId, $prefix );
 
 		$startTime = microtime( true );
@@ -4470,7 +4468,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function setSchemaVars( $vars ) {
-		$this->schemaVars = $vars;
+		$this->schemaVars = is_array( $vars ) ? $vars : null;
 	}
 
 	public function sourceStream(
@@ -4622,11 +4620,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return array
 	 */
 	protected function getSchemaVars() {
-		if ( $this->schemaVars ) {
-			return $this->schemaVars;
-		} else {
-			return $this->getDefaultSchemaVars();
-		}
+		return $this->schemaVars ?? $this->getDefaultSchemaVars();
 	}
 
 	/**
@@ -4816,8 +4810,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param int $field
 	 * @param int $flags
 	 * @return bool
+	 * @since 1.34
 	 */
-	protected function hasFlags( $field, $flags ) {
+	final protected function fieldHasBit( $field, $flags ) {
 		return ( ( $field & $flags ) === $flags );
 	}
 
