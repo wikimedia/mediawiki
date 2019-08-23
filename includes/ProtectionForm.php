@@ -90,7 +90,7 @@ class ProtectionForm {
 	 * Loads the current state of protection into the object.
 	 */
 	function loadData() {
-		$levels = MediaWikiServices::getInstance()->getNamespaceInfo()->getRestrictionLevels(
+		$levels = MediaWikiServices::getInstance()->getPermissionManager()->getNamespaceRestrictionLevels(
 			$this->mTitle->getNamespace(), $this->mContext->getUser()
 		);
 		$this->mCascade = $this->mTitle->areRestrictionsCascading();
@@ -180,7 +180,7 @@ class ProtectionForm {
 	 */
 	function execute() {
 		if (
-			MediaWikiServices::getInstance()->getNamespaceInfo()->getRestrictionLevels(
+			MediaWikiServices::getInstance()->getPermissionManager()->getNamespaceRestrictionLevels(
 				$this->mTitle->getNamespace()
 			) === [ '' ]
 		) {
@@ -586,10 +586,12 @@ class ProtectionForm {
 	function buildSelector( $action, $selected ) {
 		// If the form is disabled, display all relevant levels. Otherwise,
 		// just show the ones this user can use.
-		$levels = MediaWikiServices::getInstance()->getNamespaceInfo()->getRestrictionLevels(
-			$this->mTitle->getNamespace(),
-			$this->disabled ? null : $this->mContext->getUser()
-		);
+		$levels = MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->getNamespaceRestrictionLevels(
+					$this->mTitle->getNamespace(),
+					$this->disabled ? null : $this->mContext->getUser()
+				);
 
 		$id = 'mwProtect-level-' . $action;
 

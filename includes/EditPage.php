@@ -4447,8 +4447,8 @@ ERROR;
 	protected function addPageProtectionWarningHeaders() {
 		$out = $this->context->getOutput();
 		if ( $this->mTitle->isProtected( 'edit' ) &&
-			MediaWikiServices::getInstance()->getNamespaceInfo()->getRestrictionLevels(
-				$this->mTitle->getNamespace()
+			MediaWikiServices::getInstance()->getPermissionManager()->getNamespaceRestrictionLevels(
+				$this->getTitle()->getNamespace()
 			) !== [ '' ]
 		) {
 			# Is the title semi-protected?
