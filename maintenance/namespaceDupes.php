@@ -28,7 +28,6 @@ require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\RevisionRecord;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
@@ -73,8 +72,6 @@ class NamespaceDupes extends Maintenance {
 	}
 
 	public function execute() {
-		$this->db = $this->getDB( DB_MASTER );
-
 		$options = [
 			'fix' => $this->hasOption( 'fix' ),
 			'merge' => $this->hasOption( 'merge' ),
@@ -254,8 +251,8 @@ class NamespaceDupes extends Maintenance {
 		foreach ( $targets as $row ) {
 			// Find the new title and determine the action to take
 
-			$newTitle = $this->getDestinationTitle( $ns, $name,
-				$row->page_namespace, $row->page_title, $options );
+			$newTitle = $this->getDestinationTitle(
+				$ns, $name, $row->page_namespace, $row->page_title );
 			$logStatus = false;
 			if ( !$newTitle ) {
 				$logStatus = 'invalid title';
@@ -338,18 +335,20 @@ class NamespaceDupes extends Maintenance {
 	private function checkLinkTable( $table, $fieldPrefix, $ns, $name, $options,
 		$extraConds = []
 	) {
+		$dbw = $this->getDB( DB_MASTER );
+
 		$batchConds = [];
 		$fromField = "{$fieldPrefix}_from";
 		$namespaceField = "{$fieldPrefix}_namespace";
 		$titleField = "{$fieldPrefix}_title";
 		$batchSize = 500;
 		while ( true ) {
-			$res = $this->db->select(
+			$res = $dbw->select(
 				$table,
 				[ $fromField, $namespaceField, $titleField ],
 				array_merge( $batchConds, $extraConds, [
 					$namespaceField => 0,
-					$titleField . $this->db->buildLike( "$name:", $this->db->anyString() )
+					$titleField . $dbw->buildLike( "$name:", $dbw->anyString() )
 				] ),
 				__METHOD__,
 				[
@@ -364,8 +363,8 @@ class NamespaceDupes extends Maintenance {
 			foreach ( $res as $row ) {
 				$logTitle = "from={$row->$fromField} ns={$row->$namespaceField} " .
 					"dbk={$row->$titleField}";
-				$destTitle = $this->getDestinationTitle( $ns, $name,
-					$row->$namespaceField, $row->$titleField, $options );
+				$destTitle = $this->getDestinationTitle(
+					$ns, $name, $row->$namespaceField, $row->$titleField );
 				$this->totalLinks++;
 				if ( !$destTitle ) {
 					$this->output( "$table $logTitle *** INVALID\n" );
@@ -378,7 +377,7 @@ class NamespaceDupes extends Maintenance {
 					continue;
 				}
 
-				$this->db->update( $table,
+				$dbw->update( $table,
 					// SET
 					[
 						$namespaceField => $destTitle->getNamespace(),
@@ -396,8 +395,8 @@ class NamespaceDupes extends Maintenance {
 				$this->output( "$table $logTitle -> " .
 					$destTitle->getPrefixedDBkey() . "\n" );
 			}
-			$encLastTitle = $this->db->addQuotes( $row->$titleField );
-			$encLastFrom = $this->db->addQuotes( $row->$fromField );
+			$encLastTitle = $dbw->addQuotes( $row->$titleField );
+			$encLastFrom = $dbw->addQuotes( $row->$fromField );
 
 			$batchConds = [
 				"$titleField > $encLastTitle " .
@@ -433,6 +432,8 @@ class NamespaceDupes extends Maintenance {
 	 * @return IResultWrapper
 	 */
 	private function getTargetList( $ns, $name, $options ) {
+		$dbw = $this->getDB( DB_MASTER );
+
 		if (
 			$options['move-talk'] &&
 			MediaWikiServices::getInstance()->getNamespaceInfo()->isSubject( $ns )
@@ -442,7 +443,7 @@ class NamespaceDupes extends Maintenance {
 			$checkNamespaces = NS_MAIN;
 		}
 
-		return $this->db->select( 'page',
+		return $dbw->select( 'page',
 			[
 				'page_id',
 				'page_title',
@@ -450,7 +451,7 @@ class NamespaceDupes extends Maintenance {
 			],
 			[
 				'page_namespace' => $checkNamespaces,
-				'page_title' . $this->db->buildLike( "$name:", $this->db->anyString() ),
+				'page_title' . $dbw->buildLike( "$name:", $dbw->anyString() ),
 			],
 			__METHOD__
 		);
@@ -462,10 +463,9 @@ class NamespaceDupes extends Maintenance {
 	 * @param string $name The conflicting prefix
 	 * @param int $sourceNs The source namespace
 	 * @param int $sourceDbk The source DB key (i.e. page_title)
-	 * @param array $options Associative array of validated command-line options
 	 * @return Title|false
 	 */
-	private function getDestinationTitle( $ns, $name, $sourceNs, $sourceDbk, $options ) {
+	private function getDestinationTitle( $ns, $name, $sourceNs, $sourceDbk ) {
 		$dbk = substr( $sourceDbk, strlen( "$name:" ) );
 		if ( $ns == 0 ) {
 			// An interwiki; try an alternate encoding with '-' for ':'
@@ -518,7 +518,9 @@ class NamespaceDupes extends Maintenance {
 	 * @return bool
 	 */
 	private function movePage( $id, LinkTarget $newLinkTarget ) {
-		$this->db->update( 'page',
+		$dbw = $this->getDB( DB_MASTER );
+
+		$dbw->update( 'page',
 			[
 				"page_namespace" => $newLinkTarget->getNamespace(),
 				"page_title" => $newLinkTarget->getDBkey(),
@@ -535,7 +537,7 @@ class NamespaceDupes extends Maintenance {
 			[ 'imagelinks', 'il' ] ];
 		foreach ( $fromNamespaceTables as $tableInfo ) {
 			list( $table, $fieldPrefix ) = $tableInfo;
-			$this->db->update( $table,
+			$dbw->update( $table,
 				// SET
 				[ "{$fieldPrefix}_from_namespace" => $newLinkTarget->getNamespace() ],
 				// WHERE
@@ -559,12 +561,8 @@ class NamespaceDupes extends Maintenance {
 	 * @return bool
 	 */
 	private function canMerge( $id, LinkTarget $linkTarget, &$logStatus ) {
-		$latestDest = Revision::newFromTitle(
-			$linkTarget, 0, RevisionRecord::READ_LATEST
-		);
-		$latestSource = Revision::newFromPageId(
-			$id, 0, RevisionRecord::READ_LATEST
-		);
+		$latestDest = Revision::newFromTitle( $linkTarget, 0, Revision::READ_LATEST );
+		$latestSource = Revision::newFromPageId( $id, 0, Revision::READ_LATEST );
 		if ( $latestSource->getTimestamp() > $latestDest->getTimestamp() ) {
 			$logStatus = 'cannot merge since source is later';
 			return false;
@@ -581,6 +579,8 @@ class NamespaceDupes extends Maintenance {
 	 * @return bool
 	 */
 	private function mergePage( $row, Title $newTitle ) {
+		$dbw = $this->getDB( DB_MASTER );
+
 		$id = $row->page_id;
 
 		// Construct the WikiPage object we will need later, while the
@@ -592,17 +592,17 @@ class NamespaceDupes extends Maintenance {
 		$wikiPage->loadPageData( 'fromdbmaster' );
 
 		$destId = $newTitle->getArticleID();
-		$this->beginTransaction( $this->db, __METHOD__ );
-		$this->db->update( 'revision',
+		$this->beginTransaction( $dbw, __METHOD__ );
+		$dbw->update( 'revision',
 			// SET
 			[ 'rev_page' => $destId ],
 			// WHERE
 			[ 'rev_page' => $id ],
 			__METHOD__ );
 
-		$this->db->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
+		$dbw->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
 
-		$this->commitTransaction( $this->db, __METHOD__ );
+		$this->commitTransaction( $dbw, __METHOD__ );
 
 		/* Call LinksDeletionUpdate to delete outgoing links from the old title,
 		 * and update category counts.
