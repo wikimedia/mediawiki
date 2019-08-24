@@ -155,8 +155,9 @@ abstract class LBFactory implements ILBFactory {
 		$this->defaultGroup = $conf['defaultGroup'] ?? null;
 		$this->secret = $conf['secret'] ?? '';
 
-		$this->id = mt_rand();
-		$this->ticket = mt_rand();
+		static $nextId, $nextTicket;
+		$this->id = $nextId = ( is_int( $nextId ) ? $nextId++ : mt_rand() );
+		$this->ticket = $nextTicket = ( is_int( $nextTicket ) ? $nextTicket++ : mt_rand() );
 	}
 
 	public function destroy() {
