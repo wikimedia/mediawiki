@@ -362,6 +362,8 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		$db->method( 'getMasterServerInfo' )
 			->willReturn( [ 'serverId' => 172, 'asOf' => time() ] );
 
+		$db->setLBInfo( 'replica', true );
+
 		// Fake the current time.
 		list( $nowSecFrac, $nowSec ) = explode( ' ', microtime() );
 		$now = (float)$nowSec + (float)$nowSecFrac;

@@ -100,14 +100,6 @@ class WinCacheBagOStuff extends MediumSpecificBagOStuff {
 		return true;
 	}
 
-	/**
-	 * Construct a cache key.
-	 *
-	 * @since 1.27
-	 * @param string $keyspace
-	 * @param array $args
-	 * @return string
-	 */
 	public function makeKeyInternal( $keyspace, $args ) {
 		// WinCache keys have a maximum length of 150 characters. From that,
 		// subtract the number of characters we need for the keyspace and for
@@ -136,13 +128,7 @@ class WinCacheBagOStuff extends MediumSpecificBagOStuff {
 		return $keyspace . ':' . implode( ':', $args );
 	}
 
-	/**
-	 * Increase stored value of $key by $value while preserving its original TTL
-	 * @param string $key Key to increase
-	 * @param int $value Value to add to $key (Default 1)
-	 * @return int|bool New value or false on failure
-	 */
-	public function incr( $key, $value = 1 ) {
+	public function incr( $key, $value = 1, $flags = 0 ) {
 		if ( !wincache_lock( $key ) ) { // optimize with FIFO lock
 			return false;
 		}
@@ -159,5 +145,9 @@ class WinCacheBagOStuff extends MediumSpecificBagOStuff {
 		wincache_unlock( $key );
 
 		return $n;
+	}
+
+	public function decr( $key, $value = 1, $flags = 0 ) {
+		return $this->incr( $key, -$value, $flags );
 	}
 }

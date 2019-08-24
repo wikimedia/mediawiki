@@ -68,21 +68,21 @@ class DatabaseSqlite extends Database {
 	 *   - dbDirectory : directory containing the DB and the lock file directory
 	 *   - dbFilePath  : use this to force the path of the DB file
 	 *   - trxMode     : one of (deferred, immediate, exclusive)
-	 * @param array $p
+	 * @param array $params
 	 */
-	public function __construct( array $p ) {
-		if ( isset( $p['dbFilePath'] ) ) {
-			$this->dbPath = $p['dbFilePath'];
-			if ( !strlen( $p['dbname'] ) ) {
-				$p['dbname'] = self::generateDatabaseName( $this->dbPath );
+	public function __construct( array $params ) {
+		if ( isset( $params['dbFilePath'] ) ) {
+			$this->dbPath = $params['dbFilePath'];
+			if ( !strlen( $params['dbname'] ) ) {
+				$params['dbname'] = self::generateDatabaseName( $this->dbPath );
 			}
-		} elseif ( isset( $p['dbDirectory'] ) ) {
-			$this->dbDir = $p['dbDirectory'];
+		} elseif ( isset( $params['dbDirectory'] ) ) {
+			$this->dbDir = $params['dbDirectory'];
 		}
 
-		parent::__construct( $p );
+		parent::__construct( $params );
 
-		$this->trxMode = strtoupper( $p['trxMode'] ?? '' );
+		$this->trxMode = strtoupper( $params['trxMode'] ?? '' );
 
 		$lockDirectory = $this->getLockFileDirectory();
 		if ( $lockDirectory !== null ) {
@@ -96,7 +96,10 @@ class DatabaseSqlite extends Database {
 	}
 
 	protected static function getAttributes() {
-		return [ self::ATTR_DB_LEVEL_LOCKING => true ];
+		return [
+			self::ATTR_DB_IS_FILE => true,
+			self::ATTR_DB_LEVEL_LOCKING => true
+		];
 	}
 
 	/**

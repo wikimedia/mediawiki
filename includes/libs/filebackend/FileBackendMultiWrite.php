@@ -88,7 +88,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 *                      any checks from "syncChecks" are still synchronous.
 	 *
 	 * @param array $config
-	 * @throws FileBackendError
+	 * @throws LogicException
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
@@ -178,9 +178,8 @@ class FileBackendMultiWrite extends FileBackend {
 		$masterStatus = $mbe->doOperations( $realOps, $opts );
 		$status->merge( $masterStatus );
 		// Propagate the operations to the clone backends if there were no unexpected errors
-		// and if there were either no expected errors or if the 'force' option was used.
-		// However, if nothing succeeded at all, then don't replicate any of the operations.
-		// If $ops only had one operation, this might avoid backend sync inconsistencies.
+		// and everything didn't fail due to predicted errors. If $ops only had one operation,
+		// this might avoid backend sync inconsistencies.
 		if ( $masterStatus->isOK() && $masterStatus->successCount > 0 ) {
 			foreach ( $this->backends as $index => $backend ) {
 				if ( $index === $this->masterIndex ) {
@@ -271,7 +270,10 @@ class FileBackendMultiWrite extends FileBackend {
 							continue;
 						}
 					}
-					if ( ( $this->syncChecks & self::CHECK_SHA1 ) && $cBackend->getFileSha1Base36( $cParams ) !== $mSha1 ) { // wrong SHA1
+					if (
+						( $this->syncChecks & self::CHECK_SHA1 ) &&
+						$cBackend->getFileSha1Base36( $cParams ) !== $mSha1
+					) { // wrong SHA1
 						$status->fatal( 'backend-fail-synced', $path );
 						continue;
 					}

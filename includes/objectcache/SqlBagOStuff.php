@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBError;
@@ -169,7 +170,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * @return IMaintainableDatabase
 	 * @throws MWException
 	 */
-	private function getDB( $shardIndex ) {
+	private function getConnection( $shardIndex ) {
 		if ( $shardIndex >= $this->numServerShards ) {
 			throw new MWException( __METHOD__ . ": Invalid server index \"$shardIndex\"" );
 		}
@@ -290,7 +291,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$dataRows = [];
 		foreach ( $keysByTable as $shardIndex => $serverKeys ) {
 			try {
-				$db = $this->getDB( $shardIndex );
+				$db = $this->getConnection( $shardIndex );
 				foreach ( $serverKeys as $tableName => $tableKeys ) {
 					$res = $db->select( $tableName,
 						[ 'keyname', 'value', 'exptime' ],
@@ -321,7 +322,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				$this->debug( "get: retrieved data; expiry time is " . $row->exptime );
 				$db = null; // in case of connection failure
 				try {
-					$db = $this->getDB( $row->shardIndex );
+					$db = $this->getConnection( $row->shardIndex );
 					if ( $this->isExpired( $db, $row->exptime ) ) { // MISS
 						$this->debug( "get: key has expired" );
 					} else { // HIT
@@ -364,7 +365,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		foreach ( $keysByTable as $shardIndex => $serverKeys ) {
 			$db = null; // in case of connection failure
 			try {
-				$db = $this->getDB( $shardIndex );
+				$db = $this->getConnection( $shardIndex );
 				$this->occasionallyGarbageCollect( $db ); // expire old entries if any
 				$dbExpiry = $exptime ? $db->timestamp( $exptime ) : $this->getMaxDateTime( $db );
 			} catch ( DBError $e ) {
@@ -479,7 +480,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$silenceScope = $this->silenceTransactionProfiler();
 		$db = null; // in case of connection failure
 		try {
-			$db = $this->getDB( $shardIndex );
+			$db = $this->getConnection( $shardIndex );
 			// (T26425) use a replace if the db supports it instead of
 			// delete/insert to avoid clashes with conflicting keynames
 			$db->update(
@@ -525,7 +526,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return $this->modifyMulti( [ $key => null ], 0, $flags, self::$OP_DELETE );
 	}
 
-	public function incr( $key, $step = 1 ) {
+	public function incr( $key, $step = 1, $flags = 0 ) {
 		list( $shardIndex, $tableName ) = $this->getTableByKey( $key );
 
 		$newCount = false;
@@ -533,7 +534,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$silenceScope = $this->silenceTransactionProfiler();
 		$db = null; // in case of connection failure
 		try {
-			$db = $this->getDB( $shardIndex );
+			$db = $this->getConnection( $shardIndex );
 			$encTimestamp = $db->addQuotes( $db->timestamp() );
 			$db->update(
 				$tableName,
@@ -557,6 +558,10 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		return $newCount;
+	}
+
+	public function decr( $key, $value = 1, $flags = 0 ) {
+		return $this->incr( $key, -$value, $flags );
 	}
 
 	public function changeTTLMulti( array $keys, $exptime, $flags = 0 ) {
@@ -647,7 +652,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		foreach ( $shardIndexes as $numServersDone => $shardIndex ) {
 			$db = null; // in case of connection failure
 			try {
-				$db = $this->getDB( $shardIndex );
+				$db = $this->getConnection( $shardIndex );
 				$this->deleteServerObjectsExpiringBefore(
 					$db,
 					$timestamp,
@@ -752,7 +757,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		for ( $shardIndex = 0; $shardIndex < $this->numServerShards; $shardIndex++ ) {
 			$db = null; // in case of connection failure
 			try {
-				$db = $this->getDB( $shardIndex );
+				$db = $this->getConnection( $shardIndex );
 				for ( $i = 0; $i < $this->numTableShards; $i++ ) {
 					$db->delete( $this->getTableNameByShard( $i ), '*', __METHOD__ );
 				}
@@ -779,7 +784,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 		$db = null; // in case of connection failure
 		try {
-			$db = $this->getDB( $shardIndex );
+			$db = $this->getConnection( $shardIndex );
 			$ok = $db->lock( $key, __METHOD__, $timeout );
 			if ( $ok ) {
 				$this->locks[$key] = [ 'class' => $rclass, 'depth' => 1 ];
@@ -811,7 +816,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 			$db = null; // in case of connection failure
 			try {
-				$db = $this->getDB( $shardIndex );
+				$db = $this->getConnection( $shardIndex );
 				$ok = $db->unlock( $key, __METHOD__ );
 				if ( !$ok ) {
 					$this->logger->warning(
@@ -862,9 +867,9 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		if ( function_exists( 'gzinflate' ) ) {
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			$decomp = gzinflate( $serial );
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 
 			if ( $decomp !== false ) {
 				$serial = $decomp;
@@ -947,7 +952,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 */
 	public function createTables() {
 		for ( $shardIndex = 0; $shardIndex < $this->numServerShards; $shardIndex++ ) {
-			$db = $this->getDB( $shardIndex );
+			$db = $this->getConnection( $shardIndex );
 			if ( $db->getType() !== 'mysql' ) {
 				throw new MWException( __METHOD__ . ' is not supported on this DB server' );
 			}

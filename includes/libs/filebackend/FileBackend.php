@@ -420,7 +420,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *
 	 * The StatusValue will be "OK" unless:
 	 *   - a) unexpected operation errors occurred (network partitions, disk full...)
-	 *   - b) significant operation errors occurred and 'force' was not set
+	 *   - b) predicted operation errors occurred and 'force' was not set
 	 *
 	 * @param array $ops List of operations to execute in order
 	 * @param array $opts Batch operation options

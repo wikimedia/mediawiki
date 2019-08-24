@@ -135,16 +135,16 @@ class ReplicatedBagOStuff extends BagOStuff {
 		return $this->writeStore->changeTTLMulti( $keys, $exptime, $flags );
 	}
 
-	public function incr( $key, $value = 1 ) {
-		return $this->writeStore->incr( $key, $value );
+	public function incr( $key, $value = 1, $flags = 0 ) {
+		return $this->writeStore->incr( $key, $value, $flags );
 	}
 
-	public function decr( $key, $value = 1 ) {
-		return $this->writeStore->decr( $key, $value );
+	public function decr( $key, $value = 1, $flags = 0 ) {
+		return $this->writeStore->decr( $key, $value, $flags );
 	}
 
-	public function incrWithInit( $key, $ttl, $value = 1, $init = 1 ) {
-		return $this->writeStore->incrWithInit( $key, $ttl, $value, $init );
+	public function incrWithInit( $key, $exptime, $value = 1, $init = null, $flags = 0 ) {
+		return $this->writeStore->incrWithInit( $key, $exptime, $value, $init, $flags );
 	}
 
 	public function getLastError() {
