@@ -1908,6 +1908,7 @@
 	"apiwarn-deprecation-missingparam": "Because <var>$1</var> was not specified, a legacy format has been used for the output. This format is deprecated, and in the future the new format will always be used.",
 	"apiwarn-deprecation-parameter": "The parameter <var>$1</var> has been deprecated.",
 	"apiwarn-deprecation-parse-headitems": "<kbd>prop=headitems</kbd> is deprecated since MediaWiki 1.28. Use <kbd>prop=headhtml</kbd> when creating new HTML documents, or <kbd>prop=modules|jsconfigvars</kbd> when updating a document client-side.",
+	"apiwarn-deprecation-post-without-content-type": "A POST request was made without a <code>Content-Type</code> header. This does not work reliably.",
 	"apiwarn-deprecation-purge-get": "Use of <kbd>action=purge</kbd> via GET is deprecated. Use POST instead.",
 	"apiwarn-deprecation-withreplacement": "<kbd>$1</kbd> has been deprecated. Please use <kbd>$2</kbd> instead.",
 	"apiwarn-difftohidden": "Couldn't diff to r$1: content is hidden.",

@@ -1539,6 +1539,12 @@ class ApiMain extends ApiBase {
 			$this->dieWithErrorOrDebug( [ 'apierror-mustbeposted', $this->mAction ] );
 		}
 
+		if ( $request->wasPosted() && !$request->getHeader( 'Content-Type' ) ) {
+			$this->addDeprecation(
+				'apiwarn-deprecation-post-without-content-type', 'post-without-content-type'
+			);
+		}
+
 		// See if custom printer is used
 		$this->mPrinter = $module->getCustomPrinter();
 		if ( is_null( $this->mPrinter ) ) {
