@@ -67,7 +67,7 @@ class MwSql extends Maintenance {
 		$replicaDB = $this->getOption( 'replicadb', $this->getOption( 'slave', '' ) );
 		if ( $replicaDB === 'any' ) {
 			$index = DB_REPLICA;
-		} elseif ( $replicaDB != '' ) {
+		} elseif ( $replicaDB !== '' ) {
 			$index = null;
 			$serverCount = $lb->getServerCount();
 			for ( $i = 0; $i < $serverCount; ++$i ) {
@@ -76,7 +76,7 @@ class MwSql extends Maintenance {
 					break;
 				}
 			}
-			if ( $index === null ) {
+			if ( $index === null || $index === $lb->getWriterIndex() ) {
 				$this->fatalError( "No replica DB server configured with the name '$replicaDB'." );
 			}
 		} else {
