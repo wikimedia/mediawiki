@@ -66,6 +66,23 @@ class ApiHelp extends ApiBase {
 			ApiResult::setSubelementsList( $data, 'help' );
 			$result->addValue( null, $this->getModuleName(), $data );
 		} else {
+			// Show any errors at the top of the HTML
+			$transform = [
+				'Types' => [ 'AssocAsObject' => true ],
+				'Strip' => 'all',
+			];
+			$errors = array_filter( [
+				'errors' => $this->getResult()->getResultData( [ 'errors' ], $transform ),
+				'warnings' => $this->getResult()->getResultData( [ 'warnings' ], $transform ),
+			] );
+			if ( $errors ) {
+				$json = FormatJson::encode( $errors, true, FormatJson::UTF8_OK );
+				// Escape any "--", some parsers might interpret that as end-of-comment.
+				// The above already escaped any "<" and ">".
+				$json = str_replace( '--', '-\u002D', $json );
+				$html = "<!-- API warnings and errors:\n$json\n-->\n$html";
+			}
+
 			$result->reset();
 			$result->addValue( null, 'text', $html, ApiResult::NO_SIZE_CHECK );
 			$result->addValue( null, 'mime', 'text/html', ApiResult::NO_SIZE_CHECK );

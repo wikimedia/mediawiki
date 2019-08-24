@@ -1795,6 +1795,7 @@
 	"apiwarn-deprecation-missingparam": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name.",
 	"apiwarn-deprecation-parameter": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name.",
 	"apiwarn-deprecation-parse-headitems": "{{doc-apierror}}",
+	"apiwarn-deprecation-post-without-content-type": "{{doc-apierror}}",
 	"apiwarn-deprecation-purge-get": "{{doc-apierror}}",
 	"apiwarn-deprecation-withreplacement": "{{doc-apierror}}\n\nParameters:\n* $1 - Query string fragment that is deprecated, e.g. \"action=tokens\".\n* $2 - Query string fragment to use instead, e.g. \"action=tokens\".",
 	"apiwarn-difftohidden": "{{doc-apierror}}\n\nParameters:\n* $1 - Revision ID number.\n\n\"r\" is short for \"revision\". You may translate it.",
