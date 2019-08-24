@@ -736,11 +736,24 @@ abstract class Skin extends ContextSource {
 					$msg = 'viewdeleted';
 				}
 
-				return $this->msg( $msg )->rawParams(
+				$subtitle = $this->msg( $msg )->rawParams(
 					$linkRenderer->makeKnownLink(
 						SpecialPage::getTitleFor( 'Undelete', $this->getTitle()->getPrefixedDBkey() ),
 						$this->msg( 'restorelink' )->numParams( $n )->text() )
 					)->escaped();
+
+				// Allow extensions to add more links
+				$links = [];
+				Hooks::run( 'UndeletePageToolLinks', [ $this->getContext(), $linkRenderer, &$links ] );
+
+				if ( $links ) {
+					$subtitle .= ''
+						. $this->msg( 'word-separator' )->escaped()
+						. $this->msg( 'parentheses' )
+							->rawParams( $this->getLanguage()->pipeList( $links ) )
+							->escaped();
+				}
+				return Html::rawElement( 'div', [ 'class' => 'mw-undelete-subtitle' ], $subtitle );
 			}
 		}
 

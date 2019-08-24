@@ -102,7 +102,8 @@
 			"Fitoschido",
 			"TmY e12",
 			"Dual",
-			"ToprakM"
+			"ToprakM",
+			"Suvarioglu"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çizme:",
@@ -1603,6 +1604,7 @@
 	"rcfilters-watchlist-preference-label": "JavaScript olmayan bir arayüz kullanın",
 	"rcfilters-watchlist-preference-help": "Filtre Listesini arama olmadan veya işlevselliği vurgulayarak İzleme Listesi'ni yükler.",
 	"rcfilters-target-page-placeholder": "Bir sayfa (ya da kategori) adı girin",
+	"rcfilters-allcontents-label": "Tüm içerikler",
 	"rcnotefrom": "<strong>$3, $4</strong> tarihinden itibaren yapılan {{PLURAL:$5|değişiklik|değişiklik}} aşağıdadır (<strong>$1</strong> tarhine kadar olanlar gösterilmektedir).",
 	"rclistfromreset": "Tarih seçimini sıfırla",
 	"rclistfrom": "$3 $2 tarihinden itibaren yeni değişiklikleri göster",

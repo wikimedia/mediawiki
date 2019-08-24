@@ -1572,6 +1572,8 @@
 	"rcfilters-filter-showlinkedto-label": "다음 문서로 링크한 문서의 변경사항 보기",
 	"rcfilters-filter-showlinkedto-option-label": "<strong>선택된 문서로 링크하는</strong> 문서들",
 	"rcfilters-target-page-placeholder": "문서 이름(또는 분류)을 입력하세요",
+	"rcfilters-allcontents-label": "모든 내용",
+	"rcfilters-alldiscussions-label": "모든 토론",
 	"rcnotefrom": "아래는 <strong>$3, $4</strong>부터 시작하는 {{PLURAL:$5|바뀜이 있습니다}}. (최대 <strong>$1</strong>개가 표시됨)",
 	"rclistfromreset": "날짜 선택 초기화",
 	"rclistfrom": "$3 $2부터 시작하는 새로 바뀐 문서 보기",
