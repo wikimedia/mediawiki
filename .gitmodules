@@ -1164,3 +1164,7 @@
 	path = extensions/StopForumSpam
 	url = https://github.com/wikimedia/mediawiki-extensions-StopForumSpam
 	branch = REL1_33
+[submodule "extensions/PageDisqus"]
+	path = extensions/PageDisqus
+	url = https://github.com/wikimedia/mediawiki-extensions-PageDisqus
+	branch = REL1_33
