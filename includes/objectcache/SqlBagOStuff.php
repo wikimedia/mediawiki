@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBError;
@@ -525,7 +526,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return $this->modifyMulti( [ $key => null ], 0, $flags, self::$OP_DELETE );
 	}
 
-	public function incr( $key, $step = 1 ) {
+	public function incr( $key, $step = 1, $flags = 0 ) {
 		list( $shardIndex, $tableName ) = $this->getTableByKey( $key );
 
 		$newCount = false;
@@ -557,6 +558,10 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		return $newCount;
+	}
+
+	public function decr( $key, $value = 1, $flags = 0 ) {
+		return $this->incr( $key, -$value, $flags );
 	}
 
 	public function changeTTLMulti( array $keys, $exptime, $flags = 0 ) {
@@ -862,9 +867,9 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		if ( function_exists( 'gzinflate' ) ) {
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			$decomp = gzinflate( $serial );
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 
 			if ( $decomp !== false ) {
 				$serial = $decomp;

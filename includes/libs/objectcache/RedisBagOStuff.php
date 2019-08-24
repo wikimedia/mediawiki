@@ -364,7 +364,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 		return $result;
 	}
 
-	public function incr( $key, $value = 1 ) {
+	public function incr( $key, $value = 1, $flags = 0 ) {
 		$conn = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
@@ -382,6 +382,28 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		$this->logRequest( 'incr', $key, $conn->getServer(), $result );
+
+		return $result;
+	}
+
+	public function decr( $key, $value = 1, $flags = 0 ) {
+		$conn = $this->getConnection( $key );
+		if ( !$conn ) {
+			return false;
+		}
+
+		try {
+			if ( !$conn->exists( $key ) ) {
+				return false;
+			}
+			// @FIXME: on races, the key may have a 0 TTL
+			$result = $conn->decrBy( $key, $value );
+		} catch ( RedisException $e ) {
+			$result = false;
+			$this->handleException( $conn, $e );
+		}
+
+		$this->logRequest( 'decr', $key, $conn->getServer(), $result );
 
 		return $result;
 	}

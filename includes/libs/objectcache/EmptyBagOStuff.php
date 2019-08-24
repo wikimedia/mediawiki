@@ -45,11 +45,15 @@ class EmptyBagOStuff extends MediumSpecificBagOStuff {
 		return true;
 	}
 
-	public function incr( $key, $value = 1 ) {
+	public function incr( $key, $value = 1, $flags = 0 ) {
 		return false;
 	}
 
-	public function incrWithInit( $key, $ttl, $value = 1, $init = 1 ) {
+	public function decr( $key, $value = 1, $flags = 0 ) {
+		return false;
+	}
+
+	public function incrWithInit( $key, $exptime, $value = 1, $init = null, $flags = 0 ) {
 		return false; // faster
 	}
 

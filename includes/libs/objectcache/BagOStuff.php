@@ -362,31 +362,36 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 * Increase stored value of $key by $value while preserving its TTL
 	 * @param string $key Key to increase
 	 * @param int $value Value to add to $key (default: 1) [optional]
+	 * @param int $flags Bit field of class WRITE_* constants [optional]
 	 * @return int|bool New value or false on failure
 	 */
-	abstract public function incr( $key, $value = 1 );
+	abstract public function incr( $key, $value = 1, $flags = 0 );
 
 	/**
 	 * Decrease stored value of $key by $value while preserving its TTL
 	 * @param string $key
 	 * @param int $value Value to subtract from $key (default: 1) [optional]
+	 * @param int $flags Bit field of class WRITE_* constants [optional]
 	 * @return int|bool New value or false on failure
 	 */
-	abstract public function decr( $key, $value = 1 );
+	abstract public function decr( $key, $value = 1, $flags = 0 );
 
 	/**
-	 * Increase stored value of $key by $value while preserving its TTL
+	 * Increase the value of the given key (no TTL change) if it exists or create it otherwise
 	 *
-	 * This will create the key with value $init and TTL $ttl instead if not present
+	 * This will create the key with the value $init and TTL $ttl instead if not present.
+	 * Callers should make sure that both ($init - $value) and $ttl are invariants for all
+	 * operations to any given key. The value of $init should be at least that of $value.
 	 *
-	 * @param string $key
-	 * @param int $ttl
-	 * @param int $value
-	 * @param int $init
+	 * @param string $key Key built via makeKey() or makeGlobalKey()
+	 * @param int $exptime Time-to-live (in seconds) or a UNIX timestamp expiration
+	 * @param int $value Amount to increase the key value by [default: 1]
+	 * @param int|null $init Value to initialize the key to if it does not exist [default: $value]
+	 * @param int $flags Bit field of class WRITE_* constants [optional]
 	 * @return int|bool New value or false on failure
 	 * @since 1.24
 	 */
-	abstract public function incrWithInit( $key, $ttl, $value = 1, $init = 1 );
+	abstract public function incrWithInit( $key, $exptime, $value = 1, $init = null, $flags = 0 );
 
 	/**
 	 * Get the "last error" registered; clearLastError() should be called manually

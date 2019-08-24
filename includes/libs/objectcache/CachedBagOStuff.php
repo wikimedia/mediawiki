@@ -87,6 +87,7 @@ class CachedBagOStuff extends BagOStuff {
 
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		$this->procCache->set( $key, $value, $exptime, $flags );
+
 		if ( !$this->fieldHasFlags( $flags, self::WRITE_CACHE_ONLY ) ) {
 			$this->backend->set( $key, $value, $exptime, $flags );
 		}
@@ -96,6 +97,7 @@ class CachedBagOStuff extends BagOStuff {
 
 	public function delete( $key, $flags = 0 ) {
 		$this->procCache->delete( $key, $flags );
+
 		if ( !$this->fieldHasFlags( $flags, self::WRITE_CACHE_ONLY ) ) {
 			$this->backend->delete( $key, $flags );
 		}
@@ -194,22 +196,22 @@ class CachedBagOStuff extends BagOStuff {
 		return true;
 	}
 
-	public function incr( $key, $value = 1 ) {
+	public function incr( $key, $value = 1, $flags = 0 ) {
 		$this->procCache->delete( $key );
 
-		return $this->backend->incr( $key, $value );
+		return $this->backend->incr( $key, $value, $flags );
 	}
 
-	public function decr( $key, $value = 1 ) {
+	public function decr( $key, $value = 1, $flags = 0 ) {
 		$this->procCache->delete( $key );
 
-		return $this->backend->decr( $key, $value );
+		return $this->backend->decr( $key, $value, $flags );
 	}
 
-	public function incrWithInit( $key, $ttl, $value = 1, $init = 1 ) {
+	public function incrWithInit( $key, $exptime, $value = 1, $init = null, $flags = 0 ) {
 		$this->procCache->delete( $key );
 
-		return $this->backend->incrWithInit( $key, $ttl, $value, $init );
+		return $this->backend->incrWithInit( $key, $exptime, $value, $init, $flags );
 	}
 
 	public function addBusyCallback( callable $workCallback ) {

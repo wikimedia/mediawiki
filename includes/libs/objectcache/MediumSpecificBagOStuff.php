@@ -208,7 +208,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 			$mainValue->{SerializedValueContainer::SEGMENTED_HASHES}
 		);
 
-		return $this->deleteMulti( $orderedKeys, $flags );
+		return $this->deleteMulti( $orderedKeys, $flags & ~self::WRITE_PRUNE_SEGMENTS );
 	}
 
 	/**
@@ -269,12 +269,12 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	final protected function mergeViaCas( $key, callable $callback, $exptime, $attempts, $flags ) {
 		$attemptsLeft = $attempts;
 		do {
-			$casToken = null; // passed by reference
+			$token = null; // passed by reference
 			// Get the old value and CAS token from cache
 			$this->clearLastError();
 			$currentValue = $this->resolveSegments(
 				$key,
-				$this->doGet( $key, self::READ_LATEST, $casToken )
+				$this->doGet( $key, $flags, $token )
 			);
 			if ( $this->getLastError() ) {
 				// Don't spam slow retries due to network problems (retry only on races)
@@ -302,7 +302,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 				$success = $this->add( $key, $value, $exptime, $flags );
 			} else {
 				// Try to update the key, failing if it gets changed in the meantime
-				$success = $this->cas( $casToken, $key, $value, $exptime, $flags );
+				$success = $this->cas( $token, $key, $value, $exptime, $flags );
 			}
 			if ( $this->getLastError() ) {
 				// Don't spam slow retries due to network problems (retry only on races)
@@ -671,37 +671,16 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		return $res;
 	}
 
-	/**
-	 * Decrease stored value of $key by $value while preserving its TTL
-	 * @param string $key
-	 * @param int $value Value to subtract from $key (default: 1) [optional]
-	 * @return int|bool New value or false on failure
-	 */
-	public function decr( $key, $value = 1 ) {
-		return $this->incr( $key, -$value );
-	}
-
-	/**
-	 * Increase stored value of $key by $value while preserving its TTL
-	 *
-	 * This will create the key with value $init and TTL $ttl instead if not present
-	 *
-	 * @param string $key
-	 * @param int $ttl
-	 * @param int $value
-	 * @param int $init
-	 * @return int|bool New value or false on failure
-	 * @since 1.24
-	 */
-	public function incrWithInit( $key, $ttl, $value = 1, $init = 1 ) {
+	public function incrWithInit( $key, $exptime, $value = 1, $init = null, $flags = 0 ) {
+		$init = is_int( $init ) ? $init : $value;
 		$this->clearLastError();
-		$newValue = $this->incr( $key, $value );
+		$newValue = $this->incr( $key, $value, $flags );
 		if ( $newValue === false && !$this->getLastError() ) {
 			// No key set; initialize
-			$newValue = $this->add( $key, (int)$init, $ttl ) ? $init : false;
+			$newValue = $this->add( $key, (int)$init, $exptime, $flags ) ? $init : false;
 			if ( $newValue === false && !$this->getLastError() ) {
 				// Raced out initializing; increment
-				$newValue = $this->incr( $key, $value );
+				$newValue = $this->incr( $key, $value, $flags );
 			}
 		}
 
@@ -771,26 +750,6 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		$this->lastError = $err;
 	}
 
-	/**
-	 * Let a callback be run to avoid wasting time on special blocking calls
-	 *
-	 * The callbacks may or may not be called ever, in any particular order.
-	 * They are likely to be invoked when something WRITE_SYNC is used used.
-	 * They should follow a caching pattern as shown below, so that any code
-	 * using the work will get it's result no matter what happens.
-	 * @code
-	 *     $result = null;
-	 *     $workCallback = function () use ( &$result ) {
-	 *         if ( !$result ) {
-	 *             $result = ....
-	 *         }
-	 *         return $result;
-	 *     }
-	 * @endcode
-	 *
-	 * @param callable $workCallback
-	 * @since 1.28
-	 */
 	final public function addBusyCallback( callable $workCallback ) {
 		$this->busyCallbacks[] = $workCallback;
 	}
@@ -922,14 +881,6 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		return ( $value === (string)$integer );
 	}
 
-	/**
-	 * Construct a cache key.
-	 *
-	 * @param string $keyspace
-	 * @param array $args
-	 * @return string Colon-delimited list of $keyspace followed by escaped components of $args
-	 * @since 1.27
-	 */
 	public function makeKeyInternal( $keyspace, $args ) {
 		$key = $keyspace;
 		foreach ( $args as $arg ) {
@@ -971,18 +922,10 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		return $this->attrMap[$flag] ?? self::QOS_UNKNOWN;
 	}
 
-	/**
-	 * @return int|float The chunk size, in bytes, of segmented objects (INF for no limit)
-	 * @since 1.34
-	 */
 	public function getSegmentationSize() {
 		return $this->segmentationSize;
 	}
 
-	/**
-	 * @return int|float Maximum total segmented object size in bytes (INF for no limit)
-	 * @since 1.34
-	 */
 	public function getSegmentedValueMaxSize() {
 		return $this->segmentedValueMaxSize;
 	}

@@ -123,9 +123,10 @@ class MultiWriteBagOStuff extends BagOStuff {
 			$missIndexes[] = $i;
 		}
 
-		if ( $value !== false
-			&& $missIndexes
-			&& $this->fieldHasFlags( $flags, self::READ_VERIFIED )
+		if (
+			$value !== false &&
+			$this->fieldHasFlags( $flags, self::READ_VERIFIED ) &&
+			$missIndexes
 		) {
 			// Backfill the value to the higher (and often faster/smaller) cache tiers
 			$this->doWrite(
@@ -265,7 +266,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 		);
 	}
 
-	public function incr( $key, $value = 1 ) {
+	public function incr( $key, $value = 1, $flags = 0 ) {
 		return $this->doWrite(
 			$this->cacheIndexes,
 			$this->asyncWrites,
@@ -274,7 +275,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 		);
 	}
 
-	public function decr( $key, $value = 1 ) {
+	public function decr( $key, $value = 1, $flags = 0 ) {
 		return $this->doWrite(
 			$this->cacheIndexes,
 			$this->asyncWrites,
@@ -283,7 +284,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 		);
 	}
 
-	public function incrWithInit( $key, $ttl, $value = 1, $init = 1 ) {
+	public function incrWithInit( $key, $exptime, $value = 1, $init = null, $flags = 0 ) {
 		return $this->doWrite(
 			$this->cacheIndexes,
 			$this->asyncWrites,

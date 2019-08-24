@@ -87,11 +87,11 @@ class APCBagOStuff extends MediumSpecificBagOStuff {
 		return true;
 	}
 
-	public function incr( $key, $value = 1 ) {
+	public function incr( $key, $value = 1, $flags = 0 ) {
 		return apc_inc( $key . self::KEY_SUFFIX, $value );
 	}
 
-	public function decr( $key, $value = 1 ) {
+	public function decr( $key, $value = 1, $flags = 0 ) {
 		return apc_dec( $key . self::KEY_SUFFIX, $value );
 	}
 }
