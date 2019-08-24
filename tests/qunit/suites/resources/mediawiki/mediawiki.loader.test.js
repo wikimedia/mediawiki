@@ -1003,6 +1003,52 @@
 			} );
 	} );
 
+	QUnit.test( 'No storing of group=private responses', function ( assert ) {
+		var name = 'test.group.priv';
+
+		// Enable store and stub timeout/idle scheduling
+		this.sandbox.stub( mw.loader.store, 'enabled', true );
+		this.sandbox.stub( window, 'setTimeout', function ( fn ) {
+			fn();
+		} );
+		this.sandbox.stub( mw, 'requestIdleCallback', function ( fn ) {
+			fn();
+		} );
+
+		// See ResourceLoaderStartUpModule::$groupIds
+		mw.loader.register( name, 'x', [], 1 );
+		assert.strictEqual( mw.loader.store.get( name ), false, 'Not in store' );
+
+		mw.loader.implement( name, function () {} );
+		return mw.loader.using( name ).then( function () {
+			assert.strictEqual( mw.loader.getState( name ), 'ready' );
+			assert.strictEqual( mw.loader.store.get( name ), false, 'Still not in store' );
+		} );
+	} );
+
+	QUnit.test( 'No storing of group=user responses', function ( assert ) {
+		var name = 'test.group.user';
+
+		// Enable store and stub timeout/idle scheduling
+		this.sandbox.stub( mw.loader.store, 'enabled', true );
+		this.sandbox.stub( window, 'setTimeout', function ( fn ) {
+			fn();
+		} );
+		this.sandbox.stub( mw, 'requestIdleCallback', function ( fn ) {
+			fn();
+		} );
+
+		// See ResourceLoaderStartUpModule::$groupIds
+		mw.loader.register( name, 'y', [], 0 );
+		assert.strictEqual( mw.loader.store.get( name ), false, 'Not in store' );
+
+		mw.loader.implement( name, function () {} );
+		return mw.loader.using( name ).then( function () {
+			assert.strictEqual( mw.loader.getState( name ), 'ready' );
+			assert.strictEqual( mw.loader.store.get( name ), false, 'Still not in store' );
+		} );
+	} );
+
 	QUnit.test( 'require()', function ( assert ) {
 		mw.loader.register( [
 			[ 'test.require1', '0' ],

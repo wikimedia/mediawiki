@@ -506,7 +506,7 @@
 			 *             // From mw.loader.register()
 			 *             'version': '########' (hash)
 			 *             'dependencies': ['required.foo', 'bar.also', ...]
-			 *             'group': 'somegroup', (or) null
+			 *             'group': string, integer, (or) null
 			 *             'source': 'local', (or) 'anotherwiki'
 			 *             'skip': 'return !!window.Example', (or) null, (or) boolean result of skip
 			 *             'module': export Object
@@ -1600,7 +1600,7 @@
 						// Optimisation: Inherit (Object.create), not copy ($.extend)
 						currReqBase = Object.create( reqBase );
 						// User modules require a user name in the query string.
-						if ( group === 'user' && mw.config.get( 'wgUserName' ) !== null ) {
+						if ( group === $VARS.groupUser && mw.config.get( 'wgUserName' ) !== null ) {
 							currReqBase.user = mw.config.get( 'wgUserName' );
 						}
 
@@ -1726,7 +1726,7 @@
 					packageExports: {},
 					version: String( version || '' ),
 					dependencies: dependencies || [],
-					group: typeof group === 'string' ? group : null,
+					group: typeof group === 'undefined' ? null : group,
 					source: typeof source === 'string' ? source : 'local',
 					state: 'registered',
 					skip: typeof skip === 'string' ? skip : null
@@ -2271,8 +2271,8 @@
 							descriptor.state !== 'ready' ||
 							// Unversioned, private, or site-/user-specific
 							!descriptor.version ||
-							descriptor.group === 'private' ||
-							descriptor.group === 'user' ||
+							descriptor.group === $VARS.groupPrivate ||
+							descriptor.group === $VARS.groupUser ||
 							// Partial descriptor
 							// (e.g. skipped module, or style module with state=ready)
 							[ descriptor.script, descriptor.style, descriptor.messages,
