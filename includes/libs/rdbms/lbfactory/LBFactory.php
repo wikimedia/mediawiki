@@ -161,7 +161,6 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	public function destroy() {
-		$this->shutdown( self::SHUTDOWN_NO_CHRONPROT );
 		$this->forEachLBCallMethod( 'disable' );
 	}
 
