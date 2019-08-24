@@ -1160,3 +1160,7 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-CategorySortHeaders
 	branch = REL1_33
 	ignore = dirty
+[submodule "extensions/StopForumSpam"]
+	path = extensions/StopForumSpam
+	url = https://github.com/wikimedia/mediawiki-extensions-StopForumSpam
+	branch = REL1_33
