@@ -795,8 +795,16 @@ class FSFileBackend extends FileBackendStore {
 	 * Listen for E_WARNING errors and track whether any happen
 	 */
 	protected function trapWarnings() {
-		$this->hadWarningErrors[] = false; // push to stack
-		set_error_handler( [ $this, 'handleWarning' ], E_WARNING );
+		// push to stack
+		$this->hadWarningErrors[] = false;
+		set_error_handler( function ( $errno, $errstr ) {
+			// more detailed error logging
+			$this->logger->error( $errstr );
+			$this->hadWarningErrors[count( $this->hadWarningErrors ) - 1] = true;
+
+			// suppress from PHP handler
+			return true;
+		}, E_WARNING );
 	}
 
 	/**
@@ -805,20 +813,9 @@ class FSFileBackend extends FileBackendStore {
 	 * @return bool
 	 */
 	protected function untrapWarnings() {
-		restore_error_handler(); // restore previous handler
-		return array_pop( $this->hadWarningErrors ); // pop from stack
-	}
-
-	/**
-	 * @param int $errno
-	 * @param string $errstr
-	 * @return bool
-	 * @private
-	 */
-	public function handleWarning( $errno, $errstr ) {
-		$this->logger->error( $errstr ); // more detailed error logging
-		$this->hadWarningErrors[count( $this->hadWarningErrors ) - 1] = true;
-
-		return true; // suppress from PHP handler
+		// restore previous handler
+		restore_error_handler();
+		// pop from stack
+		return array_pop( $this->hadWarningErrors );
 	}
 }
