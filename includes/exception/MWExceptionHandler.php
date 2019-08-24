@@ -683,16 +683,21 @@ TXT;
 	 * This method must not assume the exception is an MWException,
 	 * it is also used to handle PHP exceptions or exceptions from other libraries.
 	 *
-	 * @since 1.22
 	 * @param Exception|Throwable $e
 	 * @param string $catcher CAUGHT_BY_* class constant indicating what caught the error
+	 * @param array $extraData (since 1.34) Additional data to log
+	 * @since 1.22
 	 */
-	public static function logException( $e, $catcher = self::CAUGHT_BY_OTHER ) {
+	public static function logException( $e, $catcher = self::CAUGHT_BY_OTHER, $extraData = [] ) {
 		if ( !( $e instanceof MWException ) || $e->isLoggable() ) {
 			$logger = LoggerFactory::getInstance( 'exception' );
+			$context = self::getLogContext( $e, $catcher );
+			if ( $extraData ) {
+				$context['extraData'] = $extraData;
+			}
 			$logger->error(
 				self::getLogNormalMessage( $e ),
-				self::getLogContext( $e, $catcher )
+				$context
 			);
 
 			$json = self::jsonSerializeException( $e, false, FormatJson::ALL_OK, $catcher );
