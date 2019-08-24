@@ -21,6 +21,10 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
+use Wikimedia\Rdbms\DatabaseSqlite;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -59,37 +63,37 @@ class SqliteMaintenance extends Maintenance {
 			return;
 		}
 
-		$this->db = $this->getDB( DB_MASTER );
-
-		if ( $this->db->getType() != 'sqlite' ) {
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$dbw = $lb->getConnection( DB_MASTER );
+		if ( !( $dbw instanceof DatabaseSqlite ) ) {
 			$this->error( "This maintenance script requires a SQLite database.\n" );
 
 			return;
 		}
 
 		if ( $this->hasOption( 'vacuum' ) ) {
-			$this->vacuum();
+			$this->vacuum( $dbw );
 		}
 
 		if ( $this->hasOption( 'integrity' ) ) {
-			$this->integrityCheck();
+			$this->integrityCheck( $dbw );
 		}
 
 		if ( $this->hasOption( 'backup-to' ) ) {
-			$this->backup( $this->getOption( 'backup-to' ) );
+			$this->backup( $dbw, $this->getOption( 'backup-to' ) );
 		}
 	}
 
-	private function vacuum() {
-		$prevSize = filesize( $this->db->getDbFilePath() );
+	private function vacuum( DatabaseSqlite $dbw ) {
+		$prevSize = filesize( $dbw->getDbFilePath() );
 		if ( $prevSize == 0 ) {
 			$this->fatalError( "Can't vacuum an empty database.\n" );
 		}
 
 		$this->output( 'VACUUM: ' );
-		if ( $this->db->query( 'VACUUM' ) ) {
+		if ( $dbw->query( 'VACUUM' ) ) {
 			clearstatcache();
-			$newSize = filesize( $this->db->getDbFilePath() );
+			$newSize = filesize( $dbw->getDbFilePath() );
 			$this->output( sprintf( "Database size was %d, now %d (%.1f%% reduction).\n",
 				$prevSize, $newSize, ( $prevSize - $newSize ) * 100.0 / $prevSize ) );
 		} else {
@@ -97,9 +101,9 @@ class SqliteMaintenance extends Maintenance {
 		}
 	}
 
-	private function integrityCheck() {
+	private function integrityCheck( DatabaseSqlite $dbw ) {
 		$this->output( "Performing database integrity checks:\n" );
-		$res = $this->db->query( 'PRAGMA integrity_check' );
+		$res = $dbw->query( 'PRAGMA integrity_check' );
 
 		if ( !$res || $res->numRows() == 0 ) {
 			$this->error( "Error: integrity check query returned nothing.\n" );
@@ -112,10 +116,10 @@ class SqliteMaintenance extends Maintenance {
 		}
 	}
 
-	private function backup( $fileName ) {
+	private function backup( DatabaseSqlite $dbw, $fileName ) {
 		$this->output( "Backing up database:\n   Locking..." );
-		$this->db->query( 'BEGIN IMMEDIATE TRANSACTION', __METHOD__ );
-		$ourFile = $this->db->getDbFilePath();
+		$dbw->query( 'BEGIN IMMEDIATE TRANSACTION', __METHOD__ );
+		$ourFile = $dbw->getDbFilePath();
 		$this->output( "   Copying database file $ourFile to $fileName... " );
 		Wikimedia\suppressWarnings();
 		if ( !copy( $ourFile, $fileName ) ) {
@@ -124,7 +128,7 @@ class SqliteMaintenance extends Maintenance {
 		}
 		Wikimedia\restoreWarnings();
 		$this->output( "   Releasing lock...\n" );
-		$this->db->query( 'COMMIT TRANSACTION', __METHOD__ );
+		$dbw->query( 'COMMIT TRANSACTION', __METHOD__ );
 	}
 
 	private function checkSyntax() {
