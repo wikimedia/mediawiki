@@ -326,13 +326,13 @@ mw.loader.register([
         "test.group.foo",
         "{blankVer}",
         [],
-        "x-foo"
+        2
     ],
     [
         "test.group.bar",
         "{blankVer}",
         [],
-        "x-bar"
+        3
     ]
 ]);'
 			] ],
@@ -640,25 +640,25 @@ mw.loader.register([
         "test.group.foo.1",
         "{blankVer}",
         [],
-        "x-foo"
+        2
     ],
     [
         "test.group.foo.2",
         "{blankVer}",
         [],
-        "x-foo"
+        2
     ],
     [
         "test.group.bar.1",
         "{blankVer}",
         [],
-        "x-bar"
+        3
     ],
     [
         "test.group.bar.2",
         "{blankVer}",
         [],
-        "x-bar",
+        3,
         "example"
     ]
 ]);'

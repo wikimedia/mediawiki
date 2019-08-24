@@ -42,6 +42,15 @@ use MediaWiki\MediaWikiServices;
 class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	protected $targets = [ 'desktop', 'mobile' ];
 
+	private $groupIds = [
+		// These reserved numbers MUST start at 0 and not skip any. These are preset
+		// for forward compatiblity so that they can be safely referenced by mediawiki.js,
+		// even when the code is cached and the order of registrations (and implicit
+		// group ids) changes between versions of the software.
+		'user' => 0,
+		'private' => 1,
+	];
+
 	/**
 	 * @param ResourceLoaderContext $context
 	 * @return array
@@ -304,7 +313,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			$registryData[$name] = [
 				'version' => $versionHash,
 				'dependencies' => $module->getDependencies( $context ),
-				'group' => $module->getGroup(),
+				'group' => $this->getGroupId( $module->getGroup() ),
 				'source' => $module->getSource(),
 				'skip' => $skipFunction,
 			];
@@ -338,6 +347,18 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		}
 
 		return $out;
+	}
+
+	private function getGroupId( $groupName ) {
+		if ( $groupName === null ) {
+			return null;
+		}
+
+		if ( !array_key_exists( $groupName, $this->groupIds ) ) {
+			$this->groupIds[$groupName] = count( $this->groupIds );
+		}
+
+		return $this->groupIds[$groupName];
 	}
 
 	/**
@@ -416,6 +437,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			),
 			'$VARS.storeKey' => ResourceLoader::encodeJsonForScript( $this->getStoreKey() ),
 			'$VARS.storeVary' => ResourceLoader::encodeJsonForScript( $this->getStoreVary( $context ) ),
+			'$VARS.groupUser' => ResourceLoader::encodeJsonForScript( $this->getGroupId( 'user' ) ),
+			'$VARS.groupPrivate' => ResourceLoader::encodeJsonForScript( $this->getGroupId( 'private' ) ),
 		];
 		$profilerStubs = [
 			'$CODE.profileExecuteStart();' => 'mw.loader.profiler.onExecuteStart( module );',
