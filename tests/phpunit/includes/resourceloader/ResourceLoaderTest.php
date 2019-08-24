@@ -1096,6 +1096,32 @@ END
 	}
 
 	/**
+	 * Refuse requests for private modules.
+	 *
+	 * @covers ResourceLoader::respond
+	 */
+	public function testRespondErrorPrivate() {
+		$rl = $this->getMockBuilder( EmptyResourceLoader::class )
+			->setMethods( [
+				'measureResponseTime',
+				'tryRespondNotModified',
+				'sendResponseHeaders',
+			] )
+			->getMock();
+		$rl->register( [
+			'foo' => [ 'class' => ResourceLoaderTestModule::class ],
+			'bar' => [ 'class' => ResourceLoaderTestModule::class, 'group' => 'private' ],
+		] );
+		$context = $this->getResourceLoaderContext(
+			[ 'modules' => 'foo|bar', 'only' => null ],
+			$rl
+		);
+
+		$this->expectOutputRegex( '/^\/\*.+Cannot build private module/s' );
+		$rl->respond( $context );
+	}
+
+	/**
 	 * @covers ResourceLoader::respond
 	 */
 	public function testRespondInternalFailures() {
