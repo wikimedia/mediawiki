@@ -1211,15 +1211,9 @@
 
 				dependencies.forEach( function ( module ) {
 					// Only queue modules that are still in the initial 'registered' state
-					// (not ones already loading, ready or error).
+					// (e.g. not ones already loading or loaded etc.).
 					if ( registry[ module ].state === 'registered' && queue.indexOf( module ) === -1 ) {
-						// Private modules must be embedded in the page. Don't bother queuing
-						// these as the server will deny them anyway (T101806).
-						if ( registry[ module ].group === 'private' ) {
-							setAndPropagate( module, 'error' );
-						} else {
-							queue.push( module );
-						}
+						queue.push( module );
 					}
 				} );
 
