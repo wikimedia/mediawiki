@@ -1175,4 +1175,4 @@
 [submodule "extensions/SoftRedirector"]
 	path = extensions/SoftRedirector
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/SoftRedirector
-	branch = REL1_34
+	branch = REL1_35
