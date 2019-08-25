@@ -767,6 +767,33 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
+	 * @see $wgRCLinkDays in DefaultSettings.php.
+	 * @see $wgRCFilterByAge in DefaultSettings.php.
+	 * @return int[]
+	 */
+	protected function getLinkDays() {
+		$linkDays = $this->getConfig()->get( 'RCLinkDays' );
+		$filterByAge = $this->getConfig()->get( 'RCFilterByAge' );
+		$maxAge = $this->getConfig()->get( 'RCMaxAge' );
+		if ( $filterByAge ) {
+			// Trim it to only links which are within $wgRCMaxAge.
+			// Note that we allow one link higher than the max for things like
+			// "age 56 days" being accessible through the "60 days" link.
+			sort( $linkDays );
+
+			$maxAgeDays = $maxAge / ( 3600 * 24 );
+			foreach ( $linkDays as $i => $days ) {
+				if ( $days >= $maxAgeDays ) {
+					array_splice( $linkDays, $i + 1 );
+					break;
+				}
+			}
+		}
+
+		return $linkDays;
+	}
+
+	/**
 	 * Include the modules and configuration for the RCFilters app.
 	 * Conditional on the user having the feature enabled.
 	 *
@@ -798,7 +825,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					'maxDays' => (int)$this->getConfig()->get( 'RCMaxAge' ) / ( 24 * 3600 ), // Translate to days
 					'limitArray' => $this->getConfig()->get( 'RCLinkLimits' ),
 					'limitDefault' => $this->getDefaultLimit(),
-					'daysArray' => $this->getConfig()->get( 'RCLinkDays' ),
+					'daysArray' => $this->getLinkDays(),
 					'daysDefault' => $this->getDefaultDays(),
 				]
 			);

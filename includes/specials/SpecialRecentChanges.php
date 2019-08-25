@@ -847,7 +847,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		sort( $linkLimits );
 		$linkLimits = array_unique( $linkLimits );
 
-		$linkDays = $config->get( 'RCLinkDays' );
+		$linkDays = $this->getLinkDays();
 		$linkDays[] = $options['days'];
 		sort( $linkDays );
 		$linkDays = array_unique( $linkDays );
