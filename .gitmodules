@@ -1172,3 +1172,7 @@
 	path = extensions/DisqusTag
 	url = https://github.com/wikimedia/mediawiki-extensions-DisqusTag
 	branch = REL1_33
+[submodule "extensions/SoftRedirector"]
+	path = extensions/SoftRedirector
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/SoftRedirector
+	branch = REL1_35
