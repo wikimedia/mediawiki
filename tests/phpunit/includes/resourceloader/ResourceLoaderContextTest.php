@@ -35,6 +35,7 @@ class ResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 		// Misc
 		$this->assertEquals( 'ltr', $ctx->getDirection() );
 		$this->assertEquals( 'qqx|fallback||||||||', $ctx->getHash() );
+		$this->assertSame( [], $ctx->getReqBase() );
 		$this->assertInstanceOf( User::class, $ctx->getUserObj() );
 	}
 
@@ -75,6 +76,7 @@ class ResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 		// Misc
 		$this->assertEquals( 'ltr', $ctx->getDirection() );
 		$this->assertEquals( 'zh|fallback|||styles|||||', $ctx->getHash() );
+		$this->assertSame( [ 'lang' => 'zh' ], $ctx->getReqBase() );
 	}
 
 	public static function provideDirection() {
