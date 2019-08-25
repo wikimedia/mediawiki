@@ -1756,14 +1756,9 @@ class LanguageTest extends LanguageClassesTestCase {
 		$lang = Language::factory( 'en' );
 		$this->assertNotCount( 0, Language::$mLangObjCache );
 
-		// Populate $grammarTransformations
-		$lang->getGrammarTransformations();
-		$this->assertNotNull( $languageClass->grammarTransformations );
-
 		Language::clearCaches();
 
 		$this->assertCount( 0, Language::$mLangObjCache );
-		$this->assertNull( $languageClass->grammarTransformations );
 	}
 
 	/**
