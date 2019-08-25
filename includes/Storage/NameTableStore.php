@@ -160,10 +160,7 @@ class NameTableStore {
 			if ( $id === null ) {
 				// RACE: $name was already in the db, probably just inserted, so load from master.
 				// Use DBO_TRX to avoid missing inserts due to other threads or REPEATABLE-READs.
-				// ...but not during unit tests, because we need the fake DB tables of the default
-				// connection.
-				$connFlags = defined( 'MW_PHPUNIT_TEST' ) ? 0 : ILoadBalancer::CONN_TRX_AUTOCOMMIT;
-				$table = $this->reloadMap( $connFlags );
+				$table = $this->reloadMap( ILoadBalancer::CONN_TRX_AUTOCOMMIT );
 
 				$searchResult = array_search( $name, $table, true );
 				if ( $searchResult === false ) {
