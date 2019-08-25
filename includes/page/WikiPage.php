@@ -3143,7 +3143,7 @@ class WikiPage implements Page, IDBAccessObject {
 	public function commitRollback( $fromP, $summary, $bot,
 		&$resultDetails, User $guser, $tags = null
 	) {
-		global $wgUseRCPatrol;
+		global $wgUseRCPatrol, $wgDisableAnonTalk;
 
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -3216,6 +3216,8 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( empty( $summary ) ) {
 			if ( !$currentEditorForPublic ) { // no public user name
 				$summary = wfMessage( 'revertpage-nouser' );
+			} elseif ( $wgDisableAnonTalk && $current->getUser() === 0 ) {
+				$summary = wfMessage( 'revertpage-anon' );
 			} else {
 				$summary = wfMessage( 'revertpage' );
 			}
