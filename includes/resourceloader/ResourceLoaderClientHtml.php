@@ -240,19 +240,22 @@ class ResourceLoaderClientHtml {
 	 * - Inline scripts can't be asynchronous.
 	 * - For styles, earlier is better.
 	 *
+	 * @param string|null $nojsClass Class name that caller uses on HTML document element
 	 * @return string|WrappedStringList HTML
 	 */
-	public function getHeadHtml() {
+	public function getHeadHtml( $nojsClass = null ) {
 		$nonce = $this->options['nonce'];
 		$data = $this->getData();
 		$chunks = [];
 
 		// Change "client-nojs" class to client-js. This allows easy toggling of UI components.
 		// This must happen synchronously on every page view to avoid flashes of wrong content.
-		// See also #getDocumentAttributes() and /resources/src/startup.js.
-		$script = <<<'JAVASCRIPT'
-document.documentElement.className = document.documentElement.className
-	.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );
+		// See also startup/startup.js.
+		$nojsClass = $nojsClass ?? $this->getDocumentAttributes()['class'];
+		$jsClass = preg_replace( '/(^|\s)client-nojs(\s|$)/', '$1client-js$2', $nojsClass );
+		$jsClassJson = ResourceLoader::encodeJsonForScript( $jsClass );
+		$script = <<<JAVASCRIPT
+document.documentElement.className = {$jsClassJson};
 JAVASCRIPT;
 
 		// Inline script: Declare mw.config variables for this page.
