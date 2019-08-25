@@ -312,11 +312,13 @@ class LBFactoryMulti extends LBFactory {
 		foreach ( $loads as $serverName => $load ) {
 			$serverInfo = $template;
 			if ( $master ) {
+				$serverInfo['master'] = true;
 				if ( $this->masterTemplateOverrides ) {
 					$serverInfo = $this->masterTemplateOverrides + $serverInfo;
 				}
 				$master = false;
 			} else {
+				$serverInfo['replica'] = true;
 			}
 			if ( isset( $this->templateOverridesByServer[$serverName] ) ) {
 				$serverInfo = $this->templateOverridesByServer[$serverName] + $serverInfo;

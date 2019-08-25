@@ -95,8 +95,8 @@ class DatabasePostgres extends Database {
 		$this->password = $password;
 
 		$connectVars = [
-			// A database must be specified in order to connect to Postgres. If $dbName is not
-			// specified, then use the standard "postgres" database that should exist by default.
+			// pg_connect() user $user as the default database. Since a database is required,
+			// then pick a "don't care" database that is more likely to exist than that one.
 			'dbname' => strlen( $dbName ) ? $dbName : 'postgres',
 			'user' => $user,
 			'password' => $password
@@ -1442,7 +1442,7 @@ SQL;
 		return $row ? ( strtolower( $row->default_transaction_read_only ) === 'on' ) : false;
 	}
 
-	protected static function getAttributes() {
+	public static function getAttributes() {
 		return [ self::ATTR_SCHEMAS_AS_TABLE_GROUPS => true ];
 	}
 

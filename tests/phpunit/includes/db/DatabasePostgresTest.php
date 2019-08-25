@@ -184,8 +184,6 @@ class DatabasePostgresTest extends MediaWikiTestCase {
 	 * @covers \Wikimedia\Rdbms\DatabasePostgres::getAttributes
 	 */
 	public function testAttributes() {
-		$this->assertTrue(
-			Database::attributesFromType( 'postgres' )[Database::ATTR_SCHEMAS_AS_TABLE_GROUPS]
-		);
+		$this->assertTrue( DatabasePostgres::getAttributes()[Database::ATTR_SCHEMAS_AS_TABLE_GROUPS] );
 	}
 }
