@@ -279,16 +279,26 @@ class JobRunner implements LoggerAwareInterface {
 		] );
 		$this->debugCallback( $msg );
 
+		// Clear out title cache data from prior snapshots
+		// (e.g. from before JobRunner was invoked in this process)
+		MediaWikiServices::getInstance()->getLinkCache()->clear();
+
 		// Run the job...
 		$rssStart = $this->getMaxRssKb();
 		$jobStartTime = microtime( true );
 		try {
 			$fnameTrxOwner = get_class( $job ) . '::run'; // give run() outer scope
-			if ( !$job->hasExecutionFlag( $job::JOB_NO_EXPLICIT_TRX_ROUND ) ) {
-				$lbFactory->beginMasterChanges( $fnameTrxOwner );
+			// Flush any pending changes left over from an implicit transaction round
+			if ( $job->hasExecutionFlag( $job::JOB_NO_EXPLICIT_TRX_ROUND ) ) {
+				$lbFactory->commitMasterChanges( $fnameTrxOwner ); // new implicit round
+			} else {
+				$lbFactory->beginMasterChanges( $fnameTrxOwner ); // new explicit round
 			}
+			// Clear any stale REPEATABLE-READ snapshots from replica DB connections
+			$lbFactory->flushReplicaSnapshots( $fnameTrxOwner );
 			$status = $job->run();
 			$error = $job->getLastError();
+			// Commit all pending changes from this job
 			$this->commitMasterChanges( $lbFactory, $job, $fnameTrxOwner );
 			// Run any deferred update tasks; doUpdates() manages transactions itself
 			DeferredUpdates::doUpdates();
@@ -304,12 +314,6 @@ class JobRunner implements LoggerAwareInterface {
 			MWExceptionHandler::logException( $e );
 		}
 
-		// Commit all outstanding connections that are in a transaction
-		// to get a fresh repeatable read snapshot on every connection.
-		// Note that jobs are still responsible for handling replica DB lag.
-		$lbFactory->flushReplicaSnapshots( __METHOD__ );
-		// Clear out title cache data from prior snapshots
-		MediaWikiServices::getInstance()->getLinkCache()->clear();
 		$timeMs = intval( ( microtime( true ) - $jobStartTime ) * 1000 );
 		$rssEnd = $this->getMaxRssKb();
 
