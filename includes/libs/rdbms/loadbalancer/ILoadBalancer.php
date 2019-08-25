@@ -156,6 +156,18 @@ interface ILoadBalancer {
 	public function redefineLocalDomain( $domain );
 
 	/**
+	 * Indicate whether the tables on this domain are only temporary tables for testing
+	 *
+	 * In "temporary tables mode", the ILoadBalancer::CONN_TRX_AUTOCOMMIT flag is ignored
+	 *
+	 * @param bool $value
+	 * @param string $domain
+	 * @return bool Whether "temporary tables mode" was active
+	 * @since 1.34
+	 */
+	public function setTempTablesOnlyMode( $value, $domain );
+
+	/**
 	 * Get the server index of the reader connection for a given group
 	 *
 	 * This takes into account load ratios and lag times. It should return a consistent

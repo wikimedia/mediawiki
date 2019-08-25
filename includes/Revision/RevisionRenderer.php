@@ -164,13 +164,9 @@ class RevisionRenderer {
 	}
 
 	private function getSpeculativeRevId( $dbIndex ) {
-		// Use a fresh master connection in order to see the latest data, by avoiding
+		// Use a separate master connection in order to see the latest data, by avoiding
 		// stale data from REPEATABLE-READ snapshots.
-		// HACK: But don't use a fresh connection in unit tests, since it would not have
-		// the fake tables. This should be handled by the LoadBalancer!
-		$flags = defined( 'MW_PHPUNIT_TEST' ) || $dbIndex === DB_REPLICA
-			? 0
-			: ILoadBalancer::CONN_TRX_AUTOCOMMIT;
+		$flags = ILoadBalancer::CONN_TRX_AUTOCOMMIT;
 
 		$db = $this->loadBalancer->getConnectionRef( $dbIndex, [], $this->dbDomain, $flags );
 
@@ -183,13 +179,9 @@ class RevisionRenderer {
 	}
 
 	private function getSpeculativePageId( $dbIndex ) {
-		// Use a fresh master connection in order to see the latest data, by avoiding
+		// Use a separate master connection in order to see the latest data, by avoiding
 		// stale data from REPEATABLE-READ snapshots.
-		// HACK: But don't use a fresh connection in unit tests, since it would not have
-		// the fake tables. This should be handled by the LoadBalancer!
-		$flags = defined( 'MW_PHPUNIT_TEST' ) || $dbIndex === DB_REPLICA
-			? 0
-			: ILoadBalancer::CONN_TRX_AUTOCOMMIT;
+		$flags = ILoadBalancer::CONN_TRX_AUTOCOMMIT;
 
 		$db = $this->loadBalancer->getConnectionRef( $dbIndex, [], $this->dbDomain, $flags );
 
