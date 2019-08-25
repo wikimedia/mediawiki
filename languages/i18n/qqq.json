@@ -2900,6 +2900,7 @@
 	"ipblocklist-legend": "Used as legend of the form in [[Special:BlockList]].\n\nSee also:\n* {{msg-mw|Ipblocklist-legend}}\n* {{msg-mw|Ipblocklist-submit}}",
 	"blocklist-userblocks": "Used as the label for the multi-select checkbox in the form on [[Special:BlockList]].\n{{Related|Blocklist-blocks}}",
 	"blocklist-tempblocks": "Used as the label for the multi-select checkbox in the form on [[Special:BlockList]].\n{{Related|Blocklist-blocks}}",
+	"blocklist-indefblocks": "Used as the label for the multi-select checkbox in the form on [[Special:BlockList]].\n{{Related|Blocklist-blocks}}",
 	"blocklist-addressblocks": "Used as the label for the multi-select checkbox in the form on [[Special:BlockList]].\n{{Related|Blocklist-blocks}}",
 	"blocklist-type": "Used as label for dropdown box in [[Special:BlockList]].",
 	"blocklist-type-opt-all": "Used as option for dropdown box in [[Special:BlockList]]. This is the default option and indicates that \"all\" blocks will be listed\n{{Identical|All}}",
