@@ -892,7 +892,11 @@ class LoadBalancer implements ILoadBalancer {
 		// Get an open connection to that server (might trigger a new connection)
 		$conn = $this->getServerConnection( $serverIndex, $domain, $flags );
 		// Set master DB handles as read-only if there is high replication lag
-		if ( $serverIndex === $this->getWriterIndex() && $this->getLaggedReplicaMode( $domain ) ) {
+		if (
+			$serverIndex === $this->getWriterIndex() &&
+			$this->getLaggedReplicaMode( $domain ) &&
+			!is_string( $conn->getLBInfo( 'readOnlyReason' ) )
+		) {
 			$reason = ( $this->getExistingReaderIndex( self::GROUP_GENERIC ) >= 0 )
 				? 'The database is read-only until replication lag decreases.'
 				: 'The database is read-only until replica database servers becomes reachable.';
@@ -948,15 +952,15 @@ class LoadBalancer implements ILoadBalancer {
 		// or the master database server is running in server-side read-only mode. Note that
 		// replica DB handles are always read-only via Database::assertIsWritableMaster().
 		// Read-only mode due to replication lag is *avoided* here to avoid recursion.
-		if ( $conn->getLBInfo( 'serverIndex' ) === $this->getWriterIndex() ) {
+		if ( $i === $this->getWriterIndex() ) {
 			if ( $this->readOnlyReason !== false ) {
-				$conn->setLBInfo( 'readOnlyReason', $this->readOnlyReason );
-			} elseif ( $this->masterRunningReadOnly( $domain, $conn ) ) {
-				$conn->setLBInfo(
-					'readOnlyReason',
-					'The master database server is running in read-only mode.'
-				);
+				$readOnlyReason = $this->readOnlyReason;
+			} elseif ( $this->isMasterConnectionReadOnly( $conn, $flags ) ) {
+				$readOnlyReason = 'The master database server is running in read-only mode.';
+			} else {
+				$readOnlyReason = false;
 			}
+			$conn->setLBInfo( 'readOnlyReason', $readOnlyReason );
 		}
 
 		return $conn;
@@ -1938,10 +1942,12 @@ class LoadBalancer implements ILoadBalancer {
 		return $this->laggedReplicaMode;
 	}
 
-	public function getReadOnlyReason( $domain = false, IDatabase $conn = null ) {
+	public function getReadOnlyReason( $domain = false ) {
+		$domainInstance = DatabaseDomain::newFromId( $this->resolveDomainID( $domain ) );
+
 		if ( $this->readOnlyReason !== false ) {
 			return $this->readOnlyReason;
-		} elseif ( $this->masterRunningReadOnly( $domain, $conn ) ) {
+		} elseif ( $this->isMasterRunningReadOnly( $domainInstance ) ) {
 			return 'The master database server is running in read-only mode.';
 		} elseif ( $this->getLaggedReplicaMode( $domain ) ) {
 			return ( $this->getExistingReaderIndex( self::GROUP_GENERIC ) >= 0 )
@@ -1953,26 +1959,68 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	/**
-	 * @param string $domain Domain ID, or false for the current domain
-	 * @param IDatabase|null $conn DB master connectionl used to avoid loops [optional]
-	 * @return bool
+	 * @param IDatabase $conn Master connection
+	 * @param int $flags Bitfield of class CONN_* constants
+	 * @return bool Whether the entire server or currently selected DB/schema is read-only
 	 */
-	private function masterRunningReadOnly( $domain, IDatabase $conn = null ) {
-		$cache = $this->wanCache;
-		$masterServer = $this->getServerName( $this->getWriterIndex() );
+	private function isMasterConnectionReadOnly( IDatabase $conn, $flags = 0 ) {
+		// Note that table prefixes are not related to server-side read-only mode
+		$key = $this->srvCache->makeGlobalKey(
+			'rdbms-server-readonly',
+			$conn->getServer(),
+			$conn->getDBname(),
+			$conn->dbSchema()
+		);
 
-		return (bool)$cache->getWithSetCallback(
-			$cache->makeGlobalKey( __CLASS__, 'server-read-only', $masterServer ),
+		if ( ( $flags & self::CONN_REFRESH_READ_ONLY ) == self::CONN_REFRESH_READ_ONLY ) {
+			try {
+				$readOnly = (int)$conn->serverIsReadOnly();
+			} catch ( DBError $e ) {
+				$readOnly = 0;
+			}
+			$this->srvCache->set( $key, $readOnly, BagOStuff::TTL_PROC_SHORT );
+		} else {
+			$readOnly = $this->srvCache->getWithSetCallback(
+				$key,
+				BagOStuff::TTL_PROC_SHORT,
+				function () use ( $conn ) {
+					try {
+						return (int)$conn->serverIsReadOnly();
+					} catch ( DBError $e ) {
+						return 0;
+					}
+				}
+			);
+		}
+
+		return (bool)$readOnly;
+	}
+
+	/**
+	 * @param DatabaseDomain $domain
+	 * @return bool Whether the entire master server or the local domain DB is read-only
+	 */
+	private function isMasterRunningReadOnly( DatabaseDomain $domain ) {
+		// Context will often be HTTP GET/HEAD; heavily cache the results
+		return (bool)$this->wanCache->getWithSetCallback(
+			// Note that table prefixes are not related to server-side read-only mode
+			$this->wanCache->makeGlobalKey(
+				'rdbms-server-readonly',
+				$this->getMasterServerName(),
+				$domain->getDatabase(),
+				$domain->getSchema()
+			),
 			self::TTL_CACHE_READONLY,
-			function () use ( $domain, $conn ) {
+			function () use ( $domain ) {
 				$old = $this->trxProfiler->setSilenced( true );
 				try {
 					$index = $this->getWriterIndex();
-					$dbw = $conn ?: $this->getServerConnection( $index, $domain );
-					$readOnly = (int)$dbw->serverIsReadOnly();
-					if ( !$conn ) {
-						$this->reuseConnection( $dbw );
-					}
+					// Reset the cache for isMasterConnectionReadOnly()
+					$flags = self::CONN_REFRESH_READ_ONLY;
+					$conn = $this->getServerConnection( $index, $domain->getId(), $flags );
+					// Reuse the process cache set above
+					$readOnly = (int)$this->isMasterConnectionReadOnly( $conn );
+					$this->reuseConnection( $conn );
 				} catch ( DBError $e ) {
 					$readOnly = 0;
 				}
@@ -1980,7 +2028,7 @@ class LoadBalancer implements ILoadBalancer {
 
 				return $readOnly;
 			},
-			[ 'pcTTL' => $cache::TTL_PROC_LONG, 'busyValue' => 0 ]
+			[ 'pcTTL' => WANObjectCache::TTL_PROC_LONG, 'lockTSE' => 10, 'busyValue' => 0 ]
 		);
 	}
 
@@ -2294,6 +2342,13 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		return $this->servers[$i];
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getMasterServerName() {
+		return $this->getServerName( $this->getWriterIndex() );
 	}
 
 	function __destruct() {

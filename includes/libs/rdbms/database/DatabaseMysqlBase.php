@@ -1056,11 +1056,12 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	public function serverIsReadOnly() {
-		$flags = self::QUERY_IGNORE_DBO_TRX;
-		$res = $this->query( "SHOW GLOBAL VARIABLES LIKE 'read_only'", __METHOD__, $flags );
+		// Avoid SHOW to avoid internal temporary tables
+		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_SILENCE_ERRORS;
+		$res = $this->query( "SELECT @@GLOBAL.read_only AS Value", __METHOD__, $flags );
 		$row = $this->fetchObject( $res );
 
-		return $row ? ( strtolower( $row->Value ) === 'on' ) : false;
+		return $row ? (bool)$row->Value : false;
 	}
 
 	/**
