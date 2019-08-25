@@ -174,8 +174,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var float Query rount trip time estimate */
 	private $lastRoundTripEstimate = 0.0;
 
-	/** @var string Whether the database is a file on disk */
-	const ATTR_DB_IS_FILE = 'db-is-file';
 	/** @var string Lock granularity is on the level of the entire database */
 	const ATTR_DB_LEVEL_LOCKING = 'db-level-locking';
 	/** @var string The SCHEMA keyword refers to a grouping of tables in a database */
@@ -247,6 +245,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->cliMode = $params['cliMode'];
 		$this->agent = $params['agent'];
 		$this->flags = $params['flags'];
+		if ( $this->flags & self::DBO_DEFAULT ) {
+			if ( $this->cliMode ) {
+				$this->flags &= ~self::DBO_TRX;
+			} else {
+				$this->flags |= self::DBO_TRX;
+			}
+		}
 		$this->nonNativeInsertSelectBatchSize = $params['nonNativeInsertSelectBatchSize'] ?? 10000;
 
 		$this->srvCache = $params['srvCache'] ?? new HashBagOStuff();
@@ -420,7 +425,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	final public static function attributesFromType( $dbType, $driver = null ) {
 		static $defaults = [
-			self::ATTR_DB_IS_FILE => false,
 			self::ATTR_DB_LEVEL_LOCKING => false,
 			self::ATTR_SCHEMAS_AS_TABLE_GROUPS => false
 		];
