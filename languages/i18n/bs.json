@@ -1470,7 +1470,7 @@
 	"recentchangeslinked-feed": "Srodne izmjene",
 	"recentchangeslinked-toolbox": "Srodne izmjene",
 	"recentchangeslinked-title": "Srodne promjene sa \"$1\"",
-	"recentchangeslinked-summary": "Upišite naziv stranice da biste vidjeli promjene koje vode na ili sa te stranice. (Da biste vidjeli članove neke kategorije, upišite Kategorija:Naziv kategorije). Promjene na stranicama na [[Special:Watchlist|spisku praćenja]] istaknute su <strong>podebljanim slovima</strong>.",
+	"recentchangeslinked-summary": "Upišite naziv stranice da biste vidjeli izmjene koje vode na ili sa te stranice. (Da biste vidjeli članove neke kategorije, upišite {{ns:category}}:Naziv kategorije). Izmjene na stranicama na [[Special:Watchlist|spisku praćenja]] istaknute su <strong>podebljanim slovima</strong>.",
 	"recentchangeslinked-page": "Naslov stranice:",
 	"recentchangeslinked-to": "Prikaži izmjene stranica koji su povezane s datom stranicom",
 	"recentchanges-page-added-to-category": "Stranica [[:$1]] dodana je u kategoriju",

@@ -1601,6 +1601,8 @@
 	"rcfilters-filter-showlinkedto-label": "Toon wijzigingen op pagina's gekoppeld naar",
 	"rcfilters-filter-showlinkedto-option-label": "<strong>Pagina's gekoppeld naar</strong> de geselecteerde pagina",
 	"rcfilters-target-page-placeholder": "Voer een paginanaam (of categorie) in",
+	"rcfilters-allcontents-label": "Alle inhoud",
+	"rcfilters-alldiscussions-label": "Al het overleg",
 	"rcnotefrom": "Wijzigingen sinds <strong>$3 om $4</strong> (maximaal <strong>$1</strong> {{PLURAL:$1|wijziging|wijzigingen}}).",
 	"rclistfromreset": "Datum selectie opnieuw instellen",
 	"rclistfrom": "Wijzigingen bekijken vanaf $3 $2",
