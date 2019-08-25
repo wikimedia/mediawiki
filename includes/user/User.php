@@ -2042,14 +2042,10 @@ class User implements IDBAccessObject, UserIdentity {
 			$summary = "(limit $max in {$period}s)";
 			$count = $cache->get( $key );
 			// Already pinged?
-			if ( $count ) {
-				if ( $count >= $max ) {
-					wfDebugLog( 'ratelimit', "User '{$this->getName()}' " .
-						"(IP {$this->getRequest()->getIP()}) tripped $key at $count $summary" );
-					$triggered = true;
-				} else {
-					wfDebug( __METHOD__ . ": ok. $key at $count $summary\n" );
-				}
+			if ( $count && $count >= $max ) {
+				wfDebugLog( 'ratelimit', "User '{$this->getName()}' " .
+					"(IP {$this->getRequest()->getIP()}) tripped $key at $count $summary" );
+				$triggered = true;
 			} else {
 				wfDebug( __METHOD__ . ": adding record for $key $summary\n" );
 				if ( $incrBy > 0 ) {
@@ -2057,7 +2053,7 @@ class User implements IDBAccessObject, UserIdentity {
 				}
 			}
 			if ( $incrBy > 0 ) {
-				$cache->incr( $key, $incrBy );
+				$cache->incrWithInit( $key, (int)$period, $incrBy, $incrBy );
 			}
 		}
 
