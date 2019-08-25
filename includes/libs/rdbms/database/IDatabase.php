@@ -1082,9 +1082,8 @@ interface IDatabase {
 	 *
 	 * In systems like mysql/mariadb, different databases can easily be referenced on a single
 	 * connection merely by name, even in a single query via JOIN. On the other hand, Postgres
-	 * treats databases as logically separate, with different database users, requiring special
-	 * mechanisms like postgres_fdw to "mount" foreign DBs. This is true even among DBs on the
-	 * same server. Changing the selected database via selectDomain() requires a new connection.
+	 * treats databases as fully separate, only allowing mechanisms like postgres_fdw to
+	 * effectively "mount" foreign DBs. This is true even among DBs on the same server.
 	 *
 	 * @return bool
 	 * @since 1.29
@@ -2033,11 +2032,11 @@ interface IDatabase {
 	public function setSessionOptions( array $options );
 
 	/**
-	 * Set schema variables to be used when streaming commands from SQL files or stdin
+	 * Set variables to be used in sourceFile/sourceStream, in preference to the
+	 * ones in $GLOBALS. If an array is set here, $GLOBALS will not be used at
+	 * all. If it's set to false, $GLOBALS will be used.
 	 *
-	 * Variables appear as SQL comments and are substituted by their corresponding values
-	 *
-	 * @param array|null $vars Map of (variable => value) or null to use the defaults
+	 * @param bool|array $vars Mapping variable name to value.
 	 */
 	public function setSchemaVars( $vars );
 

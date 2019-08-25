@@ -83,7 +83,7 @@ class LoadBalancerSingle extends LoadBalancer {
 		) );
 	}
 
-	protected function reallyOpenConnection( $i, DatabaseDomain $domain, array $lbInfo = [] ) {
+	protected function reallyOpenConnection( array $server, DatabaseDomain $domain ) {
 		return $this->db;
 	}
 

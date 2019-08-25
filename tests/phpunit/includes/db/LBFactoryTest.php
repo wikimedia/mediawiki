@@ -23,7 +23,6 @@
  * @copyright © 2013 Wikimedia Foundation Inc.
  */
 
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\LBFactory;
@@ -475,7 +474,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		unset( $db );
 
 		/** @var IMaintainableDatabase $db */
-		$db = $lb->getConnection( DB_MASTER, [], $lb::DOMAIN_ANY );
+		$db = $lb->getConnection( DB_MASTER, [], '' );
 
 		$this->assertEquals(
 			'',
@@ -555,7 +554,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		);
 		$lb = $factory->getMainLB();
 		/** @var IMaintainableDatabase $db */
-		$db = $lb->getConnection( DB_MASTER, [], $lb::DOMAIN_ANY );
+		$db = $lb->getConnection( DB_MASTER, [], '' );
 
 		$this->assertEquals( '', $db->getDomainID(), "Null domain used" );
 
@@ -623,16 +622,16 @@ class LBFactoryTest extends MediaWikiTestCase {
 		);
 		$lb = $factory->getMainLB();
 		/** @var IDatabase $db */
-		$db = $lb->getConnection( DB_MASTER, [], $lb::DOMAIN_ANY );
+		$db = $lb->getConnection( DB_MASTER, [], '' );
 
-		AtEase::suppressWarnings();
+		\Wikimedia\suppressWarnings();
 		try {
-			$this->assertFalse( $db->selectDomain( 'garbagedb' ) );
+			$this->assertFalse( $db->selectDB( 'garbage-db' ) );
 			$this->fail( "No error thrown." );
 		} catch ( \Wikimedia\Rdbms\DBQueryError $e ) {
-			$this->assertRegExp( '/[\'"]garbagedb[\'"]/', $e->getMessage() );
+			$this->assertRegExp( '/[\'"]garbage-db[\'"]/', $e->getMessage() );
 		}
-		AtEase::restoreWarnings();
+		\Wikimedia\restoreWarnings();
 	}
 
 	/**
@@ -651,12 +650,12 @@ class LBFactoryTest extends MediaWikiTestCase {
 		);
 		$lb = $factory->getMainLB();
 
-		if ( !$factory->getMainLB()->getServerAttributes( 0 )[Database::ATTR_DB_IS_FILE] ) {
-			$this->markTestSkipped( "Not applicable per ATTR_DB_IS_FILE" );
+		if ( !$lb->getConnection( DB_MASTER )->databasesAreIndependent() ) {
+			$this->markTestSkipped( "Not applicable per databasesAreIndependent()" );
 		}
 
 		/** @var IDatabase $db */
-		$this->assertNotNull( $lb->getConnection( DB_MASTER, [], $lb::DOMAIN_ANY ) );
+		$lb->getConnection( DB_MASTER, [], '' );
 	}
 
 	/**
@@ -680,7 +679,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		}
 
 		$db = $lb->getConnection( DB_MASTER );
-		$db->selectDomain( 'garbage-db' );
+		$db->selectDB( 'garbage-db' );
 	}
 
 	/**
