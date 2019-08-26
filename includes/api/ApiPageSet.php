@@ -1253,7 +1253,7 @@ class ApiPageSet extends ApiBase {
 
 			// Need gender information
 			if (
-				MediaWikiServices::getInstance()->getNamespaceInfo()->
+				$services->getNamespaceInfo()->
 					hasGenderDistinction( $titleObj->getNamespace() )
 			) {
 				$usernames[] = $titleObj->getText();

@@ -1322,7 +1322,7 @@ class Linker {
 					$services->getNamespaceInfo()->getCanonicalName( NS_MEDIA ), '/' );
 				$medians .= '|';
 				$medians .= preg_quote(
-					MediaWikiServices::getInstance()->getContentLanguage()->getNsText( NS_MEDIA ),
+					$services->getContentLanguage()->getNsText( NS_MEDIA ),
 					'/'
 				) . '):';
 
@@ -1359,7 +1359,7 @@ class Linker {
 					}
 					if ( $match[1] !== false && $match[1] !== '' ) {
 						if ( preg_match(
-							MediaWikiServices::getInstance()->getContentLanguage()->linkTrail(),
+							$services->getContentLanguage()->linkTrail(),
 							$match[3],
 							$submatch
 						) ) {
@@ -1375,7 +1375,7 @@ class Linker {
 
 						Title::newFromText( $linkTarget );
 						try {
-							$target = MediaWikiServices::getInstance()->getTitleParser()->
+							$target = $services->getTitleParser()->
 								parseTitle( $linkTarget );
 
 							if ( $target->getText() == '' && !$target->isExternal()
