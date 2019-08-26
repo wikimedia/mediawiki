@@ -57,9 +57,6 @@ class DatabaseSqlite extends Database {
 	/** @var array List of shared database already attached to this connection */
 	private $alreadyAttached = [];
 
-	/** @var bool Whether full text is enabled */
-	private static $fulltextEnabled = null;
-
 	/** @var string[] See https://www.sqlite.org/lang_transaction.html */
 	private static $VALID_TRX_MODES = [ '', 'DEFERRED', 'IMMEDIATE', 'EXCLUSIVE' ];
 
@@ -291,8 +288,9 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
-	 * Attaches external database to our connection, see https://sqlite.org/lang_attach.html
-	 * for details.
+	 * Attaches external database to the connection handle
+	 *
+	 * @see https://sqlite.org/lang_attach.html
 	 *
 	 * @param string $name Database name to be used in queries like
 	 *   SELECT foo FROM dbname.table
