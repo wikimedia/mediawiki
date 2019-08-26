@@ -970,17 +970,7 @@ class LoadBalancer implements ILoadBalancer {
 		$serverIndex = $conn->getLBInfo( 'serverIndex' );
 		$refCount = $conn->getLBInfo( 'foreignPoolRefCount' );
 		if ( $serverIndex === null || $refCount === null ) {
-			/**
-			 * This can happen in code like:
-			 *   foreach ( $dbs as $db ) {
-			 *     $conn = $lb->getConnection( $lb::DB_REPLICA, [], $db );
-			 *     ...
-			 *     $lb->reuseConnection( $conn );
-			 *   }
-			 * When a connection to the local DB is opened in this way, reuseConnection()
-			 * should be ignored
-			 */
-			return;
+			return; // non-foreign connection; no domain-use tracking to update
 		} elseif ( $conn instanceof DBConnRef ) {
 			// DBConnRef already handles calling reuseConnection() and only passes the live
 			// Database instance to this method. Any caller passing in a DBConnRef is broken.
