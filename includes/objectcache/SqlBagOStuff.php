@@ -31,6 +31,7 @@ use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WaitConditionLoop;
 
 /**
@@ -190,28 +191,30 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				$type = $info['type'] ?? 'mysql';
 				$host = $info['host'] ?? '[unknown]';
 				$this->logger->debug( __CLASS__ . ": connecting to $host" );
-				$db = Database::factory( $type, $info );
-				$db->clearFlag( DBO_TRX ); // auto-commit mode
-				$this->conns[$shardIndex] = $db;
+				$conn = Database::factory( $type, $info );
+				$conn->clearFlag( DBO_TRX ); // auto-commit mode
+				$this->conns[$shardIndex] = $conn;
 			}
-			$db = $this->conns[$shardIndex];
+			$conn = $this->conns[$shardIndex];
 		} else {
 			// Use the main LB database
 			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 			$index = $this->replicaOnly ? DB_REPLICA : DB_MASTER;
-			if ( $lb->getServerType( $lb->getWriterIndex() ) !== 'sqlite' ) {
-				// Keep a separate connection to avoid contention and deadlocks
-				$db = $lb->getConnectionRef( $index, [], false, $lb::CONN_TRX_AUTOCOMMIT );
-			} else {
-				// However, SQLite has the opposite behavior due to DB-level locking.
-				// Stock sqlite MediaWiki installs use a separate sqlite cache DB instead.
-				$db = $lb->getConnectionRef( $index );
+			// If the RDBMS has row-level locking, use the autocommit connection to avoid
+			// contention and deadlocks. Do not do this if it only has DB-level locking since
+			// that would just cause deadlocks.
+			$attribs = $lb->getServerAttributes( $lb->getWriterIndex() );
+			$flags = $attribs[Database::ATTR_DB_LEVEL_LOCKING] ? 0 : $lb::CONN_TRX_AUTOCOMMIT;
+			$conn = $lb->getMaintenanceConnectionRef( $index, [], false, $flags );
+			// Automatically create the objectcache table for sqlite as needed
+			if ( $conn->getType() === 'sqlite' ) {
+				$this->initSqliteDatabase( $conn );
 			}
 		}
 
-		$this->logger->debug( sprintf( "Connection %s will be used for SqlBagOStuff", $db ) );
+		$this->logger->debug( sprintf( "Connection %s will be used for SqlBagOStuff", $conn ) );
 
-		return $db;
+		return $conn;
 	}
 
 	/**
@@ -582,10 +585,10 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * @param string $exptime
 	 * @return bool
 	 */
-	private function isExpired( $db, $exptime ) {
+	private function isExpired( IDatabase $db, $exptime ) {
 		return (
 			$exptime != $this->getMaxDateTime( $db ) &&
-			wfTimestamp( TS_UNIX, $exptime ) < $this->getCurrentTime()
+			ConvertibleTimestamp::convert( TS_UNIX, $exptime ) < $this->getCurrentTime()
 		);
 	}
 
@@ -687,7 +690,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$serversDoneCount = 0,
 		&$keysDeletedCount = 0
 	) {
-		$cutoffUnix = wfTimestamp( TS_UNIX, $timestamp );
+		$cutoffUnix = ConvertibleTimestamp::convert( TS_UNIX, $timestamp );
 		$shardIndexes = range( 0, $this->numTableShards - 1 );
 		shuffle( $shardIndexes );
 
@@ -709,7 +712,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				if ( $res->numRows() ) {
 					$row = $res->current();
 					if ( $lag === null ) {
-						$lag = max( $cutoffUnix - wfTimestamp( TS_UNIX, $row->exptime ), 1 );
+						$rowExpUnix = ConvertibleTimestamp::convert( TS_UNIX, $row->exptime );
+						$lag = max( $cutoffUnix - $rowExpUnix, 1 );
 					}
 
 					$keys = [];
@@ -731,7 +735,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 				if ( is_callable( $progressCallback ) ) {
 					if ( $lag ) {
-						$remainingLag = $cutoffUnix - wfTimestamp( TS_UNIX, $continue );
+						$continueUnix = ConvertibleTimestamp::convert( TS_UNIX, $continue );
+						$remainingLag = $cutoffUnix - $continueUnix;
 						$processedLag = max( $lag - $remainingLag, 0 );
 						$doneRatio = ( $numShardsDone + $processedLag / $lag ) / $this->numTableShards;
 					} else {
@@ -948,20 +953,47 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	/**
-	 * Create shard tables. For use from eval.php.
+	 * @param IMaintainableDatabase $db
+	 * @throws DBError
+	 */
+	private function initSqliteDatabase( IMaintainableDatabase $db ) {
+		if ( $db->tableExists( 'objectcache' ) ) {
+			return;
+		}
+		// Use one table for SQLite; sharding does not seem to have much benefit
+		$db->query( "PRAGMA journal_mode=WAL" ); // this is permanent
+		$db->startAtomic( __METHOD__ ); // atomic DDL
+		try {
+			$encTable = $db->tableName( 'objectcache' );
+			$encExptimeIndex = $db->addIdentifierQuotes( $db->tablePrefix() . 'exptime' );
+			$db->query(
+				"CREATE TABLE $encTable (\n" .
+				"	keyname BLOB NOT NULL default '' PRIMARY KEY,\n" .
+				"	value BLOB,\n" .
+				"	exptime TEXT\n" .
+				")",
+				__METHOD__
+			);
+			$db->query( "CREATE INDEX $encExptimeIndex ON $encTable (exptime)" );
+			$db->endAtomic( __METHOD__ );
+		} catch ( DBError $e ) {
+			$db->rollback( __METHOD__ );
+			throw $e;
+		}
+	}
+
+	/**
+	 * Create the shard tables on all databases (e.g. via eval.php/shell.php)
 	 */
 	public function createTables() {
 		for ( $shardIndex = 0; $shardIndex < $this->numServerShards; $shardIndex++ ) {
 			$db = $this->getConnection( $shardIndex );
-			if ( $db->getType() !== 'mysql' ) {
-				throw new MWException( __METHOD__ . ' is not supported on this DB server' );
-			}
-
-			for ( $i = 0; $i < $this->numTableShards; $i++ ) {
-				$db->query(
-					'CREATE TABLE ' . $db->tableName( $this->getTableNameByShard( $i ) ) .
-					' LIKE ' . $db->tableName( 'objectcache' ),
-					__METHOD__ );
+			if ( in_array( $db->getType(), [ 'mysql', 'postgres' ], true ) ) {
+				for ( $i = 0; $i < $this->numTableShards; $i++ ) {
+					$encBaseTable = $db->tableName( 'objectcache' );
+					$encShardTable = $db->tableName( $this->getTableNameByShard( $i ) );
+					$db->query( "CREATE TABLE $encShardTable LIKE $encBaseTable" );
+				}
 			}
 		}
 	}
