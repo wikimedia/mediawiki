@@ -48,7 +48,6 @@ use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
-use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
@@ -257,13 +256,6 @@ return [
 		);
 	},
 
-	'LanguageNameUtils' => function ( MediaWikiServices $services ) : LanguageNameUtils {
-		return new LanguageNameUtils( new ServiceOptions(
-			LanguageNameUtils::$constructorOptions,
-			$services->getMainConfig()
-		) );
-	},
-
 	'LinkCache' => function ( MediaWikiServices $services ) : LinkCache {
 		return new LinkCache(
 			$services->getTitleFormatter(),
@@ -287,37 +279,6 @@ return [
 			$services->getTitleFormatter(),
 			$services->getLinkCache(),
 			$services->getNamespaceInfo()
-		);
-	},
-
-	'LocalisationCache' => function ( MediaWikiServices $services ) : LocalisationCache {
-		$conf = $services->getMainConfig()->get( 'LocalisationCacheConf' );
-
-		$logger = LoggerFactory::getInstance( 'localisation' );
-
-		$store = LocalisationCache::getStoreFromConf(
-			$conf, $services->getMainConfig()->get( 'CacheDirectory' ) );
-		$logger->debug( 'LocalisationCache: using store ' . get_class( $store ) );
-
-		return new $conf['class'](
-			new ServiceOptions(
-				LocalisationCache::$constructorOptions,
-				// Two of the options are stored in $wgLocalisationCacheConf
-				$conf,
-				// In case someone set that config variable and didn't reset all keys, set defaults.
-				[
-					'forceRecache' => false,
-					'manualRecache' => false,
-				],
-				// Some other options come from config itself
-				$services->getMainConfig()
-			),
-			$store,
-			$logger,
-			[ function () use ( $services ) {
-				$services->getResourceLoader()->getMessageBlobStore()->clear();
-			} ],
-			$services->getLanguageNameUtils()
 		);
 	},
 

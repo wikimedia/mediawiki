@@ -39,7 +39,7 @@ namespace MediaWiki\Languages\Data;
  * If you are adding support for such a language, add it also to
  * the relevant section in shared.css.
  *
- * Do not use this class directly. Use LanguageNameUtils::getLanguageNames(), which
+ * Do not use this class directly. Use Language::fetchLanguageNames(), which
  * includes support for the CLDR extension.
  *
  * @ingroup Language

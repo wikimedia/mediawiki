@@ -27,8 +27,8 @@
  */
 
 use CLDRPluralRuleParser\Evaluator;
-use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Assert\Assert;
 
 /**
  * Internationalisation code
@@ -38,24 +38,21 @@ class Language {
 	/**
 	 * Return autonyms in fetchLanguageName(s).
 	 * @since 1.32
-	 * @deprecated since 1.34, LanguageNameUtils::AUTONYMS
 	 */
-	const AS_AUTONYMS = LanguageNameUtils::AUTONYMS;
+	const AS_AUTONYMS = null;
 
 	/**
 	 * Return all known languages in fetchLanguageName(s).
 	 * @since 1.32
-	 * @deprecated since 1.34, use LanguageNameUtils::ALL
 	 */
-	const ALL = LanguageNameUtils::ALL;
+	const ALL = 'all';
 
 	/**
 	 * Return in fetchLanguageName(s) only the languages for which we have at
 	 * least some localisation.
 	 * @since 1.32
-	 * @deprecated since 1.34, use LanguageNameUtils::SUPPORTED
 	 */
-	const SUPPORTED = LanguageNameUtils::SUPPORTED;
+	const SUPPORTED = 'mwfile';
 
 	/**
 	 * @var LanguageConverter
@@ -78,11 +75,10 @@ class Language {
 	 */
 	public $transformData = [];
 
-	/** @var LocalisationCache */
-	private $localisationCache;
-
-	/** @var LanguageNameUtils */
-	private $langNameUtils;
+	/**
+	 * @var LocalisationCache
+	 */
+	public static $dataCache;
 
 	public static $mLangObjCache = [];
 
@@ -98,7 +94,6 @@ class Language {
 	 */
 	const STRICT_FALLBACKS = 1;
 
-	// TODO Make these const once we drop HHVM support (T192166)
 	public static $mWeekdayMsgs = [
 		'sunday', 'monday', 'tuesday', 'wednesday', 'thursday',
 		'friday', 'saturday'
@@ -184,6 +179,12 @@ class Language {
 	private static $grammarTransformations;
 
 	/**
+	 * Cache for language names
+	 * @var HashBagOStuff|null
+	 */
+	private static $languageNameCache;
+
+	/**
 	 * Unicode directional formatting characters, for embedBidi()
 	 */
 	private static $lre = "\u{202A}"; // U+202A LEFT-TO-RIGHT EMBEDDING
@@ -238,12 +239,11 @@ class Language {
 	 * @return Language
 	 */
 	protected static function newFromCode( $code, $fallback = false ) {
-		$langNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
-		if ( !$langNameUtils->isValidCode( $code ) ) {
+		if ( !self::isValidCode( $code ) ) {
 			throw new MWException( "Invalid language code \"$code\"" );
 		}
 
-		if ( !$langNameUtils->isValidBuiltInCode( $code ) ) {
+		if ( !self::isValidBuiltInCode( $code ) ) {
 			// It's not possible to customise this code with class files, so
 			// just return a Language object. This is to support uselang= hacks.
 			$lang = new Language;
@@ -262,7 +262,7 @@ class Language {
 		// Keep trying the fallback list until we find an existing class
 		$fallbacks = self::getFallbacksFor( $code );
 		foreach ( $fallbacks as $fallbackCode ) {
-			if ( !$langNameUtils->isValidBuiltInCode( $fallbackCode ) ) {
+			if ( !self::isValidBuiltInCode( $fallbackCode ) ) {
 				throw new MWException( "Invalid fallback '$fallbackCode' in fallback sequence for '$code'" );
 			}
 
@@ -283,30 +283,37 @@ class Language {
 	 * @since 1.32
 	 */
 	public static function clearCaches() {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MEDIAWIKI_INSTALL' ) ) {
-			throw new MWException( __METHOD__ . ' must not be used outside tests/installer' );
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new MWException( __METHOD__ . ' must not be used outside tests' );
 		}
-		if ( !defined( 'MEDIAWIKI_INSTALL' ) ) {
-			MediaWikiServices::getInstance()->resetServiceForTesting( 'LocalisationCache' );
-			MediaWikiServices::getInstance()->resetServiceForTesting( 'LanguageNameUtils' );
-		}
+		self::$dataCache = null;
+		// Reinitialize $dataCache, since it's expected to always be available
+		self::getLocalisationCache();
 		self::$mLangObjCache = [];
 		self::$fallbackLanguageCache = [];
 		self::$grammarTransformations = null;
+		self::$languageNameCache = null;
 	}
 
 	/**
 	 * Checks whether any localisation is available for that language tag
 	 * in MediaWiki (MessagesXx.php exists).
 	 *
-	 * @deprecated since 1.34, use LanguageNameUtils
 	 * @param string $code Language tag (in lower case)
 	 * @return bool Whether language is supported
 	 * @since 1.21
 	 */
 	public static function isSupportedLanguage( $code ) {
-		return MediaWikiServices::getInstance()->getLanguageNameUtils()
-			->isSupportedLanguage( $code );
+		if ( !self::isValidBuiltInCode( $code ) ) {
+			return false;
+		}
+
+		if ( $code === 'qqq' ) {
+			return false;
+		}
+
+		return is_readable( self::getMessagesFileName( $code ) ) ||
+			is_readable( self::getJsonMessagesFileName( $code ) );
 	}
 
 	/**
@@ -374,21 +381,29 @@ class Language {
 	 * not it exists. This includes codes which are used solely for
 	 * customisation via the MediaWiki namespace.
 	 *
-	 * @deprecated since 1.34, use LanguageNameUtils
-	 *
 	 * @param string $code
 	 *
 	 * @return bool
 	 */
 	public static function isValidCode( $code ) {
-		return MediaWikiServices::getInstance()->getLanguageNameUtils()->isValidCode( $code );
+		static $cache = [];
+		Assert::parameterType( 'string', $code, '$code' );
+		if ( !isset( $cache[$code] ) ) {
+			// People think language codes are html safe, so enforce it.
+			// Ideally we should only allow a-zA-Z0-9-
+			// but, .+ and other chars are often used for {{int:}} hacks
+			// see bugs T39564, T39587, T38938
+			$cache[$code] =
+				// Protect against path traversal
+				strcspn( $code, ":/\\\000&<>'\"" ) === strlen( $code )
+				&& !preg_match( MediaWikiTitleCodec::getTitleInvalidRegex(), $code );
+		}
+		return $cache[$code];
 	}
 
 	/**
 	 * Returns true if a language code is of a valid form for the purposes of
 	 * internal customisation of MediaWiki, via Messages*.php or *.json.
-	 *
-	 * @deprecated since 1.34, use LanguageNameUtils
 	 *
 	 * @param string $code
 	 *
@@ -396,14 +411,13 @@ class Language {
 	 * @return bool
 	 */
 	public static function isValidBuiltInCode( $code ) {
-		return MediaWikiServices::getInstance()->getLanguageNameUtils()
-			->isValidBuiltInCode( $code );
+		Assert::parameterType( 'string', $code, '$code' );
+
+		return (bool)preg_match( '/^[a-z0-9-]{2,}$/', $code );
 	}
 
 	/**
 	 * Returns true if a language code is an IETF tag known to MediaWiki.
-	 *
-	 * @deprecated since 1.34, use LanguageNameUtils
 	 *
 	 * @param string $tag
 	 *
@@ -411,18 +425,33 @@ class Language {
 	 * @return bool
 	 */
 	public static function isKnownLanguageTag( $tag ) {
-		return MediaWikiServices::getInstance()->getLanguageNameUtils()
-			->isKnownLanguageTag( $tag );
+		// Quick escape for invalid input to avoid exceptions down the line
+		// when code tries to process tags which are not valid at all.
+		if ( !self::isValidBuiltInCode( $tag ) ) {
+			return false;
+		}
+
+		if ( isset( MediaWiki\Languages\Data\Names::$names[$tag] )
+			|| self::fetchLanguageName( $tag, $tag ) !== ''
+		) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
 	 * Get the LocalisationCache instance
 	 *
-	 * @deprecated since 1.34, use MediaWikiServices
 	 * @return LocalisationCache
 	 */
 	public static function getLocalisationCache() {
-		return MediaWikiServices::getInstance()->getLocalisationCache();
+		if ( is_null( self::$dataCache ) ) {
+			global $wgLocalisationCacheConf;
+			$class = $wgLocalisationCacheConf['class'];
+			self::$dataCache = new $class( $wgLocalisationCacheConf );
+		}
+		return self::$dataCache;
 	}
 
 	function __construct() {
@@ -433,9 +462,7 @@ class Language {
 		} else {
 			$this->mCode = str_replace( '_', '-', strtolower( substr( static::class, 8 ) ) );
 		}
-		$services = MediaWikiServices::getInstance();
-		$this->localisationCache = $services->getLocalisationCache();
-		$this->langNameUtils = $services->getLanguageNameUtils();
+		self::getLocalisationCache();
 	}
 
 	/**
@@ -467,7 +494,7 @@ class Language {
 	 * @return array
 	 */
 	public function getBookstoreList() {
-		return $this->localisationCache->getItem( $this->mCode, 'bookstoreList' );
+		return self::$dataCache->getItem( $this->mCode, 'bookstoreList' );
 	}
 
 	/**
@@ -484,7 +511,7 @@ class Language {
 				getCanonicalNamespaces();
 
 			$this->namespaceNames = $wgExtraNamespaces +
-				$this->localisationCache->getItem( $this->mCode, 'namespaceNames' );
+				self::$dataCache->getItem( $this->mCode, 'namespaceNames' );
 			$this->namespaceNames += $validNamespaces;
 
 			$this->namespaceNames[NS_PROJECT] = $wgMetaNamespace;
@@ -591,7 +618,7 @@ class Language {
 		global $wgExtraGenderNamespaces;
 
 		$ns = $wgExtraGenderNamespaces +
-			(array)$this->localisationCache->getItem( $this->mCode, 'namespaceGenderAliases' );
+			(array)self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
 
 		return $ns[$index][$gender] ?? $this->getNsText( $index );
 	}
@@ -613,7 +640,7 @@ class Language {
 			return false;
 		} else {
 			// Check what is in i18n files
-			$aliases = $this->localisationCache->getItem( $this->mCode, 'namespaceGenderAliases' );
+			$aliases = self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
 			return count( $aliases ) > 0;
 		}
 	}
@@ -637,7 +664,7 @@ class Language {
 	 */
 	public function getNamespaceAliases() {
 		if ( is_null( $this->namespaceAliases ) ) {
-			$aliases = $this->localisationCache->getItem( $this->mCode, 'namespaceAliases' );
+			$aliases = self::$dataCache->getItem( $this->mCode, 'namespaceAliases' );
 			if ( !$aliases ) {
 				$aliases = [];
 			} else {
@@ -651,8 +678,8 @@ class Language {
 			}
 
 			global $wgExtraGenderNamespaces;
-			$genders = $wgExtraGenderNamespaces + (array)$this->localisationCache
-				->getItem( $this->mCode, 'namespaceGenderAliases' );
+			$genders = $wgExtraGenderNamespaces +
+				(array)self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
 			foreach ( $genders as $index => $forms ) {
 				foreach ( $forms as $alias ) {
 					$aliases[$alias] = $index;
@@ -740,7 +767,7 @@ class Language {
 		if ( $usemsg && wfMessage( $msg )->exists() ) {
 			return $this->getMessageFromDB( $msg );
 		}
-		$name = $this->langNameUtils->getLanguageName( $code );
+		$name = self::fetchLanguageName( $code );
 		if ( $name ) {
 			return $name; # if it's defined as a language name, show that
 		} else {
@@ -753,21 +780,21 @@ class Language {
 	 * @return string[]|bool List of date format preference keys, or false if disabled.
 	 */
 	public function getDatePreferences() {
-		return $this->localisationCache->getItem( $this->mCode, 'datePreferences' );
+		return self::$dataCache->getItem( $this->mCode, 'datePreferences' );
 	}
 
 	/**
 	 * @return array
 	 */
 	function getDateFormats() {
-		return $this->localisationCache->getItem( $this->mCode, 'dateFormats' );
+		return self::$dataCache->getItem( $this->mCode, 'dateFormats' );
 	}
 
 	/**
 	 * @return array|string
 	 */
 	public function getDefaultDateFormat() {
-		$df = $this->localisationCache->getItem( $this->mCode, 'defaultDateFormat' );
+		$df = self::$dataCache->getItem( $this->mCode, 'defaultDateFormat' );
 		if ( $df === 'dmy or mdy' ) {
 			global $wgAmericanDates;
 			return $wgAmericanDates ? 'mdy' : 'dmy';
@@ -780,7 +807,7 @@ class Language {
 	 * @return array
 	 */
 	public function getDatePreferenceMigrationMap() {
-		return $this->localisationCache->getItem( $this->mCode, 'datePreferenceMigrationMap' );
+		return self::$dataCache->getItem( $this->mCode, 'datePreferenceMigrationMap' );
 	}
 
 	/**
@@ -801,8 +828,6 @@ class Language {
 
 	/**
 	 * Get an array of language names, indexed by code.
-	 *
-	 * @deprecated since 1.34, use LanguageNameUtils::getLanguageNames
 	 * @param null|string $inLanguage Code of language in which to return the names
 	 * 		Use self::AS_AUTONYMS for autonyms (native names)
 	 * @param string $include One of:
@@ -813,12 +838,95 @@ class Language {
 	 * @since 1.20
 	 */
 	public static function fetchLanguageNames( $inLanguage = self::AS_AUTONYMS, $include = 'mw' ) {
-		return MediaWikiServices::getInstance()->getLanguageNameUtils()
-			->getLanguageNames( $inLanguage, $include );
+		$cacheKey = $inLanguage === self::AS_AUTONYMS ? 'null' : $inLanguage;
+		$cacheKey .= ":$include";
+		if ( self::$languageNameCache === null ) {
+			self::$languageNameCache = new HashBagOStuff( [ 'maxKeys' => 20 ] );
+		}
+
+		$ret = self::$languageNameCache->get( $cacheKey );
+		if ( !$ret ) {
+			$ret = self::fetchLanguageNamesUncached( $inLanguage, $include );
+			self::$languageNameCache->set( $cacheKey, $ret );
+		}
+		return $ret;
 	}
 
 	/**
-	 * @deprecated since 1.34, use LanguageNameUtils::getLanguageName
+	 * Uncached helper for fetchLanguageNames
+	 * @param null|string $inLanguage Code of language in which to return the names
+	 *		Use self::AS_AUTONYMS for autonyms (native names)
+	 * @param string $include One of:
+	 *		self::ALL all available languages
+	 *		'mw' only if the language is defined in MediaWiki or wgExtraLanguageNames (default)
+	 *		self::SUPPORTED only if the language is in 'mw' *and* has a message file
+	 * @return array Language code => language name (sorted by key)
+	 */
+	private static function fetchLanguageNamesUncached(
+		$inLanguage = self::AS_AUTONYMS,
+		$include = 'mw'
+	) {
+		global $wgExtraLanguageNames, $wgUsePigLatinVariant;
+
+		// If passed an invalid language code to use, fallback to en
+		if ( $inLanguage !== self::AS_AUTONYMS && !self::isValidCode( $inLanguage ) ) {
+			$inLanguage = 'en';
+		}
+
+		$names = [];
+
+		if ( $inLanguage ) {
+			# TODO: also include when $inLanguage is null, when this code is more efficient
+			Hooks::run( 'LanguageGetTranslatedLanguageNames', [ &$names, $inLanguage ] );
+		}
+
+		$mwNames = $wgExtraLanguageNames + MediaWiki\Languages\Data\Names::$names;
+		if ( $wgUsePigLatinVariant ) {
+			// Pig Latin (for variant development)
+			$mwNames['en-x-piglatin'] = 'Igpay Atinlay';
+		}
+
+		foreach ( $mwNames as $mwCode => $mwName ) {
+			# - Prefer own MediaWiki native name when not using the hook
+			# - For other names just add if not added through the hook
+			if ( $mwCode === $inLanguage || !isset( $names[$mwCode] ) ) {
+				$names[$mwCode] = $mwName;
+			}
+		}
+
+		if ( $include === self::ALL ) {
+			ksort( $names );
+			return $names;
+		}
+
+		$returnMw = [];
+		$coreCodes = array_keys( $mwNames );
+		foreach ( $coreCodes as $coreCode ) {
+			$returnMw[$coreCode] = $names[$coreCode];
+		}
+
+		if ( $include === self::SUPPORTED ) {
+			$namesMwFile = [];
+			# We do this using a foreach over the codes instead of a directory
+			# loop so that messages files in extensions will work correctly.
+			foreach ( $returnMw as $code => $value ) {
+				if ( is_readable( self::getMessagesFileName( $code ) )
+					|| is_readable( self::getJsonMessagesFileName( $code ) )
+				) {
+					$namesMwFile[$code] = $names[$code];
+				}
+			}
+
+			ksort( $namesMwFile );
+			return $namesMwFile;
+		}
+
+		ksort( $returnMw );
+		# 'mw' option; default if it's not one of the other two options (all/mwfile)
+		return $returnMw;
+	}
+
+	/**
 	 * @param string $code The code of the language for which to get the name
 	 * @param null|string $inLanguage Code of language in which to return the name
 	 *   (SELF::AS_AUTONYMS for autonyms)
@@ -831,8 +939,9 @@ class Language {
 		$inLanguage = self::AS_AUTONYMS,
 		$include = self::ALL
 	) {
-		return MediaWikiServices::getInstance()->getLanguageNameUtils()
-			->getLanguageName( $code, $inLanguage, $include );
+		$code = strtolower( $code );
+		$array = self::fetchLanguageNames( $inLanguage, $include );
+		return !array_key_exists( $code, $array ) ? '' : $array[$code];
 	}
 
 	/**
@@ -2165,8 +2274,7 @@ class Language {
 		}
 
 		if ( !isset( $this->dateFormatStrings[$type][$pref] ) ) {
-			$df =
-				$this->localisationCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
+			$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
 
 			if ( $type === 'pretty' && $df === null ) {
 				$df = $this->getDateFormatString( 'date', $pref );
@@ -2174,8 +2282,7 @@ class Language {
 
 			if ( !$wasDefault && $df === null ) {
 				$pref = $this->getDefaultDateFormat();
-				$df = $this->getLocalisationCache()
-					->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
+				$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
 			}
 
 			$this->dateFormatStrings[$type][$pref] = $df;
@@ -2539,14 +2646,14 @@ class Language {
 	 * @return string|null
 	 */
 	public function getMessage( $key ) {
-		return $this->localisationCache->getSubitem( $this->mCode, 'messages', $key );
+		return self::$dataCache->getSubitem( $this->mCode, 'messages', $key );
 	}
 
 	/**
 	 * @return array
 	 */
 	function getAllMessages() {
-		return $this->localisationCache->getItem( $this->mCode, 'messages' );
+		return self::$dataCache->getItem( $this->mCode, 'messages' );
 	}
 
 	/**
@@ -2788,7 +2895,7 @@ class Language {
 	 * @return string
 	 */
 	function fallback8bitEncoding() {
-		return $this->localisationCache->getItem( $this->mCode, 'fallback8bitEncoding' );
+		return self::$dataCache->getItem( $this->mCode, 'fallback8bitEncoding' );
 	}
 
 	/**
@@ -2978,7 +3085,7 @@ class Language {
 	 * @return bool
 	 */
 	function isRTL() {
-		return $this->localisationCache->getItem( $this->mCode, 'rtl' );
+		return self::$dataCache->getItem( $this->mCode, 'rtl' );
 	}
 
 	/**
@@ -3054,7 +3161,7 @@ class Language {
 	 * @return array
 	 */
 	function capitalizeAllNouns() {
-		return $this->localisationCache->getItem( $this->mCode, 'capitalizeAllNouns' );
+		return self::$dataCache->getItem( $this->mCode, 'capitalizeAllNouns' );
 	}
 
 	/**
@@ -3087,7 +3194,7 @@ class Language {
 	 * @return bool
 	 */
 	function linkPrefixExtension() {
-		return $this->localisationCache->getItem( $this->mCode, 'linkPrefixExtension' );
+		return self::$dataCache->getItem( $this->mCode, 'linkPrefixExtension' );
 	}
 
 	/**
@@ -3095,7 +3202,7 @@ class Language {
 	 * @return array
 	 */
 	function getMagicWords() {
-		return $this->localisationCache->getItem( $this->mCode, 'magicWords' );
+		return self::$dataCache->getItem( $this->mCode, 'magicWords' );
 	}
 
 	/**
@@ -3105,7 +3212,7 @@ class Language {
 	 */
 	function getMagic( $mw ) {
 		$rawEntry = $this->mMagicExtensions[$mw->mId] ??
-			$this->localisationCache->getSubitem( $this->mCode, 'magicWords', $mw->mId );
+			self::$dataCache->getSubitem( $this->mCode, 'magicWords', $mw->mId );
 
 		if ( !is_array( $rawEntry ) ) {
 			wfWarn( "\"$rawEntry\" is not a valid magic word for \"$mw->mId\"" );
@@ -3140,7 +3247,7 @@ class Language {
 		if ( is_null( $this->mExtendedSpecialPageAliases ) ) {
 			// Initialise array
 			$this->mExtendedSpecialPageAliases =
-				$this->localisationCache->getItem( $this->mCode, 'specialPageAliases' );
+				self::$dataCache->getItem( $this->mCode, 'specialPageAliases' );
 		}
 
 		return $this->mExtendedSpecialPageAliases;
@@ -3305,28 +3412,28 @@ class Language {
 	 * @return string
 	 */
 	function digitGroupingPattern() {
-		return $this->localisationCache->getItem( $this->mCode, 'digitGroupingPattern' );
+		return self::$dataCache->getItem( $this->mCode, 'digitGroupingPattern' );
 	}
 
 	/**
 	 * @return array
 	 */
 	function digitTransformTable() {
-		return $this->localisationCache->getItem( $this->mCode, 'digitTransformTable' );
+		return self::$dataCache->getItem( $this->mCode, 'digitTransformTable' );
 	}
 
 	/**
 	 * @return array
 	 */
 	function separatorTransformTable() {
-		return $this->localisationCache->getItem( $this->mCode, 'separatorTransformTable' );
+		return self::$dataCache->getItem( $this->mCode, 'separatorTransformTable' );
 	}
 
 	/**
 	 * @return int|null
 	 */
 	function minimumGroupingDigits() {
-		return $this->localisationCache->getItem( $this->mCode, 'minimumGroupingDigits' );
+		return self::$dataCache->getItem( $this->mCode, 'minimumGroupingDigits' );
 	}
 
 	/**
@@ -4226,7 +4333,7 @@ class Language {
 	 * @return string
 	 */
 	public function linkTrail() {
-		return $this->localisationCache->getItem( $this->mCode, 'linkTrail' );
+		return self::$dataCache->getItem( $this->mCode, 'linkTrail' );
 	}
 
 	/**
@@ -4236,7 +4343,7 @@ class Language {
 	 * @return string
 	 */
 	public function linkPrefixCharset() {
-		return $this->localisationCache->getItem( $this->mCode, 'linkPrefixCharset' );
+		return self::$dataCache->getItem( $this->mCode, 'linkPrefixCharset' );
 	}
 
 	/**
@@ -4338,8 +4445,6 @@ class Language {
 
 	/**
 	 * Get the name of a file for a certain language code
-	 *
-	 * @deprecated since 1.34, use LanguageNameUtils
 	 * @param string $prefix Prepend this to the filename
 	 * @param string $code Language code
 	 * @param string $suffix Append this to the filename
@@ -4347,30 +4452,38 @@ class Language {
 	 * @return string $prefix . $mangledCode . $suffix
 	 */
 	public static function getFileName( $prefix, $code, $suffix = '.php' ) {
-		return MediaWikiServices::getInstance()->getLanguageNameUtils()
-			->getFileName( $prefix, $code, $suffix );
+		if ( !self::isValidBuiltInCode( $code ) ) {
+			throw new MWException( "Invalid language code \"$code\"" );
+		}
+
+		return $prefix . str_replace( '-', '_', ucfirst( $code ) ) . $suffix;
 	}
 
 	/**
-	 * @deprecated since 1.34, use LanguageNameUtils
 	 * @param string $code
 	 * @return string
 	 */
 	public static function getMessagesFileName( $code ) {
-		return MediaWikiServices::getInstance()->getLanguageNameUtils()
-			->getMessagesFileName( $code );
+		global $IP;
+		$file = self::getFileName( "$IP/languages/messages/Messages", $code, '.php' );
+		Hooks::run( 'Language::getMessagesFileName', [ $code, &$file ] );
+		return $file;
 	}
 
 	/**
-	 * @deprecated since 1.34, use LanguageNameUtils
 	 * @param string $code
 	 * @return string
 	 * @throws MWException
 	 * @since 1.23
 	 */
 	public static function getJsonMessagesFileName( $code ) {
-		return MediaWikiServices::getInstance()->getLanguageNameUtils()
-			->getJsonMessagesFileName( $code );
+		global $IP;
+
+		if ( !self::isValidBuiltInCode( $code ) ) {
+			throw new MWException( "Invalid language code \"$code\"" );
+		}
+
+		return "$IP/languages/i18n/$code.json";
 	}
 
 	/**
@@ -4820,13 +4933,11 @@ class Language {
 	 * @return array Associative array with plural form, and plural rule as key-value pairs
 	 */
 	public function getCompiledPluralRules() {
-		$pluralRules =
-			$this->localisationCache->getItem( strtolower( $this->mCode ), 'compiledPluralRules' );
+		$pluralRules = self::$dataCache->getItem( strtolower( $this->mCode ), 'compiledPluralRules' );
 		$fallbacks = self::getFallbacksFor( $this->mCode );
 		if ( !$pluralRules ) {
 			foreach ( $fallbacks as $fallbackCode ) {
-				$pluralRules = $this->localisationCache
-					->getItem( strtolower( $fallbackCode ), 'compiledPluralRules' );
+				$pluralRules = self::$dataCache->getItem( strtolower( $fallbackCode ), 'compiledPluralRules' );
 				if ( $pluralRules ) {
 					break;
 				}
@@ -4841,13 +4952,11 @@ class Language {
 	 * @return array Associative array with plural form number and plural rule as key-value pairs
 	 */
 	public function getPluralRules() {
-		$pluralRules =
-			$this->localisationCache->getItem( strtolower( $this->mCode ), 'pluralRules' );
+		$pluralRules = self::$dataCache->getItem( strtolower( $this->mCode ), 'pluralRules' );
 		$fallbacks = self::getFallbacksFor( $this->mCode );
 		if ( !$pluralRules ) {
 			foreach ( $fallbacks as $fallbackCode ) {
-				$pluralRules = $this->localisationCache
-					->getItem( strtolower( $fallbackCode ), 'pluralRules' );
+				$pluralRules = self::$dataCache->getItem( strtolower( $fallbackCode ), 'pluralRules' );
 				if ( $pluralRules ) {
 					break;
 				}
@@ -4862,13 +4971,11 @@ class Language {
 	 * @return array Associative array with plural form number and plural rule type as key-value pairs
 	 */
 	public function getPluralRuleTypes() {
-		$pluralRuleTypes =
-			$this->localisationCache->getItem( strtolower( $this->mCode ), 'pluralRuleTypes' );
+		$pluralRuleTypes = self::$dataCache->getItem( strtolower( $this->mCode ), 'pluralRuleTypes' );
 		$fallbacks = self::getFallbacksFor( $this->mCode );
 		if ( !$pluralRuleTypes ) {
 			foreach ( $fallbacks as $fallbackCode ) {
-				$pluralRuleTypes = $this->localisationCache
-					->getItem( strtolower( $fallbackCode ), 'pluralRuleTypes' );
+				$pluralRuleTypes = self::$dataCache->getItem( strtolower( $fallbackCode ), 'pluralRuleTypes' );
 				if ( $pluralRuleTypes ) {
 					break;
 				}

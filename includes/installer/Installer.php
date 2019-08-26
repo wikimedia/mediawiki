@@ -412,17 +412,14 @@ abstract class Installer {
 		// This will be overridden in the web installer with the user-specified language
 		RequestContext::getMain()->setLanguage( 'en' );
 
+		// Disable the i18n cache
+		// TODO: manage LocalisationCache singleton in MediaWikiServices
+		Language::getLocalisationCache()->disableBackend();
+
 		// Disable all global services, since we don't have any configuration yet!
 		MediaWikiServices::disableStorageBackend();
 
 		$mwServices = MediaWikiServices::getInstance();
-
-		// Disable i18n cache
-		$mwServices->getLocalisationCache()->disableBackend();
-
-		// Clear language cache so the old i18n cache doesn't sneak back in
-		Language::clearCaches();
-
 		// Disable object cache (otherwise CACHE_ANYTHING will try CACHE_DB and
 		// SqlBagOStuff will then throw since we just disabled wfGetDB)
 		$wgObjectCaches = $mwServices->getMainConfig()->get( 'ObjectCaches' );
