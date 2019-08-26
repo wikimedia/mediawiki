@@ -45,9 +45,9 @@ class BlockListPager extends TablePager {
 	 * @param array $conds
 	 */
 	public function __construct( $page, $conds ) {
+		parent::__construct( $page->getContext(), $page->getLinkRenderer() );
 		$this->conds = $conds;
 		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
-		parent::__construct( $page->getContext() );
 	}
 
 	function getFieldNames() {
@@ -97,7 +97,7 @@ class BlockListPager extends TablePager {
 
 		$formatted = '';
 
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$linkRenderer = $this->getLinkRenderer();
 
 		switch ( $name ) {
 			case 'ipb_timestamp':
@@ -250,7 +250,7 @@ class BlockListPager extends TablePager {
 	 */
 	private function getRestrictionListHTML( stdClass $row ) {
 		$items = [];
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$linkRenderer = $this->getLinkRenderer();
 
 		foreach ( $this->restrictions as $restriction ) {
 			if ( $restriction->getBlockId() !== (int)$row->ipb_id ) {

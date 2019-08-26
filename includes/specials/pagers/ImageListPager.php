@@ -53,7 +53,8 @@ class ImageListPager extends TablePager {
 	public function __construct( IContextSource $context, $userName = null, $search = '',
 		$including = false, $showAll = false
 	) {
-		$this->setContext( $context );
+		parent::__construct( $context );
+
 		$this->mIncluding = $including;
 		$this->mShowAll = $showAll;
 
@@ -94,8 +95,6 @@ class ImageListPager extends TablePager {
 		} else {
 			$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 		}
-
-		parent::__construct( $context );
 	}
 
 	/**
@@ -437,7 +436,7 @@ class ImageListPager extends TablePager {
 	 */
 	function formatValue( $field, $value ) {
 		$services = MediaWikiServices::getInstance();
-		$linkRenderer = $services->getLinkRenderer();
+		$linkRenderer = $this->getLinkRenderer();
 		switch ( $field ) {
 			case 'thumb':
 				$opt = [ 'time' => wfTimestamp( TS_MW, $this->mCurrentRow->img_timestamp ) ];
