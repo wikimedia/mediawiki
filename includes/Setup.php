@@ -368,19 +368,6 @@ foreach ( $wgForeignFileRepos as &$repo ) {
 unset( $repo ); // no global pollution; destroy reference
 
 $rcMaxAgeDays = $wgRCMaxAge / ( 3600 * 24 );
-if ( $wgRCFilterByAge ) {
-	// Trim down $wgRCLinkDays so that it only lists links which are valid
-	// as determined by $wgRCMaxAge.
-	// Note that we allow 1 link higher than the max for things like 56 days but a 60 day link.
-	sort( $wgRCLinkDays );
-
-	foreach ( $wgRCLinkDays as $i => $days ) {
-		if ( $days >= $rcMaxAgeDays ) {
-			array_splice( $wgRCLinkDays, $i + 1 );
-			break;
-		}
-	}
-}
 // Ensure that default user options are not invalid, since that breaks Special:Preferences
 $wgDefaultUserOptions['rcdays'] = min(
 	$wgDefaultUserOptions['rcdays'],
