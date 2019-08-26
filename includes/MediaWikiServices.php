@@ -14,12 +14,10 @@ use GlobalVarConfig;
 use Hooks;
 use IBufferingStatsdDataFactory;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
-use LocalisationCache;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\Http\HttpRequestFactory;
-use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\PreferencesFactory;
@@ -626,14 +624,6 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
-	 * @since 1.34
-	 * @return LanguageNameUtils
-	 */
-	public function getLanguageNameUtils() {
-		return $this->getService( 'LanguageNameUtils' );
-	}
-
-	/**
 	 * @since 1.28
 	 * @return LinkCache
 	 */
@@ -658,14 +648,6 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getLinkRendererFactory() {
 		return $this->getService( 'LinkRendererFactory' );
-	}
-
-	/**
-	 * @since 1.34
-	 * @return LocalisationCache
-	 */
-	public function getLocalisationCache() : LocalisationCache {
-		return $this->getService( 'LocalisationCache' );
 	}
 
 	/**
