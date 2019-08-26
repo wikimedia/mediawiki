@@ -62,7 +62,7 @@ class RebuildLocalisationCache extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgLocalisationCacheConf;
+		global $wgLocalisationCacheConf, $wgCacheDirectory;
 
 		$force = $this->hasOption( 'force' );
 		$threads = $this->getOption( 'threads', 1 );
@@ -92,7 +92,7 @@ class RebuildLocalisationCache extends Maintenance {
 				$conf,
 				MediaWikiServices::getInstance()->getMainConfig()
 			),
-			new LCStoreDB( [] ),
+			LocalisationCache::getStoreFromConf( $conf, $wgCacheDirectory ),
 			LoggerFactory::getInstance( 'localisation' ),
 			[ function () {
 				MediaWikiServices::getInstance()->getResourceLoader()

@@ -191,6 +191,38 @@ class LocalisationCache {
 	private $mergeableKeys = null;
 
 	/**
+	 * Return a suitable LCStore as specified by the given configuration.
+	 *
+	 * @param array $conf In the format of $wgLocalisationCacheConf
+	 * @param string|false|null $fallbackCacheDir In case 'storeDirectory' isn't specified
+	 * @return LCStore
+	 */
+	public static function getStoreFromConf( array $conf, $fallbackCacheDir ) : LCStore {
+		$storeArg = [];
+		$storeArg['directory'] =
+			$conf['storeDirectory'] ?: $fallbackCacheDir;
+
+		if ( !empty( $conf['storeClass'] ) ) {
+			$storeClass = $conf['storeClass'];
+		} elseif ( $conf['store'] === 'files' || $conf['store'] === 'file' ||
+			( $conf['store'] === 'detect' && $storeArg['directory'] )
+		) {
+			$storeClass = LCStoreCDB::class;
+		} elseif ( $conf['store'] === 'db' || $conf['store'] === 'detect' ) {
+			$storeClass = LCStoreDB::class;
+			$storeArg['server'] = $conf['storeServer'] ?? [];
+		} elseif ( $conf['store'] === 'array' ) {
+			$storeClass = LCStoreStaticArray::class;
+		} else {
+			throw new MWException(
+				'Please set $wgLocalisationCacheConf[\'store\'] to something sensible.'
+			);
+		}
+
+		return new $storeClass( $storeArg );
+	}
+
+	/**
 	 * @todo Make this a const when HHVM support is dropped (T192166)
 	 *
 	 * @var array

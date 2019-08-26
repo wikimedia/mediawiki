@@ -295,28 +295,9 @@ return [
 
 		$logger = LoggerFactory::getInstance( 'localisation' );
 
-		// Figure out what class to use for the LCStore
-		$storeArg = [];
-		$storeArg['directory'] =
-			$conf['storeDirectory'] ?: $services->getMainConfig()->get( 'CacheDirectory' );
-
-		if ( !empty( $conf['storeClass'] ) ) {
-			$storeClass = $conf['storeClass'];
-		} elseif ( $conf['store'] === 'files' || $conf['store'] === 'file' ||
-			( $conf['store'] === 'detect' && $storeArg['directory'] )
-		) {
-			$storeClass = LCStoreCDB::class;
-		} elseif ( $conf['store'] === 'db' || $conf['store'] === 'detect' ) {
-			$storeClass = LCStoreDB::class;
-			$storeArg['server'] = $conf['storeServer'] ?? [];
-		} elseif ( $conf['store'] === 'array' ) {
-			$storeClass = LCStoreStaticArray::class;
-		} else {
-			throw new MWException(
-				'Please set $wgLocalisationCacheConf[\'store\'] to something sensible.'
-			);
-		}
-		$logger->debug( "LocalisationCache: using store $storeClass" );
+		$store = LocalisationCache::getStoreFromConf(
+			$conf, $services->getMainConfig()->get( 'CacheDirectory' ) );
+		$logger->debug( 'LocalisationCache: using store ' . get_class( $store ) );
 
 		return new $conf['class'](
 			new ServiceOptions(
@@ -331,7 +312,7 @@ return [
 				// Some other options come from config itself
 				$services->getMainConfig()
 			),
-			new $storeClass( $storeArg ),
+			$store,
 			$logger,
 			[ function () use ( $services ) {
 				$services->getResourceLoader()->getMessageBlobStore()->clear();
