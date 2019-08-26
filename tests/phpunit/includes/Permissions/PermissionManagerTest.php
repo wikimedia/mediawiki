@@ -122,8 +122,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 			$this->user = $this->userUser;
 		}
-
-		$this->resetServices();
 	}
 
 	public function tearDown() {
@@ -143,7 +141,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		} else {
 			$this->user = $this->altUser;
 		}
-		$this->resetServices();
 	}
 
 	/**
@@ -421,8 +418,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 			global $wgGroupPermissions;
 			$old = $wgGroupPermissions;
-			$wgGroupPermissions = [];
-			$this->resetServices();
+			$this->setMwGlobals( 'wgGroupPermissions', [] );
 
 			$this->assertEquals( $check[$action][1],
 				MediaWikiServices::getInstance()->getPermissionManager()
@@ -433,8 +429,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			$this->assertEquals( $check[$action][1],
 				MediaWikiServices::getInstance()->getPermissionManager()
 					->getPermissionErrors( $action, $this->user, $this->title, 'secure' ) );
-			$wgGroupPermissions = $old;
-			$this->resetServices();
+			$this->setMwGlobals( 'wgGroupPermissions', $old );
 
 			$this->overrideUserPermissions( $this->user, $action );
 			$this->assertEquals( $check[$action][2],
@@ -460,39 +455,33 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	}
 
 	protected function runGroupPermissions( $perm, $action, $result, $result2 = null ) {
-		global $wgGroupPermissions;
-
 		if ( $result2 === null ) {
 			$result2 = $result;
 		}
 
-		$wgGroupPermissions['autoconfirmed']['move'] = false;
-		$wgGroupPermissions['user']['move'] = false;
-		$this->resetServices();
+		$this->setGroupPermissions( 'autoconfirmed', 'move', false );
+		$this->setGroupPermissions( 'user', 'move', false );
 		$this->overrideUserPermissions( $this->user, $perm );
 		$res = MediaWikiServices::getInstance()->getPermissionManager()
 			->getPermissionErrors( $action, $this->user, $this->title );
 		$this->assertEquals( $result, $res );
 
-		$wgGroupPermissions['autoconfirmed']['move'] = true;
-		$wgGroupPermissions['user']['move'] = false;
-		$this->resetServices();
+		$this->setGroupPermissions( 'autoconfirmed', 'move', true );
+		$this->setGroupPermissions( 'user', 'move', false );
 		$this->overrideUserPermissions( $this->user, $perm );
 		$res = MediaWikiServices::getInstance()->getPermissionManager()
 			->getPermissionErrors( $action, $this->user, $this->title );
 		$this->assertEquals( $result2, $res );
 
-		$wgGroupPermissions['autoconfirmed']['move'] = true;
-		$wgGroupPermissions['user']['move'] = true;
-		$this->resetServices();
+		$this->setGroupPermissions( 'autoconfirmed', 'move', true );
+		$this->setGroupPermissions( 'user', 'move', true );
 		$this->overrideUserPermissions( $this->user, $perm );
 		$res = MediaWikiServices::getInstance()->getPermissionManager()
 			->getPermissionErrors( $action, $this->user, $this->title );
 		$this->assertEquals( $result2, $res );
 
-		$wgGroupPermissions['autoconfirmed']['move'] = false;
-		$wgGroupPermissions['user']['move'] = true;
-		$this->resetServices();
+		$this->setGroupPermissions( 'autoconfirmed', 'move', false );
+		$this->setGroupPermissions( 'user', 'move', true );
 		$this->overrideUserPermissions( $this->user, $perm );
 		$res = MediaWikiServices::getInstance()->getPermissionManager()
 			->getPermissionErrors( $action, $this->user, $this->title );
@@ -1144,7 +1133,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 				->getPermissionErrors( 'edit', $this->user, $this->title ) );
 
 		$this->setMwGlobals( 'wgEmailConfirmToEdit', false );
-		$this->resetServices();
 		$this->overrideUserPermissions( $this->user, [
 			'createpage',
 			'edit',
@@ -1577,7 +1565,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			$rights = array_diff( $rights, [ 'writetest' ] );
 		} );
 
-		$this->resetServices();
 		$rights = MediaWikiServices::getInstance()
 			->getPermissionManager()
 			->getUserPermissions( $user );
@@ -1859,7 +1846,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			'wgRestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ],
 			'wgAutopromote' => []
 		] );
-		$this->resetServices();
 		$user = is_null( $userGroups ) ? null : $this->getTestUser( $userGroups )->getUser();
 		$this->assertSame( $expected, MediaWikiServices::getInstance()
 			->getPermissionManager()

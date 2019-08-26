@@ -960,7 +960,6 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 	 */
 	public function testRevisionSelectFields( $migrationStageSettings, $expected ) {
 		$this->setMwGlobals( $migrationStageSettings );
-		$this->overrideMwServices();
 
 		$this->hideDeprecated( 'Revision::selectFields' );
 		$this->assertArrayEqualsIgnoringIntKeyOrder( $expected, Revision::selectFields() );
@@ -972,7 +971,6 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 	 */
 	public function testRevisionSelectArchiveFields( $migrationStageSettings, $expected ) {
 		$this->setMwGlobals( $migrationStageSettings );
-		$this->overrideMwServices();
 
 		$this->hideDeprecated( 'Revision::selectArchiveFields' );
 		$this->assertArrayEqualsIgnoringIntKeyOrder( $expected, Revision::selectArchiveFields() );
@@ -984,7 +982,6 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 	public function testRevisionUserJoinCond() {
 		$this->hideDeprecated( 'Revision::userJoinCond' );
 		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_OLD );
-		$this->overrideMwServices();
 		$this->assertEquals(
 			[ 'LEFT JOIN', [ 'rev_user != 0', 'user_id = rev_user' ] ],
 			Revision::userJoinCond()
@@ -1041,7 +1038,6 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 	 */
 	public function testRevisionGetArchiveQueryInfo( $migrationStageSettings, $expected ) {
 		$this->setMwGlobals( $migrationStageSettings );
-		$this->overrideMwServices();
 
 		$queryInfo = Revision::getArchiveQueryInfo();
 		$this->assertQueryInfoEquals( $expected, $queryInfo );
@@ -1053,7 +1049,6 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 	 */
 	public function testRevisionGetQueryInfo( $migrationStageSettings, $options, $expected ) {
 		$this->setMwGlobals( $migrationStageSettings );
-		$this->overrideMwServices();
 
 		$queryInfo = Revision::getQueryInfo( $options );
 		$this->assertQueryInfoEquals( $expected, $queryInfo );
@@ -1065,7 +1060,6 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 	 */
 	public function testRevisionStoreGetQueryInfo( $migrationStageSettings, $options, $expected ) {
 		$this->setMwGlobals( $migrationStageSettings );
-		$this->overrideMwServices();
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 
@@ -1083,7 +1077,6 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 		$expected
 	) {
 		$this->setMwGlobals( $migrationStageSettings );
-		$this->overrideMwServices();
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 
@@ -1097,7 +1090,6 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 	 */
 	public function testRevisionStoreGetArchiveQueryInfo( $migrationStageSettings, $expected ) {
 		$this->setMwGlobals( $migrationStageSettings );
-		$this->overrideMwServices();
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 

@@ -281,7 +281,6 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testConstructFromRowWithBadPageId() {
-		$this->overrideMwServices();
 		Wikimedia\suppressWarnings();
 		$rev = new Revision( (object)[
 			'rev_page' => 77777777,
@@ -603,7 +602,6 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testLoadFromTitle() {
 		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_NEW );
-		$this->overrideMwServices();
 		$title = $this->getMockTitle();
 
 		$conditions = [

@@ -120,9 +120,6 @@ class GlobalTest extends MediaWikiTestCase {
 		fwrite( $f, 'Message' );
 		fclose( $f );
 
-		// Reset the service to avoid cached results
-		$this->overrideMwServices();
-
 		$this->assertTrue( wfReadOnly() );
 		$this->assertTrue( wfReadOnly() ); # Check cached
 	}
@@ -137,7 +134,6 @@ class GlobalTest extends MediaWikiTestCase {
 		$this->setMwGlobals( [
 			'wgReadOnly' => 'reason'
 		] );
-		$this->overrideMwServices();
 
 		$this->assertSame( 'reason', wfReadOnlyReason() );
 	}

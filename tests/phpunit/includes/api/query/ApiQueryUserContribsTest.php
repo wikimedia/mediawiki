@@ -11,13 +11,11 @@ class ApiQueryUserContribsTest extends ApiTestCase {
 		global $wgActorTableSchemaMigrationStage;
 
 		$reset = new \Wikimedia\ScopedCallback( function ( $v ) {
-			global $wgActorTableSchemaMigrationStage;
-			$wgActorTableSchemaMigrationStage = $v;
-			$this->overrideMwServices();
+			$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', $v );
 		}, [ $wgActorTableSchemaMigrationStage ] );
 		// Needs to WRITE_BOTH so READ_OLD tests below work. READ mode here doesn't really matter.
-		$wgActorTableSchemaMigrationStage = SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW;
-		$this->overrideMwServices();
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage',
+			SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW );
 
 		$users = [
 			User::newFromName( '192.168.2.2', false ),
@@ -55,7 +53,6 @@ class ApiQueryUserContribsTest extends ApiTestCase {
 		$this->markTestSkippedIfDbType( 'sqlite' );
 
 		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', $stage );
-		$this->overrideMwServices();
 
 		if ( isset( $params['ucuserids'] ) ) {
 			$params['ucuserids'] = implode( '|', array_map( 'User::idFromName', $params['ucuserids'] ) );
@@ -150,7 +147,6 @@ class ApiQueryUserContribsTest extends ApiTestCase {
 	 */
 	public function testInterwikiUser( $stage ) {
 		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', $stage );
-		$this->overrideMwServices();
 
 		$params = [
 			'action' => 'query',

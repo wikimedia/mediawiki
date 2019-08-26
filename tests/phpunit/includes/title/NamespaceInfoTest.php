@@ -1275,7 +1275,6 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 			'wgRestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ],
 			'wgAutopromote' => []
 		] );
-		$this->resetServices();
 		$obj = $this->newObj();
 		$user = is_null( $groups ) ? null : $this->getTestUser( $groups )->getUser();
 		$this->assertSame( $expected, $obj->getRestrictionLevels( $ns, $user ) );

@@ -48,7 +48,6 @@ class BlockManagerTest extends MediaWikiTestCase {
 	private function getBlockManagerConstructorArgs( $overrideConfig ) {
 		$blockManagerConfig = array_merge( $this->blockManagerConfig, $overrideConfig );
 		$this->setMwGlobals( $blockManagerConfig );
-		$this->overrideMwServices();
 		return [
 			new LoggedServiceOptions(
 				self::$serviceOptionsAccessLog,

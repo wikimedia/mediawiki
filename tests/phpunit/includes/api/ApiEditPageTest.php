@@ -39,7 +39,6 @@ class ApiEditPageTest extends ApiTestCase {
 			$this->tablesUsed,
 			[ 'change_tag', 'change_tag_def', 'logging' ]
 		);
-		$this->resetServices();
 	}
 
 	public function testEdit() {
@@ -1368,8 +1367,6 @@ class ApiEditPageTest extends ApiTestCase {
 		ChangeTags::defineTag( 'custom tag' );
 		$this->setMwGlobals( 'wgRevokePermissions',
 			[ 'user' => [ 'applychangetags' => true ] ] );
-		// Supply services with updated globals
-		$this->resetServices();
 
 		try {
 			$this->doApiRequestWithToken( [
@@ -1498,8 +1495,6 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->setMwGlobals( 'wgRevokePermissions',
 			[ 'user' => [ 'upload' => true ] ] );
-		// Supply services with updated globals
-		$this->resetServices();
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -1515,8 +1510,6 @@ class ApiEditPageTest extends ApiTestCase {
 			'The content you supplied exceeds the article size limit of 1 kilobyte.' );
 
 		$this->setMwGlobals( 'wgMaxArticleSize', 1 );
-		// Supply services with updated globals
-		$this->resetServices();
 
 		$text = str_repeat( '!', 1025 );
 
@@ -1534,8 +1527,6 @@ class ApiEditPageTest extends ApiTestCase {
 			'The action you have requested is limited to users in the group: ' );
 
 		$this->setMwGlobals( 'wgRevokePermissions', [ '*' => [ 'edit' => true ] ] );
-		// Supply services with updated globals
-		$this->resetServices();
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -1552,8 +1543,6 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->setMwGlobals( 'wgRevokePermissions',
 			[ 'user' => [ 'editcontentmodel' => true ] ] );
-		// Supply services with updated globals
-		$this->resetServices();
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
