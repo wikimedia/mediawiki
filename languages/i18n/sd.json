@@ -1882,6 +1882,8 @@
 	"confirm-unwatch-button": "ٺيڪ",
 	"confirm-unwatch-top": "هيءُ صفحو پنهنجي نظر ۾ فهرست مان هٽائيندا؟",
 	"confirm-rollback-top": "ھن صفحي ۾ ڪيل سنوارون واپس ورايون؟",
+	"semicolon-separator": "؛&#32;",
+	"comma-separator": "،&#32;",
 	"quotation-marks": "\"$1\"",
 	"imgmultipageprev": "← اڳوڻو صفحو",
 	"imgmultipagenext": "اڳيون صفحو ←",

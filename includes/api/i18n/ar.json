@@ -1786,6 +1786,7 @@
 	"apiwarn-deprecation-missingparam": "نظرا لعدم تحديد <var>$1</var>; تم استخدام تنسيق قديم للإخراج، تم إيقاف هذا التنسيق، وسيتم دائما استخدام التنسيق الجديد في المستقبل.",
 	"apiwarn-deprecation-parameter": "تم إيقاف الوسيط <var>$1</var>.",
 	"apiwarn-deprecation-parse-headitems": "تم إيقاف <kbd>prop=headitems</kbd> منذ ميدياويكي 1.28; استخدم <kbd>prop=headhtml</kbd> عند إنشاء مستندات HTML جديدة، أو <kbd>prop=modules|jsconfigvars</kbd> عند تحديث مستند من جانب العميل.",
+	"apiwarn-deprecation-post-without-content-type": "تم تقديم طلب POST بدون عنوان <code>Content-Type</code>، هذا لا يعمل بشكل موثوق.",
 	"apiwarn-deprecation-purge-get": "تم إيقاف استخدام <kbd>action=purge</kbd> عبر GET; استخدم POST بدلا من ذلك.",
 	"apiwarn-deprecation-withreplacement": "تم إيقاف <kbd>$1</kbd>; الرجاء استخدام <kbd>$2</kbd> بدلا من ذلك.",
 	"apiwarn-difftohidden": "لا يمكنك إجراء مقارنة مع r$1: المحتوى مخفي.",
