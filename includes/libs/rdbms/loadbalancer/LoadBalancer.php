@@ -1312,7 +1312,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		// Create a live connection object
 		try {
-			$db = Database::factory( $server['type'], $server );
+			$conn = Database::factory( $server['type'], $server );
 			// Log when many connection are made on requests
 			++$this->connectionCounter;
 			$currentConnCount = $this->getCurrentConnectionCount();
@@ -1325,28 +1325,28 @@ class LoadBalancer implements ILoadBalancer {
 		} catch ( DBConnectionError $e ) {
 			// FIXME: This is probably the ugliest thing I have ever done to
 			// PHP. I'm half-expecting it to segfault, just out of disgust. -- TS
-			$db = $e->db;
+			$conn = $e->db;
 		}
 
-		$db->setLBInfo( $server );
-		$db->setLazyMasterHandle(
-			$this->getLazyConnectionRef( self::DB_MASTER, [], $db->getDomainID() )
+		$conn->setLBInfo( $server );
+		$conn->setLazyMasterHandle(
+			$this->getLazyConnectionRef( self::DB_MASTER, [], $conn->getDomainID() )
 		);
-		$db->setTableAliases( $this->tableAliases );
-		$db->setIndexAliases( $this->indexAliases );
+		$conn->setTableAliases( $this->tableAliases );
+		$conn->setIndexAliases( $this->indexAliases );
 
 		if ( $server['serverIndex'] === $this->getWriterIndex() ) {
 			if ( $this->trxRoundId !== false ) {
-				$this->applyTransactionRoundFlags( $db );
+				$this->applyTransactionRoundFlags( $conn );
 			}
 			foreach ( $this->trxRecurringCallbacks as $name => $callback ) {
-				$db->setTransactionListener( $name, $callback );
+				$conn->setTransactionListener( $name, $callback );
 			}
 		}
 
 		$this->lazyLoadReplicationPositions(); // session consistency
 
-		return $db;
+		return $conn;
 	}
 
 	/**
@@ -2283,9 +2283,9 @@ class LoadBalancer implements ILoadBalancer {
 		) );
 
 		// Update the prefix for all local connections...
-		$this->forEachOpenConnection( function ( IDatabase $db ) use ( $prefix ) {
-			if ( !$db->getLBInfo( 'foreign' ) ) {
-				$db->tablePrefix( $prefix );
+		$this->forEachOpenConnection( function ( IDatabase $conn ) use ( $prefix ) {
+			if ( !$conn->getLBInfo( 'foreign' ) ) {
+				$conn->tablePrefix( $prefix );
 			}
 		} );
 	}
