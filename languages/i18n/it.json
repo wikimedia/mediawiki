@@ -126,7 +126,8 @@
 			"Senpremì",
 			"Ignazio Cannata",
 			"Frubino",
-			"TheRukk"
+			"TheRukk",
+			"Titore"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -759,7 +760,7 @@
 	"blockedtitle": "Utente bloccato.",
 	"blocked-email-user": "<strong>Alla tua utenza è stato vietato l'invio di email. Puoi ancora modificare altre pagine di questa wiki.</strong> Puoi vedere tutti i dettagli del blocco su [[Special:MyContributions|contributi dell'utenza]].\n\nIl blocco è stato effettuato da $1.\n\nLa ragione data è <em>$2</em>.\n\n* Inizio del blocco: $8\n* Scadenza del blocco: $6\n* Destinatario del blocco: $7\n* ID Blocco #$5",
 	"blockedtext-partial": "<strong>Alla tua utenza o indirizzo IP è stato vietato di apportare modifiche a questa pagina. Puoi ancora modificare altre pagine di questa wiki.</strong> Puoi vedere tutti i dettagli del blocco su [[Special:MyContributions|contributi dell'utenza]].\n\nIl blocco è stato effettuato da $1.\n\nLa ragione data è <em>$2</em>.\n\n* Inizio del blocco: $8\n* Scadenza del blocco: $6\n* Destinatario del blocco: $7\n* ID Blocco #$5",
-	"blockedtext": "<strong>Il tuo nome utente o indirizzo IP è stato bloccato.</strong>\n\nIl blocco è stato imposto da $1. La motivazione del blocco è la seguente: <em>$2</em>.\n\n* Inizio del blocco: $8\n* Scadenza del blocco: $6\n* Intervallo di blocco: $7\n\nSe lo si desidera, è possibile contattare $1 o un altro [[{{MediaWiki:Grouppage-sysop}}|amministratore]] per discutere del blocco.\n\nSi noti che la funzione \"{{int:emailuser}}\" non è attiva se non è stato registrato un indirizzo email valido nelle proprie [[Special:Preferences|preferenze]] o se l'utilizzo di tale funzione è stato bloccato.\n\nL'indirizzo IP attuale è $3, il numero ID del blocco è #$5.\nSi prega di specificare tutti i dettagli precedenti in qualsiasi richiesta di chiarimenti.",
+	"blockedtext": "<strong>Il tuo nome utente o indirizzo IP è stato bloccato.</strong>\n\nIl blocco è stato imposto da $1. La motivazione del blocco è la seguente: <em>$2</em>.\n\n* Inizio del blocco: $8\n* Scadenza del blocco: $6\n* Destinatario del blocco: $7\n\nSe lo si desidera, è possibile contattare $1 o un altro [[{{MediaWiki:Grouppage-sysop}}|amministratore]] per discutere del blocco.\n\nSi noti che la funzione \"{{int:emailuser}}\" non è attiva se non è stato registrato un indirizzo email valido nelle proprie [[Special:Preferences|preferenze]] o se l'utilizzo di tale funzione è stato bloccato.\n\nL'indirizzo IP attuale è $3, il numero ID del blocco è #$5.\nSi prega di specificare tutti i dettagli precedenti in qualsiasi richiesta di chiarimenti.",
 	"autoblockedtext": "Questo indirizzo IP è stato bloccato automaticamente perché condiviso con un altro utente, a sua volta bloccato da $1.\nLa motivazione del blocco è la seguente:\n\n:<em>$2</em>\n\n* Inizio del blocco: $8\n* Scadenza del blocco: $6\n* Intervallo di blocco: $7\n\nÈ possibile contattare $1 o un altro [[{{MediaWiki:Grouppage-sysop}}|amministratore]] per richiedere eventuali chiarimenti circa il blocco.\n\nSi noti che la funzione \"{{int:emailuser}}\" non è attiva se non è stato registrato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]] e, comunque, se nell'applicare il blocco, tale funzione è stata disabilitata (per la durata del blocco).\n\nL'indirizzo IP attuale è $3, il numero ID del blocco è #$5\nSi prega di specificare tutti i dettagli qui inclusi nel compilare qualsiasi richiesta di chiarimenti.",
 	"systemblockedtext": "Il tuo nome utente o l'indirizzo IP è stato bloccato automaticamente da MediaWiki.\nLa motivazione del blocco è la seguente:\n\n:''$2''\n\n* Inizio del blocco: $8\n* Scadenza del blocco: $6\n* Intervallo di blocco: $7\n\nL'indirizzo IP attuale è $3.\nSi prega di specificare tutti i dettagli qui inclusi nel compilare qualsiasi richiesta di chiarimenti.",
 	"blockednoreason": "nessuna motivazione indicata",
@@ -921,7 +922,7 @@
 	"last": "prec",
 	"page_first": "prima",
 	"page_last": "ultima",
-	"histlegend": "Confronto tra versioni: selezionare le caselle corrispondenti alle versioni desiderate e premere Invio o il pulsante in basso.\n\nLegenda: '''({{int:cur}})''' = differenze con la versione attuale, '''({{int:last}})''' = differenze con la versione precedente, '''{{int:minoreditletter}}''' = modifica minore",
+	"histlegend": "Confronto tra versioni: selezionare le caselle corrispondenti alle versioni desiderate e premere Invio o il pulsante in basso.\n\nLegenda: '''({{int:cur}})''' = differenze con la versione corrente, '''({{int:last}})''' = differenze con la versione precedente, '''{{int:minoreditletter}}''' = modifica minore",
 	"history-fieldset-title": "Filtra versioni",
 	"history-show-deleted": "Solo versioni cancellate",
 	"histfirst": "prima",
@@ -1206,7 +1207,7 @@
 	"prefs-timeoffset": "Ore di differenza",
 	"prefs-advancedediting": "Opzioni generali",
 	"prefs-developertools": "Strumenti per gli sviluppatori",
-	"prefs-editor": "Editore",
+	"prefs-editor": "Editor",
 	"prefs-preview": "Anteprima",
 	"prefs-advancedrc": "Opzioni avanzate",
 	"prefs-advancedrendering": "Opzioni avanzate",

@@ -1792,6 +1792,7 @@
 	"apiwarn-deprecation-missingparam": "因為未指定 <var>$1</var>，輸出內容使用到過去舊有的格式。該格式已棄用，並且往後都只會使用新格式。",
 	"apiwarn-deprecation-parameter": "參數 <var>$1</var> 已棄用。",
 	"apiwarn-deprecation-parse-headitems": "<kbd>prop=headitems</kbd> 自 MediaWiki 的 1.28 版本後已被棄用。當建立新 HTML 文件時請使用 <kbd>prop=headhtml</kbd>，或是當更新文件客戶端時請使用 <kbd>prop=modules|jsconfigvars</kbd>。",
+	"apiwarn-deprecation-post-without-content-type": "POST 請求不需要 <code>Content-Type</code> 標頭，這會無法可靠運作。",
 	"apiwarn-deprecation-purge-get": "透過 GET 方式使用的 <kbd>action=purge</kbd> 已棄用，請以 POST 替代。",
 	"apiwarn-deprecation-withreplacement": "<kbd>$1</kbd> 已棄用，請改用 <kbd>$2</kbd>。",
 	"apiwarn-difftohidden": "無法對 r$1 比較差異：內容被隱蔵。",
