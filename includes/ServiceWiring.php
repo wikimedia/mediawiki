@@ -298,7 +298,7 @@ return [
 		// Figure out what class to use for the LCStore
 		$storeArg = [];
 		$storeArg['directory'] =
-			$conf['storeDirectory'] ?? $services->getMainConfig()->get( 'CacheDirectory' );
+			$conf['storeDirectory'] ?: $services->getMainConfig()->get( 'CacheDirectory' );
 
 		if ( !empty( $conf['storeClass'] ) ) {
 			$storeClass = $conf['storeClass'];
