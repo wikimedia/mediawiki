@@ -11,18 +11,21 @@ use MediaWiki\Rest\EntryPoint;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
+use RequestContext;
 use WebResponse;
 
 /**
  * @covers \MediaWiki\Rest\EntryPoint
  * @covers \MediaWiki\Rest\Router
  */
-class EntryPointTest extends \MediaWikiUnitTestCase {
+class EntryPointTest extends \MediaWikiTestCase {
 	private static $mockHandler;
 
 	private function createRouter() {
+		global $IP;
+
 		return new Router(
-			[ __DIR__ . '/testRoutes.json' ],
+			[ "$IP/tests/phpunit/unit/includes/Rest/testRoutes.json" ],
 			[],
 			'/rest',
 			new EmptyBagOStuff(),
@@ -56,6 +59,7 @@ class EntryPointTest extends \MediaWikiUnitTestCase {
 			);
 
 		$entryPoint = new EntryPoint(
+			RequestContext::getMain(),
 			new RequestData( [ 'uri' => new Uri( '/rest/mock/EntryPoint/header' ) ] ),
 			$webResponse,
 			$this->createRouter() );
@@ -80,6 +84,7 @@ class EntryPointTest extends \MediaWikiUnitTestCase {
 	 */
 	public function testBodyRewind() {
 		$entryPoint = new EntryPoint(
+			RequestContext::getMain(),
 			new RequestData( [ 'uri' => new Uri( '/rest/mock/EntryPoint/bodyRewind' ) ] ),
 			$this->createWebResponse(),
 			$this->createRouter() );
