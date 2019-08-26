@@ -96,7 +96,7 @@ if ( !interface_exists( 'Psr\Log\LoggerInterface' ) ) {
 // Install a header callback
 MediaWiki\HeaderCallback::register();
 
-// Set the encoding used by reading HTTP input, writing HTTP output.
+// Set the encoding used by PHP for reading HTTP input, and writing output.
 // This is also the default for mbstring functions.
 mb_internal_encoding( 'UTF-8' );
 
@@ -128,9 +128,6 @@ if ( defined( 'MW_SETUP_CALLBACK' ) ) {
  * Main setup
  */
 
-$fname = 'Setup.php';
-$ps_setup = Profiler::instance()->scopedProfileIn( $fname );
-
 // Load queued extensions
 ExtensionRegistry::getInstance()->loadFromQueue();
 // Don't let any other extensions load
@@ -141,8 +138,6 @@ putenv( "LC_ALL=$wgShellLocale" );
 setlocale( LC_ALL, $wgShellLocale );
 
 // Set various default paths sensibly...
-$ps_default = Profiler::instance()->scopedProfileIn( $fname . '-defaults' );
-
 if ( $wgScript === false ) {
 	$wgScript = "$wgScriptPath/index.php";
 }
@@ -625,8 +620,6 @@ if ( defined( 'MW_NO_SESSION' ) ) {
 	$wgPHPSessionHandling = MW_NO_SESSION === 'warn' ? 'warn' : 'disable';
 }
 
-Profiler::instance()->scopedProfileOut( $ps_default );
-
 // Disable MWDebug for command line mode, this prevents MWDebug from eating up
 // all the memory from logging SQL queries on maintenance scripts
 global $wgCommandLineMode;
@@ -655,8 +648,6 @@ foreach ( [ 'wgArticlePath', 'wgVariantArticlePath' ] as $varName ) {
 		);
 	}
 }
-
-$ps_default2 = Profiler::instance()->scopedProfileIn( $fname . '-defaults2' );
 
 if ( $wgCanonicalServer === false ) {
 	$wgCanonicalServer = wfExpandUrl( $wgServer, PROTO_HTTP );
@@ -726,10 +717,6 @@ if ( $wgSharedDB && $wgSharedTables ) {
 		)
 	);
 }
-
-Profiler::instance()->scopedProfileOut( $ps_default2 );
-
-$ps_misc = Profiler::instance()->scopedProfileIn( $fname . '-misc' );
 
 // Raise the memory limit if it's too low
 // Note, this makes use of wfDebug, and thus should not be before
@@ -810,12 +797,8 @@ wfDebugLog( 'caches',
 	', session: ' . get_class( ObjectCache::getInstance( $wgSessionCacheType ) )
 );
 
-Profiler::instance()->scopedProfileOut( $ps_misc );
-
 // Most of the config is out, some might want to run hooks here.
 Hooks::run( 'SetupAfterCache' );
-
-$ps_globals = Profiler::instance()->scopedProfileIn( $fname . '-globals' );
 
 /**
  * @var Language $wgContLang
@@ -926,9 +909,6 @@ $wgParser = new StubObject( 'wgParser', function () {
  */
 $wgTitle = null;
 
-Profiler::instance()->scopedProfileOut( $ps_globals );
-$ps_extensions = Profiler::instance()->scopedProfileIn( $fname . '-extensions' );
-
 // Extension setup functions
 // Entries should be added to this variable during the inclusion
 // of the extension file. This allows the extension to perform
@@ -961,6 +941,3 @@ if ( !$wgCommandLineMode ) {
 }
 
 $wgFullyInitialised = true;
-
-Profiler::instance()->scopedProfileOut( $ps_extensions );
-Profiler::instance()->scopedProfileOut( $ps_setup );
