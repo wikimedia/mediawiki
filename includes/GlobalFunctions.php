@@ -1236,7 +1236,7 @@ function wfGetLangObj( $langcode = false ) {
 	$validCodes = array_keys( Language::fetchLanguageNames() );
 	if ( in_array( $langcode, $validCodes ) ) {
 		# $langcode corresponds to a valid language.
-		return Language::factory( $langcode );
+		return MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $langcode );
 	}
 
 	# $langcode is a string, but not a valid language code; use content language.

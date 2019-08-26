@@ -153,7 +153,7 @@ class PasswordPolicyChecks {
 		global $wgPopularPasswordFile, $wgSitename;
 		$status = Status::newGood();
 		if ( $policyVal > 0 ) {
-			$langEn = Language::factory( 'en' );
+			$langEn = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 			$passwordKey = $langEn->lc( trim( $password ) );
 
 			// People often use the name of the current site, which won't be

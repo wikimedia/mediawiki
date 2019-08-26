@@ -215,7 +215,8 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$title->method( 'getDBkey' )->willReturn( $name );
 		$title->method( 'getText' )->willReturn( $name );
 		$title->method( 'getNamespace' )->willReturn( 0 );
-		$title->method( 'getPageLanguage' )->willReturn( Language::factory( 'en' ) );
+		$title->method( 'getPageLanguage' )->willReturn(
+			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ) );
 
 		return $title;
 	}

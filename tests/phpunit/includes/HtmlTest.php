@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\Error\Notice;
 
 class HtmlTest extends MediaWikiTestCase {
@@ -12,7 +13,8 @@ class HtmlTest extends MediaWikiTestCase {
 			'wgUseMediaWikiUIEverywhere' => false,
 		] );
 
-		$contLangObj = Language::factory( 'en' );
+		$langFactory = MediaWikiServices::getInstance()->getLanguageFactory();
+		$contLangObj = $langFactory->getLanguage( 'en' );
 
 		// Hardcode namespaces during test runs,
 		// so that html output based on existing namespaces
@@ -39,7 +41,7 @@ class HtmlTest extends MediaWikiTestCase {
 		] );
 		$this->setContentLang( $contLangObj );
 
-		$userLangObj = Language::factory( 'es' );
+		$userLangObj = $langFactory->getLanguage( 'es' );
 		$userLangObj->setNamespaces( [
 			-2 => "Medio",
 			-1 => "Especial",
@@ -68,8 +70,6 @@ class HtmlTest extends MediaWikiTestCase {
 	}
 
 	protected function tearDown() {
-		Language::factory( 'en' )->resetNamespaces();
-
 		if ( $this->restoreWarnings ) {
 			$this->restoreWarnings = false;
 			Wikimedia\restoreWarnings();

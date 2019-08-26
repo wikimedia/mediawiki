@@ -4649,7 +4649,8 @@ class Title implements LinkTarget, IDBAccessObject {
 			$langObj = $contentHandler->getPageLanguage( $this );
 			$this->mPageLanguage = [ $langObj->getCode(), $wgLanguageCode ];
 		} else {
-			$langObj = Language::factory( $this->mPageLanguage[0] );
+			$langObj = MediaWikiServices::getInstance()->getLanguageFactory()
+				->getLanguage( $this->mPageLanguage[0] );
 		}
 
 		return $langObj;
@@ -4671,7 +4672,8 @@ class Title implements LinkTarget, IDBAccessObject {
 			// in a language whose code is the variant code.
 			$variant = $wgLang->getPreferredVariant();
 			if ( $wgLang->getCode() !== $variant ) {
-				return Language::factory( $variant );
+				return MediaWikiServices::getInstance()->getLanguageFactory()
+					->getLanguage( $variant );
 			}
 
 			return $wgLang;
@@ -4683,7 +4685,8 @@ class Title implements LinkTarget, IDBAccessObject {
 			$pageLang = wfGetLangObj( $dbPageLanguage );
 			$variant = $pageLang->getPreferredVariant();
 			if ( $pageLang->getCode() !== $variant ) {
-				$pageLang = Language::factory( $variant );
+				$pageLang = MediaWikiServices::getInstance()->getLanguageFactory()
+					->getLanguage( $variant );
 			}
 
 			return $pageLang;

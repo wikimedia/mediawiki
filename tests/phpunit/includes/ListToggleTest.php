@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @covers ListToggle
  */
@@ -33,7 +35,8 @@ class ListToggleTest extends MediaWikiTestCase {
 			} ) );
 		$output->expects( $this->once() )
 			->method( 'getLanguage' )
-			->will( $this->returnValue( Language::factory( 'qqx' ) ) );
+			->will( $this->returnValue(
+				MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'qqx' ) ) );
 
 		$listToggle = new ListToggle( $output );
 

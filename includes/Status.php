@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Generic operation result class
  * Has warning/error list, boolean status and arbitrary value
@@ -161,7 +163,7 @@ class Status extends StatusValue {
 		if ( $lang instanceof Language || $lang instanceof StubUserLang ) {
 			return $lang;
 		}
-		return Language::factory( $lang );
+		return MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $lang );
 	}
 
 	/**

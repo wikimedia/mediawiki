@@ -19,6 +19,8 @@
  * @author Kunal Mehta
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A mutable version of ResourceLoaderContext.
  *
@@ -89,7 +91,8 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 			return $this->context->getDirection();
 		}
 		if ( $this->direction === null ) {
-			$this->direction = Language::factory( $this->getLanguage() )->getDir();
+			$this->direction = MediaWikiServices::getInstance()->getLanguageFactory()
+				->getLanguage( $this->getLanguage() )->getDir();
 		}
 		return $this->direction;
 	}

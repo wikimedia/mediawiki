@@ -272,7 +272,8 @@ class ApiMain extends ApiBase {
 				$errorLang = MediaWikiServices::getInstance()->getContentLanguage();
 			} else {
 				$errorLangCode = RequestContext::sanitizeLangCode( $errorLangCode );
-				$errorLang = Language::factory( $errorLangCode );
+				$errorLang = MediaWikiServices::getInstance()->getLanguageFactory()
+					->getLanguage( $errorLangCode );
 			}
 			$this->mErrorFormatter = new ApiErrorFormatter(
 				$this->mResult, $errorLang, $errorFormat, $errorsUseDB

@@ -76,7 +76,8 @@ class CliInstaller extends Installer {
 			$wgLanguageCode = $options['lang'];
 			$this->setVar( 'wgLanguageCode', $wgLanguageCode );
 			$wgContLang = MediaWikiServices::getInstance()->getContentLanguage();
-			$wgLang = Language::factory( $options['lang'] );
+			$wgLang = MediaWikiServices::getInstance()->getLanguageFactory()
+				->getLanguage( $options['lang'] );
 			RequestContext::getMain()->setLanguage( $wgLang );
 		}
 

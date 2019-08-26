@@ -1180,7 +1180,7 @@ class ParserTestRunner {
 		};
 
 		// Set content language. This invalidates the magic word cache and title services
-		$lang = Language::factory( $langCode );
+		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $langCode );
 		$lang->resetNamespaces();
 		$setup['wgContLang'] = $lang;
 		$setup[] = function () use ( $lang ) {
@@ -1633,9 +1633,10 @@ class ParserTestRunner {
 
 		// Be sure ParserTestRunner::addArticle has correct language set,
 		// so that system messages get into the right language cache
-		if ( MediaWikiServices::getInstance()->getContentLanguage()->getCode() !== 'en' ) {
+		$services = MediaWikiServices::getInstance();
+		if ( $services->getContentLanguage()->getCode() !== 'en' ) {
 			$setup['wgLanguageCode'] = 'en';
-			$lang = Language::factory( 'en' );
+			$lang = $services->getLanguageFactory()->getLanguage( 'en' );
 			$setup['wgContLang'] = $lang;
 			$setup[] = function () use ( $lang ) {
 				$services = MediaWikiServices::getInstance();

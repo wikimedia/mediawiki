@@ -189,7 +189,8 @@ class ResourceLoaderContext implements MessageLocalizer {
 				$this->direction = $direction;
 			} else {
 				// Determine directionality based on user language (T8100)
-				$this->direction = Language::factory( $this->getLanguage() )->getDir();
+				$this->direction = MediaWikiServices::getInstance()->getLanguageFactory()
+					->getLanguage( $this->getLanguage() )->getDir();
 			}
 		}
 		return $this->direction;

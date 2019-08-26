@@ -76,7 +76,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			'testradio' => 'option1',
 		] );
 		// Workaround for static caching in User::getDefaultOptions()
-		$this->setContentLang( Language::factory( 'qqq' ) );
+		$this->setContentLang( 'qqq' );
 	}
 
 	public function hookGetPreferences( $user, &$preferences ) {

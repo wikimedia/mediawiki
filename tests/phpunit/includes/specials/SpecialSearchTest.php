@@ -226,7 +226,7 @@ class SpecialSearchTest extends MediaWikiTestCase {
 			->will( $this->returnValue( $mockSearchEngine ) );
 
 		$search->getContext()->setTitle( Title::makeTitle( NS_SPECIAL, 'Search' ) );
-		$search->getContext()->setLanguage( Language::factory( 'en' ) );
+		$search->getContext()->setLanguage( 'en' );
 		$search->load();
 		$search->showResults( 'this is a fake search' );
 

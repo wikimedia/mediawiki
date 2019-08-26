@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @since 1.16.3
  */
@@ -253,7 +255,8 @@ class IcuCollation extends Collation {
 		$this->locale = $locale;
 		// Drop everything after the '@' in locale's name
 		$localeParts = explode( '@', $locale );
-		$this->digitTransformLanguage = Language::factory( $locale === 'root' ? 'en' : $localeParts[0] );
+		$this->digitTransformLanguage = MediaWikiServices::getInstance()->getLanguageFactory()
+			->getLanguage( $locale === 'root' ? 'en' : $localeParts[0] );
 
 		$this->mainCollator = Collator::create( $locale );
 		if ( !$this->mainCollator ) {

@@ -1881,11 +1881,13 @@ class OutputPageTest extends MediaWikiTestCase {
 				"123,456.789",
 			],
 			'Language (content)' => [
-				[ '{{formatnum:123456.789}}', true, false, Language::factory( 'is' ) ],
+				[ '{{formatnum:123456.789}}', true, false,
+					MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'is' ) ],
 				"<div class=\"mw-parser-output\"><p>123.456,789\n</p></div>",
 			],
 			'Language (interface)' => [
-				[ '{{formatnum:123456.789}}', true, true, Language::factory( 'is' ) ],
+				[ '{{formatnum:123456.789}}', true, true,
+					MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'is' ) ],
 				"<p>123.456,789\n</p>",
 				'123.456,789',
 			],

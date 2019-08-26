@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Session;
 
+use MediaWiki\MediaWikiServices;
 use MediaWikiTestCase;
 use Wikimedia\TestingAccessWrapper;
 
@@ -181,7 +182,8 @@ class SessionProviderTest extends MediaWikiTestCase {
 
 		$this->assertSame(
 			'MockSessionProvider sessions',
-			$provider->describe( \Language::factory( 'en' ) )
+			$provider->describe(
+				MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ) )
 		);
 	}
 

@@ -737,7 +737,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$data = [];
 		foreach ( $langNames as $langCode ) {
-			$lang = Language::factory( $langCode );
+			$lang = MediaWikiServices::getInstance()->getLanguageFactory()
+				->getLanguage( $langCode );
 			if ( $lang->getConverter() instanceof FakeConverter ) {
 				// Only languages which do not return instances of
 				// FakeConverter implement language conversion.

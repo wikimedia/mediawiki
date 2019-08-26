@@ -20,8 +20,8 @@
 
 namespace MediaWiki\Tests\EditPage;
 
-use Language;
 use MediaWiki\EditPage\TextboxBuilder;
+use MediaWiki\MediaWikiServices;
 use MediaWikiTestCase;
 use Title;
 use User;
@@ -55,7 +55,8 @@ class TextboxBuilderTest extends MediaWikiTestCase {
 			->getMock();
 		$title->expects( $this->any() )
 			->method( 'getPageLanguage' )
-			->will( $this->returnValue( Language::factory( 'en' ) ) );
+			->will( $this->returnValue(
+				MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ) ) );
 
 		$builder = new TextboxBuilder();
 		$attribs = $builder->buildTextboxAttribs(

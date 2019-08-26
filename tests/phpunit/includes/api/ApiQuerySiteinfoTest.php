@@ -42,7 +42,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testLinkPrefixCharset() {
-		$contLang = Language::factory( 'ar' );
+		$contLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'ar' );
 		$this->setContentLang( $contLang );
 		$this->assertTrue( $contLang->linkPrefixExtension(), 'Sanity check' );
 
@@ -52,7 +52,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testVariants() {
-		$contLang = Language::factory( 'zh' );
+		$contLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'zh' );
 		$this->setContentLang( $contLang );
 		$this->assertTrue( $contLang->hasVariants(), 'Sanity check' );
 
@@ -544,7 +544,8 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	public function testLanguageVariants() {
 		$expectedKeys = array_filter( LanguageConverter::$languagesWithVariants,
 			function ( $langCode ) {
-				return !Language::factory( $langCode )->getConverter() instanceof FakeConverter;
+				return !MediaWikiServices::getInstance()->getLanguageFactory()
+					->getLanguage( $langCode )->getConverter() instanceof FakeConverter;
 			}
 		);
 		sort( $expectedKeys );

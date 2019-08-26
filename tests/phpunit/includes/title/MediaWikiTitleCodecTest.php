@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @covers MediaWikiTitleCodec
@@ -138,7 +139,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 
 	protected function makeCodec( $lang ) {
 		return new MediaWikiTitleCodec(
-			Language::factory( $lang ),
+			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $lang ),
 			$this->getGenderCache(),
 			[ 'localtestiw' ],
 			$this->getInterwikiLookup(),
