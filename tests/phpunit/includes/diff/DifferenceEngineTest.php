@@ -157,8 +157,14 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 	 * @dataProvider provideGenerateContentDiffBody
 	 */
 	public function testGenerateContentDiffBody(
-		Content $oldContent, Content $newContent, $expectedDiff
+		array $oldContentArgs, array $newContentArgs, $expectedDiff
 	) {
+		$this->mergeMwGlobalArrayValue( 'wgContentHandlers', [
+			'testing-nontext' => DummyNonTextContentHandler::class,
+		] );
+		$oldContent = ContentHandler::makeContent( ...$oldContentArgs );
+		$newContent = ContentHandler::makeContent( ...$newContentArgs );
+
 		// Set $wgExternalDiffEngine to something bogus to try to force use of
 		// the PHP engine rather than wikidiff2.
 		$this->setMwGlobals( [
@@ -170,12 +176,9 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 		$this->assertSame( $expectedDiff, $this->getPlainDiff( $diff ) );
 	}
 
-	public function provideGenerateContentDiffBody() {
-		$this->mergeMwGlobalArrayValue( 'wgContentHandlers', [
-			'testing-nontext' => DummyNonTextContentHandler::class,
-		] );
-		$content1 = ContentHandler::makeContent( 'xxx', null, CONTENT_MODEL_TEXT );
-		$content2 = ContentHandler::makeContent( 'yyy', null, CONTENT_MODEL_TEXT );
+	public static function provideGenerateContentDiffBody() {
+		$content1 = [ 'xxx', null, CONTENT_MODEL_TEXT ];
+		$content2 = [ 'yyy', null, CONTENT_MODEL_TEXT ];
 
 		return [
 			'self-diff' => [ $content1, $content1, '' ],

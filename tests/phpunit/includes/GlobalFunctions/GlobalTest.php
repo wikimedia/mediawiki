@@ -321,33 +321,35 @@ class GlobalTest extends MediaWikiTestCase {
 		] );
 		$this->setLogger( 'wfDebug', new LegacyLogger( 'wfDebug' ) );
 
+		unlink( $debugLogFile );
 		wfDebug( "This is a normal string" );
 		$this->assertEquals( "This is a normal string\n", file_get_contents( $debugLogFile ) );
-		unlink( $debugLogFile );
 
+		unlink( $debugLogFile );
 		wfDebug( "This is nöt an ASCII string" );
 		$this->assertEquals( "This is nöt an ASCII string\n", file_get_contents( $debugLogFile ) );
-		unlink( $debugLogFile );
 
+		unlink( $debugLogFile );
 		wfDebug( "\00305This has böth UTF and control chars\003" );
 		$this->assertEquals(
 			" 05This has böth UTF and control chars \n",
 			file_get_contents( $debugLogFile )
 		);
-		unlink( $debugLogFile );
 
+		unlink( $debugLogFile );
 		wfDebugMem();
 		$this->assertGreaterThan(
 			1000,
 			preg_replace( '/\D/', '', file_get_contents( $debugLogFile ) )
 		);
-		unlink( $debugLogFile );
 
+		unlink( $debugLogFile );
 		wfDebugMem( true );
 		$this->assertGreaterThan(
 			1000000,
 			preg_replace( '/\D/', '', file_get_contents( $debugLogFile ) )
 		);
+
 		unlink( $debugLogFile );
 	}
 

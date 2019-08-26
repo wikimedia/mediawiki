@@ -210,15 +210,16 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			$this->setExpectedApiException( 'apierror-siteinfo-includealldenied' );
 		}
 
-		$mockLB = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->setMethods( [ 'getMaxLag', 'getLagTimes', 'getServerName', '__destruct' ] )
-			->getMock();
+		$mockLB = $this->createMock( LoadBalancer::class );
 		$mockLB->method( 'getMaxLag' )->willReturn( [ null, 7, 1 ] );
 		$mockLB->method( 'getLagTimes' )->willReturn( [ 5, 7 ] );
 		$mockLB->method( 'getServerName' )->will( $this->returnValueMap( [
 			[ 0, 'apple' ], [ 1, 'carrot' ]
 		] ) );
+		$mockLB->method( 'getLocalDomainID' )->willReturn( 'testdomain' );
+		$mockLB->expects( $this->never() )->method( $this->anythingBut(
+			'getMaxLag', 'getLagTimes', 'getServerName', 'getLocalDomainID', '__destruct'
+		) );
 		$this->setService( 'DBLoadBalancer', $mockLB );
 
 		$this->setMwGlobals( 'wgShowHostnames', $showHostnames );

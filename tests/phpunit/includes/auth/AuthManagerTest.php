@@ -1610,9 +1610,9 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$this->assertSame( AuthenticationResponse::FAIL, $ret->status );
 		$this->assertSame( 'noname', $ret->message->getKey() );
 
+		$this->hook( 'LocalUserCreated', $this->never() );
 		$readOnlyMode = \MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode();
 		$readOnlyMode->setReason( 'Because' );
-		$this->hook( 'LocalUserCreated', $this->never() );
 		$userReq->username = self::usernameForCreation();
 		$ret = $this->manager->beginAccountCreation( $creator, [ $userReq ], 'http://localhost/' );
 		$this->unhook( 'LocalUserCreated' );
@@ -1782,11 +1782,11 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			$session, $this->request->getSession()->getSecret( 'AuthManager::accountCreationState' )
 		);
 
+		$this->hook( 'LocalUserCreated', $this->never() );
 		$this->request->getSession()->setSecret( 'AuthManager::accountCreationState',
 			[ 'username' => $creator->getName() ] + $session );
 		$readOnlyMode = \MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode();
 		$readOnlyMode->setReason( 'Because' );
-		$this->hook( 'LocalUserCreated', $this->never() );
 		$ret = $this->manager->continueAccountCreation( [] );
 		$this->unhook( 'LocalUserCreated' );
 		$this->assertSame( AuthenticationResponse::FAIL, $ret->status );
@@ -2486,10 +2486,10 @@ class AuthManagerTest extends \MediaWikiTestCase {
 
 		// Wiki is read-only
 		$session->clear();
+		$this->hook( 'LocalUserCreated', $this->never() );
 		$readOnlyMode = \MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode();
 		$readOnlyMode->setReason( 'Because' );
 		$user = \User::newFromName( $username );
-		$this->hook( 'LocalUserCreated', $this->never() );
 		$ret = $this->manager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_SESSION, true );
 		$this->unhook( 'LocalUserCreated' );
 		$this->assertEquals( \Status::newFatal( wfMessage( 'readonlytext', 'Because' ) ), $ret );
