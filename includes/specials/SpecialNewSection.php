@@ -24,7 +24,7 @@ class SpecialNewSection extends RedirectSpecialPage {
 	public function __construct() {
 		parent::__construct( 'NewSection' );
 		$this->mAllowedRedirectParams = [ 'preloadtitle', 'nosummary', 'editintro',
-			'preload', 'preloadparams[]', 'summary' ];
+			'preload', 'preloadparams', 'summary' ];
 	}
 
 	/**
