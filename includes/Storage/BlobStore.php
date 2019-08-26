@@ -22,6 +22,8 @@
 
 namespace MediaWiki\Storage;
 
+use StatusValue;
+
 /**
  * Service for loading and storing data blobs.
  *
@@ -94,6 +96,19 @@ interface BlobStore {
 	 * @return string binary blob data
 	 */
 	public function getBlob( $blobAddress, $queryFlags = 0 );
+
+	/**
+	 * A batched version of BlobStore::getBlob.
+	 *
+	 * @param string[] $blobAddresses An array of blob addresses.
+	 * @param int $queryFlags See IDBAccessObject.
+	 * @throws BlobAccessException
+	 * @return StatusValue A status with a map of blobAddress => binary blob data or null
+	 *         if fetching the blob has failed. Fetch failures errors are the
+	 *         warnings in the status object.
+	 * @since 1.34
+	 */
+	public function getBlobBatch( $blobAddresses, $queryFlags = 0 );
 
 	/**
 	 * Stores an arbitrary blob of data and returns an address that can be used with

@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Storage;
 use InvalidArgumentException;
 use Language;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiTestCase;
 use stdClass;
@@ -218,6 +219,7 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @param string $blob
 	 * @dataProvider provideBlobs
 	 * @covers \MediaWiki\Storage\SqlBlobStore::storeBlob
 	 * @covers \MediaWiki\Storage\SqlBlobStore::getBlob
@@ -226,6 +228,109 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 		$store = $this->getBlobStore();
 		$address = $store->storeBlob( $blob );
 		$this->assertSame( $blob, $store->getBlob( $address ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\SqlBlobStore::storeBlob
+	 * @covers \MediaWiki\Storage\SqlBlobStore::getBlobBatch
+	 */
+	public function testSimpleStorageGetBlobBatchSimpleEmpty() {
+		$store = $this->getBlobStore();
+		$this->assertArrayEquals(
+			[],
+			$store->getBlobBatch( [] )->getValue()
+		);
+	}
+
+	/**
+	 * @param string $blob
+	 * @dataProvider provideBlobs
+	 * @covers \MediaWiki\Storage\SqlBlobStore::storeBlob
+	 * @covers \MediaWiki\Storage\SqlBlobStore::getBlobBatch
+	 */
+	public function testSimpleStorageGetBlobBatchSimpleRoundtrip( $blob ) {
+		$store = $this->getBlobStore();
+		$addresses = [
+			$store->storeBlob( $blob ),
+			$store->storeBlob( $blob . '1' )
+		];
+		$this->assertArrayEquals(
+			array_combine( $addresses, [ $blob, $blob . '1' ] ),
+			$store->getBlobBatch( $addresses )->getValue()
+		);
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\SqlBlobStore::getBlob
+	 */
+	public function testSimpleStorageNonExistentBlob() {
+		$this->setExpectedException( BlobAccessException::class );
+		$store = $this->getBlobStore();
+		$store->getBlob( 'tt:this_will_not_exist' );
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\SqlBlobStore::getBlobBatch
+	 */
+	public function testSimpleStorageNonExistentBlobBatch() {
+		$store = $this->getBlobStore();
+		$result = $store->getBlobBatch( [ 'tt:this_will_not_exist', 'tt:1000', 'bla:1001' ] );
+		$this->assertSame(
+			[
+				'tt:this_will_not_exist' => null,
+				'tt:1000' => null,
+				'bla:1001' => null
+			],
+			$result->getValue()
+		);
+		$this->assertSame( [
+			[
+				'type' => 'warning',
+				'message' => 'internalerror',
+				'params' => [
+					'Bad blob address: tt:this_will_not_exist'
+				]
+			],
+			[
+				'type' => 'warning',
+				'message' => 'internalerror',
+				'params' => [
+					'Unknown blob address schema: bla'
+				]
+			],
+			[
+				'type' => 'warning',
+				'message' => 'internalerror',
+				'params' => [
+					'Unable to fetch blob at tt:1000'
+				]
+			]
+		], $result->getErrors() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\SqlBlobStore::getBlobBatch
+	 */
+	public function testSimpleStoragePartialNonExistentBlobBatch() {
+		$store = $this->getBlobStore();
+		$address = $store->storeBlob( 'test_data' );
+		$result = $store->getBlobBatch( [ $address, 'tt:this_will_not_exist_too' ] );
+		$this->assertSame(
+			[
+				$address => 'test_data',
+				'tt:this_will_not_exist_too' => null
+			],
+			$result->getValue()
+		);
+		$this->assertSame( [
+			[
+				'type' => 'warning',
+				'message' => 'internalerror',
+				'params' => [
+					'Bad blob address: tt:this_will_not_exist_too'
+				]
+			],
+		], $result->getErrors() );
 	}
 
 	/**
