@@ -173,12 +173,22 @@ class EmailNotification {
 	 * @param string $pageStatus
 	 * @throws MWException
 	 */
-	public function actuallyNotifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit,
-		$oldid, $watchers, $pageStatus = 'changed' ) {
+	public function actuallyNotifyOnPageChange(
+		$editor,
+		$title,
+		$timestamp,
+		$summary,
+		$minorEdit,
+		$oldid,
+		$watchers,
+		$pageStatus = 'changed'
+	) {
 		# we use $wgPasswordSender as sender's address
 		global $wgUsersNotifiedOnAllChanges;
 		global $wgEnotifWatchlist, $wgBlockDisablesLogin;
 		global $wgEnotifMinorEdits, $wgEnotifUserTalk;
+
+		$messageCache = MediaWikiServices::getInstance()->getMessageCache();
 
 		# The following code is only run, if several conditions are met:
 		# 1. EmailNotification for pages (other than user_talk pages) must be enabled
@@ -210,7 +220,7 @@ class EmailNotification {
 				&& $this->canSendUserTalkEmail( $editor, $title, $minorEdit )
 			) {
 				$targetUser = User::newFromName( $title->getText() );
-				$this->compose( $targetUser, self::USER_TALK );
+				$this->compose( $targetUser, self::USER_TALK, $messageCache );
 				$userTalkId = $targetUser->getId();
 			}
 
@@ -229,7 +239,7 @@ class EmailNotification {
 						&& !( $wgBlockDisablesLogin && $watchingUser->getBlock() )
 						&& Hooks::run( 'SendWatchlistEmailNotification', [ $watchingUser, $title, $this ] )
 					) {
-						$this->compose( $watchingUser, self::WATCHLIST );
+						$this->compose( $watchingUser, self::WATCHLIST, $messageCache );
 					}
 				}
 			}
@@ -241,7 +251,7 @@ class EmailNotification {
 				continue;
 			}
 			$user = User::newFromName( $name );
-			$this->compose( $user, self::ALL_CHANGES );
+			$this->compose( $user, self::ALL_CHANGES, $messageCache );
 		}
 
 		$this->sendMails();
@@ -288,8 +298,9 @@ class EmailNotification {
 
 	/**
 	 * Generate the generic "this page has been changed" e-mail text.
+	 * @param MessageCache $messageCache
 	 */
-	private function composeCommonMailtext() {
+	private function composeCommonMailtext( MessageCache $messageCache ) {
 		global $wgPasswordSender, $wgNoReplyAddress;
 		global $wgEnotifFromEditor, $wgEnotifRevealEditorAddress;
 		global $wgEnotifImpersonal, $wgEnotifUseRealName;
@@ -374,7 +385,7 @@ class EmailNotification {
 
 		$body = wfMessage( 'enotif_body' )->inContentLanguage()->plain();
 		$body = strtr( $body, $keys );
-		$body = MessageCache::singleton()->transform( $body, false, null, $this->title );
+		$body = $messageCache->transform( $body, false, null, $this->title );
 		$this->body = wordwrap( strtr( $body, $postTransformKeys ), 72 );
 
 		# Reveal the page editor's address as REPLY-TO address only if
@@ -406,12 +417,13 @@ class EmailNotification {
 	 * Call sendMails() to send any mails that were queued.
 	 * @param User $user
 	 * @param string $source
+	 * @param MessageCache $messageCache
 	 */
-	private function compose( $user, $source ) {
+	private function compose( $user, $source, MessageCache $messageCache ) {
 		global $wgEnotifImpersonal;
 
 		if ( !$this->composed_common ) {
-			$this->composeCommonMailtext();
+			$this->composeCommonMailtext( $messageCache );
 		}
 
 		if ( $wgEnotifImpersonal ) {
