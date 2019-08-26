@@ -942,11 +942,10 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			'address' => '127.0.8.1',
 			'by' => $this->user->getId(),
 			'reason' => 'no reason given',
-			'timestamp' => $prev + 3600,
+			'timestamp' => $prev,
 			'auto' => true,
 			'expiry' => 0
 		] );
-		$this->user->mBlock->setTimestamp( 0 );
 		$this->assertEquals( [ [ 'autoblockedtext',
 				"[[User:Useruser|\u{202A}Useruser\u{202C}]]", 'no reason given', '127.0.0.1',
 				"\u{202A}Useruser\u{202C}", null, 'infinite', '127.0.8.1',
