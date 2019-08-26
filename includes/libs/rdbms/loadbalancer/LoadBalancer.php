@@ -970,17 +970,7 @@ class LoadBalancer implements ILoadBalancer {
 		$serverIndex = $conn->getLBInfo( 'serverIndex' );
 		$refCount = $conn->getLBInfo( 'foreignPoolRefCount' );
 		if ( $serverIndex === null || $refCount === null ) {
-			/**
-			 * This can happen in code like:
-			 *   foreach ( $dbs as $db ) {
-			 *     $conn = $lb->getConnection( $lb::DB_REPLICA, [], $db );
-			 *     ...
-			 *     $lb->reuseConnection( $conn );
-			 *   }
-			 * When a connection to the local DB is opened in this way, reuseConnection()
-			 * should be ignored
-			 */
-			return;
+			return; // non-foreign connection; no domain-use tracking to update
 		} elseif ( $conn instanceof DBConnRef ) {
 			// DBConnRef already handles calling reuseConnection() and only passes the live
 			// Database instance to this method. Any caller passing in a DBConnRef is broken.
@@ -1312,7 +1302,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		// Create a live connection object
 		try {
-			$db = Database::factory( $server['type'], $server );
+			$conn = Database::factory( $server['type'], $server );
 			// Log when many connection are made on requests
 			++$this->connectionCounter;
 			$currentConnCount = $this->getCurrentConnectionCount();
@@ -1325,28 +1315,28 @@ class LoadBalancer implements ILoadBalancer {
 		} catch ( DBConnectionError $e ) {
 			// FIXME: This is probably the ugliest thing I have ever done to
 			// PHP. I'm half-expecting it to segfault, just out of disgust. -- TS
-			$db = $e->db;
+			$conn = $e->db;
 		}
 
-		$db->setLBInfo( $server );
-		$db->setLazyMasterHandle(
-			$this->getLazyConnectionRef( self::DB_MASTER, [], $db->getDomainID() )
+		$conn->setLBInfo( $server );
+		$conn->setLazyMasterHandle(
+			$this->getLazyConnectionRef( self::DB_MASTER, [], $conn->getDomainID() )
 		);
-		$db->setTableAliases( $this->tableAliases );
-		$db->setIndexAliases( $this->indexAliases );
+		$conn->setTableAliases( $this->tableAliases );
+		$conn->setIndexAliases( $this->indexAliases );
 
 		if ( $server['serverIndex'] === $this->getWriterIndex() ) {
 			if ( $this->trxRoundId !== false ) {
-				$this->applyTransactionRoundFlags( $db );
+				$this->applyTransactionRoundFlags( $conn );
 			}
 			foreach ( $this->trxRecurringCallbacks as $name => $callback ) {
-				$db->setTransactionListener( $name, $callback );
+				$conn->setTransactionListener( $name, $callback );
 			}
 		}
 
 		$this->lazyLoadReplicationPositions(); // session consistency
 
-		return $db;
+		return $conn;
 	}
 
 	/**
@@ -2283,9 +2273,9 @@ class LoadBalancer implements ILoadBalancer {
 		) );
 
 		// Update the prefix for all local connections...
-		$this->forEachOpenConnection( function ( IDatabase $db ) use ( $prefix ) {
-			if ( !$db->getLBInfo( 'foreign' ) ) {
-				$db->tablePrefix( $prefix );
+		$this->forEachOpenConnection( function ( IDatabase $conn ) use ( $prefix ) {
+			if ( !$conn->getLBInfo( 'foreign' ) ) {
+				$conn->tablePrefix( $prefix );
 			}
 		} );
 	}
