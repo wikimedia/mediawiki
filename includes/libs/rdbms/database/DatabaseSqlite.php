@@ -55,7 +55,7 @@ class DatabaseSqlite extends Database {
 	protected $lockMgr;
 
 	/** @var array List of shared database already attached to this connection */
-	private $alreadyAttached = [];
+	private $sessionAttachedDbs = [];
 
 	/** @var string[] See https://www.sqlite.org/lang_transaction.html */
 	private static $VALID_TRX_MODES = [ '', 'DEFERRED', 'IMMEDIATE', 'EXCLUSIVE' ];
@@ -182,6 +182,7 @@ class DatabaseSqlite extends Database {
 			if ( in_array( $sync, [ 'EXTRA', 'FULL', 'NORMAL', 'OFF' ], true ) ) {
 				$this->query( "PRAGMA synchronous = $sync", __METHOD__, $flags );
 			}
+			$this->attachDatabasesFromTableAliases();
 		} catch ( Exception $e ) {
 			throw $this->newExceptionAfterConnectError( $e->getMessage() );
 		}
@@ -1124,12 +1125,23 @@ class DatabaseSqlite extends Database {
 
 	public function setTableAliases( array $aliases ) {
 		parent::setTableAliases( $aliases );
+		if ( $this->isOpen() ) {
+			$this->attachDatabasesFromTableAliases();
+		}
+	}
+
+	/**
+	 * Issue ATTATCH statements for all unattached foreign DBs in table aliases
+	 */
+	private function attachDatabasesFromTableAliases() {
 		foreach ( $this->tableAliases as $params ) {
-			if ( isset( $this->alreadyAttached[$params['dbname']] ) ) {
-				continue;
+			if (
+				$params['dbname'] !== $this->getDBname() &&
+				!isset( $this->sessionAttachedDbs[$params['dbname']] )
+			) {
+				$this->attachDatabase( $params['dbname'] );
+				$this->sessionAttachedDbs[$params['dbname']] = true;
 			}
-			$this->attachDatabase( $params['dbname'] );
-			$this->alreadyAttached[$params['dbname']] = true;
 		}
 	}
 
@@ -1145,6 +1157,10 @@ class DatabaseSqlite extends Database {
 
 	public function databasesAreIndependent() {
 		return true;
+	}
+
+	protected function doHandleSessionLossPreconnect() {
+		$this->sessionAttachedDbs = [];
 	}
 
 	/**

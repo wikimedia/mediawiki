@@ -1303,29 +1303,20 @@ class LoadBalancer implements ILoadBalancer {
 		$server['flags'] = $server['flags'] ?? IDatabase::DBO_DEFAULT;
 
 		// Create a live connection object
-		try {
-			$conn = Database::factory( $server['type'], $server );
-			// Log when many connection are made on requests
-			++$this->connectionCounter;
-			$currentConnCount = $this->getCurrentConnectionCount();
-			if ( $currentConnCount >= self::CONN_HELD_WARN_THRESHOLD ) {
-				$this->perfLogger->warning(
-					__METHOD__ . ": {connections}+ connections made (master={masterdb})",
-					[ 'connections' => $currentConnCount, 'masterdb' => $masterName ]
-				);
-			}
-		} catch ( DBConnectionError $e ) {
-			// FIXME: This is probably the ugliest thing I have ever done to
-			// PHP. I'm half-expecting it to segfault, just out of disgust. -- TS
-			$conn = $e->db;
-		}
-
+		$conn = Database::factory( $server['type'], $server, Database::NEW_UNCONNECTED );
 		$conn->setLBInfo( $server );
 		$conn->setLazyMasterHandle(
 			$this->getLazyConnectionRef( self::DB_MASTER, [], $conn->getDomainID() )
 		);
 		$conn->setTableAliases( $this->tableAliases );
 		$conn->setIndexAliases( $this->indexAliases );
+
+		try {
+			$conn->initConnection();
+			++$this->connectionCounter;
+		} catch ( DBConnectionError $e ) {
+			// ignore; let the DB handle the logging
+		}
 
 		if ( $server['serverIndex'] === $this->getWriterIndex() ) {
 			if ( $this->trxRoundId !== false ) {
@@ -1337,6 +1328,19 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		$this->lazyLoadReplicationPositions(); // session consistency
+
+		// Log when many connection are made on requests
+		$count = $this->getCurrentConnectionCount();
+		if ( $count >= self::CONN_HELD_WARN_THRESHOLD ) {
+			$this->perfLogger->warning(
+				__METHOD__ . ": {connections}+ connections made (master={masterdb})",
+				[
+					'connections' => $count,
+					'dbserver' => $conn->getServer(),
+					'masterdb' => $conn->getLBInfo( 'clusterMasterHost' )
+				]
+			);
+		}
 
 		return $conn;
 	}
