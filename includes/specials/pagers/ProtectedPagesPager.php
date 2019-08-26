@@ -27,11 +27,6 @@ class ProtectedPagesPager extends TablePager {
 	private $type, $level, $namespace, $sizetype, $size, $indefonly, $cascadeonly, $noredirect;
 
 	/**
-	 * @var LinkRenderer
-	 */
-	private $linkRenderer;
-
-	/**
 	 * @param SpecialPage $form
 	 * @param array $conds
 	 * @param string $type
@@ -48,6 +43,7 @@ class ProtectedPagesPager extends TablePager {
 		$sizetype, $size, $indefonly, $cascadeonly, $noredirect,
 		LinkRenderer $linkRenderer
 	) {
+		parent::__construct( $form->getContext(), $linkRenderer );
 		$this->mConds = $conds;
 		$this->type = $type ?: 'edit';
 		$this->level = $level;
@@ -57,8 +53,6 @@ class ProtectedPagesPager extends TablePager {
 		$this->indefonly = (bool)$indefonly;
 		$this->cascadeonly = (bool)$cascadeonly;
 		$this->noredirect = (bool)$noredirect;
-		$this->linkRenderer = $linkRenderer;
-		parent::__construct( $form->getContext() );
 	}
 
 	function preprocessResults( $result ) {
@@ -119,6 +113,7 @@ class ProtectedPagesPager extends TablePager {
 	function formatValue( $field, $value ) {
 		/** @var object $row */
 		$row = $this->mCurrentRow;
+		$linkRenderer = $this->getLinkRenderer();
 
 		switch ( $field ) {
 			case 'log_timestamp':
@@ -148,7 +143,7 @@ class ProtectedPagesPager extends TablePager {
 						)
 					);
 				} else {
-					$formatted = $this->linkRenderer->makeLink( $title );
+					$formatted = $linkRenderer->makeLink( $title );
 				}
 				if ( !is_null( $row->page_len ) ) {
 					$formatted .= $this->getLanguage()->getDirMark() .
@@ -165,7 +160,7 @@ class ProtectedPagesPager extends TablePager {
 					$value, /* User preference timezone */true ) );
 				$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
 				if ( $this->getUser()->isAllowed( 'protect' ) && $title ) {
-					$changeProtection = $this->linkRenderer->makeKnownLink(
+					$changeProtection = $linkRenderer->makeKnownLink(
 						$title,
 						$this->msg( 'protect_change' )->text(),
 						[],

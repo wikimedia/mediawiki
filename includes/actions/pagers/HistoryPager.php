@@ -422,7 +422,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				$undoTooltip = $latest
 					? [ 'title' => $this->msg( 'tooltip-undo' )->text() ]
 					: [];
-				$undolink = MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
+				$undolink = $this->getLinkRenderer()->makeKnownLink(
 					$this->getTitle(),
 					$this->msg( 'editundo' )->text(),
 					$undoTooltip,
@@ -502,7 +502,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		) {
 			return $cur;
 		} else {
-			return MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
+			return $this->getLinkRenderer()->makeKnownLink(
 				$this->getTitle(),
 				new HtmlArmor( $cur ),
 				[],
@@ -531,7 +531,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			return $last;
 		}
 
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$linkRenderer = $this->getLinkRenderer();
 		if ( $next === 'unknown' ) {
 			# Next row probably exists but is unknown, use an oldid=prev link
 			return $linkRenderer->makeKnownLink(

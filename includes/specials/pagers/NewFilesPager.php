@@ -194,7 +194,7 @@ class NewFilesPager extends RangeChronologicalPager {
 		$user = User::newFromId( $row->img_user );
 
 		$title = Title::makeTitle( NS_FILE, $name );
-		$ul = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
+		$ul = $this->getLinkRenderer()->makeLink(
 			$user->getUserPage(),
 			$user->getName()
 		);

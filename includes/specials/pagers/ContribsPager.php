@@ -621,7 +621,7 @@ class ContribsPager extends RangeChronologicalPager {
 		$classes = [];
 		$attribs = [];
 
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$linkRenderer = $this->getLinkRenderer();
 
 		$page = null;
 		// Create a title for the revision if possible
