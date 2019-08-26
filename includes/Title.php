@@ -3184,7 +3184,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	public static function capitalize( $text, $ns = NS_MAIN ) {
 		$services = MediaWikiServices::getInstance();
 		if ( $services->getNamespaceInfo()->isCapitalized( $ns ) ) {
-			return MediaWikiServices::getInstance()->getContentLanguage()->ucfirst( $text );
+			return $services->getContentLanguage()->ucfirst( $text );
 		} else {
 			return $text;
 		}

@@ -3227,7 +3227,7 @@ class OutputPage extends ContextSource {
 
 		$title = $this->getTitle();
 		$ns = $title->getNamespace();
-		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		$nsInfo = $services->getNamespaceInfo();
 		$canonicalNamespace = $nsInfo->exists( $ns )
 			? $nsInfo->getCanonicalName( $ns )
 			: $title->getNsText();
