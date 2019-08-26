@@ -186,7 +186,7 @@ class FileBackendGroup {
 				'mimeCallback' => [ $this, 'guessMimeInternal' ],
 				'obResetFunc' => 'wfResetOutputBuffers',
 				'streamMimeFunc' => [ StreamFile::class, 'contentTypeFromPath' ],
-				'tmpFileFactory' => MediaWikiServices::getInstance()->getTempFSFileFactory(),
+				'tmpFileFactory' => $services->getTempFSFileFactory(),
 				'statusWrapper' => [ Status::class, 'wrap' ],
 				'wanCache' => $services->getMainWANObjectCache(),
 				'srvCache' => ObjectCache::getLocalServerInstance( 'hash' ),

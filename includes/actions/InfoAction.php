@@ -280,7 +280,7 @@ class InfoAction extends FormlessAction {
 		// Language in which the page content is (supposed to be) written
 		$pageLang = $title->getPageLanguage()->getCode();
 
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$permissionManager = $services->getPermissionManager();
 
 		$pageLangHtml = $pageLang . ' - ' .
 			Language::fetchLanguageName( $pageLang, $lang->getCode() );

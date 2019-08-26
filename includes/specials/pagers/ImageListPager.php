@@ -478,7 +478,7 @@ class ImageListPager extends TablePager {
 
 					// Add delete links if allowed
 					// From https://github.com/Wikia/app/pull/3859
-					$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+					$permissionManager = $services->getPermissionManager();
 
 					if ( $permissionManager->userCan( 'delete', $this->getUser(), $filePage ) ) {
 						$deleteMsg = $this->msg( 'listfiles-delete' )->text();
