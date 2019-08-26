@@ -116,8 +116,8 @@ jquery:
   files:
     # Integrities from link modals https://code.jquery.com/jquery/
     jquery.migrate.js:
-      src: https://code.jquery.com/jquery-migrate-3.0.1.js
-      integrity: sha256-VvnF+Zgpd00LL73P2XULYXEn6ROvoFaa/vbfoiFlZZ4=
+      src: https://code.jquery.com/jquery-migrate-3.1.0.js
+      integrity: sha256-oA/lsZCgEPkbv/byAkeXSTEZTsGOPZCrtbyFBHmcGKM=
     jquery.js:
       src: https://code.jquery.com/jquery-3.4.1.js
       integrity: sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=
