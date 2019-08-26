@@ -119,8 +119,8 @@ jquery:
       src: https://code.jquery.com/jquery-migrate-3.0.1.js
       integrity: sha256-VvnF+Zgpd00LL73P2XULYXEn6ROvoFaa/vbfoiFlZZ4=
     jquery.js:
-      src: https://code.jquery.com/jquery-3.3.1.js
-      integrity: sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=
+      src: https://code.jquery.com/jquery-3.4.1.js
+      integrity: sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=
 
 jquery.chosen:
   type: multi-file
