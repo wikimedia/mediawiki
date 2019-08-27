@@ -948,7 +948,7 @@ class Parser {
 	 *
 	 * @param User|null $user User object or null (to reset)
 	 */
-	public function setUser( $user ) {
+	public function setUser( ?User $user ) {
 		$this->mUser = $user;
 	}
 
@@ -1169,7 +1169,7 @@ class Parser {
 	 * @param array &$matches Out parameter, Array: extracted tags
 	 * @return string Stripped text
 	 */
-	public static function extractTagsAndParams( $elements, $text, &$matches ) {
+	public static function extractTagsAndParams( array $elements, $text, &$matches ) {
 		static $n = 1;
 		$stripped = '';
 		$matches = [];
@@ -1701,7 +1701,7 @@ class Parser {
 	 * @param array $m
 	 * @return string HTML
 	 */
-	private function magicLinkCallback( $m ) {
+	private function magicLinkCallback( array $m ) {
 		if ( isset( $m[1] ) && $m[1] !== '' ) {
 			# Skip anchor
 			return $m[0];
@@ -2150,7 +2150,7 @@ class Parser {
 	 * @param LinkTarget|null $title Optional LinkTarget, for wgNoFollowNsExceptions lookups
 	 * @return string|null Rel attribute for $url
 	 */
-	public static function getExternalLinkRel( $url = false, $title = null ) {
+	public static function getExternalLinkRel( $url = false, LinkTarget $title = null ) {
 		global $wgNoFollowLinks, $wgNoFollowNsExceptions, $wgNoFollowDomainExceptions;
 		$ns = $title ? $title->getNamespace() : false;
 		if ( $wgNoFollowLinks && !in_array( $ns, $wgNoFollowNsExceptions )
@@ -2667,7 +2667,7 @@ class Parser {
 	 * @param string $prefix
 	 * @return string HTML-wikitext mix oh yuck
 	 */
-	private function makeKnownLinkHolder( $nt, $text = '', $trail = '', $prefix = '' ) {
+	private function makeKnownLinkHolder( Title $nt, $text = '', $trail = '', $prefix = '' ) {
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
 
 		if ( $text == '' ) {
@@ -3244,7 +3244,7 @@ class Parser {
 	 * @return string|array The text of the template
 	 * @internal
 	 */
-	public function braceSubstitution( $piece, $frame ) {
+	public function braceSubstitution( array $piece, PPFrame $frame ) {
 		// Flags
 
 		// $text has been filled
@@ -3597,7 +3597,7 @@ class Parser {
 	 * @param array $args Arguments to the function
 	 * @return array
 	 */
-	public function callParserFunction( $frame, $function, array $args = [] ) {
+	public function callParserFunction( PPFrame $frame, $function, array $args = [] ) {
 		# Case sensitive functions
 		if ( isset( $this->mFunctionSynonyms[1][$function] ) ) {
 			$function = $this->mFunctionSynonyms[1][$function];
@@ -3689,7 +3689,7 @@ class Parser {
 	 *
 	 * @return array
 	 */
-	public function getTemplateDom( $title ) {
+	public function getTemplateDom( Title $title ) {
 		$cacheTitle = $title;
 		$titleText = $title->getPrefixedDBkey();
 
@@ -3732,7 +3732,7 @@ class Parser {
 	 * @param Title $title
 	 * @return Revision
 	 */
-	public function fetchCurrentRevisionOfTitle( $title ) {
+	public function fetchCurrentRevisionOfTitle( Title $title ) {
 		$cacheKey = $title->getPrefixedDBkey();
 		if ( !$this->currentRevisionCache ) {
 			$this->currentRevisionCache = new MapCacheLRU( 100 );
@@ -3752,7 +3752,7 @@ class Parser {
 	 * @since 1.34
 	 * @internal
 	 */
-	public function isCurrentRevisionOfTitleCached( $title ) {
+	public function isCurrentRevisionOfTitleCached( Title $title ) {
 		return (
 			$this->currentRevisionCache &&
 			$this->currentRevisionCache->has( $title->getPrefixedText() )
@@ -3780,7 +3780,7 @@ class Parser {
 	 * @param Title $title
 	 * @return array ( string or false, Title )
 	 */
-	public function fetchTemplateAndTitle( $title ) {
+	public function fetchTemplateAndTitle( Title $title ) {
 		// Defaults to Parser::statelessFetchTemplate()
 		$templateCb = $this->mOptions->getTemplateCallback();
 		$stuff = call_user_func( $templateCb, $title, $this );
@@ -3809,7 +3809,7 @@ class Parser {
 	 * @return string|bool
 	 * @deprecated since 1.35, use Parser::fetchTemplateAndTitle(...)[0]
 	 */
-	public function fetchTemplate( $title ) {
+	public function fetchTemplate( Title $title ) {
 		wfDeprecated( __METHOD__, '1.35' );
 		return $this->fetchTemplateAndTitle( $title )[0];
 	}
@@ -3919,7 +3919,7 @@ class Parser {
 	 * @param array $options Array of options to RepoGroup::findFile
 	 * @return array ( File or false, Title of file )
 	 */
-	public function fetchFileAndTitle( $title, $options = [] ) {
+	public function fetchFileAndTitle( Title $title, array $options = [] ) {
 		$file = $this->fetchFileNoRegister( $title, $options );
 
 		$time = $file ? $file->getTimestamp() : false;
@@ -3944,7 +3944,7 @@ class Parser {
 	 * @param array $options Array of options to RepoGroup::findFile
 	 * @return File|bool
 	 */
-	protected function fetchFileNoRegister( $title, $options = [] ) {
+	protected function fetchFileNoRegister( Title $title, array $options = [] ) {
 		if ( isset( $options['broken'] ) ) {
 			$file = false; // broken thumbnail forced by hook
 		} else {
@@ -3967,7 +3967,7 @@ class Parser {
 	 * @return string
 	 * @internal
 	 */
-	public function interwikiTransclude( $title, $action ) {
+	public function interwikiTransclude( Title $title, $action ) {
 		if ( !$this->svcOptions->get( 'EnableScaryTranscluding' ) ) {
 			return wfMessage( 'scarytranscludedisabled' )->inContentLanguage()->text();
 		}
@@ -4036,7 +4036,7 @@ class Parser {
 	 * @return array
 	 * @internal
 	 */
-	public function argSubstitution( $piece, $frame ) {
+	public function argSubstitution( array $piece, PPFrame $frame ) {
 		$error = false;
 		$parts = $piece['parts'];
 		$nameWithSpaces = $frame->expand( $piece['title'] );
@@ -4089,7 +4089,7 @@ class Parser {
 	 * @return string
 	 * @internal
 	 */
-	public function extensionSubstitution( $params, $frame ) {
+	public function extensionSubstitution( array $params, PPFrame $frame ) {
 		static $errorStr = '<span class="error">';
 		static $errorLen = 20;
 
@@ -4729,7 +4729,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	private function pstPass2( $text, $user ) {
+	private function pstPass2( $text, User $user ) {
 		# Note: This is the timestamp saved as hardcoded wikitext to the database, we use
 		# $this->contLang here in order to give everyone the same signature and use the default one
 		# rather than the one selected in each user's preferences.  (see also T14815)
@@ -4799,13 +4799,13 @@ class Parser {
 	 * Do not reuse this parser instance after calling getUserSig(),
 	 * as it may have changed.
 	 *
-	 * @param User &$user
+	 * @param User $user
 	 * @param string|false $nickname Nickname to use or false to use user's default nickname
 	 * @param bool|null $fancySig whether the nicknname is the complete signature
 	 *    or null to use default value
 	 * @return string
 	 */
-	public function getUserSig( &$user, $nickname = false, $fancySig = null ) {
+	public function getUserSig( User $user, $nickname = false, $fancySig = null ) {
 		$username = $user->getName();
 
 		# If not given, retrieve from the user object.
@@ -4952,7 +4952,7 @@ class Parser {
 	 * @param Title|null $title Title object or null to use $wgTitle
 	 * @return string
 	 */
-	public function transformMsg( $text, $options, $title = null ) {
+	public function transformMsg( $text, ParserOptions $options, Title $title = null ) {
 		static $executing = false;
 
 		# Guard against infinite recursion
@@ -5178,7 +5178,7 @@ class Parser {
 	 * @return string HTML
 	 * @internal
 	 */
-	public function renderImageGallery( $text, $params ) {
+	public function renderImageGallery( $text, array $params ) {
 		$mode = false;
 		if ( isset( $params['mode'] ) ) {
 			$mode = $params['mode'];
@@ -5339,7 +5339,7 @@ class Parser {
 	}
 
 	/**
-	 * @param MediaHandler $handler
+	 * @param MediaHandler|false $handler
 	 * @return array
 	 */
 	private function getImageParams( $handler ) {
@@ -5396,7 +5396,7 @@ class Parser {
 	 * @param LinkHolderArray|bool $holders
 	 * @return string HTML
 	 */
-	public function makeImage( $title, $options, $holders = false ) {
+	public function makeImage( Title $title, $options, $holders = false ) {
 		# Check if the options text is of the form "options|alt text"
 		# Options are:
 		#  * thumbnail  make a thumbnail with enlarge-icon and caption, alignment depends on lang
@@ -6325,7 +6325,7 @@ class Parser {
 	 * @return string
 	 * @internal
 	 */
-	public function markerSkipCallback( $s, $callback ) {
+	public function markerSkipCallback( $s, callable $callback ) {
 		$i = 0;
 		$out = '';
 		while ( $i < strlen( $s ) ) {
