@@ -2,6 +2,7 @@
 DELETE {
 ?category ?x ?y
 } WHERE {
+   ?category ?x ?y
    VALUES ?category {
      <http://acme.test/wiki/Category:Changed_category>
    }
