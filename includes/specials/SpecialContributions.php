@@ -55,13 +55,6 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		$target = $par ?? $request->getVal( 'target' );
 
-		if ( $request->getVal( 'contribs' ) == 'newbie' || $par === 'newbies' ) {
-			$target = 'newbies';
-			$this->opts['contribs'] = 'newbie';
-		} else {
-			$this->opts['contribs'] = 'user';
-		}
-
 		$this->opts['deletedOnly'] = $request->getBool( 'deletedOnly' );
 
 		if ( !strlen( $target ) ) {
@@ -81,14 +74,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->opts['hideMinor'] = $request->getBool( 'hideMinor' );
 
 		$id = 0;
-		if ( $this->opts['contribs'] === 'newbie' ) {
-			$userObj = User::newFromName( $target ); // hysterical raisins
-			$out->addSubtitle( $this->msg( 'sp-contributions-newbies-sub' ) );
-			$out->setHTMLTitle( $this->msg(
-				'pagetitle',
-				$this->msg( 'sp-contributions-newbies-title' )->plain()
-			)->inContentLanguage() );
-		} elseif ( ExternalUserNames::isExternal( $target ) ) {
+		if ( ExternalUserNames::isExternal( $target ) ) {
 			$userObj = User::newFromName( $target, false );
 			if ( !$userObj ) {
 				$out->addHTML( $this->getForm() );
@@ -217,7 +203,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			}
 			$pager = new ContribsPager( $this->getContext(), [
 				'target' => $target,
-				'contribs' => $this->opts['contribs'],
+				// Temporary, until newbie feature is fully removed from ContribsPager
+				'contribs' => 'user',
 				'namespace' => $this->opts['namespace'],
 				'tagfilter' => $this->opts['tagfilter'],
 				'start' => $this->opts['start'],
@@ -256,9 +243,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			$out->preventClickjacking( $pager->getPreventClickjacking() );
 
 			# Show the appropriate "footer" message - WHOIS tools, etc.
-			if ( $this->opts['contribs'] == 'newbie' ) {
-				$message = 'sp-contributions-footer-newbies';
-			} elseif ( IP::isValidRange( $target ) ) {
+			if ( IP::isValidRange( $target ) ) {
 				$message = 'sp-contributions-footer-anon-range';
 			} elseif ( IP::isIPAddress( $target ) ) {
 				$message = 'sp-contributions-footer-anon';
@@ -491,20 +476,12 @@ class SpecialContributions extends IncludableSpecialPage {
 			$this->opts['associated'] = false;
 		}
 
-		if ( !isset( $this->opts['contribs'] ) ) {
-			$this->opts['contribs'] = 'user';
-		}
-
 		if ( !isset( $this->opts['start'] ) ) {
 			$this->opts['start'] = '';
 		}
 
 		if ( !isset( $this->opts['end'] ) ) {
 			$this->opts['end'] = '';
-		}
-
-		if ( $this->opts['contribs'] == 'newbie' ) {
-			$this->opts['target'] = '';
 		}
 
 		if ( !isset( $this->opts['tagfilter'] ) ) {
@@ -578,20 +555,12 @@ class SpecialContributions extends IncludableSpecialPage {
 			$filterSelection = Html::rawElement( 'div', [], '' );
 		}
 
-		$labelNewbies = Xml::radioLabel(
-			$this->msg( 'sp-contributions-newbies' )->text(),
-			'contribs',
-			'newbie',
-			'newbie',
-			$this->opts['contribs'] == 'newbie',
-			[ 'class' => 'mw-input' ]
-		);
 		$labelUsername = Xml::radioLabel(
 			$this->msg( 'sp-contributions-username' )->text(),
 			'contribs',
 			'user',
 			'user',
-			$this->opts['contribs'] == 'user',
+			true,
 			[ 'class' => 'mw-input' ]
 		);
 		$input = Html::input(
@@ -607,16 +576,15 @@ class SpecialContributions extends IncludableSpecialPage {
 					'mw-autocomplete-user', // used by mediawiki.userSuggest
 				],
 			] + (
-				// Only autofocus if target hasn't been specified or in non-newbies mode
-				( $this->opts['contribs'] === 'newbie' || $this->opts['target'] )
-					? [] : [ 'autofocus' => true ]
-				)
+				// Only autofocus if target hasn't been specified
+				$this->opts['target'] ? [] : [ 'autofocus' => true ]
+			)
 		);
 
 		$targetSelection = Html::rawElement(
 			'div',
 			[],
-			$labelNewbies . '<br>' . $labelUsername . ' ' . $input . ' '
+			$labelUsername . ' ' . $input . ' '
 		);
 
 		$hidden = $this->opts['namespace'] === '' ? ' mw-input-hidden' : '';
