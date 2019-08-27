@@ -53,7 +53,7 @@ class ImageListPager extends TablePager {
 	public function __construct( IContextSource $context, $userName = null, $search = '',
 		$including = false, $showAll = false
 	) {
-		parent::__construct( $context );
+		$this->setContext( $context );
 
 		$this->mIncluding = $including;
 		$this->mShowAll = $showAll;
@@ -95,6 +95,8 @@ class ImageListPager extends TablePager {
 		} else {
 			$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 		}
+
+		parent::__construct();
 	}
 
 	/**

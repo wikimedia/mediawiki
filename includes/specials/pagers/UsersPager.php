@@ -44,6 +44,10 @@ class UsersPager extends AlphabeticPager {
 	 * another page
 	 */
 	public function __construct( IContextSource $context = null, $par = null, $including = null ) {
+		if ( $context ) {
+			$this->setContext( $context );
+		}
+
 		$request = $this->getRequest();
 		$par = $par ?? '';
 		$parms = explode( '/', $par );
@@ -83,7 +87,7 @@ class UsersPager extends AlphabeticPager {
 			}
 		}
 
-		parent::__construct( $context );
+		parent::__construct();
 	}
 
 	/**
