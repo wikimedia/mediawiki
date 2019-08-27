@@ -46,6 +46,12 @@ class MessageCache {
 	const LOCK_TTL = 30;
 
 	/**
+	 * Lifetime for cache, for keys stored in $wanCache, in seconds.
+	 * @var int
+	 */
+	const WAN_TTL = IExpiringStore::TTL_DAY;
+
+	/**
 	 * Process cache of loaded messages that are defined in MediaWiki namespace
 	 *
 	 * @var MapCacheLRU Map of (language code => key => " <MESSAGE>" or "!TOO BIG" or "!ERROR")
@@ -69,12 +75,6 @@ class MessageCache {
 	 * @var bool $mDisable
 	 */
 	protected $mDisable;
-
-	/**
-	 * Lifetime for cache, used by object caching.
-	 * Set on construction, see __construct().
-	 */
-	protected $mExpiry;
 
 	/**
 	 * Message cache has its own parser which it uses to transform messages
@@ -137,7 +137,6 @@ class MessageCache {
 	 * @param BagOStuff $clusterCache
 	 * @param BagOStuff $serverCache
 	 * @param bool $useDB Whether to look for message overrides (e.g. MediaWiki: pages)
-	 * @param int $expiry Lifetime for cache. @see $mExpiry.
 	 * @param Language|null $contLang Content language of site
 	 */
 	public function __construct(
@@ -145,7 +144,6 @@ class MessageCache {
 		BagOStuff $clusterCache,
 		BagOStuff $serverCache,
 		$useDB,
-		$expiry,
 		Language $contLang = null
 	) {
 		$this->wanCache = $wanCache;
@@ -155,7 +153,6 @@ class MessageCache {
 		$this->cache = new MapCacheLRU( 5 ); // limit size for sanity
 
 		$this->mDisable = !$useDB;
-		$this->mExpiry = $expiry;
 		$this->contLang = $contLang ?? MediaWikiServices::getInstance()->getContentLanguage();
 	}
 
@@ -551,7 +548,7 @@ class MessageCache {
 		# messages larger than $wgMaxMsgCacheEntrySize, since those are only
 		# stored and fetched from memcache.
 		$cache['HASH'] = md5( serialize( $cache ) );
-		$cache['EXPIRY'] = wfTimestamp( TS_MW, time() + $this->mExpiry );
+		$cache['EXPIRY'] = wfTimestamp( TS_MW, time() + self::WAN_TTL );
 		unset( $cache['EXCESSIVE'] ); // only needed for hash
 
 		return $cache;
@@ -666,7 +663,7 @@ class MessageCache {
 			$this->wanCache->set(
 				$this->bigMessageCacheKey( $cache['HASH'], $title ),
 				' ' . $newTextByTitle[$title],
-				$this->mExpiry
+				self::WAN_TTL
 			);
 		}
 		// Mark this cache as definitely being "latest" (non-volatile) so
@@ -1090,11 +1087,11 @@ class MessageCache {
 		$fname = __METHOD__;
 		return $this->srvCache->getWithSetCallback(
 			$this->srvCache->makeKey( 'messages-big', $hash, $dbKey ),
-			IExpiringStore::TTL_MINUTE,
+			BagOStuff::TTL_MINUTE,
 			function () use ( $code, $dbKey, $hash, $fname ) {
 				return $this->wanCache->getWithSetCallback(
 					$this->bigMessageCacheKey( $hash, $dbKey ),
-					$this->mExpiry,
+					self::WAN_TTL,
 					function ( $oldValue, &$ttl, &$setOpts ) use ( $dbKey, $code, $fname ) {
 						// Try loading the message from the database
 						$dbr = wfGetDB( DB_REPLICA );
