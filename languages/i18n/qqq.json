@@ -2354,7 +2354,6 @@
 	"apisandbox": "{{doc-special|ApiSandbox}}",
 	"apisandbox-summary": "{{ignored}}\n{{doc-specialpagesummary|ApiSandbox}}",
 	"apisandbox-jsonly": "Displayed as an error message if the browser does not have JavaScript enabled.",
-	"apisandbox-api-disabled": "Displayed as an error message if the API is disabled on this site.",
 	"apisandbox-intro": "Displayed (from JavaScript) as a header on [[Special:ApiSandbox]].",
 	"apisandbox-submit": "JavaScript button label for submitting the request.",
 	"apisandbox-reset": "JavaScript button label for clearing the form.\n{{Identical|Clear}}",
