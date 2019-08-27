@@ -35,8 +35,6 @@ abstract class TablePager extends IndexPager {
 	protected $mCurrentRow;
 
 	public function __construct( IContextSource $context = null, LinkRenderer $linkRenderer = null ) {
-		parent::__construct( $context, $linkRenderer );
-
 		$this->mSort = $this->getRequest()->getText( 'sort' );
 		if ( !array_key_exists( $this->mSort, $this->getFieldNames() )
 			|| !$this->isFieldSortable( $this->mSort )
@@ -48,6 +46,9 @@ abstract class TablePager extends IndexPager {
 		} elseif ( $this->getRequest()->getBool( 'desc' ) ) {
 			$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 		} /* Else leave it at whatever the class default is */
+
+		// Parent constructor needs mSort set, so we call it last
+		parent::__construct( $context, $linkRenderer );
 	}
 
 	/**
