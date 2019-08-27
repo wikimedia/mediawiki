@@ -403,7 +403,6 @@ return [
 				? $services->getLocalServerObjectCache()
 				: new EmptyBagOStuff(),
 			$mainConfig->get( 'UseDatabaseMessages' ),
-			$mainConfig->get( 'MsgCacheExpiry' ),
 			$services->getContentLanguage()
 		);
 	},

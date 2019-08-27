@@ -3121,13 +3121,6 @@ $wgTranslateNumerals = true;
 $wgUseDatabaseMessages = true;
 
 /**
- * Expiry time for the message cache key, in seconds.
- *
- * @var int Defaults to 24 hours.
- */
-$wgMsgCacheExpiry = 86400;
-
-/**
  * Maximum entry size in the message cache, in bytes
  */
 $wgMaxMsgCacheEntrySize = 10000;

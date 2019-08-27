@@ -75,6 +75,8 @@ For notes on 1.33.x and older releases, see HISTORY.
 * $wgDebugPrintHttpHeaders - The default of including HTTP headers in the
   debug log channel is no longer configurable. The debug log itself remains
   configurable via $wgDebugLogFile.
+* $wgMsgCacheExpiry - The MessageCache uses 24 hours as the expiry for values
+  stored in WANObjectCache. This is no longer configurable.
 * $wgPasswordSalt – This setting, used for migrating exceptionally old, insecure
   password setups and deprecated since 1.24, is now removed.
 * $wgDBOracleDRCP - If you must use persistent connections, set DBO_PERSISTENT

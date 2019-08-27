@@ -131,13 +131,7 @@ Localisation:
 	cleared by: Language::loadLocalisation()
 
 Message Cache:
-	backend: $wgMessageCacheType
-	key: $wgDBname:messages, $wgDBname:messages-hash, $wgDBname:messages-status
-	ex: wikidb:messages, wikidb:messages-hash, wikidb:messages-status
-	stores: an array where the keys are DB keys and the values are messages
-	set in: wfMessage(), Article::editUpdates() and Title::moveTo()
-	expiry: $wgMsgCacheExpiry
-	cleared by: nothing
+	See MessageCache.php.
 
 Newtalk:
 	key: $wgDBname:newtalk:ip:$ip
