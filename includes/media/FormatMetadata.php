@@ -490,8 +490,16 @@ class FormatMetadata extends ContextSource {
 
 					case 'CustomRendered':
 						switch ( $val ) {
-							case 0:
-							case 1:
+							case 0: /* normal */
+							case 1: /* custom */
+								/* The following are unofficial Apple additions */
+							case 2: /* HDR (no original saved) */
+							case 3: /* HDR (original saved) */
+							case 4: /* Original (for HDR) */
+								/* Yes 5 is not present ;) */
+							case 6: /* Panorama */
+							case 7: /* Portrait HDR */
+							case 8: /* Portrait */
 								$val = $this->exifMsg( $tag, $val );
 								break;
 							default:
