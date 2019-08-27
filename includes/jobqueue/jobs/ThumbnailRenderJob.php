@@ -108,7 +108,8 @@ class ThumbnailRenderJob extends Job {
 
 		// T203135 We don't wait for the request to complete, as this is mostly fire & forget.
 		// Looking at the HTTP status of requests that take less than 1s is a sanity check.
-		$request = MWHttpRequest::factory( $thumbUrl,
+		$request = MediaWikiServices::getInstance()->getHttpRequestFactory()->create(
+			$thumbUrl,
 			[ 'method' => 'HEAD', 'followRedirects' => true, 'timeout' => 1 ],
 			__METHOD__
 		);
