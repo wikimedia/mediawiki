@@ -121,7 +121,7 @@ exports.config = {
 
 	// Test reporter for stdout.
 	// See also: http://webdriver.io/guide/testrunner/reporters.html
-	reporters: [ 'spec', 'junit' ],
+	reporters: [ 'dot', 'junit' ],
 	reporterOptions: {
 		junit: {
 			outputDir: logPath
