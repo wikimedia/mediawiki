@@ -151,8 +151,6 @@ class PasswordPolicyChecks {
 		global $wgPopularPasswordFile, $wgSitename;
 		$status = Status::newGood();
 		if ( $policyVal > 0 ) {
-			wfDeprecated( __METHOD__, '1.33' );
-
 			$langEn = Language::factory( 'en' );
 			$passwordKey = $langEn->lc( trim( $password ) );
 
