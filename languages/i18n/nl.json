@@ -97,7 +97,8 @@
 			"KlaasZ4usV",
 			"Elroy",
 			"PiefPafPier",
-			"Ecthelion3"
+			"Ecthelion3",
+			"RadioAzureus"
 		]
 	},
 	"tog-underline": "Verwijzingen onderstrepen:",
@@ -1601,8 +1602,8 @@
 	"rcfilters-filter-showlinkedto-label": "Toon wijzigingen op pagina's gekoppeld naar",
 	"rcfilters-filter-showlinkedto-option-label": "<strong>Pagina's gekoppeld naar</strong> de geselecteerde pagina",
 	"rcfilters-target-page-placeholder": "Voer een paginanaam (of categorie) in",
-	"rcfilters-allcontents-label": "Alle inhoud",
-	"rcfilters-alldiscussions-label": "Al het overleg",
+	"rcfilters-allcontents-label": "De volledige inhoud",
+	"rcfilters-alldiscussions-label": "Alle discussies",
 	"rcnotefrom": "Wijzigingen sinds <strong>$3 om $4</strong> (maximaal <strong>$1</strong> {{PLURAL:$1|wijziging|wijzigingen}}).",
 	"rclistfromreset": "Datum selectie opnieuw instellen",
 	"rclistfrom": "Wijzigingen bekijken vanaf $3 $2",
@@ -2776,7 +2777,7 @@
 	"immobile-target-namespace-iw": "Een interwikikoppeling is geen geldige bestemming voor het hernoemen van een pagina.",
 	"immobile-source-page": "Deze pagina kan niet hernoemd worden.",
 	"immobile-target-page": "Het is niet mogelijk te hernoemen naar die paginanaam.",
-	"movepage-invalid-target-title": "De opgevraagde naam is ongeldig.",
+	"movepage-invalid-target-title": "De gevraagde naam is ongeldig.",
 	"bad-target-model": "De gewenste bestemming gebruikt een ander inhoudsmodel. Het is niet mogelijk om te zetten van $1 naar $2.",
 	"imagenocrossnamespace": "Een mediabestand kan niet naar een andere naamruimte verplaatst worden",
 	"nonfile-cannot-move-to-file": "Het is niet mogelijk te hernoemen van en naar de bestandsnaamruimte",

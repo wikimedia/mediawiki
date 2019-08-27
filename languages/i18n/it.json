@@ -922,7 +922,7 @@
 	"last": "prec",
 	"page_first": "prima",
 	"page_last": "ultima",
-	"histlegend": "Confronto tra versioni: selezionare le caselle corrispondenti alle versioni desiderate e premere Invio o il pulsante in basso.\n\nLegenda: '''({{int:cur}})''' = differenze con la versione corrente, '''({{int:last}})''' = differenze con la versione precedente, '''{{int:minoreditletter}}''' = modifica minore",
+	"histlegend": "Confronto tra versioni: selezionare le caselle corrispondenti alle versioni desiderate e premere Invio o il pulsante in basso.\n\nLegenda: '''({{int:cur}})''' = differenze con la versione attuale, '''({{int:last}})''' = differenze con la versione precedente, '''{{int:minoreditletter}}''' = modifica minore",
 	"history-fieldset-title": "Filtra versioni",
 	"history-show-deleted": "Solo versioni cancellate",
 	"histfirst": "prima",

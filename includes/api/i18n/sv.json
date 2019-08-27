@@ -551,5 +551,6 @@
 	"apierror-unknownformat": "Okänt format \"$1\".",
 	"apiwarn-compare-no-next": "Sidversion $2 är den senaste sidversionen av $1, det finns ingen sidversion för <kbd>torelative=next</kbd> att jämföra med.",
 	"apiwarn-compare-no-prev": "Sidversionen $2 är den tidigaste sidversion för $1, det finns ingen sidversion för <kbd>torelative=prev</kbd> att jämföra med.",
+	"apiwarn-deprecation-post-without-content-type": "En POST-begäran gjordes utan en <code>Content-Type</code> i sidhuvudet. Det fungerar inte ordentligt.",
 	"api-feed-error-title": "Fel ($1)"
 }

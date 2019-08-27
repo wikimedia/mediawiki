@@ -1536,6 +1536,7 @@
 	"rcfilters-filter-showlinkedto-label": "Vis ændringer på sider der linker til",
 	"rcfilters-filter-showlinkedto-option-label": "<strong>Sider som linker til</strong> den valgte side",
 	"rcfilters-target-page-placeholder": "Indtast et sidenavn (eller en kategori)",
+	"rcfilters-allcontents-label": "Alt indhold",
 	"rcnotefrom": "Nedenfor er op til '''$1''' {{PLURAL:$5|ændring|ændringer}} siden '''$2''' vist.",
 	"rclistfromreset": "Nulstil datovalg",
 	"rclistfrom": "Vis nye ændringer startende fra den $3 kl. $2",
