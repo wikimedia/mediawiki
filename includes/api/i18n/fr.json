@@ -1809,6 +1809,7 @@
 	"apiwarn-deprecation-missingparam": "Comme <var>$1</var> n’a pas été spécifié, un format ancien a été utilisé pour la sortie. Ce format est obsolète, et dans le futur, le nouveau format sera toujours utilisé.",
 	"apiwarn-deprecation-parameter": "Le paramètre <var>$1</var> est désuet.",
 	"apiwarn-deprecation-parse-headitems": "<kbd>prop=headitems</kbd> est désuet depuis MédiaWiki 1.28. Utilisez <kbd>prop=headhtml</kbd> lors de la création de nouveaux documents HTML, ou <kbd>prop=modules|jsconfigvars</kbd> lors de la mise à jour d’un document côté client.",
+	"apiwarn-deprecation-post-without-content-type": "Une requête POST a été faite sans entête <code>Content-Type</code>. Cela ne fonctionne pas de façon fiable.",
 	"apiwarn-deprecation-purge-get": "L’utilisation de <kbd>action=purge</kbd> via un GET est désuète. Utiliser POST à la place.",
 	"apiwarn-deprecation-withreplacement": "<kbd>$1</kbd> est désuet. Veuillez utiliser <kbd>$2</kbd> à la place.",
 	"apiwarn-difftohidden": "Impossible de faire un diff avec r$1 : le contenu est masqué.",
