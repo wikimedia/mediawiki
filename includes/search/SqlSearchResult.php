@@ -22,7 +22,7 @@
  * @ingroup Search
  */
 
-class SqlSearchResult extends SearchResult {
+class SqlSearchResult extends RevisionSearchResult {
 	/** @var string[] */
 	private $terms;
 
@@ -32,7 +32,7 @@ class SqlSearchResult extends SearchResult {
 	 * @param string[] $terms list of parsed terms
 	 */
 	public function __construct( Title $title, array $terms ) {
-		$this->initFromTitle( $title );
+		parent::__construct( $title );
 		$this->terms = $terms;
 	}
 

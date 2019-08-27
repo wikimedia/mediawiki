@@ -1,6 +1,6 @@
 <?php
 
-class MockSearchResult extends SearchResult {
+class MockSearchResult extends RevisionSearchResult {
 	private $isMissingRevision = false;
 	private $isBrokenTitle = false;
 
