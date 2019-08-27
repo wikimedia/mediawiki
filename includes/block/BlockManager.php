@@ -257,7 +257,7 @@ class BlockManager {
 			$block = DatabaseBlock::newFromID( $blockCookieId );
 			if (
 				$block instanceof DatabaseBlock &&
-				$this->shouldApplyCookieBlock( $block, $user->isAnon() )
+				$this->shouldApplyCookieBlock( $block, !$user->isRegistered() )
 			) {
 				return $block;
 			}
