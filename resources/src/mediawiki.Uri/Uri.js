@@ -176,6 +176,10 @@
 		 * @param {boolean} [options.strictMode=false] Trigger strict mode parsing of the url.
 		 * @param {boolean} [options.overrideKeys=false] Whether to let duplicate query parameters
 		 *  override each other (`true`) or automagically convert them to an array (`false`).
+		 * @param {boolean} [options.arrayParams=false] Whether to parse array query parameters (e.g.
+		 *  `&foo[0]=a&foo[1]=b` or `&foo[]=a&foo[]=b`) or leave them alone. Currently this does not
+		 *  handle associative or multi-dimensional arrays, but that may be improved in the future.
+		 *  Implies `overrideKeys: true` (query parameters without `[...]` are not parsed as arrays).
 		 * @throws {Error} when the query string or fragment contains an unknown % sequence
 		 */
 		function Uri( uri, options ) {
@@ -186,8 +190,11 @@
 			options = typeof options === 'object' ? options : { strictMode: !!options };
 			options = $.extend( {
 				strictMode: false,
-				overrideKeys: false
+				overrideKeys: false,
+				arrayParams: false
 			}, options );
+
+			this.arrayParams = options.arrayParams;
 
 			if ( uri !== undefined && uri !== null && uri !== '' ) {
 				if ( typeof uri === 'string' ) {
@@ -301,13 +308,34 @@
 				// using replace to iterate over a string
 				if ( uri.query ) {
 					uri.query.replace( /(?:^|&)([^&=]*)(?:(=)([^&]*))?/g, function ( match, k, eq, v ) {
+						var arrayKeyMatch, i;
 						if ( k ) {
 							k = Uri.decode( k );
 							v = ( eq === '' || eq === undefined ) ? null : Uri.decode( v );
+							arrayKeyMatch = k.match( /^([^[]+)\[(\d*)\]$/ );
+
+							// If arrayParams and this parameter name contains an array index...
+							if ( options.arrayParams && arrayKeyMatch ) {
+								// Remove the index from parameter name
+								k = arrayKeyMatch[ 1 ];
+
+								// Turn the parameter value into an array (throw away anything else)
+								if ( !Array.isArray( q[ k ] ) ) {
+									q[ k ] = [];
+								}
+
+								i = arrayKeyMatch[ 2 ];
+								if ( i === '' ) {
+									// If no explicit index, append at the end
+									i = q[ k ].length;
+								}
+
+								q[ k ][ i ] = v;
 
 							// If overrideKeys, always (re)set top level value.
 							// If not overrideKeys but this key wasn't set before, then we set it as well.
-							if ( options.overrideKeys || !hasOwn.call( q, k ) ) {
+							// arrayParams implies overrideKeys (no array handling for non-array params).
+							} else if ( options.arrayParams || options.overrideKeys || !hasOwn.call( q, k ) ) {
 								q[ k ] = v;
 
 							// Use arrays if overrideKeys is false and key was already seen before
@@ -369,18 +397,24 @@
 			 * @return {string}
 			 */
 			getQueryString: function () {
-				var args = [];
+				var args = [],
+					arrayParams = this.arrayParams;
 				// eslint-disable-next-line no-jquery/no-each-util
 				$.each( this.query, function ( key, val ) {
 					var k = Uri.encode( key ),
-						vals = Array.isArray( val ) ? val : [ val ];
-					vals.forEach( function ( v ) {
+						isArrayParam = Array.isArray( val ),
+						vals = isArrayParam ? val : [ val ];
+					vals.forEach( function ( v, i ) {
+						var ki = k;
+						if ( arrayParams && isArrayParam ) {
+							ki += Uri.encode( '[' + i + ']' );
+						}
 						if ( v === null ) {
-							args.push( k );
+							args.push( ki );
 						} else if ( k === 'title' ) {
-							args.push( k + '=' + mw.util.wikiUrlencode( v ) );
+							args.push( ki + '=' + mw.util.wikiUrlencode( v ) );
 						} else {
-							args.push( k + '=' + Uri.encode( v ) );
+							args.push( ki + '=' + Uri.encode( v ) );
 						}
 					} );
 				} );
