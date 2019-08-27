@@ -1087,7 +1087,7 @@ class MessageCache {
 		$fname = __METHOD__;
 		return $this->srvCache->getWithSetCallback(
 			$this->srvCache->makeKey( 'messages-big', $hash, $dbKey ),
-			BagOStuff::TTL_MINUTE,
+			BagOStuff::TTL_HOUR,
 			function () use ( $code, $dbKey, $hash, $fname ) {
 				return $this->wanCache->getWithSetCallback(
 					$this->bigMessageCacheKey( $hash, $dbKey ),
