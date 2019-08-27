@@ -43,6 +43,7 @@ class SpecialNewSection extends RedirectSpecialPage {
 	protected function showNoRedirectPage() {
 		$this->setHeaders();
 		$this->outputHeader();
+		$this->addHelpLink( 'Help:New section' );
 		$this->showForm();
 	}
 
