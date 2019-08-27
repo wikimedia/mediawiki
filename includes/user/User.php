@@ -3738,11 +3738,17 @@ class User implements IDBAccessObject, UserIdentity {
 				$this->setNewtalk( false );
 
 				// If there is a new, unseen, revision, use its timestamp
-				$nextid = $oldid
-					? $title->getNextRevisionID( $oldid, Title::READ_LATEST )
-					: null;
-				if ( $nextid ) {
-					$this->setNewtalk( true, Revision::newFromId( $nextid ) );
+				if ( $oldid ) {
+					$rl = MediaWikiServices::getInstance()->getRevisionLookup();
+					$oldRev = $rl->getRevisionById( $oldid, Title::READ_LATEST );
+					if ( $oldRev ) {
+						$newRev = $rl->getNextRevision( $oldRev );
+						if ( $newRev ) {
+							// TODO: actually no need to wrap in a revision,
+							// setNewtalk really only needs a RevRecord
+							$this->setNewtalk( true, new Revision( $newRev ) );
+						}
+					}
 				}
 			} );
 		}

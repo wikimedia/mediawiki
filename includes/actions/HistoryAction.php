@@ -433,27 +433,30 @@ class HistoryAction extends FormlessAction {
 	 * @return FeedItem
 	 */
 	function feedItem( $row ) {
-		$rev = new Revision( $row, 0, $this->getTitle() );
-
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$rev = $revisionStore->newRevisionFromRow( $row, 0, $this->getTitle() );
+		$prevRev = $revisionStore->getPreviousRevision( $rev );
+		$revComment = $rev->getComment() === null ? null : $rev->getComment()->text;
 		$text = FeedUtils::formatDiffRow(
 			$this->getTitle(),
-			$this->getTitle()->getPreviousRevisionID( $rev->getId() ),
+			$prevRev ? $prevRev->getId() : false,
 			$rev->getId(),
 			$rev->getTimestamp(),
-			$rev->getComment()
+			$revComment
 		);
-		if ( $rev->getComment() == '' ) {
+		$revUserText = $rev->getUser() ? $rev->getUser()->getName() : '';
+		if ( $revComment == '' ) {
 			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 			$title = $this->msg( 'history-feed-item-nocomment',
-				$rev->getUserText(),
+				$revUserText,
 				$contLang->timeanddate( $rev->getTimestamp() ),
 				$contLang->date( $rev->getTimestamp() ),
 				$contLang->time( $rev->getTimestamp() )
 			)->inContentLanguage()->text();
 		} else {
-			$title = $rev->getUserText() .
+			$title = $revUserText .
 				$this->msg( 'colon-separator' )->inContentLanguage()->text() .
-				FeedItem::stripComment( $rev->getComment() );
+				FeedItem::stripComment( $revComment );
 		}
 
 		return new FeedItem(
@@ -461,7 +464,7 @@ class HistoryAction extends FormlessAction {
 			$text,
 			$this->getTitle()->getFullURL( 'diff=' . $rev->getId() . '&oldid=prev' ),
 			$rev->getTimestamp(),
-			$rev->getUserText(),
+			$revUserText,
 			$this->getTitle()->getTalkPage()->getFullURL()
 		);
 	}
