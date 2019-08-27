@@ -232,7 +232,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			} elseif ( $field->validate( $globalDefault, $user->getOptions() ) === true ) {
 				$info['default'] = $globalDefault;
 			} else {
-				throw new MWException( "Global default '$globalDefault' is invalid for field $name" );
+				$globalDefault = json_encode( $globalDefault );
+				throw new MWException(
+					"Default '$globalDefault' is invalid for preference $name of user $user"
+				);
 			}
 		}
 
