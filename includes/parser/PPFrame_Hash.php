@@ -69,7 +69,7 @@ class PPFrame_Hash implements PPFrame {
 	public function __construct( $preprocessor ) {
 		$this->preprocessor = $preprocessor;
 		$this->parser = $preprocessor->parser;
-		$this->title = $this->parser->mTitle;
+		$this->title = $this->parser->getTitle();
 		$this->titleCache = [ $this->title ? $this->title->getPrefixedDBkey() : false ];
 		$this->loopCheckHash = [];
 		$this->depth = 0;
