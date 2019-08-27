@@ -61,9 +61,11 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Fetch the skinname messages for available skins.
+	 * @deprecated since 1.34, no longer used.
 	 * @return string[]
 	 */
 	static function getSkinNameMessages() {
+		wfDeprecated( __METHOD__, '1.34' );
 		$messages = [];
 		foreach ( self::getSkinNames() as $skinKey => $skinName ) {
 			$messages[] = "skinname-$skinKey";
