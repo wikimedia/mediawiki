@@ -148,7 +148,6 @@ class PasswordPolicyChecksTest extends MediaWikiTestCase {
 	 */
 	public function testCheckPopularPasswordBlacklist( $expected, $password ) {
 		global $IP;
-		$this->hideDeprecated( 'PasswordPolicyChecks::checkPopularPasswordBlacklist' );
 		$this->setMwGlobals( [
 			'wgSitename' => 'sitename',
 			'wgPopularPasswordFile' => "$IP/includes/password/commonpasswords.cdb"
