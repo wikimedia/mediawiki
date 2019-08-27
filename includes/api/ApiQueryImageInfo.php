@@ -63,7 +63,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				$this->dieWithError( [ 'apierror-bad-badfilecontexttitle', $p ], 'invalid-title' );
 			}
 		} else {
-			$badFileContextTitle = false;
+			$badFileContextTitle = null;
 		}
 
 		$pageIds = $this->getPageSet()->getGoodAndMissingTitlesByNamespace();

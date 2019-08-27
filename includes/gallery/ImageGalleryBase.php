@@ -80,10 +80,10 @@ abstract class ImageGalleryBase extends ContextSource {
 	public $mParser;
 
 	/**
-	 * @var Title Contextual title, used when images are being screened against
+	 * @var Title|null Contextual title, used when images are being screened against
 	 *   the bad image list
 	 */
-	protected $contextTitle = false;
+	protected $contextTitle = null;
 
 	/** @var array */
 	protected $mAttribs = [];
@@ -363,7 +363,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	/**
 	 * Set the contextual title
 	 *
-	 * @param Title $title Contextual title
+	 * @param Title|null $title Contextual title
 	 */
 	public function setContextTitle( $title ) {
 		$this->contextTitle = $title;
@@ -372,12 +372,10 @@ abstract class ImageGalleryBase extends ContextSource {
 	/**
 	 * Get the contextual title, if applicable
 	 *
-	 * @return Title|bool Title or false
+	 * @return Title|null
 	 */
 	public function getContextTitle() {
-		return is_object( $this->contextTitle ) && $this->contextTitle instanceof Title
-			? $this->contextTitle
-			: false;
+		return $this->contextTitle;
 	}
 
 	/**
