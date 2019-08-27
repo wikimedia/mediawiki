@@ -43,6 +43,8 @@
 		"bluespice/tagcloud": "dev-master",
 		"bluespice/qrcode": "dev-master",
 		"bluespice/uemodulepdf": "dev-master",
+		"bluespice/uemodulehtml": "dev-master",
+		"bluespice/uemoduledocx": "dev-master",
 		"bluespice/universalexport": "dev-master",
 		"bluespice/usagetracker": "dev-master",
 		"bluespice/usermanager": "dev-master",
