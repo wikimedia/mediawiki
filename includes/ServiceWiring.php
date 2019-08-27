@@ -45,6 +45,7 @@ use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
+use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
@@ -287,6 +288,14 @@ return [
 		$cacheId = \ObjectCache::detectLocalServerCache();
 
 		return \ObjectCache::newFromParams( $config->get( 'ObjectCaches' )[$cacheId] );
+	},
+
+	'LockManagerGroupFactory' => function ( MediaWikiServices $services ) : LockManagerGroupFactory {
+		return new LockManagerGroupFactory(
+			WikiMap::getCurrentWikiDbDomain()->getId(),
+			$services->getMainConfig()->get( 'LockManagers' ),
+			$services->getDBLoadBalancerFactory()
+		);
 	},
 
 	'MagicWordFactory' => function ( MediaWikiServices $services ) : MagicWordFactory {

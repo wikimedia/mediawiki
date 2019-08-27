@@ -22,6 +22,7 @@
  */
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Logger\LoggerFactory;
+use Wikimedia\Rdbms\LBFactory;
 
 /**
  * Class to handle file lock manager registration
@@ -30,62 +31,27 @@ use MediaWiki\Logger\LoggerFactory;
  * @since 1.19
  */
 class LockManagerGroup {
-	/** @var LockManagerGroup[] (domain => LockManagerGroup) */
-	protected static $instances = [];
+	/** @var string domain (usually wiki ID) */
+	protected $domain;
 
-	protected $domain; // string; domain (usually wiki ID)
+	/** @var LBFactory */
+	protected $lbFactory;
 
 	/** @var array Array of (name => ('class' => ..., 'config' => ..., 'instance' => ...)) */
 	protected $managers = [];
 
 	/**
-	 * @param string $domain Domain (usually wiki ID)
-	 */
-	protected function __construct( $domain ) {
-		$this->domain = $domain;
-	}
-
-	/**
-	 * @param bool|string $domain Domain (usually wiki ID). Default: false.
-	 * @return LockManagerGroup
-	 */
-	public static function singleton( $domain = false ) {
-		if ( $domain === false ) {
-			$domain = WikiMap::getCurrentWikiDbDomain()->getId();
-		}
-
-		if ( !isset( self::$instances[$domain] ) ) {
-			self::$instances[$domain] = new self( $domain );
-			self::$instances[$domain]->initFromGlobals();
-		}
-
-		return self::$instances[$domain];
-	}
-
-	/**
-	 * Destroy the singleton instances
-	 */
-	public static function destroySingletons() {
-		self::$instances = [];
-	}
-
-	/**
-	 * Register lock managers from the global variables
-	 */
-	protected function initFromGlobals() {
-		global $wgLockManagers;
-
-		$this->register( $wgLockManagers );
-	}
-
-	/**
-	 * Register an array of file lock manager configurations
+	 * Do not call this directly. Use LockManagerGroupFactory.
 	 *
-	 * @param array $configs
-	 * @throws Exception
+	 * @param string $domain Domain (usually wiki ID)
+	 * @param array[] $lockManagerConfigs In format of $wgLockManagers
+	 * @param LBFactory $lbFactory
 	 */
-	protected function register( array $configs ) {
-		foreach ( $configs as $config ) {
+	public function __construct( $domain, array $lockManagerConfigs, LBFactory $lbFactory ) {
+		$this->domain = $domain;
+		$this->lbFactory = $lbFactory;
+
+		foreach ( $lockManagerConfigs as $config ) {
 			$config['domain'] = $this->domain;
 			if ( !isset( $config['name'] ) ) {
 				throw new Exception( "Cannot register a lock manager with no name." );
@@ -105,6 +71,26 @@ class LockManagerGroup {
 	}
 
 	/**
+	 * @deprecated since 1.34, use LockManagerGroupFactory
+	 *
+	 * @param bool|string $domain Domain (usually wiki ID). Default: false.
+	 * @return LockManagerGroup
+	 */
+	public static function singleton( $domain = false ) {
+		return MediaWikiServices::getInstance()->getLockManagerGroupFactory()
+			->getLockManagerGroup( $domain );
+	}
+
+	/**
+	 * Destroy the singleton instances
+	 *
+	 * @deprecated since 1.34, use resetServiceForTesting() on LockManagerGroupFactory
+	 */
+	public static function destroySingletons() {
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'LockManagerGroupFactory' );
+	}
+
+	/**
 	 * Get the lock manager object with a given name
 	 *
 	 * @param string $name
@@ -120,8 +106,7 @@ class LockManagerGroup {
 			$class = $this->managers[$name]['class'];
 			$config = $this->managers[$name]['config'];
 			if ( $class === DBLockManager::class ) {
-				$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-				$lb = $lbFactory->getMainLB( $config['domain'] );
+				$lb = $this->lbFactory->getMainLB( $config['domain'] );
 				$config['dbServers']['localDBMaster'] = $lb->getLazyConnectionRef(
 					DB_MASTER,
 					[],
@@ -132,6 +117,11 @@ class LockManagerGroup {
 			}
 			$config['logger'] = LoggerFactory::getInstance( 'LockManager' );
 
+			// XXX Looks like phan is right, we are trying to instantiate an abstract class and it
+			// throws. Did this ever work? Presumably we need to detect the right subclass? Or
+			// should we just get rid of this? It looks like it never worked since it was first
+			// introduced by 0cf832a3394 in 2016, so if no one's complained until now, clearly it
+			// can't be very useful?
 			// @phan-suppress-next-line PhanTypeInstantiateAbstract
 			$this->managers[$name]['instance'] = new $class( $config );
 		}
@@ -159,6 +149,8 @@ class LockManagerGroup {
 	 * Get the default lock manager configured for the site.
 	 * Returns NullLockManager if no lock manager could be found.
 	 *
+	 * XXX This looks unused, should we just get rid of it?
+	 *
 	 * @return LockManager
 	 */
 	public function getDefault() {
@@ -171,6 +163,8 @@ class LockManagerGroup {
 	 * Get the default lock manager configured for the site
 	 * or at least some other effective configured lock manager.
 	 * Throws an exception if no lock manager could be found.
+	 *
+	 * XXX This looks unused, should we just get rid of it?
 	 *
 	 * @return LockManager
 	 * @throws Exception
