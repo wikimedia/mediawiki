@@ -91,17 +91,20 @@ if ( !defined( 'MW_API' ) &&
 	header( 'Cache-Control: no-cache' );
 	header( 'Content-Type: text/html; charset=utf-8' );
 	HttpStatus::header( 400 );
-	$error = wfMessage( 'nonwrite-api-promise-error' )->escaped();
-	$content = <<<EOT
+	$errorHtml = wfMessage( 'nonwrite-api-promise-error' )
+		->useDatabase( false )
+		->inContentLanguage()
+		->escaped();
+	$content = <<<HTML
 <!DOCTYPE html>
 <html>
 <head><meta charset="UTF-8" /></head>
 <body>
-$error
+$errorHtml
 </body>
 </html>
 
-EOT;
+HTML;
 	header( 'Content-Length: ' . strlen( $content ) );
 	echo $content;
 	die();
