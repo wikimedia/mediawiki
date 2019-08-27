@@ -71,18 +71,15 @@ class ApiFeedContributions extends ApiBase {
 			' [' . $config->get( 'LanguageCode' ) . ']';
 		$feedUrl = SpecialPage::getTitleFor( 'Contributions', $params['user'] )->getFullURL();
 
-		$target = 'newbies';
-		if ( $params['user'] != 'newbies' ) {
-			try {
-				$target = $this->titleParser
-					->parseTitle( $params['user'], NS_USER )
-					->getText();
-			} catch ( MalformedTitleException $e ) {
-				$this->dieWithError(
-					[ 'apierror-baduser', 'user', wfEscapeWikiText( $params['user'] ) ],
-					'baduser_' . $this->encodeParamName( 'user' )
-				);
-			}
+		try {
+			$target = $this->titleParser
+				->parseTitle( $params['user'], NS_USER )
+				->getText();
+		} catch ( MalformedTitleException $e ) {
+			$this->dieWithError(
+				[ 'apierror-baduser', 'user', wfEscapeWikiText( $params['user'] ) ],
+				'baduser_' . $this->encodeParamName( 'user' )
+			);
 		}
 
 		$feed = new $feedClasses[$params['feedformat']] (
