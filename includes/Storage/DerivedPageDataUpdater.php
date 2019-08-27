@@ -1197,7 +1197,8 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		}
 
 		// "created" is forced here
-		$this->options['created'] = ( $this->pageState['oldId'] === 0 );
+		$this->options['created'] = ( $this->options['created'] ||
+						( $this->pageState['oldId'] === 0 ) );
 
 		$this->revision = $revision;
 
