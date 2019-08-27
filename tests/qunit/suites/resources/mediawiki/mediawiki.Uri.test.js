@@ -267,6 +267,50 @@
 
 	} );
 
+	QUnit.test( 'arrayParams', function ( assert ) {
+		var uri1, uri2, uri3, expectedQ, expectedS,
+			uriMissing, expectedMissingQ, expectedMissingS,
+			uriWeird, expectedWeirdQ, expectedWeirdS;
+
+		uri1 = new mw.Uri( 'http://example.com/?foo[]=a&foo[]=b&foo[]=c', { arrayParams: true } );
+		uri2 = new mw.Uri( 'http://example.com/?foo[0]=a&foo[1]=b&foo[2]=c', { arrayParams: true } );
+		uri3 = new mw.Uri( 'http://example.com/?foo[1]=b&foo[0]=a&foo[]=c', { arrayParams: true } );
+		expectedQ = { foo: [ 'a', 'b', 'c' ] };
+		expectedS = 'foo%5B0%5D=a&foo%5B1%5D=b&foo%5B2%5D=c';
+
+		assert.deepEqual( uri1.query, expectedQ,
+			'array query parameters are parsed (implicit indexes)' );
+		assert.deepEqual( uri1.getQueryString(), expectedS,
+			'array query parameters are encoded (always with explicit indexes)' );
+		assert.deepEqual( uri2.query, expectedQ,
+			'array query parameters are parsed (explicit indexes)' );
+		assert.deepEqual( uri2.getQueryString(), expectedS,
+			'array query parameters are encoded (always with explicit indexes)' );
+		assert.deepEqual( uri3.query, expectedQ,
+			'array query parameters are parsed (mixed indexes, out of order)' );
+		assert.deepEqual( uri3.getQueryString(), expectedS,
+			'array query parameters are encoded (always with explicit indexes)' );
+
+		uriMissing = new mw.Uri( 'http://example.com/?foo[0]=a&foo[2]=c', { arrayParams: true } );
+		// eslint-disable-next-line no-sparse-arrays
+		expectedMissingQ = { foo: [ 'a', , 'c' ] };
+		expectedMissingS = 'foo%5B0%5D=a&foo%5B2%5D=c';
+
+		assert.deepEqual( uriMissing.query, expectedMissingQ,
+			'array query parameters are parsed (missing array item)' );
+		assert.deepEqual( uriMissing.getQueryString(), expectedMissingS,
+			'array query parameters are encoded (missing array item)' );
+
+		uriWeird = new mw.Uri( 'http://example.com/?foo[0]=a&foo[1][1]=b&foo[x]=c', { arrayParams: true } );
+		expectedWeirdQ = { foo: [ 'a' ], 'foo[1][1]': 'b', 'foo[x]': 'c' };
+		expectedWeirdS = 'foo%5B0%5D=a&foo%5B1%5D%5B1%5D=b&foo%5Bx%5D=c';
+
+		assert.deepEqual( uriWeird.query, expectedWeirdQ,
+			'array query parameters are parsed (multi-dimensional or associative arrays are ignored)' );
+		assert.deepEqual( uriWeird.getQueryString(), expectedWeirdS,
+			'array query parameters are encoded (multi-dimensional or associative arrays are ignored)' );
+	} );
+
 	QUnit.test( '.clone()', function ( assert ) {
 		var original, clone;
 
