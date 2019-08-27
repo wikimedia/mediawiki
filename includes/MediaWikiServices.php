@@ -17,6 +17,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
+use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
@@ -656,6 +657,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getLocalServerObjectCache() {
 		return $this->getService( 'LocalServerObjectCache' );
+	}
+
+	/**
+	 * @since 1.34
+	 * @return LockManagerGroupFactory
+	 */
+	public function getLockManagerGroupFactory() : LockManagerGroupFactory {
+		return $this->getService( 'LockManagerGroupFactory' );
 	}
 
 	/**

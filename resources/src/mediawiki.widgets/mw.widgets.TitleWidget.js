@@ -317,13 +317,15 @@
 			)
 		);
 
-		if ( this.cache ) {
-			this.cache.set( pageData );
-		}
-
 		// Offer the exact text as a suggestion if the page exists
 		if ( this.addQueryInput && pageExists && !pageExistsExact ) {
 			titles.unshift( this.getQueryValue() );
+			// Ensure correct page metadata gets used
+			pageData[ this.getQueryValue() ] = pageData[ titleObj.getPrefixedText() ];
+		}
+
+		if ( this.cache ) {
+			this.cache.set( pageData );
 		}
 
 		for ( i = 0, len = titles.length; i < len; i++ ) {
