@@ -92,6 +92,8 @@ For notes on 1.33.x and older releases, see HISTORY.
   the target manually.
 * (T220447) Special:Contributions/newbies has been removed for performance and
   usefulness reasons. Use Special:RecentChanges?userExpLevel=newcomer instead.
+* Special:NewFiles/newbies has been removed for performance and usefulness
+  reasons. Use Special:RecentChanges?userExpLevel=newcomer&namespace=6 instead.
 
 === New developer features in 1.34 ===
 * The ImgAuthModifyHeaders hook was added to img_auth.php to allow modification
