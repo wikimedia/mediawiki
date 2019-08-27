@@ -43,6 +43,8 @@
 		"bluespice/tagcloud": "dev-REL1_31_dev",
 		"bluespice/qrcode": "dev-REL1_31_dev",
 		"bluespice/uemodulepdf": "dev-REL1_31_dev",
+		"bluespice/uemodulehtml": "dev-REL1_31_dev",
+		"bluespice/uemoduledocx": "dev-REL1_31_dev",
 		"bluespice/universalexport": "dev-REL1_31_dev",
 		"bluespice/usagetracker": "dev-REL1_31_dev",
 		"bluespice/usermanager": "dev-REL1_31_dev",
