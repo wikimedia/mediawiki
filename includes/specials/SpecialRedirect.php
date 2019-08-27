@@ -88,7 +88,9 @@ class SpecialRedirect extends FormSpecialPage {
 		}
 		$userpage = Title::makeTitle( NS_USER, $username );
 
-		return Status::newGood( $userpage->getFullURL( '', false, PROTO_CURRENT ) );
+		return Status::newGood( [
+			$userpage->getFullURL( '', false, PROTO_CURRENT ), 302
+		] );
 	}
 
 	/**
