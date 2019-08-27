@@ -434,7 +434,7 @@ class CoreParserFunctions {
 		if ( !$wgRestrictDisplayTitle ||
 			( $title instanceof Title
 			&& !$title->hasFragment()
-			&& $title->equals( $parser->mTitle ) )
+			&& $title->equals( $parser->getTitle() ) )
 		) {
 			$old = $parser->mOutput->getProperty( 'displaytitle' );
 			if ( $old === false || $arg !== 'displaytitle_noreplace' ) {
@@ -845,10 +845,7 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	public static function protectionlevel( $parser, $type = '', $title = '' ) {
-		$titleObject = Title::newFromText( $title );
-		if ( !( $titleObject instanceof Title ) ) {
-			$titleObject = $parser->mTitle;
-		}
+		$titleObject = Title::newFromText( $title ) ?? $parser->getTitle();
 		if ( $titleObject->areRestrictionsLoaded() || $parser->incrementExpensiveFunctionCount() ) {
 			$restrictions = $titleObject->getRestrictions( strtolower( $type ) );
 			# Title::getRestrictions returns an array, its possible it may have
@@ -871,10 +868,7 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	public static function protectionexpiry( $parser, $type = '', $title = '' ) {
-		$titleObject = Title::newFromText( $title );
-		if ( !( $titleObject instanceof Title ) ) {
-			$titleObject = $parser->mTitle;
-		}
+		$titleObject = Title::newFromText( $title ) ?? $parser->getTitle();
 		if ( $titleObject->areRestrictionsLoaded() || $parser->incrementExpensiveFunctionCount() ) {
 			$expiry = $titleObject->getRestrictionExpiry( strtolower( $type ) );
 			// getRestrictionExpiry() returns false on invalid type; trying to
@@ -1377,10 +1371,7 @@ class CoreParserFunctions {
 	 * @since 1.23
 	 */
 	public static function cascadingsources( $parser, $title = '' ) {
-		$titleObject = Title::newFromText( $title );
-		if ( !( $titleObject instanceof Title ) ) {
-			$titleObject = $parser->mTitle;
-		}
+		$titleObject = Title::newFromText( $title ) ?? $parser->getTitle();
 		if ( $titleObject->areCascadeProtectionSourcesLoaded()
 			|| $parser->incrementExpensiveFunctionCount()
 		) {
