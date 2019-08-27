@@ -53,6 +53,12 @@ class Xhprof {
 		if ( self::isEnabled() ) {
 			throw new Exception( 'Profiling is already enabled.' );
 		}
+
+		$args = [ $flags ];
+		if ( $options ) {
+			$args[] = $options;
+		}
+
 		self::$enabled = true;
 		self::callAny(
 			[
@@ -60,7 +66,7 @@ class Xhprof {
 				'tideways_enable',
 				'tideways_xhprof_enable'
 			],
-			[ $flags, $options ]
+			$args
 		);
 	}
 
