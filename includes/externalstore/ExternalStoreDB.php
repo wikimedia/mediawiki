@@ -26,6 +26,7 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\MaintainableDBConnRef;
 use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\DBUnexpectedError;
 
 /**
  * DB accessible external objects.
@@ -113,7 +114,11 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 */
 	public function store( $location, $data ) {
 		$dbw = $this->getMaster( $location );
-		$dbw->insert( $this->getTable( $dbw ), [ 'blob_text' => $data ], __METHOD__ );
+		$dbw->insert(
+			$this->getTable( $dbw, $location ),
+			[ 'blob_text' => $data ],
+			__METHOD__
+		);
 		$id = $dbw->insertId();
 		if ( !$id ) {
 			throw new MWException( __METHOD__ . ': no insert ID' );
@@ -149,10 +154,11 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	/**
 	 * Get a replica DB connection for the specified cluster
 	 *
+	 * @since 1.34
 	 * @param string $cluster Cluster name
 	 * @return DBConnRef
 	 */
-	public function getSlave( $cluster ) {
+	public function getReplica( $cluster ) {
 		$lb = $this->getLoadBalancer( $cluster );
 
 		return $lb->getConnectionRef(
@@ -161,6 +167,17 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			$this->getDomainId( $lb->getServerInfo( $lb->getWriterIndex() ) ),
 			$lb::CONN_TRX_AUTOCOMMIT
 		);
+	}
+
+	/**
+	 * Get a replica DB connection for the specified cluster
+	 *
+	 * @param string $cluster Cluster name
+	 * @return DBConnRef
+	 * @deprecated since 1.34
+	 */
+	public function getSlave( $cluster ) {
+		return $this->getReplica( $cluster );
 	}
 
 	/**
@@ -211,15 +228,55 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * Get the 'blobs' table name for this database
 	 *
 	 * @param IDatabase $db
+	 * @param string|null $cluster Cluster name
 	 * @return string Table name ('blobs' by default)
 	 */
-	public function getTable( $db ) {
-		$table = $db->getLBInfo( 'blobs table' );
-		if ( is_null( $table ) ) {
-			$table = 'blobs';
+	public function getTable( $db, $cluster = null ) {
+		if ( $cluster !== null ) {
+			$lb = $this->getLoadBalancer( $cluster );
+			$info = $lb->getServerInfo( $lb->getWriterIndex() );
+			if ( isset( $info['blobs table'] ) ) {
+				return $info['blobs table'];
+			}
 		}
 
-		return $table;
+		return $db->getLBInfo( 'blobs table' ) ?? 'blobs'; // b/c
+	}
+
+	/**
+	 * Create the appropriate blobs table on this cluster
+	 *
+	 * @see getTable()
+	 * @since 1.34
+	 * @param string $cluster
+	 */
+	public function initializeTable( $cluster ) {
+		global $IP;
+
+		static $supportedTypes = [ 'mysql', 'sqlite' ];
+
+		$dbw = $this->getMaster( $cluster );
+		if ( !in_array( $dbw->getType(), $supportedTypes, true ) ) {
+			throw new DBUnexpectedError( $dbw, "RDBMS type '{$dbw->getType()}' not supported." );
+		}
+
+		$sqlFilePath = "$IP/maintenance/storage/blobs.sql";
+		$sql = file_get_contents( $sqlFilePath );
+		if ( $sql === false ) {
+			throw new RuntimeException( "Failed to read '$sqlFilePath'." );
+		}
+
+		$rawTable = $this->getTable( $dbw, $cluster ); // e.g. "blobs_cluster23"
+		$encTable = $dbw->tableName( $rawTable );
+		$dbw->query(
+			str_replace(
+				[ '/*$wgDBprefix*/blobs', '/*_*/blobs' ],
+				[ $encTable, $encTable ],
+				$sql
+			),
+			__METHOD__,
+			$dbw::QUERY_IGNORE_DBO_TRX
+		);
 	}
 
 	/**
@@ -251,15 +308,23 @@ class ExternalStoreDB extends ExternalStoreMedium {
 
 		$this->logger->debug( "ExternalStoreDB::fetchBlob cache miss on $cacheID" );
 
-		$dbr = $this->getSlave( $cluster );
-		$ret = $dbr->selectField( $this->getTable( $dbr ),
-			'blob_text', [ 'blob_id' => $id ], __METHOD__ );
+		$dbr = $this->getReplica( $cluster );
+		$ret = $dbr->selectField(
+			$this->getTable( $dbr, $cluster ),
+			'blob_text',
+			[ 'blob_id' => $id ],
+			__METHOD__
+		);
 		if ( $ret === false ) {
 			$this->logger->info( "ExternalStoreDB::fetchBlob master fallback on $cacheID" );
 			// Try the master
 			$dbw = $this->getMaster( $cluster );
-			$ret = $dbw->selectField( $this->getTable( $dbw ),
-				'blob_text', [ 'blob_id' => $id ], __METHOD__ );
+			$ret = $dbw->selectField(
+				$this->getTable( $dbw, $cluster ),
+				'blob_text',
+				[ 'blob_id' => $id ],
+				__METHOD__
+			);
 			if ( $ret === false ) {
 				$this->logger->error( "ExternalStoreDB::fetchBlob master failed to find $cacheID" );
 			}
@@ -283,9 +348,9 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 *   Unlocated ids are not represented
 	 */
 	private function batchFetchBlobs( $cluster, array $ids ) {
-		$dbr = $this->getSlave( $cluster );
+		$dbr = $this->getReplica( $cluster );
 		$res = $dbr->select(
-			$this->getTable( $dbr ),
+			$this->getTable( $dbr, $cluster ),
 			[ 'blob_id', 'blob_text' ],
 			[ 'blob_id' => array_keys( $ids ) ],
 			__METHOD__
@@ -302,7 +367,8 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			);
 			// Try the master
 			$dbw = $this->getMaster( $cluster );
-			$res = $dbw->select( $this->getTable( $dbr ),
+			$res = $dbw->select(
+				$this->getTable( $dbr, $cluster ),
 				[ 'blob_id', 'blob_text' ],
 				[ 'blob_id' => array_keys( $ids ) ],
 				__METHOD__ );
