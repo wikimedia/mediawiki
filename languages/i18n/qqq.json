@@ -2569,7 +2569,6 @@
 	"wlheader-enotif": "Message at the top of [[Special:Watchlist]], after {{msg-mw|watchlist-details}}. Has to be a full sentence.\n\nSee also:\n* {{msg-mw|Watchlist-options|fieldset}}\n* {{msg-mw|enotif reset|Submit button text}}",
 	"wlheader-showupdated": "Message at the top of [[Special:Watchlist]], after {{msg-mw|watchlist-details}}. Has to be a full sentence.",
 	"wlnote": "Used on [[Special:Watchlist]] when a maximum number of hours or days is specified.\n\nParameters:\n* $1 - the number of changes shown\n* $2 - the number of hours for which the changes are shown\n* $3 - a date alone\n* $4 - a time alone",
-	"wlshowlast": "Appears on [[Special:Watchlist]]. Parameters:\n* $1 - a choice of different numbers of hours (\"1 | 2 | 6 | 12\")\n* $2 - a choice of different numbers of days (\"1 | 3 | 7\" and the maximum number of days available)\nClicking on your choice changes the list of changes you see (without changing the default in my preferences).",
 	"watchlist-hide": "Appears on [[Special:Watchlist]]. It is the first word on a new line with checkboxes to hide/unhide options\n{{Identical|Hide}}",
 	"watchlist-submit": "Label on the submit button in [[Special:Watchlist]]\n{{Identical|Show}}",
 	"wlshowtime": "Appears on [[Special:Watchlist]]. Label of a drop-down list used to specify the period of time to display in the watchlist. This period can be {{msg-mw|days}} or {{msg-mw|hours}}.",

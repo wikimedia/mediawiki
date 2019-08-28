@@ -2360,7 +2360,6 @@
 	"wlheader-enotif": "Email notification is enabled.",
 	"wlheader-showupdated": "Pages that have been changed since you last visited them are shown in <strong>bold</strong>.",
 	"wlnote": "Below {{PLURAL:$1|is the last change|are the last <strong>$1</strong> changes}} in the last {{PLURAL:$2|hour|<strong>$2</strong> hours}}, as of $3, $4.",
-	"wlshowlast": "Show last $1 hours $2 days",
 	"watchlist-hide": "Hide",
 	"watchlist-submit": "Show",
 	"wlshowtime": "Period of time to display:",
