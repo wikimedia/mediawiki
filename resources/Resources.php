@@ -1042,6 +1042,12 @@ return [
 	'mediawiki.pager.tablePager' => [
 		'styles' => 'resources/src/mediawiki.pager.tablePager/TablePager.less',
 	],
+	'mediawiki.pulsatingdot' => [
+		'styles' => [
+			'resources/src/mediawiki.pulsatingdot/mediawiki.pulsatingdot.less',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.searchSuggest' => [
 		'targets' => [ 'desktop', 'mobile' ],
 		'scripts' => 'resources/src/mediawiki.searchSuggest/searchSuggest.js',
