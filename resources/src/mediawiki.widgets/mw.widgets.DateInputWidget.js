@@ -110,7 +110,9 @@
 			// We have no way to display a translated placeholder for custom formats
 			placeholderDateFormat = '';
 		} else {
-			// Messages: mw-widgets-dateinput-placeholder-day, mw-widgets-dateinput-placeholder-month
+			// The following messages are used here:
+			// * mw-widgets-dateinput-placeholder-day
+			// * mw-widgets-dateinput-placeholder-month
 			placeholderDateFormat = mw.msg( 'mw-widgets-dateinput-placeholder-' + config.precision );
 		}
 
