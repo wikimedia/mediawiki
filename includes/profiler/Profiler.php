@@ -33,14 +33,15 @@ use Wikimedia\Rdbms\TransactionProfiler;
 abstract class Profiler {
 	/** @var string|bool Profiler ID for bucketing data */
 	protected $profileID = false;
-	/** @var bool Whether MediaWiki is in a SkinTemplate output context */
-	protected $templated = false;
 	/** @var array All of the params passed from $wgProfiler */
 	protected $params = [];
 	/** @var IContextSource Current request context */
 	protected $context = null;
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
+	/** @var bool */
+	private $allowOutput = false;
+
 	/** @var Profiler */
 	private static $instance = null;
 
@@ -264,15 +265,20 @@ abstract class Profiler {
 	}
 
 	/**
-	 * Get the content type sent out to the client.
-	 * Used for profilers that output instead of store data.
-	 * @return string
+	 * Get the Content-Type for deciding how to format appended profile output.
+	 *
+	 * Disabled by default. Enable via setAllowOutput().
+	 *
+	 * @see ProfilerOutputText
 	 * @since 1.25
+	 * @return string|null Returns null if disabled or no Content-Type found.
 	 */
 	public function getContentType() {
-		foreach ( headers_list() as $header ) {
-			if ( preg_match( '#^content-type: (\w+/\w+);?#i', $header, $m ) ) {
-				return $m[1];
+		if ( $this->allowOutput ) {
+			foreach ( headers_list() as $header ) {
+				if ( preg_match( '#^content-type: (\w+/\w+);?#i', $header, $m ) ) {
+					return $m[1];
+				}
 			}
 		}
 		return null;
@@ -281,19 +287,42 @@ abstract class Profiler {
 	/**
 	 * Mark this call as templated or not
 	 *
+	 * @deprecated since 1.34 Use setAllowOutput() instead.
 	 * @param bool $t
 	 */
 	public function setTemplated( $t ) {
-		$this->templated = $t;
+		// wfDeprecated( __METHOD__, '1.34' );
+		$this->allowOutput = ( $t === true );
 	}
 
 	/**
 	 * Was this call as templated or not
 	 *
+	 * @deprecated since 1.34 Use getAllowOutput() instead.
 	 * @return bool
 	 */
 	public function getTemplated() {
-		return $this->templated;
+		// wfDeprecated( __METHOD__, '1.34' );
+		return $this->getAllowOutput();
+	}
+
+	/**
+	 * Enable appending profiles to standard output.
+	 *
+	 * @since 1.34
+	 */
+	public function setAllowOutput() {
+		$this->allowOutput = true;
+	}
+
+	/**
+	 * Whether appending profiles is allowed.
+	 *
+	 * @since 1.34
+	 * @return bool
+	 */
+	public function getAllowOutput() {
+		return $this->allowOutput;
 	}
 
 	/**

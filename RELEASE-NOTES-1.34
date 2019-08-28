@@ -415,6 +415,9 @@ because of Phabricator reports.
 * ResourceLoaderContext::getConfig and ResourceLoaderContext::getLogger have
   been deprecated. Inside ResourceLoaderModule subclasses, use the local methods
   instead. Elsewhere, use the methods from the ResourceLoader class.
+* The Profiler::setTemplated and Profiler::getTemplated methods have been
+  deprecated. Use Profiler::setAllowOutput and Profiler::getAllowOutput
+  instead.
 * The Preprocessor_DOM implementation has been deprecated.  It will be
   removed in a future release.  Use the Preprocessor_Hash implementation
   instead.
