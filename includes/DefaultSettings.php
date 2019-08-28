@@ -2555,11 +2555,6 @@ $wgPHPSessionHandling = 'enable';
 $wgSessionPbkdf2Iterations = 10001;
 
 /**
- * If enabled, will send MemCached debugging information to $wgDebugLogFile
- */
-$wgMemCachedDebug = false;
-
-/**
  * The list of MemCached servers and port numbers
  */
 $wgMemCachedServers = [ '127.0.0.1:11211' ];
