@@ -2096,9 +2096,8 @@
 					// Whether the store is in use on this page.
 					enabled: null,
 
-					// Modules whose string representation exceeds 100 kB are
-					// ineligible for storage. See bug T66721.
-					MODULE_SIZE_MAX: 100 * 1000,
+					// Modules whose serialised form exceeds 100 kB won't be stored (T66721).
+					MODULE_SIZE_MAX: 1e5,
 
 					// The contents of the store, mapping '[name]@[version]' keys
 					// to module implementations.
@@ -2117,7 +2116,13 @@
 					 * @return {Object} Module store contents.
 					 */
 					toJSON: function () {
-						return { items: mw.loader.store.items, vary: mw.loader.store.vary };
+						return {
+							items: mw.loader.store.items,
+							vary: mw.loader.store.vary,
+							// Store with 1e7 ms accuracy (1e4 seconds, or ~ 2.7 hours),
+							// which is enough for the purpose of expiring after ~ 30 days.
+							asOf: Math.ceil( Date.now() / 1e7 )
+						};
 					},
 
 					/**
@@ -2175,7 +2180,14 @@
 							this.enabled = true;
 							// If null, JSON.parse() will cast to string and re-parse, still null.
 							data = JSON.parse( raw );
-							if ( data && typeof data.items === 'object' && data.vary === this.vary ) {
+							if ( data &&
+								typeof data.items === 'object' &&
+								data.vary === this.vary &&
+								// Only use if it's been less than 30 days since the data was written
+								// 30 days = 2,592,000 s = 2,592,000,000 ms = ± 259e7 ms
+								Date.now() < ( data.asOf * 1e7 ) + 259e7
+							) {
+								// The data is not corrupt, matches our vary context, and has not expired.
 								this.items = data.items;
 								return;
 							}

@@ -21,6 +21,9 @@
 				window.Set = this.nativeSet;
 				mw.redefineFallbacksForTest();
 			}
+			if ( this.resetStoreKey ) {
+				localStorage.removeItem( mw.loader.store.key );
+			}
 			// Remove any remaining temporary statics
 			// exposed for cross-file mocks.
 			delete mw.loader.testCallback;
@@ -1047,6 +1050,78 @@
 			assert.strictEqual( mw.loader.getState( name ), 'ready' );
 			assert.strictEqual( mw.loader.store.get( name ), false, 'Still not in store' );
 		} );
+	} );
+
+	QUnit.test( 'mw.loader.store.init - Invalid JSON', function ( assert ) {
+		// Reset
+		this.sandbox.stub( mw.loader.store, 'enabled', null );
+		this.sandbox.stub( mw.loader.store, 'items', {} );
+		this.resetStoreKey = true;
+		localStorage.setItem( mw.loader.store.key, 'invalid' );
+
+		mw.loader.store.init();
+		assert.strictEqual( mw.loader.store.enabled, true, 'Enabled' );
+		assert.strictEqual(
+			$.isEmptyObject( mw.loader.store.items ),
+			true,
+			'Items starts fresh'
+		);
+	} );
+
+	QUnit.test( 'mw.loader.store.init - Wrong JSON', function ( assert ) {
+		// Reset
+		this.sandbox.stub( mw.loader.store, 'enabled', null );
+		this.sandbox.stub( mw.loader.store, 'items', {} );
+		this.resetStoreKey = true;
+		localStorage.setItem( mw.loader.store.key, JSON.stringify( { wrong: true } ) );
+
+		mw.loader.store.init();
+		assert.strictEqual( mw.loader.store.enabled, true, 'Enabled' );
+		assert.strictEqual(
+			$.isEmptyObject( mw.loader.store.items ),
+			true,
+			'Items starts fresh'
+		);
+	} );
+
+	QUnit.test( 'mw.loader.store.init - Expired JSON', function ( assert ) {
+		// Reset
+		this.sandbox.stub( mw.loader.store, 'enabled', null );
+		this.sandbox.stub( mw.loader.store, 'items', {} );
+		this.resetStoreKey = true;
+		localStorage.setItem( mw.loader.store.key, JSON.stringify( {
+			items: { use: 'not me' },
+			vary: mw.loader.store.vary,
+			asOf: 130161 // 2011-04-01 12:00
+		} ) );
+
+		mw.loader.store.init();
+		assert.strictEqual( mw.loader.store.enabled, true, 'Enabled' );
+		assert.strictEqual(
+			$.isEmptyObject( mw.loader.store.items ),
+			true,
+			'Items starts fresh'
+		);
+	} );
+
+	QUnit.test( 'mw.loader.store.init - Good JSON', function ( assert ) {
+		// Reset
+		this.sandbox.stub( mw.loader.store, 'enabled', null );
+		this.sandbox.stub( mw.loader.store, 'items', {} );
+		this.resetStoreKey = true;
+		localStorage.setItem( mw.loader.store.key, JSON.stringify( {
+			items: { use: 'me' },
+			vary: mw.loader.store.vary,
+			asOf: Math.ceil( Date.now() / 1e7 ) - 5 // ~ 13 hours ago
+		} ) );
+
+		mw.loader.store.init();
+		assert.strictEqual( mw.loader.store.enabled, true, 'Enabled' );
+		assert.deepEqual(
+			mw.loader.store.items,
+			{ use: 'me' },
+			'Stored items are loaded'
+		);
 	} );
 
 	QUnit.test( 'require()', function ( assert ) {
