@@ -953,8 +953,6 @@
 	"uctop": "當前",
 	"month": "趁月（共更早）：",
 	"year": "趁年（共更早）：",
-	"sp-contributions-newbies": "囇顯示新開賬戶其貢獻",
-	"sp-contributions-newbies-sub": "才來其",
 	"sp-contributions-blocklog": "封鎖日誌",
 	"sp-contributions-deleted": "乞刪唻其{{GENDER:$1|用戶}}貢獻",
 	"sp-contributions-uploads": "上傳",
