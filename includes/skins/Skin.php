@@ -61,9 +61,11 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Fetch the skinname messages for available skins.
+	 * @deprecated since 1.34, no longer used.
 	 * @return string[]
 	 */
 	static function getSkinNameMessages() {
+		wfDeprecated( __METHOD__, '1.34' );
 		$messages = [];
 		foreach ( self::getSkinNames() as $skinKey => $skinName ) {
 			$messages[] = "skinname-$skinKey";
@@ -1311,19 +1313,21 @@ abstract class Skin extends ContextSource {
 	 * @return array
 	 */
 	public function buildSidebar() {
+		$services = MediaWikiServices::getInstance();
 		$callback = function ( $old = null, &$ttl = null ) {
 			$bar = [];
 			$this->addToSidebar( $bar, 'sidebar' );
 			Hooks::run( 'SkinBuildSidebar', [ $this, &$bar ] );
-			if ( MessageCache::singleton()->isDisabled() ) {
+			$msgCache = MediaWikiServices::getInstance()->getMessageCache();
+			if ( $msgCache->isDisabled() ) {
 				$ttl = WANObjectCache::TTL_UNCACHEABLE; // bug T133069
 			}
 
 			return $bar;
 		};
 
-		$msgCache = MessageCache::singleton();
-		$wanCache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$msgCache = $services->getMessageCache();
+		$wanCache = $services->getMainWANObjectCache();
 		$config = $this->getConfig();
 
 		$sidebar = $config->get( 'EnableSidebarCache' )
