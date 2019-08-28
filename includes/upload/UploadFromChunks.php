@@ -161,7 +161,7 @@ class UploadFromChunks extends UploadFromFile {
 		$ext = FileBackend::extensionFromPath( $this->mVirtualTempPath );
 		// Get a 0-byte temp file to perform the concatenation at
 		$tmpFile = MediaWikiServices::getInstance()->getTempFSFileFactory()
-			->getTempFSFile( 'chunkedupload_', $ext );
+			->newTempFSFile( 'chunkedupload_', $ext );
 		$tmpPath = false; // fail in concatenate()
 		if ( $tmpFile ) {
 			// keep alive with $this
