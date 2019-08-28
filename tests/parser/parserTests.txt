@@ -25601,7 +25601,7 @@ __TOC__
 !! article
 MediaWiki:T34057
 !! text
-== {{int:headline_sample}} ==
+== {{int:ok}} ==
 !! endarticle
 
 !! test
@@ -25611,7 +25611,7 @@ title=[[Main Page]]
 !! wikitext
 {{int:T34057}}
 !! html
-<h2><span class="mw-headline" id="Headline_text">Headline text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Headline text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="OK">OK</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: OK">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 !! end
 
 !! test
