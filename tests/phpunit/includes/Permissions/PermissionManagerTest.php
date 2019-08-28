@@ -1867,6 +1867,22 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @covers \MediaWiki\Permissions\PermissionManager::getAllPermissions
+	 */
+	public function testGetAllPermissions() {
+		$this->setMwGlobals( [
+			'wgAvailableRights' => [ 'test_right' ]
+		] );
+		$this->resetServices();
+		$this->assertContains(
+			'test_right',
+			MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->getAllPermissions()
+		);
+	}
+
+	/**
 	 * @covers \MediaWiki\Permissions\PermissionManager::getRightsCacheKey
 	 * @throws \Exception
 	 */

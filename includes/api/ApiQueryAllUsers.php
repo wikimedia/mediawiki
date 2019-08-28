@@ -356,7 +356,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				ApiBase::PARAM_ISMULTI => true,
 			],
 			'rights' => [
-				ApiBase::PARAM_TYPE => User::getAllRights(),
+				ApiBase::PARAM_TYPE => $this->getPermissionManager()->getAllPermissions(),
 				ApiBase::PARAM_ISMULTI => true,
 			],
 			'prop' => [

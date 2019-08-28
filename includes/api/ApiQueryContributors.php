@@ -231,7 +231,7 @@ class ApiQueryContributors extends ApiQueryBase {
 
 	public function getAllowedParams() {
 		$userGroups = User::getAllGroups();
-		$userRights = User::getAllRights();
+		$userRights = $this->getPermissionManager()->getAllPermissions();
 
 		return [
 			'group' => [
