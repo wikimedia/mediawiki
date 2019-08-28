@@ -393,12 +393,19 @@ class ObjectCache {
 	 */
 	public static function detectLocalServerCache() {
 		if ( function_exists( 'apcu_fetch' ) ) {
-			return 'apcu';
+			// Make sure the APCu methods actually store anything
+			if ( PHP_SAPI !== 'cli' || ini_get( 'apc.enable_cli' ) ) {
+				return 'apcu';
+			}
 		} elseif ( function_exists( 'apc_fetch' ) ) {
-			return 'apc';
+			// Make sure the APC methods actually store anything
+			if ( PHP_SAPI !== 'cli' || ini_get( 'apc.enable_cli' ) ) {
+				return 'apc';
+			}
 		} elseif ( function_exists( 'wincache_ucache_get' ) ) {
 			return 'wincache';
 		}
+
 		return CACHE_NONE;
 	}
 }
