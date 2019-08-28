@@ -306,6 +306,7 @@
 	"laggedslavemode": "'''Warnung:''' Wēnunga næbbe se tramet nīwlīca nīwunga.",
 	"readonly": "Ġifhord locen",
 	"enterlockreason": "Wrīt race þǣre forwiernunge and apinsunge þæs tīman on þǣm bēo sēo forwiernung forlǣten",
+	"readonlytext": "Se gecyþneshord is nu gelocen wiþ niwu þing and gewrixlungu, ic gewene þe swylc biþ for gecyþneshorduphealde, þæræfter wille he beon eft gewuna.\n\nSe gesamnungþegn se loced hine geaf þas glesing: $1",
 	"missingarticle-rev": "(nīwung#: $1)",
 	"internalerror": "Inweard wōh",
 	"internalerror_info": "Inweard wōh: $1",
