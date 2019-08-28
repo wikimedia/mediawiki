@@ -414,7 +414,7 @@ class Names {
 		'st' => 'Sesotho', # Southern Sotho
 		'sty' => 'cебертатар', # Siberian Tatar
 		'stq' => 'Seeltersk', # Saterland Frisian
-		'su' => 'Basa Sunda', # Sundanese
+		'su' => 'Sunda', # Sundanese
 		'sv' => 'svenska', # Swedish
 		'sw' => 'Kiswahili', # Swahili
 		'szl' => 'ślůnski', # Silesian
