@@ -1,0 +1,71 @@
+diff --git a/resources/lib/jquery/jquery.migrate.js b/resources/lib/jquery/jquery.migrate.js
+index 6ba8af4a42..711e424a39 100644
+--- a/resources/lib/jquery/jquery.migrate.js
++++ b/resources/lib/jquery/jquery.migrate.js
+@@ -1,6 +1,14 @@
+ /*!
+  * jQuery Migrate - v3.0.1 - 2017-09-26
+  * Copyright jQuery Foundation and other contributors
++ *
++ * Patched for MediaWiki:
++ * - Qualify the global lookup for 'jQuery' as 'window.jQuery',
++ *   because within mw.loader.implement() for 'jquery', the closure
++ *   specifies '$' and 'jQuery', which are undefined.
++ * - Add mw.track instrumentation for statistics.
++ * - Disable jQuery.migrateTrace by default. They are slow and
++ *   redundant given console.warn() already provides a trace.
+  */
+ ;( function( factory ) {
+ 	if ( typeof define === "function" && define.amd ) {
+@@ -15,7 +23,8 @@
+ 	} else {
+ 
+ 		// Browser globals
+-		factory( jQuery, window );
++		// PATCH: Qualify jQuery lookup as window.jQuery. --Krinkle
++		factory( window.jQuery, window );
+ 	}
+ } )( function( jQuery, window ) {
+ "use strict";
+@@ -58,7 +67,8 @@ jQuery.migrateWarnings = [];
+ 
+ // Set to false to disable traces that appear with warnings
+ if ( jQuery.migrateTrace === undefined ) {
+-	jQuery.migrateTrace = true;
++	// PATCH: Disable extra console.trace() call --Krinkle
++	jQuery.migrateTrace = false;
+ }
+ 
+ // Forget any warnings we've already given; public
+@@ -72,6 +82,10 @@ function migrateWarn( msg ) {
+ 	if ( !warnedAbout[ msg ] ) {
+ 		warnedAbout[ msg ] = true;
+ 		jQuery.migrateWarnings.push( msg );
++		// PATCH: Add instrumentation for statistics --Krinkle
++		if ( window.mw && window.mw.track ) {
++			window.mw.track( "mw.deprecate", "jquery-migrate" );
++		}
+ 		if ( console && console.warn && !jQuery.migrateMute ) {
+ 			console.warn( "JQMIGRATE: " + msg );
+ 			if ( jQuery.migrateTrace && console.trace ) {
+@@ -466,20 +480,6 @@ jQuery.each( [ "load", "unload", "error" ], function( _, name ) {
+ 
+ } );
+ 
+-jQuery.each( ( "blur focus focusin focusout resize scroll click dblclick " +
+-	"mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
+-	"change select submit keydown keypress keyup contextmenu" ).split( " " ),
+-	function( i, name ) {
+-
+-	// Handle event binding
+-	jQuery.fn[ name ] = function( data, fn ) {
+-		migrateWarn( "jQuery.fn." + name + "() event shorthand is deprecated" );
+-		return arguments.length > 0 ?
+-			this.on( name, null, data, fn ) :
+-			this.trigger( name );
+-	};
+-} );
+-
+ // Trigger "ready" event only once, on document ready
+ jQuery( function() {
+ 	jQuery( window.document ).triggerHandler( "ready" );
