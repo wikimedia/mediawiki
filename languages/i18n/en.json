@@ -3403,8 +3403,6 @@
 	"img-lang-default": "(default language)",
 	"img-lang-info": "Render this image in $1. $2",
 	"img-lang-go": "Go",
-	"ascending_abbrev": "asc",
-	"descending_abbrev": "desc",
 	"table_pager_next": "Next page",
 	"table_pager_prev": "Previous page",
 	"table_pager_first": "First page",
