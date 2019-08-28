@@ -422,7 +422,7 @@ class XmlTypeCheck {
 	 *  * Only contains entity definitions (e.g. No <!ATLIST )
 	 *  * Entity definitions are not "system" entities
 	 *  * Entity definitions are not "parameter" (i.e. %) entities
-	 *  * Entity definitions do not reference other entites except &amp;
+	 *  * Entity definitions do not reference other entities except &amp;
 	 *    and quotes. Entity aliases (where the entity contains only
 	 *    another entity are allowed)
 	 *  * Entity references aren't overly long (>255 bytes).

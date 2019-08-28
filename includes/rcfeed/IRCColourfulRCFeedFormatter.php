@@ -132,7 +132,7 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 	}
 
 	/**
-	 * Remove newlines, carriage returns and decode html entites
+	 * Remove newlines, carriage returns and decode html entities
 	 * @param string $text
 	 * @return string
 	 */
