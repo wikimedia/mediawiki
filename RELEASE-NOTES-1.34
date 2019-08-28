@@ -476,6 +476,7 @@ because of Phabricator reports.
   SearchResult::newFromTitle(). This class is being refactored into an abstract
   class. If you extend this class please be sure to override all its methods
   or extend RevisionSearchResult.
+* Skin::getSkinNameMessages() is deprecated and no longer used.
 
 === Other changes in 1.34 ===
 * …
