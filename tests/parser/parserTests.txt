@@ -8080,6 +8080,17 @@ File containing double quotes and spaces
 !! end
 
 !! test
+File containing single quotes
+!! wikitext
+[[File:Foo's ''italic'' bar.jpg]]
+[[File:Foo's ''italic'' bar.jpg|Foo's ''italic'' bar]]
+!! html/php+tidy
+<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=Foo%27s_%27%27italic%27%27_bar.jpg" class="new" title="File:Foo&#39;s &#39;&#39;italic&#39;&#39; bar.jpg">File:Foo's <i>italic</i> bar.jpg</a>
+<a href="/index.php?title=Special:Upload&amp;wpDestFile=Foo%27s_%27%27italic%27%27_bar.jpg" class="new" title="File:Foo&#39;s &#39;&#39;italic&#39;&#39; bar.jpg">Foo's italic bar</a>
+</p>
+!! end
+
+!! test
 Redirect containing double quotes and spaces
 !! wikitext
 #REDIRECT [[Cool "Gator"]]
