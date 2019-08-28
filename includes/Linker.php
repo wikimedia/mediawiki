@@ -688,35 +688,37 @@ class Linker {
 		if ( $label == '' ) {
 			$label = $title->getPrefixedText();
 		}
-		$encLabel = htmlspecialchars( $label );
 		$currentExists = $time
 			&& MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title ) !== false;
 
 		if ( ( $wgUploadMissingFileUrl || $wgUploadNavigationUrl || $wgEnableUploads )
 			&& !$currentExists
 		) {
-			$redir = RepoGroup::singleton()->getLocalRepo()->checkRedirect( $title );
-
-			if ( $redir ) {
-				// We already know it's a redirect, so mark it
-				// accordingly
+			if ( RepoGroup::singleton()->getLocalRepo()->checkRedirect( $title ) ) {
+				// We already know it's a redirect, so mark it accordingly
 				return self::link(
 					$title,
-					$encLabel,
+					htmlspecialchars( $label ),
 					[ 'class' => 'mw-redirect' ],
 					wfCgiToArray( $query ),
 					[ 'known', 'noclasses' ]
 				);
 			}
 
-			$href = self::getUploadUrl( $title, $query );
-
-			return '<a href="' . htmlspecialchars( $href ) . '" class="new" title="' .
-				htmlspecialchars( $title->getPrefixedText(), ENT_QUOTES ) . '">' .
-				$encLabel . '</a>';
+			return Html::element( 'a', [
+					'href' => self::getUploadUrl( $title, $query ),
+					'class' => 'new',
+					'title' => $title->getPrefixedText()
+				], $label );
 		}
 
-		return self::link( $title, $encLabel, [], wfCgiToArray( $query ), [ 'known', 'noclasses' ] );
+		return self::link(
+			$title,
+			htmlspecialchars( $label ),
+			[],
+			wfCgiToArray( $query ),
+			[ 'known', 'noclasses' ]
+		);
 	}
 
 	/**
