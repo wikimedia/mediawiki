@@ -95,7 +95,7 @@ class Names {
 		'bh' => 'भोजपुरी', # Bihari macro language. Falls back to Bhojpuri (bho)
 		'bho' => 'भोजपुरी', # Bhojpuri
 		'bi' => 'Bislama', # Bislama
-		'bjn' => 'Bahasa Banjar', # Banjarese
+		'bjn' => 'Banjar', # Banjarese
 		'bm' => 'bamanankan', # Bambara
 		'bn' => 'বাংলা', # Bengali
 		'bo' => 'བོད་ཡིག', # Tibetan
