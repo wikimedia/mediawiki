@@ -150,6 +150,7 @@ class FileBackendGroup {
 
 			$class = $config['class'];
 			if ( $class === FileBackendMultiWrite::class ) {
+				// @todo How can we test this? What's the intended use-case?
 				foreach ( $config['backends'] as $index => $beConfig ) {
 					if ( isset( $beConfig['template'] ) ) {
 						// Config is just a modified version of a registered backend's.

@@ -221,6 +221,9 @@ $wgAutoloadClasses += [
 	# tests/phpunit/unit/includes
 	'BadFileLookupTest' => "$testDir/phpunit/unit/includes/BadFileLookupTest.php",
 
+	# tests/phpunit/unit/includes/filebackend
+	'FileBackendGroupTestTrait' => "$testDir/phpunit/unit/includes/filebackend/FileBackendGroupTestTrait.php",
+
 	# tests/phpunit/unit/includes/libs/filebackend/fsfile
 	'TempFSFileTestTrait' => "$testDir/phpunit/unit/includes/libs/filebackend/fsfile/TempFSFileTestTrait.php",
 

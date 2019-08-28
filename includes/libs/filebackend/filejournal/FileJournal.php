@@ -26,6 +26,7 @@
  * @ingroup FileJournal
  */
 
+use Wikimedia\ObjectFactory;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -43,12 +44,12 @@ abstract class FileJournal {
 	protected $ttlDays;
 
 	/**
-	 * Construct a new instance from configuration.
+	 * Construct a new instance from configuration. Do not call this directly, use factory().
 	 *
 	 * @param array $config Includes:
 	 *     'ttlDays' : days to keep log entries around (false means "forever")
 	 */
-	protected function __construct( array $config ) {
+	public function __construct( array $config ) {
 		$this->ttlDays = $config['ttlDays'] ?? false;
 	}
 
@@ -61,11 +62,10 @@ abstract class FileJournal {
 	 * @return FileJournal
 	 */
 	final public static function factory( array $config, $backend ) {
-		$class = $config['class'];
-		$jrn = new $class( $config );
-		if ( !$jrn instanceof self ) {
-			throw new InvalidArgumentException( "$class is not an instance of " . __CLASS__ );
-		}
+		$jrn = ObjectFactory::getObjectFromSpec(
+			$config,
+			[ 'specIsArg' => true, 'assertClass' => __CLASS__ ]
+		);
 		$jrn->backend = $backend;
 
 		return $jrn;
