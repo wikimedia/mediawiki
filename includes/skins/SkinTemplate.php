@@ -208,7 +208,7 @@ class SkinTemplate extends Skin {
 	 * Initialize various variables and generate the template
 	 */
 	function outputPage() {
-		Profiler::instance()->setTemplated( true );
+		Profiler::instance()->setAllowOutput();
 		$out = $this->getOutput();
 
 		$this->initPage( $out );
