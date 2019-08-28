@@ -1173,7 +1173,7 @@ CREATE TABLE /*_*/image (
   -- see https://www.iana.org/assignments/media-types/
   img_minor_mime varbinary(100) NOT NULL default "unknown",
 
-  -- Description field as entered by the uploader.
+  -- Foreign key to comment table, which contains the description field as entered by the uploader.
   -- This is displayed in image upload history and logs.
   img_description_id bigint unsigned NOT NULL,
 
