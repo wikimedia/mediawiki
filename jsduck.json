@@ -25,7 +25,6 @@
 		"maintenance/jsduck/external.js",
 		"resources/src",
 		"resources/lib/jquery.client/jquery.client.js",
-		"resources/lib/oojs/oojs.jquery.js",
 		"resources/lib/ooui/oojs-ui-core.js",
 		"resources/lib/ooui/oojs-ui-widgets.js",
 		"resources/lib/ooui/oojs-ui-toolbars.js",
