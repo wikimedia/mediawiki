@@ -410,7 +410,6 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\Permissions\PermissionManager::checkSpecialsAndNSPermissions
 	 */
 	public function testSpecialsAndNSPermissions() {
-		global $wgNamespaceProtection;
 		$this->setUser( $this->userName );
 
 		$this->setTitle( NS_SPECIAL );
@@ -428,8 +427,10 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->assertEquals( [ [ 'badaccess-group0' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 
-		$wgNamespaceProtection[NS_USER] = [ 'bogus' ];
-
+		$this->mergeMwGlobalArrayValue( 'wgNamespaceProtection', [
+			NS_USER => [ 'bogus' ]
+		] );
+		$this->resetServices();
 		$this->setTitle( NS_USER );
 		$this->overrideUserPermissions( $this->user );
 		$this->assertEquals( [ [ 'badaccess-group0' ],
@@ -446,8 +447,8 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->assertEquals( [ [ 'protectedinterface', 'bogus' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 
-		$wgNamespaceProtection = null;
-
+		$this->setMwGlobals( 'wgNamespaceProtection', null );
+		$this->resetServices();
 		$this->overrideUserPermissions( $this->user, 'bogus' );
 		$this->assertEquals( [],
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );

@@ -2499,6 +2499,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * Determines if $user is unable to edit this page because it has been protected
 	 * by $wgNamespaceProtection.
 	 *
+	 * @deprecated since 1.34 Don't use this function in new code.
 	 * @param User $user User object to check permissions
 	 * @return bool
 	 */
