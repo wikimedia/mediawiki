@@ -1837,8 +1837,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			new WatchedItem( $user, $targets[0], '20151212010101' ),
 			new WatchedItem( $user, $targets[1], null ),
 		];
-		$mockDb = $this->getMockDb();
-		$mockDb->expects( $this->never() )->method( $this->anything() );
+		$mockDb = $this->createNoOpMock( IDatabase::class );
 
 		$mockCache = $this->getMockCache();
 		$mockCache->expects( $this->at( 1 ) )
@@ -1864,16 +1863,18 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	}
 
 	public function testGetNotificationTimestampsBatch_anonymousUser() {
+		if ( defined( 'HHVM_VERSION' ) ) {
+			$this->markTestSkipped( 'HHVM Reflection buggy' );
+		}
+
 		$targets = [
 			new TitleValue( 0, 'SomeDbKey' ),
 			new TitleValue( 1, 'AnotherDbKey' ),
 		];
 
-		$mockDb = $this->getMockDb();
-		$mockDb->expects( $this->never() )->method( $this->anything() );
+		$mockDb = $this->createNoOpMock( IDatabase::class );
 
-		$mockCache = $this->getMockCache();
-		$mockCache->expects( $this->never() )->method( $this->anything() );
+		$mockCache = $this->createNoOpMock( HashBagOStuff::class );
 
 		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
 
@@ -2086,8 +2087,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$mockQueueGroup = $this->getMockJobQueueGroup();
 
-		$mockRevisionRecord = $this->createMock( RevisionRecord::class );
-		$mockRevisionRecord->expects( $this->never() )->method( $this->anything() );
+		$mockRevisionRecord = $this->createNoOpMock( RevisionRecord::class );
 
 		$mockRevisionLookup = $this->getMockRevisionLookup( [
 			'getTimestampFromId' => function () {
@@ -2144,11 +2144,8 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$oldid = 22;
 		$title = new TitleValue( 0, 'SomeDbKey' );
 
-		$mockRevision = $this->createMock( RevisionRecord::class );
-		$mockRevision->expects( $this->never() )->method( $this->anything() );
-
-		$mockNextRevision = $this->createMock( RevisionRecord::class );
-		$mockNextRevision->expects( $this->never() )->method( $this->anything() );
+		$mockRevision = $this->createNoOpMock( RevisionRecord::class );
+		$mockNextRevision = $this->createNoOpMock( RevisionRecord::class );
 
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
@@ -2258,11 +2255,8 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$mockQueueGroup = $this->getMockJobQueueGroup();
 
-		$mockRevision = $this->createMock( RevisionRecord::class );
-		$mockRevision->expects( $this->never() )->method( $this->anything() );
-
-		$mockNextRevision = $this->createMock( RevisionRecord::class );
-		$mockNextRevision->expects( $this->never() )->method( $this->anything() );
+		$mockRevision = $this->createNoOpMock( RevisionRecord::class );
+		$mockNextRevision = $this->createNoOpMock( RevisionRecord::class );
 
 		$mockRevisionLookup = $this->getMockRevisionLookup(
 			[
@@ -2350,11 +2344,8 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$mockQueueGroup = $this->getMockJobQueueGroup();
 
-		$mockRevision = $this->createMock( RevisionRecord::class );
-		$mockRevision->expects( $this->never() )->method( $this->anything() );
-
-		$mockNextRevision = $this->createMock( RevisionRecord::class );
-		$mockNextRevision->expects( $this->never() )->method( $this->anything() );
+		$mockRevision = $this->createNoOpMock( RevisionRecord::class );
+		$mockNextRevision = $this->createNoOpMock( RevisionRecord::class );
 
 		$mockRevisionLookup = $this->getMockRevisionLookup(
 			[
@@ -2442,11 +2433,8 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$mockQueueGroup = $this->getMockJobQueueGroup();
 
-		$mockRevision = $this->createMock( RevisionRecord::class );
-		$mockRevision->expects( $this->never() )->method( $this->anything() );
-
-		$mockNextRevision = $this->createMock( RevisionRecord::class );
-		$mockNextRevision->expects( $this->never() )->method( $this->anything() );
+		$mockRevision = $this->createNoOpMock( RevisionRecord::class );
+		$mockNextRevision = $this->createNoOpMock( RevisionRecord::class );
 
 		$mockRevisionLookup = $this->getMockRevisionLookup(
 			[

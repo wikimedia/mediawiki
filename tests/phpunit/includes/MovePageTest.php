@@ -12,16 +12,6 @@ use Wikimedia\Rdbms\LoadBalancer;
  */
 class MovePageTest extends MediaWikiTestCase {
 	/**
-	 * @param string $class
-	 * @return object A mock that throws on any method call
-	 */
-	private function getNoOpMock( $class ) {
-		$mock = $this->createMock( $class );
-		$mock->expects( $this->never() )->method( $this->anythingBut( '__destruct' ) );
-		return $mock;
-	}
-
-	/**
 	 * The only files that exist are 'File:Existent.jpg', 'File:Existent2.jpg', and
 	 * 'File:Existent-file-no-page.jpg'. Calling unexpected methods causes a test failure.
 	 *
@@ -72,7 +62,7 @@ class MovePageTest extends MediaWikiTestCase {
 	private function newMovePage( $old, $new, array $params = [] ) : MovePage {
 		$mockLB = $this->createMock( LoadBalancer::class );
 		$mockLB->method( 'getConnection' )
-			->willReturn( $params['db'] ?? $this->getNoOpMock( IDatabase::class ) );
+			->willReturn( $params['db'] ?? $this->createNoOpMock( IDatabase::class ) );
 		$mockLB->expects( $this->never() )
 			->method( $this->anythingBut( 'getConnection', '__destruct' ) );
 
@@ -98,8 +88,8 @@ class MovePageTest extends MediaWikiTestCase {
 			),
 			$mockLB,
 			$params['nsInfo'] ?? $mockNsInfo,
-			$params['wiStore'] ?? $this->getNoOpMock( WatchedItemStore::class ),
-			$params['permMgr'] ?? $this->getNoOpMock( PermissionManager::class ),
+			$params['wiStore'] ?? $this->createNoOpMock( WatchedItemStore::class ),
+			$params['permMgr'] ?? $this->createNoOpMock( PermissionManager::class ),
 			$params['repoGroup'] ?? $this->getMockRepoGroup()
 		);
 	}
