@@ -115,11 +115,15 @@ html5shiv:
   integrity: sha384-RPXhaTf22QktT8KTwZ6bUz/C+7CnccaIw5W/y/t0FW5WSDGj3wc3YtRIJC0w47in
 
 jquery:
-  type: file
-  src: https://code.jquery.com/jquery-3.3.1.js
-  # Integrity from link modals https://code.jquery.com/jquery/
-  integrity: sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=
-  dest: jquery.js
+  type: multi-file
+  files:
+    # Integrities from link modals https://code.jquery.com/jquery/
+    jquery.migrate.js:
+      src: https://code.jquery.com/jquery-migrate-3.0.1.js
+      integrity: sha256-VvnF+Zgpd00LL73P2XULYXEn6ROvoFaa/vbfoiFlZZ4=
+    jquery.js:
+      src: https://code.jquery.com/jquery-3.3.1.js
+      integrity: sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=
 
 jquery.chosen:
   type: multi-file
