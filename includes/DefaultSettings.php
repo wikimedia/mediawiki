@@ -788,10 +788,6 @@ $wgFileBackends = [];
  * See LockManager::__construct() for more details.
  * Additional parameters are specific to the lock manager class used.
  * These settings should be global to all wikis.
- *
- * When using DBLockManager, the 'dbsByBucket' map can reference 'localDBMaster' as
- * a peer database in each bucket. This will result in an extra connection to the domain
- * that the LockManager services, which must also be a valid wiki ID.
  */
 $wgLockManagers = [];
 

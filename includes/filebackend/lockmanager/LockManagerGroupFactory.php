@@ -35,12 +35,12 @@ class LockManagerGroupFactory {
 	}
 
 	/**
-	 * @param string|bool $domain Domain (usually wiki ID). false for the default (normally the
-	 *   current wiki's domain).
+	 * @param string|null|false $domain Domain (usually wiki ID). false for the default (normally
+	 *   the current wiki's domain).
 	 * @return LockManagerGroup
 	 */
 	public function getLockManagerGroup( $domain = false ) : LockManagerGroup {
-		if ( $domain === false ) {
+		if ( $domain === false || $domain === null ) {
 			$domain = $this->defaultDomain;
 		}
 
