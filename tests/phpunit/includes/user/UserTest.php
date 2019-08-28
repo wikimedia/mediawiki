@@ -929,13 +929,8 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertFalse( $user->isPingLimitable() );
 
 		$this->setMwGlobals( 'wgRateLimitsExcludedIPs', [] );
-		$noRateLimitUser = $this->getMockBuilder( User::class )->disableOriginalConstructor()
-			->setMethods( [ 'getIP', 'getId', 'getGroups' ] )->getMock();
-		$noRateLimitUser->expects( $this->any() )->method( 'getIP' )->willReturn( '1.2.3.4' );
-		$noRateLimitUser->expects( $this->any() )->method( 'getId' )->willReturn( 0 );
-		$noRateLimitUser->expects( $this->any() )->method( 'getGroups' )->willReturn( [] );
-		$this->overrideUserPermissions( $noRateLimitUser, 'noratelimit' );
-		$this->assertFalse( $noRateLimitUser->isPingLimitable() );
+		$this->overrideUserPermissions( $user, 'noratelimit' );
+		$this->assertFalse( $user->isPingLimitable() );
 	}
 
 	public function provideExperienceLevel() {
