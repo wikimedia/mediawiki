@@ -1376,7 +1376,7 @@ return [
 			'oojs-ui-core',
 		],
 		'messages' => [
-			// Keep the uses message keys in sync with EditPage#setHeaders
+			// Keep these message keys in sync with EditPage#setHeaders
 			'creating',
 			'editconflict',
 			'editing',
