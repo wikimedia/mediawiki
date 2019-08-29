@@ -689,10 +689,6 @@ class EditPage {
 		# checking, etc.
 		if ( $this->formtype == 'initial' || $this->firsttime ) {
 			if ( $this->initialiseForm() === false ) {
-				$out = $this->context->getOutput();
-				if ( $out->getRedirect() === '' ) { // mcrundo hack redirects, don't override it
-					$this->noSuchSectionPage();
-				}
 				return;
 			}
 
@@ -1145,8 +1141,26 @@ class EditPage {
 
 		$content = $this->getContentObject( false ); # TODO: track content object?!
 		if ( $content === false ) {
+			$out = $this->context->getOutput();
+			if ( $out->getRedirect() === '' ) { // mcrundo hack redirects, don't override it
+				$this->noSuchSectionPage();
+			}
 			return false;
 		}
+
+		if ( !$this->isSupportedContentModel( $content->getModel() ) ) {
+			$modelMsg = $this->getContext()->msg( 'content-model-' . $content->getModel() );
+			$modelName = $modelMsg->exists() ? $modelMsg->text() : $content->getModel();
+
+			$out = $this->context->getOutput();
+			$out->showErrorPage(
+				'modeleditnotsupported-title',
+				'modeleditnotsupported-text',
+				$modelName
+			);
+			return false;
+		}
+
 		$this->textbox1 = $this->toEditText( $content );
 
 		$user = $this->context->getUser();
