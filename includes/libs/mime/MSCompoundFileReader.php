@@ -182,11 +182,6 @@ class MSCompoundFileReader {
 		return $this->unpack( $block, 0, $struct );
 	}
 
-	private function unpackSector( $sectorNumber, $struct ) {
-		$offset = $this->sectorOffset( $sectorNumber );
-		return $this->unpackOffset( $offset, array_sum( $struct ) );
-	}
-
 	private function unpack( $block, $offset, $struct ) {
 		$data = [];
 		foreach ( $struct as $key => $length ) {

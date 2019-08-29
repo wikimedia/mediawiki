@@ -220,21 +220,6 @@ class LogEventsList extends ContextSource {
 		];
 	}
 
-	private function getDefaultQuery() {
-		if ( !isset( $this->mDefaultQuery ) ) {
-			$this->mDefaultQuery = $this->getRequest()->getQueryValues();
-			unset( $this->mDefaultQuery['title'] );
-			unset( $this->mDefaultQuery['dir'] );
-			unset( $this->mDefaultQuery['offset'] );
-			unset( $this->mDefaultQuery['limit'] );
-			unset( $this->mDefaultQuery['order'] );
-			unset( $this->mDefaultQuery['month'] );
-			unset( $this->mDefaultQuery['year'] );
-		}
-
-		return $this->mDefaultQuery;
-	}
-
 	/**
 	 * @param array $queryTypes
 	 * @return array Form descriptor
