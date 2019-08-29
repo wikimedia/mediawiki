@@ -448,8 +448,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 					->userCan( $action, $this->user, $this->title, true ) );
 			$this->assertEquals( $check[$action][3],
 				MediaWikiServices::getInstance()->getPermissionManager()
-					->userCan( $action, $this->user, $this->title,
-					PermissionManager::RIGOR_QUICK ) );
+					->quickUserCan( $action, $this->user, $this->title ) );
 			# count( User::getGroupsWithPermissions( $action ) ) < 1
 		}
 	}
@@ -888,7 +887,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		$this->assertEquals( true,
 			MediaWikiServices::getInstance()->getPermissionManager()
-				->userCan( 'edit', $this->user, $this->title, PermissionManager::RIGOR_QUICK ) );
+				->quickUserCan( 'edit', $this->user, $this->title ) );
 
 		$this->title->mRestrictions = [ "edit" => [ 'bogus', "sysop", "protect", "" ],
 			"bogus" => [ 'bogus', "sysop", "protect", "" ] ];
@@ -934,11 +933,11 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		$this->assertEquals( false,
 			MediaWikiServices::getInstance()->getPermissionManager()
-				->userCan( 'bogus', $this->user, $this->title, PermissionManager::RIGOR_QUICK ) );
+				->quickUserCan( 'bogus', $this->user, $this->title ) );
 
 		$this->assertEquals( false,
-			MediaWikiServices::getInstance()->getPermissionManager()->userCan(
-				'edit', $this->user, $this->title, PermissionManager::RIGOR_QUICK ) );
+			MediaWikiServices::getInstance()->getPermissionManager()->quickUserCan(
+				'edit', $this->user, $this->title ) );
 
 		$this->assertEquals( [ [ 'badaccess-group0' ],
 			[ 'protectedpagetext', 'bogus', 'bogus' ],
@@ -954,12 +953,12 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		$this->overrideUserPermissions( $this->user, [ "edit", "editprotected" ] );
 		$this->assertEquals( false,
-			MediaWikiServices::getInstance()->getPermissionManager()->userCan(
-				'bogus', $this->user, $this->title, PermissionManager::RIGOR_QUICK ) );
+			MediaWikiServices::getInstance()->getPermissionManager()->quickUserCan(
+				'bogus', $this->user, $this->title ) );
 
 		$this->assertEquals( false,
-			MediaWikiServices::getInstance()->getPermissionManager()->userCan(
-				'edit', $this->user, $this->title, PermissionManager::RIGOR_QUICK ) );
+			MediaWikiServices::getInstance()->getPermissionManager()->quickUserCan(
+				'edit', $this->user, $this->title ) );
 
 		$this->assertEquals( [ [ 'badaccess-group0' ],
 			[ 'protectedpagetext', 'bogus', 'bogus' ],
@@ -1176,8 +1175,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			->userCan( 'move-target', $this->user, $this->title ) );
 		// quickUserCan should ignore user blocks
 		$this->assertEquals( true, MediaWikiServices::getInstance()->getPermissionManager()
-			->userCan( 'move-target', $this->user, $this->title,
-				PermissionManager::RIGOR_QUICK ) );
+			->quickUserCan( 'move-target', $this->user, $this->title ) );
 
 		global $wgLocalTZoffset;
 		$wgLocalTZoffset = -60;

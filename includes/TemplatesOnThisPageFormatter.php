@@ -20,6 +20,7 @@
 
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Handles formatting for the "templates used on this page"
@@ -158,11 +159,13 @@ class TemplatesOnThisPageFormatter {
 	 * Return a link to the edit page, with the text
 	 * saying "view source" if the user can't edit the page
 	 *
-	 * @param Title $titleObj
+	 * @param LinkTarget $titleObj
 	 * @return string
 	 */
-	private function buildEditLink( Title $titleObj ) {
-		if ( $titleObj->quickUserCan( 'edit', $this->context->getUser() ) ) {
+	private function buildEditLink( LinkTarget $titleObj ) {
+		if ( MediaWikiServices::getInstance()->getPermissionManager()
+				->quickUserCan( 'edit', $this->context->getUser(), $titleObj )
+		) {
 			$linkMsg = 'editlink';
 		} else {
 			$linkMsg = 'viewsourcelink';

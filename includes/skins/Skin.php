@@ -461,7 +461,9 @@ abstract class Skin extends ContextSource {
 				$type = 'ns-subject';
 			}
 			// T208315: add HTML class when the user can edit the page
-			if ( $title->quickUserCan( 'edit', $user ) ) {
+			if ( MediaWikiServices::getInstance()->getPermissionManager()
+					->quickUserCan( 'edit', $user, $title )
+			) {
 				$type .= ' mw-editable';
 			}
 		}
@@ -725,14 +727,17 @@ abstract class Skin extends ContextSource {
 		$action = $this->getRequest()->getVal( 'action', 'view' );
 		$title = $this->getTitle();
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		if ( ( !$title->exists() || $action == 'history' ) &&
-			$title->quickUserCan( 'deletedhistory', $this->getUser() )
+			$permissionManager->quickUserCan( 'deletedhistory', $this->getUser(), $title )
 		) {
 			$n = $title->isDeleted();
 
 			if ( $n ) {
-				if ( $this->getTitle()->quickUserCan( 'undelete', $this->getUser() ) ) {
+				if ( $permissionManager->quickUserCan( 'undelete',
+						$this->getUser(), $this->getTitle() )
+				) {
 					$msg = 'thisisdeleted';
 				} else {
 					$msg = 'viewdeleted';

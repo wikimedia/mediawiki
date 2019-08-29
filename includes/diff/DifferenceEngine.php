@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\NameTableAccessException;
@@ -542,8 +541,8 @@ class DifferenceEngine extends ContextSource {
 
 			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
-			if ( $samePage && $this->mNewPage && $permissionManager->userCan(
-				'edit', $user, $this->mNewPage, PermissionManager::RIGOR_QUICK
+			if ( $samePage && $this->mNewPage && $permissionManager->quickUserCan(
+				'edit', $user, $this->mNewPage
 			) ) {
 				if ( $this->mNewRev->isCurrent() && $permissionManager->userCan(
 					'rollback', $user, $this->mNewPage
@@ -766,12 +765,14 @@ class DifferenceEngine extends ContextSource {
 	protected function getMarkPatrolledLinkInfo() {
 		$user = $this->getUser();
 		$config = $this->getConfig();
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		// Prepare a change patrol link, if applicable
 		if (
 			// Is patrolling enabled and the user allowed to?
 			$config->get( 'UseRCPatrol' ) &&
-			$this->mNewPage && $this->mNewPage->quickUserCan( 'patrol', $user ) &&
+			$this->mNewPage &&
+			$permissionManager->quickUserCan( 'patrol', $user, $this->mNewPage ) &&
 			// Only do this if the revision isn't more than 6 hours older
 			// than the Max RC age (6h because the RC might not be cleaned out regularly)
 			RecentChange::isInRCLifespan( $this->mNewRev->getTimestamp(), 21600 )
@@ -804,8 +805,7 @@ class DifferenceEngine extends ContextSource {
 			// Build the link
 			if ( $rcid ) {
 				$this->getOutput()->preventClickjacking();
-				if ( MediaWikiServices::getInstance()->getPermissionManager()
-						->userHasRight( $user, 'writeapi' ) ) {
+				if ( $permissionManager->userHasRight( $user, 'writeapi' ) ) {
 					$this->getOutput()->addModules( 'mediawiki.page.patrol.ajax' );
 				}
 
@@ -900,7 +900,11 @@ class DifferenceEngine extends ContextSource {
 					) {
 						$out->addParserOutput( $parserOutput, [
 							'enableSectionEditLinks' => $this->mNewRev->isCurrent()
-								&& $this->mNewRev->getTitle()->quickUserCan( 'edit', $this->getUser() ),
+								&& MediaWikiServices::getInstance()->getPermissionManager()->quickUserCan(
+									'edit',
+									$this->getUser(),
+									$this->mNewRev->getTitle()
+								)
 						] );
 					}
 				}
@@ -1557,7 +1561,8 @@ class DifferenceEngine extends ContextSource {
 				$editQuery['oldid'] = $rev->getId();
 			}
 
-			$key = $title->quickUserCan( 'edit', $user ) ? 'editold' : 'viewsourceold';
+			$key = MediaWikiServices::getInstance()->getPermissionManager()
+				->quickUserCan( 'edit', $user, $title ) ? 'editold' : 'viewsourceold';
 			$msg = $this->msg( $key )->escaped();
 			$editLink = $this->msg( 'parentheses' )->rawParams(
 				Linker::linkKnown( $title, $msg, [], $editQuery ) )->escaped();

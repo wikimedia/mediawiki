@@ -118,6 +118,7 @@ class ImageHistoryList extends ContextSource {
 	public function imageHistoryLine( $iscur, $file ) {
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
+		$pm = MediaWikiServices::getInstance()->getPermissionManager();
 		$timestamp = wfTimestamp( TS_MW, $file->getTimestamp() );
 		$img = $iscur ? $file->getName() : $file->getArchiveName();
 		$userId = $file->getUser( 'id' );
@@ -128,9 +129,7 @@ class ImageHistoryList extends ContextSource {
 		$row = $selected = '';
 
 		// Deletion link
-		if ( $local && ( MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasAnyRight( $user, 'delete', 'deletedhistory' ) )
+		if ( $local && ( $pm->userHasAnyRight( $user, 'delete', 'deletedhistory' ) )
 		) {
 			$row .= '<td>';
 			# Link to remove from history
@@ -173,8 +172,8 @@ class ImageHistoryList extends ContextSource {
 		$row .= '<td>';
 		if ( $iscur ) {
 			$row .= $this->msg( 'filehist-current' )->escaped();
-		} elseif ( $local && $this->title->quickUserCan( 'edit', $user )
-			&& $this->title->quickUserCan( 'upload', $user )
+		} elseif ( $local && $pm->quickUserCan( 'edit', $user, $this->title )
+			&& $pm->quickUserCan( 'upload', $user, $this->title )
 		) {
 			if ( $file->isDeleted( File::DELETED_FILE ) ) {
 				$row .= $this->msg( 'filehist-revert' )->escaped();

@@ -232,6 +232,25 @@ class PermissionManager {
 	}
 
 	/**
+	 * A convenience method for calling PermissionManager::userCan
+	 * with PermissionManager::RIGOR_QUICK
+	 *
+	 * Suitable for use for nonessential UI controls in common cases, but
+	 * _not_ for functional access control.
+	 * May provide false positives, but should never provide a false negative.
+	 *
+	 * @see PermissionManager::userCan()
+	 *
+	 * @param string $action
+	 * @param User $user
+	 * @param LinkTarget $page
+	 * @return bool
+	 */
+	public function quickUserCan( $action, User $user, LinkTarget $page ) {
+		return $this->userCan( $action, $user, $page, self::RIGOR_QUICK );
+	}
+
+	/**
 	 * Can $user perform $action on a page?
 	 *
 	 * @todo FIXME: This *does not* check throttles (User::pingLimiter()).

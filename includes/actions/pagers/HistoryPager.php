@@ -401,8 +401,11 @@ class HistoryPager extends ReverseChronologicalPager {
 		$tools = [];
 
 		# Rollback and undo links
-		if ( $prevRev && $this->getTitle()->quickUserCan( 'edit', $user ) ) {
-			if ( $latest && $this->getTitle()->quickUserCan( 'rollback', $user ) ) {
+
+		if ( $prevRev && $permissionManager->quickUserCan( 'edit', $user, $this->getTitle() ) ) {
+			if ( $latest && $permissionManager->quickUserCan( 'rollback',
+					$user, $this->getTitle() )
+			) {
 				// Get a rollback link without the brackets
 				$rollbackLink = Linker::generateRollback(
 					$rev,

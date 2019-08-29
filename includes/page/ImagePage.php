@@ -748,7 +748,8 @@ EOT
 			return;
 		}
 
-		$canUpload = $this->getTitle()->quickUserCan( 'upload', $this->getContext()->getUser() );
+		$canUpload = MediaWikiServices::getInstance()->getPermissionManager()
+			->quickUserCan( 'upload', $this->getContext()->getUser(), $this->getTitle() );
 		if ( $canUpload && UploadBase::userCanReUpload(
 				$this->getContext()->getUser(),
 				$this->mPage->getFile() )
