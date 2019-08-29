@@ -45,7 +45,7 @@ $context = new ResourceLoaderContext( $resourceLoader, $wgRequest );
 // Respond to ResourceLoader request
 $resourceLoader->respond( $context );
 
-Profiler::instance()->setTemplated( true );
+Profiler::instance()->setAllowOutput();
 
 $mediawiki = new MediaWiki();
 $mediawiki->doPostOutputShutdown( 'fast' );

@@ -831,7 +831,7 @@ abstract class Maintenance {
 					+ $wgProfiler
 					+ [ 'threshold' => $wgProfileLimit ]
 			);
-			$profiler->setTemplated( true );
+			$profiler->setAllowOutput();
 			Profiler::replaceStubInstance( $profiler );
 		}
 
