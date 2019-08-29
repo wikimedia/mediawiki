@@ -593,7 +593,7 @@ class SwiftFileBackend extends FileBackendStore {
 		$stat = $this->getContainerStat( $fullCont );
 		if ( is_array( $stat ) ) {
 			return $status; // already there
-		} elseif ( $stat === null ) {
+		} elseif ( $stat === self::UNKNOWN ) {
 			$status->fatal( 'backend-fail-internal', $this->name );
 			$this->logger->error( __METHOD__ . ': cannot get container stat' );
 
@@ -832,7 +832,7 @@ class SwiftFileBackend extends FileBackendStore {
 			return ( count( $status->value ) ) > 0;
 		}
 
-		return null; // error
+		return self::UNKNOWN; // error
 	}
 
 	/**
@@ -1401,7 +1401,7 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( !$this->containerStatCache->hasField( $container, 'stat' ) ) {
 			$auth = $this->getAuthentication();
 			if ( !$auth ) {
-				return null;
+				return self::UNKNOWN;
 			}
 
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->http->run( [
@@ -1427,7 +1427,7 @@ class SwiftFileBackend extends FileBackendStore {
 				$this->onError( null, __METHOD__,
 					[ 'cont' => $container ], $rerr, $rcode, $rdesc );
 
-				return null;
+				return self::UNKNOWN;
 			}
 		}
 
@@ -1599,7 +1599,7 @@ class SwiftFileBackend extends FileBackendStore {
 				$stats[$path] = false;
 				continue; // invalid storage path
 			} elseif ( !$auth ) {
-				$stats[$path] = null;
+				$stats[$path] = self::UNKNOWN;
 				continue;
 			}
 
@@ -1609,7 +1609,7 @@ class SwiftFileBackend extends FileBackendStore {
 				$stats[$path] = false;
 				continue; // ok, nothing to do
 			} elseif ( !is_array( $cstat ) ) {
-				$stats[$path] = null;
+				$stats[$path] = self::UNKNOWN;
 				continue;
 			}
 
@@ -1642,7 +1642,7 @@ class SwiftFileBackend extends FileBackendStore {
 			} elseif ( $rcode === 404 ) {
 				$stat = false;
 			} else {
-				$stat = null;
+				$stat = self::UNKNOWN;
 				$this->onError( null, __METHOD__, $params, $rerr, $rcode, $rdesc );
 			}
 			$stats[$path] = $stat;

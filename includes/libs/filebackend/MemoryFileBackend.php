@@ -148,7 +148,7 @@ class MemoryFileBackend extends FileBackendStore {
 	protected function doGetFileStat( array $params ) {
 		$src = $this->resolveHashKey( $params['src'] );
 		if ( $src === null ) {
-			return null;
+			return false; // invalid path
 		}
 
 		if ( isset( $this->files[$src] ) ) {

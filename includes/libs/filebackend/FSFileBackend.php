@@ -593,7 +593,7 @@ class FSFileBackend extends FileBackendStore {
 		} elseif ( !$hadError ) {
 			return false; // file does not exist
 		} else {
-			return null; // failure
+			return self::UNKNOWN; // failure
 		}
 	}
 
@@ -610,7 +610,7 @@ class FSFileBackend extends FileBackendStore {
 		$exists = is_dir( $dir );
 		$hadError = $this->untrapWarnings();
 
-		return $hadError ? null : $exists;
+		return $hadError ? self::UNKNOWN : $exists;
 	}
 
 	/**
@@ -632,7 +632,7 @@ class FSFileBackend extends FileBackendStore {
 		} elseif ( !is_readable( $dir ) ) {
 			$this->logger->warning( __METHOD__ . "() given directory is unreadable: '$dir'\n" );
 
-			return null; // bad permissions?
+			return self::UNKNOWN; // bad permissions?
 		}
 
 		return new FSFileBackendDirList( $dir, $params );
@@ -657,7 +657,7 @@ class FSFileBackend extends FileBackendStore {
 		} elseif ( !is_readable( $dir ) ) {
 			$this->logger->warning( __METHOD__ . "() given directory is unreadable: '$dir'\n" );
 
-			return null; // bad permissions?
+			return self::UNKNOWN; // bad permissions?
 		}
 
 		return new FSFileBackendFileList( $dir, $params );

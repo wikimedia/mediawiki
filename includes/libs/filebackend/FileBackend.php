@@ -131,6 +131,9 @@ abstract class FileBackend implements LoggerAwareInterface {
 	const ATTR_METADATA = 2; // files can be stored with metadata key/values
 	const ATTR_UNICODE_PATHS = 4; // files can have Unicode paths (not just ASCII)
 
+	/** @var null Idiom for "could not determine due to I/O errors" */
+	const UNKNOWN = null;
+
 	/**
 	 * Create a new backend instance from configuration.
 	 * This should only be called from within FileBackendGroup.
@@ -209,7 +212,8 @@ abstract class FileBackend implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get the unique backend name.
+	 * Get the unique backend name
+	 *
 	 * We may have multiple different backends of the same type.
 	 * For example, we can have two Swift backends using different proxies.
 	 *
@@ -231,6 +235,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 
 	/**
 	 * Alias to getDomainId()
+	 *
 	 * @return string
 	 * @since 1.20
 	 * @deprecated Since 1.34 Use getDomainId()
@@ -1164,21 +1169,34 @@ abstract class FileBackend implements LoggerAwareInterface {
 	abstract public function getFileHttpUrl( array $params );
 
 	/**
-	 * Check if a directory exists at a given storage path.
-	 * Backends using key/value stores will check if the path is a
-	 * virtual directory, meaning there are files under the given directory.
+	 * Check if a directory exists at a given storage path
+	 *
+	 * For backends using key/value stores, a directory is said to exist whenever
+	 * there exist any files with paths using the given directory path as a prefix
+	 * followed by a forward slash. For example, if there is a file called
+	 * "mwstore://backend/container/dir/path.svg" then directories are said to exist
+	 * at "mwstore://backend/container" and "mwstore://backend/container/dir". These
+	 * can be thought of as "virtual" directories.
+	 *
+	 * Backends that directly use a filesystem layer might enumerate empty directories.
+	 * The clean() method should always be used when files are deleted or moved if this
+	 * is a concern. This is a trade-off to avoid write amplication/contention on file
+	 * changes or read amplification when calling this method.
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
+	 * @see FileBackend::clean()
+	 *
 	 * @param array $params Parameters include:
 	 *   - dir : storage directory
-	 * @return bool|null Returns null on failure
+	 * @return bool|null Whether a directory exists or null on failure
 	 * @since 1.20
 	 */
 	abstract public function directoryExists( array $params );
 
 	/**
-	 * Get an iterator to list *all* directories under a storage directory.
+	 * Get an iterator to list *all* directories under a storage directory
+	 *
 	 * If the directory is of the form "mwstore://backend/container",
 	 * then all directories in the container will be listed.
 	 * If the directory is of form "mwstore://backend/container/dir",
@@ -1189,10 +1207,12 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *
 	 * Failures during iteration can result in FileBackendError exceptions (since 1.22).
 	 *
+	 * @see FileBackend::directoryExists()
+	 *
 	 * @param array $params Parameters include:
 	 *   - dir     : storage directory
 	 *   - topOnly : only return direct child dirs of the directory
-	 * @return Traversable|array|null Returns null on failure
+	 * @return Traversable|array|null Directory list enumerator null on failure
 	 * @since 1.20
 	 */
 	abstract public function getDirectoryList( array $params );
@@ -1205,9 +1225,11 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *
 	 * Failures during iteration can result in FileBackendError exceptions (since 1.22).
 	 *
+	 * @see FileBackend::directoryExists()
+	 *
 	 * @param array $params Parameters include:
 	 *   - dir : storage directory
-	 * @return Traversable|array|null Returns null on failure
+	 * @return Traversable|array|null Directory list enumerator or null on failure
 	 * @since 1.20
 	 */
 	final public function getTopDirectoryList( array $params ) {
@@ -1215,12 +1237,12 @@ abstract class FileBackend implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get an iterator to list *all* stored files under a storage directory.
-	 * If the directory is of the form "mwstore://backend/container",
-	 * then all files in the container will be listed.
-	 * If the directory is of form "mwstore://backend/container/dir",
-	 * then all files under that directory will be listed.
-	 * Results will be storage paths relative to the given directory.
+	 * Get an iterator to list *all* stored files under a storage directory
+	 *
+	 * If the directory is of the form "mwstore://backend/container", then all
+	 * files in the container will be listed. If the directory is of form
+	 * "mwstore://backend/container/dir", then all files under that directory will
+	 * be listed. Results will be storage paths relative to the given directory.
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
@@ -1230,7 +1252,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *   - dir        : storage directory
 	 *   - topOnly    : only return direct child files of the directory (since 1.20)
 	 *   - adviseStat : set to true if stat requests will be made on the files (since 1.22)
-	 * @return Traversable|array|null Returns null on failure
+	 * @return Traversable|array|null File list enumerator or null on failure
 	 */
 	abstract public function getFileList( array $params );
 
@@ -1245,7 +1267,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @param array $params Parameters include:
 	 *   - dir        : storage directory
 	 *   - adviseStat : set to true if stat requests will be made on the files (since 1.22)
-	 * @return Traversable|array|null Returns null on failure
+	 * @return Traversable|array|null File list enumerator or null on failure
 	 * @since 1.20
 	 */
 	final public function getTopFileList( array $params ) {
@@ -1283,7 +1305,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @param array $params Parameters include:
 	 *   - srcs        : list of source storage paths
 	 *   - latest      : use the latest available data
-	 * @return bool All requests proceeded without I/O errors (since 1.24)
+	 * @return bool Whether all requests proceeded without I/O errors (since 1.24)
 	 * @since 1.23
 	 */
 	abstract public function preloadFileStat( array $params );
