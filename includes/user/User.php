@@ -3602,6 +3602,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * @param string $permissions,... Permissions to test
 	 * @return bool True if user is allowed to perform *any* of the given actions
+	 * @suppress PhanCommentParamOnEmptyParamList Cannot make variadic due to HHVM bug, T191668#5263929
 	 */
 	public function isAllowedAny() {
 		return MediaWikiServices::getInstance()
@@ -3614,6 +3615,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * ->getPermissionManager()->userHasAllRights(...) instead
 	 * @param string $permissions,... Permissions to test
 	 * @return bool True if the user is allowed to perform *all* of the given actions
+	 * @suppress PhanCommentParamOnEmptyParamList Cannot make variadic due to HHVM bug, T191668#5263929
 	 */
 	public function isAllowedAll() {
 		return MediaWikiServices::getInstance()

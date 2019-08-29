@@ -54,6 +54,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 		if ( $this->modules === self::INHERIT_VALUE ) {
 			return $this->context->getModules();
 		}
+		// @phan-suppress-next-line PhanTypeMismatchReturn
 		return $this->modules;
 	}
 

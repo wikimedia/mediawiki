@@ -411,6 +411,7 @@ class Parser {
 	 */
 	public function __destruct() {
 		if ( isset( $this->mLinkHolders ) ) {
+			// @phan-suppress-next-line PhanTypeObjectUnsetDeclaredProperty
 			unset( $this->mLinkHolders );
 		}
 		// @phan-suppress-next-line PhanTypeSuspiciousNonTraversableForeach

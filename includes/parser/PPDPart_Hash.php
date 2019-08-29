@@ -25,6 +25,9 @@
 // phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPDPart_Hash extends PPDPart {
 
+	/**
+	 * @param string $out
+	 */
 	public function __construct( $out = '' ) {
 		if ( $out !== '' ) {
 			$accum = [ $out ];

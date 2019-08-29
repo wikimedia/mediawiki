@@ -43,7 +43,7 @@ class UnregisteredLocalFile extends File {
 	/** @var bool|string */
 	protected $mime;
 
-	/** @var array Dimension data */
+	/** @var array[]|bool[] Dimension data */
 	protected $dims;
 
 	/** @var bool|string Handler-specific metadata which will be saved in the img_metadata field */
@@ -108,7 +108,7 @@ class UnregisteredLocalFile extends File {
 
 	/**
 	 * @param int $page
-	 * @return bool
+	 * @return array|bool
 	 */
 	private function cachePageDimensions( $page = 1 ) {
 		$page = (int)$page;

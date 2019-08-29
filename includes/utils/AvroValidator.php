@@ -124,6 +124,7 @@ class AvroValidator {
 					$errors[] = $result;
 				}
 				if ( $errors ) {
+					// @phan-suppress-next-line PhanTypeMismatchReturn
 					return [ "Expected any one of these to be true", $errors ];
 				}
 				return "No schemas provided to union";

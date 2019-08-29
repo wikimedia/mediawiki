@@ -135,7 +135,7 @@ class BacklinkCache {
 		$this->partitionCache = [];
 		$this->fullResultCache = [];
 		$this->wanCache->touchCheckKey( $this->makeCheckKey() );
-		unset( $this->db );
+		$this->db = null;
 	}
 
 	/**
@@ -153,7 +153,7 @@ class BacklinkCache {
 	 * @return IDatabase
 	 */
 	protected function getDB() {
-		if ( !isset( $this->db ) ) {
+		if ( $this->db === null ) {
 			$this->db = wfGetDB( DB_REPLICA );
 		}
 

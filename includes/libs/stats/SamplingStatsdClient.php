@@ -84,7 +84,7 @@ class SamplingStatsdClient extends StatsdClient {
 			$data = [ $data ];
 		}
 		if ( !$data ) {
-			return;
+			return 0;
 		}
 		foreach ( $data as $item ) {
 			if ( !( $item instanceof StatsdDataInterface ) ) {
@@ -109,7 +109,7 @@ class SamplingStatsdClient extends StatsdClient {
 		try {
 			$fp = $this->getSender()->open();
 			if ( !$fp ) {
-				return;
+				return 0;
 			}
 			foreach ( $data as $message ) {
 				$written += $this->getSender()->write( $fp, $message );

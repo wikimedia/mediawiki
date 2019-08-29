@@ -1946,8 +1946,8 @@ class LocalFile extends File {
 			// Now switch the object
 			$this->title = $target;
 			// Force regeneration of the name and hashpath
-			unset( $this->name );
-			unset( $this->hashPath );
+			$this->name = null;
+			$this->hashPath = null;
 		}
 
 		return $status;

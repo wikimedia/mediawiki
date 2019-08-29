@@ -61,6 +61,7 @@ abstract class FormattedRCFeed extends RCFeed {
 			// @codeCoverageIgnoreStart
 			// T109544 - If a feed formatter returns null, this will otherwise cause an
 			// error in at least RedisPubSubFeedEngine. Not sure best to handle this.
+			// @phan-suppress-next-line PhanTypeMismatchReturn
 			return;
 			// @codeCoverageIgnoreEnd
 		}

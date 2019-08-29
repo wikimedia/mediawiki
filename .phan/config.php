@@ -76,47 +76,37 @@ $cfg['exclude_analysis_directory_list'] = [
 ];
 
 $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
-	// approximate error count: 18
-	"PhanAccessMethodInternal",
-	// approximate error count: 17
-	"PhanCommentParamOnEmptyParamList",
-	// approximate error count: 29
-	"PhanCommentParamWithoutRealParam",
-	// approximate error count: 21
-	"PhanParamReqAfterOpt",
-	// approximate error count: 26
-	"PhanParamSignatureMismatch",
-	// approximate error count: 127
-	"PhanParamTooMany",
-	// approximate error count: 30
-	"PhanTypeArraySuspicious",
-	// approximate error count: 27
-	"PhanTypeArraySuspiciousNullable",
-	// approximate error count: 26
-	"PhanTypeComparisonFromArray",
-	// approximate error count: 63
-	"PhanTypeInvalidDimOffset",
-	// approximate error count: 154
-	"PhanTypeMismatchArgument",
-	// approximate error count: 27
-	"PhanTypeMismatchArgumentInternal",
-	// approximate error count: 27
-	"PhanTypeMismatchDimFetch",
-	// approximate error count: 10
-	"PhanTypeMismatchForeach",
-	// approximate error count: 77
-	"PhanTypeMismatchProperty",
-	// approximate error count: 84
-	"PhanTypeMismatchReturn",
-	// approximate error count: 12
-	"PhanTypeObjectUnsetDeclaredProperty",
 	// approximate error count: 22
+	"PhanAccessMethodInternal",
+	// approximate error count: 22
+	"PhanCommentParamWithoutRealParam",
+	// approximate error count: 19
+	"PhanParamReqAfterOpt",
+	// approximate error count: 20
+	"PhanParamSignatureMismatch",
+	// approximate error count: 110
+	"PhanParamTooMany",
+	// approximate error count: 63
+	"PhanTypeArraySuspicious",
+	// approximate error count: 28
+	"PhanTypeArraySuspiciousNullable",
+	// approximate error count: 22
+	"PhanTypeComparisonFromArray",
+	// approximate error count: 88
+	"PhanTypeInvalidDimOffset",
+	// approximate error count: 60
+	"PhanTypeMismatchArgument",
+	// approximate error count: 20
+	"PhanTypeMismatchArgumentInternal",
+	// approximate error count: 40
+	"PhanTypeMismatchProperty",
+	// approximate error count: 36
 	"PhanUndeclaredConstant",
-	// approximate error count: 237
+	// approximate error count: 219
 	"PhanUndeclaredMethod",
-	// approximate error count: 846
+	// approximate error count: 752
 	"PhanUndeclaredProperty",
-	// approximate error count: 55
+	// approximate error count: 53
 	"PhanUndeclaredVariableDim",
 ] );
 

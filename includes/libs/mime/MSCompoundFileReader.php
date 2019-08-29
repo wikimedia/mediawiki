@@ -178,11 +178,22 @@ class MSCompoundFileReader {
 		);
 	}
 
+	/**
+	 * @param int $offset
+	 * @param int[] $struct
+	 * @return array
+	 */
 	private function unpackOffset( $offset, $struct ) {
 		$block = $this->readOffset( $offset, array_sum( $struct ) );
 		return $this->unpack( $block, 0, $struct );
 	}
 
+	/**
+	 * @param string $block
+	 * @param int $offset
+	 * @param int[] $struct
+	 * @return array
+	 */
 	private function unpack( $block, $offset, $struct ) {
 		$data = [];
 		foreach ( $struct as $key => $length ) {
