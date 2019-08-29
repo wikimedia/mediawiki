@@ -249,6 +249,10 @@ abstract class Profiler {
 	 * @since 1.26
 	 */
 	public function logDataPageOutputOnly() {
+		if ( !$this->allowOutput ) {
+			return;
+		}
+
 		$outputs = [];
 		foreach ( $this->getOutputs() as $output ) {
 			if ( $output->logsToOutput() ) {
@@ -291,7 +295,7 @@ abstract class Profiler {
 	 * @param bool $t
 	 */
 	public function setTemplated( $t ) {
-		// wfDeprecated( __METHOD__, '1.34' );
+		wfDeprecated( __METHOD__, '1.34' );
 		$this->allowOutput = ( $t === true );
 	}
 
@@ -302,7 +306,7 @@ abstract class Profiler {
 	 * @return bool
 	 */
 	public function getTemplated() {
-		// wfDeprecated( __METHOD__, '1.34' );
+		wfDeprecated( __METHOD__, '1.34' );
 		return $this->getAllowOutput();
 	}
 
