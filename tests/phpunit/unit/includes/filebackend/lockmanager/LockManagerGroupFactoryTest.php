@@ -10,8 +10,7 @@ use Wikimedia\Rdbms\LBFactory;
  */
 class LockManagerGroupFactoryTest extends MediaWikiUnitTestCase {
 	public function testGetLockManagerGroup() {
-		$mockLbFactory = $this->createMock( LBFactory::class );
-		$mockLbFactory->expects( $this->never() )->method( $this->anything() );
+		$mockLbFactory = $this->createNoOpMock( LBFactory::class );
 
 		$factory = new LockManagerGroupFactory( 'defaultDomain', [], $mockLbFactory );
 		$lbmUnspecified = $factory->getLockManagerGroup();

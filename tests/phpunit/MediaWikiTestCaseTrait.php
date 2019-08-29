@@ -17,4 +17,16 @@ trait MediaWikiTestCaseTrait {
 			...array_map( [ $this, 'matches' ], $values )
 		) );
 	}
+
+	/**
+	 * Return a PHPUnit mock that is expected to never have any methods called on it.
+	 *
+	 * @param string $type
+	 * @return object
+	 */
+	protected function createNoOpMock( $type ) {
+		$mock = $this->createMock( $type );
+		$mock->expects( $this->never() )->method( $this->anything() );
+		return $mock;
+	}
 }
