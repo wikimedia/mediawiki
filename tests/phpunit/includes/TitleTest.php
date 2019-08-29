@@ -837,8 +837,23 @@ class TitleTest extends MediaWikiTestCase {
 		return [
 			[ Title::makeTitle( NS_SPECIAL, 'Test' ) ],
 			[ Title::makeTitle( NS_MEDIA, 'Test' ) ],
-			[ Title::makeTitle( NS_MAIN, '', 'Kittens' ) ],
-			[ Title::makeTitle( NS_MAIN, 'Kittens', '', 'acme' ) ],
+		];
+	}
+
+	public static function provideGetTalkPage_broken() {
+		// These cases *should* be bad, but are not treated as bad, for backwards compatibility.
+		// See discussion on T227817.
+		return [
+			[
+				Title::makeTitle( NS_MAIN, '', 'Kittens' ),
+				Title::makeTitle( NS_TALK, '' ), // Section is lost!
+				false,
+			],
+			[
+				Title::makeTitle( NS_MAIN, 'Kittens', '', 'acme' ),
+				Title::makeTitle( NS_TALK, 'Kittens', '' ), // Interwiki prefix is lost!
+				true,
+			],
 		];
 	}
 
@@ -896,6 +911,23 @@ class TitleTest extends MediaWikiTestCase {
 	public function testGetTalkPage_bad( Title $title ) {
 		$this->setExpectedException( MWException::class );
 		$title->getTalkPage();
+	}
+
+	/**
+	 * @dataProvider provideGetTalkPage_broken
+	 * @covers Title::getTalkPageIfDefined
+	 */
+	public function testGetTalkPage_broken( Title $title, Title $expected, $valid ) {
+		$errorLevel = error_reporting( E_ERROR );
+
+		// NOTE: Eventually we want to throw in this case. But while there is still code that
+		// calls this method without checking, we want to avoid fatal errors.
+		// See discussion on T227817.
+		$result = $title->getTalkPage();
+		$this->assertTrue( $expected->equals( $result ) );
+		$this->assertSame( $valid, $result->isValid() );
+
+		error_reporting( $errorLevel );
 	}
 
 	/**
