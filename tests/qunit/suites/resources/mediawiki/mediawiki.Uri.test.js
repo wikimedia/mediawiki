@@ -105,6 +105,18 @@
 			'Parse an ftp URI correctly with user and password'
 		);
 
+		uri = new mw.Uri( 'http://example.com/?foo[1]=b&foo[0]=a&foo[]=c' );
+
+		assert.deepEqual(
+			uri.query,
+			{
+				'foo[1]': 'b',
+				'foo[0]': 'a',
+				'foo[]': 'c'
+			},
+			'Array query parameters parsed as normal with arrayParams:false'
+		);
+
 		assert.throws(
 			function () {
 				return new mw.Uri( 'glaswegian penguins' );
