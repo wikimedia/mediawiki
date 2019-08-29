@@ -3,19 +3,17 @@
 namespace Wikimedia\Message;
 
 /**
- * The class for list parameters
+ * Value object representing a message parameter that consists of a list of values.
+ *
+ * Message parameter classes are pure value objects and are safely newable.
  */
 class ListParam extends MessageParam {
 	private $listType;
 
 	/**
-	 * @param string $listType One of the ListType constants:
-	 *   - ListType::COMMA: A comma-separated list
-	 *   - ListType::SEMICOLON: A semicolon-separated list
-	 *   - ListType::PIPE: A pipe-separated list
-	 *   - ListType::TEXT: A natural language list, separated by commas and
-	 *     the word "and".
-	 * @param (MessageParam|string)[] $elements An array of parameters
+	 * @param string $listType One of the ListType constants.
+	 * @param (MessageParam|MessageValue|string|int|float)[] $elements Values in the list.
+	 *  Values that are not instances of MessageParam are wrapped using ParamType::TEXT.
 	 */
 	public function __construct( $listType, array $elements ) {
 		$this->type = ParamType::LIST;
@@ -25,7 +23,7 @@ class ListParam extends MessageParam {
 			if ( $element instanceof MessageParam ) {
 				$this->value[] = $element;
 			} elseif ( is_scalar( $element ) ) {
-				$this->value[] = new TextParam( ParamType::TEXT, $element );
+				$this->value[] = new ScalarParam( ParamType::TEXT, $element );
 			} else {
 				throw new \InvalidArgumentException(
 					'ListParam elements must be MessageParam or scalar' );
