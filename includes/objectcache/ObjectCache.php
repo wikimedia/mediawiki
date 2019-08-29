@@ -204,9 +204,6 @@ class ObjectCache {
 				if ( !isset( $params['servers'] ) ) {
 					$params['servers'] = $GLOBALS['wgMemCachedServers'];
 				}
-				if ( !isset( $params['debug'] ) ) {
-					$params['debug'] = $GLOBALS['wgMemCachedDebug'];
-				}
 				if ( !isset( $params['persistent'] ) ) {
 					$params['persistent'] = $GLOBALS['wgMemCachedPersistent'];
 				}
