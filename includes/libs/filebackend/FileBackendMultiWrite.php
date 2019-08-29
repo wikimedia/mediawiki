@@ -21,6 +21,8 @@
  * @ingroup FileBackend
  */
 
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+
 /**
  * @brief Proxy backend that mirrors writes to several internal backends.
  *
@@ -57,9 +59,11 @@ class FileBackendMultiWrite extends FileBackend {
 	/** @var bool */
 	protected $asyncWrites = false;
 
-	/* Possible internal backend consistency checks */
+	/** @var int Compare file sizes among backends */
 	const CHECK_SIZE = 1;
+	/** @var int Compare file mtimes among backends */
 	const CHECK_TIME = 2;
+	/** @var int Compare file hashes among backends */
 	const CHECK_SHA1 = 4;
 
 	/**
@@ -139,10 +143,8 @@ class FileBackendMultiWrite extends FileBackend {
 
 		$mbe = $this->backends[$this->masterIndex]; // convenience
 
-		// Try to lock those files for the scope of this function...
-		$scopeLock = null;
+		// Acquire any locks as needed
 		if ( empty( $opts['nonLocking'] ) ) {
-			// Try to lock those files for the scope of this function...
 			/** @noinspection PhpUnusedLocalVariableInspection */
 			$scopeLock = $this->getScopedLocksForOps( $ops, $status );
 			if ( !$status->isOK() ) {
@@ -152,28 +154,30 @@ class FileBackendMultiWrite extends FileBackend {
 		// Clear any cache entries (after locks acquired)
 		$this->clearCache();
 		$opts['preserveCache'] = true; // only locked files are cached
-		// Get the list of paths to read/write...
+		// Get the list of paths to read/write
 		$relevantPaths = $this->fileStoragePathsForOps( $ops );
-		// Check if the paths are valid and accessible on all backends...
+		// Check if the paths are valid and accessible on all backends
 		$status->merge( $this->accessibilityCheck( $relevantPaths ) );
 		if ( !$status->isOK() ) {
 			return $status; // abort
 		}
-		// Do a consistency check to see if the backends are consistent...
+		// Do a consistency check to see if the backends are consistent
 		$syncStatus = $this->consistencyCheck( $relevantPaths );
 		if ( !$syncStatus->isOK() ) {
-			wfDebugLog( 'FileOperation', static::class .
-				" failed sync check: " . FormatJson::encode( $relevantPaths ) );
-			// Try to resync the clone backends to the master on the spot...
-			if ( $this->autoResync === false
-				|| !$this->resyncFiles( $relevantPaths, $this->autoResync )->isOK()
+			$this->logger->error(
+				__METHOD__ . ": failed sync check: " . FormatJson::encode( $relevantPaths )
+			);
+			// Try to resync the clone backends to the master on the spot
+			if (
+				$this->autoResync === false ||
+				!$this->resyncFiles( $relevantPaths, $this->autoResync )->isOK()
 			) {
 				$status->merge( $syncStatus );
 
 				return $status; // abort
 			}
 		}
-		// Actually attempt the operation batch on the master backend...
+		// Actually attempt the operation batch on the master backend
 		$realOps = $this->substOpBatchPaths( $ops, $mbe );
 		$masterStatus = $mbe->doOperations( $realOps, $opts );
 		$status->merge( $masterStatus );
@@ -191,16 +195,18 @@ class FileBackendMultiWrite extends FileBackend {
 					// Bind $scopeLock to the callback to preserve locks
 					DeferredUpdates::addCallableUpdate(
 						function () use ( $backend, $realOps, $opts, $scopeLock, $relevantPaths ) {
-							wfDebugLog( 'FileOperationReplication',
+							$this->logger->error(
 								"'{$backend->getName()}' async replication; paths: " .
-								FormatJson::encode( $relevantPaths ) );
+								FormatJson::encode( $relevantPaths )
+							);
 							$backend->doOperations( $realOps, $opts );
 						}
 					);
 				} else {
-					wfDebugLog( 'FileOperationReplication',
+					$this->logger->error(
 						"'{$backend->getName()}' sync replication; paths: " .
-						FormatJson::encode( $relevantPaths ) );
+						FormatJson::encode( $relevantPaths )
+					);
 					$status->merge( $backend->doOperations( $realOps, $opts ) );
 				}
 			}
@@ -218,6 +224,9 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * Check that a set of files are consistent across all internal backends
 	 *
+	 * This method should only be called if the files are locked or the backend
+	 * is in read-only mode
+	 *
 	 * @param array $paths List of storage paths
 	 * @return StatusValue
 	 */
@@ -227,58 +236,75 @@ class FileBackendMultiWrite extends FileBackend {
 			return $status; // skip checks
 		}
 
-		// Preload all of the stat info in as few round trips as possible...
+		// Preload all of the stat info in as few round trips as possible
 		foreach ( $this->backends as $backend ) {
 			$realPaths = $this->substPaths( $paths, $backend );
 			$backend->preloadFileStat( [ 'srcs' => $realPaths, 'latest' => true ] );
 		}
 
-		$mBackend = $this->backends[$this->masterIndex];
 		foreach ( $paths as $path ) {
 			$params = [ 'src' => $path, 'latest' => true ];
-			$mParams = $this->substOpPaths( $params, $mBackend );
-			// Stat the file on the 'master' backend
-			$mStat = $mBackend->getFileStat( $mParams );
-			if ( $this->syncChecks & self::CHECK_SHA1 ) {
-				$mSha1 = $mBackend->getFileSha1Base36( $mParams );
-			} else {
-				$mSha1 = false;
+			// Get the state of the file on the master backend
+			$masterBackend = $this->backends[$this->masterIndex];
+			$masterParams = $this->substOpPaths( $params, $masterBackend );
+			$masterStat = $masterBackend->getFileStat( $masterParams );
+			if ( $masterStat === self::UNKNOWN ) {
+				$status->fatal( 'backend-fail-stat', $path );
+				continue;
 			}
+			if ( $this->syncChecks & self::CHECK_SHA1 ) {
+				$masterSha1 = $masterBackend->getFileSha1Base36( $masterParams );
+				if ( ( $masterSha1 !== false ) !== (bool)$masterStat ) {
+					$status->fatal( 'backend-fail-hash', $path );
+					continue;
+				}
+			} else {
+				$masterSha1 = null; // unused
+			}
+
 			// Check if all clone backends agree with the master...
-			foreach ( $this->backends as $index => $cBackend ) {
+			foreach ( $this->backends as $index => $cloneBackend ) {
 				if ( $index === $this->masterIndex ) {
 					continue; // master
 				}
-				$cParams = $this->substOpPaths( $params, $cBackend );
-				$cStat = $cBackend->getFileStat( $cParams );
-				if ( $mStat ) { // file is in master
-					if ( !$cStat ) { // file should exist
+
+				// Get the state of the file on the clone backend
+				$cloneParams = $this->substOpPaths( $params, $cloneBackend );
+				$cloneStat = $cloneBackend->getFileStat( $cloneParams );
+
+				if ( $masterStat ) {
+					// File exists in the master backend
+					if ( !$cloneStat ) {
+						// File is missing from the clone backend
 						$status->fatal( 'backend-fail-synced', $path );
-						continue;
-					}
-					if ( ( $this->syncChecks & self::CHECK_SIZE )
-						&& $cStat['size'] != $mStat['size']
-					) { // wrong size
+					} elseif (
+						( $this->syncChecks & self::CHECK_SIZE ) &&
+						$cloneStat['size'] !== $masterStat['size']
+					) {
+						// File in the clone backend is different
 						$status->fatal( 'backend-fail-synced', $path );
-						continue;
-					}
-					if ( $this->syncChecks & self::CHECK_TIME ) {
-						$mTs = wfTimestamp( TS_UNIX, $mStat['mtime'] );
-						$cTs = wfTimestamp( TS_UNIX, $cStat['mtime'] );
-						if ( abs( $mTs - $cTs ) > 30 ) { // outdated file somewhere
-							$status->fatal( 'backend-fail-synced', $path );
-							continue;
-						}
-					}
-					if (
+					} elseif (
+						( $this->syncChecks & self::CHECK_TIME ) &&
+						abs(
+							ConvertibleTimestamp::convert( TS_UNIX, $masterStat['mtime'] ) -
+							ConvertibleTimestamp::convert( TS_UNIX, $cloneStat['mtime'] )
+						) > 30
+					) {
+						// File in the clone backend is significantly newer or older
+						$status->fatal( 'backend-fail-synced', $path );
+					} elseif (
 						( $this->syncChecks & self::CHECK_SHA1 ) &&
-						$cBackend->getFileSha1Base36( $cParams ) !== $mSha1
-					) { // wrong SHA1
+						$cloneBackend->getFileSha1Base36( $cloneParams ) !== $masterSha1
+					) {
+						// File in the clone backend is different
 						$status->fatal( 'backend-fail-synced', $path );
-						continue;
 					}
-				} elseif ( $cStat ) { // file is not in master; file should not exist
-					$status->fatal( 'backend-fail-synced', $path );
+				} else {
+					// File does not exist in the master backend
+					if ( $cloneStat ) {
+						// Stray file exists in the clone backend
+						$status->fatal( 'backend-fail-synced', $path );
+					}
 				}
 			}
 		}
@@ -314,6 +340,8 @@ class FileBackendMultiWrite extends FileBackend {
 	 * Check that a set of files are consistent across all internal backends
 	 * and re-synchronize those files against the "multi master" if needed.
 	 *
+	 * This method should only be called if the files are locked
+	 *
 	 * @param array $paths List of storage paths
 	 * @param string|bool $resyncMode False, True, or "conservative"; see __construct()
 	 * @return StatusValue
@@ -321,58 +349,83 @@ class FileBackendMultiWrite extends FileBackend {
 	public function resyncFiles( array $paths, $resyncMode = true ) {
 		$status = $this->newStatus();
 
-		$mBackend = $this->backends[$this->masterIndex];
+		$fname = __METHOD__;
 		foreach ( $paths as $path ) {
-			$mPath = $this->substPaths( $path, $mBackend );
-			$mSha1 = $mBackend->getFileSha1Base36( [ 'src' => $mPath, 'latest' => true ] );
-			$mStat = $mBackend->getFileStat( [ 'src' => $mPath, 'latest' => true ] );
-			if ( $mStat === null || ( $mSha1 !== false && !$mStat ) ) { // sanity
-				$status->fatal( 'backend-fail-internal', $this->name );
-				wfDebugLog( 'FileOperation', __METHOD__
-					. ': File is not available on the master backend' );
-				continue; // file is not available on the master backend...
+			$params = [ 'src' => $path, 'latest' => true ];
+			// Get the state of the file on the master backend
+			$masterBackend = $this->backends[$this->masterIndex];
+			$masterParams = $this->substOpPaths( $params, $masterBackend );
+			$masterPath = $masterParams['src'];
+			$masterStat = $masterBackend->getFileStat( $masterParams );
+			if ( $masterStat === self::UNKNOWN ) {
+				$status->fatal( 'backend-fail-stat', $path );
+				$this->logger->error( "$fname: file '$masterPath' is not available" );
+				continue;
 			}
+			$masterSha1 = $masterBackend->getFileSha1Base36( $masterParams );
+			if ( ( $masterSha1 !== false ) !== (bool)$masterStat ) {
+				$status->fatal( 'backend-fail-hash', $path );
+				$this->logger->error( "$fname: file '$masterPath' hash does not match stat" );
+				continue;
+			}
+
 			// Check of all clone backends agree with the master...
-			foreach ( $this->backends as $index => $cBackend ) {
+			foreach ( $this->backends as $index => $cloneBackend ) {
 				if ( $index === $this->masterIndex ) {
 					continue; // master
 				}
-				$cPath = $this->substPaths( $path, $cBackend );
-				$cSha1 = $cBackend->getFileSha1Base36( [ 'src' => $cPath, 'latest' => true ] );
-				$cStat = $cBackend->getFileStat( [ 'src' => $cPath, 'latest' => true ] );
-				if ( $cStat === null || ( $cSha1 !== false && !$cStat ) ) { // sanity
-					$status->fatal( 'backend-fail-internal', $cBackend->getName() );
-					wfDebugLog( 'FileOperation', __METHOD__ .
-						': File is not available on the clone backend' );
-					continue; // file is not available on the clone backend...
+
+				// Get the state of the file on the clone backend
+				$cloneParams = $this->substOpPaths( $params, $cloneBackend );
+				$clonePath = $cloneParams['src'];
+				$cloneStat = $cloneBackend->getFileStat( $cloneParams );
+				if ( $cloneStat === self::UNKNOWN ) {
+					$status->fatal( 'backend-fail-stat', $path );
+					$this->logger->error( "$fname: file '$clonePath' is not available" );
+					continue;
 				}
-				if ( $mSha1 === $cSha1 ) {
-					// already synced; nothing to do
-				} elseif ( $mSha1 !== false ) { // file is in master
-					if ( $resyncMode === 'conservative'
-						&& $cStat && $cStat['mtime'] > $mStat['mtime']
+				$cloneSha1 = $cloneBackend->getFileSha1Base36( $cloneParams );
+				if ( ( $cloneSha1 !== false ) !== (bool)$cloneStat ) {
+					$status->fatal( 'backend-fail-hash', $path );
+					$this->logger->error( "$fname: file '$clonePath' hash does not match stat" );
+					continue;
+				}
+
+				if ( $masterSha1 === $cloneSha1 ) {
+					// File is either the same in both backends or absent from both backends
+					$this->logger->debug( "$fname: file '$clonePath' matches '$masterPath'" );
+				} elseif ( $masterSha1 !== false ) {
+					// File is either missing from or different in the clone backend
+					if (
+						$resyncMode === 'conservative' &&
+						$cloneStat &&
+						$cloneStat['mtime'] > $masterStat['mtime']
 					) {
+						// Do not replace files with older ones; reduces the risk of data loss
 						$status->fatal( 'backend-fail-synced', $path );
-						continue; // don't rollback data
+					} else {
+						// Copy the master backend file to the clone backend in overwrite mode
+						$fsFile = $masterBackend->getLocalReference( $masterParams );
+						$status->merge( $cloneBackend->quickStore( [
+							'src' => $fsFile,
+							'dst' => $clonePath
+						] ) );
 					}
-					$fsFile = $mBackend->getLocalReference(
-						[ 'src' => $mPath, 'latest' => true ] );
-					$status->merge( $cBackend->quickStore(
-						[ 'src' => $fsFile->getPath(), 'dst' => $cPath ]
-					) );
-				} elseif ( $mStat === false ) { // file is not in master
+				} elseif ( $masterStat === false ) {
+					// Stray file exists in the clone backend
 					if ( $resyncMode === 'conservative' ) {
+						// Do not delete stray files; reduces the risk of data loss
 						$status->fatal( 'backend-fail-synced', $path );
-						continue; // don't delete data
+					} else {
+						// Delete the stay file from the clone backend
+						$status->merge( $cloneBackend->quickDelete( [ 'src' => $clonePath ] ) );
 					}
-					$status->merge( $cBackend->quickDelete( [ 'src' => $cPath ] ) );
 				}
 			}
 		}
 
 		if ( !$status->isOK() ) {
-			wfDebugLog( 'FileOperation', static::class .
-				" failed to resync: " . FormatJson::encode( $paths ) );
+			$this->logger->error( "$fname: failed to resync: " . FormatJson::encode( $paths ) );
 		}
 
 		return $status;
@@ -488,7 +541,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	protected function doQuickOperationsInternal( array $ops ) {
 		$status = $this->newStatus();
-		// Do the operations on the master backend; setting StatusValue fields...
+		// Do the operations on the master backend; setting StatusValue fields
 		$realOps = $this->substOpBatchPaths( $ops, $this->backends[$this->masterIndex] );
 		$masterStatus = $this->backends[$this->masterIndex]->doQuickOperations( $realOps );
 		$status->merge( $masterStatus );
