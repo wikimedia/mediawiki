@@ -90,13 +90,13 @@ abstract class AbstractBlock {
 	/**
 	 * Create a new block with specified parameters on a user, IP or IP range.
 	 *
-	 * @param array $options Parameters of the block:
-	 *     address string|User  Target user name, User object, IP address or IP range
-	 *     by int               User ID of the blocker
-	 *     reason string        Reason of the block
-	 *     timestamp string     The time at which the block comes into effect
-	 *     byText string        Username of the blocker (for foreign users)
-	 *     hideName bool        Hide the target user name
+	 * @param array $options Parameters of the block, with supported options:
+	 *  - address: (string|User) Target user name, User object, IP address or IP range
+	 *  - by: (int) User ID of the blocker
+	 *  - reason: (string) Reason of the block
+	 *  - timestamp: (string) The time at which the block comes into effect
+	 *  - byText: (string) Username of the blocker (for foreign users)
+	 *  - hideName: (bool) Hide the target user name
 	 */
 	public function __construct( array $options = [] ) {
 		$defaults = [

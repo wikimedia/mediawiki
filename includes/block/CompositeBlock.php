@@ -40,8 +40,9 @@ class CompositeBlock extends AbstractBlock {
 	/**
 	 * Create a new block with specified parameters on a user, IP or IP range.
 	 *
-	 * @param array $options Parameters of the block:
-	 *     originalBlocks Block[] Blocks that this block is composed from
+	 * @param array $options Parameters of the block, with options supported by
+	 *  `AbstractBlock::__construct`, and also:
+	 *  - originalBlocks: (Block[]) Blocks that this block is composed from
 	 */
 	public function __construct( array $options = [] ) {
 		parent::__construct( $options );
