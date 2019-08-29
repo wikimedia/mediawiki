@@ -197,7 +197,8 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		if ( count( $err ) == 1 && isset( $err[0][0] ) && $err[0][0] == 'articleexists'
-			&& $newTitle->quickUserCan( 'delete', $user )
+			&& MediaWikiServices::getInstance()->getPermissionManager()
+				 ->quickUserCan( 'delete', $user, $newTitle )
 		) {
 			$out->wrapWikiMsg(
 				"<div class='warningbox'>\n$1\n</div>\n",

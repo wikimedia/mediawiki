@@ -635,8 +635,9 @@ class Article implements Page {
 		if ( $outputPage->isPrintable() ) {
 			$parserOptions->setIsPrintable( true );
 			$poOptions['enableSectionEditLinks'] = false;
-		} elseif ( $this->viewIsRenderAction
-			|| !$this->isCurrent() || !$this->getTitle()->quickUserCan( 'edit', $user )
+		} elseif ( $this->viewIsRenderAction || !$this->isCurrent() ||
+			!MediaWikiServices::getInstance()->getPermissionManager()
+				->quickUserCan( 'edit', $user, $this->getTitle() )
 		) {
 			$poOptions['enableSectionEditLinks'] = false;
 		}
@@ -1181,7 +1182,8 @@ class Article implements Page {
 		$title = $this->getTitle();
 		$rc = false;
 
-		if ( !$title->quickUserCan( 'patrol', $user )
+		if ( !MediaWikiServices::getInstance()->getPermissionManager()
+				->quickUserCan( 'patrol', $user, $title )
 			|| !( $wgUseRCPatrol || $wgUseNPPatrol
 				|| ( $wgUseFilePatrol && $title->inNamespace( NS_FILE ) ) )
 		) {
@@ -1450,6 +1452,7 @@ class Article implements Page {
 
 		# Show error message
 		$oldid = $this->getOldID();
+		$pm = MediaWikiServices::getInstance()->getPermissionManager();
 		if ( !$oldid && $title->getNamespace() === NS_MEDIAWIKI && $title->hasSourceText() ) {
 			// use fake Content object for system message
 			$parserOptions = ParserOptions::newCanonical( 'canonical' );
@@ -1457,8 +1460,8 @@ class Article implements Page {
 		} else {
 			if ( $oldid ) {
 				$text = wfMessage( 'missing-revision', $oldid )->plain();
-			} elseif ( $title->quickUserCan( 'create', $this->getContext()->getUser() )
-				&& $title->quickUserCan( 'edit', $this->getContext()->getUser() )
+			} elseif ( $pm->quickUserCan( 'create', $this->getContext()->getUser(), $title ) &&
+				$pm->quickUserCan( 'edit', $this->getContext()->getUser(), $title )
 			) {
 				$message = $this->getContext()->getUser()->isLoggedIn() ? 'noarticletext' : 'noarticletextanon';
 				$text = wfMessage( $message )->plain();
