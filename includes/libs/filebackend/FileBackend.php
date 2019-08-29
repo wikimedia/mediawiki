@@ -1526,7 +1526,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *
 	 * @param string $type One of (attachment, inline)
 	 * @param string $filename Suggested file name (should not contain slashes)
-	 * @throws FileBackendError
+	 * @throws InvalidArgumentException
 	 * @return string
 	 * @since 1.20
 	 */
