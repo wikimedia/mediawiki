@@ -440,6 +440,16 @@ class ContribsPager extends RangeChronologicalPager {
 	}
 
 	/**
+	 * @deprecated since 1.34, redundant.
+	 *
+	 * @return string "users"
+	 */
+	public function getContribs() {
+		// Brought back for backwards compatibility, see T231540.
+		return 'users';
+	}
+
+	/**
 	 * @return string
 	 */
 	public function getTarget() {
