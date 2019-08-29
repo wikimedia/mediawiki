@@ -39,11 +39,11 @@ class SystemBlock extends AbstractBlock {
 	/**
 	 * Create a new block with specified parameters on a user, IP or IP range.
 	 *
-	 * @param array $options Parameters of the block:
-	 *     systemBlock string   Indicate that this block is automatically
-	 *                          created by MediaWiki rather than being stored
-	 *                          in the database. Value is a string to return
-	 *                          from self::getSystemBlockType().
+	 * @param array $options Parameters of the block, with options supported by
+	 *  `AbstractBlock::__construct`, and also:
+	 *  - systemBlock: (string) Indicate that this block is automatically created by
+	 *    MediaWiki rather than being stored in the database. Value is a string to
+	 *    return from self::getSystemBlockType().
 	 */
 	public function __construct( array $options = [] ) {
 		parent::__construct( $options );

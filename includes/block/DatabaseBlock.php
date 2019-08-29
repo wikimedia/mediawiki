@@ -86,18 +86,18 @@ class DatabaseBlock extends AbstractBlock {
 	/**
 	 * Create a new block with specified option parameters on a user, IP or IP range.
 	 *
-	 * @param array $options Parameters of the block:
-	 *     user int             Override target user ID (for foreign users)
-	 *     auto bool            Is this an automatic block?
-	 *     expiry string        Timestamp of expiration of the block or 'infinity'
-	 *     anonOnly bool        Only disallow anonymous actions
-	 *     createAccount bool   Disallow creation of new accounts
-	 *     enableAutoblock bool Enable automatic blocking
-	 *     blockEmail bool      Disallow sending emails
-	 *     allowUsertalk bool   Allow the target to edit its own talk page
-	 *     sitewide bool        Disallow editing all pages and all contribution
-	 *                          actions, except those specifically allowed by
-	 *                          other block flags
+	 * @param array $options Parameters of the block, with options supported by
+	 *  `AbstractBlock::__construct`, and also:
+	 *  - user: (int) Override target user ID (for foreign users)
+	 *  - auto: (bool) Is this an automatic block?
+	 *  - expiry: (string) Timestamp of expiration of the block or 'infinity'
+	 *  - anonOnly: (bool) Only disallow anonymous actions
+	 *  - createAccount: (bool) Disallow creation of new accounts
+	 *  - enableAutoblock: (bool) Enable automatic blocking
+	 *  - blockEmail: (bool) Disallow sending emails
+	 *  - allowUsertalk: (bool) Allow the target to edit its own talk page
+	 *  - sitewide: (bool) Disallow editing all pages and all contribution actions,
+	 *    except those specifically allowed by other block flags
 	 *
 	 * @since 1.26 $options array
 	 */
