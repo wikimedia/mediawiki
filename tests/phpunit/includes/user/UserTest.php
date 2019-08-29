@@ -33,7 +33,6 @@ class UserTest extends MediaWikiTestCase {
 			'wgRevokePermissions' => [],
 			'wgActorTableSchemaMigrationStage' => SCHEMA_COMPAT_NEW,
 		] );
-		$this->overrideMwServices();
 
 		$this->setUpPermissionGlobals();
 
@@ -73,7 +72,6 @@ class UserTest extends MediaWikiTestCase {
 		RequestContext::getMain()->setRequest( $request );
 		TestingAccessWrapper::newFromObject( $user )->mRequest = $request;
 		$request->getSession()->setUser( $user );
-		$this->overrideMwServices();
 	}
 
 	/**
@@ -136,7 +134,6 @@ class UserTest extends MediaWikiTestCase {
 			$rights = array_diff( $rights, [ 'writetest' ] );
 		} );
 
-		$this->resetServices();
 		$rights = $user->getRights();
 		$this->assertContains( 'test', $rights );
 		$this->assertContains( 'runtest', $rights );
@@ -1091,7 +1088,6 @@ class UserTest extends MediaWikiTestCase {
 		$this->setMwGlobals( [
 			'wgActorTableSchemaMigrationStage' => SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
 		] );
-		$this->overrideMwServices();
 
 		$domain = MediaWikiServices::getInstance()->getDBLoadBalancer()->getLocalDomainID();
 		$this->hideDeprecated( 'User::selectFields' );

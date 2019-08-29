@@ -212,7 +212,6 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 
 		// the actual test: change config, reset services.
 		$this->setMwGlobals( 'wgLanguageCode', 'qqx' );
-		$this->resetServices();
 
 		// the overridden service instance should still be there
 		$this->assertSame( $myReadOnlyMode, $services->getService( 'ReadOnlyMode' ) );

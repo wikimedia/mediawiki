@@ -121,7 +121,6 @@ class ApiParseTest extends ApiTestCase {
 
 		$this->setMwGlobals( 'wgExtraInterlanguageLinkPrefixes', [ 'madeuplanguage' ] );
 		$this->tablesUsed[] = 'interwiki';
-		$this->resetServices();
 	}
 
 	/**

@@ -72,7 +72,6 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 			$this->user = $this->userUser;
 		}
-		$this->resetServices();
 	}
 
 	protected function setTitle( $ns, $title = "Main_Page" ) {
@@ -329,9 +328,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 			global $wgGroupPermissions;
 			$old = $wgGroupPermissions;
-			$wgGroupPermissions = [];
-
-			$this->resetServices();
+			$this->setMwGlobals( 'wgGroupPermissions', [] );
 
 			$this->assertEquals( $check[$action][1],
 				$this->title->getUserPermissionsErrors( $action, $this->user, true ) );
@@ -340,8 +337,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->assertEquals( $check[$action][1],
 				$this->title->getUserPermissionsErrors( $action, $this->user, 'secure' ) );
 
-			$wgGroupPermissions = $old;
-			$this->resetServices();
+			$this->setMwGlobals( 'wgGroupPermissions', $old );
 
 			$this->overrideUserPermissions( $this->user, $action );
 			$this->assertEquals( $check[$action][2],
@@ -361,8 +357,6 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	}
 
 	protected function runGroupPermissions( $action, $result, $result2 = null ) {
-		global $wgGroupPermissions;
-
 		if ( $result2 === null ) {
 			$result2 = $result;
 		}
@@ -375,30 +369,26 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$userPermsOverrides = MediaWikiServices::getInstance()->getPermissionManager()
 			->getUserPermissions( $this->user );
 
-		$wgGroupPermissions['autoconfirmed']['move'] = false;
-		$wgGroupPermissions['user']['move'] = false;
-		$this->resetServices();
+		$this->setGroupPermissions( 'autoconfirmed', 'move', false );
+		$this->setGroupPermissions( 'user', 'move', false );
 		$this->overrideUserPermissions( $this->user, $userPermsOverrides );
 		$res = $this->title->getUserPermissionsErrors( $action, $this->user );
 		$this->assertEquals( $result, $res );
 
-		$wgGroupPermissions['autoconfirmed']['move'] = true;
-		$wgGroupPermissions['user']['move'] = false;
-		$this->resetServices();
+		$this->setGroupPermissions( 'autoconfirmed', 'move', true );
+		$this->setGroupPermissions( 'user', 'move', false );
 		$this->overrideUserPermissions( $this->user, $userPermsOverrides );
 		$res = $this->title->getUserPermissionsErrors( $action, $this->user );
 		$this->assertEquals( $result2, $res );
 
-		$wgGroupPermissions['autoconfirmed']['move'] = true;
-		$wgGroupPermissions['user']['move'] = true;
-		$this->resetServices();
+		$this->setGroupPermissions( 'autoconfirmed', 'move', true );
+		$this->setGroupPermissions( 'user', 'move', true );
 		$this->overrideUserPermissions( $this->user, $userPermsOverrides );
 		$res = $this->title->getUserPermissionsErrors( $action, $this->user );
 		$this->assertEquals( $result2, $res );
 
-		$wgGroupPermissions['autoconfirmed']['move'] = false;
-		$wgGroupPermissions['user']['move'] = true;
-		$this->resetServices();
+		$this->setGroupPermissions( 'autoconfirmed', 'move', false );
+		$this->setGroupPermissions( 'user', 'move', true );
 		$this->overrideUserPermissions( $this->user, $userPermsOverrides );
 		$res = $this->title->getUserPermissionsErrors( $action, $this->user );
 		$this->assertEquals( $result2, $res );
@@ -906,7 +896,6 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			'wgEmailAuthentication' => true,
 			'wgBlockDisablesLogin' => false,
 		] );
-		$this->resetServices();
 
 		$this->overrideUserPermissions(
 			$this->user,
@@ -921,7 +910,6 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->title->getUserPermissionsErrors( 'edit', $this->user ) );
 
 		$this->setMwGlobals( 'wgEmailConfirmToEdit', false );
-		$this->resetServices();
 		$this->overrideUserPermissions(
 			$this->user,
 			[ 'createpage', 'edit', 'move', 'rollback', 'patrol', 'upload', 'purge' ]
@@ -1088,7 +1076,6 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 				],
 			],
 		] );
-		$this->resetServices();
 
 		$now = time();
 		$this->user->mBlockedby = $this->user->getName();

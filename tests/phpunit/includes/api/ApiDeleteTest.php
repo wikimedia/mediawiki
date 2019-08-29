@@ -143,7 +143,6 @@ class ApiDeleteTest extends ApiTestCase {
 		ChangeTags::defineTag( 'custom tag' );
 		$this->setMwGlobals( 'wgRevokePermissions',
 			[ 'user' => [ 'applychangetags' => true ] ] );
-		$this->resetServices();
 
 		$this->editPage( $name, 'Some text' );
 

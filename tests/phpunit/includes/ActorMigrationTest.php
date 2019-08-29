@@ -658,7 +658,6 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			// for User::getActorId()
 			'wgActorTableSchemaMigrationStage' => $stage
 		] );
-		$this->overrideMwServices();
 
 		$user = $this->getMutableTestUser()->getUser();
 		$userIdentity = $this->getMock( UserIdentity::class );

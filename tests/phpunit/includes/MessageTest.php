@@ -404,9 +404,6 @@ class MessageTest extends MediaWikiLangTestCase {
 	 */
 	public function testRawHtmlInMsg() {
 		$this->setMwGlobals( 'wgRawHtml', true );
-		// We have to reset the core hook registration.
-		// to register the html hook
-		$this->overrideMwServices();
 
 		$msg = new RawMessage( '<html><script>alert("xss")</script></html>' );
 		$txt = '<span class="error">&lt;html&gt; tags cannot be' .

@@ -68,8 +68,6 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 
 		$this->originalHandlers = TestingAccessWrapper::newFromClass( Hooks::class )->handlers;
 		TestingAccessWrapper::newFromClass( Hooks::class )->handlers = [];
-
-		$this->overrideMwServices();
 	}
 
 	public function tearDown() {

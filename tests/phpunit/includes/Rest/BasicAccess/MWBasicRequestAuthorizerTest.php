@@ -25,7 +25,6 @@ class MWBasicRequestAuthorizerTest extends MediaWikiTestCase {
 		$user = User::newFromName( 'Test user' );
 		// Don't allow the rights to everybody so that user rights kick in.
 		$this->mergeMwGlobalArrayValue( 'wgGroupPermissions', [ '*' => $userRights ] );
-		$this->resetServices();
 		$this->overrideUserPermissions(
 			$user,
 			array_keys( array_filter( $userRights ), function ( $value ) {

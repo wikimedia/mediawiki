@@ -24,7 +24,6 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		// let's choose e.g. German (de)
 		$this->setUserLang( 'de' );
 		$this->setContentLang( 'de' );
-		$this->resetServices();
 	}
 
 	function addDBDataOnce() {
@@ -150,7 +149,6 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 				]
 			]
 		] );
-		$this->overrideMwServices();
 
 		$messageCache = MessageCache::singleton();
 		$messageCache->enable();

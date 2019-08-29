@@ -18,9 +18,6 @@ class GlobalWithDBTest extends MediaWikiTestCase {
 
 		// Don't try to fetch the files from Commons or anything, please
 		$this->setMwGlobals( 'wgForeignFileRepos', [] );
-		// We need to reset services immediately so that editPage() doesn't use the old RepoGroup
-		// and hit the network
-		$this->resetServices();
 
 		// XXX How do we get file redirects to work?
 		$this->editPage( 'File:Redirect to bad.jpg', '#REDIRECT [[Bad.jpg]]' );
