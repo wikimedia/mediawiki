@@ -66,7 +66,7 @@ abstract class MWLBFactory {
 	 * @param array $lbConf Config for LBFactory::__construct()
 	 * @param ServiceOptions $options
 	 * @param ConfiguredReadOnlyMode $readOnlyMode
-	 * @param BagOStuff $srvCace
+	 * @param BagOStuff $srvCache
 	 * @param BagOStuff $mainStash
 	 * @param WANObjectCache $wanCache
 	 * @return array
@@ -76,7 +76,7 @@ abstract class MWLBFactory {
 		array $lbConf,
 		ServiceOptions $options,
 		ConfiguredReadOnlyMode $readOnlyMode,
-		BagOStuff $srvCace,
+		BagOStuff $srvCache,
 		BagOStuff $mainStash,
 		WANObjectCache $wanCache
 	) {
@@ -159,7 +159,7 @@ abstract class MWLBFactory {
 			$options->get( 'DBprefix' )
 		);
 
-		$lbConf = self::injectObjectCaches( $lbConf, $srvCace, $mainStash, $wanCache );
+		$lbConf = self::injectObjectCaches( $lbConf, $srvCache, $mainStash, $wanCache );
 
 		return $lbConf;
 	}
@@ -222,6 +222,11 @@ abstract class MWLBFactory {
 	private static function injectObjectCaches(
 		array $lbConf, BagOStuff $sCache, BagOStuff $mStash, WANObjectCache $wCache
 	) {
+		// Fallback if APC style caching is not an option
+		if ( $sCache instanceof EmptyBagOStuff ) {
+			$sCache = new HashBagOStuff( [ 'maxKeys' => 100 ] );
+		}
+
 		// Use APC/memcached style caching, but avoids loops with CACHE_DB (T141804)
 		if ( $sCache->getQoS( $sCache::ATTR_EMULATION ) > $sCache::QOS_EMULATION_SQL ) {
 			$lbConf['srvCache'] = $sCache;

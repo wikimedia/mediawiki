@@ -604,7 +604,7 @@ abstract class FileBackendStore extends FileBackend {
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		$stat = $this->getFileStat( $params );
 
-		return ( $stat === null ) ? null : (bool)$stat; // null => failure
+		return ( $stat === self::UNKNOWN ) ? self::UNKNOWN : (bool)$stat;
 	}
 
 	final public function getFileTimestamp( array $params ) {
@@ -637,7 +637,7 @@ abstract class FileBackendStore extends FileBackend {
 			// cache entries from mass object listings that do not include the SHA-1. In that
 			// case, loading the persistent stat cache will likely yield the SHA-1.
 			if (
-				$stat === null ||
+				$stat === self::UNKNOWN ||
 				( $requireSHA1 && is_array( $stat ) && !isset( $stat['sha1'] ) )
 			) {
 				$this->primeFileCache( [ $path ] ); // check persistent cache
@@ -936,7 +936,7 @@ abstract class FileBackendStore extends FileBackend {
 					$res = true;
 					break; // found one!
 				} elseif ( $exists === null ) { // error?
-					$res = null; // if we don't find anything, it is indeterminate
+					$res = self::UNKNOWN; // if we don't find anything, it is indeterminate
 				}
 			}
 
@@ -957,7 +957,7 @@ abstract class FileBackendStore extends FileBackend {
 	final public function getDirectoryList( array $params ) {
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) { // invalid storage path
-			return null;
+			return self::UNKNOWN;
 		}
 		if ( $shard !== null ) {
 			// File listing is confined to a single container/shard
@@ -987,7 +987,7 @@ abstract class FileBackendStore extends FileBackend {
 	final public function getFileList( array $params ) {
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) { // invalid storage path
-			return null;
+			return self::UNKNOWN;
 		}
 		if ( $shard !== null ) {
 			// File listing is confined to a single container/shard
