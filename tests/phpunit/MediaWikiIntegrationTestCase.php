@@ -584,24 +584,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$this->tmpFiles = array_merge( $this->tmpFiles, (array)$files );
 	}
 
-	// @todo Make const when we no longer support HHVM (T192166)
-	private static $namespaceAffectingSettings = [
-		'wgAllowImageMoving',
-		'wgCanonicalNamespaceNames',
-		'wgCapitalLinkOverrides',
-		'wgCapitalLinks',
-		'wgContentNamespaces',
-		'wgExtensionMessagesFiles',
-		'wgExtensionNamespaces',
-		'wgExtraNamespaces',
-		'wgExtraSignatureNamespaces',
-		'wgNamespaceContentModels',
-		'wgNamespaceProtection',
-		'wgNamespacesWithSubpages',
-		'wgNonincludableNamespaces',
-		'wgRestrictionLevels',
-	];
-
 	protected function tearDown() {
 		global $wgRequest, $wgSQLMode;
 
@@ -647,12 +629,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 		foreach ( $this->iniSettings as $name => $value ) {
 			ini_set( $name, $value );
-		}
-		if (
-			array_intersect( self::$namespaceAffectingSettings, array_keys( $this->mwGlobals ) ) ||
-			array_intersect( self::$namespaceAffectingSettings, $this->mwGlobalsToUnset )
-		) {
-			$this->resetNamespaces();
 		}
 		$this->mwGlobals = [];
 		$this->mwGlobalsToUnset = [];
@@ -742,7 +718,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		);
 
 		if ( $name === 'ContentLanguage' ) {
-			$this->doSetMwGlobals( [ 'wgContLang' => $this->localServices->getContentLanguage() ] );
+			$this->setMwGlobals( [ 'wgContLang' => $this->localServices->getContentLanguage() ] );
 		}
 	}
 
@@ -752,9 +728,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 *
 	 * The key is added to the array of globals that will be reset afterwards
 	 * in the tearDown().
-	 *
-	 * It may be necessary to call resetServices() to allow any changed configuration variables
-	 * to take effect on services that get initialized based on these variables.
 	 *
 	 * @par Example
 	 * @code
@@ -779,8 +752,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param mixed|null $value Value to set the global to (ignored
 	 *  if an array is given as first argument).
 	 *
-	 * @note To allow changes to global variables to take effect on global service instances,
-	 *       call resetServices().
+	 * @note This will call resetServices().
 	 *
 	 * @since 1.21
 	 */
@@ -789,29 +761,13 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$pairs = [ $pairs => $value ];
 		}
 
-		if ( isset( $pairs['wgContLang'] ) ) {
-			throw new MWException(
-				'No setting $wgContLang, use setContentLang() or setService( \'ContentLanguage\' )'
-			);
-		}
-
-		$this->doSetMwGlobals( $pairs, $value );
-	}
-
-	/**
-	 * An internal method that allows setService() to set globals that tests are not supposed to
-	 * touch.
-	 */
-	private function doSetMwGlobals( $pairs, $value = null ) {
 		$this->doStashMwGlobals( array_keys( $pairs ) );
 
 		foreach ( $pairs as $key => $value ) {
 			$GLOBALS[$key] = $value;
 		}
 
-		if ( array_intersect( self::$namespaceAffectingSettings, array_keys( $pairs ) ) ) {
-			$this->resetNamespaces();
-		}
+		$this->resetServices();
 	}
 
 	/**
@@ -824,23 +780,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$original = ini_get( $name );
 		$this->iniSettings[$name] = $original;
 		ini_set( $name, $value );
-	}
-
-	/**
-	 * Must be called whenever namespaces are changed, e.g., $wgExtraNamespaces is altered.
-	 * Otherwise old namespace data will lurk and cause bugs.
-	 */
-	private function resetNamespaces() {
-		if ( !$this->localServices ) {
-			throw new Exception( __METHOD__ . ' must be called after MediaWikiTestCase::run()' );
-		}
-
-		if ( $this->localServices !== MediaWikiServices::getInstance() ) {
-			throw new Exception( __METHOD__ . ' will not work because the global MediaWikiServices '
-				. 'instance has been replaced by test code.' );
-		}
-
-		Language::clearCaches();
 	}
 
 	/**
@@ -939,16 +878,12 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * Useful for setting some entries in a configuration array, instead of
 	 * setting the entire array.
 	 *
-	 * It may be necessary to call resetServices() to allow any changed configuration variables
-	 * to take effect on services that get initialized based on these variables.
-	 *
 	 * @param string $name The name of the global, as in wgFooBar
 	 * @param array $values The array containing the entries to set in that global
 	 *
 	 * @throws MWException If the designated global is not an array.
 	 *
-	 * @note To allow changes to global variables to take effect on global service instances,
-	 *       call resetServices().
+	 * @note This will call resetServices().
 	 *
 	 * @since 1.21
 	 */
@@ -998,6 +933,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		self::resetGlobalParser();
+		Language::clearCaches();
 	}
 
 	/**
@@ -1182,16 +1118,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	public function setContentLang( $lang ) {
 		if ( $lang instanceof Language ) {
-			$this->setMwGlobals( 'wgLanguageCode', $lang->getCode() );
 			// Set to the exact object requested
 			$this->setService( 'ContentLanguage', $lang );
+			$this->setMwGlobals( 'wgLanguageCode', $lang->getCode() );
 		} else {
 			$this->setMwGlobals( 'wgLanguageCode', $lang );
-			// Let the service handler make up the object.  Avoid calling setService(), because if
-			// we do, overrideMwServices() will complain if it's called later on.
-			$services = MediaWikiServices::getInstance();
-			$services->resetServiceForTesting( 'ContentLanguage' );
-			$this->doSetMwGlobals( [ 'wgContLang' => $services->getContentLanguage() ] );
 		}
 	}
 
@@ -1201,6 +1132,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 *   [ '*' => [ 'read' => false ], 'user' => [ 'read' => false ] ]
 	 * or three values to set a single permission, like
 	 *   $this->setGroupPermissions( '*', 'read', false );
+	 *
+	 * @note This will call resetServices().
 	 *
 	 * @since 1.31
 	 * @param array|string $newPerms Either an array of permissions to change,
@@ -1224,11 +1157,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		$this->setMwGlobals( 'wgGroupPermissions', $newPermissions );
-
-		// Reset services so they pick up the new permissions.
-		// Resetting just PermissionManager is not sufficient, since other services may
-		// have the old instance of PermissionManager injected.
-		$this->resetServices();
 	}
 
 	/**
@@ -2422,6 +2350,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	/**
 	 * Create a temporary hook handler which will be reset by tearDown.
 	 * This replaces other handlers for the same hook.
+	 *
+	 * @note This will call resetServices().
+	 *
 	 * @param string $hookName Hook name
 	 * @param mixed $handler Value suitable for a hook handler
 	 * @since 1.28

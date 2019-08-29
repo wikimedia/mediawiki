@@ -42,6 +42,16 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->mUserMock->method( 'getOptions' )
 			->willReturn( [] );
 
+		// DefaultPreferencesFactory calls a ton of user methods, but we still want to list all of
+		// them in case bugs are caused by unexpected things returning null that shouldn't.
+		$this->mUserMock->expects( $this->never() )->method( $this->anythingBut(
+			'getEffectiveGroups', 'getOptionKinds', 'getInstanceForUpdate', 'getOptions', 'getId',
+			'isAnon', 'getRequest', 'isLoggedIn', 'getName', 'getGroupMemberships', 'getEditCount',
+			'getRegistration', 'isAllowed', 'getRealName', 'getOption', 'getStubThreshold',
+			'getBoolOption', 'getEmail', 'getDatePreference', 'useRCPatrol', 'useNPPatrol',
+			'setOption', 'saveSettings', 'resetOptions', 'isRegistered'
+		) );
+
 		// Create a new context
 		$this->mContext = new DerivativeContext( new RequestContext() );
 		$this->mContext->getContext()->setTitle( Title::newFromText( 'Test' ) );
@@ -153,6 +163,8 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 	private function executeQuery( $request ) {
 		$this->mContext->setRequest( new FauxRequest( $request, true, $this->mSession ) );
+		$this->mUserMock->method( 'getRequest' )->willReturn( $this->mContext->getRequest() );
+
 		$this->mTested->execute();
 
 		return $this->mTested->getResult()->getResultData( null, [ 'Strip' => 'all' ] );
