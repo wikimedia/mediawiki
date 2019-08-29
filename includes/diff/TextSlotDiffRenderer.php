@@ -112,7 +112,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	 * Diff the text representations of two content objects (or just two pieces of text in general).
 	 * @param string $oldText
 	 * @param string $newText
-	 * @return string
+	 * @return string HTML, one or more <tr> tags.
 	 */
 	public function getTextDiff( $oldText, $newText ) {
 		Assert::parameterType( 'string', $oldText, '$oldText' );
