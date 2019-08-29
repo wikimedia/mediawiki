@@ -83,8 +83,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			'wgContentHandlerUseDB' => $this->getContentHandlerUseDB(),
 			'wgActorTableSchemaMigrationStage' => SCHEMA_COMPAT_NEW,
 		] );
-
-		$this->overrideMwServices();
 	}
 
 	protected function addCoreDBData() {
@@ -403,7 +401,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$title = $this->getTestPageTitle();
 		$rev = $this->getRevisionRecordFromDetailsArray( $revDetails );
 
-		$this->overrideMwServices();
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$return = $store->insertRevisionOn( $rev, wfGetDB( DB_MASTER ) );
 
@@ -480,7 +477,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			'user' => true,
 		];
 
-		$this->overrideMwServices();
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 
 		// Insert the first revision
@@ -594,8 +590,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::findSlotContentId
 	 */
 	public function testNewNullRevision( Title $title, $revDetails, $comment, $minor = false ) {
-		$this->overrideMwServices();
-
 		$user = TestUserRegistry::getMutableTestUser( __METHOD__ )->getUser();
 		$page = WikiPage::factory( $title );
 
@@ -1021,7 +1015,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 */
 	public function testNewRevisionFromRow_anonEdit_legacyEncoding() {
 		$this->setMwGlobals( 'wgLegacyEncoding', 'windows-1252' );
-		$this->overrideMwServices();
 		$page = $this->getTestPage();
 		$text = __METHOD__ . 'a-ä';
 		/** @var Revision $rev */
@@ -1101,7 +1094,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 */
 	public function testNewRevisionFromArchiveRow_legacyEncoding() {
 		$this->setMwGlobals( 'wgLegacyEncoding', 'windows-1252' );
-		$this->overrideMwServices();
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$title = Title::newFromText( __METHOD__ );
 		$text = __METHOD__ . '-bä';
@@ -1797,7 +1789,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	public function testGetKnownCurrentRevision_userNameChange() {
 		global $wgActorTableSchemaMigrationStage;
 
-		$this->overrideMwServices();
 		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
 		$this->setService( 'MainWANObjectCache', $cache );
 
@@ -1838,7 +1829,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::getKnownCurrentRevision
 	 */
 	public function testGetKnownCurrentRevision_revDelete() {
-		$this->overrideMwServices();
 		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
 		$this->setService( 'MainWANObjectCache', $cache );
 

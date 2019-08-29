@@ -65,8 +65,6 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 			$this->getMcrMigrationStage()
 		);
 		$this->pagesToDelete = [];
-
-		$this->overrideMwServices();
 	}
 
 	protected function tearDown() {

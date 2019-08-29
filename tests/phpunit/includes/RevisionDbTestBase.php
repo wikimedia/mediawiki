@@ -95,8 +95,6 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			'wgActorTableSchemaMigrationStage' => SCHEMA_COMPAT_NEW,
 		] );
 
-		$this->overrideMwServices();
-
 		if ( !$this->testPage ) {
 			/**
 			 * We have to create a new page for each subclass as the page creation may result

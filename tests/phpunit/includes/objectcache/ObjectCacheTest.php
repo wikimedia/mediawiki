@@ -102,7 +102,6 @@ class ObjectCacheTest extends MediaWikiTestCase {
 
 	/** @covers ObjectCache::newAnything */
 	public function testNewAnythingNothingNoDb() {
-		$this->overrideMwServices();
 		MediaWiki\MediaWikiServices::disableStorageBackend();
 
 		$this->assertInstanceOf(

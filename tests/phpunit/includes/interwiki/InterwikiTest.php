@@ -51,7 +51,6 @@ class InterwikiTest extends MediaWikiTestCase {
 	}
 
 	private function setWgInterwikiCache( $interwikiCache ) {
-		$this->overrideMwServices();
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'InterwikiLookup' );
 		$this->setMwGlobals( 'wgInterwikiCache', $interwikiCache );
 	}

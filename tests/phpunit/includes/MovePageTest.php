@@ -197,7 +197,6 @@ class MovePageTest extends MediaWikiTestCase {
 		foreach ( $extraOptions as $key => $val ) {
 			$this->setMwGlobals( "wg$key", $val );
 		}
-		$this->overrideMwServices();
 		$this->setService( 'RepoGroup', $this->getMockRepoGroup() );
 		// This returns true instead of an array if there are no errors
 		$this->hideDeprecated( 'Title::isValidMoveOperation' );

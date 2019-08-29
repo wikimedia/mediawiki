@@ -18,8 +18,6 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 * @coversNothing
 	 */
 	public function testServiceWiring() {
-		$this->overrideMwServices();
-
 		$ranHook = 0;
 		$this->setMwGlobals( 'wgHooks', [
 			'ResourceLoaderRegisterModules' => [

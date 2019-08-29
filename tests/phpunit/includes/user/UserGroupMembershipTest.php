@@ -46,8 +46,6 @@ class UserGroupMembershipTest extends MediaWikiTestCase {
 		$this->userTester->addGroup( 'unittesters' );
 		$this->expiryTime = wfTimestamp( TS_MW, time() + 100500 );
 		$this->userTester->addGroup( 'testwriters', $this->expiryTime );
-
-		$this->resetServices();
 	}
 
 	/**

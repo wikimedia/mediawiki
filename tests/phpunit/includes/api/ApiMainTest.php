@@ -141,7 +141,6 @@ class ApiMainTest extends ApiTestCase {
 	public function testSetCacheModeUnrecognized() {
 		$api = new ApiMain();
 		$api->setCacheMode( 'unrecognized' );
-		$this->resetServices();
 		$this->assertSame(
 			'private',
 			TestingAccessWrapper::newFromObject( $api )->mCacheMode,

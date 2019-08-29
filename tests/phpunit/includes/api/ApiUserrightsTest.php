@@ -37,8 +37,6 @@ class ApiUserrightsTest extends ApiTestCase {
 		if ( $remove ) {
 			$this->mergeMwGlobalArrayValue( 'wgRemoveGroups', [ 'bureaucrat' => $remove ] );
 		}
-
-		$this->resetServices();
 	}
 
 	/**
@@ -221,7 +219,6 @@ class ApiUserrightsTest extends ApiTestCase {
 		ChangeTags::defineTag( 'custom tag' );
 
 		$this->setGroupPermissions( 'user', 'applychangetags', false );
-		$this->resetServices();
 
 		$this->doFailedRightsChange(
 			'You do not have permission to apply change tags along with your changes.',

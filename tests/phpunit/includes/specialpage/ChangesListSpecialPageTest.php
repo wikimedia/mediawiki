@@ -225,7 +225,6 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 	public function testRcHidemyselfFilter() {
 		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_NEW );
-		$this->overrideMwServices();
 
 		$user = $this->getTestUser()->getUser();
 		$user->getActorId( wfGetDB( DB_MASTER ) );
@@ -258,7 +257,6 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$this->setMwGlobals(
 			'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
 		);
-		$this->overrideMwServices();
 
 		$user = $this->getTestUser()->getUser();
 		$user->getActorId( wfGetDB( DB_MASTER ) );
@@ -289,7 +287,6 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 	public function testRcHidebyothersFilter() {
 		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_NEW );
-		$this->overrideMwServices();
 
 		$user = $this->getTestUser()->getUser();
 		$user->getActorId( wfGetDB( DB_MASTER ) );
@@ -322,7 +319,6 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$this->setMwGlobals(
 			'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
 		);
-		$this->overrideMwServices();
 
 		$user = $this->getTestUser()->getUser();
 		$user->getActorId( wfGetDB( DB_MASTER ) );
@@ -555,7 +551,6 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 	public function testFilterUserExpLevelAllExperienceLevels() {
 		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_NEW );
-		$this->overrideMwServices();
 
 		$this->assertConditions(
 			[
@@ -573,7 +568,6 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$this->setMwGlobals(
 			'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
 		);
-		$this->overrideMwServices();
 
 		$this->assertConditions(
 			[
@@ -589,7 +583,6 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 	public function testFilterUserExpLevelRegistrered() {
 		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_NEW );
-		$this->overrideMwServices();
 
 		$this->assertConditions(
 			[
@@ -607,7 +600,6 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$this->setMwGlobals(
 			'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
 		);
-		$this->overrideMwServices();
 
 		$this->assertConditions(
 			[
@@ -623,7 +615,6 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 	public function testFilterUserExpLevelUnregistrered() {
 		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_NEW );
-		$this->overrideMwServices();
 
 		$this->assertConditions(
 			[
@@ -641,7 +632,6 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$this->setMwGlobals(
 			'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
 		);
-		$this->overrideMwServices();
 
 		$this->assertConditions(
 			[
@@ -657,7 +647,6 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 	public function testFilterUserExpLevelRegistreredOrLearner() {
 		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_NEW );
-		$this->overrideMwServices();
 
 		$this->assertConditions(
 			[
@@ -675,7 +664,6 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$this->setMwGlobals(
 			'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
 		);
-		$this->overrideMwServices();
 
 		$this->assertConditions(
 			[
@@ -691,7 +679,6 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 	public function testFilterUserExpLevelUnregistreredOrExperienced() {
 		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_NEW );
-		$this->overrideMwServices();
 
 		$conds = $this->buildQuery( [ 'userExpLevel' => 'unregistered;experienced' ] );
 
@@ -707,7 +694,6 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$this->setMwGlobals(
 			'wgActorTableSchemaMigrationStage', SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
 		);
-		$this->overrideMwServices();
 
 		$conds = $this->buildQuery( [ 'userExpLevel' => 'unregistered;experienced' ] );
 

@@ -41,7 +41,6 @@ class ContentSecurityPolicyTest extends MediaWikiTestCase {
 		// Note, there are some obscure globals which
 		// could affect the results which aren't included above.
 
-		$this->overrideMwServices();
 		$context = RequestContext::getMain();
 		$resp = $context->getRequest()->response();
 		$conf = $context->getConfig();
