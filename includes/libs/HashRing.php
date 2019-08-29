@@ -44,9 +44,9 @@ class HashRing implements Serializable {
 	/** @var int[] Map of (location => UNIX timestamp) */
 	protected $ejectExpiryByLocation;
 
-	/** @var array[] Non-empty list of (float, node name, location name) */
+	/** @var array[] Non-empty position-ordered list of (position, location name) */
 	protected $baseRing;
-	/** @var array[] Non-empty list of (float, node name, location name) */
+	/** @var array[] Non-empty position-ordered list of (position, location name) */
 	protected $liveRing;
 
 	/** @var float Number of positions on the ring */
@@ -96,7 +96,7 @@ class HashRing implements Serializable {
 		$this->algo = $algo;
 		$this->weightByLocation = $weightByLocation;
 		$this->ejectExpiryByLocation = $ejections;
-		$this->baseRing = $this->buildLocationRing( $this->weightByLocation, $this->algo );
+		$this->baseRing = $this->buildLocationRing( $this->weightByLocation );
 	}
 
 	/**
@@ -111,12 +111,13 @@ class HashRing implements Serializable {
 	}
 
 	/**
-	 * Get the location of an item on the ring, as well as the next locations
+	 * Get the location of an item on the ring followed by the next ring locations
 	 *
 	 * @param string $item
 	 * @param int $limit Maximum number of locations to return
 	 * @param int $from One of the RING_* class constants
 	 * @return string[] List of locations
+	 * @throws InvalidArgumentException
 	 * @throws UnexpectedValueException
 	 */
 	public function getLocations( $item, $limit, $from = self::RING_ALL ) {
@@ -128,21 +129,24 @@ class HashRing implements Serializable {
 			throw new InvalidArgumentException( "Invalid ring source specified." );
 		}
 
-		// Locate this item's position on the hash ring
-		$position = $this->getItemPosition( $item );
-		$itemNodeIndex = $this->findNodeIndexForPosition( $position, $ring );
+		// Locate the node index for this item's position on the hash ring
+		$itemIndex = $this->findNodeIndexForPosition( $this->getItemPosition( $item ), $ring );
 
 		$locations = [];
-		$currentIndex = $itemNodeIndex;
+		$currentIndex = null;
 		while ( count( $locations ) < $limit ) {
+			if ( $currentIndex === null ) {
+				$currentIndex = $itemIndex;
+			} else {
+				$currentIndex = $this->getNextClockwiseNodeIndex( $currentIndex, $ring );
+				if ( $currentIndex === $itemIndex ) {
+					break; // all nodes visited
+				}
+			}
 			$nodeLocation = $ring[$currentIndex][self::KEY_LOCATION];
 			if ( !in_array( $nodeLocation, $locations, true ) ) {
 				// Ignore other nodes for the same locations already added
 				$locations[] = $nodeLocation;
-			}
-			$currentIndex = $this->getNextClockwiseNodeIndex( $currentIndex, $ring );
-			if ( $currentIndex === $itemNodeIndex ) {
-				break; // all nodes visited
 			}
 		}
 
@@ -159,18 +163,22 @@ class HashRing implements Serializable {
 		if ( $count === 0 ) {
 			return null;
 		}
+
+		$index = null;
 		$lowPos = 0;
 		$highPos = $count;
 		while ( true ) {
-			$midPos = intval( ( $lowPos + $highPos ) / 2 );
+			$midPos = (int)( ( $lowPos + $highPos ) / 2 );
 			if ( $midPos === $count ) {
-				return 0;
+				$index = 0;
+				break;
 			}
-			$midVal = $ring[$midPos][self::KEY_POS];
-			$midMinusOneVal = $midPos === 0 ? 0 : $ring[$midPos - 1][self::KEY_POS];
 
+			$midVal = $ring[$midPos][self::KEY_POS];
+			$midMinusOneVal = ( $midPos === 0 ) ? 0 : $ring[$midPos - 1][self::KEY_POS];
 			if ( $position <= $midVal && $position > $midMinusOneVal ) {
-				return $midPos;
+				$index = $midPos;
+				break;
 			}
 
 			if ( $midVal < $position ) {
@@ -180,9 +188,12 @@ class HashRing implements Serializable {
 			}
 
 			if ( $lowPos > $highPos ) {
-				return 0;
+				$index = 0;
+				break;
 			}
 		}
+
+		return $index;
 	}
 
 	/**
@@ -260,10 +271,9 @@ class HashRing implements Serializable {
 
 	/**
 	 * @param int[] $weightByLocation
-	 * @param string $algo Hashing algorithm
 	 * @return array[]
 	 */
-	private function buildLocationRing( array $weightByLocation, $algo ) {
+	private function buildLocationRing( array $weightByLocation ) {
 		$locationCount = count( $weightByLocation );
 		$totalWeight = array_sum( $weightByLocation );
 
@@ -323,7 +333,14 @@ class HashRing implements Serializable {
 			throw new UnexpectedValueException( __METHOD__ . ": {$this->algo} is < 32 bits." );
 		}
 
-		return (float)sprintf( '%u', unpack( 'V', $octets )[1] );
+		$pos = unpack( 'V', $octets )[1];
+		if ( $pos < 0 ) {
+			// Most-significant-bit is set, causing unpack() to return a negative integer due
+			// to the fact that it returns a signed int. Cast it to an unsigned integer string.
+			$pos = sprintf( '%u', $pos );
+		}
+
+		return (float)$pos;
 	}
 
 	/**
