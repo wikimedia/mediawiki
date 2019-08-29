@@ -46,6 +46,7 @@ SPARQL;
 DELETE {
 ?category ?x ?y
 } WHERE {
+   ?category ?x ?y
    VALUES ?category {
      %s
    }
@@ -62,6 +63,7 @@ DELETE {
 } INSERT {
 %s
 } WHERE {
+  ?category ?x ?y
    VALUES ?category {
      %s
    }
