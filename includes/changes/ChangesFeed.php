@@ -94,7 +94,7 @@ class ChangesFeed {
 		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 		foreach ( $sorted as $obj ) {
 			$title = Title::makeTitle( $obj->rc_namespace, $obj->rc_title );
-			$talkpage = $nsInfo->hasTalkNamespace( $obj->rc_namespace ) && $title->isValid()
+			$talkpage = $nsInfo->hasTalkNamespace( $obj->rc_namespace ) && $title->canExist()
 				? $title->getTalkPage()->getFullURL()
 				: '';
 

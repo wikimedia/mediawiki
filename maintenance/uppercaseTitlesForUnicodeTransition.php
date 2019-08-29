@@ -316,7 +316,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 			return false;
 		}
 
-		if ( !$newTitle->isValid() ) {
+		if ( !$newTitle->canExist() ) {
 			$this->error(
 				"Cannot move {$oldTitle->getPrefixedText()} → $nt: "
 				. "$munge and munged title '{$newTitle->getPrefixedText()}' is not valid"

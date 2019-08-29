@@ -549,6 +549,7 @@
 	"no-null-revision": "Error message shown when no null revision could be created to reflect a protection level change.\n\nAbout \"null revision\":\n* Create a new null-revision for insertion into a page's history. This will not re-save the text, but simply refer to the text from the previous version.\n* Such revisions can for instance identify page rename operations and other such meta-modifications.\n\nParameters:\n* $1 - page title",
 	"badtitle": "The page title when a user requested a page with invalid page name. The content will be {{msg-mw|badtitletext}}.",
 	"badtitletext": "The message shown when a user requested a page with invalid page name. The page title will be {{msg-mw|badtitle}}.\n\nSee also:\n* {{msg-mw|selfmove}}\n* {{msg-mw|immobile-source-namespace}}\n* {{msg-mw|immobile-target-namespace-iw}}\n* {{msg-mw|immobile-target-namespace}}",
+	"title-invalid": "Used as text of error message: invalid title",
 	"title-invalid-empty": "Used as text of error message: empty title",
 	"title-invalid-utf8": "Used as text of error message: invalid UTF8 sequence",
 	"title-invalid-interwiki": "Used as text of error message: invalid interwiki link",

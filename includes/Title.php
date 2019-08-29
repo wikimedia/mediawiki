@@ -162,7 +162,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * @var int Namespace index when there is no namespace. Don't change the
 	 *   following default, NS_MAIN is hardcoded in several places. See T2696.
-	 *   Zero except in {{transclusion}} tags.
+	 *   Used primarily for {{transclusion}} tags.
+	 * @see newFromText()
 	 */
 	public $mDefaultNamespace = NS_MAIN;
 
@@ -191,6 +192,9 @@ class Title implements LinkTarget, IDBAccessObject {
 
 	/** @var bool|null Would deleting this page be a big deletion? */
 	private $mIsBigDeletion = null;
+
+	/** @var bool|null Is the title known to be valid? */
+	private $mIsValid = null;
 	// @}
 
 	/**
@@ -233,10 +237,9 @@ class Title implements LinkTarget, IDBAccessObject {
 	 */
 	public static function newFromDBkey( $key ) {
 		$t = new self();
-		$t->mDbkeyform = $key;
 
 		try {
-			$t->secureAndSplit();
+			$t->secureAndSplit( $key );
 			return $t;
 		} catch ( MalformedTitleException $ex ) {
 			return null;
@@ -300,11 +303,10 @@ class Title implements LinkTarget, IDBAccessObject {
 	}
 
 	/**
-	 * Create a new Title from text, such as what one would find in a link. De-
-	 * codes any HTML entities in the text.
-	 *
-	 * Title objects returned by this method are guaranteed to be valid, and
-	 * thus return true from the isValid() method.
+	 * Create a new Title from text, such as what one would find in a link.
+	 * Decodes any HTML entities in the text.
+	 * Titles returned by this method are guaranteed to be valid.
+	 * Call canExist() to check if the Title represents an editable page.
 	 *
 	 * @note The Title instance returned by this method is not guaranteed to be a fresh instance.
 	 * It may instead be a cached instance created previously, with references to it remaining
@@ -317,7 +319,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	 *   $text might begin with a namespace prefix, use makeTitle() or
 	 *   makeTitleSafe().
 	 * @throws InvalidArgumentException
-	 * @return Title|null Title or null on an error.
+	 * @return Title|null Title or null if the Title could not be parsed because
+	 *         it is invalid.
 	 */
 	public static function newFromText( $text, $defaultNamespace = NS_MAIN ) {
 		// DWIM: Integers can be passed in here when page titles are used as array keys.
@@ -329,7 +332,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		}
 
 		try {
-			return self::newFromTextThrow( (string)$text, $defaultNamespace );
+			return self::newFromTextThrow( (string)$text, (int)$defaultNamespace );
 		} catch ( MalformedTitleException $ex ) {
 			return null;
 		}
@@ -339,10 +342,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * Like Title::newFromText(), but throws MalformedTitleException when the title is invalid,
 	 * rather than returning null.
 	 *
-	 * The exception subclasses encode detailed information about why the title is invalid.
-	 *
-	 * Title objects returned by this method are guaranteed to be valid, and
-	 * thus return true from the isValid() method.
+	 * Titles returned by this method are guaranteed to be valid.
+	 * Call canExist() to check if the Title represents an editable page.
 	 *
 	 * @note The Title instance returned by this method is not guaranteed to be a fresh instance.
 	 * It may instead be a cached instance created previously, with references to it remaining
@@ -353,7 +354,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @since 1.25
 	 * @param string $text Title text to check
 	 * @param int $defaultNamespace
-	 * @throws MalformedTitleException If the title is invalid
+	 * @throws MalformedTitleException If the title is invalid.
 	 * @return Title
 	 */
 	public static function newFromTextThrow( $text, $defaultNamespace = NS_MAIN ) {
@@ -382,10 +383,9 @@ class Title implements LinkTarget, IDBAccessObject {
 		$filteredText = Sanitizer::decodeCharReferencesAndNormalize( $text );
 
 		$t = new Title();
-		$t->mDbkeyform = strtr( $filteredText, ' ', '_' );
-		$t->mDefaultNamespace = (int)$defaultNamespace;
+		$dbKeyForm = strtr( $filteredText, ' ', '_' );
 
-		$t->secureAndSplit();
+		$t->secureAndSplit( $dbKeyForm, (int)$defaultNamespace );
 		if ( $defaultNamespace == NS_MAIN ) {
 			$titleCache->set( $text, $t );
 		}
@@ -417,10 +417,10 @@ class Title implements LinkTarget, IDBAccessObject {
 			$url = strtr( $url, '+', ' ' );
 		}
 
-		$t->mDbkeyform = strtr( $url, ' ', '_' );
+		$dbKeyForm = strtr( $url, ' ', '_' );
 
 		try {
-			$t->secureAndSplit();
+			$t->secureAndSplit( $dbKeyForm );
 			return $t;
 		} catch ( MalformedTitleException $ex ) {
 			return null;
@@ -607,9 +607,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * The parameters will be checked for validity, which is a bit slower
 	 * than makeTitle() but safer for user-provided data.
 	 *
-	 * Title objects returned by makeTitleSafe() are guaranteed to be valid,
-	 * that is, they return true from the isValid() method. If no valid Title
-	 * can be constructed from the input, this method returns null.
+	 * The Title object returned by this method is guaranteed to be valid.
+	 * Call canExist() to check if the Title represents an editable page.
 	 *
 	 * @param int $ns The namespace of the article
 	 * @param string $title Database key form
@@ -626,10 +625,10 @@ class Title implements LinkTarget, IDBAccessObject {
 		}
 
 		$t = new Title();
-		$t->mDbkeyform = self::makeName( $ns, $title, $fragment, $interwiki, true );
+		$dbKeyForm = self::makeName( $ns, $title, $fragment, $interwiki, true );
 
 		try {
-			$t->secureAndSplit();
+			$t->secureAndSplit( $dbKeyForm );
 			return $t;
 		} catch ( MalformedTitleException $ex ) {
 			return null;
@@ -852,47 +851,51 @@ class Title implements LinkTarget, IDBAccessObject {
 	}
 
 	/**
-	 * Returns true if the title is valid, false if it is invalid.
+	 * Returns true if the title is a valid link target, and that it has been
+	 * properly normalized. This method checks that the title is syntactically valid,
+	 * and that the namespace it refers to exists.
 	 *
-	 * Valid titles can be round-tripped via makeTitle() and newFromText().
-	 * Their DB key can be used in the database, though it may not have the correct
-	 * capitalization.
+	 * Titles constructed using newFromText() or makeTitleSafe() are always valid.
 	 *
-	 * Invalid titles may get returned from makeTitle(), and it may be useful to
-	 * allow them to exist, e.g. in order to process log entries about pages in
-	 * namespaces that belong to extensions that are no longer installed.
+	 * @note Code that wants to check whether the title can represent a page that can
+	 * be created and edited should use canExist() instead. Examples of valid titles
+	 * that cannot "exist" are Special pages, interwiki links, and on-page section links
+	 * that only have the fragment part set.
 	 *
-	 * @note This method is relatively expensive. When constructing Title
-	 * objects that need to be valid, use an instantiator method that is guaranteed
-	 * to return valid titles, such as makeTitleSafe() or newFromText().
+	 * @see canExist()
 	 *
 	 * @return bool
 	 */
 	public function isValid() {
-		$services = MediaWikiServices::getInstance();
-		if ( !$services->getNamespaceInfo()->exists( $this->mNamespace ) ) {
-			return false;
+		if ( $this->mIsValid !== null ) {
+			return $this->mIsValid;
 		}
 
 		try {
-			$services->getTitleParser()->parseTitle( $this->mDbkeyform, $this->mNamespace );
+			$text = $this->getFullText();
+			$titleCodec = MediaWikiServices::getInstance()->getTitleParser();
+
+			'@phan-var MediaWikiTitleCodec $titleCodec';
+			$parts = $titleCodec->splitTitleString( $text, $this->mNamespace );
+
+			// Check that nothing changed!
+			// This ensures that $text was already perperly normalized.
+			if ( $parts['fragment'] !== $this->mFragment
+				|| $parts['interwiki'] !== $this->mInterwiki
+				|| $parts['local_interwiki'] !== $this->mLocalInterwiki
+				|| $parts['namespace'] !== $this->mNamespace
+				|| $parts['dbkey'] !== $this->mDbkeyform
+			) {
+				$this->mIsValid = false;
+				return $this->mIsValid;
+			}
 		} catch ( MalformedTitleException $ex ) {
-			return false;
+			$this->mIsValid = false;
+			return $this->mIsValid;
 		}
 
-		try {
-			// Title value applies basic syntax checks. Should perhaps be moved elsewhere.
-			new TitleValue(
-				$this->mNamespace,
-				$this->mDbkeyform,
-				$this->mFragment,
-				$this->mInterwiki
-			);
-		} catch ( InvalidArgumentException $ex ) {
-			return false;
-		}
-
-		return true;
+		$this->mIsValid = true;
+		return $this->mIsValid;
 	}
 
 	/**
@@ -1160,12 +1163,49 @@ class Title implements LinkTarget, IDBAccessObject {
 	}
 
 	/**
-	 * Is this in a namespace that allows actual pages?
+	 * Can this title represent a page in the wiki's database?
 	 *
-	 * @return bool
+	 * Titles can exist as pages in the database if they are valid, and they
+	 * are not Special pages, interwiki links, or fragment-only links.
+	 *
+	 * @see isValid()
+	 *
+	 * @return bool true if and only if this title can be used to perform an edit.
 	 */
 	public function canExist() {
-		return $this->mNamespace >= NS_MAIN;
+		// NOTE: Don't use getArticleID(), we don't want to
+		// trigger a database query here. This check is supposed to
+		// act as an optimization, not add extra cost.
+		if ( $this->mArticleID > 0 ) {
+			// It exists, so it can exist.
+			return true;
+		}
+
+		// NOTE: we call the relatively expensive isValid() method further down,
+		// but we can bail out early if we already know the title is invalid.
+		if ( $this->mIsValid === false ) {
+			// It's invalid, so it can't exist.
+			return false;
+		}
+
+		if ( $this->getNamespace() < NS_MAIN ) {
+			// It's a special page, so it can't exist in the database.
+			return false;
+		}
+
+		if ( $this->isExternal() ) {
+			// If it's external, it's not local, so it can't exist.
+			return false;
+		}
+
+		if ( $this->getText() === '' ) {
+			// The title has no text, so it can't exist in the database.
+			// It's probably an on-page section link, like "#something".
+			return false;
+		}
+
+		// Double check that the title is valid.
+		return $this->isValid();
 	}
 
 	/**
@@ -3195,16 +3235,24 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * Secure and split - main initialisation function for this object
 	 *
-	 * Assumes that mDbkeyform has been set, and is urldecoded
+	 * Assumes that $text is urldecoded
 	 * and uses underscores, but not otherwise munged.  This function
 	 * removes illegal characters, splits off the interwiki and
 	 * namespace prefixes, sets the other forms, and canonicalizes
 	 * everything.
 	 *
-	 * @throws MalformedTitleException On invalid titles
-	 * @return bool True on success
+	 * If this method returns normally, the Title is valid.
+	 *
+	 * @param string $text
+	 * @param int|null $defaultNamespace
+	 *
+	 * @throws MalformedTitleException On malformed titles
 	 */
-	private function secureAndSplit() {
+	private function secureAndSplit( $text, $defaultNamespace = null ) {
+		if ( $defaultNamespace === null ) {
+			$defaultNamespace = $this->mDefaultNamespace;
+		}
+
 		// @note: splitTitleString() is a temporary hack to allow MediaWikiTitleCodec to share
 		//        the parsing code with Title, while avoiding massive refactoring.
 		// @todo: get rid of secureAndSplit, refactor parsing code.
@@ -3214,25 +3262,27 @@ class Title implements LinkTarget, IDBAccessObject {
 		$titleCodec = MediaWikiServices::getInstance()->getTitleParser();
 		'@phan-var MediaWikiTitleCodec $titleCodec';
 		// MalformedTitleException can be thrown here
-		$parts = $titleCodec->splitTitleString( $this->mDbkeyform, $this->mDefaultNamespace );
+		$parts = $titleCodec->splitTitleString( $text, $defaultNamespace );
 
 		# Fill fields
 		$this->setFragment( '#' . $parts['fragment'] );
 		$this->mInterwiki = $parts['interwiki'];
 		$this->mLocalInterwiki = $parts['local_interwiki'];
 		$this->mNamespace = $parts['namespace'];
+		$this->mDefaultNamespace = $defaultNamespace;
 		$this->mUserCaseDBKey = $parts['user_case_dbkey'];
 
 		$this->mDbkeyform = $parts['dbkey'];
 		$this->mUrlform = wfUrlencode( $this->mDbkeyform );
 		$this->mTextform = strtr( $this->mDbkeyform, '_', ' ' );
 
+		// splitTitleString() guarantees that this title is valid.
+		$this->mIsValid = true;
+
 		# We already know that some pages won't be in the database!
-		if ( $this->isExternal() || $this->isSpecialPage() ) {
+		if ( $this->isExternal() || $this->isSpecialPage() || $this->mTextform === '' ) {
 			$this->mArticleID = 0;
 		}
-
-		return true;
 	}
 
 	/**
