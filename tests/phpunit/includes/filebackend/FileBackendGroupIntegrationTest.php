@@ -49,7 +49,11 @@ class FileBackendGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 		$services = MediaWikiServices::getInstance();
 
 		foreach ( $serviceMembers as $key => $name ) {
-			$this->$key = $services->getService( $name );
+			if ( $key === 'srvCache' ) {
+				$this->$key = ObjectCache::getLocalServerInstance( 'hash' );
+			} else {
+				$this->$key = $services->getService( $name );
+			}
 		}
 
 		return FileBackendGroup::singleton();
