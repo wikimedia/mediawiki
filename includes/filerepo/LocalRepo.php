@@ -32,6 +32,7 @@ use Wikimedia\Rdbms\IDatabase;
  * in the wiki's own database. This is the most commonly used repository class.
  *
  * @ingroup FileRepo
+ * @method LocalFile|null newFile( $title, $time = false )
  */
 class LocalRepo extends FileRepo {
 	/** @var callable */
