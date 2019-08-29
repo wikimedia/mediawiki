@@ -4864,8 +4864,7 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Get a list of all available permissions.
 	 *
-	 * @deprecated since 1.34, use MediaWikiServices::getInstance()->getPermissionManager()
-	 *             ->getAllPermissions() instead
+	 * @deprecated since 1.34, use PermissionManager::getAllPermissions() instead
 	 *
 	 * @return string[] Array of permission names
 	 */

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Try to make sure that extensions register all rights in $wgAvailableRights
  * or via the 'UserGetAllRights' hook.
@@ -19,7 +21,7 @@ class AvailableRightsTest extends PHPUnit\Framework\TestCase {
 	private function getAllVisibleRights() {
 		global $wgGroupPermissions, $wgRevokePermissions;
 
-		$rights = User::getAllRights();
+		$rights = MediaWikiServices::getInstance()->getPermissionManager()->getAllPermissions();
 
 		foreach ( $wgGroupPermissions as $permissions ) {
 			$rights = array_merge( $rights, array_keys( $permissions ) );
@@ -38,7 +40,7 @@ class AvailableRightsTest extends PHPUnit\Framework\TestCase {
 	public function testAvailableRights() {
 		$missingRights = array_diff(
 			$this->getAllVisibleRights(),
-			User::getAllRights()
+			MediaWikiServices::getInstance()->getPermissionManager()->getAllPermissions()
 		);
 
 		$this->assertEquals(
@@ -76,7 +78,7 @@ class AvailableRightsTest extends PHPUnit\Framework\TestCase {
 	 */
 	private function checkMessagesExist( $prefix ) {
 		// Getting all user rights, for core: User::$mCoreRights, for extensions: $wgAvailableRights
-		$allRights = User::getAllRights();
+		$allRights = MediaWikiServices::getInstance()->getPermissionManager()->getAllPermissions();
 		$allMessageKeys = Language::getMessageKeysFor( 'en' );
 
 		$messagesToCheck = [];
