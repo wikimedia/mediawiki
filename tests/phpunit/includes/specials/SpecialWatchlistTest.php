@@ -12,7 +12,7 @@ use Wikimedia\TestingAccessWrapper;
 class SpecialWatchlistTest extends SpecialPageTestBase {
 	public function setUp() {
 		parent::setUp();
-
+		$this->tablesUsed = [ 'watchlist' ];
 		$this->setTemporaryHook(
 			'ChangesListSpecialPageQuery',
 			null
