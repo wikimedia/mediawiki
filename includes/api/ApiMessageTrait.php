@@ -22,6 +22,7 @@
  * Trait to implement the IApiMessage interface for Message subclasses
  * @since 1.27
  * @ingroup API
+ * @phan-file-suppress PhanTraitParentReference
  */
 trait ApiMessageTrait {
 

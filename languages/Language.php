@@ -467,6 +467,7 @@ class Language {
 
 	/**
 	 * Reduce memory usage
+	 * @suppress PhanTypeSuspiciousNonTraversableForeach
 	 */
 	function __destruct() {
 		foreach ( $this as $name => $value ) {

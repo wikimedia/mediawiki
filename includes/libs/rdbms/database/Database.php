@@ -3522,7 +3522,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			if ( in_array( $entry[2], $sectionIds, true ) ) {
 				$callback = $entry[0];
 				$this->trxEndCallbacks[$key][0] = function () use ( $callback ) {
-					// @phan-suppress-next-line PhanInfiniteRecursion No recursion at all here, phan is confused
+					// @phan-suppress-next-line PhanInfiniteRecursion, PhanUndeclaredInvokeInCallable
 					return $callback( self::TRIGGER_ROLLBACK, $this );
 				};
 				// This "on resolution" callback no longer belongs to a section.
@@ -3647,6 +3647,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				try {
 					++$count;
 					list( $phpCallback ) = $callback;
+					// @phan-suppress-next-line PhanUndeclaredInvokeInCallable
 					$phpCallback( $this );
 				} catch ( Exception $ex ) {
 					( $this->errorLogger )( $ex );
@@ -3682,6 +3683,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			foreach ( $callbacks as $entry ) {
 				if ( $sectionIds === null || in_array( $entry[2], $sectionIds, true ) ) {
 					try {
+						// @phan-suppress-next-line PhanUndeclaredInvokeInCallable
 						$entry[0]( $trigger, $this );
 					} catch ( Exception $ex ) {
 						( $this->errorLogger )( $ex );

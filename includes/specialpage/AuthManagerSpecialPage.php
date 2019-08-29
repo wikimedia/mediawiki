@@ -435,10 +435,11 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 				if ( is_string( reset( $status ) ) ) {
 					$status = Status::newFatal( ...$status );
 				} elseif ( is_array( reset( $status ) ) ) {
-					$status = Status::newGood();
+					$ret = Status::newGood();
 					foreach ( $status as $message ) {
-						$status->fatal( ...$message );
+						$ret->fatal( ...$message );
 					}
+					$status = $ret;
 				} else {
 					throw new UnexpectedValueException( 'invalid HTMLForm::trySubmit() return value: '
 						. 'first element of array is ' . gettype( reset( $status ) ) );

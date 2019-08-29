@@ -419,6 +419,7 @@ abstract class DatabaseUpdater {
 
 		foreach ( $updates as $funcList ) {
 			list( $func, $args, $origParams ) = $funcList;
+			// @phan-suppress-next-line PhanUndeclaredInvokeInCallable
 			$func( ...$args );
 			flush();
 			$this->updatesSkipped[] = $origParams;
