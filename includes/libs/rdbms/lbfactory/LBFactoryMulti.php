@@ -157,7 +157,7 @@ class LBFactoryMulti extends LBFactory {
 		$this->loadMonitorClass = $conf['loadMonitorClass'] ?? LoadMonitor::class;
 	}
 
-	public function newMainLB( $domain = false ) {
+	public function newMainLB( $domain = false, $owner = null ) {
 		$section = $this->getSectionForDomain( $domain );
 		if ( !isset( $this->groupLoadsBySection[$section][ILoadBalancer::GROUP_GENERIC] ) ) {
 			throw new UnexpectedValueException( "Section '$section' has no hosts defined." );
@@ -175,7 +175,8 @@ class LBFactoryMulti extends LBFactory {
 			// Use the LB-specific read-only reason if everything isn't already read-only
 			is_string( $this->readOnlyReason )
 				? $this->readOnlyReason
-				: ( $this->readOnlyBySection[$section] ?? false )
+				: ( $this->readOnlyBySection[$section] ?? false ),
+			$owner
 		);
 	}
 
@@ -183,13 +184,13 @@ class LBFactoryMulti extends LBFactory {
 		$section = $this->getSectionForDomain( $domain );
 
 		if ( !isset( $this->mainLBs[$section] ) ) {
-			$this->mainLBs[$section] = $this->newMainLB( $domain );
+			$this->mainLBs[$section] = $this->newMainLB( $domain, $this->getOwnershipId() );
 		}
 
 		return $this->mainLBs[$section];
 	}
 
-	public function newExternalLB( $cluster ) {
+	public function newExternalLB( $cluster, $owner = null ) {
 		if ( !isset( $this->externalLoads[$cluster] ) ) {
 			throw new InvalidArgumentException( "Unknown cluster '$cluster'" );
 		}
@@ -201,13 +202,15 @@ class LBFactoryMulti extends LBFactory {
 				$this->templateOverridesByCluster[$cluster] ?? []
 			),
 			[ ILoadBalancer::GROUP_GENERIC => $this->externalLoads[$cluster] ],
-			$this->readOnlyReason
+			$this->readOnlyReason,
+			$owner
 		);
 	}
 
 	public function getExternalLB( $cluster ) {
 		if ( !isset( $this->externalLBs[$cluster] ) ) {
-			$this->externalLBs[$cluster] = $this->newExternalLB( $cluster );
+			$this->externalLBs[$cluster] =
+				$this->newExternalLB( $cluster, $this->getOwnershipId() );
 		}
 
 		return $this->externalLBs[$cluster];
@@ -265,11 +268,12 @@ class LBFactoryMulti extends LBFactory {
 	 * @param array $serverTemplate Server config map
 	 * @param int[][] $groupLoads Map of (group => host => load)
 	 * @param string|bool $readOnlyReason
+	 * @param int|null $owner
 	 * @return LoadBalancer
 	 */
-	private function newLoadBalancer( $serverTemplate, $groupLoads, $readOnlyReason ) {
+	private function newLoadBalancer( $serverTemplate, $groupLoads, $readOnlyReason, $owner ) {
 		$lb = new LoadBalancer( array_merge(
-			$this->baseLoadBalancerParams(),
+			$this->baseLoadBalancerParams( $owner ),
 			[
 				'servers' => $this->makeServerArray( $serverTemplate, $groupLoads ),
 				'loadMonitor' => [ 'class' => $this->loadMonitorClass ],

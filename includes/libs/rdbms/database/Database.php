@@ -174,6 +174,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var float Query rount trip time estimate */
 	private $lastRoundTripEstimate = 0.0;
 
+	/** @var int|null Integer ID of the managing LBFactory instance or null if none */
+	private $ownerId;
+
 	/** @var string Lock granularity is on the level of the entire database */
 	const ATTR_DB_LEVEL_LOCKING = 'db-level-locking';
 	/** @var string The SCHEMA keyword refers to a grouping of tables in a database */
@@ -268,6 +271,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$params['schema'] != '' ? $params['schema'] : null,
 			$params['tablePrefix']
 		);
+
+		$this->ownerId = $params['ownerId'] ?? null;
 	}
 
 	/**
@@ -355,7 +360,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *   - cliMode: Whether to consider the execution context that of a CLI script.
 	 *   - agent: Optional name used to identify the end-user in query profiling/logging.
 	 *   - srvCache: Optional BagOStuff instance to an APC-style cache.
-	 *   - nonNativeInsertSelectBatchSize: Optional batch size for non-native INSERT SELECT emulation.
+	 *   - nonNativeInsertSelectBatchSize: Optional batch size for non-native INSERT SELECT.
+	 *   - ownerId: Optional integer ID of a LoadBalancer instance that manages this instance.
 	 * @param int $connect One of the class constants (NEW_CONNECTED, NEW_UNCONNECTED) [optional]
 	 * @return Database|null If the database driver or extension cannot be found
 	 * @throws InvalidArgumentException If the database driver or extension cannot be found
@@ -375,7 +381,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				'flags' => 0,
 				'variables' => [],
 				'cliMode' => ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' ),
-				'agent' => basename( $_SERVER['SCRIPT_NAME'] ) . '@' . gethostname()
+				'agent' => basename( $_SERVER['SCRIPT_NAME'] ) . '@' . gethostname(),
+				'ownerId' => null
 			];
 
 			$normalizedParams = [
@@ -866,8 +873,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		);
 	}
 
-	final public function close() {
-		$exception = null; // error to throw after disconnecting
+	final public function close( $fname = __METHOD__, $owner = null ) {
+		$error = null; // error to throw after disconnecting
 
 		$wasOpen = (bool)$this->conn;
 		// This should mostly do nothing if the connection is already closed
@@ -877,34 +884,22 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				if ( $this->trxAtomicLevels ) {
 					// Cannot let incomplete atomic sections be committed
 					$levels = $this->flatAtomicSectionList();
-					$exception = new DBUnexpectedError(
-						$this,
-						__METHOD__ . ": atomic sections $levels are still open"
-					);
+					$error = "$fname: atomic sections $levels are still open";
 				} elseif ( $this->trxAutomatic ) {
 					// Only the connection manager can commit non-empty DBO_TRX transactions
 					// (empty ones we can silently roll back)
 					if ( $this->writesOrCallbacksPending() ) {
-						$exception = new DBUnexpectedError(
-							$this,
-							__METHOD__ .
-							": mass commit/rollback of peer transaction required (DBO_TRX set)"
-						);
+						$error = "$fname: " .
+							"expected mass rollback of all peer transactions (DBO_TRX set)";
 					}
 				} else {
 					// Manual transactions should have been committed or rolled
 					// back, even if empty.
-					$exception = new DBUnexpectedError(
-						$this,
-						__METHOD__ . ": transaction is still open (from {$this->trxFname})"
-					);
+					$error = "$fname: transaction is still open (from {$this->trxFname})";
 				}
 
-				if ( $this->trxEndCallbacksSuppressed ) {
-					$exception = $exception ?: new DBUnexpectedError(
-						$this,
-						__METHOD__ . ': callbacks are suppressed; cannot properly commit'
-					);
+				if ( $this->trxEndCallbacksSuppressed && $error === null ) {
+					$error = "$fname: callbacks are suppressed; cannot properly commit";
 				}
 
 				// Rollback the changes and run any callbacks as needed
@@ -919,9 +914,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$this->conn = null;
 
-		// Throw any unexpected errors after having disconnected
-		if ( $exception instanceof Exception ) {
-			throw $exception;
+		// Log or throw any unexpected errors after having disconnected
+		if ( $error !== null ) {
+			// T217819, T231443: if this is probably just LoadBalancer trying to recover from
+			// errors and shutdown, then log any problems and move on since the request has to
+			// end one way or another. Throwing errors is not very useful at some point.
+			if ( $this->ownerId !== null && $owner === $this->ownerId ) {
+				$this->queryLogger->error( $error );
+			} else {
+				throw new DBUnexpectedError( $this, $error );
+			}
 		}
 
 		// Note that various subclasses call close() at the start of open(), which itself is
@@ -3981,17 +3983,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $this->trxLevel() ) {
 			if ( $this->trxAtomicLevels ) {
 				$levels = $this->flatAtomicSectionList();
-				$msg = "$fname: Got explicit BEGIN while atomic section(s) $levels are open";
+				$msg = "$fname: got explicit BEGIN while atomic section(s) $levels are open";
 				throw new DBUnexpectedError( $this, $msg );
 			} elseif ( !$this->trxAutomatic ) {
-				$msg = "$fname: Explicit transaction already active (from {$this->trxFname})";
+				$msg = "$fname: explicit transaction already active (from {$this->trxFname})";
 				throw new DBUnexpectedError( $this, $msg );
 			} else {
-				$msg = "$fname: Implicit transaction already active (from {$this->trxFname})";
+				$msg = "$fname: implicit transaction already active (from {$this->trxFname})";
 				throw new DBUnexpectedError( $this, $msg );
 			}
 		} elseif ( $this->getFlag( self::DBO_TRX ) && $mode !== self::TRANSACTION_INTERNAL ) {
-			$msg = "$fname: Implicit transaction expected (DBO_TRX set)";
+			$msg = "$fname: implicit transaction expected (DBO_TRX set)";
 			throw new DBUnexpectedError( $this, $msg );
 		}
 
@@ -4045,7 +4047,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$levels = $this->flatAtomicSectionList();
 			throw new DBUnexpectedError(
 				$this,
-				"$fname: Got COMMIT while atomic sections $levels are still open"
+				"$fname: got COMMIT while atomic sections $levels are still open"
 			);
 		}
 
@@ -4055,17 +4057,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			} elseif ( !$this->trxAutomatic ) {
 				throw new DBUnexpectedError(
 					$this,
-					"$fname: Flushing an explicit transaction, getting out of sync"
+					"$fname: flushing an explicit transaction, getting out of sync"
 				);
 			}
 		} elseif ( !$this->trxLevel() ) {
 			$this->queryLogger->error(
-				"$fname: No transaction to commit, something got out of sync" );
+				"$fname: no transaction to commit, something got out of sync" );
 			return; // nothing to do
 		} elseif ( $this->trxAutomatic ) {
 			throw new DBUnexpectedError(
 				$this,
-				"$fname: Expected mass commit of all peer transactions (DBO_TRX set)"
+				"$fname: expected mass commit of all peer transactions (DBO_TRX set)"
 			);
 		}
 

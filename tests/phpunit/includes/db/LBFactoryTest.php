@@ -32,6 +32,7 @@ use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\MySQLMasterPos;
 use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\LoadMonitorNull;
 
 /**
  * @group Database
@@ -110,7 +111,6 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$this->assertSame( $factory->getLocalDomainID(), $factory->resolveDomainID( false ) );
 
 		$factory->shutdown();
-		$lb->closeAll();
 	}
 
 	public function testLBFactorySimpleServers() {
@@ -160,7 +160,6 @@ class LBFactoryTest extends MediaWikiTestCase {
 			'cluster master set' );
 
 		$factory->shutdown();
-		$lb->closeAll();
 	}
 
 	public function testLBFactoryMultiConns() {
