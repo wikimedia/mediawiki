@@ -20,6 +20,7 @@ ItemMenuOptionWidget = function MwRcfiltersUiItemMenuOptionWidget(
 	controller, filtersViewModel, invertModel, itemModel, highlightPopup, config
 ) {
 	var layout,
+		$widgetRow,
 		classes = [],
 		$label = $( '<div>' )
 			.addClass( 'mw-rcfilters-ui-itemMenuOptionWidget-label' );
@@ -93,28 +94,33 @@ ItemMenuOptionWidget = function MwRcfiltersUiItemMenuOptionWidget(
 	// defaults on 'click' as well.
 	layout.$label.on( 'click', false );
 
+	$widgetRow = $( '<div>' )
+		.addClass( 'mw-rcfilters-ui-table' )
+		.append(
+			$( '<div>' )
+				.addClass( 'mw-rcfilters-ui-row' )
+				.append(
+					$( '<div>' )
+						.addClass( 'mw-rcfilters-ui-cell mw-rcfilters-ui-itemMenuOptionWidget-itemCheckbox' )
+						.append( layout.$element )
+				)
+		);
+
+	if ( !OO.ui.isMobile() ) {
+		$widgetRow.find( '.mw-rcfilters-ui-row' ).append(
+			$( '<div>' )
+				.addClass( 'mw-rcfilters-ui-cell mw-rcfilters-ui-itemMenuOptionWidget-excludeLabel' )
+				.append( this.excludeLabel.$element ),
+			$( '<div>' )
+				.addClass( 'mw-rcfilters-ui-cell mw-rcfilters-ui-itemMenuOptionWidget-highlightButton' )
+				.append( this.highlightButton.$element )
+		);
+	}
+
 	this.$element
 		.addClass( 'mw-rcfilters-ui-itemMenuOptionWidget' )
 		.addClass( 'mw-rcfilters-ui-itemMenuOptionWidget-view-' + this.itemModel.getGroupModel().getView() )
-		.append(
-			$( '<div>' )
-				.addClass( 'mw-rcfilters-ui-table' )
-				.append(
-					$( '<div>' )
-						.addClass( 'mw-rcfilters-ui-row' )
-						.append(
-							$( '<div>' )
-								.addClass( 'mw-rcfilters-ui-cell mw-rcfilters-ui-itemMenuOptionWidget-itemCheckbox' )
-								.append( layout.$element ),
-							$( '<div>' )
-								.addClass( 'mw-rcfilters-ui-cell mw-rcfilters-ui-itemMenuOptionWidget-excludeLabel' )
-								.append( this.excludeLabel.$element ),
-							$( '<div>' )
-								.addClass( 'mw-rcfilters-ui-cell mw-rcfilters-ui-itemMenuOptionWidget-highlightButton' )
-								.append( this.highlightButton.$element )
-						)
-				)
-		);
+		.append( $widgetRow );
 
 	if ( this.itemModel.getIdentifiers() ) {
 		this.itemModel.getIdentifiers().forEach( function ( ident ) {
