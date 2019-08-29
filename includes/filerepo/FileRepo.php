@@ -899,20 +899,15 @@ class FileRepo {
 			}
 
 			// Resolve source to a storage path if virtual
-			$srcPath = $this->resolveToStoragePath( $srcPath );
+			$srcPath = $this->resolveToStoragePathIfVirtual( $srcPath );
 
-			// Get the appropriate file operation
-			if ( FileBackend::isStoragePath( $srcPath ) ) {
-				$opName = 'copy';
-			} else {
-				$opName = 'store';
-			}
+			// Copy the source file to the destination
 			$operations[] = [
-				'op' => $opName,
-				'src' => $srcPath,
+				'op' => FileBackend::isStoragePath( $srcPath ) ? 'copy' : 'store',
+				'src' => $srcPath, // storage path (copy) or local file path (store)
 				'dst' => $dstPath,
-				'overwrite' => $flags & self::OVERWRITE,
-				'overwriteSame' => $flags & self::OVERWRITE_SAME,
+				'overwrite' => ( $flags & self::OVERWRITE ) ? true : false,
+				'overwriteSame' => ( $flags & self::OVERWRITE_SAME ) ? true : false,
 			];
 		}
 
@@ -949,7 +944,7 @@ class FileRepo {
 				$path = $this->getZonePath( $zone ) . "/$rel";
 			} else {
 				// Resolve source to a storage path if virtual
-				$path = $this->resolveToStoragePath( $path );
+				$path = $this->resolveToStoragePathIfVirtual( $path );
 			}
 			$operations[] = [ 'op' => 'delete', 'src' => $path ];
 		}
@@ -1002,7 +997,7 @@ class FileRepo {
 	public function quickCleanDir( $dir ) {
 		$status = $this->newGood();
 		$status->merge( $this->backend->clean(
-			[ 'dir' => $this->resolveToStoragePath( $dir ) ] ) );
+			[ 'dir' => $this->resolveToStoragePathIfVirtual( $dir ) ] ) );
 
 		return $status;
 	}
@@ -1027,10 +1022,10 @@ class FileRepo {
 			if ( $src instanceof FSFile ) {
 				$op = 'store';
 			} else {
-				$src = $this->resolveToStoragePath( $src );
+				$src = $this->resolveToStoragePathIfVirtual( $src );
 				$op = FileBackend::isStoragePath( $src ) ? 'copy' : 'store';
 			}
-			$dst = $this->resolveToStoragePath( $dst );
+			$dst = $this->resolveToStoragePathIfVirtual( $dst );
 
 			if ( !isset( $triple[2] ) ) {
 				$headers = [];
@@ -1070,7 +1065,7 @@ class FileRepo {
 		foreach ( $paths as $path ) {
 			$operations[] = [
 				'op' => 'delete',
-				'src' => $this->resolveToStoragePath( $path ),
+				'src' => $this->resolveToStoragePathIfVirtual( $path ),
 				'ignoreMissingSource' => true
 			];
 		}
@@ -1139,7 +1134,7 @@ class FileRepo {
 		$sources = [];
 		foreach ( $srcPaths as $srcPath ) {
 			// Resolve source to a storage path if virtual
-			$source = $this->resolveToStoragePath( $srcPath );
+			$source = $this->resolveToStoragePathIfVirtual( $srcPath );
 			$sources[] = $source; // chunk to merge
 		}
 
@@ -1226,7 +1221,7 @@ class FileRepo {
 
 			$options = $ntuple[3] ?? [];
 			// Resolve source to a storage path if virtual
-			$srcPath = $this->resolveToStoragePath( $srcPath );
+			$srcPath = $this->resolveToStoragePathIfVirtual( $srcPath );
 			if ( !$this->validateFilename( $dstRel ) ) {
 				throw new MWException( 'Validation error in $dstRel' );
 			}
@@ -1266,27 +1261,17 @@ class FileRepo {
 
 			// Copy (or move) the source file to the destination
 			if ( FileBackend::isStoragePath( $srcPath ) ) {
-				if ( $flags & self::DELETE_SOURCE ) {
-					$operations[] = [
-						'op' => 'move',
-						'src' => $srcPath,
-						'dst' => $dstPath,
-						'overwrite' => true, // replace current
-						'headers' => $headers
-					];
-				} else {
-					$operations[] = [
-						'op' => 'copy',
-						'src' => $srcPath,
-						'dst' => $dstPath,
-						'overwrite' => true, // replace current
-						'headers' => $headers
-					];
-				}
-			} else { // FS source path
+				$operations[] = [
+					'op' => ( $flags & self::DELETE_SOURCE ) ? 'move' : 'copy',
+					'src' => $srcPath,
+					'dst' => $dstPath,
+					'overwrite' => true, // replace current
+					'headers' => $headers
+				];
+			} else {
 				$operations[] = [
 					'op' => 'store',
-					'src' => $src, // prefer FSFile objects
+					'src' => $src, // FSFile (preferred) or local file path
 					'dst' => $dstPath,
 					'overwrite' => true, // replace current
 					'headers' => $headers
@@ -1327,7 +1312,7 @@ class FileRepo {
 	 * @return Status
 	 */
 	protected function initDirectory( $dir ) {
-		$path = $this->resolveToStoragePath( $dir );
+		$path = $this->resolveToStoragePathIfVirtual( $dir );
 		list( , $container, ) = FileBackend::splitStoragePath( $path );
 
 		$params = [ 'dir' => $path ];
@@ -1357,7 +1342,7 @@ class FileRepo {
 
 		$status = $this->newGood();
 		$status->merge( $this->backend->clean(
-			[ 'dir' => $this->resolveToStoragePath( $dir ) ] ) );
+			[ 'dir' => $this->resolveToStoragePathIfVirtual( $dir ) ] ) );
 
 		return $status;
 	}
@@ -1381,12 +1366,12 @@ class FileRepo {
 	 * @return array Map of files and existence flags, or false
 	 */
 	public function fileExistsBatch( array $files ) {
-		$paths = array_map( [ $this, 'resolveToStoragePath' ], $files );
+		$paths = array_map( [ $this, 'resolveToStoragePathIfVirtual' ], $files );
 		$this->backend->preloadFileStat( [ 'srcs' => $paths ] );
 
 		$result = [];
 		foreach ( $files as $key => $file ) {
-			$path = $this->resolveToStoragePath( $file );
+			$path = $this->resolveToStoragePathIfVirtual( $file );
 			$result[$key] = $this->backend->fileExists( [ 'src' => $path ] );
 		}
 
@@ -1517,7 +1502,7 @@ class FileRepo {
 	 * @return string
 	 * @throws MWException
 	 */
-	protected function resolveToStoragePath( $path ) {
+	protected function resolveToStoragePathIfVirtual( $path ) {
 		if ( self::isVirtualUrl( $path ) ) {
 			return $this->resolveVirtualUrl( $path );
 		}
@@ -1533,7 +1518,7 @@ class FileRepo {
 	 * @return TempFSFile|null Returns null on failure
 	 */
 	public function getLocalCopy( $virtualUrl ) {
-		$path = $this->resolveToStoragePath( $virtualUrl );
+		$path = $this->resolveToStoragePathIfVirtual( $virtualUrl );
 
 		return $this->backend->getLocalCopy( [ 'src' => $path ] );
 	}
@@ -1547,7 +1532,7 @@ class FileRepo {
 	 * @return FSFile|null Returns null on failure.
 	 */
 	public function getLocalReference( $virtualUrl ) {
-		$path = $this->resolveToStoragePath( $virtualUrl );
+		$path = $this->resolveToStoragePathIfVirtual( $virtualUrl );
 
 		return $this->backend->getLocalReference( [ 'src' => $path ] );
 	}
@@ -1578,7 +1563,7 @@ class FileRepo {
 	 * @return string|bool False on failure
 	 */
 	public function getFileTimestamp( $virtualUrl ) {
-		$path = $this->resolveToStoragePath( $virtualUrl );
+		$path = $this->resolveToStoragePathIfVirtual( $virtualUrl );
 
 		return $this->backend->getFileTimestamp( [ 'src' => $path ] );
 	}
@@ -1590,7 +1575,7 @@ class FileRepo {
 	 * @return int|bool False on failure
 	 */
 	public function getFileSize( $virtualUrl ) {
-		$path = $this->resolveToStoragePath( $virtualUrl );
+		$path = $this->resolveToStoragePathIfVirtual( $virtualUrl );
 
 		return $this->backend->getFileSize( [ 'src' => $path ] );
 	}
@@ -1602,7 +1587,7 @@ class FileRepo {
 	 * @return string|bool
 	 */
 	public function getFileSha1( $virtualUrl ) {
-		$path = $this->resolveToStoragePath( $virtualUrl );
+		$path = $this->resolveToStoragePathIfVirtual( $virtualUrl );
 
 		return $this->backend->getFileSha1Base36( [ 'src' => $path ] );
 	}
@@ -1617,7 +1602,7 @@ class FileRepo {
 	 * @since 1.27
 	 */
 	public function streamFileWithStatus( $virtualUrl, $headers = [], $optHeaders = [] ) {
-		$path = $this->resolveToStoragePath( $virtualUrl );
+		$path = $this->resolveToStoragePathIfVirtual( $virtualUrl );
 		$params = [ 'src' => $path, 'headers' => $headers, 'options' => $optHeaders ];
 
 		// T172851: HHVM does not flush the output properly, causing OOM

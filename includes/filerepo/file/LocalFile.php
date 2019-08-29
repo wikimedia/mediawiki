@@ -1923,10 +1923,9 @@ class LocalFile extends File {
 
 		wfDebugLog( 'imagemove', "Finished moving {$this->name}" );
 
-		// Purge the source and target files...
+		// Purge the source and target files outside the transaction...
 		$oldTitleFile = $localRepo->newFile( $this->title );
 		$newTitleFile = $localRepo->newFile( $target );
-		// To avoid slow purges in the transaction, move them outside...
 		DeferredUpdates::addUpdate(
 			new AutoCommitUpdate(
 				$this->getRepo()->getMasterDB(),
@@ -1934,6 +1933,7 @@ class LocalFile extends File {
 				function () use ( $oldTitleFile, $newTitleFile, $archiveNames ) {
 					$oldTitleFile->purgeEverything();
 					foreach ( $archiveNames as $archiveName ) {
+						/** @var OldLocalFile $oldTitleFile */
 						$oldTitleFile->purgeOldThumbnails( $archiveName );
 					}
 					$newTitleFile->purgeEverything();
