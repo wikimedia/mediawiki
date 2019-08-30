@@ -22,7 +22,7 @@ class ExcimerProfiler {
 	}
 	public function stop() {
 	}
-	public function getLog() {
+	public function getLog() : ExcimerLog {
 	}
 	public function flush() {
 	}
@@ -33,8 +33,14 @@ class ExcimerLog {
 	}
 	function formatCollapsed() {
 	}
+	/**
+	 * @return array[]
+	 */
 	function aggregateByFunction() {
 	}
+	/**
+	 * @return int
+	 */
 	function getEventCount() {
 	}
 	function current() {

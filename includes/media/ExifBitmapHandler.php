@@ -80,7 +80,7 @@ class ExifBitmapHandler extends BitmapHandler {
 
 	/**
 	 * @param File $image
-	 * @param array $metadata
+	 * @param string $metadata
 	 * @return bool|int
 	 */
 	public function isMetadataValid( $image, $metadata ) {

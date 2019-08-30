@@ -65,6 +65,6 @@ class UserNamePrefixSearch {
 			$joinConds
 		);
 
-		return $res === false ? [] : $res;
+		return $res;
 	}
 }

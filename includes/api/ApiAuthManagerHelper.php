@@ -306,8 +306,6 @@ class ApiAuthManagerHelper {
 
 	/**
 	 * Clean up a field array for output
-	 * @param ApiBase $module For context and parameters 'mergerequestfields'
-	 *  and 'messageformat'
 	 * @param array $fields
 	 * @return array
 	 */

@@ -32,6 +32,7 @@ use MediaWiki\Shell\Shell;
  */
 class DumpPipeOutput extends DumpFileOutput {
 	protected $command, $filename;
+	/** @var resource|bool */
 	protected $procOpenResource = false;
 
 	/**

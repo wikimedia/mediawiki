@@ -731,6 +731,7 @@ class LocalisationCache {
 				if ( in_array( $key, self::$mergeableMapKeys ) ) {
 					$value = $value + $fallbackValue;
 				} elseif ( in_array( $key, self::$mergeableListKeys ) ) {
+					// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 					$value = array_unique( array_merge( $fallbackValue, $value ) );
 				} elseif ( in_array( $key, self::$mergeableAliasListKeys ) ) {
 					$value = array_merge_recursive( $value, $fallbackValue );
@@ -826,7 +827,7 @@ class LocalisationCache {
 		if ( !$code ) {
 			throw new MWException( "Invalid language code requested" );
 		}
-		$this->recachedLangs[$code] = true;
+		$this->recachedLangs[ $code ] = true;
 
 		# Initial values
 		$initialData = array_fill_keys( self::$allKeys, null );
@@ -835,16 +836,11 @@ class LocalisationCache {
 
 		# Load the primary localisation from the source file
 		$data = $this->readSourceFilesAndRegisterDeps( $code, $deps );
-		if ( $data === false ) {
-			$this->logger->debug( __METHOD__ . ": no localisation file for $code, using fallback to en" );
-			$coreData['fallback'] = 'en';
-		} else {
-			$this->logger->debug( __METHOD__ . ": got localisation for $code from source" );
+		$this->logger->debug( __METHOD__ . ": got localisation for $code from source" );
 
-			# Merge primary localisation
-			foreach ( $data as $key => $value ) {
-				$this->mergeItem( $key, $coreData[$key], $value );
-			}
+		# Merge primary localisation
+		foreach ( $data as $key => $value ) {
+			$this->mergeItem( $key, $coreData[ $key ], $value );
 		}
 
 		# Fill in the fallback if it's not there already
@@ -932,16 +928,14 @@ class LocalisationCache {
 				# Load the secondary localisation from the source file to
 				# avoid infinite cycles on cyclic fallbacks
 				$fbData = $this->readSourceFilesAndRegisterDeps( $csCode, $deps );
-				if ( $fbData !== false ) {
-					# Only merge the keys that make sense to merge
-					foreach ( self::$allKeys as $key ) {
-						if ( !isset( $fbData[$key] ) ) {
-							continue;
-						}
+				# Only merge the keys that make sense to merge
+				foreach ( self::$allKeys as $key ) {
+					if ( !isset( $fbData[ $key ] ) ) {
+						continue;
+					}
 
-						if ( is_null( $coreData[$key] ) || $this->isMergeableKey( $key ) ) {
-							$this->mergeItem( $key, $csData[$key], $fbData[$key] );
-						}
+					if ( is_null( $coreData[ $key ] ) || $this->isMergeableKey( $key ) ) {
+						$this->mergeItem( $key, $csData[ $key ], $fbData[ $key ] );
 					}
 				}
 			}

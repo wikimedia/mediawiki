@@ -70,8 +70,6 @@ class PasswordReset implements LoggerAwareInterface {
 	/**
 	 * Check if a given user has permission to use this functionality.
 	 * @param User $user
-	 * @param bool $displayPassword If set, also check whether the user is allowed to reset the
-	 *   password of another user and see the temporary password.
 	 * @since 1.29 Second argument for displayPassword removed.
 	 * @return StatusValue
 	 */

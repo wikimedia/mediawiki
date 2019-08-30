@@ -902,7 +902,7 @@ interface IDatabase {
 	 *   that field to. The data will be quoted by IDatabase::addQuotes().
 	 *   Values with integer keys form unquoted SET statements, which can be used for
 	 *   things like "field = field + 1" or similar computed values.
-	 * @param array $conds An array of conditions (WHERE). See
+	 * @param array|string $conds An array of conditions (WHERE). See
 	 *   IDatabase::select() for the details of the format of condition
 	 *   arrays. Use '*' to update all rows.
 	 * @param string $fname The function name of the caller (from __METHOD__),
@@ -1287,7 +1287,7 @@ interface IDatabase {
 	 * @param string $joinTable The other table.
 	 * @param string $delVar The variable to join on, in the first table.
 	 * @param string $joinVar The variable to join on, in the second table.
-	 * @param array $conds Condition array of field names mapped to variables,
+	 * @param array|string $conds Condition array of field names mapped to variables,
 	 *   ANDed together in the WHERE clause
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 * @throws DBError If an error occurs, see IDatabase::query()

@@ -264,6 +264,7 @@ class SpecialListGroupRights extends SpecialPage {
 		];
 
 		foreach ( $changeGroups as $messageKey => $changeGroup ) {
+			// @phan-suppress-next-line PhanTypeComparisonFromArray
 			if ( $changeGroup === true ) {
 				// For grep: listgrouprights-addgroup-all, listgrouprights-removegroup-all,
 				// listgrouprights-addgroup-self-all, listgrouprights-removegroup-self-all

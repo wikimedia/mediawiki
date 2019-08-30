@@ -28,6 +28,7 @@
  *
  * @ingroup Cache
  * @ingroup Redis
+ * @phan-file-suppress PhanTypeComparisonFromArray It's unclear whether exec() can return false
  */
 class RedisBagOStuff extends MediumSpecificBagOStuff {
 	/** @var RedisConnectionPool */

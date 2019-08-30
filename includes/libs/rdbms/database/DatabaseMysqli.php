@@ -33,6 +33,7 @@ use stdClass;
  * @ingroup Database
  * @since 1.22
  * @see Database
+ * @phan-file-suppress PhanParamSignatureMismatch resource vs mysqli_result
  */
 class DatabaseMysqli extends DatabaseMysqlBase {
 	/**

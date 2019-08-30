@@ -33,6 +33,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 *
 	 * @param string $name Message name
 	 * @param mixed $params,... Message params
+	 * @suppress PhanCommentParamWithoutRealParam HHVM bug T228695#5450847
 	 * @return Message
 	 */
 	public function getMsg( $name /* ... */ ) {

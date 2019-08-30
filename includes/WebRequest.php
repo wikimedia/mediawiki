@@ -39,7 +39,10 @@ use MediaWiki\Session\SessionManager;
  * @ingroup HTTP
  */
 class WebRequest {
-	protected $data, $headers = [];
+	/** @var array */
+	protected $data;
+	/** @var array */
+	protected $headers = [];
 
 	/**
 	 * Flag to make WebRequest::getHeader return an array of values.

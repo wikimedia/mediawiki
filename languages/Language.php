@@ -534,6 +534,7 @@ class Language {
 
 			# The above mixing may leave namespaces out of canonical order.
 			# Re-order by namespace ID number...
+			// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 			ksort( $this->namespaceNames );
 
 			Hooks::run( 'LanguageGetNamespaces', [ &$this->namespaceNames ] );

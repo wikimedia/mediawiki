@@ -51,7 +51,6 @@ class HeaderContainer {
 	 * better served by an HTTP header parsing library which provides the full
 	 * parse tree.
 	 *
-	 * @param string $name The header name
 	 * @param string|string[] $value The input header value
 	 * @return array
 	 */

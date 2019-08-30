@@ -406,6 +406,7 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @param string|string[]|MessageSpecifier $key
 	 * @param mixed $param,... Parameters as strings.
+	 * @suppress PhanCommentParamWithoutRealParam HHVM bug T228695#5450847
 	 *
 	 * @return Message
 	 */

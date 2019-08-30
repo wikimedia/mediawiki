@@ -411,6 +411,7 @@ class RequestContext implements IContextSource, MutableContext {
 	 * @param string|string[]|MessageSpecifier $key Message key, or array of keys,
 	 *   or a MessageSpecifier.
 	 * @param mixed $args,...
+	 * @suppress PhanCommentParamWithoutRealParam HHVM bug T228695#5450847
 	 * @return Message
 	 */
 	public function msg( $key ) {
