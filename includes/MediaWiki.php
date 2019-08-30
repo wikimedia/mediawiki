@@ -745,7 +745,7 @@ class MediaWiki {
 			Profiler::instance()->logDataPageOutputOnly();
 		} catch ( Exception $e ) {
 			// An error may already have been shown in run(), so just log it to be safe
-			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
+			MWExceptionHandler::logException( $e );
 		}
 
 		// Disable WebResponse setters for post-send processing (T191537).
