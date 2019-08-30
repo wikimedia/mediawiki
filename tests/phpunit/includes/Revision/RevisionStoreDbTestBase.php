@@ -102,23 +102,24 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @param string|null $pageTitle whether to force-create a new page
 	 * @return WikiPage
 	 */
-	protected function getTestPage() {
-		if ( $this->testPage ) {
+	protected function getTestPage( $pageTitle = null ) {
+		if ( !is_null( $pageTitle ) && $this->testPage ) {
 			return $this->testPage;
 		}
 
-		$title = $this->getTestPageTitle();
-		$this->testPage = WikiPage::factory( $title );
+		$title = is_null( $pageTitle ) ? $this->getTestPageTitle() : Title::newFromText( $pageTitle );
+		$page = WikiPage::factory( $title );
 
-		if ( !$this->testPage->exists() ) {
+		if ( !$page->exists() ) {
 			// Make sure we don't write to the live db.
 			$this->ensureMockDatabaseConnection( wfGetDB( DB_MASTER ) );
 
 			$user = static::getTestSysop()->getUser();
 
-			$this->testPage->doEditContent(
+			$page->doEditContent(
 				new WikitextContent( 'UTContent-' . __CLASS__ ),
 				'UTPageSummary-' . __CLASS__,
 				EDIT_NEW | EDIT_SUPPRESS_RC,
@@ -127,7 +128,10 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			);
 		}
 
-		return $this->testPage;
+		if ( is_null( $pageTitle ) ) {
+			$this->testPage = $page;
+		}
+		return $page;
 	}
 
 	/**
@@ -1959,4 +1963,96 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->assertSame( RevisionRecord::DELETED_TEXT, $deletedAfter );
 	}
 
+	public function provideNewRevisionsFromBatchOptions() {
+		yield 'No preload slots or content, single page' => [
+			null,
+			[]
+		];
+		yield 'Preload slots and content, single page' => [
+			null,
+			[
+				'slots' => [ SlotRecord::MAIN ],
+				'content' => true
+			]
+		];
+		yield 'No preload slots or content, multiple pages' => [
+			'Other_Page',
+			[]
+		];
+		yield 'Preload slots and content, multiple pages' => [
+			'Other_Page',
+			[
+				'slots' => [ SlotRecord::MAIN ],
+				'content' => true
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideNewRevisionsFromBatchOptions
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionsFromBatch
+	 * @param string|null $otherPageTitle
+	 * @param array|null $options
+	 * @throws \MWException
+	 */
+	public function testNewRevisionsFromBatch_preloadContent(
+		$otherPageTitle = null,
+		array $options = []
+	) {
+		$page1 = $this->getTestPage();
+		$text = __METHOD__ . 'b-ä';
+		/** @var Revision $rev1 */
+		$rev1 = $page1->doEditContent(
+			new WikitextContent( $text . '1' ),
+			__METHOD__ . 'b',
+			0,
+			false,
+			$this->getTestUser()->getUser()
+		)->value['revision'];
+		$page2 = $this->getTestPage( $otherPageTitle );
+		/** @var Revision $rev2 */
+		$rev2 = $page2->doEditContent(
+			new WikitextContent( $text . '2' ),
+			__METHOD__ . 'b',
+			0,
+			false,
+			$this->getTestUser()->getUser()
+		)->value['revision'];
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$result = $store->newRevisionsFromBatch(
+			[ $this->revisionToRow( $rev1 ), $this->revisionToRow( $rev2 ) ],
+			$options
+		);
+		$this->assertTrue( $result->isGood() );
+		$this->assertEmpty( $result->getErrors() );
+		$records = $result->getValue();
+		$this->assertRevisionRecordMatchesRevision( $rev1, $records[$rev1->getId()] );
+		$this->assertRevisionRecordMatchesRevision( $rev2, $records[$rev2->getId()] );
+
+		$this->assertSame( $text . '1',
+			$records[$rev1->getId()]->getContent( SlotRecord::MAIN )->serialize() );
+		$this->assertSame( $text . '2',
+			$records[$rev2->getId()]->getContent( SlotRecord::MAIN )->serialize() );
+		$this->assertEquals( $page1->getTitle()->getDBkey(),
+			$records[$rev1->getId()]->getPageAsLinkTarget()->getDBkey() );
+		$this->assertEquals( $page2->getTitle()->getDBkey(),
+			$records[$rev2->getId()]->getPageAsLinkTarget()->getDBkey() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionsFromBatch
+	 */
+	public function testNewRevisionsFromBatch_emptyBatch() {
+		$result = MediaWikiServices::getInstance()->getRevisionStore()
+			->newRevisionsFromBatch(
+				[],
+				[
+					'slots' => [ SlotRecord::MAIN ],
+					'content' => true
+				]
+			);
+		$this->assertTrue( $result->isGood() );
+		$this->assertEmpty( $result->getValue() );
+		$this->assertEmpty( $result->getErrors() );
+	}
 }
