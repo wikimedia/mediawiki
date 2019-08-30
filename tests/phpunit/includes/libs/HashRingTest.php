@@ -24,6 +24,32 @@ class HashRingTest extends PHPUnit\Framework\TestCase {
 		}
 	}
 
+	public function testHashRingSingleLocation() {
+		// SHA-1 based and weighted
+		$ring = new HashRing( [ 's1' => 1 ], 'sha1' );
+
+		$this->assertEquals(
+			[ 's1' => 1 ],
+			$ring->getLocationWeights(),
+			'Normalized location weights'
+		);
+
+		for ( $i = 0; $i < 5; $i++ ) {
+			$this->assertEquals(
+				's1',
+				$ring->getLocation( "hello$i" ),
+				'Items placed at proper locations'
+			);
+			$this->assertEquals(
+				[ 's1' ],
+				$ring->getLocations( "hello$i", 2 ),
+				'Items placed at proper locations'
+			);
+		}
+
+		$this->assertEquals( [], $ring->getLocations( "helloX", 0 ), "Limit of 0" );
+	}
+
 	public function testHashRingMapping() {
 		// SHA-1 based and weighted
 		$ring = new HashRing(
