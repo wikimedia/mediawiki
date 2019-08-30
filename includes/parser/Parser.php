@@ -4271,6 +4271,7 @@ class Parser {
 	 * @param bool $isMain
 	 * @return mixed|string
 	 * @private
+	 * @suppress PhanTypeInvalidDimOffset
 	 */
 	public function formatHeadings( $text, $origText, $isMain = true ) {
 		# Inhibit editsection links if requested in the page
@@ -5577,6 +5578,7 @@ class Parser {
 		Hooks::run( 'ParserMakeImageParams', [ $title, $file, &$params, $this ] );
 
 		# Linker does the rest
+		// @phan-suppress-next-line PhanTypeInvalidDimOffset
 		$time = $options['time'] ?? false;
 		$ret = Linker::makeImageLink( $this, $title, $file, $params['frame'], $params['handler'],
 			$time, $descQuery, $this->mOptions->getThumbSize() );

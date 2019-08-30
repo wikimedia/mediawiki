@@ -444,8 +444,10 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @param array $item Array of list item data containing some of a specific set of keys.
 	 * The "id", "class" and "itemtitle" keys will be used as attributes for the list item,
 	 * if "active" contains a value of true a "active" class will also be appended to class.
+	 * @phan-param array{id?:string,class?:string,itemtitle?:string,active?:bool} $item
 	 *
 	 * @param array $options
+	 * @phan-param array{tag?:string} $options
 	 *
 	 * If you want something other than a "<li>" you can pass a tag name such as
 	 * "tag" => "span" in the $options array to change the tag used.
@@ -514,6 +516,7 @@ abstract class BaseTemplate extends QuickTemplate {
 		if ( isset( $item['itemtitle'] ) ) {
 			$attrs['title'] = $item['itemtitle'];
 		}
+		// @phan-suppress-next-line PhanTypeInvalidDimOffset
 		return Html::rawElement( $options['tag'] ?? 'li', $attrs, $html );
 	}
 

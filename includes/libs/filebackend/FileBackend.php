@@ -428,7 +428,11 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *   - b) predicted operation errors occurred and 'force' was not set
 	 *
 	 * @param array $ops List of operations to execute in order
+	 * @codingStandardsIgnoreStart
+	 * @phan-param array{ignoreMissingSource?:bool,overwrite?:bool,overwriteSame?:bool,headers?:bool} $ops
 	 * @param array $opts Batch operation options
+	 * @phan-param array{force?:bool,nonLocking?:bool,nonJournaled?:bool,parallelize?:bool,bypassReadOnly?:bool,preserveCache?:bool} $opts
+	 * @codingStandardsIgnoreEnd
 	 * @return StatusValue
 	 */
 	final public function doOperations( array $ops, array $opts = [] ) {
@@ -666,7 +670,9 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * considered "OK" as long as no fatal errors occurred.
 	 *
 	 * @param array $ops Set of operations to execute
+	 * @phan-param array{ignoreMissingSource?:bool,headers?:bool} $ops
 	 * @param array $opts Batch operation options
+	 * @phan-param array{bypassReadOnly?:bool} $opts
 	 * @return StatusValue
 	 * @since 1.20
 	 */

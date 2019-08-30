@@ -73,6 +73,9 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 *      This should be configured to a reasonable size give the site traffic and the
 	 *      amount of I/O between application and cache servers that the network can handle.
 	 * @param array $params
+	 * @codingStandardsIgnoreStart
+	 * @phan-param array{logger?:Psr\Log\LoggerInterface,asyncHandler?:callable,keyspace?:string,reportDupes?:bool,syncTimeout?:int,segmentationSize?:int,segmentedValueMaxSize?:int} $params
+	 * @codingStandardsIgnoreEnd
 	 */
 	public function __construct( array $params = [] ) {
 		parent::__construct( $params );

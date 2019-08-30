@@ -262,6 +262,10 @@ class BlockLogFormatter extends LogFormatter {
 		return $params;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @suppress PhanTypeInvalidDimOffset
+	 */
 	public function formatParametersForApi() {
 		$ret = parent::formatParametersForApi();
 		if ( isset( $ret['flags'] ) ) {

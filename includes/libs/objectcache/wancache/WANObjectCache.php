@@ -578,10 +578,14 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 *   - version: Integer version number signifiying the format of the value.
 	 *      Default: null
 	 *   - walltime: How long the value took to generate in seconds. Default: 0.0
+	 * @codingStandardsIgnoreStart
+	 * @phan-param array{lag?:int,since?:int,pending?:bool,lockTSE?:int,staleTTL?:int,creating?:bool,version?:?string,walltime?:int|float} $opts
+	 * @codingStandardsIgnoreEnd
 	 * @note Options added in 1.28: staleTTL
 	 * @note Options added in 1.33: creating
 	 * @note Options added in 1.34: version, walltime
 	 * @return bool Success
+	 * @suppress PhanTypeInvalidDimOffset
 	 */
 	final public function set( $key, $value, $ttl = self::TTL_INDEFINITE, array $opts = [] ) {
 		$now = $this->getCurrentTime();
@@ -1246,11 +1250,15 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 *      most sense for values that are moderately to highly expensive to regenerate and easy
 	 *      to query for dependency timestamps. The use of "pcTTL" reduces timestamp queries.
 	 *      Default: null.
+	 * @codingStandardsIgnoreStart
+	 * @phan-param array{checkKeys?:string[],graceTTL?:int,lockTSE?:int,busyValue?:mixed,pcTTL?:int,pcGroup?:string,version?:int,minAsOf?:int,hotTTR?:int,lowTTL?:int,ageNew?:int,staleTTL?:int,touchedCallback?:callable} $opts
+	 * @codingStandardsIgnoreEnd
 	 * @return mixed Value found or written to the key
 	 * @note Options added in 1.28: version, busyValue, hotTTR, ageNew, pcGroup, minAsOf
 	 * @note Options added in 1.31: staleTTL, graceTTL
 	 * @note Options added in 1.33: touchedCallback
 	 * @note Callable type hints are not used to avoid class-autoloading
+	 * @suppress PhanTypeInvalidDimOffset
 	 */
 	final public function getWithSetCallback( $key, $ttl, $callback, array $opts = [] ) {
 		$version = $opts['version'] ?? null;
@@ -1442,6 +1450,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 				$this->setInterimValue( $key, $value, $lockTSE, $version, $walltime );
 			} else {
 				$finalSetOpts = [
+					// @phan-suppress-next-line PhanTypeInvalidDimOffset
 					'since' => $setOpts['since'] ?? $preCallbackTime,
 					'version' => $version,
 					'staleTTL' => $staleTTL,

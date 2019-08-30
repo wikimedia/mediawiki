@@ -185,6 +185,7 @@ class RenderedRevision implements SlotRenderingProvider {
 	 * @param array $hints Hints given as an associative array. Known keys:
 	 *      - 'generate-html' => bool: Whether the caller is interested in output HTML (as opposed
 	 *        to just meta-data). Default is to generate HTML.
+	 * @phan-param array{generate-html?:bool} $hints
 	 *
 	 * @return ParserOutput
 	 */
@@ -212,6 +213,7 @@ class RenderedRevision implements SlotRenderingProvider {
 	 * @param array $hints Hints given as an associative array. Known keys:
 	 *      - 'generate-html' => bool: Whether the caller is interested in output HTML (as opposed
 	 *        to just meta-data). Default is to generate HTML.
+	 * @phan-param array{generate-html?:bool} $hints
 	 *
 	 * @throws SuppressedDataException if the content is not accessible for the audience
 	 *         specified in the constructor.

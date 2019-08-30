@@ -35,7 +35,10 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	 */
 	private $rootTitle;
 
-	private $params, $cont, $redirect;
+	private $params;
+	/** @var array */
+	private $cont;
+	private $redirect;
 	private $bl_ns, $bl_from, $bl_from_ns, $bl_table, $bl_code, $bl_title, $bl_fields, $hasNS;
 
 	/**
@@ -323,6 +326,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	/**
 	 * @param ApiPageSet $resultPageSet
 	 * @return void
+	 * @suppress PhanTypeInvalidDimOffset
 	 */
 	private function run( $resultPageSet = null ) {
 		$this->params = $this->extractRequestParams( false );

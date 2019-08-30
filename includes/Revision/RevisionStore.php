@@ -2324,6 +2324,7 @@ class RevisionStore
 	 *  - tables: (string[]) to include in the `$table` to `IDatabase->select()`
 	 *  - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
 	 *  - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public function getQueryInfo( $options = [] ) {
 		$ret = [

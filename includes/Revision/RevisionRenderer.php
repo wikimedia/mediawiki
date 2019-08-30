@@ -95,6 +95,7 @@ class RevisionRenderer {
 	 *        matched the $rev and $options. This mechanism is intended as a temporary stop-gap,
 	 *        for the time until caches have been changed to store RenderedRevision states instead
 	 *        of ParserOutput objects.
+	 * @phan-param array{use-master?:bool,audience?:int,known-revision-output?:ParserOutput} $hints
 	 *
 	 * @return RenderedRevision|null The rendered revision, or null if the audience checks fails.
 	 */
@@ -108,6 +109,7 @@ class RevisionRenderer {
 			throw new InvalidArgumentException( 'Mismatching wiki ID ' . $rev->getWikiId() );
 		}
 
+		// @phan-suppress-next-line PhanTypeInvalidDimOffset
 		$audience = $hints['audience']
 			?? ( $forUser ? RevisionRecord::FOR_THIS_USER : RevisionRecord::FOR_PUBLIC );
 
@@ -121,6 +123,7 @@ class RevisionRenderer {
 			$options = ParserOptions::newCanonical( $forUser ?: 'canonical' );
 		}
 
+		// @phan-suppress-next-line PhanTypeInvalidDimOffset
 		$useMaster = $hints['use-master'] ?? false;
 
 		$dbIndex = $useMaster

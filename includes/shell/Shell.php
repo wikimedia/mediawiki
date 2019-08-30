@@ -230,6 +230,7 @@ class Shell {
 	 * @param array $options Associative array of options:
 	 *     'php': The path to the php executable
 	 *     'wrapper': Path to a PHP wrapper to handle the maintenance script
+	 * @phan-param array{php?:string,wrapper?:string} $options
 	 * @return Command
 	 */
 	public static function makeScriptCommand( $script, $parameters, $options = [] ): Command {
@@ -237,6 +238,7 @@ class Shell {
 		// Give site config file a chance to run the script in a wrapper.
 		// The caller may likely want to call wfBasename() on $script.
 		Hooks::run( 'wfShellWikiCmd', [ &$script, &$parameters, &$options ] );
+		// @phan-suppress-next-line PhanTypeInvalidDimOffset
 		$cmd = [ $options['php'] ?? $wgPhpCli ];
 		if ( isset( $options['wrapper'] ) ) {
 			$cmd[] = $options['wrapper'];

@@ -34,7 +34,9 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 	const WL_UNREAD_LIMIT = 1000;
 
+	/** @var array */
 	private $params = [];
+	/** @var array */
 	private $prop = [];
 
 	public function __construct( ApiQuery $query, $moduleName ) {

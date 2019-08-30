@@ -188,8 +188,12 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - reqTimeout      : post-connection timeout per request (seconds)
 	 *   - usePipelining   : whether to use HTTP pipelining if possible
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
+	 * @codingStandardsIgnoreStart
+	 * @phan-param array{connTimeout?:int,reqTimeout?:int,usePipelining?:bool,maxConnsPerHost?:int} $opts
+	 * @codingStandardsIgnoreEnd
 	 * @return array $reqs With response array populated for each
 	 * @throws Exception
+	 * @suppress PhanTypeInvalidDimOffset
 	 */
 	private function runMultiCurl( array $reqs, array $opts = [] ) {
 		$chm = $this->getCurlMulti();
@@ -400,6 +404,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 				$name = strtolower( $name );
 				$value = trim( $value );
 				if ( isset( $req['response']['headers'][$name] ) ) {
+					// @phan-suppress-next-line PhanTypeInvalidDimOffset
 					$req['response']['headers'][$name] .= ', ' . $value;
 				} else {
 					$req['response']['headers'][$name] = $value;
@@ -508,6 +513,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 					if ( isset( $svErrors[0]['params'][0] ) ) {
 						if ( is_numeric( $svErrors[0]['params'][0] ) ) {
 							if ( isset( $svErrors[0]['params'][1] ) ) {
+								// @phan-suppress-next-line PhanTypeInvalidDimOffset
 								$req['response']['reason'] = $svErrors[0]['params'][1];
 							}
 						} else {

@@ -46,6 +46,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	protected $sslVerifyCert = true;
 	protected $caInfo = null;
 	protected $method = "GET";
+	/** @var array */
 	protected $reqHeaders = [];
 	protected $url;
 	protected $parsedUrl;
@@ -63,6 +64,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	protected $headerList = [];
 	protected $respVersion = "0.9";
 	protected $respStatus = "200 Ok";
+	/** @var string[][] */
 	protected $respHeaders = [];
 
 	/** @var StatusValue */
@@ -86,6 +88,9 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	/**
 	 * @param string $url Url to use. If protocol-relative, will be expanded to an http:// URL
 	 * @param array $options (optional) extra params to pass (see HttpRequestFactory::create())
+	 * @codingStandardsIgnoreStart
+	 * @phan-param array{timeout?:int,connectTimeout?:int,postData?:array,proxy?:string,noProxy?:bool,sslVerifyHost?:bool,sslVerifyCert?:bool,caInfo?:string,maxRedirects?:int,followRedirects?:bool,userAgent?:string,logger?:LoggerInterface,username?:string,password?:string,originalRequest?:WebRequest|array{ip:string,userAgent:string},method?:string} $options
+	 * @codingStandardsIgnoreEnd
 	 * @param string $caller The method making this request, for profiling
 	 * @param Profiler|null $profiler An instance of the profiler for profiling, or null
 	 * @throws Exception
@@ -98,6 +103,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 		$this->url = wfExpandUrl( $url, PROTO_HTTP );
 		$this->parsedUrl = wfParseUrl( $this->url );
 
+		// @phan-suppress-next-line PhanTypeInvalidDimOffset
 		$this->logger = $options['logger'] ?? new NullLogger();
 
 		if ( !$this->parsedUrl || !Http::isValidURI( $this->url ) ) {
@@ -139,6 +145,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 				// ensure that MWHttpRequest::method is always
 				// uppercased. T38137
 				if ( $o == 'method' ) {
+					// @phan-suppress-next-line PhanTypeInvalidDimOffset
 					$options[$o] = strtoupper( $options[$o] );
 				}
 				$this->$o = $options[$o];

@@ -276,6 +276,11 @@ class ConvertExtensionToRegistration extends Maintenance {
 		$this->json[$realName] = $value;
 	}
 
+	/**
+	 * @param string $realName
+	 * @param array[] $value
+	 * @suppress PhanTypeInvalidDimOffset
+	 */
 	protected function handleResourceModules( $realName, $value ) {
 		$defaults = [];
 		$remote = $this->hasOption( 'skin' ) ? 'remoteSkinPath' : 'remoteExtPath';

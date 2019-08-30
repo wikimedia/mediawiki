@@ -97,6 +97,7 @@ class TextPassDumper extends BackupDumper {
 	protected $firstPageWritten = false;
 	protected $lastPageWritten = false;
 	protected $checkpointJustWritten = false;
+	/** @var string[] */
 	protected $checkpointFiles = [];
 
 	/**
