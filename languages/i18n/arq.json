@@ -839,7 +839,6 @@
 	"watch": "تبع",
 	"unwatch": "ما تزيدش تعس",
 	"watchlist-details": "{{PLURAL:$1||باجه وحده|باجتين|$1 باجات|$1 باجه}} في ليستت مراقبتك، (زدلها باجات النقاش).",
-	"wlshowlast": "بين آخر $1 سوايع $2 يامات",
 	"watchlist-submit": "ورّي",
 	"wlshowhideminor": "تبديلة خفيفة",
 	"wlshowhidepatr": "$1 التبديلات المعسوسه",

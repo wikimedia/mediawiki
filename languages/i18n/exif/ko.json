@@ -8,7 +8,8 @@
 			"Kwj2772",
 			"Mooozi",
 			"아라",
-			"Revi"
+			"Revi",
+			"Ykhwong"
 		]
 	},
 	"exif-imagewidth": "너비",
@@ -276,6 +277,10 @@
 	"exif-scenetype-1": "직접 촬영한 그림",
 	"exif-customrendered-0": "일반",
 	"exif-customrendered-1": "사용자 지정 처리",
+	"exif-customrendered-2": "HDR (원본 저장 안 함)",
+	"exif-customrendered-3": "HDR (원본 저장)",
+	"exif-customrendered-4": "원본 (HDR용)",
+	"exif-customrendered-6": "파노라마",
 	"exif-exposuremode-0": "자동 노출",
 	"exif-exposuremode-1": "수동 노출",
 	"exif-exposuremode-2": "자동 노출 브래킷",

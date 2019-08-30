@@ -526,7 +526,6 @@
 	"watchlist-details": "{{PLURAL:$1|$1 butʼkʼa|$1 butʼkʼa}}, skani gotxozu listʼes ren, ama oğarğaluşi butʼkʼapes va ren",
 	"wlheader-showupdated": "Sayfaları son ziyaretinizden beri değişen sayfalar '''kalın''' gösterilmiştir.",
 	"wlnote": "$3 saat $4 itibariyle son {{PLURAL:$2|bir saatte|'''$2''' saatte}} yapılan {{PLURAL:$1|son değişiklik|son '''$1''' değişiklik}} aşağıdadır.",
-	"wlshowlast": "Son $1 saati $2 ndğa göster",
 	"watchlist-options": "Gotxozu listʼeşi tercihepe",
 	"watching": "i3ʼkʼedinen...",
 	"unwatching": "var i3ʼkʼedinen...",
