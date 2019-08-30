@@ -80,6 +80,14 @@
 
 		/* Grade X */
 
+		// Open WebOS < 1.5 (Palm Pre, Palm Pixi)
+		'Mozilla/5.0 (webOS/1.0; U; en-US) AppleWebKit/525.27.1 (KHTML, like Gecko) Version/1.0 Safari/525.27.1 Pre/1.0',
+		'Mozilla/5.0 (webOS/1.4.0; U; en-US) AppleWebKit/532.2 (KHTML, like Gecko) Version/1.0 Safari/532.2 Pixi/1.1 ',
+		// SymbianOS
+		'NokiaN95_8GB-3;Mozilla/5.0 SymbianOS/9.2;U;Series60/3.1 NokiaN95_8GB-3/11.2.011 Profile/MIDP-2.0 Configuration/CLDC-1.1 AppleWebKit/413 (KHTML, like Gecko)',
+		'Nokia7610/2.0 (5.0509.0) SymbianOS/7.0s Series60/2.1 Profile/MIDP-2.0 Configuration/CLDC-1.0 ',
+		'Mozilla/5.0 (SymbianOS/9.1; U; [en]; SymbianOS/91 Series60/3.0) AppleWebKit/413 (KHTML, like Gecko) Safari/413',
+		'Mozilla/5.0 (SymbianOS/9.3; Series60/3.2 NokiaE52-2/091.003; Profile/MIDP-2.1 Configuration/CLDC-1.1 ) AppleWebKit/533.4 (KHTML, like Gecko) NokiaBrowser/7.3.1.34 Mobile Safari/533.4',
 		// Gecko
 		'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.0.7) Gecko/20060928 (Debian|Debian-1.8.0.7-1) Epiphany/2.14',
 		'Mozilla/5.0 (X11; U; Linux i686 (x86_64); en-US; rv:1.8.1.6) Gecko/20070817 IceWeasel/2.0.0.6-g2',
@@ -116,14 +124,6 @@
 		'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0)',
 		// IE Mobile 10
 		'Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; HTC; Windows Phone 8X by HTC)',
-		// Open WebOS < 1.5 (Palm Pre, Palm Pixi)
-		'Mozilla/5.0 (webOS/1.0; U; en-US) AppleWebKit/525.27.1 (KHTML, like Gecko) Version/1.0 Safari/525.27.1 Pre/1.0',
-		'Mozilla/5.0 (webOS/1.4.0; U; en-US) AppleWebKit/532.2 (KHTML, like Gecko) Version/1.0 Safari/532.2 Pixi/1.1 ',
-		// SymbianOS
-		'NokiaN95_8GB-3;Mozilla/5.0 SymbianOS/9.2;U;Series60/3.1 NokiaN95_8GB-3/11.2.011 Profile/MIDP-2.0 Configuration/CLDC-1.1 AppleWebKit/413 (KHTML, like Gecko)',
-		'Nokia7610/2.0 (5.0509.0) SymbianOS/7.0s Series60/2.1 Profile/MIDP-2.0 Configuration/CLDC-1.0 ',
-		'Mozilla/5.0 (SymbianOS/9.1; U; [en]; SymbianOS/91 Series60/3.0) AppleWebKit/413 (KHTML, like Gecko) Safari/413',
-		'Mozilla/5.0 (SymbianOS/9.3; Series60/3.2 NokiaE52-2/091.003; Profile/MIDP-2.1 Configuration/CLDC-1.1 ) AppleWebKit/533.4 (KHTML, like Gecko) NokiaBrowser/7.3.1.34 Mobile Safari/533.4',
 		// NetFront
 		'Mozilla/4.0 (compatible; Linux 2.6.10) NetFront/3.3 Kindle/1.0 (screen 600x800)',
 		'Mozilla/4.0 (compatible; Linux 2.6.22) NetFront/3.4 Kindle/2.0 (screen 824x1200; rotate)',
