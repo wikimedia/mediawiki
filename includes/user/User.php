@@ -5119,6 +5119,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool
 	 */
 	public function addNewUserLogEntryAutoCreate() {
+		wfDeprecated( __METHOD__, '1.27' );
 		$this->addNewUserLogEntry( 'autocreate' );
 
 		return true;
