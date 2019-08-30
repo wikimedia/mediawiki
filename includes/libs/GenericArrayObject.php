@@ -211,6 +211,7 @@ abstract class GenericArrayObject extends ArrayObject {
 	 * @param string $serialization
 	 *
 	 * @return array
+	 * @suppress PhanParamSignatureMismatchInternal The stub appears to be wrong
 	 */
 	public function unserialize( $serialization ) {
 		$serializationData = unserialize( $serialization );

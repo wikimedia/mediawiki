@@ -134,6 +134,7 @@ class MWMessagePack {
 						// int64
 						// pack() does not support 64-bit ints either so pack into two 32-bits
 						$p1 = pack( 'l', $value & 0xFFFFFFFF );
+						// @phan-suppress-next-line PhanTypeInvalidLeftOperandOfIntegerOp
 						$p2 = pack( 'l', ( $value >> 32 ) & 0xFFFFFFFF );
 						return self::$bigendian
 							? pack( 'Ca4a4', 0xD3, $p1, $p2 )

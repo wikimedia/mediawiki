@@ -76,6 +76,7 @@ interface IResultWrapper extends Iterator {
 
 	/**
 	 * @return stdClass
+	 * @suppress PhanParamSignatureMismatchInternal
 	 */
 	function next();
 }

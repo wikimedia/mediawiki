@@ -82,18 +82,12 @@ $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
 	"PhanCommentParamOnEmptyParamList",
 	// approximate error count: 29
 	"PhanCommentParamWithoutRealParam",
-	// approximate error count: 2
-	"PhanCompatibleNegativeStringOffset",
 	// approximate error count: 21
 	"PhanParamReqAfterOpt",
 	// approximate error count: 26
 	"PhanParamSignatureMismatch",
-	// approximate error count: 4
-	"PhanParamSignatureMismatchInternal",
 	// approximate error count: 127
 	"PhanParamTooMany",
-	// approximate error count: 2
-	"PhanTraitParentReference",
 	// approximate error count: 30
 	"PhanTypeArraySuspicious",
 	// approximate error count: 27
@@ -102,16 +96,10 @@ $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
 	"PhanTypeComparisonFromArray",
 	// approximate error count: 63
 	"PhanTypeInvalidDimOffset",
-	// approximate error count: 7
-	"PhanTypeInvalidLeftOperandOfIntegerOp",
-	// approximate error count: 2
-	"PhanTypeInvalidRightOperandOfIntegerOp",
 	// approximate error count: 154
 	"PhanTypeMismatchArgument",
 	// approximate error count: 27
 	"PhanTypeMismatchArgumentInternal",
-	// approximate error count: 2
-	"PhanTypeMismatchDimEmpty",
 	// approximate error count: 27
 	"PhanTypeMismatchDimFetch",
 	// approximate error count: 10
@@ -122,25 +110,21 @@ $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
 	"PhanTypeMismatchReturn",
 	// approximate error count: 12
 	"PhanTypeObjectUnsetDeclaredProperty",
-	// approximate error count: 9
-	"PhanTypeSuspiciousNonTraversableForeach",
-	// approximate error count: 3
-	"PhanTypeSuspiciousStringExpression",
 	// approximate error count: 22
 	"PhanUndeclaredConstant",
-	// approximate error count: 3
-	"PhanUndeclaredInvokeInCallable",
 	// approximate error count: 237
 	"PhanUndeclaredMethod",
 	// approximate error count: 846
 	"PhanUndeclaredProperty",
-	// approximate error count: 2
-	"PhanUndeclaredVariableAssignOp",
 	// approximate error count: 55
 	"PhanUndeclaredVariableDim",
 ] );
 
 $cfg['ignore_undeclared_variables_in_global_scope'] = true;
-$cfg['globals_type_map']['IP'] = 'string';
+$cfg['globals_type_map'] = array_merge( $cfg['globals_type_map'], [
+	'IP' => 'string',
+	'wgGalleryOptions' => 'array',
+	'wgDummyLanguageCodes' => 'string[]',
+] );
 
 return $cfg;

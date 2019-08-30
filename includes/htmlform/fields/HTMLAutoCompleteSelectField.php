@@ -166,6 +166,7 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 
 			$ret = $select->getHTML() . "<br />\n";
 
+			// @phan-suppress-next-line PhanTypeMismatchDimEmpty
 			$this->mClass[] = 'mw-htmlform-hide-if';
 		}
 
@@ -178,6 +179,7 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 			}
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchDimEmpty
 		$this->mClass[] = 'mw-htmlform-autocomplete';
 		$ret .= parent::getInputHTML( $valInSelect ? '' : $value );
 		$this->mClass = $oldClass;

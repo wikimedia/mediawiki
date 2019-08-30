@@ -280,8 +280,10 @@ abstract class ContentHandler {
 			}
 
 			if ( !( $handler instanceof ContentHandler ) ) {
-				throw new MWException( "$classOrCallback from \$wgContentHandlers is not " .
-					"compatible with ContentHandler" );
+				throw new MWException(
+					var_export( $classOrCallback, true ) . " from \$wgContentHandlers is not " .
+					"compatible with ContentHandler"
+				);
 			}
 		}
 

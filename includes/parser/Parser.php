@@ -413,6 +413,7 @@ class Parser {
 		if ( isset( $this->mLinkHolders ) ) {
 			unset( $this->mLinkHolders );
 		}
+		// @phan-suppress-next-line PhanTypeSuspiciousNonTraversableForeach
 		foreach ( $this as $name => $value ) {
 			unset( $this->$name );
 		}
