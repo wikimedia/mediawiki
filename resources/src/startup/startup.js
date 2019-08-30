@@ -74,7 +74,7 @@ function isCompatible( ua ) {
 		//
 		// Please extend the regex instead of adding new ones!
 		// And add a test case to startup.test.js
-		!ua.match( /MSIE 10|webOS\/1\.[0-4]|SymbianOS|NetFront|Opera Mini|S40OviBrowser|MeeGo|Android.+Glass|^Mozilla\/5\.0 .+ Gecko\/$|googleweblight|PLAYSTATION|PlayStation/ )
+		!ua.match( /MSIE 10|NetFront|Opera Mini|S40OviBrowser|MeeGo|Android.+Glass|^Mozilla\/5\.0 .+ Gecko\/$|googleweblight|PLAYSTATION|PlayStation/ )
 	);
 }
 
