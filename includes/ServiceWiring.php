@@ -53,6 +53,8 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Message\IMessageFormatterFactory;
+use MediaWiki\Message\MessageFormatterFactory;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\PreferencesFactory;
@@ -356,6 +358,11 @@ return [
 			$mainConfig->get( 'UseDatabaseMessages' ),
 			$services->getContentLanguage()
 		);
+	},
+
+	'MessageFormatterFactory' =>
+	function ( MediaWikiServices $services ) : IMessageFormatterFactory {
+		return new MessageFormatterFactory();
 	},
 
 	'MimeAnalyzer' => function ( MediaWikiServices $services ) : MimeAnalyzer {
