@@ -160,6 +160,9 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	public function destroy() {
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$scope = ScopedCallback::newScopedIgnoreUserAbort();
+
 		$this->forEachLBCallMethod( 'disable' );
 	}
 
@@ -177,6 +180,9 @@ abstract class LBFactory implements ILBFactory {
 		&$cpIndex = null,
 		&$cpClientId = null
 	) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$scope = ScopedCallback::newScopedIgnoreUserAbort();
+
 		$chronProt = $this->getChronologyProtector();
 		if ( $mode === self::SHUTDOWN_CHRONPROT_SYNC ) {
 			$this->shutdownChronologyProtector( $chronProt, $workCallback, 'sync', $cpIndex );
@@ -250,6 +256,9 @@ abstract class LBFactory implements ILBFactory {
 
 	final public function beginMasterChanges( $fname = __METHOD__ ) {
 		$this->assertTransactionRoundStage( self::ROUND_CURSORY );
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$scope = ScopedCallback::newScopedIgnoreUserAbort();
+
 		$this->trxRoundStage = self::ROUND_BEGINNING;
 		if ( $this->trxRoundId !== false ) {
 			throw new DBTransactionError(
@@ -265,6 +274,9 @@ abstract class LBFactory implements ILBFactory {
 
 	final public function commitMasterChanges( $fname = __METHOD__, array $options = [] ) {
 		$this->assertTransactionRoundStage( self::ROUND_CURSORY );
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$scope = ScopedCallback::newScopedIgnoreUserAbort();
+
 		$this->trxRoundStage = self::ROUND_COMMITTING;
 		if ( $this->trxRoundId !== false && $this->trxRoundId !== $fname ) {
 			throw new DBTransactionError(
@@ -272,8 +284,6 @@ abstract class LBFactory implements ILBFactory {
 				"$fname: transaction round '{$this->trxRoundId}' still running"
 			);
 		}
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$scope = ScopedCallback::newScopedIgnoreUserAbort(); // try to ignore client aborts
 		// Run pre-commit callbacks and suppress post-commit callbacks, aborting on failure
 		do {
 			$count = 0; // number of callbacks executed this iteration
@@ -299,6 +309,9 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	final public function rollbackMasterChanges( $fname = __METHOD__ ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$scope = ScopedCallback::newScopedIgnoreUserAbort();
+
 		$this->trxRoundStage = self::ROUND_ROLLING_BACK;
 		$this->trxRoundId = false;
 		// Actually perform the rollback on all master DB connections and revert DBO_TRX
@@ -673,6 +686,9 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	public function closeAll() {
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$scope = ScopedCallback::newScopedIgnoreUserAbort();
+
 		$this->forEachLBCallMethod( 'closeAll' );
 	}
 
