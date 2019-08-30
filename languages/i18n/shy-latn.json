@@ -1214,7 +1214,6 @@
 	"watchlist-details": "{{PLURAL:$1|$1 n usebter|$1 n isebtar}} di tebdart-ik n uḍfaṛ (akked isebtar n usqerdec).",
 	"wlheader-showupdated": "Isebtar ttubeddlen segwasmi tkecmeḍ tikelt taneggarut ttbanen-d s uḍris <strong>aberbuz</strong>.",
 	"wlnote": "Ddaw-a {{PLURAL:$1|ad twaliḍ abeddel aneggaru yettwagen|ad twaliḍ <strong>$1</strong> n ibeddilen ineggura yettwagen}} deg {{PLURAL:$2| usrag aneggaru|di <strong>$2</strong> n yisragen ineggura}}, arama d $3, $4.",
-	"wlshowlast": "Sken wid n $1 n isragen ineggura, wid n $2 n wussan ineggura",
 	"watchlist-submit": "Ssken",
 	"watchlist-options": "Iɣewwaṛen n tebdart n uḍfaṛ",
 	"enotif_reset": "Rcem akk isebtar mmeẓren",

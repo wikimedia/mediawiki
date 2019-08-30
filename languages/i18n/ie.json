@@ -799,7 +799,6 @@
 	"wlheader-enotif": "Li notification de e-mail es permisset.",
 	"wlheader-showupdated": "Págines quel hat esset mutat desde tui ultim visitation es monstrat in '''nigri'''",
 	"wlnote": "Infra {{PLURAL:$1|es li ultim change|es li ultim '''$1''' changes}} in li ultim {{PLURAL:$2|hor|'''$2''' hores}}.",
-	"wlshowlast": "Monstra ultim $1 hores $2 dies",
 	"wlshowhidecategorization": "categorisation de págines",
 	"watchlist-options": "Optiones de liste de págines vigilat",
 	"watching": "Vigilant...",
