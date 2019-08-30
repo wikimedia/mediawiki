@@ -36,6 +36,7 @@ class LogEventsList extends ContextSource {
 
 	/**
 	 * @var array
+	 * @deprecated since 1.34, no longer used.
 	 */
 	protected $mDefaultQuery;
 
