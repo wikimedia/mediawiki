@@ -158,6 +158,8 @@ use MediaWiki\MediaWikiServices;
  * @see https://www.mediawiki.org/wiki/Localisation
  *
  * @since 1.17
+ * @phan-file-suppress PhanCommentParamOnEmptyParamList Cannot make variadic due to HHVM bug,
+ *   T191668#5263929
  */
 class Message implements MessageSpecifier, Serializable {
 	/** Use message text as-is */

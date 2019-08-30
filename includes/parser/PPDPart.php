@@ -33,6 +33,9 @@ class PPDPart {
 	//   commentEnd   Past-the-end input pointer for the last comment encountered
 	//   visualEnd    Past-the-end input pointer for the end of the accumulator minus comments
 
+	/**
+	 * @param string $out
+	 */
 	public function __construct( $out = '' ) {
 		$this->out = $out;
 	}

@@ -209,6 +209,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 	/**
 	 * @param string|null $subPage
+	 * @suppress PhanTypeObjectUnsetDeclaredProperty
 	 */
 	public function execute( $subPage ) {
 		if ( $this->mPosted ) {

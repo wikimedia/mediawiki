@@ -305,7 +305,7 @@ abstract class File implements IDBAccessObject {
 	 * @return string
 	 */
 	public function getName() {
-		if ( !isset( $this->name ) ) {
+		if ( $this->name === null ) {
 			$this->assertRepoDefined();
 			$this->name = $this->repo->getNameFromTitle( $this->title );
 		}
@@ -1521,7 +1521,7 @@ abstract class File implements IDBAccessObject {
 	 * @return string
 	 */
 	function getHashPath() {
-		if ( !isset( $this->hashPath ) ) {
+		if ( $this->hashPath === null ) {
 			$this->assertRepoDefined();
 			$this->hashPath = $this->repo->getHashPath( $this->getName() );
 		}

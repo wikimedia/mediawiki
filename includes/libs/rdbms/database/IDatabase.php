@@ -959,7 +959,7 @@ interface IDatabase {
 	 * @param array $valuedata
 	 * @param string $valuename
 	 *
-	 * @return string
+	 * @return array|string
 	 * @deprecated Since 1.33
 	 */
 	public function aggregateValue( $valuedata, $valuename = 'value' );

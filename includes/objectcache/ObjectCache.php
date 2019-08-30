@@ -319,6 +319,7 @@ class ObjectCache {
 	 * @param array $params
 	 * @return WANObjectCache
 	 * @throws UnexpectedValueException
+	 * @suppress PhanTypeMismatchReturn
 	 */
 	public static function newWANCacheFromParams( array $params ) {
 		global $wgCommandLineMode, $wgSecretKey;

@@ -354,7 +354,7 @@ class AllMessagesTablePager extends TablePager {
 	}
 
 	function getQueryInfo() {
-		return '';
+		return [];
 	}
 
 }

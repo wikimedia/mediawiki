@@ -59,6 +59,7 @@ class PPDStackElement_Hash extends PPDStackElement {
 				} else {
 					$accum[++$lastIndex] = '|';
 				}
+				// @phan-suppress-next-line PhanTypeMismatchForeach
 				foreach ( $part->out as $node ) {
 					if ( is_string( $node ) && is_string( $accum[$lastIndex] ) ) {
 						$accum[$lastIndex] .= $node;

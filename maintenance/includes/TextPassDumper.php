@@ -207,6 +207,7 @@ TEXT
 	 * This function resets $this->lb and closes all connections on it.
 	 *
 	 * @throws MWException
+	 * @suppress PhanTypeObjectUnsetDeclaredProperty
 	 */
 	function rotateDb() {
 		// Cleaning up old connections
