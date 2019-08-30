@@ -50,6 +50,19 @@ class TextFormatterTest extends MediaWikiTestCase {
 		$result = $formatter->format( $mv );
 		$this->assertSame( 'test a, 100 bps $2', $result );
 	}
+
+	public function testFormatMessage() {
+		$formatter = $this->createTextFormatter( 'en' );
+		$mv = ( new MessageValue( 'test' ) )
+			->params( new MessageValue( 'test2', [ 'a', 'b' ] ) )
+			->commaListParams( [
+				'x',
+				new ScalarParam( ParamType::BITRATE, 100 ),
+				new MessageValue( 'test3', [ 'c', new MessageValue( 'test4', [ 'd', 'e' ] ) ] )
+			] );
+		$result = $formatter->format( $mv );
+		$this->assertSame( 'test test2 a b x, 100 bps, test3 c test4 d e', $result );
+	}
 }
 
 class FakeMessage extends Message {
