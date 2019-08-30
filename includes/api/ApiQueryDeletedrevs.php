@@ -368,7 +368,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			if ( !isset( $pageMap[$row->ar_namespace][$row->ar_title] ) ) {
 				$pageID = $newPageID++;
 				$pageMap[$row->ar_namespace][$row->ar_title] = $pageID;
-				$a['revisions'] = [ $rev ];
+				$a = [ 'revisions' => [ $rev ] ];
 				ApiResult::setIndexedTagName( $a['revisions'], 'rev' );
 				$title = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 				ApiQueryBase::addTitleInfo( $a, $title );

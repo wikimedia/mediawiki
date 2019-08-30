@@ -1040,7 +1040,7 @@ class Linker {
 		}
 
 		$userTalkPage = new TitleValue( NS_USER_TALK, strtr( $userText, ' ', '_' ) );
-		$moreLinkAttribs['class'] = 'mw-usertoollinks-talk';
+		$moreLinkAttribs = [ 'class' => 'mw-usertoollinks-talk' ];
 
 		return self::link( $userTalkPage,
 			wfMessage( 'talkpagelinktext' )->escaped(),
@@ -1062,7 +1062,7 @@ class Linker {
 		}
 
 		$blockPage = SpecialPage::getTitleFor( 'Block', $userText );
-		$moreLinkAttribs['class'] = 'mw-usertoollinks-block';
+		$moreLinkAttribs = [ 'class' => 'mw-usertoollinks-block' ];
 
 		return self::link( $blockPage,
 			wfMessage( 'blocklink' )->escaped(),
@@ -1083,7 +1083,7 @@ class Linker {
 		}
 
 		$emailPage = SpecialPage::getTitleFor( 'Emailuser', $userText );
-		$moreLinkAttribs['class'] = 'mw-usertoollinks-mail';
+		$moreLinkAttribs = [ 'class' => 'mw-usertoollinks-mail' ];
 		return self::link( $emailPage,
 			wfMessage( 'emaillink' )->escaped(),
 			$moreLinkAttribs

@@ -122,7 +122,7 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 				$dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) {
 					$dbw->insert( 'revision', self::$dummyRev, $fname );
 					$id = $dbw->insertId();
-					$toDelete[] = $id;
+					$toDelete = [ $id ];
 
 					$maxId = max(
 						(int)$dbw->selectField( 'archive', 'MAX(ar_rev_id)', [], $fname ),

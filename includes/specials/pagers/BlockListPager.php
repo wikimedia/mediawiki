@@ -74,7 +74,7 @@ class BlockListPager extends TablePager {
 	 * @param string $name
 	 * @param string $value
 	 * @return string
-	 * @suppress PhanTypeArraySuspiciousNullable
+	 * @suppress PhanTypeArraySuspiciousNullable,PhanTypeArraySuspicious
 	 */
 	function formatValue( $name, $value ) {
 		static $msg = null;
@@ -138,6 +138,7 @@ class BlockListPager extends TablePager {
 					/* User preference timezone */true
 				) );
 				if ( $this->getUser()->isAllowed( 'block' ) ) {
+					$links = [];
 					if ( $row->ipb_auto ) {
 						$links[] = $linkRenderer->makeKnownLink(
 							SpecialPage::getTitleFor( 'Unblock' ),

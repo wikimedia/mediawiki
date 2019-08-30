@@ -2955,7 +2955,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		}
 
 		$dbr = wfGetDB( DB_REPLICA );
-		$conds['page_namespace'] = $this->mNamespace;
+		$conds = [ 'page_namespace' => $this->mNamespace ];
 		$conds[] = 'page_title ' . $dbr->buildLike( $this->mDbkeyform . '/', $dbr->anyString() );
 		$options = [];
 		if ( $limit > -1 ) {

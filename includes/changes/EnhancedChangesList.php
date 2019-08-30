@@ -265,7 +265,7 @@ class EnhancedChangesList extends ChangesList {
 				$block[0], $block[0]->unpatrolled, $block[0]->watched );
 		}
 
-		$queryParams['curid'] = $curId;
+		$queryParams = [ 'curid' => $curId ];
 
 		# Sub-entries
 		$lines = [];
@@ -632,7 +632,7 @@ class EnhancedChangesList extends ChangesList {
 	protected function recentChangesBlockLine( $rcObj ) {
 		$data = [];
 
-		$query['curid'] = $rcObj->mAttribs['rc_cur_id'];
+		$query = [ 'curid' => $rcObj->mAttribs['rc_cur_id'] ];
 
 		$type = $rcObj->mAttribs['rc_type'];
 		$logType = $rcObj->mAttribs['rc_log_type'];

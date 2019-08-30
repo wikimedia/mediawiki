@@ -61,6 +61,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 *      invalidation uses logical TTLs, invalidation uses etag/timestamp
 	 *      validation against the DB, or merge() is used to handle races.
 	 * @param array $params
+	 * @phan-param array{caches:array<int,array|BagOStuff>,replication:string} $params
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct( $params ) {

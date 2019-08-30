@@ -77,6 +77,7 @@ class ApiPageSet extends ApiBase {
 	private $mGeneratorData = []; // [ns][dbkey] => data array
 	private $mFakePageId = -1;
 	private $mCacheMode = 'public';
+	/** @var array */
 	private $mRequestedPageFields = [];
 	/** @var int */
 	private $mDefaultNamespace = NS_MAIN;

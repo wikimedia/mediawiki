@@ -727,6 +727,7 @@ abstract class SearchEngine {
 	 * @param string $profileType the type of profiles
 	 * @param User|null $user the user requesting the list of profiles
 	 * @return array|null the list of profiles or null if none available
+	 * @phan-return null|array{name:string,desc-message:string,default?:bool}
 	 */
 	public function getProfiles( $profileType, User $user = null ) {
 		return null;

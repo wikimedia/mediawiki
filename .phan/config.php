@@ -82,8 +82,6 @@ $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
 	"PhanParamReqAfterOpt",
 	// approximate error count: 110
 	"PhanParamTooMany",
-	// approximate error count: 63
-	"PhanTypeArraySuspicious",
 	// approximate error count: 88
 	"PhanTypeInvalidDimOffset",
 	// approximate error count: 60
@@ -94,8 +92,6 @@ $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
 	"PhanUndeclaredMethod",
 	// approximate error count: 752
 	"PhanUndeclaredProperty",
-	// approximate error count: 53
-	"PhanUndeclaredVariableDim",
 ] );
 
 $cfg['ignore_undeclared_variables_in_global_scope'] = true;
@@ -103,6 +99,20 @@ $cfg['globals_type_map'] = array_merge( $cfg['globals_type_map'], [
 	'IP' => 'string',
 	'wgGalleryOptions' => 'array',
 	'wgDummyLanguageCodes' => 'string[]',
+	'wgNamespaceProtection' => 'array<string,string|string[]>',
+	'wgNamespaceAliases' => 'array<string,int>',
+	'wgLockManagers' => 'array[]',
+	'wgForeignFileRepos' => 'array[]',
+	'wgDefaultUserOptions' => 'array',
+	'wgSkipSkins' => 'string[]',
+	'wgLogTypes' => 'string[]',
+	'wgLogNames' => 'array<string,string>',
+	'wgLogHeaders' => 'array<string,string>',
+	'wgLogActionsHandlers' => 'array<string,class-string>',
+	'wgPasswordPolicy' => 'array<string,array<string,string|array>>',
+	'wgVirtualRestConfig' => 'array<string,array>',
+	'wgWANObjectCaches' => 'array[]',
+	'wgLocalInterwikis' => 'string[]',
 ] );
 
 return $cfg;

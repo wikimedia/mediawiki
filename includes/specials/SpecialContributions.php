@@ -364,6 +364,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		$linkRenderer = $sp->getLinkRenderer();
 
+		$tools = [];
 		# No talk pages for IP ranges.
 		if ( !$isRange ) {
 			$tools['user-talk'] = $linkRenderer->makeLink(

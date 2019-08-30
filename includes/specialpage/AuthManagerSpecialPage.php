@@ -509,7 +509,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * Generates a HTMLForm descriptor array from a set of authentication requests.
 	 * @param AuthenticationRequest[] $requests
 	 * @param string $action AuthManager action name (one of the AuthManager::ACTION_* constants)
-	 * @return array
+	 * @return array[]
 	 */
 	protected function getAuthFormDescriptor( $requests, $action ) {
 		$fieldInfo = AuthenticationRequest::mergeFieldInfo( $requests );
@@ -600,7 +600,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	/**
 	 * Adds a sequential tabindex starting from 1 to all form elements. This way the user can
 	 * use the tab key to traverse the form without having to step through all links and such.
-	 * @param array &$formDescriptor
+	 * @param array[] &$formDescriptor
 	 */
 	protected function addTabIndex( &$formDescriptor ) {
 		$i = 1;

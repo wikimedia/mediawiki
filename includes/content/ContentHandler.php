@@ -1260,6 +1260,7 @@ abstract class ContentHandler {
 	 * @since 1.28
 	 */
 	public function getFieldsForSearchIndex( SearchEngine $engine ) {
+		$fields = [];
 		$fields['category'] = $engine->makeSearchFieldMapping(
 			'category',
 			SearchIndexField::INDEX_TYPE_TEXT

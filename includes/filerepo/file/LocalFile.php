@@ -344,6 +344,7 @@ class LocalFile extends File {
 				$this->loadFromDB( self::READ_NORMAL );
 
 				$fields = $this->getCacheFields( '' );
+				$cacheVal = [];
 				$cacheVal['fileExists'] = $this->fileExists;
 				if ( $this->fileExists ) {
 					foreach ( $fields as $field ) {

@@ -4166,7 +4166,7 @@ ERROR;
 	 *  - 'legacy-name' (optional): short name for backwards-compatibility
 	 * @param array $checked Array of checkbox name (matching the 'legacy-name') => bool,
 	 *   where bool indicates the checked status of the checkbox
-	 * @return array
+	 * @return array[]
 	 */
 	public function getCheckboxesDefinition( $checked ) {
 		$checkboxes = [];

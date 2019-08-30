@@ -540,6 +540,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		if ( $this->options->get( 'EnableEmail' ) ) {
 			if ( $canViewPrivateInfo ) {
+				$helpMessages = [];
 				$helpMessages[] = $this->options->get( 'EmailConfirmToEdit' )
 						? 'prefs-help-email-required'
 						: 'prefs-help-email';

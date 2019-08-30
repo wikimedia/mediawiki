@@ -247,6 +247,7 @@ class SpecialUndelete extends SpecialPage {
 
 		$out->enableOOUI();
 
+		$fields = [];
 		$fields[] = new OOUI\ActionFieldLayout(
 			new OOUI\TextInputWidget( [
 				'name' => 'prefix',
@@ -768,6 +769,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		if ( $this->mAllowed && ( $haveRevisions || $haveFiles ) ) {
+			$fields = [];
 			$fields[] = new OOUI\Layout( [
 				'content' => new OOUI\HtmlSnippet( $this->msg( 'undeleteextrahelp' )->parseAsBlock() )
 			] );

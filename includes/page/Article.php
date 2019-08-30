@@ -1935,6 +1935,7 @@ class Article implements Page {
 		);
 		$options = Xml::listDropDownOptionsOoui( $options );
 
+		$fields = [];
 		$fields[] = new OOUI\FieldLayout(
 			new OOUI\DropdownInputWidget( [
 				'name' => 'wpDeleteReasonList',

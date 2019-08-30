@@ -18,7 +18,7 @@ class UpdateExtensionJsonSchema extends Maintenance {
 		}
 
 		$json = FormatJson::decode( file_get_contents( $filename ), true );
-		if ( $json === null ) {
+		if ( !is_array( $json ) ) {
 			$this->fatalError( "Error: Invalid JSON" );
 		}
 

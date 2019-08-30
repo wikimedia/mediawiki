@@ -285,11 +285,9 @@ class MovePageForm extends UnlistedSpecialPage {
 			# Is the title semi-protected?
 			if ( $this->oldTitle->isSemiProtected( 'move' ) ) {
 				$noticeMsg = 'semiprotectedpagemovewarning';
-				$classes[] = 'mw-textarea-sprotected';
 			} else {
 				# Then it must be protected based on static groups (regular)
 				$noticeMsg = 'protectedpagemovewarning';
-				$classes[] = 'mw-textarea-protected';
 			}
 			$out->addHTML( "<div class='mw-warning-with-logexcerpt'>\n" );
 			$out->addWikiMsg( $noticeMsg );

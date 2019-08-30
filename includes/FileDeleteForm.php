@@ -261,6 +261,7 @@ class FileDeleteForm {
 		);
 		$options = Xml::listDropDownOptionsOoui( $options );
 
+		$fields = [];
 		$fields[] = new OOUI\LabelWidget( [ 'label' => new OOUI\HtmlSnippet(
 			$this->prepareMessage( 'filedelete-intro' ) ) ]
 		);

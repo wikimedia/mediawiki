@@ -242,6 +242,10 @@ class HTMLForm extends ContextSource {
 
 	protected $mUseMultipart = false;
 	protected $mHiddenFields = [];
+	/**
+	 * @var array[]
+	 * @phan-var array<array{name:string,value:string,label-message?:string,label?:string,label-raw?:string,id?:string,attribs?:array,flags?:string|string[],framed?:bool}>
+	 */
 	protected $mButtons = [];
 
 	protected $mWrapperLegend = false;
@@ -983,6 +987,9 @@ class HTMLForm extends ContextSource {
 	 *  - attribs: (array, optional) Additional HTML attributes.
 	 *  - flags: (string|string[], optional) OOUI flags.
 	 *  - framed: (boolean=true, optional) OOUI framed attribute.
+	 * @codingStandardsIgnoreStart
+	 * @phan-param array{name:string,value:string,label-message?:string,label?:string,label-raw?:string,id?:string,attribs?:array,flags?:string|string[],framed?:bool} $data
+	 * @codingStandardsIgnoreEnd
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	public function addButton( $data ) {

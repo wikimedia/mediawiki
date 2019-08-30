@@ -378,6 +378,7 @@ class ApiEditPage extends ApiBase {
 		$status = $ep->attemptSave( $result );
 		$wgRequest = $oldRequest;
 
+		$r = [];
 		switch ( $status->value ) {
 			case EditPage::AS_HOOK_ERROR:
 			case EditPage::AS_HOOK_ERROR_EXPECTED:

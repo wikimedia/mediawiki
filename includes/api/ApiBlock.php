@@ -141,6 +141,7 @@ class ApiBlock extends ApiBase {
 		}
 
 		list( $target, /*...*/ ) = SpecialBlock::getTargetAndType( $params['user'] );
+		$res = [];
 		$res['user'] = $params['user'];
 		$res['userID'] = $target instanceof User ? $target->getId() : 0;
 
