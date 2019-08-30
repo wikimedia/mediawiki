@@ -369,6 +369,7 @@ class ZipDirectoryReader {
 	 * Read the central directory at the given location
 	 * @param int $offset
 	 * @param int $size
+	 * @suppress PhanTypeInvalidLeftOperandOfIntegerOp
 	 */
 	function readCentralDirectory( $offset, $size ) {
 		$block = $this->getBlock( $offset, $size );

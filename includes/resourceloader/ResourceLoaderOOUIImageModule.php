@@ -98,7 +98,7 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 		if ( $module ) {
 			$dataPath = $this->getThemeImagesPath( $theme, $module );
 			if ( !$dataPath ) {
-				return false;
+				return [];
 			}
 		} else {
 			// Backwards-compatibility for things that probably shouldn't have used this class...
@@ -137,6 +137,7 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 					$dataPath->getRemoteBasePath()
 				);
 			} else {
+				// @phan-suppress-next-line PhanTypeSuspiciousStringExpression
 				$path = dirname( $dataPath ) . '/' . $path;
 			}
 		};

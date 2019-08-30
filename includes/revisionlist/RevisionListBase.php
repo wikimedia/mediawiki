@@ -107,6 +107,7 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 	/**
 	 * Move the iteration pointer to the next list item, and return it.
 	 * @return Revision
+	 * @suppress PhanParamSignatureMismatchInternal
 	 */
 	public function next() {
 		$this->res->next();

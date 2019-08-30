@@ -149,6 +149,7 @@ class MSCompoundFileReader {
 			$this->error( 'invalid signature: ' . bin2hex( $this->header['header_signature'] ),
 				self::ERROR_INVALID_SIGNATURE );
 		}
+		// @phan-suppress-next-line PhanTypeInvalidRightOperandOfIntegerOp
 		$this->sectorLength = 1 << $this->header['sector_shift'];
 		$this->readDifat();
 		$this->readDirectory();
@@ -177,11 +178,22 @@ class MSCompoundFileReader {
 		);
 	}
 
+	/**
+	 * @param int $offset
+	 * @param int[] $struct
+	 * @return array
+	 */
 	private function unpackOffset( $offset, $struct ) {
 		$block = $this->readOffset( $offset, array_sum( $struct ) );
 		return $this->unpack( $block, 0, $struct );
 	}
 
+	/**
+	 * @param string $block
+	 * @param int $offset
+	 * @param int[] $struct
+	 * @return array
+	 */
 	private function unpack( $block, $offset, $struct ) {
 		$data = [];
 		foreach ( $struct as $key => $length ) {
@@ -220,6 +232,7 @@ class MSCompoundFileReader {
 	}
 
 	private function readSector( $sectorId ) {
+		// @phan-suppress-next-line PhanTypeInvalidRightOperandOfIntegerOp
 		return $this->readOffset( $this->sectorOffset( $sectorId ), 1 << $this->header['sector_shift'] );
 	}
 

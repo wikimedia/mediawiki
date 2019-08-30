@@ -282,6 +282,7 @@ class GIFMetadataExtractor {
 		}
 		$buf = unpack( 'C', $data )[1];
 		$bpp = ( $buf & 7 ) + 1;
+		// @phan-suppress-next-line PhanTypeInvalidLeftOperandOfIntegerOp
 		$buf >>= 7;
 
 		$have_map = $buf & 1;

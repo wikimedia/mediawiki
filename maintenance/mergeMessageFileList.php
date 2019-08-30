@@ -157,6 +157,7 @@ class MergeMessageFileList extends Maintenance {
 require_once RUN_MAINTENANCE_IF_MAIN;
 
 $queue = [];
+'@phan-var string[][] $mmfl';
 foreach ( $mmfl['setupFiles'] as $fileName ) {
 	if ( strval( $fileName ) === '' ) {
 		continue;

@@ -171,6 +171,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 			}
 			// check if $func exists in the global scope
 			if ( function_exists( $func ) ) {
+				// @phan-suppress-next-next-line PhanTypeSuspiciousStringExpression
 				$this->fatalError( "Error: Global functions cannot be converted to JSON. " .
 					"Please move your extension function ($func) into a class."
 				);

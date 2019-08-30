@@ -1133,7 +1133,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 *
 	 * There is light processing to simplify core maintenance.
 	 * @param array $definition
-	 * @phan-param array<int,array{class:string}> $definition
+	 * @phan-param array<int,array{class:string,filters:array}> $definition
 	 */
 	protected function registerFiltersFromDefinitions( array $definition ) {
 		$autoFillPriority = -1;

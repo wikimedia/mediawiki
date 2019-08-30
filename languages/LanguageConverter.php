@@ -996,6 +996,7 @@ class LanguageConverter {
 	 */
 	private function reloadTables() {
 		if ( $this->mTables ) {
+			// @phan-suppress-next-line PhanTypeObjectUnsetDeclaredProperty
 			unset( $this->mTables );
 		}
 

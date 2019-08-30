@@ -1250,6 +1250,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @param int|int[] $namespaces,... The namespaces to check for
 	 * @return bool
 	 * @since 1.19
+	 * @suppress PhanCommentParamOnEmptyParamList Cannot make variadic due to HHVM bug, T191668#5263929
 	 */
 	public function inNamespaces( /* ... */ ) {
 		$namespaces = func_get_args();

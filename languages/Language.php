@@ -467,6 +467,7 @@ class Language {
 
 	/**
 	 * Reduce memory usage
+	 * @suppress PhanTypeSuspiciousNonTraversableForeach
 	 */
 	function __destruct() {
 		foreach ( $this as $name => $value ) {
@@ -524,6 +525,7 @@ class Language {
 			}
 
 			# Sometimes a language will be localised but not actually exist on this wiki.
+			// @phan-suppress-next-line PhanTypeMismatchForeach
 			foreach ( $this->namespaceNames as $key => $text ) {
 				if ( !isset( $validNamespaces[$key] ) ) {
 					unset( $this->namespaceNames[$key] );

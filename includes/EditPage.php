@@ -1127,7 +1127,7 @@ class EditPage {
 	 * @return string|null
 	 */
 	protected function importContentFormData( &$request ) {
-		return; // Don't do anything, EditPage already extracted wpTextbox1
+		return null; // Don't do anything, EditPage already extracted wpTextbox1
 	}
 
 	/**

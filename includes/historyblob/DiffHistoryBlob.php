@@ -333,7 +333,7 @@ class DiffHistoryBlob implements HistoryBlob {
 		// addItem() doesn't work if mItems is partially filled from mDiffs
 		$this->mFrozen = true;
 		$info = unserialize( gzinflate( $this->mCompressed ) );
-		unset( $this->mCompressed );
+		$this->mCompressed = null;
 
 		if ( !$info ) {
 			// Empty object

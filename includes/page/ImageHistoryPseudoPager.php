@@ -77,7 +77,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 	}
 
 	public function getQueryInfo() {
-		return false;
+		return [];
 	}
 
 	/**
