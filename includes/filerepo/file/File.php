@@ -2042,7 +2042,7 @@ abstract class File implements IDBAccessObject {
 	 * Get the URL of the image description page. May return false if it is
 	 * unknown or not applicable.
 	 *
-	 * @return string
+	 * @return string|bool
 	 */
 	function getDescriptionUrl() {
 		if ( $this->repo ) {

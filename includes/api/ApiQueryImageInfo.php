@@ -387,9 +387,13 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$vals = [
 			ApiResult::META_TYPE => 'assoc',
 		];
+
+		// Some information will be unavailable if the file does not exist. T221812
+		$exists = $file->exists();
+
 		// Timestamp is shown even if the file is revdelete'd in interface
 		// so do same here.
-		if ( isset( $prop['timestamp'] ) ) {
+		if ( isset( $prop['timestamp'] ) && $exists ) {
 			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $file->getTimestamp() );
 		}
 
@@ -408,7 +412,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$user = isset( $prop['user'] );
 		$userid = isset( $prop['userid'] );
 
-		if ( $user || $userid ) {
+		if ( ( $user || $userid ) && $exists ) {
 			if ( $file->isDeleted( File::DELETED_USER ) ) {
 				$vals['userhidden'] = true;
 				$anyHidden = true;
@@ -428,7 +432,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 		// This is shown even if the file is revdelete'd in interface
 		// so do same here.
-		if ( isset( $prop['size'] ) || isset( $prop['dimensions'] ) ) {
+		if ( ( isset( $prop['size'] ) || isset( $prop['dimensions'] ) ) && $exists ) {
 			$vals['size'] = (int)$file->getSize();
 			$vals['width'] = (int)$file->getWidth();
 			$vals['height'] = (int)$file->getHeight();
@@ -449,7 +453,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$pcomment = isset( $prop['parsedcomment'] );
 		$comment = isset( $prop['comment'] );
 
-		if ( $pcomment || $comment ) {
+		if ( ( $pcomment || $comment ) && $exists ) {
 			if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
 				$vals['commenthidden'] = true;
 				$anyHidden = true;
@@ -500,7 +504,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 
 		if ( $url ) {
-			if ( $file->exists() ) {
+			if ( $exists ) {
 				if ( !is_null( $thumbParams ) ) {
 					$mto = $file->transform( $thumbParams );
 					self::$transformCount++;
@@ -529,8 +533,6 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					}
 				}
 				$vals['url'] = wfExpandUrl( $file->getFullUrl(), PROTO_CURRENT );
-			} else {
-				$vals['filemissing'] = true;
 			}
 			$vals['descriptionurl'] = wfExpandUrl( $file->getDescriptionUrl(), PROTO_CURRENT );
 
@@ -540,11 +542,15 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			}
 		}
 
-		if ( $sha1 ) {
+		if ( !$exists ) {
+			$vals['filemissing'] = true;
+		}
+
+		if ( $sha1 && $exists ) {
 			$vals['sha1'] = Wikimedia\base_convert( $file->getSha1(), 36, 16, 40 );
 		}
 
-		if ( $meta ) {
+		if ( $meta && $exists ) {
 			Wikimedia\suppressWarnings();
 			$metadata = unserialize( $file->getMetadata() );
 			Wikimedia\restoreWarnings();
@@ -553,12 +559,12 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			}
 			$vals['metadata'] = $metadata ? static::processMetaData( $metadata, $result ) : null;
 		}
-		if ( $commonmeta ) {
+		if ( $commonmeta && $exists ) {
 			$metaArray = $file->getCommonMetaArray();
 			$vals['commonmetadata'] = $metaArray ? static::processMetaData( $metaArray, $result ) : [];
 		}
 
-		if ( $extmetadata ) {
+		if ( $extmetadata && $exists ) {
 			// Note, this should return an array where all the keys
 			// start with a letter, and all the values are strings.
 			// Thus there should be no issue with format=xml.
@@ -575,11 +581,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			$vals['extmetadata'] = $extmetaArray;
 		}
 
-		if ( $mime ) {
+		if ( $mime && $exists ) {
 			$vals['mime'] = $file->getMimeType();
 		}
 
-		if ( $mediatype ) {
+		if ( $mediatype && $exists ) {
 			$vals['mediatype'] = $file->getMediaType();
 		}
 
@@ -589,7 +595,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			$vals['archivename'] = $file->getArchiveName();
 		}
 
-		if ( $bitdepth ) {
+		if ( $bitdepth && $exists ) {
 			$vals['bitdepth'] = $file->getBitDepth();
 		}
 

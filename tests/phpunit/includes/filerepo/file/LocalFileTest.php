@@ -193,4 +193,26 @@ class LocalFileTest extends MediaWikiTestCase {
 			'wfLocalFile() returns LocalFile for valid Titles'
 		);
 	}
+
+	/**
+	 * @covers File::getUser
+	 */
+	public function testGetUserForNonExistingFile() {
+		$this->assertSame( 'Unknown user', $this->file_hl0->getUser() );
+		$this->assertSame( 0, $this->file_hl0->getUser( 'id' ) );
+	}
+
+	/**
+	 * @covers File::getUser
+	 */
+	public function testDescriptionShortUrlForNonExistingFile() {
+		$this->assertNull( $this->file_hl0->getDescriptionShortUrl() );
+	}
+
+	/**
+	 * @covers File::getUser
+	 */
+	public function testDescriptionTextForNonExistingFile() {
+		$this->assertFalse( $this->file_hl0->getDescriptionText() );
+	}
 }
