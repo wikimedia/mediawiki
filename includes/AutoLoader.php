@@ -134,6 +134,7 @@ class AutoLoader {
 			'MediaWiki\\Edit\\' => __DIR__ . '/edit/',
 			'MediaWiki\\EditPage\\' => __DIR__ . '/editpage/',
 			'MediaWiki\\Linker\\' => __DIR__ . '/linker/',
+			'MediaWiki\\Message\\' => __DIR__ . '/Message',
 			'MediaWiki\\Permissions\\' => __DIR__ . '/Permissions/',
 			'MediaWiki\\Preferences\\' => __DIR__ . '/preferences/',
 			'MediaWiki\\Rest\\' => __DIR__ . '/Rest/',
@@ -143,6 +144,7 @@ class AutoLoader {
 			'MediaWiki\\Sparql\\' => __DIR__ . '/sparql/',
 			'MediaWiki\\Storage\\' => __DIR__ . '/Storage/',
 			'MediaWiki\\Tidy\\' => __DIR__ . '/tidy/',
+			'Wikimedia\\Message\\' => __DIR__ . '/libs/Message/',
 			'Wikimedia\\ParamValidator\\' => __DIR__ . '/libs/ParamValidator/',
 			'Wikimedia\\Services\\' => __DIR__ . '/libs/services/',
 		];
