@@ -209,20 +209,16 @@ class LocalRepo extends FileRepo {
 
 				$setOpts += Database::getCacheSetOptions( $dbr );
 
-				if ( $title instanceof Title ) {
-					$row = $dbr->selectRow(
-						[ 'page', 'redirect' ],
-						[ 'rd_namespace', 'rd_title' ],
-						[
-							'page_namespace' => $title->getNamespace(),
-							'page_title' => $title->getDBkey(),
-							'rd_from = page_id'
-						],
-						$method
-					);
-				} else {
-					$row = false;
-				}
+				$row = $dbr->selectRow(
+					[ 'page', 'redirect' ],
+					[ 'rd_namespace', 'rd_title' ],
+					[
+						'page_namespace' => $title->getNamespace(),
+						'page_title' => $title->getDBkey(),
+						'rd_from = page_id'
+					],
+					$method
+				);
 
 				return ( $row && $row->rd_namespace == NS_FILE )
 					? Title::makeTitle( $row->rd_namespace, $row->rd_title )->getDBkey()
