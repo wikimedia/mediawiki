@@ -698,7 +698,6 @@
 	"watchlist-details": "{{PLURAL:$1|$1 halaman}} to dputari he'awasiyamu (duhengiyo halaman lo'iya).",
 	"wlheader-showupdated": "Halaman ma loboli'a to pulitiyo nila'omu mowali bilohela to <strong>bold</strong>.",
 	"wlnote": "To tibawa botiye {{PLURAL:$1|loboli'a|<strong>$1</strong> loboli'a}} pulitiyo to delomo {{PLURAL:$2|jam|<strong>$2</strong> jam}}, per $3, $4.",
-	"wlshowlast": "Popobilohe $1 jam $2 dulahe pulitiyo",
 	"watchlist-options": "Tulawoto daputari he'awasiyalo",
 	"enotif_reset": "Tuwoti nga'amila halaman ma nila'o",
 	"dellogpage": "Log loluluto",

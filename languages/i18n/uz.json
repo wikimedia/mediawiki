@@ -1056,7 +1056,6 @@
 	"watchlist-details": "Sizning kuzatuv roʻyxatingizda hozirda {{PLURAL:$1|bitta sahifa|$1ta sahifa}} mavjud (munozara sahifalarini hisobga olmaganda).",
 	"wlheader-showupdated": "Siz oxirgi marta kirganingizdan keyin oʻzgartirilgan sahifalar '''qalin''' yozuv bilan ajratib koʻrsatilgan.",
 	"wlnote": "Quyida oxirgi $2 soat ichida sodir boʻlgan {{PLURAL:$1|oxirgi oʻzgarish|<strong>$1</strong> ta oʻzgarishlar}} koʻrsatilgan. $3, $4.",
-	"wlshowlast": "Oxirgi $1 soatdagi $2 kundagi tahrirlarni koʻrsatish",
 	"watchlist-submit": "Koʻrsat",
 	"watchlist-options": "Kuzatuv roʻyxati moslamalari",
 	"watching": "Kuzatish...",

@@ -835,7 +835,6 @@
 	"watchlist-details": "{{PLURAL:$1|$1 paj sa|$1}} annan zòt lis di swivi (plis paj-ya di diskisyon).",
 	"wlheader-showupdated": "Paj-ya ki modifyé dipi zòt dannyé vizit sa afiché an <strong>gra</strong>.",
 	"wlnote": "Anba {{PLURAL:$1|ka figiré dannyé modifikasyon-an ki éfègtchwé|ka figiré <strong>$1</strong> dannyé modifikasyon-yan ki éfègtchwé}} douran {{PLURAL:$2|dannyé lò-a|<strong>$2</strong> dannyé lò-ya}}, jouk $3, $4.",
-	"wlshowlast": "Montré dannyé $1 lò, dannyé $2 jou",
 	"watchlist-options": "Opsyon di lis di swivi",
 	"enotif_reset": "Marké tout paj-ya kou vizité",
 	"dellogpage": "Journal dé siprésyon",

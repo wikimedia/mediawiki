@@ -418,7 +418,6 @@
 	"watchlist-details": "{{PLURAL:$1|$1 bibol}} noonook Djinanglist (wer waangkin bibol).",
 	"wlheader-showupdated": "Bibol yallabel wallak kura noonook djinang balgup be yong-a bura <strong>moorn</strong>",
 	"wlnote": "Ngardal  {{PLURAL:$1|yuttock wallak|nidja yuttock <strong>$1</strong> wallak}} il yuttock {{PLURAL:$2|hour|<strong>$2</strong> hours}}, nun o-luk $3, $4.",
-	"wlshowlast": "Yong-a yeye $1 hours $2 biryt",
 	"watchlist-options": "djinanglist nidj-ka-nidja",
 	"enotif_reset": "djiler yennar bibol nyiny",
 	"dellogpage": "Barranginy boonadairn",

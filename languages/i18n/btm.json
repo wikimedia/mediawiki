@@ -485,7 +485,6 @@
 	"watchlist-details": "{{PLURAL:$1|$1 page is|$1 alaman}} i pamataanmu (dot alaman parkobaran).",
 	"wlheader-showupdated": "Laman na madung iubah sian parpudi Amu ligi, ipatidaon i huruf <strong> naapal </strong>.",
 	"wlnote": "Itoruon {{PLURAL:$1|is the last change|ima parpudi<strong>$1</strong> parubaan}} i {{PLURAL:$2|hour|<strong>$2</strong> jom}}, i $3, $4.",
-	"wlshowlast": "Patidaon parpudi $1 jom $2 ari",
 	"watchlist-options": "Opsi pamataan",
 	"enotif_reset": "Tandai sude alaman namadung iligi",
 	"dellogpage": "Apus log",
