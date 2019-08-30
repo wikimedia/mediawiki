@@ -41,7 +41,7 @@ class MemoryFileBackend extends FileBackendStore {
 	}
 
 	public function isPathUsableInternal( $storagePath ) {
-		return true;
+		return ( $this->resolveHashKey( $storagePath ) !== null );
 	}
 
 	protected function doCreateInternal( array $params ) {
@@ -148,7 +148,7 @@ class MemoryFileBackend extends FileBackendStore {
 	protected function doGetFileStat( array $params ) {
 		$src = $this->resolveHashKey( $params['src'] );
 		if ( $src === null ) {
-			return false; // invalid path
+			return self::$RES_ERROR; // invalid path
 		}
 
 		if ( isset( $this->files[$src] ) ) {
@@ -158,15 +158,17 @@ class MemoryFileBackend extends FileBackendStore {
 			];
 		}
 
-		return false;
+		return self::$RES_ABSENT;
 	}
 
 	protected function doGetLocalCopyMulti( array $params ) {
 		$tmpFiles = []; // (path => TempFSFile)
 		foreach ( $params['srcs'] as $srcPath ) {
 			$src = $this->resolveHashKey( $srcPath );
-			if ( $src === null || !isset( $this->files[$src] ) ) {
-				$fsFile = null;
+			if ( $src === null ) {
+				$fsFile = self::$RES_ERROR;
+			} elseif ( !isset( $this->files[$src] ) ) {
+				$fsFile = self::$RES_ABSENT;
 			} else {
 				// Create a new temporary file with the same extension...
 				$ext = FileBackend::extensionFromPath( $src );
@@ -174,7 +176,7 @@ class MemoryFileBackend extends FileBackendStore {
 				if ( $fsFile ) {
 					$bytes = file_put_contents( $fsFile->getPath(), $this->files[$src]['data'] );
 					if ( $bytes !== strlen( $this->files[$src]['data'] ) ) {
-						$fsFile = null;
+						$fsFile = self::$RES_ERROR;
 					}
 				}
 			}

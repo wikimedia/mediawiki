@@ -34,21 +34,15 @@ class CreateFileOp extends FileOp {
 
 	protected function doPrecheck( array &$predicates ) {
 		$status = StatusValue::newGood();
-		// Check if the source data is too big
-		if ( strlen( $this->getParam( 'content' ) ) > $this->backend->maxFileSizeInternal() ) {
-			$status->fatal( 'backend-fail-maxsize',
-				$this->params['dst'], $this->backend->maxFileSizeInternal() );
-			$status->fatal( 'backend-fail-create', $this->params['dst'] );
 
-			return $status;
-			// Check if a file can be placed/changed at the destination
-		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
-			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
-			$status->fatal( 'backend-fail-create', $this->params['dst'] );
+		// Check if the source data is too big
+		$maxBytes = $this->backend->maxFileSizeInternal();
+		if ( strlen( $this->getParam( 'content' ) ) > $maxBytes ) {
+			$status->fatal( 'backend-fail-maxsize', $this->params['dst'], $maxBytes );
 
 			return $status;
 		}
-		// Check if destination file exists
+		// Check if an incompatible destination file exists
 		$status->merge( $this->precheckDestExistence( $predicates ) );
 		$this->params['dstExists'] = $this->destExists; // see FileBackendStore::setFileCache()
 		if ( $status->isOK() ) {
@@ -61,12 +55,14 @@ class CreateFileOp extends FileOp {
 	}
 
 	protected function doAttempt() {
-		if ( !$this->overwriteSameCase ) {
+		if ( $this->overwriteSameCase ) {
+			$status = StatusValue::newGood(); // nothing to do
+		} else {
 			// Create the file at the destination
-			return $this->backend->createInternal( $this->setFlags( $this->params ) );
+			$status = $this->backend->createInternal( $this->setFlags( $this->params ) );
 		}
 
-		return StatusValue::newGood();
+		return $status;
 	}
 
 	protected function getSourceSha1Base36() {

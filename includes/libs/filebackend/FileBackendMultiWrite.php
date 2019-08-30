@@ -248,7 +248,7 @@ class FileBackendMultiWrite extends FileBackend {
 			$masterBackend = $this->backends[$this->masterIndex];
 			$masterParams = $this->substOpPaths( $params, $masterBackend );
 			$masterStat = $masterBackend->getFileStat( $masterParams );
-			if ( $masterStat === self::UNKNOWN ) {
+			if ( $masterStat === self::STAT_ERROR ) {
 				$status->fatal( 'backend-fail-stat', $path );
 				continue;
 			}
@@ -357,7 +357,7 @@ class FileBackendMultiWrite extends FileBackend {
 			$masterParams = $this->substOpPaths( $params, $masterBackend );
 			$masterPath = $masterParams['src'];
 			$masterStat = $masterBackend->getFileStat( $masterParams );
-			if ( $masterStat === self::UNKNOWN ) {
+			if ( $masterStat === self::STAT_ERROR ) {
 				$status->fatal( 'backend-fail-stat', $path );
 				$this->logger->error( "$fname: file '$masterPath' is not available" );
 				continue;
@@ -379,7 +379,7 @@ class FileBackendMultiWrite extends FileBackend {
 				$cloneParams = $this->substOpPaths( $params, $cloneBackend );
 				$clonePath = $cloneParams['src'];
 				$cloneStat = $cloneBackend->getFileStat( $cloneParams );
-				if ( $cloneStat === self::UNKNOWN ) {
+				if ( $cloneStat === self::STAT_ERROR ) {
 					$status->fatal( 'backend-fail-stat', $path );
 					$this->logger->error( "$fname: file '$clonePath' is not available" );
 					continue;
@@ -501,7 +501,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 *
 	 * @param array|string $paths List of paths or single string path
 	 * @param FileBackendStore $backend
-	 * @return array|string
+	 * @return string[]|string
 	 */
 	protected function substPaths( $paths, FileBackendStore $backend ) {
 		return preg_replace(
@@ -515,12 +515,13 @@ class FileBackendMultiWrite extends FileBackend {
 	 * Substitute the backend of internal storage paths with the proxy backend's name
 	 *
 	 * @param array|string $paths List of paths or single string path
-	 * @return array|string
+	 * @param FileBackendStore $backend internal storage backend
+	 * @return string[]|string
 	 */
-	protected function unsubstPaths( $paths ) {
+	protected function unsubstPaths( $paths, FileBackendStore $backend ) {
 		return preg_replace(
-			'!^mwstore://([^/]+)!',
-			StringUtils::escapeRegexReplacement( "mwstore://{$this->name}" ),
+			'!^mwstore://' . preg_quote( $backend->getName(), '!' ) . '/!',
+			StringUtils::escapeRegexReplacement( "mwstore://{$this->name}/" ),
 			$paths // string or array
 		);
 	}
@@ -674,7 +675,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 		$contents = []; // (path => FSFile) mapping using the proxy backend's name
 		foreach ( $contentsM as $path => $data ) {
-			$contents[$this->unsubstPaths( $path )] = $data;
+			$contents[$this->unsubstPaths( $path, $this->backends[$index] )] = $data;
 		}
 
 		return $contents;
@@ -709,7 +710,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 		$fsFiles = []; // (path => FSFile) mapping using the proxy backend's name
 		foreach ( $fsFilesM as $path => $fsFile ) {
-			$fsFiles[$this->unsubstPaths( $path )] = $fsFile;
+			$fsFiles[$this->unsubstPaths( $path, $this->backends[$index] )] = $fsFile;
 		}
 
 		return $fsFiles;
@@ -723,7 +724,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 		$tempFiles = []; // (path => TempFSFile) mapping using the proxy backend's name
 		foreach ( $tempFilesM as $path => $tempFile ) {
-			$tempFiles[$this->unsubstPaths( $path )] = $tempFile;
+			$tempFiles[$this->unsubstPaths( $path, $this->backends[$index] )] = $tempFile;
 		}
 
 		return $tempFiles;
@@ -784,8 +785,14 @@ class FileBackendMultiWrite extends FileBackend {
 		$paths = $this->backends[$this->masterIndex]->getPathsToLockForOpsInternal( $fileOps );
 		// Get the paths under the proxy backend's name
 		$pbPaths = [
-			LockManager::LOCK_UW => $this->unsubstPaths( $paths[LockManager::LOCK_UW] ),
-			LockManager::LOCK_EX => $this->unsubstPaths( $paths[LockManager::LOCK_EX] )
+			LockManager::LOCK_UW => $this->unsubstPaths(
+				$paths[LockManager::LOCK_UW],
+				$this->backends[$this->masterIndex]
+			),
+			LockManager::LOCK_EX => $this->unsubstPaths(
+				$paths[LockManager::LOCK_EX],
+				$this->backends[$this->masterIndex]
+			)
 		];
 
 		// Actually acquire the locks

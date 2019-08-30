@@ -137,7 +137,7 @@ class FSFileBackend extends FileBackendStore {
 			}
 		}
 
-		return null;
+		return null; // invalid
 	}
 
 	/**
@@ -576,25 +576,23 @@ class FSFileBackend extends FileBackendStore {
 	protected function doGetFileStat( array $params ) {
 		$source = $this->resolveToFSPath( $params['src'] );
 		if ( $source === null ) {
-			return false; // invalid storage path
+			return self::$RES_ERROR; // invalid storage path
 		}
 
 		$this->trapWarnings(); // don't trust 'false' if there were errors
 		$stat = is_file( $source ) ? stat( $source ) : false; // regular files only
 		$hadError = $this->untrapWarnings();
 
-		if ( $stat ) {
+		if ( is_array( $stat ) ) {
 			$ct = new ConvertibleTimestamp( $stat['mtime'] );
 
 			return [
 				'mtime' => $ct->getTimestamp( TS_MW ),
 				'size' => $stat['size']
 			];
-		} elseif ( !$hadError ) {
-			return false; // file does not exist
-		} else {
-			return self::UNKNOWN; // failure
 		}
+
+		return $hadError ? self::$RES_ERROR : self::$RES_ABSENT;
 	}
 
 	protected function doClearCache( array $paths = null ) {
@@ -610,7 +608,7 @@ class FSFileBackend extends FileBackendStore {
 		$exists = is_dir( $dir );
 		$hadError = $this->untrapWarnings();
 
-		return $hadError ? self::UNKNOWN : $exists;
+		return $hadError ? self::$RES_ERROR : $exists;
 	}
 
 	/**
@@ -624,18 +622,27 @@ class FSFileBackend extends FileBackendStore {
 		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
+
+		$this->trapWarnings(); // don't trust 'false' if there were errors
 		$exists = is_dir( $dir );
-		if ( !$exists ) {
-			$this->logger->warning( __METHOD__ . "() given directory does not exist: '$dir'\n" );
+		$isReadable = $exists ? is_readable( $dir ) : false;
+		$hadError = $this->untrapWarnings();
+
+		if ( $isReadable ) {
+			return new FSFileBackendDirList( $dir, $params );
+		} elseif ( $exists ) {
+			$this->logger->warning( __METHOD__ . ": given directory is unreadable: '$dir'" );
+
+			return self::$RES_ERROR; // bad permissions?
+		} elseif ( $hadError ) {
+			$this->logger->warning( __METHOD__ . ": given directory was unreachable: '$dir'" );
+
+			return self::$RES_ERROR;
+		} else {
+			$this->logger->info( __METHOD__ . ": given directory does not exist: '$dir'" );
 
 			return []; // nothing under this dir
-		} elseif ( !is_readable( $dir ) ) {
-			$this->logger->warning( __METHOD__ . "() given directory is unreadable: '$dir'\n" );
-
-			return self::UNKNOWN; // bad permissions?
 		}
-
-		return new FSFileBackendDirList( $dir, $params );
 	}
 
 	/**
@@ -649,18 +656,27 @@ class FSFileBackend extends FileBackendStore {
 		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
+
+		$this->trapWarnings(); // don't trust 'false' if there were errors
 		$exists = is_dir( $dir );
-		if ( !$exists ) {
-			$this->logger->warning( __METHOD__ . "() given directory does not exist: '$dir'\n" );
+		$isReadable = $exists ? is_readable( $dir ) : false;
+		$hadError = $this->untrapWarnings();
+
+		if ( $exists && $isReadable ) {
+			return new FSFileBackendFileList( $dir, $params );
+		} elseif ( $exists ) {
+			$this->logger->warning( __METHOD__ . ": given directory is unreadable: '$dir'\n" );
+
+			return self::$RES_ERROR; // bad permissions?
+		} elseif ( $hadError ) {
+			$this->logger->warning( __METHOD__ . ": given directory was unreachable: '$dir'\n" );
+
+			return self::$RES_ERROR;
+		} else {
+			$this->logger->info( __METHOD__ . ": given directory does not exist: '$dir'\n" );
 
 			return []; // nothing under this dir
-		} elseif ( !is_readable( $dir ) ) {
-			$this->logger->warning( __METHOD__ . "() given directory is unreadable: '$dir'\n" );
-
-			return self::UNKNOWN; // bad permissions?
 		}
-
-		return new FSFileBackendFileList( $dir, $params );
 	}
 
 	protected function doGetLocalReferenceMulti( array $params ) {
@@ -668,10 +684,21 @@ class FSFileBackend extends FileBackendStore {
 
 		foreach ( $params['srcs'] as $src ) {
 			$source = $this->resolveToFSPath( $src );
-			if ( $source === null || !is_file( $source ) ) {
-				$fsFiles[$src] = null; // invalid path or file does not exist
-			} else {
+			if ( $source === null ) {
+				$fsFiles[$src] = self::$RES_ERROR; // invalid path
+				continue;
+			}
+
+			$this->trapWarnings(); // don't trust 'false' if there were errors
+			$isFile = is_file( $source ); // regular files only
+			$hadError = $this->untrapWarnings();
+
+			if ( $isFile ) {
 				$fsFiles[$src] = new FSFile( $source );
+			} elseif ( $hadError ) {
+				$fsFiles[$src] = self::$RES_ERROR;
+			} else {
+				$fsFiles[$src] = self::$RES_ABSENT;
 			}
 		}
 
@@ -684,26 +711,31 @@ class FSFileBackend extends FileBackendStore {
 		foreach ( $params['srcs'] as $src ) {
 			$source = $this->resolveToFSPath( $src );
 			if ( $source === null ) {
-				$tmpFiles[$src] = null; // invalid path
+				$tmpFiles[$src] = self::$RES_ERROR; // invalid path
+				continue;
+			}
+			// Create a new temporary file with the same extension...
+			$ext = FileBackend::extensionFromPath( $src );
+			$tmpFile = $this->tmpFileFactory->newTempFSFile( 'localcopy_', $ext );
+			if ( !$tmpFile ) {
+				$tmpFiles[$src] = self::$RES_ERROR;
+				continue;
+			}
+
+			$tmpPath = $tmpFile->getPath();
+			// Copy the source file over the temp file
+			$this->trapWarnings();
+			$isFile = is_file( $source ); // regular files only
+			$copySuccess = $isFile ? copy( $source, $tmpPath ) : false;
+			$hadError = $this->untrapWarnings();
+
+			if ( $copySuccess ) {
+				$this->chmod( $tmpPath );
+				$tmpFiles[$src] = $tmpFile;
+			} elseif ( $hadError ) {
+				$tmpFiles[$src] = self::$RES_ERROR; // copy failed
 			} else {
-				// Create a new temporary file with the same extension...
-				$ext = FileBackend::extensionFromPath( $src );
-				$tmpFile = $this->tmpFileFactory->newTempFSFile( 'localcopy_', $ext );
-				if ( !$tmpFile ) {
-					$tmpFiles[$src] = null;
-				} else {
-					$tmpPath = $tmpFile->getPath();
-					// Copy the source file over the temp file
-					$this->trapWarnings();
-					$ok = copy( $source, $tmpPath );
-					$this->untrapWarnings();
-					if ( !$ok ) {
-						$tmpFiles[$src] = null;
-					} else {
-						$this->chmod( $tmpPath );
-						$tmpFiles[$src] = $tmpFile;
-					}
-				}
+				$tmpFiles[$src] = self::$RES_ABSENT;
 			}
 		}
 
