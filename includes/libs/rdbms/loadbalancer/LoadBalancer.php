@@ -1498,6 +1498,11 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function closeAll() {
+		if ( $this->ownerId === null ) {
+			/** @noinspection PhpUnusedLocalVariableInspection */
+			$scope = ScopedCallback::newScopedIgnoreUserAbort();
+		}
+
 		$fname = __METHOD__;
 		$this->forEachOpenConnection( function ( IDatabase $conn ) use ( $fname ) {
 			$host = $conn->getServer();
@@ -1544,6 +1549,10 @@ class LoadBalancer implements ILoadBalancer {
 	public function finalizeMasterChanges( $fname = __METHOD__, $owner = null ) {
 		$this->assertOwnership( $fname, $owner );
 		$this->assertTransactionRoundStage( [ self::ROUND_CURSORY, self::ROUND_FINALIZED ] );
+		if ( $this->ownerId === null ) {
+			/** @noinspection PhpUnusedLocalVariableInspection */
+			$scope = ScopedCallback::newScopedIgnoreUserAbort();
+		}
 
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
 		// Loop until callbacks stop adding callbacks on other connections
@@ -1569,6 +1578,10 @@ class LoadBalancer implements ILoadBalancer {
 	public function approveMasterChanges( array $options, $fname = __METHOD__, $owner = null ) {
 		$this->assertOwnership( $fname, $owner );
 		$this->assertTransactionRoundStage( self::ROUND_FINALIZED );
+		if ( $this->ownerId === null ) {
+			/** @noinspection PhpUnusedLocalVariableInspection */
+			$scope = ScopedCallback::newScopedIgnoreUserAbort();
+		}
 
 		$limit = $options['maxWriteDuration'] ?? 0;
 
@@ -1609,6 +1622,10 @@ class LoadBalancer implements ILoadBalancer {
 			);
 		}
 		$this->assertTransactionRoundStage( self::ROUND_CURSORY );
+		if ( $this->ownerId === null ) {
+			/** @noinspection PhpUnusedLocalVariableInspection */
+			$scope = ScopedCallback::newScopedIgnoreUserAbort();
+		}
 
 		// Clear any empty transactions (no writes/callbacks) from the implicit round
 		$this->flushMasterSnapshots( $fname );
@@ -1628,11 +1645,12 @@ class LoadBalancer implements ILoadBalancer {
 	public function commitMasterChanges( $fname = __METHOD__, $owner = null ) {
 		$this->assertOwnership( $fname, $owner );
 		$this->assertTransactionRoundStage( self::ROUND_APPROVED );
+		if ( $this->ownerId === null ) {
+			/** @noinspection PhpUnusedLocalVariableInspection */
+			$scope = ScopedCallback::newScopedIgnoreUserAbort();
+		}
 
 		$failures = [];
-
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$scope = ScopedCallback::newScopedIgnoreUserAbort(); // try to ignore client aborts
 
 		$restore = ( $this->trxRoundId !== false );
 		$this->trxRoundId = false;
@@ -1675,6 +1693,10 @@ class LoadBalancer implements ILoadBalancer {
 				null,
 				"Transaction should be in the callback stage (not '{$this->trxRoundStage}')"
 			);
+		}
+		if ( $this->ownerId === null ) {
+			/** @noinspection PhpUnusedLocalVariableInspection */
+			$scope = ScopedCallback::newScopedIgnoreUserAbort();
 		}
 
 		$oldStage = $this->trxRoundStage;
@@ -1746,6 +1768,10 @@ class LoadBalancer implements ILoadBalancer {
 				"Transaction should be in the callback stage (not '{$this->trxRoundStage}')"
 			);
 		}
+		if ( $this->ownerId === null ) {
+			/** @noinspection PhpUnusedLocalVariableInspection */
+			$scope = ScopedCallback::newScopedIgnoreUserAbort();
+		}
 
 		$e = null;
 
@@ -1764,6 +1790,10 @@ class LoadBalancer implements ILoadBalancer {
 
 	public function rollbackMasterChanges( $fname = __METHOD__, $owner = null ) {
 		$this->assertOwnership( $fname, $owner );
+		if ( $this->ownerId === null ) {
+			/** @noinspection PhpUnusedLocalVariableInspection */
+			$scope = ScopedCallback::newScopedIgnoreUserAbort();
+		}
 
 		$restore = ( $this->trxRoundId !== false );
 		$this->trxRoundId = false;
