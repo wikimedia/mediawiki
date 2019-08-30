@@ -889,10 +889,24 @@ class ApiBaseTest extends ApiTestCase {
 				[],
 				[ 'internalmode' => false ],
 			],
-			'Limit with parseLimits false' => [
+			'Limit with parseLimits false (numeric)' => [
 				'100',
 				[ ApiBase::PARAM_TYPE => 'limit' ],
-				'100',
+				100,
+				[],
+				[ 'parseLimits' => false ],
+			],
+			'Limit with parseLimits false (max)' => [
+				'max',
+				[ ApiBase::PARAM_TYPE => 'limit' ],
+				'max',
+				[],
+				[ 'parseLimits' => false ],
+			],
+			'Limit with parseLimits false (invalid)' => [
+				'kitten',
+				[ ApiBase::PARAM_TYPE => 'limit' ],
+				0,
 				[],
 				[ 'parseLimits' => false ],
 			],
@@ -901,7 +915,6 @@ class ApiBaseTest extends ApiTestCase {
 				[
 					ApiBase::PARAM_TYPE => 'limit',
 					ApiBase::PARAM_MAX2 => 10,
-					ApiBase::PARAM_ISMULTI => true,
 				],
 				new MWException(
 					'Internal error in ApiBase::getParameterFromSettings: ' .
@@ -913,7 +926,6 @@ class ApiBaseTest extends ApiTestCase {
 				[
 					ApiBase::PARAM_TYPE => 'limit',
 					ApiBase::PARAM_MAX => 10,
-					ApiBase::PARAM_ISMULTI => true,
 				],
 				new MWException(
 					'Internal error in ApiBase::getParameterFromSettings: ' .
