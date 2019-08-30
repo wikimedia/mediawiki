@@ -164,9 +164,28 @@ class CompositeBlock extends AbstractBlock {
 
 	/**
 	 * @inheritDoc
+	 *
+	 * Determines whether the CompositeBlock applies to a right by checking
+	 * whether the original blocks apply to that right. Each block can report
+	 * true (applies), false (does not apply) or null (unsure). Then:
+	 * - If any original blocks apply, this block applies
+	 * - If no original blocks apply but any are unsure, this block is unsure
+	 * - If all blocks do not apply, this block does not apply
 	 */
 	public function appliesToRight( $right ) {
-		return $this->methodReturnsValue( __FUNCTION__, true, $right );
+		$isUnsure = false;
+
+		foreach ( $this->originalBlocks as $block ) {
+			$appliesToRight = $block->appliesToRight( $right );
+
+			if ( $appliesToRight ) {
+				return true;
+			} elseif ( $appliesToRight === null ) {
+				$isUnsure = true;
+			}
+		}
+
+		return $isUnsure ? null : false;
 	}
 
 	/**
