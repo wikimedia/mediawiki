@@ -94,12 +94,12 @@ class RecentChange implements Taggable {
 	public $mExtra = [];
 
 	/**
-	 * @var Title
+	 * @var Title|false
 	 */
 	public $mTitle = false;
 
 	/**
-	 * @var User
+	 * @var User|false
 	 */
 	private $mPerformer = false;
 

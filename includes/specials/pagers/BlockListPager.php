@@ -70,6 +70,12 @@ class BlockListPager extends TablePager {
 		return $headers;
 	}
 
+	/**
+	 * @param string $name
+	 * @param string $value
+	 * @return string
+	 * @suppress PhanTypeArraySuspiciousNullable
+	 */
 	function formatValue( $name, $value ) {
 		static $msg = null;
 		if ( $msg === null ) {

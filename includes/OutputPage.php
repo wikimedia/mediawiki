@@ -44,7 +44,7 @@ use Wikimedia\WrappedStringList;
  * @todo document
  */
 class OutputPage extends ContextSource {
-	/** @var array Should be private. Used with addMeta() which adds "<meta>" */
+	/** @var string[][] Should be private. Used with addMeta() which adds "<meta>" */
 	protected $mMetatags = [];
 
 	/** @var array */

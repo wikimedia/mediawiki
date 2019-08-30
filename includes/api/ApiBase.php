@@ -274,7 +274,7 @@ abstract class ApiBase extends ContextSource {
 	/** @var array Maps extension paths to info arrays */
 	private static $extensionInfo = null;
 
-	/** @var int[][][] Cache for self::filterIDs() */
+	/** @var stdClass[][] Cache for self::filterIDs() */
 	private static $filterIDsCache = [];
 
 	/** $var array Map of web UI block messages to corresponding API messages and codes */

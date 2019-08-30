@@ -337,12 +337,14 @@ abstract class AuthenticationRequest {
 				}
 
 				$options['sensitive'] = !empty( $options['sensitive'] );
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
+				$type = $options['type'];
 
 				if ( !array_key_exists( $name, $merged ) ) {
 					$merged[$name] = $options;
-				} elseif ( $merged[$name]['type'] !== $options['type'] ) {
+				} elseif ( $merged[$name]['type'] !== $type ) {
 					throw new \UnexpectedValueException( "Field type conflict for \"$name\", " .
-						"\"{$merged[$name]['type']}\" vs \"{$options['type']}\""
+						"\"{$merged[$name]['type']}\" vs \"$type\""
 					);
 				} else {
 					if ( isset( $options['options'] ) ) {

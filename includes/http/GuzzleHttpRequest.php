@@ -41,6 +41,7 @@ class GuzzleHttpRequest extends MWHttpRequest {
 
 	protected $handler = null;
 	protected $sink = null;
+	/** @var array */
 	protected $guzzleOptions = [ 'http_errors' => false ];
 
 	/**

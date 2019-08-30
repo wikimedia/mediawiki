@@ -148,6 +148,7 @@ class SearchFormWidget {
 	 * @param string $profile The currently selected profile
 	 * @param string $term The user provided search terms
 	 * @return string HTML
+	 * @suppress PhanTypeArraySuspiciousNullable
 	 */
 	protected function profileTabsHtml( $profile, $term ) {
 		$bareterm = $this->startsWithImage( $term )

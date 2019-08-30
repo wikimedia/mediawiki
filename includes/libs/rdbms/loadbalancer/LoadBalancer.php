@@ -68,7 +68,9 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var DatabaseDomain Local DB domain ID and default for selectDB() calls */
 	private $localDomain;
 
-	/** @var Database[][][] Map of (connection category => server index => IDatabase[]) */
+	/**
+	 * @var IDatabase[][][]|Database[][][] Map of (connection category => server index => IDatabase[])
+	 */
 	private $conns;
 
 	/** @var array[] Map of (server index => server config array) */
@@ -99,7 +101,7 @@ class LoadBalancer implements ILoadBalancer {
 	private $tableAliases = [];
 	/** @var string[] Map of (index alias => index) */
 	private $indexAliases = [];
-	/** @var array[] Map of (name => callable) */
+	/** @var callable[] Map of (name => callable) */
 	private $trxRecurringCallbacks = [];
 	/** @var bool[] Map of (domain => whether to use "temp tables only" mode) */
 	private $tempTablesOnlyMode = [];

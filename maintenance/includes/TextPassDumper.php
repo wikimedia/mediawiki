@@ -74,14 +74,14 @@ class TextPassDumper extends BackupDumper {
 	protected $spawnProc = false;
 
 	/**
-	 * @var bool|resource
+	 * @var resource
 	 */
-	protected $spawnWrite = false;
+	protected $spawnWrite;
 
 	/**
-	 * @var bool|resource
+	 * @var resource
 	 */
-	protected $spawnRead = false;
+	protected $spawnRead;
 
 	/**
 	 * @var bool|resource
@@ -809,11 +809,11 @@ TEXT
 		if ( $this->spawnRead ) {
 			fclose( $this->spawnRead );
 		}
-		$this->spawnRead = false;
+		$this->spawnRead = null;
 		if ( $this->spawnWrite ) {
 			fclose( $this->spawnWrite );
 		}
-		$this->spawnWrite = false;
+		$this->spawnWrite = null;
 		if ( $this->spawnErr ) {
 			fclose( $this->spawnErr );
 		}

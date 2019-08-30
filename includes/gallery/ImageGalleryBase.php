@@ -75,7 +75,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	protected $mHideBadImages;
 
 	/**
-	 * @var Parser Registered parser object for output callbacks
+	 * @var Parser|false Registered parser object for output callbacks
 	 */
 	public $mParser;
 
@@ -88,8 +88,8 @@ abstract class ImageGalleryBase extends ContextSource {
 	/** @var array */
 	protected $mAttribs = [];
 
-	/** @var bool */
-	private static $modeMapping = false;
+	/** @var array */
+	private static $modeMapping;
 
 	/**
 	 * Get a new image gallery. This is the method other callers
@@ -121,7 +121,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	}
 
 	private static function loadModes() {
-		if ( self::$modeMapping === false ) {
+		if ( self::$modeMapping === null ) {
 			self::$modeMapping = [
 				'traditional' => TraditionalImageGallery::class,
 				'nolines' => NolinesImageGallery::class,

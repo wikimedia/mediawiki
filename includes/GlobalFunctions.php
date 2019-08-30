@@ -1127,6 +1127,7 @@ function wfLogProfilingData() {
 	if ( isset( $ctx['forwarded_for'] ) ||
 		isset( $ctx['client_ip'] ) ||
 		isset( $ctx['from'] ) ) {
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		$ctx['proxy'] = $_SERVER['REMOTE_ADDR'];
 	}
 

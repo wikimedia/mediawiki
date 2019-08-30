@@ -110,12 +110,6 @@ class User implements IDBAccessObject, UserIdentity {
 		'mActorId',
 	];
 
-	/**
-	 * @var string[]
-	 * @var string[] Cached results of getAllRights()
-	 */
-	protected static $mAllRights = false;
-
 	/** Cache variables */
 	// @{
 	/** @var int */

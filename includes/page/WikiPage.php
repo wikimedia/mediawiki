@@ -68,7 +68,9 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public $mLatest = false;
 
-	/** @var PreparedEdit Map of cache fields (text, parser output, ect) for a proposed/new edit */
+	/**
+	 * @var PreparedEdit|false Map of cache fields (text, parser output, ect) for a proposed/new edit
+	 */
 	public $mPreparedEdit = false;
 
 	/**

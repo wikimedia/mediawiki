@@ -710,7 +710,7 @@ class CgzCopyTransaction {
 	/** @var RecompressTracked */
 	public $parent;
 	public $blobClass;
-	/** @var ConcatenatedGzipHistoryBlob */
+	/** @var ConcatenatedGzipHistoryBlob|false */
 	public $cgz;
 	public $referrers;
 
