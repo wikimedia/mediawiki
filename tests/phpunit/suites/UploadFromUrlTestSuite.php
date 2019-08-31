@@ -18,7 +18,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 	}
 
 	protected function setUp() {
-		global $IP, $messageMemc, $wgMemc, $wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory,
+		global $IP, $wgMemc, $wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory,
 			$wgParserCacheType, $wgNamespaceAliases, $wgNamespaceProtection;
 
 		$tmpDir = $this->getNewTempDirectory();
@@ -60,7 +60,6 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		$wgParserCacheType = CACHE_NONE;
 		DeferredUpdates::clearPendingUpdates();
 		$wgMemc = ObjectCache::getLocalClusterInstance();
-		$messageMemc = wfGetMessageCacheStorage();
 
 		RequestContext::resetMain();
 		$context = RequestContext::getMain();
