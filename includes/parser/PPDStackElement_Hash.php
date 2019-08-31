@@ -35,9 +35,11 @@ class PPDStackElement_Hash extends PPDStackElement {
 	 *
 	 * @param int|bool $openingCount
 	 * @return array
+	 * @suppress PhanParamSignatureMismatch
 	 */
 	public function breakSyntax( $openingCount = false ) {
 		if ( $this->open == "\n" ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 			$accum = array_merge( [ $this->savedPrefix ], $this->parts[0]->out );
 		} else {
 			if ( $openingCount === false ) {

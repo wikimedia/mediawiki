@@ -64,7 +64,7 @@ abstract class LogEntryBase implements LogEntry {
 	 *
 	 * @since 1.26
 	 * @param string $blob
-	 * @return array
+	 * @return array|false
 	 */
 	public static function extractParams( $blob ) {
 		return unserialize( $blob );

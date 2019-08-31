@@ -1278,7 +1278,7 @@ $wgMaxAnimatedGifArea = 1.25e7;
  *  $wgTiffThumbnailType = [ 'jpg', 'image/jpeg' ];
  * @endcode
  */
-$wgTiffThumbnailType = false;
+$wgTiffThumbnailType = [];
 
 /**
  * If rendered thumbnail files are older than this timestamp, they

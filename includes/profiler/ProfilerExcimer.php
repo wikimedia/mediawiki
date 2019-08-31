@@ -1,7 +1,9 @@
 <?php
 
 class ProfilerExcimer extends Profiler {
+	/** @var ExcimerProfiler */
 	private $cpuProf;
+	/** @var ExcimerProfiler */
 	private $realProf;
 	private $period;
 

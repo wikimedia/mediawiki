@@ -2010,6 +2010,7 @@ class Parser {
 	 */
 	public function replaceExternalLinks( $text ) {
 		$bits = preg_split( $this->mExtLinkBracketedRegex, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
+		// @phan-suppress-next-line PhanTypeComparisonFromArray See phan issue #3161
 		if ( $bits === false ) {
 			throw new MWException( "PCRE needs to be compiled with "
 				. "--enable-unicode-properties in order for MediaWiki to function" );

@@ -429,7 +429,8 @@ class Command {
 
 			// clear get_last_error without actually raising an error
 			// from https://www.php.net/manual/en/function.error-get-last.php#113518
-			// TODO replace with clear_last_error when requirements are bumped to PHP7
+			// TODO replace with error_clear_last after dropping HHVM
+			// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 			set_error_handler( function () {
 			}, 0 );
 			AtEase::suppressWarnings();

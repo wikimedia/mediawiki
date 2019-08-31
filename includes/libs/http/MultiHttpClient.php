@@ -150,7 +150,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 * This is true for the request headers and the response headers. Integer-indexed
 	 * method/URL entries will also be changed to use the corresponding string keys.
 	 *
-	 * @param array $reqs Map of HTTP request arrays
+	 * @param array[] $reqs Map of HTTP request arrays
 	 * @param array $opts
 	 *   - connTimeout     : connection timeout per request (seconds)
 	 *   - reqTimeout      : post-connection timeout per request (seconds)
@@ -182,7 +182,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *
 	 * @see MultiHttpClient::runMulti()
 	 *
-	 * @param array $reqs Map of HTTP request arrays
+	 * @param array[] $reqs Map of HTTP request arrays
 	 * @param array $opts
 	 *   - connTimeout     : connection timeout per request (seconds)
 	 *   - reqTimeout      : post-connection timeout per request (seconds)
@@ -293,6 +293,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - reqTimeout     : default request timeout
 	 * @return resource
 	 * @throws Exception
+	 * @suppress PhanTypeMismatchArgumentInternal
 	 */
 	protected function getCurlHandle( array &$req, array $opts = [] ) {
 		$ch = curl_init();
@@ -529,7 +530,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	/**
 	 * Normalize request information
 	 *
-	 * @param array $reqs the requests to normalize
+	 * @param array[] $reqs the requests to normalize
 	 */
 	private function normalizeRequests( array &$reqs ) {
 		foreach ( $reqs as &$req ) {

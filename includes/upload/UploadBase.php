@@ -1763,7 +1763,6 @@ abstract class UploadBase {
 	 * Check a block of CSS or CSS fragment for anything that looks like
 	 * it is bringing in remote code.
 	 * @param string $value a string of CSS
-	 * @param bool $propOnly only check css properties (start regex with :)
 	 * @return bool true if the CSS contains an illegal string, false if otherwise
 	 */
 	private static function checkCssFragment( $value ) {

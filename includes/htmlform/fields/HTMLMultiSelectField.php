@@ -137,6 +137,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	 * @since 1.28
 	 * @param string[] $value
 	 * @return string|OOUI\CheckboxMultiselectInputWidget
+	 * @suppress PhanParamSignatureMismatch
 	 */
 	public function getInputOOUI( $value ) {
 		$this->mParent->getOutput()->addModules( 'oojs-ui-widgets' );

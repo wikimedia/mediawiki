@@ -69,6 +69,7 @@ interface PPFrame {
 	 * @param string $sep
 	 * @param int $flags
 	 * @param string|PPNode $args,...
+	 * @suppress PhanCommentParamWithoutRealParam HHVM bug T228695#5450847
 	 * @return string
 	 */
 	public function implodeWithFlags( $sep, $flags /*, ... */ );
@@ -77,6 +78,7 @@ interface PPFrame {
 	 * Implode with no flags specified
 	 * @param string $sep
 	 * @param string|PPNode $args,...
+	 * @suppress PhanCommentParamWithoutRealParam HHVM bug T228695#5450847
 	 * @return string
 	 */
 	public function implode( $sep /*, ... */ );
@@ -85,20 +87,22 @@ interface PPFrame {
 	 * Makes an object that, when expand()ed, will be the same as one obtained
 	 * with implode()
 	 * @param string $sep
-	 * @param string|PPNode $args,...
+	 * @param string|PPNode ...$args
+	 * @suppress PhanCommentParamWithoutRealParam HHVM bug T228695#5450847
 	 * @return PPNode
 	 */
-	public function virtualImplode( $sep /*, ... */ );
+	public function virtualImplode( $sep /* ...$args */ );
 
 	/**
 	 * Virtual implode with brackets
 	 * @param string $start
 	 * @param string $sep
 	 * @param string $end
-	 * @param string|PPNode $args,...
+	 * @param string|PPNode ...$args
+	 * @suppress PhanCommentParamWithoutRealParam HHVM bug T228695#5450847
 	 * @return PPNode
 	 */
-	public function virtualBracketedImplode( $start, $sep, $end /*, ... */ );
+	public function virtualBracketedImplode( $start, $sep, $end /* ...$args */ );
 
 	/**
 	 * Returns true if there are no arguments in this frame

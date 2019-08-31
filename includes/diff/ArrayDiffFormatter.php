@@ -34,6 +34,7 @@ class ArrayDiffFormatter extends DiffFormatter {
 	 * @param Diff $diff A Diff object.
 	 *
 	 * @return array[] List of associative arrays, each describing a difference.
+	 * @suppress PhanParamSignatureMismatch
 	 */
 	public function format( $diff ) {
 		$oldline = 1;

@@ -458,6 +458,7 @@ class PPFrame_DOM implements PPFrame {
 	 * @param string $sep
 	 * @param string|PPNode_DOM|DOMNode ...$args
 	 * @return array
+	 * @suppress PhanParamSignatureMismatch
 	 */
 	public function virtualImplode( $sep, ...$args ) {
 		$out = [];
@@ -489,6 +490,7 @@ class PPFrame_DOM implements PPFrame {
 	 * @param string $end
 	 * @param string|PPNode_DOM|DOMNode ...$args
 	 * @return array
+	 * @suppress PhanParamSignatureMismatch
 	 */
 	public function virtualBracketedImplode( $start, $sep, $end, ...$args ) {
 		$out = [ $start ];

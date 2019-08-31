@@ -25,7 +25,14 @@
  * Improves compression ratio by concatenating like objects before gzipping
  */
 class ConcatenatedGzipHistoryBlob implements HistoryBlob {
-	public $mVersion = 0, $mCompressed = false, $mItems = [], $mDefaultHash = '';
+	public $mVersion = 0;
+	public $mCompressed = false;
+	/**
+	 * @var array|string
+	 * @fixme Why are some methods treating it as an array, and others as a string, unconditionally?
+	 */
+	public $mItems = [];
+	public $mDefaultHash = '';
 	public $mSize = 0;
 	public $mMaxSize = 10000000;
 	public $mMaxCount = 100;

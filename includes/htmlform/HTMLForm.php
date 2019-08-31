@@ -294,6 +294,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @param string $displayFormat
 	 * @param mixed $arguments,... Additional arguments to pass to the constructor.
+	 * @suppress PhanCommentParamWithoutRealParam HHVM bug T228695#5450847
 	 * @return HTMLForm
 	 */
 	public static function factory( $displayFormat/*, $arguments...*/ ) {

@@ -126,7 +126,7 @@ class ClassCollector {
 	/**
 	 * Accepts the next token in an expect sequence
 	 *
-	 * @param array $token
+	 * @param array|string $token
 	 */
 	protected function tryEndExpect( $token ) {
 		switch ( $this->startToken[0] ) {

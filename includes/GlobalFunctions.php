@@ -2892,6 +2892,7 @@ function wfUnpack( $format, $data, $length = false ) {
 	$result = unpack( $format, $data );
 	Wikimedia\restoreWarnings();
 
+	// @phan-suppress-next-line PhanTypeComparisonFromArray Phan issue #3160
 	if ( $result === false ) {
 		// If it cannot extract the packed data.
 		throw new MWException( "unpack could not unpack binary data" );

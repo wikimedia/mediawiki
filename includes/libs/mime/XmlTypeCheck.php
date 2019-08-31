@@ -150,7 +150,8 @@ class XmlTypeCheck {
 	}
 
 	/**
-	 * @param string $fname the filename
+	 * @param string $xml
+	 * @param bool $isFile
 	 */
 	private function validateFromInput( $xml, $isFile ) {
 		$reader = new XMLReader();

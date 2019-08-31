@@ -64,7 +64,8 @@ class TextPassDumper extends BackupDumper {
 
 	protected $bufferSize = 524288; // In bytes. Maximum size to read from the stub in on go.
 
-	protected $php = "php";
+	/** @var array */
+	protected $php = [];
 	protected $spawn = false;
 
 	/**
@@ -431,7 +432,7 @@ TEXT
 
 	/**
 	 * @throws MWException Failure to parse XML input
-	 * @param string $input
+	 * @param resource $input
 	 * @return bool
 	 */
 	function readDump( $input ) {

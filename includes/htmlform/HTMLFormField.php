@@ -5,6 +5,7 @@
  * be a subclass of this.
  */
 abstract class HTMLFormField {
+	/** @var array|array[] */
 	public $mParams;
 
 	protected $mValidationCallback;

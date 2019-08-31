@@ -89,7 +89,7 @@ class Site implements Serializable {
 	 *
 	 * @since 1.21
 	 *
-	 * @var array[]
+	 * @var array[]|false
 	 */
 	protected $localIds = [];
 

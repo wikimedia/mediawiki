@@ -176,10 +176,10 @@ class ForeignAPIRepo extends FileRepo {
 
 	/**
 	 * @param string $virtualUrl
-	 * @return false
+	 * @return array
 	 */
 	function getFileProps( $virtualUrl ) {
-		return false;
+		return [];
 	}
 
 	/**

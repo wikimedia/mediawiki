@@ -62,7 +62,7 @@ class TiffHandler extends ExifBitmapHandler {
 	 * @param string $ext
 	 * @param string $mime
 	 * @param array|null $params
-	 * @return bool
+	 * @return array
 	 */
 	public function getThumbType( $ext, $mime, $params = null ) {
 		global $wgTiffThumbnailType;

@@ -125,7 +125,6 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 
 	/**
 	 * @param MediaWiki\Revision\RevisionStore $revStore
-	 * @param string $emptySha1
 	 * @return int
 	 */
 	protected function doSha1LegacyUpdates( $revStore ) {

@@ -1220,7 +1220,8 @@ class PermissionManager {
 	 * Check if user is allowed to make any action
 	 *
 	 * @param UserIdentity $user
-	 * // TODO: HHVM can't create mocks with variable params @param string ...$actions
+	 * // TODO: HHVM bug T228695#5450847 @param string ...$actions
+	 * @suppress PhanCommentParamWithoutRealParam
 	 * @return bool True if user is allowed to perform *any* of the given actions
 	 * @since 1.34
 	 */
@@ -1238,7 +1239,8 @@ class PermissionManager {
 	 * Check if user is allowed to make all actions
 	 *
 	 * @param UserIdentity $user
-	 * // TODO: HHVM can't create mocks with variable params @param string ...$actions
+	 * // TODO: HHVM bug T228695#5450847 @param string ...$actions
+	 * @suppress PhanCommentParamWithoutRealParam
 	 * @return bool True if user is allowed to perform *all* of the given actions
 	 * @since 1.34
 	 */

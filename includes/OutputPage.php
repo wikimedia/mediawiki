@@ -1820,14 +1820,10 @@ class OutputPage extends ContextSource {
 	 * @param string $text Wikitext
 	 * @param Title $title
 	 * @param bool $linestart Is this the start of a line?
-	 * @param bool $tidy Whether to use tidy.
-	 *             Setting this to false (or omitting it) is deprecated
-	 *             since 1.32; all wikitext should be tidied.
 	 * @param bool $interface Whether it is an interface message
 	 *   (for example disables conversion)
 	 * @param string $wrapperClass if not empty, wraps the output in
 	 *   a `<div class="$wrapperClass">`
-	 * @private
 	 */
 	private function addWikiTextTitleInternal(
 		$text, Title $title, $linestart, $interface, $wrapperClass = null
