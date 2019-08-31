@@ -129,6 +129,12 @@ class HashRing implements Serializable {
 			throw new InvalidArgumentException( "Invalid ring source specified." );
 		}
 
+		// Short-circuit for the common single-location case. Note that if there was only one
+		// location and it was ejected from the live ring, getLiveRing() would have error out.
+		if ( count( $this->weightByLocation ) == 1 ) {
+			return ( $limit > 0 ) ? [ $ring[0][self::KEY_LOCATION] ] : [];
+		}
+
 		// Locate the node index for this item's position on the hash ring
 		$itemIndex = $this->findNodeIndexForPosition( $this->getItemPosition( $item ), $ring );
 
