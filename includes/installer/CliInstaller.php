@@ -190,7 +190,7 @@ class CliInstaller extends Installer {
 		// PerformInstallation bails on a fatal, so make sure the last item
 		// completed before giving 'next.' Likewise, only provide back on failure
 		$lastStepStatus = end( $result );
-		if ( $lastStepStatus->isOk() ) {
+		if ( $lastStepStatus->isOK() ) {
 			return Status::newGood();
 		} else {
 			return $lastStepStatus;

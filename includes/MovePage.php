@@ -446,7 +446,7 @@ class MovePage {
 				$status = Status::newFatal( 'movepage-max-pages', $wgMaximumMovedPages );
 				$perTitleStatus[$oldSubpage->getPrefixedText()] = $status;
 				$topStatus->merge( $status );
-				$topStatus->setOk( true );
+				$topStatus->setOK( true );
 				break;
 			}
 
@@ -479,7 +479,7 @@ class MovePage {
 			}
 			$perTitleStatus[$oldSubpage->getPrefixedText()] = $status;
 			$topStatus->merge( $status );
-			$topStatus->setOk( true );
+			$topStatus->setOK( true );
 		}
 
 		$topStatus->value = $perTitleStatus;

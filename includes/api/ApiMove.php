@@ -207,7 +207,7 @@ class ApiMove extends ApiBase {
 		$mp = new MovePage( $fromTitle, $toTitle );
 		$result =
 			$mp->moveSubpagesIfAllowed( $this->getUser(), $reason, !$noredirect, $changeTags );
-		if ( !$result->isOk() ) {
+		if ( !$result->isOK() ) {
 			// This means the whole thing failed
 			return [ 'errors' => $this->getErrorFormatter()->arrayFromStatus( $result ) ];
 		}

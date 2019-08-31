@@ -3532,7 +3532,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		$method = $auth ? 'moveSubpagesIfAllowed' : 'moveSubpages';
 		$result = $mp->$method( $wgUser, $reason, $createRedirect, $changeTags );
 
-		if ( !$result->isOk() ) {
+		if ( !$result->isOK() ) {
 			return $result->getErrorsArray();
 		}
 
