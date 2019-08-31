@@ -789,14 +789,6 @@ if ( $wgCommandLineMode ) {
 $wgMemc = ObjectCache::getLocalClusterInstance();
 $messageMemc = wfGetMessageCacheStorage();
 
-wfDebugLog( 'caches',
-	'cluster: ' . get_class( $wgMemc ) .
-	', WAN: ' . ( $wgMainWANCache === CACHE_NONE ? 'CACHE_NONE' : $wgMainWANCache ) .
-	', stash: ' . $wgMainStash .
-	', message: ' . get_class( $messageMemc ) .
-	', session: ' . get_class( ObjectCache::getInstance( $wgSessionCacheType ) )
-);
-
 // Most of the config is out, some might want to run hooks here.
 Hooks::run( 'SetupAfterCache' );
 
