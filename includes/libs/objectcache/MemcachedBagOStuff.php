@@ -49,29 +49,25 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 		// custom prefixes used by thing like WANObjectCache, limit to 205.
 		$charsLeft = 205 - strlen( $keyspace ) - count( $args );
 
-		$args = array_map(
-			function ( $arg ) use ( &$charsLeft ) {
-				$arg = strtr( $arg, ' ', '_' );
+		foreach ( $args as &$arg ) {
+			$arg = strtr( $arg, ' ', '_' );
 
-				// Make sure %, #, and non-ASCII chars are escaped
-				$arg = preg_replace_callback(
-					'/[^\x21-\x22\x24\x26-\x39\x3b-\x7e]+/',
-					function ( $m ) {
-						return rawurlencode( $m[0] );
-					},
-					$arg
-				);
+			// Make sure %, #, and non-ASCII chars are escaped
+			$arg = preg_replace_callback(
+				'/[^\x21-\x22\x24\x26-\x39\x3b-\x7e]+/',
+				function ( $m ) {
+					return rawurlencode( $m[0] );
+				},
+				$arg
+			);
 
-				// 33 = 32 characters for the MD5 + 1 for the '#' prefix.
-				if ( $charsLeft > 33 && strlen( $arg ) > $charsLeft ) {
-					$arg = '#' . md5( $arg );
-				}
+			// 33 = 32 characters for the MD5 + 1 for the '#' prefix.
+			if ( $charsLeft > 33 && strlen( $arg ) > $charsLeft ) {
+				$arg = '#' . md5( $arg );
+			}
 
-				$charsLeft -= strlen( $arg );
-				return $arg;
-			},
-			$args
-		);
+			$charsLeft -= strlen( $arg );
+		}
 
 		if ( $charsLeft < 0 ) {
 			return $keyspace . ':BagOStuff-long-key:##' . md5( implode( ':', $args ) );
