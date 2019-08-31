@@ -438,17 +438,6 @@ if ( $wgMetaNamespace === false ) {
 	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 }
 
-// Default value is 2000 or the suhosin limit if it is between 1 and 2000
-if ( $wgResourceLoaderMaxQueryLength === false ) {
-	$suhosinMaxValueLength = (int)ini_get( 'suhosin.get.max_value_length' );
-	if ( $suhosinMaxValueLength > 0 && $suhosinMaxValueLength < 2000 ) {
-		$wgResourceLoaderMaxQueryLength = $suhosinMaxValueLength;
-	} else {
-		$wgResourceLoaderMaxQueryLength = 2000;
-	}
-	unset( $suhosinMaxValueLength );
-}
-
 // Ensure the minimum chunk size is less than PHP upload limits or the maximum
 // upload size.
 $wgMinUploadChunkSize = min(

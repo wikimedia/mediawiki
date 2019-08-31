@@ -3760,19 +3760,16 @@ $wgIncludeLegacyJavaScript = false;
 $wgLegacyJavaScriptGlobals = true;
 
 /**
- * If set to a positive number, ResourceLoader will not generate URLs whose
- * query string is more than this many characters long, and will instead use
- * multiple requests with shorter query strings. This degrades performance,
- * but may be needed if your web server has a low (less than, say 1024)
- * query string length limit or a low value for suhosin.get.max_value_length
- * that you can't increase.
+ * ResourceLoader will not generate URLs whose query string is more than
+ * this many characters long, and will instead use multiple requests with
+ * shorter query strings. This degrades performance, but may be needed based
+ * on the query string limit supported by your web server and/or your user's
+ * web browsers.
  *
- * If set to a negative number, ResourceLoader will assume there is no query
- * string length limit.
- *
- * Defaults to a value based on php configuration.
+ * @since 1.17
+ * @var int
  */
-$wgResourceLoaderMaxQueryLength = false;
+$wgResourceLoaderMaxQueryLength = 2000;
 
 /**
  * If set to true, JavaScript modules loaded from wiki pages will be parsed

@@ -1088,14 +1088,16 @@ abstract class Installer {
 
 	/**
 	 * Checks if suhosin.get.max_value_length is set, and if so generate
-	 * a warning because it decreases ResourceLoader performance.
+	 * a warning because it is incompatible with ResourceLoader.
 	 * @return bool
 	 */
 	protected function envCheckSuhosinMaxValueLength() {
-		$maxValueLength = ini_get( 'suhosin.get.max_value_length' );
-		if ( $maxValueLength > 0 && $maxValueLength < 1024 ) {
-			// Only warn if the value is below the sane 1024
-			$this->showMessage( 'config-suhosin-max-value-length', $maxValueLength );
+		$currentValue = ini_get( 'suhosin.get.max_value_length' );
+		$minRequired = 2000;
+		$recommended = 5000;
+		if ( $currentValue > 0 && $currentValue < $minRequired ) {
+			$this->showError( 'config-suhosin-max-value-length', $currentValue, $minRequired, $recommended );
+			return false;
 		}
 
 		return true;
