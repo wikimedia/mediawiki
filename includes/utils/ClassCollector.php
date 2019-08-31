@@ -39,7 +39,7 @@ class ClassCollector {
 	protected $startToken;
 
 	/**
-	 * @var array List of tokens that are members of the current expect sequence
+	 * @var array[]|string[] List of tokens that are members of the current expect sequence
 	 */
 	protected $tokens;
 

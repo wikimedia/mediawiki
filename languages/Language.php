@@ -61,7 +61,9 @@ class Language {
 
 	public $mVariants, $mCode, $mLoaded = false;
 	public $mMagicExtensions = [];
-	private $mHtmlCode = null, $mParentLanguage = false;
+	private $mHtmlCode = null;
+	/** @var Language|false */
+	private $mParentLanguage = false;
 
 	public $dateFormatStrings = [];
 	public $mExtendedSpecialPageAliases;
@@ -455,6 +457,7 @@ class Language {
 	}
 
 	function __construct() {
+		// @phan-suppress-next-line PhanTypeMismatchProperty
 		$this->mConverter = new FakeConverter( $this );
 		// Set the code to the name of the descendant
 		if ( static::class === 'Language' ) {
@@ -3235,6 +3238,7 @@ class Language {
 		$fallbackChain = array_reverse( $fallbackChain );
 		foreach ( $fallbackChain as $code ) {
 			if ( isset( $newWords[$code] ) ) {
+				// @phan-suppress-next-line PhanTypeMismatchProperty
 				$this->mMagicExtensions = $newWords[$code] + $this->mMagicExtensions;
 			}
 		}

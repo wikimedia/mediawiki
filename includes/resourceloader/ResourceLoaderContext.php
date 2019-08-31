@@ -55,6 +55,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 	protected $direction;
 	protected $hash;
 	protected $userObj;
+	/** @var ResourceLoaderImage|false */
 	protected $imageObj;
 
 	/**

@@ -35,6 +35,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	 */
 	private $context;
 
+	/** @var int|array */
 	protected $modules = self::INHERIT_VALUE;
 	protected $language = self::INHERIT_VALUE;
 	protected $direction = self::INHERIT_VALUE;
@@ -54,7 +55,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 		if ( $this->modules === self::INHERIT_VALUE ) {
 			return $this->context->getModules();
 		}
-		// @phan-suppress-next-line PhanTypeMismatchReturn
+
 		return $this->modules;
 	}
 

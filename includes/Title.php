@@ -178,8 +178,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	/** @var bool Whether a page has any subpages */
 	private $mHasSubpages;
 
-	/** @var bool The (string) language code of the page's language and content code. */
-	private $mPageLanguage = false;
+	/** @var array|null The (string) language code of the page's language and content code. */
+	private $mPageLanguage;
 
 	/** @var string|bool|null The page language code from the database, null if not saved in
 	 * the database or false if not loaded, yet.
@@ -3163,7 +3163,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		$this->mLatestID = false;
 		$this->mContentModel = false;
 		$this->mEstimateRevisions = null;
-		$this->mPageLanguage = false;
+		$this->mPageLanguage = null;
 		$this->mDbPageLanguage = false;
 		$this->mIsBigDeletion = null;
 	}

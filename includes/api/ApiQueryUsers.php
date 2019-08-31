@@ -332,8 +332,8 @@ class ApiQueryUsers extends ApiQueryBase {
 				}
 			}
 
-			$fit = $result->addValue( [ 'query', $this->getModuleName() ],
-				null, $data[$u] );
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
+			$fit = $result->addValue( [ 'query', $this->getModuleName() ], null, $data[$u] );
 			if ( !$fit ) {
 				if ( $useNames ) {
 					$this->setContinueEnumParameter( 'users',

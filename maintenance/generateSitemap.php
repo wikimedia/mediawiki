@@ -132,7 +132,7 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * A resource pointing to a sitemap file
 	 *
-	 * @var resource
+	 * @var resource|false
 	 */
 	public $file;
 

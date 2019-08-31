@@ -85,8 +85,8 @@ class PermissionManager {
 	/** @var NamespaceInfo */
 	private $nsInfo;
 
-	/** @var string[] Cached results of getAllRights() */
-	private $allRights = false;
+	/** @var string[]|null Cached results of getAllRights() */
+	private $allRights;
 
 	/** @var string[][] Cached user rights */
 	private $usersRights = null;
@@ -1471,7 +1471,7 @@ class PermissionManager {
 	 * @return string[] Array of permission names
 	 */
 	public function getAllPermissions() {
-		if ( $this->allRights === false ) {
+		if ( $this->allRights === null ) {
 			if ( count( $this->options->get( 'AvailableRights' ) ) ) {
 				$this->allRights = array_unique( array_merge(
 					$this->coreRights,
