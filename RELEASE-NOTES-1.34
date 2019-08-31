@@ -488,6 +488,7 @@ supported, it is generally advised to use PHP 7.0.13 or later for long term
 support. It also requires the following PHP extensions:
 
 * ctype
+* dom
 * fileinfo
 * iconv
 * json
