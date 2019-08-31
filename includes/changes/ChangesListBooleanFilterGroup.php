@@ -8,6 +8,7 @@ use Wikimedia\Rdbms\IDatabase;
  * but 'Bot' is unchecked, hidebots=1 will be sent.
  *
  * @since 1.29
+ * @method ChangesListBooleanFilter[] getFilters()
  */
 class ChangesListBooleanFilterGroup extends ChangesListFilterGroup {
 	/**
@@ -55,6 +56,7 @@ class ChangesListBooleanFilterGroup extends ChangesListFilterGroup {
 	 * Registers a filter in this group
 	 *
 	 * @param ChangesListBooleanFilter $filter
+	 * @suppress PhanParamSignaturePHPDocMismatchHasParamType,PhanParamSignatureMismatch
 	 */
 	public function registerFilter( ChangesListBooleanFilter $filter ) {
 		$this->filters[$filter->getName()] = $filter;

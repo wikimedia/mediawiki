@@ -40,6 +40,11 @@ class Mail {
 	 */
 	public function send( $recipients, array $headers, $body ) {
 	}
+	/**
+	 * @return string
+	 */
+	public function getMessage() {
+	}
 }
 
 class Mail_smtp extends Mail {

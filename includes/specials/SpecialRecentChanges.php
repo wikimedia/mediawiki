@@ -197,26 +197,36 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$user = $this->getUser();
 
 		$significance = $this->getFilterGroup( 'significance' );
+		/** @var ChangesListBooleanFilter $hideMinor */
 		$hideMinor = $significance->getFilter( 'hideminor' );
+		'@phan-var ChangesListBooleanFilter $hideMinor';
 		$hideMinor->setDefault( $user->getBoolOption( 'hideminor' ) );
 
 		$automated = $this->getFilterGroup( 'automated' );
+		/** @var ChangesListBooleanFilter $hideBots */
 		$hideBots = $automated->getFilter( 'hidebots' );
+		'@phan-var ChangesListBooleanFilter $hideBots';
 		$hideBots->setDefault( true );
 
+		/** @var ChangesListStringOptionsFilterGroup|null $reviewStatus */
 		$reviewStatus = $this->getFilterGroup( 'reviewStatus' );
+		'@phan-var ChangesListStringOptionsFilterGroup|null $reviewStatus';
 		if ( $reviewStatus !== null ) {
 			// Conditional on feature being available and rights
 			if ( $user->getBoolOption( 'hidepatrolled' ) ) {
 				$reviewStatus->setDefault( 'unpatrolled' );
 				$legacyReviewStatus = $this->getFilterGroup( 'legacyReviewStatus' );
+				/** @var ChangesListBooleanFilter $legacyHidePatrolled */
 				$legacyHidePatrolled = $legacyReviewStatus->getFilter( 'hidepatrolled' );
+				'@phan-var ChangesListBooleanFilter $legacyHidePatrolled';
 				$legacyHidePatrolled->setDefault( true );
 			}
 		}
 
 		$changeType = $this->getFilterGroup( 'changeType' );
+		/** @var ChangesListBooleanFilter $hideCategorization */
 		$hideCategorization = $changeType->getFilter( 'hidecategorization' );
+		'@phan-var ChangesListBooleanFilter $hideCategorization';
 		if ( $hideCategorization !== null ) {
 			// Conditional on feature being available
 			$hideCategorization->setDefault( $user->getBoolOption( 'hidecategorization' ) );

@@ -71,6 +71,7 @@ class ApiOpenSearch extends ApiBase {
 
 			case 'xml':
 				$printer = $this->getMain()->createPrinterByName( 'xml' . $this->fm );
+				'@phan-var ApiFormatXML $printer';
 				$printer->setRootElement( 'SearchSuggestion' );
 				return $printer;
 
@@ -112,7 +113,7 @@ class ApiOpenSearch extends ApiBase {
 	 * @param string $search the search query
 	 * @param array $params api request params
 	 * @return array search results. Keys are integers.
-	 * @phan-return array<array{title:Title,extract:false,image:false,url:string}>
+	 * @phan-return array<array{title:Title,redirect_from:?Title,extract:false,extract_trimmed:false,image:false,url:string}>
 	 *  Note that phan annotations don't support keys containing a space.
 	 */
 	private function search( $search, array $params ) {

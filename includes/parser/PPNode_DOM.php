@@ -22,6 +22,7 @@
 /**
  * @deprecated since 1.34, use PPNode_Hash_{Tree,Text,Array,Attr}
  * @ingroup Parser
+ * @phan-file-suppress PhanUndeclaredMethod
  */
 // phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPNode_DOM implements PPNode {

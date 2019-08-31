@@ -88,7 +88,9 @@ class NukeNS extends Maintenance {
 					$dbw->query( "DELETE FROM $tbl_pag WHERE page_id = $id" );
 					$this->commitTransaction( $dbw, __METHOD__ );
 					// Delete revisions as appropriate
+					/** @var NukePage $child */
 					$child = $this->runChild( NukePage::class, 'nukePage.php' );
+					'@phan-var NukePage $child';
 					$child->deleteRevisions( $revs );
 					$this->purgeRedundantText( true );
 					$n_deleted++;

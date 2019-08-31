@@ -27,6 +27,12 @@ use MediaWiki\Storage\RevisionRecord;
  * needs to be able to make a query from a set of identifiers to pull
  * relevant rows, to return RevDelItem subclasses wrapping them, and
  * to wrap bulk update operations.
+ *
+ * @property RevDelItem $current
+ * @method RevDelItem next()
+ * @method RevDelItem reset()
+ * @method RevDelItem current()
+ * @phan-file-suppress PhanParamSignatureMismatch
  */
 abstract class RevDelList extends RevisionListBase {
 	function __construct( IContextSource $context, Title $title, array $ids ) {

@@ -70,7 +70,7 @@ interface Restriction {
 	 *
 	 * @since 1.33
 	 * @param \stdClass $row
-	 * @return self
+	 * @return static
 	 */
 	public static function newFromRow( \stdClass $row );
 

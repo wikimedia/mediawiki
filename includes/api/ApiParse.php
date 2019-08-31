@@ -491,6 +491,7 @@ class ApiParse extends ApiBase {
 
 			$parser = MediaWikiServices::getInstance()->getParser();
 			$parser->startExternalParse( $titleObj, $popts, Parser::OT_PREPROCESS );
+			// @phan-suppress-next-line PhanUndeclaredMethod
 			$xml = $parser->preprocessToDom( $this->content->getText() )->__toString();
 			$result_array['parsetree'] = $xml;
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'parsetree';

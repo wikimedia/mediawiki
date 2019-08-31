@@ -32,6 +32,7 @@ use Wikimedia\Rdbms\IDatabase;
  * Represents a filter group (used on ChangesListSpecialPage and descendants)
  *
  * @since 1.29
+ * @method registerFilter($filter)
  */
 abstract class ChangesListFilterGroup {
 	/**

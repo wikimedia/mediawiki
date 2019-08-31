@@ -37,6 +37,7 @@ use Wikimedia\Assert\Assert;
  *
  * @since 1.31
  * @since 1.32 Renamed from MediaWiki\Storage\MutableRevisionRecord
+ * @property MutableRevisionSlots $mSlots
  */
 class MutableRevisionRecord extends RevisionRecord {
 
@@ -78,8 +79,6 @@ class MutableRevisionRecord extends RevisionRecord {
 		$slots = new MutableRevisionSlots();
 
 		parent::__construct( $title, $slots, $dbDomain );
-
-		$this->mSlots = $slots; // redundant, but nice for static analysis
 	}
 
 	/**

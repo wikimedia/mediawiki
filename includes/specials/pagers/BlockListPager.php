@@ -266,6 +266,7 @@ class BlockListPager extends TablePager {
 
 			switch ( $restriction->getType() ) {
 				case PageRestriction::TYPE:
+					'@phan-var PageRestriction $restriction';
 					if ( $restriction->getTitle() ) {
 						$items[$restriction->getType()][] = Html::rawElement(
 							'li',

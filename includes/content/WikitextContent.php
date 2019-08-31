@@ -89,6 +89,8 @@ class WikitextContent extends TextContent {
 				"document uses $myModelId but " .
 				"section uses $sectionModelId." );
 		}
+		/** @var self $with $oldtext */
+		'@phan-var self $with';
 
 		$oldtext = $this->getText();
 		$text = $with->getText();

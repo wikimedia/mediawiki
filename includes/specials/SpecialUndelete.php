@@ -493,6 +493,7 @@ class SpecialUndelete extends SpecialPage {
 		$buttonFields = [];
 
 		if ( $isText ) {
+			'@phan-var TextContent $content';
 			// TODO: MCR: make this work for multiple slots
 			// source view for textual content
 			$sourceView = Xml::element( 'textarea', [

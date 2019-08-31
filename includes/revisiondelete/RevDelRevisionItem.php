@@ -23,6 +23,8 @@ use MediaWiki\Storage\RevisionRecord;
 
 /**
  * Item class for a live revision table row
+ *
+ * @property RevDelRevisionList $list
  */
 class RevDelRevisionItem extends RevDelItem {
 	/** @var Revision */

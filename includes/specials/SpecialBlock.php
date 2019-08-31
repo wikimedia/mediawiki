@@ -423,6 +423,8 @@ class SpecialBlock extends FormSpecialPage {
 				foreach ( $block->getRestrictions() as $restriction ) {
 					switch ( $restriction->getType() ) {
 						case PageRestriction::TYPE:
+							/** @var PageRestriction $restriction */
+							'@phan-var PageRestriction $restriction';
 							if ( $restriction->getTitle() ) {
 								$pageRestrictions[] = $restriction->getTitle()->getPrefixedText();
 							}

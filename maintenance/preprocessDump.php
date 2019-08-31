@@ -87,6 +87,8 @@ class PreprocessDump extends DumpIterator {
 		if ( $content->getModel() !== CONTENT_MODEL_WIKITEXT ) {
 			return;
 		}
+		/** @var WikitextContent $content */
+		'@phan-var WikitextContent $content';
 
 		try {
 			$this->mPreprocessor->preprocessToObj( strval( $content->getText() ), 0 );

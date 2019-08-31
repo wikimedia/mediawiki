@@ -23,10 +23,11 @@ use MediaWiki\Storage\RevisionRecord;
 
 /**
  * Item class for a filearchive table row
+ *
+ * @property ArchivedFile $file
+ * @property RevDelArchivedFileList $list
  */
 class RevDelArchivedFileItem extends RevDelFileItem {
-	/** @var RevDelArchivedFileList $list */
-	/** @var ArchivedFile $file */
 	/** @var LocalFile */
 	protected $lockFile;
 

@@ -29,6 +29,7 @@ use Wikimedia\Rdbms\ResultWrapper;
  * @ingroup Media
  *
  * @property WikiFilePage $mPage Set by overwritten newPage() in this class
+ * @method WikiFilePage getPage()
  */
 class ImagePage extends Article {
 	/** @var File|false */

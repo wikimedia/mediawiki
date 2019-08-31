@@ -27,7 +27,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\DatabaseSqlite;
 
 /**
@@ -160,7 +159,8 @@ class UpdateMediaWiki extends Maintenance {
 		$dbDomain = WikiMap::getCurrentWikiDbDomain()->getId();
 		$this->output( "Going to run database updates for $dbDomain\n" );
 		if ( $db->getType() === 'sqlite' ) {
-			/** @var IMaintainableDatabase|DatabaseSqlite $db */
+			/** @var DatabaseSqlite $db */
+			'@phan-var DatabaseSqlite $db';
 			$this->output( "Using SQLite file: '{$db->getDbFilePath()}'\n" );
 		}
 		$this->output( "Depending on the size of your database this may take a while!\n" );

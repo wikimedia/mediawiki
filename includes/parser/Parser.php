@@ -6192,7 +6192,9 @@ class Parser {
 	 */
 	private static function normalizeSectionName( $text ) {
 		# T90902: ensure the same normalization is applied for IDs as to links
+		/** @var MediaWikiTitleCodec $titleParser */
 		$titleParser = MediaWikiServices::getInstance()->getTitleParser();
+		'@phan-var MediaWikiTitleCodec $titleParser';
 		try {
 
 			$parts = $titleParser->splitTitleString( "#$text" );

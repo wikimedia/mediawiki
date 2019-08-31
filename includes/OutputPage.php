@@ -995,6 +995,8 @@ class OutputPage extends ContextSource {
 	 * @param Title $t
 	 */
 	public function setTitle( Title $t ) {
+		// @phan-suppress-next-next-line PhanUndeclaredMethod
+		// @fixme Not all implementations of IContextSource have this method!
 		$this->getContext()->setTitle( $t );
 	}
 

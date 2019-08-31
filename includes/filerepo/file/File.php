@@ -1172,6 +1172,7 @@ abstract class File implements IDBAccessObject {
 			$thumb = false;
 		} elseif ( $thumb->isError() ) { // transform error
 			/** @var MediaTransformError $thumb */
+			'@phan-var MediaTransformError $thumb';
 			$this->lastError = $thumb->toText();
 			// Ignore errors if requested
 			if ( $wgIgnoreImageErrors && !( $flags & self::RENDER_NOW ) ) {

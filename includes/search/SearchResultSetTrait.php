@@ -7,6 +7,7 @@
  * This trait can be used directly by extensions providing a SearchEngine.
  *
  * @ingroup Search
+ * @phan-file-suppress PhanUndeclaredMethod
  */
 trait SearchResultSetTrait {
 	/**

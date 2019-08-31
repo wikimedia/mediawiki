@@ -36,7 +36,7 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
  */
 class UserDupes {
 	/**
-	 * @var IMaintainableDatabase
+	 * @var Database
 	 */
 	private $db;
 	private $reassigned;
