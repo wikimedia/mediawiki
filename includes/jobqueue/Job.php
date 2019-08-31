@@ -135,7 +135,7 @@ abstract class Job implements RunnableJob {
 			// When constructing this class for submitting to the queue,
 			// normalise the $title arg of old job classes as part of $params.
 			$params['namespace'] = $title->getNamespace();
-			$params['title'] = $title->getDBKey();
+			$params['title'] = $title->getDBkey();
 		}
 
 		$this->command = $command;

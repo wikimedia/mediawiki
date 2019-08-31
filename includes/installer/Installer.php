@@ -1607,11 +1607,11 @@ abstract class Installer {
 
 			// If we've hit some sort of fatal, we need to bail.
 			// Callback already had a chance to do output above.
-			if ( !$status->isOk() ) {
+			if ( !$status->isOK() ) {
 				break;
 			}
 		}
-		if ( $status->isOk() ) {
+		if ( $status->isOK() ) {
 			$this->showMessage(
 				'config-install-db-success'
 			);

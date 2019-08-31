@@ -1443,7 +1443,7 @@ class ApiBaseTest extends ApiTestCase {
 		}
 
 		$status = StatusValue::newGood();
-		$status->setOk( false );
+		$status->setOK( false );
 		try {
 			$mock->dieStatus( $status );
 			$this->fail( 'Expected exception not thrown' );

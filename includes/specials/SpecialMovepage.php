@@ -749,7 +749,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 			$mp = new MovePage( $oldSubpage, $newSubpage );
 			# This was copy-pasted from Renameuser, bleh.
-			if ( $newSubpage->exists() && !$mp->isValidMove()->isOk() ) {
+			if ( $newSubpage->exists() && !$mp->isValidMove()->isOK() ) {
 				$link = $linkRenderer->makeKnownLink( $newSubpage );
 				$extraOutput[] = $this->msg( 'movepage-page-exists' )->rawParams( $link )->escaped();
 			} else {

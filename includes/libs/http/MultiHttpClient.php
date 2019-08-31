@@ -499,7 +499,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 				'error' => '',
 			];
 
-			if ( !$sv->isOk() ) {
+			if ( !$sv->isOK() ) {
 				$svErrors = $sv->getErrors();
 				if ( isset( $svErrors[0] ) ) {
 					$req['response']['error'] = $svErrors[0]['message'];

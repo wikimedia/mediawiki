@@ -248,7 +248,7 @@ class BlockListPagerTest extends MediaWikiTestCase {
 		$restriction = $restrictions[0];
 		$this->assertEquals( $page->getId(), $restriction->getValue() );
 		$this->assertEquals( $page->getId(), $restriction->getTitle()->getArticleID() );
-		$this->assertEquals( $title->getDBKey(), $restriction->getTitle()->getDBKey() );
+		$this->assertEquals( $title->getDBkey(), $restriction->getTitle()->getDBkey() );
 		$this->assertEquals( $title->getNamespace(), $restriction->getTitle()->getNamespace() );
 
 		// Delete the block and the restrictions.

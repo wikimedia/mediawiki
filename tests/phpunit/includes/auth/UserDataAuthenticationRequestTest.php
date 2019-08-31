@@ -32,7 +32,7 @@ class UserDataAuthenticationRequestTest extends AuthenticationRequestTestCase {
 		$req->email = $email;
 		$req->realname = $realname;
 		$this->assertEquals( $expect, $req->populateUser( $user ) );
-		if ( $expect->isOk() ) {
+		if ( $expect->isOK() ) {
 			$this->assertSame( $email ?: 'default@example.com', $user->getEmail() );
 			$this->assertSame( $realname ?: 'Fake Name', $user->getRealName() );
 		}
