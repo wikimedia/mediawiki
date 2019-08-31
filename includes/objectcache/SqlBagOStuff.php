@@ -144,7 +144,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$this->numServerShards = count( $this->serverInfos );
 		} else {
 			// Default to using the main wiki's database servers
-			$this->serverInfos = false;
+			$this->serverInfos = [];
 			$this->numServerShards = 1;
 			$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_BE;
 		}

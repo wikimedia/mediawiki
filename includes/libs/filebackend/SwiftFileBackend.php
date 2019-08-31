@@ -1049,6 +1049,7 @@ class SwiftFileBackend extends FileBackendStore {
 				$stat = $this->getFileStat( $params );
 			}
 
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			return $stat['xattr'];
 		} else {
 			return false;

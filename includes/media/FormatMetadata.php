@@ -98,6 +98,7 @@ class FormatMetadata extends ContextSource {
 	 *   Exif::getFilteredData() or BitmapMetadataHandler )
 	 * @return array
 	 * @since 1.23
+	 * @suppress PhanTypeArraySuspiciousNullable
 	 */
 	public function makeFormattedData( $tags ) {
 		$resolutionunit = !isset( $tags['ResolutionUnit'] ) || $tags['ResolutionUnit'] == 2 ? 2 : 3;

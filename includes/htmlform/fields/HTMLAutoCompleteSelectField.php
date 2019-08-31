@@ -29,6 +29,8 @@
  * The old name of autocomplete-data[-messages] was autocomplete[-messages] which is still
  * recognized but deprecated since MediaWiki 1.29 since it conflicts with how autocomplete is
  * used in HTMLTextField.
+ *
+ * @phan-file-suppress PhanTypeMismatchProperty This is doing weird things with mClass
  */
 class HTMLAutoCompleteSelectField extends HTMLTextField {
 	protected $autocompleteData = [];

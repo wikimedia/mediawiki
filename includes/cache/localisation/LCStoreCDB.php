@@ -33,7 +33,7 @@ use Cdb\Writer;
  */
 class LCStoreCDB implements LCStore {
 
-	/** @var Reader[] */
+	/** @var Reader[]|false[] */
 	private $readers;
 
 	/** @var Writer */

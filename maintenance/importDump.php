@@ -41,6 +41,7 @@ class BackupReader extends Maintenance {
 	public $uploads = false;
 	protected $uploadCount = 0;
 	public $imageBasePath = false;
+	/** @var array|false */
 	public $nsFilter = false;
 
 	function __construct() {

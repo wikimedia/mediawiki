@@ -63,8 +63,7 @@ class LanguageConverter {
 	public $mTablesLoaded = false;
 
 	/**
-	 * @var ReplacementArray[]
-	 * @phan-var array<string,ReplacementArray>
+	 * @var ReplacementArray[]|bool[]
 	 */
 	public $mTables;
 
@@ -958,7 +957,7 @@ class LanguageConverter {
 		}
 
 		$this->mTablesLoaded = true;
-		$this->mTables = false;
+		$this->mTables = null;
 		$cache = ObjectCache::getInstance( $wgLanguageConverterCacheType );
 		$cacheKey = $cache->makeKey( 'conversiontables', $this->mMainLanguageCode );
 		if ( $fromCache ) {

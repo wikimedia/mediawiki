@@ -17,7 +17,7 @@ use UnexpectedValueException;
  * @see https://dev.mysql.com/doc/refman/5.6/en/replication-gtids-concepts.html
  */
 class MySQLMasterPos implements DBMasterPos {
-	/** @var int One of (BINARY_LOG, GTID_MYSQL, GTID_MARIA) */
+	/** @var string One of (BINARY_LOG, GTID_MYSQL, GTID_MARIA) */
 	private $style;
 	/** @var string|null Base name of all Binary Log files */
 	private $binLog;

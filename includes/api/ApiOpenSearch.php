@@ -111,6 +111,8 @@ class ApiOpenSearch extends ApiBase {
 	 * @param string $search the search query
 	 * @param array $params api request params
 	 * @return array search results. Keys are integers.
+	 * @phan-return array<array{title:Title,extract:false,image:false,url:string}>
+	 *  Note that phan annotations don't support keys containing a space.
 	 */
 	private function search( $search, array $params ) {
 		$searchEngine = $this->buildSearchEngine( $params );
@@ -247,6 +249,7 @@ class ApiOpenSearch extends ApiBase {
 					if ( is_string( $r['extract'] ) && $r['extract'] !== '' ) {
 						$item['Description'] = $r['extract'];
 					}
+					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 					if ( is_array( $r['image'] ) && isset( $r['image']['source'] ) ) {
 						$item['Image'] = array_intersect_key( $r['image'], $imageKeys );
 					}

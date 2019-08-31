@@ -42,12 +42,12 @@ abstract class DiffOp {
 	public $type;
 
 	/**
-	 * @var string[]
+	 * @var string[]|false
 	 */
 	public $orig;
 
 	/**
-	 * @var string[]
+	 * @var string[]|false
 	 */
 	public $closing;
 

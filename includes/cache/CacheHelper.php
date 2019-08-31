@@ -82,9 +82,9 @@ class CacheHelper implements ICacheHelper {
 	 * Function that gets called when initialization is done.
 	 *
 	 * @since 1.20
-	 * @var callable
+	 * @var callable|null
 	 */
-	protected $onInitHandler = false;
+	protected $onInitHandler;
 
 	/**
 	 * Elements to build a cache key with.
@@ -183,7 +183,7 @@ class CacheHelper implements ICacheHelper {
 			$this->hasCached = is_array( $cachedChunks );
 			$this->cachedChunks = $this->hasCached ? $cachedChunks : [];
 
-			if ( $this->onInitHandler !== false ) {
+			if ( $this->onInitHandler !== null ) {
 				call_user_func( $this->onInitHandler, $this->hasCached );
 			}
 		}

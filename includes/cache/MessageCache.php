@@ -1191,6 +1191,7 @@ class MessageCache {
 			$class = $wgParserConf['class'];
 			if ( $class == ParserDiffTest::class ) {
 				# Uncloneable
+				// @phan-suppress-next-line PhanTypeMismatchProperty
 				$this->mParser = new $class( $wgParserConf );
 			} else {
 				$this->mParser = clone $parser;

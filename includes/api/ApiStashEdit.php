@@ -131,9 +131,6 @@ class ApiStashEdit extends ApiBase {
 			return;
 		}
 
-		// The user will abort the AJAX request by pressing "save", so ignore that
-		ignore_user_abort( true );
-
 		if ( $user->pingLimiter( 'stashedit' ) ) {
 			$status = 'ratelimited';
 		} else {
