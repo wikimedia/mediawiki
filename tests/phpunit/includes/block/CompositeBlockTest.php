@@ -2,6 +2,7 @@
 
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\CompositeBlock;
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\SystemBlock;
@@ -16,12 +17,12 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 	private function getPartialBlocks() {
 		$sysopId = $this->getTestSysop()->getUser()->getId();
 
-		$userBlock = new Block( [
+		$userBlock = new DatabaseBlock( [
 			'address' => $this->getTestUser()->getUser(),
 			'by' => $sysopId,
 			'sitewide' => false,
 		] );
-		$ipBlock = new Block( [
+		$ipBlock = new DatabaseBlock( [
 			'address' => '127.0.0.1',
 			'by' => $sysopId,
 			'sitewide' => false,
@@ -66,12 +67,12 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 		return [
 			'Sitewide block and partial block' => [
 				[
-					new Block( [
+					new DatabaseBlock( [
 						'sitewide' => false,
 						'blockEmail' => true,
 						'allowUsertalk' => true,
 					] ),
-					new Block( [
+					new DatabaseBlock( [
 						'sitewide' => true,
 						'blockEmail' => false,
 						'allowUsertalk' => false,
@@ -86,7 +87,7 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 			],
 			'Partial block and system block' => [
 				[
-					new Block( [
+					new DatabaseBlock( [
 						'sitewide' => false,
 						'blockEmail' => true,
 						'allowUsertalk' => false,
@@ -104,7 +105,7 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 			],
 			'System block and user name hiding block' => [
 				[
-					new Block( [
+					new DatabaseBlock( [
 						'hideName' => true,
 						'sitewide' => true,
 						'blockEmail' => true,
@@ -123,12 +124,12 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 			],
 			'Two lenient partial blocks' => [
 				[
-					new Block( [
+					new DatabaseBlock( [
 						'sitewide' => false,
 						'blockEmail' => false,
 						'allowUsertalk' => true,
 					] ),
-					new Block( [
+					new DatabaseBlock( [
 						'sitewide' => false,
 						'blockEmail' => false,
 						'allowUsertalk' => true,
@@ -222,18 +223,18 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 		return [
 			'Read is not blocked' => [
 				[
-					new Block(),
-					new Block(),
+					new DatabaseBlock(),
+					new DatabaseBlock(),
 				],
 				'read',
 				false,
 			],
 			'Email is blocked if blocked by any blocks' => [
 				[
-					new Block( [
+					new DatabaseBlock( [
 						'blockEmail' => true,
 					] ),
-					new Block( [
+					new DatabaseBlock( [
 						'blockEmail' => false,
 					] ),
 				],
