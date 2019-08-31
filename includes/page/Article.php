@@ -587,7 +587,7 @@ class Article implements Page {
 	 * page of the given title.
 	 */
 	public function view() {
-		global $wgUseFileCache, $wgDebugToolbar;
+		global $wgUseFileCache;
 
 		# Get variables from query string
 		# As side effect this will load the revision and update the title
@@ -643,7 +643,7 @@ class Article implements Page {
 		}
 
 		# Try client and file cache
-		if ( !$wgDebugToolbar && $oldid === 0 && $this->mPage->checkTouched() ) {
+		if ( $oldid === 0 && $this->mPage->checkTouched() ) {
 			# Try to stream the output from file cache
 			if ( $wgUseFileCache && $this->tryFileCache() ) {
 				wfDebug( __METHOD__ . ": done file cache\n" );

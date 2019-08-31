@@ -95,10 +95,6 @@ class HTMLFileCache extends FileCacheBase {
 
 		if ( !$config->get( 'UseFileCache' ) && $mode !== self::MODE_REBUILD ) {
 			return false;
-		} elseif ( $config->get( 'DebugToolbar' ) ) {
-			wfDebug( "HTML file cache skipped. \$wgDebugToolbar on\n" );
-
-			return false;
 		}
 
 		// Get all query values

@@ -68,6 +68,30 @@ class MWDebug {
 	protected static $deprecationWarnings = [];
 
 	/**
+	 * @internal For use by Setup.php only.
+	 */
+	public static function setup() {
+		global $wgDebugToolbar,
+			$wgUseCdn, $wgUseFileCache, $wgCommandLineMode;
+
+		if (
+			// Easy to forget to falsify $wgDebugToolbar for static caches.
+			// If file cache or CDN cache is on, just disable this (DWIMD).
+			$wgUseCdn ||
+			$wgUseFileCache ||
+			// Keep MWDebug off on CLI. This prevents MWDebug from eating up
+			// all the memory for logging SQL queries in maintenance scripts.
+			$wgCommandLineMode
+		) {
+			return;
+		}
+
+		if ( $wgDebugToolbar ) {
+			self::init();
+		}
+	}
+
+	/**
 	 * Enabled the debugger and load resource module.
 	 * This is called by Setup.php when $wgDebugToolbar is true.
 	 *
