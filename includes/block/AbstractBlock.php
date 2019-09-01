@@ -250,8 +250,9 @@ abstract class AbstractBlock {
 	 * may be overridden according to global configs.
 	 *
 	 * @since 1.33
-	 * @param string $right Right to check
-	 * @return bool|null null if unrecognized right or unset property
+	 * @param string $right
+	 * @return bool|null The block applies to the right, or null if
+	 *  unsure (e.g. unrecognized right or unset property)
 	 */
 	public function appliesToRight( $right ) {
 		$config = RequestContext::getMain()->getConfig();
