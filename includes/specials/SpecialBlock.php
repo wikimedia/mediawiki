@@ -1031,7 +1031,7 @@ class SpecialBlock extends FormSpecialPage {
 		$logId = $logEntry->insert();
 
 		if ( !empty( $data['Tags'] ) ) {
-			$logEntry->setTags( $data['Tags'] );
+			$logEntry->addTags( $data['Tags'] );
 		}
 
 		$logEntry->publish( $logId );

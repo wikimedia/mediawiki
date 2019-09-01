@@ -1761,7 +1761,7 @@ class LocalFile extends File {
 
 					# Add change tags, if any
 					if ( $tags ) {
-						$logEntry->setTags( $tags );
+						$logEntry->addTags( $tags );
 					}
 
 					# Uploads can be patrolled

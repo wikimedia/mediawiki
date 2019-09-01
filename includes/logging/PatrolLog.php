@@ -63,7 +63,7 @@ class PatrolLog {
 		$entry->setTarget( $rc->getTitle() );
 		$entry->setParameters( self::buildParams( $rc, $auto ) );
 		$entry->setPerformer( $user );
-		$entry->setTags( $tags );
+		$entry->addTags( $tags );
 		$logid = $entry->insert();
 		if ( !$auto ) {
 			$entry->publish( $logid, 'udp' );

@@ -253,7 +253,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 		$entry->setTarget( $title );
 		$entry->setParameters( $logParams );
 		$entry->setComment( $reason );
-		$entry->setTags( $tags );
+		$entry->addTags( $tags );
 
 		$logid = $entry->insert();
 		$entry->publish( $logid );
