@@ -91,6 +91,7 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 *   - asyncHandler: Callable to use for scheduling tasks after the web request ends.
 	 *      In CLI mode, it should run the task immediately.
 	 * @param array $params
+	 * @phan-param array{logger?:Psr\Log\LoggerInterface,asyncHandler?:callable} $params
 	 */
 	public function __construct( array $params = [] ) {
 		$this->setLogger( $params['logger'] ?? new NullLogger() );

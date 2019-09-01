@@ -90,6 +90,7 @@ class RecentChange implements Taggable {
 	 */
 	const SEND_FEED = false;
 
+	/** @var array */
 	public $mAttribs = [];
 	public $mExtra = [];
 

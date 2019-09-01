@@ -223,6 +223,7 @@ class CompressOld extends Maintenance {
 	 * @param string $extdb
 	 * @param bool|int $maxPageId
 	 * @return bool
+	 * @suppress PhanTypeInvalidDimOffset
 	 */
 	private function compressWithConcat( $startId, $maxChunkSize, $beginDate,
 		$endDate, $extdb = "", $maxPageId = false

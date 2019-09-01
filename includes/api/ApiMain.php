@@ -153,6 +153,7 @@ class ApiMain extends ApiBase {
 	private $mModule;
 
 	private $mCacheMode = 'private';
+	/** @var array */
 	private $mCacheControl = [];
 	private $mParamsUsed = [];
 	private $mParamsSensitive = [];

@@ -76,18 +76,17 @@ $cfg['exclude_analysis_directory_list'] = [
 ];
 
 $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
+	// approximate error count: 19
+	"PhanParamReqAfterOpt", // False positives with nullables, ref phan issue #3159
+	// approximate error count: 110
+	"PhanParamTooMany", // False positives with variargs. Unsuppress after dropping HHVM
+
 	// approximate error count: 22
 	"PhanAccessMethodInternal",
-	// approximate error count: 19
-	"PhanParamReqAfterOpt",
-	// approximate error count: 110
-	"PhanParamTooMany",
-	// approximate error count: 88
-	"PhanTypeInvalidDimOffset",
-	// approximate error count: 60
-	"PhanTypeMismatchArgument",
 	// approximate error count: 36
 	"PhanUndeclaredConstant",
+	// approximate error count: 60
+	"PhanTypeMismatchArgument",
 	// approximate error count: 219
 	"PhanUndeclaredMethod",
 	// approximate error count: 752

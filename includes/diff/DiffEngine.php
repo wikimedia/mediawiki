@@ -47,7 +47,9 @@ use MediaWiki\Diff\ComplexityException;
 class DiffEngine {
 
 	// Input variables
+	/** @var string[] */
 	private $from;
+	/** @var string[] */
 	private $to;
 	private $m;
 	private $n;
@@ -361,6 +363,7 @@ class DiffEngine {
 			 */
 			$max = min( $this->m, $this->n );
 			for ( $forwardBound = 0; $forwardBound < $max
+				// @phan-suppress-next-line PhanTypeInvalidDimOffset
 				&& $this->from[$forwardBound] === $this->to[$forwardBound];
 				++$forwardBound
 			) {

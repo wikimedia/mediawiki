@@ -1080,6 +1080,7 @@ class LocalFile extends File {
 	/**
 	 * Delete cached transformed files for the current version only.
 	 * @param array $options
+	 * @phan-param array{forThumbRefresh?:bool} $options
 	 */
 	public function purgeThumbnails( $options = [] ) {
 		$files = $this->getThumbnails();
@@ -1091,6 +1092,7 @@ class LocalFile extends File {
 		array_shift( $urls ); // don't purge directory
 
 		// Give media handler a chance to filter the file purge list
+		// @phan-suppress-next-line PhanTypeInvalidDimOffset
 		if ( !empty( $options['forThumbRefresh'] ) ) {
 			$handler = $this->getHandler();
 			if ( $handler ) {

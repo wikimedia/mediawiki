@@ -738,6 +738,9 @@ class WikiImporter {
 		return $this->logItemCallback( $revision );
 	}
 
+	/**
+	 * @suppress PhanTypeInvalidDimOffset Phan not reading the reference inside the hook
+	 */
 	private function handlePage() {
 		// Handle page data.
 		$this->debug( "Enter page handler." );

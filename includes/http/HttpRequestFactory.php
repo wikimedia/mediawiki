@@ -58,10 +58,14 @@ class HttpRequestFactory {
 	 *    - password            Password for HTTP Basic Authentication
 	 *    - originalRequest     Information about the original request (as a WebRequest object or
 	 *                          an associative array with 'ip' and 'userAgent').
+	 * @codingStandardsIgnoreStart
+	 * @phan-param array{timeout?:int,connectTimeout?:int,postData?:array,proxy?:string,noProxy?:bool,sslVerifyHost?:bool,sslVerifyCert?:bool,caInfo?:string,maxRedirects?:int,followRedirects?:bool,userAgent?:string,logger?:\Psr\Logger\LoggerInterface,username?:string,password?:string,originalRequest?:WebRequest|array{ip:string,userAgent:string}} $options
+	 * @codingStandardsIgnoreEnd
 	 * @param string $caller The method making this request, for profiling
 	 * @throws RuntimeException
 	 * @return MWHttpRequest
 	 * @see MWHttpRequest::__construct
+	 * @suppress PhanUndeclaredTypeParameter
 	 */
 	public function create( $url, array $options = [], $caller = __METHOD__ ) {
 		if ( !Http::$httpEngine ) {

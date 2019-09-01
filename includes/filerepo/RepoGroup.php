@@ -115,6 +115,8 @@ class RepoGroup {
 	 *                   user is allowed to view them. Otherwise, such files will not
 	 *                   be found.
 	 *   latest:         If true, load from the latest available data into File objects
+	 * @phan-param array{time?:mixed,ignoreRedirect?:bool,private?:bool,latest?:bool} $options
+	 * @suppress PhanTypeInvalidDimOffset
 	 * @return File|bool False if title is not found
 	 */
 	function findFile( $title, $options = [] ) {

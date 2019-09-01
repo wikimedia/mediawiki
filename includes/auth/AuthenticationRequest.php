@@ -298,6 +298,7 @@ abstract class AuthenticationRequest {
 	 * @param AuthenticationRequest[] $reqs
 	 * @return array
 	 * @throws \UnexpectedValueException If fields cannot be merged
+	 * @suppress PhanTypeInvalidDimOffset
 	 */
 	public static function mergeFieldInfo( array $reqs ) {
 		$merged = [];

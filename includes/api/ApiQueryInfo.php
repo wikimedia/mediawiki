@@ -118,6 +118,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		return $this->tokenFunctions;
 	}
 
+	/** @var string[] */
 	protected static $cachedTokens = [];
 
 	/**

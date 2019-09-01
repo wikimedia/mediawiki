@@ -40,6 +40,7 @@ class UploadForm extends HTMLForm {
 
 	protected $mMaxFileSize = [];
 
+	/** @var array */
 	protected $mMaxUploadSize = [];
 
 	public function __construct( array $options = [], IContextSource $context = null,

@@ -155,14 +155,13 @@ class DiffHistoryBlob implements HistoryBlob {
 					$seqName = 'main';
 				}
 			}
-			$seq =& $sequences[$seqName];
-			$tail = $seq['tail'];
+
+			$tail = $sequences[$seqName]['tail'];
 			$diff = $this->diff( $tail, $text );
-			$seq['diffs'][] = $diff;
-			$seq['map'][] = $i;
-			$seq['tail'] = $text;
+			$sequences[$seqName]['diffs'][] = $diff;
+			$sequences[$seqName]['map'][] = $i;
+			$sequences[$seqName]['tail'] = $text;
 		}
-		unset( $seq ); // unlink dangerous alias
 
 		// Knit the sequences together
 		$tail = '';

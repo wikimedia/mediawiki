@@ -96,6 +96,7 @@ class ApiOpenSearch extends ApiBase {
 			// Trim extracts, if necessary
 			$length = $this->getConfig()->get( 'OpenSearchDescriptionLength' );
 			foreach ( $results as &$r ) {
+				// @phan-suppress-next-line PhanTypeInvalidDimOffset
 				if ( is_string( $r['extract'] ) && !$r['extract trimmed'] ) {
 					$r['extract'] = self::trimExtract( $r['extract'], $length );
 				}
