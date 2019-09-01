@@ -181,7 +181,7 @@ class FileDeleteForm {
 				$logEntry->setPerformer( $user );
 				$logEntry->setTarget( $title );
 				$logEntry->setComment( $logComment );
-				$logEntry->setTags( $tags );
+				$logEntry->addTags( $tags );
 				$logid = $logEntry->insert();
 				$logEntry->publish( $logid );
 
@@ -212,7 +212,7 @@ class FileDeleteForm {
 						$logEntry->setPerformer( $user );
 						$logEntry->setTarget( clone $title );
 						$logEntry->setComment( $reason );
-						$logEntry->setTags( $tags );
+						$logEntry->addTags( $tags );
 						$logid = $logEntry->insert();
 						$dbw->onTransactionPreCommitOrIdle(
 							function () use ( $logEntry, $logid ) {

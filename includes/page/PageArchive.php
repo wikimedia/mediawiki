@@ -461,7 +461,7 @@ class PageArchive {
 		$logEntry->setPerformer( $user );
 		$logEntry->setTarget( $this->title );
 		$logEntry->setComment( $comment );
-		$logEntry->setTags( $tags );
+		$logEntry->addTags( $tags );
 		$logEntry->setParameters( [
 			':assoc:count' => [
 				'revisions' => $textRestored,

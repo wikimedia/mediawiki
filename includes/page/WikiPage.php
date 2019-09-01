@@ -2392,7 +2392,7 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( !is_null( $nullRevision ) ) {
 			$logEntry->setAssociatedRevId( $nullRevision->getId() );
 		}
-		$logEntry->setTags( $tags );
+		$logEntry->addTags( $tags );
 		if ( $logRelationsField !== null && count( $logRelationsValues ) ) {
 			$logEntry->setRelations( [ $logRelationsField => $logRelationsValues ] );
 		}
@@ -2793,7 +2793,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$logEntry->setPerformer( $deleter );
 			$logEntry->setTarget( $logTitle );
 			$logEntry->setComment( $reason );
-			$logEntry->setTags( $tags );
+			$logEntry->addTags( $tags );
 			$logid = $logEntry->insert();
 
 			$dbw->onTransactionPreCommitOrIdle(

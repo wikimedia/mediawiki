@@ -163,7 +163,7 @@ class ImportReporter extends ContextSource {
 			// Make sure the null revision will be tagged as well
 			$logEntry->setAssociatedRevId( $nullRevId );
 			if ( count( $this->logTags ) ) {
-				$logEntry->setTags( $this->logTags );
+				$logEntry->addTags( $this->logTags );
 			}
 			$logid = $logEntry->insert();
 			$logEntry->publish( $logid );

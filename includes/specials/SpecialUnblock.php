@@ -249,7 +249,7 @@ class SpecialUnblock extends SpecialPage {
 		$logEntry->setComment( $data['Reason'] );
 		$logEntry->setPerformer( $performer );
 		if ( isset( $data['Tags'] ) ) {
-			$logEntry->setTags( $data['Tags'] );
+			$logEntry->addTags( $data['Tags'] );
 		}
 		$logEntry->setRelations( [ 'ipb_id' => $block->getId() ] );
 		$logId = $logEntry->insert();

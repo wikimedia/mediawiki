@@ -464,7 +464,7 @@ class UserrightsPage extends SpecialPage {
 		] );
 		$logid = $logEntry->insert();
 		if ( count( $tags ) ) {
-			$logEntry->setTags( $tags );
+			$logEntry->addTags( $tags );
 		}
 		$logEntry->publish( $logid );
 	}

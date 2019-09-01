@@ -394,7 +394,7 @@ abstract class RevDelList extends RevisionListBase {
 		}
 		$logEntry->setRelations( $relations );
 		// Apply change tags to the log entry
-		$logEntry->setTags( $params['tags'] );
+		$logEntry->addTags( $params['tags'] );
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 	}
