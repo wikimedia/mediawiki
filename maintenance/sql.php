@@ -175,9 +175,9 @@ class MwSql extends Maintenance {
 			return $this->sqlPrintResult( $res, $db );
 		} catch ( DBQueryError $e ) {
 			if ( $dieOnError ) {
-				$this->fatalError( $e );
+				$this->fatalError( (string)$e );
 			} else {
-				$this->error( $e );
+				$this->error( (string)$e );
 			}
 		}
 		return null;
