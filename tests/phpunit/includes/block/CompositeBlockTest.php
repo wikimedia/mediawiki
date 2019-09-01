@@ -207,39 +207,51 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 	 * @covers ::appliesToRight
 	 * @dataProvider provideTestBlockAppliesToRight
 	 */
-	public function testBlockAppliesToRight( $blocks, $right, $expected ) {
+	public function testBlockAppliesToRight( $applies, $expected ) {
 		$this->setMwGlobals( [
 			'wgBlockDisablesLogin' => false,
 		] );
 
 		$block = new CompositeBlock( [
-			'originalBlocks' => $blocks,
+			'originalBlocks' => [
+				$this->getMockBlockForTestAppliesToRight( $applies[ 0 ] ),
+				$this->getMockBlockForTestAppliesToRight( $applies[ 1 ] ),
+			],
 		] );
 
-		$this->assertSame( $block->appliesToRight( $right ), $expected );
+		$this->assertSame( $block->appliesToRight( 'right' ), $expected );
 	}
 
-	public static function provideTestBlockAppliesToRight() {
+	private function getMockBlockForTestAppliesToRight( $applies ) {
+		$mockBlock = $this->getMockBuilder( DatabaseBlock::class )
+			->setMethods( [ 'appliesToRight' ] )
+			->getMock();
+		$mockBlock->method( 'appliesToRight' )
+			->willReturn( $applies );
+		return $mockBlock;
+	}
+
+	public function provideTestBlockAppliesToRight() {
 		return [
-			'Read is not blocked' => [
-				[
-					new DatabaseBlock(),
-					new DatabaseBlock(),
-				],
-				'read',
+			'Block does not apply if no original blocks apply' => [
+				[ false, false ],
 				false,
 			],
-			'Email is blocked if blocked by any blocks' => [
-				[
-					new DatabaseBlock( [
-						'blockEmail' => true,
-					] ),
-					new DatabaseBlock( [
-						'blockEmail' => false,
-					] ),
-				],
-				'sendemail',
+			'Block applies if any original block applies (second block doesn\'t apply)' => [
+				[ true, false ],
 				true,
+			],
+			'Block applies if any original block applies (second block unsure)' => [
+				[ true, null ],
+				true,
+			],
+			'Block is unsure if all original blocks are unsure' => [
+				[ null, null ],
+				null,
+			],
+			'Block is unsure if any original block is unsure, and no others apply' => [
+				[ null, false ],
+				null,
 			],
 		];
 	}
