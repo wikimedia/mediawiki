@@ -258,7 +258,7 @@ class LogPager extends ReverseChronologicalPager {
 				$params[] = $db->anyString();
 			}
 			array_pop( $params ); // Get rid of the last % we added.
-			$this->mConds[] = 'log_title' . $db->buildLike( $params );
+			$this->mConds[] = 'log_title' . $db->buildLike( ...$params );
 		} elseif ( $pattern && !$wgMiserMode ) {
 			$this->mConds[] = 'log_title' . $db->buildLike( $title->getDBkey(), $db->anyString() );
 			$this->pattern = $pattern;

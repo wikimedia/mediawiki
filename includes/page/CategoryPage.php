@@ -24,15 +24,12 @@
 /**
  * Special handling for category description pages, showing pages,
  * subcategories and file that belong to the category
+ *
+ * @property WikiCategoryPage $mPage Set by overwritten newPage() in this class
  */
 class CategoryPage extends Article {
 	# Subclasses can change this to override the viewer class.
 	protected $mCategoryViewerClass = CategoryViewer::class;
-
-	/**
-	 * @var WikiCategoryPage
-	 */
-	protected $mPage;
 
 	/**
 	 * @param Title $title
