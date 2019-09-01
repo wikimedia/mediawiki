@@ -443,6 +443,10 @@ because of Phabricator reports.
   Use OutputPage::getRevisionId() and OutputPage::isRevisionCurrent() instead.
 * LoadBalancer::haveIndex() and LoadBalancer::isNonZeroLoad() have
   been deprecated.
+* MediaWikiIntegrationTest::setContentLang() has been deprecated. Use
+  setMwGlobals( 'wgLanguageCode', 'xxx' ) to set a different site language
+  code, or setService( 'ContentLanguage', $myObj ) to set a specific Language
+  object. Service resets and $wgContLang will be handled automatically.
 * FileBackend::getWikiId() has been deprecated.
   Use FileBackend::getDomainId() instead.
 * User::getRights() and User::$mRights have been deprecated. Use
