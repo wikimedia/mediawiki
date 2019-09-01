@@ -1487,6 +1487,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->trxAtomicCounter = 0;
 		$this->trxIdleCallbacks = []; // T67263; transaction already lost
 		$this->trxPreCommitCallbacks = []; // T67263; transaction already lost
+		// Clear additional subclass fields
+		$this->doHandleSessionLossPreconnect();
 		// @note: leave trxRecurringCallbacks in place
 		if ( $this->trxDoneWrites ) {
 			$this->trxProfiler->transactionWritingOut(
@@ -1497,6 +1499,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->trxWriteAffectedRows
 			);
 		}
+	}
+
+	/**
+	 * Reset any additional subclass trx* and session* fields
+	 */
+	protected function doHandleSessionLossPreconnect() {
+		// no-op
 	}
 
 	/**
