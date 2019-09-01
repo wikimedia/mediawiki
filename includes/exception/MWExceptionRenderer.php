@@ -199,7 +199,7 @@ class MWExceptionRenderer {
 
 		// FIXME: Keep logic in sync with MWException::msg.
 		try {
-			$res = wfMessage( $key, $params )->text();
+			$res = wfMessage( $key, ...$params )->text();
 		} catch ( Exception $e ) {
 			$res = wfMsgReplaceArgs( $fallback, $params );
 			// If an exception happens inside message rendering,

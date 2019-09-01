@@ -292,7 +292,7 @@ class LinkFilter {
 		// The constant prefix is smaller than el_index_60, so we use a LIKE
 		// for a prefix search.
 		return [
-			"{$p}_index_60" . $db->buildLike( [ $index, $db->anyString() ] ),
+			"{$p}_index_60" . $db->buildLike( $index, $db->anyString() ),
 			"{$p}_index" . $db->buildLike( $like ),
 		];
 	}
