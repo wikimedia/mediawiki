@@ -59,9 +59,10 @@ class ApiMove extends ApiBase {
 		}
 		$toTalk = $toTitle->getTalkPageIfDefined();
 
+		$repoGroup = MediaWikiServices::getInstance()->getRepoGroup();
 		if ( $toTitle->getNamespace() == NS_FILE
-			&& !RepoGroup::singleton()->getLocalRepo()->findFile( $toTitle )
-			&& MediaWikiServices::getInstance()->getRepoGroup()->findFile( $toTitle )
+			&& !$repoGroup->getLocalRepo()->findFile( $toTitle )
+			&& $repoGroup->findFile( $toTitle )
 		) {
 			if ( !$params['ignorewarnings'] &&
 				 $this->getPermissionManager()->userHasRight( $user, 'reupload-shared' ) ) {
