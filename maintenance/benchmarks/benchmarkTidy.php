@@ -59,6 +59,7 @@ class BenchmarkTidy extends Benchmarker {
 		$min = $times[0];
 		$max = end( $times );
 		if ( $n % 2 ) {
+			// @phan-suppress-next-line PhanTypeMismatchDimFetch
 			$median = $times[ ( $n - 1 ) / 2 ];
 		} else {
 			$median = ( $times[$n / 2] + $times[$n / 2 - 1] ) / 2;

@@ -427,7 +427,6 @@ JAVASCRIPT;
 				$idx = -1;
 				foreach ( $grpModules as $name => $module ) {
 					$shouldEmbed = $module->shouldEmbedModule( $context );
-					// @phan-suppress-next-line PhanTypeInvalidDimOffset
 					if ( !$moduleSets || $moduleSets[$idx][0] !== $shouldEmbed ) {
 						$moduleSets[++$idx] = [ $shouldEmbed, [] ];
 					}

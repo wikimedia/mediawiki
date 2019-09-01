@@ -50,7 +50,6 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 	 * @codingStandardsIgnoreStart
 	 * @phan-param array{logger?:Psr\Log\LoggerInterface,asyncHandler?:callable,keyspace?:string,reportDupes?:bool,syncTimeout?:int,segmentationSize?:int,segmentedValueMaxSize?:int,maxKeys?:int} $params
 	 * @codingStandardsIgnoreEnd
-	 * @suppress PhanTypeInvalidDimOffset
 	 */
 	function __construct( $params = [] ) {
 		$params['segmentationSize'] = $params['segmentationSize'] ?? INF;

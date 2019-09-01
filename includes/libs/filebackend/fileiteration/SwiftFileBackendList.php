@@ -33,7 +33,7 @@ abstract class SwiftFileBackendList implements Iterator {
 	/** @var array List of path or (path,stat array) entries */
 	protected $bufferIter = [];
 
-	/** @var string List items *after* this path */
+	/** @var string|null List items *after* this path */
 	protected $bufferAfter = null;
 
 	/** @var int */
@@ -108,6 +108,7 @@ abstract class SwiftFileBackendList implements Iterator {
 		$this->pos = 0;
 		$this->bufferAfter = null;
 		$this->bufferIter = $this->pageFromList(
+			// @phan-suppress-next-line PhanTypeMismatchArgumentPropertyReferenceReal
 			$this->container, $this->dir, $this->bufferAfter, self::PAGE_SIZE, $this->params
 		); // updates $this->bufferAfter
 	}

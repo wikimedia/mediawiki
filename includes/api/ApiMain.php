@@ -1708,7 +1708,7 @@ class ApiMain extends ApiBase {
 	 * @return string
 	 */
 	protected function encodeRequestLogValue( $s ) {
-		static $table;
+		static $table = [];
 		if ( !$table ) {
 			$chars = ';@$!*(),/:';
 			$numChars = strlen( $chars );
@@ -1914,6 +1914,10 @@ class ApiMain extends ApiBase {
 		];
 	}
 
+	/**
+	 * @inheritDoc
+	 * @phan-param array{nolead?:bool,headerlevel?:int,tocnumber?:int[]} $options
+	 */
 	public function modifyHelp( array &$help, array $options, array &$tocData ) {
 		// Wish PHP had an "array_insert_before". Instead, we have to manually
 		// reindex the array to get 'permissions' in the right place.

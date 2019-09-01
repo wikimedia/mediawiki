@@ -516,7 +516,6 @@ abstract class BaseTemplate extends QuickTemplate {
 		if ( isset( $item['itemtitle'] ) ) {
 			$attrs['title'] = $item['itemtitle'];
 		}
-		// @phan-suppress-next-line PhanTypeInvalidDimOffset
 		return Html::rawElement( $options['tag'] ?? 'li', $attrs, $html );
 	}
 

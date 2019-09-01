@@ -74,7 +74,7 @@ class BlockListPager extends TablePager {
 	 * @param string $name
 	 * @param string $value
 	 * @return string
-	 * @suppress PhanTypeArraySuspiciousNullable,PhanTypeArraySuspicious
+	 * @suppress PhanTypeArraySuspicious
 	 */
 	function formatValue( $name, $value ) {
 		static $msg = null;

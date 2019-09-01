@@ -40,6 +40,7 @@ class ParserDiffTest {
 		if ( !is_null( $this->parsers ) ) {
 			return;
 		}
+		$this->parsers = [];
 
 		if ( isset( $this->conf['shortOutput'] ) ) {
 			$this->shortOutput = $this->conf['shortOutput'];

@@ -402,7 +402,6 @@ class MultiHttpClient implements LoggerAwareInterface {
 				$name = strtolower( $name );
 				$value = trim( $value );
 				if ( isset( $req['response']['headers'][$name] ) ) {
-					// @phan-suppress-next-line PhanTypeInvalidDimOffset
 					$req['response']['headers'][$name] .= ', ' . $value;
 				} else {
 					$req['response']['headers'][$name] = $value;

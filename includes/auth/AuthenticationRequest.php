@@ -376,7 +376,7 @@ abstract class AuthenticationRequest {
 	 * @return AuthenticationRequest
 	 */
 	public static function __set_state( $data ) {
-		// @phan-suppress-next-line PhanTypeInstantiateAbstract
+		// @phan-suppress-next-line PhanTypeInstantiateAbstractStatic
 		$ret = new static();
 		foreach ( $data as $k => $v ) {
 			$ret->$k = $v;

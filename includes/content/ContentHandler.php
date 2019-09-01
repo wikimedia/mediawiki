@@ -1102,7 +1102,7 @@ abstract class ContentHandler {
 	 * @param Revision|Content $undoafter Must be from an earlier revision than $undo
 	 * @param bool $undoIsLatest Set true if $undo is from the current revision (since 1.32)
 	 *
-	 * @return mixed Content on success, false on failure
+	 * @return Content|false Content on success, false on failure
 	 */
 	public function getUndoContent( $current, $undo, $undoafter, $undoIsLatest = false ) {
 		Assert::parameterType( Revision::class . '|' . Content::class, $current, '$current' );

@@ -527,7 +527,6 @@ class Language {
 			}
 
 			# Sometimes a language will be localised but not actually exist on this wiki.
-			// @phan-suppress-next-line PhanTypeMismatchForeach
 			foreach ( $this->namespaceNames as $key => $text ) {
 				if ( !isset( $validNamespaces[$key] ) ) {
 					unset( $this->namespaceNames[$key] );
@@ -536,7 +535,6 @@ class Language {
 
 			# The above mixing may leave namespaces out of canonical order.
 			# Re-order by namespace ID number...
-			// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 			ksort( $this->namespaceNames );
 
 			Hooks::run( 'LanguageGetNamespaces', [ &$this->namespaceNames ] );
@@ -3237,7 +3235,6 @@ class Language {
 		$fallbackChain = array_reverse( $fallbackChain );
 		foreach ( $fallbackChain as $code ) {
 			if ( isset( $newWords[$code] ) ) {
-				// @phan-suppress-next-line PhanTypeMismatchProperty
 				$this->mMagicExtensions = $newWords[$code] + $this->mMagicExtensions;
 			}
 		}
