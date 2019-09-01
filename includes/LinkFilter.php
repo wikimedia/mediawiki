@@ -338,6 +338,7 @@ class LinkFilter {
 			}
 		}
 
+		$like = [];
 		$like[] = $bits['scheme'] . $bits['delimiter'] . $bits['host'];
 
 		if ( $subdomains ) {

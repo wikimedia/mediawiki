@@ -104,9 +104,8 @@ TEXT
 			'STRAIGHT_JOIN' // per T58041
 		];
 
-		if ( $force ) {
-			$collationConds = [];
-		} else {
+		$collationConds = [];
+		if ( !$force ) {
 			if ( $this->hasOption( 'previous-collation' ) ) {
 				$collationConds['cl_collation'] = $this->getOption( 'previous-collation' );
 			} else {

@@ -1270,7 +1270,7 @@ abstract class Installer {
 	 *
 	 * @param string $directory Directory to search in, relative to $IP, must be either "extensions"
 	 *     or "skins"
-	 * @return array [ $extName => [ 'screenshots' => [ '...' ] ]
+	 * @return array[][] [ $extName => [ 'screenshots' => [ '...' ] ]
 	 */
 	public function findExtensions( $directory = 'extensions' ) {
 		switch ( $directory ) {

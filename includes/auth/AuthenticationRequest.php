@@ -122,6 +122,7 @@ abstract class AuthenticationRequest {
 	 * a 'password' field).
 	 *
 	 * @return array As above
+	 * @phan-return array<string,array{type:string,options?:array,value?:string,label:Message,help:Message,optional?:bool,sensitive?:bool,skippable?:bool}>
 	 */
 	abstract public function getFieldInfo();
 
@@ -337,7 +338,6 @@ abstract class AuthenticationRequest {
 				}
 
 				$options['sensitive'] = !empty( $options['sensitive'] );
-				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$type = $options['type'];
 
 				if ( !array_key_exists( $name, $merged ) ) {

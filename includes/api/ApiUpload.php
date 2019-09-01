@@ -793,6 +793,7 @@ class ApiUpload extends ApiBase {
 			}
 		}
 
+		$result = [];
 		// No errors, no warnings: do the upload
 		if ( $this->mParams['async'] ) {
 			$progress = UploadBase::getSessionStatus( $this->getUser(), $this->mParams['filekey'] );

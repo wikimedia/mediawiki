@@ -303,6 +303,7 @@ TEXT
 			$param = $split[1];
 		}
 		$fileURIs = explode( ';', $param );
+		$newFileURIs = [];
 		foreach ( $fileURIs as $URI ) {
 			switch ( $val ) {
 				case "file":

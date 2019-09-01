@@ -117,6 +117,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$fetchlinks = ( !$hidelinks || !$hideredirs );
 
 		// Build query conds in concert for all three tables...
+		$conds = [];
 		$conds['pagelinks'] = [
 			'pl_namespace' => $target->getNamespace(),
 			'pl_title' => $target->getDBkey(),
@@ -229,6 +230,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		// Read the rows into an array and remove duplicates
 		// templatelinks comes second so that the templatelinks row overwrites the
 		// pagelinks row, so we get (inclusion) rather than nothing
+		$rows = [];
 		if ( $fetchlinks ) {
 			foreach ( $plRes as $row ) {
 				$row->is_template = 0;

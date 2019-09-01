@@ -595,6 +595,8 @@ SPARQL;
 			 * TODO: For now, we do full update even though some data hasn't changed,
 			 * e.g. parents for parent cat and counts for child cat.
 			 */
+			$childPages = [];
+			$parentCats = [];
 			foreach ( $batch as $row ) {
 				$childPages[$row->rc_cur_id] = true;
 				$parentCats[$row->rc_title] = true;
@@ -614,7 +616,7 @@ SPARQL;
 			$pages = [];
 			$deleteUrls = [];
 
-			if ( !empty( $childPages ) ) {
+			if ( $childPages ) {
 				// Load child rows by ID
 				$childRows = $dbr->select(
 					[ 'page', 'page_props', 'category' ],
@@ -642,7 +644,7 @@ SPARQL;
 				}
 			}
 
-			if ( !empty( $parentCats ) ) {
+			if ( $parentCats ) {
 				// Load parent rows by title
 				$joinConditions = [
 					'page' => [

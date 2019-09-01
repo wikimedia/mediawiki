@@ -1305,6 +1305,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 *   - Cached or regenerated value version number or null if not versioned
 	 *   - Timestamp of the current cached value at the key or null if there is no value
 	 * @note Callable type hints are not used to avoid class-autoloading
+	 * @suppress PhanTypeArraySuspicious
 	 */
 	private function fetchOrRegenerate( $key, $ttl, $callback, array $opts ) {
 		$checkKeys = $opts['checkKeys'] ?? [];
@@ -2421,6 +2422,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 *   - curTTL: remaining time-to-live (negative if tombstoned) or null if there is no value
 	 *   - version: value version number or null if the if there is no value
 	 *   - tombAsOf: UNIX timestamp of the tombstone or null if there is no tombstone
+	 * @phan-return array{0:mixed,1:array{asOf:?mixed,curTTL:?int|float,version:?mixed,tombAsOf:?mixed}}
 	 */
 	private function unwrap( $wrapped, $now ) {
 		$value = false;

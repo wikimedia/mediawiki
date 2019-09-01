@@ -86,11 +86,13 @@ class ApiUnblock extends ApiBase {
 			$this->dieStatus( $this->errorArrayToStatus( $retval ) );
 		}
 
-		$res['id'] = $block->getId();
 		$target = $block->getType() == DatabaseBlock::TYPE_AUTO ? '' : $block->getTarget();
-		$res['user'] = $target instanceof User ? $target->getName() : $target;
-		$res['userid'] = $target instanceof User ? $target->getId() : 0;
-		$res['reason'] = $params['reason'];
+		$res = [
+			'id' => $block->getId(),
+			'user' => $target instanceof User ? $target->getName() : $target,
+			'userid' => $target instanceof User ? $target->getId() : 0,
+			'reason' => $params['reason']
+		];
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}
 

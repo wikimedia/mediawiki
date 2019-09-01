@@ -397,7 +397,8 @@ class JobQueueGroup {
 	}
 
 	/**
-	 * @return JobQueue[]
+	 * @return array[]
+	 * @phan-return array<string,array{queue:JobQueue,types:array<string,class-string>}>
 	 */
 	protected function getCoalescedQueues() {
 		global $wgJobTypeConf;

@@ -639,6 +639,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$linkRenderer = $this->getLinkRenderer();
 		$link = $linkRenderer->makeLink( $title );
 
+		$tools = [];
 		$tools['talk'] = $linkRenderer->makeLink(
 			$title->getTalkPage(),
 			$this->msg( 'talkpagelinktext' )->text()

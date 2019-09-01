@@ -40,7 +40,7 @@ class Throttler implements LoggerAwareInterface {
 	/**
 	 * See documentation of $wgPasswordAttemptThrottle for format. Old (pre-1.27) format is not
 	 * allowed here.
-	 * @var array
+	 * @var array[]
 	 * @see https://www.mediawiki.org/wiki/Manual:$wgPasswordAttemptThrottle
 	 */
 	protected $conditions;
@@ -179,7 +179,7 @@ class Throttler implements LoggerAwareInterface {
 	/**
 	 * Handles B/C for $wgPasswordAttemptThrottle.
 	 * @param array $throttleConditions
-	 * @return array
+	 * @return array[]
 	 * @see $wgPasswordAttemptThrottle for structure
 	 */
 	protected static function normalizeThrottleConditions( $throttleConditions ) {
