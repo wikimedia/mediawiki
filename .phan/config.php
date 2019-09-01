@@ -32,21 +32,36 @@ $cfg['file_list'] = array_merge(
 	class_exists( PHPUnit_TextUI_Command::class ) ? [] : [ '.phan/stubs/phpunit4.php' ],
 	class_exists( ProfilerExcimer::class ) ? [] : [ '.phan/stubs/excimer.php' ],
 	[
-		'maintenance/cleanupTable.inc',
-		'maintenance/CodeCleanerGlobalsPass.inc',
-		'maintenance/commandLine.inc',
-		'maintenance/sqlite.inc',
-		'maintenance/userDupes.inc',
-		'maintenance/language/checkLanguage.inc',
-		'maintenance/language/languages.inc',
+		// This makes constants and globals known to Phan before processing all other files.
+		// You can check the parser order with --dump-parsed-file-list
+		'includes/Defines.php',
+		// @todo This isn't working yet, see globals_type_map below
+		// 'includes/DefaultSettings.php',
+		// 'includes/Setup.php',
 	]
 );
 
+$cfg['exclude_file_list'] = array_merge(
+	$cfg['exclude_file_list'],
+	[
+		// This file has invalid PHP syntax
+		'vendor/squizlabs/php_codesniffer/src/Standards/PSR2/Tests/Methods/MethodDeclarationUnitTest.inc',
+	]
+);
+
+$cfg['analyzed_file_extensions'] = array_merge(
+	$cfg['analyzed_file_extensions'] ?? [ 'php' ],
+	[ 'inc' ]
+);
+
 $cfg['autoload_internal_extension_signatures'] = [
+	'dom' => '.phan/internal_stubs/dom.phan_php',
 	'imagick' => '.phan/internal_stubs/imagick.phan_php',
+	'intl' => '.phan/internal_stubs/intl.phan_php',
 	'memcached' => '.phan/internal_stubs/memcached.phan_php',
 	'oci8' => '.phan/internal_stubs/oci8.phan_php',
 	'pcntl' => '.phan/internal_stubs/pcntl.phan_php',
+	'pgsql' => '.phan/internal_stubs/pgsql.phan_php',
 	'redis' => '.phan/internal_stubs/redis.phan_php',
 	'sockets' => '.phan/internal_stubs/sockets.phan_php',
 	'sqlsrv' => '.phan/internal_stubs/sqlsrv.phan_php',
@@ -65,7 +80,7 @@ $cfg['directory_list'] = [
 
 $cfg['exclude_analysis_directory_list'] = [
 	'vendor/',
-	'.phan/stubs/',
+	'.phan/',
 	// The referenced classes are not available in vendor, only when
 	// included from composer.
 	'includes/composer/',
@@ -77,14 +92,11 @@ $cfg['exclude_analysis_directory_list'] = [
 
 $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
 	// approximate error count: 19
-	"PhanParamReqAfterOpt", // False positives with nullables, ref phan issue #3159
+	"PhanParamReqAfterOpt", // False positives with nullables (phan issue #3159). Use real nullables
+	//after dropping HHVM
 	// approximate error count: 110
 	"PhanParamTooMany", // False positives with variargs. Unsuppress after dropping HHVM
 
-	// approximate error count: 22
-	"PhanAccessMethodInternal",
-	// approximate error count: 36
-	"PhanUndeclaredConstant",
 	// approximate error count: 60
 	"PhanTypeMismatchArgument",
 	// approximate error count: 752
@@ -92,6 +104,8 @@ $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
 ] );
 
 $cfg['ignore_undeclared_variables_in_global_scope'] = true;
+// @todo It'd be great if we could just make phan read these from DefaultSettings, to avoid
+// duplicating the types.
 $cfg['globals_type_map'] = array_merge( $cfg['globals_type_map'], [
 	'IP' => 'string',
 	'wgGalleryOptions' => 'array',
@@ -110,6 +124,7 @@ $cfg['globals_type_map'] = array_merge( $cfg['globals_type_map'], [
 	'wgVirtualRestConfig' => 'array<string,array>',
 	'wgWANObjectCaches' => 'array[]',
 	'wgLocalInterwikis' => 'string[]',
+	'wgDebugLogGroups' => 'string|false|array{destination:string,sample?:int,level:int}',
 ] );
 
 return $cfg;

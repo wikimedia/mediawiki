@@ -47,6 +47,7 @@ class EntryPoint {
 			'cookiePrefix' => $conf->get( 'CookiePrefix' )
 		] );
 
+		// @phan-suppress-next-line PhanAccessMethodInternal
 		$authorizer = new MWBasicAuthorizer( $context->getUser(),
 			$services->getPermissionManager() );
 

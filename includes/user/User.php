@@ -1752,6 +1752,7 @@ class User implements IDBAccessObject, UserIdentity {
 		// overwriting mBlockedby, surely?
 		$this->load();
 
+		// @phan-suppress-next-line PhanAccessMethodInternal It's the only allowed use
 		$block = MediaWikiServices::getInstance()->getBlockManager()->getUserBlock(
 			$this,
 			$fromReplica

@@ -321,6 +321,7 @@ final class SessionManager implements SessionManagerInterface {
 
 	public function getVaryHeaders() {
 		// @codeCoverageIgnoreStart
+		// @phan-suppress-next-line PhanUndeclaredConstant
 		if ( defined( 'MW_NO_SESSION' ) && MW_NO_SESSION !== 'warn' ) {
 			return [];
 		}
@@ -341,6 +342,7 @@ final class SessionManager implements SessionManagerInterface {
 
 	public function getVaryCookies() {
 		// @codeCoverageIgnoreStart
+		// @phan-suppress-next-line PhanUndeclaredConstant
 		if ( defined( 'MW_NO_SESSION' ) && MW_NO_SESSION !== 'warn' ) {
 			return [];
 		}
@@ -815,6 +817,7 @@ final class SessionManager implements SessionManagerInterface {
 	public function getSessionFromInfo( SessionInfo $info, WebRequest $request ) {
 		// @codeCoverageIgnoreStart
 		if ( defined( 'MW_NO_SESSION' ) ) {
+			// @phan-suppress-next-line PhanUndeclaredConstant
 			if ( MW_NO_SESSION === 'warn' ) {
 				// Undocumented safety case for converting existing entry points
 				$this->logger->error( 'Sessions are supposed to be disabled for this entry point', [
