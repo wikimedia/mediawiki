@@ -40,7 +40,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		parent::setUp();
 		$reflection = new ReflectionClass( $this );
 		$dirSeparator = DIRECTORY_SEPARATOR;
-		if ( strpos( $reflection->getFilename(), "${dirSeparator}unit${dirSeparator}" ) === false ) {
+		if ( stripos( $reflection->getFilename(), "${dirSeparator}unit${dirSeparator}" ) === false ) {
 			$this->fail( 'This unit test needs to be in "tests/phpunit/unit"!' );
 		}
 		$this->unitGlobals = $GLOBALS;
