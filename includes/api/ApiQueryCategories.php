@@ -127,6 +127,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				'cl_to' . $sort
 			] );
 		}
+		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
 		$res = $this->select( __METHOD__ );
 
