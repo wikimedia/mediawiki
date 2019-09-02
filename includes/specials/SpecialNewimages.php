@@ -102,7 +102,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 			$this->buildForm( $context );
 		}
 
-		$pager = new NewFilesPager( $context, $opts );
+		$pager = new NewFilesPager( $context, $opts, $this->getLinkRenderer() );
 
 		$out->addHTML( $pager->getBody() );
 		if ( !$this->including() ) {

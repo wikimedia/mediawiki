@@ -13,6 +13,17 @@ use Wikimedia\TestingAccessWrapper;
 class BlockListPagerTest extends MediaWikiTestCase {
 
 	/**
+	 * @var LinkRenderer
+	 */
+	private $linkRenderer;
+
+	protected function setUp() {
+		parent::setUp();
+
+		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+	}
+
+	/**
 	 * @covers ::formatValue
 	 * @dataProvider formatValueEmptyProvider
 	 * @dataProvider formatValueDefaultProvider
@@ -30,7 +41,7 @@ class BlockListPagerTest extends MediaWikiTestCase {
 		$expected = $expected ?? MWTimestamp::getInstance()->format( 'H:i, j F Y' );
 
 		$row = $row ?: new stdClass;
-		$pager = new BlockListPager( new SpecialPage(),  [] );
+		$pager = new BlockListPager( new SpecialPage(),  [], $this->linkRenderer );
 		$wrappedPager = TestingAccessWrapper::newFromObject( $pager );
 		$wrappedPager->mCurrentRow = $row;
 
@@ -118,7 +129,7 @@ class BlockListPagerTest extends MediaWikiTestCase {
 			'wgScript' => '/w/index.php',
 		] );
 
-		$pager = new BlockListPager( new SpecialPage(),  [] );
+		$pager = new BlockListPager( new SpecialPage(),  [], $this->linkRenderer );
 
 		$row = (object)[
 			'ipb_id' => 0,
@@ -198,7 +209,7 @@ class BlockListPagerTest extends MediaWikiTestCase {
 			'ipb_sitewide' => 1,
 			'ipb_timestamp' => $this->db->timestamp( wfTimestamp( TS_MW ) ),
 		];
-		$pager = new BlockListPager( new SpecialPage(),  [] );
+		$pager = new BlockListPager( new SpecialPage(),  [], $this->linkRenderer );
 		$pager->preprocessResults( [ $row ] );
 
 		foreach ( $links as $link ) {
@@ -211,7 +222,7 @@ class BlockListPagerTest extends MediaWikiTestCase {
 			'by_user_name' => 'Admin',
 			'ipb_sitewide' => 1,
 		];
-		$pager = new BlockListPager( new SpecialPage(),  [] );
+		$pager = new BlockListPager( new SpecialPage(),  [], $this->linkRenderer );
 		$pager->preprocessResults( [ $row ] );
 
 		$this->assertObjectNotHasAttribute( 'ipb_restrictions', $row );
@@ -237,7 +248,7 @@ class BlockListPagerTest extends MediaWikiTestCase {
 
 		$result = $this->db->select( 'ipblocks', [ '*' ], [ 'ipb_id' => $block->getId() ] );
 
-		$pager = new BlockListPager( new SpecialPage(),  [] );
+		$pager = new BlockListPager( new SpecialPage(),  [], $this->linkRenderer );
 		$pager->preprocessResults( $result );
 
 		$wrappedPager = TestingAccessWrapper::newFromObject( $pager );

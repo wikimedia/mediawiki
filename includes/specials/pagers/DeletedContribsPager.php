@@ -22,6 +22,7 @@
 /**
  * @ingroup Pager
  */
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionRecord;
 use Wikimedia\Rdbms\IDatabase;
@@ -60,8 +61,10 @@ class DeletedContribsPager extends IndexPager {
 	 */
 	protected $mNavigationBar;
 
-	public function __construct( IContextSource $context, $target, $namespace = false ) {
-		parent::__construct( $context );
+	public function __construct( IContextSource $context, $target, $namespace = false,
+		LinkRenderer $linkRenderer
+	) {
+		parent::__construct( $context, $linkRenderer );
 		$msgs = [ 'deletionlog', 'undeleteviewlink', 'diff' ];
 		foreach ( $msgs as $msg ) {
 			$this->messages[$msg] = $this->msg( $msg )->text();

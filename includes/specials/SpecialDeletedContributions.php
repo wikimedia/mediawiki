@@ -93,7 +93,8 @@ class DeletedContributionsPage extends SpecialPage {
 
 		$this->getForm();
 
-		$pager = new DeletedContribsPager( $this->getContext(), $target, $opts->getValue( 'namespace' ) );
+		$pager = new DeletedContribsPager( $this->getContext(), $target, $opts->getValue( 'namespace' ),
+			$this->getLinkRenderer() );
 		if ( !$pager->getNumRows() ) {
 			$out->addWikiMsg( 'nocontribs' );
 
