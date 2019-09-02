@@ -26,7 +26,7 @@ trait MediaWikiTestCaseTrait {
 	 */
 	protected function createNoOpMock( $type ) {
 		$mock = $this->createMock( $type );
-		$mock->expects( $this->never() )->method( $this->anything() );
+		$mock->expects( $this->never() )->method( $this->anythingBut( '__destruct' ) );
 		return $mock;
 	}
 }
