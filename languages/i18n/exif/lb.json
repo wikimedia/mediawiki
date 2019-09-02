@@ -255,6 +255,8 @@
 	"exif-scenetype-1": "D'Bild gouf fotograféiert",
 	"exif-customrendered-0": "Standard",
 	"exif-customrendered-1": "Benotzerdefinéiert",
+	"exif-customrendered-6": "Panorama",
+	"exif-customrendered-8": "Portrait",
 	"exif-exposuremode-0": "Automatesch Beliichtung",
 	"exif-exposuremode-1": "Manuell Beliichtung",
 	"exif-exposuremode-2": "Beliichtungsserie",

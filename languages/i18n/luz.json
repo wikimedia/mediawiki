@@ -6,7 +6,8 @@
 			"Mjbmr",
 			"Hosseinblue",
 			"MtDu",
-			"Shahriar dehghani"
+			"Shahriar dehghani",
+			"Shahriar.dehghani24"
 		]
 	},
 	"tog-underline": "لینکیا خط وه دومن",
@@ -528,7 +529,7 @@
 	"filehist-dimensions": "ابعاد",
 	"filehist-comment": "توٙضیح",
 	"imagelinks": "ئیستفادھ د فایل",
-	"linkstoimage": "دوٙمین الذکر {{PLURAL:$1|لینکل بألگە|$1 لینک بألگل}} بە ئی فایل:",
+	"linkstoimage": "{{PLURAL:$1|صفحهٔ|صفحَلِ}} زِر و ای عکس پیوند دارہ :",
 	"nolinkstoimage": "بألگە یلی کە ڤە ئی فایل لینک دائنە نی.",
 	"sharedupload-desc-here": "ئی فایل ز $1 ئوٙمائە ڤ شاید د پۉرۉجە یل دیە مورد ئیستفادھ ڤابین.\nتوٙضیحتل ری [$2 بألگە تۉضیح فایل] دوٙمین نیشۉ ڤابیە .",
 	"upload-disallowed-here": "ئیشا نیتأریت ئی فایلنە بینڤیسیت",

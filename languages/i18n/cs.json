@@ -44,7 +44,8 @@
 			"Jan Růžička",
 			"Jaroslav Cerny",
 			"Slepi",
-			"Tchoř"
+			"Tchoř",
+			"SimonV"
 		]
 	},
 	"tog-underline": "Podtrhávat odkazy:",
@@ -2338,9 +2339,9 @@
 	"sessionfailure": "Nastal problém s vaším přihlášením;\nvámi požadovaná činnost byla zrušena jako prevence před neoprávněným přístupem.\nStiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli, a zkuste činnost znovu.",
 	"changecontentmodel": "Změnit model obsahu stránky",
 	"changecontentmodel-legend": "Změnit model obsahu",
-	"changecontentmodel-title-label": "Název stránky",
+	"changecontentmodel-title-label": "Název stránky:",
 	"changecontentmodel-current-label": "Současný model obsahu:",
-	"changecontentmodel-model-label": "Nový model obsahu",
+	"changecontentmodel-model-label": "Nový model obsahu:",
 	"changecontentmodel-reason-label": "Důvod:",
 	"changecontentmodel-submit": "Změnit",
 	"changecontentmodel-success-title": "Model obsahu byl změněn",

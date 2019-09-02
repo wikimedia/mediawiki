@@ -1351,6 +1351,7 @@
 	"listredirects": "Listo di ridirektili",
 	"listduplicatedfiles": "Listo pri arkivi kun duplikati",
 	"unusedtemplates": "Neuzata shabloni",
+	"unusedtemplatestext": "Ca pagino montras omna pagini di {{ns:template}} qui ne uzesas en altra pagini.\nVoluntez serchar altra ligili a la shabloni montrata adinfre, ante efacar li.",
 	"unusedtemplateswlh": "altra ligili",
 	"randompage": "Hazarda pagino",
 	"randomincategory-submit": "Irez",

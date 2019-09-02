@@ -382,7 +382,7 @@
 	"viewyourtext": "Bu səhifəyə <strong>etdiyiniz dəyişikliklərin</strong> mənbəyinə baxa və köçürə bilərsiniz.",
 	"protectedinterface": "Bu səhifədə proqram təminatı üçün sistem məlumatları var və sui-istifadənin qarşısını almaq üçün mühafizə olunmalıdır.",
 	"editinginterface": "<strong>Diqqət:</strong> Siz proqram təminatı üçün interfeys mətni olan səhifəni redaktə edirsiniz.\nOnun dəyişdirilməsi digər istifadəçilərin interfeysinin xarici görünüşünə təsir göstərəcək.",
-	"translateinterface": "Bütün vikilər üçün tərcümələri əlavə etmək və ya dəyişmək üçün, xahiş edirik MediaWiki lokallaşdırma layihəsi [https://translatewiki.net/ translatewiki.net]-i istifadə edin.",
+	"translateinterface": "Bütün vikilərə tərcümələr əlavə etmək və ya onları dəyişmək üçün xahiş edirik, MediaWiki lokallaşdırma layihəsi olan [https://translatewiki.net/ translatewiki.net] saytından istifadə edin.",
 	"cascadeprotected": "Bu səhifə mühafizə olunub, çünki o, kaskad mühafizə olunan {{PLURAL:$1|aşağıdakı səhifədə|aşağıdakı səhifələrdə}} istifadə edilib:\n$2",
 	"namespaceprotected": "Sizin adlarında $1 olan məqalələrdə redaktə etməyə icazəniz yoxdur.",
 	"customcssprotected": "Bu səhifəni redaktə etmə izniniz yoxdur, çünki bu səhifə başqa bir istifadəçinin fərdi parametrlərinə sahibdir.",
