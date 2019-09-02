@@ -27,6 +27,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\SessionManager;
+use Wikimedia\AtEase\AtEase;
 
 // The point of this class is to be a wrapper around super globals
 // phpcs:disable MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals
@@ -117,77 +118,79 @@ class WebRequest {
 	 * @return array Any query arguments found in path matches.
 	 */
 	public static function getPathInfo( $want = 'all' ) {
-		global $wgUsePathInfo;
 		// PATH_INFO is mangled due to https://bugs.php.net/bug.php?id=31892
 		// And also by Apache 2.x, double slashes are converted to single slashes.
 		// So we will use REQUEST_URI if possible.
-		$matches = [];
-		if ( !empty( $_SERVER['REQUEST_URI'] ) ) {
+		if ( isset( $_SERVER['REQUEST_URI'] ) ) {
 			// Slurp out the path portion to examine...
 			$url = $_SERVER['REQUEST_URI'];
 			if ( !preg_match( '!^https?://!', $url ) ) {
 				$url = 'http://unused' . $url;
 			}
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			$a = parse_url( $url );
-			Wikimedia\restoreWarnings();
-			if ( $a ) {
-				$path = $a['path'] ?? '';
-
-				global $wgScript;
-				if ( $path == $wgScript && $want !== 'all' ) {
-					// Script inside a rewrite path?
-					// Abort to keep from breaking...
-					return $matches;
-				}
-
-				$router = new PathRouter;
-
-				// Raw PATH_INFO style
-				$router->add( "$wgScript/$1" );
-
-				if ( isset( $_SERVER['SCRIPT_NAME'] )
-					&& preg_match( '/\.php/', $_SERVER['SCRIPT_NAME'] )
-				) {
-					# Check for SCRIPT_NAME, we handle index.php explicitly
-					# But we do have some other .php files such as img_auth.php
-					# Don't let root article paths clober the parsing for them
-					$router->add( $_SERVER['SCRIPT_NAME'] . "/$1" );
-				}
-
-				global $wgArticlePath;
-				if ( $wgArticlePath ) {
-					$router->add( $wgArticlePath );
-				}
-
-				global $wgActionPaths;
-				if ( $wgActionPaths ) {
-					$router->add( $wgActionPaths, [ 'action' => '$key' ] );
-				}
-
-				global $wgVariantArticlePath;
-				if ( $wgVariantArticlePath ) {
-					$router->add( $wgVariantArticlePath,
-						[ 'variant' => '$2' ],
-						[ '$2' => MediaWikiServices::getInstance()->getContentLanguage()->
-						getVariants() ]
-					);
-				}
-
-				Hooks::run( 'WebRequestPathInfoRouter', [ $router ] );
-
-				$matches = $router->parse( $path );
+			AtEase::restoreWarnings();
+			if ( !$a ) {
+				return [];
 			}
-		} elseif ( $wgUsePathInfo ) {
-			if ( isset( $_SERVER['ORIG_PATH_INFO'] ) && $_SERVER['ORIG_PATH_INFO'] != '' ) {
-				// Mangled PATH_INFO
-				// https://bugs.php.net/bug.php?id=31892
-				// Also reported when ini_get('cgi.fix_pathinfo')==false
-				$matches['title'] = substr( $_SERVER['ORIG_PATH_INFO'], 1 );
+			$path = $a['path'] ?? '';
 
-			} elseif ( isset( $_SERVER['PATH_INFO'] ) && $_SERVER['PATH_INFO'] != '' ) {
-				// Regular old PATH_INFO yay
-				$matches['title'] = substr( $_SERVER['PATH_INFO'], 1 );
+			global $wgScript;
+			if ( $path == $wgScript && $want !== 'all' ) {
+				// Script inside a rewrite path?
+				// Abort to keep from breaking...
+				return [];
+			}
+
+			$router = new PathRouter;
+
+			// Raw PATH_INFO style
+			$router->add( "$wgScript/$1" );
+
+			if ( isset( $_SERVER['SCRIPT_NAME'] )
+				&& strpos( $_SERVER['SCRIPT_NAME'], '.php' ) !== false
+			) {
+				// Check for SCRIPT_NAME, we handle index.php explicitly
+				// But we do have some other .php files such as img_auth.php
+				// Don't let root article paths clober the parsing for them
+				$router->add( $_SERVER['SCRIPT_NAME'] . "/$1" );
+			}
+
+			global $wgArticlePath;
+			if ( $wgArticlePath ) {
+				$router->add( $wgArticlePath );
+			}
+
+			global $wgActionPaths;
+			if ( $wgActionPaths ) {
+				$router->add( $wgActionPaths, [ 'action' => '$key' ] );
+			}
+
+			global $wgVariantArticlePath;
+			if ( $wgVariantArticlePath ) {
+				$router->add( $wgVariantArticlePath,
+					[ 'variant' => '$2' ],
+					[ '$2' => MediaWikiServices::getInstance()->getContentLanguage()->
+					getVariants() ]
+				);
+			}
+
+			Hooks::run( 'WebRequestPathInfoRouter', [ $router ] );
+
+			$matches = $router->parse( $path );
+		} else {
+			global $wgUsePathInfo;
+			$matches = [];
+			if ( $wgUsePathInfo ) {
+				if ( !empty( $_SERVER['ORIG_PATH_INFO'] ) ) {
+					// Mangled PATH_INFO
+					// https://bugs.php.net/bug.php?id=31892
+					// Also reported when ini_get('cgi.fix_pathinfo')==false
+					$matches['title'] = substr( $_SERVER['ORIG_PATH_INFO'], 1 );
+				} elseif ( !empty( $_SERVER['PATH_INFO'] ) ) {
+					// Regular old PATH_INFO yay
+					$matches['title'] = substr( $_SERVER['PATH_INFO'], 1 );
+				}
 			}
 		}
 
