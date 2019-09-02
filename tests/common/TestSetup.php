@@ -4,6 +4,23 @@
  * Common code for test environment initialisation and teardown
  */
 class TestSetup {
+	public static $bootstrapGlobals;
+
+	/**
+	 * For use in MediaWikiUnitTestCase.
+	 *
+	 * This should be called before DefaultSettings.php or Setup.php loads.
+	 */
+	public static function snapshotGlobals() {
+		self::$bootstrapGlobals = [];
+		foreach ( $GLOBALS as $key => $_ ) {
+			// Support: HHVM (avoid self-ref)
+			if ( $key !== 'GLOBALS' ) {
+				self::$bootstrapGlobals[ $key ] =& $GLOBALS[$key];
+			}
+		}
+	}
+
 	/**
 	 * This should be called before Setup.php, e.g. from the finalSetup() method
 	 * of a Maintenance subclass

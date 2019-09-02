@@ -55,18 +55,14 @@ define( 'MW_CONFIG_FILE', "$IP/LocalSettings.php" );
 
 // these variables must be defined before setup runs
 $GLOBALS['IP'] = $IP;
-// Set bootstrap globals to reuse in MediaWikiUnitTestCase
-$bootstrapGlobals = [];
-foreach ( $GLOBALS as $key => $value ) {
-	$bootstrapGlobals[ $key ] = $value;
-}
-$GLOBALS['wgPhpUnitBootstrapGlobals'] = $bootstrapGlobals;
-// Faking for Setup.php
+
+require_once "$IP/tests/common/TestSetup.php";
+TestSetup::snapshotGlobals();
+
+// Faking in lieu of Setup.php
 $GLOBALS['wgScopeTest'] = 'MediaWiki Setup.php scope test';
 $GLOBALS['wgCommandLineMode'] = true;
 $GLOBALS['wgAutoloadClasses'] = [];
-
-require_once "$IP/tests/common/TestSetup.php";
 
 wfRequireOnceInGlobalScope( "$IP/includes/AutoLoader.php" );
 wfRequireOnceInGlobalScope( "$IP/tests/common/TestsAutoLoader.php" );

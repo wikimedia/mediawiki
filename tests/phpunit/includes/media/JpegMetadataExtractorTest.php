@@ -9,14 +9,14 @@
  * @group Media
  * @covers JpegMetadataExtractor
  */
-class JpegMetadataExtractorTest extends MediaWikiUnitTestCase {
+class JpegMetadataExtractorTest extends MediaWikiIntegrationTestCase {
 
 	protected $filePath;
 
 	protected function setUp() {
 		parent::setUp();
 
-		$this->filePath = __DIR__ . '/../../../data/media/';
+		$this->filePath = __DIR__ . '/../../data/media/';
 	}
 
 	/**

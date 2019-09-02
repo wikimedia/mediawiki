@@ -6,7 +6,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers SlotDiffRenderer
  */
-class SlotDiffRendererTest extends \MediaWikiUnitTestCase {
+class SlotDiffRendererTest extends \MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideNormalizeContents

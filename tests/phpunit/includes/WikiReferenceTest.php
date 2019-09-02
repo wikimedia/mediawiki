@@ -3,7 +3,7 @@
 /**
  * @covers WikiReference
  */
-class WikiReferenceTest extends MediaWikiUnitTestCase {
+class WikiReferenceTest extends MediaWikiIntegrationTestCase {
 
 	public function provideGetDisplayName() {
 		return [
