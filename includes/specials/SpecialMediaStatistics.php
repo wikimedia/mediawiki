@@ -76,9 +76,9 @@ class MediaStatisticsPage extends QueryPage {
 			$dbr->addQuotes( '/' ),
 			'img_minor_mime',
 			$dbr->addQuotes( ';' ),
-			'COUNT(*)',
+			$dbr->buildStringCast( 'COUNT(*)' ),
 			$dbr->addQuotes( ';' ),
-			'SUM( img_size )'
+			$dbr->buildStringCast( 'SUM( img_size )' )
 		] );
 		return [
 			'tables' => [ 'image' ],
