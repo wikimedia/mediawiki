@@ -7,13 +7,12 @@ use LogicException;
 use MediaWiki\Revision\IncompleteRevisionException;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
-use MediaWikiUnitTestCase;
 use WikitextContent;
 
 /**
  * @covers \MediaWiki\Revision\SlotRecord
  */
-class SlotRecordTest extends MediaWikiUnitTestCase {
+class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 
 	private function makeRow( $data = [] ) {
 		$data = $data + [

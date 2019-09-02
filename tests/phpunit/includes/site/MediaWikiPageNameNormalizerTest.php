@@ -27,7 +27,7 @@ use MediaWiki\Site\MediaWikiPageNameNormalizer;
  *
  * @author Marius Hoch
  */
-class MediaWikiPageNameNormalizerTest extends MediaWikiUnitTestCase {
+class MediaWikiPageNameNormalizerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider normalizePageTitleProvider

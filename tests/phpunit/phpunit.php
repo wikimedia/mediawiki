@@ -34,6 +34,13 @@ class PHPUnitMaintClass extends Maintenance {
 		);
 	}
 
+	public function setup() {
+		parent::setup();
+
+		require_once __DIR__ . '/../common/TestSetup.php';
+		TestSetup::snapshotGlobals();
+	}
+
 	public function finalSetup() {
 		parent::finalSetup();
 
