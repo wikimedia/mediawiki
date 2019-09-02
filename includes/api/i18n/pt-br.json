@@ -1789,6 +1789,7 @@
 	"apiwarn-deprecation-missingparam": "Foi usado um formato antigo para a saída, porque <var>$1</var> não foi especificado. Este formato foi descontinuado e de futuro será sempre usado o formato novo.",
 	"apiwarn-deprecation-parameter": "O parâmetro <var>$1</var> é obsoleto.",
 	"apiwarn-deprecation-parse-headitems": "<kbd>prop=headitems</kbd> está depreciado desde o MediaWiki 1.28. Use <kbd>prop=headhtml</kbd> quando for criar novos documentos HTML, ou <kbd>prop=modules|jsconfigvars</kbd> quando for atualizar um documento no lado do cliente.",
+	"apiwarn-deprecation-post-without-content-type": "Um pedido POST foi feito sem um cabeçalho <code>Content-Type</code>. Isto não funciona de forma fiável.",
 	"apiwarn-deprecation-purge-get": "O uso de <kbd>action=purge</kbd> via GET está obsoleto. Use o POST em vez disso.",
 	"apiwarn-deprecation-withreplacement": "<kbd>$1</kbd> está obsoleto. Por favor, use <kbd>$2</kbd> em vez.",
 	"apiwarn-difftohidden": "Não foi possível diferenciar r$1: o conteúdo está oculto.",

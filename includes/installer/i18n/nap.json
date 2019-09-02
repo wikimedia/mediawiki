@@ -4,7 +4,8 @@
 			"C.R.",
 			"Chelin",
 			"Macofe",
-			"Fitoschido"
+			"Fitoschido",
+			"Ruthven"
 		]
 	},
 	"config-desc": "'O prugramma d'istallazione 'e MediaWiki",
@@ -138,7 +139,7 @@
 	"config-db-web-account": "Cunto d' 'o database pe' ne fà acciesso web",
 	"config-db-web-help": "Scigliete 'o nomme utente e passwrod ca 'o web server ausarrà pe' se cullegà 'o server database, pe' tramente ca se fa' operazione normale d' 'o wiki.",
 	"config-db-web-account-same": "Aúsa 'o stisso cunto comme quanno s'è fatta 'a installazione",
-	"config-db-web-create": "Crìa 'o cunto si nun esiste ancora",
+	"config-db-web-create": "Crìa 'o cunto si nun esiste perzi",
 	"config-db-web-no-create-privs": "'O cunto ausato pe' ne fà l'installazione nun tene diritte necessarie pe' ne putè crià n'atu cunto.\n'O cunto zegnàto ccà adda esistere già.",
 	"config-mysql-engine": "Mutore d'astipo:",
 	"config-mysql-innodb": "InnoDB (fosse 'o cunzigliato)",
