@@ -51,9 +51,9 @@ class MigrateActors extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		global $wgActorTableSchemaMigrationStage;
+		$actorTableSchemaMigrationStage = $this->getConfig()->get( 'ActorTableSchemaMigrationStage' );
 
-		if ( !( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) ) {
+		if ( !( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) ) {
 			$this->output(
 				"...cannot update while \$wgActorTableSchemaMigrationStage lacks SCHEMA_COMPAT_WRITE_NEW\n"
 			);
