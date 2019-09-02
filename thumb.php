@@ -25,6 +25,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
+define( 'MW_ENTRY_POINT', 'thumb' );
 require __DIR__ . '/includes/WebStart.php';
 
 // Don't use fancy MIME detection, just check the file extension for jpg/gif/png

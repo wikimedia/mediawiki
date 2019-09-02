@@ -52,6 +52,17 @@ if ( ini_get( 'mbstring.func_overload' ) ) {
 	die( 'MediaWiki does not support installations where mbstring.func_overload is non-zero.' );
 }
 
+// Define MW_ENTRY_POINT if it's not already, so that config code can check the
+// value without using defined()
+if ( !defined( 'MW_ENTRY_POINT' ) ) {
+	/**
+	 * The entry point, which may be either the script filename without the
+	 * file extension, or "cli" for maintenance scripts, or "unknown" for any
+	 * entry point that does not set the constant.
+	 */
+	define( 'MW_ENTRY_POINT', 'unknown' );
+}
+
 // Start the autoloader, so that extensions can derive classes from core files
 require_once "$IP/includes/AutoLoader.php";
 
