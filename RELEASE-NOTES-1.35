@@ -122,6 +122,10 @@ because of Phabricator reports.
 * FileBackendGroup::destroySingleton() is deprecated. Test frameworks should
   instead reset MediaWikiServices between test runs.
   (MediaWikiIntegrationTestCase does this automatically.)
+* MediaWikiIntegrationTest::setContentLang() has been deprecated. Use
+  setMwGlobals( 'wgLanguageCode', 'xxx' ) to set a different site language
+  code, or setService( 'ContentLanguage', $myObj ) to set a specific Language
+  object. Service resets and $wgContLang will be handled automatically.
 * AbstractBlock::getReason is deprecated, since reasons are actually stored as
   CommentStoreComments, and getReason returns a string with no caller control
   over language or formatting. Instead use AbstractBlock::getReasonComment,
