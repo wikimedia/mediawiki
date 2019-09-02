@@ -46,7 +46,8 @@ class SpecialListFiles extends IncludableSpecialPage {
 			$userName,
 			$search,
 			$this->including(),
-			$showAll
+			$showAll,
+			$this->getLinkRenderer()
 		);
 
 		$out = $this->getOutput();

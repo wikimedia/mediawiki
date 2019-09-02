@@ -213,7 +213,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				'hideMinor' => $this->opts['hideMinor'],
 				'nsInvert' => $this->opts['nsInvert'],
 				'associated' => $this->opts['associated'],
-			] );
+			], $this->getLinkRenderer() );
 
 			if ( IP::isValidRange( $target ) && !$pager->isQueryableRange( $target ) ) {
 				// Valid range, but outside CIDR limit.

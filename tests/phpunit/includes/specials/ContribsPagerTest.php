@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -9,12 +10,16 @@ class ContribsPagerTest extends MediaWikiTestCase {
 	/** @var ContribsPager */
 	private $pager;
 
+	/** @var LinkRenderer */
+	private $linkRenderer;
+
 	function setUp() {
+		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$context = new RequestContext();
 		$this->pager = new ContribsPager( $context, [
 			'start' => '2017-01-01',
 			'end' => '2017-02-02',
-		] );
+		], $this->linkRenderer );
 
 		parent::setUp();
 	}
@@ -127,7 +132,7 @@ class ContribsPagerTest extends MediaWikiTestCase {
 		$pager = new ContribsPager( new RequestContext(), [
 			'start' => '',
 			'end' => '',
-		] );
+		], $this->linkRenderer );
 
 		/** @var ContribsPager $pager */
 		$pager = TestingAccessWrapper::newFromObject( $pager );
@@ -150,7 +155,7 @@ class ContribsPagerTest extends MediaWikiTestCase {
 			'target' => '116.17.184.5/32',
 			'start' => '',
 			'end' => '',
-		] );
+		], $this->linkRenderer );
 
 		/** @var ContribsPager $pager */
 		$pager = TestingAccessWrapper::newFromObject( $pager );
