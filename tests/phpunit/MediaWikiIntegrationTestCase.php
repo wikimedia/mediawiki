@@ -717,7 +717,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$instantiator
 		);
 
-		self::resetLegacyGlobals();
+		if ( $name === 'ContentLanguage' ) {
+			$this->setMwGlobals( [ 'wgContLang' => $this->localServices->getContentLanguage() ] );
+		}
 	}
 
 	/**
@@ -930,7 +932,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$this->localServices->resetServiceForTesting( $name, true );
 		}
 
-		self::resetLegacyGlobals();
+		self::resetGlobalParser();
 		Language::clearCaches();
 	}
 
@@ -984,7 +986,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$newInstance->redefineService( $name, $callback );
 		}
 
-		self::resetLegacyGlobals();
+		self::resetGlobalParser();
 
 		return $newInstance;
 	}
@@ -1051,7 +1053,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		MediaWikiServices::forceGlobalInstance( $newServices );
 
-		self::resetLegacyGlobals();
+		self::resetGlobalParser();
 
 		return $newServices;
 	}
@@ -1081,29 +1083,24 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		MediaWikiServices::forceGlobalInstance( self::$originalServices );
 		$currentServices->destroy();
 
-		self::resetLegacyGlobals();
+		self::resetGlobalParser();
 
 		return true;
 	}
 
 	/**
-	 * If legacy globals such as $wgParser or $wgContLang have been unstubbed, replace them with
-	 * fresh ones so they pick up any config changes. They're deprecated, but we still support them
-	 * for now.
+	 * If $wgParser has been unstubbed, replace it with a fresh one so it picks up any config
+	 * changes. $wgParser is deprecated, but we still support it for now.
 	 */
-	private static function resetLegacyGlobals() {
+	private static function resetGlobalParser() {
 		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgParser
-		global $wgParser, $wgContLang;
-		if ( !( $wgParser instanceof StubObject ) ) {
-			$wgParser = new StubObject( 'wgParser', function () {
-				return MediaWikiServices::getInstance()->getParser();
-			} );
+		global $wgParser;
+		if ( $wgParser instanceof StubObject ) {
+			return;
 		}
-		if ( !( $wgContLang instanceof StubObject ) ) {
-			$wgContlang = new StubObject( 'wgContLang', function () {
-				return MediaWikiServices::getInstance()->getContLang();
-			} );
-		}
+		$wgParser = new StubObject( 'wgParser', function () {
+			return MediaWikiServices::getInstance()->getParser();
+		} );
 	}
 
 	/**
@@ -1116,8 +1113,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @deprecated since 1.34, use setMwGlobals( 'wgLanguageCode' ) to set the code or
-	 *   setService( 'ContentLanguage' ) to set an object
 	 * @since 1.27
 	 * @param string|Language $lang
 	 */
@@ -1127,7 +1122,10 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$this->setService( 'ContentLanguage', $lang );
 			$this->setMwGlobals( 'wgLanguageCode', $lang->getCode() );
 		} else {
-			$this->setMwGlobals( 'wgLanguageCode', $lang );
+			$this->setMwGlobals( [
+				'wgLanguageCode' => $lang,
+				'wgContLang' => Language::factory( $lang ),
+			] );
 		}
 	}
 
