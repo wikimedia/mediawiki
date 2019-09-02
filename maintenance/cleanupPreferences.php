@@ -59,8 +59,6 @@ class CleanupPreferences extends Maintenance {
 	 *      all values are in that range. Drop ones that aren't.
 	 */
 	public function execute() {
-		global $wgHiddenPrefs, $wgDefaultUserOptions;
-
 		$dbw = $this->getDB( DB_MASTER );
 		$hidden = $this->hasOption( 'hidden' );
 		$unknown = $this->hasOption( 'unknown' );
@@ -73,10 +71,11 @@ class CleanupPreferences extends Maintenance {
 
 		// Remove hidden prefs. Iterate over them to avoid the IN on a large table
 		if ( $hidden ) {
-			if ( !$wgHiddenPrefs ) {
+			$hiddenPrefs = $this->getConfig()->get( 'HiddenPrefs' );
+			if ( !$hiddenPrefs ) {
 				$this->output( "No hidden preferences, skipping\n" );
 			}
-			foreach ( $wgHiddenPrefs as $hiddenPref ) {
+			foreach ( $hiddenPrefs as $hiddenPref ) {
 				$this->deleteByWhere(
 					$dbw,
 					'Dropping hidden preferences',
@@ -87,9 +86,10 @@ class CleanupPreferences extends Maintenance {
 
 		// Remove unknown preferences. Special-case 'userjs-' as we can't control those names.
 		if ( $unknown ) {
+			$defaultUserOptions = $this->getConfig()->get( 'DefaultUserOptions' );
 			$where = [
 				'up_property NOT' . $dbw->buildLike( 'userjs-', $dbw->anyString() ),
-				'up_property NOT IN (' . $dbw->makeList( array_keys( $wgDefaultUserOptions ) ) . ')',
+				'up_property NOT IN (' . $dbw->makeList( array_keys( $defaultUserOptions ) ) . ')',
 			];
 			// Allow extensions to add to the where clause to prevent deletion of their own prefs.
 			Hooks::run( 'DeleteUnknownPreferences', [ &$where, $dbw ] );

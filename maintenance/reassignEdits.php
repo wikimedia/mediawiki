@@ -76,7 +76,7 @@ class ReassignEdits extends Maintenance {
 	 * @return int Number of entries changed, or that would be changed
 	 */
 	private function doReassignEdits( &$from, &$to, $rc = false, $report = false ) {
-		global $wgActorTableSchemaMigrationStage;
+		$actorTableSchemaMigrationStage = $this->getConfig()->get( 'ActorTableSchemaMigrationStage' );
 
 		$dbw = $this->getDB( DB_MASTER );
 		$this->beginTransaction( $dbw, __METHOD__ );
@@ -136,7 +136,7 @@ class ReassignEdits extends Maintenance {
 			if ( $total ) {
 				# Reassign edits
 				$this->output( "\nReassigning current edits..." );
-				if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
+				if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
 					$dbw->update(
 						'revision',
 						[
@@ -148,7 +148,7 @@ class ReassignEdits extends Maintenance {
 						__METHOD__
 					);
 				}
-				if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+				if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 					$dbw->update(
 						'revision_actor_temp',
 						[ 'revactor_actor' => $to->getActorId( $dbw ) ],
@@ -189,16 +189,16 @@ class ReassignEdits extends Maintenance {
 	 * @return array
 	 */
 	private function userSpecification( IDatabase $dbw, &$user, $idfield, $utfield, $acfield ) {
-		global $wgActorTableSchemaMigrationStage;
+		$actorTableSchemaMigrationStage = $this->getConfig()->get( 'ActorTableSchemaMigrationStage' );
 
 		$ret = [];
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
+		if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
 			$ret += [
 				$idfield => $user->getId(),
 				$utfield => $user->getName(),
 			];
 		}
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+		if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 			$ret += [ $acfield => $user->getActorId( $dbw ) ];
 		}
 		return $ret;

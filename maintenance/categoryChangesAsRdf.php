@@ -115,19 +115,18 @@ SPARQLDI;
 	}
 
 	public function execute() {
-		global $wgRCMaxAge;
-
 		$this->initialize();
 		$startTS = new MWTimestamp( $this->getOption( "start" ) );
 
 		$endTS = new MWTimestamp( $this->getOption( "end" ) );
 		$now = new MWTimestamp();
+		$rcMaxAge = $this->getConfig()->get( 'RCMaxAge' );
 
-		if ( $now->getTimestamp() - $startTS->getTimestamp() > $wgRCMaxAge ) {
-			$this->error( "Start timestamp too old, maximum RC age is $wgRCMaxAge!" );
+		if ( $now->getTimestamp() - $startTS->getTimestamp() > $rcMaxAge ) {
+			$this->error( "Start timestamp too old, maximum RC age is $rcMaxAge!" );
 		}
-		if ( $now->getTimestamp() - $endTS->getTimestamp() > $wgRCMaxAge ) {
-			$this->error( "End timestamp too old, maximum RC age is $wgRCMaxAge!" );
+		if ( $now->getTimestamp() - $endTS->getTimestamp() > $rcMaxAge ) {
+			$this->error( "End timestamp too old, maximum RC age is $rcMaxAge!" );
 		}
 
 		$this->startTS = $startTS->getTimestamp();

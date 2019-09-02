@@ -39,7 +39,7 @@ class RemoveUnusedAccounts extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgActorTableSchemaMigrationStage;
+		$actorTableSchemaMigrationStage = $this->getConfig()->get( 'ActorTableSchemaMigrationStage' );
 
 		$this->output( "Remove unused accounts\n\n" );
 
@@ -48,7 +48,7 @@ class RemoveUnusedAccounts extends Maintenance {
 		$delUser = [];
 		$delActor = [];
 		$dbr = $this->getDB( DB_REPLICA );
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+		if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 			$res = $dbr->select(
 				[ 'user', 'actor' ],
 				[ 'user_id', 'user_name', 'user_touched', 'actor_id' ],
@@ -94,7 +94,7 @@ class RemoveUnusedAccounts extends Maintenance {
 			$this->output( "\nDeleting unused accounts..." );
 			$dbw = $this->getDB( DB_MASTER );
 			$dbw->delete( 'user', [ 'user_id' => $delUser ], __METHOD__ );
-			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+			if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 				# Keep actor rows referenced from ipblocks
 				$keep = $dbw->selectFieldValues(
 					'ipblocks', 'ipb_by_actor', [ 'ipb_by_actor' => $delActor ], __METHOD__
@@ -110,11 +110,11 @@ class RemoveUnusedAccounts extends Maintenance {
 			$dbw->delete( 'user_groups', [ 'ug_user' => $delUser ], __METHOD__ );
 			$dbw->delete( 'user_former_groups', [ 'ufg_user' => $delUser ], __METHOD__ );
 			$dbw->delete( 'user_properties', [ 'up_user' => $delUser ], __METHOD__ );
-			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+			if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 				$dbw->delete( 'logging', [ 'log_actor' => $delActor ], __METHOD__ );
 				$dbw->delete( 'recentchanges', [ 'rc_actor' => $delActor ], __METHOD__ );
 			}
-			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
+			if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
 				$dbw->delete( 'logging', [ 'log_user' => $delUser ], __METHOD__ );
 				$dbw->delete( 'recentchanges', [ 'rc_user' => $delUser ], __METHOD__ );
 			}

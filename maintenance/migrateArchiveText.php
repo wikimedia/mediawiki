@@ -55,9 +55,8 @@ class MigrateArchiveText extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		global $wgDefaultExternalStore;
-
 		$replaceMissing = $this->hasOption( 'replace-missing' );
+		$defaultExternalStore = $this->getConfig()->get( 'DefaultExternalStore' );
 		$batchSize = $this->getBatchSize();
 
 		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
@@ -96,7 +95,7 @@ class MigrateArchiveText extends LoggedUpdateMaintenance {
 					if ( $data !== false ) {
 						$flags = Revision::compressRevisionText( $data );
 
-						if ( $wgDefaultExternalStore ) {
+						if ( $defaultExternalStore ) {
 							$data = ExternalStore::insertToDefault( $data );
 							if ( $flags ) {
 								$flags .= ',';

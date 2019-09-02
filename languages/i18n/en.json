@@ -1809,7 +1809,7 @@
 	"backend-fail-batchsize": "The storage backend was given a batch of $1 file {{PLURAL:$1|operation|operations}}; the limit is $2 {{PLURAL:$2|operation|operations}}.",
 	"backend-fail-usable": "Could not read or write file \"$1\" due to insufficient permissions or missing directories/containers.",
 	"backend-fail-stat": "Could not read the status of file \"$1\".",
-	"backend-fail-hash": "Could determine the cryptographic hash of file \"$1\".",
+	"backend-fail-hash": "Could not determine the cryptographic hash of file \"$1\".",
 	"filejournal-fail-dbconnect": "Could not connect to the journal database for storage backend \"$1\".",
 	"filejournal-fail-dbquery": "Could not update the journal database for storage backend \"$1\".",
 	"lockmanager-notlocked": "Could not unlock \"$1\"; it is not locked.",
