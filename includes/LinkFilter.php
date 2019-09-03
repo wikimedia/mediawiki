@@ -311,6 +311,7 @@ class LinkFilter {
 	 */
 	public static function makeLikeArray( $filterEntry, $protocol = 'http://' ) {
 		$db = wfGetDB( DB_REPLICA );
+		$like = [];
 
 		$target = $protocol . $filterEntry;
 		$bits = wfParseUrl( $target );
@@ -338,7 +339,6 @@ class LinkFilter {
 			}
 		}
 
-		$like = [];
 		$like[] = $bits['scheme'] . $bits['delimiter'] . $bits['host'];
 
 		if ( $subdomains ) {
