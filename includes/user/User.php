@@ -3554,27 +3554,25 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @deprecated since 1.34, use MediaWikiServices::getInstance()
 	 * ->getPermissionManager()->userHasAnyRights(...) instead
 	 *
-	 * @param string $permissions,... Permissions to test
+	 * @param string ...$permissions Permissions to test
 	 * @return bool True if user is allowed to perform *any* of the given actions
-	 * @suppress PhanCommentParamOnEmptyParamList Cannot make variadic due to HHVM bug, T191668#5263929
 	 */
-	public function isAllowedAny() {
+	public function isAllowedAny( ...$permissions ) {
 		return MediaWikiServices::getInstance()
 			->getPermissionManager()
-			->userHasAnyRight( $this, ...func_get_args() );
+			->userHasAnyRight( $this, ...$permissions );
 	}
 
 	/**
 	 * @deprecated since 1.34, use MediaWikiServices::getInstance()
 	 * ->getPermissionManager()->userHasAllRights(...) instead
-	 * @param string $permissions,... Permissions to test
+	 * @param string ...$permissions Permissions to test
 	 * @return bool True if the user is allowed to perform *all* of the given actions
-	 * @suppress PhanCommentParamOnEmptyParamList Cannot make variadic due to HHVM bug, T191668#5263929
 	 */
-	public function isAllowedAll() {
+	public function isAllowedAll( ...$permissions ) {
 		return MediaWikiServices::getInstance()
 			->getPermissionManager()
-			->userHasAllRights( $this, ...func_get_args() );
+			->userHasAllRights( $this, ...$permissions );
 	}
 
 	/**
