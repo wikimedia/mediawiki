@@ -725,7 +725,7 @@ END
 		);
 
 		$this->assertEquals(
-			ResourceLoader::makeHash( self::BLANK_VERSION ),
+			self::BLANK_COMBI,
 			$rl->getCombinedVersion( $context, [ 'foo' ] ),
 			'compute foo'
 		);

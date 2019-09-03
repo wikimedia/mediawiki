@@ -7,7 +7,10 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 	// Version hash for a blank file module.
 	// Result of ResourceLoader::makeHash(), ResourceLoaderTestModule
 	// and ResourceLoaderFileModule::getDefinitionSummary().
-	const BLANK_VERSION = '09p30q0';
+	const BLANK_VERSION = '9p30q';
+	// Result of ResoureLoader::makeVersionQuery() for a blank file module.
+	// In other words, result of ResourceLoader::makeHash( BLANK_VERSION );
+	const BLANK_COMBI = 'rbml8';
 
 	/**
 	 * @param array|string $options Language code or options array

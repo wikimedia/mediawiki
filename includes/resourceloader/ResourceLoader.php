@@ -547,13 +547,81 @@ class ResourceLoader implements LoggerAwareInterface {
 	}
 
 	/**
+	 * @internal For use by ResourceLoaderStartUpModule only.
+	 */
+	const HASH_LENGTH = 5;
+
+	/**
+	 * Create a hash for module versioning purposes.
+	 *
+	 * This hash is used in three ways:
+	 *
+	 * - To differentiate between the current version and a past version
+	 *   of a module by the same name.
+	 *
+	 *   In the cache key of localStorage in the browser (mw.loader.store).
+	 *   This store keeps only one version of any given module. As long as the
+	 *   next version the client encounters has a different hash from the last
+	 *   version it saw, it will correctly discard it in favour of a network fetch.
+	 *
+	 *   A browser may evict a site's storage container for any reason (e.g. when
+	 *   the user hasn't visited a site for some time, and/or when the device is
+	 *   low on storage space). Anecdotally it seems devices rarely keep unused
+	 *   storage beyond 2 weeks on mobile devices and 4 weeks on desktop.
+	 *   But, there is no hard limit or expiration on localStorage.
+	 *   ResourceLoader's Client also clears localStorage when the user changes
+	 *   their language preference or when they (temporarily) use Debug Mode.
+	 *
+	 *   The only hard factors that reduce the range of possible versions are
+	 *   1) the name and existence of a given module, and
+	 *   2) the TTL for mw.loader.store, and
+	 *   3) the `$wgResourceLoaderStorageVersion` configuration variable.
+	 *
+	 * - To identify a batch response of modules from load.php in an HTTP cache.
+	 *
+	 *   When fetching modules in a batch from load.php, a combined hash
+	 *   is created by the JS code, and appended as query parameter.
+	 *
+	 *   In cache proxies (e.g. Varnish, Nginx) and in the browser's HTTP cache,
+	 *   these urls are used to identify other previously cached responses.
+	 *   The range of possible versions a given version has to be unique amongst
+	 *   is determined by the maximum duration each response is stored for, which
+	 *   is controlled by `$wgResourceLoaderMaxage['versioned']`.
+	 *
+	 * - To detect race conditions between multiple web servers in a MediaWiki
+	 *   deployment of which some have the newer version and some still the older
+	 *   version.
+	 *
+	 *   An HTTP request from a browser for the Startup manifest may be responded
+	 *   to by a server with the newer version. The browser may then use that to
+	 *   request a given module, which may then be responded to by a server with
+	 *   the older version. To avoid caching this for too long (which would pollute
+	 *   all other users without repairing itself), the combined hash that the JS
+	 *   client adds to the url is verified by the server (in ::sendResponseHeaders).
+	 *   If they don't match, we instruct cache proxies and clients to not cache
+	 *   this response as long as they normally would. This is also the reason
+	 *   that the algorithm used here in PHP must match the one used in JS.
+	 *
+	 * The fnv132 digest creates a 32-bit integer, which goes upto 4 Giga and
+	 * needs up to 7 chars in base 36.
+	 * Within 7 characters, base 36 can count up to 78,364,164,096 (78 Giga),
+	 * (but with fnv132 we'd use very little of this range, mostly padding).
+	 * Within 6 characters, base 36 can count up to 2,176,782,336 (2 Giga).
+	 * Within 5 characters, base 36 can count up to 60,466,176 (60 Mega).
+	 *
 	 * @since 1.26
 	 * @param string $value
 	 * @return string Hash
 	 */
 	public static function makeHash( $value ) {
 		$hash = hash( 'fnv132', $value );
-		return Wikimedia\base_convert( $hash, 16, 36, 7 );
+		// The base_convert will pad it (if too short),
+		// then substr() will trim it (if too long).
+		return substr(
+			Wikimedia\base_convert( $hash, 16, 36, self::HASH_LENGTH ),
+			0,
+			self::HASH_LENGTH
+		);
 	}
 
 	/**
