@@ -172,64 +172,33 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * Sanitize and filter the custom headers from a $params array.
-	 * Only allows certain "standard" Content- and X-Content- headers.
+	 * Filter/normalize a header map to only include mutable "content-"/"x-content-" headers
 	 *
-	 * @param array $params
-	 * @return array Sanitized value of 'headers' field in $params
-	 */
-	protected function sanitizeHdrsStrict( array $params ) {
-		if ( !isset( $params['headers'] ) ) {
-			return [];
-		}
-
-		$headers = $this->getCustomHeaders( $params['headers'] );
-		unset( $headers[ 'content-type' ] );
-
-		return $headers;
-	}
-
-	/**
-	 * Sanitize and filter the custom headers from a $params array.
-	 * Only allows certain "standard" Content- and X-Content- headers.
+	 * Mutable headers can be changed via HTTP POST even if the file content is the same
 	 *
-	 * When POSTing data, libcurl adds Content-Type: application/x-www-form-urlencoded
-	 * if Content-Type is not set, which overwrites the stored Content-Type header
-	 * in Swift - therefore for POSTing data do not strip the Content-Type header (the
-	 * previously-stored header that has been already read back from swift is sent)
-	 *
-	 * @param array $params
-	 * @return array Sanitized value of 'headers' field in $params
+	 * @see https://docs.openstack.org/api-ref/object-store
+	 * @param string[] $headers Map of (header => value) for a swift object
+	 * @return string[] Map of (header => value) for Content-* headers mutable via POST
 	 */
-	protected function sanitizeHdrs( array $params ) {
-		return isset( $params['headers'] )
-			? $this->getCustomHeaders( $params['headers'] )
-			: [];
-	}
-
-	/**
-	 * @param array $rawHeaders
-	 * @return array Custom non-metadata HTTP headers
-	 */
-	protected function getCustomHeaders( array $rawHeaders ) {
-		$headers = [];
-
+	protected function extractMutableContentHeaders( array $headers ) {
+		$contentHeaders = [];
 		// Normalize casing, and strip out illegal headers
-		foreach ( $rawHeaders as $name => $value ) {
+		foreach ( $headers as $name => $value ) {
 			$name = strtolower( $name );
-			if ( preg_match( '/^content-length$/', $name ) ) {
-				continue; // blacklisted
-			} elseif ( preg_match( '/^(x-)?content-/', $name ) ) {
-				$headers[$name] = $value; // allowed
-			} elseif ( preg_match( '/^content-(disposition)/', $name ) ) {
-				$headers[$name] = $value; // allowed
+			if ( !preg_match( '/^(x-)?content-(?!length$)/', $name ) ) {
+				// Only allow content-* and x-content-* headers (but not content-length)
+				continue;
+			} elseif ( $name === 'content-type' && !strlen( $value ) ) {
+				// This header can be set to a value but not unset for sanity
+				continue;
 			}
+			$contentHeaders[$name] = $value;
 		}
 		// By default, Swift has annoyingly low maximum header value limits
-		if ( isset( $headers['content-disposition'] ) ) {
+		if ( isset( $contentHeaders['content-disposition'] ) ) {
 			$disposition = '';
 			// @note: assume FileBackend::makeContentDisposition() already used
-			foreach ( explode( ';', $headers['content-disposition'] ) as $part ) {
+			foreach ( explode( ';', $contentHeaders['content-disposition'] ) as $part ) {
 				$part = trim( $part );
 				$new = ( $disposition === '' ) ? $part : "{$disposition};{$part}";
 				if ( strlen( $new ) <= 255 ) {
@@ -238,36 +207,40 @@ class SwiftFileBackend extends FileBackendStore {
 					break; // too long; sigh
 				}
 			}
-			$headers['content-disposition'] = $disposition;
+			$contentHeaders['content-disposition'] = $disposition;
 		}
 
-		return $headers;
+		return $contentHeaders;
 	}
 
 	/**
-	 * @param array $rawHeaders
-	 * @return array Custom metadata headers
+	 * @see https://docs.openstack.org/api-ref/object-store
+	 * @param string[] $headers Map of (header => value) for a swift object
+	 * @return string[] Map of (metadata header name => metadata value)
 	 */
-	protected function getMetadataHeaders( array $rawHeaders ) {
-		$headers = [];
-		foreach ( $rawHeaders as $name => $value ) {
+	protected function extractMetadataHeaders( array $headers ) {
+		$metadataHeaders = [];
+		foreach ( $headers as $name => $value ) {
 			$name = strtolower( $name );
 			if ( strpos( $name, 'x-object-meta-' ) === 0 ) {
-				$headers[$name] = $value;
+				$metadataHeaders[$name] = $value;
 			}
 		}
 
-		return $headers;
+		return $metadataHeaders;
 	}
 
 	/**
-	 * @param array $rawHeaders
-	 * @return array Custom metadata headers with prefix removed
+	 * @see https://docs.openstack.org/api-ref/object-store
+	 * @param string[] $headers Map of (header => value) for a swift object
+	 * @return string[] Map of (metadata key name => metadata value)
 	 */
-	protected function getMetadata( array $rawHeaders ) {
+	protected function getMetadataFromHeaders( array $headers ) {
+		$prefixLen = strlen( 'x-object-meta-' );
+
 		$metadata = [];
-		foreach ( $this->getMetadataHeaders( $rawHeaders ) as $name => $value ) {
-			$metadata[substr( $name, strlen( 'x-object-meta-' ) )] = $value;
+		foreach ( $this->extractMetadataHeaders( $headers ) as $name => $value ) {
+			$metadata[substr( $name, $prefixLen )] = $value;
 		}
 
 		return $metadata;
@@ -283,19 +256,24 @@ class SwiftFileBackend extends FileBackendStore {
 			return $status;
 		}
 
-		$sha1Hash = Wikimedia\base_convert( sha1( $params['content'] ), 16, 36, 31 );
-		$contentType = $params['headers']['content-type']
+		// Headers that are not strictly a function of the file content
+		$mutableHeaders = $this->extractMutableContentHeaders( $params['headers'] ?? [] );
+		// Make sure that the "content-type" header is set to something sensible
+		$mutableHeaders['content-type'] = $mutableHeaders['content-type']
 			?? $this->getContentType( $params['dst'], $params['content'], null );
 
 		$reqs = [ [
 			'method' => 'PUT',
 			'url' => [ $dstCont, $dstRel ],
-			'headers' => [
-				'content-length' => strlen( $params['content'] ),
-				'etag' => md5( $params['content'] ),
-				'content-type' => $contentType,
-				'x-object-meta-sha1base36' => $sha1Hash
-			] + $this->sanitizeHdrsStrict( $params ),
+			'headers' => array_merge(
+				$mutableHeaders,
+				[
+					'content-length' => strlen( $params['content'] ),
+					'etag' => md5( $params['content'] ),
+					'x-object-meta-sha1base36' =>
+						Wikimedia\base_convert( sha1( $params['content'] ), 16, 36, 31 )
+				]
+			),
 			'body' => $params['content']
 		] ];
 
@@ -309,6 +287,8 @@ class SwiftFileBackend extends FileBackendStore {
 			} else {
 				$this->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
 			}
+
+			return SwiftFileOpHandle::CONTINUE_IF_OK;
 		};
 
 		$opHandle = new SwiftFileOpHandle( $this, $handler, $reqs );
@@ -332,16 +312,13 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		AtEase::suppressWarnings();
-		$sha1Hash = sha1_file( $params['src'] );
+		$sha1Base16 = sha1_file( $params['src'] );
 		AtEase::restoreWarnings();
-		if ( $sha1Hash === false ) { // source doesn't exist?
+		if ( $sha1Base16 === false ) { // source doesn't exist?
 			$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
 
 			return $status;
 		}
-		$sha1Hash = Wikimedia\base_convert( $sha1Hash, 16, 36, 31 );
-		$contentType = $params['headers']['content-type']
-			?? $this->getContentType( $params['dst'], null, $params['src'] );
 
 		$handle = fopen( $params['src'], 'rb' );
 		if ( $handle === false ) { // source doesn't exist?
@@ -350,15 +327,23 @@ class SwiftFileBackend extends FileBackendStore {
 			return $status;
 		}
 
+		// Headers that are not strictly a function of the file content
+		$mutableHeaders = $this->extractMutableContentHeaders( $params['headers'] ?? [] );
+		// Make sure that the "content-type" header is set to something sensible
+		$mutableHeaders['content-type'] = $mutableHeaders['content-type']
+			?? $this->getContentType( $params['dst'], null, $params['src'] );
+
 		$reqs = [ [
 			'method' => 'PUT',
 			'url' => [ $dstCont, $dstRel ],
-			'headers' => [
-				'content-length' => filesize( $params['src'] ),
-				'etag' => md5_file( $params['src'] ),
-				'content-type' => $contentType,
-				'x-object-meta-sha1base36' => $sha1Hash
-			] + $this->sanitizeHdrsStrict( $params ),
+			'headers' => array_merge(
+				$mutableHeaders,
+				[
+					'content-length' => fstat( $handle )['size'],
+					'etag' => md5_file( $params['src'] ),
+					'x-object-meta-sha1base36' => Wikimedia\base_convert( $sha1Base16, 16, 36, 31 )
+				]
+			),
 			'body' => $handle // resource
 		] ];
 
@@ -372,6 +357,8 @@ class SwiftFileBackend extends FileBackendStore {
 			} else {
 				$this->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
 			}
+
+			return SwiftFileOpHandle::CONTINUE_IF_OK;
 		};
 
 		$opHandle = new SwiftFileOpHandle( $this, $handler, $reqs );
@@ -406,10 +393,13 @@ class SwiftFileBackend extends FileBackendStore {
 		$reqs = [ [
 			'method' => 'PUT',
 			'url' => [ $dstCont, $dstRel ],
-			'headers' => [
-				'x-copy-from' => '/' . rawurlencode( $srcCont ) .
-					'/' . str_replace( "%2F", "/", rawurlencode( $srcRel ) )
-			] + $this->sanitizeHdrsStrict( $params ), // extra headers merged into object
+			'headers' => array_merge(
+				$this->extractMutableContentHeaders( $params['headers'] ?? [] ),
+				[
+					'x-copy-from' => '/' . rawurlencode( $srcCont ) . '/' .
+						str_replace( "%2F", "/", rawurlencode( $srcRel ) )
+				]
+			)
 		] ];
 
 		$method = __METHOD__;
@@ -418,10 +408,14 @@ class SwiftFileBackend extends FileBackendStore {
 			if ( $rcode === 201 ) {
 				// good
 			} elseif ( $rcode === 404 ) {
-				$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
+				if ( empty( $params['ignoreMissingSource'] ) ) {
+					$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
+				}
 			} else {
 				$this->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
 			}
+
+			return SwiftFileOpHandle::CONTINUE_IF_OK;
 		};
 
 		$opHandle = new SwiftFileOpHandle( $this, $handler, $reqs );
@@ -451,16 +445,17 @@ class SwiftFileBackend extends FileBackendStore {
 			return $status;
 		}
 
-		$reqs = [
-			[
-				'method' => 'PUT',
-				'url' => [ $dstCont, $dstRel ],
-				'headers' => [
-					'x-copy-from' => '/' . rawurlencode( $srcCont ) .
-						'/' . str_replace( "%2F", "/", rawurlencode( $srcRel ) )
-				] + $this->sanitizeHdrsStrict( $params ) // extra headers merged into object
-			]
-		];
+		$reqs = [ [
+			'method' => 'PUT',
+			'url' => [ $dstCont, $dstRel ],
+			'headers' => array_merge(
+				$this->extractMutableContentHeaders( $params['headers'] ?? [] ),
+				[
+					'x-copy-from' => '/' . rawurlencode( $srcCont ) . '/' .
+						str_replace( "%2F", "/", rawurlencode( $srcRel ) )
+				]
+			)
+		] ];
 		if ( "{$srcCont}/{$srcRel}" !== "{$dstCont}/{$dstRel}" ) {
 			$reqs[] = [
 				'method' => 'DELETE',
@@ -477,10 +472,17 @@ class SwiftFileBackend extends FileBackendStore {
 			} elseif ( $request['method'] === 'DELETE' && $rcode === 204 ) {
 				// good
 			} elseif ( $rcode === 404 ) {
-				$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
+				if ( empty( $params['ignoreMissingSource'] ) ) {
+					$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
+				} else {
+					// Leave Status as OK but skip the DELETE request
+					return SwiftFileOpHandle::CONTINUE_NO;
+				}
 			} else {
 				$this->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
 			}
+
+			return SwiftFileOpHandle::CONTINUE_IF_OK;
 		};
 
 		$opHandle = new SwiftFileOpHandle( $this, $handler, $reqs );
@@ -521,6 +523,8 @@ class SwiftFileBackend extends FileBackendStore {
 			} else {
 				$this->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
 			}
+
+			return SwiftFileOpHandle::CONTINUE_IF_OK;
 		};
 
 		$opHandle = new SwiftFileOpHandle( $this, $handler, $reqs );
@@ -554,17 +558,20 @@ class SwiftFileBackend extends FileBackendStore {
 			return $status;
 		}
 
-		// POST clears prior headers, so we need to merge the changes in to the old ones
-		$metaHdrs = [];
+		// Swift object POST clears any prior headers, so merge the new and old headers here.
+		// Also, during, POST, libcurl adds "Content-Type: application/x-www-form-urlencoded"
+		// if "Content-Type" is not set, which would clobber the header value for the object.
+		$oldMetadataHeaders = [];
 		foreach ( $stat['xattr']['metadata'] as $name => $value ) {
-			$metaHdrs["x-object-meta-$name"] = $value;
+			$oldMetadataHeaders["x-object-meta-$name"] = $value;
 		}
-		$customHdrs = $this->sanitizeHdrs( $params ) + $stat['xattr']['headers'];
+		$newContentHeaders = $this->extractMutableContentHeaders( $params['headers'] ?? [] );
+		$oldContentHeaders = $stat['xattr']['headers'];
 
 		$reqs = [ [
 			'method' => 'POST',
 			'url' => [ $srcCont, $srcRel ],
-			'headers' => $metaHdrs + $customHdrs
+			'headers' => $oldMetadataHeaders + $newContentHeaders + $oldContentHeaders
 		] ];
 
 		$method = __METHOD__;
@@ -743,9 +750,9 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		// Find prior custom HTTP headers
-		$postHeaders = $this->getCustomHeaders( $objHdrs );
+		$postHeaders = $this->extractMutableContentHeaders( $objHdrs );
 		// Find prior metadata headers
-		$postHeaders += $this->getMetadataHeaders( $objHdrs );
+		$postHeaders += $this->extractMetadataHeaders( $objHdrs );
 
 		$status = $this->newStatus();
 		/** @noinspection PhpUnusedLocalVariableInspection */
@@ -1293,11 +1300,6 @@ class SwiftFileBackend extends FileBackendStore {
 		return $hdrs;
 	}
 
-	/**
-	 * @param FileBackendStoreOpHandle[] $fileOpHandles
-	 *
-	 * @return StatusValue[]
-	 */
 	protected function doExecuteOpHandlesInternal( array $fileOpHandles ) {
 		/** @var StatusValue[] $statuses */
 		$statuses = [];
@@ -1332,13 +1334,18 @@ class SwiftFileBackend extends FileBackendStore {
 		for ( $stage = 0; $stage < $reqCount; ++$stage ) {
 			$httpReqs = $this->http->runMulti( $httpReqsByStage[$stage] );
 			foreach ( $httpReqs as $index => $httpReq ) {
+				/** @var SwiftFileOpHandle $fileOpHandle */
+				$fileOpHandle = $fileOpHandles[$index];
 				// Run the callback for each request of this operation
-				$callback = $fileOpHandles[$index]->callback;
-				$callback( $httpReq, $statuses[$index] );
-				// On failure, abort all remaining requests for this operation
-				// (e.g. abort the DELETE request if the COPY request fails for a move)
-				if ( !$statuses[$index]->isOK() ) {
-					$stages = count( $fileOpHandles[$index]->httpOp );
+				$status = $statuses[$index];
+				( $fileOpHandle->callback )( $httpReq, $status );
+				// On failure, abort all remaining requests for this operation. This is used
+				// in "move" operations to abort the DELETE request if the PUT request fails.
+				if (
+					!$status->isOK() ||
+					$fileOpHandle->state === $fileOpHandle::CONTINUE_NO
+				) {
+					$stages = count( $fileOpHandle->httpOp );
 					for ( $s = ( $stage + 1 ); $s < $stages; ++$s ) {
 						unset( $httpReqsByStage[$s][$index] );
 					}
@@ -1668,9 +1675,9 @@ class SwiftFileBackend extends FileBackendStore {
 	 */
 	protected function getStatFromHeaders( array $rhdrs ) {
 		// Fetch all of the custom metadata headers
-		$metadata = $this->getMetadata( $rhdrs );
+		$metadata = $this->getMetadataFromHeaders( $rhdrs );
 		// Fetch all of the custom raw HTTP headers
-		$headers = $this->sanitizeHdrs( [ 'headers' => $rhdrs ] );
+		$headers = $this->extractMutableContentHeaders( $rhdrs );
 
 		return [
 			// Convert various random Swift dates to TS_MW
