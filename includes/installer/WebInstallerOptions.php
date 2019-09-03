@@ -104,7 +104,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			$this->getFieldsetEnd()
 		);
 
-		$skins = $this->parent->findExtensions( 'skins' )->value;
+		$skins = $this->parent->findExtensions( 'skins' );
 		$skinHtml = $this->getFieldsetStart( 'config-skins' );
 
 		$skinNames = array_map( 'strtolower', array_keys( $skins ) );
@@ -118,7 +118,6 @@ class WebInstallerOptions extends WebInstallerPage {
 				'value' => $chosenSkinName,
 			] );
 
-			// @phan-suppress-next-line PhanTypeNoAccessiblePropertiesForeach
 			foreach ( $skins as $skin => $info ) {
 				if ( isset( $info['screenshots'] ) ) {
 					$screenshotText = $this->makeScreenshotsLink( $skin, $info['screenshots'] );
@@ -145,7 +144,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			$this->getFieldsetEnd();
 		$this->addHTML( $skinHtml );
 
-		$extensions = $this->parent->findExtensions()->value;
+		$extensions = $this->parent->findExtensions();
 		$dependencyMap = [];
 
 		if ( $extensions ) {
@@ -154,7 +153,6 @@ class WebInstallerOptions extends WebInstallerPage {
 			$extByType = [];
 			$types = SpecialVersion::getExtensionTypes();
 			// Sort by type first
-			// @phan-suppress-next-line PhanTypeNoAccessiblePropertiesForeach
 			foreach ( $extensions as $ext => $info ) {
 				if ( !isset( $info['type'] ) || !isset( $types[$info['type']] ) ) {
 					// We let extensions normally define custom types, but
@@ -331,8 +329,6 @@ class WebInstallerOptions extends WebInstallerPage {
 		if ( count( $screenshots ) > 1 ) {
 			$links = [];
 			$counter = 1;
-
-			// @phan-suppress-next-line PhanTypeNoAccessiblePropertiesForeach
 			foreach ( $screenshots as $shot ) {
 				$links[] = Html::element(
 					'a',
@@ -452,7 +448,7 @@ class WebInstallerOptions extends WebInstallerPage {
 	 * @return bool
 	 */
 	public function submitSkins() {
-		$skins = array_keys( $this->parent->findExtensions( 'skins' )->value );
+		$skins = array_keys( $this->parent->findExtensions( 'skins' ) );
 		$this->parent->setVar( '_Skins', $skins );
 
 		if ( $skins ) {
@@ -502,7 +498,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			$this->setVar( 'wgRightsIcon', '' );
 		}
 
-		$skinsAvailable = array_keys( $this->parent->findExtensions( 'skins' )->value );
+		$skinsAvailable = array_keys( $this->parent->findExtensions( 'skins' ) );
 		$skinsToInstall = [];
 		foreach ( $skinsAvailable as $skin ) {
 			$this->parent->setVarsFromRequest( [ "skin-$skin" ] );
@@ -523,7 +519,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			$retVal = false;
 		}
 
-		$extsAvailable = array_keys( $this->parent->findExtensions()->value );
+		$extsAvailable = array_keys( $this->parent->findExtensions() );
 		$extsToInstall = [];
 		foreach ( $extsAvailable as $ext ) {
 			$this->parent->setVarsFromRequest( [ "ext-$ext" ] );
