@@ -255,16 +255,17 @@ class FileDeleteForm {
 
 		$wgOut->enableOOUI();
 
+		$fields = [];
+
+		$fields[] = new OOUI\LabelWidget( [ 'label' => new OOUI\HtmlSnippet(
+			$this->prepareMessage( 'filedelete-intro' ) ) ]
+		);
+
 		$options = Xml::listDropDownOptions(
 			$wgOut->msg( 'filedelete-reason-dropdown' )->inContentLanguage()->text(),
 			[ 'other' => $wgOut->msg( 'filedelete-reason-otherlist' )->inContentLanguage()->text() ]
 		);
 		$options = Xml::listDropDownOptionsOoui( $options );
-
-		$fields = [];
-		$fields[] = new OOUI\LabelWidget( [ 'label' => new OOUI\HtmlSnippet(
-			$this->prepareMessage( 'filedelete-intro' ) ) ]
-		);
 
 		$fields[] = new OOUI\FieldLayout(
 			new OOUI\DropdownInputWidget( [
