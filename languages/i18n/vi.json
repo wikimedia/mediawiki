@@ -45,7 +45,8 @@
 			"Leducthn",
 			"Nhatminh01",
 			"Leduyquang753",
-			"Ioe2015"
+			"Ioe2015",
+			"Awdsweq123"
 		]
 	},
 	"tog-underline": "Gạch chân liên kết:",
@@ -2332,8 +2333,8 @@
 	"sessionfailure": "Dường như có trục trặc với phiên đăng nhập của bạn; thao tác này đã bị hủy để tránh việc cướp quyền đăng nhập. Xin hãy gửi lại biểu mẫu.",
 	"changecontentmodel": "Thay đổi kiểu nội dung của một trang",
 	"changecontentmodel-legend": "Thay đổi kiểu nội dung",
-	"changecontentmodel-title-label": "Tên trang",
-	"changecontentmodel-model-label": "Kiểu nội dung mới",
+	"changecontentmodel-title-label": "Tên trang:",
+	"changecontentmodel-model-label": "Kiểu nội dung mới:",
 	"changecontentmodel-reason-label": "Lý do:",
 	"changecontentmodel-submit": "Thay đổi",
 	"changecontentmodel-success-title": "Kiểu nội dung đã thay đổi",

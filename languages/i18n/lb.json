@@ -2458,6 +2458,7 @@
 	"move-subpages": "Ënnersäite (bis zu $1) réckelen",
 	"move-talk-subpages": "Ënnersäite vun der Diskussiounssäit (bis zu $1), matréckelen",
 	"movepage-page-exists": "D'Säit $1 gëtt et schonn a kann net automatesch iwwerschriwwe ginn.",
+	"movepage-source-doesnt-exist": "D'Säit $1 gëtt et net a kann net geréckelt ginn.",
 	"movepage-page-moved": "D'Säit $1 gouf op $2 geréckelt.",
 	"movepage-page-unmoved": "D'Säit $1 konnt net op $2 geréckelt ginn.",
 	"movepage-max-pages": "Déi Maximalzuel vu(n) $1 {{PLURAL:$1|Säit gouf|Säite goufe}} gouf geréckelt. All déi aner Säite kënnen net automatesch geréckelt ginn.",
