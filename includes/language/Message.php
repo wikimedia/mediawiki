@@ -158,8 +158,6 @@ use MediaWiki\MediaWikiServices;
  * @see https://www.mediawiki.org/wiki/Localisation
  *
  * @since 1.17
- * @phan-file-suppress PhanCommentParamOnEmptyParamList Cannot make variadic due to HHVM bug,
- *   T191668#5263929
  */
 class Message implements MessageSpecifier, Serializable {
 	/** Use message text as-is */
@@ -405,14 +403,11 @@ class Message implements MessageSpecifier, Serializable {
 	 * @since 1.17
 	 *
 	 * @param string|string[]|MessageSpecifier $key
-	 * @param mixed $param,... Parameters as strings.
-	 * @suppress PhanCommentParamWithoutRealParam HHVM bug T228695#5450847
+	 * @param mixed ...$params Parameters as strings.
 	 *
 	 * @return Message
 	 */
-	public static function newFromKey( $key /*...*/ ) {
-		$params = func_get_args();
-		array_shift( $params );
+	public static function newFromKey( $key, ...$params ) {
 		return new self( $key, $params );
 	}
 
@@ -457,13 +452,12 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @since 1.18
 	 *
-	 * @param string|string[] $keys,... Message keys, or first argument as an array of all the
+	 * @param string|string[] ...$keys Message keys, or first argument as an array of all the
 	 * message keys.
 	 *
 	 * @return Message
 	 */
-	public static function newFallbackSequence( /*...*/ ) {
-		$keys = func_get_args();
+	public static function newFallbackSequence( ...$keys ) {
 		if ( func_num_args() == 1 ) {
 			if ( is_array( $keys[0] ) ) {
 				// Allow an array to be passed as the first argument instead
@@ -508,14 +502,12 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @since 1.17
 	 *
-	 * @param mixed $args,... Parameters as strings or arrays from
+	 * @param mixed ...$args Parameters as strings or arrays from
 	 *  Message::numParam() and the like, or a single array of parameters.
 	 *
 	 * @return Message $this
 	 */
-	public function params( /*...*/ ) {
-		$args = func_get_args();
-
+	public function params( ...$args ) {
 		// If $args has only one entry and it's an array, then it's either a
 		// non-varargs call or it happens to be a call with just a single
 		// "special" parameter. Since the "special" parameters don't have any
@@ -545,13 +537,12 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @since 1.17
 	 *
-	 * @param mixed $params,... Raw parameters as strings, or a single argument that is
+	 * @param mixed ...$params Raw parameters as strings, or a single argument that is
 	 * an array of raw parameters.
 	 *
 	 * @return Message $this
 	 */
-	public function rawParams( /*...*/ ) {
-		$params = func_get_args();
+	public function rawParams( ...$params ) {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
 			$params = $params[0];
 		}
@@ -567,13 +558,12 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @since 1.18
 	 *
-	 * @param mixed $param,... Numeric parameters, or a single argument that is
+	 * @param mixed ...$params Numeric parameters, or a single argument that is
 	 * an array of numeric parameters.
 	 *
 	 * @return Message $this
 	 */
-	public function numParams( /*...*/ ) {
-		$params = func_get_args();
+	public function numParams( ...$params ) {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
 			$params = $params[0];
 		}
@@ -589,13 +579,12 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @since 1.22
 	 *
-	 * @param int|int[] $param,... Duration parameters, or a single argument that is
+	 * @param int|int[] ...$params Duration parameters, or a single argument that is
 	 * an array of duration parameters.
 	 *
 	 * @return Message $this
 	 */
-	public function durationParams( /*...*/ ) {
-		$params = func_get_args();
+	public function durationParams( ...$params ) {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
 			$params = $params[0];
 		}
@@ -611,13 +600,12 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @since 1.22
 	 *
-	 * @param string|string[] $param,... Expiry parameters, or a single argument that is
+	 * @param string|string[] ...$params Expiry parameters, or a single argument that is
 	 * an array of expiry parameters.
 	 *
 	 * @return Message $this
 	 */
-	public function expiryParams( /*...*/ ) {
-		$params = func_get_args();
+	public function expiryParams( ...$params ) {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
 			$params = $params[0];
 		}
@@ -633,13 +621,12 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @since 1.22
 	 *
-	 * @param int|int[] $param,... Time period parameters, or a single argument that is
+	 * @param int|int[] ...$params Time period parameters, or a single argument that is
 	 * an array of time period parameters.
 	 *
 	 * @return Message $this
 	 */
-	public function timeperiodParams( /*...*/ ) {
-		$params = func_get_args();
+	public function timeperiodParams( ...$params ) {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
 			$params = $params[0];
 		}
@@ -655,13 +642,12 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @since 1.22
 	 *
-	 * @param int|int[] $param,... Size parameters, or a single argument that is
+	 * @param int|int[] ...$params Size parameters, or a single argument that is
 	 * an array of size parameters.
 	 *
 	 * @return Message $this
 	 */
-	public function sizeParams( /*...*/ ) {
-		$params = func_get_args();
+	public function sizeParams( ...$params ) {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
 			$params = $params[0];
 		}
@@ -677,13 +663,12 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @since 1.22
 	 *
-	 * @param int|int[] $param,... Bit rate parameters, or a single argument that is
+	 * @param int|int[] ...$params Bit rate parameters, or a single argument that is
 	 * an array of bit rate parameters.
 	 *
 	 * @return Message $this
 	 */
-	public function bitrateParams( /*...*/ ) {
-		$params = func_get_args();
+	public function bitrateParams( ...$params ) {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
 			$params = $params[0];
 		}
@@ -701,13 +686,12 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @since 1.25
 	 *
-	 * @param string|string[] $param,... plaintext parameters, or a single argument that is
+	 * @param string|string[] ...$params plaintext parameters, or a single argument that is
 	 * an array of plaintext parameters.
 	 *
 	 * @return Message $this
 	 */
-	public function plaintextParams( /*...*/ ) {
-		$params = func_get_args();
+	public function plaintextParams( ...$params ) {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
 			$params = $params[0];
 		}
