@@ -635,13 +635,11 @@
 				require( 'testUrlIncDump' ).query,
 				{
 					modules: 'testUrlIncDump',
-					// Expected: Wrapped hash just for this one module
-					//   $hash = hash( 'fnv132', 'dump');
-					//   base_convert( $hash, 16, 36 ); // "13e9zzn"
-					// Previously: Wrapped hash for both modules, despite being in separate requests
-					//   $hash = hash( 'fnv132', 'urldump' );
-					//   base_convert( $hash, 16, 36 ); // "18kz9ca"
-					version: '13e9zzn'
+					// Expected: Combine hashes only for the module in the specific HTTP request
+					//   hash fnv132 => "13e9zzn"
+					// Wrong: Combine hashes for all requested modules, before request-splitting
+					//   hash fnv132 => "18kz9ca"
+					version: '13e9z'
 				},
 				'Query parameters'
 			);
@@ -671,13 +669,11 @@
 				require( 'testUrlOrderDump' ).query,
 				{
 					modules: 'testUrlOrder,testUrlOrderDump|testUrlOrder.a,b',
-					// Expected: Combined in order after string packing
-					//   $hash = hash( 'fnv132', 'urldump12' );
-					//   base_convert( $hash, 16, 36 ); // "1knqzan"
-					// Previously: Combined in order of before string packing
-					//   $hash = hash( 'fnv132', 'url12dump' );
-					//   base_convert( $hash, 16, 36 ); // "11eo3in"
-					version: '1knqzan'
+					// Expected: Combined by sorting names after string packing
+					//   hash fnv132 = "1knqzan"
+					// Wrong: Combined by sorting names before string packing
+					//   hash fnv132 => "11eo3in"
+					version: '1knqz'
 				},
 				'Query parameters'
 			);

@@ -2606,7 +2606,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			[
 				[ 'test.quux', ResourceLoaderModule::TYPE_COMBINED ],
 				"<script nonce=\"secret\">(RLQ=window.RLQ||[]).push(function(){"
-					. "mw.loader.implement(\"test.quux@1ev0ijv\",function($,jQuery,require,module){"
+					. "mw.loader.implement(\"test.quux@1ev0i\",function($,jQuery,require,module){"
 					. "mw.test.baz({token:123});},{\"css\":[\".mw-icon{transition:none}"
 					. "\"]});});</script>"
 			],
@@ -2669,6 +2669,9 @@ class OutputPageTest extends MediaWikiTestCase {
 
 		$op = TestingAccessWrapper::newFromObject( $op );
 		$op->rlExemptStyleModules = $exemptStyleModules;
+		$expect = strtr( $expect, [
+			'{blankCombi}' => ResourceLoaderTestCase::BLANK_COMBI,
+		] );
 		$this->assertEquals(
 			$expect,
 			strval( $op->buildExemptModules() )
@@ -2695,7 +2698,7 @@ class OutputPageTest extends MediaWikiTestCase {
 				'exemptStyleModules' => [ 'site' => [ 'site.styles' ], 'user' => [ 'user.styles' ] ],
 				'<meta name="ResourceLoaderDynamicStyles" content=""/>' . "\n" .
 				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=site.styles&amp;only=styles"/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;version=1ai9g6t"/>',
+				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;version=15pue"/>',
 			],
 			'custom modules' => [
 				'exemptStyleModules' => [
@@ -2705,8 +2708,8 @@ class OutputPageTest extends MediaWikiTestCase {
 				'<meta name="ResourceLoaderDynamicStyles" content=""/>' . "\n" .
 				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=example.site.a%2Cb&amp;only=styles"/>' . "\n" .
 				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=site.styles&amp;only=styles"/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=example.user&amp;only=styles&amp;version=0a56zyi"/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;version=1ai9g6t"/>',
+				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=example.user&amp;only=styles&amp;version={blankCombi}"/>' . "\n" .
+				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;version=15pue"/>',
 			],
 		];
 		// phpcs:enable

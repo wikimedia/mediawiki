@@ -261,7 +261,7 @@ mw.loader.state({
 						'factory' => function () {
 							$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
 								->setMethods( [ 'getVersionHash' ] )->getMock();
-							$mock->method( 'getVersionHash' )->willReturn( '1234567' );
+							$mock->method( 'getVersionHash' )->willReturn( '12345' );
 							return $mock;
 						}
 					]
@@ -273,7 +273,7 @@ mw.loader.addSource({
 mw.loader.register([
     [
         "test.version",
-        "1234567"
+        "12345"
     ]
 ]);',
 			] ],
@@ -296,7 +296,7 @@ mw.loader.addSource({
 mw.loader.register([
     [
         "test.version",
-        "016es8l"
+        "16es8"
     ]
 ]);',
 			] ],
