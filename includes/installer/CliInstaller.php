@@ -120,11 +120,7 @@ class CliInstaller extends Installer {
 			}
 			$this->setVar( '_Extensions', $status->value );
 		} elseif ( isset( $options['with-extensions'] ) ) {
-			$status = $this->findExtensions();
-			if ( !$status->isOK() ) {
-				throw new InstallException( $status );
-			}
-			$this->setVar( '_Extensions', array_keys( $status->value ) );
+			$this->setVar( '_Extensions', array_keys( $this->findExtensions() ) );
 		}
 
 		// Set up the default skins
@@ -135,11 +131,7 @@ class CliInstaller extends Installer {
 			}
 			$skins = $status->value;
 		} else {
-			$status = $this->findExtensions( 'skins' );
-			if ( !$status->isOK() ) {
-				throw new InstallException( $status );
-			}
-			$skins = array_keys( $status->value );
+			$skins = array_keys( $this->findExtensions( 'skins' ) );
 		}
 		$this->setVar( '_Skins', $skins );
 
