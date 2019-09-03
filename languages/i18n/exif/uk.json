@@ -10,7 +10,8 @@
 			"Ата",
 			"Максим Підліснюк",
 			"Тест",
-			"Piramidion"
+			"Piramidion",
+			"Movses"
 		]
 	},
 	"exif-imagewidth": "Ширина",
@@ -300,6 +301,12 @@
 	"exif-scenetype-1": "Зображення сфотографовано напряму",
 	"exif-customrendered-0": "Не виконувалась",
 	"exif-customrendered-1": "Нестандартна обробка",
+	"exif-customrendered-2": "HDR (оригінал не збережений)",
+	"exif-customrendered-3": "HDR (оригінал збережений)",
+	"exif-customrendered-4": "Оригінал (для HDR)",
+	"exif-customrendered-6": "Панорама",
+	"exif-customrendered-7": "HDR-портрет",
+	"exif-customrendered-8": "Портрет",
 	"exif-exposuremode-0": "Автоматична експозиція",
 	"exif-exposuremode-1": "Ручне налаштування експозиції",
 	"exif-exposuremode-2": "Брекетинг",

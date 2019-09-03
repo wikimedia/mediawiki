@@ -255,6 +255,8 @@
 	"exif-scenetype-1": "D'Bild gouf fotograféiert",
 	"exif-customrendered-0": "Standard",
 	"exif-customrendered-1": "Benotzerdefinéiert",
+	"exif-customrendered-2": "HDR (keen Original gespäichert)",
+	"exif-customrendered-4": "Original (fir HDR)",
 	"exif-customrendered-6": "Panorama",
 	"exif-customrendered-8": "Portrait",
 	"exif-exposuremode-0": "Automatesch Beliichtung",
