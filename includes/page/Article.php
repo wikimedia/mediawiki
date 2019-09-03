@@ -1929,13 +1929,14 @@ class Article implements Page {
 
 		$outputPage->enableOOUI();
 
+		$fields = [];
+
 		$options = Xml::listDropDownOptions(
 			$ctx->msg( 'deletereason-dropdown' )->inContentLanguage()->text(),
 			[ 'other' => $ctx->msg( 'deletereasonotherlist' )->inContentLanguage()->text() ]
 		);
 		$options = Xml::listDropDownOptionsOoui( $options );
 
-		$fields = [];
 		$fields[] = new OOUI\FieldLayout(
 			new OOUI\DropdownInputWidget( [
 				'name' => 'wpDeleteReasonList',

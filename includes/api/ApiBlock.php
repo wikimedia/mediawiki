@@ -140,9 +140,10 @@ class ApiBlock extends ApiBase {
 			$this->dieStatus( $this->errorArrayToStatus( $retval ) );
 		}
 
-		list( $target, /*...*/ ) = SpecialBlock::getTargetAndType( $params['user'] );
 		$res = [];
+
 		$res['user'] = $params['user'];
+		list( $target, /*...*/ ) = SpecialBlock::getTargetAndType( $params['user'] );
 		$res['userID'] = $target instanceof User ? $target->getId() : 0;
 
 		$block = DatabaseBlock::newFromTarget( $target, null, true );
