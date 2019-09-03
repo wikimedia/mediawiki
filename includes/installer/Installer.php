@@ -1270,8 +1270,7 @@ abstract class Installer {
 	 *
 	 * @param string $directory Directory to search in, relative to $IP, must be either "extensions"
 	 *     or "skins"
-	 * @return Status An object containing an error list. If there were no errors, an associative
-	 *     array of information about the extension can be found in $status->value.
+	 * @return array[][] [ $extName => [ 'screenshots' => [ '...' ] ]
 	 */
 	public function findExtensions( $directory = 'extensions' ) {
 		switch ( $directory ) {
@@ -1290,40 +1289,33 @@ abstract class Installer {
 	 *
 	 * @param string $type Either "extension" or "skin"
 	 * @param string $directory Directory to search in, relative to $IP
-	 * @return Status An object containing an error list. If there were no errors, an associative
-	 *     array of information about the extension can be found in $status->value.
+	 * @return array [ $extName => [ 'screenshots' => [ '...' ] ]
 	 */
 	protected function findExtensionsByType( $type = 'extension', $directory = 'extensions' ) {
 		if ( $this->getVar( 'IP' ) === null ) {
-			return Status::newGood( [] );
+			return [];
 		}
 
 		$extDir = $this->getVar( 'IP' ) . '/' . $directory;
 		if ( !is_readable( $extDir ) || !is_dir( $extDir ) ) {
-			return Status::newGood( [] );
+			return [];
 		}
 
 		$dh = opendir( $extDir );
 		$exts = [];
-		$status = new Status;
 		while ( ( $file = readdir( $dh ) ) !== false ) {
-			// skip non-dirs and hidden directories
-			if ( !is_dir( "$extDir/$file" ) || $file[0] === '.' ) {
+			if ( !is_dir( "$extDir/$file" ) ) {
 				continue;
 			}
-			$extStatus = $this->getExtensionInfo( $type, $directory, $file );
-			if ( $extStatus->isOK() ) {
+			$status = $this->getExtensionInfo( $type, $directory, $file );
+			if ( $status->isOK() ) {
 				$exts[$file] = $status->value;
-			} else {
-				$status->merge( $extStatus );
 			}
 		}
 		closedir( $dh );
 		uksort( $exts, 'strnatcasecmp' );
 
-		$status->value = $exts;
-
-		return $status;
+		return $exts;
 	}
 
 	/**
