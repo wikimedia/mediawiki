@@ -3025,10 +3025,11 @@ class OutputPage extends ContextSource {
 		$sitedir = MediaWikiServices::getInstance()->getContentLanguage()->getDir();
 
 		$pieces = [];
-		$pieces[] = Html::htmlHeader( Sanitizer::mergeAttributes(
+		$htmlAttribs = Sanitizer::mergeAttributes(
 			$this->getRlClient()->getDocumentAttributes(),
 			$sk->getHtmlElementAttributes()
-		) );
+		);
+		$pieces[] = Html::htmlHeader( $htmlAttribs );
 		$pieces[] = Html::openElement( 'head' );
 
 		if ( $this->getHTMLTitle() == '' ) {
@@ -3048,7 +3049,7 @@ class OutputPage extends ContextSource {
 		}
 
 		$pieces[] = Html::element( 'title', null, $this->getHTMLTitle() );
-		$pieces[] = $this->getRlClient()->getHeadHtml();
+		$pieces[] = $this->getRlClient()->getHeadHtml( $htmlAttribs['class'] ?? null );
 		$pieces[] = $this->buildExemptModules();
 		$pieces = array_merge( $pieces, array_values( $this->getHeadLinksArray() ) );
 		$pieces = array_merge( $pieces, array_values( $this->mHeadItems ) );
