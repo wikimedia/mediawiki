@@ -2676,7 +2676,7 @@
 	"block-log-flags-angry-autoblock": "uitgebreide automatische blokkade ingeschakeld",
 	"block-log-flags-hiddenname": "gebruiker verborgen",
 	"range_block_disabled": "De mogelijkheid voor beheerders om een groep IP-adressen te blokkeren is uitgeschakeld.",
-	"ipb-prevent-user-talk-edit": "Het bewerken van de eigen overlegpagina moet toegestaan zijn bij een gedeeltelijke blokkade, tenzij deze blokkade beperkingen oplegt aan het bewerken van de User Talk naamruimte.",
+	"ipb-prevent-user-talk-edit": "Het bewerken van de eigen overlegpagina moet worden toegestaan bij een gedeeltelijke blokkade, tenzij deze blokkade beperkingen oplegt aan het bewerken van de naamruimte \"Overleg gebruiker\".",
 	"ipb_expiry_invalid": "Ongeldige duur.",
 	"ipb_expiry_old": "Vervaldatum is in het verleden.",
 	"ipb_expiry_temp": "Blokkades voor verborgen gebruikers moeten permanent zijn.",
