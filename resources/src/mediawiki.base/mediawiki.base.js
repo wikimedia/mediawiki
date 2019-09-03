@@ -711,6 +711,22 @@
 			} );
 	};
 
+	// Skeleton user object, extended by the 'mediawiki.user' module.
+	/**
+	 * @class mw.user
+	 * @singleton
+	 */
+	mw.user = {
+		/**
+		 * @property {mw.Map}
+		 */
+		options: new mw.Map(),
+		/**
+		 * @property {mw.Map}
+		 */
+		tokens: new mw.Map()
+	};
+
 	// Alias $j to jQuery for backwards compatibility
 	// @deprecated since 1.23 Use $ or jQuery instead
 	mw.log.deprecate( window, '$j', $, 'Use $ or jQuery instead.' );

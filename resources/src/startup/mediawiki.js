@@ -2453,24 +2453,7 @@
 					}() )
 				}
 			};
-		}() ),
-
-		// Skeleton user object, extended by the 'mediawiki.user' module.
-		/**
-		 * @class mw.user
-		 * @singleton
-		 */
-		user: {
-			/**
-			 * @property {mw.Map}
-			 */
-			options: new Map(),
-			/**
-			 * @property {mw.Map}
-			 */
-			tokens: new Map()
-		}
-
+		}() )
 	};
 
 	// Attach to window and globally alias
