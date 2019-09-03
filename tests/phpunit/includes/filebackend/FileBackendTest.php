@@ -29,7 +29,6 @@ use Wikimedia\TestingAccessWrapper;
  * @covers FileBackendStoreShardDirIterator
  * @covers FileBackendStoreShardFileIterator
  * @covers FileBackendStoreShardListIterator
- * @covers FileJournal
  * @covers FileOp
  * @covers FileOpBatch
  * @covers HTTPFileStreamer
@@ -37,7 +36,6 @@ use Wikimedia\TestingAccessWrapper;
  * @covers MemoryFileBackend
  * @covers MoveFileOp
  * @covers MySqlLockManager
- * @covers NullFileJournal
  * @covers NullFileOp
  * @covers StoreFileOp
  * @covers TempFSFile
