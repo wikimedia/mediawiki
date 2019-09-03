@@ -54,7 +54,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 	/** @var array Track original session fields for later modification check */
 	protected $sessionFieldCache = [];
 
-	protected function __construct( SessionManagerInterface $manager ) {
+	protected function __construct( SessionManager $manager ) {
 		$this->setEnableFlags(
 			\RequestContext::getMain()->getConfig()->get( 'PHPSessionHandling' )
 		);
@@ -106,9 +106,9 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 
 	/**
 	 * Install a session handler for the current web request
-	 * @param SessionManagerInterface $manager
+	 * @param SessionManager $manager
 	 */
-	public static function install( SessionManagerInterface $manager ) {
+	public static function install( SessionManager $manager ) {
 		if ( self::$instance ) {
 			$manager->setupPHPSessionHandler( self::$instance );
 			return;

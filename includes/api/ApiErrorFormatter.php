@@ -26,6 +26,7 @@
  * ApiResult.
  * @since 1.25
  * @ingroup API
+ * @phan-file-suppress PhanUndeclaredMethod Undeclared methods in IApiMessage
  */
 class ApiErrorFormatter {
 	/** @var Title Dummy title to silence warnings from MessageCache::parse() */

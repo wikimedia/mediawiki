@@ -30,7 +30,6 @@
 use MediaWiki\MediaWikiServices as MediaWikiServicesAlias;
 use MediaWiki\Storage\RevisionRecord;
 use Wikimedia\Rdbms\IResultWrapper;
-use Wikimedia\Rdbms\IDatabase;
 
 /**
  * @ingroup SpecialPage Dump
@@ -68,7 +67,7 @@ class WikiExporter {
 	/** @var XmlDumpWriter */
 	private $writer;
 
-	/** @var IDatabase */
+	/** @var Database */
 	protected $db;
 
 	/** @var array|int */
@@ -87,7 +86,7 @@ class WikiExporter {
 	}
 
 	/**
-	 * @param IDatabase $db
+	 * @param Database $db
 	 * @param int|array $history One of WikiExporter::FULL, WikiExporter::CURRENT,
 	 *   WikiExporter::RANGE or WikiExporter::STABLE, or an associative array:
 	 *   - offset: non-inclusive offset at which to start the query

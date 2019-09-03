@@ -131,6 +131,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		 * @var Database $conn
 		 */
 		$conn = $status->value;
+		'@phan-var Database $conn';
 
 		// Check version
 		return static::meetsMinimumRequirement( $conn->getServerVersion() );

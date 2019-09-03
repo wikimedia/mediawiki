@@ -42,6 +42,7 @@ class ApiDelete extends ApiBase {
 		$pageObj = $this->getTitleOrPageId( $params, 'fromdbmaster' );
 		$titleObj = $pageObj->getTitle();
 		if ( !$pageObj->exists() &&
+			// @phan-suppress-next-line PhanUndeclaredMethod
 			!( $titleObj->getNamespace() == NS_FILE && self::canDeleteFile( $pageObj->getFile() ) )
 		) {
 			$this->dieWithError( 'apierror-missingtitle' );
@@ -156,6 +157,7 @@ class ApiDelete extends ApiBase {
 	) {
 		$title = $page->getTitle();
 
+		// @phan-suppress-next-line PhanUndeclaredMethod There's no right typehint for it
 		$file = $page->getFile();
 		if ( !self::canDeleteFile( $file ) ) {
 			return self::delete( $page, $user, $reason, $tags );

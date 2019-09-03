@@ -658,6 +658,8 @@ class XmlDumpWriter {
 	 */
 	function writeUpload( $file, $dumpContents = false ) {
 		if ( $file->isOld() ) {
+			/** @var OldLocalFile $file */
+			'@phan-var OldLocalFile $file';
 			$archiveName = "      " .
 				Xml::element( 'archivename', null, $file->getArchiveName() ) . "\n";
 		} else {

@@ -120,6 +120,7 @@ class ImageHistoryList extends ContextSource {
 		$lang = $this->getLanguage();
 		$pm = MediaWikiServices::getInstance()->getPermissionManager();
 		$timestamp = wfTimestamp( TS_MW, $file->getTimestamp() );
+		// @phan-suppress-next-line PhanUndeclaredMethod
 		$img = $iscur ? $file->getName() : $file->getArchiveName();
 		$userId = $file->getUser( 'id' );
 		$userText = $file->getUser( 'text' );

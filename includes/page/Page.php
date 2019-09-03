@@ -20,6 +20,11 @@
 
 /**
  * Interface for type hinting (accepts WikiPage, Article, ImagePage, CategoryPage)
+ *
+ * @method array getActionOverrides()
+ * @method string getUserText($audience=1,User $user=null)
+ * @method string getTimestamp()
+ * @method Title getTitle()
  */
 interface Page {
 }

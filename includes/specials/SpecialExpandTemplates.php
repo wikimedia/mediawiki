@@ -83,8 +83,10 @@ class SpecialExpandTemplates extends SpecialPage {
 				$dom = $parser->preprocessToDom( $input );
 
 				if ( method_exists( $dom, 'saveXML' ) ) {
+					// @phan-suppress-next-line PhanUndeclaredMethod
 					$xml = $dom->saveXML();
 				} else {
+					// @phan-suppress-next-line PhanUndeclaredMethod
 					$xml = $dom->__toString();
 				}
 			}

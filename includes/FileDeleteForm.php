@@ -147,7 +147,7 @@ class FileDeleteForm {
 	 * Really delete the file
 	 *
 	 * @param Title &$title
-	 * @param File &$file
+	 * @param LocalFile &$file
 	 * @param string &$oldimage Archive name
 	 * @param string $reason Reason of the deletion
 	 * @param bool $suppress Whether to mark all deleted versions as restricted
@@ -167,7 +167,7 @@ class FileDeleteForm {
 		if ( $oldimage ) {
 			$page = null;
 			$status = $file->deleteOld( $oldimage, $reason, $suppress, $user );
-			if ( $status->ok ) {
+			if ( $status->isOK() ) {
 				// Need to do a log item
 				$logComment = wfMessage( 'deletedrevision', $oldimage )->inContentLanguage()->text();
 				if ( trim( $reason ) != '' ) {

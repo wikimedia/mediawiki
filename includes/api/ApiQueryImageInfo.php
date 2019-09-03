@@ -523,6 +523,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 							$vals['thumbmime'] = $mime;
 						}
 					} elseif ( $mto && $mto->isError() ) {
+						/** @var MediaTransformError $mto */
+						'@phan-var MediaTransformError $mto';
 						$vals['thumberror'] = $mto->toText();
 					}
 				}
@@ -562,6 +564,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			// Thus there should be no issue with format=xml.
 			$format = new FormatMetadata;
 			$format->setSingleLanguage( !$opts['multilang'] );
+			// @phan-suppress-next-line PhanUndeclaredMethod
 			$format->getContext()->setLanguage( $opts['language'] );
 			$extmetaArray = $format->fetchExtendedMetadata( $file );
 			if ( $opts['extmetadatafilter'] ) {
@@ -581,6 +584,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 
 		if ( $archive && $file->isOld() ) {
+			/** @var OldLocalFile $file */
+			'@phan-var OldLocalFile $file';
 			$vals['archivename'] = $file->getArchiveName();
 		}
 

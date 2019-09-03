@@ -376,6 +376,7 @@ class SkinTemplate extends Skin {
 					/** @var CreditsAction $action */
 					$action = Action::factory(
 						'credits', $this->getWikiPage(), $this->getContext() );
+					'@phan-var CreditsAction $action';
 					$tpl->set( 'credits',
 						$action->getCredits( $wgMaxCredits, $wgShowCreditsIfMax ) );
 				} else {

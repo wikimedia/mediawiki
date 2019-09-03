@@ -26,6 +26,7 @@
  * @ingroup Profiler
  *
  * @since 1.25
+ * @property ProfilerXhprof $collector
  */
 class ProfilerOutputDump extends ProfilerOutput {
 

@@ -168,6 +168,7 @@ class WebInstallerOutput {
 		foreach ( $moduleNames as $moduleName ) {
 			/** @var ResourceLoaderFileModule $module */
 			$module = $resourceLoader->getModule( $moduleName );
+			'@phan-var ResourceLoaderFileModule $module';
 			if ( !$module ) {
 				// T98043: Don't fatal, but it won't look as pretty.
 				continue;

@@ -332,6 +332,7 @@ class ImportImages extends Maintenance {
 
 				if ( $this->hasOption( 'dry' ) ) {
 					$this->output( "done.\n" );
+					// @phan-suppress-next-line PhanUndeclaredMethod
 				} elseif ( $image->recordUpload2(
 					$archive->value,
 					$summary,

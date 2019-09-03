@@ -23,6 +23,7 @@
  * @since 1.27
  * @ingroup API
  * @phan-file-suppress PhanTraitParentReference
+ * @phan-file-suppress PhanUndeclaredMethod
  */
 trait ApiMessageTrait {
 

@@ -117,6 +117,7 @@ class ConvertLinks extends Maintenance {
 		}
 
 		$res = $dbw->query( "SELECT l_from FROM $links LIMIT 1" );
+		// @phan-suppress-next-line PhanUndeclaredMethod
 		if ( $dbw->fieldType( $res, 0 ) == "int" ) {
 			$this->output( "Schema already converted\n" );
 

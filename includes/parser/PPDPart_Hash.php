@@ -21,6 +21,7 @@
 
 /**
  * @ingroup Parser
+ * @property string[] $out
  */
 // phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPDPart_Hash extends PPDPart {

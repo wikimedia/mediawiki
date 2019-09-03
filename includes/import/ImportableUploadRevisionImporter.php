@@ -114,6 +114,7 @@ class ImportableUploadRevisionImporter implements UploadRevisionImporter {
 				$user
 			);
 		} else {
+			'@phan-var LocalFile $file';
 			$flags = 0;
 			$status = $file->upload(
 				$source,

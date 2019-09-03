@@ -29,6 +29,8 @@ use Wikimedia\Rdbms\IResultWrapper;
 /**
  * The TitleArray class only exists to provide the newFromResult method at pre-
  * sent.
+ *
+ * @method int count()
  */
 abstract class TitleArray implements Iterator {
 	/**

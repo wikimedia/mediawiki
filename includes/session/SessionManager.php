@@ -86,8 +86,7 @@ final class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Get the global SessionManager
-	 * @return SessionManagerInterface
-	 *  (really a SessionManager, but this is to make IDEs less confused)
+	 * @return self
 	 */
 	public static function singleton() {
 		if ( self::$instance === null ) {

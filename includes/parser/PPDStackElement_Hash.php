@@ -21,6 +21,7 @@
 
 /**
  * @ingroup Parser
+ * @property PPDPart_Hash[] $parts
  */
 // phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPDStackElement_Hash extends PPDStackElement {
@@ -39,7 +40,6 @@ class PPDStackElement_Hash extends PPDStackElement {
 	 */
 	public function breakSyntax( $openingCount = false ) {
 		if ( $this->open == "\n" ) {
-			// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 			$accum = array_merge( [ $this->savedPrefix ], $this->parts[0]->out );
 		} else {
 			if ( $openingCount === false ) {
@@ -61,7 +61,7 @@ class PPDStackElement_Hash extends PPDStackElement {
 				} else {
 					$accum[++$lastIndex] = '|';
 				}
-				// @phan-suppress-next-line PhanTypeMismatchForeach
+
 				foreach ( $part->out as $node ) {
 					if ( is_string( $node ) && is_string( $accum[$lastIndex] ) ) {
 						$accum[$lastIndex] .= $node;

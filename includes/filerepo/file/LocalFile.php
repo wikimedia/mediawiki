@@ -1868,6 +1868,7 @@ class LocalFile extends File {
 				: FSFile::getSha1Base36FromPath( $srcPath );
 			/** @var FileBackendDBRepoWrapper $wrapperBackend */
 			$wrapperBackend = $repo->getBackend();
+			'@phan-var FileBackendDBRepoWrapper $wrapperBackend';
 			$dst = $wrapperBackend->getPathForSHA1( $sha1 );
 			$status = $repo->quickImport( $src, $dst );
 			if ( $flags & File::DELETE_SOURCE ) {
@@ -1937,6 +1938,7 @@ class LocalFile extends File {
 					$oldTitleFile->purgeEverything();
 					foreach ( $archiveNames as $archiveName ) {
 						/** @var OldLocalFile $oldTitleFile */
+						'@phan-var OldLocalFile $oldTitleFile';
 						$oldTitleFile->purgeOldThumbnails( $archiveName );
 					}
 					$newTitleFile->purgeEverything();

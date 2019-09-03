@@ -68,6 +68,7 @@ class UnknownContentHandler extends ContentHandler {
 	 */
 	public function serializeContent( Content $content, $format = null ) {
 		/** @var UnknownContent $content */
+		'@phan-var UnknownContent $content';
 		return $content->getData();
 	}
 

@@ -72,7 +72,7 @@ class PPFuzzTester {
 				$passed = 'passed';
 			} catch ( Exception $e ) {
 				$testReport = self::$currentTest->getReport();
-				$exceptionReport = $e->getText();
+				$exceptionReport = $e instanceof MWException ? $e->getText() : (string)$e;
 				$hash = md5( $testReport );
 				file_put_contents( "results/ppft-$hash.in", serialize( self::$currentTest ) );
 				file_put_contents( "results/ppft-$hash.fail",

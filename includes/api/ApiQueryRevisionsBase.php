@@ -501,6 +501,8 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 		if ( $this->fld_parsetree || ( $this->fld_content && $this->generateXML ) ) {
 			if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
+				/** @var WikitextContent $content */
+				'@phan-var WikitextContent $content';
 				$t = $content->getText(); # note: don't set $text
 
 				$parser = MediaWikiServices::getInstance()->getParser();
@@ -511,8 +513,10 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				);
 				$dom = $parser->preprocessToDom( $t );
 				if ( is_callable( [ $dom, 'saveXML' ] ) ) {
+					// @phan-suppress-next-line PhanUndeclaredMethod
 					$xml = $dom->saveXML();
 				} else {
+					// @phan-suppress-next-line PhanUndeclaredMethod
 					$xml = $dom->__toString();
 				}
 				$vals['parsetree'] = $xml;
@@ -534,6 +538,8 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 			if ( $this->expandTemplates && !$this->parseContent ) {
 				if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
+					/** @var WikitextContent $content */
+					'@phan-var WikitextContent $content';
 					$text = $content->getText();
 
 					$text = MediaWikiServices::getInstance()->getParser()->preprocess(

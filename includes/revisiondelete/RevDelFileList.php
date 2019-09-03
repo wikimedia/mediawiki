@@ -110,8 +110,10 @@ class RevDelFileList extends RevDelList {
 	}
 
 	public function doPostCommitUpdates( array $visibilityChangeMap ) {
+		/** @var LocalFile $file */
 		$file = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
 			->newFile( $this->title );
+		'@phan-var LocalFile $file';
 		$file->purgeCache();
 		$file->purgeDescription();
 

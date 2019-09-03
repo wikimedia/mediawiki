@@ -29,6 +29,7 @@ use MediaWiki\MediaWikiServices;
  *
  * @ingroup Deployment
  * @since 1.17
+ * @property DatabaseMysqlBase $db
  */
 class MysqlUpdater extends DatabaseUpdater {
 	protected function getCoreUpdateList() {

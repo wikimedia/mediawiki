@@ -55,7 +55,7 @@ class Language {
 	const SUPPORTED = 'mwfile';
 
 	/**
-	 * @var LanguageConverter
+	 * @var LanguageConverter|FakeConverter
 	 */
 	public $mConverter;
 
@@ -457,7 +457,6 @@ class Language {
 	}
 
 	function __construct() {
-		// @phan-suppress-next-line PhanTypeMismatchProperty
 		$this->mConverter = new FakeConverter( $this );
 		// Set the code to the name of the descendant
 		if ( static::class === 'Language' ) {

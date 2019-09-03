@@ -86,6 +86,7 @@ class UserrightsPage extends SpecialPage {
 	 *
 	 * @param string|null $par String if any subpage provided, else null
 	 * @throws UserBlockedError|PermissionsError
+	 * @suppress PhanUndeclaredMethod
 	 */
 	public function execute( $par ) {
 		$user = $this->getUser();
@@ -479,9 +480,11 @@ class UserrightsPage extends SpecialPage {
 			$this->getOutput()->addWikiTextAsInterface( $status->getWikiText() );
 
 			return;
-		} else {
-			$user = $status->value;
 		}
+
+		/** @var User $user */
+		$user = $status->value;
+		'@phan-var User $user';
 
 		$groups = $user->getGroups();
 		$groupMemberships = $user->getGroupMemberships();

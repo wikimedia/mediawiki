@@ -211,6 +211,7 @@ TEXT
 			}
 			$this->uploadCount++;
 			// $this->report();
+			// @phan-suppress-next-line PhanUndeclaredMethod
 			$this->progress( "upload: " . $revision->getFilename() );
 
 			if ( !$this->dryRun ) {

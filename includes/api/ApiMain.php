@@ -167,6 +167,7 @@ class ApiMain extends ApiBase {
 	 * @param IContextSource|WebRequest|null $context If this is an instance of
 	 *    FauxRequest, errors are thrown and no printing occurs
 	 * @param bool $enableWrite Should be set to true if the api may modify data
+	 * @suppress PhanUndeclaredMethod
 	 */
 	public function __construct( $context = null, $enableWrite = false ) {
 		if ( $context === null ) {

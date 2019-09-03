@@ -373,7 +373,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	/**
 	 * Take care of whatever is necessary to perform the URI request.
 	 *
-	 * @return StatusValue
+	 * @return Status
 	 * @note currently returns Status for B/C
 	 */
 	public function execute() {
