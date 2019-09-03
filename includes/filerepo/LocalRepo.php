@@ -180,7 +180,11 @@ class LocalRepo extends FileRepo {
 	 * @return string
 	 */
 	public static function getHashFromKey( $key ) {
-		return strtok( $key, '.' );
+		$sha1 = strtok( $key, '.' );
+		if ( is_string( $sha1 ) && strlen( $sha1 ) === 32 && $sha1[0] === '0' ) {
+			$sha1 = substr( $sha1, 1 );
+		}
+		return $sha1;
 	}
 
 	/**

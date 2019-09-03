@@ -136,6 +136,7 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 			[ '.e.x', 'e' ],
 			[ '..f.x', 'f' ],
 			[ 'g..x', 'g' ],
+			[ '01234567890123456789012345678901.x', '1234567890123456789012345678901' ],
 		];
 	}
 
