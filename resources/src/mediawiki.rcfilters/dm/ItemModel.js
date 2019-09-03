@@ -259,7 +259,7 @@ ItemModel.prototype.getIdentifiers = function () {
  * @return {boolean}
  */
 ItemModel.prototype.isHighlightSupported = function () {
-	return !!this.getCssClass();
+	return !!this.getCssClass() && !OO.ui.isMobile();
 };
 
 /**

@@ -101,7 +101,7 @@ ChangesListWrapperWidget.prototype.onModelUpdate = function (
 		isEmpty = $changesListContent === 'NO_RESULTS',
 		// For enhanced mode, we have to load these modules, which are
 		// not loaded for the 'regular' mode in the backend
-		loaderPromise = mw.user.options.get( 'usenewrc' ) ?
+		loaderPromise = mw.user.options.get( 'usenewrc' ) && !OO.ui.isMobile() ?
 			mw.loader.using( [ 'mediawiki.special.changeslist.enhanced', 'mediawiki.icon' ] ) :
 			$.Deferred().resolve(),
 		widget = this;
