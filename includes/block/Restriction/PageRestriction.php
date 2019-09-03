@@ -87,7 +87,9 @@ class PageRestriction extends AbstractRestriction {
 	 * @inheritDoc
 	 */
 	public static function newFromRow( \stdClass $row ) {
+		/** @var self $restriction */
 		$restriction = parent::newFromRow( $row );
+		'@phan-var self $restriction';
 
 		// If the page_namespace and the page_title were provided, add the title to
 		// the restriction.

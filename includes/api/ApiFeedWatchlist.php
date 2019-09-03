@@ -150,6 +150,7 @@ class ApiFeedWatchlist extends ApiBase {
 
 			if ( $e instanceof ApiUsageException ) {
 				foreach ( $e->getStatusValue()->getErrors() as $error ) {
+					// @phan-suppress-next-line PhanUndeclaredMethod
 					$msg = ApiMessage::create( $error )
 						->inLanguage( $this->getLanguage() );
 					$errorTitle = $this->msg( 'api-feed-error-title', $msg->getApiCode() );

@@ -1233,6 +1233,7 @@ abstract class DatabaseUpdater {
 		$cl = $this->maintenance->runChild(
 			RebuildLocalisationCache::class, 'rebuildLocalisationCache.php'
 		);
+		'@phan-var RebuildLocalisationCache $cl';
 		$this->output( "Rebuilding localisation cache...\n" );
 		$cl->setForce();
 		$cl->execute();
@@ -1292,6 +1293,7 @@ abstract class DatabaseUpdater {
 			$task = $this->maintenance->runChild(
 				MigrateImageCommentTemp::class, 'migrateImageCommentTemp.php'
 			);
+			// @phan-suppress-next-line PhanUndeclaredMethod
 			$task->setForce();
 			$ok = $task->execute();
 			$this->output( $ok ? "done.\n" : "errors were encountered.\n" );
@@ -1329,6 +1331,7 @@ abstract class DatabaseUpdater {
 		if ( $this->db->fieldExists( 'archive', 'ar_text', __METHOD__ ) ) {
 			$this->output( "Migrating archive ar_text to modern storage.\n" );
 			$task = $this->maintenance->runChild( MigrateArchiveText::class, 'migrateArchiveText.php' );
+			// @phan-suppress-next-line PhanUndeclaredMethod
 			$task->setForce();
 			if ( $task->execute() ) {
 				$this->applyPatch( 'patch-drop-ar_text.sql', false,

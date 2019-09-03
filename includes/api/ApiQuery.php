@@ -223,7 +223,9 @@ class ApiQuery extends ApiBase {
 		// Filter modules based on continue parameter
 		$continuationManager = new ApiContinuationManager( $this, $allModules, $propModules );
 		$this->setContinuationManager( $continuationManager );
+		/** @var ApiQueryBase[] $modules */
 		$modules = $continuationManager->getRunModules();
+		'@phan-var ApiQueryBase[] $modules';
 
 		if ( !$continuationManager->isGeneratorDone() ) {
 			// Query modules may optimize data requests through the $this->getPageSet()
@@ -242,7 +244,6 @@ class ApiQuery extends ApiBase {
 		$cacheMode = $this->mPageSet->getCacheMode();
 
 		// Execute all unfinished modules
-		/** @var ApiQueryBase $module */
 		foreach ( $modules as $module ) {
 			$params = $module->extractRequestParams();
 			$cacheMode = $this->mergeCacheMode(

@@ -1586,12 +1586,11 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * Handle the form submission if everything validated properly
 	 *
 	 * @param array $formData
-	 * @param HTMLForm $form
+	 * @param PreferencesFormOOUI $form
 	 * @param array[] $formDescriptor
 	 * @return bool|Status|string
 	 */
-	protected function saveFormData( $formData, HTMLForm $form, array $formDescriptor ) {
-		/** @var \User $user */
+	protected function saveFormData( $formData, PreferencesFormOOUI $form, array $formDescriptor ) {
 		$user = $form->getModifiedUser();
 		$hiddenPrefs = $this->options->get( 'HiddenPrefs' );
 		$result = true;
@@ -1689,11 +1688,15 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * Save the form data and reload the page
 	 *
 	 * @param array $formData
-	 * @param HTMLForm $form
+	 * @param PreferencesFormOOUI $form
 	 * @param array $formDescriptor
 	 * @return Status
 	 */
-	protected function submitForm( array $formData, HTMLForm $form, array $formDescriptor ) {
+	protected function submitForm(
+		array $formData,
+		PreferencesFormOOUI $form,
+		array $formDescriptor
+	) {
 		$res = $this->saveFormData( $formData, $form, $formDescriptor );
 
 		if ( $res === true ) {

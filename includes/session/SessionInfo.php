@@ -156,6 +156,7 @@ class SessionInfo {
 			$this->idIsSafe = $data['idIsSafe'];
 			$this->forceUse = $data['forceUse'] && $this->provider;
 		} else {
+			// @phan-suppress-next-line PhanUndeclaredMethod
 			$this->id = $this->provider->getManager()->generateSessionId();
 			$this->idIsSafe = true;
 			$this->forceUse = false;

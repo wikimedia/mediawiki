@@ -161,6 +161,7 @@ class DeferredUpdates {
 			if ( isset( $queue[$class] ) ) {
 				/** @var MergeableUpdate $existingUpdate */
 				$existingUpdate = $queue[$class];
+				'@phan-var MergeableUpdate $existingUpdate';
 				$existingUpdate->merge( $update );
 				// Move the update to the end to handle things like mergeable purge
 				// updates that might depend on the prior updates in the queue running

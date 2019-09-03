@@ -1324,6 +1324,7 @@ abstract class Maintenance {
 			$res = $dbw->select( 'content', 'content_address', [], __METHOD__, [ 'DISTINCT' ] );
 			$blobStore = MediaWikiServices::getInstance()->getBlobStore();
 			foreach ( $res as $row ) {
+				// @phan-suppress-next-line PhanUndeclaredMethod
 				$textId = $blobStore->getTextIdFromAddress( $row->content_address );
 				if ( $textId ) {
 					$cur[] = $textId;

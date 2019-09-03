@@ -67,6 +67,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 		/** @var TextSlotDiffRenderer $slotDiffRenderer */
 		$slotDiffRenderer = ContentHandler::getForModelID( CONTENT_MODEL_TEXT )
 			->getSlotDiffRenderer( RequestContext::getMain() );
+		'@phan-var TextSlotDiffRenderer $slotDiffRenderer';
 		return $slotDiffRenderer->getTextDiff( $oldText, $newText );
 	}
 

@@ -514,6 +514,7 @@ class BotPassword implements IDBAccessObject {
 			$throttle->clear( $user->getName(), $request->getIP() );
 		}
 		return self::loginHook( $user, $bp,
+			// @phan-suppress-next-line PhanUndeclaredMethod
 			Status::newGood( $provider->newSessionForRequest( $user, $bp, $request ) ) );
 	}
 

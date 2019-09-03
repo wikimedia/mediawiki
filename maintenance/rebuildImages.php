@@ -76,7 +76,7 @@ class ImageBuilder extends Maintenance {
 	}
 
 	/**
-	 * @return FileRepo
+	 * @return LocalRepo
 	 */
 	function getRepo() {
 		if ( !isset( $this->repo ) ) {
@@ -203,7 +203,8 @@ class ImageBuilder extends Maintenance {
 				$filename = $altname;
 				$this->output( "Estimating transcoding... $altname\n" );
 			} else {
-				# @todo FIXME: create renameFile()
+				// @fixme create renameFile()
+				// @phan-suppress-next-line PhanUndeclaredMethod See comment above...
 				$filename = $this->renameFile( $filename );
 			}
 		}

@@ -144,6 +144,8 @@ class CompareParsers extends DumpIterator {
 			return;
 		}
 
+		/** @var WikitextContent $content */
+		'@phan-var WikitextContent $content';
 		$text = strval( $content->getText() );
 
 		$output1 = $parser1->parse( $text, $title, $this->options );

@@ -151,6 +151,8 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 			}
 			// Upgrade the old file versions...
 			foreach ( $file->getHistory() as $oldFile ) {
+				/** @var OldLocalFile $oldFile */
+				'@phan-var OldLocalFile $oldFile';
 				$sha1 = $oldFile->getRepo()->getFileSha1( $oldFile->getPath() );
 				if ( strval( $sha1 ) !== '' ) { // file on disk and hashed properly
 					if ( $isRegen && $oldFile->getSha1() !== $sha1 ) {

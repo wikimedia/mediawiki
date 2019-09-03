@@ -24,10 +24,12 @@
  * @ingroup Parser
  */
 class PPDStack {
-	public $stack, $rootAccum;
+	/** @var PPDStackElement[] */
+	public $stack;
+	public $rootAccum;
 
 	/**
-	 * @var PPDStack|false
+	 * @var PPDStackElement|false
 	 */
 	public $top;
 	public $out;

@@ -20,12 +20,13 @@
 
 namespace MediaWiki\Navigation;
 
-use MediaWiki\Linker\LinkTarget;
-use MessageLocalizer;
 use Html;
+use MessageLocalizer;
+use Title;
 
 /**
  * Helper class for generating prev/next links for paging.
+ * @todo Use LinkTarget instead of Title
  *
  * @since 1.34
  */
@@ -36,6 +37,9 @@ class PrevNextNavigationRenderer {
 	 */
 	private $messageLocalizer;
 
+	/**
+	 * @param MessageLocalizer $messageLocalizer
+	 */
 	public function __construct( MessageLocalizer $messageLocalizer ) {
 		$this->messageLocalizer = $messageLocalizer;
 	}
@@ -43,15 +47,19 @@ class PrevNextNavigationRenderer {
 	/**
 	 * Generate (prev x| next x) (20|50|100...) type links for paging
 	 *
-	 * @param LinkTarget $title LinkTarget object to link
+	 * @param Title $title Title object to link
 	 * @param int $offset
 	 * @param int $limit
 	 * @param array $query Optional URL query parameter string
 	 * @param bool $atend Optional param for specified if this is the last page
 	 * @return string
 	 */
-	public function buildPrevNextNavigation( LinkTarget $title, $offset, $limit,
-											 array $query = [], $atend = false
+	public function buildPrevNextNavigation(
+		Title $title,
+		$offset,
+		$limit,
+		array $query = [],
+		$atend = false
 	) {
 		# Make 'previous' link
 		$prev = $this->messageLocalizer->msg( 'prevn' )->title( $title )
@@ -76,6 +84,8 @@ class PrevNextNavigationRenderer {
 
 		# Make links to set number of items per page
 		$numLinks = [];
+		// @phan-suppress-next-next-line PhanUndeclaredMethod
+		// @fixme MessageLocalizer doesn't have a getLanguage() method!
 		$lang = $this->messageLocalizer->getLanguage();
 		foreach ( [ 20, 50, 100, 250, 500 ] as $num ) {
 			$numLinks[] = $this->numLink( $title, $offset, $num, $query,
@@ -89,7 +99,7 @@ class PrevNextNavigationRenderer {
 	/**
 	 * Helper function for buildPrevNextNavigation() that generates links
 	 *
-	 * @param LinkTarget $title LinkTarget object to link
+	 * @param Title $title Title object to link
 	 * @param int $offset
 	 * @param int $limit
 	 * @param array $query Extra query parameters
@@ -98,7 +108,7 @@ class PrevNextNavigationRenderer {
 	 * @param string $class Value of the "class" attribute of the link
 	 * @return string HTML fragment
 	 */
-	private function numLink( LinkTarget $title, $offset, $limit, array $query, $link,
+	private function numLink( Title $title, $offset, $limit, array $query, $link,
 							  $tooltipMsg, $class
 	) {
 		$query = [ 'limit' => $limit, 'offset' => $offset ] + $query;

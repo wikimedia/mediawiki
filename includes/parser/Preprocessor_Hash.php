@@ -628,7 +628,9 @@ class Preprocessor_Hash extends Preprocessor {
 				}
 				$i += $count;
 			} elseif ( $found == 'close' ) {
+				/** @var PPDStackElement_Hash $piece */
 				$piece = $stack->top;
+				'@phan-var PPDStackElement_Hash $piece';
 				# lets check if there are enough characters for closing brace
 				$maxCount = $piece->count;
 				if ( $piece->close === '}-' && $curChar === '}' ) {

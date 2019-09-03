@@ -34,6 +34,7 @@ class UpdateExtensionJsonSchema extends Maintenance {
 		while ( $json['manifest_version'] !== ExtensionRegistry::MANIFEST_VERSION ) {
 			$json['manifest_version'] += 1;
 			$func = "updateTo{$json['manifest_version']}";
+			// @phan-suppress-next-line PhanUndeclaredMethod
 			$this->$func( $json );
 		}
 

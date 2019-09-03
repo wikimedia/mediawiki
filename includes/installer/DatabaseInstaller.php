@@ -177,6 +177,7 @@ abstract class DatabaseInstaller {
 	 * This will return a cached connection if one is available.
 	 *
 	 * @return Status
+	 * @suppress PhanUndeclaredMethod
 	 */
 	public function getConnection() {
 		if ( $this->db ) {
@@ -341,6 +342,7 @@ abstract class DatabaseInstaller {
 	public function setupSchemaVars() {
 		$status = $this->getConnection();
 		if ( $status->isOK() ) {
+			// @phan-suppress-next-line PhanUndeclaredMethod
 			$status->value->setSchemaVars( $this->getSchemaVars() );
 		} else {
 			$msg = __METHOD__ . ': unexpected error while establishing'

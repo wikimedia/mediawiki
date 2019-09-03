@@ -5,6 +5,7 @@
  * (defined in htmlform.Element.js) picks up the extra config when constructed using OO.ui.infuse().
  *
  * Currently only supports passing 'hide-if' data.
+ * @phan-file-suppress PhanUndeclaredMethod
  */
 trait HTMLFormElement {
 

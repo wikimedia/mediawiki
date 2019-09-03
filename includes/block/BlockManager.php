@@ -223,6 +223,8 @@ class BlockManager {
 			if ( $block instanceof SystemBlock ) {
 				$systemBlocks[] = $block;
 			} elseif ( $block->getType() === DatabaseBlock::TYPE_AUTO ) {
+				/** @var DatabaseBlock $block */
+				'@phan-var DatabaseBlock $block';
 				if ( !isset( $databaseBlocks[$block->getParentBlockId()] ) ) {
 					$databaseBlocks[$block->getParentBlockId()] = $block;
 				}

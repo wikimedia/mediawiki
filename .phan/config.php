@@ -87,8 +87,6 @@ $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
 	"PhanUndeclaredConstant",
 	// approximate error count: 60
 	"PhanTypeMismatchArgument",
-	// approximate error count: 219
-	"PhanUndeclaredMethod",
 	// approximate error count: 752
 	"PhanUndeclaredProperty",
 ] );

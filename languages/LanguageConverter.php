@@ -1044,6 +1044,7 @@ class LanguageConverter {
 				$revision = Revision::newFromTitle( $title );
 				if ( $revision ) {
 					if ( $revision->getContentModel() == CONTENT_MODEL_WIKITEXT ) {
+						// @phan-suppress-next-line PhanUndeclaredMethod
 						$txt = $revision->getContent( RevisionRecord::RAW )->getText();
 					}
 

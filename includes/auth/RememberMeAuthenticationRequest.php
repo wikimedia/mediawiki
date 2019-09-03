@@ -43,6 +43,7 @@ class RememberMeAuthenticationRequest extends AuthenticationRequest {
 	public function __construct() {
 		/** @var SessionProvider $provider */
 		$provider = SessionManager::getGlobalSession()->getProvider();
+		'@phan-var SessionProvider $provider';
 		$this->expiration = $provider->getRememberUserDuration();
 	}
 

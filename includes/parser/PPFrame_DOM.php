@@ -23,6 +23,7 @@
  * An expansion frame, used as a context to expand the result of preprocessToObj()
  * @deprecated since 1.34, use PPFrame_Hash
  * @ingroup Parser
+ * @phan-file-suppress PhanUndeclaredMethod
  */
 // phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPFrame_DOM implements PPFrame {

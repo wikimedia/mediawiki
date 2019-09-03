@@ -104,6 +104,7 @@ class ApiImageRotate extends ApiBase {
 			$tmpFile = MediaWikiServices::getInstance()->getTempFSFileFactory()
 				->newTempFSFile( 'rotate_', $ext );
 			$dstPath = $tmpFile->getPath();
+			// @phan-suppress-next-line PhanUndeclaredMethod
 			$err = $handler->rotate( $file, [
 				'srcPath' => $srcPath,
 				'dstPath' => $dstPath,
@@ -113,6 +114,7 @@ class ApiImageRotate extends ApiBase {
 				$comment = wfMessage(
 					'rotate-comment'
 				)->numParams( $rotation )->inContentLanguage()->text();
+				// @phan-suppress-next-line PhanUndeclaredMethod
 				$status = $file->upload(
 					$dstPath,
 					$comment,

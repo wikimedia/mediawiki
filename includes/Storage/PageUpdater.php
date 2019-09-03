@@ -882,6 +882,7 @@ class PageUpdater {
 		// TODO: introduce something like an UnsavedRevisionFactory service instead!
 		/** @var MutableRevisionRecord $rev */
 		$rev = $this->derivedDataUpdater->getRevision();
+		'@phan-var MutableRevisionRecord $rev';
 
 		$rev->setPageId( $title->getArticleID() );
 

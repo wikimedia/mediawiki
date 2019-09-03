@@ -106,7 +106,9 @@ class CheckStorage {
 					[],
 					[ 'content' => [ 'INNER JOIN', [ 'content_id = slot_content_id' ] ] ]
 				);
+				/** @var \MediaWiki\Storage\SqlBlobStore $blobStore */
 				$blobStore = MediaWikiServices::getInstance()->getBlobStore();
+				'@phan-var \MediaWiki\Storage\SqlBlobStore $blobStore';
 				foreach ( $res as $row ) {
 					$textId = $blobStore->getTextIdFromAddress( $row->content_address );
 					if ( $textId ) {

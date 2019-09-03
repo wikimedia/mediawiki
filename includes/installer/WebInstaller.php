@@ -188,7 +188,9 @@ class WebInstaller extends Installer {
 
 		# Special case for Creative Commons partner chooser box.
 		if ( $this->request->getVal( 'SubmitCC' ) ) {
+			/** @var WebInstallerOptions $page */
 			$page = $this->getPageByName( 'Options' );
+			'@phan-var WebInstallerOptions $page';
 			$this->output->useShortHeader();
 			$this->output->allowFrames();
 			$page->submitCC();
@@ -197,7 +199,9 @@ class WebInstaller extends Installer {
 		}
 
 		if ( $this->request->getVal( 'ShowCC' ) ) {
+			/** @var WebInstallerOptions $page */
 			$page = $this->getPageByName( 'Options' );
+			'@phan-var WebInstallerOptions $page';
 			$this->output->useShortHeader();
 			$this->output->allowFrames();
 			$this->output->addHTML( $page->getCCDoneBox() );

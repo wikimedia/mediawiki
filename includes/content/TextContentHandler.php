@@ -45,6 +45,7 @@ class TextContentHandler extends ContentHandler {
 	public function serializeContent( Content $content, $format = null ) {
 		$this->checkFormat( $format );
 
+		// @phan-suppress-next-line PhanUndeclaredMethod
 		return $content->getText();
 	}
 

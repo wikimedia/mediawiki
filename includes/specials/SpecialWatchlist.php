@@ -148,6 +148,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 	/**
 	 * @inheritDoc
+	 * @suppress PhanUndeclaredMethod
 	 */
 	protected function registerFilters() {
 		parent::registerFilters();

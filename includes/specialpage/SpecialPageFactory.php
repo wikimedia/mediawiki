@@ -568,6 +568,7 @@ class SpecialPageFactory {
 				return $title;
 			}
 
+			// @phan-suppress-next-line PhanUndeclaredMethod
 			$context->setTitle( $page->getPageTitle( $par ) );
 		} elseif ( !$page->isIncludable() ) {
 			return false;
