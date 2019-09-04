@@ -353,9 +353,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 			}
 			curl_setopt( $ch, CURLOPT_READFUNCTION,
 				function ( $ch, $fd, $length ) {
-					$data = fread( $fd, $length );
-					$len = strlen( $data );
-					return $data;
+					return (string)fread( $fd, $length );
 				}
 			);
 		} elseif ( $req['method'] === 'POST' ) {
