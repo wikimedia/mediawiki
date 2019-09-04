@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.33.4
+ * OOUI v0.34.0-pre (d5e74518ab)
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-07-23T03:23:32Z
+ * Date: 2019-09-04T18:28:52Z
  */
 ( function ( OO ) {
 
@@ -2604,7 +2604,18 @@ OO.ui.mixin.GroupElement.prototype.addItems = function ( items, index ) {
 };
 
 /**
- * @inheritdoc
+ * Move an item from its current position to a new index.
+ *
+ * The item is expected to exist in the list. If it doesn't,
+ * the method will throw an exception.
+ *
+ * See https://doc.wikimedia.org/oojs/master/OO.EmitterList.html
+ *
+ * @private
+ * @param {OO.EventEmitter} items Item to add
+ * @param {number} newIndex Index to move the item to
+ * @return {number} The index the item was moved to
+ * @throws {Error} If item is not in the list
  */
 OO.ui.mixin.GroupElement.prototype.moveItem = function ( items, newIndex ) {
 	// insertItemElements expects this.items to not have been modified yet, so call before the mixin
@@ -2617,7 +2628,29 @@ OO.ui.mixin.GroupElement.prototype.moveItem = function ( items, newIndex ) {
 };
 
 /**
- * @inheritdoc
+ * Utility method to insert an item into the list, and
+ * connect it to aggregate events.
+ *
+ * Don't call this directly unless you know what you're doing.
+ * Use #addItems instead.
+ *
+ * This method can be extended in child classes to produce
+ * different behavior when an item is inserted. For example,
+ * inserted items may also be attached to the DOM or may
+ * interact with some other nodes in certain ways. Extending
+ * this method is allowed, but if overridden, the aggregation
+ * of events must be preserved, or behavior of emitted events
+ * will be broken.
+ *
+ * If you are extending this method, please make sure the
+ * parent method is called.
+ *
+ * See https://doc.wikimedia.org/oojs/master/OO.EmitterList.html
+ *
+ * @protected
+ * @param {OO.EventEmitter|Object} item Item to add
+ * @param {number} index Index to add items at
+ * @return {number} The index the item was added at
  */
 OO.ui.mixin.GroupElement.prototype.insertItem = function ( item, index ) {
 	item.setElementGroup( this );
@@ -2773,13 +2806,18 @@ OO.ui.mixin.LabelElement.static.label = null;
  * @param {string} text Text
  * @param {string} query Query to find
  * @param {Function} [compare] Optional string comparator, e.g. Intl.Collator().compare
+ * @param {boolean} [combineMarks=false] Pull combining marks into highlighted text
  * @return {jQuery} Text with the first match of the query
  *  sub-string wrapped in highlighted span
  */
-OO.ui.mixin.LabelElement.static.highlightQuery = function ( text, query, compare ) {
+OO.ui.mixin.LabelElement.static.highlightQuery = function ( text, query, compare, combineMarks ) {
 	var i, tLen, qLen,
 		offset = -1,
-		$result = $( '<span>' );
+		$result = $( '<span>' ),
+		comboLength = 0,
+		comboMarks = '',
+		comboRegex,
+		comboMatch;
 
 	if ( compare ) {
 		tLen = text.length;
@@ -2796,12 +2834,25 @@ OO.ui.mixin.LabelElement.static.highlightQuery = function ( text, query, compare
 	if ( !query.length || offset === -1 ) {
 		$result.text( text );
 	} else {
+		// Look for combining characters after the match
+		if ( combineMarks ) {
+			// Equivalent to \p{Mark} (which is not currently available in JavaScript)
+			comboMarks = '[\u0300-\u036F\u0483-\u0489\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0711\u0730-\u074A\u07A6-\u07B0\u07EB-\u07F3\u07FD\u0816-\u0819\u081B-\u0823\u0825-\u0827\u0829-\u082D\u0859-\u085B\u08D3-\u08E1\u08E3-\u0903\u093A-\u093C\u093E-\u094F\u0951-\u0957\u0962\u0963\u0981-\u0983\u09BC\u09BE-\u09C4\u09C7\u09C8\u09CB-\u09CD\u09D7\u09E2\u09E3\u09FE\u0A01-\u0A03\u0A3C\u0A3E-\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A51\u0A70\u0A71\u0A75\u0A81-\u0A83\u0ABC\u0ABE-\u0AC5\u0AC7-\u0AC9\u0ACB-\u0ACD\u0AE2\u0AE3\u0AFA-\u0AFF\u0B01-\u0B03\u0B3C\u0B3E-\u0B44\u0B47\u0B48\u0B4B-\u0B4D\u0B56\u0B57\u0B62\u0B63\u0B82\u0BBE-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCD\u0BD7\u0C00-\u0C04\u0C3E-\u0C44\u0C46-\u0C48\u0C4A-\u0C4D\u0C55\u0C56\u0C62\u0C63\u0C81-\u0C83\u0CBC\u0CBE-\u0CC4\u0CC6-\u0CC8\u0CCA-\u0CCD\u0CD5\u0CD6\u0CE2\u0CE3\u0D00-\u0D03\u0D3B\u0D3C\u0D3E-\u0D44\u0D46-\u0D48\u0D4A-\u0D4D\u0D57\u0D62\u0D63\u0D82\u0D83\u0DCA\u0DCF-\u0DD4\u0DD6\u0DD8-\u0DDF\u0DF2\u0DF3\u0E31\u0E34-\u0E3A\u0E47-\u0E4E\u0EB1\u0EB4-\u0EB9\u0EBB\u0EBC\u0EC8-\u0ECD\u0F18\u0F19\u0F35\u0F37\u0F39\u0F3E\u0F3F\u0F71-\u0F84\u0F86\u0F87\u0F8D-\u0F97\u0F99-\u0FBC\u0FC6\u102B-\u103E\u1056-\u1059\u105E-\u1060\u1062-\u1064\u1067-\u106D\u1071-\u1074\u1082-\u108D\u108F\u109A-\u109D\u135D-\u135F\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17B4-\u17D3\u17DD\u180B-\u180D\u1885\u1886\u18A9\u1920-\u192B\u1930-\u193B\u1A17-\u1A1B\u1A55-\u1A5E\u1A60-\u1A7C\u1A7F\u1AB0-\u1ABE\u1B00-\u1B04\u1B34-\u1B44\u1B6B-\u1B73\u1B80-\u1B82\u1BA1-\u1BAD\u1BE6-\u1BF3\u1C24-\u1C37\u1CD0-\u1CD2\u1CD4-\u1CE8\u1CED\u1CF2-\u1CF4\u1CF7-\u1CF9\u1DC0-\u1DF9\u1DFB-\u1DFF\u20D0-\u20F0\u2CEF-\u2CF1\u2D7F\u2DE0-\u2DFF\u302A-\u302F\u3099\u309A\uA66F-\uA672\uA674-\uA67D\uA69E\uA69F\uA6F0\uA6F1\uA802\uA806\uA80B\uA823-\uA827\uA880\uA881\uA8B4-\uA8C5\uA8E0-\uA8F1\uA8FF\uA926-\uA92D\uA947-\uA953\uA980-\uA983\uA9B3-\uA9C0\uA9E5\uAA29-\uAA36\uAA43\uAA4C\uAA4D\uAA7B-\uAA7D\uAAB0\uAAB2-\uAAB4\uAAB7\uAAB8\uAABE\uAABF\uAAC1\uAAEB-\uAAEF\uAAF5\uAAF6\uABE3-\uABEA\uABEC\uABED\uFB1E\uFE00-\uFE0F\uFE20-\uFE2F]';
+
+			comboRegex = new RegExp( '(^)' + comboMarks + '*' );
+			comboMatch = text.slice( offset + query.length ).match( comboRegex );
+
+			if ( comboMatch && comboMatch.length ) {
+				comboLength = comboMatch[ 0 ].length;
+			}
+		}
+
 		$result.append(
 			document.createTextNode( text.slice( 0, offset ) ),
 			$( '<span>' )
 				.addClass( 'oo-ui-labelElement-label-highlight' )
-				.text( text.slice( offset, offset + query.length ) ),
-			document.createTextNode( text.slice( offset + query.length ) )
+				.text( text.slice( offset, offset + query.length + comboLength ) ),
+			document.createTextNode( text.slice( offset + query.length + comboLength ) )
 		);
 	}
 	return $result.contents();
@@ -2881,11 +2932,16 @@ OO.ui.mixin.LabelElement.prototype.setInvisibleLabel = function ( invisibleLabel
  * @param {string} text Text label to set
  * @param {string} query Substring of text to highlight
  * @param {Function} [compare] Optional string comparator, e.g. Intl.Collator().compare
+ * @param {boolean} [combineMarks=false] Pull combining marks into highlighted text
  * @chainable
  * @return {OO.ui.Element} The element, for chaining
  */
-OO.ui.mixin.LabelElement.prototype.setHighlightedQuery = function ( text, query, compare ) {
-	return this.setLabel( this.constructor.static.highlightQuery( text, query, compare ) );
+OO.ui.mixin.LabelElement.prototype.setHighlightedQuery = function (
+	text, query, compare, combineMarks
+) {
+	return this.setLabel(
+		this.constructor.static.highlightQuery( text, query, compare, combineMarks )
+	);
 };
 
 /**

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.33.4
+ * OOUI v0.34.0-pre (d5e74518ab)
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-07-23T03:23:32Z
+ * Date: 2019-09-04T18:28:52Z
  */
 ( function ( OO ) {
 
@@ -2774,7 +2774,7 @@ OO.ui.IndexLayout.prototype.getCurrentTabPanelName = function () {
  * @param {number} index Index of the insertion point
  * @fires add
  * @chainable
- * @return {OO.ui.BookletLayout} The layout, for chaining
+ * @return {OO.ui.IndexLayout} The layout, for chaining
  */
 OO.ui.IndexLayout.prototype.addTabPanels = function ( tabPanels, index ) {
 	var i, len, name, tabPanel, item, currentIndex,
@@ -2828,7 +2828,7 @@ OO.ui.IndexLayout.prototype.addTabPanels = function ( tabPanels, index ) {
  * @param {OO.ui.TabPanelLayout[]} tabPanels An array of tab panels to remove
  * @fires remove
  * @chainable
- * @return {OO.ui.BookletLayout} The layout, for chaining
+ * @return {OO.ui.IndexLayout} The layout, for chaining
  */
 OO.ui.IndexLayout.prototype.removeTabPanels = function ( tabPanels ) {
 	var i, len, name, tabPanel,
@@ -2858,7 +2858,7 @@ OO.ui.IndexLayout.prototype.removeTabPanels = function ( tabPanels ) {
  *
  * @fires remove
  * @chainable
- * @return {OO.ui.BookletLayout} The layout, for chaining
+ * @return {OO.ui.IndexLayout} The layout, for chaining
  */
 OO.ui.IndexLayout.prototype.clearTabPanels = function () {
 	var i, len,
@@ -2936,7 +2936,7 @@ OO.ui.IndexLayout.prototype.setTabPanel = function ( name ) {
  * Select the first selectable tab panel.
  *
  * @chainable
- * @return {OO.ui.BookletLayout} The layout, for chaining
+ * @return {OO.ui.IndexLayout} The layout, for chaining
  */
 OO.ui.IndexLayout.prototype.selectFirstSelectableTabPanel = function () {
 	if ( !this.tabSelectWidget.findSelectedItem() ) {
@@ -6058,6 +6058,8 @@ OO.ui.SelectFileWidget.prototype.setDisabled = function ( disabled ) {
  * @param {Object} [config] Configuration options
  * @cfg {string|jQuery} [placeholder] Placeholder text for query input
  * @cfg {string} [value] Initial query value
+ * @cfg {OO.ui.InputWidget} [input] {@link OO.ui.InputWidget Input widget} for search. Defaults
+ *  to a {@link OO.ui.SearchInputWidget search input widget} if not provided.
  */
 OO.ui.SearchWidget = function OoUiSearchWidget( config ) {
 	// Configuration initialization
@@ -6067,8 +6069,7 @@ OO.ui.SearchWidget = function OoUiSearchWidget( config ) {
 	OO.ui.SearchWidget.parent.call( this, config );
 
 	// Properties
-	this.query = new OO.ui.TextInputWidget( {
-		icon: 'search',
+	this.query = config.input || new OO.ui.SearchInputWidget( {
 		placeholder: config.placeholder,
 		value: config.value
 	} );
