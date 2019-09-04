@@ -1799,8 +1799,11 @@ class EditPage {
 		} elseif ( !$status->isOK() ) {
 			# ...or the hook could be expecting us to produce an error
 			// FIXME this sucks, we should just use the Status object throughout
+			if ( !$status->getErrors() ) {
+				// Provide a fallback error message if none was set
+				$status->fatal( 'hookaborted' );
+			}
 			$this->hookError = $this->formatStatusErrors( $status );
-			$status->fatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR_EXPECTED;
 			return false;
 		}
