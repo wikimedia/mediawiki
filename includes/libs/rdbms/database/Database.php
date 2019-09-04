@@ -1681,12 +1681,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Returns an optional USE INDEX clause to go after the table, and a
 	 * string to go at the end of the query.
 	 *
+	 * @see Database::select()
+	 *
 	 * @param array $options Associative array of options to be turned into
 	 *   an SQL query, valid keys are listed in the function.
 	 * @return array
-	 * @see Database::select()
 	 */
-	protected function makeSelectOptions( $options ) {
+	protected function makeSelectOptions( array $options ) {
 		$preLimitTail = $postLimitTail = '';
 		$startOpts = '';
 

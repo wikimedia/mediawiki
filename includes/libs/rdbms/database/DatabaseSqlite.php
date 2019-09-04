@@ -603,15 +603,10 @@ class DatabaseSqlite extends Database {
 		return in_array( 'UNIQUE', $options );
 	}
 
-	/**
-	 * Filter the options used in SELECT statements
-	 *
-	 * @param array $options
-	 * @return array
-	 */
-	function makeSelectOptions( $options ) {
+	protected function makeSelectOptions( array $options ) {
+		// Remove problematic options that the base implementation converts to SQL
 		foreach ( $options as $k => $v ) {
-			if ( is_numeric( $k ) && ( $v == 'FOR UPDATE' || $v == 'LOCK IN SHARE MODE' ) ) {
+			if ( is_numeric( $k ) && ( $v === 'FOR UPDATE' || $v === 'LOCK IN SHARE MODE' ) ) {
 				$options[$k] = '';
 			}
 		}
