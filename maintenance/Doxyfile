@@ -144,34 +144,8 @@ WARN_LOGFILE           =
 #---------------------------------------------------------------------------
 INPUT                  = {{INPUT}}
 INPUT_ENCODING         = UTF-8
-FILE_PATTERNS          = *.c \
-                         *.cc \
-                         *.cxx \
-                         *.cpp \
-                         *.c++ \
-                         *.d \
-                         *.java \
-                         *.ii \
-                         *.ixx \
-                         *.ipp \
-                         *.i++ \
-                         *.inl \
-                         *.h \
-                         *.hh \
-                         *.hxx \
-                         *.hpp \
-                         *.h++ \
-                         *.idl \
-                         *.odl \
-                         *.cs \
-                         *.php \
-                         *.inc \
-                         *.m \
-                         *.mm \
-                         *.dox \
-                         *.py \
-                         *.txt \
-                         README
+FILE_PATTERNS          = *.php \
+                         *.inc
 RECURSIVE              = YES
 EXCLUDE                = {{EXCLUDE}}
 EXCLUDE_SYMLINKS       = YES
@@ -343,7 +317,6 @@ GENERATE_TAGFILE       = {{OUTPUT_DIRECTORY}}/html/tagfile.xml
 ALLEXTERNALS           = NO
 EXTERNAL_GROUPS        = YES
 EXTERNAL_PAGES         = YES
-PERL_PATH              = /usr/bin/perl
 #---------------------------------------------------------------------------
 # Configuration options related to the dot tool
 #---------------------------------------------------------------------------
