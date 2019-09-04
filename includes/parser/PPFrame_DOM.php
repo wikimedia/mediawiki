@@ -153,7 +153,7 @@ class PPFrame_DOM implements PPFrame {
 
 	/**
 	 * @throws MWException
-	 * @param string|PPNode_DOM|DOMNode $root
+	 * @param string|PPNode_DOM|DOMNode|DOMNodeList $root
 	 * @param int $flags
 	 * @return string
 	 */
