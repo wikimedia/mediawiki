@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Navigation\PrevNextNavigationRenderer;
 use Wikimedia\Rdbms\IDatabase;
@@ -796,14 +795,14 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Generate (prev x| next x) (20|50|100...) type links for paging
 	 *
-	 * @param LinkTarget $title
+	 * @param Title $title
 	 * @param int $offset
 	 * @param int $limit
 	 * @param array $query Optional URL query parameter string
 	 * @param bool $atend Optional param for specified if this is the last page
 	 * @return string
 	 */
-	protected function buildPrevNextNavigation( LinkTarget $title, $offset, $limit,
+	protected function buildPrevNextNavigation( Title $title, $offset, $limit,
 												array $query = [], $atend = false
 	) {
 		$prevNext = new PrevNextNavigationRenderer( $this );
