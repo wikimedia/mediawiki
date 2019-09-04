@@ -41,7 +41,7 @@ abstract class HTMLFormField {
 	 * the input object itself.  It should not implement the surrounding
 	 * table cells/rows, or labels/help messages.
 	 *
-	 * @param string $value The value to set the input to; eg a default
+	 * @param mixed $value The value to set the input to; eg a default
 	 *     text for a text input.
 	 *
 	 * @return string Valid HTML.

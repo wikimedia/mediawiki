@@ -294,12 +294,14 @@ class MultiHttpClient implements LoggerAwareInterface {
 
 	/**
 	 * @param array &$req HTTP request map
+	 * @codingStandardsIgnoreStart
+	 * @phan-param array{url:string,proxy?:?string,query:mixed,method:string,body:string|resource,headers:string[],stream?:resource,flags:array} $req
+	 * @codingStandardsIgnoreEnd
 	 * @param array $opts
 	 *   - connTimeout : default connection timeout
 	 *   - reqTimeout : default request timeout
 	 * @return resource
 	 * @throws Exception
-	 * @suppress PhanTypeMismatchArgumentInternal
 	 */
 	protected function getCurlHandle( array &$req, array $opts ) {
 		$ch = curl_init();
@@ -410,6 +412,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 				if ( $hasOutputStream ) {
 					return fwrite( $req['stream'], $data );
 				} else {
+					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 					$req['response']['body'] .= $data;
 
 					return strlen( $data );
