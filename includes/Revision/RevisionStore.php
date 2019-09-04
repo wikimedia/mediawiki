@@ -54,8 +54,10 @@ use Psr\Log\NullLogger;
 use RecentChange;
 use Revision;
 use RuntimeException;
+use StatusValue;
 use stdClass;
 use Title;
+use Traversable;
 use User;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
@@ -1874,6 +1876,125 @@ class RevisionStore
 				$title, $user, $comment, $row, $slots, $this->dbDomain );
 		}
 		return $rev;
+	}
+
+	/**
+	 * Construct a RevisionRecord instance for each row in $rows,
+	 * and return them as an associative array indexed by revision ID.
+	 * @param Traversable|array $rows the rows to construct revision records from
+	 * @param array $options Supports the following options:
+	 *               'slots' - whether metadata about revision slots should be
+	 *               loaded immediately. Supports falsy or truthy value as well
+	 *               as an explicit list of slot role names.
+	 *               'content'- whether the actual content of the slots should be
+	 *               preloaded. TODO: no supported yet.
+	 * @param int $queryFlags
+	 * @param Title|null $title
+	 * @return StatusValue a status with a RevisionRecord[] of successfully fetched revisions
+	 * 					   and an array of errors for the revisions failed to fetch.
+	 */
+	public function newRevisionsFromBatch(
+		$rows,
+		array $options = [],
+		$queryFlags = 0,
+		Title $title = null
+	) {
+		$result = new StatusValue();
+
+		$rowsByRevId = [];
+		$pageIds = [];
+		$titlesByPageId = [];
+		foreach ( $rows as $row ) {
+			if ( isset( $rowsByRevId[$row->rev_id] ) ) {
+				throw new InvalidArgumentException( "Duplicate rows in newRevisionsFromBatch {$row->rev_id}" );
+			}
+			if ( $title && $row->rev_page != $title->getArticleID() ) {
+				throw new InvalidArgumentException(
+					"Revision {$row->rev_id} doesn't belong to page {$title->getArticleID()}"
+				);
+			}
+			$pageIds[] = $row->rev_page;
+			$rowsByRevId[$row->rev_id] = $row;
+		}
+
+		if ( empty( $rowsByRevId ) ) {
+			$result->setResult( true, [] );
+			return $result;
+		}
+
+		// If the title is not supplied, batch-fetch Title objects.
+		if ( $title ) {
+			$titlesByPageId[$title->getArticleID()] = $title;
+		} else {
+			$pageIds = array_unique( $pageIds );
+			foreach ( Title::newFromIDs( $pageIds ) as $t ) {
+				$titlesByPageId[$t->getArticleID()] = $t;
+			}
+		}
+
+		if ( !isset( $options['slots'] ) || $this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_OLD ) ) {
+			$result->setResult( true,
+				array_map( function ( $row ) use ( $queryFlags, $titlesByPageId, $result ) {
+					try {
+						return $this->newRevisionFromRow(
+							$row,
+							$queryFlags,
+							$titlesByPageId[$row->rev_page]
+						);
+					} catch ( MWException $e ) {
+						$result->warning( 'internalerror', $e->getMessage() );
+						return null;
+					}
+				}, $rowsByRevId )
+			);
+			return $result;
+		}
+
+		$slotQueryConds = [ 'slot_revision_id' => array_keys( $rowsByRevId ) ];
+		if ( is_array( $options['slots'] ) ) {
+			$slotQueryConds['slot_role_id'] = array_map( function ( $slot_name ) {
+				return $this->slotRoleStore->getId( $slot_name );
+			}, $options['slots'] );
+		}
+
+		// TODO: Support optional fetching of the content
+		$queryInfo = self::getSlotsQueryInfo( [ 'content' ] );
+		$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
+		$slotRows = $db->select(
+			$queryInfo['tables'],
+			$queryInfo['fields'],
+			$slotQueryConds,
+			__METHOD__,
+			[],
+			$queryInfo['joins']
+		);
+
+		$slotRowsByRevId = [];
+		foreach ( $slotRows as $slotRow ) {
+			$slotRowsByRevId[$slotRow->slot_revision_id][] = $slotRow;
+		}
+		$result->setResult( true, array_map( function ( $row ) use
+			( $slotRowsByRevId, $queryFlags, $titlesByPageId, $result ) {
+				if ( !isset( $slotRowsByRevId[$row->rev_id] ) ) {
+					$result->warning(
+						'internalerror',
+						"Couldn't find slots for rev {$row->rev_id}"
+					);
+					return null;
+				}
+				try {
+					return $this->newRevisionFromRowAndSlots(
+						$row,
+						$slotRowsByRevId[$row->rev_id],
+						$queryFlags,
+						$titlesByPageId[$row->rev_page]
+					);
+				} catch ( MWException $e ) {
+					$result->warning( 'internalerror', $e->getMessage() );
+					return null;
+				}
+		}, $rowsByRevId ) );
+		return $result;
 	}
 
 	/**

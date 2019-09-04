@@ -197,4 +197,46 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		return [ 'slot_revision_id' => $revId ];
 	}
 
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionsFromBatch
+	 * @throws \MWException
+	 */
+	public function testNewRevisionsFromBatch_error() {
+		$page = $this->getTestPage();
+		$text = __METHOD__ . 'b-ä';
+		/** @var Revision $rev1 */
+		$rev1 = $page->doEditContent(
+			new WikitextContent( $text . '1' ),
+			__METHOD__ . 'b',
+			0,
+			false,
+			$this->getTestUser()->getUser()
+		)->value['revision'];
+		$invalidRow = $this->revisionToRow( $rev1 );
+		$invalidRow->rev_id = 100500;
+		$result = MediaWikiServices::getInstance()->getRevisionStore()
+			->newRevisionsFromBatch(
+				[ $this->revisionToRow( $rev1 ), $invalidRow ],
+				[
+					'slots' => [ SlotRecord::MAIN ],
+					'content' => true
+				]
+			);
+		$this->assertFalse( $result->isGood() );
+		$this->assertNotEmpty( $result->getErrors() );
+		$records = $result->getValue();
+		$this->assertRevisionRecordMatchesRevision( $rev1, $records[$rev1->getId()] );
+		$this->assertSame( $text . '1',
+			$records[$rev1->getId()]->getContent( SlotRecord::MAIN )->serialize() );
+		$this->assertEquals( $page->getTitle()->getDBkey(),
+			$records[$rev1->getId()]->getPageAsLinkTarget()->getDBkey() );
+		$this->assertNull( $records[$invalidRow->rev_id] );
+		$this->assertSame( [ [
+			'type' => 'warning',
+			'message' => 'internalerror',
+			'params' => [
+				"Couldn't find slots for rev 100500"
+			]
+		] ], $result->getErrors() );
+	}
 }
