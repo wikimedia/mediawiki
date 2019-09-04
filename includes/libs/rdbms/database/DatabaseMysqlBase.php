@@ -64,8 +64,6 @@ abstract class DatabaseMysqlBase extends Database {
 	/** @var bool|null */
 	protected $defaultBigSelects = null;
 
-	/** @var string|null */
-	private $serverVersion = null;
 	/** @var bool|null */
 	private $insertSelectIsSafe = null;
 	/** @var stdClass|null */
@@ -1102,13 +1100,19 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return string
 	 */
 	public function getServerVersion() {
-		// Not using mysql_get_server_info() or similar for consistency: in the handshake,
-		// MariaDB 10 adds the prefix "5.5.5-", and only some newer client libraries strip
-		// it off (see RPL_VERSION_HACK in include/mysql_com.h).
-		if ( $this->serverVersion === null ) {
-			$this->serverVersion = $this->selectField( '', 'VERSION()', '', __METHOD__ );
-		}
-		return $this->serverVersion;
+		$cache = $this->srvCache;
+		$fname = __METHOD__;
+
+		return $cache->getWithSetCallback(
+			$cache->makeGlobalKey( 'mysql-server-version', $this->getServer() ),
+			$cache::TTL_HOUR,
+			function () use ( $fname ) {
+				// Not using mysql_get_server_info() or similar for consistency: in the handshake,
+				// MariaDB 10 adds the prefix "5.5.5-", and only some newer client libraries strip
+				// it off (see RPL_VERSION_HACK in include/mysql_com.h).
+				return $this->selectField( '', 'VERSION()', '', $fname );
+			}
+		);
 	}
 
 	/**
