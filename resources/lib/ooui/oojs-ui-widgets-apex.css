@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.33.4
+ * OOUI v0.34.0-pre (d5e74518ab)
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-07-23T03:23:40Z
+ * Date: 2019-09-04T18:28:59Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -570,16 +570,20 @@
   pointer-events: none;
 }
 .oo-ui-tabSelectWidget-mobile.oo-ui-tabSelectWidget-framed:after {
+  background-color: #eeeeee;
   background-image: -webkit-gradient(linear, left top, right top, color-stop(0, rgba(238, 238, 238, 0)), color-stop(100%, #eee));
   background-image: -webkit-linear-gradient(left, rgba(238, 238, 238, 0) 0, #eee 100%);
   background-image: -moz-linear-gradient(left, rgba(238, 238, 238, 0) 0, #eee 100%);
   background-image: linear-gradient(to right, rgba(238, 238, 238, 0) 0, #eee 100%);
+  background-color: transparent;
 }
 .oo-ui-tabSelectWidget-mobile.oo-ui-tabSelectWidget-frameless:after {
+  background-color: #ffffff;
   background-image: -webkit-gradient(linear, left top, right top, color-stop(0, rgba(255, 255, 255, 0)), color-stop(100%, #fff));
   background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0, #fff 100%);
   background-image: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0, #fff 100%);
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0, #fff 100%);
+  background-color: transparent;
   bottom: 2px;
 }
 .oo-ui-tabSelectWidget.oo-ui-widget-enabled:focus {

@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Ajdar",
-			"Ильнар"
+			"Ильнар",
+			"Ерней"
 		]
 	},
 	"ooui-outline-control-move-down": "Элементны аска күчерү",
@@ -11,7 +12,7 @@
 	"ooui-toolbar-more": "Тагын",
 	"ooui-toolgroup-expand": "Күбрәк",
 	"ooui-toolgroup-collapse": "Азрак",
-	"ooui-dialog-message-accept": "ОК",
+	"ooui-dialog-message-accept": "Ярар",
 	"ooui-dialog-message-reject": "Баш тарту",
 	"ooui-dialog-process-error": "Нәрсәдер килеп чыкмады",
 	"ooui-dialog-process-dismiss": "Ябу",

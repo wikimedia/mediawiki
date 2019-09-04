@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.33.4
+ * OOUI v0.34.0-pre (d5e74518ab)
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-07-23T03:23:40Z
+ * Date: 2019-09-04T18:28:59Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -275,7 +275,7 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  min-height: 3.125em;
+  min-height: 40px;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -1386,7 +1386,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   box-shadow: 0 0.15em 1em 0 rgba(0, 0, 0, 0.2);
 }
 .oo-ui-menuSelectWidget.oo-ui-clippableElement-clippable {
-  min-height: 2.286em;
+  min-height: 32px;
 }
 .oo-ui-menuSelectWidget-invisible {
   display: none;

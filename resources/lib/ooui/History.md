@@ -1,4 +1,33 @@
 # OOUI Release History
+## v0.34.0 / 2019-09-04
+### Breaking changes
+* [BREAKING CHANGE] Use OOjs v3.0.0, up from v2.2.2 (James D. Forrester)
+* [BREAKING CHANGE] Use jQuery v3.4.1, up from v3.3.1 (James D. Forrester)
+
+### Features
+* Add option to preserve grapheme clusters in highlightQuery (tjones)
+* Process: Support any `thenable`, not just jQuery promise (Lucas Werkmeister)
+* SearchWidget: Use a SearchInputWidget rather than a TextInputWidget (David Lynch)
+
+### Styles
+* WikimediaUI theme: Ensure styling of non-primary ActionWidgets (Volker E.)
+* WikimediaUI theme: Remove non-conforming Style-Guide frameless hover icon opacity (Volker E.)
+
+### Code
+* ClippableElement (and MenuSelectWidget): Move `min-height` to rely on `px` (Volker E.)
+* IndexLayout: Fix return types of IndexLayout methods (Lucas Werkmeister)
+* PopupWidget: Change to `oo-ui-force-gpu-composite-layer` (David Lynch)
+* PopupWidget: Use `translateZ( 0 )` on drop shadows in WikimediaUI theme (David Lynch)
+* themes: Unify gradient mixin with MediaWiki version (Ed Sanders)
+* WikimediaUI theme: Reduce selector output on FieldsetLayout help (Volker E.)
+* build: Extend wikimedia/jquery for demos eslint (James D. Forrester)
+* build: Upgrade eslint-utils dependency from 1.3.1 to 1.4.2 for security issue (James D. Forrester)
+* demos: Make forced scrolling rule compatible with disabling scroll for dialogs (Bartosz Dziewoński)
+* demos: Make use of invisible label for screen reader support on menu button (Volker E.)
+* jsduck: Move OO to external as it won't work with JSDoc (James D. Forrester)
+* hygiene: Adding white space within reference import brackets (Volker E.)
+
+
 ## v0.33.4 / 2019-07-22
 ### Styles
 * Frameless buttons should feature hover and active states (Volker E.)

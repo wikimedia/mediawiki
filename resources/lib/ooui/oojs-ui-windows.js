@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.33.4
+ * OOUI v0.34.0-pre (d5e74518ab)
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-07-23T03:23:32Z
+ * Date: 2019-09-04T18:28:52Z
  */
 ( function ( OO ) {
 
@@ -709,7 +709,7 @@ OO.ui.Error.prototype.getMessageText = function () {
 
 /**
  * A Process is a list of steps that are called in sequence. The step can be a number, a
- * jQuery promise, or a function:
+ * promise (jQuery, native, or any other “thenable”), or a function:
  *
  * - **number**: the process will wait for the specified number of milliseconds before proceeding.
  * - **promise**: the process will continue to the next step when the promise is successfully
@@ -792,9 +792,9 @@ OO.ui.Process.prototype.execute = function () {
 				return $.Deferred().reject( result ).promise();
 			}
 			// Duck-type the object to see if it can produce a promise
-			if ( result && typeof result.promise === 'function' ) {
+			if ( result && typeof result.then === 'function' ) {
 				// Use a promise generated from the result
-				return result.promise();
+				return $.when( result ).promise();
 			}
 			// Use resolved promise for other results
 			return $.Deferred().resolve().promise();
@@ -833,7 +833,7 @@ OO.ui.Process.prototype.execute = function () {
  * @return {Object} Step object, with `callback` and `context` properties
  */
 OO.ui.Process.prototype.createStep = function ( step, context ) {
-	if ( typeof step === 'number' || typeof step.promise === 'function' ) {
+	if ( typeof step === 'number' || typeof step.then === 'function' ) {
 		return {
 			callback: function () {
 				return step;
