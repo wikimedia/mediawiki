@@ -263,6 +263,7 @@ class Router {
 	 * @return ResponseInterface
 	 */
 	private function executeHandler( $handler ): ResponseInterface {
+		// @phan-suppress-next-line PhanAccessMethodInternal
 		$authResult = $this->basicAuth->authorize( $handler->getRequest(), $handler );
 		if ( $authResult ) {
 			return $this->responseFactory->createHttpError( 403, [ 'error' => $authResult ] );

@@ -7,6 +7,8 @@ use Wikimedia\Rdbms\DBError;
  * All locks are non-blocking, which avoids deadlocks.
  *
  * @ingroup LockManager
+ * @phan-file-suppress PhanUndeclaredConstant Phan doesn't read constants in LockManager
+ *   when accessed via self::
  */
 class PostgreSqlLockManager extends DBLockManager {
 	/** @var array Mapping of lock types to the type actually used */
