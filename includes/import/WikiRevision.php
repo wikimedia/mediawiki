@@ -145,6 +145,12 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	public $sha1base36 = false;
 
 	/**
+	 * @since 1.34
+	 * @var string[]
+	 */
+	protected $tags = [];
+
+	/**
 	 * @since 1.17
 	 * @var string
 	 */
@@ -308,6 +314,14 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 */
 	public function setSha1Base36( $sha1base36 ) {
 		$this->sha1base36 = $sha1base36;
+	}
+
+	/**
+	 * @since 1.34
+	 * @param string[] $tags
+	 */
+	public function setTags( array $tags ) {
+		$this->tags = $tags;
 	}
 
 	/**
@@ -507,6 +521,14 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 			return $this->sha1base36;
 		}
 		return false;
+	}
+
+	/**
+	 * @since 1.34
+	 * @return string[]
+	 */
+	public function getTags() {
+		return $this->tags;
 	}
 
 	/**
