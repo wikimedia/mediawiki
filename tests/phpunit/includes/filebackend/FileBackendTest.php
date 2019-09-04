@@ -293,7 +293,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->assertEquals( $props1, $props2,
 			"Source and destination have the same props ($backendName)." );
 
-		$this->assertBackendPathsConsistent( [ $dest ] );
+		$this->assertBackendPathsConsistent( [ $dest ], true );
 	}
 
 	public static function provider_testStore() {
@@ -318,19 +318,19 @@ class FileBackendTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provider_testCopy
 	 */
-	public function testCopy( $op ) {
+	public function testCopy( $op, $srcContent, $dstContent, $okStatus, $okSyncStatus ) {
 		$this->backend = $this->singleBackend;
 		$this->tearDownFiles();
-		$this->doTestCopy( $op );
+		$this->doTestCopy( $op, $srcContent, $dstContent, $okStatus, $okSyncStatus );
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
 		$this->tearDownFiles();
-		$this->doTestCopy( $op );
+		$this->doTestCopy( $op, $srcContent, $dstContent, $okStatus, $okSyncStatus );
 		$this->tearDownFiles();
 	}
 
-	private function doTestCopy( $op ) {
+	private function doTestCopy( $op, $srcContent, $dstContent, $okStatus, $okSyncStatus ) {
 		$backendName = $this->backendClass();
 
 		$source = $op['src'];
@@ -338,99 +338,128 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->prepare( [ 'dir' => dirname( $source ) ] );
 		$this->prepare( [ 'dir' => dirname( $dest ) ] );
 
-		if ( isset( $op['ignoreMissingSource'] ) ) {
-			$status = $this->backend->doOperation( $op );
-			$this->assertGoodStatus( $status,
-				"Move from $source to $dest succeeded without warnings ($backendName)." );
-			$this->assertEquals( [ 0 => true ], $status->success,
-				"Move from $source to $dest has proper 'success' field in Status ($backendName)." );
-			$this->assertEquals( false, $this->backend->fileExists( [ 'src' => $source ] ),
-				"Source file $source does not exist ($backendName)." );
-			$this->assertEquals( false, $this->backend->fileExists( [ 'src' => $dest ] ),
-				"Destination file $dest does not exist ($backendName)." );
-
-			return;
+		if ( is_string( $srcContent ) ) {
+			$status = $this->backend->create( [ 'content' => $srcContent, 'dst' => $source ] );
+			$this->assertGoodStatus( $status, "Creation of $source succeeded ($backendName)." );
 		}
-
-		$status = $this->backend->doOperation(
-			[ 'op' => 'create', 'content' => 'blahblah', 'dst' => $source ] );
-		$this->assertGoodStatus( $status,
-			"Creation of file at $source succeeded ($backendName)." );
-
-		if ( isset( $op['overwrite'] ) || isset( $op['overwriteSame'] ) ) {
-			$this->backend->copy( $op );
+		if ( is_string( $dstContent ) ) {
+			$status = $this->backend->create( [ 'content' => $dstContent, 'dst' => $dest ] );
+			$this->assertGoodStatus( $status, "Creation of $dest succeeded ($backendName)." );
 		}
 
 		$status = $this->backend->doOperation( $op );
 
-		$this->assertGoodStatus( $status,
-			"Copy from $source to $dest succeeded without warnings ($backendName)." );
-		$this->assertEquals( true, $status->isOK(),
-			"Copy from $source to $dest succeeded ($backendName)." );
-		$this->assertEquals( [ 0 => true ], $status->success,
-			"Copy from $source to $dest has proper 'success' field in Status ($backendName)." );
-		$this->assertEquals( true, $this->backend->fileExists( [ 'src' => $source ] ),
-			"Source file $source still exists ($backendName)." );
-		$this->assertEquals( true, $this->backend->fileExists( [ 'src' => $dest ] ),
-			"Destination file $dest exists after copy ($backendName)." );
+		if ( $okStatus ) {
+			$this->assertGoodStatus(
+				$status,
+				"Copy from $source to $dest succeeded without warnings ($backendName)." );
+			$this->assertEquals( true, $status->isOK(),
+				"Copy from $source to $dest succeeded ($backendName)." );
+			$this->assertEquals( [ 0 => true ], $status->success,
+				"Copy from $source to $dest has proper 'success' field in Status ($backendName)." );
+			if ( !is_string( $srcContent ) ) {
+				$this->assertSame(
+					is_string( $dstContent ),
+					$this->backend->fileExists( [ 'src' => $dest ] ),
+					"Destination file $dest unchanged after no-op copy ($backendName)." );
+				$this->assertSame(
+					$dstContent,
+					$this->backend->getFileContents( [ 'src' => $dest ] ),
+					"Destination file $dest unchanged after no-op copy ($backendName)." );
+			} else {
+				$this->assertEquals(
+					$this->backend->getFileSize( [ 'src' => $source ] ),
+					$this->backend->getFileSize( [ 'src' => $dest ] ),
+					"Destination file $dest has correct size ($backendName)." );
+				$props1 = $this->backend->getFileProps( [ 'src' => $source ] );
+				$props2 = $this->backend->getFileProps( [ 'src' => $dest ] );
+				$this->assertEquals(
+					$props1,
+					$props2,
+					"Source and destination have the same props ($backendName)." );
+			}
+		} else {
+			$this->assertBadStatus(
+				$status,
+				"Copy from $source to $dest fails ($backendName)." );
+			$this->assertSame(
+				is_string( $dstContent ),
+				(bool)$this->backend->fileExists( [ 'src' => $dest ] ),
+				"Destination file $dest unchanged after failed copy ($backendName)." );
+			$this->assertSame(
+				$dstContent,
+				$this->backend->getFileContents( [ 'src' => $dest ] ),
+				"Destination file $dest unchanged after failed copy ($backendName)." );
+		}
 
-		$this->assertEquals(
-			$this->backend->getFileSize( [ 'src' => $source ] ),
-			$this->backend->getFileSize( [ 'src' => $dest ] ),
-			"Destination file $dest has correct size ($backendName)." );
+		$this->assertSame(
+			is_string( $srcContent ),
+			(bool)$this->backend->fileExists( [ 'src' => $source ] ),
+			"Source file $source unchanged after copy ($backendName)."
+		);
+		$this->assertSame(
+			$srcContent,
+			$this->backend->getFileContents( [ 'src' => $source ] ),
+			"Source file $source unchanged after copy ($backendName)."
+		);
+		if ( is_string( $dstContent ) ) {
+			$this->assertTrue(
+				(bool)$this->backend->fileExists( [ 'src' => $dest ] ),
+				"Destination file $dest exists after copy ($backendName)." );
+		}
 
-		$props1 = $this->backend->getFileProps( [ 'src' => $source ] );
-		$props2 = $this->backend->getFileProps( [ 'src' => $dest ] );
-		$this->assertEquals( $props1, $props2,
-			"Source and destination have the same props ($backendName)." );
-
-		$this->assertBackendPathsConsistent( [ $source, $dest ] );
+		$this->assertBackendPathsConsistent( [ $source, $dest ], $okSyncStatus );
 	}
 
+	/**
+	 * @return array (op, source exists, dest exists, op succeeds, sync check succeeds)
+	 */
 	public static function provider_testCopy() {
 		$cases = [];
 
 		$source = self::baseStorePath() . '/unittest-cont1/e/file.txt';
-		$dest = self::baseStorePath() . '/unittest-cont2/a/fileMoved.txt';
+		$dest = self::baseStorePath() . '/unittest-cont2/a/fileCopied.txt';
+		$opBase = [ 'op' => 'copy', 'src' => $source, 'dst' => $dest ];
 
-		$op = [ 'op' => 'copy', 'src' => $source, 'dst' => $dest ];
-		$cases[] = [
-			$op, // operation
-			$source, // source
-			$dest, // dest
-		];
+		$op = $opBase;
+		$cases[] = [ $op, 'yyy', false, true, true ];
 
-		$op2 = $op;
-		$op2['overwrite'] = true;
-		$cases[] = [
-			$op2, // operation
-			$source, // source
-			$dest, // dest
-		];
+		$op = $opBase;
+		$op['overwrite'] = true;
+		$cases[] = [ $op, 'yyy', false, true, true ];
 
-		$op2 = $op;
-		$op2['overwriteSame'] = true;
-		$cases[] = [
-			$op2, // operation
-			$source, // source
-			$dest, // dest
-		];
+		$op = $opBase;
+		$op['overwrite'] = true;
+		$cases[] = [ $op, 'yyy', 'xxx', true, true ];
 
-		$op2 = $op;
-		$op2['ignoreMissingSource'] = true;
-		$cases[] = [
-			$op2, // operation
-			$source, // source
-			$dest, // dest
-		];
+		$op = $opBase;
+		$op['overwriteSame'] = true;
+		$cases[] = [ $op, 'yyy', false, true, true ];
 
-		$op2 = $op;
-		$op2['ignoreMissingSource'] = true;
-		$cases[] = [
-			$op2, // operation
-			self::baseStorePath() . '/unittest-cont-bad/e/file.txt', // source
-			$dest, // dest
-		];
+		$op = $opBase;
+		$op['overwriteSame'] = true;
+		$cases[] = [ $op, 'yyy', 'yyy', true, true ];
+
+		$op = $opBase;
+		$op['overwriteSame'] = true;
+		$cases[] = [ $op, 'yyy', 'zzz', false, true ];
+
+		$op = $opBase;
+		$op['ignoreMissingSource'] = true;
+		$cases[] = [ $op, 'xxx', false, true, true ];
+
+		$op = $opBase;
+		$op['ignoreMissingSource'] = true;
+		$cases[] = [ $op, false, false, true, true ];
+
+		$op = $opBase;
+		$op['ignoreMissingSource'] = true;
+		$cases[] = [ $op, false, 'xxx', true, true ];
+
+		$op = $opBase;
+		$op['src'] = 'mwstore://wrongbackend/unittest-cont1/e/file.txt';
+		$op['ignoreMissingSource'] = true;
+		$cases[] = [ $op, false, false, false, false ];
 
 		return $cases;
 	}
@@ -438,19 +467,19 @@ class FileBackendTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provider_testMove
 	 */
-	public function testMove( $op ) {
+	public function testMove( $op, $srcContent, $dstContent, $okStatus, $okSyncStatus ) {
 		$this->backend = $this->singleBackend;
 		$this->tearDownFiles();
-		$this->doTestMove( $op );
+		$this->doTestMove( $op, $srcContent, $dstContent, $okStatus, $okSyncStatus );
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
 		$this->tearDownFiles();
-		$this->doTestMove( $op );
+		$this->doTestMove( $op, $srcContent, $dstContent, $okStatus, $okSyncStatus );
 		$this->tearDownFiles();
 	}
 
-	private function doTestMove( $op ) {
+	private function doTestMove( $op, $srcContent, $dstContent, $okStatus, $okSyncStatus ) {
 		$backendName = $this->backendClass();
 
 		$source = $op['src'];
@@ -458,100 +487,128 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->prepare( [ 'dir' => dirname( $source ) ] );
 		$this->prepare( [ 'dir' => dirname( $dest ) ] );
 
-		if ( isset( $op['ignoreMissingSource'] ) ) {
-			$status = $this->backend->doOperation( $op );
-			$this->assertGoodStatus( $status,
-				"Move from $source to $dest succeeded without warnings ($backendName)." );
-			$this->assertEquals( [ 0 => true ], $status->success,
-				"Move from $source to $dest has proper 'success' field in Status ($backendName)." );
-			$this->assertEquals( false, $this->backend->fileExists( [ 'src' => $source ] ),
-				"Source file $source does not exist ($backendName)." );
-			$this->assertEquals( false, $this->backend->fileExists( [ 'src' => $dest ] ),
-				"Destination file $dest does not exist ($backendName)." );
-
-			return;
+		if ( is_string( $srcContent ) ) {
+			$status = $this->backend->create( [ 'content' => $srcContent, 'dst' => $source ] );
+			$this->assertGoodStatus( $status, "Creation of $source succeeded ($backendName)." );
+		}
+		if ( is_string( $dstContent ) ) {
+			$status = $this->backend->create( [ 'content' => $dstContent, 'dst' => $dest ] );
+			$this->assertGoodStatus( $status, "Creation of $dest succeeded ($backendName)." );
 		}
 
-		$status = $this->backend->doOperation(
-			[ 'op' => 'create', 'content' => 'blahblah', 'dst' => $source ] );
-		$this->assertGoodStatus( $status,
-			"Creation of file at $source succeeded ($backendName)." );
-
-		if ( isset( $op['overwrite'] ) || isset( $op['overwriteSame'] ) ) {
-			$this->backend->copy( $op );
-		}
+		$oldSrcProps = $this->backend->getFileProps( [ 'src' => $source ] );
 
 		$status = $this->backend->doOperation( $op );
-		$this->assertGoodStatus( $status,
-			"Move from $source to $dest succeeded without warnings ($backendName)." );
-		$this->assertEquals( true, $status->isOK(),
-			"Move from $source to $dest succeeded ($backendName)." );
-		$this->assertEquals( [ 0 => true ], $status->success,
-			"Move from $source to $dest has proper 'success' field in Status ($backendName)." );
-		$this->assertEquals( false, $this->backend->fileExists( [ 'src' => $source ] ),
-			"Source file $source does not still exists ($backendName)." );
-		$this->assertEquals( true, $this->backend->fileExists( [ 'src' => $dest ] ),
-			"Destination file $dest exists after move ($backendName)." );
 
-		$this->assertNotEquals(
-			$this->backend->getFileSize( [ 'src' => $source ] ),
-			$this->backend->getFileSize( [ 'src' => $dest ] ),
-			"Destination file $dest has correct size ($backendName)." );
+		if ( $okStatus ) {
+			$this->assertGoodStatus(
+				$status,
+				"Move from $source to $dest succeeded without warnings ($backendName)." );
+			$this->assertEquals( true, $status->isOK(),
+				"Move from $source to $dest succeeded ($backendName)." );
+			$this->assertEquals( [ 0 => true ], $status->success,
+				"Move from $source to $dest has proper 'success' field in Status ($backendName)." );
+			if ( !is_string( $srcContent ) ) {
+				$this->assertSame(
+					is_string( $dstContent ),
+					$this->backend->fileExists( [ 'src' => $dest ] ),
+					"Destination file $dest unchanged after no-op move ($backendName)." );
+				$this->assertSame(
+					$dstContent,
+					$this->backend->getFileContents( [ 'src' => $dest ] ),
+					"Destination file $dest unchanged after no-op move ($backendName)." );
+			} else {
+				$this->assertEquals(
+					$this->backend->getFileSize( [ 'src' => $dest ] ),
+					strlen( $srcContent ),
+					"Destination file $dest has correct size ($backendName)." );
+				$this->assertEquals(
+					$oldSrcProps,
+					$this->backend->getFileProps( [ 'src' => $dest ] ),
+					"Source and destination have the same props ($backendName)." );
+			}
+		} else {
+			$this->assertBadStatus(
+				$status,
+				"Move from $source to $dest fails ($backendName)." );
+			$this->assertSame(
+				is_string( $dstContent ),
+				(bool)$this->backend->fileExists( [ 'src' => $dest ] ),
+				"Destination file $dest unchanged after failed move ($backendName)." );
+			$this->assertSame(
+				$dstContent,
+				$this->backend->getFileContents( [ 'src' => $dest ] ),
+				"Destination file $dest unchanged after failed move ($backendName)." );
+			$this->assertSame(
+				is_string( $srcContent ),
+				(bool)$this->backend->fileExists( [ 'src' => $source ] ),
+				"Source file $source unchanged after failed move ($backendName)."
+			);
+			$this->assertSame(
+				$srcContent,
+				$this->backend->getFileContents( [ 'src' => $source ] ),
+				"Source file $source unchanged after failed move ($backendName)."
+			);
+		}
 
-		$props1 = $this->backend->getFileProps( [ 'src' => $source ] );
-		$props2 = $this->backend->getFileProps( [ 'src' => $dest ] );
-		$this->assertEquals( false, $props1['fileExists'],
-			"Source file does not exist accourding to props ($backendName)." );
-		$this->assertEquals( true, $props2['fileExists'],
-			"Destination file exists accourding to props ($backendName)." );
+		if ( is_string( $dstContent ) ) {
+			$this->assertTrue(
+				(bool)$this->backend->fileExists( [ 'src' => $dest ] ),
+				"Destination file $dest exists after move ($backendName)." );
+		}
 
-		$this->assertBackendPathsConsistent( [ $source, $dest ] );
+		$this->assertBackendPathsConsistent( [ $source, $dest ], $okSyncStatus );
 	}
 
+	/**
+	 * @return array (op, source exists, dest exists, op succeeds, sync check succeeds)
+	 */
 	public static function provider_testMove() {
 		$cases = [];
 
 		$source = self::baseStorePath() . '/unittest-cont1/e/file.txt';
 		$dest = self::baseStorePath() . '/unittest-cont2/a/fileMoved.txt';
+		$opBase = [ 'op' => 'move', 'src' => $source, 'dst' => $dest ];
 
-		$op = [ 'op' => 'move', 'src' => $source, 'dst' => $dest ];
-		$cases[] = [
-			$op, // operation
-			$source, // source
-			$dest, // dest
-		];
+		$op = $opBase;
+		$cases[] = [ $op, 'yyy', false, true, true ];
 
-		$op2 = $op;
-		$op2['overwrite'] = true;
-		$cases[] = [
-			$op2, // operation
-			$source, // source
-			$dest, // dest
-		];
+		$op = $opBase;
+		$op['overwrite'] = true;
+		$cases[] = [ $op, 'yyy', false, true, true ];
 
-		$op2 = $op;
-		$op2['overwriteSame'] = true;
-		$cases[] = [
-			$op2, // operation
-			$source, // source
-			$dest, // dest
-		];
+		$op = $opBase;
+		$op['overwrite'] = true;
+		$cases[] = [ $op, 'yyy', 'xxx', true, true ];
 
-		$op2 = $op;
-		$op2['ignoreMissingSource'] = true;
-		$cases[] = [
-			$op2, // operation
-			$source, // source
-			$dest, // dest
-		];
+		$op = $opBase;
+		$op['overwriteSame'] = true;
+		$cases[] = [ $op, 'yyy', false, true, true ];
 
-		$op2 = $op;
-		$op2['ignoreMissingSource'] = true;
-		$cases[] = [
-			$op2, // operation
-			self::baseStorePath() . '/unittest-cont-bad/e/file.txt', // source
-			$dest, // dest
-		];
+		$op = $opBase;
+		$op['overwriteSame'] = true;
+		$cases[] = [ $op, 'yyy', 'yyy', true, true ];
+
+		$op = $opBase;
+		$op['overwriteSame'] = true;
+		$cases[] = [ $op, 'yyy', 'zzz', false, true ];
+
+		$op = $opBase;
+		$op['ignoreMissingSource'] = true;
+		$cases[] = [ $op, 'xxx', false, true, true ];
+
+		$op = $opBase;
+		$op['ignoreMissingSource'] = true;
+		$cases[] = [ $op, false, false, true, true ];
+
+		$op = $opBase;
+		$op['ignoreMissingSource'] = true;
+		$cases[] = [ $op, false, 'xxx', true, true ];
+
+		$op = $opBase;
+		$op['src'] = 'mwstore://wrongbackend/unittest-cont1/e/file.txt';
+		$op['ignoreMissingSource'] = true;
+		$cases[] = [ $op, false, false, false, false ];
 
 		return $cases;
 	}
@@ -559,27 +616,27 @@ class FileBackendTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provider_testDelete
 	 */
-	public function testDelete( $op, $withSource, $okStatus ) {
+	public function testDelete( $op, $srcContent, $okStatus, $okSyncStatus ) {
 		$this->backend = $this->singleBackend;
 		$this->tearDownFiles();
-		$this->doTestDelete( $op, $withSource, $okStatus );
+		$this->doTestDelete( $op, $srcContent, $okStatus, $okSyncStatus );
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
 		$this->tearDownFiles();
-		$this->doTestDelete( $op, $withSource, $okStatus );
+		$this->doTestDelete( $op, $srcContent, $okStatus, $okSyncStatus );
 		$this->tearDownFiles();
 	}
 
-	private function doTestDelete( $op, $withSource, $okStatus ) {
+	private function doTestDelete( $op, $srcContent, $okStatus, $okSyncStatus ) {
 		$backendName = $this->backendClass();
 
 		$source = $op['src'];
 		$this->prepare( [ 'dir' => dirname( $source ) ] );
 
-		if ( $withSource ) {
+		if ( is_string( $srcContent ) ) {
 			$status = $this->backend->doOperation(
-				[ 'op' => 'create', 'content' => 'blahblah', 'dst' => $source ] );
+				[ 'op' => 'create', 'content' => $srcContent, 'dst' => $source ] );
 			$this->assertGoodStatus( $status,
 				"Creation of file at $source succeeded ($backendName)." );
 		}
@@ -597,7 +654,8 @@ class FileBackendTest extends MediaWikiTestCase {
 				"Deletion of file at $source failed ($backendName)." );
 		}
 
-		$this->assertEquals( false, $this->backend->fileExists( [ 'src' => $source ] ),
+		$this->assertFalse(
+			(bool)$this->backend->fileExists( [ 'src' => $source ] ),
 			"Source file $source does not exist after move ($backendName)." );
 
 		$this->assertFalse(
@@ -605,44 +663,40 @@ class FileBackendTest extends MediaWikiTestCase {
 			"Source file $source has correct size (false) ($backendName)." );
 
 		$props1 = $this->backend->getFileProps( [ 'src' => $source ] );
-		$this->assertFalse( $props1['fileExists'],
+		$this->assertFalse(
+			$props1['fileExists'],
 			"Source file $source does not exist according to props ($backendName)." );
 
-		$this->assertBackendPathsConsistent( [ $source ] );
+		$this->assertBackendPathsConsistent( [ $source ], $okSyncStatus );
 	}
 
+	/**
+	 * @return array (op, source content, op succeeds, sync check succeeds)
+	 */
 	public static function provider_testDelete() {
 		$cases = [];
 
 		$source = self::baseStorePath() . '/unittest-cont1/e/myfacefile.txt';
+		$baseOp = [ 'op' => 'delete', 'src' => $source ];
 
-		$op = [ 'op' => 'delete', 'src' => $source ];
-		$cases[] = [
-			$op, // operation
-			true, // with source
-			true // succeeds
-		];
+		$op = $baseOp;
+		$cases[] = [ $op, 'xxx', true, true ];
 
-		$cases[] = [
-			$op, // operation
-			false, // without source
-			false // fails
-		];
-
+		$op = $baseOp;
 		$op['ignoreMissingSource'] = true;
-		$cases[] = [
-			$op, // operation
-			false, // without source
-			true // succeeds
-		];
+		$cases[] = [ $op, 'xxx', true, true ];
 
+		$op = $baseOp;
+		$cases[] = [ $op, false, false, true ];
+
+		$op = $baseOp;
 		$op['ignoreMissingSource'] = true;
-		$op['src'] = self::baseStorePath() . '/unittest-cont-bad/e/file.txt';
-		$cases[] = [
-			$op, // operation
-			false, // without source
-			true // succeeds
-		];
+		$cases[] = [ $op, false, true, true ];
+
+		$op = $baseOp;
+		$op['ignoreMissingSource'] = true;
+		$op['src'] = 'mwstore://wrongbackend/unittest-cont1/e/file.txt';
+		$cases[] = [ $op, false, false, false ];
 
 		return $cases;
 	}
@@ -708,7 +762,7 @@ class FileBackendTest extends MediaWikiTestCase {
 				"Describe of file at $source failed ($backendName)." );
 		}
 
-		$this->assertBackendPathsConsistent( [ $source ] );
+		$this->assertBackendPathsConsistent( [ $source ], true );
 	}
 
 	private function assertHasHeaders( array $headers, array $attr ) {
@@ -809,7 +863,7 @@ class FileBackendTest extends MediaWikiTestCase {
 				"Destination file $dest has original size according to props ($backendName)." );
 		}
 
-		$this->assertBackendPathsConsistent( [ $dest ] );
+		$this->assertBackendPathsConsistent( [ $dest ], true );
 	}
 
 	/**
@@ -2608,7 +2662,7 @@ class FileBackendTest extends MediaWikiTestCase {
 	}
 
 	function tearDownFiles() {
-		$containers = [ 'unittest-cont1', 'unittest-cont2', 'unittest-cont-bad' ];
+		$containers = [ 'unittest-cont1', 'unittest-cont2' ];
 		foreach ( $containers as $container ) {
 			$this->deleteFiles( $container );
 		}
@@ -2627,14 +2681,24 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->backend->clean( [ 'dir' => "$base/$container", 'recursive' => 1 ] );
 	}
 
-	function assertBackendPathsConsistent( array $paths ) {
-		if ( $this->backend instanceof FileBackendMultiWrite ) {
-			$status = $this->backend->consistencyCheck( $paths );
+	private function assertBackendPathsConsistent( array $paths, $okSyncStatus ) {
+		if ( !$this->backend instanceof FileBackendMultiWrite ) {
+			return;
+		}
+
+		$status = $this->backend->consistencyCheck( $paths );
+		if ( $okSyncStatus ) {
 			$this->assertGoodStatus( $status, "Files synced: " . implode( ',', $paths ) );
+		} else {
+			$this->assertBadStatus( $status, "Files not synced: " . implode( ',', $paths ) );
 		}
 	}
 
-	function assertGoodStatus( StatusValue $status, $msg ) {
+	private function assertGoodStatus( StatusValue $status, $msg ) {
 		$this->assertEquals( print_r( [], 1 ), print_r( $status->getErrors(), 1 ), $msg );
+	}
+
+	private function assertBadStatus( StatusValue $status, $msg ) {
+		$this->assertNotEquals( print_r( [], 1 ), print_r( $status->getErrors(), 1 ), $msg );
 	}
 }
