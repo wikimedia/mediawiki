@@ -1301,7 +1301,7 @@ SQL;
 		return "'" . pg_escape_string( $conn, (string)$s ) . "'";
 	}
 
-	public function makeSelectOptions( $options ) {
+	protected function makeSelectOptions( array $options ) {
 		$preLimitTail = $postLimitTail = '';
 		$startOpts = $useIndex = $ignoreIndex = '';
 
