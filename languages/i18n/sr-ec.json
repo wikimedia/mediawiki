@@ -782,7 +782,7 @@
 	"editpage-notsupportedcontentformat-title": "Формат садржаја није подржан",
 	"editpage-notsupportedcontentformat-text": "Формат садржаја $1 није подржан за модел садржаја $2.",
 	"slot-name-main": "Главни",
-	"content-model-wikitext": "викитекста",
+	"content-model-wikitext": "викитекст",
 	"content-model-text": "чистог текста",
 	"content-model-javascript": "јаваскрипта",
 	"content-model-css": "Це-Ес-Еса",
