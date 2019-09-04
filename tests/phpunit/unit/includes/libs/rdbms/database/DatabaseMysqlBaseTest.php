@@ -745,6 +745,30 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::selectSQLText
+	 */
+	public function testMaxExecutionTime() {
+		$db = $this->getMockBuilder( DatabaseMysqli::class )
+			->disableOriginalConstructor()
+			->onlyMethods( [ 'getMySqlServerVariant', 'dbSchema', 'tablePrefix' ] )
+			->getMock();
+		$db->method( 'getMySqlServerVariant' )->willReturn( [ 'MariaDB', '10.4.21' ] );
+
+		/** @var IDatabase $db */
+		$sql = $db->selectSQLText( 'image',
+			'img_metadata',
+			'*',
+			'',
+			[ 'MAX_EXECUTION_TIME' => 1 ]
+		);
+
+		$this->assertEquals(
+			"SET STATEMENT max_statement_time=0.001 FOR SELECT  img_metadata  FROM `image`     ",
+			$sql
+		);
+	}
+
+	/**
 	 * @covers \Wikimedia\Rdbms\Database::streamStatementEnd
 	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::streamStatementEnd
 	 */
