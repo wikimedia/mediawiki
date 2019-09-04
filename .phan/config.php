@@ -88,6 +88,8 @@ $cfg['exclude_analysis_directory_list'] = [
 	'maintenance/language/',
 	// External class
 	'includes/libs/jsminplus.php',
+	// External class
+	'includes/libs/objectcache/utils/MemcachedClient.php',
 ];
 
 // NOTE: If you're facing an issue which you cannot easily fix, DO NOT add it here. Suppress it
