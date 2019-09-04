@@ -287,9 +287,9 @@ return [
 
 	'LocalServerObjectCache' => function ( MediaWikiServices $services ) : BagOStuff {
 		$config = $services->getMainConfig();
-		$cacheId = \ObjectCache::detectLocalServerCache();
+		$cacheId = ObjectCache::detectLocalServerCache();
 
-		return \ObjectCache::newFromParams( $config->get( 'ObjectCaches' )[$cacheId] );
+		return ObjectCache::newFromParams( $config->get( 'ObjectCaches' )[$cacheId] );
 	},
 
 	'LockManagerGroupFactory' => function ( MediaWikiServices $services ) : LockManagerGroupFactory {
@@ -318,7 +318,7 @@ return [
 				"Cache type \"$id\" is not present in \$wgObjectCaches." );
 		}
 
-		return \ObjectCache::newFromParams( $mainConfig->get( 'ObjectCaches' )[$id] );
+		return ObjectCache::newFromParams( $mainConfig->get( 'ObjectCaches' )[$id] );
 	},
 
 	'MainWANObjectCache' => function ( MediaWikiServices $services ) : WANObjectCache {
@@ -338,7 +338,7 @@ return [
 		}
 		$params['store'] = $mainConfig->get( 'ObjectCaches' )[$objectCacheId];
 
-		return \ObjectCache::newWANCacheFromParams( $params );
+		return ObjectCache::newWANCacheFromParams( $params );
 	},
 
 	'MediaHandlerFactory' => function ( MediaWikiServices $services ) : MediaHandlerFactory {
@@ -493,8 +493,7 @@ return [
 			// 'class' and 'preprocessorClass'
 			$services->getMainConfig()->get( 'ParserConf' ),
 			// Make sure to have defaults in case someone overrode ParserConf with something silly
-			[ 'class' => Parser::class,
-				'preprocessorClass' => Parser::getDefaultPreprocessorClass() ],
+			[ 'class' => Parser::class, 'preprocessorClass' => Preprocessor_Hash::class ],
 			// Plus a buch of actual config options
 			$services->getMainConfig()
 		);

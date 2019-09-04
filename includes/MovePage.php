@@ -25,7 +25,7 @@ use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Handles the backend logic of moving a page from one title
@@ -51,7 +51,7 @@ class MovePage {
 	protected $options;
 
 	/**
-	 * @var LoadBalancer
+	 * @var ILoadBalancer
 	 */
 	protected $loadBalancer;
 
@@ -61,7 +61,7 @@ class MovePage {
 	protected $nsInfo;
 
 	/**
-	 * @var WatchedItemStore
+	 * @var WatchedItemStoreInterface
 	 */
 	protected $watchedItems;
 
@@ -81,7 +81,7 @@ class MovePage {
 	 * @param Title $oldTitle
 	 * @param Title $newTitle
 	 * @param ServiceOptions|null $options
-	 * @param LoadBalancer|null $loadBalancer
+	 * @param ILoadBalancer|null $loadBalancer
 	 * @param NamespaceInfo|null $nsInfo
 	 * @param WatchedItemStore|null $watchedItems
 	 * @param PermissionManager|null $permMgr
@@ -90,9 +90,9 @@ class MovePage {
 		Title $oldTitle,
 		Title $newTitle,
 		ServiceOptions $options = null,
-		LoadBalancer $loadBalancer = null,
+		ILoadBalancer $loadBalancer = null,
 		NamespaceInfo $nsInfo = null,
-		WatchedItemStore $watchedItems = null,
+		WatchedItemStoreInterface $watchedItems = null,
 		PermissionManager $permMgr = null,
 		RepoGroup $repoGroup = null
 	) {
