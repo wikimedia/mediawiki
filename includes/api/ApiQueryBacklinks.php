@@ -326,7 +326,6 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	/**
 	 * @param ApiPageSet $resultPageSet
 	 * @return void
-	 * @suppress PhanTypeInvalidDimOffset
 	 */
 	private function run( $resultPageSet = null ) {
 		$this->params = $this->extractRequestParams( false );

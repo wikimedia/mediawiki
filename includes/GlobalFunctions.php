@@ -2135,7 +2135,6 @@ function wfShellExec( $cmd, &$retval = null, $environ = [],
 	}
 
 	$includeStderr = isset( $options['duplicateStderr'] ) && $options['duplicateStderr'];
-	// @phan-suppress-next-line PhanTypeInvalidDimOffset
 	$profileMethod = $options['profileMethod'] ?? wfGetCaller();
 
 	try {
@@ -2200,7 +2199,6 @@ function wfShellWikiCmd( $script, array $parameters = [], array $options = [] ) 
 	// Give site config file a chance to run the script in a wrapper.
 	// The caller may likely want to call wfBasename() on $script.
 	Hooks::run( 'wfShellWikiCmd', [ &$script, &$parameters, &$options ] );
-	// @phan-suppress-next-line PhanTypeInvalidDimOffset
 	$cmd = [ $options['php'] ?? $wgPhpCli ];
 	if ( isset( $options['wrapper'] ) ) {
 		$cmd[] = $options['wrapper'];
@@ -2897,7 +2895,6 @@ function wfUnpack( $format, $data, $length = false ) {
 	$result = unpack( $format, $data );
 	Wikimedia\restoreWarnings();
 
-	// @phan-suppress-next-line PhanTypeComparisonFromArray Phan issue #3160
 	if ( $result === false ) {
 		// If it cannot extract the packed data.
 		throw new MWException( "unpack could not unpack binary data" );

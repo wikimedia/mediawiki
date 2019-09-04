@@ -107,6 +107,7 @@ class LoadMonitor implements ILoadMonitor {
 
 		$key = $this->getCacheKey( $serverIndexes );
 		# Randomize TTLs to reduce stampedes (4.0 - 5.0 sec)
+		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 		$ttl = mt_rand( 4e6, 5e6 ) / 1e6;
 		# Keep keys around longer as fallbacks
 		$staleTTL = 60;

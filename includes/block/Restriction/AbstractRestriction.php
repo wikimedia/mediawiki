@@ -99,7 +99,7 @@ abstract class AbstractRestriction implements Restriction {
 	 * @inheritDoc
 	 */
 	public static function newFromRow( \stdClass $row ) {
-		// @phan-suppress-next-line PhanTypeInstantiateAbstract
+		// @phan-suppress-next-line PhanTypeInstantiateAbstractStatic
 		return new static( $row->ir_ipb_id, $row->ir_value );
 	}
 

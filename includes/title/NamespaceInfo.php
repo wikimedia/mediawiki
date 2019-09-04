@@ -341,7 +341,7 @@ class NamespaceInfo {
 	 * Returns array of all defined namespaces with their canonical
 	 * (English) names.
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public function getCanonicalNamespaces() {
 		if ( $this->canonicalNamespaces === null ) {
@@ -396,6 +396,7 @@ class NamespaceInfo {
 	 */
 	public function getValidNamespaces() {
 		if ( is_null( $this->validNamespaces ) ) {
+			$this->validNamespaces = [];
 			foreach ( array_keys( $this->getCanonicalNamespaces() ) as $ns ) {
 				if ( $ns >= 0 ) {
 					$this->validNamespaces[] = $ns;

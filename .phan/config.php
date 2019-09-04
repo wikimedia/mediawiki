@@ -90,6 +90,9 @@ $cfg['exclude_analysis_directory_list'] = [
 	'includes/libs/jsminplus.php',
 ];
 
+// NOTE: If you're facing an issue which you cannot easily fix, DO NOT add it here. Suppress it
+// either in-line with @phan-suppress-next-line and similar, at block-level (via @suppress), or at
+// file-level (with @phan-file-suppress), so that it stays enabled for the rest of the codebase.
 $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
 	// approximate error count: 19
 	"PhanParamReqAfterOpt", // False positives with nullables (phan issue #3159). Use real nullables
@@ -97,11 +100,16 @@ $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
 	// approximate error count: 110
 	"PhanParamTooMany", // False positives with variargs. Unsuppress after dropping HHVM
 
-	// approximate error count: 60
+	// approximate error count: 45
 	"PhanTypeMismatchArgument",
-	// approximate error count: 752
+	// approximate error count: 693
 	"PhanUndeclaredProperty",
 ] );
+
+// This helps a lot in discovering bad code, but unfortunately it will always fail for
+// hooks + pass by reference, see phan issue #2943.
+// @todo Enable when the issue above is resolved and we update our config!
+$cfg['redundant_condition_detection'] = false;
 
 $cfg['ignore_undeclared_variables_in_global_scope'] = true;
 // @todo It'd be great if we could just make phan read these from DefaultSettings, to avoid
@@ -125,6 +133,9 @@ $cfg['globals_type_map'] = array_merge( $cfg['globals_type_map'], [
 	'wgWANObjectCaches' => 'array[]',
 	'wgLocalInterwikis' => 'string[]',
 	'wgDebugLogGroups' => 'string|false|array{destination:string,sample?:int,level:int}',
+	'wgCookiePrefix' => 'string|false',
+	'wgOut' => 'OutputPage',
+	'wgExtraNamespaces' => 'string[]',
 ] );
 
 return $cfg;

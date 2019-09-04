@@ -137,7 +137,6 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 					$dataPath->getRemoteBasePath()
 				);
 			} else {
-				// @phan-suppress-next-line PhanTypeSuspiciousStringExpression
 				$path = dirname( $dataPath ) . '/' . $path;
 			}
 		};

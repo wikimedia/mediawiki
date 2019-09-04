@@ -47,6 +47,7 @@ class UncategorizedCategoriesPage extends UncategorizedPagesPage {
 	 */
 	private function getExceptionList() {
 		if ( $this->exceptionList === null ) {
+			$this->exceptionList = [];
 			$exList = $this->msg( 'uncategorized-categories-exceptionlist' )
 				->inContentLanguage()->plain();
 			$proposedTitles = explode( "\n", $exList );

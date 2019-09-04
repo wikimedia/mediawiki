@@ -61,7 +61,6 @@ class MappedIterator extends FilterIterator {
 		}
 		parent::__construct( $baseIterator );
 		$this->vCallback = $vCallback;
-		// @phan-suppress-next-line PhanTypeInvalidDimOffset
 		$this->aCallback = $options['accept'] ?? null;
 	}
 

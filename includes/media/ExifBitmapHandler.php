@@ -26,8 +26,6 @@
  * All metadata related, since both JPEG and TIFF support Exif.
  *
  * @ingroup Media
- * @phan-file-suppress PhanUndeclaredConstant Phan doesn't read constants in MediaHandler
- *   when accessed via self::
  */
 class ExifBitmapHandler extends BitmapHandler {
 	const BROKEN_FILE = '-1'; // error extracting metadata

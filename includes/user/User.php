@@ -249,7 +249,8 @@ class User implements IDBAccessObject, UserIdentity {
 			return $this->$name;
 		} else {
 			wfLogWarning( 'tried to get non-visible property' );
-			return null;
+			$null = null;
+			return $null;
 		}
 	}
 

@@ -286,7 +286,6 @@ final class SessionManager implements SessionManagerInterface {
 					"$provider returned empty session info with id flagged unsafe"
 				);
 			}
-			// @phan-suppress-next-line PhanTypeInvalidDimOffset
 			$compare = $infos ? SessionInfo::compare( $infos[0], $info ) : -1;
 			if ( $compare > 0 ) {
 				continue;

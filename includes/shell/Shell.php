@@ -238,7 +238,6 @@ class Shell {
 		// Give site config file a chance to run the script in a wrapper.
 		// The caller may likely want to call wfBasename() on $script.
 		Hooks::run( 'wfShellWikiCmd', [ &$script, &$parameters, &$options ] );
-		// @phan-suppress-next-line PhanTypeInvalidDimOffset
 		$cmd = [ $options['php'] ?? $wgPhpCli ];
 		if ( isset( $options['wrapper'] ) ) {
 			$cmd[] = $options['wrapper'];
