@@ -1092,7 +1092,6 @@ class LocalFile extends File {
 		array_shift( $urls ); // don't purge directory
 
 		// Give media handler a chance to filter the file purge list
-		// @phan-suppress-next-line PhanTypeInvalidDimOffset
 		if ( !empty( $options['forThumbRefresh'] ) ) {
 			$handler = $this->getHandler();
 			if ( $handler ) {

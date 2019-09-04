@@ -161,6 +161,7 @@ class ChangesList extends ContextSource {
 	 */
 	private function preCacheMessages() {
 		if ( !isset( $this->message ) ) {
+			$this->message = [];
 			foreach ( [
 				'cur', 'diff', 'hist', 'enhancedrc-history', 'last', 'blocklink', 'history',
 				'semicolon-separator', 'pipe-separator' ] as $msg

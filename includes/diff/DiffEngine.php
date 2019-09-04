@@ -363,7 +363,6 @@ class DiffEngine {
 			 */
 			$max = min( $this->m, $this->n );
 			for ( $forwardBound = 0; $forwardBound < $max
-				// @phan-suppress-next-line PhanTypeInvalidDimOffset
 				&& $this->from[$forwardBound] === $this->to[$forwardBound];
 				++$forwardBound
 			) {

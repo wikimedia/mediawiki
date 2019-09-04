@@ -103,7 +103,6 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 		$this->url = wfExpandUrl( $url, PROTO_HTTP );
 		$this->parsedUrl = wfParseUrl( $this->url );
 
-		// @phan-suppress-next-line PhanTypeInvalidDimOffset
 		$this->logger = $options['logger'] ?? new NullLogger();
 
 		if ( !$this->parsedUrl || !Http::isValidURI( $this->url ) ) {

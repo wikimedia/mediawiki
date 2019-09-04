@@ -585,7 +585,6 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * @note Options added in 1.33: creating
 	 * @note Options added in 1.34: version, walltime
 	 * @return bool Success
-	 * @suppress PhanTypeInvalidDimOffset
 	 */
 	final public function set( $key, $value, $ttl = self::TTL_INDEFINITE, array $opts = [] ) {
 		$now = $this->getCurrentTime();
@@ -1258,7 +1257,6 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * @note Options added in 1.31: staleTTL, graceTTL
 	 * @note Options added in 1.33: touchedCallback
 	 * @note Callable type hints are not used to avoid class-autoloading
-	 * @suppress PhanTypeInvalidDimOffset
 	 */
 	final public function getWithSetCallback( $key, $ttl, $callback, array $opts = [] ) {
 		$version = $opts['version'] ?? null;
@@ -1450,7 +1448,6 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 				$this->setInterimValue( $key, $value, $lockTSE, $version, $walltime );
 			} else {
 				$finalSetOpts = [
-					// @phan-suppress-next-line PhanTypeInvalidDimOffset
 					'since' => $setOpts['since'] ?? $preCallbackTime,
 					'version' => $version,
 					'staleTTL' => $staleTTL,
@@ -2328,6 +2325,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 
 		$chance = ( 1 - $curTTL / $lowTTL );
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 		return mt_rand( 1, 1e9 ) <= 1e9 * $chance;
 	}
 
@@ -2370,6 +2368,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		// Ramp up $chance from 0 to its nominal value over RAMPUP_TTL seconds to avoid stampedes
 		$chance *= ( $timeOld <= self::$RAMPUP_TTL ) ? $timeOld / self::$RAMPUP_TTL : 1;
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 		return mt_rand( 1, 1e9 ) <= 1e9 * $chance;
 	}
 

@@ -89,7 +89,11 @@ abstract class Maintenance {
 	// Const for getStdin()
 	const STDIN_ALL = 'all';
 
-	// Array of desired/allowed params
+	/**
+	 * Array of desired/allowed params
+	 * @var array[]
+	 * @phan-var array<string,array{desc:string,require:bool,withArg:string,shortName:string,multiOccurrence:bool}>
+	 */
 	protected $mParams = [];
 
 	// Array of mapping short parameters to long ones
@@ -128,9 +132,17 @@ abstract class Maintenance {
 	 */
 	protected $mBatchSize = null;
 
-	// Generic options added by addDefaultParams()
+	/**
+	 * Generic options added by addDefaultParams()
+	 * @var array[]
+	 * @phan-var array<string,array{desc:string,require:bool,withArg:string,shortName:string,multiOccurrence:bool}>
+	 */
 	private $mGenericParameters = [];
-	// Generic options which might or not be supported by the script
+	/**
+	 * Generic options which might or not be supported by the script
+	 * @var array[]
+	 * @phan-var array<string,array{desc:string,require:bool,withArg:string,shortName:string,multiOccurrence:bool}>
+	 */
 	private $mDependantParameters = [];
 
 	/**

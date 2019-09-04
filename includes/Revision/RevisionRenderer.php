@@ -109,7 +109,6 @@ class RevisionRenderer {
 			throw new InvalidArgumentException( 'Mismatching wiki ID ' . $rev->getWikiId() );
 		}
 
-		// @phan-suppress-next-line PhanTypeInvalidDimOffset
 		$audience = $hints['audience']
 			?? ( $forUser ? RevisionRecord::FOR_THIS_USER : RevisionRecord::FOR_PUBLIC );
 
@@ -123,7 +122,6 @@ class RevisionRenderer {
 			$options = ParserOptions::newCanonical( $forUser ?: 'canonical' );
 		}
 
-		// @phan-suppress-next-line PhanTypeInvalidDimOffset
 		$useMaster = $hints['use-master'] ?? false;
 
 		$dbIndex = $useMaster
