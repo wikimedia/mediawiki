@@ -1308,8 +1308,15 @@ abstract class ApiBase extends ContextSource {
 						}
 						break;
 					case 'limit':
+						// Must be a number or 'max'
+						if ( $value !== 'max' ) {
+							$value = (int)$value;
+						}
+						if ( $multi ) {
+							self::dieDebug( __METHOD__, "Multi-values not supported for $encParamName" );
+						}
 						if ( !$parseLimit ) {
-							// Don't do any validation whatsoever
+							// Don't do min/max validation and don't parse 'max'
 							break;
 						}
 						if ( !isset( $paramSettings[self::PARAM_MAX] )
@@ -1320,21 +1327,16 @@ abstract class ApiBase extends ContextSource {
 								"MAX1 or MAX2 are not defined for the limit $encParamName"
 							);
 						}
-						if ( $multi ) {
-							self::dieDebug( __METHOD__, "Multi-values not supported for $encParamName" );
-						}
-						$min = $paramSettings[self::PARAM_MIN] ?? 0;
-						if ( $value == 'max' ) {
+						if ( $value === 'max' ) {
 							$value = $this->getMain()->canApiHighLimits()
 								? $paramSettings[self::PARAM_MAX2]
 								: $paramSettings[self::PARAM_MAX];
 							$this->getResult()->addParsedLimit( $this->getModuleName(), $value );
 						} else {
-							$value = (int)$value;
 							$this->validateLimit(
 								$paramName,
 								$value,
-								$min,
+								$paramSettings[self::PARAM_MIN] ?? 0,
 								$paramSettings[self::PARAM_MAX],
 								$paramSettings[self::PARAM_MAX2]
 							);
