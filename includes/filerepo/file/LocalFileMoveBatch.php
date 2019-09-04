@@ -126,10 +126,8 @@ class LocalFileMoveBatch {
 	public function execute() {
 		$repo = $this->file->repo;
 		$status = $repo->newGood();
-		/** @var LocalFile $destFile */
 		$destFile = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
 			->newFile( $this->target );
-		'@phan-var LocalFile $destFile';
 
 		$this->file->lock();
 		$destFile->lock(); // quickly fail if destination is not available
