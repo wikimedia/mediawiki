@@ -1323,7 +1323,7 @@ MESSAGE;
 	 *
 	 * @internal
 	 * @since 1.32
-	 * @param bool|string|array $data
+	 * @param mixed $data
 	 * @return string JSON
 	 */
 	public static function encodeJsonForScript( $data ) {
