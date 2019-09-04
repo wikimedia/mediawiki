@@ -1741,6 +1741,7 @@
 	"deletereason-dropdown": "*Əsas silmə səbəbləri\n** Spam\n** Vandalizm\n** Müəllif hüququ pozuntusu\n** Müəllif istəyi\n** Səhv yönləndirmə",
 	"delete-edit-reasonlist": "Silmə səbəblərinin redaktəsi",
 	"delete-toobig": "Bu səhifə $1-dən artıq redaktə ilə çox böyük redaktə tarixçəsinə malikdir.\n\"{{SITENAME}}\" saytının fəaliyyətində problemlər yaratmamaq üçün bu cür səhifələrin silinməsi qadağandır.",
+	"deleting-backlinks-warning": "<strong>Xəbərdarlıq:</strong> Silmək istədiyiniz səhifəyə [[Xüsusi:WhatLinksHere/{{FULLPAGENAME}}|başqa səhifələr]]dən keçid verilib.",
 	"rollback": "əvvəlki halına qaytar",
 	"rollbacklink": "əvvəlki halına qaytar",
 	"rollbacklinkcount": "$1 {{PLURAL:$1|dəyişikliyi|dəyişikliyi}} geri qaytar",

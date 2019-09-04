@@ -767,7 +767,7 @@
 	"editpage-notsupportedcontentformat-title": "Format sadržaja nije podržan",
 	"editpage-notsupportedcontentformat-text": "Format sadržaja $1 nije podržan za model sadržaja $2.",
 	"slot-name-main": "Glavni",
-	"content-model-wikitext": "vikiteksta",
+	"content-model-wikitext": "vikitekst",
 	"content-model-text": "čistog teksta",
 	"content-model-javascript": "JavaScript-a",
 	"content-model-css": "CSS-a",

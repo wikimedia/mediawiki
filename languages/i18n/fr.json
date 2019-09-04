@@ -1909,6 +1909,8 @@
 	"backend-fail-contenttype": "Impossible de déterminer le type de contenu du fichier à stocker en « $1 ».",
 	"backend-fail-batchsize": "On a fourni au support de stockage un lot de $1 {{PLURAL:$1|opération|opérations}} de fichier; la limite est $2 {{PLURAL:$2|opération|opérations}}.",
 	"backend-fail-usable": "Impossible de lire ou d’écrire le fichier « $1 » en raison de droits insuffisants ou de répertoires/conteneurs manquants.",
+	"backend-fail-stat": "Impossible de lire l’état du fichier « $1 ».",
+	"backend-fail-hash": "Impossible de déterminer le hachage cryptographique du fichier « $1 ».",
 	"filejournal-fail-dbconnect": "Impossible de se connecter à la base de données du journal pour le terminal de stockage « $1 ».",
 	"filejournal-fail-dbquery": "Impossible de mettre à jour la base de données du journal pour le terminal de stockage « $1 ».",
 	"lockmanager-notlocked": "Impossible de déverrouiller « $1 » ; elle n'est pas verrouillée.",
