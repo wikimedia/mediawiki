@@ -28,7 +28,8 @@ use NamespaceInfo;
 use RepoGroup;
 use Title;
 use WatchedItemStore;
-use Wikimedia\Rdbms\LoadBalancer;
+use WatchedItemStoreInterface;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * @since 1.34
@@ -37,7 +38,7 @@ class MovePageFactory {
 	/** @var ServiceOptions */
 	private $options;
 
-	/** @var LoadBalancer */
+	/** @var ILoadBalancer */
 	private $loadBalancer;
 
 	/** @var NamespaceInfo */
@@ -63,9 +64,9 @@ class MovePageFactory {
 
 	public function __construct(
 		ServiceOptions $options,
-		LoadBalancer $loadBalancer,
+		ILoadBalancer $loadBalancer,
 		NamespaceInfo $nsInfo,
-		WatchedItemStore $watchedItems,
+		WatchedItemStoreInterface $watchedItems,
 		PermissionManager $permMgr,
 		RepoGroup $repoGroup
 	) {
