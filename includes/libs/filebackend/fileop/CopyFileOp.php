@@ -36,8 +36,10 @@ class CopyFileOp extends FileOp {
 
 	protected function doPrecheck( array &$predicates ) {
 		$status = StatusValue::newGood();
-		// Check if the source file exists
-		if ( !$this->fileExists( $this->params['src'], $predicates ) ) {
+
+		// Check source file existence
+		$srcExists = $this->fileExists( $this->params['src'], $predicates );
+		if ( $srcExists === false ) {
 			if ( $this->getParam( 'ignoreMissingSource' ) ) {
 				$this->doOperation = false; // no-op
 				// Update file existence predicates (cache 404s)
@@ -50,10 +52,8 @@ class CopyFileOp extends FileOp {
 
 				return $status;
 			}
-			// Check if a file can be placed/changed at the destination
-		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
-			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
-			$status->fatal( 'backend-fail-copy', $this->params['src'], $this->params['dst'] );
+		} elseif ( $srcExists === FileBackend::EXISTENCE_ERROR ) {
+			$status->fatal( 'backend-fail-stat', $this->params['src'] );
 
 			return $status;
 		}

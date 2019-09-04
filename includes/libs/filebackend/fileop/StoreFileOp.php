@@ -38,26 +38,21 @@ class StoreFileOp extends FileOp {
 
 	protected function doPrecheck( array &$predicates ) {
 		$status = StatusValue::newGood();
-		// Check if the source file exists on the file system
+
+		// Check if the source file exists in the file system and is not too big
 		if ( !is_file( $this->params['src'] ) ) {
 			$status->fatal( 'backend-fail-notexists', $this->params['src'] );
 
 			return $status;
-			// Check if the source file is too big
-		} elseif ( filesize( $this->params['src'] ) > $this->backend->maxFileSizeInternal() ) {
-			$status->fatal( 'backend-fail-maxsize',
-				$this->params['dst'], $this->backend->maxFileSizeInternal() );
-			$status->fatal( 'backend-fail-store', $this->params['src'], $this->params['dst'] );
-
-			return $status;
-			// Check if a file can be placed/changed at the destination
-		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
-			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
-			$status->fatal( 'backend-fail-store', $this->params['src'], $this->params['dst'] );
+		}
+		// Check if the source file is too big
+		$maxBytes = $this->backend->maxFileSizeInternal();
+		if ( filesize( $this->params['src'] ) > $maxBytes ) {
+			$status->fatal( 'backend-fail-maxsize', $this->params['dst'], $maxBytes );
 
 			return $status;
 		}
-		// Check if destination file exists
+		// Check if an incompatible destination file exists
 		$status->merge( $this->precheckDestExistence( $predicates ) );
 		$this->params['dstExists'] = $this->destExists; // see FileBackendStore::setFileCache()
 		if ( $status->isOK() ) {
@@ -70,12 +65,14 @@ class StoreFileOp extends FileOp {
 	}
 
 	protected function doAttempt() {
-		if ( !$this->overwriteSameCase ) {
+		if ( $this->overwriteSameCase ) {
+			$status = StatusValue::newGood(); // nothing to do
+		} else {
 			// Store the file at the destination
-			return $this->backend->storeInternal( $this->setFlags( $this->params ) );
+			$status = $this->backend->storeInternal( $this->setFlags( $this->params ) );
 		}
 
-		return StatusValue::newGood();
+		return $status;
 	}
 
 	protected function getSourceSha1Base36() {
