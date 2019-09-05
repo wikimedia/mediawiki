@@ -90,6 +90,10 @@ class RedisConnectionPool implements LoggerAwareInterface {
 		if ( !isset( $options['serializer'] ) || $options['serializer'] === 'php' ) {
 			$this->serializer = Redis::SERIALIZER_PHP;
 		} elseif ( $options['serializer'] === 'igbinary' ) {
+			if ( !defined( 'Redis::SERIALIZER_IGBINARY' ) ) {
+				throw new InvalidArgumentException(
+					__CLASS__ . ': configured serializer "igbinary" not available' );
+			}
 			$this->serializer = Redis::SERIALIZER_IGBINARY;
 		} elseif ( $options['serializer'] === 'none' ) {
 			$this->serializer = Redis::SERIALIZER_NONE;
