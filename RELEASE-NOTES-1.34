@@ -66,6 +66,7 @@ For notes on 1.33.x and older releases, see HISTORY.
   which was deprecated in 1.30, no longer works. Instead, $wgProxyList should be
   an array with IP addresses as the values, or a string path to a file
   containing one IP address per line.
+* $wgCookieSetOnAutoblock and $wgCookieSetOnIpBlock are now enabled by default.
 * …
 
 ==== Removed configuration ====
