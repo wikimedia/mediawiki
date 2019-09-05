@@ -26,6 +26,7 @@ use mysqli;
 use mysqli_result;
 use IP;
 use stdClass;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * Database abstraction object for PHP extension mysqli.
@@ -41,7 +42,11 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 * @return mysqli_result|bool
 	 */
 	protected function doQuery( $sql ) {
-		return $this->getBindingHandle()->query( $sql );
+		AtEase::suppressWarnings();
+		$res = $this->getBindingHandle()->query( $sql );
+		AtEase::restoreWarnings();
+
+		return $res;
 	}
 
 	/**
