@@ -161,6 +161,8 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 */
 	public function runMulti( array $reqs, array $opts = [] ) {
 		$this->normalizeRequests( $reqs );
+		$opts += [ 'connTimeout' => $this->connTimeout, 'reqTimeout' => $this->reqTimeout ];
+
 		if ( $this->isCurlEnabled() ) {
 			return $this->runMultiCurl( $reqs, $opts );
 		} else {
@@ -195,7 +197,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 * @throws Exception
 	 * @suppress PhanTypeInvalidDimOffset
 	 */
-	private function runMultiCurl( array $reqs, array $opts = [] ) {
+	private function runMultiCurl( array $reqs, array $opts ) {
 		$chm = $this->getCurlMulti();
 
 		$selectTimeout = $this->getSelectTimeout( $opts );
@@ -293,20 +295,18 @@ class MultiHttpClient implements LoggerAwareInterface {
 	/**
 	 * @param array &$req HTTP request map
 	 * @param array $opts
-	 *   - connTimeout    : default connection timeout
-	 *   - reqTimeout     : default request timeout
+	 *   - connTimeout : default connection timeout
+	 *   - reqTimeout : default request timeout
 	 * @return resource
 	 * @throws Exception
 	 * @suppress PhanTypeMismatchArgumentInternal
 	 */
-	protected function getCurlHandle( array &$req, array $opts = [] ) {
+	protected function getCurlHandle( array &$req, array $opts ) {
 		$ch = curl_init();
 
-		curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT_MS,
-			( $opts['connTimeout'] ?? $this->connTimeout ) * 1000 );
 		curl_setopt( $ch, CURLOPT_PROXY, $req['proxy'] ?? $this->proxy );
-		curl_setopt( $ch, CURLOPT_TIMEOUT_MS,
-			( $opts['reqTimeout'] ?? $this->reqTimeout ) * 1000 );
+		curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT_MS, intval( $opts['connTimeout'] * 1e3 ) );
+		curl_setopt( $ch, CURLOPT_TIMEOUT_MS, intval( $opts['reqTimeout'] * 1e3 ) );
 		curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1 );
 		curl_setopt( $ch, CURLOPT_MAXREDIRS, 4 );
 		curl_setopt( $ch, CURLOPT_HEADER, 0 );
@@ -322,11 +322,8 @@ class MultiHttpClient implements LoggerAwareInterface {
 			$url .= strpos( $req['url'], '?' ) === false ? "?$query" : "&$query";
 		}
 		curl_setopt( $ch, CURLOPT_URL, $url );
-
 		curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, $req['method'] );
-		if ( $req['method'] === 'HEAD' ) {
-			curl_setopt( $ch, CURLOPT_NOBODY, 1 );
-		}
+		curl_setopt( $ch, CURLOPT_NOBODY, ( $req['method'] === 'HEAD' ) );
 
 		if ( $req['method'] === 'PUT' ) {
 			curl_setopt( $ch, CURLOPT_PUT, 1 );
@@ -406,23 +403,19 @@ class MultiHttpClient implements LoggerAwareInterface {
 			}
 		);
 
-		if ( isset( $req['stream'] ) ) {
-			// Don't just use CURLOPT_FILE as that might give:
-			// curl_setopt(): cannot represent a stream of type Output as a STDIO FILE*
-			// The callback here handles both normal files and php://temp handles.
-			curl_setopt( $ch, CURLOPT_WRITEFUNCTION,
-				function ( $ch, $data ) use ( &$req ) {
+		// This works with both file and php://temp handles (unlike CURLOPT_FILE)
+		$hasOutputStream = isset( $req['stream'] );
+		curl_setopt( $ch, CURLOPT_WRITEFUNCTION,
+			function ( $ch, $data ) use ( &$req, $hasOutputStream ) {
+				if ( $hasOutputStream ) {
 					return fwrite( $req['stream'], $data );
-				}
-			);
-		} else {
-			curl_setopt( $ch, CURLOPT_WRITEFUNCTION,
-				function ( $ch, $data ) use ( &$req ) {
+				} else {
 					$req['response']['body'] .= $data;
+
 					return strlen( $data );
 				}
-			);
-		}
+			}
+		);
 
 		return $ch;
 	}
