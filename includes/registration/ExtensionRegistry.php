@@ -1,6 +1,7 @@
 <?php
 
 use Composer\Semver\Semver;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\ScopedCallback;
 use MediaWiki\Shell\Shell;
 use MediaWiki\ShellDisabledError;
@@ -126,15 +127,13 @@ class ExtensionRegistry {
 
 		$mtime = $wgExtensionInfoMTime;
 		if ( $mtime === false ) {
-			if ( file_exists( $path ) ) {
-				$mtime = filemtime( $path );
-			} else {
-				throw new Exception( "$path does not exist!" );
-			}
+			AtEase::suppressWarnings();
+			$mtime = filemtime( $path );
+			AtEase::restoreWarnings();
 			// @codeCoverageIgnoreStart
 			if ( $mtime === false ) {
 				$err = error_get_last();
-				throw new Exception( "Couldn't stat $path: {$err['message']}" );
+				throw new Exception( "Unable to open file $path: {$err['message']}" );
 				// @codeCoverageIgnoreEnd
 			}
 		}

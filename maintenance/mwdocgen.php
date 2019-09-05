@@ -99,6 +99,7 @@ class MWDocGen extends Maintenance {
 		$this->excludes = [
 			'vendor',
 			'node_modules',
+			'resources/lib',
 			'images',
 			'static',
 		];

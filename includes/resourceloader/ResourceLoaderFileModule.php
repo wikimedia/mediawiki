@@ -798,9 +798,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Get a list of file paths for all styles in this module, in order of proper inclusion.
 	 *
-	 * This is considered a private method. Exposed for internal use by WebInstallerOutput.
-	 *
-	 * @private
+	 * @internal Exposed only for use by WebInstallerOutput.
 	 * @param ResourceLoaderContext $context
 	 * @return array List of file paths
 	 */
