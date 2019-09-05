@@ -1273,7 +1273,8 @@ abstract class Installer {
 	 *
 	 * @param string $directory Directory to search in, relative to $IP, must be either "extensions"
 	 *     or "skins"
-	 * @return array[][] [ $extName => [ 'screenshots' => [ '...' ] ]
+	 * @return Status An object containing an error list. If there were no errors, an associative
+	 *     array of information about the extension can be found in $status->value.
 	 */
 	public function findExtensions( $directory = 'extensions' ) {
 		switch ( $directory ) {
@@ -1292,33 +1293,43 @@ abstract class Installer {
 	 *
 	 * @param string $type Either "extension" or "skin"
 	 * @param string $directory Directory to search in, relative to $IP
-	 * @return array [ $extName => [ 'screenshots' => [ '...' ] ]
+	 * @return Status An object containing an error list. If there were no errors, an associative
+	 *     array of information about the extension can be found in $status->value.
 	 */
 	protected function findExtensionsByType( $type = 'extension', $directory = 'extensions' ) {
 		if ( $this->getVar( 'IP' ) === null ) {
-			return [];
+			return Status::newGood( [] );
 		}
 
 		$extDir = $this->getVar( 'IP' ) . '/' . $directory;
 		if ( !is_readable( $extDir ) || !is_dir( $extDir ) ) {
-			return [];
+			return Status::newGood( [] );
 		}
 
 		$dh = opendir( $extDir );
 		$exts = [];
+		$status = new Status;
 		while ( ( $file = readdir( $dh ) ) !== false ) {
-			if ( !is_dir( "$extDir/$file" ) ) {
+			// skip non-dirs and hidden directories
+			if ( !is_dir( "$extDir/$file" ) || $file[0] === '.' ) {
 				continue;
 			}
-			$status = $this->getExtensionInfo( $type, $directory, $file );
-			if ( $status->isOK() ) {
-				$exts[$file] = $status->value;
+			$extStatus = $this->getExtensionInfo( $type, $directory, $file );
+			if ( $extStatus->isOK() ) {
+				$exts[$file] = $extStatus->value;
+			} elseif ( $extStatus->hasMessage( 'config-extension-not-found' ) ) {
+				// (T225512) The directory is not actually an extension. Downgrade to warning.
+				$status->warning( 'config-extension-not-found', $file );
+			} else {
+				$status->merge( $extStatus );
 			}
 		}
 		closedir( $dh );
 		uksort( $exts, 'strnatcasecmp' );
 
-		return $exts;
+		$status->value = $exts;
+
+		return $status;
 	}
 
 	/**
@@ -1419,11 +1430,16 @@ abstract class Installer {
 			} elseif ( $e->missingExtensions || $e->missingSkins ) {
 				// There's an extension missing in the dependency tree,
 				// so add those to the dependency list and try again
-				return $this->readExtension(
+				$status = $this->readExtension(
 					$fullJsonFile,
 					array_merge( $extDeps, $e->missingExtensions ),
 					array_merge( $skinDeps, $e->missingSkins )
 				);
+				if ( !$status->isOK() && !$status->hasMessage( 'config-extension-dependency' ) ) {
+					$status = Status::newFatal( 'config-extension-dependency',
+						basename( dirname( $fullJsonFile ) ), $status->getMessage() );
+				}
+				return $status;
 			}
 			// Some other kind of dependency error?
 			return Status::newFatal( 'config-extension-dependency',
