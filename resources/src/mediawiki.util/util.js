@@ -209,7 +209,7 @@
 		 */
 		getParamValue: function ( param, url ) {
 			// Get last match, stop at hash
-			var re = new RegExp( '^[^#]*[&?]' + mw.RegExp.escape( param ) + '=([^&#]*)' ),
+			var re = new RegExp( '^[^#]*[&?]' + util.escapeRegExp( param ) + '=([^&#]*)' ),
 				m = re.exec( url !== undefined ? url : location.href );
 
 			if ( m ) {
@@ -515,6 +515,22 @@
 		isIPAddress: function ( address, allowBlock ) {
 			return util.isIPv4Address( address, allowBlock ) ||
 				util.isIPv6Address( address, allowBlock );
+		},
+
+		/**
+		 * Escape string for safe inclusion in regular expression
+		 *
+		 * The following characters are escaped:
+		 *
+		 *     \ { } ( ) | . ? * + - ^ $ [ ]
+		 *
+		 * @since 1.26; moved to mw.util in 1.34
+		 * @param {string} str String to escape
+		 * @return {string} Escaped string
+		 */
+		escapeRegExp: function ( str ) {
+			// eslint-disable-next-line no-useless-escape
+			return str.replace( /([\\{}()|.?*+\-^$\[\]])/g, '\\$1' );
 		}
 	};
 

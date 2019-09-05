@@ -16,7 +16,7 @@
 		var $li,
 			$ul = $createButton.prev( 'ul.mw-htmlform-cloner-ul' ),
 			html = $ul.data( 'template' ).replace(
-				new RegExp( mw.RegExp.escape( $ul.data( 'uniqueId' ) ), 'g' ),
+				new RegExp( mw.util.escapeRegExp( $ul.data( 'uniqueId' ) ), 'g' ),
 				'clone' + ( ++cloneCounter )
 			);
 

@@ -212,7 +212,7 @@ return [
 	'jquery.highlightText' => [
 		'scripts' => 'resources/src/jquery/jquery.highlightText.js',
 		'dependencies' => [
-			'mediawiki.RegExp',
+			'mediawiki.util',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -288,7 +288,7 @@ return [
 		'messages' => [ 'sort-descending', 'sort-ascending' ],
 		'dependencies' => [
 			'jquery.tablesorter.styles',
-			'mediawiki.RegExp',
+			'mediawiki.util',
 			'mediawiki.language.months',
 		],
 	],
@@ -755,7 +755,7 @@ return [
 		],
 		'dependencies' => [
 			'mediawiki.language',
-			'mediawiki.RegExp',
+			'mediawiki.util',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -926,7 +926,7 @@ return [
 			'resources/src/mediawiki.htmlform/selectorother.js',
 		],
 		'dependencies' => [
-			'mediawiki.RegExp',
+			'mediawiki.util',
 			'jquery.lengthLimit',
 		],
 		'messages' => [
@@ -967,7 +967,7 @@ return [
 		'scripts' => 'resources/src/mediawiki.inspect.js',
 		'dependencies' => [
 			'mediawiki.String',
-			'mediawiki.RegExp',
+			'mediawiki.util',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -1027,8 +1027,12 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.RegExp' => [
+		'deprecated' => 'Please use mw.util.escapeRegExp() instead.',
 		'scripts' => 'resources/src/mediawiki.RegExp.js',
 		'targets' => [ 'desktop', 'mobile' ],
+		'dependencies' => [
+			'mediawiki.util',
+		],
 	],
 	'mediawiki.String' => [
 		'scripts' => 'resources/src/mediawiki.String.js',
@@ -1261,7 +1265,6 @@ return [
 		],
 		'dependencies' => [
 			'jquery.client',
-			'mediawiki.RegExp',
 		],
 		'messages' => [ 'brackets', 'word-separator' ],
 		'targets' => [ 'desktop', 'mobile' ],
@@ -1699,7 +1702,7 @@ return [
 			'mediawiki.util',
 			'mediawiki.Title',
 			'mediawiki.jqueryMsg',
-			'mediawiki.RegExp',
+			'mediawiki.util',
 		],
 		'messages' => [
 			'watch',
@@ -2638,7 +2641,7 @@ return [
 			'period-pm',
 		],
 		'dependencies' => [
-			'mediawiki.RegExp',
+			'mediawiki.util',
 			'oojs-ui-core',
 			'oojs-ui.styles.icons-moderation',
 			'oojs-ui.styles.icons-movement',

@@ -1,22 +1,5 @@
 ( function () {
-	/**
-	 * @class mw.RegExp
-	 */
-	mw.RegExp = {
-		/**
-		 * Escape string for safe inclusion in regular expression
-		 *
-		 * The following characters are escaped:
-		 *
-		 *     \ { } ( ) | . ? * + - ^ $ [ ]
-		 *
-		 * @since 1.26
-		 * @static
-		 * @param {string} str String to escape
-		 * @return {string} Escaped string
-		 */
-		escape: function ( str ) {
-			return str.replace( /([\\{}()|.?*+\-^$\[\]])/g, '\\$1' ); // eslint-disable-line no-useless-escape
-		}
-	};
+	mw.RegExp = {};
+	// Backwards-compatible alias; @deprecated since 1.34
+	mw.log.deprecate( mw.RegExp, 'escape', mw.util.escapeRegExp, 'Use mw.util.escapeRegExp() instead.', 'mw.RegExp.escape' );
 }() );

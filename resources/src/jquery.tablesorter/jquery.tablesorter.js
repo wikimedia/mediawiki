@@ -543,7 +543,7 @@
 			// Construct regexes for number identification
 			for ( i = 0; i < ascii.length; i++ ) {
 				ts.transformTable[ localised[ i ] ] = ascii[ i ];
-				digits.push( mw.RegExp.escape( localised[ i ] ) );
+				digits.push( mw.util.escapeRegExp( localised[ i ] ) );
 			}
 		}
 		digitClass = '[' + digits.join( '', digits ) + ']';
@@ -569,13 +569,13 @@
 		for ( i = 0; i < 12; i++ ) {
 			name = mw.language.months.names[ i ].toLowerCase();
 			ts.monthNames[ name ] = i + 1;
-			regex.push( mw.RegExp.escape( name ) );
+			regex.push( mw.util.escapeRegExp( name ) );
 			name = mw.language.months.genitive[ i ].toLowerCase();
 			ts.monthNames[ name ] = i + 1;
-			regex.push( mw.RegExp.escape( name ) );
+			regex.push( mw.util.escapeRegExp( name ) );
 			name = mw.language.months.abbrev[ i ].toLowerCase().replace( '.', '' );
 			ts.monthNames[ name ] = i + 1;
-			regex.push( mw.RegExp.escape( name ) );
+			regex.push( mw.util.escapeRegExp( name ) );
 		}
 
 		// Build piped string
@@ -750,7 +750,7 @@
 		if ( ts.collationTable ) {
 			// Build array of key names
 			for ( key in ts.collationTable ) {
-				keys.push( mw.RegExp.escape( key ) );
+				keys.push( mw.util.escapeRegExp( key ) );
 			}
 			if ( keys.length ) {
 				ts.collationRegex = new RegExp( keys.join( '|' ), 'ig' );
