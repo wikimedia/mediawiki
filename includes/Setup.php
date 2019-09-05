@@ -537,12 +537,6 @@ if ( isset( $wgSquidMaxage ) ) {
 	$wgSquidMaxage = $wgCdnMaxAge;
 }
 
-// Easy to forget to falsify $wgDebugToolbar for static caches.
-// If file cache or CDN cache is on, just disable this (DWIMD).
-if ( $wgUseFileCache || $wgUseCdn ) {
-	$wgDebugToolbar = false;
-}
-
 // Blacklisted file extensions shouldn't appear on the "allowed" list
 $wgFileExtensions = array_values( array_diff( $wgFileExtensions, $wgFileBlacklist ) );
 
@@ -611,12 +605,7 @@ if ( defined( 'MW_NO_SESSION' ) ) {
 	$wgPHPSessionHandling = MW_NO_SESSION === 'warn' ? 'warn' : 'disable';
 }
 
-// Disable MWDebug for command line mode, this prevents MWDebug from eating up
-// all the memory from logging SQL queries on maintenance scripts
-global $wgCommandLineMode;
-if ( $wgDebugToolbar && !$wgCommandLineMode ) {
-	MWDebug::init();
-}
+MWDebug::setup();
 
 // Reset the global service locator, so any services that have already been created will be
 // re-created while taking into account any custom settings and extensions.

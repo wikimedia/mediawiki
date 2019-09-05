@@ -43,17 +43,17 @@ class RebuildFileCache extends Maintenance {
 	}
 
 	public function finalSetup() {
-		global $wgDebugToolbar, $wgUseFileCache;
+		global $wgUseFileCache;
 
 		$this->enabled = $wgUseFileCache;
 		// Script will handle capturing output and saving it itself
 		$wgUseFileCache = false;
-		// Debug toolbar makes content uncacheable so we disable it.
-		// Has to be done before Setup.php initialize MWDebug
-		$wgDebugToolbar = false;
 		//  Avoid DB writes (like enotif/counters)
 		MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode()
 			->setReason( 'Building cache' );
+
+		// Ensure no debug-specific logic ends up in the cache (must be after Setup.php)
+		MWDebug::deinit();
 
 		parent::finalSetup();
 	}
