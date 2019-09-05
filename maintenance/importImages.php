@@ -200,7 +200,8 @@ class ImportImages extends Maintenance {
 				$title = Title::makeTitleSafe( NS_FILE, $base );
 				if ( !is_object( $title ) ) {
 					$this->output(
-						"{$base} could not be imported; a valid title cannot be produced\n" );
+						"{$base} could not be imported; a valid title cannot be produced\n"
+					);
 					continue;
 				}
 
@@ -246,7 +247,8 @@ class ImportImages extends Maintenance {
 
 						if ( $dupes ) {
 							$this->output(
-								"{$base} already exists as {$dupes[0]->getName()}, skipping\n" );
+								"{$base} already exists as {$dupes[0]->getName()}, skipping\n"
+							);
 							$skipped++;
 							continue;
 						}
@@ -274,7 +276,8 @@ class ImportImages extends Maintenance {
 						if ( $wgUser === false ) {
 							# user does not exist in target wiki
 							$this->output(
-								"failed: user '$real_user' does not exist in target wiki." );
+								"failed: user '$real_user' does not exist in target wiki."
+							);
 							continue;
 						}
 					}
@@ -291,7 +294,8 @@ class ImportImages extends Maintenance {
 							$commentText = file_get_contents( $f );
 							if ( !$commentText ) {
 								$this->output(
-									" Failed to load comment file {$f}, using default comment. " );
+									" Failed to load comment file {$f}, using default comment. "
+								);
 							}
 						}
 					}
