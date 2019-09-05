@@ -6071,7 +6071,7 @@ $wgSessionName = false;
  * which case there is a possibility of an attacker discovering the names of revdeleted users, so
  * it is best to use this in conjunction with $wgSecretKey being set).
  */
-$wgCookieSetOnAutoblock = false;
+$wgCookieSetOnAutoblock = true;
 
 /**
  * Whether to set a cookie when a logged-out user is blocked. Doing so means that a blocked user,
@@ -6080,7 +6080,7 @@ $wgCookieSetOnAutoblock = false;
  * case there is a possibility of an attacker discovering the names of revdeleted users, so it
  * is best to use this in conjunction with $wgSecretKey being set).
  */
-$wgCookieSetOnIpBlock = false;
+$wgCookieSetOnIpBlock = true;
 
 /** @} */ # end of cookie settings }
 
