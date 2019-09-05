@@ -31,6 +31,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @ingroup API
  */
 abstract class ApiQueryBase extends ApiBase {
+	use ApiQueryBlockInfoTrait;
 
 	private $mQueryModule, $mDb, $tables, $where, $fields, $options, $join_conds;
 
@@ -424,47 +425,6 @@ abstract class ApiQueryBase extends ApiBase {
 		return Hooks::run( 'ApiQueryBaseProcessRow', [ $this, $row, &$data, &$hookData ] );
 	}
 
-	/**
-	 * Filters hidden users (where the user doesn't have the right to view them)
-	 * Also adds relevant block information
-	 *
-	 * @param bool $showBlockInfo
-	 * @return void
-	 */
-	public function showHiddenUsersAddBlockInfo( $showBlockInfo ) {
-		$db = $this->getDB();
-
-		$tables = [ 'ipblocks' ];
-		$fields = [ 'ipb_deleted' ];
-		$joinConds = [
-			'blk' => [ 'LEFT JOIN', [
-				'ipb_user=user_id',
-				'ipb_expiry > ' . $db->addQuotes( $db->timestamp() ),
-			] ],
-		];
-
-		if ( $showBlockInfo ) {
-			$actorQuery = ActorMigration::newMigration()->getJoin( 'ipb_by' );
-			$commentQuery = CommentStore::getStore()->getJoin( 'ipb_reason' );
-			$tables += $actorQuery['tables'] + $commentQuery['tables'];
-			$joinConds += $actorQuery['joins'] + $commentQuery['joins'];
-			$fields = array_merge( $fields, [
-				'ipb_id',
-				'ipb_expiry',
-				'ipb_timestamp'
-			], $actorQuery['fields'], $commentQuery['fields'] );
-		}
-
-		$this->addTables( [ 'blk' => $tables ] );
-		$this->addFields( $fields );
-		$this->addJoinConds( $joinConds );
-
-		// Don't show hidden names
-		if ( !$this->getPermissionManager()->userHasRight( $this->getUser(), 'hideuser' ) ) {
-			$this->addWhere( 'ipb_deleted = 0 OR ipb_deleted IS NULL' );
-		}
-	}
-
 	/** @} */
 
 	/************************************************************************//**
@@ -607,6 +567,26 @@ abstract class ApiQueryBase extends ApiBase {
 			'suppressrevision',
 			'viewsuppressed'
 		);
+	}
+
+	/** @} */
+
+	/************************************************************************//**
+	 * @name   Deprecated methods
+	 * @{
+	 */
+
+	/**
+	 * Filters hidden users (where the user doesn't have the right to view them)
+	 * Also adds relevant block information
+	 *
+	 * @deprecated since 1.34, use ApiQueryBlockInfoTrait instead
+	 * @param bool $showBlockInfo
+	 * @return void
+	 */
+	public function showHiddenUsersAddBlockInfo( $showBlockInfo ) {
+		wfDeprecated( __METHOD__, '1.34' );
+		return $this->addBlockInfoToQuery( $showBlockInfo );
 	}
 
 	/** @} */

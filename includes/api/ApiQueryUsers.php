@@ -20,12 +20,15 @@
  * @file
  */
 
+use MediaWiki\Block\DatabaseBlock;
+
 /**
  * Query module to get information about a list of users
  *
  * @ingroup API
  */
 class ApiQueryUsers extends ApiQueryBase {
+	use ApiQueryBlockInfoTrait;
 
 	private $tokenFunctions, $prop;
 
@@ -150,7 +153,7 @@ class ApiQueryUsers extends ApiQueryBase {
 				$this->addWhereFld( 'user_id', $userids );
 			}
 
-			$this->showHiddenUsersAddBlockInfo( isset( $this->prop['blockinfo'] ) );
+			$this->addBlockInfoToQuery( isset( $this->prop['blockinfo'] ) );
 
 			$data = [];
 			$res = $this->select( __METHOD__ );
@@ -232,13 +235,7 @@ class ApiQueryUsers extends ApiQueryBase {
 					$data[$key]['hidden'] = true;
 				}
 				if ( isset( $this->prop['blockinfo'] ) && !is_null( $row->ipb_by_text ) ) {
-					$data[$key]['blockid'] = (int)$row->ipb_id;
-					$data[$key]['blockedby'] = $row->ipb_by_text;
-					$data[$key]['blockedbyid'] = (int)$row->ipb_by;
-					$data[$key]['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $row->ipb_timestamp );
-					$data[$key]['blockreason'] = $commentStore->getComment( 'ipb_reason', $row )
-						->text;
-					$data[$key]['blockexpiry'] = $row->ipb_expiry;
+					$data[$key] += $this->getBlockDetails( DatabaseBlock::newFromRow( $row ) );
 				}
 
 				if ( isset( $this->prop['emailable'] ) ) {

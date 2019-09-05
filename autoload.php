@@ -89,6 +89,7 @@ $wgAutoloadLocalClasses = [
 	'ApiQueryBacklinks' => __DIR__ . '/includes/api/ApiQueryBacklinks.php',
 	'ApiQueryBacklinksprop' => __DIR__ . '/includes/api/ApiQueryBacklinksprop.php',
 	'ApiQueryBase' => __DIR__ . '/includes/api/ApiQueryBase.php',
+	'ApiQueryBlockInfoTrait' => __DIR__ . '/includes/api/ApiQueryBlockInfoTrait.php',
 	'ApiQueryBlocks' => __DIR__ . '/includes/api/ApiQueryBlocks.php',
 	'ApiQueryCategories' => __DIR__ . '/includes/api/ApiQueryCategories.php',
 	'ApiQueryCategoryInfo' => __DIR__ . '/includes/api/ApiQueryCategoryInfo.php',
