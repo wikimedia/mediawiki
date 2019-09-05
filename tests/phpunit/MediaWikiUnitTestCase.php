@@ -20,6 +20,7 @@
  */
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Exception;
 
 /**
  * Base class for unit tests.
@@ -81,6 +82,22 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		// Not by ref because tests must not be able to modify the snapshot.
 		foreach ( self::$unitGlobals as $key => $value ) {
 			$GLOBALS[ $key ] = $value;
+		}
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	protected function runTest() {
+		try {
+			return parent::runTest();
+		} catch ( ConfigException $exception ) {
+			throw new Exception(
+				'Config variables must be mocked, they cannot be accessed directly in tests which extend '
+				. self::class,
+				$exception->getCode(),
+				$exception
+			);
 		}
 	}
 
