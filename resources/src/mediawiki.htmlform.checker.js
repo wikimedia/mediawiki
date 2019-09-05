@@ -3,6 +3,14 @@
 	// FIXME: mw.htmlform.Element also sets this to empty object
 	mw.htmlform = {};
 
+	function debounce( delay, callback ) {
+		var timeout;
+		return function () {
+			clearTimeout( timeout );
+			timeout = setTimeout( Function.prototype.apply.bind( callback, this, arguments ), delay );
+		};
+	}
+
 	/**
 	 * @class mw.htmlform.Checker
 	 */
@@ -52,7 +60,7 @@
 		if ( $extraElements ) {
 			$e = $e.add( $extraElements );
 		}
-		$e.on( events, $.debounce( 1000, this.validate.bind( this ) ) );
+		$e.on( events, debounce( 1000, this.validate.bind( this ) ) );
 
 		return this;
 	};
