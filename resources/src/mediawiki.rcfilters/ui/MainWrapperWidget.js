@@ -42,7 +42,7 @@ MainWrapperWidget = function MwRcfiltersUiMainWrapperWidget(
 	this.$filtersContainer = config.$filtersContainer;
 	this.$changesListContainer = config.$changesListContainer;
 	this.$formContainer = config.$formContainer;
-	this.$overlay = $( '<div>' ).addClass( 'mw-rcfilters-ui-overlay' );
+	this.$overlay = $( '<div>' ).addClass( 'mw-rcfilters-ui-overlay oo-ui-defaultOverlay' );
 	this.$wrapper = config.$wrapper || this.$element;
 
 	this.savedLinksListWidget = new SavedLinksListWidget(
