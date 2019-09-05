@@ -1860,11 +1860,7 @@ return [
 			'styles/mw.rcfilters.ui.FilterTagMultiselectWidgetMobile.less'
 		],
 		'skinStyles' => [
-			'vector' => [
-				'styles/mw.rcfilters.ui.Overlay.vector.less',
-			],
 			'monobook' => [
-				'styles/mw.rcfilters.ui.Overlay.monobook.less',
 				'styles/mw.rcfilters.ui.CapsuleItemWidget.monobook.less',
 				'styles/mw.rcfilters.ui.FilterMenuOptionWidget.monobook.less',
 			],
