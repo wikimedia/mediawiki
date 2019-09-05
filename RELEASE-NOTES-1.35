@@ -117,6 +117,8 @@ because of Phabricator reports.
   getFallbacksFor, getFallbacksIncludingSiteLanguage. Use the corresponding new
   methods on the LanguageFallback class: getFirst, getAll, and
   getAllIncludingSiteLanguage.
+* AbstractBlock methods setBlocker(), getBlocker() are deprecated and will
+  become internal implementation of DatabaseBlock.
 * Title::countRevisionsBetween has been deprecated and moved into RevisionStore.
 * AbstractBlock::getReason is deprecated, since reasons are actually stored as
   CommentStoreComments, and getReason returns a string with no caller control

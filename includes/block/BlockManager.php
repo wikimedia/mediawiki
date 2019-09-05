@@ -158,7 +158,6 @@ class BlockManager {
 			} else {
 				$block = new CompositeBlock( [
 					'address' => $ip,
-					'byText' => 'MediaWiki default',
 					'reason' => new Message( 'blockedtext-composite-reason' ),
 					'originalBlocks' => $blocks,
 				] );
@@ -202,14 +201,12 @@ class BlockManager {
 			// Local list
 			if ( $this->isLocallyBlockedProxy( $ip ) ) {
 				$blocks[] = new SystemBlock( [
-					'byText' => wfMessage( 'proxyblocker' )->text(),
 					'reason' => new Message( 'proxyblockreason' ),
 					'address' => $ip,
 					'systemBlock' => 'proxy',
 				] );
 			} elseif ( $isAnon && $this->isDnsBlacklisted( $ip ) ) {
 				$blocks[] = new SystemBlock( [
-					'byText' => wfMessage( 'sorbs' )->text(),
 					'reason' => new Message( 'sorbsreason' ),
 					'address' => $ip,
 					'systemBlock' => 'dnsbl',
@@ -221,7 +218,6 @@ class BlockManager {
 		if ( $isAnon && IP::isInRanges( $ip, $this->options->get( 'SoftBlockRanges' ) ) ) {
 			$blocks[] = new SystemBlock( [
 				'address' => $ip,
-				'byText' => 'MediaWiki default',
 				'reason' => new Message( 'softblockrangesreason', [ $ip ] ),
 				'anonOnly' => true,
 				'systemBlock' => 'wgSoftBlockRanges',

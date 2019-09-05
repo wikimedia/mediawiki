@@ -192,4 +192,17 @@ class CompositeBlock extends AbstractBlock {
 		return $this->methodReturnsValue( __FUNCTION__, true );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
+	public function getBy() {
+		return 0;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getByName() {
+		return '';
+	}
 }
