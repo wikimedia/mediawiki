@@ -4991,6 +4991,8 @@ $wgBlockAllowsUTEdit = true;
 
 /**
  * Allow sysops to ban users from accessing Emailuser
+ * @deprecated since 1.34; `$wgGroupPermissions['sysop']['blockemail'] = true;`
+ * should be used instead
  */
 $wgSysopEmailBans = true;
 

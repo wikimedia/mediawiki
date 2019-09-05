@@ -182,7 +182,6 @@ class ApiBlockTest extends ApiTestCase {
 		$this->setMwGlobals( [
 			'wgEnableEmail' => true,
 			'wgEnableUserEmail' => true,
-			'wgSysopEmailBans' => true,
 		] );
 
 		$res = $this->doBlock( [ 'noemail' => '' ] );
@@ -200,7 +199,6 @@ class ApiBlockTest extends ApiTestCase {
 		$this->setMwGlobals( [
 			'wgEnableEmail' => true,
 			'wgEnableUserEmail' => true,
-			'wgSysopEmailBans' => true,
 		] );
 
 		$this->setExpectedException( ApiUsageException::class,
