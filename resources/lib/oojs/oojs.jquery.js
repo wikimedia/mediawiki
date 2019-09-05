@@ -1,28 +1,28 @@
 /*!
- * OOjs v2.2.2 optimised for jQuery
+ * OOjs v3.0.0 optimised for jQuery
  * https://www.mediawiki.org/wiki/OOjs
  *
- * Copyright 2011-2018 OOjs Team and other contributors.
+ * Copyright 2011-2019 OOjs Team and other contributors.
  * Released under the MIT license
  * https://oojs.mit-license.org
  *
- * Date: 2018-06-14T20:13:14Z
+ * Date: 2019-08-28T15:41:06Z
  */
 ( function ( global ) {
 
 'use strict';
 
-/* exported toString */
+/* exported slice, toString */
+/**
+ * Namespace for all classes, static methods and static properties.
+ * @namespace OO
+ */
 var
-	/**
-	 * Namespace for all classes, static methods and static properties.
-	 * @class OO
-	 * @singleton
-	 */
-	oo = {},
-	// Optimisation: Local reference to Object.prototype.hasOwnProperty
-	hasOwn = oo.hasOwnProperty,
-	toString = oo.toString;
+	OO = {},
+	// Optimisation: Local reference to methods from a global prototype
+	hasOwn = OO.hasOwnProperty,
+	slice = Array.prototype.slice,
+	toString = OO.toString;
 
 /* Class Methods */
 
@@ -31,9 +31,11 @@ var
  *
  * Currently this just initializes an empty static object.
  *
+ * @memberOf OO
+ * @method initClass
  * @param {Function} fn
  */
-oo.initClass = function ( fn ) {
+OO.initClass = function ( fn ) {
 	fn.static = fn.static || {};
 };
 
@@ -71,11 +73,13 @@ oo.initClass = function ( fn ) {
  *     x.walk();
  *     x instanceof Thing && x instanceof Person && x instanceof Jumper;
  *
+ * @memberOf OO
+ * @method inheritClass
  * @param {Function} targetFn
  * @param {Function} originFn
  * @throws {Error} If target already inherits from origin
  */
-oo.inheritClass = function ( targetFn, originFn ) {
+OO.inheritClass = function ( targetFn, originFn ) {
 	var targetConstructor;
 
 	if ( !originFn ) {
@@ -102,7 +106,7 @@ oo.inheritClass = function ( targetFn, originFn ) {
 	} );
 
 	// Extend static properties - always initialize both sides
-	oo.initClass( originFn );
+	OO.initClass( originFn );
 	targetFn.static = Object.create( originFn.static );
 };
 
@@ -134,10 +138,12 @@ oo.inheritClass = function ( targetFn, originFn ) {
  *     OO.inheritClass( FooBar, Foo );
  *     OO.mixinClass( FooBar, ContextLazyLoad );
  *
+ * @memberOf OO
+ * @method mixinClass
  * @param {Function} targetFn
  * @param {Function} originFn
  */
-oo.mixinClass = function ( targetFn, originFn ) {
+OO.mixinClass = function ( targetFn, originFn ) {
 	var key;
 
 	if ( !originFn ) {
@@ -152,7 +158,7 @@ oo.mixinClass = function ( targetFn, originFn ) {
 	}
 
 	// Copy static properties - always initialize both sides
-	oo.initClass( targetFn );
+	OO.initClass( targetFn );
 	if ( originFn.static ) {
 		for ( key in originFn.static ) {
 			if ( hasOwn.call( originFn.static, key ) ) {
@@ -160,7 +166,7 @@ oo.mixinClass = function ( targetFn, originFn ) {
 			}
 		}
 	} else {
-		oo.initClass( originFn );
+		OO.initClass( originFn );
 	}
 };
 
@@ -169,11 +175,13 @@ oo.mixinClass = function ( targetFn, originFn ) {
  *
  * Every class is considered a subclass of Object and of itself.
  *
+ * @memberOf OO
+ * @method isSubClass
  * @param {Function} testFn The class to be tested
  * @param {Function} baseFn The base class
  * @return {boolean} Whether testFn is a subclass of baseFn (or equal to it)
  */
-oo.isSubclass = function ( testFn, baseFn ) {
+OO.isSubclass = function ( testFn, baseFn ) {
 	return testFn === baseFn || testFn.prototype instanceof baseFn;
 };
 
@@ -188,11 +196,13 @@ oo.isSubclass = function ( testFn, baseFn ) {
  * is undefined. Instead of throwing an error, this function will return undefined in
  * that case.
  *
+ * @memberOf OO
+ * @method getProp
  * @param {Object} obj
- * @param {...Mixed} [keys]
+ * @param {...any} [keys]
  * @return {Object|undefined} obj[arguments[1]][arguments[2]].... or undefined
  */
-oo.getProp = function ( obj ) {
+OO.getProp = function ( obj ) {
 	var i,
 		retval = obj;
 	for ( i = 1; i < arguments.length; i++ ) {
@@ -209,17 +219,19 @@ oo.getProp = function ( obj ) {
  * Set a deeply nested property of an object using variadic arguments, protecting against
  * undefined property errors.
  *
- * `oo.setProp( obj, 'foo', 'bar', 'baz' );` is equivalent to `obj.foo.bar = baz;` except that
+ * `OO.setProp( obj, 'foo', 'bar', 'baz' );` is equivalent to `obj.foo.bar = baz;` except that
  * the former protects against JS errors if one of the intermediate properties is
  * undefined. Instead of throwing an error, undefined intermediate properties will be
  * initialized to an empty object. If an intermediate property is not an object, or if obj itself
  * is not an object, this function will silently abort.
  *
+ * @memberOf OO
+ * @method setProp
  * @param {Object} obj
- * @param {...Mixed} [keys]
- * @param {Mixed} [value]
+ * @param {...any} [keys]
+ * @param {any} [value]
  */
-oo.setProp = function ( obj ) {
+OO.setProp = function ( obj ) {
 	var i,
 		prop = obj;
 	if ( Object( obj ) !== obj || arguments.length < 2 ) {
@@ -241,10 +253,12 @@ oo.setProp = function ( obj ) {
  * Delete a deeply nested property of an object using variadic arguments, protecting against
  * undefined property errors, and deleting resulting empty objects.
  *
+ * @memberOf OO
+ * @method deleteProp
  * @param {Object} obj
- * @param {...Mixed} [keys]
+ * @param {...any} [keys]
  */
-oo.deleteProp = function ( obj ) {
+OO.deleteProp = function ( obj ) {
 	var i,
 		prop = obj,
 		props = [ prop ];
@@ -252,7 +266,10 @@ oo.deleteProp = function ( obj ) {
 		return;
 	}
 	for ( i = 1; i < arguments.length - 1; i++ ) {
-		if ( prop[ arguments[ i ] ] === undefined || Object( prop[ arguments[ i ] ] ) !== prop[ arguments[ i ] ] ) {
+		if (
+			prop[ arguments[ i ] ] === undefined ||
+			Object( prop[ arguments[ i ] ] ) !== prop[ arguments[ i ] ]
+		) {
 			return;
 		}
 		prop = prop[ arguments[ i ] ];
@@ -260,7 +277,11 @@ oo.deleteProp = function ( obj ) {
 	}
 	delete prop[ arguments[ i ] ];
 	// Walk back through props removing any plain empty objects
-	while ( props.length > 1 && ( prop = props.pop() ) && oo.isPlainObject( prop ) && !Object.keys( prop ).length ) {
+	while (
+		props.length > 1 &&
+		( prop = props.pop() ) &&
+		OO.isPlainObject( prop ) && !Object.keys( prop ).length
+	) {
 		delete props[ props.length - 1 ][ arguments[ props.length ] ];
 	}
 };
@@ -284,10 +305,12 @@ oo.deleteProp = function ( obj ) {
  *     foo2.getAge(); // 21
  *     foo.getAge(); // 22
  *
+ * @memberOf OO
+ * @method cloneObject
  * @param {Object} origin
  * @return {Object} Clone of origin
  */
-oo.cloneObject = function ( origin ) {
+OO.cloneObject = function ( origin ) {
 	var key, r;
 
 	r = Object.create( origin.constructor.prototype );
@@ -304,10 +327,12 @@ oo.cloneObject = function ( origin ) {
 /**
  * Get an array of all property values in an object.
  *
+ * @memberOf OO
+ * @method getObjectValues
  * @param {Object} obj Object to get values from
  * @return {Array} List of object values
  */
-oo.getObjectValues = function ( obj ) {
+OO.getObjectValues = function ( obj ) {
 	var key, values;
 
 	if ( obj !== Object( obj ) ) {
@@ -335,12 +360,14 @@ oo.getObjectValues = function ( obj ) {
  * above 0 if `a > b`, below 0 if `a < b`, and 0 if `a == b`), you can use
  * `searchFunc = cmp.bind( null, value )`.
  *
+ * @memberOf OO
+ * @method binarySearch
  * @param {Array} arr Array to search in
  * @param {Function} searchFunc Search function
  * @param {boolean} [forInsertion] If not found, return index where val could be inserted
  * @return {number|null} Index where val was found, or null if not found
  */
-oo.binarySearch = function ( arr, searchFunc, forInsertion ) {
+OO.binarySearch = function ( arr, searchFunc, forInsertion ) {
 	var mid, cmpResult,
 		left = 0,
 		right = arr.length;
@@ -369,13 +396,15 @@ oo.binarySearch = function ( arr, searchFunc, forInsertion ) {
  *
  * If either a or b is null or undefined it will be treated as an empty object.
  *
+ * @memberOf OO
+ * @method compare
  * @param {Object|undefined|null} a First object to compare
  * @param {Object|undefined|null} b Second object to compare
  * @param {boolean} [asymmetrical] Whether to check only that a's values are equal to b's
  *  (i.e. a is a subset of b)
  * @return {boolean} If the objects contain the same values as each other
  */
-oo.compare = function ( a, b, asymmetrical ) {
+OO.compare = function ( a, b, asymmetrical ) {
 	var aValue, bValue, aType, bType, k;
 
 	if ( a === b ) {
@@ -405,12 +434,12 @@ oo.compare = function ( a, b, asymmetrical ) {
 				( aType === 'string' || aType === 'number' || aType === 'boolean' ) &&
 				aValue !== bValue
 			) ||
-			( aValue === Object( aValue ) && !oo.compare( aValue, bValue, true ) ) ) {
+			( aValue === Object( aValue ) && !OO.compare( aValue, bValue, true ) ) ) {
 			return false;
 		}
 	}
 	// If the check is not asymmetrical, recursing with the arguments swapped will verify our result
-	return asymmetrical ? true : oo.compare( b, a, true );
+	return asymmetrical ? true : OO.compare( b, a, true );
 };
 
 /**
@@ -418,12 +447,17 @@ oo.compare = function ( a, b, asymmetrical ) {
  *
  * Copies are deep, and will either be an object or an array depending on `source`.
  *
+ * @memberOf OO
+ * @method copy
  * @param {Object} source Object to copy
- * @param {Function} [leafCallback] Applied to leaf values after they are cloned but before they are added to the clone
- * @param {Function} [nodeCallback] Applied to all values before they are cloned.  If the nodeCallback returns a value other than undefined, the returned value is used instead of attempting to clone.
+ * @param {Function} [leafCallback] Applied to leaf values after they are cloned but before they are
+ *  added to the clone
+ * @param {Function} [nodeCallback] Applied to all values before they are cloned. If the
+ *  nodeCallback returns a value other than undefined, the returned value is used instead of
+ *  attempting to clone.
  * @return {Object} Copy of source object
  */
-oo.copy = function ( source, leafCallback, nodeCallback ) {
+OO.copy = function ( source, leafCallback, nodeCallback ) {
 	var key, destination;
 
 	if ( nodeCallback ) {
@@ -445,7 +479,7 @@ oo.copy = function ( source, leafCallback, nodeCallback ) {
 		return leafCallback ?
 			leafCallback( source.cloneNode( true ) ) :
 			source.cloneNode( true );
-	} else if ( oo.isPlainObject( source ) ) {
+	} else if ( OO.isPlainObject( source ) ) {
 		// Plain objects (fall through)
 		destination = {};
 	} else {
@@ -455,7 +489,7 @@ oo.copy = function ( source, leafCallback, nodeCallback ) {
 
 	// source is an array or a plain object
 	for ( key in source ) {
-		destination[ key ] = oo.copy( source[ key ], leafCallback, nodeCallback );
+		destination[ key ] = OO.copy( source[ key ], leafCallback, nodeCallback );
 	}
 
 	// This is an internal node, so we don't apply the leafCallback.
@@ -475,11 +509,13 @@ oo.copy = function ( source, leafCallback, nodeCallback ) {
  * function, we call that function and use its return value rather than hashing the object
  * ourselves. This allows classes to define custom hashing.
  *
+ * @memberOf OO
+ * @method getHash
  * @param {Object} val Object to generate hash for
  * @return {string} Hash of object
  */
-oo.getHash = function ( val ) {
-	return JSON.stringify( val, oo.getHash.keySortReplacer );
+OO.getHash = function ( val ) {
+	return JSON.stringify( val, OO.getHash.keySortReplacer );
 };
 
 /**
@@ -487,12 +523,13 @@ oo.getHash = function ( val ) {
  *
  * This is a callback passed into JSON.stringify.
  *
+ * @memberOf OO
  * @method getHash_keySortReplacer
  * @param {string} key Property name of value being replaced
- * @param {Mixed} val Property value to replace
- * @return {Mixed} Replacement value
+ * @param {any} val Property value to replace
+ * @return {any} Replacement value
  */
-oo.getHash.keySortReplacer = function ( key, val ) {
+OO.getHash.keySortReplacer = function ( key, val ) {
 	var normalized, keys, i, len;
 	if ( val && typeof val.getHashObject === 'function' ) {
 		// This object has its own custom hash function, use it
@@ -517,12 +554,14 @@ oo.getHash.keySortReplacer = function ( key, val ) {
 };
 
 /**
- * Get the unique values of an array, removing duplicates
+ * Get the unique values of an array, removing duplicates.
  *
+ * @memberOf OO
+ * @method unique
  * @param {Array} arr Array
  * @return {Array} Unique values in array
  */
-oo.unique = function ( arr ) {
+OO.unique = function ( arr ) {
 	return arr.reduce( function ( result, current ) {
 		if ( result.indexOf( current ) === -1 ) {
 			result.push( current );
@@ -539,10 +578,12 @@ oo.unique = function ( arr ) {
  * By building an object (with the values for keys) in parallel with
  * the array, a new item's existence in the union can be computed faster.
  *
+ * @memberOf OO
+ * @method simpleArrayUnion
  * @param {...Array} arrays Arrays to union
  * @return {Array} Union of the arrays
  */
-oo.simpleArrayUnion = function () {
+OO.simpleArrayUnion = function () {
 	var i, ilen, arr, j, jlen,
 		obj = {},
 		result = [];
@@ -600,11 +641,13 @@ function simpleArrayCombine( a, b, includeB ) {
  *
  * Arrays values must be convertable to object keys (strings).
  *
+ * @memberOf OO
+ * @method simpleArrayIntersection
  * @param {Array} a First array
  * @param {Array} b Second array
  * @return {Array} Intersection of arrays
  */
-oo.simpleArrayIntersection = function ( a, b ) {
+OO.simpleArrayIntersection = function ( a, b ) {
 	return simpleArrayCombine( a, b, true );
 };
 
@@ -613,39 +656,38 @@ oo.simpleArrayIntersection = function ( a, b ) {
  *
  * Arrays values must be convertable to object keys (strings).
  *
+ * @memberOf OO
+ * @method simpleArrayDifference
  * @param {Array} a First array
  * @param {Array} b Second array
  * @return {Array} Intersection of arrays
  */
-oo.simpleArrayDifference = function ( a, b ) {
+OO.simpleArrayDifference = function ( a, b ) {
 	return simpleArrayCombine( a, b, false );
 };
 
-/* global $ */
+OO.isPlainObject = $.isPlainObject;
 
-oo.isPlainObject = $.isPlainObject;
-
-/* global hasOwn */
+/* global hasOwn, slice */
 
 ( function () {
 
 	/**
-	 * @class OO.EventEmitter
-	 *
-	 * @constructor
+	 * @class
 	 */
-	oo.EventEmitter = function OoEventEmitter() {
+	OO.EventEmitter = function OoEventEmitter() {
 		// Properties
 
 		/**
 		 * Storage of bound event handlers by event name.
 		 *
-		 * @property
+		 * @private
+		 * @property {Object} bindings
 		 */
 		this.bindings = {};
 	};
 
-	oo.initClass( oo.EventEmitter );
+	OO.initClass( OO.EventEmitter );
 
 	/* Private helper functions */
 
@@ -656,7 +698,7 @@ oo.isPlainObject = $.isPlainObject;
 	 *
 	 * @private
 	 * @param {Function|string} method Function or method name
-	 * @param {Mixed} context The context of the call
+	 * @param {any} context The context of the call
 	 * @throws {Error} A method name is given but there is no context
 	 * @throws {Error} In the context object, no property exists with the given name
 	 * @throws {Error} In the context object, the named property is not a function
@@ -708,10 +750,10 @@ oo.isPlainObject = $.isPlainObject;
 	 * @param {Function|string} method Function or method name to call when event occurs
 	 * @param {Array} [args] Arguments to pass to listener, will be prepended to emitted arguments
 	 * @param {Object} [context=null] Context object for function or method call
-	 * @chainable
+	 * @return {OO.EventEmitter}
 	 * @throws {Error} Listener argument is not a function or a valid method name
 	 */
-	oo.EventEmitter.prototype.on = function ( event, method, args, context ) {
+	OO.EventEmitter.prototype.on = function ( event, method, args, context ) {
 		validateMethod( method, context );
 
 		// Ensure consistent object shape (optimisation)
@@ -729,9 +771,9 @@ oo.isPlainObject = $.isPlainObject;
 	 *
 	 * @param {string} event Type of event to listen to
 	 * @param {Function} listener Listener to call when event occurs
-	 * @chainable
+	 * @return {OO.EventEmitter}
 	 */
-	oo.EventEmitter.prototype.once = function ( event, listener ) {
+	OO.EventEmitter.prototype.once = function ( event, listener ) {
 		validateMethod( listener );
 
 		// Ensure consistent object shape (optimisation)
@@ -751,10 +793,10 @@ oo.isPlainObject = $.isPlainObject;
 	 * @param {Function|string} [method] Listener to remove. Must be in the same form as was passed
 	 * to "on". Omit to remove all listeners.
 	 * @param {Object} [context=null] Context object function or method call
-	 * @chainable
+	 * @return {OO.EventEmitter}
 	 * @throws {Error} Listener argument is not a function or a valid method name
 	 */
-	oo.EventEmitter.prototype.off = function ( event, method, context ) {
+	OO.EventEmitter.prototype.off = function ( event, method, context ) {
 		var i, bindings;
 
 		if ( arguments.length === 1 ) {
@@ -794,54 +836,141 @@ oo.isPlainObject = $.isPlainObject;
 	/**
 	 * Emit an event.
 	 *
+	 * All listeners for the event will be called synchronously, in an
+	 * unspecified order. If any listeners throw an exception, this won't
+	 * disrupt the calls to the remaining listeners; however, the exception
+	 * won't be thrown until the next tick.
+	 *
+	 * Listeners should avoid mutating the emitting object, as this is
+	 * something of an anti-pattern which can easily result in
+	 * hard-to-understand code with hidden side-effects and dependencies.
+	 *
 	 * @param {string} event Type of event
-	 * @param {...Mixed} args First in a list of variadic arguments passed to event handler (optional)
+	 * @param {...any} args First in a list of variadic arguments
+	 *  passed to event handler (optional)
 	 * @return {boolean} Whether the event was handled by at least one listener
 	 */
-	oo.EventEmitter.prototype.emit = function ( event ) {
-		var args = [],
-			i, len, binding, bindings, method;
+	OO.EventEmitter.prototype.emit = function ( event ) {
+		var bindings, args, i, binding, method;
 
-		if ( hasOwn.call( this.bindings, event ) ) {
-			// Slicing ensures that we don't get tripped up by event handlers that add/remove bindings
-			bindings = this.bindings[ event ].slice();
-			for ( i = 1, len = arguments.length; i < len; i++ ) {
-				args.push( arguments[ i ] );
+		if ( !hasOwn.call( this.bindings, event ) ) {
+			return false;
+		}
+
+		// Slicing ensures that we don't get tripped up by event
+		// handlers that add/remove bindings
+		bindings = this.bindings[ event ].slice();
+		args = slice.call( arguments, 1 );
+		for ( i = 0; i < bindings.length; i++ ) {
+			binding = bindings[ i ];
+			if ( typeof binding.method === 'string' ) {
+				// Lookup method by name (late binding)
+				method = binding.context[ binding.method ];
+			} else {
+				method = binding.method;
 			}
-			for ( i = 0, len = bindings.length; i < len; i++ ) {
-				binding = bindings[ i ];
-				if ( typeof binding.method === 'string' ) {
-					// Lookup method by name (late binding)
-					method = binding.context[ binding.method ];
-				} else {
-					method = binding.method;
-				}
-				if ( binding.once ) {
-					// Must unbind before calling method to avoid
-					// any nested triggers.
-					this.off( event, method );
-				}
+			if ( binding.once ) {
+				// Unbind before calling, to avoid any nested triggers.
+				this.off( event, method );
+			}
+			try {
 				method.apply(
 					binding.context,
 					binding.args ? binding.args.concat( args ) : args
 				);
+			} catch ( e ) {
+				// If one listener has an unhandled error, don't have it
+				// take down the emitter. But rethrow asynchronously so
+				// debuggers can break with a full async stack trace.
+				setTimeout( ( function ( error ) {
+					throw error;
+				} ).bind( null, e ) );
 			}
-			return true;
+
 		}
-		return false;
+		return true;
+	};
+
+	/**
+	 * Emit an event, propagating the first exception some listener throws
+	 *
+	 * All listeners for the event will be called synchronously, in an
+	 * unspecified order. If any listener throws an exception, this won't
+	 * disrupt the calls to the remaining listeners. The first exception
+	 * thrown will be propagated back to the caller; any others won't be
+	 * thrown until the next tick.
+	 *
+	 * Listeners should avoid mutating the emitting object, as this is
+	 * something of an anti-pattern which can easily result in
+	 * hard-to-understand code with hidden side-effects and dependencies.
+	 *
+	 * @param {string} event Type of event
+	 * @param {...any} args First in a list of variadic arguments
+	 *  passed to event handler (optional)
+	 * @return {boolean} Whether the event was handled by at least one listener
+	 */
+	OO.EventEmitter.prototype.emitThrow = function ( event ) {
+		// We tolerate code duplication with #emit, because the
+		// alternative is an extra level of indirection which will
+		// appear in very many stack traces.
+		var bindings, args, i, binding, method, firstError;
+
+		if ( !hasOwn.call( this.bindings, event ) ) {
+			return false;
+		}
+
+		// Slicing ensures that we don't get tripped up by event
+		// handlers that add/remove bindings
+		bindings = this.bindings[ event ].slice();
+		args = slice.call( arguments, 1 );
+		for ( i = 0; i < bindings.length; i++ ) {
+			binding = bindings[ i ];
+			if ( typeof binding.method === 'string' ) {
+				// Lookup method by name (late binding)
+				method = binding.context[ binding.method ];
+			} else {
+				method = binding.method;
+			}
+			if ( binding.once ) {
+				// Unbind before calling, to avoid any nested triggers.
+				this.off( event, method );
+			}
+			try {
+				method.apply(
+					binding.context,
+					binding.args ? binding.args.concat( args ) : args
+				);
+			} catch ( e ) {
+				if ( firstError === undefined ) {
+					firstError = e;
+				} else {
+					// If one listener has an unhandled error, don't have it
+					// take down the emitter. But rethrow asynchronously so
+					// debuggers can break with a full async stack trace.
+					setTimeout( ( function ( error ) {
+						throw error;
+					} ).bind( null, e ) );
+				}
+			}
+
+		}
+		if ( firstError !== undefined ) {
+			throw firstError;
+		}
+		return true;
 	};
 
 	/**
 	 * Connect event handlers to an object.
 	 *
 	 * @param {Object} context Object to call methods on when events occur
-	 * @param {Object.<string,string>|Object.<string,Function>|Object.<string,Array>} methods List of
-	 *  event bindings keyed by event name containing either method names, functions or arrays containing
-	 *  method name or function followed by a list of arguments to be passed to callback before emitted
-	 *  arguments.
-	 * @chainable
+	 * @param {Object.<string,string>|Object.<string,Function>|Object.<string,Array>} methods
+	 *  List of event bindings keyed by event name containing either method names, functions or
+	 *  arrays containing method name or function followed by a list of arguments to be passed to
+	 *  callback before emitted arguments.
+	 * @return {OO.EventEmitter}
 	 */
-	oo.EventEmitter.prototype.connect = function ( context, methods ) {
+	OO.EventEmitter.prototype.connect = function ( context, methods ) {
 		var method, args, event;
 
 		for ( event in methods ) {
@@ -863,17 +992,17 @@ oo.isPlainObject = $.isPlainObject;
 	 * Disconnect event handlers from an object.
 	 *
 	 * @param {Object} context Object to disconnect methods from
-	 * @param {Object.<string,string>|Object.<string,Function>|Object.<string,Array>} [methods] List of
-	 *  event bindings keyed by event name. Values can be either method names, functions or arrays
-	 *  containing a method name.
+	 * @param {Object.<string,string>|Object.<string,Function>|Object.<string,Array>} [methods]
+	 *  List of event bindings keyed by event name. Values can be either method names, functions or
+	 *  arrays containing a method name.
 	 *  NOTE: To allow matching call sites with connect(), array values are allowed to contain the
 	 *  parameters as well, but only the method name is used to find bindings. Tt is discouraged to
 	 *  have multiple bindings for the same event to the same listener, but if used (and only the
 	 *  parameters vary), disconnecting one variation of (event name, event listener, parameters)
 	 *  will disconnect other variations as well.
-	 * @chainable
+	 * @return {OO.EventEmitter}
 	 */
-	oo.EventEmitter.prototype.disconnect = function ( context, methods ) {
+	OO.EventEmitter.prototype.disconnect = function ( context, methods ) {
 		var i, event, method, bindings;
 
 		if ( methods ) {
@@ -908,17 +1037,16 @@ oo.isPlainObject = $.isPlainObject;
 ( function () {
 
 	/**
-	 * Contain and manage a list of OO.EventEmitter items.
+	 * Contain and manage a list of @{link OO.EventEmitter} items.
 	 *
 	 * Aggregates and manages their events collectively.
 	 *
-	 * This mixin must be used in a class that also mixes in OO.EventEmitter.
+	 * This mixin must be used in a class that also mixes in @{link OO.EventEmitter}.
 	 *
 	 * @abstract
-	 * @class OO.EmitterList
-	 * @constructor
+	 * @class
 	 */
-	oo.EmitterList = function OoEmitterList() {
+	OO.EmitterList = function OoEmitterList() {
 		this.items = [];
 		this.aggregateItemEvents = {};
 	};
@@ -926,32 +1054,34 @@ oo.isPlainObject = $.isPlainObject;
 	/* Events */
 
 	/**
-	 * Item has been added
+	 * Item has been added.
 	 *
-	 * @event add
+	 * @event OO.EmitterList#add
 	 * @param {OO.EventEmitter} item Added item
 	 * @param {number} index Index items were added at
 	 */
 
 	/**
-	 * Item has been moved to a new index
+	 * Item has been moved to a new index.
 	 *
-	 * @event move
+	 * @event OO.EmitterList#move
 	 * @param {OO.EventEmitter} item Moved item
 	 * @param {number} index Index item was moved to
 	 * @param {number} oldIndex The original index the item was in
 	 */
 
 	/**
-	 * Item has been removed
+	 * Item has been removed.
 	 *
-	 * @event remove
+	 * @event OO.EmitterList#remove
 	 * @param {OO.EventEmitter} item Removed item
 	 * @param {number} index Index the item was removed from
 	 */
 
 	/**
-	 * @event clear The list has been cleared of items
+	 * The list has been cleared of items.
+	 *
+	 * @event OO.EmitterList#clear
 	 */
 
 	/* Methods */
@@ -976,7 +1106,7 @@ oo.isPlainObject = $.isPlainObject;
 	 *
 	 * @return {OO.EventEmitter[]} Items in the list
 	 */
-	oo.EmitterList.prototype.getItems = function () {
+	OO.EmitterList.prototype.getItems = function () {
 		return this.items.slice( 0 );
 	};
 
@@ -986,7 +1116,7 @@ oo.isPlainObject = $.isPlainObject;
 	 * @param {OO.EventEmitter} item Requested item
 	 * @return {number} Index of the item
 	 */
-	oo.EmitterList.prototype.getItemIndex = function ( item ) {
+	OO.EmitterList.prototype.getItemIndex = function ( item ) {
 		return this.items.indexOf( item );
 	};
 
@@ -995,7 +1125,7 @@ oo.isPlainObject = $.isPlainObject;
 	 *
 	 * @return {number} Number of items in the list
 	 */
-	oo.EmitterList.prototype.getItemCount = function () {
+	OO.EmitterList.prototype.getItemCount = function () {
 		return this.items.length;
 	};
 
@@ -1004,7 +1134,7 @@ oo.isPlainObject = $.isPlainObject;
 	 *
 	 * @return {boolean} Group is empty
 	 */
-	oo.EmitterList.prototype.isEmpty = function () {
+	OO.EmitterList.prototype.isEmpty = function () {
 		return !this.items.length;
 	};
 
@@ -1016,13 +1146,12 @@ oo.isPlainObject = $.isPlainObject;
 	 * parameter containing the item that emitted the original event. Other arguments emitted from
 	 * the original event are passed through.
 	 *
-	 * @param {Object.<string,string|null>} events An object keyed by the name of the event that should be
-	 *  aggregated  (e.g., ‘click’) and the value of the new name to use (e.g., ‘groupClick’).
-	 *  A `null` value will remove aggregated events.
-
+	 * @param {Object.<string,string|null>} events An object keyed by the name of the event that
+	 *  should be aggregated  (e.g., ‘click’) and the value of the new name to use
+	 *  (e.g., ‘groupClick’). A `null` value will remove aggregated events.
 	 * @throws {Error} If aggregation already exists
 	 */
-	oo.EmitterList.prototype.aggregate = function ( events ) {
+	OO.EmitterList.prototype.aggregate = function ( events ) {
 		var i, item, add, remove, itemEvent, groupEvent;
 
 		for ( itemEvent in events ) {
@@ -1072,11 +1201,11 @@ oo.isPlainObject = $.isPlainObject;
 	 * @param {number} [index] Index to add items at. If no index is
 	 *  given, or if the index that is given is invalid, the item
 	 *  will be added at the end of the list.
-	 * @chainable
-	 * @fires add
-	 * @fires move
+	 * @return {OO.EmitterList}
+	 * @fires OO.EmitterList#add
+	 * @fires OO.EmitterList#move
 	 */
-	oo.EmitterList.prototype.addItems = function ( items, index ) {
+	OO.EmitterList.prototype.addItems = function ( items, index ) {
 		var i, oldIndex;
 
 		if ( !Array.isArray( items ) ) {
@@ -1117,7 +1246,7 @@ oo.isPlainObject = $.isPlainObject;
 	 * @return {number} The index the item was moved to
 	 * @throws {Error} If item is not in the list
 	 */
-	oo.EmitterList.prototype.moveItem = function ( item, newIndex ) {
+	OO.EmitterList.prototype.moveItem = function ( item, newIndex ) {
 		var existingIndex = this.items.indexOf( item );
 
 		if ( existingIndex === -1 ) {
@@ -1151,7 +1280,7 @@ oo.isPlainObject = $.isPlainObject;
 	 * different behavior when an item is inserted. For example,
 	 * inserted items may also be attached to the DOM or may
 	 * interact with some other nodes in certain ways. Extending
-	 * this method is allowed, but if overriden, the aggregation
+	 * this method is allowed, but if overridden, the aggregation
 	 * of events must be preserved, or behavior of emitted events
 	 * will be broken.
 	 *
@@ -1159,12 +1288,17 @@ oo.isPlainObject = $.isPlainObject;
 	 * parent method is called.
 	 *
 	 * @protected
-	 * @param {OO.EventEmitter} item Items to add
+	 * @param {OO.EventEmitter|Object} item Item to add
 	 * @param {number} index Index to add items at
 	 * @return {number} The index the item was added at
 	 */
-	oo.EmitterList.prototype.insertItem = function ( item, index ) {
+	OO.EmitterList.prototype.insertItem = function ( item, index ) {
 		var events, event;
+
+		// Throw an error if null or item is not an object.
+		if ( item === null || typeof item !== 'object' ) {
+			throw new Error( 'Expected object, but item is ' + typeof item );
+		}
 
 		// Add the item to event aggregation
 		if ( item.connect && item.disconnect ) {
@@ -1186,10 +1320,10 @@ oo.isPlainObject = $.isPlainObject;
 	 * Remove items.
 	 *
 	 * @param {OO.EventEmitter[]} items Items to remove
-	 * @chainable
-	 * @fires remove
+	 * @return {OO.EmitterList}
+	 * @fires OO.EmitterList#remove
 	 */
-	oo.EmitterList.prototype.removeItems = function ( items ) {
+	OO.EmitterList.prototype.removeItems = function ( items ) {
 		var i, item, index;
 
 		if ( !Array.isArray( items ) ) {
@@ -1218,12 +1352,12 @@ oo.isPlainObject = $.isPlainObject;
 	};
 
 	/**
-	 * Clear all items
+	 * Clear all items.
 	 *
-	 * @chainable
-	 * @fires clear
+	 * @return {OO.EmitterList}
+	 * @fires OO.EmitterList#clear
 	 */
-	oo.EmitterList.prototype.clearItems = function () {
+	OO.EmitterList.prototype.clearItems = function () {
 		var i, item,
 			cleared = this.items.splice( 0, this.items.length );
 
@@ -1251,19 +1385,19 @@ oo.isPlainObject = $.isPlainObject;
  * considered equal.
  *
  * When an item changes in a way that could affect their sorting behavior, it must
- * emit the itemSortChange event. This will cause it to be re-sorted automatically.
+ * emit the {@link OO.SortedEmitterList#event:itemSortChange itemSortChange} event.
+ * This will cause it to be re-sorted automatically.
  *
- * This mixin must be used in a class that also mixes in OO.EventEmitter.
+ * This mixin must be used in a class that also mixes in {@link OO.EventEmitter}.
  *
  * @abstract
- * @class OO.SortedEmitterList
- * @mixins OO.EmitterList
- * @constructor
+ * @class
+ * @mixes OO.EmitterList
  * @param {Function} sortingCallback Callback that compares two items.
  */
-oo.SortedEmitterList = function OoSortedEmitterList( sortingCallback ) {
+OO.SortedEmitterList = function OoSortedEmitterList( sortingCallback ) {
 	// Mixin constructors
-	oo.EmitterList.call( this );
+	OO.EmitterList.call( this );
 
 	this.sortingCallback = sortingCallback;
 
@@ -1278,7 +1412,7 @@ oo.SortedEmitterList = function OoSortedEmitterList( sortingCallback ) {
 	} );
 };
 
-oo.mixinClass( oo.SortedEmitterList, oo.EmitterList );
+OO.mixinClass( OO.SortedEmitterList, OO.EmitterList );
 
 /* Events */
 
@@ -1286,19 +1420,19 @@ oo.mixinClass( oo.SortedEmitterList, oo.EmitterList );
  * An item has changed properties that affect its sort positioning
  * inside the list.
  *
- * @private
- * @event itemSortChange
+ * @ignore
+ * @event OO.SortedEmitterList#itemSortChange
  */
 
 /* Methods */
 
 /**
  * Handle a case where an item changed a property that relates
- * to its sorted order
+ * to its sorted order.
  *
  * @param {OO.EventEmitter} item Item in the list
  */
-oo.SortedEmitterList.prototype.onItemSortChange = function ( item ) {
+OO.SortedEmitterList.prototype.onItemSortChange = function ( item ) {
 	// Remove the item
 	this.removeItems( item );
 	// Re-add the item so it is in the correct place
@@ -1313,7 +1447,7 @@ oo.SortedEmitterList.prototype.onItemSortChange = function ( item ) {
  *
  * @param {Function} sortingCallback Sorting callback
  */
-oo.SortedEmitterList.prototype.setSortingCallback = function ( sortingCallback ) {
+OO.SortedEmitterList.prototype.setSortingCallback = function ( sortingCallback ) {
 	var items = this.getItems();
 
 	this.sortingCallback = sortingCallback;
@@ -1329,9 +1463,9 @@ oo.SortedEmitterList.prototype.setSortingCallback = function ( sortingCallback )
  *
  * @param {OO.EventEmitter|OO.EventEmitter[]} items Item to add or
  *  an array of items to add
- * @chainable
+ * @return {OO.SortedEmitterList}
  */
-oo.SortedEmitterList.prototype.addItems = function ( items ) {
+OO.SortedEmitterList.prototype.addItems = function ( items ) {
 	var index, i, insertionIndex;
 
 	if ( !Array.isArray( items ) ) {
@@ -1377,10 +1511,10 @@ oo.SortedEmitterList.prototype.addItems = function ( items ) {
  * @param {OO.EventEmitter} item Items to insert
  * @return {number} The index the item should be inserted at
  */
-oo.SortedEmitterList.prototype.findInsertionIndex = function ( item ) {
+OO.SortedEmitterList.prototype.findInsertionIndex = function ( item ) {
 	var list = this;
 
-	return oo.binarySearch(
+	return OO.binarySearch(
 		this.items,
 		// Fake a this.sortingCallback.bind( null, item ) call here
 		// otherwise this doesn't pass tests in phantomJS
@@ -1396,19 +1530,17 @@ oo.SortedEmitterList.prototype.findInsertionIndex = function ( item ) {
 
 /**
  * A map interface for associating arbitrary data with a symbolic name. Used in
- * place of a plain object to provide additional {@link #method-register registration}
- * or {@link #method-lookup lookup} functionality.
+ * place of a plain object to provide additional {@link OO.Registry#register registration}
+ * or {@link OO.Registry#lookup lookup} functionality.
  *
  * See <https://www.mediawiki.org/wiki/OOjs/Registries_and_factories>.
  *
- * @class OO.Registry
- * @mixins OO.EventEmitter
- *
- * @constructor
+ * @class
+ * @mixes OO.EventEmitter
  */
-oo.Registry = function OoRegistry() {
+OO.Registry = function OoRegistry() {
 	// Mixin constructors
-	oo.EventEmitter.call( this );
+	OO.EventEmitter.call( this );
 
 	// Properties
 	this.registry = {};
@@ -1416,20 +1548,20 @@ oo.Registry = function OoRegistry() {
 
 /* Inheritance */
 
-oo.mixinClass( oo.Registry, oo.EventEmitter );
+OO.mixinClass( OO.Registry, OO.EventEmitter );
 
 /* Events */
 
 /**
- * @event register
+ * @event OO.Registry#register
  * @param {string} name
- * @param {Mixed} data
+ * @param {any} data
  */
 
 /**
- * @event unregister
+ * @event OO.Registry#unregister
  * @param {string} name
- * @param {Mixed} data Data removed from registry
+ * @param {any} data Data removed from registry
  */
 
 /* Methods */
@@ -1440,11 +1572,11 @@ oo.mixinClass( oo.Registry, oo.EventEmitter );
  * Any existing entry with the same name will be overridden.
  *
  * @param {string|string[]} name Symbolic name or list of symbolic names
- * @param {Mixed} data Data to associate with symbolic name
- * @fires register
+ * @param {any} data Data to associate with symbolic name
+ * @fires OO.Registry#register
  * @throws {Error} Name argument must be a string or array
  */
-oo.Registry.prototype.register = function ( name, data ) {
+OO.Registry.prototype.register = function ( name, data ) {
 	var i, len;
 	if ( typeof name === 'string' ) {
 		this.registry[ name ] = data;
@@ -1459,13 +1591,13 @@ oo.Registry.prototype.register = function ( name, data ) {
 };
 
 /**
- * Remove one or more symbolic names from the registry
+ * Remove one or more symbolic names from the registry.
  *
  * @param {string|string[]} name Symbolic name or list of symbolic names
- * @fires unregister
+ * @fires OO.Registry#unregister
  * @throws {Error} Name argument must be a string or array
  */
-oo.Registry.prototype.unregister = function ( name ) {
+OO.Registry.prototype.unregister = function ( name ) {
 	var i, len, data;
 	if ( typeof name === 'string' ) {
 		data = this.lookup( name );
@@ -1486,82 +1618,75 @@ oo.Registry.prototype.unregister = function ( name ) {
  * Get data for a given symbolic name.
  *
  * @param {string} name Symbolic name
- * @return {Mixed|undefined} Data associated with symbolic name
+ * @return {any|undefined} Data associated with symbolic name
  */
-oo.Registry.prototype.lookup = function ( name ) {
+OO.Registry.prototype.lookup = function ( name ) {
 	if ( hasOwn.call( this.registry, name ) ) {
 		return this.registry[ name ];
 	}
 };
 
 /**
- * @class OO.Factory
+ * @class
  * @extends OO.Registry
- *
- * @constructor
  */
-oo.Factory = function OoFactory() {
+OO.Factory = function OoFactory() {
 	// Parent constructor
-	oo.Factory.super.call( this );
+	OO.Factory.super.call( this );
 };
 
 /* Inheritance */
 
-oo.inheritClass( oo.Factory, oo.Registry );
+OO.inheritClass( OO.Factory, OO.Registry );
 
 /* Methods */
 
 /**
  * Register a constructor with the factory.
  *
- * Classes must have a static `name` property to be registered.
- *
  *     function MyClass() {};
  *     OO.initClass( MyClass );
- *     // Adds a static property to the class defining a symbolic name
- *     MyClass.static.name = 'mine';
- *     // Registers class with factory, available via symbolic name 'mine'
+ *     MyClass.static.name = 'hello';
+ *     // Register class with the factory, available via the symbolic name "hello"
  *     factory.register( MyClass );
  *
  * @param {Function} constructor Constructor to use when creating object
- * @throws {Error} Name must be a string and must not be empty
- * @throws {Error} Constructor must be a function
+ * @param {string} [name] Symbolic name to use for #create().
+ *  This parameter may be omitted in favour of letting the constructor decide
+ *  its own name, through `constructor.static.name`.
+ * @throws {Error} If a parameter is invalid
  */
-oo.Factory.prototype.register = function ( constructor ) {
-	var name;
-
+OO.Factory.prototype.register = function ( constructor, name ) {
 	if ( typeof constructor !== 'function' ) {
-		throw new Error( 'constructor must be a function, cannot be a ' + typeof constructor );
+		throw new Error( 'constructor must be a function, got ' + typeof constructor );
 	}
-	name = constructor.static && constructor.static.name;
+	if ( arguments.length <= 1 ) {
+		name = constructor.static && constructor.static.name;
+	}
 	if ( typeof name !== 'string' || name === '' ) {
-		throw new Error( 'Name must be a string and must not be empty' );
+		throw new Error( 'name must be a non-empty string' );
 	}
 
 	// Parent method
-	oo.Factory.super.prototype.register.call( this, name, constructor );
+	OO.Factory.super.prototype.register.call( this, name, constructor );
 };
 
 /**
  * Unregister a constructor from the factory.
  *
- * @param {Function} constructor Constructor to unregister
- * @throws {Error} Name must be a string and must not be empty
- * @throws {Error} Constructor must be a function
+ * @param {string|Function} name Constructor function or symbolic name to unregister
+ * @throws {Error} If a parameter is invalid
  */
-oo.Factory.prototype.unregister = function ( constructor ) {
-	var name;
-
-	if ( typeof constructor !== 'function' ) {
-		throw new Error( 'constructor must be a function, cannot be a ' + typeof constructor );
+OO.Factory.prototype.unregister = function ( name ) {
+	if ( typeof name === 'function' ) {
+		name = name.static && name.static.name;
 	}
-	name = constructor.static && constructor.static.name;
 	if ( typeof name !== 'string' || name === '' ) {
-		throw new Error( 'Name must be a string and must not be empty' );
+		throw new Error( 'name must be a non-empty string' );
 	}
 
 	// Parent method
-	oo.Factory.super.prototype.unregister.call( this, name );
+	OO.Factory.super.prototype.unregister.call( this, name );
 };
 
 /**
@@ -1571,11 +1696,11 @@ oo.Factory.prototype.unregister = function ( constructor ) {
  * constructor directly, so leaving one out will pass an undefined to the constructor.
  *
  * @param {string} name Object name
- * @param {...Mixed} [args] Arguments to pass to the constructor
+ * @param {...any} [args] Arguments to pass to the constructor
  * @return {Object} The new object
  * @throws {Error} Unknown object name
  */
-oo.Factory.prototype.create = function ( name ) {
+OO.Factory.prototype.create = function ( name ) {
 	var obj, i,
 		args = [],
 		constructor = this.lookup( name );
@@ -1603,9 +1728,9 @@ oo.Factory.prototype.create = function ( name ) {
 
 /* istanbul ignore next */
 if ( typeof module !== 'undefined' && module.exports ) {
-	module.exports = oo;
+	module.exports = OO;
 } else {
-	global.OO = oo;
+	global.OO = OO;
 }
 
 }( this ) );
