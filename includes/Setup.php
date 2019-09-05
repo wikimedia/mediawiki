@@ -156,12 +156,6 @@ if ( $wgArticlePath === false ) {
 	}
 }
 
-if ( !empty( $wgActionPaths ) && !isset( $wgActionPaths['view'] ) ) {
-	// 'view' is assumed the default action path everywhere in the code
-	// but is rarely filled in $wgActionPaths
-	$wgActionPaths['view'] = $wgArticlePath;
-}
-
 if ( $wgResourceBasePath === null ) {
 	$wgResourceBasePath = $wgScriptPath;
 }

@@ -401,4 +401,22 @@ class PathRouter {
 
 		return $value;
 	}
+
+	/**
+	 * @internal For use by Title and WebRequest only.
+	 * @param array $actionPaths
+	 * @param string $articlePath
+	 * @return string[]|false
+	 */
+	public static function getActionPaths( array $actionPaths, $articlePath ) {
+		if ( !$actionPaths ) {
+			return false;
+		}
+		// Processing of urls for this feature requires that 'view' is set.
+		// By default, set it to the pretty article path.
+		if ( !isset( $actionPaths['view'] ) ) {
+			$actionPaths['view'] = $articlePath;
+		}
+		return $actionPaths;
+	}
 }

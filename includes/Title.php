@@ -2087,16 +2087,18 @@ class Title implements LinkTarget, IDBAccessObject {
 				$url = false;
 				$matches = [];
 
-				if ( !empty( $wgActionPaths )
+				$articlePaths = PathRouter::getActionPaths( $wgActionPaths, $wgArticlePath );
+
+				if ( $articlePaths
 					&& preg_match( '/^(.*&|)action=([^&]*)(&(.*)|)$/', $query, $matches )
 				) {
 					$action = urldecode( $matches[2] );
-					if ( isset( $wgActionPaths[$action] ) ) {
+					if ( isset( $articlePaths[$action] ) ) {
 						$query = $matches[1];
 						if ( isset( $matches[4] ) ) {
 							$query .= $matches[4];
 						}
-						$url = str_replace( '$1', $dbkey, $wgActionPaths[$action] );
+						$url = str_replace( '$1', $dbkey, $articlePaths[$action] );
 						if ( $query != '' ) {
 							$url = wfAppendQuery( $url, $query );
 						}
