@@ -155,15 +155,16 @@ abstract class LBFactory implements ILBFactory {
 		$this->defaultGroup = $conf['defaultGroup'] ?? null;
 		$this->secret = $conf['secret'] ?? '';
 
-		$this->id = mt_rand();
-		$this->ticket = mt_rand();
+		static $nextId, $nextTicket;
+		$this->id = $nextId = ( is_int( $nextId ) ? $nextId++ : mt_rand() );
+		$this->ticket = $nextTicket = ( is_int( $nextTicket ) ? $nextTicket++ : mt_rand() );
 	}
 
 	public function destroy() {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = ScopedCallback::newScopedIgnoreUserAbort();
 
-		$this->forEachLBCallMethod( 'disable' );
+		$this->forEachLBCallMethod( 'disable', [ __METHOD__, $this->id ] );
 	}
 
 	public function getLocalDomainID() {
@@ -196,34 +197,6 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	/**
-	 * @see ILBFactory::newMainLB()
-	 * @param bool $domain
-	 * @return ILoadBalancer
-	 */
-	abstract public function newMainLB( $domain = false );
-
-	/**
-	 * @see ILBFactory::getMainLB()
-	 * @param bool $domain
-	 * @return ILoadBalancer
-	 */
-	abstract public function getMainLB( $domain = false );
-
-	/**
-	 * @see ILBFactory::newExternalLB()
-	 * @param string $cluster
-	 * @return ILoadBalancer
-	 */
-	abstract public function newExternalLB( $cluster );
-
-	/**
-	 * @see ILBFactory::getExternalLB()
-	 * @param string $cluster
-	 * @return ILoadBalancer
-	 */
-	abstract public function getExternalLB( $cluster );
-
-	/**
 	 * Call a method of each tracked load balancer
 	 *
 	 * @param string $methodName
@@ -245,13 +218,13 @@ abstract class LBFactory implements ILBFactory {
 				[ 'trace' => ( new RuntimeException() )->getTraceAsString() ]
 			);
 		}
-		$this->forEachLBCallMethod( 'flushReplicaSnapshots', [ $fname ] );
+		$this->forEachLBCallMethod( 'flushReplicaSnapshots', [ $fname, $this->id ] );
 	}
 
 	final public function commitAll( $fname = __METHOD__, array $options = [] ) {
 		$this->commitMasterChanges( $fname, $options );
-		$this->forEachLBCallMethod( 'flushMasterSnapshots', [ $fname ] );
-		$this->forEachLBCallMethod( 'flushReplicaSnapshots', [ $fname ] );
+		$this->forEachLBCallMethod( 'flushMasterSnapshots', [ $fname, $this->id ] );
+		$this->forEachLBCallMethod( 'flushReplicaSnapshots', [ $fname, $this->id ] );
 	}
 
 	final public function beginMasterChanges( $fname = __METHOD__ ) {
@@ -604,10 +577,12 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	/**
-	 * Base parameters to ILoadBalancer::__construct()
+	 * Get parameters to ILoadBalancer::__construct()
+	 *
+	 * @param int|null $owner Use getOwnershipId() if this is for getMainLB()/getExternalLB()
 	 * @return array
 	 */
-	final protected function baseLoadBalancerParams() {
+	final protected function baseLoadBalancerParams( $owner ) {
 		if ( $this->trxRoundStage === self::ROUND_COMMIT_CALLBACKS ) {
 			$initStage = ILoadBalancer::STAGE_POSTCOMMIT_CALLBACKS;
 		} elseif ( $this->trxRoundStage === self::ROUND_ROLLBACK_CALLBACKS ) {
@@ -639,7 +614,7 @@ abstract class LBFactory implements ILBFactory {
 				$this->getChronologyProtector()->applySessionReplicationPosition( $lb );
 			},
 			'roundStage' => $initStage,
-			'ownerId' => $this->id
+			'ownerId' => $owner
 		];
 	}
 
@@ -689,7 +664,7 @@ abstract class LBFactory implements ILBFactory {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = ScopedCallback::newScopedIgnoreUserAbort();
 
-		$this->forEachLBCallMethod( 'closeAll' );
+		$this->forEachLBCallMethod( 'closeAll', [ __METHOD__, $this->id ] );
 	}
 
 	public function setAgentName( $agent ) {
@@ -755,6 +730,14 @@ abstract class LBFactory implements ILBFactory {
 		}
 
 		$this->requestInfo = $info + $this->requestInfo;
+	}
+
+	/**
+	 * @return int Internal instance ID used to assert ownership of ILoadBalancer instances
+	 * @since 1.34
+	 */
+	final protected function getOwnershipId() {
+		return $this->id;
 	}
 
 	/**
