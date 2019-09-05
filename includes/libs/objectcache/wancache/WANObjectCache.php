@@ -125,7 +125,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	/** @var callable|null Function that takes a WAN cache callback and runs it later */
 	protected $asyncHandler;
 
-	/** @bar bool Whether to use mcrouter key prefixing for routing */
+	/** @var bool Whether to use mcrouter key prefixing for routing */
 	protected $mcrouterAware;
 	/** @var string Physical region for mcrouter use */
 	protected $region;
