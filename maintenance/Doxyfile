@@ -55,6 +55,7 @@ ALIASES                = "type{1}=<b> \1 </b>:" \
                          "protected=\access protected" \
                          "copyright=\note" \
                          "license=\note" \
+                         "inheritDoc=\inheritdoc" \
                          "codeCoverageIgnore=" \
                          "codingStandardsIgnoreStart=" \
                          "group=" \
