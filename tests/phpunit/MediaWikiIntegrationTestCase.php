@@ -1830,6 +1830,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$pageTables = [
 				'page', 'revision', 'ip_changes', 'revision_comment_temp', 'comment', 'archive',
 				'revision_actor_temp', 'slots', 'content', 'content_models', 'slot_roles',
+				'change_tag',
 			];
 			$coreDBDataTables = array_merge( $userTables, $pageTables );
 
