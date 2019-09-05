@@ -358,10 +358,6 @@ class MultiHttpClient implements LoggerAwareInterface {
 			);
 		} elseif ( $req['method'] === 'POST' ) {
 			curl_setopt( $ch, CURLOPT_POST, 1 );
-			// Don't interpret POST parameters starting with '@' as file uploads, because this
-			// makes it impossible to POST plain values starting with '@' (and causes security
-			// issues potentially exposing the contents of local files).
-			curl_setopt( $ch, CURLOPT_SAFE_UPLOAD, true );
 			curl_setopt( $ch, CURLOPT_POSTFIELDS, $req['body'] );
 		} else {
 			if ( is_resource( $req['body'] ) || $req['body'] !== '' ) {
