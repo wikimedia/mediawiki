@@ -2239,7 +2239,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		} catch ( DBUnexpectedError $ex ) {
 			$this->assertSame(
 				'Wikimedia\Rdbms\Database::close: ' .
-				'mass commit/rollback of peer transaction required (DBO_TRX set)',
+				'expected mass rollback of all peer transactions (DBO_TRX set)',
 				$ex->getMessage()
 			);
 		}

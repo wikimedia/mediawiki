@@ -493,15 +493,22 @@ interface ILoadBalancer {
 	public function getReplicaResumePos();
 
 	/**
-	 * Disable this load balancer. All connections are closed, and any attempt to
-	 * open a new connection will result in a DBAccessError.
+	 * Close all connections and disable this load balancer
+	 *
+	 * Any attempt to open a new connection will result in a DBAccessError.
+	 *
+	 * @param string $fname Caller name
+	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 */
-	public function disable();
+	public function disable( $fname = __METHOD__, $owner = null );
 
 	/**
 	 * Close all open connections
+	 *
+	 * @param string $fname Caller name
+	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 */
-	public function closeAll();
+	public function closeAll( $fname = __METHOD__, $owner = null );
 
 	/**
 	 * Close a connection
@@ -598,8 +605,9 @@ interface ILoadBalancer {
 	 * Commit all replica DB transactions so as to flush any REPEATABLE-READ or SSI snapshots
 	 *
 	 * @param string $fname Caller name
+	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 */
-	public function flushReplicaSnapshots( $fname = __METHOD__ );
+	public function flushReplicaSnapshots( $fname = __METHOD__, $owner = null );
 
 	/**
 	 * Commit all master DB transactions so as to flush any REPEATABLE-READ or SSI snapshots
@@ -607,8 +615,9 @@ interface ILoadBalancer {
 	 * An error will be thrown if a connection has pending writes or callbacks
 	 *
 	 * @param string $fname Caller name
+	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 */
-	public function flushMasterSnapshots( $fname = __METHOD__ );
+	public function flushMasterSnapshots( $fname = __METHOD__, $owner = null );
 
 	/**
 	 * @return bool Whether a master connection is already open

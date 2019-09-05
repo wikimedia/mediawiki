@@ -460,10 +460,12 @@ interface IDatabase {
 	 * aside from read-only automatic transactions (assuming no callbacks are registered).
 	 * If a transaction is still open anyway, it will be rolled back.
 	 *
+	 * @param string $fname Caller name
+	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @return bool Success
 	 * @throws DBError
 	 */
-	public function close();
+	public function close( $fname = __METHOD__, $owner = null );
 
 	/**
 	 * Run an SQL query and return the result

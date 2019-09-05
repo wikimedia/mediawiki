@@ -109,9 +109,10 @@ interface ILBFactory {
 	 * but still use DBO_TRX transaction rounds on other tables.
 	 *
 	 * @param bool|string $domain Domain ID, or false for the current domain
+	 * @param int|null $owner Owner ID of the new instance (e.g. this LBFactory ID)
 	 * @return ILoadBalancer
 	 */
-	public function newMainLB( $domain = false );
+	public function newMainLB( $domain = false, $owner = null );
 
 	/**
 	 * Get a cached (tracked) load balancer object.
@@ -131,9 +132,10 @@ interface ILBFactory {
 	 * (DBO_TRX off) but still use DBO_TRX transaction rounds on other tables.
 	 *
 	 * @param string $cluster External storage cluster name
+	 * @param int|null $owner Owner ID of the new instance (e.g. this LBFactory ID)
 	 * @return ILoadBalancer
 	 */
-	public function newExternalLB( $cluster );
+	public function newExternalLB( $cluster, $owner = null );
 
 	/**
 	 * Get a cached (tracked) load balancer for external storage

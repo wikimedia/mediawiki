@@ -44,8 +44,12 @@ class LBFactorySingle extends LBFactory {
 			throw new InvalidArgumentException( "Missing 'connection' argument." );
 		}
 
-		$lb = new LoadBalancerSingle( array_merge( $this->baseLoadBalancerParams(), $conf ) );
+		$lb = new LoadBalancerSingle( array_merge(
+			$this->baseLoadBalancerParams( $this->getOwnershipId() ),
+			$conf
+		) );
 		$this->initLoadBalancer( $lb );
+
 		$this->lb = $lb;
 	}
 
@@ -63,23 +67,15 @@ class LBFactorySingle extends LBFactory {
 		) );
 	}
 
-	/**
-	 * @param bool|string $domain (unused)
-	 * @return LoadBalancerSingle
-	 */
-	public function newMainLB( $domain = false ) {
-		return $this->lb;
+	public function newMainLB( $domain = false, $owner = null ) {
+		throw new BadMethodCallException( "Method is not supported." );
 	}
 
-	/**
-	 * @param bool|string $domain (unused)
-	 * @return LoadBalancerSingle
-	 */
 	public function getMainLB( $domain = false ) {
 		return $this->lb;
 	}
 
-	public function newExternalLB( $cluster ) {
+	public function newExternalLB( $cluster, $owner = null ) {
 		throw new BadMethodCallException( "Method is not supported." );
 	}
 
@@ -87,24 +83,14 @@ class LBFactorySingle extends LBFactory {
 		throw new BadMethodCallException( "Method is not supported." );
 	}
 
-	/**
-	 * @return LoadBalancerSingle[] Map of (cluster name => LoadBalancer)
-	 */
 	public function getAllMainLBs() {
 		return [ 'DEFAULT' => $this->lb ];
 	}
 
-	/**
-	 * @return LoadBalancerSingle[] Map of (cluster name => LoadBalancer)
-	 */
 	public function getAllExternalLBs() {
 		return [];
 	}
 
-	/**
-	 * @param string|callable $callback
-	 * @param array $params
-	 */
 	public function forEachLB( $callback, array $params = [] ) {
 		if ( isset( $this->lb ) ) { // may not be set during _destruct()
 			$callback( $this->lb, ...$params );

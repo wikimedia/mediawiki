@@ -106,6 +106,10 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var bool[] Map of (domain => whether to use "temp tables only" mode) */
 	private $tempTablesOnlyMode = [];
 
+	/** @var string|bool Explicit DBO_TRX transaction round active or false if none */
+	private $trxRoundId = false;
+	/** @var string Stage of the current transaction round in the transaction round life-cycle */
+	private $trxRoundStage = self::ROUND_CURSORY;
 	/** @var Database Connection handle that caused a problem */
 	private $errorConnection;
 	/** @var int[] The group replica server indexes keyed by group */
@@ -125,12 +129,10 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var bool Whether any connection has been attempted yet */
 	private $connectionAttempted = false;
 
+	/** var int An identifier for this class instance */
+	private $id;
 	/** @var int|null Integer ID of the managing LBFactory instance or null if none */
 	private $ownerId;
-	/** @var string|bool Explicit DBO_TRX transaction round active or false if none */
-	private $trxRoundId = false;
-	/** @var string Stage of the current transaction round in the transaction round life-cycle */
-	private $trxRoundStage = self::ROUND_CURSORY;
 
 	/** @var int Warn when this many connection are held */
 	const CONN_HELD_WARN_THRESHOLD = 10;
@@ -218,7 +220,6 @@ class LoadBalancer implements ILoadBalancer {
 		$this->deprecationLogger = $params['deprecationLogger'] ?? function ( $msg ) {
 			trigger_error( $msg, E_USER_DEPRECATED );
 		};
-
 		foreach ( [ 'replLogger', 'connLogger', 'queryLogger', 'perfLogger' ] as $key ) {
 			$this->$key = $params[$key] ?? new NullLogger();
 		}
@@ -242,6 +243,8 @@ class LoadBalancer implements ILoadBalancer {
 		$group = $params['defaultGroup'] ?? self::GROUP_GENERIC;
 		$this->defaultGroup = isset( $this->groupLoads[$group] ) ? $group : self::GROUP_GENERIC;
 
+		static $nextId;
+		$this->id = $nextId = ( is_int( $nextId ) ? $nextId++ : mt_rand() );
 		$this->ownerId = $params['ownerId'] ?? null;
 	}
 
@@ -1301,6 +1304,7 @@ class LoadBalancer implements ILoadBalancer {
 		// Use DBO_DEFAULT flags by default for LoadBalancer managed databases. Assume that the
 		// application calls LoadBalancer::commitMasterChanges() before the PHP script completes.
 		$server['flags'] = $server['flags'] ?? IDatabase::DBO_DEFAULT;
+		$server['ownerId'] = $this->id;
 
 		// Create a live connection object
 		$conn = Database::factory( $server['type'], $server, Database::NEW_UNCONNECTED );
@@ -1498,23 +1502,22 @@ class LoadBalancer implements ILoadBalancer {
 		return $highestPos;
 	}
 
-	public function disable() {
-		$this->closeAll();
+	public function disable( $fname = __METHOD__, $owner = null ) {
+		$this->assertOwnership( $fname, $owner );
+		$this->closeAll( $fname, $owner );
 		$this->disabled = true;
 	}
 
-	public function closeAll() {
+	public function closeAll( $fname = __METHOD__, $owner = null ) {
+		$this->assertOwnership( $fname, $owner );
 		if ( $this->ownerId === null ) {
 			/** @noinspection PhpUnusedLocalVariableInspection */
 			$scope = ScopedCallback::newScopedIgnoreUserAbort();
 		}
-
-		$fname = __METHOD__;
 		$this->forEachOpenConnection( function ( IDatabase $conn ) use ( $fname ) {
 			$host = $conn->getServer();
-			$this->connLogger->debug(
-				$fname . ": closing connection to database '$host'." );
-			$conn->close();
+			$this->connLogger->debug( "$fname: closing connection to database '$host'." );
+			$conn->close( $fname, $this->id );
 		} );
 
 		$this->conns = self::newTrackedConnectionsArray();
@@ -1543,13 +1546,13 @@ class LoadBalancer implements ILoadBalancer {
 			}
 		}
 
-		$conn->close();
+		$conn->close( __METHOD__ );
 	}
 
 	public function commitAll( $fname = __METHOD__, $owner = null ) {
 		$this->commitMasterChanges( $fname, $owner );
-		$this->flushMasterSnapshots( $fname );
-		$this->flushReplicaSnapshots( $fname );
+		$this->flushMasterSnapshots( $fname, $owner );
+		$this->flushReplicaSnapshots( $fname, $owner );
 	}
 
 	public function finalizeMasterChanges( $fname = __METHOD__, $owner = null ) {
@@ -1634,7 +1637,7 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		// Clear any empty transactions (no writes/callbacks) from the implicit round
-		$this->flushMasterSnapshots( $fname );
+		$this->flushMasterSnapshots( $fname, $owner );
 
 		$this->trxRoundId = $fname;
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
@@ -1738,7 +1741,7 @@ class LoadBalancer implements ILoadBalancer {
 					$this->queryLogger->warning( $fname . ": found writes pending." );
 					$fnames = implode( ', ', $conn->pendingWriteAndCallbackCallers() );
 					$this->queryLogger->warning(
-						$fname . ": found writes pending ($fnames).",
+						"$fname: found writes pending ($fnames).",
 						[
 							'db_server' => $conn->getServer(),
 							'db_name' => $conn->getDBname()
@@ -1747,7 +1750,7 @@ class LoadBalancer implements ILoadBalancer {
 				} elseif ( $conn->trxLevel() ) {
 					// A callback from another handle read from this one and DBO_TRX is set,
 					// which can easily happen if there is only one DB (no replicas)
-					$this->queryLogger->debug( $fname . ": found empty transaction." );
+					$this->queryLogger->debug( "$fname: found empty transaction." );
 				}
 				try {
 					$conn->commit( $fname, $conn::FLUSHING_ALL_PEERS );
@@ -1838,15 +1841,22 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	/**
+	 * Assure that if this instance is owned, the caller is either the owner or is internal
+	 *
+	 * If an LBFactory owns the LoadBalancer, then certain methods should only called through
+	 * that LBFactory to avoid broken contracts. Otherwise, those methods can publically be
+	 * called by anything. In any case, internal methods from the LoadBalancer itself should
+	 * always be allowed.
+	 *
 	 * @param string $fname
 	 * @param int|null $owner Owner ID of the caller
 	 * @throws DBTransactionError
 	 */
 	private function assertOwnership( $fname, $owner ) {
-		if ( $this->ownerId !== null && $owner !== $this->ownerId ) {
+		if ( $this->ownerId !== null && $owner !== $this->ownerId && $owner !== $this->id ) {
 			throw new DBTransactionError(
 				null,
-				"$fname: LoadBalancer is owned by LBFactory #{$this->ownerId} (got '$owner')."
+				"$fname: LoadBalancer is owned by ID '{$this->ownerId}' (got '$owner')."
 			);
 		}
 	}
@@ -1893,13 +1903,15 @@ class LoadBalancer implements ILoadBalancer {
 		}
 	}
 
-	public function flushReplicaSnapshots( $fname = __METHOD__ ) {
+	public function flushReplicaSnapshots( $fname = __METHOD__, $owner = null ) {
+		$this->assertOwnership( $fname, $owner );
 		$this->forEachOpenReplicaConnection( function ( IDatabase $conn ) use ( $fname ) {
 			$conn->flushSnapshot( $fname );
 		} );
 	}
 
-	public function flushMasterSnapshots( $fname = __METHOD__ ) {
+	public function flushMasterSnapshots( $fname = __METHOD__, $owner = null ) {
+		$this->assertOwnership( $fname, $owner );
 		$this->forEachOpenMasterConnection( function ( IDatabase $conn ) use ( $fname ) {
 			$conn->flushSnapshot( $fname );
 		} );
@@ -2317,7 +2329,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function redefineLocalDomain( $domain ) {
-		$this->closeAll();
+		$this->closeAll( __METHOD__, $this->id );
 
 		$this->setLocalDomain( DatabaseDomain::newFromId( $domain ) );
 	}
@@ -2379,7 +2391,7 @@ class LoadBalancer implements ILoadBalancer {
 
 	function __destruct() {
 		// Avoid connection leaks for sanity
-		$this->disable();
+		$this->disable( __METHOD__, $this->ownerId );
 	}
 }
 

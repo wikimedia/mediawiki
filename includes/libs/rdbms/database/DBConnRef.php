@@ -280,7 +280,7 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function close() {
+	public function close( $fname = __METHOD__, $owner = null ) {
 		throw new DBUnexpectedError( $this->conn, 'Cannot close shared connection.' );
 	}
 
