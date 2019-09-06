@@ -7,13 +7,13 @@ use MediaWikiTestCase;
 use Message;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
-use Wikimedia\Message\TextParam;
+use Wikimedia\Message\ScalarParam;
 
 /**
  * @covers \MediaWiki\Message\TextFormatter
  * @covers \Wikimedia\Message\MessageValue
  * @covers \Wikimedia\Message\ListParam
- * @covers \Wikimedia\Message\TextParam
+ * @covers \Wikimedia\Message\ScalarParam
  * @covers \Wikimedia\Message\MessageParam
  */
 class TextFormatterTest extends MediaWikiTestCase {
@@ -45,7 +45,7 @@ class TextFormatterTest extends MediaWikiTestCase {
 		$formatter = $this->createTextFormatter( 'en' );
 		$mv = ( new MessageValue( 'test' ) )->commaListParams( [
 			'a',
-			new TextParam( ParamType::BITRATE, 100 ),
+			new ScalarParam( ParamType::BITRATE, 100 ),
 		] );
 		$result = $formatter->format( $mv );
 		$this->assertSame( 'test a, 100 bps $2', $result );

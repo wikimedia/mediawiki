@@ -3,16 +3,7 @@
 namespace Wikimedia\Message;
 
 /**
- * ITextFormatter is a simplified interface to the Message class. It converts
- * MessageValue message specifiers to localized text in a certain language.
- *
- * MessageValue supports message keys, and parameters with a wide variety of
- * types. It does not expose any details of how messages are retrieved from
- * storage or what format they are stored in.
- *
- * Thus, TextFormatter supports single message keys, but not the concept of
- * presence or absence of a key from storage. So it does not support
- * fallback sequences of multiple keys.
+ * Converts MessageValue message specifiers to localized plain text in a certain language.
  *
  * The caller cannot modify the details of message translation, such as which
  * of multiple sources the message is taken from. Any such flags may be injected

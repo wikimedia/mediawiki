@@ -3,7 +3,9 @@
 namespace Wikimedia\Message;
 
 /**
- * The base class for message parameters.
+ * Value object representing a message parameter that consists of a list of values.
+ *
+ * Message parameter classes are pure value objects and are safely newable.
  */
 abstract class MessageParam {
 	protected $type;
@@ -21,7 +23,7 @@ abstract class MessageParam {
 	/**
 	 * Get the input value of the parameter
 	 *
-	 * @return int|float|string|array
+	 * @return mixed
 	 */
 	public function getValue() {
 		return $this->value;

@@ -3,7 +3,13 @@
 namespace Wikimedia\Message;
 
 /**
- * A MessageValue holds a key and an array of parameters
+ * Value object representing a message for i18n.
+ *
+ * A MessageValue holds a key and an array of parameters. It can be converted
+ * to a string in a particular language using formatters obtained from an
+ * IMessageFormatterFactory.
+ *
+ * MessageValues are pure value objects and are safely newable.
  */
 class MessageValue {
 	/** @var string */
@@ -14,9 +20,8 @@ class MessageValue {
 
 	/**
 	 * @param string $key
-	 * @param array $params Each element of the parameter array
-	 *   may be either a MessageParam or a scalar. If it is a scalar, it is
-	 *   converted to a parameter of type TEXT.
+	 * @param (MessageParam|MessageValue|string|int|float)[] $params Values that are not instances
+	 *  of MessageParam are wrapped using ParamType::TEXT.
 	 */
 	public function __construct( $key, $params = [] ) {
 		$this->key = $key;
@@ -45,7 +50,7 @@ class MessageValue {
 	/**
 	 * Chainable mutator which adds text parameters and MessageParam parameters
 	 *
-	 * @param mixed ...$values Scalar or MessageParam values
+	 * @param MessageParam|MessageValue|string|int|float ...$values
 	 * @return MessageValue
 	 */
 	public function params( ...$values ) {
@@ -53,7 +58,7 @@ class MessageValue {
 			if ( $value instanceof MessageParam ) {
 				$this->params[] = $value;
 			} else {
-				$this->params[] = new TextParam( ParamType::TEXT, $value );
+				$this->params[] = new ScalarParam( ParamType::TEXT, $value );
 			}
 		}
 		return $this;
@@ -63,12 +68,12 @@ class MessageValue {
 	 * Chainable mutator which adds text parameters with a common type
 	 *
 	 * @param string $type One of the ParamType constants
-	 * @param mixed ...$values Scalar values
+	 * @param MessageValue|string|int|float ...$values Scalar values
 	 * @return MessageValue
 	 */
 	public function textParamsOfType( $type, ...$values ) {
 		foreach ( $values as $value ) {
-			$this->params[] = new TextParam( $type, $value );
+			$this->params[] = new ScalarParam( $type, $value );
 		}
 		return $this;
 	}
@@ -77,7 +82,8 @@ class MessageValue {
 	 * Chainable mutator which adds list parameters with a common type
 	 *
 	 * @param string $listType One of the ListType constants
-	 * @param array ...$values Each value should be an array of list items.
+	 * @param (MessageParam|MessageValue|string|int|float)[] ...$values Each value
+	 *  is an array of items suitable to pass as $params to ListParam::__construct()
 	 * @return MessageValue
 	 */
 	public function listParamsOfType( $listType, ...$values ) {
@@ -88,9 +94,9 @@ class MessageValue {
 	}
 
 	/**
-	 * Chainable mutator which adds parameters of type text.
+	 * Chainable mutator which adds parameters of type text (ParamType::TEXT).
 	 *
-	 * @param string ...$values
+	 * @param MessageValue|string|int|float ...$values
 	 * @return MessageValue
 	 */
 	public function textParams( ...$values ) {
@@ -98,9 +104,9 @@ class MessageValue {
 	}
 
 	/**
-	 * Chainable mutator which adds numeric parameters
+	 * Chainable mutator which adds numeric parameters (ParamType::NUM).
 	 *
-	 * @param mixed ...$values
+	 * @param int|float ...$values
 	 * @return MessageValue
 	 */
 	public function numParams( ...$values ) {
@@ -109,8 +115,10 @@ class MessageValue {
 
 	/**
 	 * Chainable mutator which adds parameters which are a duration specified
-	 * in seconds. This is similar to timePeriodParams() except that the result
-	 * will be more verbose.
+	 * in seconds (ParamType::DURATION_LONG).
+	 *
+	 * This is similar to shorDurationParams() except that the result will be
+	 * more verbose.
 	 *
 	 * @param int|float ...$values
 	 * @return MessageValue
@@ -120,8 +128,10 @@ class MessageValue {
 	}
 
 	/**
-	 * Chainable mutator which adds parameters which are a time period in seconds.
-	 * This is similar to durationParams() except that the result will be more
+	 * Chainable mutator which adds parameters which are a duration specified
+	 * in seconds (ParamType::DURATION_SHORT).
+	 *
+	 * This is similar to longDurationParams() except that the result will be more
 	 * compact.
 	 *
 	 * @param int|float ...$values
@@ -132,10 +142,10 @@ class MessageValue {
 	}
 
 	/**
-	 * Chainable mutator which adds parameters which are an expiry timestamp
-	 * as used in the MediaWiki database schema.
+	 * Chainable mutator which adds parameters which are an expiry timestamp (ParamType::EXPIRY).
 	 *
-	 * @param string ...$values
+	 * @param string ...$values Timestamp as accepted by the Wikimedia\Timestamp library,
+	 *  or "infinity"
 	 * @return MessageValue
 	 */
 	public function expiryParams( ...$values ) {
@@ -143,7 +153,7 @@ class MessageValue {
 	}
 
 	/**
-	 * Chainable mutator which adds parameters which are a number of bytes.
+	 * Chainable mutator which adds parameters which are a number of bytes (ParamType::SIZE).
 	 *
 	 * @param int ...$values
 	 * @return MessageValue
@@ -154,7 +164,7 @@ class MessageValue {
 
 	/**
 	 * Chainable mutator which adds parameters which are a number of bits per
-	 * second.
+	 * second (ParamType::BITRATE).
 	 *
 	 * @param int|float ...$values
 	 * @return MessageValue
@@ -164,9 +174,13 @@ class MessageValue {
 	}
 
 	/**
-	 * Chainable mutator which adds parameters of type "raw".
+	 * Chainable mutator which adds "raw" parameters (ParamType::RAW).
 	 *
-	 * @param mixed ...$values
+	 * Raw parameters are substituted after formatter processing. The caller is responsible
+	 * for ensuring that the value will be safe for the intended output format, and
+	 * documenting what that intended output format is.
+	 *
+	 * @param string ...$values
 	 * @return MessageValue
 	 */
 	public function rawParams( ...$values ) {
@@ -174,21 +188,27 @@ class MessageValue {
 	}
 
 	/**
-	 * Chainable mutator which adds parameters of type "plaintext".
+	 * Chainable mutator which adds plaintext parameters (ParamType::PLAINTEXT).
+	 *
+	 * Plaintext parameters are substituted after formatter processing. The value
+	 * will be escaped by the formatter as appropriate for the target output format
+	 * so as to be represented as plain text rather than as any sort of markup.
+	 *
+	 * @param string ...$values
+	 * @return MessageValue
 	 */
 	public function plaintextParams( ...$values ) {
 		return $this->textParamsOfType( ParamType::PLAINTEXT, ...$values );
 	}
 
 	/**
-	 * Chainable mutator which adds comma lists. Each comma list is an array of
-	 * list elements, and each list element is either a MessageParam or a
-	 * string. String parameters are converted to parameters of type "text".
+	 * Chainable mutator which adds comma lists (ListType::COMMA).
 	 *
 	 * The list parameters thus created are formatted as a comma-separated list,
 	 * or some local equivalent.
 	 *
-	 * @param (MessageParam|string)[] ...$values
+	 * @param (MessageParam|MessageValue|string|int|float)[] ...$values Each value
+	 *  is an array of items suitable to pass as $params to ListParam::__construct()
 	 * @return MessageValue
 	 */
 	public function commaListParams( ...$values ) {
@@ -196,15 +216,13 @@ class MessageValue {
 	}
 
 	/**
-	 * Chainable mutator which adds semicolon lists. Each semicolon list is an
-	 * array of list elements, and each list element is either a MessageParam
-	 * or a string. String parameters are converted to parameters of type
-	 * "text".
+	 * Chainable mutator which adds semicolon lists (ListType::SEMICOLON).
 	 *
 	 * The list parameters thus created are formatted as a semicolon-separated
 	 * list, or some local equivalent.
 	 *
-	 * @param (MessageParam|string)[] ...$values
+	 * @param (MessageParam|MessageValue|string|int|float)[] ...$values Each value
+	 *  is an array of items suitable to pass as $params to ListParam::__construct()
 	 * @return MessageValue
 	 */
 	public function semicolonListParams( ...$values ) {
@@ -212,14 +230,13 @@ class MessageValue {
 	}
 
 	/**
-	 * Chainable mutator which adds pipe lists. Each pipe list is an array of
-	 * list elements, and each list element is either a MessageParam or a
-	 * string. String parameters are converted to parameters of type "text".
+	 * Chainable mutator which adds pipe lists (ListType::PIPE).
 	 *
 	 * The list parameters thus created are formatted as a pipe ("|") -separated
 	 * list, or some local equivalent.
 	 *
-	 * @param (MessageParam|string)[] ...$values
+	 * @param (MessageParam|MessageValue|string|int|float)[] ...$values Each value
+	 *  is an array of items suitable to pass as $params to ListParam::__construct()
 	 * @return MessageValue
 	 */
 	public function pipeListParams( ...$values ) {
@@ -227,9 +244,7 @@ class MessageValue {
 	}
 
 	/**
-	 * Chainable mutator which adds text lists. Each text list is an array of
-	 * list elements, and each list element is either a MessageParam or a
-	 * string. String parameters are converted to parameters of type "text".
+	 * Chainable mutator which adds natural-language lists (ListType::AND).
 	 *
 	 * The list parameters thus created, when formatted, are joined as in natural
 	 * language. In English, this means a comma-separated list, with the last
