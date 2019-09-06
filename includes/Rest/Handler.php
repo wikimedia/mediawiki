@@ -2,7 +2,18 @@
 
 namespace MediaWiki\Rest;
 
+use MediaWiki\Rest\Validator\BodyValidator;
+use MediaWiki\Rest\Validator\NullBodyValidator;
+use MediaWiki\Rest\Validator\Validator;
+
 abstract class Handler {
+
+	/**
+	 * (string) ParamValidator constant to specify the source of the parameter.
+	 * Value must be 'path', 'query', or 'post'.
+	 */
+	const PARAM_SOURCE = 'rest-param-source';
+
 	/** @var Router */
 	private $router;
 
@@ -14,6 +25,12 @@ abstract class Handler {
 
 	/** @var ResponseFactory */
 	private $responseFactory;
+
+	/** @var array|null */
+	private $validatedParams;
+
+	/** @var mixed */
+	private $validatedBody;
 
 	/**
 	 * Initialise with dependencies from the Router. This is called after construction.
@@ -66,6 +83,62 @@ abstract class Handler {
 	 */
 	public function getResponseFactory(): ResponseFactory {
 		return $this->responseFactory;
+	}
+
+	/**
+	 * Validate the request parameters/attributes and body. If there is a validation
+	 * failure, a response with an error message should be returned or an
+	 * HttpException should be thrown.
+	 *
+	 * @param Validator $restValidator
+	 * @throws HttpException On validation failure.
+	 */
+	public function validate( Validator $restValidator ) {
+		$validatedParams = $restValidator->validateParams( $this->getParamSettings() );
+		$validatedBody = $restValidator->validateBody( $this->request, $this );
+		$this->validatedParams = $validatedParams;
+		$this->validatedBody = $validatedBody;
+	}
+
+	/**
+	 * Fetch ParamValidator settings for parameters
+	 *
+	 * Every setting must include self::PARAM_SOURCE to specify which part of
+	 * the request is to contain the parameter.
+	 *
+	 * @return array[] Associative array mapping parameter names to
+	 *  ParamValidator settings arrays
+	 */
+	public function getParamSettings() {
+		return [];
+	}
+
+	/**
+	 * Fetch the BodyValidator
+	 * @param string $contentType Content type of the request.
+	 * @return BodyValidator
+	 */
+	public function getBodyValidator( $contentType ) {
+		return new NullBodyValidator();
+	}
+
+	/**
+	 * Fetch the validated parameters
+	 *
+	 * @return array|null Array mapping parameter names to validated values,
+	 *  or null if validateParams() was not called yet or validation failed.
+	 */
+	public function getValidatedParams() {
+		return $this->validatedParams;
+	}
+
+	/**
+	 * Fetch the validated body
+	 * @return mixed Value returned by the body validator, or null if validateParams() was
+	 *  not called yet, validation failed, there was no body, or the body was form data.
+	 */
+	public function getValidatedBody() {
+		return $this->validatedBody;
 	}
 
 	/**

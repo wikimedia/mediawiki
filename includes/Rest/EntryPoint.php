@@ -6,6 +6,7 @@ use ExtensionRegistry;
 use MediaWiki;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\BasicAccess\MWBasicAuthorizer;
+use MediaWiki\Rest\Validator\Validator;
 use RequestContext;
 use Title;
 use WebResponse;
@@ -36,6 +37,7 @@ class EntryPoint {
 
 		$services = MediaWikiServices::getInstance();
 		$conf = $services->getMainConfig();
+		$objectFactory = $services->getObjectFactory();
 
 		if ( !$conf->get( 'EnableRestAPI' ) ) {
 			wfHttpError( 403, 'Access Denied',
@@ -51,6 +53,9 @@ class EntryPoint {
 		$authorizer = new MWBasicAuthorizer( $context->getUser(),
 			$services->getPermissionManager() );
 
+		// @phan-suppress-next-line PhanAccessMethodInternal
+		$restValidator = new Validator( $objectFactory, $request, RequestContext::getMain()->getUser() );
+
 		global $IP;
 		$router = new Router(
 			[ "$IP/includes/Rest/coreRoutes.json" ],
@@ -58,7 +63,9 @@ class EntryPoint {
 			$conf->get( 'RestPath' ),
 			$services->getLocalServerObjectCache(),
 			new ResponseFactory,
-			$authorizer
+			$authorizer,
+			$objectFactory,
+			$restValidator
 		);
 
 		$entryPoint = new self(

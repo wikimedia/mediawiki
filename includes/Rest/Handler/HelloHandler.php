@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use Wikimedia\ParamValidator\ParamValidator;
 use MediaWiki\Rest\SimpleHandler;
 
 /**
@@ -15,5 +16,15 @@ class HelloHandler extends SimpleHandler {
 
 	public function needsWriteAccess() {
 		return false;
+	}
+
+	public function getParamSettings() {
+		return [
+			'name' => [
+				self::PARAM_SOURCE => 'path',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
+			],
+		];
 	}
 }
