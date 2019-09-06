@@ -101,7 +101,7 @@
 	"config-uploads-not-safe": "Used as a part of environment check result. Parameters:\n* $1 - name of directory for images: <code>$IP/images/</code>",
 	"config-no-cli-uploads-check": "CLI = [[w:Command-line interface|command-line interface]] (i.e. the installer runs as a command-line script, not using HTML interface via an internet browser)",
 	"config-brokenlibxml": "Status message in the MediaWiki installer environment checks.",
-	"config-suhosin-max-value-length": "{{doc-important|Do not translate \"length\", \"suhosin.get.max_value_length\", and \"php.ini\".}}\nThis error message is shown when PHP configuration <code>suhosin.get.max_value_length</code> is not high enough.\n\n* $1 - The current value\n* $2 - The minimum required value\n* $3 - The recommended value\n",
+	"config-suhosin-max-value-length": "{{doc-important|Do not translate \"length\", \"suhosin.get.max_value_length\", and \"php.ini\".}}\nThis error message is shown when PHP configuration <code>suhosin.get.max_value_length</code> is not high enough.\n\n* $1 - The current value\n* $2 - The minimum required value\n* $3 - The recommended value",
 	"config-using-32bit": "Warning message shown when installing on a 32-bit system.",
 	"config-db-type": "Field label in the MediaWiki installer followed by possible database types.",
 	"config-db-host": "Used as label.\n\nAlso used in {{msg-mw|Config-missing-db-host}}.",

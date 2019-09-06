@@ -267,7 +267,7 @@
 	"privacypage": "Project:Gizlilik prinsipi",
 	"badaccess": "İcazə xətası",
 	"badaccess-group0": "Bu fəaliyyəti icra etmək səlahiyyətiniz yoxdur.",
-	"badaccess-groups": "Bu fəaliyyəti, yalnız $1 {{PLURAL:$2|qrupundakı|qruplarından birindəki}} istifadəçilər icra edə bilərlər.",
+	"badaccess-groups": "Bu fəaliyyəti yalnız \"$1\" {{PLURAL:$2|qrupundakı|qruplarından birindəki}} istifadəçilər icra edə bilərlər.",
 	"versionrequired": "MediaViki $1 versiyası lazımdır",
 	"versionrequiredtext": "Bu səhifəni istifadə etmək üçün MediaVikinin $1 versiyası tələb olunur.\nBax: [[Special:Version|Versiyalar]].",
 	"ok": "OK",
