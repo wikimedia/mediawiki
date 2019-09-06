@@ -1511,10 +1511,6 @@ class DifferenceEngine extends ContextSource {
 	private function userCanEdit( Revision $rev ) {
 		$user = $this->getUser();
 
-		if ( !$rev->getContentHandler()->supportsDirectEditing() ) {
-			return false;
-		}
-
 		if ( !$rev->userCan( RevisionRecord::DELETED_TEXT, $user ) ) {
 			return false;
 		}
