@@ -369,6 +369,8 @@ because of Phabricator reports.
   initialized after calling SearchResult::initFromTitle().
 * The UserIsBlockedFrom hook is only called if a block is found first, and
   should only be used to unblock a blocked user.
+* Parameters for index.php from PATH_INFO, such as the title, are no longer
+  written to $_GET.
 * …
 
 === Deprecations in 1.34 ===

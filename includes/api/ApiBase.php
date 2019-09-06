@@ -992,7 +992,7 @@ abstract class ApiBase extends ContextSource {
 			return;
 		}
 
-		$queryValues = $this->getRequest()->getQueryValues();
+		$queryValues = $this->getRequest()->getQueryValuesOnly();
 		$badParams = [];
 		foreach ( $params as $param ) {
 			if ( $prefix !== 'noprefix' ) {
