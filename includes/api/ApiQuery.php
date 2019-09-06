@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -134,7 +135,10 @@ class ApiQuery extends ApiBase {
 	public function __construct( ApiMain $main, $action ) {
 		parent::__construct( $main, $action );
 
-		$this->mModuleMgr = new ApiModuleManager( $this );
+		$this->mModuleMgr = new ApiModuleManager(
+			$this,
+			MediaWikiServices::getInstance()->getObjectFactory()
+		);
 
 		// Allow custom modules to be added in LocalSettings.php
 		$config = $this->getConfig();
