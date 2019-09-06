@@ -26,9 +26,11 @@
 		</testsuite>
 		<testsuite name="extensions:unit">
 			<directory>extensions/**/tests/phpunit/unit</directory>
+			<directory>extensions/**/tests/phpunit/Unit</directory>
 		</testsuite>
 		<testsuite name="skins:unit">
 			<directory>skins/**/tests/phpunit/unit</directory>
+			<directory>skins/**/tests/phpunit/Unit</directory>
 		</testsuite>
 		<testsuite name="core:integration">
 			<directory>tests/phpunit/integration</directory>
