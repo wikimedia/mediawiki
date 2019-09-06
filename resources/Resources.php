@@ -156,12 +156,10 @@ return [
 	/* jQuery Plugins */
 
 	'jquery.accessKeyLabel' => [
-		'scripts' => 'resources/src/jquery/jquery.accessKeyLabel.js',
+		'deprecated' => 'Please use "mediawiki.util" instead.',
 		'dependencies' => [
-			'jquery.client',
-			'mediawiki.RegExp',
+			'mediawiki.util',
 		],
-		'messages' => [ 'brackets', 'word-separator' ],
 		'targets' => [ 'mobile', 'desktop' ],
 	],
 	'jquery.checkboxShiftClick' => [
@@ -1252,18 +1250,20 @@ return [
 	],
 	'mediawiki.util' => [
 		'localBasePath' => "$IP/resources/src/mediawiki.util/",
-		'remoteBasePath' => "$wgResourceBasePath/resources/srcmediawiki.util/",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.util/",
 		'packageFiles' => [
 			'util.js',
+			'jquery.accessKeyLabel.js',
 			[ 'name' => 'config.json', 'config' => [
 				'FragmentMode',
 				'LoadScript',
 			] ],
 		],
 		'dependencies' => [
-			'jquery.accessKeyLabel',
+			'jquery.client',
 			'mediawiki.RegExp',
 		],
+		'messages' => [ 'brackets', 'word-separator' ],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.viewport' => [
@@ -1660,8 +1660,8 @@ return [
 	'mediawiki.page.ready' => [
 		'scripts' => 'resources/src/mediawiki.page.ready.js',
 		'dependencies' => [
-			'jquery.accessKeyLabel',
 			'jquery.checkboxShiftClick',
+			'mediawiki.util',
 			'mediawiki.notify',
 			'mediawiki.api'
 		],
@@ -1699,7 +1699,6 @@ return [
 			'mediawiki.util',
 			'mediawiki.Title',
 			'mediawiki.jqueryMsg',
-			'jquery.accessKeyLabel',
 			'mediawiki.RegExp',
 		],
 		'messages' => [

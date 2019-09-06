@@ -102,7 +102,6 @@ return [
 			'tests/qunit/suites/resources/mediawiki/mediawiki.visibleTimeout.test.js',
 		],
 		'dependencies' => [
-			'jquery.accessKeyLabel',
 			'jquery.color',
 			'jquery.colorUtil',
 			'jquery.getAttrs',
