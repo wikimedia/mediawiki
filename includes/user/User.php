@@ -1741,7 +1741,7 @@ class User implements IDBAccessObject, UserIdentity {
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$thisUser = $this;
 		// Extensions
-		Hooks::run( 'GetBlockedStatus', [ &$thisUser ] );
+		Hooks::run( 'GetBlockedStatus', [ &$thisUser ], '1.34' );
 	}
 
 	/**
