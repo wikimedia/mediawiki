@@ -1254,10 +1254,10 @@ return [
 		]
 	],
 	'mediawiki.util' => [
-		'localBasePath' => "$IP/resources/src",
-		'remoteBasePath' => "$wgResourceBasePath/resources/src",
+		'localBasePath' => "$IP/resources/src/mediawiki.util/",
+		'remoteBasePath' => "$wgResourceBasePath/resources/srcmediawiki.util/",
 		'packageFiles' => [
-			'mediawiki.util.js',
+			'util.js',
 			[ 'name' => 'config.json', 'config' => [
 				'FragmentMode',
 				'LoadScript',
