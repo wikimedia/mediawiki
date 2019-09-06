@@ -40,9 +40,28 @@ use Wikimedia\AtEase\AtEase;
  * @ingroup HTTP
  */
 class WebRequest {
-	/** @var array */
+	/**
+	 * The parameters from $_GET, $_POST and the path router
+	 * @var array
+	 */
 	protected $data;
-	/** @var array */
+
+	/**
+	 * The parameters from $_GET. The parameters from the path router are
+	 * added by interpolateTitle() during Setup.php.
+	 * @var array
+	 */
+	protected $queryAndPathParams;
+
+	/**
+	 * The parameters from $_GET only.
+	 */
+	protected $queryParams;
+
+	/**
+	 * Lazy-initialized request headers indexed by upper-case header name
+	 * @var array
+	 */
 	protected $headers = [];
 
 	/**
@@ -100,6 +119,8 @@ class WebRequest {
 		// POST overrides GET data
 		// We don't use $_REQUEST here to avoid interference from cookies...
 		$this->data = $_POST + $_GET;
+
+		$this->queryAndPathParams = $this->queryParams = $_GET;
 	}
 
 	/**
@@ -336,7 +357,7 @@ class WebRequest {
 
 		$matches = self::getPathInfo( 'title' );
 		foreach ( $matches as $key => $val ) {
-			$this->data[$key] = $_GET[$key] = $_REQUEST[$key] = $val;
+			$this->data[$key] = $this->queryAndPathParams[$key] = $val;
 		}
 	}
 
@@ -668,14 +689,27 @@ class WebRequest {
 	}
 
 	/**
-	 * Get the values passed in the query string.
+	 * Get the values passed in the query string and the path router parameters.
 	 * No transformation is performed on the values.
 	 *
 	 * @codeCoverageIgnore
 	 * @return array
 	 */
 	public function getQueryValues() {
-		return $_GET;
+		return $this->queryAndPathParams;
+	}
+
+	/**
+	 * Get the values passed in the query string only, not including the path
+	 * router parameters. This is less suitable for self-links to index.php but
+	 * useful for other entry points. No transformation is performed on the
+	 * values.
+	 *
+	 * @since 1.34
+	 * @return array
+	 */
+	public function getQueryValuesOnly() {
+		return $this->queryParams;
 	}
 
 	/**
