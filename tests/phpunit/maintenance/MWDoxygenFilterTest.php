@@ -45,6 +45,21 @@ CODE
 CODE
 		];
 
+		yield 'One-line var with type and description that starts like a variable name' => [
+			<<<'CODE'
+<?php class MyClass {
+	/** @var array $_GET data from some thing */
+	protected $name;
+}
+CODE
+			, <<<'CODE'
+<?php class MyClass {
+	/**  $_GET data from some thing */
+	protected array $name;
+}
+CODE
+		];
+
 		yield 'One-line var with type, name, and description' => [
 			// In this full form, Doxygen understands it just fine.
 			// No changes made.
