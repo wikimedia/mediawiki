@@ -117,6 +117,9 @@ $wgPasswordPolicy['policies']['default']['PasswordNotInLargeBlacklist'] = false;
   GetBlockedStatus.
 * ObjectFactory is available as a service. When used as a service, the object
   specs can now specify needed DI services.
+* (T222388) Special pages can now be specified as an ObjectFactory spec,
+  allowing the construction of special pages that require services to be
+  injected in their constructor.
 
 === External library changes in 1.34 ===
 
@@ -492,6 +495,9 @@ because of Phabricator reports.
   or extend RevisionSearchResult.
 * Skin::getSkinNameMessages() is deprecated and no longer used.
 * The mediawiki.RegExp module is deprecated; use mw.util.escapeRegExp() instead.
+* Specifying a SpecialPage object for the list of special pages (either through
+  the SpecialPage_initList hook or by adding to $wgSpecialPages) is now
+  deprecated.
 
 === Other changes in 1.34 ===
 * …
