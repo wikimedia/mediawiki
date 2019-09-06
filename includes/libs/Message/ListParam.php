@@ -22,7 +22,7 @@ class ListParam extends MessageParam {
 		foreach ( $elements as $element ) {
 			if ( $element instanceof MessageParam ) {
 				$this->value[] = $element;
-			} elseif ( is_scalar( $element ) ) {
+			} elseif ( is_scalar( $element ) || $element instanceof MessageValue ) {
 				$this->value[] = new ScalarParam( ParamType::TEXT, $element );
 			} else {
 				throw new \InvalidArgumentException(
