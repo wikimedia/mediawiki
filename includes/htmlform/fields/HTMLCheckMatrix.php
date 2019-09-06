@@ -77,7 +77,6 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 	 * mParams['columns'] is an array with column labels as keys and column tags as values.
 	 *
 	 * @param array $value Array of the options that should be checked
-	 * @suppress PhanParamSignatureMismatch
 	 *
 	 * @return string
 	 */
