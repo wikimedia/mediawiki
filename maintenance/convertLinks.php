@@ -100,10 +100,10 @@ class ConvertLinks extends Maintenance {
 		# not used yet; highest row number from links table to process
 		# $finalRowOffset = 0;
 
+		$this->logPerformance = $this->hasOption( 'logperformance' );
+		$perfLogFilename = $this->getArg( 1, "convLinksPerf.txt" );
 		$overwriteLinksTable = !$this->hasOption( 'keep-links-table' );
 		$noKeys = $this->hasOption( 'noKeys' );
-		$this->logPerformance = $this->hasOption( 'logperformance' );
-		$perfLogFilename = $this->getArg( 'perfLogFilename', "convLinksPerf.txt" );
 
 		# --------------------------------------------------------------------
 
