@@ -236,63 +236,6 @@ SEARCHDATA_FILE        = searchdata.xml
 EXTERNAL_SEARCH_ID     =
 EXTRA_SEARCH_MAPPINGS  =
 #---------------------------------------------------------------------------
-# Configuration options related to the LaTeX output
-#---------------------------------------------------------------------------
-GENERATE_LATEX         = NO
-LATEX_OUTPUT           = latex
-LATEX_CMD_NAME         = latex
-MAKEINDEX_CMD_NAME     = makeindex
-COMPACT_LATEX          = NO
-PAPER_TYPE             = a4wide
-EXTRA_PACKAGES         =
-LATEX_HEADER           =
-LATEX_FOOTER           =
-LATEX_EXTRA_FILES      =
-PDF_HYPERLINKS         = YES
-USE_PDFLATEX           = YES
-LATEX_BATCHMODE        = NO
-LATEX_HIDE_INDICES     = NO
-LATEX_SOURCE_CODE      = NO
-LATEX_BIB_STYLE        = plain
-#---------------------------------------------------------------------------
-# Configuration options related to the RTF output
-#---------------------------------------------------------------------------
-GENERATE_RTF           = NO
-RTF_OUTPUT             = rtf
-COMPACT_RTF            = NO
-RTF_HYPERLINKS         = NO
-RTF_STYLESHEET_FILE    =
-RTF_EXTENSIONS_FILE    =
-#---------------------------------------------------------------------------
-# Configuration options related to the man page output
-#---------------------------------------------------------------------------
-GENERATE_MAN           = {{GENERATE_MAN}}
-MAN_OUTPUT             = man
-MAN_EXTENSION          = .3
-MAN_LINKS              = NO
-#---------------------------------------------------------------------------
-# Configuration options related to the XML output
-#---------------------------------------------------------------------------
-GENERATE_XML           = NO
-XML_OUTPUT             = xml
-XML_PROGRAMLISTING     = YES
-#---------------------------------------------------------------------------
-# Configuration options related to the DOCBOOK output
-#---------------------------------------------------------------------------
-GENERATE_DOCBOOK       = NO
-DOCBOOK_OUTPUT         = docbook
-#---------------------------------------------------------------------------
-# Configuration options for the AutoGen Definitions output
-#---------------------------------------------------------------------------
-GENERATE_AUTOGEN_DEF   = NO
-#---------------------------------------------------------------------------
-# Configuration options related to the Perl module output
-#---------------------------------------------------------------------------
-GENERATE_PERLMOD       = NO
-PERLMOD_LATEX          = NO
-PERLMOD_PRETTY         = YES
-PERLMOD_MAKEVAR_PREFIX =
-#---------------------------------------------------------------------------
 # Configuration options related to the preprocessor
 #---------------------------------------------------------------------------
 ENABLE_PREPROCESSING   = YES

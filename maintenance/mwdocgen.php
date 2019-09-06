@@ -56,8 +56,6 @@ class MWDocGen extends Maintenance {
 		$this->addOption( 'version',
 			'Pass a MediaWiki version',
 			false, true );
-		$this->addOption( 'generate-man',
-			'Whether to generate man files' );
 		$this->addOption( 'file',
 			"Only process given file or directory. Multiple values " .
 			"accepted with comma separation. Path relative to \$IP.",
@@ -109,7 +107,6 @@ class MWDocGen extends Maintenance {
 		}
 
 		$this->doDot = shell_exec( 'which dot' );
-		$this->doMan = $this->hasOption( 'generate-man' );
 	}
 
 	public function execute() {
@@ -134,7 +131,6 @@ class MWDocGen extends Maintenance {
 				'{{EXCLUDE}}' => $exclude,
 				'{{EXCLUDE_PATTERNS}}' => $excludePatterns,
 				'{{HAVE_DOT}}' => $this->doDot ? 'YES' : 'NO',
-				'{{GENERATE_MAN}}' => $this->doMan ? 'YES' : 'NO',
 				'{{INPUT_FILTER}}' => $this->inputFilter,
 			]
 		);
