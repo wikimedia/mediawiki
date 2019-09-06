@@ -89,7 +89,7 @@
 	"config-uploads-not-safe": "<strong>تحذير:</strong>  الدليل الافتراضي للمرفوعات <code>$1</code> عرضة لتنفيذ سكريبتات عشوائية،\nعلى الرغم من أن ميدياويكي يتحقق من كل الملفات المرفوعة للتهديدات الأمنية، فمن المستحسن بشدة [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security إغلاق هذه الثغرة الأمنية] قبل تمكين المرفوعات.",
 	"config-no-cli-uploads-check": "<strong>تحذير:</strong> لم يتم تحديد الدليل الافتراضي للمرفوعات (<code>$1</code>) للقابلية للتأثر\nلتنفيذ برنامج تعسفي أثناء تثبيت CLI.",
 	"config-brokenlibxml": "يحتوي نظامك على مجموعة من إصدارات PHP وlibxml2 ويمكن أن تسبب فسادا للبيانات في ميدياويكي وتطبيقات الويب الأخرى;\nقم بالترقية إلى libxml2 2.7.3 أو أحدث ([https://bugs.php.net/bug.php؟id=45996 تم تدقيم العلة مع PHP]); \nتم إحباط التثبيت.",
-	"config-suhosin-max-value-length": "تم تثبيت Suhosin وتقييد وسيط GET <code>length</code> إلى $1 بايت،\nسيعمل مكون ResourceLoader في ميدياويكي حول هذا الحد، لكن ذلك سيؤدي إلى انخفاض مستوى الأداء، \nإذا كان ذلك ممكنا، فيجب تعيين <code>suhosin.get.max_value_length</code> على 1024 أو أعلى في <code>php.ini</code>، وتعيين <code>$wgResourceLoaderMaxQueryLength</code> لنفس القيمة في <code>LocalSettings.php</code>.",
+	"config-suhosin-max-value-length": "تم تثبيت Suhosin وتقييد وسيط GET <code>length</code> إلى $1 بايت،\nيتطلب ميدياويكي أن يكون <code>suhosin.get.max_value_length</code> $2 على الأقل، قم بتعطيل هذا الإعداد  أو بزيادة هذه القيمة إلى $3 في <code>php.ini</code>.",
 	"config-using-32bit": "<strong>تحذير:</strong> يبدو أن نظامك يعمل مع الأعداد الصحيحة 32 بت، هذا [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit لا يُنصَح به].",
 	"config-db-type": "نوع قاعدة البيانات:",
 	"config-db-host": "مضيف قاعدة البيانات:",

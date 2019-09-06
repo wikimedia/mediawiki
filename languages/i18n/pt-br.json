@@ -1859,6 +1859,8 @@
 	"backend-fail-contenttype": "Não foi possível determinar o tipo de conteúdo do arquivo para armazenar em \"$1\".",
 	"backend-fail-batchsize": "O servidor de armazenamento retornou um conjunto de $1 {{PLURAL:$1|operação|operações}} de arquivo, enquanto seu limite é de $2 {{PLURAL:$1|operação|operações}}.",
 	"backend-fail-usable": "Não foi possível ler ou salvar o arquivo $1 devido a permissões insuficientes a diretórios, ou a repositórios/diretórios inexistentes.",
+	"backend-fail-stat": "Não foi possível ler o estado do arquivo \"$1\".",
+	"backend-fail-hash": "Não foi possível determinar o resumo criptográfico do arquivo \"$1\".",
 	"filejournal-fail-dbconnect": "Não foi possível se conectar ao banco de dados de registros do sistema de armazenamento \"$1\".",
 	"filejournal-fail-dbquery": "Não foi possível atualizar o banco de dados de registros do sistema de armazenamento \"$1\".",
 	"lockmanager-notlocked": "Não foi possível desbloquear \"$1\" por ele não se encontrar bloqueado.",

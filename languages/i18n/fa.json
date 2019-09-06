@@ -74,7 +74,8 @@
 			"Amjad Khan",
 			"Ahmad252",
 			"FarsiNevis",
-			"Moyogo"
+			"Moyogo",
+			"MohammadtheEditor"
 		]
 	},
 	"tog-underline": "خط کشیدن زیر پیوندها:",
@@ -932,7 +933,7 @@
 	"revdelete-unsuppress": "حذف محدودیت‌ها در بازبینی‌های ترمیم‌شده",
 	"revdelete-log": "دلیل:",
 	"revdelete-submit": "اعمال بر {{PLURAL:$1|نسخهٔ|نسخه‌های}} انتخاب شده",
-	"revdelete-success": "پیدایی نسخه روزآمد شد.",
+	"revdelete-success": "پیدایی نسخه بروز شد.",
 	"revdelete-failure": "'''پیدایی نسخه‌ها قابل به روز کردن نیست:'''\n$1",
 	"logdelete-success": "تغییر پیدایی مورد انجام شد.",
 	"logdelete-failure": "'''پیدایی سیاهه‌ها قابل تنظیم نیست:'''\n$1",
