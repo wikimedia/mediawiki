@@ -37,6 +37,25 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 	private static $originalGlobals;
 	private static $unitGlobals;
 
+	/**
+	 * Whitelist of globals to allow in MediaWikiUnitTestCase.
+	 *
+	 * Please, keep this list to the bare minimum.
+	 *
+	 * @return string[]
+	 */
+	private static function getGlobalsWhitelist() {
+		return [
+			// The autoloader may change between bootstrap and the first test,
+			// so (lazily) capture these here instead.
+			'wgAutoloadClasses',
+			'wgAutoloadLocalClasses',
+			// Need for LoggerFactory. Default is NullSpi.
+			'wgMWLoggerDefaultSpi',
+			'wgAutoloadAttemptLowercase'
+		];
+	}
+
 	public static function setUpBeforeClass() {
 		parent::setUpBeforeClass();
 
@@ -56,12 +75,10 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		}
 
 		self::$unitGlobals =& TestSetup::$bootstrapGlobals;
-		// The autoloader may change between bootstrap and the first test,
-		// so (lazily) capture these here instead.
-		self::$unitGlobals['wgAutoloadClasses'] =& $GLOBALS['wgAutoloadClasses'];
-		self::$unitGlobals['wgAutoloadLocalClasses'] =& $GLOBALS['wgAutoloadLocalClasses'];
-		// This value should always be true.
-		self::$unitGlobals['wgAutoloadAttemptLowercase'] = true;
+
+		foreach ( self::getGlobalsWhitelist() as $global ) {
+			self::$unitGlobals[ $global ] =& $GLOBALS[ $global ];
+		}
 
 		// Would be nice if we coud simply replace $GLOBALS as a whole,
 		// but unsetting or re-assigning that breaks the reference of this magic
