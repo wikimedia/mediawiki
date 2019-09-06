@@ -4,8 +4,7 @@ namespace Wikimedia\Message;
 
 /**
  * The constants used to specify list types. The values of the constants are an
- * unstable implementation detail and correspond to the names of the list types
- * in the Message class.
+ * unstable implementation detail.
  */
 class ListType {
 	/** A comma-separated list */

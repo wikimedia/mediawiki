@@ -45,18 +45,27 @@ class TextFormatter implements ITextFormatter {
 		return $this->langCode;
 	}
 
-	private static function convertParam( MessageParam $param ) {
+	private function convertParam( MessageParam $param ) {
 		if ( $param instanceof ListParam ) {
 			$convertedElements = [];
 			foreach ( $param->getValue() as $element ) {
-				$convertedElements[] = self::convertParam( $element );
+				$convertedElements[] = $this->convertParam( $element );
 			}
 			return Message::listParam( $convertedElements, $param->getListType() );
 		} elseif ( $param instanceof MessageParam ) {
+			$value = $param->getValue();
+			if ( $value instanceof MessageValue ) {
+				$mv = $value;
+				$value = $this->createMessage( $mv->getKey() );
+				foreach ( $mv->getParams() as $mvParam ) {
+					$value->params( $this->convertParam( $mvParam ) );
+				}
+			}
+
 			if ( $param->getType() === ParamType::TEXT ) {
-				return $param->getValue();
+				return $value;
 			} else {
-				return [ $param->getType() => $param->getValue() ];
+				return [ $param->getType() => $value ];
 			}
 		} else {
 			throw new \InvalidArgumentException( 'Invalid message parameter type' );
@@ -66,7 +75,7 @@ class TextFormatter implements ITextFormatter {
 	public function format( MessageValue $mv ) {
 		$message = $this->createMessage( $mv->getKey() );
 		foreach ( $mv->getParams() as $param ) {
-			$message->params( self::convertParam( $param ) );
+			$message->params( $this->convertParam( $param ) );
 		}
 		$message->inLanguage( $this->langCode );
 		return $message->text();

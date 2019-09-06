@@ -5,13 +5,13 @@ namespace Wikimedia\Tests\Message;
 use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
-use Wikimedia\Message\TextParam;
+use Wikimedia\Message\ScalarParam;
 use MediaWikiTestCase;
 
 /**
  * @covers \Wikimedia\Message\MessageValue
  * @covers \Wikimedia\Message\ListParam
- * @covers \Wikimedia\Message\TextParam
+ * @covers \Wikimedia\Message\ScalarParam
  * @covers \Wikimedia\Message\MessageParam
  */
 class MessageValueTest extends MediaWikiTestCase {
@@ -26,7 +26,7 @@ class MessageValueTest extends MediaWikiTestCase {
 				'<message key="key"><text>a</text></message>'
 			],
 			[
-				[ new TextParam( ParamType::BITRATE, 100 ) ],
+				[ new ScalarParam( ParamType::BITRATE, 100 ) ],
 				'<message key="key"><bitrate>100</bitrate></message>'
 			],
 		];
@@ -46,7 +46,7 @@ class MessageValueTest extends MediaWikiTestCase {
 	public function testParams() {
 		$mv = new MessageValue( 'key' );
 		$mv->params( 1, 'x' );
-		$mv2 = $mv->params( new TextParam( ParamType::BITRATE, 100 ) );
+		$mv2 = $mv->params( new ScalarParam( ParamType::BITRATE, 100 ) );
 		$this->assertSame(
 			'<message key="key"><text>1</text><text>x</text><bitrate>100</bitrate></message>',
 			$mv->dump() );
@@ -76,10 +76,11 @@ class MessageValueTest extends MediaWikiTestCase {
 
 	public function testTextParams() {
 		$mv = new MessageValue( 'key' );
-		$mv2 = $mv->textParams( 'a', 'b' );
+		$mv2 = $mv->textParams( 'a', 'b', new MessageValue( 'key2' ) );
 		$this->assertSame( '<message key="key">' .
 			'<text>a</text>' .
 			'<text>b</text>' .
+			'<text><message key="key2"></message></text>' .
 			'</message>',
 			$mv->dump() );
 		$this->assertSame( $mv, $mv2 );
