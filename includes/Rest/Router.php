@@ -6,6 +6,7 @@ use AppendIterator;
 use BagOStuff;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
 use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
+use MediaWiki\Rest\Validator\Validator;
 use Wikimedia\ObjectFactory;
 
 /**
@@ -44,6 +45,12 @@ class Router {
 	/** @var BasicAuthorizerInterface */
 	private $basicAuth;
 
+	/** @var ObjectFactory */
+	private $objectFactory;
+
+	/** @var Validator */
+	private $restValidator;
+
 	/**
 	 * @param string[] $routeFiles List of names of JSON files containing routes
 	 * @param array $extraRoutes Extension route array
@@ -51,10 +58,13 @@ class Router {
 	 * @param BagOStuff $cacheBag A cache in which to store the matcher trees
 	 * @param ResponseFactory $responseFactory
 	 * @param BasicAuthorizerInterface $basicAuth
+	 * @param ObjectFactory $objectFactory
+	 * @param Validator $restValidator
 	 */
 	public function __construct( $routeFiles, $extraRoutes, $rootPath,
 		BagOStuff $cacheBag, ResponseFactory $responseFactory,
-		BasicAuthorizerInterface $basicAuth
+		BasicAuthorizerInterface $basicAuth, ObjectFactory $objectFactory,
+		Validator $restValidator
 	) {
 		$this->routeFiles = $routeFiles;
 		$this->extraRoutes = $extraRoutes;
@@ -62,6 +72,8 @@ class Router {
 		$this->cacheBag = $cacheBag;
 		$this->responseFactory = $responseFactory;
 		$this->basicAuth = $basicAuth;
+		$this->objectFactory = $objectFactory;
+		$this->restValidator = $restValidator;
 	}
 
 	/**
@@ -245,9 +257,10 @@ class Router {
 		$request->setPathParams( array_map( 'rawurldecode', $match['params'] ) );
 		$spec = $match['userData'];
 		$objectFactorySpec = array_intersect_key( $spec,
+			// @todo ObjectFactory supports more keys than this.
 			[ 'factory' => true, 'class' => true, 'args' => true ] );
 		/** @var $handler Handler (annotation for PHPStorm) */
-		$handler = ObjectFactory::getObjectFromSpec( $objectFactorySpec );
+		$handler = $this->objectFactory->createObject( $objectFactorySpec );
 		$handler->init( $this, $request, $spec, $this->responseFactory );
 
 		try {
@@ -268,6 +281,9 @@ class Router {
 		if ( $authResult ) {
 			return $this->responseFactory->createHttpError( 403, [ 'error' => $authResult ] );
 		}
+
+		$handler->validate( $this->restValidator );
+
 		$response = $handler->execute();
 		if ( !( $response instanceof ResponseInterface ) ) {
 			$response = $this->responseFactory->createFromReturnValue( $response );

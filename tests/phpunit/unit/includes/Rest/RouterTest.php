@@ -7,37 +7,48 @@ use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\RequestData;
+use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
+use MediaWiki\Rest\Validator\Validator;
+use Psr\Container\ContainerInterface;
+use Wikimedia\ObjectFactory;
+use User;
 
 /**
  * @covers \MediaWiki\Rest\Router
  */
 class RouterTest extends \MediaWikiUnitTestCase {
 	/** @return Router */
-	private function createRouter( $authError = null ) {
+	private function createRouter( RequestInterface $request, $authError = null ) {
+		$objectFactory = new ObjectFactory(
+			$this->getMockForAbstractClass( ContainerInterface::class )
+		);
 		return new Router(
 			[ __DIR__ . '/testRoutes.json' ],
 			[],
 			'/rest',
 			new \EmptyBagOStuff(),
 			new ResponseFactory(),
-			new StaticBasicAuthorizer( $authError ) );
+			new StaticBasicAuthorizer( $authError ),
+			$objectFactory,
+			new Validator( $objectFactory, $request, new User )
+		);
 	}
 
 	public function testPrefixMismatch() {
-		$router = $this->createRouter();
 		$request = new RequestData( [ 'uri' => new Uri( '/bogus' ) ] );
+		$router = $this->createRouter( $request );
 		$response = $router->execute( $request );
 		$this->assertSame( 404, $response->getStatusCode() );
 	}
 
 	public function testWrongMethod() {
-		$router = $this->createRouter();
 		$request = new RequestData( [
 			'uri' => new Uri( '/rest/user/joe/hello' ),
 			'method' => 'OPTIONS'
 		] );
+		$router = $this->createRouter( $request );
 		$response = $router->execute( $request );
 		$this->assertSame( 405, $response->getStatusCode() );
 		$this->assertSame( 'Method Not Allowed', $response->getReasonPhrase() );
@@ -45,8 +56,8 @@ class RouterTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testNoMatch() {
-		$router = $this->createRouter();
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/bogus' ) ] );
+		$router = $this->createRouter( $request );
 		$response = $router->execute( $request );
 		$this->assertSame( 404, $response->getStatusCode() );
 		// TODO: add more information to the response body and test for its presence here
@@ -61,8 +72,8 @@ class RouterTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testException() {
-		$router = $this->createRouter();
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/RouterTest/throw' ) ] );
+		$router = $this->createRouter( $request );
 		$response = $router->execute( $request );
 		$this->assertSame( 555, $response->getStatusCode() );
 		$body = $response->getBody();
@@ -72,9 +83,9 @@ class RouterTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testBasicAccess() {
-		$router = $this->createRouter( 'test-error' );
 		// Using the throwing handler is a way to assert that the handler is not executed
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/RouterTest/throw' ) ] );
+		$router = $this->createRouter( $request, 'test-error' );
 		$response = $router->execute( $request );
 		$this->assertSame( 403, $response->getStatusCode() );
 		$body = $response->getBody();

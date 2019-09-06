@@ -8,6 +8,10 @@ use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
+use MediaWiki\Rest\Validator\Validator;
+use Psr\Container\ContainerInterface;
+use Wikimedia\ObjectFactory;
+use User;
 
 /**
  * @covers \MediaWiki\Rest\Handler\HelloHandler
@@ -48,14 +52,21 @@ class HelloHandlerTest extends \MediaWikiUnitTestCase {
 
 	/** @dataProvider provideTestViaRouter */
 	public function testViaRouter( $requestInfo, $responseInfo ) {
+		$objectFactory = new ObjectFactory(
+			$this->getMockForAbstractClass( ContainerInterface::class )
+		);
+
+		$request = new RequestData( $requestInfo );
 		$router = new Router(
 			[ __DIR__ . '/../testRoutes.json' ],
 			[],
 			'/rest',
 			new EmptyBagOStuff(),
 			new ResponseFactory(),
-			new StaticBasicAuthorizer() );
-		$request = new RequestData( $requestInfo );
+			new StaticBasicAuthorizer(),
+			$objectFactory,
+			new Validator( $objectFactory, $request, new User )
+		);
 		$response = $router->execute( $request );
 		if ( isset( $responseInfo['statusCode'] ) ) {
 			$this->assertSame( $responseInfo['statusCode'], $response->getStatusCode() );

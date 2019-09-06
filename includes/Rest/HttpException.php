@@ -8,7 +8,19 @@ namespace MediaWiki\Rest;
  * error response.
  */
 class HttpException extends \Exception {
-	public function __construct( $message, $code = 500 ) {
+
+	/** @var array|null */
+	private $errorData = null;
+
+	public function __construct( $message, $code = 500, $errorData = null ) {
 		parent::__construct( $message, $code );
+		$this->errorData = $errorData;
+	}
+
+	/**
+	 * @return array|null
+	 */
+	public function getErrorData() {
+		return $this->errorData;
 	}
 }
