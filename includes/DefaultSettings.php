@@ -4463,7 +4463,7 @@ $wgCentralIdLookupProvider = 'local';
  *		Deprecated since 1.33. Use PasswordNotInLargeBlacklist instead.
  *	- PasswordNotInLargeBlacklist - Password not in best practices list of
  *		100,000 commonly used passwords. Due to the size of the list this
- *      is a probabilistic test.
+ *		is a probabilistic test.
  *
  * If you add custom checks, for Special:PasswordPolicies to display them correctly,
  * every check should have a corresponding passwordpolicies-policy-<check> message,
@@ -4481,28 +4481,25 @@ $wgPasswordPolicy = [
 		'bureaucrat' => [
 			'MinimalPasswordLength' => 10,
 			'MinimumPasswordLengthToLogin' => 1,
-			'PasswordNotInLargeBlacklist' => true,
 		],
 		'sysop' => [
 			'MinimalPasswordLength' => 10,
 			'MinimumPasswordLengthToLogin' => 1,
-			'PasswordNotInLargeBlacklist' => true,
 		],
 		'interface-admin' => [
 			'MinimalPasswordLength' => 10,
 			'MinimumPasswordLengthToLogin' => 1,
-			'PasswordNotInLargeBlacklist' => true,
 		],
 		'bot' => [
 			'MinimalPasswordLength' => 10,
 			'MinimumPasswordLengthToLogin' => 1,
-			'PasswordNotInLargeBlacklist' => true,
 		],
 		'default' => [
 			'MinimalPasswordLength' => [ 'value' => 1, 'suggestChangeOnLogin' => true ],
 			'PasswordCannotMatchUsername' => [ 'value' => true, 'suggestChangeOnLogin' => true ],
 			'PasswordCannotMatchBlacklist' => [ 'value' => true, 'suggestChangeOnLogin' => true ],
 			'MaximalPasswordLength' => [ 'value' => 4096, 'suggestChangeOnLogin' => true ],
+			'PasswordNotInLargeBlacklist' => [ 'value' => true, 'suggestChangeOnLogin' => true ],
 		],
 	],
 	'checks' => [

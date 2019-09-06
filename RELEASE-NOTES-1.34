@@ -26,6 +26,13 @@ For notes on 1.33.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.34 ===
 
+In an effort to enforce best practices for passwords, MediaWiki will now warn
+users, and suggest that they change their password, if it is in the list of
+100,000 commonly used passwords that are considered bad passwords. If you want
+to disable this for your users, please add the following to your local settings:
+
+$wgPasswordPolicy['policies']['default']['PasswordNotInLargeBlacklist'] = false;
+
 ==== New configuration ====
 * $wgAllowExternalReqID (T201409) - This configuration setting controls whether
   Mediawiki accepts the request ID set by the incoming request via the
