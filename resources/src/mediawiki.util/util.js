@@ -4,6 +4,8 @@
 	var util,
 		config = require( './config.json' );
 
+	require( './jquery.accessKeyLabel.js' );
+
 	/**
 	 * Encode the string like PHP's rawurlencode
 	 * @ignore

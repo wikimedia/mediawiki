@@ -425,6 +425,8 @@ because of Phabricator reports.
 * ResourceLoaderContext::getConfig and ResourceLoaderContext::getLogger have
   been deprecated. Inside ResourceLoaderModule subclasses, use the local methods
   instead. Elsewhere, use the methods from the ResourceLoader class.
+* The 'jquery.accessKeyLabel' module has been deprecated. This jQuery
+  plugin is now ships as part of the 'mediawiki.util' module bundle.
 * The Profiler::setTemplated and Profiler::getTemplated methods have been
   deprecated. Use Profiler::setAllowOutput and Profiler::getAllowOutput
   instead.
