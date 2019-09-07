@@ -41,8 +41,9 @@ class JobQueueEnqueueUpdate implements DeferrableUpdate, MergeableUpdate {
 	}
 
 	public function merge( MergeableUpdate $update ) {
-		/** @var JobQueueEnqueueUpdate $update */
+		/** @var self $update */
 		Assert::parameterType( __CLASS__, $update, '$update' );
+		'@phan-var self $update';
 
 		foreach ( $update->jobsByDomain as $domain => $jobs ) {
 			$this->jobsByDomain[$domain] = $this->jobsByDomain[$domain] ?? [];
