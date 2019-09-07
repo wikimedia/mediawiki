@@ -21,6 +21,7 @@
  * @ingroup DifferenceEngine
  */
 
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -202,6 +203,11 @@ class DifferenceEngine extends ContextSource {
 	 */
 	private $slotDiffOptions = [];
 
+	/**
+	 * @var LinkRenderer
+	 */
+	protected $linkRenderer;
+
 	/** #@- */
 
 	/**
@@ -237,6 +243,7 @@ class DifferenceEngine extends ContextSource {
 		$this->mNewid = $new;
 		$this->mRefreshCache = $refreshCache;
 		$this->unhide = $unhide;
+		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 	}
 
 	/**
@@ -657,9 +664,9 @@ class DifferenceEngine extends ContextSource {
 
 			# Make "previous revision link"
 			if ( $samePage && $this->mOldPage && $this->mOldRev->getPrevious() ) {
-				$prevlink = Linker::linkKnown(
+				$prevlink = $this->linkRenderer->makeKnownLink(
 					$this->mOldPage,
-					$this->msg( 'previousdiff' )->escaped(),
+					$this->msg( 'previousdiff' )->text(),
 					[ 'id' => 'differences-prevlink' ],
 					[ 'diff' => 'prev', 'oldid' => $this->mOldid ] + $query
 				);
@@ -698,9 +705,9 @@ class DifferenceEngine extends ContextSource {
 		# Make "next revision link"
 		# Skip next link on the top revision
 		if ( $samePage && $this->mNewPage && !$this->mNewRev->isCurrent() ) {
-			$nextlink = Linker::linkKnown(
+			$nextlink = $this->linkRenderer->makeKnownLink(
 				$this->mNewPage,
-				$this->msg( 'nextdiff' )->escaped(),
+				$this->msg( 'nextdiff' )->text(),
 				[ 'id' => 'differences-nextlink' ],
 				[ 'diff' => 'next', 'oldid' => $this->mNewid ] + $query
 			);
@@ -802,9 +809,9 @@ class DifferenceEngine extends ContextSource {
 				$this->mMarkPatrolledLink = '';
 			} else {
 				$this->mMarkPatrolledLink = ' <span class="patrollink" data-mw="interface">[' .
-					Linker::linkKnown(
+					$this->linkRenderer->makeKnownLink(
 						$this->mNewPage,
-						$this->msg( 'markaspatrolleddiff' )->escaped(),
+						$this->msg( 'markaspatrolleddiff' )->text(),
 						[],
 						[
 							'action' => 'markpatrolled',
@@ -1644,15 +1651,15 @@ class DifferenceEngine extends ContextSource {
 			$timestamp,
 			$dateofrev,
 			$timeofrev
-		)->escaped();
+		);
 
 		if ( $complete !== 'complete' ) {
-			return $header;
+			return $header->escaped();
 		}
 
 		$title = $rev->getTitle();
 
-		$header = Linker::linkKnown( $title, $header, [],
+		$header = $this->linkRenderer->makeKnownLink( $title, $header->text(), [],
 			[ 'oldid' => $rev->getId() ] );
 
 		if ( $this->userCanEdit( $rev ) ) {
@@ -1663,9 +1670,9 @@ class DifferenceEngine extends ContextSource {
 
 			$key = MediaWikiServices::getInstance()->getPermissionManager()
 				->quickUserCan( 'edit', $user, $title ) ? 'editold' : 'viewsourceold';
-			$msg = $this->msg( $key )->escaped();
+			$msg = $this->msg( $key )->text();
 			$editLink = $this->msg( 'parentheses' )->rawParams(
-				Linker::linkKnown( $title, $msg, [], $editQuery ) )->escaped();
+				$this->linkRenderer->makeKnownLink( $title, $msg, [], $editQuery ) )->escaped();
 			$header .= ' ' . Html::rawElement(
 				'span',
 				[ 'class' => 'mw-diff-edit' ],

@@ -119,6 +119,7 @@ class ImageHistoryList extends ContextSource {
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
 		$pm = MediaWikiServices::getInstance()->getPermissionManager();
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$timestamp = wfTimestamp( TS_MW, $file->getTimestamp() );
 		// @phan-suppress-next-line PhanUndeclaredMethod
 		$img = $iscur ? $file->getName() : $file->getArchiveName();
@@ -138,9 +139,9 @@ class ImageHistoryList extends ContextSource {
 				if ( !$iscur ) {
 					$q['oldimage'] = $img;
 				}
-				$row .= Linker::linkKnown(
+				$row .= $linkRenderer->makeKnownLink(
 					$this->title,
-					$this->msg( $iscur ? 'filehist-deleteall' : 'filehist-deleteone' )->escaped(),
+					$this->msg( $iscur ? 'filehist-deleteall' : 'filehist-deleteone' )->text(),
 					[], $q
 				);
 			}
@@ -179,9 +180,9 @@ class ImageHistoryList extends ContextSource {
 			if ( $file->isDeleted( File::DELETED_FILE ) ) {
 				$row .= $this->msg( 'filehist-revert' )->escaped();
 			} else {
-				$row .= Linker::linkKnown(
+				$row .= $linkRenderer->makeKnownLink(
 					$this->title,
-					$this->msg( 'filehist-revert' )->escaped(),
+					$this->msg( 'filehist-revert' )->text(),
 					[],
 					[
 						'action' => 'revert',
@@ -203,12 +204,12 @@ class ImageHistoryList extends ContextSource {
 				$lang->userTimeAndDate( $timestamp, $user )
 			);
 		} elseif ( $file->isDeleted( File::DELETED_FILE ) ) {
-			$timeAndDate = htmlspecialchars( $lang->userTimeAndDate( $timestamp, $user ) );
+			$timeAndDate = $lang->userTimeAndDate( $timestamp, $user );
 			if ( $local ) {
 				$this->preventClickjacking();
 				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 				# Make a link to review the image
-				$url = Linker::linkKnown(
+				$url = $linkRenderer->makeKnownLink(
 					$revdel,
 					$timeAndDate,
 					[],
@@ -219,7 +220,7 @@ class ImageHistoryList extends ContextSource {
 					]
 				);
 			} else {
-				$url = $timeAndDate;
+				$url = htmlspecialchars( $timeAndDate );
 			}
 			$row .= '<span class="history-deleted">' . $url . '</span>';
 		} elseif ( !$file->exists() ) {
