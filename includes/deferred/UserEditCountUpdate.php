@@ -46,6 +46,7 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 	public function merge( MergeableUpdate $update ) {
 		/** @var UserEditCountUpdate $update */
 		Assert::parameterType( __CLASS__, $update, '$update' );
+		'@phan-var UserEditCountUpdate $update';
 
 		foreach ( $update->infoByUser as $userId => $info ) {
 			if ( !isset( $this->infoByUser[$userId] ) ) {

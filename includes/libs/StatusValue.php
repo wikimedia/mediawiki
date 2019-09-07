@@ -93,7 +93,7 @@ class StatusValue {
 	 *     1 => object(StatusValue) # The StatusValue with warning messages, only
 	 * ]
 	 *
-	 * @return StatusValue[]
+	 * @return static[]
 	 */
 	public function splitByErrorType() {
 		$errorsOnlyStatusValue = clone $this;

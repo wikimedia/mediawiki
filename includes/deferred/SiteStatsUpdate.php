@@ -56,6 +56,7 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 	public function merge( MergeableUpdate $update ) {
 		/** @var SiteStatsUpdate $update */
 		Assert::parameterType( __CLASS__, $update, '$update' );
+		'@phan-var SiteStatsUpdate $update';
 
 		foreach ( self::$counters as $field ) {
 			$this->$field += $update->$field;

@@ -188,6 +188,8 @@ class ConfigRepository implements SalvageableService {
 	 */
 	public function salvage( SalvageableService $other ) {
 		Assert::parameterType( self::class, $other, '$other' );
+		/** @var self $other */
+		'@phan-var self $other';
 
 		foreach ( $other->configItems['public'] as $name => $otherConfig ) {
 			if ( isset( $this->configItems['public'][$name] ) ) {
