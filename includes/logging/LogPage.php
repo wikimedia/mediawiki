@@ -94,8 +94,7 @@ class LogPage {
 
 		$dbw = wfGetDB( DB_MASTER );
 
-		// @todo FIXME private/protected/public property?
-		$this->timestamp = $now = wfTimestampNow();
+		$now = wfTimestampNow();
 		$data = [
 			'log_type' => $this->type,
 			'log_action' => $this->action,

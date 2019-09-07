@@ -229,13 +229,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			$sql = $dbr->limitResult( $sql, $limit, false );
 		}
 
-		$res = $dbr->query( $sql, __METHOD__ );
-
-		if ( $res->numRows() == 0 ) {
-			$this->mResultEmpty = true;
-		}
-
-		return $res;
+		return $dbr->query( $sql, __METHOD__ );
 	}
 
 	function setTopText( FormOptions $opts ) {

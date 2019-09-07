@@ -47,7 +47,6 @@ class SpecialStatistics extends SpecialPage {
 		$this->total = SiteStats::pages();
 		$this->users = SiteStats::users();
 		$this->activeUsers = SiteStats::activeUsers();
-		$this->hook = '';
 
 		$text = Xml::openElement( 'table', [ 'class' => 'wikitable mw-statistics-table' ] );
 
