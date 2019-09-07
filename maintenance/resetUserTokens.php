@@ -50,10 +50,10 @@ class ResetUserTokens extends Maintenance {
 	}
 
 	public function execute() {
-		$this->nullsOnly = $this->getOption( 'nulls' );
+		$nullsOnly = $this->getOption( 'nulls' );
 
 		if ( !$this->getOption( 'nowarn' ) ) {
-			if ( $this->nullsOnly ) {
+			if ( $nullsOnly ) {
 				$this->output( "The script is about to reset the user_token "
 					. "for USERS WITH NULL TOKENS in the database.\n" );
 			} else {
@@ -71,7 +71,7 @@ class ResetUserTokens extends Maintenance {
 		$dbr = $this->getDB( DB_REPLICA );
 
 		$where = [];
-		if ( $this->nullsOnly ) {
+		if ( $nullsOnly ) {
 			// Have to build this by hand, because \ is escaped in helper functions
 			$where = [ 'user_token = \'' . str_repeat( '\0', 32 ) . '\'' ];
 		}
