@@ -138,7 +138,7 @@
 		}
 
 		parts = ( separatorMsg + mw.message( 'brackets' ).plain() ).split( '$1' );
-		regexp = new RegExp( parts.map( mw.RegExp.escape ).join( '.*?' ) + '$' );
+		regexp = new RegExp( parts.map( mw.util.escapeRegExp ).join( '.*?' ) + '$' );
 		newTitle = oldTitle.replace( regexp, '' );
 		accessKeyLabel = getAccessKeyLabel( element );
 

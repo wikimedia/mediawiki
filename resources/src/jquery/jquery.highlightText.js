@@ -17,7 +17,7 @@
 				}
 				$.highlightText.innerHighlight(
 					node,
-					new RegExp( '(^|\\s)' + mw.RegExp.escape( words[ i ] ), 'i' )
+					new RegExp( '(^|\\s)' + mw.util.escapeRegExp( words[ i ] ), 'i' )
 				);
 			}
 			return node;
@@ -26,7 +26,7 @@
 		prefixHighlight: function ( node, prefix ) {
 			$.highlightText.innerHighlight(
 				node,
-				new RegExp( '(^)' + mw.RegExp.escape( prefix ), 'i' )
+				new RegExp( '(^)' + mw.util.escapeRegExp( prefix ), 'i' )
 			);
 		},
 
@@ -38,7 +38,7 @@
 
 			$.highlightText.innerHighlight(
 				node,
-				new RegExp( '(^)' + mw.RegExp.escape( prefix ) + comboMarks + '*', 'i' )
+				new RegExp( '(^)' + mw.util.escapeRegExp( prefix ) + comboMarks + '*', 'i' )
 			);
 		},
 

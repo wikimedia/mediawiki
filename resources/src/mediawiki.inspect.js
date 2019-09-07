@@ -242,7 +242,7 @@
 	 */
 	inspect.grep = function ( pattern ) {
 		if ( typeof pattern.test !== 'function' ) {
-			pattern = new RegExp( mw.RegExp.escape( pattern ), 'g' );
+			pattern = new RegExp( mw.util.escapeRegExp( pattern ), 'g' );
 		}
 
 		return inspect.getLoadedModules().filter( function ( moduleName ) {

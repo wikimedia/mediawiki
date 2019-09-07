@@ -491,6 +491,7 @@ because of Phabricator reports.
   class. If you extend this class please be sure to override all its methods
   or extend RevisionSearchResult.
 * Skin::getSkinNameMessages() is deprecated and no longer used.
+* The mediawiki.RegExp module is deprecated; use mw.util.escapeRegExp() instead.
 
 === Other changes in 1.34 ===
 * …

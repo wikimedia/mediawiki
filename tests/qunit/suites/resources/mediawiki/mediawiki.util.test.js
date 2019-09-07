@@ -440,4 +440,38 @@
 			assert.strictEqual( util.isIPv6Address( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
 		} );
 	} );
+
+	QUnit.test( 'escapeRegExp', function ( assert ) {
+		var specials, normal;
+
+		specials = [
+			'\\',
+			'{',
+			'}',
+			'(',
+			')',
+			'[',
+			']',
+			'|',
+			'.',
+			'?',
+			'*',
+			'+',
+			'-',
+			'^',
+			'$'
+		];
+
+		normal = [
+			'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+			'abcdefghijklmnopqrstuvwxyz',
+			'0123456789'
+		].join( '' );
+
+		specials.forEach( function ( str ) {
+			assert.propEqual( str.match( new RegExp( mw.util.escapeRegExp( str ) ) ), [ str ], 'Match ' + str );
+		} );
+
+		assert.strictEqual( mw.util.escapeRegExp( normal ), normal, 'Alphanumerals are left alone' );
+	} );
 }() );

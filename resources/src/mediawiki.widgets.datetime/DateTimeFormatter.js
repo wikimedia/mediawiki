@@ -415,7 +415,7 @@
 			// eslint-disable-next-line no-restricted-properties
 			v = v.normalize();
 		}
-		re = new RegExp( '^\\s*' + mw.RegExp.escape( v ), 'i' );
+		re = new RegExp( '^\\s*' + mw.util.escapeRegExp( v ), 'i' );
 		for ( k in this.values ) {
 			k = +k;
 			if ( !isNaN( k ) && re.test( this.values[ k ] ) ) {
