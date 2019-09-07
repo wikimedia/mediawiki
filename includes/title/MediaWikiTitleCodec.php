@@ -237,6 +237,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * @param LinkTarget $title
 	 *
 	 * @return string
+	 * @suppress PhanUndeclaredProperty
 	 */
 	public function getPrefixedText( LinkTarget $title ) {
 		if ( !isset( $title->prefixedText ) ) {

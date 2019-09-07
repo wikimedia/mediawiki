@@ -252,6 +252,7 @@ class ApiComparePages extends ApiBase {
 			);
 			if ( $row ) {
 				$rev = $this->revisionStore->newRevisionFromArchiveRow( $row );
+				// @phan-suppress-next-line PhanUndeclaredProperty
 				$rev->isArchive = true;
 			}
 		}
@@ -620,6 +621,7 @@ class ApiComparePages extends ApiBase {
 				}
 			}
 
+			// @phan-suppress-next-line PhanUndeclaredProperty
 			if ( !empty( $rev->isArchive ) ) {
 				$this->getMain()->setCacheMode( 'private' );
 				$vals["{$prefix}archive"] = true;

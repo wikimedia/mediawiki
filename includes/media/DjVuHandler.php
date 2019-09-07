@@ -240,6 +240,7 @@ class DjVuHandler extends ImageHandler {
 	 * @param File|FSFile $image
 	 * @param string $path
 	 * @return DjVuImage
+	 * @suppress PhanUndeclaredProperty Custom property
 	 */
 	function getDjVuImage( $image, $path ) {
 		if ( !$image ) {
@@ -290,6 +291,7 @@ class DjVuHandler extends ImageHandler {
 	 * @param File $image
 	 * @param bool $gettext DOCUMENT (Default: false)
 	 * @return bool|SimpleXMLElement
+	 * @suppress PhanUndeclaredProperty Custom property
 	 */
 	public function getMetaTree( $image, $gettext = false ) {
 		if ( $gettext && isset( $image->djvuTextTree ) ) {

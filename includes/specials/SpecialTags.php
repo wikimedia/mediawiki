@@ -381,6 +381,7 @@ class SpecialTags extends SpecialPage {
 
 		$form = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
 		$form->setAction( $this->getPageTitle( 'delete' )->getLocalURL() );
+		// @phan-suppress-next-line PhanUndeclaredProperty
 		$form->tagAction = 'delete'; // custom property on HTMLForm object
 		$form->setSubmitCallback( [ $this, 'processTagForm' ] );
 		$form->setSubmitTextMsg( 'tags-delete-submit' );
@@ -433,6 +434,7 @@ class SpecialTags extends SpecialPage {
 
 		$form = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
 		$form->setAction( $this->getPageTitle( $actionStr )->getLocalURL() );
+		// @phan-suppress-next-line PhanUndeclaredProperty
 		$form->tagAction = $actionStr;
 		$form->setSubmitCallback( [ $this, 'processTagForm' ] );
 		// tags-activate-submit, tags-deactivate-submit
@@ -441,6 +443,12 @@ class SpecialTags extends SpecialPage {
 		$form->show();
 	}
 
+	/**
+	 * @param array $data
+	 * @param HTMLForm $form
+	 * @return bool
+	 * @suppress PhanUndeclaredProperty $form->tagAction
+	 */
 	public function processTagForm( array $data, HTMLForm $form ) {
 		$context = $form->getContext();
 		$out = $context->getOutput();
