@@ -66,11 +66,10 @@ class FSFileBackend extends FileBackendStore {
 	/** @var array Map of container names to root paths for custom container paths */
 	protected $containerPaths;
 
+	/** @var int Directory permission mode */
+	protected $dirMode;
 	/** @var int File permission mode */
 	protected $fileMode;
-	/** @var int File permission mode */
-	protected $dirMode;
-
 	/** @var string Required OS username to own files */
 	protected $fileOwner;
 
@@ -79,8 +78,8 @@ class FSFileBackend extends FileBackendStore {
 	/** @var string OS username running this script */
 	protected $currentUser;
 
-	/** @var array */
-	protected $hadWarningErrors = [];
+	/** @var bool[] Map of (stack index => whether a warning happened) */
+	private $warningTrapStack = [];
 
 	/**
 	 * @see FileBackendStore::__construct()
@@ -420,26 +419,25 @@ class FSFileBackend extends FileBackendStore {
 	protected function doDeleteInternal( array $params ) {
 		$status = $this->newStatus();
 
-		$source = $this->resolveToFSPath( $params['src'] );
-		if ( $source === null ) {
+		$fsSrcPath = $this->resolveToFSPath( $params['src'] );
+		if ( $fsSrcPath === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['src'] );
 
 			return $status;
 		}
 
-		if ( !is_file( $source ) ) {
-			if ( empty( $params['ignoreMissingSource'] ) ) {
-				$status->fatal( 'backend-fail-delete', $params['src'] );
-			}
-
-			return $status; // do nothing; either OK or bad status
-		}
+		$ignoreMissing = !empty( $params['ignoreMissingSource'] );
 
 		if ( !empty( $params['async'] ) ) { // deferred
-			$cmd = implode( ' ', [
-				$this->isWindows ? 'DEL' : 'unlink',
-				escapeshellarg( $this->cleanPathSlashes( $source ) )
-			] );
+			// https://manpages.debian.org/buster/coreutils/rm.1.en.html
+			// https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/del
+			$encSrc = escapeshellarg( $this->cleanPathSlashes( $fsSrcPath ) );
+			if ( $this->isWindows ) {
+				$writeCmd = "DEL /Q $encSrc";
+				$cmd = $ignoreMissing ? "IF EXIST $encSrc $writeCmd" : $writeCmd;
+			} else {
+				$cmd = $ignoreMissing ? "rm -f $encSrc" : "rm $encSrc";
+			}
 			$handler = function ( $errors, StatusValue $status, array $params, $cmd ) {
 				if ( $errors !== '' && !( $this->isWindows && $errors[0] === " " ) ) {
 					$status->fatal( 'backend-fail-delete', $params['src'] );
@@ -448,8 +446,10 @@ class FSFileBackend extends FileBackendStore {
 			};
 			$status->value = new FSFileOpHandle( $this, $params, $handler, $cmd );
 		} else { // immediate write
-			$ok = $this->unlink( $source );
-			if ( !$ok ) {
+			$this->trapWarnings( '/: No such file or directory$/' );
+			$deleted = unlink( $fsSrcPath );
+			$hadError = $this->untrapWarnings();
+			if ( $hadError || ( !$deleted && !$ignoreMissing ) ) {
 				$status->fatal( 'backend-fail-delete', $params['src'] );
 
 				return $status;
@@ -709,7 +709,7 @@ class FSFileBackend extends FileBackendStore {
 
 			$tmpPath = $tmpFile->getPath();
 			// Copy the source file over the temp file
-			$this->trapWarnings();
+			$this->trapWarnings(); // don't trust 'false' if there were errors
 			$isFile = is_file( $source ); // regular files only
 			$copySuccess = $isFile ? copy( $source, $tmpPath ) : false;
 			$hadError = $this->untrapWarnings();
@@ -857,30 +857,29 @@ class FSFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * Listen for E_WARNING errors and track whether any happen
+	 * Listen for E_WARNING errors and track whether any that happen
+	 *
+	 * @param string|null $regexIgnore Optional regex of errors to ignore
 	 */
-	protected function trapWarnings() {
-		// push to stack
-		$this->hadWarningErrors[] = false;
-		set_error_handler( function ( $errno, $errstr ) {
-			// more detailed error logging
-			$this->logger->error( $errstr );
-			$this->hadWarningErrors[count( $this->hadWarningErrors ) - 1] = true;
-
-			// suppress from PHP handler
-			return true;
+	protected function trapWarnings( $regexIgnore = null ) {
+		$this->warningTrapStack[] = false;
+		set_error_handler( function ( $errno, $errstr ) use ( $regexIgnore ) {
+			if ( $regexIgnore === null || !preg_match( $regexIgnore, $errstr ) ) {
+				$this->logger->error( $errstr );
+				$this->warningTrapStack[count( $this->warningTrapStack ) - 1] = true;
+			}
+			return true; // suppress from PHP handler
 		}, E_WARNING );
 	}
 
 	/**
-	 * Stop listening for E_WARNING errors and return true if any happened
+	 * Stop listening for E_WARNING errors and get whether any happened
 	 *
-	 * @return bool
+	 * @return bool Whether any warnings happened
 	 */
 	protected function untrapWarnings() {
-		// restore previous handler
 		restore_error_handler();
-		// pop from stack
-		return array_pop( $this->hadWarningErrors );
+
+		return array_pop( $this->warningTrapStack );
 	}
 }

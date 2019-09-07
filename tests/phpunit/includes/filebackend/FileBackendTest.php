@@ -943,7 +943,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			"$base/unittest-cont1/e/fileC.a"
 		];
 		$createOps = [];
-		$purgeOps = [];
+		$delOps = [];
 		foreach ( $files as $path ) {
 			$status = $this->prepare( [ 'dir' => dirname( $path ) ] );
 			$this->assertGoodStatus( $status,
@@ -951,10 +951,11 @@ class FileBackendTest extends MediaWikiTestCase {
 			$createOps[] = [ 'op' => 'create', 'dst' => $path, 'content' => mt_rand( 0, 50000 ) ];
 			$copyOps[] = [ 'op' => 'copy', 'src' => $path, 'dst' => "$path-2" ];
 			$moveOps[] = [ 'op' => 'move', 'src' => "$path-2", 'dst' => "$path-3" ];
-			$purgeOps[] = [ 'op' => 'delete', 'src' => $path ];
-			$purgeOps[] = [ 'op' => 'delete', 'src' => "$path-3" ];
+			$delOps[] = [ 'op' => 'delete', 'src' => $path ];
+			$delOps[] = [ 'op' => 'delete', 'src' => "$path-3" ];
+			$delOps[] = [ 'op' => 'delete', 'src' => "$path-gone", 'ignoreMissingSource' => true ];
 		}
-		$purgeOps[] = [ 'op' => 'null' ];
+		$delOps[] = [ 'op' => 'null' ];
 
 		$this->assertGoodStatus(
 			$this->backend->doQuickOperations( $createOps ),
@@ -995,7 +996,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			"File {$files[0]} still exists." );
 
 		$this->assertGoodStatus(
-			$this->backend->doQuickOperations( $purgeOps ),
+			$this->backend->doQuickOperations( $delOps ),
 			"Quick deletion of source files succeeded ($backendName)." );
 		foreach ( $files as $file ) {
 			$this->assertFalse( $this->backend->fileExists( [ 'src' => $file ] ),
