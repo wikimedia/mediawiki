@@ -505,11 +505,10 @@ final class SessionManager implements SessionManagerInterface {
 		}
 
 		if ( count( $retInfos ) > 1 ) {
-			$ex = new \OverflowException(
+			throw new SessionOverflowException(
+				$retInfos,
 				'Multiple sessions for this request tied for top priority: ' . implode( ', ', $retInfos )
 			);
-			$ex->sessionInfos = $retInfos;
-			throw $ex;
 		}
 
 		return $retInfos ? $retInfos[0] : null;
