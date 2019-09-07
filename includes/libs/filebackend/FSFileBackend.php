@@ -366,34 +366,38 @@ class FSFileBackend extends FileBackendStore {
 	protected function doMoveInternal( array $params ) {
 		$status = $this->newStatus();
 
-		$source = $this->resolveToFSPath( $params['src'] );
-		if ( $source === null ) {
+		$fsSrcPath = $this->resolveToFSPath( $params['src'] );
+		if ( $fsSrcPath === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['src'] );
 
 			return $status;
 		}
 
-		$dest = $this->resolveToFSPath( $params['dst'] );
-		if ( $dest === null ) {
+		$fsDstPath = $this->resolveToFSPath( $params['dst'] );
+		if ( $fsDstPath === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
 
 			return $status;
 		}
 
-		if ( !is_file( $source ) ) {
-			if ( empty( $params['ignoreMissingSource'] ) ) {
-				$status->fatal( 'backend-fail-move', $params['src'] );
-			}
-
-			return $status; // do nothing; either OK or bad status
+		if ( $fsSrcPath === $fsDstPath ) {
+			return $status; // no-op
 		}
 
+		$ignoreMissing = !empty( $params['ignoreMissingSource'] );
+
 		if ( !empty( $params['async'] ) ) { // deferred
-			$cmd = implode( ' ', [
-				$this->isWindows ? 'MOVE /Y' : 'mv', // (overwrite)
-				escapeshellarg( $this->cleanPathSlashes( $source ) ),
-				escapeshellarg( $this->cleanPathSlashes( $dest ) )
-			] );
+			// https://manpages.debian.org/buster/coreutils/mv.1.en.html
+			// https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/move
+			$encSrc = escapeshellarg( $this->cleanPathSlashes( $fsSrcPath ) );
+			$encDst	= escapeshellarg( $this->cleanPathSlashes( $fsDstPath ) );
+			if ( $this->isWindows ) {
+				$writeCmd = "MOVE /Y $encSrc $encDst";
+				$cmd = $ignoreMissing ? "IF EXIST $encSrc $writeCmd" : $writeCmd;
+			} else {
+				$writeCmd = "mv -f $encSrc $encDst";
+				$cmd = $ignoreMissing ? "test -f $encSrc && $writeCmd" : $writeCmd;
+			}
 			$handler = function ( $errors, StatusValue $status, array $params, $cmd ) {
 				if ( $errors !== '' && !( $this->isWindows && $errors[0] === " " ) ) {
 					$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
@@ -402,11 +406,13 @@ class FSFileBackend extends FileBackendStore {
 			};
 			$status->value = new FSFileOpHandle( $this, $params, $handler, $cmd );
 		} else { // immediate write
-			$this->trapWarnings();
-			$ok = ( $source === $dest ) ? true : rename( $source, $dest );
-			$this->untrapWarnings();
-			clearstatcache(); // file no longer at source
-			if ( !$ok ) {
+			// Use rename() here since (a) this clears xattrs, (b) any threads still reading the
+			// old inode are unaffected since it writes to a new inode, and (c) this is fast and
+			// atomic within a file system volume (as is normally the case)
+			$this->trapWarnings( '/: No such file or directory$/' );
+			$moved = rename( $fsSrcPath, $fsDstPath );
+			$hadError = $this->untrapWarnings();
+			if ( $hadError || ( !$moved && !$ignoreMissing ) ) {
 				$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
 
 				return $status;
