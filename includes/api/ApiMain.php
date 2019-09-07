@@ -293,7 +293,6 @@ class ApiMain extends ApiBase {
 		$this->mEnableWrite = $enableWrite;
 
 		$this->mCdnMaxAge = -1; // flag for executeActionWithErrorHandling()
-		$this->mCommit = false;
 	}
 
 	/**
