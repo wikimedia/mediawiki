@@ -225,6 +225,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		// Session data is used for various things in the authentication process, so we must make
 		// sure a session cookie or some equivalent mechanism is set.
 		$session->persist();
+		// Explicitly disable cache to ensure cookie blocks may be set (T152462).
+		// (Technically redundant with sessions persisting from this page.)
+		$this->getOutput()->enableClientCache( false );
 
 		$this->load( $subPage );
 		$this->setHeaders();
