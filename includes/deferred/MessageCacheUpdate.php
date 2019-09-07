@@ -42,8 +42,9 @@ class MessageCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	}
 
 	public function merge( MergeableUpdate $update ) {
-		/** @var MessageCacheUpdate $update */
+		/** @var self $update */
 		Assert::parameterType( __CLASS__, $update, '$update' );
+		'@phan-var self $update';
 
 		foreach ( $update->replacements as $code => $messages ) {
 			$this->replacements[$code] = array_merge( $this->replacements[$code] ?? [], $messages );
