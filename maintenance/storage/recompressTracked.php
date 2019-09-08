@@ -275,7 +275,7 @@ class RecompressTracked {
 	/**
 	 * Dispatch a command to the next available replica DB.
 	 * This may block until a replica DB finishes its work and becomes available.
-	 * @param array ...$args
+	 * @param array|string ...$args
 	 */
 	function dispatch( ...$args ) {
 		$pipes = $this->replicaPipes;

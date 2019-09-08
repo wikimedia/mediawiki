@@ -36,18 +36,18 @@ class FileDeleteForm {
 	private $title = null;
 
 	/**
-	 * @var File
+	 * @var LocalFile
 	 */
 	private $file = null;
 
 	/**
-	 * @var File
+	 * @var LocalFile
 	 */
 	private $oldfile = null;
 	private $oldimage = '';
 
 	/**
-	 * @param File $file File object we're deleting
+	 * @param LocalFile $file File object we're deleting
 	 */
 	public function __construct( $file ) {
 		$this->title = $file->getTitle();
@@ -451,9 +451,9 @@ class FileDeleteForm {
 	 * value was provided, does it correspond to an
 	 * existing, local, old version of this file?
 	 *
-	 * @param File &$file
-	 * @param File &$oldfile
-	 * @param File $oldimage
+	 * @param LocalFile &$file
+	 * @param LocalFile &$oldfile
+	 * @param LocalFile $oldimage
 	 * @return bool
 	 */
 	public static function haveDeletableFile( &$file, &$oldfile, $oldimage ) {
