@@ -556,9 +556,7 @@ class FSFileBackend extends FileBackendStore {
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 		AtEase::suppressWarnings();
-		if ( is_dir( $dir ) ) {
-			rmdir( $dir ); // remove directory if empty
-		}
+		rmdir( $dir ); // remove directory if empty
 		AtEase::restoreWarnings();
 
 		return $status;
