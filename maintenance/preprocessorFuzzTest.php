@@ -150,6 +150,9 @@ class PPFuzzTester {
 class PPFuzzTest {
 	public $templates, $mainText, $title, $entryPoint, $output;
 
+	/**
+	 * @param PPFuzzTester $tester
+	 */
 	function __construct( $tester ) {
 		global $wgMaxSigChars;
 		$this->parent = $tester;

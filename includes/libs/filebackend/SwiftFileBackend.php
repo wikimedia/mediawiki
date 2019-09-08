@@ -1299,6 +1299,9 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @return StatusValue[]
 	 */
 	protected function doExecuteOpHandlesInternal( array $fileOpHandles ) {
+		/** @var SwiftFileOpHandle[] $fileOpHandles */
+		'@phan-var SwiftFileOpHandle[] $fileOpHandles';
+
 		/** @var StatusValue[] $statuses */
 		$statuses = [];
 
@@ -1314,7 +1317,6 @@ class SwiftFileBackend extends FileBackendStore {
 		// Split the HTTP requests into stages that can be done concurrently
 		$httpReqsByStage = []; // map of (stage => index => HTTP request)
 		foreach ( $fileOpHandles as $index => $fileOpHandle ) {
-			/** @var SwiftFileOpHandle $fileOpHandle */
 			$reqs = $fileOpHandle->httpOp;
 			// Convert the 'url' parameter to an actual URL using $auth
 			foreach ( $reqs as $stage => &$req ) {

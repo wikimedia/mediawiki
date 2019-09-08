@@ -82,6 +82,12 @@ class RequestContext implements IContextSource, MutableContext {
 	private static $instance = null;
 
 	/**
+	 * Boolean flag to guard against recursion in getLanguage
+	 * @var bool
+	 */
+	private $languageRecursion = false;
+
+	/**
 	 * @param Config $config
 	 */
 	public function setConfig( Config $config ) {
@@ -318,7 +324,7 @@ class RequestContext implements IContextSource, MutableContext {
 	 * @since 1.19
 	 */
 	public function getLanguage() {
-		if ( isset( $this->recursion ) ) {
+		if ( $this->languageRecursion === true ) {
 			trigger_error( "Recursion detected in " . __METHOD__, E_USER_WARNING );
 			$e = new Exception;
 			wfDebugLog( 'recursion-guard', "Recursion detected:\n" . $e->getTraceAsString() );
@@ -326,7 +332,7 @@ class RequestContext implements IContextSource, MutableContext {
 			$code = $this->getConfig()->get( 'LanguageCode' ) ?: 'en';
 			$this->lang = Language::factory( $code );
 		} elseif ( $this->lang === null ) {
-			$this->recursion = true;
+			$this->languageRecursion = true;
 
 			try {
 				$request = $this->getRequest();
@@ -348,7 +354,7 @@ class RequestContext implements IContextSource, MutableContext {
 					$this->lang = $obj;
 				}
 			} finally {
-				unset( $this->recursion );
+				$this->languageRecursion = false;
 			}
 		}
 
