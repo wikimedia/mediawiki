@@ -40,6 +40,7 @@
  * @file
  * @ingroup FileBackend
  */
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -63,7 +64,7 @@ class FSFileBackend extends FileBackendStore {
 	protected $basePath;
 
 	/** @var array Map of container names to root paths for custom container paths */
-	protected $containerPaths = [];
+	protected $containerPaths;
 
 	/** @var int File permission mode */
 	protected $fileMode;
@@ -73,7 +74,7 @@ class FSFileBackend extends FileBackendStore {
 	/** @var string Required OS username to own files */
 	protected $fileOwner;
 
-	/** @var bool */
+	/** @var bool Whether the OS is Windows (otherwise assumed Unix-like)*/
 	protected $isWindows;
 	/** @var string OS username running this script */
 	protected $currentUser;
@@ -102,11 +103,9 @@ class FSFileBackend extends FileBackendStore {
 			$this->basePath = null; // none; containers must have explicit paths
 		}
 
-		if ( isset( $config['containerPaths'] ) ) {
-			$this->containerPaths = (array)$config['containerPaths'];
-			foreach ( $this->containerPaths as &$path ) {
-				$path = rtrim( $path, '/' ); // remove trailing slash
-			}
+		$this->containerPaths = [];
+		foreach ( ( $config['containerPaths'] ?? [] ) as $container => $path ) {
+			$this->containerPaths[$container] = rtrim( $path, '/' ); // remove trailing slash
 		}
 
 		$this->fileMode = $config['fileMode'] ?? 0644;
@@ -228,16 +227,8 @@ class FSFileBackend extends FileBackendStore {
 		}
 
 		if ( !empty( $params['async'] ) ) { // deferred
-			$tempFile = $this->tmpFileFactory->newTempFSFile( 'create_', 'tmp' );
+			$tempFile = $this->stageContentAsTempFile( $params );
 			if ( !$tempFile ) {
-				$status->fatal( 'backend-fail-create', $params['dst'] );
-
-				return $status;
-			}
-			$this->trapWarnings();
-			$bytes = file_put_contents( $tempFile->getPath(), $params['content'] );
-			$this->untrapWarnings();
-			if ( $bytes === false ) {
 				$status->fatal( 'backend-fail-create', $params['dst'] );
 
 				return $status;
@@ -457,9 +448,7 @@ class FSFileBackend extends FileBackendStore {
 			};
 			$status->value = new FSFileOpHandle( $this, $params, $handler, $cmd );
 		} else { // immediate write
-			$this->trapWarnings();
-			$ok = unlink( $source );
-			$this->untrapWarnings();
+			$ok = $this->unlink( $source );
 			if ( !$ok ) {
 				$status->fatal( 'backend-fail-delete', $params['src'] );
 
@@ -483,7 +472,7 @@ class FSFileBackend extends FileBackendStore {
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 		$existed = is_dir( $dir ); // already there?
 		// Create the directory and its parents as needed...
-		$this->trapWarnings();
+		AtEase::suppressWarnings();
 		if ( !$existed && !mkdir( $dir, $this->dirMode, true ) && !is_dir( $dir ) ) {
 			$this->logger->error( __METHOD__ . ": cannot create directory $dir" );
 			$status->fatal( 'directorycreateerror', $params['dir'] ); // fails on races
@@ -494,7 +483,7 @@ class FSFileBackend extends FileBackendStore {
 			$this->logger->error( __METHOD__ . ": directory $dir is not readable" );
 			$status->fatal( 'directorynotreadableerror', $params['dir'] );
 		}
-		$this->untrapWarnings();
+		AtEase::restoreWarnings();
 		// Respect any 'noAccess' or 'noListing' flags...
 		if ( is_dir( $dir ) && !$existed ) {
 			$status->merge( $this->doSecureInternal( $fullCont, $dirRel, $params ) );
@@ -519,9 +508,9 @@ class FSFileBackend extends FileBackendStore {
 		}
 		// Add a .htaccess file to the root of the container...
 		if ( !empty( $params['noAccess'] ) && !file_exists( "{$contRoot}/.htaccess" ) ) {
-			$this->trapWarnings();
+			AtEase::suppressWarnings();
 			$bytes = file_put_contents( "{$contRoot}/.htaccess", $this->htaccessPrivate() );
-			$this->untrapWarnings();
+			AtEase::restoreWarnings();
 			if ( $bytes === false ) {
 				$storeDir = "mwstore://{$this->name}/{$shortCont}";
 				$status->fatal( 'backend-fail-create', "{$storeDir}/.htaccess" );
@@ -539,21 +528,17 @@ class FSFileBackend extends FileBackendStore {
 		// Unseed new directories with a blank index.html, to allow crawling...
 		if ( !empty( $params['listing'] ) && is_file( "{$dir}/index.html" ) ) {
 			$exists = ( file_get_contents( "{$dir}/index.html" ) === $this->indexHtmlPrivate() );
-			$this->trapWarnings();
-			if ( $exists && !unlink( "{$dir}/index.html" ) ) { // reverse secure()
+			if ( $exists && !$this->unlink( "{$dir}/index.html" ) ) { // reverse secure()
 				$status->fatal( 'backend-fail-delete', $params['dir'] . '/index.html' );
 			}
-			$this->untrapWarnings();
 		}
 		// Remove the .htaccess file from the root of the container...
 		if ( !empty( $params['access'] ) && is_file( "{$contRoot}/.htaccess" ) ) {
 			$exists = ( file_get_contents( "{$contRoot}/.htaccess" ) === $this->htaccessPrivate() );
-			$this->trapWarnings();
-			if ( $exists && !unlink( "{$contRoot}/.htaccess" ) ) { // reverse secure()
+			if ( $exists && !$this->unlink( "{$contRoot}/.htaccess" ) ) { // reverse secure()
 				$storeDir = "mwstore://{$this->name}/{$shortCont}";
 				$status->fatal( 'backend-fail-delete', "{$storeDir}/.htaccess" );
 			}
-			$this->untrapWarnings();
 		}
 
 		return $status;
@@ -564,11 +549,11 @@ class FSFileBackend extends FileBackendStore {
 		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
-		$this->trapWarnings();
+		AtEase::suppressWarnings();
 		if ( is_dir( $dir ) ) {
 			rmdir( $dir ); // remove directory if empty
 		}
-		$this->untrapWarnings();
+		AtEase::restoreWarnings();
 
 		return $status;
 	}
@@ -755,8 +740,19 @@ class FSFileBackend extends FileBackendStore {
 		$statuses = [];
 
 		$pipes = [];
+		$octalPermissions = '0' . decoct( $this->fileMode );
 		foreach ( $fileOpHandles as $index => $fileOpHandle ) {
-			$pipes[$index] = popen( "{$fileOpHandle->cmd} 2>&1", 'r' );
+			$cmd = "{$fileOpHandle->cmd} 2>&1";
+			// Add a post-operation chmod command for permissions cleanup if applicable
+			if (
+				!$this->isWindows &&
+				$fileOpHandle->chmodPath !== null &&
+				strlen( $octalPermissions ) == 4
+			) {
+				$encPath = escapeshellarg( $fileOpHandle->chmodPath );
+				$cmd .= " && chmod $octalPermissions $encPath 2>/dev/null";
+			}
+			$pipes[$index] = popen( $cmd, 'r' );
 		}
 
 		$errs = [];
@@ -772,12 +768,10 @@ class FSFileBackend extends FileBackendStore {
 			$function = $fileOpHandle->call;
 			$function( $errs[$index], $status, $fileOpHandle->params, $fileOpHandle->cmd );
 			$statuses[$index] = $status;
-			if ( $status->isOK() && $fileOpHandle->chmodPath ) {
-				$this->chmod( $fileOpHandle->chmodPath );
-			}
 		}
 
 		clearstatcache(); // files changed
+
 		return $statuses;
 	}
 
@@ -788,11 +782,50 @@ class FSFileBackend extends FileBackendStore {
 	 * @return bool Success
 	 */
 	protected function chmod( $path ) {
-		$this->trapWarnings();
+		if ( $this->isWindows ) {
+			return true;
+		}
+
+		AtEase::suppressWarnings();
 		$ok = chmod( $path, $this->fileMode );
-		$this->untrapWarnings();
+		AtEase::restoreWarnings();
 
 		return $ok;
+	}
+
+	/**
+	 * Unlink a file, suppressing the warnings
+	 *
+	 * @param string $path Absolute file system path
+	 * @return bool Success
+	 */
+	protected function unlink( $path ) {
+		AtEase::suppressWarnings();
+		$ok = unlink( $path );
+		AtEase::restoreWarnings();
+
+		return $ok;
+	}
+
+	/**
+	 * @param array $params Operation parameters with 'content' and 'headers' fields
+	 * @return TempFSFile|null
+	 */
+	protected function stageContentAsTempFile( array $params ) {
+		$content = $params['content'];
+		$tempFile = $this->tmpFileFactory->newTempFSFile( 'create_', 'tmp' );
+		if ( !$tempFile ) {
+			return null;
+		}
+
+		AtEase::suppressWarnings();
+		$tmpPath = $tempFile->getPath();
+		if ( file_put_contents( $tmpPath, $content ) === false ) {
+			$tempFile = null;
+		}
+		AtEase::restoreWarnings();
+
+		return $tempFile;
 	}
 
 	/**
