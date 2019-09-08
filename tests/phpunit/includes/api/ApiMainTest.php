@@ -242,11 +242,12 @@ class ApiMainTest extends ApiTestCase {
 		$mock->method( 'needsToken' )->willReturn( true );
 
 		$api = new ApiMain( new FauxRequest( [ 'action' => 'testmodule' ] ) );
-		$api->getModuleManager()->addModule( 'testmodule', 'action', get_class( $mock ),
-			function () use ( $mock ) {
+		$api->getModuleManager()->addModule( 'testmodule', 'action', [
+			'class' => get_class( $mock ),
+			'factory' => function () use ( $mock ) {
 				return $mock;
 			}
-		);
+		] );
 		$api->execute();
 	}
 
@@ -260,11 +261,12 @@ class ApiMainTest extends ApiTestCase {
 		$mock->method( 'mustBePosted' )->willReturn( false );
 
 		$api = new ApiMain( new FauxRequest( [ 'action' => 'testmodule' ] ) );
-		$api->getModuleManager()->addModule( 'testmodule', 'action', get_class( $mock ),
-			function () use ( $mock ) {
+		$api->getModuleManager()->addModule( 'testmodule', 'action', [
+			'class' => get_class( $mock ),
+			'factory' => function () use ( $mock ) {
 				return $mock;
 			}
-		);
+		] );
 		$api->execute();
 	}
 
@@ -309,11 +311,12 @@ class ApiMainTest extends ApiTestCase {
 		$req->setRequestURL( "http://localhost" );
 
 		$api = new ApiMain( $req );
-		$api->getModuleManager()->addModule( 'testmodule', 'action', get_class( $mock ),
-			function () use ( $mock ) {
+		$api->getModuleManager()->addModule( 'testmodule', 'action', [
+			'class' => get_class( $mock ),
+			'factory' => function () use ( $mock ) {
 				return $mock;
 			}
-		);
+		] );
 
 		$wrapper = TestingAccessWrapper::newFromObject( $api );
 		$wrapper->mInternalMode = false;

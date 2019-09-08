@@ -365,13 +365,19 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 		$main = new ApiMain( $context );
 		$printer = $this->getMockFormatter( $main, 'mockfm' );
 		$mm = $printer->getMain()->getModuleManager();
-		$mm->addModule( 'mockfm', 'format', ApiFormatBase::class, function () {
-			return $mock;
-		} );
-		if ( $registerNonHtml ) {
-			$mm->addModule( 'mock', 'format', ApiFormatBase::class, function () {
+		$mm->addModule( 'mockfm', 'format', [
+			'class' => ApiFormatBase::class,
+			'factory' => function () {
 				return $mock;
-			} );
+			}
+		] );
+		if ( $registerNonHtml ) {
+			$mm->addModule( 'mock', 'format', [
+				'class' => ApiFormatBase::class,
+				'factory' => function () {
+					return $mock;
+				}
+			] );
 		}
 
 		$printer->initPrinter();

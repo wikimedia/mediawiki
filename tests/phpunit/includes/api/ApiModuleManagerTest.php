@@ -79,6 +79,12 @@ class ApiModuleManagerTest extends MediaWikiTestCase {
 	 * @dataProvider addModuleProvider
 	 */
 	public function testAddModule( $name, $group, $spec, $factory ) {
+		if ( $factory ) {
+			$this->hideDeprecated(
+				ApiModuleManager::class . '::addModule with $class and $factory'
+			);
+		}
+
 		$moduleManager = $this->getModuleManager();
 		$moduleManager->addModule( $name, $group, $spec, $factory );
 
