@@ -21,6 +21,9 @@
 
 /**
  * @ingroup Parser
+ *
+ * @property int $depth
+ * @property PPFrame $parent
  */
 interface PPFrame {
 	const NO_ARGS = 1;

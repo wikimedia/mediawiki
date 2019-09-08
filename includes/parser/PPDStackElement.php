@@ -21,6 +21,8 @@
 
 /**
  * @ingroup Parser
+ *
+ * @property int $startPos
  */
 class PPDStackElement {
 	/**

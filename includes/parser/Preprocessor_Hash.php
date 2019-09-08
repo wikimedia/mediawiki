@@ -41,12 +41,6 @@
  */
 // phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class Preprocessor_Hash extends Preprocessor {
-
-	/**
-	 * @var Parser
-	 */
-	public $parser;
-
 	const CACHE_PREFIX = 'preprocess-hash';
 	const CACHE_VERSION = 2;
 

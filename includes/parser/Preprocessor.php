@@ -32,6 +32,11 @@ abstract class Preprocessor {
 	const CACHE_VERSION = 1;
 
 	/**
+	 * @var Parser
+	 */
+	public $parser;
+
+	/**
 	 * @var array Brace matching rules.
 	 */
 	protected $rules = [

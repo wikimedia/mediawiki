@@ -40,6 +40,8 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 		$namedArgs = [], $title = false
 	) {
 		parent::__construct( $preprocessor );
+		/** @var PPFrame_Hash parent */
+		'@phan-var PPFrame_Hash $parent';
 
 		$this->parent = $parent;
 		$this->numberedArgs = $numberedArgs;
