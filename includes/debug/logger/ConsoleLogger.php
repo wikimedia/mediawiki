@@ -10,10 +10,16 @@ use Psr\Log\AbstractLogger;
  * goal.
  */
 class ConsoleLogger extends AbstractLogger {
+	/**
+	 * @param string $channel
+	 */
 	public function __construct( $channel ) {
 		$this->channel = $channel;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function log( $level, $message, array $context = [] ) {
 		fwrite( STDERR, "[$level] " .
 			LegacyLogger::format( $this->channel, $message, $context ) );

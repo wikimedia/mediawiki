@@ -91,6 +91,10 @@ class ImageBuilder extends Maintenance {
 		$this->buildOldImage();
 	}
 
+	/**
+	 * @param int $count
+	 * @param string $table
+	 */
 	function init( $count, $table ) {
 		$this->processed = 0;
 		$this->updated = 0;
