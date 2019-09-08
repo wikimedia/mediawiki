@@ -9,3 +9,7 @@
  */
 
 $fallback = 'hy';
+
+$magicWords['redirect'] = [ '0', '#ՎԵՐԱՅՂՈՒՄ', '#ՎԵՐԱՀՂՈՒՄ', '#REDIRECT' ];
+
+$namespaceNames[NS_CATEGORY] = 'Ստորոգութիւն';
