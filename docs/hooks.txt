@@ -2827,6 +2827,7 @@ or request state must be added through MakeGlobalVariablesScript instead.
 Skin is made available for skin specific config.
 &$vars: [ variable name => value ]
 $skin: Skin
+$config: Config object (since 1.34)
 
 'ResourceLoaderJqueryMsgModuleMagicWords': Called in
 ResourceLoaderJqueryMsgModule to allow adding magic words for jQueryMsg.

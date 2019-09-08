@@ -121,7 +121,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgCommentCodePointLimit' => CommentStore::COMMENT_CHARACTER_LIMIT,
 		];
 
-		Hooks::run( 'ResourceLoaderGetConfigVars', [ &$vars, $skin ] );
+		Hooks::run( 'ResourceLoaderGetConfigVars', [ &$vars, $skin, $conf ] );
 
 		return $vars;
 	}
