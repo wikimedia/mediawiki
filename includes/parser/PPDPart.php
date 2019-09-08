@@ -21,6 +21,10 @@
 
 /**
  * @ingroup Parser
+ *
+ * @property int $eqpos
+ * @property int $commentEnd
+ * @property int $visualEnd
  */
 class PPDPart {
 	/**

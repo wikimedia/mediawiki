@@ -82,7 +82,7 @@ class PPFrame_DOM implements PPFrame {
 	 * Create a new child frame
 	 * $args is optionally a multi-root PPNode or array containing the template arguments
 	 *
-	 * @param bool|array $args
+	 * @param bool|array|PPNode_DOM $args
 	 * @param Title|bool $title
 	 * @param int $indexOffset
 	 * @return PPTemplateFrame_DOM
@@ -95,11 +95,12 @@ class PPFrame_DOM implements PPFrame {
 		}
 		if ( $args !== false ) {
 			$xpath = false;
-			if ( $args instanceof PPNode ) {
+			if ( $args instanceof PPNode_DOM ) {
 				$args = $args->node;
 			}
+			// @phan-suppress-next-line PhanTypeSuspiciousNonTraversableForeach
 			foreach ( $args as $arg ) {
-				if ( $arg instanceof PPNode ) {
+				if ( $arg instanceof PPNode_DOM ) {
 					$arg = $arg->node;
 				}
 				if ( !$xpath || $xpath->document !== $arg->ownerDocument ) {

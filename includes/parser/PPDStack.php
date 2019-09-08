@@ -27,6 +27,8 @@ class PPDStack {
 	/** @var PPDStackElement[] */
 	public $stack;
 	public $rootAccum;
+	/** @var string|array */
+	public $accum;
 
 	/**
 	 * @var PPDStackElement|false
