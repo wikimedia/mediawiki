@@ -146,9 +146,9 @@ class SwiftFileBackend extends FileBackendStore {
 
 	public function getFeatures() {
 		return (
-			FileBackend::ATTR_UNICODE_PATHS |
-			FileBackend::ATTR_HEADERS |
-			FileBackend::ATTR_METADATA
+			self::ATTR_UNICODE_PATHS |
+			self::ATTR_HEADERS |
+			self::ATTR_METADATA
 		);
 	}
 
