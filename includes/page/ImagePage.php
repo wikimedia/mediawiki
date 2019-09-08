@@ -987,6 +987,7 @@ EOT
 			parent::delete();
 			return;
 		}
+		'@phan-var LocalFile $file';
 
 		$deleter = new FileDeleteForm( $file );
 		$deleter->execute();
