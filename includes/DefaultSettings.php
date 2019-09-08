@@ -2749,12 +2749,6 @@ $wgExtensionInfoMTime = false;
 $wgUseCdn = false;
 
 /**
- * If you run Squid3 with ESI support, enable this (default:false):
- * @deprecated in 1.33. This was a now-defunct experimental feature.
- */
-$wgUseESI = false;
-
-/**
  * Add X-Forwarded-Proto to the Vary and Key headers for API requests and
  * RSS/Atom feeds. Use this if you have an SSL termination setup
  * and need to split the cache between HTTP and HTTPS for API requests,
