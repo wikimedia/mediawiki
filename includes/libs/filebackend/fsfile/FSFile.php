@@ -22,6 +22,7 @@
  */
 
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Class representing a non-directory file on the file system
@@ -68,7 +69,11 @@ class FSFile {
 	 * @return int|bool
 	 */
 	public function getSize() {
-		return filesize( $this->path );
+		AtEase::suppressWarnings();
+		$size = filesize( $this->path );
+		AtEase::restoreWarnings();
+
+		return $size;
 	}
 
 	/**
@@ -81,7 +86,7 @@ class FSFile {
 		$timestamp = filemtime( $this->path );
 		AtEase::restoreWarnings();
 		if ( $timestamp !== false ) {
-			$timestamp = wfTimestamp( TS_MW, $timestamp );
+			$timestamp = ConvertibleTimestamp::convert( TS_MW, $timestamp );
 		}
 
 		return $timestamp;
