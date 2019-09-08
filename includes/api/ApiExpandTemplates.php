@@ -76,10 +76,6 @@ class ApiExpandTemplates extends ApiBase {
 					$this->addWarning( [ 'apierror-revwrongpage', $rev->getId(),
 						wfEscapeWikiText( $pTitleObj->getPrefixedText() ) ] );
 				}
-			} else {
-				// Consider the title derived from the revid as having
-				// been provided.
-				$titleProvided = true;
 			}
 		}
 
