@@ -182,16 +182,7 @@ class AjaxResponse {
 			if ( $this->mConfig->get( 'UseCdn' ) ) {
 				# Expect explicit purge of the proxy cache, but require end user agents
 				# to revalidate against the proxy on each visit.
-				# Surrogate-Control controls our CDN, Cache-Control downstream caches
-
-				if ( $this->mConfig->get( 'UseESI' ) ) {
-					wfDeprecated( '$wgUseESI = true', '1.33' );
-					header( 'Surrogate-Control: max-age=' . $this->mCacheDuration . ', content="ESI/1.0"' );
-					header( 'Cache-Control: s-maxage=0, must-revalidate, max-age=0' );
-				} else {
-					header( 'Cache-Control: s-maxage=' . $this->mCacheDuration . ', must-revalidate, max-age=0' );
-				}
-
+				header( 'Cache-Control: s-maxage=' . $this->mCacheDuration . ', must-revalidate, max-age=0' );
 			} else {
 				# Let the client do the caching. Cache is not purged.
 				header( "Expires: " . gmdate( "D, d M Y H:i:s", time() + $this->mCacheDuration ) . " GMT" );

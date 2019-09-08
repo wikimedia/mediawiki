@@ -80,6 +80,7 @@ $wgPasswordPolicy['policies']['default']['PasswordNotInLargeBlacklist'] = false;
 * $wgWikiDiff2MovedParagraphDetectionCutoff — If you still want a custom change
   size threshold, please specify in php.ini, using the configuration variable
   wikidiff2.moved_paragraph_detection_cutoff.
+* $wgUseESI - This experimental setting, deprecated in 1.33, is now removed.
 * $wgDebugPrintHttpHeaders - The default of including HTTP headers in the
   debug log channel is no longer configurable. The debug log itself remains
   configurable via $wgDebugLogFile.

@@ -2414,32 +2414,16 @@ class OutputPage extends ContextSource {
 				$this->mCdnMaxage != 0 &&
 				!$this->haveCacheVaryCookies()
 			) {
-				if ( $config->get( 'UseESI' ) ) {
-					wfDeprecated( '$wgUseESI = true', '1.33' );
-					# We'll purge the proxy cache explicitly, but require end user agents
-					# to revalidate against the proxy on each visit.
-					# Surrogate-Control controls our CDN, Cache-Control downstream caches
-					wfDebug( __METHOD__ .
-						": proxy caching with ESI; {$this->mLastModified} **", 'private' );
-					# start with a shorter timeout for initial testing
-					# header( 'Surrogate-Control: max-age=2678400+2678400, content="ESI/1.0"');
-					$response->header(
-						"Surrogate-Control: max-age={$config->get( 'CdnMaxAge' )}" .
-						"+{$this->mCdnMaxage}, content=\"ESI/1.0\""
-					);
-					$response->header( 'Cache-Control: s-maxage=0, must-revalidate, max-age=0' );
-				} else {
-					# We'll purge the proxy cache for anons explicitly, but require end user agents
-					# to revalidate against the proxy on each visit.
-					# IMPORTANT! The CDN needs to replace the Cache-Control header with
-					# Cache-Control: s-maxage=0, must-revalidate, max-age=0
-					wfDebug( __METHOD__ .
-						": local proxy caching; {$this->mLastModified} **", 'private' );
-					# start with a shorter timeout for initial testing
-					# header( "Cache-Control: s-maxage=2678400, must-revalidate, max-age=0" );
-					$response->header( "Cache-Control: " .
-						"s-maxage={$this->mCdnMaxage}, must-revalidate, max-age=0" );
-				}
+				# We'll purge the proxy cache for anons explicitly, but require end user agents
+				# to revalidate against the proxy on each visit.
+				# IMPORTANT! The CDN needs to replace the Cache-Control header with
+				# Cache-Control: s-maxage=0, must-revalidate, max-age=0
+				wfDebug( __METHOD__ .
+					": local proxy caching; {$this->mLastModified} **", 'private' );
+				# start with a shorter timeout for initial testing
+				# header( "Cache-Control: s-maxage=2678400, must-revalidate, max-age=0" );
+				$response->header( "Cache-Control: " .
+					"s-maxage={$this->mCdnMaxage}, must-revalidate, max-age=0" );
 			} else {
 				# We do want clients to cache if they can, but they *must* check for updates
 				# on revisiting the page.
