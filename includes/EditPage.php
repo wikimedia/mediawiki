@@ -1193,6 +1193,8 @@ class EditPage {
 	 * @since 1.21
 	 */
 	protected function getContentObject( $def_content = null ) {
+		global $wgDisableAnonTalk;
+
 		$content = false;
 
 		$user = $this->context->getUser();
@@ -1292,8 +1294,11 @@ class EditPage {
 										$undo
 									)->inContentLanguage()->text();
 								} else {
+									$undoMessage = ( $undorev->getUser() === 0 && $wgDisableAnonTalk ) ?
+										'undo-summary-anon' :
+										'undo-summary';
 									$undoSummary = $this->context->msg(
-										'undo-summary',
+										$undoMessage,
 										$undo,
 										$userText
 									)->inContentLanguage()->text();
