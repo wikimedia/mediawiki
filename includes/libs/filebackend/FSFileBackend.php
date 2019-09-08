@@ -122,7 +122,7 @@ class FSFileBackend extends FileBackendStore {
 			// See https://www.php.net/manual/en/migration71.windows-support.php
 			return 0;
 		} else {
-			return FileBackend::ATTR_UNICODE_PATHS;
+			return self::ATTR_UNICODE_PATHS;
 		}
 	}
 
