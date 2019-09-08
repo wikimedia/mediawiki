@@ -111,6 +111,10 @@ class CleanupImages extends TableCleanup {
 		}
 	}
 
+	/**
+	 * @param string $name
+	 * @return string
+	 */
 	private function filePath( $name ) {
 		if ( !isset( $this->repo ) ) {
 			$this->repo = RepoGroup::singleton()->getLocalRepo();
