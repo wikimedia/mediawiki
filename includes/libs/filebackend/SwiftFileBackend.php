@@ -268,8 +268,8 @@ class SwiftFileBackend extends FileBackendStore {
 			'headers' => array_merge(
 				$mutableHeaders,
 				[
-					'content-length' => strlen( $params['content'] ),
 					'etag' => md5( $params['content'] ),
+					'content-length' => strlen( $params['content'] ),
 					'x-object-meta-sha1base36' =>
 						Wikimedia\base_convert( sha1( $params['content'] ), 16, 36, 31 )
 				]
@@ -311,18 +311,34 @@ class SwiftFileBackend extends FileBackendStore {
 			return $status;
 		}
 
+		// Open a handle to the source file so that it can be streamed. The size and hash
+		// will be computed using the handle. In the off chance that the source file changes
+		// during this operation, the PUT will fail due to an ETag mismatch and be aborted.
 		AtEase::suppressWarnings();
-		$sha1Base16 = sha1_file( $params['src'] );
+		$srcHandle = fopen( $params['src'], 'rb' );
 		AtEase::restoreWarnings();
-		if ( $sha1Base16 === false ) { // source doesn't exist?
-			$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
+		if ( $srcHandle === false ) { // source doesn't exist?
+			$status->fatal( 'backend-fail-notexists', $params['src'] );
 
 			return $status;
 		}
 
-		$handle = fopen( $params['src'], 'rb' );
-		if ( $handle === false ) { // source doesn't exist?
-			$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
+		// Compute the MD5 and SHA-1 hashes in one pass
+		$srcSize = fstat( $srcHandle )['size'];
+		$md5Context = hash_init( 'md5' );
+		$sha1Context = hash_init( 'sha1' );
+		$hashDigestSize = 0;
+		while ( !feof( $srcHandle ) ) {
+			$buffer = (string)fread( $srcHandle, 131072 ); // 128 KiB
+			hash_update( $md5Context, $buffer );
+			hash_update( $sha1Context, $buffer );
+			$hashDigestSize += strlen( $buffer );
+		}
+		// Reset the handle back to the beginning so that it can be streamed
+		rewind( $srcHandle );
+
+		if ( $hashDigestSize !== $srcSize ) {
+			$status->fatal( 'backend-fail-hash', $params['src'] );
 
 			return $status;
 		}
@@ -339,12 +355,13 @@ class SwiftFileBackend extends FileBackendStore {
 			'headers' => array_merge(
 				$mutableHeaders,
 				[
-					'content-length' => fstat( $handle )['size'],
-					'etag' => md5_file( $params['src'] ),
-					'x-object-meta-sha1base36' => Wikimedia\base_convert( $sha1Base16, 16, 36, 31 )
+					'content-length' => $srcSize,
+					'etag' => hash_final( $md5Context ),
+					'x-object-meta-sha1base36' =>
+						Wikimedia\base_convert( hash_final( $sha1Context ), 16, 36, 31 )
 				]
 			),
-			'body' => $handle // resource
+			'body' => $srcHandle // resource
 		] ];
 
 		$method = __METHOD__;
@@ -362,7 +379,7 @@ class SwiftFileBackend extends FileBackendStore {
 		};
 
 		$opHandle = new SwiftFileOpHandle( $this, $handler, $reqs );
-		$opHandle->resourcesToClose[] = $handle;
+		$opHandle->resourcesToClose[] = $srcHandle;
 
 		if ( !empty( $params['async'] ) ) { // deferred
 			$status->value = $opHandle;
