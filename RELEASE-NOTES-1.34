@@ -564,6 +564,9 @@ because of Phabricator reports.
 * The GetBlockedStatus hook is deprecated. Use GetUserBlock instead, to add or
   remove a block.
 * $wgContentHandlerUseDB is deprecated and should always be true.
+* StreamFile::send404Message() and StreamFile::parseRange() are now deprecated.
+  Use HTTPFileStreamer::send404Message() and HTTPFileStreamer::parseRange()
+  respectively instead.
 
 === Other changes in 1.34 ===
 * …
