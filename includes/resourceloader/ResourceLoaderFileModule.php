@@ -383,7 +383,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return string|array JavaScript code for $context, or package files data structure
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		$deprecationScript = $this->getDeprecationInformation();
+		$deprecationScript = $this->getDeprecationInformation( $context );
 		if ( $this->packageFiles !== null ) {
 			$packageFiles = $this->getPackageFiles( $context );
 			if ( $deprecationScript ) {

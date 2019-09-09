@@ -518,13 +518,14 @@ END
 			'wrap' => true,
 			'styles' => [], 'templates' => [], 'messages' => new XmlJsCode( '{}' ), 'packageFiles' => [],
 		];
-		ResourceLoader::clearCache();
-		$this->setMwGlobals( 'wgResourceLoaderDebug', true );
-
 		$rl = TestingAccessWrapper::newFromClass( ResourceLoader::class );
+		$context = new ResourceLoaderContext( new EmptyResourceLoader(), new FauxRequest( [
+			'debug' => 'true',
+		] ) );
 		$this->assertEquals(
 			$case['expected'],
 			$rl->makeLoaderImplementScript(
+				$context,
 				$case['name'],
 				( $case['wrap'] && is_string( $case['scripts'] ) )
 					? new XmlJsCode( $case['scripts'] )
@@ -543,7 +544,9 @@ END
 	public function testMakeLoaderImplementScriptInvalid() {
 		$this->setExpectedException( MWException::class, 'Invalid scripts error' );
 		$rl = TestingAccessWrapper::newFromClass( ResourceLoader::class );
+		$context = new ResourceLoaderContext( new EmptyResourceLoader(), new FauxRequest() );
 		$rl->makeLoaderImplementScript(
+			$context,
 			'test', // name
 			123, // scripts
 			null, // styles
@@ -557,6 +560,9 @@ END
 	 * @covers ResourceLoader::makeLoaderRegisterScript
 	 */
 	public function testMakeLoaderRegisterScript() {
+		$context = new ResourceLoaderContext( new EmptyResourceLoader(), new FauxRequest( [
+			'debug' => 'true',
+		] ) );
 		$this->assertEquals(
 			'mw.loader.register([
     [
@@ -564,7 +570,7 @@ END
         "1234567"
     ]
 ]);',
-			ResourceLoader::makeLoaderRegisterScript( [
+			ResourceLoader::makeLoaderRegisterScript( $context, [
 				[ 'test.name', '1234567' ],
 			] ),
 			'Nested array parameter'
@@ -600,7 +606,7 @@ END
         "return true;"
     ]
 ]);',
-			ResourceLoader::makeLoaderRegisterScript( [
+			ResourceLoader::makeLoaderRegisterScript( $context, [
 				[ 'test.foo', '100' , [], null, null ],
 				[ 'test.bar', '200', [ 'test.unknown' ], null ],
 				[ 'test.baz', '300', [ 'test.quux', 'test.foo' ], null ],
@@ -614,31 +620,34 @@ END
 	 * @covers ResourceLoader::makeLoaderSourcesScript
 	 */
 	public function testMakeLoaderSourcesScript() {
+		$context = new ResourceLoaderContext( new EmptyResourceLoader(), new FauxRequest( [
+			'debug' => 'true',
+		] ) );
 		$this->assertEquals(
 			'mw.loader.addSource({
     "local": "/w/load.php"
 });',
-			ResourceLoader::makeLoaderSourcesScript( 'local', '/w/load.php' )
+			ResourceLoader::makeLoaderSourcesScript( $context, 'local', '/w/load.php' )
 		);
 		$this->assertEquals(
 			'mw.loader.addSource({
     "local": "/w/load.php"
 });',
-			ResourceLoader::makeLoaderSourcesScript( [ 'local' => '/w/load.php' ] )
+			ResourceLoader::makeLoaderSourcesScript( $context, [ 'local' => '/w/load.php' ] )
 		);
 		$this->assertEquals(
 			'mw.loader.addSource({
     "local": "/w/load.php",
     "example": "https://example.org/w/load.php"
 });',
-			ResourceLoader::makeLoaderSourcesScript( [
+			ResourceLoader::makeLoaderSourcesScript( $context, [
 				'local' => '/w/load.php',
 				'example' => 'https://example.org/w/load.php'
 			] )
 		);
 		$this->assertEquals(
 			'mw.loader.addSource([]);',
-			ResourceLoader::makeLoaderSourcesScript( [] )
+			ResourceLoader::makeLoaderSourcesScript( $context, [] )
 		);
 	}
 

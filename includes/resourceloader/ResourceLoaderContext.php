@@ -405,7 +405,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 	/**
 	 * Get the request base parameters, omitting any defaults.
 	 *
-	 * @internal For internal use by ResourceLoaderStartUpModule only
+	 * @internal For use by ResourceLoaderStartUpModule only
 	 * @return array
 	 */
 	public function getReqBase() {
@@ -420,5 +420,33 @@ class ResourceLoaderContext implements MessageLocalizer {
 			$reqBase['debug'] = 'true';
 		}
 		return $reqBase;
+	}
+
+	/**
+	 * Wrapper around json_encode that avoids needless escapes,
+	 * and pretty-prints in debug mode.
+	 *
+	 * @internal
+	 * @param mixed $data
+	 * @return string|false JSON string, false on error
+	 */
+	public function encodeJson( $data ) {
+		// Keep output as small as possible by disabling needless escape modes
+		// that PHP uses by default.
+		// However, while most module scripts are only served on HTTP responses
+		// for JavaScript, some modules can also be embedded in the HTML as inline
+		// scripts. This, and the fact that we sometimes need to export strings
+		// containing user-generated content and labels that may genuinely contain
+		// a sequences like "</script>", we need to encode either '/' or '<'.
+		// By default PHP escapes '/'. Let's escape '<' instead which is less common
+		// and allows URLs to mostly remain readable.
+		$jsonFlags = JSON_UNESCAPED_SLASHES |
+			JSON_UNESCAPED_UNICODE |
+			JSON_HEX_TAG |
+			JSON_HEX_AMP;
+		if ( $this->getDebug() ) {
+			$jsonFlags |= JSON_PRETTY_PRINT;
+		}
+		return json_encode( $data, $jsonFlags );
 	}
 }

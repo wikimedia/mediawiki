@@ -55,7 +55,7 @@ class ResourceLoaderUserTokensModule extends ResourceLoaderModule {
 		// Use FILTER_NOMIN annotation to prevent needless minification and caching (T84960).
 		return ResourceLoader::FILTER_NOMIN
 			. 'mw.user.tokens.set('
-			. ResourceLoader::encodeJsonForScript( $this->contextUserTokens( $context ) )
+			. $context->encodeJson( $this->contextUserTokens( $context ) )
 			. ');';
 	}
 

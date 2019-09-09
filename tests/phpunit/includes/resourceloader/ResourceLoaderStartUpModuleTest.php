@@ -718,9 +718,9 @@ mw.loader.register([
 	 * @dataProvider provideRegistrations
 	 */
 	public function testRegistrationsMinified( $modules ) {
-		$this->setMwGlobals( 'wgResourceLoaderDebug', false );
-
-		$context = $this->getResourceLoaderContext();
+		$context = $this->getResourceLoaderContext( [
+			'debug' => 'false',
+		] );
 		$rl = $context->getResourceLoader();
 		$rl->register( $modules );
 		$module = new ResourceLoaderStartUpModule();
@@ -743,7 +743,9 @@ mw.loader.register([
 	 * @dataProvider provideRegistrations
 	 */
 	public function testRegistrationsUnminified( $modules ) {
-		$context = $this->getResourceLoaderContext();
+		$context = $this->getResourceLoaderContext( [
+			'debug' => 'true',
+		] );
 		$rl = $context->getResourceLoader();
 		$rl->register( $modules );
 		$module = new ResourceLoaderStartUpModule();
