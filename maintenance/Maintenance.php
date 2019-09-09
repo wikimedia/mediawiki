@@ -20,7 +20,7 @@
  * @defgroup Maintenance Maintenance
  */
 
-define( MW_ENTRY_POINT, 'cli' );
+define( 'MW_ENTRY_POINT', 'cli' );
 
 // Bail on old versions of PHP, or if composer has not been run yet to install
 // dependencies.
