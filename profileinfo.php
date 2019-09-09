@@ -40,6 +40,8 @@
 // details of the session. Enforce this constraint with respect to session use.
 define( 'MW_NO_SESSION', 1 );
 
+define( 'MW_ENTRY_POINT', 'profileinfo' );
+
 ini_set( 'zlib.output_compression', 'off' );
 
 require __DIR__ . '/includes/WebStart.php';
