@@ -1727,6 +1727,8 @@
 	"apierror-cantoverwrite-sharedfile": "The target file exists on a shared repository and you do not have permission to override it.",
 	"apierror-cantsend": "You are not logged in, you do not have a confirmed email address, or you are not allowed to send email to other users, so you cannot send email.",
 	"apierror-cantundelete": "Couldn't undelete: the requested revisions may not exist, or may have been undeleted already.",
+	"apierror-cantview-deleted-description": "You don't have permission to view descriptions of deleted files.",
+	"apierror-cantview-deleted-metadata": "You don't have permission to view metadata of deleted files.",
 	"apierror-changeauth-norequest": "Failed to create change request.",
 	"apierror-chunk-too-small": "Minimum chunk size is $1 {{PLURAL:$1|byte|bytes}} for non-final chunks.",
 	"apierror-cidrtoobroad": "$1 CIDR ranges broader than /$2 are not accepted.",
