@@ -530,6 +530,8 @@ because of Phabricator reports.
 * Specifying both the class and factory parameters for
   ApiModuleManager::addModule is now deprecated. The ObjectFactory spec should
   be used instead.
+* The UserIsHidden hook is deprecated. Use GetUserBlock instead, and add a
+  system block that hides the user.
 
 === Other changes in 1.34 ===
 * …
