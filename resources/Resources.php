@@ -1702,7 +1702,6 @@ return [
 			'mediawiki.util',
 			'mediawiki.Title',
 			'mediawiki.jqueryMsg',
-			'mediawiki.util',
 		],
 		'messages' => [
 			'watch',
