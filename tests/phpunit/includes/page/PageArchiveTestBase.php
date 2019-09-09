@@ -84,7 +84,6 @@ abstract class PageArchiveTestBase extends MediaWikiTestCase {
 		$this->tablesUsed += $this->getMcrTablesToReset();
 
 		$this->setMwGlobals( [
-			'wgActorTableSchemaMigrationStage' => SCHEMA_COMPAT_NEW,
 			'wgContentHandlerUseDB' => $this->getContentHandlerUseDB(),
 			'wgMultiContentRevisionSchemaMigrationStage' => $this->getMcrMigrationStage(),
 		] );

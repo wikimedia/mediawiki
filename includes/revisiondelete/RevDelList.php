@@ -113,8 +113,6 @@ abstract class RevDelList extends RevisionListBase {
 	 * @since 1.23 Added 'perItemStatus' param
 	 */
 	public function setVisibility( array $params ) {
-		global $wgActorTableSchemaMigrationStage;
-
 		$status = Status::newGood();
 
 		$bitPars = $params['value'];
@@ -143,7 +141,7 @@ abstract class RevDelList extends RevisionListBase {
 		$missing = array_flip( $this->ids );
 		$this->clearFileOps();
 		$idsForLog = [];
-		$authorIds = $authorIPs = $authorActors = [];
+		$authorActors = [];
 
 		if ( $perItemStatus ) {
 			$status->itemStatuses = [];
@@ -225,29 +223,7 @@ abstract class RevDelList extends RevisionListBase {
 				$virtualOldBits |= $removedBits;
 
 				$status->successCount++;
-				if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
-					if ( $item->getAuthorId() > 0 ) {
-						$authorIds[] = $item->getAuthorId();
-					} elseif ( IP::isIPAddress( $item->getAuthorName() ) ) {
-						$authorIPs[] = $item->getAuthorName();
-					}
-					if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
-						$actorId = $item->getAuthorActor();
-						// During migration, the actor field might be empty. If so, populate
-						// it here.
-						if ( !$actorId ) {
-							if ( $item->getAuthorId() > 0 ) {
-								$user = User::newFromId( $item->getAuthorId() );
-							} else {
-								$user = User::newFromName( $item->getAuthorName(), false );
-							}
-							$actorId = $user->getActorId( $dbw );
-						}
-						$authorActors[] = $actorId;
-					}
-				} elseif ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
-					$authorActors[] = $item->getAuthorActor();
-				}
+				$authorActors[] = $item->getAuthorActor();
 
 				// Save the old and new bits in $visibilityChangeMap for
 				// later use.
@@ -291,13 +267,7 @@ abstract class RevDelList extends RevisionListBase {
 
 		// Log it
 		$authorFields = [];
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
-			$authorFields['authorIds'] = $authorIds;
-			$authorFields['authorIPs'] = $authorIPs;
-		}
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
-			$authorFields['authorActors'] = $authorActors;
-		}
+		$authorFields['authorActors'] = $authorActors;
 		$this->updateLog(
 			$logType,
 			[
@@ -363,8 +333,6 @@ abstract class RevDelList extends RevisionListBase {
 	 *     title:           The target title
 	 *     ids:             The ID list
 	 *     comment:         The log comment
-	 *     authorIds:       The array of the user IDs of the offenders
-	 *     authorIPs:       The array of the IP/anon user offenders
 	 *     authorActors:    The array of the actor IDs of the offenders
 	 *     tags:            The array of change tags to apply to the log entry
 	 * @throws MWException
@@ -387,12 +355,6 @@ abstract class RevDelList extends RevisionListBase {
 		$relations = [
 			$field => $params['ids'],
 		];
-		if ( isset( $params['authorIds'] ) ) {
-			$relations += [
-				'target_author_id' => $params['authorIds'],
-				'target_author_ip' => $params['authorIPs'],
-			];
-		}
 		if ( isset( $params['authorActors'] ) ) {
 			$relations += [
 				'target_author_actor' => $params['authorActors'],

@@ -1308,10 +1308,7 @@ abstract class DatabaseUpdater {
 	 * @since 1.31
 	 */
 	protected function migrateActors() {
-		global $wgActorTableSchemaMigrationStage;
-		if ( ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) &&
-			!$this->updateRowExists( 'MigrateActors' )
-		) {
+		if ( !$this->updateRowExists( 'MigrateActors' ) ) {
 			$this->output(
 				"Migrating actors to the 'actor' table, printing progress markers. For large\n" .
 				"databases, you may want to hit Ctrl-C and do this manually with\n" .
@@ -1400,5 +1397,44 @@ abstract class DatabaseUpdater {
 				$this->insertUpdateRow( 'PopulateContentTables' );
 			}
 		}
+	}
+
+	/**
+	 * Only run a function if the `actor` table does not exist
+	 *
+	 * The transition to the actor table is dropping several indexes (and a few
+	 * fields) that old upgrades want to add. This function is used to prevent
+	 * those from running to re-add things when the `actor` table exists, while
+	 * still allowing them to run if this really is an upgrade from an old MW
+	 * version.
+	 *
+	 * @since 1.34
+	 * @param string|array|static $func Normally this is the string naming the method on $this to
+	 *  call. It may also be an array callable. If passed $this, it's assumed to be a call from
+	 *  runUpdates() with $passSelf = true: $params[0] is assumed to be the real $func and $this
+	 *  is prepended to the rest of $params.
+	 * @param mixed ...$params Parameters for `$func`
+	 * @return mixed Whatever $func returns, or null when skipped.
+	 */
+	protected function ifNoActorTable( $func, ...$params ) {
+		if ( $this->tableExists( 'actor' ) ) {
+			return null;
+		}
+
+		// Handle $passSelf from runUpdates().
+		$passSelf = false;
+		if ( $func === $this ) {
+			$passSelf = true;
+			$func = array_shift( $params );
+		}
+
+		if ( !is_array( $func ) && method_exists( $this, $func ) ) {
+			$func = [ $this, $func ];
+		} elseif ( $passSelf ) {
+			array_unshift( $params, $this );
+		}
+
+		// @phan-suppress-next-line PhanUndeclaredInvokeInCallable Phan is confused
+		return $func( ...$params );
 	}
 }

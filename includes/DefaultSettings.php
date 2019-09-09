@@ -8980,24 +8980,6 @@ $wgMultiContentRevisionSchemaMigrationStage = SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_
 $wgXmlDumpSchemaVersion = XML_DUMP_SCHEMA_VERSION_10;
 
 /**
- * Actor table schema migration stage.
- *
- * Use the SCHEMA_COMPAT_XXX flags. Supported values:
- * - SCHEMA_COMPAT_OLD
- * - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
- * - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW
- * - SCHEMA_COMPAT_NEW
- *
- * Note that reading the old and new schema at the same time is not supported
- * in 1.32, but was (with significant query performance issues) in 1.31.
- *
- * @since 1.31
- * @since 1.32 changed allowed flags
- * @var int An appropriate combination of SCHEMA_COMPAT_XXX flags.
- */
-$wgActorTableSchemaMigrationStage = SCHEMA_COMPAT_NEW;
-
-/**
  * Flag to enable Partial Blocks. This allows an admin to prevent a user from editing specific pages
  * or namespaces.
  *

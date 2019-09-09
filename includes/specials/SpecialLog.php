@@ -35,8 +35,6 @@ class SpecialLog extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgActorTableSchemaMigrationStage;
-
 		$this->setHeaders();
 		$this->outputHeader();
 		$out = $this->getOutput();
@@ -107,13 +105,7 @@ class SpecialLog extends SpecialPage {
 			$offenderName = $opts->getValue( 'offender' );
 			$offender = empty( $offenderName ) ? null : User::newFromName( $offenderName, false );
 			if ( $offender ) {
-				if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
-					$qc = [ 'ls_field' => 'target_author_actor', 'ls_value' => $offender->getActorId() ];
-				} elseif ( $offender->getId() > 0 ) {
-					$qc = [ 'ls_field' => 'target_author_id', 'ls_value' => $offender->getId() ];
-				} else {
-					$qc = [ 'ls_field' => 'target_author_ip', 'ls_value' => $offender->getName() ];
-				}
+				$qc = [ 'ls_field' => 'target_author_actor', 'ls_value' => $offender->getActorId() ];
 			}
 		} else {
 			// Allow extensions to add relations to their search types

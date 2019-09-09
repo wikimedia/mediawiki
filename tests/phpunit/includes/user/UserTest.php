@@ -31,7 +31,6 @@ class UserTest extends MediaWikiTestCase {
 		$this->setMwGlobals( [
 			'wgGroupPermissions' => [],
 			'wgRevokePermissions' => [],
-			'wgActorTableSchemaMigrationStage' => SCHEMA_COMPAT_NEW,
 		] );
 
 		$this->setUpPermissionGlobals();
@@ -1050,83 +1049,6 @@ class UserTest extends MediaWikiTestCase {
 
 		$user = User::newFromId( $id );
 		$user->setName( 'UserTestActorId4-renamed' );
-		$user->saveSettings();
-		$this->assertEquals(
-			$user->getName(),
-			$this->db->selectField(
-				'actor', 'actor_name', [ 'actor_id' => $user->getActorId() ], __METHOD__
-			),
-			'User::saveSettings updates actor table for name change'
-		);
-
-		// For sanity
-		$ip = '192.168.12.34';
-		$this->db->delete( 'actor', [ 'actor_name' => $ip ], __METHOD__ );
-
-		$user = User::newFromName( $ip, false );
-		$this->assertFalse( $user->getActorId() > 0, 'Anonymous user has no actor ID by default' );
-		$this->assertTrue( $user->getActorId( $this->db ) > 0,
-			'Actor ID can be created for an anonymous user' );
-
-		$user = User::newFromName( $ip, false );
-		$this->assertTrue( $user->getActorId() > 0, 'Actor ID can be loaded for an anonymous user' );
-		$user2 = User::newFromActorId( $user->getActorId() );
-		$this->assertEquals( $user->getName(), $user2->getName(),
-			'User::newFromActorId works for an anonymous user' );
-	}
-
-	/**
-	 * Actor tests with SCHEMA_COMPAT_READ_OLD
-	 *
-	 * The only thing different from testActorId() is the behavior if the actor
-	 * row doesn't exist in the DB, since with SCHEMA_COMPAT_READ_NEW that
-	 * situation can't happen. But we copy all the other tests too just for good measure.
-	 *
-	 * @covers User::newFromActorId
-	 */
-	public function testActorId_old() {
-		$this->setMwGlobals( [
-			'wgActorTableSchemaMigrationStage' => SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
-		] );
-
-		$domain = MediaWikiServices::getInstance()->getDBLoadBalancer()->getLocalDomainID();
-		$this->hideDeprecated( 'User::selectFields' );
-
-		// Newly-created user has an actor ID
-		$user = User::createNew( 'UserTestActorIdOld1' );
-		$id = $user->getId();
-		$this->assertTrue( $user->getActorId() > 0, 'User::createNew sets an actor ID' );
-
-		$user = User::newFromName( 'UserTestActorIdOld2' );
-		$user->addToDatabase();
-		$this->assertTrue( $user->getActorId() > 0, 'User::addToDatabase sets an actor ID' );
-
-		$user = User::newFromName( 'UserTestActorIdOld1' );
-		$this->assertTrue( $user->getActorId() > 0, 'Actor ID can be retrieved for user loaded by name' );
-
-		$user = User::newFromId( $id );
-		$this->assertTrue( $user->getActorId() > 0, 'Actor ID can be retrieved for user loaded by ID' );
-
-		$user2 = User::newFromActorId( $user->getActorId() );
-		$this->assertEquals( $user->getId(), $user2->getId(),
-			'User::newFromActorId works for an existing user' );
-
-		$row = $this->db->selectRow( 'user', User::selectFields(), [ 'user_id' => $id ], __METHOD__ );
-		$user = User::newFromRow( $row );
-		$this->assertTrue( $user->getActorId() > 0,
-			'Actor ID can be retrieved for user loaded with User::selectFields()' );
-
-		$this->db->delete( 'actor', [ 'actor_user' => $id ], __METHOD__ );
-		User::purge( $domain, $id );
-		// Because WANObjectCache->delete() stupidly doesn't delete from the process cache.
-
-		MediaWikiServices::getInstance()->getMainWANObjectCache()->clearProcessCache();
-
-		$user = User::newFromId( $id );
-		$this->assertFalse( $user->getActorId() > 0, 'No Actor ID by default if none in database' );
-		$this->assertTrue( $user->getActorId( $this->db ) > 0, 'Actor ID can be created if none in db' );
-
-		$user->setName( 'UserTestActorIdOld4-renamed' );
 		$user->saveSettings();
 		$this->assertEquals(
 			$user->getName(),
