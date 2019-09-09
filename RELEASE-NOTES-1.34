@@ -123,6 +123,9 @@ $wgPasswordPolicy['policies']['default']['PasswordNotInLargeBlacklist'] = false;
 * (T222388) Special pages can now be specified as an ObjectFactory spec,
   allowing the construction of special pages that require services to be
   injected in their constructor.
+* (T222388) API modules can now be specified as an ObjectFactory spec,
+  allowing the construction of modules that require services to be injected
+  in their constructor.
 
 === External library changes in 1.34 ===
 
@@ -161,6 +164,11 @@ $wgPasswordPolicy['policies']['default']['PasswordNotInLargeBlacklist'] = false;
   deprecated in 1.25, has been removed.
 
 === Action API internal changes in 1.34 ===
+* The exception thrown in ApiModuleManager::getModule has been changed
+  from an MWException to an UnexpectedValueException, thrown by ObjectFactory.
+  ApiModuleManager::getModule now also throws InvalidArgumentExceptions when
+  ObjectFactory is presented with an invalid spec or incorrectly constructed
+  objects.
 * …
 
 === Languages updated in 1.34 ===
@@ -517,6 +525,9 @@ because of Phabricator reports.
   'rc_user', 'log_user', and 'ipb_by' is deprecated. Queries should be adjusted
   to use the corresponding actor fields directly. Note that use with
   'rev_user' is *not* deprecated at this time.
+* Specifying both the class and factory parameters for
+  ApiModuleManager::addModule is now deprecated. The ObjectFactory spec should
+  be used instead.
 
 === Other changes in 1.34 ===
 * …

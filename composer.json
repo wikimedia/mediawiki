@@ -97,7 +97,8 @@
 	"autoload": {
 		"psr-0": {
 			"ComposerHookHandler": "includes/composer",
-			"ComposerVendorHtaccessCreator": "includes/composer"
+			"ComposerVendorHtaccessCreator": "includes/composer",
+			"ComposerPhpunitXmlCoverageEdit":"includes/composer"
 		}
 	},
 	"autoload-dev": {
@@ -121,7 +122,8 @@
 		"phpunit": "phpunit",
 		"phpunit:unit": "phpunit --colors=always --testsuite=core:unit,extensions:unit,skins:unit",
 		"phpunit:integration": "phpunit --colors=always --testsuite=core:integration,extensions:integration,skins:integration",
-		"phpunit:coverage": "phpunit --testsuite=core:unit --exclude-group Dump,Broken"
+		"phpunit:coverage": "phpunit --testsuite=core:unit --exclude-group Dump,Broken",
+		"phpunit:coverage-edit": "ComposerPhpunitXmlCoverageEdit::onEvent"
 	},
 	"config": {
 		"optimize-autoloader": true,
