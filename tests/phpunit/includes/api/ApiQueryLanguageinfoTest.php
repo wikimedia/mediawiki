@@ -44,14 +44,16 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 					$moduleManager->addModule(
 						'languageinfo',
 						'meta',
-						ApiQueryLanguageinfo::class,
-						function ( $parent, $name ) use ( $microtimeFunction ) {
-							return new ApiQueryLanguageinfo(
-								$parent,
-								$name,
-								$microtimeFunction
-							);
-						}
+						[
+							'class' => ApiQueryLanguageinfo::class,
+							'factory' => function ( $parent, $name ) use ( $microtimeFunction ) {
+								return new ApiQueryLanguageinfo(
+									$parent,
+									$name,
+									$microtimeFunction
+								);
+							}
+						]
 					);
 				}
 			);

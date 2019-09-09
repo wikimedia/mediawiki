@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+use Wikimedia\ObjectFactory;
+
 /**
  * @covers ApiModuleManager
  *
@@ -12,7 +15,8 @@ class ApiModuleManagerTest extends MediaWikiTestCase {
 	private function getModuleManager() {
 		$request = new FauxRequest();
 		$main = new ApiMain( $request );
-		return new ApiModuleManager( $main );
+
+		return new ApiModuleManager( $main, MediaWikiServices::getInstance()->getObjectFactory() );
 	}
 
 	public function newApiLogin( $main, $action ) {
@@ -28,30 +32,55 @@ class ApiModuleManagerTest extends MediaWikiTestCase {
 				null,
 			],
 
-			'with factory' => [
+			'with class and factory' => [
 				'login',
 				'action',
 				ApiLogin::class,
 				[ $this, 'newApiLogin' ],
 			],
 
-			'with closure' => [
+			'with spec (class only)' => [
+				'login',
+				'action',
+				[
+					'class' => ApiLogin::class
+				],
+				null,
+			],
+
+			'with spec' => [
+				'login',
+				'action',
+				[
+					'class' => ApiLogin::class,
+					'factory' => [ $this, 'newApiLogin' ],
+				],
+				null,
+			],
+
+			'with spec (using services)' => [
 				'logout',
 				'action',
-				ApiLogout::class,
-				function ( ApiMain $main, $action ) {
-					return new ApiLogout( $main, $action );
-				},
-			],
+				[
+					'class' => ApiLogout::class,
+					'factory' => function ( ApiMain $main, $action, ObjectFactory $objectFactory ) {
+						return new ApiLogout( $main, $action );
+					},
+					'services' => [
+						'ObjectFactory'
+					],
+				],
+				null,
+			]
 		];
 	}
 
 	/**
 	 * @dataProvider addModuleProvider
 	 */
-	public function testAddModule( $name, $group, $class, $factory = null ) {
+	public function testAddModule( $name, $group, $spec, $factory ) {
 		$moduleManager = $this->getModuleManager();
-		$moduleManager->addModule( $name, $group, $class, $factory );
+		$moduleManager->addModule( $name, $group, $spec, $factory );
 
 		$this->assertTrue( $moduleManager->isDefined( $name, $group ), 'isDefined' );
 		$this->assertNotNull( $moduleManager->getModule( $name, $group, true ), 'getModule' );
@@ -325,6 +354,24 @@ class ApiModuleManagerTest extends MediaWikiTestCase {
 		);
 		$this->assertFalse(
 			$moduleManager->getClassName( 'nonexistentmodule' )
+		);
+	}
+
+	/**
+	 * @expectedException \InvalidArgumentException
+	 * @expectedExceptionMessage $spec must define a class name
+	 */
+	public function testAddModuleWithIncompleteSpec() {
+		$moduleManager = $this->getModuleManager();
+
+		$moduleManager->addModule(
+			'logout',
+			'action',
+			[
+				'factory' => function ( ApiMain $main, $action ) {
+					return new ApiLogout( $main, $action );
+				},
+			]
 		);
 	}
 }

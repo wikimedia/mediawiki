@@ -27,7 +27,6 @@ abstract class ApiFormatTestBase extends MediaWikiTestCase {
 	 *  - class: If set, register 'name' with this class (and 'factory', if that's set)
 	 *  - factory: Used with 'class' to register at runtime
 	 *  - returnPrinter: Return the printer object
-	 * @param callable|null $factory Factory to use instead of the normal one
 	 * @return string|array The string if $options['returnPrinter'] isn't set, or an array if it is:
 	 *  - text: Output text string
 	 *  - printer: ApiFormatBase
@@ -44,8 +43,15 @@ abstract class ApiFormatTestBase extends MediaWikiTestCase {
 		$context->setRequest( new FauxRequest( $params, true ) );
 		$main = new ApiMain( $context );
 		if ( isset( $options['class'] ) ) {
-			$factory = $options['factory'] ?? null;
-			$main->getModuleManager()->addModule( $printerName, 'format', $options['class'], $factory );
+			$spec = [
+				'class' => $options['class']
+			];
+
+			if ( isset( $options['factory'] ) ) {
+				$spec['factory'] = $options['factory'];
+			}
+
+			$main->getModuleManager()->addModule( $printerName, 'format', $spec );
 		}
 		$result = $main->getResult();
 		$result->addArrayType( null, 'default' );
