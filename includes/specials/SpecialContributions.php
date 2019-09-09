@@ -554,13 +554,9 @@ class SpecialContributions extends IncludableSpecialPage {
 			$filterSelection = Html::rawElement( 'div', [], '' );
 		}
 
-		$labelUsername = Xml::radioLabel(
+		$labelUsername = Xml::label(
 			$this->msg( 'sp-contributions-username' )->text(),
-			'contribs',
-			'user',
-			'user',
-			true,
-			[ 'class' => 'mw-input' ]
+			'mw-target-user-or-ip'
 		);
 		$input = Html::input(
 			'target',
