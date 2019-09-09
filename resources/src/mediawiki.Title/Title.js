@@ -137,11 +137,11 @@ var
 		'[^' + mw.config.get( 'wgLegalTitleChars' ) + ']' +
 		// URL percent encoding sequences interfere with the ability
 		// to round-trip titles -- you can't link to them consistently.
-		'|%[0-9A-Fa-f]{2}' +
+		'|%[\\dA-Fa-f]{2}' +
 		// XML/HTML character references produce similar issues.
-		'|&[A-Za-z0-9\u0080-\uFFFF]+;' +
-		'|&#[0-9]+;' +
-		'|&#x[0-9A-Fa-f]+;'
+		'|&[\\dA-Za-z\u0080-\uFFFF]+;' +
+		'|&#\\d+;' +
+		'|&#x[\\dA-Fa-f]+;'
 	),
 
 	// From MediaWikiTitleCodec::splitTitleString() in PHP
@@ -149,7 +149,7 @@ var
 	rWhitespace = /[ _\u00A0\u1680\u180E\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]+/g,
 
 	// From MediaWikiTitleCodec::splitTitleString() in PHP
-	rUnicodeBidi = /[\u200E\u200F\u202A-\u202E]/g,
+	rUnicodeBidi = /[\u200E\u200F\u202A-\u202E]+/g,
 
 	/**
 	 * Slightly modified from Flinfo. Credit goes to Lupo and Flominator.
@@ -173,13 +173,13 @@ var
 		},
 		// URL encoding (possibly)
 		{
-			pattern: /%([0-9A-Fa-f]{2})/g,
+			pattern: /%([\dA-Fa-f]{2})/g,
 			replace: '% $1',
 			generalRule: true
 		},
 		// HTML-character-entities
 		{
-			pattern: /&(([A-Za-z0-9\x80-\xff]+|#[0-9]+|#x[0-9A-Fa-f]+);)/g,
+			pattern: /&(([\dA-Za-z\x80-\xff]+|#\d+|#x[\dA-Fa-f]+);)/g,
 			replace: '& $1',
 			generalRule: true
 		},
@@ -294,7 +294,7 @@ var
 		}
 
 		// Reject illegal characters
-		if ( title.match( rInvalid ) ) {
+		if ( rInvalid.test( title ) ) {
 			return false;
 		}
 
@@ -586,7 +586,6 @@ Title.newFromUserInput = function ( title, defaultNamespaceOrOptions, options ) 
  * @return {mw.Title|null} A valid Title object or null if the title is invalid
  */
 Title.newFromFileName = function ( uncleanName ) {
-
 	return Title.newFromUserInput( 'File:' + uncleanName, {
 		forUploading: true
 	} );
@@ -608,10 +607,10 @@ Title.newFromImg = function ( img ) {
 		thumbPhpRegex = /thumb\.php/,
 		regexes = [
 			// Thumbnails
-			/\/[a-f0-9]\/[a-f0-9]{2}\/([^\s/]+)\/[^\s/]+-[^\s/]*$/,
+			/\/[\da-f]\/[\da-f]{2}\/([^\s/]+)\/[^\s/]+-[^\s/]*$/,
 
 			// Full size images
-			/\/[a-f0-9]\/[a-f0-9]{2}\/([^\s/]+)$/,
+			/\/[\da-f]\/[\da-f]{2}\/([^\s/]+)$/,
 
 			// Thumbnails in non-hashed upload directories
 			/\/([^\s/]+)\/[^\s/]+-(?:\1|thumbnail)[^\s/]*$/,
@@ -624,9 +623,7 @@ Title.newFromImg = function ( img ) {
 
 	src = img.jquery ? img[ 0 ].src : img.src;
 
-	matches = src.match( thumbPhpRegex );
-
-	if ( matches ) {
+	if ( thumbPhpRegex.test( src ) ) {
 		return mw.Title.newFromText( 'File:' + mw.util.getParamValue( 'f', src ) );
 	}
 
@@ -745,16 +742,16 @@ Title.exist = {
 Title.normalizeExtension = function ( extension ) {
 	var
 		lower = extension.toLowerCase(),
-		squish = {
+		normalizations = {
 			htm: 'html',
 			jpeg: 'jpg',
 			mpeg: 'mpg',
 			tiff: 'tif',
 			ogv: 'ogg'
 		};
-	if ( Object.prototype.hasOwnProperty.call( squish, lower ) ) {
-		return squish[ lower ];
-	} else if ( /^[0-9a-z]+$/.test( lower ) ) {
+	if ( Object.hasOwnProperty.call( normalizations, lower ) ) {
+		return normalizations[ lower ];
+	} else if ( /^[\da-z]+$/.test( lower ) ) {
 		return lower;
 	} else {
 		return '';
