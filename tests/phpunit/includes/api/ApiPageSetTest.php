@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @group API
  * @group medium
@@ -175,5 +178,45 @@ class ApiPageSetTest extends ApiTestCase {
 			2 => [ $userDbkey => -2 ],
 			3 => [ "$userDbkey/subpage" => -3 ],
 		], $pageSet->getAllTitlesByNamespace() );
+	}
+
+	/**
+	 * Test that ApiPageSet is calling GenderCache for provided user names to prefill the
+	 * GenderCache and avoid a performance issue when loading each users' gender on it's own.
+	 * The test is setting the "missLimit" to 0 on the GenderCache to trigger misses logic.
+	 * When the "misses" property is no longer 0 at the end of the test,
+	 * something was requested which is not part of the cache. Than the test is failing.
+	 */
+	public function testGenderCaching() {
+		// Set up the user namespace to have gender aliases to trigger the gender cache
+		$this->setMwGlobals( [
+			'wgExtraGenderNamespaces' => [ NS_USER => [ 'male' => 'Male', 'female' => 'Female' ] ]
+		] );
+		$this->overrideMwServices();
+
+		// User names to test with - it is not needed that the user exists in the database
+		// to trigger gender cache
+		$userNames = [
+			'Female',
+			'Unknown',
+			'Male',
+		];
+
+		// Prepare the gender cache for testing - this is a fresh instance due to service override
+		$genderCache = TestingAccessWrapper::newFromObject(
+			MediaWikiServices::getInstance()->getGenderCache()
+		);
+		$genderCache->missLimit = 0;
+
+		// Do an api request to trigger ApiPageSet code
+		$this->doApiRequest( [
+			'action' => 'query',
+			'titles' => 'User:' . implode( '|User:', $userNames ),
+		] );
+
+		$this->assertEquals( 0, $genderCache->misses,
+			'ApiPageSet does not prefill the gender cache correctly' );
+		$this->assertEquals( $userNames, array_keys( $genderCache->cache ),
+			'ApiPageSet does not prefill all users into the gender cache' );
 	}
 }
