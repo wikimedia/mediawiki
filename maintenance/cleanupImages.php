@@ -42,6 +42,9 @@ class CleanupImages extends TableCleanup {
 		'callback' => 'processRow',
 	];
 
+	/** @var LocalRepo|null */
+	private $repo;
+
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Script to clean up broken, unparseable upload filenames' );
@@ -116,7 +119,7 @@ class CleanupImages extends TableCleanup {
 	 * @return string
 	 */
 	private function filePath( $name ) {
-		if ( !isset( $this->repo ) ) {
+		if ( $this->repo === null ) {
 			$this->repo = RepoGroup::singleton()->getLocalRepo();
 		}
 

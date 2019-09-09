@@ -41,11 +41,31 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
  * @ingroup Maintenance
  */
 class ImageBuilder extends Maintenance {
-
 	/**
 	 * @var IMaintainableDatabase
 	 */
 	protected $dbw;
+
+	/** @var bool */
+	private $dryrun;
+
+	/** @var LocalRepo|null */
+	private $repo;
+
+	/** @var int */
+	private $updated;
+
+	/** @var int */
+	private $processed;
+
+	/** @var int */
+	private $count;
+
+	/** @var int */
+	private $startTime;
+
+	/** @var string */
+	private $table;
 
 	function __construct() {
 		parent::__construct();
@@ -79,7 +99,7 @@ class ImageBuilder extends Maintenance {
 	 * @return LocalRepo
 	 */
 	function getRepo() {
-		if ( !isset( $this->repo ) ) {
+		if ( $this->repo === null ) {
 			$this->repo = RepoGroup::singleton()->getLocalRepo();
 		}
 

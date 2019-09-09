@@ -41,6 +41,8 @@ class PreprocessDump extends DumpIterator {
 	/* Variables for dressing up as a parser */
 	public $mTitle = 'PreprocessDump';
 	public $mPPNodeCount = 0;
+	/** @var Preprocessor */
+	public $mPreprocessor;
 
 	public function getStripList() {
 		$parser = MediaWikiServices::getInstance()->getParser();

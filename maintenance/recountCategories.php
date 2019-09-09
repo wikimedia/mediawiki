@@ -36,6 +36,12 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Maintenance
  */
 class RecountCategories extends Maintenance {
+	/** @var string */
+	private $mode;
+
+	/** @var int */
+	private $minimumId;
+
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( <<<'TEXT'

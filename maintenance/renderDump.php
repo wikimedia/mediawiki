@@ -40,6 +40,8 @@ class DumpRenderer extends Maintenance {
 
 	private $count = 0;
 	private $outputDirectory, $startTime;
+	/** @var string */
+	private $prefix;
 
 	public function __construct() {
 		parent::__construct();

@@ -34,9 +34,10 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 abstract class DumpIterator extends Maintenance {
-
 	private $count = 0;
 	private $startTime;
+	/** @var string|bool|null */
+	private $from;
 
 	public function __construct() {
 		parent::__construct();
@@ -60,6 +61,7 @@ abstract class DumpIterator extends Maintenance {
 			$revision->setTitle( Title::newFromText(
 				rawurldecode( basename( $this->getOption( 'file' ), '.txt' ) )
 			) );
+			$this->from = false;
 			$this->handleRevision( $revision );
 
 			return;
@@ -131,7 +133,7 @@ abstract class DumpIterator extends Maintenance {
 		}
 
 		$this->count++;
-		if ( isset( $this->from ) ) {
+		if ( $this->from !== false ) {
 			if ( $this->from != $title ) {
 				return;
 			}
