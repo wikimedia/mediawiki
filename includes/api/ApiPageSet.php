@@ -1166,7 +1166,8 @@ class ApiPageSet extends ApiBase {
 		$services = MediaWikiServices::getInstance();
 		$contLang = $services->getContentLanguage();
 
-		foreach ( $titles as $title ) {
+		$titleObjects = [];
+		foreach ( $titles as $index => $title ) {
 			if ( is_string( $title ) ) {
 				try {
 					$titleObj = Title::newFromTextThrow( $title, $this->mDefaultNamespace );
@@ -1185,6 +1186,16 @@ class ApiPageSet extends ApiBase {
 			} else {
 				$titleObj = $title;
 			}
+
+			$titleObjects[$index] = $titleObj;
+		}
+
+		// Get gender information
+		$genderCache = $services->getGenderCache();
+		$genderCache->doTitlesArray( $titleObjects, __METHOD__ );
+
+		foreach ( $titleObjects as $index => $titleObj ) {
+			$title = is_string( $titles[$index] ) ? $titles[$index] : false;
 			$unconvertedTitle = $titleObj->getPrefixedText();
 			$titleWasConverted = false;
 			if ( $titleObj->isExternal() ) {
@@ -1197,7 +1208,7 @@ class ApiPageSet extends ApiBase {
 				) {
 					// Language::findVariantLink will modify titleText and titleObj into
 					// the canonical variant if possible
-					$titleText = is_string( $title ) ? $title : $titleObj->getPrefixedText();
+					$titleText = $title !== false ? $title : $titleObj->getPrefixedText();
 					$contLang->findVariantLink( $titleText, $titleObj );
 					$titleWasConverted = $unconvertedTitle !== $titleObj->getPrefixedText();
 				}
@@ -1245,24 +1256,13 @@ class ApiPageSet extends ApiBase {
 			if ( $titleWasConverted ) {
 				$this->mConvertedTitles[$unconvertedTitle] = $titleObj->getPrefixedText();
 				// In this case the page can't be Special.
-				if ( is_string( $title ) && $title !== $unconvertedTitle ) {
+				if ( $title !== false && $title !== $unconvertedTitle ) {
 					$this->mNormalizedTitles[$title] = $unconvertedTitle;
 				}
-			} elseif ( is_string( $title ) && $title !== $titleObj->getPrefixedText() ) {
+			} elseif ( $title !== false && $title !== $titleObj->getPrefixedText() ) {
 				$this->mNormalizedTitles[$title] = $titleObj->getPrefixedText();
 			}
-
-			// Need gender information
-			if (
-				$services->getNamespaceInfo()->
-					hasGenderDistinction( $titleObj->getNamespace() )
-			) {
-				$usernames[] = $titleObj->getText();
-			}
 		}
-		// Get gender information
-		$genderCache = $services->getGenderCache();
-		$genderCache->doQuery( $usernames, __METHOD__ );
 
 		return $linkBatch;
 	}
