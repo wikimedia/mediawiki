@@ -60,6 +60,10 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 			'callback array' => [
 				[ 'SpecialPageTestHelper', 'newSpecialAllPages' ],
 				false
+			],
+			'object factory spec' => [
+				[ 'class' => SpecialAllPages::class ],
+				false
 			]
 		];
 	}
@@ -264,4 +268,29 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 		$this->assertTrue( $called, 'Recursive call succeeded' );
 	}
 
+	/**
+	 * @covers \MediaWiki\Special\SpecialPageFactory::getPage
+	 */
+	public function testSpecialPageCreationThatRequiresService() {
+		$type = null;
+
+		$this->setMwGlobals( 'wgSpecialPages',
+			[ 'TestPage' => [
+				'factory' => function ( $spf ) use ( &$type ) {
+					$type = get_class( $spf );
+
+					return new class() extends SpecialPage {
+
+					};
+				},
+				'services' => [
+					'SpecialPageFactory'
+				]
+			] ]
+		);
+
+		SpecialPageFactory::getPage( 'TestPage' );
+
+		$this->assertEquals( \MediaWiki\Special\SpecialPageFactory::class, $type );
+	}
 }

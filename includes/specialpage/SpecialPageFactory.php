@@ -34,6 +34,7 @@ use RequestContext;
 use SpecialPage;
 use Title;
 use User;
+use Wikimedia\ObjectFactory;
 
 /**
  * Factory for handling the special page list and generating SpecialPage objects.
@@ -221,6 +222,9 @@ class SpecialPageFactory {
 	/** @var Language */
 	private $contLang;
 
+	/** @var ObjectFactory */
+	private $objectFactory;
+
 	/**
 	 * TODO Make this a const when HHVM support is dropped (T192166)
 	 *
@@ -241,11 +245,17 @@ class SpecialPageFactory {
 	/**
 	 * @param ServiceOptions $options
 	 * @param Language $contLang
+	 * @param ObjectFactory $objectFactory
 	 */
-	public function __construct( ServiceOptions $options, Language $contLang ) {
+	public function __construct(
+		ServiceOptions $options,
+		Language $contLang,
+		ObjectFactory $objectFactory
+	) {
 		$options->assertRequiredOptions( self::$constructorOptions );
 		$this->options = $options;
 		$this->contLang = $contLang;
+		$this->objectFactory = $objectFactory;
 	}
 
 	/**
@@ -412,14 +422,22 @@ class SpecialPageFactory {
 		if ( isset( $specialPageList[$realName] ) ) {
 			$rec = $specialPageList[$realName];
 
-			if ( is_callable( $rec ) ) {
-				// Use callback to instantiate the special page
-				$page = $rec();
-			} elseif ( is_string( $rec ) ) {
-				$className = $rec;
-				$page = new $className;
-			} elseif ( $rec instanceof SpecialPage ) {
+			if ( $rec instanceof SpecialPage ) {
+				wfDeprecated(
+					"a SpecialPage instance (for $realName) in " .
+					'$wgSpecialPages or from the SpecialPage_initList hook',
+					'1.34'
+				);
+
 				$page = $rec; // XXX: we should deep clone here
+			} elseif ( is_array( $rec ) || is_string( $rec ) || is_callable( $rec ) ) {
+				$page = $this->objectFactory->createObject(
+					$rec,
+					[
+						'allowClassName' => true,
+						'allowCallable' => true
+					]
+				);
 			} else {
 				$page = null;
 			}

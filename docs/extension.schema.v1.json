@@ -640,7 +640,7 @@
 		},
 		"SpecialPages": {
 			"type": "object",
-			"description": "SpecialPages implemented in this extension (mapping of page name to class name)"
+			"description": "SpecialPages implemented in this extension (mapping of page name to class name or to ObjectFactory spec)"
 		},
 		"AutoloadNamespaces": {
 			"type": "object",

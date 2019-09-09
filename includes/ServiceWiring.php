@@ -734,7 +734,8 @@ return [
 		return new SpecialPageFactory(
 			new ServiceOptions(
 				SpecialPageFactory::$constructorOptions, $services->getMainConfig() ),
-			$services->getContentLanguage()
+			$services->getContentLanguage(),
+			$services->getObjectFactory()
 		);
 	},
 
