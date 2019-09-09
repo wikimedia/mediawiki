@@ -114,8 +114,7 @@ class ApiModuleManager extends ContextSource {
 			];
 
 			if ( is_callable( $factory ) ) {
-				// Uncomment this when callers are cleaned up:
-				// wfDeprecated( __METHOD__ . ' with $class and $factory', '1.34' );
+				wfDeprecated( __METHOD__ . ' with $class and $factory', '1.34' );
 				$spec['factory'] = $factory;
 			}
 		} elseif ( !is_array( $spec ) ) {
