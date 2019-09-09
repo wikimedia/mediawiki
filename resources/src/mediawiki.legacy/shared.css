@@ -436,13 +436,7 @@ a.new {
 
 /* Note on preview page */
 .previewnote {
-	color: #d33;
 	margin-bottom: 1em;
-}
-
-.previewnote p {
-	text-indent: 3em;
-	margin: 0.8em 0;
 }
 
 .visualClear {
