@@ -298,6 +298,7 @@ $wgAutoloadLocalClasses = [
 	'ComposerJson' => __DIR__ . '/includes/libs/composer/ComposerJson.php',
 	'ComposerLock' => __DIR__ . '/includes/libs/composer/ComposerLock.php',
 	'ComposerPackageModifier' => __DIR__ . '/includes/composer/ComposerPackageModifier.php',
+	'ComposerPhpunitXmlCoverageEdit' => __DIR__ . '/includes/composer/ComposerPhpunitXmlCoverageEdit.php',
 	'ComposerVendorHtaccessCreator' => __DIR__ . '/includes/composer/ComposerVendorHtaccessCreator.php',
 	'ComposerVersionNormalizer' => __DIR__ . '/includes/composer/ComposerVersionNormalizer.php',
 	'CompressOld' => __DIR__ . '/maintenance/storage/compressOld.php',
