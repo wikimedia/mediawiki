@@ -533,6 +533,11 @@ util = {
 	}
 };
 
+// Backwards-compatible alias for mediawiki.RegExp module.
+// @deprecated since 1.34
+mw.RegExp = {};
+mw.log.deprecate( mw.RegExp, 'escape', util.escapeRegExp, 'Use mw.util.escapeRegExp() instead.', 'mw.RegExp.escape' );
+
 // Not allowed outside unit tests
 if ( window.QUnit ) {
 	util.setOptionsForTest = function ( opts ) {
