@@ -43,6 +43,16 @@ class BackupReader extends Maintenance {
 	public $imageBasePath = false;
 	/** @var array|false */
 	public $nsFilter = false;
+	/** @var bool|resource */
+	public $stderr;
+	/** @var callable|null */
+	protected $importCallback;
+	/** @var callable|null */
+	protected $logItemCallback;
+	/** @var callable|null */
+	protected $uploadCallback;
+	/** @var int */
+	protected $startTime;
 
 	function __construct() {
 		parent::__construct();
