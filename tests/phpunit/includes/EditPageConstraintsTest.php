@@ -521,7 +521,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 
 	/** PageSizeConstraint integration */
 	public function testPageSizeConstraintBeforeMerge() {
-		// Max size: 1 kilobyte
+		// Max size: 1 kibibyte
 		$this->setMwGlobals( [
 			'wgMaxArticleSize' => 1
 		] );
@@ -541,7 +541,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 
 	/** PageSizeConstraint integration */
 	public function testPageSizeConstraintAfterMerge() {
-		// Max size: 1 kilobyte
+		// Max size: 1 kibibyte
 		$this->setMwGlobals( [
 			'wgMaxArticleSize' => 1
 		] );

@@ -48,7 +48,7 @@
 		for ( i = 0; bytes >= 1024; bytes /= 1024 ) {
 			i++;
 		}
-		// Maintain one decimal for kB and above, but don't
+		// Maintain one decimal for KiB and above, but don't
 		// add ".0" for bytes.
 		return bytes.toFixed( i > 0 ? 1 : 0 ) + units[ i ];
 	}
@@ -274,7 +274,7 @@
 	inspect.reports = {
 		/**
 		 * Generate a breakdown of all loaded modules and their size in
-		 * kilobytes. Modules are ordered from largest to smallest.
+		 * kibibytes. Modules are ordered from largest to smallest.
 		 *
 		 * @return {Object[]} Size reports
 		 */

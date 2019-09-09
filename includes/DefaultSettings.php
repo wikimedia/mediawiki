@@ -999,8 +999,8 @@ $wgCopyUploadTimeout = false;
  * type maximums can be set, using the file and url keys. If the `*` key is set
  * this value will be used as maximum for non-specified types.
  *
- * The below example would set the maximum for all uploads to 250 kB except,
- * for upload-by-url, which would have a maximum of 500 kB.
+ * The below example would set the maximum for all uploads to 250 KiB except,
+ * for upload-by-url, which would have a maximum of 500 KiB.
  *
  * @par Example:
  * @code
@@ -1010,7 +1010,7 @@ $wgCopyUploadTimeout = false;
  * ];
  * @endcode
  *
- * Default: 100 MB.
+ * Default: 100 MiB.
  */
 $wgMaxUploadSize = 1024 * 1024 * 100;
 
@@ -1023,7 +1023,7 @@ $wgMaxUploadSize = 1024 * 1024 * 100;
  * `post_max_size` PHP settings. Use ApiUpload::getMinUploadChunkSize to
  * get the effective minimum chunk size used by MediaWiki.
  *
- * Default: 1 KB.
+ * Default: 1 KiB.
  *
  * @since 1.26
  * @see ApiUpload::getMinUploadChunkSize
@@ -2616,7 +2616,7 @@ $wgAllowSlowParserFunctions = false;
 $wgAllowSchemaUpdates = true;
 
 /**
- * Maximum article size in kilobytes
+ * Maximum article size in kibibytes
  */
 $wgMaxArticleSize = 2048;
 
@@ -9485,12 +9485,12 @@ $wgRestAPIAdditionalRouteFiles = [];
 /** @name   Shell and process control */
 
 /**
- * Maximum amount of virtual memory available to shell processes under linux, in KB.
+ * Maximum amount of virtual memory available to shell processes under linux, in KiB.
  */
 $wgMaxShellMemory = 307200;
 
 /**
- * Maximum file size created by shell processes under linux, in KB
+ * Maximum file size created by shell processes under linux, in KiB
  * ImageMagick convert for example can be fairly hungry for scratch space
  */
 $wgMaxShellFileSize = 102400;

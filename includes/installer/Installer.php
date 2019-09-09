@@ -81,7 +81,7 @@ abstract class Installer {
 	protected $dbInstallers = [];
 
 	/**
-	 * Minimum memory size in MB.
+	 * Minimum memory size in MiB.
 	 *
 	 * @var int
 	 */

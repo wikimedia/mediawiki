@@ -1564,7 +1564,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage(
-			'The content you supplied exceeds the article size limit of 1 kilobyte.'
+			'The content you supplied exceeds the article size limit of 1 kibibyte.'
 		);
 
 		$this->setMwGlobals( 'wgMaxArticleSize', 1 );

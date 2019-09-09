@@ -668,7 +668,7 @@ class LocalFile extends File {
 
 		// Normalize some fields to integer type, per their database definition.
 		// Use unary + so that overflows will be upgraded to double instead of
-		// being trucated as with intval(). This is important to allow >2GB
+		// being trucated as with intval(). This is important to allow > 2 GiB
 		// files on 32-bit systems.
 		$this->size = +$unprefixed['size'];
 		$this->width = +$unprefixed['width'];

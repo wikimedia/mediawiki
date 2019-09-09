@@ -17,7 +17,7 @@ use Title;
  *
  *  The Title
  *  some *highlighted* *text* about the search result
- *  5KB (651 words) - 12:40, 6 Aug 2016
+ *  5 KiB (651 words) - 12:40, 6 Aug 2016
  */
 class FullSearchResultWidget implements SearchResultWidget {
 	/** @var SpecialSearch */

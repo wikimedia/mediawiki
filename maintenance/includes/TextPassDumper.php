@@ -142,7 +142,7 @@ TEXT
 		$this->addOption( 'spawn', 'Spawn a subprocess for loading text records, optionally specify ' .
 			'php[,mwscript] paths' );
 		$this->addOption( 'buffersize', 'Buffer size in bytes to use for reading the stub. ' .
-			'(Default: 512KB, Minimum: 4KB)', false, true );
+			'(Default: 512 KiB, Minimum: 4 KiB)', false, true );
 
 		if ( $args ) {
 			$this->loadWithArgv( $args );

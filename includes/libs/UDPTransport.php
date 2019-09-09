@@ -31,7 +31,7 @@ use Wikimedia\IPUtils;
  * @since 1.25
  */
 class UDPTransport {
-	// Limit to 64KB
+	// Limit to 64 KiB
 	public const MAX_PAYLOAD_SIZE = 65507;
 	private $host, $port, $prefix, $domain;
 

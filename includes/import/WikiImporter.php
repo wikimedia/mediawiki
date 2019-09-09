@@ -1084,7 +1084,7 @@ class WikiImporter {
 				( $revisionId ?
 					"the revision with ID $revisionId" :
 					'a revision'
-				) . " exceeds the maximum allowable size ($wgMaxArticleSize KB)" );
+				) . " exceeds the maximum allowable size ($wgMaxArticleSize KiB)" );
 		}
 
 		$role = $contentInfo['role'] ?? SlotRecord::MAIN;
