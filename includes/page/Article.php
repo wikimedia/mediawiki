@@ -1668,7 +1668,7 @@ class Article implements Page {
 		}
 
 		// the outer div is need for styling the revision info and nav in MobileFrontend
-		$outputPage->addSubtitle( "<div class=\"mw-revision\">" . $revisionInfo .
+		$outputPage->addSubtitle( "<div class=\"mw-revision warningbox\">" . $revisionInfo .
 			"<div id=\"mw-revision-nav\">" . $cdel .
 			$context->msg( 'revision-nav' )->rawParams(
 				$prevdiff, $prevlink, $lnk, $curdiff, $nextlink, $nextdiff
