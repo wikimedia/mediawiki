@@ -24,7 +24,6 @@ namespace MediaWiki\Block;
 
 use ActorMigration;
 use AutoCommitUpdate;
-use BadMethodCallException;
 use CommentStore;
 use DeferredUpdates;
 use Hooks;
@@ -159,47 +158,6 @@ class DatabaseBlock extends AbstractBlock {
 		} else {
 			return null;
 		}
-	}
-
-	/**
-	 * Return the list of ipblocks fields that should be selected to create
-	 * a new block.
-	 * @deprecated since 1.31, use self::getQueryInfo() instead.
-	 * @return array
-	 */
-	public static function selectFields() {
-		global $wgActorTableSchemaMigrationStage;
-
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
-			// If code is using this instead of self::getQueryInfo(), there's a
-			// decent chance it's going to try to directly access
-			// $row->ipb_by or $row->ipb_by_text and we can't give it
-			// useful values here once those aren't being used anymore.
-			throw new BadMethodCallException(
-				'Cannot use ' . __METHOD__
-					. ' when $wgActorTableSchemaMigrationStage has SCHEMA_COMPAT_READ_NEW'
-			);
-		}
-
-		wfDeprecated( __METHOD__, '1.31' );
-		return [
-			'ipb_id',
-			'ipb_address',
-			'ipb_by',
-			'ipb_by_text',
-			'ipb_by_actor' => 'NULL',
-			'ipb_timestamp',
-			'ipb_auto',
-			'ipb_anon_only',
-			'ipb_create_account',
-			'ipb_enable_autoblock',
-			'ipb_expiry',
-			'ipb_deleted',
-			'ipb_block_email',
-			'ipb_allow_usertalk',
-			'ipb_parent_block_id',
-			'ipb_sitewide',
-		] + CommentStore::getStore()->getFields( 'ipb_reason' );
 	}
 
 	/**

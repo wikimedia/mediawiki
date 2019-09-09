@@ -178,8 +178,6 @@ class LocalFileDeleteBatch {
 	}
 
 	protected function doDBInserts() {
-		global $wgActorTableSchemaMigrationStage;
-
 		$now = time();
 		$dbw = $this->file->repo->getMasterDB();
 
@@ -225,7 +223,8 @@ class LocalFileDeleteBatch {
 				'fa_minor_mime' => 'img_minor_mime',
 				'fa_description_id' => 'img_description_id',
 				'fa_timestamp' => 'img_timestamp',
-				'fa_sha1' => 'img_sha1'
+				'fa_sha1' => 'img_sha1',
+				'fa_actor' => 'img_actor',
 			];
 			$joins = [];
 
@@ -233,37 +232,6 @@ class LocalFileDeleteBatch {
 				[ $dbw, 'addQuotes' ],
 				$commentStore->insert( $dbw, 'fa_deleted_reason', $this->reason )
 			);
-
-			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
-				$fields['fa_user'] = 'img_user';
-				$fields['fa_user_text'] = 'img_user_text';
-			}
-			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
-				$fields['fa_actor'] = 'img_actor';
-			}
-
-			if (
-				( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_BOTH ) === SCHEMA_COMPAT_WRITE_BOTH
-			) {
-				// Upgrade any rows that are still old-style. Otherwise an upgrade
-				// might be missed if a deletion happens while the migration script
-				// is running.
-				$res = $dbw->select(
-					[ 'image' ],
-					[ 'img_name', 'img_user', 'img_user_text' ],
-					[ 'img_name' => $this->file->getName(), 'img_actor' => 0 ],
-					__METHOD__
-				);
-				foreach ( $res as $row ) {
-					$actorId = User::newFromAnyId( $row->img_user, $row->img_user_text, null )->getActorId( $dbw );
-					$dbw->update(
-						'image',
-						[ 'img_actor' => $actorId ],
-						[ 'img_name' => $row->img_name, 'img_actor' => 0 ],
-						__METHOD__
-					);
-				}
-			}
 
 			$dbw->insertSelect( 'filearchive', $tables, $fields,
 				[ 'img_name' => $this->file->getName() ], __METHOD__, [], [], $joins );

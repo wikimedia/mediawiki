@@ -44,8 +44,6 @@ class RevisionDeleteUser {
 	 * @return bool True on success, false on failure (e.g. invalid user ID)
 	 */
 	private static function setUsernameBitfields( $name, $userId, $op, IDatabase $dbw = null ) {
-		global $wgActorTableSchemaMigrationStage;
-
 		if ( !$userId || ( $op !== '|' && $op !== '&' ) ) {
 			return false; // sanity check
 		}
@@ -69,19 +67,26 @@ class RevisionDeleteUser {
 		$userTitle = Title::makeTitleSafe( NS_USER, $name );
 		$userDbKey = $userTitle->getDBkey();
 
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
+		$actorId = $dbw->selectField( 'actor', 'actor_id', [ 'actor_name' => $name ], __METHOD__ );
+		if ( $actorId ) {
 			# Hide name from live edits
-			$dbw->update(
-				'revision',
-				[ self::buildSetBitDeletedField( 'rev_deleted', $op, $delUser, $dbw ) ],
-				[ 'rev_user' => $userId ],
-				__METHOD__ );
+			$ids = $dbw->selectFieldValues(
+				'revision_actor_temp', 'revactor_rev', [ 'revactor_actor' => $actorId ], __METHOD__
+			);
+			if ( $ids ) {
+				$dbw->update(
+					'revision',
+					[ self::buildSetBitDeletedField( 'rev_deleted', $op, $delUser, $dbw ) ],
+					[ 'rev_id' => $ids ],
+					__METHOD__
+				);
+			}
 
 			# Hide name from deleted edits
 			$dbw->update(
 				'archive',
 				[ self::buildSetBitDeletedField( 'ar_deleted', $op, $delUser, $dbw ) ],
-				[ 'ar_user_text' => $name ],
+				[ 'ar_actor' => $actorId ],
 				__METHOD__
 			);
 
@@ -89,7 +94,7 @@ class RevisionDeleteUser {
 			$dbw->update(
 				'logging',
 				[ self::buildSetBitDeletedField( 'log_deleted', $op, $delUser, $dbw ) ],
-				[ 'log_user' => $userId, 'log_type != ' . $dbw->addQuotes( 'suppress' ) ],
+				[ 'log_actor' => $actorId, 'log_type != ' . $dbw->addQuotes( 'suppress' ) ],
 				__METHOD__
 			);
 
@@ -97,7 +102,7 @@ class RevisionDeleteUser {
 			$dbw->update(
 				'recentchanges',
 				[ self::buildSetBitDeletedField( 'rc_deleted', $op, $delUser, $dbw ) ],
-				[ 'rc_user_text' => $name ],
+				[ 'rc_actor' => $actorId ],
 				__METHOD__
 			);
 
@@ -105,7 +110,7 @@ class RevisionDeleteUser {
 			$dbw->update(
 				'oldimage',
 				[ self::buildSetBitDeletedField( 'oi_deleted', $op, $delUser, $dbw ) ],
-				[ 'oi_user_text' => $name ],
+				[ 'oi_actor' => $actorId ],
 				__METHOD__
 			);
 
@@ -113,67 +118,9 @@ class RevisionDeleteUser {
 			$dbw->update(
 				'filearchive',
 				[ self::buildSetBitDeletedField( 'fa_deleted', $op, $delUser, $dbw ) ],
-				[ 'fa_user_text' => $name ],
+				[ 'fa_actor' => $actorId ],
 				__METHOD__
 			);
-		}
-
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
-			$actorId = $dbw->selectField( 'actor', 'actor_id', [ 'actor_name' => $name ], __METHOD__ );
-			if ( $actorId ) {
-				# Hide name from live edits
-				$ids = $dbw->selectFieldValues(
-					'revision_actor_temp', 'revactor_rev', [ 'revactor_actor' => $actorId ], __METHOD__
-				);
-				if ( $ids ) {
-					$dbw->update(
-						'revision',
-						[ self::buildSetBitDeletedField( 'rev_deleted', $op, $delUser, $dbw ) ],
-						[ 'rev_id' => $ids ],
-						__METHOD__
-					);
-				}
-
-				# Hide name from deleted edits
-				$dbw->update(
-					'archive',
-					[ self::buildSetBitDeletedField( 'ar_deleted', $op, $delUser, $dbw ) ],
-					[ 'ar_actor' => $actorId ],
-					__METHOD__
-				);
-
-				# Hide name from logs
-				$dbw->update(
-					'logging',
-					[ self::buildSetBitDeletedField( 'log_deleted', $op, $delUser, $dbw ) ],
-					[ 'log_actor' => $actorId, 'log_type != ' . $dbw->addQuotes( 'suppress' ) ],
-					__METHOD__
-				);
-
-				# Hide name from RC
-				$dbw->update(
-					'recentchanges',
-					[ self::buildSetBitDeletedField( 'rc_deleted', $op, $delUser, $dbw ) ],
-					[ 'rc_actor' => $actorId ],
-					__METHOD__
-				);
-
-				# Hide name from live images
-				$dbw->update(
-					'oldimage',
-					[ self::buildSetBitDeletedField( 'oi_deleted', $op, $delUser, $dbw ) ],
-					[ 'oi_actor' => $actorId ],
-					__METHOD__
-				);
-
-				# Hide name from deleted images
-				$dbw->update(
-					'filearchive',
-					[ self::buildSetBitDeletedField( 'fa_deleted', $op, $delUser, $dbw ) ],
-					[ 'fa_actor' => $actorId ],
-					__METHOD__
-				);
-			}
 		}
 
 		# Hide log entries pointing to the user page

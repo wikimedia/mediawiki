@@ -203,44 +203,6 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * Fields in the image table
-	 * @deprecated since 1.31, use self::getQueryInfo() instead.
-	 * @return string[]
-	 */
-	static function selectFields() {
-		global $wgActorTableSchemaMigrationStage;
-
-		wfDeprecated( __METHOD__, '1.31' );
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
-			// If code is using this instead of self::getQueryInfo(), there's a
-			// decent chance it's going to try to directly access
-			// $row->img_user or $row->img_user_text and we can't give it
-			// useful values here once those aren't being used anymore.
-			throw new BadMethodCallException(
-				'Cannot use ' . __METHOD__
-					. ' when $wgActorTableSchemaMigrationStage has SCHEMA_COMPAT_READ_NEW'
-			);
-		}
-
-		return [
-			'img_name',
-			'img_size',
-			'img_width',
-			'img_height',
-			'img_metadata',
-			'img_bits',
-			'img_media_type',
-			'img_major_mime',
-			'img_minor_mime',
-			'img_user',
-			'img_user_text',
-			'img_actor' => 'NULL',
-			'img_timestamp',
-			'img_sha1',
-		] + MediaWikiServices::getInstance()->getCommentStore()->getFields( 'img_description' );
-	}
-
-	/**
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new localfile object.
 	 * @since 1.31
@@ -1449,8 +1411,6 @@ class LocalFile extends File {
 		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null, $tags = [],
 		$createNullRevision = true, $revert = false
 	) {
-		global $wgActorTableSchemaMigrationStage;
-
 		if ( is_null( $user ) ) {
 			global $wgUser;
 			$user = $wgUser;
@@ -1553,39 +1513,9 @@ class LocalFile extends File {
 				'oi_major_mime' => 'img_major_mime',
 				'oi_minor_mime' => 'img_minor_mime',
 				'oi_sha1' => 'img_sha1',
+				'oi_actor' => 'img_actor',
 			];
 			$joins = [];
-
-			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
-				$fields['oi_user'] = 'img_user';
-				$fields['oi_user_text'] = 'img_user_text';
-			}
-			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
-				$fields['oi_actor'] = 'img_actor';
-			}
-
-			if (
-				( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_BOTH ) === SCHEMA_COMPAT_WRITE_BOTH
-			) {
-				// Upgrade any rows that are still old-style. Otherwise an upgrade
-				// might be missed if a deletion happens while the migration script
-				// is running.
-				$res = $dbw->select(
-					[ 'image' ],
-					[ 'img_name', 'img_user', 'img_user_text' ],
-					[ 'img_name' => $this->getName(), 'img_actor' => 0 ],
-					__METHOD__
-				);
-				foreach ( $res as $row ) {
-					$actorId = User::newFromAnyId( $row->img_user, $row->img_user_text, null )->getActorId( $dbw );
-					$dbw->update(
-						'image',
-						[ 'img_actor' => $actorId ],
-						[ 'img_name' => $row->img_name, 'img_actor' => 0 ],
-						__METHOD__
-					);
-				}
-			}
 
 			# (T36993) Note: $oldver can be empty here, if the previous
 			# version of the file was broken. Allow registration of the new

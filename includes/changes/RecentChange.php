@@ -222,55 +222,6 @@ class RecentChange implements Taggable {
 	}
 
 	/**
-	 * Return the list of recentchanges fields that should be selected to create
-	 * a new recentchanges object.
-	 * @deprecated since 1.31, use self::getQueryInfo() instead.
-	 * @return array
-	 */
-	public static function selectFields() {
-		global $wgActorTableSchemaMigrationStage;
-
-		wfDeprecated( __METHOD__, '1.31' );
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
-			// If code is using this instead of self::getQueryInfo(), there's a
-			// decent chance it's going to try to directly access
-			// $row->rc_user or $row->rc_user_text and we can't give it
-			// useful values here once those aren't being used anymore.
-			throw new BadMethodCallException(
-				'Cannot use ' . __METHOD__
-					. ' when $wgActorTableSchemaMigrationStage has SCHEMA_COMPAT_READ_NEW'
-			);
-		}
-
-		return [
-			'rc_id',
-			'rc_timestamp',
-			'rc_user',
-			'rc_user_text',
-			'rc_actor' => 'NULL',
-			'rc_namespace',
-			'rc_title',
-			'rc_minor',
-			'rc_bot',
-			'rc_new',
-			'rc_cur_id',
-			'rc_this_oldid',
-			'rc_last_oldid',
-			'rc_type',
-			'rc_source',
-			'rc_patrolled',
-			'rc_ip',
-			'rc_old_len',
-			'rc_new_len',
-			'rc_deleted',
-			'rc_logid',
-			'rc_log_type',
-			'rc_log_action',
-			'rc_params',
-		] + CommentStore::getStore()->getFields( 'rc_comment' );
-	}
-
-	/**
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new recentchanges object.
 	 * @since 1.31

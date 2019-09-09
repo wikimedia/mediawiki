@@ -253,8 +253,6 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	 * @throws MWException
 	 */
 	public function insert( IDatabase $dbw = null ) {
-		global $wgActorTableSchemaMigrationStage;
-
 		$dbw = $dbw ?: wfGetDB( DB_MASTER );
 
 		if ( $this->timestamp === null ) {
@@ -266,31 +264,6 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 
 		$params = $this->getParameters();
 		$relations = $this->relations;
-
-		// Ensure actor relations are set
-		if ( ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) &&
-			empty( $relations['target_author_actor'] )
-		) {
-			$actorIds = [];
-			if ( !empty( $relations['target_author_id'] ) ) {
-				foreach ( $relations['target_author_id'] as $id ) {
-					$actorIds[] = User::newFromId( $id )->getActorId( $dbw );
-				}
-			}
-			if ( !empty( $relations['target_author_ip'] ) ) {
-				foreach ( $relations['target_author_ip'] as $ip ) {
-					$actorIds[] = User::newFromName( $ip, false )->getActorId( $dbw );
-				}
-			}
-			if ( $actorIds ) {
-				$relations['target_author_actor'] = $actorIds;
-				$params['authorActors'] = $actorIds;
-			}
-		}
-		if ( !( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
-			unset( $relations['target_author_id'], $relations['target_author_ip'] );
-			unset( $params['authorIds'], $params['authorIPs'] );
-		}
 
 		// Additional fields for which there's no space in the database table schema
 		$revId = $this->getAssociatedRevId();

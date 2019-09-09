@@ -28,15 +28,18 @@ use Wikimedia\Rdbms\IDatabase;
  * This class handles the logic for the actor table migration.
  *
  * This is not intended to be a long-term part of MediaWiki; it will be
- * deprecated and removed along with $wgActorTableSchemaMigrationStage.
+ * deprecated and removed once actor migration is complete.
  *
  * @since 1.31
+ * @since 1.34 Use with 'ar_user', 'img_user', 'oi_user', 'fa_user',
+ *  'rc_user', 'log_user', and 'ipb_by' is deprecated. Callers should
+ *  reference the corresponding actor fields directly.
  */
 class ActorMigration {
 
 	/**
 	 * Constant for extensions to feature-test whether $wgActorTableSchemaMigrationStage
-	 * expects MIGRATION_* or SCHEMA_COMPAT_*
+	 * (in MW <1.34) expects MIGRATION_* or SCHEMA_COMPAT_*
 	 */
 	const MIGRATION_STAGE_SCHEMA_COMPAT = 1;
 
@@ -67,6 +70,28 @@ class ActorMigration {
 	 *  removed from $tempTables.
 	 */
 	private static $formerTempTables = [];
+
+	/**
+	 * Define fields that are deprecated for use with this class.
+	 * @var (string|null)[] Keys are '$key', value is null for soft deprecation
+	 *  or a string naming the deprecated version for hard deprecation.
+	 */
+	private static $deprecated = [
+		'ar_user' => null, // 1.34
+		'img_user' => null, // 1.34
+		'oi_user' => null, // 1.34
+		'fa_user' => null, // 1.34
+		'rc_user' => null, // 1.34
+		'log_user' => null, // 1.34
+		'ipb_by' => null, // 1.34
+	];
+
+	/**
+	 * Define fields that are removed for use with this class.
+	 * @var string[] Keys are '$key', value is the MediaWiki version in which
+	 *  use was removed.
+	 */
+	private static $removed = [];
 
 	/**
 	 * Define fields that use non-standard mapping
@@ -113,6 +138,21 @@ class ActorMigration {
 	}
 
 	/**
+	 * Issue deprecation warning/error as appropriate.
+	 * @param string $key
+	 */
+	private static function checkDeprecation( $key ) {
+		if ( isset( self::$removed[$key] ) ) {
+			throw new InvalidArgumentException(
+				"Use of " . static::class . " for '$key' was removed in MediaWiki " . self::$removed[$key]
+			);
+		}
+		if ( !empty( self::$deprecated[$key] ) ) {
+			wfDeprecated( static::class . " for '$key'", self::$deprecated[$key], false, 3 );
+		}
+	}
+
+	/**
 	 * Return an SQL condition to test if a user field is anonymous
 	 * @param string $field Field name or SQL fragment
 	 * @return string
@@ -152,6 +192,8 @@ class ActorMigration {
 	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public function getJoin( $key ) {
+		self::checkDeprecation( $key );
+
 		if ( !isset( $this->joinCache[$key] ) ) {
 			$tables = [];
 			$fields = [];
@@ -203,6 +245,8 @@ class ActorMigration {
 	 * @return array to merge into `$values` to `IDatabase->update()` or `$a` to `IDatabase->insert()`
 	 */
 	public function getInsertValues( IDatabase $dbw, $key, UserIdentity $user ) {
+		self::checkDeprecation( $key );
+
 		if ( isset( self::$tempTables[$key] ) ) {
 			throw new InvalidArgumentException( "Must use getInsertValuesWithTempTable() for $key" );
 		}
@@ -236,6 +280,8 @@ class ActorMigration {
 	 *    and extra fields needed for the temp table.
 	 */
 	public function getInsertValuesWithTempTable( IDatabase $dbw, $key, UserIdentity $user ) {
+		self::checkDeprecation( $key );
+
 		if ( isset( self::$formerTempTables[$key] ) ) {
 			wfDeprecated( __METHOD__ . " for $key", self::$formerTempTables[$key] );
 		} elseif ( !isset( self::$tempTables[$key] ) ) {
@@ -319,6 +365,8 @@ class ActorMigration {
 	 *  All tables and joins are aliased, so `+` is safe to use.
 	 */
 	public function getWhere( IDatabase $db, $key, $users, $useId = true ) {
+		self::checkDeprecation( $key );
+
 		$tables = [];
 		$conds = [];
 		$joins = [];

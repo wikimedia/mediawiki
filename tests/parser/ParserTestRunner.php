@@ -1246,8 +1246,6 @@ class ParserTestRunner {
 	 * @return array
 	 */
 	private function listTables() {
-		global $wgActorTableSchemaMigrationStage;
-
 		$tables = [ 'user', 'user_properties', 'user_former_groups', 'page', 'page_restrictions',
 			'protected_titles', 'revision', 'ip_changes', 'text', 'pagelinks', 'imagelinks',
 			'categorylinks', 'templatelinks', 'externallinks', 'langlinks', 'iwlinks',
@@ -1256,14 +1254,8 @@ class ParserTestRunner {
 			'querycache', 'objectcache', 'job', 'l10n_cache', 'redirect', 'querycachetwo',
 			'archive', 'user_groups', 'page_props', 'category',
 			'slots', 'content', 'slot_roles', 'content_models',
-			'comment', 'revision_comment_temp',
+			'comment', 'revision_comment_temp', 'actor', 'revision_actor_temp',
 		];
-
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
-			// The new tables for actors are in use
-			$tables[] = 'actor';
-			$tables[] = 'revision_actor_temp';
-		}
 
 		if ( in_array( $this->db->getType(), [ 'mysql', 'sqlite' ] ) ) {
 			array_push( $tables, 'searchindex' );

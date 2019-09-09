@@ -51,15 +51,6 @@ class MigrateActors extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		$actorTableSchemaMigrationStage = $this->getConfig()->get( 'ActorTableSchemaMigrationStage' );
-
-		if ( !( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) ) {
-			$this->output(
-				"...cannot update while \$wgActorTableSchemaMigrationStage lacks SCHEMA_COMPAT_WRITE_NEW\n"
-			);
-			return false;
-		}
-
 		$tables = $this->getOption( 'tables' );
 		if ( $tables !== null ) {
 			$this->tables = explode( ',', $tables );
@@ -265,6 +256,12 @@ class MigrateActors extends LoggedUpdateMaintenance {
 			return 0;
 		}
 
+		$dbw = $this->getDB( DB_MASTER );
+		if ( !$dbw->fieldExists( $table, $userField, __METHOD__ ) ) {
+			$this->output( "No need to migrate $table.$userField, field does not exist\n" );
+			return 0;
+		}
+
 		$complainedAboutUsers = [];
 
 		$primaryKey = (array)$primaryKey;
@@ -274,7 +271,6 @@ class MigrateActors extends LoggedUpdateMaintenance {
 		);
 		wfWaitForSlaves();
 
-		$dbw = $this->getDB( DB_MASTER );
 		$actorIdSubquery = $this->makeActorIdSubquery( $dbw, $userField, $nameField );
 		$next = '1=1';
 		$countUpdated = 0;
@@ -357,12 +353,19 @@ class MigrateActors extends LoggedUpdateMaintenance {
 	 * @param string $nameField User name field name
 	 * @param string $newPrimaryKey Primary key of the new table.
 	 * @param string $actorField Actor field name
+	 * @return int Number of errors
 	 */
 	protected function migrateToTemp(
 		$table, $primaryKey, $extra, $userField, $nameField, $newPrimaryKey, $actorField
 	) {
 		if ( !$this->doTable( $table ) ) {
 			$this->output( "Skipping $table, not included in --tables\n" );
+			return 0;
+		}
+
+		$dbw = $this->getDB( DB_MASTER );
+		if ( !$dbw->fieldExists( $table, $userField, __METHOD__ ) ) {
+			$this->output( "No need to migrate $table.$userField, field does not exist\n" );
 			return 0;
 		}
 
@@ -374,7 +377,6 @@ class MigrateActors extends LoggedUpdateMaintenance {
 		);
 		wfWaitForSlaves();
 
-		$dbw = $this->getDB( DB_MASTER );
 		$actorIdSubquery = $this->makeActorIdSubquery( $dbw, $userField, $nameField );
 		$next = [];
 		$countUpdated = 0;

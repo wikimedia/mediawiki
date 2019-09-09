@@ -101,8 +101,10 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addTable', 'querycache_info', 'patch-querycacheinfo.sql' ],
 			[ 'addTable', 'filearchive', 'patch-filearchive.sql' ],
 			[ 'addField', 'ipblocks', 'ipb_anon_only', 'patch-ipb_anon_only.sql' ],
-			[ 'addIndex', 'recentchanges', 'rc_ns_usertext', 'patch-recentchanges-utindex.sql' ],
-			[ 'addIndex', 'recentchanges', 'rc_user_text', 'patch-rc_user_text-index.sql' ],
+			[ 'ifNoActorTable', 'addIndex', 'recentchanges', 'rc_ns_usertext',
+				'patch-recentchanges-utindex.sql' ],
+			[ 'ifNoActorTable', 'addIndex', 'recentchanges', 'rc_user_text',
+				'patch-rc_user_text-index.sql' ],
 
 			// 1.9
 			[ 'addField', 'user', 'user_newpass_time', 'patch-user_newpass_time.sql' ],
@@ -130,9 +132,12 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addField', 'ipblocks', 'ipb_block_email', 'patch-ipb_emailban.sql' ],
 			[ 'doCategorylinksIndicesUpdate' ],
 			[ 'addField', 'oldimage', 'oi_metadata', 'patch-oi_metadata.sql' ],
-			[ 'addIndex', 'archive', 'usertext_timestamp', 'patch-archive-user-index.sql' ],
-			[ 'addIndex', 'image', 'img_usertext_timestamp', 'patch-image-user-index.sql' ],
-			[ 'addIndex', 'oldimage', 'oi_usertext_timestamp', 'patch-oldimage-user-index.sql' ],
+			[ 'ifNoActorTable', 'addIndex', 'archive', 'usertext_timestamp',
+				'patch-archive-user-index.sql' ],
+			[ 'ifNoActorTable', 'addIndex', 'image', 'img_usertext_timestamp',
+				'patch-image-user-index.sql' ],
+			[ 'ifNoActorTable', 'addIndex', 'oldimage', 'oi_usertext_timestamp',
+				'patch-oldimage-user-index.sql' ],
 			[ 'addField', 'archive', 'ar_page_id', 'patch-archive-page_id.sql' ],
 			[ 'addField', 'image', 'img_sha1', 'patch-img_sha1.sql' ],
 
@@ -140,7 +145,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addTable', 'protected_titles', 'patch-protected_titles.sql' ],
 
 			// 1.13
-			[ 'addField', 'ipblocks', 'ipb_by_text', 'patch-ipb_by_text.sql' ],
+			[ 'ifNoActorTable', 'addField', 'ipblocks', 'ipb_by_text', 'patch-ipb_by_text.sql' ],
 			[ 'addTable', 'page_props', 'patch-page_props.sql' ],
 			[ 'addTable', 'updatelog', 'patch-updatelog.sql' ],
 			[ 'addTable', 'category', 'patch-category.sql' ],
@@ -150,7 +155,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'doPopulateParentId' ],
 			[ 'checkBin', 'protected_titles', 'pt_title', 'patch-pt_title-encoding.sql', ],
 			[ 'doMaybeProfilingMemoryUpdate' ],
-			[ 'doFilearchiveIndicesUpdate' ],
+			[ 'ifNoActorTable', 'doFilearchiveIndicesUpdate' ],
 
 			// 1.14
 			[ 'addField', 'site_stats', 'ss_active_users', 'patch-ss_active_users.sql' ],
@@ -163,9 +168,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.16
 			[ 'addTable', 'user_properties', 'patch-user_properties.sql' ],
 			[ 'addTable', 'log_search', 'patch-log_search.sql' ],
-			[ 'addField', 'logging', 'log_user_text', 'patch-log_user_text.sql' ],
+			[ 'ifNoActorTable', 'addField', 'logging', 'log_user_text', 'patch-log_user_text.sql' ],
 			# listed separately from the previous update because 1.16 was released without this update
-			[ 'doLogUsertextPopulation' ],
+			[ 'ifNoActorTable', 'doLogUsertextPopulation' ],
 			[ 'doLogSearchPopulation' ],
 			[ 'addTable', 'l10n_cache', 'patch-l10n_cache.sql' ],
 			[ 'dropIndex', 'change_tag', 'ct_rc_id', 'patch-change_tag-indexes.sql' ],
@@ -240,9 +245,10 @@ class MysqlUpdater extends DatabaseUpdater {
 
 			// 1.23
 			[ 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ],
-			[ 'addIndex', 'logging', 'log_user_text_type_time',
+			[ 'ifNoActorTable', 'addIndex', 'logging', 'log_user_text_type_time',
 				'patch-logging_user_text_type_time_index.sql' ],
-			[ 'addIndex', 'logging', 'log_user_text_time', 'patch-logging_user_text_time_index.sql' ],
+			[ 'ifNoActorTable', 'addIndex', 'logging', 'log_user_text_time',
+				'patch-logging_user_text_time_index.sql' ],
 			[ 'addField', 'page', 'page_links_updated', 'patch-page_links_updated.sql' ],
 			[ 'addField', 'user', 'user_password_expires', 'patch-user_password_expire.sql' ],
 
@@ -288,13 +294,14 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'doNonUniquePlTlIl' ],
 			[ 'addField', 'change_tag', 'ct_id', 'patch-change_tag-ct_id.sql' ],
 			[ 'modifyField', 'recentchanges', 'rc_ip', 'patch-rc_ip_modify.sql' ],
-			[ 'addIndex', 'archive', 'usertext_timestamp', 'patch-rename-ar_usertext_timestamp.sql' ],
+			[ 'ifNoActorTable', 'addIndex', 'archive', 'usertext_timestamp',
+				'patch-rename-ar_usertext_timestamp.sql' ],
 
 			// 1.29
 			[ 'addField', 'externallinks', 'el_index_60', 'patch-externallinks-el_index_60.sql' ],
 			[ 'dropIndex', 'user_groups', 'ug_user_group', 'patch-user_groups-primary-key.sql' ],
 			[ 'addField', 'user_groups', 'ug_expiry', 'patch-user_groups-ug_expiry.sql' ],
-			[ 'addIndex', 'image', 'img_user_timestamp', 'patch-image-user-index-2.sql' ],
+			[ 'ifNoActorTable', 'addIndex', 'image', 'img_user_timestamp', 'patch-image-user-index-2.sql' ],
 
 			// 1.30
 			[ 'modifyField', 'image', 'img_media_type', 'patch-add-3d.sql' ],
@@ -377,6 +384,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'dropTable', 'tag_summary' ],
 			[ 'dropField', 'protected_titles', 'pt_reason', 'patch-drop-comment-fields.sql' ],
 			[ 'modifyTable', 'job', 'patch-job-params-mediumblob.sql' ],
+
+			// 1.34
+			[ 'dropField', 'logging', 'log_user', 'patch-drop-user-fields.sql' ],
 		];
 	}
 

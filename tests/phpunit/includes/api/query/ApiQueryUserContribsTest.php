@@ -8,15 +8,6 @@
  */
 class ApiQueryUserContribsTest extends ApiTestCase {
 	public function addDBDataOnce() {
-		global $wgActorTableSchemaMigrationStage;
-
-		$reset = new \Wikimedia\ScopedCallback( function ( $v ) {
-			$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', $v );
-		}, [ $wgActorTableSchemaMigrationStage ] );
-		// Needs to WRITE_BOTH so READ_OLD tests below work. READ mode here doesn't really matter.
-		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage',
-			SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW );
-
 		$users = [
 			User::newFromName( '192.168.2.2', false ),
 			User::newFromName( '192.168.2.1', false ),
@@ -43,16 +34,13 @@ class ApiQueryUserContribsTest extends ApiTestCase {
 
 	/**
 	 * @dataProvider provideSorting
-	 * @param int $stage SCHEMA_COMPAT contants for $wgActorTableSchemaMigrationStage
 	 * @param array $params Extra parameters for the query
 	 * @param bool $reverse Reverse order?
 	 * @param int $revs Number of revisions to expect
 	 */
-	public function testSorting( $stage, $params, $reverse, $revs ) {
+	public function testSorting( $params, $reverse, $revs ) {
 		// FIXME: fails under sqlite
 		$this->markTestSkippedIfDbType( 'sqlite' );
-
-		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', $stage );
 
 		if ( isset( $params['ucuserids'] ) ) {
 			$params['ucuserids'] = implode( '|', array_map( 'User::idFromName', $params['ucuserids'] ) );
@@ -116,38 +104,23 @@ class ApiQueryUserContribsTest extends ApiTestCase {
 		$users2 = [ __CLASS__ . ' A', __CLASS__ . ' B', __CLASS__ . ' D' ];
 		$ips = [ '192.168.2.1', '192.168.2.2', '192.168.2.3', '192.168.2.4' ];
 
-		foreach (
-			[
-				'old' => SCHEMA_COMPAT_OLD,
-				'read old' => SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
-				'read new' => SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW,
-				'new' => SCHEMA_COMPAT_NEW,
-			] as $stageName => $stage
-		) {
-			foreach ( [ false, true ] as $reverse ) {
-				$name = $stageName . ( $reverse ? ', reverse' : '' );
-				yield "Named users, $name" => [ $stage, [ 'ucuser' => $users ], $reverse, 9 ];
-				yield "Named users including a no-edit user, $name" => [
-					$stage, [ 'ucuser' => $users2 ], $reverse, 6
-				];
-				yield "IP users, $name" => [ $stage, [ 'ucuser' => $ips ], $reverse, 9 ];
-				yield "All users, $name" => [
-					$stage, [ 'ucuser' => array_merge( $users, $ips ) ], $reverse, 18
-				];
-				yield "User IDs, $name" => [ $stage, [ 'ucuserids' => $users ], $reverse, 9 ];
-				yield "Users by prefix, $name" => [ $stage, [ 'ucuserprefix' => __CLASS__ ], $reverse, 9 ];
-				yield "IPs by prefix, $name" => [ $stage, [ 'ucuserprefix' => '192.168.2.' ], $reverse, 9 ];
-			}
+		foreach ( [ false, true ] as $reverse ) {
+			$name = ( $reverse ? ', reverse' : '' );
+			yield "Named users, $name" => [ [ 'ucuser' => $users ], $reverse, 9 ];
+			yield "Named users including a no-edit user, $name" => [
+				[ 'ucuser' => $users2 ], $reverse, 6
+			];
+			yield "IP users, $name" => [ [ 'ucuser' => $ips ], $reverse, 9 ];
+			yield "All users, $name" => [
+				[ 'ucuser' => array_merge( $users, $ips ) ], $reverse, 18
+			];
+			yield "User IDs, $name" => [ [ 'ucuserids' => $users ], $reverse, 9 ];
+			yield "Users by prefix, $name" => [ [ 'ucuserprefix' => __CLASS__ ], $reverse, 9 ];
+			yield "IPs by prefix, $name" => [ [ 'ucuserprefix' => '192.168.2.' ], $reverse, 9 ];
 		}
 	}
 
-	/**
-	 * @dataProvider provideInterwikiUser
-	 * @param int $stage SCHEMA_COMPAT constants for $wgActorTableSchemaMigrationStage
-	 */
-	public function testInterwikiUser( $stage ) {
-		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', $stage );
-
+	public function testInterwikiUser() {
 		$params = [
 			'action' => 'query',
 			'list' => 'usercontribs',
@@ -172,15 +145,6 @@ class ApiQueryUserContribsTest extends ApiTestCase {
 		$sorted = $ids;
 		rsort( $sorted );
 		$this->assertSame( $sorted, $ids, "IDs are sorted" );
-	}
-
-	public static function provideInterwikiUser() {
-		return [
-			'old' => [ SCHEMA_COMPAT_OLD ],
-			'read old' => [ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD ],
-			'read new' => [ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW ],
-			'new' => [ SCHEMA_COMPAT_NEW ],
-		];
 	}
 
 }

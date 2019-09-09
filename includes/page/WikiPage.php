@@ -2841,7 +2841,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	protected function archiveRevisions( $dbw, $id, $suppress ) {
 		global $wgContentHandlerUseDB, $wgMultiContentRevisionSchemaMigrationStage,
-			$wgActorTableSchemaMigrationStage, $wgDeleteRevisionsBatchSize;
+			$wgDeleteRevisionsBatchSize;
 
 		// Given the lock above, we can be confident in the title and page ID values
 		$namespace = $this->getTitle()->getNamespace();
@@ -2968,9 +2968,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 			$dbw->delete( 'revision', [ 'rev_id' => $revids ], __METHOD__ );
 			$dbw->delete( 'revision_comment_temp', [ 'revcomment_rev' => $revids ], __METHOD__ );
-			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
-				$dbw->delete( 'revision_actor_temp', [ 'revactor_rev' => $revids ], __METHOD__ );
-			}
+			$dbw->delete( 'revision_actor_temp', [ 'revactor_rev' => $revids ], __METHOD__ );
 
 			// Also delete records from ip_changes as applicable.
 			if ( count( $ipRevIds ) > 0 ) {
