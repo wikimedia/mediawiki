@@ -59,7 +59,6 @@
 					}
 				},
 				parameters: {
-					// Add 'origin' query parameter to all requests.
 					origin: this.getOrigin()
 				}
 			},
@@ -77,17 +76,26 @@
 	 * any).
 	 *
 	 * @protected
-	 * @return {string}
+	 * @return {string|undefined}
 	 */
 	CoreForeignApi.prototype.getOrigin = function () {
-		var origin;
+		var origin, apiUri, apiOrigin;
 		if ( this.anonymous ) {
 			return '*';
 		}
+
 		origin = location.protocol + '//' + location.hostname;
 		if ( location.port ) {
 			origin += ':' + location.port;
 		}
+
+		apiUri = new mw.Uri( this.apiUrl );
+		apiOrigin = apiUri.protocol + '://' + apiUri.getAuthority();
+		if ( origin === apiOrigin ) {
+			// requests are not cross-origin, omit parameter
+			return undefined;
+		}
+
 		return origin;
 	};
 
@@ -101,10 +109,12 @@
 		if ( ajaxOptions.type === 'POST' ) {
 			url = ( ajaxOptions && ajaxOptions.url ) || this.defaults.ajax.url;
 			origin = ( parameters && parameters.origin ) || this.defaults.parameters.origin;
-			url += ( url.indexOf( '?' ) !== -1 ? '&' : '?' ) +
-				// Depending on server configuration, MediaWiki may forbid periods in URLs, due to an IE 6
-				// XSS bug. So let's escape them here. See WebRequest::checkUrlExtension() and T30235.
-				'origin=' + encodeURIComponent( origin ).replace( /\./g, '%2E' );
+			if ( origin !== undefined ) {
+				url += ( url.indexOf( '?' ) !== -1 ? '&' : '?' ) +
+					// Depending on server configuration, MediaWiki may forbid periods in URLs, due to an IE 6
+					// XSS bug. So let's escape them here. See WebRequest::checkUrlExtension() and T30235.
+					'origin=' + encodeURIComponent( origin ).replace( /\./g, '%2E' );
+			}
 			newAjaxOptions = $.extend( {}, ajaxOptions, { url: url } );
 		} else {
 			newAjaxOptions = ajaxOptions;
