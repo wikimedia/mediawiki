@@ -25,7 +25,6 @@
  * The web server should generally be configured to make this accessible via a canonical URL/URI,
  * such as <http://my.domain.org/data/main/Foo>.
  *
- * @class
  * @ingroup SpecialPage
  */
 class SpecialPageData extends SpecialPage {

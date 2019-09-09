@@ -31,8 +31,6 @@
  *
  * @note This class uses setter methods instead of a constructor so that
  * it can be compatible with PHP 4, PHP 5 and PHP 7 (without warnings).
- *
- * @class
  */
 class PHPVersionCheck {
 	/* @var string The number of the MediaWiki version used. */
