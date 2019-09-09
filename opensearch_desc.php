@@ -24,6 +24,8 @@
 // details of the session. Enforce this constraint with respect to session use.
 define( 'MW_NO_SESSION', 1 );
 
+define( 'MW_ENTRY_POINT', 'opensearch_desc' );
+
 require_once __DIR__ . '/includes/WebStart.php';
 
 if ( $wgRequest->getVal( 'ctype' ) == 'application/xml' ) {
