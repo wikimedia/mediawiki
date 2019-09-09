@@ -39,6 +39,18 @@ require_once __DIR__ . '/dumpIterator.php';
 class CompareParsers extends DumpIterator {
 
 	private $count = 0;
+	/** @var bool */
+	private $saveFailed;
+	/** @var bool */
+	private $stripParametersEnabled;
+	/** @var bool */
+	private $showParsedOutput;
+	/** @var bool */
+	private $showDiff;
+	/** @var ParserOptions */
+	private $options;
+	/** @var int */
+	private $failed;
 
 	public function __construct() {
 		parent::__construct();

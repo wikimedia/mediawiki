@@ -49,6 +49,8 @@ abstract class BackupDumper extends Maintenance {
 	public $dumpUploadFileContents = false;
 	public $orderRevs = false;
 	public $limitNamespaces = [];
+	/** @var bool|resource */
+	public $stderr;
 
 	protected $reportingInterval = 100;
 	protected $pageCount = 0;
@@ -64,6 +66,33 @@ abstract class BackupDumper extends Maintenance {
 	protected $filterTypes = [];
 
 	protected $ID = 0;
+
+	/** @var int */
+	protected $startTime;
+	/** @var int */
+	protected $pageCountPart;
+	/** @var int */
+	protected $revCountPart;
+	/** @var int */
+	protected $maxCount;
+	/** @var int */
+	protected $timeOfCheckpoint;
+	/** @var ExportProgressFilter */
+	protected $egress;
+	/** @var string */
+	protected $buffer;
+	/** @var array|false */
+	protected $openElement;
+	/** @var bool */
+	protected $atStart;
+	/** @var string|null */
+	protected $thisRevModel;
+	/** @var string|null */
+	protected $thisRevFormat;
+	/** @var string */
+	protected $lastName;
+	/** @var string */
+	protected $state;
 
 	/**
 	 * The dependency-injected database to use.

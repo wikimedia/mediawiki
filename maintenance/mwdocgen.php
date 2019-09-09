@@ -42,6 +42,26 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class MWDocGen extends Maintenance {
+	/** @var string */
+	private $doxygen;
+	/** @var string */
+	private $mwVersion;
+	/** @var string */
+	private $output;
+	/** @var string */
+	private $input;
+	/** @var string */
+	private $inputFilter;
+	/** @var string */
+	private $template;
+	/** @var string[] */
+	private $excludes;
+	/** @var string[] */
+	private $excludePatterns;
+	/** @var bool */
+	private $doDot;
+	/** @var bool */
+	private $doMan;
 
 	/**
 	 * Prepare Maintenance class

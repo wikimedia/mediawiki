@@ -713,6 +713,8 @@ class CgzCopyTransaction {
 	/** @var ConcatenatedGzipHistoryBlob|false */
 	public $cgz;
 	public $referrers;
+	/** @var array */
+	private $texts;
 
 	/**
 	 * Create a transaction from a RecompressTracked object

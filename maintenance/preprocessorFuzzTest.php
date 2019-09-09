@@ -150,6 +150,13 @@ class PPFuzzTester {
 class PPFuzzTest {
 	public $templates, $mainText, $title, $entryPoint, $output;
 
+	/** @var PPFuzzTester */
+	private $parent;
+	/** @var string */
+	public $nickname;
+	/** @var bool */
+	public $fancySig;
+
 	/**
 	 * @param PPFuzzTester $tester
 	 */
