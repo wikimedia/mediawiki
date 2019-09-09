@@ -1028,7 +1028,6 @@ return [
 	],
 	'mediawiki.RegExp' => [
 		'deprecated' => 'Please use mw.util.escapeRegExp() instead.',
-		'scripts' => 'resources/src/mediawiki.RegExp.js',
 		'targets' => [ 'desktop', 'mobile' ],
 		'dependencies' => [
 			'mediawiki.util',
