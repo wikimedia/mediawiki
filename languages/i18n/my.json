@@ -1955,7 +1955,7 @@
 	"blocklist-timestamp": "အချိန်တံဆိပ်",
 	"blocklist-target": "ပစ်မှတ်",
 	"blocklist-expiry": "သက်တမ်းကုန်လွန်မည်",
-	"blocklist-by": "ပတ်ပင်ထားသည့် အက်ဒမိန်",
+	"blocklist-by": "ပိတ်ပင်ထားသည့် စီမံခန့်ခွဲသူ",
 	"blocklist-params": "ပိတ်ပင်မှု ပါရာမီတာများ",
 	"blocklist-reason": "အကြောင်းပြချက်",
 	"ipblocklist-submit": "ရှာဖွေရန်",

@@ -37,7 +37,8 @@
 			"Edward Chernenko",
 			"Vlad5250",
 			"Diralik",
-			"DmitTrix"
+			"DmitTrix",
+			"Марио"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документация]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почтовая рассылка]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> MediaWiki API — зрелый и стабильный интерфейс, активно поддерживаемый и улучшаемый. Мы стараемся избегать ломающих изменений, однако изредка они могут быть необходимы. Подпишитесь на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом «MediaWiki-API-Error», после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Ошибки и предупреждения]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тестирование:</strong> для удобства тестирования API-запросов, см. [[Special:ApiSandbox]].</p>",
@@ -94,6 +95,7 @@
 	"apihelp-compare-param-fromid": "Идентификатор первой сравниваемой страницы.",
 	"apihelp-compare-param-fromrev": "Первая сравниваемая версия.",
 	"apihelp-compare-param-frompst": "Выполнить преобразование перед записью правки (PST) над <var>fromtext-&#x7B;slot}</var>.",
+	"apihelp-compare-param-fromslots": "Переопределение содержимого версии, заданной параметром <var>fromtitle</var>, <var>fromid</var> или <var>fromrev</var>.\n\nЭтот параметр определяет слоты, которые должны быть изменены. Используйте <var>fromtext-&#x7B;slot}</var>, <var>fromcontentmodel-&#x7B;slot}</var>, и <var>fromcontentformat-&#x7B;slot}</var> для определения содержимого для каждого слота.",
 	"apihelp-compare-param-fromtext": "Укажите <kbd>fromslots=main</kbd> и используйте <var>fromtext-main</var>.",
 	"apihelp-compare-param-fromcontentmodel": "Укажите <kbd>fromslots=main</kbd> и используйте <var>fromcontentmodel-main</var>.",
 	"apihelp-compare-param-fromcontentformat": "Укажите <kbd>fromslots=main</kbd> и используйте <var>fromcontentformat-main</var>.",
@@ -646,6 +648,7 @@
 	"apihelp-query+blocks-paramvalue-prop-reason": "Добавляет причину блокировки.",
 	"apihelp-query+blocks-paramvalue-prop-range": "Добавляет диапазон IP-адресов, затронутых блокировкой.",
 	"apihelp-query+blocks-paramvalue-prop-flags": "Добавляет бану метку (autoblock, anonoly, и так далее).",
+	"apihelp-query+blocks-paramvalue-prop-restrictions": "Добавляет ограничения частичных блокировок, если блокировка не действует во всём проекте.",
 	"apihelp-query+blocks-param-show": "Показать только элементы, удовлетворяющие этим критериям.\nНапример, чтобы отобразить только бессрочные блокировки IP-адресов, установите <kbd>$1show=ip|!temp</kbd>.",
 	"apihelp-query+blocks-example-simple": "Список блокировок.",
 	"apihelp-query+blocks-example-users": "Список блокировок участников <kbd>Alice</kbd> и <kbd>Bob</kbd>.",
@@ -1572,6 +1575,7 @@
 	"apierror-bad-watchlist-token": "Предоставлен некорректный токен списка наблюдения. Пожалуйста, установите корректный токен в [[Special:Preferences]].",
 	"apierror-blockedfrommail": "Отправка электронной почты была для вас заблокирована.",
 	"apierror-blocked": "Редактирование было для вас заблокировано.",
+	"apierror-blocked-partial": "Вы были заблокированы от редактирования этой страницы.",
 	"apierror-botsnotsupported": "Этот интерфейс не поддерживается для ботов.",
 	"apierror-cannot-async-upload-file": "Параметры <var>async</var> и <var>file</var> не могут применяться вместе. Если вы хотите ассинхронно обработать загруженный файл, сначала загрузите его во временное хранилище (используя параметр <var>stash</var>), а затем опубликуйте этот файл ассинхронно (используя параметры <var>filekey</var> и <var>async</var>).",
 	"apierror-cannotreauthenticate": "Это действие недоступно, так как ваша личность не может быть подтверждена.",
