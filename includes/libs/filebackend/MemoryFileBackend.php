@@ -22,6 +22,7 @@
  */
 
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Simulation of a backend storage in memory.
@@ -56,7 +57,7 @@ class MemoryFileBackend extends FileBackendStore {
 
 		$this->files[$dst] = [
 			'data' => $params['content'],
-			'mtime' => wfTimestamp( TS_MW, time() )
+			'mtime' => ConvertibleTimestamp::convert( TS_MW, time() )
 		];
 
 		return $status;
@@ -83,7 +84,7 @@ class MemoryFileBackend extends FileBackendStore {
 
 		$this->files[$dst] = [
 			'data' => $data,
-			'mtime' => wfTimestamp( TS_MW, time() )
+			'mtime' => ConvertibleTimestamp::convert( TS_MW, time() )
 		];
 
 		return $status;
@@ -116,7 +117,7 @@ class MemoryFileBackend extends FileBackendStore {
 
 		$this->files[$dst] = [
 			'data' => $this->files[$src]['data'],
-			'mtime' => wfTimestamp( TS_MW, time() )
+			'mtime' => ConvertibleTimestamp::convert( TS_MW, time() )
 		];
 
 		return $status;
