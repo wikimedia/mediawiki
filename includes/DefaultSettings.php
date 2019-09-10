@@ -8619,6 +8619,7 @@ $wgContentHandlerTextFallback = 'ignore';
  * handling is less robust and less flexible.
  *
  * @since 1.21
+ * @deprecated since 1.34, and should always be set true.
  */
 $wgContentHandlerUseDB = true;
 
