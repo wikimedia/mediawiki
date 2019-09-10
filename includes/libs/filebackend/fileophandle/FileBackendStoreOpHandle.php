@@ -34,6 +34,8 @@ abstract class FileBackendStoreOpHandle {
 	public $backend;
 	/** @var array */
 	public $resourcesToClose = [];
+	/** @var callable name that identifies the function called */
+	public $call;
 
 	/**
 	 * Close all open file handles
