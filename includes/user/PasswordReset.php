@@ -22,10 +22,14 @@
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\TemporaryPasswordAuthenticationRequest;
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
-use MediaWiki\Logger\LoggerFactory;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Helper class for the password reset functionality shared by the web UI and the API.
@@ -35,17 +39,19 @@ use MediaWiki\Logger\LoggerFactory;
  * functionality) to be enabled.
  */
 class PasswordReset implements LoggerAwareInterface {
-	/** @var Config */
+	use LoggerAwareTrait;
+
+	/** @var ServiceOptions|Config */
 	protected $config;
 
 	/** @var AuthManager */
 	protected $authManager;
 
 	/** @var PermissionManager */
-	private $permissionManager;
+	protected $permissionManager;
 
-	/** @var LoggerInterface */
-	protected $logger;
+	/** @var ILoadBalancer */
+	protected $loadBalancer;
 
 	/**
 	 * In-process cache for isAllowed lookups, by username.
@@ -54,26 +60,44 @@ class PasswordReset implements LoggerAwareInterface {
 	 */
 	private $permissionCache;
 
+	public static $constructorOptions = [
+		'EnableEmail',
+		'PasswordResetRoutes',
+	];
+
+	/**
+	 * This class is managed by MediaWikiServices, don't instantiate directly.
+	 *
+	 * @param ServiceOptions|Config $config
+	 * @param AuthManager $authManager
+	 * @param PermissionManager $permissionManager
+	 * @param ILoadBalancer|null $loadBalancer
+	 * @param LoggerInterface|null $logger
+	 */
 	public function __construct(
-		Config $config,
+		$config,
 		AuthManager $authManager,
-		PermissionManager $permissionManager
+		PermissionManager $permissionManager,
+		ILoadBalancer $loadBalancer = null,
+		LoggerInterface $logger = null
 	) {
 		$this->config = $config;
 		$this->authManager = $authManager;
 		$this->permissionManager = $permissionManager;
-		$this->permissionCache = new MapCacheLRU( 1 );
-		$this->logger = LoggerFactory::getInstance( 'authentication' );
-	}
 
-	/**
-	 * Set the logger instance to use.
-	 *
-	 * @param LoggerInterface $logger
-	 * @since 1.29
-	 */
-	public function setLogger( LoggerInterface $logger ) {
+		if ( !$loadBalancer ) {
+			wfDeprecated( 'Not passing LoadBalancer to ' . __METHOD__, '1.34' );
+			$loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		}
+		$this->loadBalancer = $loadBalancer;
+
+		if ( !$logger ) {
+			wfDeprecated( 'Not passing LoggerInterface to ' . __METHOD__, '1.34' );
+			$logger = LoggerFactory::getInstance( 'authentication' );
+		}
 		$this->logger = $logger;
+
+		$this->permissionCache = new MapCacheLRU( 1 );
 	}
 
 	/**
@@ -280,7 +304,7 @@ class PasswordReset implements LoggerAwareInterface {
 	 */
 	protected function getUsersByEmail( $email ) {
 		$userQuery = User::getQueryInfo();
-		$res = wfGetDB( DB_REPLICA )->select(
+		$res = $this->loadBalancer->getConnectionRef( DB_REPLICA )->select(
 			$userQuery['tables'],
 			$userQuery['fields'],
 			[ 'user_email' => $email ],
