@@ -40,8 +40,6 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 
 	protected function run( ApiPageSet $resultPageSet = null ) {
 		$user = $this->getUser();
-		// Before doing anything at all, let's check permissions
-		$this->checkUserRightsAny( 'deletedhistory' );
 
 		$pageSet = $this->getPageSet();
 		$pageMap = $pageSet->getGoodAndMissingTitlesByNamespace();
@@ -95,8 +93,15 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 		}
 
 		// This means stricter restrictions
-		if ( $this->fetchContent ) {
-			$this->checkUserRightsAny( [ 'deletedtext', 'undelete' ] );
+		if ( ( $this->fld_comment || $this->fld_parsedcomment ) &&
+			!$this->getPermissionManager()->userHasRight( $user, 'deletedhistory' )
+		) {
+			$this->dieWithError( 'apierror-cantview-deleted-comment', 'permissiondenied' );
+		}
+		if ( $this->fetchContent &&
+			!$this->getPermissionManager()->userHasAnyRight( $user, 'deletedtext', 'undelete' )
+		) {
+			$this->dieWithError( 'apierror-cantview-deleted-revision-content', 'permissiondenied' );
 		}
 
 		$dir = $params['dir'];
@@ -130,8 +135,6 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 
 		if ( !is_null( $params['user'] ) || !is_null( $params['excludeuser'] ) ) {
 			// Paranoia: avoid brute force searches (T19342)
-			// (shouldn't be able to get here without 'deletedhistory', but
-			// check it again just in case)
 			if ( !$this->getPermissionManager()->userHasRight( $user, 'deletedhistory' ) ) {
 				$bitmask = RevisionRecord::DELETED_USER;
 			} elseif ( !$this->getPermissionManager()
