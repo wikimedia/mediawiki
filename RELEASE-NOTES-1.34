@@ -302,6 +302,7 @@ because of Phabricator reports.
   Use the mediawiki.String module instead.
 * mw.language.specialCharacters, deprecated in 1.33, has been removed.
   Use require( 'mediawiki.language.specialCharacters' ) instead.
+* The jquery.colorUtil module was removed. Use jquery.color instead.
 * EditPage::submit(), deprecated in 1.29, has been removed. Use $this->edit()
   directly.
 * HTMLForm::getErrors(), deprecated in 1.28, has been removed. Use
