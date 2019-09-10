@@ -110,11 +110,10 @@ The new option is NOT validated.' );
 					$ret[$option][$userValue] = ( $ret[$option][$userValue] ?? 0 ) + 1;
 				}
 			} else {
-
 				foreach ( $defaultOptions as $name => $defaultValue ) {
 					$userValue = $user->getOption( $name );
 					if ( $userValue != $defaultValue ) {
-						$ret[$option][$userValue] = ( $ret[$option][$userValue] ?? 0 ) + 1;
+						$ret[$name][$userValue] = ( $ret[$name][$userValue] ?? 0 ) + 1;
 					}
 				}
 			}
