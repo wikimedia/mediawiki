@@ -133,6 +133,8 @@ class CommandLineInstaller extends Maintenance {
 		if ( !$envChecksOnly ) {
 			$status = $installer->execute();
 			if ( !$status->isGood() ) {
+				$installer->showStatusMessage( $status );
+
 				return false;
 			}
 			$installer->writeConfigurationFile( $this->getOption( 'confpath', $IP ) );
