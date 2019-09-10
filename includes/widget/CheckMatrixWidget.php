@@ -9,14 +9,22 @@ namespace MediaWiki\Widget;
  * @license MIT
  */
 class CheckMatrixWidget extends \OOUI\Widget {
-
-	protected $name = '';
-	protected $columns = [];
-	protected $rows = [];
-	protected $tooltips = [];
-	protected $values = [];
-	protected $forcedOn = [];
-	protected $forcedOff = [];
+	/** @var string|null */
+	protected $name;
+	/** @var string|null */
+	protected $id;
+	/** @var array */
+	protected $columns;
+	/** @var array */
+	protected $rows;
+	/** @var array */
+	protected $tooltips;
+	/** @var array */
+	protected $values;
+	/** @var array */
+	protected $forcedOn;
+	/** @var array */
+	protected $forcedOff;
 
 	/**
 	 * Operates similarly to MultiSelectWidget, but instead of using an array of

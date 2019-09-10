@@ -12,9 +12,12 @@ use OOUI\TextInputWidget;
  * @license MIT
  */
 class SelectWithInputWidget extends \OOUI\Widget {
-
-	protected $textinput = null;
-	protected $dropdowninput = null;
+	/** @var array */
+	protected $config;
+	/** @var TextInputWidget */
+	protected $textinput;
+	/** @var DropdownInputWidget */
+	protected $dropdowninput;
 
 	/**
 	 * A version of the SelectWithInputWidget, with `or` set to true.
