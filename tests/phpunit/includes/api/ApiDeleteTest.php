@@ -67,7 +67,7 @@ class ApiDeleteTest extends ApiTestCase {
 		$jobs->loadParamsAndArgs( null, [ 'quiet' => true ], null );
 		$jobs->execute();
 
-		$this->assertFalse( Title::newFromText( $name )->exists( Title::GAID_FOR_UPDATE ) );
+		$this->assertFalse( Title::newFromText( $name )->exists( Title::READ_LATEST ) );
 	}
 
 	public function testDeleteNonexistent() {

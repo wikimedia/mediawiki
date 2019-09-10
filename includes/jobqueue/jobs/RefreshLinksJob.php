@@ -276,8 +276,8 @@ class RefreshLinksJob extends Job {
 		$title = $page->getTitle();
 		// Get the latest ID since acquirePageLock() in runForTitle() flushed the transaction.
 		// This is used to detect edits/moves after loadPageData() but before the scope lock.
-		// The works around the chicken/egg problem of determining the scope lock key name.
-		$latest = $title->getLatestRevID( Title::GAID_FOR_UPDATE );
+		// The works around the chicken/egg problem of determining the scope lock key name
+		$latest = $title->getLatestRevID( Title::READ_LATEST );
 
 		$triggeringRevisionId = $this->params['triggeringRevisionId'] ?? null;
 		if ( $triggeringRevisionId && $triggeringRevisionId !== $latest ) {
