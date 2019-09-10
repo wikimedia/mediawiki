@@ -9,7 +9,8 @@ namespace MediaWiki\Widget;
  * @license MIT
  */
 class ComplexTitleInputWidget extends \OOUI\Widget {
-
+	/** @var array */
+	protected $config;
 	protected $namespace = null;
 	protected $title = null;
 
