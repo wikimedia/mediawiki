@@ -89,6 +89,7 @@ class LinkCache {
 	 *
 	 * @param bool|null $update
 	 * @return bool
+	 * @deprecated Since 1.34
 	 */
 	public function forUpdate( $update = null ) {
 		return wfSetVar( $this->mForUpdate, $update );

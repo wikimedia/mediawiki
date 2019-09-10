@@ -326,10 +326,10 @@ class RevisionStore
 
 		$canUseTitleNewFromId = ( $pageId !== null && $pageId > 0 && $this->dbDomain === false );
 		list( $dbMode, $dbOptions ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
-		$titleFlags = ( $dbMode == DB_MASTER ? Title::GAID_FOR_UPDATE : 0 );
 
 		// Loading by ID is best, but Title::newFromID does not support that for foreign IDs.
 		if ( $canUseTitleNewFromId ) {
+			$titleFlags = ( $dbMode == DB_MASTER ? Title::READ_LATEST : 0 );
 			// TODO: better foreign title handling (introduce TitleFactory)
 			$title = Title::newFromID( $pageId, $titleFlags );
 			if ( $title ) {

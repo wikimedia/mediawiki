@@ -125,7 +125,7 @@ class LinksUpdate extends DataUpdate {
 
 		if ( !$this->mId ) {
 			// NOTE: subclasses may initialize mId before calling this constructor!
-			$this->mId = $title->getArticleID( Title::GAID_FOR_UPDATE );
+			$this->mId = $title->getArticleID( Title::READ_LATEST );
 		}
 
 		if ( !$this->mId ) {

@@ -473,6 +473,7 @@ class MovePage {
 
 			$mp = new MovePage( $oldSubpage, $newSubpage );
 			$method = $checkPermissions ? 'moveIfAllowed' : 'move';
+			/** @var Status $status */
 			$status = $mp->$method( $user, $reason, $createRedirect, $changeTags );
 			if ( $status->isOK() ) {
 				$status->setResult( true, $newSubpage->getPrefixedText() );
@@ -508,7 +509,7 @@ class MovePage {
 
 		Hooks::run( 'TitleMoveStarting', [ $this->oldTitle, $this->newTitle, $user ] );
 
-		$pageid = $this->oldTitle->getArticleID( Title::GAID_FOR_UPDATE );
+		$pageid = $this->oldTitle->getArticleID( Title::READ_LATEST );
 		$protected = $this->oldTitle->isProtected();
 
 		// Do the actual move; if this fails, it will throw an MWException(!)

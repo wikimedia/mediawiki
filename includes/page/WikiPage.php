@@ -726,7 +726,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// Try using the replica DB first, then try the master
 		$rev = $this->mTitle->getFirstRevision();
 		if ( !$rev ) {
-			$rev = $this->mTitle->getFirstRevision( Title::GAID_FOR_UPDATE );
+			$rev = $this->mTitle->getFirstRevision( Title::READ_LATEST );
 		}
 		return $rev;
 	}

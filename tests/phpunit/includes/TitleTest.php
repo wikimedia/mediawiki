@@ -768,12 +768,12 @@ class TitleTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			false,
 			$title->exists(),
-			'exists() should rely on link cache unless GAID_FOR_UPDATE is used'
+			'exists() should rely on link cache unless READ_LATEST is used'
 		);
 		$this->assertEquals(
 			true,
-			$title->exists( Title::GAID_FOR_UPDATE ),
-			'exists() should re-query database when GAID_FOR_UPDATE is used'
+			$title->exists( Title::READ_LATEST ),
+			'exists() should re-query database when READ_LATEST is used'
 		);
 	}
 
