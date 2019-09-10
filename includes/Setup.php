@@ -808,22 +808,17 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	// Initialize the session
 	try {
 		$session = MediaWiki\Session\SessionManager::getGlobalSession();
-	} catch ( OverflowException $ex ) {
-		if ( isset( $ex->sessionInfos ) && count( $ex->sessionInfos ) >= 2 ) {
-			// The exception is because the request had multiple possible
-			// sessions tied for top priority. Report this to the user.
-			$list = [];
-			foreach ( $ex->sessionInfos as $info ) {
-				$list[] = $info->getProvider()->describe( $wgContLang );
-			}
-			$list = $wgContLang->listToText( $list );
-			throw new HttpError( 400,
-				Message::newFromKey( 'sessionmanager-tie', $list )->inLanguage( $wgContLang )->plain()
-			);
+	} catch ( MediaWiki\Session\SessionOverflowException $ex ) {
+		// The exception is because the request had multiple possible
+		// sessions tied for top priority. Report this to the user.
+		$list = [];
+		foreach ( $ex->getSessionInfos() as $info ) {
+			$list[] = $info->getProvider()->describe( $wgContLang );
 		}
-
-		// Not the one we want, rethrow
-		throw $ex;
+		$list = $wgContLang->listToText( $list );
+		throw new HttpError( 400,
+			Message::newFromKey( 'sessionmanager-tie', $list )->inLanguage( $wgContLang )->plain()
+		);
 	}
 
 	if ( $session->isPersistent() ) {
