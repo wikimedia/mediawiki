@@ -1630,6 +1630,8 @@
 	"apierror-cantoverwrite-sharedfile": "Le fichier cible existe dans un dépôt partagé et vous n’avez pas le droit de l’écraser.",
 	"apierror-cantsend": "Vous n’êtes pas connecté, vous n’avez pas d’adresse de courriel confirmée, ou vous n’êtes pas autorisé à envoyer des courriels aux autres utilisateurs, donc vous ne pouvez envoyer de courriel.",
 	"apierror-cantundelete": "Impossible d’annuler : les révisions demandées peuvent ne plus exister, ou avoir déjà été annulées.",
+	"apierror-cantview-deleted-description": "Vous n’avez pas le droit d’afficher les descriptions des fichiers supprimés.",
+	"apierror-cantview-deleted-metadata": "Vous n’avez pas le droit d’afficher les métadonnées des fichiers supprimés.",
 	"apierror-changeauth-norequest": "Échec à la création de la requête de modification.",
 	"apierror-chunk-too-small": "La taille minimale d’un segment est de $1 {{PLURAL:$1|octet|octets}} pour les segments hors le dernier.",
 	"apierror-cidrtoobroad": "Les plages CIDR $1 plus large que /$2 ne sont pas acceptées.",
