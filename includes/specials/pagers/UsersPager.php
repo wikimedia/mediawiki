@@ -37,6 +37,24 @@ class UsersPager extends AlphabeticPager {
 	 */
 	protected $userGroupCache;
 
+	/** @var string */
+	protected $requestedGroup;
+
+	/** @var bool */
+	protected $editsOnly;
+
+	/** @var bool */
+	protected $temporaryGroupsOnly;
+
+	/** @var bool */
+	protected $creationSort;
+
+	/** @var bool|null */
+	protected $including;
+
+	/** @var string */
+	protected $requestedUser;
+
 	/**
 	 * @param IContextSource|null $context
 	 * @param array|null $par (Default null)

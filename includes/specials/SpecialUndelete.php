@@ -33,18 +33,28 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @ingroup SpecialPage
  */
 class SpecialUndelete extends SpecialPage {
-	private	$mAction;
-	private	$mTarget;
-	private	$mTimestamp;
-	private	$mRestore;
-	private	$mRevdel;
-	private	$mInvert;
-	private	$mFilename;
-	private	$mTargetTimestamp;
-	private	$mAllowed;
-	private	$mCanView;
-	private	$mComment;
-	private	$mToken;
+	private $mAction;
+	private $mTarget;
+	private $mTimestamp;
+	private $mRestore;
+	private $mRevdel;
+	private $mInvert;
+	private $mFilename;
+	private $mTargetTimestamp;
+	private $mAllowed;
+	private $mCanView;
+	private $mComment;
+	private $mToken;
+	/** @var bool|null */
+	private $mPreview;
+	/** @var bool|null */
+	private $mDiff;
+	/** @var bool|null */
+	private $mDiffOnly;
+	/** @var bool|null */
+	private $mUnsuppress;
+	/** @var int[]|null */
+	private $mFileVersions;
 
 	/** @var Title */
 	private $mTargetObj;
