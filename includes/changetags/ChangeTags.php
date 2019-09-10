@@ -524,9 +524,7 @@ class ChangeTags {
 					->userHasRight( $user, 'applychangetags' )
 			) {
 				return Status::newFatal( 'tags-apply-no-permission' );
-			} elseif ( $user->getBlock() ) {
-				// @TODO Ensure that the block does not apply to the `applychangetags`
-				//       right.
+			} elseif ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
 				return Status::newFatal( 'tags-apply-blocked', $user->getName() );
 			}
 		}
@@ -601,9 +599,7 @@ class ChangeTags {
 					->userHasRight( $user, 'changetags' )
 			) {
 				return Status::newFatal( 'tags-update-no-permission' );
-			} elseif ( $user->getBlock() ) {
-				// @TODO Ensure that the block does not apply to the `changetags`
-				//       right.
+			} elseif ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
 				return Status::newFatal( 'tags-update-blocked', $user->getName() );
 			}
 		}
@@ -1023,9 +1019,7 @@ class ChangeTags {
 					->userHasRight( $user, 'managechangetags' )
 			) {
 				return Status::newFatal( 'tags-manage-no-permission' );
-			} elseif ( $user->getBlock() ) {
-				// @TODO Ensure that the block does not apply to the `managechangetags`
-				//       right.
+			} elseif ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
 				return Status::newFatal( 'tags-manage-blocked', $user->getName() );
 			}
 		}
@@ -1099,9 +1093,7 @@ class ChangeTags {
 					->userHasRight( $user, 'managechangetags' )
 			) {
 				return Status::newFatal( 'tags-manage-no-permission' );
-			} elseif ( $user->getBlock() ) {
-				// @TODO Ensure that the block does not apply to the `managechangetags`
-				//       right.
+			} elseif ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
 				return Status::newFatal( 'tags-manage-blocked', $user->getName() );
 			}
 		}
@@ -1200,9 +1192,7 @@ class ChangeTags {
 					->userHasRight( $user, 'managechangetags' )
 			) {
 				return Status::newFatal( 'tags-manage-no-permission' );
-			} elseif ( $user->getBlock() ) {
-				// @TODO Ensure that the block does not apply to the `managechangetags`
-				//       right.
+			} elseif ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
 				return Status::newFatal( 'tags-manage-blocked', $user->getName() );
 			}
 		}
@@ -1322,9 +1312,7 @@ class ChangeTags {
 					->userHasRight( $user, 'deletechangetags' )
 			) {
 				return Status::newFatal( 'tags-delete-no-permission' );
-			} elseif ( $user->getBlock() ) {
-				// @TODO Ensure that the block does not apply to the `deletechangetags`
-				//       right.
+			} elseif ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
 				return Status::newFatal( 'tags-manage-blocked', $user->getName() );
 			}
 		}
