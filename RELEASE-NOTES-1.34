@@ -560,6 +560,8 @@ because of Phabricator reports.
   be used instead.
 * The UserIsHidden hook is deprecated. Use GetUserBlock instead, and add a
   system block that hides the user.
+* The GetBlockedStatus hook is deprecated. Use GetUserBlock instead, to add or
+  remove a block.
 
 === Other changes in 1.34 ===
 * …
