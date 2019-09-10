@@ -259,14 +259,14 @@ class SessionManagerTest extends MediaWikiTestCase {
 		try {
 			$manager->getSessionForRequest( $request );
 			$this->fail( 'Expcected exception not thrown' );
-		} catch ( \OverflowException $ex ) {
+		} catch ( SessionOverflowException $ex ) {
 			$this->assertStringStartsWith(
 				'Multiple sessions for this request tied for top priority: ',
 				$ex->getMessage()
 			);
-			$this->assertCount( 2, $ex->sessionInfos );
-			$this->assertContains( $request->info1, $ex->sessionInfos );
-			$this->assertContains( $request->info2, $ex->sessionInfos );
+			$this->assertCount( 2, $ex->getSessionInfos() );
+			$this->assertContains( $request->info1, $ex->getSessionInfos() );
+			$this->assertContains( $request->info2, $ex->getSessionInfos() );
 		}
 		$this->assertFalse( $request->unpersist1 );
 		$this->assertFalse( $request->unpersist2 );
