@@ -489,24 +489,24 @@ class FSFileBackend extends FileBackendStore {
 		$status = $this->newStatus();
 		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
-		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
+		$fsDirectory = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 		// Create the directory and its parents as needed...
 		$created = false;
 		AtEase::suppressWarnings();
-		$alreadyExisted = is_dir( $dir ); // already there?
+		$alreadyExisted = is_dir( $fsDirectory ); // already there?
 		if ( !$alreadyExisted ) {
-			$created = mkdir( $dir, $this->dirMode, true );
+			$created = mkdir( $fsDirectory, $this->dirMode, true );
 			if ( !$created ) {
-				$alreadyExisted = is_dir( $dir ); // another thread made it?
+				$alreadyExisted = is_dir( $fsDirectory ); // another thread made it?
 			}
 		}
-		$isWritable = $created ?: is_writable( $dir ); // assume writable if created here
+		$isWritable = $created ?: is_writable( $fsDirectory ); // assume writable if created here
 		AtEase::restoreWarnings();
 		if ( !$alreadyExisted && !$created ) {
-			$this->logger->error( __METHOD__ . ": cannot create directory $dir" );
+			$this->logger->error( __METHOD__ . ": cannot create directory $fsDirectory" );
 			$status->fatal( 'directorycreateerror', $params['dir'] ); // fails on races
 		} elseif ( !$isWritable ) {
-			$this->logger->error( __METHOD__ . ": directory $dir is read-only" );
+			$this->logger->error( __METHOD__ . ": directory $fsDirectory is read-only" );
 			$status->fatal( 'directoryreadonlyerror', $params['dir'] );
 		}
 		// Respect any 'noAccess' or 'noListing' flags...
@@ -515,7 +515,7 @@ class FSFileBackend extends FileBackendStore {
 		}
 
 		if ( $status->isOK() ) {
-			$this->usableDirCache->set( $dir, 1 );
+			$this->usableDirCache->set( $fsDirectory, 1 );
 		}
 
 		return $status;
@@ -525,11 +525,11 @@ class FSFileBackend extends FileBackendStore {
 		$status = $this->newStatus();
 		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
-		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
+		$fsDirectory = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 		// Seed new directories with a blank index.html, to prevent crawling...
-		if ( !empty( $params['noListing'] ) && !is_file( "{$dir}/index.html" ) ) {
+		if ( !empty( $params['noListing'] ) && !is_file( "{$fsDirectory}/index.html" ) ) {
 			$this->trapWarnings();
-			$bytes = file_put_contents( "{$dir}/index.html", $this->indexHtmlPrivate() );
+			$bytes = file_put_contents( "{$fsDirectory}/index.html", $this->indexHtmlPrivate() );
 			$this->untrapWarnings();
 			if ( $bytes === false ) {
 				$status->fatal( 'backend-fail-create', $params['dir'] . '/index.html' );
@@ -553,11 +553,11 @@ class FSFileBackend extends FileBackendStore {
 		$status = $this->newStatus();
 		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
-		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
+		$fsDirectory = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 		// Unseed new directories with a blank index.html, to allow crawling...
-		if ( !empty( $params['listing'] ) && is_file( "{$dir}/index.html" ) ) {
-			$exists = ( file_get_contents( "{$dir}/index.html" ) === $this->indexHtmlPrivate() );
-			if ( $exists && !$this->unlink( "{$dir}/index.html" ) ) { // reverse secure()
+		if ( !empty( $params['listing'] ) && is_file( "{$fsDirectory}/index.html" ) ) {
+			$exists = ( file_get_contents( "{$fsDirectory}/index.html" ) === $this->indexHtmlPrivate() );
+			if ( $exists && !$this->unlink( "{$fsDirectory}/index.html" ) ) { // reverse secure()
 				$status->fatal( 'backend-fail-delete', $params['dir'] . '/index.html' );
 			}
 		}
@@ -577,8 +577,9 @@ class FSFileBackend extends FileBackendStore {
 		$status = $this->newStatus();
 		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
-		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
-		$this->rmdir( $dir );
+		$fsDirectory = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
+
+		$this->rmdir( $fsDirectory );
 
 		return $status;
 	}
@@ -623,10 +624,10 @@ class FSFileBackend extends FileBackendStore {
 	protected function doDirectoryExists( $fullCont, $dirRel, array $params ) {
 		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
-		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
+		$fsDirectory = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 
 		$this->trapWarnings(); // don't trust 'false' if there were errors
-		$exists = is_dir( $dir );
+		$exists = is_dir( $fsDirectory );
 		$hadError = $this->untrapWarnings();
 
 		return $hadError ? self::$RES_ERROR : $exists;
@@ -642,21 +643,21 @@ class FSFileBackend extends FileBackendStore {
 	public function getDirectoryListInternal( $fullCont, $dirRel, array $params ) {
 		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
-		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
+		$fsDirectory = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 
-		$list = new FSFileBackendDirList( $dir, $params );
+		$list = new FSFileBackendDirList( $fsDirectory, $params );
 		$error = $list->getLastError();
 		if ( $error !== null ) {
 			if ( preg_match( '/: No such file or directory$/', $error ) ) {
-				$this->logger->info( __METHOD__ . ": given directory does not exist: '$dir'" );
+				$this->logger->info( __METHOD__ . ": non-existant directory: '$fsDirectory'" );
 
 				return []; // nothing under this dir
-			} elseif ( is_dir( $dir ) ) {
-				$this->logger->warning( __METHOD__ . ": given directory is unreadable: '$dir'" );
+			} elseif ( is_dir( $fsDirectory ) ) {
+				$this->logger->warning( __METHOD__ . ": unreadable directory: '$fsDirectory'" );
 
 				return self::$RES_ERROR; // bad permissions?
 			} else {
-				$this->logger->warning( __METHOD__ . ": given directory was unreachable: '$dir'" );
+				$this->logger->warning( __METHOD__ . ": unreachable directory: '$fsDirectory'" );
 
 				return self::$RES_ERROR;
 			}
@@ -675,21 +676,21 @@ class FSFileBackend extends FileBackendStore {
 	public function getFileListInternal( $fullCont, $dirRel, array $params ) {
 		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
-		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
+		$fsDirectory = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 
-		$list = new FSFileBackendFileList( $dir, $params );
+		$list = new FSFileBackendFileList( $fsDirectory, $params );
 		$error = $list->getLastError();
 		if ( $error !== null ) {
 			if ( preg_match( '/: No such file or directory$/', $error ) ) {
-				$this->logger->info( __METHOD__ . ": given directory does not exist: '$dir'" );
+				$this->logger->info( __METHOD__ . ": non-existant directory: '$fsDirectory'" );
 
 				return []; // nothing under this dir
-			} elseif ( is_dir( $dir ) ) {
-				$this->logger->warning( __METHOD__ . ": given directory is unreadable: '$dir'" );
+			} elseif ( is_dir( $fsDirectory ) ) {
+				$this->logger->warning( __METHOD__ . ": unreadable directory: '$fsDirectory'" );
 
 				return self::$RES_ERROR; // bad permissions?
 			} else {
-				$this->logger->warning( __METHOD__ . ": given directory was unreachable: '$dir'" );
+				$this->logger->warning( __METHOD__ . ": unreachable directory: '$fsDirectory'" );
 
 				return self::$RES_ERROR;
 			}
