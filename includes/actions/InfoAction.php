@@ -149,7 +149,12 @@ class InfoAction extends FormlessAction {
 				$id = ( $infoRow[0] instanceof Message ) ? $infoRow[0]->getKey() : null;
 				$table = $this->addRow( $table, $name, $value, $id ) . "\n";
 			}
-			$content = $this->addTable( $content, $table ) . "\n" . $below;
+			if ( $table === "\n" ) {
+				// Don't add tables with no rows
+				$content .= "\n" . $below;
+			} else {
+				$content = $this->addTable( $content, $table ) . "\n" . $below;
+			}
 		}
 
 		// Page footer
