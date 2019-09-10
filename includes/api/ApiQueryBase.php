@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -567,6 +568,42 @@ abstract class ApiQueryBase extends ApiBase {
 			'suppressrevision',
 			'viewsuppressed'
 		);
+	}
+
+	/**
+	 * Preprocess the result set to fill the GenderCache with the necessary information
+	 * before using self::addTitleInfo
+	 *
+	 * @param IResultWrapper $res Result set to work on.
+	 *  The result set must have _namespace and _title fields with the provided field prefix
+	 * @param string $fname The caller function name, always use __METHOD__
+	 * @param string $fieldPrefix Prefix for fields to check gender for
+	 */
+	protected function executeGenderCacheFromResultWrapper(
+		IResultWrapper $res, $fname = __METHOD__, $fieldPrefix = 'page'
+	) {
+		if ( !$res->numRows() ) {
+			return;
+		}
+
+		$services = MediaWikiServices::getInstance();
+		$nsInfo = $services->getNamespaceInfo();
+		$namespaceField = $fieldPrefix . '_namespace';
+		$titleField = $fieldPrefix . '_title';
+
+		$usernames = [];
+		foreach ( $res as $row ) {
+			if ( $nsInfo->hasGenderDistinction( $row->$namespaceField ) ) {
+				$usernames[] = $row->$titleField;
+			}
+		}
+
+		if ( $usernames === [] ) {
+			return;
+		}
+
+		$genderCache = $services->getGenderCache();
+		$genderCache->doQuery( $usernames, $fname );
 	}
 
 	/** @} */
