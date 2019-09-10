@@ -40,6 +40,11 @@ class SpecialPagesWithProp extends QueryPage {
 	private $existingPropNames = null;
 
 	/**
+	 * @var string|null
+	 */
+	private $ns;
+
+	/**
 	 * @var bool
 	 */
 	private $reverse = false;
@@ -78,6 +83,13 @@ class SpecialPagesWithProp extends QueryPage {
 				'label-message' => 'pageswithprop-prop',
 				'required' => true,
 			],
+			'namespace' => [
+				'type' => 'namespaceselect',
+				'name' => 'namespace',
+				'label-message' => 'namespace',
+				'all' => null,
+				'default' => null,
+			],
 			'reverse' => [
 				'type' => 'check',
 				'name' => 'reverse',
@@ -108,6 +120,7 @@ class SpecialPagesWithProp extends QueryPage {
 
 	public function onSubmit( $data, $form ) {
 		$this->propName = $data['propname'];
+		$this->ns = $data['namespace'];
 		parent::execute( $data['propname'] );
 	}
 
@@ -134,7 +147,7 @@ class SpecialPagesWithProp extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		return [
+		$query = [
 			'tables' => [ 'page_props', 'page' ],
 			'fields' => [
 				'page_id' => 'pp_page',
@@ -153,6 +166,12 @@ class SpecialPagesWithProp extends QueryPage {
 			],
 			'options' => []
 		];
+
+		if ( $this->ns && isset( $this->ns ) ) {
+			$query['conds']['page_namespace'] = $this->ns;
+		}
+
+		return $query;
 	}
 
 	function getOrderFields() {
