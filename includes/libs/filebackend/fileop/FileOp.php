@@ -215,8 +215,7 @@ abstract class FileOp {
 		$nullEntries = [];
 		$updateEntries = [];
 		$deleteEntries = [];
-		$pathsUsed = array_merge( $this->storagePathsRead(), $this->storagePathsChanged() );
-		foreach ( array_unique( $pathsUsed ) as $path ) {
+		foreach ( $this->storagePathsReadOrChanged() as $path ) {
 			$nullEntries[] = [ // assertion for recovery
 				'op' => 'null',
 				'path' => $path,
@@ -257,10 +256,9 @@ abstract class FileOp {
 		$this->state = self::STATE_CHECKED;
 
 		$status = StatusValue::newGood();
-		$storagePaths = array_merge( $this->storagePathsRead(), $this->storagePathsChanged() );
-		foreach ( array_unique( $storagePaths ) as $storagePath ) {
-			if ( !$this->backend->isPathUsableInternal( $storagePath ) ) {
-				$status->fatal( 'backend-fail-usable', $storagePath );
+		foreach ( $this->storagePathsReadOrChanged() as $path ) {
+			if ( !$this->backend->isPathUsableInternal( $path ) ) {
+				$status->fatal( 'backend-fail-usable', $path );
 			}
 		}
 		if ( !$status->isOK() ) {
@@ -329,6 +327,28 @@ abstract class FileOp {
 	}
 
 	/**
+	 * Attempt the operation without regards to prechecks
+	 *
+	 * @return StatusValue
+	 */
+	final public function attemptQuick() {
+		$this->state = self::STATE_CHECKED; // bypassed
+
+		return $this->attempt();
+	}
+
+	/**
+	 * Attempt the operation in the background without regards to prechecks
+	 *
+	 * @return StatusValue
+	 */
+	final public function attemptAsyncQuick() {
+		$this->state = self::STATE_CHECKED; // bypassed
+
+		return $this->attemptAsync();
+	}
+
+	/**
 	 * Get the file operation parameters
 	 *
 	 * @return array (required params list, optional params list, list of params that are paths)
@@ -363,6 +383,17 @@ abstract class FileOp {
 	 */
 	public function storagePathsChanged() {
 		return [];
+	}
+
+	/**
+	 * Get a list of storage paths read from or written to for this operation
+	 *
+	 * @return array
+	 */
+	final public function storagePathsReadOrChanged() {
+		return array_values( array_unique(
+			array_merge( $this->storagePathsRead(), $this->storagePathsChanged() )
+		) );
 	}
 
 	/**
