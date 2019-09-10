@@ -812,9 +812,9 @@ class ResourceLoader implements LoggerAwareInterface {
 			$errorText = implode( "\n\n", $this->errors );
 			$errorResponse = self::makeComment( $errorText );
 			if ( $context->shouldIncludeScripts() ) {
-				$errorResponse .= 'if (window.console && console.error) {'
-					. Xml::encodeJsCall( 'console.error', [ $errorText ] )
-					. "}\n";
+				$errorResponse .= 'if (window.console && console.error) { console.error('
+					. self::encodeJsonForScript( $errorText )
+					. "); }\n";
 			}
 
 			// Prepend error info to the response
@@ -1323,7 +1323,7 @@ MESSAGE;
 	 * @internal
 	 * @since 1.32
 	 * @param mixed $data
-	 * @return string JSON
+	 * @return string|false JSON string, false on error
 	 */
 	public static function encodeJsonForScript( $data ) {
 		// Keep output as small as possible by disabling needless escape modes
@@ -1544,20 +1544,16 @@ MESSAGE;
 	 * @throws Exception
 	 */
 	public static function makeConfigSetScript( array $configuration ) {
-		$js = Xml::encodeJsCall(
-			'mw.config.set',
-			[ $configuration ],
-			self::inDebugMode()
-		);
-		if ( $js === false ) {
+		$json = self::encodeJsonForScript( $configuration );
+		if ( $json === false ) {
 			$e = new Exception(
 				'JSON serialization of config data failed. ' .
 				'This usually means the config data is not valid UTF-8.'
 			);
 			MWExceptionHandler::logException( $e );
-			$js = Xml::encodeJsCall( 'mw.log.error', [ $e->__toString() ] );
+			return 'mw.log.error(' . self::encodeJsonForScript( $e->__toString() ) . ');';
 		}
-		return $js;
+		return "mw.config.set($json);";
 	}
 
 	/**

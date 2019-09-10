@@ -40,10 +40,8 @@ class ResourceLoaderUserDefaultsModule extends ResourceLoaderModule {
 	 * @return string JavaScript code
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		return Xml::encodeJsCall(
-			'mw.user.options.set',
-			[ User::getDefaultOptions() ],
-			ResourceLoader::inDebugMode()
-		);
+		return 'mw.user.options.set('
+			. ResourceLoader::encodeJsonForScript( User::getDefaultOptions() )
+			. ');';
 	}
 }
