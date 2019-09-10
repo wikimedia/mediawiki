@@ -2696,6 +2696,7 @@
 	"ipblocklist-legend": "Find a blocked user",
 	"blocklist-userblocks": "Hide account blocks",
 	"blocklist-tempblocks": "Hide temporary blocks",
+	"blocklist-indefblocks": "Hide indefinite blocks",
 	"blocklist-addressblocks": "Hide single IP blocks",
 	"blocklist-type": "Type:",
 	"blocklist-type-opt-all": "All",
