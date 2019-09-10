@@ -1587,7 +1587,7 @@ abstract class FileBackendStore extends FileBackend {
 				// Validate and sanitize the relative path (backend-specific)
 				$relPath = $this->resolveContainerPath( $shortCont, $relPath );
 				if ( $relPath !== null ) {
-					// Prepend any wiki ID prefix to the container name
+					// Prepend any domain ID prefix to the container name
 					$container = $this->fullContainerName( $shortCont );
 					if ( self::isValidContainerName( $container ) ) {
 						// Validate and sanitize the container name (backend-specific)
@@ -1722,7 +1722,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	/**
-	 * Get the full container name, including the wiki ID prefix
+	 * Get the full container name, including the domain ID prefix
 	 *
 	 * @param string $container
 	 * @return string
