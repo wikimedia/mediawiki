@@ -1083,11 +1083,11 @@ class SwiftFileBackend extends FileBackendStore {
 	protected function doStreamFile( array $params ) {
 		$status = $this->newStatus();
 
-		$flags = !empty( $params['headless'] ) ? StreamFile::STREAM_HEADLESS : 0;
+		$flags = !empty( $params['headless'] ) ? HTTPFileStreamer::STREAM_HEADLESS : 0;
 
 		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
 		if ( $srcRel === null ) {
-			StreamFile::send404Message( $params['src'], $flags );
+			HTTPFileStreamer::send404Message( $params['src'], $flags );
 			$status->fatal( 'backend-fail-invalidpath', $params['src'] );
 
 			return $status;
@@ -1095,7 +1095,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		$auth = $this->getAuthentication();
 		if ( !$auth || !is_array( $this->getContainerStat( $srcCont ) ) ) {
-			StreamFile::send404Message( $params['src'], $flags );
+			HTTPFileStreamer::send404Message( $params['src'], $flags );
 			$status->fatal( 'backend-fail-stream', $params['src'] );
 
 			return $status;
@@ -1104,7 +1104,7 @@ class SwiftFileBackend extends FileBackendStore {
 		// If "headers" is set, we only want to send them if the file is there.
 		// Do not bother checking if the file exists if headers are not set though.
 		if ( $params['headers'] && !$this->fileExists( $params ) ) {
-			StreamFile::send404Message( $params['src'], $flags );
+			HTTPFileStreamer::send404Message( $params['src'], $flags );
 			$status->fatal( 'backend-fail-stream', $params['src'] );
 
 			return $status;
