@@ -931,6 +931,7 @@
 	"diff-multi-manyusers": "({{PLURAL:$1|Nije prikazana jedna međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}} više od {{PLURAL:$2|jednog|$2|$2}} suradnika)",
 	"difference-missing-revision": "{{PLURAL:$2|Uređivanje|$2 uređivanja}} sljedeće šifre ($1) ne {{PLURAL:$2|postoji|postoje}}.\n\nOvo je obično uzrokovano kada kliknete na zastarjelu poveznicu na stranice koja je obrisana.\nViše informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja].",
 	"searchresults": "Rezultati pretrage",
+	"search-filter-title-prefix": "Pretraži samo stranice koje počinju prefiksom »$1«",
 	"searchresults-title": "Rezultati pretrage za \"$1\"",
 	"titlematches": "Pronađene stranice prema naslovu",
 	"textmatches": "Pronađene stranice prema tekstu članka",

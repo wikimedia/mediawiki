@@ -2405,7 +2405,7 @@
 	"editcomment": "編輯摘要為：<em>$1</em>。",
 	"revertpage": "已還原[[Special:Contributions/$2|$2]]（[[User talk:$2|討論]]）的編輯至最後由[[User:$1|$1]]所修訂的版本",
 	"revertpage-nouser": "已還原隱藏使用者的編輯為最後 {{GENDER:$1|[[User:$1|$1]]}} 修訂的版本",
-	"rollback-success": "已還原 {{GENDER:$3|$1}} 所做的編輯；\n變更回由 {{GENDER:$4|$2}} 修訂的最後一個版本。",
+	"rollback-success": "已還原{{GENDER:$3|$1}}所做的編輯；變更回由{{GENDER:$4|$2}}修訂的最後一個版本。",
 	"sessionfailure-title": "連線階段失敗",
 	"sessionfailure": "您的登入連線階段似乎有問題，為了預防連線階段受到劫持攻擊，此動作已經被取消。請重新提交表單。",
 	"changecontentmodel": "變更頁面的內容模型",
