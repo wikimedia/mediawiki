@@ -50,8 +50,8 @@ use MediaWiki\MediaWikiServices;
  * @since 1.23
  */
 class MultiHttpClient implements LoggerAwareInterface {
-	/** @var resource curl_multi_init() handle */
-	protected $cmh;
+	/** @var resource */
+	protected $multiHandle = null; // curl_multi handle
 	/** @var string|null SSL certificates path */
 	protected $caBundlePath;
 	/** @var float */
@@ -122,10 +122,8 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 * @endcode
 	 * @param array $req HTTP request array
 	 * @param array $opts
-	 *   - connTimeout     : connection timeout per request (seconds)
-	 *   - reqTimeout      : post-connection timeout per request (seconds)
-	 *   - usePipelining   : whether to use HTTP pipelining if possible (for all hosts)
-	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
+	 *   - connTimeout    : connection timeout per request (seconds)
+	 *   - reqTimeout     : post-connection timeout per request (seconds)
 	 * @return array Response array for request
 	 */
 	public function run( array $req, array $opts = [] ) {
@@ -153,10 +151,10 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 * method/URL entries will also be changed to use the corresponding string keys.
 	 *
 	 * @param array[] $reqs Map of HTTP request arrays
-	 * @param array $opts Options
+	 * @param array $opts
 	 *   - connTimeout     : connection timeout per request (seconds)
 	 *   - reqTimeout      : post-connection timeout per request (seconds)
-	 *   - usePipelining   : whether to use HTTP pipelining if possible (for all hosts)
+	 *   - usePipelining   : whether to use HTTP pipelining if possible
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
 	 * @return array $reqs With response array populated for each
 	 * @throws Exception
@@ -200,7 +198,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 * @suppress PhanTypeInvalidDimOffset
 	 */
 	private function runMultiCurl( array $reqs, array $opts ) {
-		$chm = $this->getCurlMulti( $opts );
+		$chm = $this->getCurlMulti();
 
 		$selectTimeout = $this->getSelectTimeout( $opts );
 
@@ -208,28 +206,49 @@ class MultiHttpClient implements LoggerAwareInterface {
 		$handles = [];
 		foreach ( $reqs as $index => &$req ) {
 			$handles[$index] = $this->getCurlHandle( $req, $opts );
-			curl_multi_add_handle( $chm, $handles[$index] );
+			if ( count( $reqs ) > 1 ) {
+				// https://github.com/guzzle/guzzle/issues/349
+				curl_setopt( $handles[$index], CURLOPT_FORBID_REUSE, true );
+			}
 		}
 		unset( $req ); // don't assign over this by accident
 
+		$indexes = array_keys( $reqs );
+		if ( isset( $opts['usePipelining'] ) ) {
+			curl_multi_setopt( $chm, CURLMOPT_PIPELINING, (int)$opts['usePipelining'] );
+		}
+		if ( isset( $opts['maxConnsPerHost'] ) ) {
+			// Keep these sockets around as they may be needed later in the request
+			curl_multi_setopt( $chm, CURLMOPT_MAXCONNECTS, (int)$opts['maxConnsPerHost'] );
+		}
+
+		// @TODO: use a per-host rolling handle window (e.g. CURLMOPT_MAX_HOST_CONNECTIONS)
+		$batches = array_chunk( $indexes, $this->maxConnsPerHost );
 		$infos = [];
-		// Execute the cURL handles concurrently...
-		$active = null; // handles still being processed
-		do {
-			// Do any available work...
-			do {
-				$mrc = curl_multi_exec( $chm, $active );
-				$info = curl_multi_info_read( $chm );
-				if ( $info !== false ) {
-					$infos[(int)$info['handle']] = $info;
-				}
-			} while ( $mrc == CURLM_CALL_MULTI_PERFORM );
-			// Wait (if possible) for available work...
-			if ( $active > 0 && $mrc == CURLM_OK && curl_multi_select( $chm, $selectTimeout ) == -1 ) {
-				// PHP bug 63411; https://curl.haxx.se/libcurl/c/curl_multi_fdset.html
-				usleep( 5000 ); // 5ms
+
+		foreach ( $batches as $batch ) {
+			// Attach all cURL handles for this batch
+			foreach ( $batch as $index ) {
+				curl_multi_add_handle( $chm, $handles[$index] );
 			}
-		} while ( $active > 0 && $mrc == CURLM_OK );
+			// Execute the cURL handles concurrently...
+			$active = null; // handles still being processed
+			do {
+				// Do any available work...
+				do {
+					$mrc = curl_multi_exec( $chm, $active );
+					$info = curl_multi_info_read( $chm );
+					if ( $info !== false ) {
+						$infos[(int)$info['handle']] = $info;
+					}
+				} while ( $mrc == CURLM_CALL_MULTI_PERFORM );
+				// Wait (if possible) for available work...
+				if ( $active > 0 && $mrc == CURLM_OK && curl_multi_select( $chm, $selectTimeout ) == -1 ) {
+					// PHP bug 63411; https://curl.haxx.se/libcurl/c/curl_multi_fdset.html
+					usleep( 5000 ); // 5ms
+				}
+			} while ( $active > 0 && $mrc == CURLM_OK );
+		}
 
 		// Remove all of the added cURL handles and check for errors...
 		foreach ( $reqs as $index => &$req ) {
@@ -265,6 +284,10 @@ class MultiHttpClient implements LoggerAwareInterface {
 			}
 		}
 		unset( $req ); // don't assign over this by accident
+
+		// Restore the default settings
+		curl_multi_setopt( $chm, CURLMOPT_PIPELINING, (int)$this->usePipelining );
+		curl_multi_setopt( $chm, CURLMOPT_MAXCONNECTS, (int)$this->maxConnsPerHost );
 
 		return $reqs;
 	}
@@ -401,31 +424,21 @@ class MultiHttpClient implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @param array $opts
 	 * @return resource
 	 * @throws Exception
 	 */
-	protected function getCurlMulti( array $opts ) {
-		if ( !$this->cmh ) {
+	protected function getCurlMulti() {
+		if ( !$this->multiHandle ) {
 			if ( !function_exists( 'curl_multi_init' ) ) {
 				throw new Exception( "PHP cURL function curl_multi_init missing. " .
 					"Check https://www.mediawiki.org/wiki/Manual:CURL" );
 			}
 			$cmh = curl_multi_init();
-			// Limit the size of the idle connection cache such that consecutive parallel
-			// request batches to the same host can avoid having to keep making connections
+			curl_multi_setopt( $cmh, CURLMOPT_PIPELINING, (int)$this->usePipelining );
 			curl_multi_setopt( $cmh, CURLMOPT_MAXCONNECTS, (int)$this->maxConnsPerHost );
-			$this->cmh = $cmh;
+			$this->multiHandle = $cmh;
 		}
-
-		// Limit the number of in-flight requests for any given host
-		$maxHostConns = $opts['maxConnsPerHost'] ?? $this->maxConnsPerHost;
-		curl_multi_setopt( $this->cmh, CURLMOPT_MAX_HOST_CONNECTIONS, (int)$maxHostConns );
-		// Configure when to multiplex multiple requests onto single TCP handles
-		$pipelining = $opts['usePipelining'] ?? $this->usePipelining;
-		curl_multi_setopt( $this->cmh, CURLMOPT_PIPELINING, (int)$pipelining );
-
-		return $this->cmh;
+		return $this->multiHandle;
 	}
 
 	/**
@@ -585,8 +598,8 @@ class MultiHttpClient implements LoggerAwareInterface {
 	}
 
 	function __destruct() {
-		if ( $this->cmh ) {
-			curl_multi_close( $this->cmh );
+		if ( $this->multiHandle ) {
+			curl_multi_close( $this->multiHandle );
 		}
 	}
 }
