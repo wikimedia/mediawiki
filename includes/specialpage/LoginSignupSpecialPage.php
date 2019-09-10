@@ -95,9 +95,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 	/**
 	 * Load basic request parameters for this Special page.
-	 * @param string $subPage
 	 */
-	private function loadRequestParameters( $subPage ) {
+	private function loadRequestParameters() {
 		if ( $this->mLoadedRequest ) {
 			return;
 		}
@@ -105,7 +104,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$request = $this->getRequest();
 
 		$this->mPosted = $request->wasPosted();
-		$this->mIsReturn = $subPage === 'return';
 		$this->mAction = $request->getVal( 'action' );
 		$this->mFromHTTP = $request->getBool( 'fromhttp', false )
 			|| $request->getBool( 'wpFromhttp', false );
@@ -124,7 +122,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	protected function load( $subPage ) {
 		global $wgSecureLogin;
 
-		$this->loadRequestParameters( $subPage );
+		$this->loadRequestParameters();
 		if ( $this->mLoaded ) {
 			return;
 		}
@@ -203,7 +201,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 	protected function beforeExecute( $subPage ) {
 		// finish initializing the class before processing the request - T135924
-		$this->loadRequestParameters( $subPage );
+		$this->loadRequestParameters();
 		return parent::beforeExecute( $subPage );
 	}
 

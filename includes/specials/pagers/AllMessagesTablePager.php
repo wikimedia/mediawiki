@@ -47,6 +47,11 @@ class AllMessagesTablePager extends TablePager {
 	protected $prefix;
 
 	/**
+	 * @var string
+	 */
+	protected $suffix;
+
+	/**
 	 * @var Language
 	 */
 	public $lang;
