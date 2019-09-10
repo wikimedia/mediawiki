@@ -4888,6 +4888,7 @@ $wgDefaultUserOptions = [
 	'wllimit' => 250,
 	'useeditwarning' => 1,
 	'prefershttps' => 1,
+	'requireemail' => 0,
 ];
 
 /**
@@ -4956,6 +4957,15 @@ $wgSessionProviders = [
 		] ],
 	],
 ];
+
+/**
+ * Temporary feature flag that controls whether users will see a checkbox allowing them to
+ * require providing email during password resets.
+ *
+ * @deprecated This feature is under development, don't assume this flag's existence or function
+ *     outside of MediaWiki.
+ */
+$wgAllowRequiringEmailForResets = false;
 
 /** @} */ # end user accounts }
 

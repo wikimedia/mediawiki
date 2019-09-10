@@ -84,6 +84,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @since 1.34
 	 */
 	public static $constructorOptions = [
+		'AllowRequiringEmailForResets',
 		'AllowUserCss',
 		'AllowUserCssPrefs',
 		'AllowUserJs',
@@ -618,6 +619,16 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 						'cssclass' => $emailauthenticationclass,
 					];
 				}
+			}
+
+			if ( $this->options->get( 'AllowRequiringEmailForResets' ) ) {
+				$defaultPreferences['requireemail'] = [
+					'type' => 'toggle',
+					'label-message' => 'tog-requireemail',
+					'help-message' => 'prefs-help-requireemail',
+					'section' => 'personal/email',
+					'disabled' => $disableEmailPrefs,
+				];
 			}
 
 			if ( $this->options->get( 'EnableUserEmail' ) && $user->isAllowed( 'sendemail' ) ) {
