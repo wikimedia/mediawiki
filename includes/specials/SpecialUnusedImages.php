@@ -26,7 +26,7 @@
  *
  * @ingroup SpecialPage
  */
-class UnusedimagesPage extends ImageQueryPage {
+class SpecialUnusedImages extends ImageQueryPage {
 	function __construct( $name = 'Unusedimages' ) {
 		parent::__construct( $name );
 	}

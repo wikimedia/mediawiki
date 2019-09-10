@@ -1,6 +1,6 @@
 <?php
 /**
- * Implements Special:Deadenpages
+ * Implements Special:Uncategorizedpages
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,25 +24,24 @@
 use MediaWiki\MediaWikiServices;
 
 /**
- * A special page that list pages that contain no link to other pages
+ * A special page looking for page without any category.
  *
  * @ingroup SpecialPage
+ * @todo FIXME: Make $requestedNamespace selectable, unify all subclasses into one
  */
-class DeadendPagesPage extends PageQueryPage {
+class SpecialUncategorizedPages extends PageQueryPage {
+	/** @var int|false */
+	protected $requestedNamespace = false;
 
-	function __construct( $name = 'Deadendpages' ) {
+	function __construct( $name = 'Uncategorizedpages' ) {
 		parent::__construct( $name );
+		$this->addHelpLink( 'Help:Categories' );
 	}
 
-	function getPageHeader() {
-		return $this->msg( 'deadendpagestext' )->parseAsBlock();
+	function sortDescending() {
+		return false;
 	}
 
-	/**
-	 * LEFT JOIN is expensive
-	 *
-	 * @return bool
-	 */
 	function isExpensive() {
 		return true;
 	}
@@ -51,32 +50,26 @@ class DeadendPagesPage extends PageQueryPage {
 		return false;
 	}
 
-	/**
-	 * @return bool
-	 */
-	function sortDescending() {
-		return false;
-	}
-
 	function getQueryInfo() {
 		return [
-			'tables' => [ 'page', 'pagelinks' ],
+			'tables' => [ 'page', 'categorylinks' ],
 			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
 				'value' => 'page_title'
 			],
+			// default for page_namespace is all content namespaces (if requestedNamespace is false)
+			// otherwise, page_namespace is requestedNamespace
 			'conds' => [
-				'pl_from IS NULL',
-				'page_namespace' => MediaWikiServices::getInstance()->getNamespaceInfo()->
-					getContentNamespaces(),
+				'cl_from IS NULL',
+				'page_namespace' => $this->requestedNamespace !== false
+						? $this->requestedNamespace
+						: MediaWikiServices::getInstance()->getNamespaceInfo()->
+							getContentNamespaces(),
 				'page_is_redirect' => 0
 			],
 			'join_conds' => [
-				'pagelinks' => [
-					'LEFT JOIN',
-					[ 'page_id=pl_from' ]
-				]
+				'categorylinks' => [ 'LEFT JOIN', 'cl_from = page_id' ]
 			]
 		];
 	}
@@ -84,13 +77,14 @@ class DeadendPagesPage extends PageQueryPage {
 	function getOrderFields() {
 		// For some crazy reason ordering by a constant
 		// causes a filesort
-		if ( count( MediaWikiServices::getInstance()->getNamespaceInfo()->
-			getContentNamespaces() ) > 1
+		if ( $this->requestedNamespace === false &&
+			count( MediaWikiServices::getInstance()->getNamespaceInfo()->
+				getContentNamespaces() ) > 1
 		) {
 			return [ 'page_namespace', 'page_title' ];
-		} else {
-			return [ 'page_title' ];
 		}
+
+		return [ 'page_title' ];
 	}
 
 	protected function getGroupName() {

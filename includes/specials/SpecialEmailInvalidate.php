@@ -27,7 +27,7 @@
  *
  * @ingroup SpecialPage
  */
-class EmailInvalidation extends UnlistedSpecialPage {
+class SpecialEmailInvalidate extends UnlistedSpecialPage {
 	public function __construct() {
 		parent::__construct( 'Invalidateemail', 'editmyprivateinfo' );
 	}

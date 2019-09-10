@@ -31,7 +31,7 @@ use MediaWiki\MediaWikiServices;
  *
  * @ingroup SpecialPage
  */
-class FileDuplicateSearchPage extends QueryPage {
+class SpecialFileDuplicateSearch extends QueryPage {
 	protected $hash = '', $filename = '';
 
 	/**

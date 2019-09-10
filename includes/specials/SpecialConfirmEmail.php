@@ -29,7 +29,7 @@
  * @author Brion Vibber
  * @author Rob Church <robchur@gmail.com>
  */
-class EmailConfirmation extends UnlistedSpecialPage {
+class SpecialConfirmEmail extends UnlistedSpecialPage {
 	public function __construct() {
 		parent::__construct( 'Confirmemail', 'editmyprivateinfo' );
 	}

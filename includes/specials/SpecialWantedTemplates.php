@@ -31,7 +31,7 @@
  *
  * @ingroup SpecialPage
  */
-class WantedTemplatesPage extends WantedQueryPage {
+class SpecialWantedTemplates extends WantedQueryPage {
 	function __construct( $name = 'Wantedtemplates' ) {
 		parent::__construct( $name );
 	}

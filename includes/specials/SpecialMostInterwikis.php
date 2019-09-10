@@ -1,6 +1,6 @@
 <?php
 /**
- * Implements Special:Mostlinkedtemplates
+ * Implements Special:Mostinterwikis
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,80 +19,73 @@
  *
  * @file
  * @ingroup SpecialPage
- * @author Rob Church <robchur@gmail.com>
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
- * Special page lists templates with a large number of
- * transclusion links, i.e. "most used" templates
+ * A special page that listed pages that have highest interwiki count
  *
  * @ingroup SpecialPage
  */
-class MostlinkedTemplatesPage extends QueryPage {
-	function __construct( $name = 'Mostlinkedtemplates' ) {
+class SpecialMostInterwikis extends QueryPage {
+	function __construct( $name = 'Mostinterwikis' ) {
 		parent::__construct( $name );
 	}
 
-	/**
-	 * Is this report expensive, i.e should it be cached?
-	 *
-	 * @return bool
-	 */
 	public function isExpensive() {
 		return true;
 	}
 
-	/**
-	 * Is there a feed available?
-	 *
-	 * @return bool
-	 */
-	public function isSyndicated() {
+	function isSyndicated() {
 		return false;
-	}
-
-	/**
-	 * Sort the results in descending order?
-	 *
-	 * @return bool
-	 */
-	public function sortDescending() {
-		return true;
 	}
 
 	public function getQueryInfo() {
 		return [
-			'tables' => [ 'templatelinks' ],
-			'fields' => [
-				'namespace' => 'tl_namespace',
-				'title' => 'tl_title',
+			'tables' => [
+				'langlinks',
+				'page'
+			], 'fields' => [
+				'namespace' => 'page_namespace',
+				'title' => 'page_title',
 				'value' => 'COUNT(*)'
-			],
-			'options' => [ 'GROUP BY' => [ 'tl_namespace', 'tl_title' ] ]
+			], 'conds' => [
+				'page_namespace' =>
+					MediaWikiServices::getInstance()->getNamespaceInfo()->getContentNamespaces()
+			], 'options' => [
+				'HAVING' => 'COUNT(*) > 1',
+				'GROUP BY' => [
+					'page_namespace',
+					'page_title'
+				]
+			], 'join_conds' => [
+				'page' => [
+					'LEFT JOIN',
+					'page_id = ll_from'
+				]
+			]
 		];
 	}
 
 	/**
-	 * Pre-cache page existence to speed up link generation
+	 * Pre-fill the link cache
 	 *
 	 * @param IDatabase $db
 	 * @param IResultWrapper $res
 	 */
-	public function preprocessResults( $db, $res ) {
+	function preprocessResults( $db, $res ) {
 		$this->executeLBFromResultWrapper( $res );
 	}
 
 	/**
-	 * Format a result row
-	 *
 	 * @param Skin $skin
-	 * @param object $result Result row
+	 * @param object $result
 	 * @return string
 	 */
-	public function formatResult( $skin, $result ) {
+	function formatResult( $skin, $result ) {
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
 		if ( !$title ) {
 			return Html::element(
@@ -106,24 +99,16 @@ class MostlinkedTemplatesPage extends QueryPage {
 			);
 		}
 
-		return $this->getLanguage()->specialList(
-			$this->getLinkRenderer()->makeLink( $title ),
-			$this->makeWlhLink( $title, $result )
-		);
-	}
+		$linkRenderer = $this->getLinkRenderer();
+		if ( $this->isCached() ) {
+			$link = $linkRenderer->makeLink( $title );
+		} else {
+			$link = $linkRenderer->makeKnownLink( $title );
+		}
 
-	/**
-	 * Make a "what links here" link for a given title
-	 *
-	 * @param Title $title Title to make the link for
-	 * @param object $result Result row
-	 * @return string
-	 */
-	private function makeWlhLink( $title, $result ) {
-		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedText() );
-		$label = $this->msg( 'ntransclusions' )->numParams( $result->value )->text();
+		$count = $this->msg( 'ninterwikis' )->numParams( $result->value )->escaped();
 
-		return $this->getLinkRenderer()->makeLink( $wlh, $label );
+		return $this->getLanguage()->specialList( $link, $count );
 	}
 
 	protected function getGroupName() {

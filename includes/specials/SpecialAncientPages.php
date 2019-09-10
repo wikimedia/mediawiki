@@ -28,7 +28,7 @@ use MediaWiki\MediaWikiServices;
  *
  * @ingroup SpecialPage
  */
-class AncientPagesPage extends QueryPage {
+class SpecialAncientPages extends QueryPage {
 
 	function __construct( $name = 'Ancientpages' ) {
 		parent::__construct( $name );

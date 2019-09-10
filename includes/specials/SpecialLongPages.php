@@ -1,6 +1,6 @@
 <?php
 /**
- * Implements Special:Uncategorizedtemplates
+ * Implements Special:Longpages
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,18 +19,22 @@
  *
  * @file
  * @ingroup SpecialPage
- * @author Rob Church <robchur@gmail.com>
  */
 
 /**
- * Special page lists all uncategorised pages in the
- * template namespace
  *
  * @ingroup SpecialPage
  */
-class UncategorizedTemplatesPage extends UncategorizedPagesPage {
-	public function __construct( $name = 'Uncategorizedtemplates' ) {
+class SpecialLongPages extends SpecialShortPages {
+	function __construct( $name = 'Longpages' ) {
 		parent::__construct( $name );
-		$this->requestedNamespace = NS_TEMPLATE;
+	}
+
+	function sortDescending() {
+		return true;
+	}
+
+	protected function getGroupName() {
+		return 'maintenance';
 	}
 }

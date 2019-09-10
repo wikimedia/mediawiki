@@ -29,7 +29,7 @@ use MediaWiki\MediaWikiServices;
  * 'img_major_mime' and 'img_minor_mime' fields in the image table.
  * @ingroup SpecialPage
  */
-class MIMEsearchPage extends QueryPage {
+class SpecialMIMESearch extends QueryPage {
 	protected $major, $minor, $mime;
 
 	function __construct( $name = 'MIMEsearch' ) {

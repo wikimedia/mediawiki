@@ -29,7 +29,7 @@ use MediaWiki\MediaWikiServices;
  *
  * @ingroup SpecialPage
  */
-class WithoutInterwikiPage extends PageQueryPage {
+class SpecialWithoutInterwiki extends PageQueryPage {
 	private $prefix = '';
 
 	function __construct( $name = 'Withoutinterwiki' ) {

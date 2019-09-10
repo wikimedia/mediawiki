@@ -1,8 +1,6 @@
 <?php
 /**
- * Implements Special:Mostcategories
- *
- * Copyright © 2005 Ævar Arnfjörð Bjarmason
+ * Implements Special:Fewestrevisions
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,20 +19,18 @@
  *
  * @file
  * @ingroup SpecialPage
- * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\IResultWrapper;
-use Wikimedia\Rdbms\IDatabase;
 
 /**
- * A special page that list pages that have highest category count
+ * Special page for listing the articles with the fewest revisions.
  *
  * @ingroup SpecialPage
+ * @author Martin Drashkov
  */
-class MostcategoriesPage extends QueryPage {
-	function __construct( $name = 'Mostcategories' ) {
+class SpecialFewestRevisions extends QueryPage {
+	function __construct( $name = 'Fewestrevisions' ) {
 		parent::__construct( $name );
 	}
 
@@ -48,43 +44,36 @@ class MostcategoriesPage extends QueryPage {
 
 	public function getQueryInfo() {
 		return [
-			'tables' => [ 'categorylinks', 'page' ],
+			'tables' => [ 'revision', 'page' ],
 			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
-				'value' => 'COUNT(*)'
+				'value' => 'COUNT(*)',
 			],
-			'conds' => [ 'page_namespace' =>
-				MediaWikiServices::getInstance()->getNamespaceInfo()->getContentNamespaces() ],
+			'conds' => [
+				'page_namespace' => MediaWikiServices::getInstance()->getNamespaceInfo()->
+					getContentNamespaces(),
+				'page_id = rev_page',
+				'page_is_redirect = 0',
+			],
 			'options' => [
-				'HAVING' => 'COUNT(*) > 1',
 				'GROUP BY' => [ 'page_namespace', 'page_title' ]
-			],
-			'join_conds' => [
-				'page' => [
-					'LEFT JOIN',
-					'page_id = cl_from'
-				]
 			]
 		];
 	}
 
-	/**
-	 * @param IDatabase $db
-	 * @param IResultWrapper $res
-	 */
-	function preprocessResults( $db, $res ) {
-		$this->executeLBFromResultWrapper( $res );
+	function sortDescending() {
+		return false;
 	}
 
 	/**
 	 * @param Skin $skin
-	 * @param object $result Result row
+	 * @param object $result Database row
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
-		$title = Title::makeTitleSafe( $result->namespace, $result->title );
-		if ( !$title ) {
+		$nt = Title::makeTitleSafe( $result->namespace, $result->title );
+		if ( !$nt ) {
 			return Html::element(
 				'span',
 				[ 'class' => 'mw-invalidtitle' ],
@@ -95,20 +84,25 @@ class MostcategoriesPage extends QueryPage {
 				)
 			);
 		}
-
 		$linkRenderer = $this->getLinkRenderer();
-		if ( $this->isCached() ) {
-			$link = $linkRenderer->makeLink( $title );
-		} else {
-			$link = $linkRenderer->makeKnownLink( $title );
-		}
+		$text = MediaWikiServices::getInstance()->getContentLanguage()->
+			convert( htmlspecialchars( $nt->getPrefixedText() ) );
+		$plink = $linkRenderer->makeLink( $nt, new HtmlArmor( $text ) );
 
-		$count = $this->msg( 'ncategories' )->numParams( $result->value )->escaped();
+		$nl = $this->msg( 'nrevisions' )->numParams( $result->value )->text();
+		$redirect = isset( $result->redirect ) && $result->redirect ?
+			' - ' . $this->msg( 'isredirect' )->escaped() : '';
+		$nlink = $linkRenderer->makeKnownLink(
+			$nt,
+			$nl,
+			[],
+			[ 'action' => 'history' ]
+		) . $redirect;
 
-		return $this->getLanguage()->specialList( $link, $count );
+		return $this->getLanguage()->specialList( $plink, $nlink );
 	}
 
 	protected function getGroupName() {
-		return 'highuse';
+		return 'maintenance';
 	}
 }

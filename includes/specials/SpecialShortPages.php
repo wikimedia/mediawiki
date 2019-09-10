@@ -31,7 +31,7 @@ use Wikimedia\Rdbms\IDatabase;
  *
  * @ingroup SpecialPage
  */
-class ShortPagesPage extends QueryPage {
+class SpecialShortPages extends QueryPage {
 
 	function __construct( $name = 'Shortpages' ) {
 		parent::__construct( $name );

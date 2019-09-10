@@ -32,7 +32,7 @@ use Wikimedia\Rdbms\IDatabase;
  *   a duplicate of the current version of some other file.
  * @ingroup SpecialPage
  */
-class ListDuplicatedFilesPage extends QueryPage {
+class SpecialListDuplicatedFiles extends QueryPage {
 	function __construct( $name = 'ListDuplicatedFiles' ) {
 		parent::__construct( $name );
 	}

@@ -1,8 +1,6 @@
 <?php
 /**
- * Implements Special:Unusedtemplates
- *
- * Copyright © 2006 Rob Church
+ * Implements Special:Unusedcategories
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,16 +19,13 @@
  *
  * @file
  * @ingroup SpecialPage
- * @author Rob Church <robchur@gmail.com>
  */
 
 /**
- * A special page that lists unused templates
- *
  * @ingroup SpecialPage
  */
-class UnusedtemplatesPage extends QueryPage {
-	function __construct( $name = 'Unusedtemplates' ) {
+class SpecialUnusedCategories extends QueryPage {
+	function __construct( $name = 'Unusedcategories' ) {
 		parent::__construct( $name );
 	}
 
@@ -38,31 +33,40 @@ class UnusedtemplatesPage extends QueryPage {
 		return true;
 	}
 
-	function isSyndicated() {
-		return false;
-	}
-
-	function sortDescending() {
-		return false;
+	function getPageHeader() {
+		return $this->msg( 'unusedcategoriestext' )->parseAsBlock();
 	}
 
 	public function getQueryInfo() {
 		return [
-			'tables' => [ 'page', 'templatelinks' ],
+			'tables' => [ 'page', 'categorylinks', 'page_props' ],
 			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
 				'value' => 'page_title'
 			],
 			'conds' => [
-				'page_namespace' => NS_TEMPLATE,
-				'tl_from IS NULL',
-				'page_is_redirect' => 0
+				'cl_from IS NULL',
+				'page_namespace' => NS_CATEGORY,
+				'page_is_redirect' => 0,
+				'pp_page IS NULL'
 			],
-			'join_conds' => [ 'templatelinks' => [
-				'LEFT JOIN', [ 'tl_title = page_title',
-					'tl_namespace = page_namespace' ] ] ]
+			'join_conds' => [
+				'categorylinks' => [ 'LEFT JOIN', 'cl_to = page_title' ],
+				'page_props' => [ 'LEFT JOIN', [
+					'page_id = pp_page',
+					'pp_propname' => 'expectunusedcategory'
+				] ]
+			]
 		];
+	}
+
+	/**
+	 * A should come before Z (T32907)
+	 * @return bool
+	 */
+	function sortDescending() {
+		return false;
 	}
 
 	/**
@@ -71,27 +75,16 @@ class UnusedtemplatesPage extends QueryPage {
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
-		$linkRenderer = $this->getLinkRenderer();
-		$title = Title::makeTitle( NS_TEMPLATE, $result->title );
-		$pageLink = $linkRenderer->makeKnownLink(
-			$title,
-			null,
-			[],
-			[ 'redirect' => 'no' ]
-		);
-		$wlhLink = $linkRenderer->makeKnownLink(
-			SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedText() ),
-			$this->msg( 'unusedtemplateswlh' )->text()
-		);
+		$title = Title::makeTitle( NS_CATEGORY, $result->title );
 
-		return $this->getLanguage()->specialList( $pageLink, $wlhLink );
-	}
-
-	function getPageHeader() {
-		return $this->msg( 'unusedtemplatestext' )->parseAsBlock();
+		return $this->getLinkRenderer()->makeLink( $title, $title->getText() );
 	}
 
 	protected function getGroupName() {
 		return 'maintenance';
+	}
+
+	public function preprocessResults( $db, $res ) {
+		$this->executeLBFromResultWrapper( $res );
 	}
 }

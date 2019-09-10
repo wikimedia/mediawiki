@@ -190,6 +190,34 @@ because of Phabricator reports.
   * CryptRand class
   * CryptRand service
   * Functions of the MWCryptRand class: singleton(), wasStrong() and generate().
+* Various Special Page PHP Classes were renamed (mostly casing changes):
+  * SpecialAncientpages => SpecialAncientPages
+  * SpecialConfirmemail => SpecialConfirmEmail
+  * SpecialDeadendpages => SpecialDeadendPages
+  * SpecialFewestrevisions => SpecialFewestRevisions
+  * SpecialListredirects => SpecialListRedirects
+  * SpecialLonelypages => SpecialLonelyPages
+  * SpecialLongpages => SpecialLongPages
+  * SpecialMIMEsearch => SpecialMIMESearch
+  * SpecialMostcategories => SpecialMostCategories
+  * SpecialMostinterwikis => SpecialMostInterwikis
+  * SpecialMostlinked => SpecialMostLinked
+  * SpecialMostlinkedcategories => SpecialMostLinkedCategories
+  * SpecialMostlinkedtemplates => SpecialMostLinkedTemplates
+  * SpecialMostrevisions => SpecialMostRevisions
+  * SpecialNewimages => SpecialNewFiles
+  * SpecialShortpages => SpecialShortPages
+  * SpecialUncategorizedcategories => SpecialUncategorizedCategories
+  * SpecialUncategorizedimages => SpecialUncategorizedImages
+  * SpecialUncategorizedpages => SpecialUncategorizedPages
+  * SpecialUncategorizedtemplates => SpecialUncategorizedTemplates
+  * SpecialUnusedcategories => SpecialUnusedCategories
+  * SpecialUnusedimages => SpecialUnusedImages
+  * SpecialUnusedtemplates => SpecialUnusedTemplates
+  * SpecialUnwatchedpages => SpecialUnwatchedPages
+  * SpecialWantedcategories => SpecialWantedCategories
+  * SpecialWantedtemplates => SpecialWantedTemplates
+  * SpecialWithoutinterwiki => SpecialWithoutInterwiki
 * Language::setCode, deprecated in 1.32, was removed. Use Language::factory to
   create a new Language object with a different language code.
 * MWNamespace::clearCaches() has been removed.  So has the $rebuild parameter

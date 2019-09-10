@@ -31,7 +31,7 @@ use Wikimedia\Rdbms\IDatabase;
  * Special:Listredirects - Lists all the redirects on the wiki.
  * @ingroup SpecialPage
  */
-class ListredirectsPage extends QueryPage {
+class SpecialListRedirects extends QueryPage {
 	function __construct( $name = 'Listredirects' ) {
 		parent::__construct( $name );
 	}

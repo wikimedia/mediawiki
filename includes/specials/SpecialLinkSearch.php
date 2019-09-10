@@ -29,7 +29,7 @@ use Wikimedia\Rdbms\IDatabase;
  * Special:LinkSearch to search the external-links table.
  * @ingroup SpecialPage
  */
-class LinkSearchPage extends QueryPage {
+class SpecialLinkSearch extends QueryPage {
 	/** @var array|bool */
 	private $mungedQuery = false;
 
