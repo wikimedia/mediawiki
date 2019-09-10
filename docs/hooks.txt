@@ -1585,7 +1585,8 @@ entitled to be in.
 $user: user to promote.
 &$promote: groups that will be added.
 
-'GetBlockedStatus': after loading blocking status of an user from the database
+'GetBlockedStatus': DEPRECATED since 1.34 - use GetUserBlock instead. After
+loading blocking status of a user from the database
 &$user: user (object) being checked
 
 'GetCacheVaryCookies': Get cookies that should vary cache options.
