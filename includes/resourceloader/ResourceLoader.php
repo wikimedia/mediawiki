@@ -1273,8 +1273,7 @@ MESSAGE;
 	/**
 	 * Returns JS code which, when called, will register a given list of messages.
 	 *
-	 * @param mixed $messages Either an associative array mapping message key to value, or a
-	 *   JSON-encoded message blob containing the same data, wrapped in an XmlJsCode object.
+	 * @param mixed $messages Associative array mapping message key to value.
 	 * @return string JavaScript code
 	 */
 	public static function makeMessageSetScript( $messages ) {
