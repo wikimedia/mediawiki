@@ -32,6 +32,12 @@ use Wikimedia\Rdbms\IDatabase;
 class SpecialLinkSearch extends QueryPage {
 	/** @var array|bool */
 	private $mungedQuery = false;
+	/** @var string|null */
+	private $mQuery;
+	/** @var int|null */
+	private $mNs;
+	/** @var string|null */
+	private $mProt;
 
 	function setParams( $params ) {
 		$this->mQuery = $params['query'];

@@ -43,6 +43,12 @@ class ActiveUsersPager extends UsersPager {
 	 */
 	private $blockStatusByUid;
 
+	/** @var int */
+	private $RCMaxAge;
+
+	/** @var string[] */
+	private $excludegroups;
+
 	/**
 	 * @param IContextSource|null $context
 	 * @param FormOptions $opts
