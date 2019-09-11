@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Tests\Message;
 
+use InvalidArgumentException;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ScalarParam;
 use Wikimedia\Message\ParamType;
@@ -34,6 +35,30 @@ class ScalarParamTest extends \PHPUnit\Framework\TestCase {
 		$this->assertSame( $type, $mp->getType() );
 		$this->assertSame( $value, $mp->getValue() );
 		$this->assertSame( $expected, $mp->dump() );
+	}
+
+	public function testConstruct_badType() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage(
+			'ParamType::LIST cannot be used with ScalarParam; use ListParam instead'
+		);
+		new ScalarParam( ParamType::LIST, [] );
+	}
+
+	public function testConstruct_badValueNULL() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage(
+			'Scalar parameter must be a string, number, or MessageValue; got NULL'
+		);
+		new ScalarParam( ParamType::TEXT, null );
+	}
+
+	public function testConstruct_badValueClass() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage(
+			'Scalar parameter must be a string, number, or MessageValue; got stdClass'
+		);
+		new ScalarParam( ParamType::TEXT, new \stdClass );
 	}
 
 }
