@@ -13,8 +13,7 @@ require( './jquery.accessKeyLabel.js' );
  * @return {string} Encoded string
  */
 function rawurlencode( str ) {
-	str = String( str );
-	return encodeURIComponent( str )
+	return encodeURIComponent( String( str ) )
 		.replace( /!/g, '%21' ).replace( /'/g, '%27' ).replace( /\(/g, '%28' )
 		.replace( /\)/g, '%29' ).replace( /\*/g, '%2A' ).replace( /~/g, '%7E' );
 }
@@ -59,33 +58,29 @@ util = {
 	rawurlencode: rawurlencode,
 
 	/**
-	 * Encode string into HTML id compatible form suitable for use in HTML
-	 * Analog to PHP Sanitizer::escapeIdForAttribute()
+	 * Encode a string as CSS id, for use as HTML id attribute value.
+	 *
+	 * Analog to `Sanitizer::escapeIdForAttribute()` in PHP.
 	 *
 	 * @since 1.30
-	 *
 	 * @param {string} str String to encode
 	 * @return {string} Encoded string
 	 */
 	escapeIdForAttribute: function ( str ) {
-		var mode = config.FragmentMode[ 0 ];
-
-		return escapeIdInternal( str, mode );
+		return escapeIdInternal( str, config.FragmentMode[ 0 ] );
 	},
 
 	/**
-	 * Encode string into HTML id compatible form suitable for use in links
-	 * Analog to PHP Sanitizer::escapeIdForLink()
+	 * Encode a string as URL fragment, for use as HTML anchor link.
+	 *
+	 * Analog to `Sanitizer::escapeIdForLink()` in PHP.
 	 *
 	 * @since 1.30
-	 *
 	 * @param {string} str String to encode
 	 * @return {string} Encoded string
 	 */
 	escapeIdForLink: function ( str ) {
-		var mode = config.FragmentMode[ 0 ];
-
-		return escapeIdInternal( str, mode );
+		return escapeIdInternal( str, config.FragmentMode[ 0 ] );
 	},
 
 	/**
@@ -126,16 +121,15 @@ util = {
 	 * @return {string} Url of the page with name of `pageName`
 	 */
 	getUrl: function ( pageName, params ) {
-		var titleFragmentStart, url, query,
-			fragment = '',
+		var fragmentIdx, url, query, fragment,
 			title = typeof pageName === 'string' ? pageName : mw.config.get( 'wgPageName' );
 
 		// Find any fragment
-		titleFragmentStart = title.indexOf( '#' );
-		if ( titleFragmentStart !== -1 ) {
-			fragment = title.slice( titleFragmentStart + 1 );
+		fragmentIdx = title.indexOf( '#' );
+		if ( fragmentIdx !== -1 ) {
+			fragment = title.slice( fragmentIdx + 1 );
 			// Exclude the fragment from the page name
-			title = title.slice( 0, titleFragmentStart );
+			title = title.slice( 0, fragmentIdx );
 		}
 
 		// Produce query string
@@ -152,7 +146,7 @@ util = {
 		}
 
 		// Append the encoded fragment
-		if ( fragment.length ) {
+		if ( fragment && fragment.length ) {
 			url += '#' + util.escapeIdForLink( fragment );
 		}
 
@@ -160,16 +154,14 @@ util = {
 	},
 
 	/**
-	 * Get address to a script in the wiki root.
-	 * For index.php use `mw.config.get( 'wgScript' )`.
+	 * Get URL to a MediaWiki entry point.
 	 *
 	 * @since 1.18
-	 * @param {string} str Name of script (e.g. 'api'), defaults to 'index'
-	 * @return {string} Address to script (e.g. '/w/api.php' )
+	 * @param {string} [str="index"] Name of MW entry point (e.g. 'index' or 'api')
+	 * @return {string} URL to the script file (e.g. '/w/api.php' )
 	 */
 	wikiScript: function ( str ) {
-		str = str || 'index';
-		if ( str === 'index' ) {
+		if ( !str || str === 'index' ) {
 			return mw.config.get( 'wgScript' );
 		} else if ( str === 'load' ) {
 			return config.LoadScript;
@@ -195,7 +187,7 @@ util = {
 	 */
 	addCSS: function ( text ) {
 		var s = mw.loader.addStyleTag( text );
-		return s.sheet || s.styleSheet || s;
+		return s.sheet;
 	},
 
 	/**
@@ -440,15 +432,15 @@ util = {
 	 * @return {boolean}
 	 */
 	isIPv4Address: function ( address, allowBlock ) {
-		var block, RE_IP_BYTE, RE_IP_ADD;
+		var block,
+			RE_IP_BYTE = '(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|0?[0-9]?[0-9])',
+			RE_IP_ADD = '(?:' + RE_IP_BYTE + '\\.){3}' + RE_IP_BYTE;
 
 		if ( typeof address !== 'string' ) {
 			return false;
 		}
 
 		block = allowBlock ? '(?:\\/(?:3[0-2]|[12]?\\d))?' : '';
-		RE_IP_BYTE = '(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|0?[0-9]?[0-9])';
-		RE_IP_ADD = '(?:' + RE_IP_BYTE + '\\.){3}' + RE_IP_BYTE;
 
 		return ( new RegExp( '^' + RE_IP_ADD + block + '$' ).test( address ) );
 	},
