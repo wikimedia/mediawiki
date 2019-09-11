@@ -478,7 +478,7 @@ JAVASCRIPT;
 							] );
 						} else {
 							$chunk = ResourceLoader::makeInlineScript(
-								Xml::encodeJsCall( 'mw.loader.load', [ $url ] ),
+								'mw.loader.load(' . ResourceLoader::encodeJsonForScript( $url ) . ');',
 								$nonce
 							);
 						}
