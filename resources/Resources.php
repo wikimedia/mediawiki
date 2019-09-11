@@ -175,11 +175,10 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.color' => [
-		'scripts' => 'resources/src/jquery/jquery.color.js',
-		'dependencies' => 'jquery.colorUtil',
-	],
-	'jquery.colorUtil' => [
-		'scripts' => 'resources/src/jquery/jquery.colorUtil.js',
+		'scripts' => [
+			'resources/src/jquery.color/jquery.colorUtil.js',
+			'resources/src/jquery.color/jquery.color.js',
+		],
 	],
 	'jquery.confirmable' => [
 		'scripts' => [

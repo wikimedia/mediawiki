@@ -102,7 +102,6 @@ return [
 		],
 		'dependencies' => [
 			'jquery.color',
-			'jquery.colorUtil',
 			'jquery.getAttrs',
 			'jquery.highlightText',
 			'jquery.lengthLimit',
