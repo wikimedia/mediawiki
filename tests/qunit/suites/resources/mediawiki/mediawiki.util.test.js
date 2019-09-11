@@ -474,4 +474,27 @@
 
 		assert.strictEqual( mw.util.escapeRegExp( normal ), normal, 'Alphanumerals are left alone' );
 	} );
+
+	QUnit.test( 'debounce', function ( assert ) {
+		var fn,
+			q = [],
+			done = assert.async();
+
+		fn = mw.util.debounce( 0, function ( data ) {
+			q.push( data );
+		} );
+
+		fn( 1 );
+		fn( 2 );
+		fn( 3 );
+
+		setTimeout( function () {
+			assert.deepEqual(
+				q,
+				[ 3 ],
+				'Last one ran'
+			);
+			done();
+		} );
+	} );
 }() );

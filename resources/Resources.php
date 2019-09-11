@@ -940,6 +940,9 @@ return [
 		'scripts' => [
 			'resources/src/mediawiki.htmlform.checker.js',
 		],
+		'dependencies' => [
+			'mediawiki.util',
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.htmlform.ooui' => [
