@@ -84,6 +84,27 @@ util = {
 	},
 
 	/**
+	 * Return a wrapper function that is debounced for the given duration.
+	 *
+	 * When it is first called, a timeout is scheduled. If before the timer
+	 * is reached the wrapper is called again, it gets rescheduled for the
+	 * same duration from now until it stops being called. The original function
+	 * is called from the "tail" of such chain, with the last set of arguments.
+	 *
+	 * @since 1.34
+	 * @param {number} delay Time in milliseconds
+	 * @param {Function} callback
+	 * @return {Function}
+	 */
+	debounce: function ( delay, callback ) {
+		var timeout;
+		return function () {
+			clearTimeout( timeout );
+			timeout = setTimeout( Function.prototype.apply.bind( callback, this, arguments ), delay );
+		};
+	},
+
+	/**
 	 * Encode page titles for use in a URL
 	 *
 	 * We want / and : to be included as literal characters in our title URLs
