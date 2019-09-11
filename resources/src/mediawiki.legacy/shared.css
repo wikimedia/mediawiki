@@ -354,7 +354,7 @@ a.new {
 	font-weight: bold;
 }
 
-/* Error, warning and success messages */
+/* Error, warning, success and neutral messages */
 .error,
 .warning,
 .success {
@@ -373,41 +373,46 @@ a.new {
 	color: #14866d;
 }
 
+.messagebox,
 .errorbox,
 .warningbox,
 .successbox {
+	color: #000;
+	display: inline-block;
+	margin-bottom: 1em;
 	border: 1px solid;
 	padding: 0.5em 1em;
-	margin-bottom: 1em;
-	display: inline-block;
 }
 
+.messagebox h2,
 .errorbox h2,
 .warningbox h2,
 .successbox h2 {
 	color: inherit;
-	font-size: 1em;
-	font-weight: bold;
 	display: inline;
 	margin: 0 0.5em 0 0;
 	border: 0;
+	font-size: 1em;
+	font-weight: bold;
+}
+
+.messagebox {
+	background-color: #eaecf0;
+	border-color: #a2a9b1;
 }
 
 .errorbox {
 	background-color: #fee7e6;
-	color: #000;
 	border-color: #d33;
 }
 
 .warningbox {
 	background-color: #fef6e7;
-	color: #000;
 	border-color: #fc3;
 }
 
 .successbox {
 	background-color: #d5fdf4;
-	color: #000;
 	border-color: #14866d;
 }
 
