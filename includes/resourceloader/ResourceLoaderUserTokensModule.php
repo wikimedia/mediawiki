@@ -53,11 +53,10 @@ class ResourceLoaderUserTokensModule extends ResourceLoaderModule {
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		// Use FILTER_NOMIN annotation to prevent needless minification and caching (T84960).
-		return ResourceLoader::FILTER_NOMIN . Xml::encodeJsCall(
-			'mw.user.tokens.set',
-			[ $this->contextUserTokens( $context ) ],
-			ResourceLoader::inDebugMode()
-		);
+		return ResourceLoader::FILTER_NOMIN
+			. 'mw.user.tokens.set('
+			. ResourceLoader::encodeJsonForScript( $this->contextUserTokens( $context ) )
+			. ');';
 	}
 
 	/**

@@ -52,16 +52,11 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderFileModule {
 	 * @return string JavaScript code
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		$fileScript = parent::getScript( $context );
-		$langDataScript = Xml::encodeJsCall(
-			'mw.language.setData',
-			[
-				$context->getLanguage(),
-				$this->getData( $context )
-			],
-			ResourceLoader::inDebugMode()
-		);
-		return $fileScript . $langDataScript;
+		return parent::getScript( $context )
+			. 'mw.language.setData('
+			. ResourceLoader::encodeJsonForScript( $context->getLanguage() ) . ','
+			. ResourceLoader::encodeJsonForScript( $this->getData( $context ) )
+			. ');';
 	}
 
 	/**
