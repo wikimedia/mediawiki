@@ -3407,9 +3407,12 @@ class WikiPage implements Page, IDBAccessObject {
 		MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $title );
 
 		// Invalidate caches of articles which include this page
-		DeferredUpdates::addUpdate(
-			new HTMLCacheUpdate( $title, 'templatelinks', 'page-create' )
+		$job = HTMLCacheUpdateJob::newForBacklinks(
+			$title,
+			'templatelinks',
+			[ 'causeAction' => 'page-create' ]
 		);
+		JobQueueGroup::singleton()->lazyPush( $job );
 
 		if ( $title->getNamespace() == NS_CATEGORY ) {
 			// Load the Category object, which will schedule a job to create
@@ -3451,9 +3454,12 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Images
 		if ( $title->getNamespace() == NS_FILE ) {
-			DeferredUpdates::addUpdate(
-				new HTMLCacheUpdate( $title, 'imagelinks', 'page-delete' )
+			$job = HTMLCacheUpdateJob::newForBacklinks(
+				$title,
+				'imagelinks',
+				[ 'causeAction' => 'page-delete' ]
 			);
+			JobQueueGroup::singleton()->lazyPush( $job );
 		}
 
 		// User talk pages
@@ -3485,20 +3491,24 @@ class WikiPage implements Page, IDBAccessObject {
 		$slotsChanged = null
 	) {
 		// TODO: move this into a PageEventEmitter service
-
-		if ( $slotsChanged === null || in_array( SlotRecord::MAIN,  $slotsChanged ) ) {
+		$jobs = [];
+		if ( $slotsChanged === null || in_array( SlotRecord::MAIN, $slotsChanged ) ) {
 			// Invalidate caches of articles which include this page.
 			// Only for the main slot, because only the main slot is transcluded.
 			// TODO: MCR: not true for TemplateStyles! [SlotHandler]
-			DeferredUpdates::addUpdate(
-				new HTMLCacheUpdate( $title, 'templatelinks', 'page-edit' )
+			$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
+				$title,
+				'templatelinks',
+				[ 'causeAction' => 'page-edit' ]
 			);
 		}
-
 		// Invalidate the caches of all pages which redirect here
-		DeferredUpdates::addUpdate(
-			new HTMLCacheUpdate( $title, 'redirect', 'page-edit' )
+		$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
+			$title,
+			'redirect',
+			[ 'causeAction' => 'page-edit' ]
 		);
+		JobQueueGroup::singleton()->lazyPush( $jobs );
 
 		MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $title );
 
