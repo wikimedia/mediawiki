@@ -209,7 +209,12 @@ class SpecialPageFactory {
 		'NewSection' => \SpecialNewSection::class,
 		'PermanentLink' => \SpecialPermanentLink::class,
 		'Redirect' => \SpecialRedirect::class,
-		'Revisiondelete' => \SpecialRevisionDelete::class,
+		'Revisiondelete' => [
+			'class' => \SpecialRevisionDelete::class,
+			'services' => [
+				'PermissionManager',
+			],
+		],
 		'RunJobs' => \SpecialRunJobs::class,
 		'Specialpages' => \SpecialSpecialpages::class,
 		'PageData' => \SpecialPageData::class,

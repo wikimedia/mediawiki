@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\Restriction\PageRestriction;
+
 /**
  * Tests for action=revisiondelete
  * @covers APIRevisionDelete
@@ -112,5 +115,33 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 		$this->assertFalse( $item['commenthidden'], 'commenthidden' );
 		$this->assertTrue( $item['texthidden'], 'texthidden' );
 		$this->assertEquals( $item['id'], $revid );
+	}
+
+	public function testPartiallyBlockedPage() {
+		$this->setExpectedApiException( 'apierror-blocked-partial' );
+
+		$user = static::getTestSysop()->getUser();
+
+		$block = new DatabaseBlock( [
+			'address' => $user,
+			'by' => static::getTestSysop()->getUser()->getId(),
+			'sitewide' => false,
+		] );
+
+		$block->setRestrictions( [
+			new PageRestriction( 0, Title::newFromText( self::$page )->getArticleID() )
+		] );
+		$block->insert();
+
+		$revid = array_shift( $this->revs );
+
+		$this->doApiRequest( [
+			'action' => 'revisiondelete',
+			'type' => 'revision',
+			'target' => self::$page,
+			'ids' => $revid,
+			'hide' => 'content|user|comment',
+			'token' => $user->getEditToken(),
+		] );
 	}
 }
