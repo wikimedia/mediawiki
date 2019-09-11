@@ -1718,9 +1718,31 @@ class User implements IDBAccessObject, UserIdentity {
 		// overwriting mBlockedby, surely?
 		$this->load();
 
+		// TODO: Block checking shouldn't really be done from the User object. Block
+		// checking can involve checking for IP blocks, cookie blocks, and/or XFF blocks,
+		// which need more knowledge of the request context than the User should have.
+		// Since we do currently check blocks from the User, we have to do the following
+		// here:
+		// - Check if this is the user associated with the main request
+		// - If so, pass the relevant request information to the block manager
+		$request = null;
+
+		// The session user is set up towards the end of Setup.php. Until then,
+		// assume it's a logged-out user.
+		$sessionUser = RequestContext::getMain()->getUser();
+		$globalUserName = $sessionUser->isSafeToLoad()
+			? $sessionUser->getName()
+			: IP::sanitizeIP( $sessionUser->getRequest()->getIP() );
+
+		if ( $this->getName() === $globalUserName ) {
+			// This is the global user, so we need to pass the request
+			$request = $this->getRequest();
+		}
+
 		// @phan-suppress-next-line PhanAccessMethodInternal It's the only allowed use
 		$block = MediaWikiServices::getInstance()->getBlockManager()->getUserBlock(
 			$this,
+			$request,
 			$fromReplica
 		);
 

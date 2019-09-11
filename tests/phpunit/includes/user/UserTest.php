@@ -1488,10 +1488,6 @@ class UserTest extends MediaWikiTestCase {
 		// logged in users should be inmune to cookie block of type ip/range
 		$this->assertNull( $user->getBlock() );
 
-		// cookie is being cleared
-		$cookies = $request->response()->getCookies();
-		$this->assertEquals( '', $cookies['wikiBlockID']['value'] );
-
 		// clean up
 		$block->delete();
 	}
