@@ -41,6 +41,12 @@ use Wikimedia\IPSet;
  * @since 1.34 Refactored from User and Block.
  */
 class BlockManager {
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var ServiceOptions */
+	private $options;
+
 	/**
 	 * TODO Make this a const when HHVM support is dropped (T192166)
 	 *

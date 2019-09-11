@@ -21,6 +21,9 @@
  */
 
 class InstallDocFormatter {
+	/** @var string */
+	private $text;
+
 	public static function format( $text ) {
 		$obj = new self( $text );
 
