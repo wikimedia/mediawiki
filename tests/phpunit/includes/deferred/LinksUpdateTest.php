@@ -430,4 +430,18 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$queueGroup->ack( $job );
 		}
 	}
+
+	public function testIsRecursive() {
+		list( $title, $po ) = $this->makeTitleAndParserOutput( 'Test', 1 );
+		$linksUpdate = new LinksUpdate( $title, $po );
+		$this->assertTrue( $linksUpdate->isRecursive(), 'LinksUpdate is recursive by default' );
+
+		$linksUpdate = new LinksUpdate( $title, $po, true );
+		$this->assertTrue( $linksUpdate->isRecursive(),
+			'LinksUpdate is recursive when asked to be recursive' );
+
+		$linksUpdate = new LinksUpdate( $title, $po, false );
+		$this->assertFalse( $linksUpdate->isRecursive(),
+			'LinksUpdate is not recursive when asked to be not recursive' );
+	}
 }
