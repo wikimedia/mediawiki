@@ -50,7 +50,7 @@ class SearchUpdate implements DeferrableUpdate {
 	 */
 	public function __construct( $id, $title, $c = null ) {
 		if ( is_string( $title ) ) {
-			wfDeprecated( __METHOD__ . " with a string for the title", 1.34 );
+			wfDeprecated( __METHOD__ . " with a string for the title", '1.34' );
 			$this->title = Title::newFromText( $title );
 			if ( $this->title === null ) {
 				throw new InvalidArgumentException( "Cannot construct the title: $title" );
@@ -62,10 +62,10 @@ class SearchUpdate implements DeferrableUpdate {
 		$this->id = $id;
 		// is_string() check is back-compat for ApprovedRevs
 		if ( is_string( $c ) ) {
-			wfDeprecated( __METHOD__ . " with a string for the content", 1.34 );
+			wfDeprecated( __METHOD__ . " with a string for the content", '1.34' );
 			$c = new TextContent( $c );
 		} elseif ( is_bool( $c ) ) {
-			wfDeprecated( __METHOD__ . " with a boolean for the content", 1.34 );
+			wfDeprecated( __METHOD__ . " with a boolean for the content", '1.34' );
 			$c = null;
 		}
 		$this->content = $c;
