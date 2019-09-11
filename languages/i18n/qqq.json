@@ -2103,6 +2103,7 @@
 	"listfiles-userdoesnotexist": "This message is displayed on [[Special:ListFiles]] when a invalid username is entered.",
 	"imgfile": "{{Identical|File}}",
 	"listfiles": "Page title and grouping label for the form displayed on [[Special:ListFiles]].\n{{Identical|List}}",
+	"listfiles_subpage": "Page title and grouping label for the form displayed on [[Special:ListFiles]].\n{{Identical|List}} when a username is selected. Parameters:\n * $1 - username",
 	"listfiles_thumb": "{{Identical|Thumbnail}}",
 	"listfiles_date": "Column header for the result table displayed on [[Special:ListFiles]].\n{{Identical|Date}}",
 	"listfiles_name": "Column header for the result table displayed on [[Special:ListFiles]].\n{{Identical|Name}}",

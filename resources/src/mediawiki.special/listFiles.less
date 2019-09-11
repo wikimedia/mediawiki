@@ -1,0 +1,43 @@
+@import 'mediawiki.ui/variables';
+
+// On mobile devices the table layout is collapsed.
+@media all and ( max-width: @width-breakpoint-tablet ) {
+	.mw-special-Listfiles {
+		// stylelint-disable selector-class-pattern
+		thead,
+		.TablePager_col_count,
+		.TablePager_col_img_size,
+		.TablePager_col_img_name,
+		.TablePager_col_img_timestamp {
+			display: none;
+		}
+
+		tbody,
+		tr,
+		td,
+		.mw-datatable,
+		.TablePager_col_img_description,
+		.TablePager_col_thumb {
+			display: block;
+		}
+
+		.mw-datatable,
+		.mw-datatable th,
+		.mw-datatable td {
+			border: 0;
+		}
+
+		.TablePager_col_img_user_text,
+		.TablePager_col_img_description {
+			color: @colorGray5;
+			margin: 0.5em 0 0;
+			padding-bottom: 40px;
+			line-height: 1.5;
+		}
+
+		.TablePager_col_img_user_text {
+			padding: 0;
+		}
+		// stylelint-enable selector-class-pattern
+	}
+}
