@@ -27,6 +27,10 @@
  * @ingroup Dump
  */
 class DumpMultiWriter {
+	/** @var array */
+	private $sinks;
+	/** @var int */
+	private $count;
 
 	/**
 	 * @param array $sinks
