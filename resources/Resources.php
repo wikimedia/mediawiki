@@ -2313,7 +2313,6 @@ return [
 		'dependencies' => [
 			'mediawiki.api',
 			'mediawiki.jqueryMsg',
-			'jquery.throttle-debounce',
 			'mediawiki.htmlform.checker',
 		],
 	],
