@@ -282,7 +282,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			}
 
 			if ( $error ) {
-				$out->wrapWikiMsg( "<div class='previewnote'>\n$1\n</div>", $error );
+				$out->wrapWikiMsg( "<div class='previewnote errorbox'>\n$1\n</div>", $error );
 				return;
 			}
 		}
