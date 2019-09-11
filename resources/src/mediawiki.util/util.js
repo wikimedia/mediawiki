@@ -187,7 +187,7 @@ util = {
 	 */
 	addCSS: function ( text ) {
 		var s = mw.loader.addStyleTag( text );
-		return s.sheet || s.styleSheet || s;
+		return s.sheet;
 	},
 
 	/**
