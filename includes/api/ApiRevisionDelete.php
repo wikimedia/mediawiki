@@ -38,12 +38,6 @@ class ApiRevisionDelete extends ApiBase {
 		$user = $this->getUser();
 		$this->checkUserRightsAny( RevisionDeleter::getRestriction( $params['type'] ) );
 
-		// @TODO Use PermissionManager::isBlockedFrom() instead.
-		$block = $user->getBlock();
-		if ( $block ) {
-			$this->dieBlocked( $block );
-		}
-
 		if ( !$params['ids'] ) {
 			$this->dieWithError( [ 'apierror-paramempty', 'ids' ], 'paramempty_ids' );
 		}
@@ -95,6 +89,10 @@ class ApiRevisionDelete extends ApiBase {
 		$targetObj = RevisionDeleter::suggestTarget( $params['type'], $targetObj, $params['ids'] );
 		if ( $targetObj === null ) {
 			$this->dieWithError( [ 'apierror-revdel-needtarget' ], 'needtarget' );
+		}
+
+		if ( $this->getPermissionManager()->isBlockedFrom( $user, $targetObj ) ) {
+			$this->dieBlocked( $user->getBlock() );
 		}
 
 		$list = RevisionDeleter::createList(
