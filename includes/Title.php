@@ -1059,7 +1059,7 @@ class Title implements LinkTarget, IDBAccessObject {
 			$this->lazyFillContentModel( $this->loadFieldFromDB( 'page_content_model', $flags ) );
 		} elseif (
 			( !$this->mContentModel || $flags & self::GAID_FOR_UPDATE ) &&
-			$this->getArticleId( $flags )
+			$this->getArticleID( $flags )
 		) {
 			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 			$linkCache->addLinkObj( $this ); # in case we already had an article ID
