@@ -52,7 +52,8 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 		}
 
 		// Validate request parameters
-		$optional = [ 'maxjobs' => 0, 'maxtime' => 30, 'type' => false, 'async' => true ];
+		$optional = [ 'maxjobs' => 0, 'maxtime' => 30, 'type' => false,
+			'async' => true, 'stats' => false ];
 		$required = array_flip( [ 'title', 'tasks', 'signature', 'sigexpiry' ] );
 		$params = array_intersect_key( $this->getRequest()->getValues(), $required + $optional );
 		$missing = array_diff_key( $required, $params );
@@ -95,14 +96,20 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 				DeferredUpdates::POSTSEND
 			);
 		} else {
-			$this->doRun( $params );
-			print "Done\n";
+			$stats = $this->doRun( $params );
+
+			if ( $params['stats'] ) {
+				$this->getRequest()->response()->header( 'Content-Type: application/json' );
+				print FormatJson::encode( $stats );
+			} else {
+				print "Done\n";
+			}
 		}
 	}
 
 	protected function doRun( array $params ) {
 		$runner = new JobRunner( LoggerFactory::getInstance( 'runJobs' ) );
-		$runner->run( [
+		return $runner->run( [
 			'type'     => $params['type'],
 			'maxJobs'  => $params['maxjobs'] ?: 1,
 			'maxTime'  => $params['maxtime'] ?: 30
