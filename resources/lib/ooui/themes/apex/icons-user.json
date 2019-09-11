@@ -11,6 +11,12 @@
 		"userAvatarOutline": {
 			"file": "../wikimediaui/images/icons/userAvatarOutline.svg"
 		},
+		"userGroup": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/userGroup-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/userGroup-rtl.svg"
+			}
+		},
 		"userTalk": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/userTalk-ltr.svg",

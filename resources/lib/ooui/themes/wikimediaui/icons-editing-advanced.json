@@ -38,7 +38,8 @@
 			"file": "images/icons/attachment.svg"
 		},
 		"beaker": {
-			"file": "images/icons/beaker.svg"
+			"file": "images/icons/labFlask.svg",
+			"deprecated": "Renamed since v0.34.1, use 'labFlask' instead."
 		},
 		"calendar": {
 			"file": "images/icons/calendar.svg"
@@ -60,6 +61,9 @@
 		},
 		"imageLayoutThumbnail": {
 			"file": "images/icons/imageLayoutThumbnail.svg"
+		},
+		"labFlask": {
+			"file": "images/icons/labFlask.svg"
 		},
 		"language": {
 			"file": "images/icons/language.svg"
