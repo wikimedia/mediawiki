@@ -34,6 +34,12 @@
 		"userAvatarOutline": {
 			"file": "images/icons/userAvatarOutline.svg"
 		},
+		"userGroup": {
+			"file": {
+				"ltr": "images/icons/userGroup-ltr.svg",
+				"rtl": "images/icons/userGroup-rtl.svg"
+			}
+		},
 		"userTalk": {
 			"file": {
 				"ltr": "images/icons/userTalk-ltr.svg",

@@ -1,4 +1,16 @@
 # OOUI Release History
+## v0.34.1 / 2019-09-10
+### Deprecating changes
+* [DEPRECATING CHANGE] icons: Rename 'beaker' to 'labFlask' (Volker E.)
+
+### Styles
+* icons: Add 'userGroup' (Volker E.)
+
+### Code
+* Wrap long strings in popups (Sam Wilson)
+* demos: Add missing file to PHP demo to fix infusion (Bartosz Dziewoński)
+
+
 ## v0.34.0 / 2019-09-04
 ### Breaking changes
 * [BREAKING CHANGE] Use OOjs v3.0.0, up from v2.2.2 (James D. Forrester)
