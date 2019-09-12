@@ -27,7 +27,7 @@ use Wikimedia\IPUtils;
  * Uses asynchronous I/O, allowing purges to be done in a highly parallel
  * manner.
  *
- * @todo Consider using MultiHttpClient.
+ * @deprecated Since 1.35 Use MultiHttpClient
  */
 class SquidPurgeClient {
 	/** @var string */

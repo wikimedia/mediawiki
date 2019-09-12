@@ -107,19 +107,19 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	 * $urlArr should contain the full URLs to purge as values
 	 * (example: $urlArr[] = 'http://my.host/something')
 	 *
-	 * @param string[] $urlArr List of full URLs to purge
+	 * @param string[] $urls List of full URLs to purge
 	 */
-	public static function purge( array $urlArr ) {
+	public static function purge( array $urls ) {
 		global $wgCdnServers, $wgHTCPRouting;
 
-		if ( !$urlArr ) {
+		if ( !$urls ) {
 			return;
 		}
 
 		// Remove duplicate URLs from list
-		$urlArr = array_unique( $urlArr );
+		$urls = array_unique( $urls );
 
-		wfDebugLog( 'squid', __METHOD__ . ': ' . implode( ' ', $urlArr ) );
+		wfDebugLog( 'squid', __METHOD__ . ': ' . implode( ' ', $urls ) );
 
 		// Reliably broadcast the purge to all edge nodes
 		$ts = microtime( true );
@@ -133,40 +133,18 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 						'timestamp' => $ts,
 					];
 				},
-				$urlArr
+				$urls
 			)
 		);
 
 		// Send lossy UDP broadcasting if enabled
 		if ( $wgHTCPRouting ) {
-			self::HTCPPurge( $urlArr );
+			self::HTCPPurge( $urls );
 		}
 
 		// Do direct server purges if enabled (this does not scale very well)
 		if ( $wgCdnServers ) {
-			// Maximum number of parallel connections per CDN
-			$maxSocketsPerCdn = 8;
-			// Number of requests to send per socket
-			// 400 seems to be a good tradeoff, opening a socket takes a while
-			$urlsPerSocket = 400;
-			$socketsPerCdn = ceil( count( $urlArr ) / $urlsPerSocket );
-			if ( $socketsPerCdn > $maxSocketsPerCdn ) {
-				$socketsPerCdn = $maxSocketsPerCdn;
-			}
-
-			$pool = new SquidPurgeClientPool;
-			$chunks = array_chunk( $urlArr, ceil( count( $urlArr ) / $socketsPerCdn ) );
-			foreach ( $wgCdnServers as $server ) {
-				foreach ( $chunks as $chunk ) {
-					$client = new SquidPurgeClient( $server );
-					foreach ( $chunk as $url ) {
-						$client->queuePurge( self::expand( $url ) );
-					}
-					$pool->addClient( $client );
-				}
-			}
-
-			$pool->run();
+			self::naivePurge( $urls );
 		}
 	}
 
@@ -209,12 +187,12 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	}
 
 	/**
-	 * Send Hyper Text Caching Protocol (HTCP) CLR requests.
+	 * Send Hyper Text Caching Protocol (HTCP) CLR requests
 	 *
 	 * @throws MWException
-	 * @param string[] $urlArr Collection of URLs to purge
+	 * @param string[] $urls Collection of URLs to purge
 	 */
-	private static function HTCPPurge( array $urlArr ) {
+	private static function HTCPPurge( array $urls ) {
 		global $wgHTCPRouting, $wgHTCPMulticastTTL;
 
 		// HTCP CLR operation
@@ -248,10 +226,12 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 		// Get sequential trx IDs for packet loss counting
 		$idGenerator = MediaWikiServices::getInstance()->getGlobalIdGenerator();
 		$ids = $idGenerator->newSequentialPerNodeIDs(
-			'squidhtcppurge', 32, count( $urlArr ), $idGenerator::QUICK_VOLATILE
+			'squidhtcppurge', 32,
+			count( $urls ),
+			$idGenerator::QUICK_VOLATILE
 		);
 
-		foreach ( $urlArr as $url ) {
+		foreach ( $urls as $url ) {
 			if ( !is_string( $url ) ) {
 				throw new MWException( 'Bad purge URL' );
 			}
@@ -300,6 +280,43 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 					$subconf['host'], $subconf['port'] );
 			}
 		}
+	}
+
+	/**
+	 * Send HTTP PURGE requests for each of the URLs to all of the cache servers
+	 *
+	 * @param string[] $urls
+	 * @throws Exception
+	 */
+	private static function naivePurge( array $urls ) {
+		global $wgCdnServers, $wgVersion;
+
+		$reqs = [];
+		foreach ( $urls as $url ) {
+			$urlInfo = wfParseUrl( self::expand( $url ) );
+			$urlHost = strlen( $urlInfo['port'] ?? null )
+				? IP::combineHostAndPort( $urlInfo['host'], $urlInfo['port'] )
+				: $urlInfo['host'];
+			$urlPath = strlen( $urlInfo['query'] ?? null )
+				? wfAppendQuery( $urlInfo['path'], $urlInfo['query'] )
+				: $urlInfo['path'];
+			$baseReq = [
+				'method' => 'PURGE',
+				'url' => $urlPath,
+				'headers' => [
+					'Host' => $urlHost,
+					'Connection' => 'Keep-Alive',
+					'Proxy-Connection' => 'Keep-Alive',
+					'User-Agent' => "MediaWiki/$wgVersion " . __CLASS__
+				]
+			];
+			foreach ( $wgCdnServers as $server ) {
+				$reqs[] = ( $baseReq + [ 'proxy' => $server ] );
+			}
+		}
+
+		$http = new MultiHttpClient( [ 'maxConnsPerHost' => 8, 'usePipelining' => true ] );
+		$http->runMulti( $reqs );
 	}
 
 	/**
