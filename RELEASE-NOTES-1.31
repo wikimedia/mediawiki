@@ -3,9 +3,13 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.31.3 ===
-
+* (T207100) Updated LanguageTr for dotted and dotless I in PHP 7.3.
 * The ImgAuthModifyHeaders hook was added to img_auth.php to allow modification
   of headers in private wikis.
+* (T230402) SECURITY: Add permission check for suppressed account to
+  Special:Redirect.
+* Add helper for HTTPFileStreamer header syntax.
+* (T118799) Fix XMP parser errors due to trailing nullchar.
 
 == MediaWiki 1.31.3 ==
 
@@ -16,7 +20,6 @@ This is a maintenance release of the MediaWiki 1.31 branch.
 * (T225496) Detect APC for MainCacheType in CLI installer.
 * (T226766) Remove jetbrains/phpstorm-stubs from composer dev dependancies.
 * (T202211) Fix SQLite patch-(image|page|template)links-fix-pk.sql column order.
-* (T207100) Updated LanguageTr for dotted and dotless I in PHP 7.3.
 
 == MediaWiki 1.31.2 ==
 
