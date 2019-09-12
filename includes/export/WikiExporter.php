@@ -30,6 +30,7 @@
 use MediaWiki\MediaWikiServices as MediaWikiServicesAlias;
 use MediaWiki\Storage\RevisionRecord;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * @ingroup SpecialPage Dump
@@ -67,7 +68,7 @@ class WikiExporter {
 	/** @var XmlDumpWriter */
 	private $writer;
 
-	/** @var Database */
+	/** @var IDatabase */
 	protected $db;
 
 	/** @var array|int */
@@ -86,7 +87,7 @@ class WikiExporter {
 	}
 
 	/**
-	 * @param Database $db
+	 * @param IDatabase $db
 	 * @param int|array $history One of WikiExporter::FULL, WikiExporter::CURRENT,
 	 *   WikiExporter::RANGE or WikiExporter::STABLE, or an associative array:
 	 *   - offset: non-inclusive offset at which to start the query
@@ -303,29 +304,36 @@ class WikiExporter {
 		if ( $cond ) {
 			$where[] = $cond;
 		}
-		# Get logging table name for logging.* clause
-		$logging = $this->db->tableName( 'logging' );
-
 		$result = null; // Assuring $result is not undefined, if exception occurs early
 
 		$commentQuery = CommentStore::getStore()->getJoin( 'log_comment' );
 		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
 
+		$tables = array_merge(
+			[ 'logging' ], $commentQuery['tables'], $actorQuery['tables'], [ 'user' ]
+		);
+		$fields = [
+			'log_id', 'log_type', 'log_action', 'log_timestamp', 'log_namespace',
+			'log_title', 'log_params', 'log_deleted', 'user_name'
+		] + $commentQuery['fields'] + $actorQuery['fields'];
+		$options = [
+			'ORDER BY' => 'log_id',
+			'USE INDEX' => [ 'logging' => 'PRIMARY' ],
+			'LIMIT' => self::BATCH_SIZE,
+		];
+		$joins = [
+			'user' => [ 'JOIN', 'user_id = ' . $actorQuery['fields']['log_user'] ]
+		] + $commentQuery['joins'] + $actorQuery['joins'];
+
 		$lastLogId = 0;
 		while ( true ) {
 			$result = $this->db->select(
-				array_merge( [ 'logging' ], $commentQuery['tables'], $actorQuery['tables'], [ 'user' ] ),
-				[ "{$logging}.*", 'user_name' ] + $commentQuery['fields'] + $actorQuery['fields'],
+				$tables,
+				$fields,
 				array_merge( $where, [ 'log_id > ' . intval( $lastLogId ) ] ),
 				__METHOD__,
-				[
-					'ORDER BY' => 'log_id',
-					'USE INDEX' => [ 'logging' => 'PRIMARY' ],
-					'LIMIT' => self::BATCH_SIZE,
-				],
-				[
-					'user' => [ 'JOIN', 'user_id = ' . $actorQuery['fields']['log_user'] ]
-				] + $commentQuery['joins'] + $actorQuery['joins']
+				$options,
+				$joins
 			);
 
 			if ( !$result->numRows() ) {
