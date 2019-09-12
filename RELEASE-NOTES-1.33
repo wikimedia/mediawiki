@@ -3,7 +3,6 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.33.0 ===
-
 * A change that kept people with a database table prefix that didn't
   end with an underscore from updating was reverted.
 * (T207100) Updated LanguageTr for dotted and dotless I in PHP 7.3.
@@ -11,6 +10,15 @@ THIS IS NOT A RELEASE YET
   of headers in private wikis.
 * (T230317) Allow upgrading from MediaWiki before 1.15 where the valid_tag table
   doesn't yet exist.
+* (T208897) MessageCache: Restore 'loadedLanguages' tracking for load().
+* (T228555) MessageCache: Fix isMainCacheable() logic for non-content languages.
+* (T200088) Remove title protection correctly for undeletions and imports.
+* (T230402) SECURITY: Add permission check for suppressed account to
+  Special:Redirect.
+* Add helper for HTTPFileStreamer header syntax.
+* (T227461) ObjectCache: avoid using deprecated phpredis::delete() alias.
+* (T231386) SpecialRedirect::dispatchUser() should use a 302 http status code.
+* (T118799) Fix XMP parser errors due to trailing nullchar.
 
 == MediaWiki 1.33 ==
 
