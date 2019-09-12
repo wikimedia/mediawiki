@@ -60,7 +60,7 @@ class LBFactoryMulti extends LBFactory {
 	private $masterTemplateOverrides = [];
 	/** @var array[] Map of (host => server config map overrides) for main and external servers */
 	private $templateOverridesByServer = [];
-	/**  @var string[]|bool[] A map of section name to read-only message */
+	/** @var string[]|bool[] A map of section name to read-only message */
 	private $readOnlyBySection = [];
 
 	/** @var string An ILoadMonitor class */
@@ -85,7 +85,7 @@ class LBFactoryMulti extends LBFactory {
 	 * data can be before the load balancer tries to avoid using it. The map can have 'is static'
 	 * set to disable blocking  replication sync checks (intended for archive servers with
 	 * unchanging data).
-
+	 *
 	 * @see LBFactory::__construct()
 	 * @param array $conf Additional parameters include:
 	 *   - hostsByName                 Optional (hostname => IP address) map.
