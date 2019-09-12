@@ -21,7 +21,7 @@
  * @ingroup RevisionDelete
  */
 
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * General controller for RevDel, used by both SpecialRevisiondelete and

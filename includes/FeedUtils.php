@@ -21,7 +21,7 @@
  * @ingroup Feed
  */
 
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * Helper functions for feeds

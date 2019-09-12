@@ -20,7 +20,7 @@
  * @file
  */
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 
 class RCCacheEntryFactory {
 

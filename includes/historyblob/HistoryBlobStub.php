@@ -149,6 +149,5 @@ if ( false ) {
 	// autoload entries for the lowercase variants of these classes (T166759).
 	// The code below is never executed, but it is picked up by the AutoloadGenerator
 	// parser, which scans for class_alias() calls.
-	// @phan-suppress-next-line PhanRedefineClassAlias
 	class_alias( HistoryBlobStub::class, 'historyblobstub' );
 }

@@ -20,7 +20,7 @@
  * @ingroup Actions
  */
 
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * User interface for the rollback action
