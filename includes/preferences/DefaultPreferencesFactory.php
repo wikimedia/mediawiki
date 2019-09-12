@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Preferences;
 
-use Config;
 use DateTime;
 use DateTimeZone;
 use Exception;
@@ -37,6 +36,7 @@ use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 use MessageLocalizer;
 use MWException;
 use MWTimestamp;
@@ -77,6 +77,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	/** @var NamespaceInfo */
 	protected $nsInfo;
 
+	/** @var PermissionManager */
+	protected $permissionManager;
+
 	/**
 	 * TODO Make this a const when we drop HHVM support (T192166)
 	 *
@@ -114,35 +117,34 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	/**
 	 * Do not call this directly.  Get it from MediaWikiServices.
 	 *
-	 * @param ServiceOptions|Config $options Config accepted for backwards compatibility
+	 * @param ServiceOptions $options
 	 * @param Language $contLang
 	 * @param AuthManager $authManager
 	 * @param LinkRenderer $linkRenderer
-	 * @param NamespaceInfo|null $nsInfo
+	 * @param NamespaceInfo $nsInfo
+	 * @param PermissionManager|null $permissionManager
 	 */
 	public function __construct(
-		$options,
+		ServiceOptions $options,
 		Language $contLang,
 		AuthManager $authManager,
 		LinkRenderer $linkRenderer,
-		NamespaceInfo $nsInfo = null
+		NamespaceInfo $nsInfo,
+		PermissionManager $permissionManager = null
 	) {
-		if ( $options instanceof Config ) {
-			wfDeprecated( __METHOD__ . ' with Config parameter', '1.34' );
-			$options = new ServiceOptions( self::$constructorOptions, $options );
-		}
-
 		$options->assertRequiredOptions( self::$constructorOptions );
 
-		if ( !$nsInfo ) {
-			wfDeprecated( __METHOD__ . ' with no NamespaceInfo argument', '1.34' );
-			$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		if ( !$permissionManager ) {
+			// TODO: this is actually hard-deprecated, left for jenkins to pass
+			// together with GlobalPreferences extension. Will be removed in a followup.
+			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		}
 		$this->options = $options;
 		$this->contLang = $contLang;
 		$this->authManager = $authManager;
 		$this->linkRenderer = $linkRenderer;
 		$this->nsInfo = $nsInfo;
+		$this->permissionManager = $permissionManager;
 		$this->logger = new NullLogger();
 	}
 
@@ -209,7 +211,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		# # Make sure that form fields have their parent set. See T43337.
 		$dummyForm = new HTMLForm( [], $context );
 
-		$disable = !$user->isAllowed( 'editmyoptions' );
+		$disable = !$this->permissionManager->userHasRight( $user, 'editmyoptions' );
 
 		$defaultOptions = User::getDefaultOptions();
 		$userOptions = $user->getOptions();
@@ -390,8 +392,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			];
 		}
 
-		$canViewPrivateInfo = $user->isAllowed( 'viewmyprivateinfo' );
-		$canEditPrivateInfo = $user->isAllowed( 'editmyprivateinfo' );
+		$canViewPrivateInfo = $this->permissionManager->userHasRight( $user, 'viewmyprivateinfo' );
+		$canEditPrivateInfo = $this->permissionManager->userHasRight( $user, 'editmyprivateinfo' );
 
 		// Actually changeable stuff
 		$defaultPreferences['realname'] = [
@@ -631,7 +633,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				];
 			}
 
-			if ( $this->options->get( 'EnableUserEmail' ) && $user->isAllowed( 'sendemail' ) ) {
+			if ( $this->options->get( 'EnableUserEmail' ) &&
+				$this->permissionManager->userHasRight( $user, 'sendemail' )
+			) {
 				$defaultPreferences['disablemail'] = [
 					'id' => 'wpAllowEmail',
 					'type' => 'toggle',
@@ -921,7 +925,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'label-message' => 'tog-numberheadings',
 		];
 
-		if ( $user->isAllowed( 'rollback' ) ) {
+		if ( $this->permissionManager->userHasRight( $user, 'rollback' ) ) {
 			$defaultPreferences['showrollbackconfirmation'] = [
 				'type' => 'toggle',
 				'section' => 'rendering/advancedrendering',
@@ -961,7 +965,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			];
 		}
 
-		if ( $user->isAllowed( 'minoredit' ) ) {
+		if ( $this->permissionManager->userHasRight( $user, 'minoredit' ) ) {
 			$defaultPreferences['minordefault'] = [
 				'type' => 'toggle',
 				'section' => 'editing/editor',
@@ -1107,7 +1111,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$watchlistdaysMax = ceil( $this->options->get( 'RCMaxAge' ) / ( 3600 * 24 ) );
 
 		# # Watchlist #####################################
-		if ( $user->isAllowed( 'editmywatchlist' ) ) {
+		if ( $this->permissionManager->userHasRight( $user, 'editmywatchlist' ) ) {
 			$editWatchlistLinks = '';
 			$editWatchlistModes = [
 				'edit' => [ 'subpage' => false, 'flags' => [] ],
@@ -1221,20 +1225,20 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		];
 
 		// Kinda hacky
-		if ( $user->isAllowed( 'createpage' ) || $user->isAllowed( 'createtalk' ) ) {
+		if ( $this->permissionManager->userHasAnyRight( $user, 'createpage', 'createtalk' ) ) {
 			$watchTypes['read'] = 'watchcreations';
 		}
 
-		if ( $user->isAllowed( 'rollback' ) ) {
+		if ( $this->permissionManager->userHasRight( $user, 'rollback' ) ) {
 			$watchTypes['rollback'] = 'watchrollback';
 		}
 
-		if ( $user->isAllowed( 'upload' ) ) {
+		if ( $this->permissionManager->userHasRight( $user, 'upload' ) ) {
 			$watchTypes['upload'] = 'watchuploads';
 		}
 
 		foreach ( $watchTypes as $action => $pref ) {
-			if ( $user->isAllowed( $action ) ) {
+			if ( $this->permissionManager->userHasRight( $user, $action ) ) {
 				// Messages:
 				// tog-watchdefault, tog-watchmoves, tog-watchdeletion, tog-watchcreations, tog-watchuploads
 				// tog-watchrollback
@@ -1606,7 +1610,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$hiddenPrefs = $this->options->get( 'HiddenPrefs' );
 		$result = true;
 
-		if ( !$user->isAllowedAny( 'editmyprivateinfo', 'editmyoptions' ) ) {
+		if ( !$this->permissionManager
+				->userHasAnyRight( $user, 'editmyprivateinfo', 'editmyoptions' )
+		) {
 			return Status::newFatal( 'mypreferencesprotected' );
 		}
 
@@ -1617,14 +1623,14 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		// (not really "private", but still shouldn't be edited without permission)
 
 		if ( !in_array( 'realname', $hiddenPrefs )
-			&& $user->isAllowed( 'editmyprivateinfo' )
+			&& $this->permissionManager->userHasRight( $user, 'editmyprivateinfo' )
 			&& array_key_exists( 'realname', $formData )
 		) {
 			$realName = $formData['realname'];
 			$user->setRealName( $realName );
 		}
 
-		if ( $user->isAllowed( 'editmyoptions' ) ) {
+		if ( $this->permissionManager->userHasRight( $user, 'editmyoptions' ) ) {
 			$oldUserOptions = $user->getOptions();
 
 			foreach ( $this->getSaveBlacklist() as $b ) {
