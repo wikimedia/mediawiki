@@ -34,8 +34,8 @@ class UserMailer {
 	 * Send mail using a PEAR mailer
 	 *
 	 * @param Mail_smtp $mailer
-	 * @param string $dest
-	 * @param string $headers
+	 * @param string[]|string $dest
+	 * @param array $headers
 	 * @param string $body
 	 *
 	 * @return Status
@@ -382,6 +382,8 @@ class UserMailer {
 				throw new MWException( 'PEAR mail package is not installed' );
 			}
 
+			$recips = array_map( 'strval', $to );
+
 			Wikimedia\suppressWarnings();
 
 			// Create the mail object using the Mail::factory method
@@ -397,13 +399,13 @@ class UserMailer {
 			$headers['Subject'] = self::quotedPrintable( $subject );
 
 			// When sending only to one recipient, shows it its email using To:
-			if ( count( $to ) == 1 ) {
-				$headers['To'] = $to[0]->toString();
+			if ( count( $recips ) == 1 ) {
+				$headers['To'] = $recips[0];
 			}
 
 			// Split jobs since SMTP servers tends to limit the maximum
 			// number of possible recipients.
-			$chunks = array_chunk( $to, $wgEnotifMaxRecips );
+			$chunks = array_chunk( $recips, $wgEnotifMaxRecips );
 			foreach ( $chunks as $chunk ) {
 				$status = self::sendWithPear( $mail_object, $chunk, $headers, $body );
 				// FIXME : some chunks might be sent while others are not!
