@@ -73,7 +73,7 @@ class FSFileBackend extends FileBackendStore {
 	/** @var string Required OS username to own files */
 	protected $fileOwner;
 
-	/** @var bool Whether the OS is Windows (otherwise assumed Unix-like)*/
+	/** @var bool Whether the OS is Windows (otherwise assumed Unix-like) */
 	protected $isWindows;
 	/** @var string OS username running this script */
 	protected $currentUser;
