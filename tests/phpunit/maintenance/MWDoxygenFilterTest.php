@@ -1,7 +1,7 @@
 <?php
 
 /**
-* @covers MWDoxygenFilter
+ * @covers MWDoxygenFilter
  */
 class MWDoxygenFilterTest extends \PHPUnit\Framework\TestCase {
 
