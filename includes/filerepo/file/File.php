@@ -1467,13 +1467,15 @@ abstract class File implements IDBAccessObject {
 		// Delete thumbnails and refresh file metadata cache
 		$this->purgeCache();
 		$this->purgeDescription();
-
 		// Purge cache of all pages using this file
 		$title = $this->getTitle();
 		if ( $title ) {
-			DeferredUpdates::addUpdate(
-				new HTMLCacheUpdate( $title, 'imagelinks', 'file-purge' )
+			$job = HTMLCacheUpdateJob::newForBacklinks(
+				$title,
+				'imagelinks',
+				[ 'causeAction' => 'file-purge' ]
 			);
+			JobQueueGroup::singleton()->lazyPush( $job );
 		}
 	}
 
