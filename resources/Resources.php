@@ -1254,8 +1254,8 @@ return [
 		]
 	],
 	'mediawiki.util' => [
-		'localBasePath' => "$IP/resources/src/mediawiki.util/",
-		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.util/",
+		'localBasePath' => "$IP/resources/src/mediawiki.util",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.util",
 		'packageFiles' => [
 			'util.js',
 			'jquery.accessKeyLabel.js',
