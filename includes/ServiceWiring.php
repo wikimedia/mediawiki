@@ -542,7 +542,8 @@ return [
 			$services->getContentLanguage(),
 			AuthManager::singleton(),
 			$services->getLinkRendererFactory()->create(),
-			$services->getNamespaceInfo()
+			$services->getNamespaceInfo(),
+			$services->getPermissionManager()
 		);
 		$factory->setLogger( LoggerFactory::getInstance( 'preferences' ) );
 
