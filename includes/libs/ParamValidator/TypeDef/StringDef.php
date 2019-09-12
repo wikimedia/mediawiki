@@ -2,17 +2,17 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
+use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\Callbacks;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef;
-use Wikimedia\ParamValidator\ValidationException;
 
 /**
  * Type definition for string types
  *
  * The result from validate() is a PHP string.
  *
- * ValidationException codes:
+ * Failure codes:
  *  - 'missingparam': The parameter is the empty string (and that's not allowed). No data.
  *
  * Additional codes may be generated when using certain PARAM constants. See
@@ -26,10 +26,10 @@ class StringDef extends TypeDef {
 	/**
 	 * (integer) Maximum length of a string in bytes.
 	 *
-	 * ValidationException codes:
+	 * Failure codes:
 	 *  - 'maxbytes': The string is too long. Data:
-	 *     - 'maxbytes': The maximum number of bytes allowed
-	 *     - 'maxchars': The maximum number of characters allowed
+	 *     - 'maxbytes': The maximum number of bytes allowed, or null if no limit
+	 *     - 'maxchars': The maximum number of characters allowed, or null if no limit
 	 */
 	const PARAM_MAX_BYTES = 'param-max-bytes';
 
@@ -38,10 +38,10 @@ class StringDef extends TypeDef {
 	 *
 	 * The string is assumed to be encoded as UTF-8.
 	 *
-	 * ValidationException codes:
+	 * Failure codes:
 	 *  - 'maxchars': The string is too long. Data:
-	 *     - 'maxbytes': The maximum number of bytes allowed
-	 *     - 'maxchars': The maximum number of characters allowed
+	 *     - 'maxbytes': The maximum number of bytes allowed, or null if no limit
+	 *     - 'maxchars': The maximum number of characters allowed, or null if no limit
 	 */
 	const PARAM_MAX_CHARS = 'param-max-chars';
 
@@ -63,27 +63,55 @@ class StringDef extends TypeDef {
 		if ( !$this->allowEmptyWhenRequired && $value === '' &&
 			!empty( $settings[ParamValidator::PARAM_REQUIRED] )
 		) {
-			throw new ValidationException( $name, $value, $settings, 'missingparam', [] );
+			$this->failure( 'missingparam', $name, $value, $settings, $options );
 		}
 
-		if ( isset( $settings[self::PARAM_MAX_BYTES] )
-			&& strlen( $value ) > $settings[self::PARAM_MAX_BYTES]
-		) {
-			throw new ValidationException( $name, $value, $settings, 'maxbytes', [
-				'maxbytes' => $settings[self::PARAM_MAX_BYTES] ?? '',
-				'maxchars' => $settings[self::PARAM_MAX_CHARS] ?? '',
-			] );
+		$len = strlen( $value );
+		if ( isset( $settings[self::PARAM_MAX_BYTES] ) && $len > $settings[self::PARAM_MAX_BYTES] ) {
+			$this->failure(
+				$this->failureMessage( 'maxbytes', [
+					'maxbytes' => $settings[self::PARAM_MAX_BYTES] ?? null,
+					'maxchars' => $settings[self::PARAM_MAX_CHARS] ?? null,
+				] )->numParams( $settings[self::PARAM_MAX_BYTES], $len ),
+				$name, $value, $settings, $options
+			);
 		}
-		if ( isset( $settings[self::PARAM_MAX_CHARS] )
-			&& mb_strlen( $value, 'UTF-8' ) > $settings[self::PARAM_MAX_CHARS]
-		) {
-			throw new ValidationException( $name, $value, $settings, 'maxchars', [
-				'maxbytes' => $settings[self::PARAM_MAX_BYTES] ?? '',
-				'maxchars' => $settings[self::PARAM_MAX_CHARS] ?? '',
-			] );
+		$len = mb_strlen( $value, 'UTF-8' );
+		if ( isset( $settings[self::PARAM_MAX_CHARS] ) && $len > $settings[self::PARAM_MAX_CHARS] ) {
+			$this->failure(
+				$this->failureMessage( 'maxchars', [
+					'maxbytes' => $settings[self::PARAM_MAX_BYTES] ?? null,
+					'maxchars' => $settings[self::PARAM_MAX_CHARS] ?? null,
+				] )->numParams( $settings[self::PARAM_MAX_CHARS], $len ),
+				$name, $value, $settings, $options
+			);
 		}
 
 		return $value;
+	}
+
+	public function getParamInfo( $name, array $settings, array $options ) {
+		$info = parent::getParamInfo( $name, $settings, $options );
+
+		$info['maxbytes'] = $settings[self::PARAM_MAX_BYTES] ?? null;
+		$info['maxchars'] = $settings[self::PARAM_MAX_CHARS] ?? null;
+
+		return $info;
+	}
+
+	public function getHelpInfo( $name, array $settings, array $options ) {
+		$info = parent::getHelpInfo( $name, $settings, $options );
+
+		if ( isset( $settings[self::PARAM_MAX_BYTES] ) ) {
+			$info[self::PARAM_MAX_BYTES] = MessageValue::new( 'paramvalidator-help-type-string-maxbytes' )
+				->numParams( $settings[self::PARAM_MAX_BYTES] );
+		}
+		if ( isset( $settings[self::PARAM_MAX_CHARS] ) ) {
+			$info[self::PARAM_MAX_CHARS] = MessageValue::new( 'paramvalidator-help-type-string-maxchars' )
+				->numParams( $settings[self::PARAM_MAX_CHARS] );
+		}
+
+		return $info;
 	}
 
 }

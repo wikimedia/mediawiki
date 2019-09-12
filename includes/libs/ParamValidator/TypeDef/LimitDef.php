@@ -2,6 +2,9 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
+use Wikimedia\Message\MessageValue;
+use Wikimedia\ParamValidator\ParamValidator;
+
 /**
  * Type definition for "limit" types
  *
@@ -39,7 +42,19 @@ class LimitDef extends IntegerDef {
 			self::PARAM_MIN => 0,
 		];
 
+		// Cannot be multi-valued
+		$settings[ParamValidator::PARAM_ISMULTI] = false;
+
 		return parent::normalizeSettings( $settings );
+	}
+
+	public function getHelpInfo( $name, array $settings, array $options ) {
+		$info = parent::getHelpInfo( $name, $settings, $options );
+
+		$info[ParamValidator::PARAM_TYPE] = MessageValue::new( 'paramvalidator-help-type-limit' )
+			->params( 1 );
+
+		return $info;
 	}
 
 }

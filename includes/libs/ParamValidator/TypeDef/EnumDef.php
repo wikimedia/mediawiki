@@ -2,9 +2,14 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
+use Wikimedia\Message\ParamType;
+use Wikimedia\Message\MessageParam;
+use Wikimedia\Message\ScalarParam;
+use Wikimedia\Message\ListParam;
+use Wikimedia\Message\ListType;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef;
-use Wikimedia\ParamValidator\ValidationException;
 
 /**
  * Type definition for enumeration types.
@@ -14,10 +19,8 @@ use Wikimedia\ParamValidator\ValidationException;
  *
  * The result from validate() is one of the defined values.
  *
- * ValidationException codes:
+ * Failure codes:
  *  - 'badvalue': The value is not a recognized value. No data.
- *  - 'notmulti': PARAM_ISMULTI is not set and the unrecognized value seems to
- *     be an attempt at using multiple values. No data.
  *
  * Additional codes may be generated when using certain PARAM constants. See
  * the constants' documentation for details.
@@ -31,15 +34,15 @@ class EnumDef extends TypeDef {
 	 * (array) Associative array of deprecated values.
 	 *
 	 * Keys are the deprecated parameter values, values are included in
-	 * the ValidationException. If value is null, the parameter is considered
+	 * the failure message. If value is null, the parameter is considered
 	 * not actually deprecated.
 	 *
 	 * Note that this does not add any values to the enumeration, it only
 	 * documents existing values as being deprecated.
 	 *
-	 * ValidationException codes: (non-fatal)
+	 * Failure codes: (non-fatal)
 	 *  - 'deprecated-value': A deprecated value was encountered. Data:
-	 *     - 'flag': The value from the associative array.
+	 *     - 'data': The value from the associative array.
 	 */
 	const PARAM_DEPRECATED_VALUES = 'param-deprecated-values';
 
@@ -49,24 +52,27 @@ class EnumDef extends TypeDef {
 		if ( in_array( $value, $values, true ) ) {
 			// Set a warning if a deprecated parameter value has been passed
 			if ( isset( $settings[self::PARAM_DEPRECATED_VALUES][$value] ) ) {
-				$this->callbacks->recordCondition(
-					new ValidationException( $name, $value, $settings, 'deprecated-value', [
-						'flag' => $settings[self::PARAM_DEPRECATED_VALUES][$value],
+				$this->failure(
+					$this->failureMessage( 'deprecated-value', [
+						'data' => $settings[self::PARAM_DEPRECATED_VALUES][$value],
 					] ),
-					$options
+					$name, $value, $settings, $options,
+					false
 				);
 			}
 
 			return $value;
 		}
 
-		if ( !isset( $options['values-list'] ) &&
-			count( ParamValidator::explodeMultiValue( $value, 2 ) ) > 1
-		) {
-			throw new ValidationException( $name, $value, $settings, 'notmulti', [] );
-		} else {
-			throw new ValidationException( $name, $value, $settings, 'badvalue', [] );
-		}
+		$isMulti = !isset( $options['values-list'] );
+		$this->failure(
+			$this->failureMessage( 'badvalue', [], $isMulti ? 'enummulti' : 'enumnotmulti' )
+				->textListParams( array_map( function ( $v ) {
+					return new ScalarParam( ParamType::PLAINTEXT, $v );
+				}, $values ) )
+				->numParams( count( $values ) ),
+			$name, $value, $settings, $options
+		);
 	}
 
 	public function getEnumValues( $name, array $settings, array $options ) {
@@ -78,12 +84,81 @@ class EnumDef extends TypeDef {
 			return parent::stringifyValue( $name, $value, $settings, $options );
 		}
 
-		foreach ( $value as $v ) {
-			if ( strpos( $v, '|' ) !== false ) {
-				return "\x1f" . implode( "\x1f", $value );
+		return ParamValidator::implodeMultiValue( $value );
+	}
+
+	public function getParamInfo( $name, array $settings, array $options ) {
+		$info = parent::getParamInfo( $name, $settings, $options );
+
+		if ( !empty( $settings[self::PARAM_DEPRECATED_VALUES] ) ) {
+			$deprecatedValues = array_intersect(
+				array_keys( $settings[self::PARAM_DEPRECATED_VALUES] ),
+				$this->getEnumValues( $name, $settings, $options )
+			);
+			if ( $deprecatedValues ) {
+				$info['deprecatedvalues'] = array_values( $deprecatedValues );
 			}
 		}
-		return implode( '|', $value );
+
+		return $info;
+	}
+
+	public function getHelpInfo( $name, array $settings, array $options ) {
+		$info = parent::getHelpInfo( $name, $settings, $options );
+
+		$isMulti = !empty( $settings[ParamValidator::PARAM_ISMULTI] );
+
+		$values = $this->getEnumValuesForHelp( $name, $settings, $options );
+		$count = count( $values );
+
+		$i = array_search( '', $values, true );
+		if ( $i === false ) {
+			$valuesParam = new ListParam( ListType::COMMA, $values );
+		} else {
+			unset( $values[$i] );
+			$valuesParam = MessageValue::new( 'paramvalidator-help-type-enum-can-be-empty' )
+				->commaListParams( $values )
+				->numParams( count( $values ) );
+		}
+
+		$info[ParamValidator::PARAM_TYPE] = MessageValue::new( 'paramvalidator-help-type-enum' )
+			->params( $isMulti ? 2 : 1 )
+			->params( $valuesParam )
+			->numParams( $count );
+
+		// Suppress standard ISMULTI message, it should be incorporated into our type message.
+		$info[ParamValidator::PARAM_ISMULTI] = null;
+
+		return $info;
+	}
+
+	/**
+	 * Return enum values formatted for the help message
+	 *
+	 * @param string $name Parameter name being described.
+	 * @param array $settings Parameter settings array.
+	 * @param array $options Options array.
+	 * @return (MessageParam|string)[]
+	 */
+	protected function getEnumValuesForHelp( $name, array $settings, array $options ) {
+		$values = $this->getEnumValues( $name, $settings, $options );
+
+		// sort values by deprecation status and name
+		$flags = [];
+		foreach ( $values as $k => $value ) {
+			$flag = 0;
+			if ( isset( $settings[self::PARAM_DEPRECATED_VALUES][$value] ) ) {
+				$flag |= 1;
+			}
+			$flags[$k] = $flag;
+		}
+		array_multisort( $flags, $values );
+
+		// @todo Indicate deprecated values in some manner. Probably that needs
+		// MessageValue and/or MessageParam to have a generic ability to wrap
+		// values in HTML without that HTML coming out in the text format too.
+
+		return $values;
 	}
 
 }

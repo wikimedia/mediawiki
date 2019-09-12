@@ -5,6 +5,7 @@ namespace MediaWiki\Rest\Validator;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
+use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\ObjectFactory;
@@ -98,12 +99,12 @@ class Validator {
 					'source' => $settings[Handler::PARAM_SOURCE] ?? 'unspecified',
 				] );
 			} catch ( ValidationException $e ) {
-				throw new HttpException( 'Parameter validation failed', 400, [
+				throw new LocalizedHttpException( $e->getFailureMessage(), 400, [
 					'error' => 'parameter-validation-failed',
 					'name' => $e->getParamName(),
 					'value' => $e->getParamValue(),
-					'failureCode' => $e->getFailureCode(),
-					'failureData' => $e->getFailureData(),
+					'failureCode' => $e->getFailureMessage()->getCode(),
+					'failureData' => $e->getFailureMessage()->getData(),
 				] );
 			}
 		}

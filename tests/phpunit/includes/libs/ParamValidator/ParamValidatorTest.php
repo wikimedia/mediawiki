@@ -4,6 +4,10 @@ namespace Wikimedia\ParamValidator;
 
 use DomainException;
 use Psr\Container\ContainerInterface;
+use Wikimedia\Message\DataMessageValue;
+use Wikimedia\Message\MessageValue;
+use Wikimedia\Message\ParamType;
+use Wikimedia\Message\ScalarParam;
 use Wikimedia\ObjectFactory;
 
 /**
@@ -177,6 +181,26 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 		];
 	}
 
+	/** @dataProvider provideImplodeMultiValue */
+	public function testImplodeMultiValue( $value, $expect ) {
+		$this->assertSame( $expect, ParamValidator::implodeMultiValue( $value ) );
+	}
+
+	public static function provideImplodeMultiValue() {
+		return [
+			[ [], '' ],
+			[ [ '' ], '|' ],
+			[ [ '', '' ], '|' ],
+			[ [ 'foo', '' ], 'foo|' ],
+			[ [ '', 'foo' ], '|foo' ],
+			[ [ '', 'foo', '' ], '|foo|' ],
+			[ [ 'foobar' ], 'foobar' ],
+			[ [ 'foo', 'bar' ], 'foo|bar' ],
+			[ [ 'foo|bar' ], "\x1ffoo|bar" ],
+			[ [ 'foo', '|', 'bar' ], "\x1ffoo\x1f|\x1fbar" ],
+		];
+	}
+
 	public function testGetValue_badType() {
 		$validator = new ParamValidator(
 			new SimpleCallbacks( [] ),
@@ -227,14 +251,22 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 
 		$expectConditions = [];
 		if ( $isSensitive ) {
-			$expectConditions[] = new ValidationException(
-				'foobar', $value, $settings, 'param-sensitive', []
-			);
+			$expectConditions[] = [
+				'message' => DataMessageValue::new( 'paramvalidator-param-sensitive', [], 'param-sensitive' )
+					->plaintextParams( 'foobar', $value ),
+				'name' => 'foobar',
+				'value' => $value,
+				'settings' => $settings,
+			];
 		}
 		if ( $isDeprecated ) {
-			$expectConditions[] = new ValidationException(
-				'foobar', $value, $settings, 'param-deprecated', []
-			);
+			$expectConditions[] = [
+				'message' => DataMessageValue::new( 'paramvalidator-param-deprecated', [], 'param-deprecated' )
+					->plaintextParams( 'foobar', $value ),
+				'name' => 'foobar',
+				'value' => $value,
+				'settings' => $settings,
+			];
 		}
 		$this->assertEquals( $expectConditions, $callbacks->getRecordedConditions() );
 	}
@@ -302,7 +334,10 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 					$this->fail( "Called with unexpected value '$v'" );
 				}
 				if ( $calls[$v] === null ) {
-					throw new ValidationException( $n, $v, $s, 'badvalue', [] );
+					throw new ValidationException(
+						DataMessageValue::new( 'XXX-from-test', [], 'badvalue' ),
+						$n, $v, $s
+					);
 				}
 				return $calls[$v];
 			}
@@ -319,19 +354,23 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 				$validator->validateValue( 'foobar', $value, $settings, $options );
 				$this->fail( 'Expected exception not thrown' );
 			} catch ( ValidationException $ex ) {
-				$this->assertSame( $expect->getFailureCode(), $ex->getFailureCode() );
-				$this->assertSame( $expect->getFailureData(), $ex->getFailureData() );
+				$this->assertSame(
+					$expect->getFailureMessage()->getCode(),
+					$ex->getFailureMessage()->getCode()
+				);
+				$this->assertSame(
+					$expect->getFailureMessage()->getData(),
+					$ex->getFailureMessage()->getData()
+				);
 			}
 		} else {
 			$this->assertSame(
 				$expect, $validator->validateValue( 'foobar', $value, $settings, $options )
 			);
-
-			$conditions = [];
-			foreach ( $callbacks->getRecordedConditions() as $c ) {
-				$conditions[] = array_merge( [ $c->getFailureCode() ], $c->getFailureData() );
+			foreach ( $expectConditions as $k => $c ) {
+				$expectConditions[$k]['settings'] = $settings;
 			}
-			$this->assertSame( $expectConditions, $conditions );
+			$this->assertEquals( $expectConditions, $callbacks->getRecordedConditions() );
 		}
 	}
 
@@ -344,7 +383,11 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 				false,
 				null,
 				[],
-				new ValidationException( 'foobar', null, [], 'missingparam', [] ),
+				new ValidationException(
+					DataMessageValue::new( 'paramvalidator-missingparam', [], 'missingparam' )
+						->plaintextParams( 'foobar' ),
+					'foobar', null, []
+				),
 			],
 			'Non-multi value' => [ 'abc', [], false, null, [ 'abc' => 'def' ], 'def' ],
 			'Simple multi value' => [
@@ -398,7 +441,14 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 				false,
 				null,
 				[],
-				new ValidationException( 'foobar', 'a|b|c|d', [], 'toomanyvalues', [ 'limit' => 2 ] ),
+				new ValidationException(
+					DataMessageValue::new( 'paramvalidator-toomanyvalues', [], 'toomanyvalues', [
+						'limit' => 2,
+						'lowlimit' => 2,
+						'highlimit' => 4,
+					] )->plaintextParams( 'foobar', 'a|b|c|d' )->numParams( 2 ),
+					'foobar', 'a|b|c|d', []
+				),
 			],
 			'Too many values as array' => [
 				[ 'a', 'b', 'c', 'd' ],
@@ -411,7 +461,12 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 				null,
 				[],
 				new ValidationException(
-					'foobar', [ 'a', 'b', 'c', 'd' ], [], 'toomanyvalues', [ 'limit' => 2 ]
+					DataMessageValue::new( 'paramvalidator-toomanyvalues', [], 'toomanyvalues', [
+						'limit' => 2,
+						'lowlimit' => 2,
+						'highlimit' => 4,
+					] )->plaintextParams( 'foobar', 'a|b|c|d' )->numParams( 2 ),
+					'foobar', [ 'a', 'b', 'c', 'd' ], []
 				),
 			],
 			'Not too many values for highlimits' => [
@@ -436,7 +491,14 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 				true,
 				null,
 				[],
-				new ValidationException( 'foobar', 'a|b|c|d|e', [], 'toomanyvalues', [ 'limit' => 4 ] ),
+				new ValidationException(
+					DataMessageValue::new( 'paramvalidator-toomanyvalues', [], 'toomanyvalues', [
+						'limit' => 4,
+						'lowlimit' => 2,
+						'highlimit' => 4,
+					] )->plaintextParams( 'foobar', 'a|b|c|d|e' )->numParams( 4 ),
+					'foobar', 'a|b|c|d|e', []
+				),
 			],
 
 			'Too many values via default' => [
@@ -447,7 +509,14 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 				false,
 				null,
 				[],
-				new ValidationException( 'foobar', 'a|b|c|d', [], 'toomanyvalues', [ 'limit' => 2 ] ),
+				new ValidationException(
+					DataMessageValue::new( 'paramvalidator-toomanyvalues', [], 'toomanyvalues', [
+						'limit' => 2,
+						'lowlimit' => 2,
+						'highlimit' => 4,
+					] )->plaintextParams( 'foobar', 'a|b|c|d' )->numParams( 2 ),
+					'foobar', 'a|b|c|d|e', []
+				),
 				[],
 				[ 'ismultiLimits' => [ 2, 4 ] ],
 			],
@@ -471,9 +540,28 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 				true,
 				null,
 				[],
-				new ValidationException( 'foobar', 'a|b|c|d|e', [], 'toomanyvalues', [ 'limit' => 4 ] ),
+				new ValidationException(
+					DataMessageValue::new( 'paramvalidator-toomanyvalues', [], 'toomanyvalues', [
+						'limit' => 4,
+						'lowlimit' => 2,
+						'highlimit' => 4,
+					] )->plaintextParams( 'foobar', 'a|b|c|d|e' )->numParams( 4 ),
+					'foobar', 'a|b|c|d|e', []
+				),
 				[],
 				[ 'ismultiLimits' => [ 2, 4 ] ],
+			],
+			'U+001F-style multi value when not multi' => [
+				"\x1fa",
+				[ ParamValidator::PARAM_ISMULTI => false ],
+				false,
+				null,
+				[],
+				new ValidationException(
+					DataMessageValue::new( 'paramvalicator-notmulti', [], 'badvalue' )
+						->plaintextParams( 'foobar', "\x1fa" ),
+					'foobar', "\x1fa", []
+				),
 			],
 
 			'Invalid values' => [
@@ -481,8 +569,11 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 				[ ParamValidator::PARAM_ISMULTI => true ],
 				false,
 				[ 'a', 'b', 'c', 'd' ],
-				[ 'a' => 'A', 'b' => null ],
-				new ValidationException( 'foobar', 'b', [], 'badvalue', [] ),
+				[ 'a' => 'A', 'b' => null, ],
+				new ValidationException(
+					DataMessageValue::new( 'XXX-from-test', [], 'badvalue' ),
+					'foobar', 'b', []
+				),
 			],
 			'Ignored invalid values' => [
 				'a|b|c|d',
@@ -495,9 +586,314 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 				[ 'a' => 'A', 'b' => null, 'c' => null, 'd' => 'D' ],
 				[ 'A', 'D' ],
 				[
-					[ 'unrecognizedvalues', 'values' => [ 'b', 'c' ] ],
+					[
+						'message' => DataMessageValue::new(
+							'paramvalidator-unrecognizedvalues', [], 'unrecognizedvalues', [ 'values' => [ 'b', 'c' ] ]
+						)
+							->plaintextParams( 'foobar', 'a|b|c|d' )
+							->commaListParams( [
+								new ScalarParam( ParamType::PLAINTEXT, 'b' ),
+								new ScalarParam( ParamType::PLAINTEXT, 'c' ),
+							] )
+							->numParams( 2 ),
+						'name' => 'foobar',
+						'value' => 'a|b|c|d',
+					],
 				],
 			],
+		];
+	}
+
+	/** @dataProvider provideGetParamInfo */
+	public function testGetParamInfo(
+		$settings, array $expect, array $typeDefReturns = [], array $options = []
+	) {
+		$callbacks = new SimpleCallbacks( [] );
+
+		$mb = $this->getMockBuilder( TypeDef::class )
+			->setConstructorArgs( [ $callbacks ] )
+			->setMethods( [ 'getParamInfo' ] );
+		$mock = $mb->getMockForAbstractClass();
+		$mock->method( 'getParamInfo' )->willReturn( $typeDefReturns );
+
+		$validator = new ParamValidator(
+			$callbacks,
+			new ObjectFactory( $this->getMockForAbstractClass( ContainerInterface::class ) ),
+			[ 'typeDefs' => [ 'foo' => $mock ] ]
+		);
+		$settings += [ ParamValidator::PARAM_TYPE => 'foo' ];
+		$this->assertSame( $expect, $validator->getParamInfo( 'test', $settings, $options ) );
+	}
+
+	public static function provideGetParamInfo() {
+		return [
+			'Basic test' => [
+				[],
+				[
+					'type' => 'foo',
+					'required' => false,
+					'multi' => false,
+				],
+			],
+			'Various settings' => [
+				[
+					ParamValidator::PARAM_REQUIRED => true,
+					ParamValidator::PARAM_DEPRECATED => true,
+					ParamValidator::PARAM_SENSITIVE => true,
+					ParamValidator::PARAM_DEFAULT => 1234,
+				],
+				[
+					'type' => 'foo',
+					'required' => true,
+					'deprecated' => true,
+					'sensitive' => true,
+					'default' => 1234,
+					'multi' => false,
+				],
+			],
+			'Multi-value' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ALLOW_DUPLICATES => true,
+					ParamValidator::PARAM_ALL => true,
+				],
+				[
+					'type' => 'foo',
+					'required' => false,
+					'multi' => true,
+					'lowlimit' => 50,
+					'highlimit' => 500,
+					'limit' => 50,
+					'allowsduplicates' => true,
+					'allspecifier' => ParamValidator::ALL_DEFAULT_STRING,
+				],
+			],
+			'Multi-value, high limit' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+				],
+				[
+					'type' => 'foo',
+					'required' => false,
+					'multi' => true,
+					'lowlimit' => 50,
+					'highlimit' => 500,
+					'limit' => 500,
+				],
+				[],
+				[ 'useHighLimits' => true ],
+			],
+			'Multi-value, custom limits and all string' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ISMULTI_LIMIT1 => 10,
+					ParamValidator::PARAM_ISMULTI_LIMIT2 => 15,
+					ParamValidator::PARAM_ALL => 'all',
+				],
+				[
+					'type' => 'foo',
+					'required' => false,
+					'multi' => true,
+					'lowlimit' => 10,
+					'highlimit' => 15,
+					'limit' => 10,
+					'allspecifier' => 'all',
+				],
+			],
+			'Multi-value, screwy custom limits' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ISMULTI_LIMIT2 => 10,
+				],
+				[
+					'type' => 'foo',
+					'required' => false,
+					'multi' => true,
+					'lowlimit' => 50,
+					'highlimit' => 50,
+					'limit' => 50,
+				],
+			],
+			'Overrides from the TypeDef' => [
+				[
+					ParamValidator::PARAM_SENSITIVE => true,
+					ParamValidator::PARAM_DEFAULT => 1234,
+				],
+				[
+					'type' => 'foo',
+					'required' => false,
+					'sensitive' => true,
+					'multi' => false,
+					'foobar' => [ 'baz' ],
+				],
+				[ 'default' => null, 'foobar' => [ 'baz' ] ],
+			]
+		];
+	}
+
+	/** @dataProvider provideGetHelpInfo */
+	public function testGetHelpInfo(
+		$settings, array $expect, array $typeDefReturns = [], array $options = []
+	) {
+		$callbacks = new SimpleCallbacks( [] );
+
+		$mb = $this->getMockBuilder( TypeDef::class )
+			->setConstructorArgs( [ $callbacks ] )
+			->setMethods( [ 'getHelpInfo', 'getEnumValues' ] );
+		$mock = $mb->getMockForAbstractClass();
+		$mock->method( 'getHelpInfo' )->willReturn( $typeDefReturns );
+		$mock->method( 'getEnumValues' )->willReturn( $settings['values'] ?? null );
+
+		$validator = new ParamValidator(
+			$callbacks,
+			new ObjectFactory( $this->getMockForAbstractClass( ContainerInterface::class ) ),
+			[ 'typeDefs' => [ 'foo' => $mock ] ]
+		);
+		$settings += [ ParamValidator::PARAM_TYPE => 'foo' ];
+
+		$info = [];
+		foreach ( $validator->getHelpInfo( 'test', $settings, $options ) as $k => $m ) {
+			$this->assertInstanceOf( MessageValue::class, $m );
+			$info[$k] = $m->dump();
+		}
+		$this->assertSame( $expect, $info );
+	}
+
+	public static function provideGetHelpInfo() {
+		return [
+			'Basic test' => [
+				[],
+				[],
+			],
+			'Various settings' => [
+				[
+					ParamValidator::PARAM_REQUIRED => true,
+					ParamValidator::PARAM_DEPRECATED => true,
+					ParamValidator::PARAM_SENSITIVE => true,
+					ParamValidator::PARAM_DEFAULT => 1234,
+				],
+				[
+					ParamValidator::PARAM_DEPRECATED => '<message key="paramvalidator-help-deprecated"></message>',
+					ParamValidator::PARAM_REQUIRED => '<message key="paramvalidator-help-required"></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_DEFAULT => '<message key="paramvalidator-param-default"><plaintext>1234</plaintext></message>',
+				],
+			],
+			'Multi-value' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ALLOW_DUPLICATES => true,
+					ParamValidator::PARAM_ALL => true,
+					ParamValidator::PARAM_DEFAULT => '',
+				],
+				[
+					ParamValidator::PARAM_ISMULTI => '<message key="paramvalidator-help-multi-sep"></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_ISMULTI_LIMIT1 => '<message key="paramvalidator-help-multi-max"><num>50</num><num>500</num></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_ALL => '<message key="paramvalidator-help-multi-all"><plaintext>*</plaintext></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_DEFAULT => '<message key="paramvalidator-param-default-empty"></message>',
+				],
+			],
+			'Multi-value, high limit' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+				],
+				[
+					ParamValidator::PARAM_ISMULTI => '<message key="paramvalidator-help-multi-sep"></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_ISMULTI_LIMIT1 => '<message key="paramvalidator-help-multi-max"><num>50</num><num>500</num></message>',
+				],
+				[],
+				[ 'useHighLimits' => true ],
+			],
+			'Multi-value, custom limits and all string' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ISMULTI_LIMIT1 => 10,
+					ParamValidator::PARAM_ISMULTI_LIMIT2 => 15,
+					ParamValidator::PARAM_ALL => 'all',
+				],
+				[
+					ParamValidator::PARAM_ISMULTI => '<message key="paramvalidator-help-multi-sep"></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_ISMULTI_LIMIT1 => '<message key="paramvalidator-help-multi-max"><num>10</num><num>15</num></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_ALL => '<message key="paramvalidator-help-multi-all"><plaintext>all</plaintext></message>',
+				],
+			],
+			'Multi-value, screwy custom limits' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ISMULTI_LIMIT2 => 10,
+				],
+				[
+					ParamValidator::PARAM_ISMULTI => '<message key="paramvalidator-help-multi-sep"></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_ISMULTI_LIMIT1 => '<message key="paramvalidator-help-multi-max-simple"><num>50</num></message>',
+				],
+			],
+			'Multi-value, not enough values to meet the limit' => [
+				[
+					'values' => [ 'a', 'b', 'c', 'd' ],
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ISMULTI_LIMIT1 => 4,
+					ParamValidator::PARAM_ISMULTI_LIMIT2 => 2,
+				],
+				[
+					ParamValidator::PARAM_ISMULTI => '<message key="paramvalidator-help-multi-sep"></message>',
+				],
+			],
+			'Multi-value, enough values to meet the limit' => [
+				[
+					'values' => [ 'a', 'b', 'c', 'd', 'e' ],
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ISMULTI_LIMIT1 => 4,
+					ParamValidator::PARAM_ISMULTI_LIMIT2 => 10,
+				],
+				[
+					ParamValidator::PARAM_ISMULTI => '<message key="paramvalidator-help-multi-sep"></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_ISMULTI_LIMIT1 => '<message key="paramvalidator-help-multi-max"><num>4</num><num>10</num></message>',
+				],
+			],
+			'Multi-value, not enough values to meet the limit but dups allowed' => [
+				[
+					'values' => [ 'a', 'b', 'c', 'd' ],
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ISMULTI_LIMIT1 => 4,
+					ParamValidator::PARAM_ISMULTI_LIMIT2 => 2,
+					ParamValidator::PARAM_ALLOW_DUPLICATES => true,
+				],
+				[
+					ParamValidator::PARAM_ISMULTI => '<message key="paramvalidator-help-multi-sep"></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_ISMULTI_LIMIT1 => '<message key="paramvalidator-help-multi-max-simple"><num>4</num></message>',
+				],
+			],
+			'Overrides from the TypeDef' => [
+				[
+					ParamValidator::PARAM_REQUIRED => true,
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_DEFAULT => 1234,
+				],
+				[
+					ParamValidator::PARAM_REQUIRED => '<message key="paramvalidator-help-required"></message>',
+					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-help"></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_ISMULTI_LIMIT1 => '<message key="paramvalidator-help-multi-max"><num>50</num><num>500</num></message>',
+					'foobar' => '<message key="foobaz"></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_DEFAULT => '<message key="paramvalidator-param-default"><text>XX</text></message>',
+				],
+				[
+					ParamValidator::PARAM_DEFAULT => MessageValue::new( 'paramvalidator-param-default', [ 'XX' ] ),
+					'foobar' => MessageValue::new( 'foobaz' ),
+					ParamValidator::PARAM_ISMULTI => null,
+					ParamValidator::PARAM_TYPE => MessageValue::new( 'paramvalidator-help-type-help' ),
+				],
+			]
 		];
 	}
 
