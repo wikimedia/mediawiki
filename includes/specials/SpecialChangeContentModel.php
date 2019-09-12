@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 class SpecialChangeContentModel extends FormSpecialPage {
 
 	public function __construct() {
@@ -226,7 +228,10 @@ class SpecialChangeContentModel extends FormSpecialPage {
 
 		$flags = $this->oldRevision ? EDIT_UPDATE : EDIT_NEW;
 		$flags |= EDIT_INTERNAL;
-		if ( $user->isAllowed( 'bot' ) ) {
+		if ( MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $user, 'bot' )
+		) {
 			$flags |= EDIT_FORCE_BOT;
 		}
 

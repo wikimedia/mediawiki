@@ -531,8 +531,6 @@ abstract class RevisionRecord {
 				$text = $title->getPrefixedText();
 				wfDebug( "Checking for $permissionlist on $text due to $field match on $bitfield\n" );
 
-				$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-
 				foreach ( $permissions as $perm ) {
 					if ( $permissionManager->userCan( $perm, $user, $title ) ) {
 						return true;

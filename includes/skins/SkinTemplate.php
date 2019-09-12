@@ -595,7 +595,7 @@ class SkinTemplate extends Skin {
 		# $this->getTitle() will just give Special:Badtitle, which is
 		# not especially useful as a returnto parameter. Use the title
 		# from the request instead, if there was one.
-		if ( $this->getUser()->isAllowed( 'read' ) ) {
+		if ( $permissionManager->userHasRight( $this->getUser(), 'read' ) ) {
 			$page = $this->getTitle();
 		} else {
 			$page = Title::newFromText( $request->getVal( 'title', '' ) );
@@ -636,7 +636,7 @@ class SkinTemplate extends Skin {
 				'active' => ( $href == $pageurl )
 			];
 
-			if ( $this->getUser()->isAllowed( 'viewmywatchlist' ) ) {
+			if ( $permissionManager->userHasRight( $this->getUser(), 'viewmywatchlist' ) ) {
 				$href = self::makeSpecialUrl( 'Watchlist' );
 				$personal_urls['watchlist'] = [
 					'text' => $this->msg( 'mywatchlist' )->text(),
@@ -689,9 +689,8 @@ class SkinTemplate extends Skin {
 				$useCombinedLoginLink = false;
 			}
 
-			$loginlink = $this->getUser()->isAllowed( 'createaccount' ) && $useCombinedLoginLink
-				? 'nav-login-createaccount'
-				: 'pt-login';
+			$loginlink = $permissionManager->userHasRight( $this->getUser(), 'createaccount' )
+						 && $useCombinedLoginLink ? 'nav-login-createaccount' : 'pt-login';
 
 			$login_url = [
 				'text' => $this->msg( $loginlink )->text(),
@@ -727,7 +726,7 @@ class SkinTemplate extends Skin {
 
 			if (
 				$authManager->canCreateAccounts()
-				&& $this->getUser()->isAllowed( 'createaccount' )
+				&& $permissionManager->userHasRight( $this->getUser(), 'createaccount' )
 				&& !$useCombinedLoginLink
 			) {
 				$personal_urls['createaccount'] = $createaccount_url;
@@ -1074,8 +1073,7 @@ class SkinTemplate extends Skin {
 
 				if ( $permissionManager->quickUserCan( 'protect', $user, $title ) &&
 					 $title->getRestrictionTypes() &&
-					 $permissionManager->getNamespaceRestrictionLevels( $title->getNamespace(),
-						 $user ) !== [ '' ]
+					 $permissionManager->getNamespaceRestrictionLevels( $title->getNamespace(), $user ) !== [ '' ]
 				) {
 					$mode = $title->isProtected() ? 'unprotect' : 'protect';
 					$content_navigation['actions'][$mode] = [
@@ -1345,7 +1343,10 @@ class SkinTemplate extends Skin {
 				'href' => self::makeSpecialUrlSubpage( 'Log', $rootUser )
 			];
 
-			if ( $this->getUser()->isAllowed( 'block' ) ) {
+			if ( MediawikiServices::getInstance()
+					->getPermissionManager()
+					->userHasRight( $this->getUser(), 'block' )
+			) {
 				$nav_urls['blockip'] = [
 					'text' => $this->msg( 'blockip', $rootUser )->text(),
 					'href' => self::makeSpecialUrlSubpage( 'Block', $rootUser )

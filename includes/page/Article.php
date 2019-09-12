@@ -1310,7 +1310,10 @@ class Article implements Page {
 		}
 
 		$outputPage->preventClickjacking();
-		if ( $user->isAllowed( 'writeapi' ) ) {
+		if ( MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $user, 'writeapi' )
+		) {
 			$outputPage->addModules( 'mediawiki.page.patrol.ajax' );
 		}
 
@@ -1827,7 +1830,10 @@ class Article implements Page {
 			[ 'delete', $this->getTitle()->getPrefixedText() ] )
 		) {
 			# Flag to hide all contents of the archived revisions
-			$suppress = $request->getCheck( 'wpSuppress' ) && $user->isAllowed( 'suppressrevision' );
+
+			$suppress = $request->getCheck( 'wpSuppress' ) && MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->userHasRight( $user, 'suppressrevision' );
 
 			$this->doDelete( $reason, $suppress );
 
@@ -1986,8 +1992,8 @@ class Article implements Page {
 				]
 			);
 		}
-
-		if ( $user->isAllowed( 'suppressrevision' ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( $permissionManager->userHasRight( $user, 'suppressrevision' ) ) {
 			$fields[] = new OOUI\FieldLayout(
 				new OOUI\CheckboxInputWidget( [
 					'name' => 'wpSuppress',
@@ -2045,7 +2051,7 @@ class Article implements Page {
 			] )
 		);
 
-		if ( $user->isAllowed( 'editinterface' ) ) {
+		if ( $permissionManager->userHasRight( $user, 'editinterface' ) ) {
 			$link = Linker::linkKnown(
 				$ctx->msg( 'deletereason-dropdown' )->inContentLanguage()->getTitle(),
 				wfMessage( 'delete-edit-reasonlist' )->escaped(),

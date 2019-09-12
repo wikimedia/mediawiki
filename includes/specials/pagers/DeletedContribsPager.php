@@ -90,13 +90,11 @@ class DeletedContribsPager extends IndexPager {
 		];
 		$conds = array_merge( $userCond, $this->getNamespaceCond() );
 		$user = $this->getUser();
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		// Paranoia: avoid brute force searches (T19792)
-		if ( !$user->isAllowed( 'deletedhistory' ) ) {
+		if ( !$permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
 			$conds[] = $this->mDb->bitAnd( 'ar_deleted', RevisionRecord::DELETED_USER ) . ' = 0';
-		} elseif ( !MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' )
-		) {
+		} elseif ( !$permissionManager->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' ) ) {
 			$conds[] = $this->mDb->bitAnd( 'ar_deleted', RevisionRecord::SUPPRESSED_USER ) .
 				' != ' . RevisionRecord::SUPPRESSED_USER;
 		}
@@ -325,8 +323,9 @@ class DeletedContribsPager extends IndexPager {
 		);
 
 		$user = $this->getUser();
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
-		if ( $user->isAllowed( 'deletedtext' ) ) {
+		if ( $permissionManager->userHasRight( $user, 'deletedtext' ) ) {
 			$last = $linkRenderer->makeKnownLink(
 				$undelete,
 				$this->messages['diff'],
@@ -344,7 +343,9 @@ class DeletedContribsPager extends IndexPager {
 		$comment = Linker::revComment( $rev );
 		$date = $this->getLanguage()->userTimeAndDate( $rev->getTimestamp(), $user );
 
-		if ( !$user->isAllowed( 'undelete' ) || !$rev->userCan( RevisionRecord::DELETED_TEXT, $user ) ) {
+		if ( !$permissionManager->userHasRight( $user, 'undelete' ) ||
+			 !$rev->userCan( RevisionRecord::DELETED_TEXT, $user )
+		) {
 			$link = htmlspecialchars( $date ); // unusable link
 		} else {
 			$link = $linkRenderer->makeKnownLink(

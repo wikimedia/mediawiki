@@ -163,7 +163,9 @@ class LogFormatter {
 		$logRestrictions = $this->context->getConfig()->get( 'LogRestrictions' );
 		$type = $this->entry->getType();
 		return !isset( $logRestrictions[$type] )
-			|| $this->context->getUser()->isAllowed( $logRestrictions[$type] );
+			|| MediaWikiServices::getInstance()
+				   ->getPermissionManager()
+				   ->userHasRight( $this->context->getUser(), $logRestrictions[$type] );
 	}
 
 	/**

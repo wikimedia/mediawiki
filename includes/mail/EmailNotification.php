@@ -129,7 +129,10 @@ class EmailNotification {
 		if ( $watchers === [] && !count( $wgUsersNotifiedOnAllChanges ) ) {
 			$sendEmail = false;
 			// Only send notification for non minor edits, unless $wgEnotifMinorEdits
-			if ( !$minorEdit || ( $wgEnotifMinorEdits && !$editor->isAllowed( 'nominornewtalk' ) ) ) {
+			if ( !$minorEdit || ( $wgEnotifMinorEdits && !MediaWikiServices::getInstance()
+						->getPermissionManager()
+						->userHasRight( $editor, 'nominornewtalk' ) )
+			) {
 				$isUserTalkPage = ( $title->getNamespace() == NS_USER_TALK );
 				if ( $wgEnotifUserTalk
 					&& $isUserTalkPage
@@ -214,7 +217,10 @@ class EmailNotification {
 
 		$userTalkId = false;
 
-		if ( !$minorEdit || ( $wgEnotifMinorEdits && !$editor->isAllowed( 'nominornewtalk' ) ) ) {
+		if ( !$minorEdit || ( $wgEnotifMinorEdits && !MediaWikiServices::getInstance()
+				   ->getPermissionManager()
+				   ->userHasRight( $editor, 'nominornewtalk' ) )
+		) {
 			if ( $wgEnotifUserTalk
 				&& $isUserTalkPage
 				&& $this->canSendUserTalkEmail( $editor, $title, $minorEdit )

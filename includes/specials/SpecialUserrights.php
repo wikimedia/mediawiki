@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Special page to allow managing user group membership
  *
@@ -161,7 +163,10 @@ class UserrightsPage extends SpecialPage {
 			 * (e.g. they don't have the userrights permission), then don't
 			 * allow them to change any user rights.
 			 */
-			if ( !$user->isAllowed( 'userrights' ) ) {
+			if ( !MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->userHasRight( $user, 'userrights' )
+			) {
 				$block = $user->getBlock();
 				if ( $block && $block->isSitewide() ) {
 					throw new UserBlockedError( $block );
@@ -515,7 +520,10 @@ class UserrightsPage extends SpecialPage {
 			if ( WikiMap::isCurrentWikiId( $dbDomain ) ) {
 				$dbDomain = '';
 			} else {
-				if ( $writing && !$this->getUser()->isAllowed( 'userrights-interwiki' ) ) {
+				if ( $writing && !MediaWikiServices::getInstance()
+						->getPermissionManager()
+						->userHasRight( $this->getUser(), 'userrights-interwiki' )
+				) {
 					return Status::newFatal( 'userrights-no-interwiki' );
 				}
 				if ( !UserRightsProxy::validDatabase( $dbDomain ) ) {

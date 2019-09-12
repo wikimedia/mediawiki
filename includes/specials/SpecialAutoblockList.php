@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A special page that lists autoblocks
  *
@@ -81,7 +83,10 @@ class SpecialAutoblockList extends SpecialPage {
 			'ipb_parent_block_id IS NOT NULL'
 		];
 		# Is the user allowed to see hidden blocks?
-		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
+		if ( !MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->userHasRight( $this->getUser(), 'hideuser' )
+		) {
 			$conds['ipb_deleted'] = 0;
 		}
 

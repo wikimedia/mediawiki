@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Special page allows users to request email confirmation message, and handles
  * processing of the confirmation code when the link in the email is followed
@@ -57,7 +59,10 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 
 		// This could also let someone check the current email address, so
 		// require both permissions.
-		if ( !$this->getUser()->isAllowed( 'viewmyprivateinfo' ) ) {
+		if ( !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $this->getUser(), 'viewmyprivateinfo' )
+		) {
 			throw new PermissionsError( 'viewmyprivateinfo' );
 		}
 

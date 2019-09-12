@@ -57,7 +57,9 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 	}
 
 	public function userCanExecute( User $user ) {
-		return $user->isAllowed( 'createaccount' );
+		return MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->userHasRight( $user, 'createaccount' );
 	}
 
 	public function checkPermissions() {

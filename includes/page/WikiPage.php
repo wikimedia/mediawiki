@@ -1896,7 +1896,8 @@ class WikiPage implements Page, IDBAccessObject {
 		// TODO: this check is here for backwards-compatibility with 1.31 behavior.
 		// Checking the minoredit right should be done in the same place the 'bot' right is
 		// checked for the EDIT_FORCE_BOT flag, which is currently in EditPage::attemptSave.
-		if ( ( $flags & EDIT_MINOR ) && !$user->isAllowed( 'minoredit' ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( ( $flags & EDIT_MINOR ) && !$permissionManager->userHasRight( $user, 'minoredit' ) ) {
 			$flags = ( $flags & ~EDIT_MINOR );
 		}
 
@@ -1916,7 +1917,6 @@ class WikiPage implements Page, IDBAccessObject {
 		// TODO: this logic should not be in the storage layer, it's here for compatibility
 		// with 1.31 behavior. Applying the 'autopatrol' right should be done in the same
 		// place the 'bot' right is handled, which is currently in EditPage::attemptSave.
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		if ( $needsPatrol && $permissionManager->userCan(
 			'autopatrol', $user, $this->getTitle()
@@ -3249,14 +3249,12 @@ class WikiPage implements Page, IDBAccessObject {
 		// Save
 		$flags = EDIT_UPDATE | EDIT_INTERNAL;
 
-		if ( $guser->isAllowed( 'minoredit' ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( $permissionManager->userHasRight( $guser, 'minoredit' ) ) {
 			$flags |= EDIT_MINOR;
 		}
 
-		if ( $bot && ( MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasAnyRight( $guser, 'markbotedits', 'bot' ) )
-		) {
+		if ( $bot && ( $permissionManager->userHasAnyRight( $guser, 'markbotedits', 'bot' ) ) ) {
 			$flags |= EDIT_FORCE_BOT;
 		}
 
@@ -3291,7 +3289,6 @@ class WikiPage implements Page, IDBAccessObject {
 		// TODO: this logic should not be in the storage layer, it's here for compatibility
 		// with 1.31 behavior. Applying the 'autopatrol' right should be done in the same
 		// place the 'bot' right is handled, which is currently in EditPage::attemptSave.
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		if ( $wgUseRCPatrol && $permissionManager->userCan(
 			'autopatrol', $guser, $this->getTitle()
@@ -3308,7 +3305,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// Set patrolling and bot flag on the edits, which gets rollbacked.
 		// This is done even on edit failure to have patrolling in that case (T64157).
 		$set = [];
-		if ( $bot && $guser->isAllowed( 'markbotedits' ) ) {
+		if ( $bot && $permissionManager->userHasRight( $guser, 'markbotedits' ) ) {
 			// Mark all reverted edits as bot
 			$set['rc_bot'] = 1;
 		}

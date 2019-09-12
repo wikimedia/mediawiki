@@ -23,6 +23,7 @@
  * @since 1.22
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionRecord;
 
 /**
@@ -136,7 +137,8 @@ class DeleteLogFormatter extends LogFormatter {
 	public function getActionLinks() {
 		$user = $this->context->getUser();
 		$linkRenderer = $this->getLinkRenderer();
-		if ( !$user->isAllowed( 'deletedhistory' )
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( !$permissionManager->userHasRight( $user, 'deletedhistory' )
 			|| $this->entry->isDeleted( LogPage::DELETED_ACTION )
 		) {
 			return '';
@@ -145,7 +147,7 @@ class DeleteLogFormatter extends LogFormatter {
 		switch ( $this->entry->getSubtype() ) {
 			case 'delete': // Show undelete link
 			case 'delete_redir':
-				if ( $user->isAllowed( 'undelete' ) ) {
+				if ( $permissionManager->userHasRight( $user, 'undelete' ) ) {
 					$message = 'undeletelink';
 				} else {
 					$message = 'undeleteviewlink';

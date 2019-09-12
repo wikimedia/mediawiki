@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MediaWikiServices;
 
 class ProtectedPagesPager extends TablePager {
 
@@ -159,7 +160,10 @@ class ProtectedPagesPager extends TablePager {
 				$formatted = htmlspecialchars( $this->getLanguage()->formatExpiry(
 					$value, /* User preference timezone */true ) );
 				$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
-				if ( $this->getUser()->isAllowed( 'protect' ) && $title ) {
+				if ( $title && MediaWikiServices::getInstance()
+						 ->getPermissionManager()
+						 ->userHasRight( $this->getUser(), 'protect' )
+				) {
 					$changeProtection = $linkRenderer->makeKnownLink(
 						$title,
 						$this->msg( 'protect_change' )->text(),

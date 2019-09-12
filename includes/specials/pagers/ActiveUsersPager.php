@@ -19,6 +19,8 @@
  * @ingroup Pager
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This class is used to get a list of active users. The ones with specials
  * rights (sysop, bureaucrat, developer) will have them displayed
@@ -124,7 +126,10 @@ class ActiveUsersPager extends UsersPager {
 			] ];
 			$conds['ug2.ug_user'] = null;
 		}
-		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
+		if ( !MediaWikiServices::getInstance()
+				  ->getPermissionManager()
+				  ->userHasRight( $this->getUser(), 'hideuser' )
+		) {
 			$conds[] = 'NOT EXISTS (' . $dbr->selectSQLText(
 					'ipblocks', '1', [ 'ipb_user=user_id', 'ipb_deleted' => 1 ]
 				) . ')';

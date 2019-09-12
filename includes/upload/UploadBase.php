@@ -20,7 +20,10 @@
  * @file
  * @ingroup Upload
  */
+
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
+use MediaWiki\User\UserIdentity;
 
 /**
  * @defgroup Upload Upload related
@@ -145,12 +148,13 @@ abstract class UploadBase {
 	 * identifying the missing permission.
 	 * Can be overridden by subclasses.
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @return bool|string
 	 */
-	public static function isAllowed( $user ) {
+	public static function isAllowed( UserIdentity $user ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		foreach ( [ 'upload', 'edit' ] as $permission ) {
-			if ( !$user->isAllowed( $permission ) ) {
+			if ( !$permissionManager->userHasRight( $user, $permission ) ) {
 				return $permission;
 			}
 		}
@@ -1954,7 +1958,10 @@ abstract class UploadBase {
 		 * wfFindFile finds a file, it exists in a shared repository.
 		 */
 		$file = wfFindFile( $this->getTitle(), [ 'latest' => true ] );
-		if ( $file && !$user->isAllowed( 'reupload-shared' ) ) {
+		if ( $file && !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $user, 'reupload-shared' )
+		) {
 			return [ 'fileexists-shared-forbidden', $file->getName() ];
 		}
 
@@ -1969,9 +1976,10 @@ abstract class UploadBase {
 	 * @return bool
 	 */
 	public static function userCanReUpload( User $user, File $img ) {
-		if ( $user->isAllowed( 'reupload' ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( $permissionManager->userHasRight( $user, 'reupload' ) ) {
 			return true; // non-conditional
-		} elseif ( !$user->isAllowed( 'reupload-own' ) ) {
+		} elseif ( !$permissionManager->userHasRight( $user, 'reupload-own' ) ) {
 			return false;
 		}
 
