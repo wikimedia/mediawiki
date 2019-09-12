@@ -23,6 +23,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Session\SessionManager;
 use Wikimedia\Timestamp\TimestampException;
 
 /**
@@ -205,7 +206,7 @@ class ApiMain extends ApiBase {
 			}
 			$sessionCookies = array_intersect(
 				array_keys( $_COOKIE ),
-				MediaWiki\Session\SessionManager::singleton()->getVaryCookies()
+				SessionManager::singleton()->getVaryCookies()
 			);
 			if ( $origins && $sessionCookies && (
 				count( $origins ) !== 1 || !self::matchOrigin(
@@ -544,6 +545,19 @@ class ApiMain extends ApiBase {
 			$this->handleException( $e );
 			$this->logRequest( microtime( true ) - $t, $e );
 			$isError = true;
+		}
+
+		// Disable the client cache on the output so that BlockManager::trackBlockWithCookie is executed
+		// as part of MediaWiki::preOutputCommit().
+		if (
+			$this->mCacheMode === 'private'
+			|| (
+				$this->mCacheMode === 'anon-public-user-private'
+				&& SessionManager::getGlobalSession()->isPersistent()
+			)
+		) {
+			$this->getContext()->getOutput()->enableClientCache( false );
+			$this->getContext()->getOutput()->considerCacheSettingsFinal();
 		}
 
 		// Commit DBs and send any related cookies and headers
@@ -919,7 +933,7 @@ class ApiMain extends ApiBase {
 		if ( $this->mCacheMode == 'anon-public-user-private' ) {
 			$out->addVaryHeader( 'Cookie' );
 			$response->header( $out->getVaryHeader() );
-			if ( MediaWiki\Session\SessionManager::getGlobalSession()->isPersistent() ) {
+			if ( SessionManager::getGlobalSession()->isPersistent() ) {
 				// Logged in or otherwise has session (e.g. anonymous users who have edited)
 				// Mark request private
 				$response->header( "Cache-Control: $privateCache" );
