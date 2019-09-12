@@ -73,16 +73,18 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	 * @return string
 	 */
 	function getButtons() {
-		if ( !MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasAnyRight( $this->getModifiedUser(), 'editmyprivateinfo', 'editmyoptions' )
-		) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( !$permissionManager->userHasAnyRight(
+			$this->getModifiedUser(),
+			'editmyprivateinfo',
+			'editmyoptions'
+		) ) {
 			return '';
 		}
 
 		$html = parent::getButtons();
 
-		if ( $this->getModifiedUser()->isAllowed( 'editmyoptions' ) ) {
+		if ( $permissionManager->userHasRight( $this->getModifiedUser(), 'editmyoptions' ) ) {
 			$t = $this->getTitle()->getSubpage( 'reset' );
 
 			$html .= new OOUI\ButtonWidget( [

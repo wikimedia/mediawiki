@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Special page for requesting a password reset email.
@@ -52,7 +53,11 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 	private function getPasswordReset() {
 		if ( $this->passwordReset === null ) {
-			$this->passwordReset = new PasswordReset( $this->getConfig(), AuthManager::singleton() );
+			$this->passwordReset = new PasswordReset(
+				$this->getConfig(),
+				AuthManager::singleton(),
+				MediaWikiServices::getInstance()->getPermissionManager()
+			);
 		}
 		return $this->passwordReset;
 	}

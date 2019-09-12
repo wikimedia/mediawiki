@@ -1,7 +1,4 @@
 <?php
-
-use MediaWiki\MediaWikiServices;
-
 /**
  * Backend for uploading files from a HTTP resource.
  *
@@ -24,6 +21,9 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Upload
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
+
 /**
  * Implements uploading from a HTTP resource.
  *
@@ -43,12 +43,15 @@ class UploadFromUrl extends UploadBase {
 	 * user is not allowed, return the name of the user right as a string. If
 	 * the user is allowed, have the parent do further permissions checking.
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 *
 	 * @return bool|string
 	 */
-	public static function isAllowed( $user ) {
-		if ( !$user->isAllowed( 'upload_by_url' ) ) {
+	public static function isAllowed( UserIdentity $user ) {
+		if ( !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $user, 'upload_by_url' )
+		) {
 			return 'upload_by_url';
 		}
 
@@ -167,7 +170,9 @@ class UploadFromUrl extends UploadBase {
 		$url = $request->getVal( 'wpUploadFileURL' );
 
 		return !empty( $url )
-			&& $wgUser->isAllowed( 'upload_by_url' );
+			&& MediaWikiServices::getInstance()
+				   ->getPermissionManager()
+				   ->userHasRight( $wgUser, 'upload_by_url' );
 	}
 
 	/**

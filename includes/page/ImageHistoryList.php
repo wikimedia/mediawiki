@@ -130,11 +130,10 @@ class ImageHistoryList extends ContextSource {
 		$row = $selected = '';
 
 		// Deletion link
-		if ( $local && ( $pm->userHasAnyRight( $user, 'delete', 'deletedhistory' ) )
-		) {
+		if ( $local && ( $pm->userHasAnyRight( $user, 'delete', 'deletedhistory' ) ) ) {
 			$row .= '<td>';
 			# Link to remove from history
-			if ( $user->isAllowed( 'delete' ) ) {
+			if ( $pm->userHasRight( $user, 'delete' ) ) {
 				$q = [ 'action' => 'delete' ];
 				if ( !$iscur ) {
 					$q['oldimage'] = $img;
@@ -146,9 +145,10 @@ class ImageHistoryList extends ContextSource {
 				);
 			}
 			# Link to hide content. Don't show useless link to people who cannot hide revisions.
-			$canHide = $user->isAllowed( 'deleterevision' );
-			if ( $canHide || ( $user->isAllowed( 'deletedhistory' ) && $file->getVisibility() ) ) {
-				if ( $user->isAllowed( 'delete' ) ) {
+			$canHide = $pm->userHasRight( $user, 'deleterevision' );
+			if ( $canHide || ( $pm->userHasRight( $user, 'deletedhistory' )
+					&& $file->getVisibility() ) ) {
+				if ( $pm->userHasRight( $user, 'delete' ) ) {
 					$row .= '<br />';
 				}
 				// If file is top revision or locked from this user, don't link

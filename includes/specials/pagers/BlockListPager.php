@@ -137,7 +137,10 @@ class BlockListPager extends TablePager {
 					$value,
 					/* User preference timezone */true
 				) );
-				if ( $this->getUser()->isAllowed( 'block' ) ) {
+				if ( MediaWikiServices::getInstance()
+						->getPermissionManager()
+						->userHasRight( $this->getUser(), 'block' )
+				) {
 					$links = [];
 					if ( $row->ipb_auto ) {
 						$links[] = $linkRenderer->makeKnownLink(
@@ -358,7 +361,10 @@ class BlockListPager extends TablePager {
 		$info['conds'][] = 'ipb_expiry > ' . $db->addQuotes( $db->timestamp() );
 
 		# Is the user allowed to see hidden blocks?
-		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
+		if ( !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $this->getUser(), 'hideuser' )
+		) {
 			$info['conds']['ipb_deleted'] = 0;
 		}
 

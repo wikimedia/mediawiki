@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -114,6 +115,8 @@ class SpecialBrokenRedirects extends QueryPage {
 		}
 
 		$linkRenderer = $this->getLinkRenderer();
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
 		// $toObj may very easily be false if the $result list is cached
 		if ( !is_object( $toObj ) ) {
 			return '<del>' . $linkRenderer->makeLink( $fromObj ) . '</del>';
@@ -129,7 +132,7 @@ class SpecialBrokenRedirects extends QueryPage {
 		// if the page is editable, add an edit link
 		if (
 			// check user permissions
-			$this->getUser()->isAllowed( 'edit' ) &&
+			$permissionManager->userHasRight( $this->getUser(), 'edit' ) &&
 			// check, if the content model is editable through action=edit
 			ContentHandler::getForTitle( $fromObj )->supportsDirectEditing()
 		) {
@@ -145,7 +148,7 @@ class SpecialBrokenRedirects extends QueryPage {
 
 		$out = $from . $this->msg( 'word-separator' )->escaped();
 
-		if ( $this->getUser()->isAllowed( 'delete' ) ) {
+		if ( $permissionManager->userHasRight( $this->getUser(), 'delete' ) ) {
 			$links[] = $linkRenderer->makeKnownLink(
 				$fromObj,
 				$this->msg( 'brokenredirects-delete' )->text(),

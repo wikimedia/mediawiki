@@ -94,7 +94,9 @@ class SpecialLog extends SpecialPage {
 		if ( !LogPage::isLogType( $type ) ) {
 			$opts->setValue( 'type', '' );
 		} elseif ( isset( $logRestrictions[$type] )
-			&& !$this->getUser()->isAllowed( $logRestrictions[$type] )
+			&& !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $this->getUser(), $logRestrictions[$type] )
 		) {
 			throw new PermissionsError( $logRestrictions[$type] );
 		}

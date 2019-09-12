@@ -381,12 +381,10 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		// Log entries with DELETED_ACTION must not show up unless the user has
 		// the necessary rights.
-		if ( !$user->isAllowed( 'deletedhistory' ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( !$permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
 			$bitmask = LogPage::DELETED_ACTION;
-		} elseif ( !MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' )
-		) {
+		} elseif ( !$permissionManager->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' ) ) {
 			$bitmask = LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED;
 		} else {
 			$bitmask = 0;

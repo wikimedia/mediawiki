@@ -603,7 +603,10 @@ EOT
 				);
 			}
 
-			if ( $wgEnableUploads && $user->isAllowed( 'upload' ) ) {
+			if ( $wgEnableUploads && MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->userHasRight( $user, 'upload' )
+			) {
 				// Only show an upload link if the user can upload
 				$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
 				$nofile = [

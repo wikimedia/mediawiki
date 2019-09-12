@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Revision;
 
 use Content;
 use Language;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\RenderedRevision;
@@ -122,7 +123,9 @@ class RenderedRevisionTest extends MediaWikiTestCase {
 		$mock->expects( $this->any() )
 			->method( 'userCan' )
 			->willReturnCallback( function ( $perm, User $user ) use ( $mock ) {
-				return $user->isAllowed( $perm );
+				return MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->userHasRight( $user, $perm );
 			} );
 
 		return $mock;

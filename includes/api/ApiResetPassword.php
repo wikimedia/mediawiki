@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Reset password, with AuthManager
@@ -63,7 +64,11 @@ class ApiResetPassword extends ApiBase {
 
 		$this->requireOnlyOneParameter( $params, 'user', 'email' );
 
-		$passwordReset = new PasswordReset( $this->getConfig(), AuthManager::singleton() );
+		$passwordReset = new PasswordReset(
+			$this->getConfig(),
+			AuthManager::singleton(),
+			MediaWikiServices::getInstance()->getPermissionManager()
+		);
 
 		$status = $passwordReset->isAllowed( $this->getUser() );
 		if ( !$status->isOK() ) {

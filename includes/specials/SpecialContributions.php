@@ -126,7 +126,10 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		// Allows reverts to have the bot flag in recent changes. It is just here to
 		// be passed in the form at the top of the page
-		if ( $user->isAllowed( 'markbotedits' ) && $request->getBool( 'bot' ) ) {
+		if ( MediaWikiServices::getInstance()
+				 ->getPermissionManager()
+				 ->userHasRight( $user, 'markbotedits' ) && $request->getBool( 'bot' )
+		) {
 			$this->opts['bot'] = '1';
 		}
 
@@ -373,7 +376,9 @@ class SpecialContributions extends IncludableSpecialPage {
 			);
 		}
 
-		if ( $sp->getUser()->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
+		# Block / Change block / Unblock links
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( $permissionManager->userHasRight( $sp->getUser(), 'block' ) ) {
 			if ( $target->getBlock() && $target->getBlock()->getType() != DatabaseBlock::TYPE_AUTO ) {
 				$tools['block'] = $linkRenderer->makeKnownLink( # Change block link
 					SpecialPage::getTitleFor( 'Block', $username ),
@@ -400,7 +405,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		);
 
 		# Suppression log link (T61120)
-		if ( $sp->getUser()->isAllowed( 'suppressionlog' ) ) {
+		if ( $permissionManager->userHasRight( $sp->getUser(), 'suppressionlog' ) ) {
 			$tools['log-suppression'] = $linkRenderer->makeKnownLink(
 				SpecialPage::getTitleFor( 'Log', 'suppress' ),
 				$sp->msg( 'sp-contributions-suppresslog', $username )->text(),
@@ -412,7 +417,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		# Don't show some links for IP ranges
 		if ( !$isRange ) {
 			# Uploads: hide if IPs cannot upload (T220674)
-			if ( !$isIP || $target->isAllowed( 'upload' ) ) {
+			if ( !$isIP || $permissionManager->userHasRight( $target, 'upload' ) ) {
 				$tools['uploads'] = $linkRenderer->makeKnownLink(
 					SpecialPage::getTitleFor( 'Listfiles', $username ),
 					$sp->msg( 'sp-contributions-uploads' )->text()
@@ -428,7 +433,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 			# Add link to deleted user contributions for priviledged users
 			# Todo: T183457
-			if ( $sp->getUser()->isAllowed( 'deletedhistory' ) ) {
+			if ( $permissionManager->userHasRight( $sp->getUser(), 'deletedhistory' ) ) {
 				$tools['deletedcontribs'] = $linkRenderer->makeKnownLink(
 					SpecialPage::getTitleFor( 'DeletedContributions', $username ),
 					$sp->msg( 'sp-contributions-deleted', $username )->text()
@@ -628,7 +633,10 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		$filters = [];
 
-		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
+		if ( MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $this->getUser(), 'deletedhistory' )
+		) {
 			$filters[] = Html::rawElement(
 				'span',
 				[ 'class' => 'mw-input-with-label' ],

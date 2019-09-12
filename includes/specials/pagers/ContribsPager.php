@@ -269,6 +269,7 @@ class ContribsPager extends RangeChronologicalPager {
 			'options' => [],
 			'join_conds' => $revQuery['joins'],
 		];
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		// WARNING: Keep this in sync with getTargetTable()!
 		$user = User::newFromName( $this->target, false );
@@ -313,14 +314,11 @@ class ContribsPager extends RangeChronologicalPager {
 		$queryInfo['conds'] = array_merge( $queryInfo['conds'], $this->getNamespaceCond() );
 
 		// Paranoia: avoid brute force searches (T19342)
-		if ( !$user->isAllowed( 'deletedhistory' ) ) {
+		if ( !$permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
 			$queryInfo['conds'][] = $this->mDb->bitAnd(
 				'rev_deleted', RevisionRecord::DELETED_USER
 				) . ' = 0';
-		} elseif ( !MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' )
-		) {
+		} elseif ( !$permissionManager->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' ) ) {
 			$queryInfo['conds'][] = $this->mDb->bitAnd(
 				'rev_deleted', RevisionRecord::SUPPRESSED_USER
 				) . ' != ' . RevisionRecord::SUPPRESSED_USER;

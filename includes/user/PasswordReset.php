@@ -22,6 +22,7 @@
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\TemporaryPasswordAuthenticationRequest;
+use MediaWiki\Permissions\PermissionManager;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use MediaWiki\Logger\LoggerFactory;
@@ -40,6 +41,9 @@ class PasswordReset implements LoggerAwareInterface {
 	/** @var AuthManager */
 	protected $authManager;
 
+	/** @var PermissionManager */
+	private $permissionManager;
+
 	/** @var LoggerInterface */
 	protected $logger;
 
@@ -50,9 +54,14 @@ class PasswordReset implements LoggerAwareInterface {
 	 */
 	private $permissionCache;
 
-	public function __construct( Config $config, AuthManager $authManager ) {
+	public function __construct(
+		Config $config,
+		AuthManager $authManager,
+		PermissionManager $permissionManager
+	) {
 		$this->config = $config;
 		$this->authManager = $authManager;
+		$this->permissionManager = $permissionManager;
 		$this->permissionCache = new MapCacheLRU( 1 );
 		$this->logger = LoggerFactory::getInstance( 'authentication' );
 	}
@@ -93,7 +102,7 @@ class PasswordReset implements LoggerAwareInterface {
 			} elseif ( !$this->config->get( 'EnableEmail' ) ) {
 				// Maybe email features have been disabled
 				$status = StatusValue::newFatal( 'passwordreset-emaildisabled' );
-			} elseif ( !$user->isAllowed( 'editmyprivateinfo' ) ) {
+			} elseif ( !$this->permissionManager->userHasRight( $user, 'editmyprivateinfo' ) ) {
 				// Maybe not all users have permission to change private data
 				$status = StatusValue::newFatal( 'badaccess' );
 			} elseif ( $this->isBlocked( $user ) ) {

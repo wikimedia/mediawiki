@@ -253,7 +253,10 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			return 'mailnologin';
 		}
 
-		if ( !$user->isAllowed( 'sendemail' ) ) {
+		if ( !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $user, 'sendemail' )
+		) {
 			return 'badaccess';
 		}
 

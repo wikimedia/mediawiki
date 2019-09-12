@@ -311,16 +311,18 @@ class SpecialUpload extends SpecialPage {
 	protected function showViewDeletedLinks() {
 		$title = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
 		$user = $this->getUser();
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		// Show a subtitle link to deleted revisions (to sysops et al only)
 		if ( $title instanceof Title ) {
 			$count = $title->isDeleted();
-			if ( $count > 0 && $user->isAllowed( 'deletedhistory' ) ) {
+			if ( $count > 0 && $permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
 				$restorelink = $this->getLinkRenderer()->makeKnownLink(
 					SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedText() ),
 					$this->msg( 'restorelink' )->numParams( $count )->text()
 				);
-				$link = $this->msg( $user->isAllowed( 'delete' ) ? 'thisisdeleted' : 'viewdeleted' )
-					->rawParams( $restorelink )->parseAsBlock();
+				$link = $this->msg(
+					$permissionManager->userHasRight( $user, 'delete' ) ? 'thisisdeleted' : 'viewdeleted'
+				)->rawParams( $restorelink )->parseAsBlock();
 				$this->getOutput()->addHTML(
 					Html::rawElement(
 						'div',

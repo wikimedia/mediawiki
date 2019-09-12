@@ -146,7 +146,9 @@ class LogPager extends ReverseChronologicalPager {
 		$needReindex = false;
 		foreach ( $types as $type ) {
 			if ( isset( $wgLogRestrictions[$type] )
-				&& !$user->isAllowed( $wgLogRestrictions[$type] )
+				&& !MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->userHasRight( $user, $wgLogRestrictions[$type] )
 			) {
 				$needReindex = true;
 				$types = array_diff( $types, [ $type ] );
@@ -462,12 +464,10 @@ class LogPager extends ReverseChronologicalPager {
 		}
 		$this->actionRestrictionsEnforced = true;
 		$user = $this->getUser();
-		if ( !$user->isAllowed( 'deletedhistory' ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( !$permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
 			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::DELETED_ACTION ) . ' = 0';
-		} elseif ( !MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' )
-		) {
+		} elseif ( !$permissionManager->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' ) ) {
 			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::SUPPRESSED_ACTION ) .
 				' != ' . LogPage::SUPPRESSED_USER;
 		}
@@ -483,12 +483,10 @@ class LogPager extends ReverseChronologicalPager {
 		}
 		$this->performerRestrictionsEnforced = true;
 		$user = $this->getUser();
-		if ( !$user->isAllowed( 'deletedhistory' ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( !$permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
 			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::DELETED_USER ) . ' = 0';
-		} elseif ( !MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' )
-		) {
+		} elseif ( !$permissionManager->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' ) ) {
 			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::SUPPRESSED_USER ) .
 				' != ' . LogPage::SUPPRESSED_ACTION;
 		}

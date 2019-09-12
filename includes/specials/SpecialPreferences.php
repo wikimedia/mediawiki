@@ -115,7 +115,10 @@ class SpecialPreferences extends SpecialPage {
 	}
 
 	protected function showResetForm() {
-		if ( !$this->getUser()->isAllowed( 'editmyoptions' ) ) {
+		if ( !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $this->getUser(), 'editmyoptions' )
+		) {
 			throw new PermissionsError( 'editmyoptions' );
 		}
 
@@ -134,7 +137,10 @@ class SpecialPreferences extends SpecialPage {
 	}
 
 	public function submitReset( $formData ) {
-		if ( !$this->getUser()->isAllowed( 'editmyoptions' ) ) {
+		if ( !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $this->getUser(), 'editmyoptions' )
+		) {
 			throw new PermissionsError( 'editmyoptions' );
 		}
 

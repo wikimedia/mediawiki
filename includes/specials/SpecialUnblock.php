@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MediaWikiServices;
 
 /**
  * A special page for unblocking users
@@ -208,7 +209,10 @@ class SpecialUnblock extends SpecialPage {
 
 		# If the name was hidden and the blocking user cannot hide
 		# names, then don't allow any block removals...
-		if ( !$performer->isAllowed( 'hideuser' ) && $block->getHideName() ) {
+		if ( !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $performer, 'hideuser' ) && $block->getHideName()
+		) {
 			return [ 'unblock-hideuser' ];
 		}
 

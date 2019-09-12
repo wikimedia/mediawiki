@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @covers LocalIdLookup
@@ -47,12 +48,12 @@ class LocalIdLookupTest extends MediaWikiTestCase {
 
 	public function testLookupCentralIds() {
 		$lookup = new LocalIdLookup();
-
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$user1 = $this->getLookupUser();
 		$user2 = User::newFromName( 'UTLocalIdLookup2' );
 
-		$this->assertTrue( $user1->isAllowed( 'hideuser' ), 'sanity check' );
-		$this->assertFalse( $user2->isAllowed( 'hideuser' ), 'sanity check' );
+		$this->assertTrue( $permissionManager->userHasRight( $user1, 'hideuser' ), 'sanity check' );
+		$this->assertFalse( $permissionManager->userHasRight( $user2, 'hideuser' ), 'sanity check' );
 
 		$this->assertSame( [], $lookup->lookupCentralIds( [] ) );
 
@@ -76,11 +77,12 @@ class LocalIdLookupTest extends MediaWikiTestCase {
 
 	public function testLookupUserNames() {
 		$lookup = new LocalIdLookup();
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$user1 = $this->getLookupUser();
 		$user2 = User::newFromName( 'UTLocalIdLookup2' );
 
-		$this->assertTrue( $user1->isAllowed( 'hideuser' ), 'sanity check' );
-		$this->assertFalse( $user2->isAllowed( 'hideuser' ), 'sanity check' );
+		$this->assertTrue( $permissionManager->userHasRight( $user1, 'hideuser' ), 'sanity check' );
+		$this->assertFalse( $permissionManager->userHasRight( $user2, 'hideuser' ), 'sanity check' );
 
 		$this->assertSame( [], $lookup->lookupUserNames( [] ) );
 

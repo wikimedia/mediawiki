@@ -4,6 +4,7 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\SystemBlock;
+use MediaWiki\Permissions\PermissionManager;
 
 /**
  * @covers PasswordReset
@@ -30,16 +31,19 @@ class PasswordResetTest extends MediaWikiTestCase {
 		$user->expects( $this->any() )->method( 'getName' )->willReturn( 'Foo' );
 		$user->expects( $this->any() )->method( 'getBlock' )->willReturn( $block );
 		$user->expects( $this->any() )->method( 'getGlobalBlock' )->willReturn( $globalBlock );
-		$user->expects( $this->any() )->method( 'isAllowed' )
-			->will( $this->returnCallback( function ( $perm ) use ( $canEditPrivate ) {
-				if ( $perm === 'editmyprivateinfo' ) {
-					return $canEditPrivate;
-				} else {
-					$this->fail( 'Unexpected permission check' );
-				}
-			} ) );
 
-		$passwordReset = new PasswordReset( $config, $authManager );
+		$permissionManager = $this->getMockBuilder( PermissionManager::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$permissionManager->method( 'userHasRight' )
+			->with( $user, 'editmyprivateinfo' )
+			->willReturn( $canEditPrivate );
+
+		$passwordReset = new PasswordReset(
+			$config,
+			$authManager,
+			$permissionManager
+		);
 
 		$this->assertSame( $isAllowed, $passwordReset->isAllowed( $user )->isGood() );
 	}
@@ -204,8 +208,15 @@ class PasswordResetTest extends MediaWikiTestCase {
 		$request->setIP( '1.2.3.4' );
 		$performingUser = $this->getMockBuilder( User::class )->getMock();
 		$performingUser->expects( $this->any() )->method( 'getRequest' )->willReturn( $request );
-		$performingUser->expects( $this->any() )->method( 'isAllowed' )->willReturn( true );
 		$performingUser->expects( $this->any() )->method( 'getName' )->willReturn( 'Performer' );
+
+		$permissionManager = $this->getMockBuilder( PermissionManager::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$permissionManager->expects( $this->once() )
+			->method( 'userHasRight' )
+			->with( $performingUser, 'editmyprivateinfo' )
+			->willReturn( true );
 
 		$targetUser1 = $this->getMockBuilder( User::class )->getMock();
 		$targetUser2 = $this->getMockBuilder( User::class )->getMock();
@@ -217,7 +228,8 @@ class PasswordResetTest extends MediaWikiTestCase {
 		$targetUser2->expects( $this->any() )->method( 'getEmail' )->willReturn( 'foo@bar.baz' );
 
 		$passwordReset = $this->getMockBuilder( PasswordReset::class )
-			->setMethods( [ 'getUsersByEmail' ] )->setConstructorArgs( [ $config, $authManager ] )
+			->setConstructorArgs( [ $config, $authManager, $permissionManager ] )
+			->setMethods( [ 'getUsersByEmail' ] )
 			->getMock();
 		$passwordReset->expects( $this->any() )->method( 'getUsersByEmail' )->with( 'foo@bar.baz' )
 			->willReturn( [ $targetUser1, $targetUser2 ] );

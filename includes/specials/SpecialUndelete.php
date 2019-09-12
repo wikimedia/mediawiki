@@ -102,7 +102,9 @@ class SpecialUndelete extends SpecialPage {
 		$this->mDiff = $request->getCheck( 'diff' );
 		$this->mDiffOnly = $request->getBool( 'diffonly', $this->getUser()->getOption( 'diffonly' ) );
 		$this->mComment = $request->getText( 'wpComment' );
-		$this->mUnsuppress = $request->getVal( 'wpUnsuppress' ) && $user->isAllowed( 'suppressrevision' );
+		$this->mUnsuppress = $request->getVal( 'wpUnsuppress' ) && MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $user, 'suppressrevision' );
 		$this->mToken = $request->getVal( 'token' );
 
 		$block = $user->getBlock();
@@ -153,7 +155,7 @@ class SpecialUndelete extends SpecialPage {
 		if ( $this->mTargetObj !== null ) {
 			return $permissionManager->userCan( $permission, $user, $this->mTargetObj );
 		} else {
-			return $user->isAllowed( $permission );
+			return $permissionManager->userHasRight( $user, $permission );
 		}
 	}
 
@@ -179,7 +181,10 @@ class SpecialUndelete extends SpecialPage {
 			$out->addWikiMsg( 'undelete-header' );
 
 			# Not all users can just browse every deleted page from the list
-			if ( $user->isAllowed( 'browsearchive' ) ) {
+			if ( MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->userHasRight( $user, 'browsearchive' )
+			) {
 				$this->showSearchForm();
 			}
 
@@ -774,7 +779,8 @@ class SpecialUndelete extends SpecialPage {
 		LogEventsList::showLogExtract( $out, 'delete', $this->mTargetObj );
 		# Show relevant lines from the suppression log:
 		$suppressLogPage = new LogPage( 'suppress' );
-		if ( $this->getUser()->isAllowed( 'suppressionlog' ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( $permissionManager->userHasRight( $this->getUser(), 'suppressionlog' ) ) {
 			$out->addHTML( Xml::element( 'h2', null, $suppressLogPage->getName()->text() ) . "\n" );
 			LogEventsList::showLogExtract( $out, 'suppress', $this->mTargetObj );
 		}
@@ -826,7 +832,7 @@ class SpecialUndelete extends SpecialPage {
 				] )
 			);
 
-			if ( $this->getUser()->isAllowed( 'suppressrevision' ) ) {
+			if ( $permissionManager->userHasRight( $this->getUser(), 'suppressrevision' ) ) {
 				$fields[] = new OOUI\FieldLayout(
 					new OOUI\CheckboxInputWidget( [
 						'name' => 'wpUnsuppress',
@@ -866,7 +872,7 @@ class SpecialUndelete extends SpecialPage {
 		if ( $haveRevisions ) {
 			# Show the page's stored (deleted) history
 
-			if ( $this->getUser()->isAllowed( 'deleterevision' ) ) {
+			if ( $permissionManager->userHasRight( $this->getUser(), 'deleterevision' ) ) {
 				$history .= Html::element(
 					'button',
 					[

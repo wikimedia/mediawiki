@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A CentralIdLookup provider that just uses local IDs. Useful if the wiki
  * isn't part of a cluster or you're using shared user tables.
@@ -69,7 +71,10 @@ class LocalIdLookup extends CentralIdLookup {
 			'user_id' => array_map( 'intval', array_keys( $idToName ) ),
 		];
 		$join = [];
-		if ( $audience && !$audience->isAllowed( 'hideuser' ) ) {
+		if ( $audience && !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $audience, 'hideuser' )
+		) {
 			$tables[] = 'ipblocks';
 			$join['ipblocks'] = [ 'LEFT JOIN', 'ipb_user=user_id' ];
 			$fields[] = 'ipb_deleted';
@@ -100,7 +105,10 @@ class LocalIdLookup extends CentralIdLookup {
 			'user_name' => array_map( 'strval', array_keys( $nameToId ) ),
 		];
 		$join = [];
-		if ( $audience && !$audience->isAllowed( 'hideuser' ) ) {
+		if ( $audience && !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $audience, 'hideuser' )
+		) {
 			$tables[] = 'ipblocks';
 			$join['ipblocks'] = [ 'LEFT JOIN', 'ipb_user=user_id' ];
 			$where[] = 'ipb_deleted = 0 OR ipb_deleted IS NULL';

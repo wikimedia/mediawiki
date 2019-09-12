@@ -280,11 +280,10 @@ class InfoAction extends FormlessAction {
 		// Language in which the page content is (supposed to be) written
 		$pageLang = $title->getPageLanguage()->getCode();
 
-		$permissionManager = $services->getPermissionManager();
-
 		$pageLangHtml = $pageLang . ' - ' .
 			Language::fetchLanguageName( $pageLang, $lang->getCode() );
 		// Link to Special:PageLanguage with pre-filled page title if user has permissions
+		$permissionManager = $services->getPermissionManager();
 		if ( $config->get( 'PageLanguageUseDB' )
 			&& $permissionManager->userCan( 'pagelang', $user, $title )
 		) {
@@ -344,8 +343,7 @@ class InfoAction extends FormlessAction {
 		];
 
 		$unwatchedPageThreshold = $config->get( 'UnwatchedPageThreshold' );
-		if (
-			$services->getPermissionManager()->userHasRight( $user, 'unwatchedpages' ) ||
+		if ( $permissionManager->userHasRight( $user, 'unwatchedpages' ) ||
 			( $unwatchedPageThreshold !== false &&
 				$pageCounts['watchers'] >= $unwatchedPageThreshold )
 		) {
@@ -360,7 +358,7 @@ class InfoAction extends FormlessAction {
 			) {
 				$minToDisclose = $config->get( 'UnwatchedPageSecret' );
 				if ( $pageCounts['visitingWatchers'] > $minToDisclose ||
-					$services->getPermissionManager()->userHasRight( $user, 'unwatchedpages' ) ) {
+					$permissionManager->userHasRight( $user, 'unwatchedpages' ) ) {
 					$pageInfo['header-basic'][] = [
 						$this->msg( 'pageinfo-visiting-watchers' ),
 						$lang->formatNum( $pageCounts['visitingWatchers'] )
