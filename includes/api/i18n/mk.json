@@ -576,6 +576,8 @@
 	"apierror-cantchangecontentmodel": "Немате дозвола за менување содржинскиот модел на страница.",
 	"apierror-cantimport-upload": "Немате дозвола да увезувате подигнати страници.",
 	"apierror-cantimport": "Немате дозвола за увезуваање страници.",
+	"apierror-cantview-deleted-description": "Немате дозвола за прегледување описи на избришаните податотеки.",
+	"apierror-cantview-deleted-metadata": "Немате дозвола за прегледување метаподатоци на избришаните податотеки.",
 	"apierror-copyuploadbaddomain": "Подигањето преку URL не е дозволено од овој домен.",
 	"apierror-copyuploadbadurl": "Подигањето не е дозволено од оваа URL-адреса.",
 	"apierror-emptynewsection": "Создавањето на нови празни поднаслови не е дозволено.",
