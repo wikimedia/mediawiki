@@ -122,7 +122,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param AuthManager $authManager
 	 * @param LinkRenderer $linkRenderer
 	 * @param NamespaceInfo $nsInfo
-	 * @param PermissionManager|null $permissionManager
+	 * @param PermissionManager $permissionManager
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -130,15 +130,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		AuthManager $authManager,
 		LinkRenderer $linkRenderer,
 		NamespaceInfo $nsInfo,
-		PermissionManager $permissionManager = null
+		PermissionManager $permissionManager
 	) {
 		$options->assertRequiredOptions( self::$constructorOptions );
 
-		if ( !$permissionManager ) {
-			// TODO: this is actually hard-deprecated, left for jenkins to pass
-			// together with GlobalPreferences extension. Will be removed in a followup.
-			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		}
 		$this->options = $options;
 		$this->contLang = $contLang;
 		$this->authManager = $authManager;
