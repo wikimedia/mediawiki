@@ -105,7 +105,6 @@ class StreamFile {
 				case 'png':
 					return 'image/png';
 				case 'jpg':
-					return 'image/jpeg';
 				case 'jpeg':
 					return 'image/jpeg';
 			}
