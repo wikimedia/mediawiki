@@ -894,6 +894,7 @@ return [
 		'dependencies' => [
 			'mediawiki.api',
 			'oojs',
+			'mediawiki.Uri',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
