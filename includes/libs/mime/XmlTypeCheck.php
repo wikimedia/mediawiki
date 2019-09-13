@@ -68,6 +68,9 @@ class XmlTypeCheck {
 	 */
 	protected $stackDepth = 0;
 
+	/** @var callable|null */
+	protected $filterCallback;
+
 	/**
 	 * @var array Additional parsing options
 	 */

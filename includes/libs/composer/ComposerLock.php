@@ -7,6 +7,10 @@
  * @since 1.25
  */
 class ComposerLock {
+	/**
+	 * @var array[]
+	 */
+	private $contents;
 
 	/**
 	 * @param string $location
@@ -18,7 +22,7 @@ class ComposerLock {
 	/**
 	 * Dependencies currently installed according to composer.lock
 	 *
-	 * @return array
+	 * @return array[]
 	 */
 	public function getInstalledDependencies() {
 		$deps = [];
