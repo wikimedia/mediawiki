@@ -109,11 +109,11 @@ class RCCacheEntryFactory {
 	}
 
 	/**
-	 * @param RecentChange $cacheEntry
+	 * @param RCCacheEntry $cacheEntry
 	 *
 	 * @return string
 	 */
-	private function buildCLink( RecentChange $cacheEntry ) {
+	private function buildCLink( RCCacheEntry $cacheEntry ) {
 		$type = $cacheEntry->mAttribs['rc_type'];
 
 		// New unpatrolled pages
