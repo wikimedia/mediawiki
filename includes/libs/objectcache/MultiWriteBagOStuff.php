@@ -46,7 +46,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	/**
 	 * $params include:
 	 *   - caches: A numbered array of either ObjectFactory::getObjectFromSpec
-	 *      arrays yeilding BagOStuff objects or direct BagOStuff objects.
+	 *      arrays yielding BagOStuff objects or direct BagOStuff objects.
 	 *      If using the former, the 'args' field *must* be set.
 	 *      The first cache is the primary one, being the first to
 	 *      be read in the fallback chain. Writes happen to all stores
