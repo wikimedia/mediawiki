@@ -1832,11 +1832,16 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				'revision_actor_temp', 'slots', 'content', 'content_models', 'slot_roles',
 				'change_tag',
 			];
+			$loggingTables = [
+				'logging', 'log_search', 'change_tag',
+			];
 			$coreDBDataTables = array_merge( $userTables, $pageTables );
 
-			// If any of the user or page tables were marked as used, we should clear all of them.
+			// some groups of tables are connected such that if any is used, all should be cleared
+			$extraTables = [];
 			if ( array_intersect( $tablesUsed, $userTables ) ) {
-				$tablesUsed = array_unique( array_merge( $tablesUsed, $userTables ) );
+				$extraTables[] = $userTables;
+
 				TestUserRegistry::clear();
 
 				// Reset $wgUser, which is probably 127.0.0.1, as its loaded data is probably not valid
@@ -1846,7 +1851,13 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				$wgUser->clearInstanceCache( $wgUser->mFrom );
 			}
 			if ( array_intersect( $tablesUsed, $pageTables ) ) {
-				$tablesUsed = array_unique( array_merge( $tablesUsed, $pageTables ) );
+				$extraTables[] = $pageTables;
+			}
+			if ( array_intersect( $tablesUsed, $loggingTables ) ) {
+				$extraTables[] = $loggingTables;
+			}
+			if ( $extraTables !== [] ) {
+				$tablesUsed = array_unique( array_merge( $tablesUsed, ...$extraTables ) );
 			}
 
 			// Postgres uses mwuser/pagecontent
