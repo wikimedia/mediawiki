@@ -41,6 +41,7 @@ class BsLocalSettingsGenerator extends LocalSettingsGenerator {
 	public function getText() {
 		$this->extensions = [];
 		$this->skins = [];
+		$projectMetaNamespace = wfMessage('config-ns-generic')->plain();
 
 		$localSettings = parent::getText();
 
@@ -56,6 +57,7 @@ require_once \"\$IP/LocalSettings.BlueSpice.php\";
 \$wgUserMergeUnmergeable = array();
 \$wgMFAutodetectMobileView = true;
 \$wgMFEnableDesktopResources = true;
+\$wgMetaNamespace = '" . $projectMetaNamespace . "';
 
 # Convenience for debugging
 # \$wgShowSQLErrors = true;
