@@ -2822,7 +2822,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add a "return to" link pointing to a specified title
 	 *
-	 * @param Title $title Title to link
+	 * @param LinkTarget $title Title to link
 	 * @param array $query Query string parameters
 	 * @param string|null $text Text of the link (input is not escaped)
 	 * @param array $options Options array to pass to Linker
