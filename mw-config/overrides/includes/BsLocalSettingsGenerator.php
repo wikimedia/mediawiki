@@ -58,6 +58,7 @@ require_once \"\$IP/LocalSettings.BlueSpice.php\";
 \$wgMFAutodetectMobileView = true;
 \$wgMFEnableDesktopResources = true;
 \$wgMetaNamespace = '" . $projectMetaNamespace . "';
+\$bsgGroupRoles['*']['reader'] = false;
 
 # Convenience for debugging
 # \$wgShowSQLErrors = true;
