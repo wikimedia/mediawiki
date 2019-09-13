@@ -4320,13 +4320,13 @@ class User implements IDBAccessObject, UserIdentity {
 				'password' => $password,
 			]
 		);
-		$res = AuthManager::singleton()->beginAuthentication( $reqs, 'null:' );
+		$res = $manager->beginAuthentication( $reqs, 'null:' );
 		switch ( $res->status ) {
 			case AuthenticationResponse::PASS:
 				return true;
 			case AuthenticationResponse::FAIL:
 				// Hope it's not a PreAuthenticationProvider that failed...
-				\MediaWiki\Logger\LoggerFactory::getInstance( 'authentication' )
+				LoggerFactory::getInstance( 'authentication' )
 					->info( __METHOD__ . ': Authentication failed: ' . $res->message->plain() );
 				return false;
 			default:
