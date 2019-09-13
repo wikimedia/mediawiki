@@ -1832,6 +1832,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				'revision_actor_temp', 'slots', 'content', 'content_models', 'slot_roles',
 				'change_tag',
 			];
+			$loggingTables = [
+				'logging', 'log_search', 'change_tag',
+			];
 			$coreDBDataTables = array_merge( $userTables, $pageTables );
 
 			// some groups of tables are connected such that if any is used, all should be cleared
@@ -1849,6 +1852,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			}
 			if ( array_intersect( $tablesUsed, $pageTables ) ) {
 				$extraTables[] = $pageTables;
+			}
+			if ( array_intersect( $tablesUsed, $loggingTables ) ) {
+				$extraTables[] = $loggingTables;
 			}
 			if ( $extraTables !== [] ) {
 				$tablesUsed = array_unique( array_merge( $tablesUsed, ...$extraTables ) );
