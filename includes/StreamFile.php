@@ -25,8 +25,10 @@
  */
 class StreamFile {
 	// Do not send any HTTP headers unless requested by caller (e.g. body only)
+	/** @deprecated since 1.34 */
 	const STREAM_HEADLESS = HTTPFileStreamer::STREAM_HEADLESS;
 	// Do not try to tear down any PHP output buffers
+	/** @deprecated since 1.34 */
 	const STREAM_ALLOW_OB = HTTPFileStreamer::STREAM_ALLOW_OB;
 
 	/**
