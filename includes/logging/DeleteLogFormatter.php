@@ -32,6 +32,12 @@ use MediaWiki\Storage\RevisionRecord;
  * @since 1.19
  */
 class DeleteLogFormatter extends LogFormatter {
+	/** @var array|null */
+	private $parsedParametersDeleteLog;
+
+	/**
+	 * @inheritDoc
+	 */
 	protected function getMessageKey() {
 		$key = parent::getMessageKey();
 		if ( in_array( $this->entry->getSubtype(), [ 'event', 'revision' ] ) ) {
@@ -51,8 +57,11 @@ class DeleteLogFormatter extends LogFormatter {
 		return $key;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	protected function getMessageParameters() {
-		if ( isset( $this->parsedParametersDeleteLog ) ) {
+		if ( $this->parsedParametersDeleteLog !== null ) {
 			return $this->parsedParametersDeleteLog;
 		}
 
