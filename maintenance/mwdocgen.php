@@ -120,10 +120,17 @@ class MWDocGen extends Maintenance {
 			'resources/lib',
 			'images',
 			'static',
+			'tests',
+			'includes/libs/Message/README.md',
+			'includes/libs/objectcache/README.md',
+			'includes/libs/ParamValidator/README.md',
+			'maintenance/benchmarks/README.md',
+			'resources/src/mediawiki.ui/styleguide.md',
 		];
 		$this->excludePatterns = [];
 		if ( $this->hasOption( 'no-extensions' ) ) {
 			$this->excludePatterns[] = 'extensions';
+			$this->excludePatterns[] = 'skins';
 		}
 
 		$this->doDot = shell_exec( 'which dot' );
