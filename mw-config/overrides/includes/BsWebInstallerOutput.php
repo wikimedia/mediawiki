@@ -35,7 +35,7 @@ class BsWebInstallerOutput extends WebInstallerOutput {
 	 // BlueSpice
 	public function outputTitle() {
 		global $wgVersion;
-		echo wfMessage( 'bs-installer-title', $wgVersion, '3.0' )->plain();
+		echo wfMessage( 'bs-installer-title', $wgVersion, '3.1' )->plain();
 	}
 
 	public function getCSS() {
