@@ -137,7 +137,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 				foreach ( $chunks as $chunk ) {
 					$client = new SquidPurgeClient( $server );
 					foreach ( $chunk as $url ) {
-						$client->queuePurge( $url );
+						$client->queuePurge( self::expand( $url ) );
 					}
 					$pool->addClient( $client );
 				}
@@ -254,7 +254,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	 * @param string $url
 	 * @return string
 	 */
-	public static function expand( $url ) {
+	private static function expand( $url ) {
 		return wfExpandUrl( $url, PROTO_INTERNAL );
 	}
 
