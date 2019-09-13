@@ -1197,4 +1197,14 @@ class LinksUpdate extends DataUpdate {
 
 		return $this->db;
 	}
+
+	/**
+	 * Whether or not this LinksUpdate will also update pages which transclude the
+	 * current page or otherwise depend on it.
+	 *
+	 * @return bool
+	 */
+	public function isRecursive() {
+		return $this->mRecursive;
+	}
 }
