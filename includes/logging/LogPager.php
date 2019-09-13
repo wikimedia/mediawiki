@@ -109,21 +109,20 @@ class LogPager extends ReverseChronologicalPager {
 
 	// Call ONLY after calling $this->limitType() already!
 	public function getFilterParams() {
-		global $wgFilterLogTypes;
 		$filters = [];
 		if ( count( $this->types ) ) {
 			return $filters;
 		}
 
 		$wpfilters = $this->getRequest()->getArray( "wpfilters" );
-		$request_filters = $wpfilters === null ? [] : $wpfilters;
+		$filterLogTypes = $this->getConfig()->get( 'FilterLogTypes' );
 
-		foreach ( $wgFilterLogTypes as $type => $default ) {
-			$hide = !in_array( $type, $request_filters );
-
+		foreach ( $filterLogTypes as $type => $default ) {
 			// Back-compat: Check old URL params if the new param wasn't passed
 			if ( $wpfilters === null ) {
 				$hide = $this->getRequest()->getBool( "hide_{$type}_log", $default );
+			} else {
+				$hide = !in_array( $type, $wpfilters );
 			}
 
 			$filters[$type] = $hide;
@@ -143,18 +142,17 @@ class LogPager extends ReverseChronologicalPager {
 	 *   empty string means no restriction
 	 */
 	private function limitType( $types ) {
-		global $wgLogRestrictions;
-
 		$user = $this->getUser();
+		$restrictions = $this->getConfig()->get( 'LogRestrictions' );
 		// If $types is not an array, make it an array
 		$types = ( $types === '' ) ? [] : (array)$types;
 		// Don't even show header for private logs; don't recognize it...
 		$needReindex = false;
 		foreach ( $types as $type ) {
-			if ( isset( $wgLogRestrictions[$type] )
+			if ( isset( $restrictions[$type] )
 				&& !MediaWikiServices::getInstance()
 					->getPermissionManager()
-					->userHasRight( $user, $wgLogRestrictions[$type] )
+					->userHasRight( $user, $restrictions[$type] )
 			) {
 				$needReindex = true;
 				$types = array_diff( $types, [ $type ] );
@@ -219,8 +217,6 @@ class LogPager extends ReverseChronologicalPager {
 	 * @return void
 	 */
 	private function limitTitle( $page, $pattern ) {
-		global $wgMiserMode, $wgUserrightsInterwikiDelimiter;
-
 		if ( $page instanceof Title ) {
 			$title = $page;
 		} else {
@@ -234,9 +230,11 @@ class LogPager extends ReverseChronologicalPager {
 		$ns = $title->getNamespace();
 		$db = $this->mDb;
 
+		$interwikiDelimiter = $this->getConfig()->get( 'UserrightsInterwikiDelimiter' );
+
 		$doUserRightsLogLike = false;
 		if ( $this->types == [ 'rights' ] ) {
-			$parts = explode( $wgUserrightsInterwikiDelimiter, $title->getDBkey() );
+			$parts = explode( $interwikiDelimiter, $title->getDBkey() );
 			if ( count( $parts ) == 2 ) {
 				list( $name, $database ) = array_map( 'trim', $parts );
 				if ( strstr( $database, '*' ) ) { // Search for wildcard in database name
@@ -260,14 +258,14 @@ class LogPager extends ReverseChronologicalPager {
 		 */
 		$this->mConds['log_namespace'] = $ns;
 		if ( $doUserRightsLogLike ) {
-			$params = [ $name . $wgUserrightsInterwikiDelimiter ];
+			$params = [ $name . $interwikiDelimiter ];
 			foreach ( explode( '*', $database ) as $databasepart ) {
 				$params[] = $databasepart;
 				$params[] = $db->anyString();
 			}
 			array_pop( $params ); // Get rid of the last % we added.
 			$this->mConds[] = 'log_title' . $db->buildLike( ...$params );
-		} elseif ( $pattern && !$wgMiserMode ) {
+		} elseif ( $pattern && !$this->getConfig()->get( 'MiserMode' ) ) {
 			$this->mConds[] = 'log_title' . $db->buildLike( $title->getDBkey(), $db->anyString() );
 			$this->pattern = $pattern;
 		} else {
@@ -282,14 +280,13 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param string $action
 	 */
 	private function limitAction( $action ) {
-		global $wgActionFilteredLogs;
 		// Allow to filter the log by actions
 		$type = $this->typeCGI;
 		if ( $type === '' ) {
 			// nothing to do
 			return;
 		}
-		$actions = $wgActionFilteredLogs;
+		$actions = $this->getConfig()->get( 'ActionFilteredLogs' );
 		if ( isset( $actions[$type] ) ) {
 			// log type can be filtered by actions
 			$this->mLogEventsList->setAllowedActions( array_keys( $actions[$type] ) );
