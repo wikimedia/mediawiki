@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionRecord;
 
 /**
@@ -239,11 +240,15 @@ class ApiEditPage extends ApiBase {
 			$params['text'] = $newContent->serialize( $contentFormat );
 			// If no summary was given and we only undid one rev,
 			// use an autosummary
-			if ( is_null( $params['summary'] ) &&
-				$titleObj->getNextRevisionID( $undoafterRev->getId() ) == $params['undo']
-			) {
-				$params['summary'] = wfMessage( 'undo-summary' )
-					->params( $params['undo'], $undoRev->getUserText() )->inContentLanguage()->text();
+
+			if ( is_null( $params['summary'] ) ) {
+				$nextRev = MediaWikiServices::getInstance()->getRevisionLookup()
+					->getNextRevision( $undoafterRev->getRevisionRecord() );
+				if ( $nextRev && $nextRev->getId() == $params['undo'] ) {
+					$params['summary'] = wfMessage( 'undo-summary' )
+						->params( $params['undo'], $undoRev->getUserText() )
+						->inContentLanguage()->text();
+				}
 			}
 		}
 

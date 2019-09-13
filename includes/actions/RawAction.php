@@ -238,23 +238,31 @@ class RawAction extends FormlessAction {
 	 */
 	public function getOldId() {
 		$oldid = $this->getRequest()->getInt( 'oldid' );
+		$rl = MediaWikiServices::getInstance()->getRevisionLookup();
 		switch ( $this->getRequest()->getText( 'direction' ) ) {
 			case 'next':
 				# output next revision, or nothing if there isn't one
-				$nextid = 0;
+				$nextRev = null;
 				if ( $oldid ) {
-					$nextid = $this->getTitle()->getNextRevisionID( $oldid );
+					$oldRev = $rl->getRevisionById( $oldid );
+					if ( $oldRev ) {
+						$nextRev = $rl->getNextRevision( $oldRev );
+					}
 				}
-				$oldid = $nextid ?: -1;
+				$oldid = $nextRev ? $nextRev->getId() : -1;
 				break;
 			case 'prev':
 				# output previous revision, or nothing if there isn't one
+				$prevRev = null;
 				if ( !$oldid ) {
 					# get the current revision so we can get the penultimate one
 					$oldid = $this->page->getLatest();
 				}
-				$previd = $this->getTitle()->getPreviousRevisionID( $oldid );
-				$oldid = $previd ?: -1;
+				$oldRev = $rl->getRevisionById( $oldid );
+				if ( $oldRev ) {
+					$prevRev = $rl->getPreviousRevision( $oldRev );
+				}
+				$oldid = $prevRev ? $prevRev->getId() : -1;
 				break;
 			case 'cur':
 				$oldid = 0;

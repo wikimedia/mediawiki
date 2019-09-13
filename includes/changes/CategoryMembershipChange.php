@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionRecord;
 
 /**
@@ -273,11 +274,15 @@ class CategoryMembershipChange {
 	 * @return null|string
 	 */
 	private function getPreviousRevisionTimestamp() {
-		$previousRev = Revision::newFromId(
-				$this->pageTitle->getPreviousRevisionID( $this->pageTitle->getLatestRevID() )
-			);
-
-		return $previousRev ? $previousRev->getTimestamp() : null;
+		$rl = MediaWikiServices::getInstance()->getRevisionLookup();
+		$latestRev = $rl->getRevisionByTitle( $this->pageTitle );
+		if ( $latestRev ) {
+			$previousRev = $rl->getPreviousRevision( $latestRev );
+			if ( $previousRev ) {
+				return $previousRev->getTimestamp();
+			}
+		}
+		return null;
 	}
 
 }
