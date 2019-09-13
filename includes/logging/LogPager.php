@@ -53,6 +53,12 @@ class LogPager extends ReverseChronologicalPager {
 	/** @var bool */
 	private $actionRestrictionsEnforced = false;
 
+	/** @var array */
+	private $mConds;
+
+	/** @var string */
+	private $mTagFilter;
+
 	/** @var LogEventsList */
 	public $mLogEventsList;
 

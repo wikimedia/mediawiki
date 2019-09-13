@@ -46,6 +46,24 @@ class LocalFileMoveBatch {
 	/** @var IDatabase */
 	protected $db;
 
+	/** @var string */
+	protected $oldHash;
+
+	/** @var string */
+	protected $newHash;
+
+	/** @var string */
+	protected $oldName;
+
+	/** @var string */
+	protected $newName;
+
+	/** @var string */
+	protected $oldRel;
+
+	/** @var string */
+	protected $newRel;
+
 	/**
 	 * @param File $file
 	 * @param Title $target

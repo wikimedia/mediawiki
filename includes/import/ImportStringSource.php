@@ -32,6 +32,12 @@
  * @ingroup SpecialPage
  */
 class ImportStringSource implements ImportSource {
+	/** @var string */
+	private $mString;
+
+	/** @var bool */
+	private $mRead;
+
 	/**
 	 * @param string $string
 	 */

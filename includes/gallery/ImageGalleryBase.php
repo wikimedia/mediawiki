@@ -88,6 +88,15 @@ abstract class ImageGalleryBase extends ContextSource {
 	/** @var array */
 	protected $mAttribs = [];
 
+	/** @var int */
+	protected $mPerRow;
+
+	/** @var int */
+	protected $mWidths;
+
+	/** @var int */
+	protected $mHeights;
+
 	/** @var array */
 	private static $modeMapping;
 
