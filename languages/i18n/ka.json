@@ -1008,6 +1008,7 @@
 	"prefs-watchlist-edits": "კონტროლის სიაში საჩვენებელი ცვლილებების მაქსიმალური რაოდენობა:",
 	"prefs-watchlist-edits-max": "მაქსიმალური რაოდენობა: 1000",
 	"prefs-watchlist-token": "კონტროლის სიის ტოკენი:",
+	"prefs-watchlist-managetokens": "ტოკენების მართვა",
 	"prefs-misc": "სხვადასხვა",
 	"prefs-resetpass": "შეცვალეთ პაროლი",
 	"prefs-changeemail": "ელ-ფოსტის მისამართის შეცვლა ან წაშლა",

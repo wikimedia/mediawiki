@@ -3531,7 +3531,7 @@
 	"logentry-partialblock-block-page": "{{PLURAL:$1|sivua|sivuja}} $2",
 	"logentry-partialblock-block-ns": "{{PLURAL:$1|nimiavaruutta|nimiavaruuksia}} $2",
 	"logentry-partialblock-block": "$1 {{GENDER:$2|esti}} käyttäjää {{GENDER:$4|$3}} muokkaamasta $7. Eston kesto on $5 $6",
-	"logentry-partialblock-reblock": "$1 {{GENDER:$2|muutti}} käyttäjän {{GENDER:$4|$3}} muokkauseston asetuksia estäen muokkausten tekemisen $7. Eston kesto on $5 $6",
+	"logentry-partialblock-reblock": "$1 {{GENDER:$2|muutti}} käyttäjän {{GENDER:$4|$3}} muokkauseston asetuksia niin, että hän ei voi muokata $7. Eston kesto on $5 $6",
 	"logentry-non-editing-block-block": "$1 {{GENDER:$2|esti}} käyttäjää {{GENDER:$4|$3}} suorittamasta määrättyjä toimenpiteitä (lukuun ottamatta muokkaamista). Eston kesto on $5 $6",
 	"logentry-non-editing-block-reblock": "$1 {{GENDER:$2|muutti}} käyttäjän {{GENDER:$4|$3}} toimintaeston asetuksia, jotka koskevat määrättyjä toimenpiteitä. Eston kesto on $5 $6",
 	"logentry-suppress-block": "$1 {{GENDER:$2|esti}} käyttäjän {{GENDER:$4|$3}}. Eston kesto on $5 $6",
