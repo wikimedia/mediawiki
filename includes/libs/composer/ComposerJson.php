@@ -7,6 +7,10 @@
  * @since 1.25
  */
 class ComposerJson {
+	/**
+	 * @var array[]
+	 */
+	private $contents;
 
 	/**
 	 * @param string $location
@@ -18,7 +22,7 @@ class ComposerJson {
 	/**
 	 * Dependencies as specified by composer.json
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public function getRequiredDependencies() {
 		$deps = [];
