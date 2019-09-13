@@ -363,8 +363,16 @@ class Article implements Page {
 			}
 		}
 
+		$rl = MediaWikiServices::getInstance()->getRevisionLookup();
+		$oldRev = $this->mRevision ? $this->mRevision->getRevisionRecord() : null;
 		if ( $request->getVal( 'direction' ) == 'next' ) {
-			$nextid = $this->getTitle()->getNextRevisionID( $oldid );
+			$nextid = 0;
+			if ( $oldRev ) {
+				$nextRev = $rl->getNextRevision( $oldRev );
+				if ( $nextRev ) {
+					$nextid = $nextRev->getId();
+				}
+			}
 			if ( $nextid ) {
 				$oldid = $nextid;
 				$this->mRevision = null;
@@ -372,7 +380,13 @@ class Article implements Page {
 				$this->mRedirectUrl = $this->getTitle()->getFullURL( 'redirect=no' );
 			}
 		} elseif ( $request->getVal( 'direction' ) == 'prev' ) {
-			$previd = $this->getTitle()->getPreviousRevisionID( $oldid );
+			$previd = 0;
+			if ( $oldRev ) {
+				$prevRev = $rl->getPreviousRevision( $oldRev );
+				if ( $prevRev ) {
+					$previd = $prevRev->getId();
+				}
+			}
 			if ( $previd ) {
 				$oldid = $previd;
 				$this->mRevision = null;
@@ -1599,8 +1613,9 @@ class Article implements Page {
 					'oldid' => $oldid
 				] + $extraParams
 			);
-		$prev = $this->getTitle()->getPreviousRevisionID( $oldid );
-		$prevlink = $prev
+		$rl = MediaWikiServices::getInstance()->getRevisionLookup();
+		$prevExist = (bool)$rl->getPreviousRevision( $revision->getRevisionRecord() );
+		$prevlink = $prevExist
 			? Linker::linkKnown(
 				$this->getTitle(),
 				$context->msg( 'previousrevision' )->escaped(),
@@ -1611,7 +1626,7 @@ class Article implements Page {
 				] + $extraParams
 			)
 			: $context->msg( 'previousrevision' )->escaped();
-		$prevdiff = $prev
+		$prevdiff = $prevExist
 			? Linker::linkKnown(
 				$this->getTitle(),
 				$context->msg( 'diff' )->escaped(),

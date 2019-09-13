@@ -1713,14 +1713,29 @@ class DifferenceEngine extends ContextSource {
 	 *     false signifies that there is no previous/next revision ($old is the oldest/newest one).
 	 */
 	public function mapDiffPrevNext( $old, $new ) {
+		$rl = MediaWikiServices::getInstance()->getRevisionLookup();
 		if ( $new === 'prev' ) {
 			// Show diff between revision $old and the previous one. Get previous one from DB.
 			$newid = intval( $old );
-			$oldid = $this->getTitle()->getPreviousRevisionID( $newid );
+			$oldid = false;
+			$newRev = $rl->getRevisionById( $newid );
+			if ( $newRev ) {
+				$oldRev = $rl->getPreviousRevision( $newRev );
+				if ( $oldRev ) {
+					$oldid = $oldRev->getId();
+				}
+			}
 		} elseif ( $new === 'next' ) {
 			// Show diff between revision $old and the next one. Get next one from DB.
 			$oldid = intval( $old );
-			$newid = $this->getTitle()->getNextRevisionID( $oldid );
+			$newid = false;
+			$oldRev = $rl->getRevisionById( $oldid );
+			if ( $oldRev ) {
+				$newRev = $rl->getNextRevision( $oldRev );
+				if ( $newRev ) {
+					$newid = $newRev->getId();
+				}
+			}
 		} else {
 			$oldid = intval( $old );
 			$newid = intval( $new );
