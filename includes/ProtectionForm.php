@@ -58,6 +58,18 @@ class ProtectionForm {
 	/** @var array Map of action to the expiry time of the existing protection */
 	protected $mExistingExpiry = [];
 
+	/** @var Article */
+	protected $mArticle;
+
+	/** @var Title */
+	protected $mTitle;
+
+	/** @var bool */
+	protected $disabled;
+
+	/** @var array */
+	protected $disabledAttrib;
+
 	/** @var IContextSource */
 	private $mContext;
 
@@ -78,7 +90,7 @@ class ProtectionForm {
 		if ( wfReadOnly() ) {
 			$this->mPermErrors[] = [ 'readonlytext', wfReadOnlyReason() ];
 		}
-		$this->disabled = $this->mPermErrors != [];
+		$this->disabled = $this->mPermErrors !== [];
 		$this->disabledAttrib = $this->disabled
 			? [ 'disabled' => 'disabled' ]
 			: [];
