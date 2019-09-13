@@ -152,7 +152,7 @@ abstract class QuorumLockManager extends LockManager {
 	 * This is all or nothing; if any key is already pledged then this totally fails.
 	 *
 	 * @param int $bucket
-	 * @param callable $callback Pledge method taking a server name and yeilding a StatusValue
+	 * @param callable $callback Pledge method taking a server name and yielding a StatusValue
 	 * @return StatusValue
 	 */
 	final protected function collectPledgeQuorum( $bucket, callable $callback ) {
@@ -194,7 +194,7 @@ abstract class QuorumLockManager extends LockManager {
 	 * Attempt to release pledges with the peers for a bucket
 	 *
 	 * @param int $bucket
-	 * @param callable $callback Pledge method taking a server name and yeilding a StatusValue
+	 * @param callable $callback Pledge method taking a server name and yielding a StatusValue
 	 * @return StatusValue
 	 */
 	final protected function releasePledges( $bucket, callable $callback ) {
