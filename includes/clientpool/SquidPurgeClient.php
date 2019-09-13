@@ -191,11 +191,11 @@ class SquidPurgeClient {
 	/**
 	 * Queue a purge operation
 	 *
-	 * @param string $url
+	 * @param string $url Fully expanded URL (with host and protocol)
 	 */
 	public function queuePurge( $url ) {
 		global $wgSquidPurgeUseHostHeader;
-		$url = CdnCacheUpdate::expand( str_replace( "\n", '', $url ) );
+		$url = str_replace( "\n", '', $url ); // sanity
 		$request = [];
 		if ( $wgSquidPurgeUseHostHeader ) {
 			$url = wfParseUrl( $url );
