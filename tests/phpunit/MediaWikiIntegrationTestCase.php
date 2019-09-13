@@ -1821,27 +1821,30 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	/**
 	 * Empty all tables so they can be repopulated for tests
 	 *
-	 * @param Database $db|null Database to reset
-	 * @param array $tablesUsed Tables to reset
+	 * @param IDatabase $db|null Database to reset
+	 * @param string[] $tablesUsed Tables to reset
 	 */
-	private function resetDB( $db, $tablesUsed ) {
+	private function resetDB( IDatabase $db = null, array $tablesUsed ) {
 		if ( $db ) {
-			$userTables = [ 'user', 'user_groups', 'user_properties', 'actor' ];
-			$pageTables = [
-				'page', 'revision', 'ip_changes', 'revision_comment_temp', 'comment', 'archive',
-				'revision_actor_temp', 'slots', 'content', 'content_models', 'slot_roles',
-				'change_tag',
-			];
-			$loggingTables = [
-				'logging', 'log_search', 'change_tag',
-			];
-			$coreDBDataTables = array_merge( $userTables, $pageTables );
-
 			// some groups of tables are connected such that if any is used, all should be cleared
-			$extraTables = [];
-			if ( array_intersect( $tablesUsed, $userTables ) ) {
-				$extraTables[] = $userTables;
+			$extraTables = [
+				'user' => [ 'user', 'user_groups', 'user_properties', 'actor' ],
+				'page' => [ 'page', 'revision', 'ip_changes', 'revision_comment_temp', 'comment', 'archive',
+					'revision_actor_temp', 'slots', 'content', 'content_models', 'slot_roles',
+					'change_tag' ],
+				'logging' => [ 'logging', 'log_search', 'change_tag' ],
+			];
+			$coreDBDataTables = array_merge( $extraTables['user'], $extraTables['page'] );
 
+			foreach ( $extraTables as $i => $group ) {
+				if ( !array_intersect( $tablesUsed, $group ) ) {
+					unset( $extraTables[$i] );
+				}
+			}
+			$extraTables = array_values( $extraTables );
+			$tablesUsed = array_unique( array_merge( $tablesUsed, ...$extraTables ) );
+
+			if ( in_array( 'user', $tablesUsed ) ) {
 				TestUserRegistry::clear();
 
 				// Reset $wgUser, which is probably 127.0.0.1, as its loaded data is probably not valid
@@ -1849,15 +1852,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				//  to encourage tests to be updated to not depend on it?
 				global $wgUser;
 				$wgUser->clearInstanceCache( $wgUser->mFrom );
-			}
-			if ( array_intersect( $tablesUsed, $pageTables ) ) {
-				$extraTables[] = $pageTables;
-			}
-			if ( array_intersect( $tablesUsed, $loggingTables ) ) {
-				$extraTables[] = $loggingTables;
-			}
-			if ( $extraTables !== [] ) {
-				$tablesUsed = array_unique( array_merge( $tablesUsed, ...$extraTables ) );
 			}
 
 			// Postgres uses mwuser/pagecontent
