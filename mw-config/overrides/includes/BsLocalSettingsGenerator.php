@@ -56,6 +56,7 @@ require_once \"\$IP/LocalSettings.BlueSpice.php\";
 \$wgUserMergeUnmergeable = array();
 \$wgMFAutodetectMobileView = true;
 \$wgMFEnableDesktopResources = true;
+\$wgMetaNamespace = 'Project';
 
 # Convenience for debugging
 # \$wgShowSQLErrors = true;
