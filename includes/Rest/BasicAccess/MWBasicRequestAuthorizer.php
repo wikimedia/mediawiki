@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Rest\BasicAccess;
 
-use User;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\RequestInterface;
@@ -13,14 +13,14 @@ use MediaWiki\Rest\RequestInterface;
  * @internal
  */
 class MWBasicRequestAuthorizer extends BasicRequestAuthorizer {
-	/** @var User */
+	/** @var UserIdentity */
 	private $user;
 
 	/** @var PermissionManager */
 	private $permissionManager;
 
 	public function __construct( RequestInterface $request, Handler $handler,
-		User $user, PermissionManager $permissionManager
+		UserIdentity $user, PermissionManager $permissionManager
 	) {
 		parent::__construct( $request, $handler );
 		$this->user = $user;

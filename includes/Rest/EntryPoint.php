@@ -57,7 +57,11 @@ class EntryPoint {
 			$services->getPermissionManager() );
 
 		// @phan-suppress-next-line PhanAccessMethodInternal
-		$restValidator = new Validator( $objectFactory, $request, RequestContext::getMain()->getUser() );
+		$restValidator = new Validator( $objectFactory,
+			$services->getPermissionManager(),
+			$request,
+			RequestContext::getMain()->getUser()
+		);
 
 		global $IP;
 		$router = new Router(

@@ -3,21 +3,30 @@
 namespace MediaWiki\Rest\Validator;
 
 use InvalidArgumentException;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\RequestInterface;
+use MediaWiki\User\UserIdentity;
 use Psr\Http\Message\UploadedFileInterface;
-use User;
 use Wikimedia\ParamValidator\Callbacks;
 use Wikimedia\ParamValidator\ValidationException;
 
 class ParamValidatorCallbacks implements Callbacks {
 
+	/** @var PermissionManager */
+	private $permissionManager;
+
 	/** @var RequestInterface */
 	private $request;
 
-	/** @var User */
+	/** @var UserIdentity */
 	private $user;
 
-	public function __construct( RequestInterface $request, User $user ) {
+	public function __construct(
+		PermissionManager $permissionManager,
+		RequestInterface $request,
+		UserIdentity $user
+	) {
+		$this->permissionManager = $permissionManager;
 		$this->request = $request;
 		$this->user = $user;
 	}
@@ -76,7 +85,7 @@ class ParamValidatorCallbacks implements Callbacks {
 	}
 
 	public function useHighLimits( array $options ) {
-		return $this->user->isAllowed( 'apihighlimits' );
+		return $this->permissionManager->userHasRight( $this->user, 'apihighlimits' );
 	}
 
 }

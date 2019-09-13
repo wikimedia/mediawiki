@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Rest;
 
 use GuzzleHttp\Psr7\Uri;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
@@ -24,6 +25,7 @@ class RouterTest extends \MediaWikiUnitTestCase {
 		$objectFactory = new ObjectFactory(
 			$this->getMockForAbstractClass( ContainerInterface::class )
 		);
+		$permissionManager = $this->createMock( PermissionManager::class );
 		return new Router(
 			[ __DIR__ . '/testRoutes.json' ],
 			[],
@@ -32,7 +34,7 @@ class RouterTest extends \MediaWikiUnitTestCase {
 			new ResponseFactory( [] ),
 			new StaticBasicAuthorizer( $authError ),
 			$objectFactory,
-			new Validator( $objectFactory, $request, new User )
+			new Validator( $objectFactory, $permissionManager, $request, new User )
 		);
 	}
 
