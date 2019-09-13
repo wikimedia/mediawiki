@@ -2635,6 +2635,7 @@
 	"ipblocklist-legend": "Een geblokkeerde gebruiker zoeken",
 	"blocklist-userblocks": "Geblokkeerde accounts verbergen",
 	"blocklist-tempblocks": "Tijdelijke blokkades verbergen",
+	"blocklist-indefblocks": "Verberg blokkades met een oneindige loopduur",
 	"blocklist-addressblocks": "Blokkades van één IP-adres verbergen",
 	"blocklist-type": "Soort:",
 	"blocklist-type-opt-all": "Alle",

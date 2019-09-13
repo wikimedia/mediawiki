@@ -2400,6 +2400,7 @@
 	"ipblocklist-legend": "Iacchije 'n'utende blocchete",
 	"blocklist-userblocks": "Scunne le blocche sus a le cunde de l'utinde",
 	"blocklist-tempblocks": "Scunne le blocche temboranèe",
+	"blocklist-indefblocks": "Scunne le blocche indefinite",
 	"blocklist-addressblocks": "Scunne le blocche de le IP singole",
 	"blocklist-type": "Tipe:",
 	"blocklist-type-opt-all": "Tutte",
