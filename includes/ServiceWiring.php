@@ -784,7 +784,8 @@ return [
 			$services->getDBLoadBalancer(),
 			$services->getCommentStore(),
 			$services->getActorMigration(),
-			$services->getWatchedItemStore()
+			$services->getWatchedItemStore(),
+			$services->getPermissionManager()
 		);
 	},
 

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
@@ -70,16 +71,21 @@ class WatchedItemQueryService {
 	/** @var WatchedItemStoreInterface */
 	private $watchedItemStore;
 
+	/** @var PermissionManager */
+	private $permissionManager;
+
 	public function __construct(
 		ILoadBalancer $loadBalancer,
 		CommentStore $commentStore,
 		ActorMigration $actorMigration,
-		WatchedItemStoreInterface $watchedItemStore
+		WatchedItemStoreInterface $watchedItemStore,
+		PermissionManager $permissionManager
 	) {
 		$this->loadBalancer = $loadBalancer;
 		$this->commentStore = $commentStore;
 		$this->actorMigration = $actorMigration;
 		$this->watchedItemStore = $watchedItemStore;
+		$this->permissionManager = $permissionManager;
 	}
 
 	/**
@@ -549,7 +555,7 @@ class WatchedItemQueryService {
 		return $conds;
 	}
 
-	private function getUserRelatedConds( IDatabase $db, User $user, array $options ) {
+	private function getUserRelatedConds( IDatabase $db, UserIdentity $user, array $options ) {
 		if ( !array_key_exists( 'onlyByUser', $options ) && !array_key_exists( 'notByUser', $options ) ) {
 			return [];
 		}
@@ -566,9 +572,11 @@ class WatchedItemQueryService {
 
 		// Avoid brute force searches (T19342)
 		$bitmask = 0;
-		if ( !$user->isAllowed( 'deletedhistory' ) ) {
+		if ( !$this->permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
 			$bitmask = RevisionRecord::DELETED_USER;
-		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
+		} elseif ( !$this->permissionManager
+			->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' )
+		) {
 			$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
 		}
 		if ( $bitmask ) {
@@ -578,13 +586,15 @@ class WatchedItemQueryService {
 		return $conds;
 	}
 
-	private function getExtraDeletedPageLogEntryRelatedCond( IDatabase $db, User $user ) {
+	private function getExtraDeletedPageLogEntryRelatedCond( IDatabase $db, UserIdentity $user ) {
 		// LogPage::DELETED_ACTION hides the affected page, too. So hide those
 		// entirely from the watchlist, or someone could guess the title.
 		$bitmask = 0;
-		if ( !$user->isAllowed( 'deletedhistory' ) ) {
+		if ( !$this->permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
 			$bitmask = LogPage::DELETED_ACTION;
-		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
+		} elseif ( !$this->permissionManager
+			->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' )
+		) {
 			$bitmask = LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED;
 		}
 		if ( $bitmask ) {
