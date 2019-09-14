@@ -162,13 +162,6 @@ return [
 		],
 		'targets' => [ 'mobile', 'desktop' ],
 	],
-	'jquery.checkboxShiftClick' => [
-		'deprecated' => 'Please use "mediawiki.page.ready" instead.',
-		'dependencies' => [
-			'mediawiki.page.ready',
-		],
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'jquery.chosen' => [
 		'scripts' => 'resources/lib/jquery.chosen/chosen.jquery.js',
 		'styles' => 'resources/lib/jquery.chosen/chosen.css',
@@ -1666,9 +1659,11 @@ return [
 		]
 	],
 	'mediawiki.page.ready' => [
-		'scripts' => [
-			'resources/src/mediawiki.page.ready/checkboxShift.js',
-			'resources/src/mediawiki.page.ready/ready.js',
+		'localBasePath' => "$IP/resources/src/mediawiki.page.ready",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.page.ready",
+		'packageFiles' => [
+			'ready.js',
+			'checkboxShift.js',
 		],
 		'dependencies' => [
 			'mediawiki.util',
