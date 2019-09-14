@@ -21,7 +21,7 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 	checkboxShift( $content.find( 'input[type="checkbox"]:not(.noshiftselect)' ) );
 } );
 
-// Things outside the wikipage content
+// Handle elements outside the wikipage content
 $( function () {
 	var $nodes;
 
@@ -56,7 +56,7 @@ $( function () {
 	// Turn logout to a POST action
 	$( '#pt-logout a' ).on( 'click', function ( e ) {
 		var api = new mw.Api(),
-			returnUrl = $( '#pt-logout a' ).attr( 'href' );
+			url = this.href;
 		mw.notify(
 			mw.message( 'logging-out-notify' ),
 			{ tag: 'logout', autoHide: false }
@@ -65,11 +65,11 @@ $( function () {
 			action: 'logout'
 		} ).then(
 			function () {
-				location.href = returnUrl;
+				location.href = url;
 			},
-			function ( e ) {
+			function ( err ) {
 				mw.notify(
-					mw.message( 'logout-failed', e ),
+					mw.message( 'logout-failed', err ),
 					{ type: 'error', tag: 'logout', autoHide: false }
 				);
 			}
