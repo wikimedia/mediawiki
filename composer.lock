@@ -2840,11 +2840,11 @@
         },
         {
             "name": "wikimedia/smash-pig",
-            "version": "v0.5.10.1",
+            "version": "v0.5.10.2",
             "source": {
                 "type": "git",
                 "url": "https://gerrit.wikimedia.org/r/wikimedia/fundraising/SmashPig.git",
-                "reference": "e7250acc42013591a8da88e236a5979c3b42a9ad"
+                "reference": "2a114317f69f11d7f018d843c026fc0e23abf8d5"
             },
             "require": {
                 "amzn/login-and-pay-with-amazon-sdk-php": "dev-master",
@@ -2903,7 +2903,7 @@
                 "donations",
                 "payments"
             ],
-            "time": "2019-08-28T21:24:06+00:00"
+            "time": "2019-09-12T15:37:22+00:00"
         },
         {
             "name": "wikimedia/timestamp",
@@ -5267,7 +5267,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "backendtea@gmail.com"
+                    "email": "BackEndTea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
