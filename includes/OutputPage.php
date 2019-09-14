@@ -1598,6 +1598,7 @@ class OutputPage extends ContextSource {
 	 * @param ParserOptions|null $options Either the ParserOption to use or null to only get the
 	 *   current ParserOption object. This parameter is deprecated since 1.31.
 	 * @return ParserOptions
+	 * @suppress PhanUndeclaredProperty For isBogus
 	 */
 	public function parserOptions( $options = null ) {
 		if ( $options !== null ) {
