@@ -2422,7 +2422,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			"$base/subdir2/subdir/sub/120-px-file.txt",
 		];
 
-		for ( $i = 0; $i < 25; $i++ ) {
+		for ( $i = 0; $i < 2; $i++ ) {
 			$status = $this->backend->lockFiles( $paths, LockManager::LOCK_EX );
 			$this->assertEquals( print_r( [], true ), print_r( $status->getErrors(), true ),
 				"Locking of files succeeded ($backendName) ($i)." );
