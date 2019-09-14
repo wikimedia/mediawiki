@@ -121,10 +121,6 @@ class MWDocGen extends Maintenance {
 			'images',
 			'static',
 			'tests',
-			'includes/libs/Message/README.md',
-			'includes/libs/objectcache/README.md',
-			'includes/libs/ParamValidator/README.md',
-			'maintenance/benchmarks/README.md',
 			'resources/src/mediawiki.ui/styleguide.md',
 		];
 		$this->excludePatterns = [];
