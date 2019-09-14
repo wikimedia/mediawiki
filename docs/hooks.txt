@@ -2921,7 +2921,7 @@ result augmentors.
 Note that lists should be in the format name => object and the names in both
   lists should be distinct.
 
-'SecondaryDataUpdates': DEPRECATED! Use RevisionDataUpdates or override
+'SecondaryDataUpdates': DEPRECATED since 1.32! Use RevisionDataUpdates or override
 ContentHandler::getSecondaryDataUpdates instead.
 Allows modification of the list of DataUpdates to perform when page content is modified.
 $title: Title of the page that is being edited.
@@ -3969,7 +3969,7 @@ dumps. One, and only one hook should set this, and return false.
 &$opts: Options to use for the query
 &$join: Join conditions
 
-'WikiPageDeletionUpdates': DEPRECATED! Use PageDeletionDataUpdates or
+'WikiPageDeletionUpdates': DEPRECATED since 1.32! Use PageDeletionDataUpdates or
 override ContentHandler::getDeletionDataUpdates instead.
 Manipulates the list of DeferrableUpdates to be applied when a page is deleted.
 $page: the WikiPage
