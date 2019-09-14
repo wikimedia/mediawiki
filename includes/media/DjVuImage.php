@@ -42,6 +42,9 @@ class DjVuImage {
 	 */
 	const DJVUTXT_MEMORY_LIMIT = 300000;
 
+	/** @var string */
+	private $mFilename;
+
 	/**
 	 * @param string $filename The DjVu file name.
 	 */

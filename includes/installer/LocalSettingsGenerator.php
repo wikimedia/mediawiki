@@ -30,6 +30,7 @@
 class LocalSettingsGenerator {
 
 	protected $extensions = [];
+	protected $skins = [];
 	protected $values = [];
 	protected $groupPermissions = [];
 	protected $dbSettings = '';

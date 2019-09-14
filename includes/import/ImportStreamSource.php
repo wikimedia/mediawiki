@@ -30,6 +30,9 @@ use MediaWiki\MediaWikiServices;
  * @ingroup SpecialPage
  */
 class ImportStreamSource implements ImportSource {
+	/** @var resource */
+	private $mHandle;
+
 	/**
 	 * @param resource $handle
 	 */

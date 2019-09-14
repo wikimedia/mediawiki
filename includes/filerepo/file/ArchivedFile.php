@@ -94,6 +94,9 @@ class ArchivedFile {
 	/** @var Title */
 	protected $title; # image title
 
+	/** @var bool */
+	private $exists;
+
 	/**
 	 * @throws MWException
 	 * @param Title $title

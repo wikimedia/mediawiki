@@ -41,6 +41,9 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	private $redirect;
 	private $bl_ns, $bl_from, $bl_from_ns, $bl_table, $bl_code, $bl_title, $bl_fields, $hasNS;
 
+	/** @var string */
+	private $helpUrl;
+
 	/**
 	 * Maps ns and title to pageid
 	 *
