@@ -59,11 +59,6 @@ ALIASES                = "type{1}=<b> \1 </b>:" \
                          "codeCoverageIgnore=" \
                          "codingStandardsIgnoreEnd=" \
                          "codingStandardsIgnoreStart=" \
-                         "covers=" \
-                         "dataProvider=" \
-                         "expectedException=" \
-                         "expectedExceptionMessage=" \
-                         "group=" \
                          "phan=" \
                          "suppress="
 TCL_SUBST              =
