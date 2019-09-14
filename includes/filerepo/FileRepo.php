@@ -143,6 +143,12 @@ class FileRepo {
 	protected $wanCache;
 
 	/**
+	 * @var string
+	 * @protected Use $this->getName(). Public for back-compat only
+	 */
+	public $name;
+
+	/**
 	 * @param array|null $info
 	 * @throws MWException
 	 */

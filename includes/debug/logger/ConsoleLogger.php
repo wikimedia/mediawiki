@@ -10,6 +10,9 @@ use Psr\Log\AbstractLogger;
  * goal.
  */
 class ConsoleLogger extends AbstractLogger {
+	/** @var string */
+	private $channel;
+
 	/**
 	 * @param string $channel
 	 */

@@ -657,6 +657,7 @@ abstract class HTMLFormField {
 	 * @param OOUI\Widget $inputField
 	 * @param array $config
 	 * @return OOUI\FieldLayout|OOUI\ActionFieldLayout
+	 * @suppress PhanUndeclaredProperty Only some subclasses declare mClassWithButton
 	 */
 	protected function getFieldLayoutOOUI( $inputField, $config ) {
 		if ( isset( $this->mClassWithButton ) ) {

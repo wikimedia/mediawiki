@@ -29,6 +29,7 @@ use GuzzleHttp\Psr7\StreamDecoratorTrait;
  *
  * @private for use by GuzzleHttpRequest only
  * @since 1.33
+ * @property StreamInterface $stream Defined in StreamDecoratorTrait via @property, not read by phan
  */
 class MWCallbackStream implements StreamInterface {
 	use StreamDecoratorTrait;

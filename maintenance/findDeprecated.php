@@ -20,6 +20,7 @@
  *
  * @file
  * @ingroup Maintenance
+ * @phan-file-suppress PhanUndeclaredProperty Lots of custom properties
  */
 
 require_once __DIR__ . '/Maintenance.php';

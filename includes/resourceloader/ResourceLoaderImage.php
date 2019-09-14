@@ -337,6 +337,7 @@ class ResourceLoaderImage {
 		// Reattach all direct children of the `<svg>` root node to the `<g>` wrapper
 		while ( $root->firstChild ) {
 			$node = $root->firstChild;
+			// @phan-suppress-next-line PhanUndeclaredProperty False positive
 			if ( !$titleNode && $node->nodeType === XML_ELEMENT_NODE && $node->tagName === 'title' ) {
 				// Remember the first encountered `<title>` node
 				$titleNode = $node;
