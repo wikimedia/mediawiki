@@ -884,87 +884,85 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Get (cheap to compute) information about change tags.
+	 * Get information about change tags, without parsing messages, for getRcFiltersConfigSummary().
+	 *
+	 * Message contents are the raw values (->plain()), because parsing messages is expensive.
+	 * Even though we're not parsing messages, building a data structure with the contents of
+	 * hundreds of i18n messages is still not cheap (see T223260#5370610), so the result of this
+	 * function is cached in WANCache for 24 hours.
 	 *
 	 * Returns an array of associative arrays with information about each tag:
 	 * - name: Tag name (string)
 	 * - labelMsg: Short description message (Message object)
+	 * - label: Short description message (raw message contents)
 	 * - descriptionMsg: Long description message (Message object)
+	 * - description: Long description message (raw message contents)
 	 * - cssClass: CSS class to use for RC entries with this tag
 	 * - hits: Number of RC entries that have this tag
 	 *
 	 * @param ResourceLoaderContext $context
 	 * @return array[] Information about each tag
 	 */
-	protected static function getChangeTagInfo( ResourceLoaderContext $context ) {
-		$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
-		$softwareActivatedTags = array_fill_keys( ChangeTags::listSoftwareActivatedTags(), 0 );
-
-		$tagStats = ChangeTags::tagUsageStatistics();
-		$tagHitCounts = array_merge( $explicitlyDefinedTags, $softwareActivatedTags, $tagStats );
-
-		$result = [];
-		foreach ( $tagHitCounts as $tagName => $hits ) {
-			if (
-				(
-					// Only get active tags
-					isset( $explicitlyDefinedTags[ $tagName ] ) ||
-					isset( $softwareActivatedTags[ $tagName ] )
-				) &&
-				// Only get tags with more than 0 hits
-				$hits > 0
-			) {
-				$labelMsg = ChangeTags::tagShortDescriptionMessage( $tagName, $context );
-				if ( $labelMsg === false ) {
-					// Tag is hidden, skip it
-					continue;
-				}
-				$result[] = [
-					'name' => $tagName,
-					// 'label' and 'description' filled in by getChangeTagList()
-					'labelMsg' => $labelMsg,
-					'descriptionMsg' => ChangeTags::tagLongDescriptionMessage( $tagName, $context ),
-					'cssClass' => Sanitizer::escapeClass( 'mw-tag-' . $tagName ),
-					'hits' => $hits,
-				];
-			}
-		}
-		return $result;
-	}
-
-	/**
-	 * Get information about change tags for use in getRcFiltersConfigSummary().
-	 *
-	 * This expands labelMsg and descriptionMsg to the raw values of each message, which captures
-	 * changes in the messages but avoids the expensive step of parsing them.
-	 *
-	 * @param ResourceLoaderContext $context
-	 * @return array[] Result of getChangeTagInfo(), with messages expanded to raw contents
-	 */
 	protected static function getChangeTagListSummary( ResourceLoaderContext $context ) {
-		$tags = self::getChangeTagInfo( $context );
-		foreach ( $tags as &$tagInfo ) {
-			$tagInfo['labelMsg'] = $tagInfo['labelMsg']->plain();
-			if ( $tagInfo['descriptionMsg'] ) {
-				$tagInfo['descriptionMsg'] = $tagInfo['descriptionMsg']->plain();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		return $cache->getWithSetCallback(
+			$cache->makeKey( 'ChangesListSpecialPage-changeTagListSummary', $context->getLanguage() ),
+			WANObjectCache::TTL_DAY,
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $context ) {
+				$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
+				$softwareActivatedTags = array_fill_keys( ChangeTags::listSoftwareActivatedTags(), 0 );
+
+				$tagStats = ChangeTags::tagUsageStatistics();
+				$tagHitCounts = array_merge( $explicitlyDefinedTags, $softwareActivatedTags, $tagStats );
+
+				$result = [];
+				foreach ( $tagHitCounts as $tagName => $hits ) {
+					if (
+						(
+							// Only get active tags
+							isset( $explicitlyDefinedTags[ $tagName ] ) ||
+							isset( $softwareActivatedTags[ $tagName ] )
+						) &&
+						// Only get tags with more than 0 hits
+						$hits > 0
+					) {
+						$labelMsg = ChangeTags::tagShortDescriptionMessage( $tagName, $context );
+						if ( $labelMsg === false ) {
+							// Tag is hidden, skip it
+							continue;
+						}
+						$descriptionMsg = ChangeTags::tagLongDescriptionMessage( $tagName, $context );
+						$result[] = [
+							'name' => $tagName,
+							'labelMsg' => $labelMsg,
+							'label' => $labelMsg->plain(),
+							'descriptionMsg' => $descriptionMsg,
+							'description' => $descriptionMsg ? $descriptionMsg->plain() : '',
+							'cssClass' => Sanitizer::escapeClass( 'mw-tag-' . $tagName ),
+							'hits' => $hits,
+						];
+					}
+				}
+				return $result;
 			}
-		}
-		return $tags;
+		);
 	}
 
 	/**
 	 * Get information about change tags to export to JS via getRcFiltersConfigVars().
 	 *
-	 * This removes labelMsg and descriptionMsg, and adds label and description, which are parsed,
-	 * stripped and (in the case of description) truncated versions of these messages. Message
+	 * This manipulates the label and description of each tag, which are parsed, stripped
+	 * and (in the case of description) truncated versions of these messages. Message
 	 * parsing is expensive, so to detect whether the tag list has changed, use
 	 * getChangeTagListSummary() instead.
 	 *
+	 * The result of this function is cached in WANCache for 24 hours.
+	 *
 	 * @param ResourceLoaderContext $context
-	 * @return array[] Result of getChangeTagInfo(), with messages parsed, stripped and truncated
+	 * @return array[] Same as getChangeTagListSummary(), with messages parsed, stripped and truncated
 	 */
 	protected static function getChangeTagList( ResourceLoaderContext $context ) {
-		$tags = self::getChangeTagInfo( $context );
+		$tags = self::getChangeTagListSummary( $context );
 		$language = Language::factory( $context->getLanguage() );
 		foreach ( $tags as &$tagInfo ) {
 			$tagInfo['label'] = Sanitizer::stripAllTags( $tagInfo['labelMsg']->parse() );
