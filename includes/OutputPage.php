@@ -332,7 +332,7 @@ class OutputPage extends ContextSource {
 	 * a OutputPage tied to that context.
 	 * @param IContextSource $context
 	 */
-	function __construct( IContextSource $context ) {
+	public function __construct( IContextSource $context ) {
 		$this->setContext( $context );
 	}
 
@@ -385,8 +385,8 @@ class OutputPage extends ContextSource {
 	 * @param string $name Name of the meta tag
 	 * @param string $val Value of the meta tag
 	 */
-	function addMeta( $name, $val ) {
-		array_push( $this->mMetatags, [ $name, $val ] );
+	public function addMeta( $name, $val ) {
+		$this->mMetatags[] = [ $name, $val ];
 	}
 
 	/**
@@ -406,8 +406,8 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param array $linkarr Associative array of attributes.
 	 */
-	function addLink( array $linkarr ) {
-		array_push( $this->mLinktags, $linkarr );
+	public function addLink( array $linkarr ) {
+		$this->mLinktags[] = $linkarr;
 	}
 
 	/**
@@ -425,7 +425,7 @@ class OutputPage extends ContextSource {
 	 * in preference to addLink(), to avoid duplicate link tags.
 	 * @param string $url
 	 */
-	function setCanonicalUrl( $url ) {
+	public function setCanonicalUrl( $url ) {
 		$this->mCanonicalUrl = $url;
 	}
 
@@ -447,7 +447,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param string $script Raw HTML
 	 */
-	function addScript( $script ) {
+	public function addScript( $script ) {
 		$this->mScripts .= $script;
 	}
 
@@ -621,7 +621,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @return array
 	 */
-	function getHeadItemsArray() {
+	public function getHeadItemsArray() {
 		return $this->mHeadItems;
 	}
 
@@ -1954,7 +1954,7 @@ class OutputPage extends ContextSource {
 	 * @param ParserOutput $parserOutput
 	 * @param array $poOptions Options to ParserOutput::getText()
 	 */
-	function addParserOutput( ParserOutput $parserOutput, $poOptions = [] ) {
+	public function addParserOutput( ParserOutput $parserOutput, $poOptions = [] ) {
 		$this->addParserOutputMetadata( $parserOutput );
 		$this->addParserOutputText( $parserOutput, $poOptions );
 	}
@@ -2188,7 +2188,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @return array
 	 */
-	function getCacheVaryCookies() {
+	public function getCacheVaryCookies() {
 		if ( self::$cacheVaryCookies === null ) {
 			$config = $this->getConfig();
 			self::$cacheVaryCookies = array_values( array_unique( array_merge(
@@ -2209,7 +2209,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @return bool
 	 */
-	function haveCacheVaryCookies() {
+	public function haveCacheVaryCookies() {
 		$request = $this->getRequest();
 		foreach ( $this->getCacheVaryCookies() as $cookieName ) {
 			if ( $request->getCookie( $cookieName, '', '' ) !== '' ) {
