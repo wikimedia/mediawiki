@@ -61,6 +61,7 @@ class PasswordReset implements LoggerAwareInterface {
 	private $permissionCache;
 
 	public static $constructorOptions = [
+		'AllowRequiringEmailForResets',
 		'EnableEmail',
 		'PasswordResetRoutes',
 	];
@@ -166,12 +167,14 @@ class PasswordReset implements LoggerAwareInterface {
 				. ' is not allowed to reset passwords' );
 		}
 
+		$username = $username ?? '';
+		$email = $email ?? '';
+
 		$resetRoutes = $this->config->get( 'PasswordResetRoutes' )
 			+ [ 'username' => false, 'email' => false ];
 		if ( $resetRoutes['username'] && $username ) {
 			$method = 'username';
-			$users = [ User::newFromName( $username ) ];
-			$email = null;
+			$users = [ $this->lookupUser( $username ) ];
 		} elseif ( $resetRoutes['email'] && $email ) {
 			if ( !Sanitizer::validateEmail( $email ) ) {
 				return StatusValue::newFatal( 'passwordreset-invalidemail' );
@@ -188,10 +191,31 @@ class PasswordReset implements LoggerAwareInterface {
 		$error = [];
 		$data = [
 			'Username' => $username,
-			'Email' => $email,
+			// Email gets set to null for backward compatibility
+			'Email' => $method === 'email' ? $email : null,
 		];
 		if ( !Hooks::run( 'SpecialPasswordResetOnSubmit', [ &$users, $data, &$error ] ) ) {
 			return StatusValue::newFatal( Message::newFromSpecifier( $error ) );
+		}
+
+		$firstUser = $users[0] ?? null;
+		$requireEmail = $this->config->get( 'AllowRequiringEmailForResets' )
+			&& $method === 'username'
+			&& $firstUser
+			&& $firstUser->getBoolOption( 'requireemail' );
+		if ( $requireEmail ) {
+			if ( $email === '' ) {
+				return StatusValue::newFatal( 'passwordreset-username-email-required' );
+			}
+
+			if ( !Sanitizer::validateEmail( $email ) ) {
+				return StatusValue::newFatal( 'passwordreset-invalidemail' );
+			}
+		}
+
+		// Check against the rate limiter
+		if ( $performingUser->pingLimiter( 'mailpassword' ) ) {
+			return StatusValue::newFatal( 'actionthrottledtext' );
 		}
 
 		if ( !$users ) {
@@ -203,16 +227,9 @@ class PasswordReset implements LoggerAwareInterface {
 			}
 		}
 
-		$firstUser = $users[0];
-
 		if ( !$firstUser instanceof User || !$firstUser->getId() ) {
 			// Don't parse username as wikitext (T67501)
 			return StatusValue::newFatal( wfMessage( 'nosuchuser', wfEscapeWikiText( $username ) ) );
-		}
-
-		// Check against the rate limiter
-		if ( $performingUser->pingLimiter( 'mailpassword' ) ) {
-			return StatusValue::newFatal( 'actionthrottledtext' );
 		}
 
 		// All the users will have the same email address
@@ -220,6 +237,11 @@ class PasswordReset implements LoggerAwareInterface {
 			// This won't be reachable from the email route, so safe to expose the username
 			return StatusValue::newFatal( wfMessage( 'noemail',
 				wfEscapeWikiText( $firstUser->getName() ) ) );
+		}
+
+		if ( $requireEmail && $firstUser->getEmail() !== $email ) {
+			// Pretend everything's fine to avoid disclosure
+			return StatusValue::newGood();
 		}
 
 		// We need to have a valid IP address for the hook, but per T20347, we should
@@ -323,5 +345,16 @@ class PasswordReset implements LoggerAwareInterface {
 			$users[] = User::newFromRow( $row );
 		}
 		return $users;
+	}
+
+	/**
+	 * User object creation helper for testability
+	 * @codeCoverageIgnore
+	 *
+	 * @param string $username
+	 * @return User|false
+	 */
+	protected function lookupUser( $username ) {
+		return User::newFromName( $username );
 	}
 }

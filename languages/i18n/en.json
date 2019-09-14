@@ -608,6 +608,7 @@
 	"passwordreset-ignored": "The password reset was not handled. Maybe no provider was configured?",
 	"passwordreset-invalidemail": "Invalid email address",
 	"passwordreset-nodata": "Neither a username nor an email address was supplied",
+	"passwordreset-username-email-required": "Both username and email address are required to receive a temporary password via email.",
 	"changeemail": "Change or remove email address",
 	"changeemail-summary": "",
 	"changeemail-header": "Complete this form to change your email address. If you would like to remove the association of any email address from your account, leave the new email address blank when submitting the form.",
