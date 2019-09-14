@@ -524,7 +524,7 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
  * /w/images/thumb/a/ab/Foo.png/120px-Foo.png. The $thumbRel parameter
  * of this function would be set to "a/ab/Foo.png/120px-Foo.png".
  * This method is responsible for turning that into an array
- * with the folowing keys:
+ * with the following keys:
  *  * f => the filename (Foo.png)
  *  * rel404 => the whole thing (a/ab/Foo.png/120px-Foo.png)
  *  * archived => 1 (If the request is for an archived thumb)
