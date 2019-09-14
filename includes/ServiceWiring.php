@@ -111,7 +111,8 @@ return [
 			new ServiceOptions(
 				BlockManager::$constructorOptions, $services->getMainConfig()
 			),
-			$services->getPermissionManager()
+			$services->getPermissionManager(),
+			LoggerFactory::getInstance( 'BlockManager' )
 		);
 	},
 

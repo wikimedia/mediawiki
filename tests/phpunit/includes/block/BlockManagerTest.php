@@ -6,6 +6,7 @@ use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
+use Psr\Log\LoggerInterface;
 
 /**
  * @group Blocking
@@ -48,13 +49,15 @@ class BlockManagerTest extends MediaWikiTestCase {
 	private function getBlockManagerConstructorArgs( $overrideConfig ) {
 		$blockManagerConfig = array_merge( $this->blockManagerConfig, $overrideConfig );
 		$this->setMwGlobals( $blockManagerConfig );
+		$logger = $this->getMockBuilder( LoggerInterface::class )->getMock();
 		return [
 			new LoggedServiceOptions(
 				self::$serviceOptionsAccessLog,
 				BlockManager::$constructorOptions,
 				MediaWikiServices::getInstance()->getMainConfig()
 			),
-			MediaWikiServices::getInstance()->getPermissionManager()
+			MediaWikiServices::getInstance()->getPermissionManager(),
+			$logger
 		];
 	}
 
