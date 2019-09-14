@@ -103,10 +103,10 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 * @param ExternalStoreAccess $extStoreAccess Access layer for external storage
 	 * @param WANObjectCache $cache A cache manager for caching blobs. This can be the local
 	 *        wiki's default instance even if $dbDomain refers to a different wiki, since
-	 *        makeGlobalKey() is used to constructed a key that allows cached blobs from the
-	 *        same database to be re-used between wikis. For example, enwiki and frwiki will
-	 *        use the same cache keys for blobs from the wikidatawiki database, regardless of
-	 *        the cache's default key space.
+	 *        makeGlobalKey() is used to construct a key that allows cached blobs from the
+	 *        same database to be re-used between wikis. For example, wiki A and wiki B will
+	 *        use the same cache keys for blobs fetched from wiki C, regardless of the
+	 *        wiki-specific default key space.
 	 * @param bool|string $dbDomain The ID of the target wiki database. Use false for the local wiki.
 	 */
 	public function __construct(
@@ -449,16 +449,15 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 * Get a cache key for a given Blob address.
 	 *
 	 * The cache key is constructed in a way that allows cached blobs from the same database
-	 * to be re-used between wikis. For example, enwiki and frwiki will use the same cache keys
-	 * for blobs from the wikidatawiki database.
+	 * to be re-used between wikis. For example, wiki A and wiki B will use the same cache keys
+	 * for blobs fetched from wiki C.
 	 *
 	 * @param string $blobAddress
 	 * @return string
 	 */
 	private function getCacheKey( $blobAddress ) {
 		return $this->cache->makeGlobalKey(
-			'BlobStore',
-			'address',
+			'SqlBlobStore-blob',
 			$this->dbLoadBalancer->resolveDomainID( $this->dbDomain ),
 			$blobAddress
 		);
