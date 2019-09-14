@@ -20,7 +20,10 @@
  */
 
 /**
- * ResourceLoader module for populating language specific data, such as grammar forms.
+ * Module for populating language specific data, such as grammar forms.
+ *
+ * @ingroup ResourceLoader
+ * @internal
  */
 class ResourceLoaderLanguageDataModule extends ResourceLoaderFileModule {
 

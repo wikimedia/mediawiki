@@ -1,7 +1,5 @@
 <?php
 /**
- * Abstraction for ResourceLoader modules.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -32,6 +30,9 @@ use Wikimedia\ScopedCallback;
 
 /**
  * Abstraction for ResourceLoader modules, with name registration and maxage functionality.
+ *
+ * @ingroup ResourceLoader
+ * @since 1.17
  */
 abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	/** @var Config */

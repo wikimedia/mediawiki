@@ -27,10 +27,13 @@ use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\Database;
 
 /**
- * This class generates message blobs for use by ResourceLoader modules.
+ * This class generates message blobs for use by ResourceLoader.
  *
- * A message blob is a JSON object containing the interface messages for a certain module in
- * a certain language.
+ * A message blob is a JSON object containing the interface messages for a
+ * certain module in a certain language.
+ *
+ * @ingroup ResourceLoader
+ * @since 1.17
  */
 class MessageBlobStore implements LoggerAwareInterface {
 

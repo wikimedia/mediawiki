@@ -1,7 +1,5 @@
 <?php
 /**
- * ResourceLoader module for generated and embedded images.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -22,8 +20,9 @@
  */
 
 /**
- * ResourceLoader module for generated and embedded images.
+ * Module for generated and embedded images.
  *
+ * @ingroup ResourceLoader
  * @since 1.25
  */
 class ResourceLoaderImageModule extends ResourceLoaderModule {

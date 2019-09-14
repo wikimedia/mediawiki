@@ -1,7 +1,5 @@
 <?php
 /**
- * Context for ResourceLoader modules.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -26,8 +24,11 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
- * Object passed around to modules which contains information about the state
- * of a specific loader request.
+ * Context object that contains information about the state of a specific
+ * ResourceLoader web request. Passed around to ResourceLoaderModule methods.
+ *
+ * @ingroup ResourceLoader
+ * @since 1.17
  */
 class ResourceLoaderContext implements MessageLocalizer {
 	const DEFAULT_LANG = 'qqx';

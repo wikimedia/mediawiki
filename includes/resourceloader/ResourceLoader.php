@@ -1,7 +1,5 @@
 <?php
 /**
- * Base class for resource loading system.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -30,13 +28,21 @@ use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\WrappedString;
 
 /**
- * Dynamic JavaScript and CSS resource loading system.
+ * @defgroup ResourceLoader ResourceLoader
  *
- * Most of the documentation is on the MediaWiki documentation wiki starting at:
- *    https://www.mediawiki.org/wiki/ResourceLoader
+ * For higher level documentation, see <https://www.mediawiki.org/wiki/ResourceLoader/Architecture>.
+ */
+
+/**
+ * ResourceLoader is a loading system for JavaScript and CSS resources.
+ *
+ * For higher level documentation, see <https://www.mediawiki.org/wiki/ResourceLoader/Architecture>.
+ *
+ * @ingroup ResourceLoader
+ * @since 1.17
  */
 class ResourceLoader implements LoggerAwareInterface {
-	/** @var Config $config */
+	/** @var Config */
 	protected $config;
 	/** @var MessageBlobStore */
 	protected $blobStore;

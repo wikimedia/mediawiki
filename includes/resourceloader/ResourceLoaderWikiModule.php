@@ -1,7 +1,5 @@
 <?php
 /**
- * Abstraction for ResourceLoader modules that pull from wiki pages.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -48,6 +46,9 @@ use MediaWiki\MediaWikiServices;
  *   - getDB()
  *   - isKnownEmpty()
  *   - getTitleInfo()
+ *
+ * @ingroup ResourceLoader
+ * @since 1.17
  */
 class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
