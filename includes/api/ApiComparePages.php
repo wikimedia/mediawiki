@@ -26,6 +26,9 @@ use MediaWiki\Revision\RevisionArchiveRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 
+/**
+ * @ingroup API
+ */
 class ApiComparePages extends ApiBase {
 
 	/** @var RevisionStore */
