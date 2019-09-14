@@ -56,7 +56,6 @@ class RCCacheEntryFactory {
 	 */
 	public function newFromRecentChange( RecentChange $baseRC, $watched ) {
 		$user = $this->context->getUser();
-		$counter = $baseRC->counter;
 
 		$cacheEntry = RCCacheEntry::newFromParent( $baseRC );
 
@@ -73,8 +72,8 @@ class RCCacheEntryFactory {
 		// called too many times (50% of CPU time on RecentChanges!).
 		$showDiffLinks = $this->showDiffLinks( $cacheEntry, $user );
 
-		$cacheEntry->difflink = $this->buildDiffLink( $cacheEntry, $showDiffLinks, $counter );
-		$cacheEntry->curlink = $this->buildCurLink( $cacheEntry, $showDiffLinks, $counter );
+		$cacheEntry->difflink = $this->buildDiffLink( $cacheEntry, $showDiffLinks );
+		$cacheEntry->curlink = $this->buildCurLink( $cacheEntry, $showDiffLinks );
 		$cacheEntry->lastlink = $this->buildLastLink( $cacheEntry, $showDiffLinks );
 
 		// Make user links
@@ -182,11 +181,10 @@ class RCCacheEntryFactory {
 	/**
 	 * @param RecentChange $cacheEntry
 	 * @param bool $showDiffLinks
-	 * @param int $counter
 	 *
 	 * @return string
 	 */
-	private function buildCurLink( RecentChange $cacheEntry, $showDiffLinks, $counter ) {
+	private function buildCurLink( RecentChange $cacheEntry, $showDiffLinks ) {
 		$queryParams = $this->buildCurQueryParams( $cacheEntry );
 		$curMessage = $this->getMessage( 'cur' );
 		$logTypes = [ RC_LOG ];
@@ -217,11 +215,10 @@ class RCCacheEntryFactory {
 	/**
 	 * @param RecentChange $cacheEntry
 	 * @param bool $showDiffLinks
-	 * @param int $counter
 	 *
 	 * @return string
 	 */
-	private function buildDiffLink( RecentChange $cacheEntry, $showDiffLinks, $counter ) {
+	private function buildDiffLink( RecentChange $cacheEntry, $showDiffLinks ) {
 		$queryParams = $this->buildDiffQueryParams( $cacheEntry );
 		$diffMessage = $this->getMessage( 'diff' );
 		$logTypes = [ RC_NEW, RC_LOG ];
