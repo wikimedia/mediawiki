@@ -850,8 +850,7 @@ class RevisionTest extends MediaWikiTestCase {
 		);
 
 		$cacheKey = $cache->makeGlobalKey(
-			'BlobStore',
-			'address',
+			'SqlBlobStore-blob',
 			$lb->getLocalDomainID(),
 			'tt:7777'
 		);
