@@ -21,6 +21,9 @@
  * @file
  */
 
+/**
+ * @ingroup API
+ */
 class ApiFormatXmlRsd extends ApiFormatXml {
 	public function __construct( ApiMain $main, $format ) {
 		parent::__construct( $main, $format );

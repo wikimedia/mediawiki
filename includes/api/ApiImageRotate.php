@@ -1,7 +1,4 @@
 <?php
-
-use MediaWiki\MediaWikiServices;
-
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +18,11 @@ use MediaWiki\MediaWikiServices;
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
+/**
+ * @ingroup API
+ */
 class ApiImageRotate extends ApiBase {
 	private $mPageSet = null;
 

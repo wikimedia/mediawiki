@@ -28,6 +28,7 @@
  * 'APIGetParamDescriptionMessages' hook simple.
  *
  * @since 1.25
+ * @ingroup API
  */
 class ApiHelpParamValueMessage extends Message {
 
