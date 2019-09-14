@@ -1396,12 +1396,12 @@ abstract class FileBackendStore extends FileBackend {
 			}
 		}
 
-		$res = $this->doExecuteOpHandlesInternal( $fileOpHandles );
+		$statuses = $this->doExecuteOpHandlesInternal( $fileOpHandles );
 		foreach ( $fileOpHandles as $fileOpHandle ) {
 			$fileOpHandle->closeResources();
 		}
 
-		return $res;
+		return $statuses;
 	}
 
 	/**
