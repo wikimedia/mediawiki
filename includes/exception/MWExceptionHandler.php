@@ -350,7 +350,7 @@ class MWExceptionHandler {
 
 		// Look at message to see if this is a class not found failure
 		// HHVM: Class undefined: foo
-		// PHP5: Class 'foo' not found
+		// PHP7: Class 'foo' not found
 		if ( preg_match( "/Class (undefined: \w+|'\w+' not found)/", $message ) ) {
 			// phpcs:disable Generic.Files.LineLength
 			$msg = <<<TXT

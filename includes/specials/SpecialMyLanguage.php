@@ -71,14 +71,14 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 		if ( $subpage !== null ) {
 			$provided = Title::newFromText( $subpage );
 			$base = $provided;
-		}
 
-		if ( $provided && strpos( $subpage, '/' ) !== false ) {
-			$pos = strrpos( $subpage, '/' );
-			$basepage = substr( $subpage, 0, $pos );
-			$code = substr( $subpage, $pos + 1 );
-			if ( strlen( $code ) && Language::isKnownLanguageTag( $code ) ) {
-				$base = Title::newFromText( $basepage );
+			if ( $provided && strpos( $subpage, '/' ) !== false ) {
+				$pos = strrpos( $subpage, '/' );
+				$basepage = substr( $subpage, 0, $pos );
+				$code = substr( $subpage, $pos + 1 );
+				if ( strlen( $code ) && Language::isKnownLanguageTag( $code ) ) {
+					$base = Title::newFromText( $basepage );
+				}
 			}
 		}
 
