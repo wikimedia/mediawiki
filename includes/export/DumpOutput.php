@@ -86,7 +86,7 @@ class DumpOutput {
 	 * and reopen new file with the old name. Use this
 	 * for writing out a file in multiple pieces
 	 * at specified checkpoints (e.g. every n hours).
-	 * @param string|array $newname File name. May be a string or an array with one element
+	 * @param string|string[] $newname File name. May be a string or an array with one element
 	 */
 	function closeRenameAndReopen( $newname ) {
 	}
@@ -95,7 +95,7 @@ class DumpOutput {
 	 * Close the old file, and move it to a specified name.
 	 * Use this for the last piece of a file written out
 	 * at specified checkpoints (e.g. every n hours).
-	 * @param string|array $newname File name. May be a string or an array with one element
+	 * @param string|string[] $newname File name. May be a string or an array with one element
 	 * @param bool $open If true, a new file with the old filename will be opened
 	 *   again for writing (default: false)
 	 */
