@@ -61,7 +61,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	 * @param string $name
 	 * @return QueryPage
 	 */
-	private function getSpecialPage( $name ) {
+	private function getSpecialPage( $name ) : QueryPage {
 		$qp = $this->specialPageFactory->getPage( $name );
 		if ( !$qp ) {
 			self::dieDebug(

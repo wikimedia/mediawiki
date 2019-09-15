@@ -2742,7 +2742,7 @@ ERROR;
 	 * content.
 	 *
 	 * @param Content|null|bool|string $content
-	 * @return string The editable text form of the content.
+	 * @return string|false|null The editable text form of the content.
 	 *
 	 * @throws MWException If $content is not an instance of TextContent and
 	 *   $this->allowNonTextContent is not true.
