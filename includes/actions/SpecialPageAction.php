@@ -35,6 +35,9 @@ class SpecialPageAction extends FormlessAction {
 		'editchangetags' => 'EditTags',
 	];
 
+	/**
+	 * @inheritDoc
+	 */
 	public function getName() {
 		$request = $this->getRequest();
 		$actionName = $request->getVal( 'action', 'view' );

@@ -1816,10 +1816,11 @@ function mimeTypeMatch( $type, $avail ) {
  *
  * @param array $cprefs Client's acceptable type list
  * @param array $sprefs Server's offered types
- * @return string
+ * @return string|null
  *
  * @todo FIXME: Doesn't handle params like 'text/plain; charset=UTF-8'
  * XXX: generalize to negotiate other stuff
+ * @todo The function appears unused. Is it worth to keep?
  */
 function wfNegotiateType( $cprefs, $sprefs ) {
 	$combine = [];

@@ -33,7 +33,8 @@ use MediaWiki\MediaWikiServices;
  * @ingroup SpecialPage
  */
 class WikiImporter {
-	private $reader = null;
+	/** @var XMLReader */
+	private $reader;
 	private $foreignNamespaces = null;
 	private $mLogItemCallback, $mUploadCallback, $mRevisionCallback, $mPageCallback;
 	private $mSiteInfoCallback, $mPageOutCallback;

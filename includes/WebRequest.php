@@ -547,7 +547,7 @@ class WebRequest {
 	 *
 	 * @param string $name
 	 * @param array|null $default Option default (or null)
-	 * @return array Array of ints
+	 * @return int[]|null
 	 */
 	public function getIntArray( $name, $default = null ) {
 		$val = $this->getArray( $name, $default );

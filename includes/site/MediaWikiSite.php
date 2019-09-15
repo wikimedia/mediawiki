@@ -176,7 +176,7 @@ class MediaWikiSite extends Site {
 	 *
 	 * @param string|bool $pageName Page name or false (default: false)
 	 *
-	 * @return string
+	 * @return string|bool|null
 	 */
 	public function getPageUrl( $pageName = false ) {
 		$url = $this->getLinkPath();
