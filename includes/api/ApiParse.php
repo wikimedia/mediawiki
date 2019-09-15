@@ -28,7 +28,7 @@ use MediaWiki\Revision\RevisionRecord;
  */
 class ApiParse extends ApiBase {
 
-	/** @var string */
+	/** @var string|false|null */
 	private $section = null;
 
 	/** @var Content */
@@ -634,7 +634,7 @@ class ApiParse extends ApiBase {
 	 *
 	 * @param Title $title of the page being parsed
 	 * @param array $params The API parameters of the request
-	 * @return Content|bool
+	 * @return string HTML
 	 */
 	private function formatSummary( $title, $params ) {
 		$summary = $params['summary'] ?? '';

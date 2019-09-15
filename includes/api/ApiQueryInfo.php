@@ -908,7 +908,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$timestamps = [];
 			foreach ( $timestampRes as $row ) {
 				$revTimestamp = wfTimestamp( TS_UNIX, (int)$row->rev_timestamp );
-				$timestamps[$row->page_namespace][$row->page_title] = $revTimestamp - $age;
+				$timestamps[$row->page_namespace][$row->page_title] = (int)$revTimestamp - $age;
 			}
 			$titlesWithThresholds = array_map(
 				function ( LinkTarget $target ) use ( $timestamps ) {

@@ -98,7 +98,7 @@ abstract class ChangesListFilter {
 	/**
 	 * Priority integer.  Higher value means higher up in the group's filter list.
 	 *
-	 * @var string
+	 * @var int
 	 */
 	protected $priority;
 
@@ -138,6 +138,9 @@ abstract class ChangesListFilter {
 	 *     UI.
 	 * * $filterDefinition['priority'] int Priority integer.  Higher value means higher
 	 *     up in the group's filter list.
+	 * @codingStandardsIgnoreStart
+	 * @phan-param array{name:string,cssClassSuffix?:string,isRowApplicableCallable?:callable,group:ChangesListFilterGroup,label:string,description:string,priority:int} $filterDefinition
+	 * @codingStandardsIgnoreEnd
 	 */
 	public function __construct( array $filterDefinition ) {
 		if ( isset( $filterDefinition['group'] ) ) {

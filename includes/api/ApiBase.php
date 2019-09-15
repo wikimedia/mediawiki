@@ -291,6 +291,9 @@ abstract class ApiBase extends ContextSource {
 	/** @var string */
 	private $mModuleName, $mModulePrefix;
 	private $mReplicaDB = null;
+	/**
+	 * @var array
+	 */
 	private $mParamCache = [];
 	/** @var array|null|bool */
 	private $mModuleSource = false;
@@ -768,9 +771,10 @@ abstract class ApiBase extends ContextSource {
 		];
 
 		$parseLimit = (bool)$options['parseLimit'];
+		$cacheKey = (int)$parseLimit;
 
 		// Cache parameters, for performance and to avoid T26564.
-		if ( !isset( $this->mParamCache[$parseLimit] ) ) {
+		if ( !isset( $this->mParamCache[$cacheKey] ) ) {
 			$params = $this->getFinalParams() ?: [];
 			$results = [];
 			$warned = [];
@@ -852,10 +856,10 @@ abstract class ApiBase extends ContextSource {
 				}
 			}
 
-			$this->mParamCache[$parseLimit] = $results;
+			$this->mParamCache[$cacheKey] = $results;
 		}
 
-		$ret = $this->mParamCache[$parseLimit];
+		$ret = $this->mParamCache[$cacheKey];
 		if ( !$options['safeMode'] ) {
 			foreach ( $ret as $v ) {
 				if ( $v instanceof ApiUsageException ) {
@@ -864,7 +868,7 @@ abstract class ApiBase extends ContextSource {
 			}
 		}
 
-		return $this->mParamCache[$parseLimit];
+		return $this->mParamCache[$cacheKey];
 	}
 
 	/**
