@@ -988,7 +988,27 @@ class SpecialVersion extends SpecialPage {
 		$linkRenderer = $this->getLinkRenderer();
 
 		$list = [];
-		foreach ( (array)$authors as $item ) {
+		$authors = (array)$authors;
+
+		// Special case: if the authors array has only one item and it is "...",
+		// it should not be rendered as the "version-poweredby-others" i18n msg,
+		// but rather as "version-poweredby-various" i18n msg instead.
+		if ( count( $authors ) === 1 && $authors[0] === '...' ) {
+			// Link to the extension's or skin's AUTHORS or CREDITS file, if there is
+			// such a file; otherwise just return the i18n msg as-is
+			if ( $extName && $this->getExtAuthorsFileName( $extDir ) ) {
+				return $linkRenderer->makeLink(
+					$this->getPageTitle( "Credits/$extName" ),
+					$this->msg( 'version-poweredby-various' )->text()
+				);
+			} else {
+				return $this->msg( 'version-poweredby-various' )->escaped();
+			}
+		}
+
+		// Otherwise, if we have an actual array that has more than one item,
+		// process each array item as usual
+		foreach ( $authors as $item ) {
 			if ( $item == '...' ) {
 				$hasOthers = true;
 
