@@ -1986,7 +1986,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 *
 	 * @see self::getLocalURL for the arguments.
 	 * @see wfExpandUrl
-	 * @param string|string[] $query
+	 * @param string|array $query
 	 * @param string|string[]|bool $query2
 	 * @param string|int|null $proto Protocol type to use in URL
 	 * @return string The URL
@@ -2047,7 +2047,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 *  valid to link, locally, to the current Title.
 	 * @see self::newFromText to produce a Title object.
 	 *
-	 * @param string|string[] $query An optional query string,
+	 * @param string|array $query An optional query string,
 	 *   not used for interwiki links. Can be specified as an associative array as well,
 	 *   e.g., [ 'action' => 'edit' ] (keys and values will be URL-escaped).
 	 *   Some query patterns will trigger various shorturl path replacements.
@@ -2182,7 +2182,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * protocol-relative, the URL will be expanded to http://
 	 *
 	 * @see self::getLocalURL for the arguments.
-	 * @param string|string[] $query
+	 * @param string|array $query
 	 * @param string|bool $query2 Deprecated
 	 * @return string The URL
 	 */
@@ -2205,7 +2205,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * NOTE: Unlike getInternalURL(), the canonical URL includes the fragment
 	 *
 	 * @see self::getLocalURL for the arguments.
-	 * @param string|string[] $query
+	 * @param string|array $query
 	 * @param string|bool $query2 Deprecated
 	 * @return string The URL
 	 * @since 1.18
