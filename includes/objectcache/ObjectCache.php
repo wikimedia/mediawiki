@@ -43,11 +43,6 @@ use MediaWiki\MediaWikiServices;
  *
  * Primary entry points:
  *
- * - ObjectCache::getMainWANInstance()
- *   Purpose: Memory cache.
- *   Stored in the local data-center's main cache (keyspace different from local-cluster cache).
- *   Delete events are broadcasted to other DCs main cache. See WANObjectCache for details.
- *
  * - ObjectCache::getLocalServerInstance( $fallbackType )
  *   Purpose: Memory cache for very hot keys.
  *   Stored only on the individual web server (typically APC or APCu for web requests,
@@ -59,13 +54,6 @@ use MediaWiki\MediaWikiServices;
  *   A typical use case would be a rate limit counter or cache regeneration mutex.
  *   Stored centrally within the local data-center. Not replicated to other DCs.
  *   Configured by $wgMainCacheType.
- *
- * - ObjectCache::getMainStashInstance()
- *   Purpose: Ephemeral global storage.
- *   Stored centrally within the primary data-center.
- *   Changes are applied there first and replicated to other DCs (best-effort).
- *   To retrieve the latest value (e.g. not from a replica DB), use BagOStuff::READ_LATEST.
- *   This store may be subject to LRU style evictions.
  *
  * - ObjectCache::getInstance( $cacheType )
  *   Purpose: Special cases (like tiered memory/disk caches).
