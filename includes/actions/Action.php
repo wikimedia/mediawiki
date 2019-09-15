@@ -22,7 +22,7 @@
 use MediaWiki\MediaWikiServices;
 
 /**
- * @defgroup Actions Action done on pages
+ * @defgroup Actions Actions
  */
 
 /**
