@@ -19,6 +19,8 @@ THIS IS NOT A RELEASE YET
 * (T227461) ObjectCache: avoid using deprecated phpredis::delete() alias.
 * (T231386) SpecialRedirect::dispatchUser() should use a 302 http status code.
 * (T118799) Fix XMP parser errors due to trailing nullchar.
+* (T230618) Fix GROUP BY in ActiveUsersPager and RecentChangesUpdateJob for
+  PostgreSQL.
 
 == MediaWiki 1.33 ==
 
