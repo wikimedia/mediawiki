@@ -4,7 +4,7 @@ namespace MediaWiki\Tests\Maintenance;
 
 use ContentHandler;
 use FetchText;
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWikiTestCase;
 use MWException;
 use Title;

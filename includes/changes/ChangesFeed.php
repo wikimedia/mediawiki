@@ -21,7 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * Feed to Special:RecentChanges and Special:RecentChangesLinked.

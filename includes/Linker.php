@@ -21,7 +21,7 @@
  */
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * Some internal bits split of from Skin.php. These functions are used

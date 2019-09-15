@@ -23,7 +23,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\Database;
 
 /**

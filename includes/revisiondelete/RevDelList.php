@@ -20,7 +20,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * Abstract base class for a list of deletable items. The list class

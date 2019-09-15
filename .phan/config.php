@@ -111,6 +111,10 @@ $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
 // @todo Enable when the issue above is resolved and we update our config!
 $cfg['redundant_condition_detection'] = false;
 
+// Do not use aliases in core.
+// Use the correct name, because we don't need backward compatibility
+$cfg['enable_class_alias_support'] = false;
+
 $cfg['ignore_undeclared_variables_in_global_scope'] = true;
 // @todo It'd be great if we could just make phan read these from DefaultSettings, to avoid
 // duplicating the types.

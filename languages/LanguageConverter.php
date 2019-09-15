@@ -21,7 +21,7 @@
 use MediaWiki\MediaWikiServices;
 
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * Base class for language conversion.

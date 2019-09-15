@@ -22,6 +22,7 @@
  */
 
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\DatabasePostgres;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\DBConnectionError;
 

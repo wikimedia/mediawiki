@@ -25,7 +25,7 @@
  */
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
