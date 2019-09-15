@@ -24,6 +24,7 @@ use Wikimedia\WrappedStringList;
 /**
  * Load and configure a ResourceLoader client on an HTML page.
  *
+ * @ingroup ResourceLoader
  * @since 1.28
  */
 class ResourceLoaderClientHtml {

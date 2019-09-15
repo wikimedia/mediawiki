@@ -1,7 +1,5 @@
 <?php
 /**
- * ResourceLoader module for site style customizations.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -23,7 +21,10 @@
  */
 
 /**
- * Module for site style customizations
+ * Module for site style customizations.
+ *
+ * @ingroup ResourceLoader
+ * @internal
  */
 class ResourceLoaderSiteStylesModule extends ResourceLoaderWikiModule {
 
