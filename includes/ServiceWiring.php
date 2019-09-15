@@ -633,7 +633,7 @@ return [
 			$services->getCommentStore(),
 			$services->getActorMigration(),
 			$config->get( 'MultiContentRevisionSchemaMigrationStage' ),
-			LoggerFactory::getProvider(),
+			LoggerFactory::getInstance( 'RevisionStore' ),
 			$config->get( 'ContentHandlerUseDB' )
 		);
 

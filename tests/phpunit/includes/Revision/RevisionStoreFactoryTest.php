@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Revision;
 
 use ActorMigration;
 use CommentStore;
-use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreFactory;
 use MediaWiki\Revision\SlotRoleRegistry;
@@ -35,7 +34,7 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 			$this->getMockCommentStore(),
 			ActorMigration::newMigration(),
 			MIGRATION_OLD,
-			$this->getMockLoggerSpi(),
+			new NullLogger(),
 			true
 		);
 		$this->assertTrue( true );
@@ -65,7 +64,7 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 		$cache = $this->getHashWANObjectCache();
 		$commentStore = $this->getMockCommentStore();
 		$actorMigration = ActorMigration::newMigration();
-		$loggerProvider = $this->getMockLoggerSpi();
+		$logger = new NullLogger();
 
 		$factory = new RevisionStoreFactory(
 			$lbFactory,
@@ -76,7 +75,7 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 			$commentStore,
 			$actorMigration,
 			$mcrMigrationStage,
-			$loggerProvider,
+			$logger,
 			$contentHandlerUseDb
 		);
 
@@ -176,18 +175,6 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 
 	private function getHashWANObjectCache() {
 		return new WANObjectCache( [ 'cache' => new \HashBagOStuff() ] );
-	}
-
-	/**
-	 * @return \PHPUnit_Framework_MockObject_MockObject|LoggerSpi
-	 */
-	private function getMockLoggerSpi() {
-		$mock = $this->getMock( LoggerSpi::class );
-
-		$mock->method( 'getLogger' )
-			->willReturn( new NullLogger() );
-
-		return $mock;
 	}
 
 }
