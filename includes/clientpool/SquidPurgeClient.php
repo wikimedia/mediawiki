@@ -49,9 +49,9 @@ class SquidPurgeClient {
 	/** @var mixed */
 	protected $currentRequestIndex;
 
-	const EINTR = 4;
-	const EAGAIN = 11;
-	const EINPROGRESS = 115;
+	const EINTR = SOCKET_EINTR;
+	const EAGAIN = SOCKET_EAGAIN;
+	const EINPROGRESS = SOCKET_EINPROGRESS;
 	const BUFFER_SIZE = 8192;
 
 	/**
@@ -245,12 +245,12 @@ class SquidPurgeClient {
 			return;
 		}
 
+		$flags = 0;
+
 		if ( strlen( $this->writeBuffer ) <= self::BUFFER_SIZE ) {
 			$buf = $this->writeBuffer;
-			$flags = MSG_EOR;
 		} else {
 			$buf = substr( $this->writeBuffer, 0, self::BUFFER_SIZE );
-			$flags = 0;
 		}
 		Wikimedia\suppressWarnings();
 		$bytesSent = socket_send( $socket, $buf, strlen( $buf ), $flags );
