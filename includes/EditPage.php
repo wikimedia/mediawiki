@@ -25,7 +25,7 @@ use MediaWiki\EditPage\TextboxBuilder;
 use MediaWiki\EditPage\TextConflictHelper;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\ScopedCallback;
 
 /**

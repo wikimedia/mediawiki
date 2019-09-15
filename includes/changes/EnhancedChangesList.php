@@ -1,6 +1,6 @@
 <?php
 
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * Generates a list of changes using an Enhanced system (uses javascript).

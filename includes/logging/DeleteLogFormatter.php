@@ -24,7 +24,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * This class formats delete log entries.

@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 
 require_once __DIR__ . '/Maintenance.php';
 

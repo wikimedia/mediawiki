@@ -23,7 +23,7 @@
  */
 
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;

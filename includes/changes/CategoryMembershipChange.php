@@ -1,7 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * Helper class for category membership changes

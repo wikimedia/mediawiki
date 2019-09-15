@@ -20,7 +20,7 @@
  * @file
  */
 
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * Item class for a live revision table row

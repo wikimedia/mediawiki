@@ -28,7 +28,7 @@
  */
 
 use MediaWiki\MediaWikiServices as MediaWikiServicesAlias;
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
