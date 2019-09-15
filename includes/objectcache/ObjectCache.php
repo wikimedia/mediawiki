@@ -352,30 +352,6 @@ class ObjectCache {
 	}
 
 	/**
-	 * Get the main WAN cache object.
-	 *
-	 * @since 1.26
-	 * @return WANObjectCache
-	 * @deprecated Since 1.28 Use MediaWikiServices::getInstance()->getMainWANObjectCache()
-	 */
-	public static function getMainWANInstance() {
-		wfDeprecated( __METHOD__, '1.28' );
-		return MediaWikiServices::getInstance()->getMainWANObjectCache();
-	}
-
-	/**
-	 * Get the cache object for the main stash.
-	 *
-	 * @return BagOStuff
-	 * @since 1.26
-	 * @deprecated Since 1.28 Use MediaWikiServices::getInstance()->getMainObjectStash()
-	 */
-	public static function getMainStashInstance() {
-		wfDeprecated( __METHOD__, '1.28' );
-		return MediaWikiServices::getInstance()->getMainObjectStash();
-	}
-
-	/**
 	 * Clear all the cached instances.
 	 */
 	public static function clear() {
