@@ -1121,7 +1121,7 @@ class CoreParserFunctions {
 	 * @param Parser $parser
 	 * @param Title $title
 	 * @param string $vary ParserOuput vary-* flag
-	 * @return Revision
+	 * @return Revision|null
 	 * @since 1.23
 	 */
 	private static function getCachedRevisionObject( $parser, $title, $vary ) {
