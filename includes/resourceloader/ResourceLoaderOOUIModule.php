@@ -21,7 +21,8 @@
 /**
  * Convenience methods for dealing with OOUI themes and their relations to MW skins.
  *
- * @since 1.30
+ * @ingroup ResourceLoader
+ * @internal
  */
 trait ResourceLoaderOOUIModule {
 	protected static $knownScriptsModules = [ 'core' ];

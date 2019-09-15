@@ -1,8 +1,5 @@
 <?php
 /**
- * ResourceLoader module for mediawiki.ForeignApi that has dynamically
- * generated dependencies, via a hook usable by extensions.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -22,7 +19,11 @@
  */
 
 /**
- * ResourceLoader module for mediawiki.ForeignApi and its generated data
+ * Module for mediawiki.ForeignApi that has dynamically
+ * generated dependencies, via a hook usable by extensions.
+ *
+ * @ingroup ResourceLoader
+ * @internal
  */
 class ResourceLoaderForeignApiModule extends ResourceLoaderFileModule {
 	public function getDependencies( ResourceLoaderContext $context = null ) {

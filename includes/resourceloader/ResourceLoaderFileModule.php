@@ -1,7 +1,5 @@
 <?php
 /**
- * ResourceLoader module based on local JavaScript/CSS files.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -23,13 +21,16 @@
  */
 
 /**
- * ResourceLoader module based on local JavaScript/CSS files.
+ * Module based on local JavaScript/CSS files.
  *
  * The following public methods can query the database:
  *
  * - getDefinitionSummary / … / ResourceLoaderModule::getFileDependencies.
  * - getVersionHash / getDefinitionSummary / … / ResourceLoaderModule::getFileDependencies.
  * - getStyles / ResourceLoaderModule::saveFileDependencies.
+ *
+ * @ingroup ResourceLoader
+ * @since 1.17
  */
 class ResourceLoaderFileModule extends ResourceLoaderModule {
 

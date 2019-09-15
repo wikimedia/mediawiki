@@ -19,10 +19,11 @@
  */
 
 /**
- * ResourceLoaderFileModule which magically loads the right skinScripts and skinStyles for every
+ * Module which magically loads the right skinScripts and skinStyles for every
  * skin, using the specified OOUI theme for each.
  *
- * @since 1.30
+ * @ingroup ResourceLoader
+ * @internal
  */
 class ResourceLoaderOOUIFileModule extends ResourceLoaderFileModule {
 	use ResourceLoaderOOUIModule;

@@ -21,6 +21,7 @@
 /**
  * Allows loading arbitrary sets of OOUI icons.
  *
+ * @ingroup ResourceLoader
  * @since 1.34
  */
 class ResourceLoaderOOUIIconPackModule extends ResourceLoaderOOUIImageModule {

@@ -38,6 +38,9 @@ use MediaWiki\MediaWikiServices;
  * - safemode: Only register modules that have ORIGIN_CORE as their origin.
  *   This effectively disables ORIGIN_USER modules. (T185303)
  *   See also: OutputPage::disallowUserJs()
+ *
+ * @ingroup ResourceLoader
+ * @internal
  */
 class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	protected $targets = [ 'desktop', 'mobile' ];

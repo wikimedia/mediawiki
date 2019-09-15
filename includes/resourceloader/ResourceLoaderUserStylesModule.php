@@ -21,7 +21,10 @@
  */
 
 /**
- * Module for user customizations styles
+ * Module for user customizations styles.
+ *
+ * @ingroup ResourceLoader
+ * @internal
  */
 class ResourceLoaderUserStylesModule extends ResourceLoaderWikiModule {
 

@@ -19,7 +19,10 @@
  */
 
 /**
- * ResourceLoader module for skin stylesheets.
+ * Module for skin stylesheets.
+ *
+ * @ingroup ResourceLoader
+ * @internal
  */
 class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	/**
