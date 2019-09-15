@@ -838,7 +838,11 @@ class FileRepo {
 	/**
 	 * Store a file to a given destination.
 	 *
-	 * @param string $srcPath Source file system path, storage path, or virtual URL
+	 * Using FSFile/TempFSFile can improve performance via caching.
+	 * Using TempFSFile can further improve performance by signalling that it is safe
+	 * to touch the source file or write extended attribute metadata to it directly.
+	 *
+	 * @param string|FSFile $srcPath Source file system path, storage path, or virtual URL
 	 * @param string $dstZone Destination zone
 	 * @param string $dstRel Destination relative path
 	 * @param int $flags Bitwise combination of the following flags:
@@ -862,6 +866,8 @@ class FileRepo {
 	/**
 	 * Store a batch of files
 	 *
+	 * @see FileRepo::store()
+	 *
 	 * @param array $triplets (src, dest zone, dest rel) triplets as per store()
 	 * @param int $flags Bitwise combination of the following flags:
 	 *   self::OVERWRITE         Overwrite an existing destination file instead of failing
@@ -884,11 +890,18 @@ class FileRepo {
 		$operations = [];
 		// Validate each triplet and get the store operation...
 		foreach ( $triplets as $triplet ) {
-			list( $srcPath, $dstZone, $dstRel ) = $triplet;
+			list( $src, $dstZone, $dstRel ) = $triplet;
+			$srcPath = ( $src instanceof FSFile ) ? $src->getPath() : $src;
 			wfDebug( __METHOD__
 				. "( \$src='$srcPath', \$dstZone='$dstZone', \$dstRel='$dstRel' )\n"
 			);
-
+			// Resolve source path
+			if ( $src instanceof FSFile ) {
+				$op = 'store';
+			} else {
+				$src = $this->resolveToStoragePathIfVirtual( $src );
+				$op = FileBackend::isStoragePath( $src ) ? 'copy' : 'store';
+			}
 			// Resolve destination path
 			$root = $this->getZonePath( $dstZone );
 			if ( !$root ) {
@@ -904,13 +917,10 @@ class FileRepo {
 				return $this->newFatal( 'directorycreateerror', $dstDir );
 			}
 
-			// Resolve source to a storage path if virtual
-			$srcPath = $this->resolveToStoragePathIfVirtual( $srcPath );
-
 			// Copy the source file to the destination
 			$operations[] = [
-				'op' => FileBackend::isStoragePath( $srcPath ) ? 'copy' : 'store',
-				'src' => $srcPath, // storage path (copy) or local file path (store)
+				'op' => $op,
+				'src' => $src, // storage path (copy) or local file path (store)
 				'dst' => $dstPath,
 				'overwrite' => ( $flags & self::OVERWRITE ) ? true : false,
 				'overwriteSame' => ( $flags & self::OVERWRITE_SAME ) ? true : false,
@@ -970,6 +980,10 @@ class FileRepo {
 	 * This function can be used to write to otherwise read-only foreign repos.
 	 * This is intended for copying generated thumbnails into the repo.
 	 *
+	 * Using FSFile/TempFSFile can improve performance via caching.
+	 * Using TempFSFile can further improve performance by signalling that it is safe
+	 * to touch the source file or write extended attribute metadata to it directly.
+	 *
 	 * @param string|FSFile $src Source file system path, storage path, or virtual URL
 	 * @param string $dst Virtual URL or storage path
 	 * @param array|string|null $options An array consisting of a key named headers
@@ -982,37 +996,12 @@ class FileRepo {
 	}
 
 	/**
-	 * Purge a file from the repo. This does no locking nor journaling.
-	 * This function can be used to write to otherwise read-only foreign repos.
-	 * This is intended for purging thumbnails.
-	 *
-	 * @param string $path Virtual URL or storage path
-	 * @return Status
-	 */
-	final public function quickPurge( $path ) {
-		return $this->quickPurgeBatch( [ $path ] );
-	}
-
-	/**
-	 * Deletes a directory if empty.
-	 * This function can be used to write to otherwise read-only foreign repos.
-	 *
-	 * @param string $dir Virtual URL (or storage path) of directory to clean
-	 * @return Status
-	 */
-	public function quickCleanDir( $dir ) {
-		$status = $this->newGood();
-		$status->merge( $this->backend->clean(
-			[ 'dir' => $this->resolveToStoragePathIfVirtual( $dir ) ] ) );
-
-		return $status;
-	}
-
-	/**
 	 * Import a batch of files from the local file system into the repo.
 	 * This does no locking nor journaling and overrides existing files.
 	 * This function can be used to write to otherwise read-only foreign repos.
 	 * This is intended for copying generated thumbnails into the repo.
+	 *
+	 * @see FileRepo::quickImport()
 	 *
 	 * All path parameters may be a file system path, storage path, or virtual URL.
 	 * When "headers" are given they are used as HTTP headers if supported.
@@ -1046,13 +1035,40 @@ class FileRepo {
 
 			$operations[] = [
 				'op' => $op,
-				'src' => $src,
+				'src' => $src, // storage path (copy) or local path/FSFile (store)
 				'dst' => $dst,
 				'headers' => $headers
 			];
 			$status->merge( $this->initDirectory( dirname( $dst ) ) );
 		}
 		$status->merge( $this->backend->doQuickOperations( $operations ) );
+
+		return $status;
+	}
+
+	/**
+	 * Purge a file from the repo. This does no locking nor journaling.
+	 * This function can be used to write to otherwise read-only foreign repos.
+	 * This is intended for purging thumbnails.
+	 *
+	 * @param string $path Virtual URL or storage path
+	 * @return Status
+	 */
+	final public function quickPurge( $path ) {
+		return $this->quickPurgeBatch( [ $path ] );
+	}
+
+	/**
+	 * Deletes a directory if empty.
+	 * This function can be used to write to otherwise read-only foreign repos.
+	 *
+	 * @param string $dir Virtual URL (or storage path) of directory to clean
+	 * @return Status
+	 */
+	public function quickCleanDir( $dir ) {
+		$status = $this->newGood();
+		$status->merge( $this->backend->clean(
+			[ 'dir' => $this->resolveToStoragePathIfVirtual( $dir ) ] ) );
 
 		return $status;
 	}
@@ -1169,6 +1185,10 @@ class FileRepo {
 	 * Returns a Status object. On success, the value contains "new" or
 	 * "archived", to indicate whether the file was new with that name.
 	 *
+	 * Using FSFile/TempFSFile can improve performance via caching.
+	 * Using TempFSFile can further improve performance by signalling that it is safe
+	 * to touch the source file or write extended attribute metadata to it directly.
+	 *
 	 * Options to $options include:
 	 *   - headers : name/value map of HTTP headers to use in response to GET/HEAD requests
 	 *
@@ -1198,6 +1218,8 @@ class FileRepo {
 
 	/**
 	 * Publish a batch of files
+	 *
+	 * @see FileRepo::publish()
 	 *
 	 * @param array $ntuples (source, dest, archive) triplets or
 	 *   (source, dest, archive, options) 4-tuples as per publish().
@@ -1277,7 +1299,7 @@ class FileRepo {
 			} else {
 				$operations[] = [
 					'op' => 'store',
-					'src' => $src, // FSFile (preferred) or local file path
+					'src' => $src, // storage path (copy) or local path/FSFile (store)
 					'dst' => $dstPath,
 					'overwrite' => true, // replace current
 					'headers' => $headers
