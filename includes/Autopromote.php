@@ -187,10 +187,10 @@ class Autopromote {
 				}
 				return $user->getEditCount() >= $reqEditCount;
 			case APCOND_AGE:
-				$age = time() - wfTimestampOrNull( TS_UNIX, $user->getRegistration() );
+				$age = time() - (int)wfTimestampOrNull( TS_UNIX, $user->getRegistration() );
 				return $age >= $cond[1];
 			case APCOND_AGE_FROM_EDIT:
-				$age = time() - wfTimestampOrNull( TS_UNIX, $user->getFirstEditTimestamp() );
+				$age = time() - (int)wfTimestampOrNull( TS_UNIX, $user->getFirstEditTimestamp() );
 				return $age >= $cond[1];
 			case APCOND_INGROUPS:
 				$groups = array_slice( $cond, 1 );

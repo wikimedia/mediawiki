@@ -97,7 +97,7 @@ class PermissionManager {
 	 */
 	private $temporaryUserRights = [];
 
-	/** @var string[] Cached rights for isEveryoneAllowed */
+	/** @var bool[] Cached rights for isEveryoneAllowed, [ right => allowed ] */
 	private $cachedRights = [];
 
 	/**

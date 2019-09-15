@@ -2031,7 +2031,7 @@ function wfRecursiveRemoveDir( $dir ) {
  */
 function wfPercent( $nr, $acc = 2, $round = true ) {
 	$ret = sprintf( "%.${acc}f", $nr );
-	return $round ? round( $ret, $acc ) . '%' : "$ret%";
+	return $round ? round( (float)$ret, $acc ) . '%' : "$ret%";
 }
 
 /**
@@ -2794,7 +2794,7 @@ function wfMemoryLimit( $newLimit ) {
 function wfTransactionalTimeLimit() {
 	global $wgTransactionalTimeLimit;
 
-	$timeLimit = ini_get( 'max_execution_time' );
+	$timeLimit = (int)ini_get( 'max_execution_time' );
 	// Note that CLI scripts use 0
 	if ( $timeLimit > 0 && $wgTransactionalTimeLimit > $timeLimit ) {
 		set_time_limit( $wgTransactionalTimeLimit );

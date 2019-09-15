@@ -59,7 +59,7 @@ abstract class RevisionRecord {
 	const FOR_THIS_USER = 2;
 	const RAW = 3;
 
-	/** @var string Wiki ID; false means the current wiki */
+	/** @var string|false Wiki ID; false means the current wiki */
 	protected $mWiki = false;
 	/** @var int|null */
 	protected $mId;

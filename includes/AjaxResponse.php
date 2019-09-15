@@ -55,7 +55,7 @@ class AjaxResponse {
 
 	/**
 	 * HTTP response code
-	 * @var string $mResponseCode
+	 * @var int|string $mResponseCode
 	 */
 	private $mResponseCode;
 
@@ -114,7 +114,7 @@ class AjaxResponse {
 
 	/**
 	 * Set the HTTP response code
-	 * @param string $code
+	 * @param int|string $code
 	 */
 	function setResponseCode( $code ) {
 		$this->mResponseCode = $code;

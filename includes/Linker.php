@@ -891,7 +891,7 @@ class Linker {
 	 * Make user link (or user contributions for unregistered users)
 	 * @param int $userId User id in database.
 	 * @param string $userName User name in database.
-	 * @param string $altUserName Text to display instead of the user name (optional)
+	 * @param string|false $altUserName Text to display instead of the user name (optional)
 	 * @return string HTML fragment
 	 * @since 1.16.3. $altUserName was added in 1.19.
 	 */
@@ -1912,7 +1912,7 @@ class Linker {
 	 * @since 1.16.3. $context added in 1.20. $editCount added in 1.21
 	 * @param Revision $rev
 	 * @param IContextSource|null $context Context to use or null for the main context.
-	 * @param int $editCount Number of edits that would be reverted
+	 * @param int|false $editCount Number of edits that would be reverted
 	 * @return string HTML fragment
 	 */
 	public static function buildRollbackLink( $rev, IContextSource $context = null,
