@@ -79,13 +79,44 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$this->assertSame( 'Need more donations', $data['readonlyreason'] );
 	}
 
-	public function testNamespaces() {
-		$this->setMwGlobals( 'wgExtraNamespaces', [ '138' => 'Testing' ] );
-
+	public function testNamespacesBasic() {
 		$this->assertSame(
 			array_keys( MediaWikiServices::getInstance()->getContentLanguage()->getFormattedNamespaces() ),
 			array_keys( $this->doQuery( 'namespaces' ) )
 		);
+	}
+
+	public function testNamespacesExtraNS() {
+		$this->setMwGlobals( 'wgExtraNamespaces', [ '138' => 'Testing' ] );
+		$this->assertSame(
+			array_keys( MediaWikiServices::getInstance()->getContentLanguage()->getFormattedNamespaces() ),
+			array_keys( $this->doQuery( 'namespaces' ) )
+		);
+	}
+
+	public function testNamespacesProtection() {
+		$this->setMwGlobals(
+			'wgNamespaceProtection',
+			[
+				'0' => '',
+				'2' => [ '' ],
+				'4' => 'editsemiprotected',
+				'8' => [
+					'editinterface',
+					'noratelimit'
+				],
+				'14' => [
+					'move-categorypages',
+					''
+				]
+			]
+		);
+		$data = $this->doQuery( 'namespaces' );
+		$this->assertArrayNotHasKey( 'namespaceprotection', $data['0'] );
+		$this->assertArrayNotHasKey( 'namespaceprotection', $data['2'] );
+		$this->assertSame( 'editsemiprotected', $data['4']['namespaceprotection'] );
+		$this->assertSame( 'editinterface|noratelimit', $data['8']['namespaceprotection'] );
+		$this->assertSame( 'move-categorypages', $data['14']['namespaceprotection'] );
 	}
 
 	public function testNamespaceAliases() {
