@@ -2556,6 +2556,7 @@
 	"ipblocklist-legend": "Poišči blokiranega uporabnika",
 	"blocklist-userblocks": "skrij blokade računov",
 	"blocklist-tempblocks": "skrij začasne blokade",
+	"blocklist-indefblocks": "Skrij neomejene blokade",
 	"blocklist-addressblocks": "skrij blokade posameznih IP-naslovov",
 	"blocklist-type": "Vrsta:",
 	"blocklist-type-opt-all": "Vse",

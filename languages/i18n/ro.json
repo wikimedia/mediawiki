@@ -39,7 +39,8 @@
 			"WebSourceContentRO",
 			"MSClaudiu",
 			"Lucdrei",
-			"Moyogo"
+			"Moyogo",
+			"GabiBil"
 		]
 	},
 	"tog-underline": "Sublinierea legăturilor:",
@@ -1539,6 +1540,8 @@
 	"rcfilters-filter-showlinkedto-label": "Arată schimbările din paginile ce trimit la",
 	"rcfilters-filter-showlinkedto-option-label": "<strong>Pages ce trimit la</strong> pagina selectată",
 	"rcfilters-target-page-placeholder": "Introduceți numele unei pagini (sau categorii)",
+	"rcfilters-allcontents-label": "Tot conținutul",
+	"rcfilters-alldiscussions-label": "Toate discuțiile",
 	"rcnotefrom": "Dedesubt {{PLURAL:$5|se află o modificare|sunt modificările}} începând cu <b>$3, $4</b> (maximum <b>$1</b> afișate).",
 	"rclistfromreset": "Resetați selectarea datei",
 	"rclistfrom": "Afișează modificările începând cu $3, ora $2",
@@ -2337,9 +2340,9 @@
 	"sessionfailure": "Se pare că este o problemă cu sesiunea de autentificare; această acțiune a fost oprită ca o precauție împotriva furtului sesiunii. Vă rugăm să trimiteți formularul din nou.",
 	"changecontentmodel": "Modificare model de conținut al unei pagini",
 	"changecontentmodel-legend": "Modifică modelul de conținut",
-	"changecontentmodel-title-label": "Titlul paginii",
+	"changecontentmodel-title-label": "Titul paginii:",
 	"changecontentmodel-current-label": "Modelul de conținut curent:",
-	"changecontentmodel-model-label": "Model de conținut nou",
+	"changecontentmodel-model-label": "Model de conținut nou:",
 	"changecontentmodel-reason-label": "Motiv:",
 	"changecontentmodel-submit": "Schimbă",
 	"changecontentmodel-success-title": "Modelul de conținut a fost modificat",

@@ -9,7 +9,8 @@
 			"Macofe",
 			"Kumkumuk",
 			"Asmen",
-			"Gırd"
+			"Gırd",
+			"1917 Ekim Devrimi"
 		]
 	},
 	"tog-underline": "Bınê gırey de xete bonce:",
@@ -964,7 +965,7 @@
 	"thumbnail_error": "Vıraştena resımê qıckeki de xeta: $1",
 	"import-upload-filename": "Namê dosya:",
 	"tooltip-pt-userpage": "Pela sımawa karberi",
-	"tooltip-pt-mytalk": "Pela sımawa hurênaişi",
+	"tooltip-pt-mytalk": "Pela {{GENDER:|toya}} werênayışi",
 	"tooltip-pt-preferences": "Tercihê mı",
 	"tooltip-pt-watchlist": "Lista pelunê ke to guretê şêrkerdene",
 	"tooltip-pt-mycontris": "Lista iştıraqunê sıma",

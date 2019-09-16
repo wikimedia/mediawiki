@@ -2623,6 +2623,7 @@
 	"ipblocklist-legend": "Sök efter en blockerad användare",
 	"blocklist-userblocks": "Dölj kontoblockeringar",
 	"blocklist-tempblocks": "Dölj tillfälliga blockeringar",
+	"blocklist-indefblocks": "Dölj otydliga blockeringar",
 	"blocklist-addressblocks": "Dölj enskilda IP-blockeringar",
 	"blocklist-type": "Typ:",
 	"blocklist-type-opt-all": "Alla",
