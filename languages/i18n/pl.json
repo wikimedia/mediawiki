@@ -516,7 +516,7 @@
 	"userlogin-resetpassword-link": "Nie pamiętasz hasła?",
 	"userlogin-helplink2": "Pomoc przy logowaniu",
 	"userlogin-loggedin": "Zalogowano jako {{GENDER:$1|$1}}.\nUżyj poniższego formularza, aby zalogować się jako inny użytkownik.",
-	"userlogin-reauth": "Musisz się ponownie zalogować, aby potwierdzić, że jesteś {{GENDER:$1|$1}}.",
+	"userlogin-reauth": "Musisz się ponownie zalogować, aby potwierdzić, że {{GENDER:$1|użytkownik|użytkowniczka}} $1 to Ty.",
 	"userlogin-createanother": "Załóż nowe konto",
 	"createacct-emailrequired": "Adres e‐mail",
 	"createacct-emailoptional": "Adres e-mail (opcjonalnie)",

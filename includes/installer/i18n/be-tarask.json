@@ -7,7 +7,8 @@
 			"Zedlik",
 			"아라",
 			"Red Winged Duck",
-			"Macofe"
+			"Macofe",
+			"Renessaince"
 		]
 	},
 	"config-desc": "Праграма ўсталяваньня MediaWiki",
@@ -85,7 +86,7 @@
 	"config-uploads-not-safe": "'''Папярэджаньне:''' дырэкторыя для загрузак па змоўчваньні <code>$1</code> уразьлівая да выкананьня адвольнага коду.\nХоць MediaWiki і правярае ўсе файлы перад захаваньнем, вельмі рэкамэндуецца [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security закрыць гэтую ўразьлівасьць] перад уключэньнем магчымасьці загрузкі файлаў.",
 	"config-no-cli-uploads-check": "'''Папярэджаньне:''' Вашая дырэкторыя для загрузак па змоўчваньні (<code>$1</code>), не правераная на ўразьлівасьць да выкананьня адвольных скрыптоў падчас усталяваньня CLI.\n.",
 	"config-brokenlibxml": "У Вашай сыстэме ўсталяваныя PHP і libxml2 зь несумяшчальнымі вэрсіямі, што можа прывесьці да пашкоджаньня зьвестак MediaWiki і іншых вэб-дастасаваньняў.\nАбнавіце libxml2 да вэрсіі 2.7.3 ці больш позьняй ([https://bugs.php.net/bug.php?id=45996 паведамленьне пра памылку на сайце PHP]).\nУсталяваньне перарванае.",
-	"config-suhosin-max-value-length": "Suhosin усталяваны і абмяжоўвае <code>даўжыню</code> парамэтру GET да $1 {{PLURAL:$1|1=байта|байтаў}}.\nResourceLoader, складнік MediaWiki, будзе абходзіць гэтае абмежаваньне, што адаб’ецца на прадукцыйнасьці.\nКалі магчыма, варта ўсталяваць у <code>php.ini</code> значэньне <code>suhosin.get.max_value_length</code> роўным 1024 ці больш, а таксама вызначыць тое ж значэньне для <code>$wgResourceLoaderMaxQueryLength</code> у <code>LocalSettings.php</code>.",
+	"config-suhosin-max-value-length": "Suhosin усталяваны і абмяжоўвае <code>даўжыню</code> парамэтру GET да $1 {{PLURAL:$1|1=байта|байтаў}}.\nMediaWiki патрабуе, каб <code>suhosin.get.max_value_length</code> складаў прынамсі $2. Адключыце гэтую наладу ці павялічце гэтае значэньня да $3 ў <code>php.ini</code>.",
 	"config-using-32bit": "<strong>Папярэджаньне:</strong> падобна, што вашая сыстэма выкарыстоўвае 32-бітавыя цэлыя лікі. Гэта [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit не рэкамэндуецца].",
 	"config-db-type": "Тып базы зьвестак:",
 	"config-db-host": "Хост базы зьвестак:",
