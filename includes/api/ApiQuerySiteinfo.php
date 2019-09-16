@@ -279,6 +279,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendNamespaces( $property ) {
+		$nsProtection = $this->getConfig()->get( 'NamespaceProtection' );
+
 		$data = [
 			ApiResult::META_TYPE => 'assoc',
 		];
@@ -302,6 +304,17 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 			$data[$ns]['content'] = $nsInfo->isContent( $ns );
 			$data[$ns]['nonincludable'] = $nsInfo->isNonincludable( $ns );
+
+			if ( isset( $nsProtection[$ns] ) ) {
+				if ( is_array( $nsProtection[$ns] ) ) {
+					$specificNs = implode( "|", array_filter( $nsProtection[$ns] ) );
+				} elseif ( $nsProtection[$ns] !== '' ) {
+					$specificNs = $nsProtection[$ns];
+				}
+				if ( isset( $specificNs ) && $specificNs !== '' ) {
+					$data[$ns]['namespaceprotection'] = $specificNs;
+				}
+			}
 
 			$contentmodel = $nsInfo->getNamespaceContentModel( $ns );
 			if ( $contentmodel ) {
