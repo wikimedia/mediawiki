@@ -4473,5 +4473,6 @@
 	"rest-pagehistory-revision-nonexistent": "Error message for REST API debugging, shown if the specified revision does not exist.",
 	"rest-pagehistory-timestamp-error": "Error message for REST API debugging, shown if an error occurred loading the timestamp for the specified revision.",
 	"rest-pagehistorycount-title-nonexistent": "Error message for REST API debugging, shown if the specified title does not exist.",
-	"rest-pagehistorycount-type-unrecognized": "Error message for REST API debugging, shown if the specified type is not valid."
+	"rest-pagehistorycount-type-unrecognized": "Error message for REST API debugging, shown if the specified type is not valid.",
+	"rest-revision-nonexistent": "Error message for REST API debugging, shown when the revision does not exist. Parameters:\n* $1: the specified revision."
 }
