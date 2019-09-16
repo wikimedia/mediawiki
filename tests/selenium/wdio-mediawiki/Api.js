@@ -7,7 +7,7 @@ module.exports = {
 	 * Shortcut for `MWBot#edit( .. )`.
 	 * Default username, password and base URL is used unless specified
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @see <https://www.mediawiki.org/wiki/API:Edit>
 	 * @param {string} title
 	 * @param {string} content
@@ -36,7 +36,7 @@ module.exports = {
 	/**
 	 * Shortcut for `MWBot#delete( .. )`.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @see <https://www.mediawiki.org/wiki/API:Delete>
 	 * @param {string} title
 	 * @param {string} reason
@@ -57,7 +57,7 @@ module.exports = {
 	/**
 	 * Shortcut for `MWBot#request( { acount: 'createaccount', .. } )`.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @see <https://www.mediawiki.org/wiki/API:Account_creation>
 	 * @param {string} username
 	 * @param {string} password
