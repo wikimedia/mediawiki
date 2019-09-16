@@ -2733,16 +2733,17 @@ $wgExtensionInfoMTime = false;
  * although they are sometimes still referred to as Squid settings for
  * historical reasons.
  *
- * Achieving a high hit ratio with an HTTP proxy requires special
- * configuration. See https://www.mediawiki.org/wiki/Manual:Squid_caching for
- * more details.
+ * Achieving a high hit ratio with an HTTP proxy requires special configuration.
+ * See https://www.mediawiki.org/wiki/Manual:Performance_tuning#Page_view_caching
+ * for more details.
  *
  * @{
  */
 
 /**
  * Enable/disable CDN.
- * See https://www.mediawiki.org/wiki/Manual:Squid_caching
+ *
+ * See https://www.mediawiki.org/wiki/Manual:Performance_tuning#Page_view_caching
  *
  * @since 1.34 Renamed from $wgUseSquid.
  */
