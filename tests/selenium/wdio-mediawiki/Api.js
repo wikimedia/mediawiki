@@ -4,6 +4,32 @@ const MWBot = require( 'mwbot' );
 
 module.exports = {
 	/**
+	 * Get a logged-in instance of `MWBot` with edit token already set up.
+	 * Default username, password and base URL is used unless specified.
+	 *
+	 * @since 0.5.0
+	 * @param {string} username - Optional
+	 * @param {string} password - Optional
+	 * @param {string} baseUrl - Optional
+	 * @return {Promise<MWBot>}
+	 */
+	bot(
+		username = browser.options.username,
+		password = browser.options.password,
+		baseUrl = browser.options.baseUrl
+	) {
+		const bot = new MWBot();
+
+		return bot.loginGetEditToken( {
+			apiUrl: `${baseUrl}/api.php`,
+			username: username,
+			password: password
+		} ).then( function () {
+			return bot;
+		} );
+	},
+
+	/**
 	 * Shortcut for `MWBot#edit( .. )`.
 	 * Default username, password and base URL is used unless specified
 	 *
@@ -22,15 +48,10 @@ module.exports = {
 		password = browser.options.password,
 		baseUrl = browser.options.baseUrl
 	) {
-		const bot = new MWBot();
-
-		return bot.loginGetEditToken( {
-			apiUrl: `${baseUrl}/api.php`,
-			username: username,
-			password: password
-		} ).then( function () {
-			return bot.edit( title, content, `Created or updated page with "${content}"` );
-		} );
+		return this.bot( username, password, baseUrl )
+			.then( function ( bot ) {
+				return bot.edit( title, content, `Created or updated page with "${content}"` );
+			} );
 	},
 
 	/**
@@ -43,15 +64,10 @@ module.exports = {
 	 * @return {Object} Promise for API action=delete response data.
 	 */
 	delete( title, reason ) {
-		const bot = new MWBot();
-
-		return bot.loginGetEditToken( {
-			apiUrl: `${browser.options.baseUrl}/api.php`,
-			username: browser.options.username,
-			password: browser.options.password
-		} ).then( function () {
-			return bot.delete( title, reason );
-		} );
+		return this.bot()
+			.then( function ( bot ) {
+				return bot.delete( title, reason );
+			} );
 	},
 
 	/**
@@ -94,23 +110,17 @@ module.exports = {
 	 * @return {Object} Promise for API action=block response data.
 	 */
 	blockUser( username, expiry ) {
-		const bot = new MWBot();
-
-		// Log in as admin
-		return bot.loginGetEditToken( {
-			apiUrl: `${browser.options.baseUrl}/api.php`,
-			username: browser.options.username,
-			password: browser.options.password
-		} ).then( () => {
-			// block user. default = admin
-			return bot.request( {
-				action: 'block',
-				user: username || browser.options.username,
-				reason: 'browser test',
-				token: bot.editToken,
-				expiry
+		return this.bot()
+			.then( function ( bot ) {
+				// block user. default = admin
+				return bot.request( {
+					action: 'block',
+					user: username || browser.options.username,
+					reason: 'browser test',
+					token: bot.editToken,
+					expiry
+				} );
 			} );
-		} );
 	},
 
 	/**
@@ -122,21 +132,15 @@ module.exports = {
 	 * @return {Object} Promise for API action=unblock response data.
 	 */
 	unblockUser( username ) {
-		const bot = new MWBot();
-
-		// Log in as admin
-		return bot.loginGetEditToken( {
-			apiUrl: `${browser.options.baseUrl}/api.php`,
-			username: browser.options.username,
-			password: browser.options.password
-		} ).then( () => {
-			// unblock user. default = admin
-			return bot.request( {
-				action: 'unblock',
-				user: username || browser.options.username,
-				reason: 'browser test done',
-				token: bot.editToken
+		return this.bot()
+			.then( function ( bot ) {
+				// unblock user. default = admin
+				return bot.request( {
+					action: 'unblock',
+					user: username || browser.options.username,
+					reason: 'browser test done',
+					token: bot.editToken
+				} );
 			} );
-		} );
 	}
 };
