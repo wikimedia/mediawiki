@@ -272,8 +272,11 @@ class BlockManager {
 	}
 
 	/**
-	 * Try to load a block from an ID given in a cookie value. If the block is invalid
-	 * doesn't exist, or the cookie value is malformed, remove the cookie.
+	 * Try to load a block from an ID given in a cookie value.
+	 *
+	 * If the block is invalid, doesn't exist, or the cookie value is malformed, no
+	 * block will be loaded. In these cases the cookie will either (1) be replaced
+	 * with a valid cookie or (2) removed, next time trackBlockWithCookie is called.
 	 *
 	 * @param UserIdentity $user
 	 * @param WebRequest $request
@@ -299,8 +302,6 @@ class BlockManager {
 				return $block;
 			}
 		}
-
-		$this->clearBlockCookie( $request->response() );
 
 		return false;
 	}
@@ -430,6 +431,16 @@ class BlockManager {
 	/**
 	 * Set the 'BlockID' cookie depending on block type and user authentication status.
 	 *
+	 * If a block cookie is already set, this will check the block that the cookie references
+	 * and do the following:
+	 *  - If the block is a valid block that should be tracked with a cookie, do nothing and
+	 *    return early. This ensures that the cookie's expiry time is based on the time of
+	 *    the first page load or attempt. (See discussion on T233595.)
+	 *  - If the block is invalid (e.g. has expired), clear the cookie and continue to check
+	 *    whether there is another block that should be tracked.
+	 *  - If the block is a valid block, but should not be tracked by a cookie, clear the
+	 *    cookie and continue to check whether there is another block that should be tracked.
+	 *
 	 * @since 1.34
 	 * @param User $user
 	 * @param WebResponse $response The response on which to set the cookie.
@@ -438,9 +449,14 @@ class BlockManager {
 	 */
 	public function trackBlockWithCookie( User $user, WebResponse $response ) {
 		$request = $user->getRequest();
+
 		if ( $request->getCookie( 'BlockID' ) !== null ) {
-			// User already has a block cookie
-			return;
+			$cookieBlock = $this->getBlockFromCookieValue( $user, $request );
+			if ( $cookieBlock && $this->shouldTrackBlockWithCookie( $cookieBlock, $user->isAnon() ) ) {
+				return;
+			}
+			// The block pointed to by the cookie is invalid or should not be tracked.
+			$this->clearBlockCookie( $response );
 		}
 
 		if ( !$user->isSafeToLoad() ) {
