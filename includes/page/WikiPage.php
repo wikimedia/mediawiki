@@ -2537,30 +2537,6 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Take an array of page restrictions and flatten it to a string
-	 * suitable for insertion into the page_restrictions field.
-	 *
-	 * @param string[] $limit
-	 *
-	 * @throws MWException
-	 * @return string
-	 */
-	protected static function flattenRestrictions( $limit ) {
-		if ( !is_array( $limit ) ) {
-			throw new MWException( __METHOD__ . ' given non-array restriction set' );
-		}
-
-		$bits = [];
-		ksort( $limit );
-
-		foreach ( array_filter( $limit ) as $action => $restrictions ) {
-			$bits[] = "$action=$restrictions";
-		}
-
-		return implode( ':', $bits );
-	}
-
-	/**
 	 * Determines if deletion of this page would be batched (executed over time by the job queue)
 	 * or not (completed in the same request as the delete call).
 	 *
