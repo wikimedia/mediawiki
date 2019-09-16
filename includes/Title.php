@@ -1561,14 +1561,32 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * Get a Title object associated with the talk page of this article
 	 *
 	 * @deprecated since 1.34, use getTalkPageIfDefined() or NamespaceInfo::getTalkPage()
-	 *             with NamespaceInfo::canHaveTalkPage().
+	 *             with NamespaceInfo::canHaveTalkPage(). Note that the new method will
+	 *             throw if asked for the talk page of a section-only link, or of an interwiki
+	 *             link.
 	 * @return Title The object for the talk page
 	 * @throws MWException if $target doesn't have talk pages, e.g. because it's in NS_SPECIAL
 	 *         or because it's a relative link, or an interwiki link.
 	 */
 	public function getTalkPage() {
-		return self::castFromLinkTarget(
-			MediaWikiServices::getInstance()->getNamespaceInfo()->getTalkPage( $this ) );
+		// NOTE: The equivalent code in NamespaceInfo is less lenient about producing invalid titles.
+		//       Instead of failing on invalid titles, let's just log the issue for now.
+		//       See the discussion on T227817.
+
+		// Is this the same title?
+		$talkNS = MediaWikiServices::getInstance()->getNamespaceInfo()->getTalk( $this->mNamespace );
+		if ( $this->mNamespace == $talkNS ) {
+			return $this;
+		}
+
+		$title = self::makeTitle( $talkNS, $this->mDbkeyform );
+
+		$this->warnIfPageCannotExist( $title, __METHOD__ );
+
+		return $title;
+		// TODO: replace the above with the code below:
+		// return self::castFromLinkTarget(
+		// MediaWikiServices::getInstance()->getNamespaceInfo()->getTalkPage( $this ) );
 	}
 
 	/**
@@ -1596,8 +1614,51 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return Title The object for the subject page
 	 */
 	public function getSubjectPage() {
-		return self::castFromLinkTarget(
-			MediaWikiServices::getInstance()->getNamespaceInfo()->getSubjectPage( $this ) );
+		// Is this the same title?
+		$subjectNS = MediaWikiServices::getInstance()->getNamespaceInfo()
+			->getSubject( $this->mNamespace );
+		if ( $this->mNamespace == $subjectNS ) {
+			return $this;
+		}
+		// NOTE: The equivalent code in NamespaceInfo is less lenient about producing invalid titles.
+		//       Instead of failing on invalid titles, let's just log the issue for now.
+		//       See the discussion on T227817.
+		$title = self::makeTitle( $subjectNS, $this->mDbkeyform );
+
+		$this->warnIfPageCannotExist( $title, __METHOD__ );
+
+		return $title;
+		// TODO: replace the above with the code below:
+		// return self::castFromLinkTarget(
+		// MediaWikiServices::getInstance()->getNamespaceInfo()->getSubjectPage( $this ) );
+	}
+
+	/**
+	 * @param Title $title
+	 * @param string $method
+	 *
+	 * @return bool whether a warning was issued
+	 */
+	private function warnIfPageCannotExist( Title $title, $method ) {
+		if ( $this->getText() == '' ) {
+			wfLogWarning(
+				$method . ': called on empty title ' . $this->getFullText() . ', returning '
+				. $title->getFullText()
+			);
+
+			return true;
+		}
+
+		if ( $this->getInterwiki() !== '' ) {
+			wfLogWarning(
+				$method . ': called on interwiki title ' . $this->getFullText() . ', returning '
+				. $title->getFullText()
+			);
+
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -1610,8 +1671,23 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return Title
 	 */
 	public function getOtherPage() {
-		return self::castFromLinkTarget(
-			MediaWikiServices::getInstance()->getNamespaceInfo()->getAssociatedPage( $this ) );
+		// NOTE: Depend on the methods in this class instead of their equivalent in NamespaceInfo,
+		//       until their semantics has become exactly the same.
+		//       See the discussion on T227817.
+		if ( $this->isSpecialPage() ) {
+			throw new MWException( 'Special pages cannot have other pages' );
+		}
+		if ( $this->isTalkPage() ) {
+			return $this->getSubjectPage();
+		} else {
+			if ( !$this->canHaveTalkPage() ) {
+				throw new MWException( "{$this->getPrefixedText()} does not have an other page" );
+			}
+			return $this->getTalkPage();
+		}
+		// TODO: replace the above with the code below:
+		// return self::castFromLinkTarget(
+		// MediaWikiServices::getInstance()->getNamespaceInfo()->getAssociatedPage( $this ) );
 	}
 
 	/**
