@@ -96,9 +96,15 @@ class SectionProfiler {
 	public function getFunctionStats() {
 		$this->collateData();
 
-		$totalCpu = max( $this->end['cpu'] - $this->start['cpu'], 0 );
-		$totalReal = max( $this->end['real'] - $this->start['real'], 0 );
-		$totalMem = max( $this->end['memory'] - $this->start['memory'], 0 );
+		if ( is_array( $this->start ) ) {
+			$totalCpu = max( $this->end['cpu'] - $this->start['cpu'], 0 );
+			$totalReal = max( $this->end['real'] - $this->start['real'], 0 );
+			$totalMem = max( $this->end['memory'] - $this->start['memory'], 0 );
+		} else {
+			$totalCpu = 0;
+			$totalReal = 0;
+			$totalMem = 0;
+		}
 
 		$profile = [];
 		foreach ( $this->collated as $fname => $data ) {
