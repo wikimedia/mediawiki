@@ -168,7 +168,7 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 
 		$linkRenderer = new LinkRenderer( $titleFormatter, $linkCache, $nsInfo );
 		$linkRenderer->setStubThreshold( 0 );
-		$this->assertEquals(
+		$this->assertSame(
 			'',
 			$linkRenderer->getLinkClasses( $foobarTitle )
 		);
@@ -186,7 +186,7 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 		);
 
 		$linkRenderer->setStubThreshold( 20 );
-		$this->assertEquals(
+		$this->assertSame(
 			'',
 			$linkRenderer->getLinkClasses( $userTitle )
 		);

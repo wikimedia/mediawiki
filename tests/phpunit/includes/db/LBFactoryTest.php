@@ -475,17 +475,16 @@ class LBFactoryTest extends MediaWikiTestCase {
 		/** @var IMaintainableDatabase $db */
 		$db = $lb->getConnection( DB_MASTER, [], '' );
 
-		$this->assertEquals(
+		$this->assertSame(
 			'',
 			$db->getDomainId(),
 			'Null domain ID handle used'
 		);
-		$this->assertEquals(
-			'',
+		$this->assertNull(
 			$db->getDBname(),
 			'Null domain ID handle used'
 		);
-		$this->assertEquals(
+		$this->assertSame(
 			'',
 			$db->tablePrefix(),
 			'Main domain ID handle used; prefix is empty though'
@@ -555,7 +554,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		/** @var IMaintainableDatabase $db */
 		$db = $lb->getConnection( DB_MASTER, [], '' );
 
-		$this->assertEquals( '', $db->getDomainID(), "Null domain used" );
+		$this->assertSame( '', $db->getDomainID(), "Null domain used" );
 
 		$this->assertEquals(
 			$this->quoteTable( $db, 'page' ),

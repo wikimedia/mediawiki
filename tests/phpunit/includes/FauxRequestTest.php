@@ -50,7 +50,7 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 	public function testGetText() {
 		$req = new FauxRequest( [ 'x' => 'Value' ] );
 		$this->assertEquals( 'Value', $req->getText( 'x' ) );
-		$this->assertEquals( '', $req->getText( 'z' ) );
+		$this->assertSame( '', $req->getText( 'z' ) );
 	}
 
 	/**
@@ -287,8 +287,8 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testDummies() {
 		$req = new FauxRequest();
-		$this->assertEquals( '', $req->getRawQueryString() );
-		$this->assertEquals( '', $req->getRawPostString() );
-		$this->assertEquals( '', $req->getRawInput() );
+		$this->assertSame( '', $req->getRawQueryString() );
+		$this->assertSame( '', $req->getRawPostString() );
+		$this->assertSame( '', $req->getRawInput() );
 	}
 }

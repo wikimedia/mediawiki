@@ -161,12 +161,12 @@ class HtmlTest extends MediaWikiTestCase {
 	 * @covers Html::expandAttributes
 	 */
 	public function testExpandAttributesForBooleans() {
-		$this->assertEquals(
+		$this->assertSame(
 			'',
 			Html::expandAttributes( [ 'selected' => false ] ),
 			'Boolean attributes do not generates output when value is false'
 		);
-		$this->assertEquals(
+		$this->assertSame(
 			'',
 			Html::expandAttributes( [ 'selected' => null ] ),
 			'Boolean attributes do not generates output when value is null'
