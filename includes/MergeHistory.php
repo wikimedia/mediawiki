@@ -273,6 +273,18 @@ class MergeHistory {
 			return $status;
 		}
 
+		// Update denormalized revactor_page too
+		$this->dbw->update(
+			'revision_actor_temp',
+			[ 'revactor_page' => $this->dest->getArticleID() ],
+			[
+				'revactor_page' => $this->source->getArticleID(),
+				// Slightly hacky, but should work given the values assigned in this class
+				str_replace( 'rev_timestamp', 'revactor_timestamp', $this->timeWhere )
+			],
+			__METHOD__
+		);
+
 		// Make the source page a redirect if no revisions are left
 		$haveRevisions = $this->dbw->lockForUpdate(
 			'revision',
