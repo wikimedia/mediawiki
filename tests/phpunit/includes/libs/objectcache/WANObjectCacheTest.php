@@ -381,8 +381,8 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$v = $cache->getWithSetCallback(
 			$key, 30, $checkFunc, [ 'staleTTL' => 50 ] + $extOpts );
 		$this->assertEquals( 'xxx1', $v, "Value returned" );
-		$this->assertEquals( false, $oldValReceived, "Callback got no stale value" );
-		$this->assertEquals( null, $oldAsOfReceived, "Callback got no stale value" );
+		$this->assertFalse( $oldValReceived, "Callback got no stale value" );
+		$this->assertNull( $oldAsOfReceived, "Callback got no stale value" );
 
 		$mockWallClock += 40;
 		$v = $cache->getWithSetCallback(
@@ -397,8 +397,8 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			$key, 30, $checkFunc, [ 'staleTTL' => 50 ] + $extOpts );
 		$this->assertEquals( 'xxx3', $v, "Value still returned after expired" );
 		$this->assertEquals( 3, $wasSet, "Value recalculated while expired" );
-		$this->assertEquals( false, $oldValReceived, "Callback got no stale value" );
-		$this->assertEquals( null, $oldAsOfReceived, "Callback got no stale value" );
+		$this->assertFalse( $oldValReceived, "Callback got no stale value" );
+		$this->assertNull( $oldAsOfReceived, "Callback got no stale value" );
 
 		$mockWallClock = ( $priorTime - $cache::HOLDOFF_TTL - 1 );
 		$wasSet = 0;
@@ -414,8 +414,8 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		);
 		$this->assertEquals( 'xxx1', $v, "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value computed" );
-		$this->assertEquals( false, $oldValReceived, "Callback got no stale value" );
-		$this->assertEquals( null, $oldAsOfReceived, "Callback got no stale value" );
+		$this->assertFalse( $oldValReceived, "Callback got no stale value" );
+		$this->assertNull( $oldAsOfReceived, "Callback got no stale value" );
 
 		$mockWallClock += $cache::TTL_HOUR; // some time passes
 		$v = $cache->getWithSetCallback(
@@ -1473,7 +1473,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( $valueV2, $v, "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value regenerated" );
 		$this->assertEquals( false, $priorValue, "Old value not given due to old format" );
-		$this->assertEquals( null, $priorAsOf, "Old value not given due to old format" );
+		$this->assertNull( $priorAsOf, "Old value not given due to old format" );
 
 		$wasSet = 0;
 		$v = $cache->getWithSetCallback( $key, 30, $funcV2, $verOpts + $extOpts );

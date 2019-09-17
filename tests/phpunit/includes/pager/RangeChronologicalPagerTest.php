@@ -85,7 +85,7 @@ class RangeChronologicalPagerTest extends MediaWikiLangTestCase {
 	 */
 	public function testGetDateRangeCondInvalid( $start, $end ) {
 		$pager = $this->getMockForAbstractClass( RangeChronologicalPager::class );
-		$this->assertEquals( null, $pager->getDateRangeCond( $start, $end ) );
+		$this->assertNull( $pager->getDateRangeCond( $start, $end ) );
 	}
 
 	public function getDateRangeCondInvalidProvider() {

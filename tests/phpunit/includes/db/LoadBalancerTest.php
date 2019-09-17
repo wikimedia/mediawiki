@@ -434,7 +434,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		$lb = $this->newSingleServerLocalLoadBalancer();
 
 		$i = $lb->getWriterIndex();
-		$this->assertEquals( null, $lb->getAnyOpenConnection( $i ) );
+		$this->assertFalse( $lb->getAnyOpenConnection( $i ) );
 
 		$conn1 = $lb->getConnection( $i );
 		$this->assertNotEquals( null, $conn1 );
@@ -446,7 +446,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		$this->assertFalse( $conn2->getFlag( DBO_TRX ) );
 
 		if ( $lb->getServerAttributes( $i )[Database::ATTR_DB_LEVEL_LOCKING] ) {
-			$this->assertEquals( null,
+			$this->assertFalse(
 				$lb->getAnyOpenConnection( $i, $lb::CONN_TRX_AUTOCOMMIT ) );
 			$this->assertEquals( $conn1,
 				$lb->getConnection(

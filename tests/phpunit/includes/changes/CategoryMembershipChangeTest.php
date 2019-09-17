@@ -85,9 +85,9 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 		$this->assertEquals( self::$pageName, self::$lastNotifyArgs[4]->getPrefixedText() );
 		$this->assertSame( 0, self::$lastNotifyArgs[5] );
 		$this->assertSame( 0, self::$lastNotifyArgs[6] );
-		$this->assertEquals( null, self::$lastNotifyArgs[7] );
+		$this->assertNull( self::$lastNotifyArgs[7] );
 		$this->assertEquals( 1, self::$lastNotifyArgs[8] );
-		$this->assertEquals( null, self::$lastNotifyArgs[9] );
+		$this->assertSame( '', self::$lastNotifyArgs[9] );
 		$this->assertSame( 0, self::$lastNotifyArgs[10] );
 	}
 
@@ -105,9 +105,9 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 		$this->assertEquals( self::$pageName, self::$lastNotifyArgs[4]->getPrefixedText() );
 		$this->assertSame( 0, self::$lastNotifyArgs[5] );
 		$this->assertSame( 0, self::$lastNotifyArgs[6] );
-		$this->assertEquals( null, self::$lastNotifyArgs[7] );
+		$this->assertNull( self::$lastNotifyArgs[7] );
 		$this->assertEquals( 1, self::$lastNotifyArgs[8] );
-		$this->assertEquals( null, self::$lastNotifyArgs[9] );
+		$this->assertSame( '', self::$lastNotifyArgs[9] );
 		$this->assertSame( 0, self::$lastNotifyArgs[10] );
 	}
 
@@ -126,7 +126,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 		$this->assertEquals( self::$pageName, self::$lastNotifyArgs[4]->getPrefixedText() );
 		$this->assertEquals( self::$pageRev->getParentId(), self::$lastNotifyArgs[5] );
 		$this->assertEquals( $revision->getId(), self::$lastNotifyArgs[6] );
-		$this->assertEquals( null, self::$lastNotifyArgs[7] );
+		$this->assertNull( self::$lastNotifyArgs[7] );
 		$this->assertSame( 0, self::$lastNotifyArgs[8] );
 		$this->assertEquals( '127.0.0.1', self::$lastNotifyArgs[9] );
 		$this->assertSame( 0, self::$lastNotifyArgs[10] );
@@ -147,7 +147,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 		$this->assertEquals( self::$pageName, self::$lastNotifyArgs[4]->getPrefixedText() );
 		$this->assertEquals( self::$pageRev->getParentId(), self::$lastNotifyArgs[5] );
 		$this->assertEquals( $revision->getId(), self::$lastNotifyArgs[6] );
-		$this->assertEquals( null, self::$lastNotifyArgs[7] );
+		$this->assertNull( self::$lastNotifyArgs[7] );
 		$this->assertSame( 0, self::$lastNotifyArgs[8] );
 		$this->assertEquals( '127.0.0.1', self::$lastNotifyArgs[9] );
 		$this->assertSame( 0, self::$lastNotifyArgs[10] );
