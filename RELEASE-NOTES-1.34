@@ -575,6 +575,8 @@ because of Phabricator reports.
 * Specifying a SpecialPage object for the list of special pages (either through
   the SpecialPage_initList hook or by adding to $wgSpecialPages) is now
   deprecated.
+* WebInstaller::getInfoBox(), getWarningBox() and getErrorBox() are deprecated.
+  Use Html::errorBox() or Html::warningBox() instead.
 * Use of ActorMigration with 'ar_user', 'img_user', 'oi_user', 'fa_user',
   'rc_user', 'log_user', and 'ipb_by' is deprecated. Queries should be adjusted
   to use the corresponding actor fields directly. Note that use with
