@@ -4445,7 +4445,8 @@ $wgCentralIdLookupProvider = 'local';
  * The checks supported by core are:
  *	- MinimalPasswordLength - Minimum length a user can set.
  *	- MinimumPasswordLengthToLogin - Passwords shorter than this will
- *		not be allowed to login, regardless if it is correct.
+ *		not be allowed to login, or offered a chance to reset their password
+ *		as part of the login workflow, regardless if it is correct.
  *	- MaximalPasswordLength - maximum length password a user is allowed
  *		to attempt. Prevents DoS attacks with pbkdf2.
  *	- PasswordCannotMatchUsername - Password cannot match the username.
