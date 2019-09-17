@@ -185,9 +185,16 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	/** @var bool */
 	private $mNoUpdates = false;
 
-	/** @var Config $config */
+	/**
+	 * @deprecated since 1.31, along with self::downloadSource()
+	 * @var Config $config
+	 */
 	private $config;
 
+	/**
+	 * @param Config $config Deprecated since 1.31, along with self::downloadSource(). Just pass an
+	 *  empty HashConfig.
+	 */
 	public function __construct( Config $config ) {
 		$this->config = $config;
 	}
