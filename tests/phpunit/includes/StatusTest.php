@@ -629,7 +629,7 @@ class StatusTest extends MediaWikiLangTestCase {
 			return '-' . $value . '-';
 		};
 		$status->__wakeup();
-		$this->assertEquals( false, $status->cleanCallback );
+		$this->assertFalse( $status->cleanCallback );
 	}
 
 	/**

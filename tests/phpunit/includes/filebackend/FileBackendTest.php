@@ -650,7 +650,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$this->assertEquals( [ 0 => true ], $status->success,
 				"Deletion of file at $source has proper 'success' field in Status ($backendName)." );
 		} else {
-			$this->assertEquals( false, $status->isOK(),
+			$this->assertFalse( $status->isOK(),
 				"Deletion of file at $source failed ($backendName)." );
 		}
 
@@ -758,7 +758,7 @@ class FileBackendTest extends MediaWikiTestCase {
 				$this->assertHasHeaders( $op['headers'], $attr );
 			}
 		} else {
-			$this->assertEquals( false, $status->isOK(),
+			$this->assertFalse( $status->isOK(),
 				"Describe of file at $source failed ($backendName)." );
 		}
 
@@ -839,7 +839,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$this->assertEquals( [ 0 => true ], $status->success,
 				"Creation of file at $dest has proper 'success' field in Status ($backendName)." );
 		} else {
-			$this->assertEquals( false, $status->isOK(),
+			$this->assertFalse( $status->isOK(),
 				"Creation of file at $dest failed ($backendName)." );
 		}
 
@@ -1129,7 +1129,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$this->assertEquals( true, $status->isOK(),
 				"Creation of concat file at $dest succeeded ($backendName)." );
 		} else {
-			$this->assertEquals( false, $status->isOK(),
+			$this->assertFalse( $status->isOK(),
 				"Creation of concat file at $dest failed ($backendName)." );
 		}
 
@@ -1713,7 +1713,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$this->assertEquals( true, $status->isOK(),
 				"Preparing dir $path succeeded ($backendName)." );
 		} else {
-			$this->assertEquals( false, $status->isOK(),
+			$this->assertFalse( $status->isOK(),
 				"Preparing dir $path failed ($backendName)." );
 		}
 
@@ -1724,7 +1724,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$this->assertEquals( true, $status->isOK(),
 				"Securing dir $path succeeded ($backendName)." );
 		} else {
-			$this->assertEquals( false, $status->isOK(),
+			$this->assertFalse( $status->isOK(),
 				"Securing dir $path failed ($backendName)." );
 		}
 
@@ -1735,7 +1735,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$this->assertEquals( true, $status->isOK(),
 				"Publishing dir $path succeeded ($backendName)." );
 		} else {
-			$this->assertEquals( false, $status->isOK(),
+			$this->assertFalse( $status->isOK(),
 				"Publishing dir $path failed ($backendName)." );
 		}
 
@@ -1746,7 +1746,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$this->assertEquals( true, $status->isOK(),
 				"Cleaning dir $path succeeded ($backendName)." );
 		} else {
-			$this->assertEquals( false, $status->isOK(),
+			$this->assertFalse( $status->isOK(),
 				"Cleaning dir $path failed ($backendName)." );
 		}
 	}
@@ -1800,7 +1800,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			"Recursive cleaning of dir $dir succeeded without warnings ($backendName)." );
 
 		foreach ( $dirs as $dir ) {
-			$this->assertEquals( false, $this->backend->directoryExists( [ 'dir' => $dir ] ),
+			$this->assertFalse( $this->backend->directoryExists( [ 'dir' => $dir ] ),
 				"Dir $dir no longer exists ($backendName)." );
 		}
 	}
@@ -1872,11 +1872,11 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->assertEquals( 14, count( $status->success ),
 			"Operation batch has correct success array" );
 
-		$this->assertEquals( false, $this->backend->fileExists( [ 'src' => $fileA ] ),
+		$this->assertFalse( $this->backend->fileExists( [ 'src' => $fileA ] ),
 			"File does not exist at $fileA" );
-		$this->assertEquals( false, $this->backend->fileExists( [ 'src' => $fileB ] ),
+		$this->assertFalse( $this->backend->fileExists( [ 'src' => $fileB ] ),
 			"File does not exist at $fileB" );
-		$this->assertEquals( false, $this->backend->fileExists( [ 'src' => $fileD ] ),
+		$this->assertFalse( $this->backend->fileExists( [ 'src' => $fileD ] ),
 			"File does not exist at $fileD" );
 
 		$this->assertEquals( true, $this->backend->fileExists( [ 'src' => $fileC ] ),
@@ -1968,11 +1968,11 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->assertEquals( 16, count( $status->success ),
 			"Operation batch has correct success array" );
 
-		$this->assertEquals( false, $this->backend->fileExists( [ 'src' => $fileA ] ),
+		$this->assertFalse( $this->backend->fileExists( [ 'src' => $fileA ] ),
 			"File does not exist at $fileA" );
-		$this->assertEquals( false, $this->backend->fileExists( [ 'src' => $fileB ] ),
+		$this->assertFalse( $this->backend->fileExists( [ 'src' => $fileB ] ),
 			"File does not exist at $fileB" );
-		$this->assertEquals( false, $this->backend->fileExists( [ 'src' => $fileD ] ),
+		$this->assertFalse( $this->backend->fileExists( [ 'src' => $fileD ] ),
 			"File does not exist at $fileD" );
 
 		$this->assertEquals( true, $this->backend->fileExists( [ 'src' => $fileC ] ),
@@ -2042,9 +2042,9 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->assertEquals( 8, count( $status->success ),
 			"Operation batch has correct success array" );
 
-		$this->assertEquals( false, $this->backend->fileExists( [ 'src' => $fileB ] ),
+		$this->assertFalse( $this->backend->fileExists( [ 'src' => $fileB ] ),
 			"File does not exist at $fileB" );
-		$this->assertEquals( false, $this->backend->fileExists( [ 'src' => $fileD ] ),
+		$this->assertFalse( $this->backend->fileExists( [ 'src' => $fileD ] ),
 			"File does not exist at $fileD" );
 
 		$this->assertEquals( true, $this->backend->fileExists( [ 'src' => $fileA ] ),
@@ -2288,7 +2288,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->assertEquals( true,
 			$this->backend->directoryExists( [ 'dir' => "$base/unittest-cont1/e/subdir2/subdir" ] ),
 			"Directory exists in ($backendName)." );
-		$this->assertEquals( false,
+		$this->assertFalse(
 			$this->backend->directoryExists( [ 'dir' => "$base/unittest-cont1/e/subdir2/test1.txt" ] ),
 			"Directory does not exists in ($backendName)." );
 
@@ -2665,8 +2665,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$be->quickCreate( [
 			'dst' => "mwstore://localtesting/$p", 'content' => 'cattitude' ] );
 
-		$this->assertEquals(
-			false,
+		$this->assertFalse(
 			$be->backends[0]->getFileContents( [ 'src' => "mwstore://multitesting0/$p" ] ),
 			"File not yet written to backend 0"
 		);

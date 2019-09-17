@@ -141,8 +141,7 @@ class ChangesListBooleanFilterTest extends MediaWikiTestCase {
 			'priority' => 2,
 		] );
 
-		$this->assertEquals(
-			false,
+		$this->assertFalse(
 			$bar->isFeatureAvailableOnStructuredUi(),
 			'Only on unstructured UI'
 		);

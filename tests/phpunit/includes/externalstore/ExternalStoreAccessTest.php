@@ -18,7 +18,7 @@ class ExternalStoreAccessTest extends MediaWikiTestCase {
 		$esFactory = new ExternalStoreFactory( $active, $defaults, 'db-prefix' );
 		$access = new ExternalStoreAccess( $esFactory );
 
-		$this->assertEquals( false, $access->isReadOnly() );
+		$this->assertFalse( $access->isReadOnly() );
 
 		/** @var ExternalStoreMemory $store */
 		$store = $esFactory->getStore( 'memory' );
@@ -66,7 +66,7 @@ class ExternalStoreAccessTest extends MediaWikiTestCase {
 		$v2 = wfRandomString();
 		$v3 = wfRandomString();
 
-		$this->assertEquals( false, $storeLocal->fetchFromURL( 'memory://cluster1/1' ) );
+		$this->assertFalse( $storeLocal->fetchFromURL( 'memory://cluster1/1' ) );
 
 		$url1 = 'memory://cluster1/1';
 		$this->assertEquals(
@@ -88,8 +88,8 @@ class ExternalStoreAccessTest extends MediaWikiTestCase {
 		// There is only one active store type
 		$this->assertEquals( $v2, $storeLocal->fetchFromURL( $url2 ) );
 		$this->assertEquals( $v3, $storeOther->fetchFromURL( $url3 ) );
-		$this->assertEquals( false, $storeOther->fetchFromURL( $url2 ) );
-		$this->assertEquals( false, $storeLocal->fetchFromURL( $url3 ) );
+		$this->assertFalse( $storeOther->fetchFromURL( $url2 ) );
+		$this->assertFalse( $storeLocal->fetchFromURL( $url3 ) );
 
 		$res = $access->fetchFromURLs( [ $url1, $url2, $url3 ] );
 		$this->assertEquals( [ $url1 => $v1, $url2 => $v2, $url3 => false ], $res, "Local-only" );

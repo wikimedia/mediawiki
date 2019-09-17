@@ -477,7 +477,7 @@ class GlobalTest extends MediaWikiTestCase {
 		$conflictingMerge = wfMerge( 'old', 'old and mine', 'old and yours', $mergedText );
 
 		$this->assertEquals( true, $successfulMerge );
-		$this->assertEquals( false, $conflictingMerge );
+		$this->assertFalse( $conflictingMerge );
 	}
 
 	/**

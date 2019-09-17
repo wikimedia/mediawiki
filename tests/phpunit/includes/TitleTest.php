@@ -765,8 +765,7 @@ class TitleTest extends MediaWikiTestCase {
 		$linkCache->clearLink( $title );
 		$linkCache->addBadLinkObj( $title );
 
-		$this->assertEquals(
-			false,
+		$this->assertFalse(
 			$title->exists(),
 			'exists() should rely on link cache unless READ_LATEST is used'
 		);

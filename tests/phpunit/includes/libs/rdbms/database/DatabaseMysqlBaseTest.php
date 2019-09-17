@@ -441,12 +441,12 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		if ( is_array( $rGTIDs ) ) {
 			$this->assertEquals( $rGTIDs, $db->getReplicaPos()->getGTIDs() );
 		} else {
-			$this->assertEquals( false, $db->getReplicaPos() );
+			$this->assertFalse( $db->getReplicaPos() );
 		}
 		if ( is_array( $mGTIDs ) ) {
 			$this->assertEquals( $mGTIDs, $db->getMasterPos()->getGTIDs() );
 		} else {
-			$this->assertEquals( false, $db->getMasterPos() );
+			$this->assertFalse( $db->getMasterPos() );
 		}
 	}
 

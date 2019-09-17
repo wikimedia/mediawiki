@@ -260,8 +260,7 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 			$request->getAllHeaders()
 		);
 
-		$this->assertEquals(
-			false,
+		$this->assertFalse(
 			$request->getHeader( 'test' )
 		);
 	}
