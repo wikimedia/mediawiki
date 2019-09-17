@@ -48,7 +48,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @deprecated since 1.33 Use ->msg() or ->getMsg() instead.
 	 */
 	function msgWiki( $str ) {
-		// TODO: Add wfDeprecated( __METHOD__, '1.33' ) after 1.33 got released
+		wfDeprecated( __METHOD__, '1.33' ); // Hard-deprecated in 1.34
 		echo $this->getMsg( $str )->parseAsBlock();
 	}
 
