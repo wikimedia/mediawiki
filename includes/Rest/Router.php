@@ -233,15 +233,22 @@ class Router {
 			);
 		}
 
+		$requestMethod = $request->getMethod();
 		$matchers = $this->getMatchers();
-		$matcher = $matchers[$request->getMethod()] ?? null;
+		$matcher = $matchers[$requestMethod] ?? null;
 		$match = $matcher ? $matcher->match( $relPath ) : null;
+
+		// For a HEAD request, execute the GET handler instead if one exists.
+		// The webserver will discard the body.
+		if ( !$match && $requestMethod === 'HEAD' && isset( $matchers['GET'] ) ) {
+			$match = $matchers['GET']->match( $relPath );
+		}
 
 		if ( !$match ) {
 			// Check for 405 wrong method
 			$allowed = [];
 			foreach ( $matchers as $allowedMethod => $allowedMatcher ) {
-				if ( $allowedMethod === $request->getMethod() ) {
+				if ( $allowedMethod === $requestMethod ) {
 					continue;
 				}
 				if ( $allowedMatcher->match( $relPath ) ) {
@@ -251,7 +258,7 @@ class Router {
 			if ( $allowed ) {
 				$response = $this->responseFactory->createLocalizedHttpError( 405,
 					( new MessageValue( 'rest-wrong-method' ) )
-						->textParams( $request->getMethod() )
+						->textParams( $requestMethod )
 						->commaListParams( $allowed )
 						->numParams( count( $allowed ) )
 				);

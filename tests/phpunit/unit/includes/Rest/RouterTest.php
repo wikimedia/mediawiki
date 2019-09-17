@@ -55,6 +55,16 @@ class RouterTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( 'GET', $response->getHeaderLine( 'Allow' ) );
 	}
 
+	public function testHeadToGet() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/user/joe/hello' ),
+			'method' => 'HEAD'
+		] );
+		$router = $this->createRouter( $request );
+		$response = $router->execute( $request );
+		$this->assertSame( 200, $response->getStatusCode() );
+	}
+
 	public function testNoMatch() {
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/bogus' ) ] );
 		$router = $this->createRouter( $request );
