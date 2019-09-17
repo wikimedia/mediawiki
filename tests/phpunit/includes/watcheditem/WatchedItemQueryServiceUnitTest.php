@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -66,14 +67,16 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 
 	/**
 	 * @param PHPUnit_Framework_MockObject_MockObject|Database $mockDb
+	 * @param PHPUnit_Framework_MockObject_MockObject|PermissionManager $mockPM
 	 * @return WatchedItemQueryService
 	 */
-	private function newService( $mockDb ) {
+	private function newService( $mockDb, $mockPM = null ) {
 		return new WatchedItemQueryService(
 			$this->getMockLoadBalancer( $mockDb ),
 			$this->getMockCommentStore(),
 			$this->getMockActorMigration(),
-			$this->getMockWatchedItemStore()
+			$this->getMockWatchedItemStore(),
+			$mockPM ?: $this->getMockPermissionManager()
 		);
 	}
 
@@ -154,6 +157,25 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @param string $notAllowedAction
+	 * @return PHPUnit_Framework_MockObject_MockObject|PermissionManager
+	 */
+	private function getMockPermissionManager( $notAllowedAction = null ) {
+		$mock = $this->getMockBuilder( PermissionManager::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$mock->method( 'userHasRight' )
+			->will( $this->returnCallback( function ( $user, $action ) use ( $notAllowedAction ) {
+				return $action !== $notAllowedAction;
+			} ) );
+		$mock->method( 'userHasAnyRight' )
+			->will( $this->returnCallback( function ( $user, ...$actions ) use ( $notAllowedAction ) {
+				return !in_array( $notAllowedAction, $actions );
+			} ) );
+		return $mock;
+	}
+
+	/**
 	 * @param int $id
 	 * @param string[] $extraMethods Extra methods that are expected might be called
 	 * @return PHPUnit_Framework_MockObject_MockObject|User
@@ -177,9 +199,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 	 */
 	private function getMockUnrestrictedNonAnonUserWithId( $id, array $extraMethods = [] ) {
 		$mock = $this->getMockNonAnonUserWithId( $id,
-			array_merge( [ 'isAllowed', 'isAllowedAny', 'useRCPatrol' ], $extraMethods ) );
-		$mock->method( 'isAllowed' )->willReturn( true );
-		$mock->method( 'isAllowedAny' )->willReturn( true );
+			array_merge( [ 'useRCPatrol' ], $extraMethods ) );
 		$mock->method( 'useRCPatrol' )->willReturn( true );
 		return $mock;
 	}
@@ -189,18 +209,9 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 	 * @param string $notAllowedAction
 	 * @return PHPUnit_Framework_MockObject_MockObject|User
 	 */
-	private function getMockNonAnonUserWithIdAndRestrictedPermissions( $id, $notAllowedAction ) {
+	private function getMockNonAnonUserWithIdAndRestrictedPermissions( $id ) {
 		$mock = $this->getMockNonAnonUserWithId( $id,
-			[ 'isAllowed', 'isAllowedAny', 'useRCPatrol', 'useNPPatrol' ] );
-
-		$mock->method( 'isAllowed' )
-			->will( $this->returnCallback( function ( $action ) use ( $notAllowedAction ) {
-				return $action !== $notAllowedAction;
-			} ) );
-		$mock->method( 'isAllowedAny' )
-			->will( $this->returnCallback( function ( ...$actions ) use ( $notAllowedAction ) {
-				return !in_array( $notAllowedAction, $actions );
-			} ) );
+			[ 'useRCPatrol', 'useNPPatrol' ] );
 		$mock->method( 'useRCPatrol' )->willReturn( false );
 		$mock->method( 'useNPPatrol' )->willReturn( false );
 
@@ -213,15 +224,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 	 */
 	private function getMockNonAnonUserWithIdAndNoPatrolRights( $id ) {
 		$mock = $this->getMockNonAnonUserWithId( $id,
-			[ 'isAllowed', 'isAllowedAny', 'useRCPatrol', 'useNPPatrol' ] );
-
-		$mock->expects( $this->any() )
-			->method( 'isAllowed' )
-			->will( $this->returnValue( true ) );
-		$mock->expects( $this->any() )
-			->method( 'isAllowedAny' )
-			->will( $this->returnValue( true ) );
-
+			[ 'useRCPatrol', 'useNPPatrol' ] );
 		$mock->expects( $this->any() )
 			->method( 'useRCPatrol' )
 			->will( $this->returnValue( false ) );
@@ -1132,9 +1135,10 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnValue( [] ) );
 
-		$user = $this->getMockNonAnonUserWithIdAndRestrictedPermissions( 1, $notAllowedAction );
+		$permissionManager = $this->getMockPermissionManager( $notAllowedAction );
+		$user = $this->getMockNonAnonUserWithIdAndRestrictedPermissions( 1 );
 
-		$queryService = $this->newService( $mockDb );
+		$queryService = $this->newService( $mockDb, $permissionManager );
 		$items = $queryService->getWatchedItemsWithRecentChangeInfo( $user, $options );
 
 		$this->assertEmpty( $items );
