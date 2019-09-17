@@ -67,7 +67,13 @@ class GeneratePhpCharToUpperMappings extends Maintenance {
 			$phpUpper = $wgContLang->ucfirst( $char );
 			$jsUpper = $jsUpperChars[$i];
 			if ( $jsUpper !== $phpUpper ) {
-				$data[$char] = $phpUpper;
+				if ( $char === $phpUpper ) {
+					// Optimisation: Use the empty string to signal "leave character unchanged".
+					// Reduces the transfer size by ~50%. Reduces browser memory cost as well.
+					$data[$char] = '';
+				} else {
+					$data[$char] = $phpUpper;
+				}
 			}
 		}
 

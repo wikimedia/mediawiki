@@ -29,10 +29,8 @@
 
 /* Private members */
 
-var
+var toUpperMap,
 	mwString = require( 'mediawiki.String' ),
-
-	toUpperMapping = require( './phpCharToUpper.json' ),
 
 	namespaceIds = mw.config.get( 'wgNamespaceIds' ),
 
@@ -765,8 +763,15 @@ Title.normalizeExtension = function ( extension ) {
  * @return {string} Unicode character, in upper case, according to the same rules as in PHP
  */
 Title.phpCharToUpper = function ( chr ) {
-	var mapped = toUpperMapping[ chr ];
-	return mapped || chr.toUpperCase();
+	if ( !toUpperMap ) {
+		toUpperMap = require( './phpCharToUpper.json' );
+	}
+	if ( toUpperMap[ chr ] === '' ) {
+		// Optimisation: When the override is to keep the character unchanged,
+		// we use an empty string in JSON. This reduces the data by 50%.
+		return chr;
+	}
+	return toUpperMap[ chr ] || chr.toUpperCase();
 };
 
 /* Public members */
