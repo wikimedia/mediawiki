@@ -44,7 +44,9 @@ class PasswordPolicyChecks {
 	}
 
 	/**
-	 * Check password is longer than minimum, fatal
+	 * Check password is longer than minimum, fatal.
+	 * Intended for locking out users with passwords too short to trust, requiring them
+	 * to recover their account by some other means.
 	 * @param int $policyVal minimal length
 	 * @param User $user
 	 * @param string $password
