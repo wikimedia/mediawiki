@@ -61,7 +61,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 
 		$this->assertEquals( false, $cacheEntry->watched, 'watched' );
 		$this->assertEquals( '21:21', $cacheEntry->timestamp, 'timestamp' );
-		$this->assertEquals( 0, $cacheEntry->numberofWatchingusers, 'watching users' );
+		$this->assertSame( 0, $cacheEntry->numberofWatchingusers, 'watching users' );
 		$this->assertEquals( false, $cacheEntry->unpatrolled, 'unpatrolled' );
 
 		$this->assertUserLinks( $user->getName(), $cacheEntry );
@@ -96,7 +96,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 
 		$this->assertEquals( false, $cacheEntry->watched, 'watched' );
 		$this->assertEquals( '21:21', $cacheEntry->timestamp, 'timestamp' );
-		$this->assertEquals( 0, $cacheEntry->numberofWatchingusers, 'watching users' );
+		$this->assertSame( 0, $cacheEntry->numberofWatchingusers, 'watching users' );
 		$this->assertEquals( false, $cacheEntry->unpatrolled, 'unpatrolled' );
 
 		$this->assertDeleteLogLink( $cacheEntry );
@@ -130,7 +130,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 
 		$this->assertEquals( false, $cacheEntry->watched, 'watched' );
 		$this->assertEquals( '21:21', $cacheEntry->timestamp, 'timestamp' );
-		$this->assertEquals( 0, $cacheEntry->numberofWatchingusers, 'watching users' );
+		$this->assertSame( 0, $cacheEntry->numberofWatchingusers, 'watching users' );
 		$this->assertEquals( false, $cacheEntry->unpatrolled, 'unpatrolled' );
 
 		$this->assertRevDel( $cacheEntry );

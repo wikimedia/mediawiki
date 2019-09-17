@@ -453,7 +453,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$user = $context->getUser();
 		$user->setOption( 'showrollbackconfirmation', $rollbackEnabled );
 
-		$this->assertEquals( 0, Title::newFromText( $title )->getArticleID() );
+		$this->assertSame( 0, Title::newFromText( $title )->getArticleID() );
 		$pageData = $this->insertPage( $title );
 		$page = WikiPage::factory( $pageData['title'] );
 

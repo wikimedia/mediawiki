@@ -49,7 +49,7 @@ class RequestContextTest extends MediaWikiTestCase {
 
 		$oInfo = $context->exportSession();
 		$this->assertEquals( '127.0.0.1', $oInfo['ip'], "Correct initial IP address." );
-		$this->assertEquals( 0, $oInfo['userId'], "Correct initial user ID." );
+		$this->assertSame( 0, $oInfo['userId'], "Correct initial user ID." );
 		$this->assertFalse( MediaWiki\Session\SessionManager::getGlobalSession()->isPersistent(),
 			'Global session isn\'t persistent to start' );
 

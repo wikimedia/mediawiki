@@ -314,7 +314,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'Meta>MetaWikiUser', $block->getBlocker()->getName(),
 			'Correct blocker name' );
 		$this->assertEquals( 'Meta>MetaWikiUser', $block->getByName(), 'Correct blocker name' );
-		$this->assertEquals( 0, $block->getBy(), 'Correct blocker id' );
+		$this->assertSame( 0, $block->getBy(), 'Correct blocker id' );
 	}
 
 	protected function addXffBlocks() {

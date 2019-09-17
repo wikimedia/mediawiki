@@ -149,7 +149,7 @@ class CachingSiteStoreTest extends \MediaWikiIntegrationTestCase {
 		$this->assertNull( $site );
 
 		$sites = $store->getSites();
-		$this->assertEquals( 0, $sites->count() );
+		$this->assertSame( 0, $sites->count() );
 	}
 
 	/**

@@ -50,7 +50,7 @@ class DiffOpTest extends \MediaWikiUnitTestCase {
 	 */
 	public function testNorig() {
 		$obj = new FakeDiffOp();
-		$this->assertEquals( 0, $obj->norig() );
+		$this->assertSame( 0, $obj->norig() );
 		$obj->orig = [ 'foo' ];
 		$this->assertEquals( 1, $obj->norig() );
 	}
@@ -60,7 +60,7 @@ class DiffOpTest extends \MediaWikiUnitTestCase {
 	 */
 	public function testNclosing() {
 		$obj = new FakeDiffOp();
-		$this->assertEquals( 0, $obj->nclosing() );
+		$this->assertSame( 0, $obj->nclosing() );
 		$obj->closing = [ 'foo' ];
 		$this->assertEquals( 1, $obj->nclosing() );
 	}

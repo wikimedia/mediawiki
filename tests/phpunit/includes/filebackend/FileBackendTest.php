@@ -2554,7 +2554,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$be->getReadIndexFromParams( [ 'latest' => 1 ] ),
 			'Reads with "latest" flag use backend 1'
 		);
-		$this->assertEquals(
+		$this->assertSame(
 			0,
 			$be->getReadIndexFromParams( [ 'latest' => 0 ] ),
 			'Reads without "latest" flag use backend 0'

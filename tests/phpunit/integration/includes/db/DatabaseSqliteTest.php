@@ -233,7 +233,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$index = $indexList->next();
 		$this->assertEquals( 'baz_index2', $index->name );
 		$this->assertEquals( '1', $index->unique );
-		$this->assertEquals( 0,
+		$this->assertSame( 0,
 			$db->selectField( 'sqlite_master', 'COUNT(*)', [ 'name' => 'baz' ] ),
 			'Create a temporary duplicate only'
 		);
@@ -524,7 +524,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$databaseCreation = $db->query( 'CREATE TABLE a ( a_1 )', __METHOD__ );
 		$this->assertInstanceOf( ResultWrapper::class, $databaseCreation, "Failed to create table a" );
 		$res = $db->select( 'a', '*' );
-		$this->assertEquals( 0, $db->numFields( $res ), "expects to get 0 fields for an empty table" );
+		$this->assertSame( 0, $db->numFields( $res ), "expects to get 0 fields for an empty table" );
 		$insertion = $db->insert( 'a', [ 'a_1' => 10 ], __METHOD__ );
 		$this->assertTrue( $insertion, "Insertion failed" );
 		$res = $db->select( 'a', '*' );

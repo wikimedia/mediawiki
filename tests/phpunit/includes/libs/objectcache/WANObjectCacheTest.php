@@ -318,7 +318,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$v = $cache->getWithSetCallback(
 			$key, 30, $func, [ 'lowTTL' => 0, 'lockTSE' => 5 ] + $extOpts );
 		$this->assertEquals( $value, $v, "Value returned" );
-		$this->assertEquals( 0, $wasSet, "Value not regenerated" );
+		$this->assertSame( 0, $wasSet, "Value not regenerated" );
 
 		$mockWallClock += 1;
 
@@ -584,7 +584,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$asycList[0](); // run the refresh callback
 		$asycList = [];
 		$this->assertEquals( 2, $wasSet, "Value calculated at later time" );
-		$this->assertEquals( 0, count( $asycList ), "No deferred refreshes added." );
+		$this->assertSame( 0, count( $asycList ), "No deferred refreshes added." );
 		$v = $cache->getWithSetCallback( $key, 300, $func, $opts );
 		$this->assertEquals( $value, $v, "New value stored" );
 
@@ -678,13 +678,13 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			$keyedIds, 30, $genFunc, [ 'lowTTL' => 0, 'lockTSE' => 5 ] + $extOpts );
 		$this->assertEquals( $value, $v[$keyB], "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value regenerated" );
-		$this->assertEquals( 0, $cache->getWarmupKeyMisses(), "Keys warmed in warmup cache" );
+		$this->assertSame( 0, $cache->getWarmupKeyMisses(), "Keys warmed in warmup cache" );
 
 		$v = $cache->getMultiWithSetCallback(
 			$keyedIds, 30, $genFunc, [ 'lowTTL' => 0, 'lockTSE' => 5 ] + $extOpts );
 		$this->assertEquals( $value, $v[$keyB], "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value not regenerated" );
-		$this->assertEquals( 0, $cache->getWarmupKeyMisses(), "Keys warmed in warmup cache" );
+		$this->assertSame( 0, $cache->getWarmupKeyMisses(), "Keys warmed in warmup cache" );
 
 		$mockWallClock += 1;
 
@@ -846,13 +846,13 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			$keyedIds, 30, $genFunc, [ 'lowTTL' => 0 ] + $extOpts );
 		$this->assertEquals( $value, $v[$keyB], "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value regenerated" );
-		$this->assertEquals( 0, $cache->getWarmupKeyMisses(), "Keys warmed in warmup cache" );
+		$this->assertSame( 0, $cache->getWarmupKeyMisses(), "Keys warmed in warmup cache" );
 
 		$v = $cache->getMultiWithUnionSetCallback(
 			$keyedIds, 30, $genFunc, [ 'lowTTL' => 0 ] + $extOpts );
 		$this->assertEquals( $value, $v[$keyB], "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value not regenerated" );
-		$this->assertEquals( 0, $cache->getWarmupKeyMisses(), "Keys warmed in warmup cache" );
+		$this->assertSame( 0, $cache->getWarmupKeyMisses(), "Keys warmed in warmup cache" );
 
 		$mockWallClock += 1;
 
@@ -1478,7 +1478,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$wasSet = 0;
 		$v = $cache->getWithSetCallback( $key, 30, $funcV2, $verOpts + $extOpts );
 		$this->assertEquals( $valueV2, $v, "Value not regenerated (secondary key)" );
-		$this->assertEquals( 0, $wasSet, "Value not regenerated (secondary key)" );
+		$this->assertSame( 0, $wasSet, "Value not regenerated (secondary key)" );
 
 		// Clear out the older or unversioned key
 		$cache->delete( $key, 0 );

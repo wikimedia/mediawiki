@@ -93,7 +93,7 @@ class OutputPageTest extends MediaWikiTestCase {
 				'Some syndication links should be there' );
 		} else {
 			$this->assertFalse( $outputPage->isSyndicated(), 'No syndication should be offered' );
-			$this->assertEquals( 0, count( $outputPage->getSyndicationLinks() ),
+			$this->assertSame( 0, count( $outputPage->getSyndicationLinks() ),
 				'No syndication links should be there' );
 		}
 	}

@@ -27,7 +27,7 @@ class SearchSuggestionSetTest extends \MediaWikiUnitTestCase {
 	 */
 	public function testAppend() {
 		$set = SearchSuggestionSet::emptySuggestionSet();
-		$this->assertEquals( 0, $set->getSize() );
+		$this->assertSame( 0, $set->getSize() );
 		$set->append( new SearchSuggestion( 3 ) );
 		$this->assertEquals( 3, $set->getWorstScore() );
 		$this->assertEquals( 3, $set->getBestScore() );
@@ -61,7 +61,7 @@ class SearchSuggestionSetTest extends \MediaWikiUnitTestCase {
 	 */
 	public function testInsertBest() {
 		$set = SearchSuggestionSet::emptySuggestionSet();
-		$this->assertEquals( 0, $set->getSize() );
+		$this->assertSame( 0, $set->getSize() );
 		$set->prepend( new SearchSuggestion( 3 ) );
 		$this->assertEquals( 3, $set->getWorstScore() );
 		$this->assertEquals( 3, $set->getBestScore() );
@@ -104,7 +104,7 @@ class SearchSuggestionSetTest extends \MediaWikiUnitTestCase {
 		$this->assertEquals( 10, $set->getSize() );
 
 		$set->shrink( 0 );
-		$this->assertEquals( 0, $set->getSize() );
+		$this->assertSame( 0, $set->getSize() );
 	}
 
 	// TODO: test for fromTitles

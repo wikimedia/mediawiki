@@ -214,7 +214,7 @@ class ApiPageSetTest extends ApiTestCase {
 			'titles' => 'User:' . implode( '|User:', $userNames ),
 		] );
 
-		$this->assertEquals( 0, $genderCache->misses,
+		$this->assertSame( 0, $genderCache->misses,
 			'ApiPageSet does not prefill the gender cache correctly' );
 		$this->assertEquals( $userNames, array_keys( $genderCache->cache ),
 			'ApiPageSet does not prefill all users into the gender cache' );

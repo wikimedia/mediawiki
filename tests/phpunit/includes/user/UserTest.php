@@ -559,10 +559,10 @@ class UserTest extends MediaWikiTestCase {
 		$this->markTestSkippedIfDbType( 'postgres' );
 
 		$users = User::findUsersByGroup( [] );
-		$this->assertEquals( 0, iterator_count( $users ) );
+		$this->assertSame( 0, iterator_count( $users ) );
 
 		$users = User::findUsersByGroup( 'foo' );
-		$this->assertEquals( 0, iterator_count( $users ) );
+		$this->assertSame( 0, iterator_count( $users ) );
 
 		$user = $this->getMutableTestUser( [ 'foo' ] )->getUser();
 		$users = User::findUsersByGroup( 'foo' );
