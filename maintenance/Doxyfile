@@ -143,6 +143,7 @@ EXCLUDE_PATTERNS       = LocalSettings.php \
                          AdminSettings.php \
                          .svn \
                          */.git/* \
+                         */README.md \
                          {{EXCLUDE_PATTERNS}}
 EXCLUDE_SYMBOLS        =
 EXAMPLE_PATH           =

@@ -83,8 +83,10 @@ class MWDocGen extends Maintenance {
 		$this->addOption( 'output',
 			'Path to write doc to',
 			false, true );
-		$this->addOption( 'no-extensions',
-			'Ignore extensions' );
+		$this->addOption( 'extensions',
+			'Process the extensions/ directory as well (ignored if --file is used)' );
+		$this->addOption( 'skins',
+			'Process the skins/ directory as well (ignored if --file is used)' );
 	}
 
 	public function getDbType() {
@@ -115,22 +117,23 @@ class MWDocGen extends Maintenance {
 
 		$this->template = $IP . '/maintenance/Doxyfile';
 		$this->excludes = [
-			'vendor',
-			'node_modules',
-			'resources/lib',
 			'images',
+			'node_modules',
+			'resources',
 			'static',
 			'tests',
-			'includes/libs/Message/README.md',
-			'includes/libs/objectcache/README.md',
-			'includes/libs/ParamValidator/README.md',
-			'maintenance/benchmarks/README.md',
-			'resources/src/mediawiki.ui/styleguide.md',
+			'vendor',
 		];
 		$this->excludePatterns = [];
-		if ( $this->hasOption( 'no-extensions' ) ) {
-			$this->excludePatterns[] = 'extensions';
-			$this->excludePatterns[] = 'skins';
+		if ( $this->input === '' ) {
+			// If no explicit --file filter is set, we're indexing all of $IP,
+			// but any extension or skin submodules should be excluded by default.
+			if ( !$this->hasOption( 'extensions' ) ) {
+				$this->excludePatterns[] = 'extensions';
+			}
+			if ( !$this->hasOption( 'skins' ) ) {
+				$this->excludePatterns[] = 'skins';
+			}
 		}
 
 		$this->doDot = shell_exec( 'which dot' );
