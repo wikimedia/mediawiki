@@ -390,7 +390,8 @@ class WebInstaller extends Installer {
 			);
 		}
 		$text = $msg->useDatabase( false )->plain();
-		$this->output->addHTML( $this->getErrorBox( $text ) );
+		$box = Html::errorBox( $text, '', 'config-error-box' );
+		$this->output->addHTML( $box );
 	}
 
 	/**
@@ -1046,9 +1047,9 @@ class WebInstaller extends Installer {
 			$text = $status->getWikiText();
 
 			if ( $status->isOK() ) {
-				$box = $this->getWarningBox( $text );
+				$box = Html::warningBox( $text, 'config-warning-box' );
 			} else {
-				$box = $this->getErrorBox( $text );
+				$box = Html::errorBox( $text, '', 'config-error-box' );
 			}
 
 			$this->output->addHTML( $box );
