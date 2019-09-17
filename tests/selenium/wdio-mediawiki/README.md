@@ -22,11 +22,11 @@ Utilities to interact with the MediaWiki API. Uses the [mwbot](https://github.co
 Actions are performed logged-in using `browser.options.username` and `browser.options.password`,
 which typically come from `MEDIAWIKI_USER` and `MEDIAWIKI_PASSWORD` environment variables.
 
-* `edit(title, content [, string username [, string password [, string baseUrl ] ] ])`
-* `delete(title, reason)`
-* `createAccount(username, password)`
-* `blockUser(username, expiry)`
-* `unblockUser(username)`
+* `edit(string title, string content [, string username [, string password [, string baseUrl ] ] ])`
+* `delete(string title, string reason)`
+* `createAccount(string username, string password)`
+* `blockUser([ string username [, string expiry ] ])`
+* `unblockUser([ string username ])`
 
 ### RunJobs
 
