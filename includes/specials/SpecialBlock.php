@@ -1124,9 +1124,9 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return bool
 	 */
 	public static function canBlockEmail( UserIdentity $user ) {
-		global $wgEnableUserEmail, $wgSysopEmailBans;
+		global $wgEnableUserEmail;
 
-		return ( $wgEnableUserEmail && $wgSysopEmailBans && MediaWikiServices::getInstance()
+		return ( $wgEnableUserEmail && MediaWikiServices::getInstance()
 				->getPermissionManager()
 				->userHasRight( $user, 'blockemail' ) );
 	}

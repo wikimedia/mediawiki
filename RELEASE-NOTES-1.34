@@ -572,6 +572,9 @@ because of Phabricator reports.
 * StreamFile::send404Message() and StreamFile::parseRange() are now deprecated.
   Use HTTPFileStreamer::send404Message() and HTTPFileStreamer::parseRange()
   respectively instead.
+* Global variable $wgSysopEmailBans is deprecated; to allow sysops to ban
+  users from sending emails, use
+  $wgGroupPermissions['sysop']['blockemail'] = true;
 
 === Other changes in 1.34 ===
 * …
