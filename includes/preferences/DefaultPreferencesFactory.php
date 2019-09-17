@@ -1525,7 +1525,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 
 		/**
-		 * @var HTMLForm $htmlForm
+		 * @var PreferencesFormOOUI $htmlForm
 		 */
 		$htmlForm = new $formClass( $formDescriptor, $context, 'prefs' );
 
@@ -1538,6 +1538,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		] ) );
 
 		$htmlForm->setModifiedUser( $user );
+		$htmlForm->setOptionsEditable( $this->permissionManager
+			->userHasRight( $user, 'editmyoptions' ) );
+		$htmlForm->setPrivateInfoEditable( $this->permissionManager
+			->userHasRight( $user, 'editmyprivateinfo' ) );
 		$htmlForm->setId( 'mw-prefs-form' );
 		$htmlForm->setAutocomplete( 'off' );
 		$htmlForm->setSubmitText( $context->msg( 'saveprefs' )->text() );
@@ -1545,7 +1549,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$htmlForm->setSubmitTooltip( 'preferences-save' );
 		$htmlForm->setSubmitID( 'prefcontrol' );
 		$htmlForm->setSubmitCallback(
-			function ( array $formData, HTMLForm $form ) use ( $formDescriptor ) {
+			function ( array $formData, PreferencesFormOOUI $form ) use ( $formDescriptor ) {
 				return $this->submitForm( $formData, $form, $formDescriptor );
 			}
 		);

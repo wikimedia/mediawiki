@@ -18,8 +18,6 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Form to edit user preferences.
  *
@@ -29,7 +27,14 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	// Override default value from HTMLForm
 	protected $mSubSectionBeforeFields = false;
 
+	/** @var User|null */
 	private $modifiedUser;
+
+	/** @var bool */
+	private $privateInfoEditable = true;
+
+	/** @var bool */
+	private $optionsEditable = true;
 
 	/**
 	 * @param User $user
@@ -47,6 +52,35 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 		} else {
 			return $this->modifiedUser;
 		}
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isPrivateInfoEditable() {
+		return $this->privateInfoEditable;
+	}
+
+	/**
+	 * Whether the
+	 * @param bool $editable
+	 */
+	public function setPrivateInfoEditable( $editable ) {
+		$this->privateInfoEditable = $editable;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function areOptionsEditable() {
+		return $this->optionsEditable;
+	}
+
+	/**
+	 * @param bool $optionsEditable
+	 */
+	public function setOptionsEditable( $optionsEditable ) {
+		$this->optionsEditable = $optionsEditable;
 	}
 
 	/**
@@ -73,18 +107,13 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	 * @return string
 	 */
 	function getButtons() {
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		if ( !$permissionManager->userHasAnyRight(
-			$this->getModifiedUser(),
-			'editmyprivateinfo',
-			'editmyoptions'
-		) ) {
+		if ( !$this->areOptionsEditable() && !$this->isPrivateInfoEditable() ) {
 			return '';
 		}
 
 		$html = parent::getButtons();
 
-		if ( $permissionManager->userHasRight( $this->getModifiedUser(), 'editmyoptions' ) ) {
+		if ( $this->areOptionsEditable() ) {
 			$t = $this->getTitle()->getSubpage( 'reset' );
 
 			$html .= new OOUI\ButtonWidget( [
