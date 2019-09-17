@@ -577,8 +577,8 @@ because of Phabricator reports.
 * …
 
 == Compatibility ==
-MediaWiki 1.34 requires PHP 7.0.13 or later. Although HHVM 3.18.5 or later is
-supported, it is generally advised to use PHP 7.0.13 or later for long term
+MediaWiki 1.34 requires PHP 7.2.0 or later. Although HHVM 3.18.5 or later is
+supported, it is generally advised to use PHP 7.2.0 or later for long term
 support. It also requires the following PHP extensions:
 
 * ctype
