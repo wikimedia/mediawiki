@@ -122,7 +122,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param AuthManager $authManager
 	 * @param LinkRenderer $linkRenderer
 	 * @param NamespaceInfo $nsInfo
-	 * @param PermissionManager|null $permissionManager
+	 * @param PermissionManager $permissionManager
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -130,15 +130,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		AuthManager $authManager,
 		LinkRenderer $linkRenderer,
 		NamespaceInfo $nsInfo,
-		PermissionManager $permissionManager = null
+		PermissionManager $permissionManager
 	) {
 		$options->assertRequiredOptions( self::$constructorOptions );
 
-		if ( !$permissionManager ) {
-			// TODO: this is actually hard-deprecated, left for jenkins to pass
-			// together with GlobalPreferences extension. Will be removed in a followup.
-			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		}
 		$this->options = $options;
 		$this->contLang = $contLang;
 		$this->authManager = $authManager;
@@ -1525,7 +1520,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 
 		/**
-		 * @var HTMLForm $htmlForm
+		 * @var PreferencesFormOOUI $htmlForm
 		 */
 		$htmlForm = new $formClass( $formDescriptor, $context, 'prefs' );
 
@@ -1538,6 +1533,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		] ) );
 
 		$htmlForm->setModifiedUser( $user );
+		$htmlForm->setOptionsEditable( $this->permissionManager
+			->userHasRight( $user, 'editmyoptions' ) );
+		$htmlForm->setPrivateInfoEditable( $this->permissionManager
+			->userHasRight( $user, 'editmyprivateinfo' ) );
 		$htmlForm->setId( 'mw-prefs-form' );
 		$htmlForm->setAutocomplete( 'off' );
 		$htmlForm->setSubmitText( $context->msg( 'saveprefs' )->text() );
@@ -1545,7 +1544,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$htmlForm->setSubmitTooltip( 'preferences-save' );
 		$htmlForm->setSubmitID( 'prefcontrol' );
 		$htmlForm->setSubmitCallback(
-			function ( array $formData, HTMLForm $form ) use ( $formDescriptor ) {
+			function ( array $formData, PreferencesFormOOUI $form ) use ( $formDescriptor ) {
 				return $this->submitForm( $formData, $form, $formDescriptor );
 			}
 		);

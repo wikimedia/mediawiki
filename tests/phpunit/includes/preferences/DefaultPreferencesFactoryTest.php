@@ -50,18 +50,16 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 
 	/**
 	 * Get a basic PreferencesFactory for testing with.
-	 * @param PermissionManager|null $manager
+	 * @param PermissionManager $mockPM
 	 * @return DefaultPreferencesFactory
 	 */
-	protected function getPreferencesFactory( PermissionManager $manager = null ) {
+	protected function getPreferencesFactory( PermissionManager $mockPM ) {
 		$mockNsInfo = $this->createMock( NamespaceInfo::class );
 		$mockNsInfo->method( 'getValidNamespaces' )->willReturn( [
 			NS_MAIN, NS_TALK, NS_USER, NS_USER_TALK
 		] );
 		$mockNsInfo->expects( $this->never() )
 			->method( $this->anythingBut( 'getValidNamespaces', '__destruct' ) );
-
-		$mockPermissionManager = $manager ?? $this->createMock( PermissionManager::class );
 
 		return new DefaultPreferencesFactory(
 			new LoggedServiceOptions( self::$serviceOptionsAccessLog,
@@ -70,7 +68,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 			AuthManager::singleton(),
 			MediaWikiServices::getInstance()->getLinkRenderer(),
 			$mockNsInfo,
-			$mockPermissionManager
+			$mockPM
 		);
 	}
 
@@ -81,7 +79,9 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 		$this->setTemporaryHook( 'GetPreferences', null );
 
 		$testUser = $this->getTestUser();
-		$form = $this->getPreferencesFactory()->getForm( $testUser->getUser(), $this->context );
+		$pm = $this->createMock( PermissionManager::class );
+		$pm->method( 'userHasRight' )->willReturn( true );
+		$form = $this->getPreferencesFactory( $pm )->getForm( $testUser->getUser(), $this->context );
 		$this->assertInstanceOf( PreferencesFormOOUI::class, $form );
 		$this->assertCount( 5, $form->getPreferenceSections() );
 	}
