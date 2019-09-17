@@ -4262,5 +4262,8 @@
 	"mycustomjsredirectprotected": "You do not have permission to edit this JavaScript page because it is a redirect and it does not point inside your userspace.",
 	"easydeflate-invaliddeflate": "Content provided is not properly deflated",
 	"unprotected-js": "For security reasons JavaScript cannot be loaded from unprotected pages. Please only create javascript in the MediaWiki: namespace or as a User subpage",
-	"userlogout-continue": "Do you want to log out?"
+	"userlogout-continue": "Do you want to log out?",
+	"rest-prefix-mismatch": "The requested path ($1) was not inside the REST API root path ($2)",
+	"rest-wrong-method": "The request method ($1) was not {{PLURAL:$3|the allowed method for this path|one of the allowed methods for this path}} ($2)",
+	"rest-no-match": "The requested relative path ($1) did not match any known handler"
 }
