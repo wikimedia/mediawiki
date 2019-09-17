@@ -547,7 +547,7 @@
 	"createaccountmail": "Usar uma senha aleatória e temporária que será enviada ao endereço de e-mail especificado a seguir",
 	"createaccountmail-help": "Pode ser utilizado para criar uma conta para outra pessoa sem saber a senha.",
 	"createacct-realname": "Nome real (opcional)",
-	"createacct-reason": "Motivo",
+	"createacct-reason": "Motivo (entrado publicamente)",
 	"createacct-reason-ph": "Por que você está criando outra conta",
 	"createacct-reason-help": "Mensagem mostrada no registro de criação de conta",
 	"createacct-submit": "Crie sua conta",

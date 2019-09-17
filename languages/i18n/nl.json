@@ -517,7 +517,7 @@
 	"createaccountmail": "Gebruik een tijdelijk willekeurig wachtwoord en stuur het naar het opgegeven e-mailadres",
 	"createaccountmail-help": "Kan worden gebruikt voor het aanmaken van een account voor een andere persoon zonder het wachtwoord te vernemen.",
 	"createacct-realname": "Echte naam (optioneel)",
-	"createacct-reason": "Reden",
+	"createacct-reason": "Reden (door iedereen te zien)",
 	"createacct-reason-ph": "Waarom u een ander account aanmaakt",
 	"createacct-reason-help": "Weergegeven bericht in het logbestand van aangemaakte gebruikers",
 	"createacct-submit": "Uw account aanmaken",
