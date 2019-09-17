@@ -308,7 +308,16 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 				throw new MWException( 'All service callbacks must have a return type defined, ' .
 					"none found for $name" );
 			}
-			$ret[$name] = [ $name, $fun->getReturnType()->__toString() ];
+
+			$returnType = $fun->getReturnType();
+
+			// ReflectionType::__toString() generates deprecation notices in PHP 7.4 and above
+			// TODO: T228342 - remove this check after MediaWiki only supports PHP 7.1+
+			if ( is_callable( [ $returnType, 'getName' ] ) ) {
+				$ret[$name] = [ $name, $returnType->getName() ];
+			} else {
+				$ret[$name] = [ $name, $fun->getReturnType()->__toString() ];
+			}
 		}
 		return $ret;
 	}
