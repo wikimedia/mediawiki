@@ -289,8 +289,9 @@ class McrUndoAction extends FormAction {
 				'h2', [ 'id' => 'mw-previewheader' ],
 				$this->context->msg( 'preview' )->text()
 			) .
-			$out->parseAsInterface( $note ) .
-			"<hr />"
+			Html::rawElement( 'div', [ 'class' => 'warningbox' ],
+				$out->parseAsInterface( $note )
+			)
 		);
 
 		$pageViewLang = $this->getTitle()->getPageViewLanguage();

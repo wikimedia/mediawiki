@@ -4045,11 +4045,11 @@ ERROR;
 
 		if ( $this->isConflict ) {
 			$conflict = Html::rawElement(
-				'h2', [ 'id' => 'mw-previewconflict' ],
+				'div', [ 'id' => 'mw-previewconflict', 'class' => 'warningbox' ],
 				$this->context->msg( 'previewconflict' )->escaped()
 			);
 		} else {
-			$conflict = '<hr />';
+			$conflict = '';
 		}
 
 		$previewhead = Html::rawElement(
@@ -4058,7 +4058,9 @@ ERROR;
 				'h2', [ 'id' => 'mw-previewheader' ],
 				$this->context->msg( 'preview' )->escaped()
 			) .
-			$out->parseAsInterface( $note ) . $conflict
+			Html::rawElement( 'div', [ 'class' => 'warningbox' ],
+				$out->parseAsInterface( $note )
+			) . $conflict
 		);
 
 		$pageViewLang = $this->mTitle->getPageViewLanguage();
