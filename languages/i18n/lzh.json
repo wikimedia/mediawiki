@@ -435,7 +435,7 @@
 	"cannotchangeemail": "郵址不可更於此wiki",
 	"emaildisabled": "是站不可遣函也。",
 	"accountcreated": "簿增矣",
-	"accountcreatedtext": "[[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|書]])簿增矣。",
+	"accountcreatedtext": "[[{{ns:User}}:$1|$1]]（[[{{ns:User talk}}:$1|書]]）簿增矣。",
 	"createaccount-title": "於{{SITENAME}}增簿",
 	"createaccount-text": "有人以汝電郵於{{SITENAME}}增簿。簿名為 \"$2\" （$4）。符節為 \"$3\" 。汝應登而更符節。\n\n如簿誤增，汝可略之。",
 	"login-throttled": "汝嘗登簿甚矣。\n請候 $1 而試之。",

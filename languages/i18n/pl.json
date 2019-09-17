@@ -525,7 +525,7 @@
 	"createaccountmail": "Użyj tymczasowego hasła wygenerowanego losowo i wyślij je na podany adres e-mail",
 	"createaccountmail-help": "Pozwala utworzyć konto dla innej osoby, nie znając jej hasła.",
 	"createacct-realname": "Prawdziwe imię i nazwisko (opcjonalnie)",
-	"createacct-reason": "Powód",
+	"createacct-reason": "Powód (podawany publicznie)",
 	"createacct-reason-ph": "Dlaczego zakładasz kolejne konto",
 	"createacct-reason-help": "Komunikat wyświetlany w rejestrze tworzenia kont",
 	"createacct-submit": "Utwórz konto",

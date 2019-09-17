@@ -427,7 +427,7 @@
 	"createaccountmail": "En temporäert zoufällegt Passwuert benotzen an et per E-Mail un déi spezifizéiert E-Mailadress schécken",
 	"createaccountmail-help": "Ka benotzt gi fir e Benotzerkont fir eng aner Persoun unzeleeën ouni d'Passwuert gewuer ze ginn.",
 	"createacct-realname": "Richtegen Numm (fakultativ)",
-	"createacct-reason": "Grond",
+	"createacct-reason": "Grond (ëffentlech geloggt)",
 	"createacct-reason-ph": "Fir wat Dir een anere Benotzerkonnt uleet",
 	"createacct-reason-help": "Message deen am Logbuch vun den ugeluechte Benotzerkonte gewise gëtt",
 	"createacct-submit": "Äre Benotzerkont uleeën",

@@ -598,7 +598,7 @@
 	"createaccountmail": "Utiliser un mot de passe aléatoire temporaire et l’envoyer à l’adresse de courriel spécifiée",
 	"createaccountmail-help": "Peut être utilisé pour créer un compte pour une autre personne sans connaître le mot de passe.",
 	"createacct-realname": "Nom réel (facultatif)",
-	"createacct-reason": "Motif",
+	"createacct-reason": "Motif (connecté publiquement)",
 	"createacct-reason-ph": "Pourquoi créez-vous un autre compte",
 	"createacct-reason-help": "Message affiché dans le journal de création de compte",
 	"createacct-submit": "Créez votre compte",

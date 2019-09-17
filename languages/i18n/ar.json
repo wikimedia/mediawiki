@@ -502,7 +502,7 @@
 	"createaccountmail": "استخدم كلمة سر عشوائية مؤقتة وارسلها إلى عنوان البريد الإلكتروني المحدد أدناه",
 	"createaccountmail-help": "يمكن استخدامه لإنشاء حساب لشخص آخر من دون معرفة كلمة المرور.",
 	"createacct-realname": "الاسم الحقيقي (اختياري)",
-	"createacct-reason": "السبب",
+	"createacct-reason": "السبب (مسجل بشكل عام)",
 	"createacct-reason-ph": "لماذا تقوم بإنشاء حساب آخر",
 	"createacct-reason-help": "رسالة تظهر في سجل إنشاء الحسابات",
 	"createacct-submit": "افتح الحساب",
