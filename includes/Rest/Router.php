@@ -4,6 +4,7 @@ namespace MediaWiki\Rest;
 
 use AppendIterator;
 use BagOStuff;
+use Wikimedia\Message\MessageValue;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
 use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
 use MediaWiki\Rest\Validator\Validator;
@@ -226,18 +227,28 @@ class Router {
 		$path = $request->getUri()->getPath();
 		$relPath = $this->getRelativePath( $path );
 		if ( $relPath === false ) {
-			return $this->responseFactory->createHttpError( 404 );
+			return $this->responseFactory->createLocalizedHttpError( 404,
+				( new MessageValue( 'rest-prefix-mismatch' ) )
+					->plaintextParams( $path, $this->rootPath )
+			);
 		}
 
+		$requestMethod = $request->getMethod();
 		$matchers = $this->getMatchers();
-		$matcher = $matchers[$request->getMethod()] ?? null;
+		$matcher = $matchers[$requestMethod] ?? null;
 		$match = $matcher ? $matcher->match( $relPath ) : null;
+
+		// For a HEAD request, execute the GET handler instead if one exists.
+		// The webserver will discard the body.
+		if ( !$match && $requestMethod === 'HEAD' && isset( $matchers['GET'] ) ) {
+			$match = $matchers['GET']->match( $relPath );
+		}
 
 		if ( !$match ) {
 			// Check for 405 wrong method
 			$allowed = [];
 			foreach ( $matchers as $allowedMethod => $allowedMatcher ) {
-				if ( $allowedMethod === $request->getMethod() ) {
+				if ( $allowedMethod === $requestMethod ) {
 					continue;
 				}
 				if ( $allowedMatcher->match( $relPath ) ) {
@@ -245,12 +256,20 @@ class Router {
 				}
 			}
 			if ( $allowed ) {
-				$response = $this->responseFactory->createHttpError( 405 );
+				$response = $this->responseFactory->createLocalizedHttpError( 405,
+					( new MessageValue( 'rest-wrong-method' ) )
+						->textParams( $requestMethod )
+						->commaListParams( $allowed )
+						->numParams( count( $allowed ) )
+				);
 				$response->setHeader( 'Allow', $allowed );
 				return $response;
 			} else {
 				// Did not match with any other method, must be 404
-				return $this->responseFactory->createHttpError( 404 );
+				return $this->responseFactory->createLocalizedHttpError( 404,
+					( new MessageValue( 'rest-no-match' ) )
+						->plaintextParams( $relPath )
+				);
 			}
 		}
 
@@ -272,6 +291,7 @@ class Router {
 
 	/**
 	 * Execute a fully-constructed handler
+	 *
 	 * @param Handler $handler
 	 * @return ResponseInterface
 	 */

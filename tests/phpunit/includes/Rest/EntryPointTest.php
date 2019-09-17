@@ -38,7 +38,7 @@ class EntryPointTest extends \MediaWikiTestCase {
 			[],
 			'/rest',
 			new EmptyBagOStuff(),
-			new ResponseFactory(),
+			new ResponseFactory( [] ),
 			new StaticBasicAuthorizer(),
 			$objectFactory,
 			new Validator( $objectFactory, $request, new User )

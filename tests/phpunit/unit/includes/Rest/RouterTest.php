@@ -29,7 +29,7 @@ class RouterTest extends \MediaWikiUnitTestCase {
 			[],
 			'/rest',
 			new \EmptyBagOStuff(),
-			new ResponseFactory(),
+			new ResponseFactory( [] ),
 			new StaticBasicAuthorizer( $authError ),
 			$objectFactory,
 			new Validator( $objectFactory, $request, new User )
@@ -53,6 +53,16 @@ class RouterTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( 405, $response->getStatusCode() );
 		$this->assertSame( 'Method Not Allowed', $response->getReasonPhrase() );
 		$this->assertSame( 'GET', $response->getHeaderLine( 'Allow' ) );
+	}
+
+	public function testHeadToGet() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/user/joe/hello' ),
+			'method' => 'HEAD'
+		] );
+		$router = $this->createRouter( $request );
+		$response = $router->execute( $request );
+		$this->assertSame( 200, $response->getStatusCode() );
 	}
 
 	public function testNoMatch() {

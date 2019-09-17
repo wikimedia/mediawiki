@@ -46,7 +46,7 @@ class MWBasicRequestAuthorizerTest extends MediaWikiTestCase {
 			[],
 			'/rest',
 			new \EmptyBagOStuff(),
-			new ResponseFactory(),
+			new ResponseFactory( [] ),
 			new MWBasicAuthorizer( $user, MediaWikiServices::getInstance()->getPermissionManager() ),
 			$objectFactory,
 			new Validator( $objectFactory, $request, $user )
