@@ -207,10 +207,7 @@ return [
 		);
 		$class = MWLBFactory::getLBFactoryClass( $lbConf );
 
-		$instance = new $class( $lbConf );
-		MWLBFactory::setSchemaAliases( $instance, $mainConfig->get( 'DBtype' ) );
-
-		return $instance;
+		return new $class( $lbConf );
 	},
 
 	'EventRelayerGroup' => function ( MediaWikiServices $services ) : EventRelayerGroup {
