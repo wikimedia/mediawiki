@@ -3,12 +3,17 @@
 namespace MediaWiki\Tests\Revision;
 
 use CommentStoreComment;
+use ContentHandler;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Storage\SqlBlobStore;
+use Revision;
+use StatusValue;
 use TextContent;
 use Title;
+use Wikimedia\TestingAccessWrapper;
 use WikitextContent;
 
 /**
@@ -238,5 +243,50 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 				"Couldn't find slots for rev 100500"
 			]
 		] ], $result->getErrors() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionsFromBatch
+	 */
+	public function testNewRevisionFromBatchUsesGetBlobBatch() {
+		$page1 = $this->getTestPage();
+		$text = __METHOD__ . 'b-ä';
+		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), $text . '1' );
+		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
+		/** @var Revision $rev1 */
+		$rev1 = $editStatus->getValue()['revision'];
+
+		$contentAddress = $rev1->getRevisionRecord()->getSlot( SlotRecord::MAIN )->getAddress();
+		$mockBlobStore = $this->getMockBuilder( SqlBlobStore::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$mockBlobStore
+			->expects( $this->once() )
+			->method( 'getBlobBatch' )
+			->with( [ $contentAddress ], $this->anything() )
+			->willReturn( StatusValue::newGood( [
+				$contentAddress => 'Content_From_Mock'
+			] ) );
+		$mockBlobStore
+			->expects( $this->never() )
+			->method( 'getBlob' );
+
+		$revStore = MediaWikiServices::getInstance()
+			->getRevisionStoreFactory()
+			->getRevisionStore();
+		$wrappedRevStore = TestingAccessWrapper::newFromObject( $revStore );
+		$wrappedRevStore->blobStore = $mockBlobStore;
+
+		$result = $revStore->newRevisionsFromBatch(
+			[ $this->revisionToRow( $rev1 ) ],
+			[
+				'slots' => [ SlotRecord::MAIN ],
+				'content' => true
+			]
+		);
+		$this->assertTrue( $result->isGood() );
+		$this->assertSame( 'Content_From_Mock',
+			ContentHandler::getContentText( $result->getValue()[$rev1->getId()]
+				->getContent( SlotRecord::MAIN ) ) );
 	}
 }
