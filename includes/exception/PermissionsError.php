@@ -67,10 +67,12 @@ class PermissionsError extends ErrorPageError {
 		parent::__construct( 'permissionserrors', Message::newFromSpecifier( $errors[0] ) );
 	}
 
-	public function report() {
+	public function report( $action = self::SEND_OUTPUT ) {
 		global $wgOut;
 
 		$wgOut->showPermissionsErrorPage( $this->errors, $this->permission );
-		$wgOut->output();
+		if ( $action === self::SEND_OUTPUT ) {
+			$wgOut->output();
+		}
 	}
 }

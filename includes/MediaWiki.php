@@ -526,11 +526,15 @@ class MediaWiki {
 			try {
 				$this->main();
 			} catch ( ErrorPageError $e ) {
+				$out = $this->context->getOutput();
+				// TODO: Should ErrorPageError::report accept a OutputPage parameter?
+				$e->report( ErrorPageError::STAGE_OUTPUT );
+
 				// T64091: while exceptions are convenient to bubble up GUI errors,
 				// they are not internal application faults. As with normal requests, this
 				// should commit, print the output, do deferred updates, jobs, and profiling.
 				$this->doPreOutputCommit();
-				$e->report(); // display the GUI error
+				$out->output(); // display the GUI error
 			}
 		} catch ( Exception $e ) {
 			$context = $this->context;
