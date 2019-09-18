@@ -55,8 +55,6 @@ require_once \"\$IP/LocalSettings.BlueSpice.php\";
 		$localSettings .= "
 \$wgUserMergeProtectedGroups = array();
 \$wgUserMergeUnmergeable = array();
-\$wgMFAutodetectMobileView = true;
-\$wgMFEnableDesktopResources = true;
 \$wgMetaNamespace = '" . $projectMetaNamespace . "';
 \$bsgGroupRoles['*']['reader'] = false;
 
