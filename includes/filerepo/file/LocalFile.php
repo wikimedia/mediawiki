@@ -452,6 +452,10 @@ class LocalFile extends File {
 	 * This covers fields that are sometimes not cached.
 	 */
 	protected function loadExtraFromDB() {
+		if ( !$this->title ) {
+			return; // Avoid hard failure when the file does not exist. T221812
+		}
+
 		$fname = static::class . '::' . __FUNCTION__;
 
 		# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
@@ -857,12 +861,24 @@ class LocalFile extends File {
 	function getUser( $type = 'text' ) {
 		$this->load();
 
-		if ( $type === 'object' ) {
-			return $this->user;
-		} elseif ( $type === 'text' ) {
-			return $this->user->getName();
-		} elseif ( $type === 'id' ) {
-			return $this->user->getId();
+		if ( !$this->user ) {
+			// If the file does not exist, $this->user will be null, see T221812.
+			// Note: 'Unknown user' this is a reserved user name.
+			if ( $type === 'object' ) {
+				return User::newFromName( 'Unknown user', false );
+			} elseif ( $type === 'text' ) {
+				return 'Unknown user';
+			} elseif ( $type === 'id' ) {
+				return 0;
+			}
+		} else {
+			if ( $type === 'object' ) {
+				return $this->user;
+			} elseif ( $type === 'text' ) {
+				return $this->user->getName();
+			} elseif ( $type === 'id' ) {
+				return $this->user->getId();
+			}
 		}
 
 		throw new MWException( "Unknown type '$type'." );
@@ -876,9 +892,13 @@ class LocalFile extends File {
 	 * @since 1.27
 	 */
 	public function getDescriptionShortUrl() {
+		if ( !$this->title ) {
+			return null; // Avoid hard failure when the file does not exist. T221812
+		}
+
 		$pageId = $this->title->getArticleID();
 
-		if ( $pageId !== null ) {
+		if ( $pageId ) {
 			$url = $this->repo->makeUrl( [ 'curid' => $pageId ] );
 			if ( $url !== false ) {
 				return $url;
@@ -1145,6 +1165,10 @@ class LocalFile extends File {
 	 * @return OldLocalFile[]
 	 */
 	function getHistory( $limit = null, $start = null, $end = null, $inc = true ) {
+		if ( !$this->exists() ) {
+			return []; // Avoid hard failure when the file does not exist. T221812
+		}
+
 		$dbr = $this->repo->getReplicaDB();
 		$oldFileQuery = OldLocalFile::getQueryInfo();
 
@@ -1198,9 +1222,13 @@ class LocalFile extends File {
 	 *  0      return line for current version
 	 *  1      query for old versions, return first one
 	 *  2, ... return next old version from above query
-	 * @return bool
+	 * @return stdClass|bool
 	 */
 	public function nextHistoryLine() {
+		if ( !$this->exists() ) {
+			return false; // Avoid hard failure when the file does not exist. T221812
+		}
+
 		# Polymorphic function name to distinguish foreign and local fetches
 		$fname = static::class . '::' . __FUNCTION__;
 
@@ -2026,9 +2054,13 @@ class LocalFile extends File {
 
 	/**
 	 * Get the URL of the file description page.
-	 * @return string
+	 * @return string|bool
 	 */
 	function getDescriptionUrl() {
+		if ( !$this->title ) {
+			return false; // Avoid hard failure when the file does not exist. T221812
+		}
+
 		return $this->title->getLocalURL();
 	}
 
@@ -2041,6 +2073,10 @@ class LocalFile extends File {
 	 * @return string|false
 	 */
 	function getDescriptionText( Language $lang = null ) {
+		if ( !$this->title ) {
+			return false; // Avoid hard failure when the file does not exist. T221812
+		}
+
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$revision = $store->getRevisionByTitle( $this->title, 0, Revision::READ_NORMAL );
 		if ( !$revision ) {
@@ -2090,6 +2126,10 @@ class LocalFile extends File {
 	 * @return bool|string
 	 */
 	public function getDescriptionTouched() {
+		if ( !$this->exists() ) {
+			return false; // Avoid hard failure when the file does not exist. T221812
+		}
+
 		// The DB lookup might return false, e.g. if the file was just deleted, or the shared DB repo
 		// itself gets it from elsewhere. To avoid repeating the DB lookups in such a case, we
 		// need to differentiate between null (uninitialized) and false (failed to load).

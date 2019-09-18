@@ -164,6 +164,18 @@ $wgPasswordPolicy['policies']['default']['PasswordNotInLargeBlacklist'] = false;
   deprecated in 1.25, has been removed.
 * (T60993) action=query list=filearchive, list=alldeletedrevisions and
   prop=deletedrevisions no longer require the 'deletedhistory' user right.
+* In the response to queries that use 'prop=imageinfo', entries for
+  non-existing files (indicated by the 'filemissing' field) now omit the
+  following fields, since they are meaningless in this context:
+  'timestamp', 'userhidden', 'user', 'userid', 'anon', 'size', 'width',
+  'height', 'pagecount', 'duration', 'commenthidden', 'parsedcomment',
+  'comment', 'thumburl', 'thumbwidth', 'thumbheight', 'thumbmime',
+  'thumberror', 'url', 'sha1', 'metadata', 'extmetadata', 'commonmetadata',
+  'mime', 'mediadtype', 'bitdepth'.
+  Clients that process these fields should first check if 'filemissing' is
+  set. Fields that are supported even if the file is missing include:
+  'canonicaltitle', ''archivename' (deleted files only), 'descriptionurl',
+  'descriptionshorturl'.
 
 === Action API internal changes in 1.34 ===
 * The exception thrown in ApiModuleManager::getModule has been changed
