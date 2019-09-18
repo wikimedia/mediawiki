@@ -40,6 +40,11 @@ class SpecialListFiles extends IncludableSpecialPage {
 			$search = $this->getRequest()->getText( 'ilsearch', '' );
 			$showAll = $this->getRequest()->getBool( 'ilshowall', false );
 		}
+		if ( $userName ) {
+			$pageTitle = $this->msg( 'listfiles_subpage', $userName );
+		} else {
+			$pageTitle = $this->msg( 'listfiles' );
+		}
 
 		$pager = new ImageListPager(
 			$this->getContext(),
@@ -51,6 +56,8 @@ class SpecialListFiles extends IncludableSpecialPage {
 		);
 
 		$out = $this->getOutput();
+		$out->setPageTitle( $pageTitle );
+		$out->addModuleStyles( 'mediawiki.special' );
 		if ( $this->including() ) {
 			$out->addParserOutputContent( $pager->getBodyOutput() );
 		} else {

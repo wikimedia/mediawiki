@@ -1998,6 +1998,7 @@ return [
 			'resources/src/mediawiki.special/userrights.css',
 			'resources/src/mediawiki.special/watchlist.css',
 			'resources/src/mediawiki.special/block.less',
+			'resources/src/mediawiki.special/listFiles.less',
 			'resources/src/mediawiki.special/blocklist.less',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
