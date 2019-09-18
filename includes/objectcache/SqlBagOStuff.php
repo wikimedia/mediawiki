@@ -194,6 +194,10 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				$conn = Database::factory( $type, $info );
 				$conn->clearFlag( DBO_TRX ); // auto-commit mode
 				$this->conns[$shardIndex] = $conn;
+				// Automatically create the objectcache table for sqlite as needed
+				if ( $conn->getType() === 'sqlite' ) {
+					$this->initSqliteDatabase( $conn );
+				}
 			}
 			$conn = $this->conns[$shardIndex];
 		} else {
@@ -206,10 +210,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$attribs = $lb->getServerAttributes( $lb->getWriterIndex() );
 			$flags = $attribs[Database::ATTR_DB_LEVEL_LOCKING] ? 0 : $lb::CONN_TRX_AUTOCOMMIT;
 			$conn = $lb->getMaintenanceConnectionRef( $index, [], false, $flags );
-			// Automatically create the objectcache table for sqlite as needed
-			if ( $conn->getType() === 'sqlite' ) {
-				$this->initSqliteDatabase( $conn );
-			}
 		}
 
 		$this->logger->debug( sprintf( "Connection %s will be used for SqlBagOStuff", $conn ) );
