@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\Rest\BasicAccess;
 
 use GuzzleHttp\Psr7\Uri;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\BasicAccess\MWBasicAuthorizer;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\RequestData;
@@ -26,20 +26,18 @@ use Wikimedia\ObjectFactory;
 class MWBasicRequestAuthorizerTest extends MediaWikiTestCase {
 	private function createRouter( $userRights, $request ) {
 		$user = User::newFromName( 'Test user' );
-		// Don't allow the rights to everybody so that user rights kick in.
-		$this->mergeMwGlobalArrayValue( 'wgGroupPermissions', [ '*' => $userRights ] );
-		$this->overrideUserPermissions(
-			$user,
-			array_keys( array_filter( $userRights ), function ( $value ) {
-				return $value === true;
-			} )
-		);
-
-		global $IP;
-
 		$objectFactory = new ObjectFactory(
 			$this->getMockForAbstractClass( ContainerInterface::class )
 		);
+		$permissionManager = $this->createMock( PermissionManager::class );
+		// Don't allow the rights to everybody so that user rights kick in.
+		$permissionManager->method( 'isEveryoneAllowed' )->willReturn( false );
+		$permissionManager->method( 'userHasRight' )
+			->will( $this->returnCallback( function ( $user, $action ) use ( $userRights ) {
+				return isset( $userRights[$action] ) && $userRights[$action];
+			} ) );
+
+		global $IP;
 
 		return new Router(
 			[ "$IP/tests/phpunit/unit/includes/Rest/testRoutes.json" ],
@@ -47,9 +45,9 @@ class MWBasicRequestAuthorizerTest extends MediaWikiTestCase {
 			'/rest',
 			new \EmptyBagOStuff(),
 			new ResponseFactory( [] ),
-			new MWBasicAuthorizer( $user, MediaWikiServices::getInstance()->getPermissionManager() ),
+			new MWBasicAuthorizer( $user, $permissionManager ),
 			$objectFactory,
-			new Validator( $objectFactory, $request, $user )
+			new Validator( $objectFactory, $permissionManager, $request, $user )
 		);
 	}
 

@@ -2,10 +2,11 @@
 
 namespace MediaWiki\Rest\Validator;
 
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\RequestInterface;
-use User;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\ObjectFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\BooleanDef;
@@ -62,16 +63,20 @@ class Validator {
 	private $paramValidator;
 
 	/**
-	 * @internal
 	 * @param ObjectFactory $objectFactory
+	 * @param PermissionManager $permissionManager
 	 * @param RequestInterface $request
-	 * @param User $user
+	 * @param UserIdentity $user
+	 * @internal
 	 */
 	public function __construct(
-		ObjectFactory $objectFactory, RequestInterface $request, User $user
+		ObjectFactory $objectFactory,
+		PermissionManager $permissionManager,
+		RequestInterface $request,
+		UserIdentity $user
 	) {
 		$this->paramValidator = new ParamValidator(
-			new ParamValidatorCallbacks( $request, $user ),
+			new ParamValidatorCallbacks( $permissionManager, $request, $user ),
 			$objectFactory,
 			[
 				'typeDefs' => self::$typeDefs,

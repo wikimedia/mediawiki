@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Rest;
 use EmptyBagOStuff;
 use GuzzleHttp\Psr7\Uri;
 use GuzzleHttp\Psr7\Stream;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\EntryPoint;
@@ -32,6 +33,7 @@ class EntryPointTest extends \MediaWikiTestCase {
 		$objectFactory = new ObjectFactory(
 			$this->getMockForAbstractClass( ContainerInterface::class )
 		);
+		$permissionManager = $this->createMock( PermissionManager::class );
 
 		return new Router(
 			[ "$IP/tests/phpunit/unit/includes/Rest/testRoutes.json" ],
@@ -41,7 +43,7 @@ class EntryPointTest extends \MediaWikiTestCase {
 			new ResponseFactory( [] ),
 			new StaticBasicAuthorizer(),
 			$objectFactory,
-			new Validator( $objectFactory, $request, new User )
+			new Validator( $objectFactory, $permissionManager, $request, new User )
 		);
 	}
 

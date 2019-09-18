@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Rest\Handler;
 
 use EmptyBagOStuff;
 use GuzzleHttp\Psr7\Uri;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\ResponseFactory;
@@ -55,7 +56,7 @@ class HelloHandlerTest extends \MediaWikiUnitTestCase {
 		$objectFactory = new ObjectFactory(
 			$this->getMockForAbstractClass( ContainerInterface::class )
 		);
-
+		$permissionManager = $this->createMock( PermissionManager::class );
 		$request = new RequestData( $requestInfo );
 		$router = new Router(
 			[ __DIR__ . '/../testRoutes.json' ],
@@ -65,7 +66,7 @@ class HelloHandlerTest extends \MediaWikiUnitTestCase {
 			new ResponseFactory( [] ),
 			new StaticBasicAuthorizer(),
 			$objectFactory,
-			new Validator( $objectFactory, $request, new User )
+			new Validator( $objectFactory, $permissionManager, $request, new User )
 		);
 		$response = $router->execute( $request );
 		if ( isset( $responseInfo['statusCode'] ) ) {
