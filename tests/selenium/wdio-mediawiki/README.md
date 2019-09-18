@@ -27,6 +27,7 @@ which typically come from `MEDIAWIKI_USER` and `MEDIAWIKI_PASSWORD` environment 
 * `createAccount(string username, string password)`
 * `blockUser([ string username [, string expiry ] ])`
 * `unblockUser([ string username ])`
+* `bot([string username [, string password [, string baseUrl ] ] ])`
 
 ### RunJobs
 

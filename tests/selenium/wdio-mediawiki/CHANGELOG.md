@@ -1,3 +1,7 @@
+## 0.5.0 / 2019-09-18
+
+* Api: Added `bot()` method.
+
 ## 0.4.0 / 2019-07-18
 
 * Util: Added a `waitForModuleState()` method.
