@@ -155,13 +155,6 @@ return [
 
 	/* jQuery Plugins */
 
-	'jquery.accessKeyLabel' => [
-		'deprecated' => 'Please use "mediawiki.util" instead.',
-		'dependencies' => [
-			'mediawiki.util',
-		],
-		'targets' => [ 'mobile', 'desktop' ],
-	],
 	'jquery.chosen' => [
 		'scripts' => 'resources/lib/jquery.chosen/chosen.jquery.js',
 		'styles' => 'resources/lib/jquery.chosen/chosen.css',
