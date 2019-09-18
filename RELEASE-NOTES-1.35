@@ -119,6 +119,10 @@ because of Phabricator reports.
   which returns the CommentStoreComment.
 * The global function wfGetRusage() is deprecated and will now always call the
   getrusage() function without checking for its existence.
+* The properties User::mBlock, User::mBlockedby and User::mHideName are
+  deprecated. Instead, use User::getBlock to get the block, then use
+  AbstractBlock::getByName or AbstractBlock::getHideName.Use the GetUserBlock
+  hook to set, unset or modify a block, including hiding or unhiding a user.
 * …
 
 === Other changes in 1.35 ===
