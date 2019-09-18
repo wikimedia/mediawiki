@@ -65,9 +65,14 @@ class PurgeList extends Maintenance {
 			} elseif ( $page !== '' ) {
 				$title = Title::newFromText( $page );
 				if ( $title ) {
-					$url = $title->getInternalURL();
-					$this->output( "$url\n" );
-					$urls[] = $url;
+					$newUrls = $title->getCdnUrls();
+
+					foreach ( $newUrls as $url ) {
+						$this->output( "$url\n" );
+					}
+
+					$urls = array_merge( $urls, $newUrls );
+
 					if ( $this->getOption( 'purge' ) ) {
 						$title->invalidateCache();
 					}
@@ -110,8 +115,7 @@ class PurgeList extends Maintenance {
 			$urls = [];
 			foreach ( $res as $row ) {
 				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$url = $title->getInternalURL();
-				$urls[] = $url;
+				$urls = array_merge( $urls, $title->getCdnUrls() );
 				$startId = $row->page_id;
 			}
 			$this->sendPurgeRequest( $urls );
