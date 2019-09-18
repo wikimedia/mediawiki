@@ -2488,8 +2488,9 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 */
 	private function determineKeyClassForStats( $key ) {
 		$parts = explode( ':', $key, 3 );
-
-		return $parts[1] ?? $parts[0]; // sanity
+		// Sanity fallback in case the key was not made by makeKey.
+		// Replace dots because they are special in StatsD (T232907)
+		return strtr( $parts[1] ?? $parts[0], '.', '_' );
 	}
 
 	/**

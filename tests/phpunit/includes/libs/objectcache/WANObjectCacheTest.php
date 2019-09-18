@@ -1981,6 +1981,8 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			[ 'domain:page:5', 'page' ],
 			[ 'domain:main-key', 'main-key' ],
 			[ 'domain:page:history', 'page' ],
+			// Regression test for T232907
+			[ 'domain:foo-bar-1.2:abc:v2', 'foo-bar-1_2' ],
 			[ 'missingdomainkey', 'missingdomainkey' ]
 		];
 	}
