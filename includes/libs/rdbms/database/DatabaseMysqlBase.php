@@ -1171,8 +1171,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return bool
 	 */
 	public function streamStatementEnd( &$sql, &$newLine ) {
-		if ( strtoupper( substr( $newLine, 0, 9 ) ) == 'DELIMITER' ) {
-			preg_match( '/^DELIMITER\s+(\S+)/', $newLine, $m );
+		if ( preg_match( '/^DELIMITER\s+(\S+)/i', $newLine, $m ) ) {
 			$this->delimiter = $m[1];
 			$newLine = '';
 		}
