@@ -23,6 +23,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * Query module to enumerate all deleted revisions.
@@ -347,7 +348,9 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					$anyHidden = true;
 				}
 				if ( Revision::userCanBitfield( $row->ar_deleted, RevisionRecord::DELETED_TEXT, $user ) ) {
-					ApiResult::setContentValue( $rev, 'text', Revision::getRevisionText( $row, 'ar_' ) );
+					ApiResult::setContentValue( $rev, 'text',
+						$revisionStore->newRevisionFromArchiveRow( $row )
+							->getContent( SlotRecord::MAIN )->serialize() );
 				}
 			}
 
