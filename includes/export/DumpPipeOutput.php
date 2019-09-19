@@ -73,15 +73,14 @@ class DumpPipeOutput extends DumpFileOutput {
 	}
 
 	/**
-	 * @param string $newname
+	 * @inheritDoc
 	 */
 	function closeRenameAndReopen( $newname ) {
 		$this->closeAndRename( $newname, true );
 	}
 
 	/**
-	 * @param string $newname
-	 * @param bool $open
+	 * @inheritDoc
 	 */
 	function closeAndRename( $newname, $open = false ) {
 		$newname = $this->checkRenameArgCount( $newname );

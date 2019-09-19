@@ -59,7 +59,7 @@ class DumpFileOutput extends DumpOutput {
 	}
 
 	/**
-	 * @param string $newname
+	 * @inheritDoc
 	 */
 	function closeRenameAndReopen( $newname ) {
 		$this->closeAndRename( $newname, true );
@@ -92,8 +92,7 @@ class DumpFileOutput extends DumpOutput {
 	}
 
 	/**
-	 * @param string $newname
-	 * @param bool $open
+	 * @inheritDoc
 	 */
 	function closeAndRename( $newname, $open = false ) {
 		$newname = $this->checkRenameArgCount( $newname );
