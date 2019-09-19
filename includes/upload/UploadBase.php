@@ -1316,7 +1316,7 @@ abstract class UploadBase {
 			$enc = null;
 		}
 
-		if ( $enc ) {
+		if ( $enc !== null ) {
 			$chunk = iconv( $enc, "ASCII//IGNORE", $chunk );
 		}
 

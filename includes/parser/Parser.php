@@ -2312,6 +2312,11 @@ class Parser {
 		$line = $a->current(); # Workaround for broken ArrayIterator::next() that returns "void"
 		$s = substr( $s, 1 );
 
+		if ( is_null( $this->mTitle ) ) {
+			throw new MWException( __METHOD__ . ": \$this->mTitle is null\n" );
+		}
+		$nottalk = !$this->mTitle->isTalkPage();
+
 		$useLinkPrefixExtension = $this->getTargetLanguage()->linkPrefixExtension();
 		$e2 = null;
 		if ( $useLinkPrefixExtension ) {
@@ -2319,14 +2324,6 @@ class Parser {
 			# e.g. in the case of 'The Arab al[[Razi]]', 'al' will be matched
 			$charset = $this->contLang->linkPrefixCharset();
 			$e2 = "/^((?>.*[^$charset]|))(.+)$/sDu";
-		}
-
-		if ( is_null( $this->mTitle ) ) {
-			throw new MWException( __METHOD__ . ": \$this->mTitle is null\n" );
-		}
-		$nottalk = !$this->mTitle->isTalkPage();
-
-		if ( $useLinkPrefixExtension ) {
 			$m = [];
 			if ( preg_match( $e2, $s, $m ) ) {
 				$first_prefix = $m[2];

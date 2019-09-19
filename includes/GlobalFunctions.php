@@ -518,7 +518,7 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 		}
 	}
 
-	$defaultProtoWithoutSlashes = substr( $defaultProto, 0, -2 );
+	$defaultProtoWithoutSlashes = $defaultProto !== null ? substr( $defaultProto, 0, -2 ) : '';
 
 	if ( substr( $url, 0, 2 ) == '//' ) {
 		$url = $defaultProtoWithoutSlashes . $url;
