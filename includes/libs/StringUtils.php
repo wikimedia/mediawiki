@@ -1,4 +1,7 @@
 <?php
+
+use Wikimedia\AtEase\AtEase;
+
 /**
  * Methods to play with strings.
  *
@@ -339,5 +342,22 @@ class StringUtils {
 		} else {
 			return new ArrayIterator( explode( $separator, $subject ) );
 		}
+	}
+
+	/**
+	 * Utility function to check if the given string is a valid regex. Avoids
+	 * manually calling suppressWarnings and restoreWarnings, and provides a
+	 * one-line solution without the need to use @.
+	 *
+	 * @since 1.34
+	 * @param string $string The string you want to check being a valid regex
+	 * @return bool
+	 */
+	public static function isValidRegex( $string ) {
+		AtEase::suppressWarnings();
+		// @phan-suppress-next-line PhanParamSuspiciousOrder False positive
+		$isValid = preg_match( $string, '' );
+		AtEase::restoreWarnings();
+		return $isValid !== false;
 	}
 }

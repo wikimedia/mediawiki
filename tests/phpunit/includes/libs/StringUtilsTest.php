@@ -125,4 +125,28 @@ class StringUtilsTest extends PHPUnit\Framework\TestCase {
 			'noncharacters 2' => [ $PASS, "\xef\xbf\xbf" ],
 		];
 	}
+
+	/**
+	 * @param strin $input
+	 * @param bool $expected
+	 * @dataProvider provideRegexps
+	 * @covers StringUtils::isValidRegex
+	 */
+	public function testIsValidRegex( $input, $expected ) {
+		$this->assertSame( $expected, StringUtils::isValidRegex( $input ) );
+	}
+
+	/**
+	 * Data provider for testValidRegex
+	 */
+	public static function provideRegexps() {
+		return [
+			[ 'foo', false ],
+			[ '/foo/', true ],
+			[ '//', true ],
+			[ '/(foo/', false ],
+			[ '!(f[o]{2})!', true ],
+			[ '/foo\/', false ]
+		];
+	}
 }
