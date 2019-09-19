@@ -27,6 +27,13 @@
  * For every service that MediaWiki core requires, an instantiator must be defined in
  * this file.
  *
+ * Note that, ideally, all information used to instantiate service objects should come
+ * from configuration. Information derived from the current request is acceptable, but
+ * only where there is no feasible alternative. It is preferred that such information
+ * (like the client IP, the acting user's identity, requested title, etc) be passed to
+ * the service object's methods as parameters. This makes the flow of information more
+ * obvious, and makes it easier to understand the behavior of services.
+ *
  * @note As of version 1.27, MediaWiki is only beginning to use dependency injection.
  * The services defined here do not yet fully represent all services used by core,
  * much of the code still relies on global state for this accessing services.
@@ -267,6 +274,8 @@ return [
 		if ( defined( 'MW_NO_SESSION' ) ) {
 			return $services->getLinkRendererFactory()->create();
 		} else {
+			// Normally information from the current request would not be passed in here;
+			// this is an exception. (See also the class documentation.)
 			return $services->getLinkRendererFactory()->createForUser(
 				RequestContext::getMain()->getUser()
 			);
