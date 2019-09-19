@@ -1188,7 +1188,7 @@ class EditPage {
 	/**
 	 * @param Content|null $def_content The default value to return
 	 *
-	 * @return Content|null Content on success, $def_content for invalid sections
+	 * @return Content|false|null Content on success, $def_content for invalid sections
 	 *
 	 * @since 1.21
 	 */

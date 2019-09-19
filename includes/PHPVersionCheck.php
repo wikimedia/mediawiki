@@ -77,8 +77,8 @@ class PHPVersionCheck {
 	/**
 	 * Return the version of the installed PHP implementation.
 	 *
-	 * @param string $impl By default, the function returns the info of the currently installed PHP
-	 *  implementation. Using this parameter the caller can decide, what version info will be
+	 * @param string|false $impl By default, the function returns the info of the currently installed
+	 *  PHP implementation. Using this parameter the caller can decide, what version info will be
 	 *  returned. Valid values: HHVM, PHP
 	 * @return array An array of information about the PHP implementation, containing:
 	 *  - 'version': The version of the PHP implementation (specific to the implementation, not

@@ -60,8 +60,7 @@ class Dump7ZipOutput extends DumpPipeOutput {
 	}
 
 	/**
-	 * @param string $newname
-	 * @param bool $open
+	 * @inheritDoc
 	 */
 	function closeAndRename( $newname, $open = false ) {
 		$newname = $this->checkRenameArgCount( $newname );

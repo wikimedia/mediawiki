@@ -151,7 +151,7 @@ class RevisionStoreRecord extends RevisionRecord {
 
 	/**
 	 * @throws RevisionAccessException if the size was unknown and could not be calculated.
-	 * @return string The nominal revision size, never null. May be computed on the fly.
+	 * @return int The nominal revision size, never null. May be computed on the fly.
 	 */
 	public function getSize() {
 		// If length is null, calculate and remember it (potentially SLOW!).

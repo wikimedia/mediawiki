@@ -231,7 +231,7 @@ class PageEditStash {
 			return false;
 		}
 
-		$age = time() - wfTimestamp( TS_UNIX, $editInfo->output->getCacheTime() );
+		$age = time() - (int)wfTimestamp( TS_UNIX, $editInfo->output->getCacheTime() );
 		$context['age'] = $age;
 
 		$isCacheUsable = true;
@@ -450,7 +450,7 @@ class PageEditStash {
 	) {
 		// If an item is renewed, mind the cache TTL determined by config and parser functions.
 		// Put an upper limit on the TTL for sanity to avoid extreme template/file staleness.
-		$age = time() - wfTimestamp( TS_UNIX, $parserOutput->getCacheTime() );
+		$age = time() - (int)wfTimestamp( TS_UNIX, $parserOutput->getCacheTime() );
 		$ttl = min( $parserOutput->getCacheExpiry() - $age, self::MAX_CACHE_TTL );
 		// Avoid extremely stale user signature timestamps (T84843)
 		if ( $parserOutput->getFlag( 'user-signature' ) ) {

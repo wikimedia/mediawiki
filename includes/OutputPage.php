@@ -50,7 +50,7 @@ class OutputPage extends ContextSource {
 	/** @var array */
 	protected $mLinktags = [];
 
-	/** @var bool */
+	/** @var string|bool */
 	protected $mCanonicalUrl = false;
 
 	/**
@@ -2147,7 +2147,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Get TTL in [$minTTL,$maxTTL] in pass it to lowerCdnMaxage()
+	 * Get TTL in [$minTTL,$maxTTL] and pass it to lowerCdnMaxage()
 	 *
 	 * This sets and returns $minTTL if $mtime is false or null. Otherwise,
 	 * the TTL is higher the older the $mtime timestamp is. Essentially, the
@@ -2163,10 +2163,10 @@ class OutputPage extends ContextSource {
 		$maxTTL = $maxTTL ?: $this->getConfig()->get( 'CdnMaxAge' );
 
 		if ( $mtime === null || $mtime === false ) {
-			return $minTTL; // entity does not exist
+			return; // entity does not exist
 		}
 
-		$age = MWTimestamp::time() - wfTimestamp( TS_UNIX, $mtime );
+		$age = MWTimestamp::time() - (int)wfTimestamp( TS_UNIX, $mtime );
 		$adaptiveTTL = max( 0.9 * $age, $minTTL );
 		$adaptiveTTL = min( $adaptiveTTL, $maxTTL );
 
@@ -2270,7 +2270,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Return a Link: header. Based on the values of $mLinkHeader.
 	 *
-	 * @return string
+	 * @return string|false
 	 */
 	public function getLinkHeader() {
 		if ( !$this->mLinkHeader ) {
@@ -2602,7 +2602,7 @@ class OutputPage extends ContextSource {
 	 * and optionally an custom HTML title (content of the "<title>" tag).
 	 *
 	 * @param string|Message $pageTitle Will be passed directly to setPageTitle()
-	 * @param string|Message $htmlTitle Will be passed directly to setHTMLTitle();
+	 * @param string|Message|false $htmlTitle Will be passed directly to setHTMLTitle();
 	 *                   optional, if not passed the "<title>" attribute will be
 	 *                   based on $pageTitle
 	 */
@@ -3283,7 +3283,7 @@ class OutputPage extends ContextSource {
 			$vars['wgUserId'] = $user->getId();
 			$vars['wgUserEditCount'] = $user->getEditCount();
 			$userReg = $user->getRegistration();
-			$vars['wgUserRegistration'] = $userReg ? wfTimestamp( TS_UNIX, $userReg ) * 1000 : null;
+			$vars['wgUserRegistration'] = $userReg ? (int)wfTimestamp( TS_UNIX, $userReg ) * 1000 : null;
 			// Get the revision ID of the oldest new message on the user's talk
 			// page. This can be used for constructing new message alerts on
 			// the client side.

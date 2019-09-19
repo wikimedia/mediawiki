@@ -150,7 +150,7 @@ class SlotRoleHandler {
 	 *
 	 * The default implementation always returns false.
 	 *
-	 * @return string
+	 * @return bool
 	 */
 	public function supportsArticleCount() {
 		return false;
