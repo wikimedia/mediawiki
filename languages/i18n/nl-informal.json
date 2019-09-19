@@ -71,7 +71,6 @@
 	"changeemail-header": "Vul dit formulier in om je e-mailadres te wijzigen. Je moet je wachtwoord invoeren om deze wijziging te bevestigen.",
 	"changeemail-no-info": "Je moet aangemeld zijn om rechtstreeks toegang te hebben tot deze pagina.",
 	"changeemail-password": "Jouw wachtwoord voor {{SITENAME}}:",
-	"sig_tip": "Je handtekening met datum en tijd",
 	"anoneditwarning": "'''Waarschuwing:''' je bent niet aangemeld.\nJe IP-adres wordt opgeslagen als je wijzigingen op deze pagina maakt.",
 	"anonpreviewwarning": "''Je bent niet aangemeld.''\n''Door je bewerking op te slaan wordt je IP-adres opgeslagen in de paginageschiedenis.''",
 	"missingsummary": "'''Let op:''' je hebt geen samenvatting opgegeven voor je bewerking.\nAls je nogmaals op ''Pagina opslaan'' klikt wordt de bewerking zonder samenvatting opgeslagen.",

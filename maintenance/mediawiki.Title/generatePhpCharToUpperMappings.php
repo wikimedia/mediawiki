@@ -82,6 +82,9 @@ class GeneratePhpCharToUpperMappings extends Maintenance {
 		) . "\n";
 		$outputPath = '/resources/src/mediawiki.Title/phpCharToUpper.json';
 		$file = fopen( $IP . $outputPath, 'w' );
+		if ( !$file ) {
+			$this->fatalError( "Unable to write file \"$IP$outputPath\"" );
+		}
 		fwrite( $file, $mappingJson );
 
 		$this->output( count( $data ) . " differences found.\n" );

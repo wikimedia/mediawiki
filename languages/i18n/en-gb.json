@@ -562,8 +562,6 @@
 	"passwordreset-username": "Username:",
 	"changeemail-none": "(none)",
 	"resettokens-tokens": "Tokens:",
-	"bold_sample": "Bold text",
-	"italic_sample": "Italic text",
 	"savearticle": "Save page",
 	"anonpreviewwarning": "<em>You are not logged in. Saving will record your IP address in this page's edit history.</em>",
 	"blockedtext": "<strong>Your username or IP address has been blocked.</strong>\n\nThe block was made by $1.\nThe reason given is <em>$2</em>.\n\n* Start of block: $8\n* Expiration of block: $6\n* Intended blockee: $7\n\nYou can contact $1 or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the block.\nYou cannot use the \"{{int:emailuser}}\" feature unless a valid e-mail address is specified in your [[Special:Preferences|account preferences]] and you have not been blocked from using it.\nYour current IP address is $3, and the block ID is #$5.\nPlease include all above details in any queries you make.",
