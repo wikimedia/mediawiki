@@ -130,14 +130,15 @@ class StringUtilsTest extends PHPUnit\Framework\TestCase {
 	 * @param strin $input
 	 * @param bool $expected
 	 * @dataProvider provideRegexps
-	 * @covers StringUtils::isValidRegex
+	 * @covers StringUtils::isValidPCRERegex
 	 */
-	public function testIsValidRegex( $input, $expected ) {
-		$this->assertSame( $expected, StringUtils::isValidRegex( $input ) );
+	public function testIsValidPCRERegex( $input, $expected ) {
+		$this->assertSame( $expected, StringUtils::isValidPCRERegex( $input ) );
 	}
 
 	/**
-	 * Data provider for testValidRegex
+	 * Data provider for testIsValidPCRERegex
+	 * @return array
 	 */
 	public static function provideRegexps() {
 		return [
