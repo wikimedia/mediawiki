@@ -29,4 +29,30 @@ trait MediaWikiTestCaseTrait {
 		$mock->expects( $this->never() )->method( $this->anythingBut( '__destruct' ) );
 		return $mock;
 	}
+
+	/**
+	 * Check whether file contains given data.
+	 * @param string $fileName
+	 * @param string $actualData
+	 * @param bool $createIfMissing If true, and file does not exist, create it with given data
+	 *                              and skip the test.
+	 * @param string $msg
+	 * @since 1.30
+	 */
+	protected function assertFileContains(
+		$fileName,
+		$actualData,
+		$createIfMissing = false,
+		$msg = ''
+	) {
+		if ( $createIfMissing ) {
+			if ( !file_exists( $fileName ) ) {
+				file_put_contents( $fileName, $actualData );
+				$this->markTestSkipped( "Data file $fileName does not exist" );
+			}
+		} else {
+			self::assertFileExists( $fileName );
+		}
+		self::assertEquals( file_get_contents( $fileName ), $actualData, $msg );
+	}
 }
