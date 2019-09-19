@@ -200,7 +200,7 @@ class User implements IDBAccessObject, UserIdentity {
 	/** @var WebRequest */
 	private $mRequest;
 
-	/** @var AbstractBlock */
+	/** @var AbstractBlock|null */
 	public $mBlock;
 
 	/** @var bool */
@@ -2106,7 +2106,7 @@ class User implements IDBAccessObject, UserIdentity {
 
 	/**
 	 * If user is blocked, return the ID for the block
-	 * @return int Block ID
+	 * @return int|false
 	 */
 	public function getBlockId() {
 		$this->getBlockedStatus();
