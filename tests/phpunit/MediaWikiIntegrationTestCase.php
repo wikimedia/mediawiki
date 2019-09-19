@@ -2394,32 +2394,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Check whether file contains given data.
-	 * @param string $fileName
-	 * @param string $actualData
-	 * @param bool $createIfMissing If true, and file does not exist, create it with given data
-	 *                              and skip the test.
-	 * @param string $msg
-	 * @since 1.30
-	 */
-	protected function assertFileContains(
-		$fileName,
-		$actualData,
-		$createIfMissing = false,
-		$msg = ''
-	) {
-		if ( $createIfMissing ) {
-			if ( !file_exists( $fileName ) ) {
-				file_put_contents( $fileName, $actualData );
-				$this->markTestSkipped( "Data file $fileName does not exist" );
-			}
-		} else {
-			self::assertFileExists( $fileName );
-		}
-		self::assertEquals( file_get_contents( $fileName ), $actualData, $msg );
-	}
-
-	/**
 	 * Edits or creates a page/revision
 	 * @param string $pageName Page title
 	 * @param string $text Content of the page
