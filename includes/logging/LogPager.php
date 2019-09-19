@@ -86,12 +86,13 @@ class LogPager extends ReverseChronologicalPager {
 		$this->mLogEventsList = $list;
 
 		$this->limitType( $types ); // also excludes hidden types
+		$this->limitLogId( $logId );
+		$this->limitFilterTypes();
 		$this->limitPerformer( $performer );
 		$this->limitTitle( $title, $pattern );
 		$this->limitAction( $action );
 		$this->getDateCond( $year, $month, $day );
 		$this->mTagFilter = $tagFilter;
-		$this->limitLogId( $logId );
 
 		$this->mDb = wfGetDB( DB_REPLICA, 'logpager' );
 	}
@@ -107,7 +108,18 @@ class LogPager extends ReverseChronologicalPager {
 		return $query;
 	}
 
-	// Call ONLY after calling $this->limitType() already!
+	private function limitFilterTypes() {
+		if ( $this->hasEqualsClause( 'log_id' ) ) { // T220834
+			return;
+		}
+		$filterTypes = $this->getFilterParams();
+		foreach ( $filterTypes as $type => $hide ) {
+			if ( $hide ) {
+				$this->mConds[] = 'log_type != ' . $this->mDb->addQuotes( $type );
+			}
+		}
+	}
+
 	public function getFilterParams() {
 		global $wgFilterLogTypes;
 		$filters = [];
@@ -127,9 +139,6 @@ class LogPager extends ReverseChronologicalPager {
 			}
 
 			$filters[$type] = $hide;
-			if ( $hide ) {
-				$this->mConds[] = 'log_type != ' . $this->mDb->addQuotes( $type );
-			}
 		}
 
 		return $filters;
