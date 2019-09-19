@@ -136,7 +136,6 @@
 	"changeemail-password": "Ihr {{SITENAME}}-Passwort:",
 	"changeemail-throttled": "Sie haben zu viele Anmeldeversuche unternommen.\nBitte warten Sie $1, bevor Sie es erneut versuchen.",
 	"resettokens-text": "Sie können Tokens zurücksetzen, welche Ihnen den Zugriff auf bestimmte private Daten ermöglichen, die mit Ihrem Benutzerkonto hier verknüpft sind.\n\nSie sollten dies nur machen, wenn Sie die Tokens versehentlich mit jemandem geteilt haben oder Ihr Konto gefährdet ist.",
-	"sig_tip": "Ihre Signatur mit Zeitstempel",
 	"blankarticle": "<strong>Warnung:</strong> Die Seite, die Sie erstellen, ist leer.\nWenn Sie erneut auf „$1“ klicken, wird die Seite ohne Inhalt erstellt.",
 	"anoneditwarning": "<strong>Warnung:</strong> Sie sind nicht angemeldet. Ihre IP-Adresse wird öffentlich sichtbar, falls Sie Bearbeitungen durchführst. Sofern Sie sich <strong>[$1 anmelden]</strong> oder <strong>[$2 ein Benutzerkonto erstellen]</strong>, werden Ihre Bearbeitungen zusammen mit anderen Beiträgen Ihrem Benutzernamen zugeordnet.",
 	"anonpreviewwarning": "<em>Sie sind nicht angemeldet. Beim Speichern wird Ihre IP-Adresse in der Versionsgeschichte aufgezeichnet.</em>",

@@ -73,7 +73,7 @@
 	"apihelp-edit-param-summary": "Опис на уредувањето. Ова е и назив на поднасловот кога не се зададени $1section=new и $1sectiontitle.",
 	"apihelp-edit-param-tags": "Ознаки за измена што се однесуваат на преработката.",
 	"apihelp-edit-param-minor": "Означи го уредувањево како ситно.",
-	"apihelp-edit-param-notminor": "Неситно уредување.",
+	"apihelp-edit-param-notminor": "Да не се одбележува ова уредување како ситно дури и при поставена корисничката поставка „{{int:tog-minordefаult}}“.",
 	"apihelp-edit-param-bot": "Означи го уредувањето како ботовско.",
 	"apihelp-edit-param-basetimestamp": "Датум и време на преработката на базата, кои се користат за утврдување на спротиставености во уредувањето. Може да се добие преку [[Special:ApiHelp/query+revisions|action=query&prop=revisions&rvprop=timestamp]].",
 	"apihelp-edit-param-starttimestamp": "Датум и време кога сте почнало уредувањето, кои се користат за утврдување на спротиставености во уредувањата. Соодветната вредност се добива користејќи <var>[[Special:ApiHelp/main|curtimestamp]]</var> кога ќе почнете со уредување (на пр. кога ќе се вчита содржината што ќе ја уредувате).",
