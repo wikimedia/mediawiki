@@ -9,6 +9,12 @@
  */
 class SpecialPageDataTest extends SpecialPageTestBase {
 
+	protected function setUp() {
+		parent::setUp();
+
+		$this->setContentLang( 'qqx' );
+	}
+
 	protected function newSpecialPage() {
 		$page = new SpecialPageData();
 
@@ -130,17 +136,12 @@ class SpecialPageDataTest extends SpecialPageTestBase {
 	}
 
 	public function testSpecialPageWithoutParameters() {
-		$this->setContentLang( Language::factory( 'en' ) );
 		$request = new FauxRequest();
 		$request->response()->header( 'Status: 200 OK', true, 200 ); // init/reset
 
 		list( $output, ) = $this->executeSpecialPage( '', $request );
 
-		$this->assertContains(
-			"Content negotiation applies based on your client's Accept header.",
-			$output,
-			"output"
-		);
+		$this->assertContains( '(pagedata-text)', $output );
 	}
 
 }
