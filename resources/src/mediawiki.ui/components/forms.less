@@ -84,13 +84,11 @@
 	//
 	// Markup:
 	// <form class="mw-ui-vform">
-	//   <div class="errorbox">An error occurred</div>
+	//   <div class="errorbox">
+	//     <ul><li>An error occurred. There are problems with some of your input.</li></ul>
+	//   </div>
 	//   <div class="warningbox">A warning to be noted</div>
 	//   <div class="successbox">Action successful!</div>
-	//   <div class="error">A different kind of error</div>
-	//   <div class="error">
-	//     <ul><li>There are problems with some of your input.</li></ul>
-	//   </div>
 	//   <div class="mw-ui-vform-field">
 	//     <input type="text" value="input" class="mw-ui-input">
 	//   </div>
@@ -107,8 +105,6 @@
 	// </form>
 	//
 	// Styleguide 5.2.
-	.error,
-	.warning,
 	.errorbox,
 	.warningbox,
 	.successbox {
@@ -119,27 +115,12 @@
 		word-wrap: break-word;
 	}
 
-	// Colours taken from those for .errorbox in shared.css
-	.error {
-		background-color: @backgroundColorError;
-		color: @colorTextEmphasized;
-		border: 1px solid @borderColorError;
-	}
-
-	// Colours taken from those for .warningbox in shared.css
-	.warning {
-		background-color: @backgroundColorWarning;
-		color: @colorTextEmphasized;
-		border: 1px solid @borderColorWarning;
-	}
-
 	// This specifies styling for individual field validation error messages.
 	// Show them below the fields to prevent line break glitches, and leave
 	// some space between the field and the error message box.
 	.mw-ui-vform-field {
-		.error,
-		.warning {
-			display: block;
+		.errorbox,
+		.warningbox {
 			margin-top: 5px;
 		}
 	}
