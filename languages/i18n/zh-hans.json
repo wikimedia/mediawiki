@@ -2635,6 +2635,7 @@
 	"ipblocklist-legend": "查找被封禁用户",
 	"blocklist-userblocks": "隐藏账户封禁",
 	"blocklist-tempblocks": "隐藏临时封禁",
+	"blocklist-indefblocks": "隐藏无限期封禁",
 	"blocklist-addressblocks": "隐藏单个IP封禁",
 	"blocklist-type": "类型：",
 	"blocklist-type-opt-all": "全部",
