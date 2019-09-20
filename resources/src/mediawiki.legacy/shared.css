@@ -378,7 +378,6 @@ a.new {
 .warningbox,
 .successbox {
 	color: #000;
-	display: inline-block;
 	margin-bottom: 1em;
 	border: 1px solid;
 	padding: 0.5em 1em;
