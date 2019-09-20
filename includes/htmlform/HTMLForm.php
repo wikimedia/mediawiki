@@ -1329,7 +1329,7 @@ class HTMLForm extends ContextSource {
 		}
 
 		return $elementstr
-			? Html::rawElement( 'div', [ 'class' => $elementsType ], $elementstr )
+			? Html::rawElement( 'div', [ 'class' => $elementsType . 'box' ], $elementstr )
 			: '';
 	}
 
