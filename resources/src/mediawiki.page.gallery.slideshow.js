@@ -24,7 +24,7 @@
 		this.drawCarousel();
 		this.setSizeRequirement();
 		this.toggleThumbnails( !!this.$gallery.attr( 'data-showthumbnails' ) );
-		this.showCurrentImage();
+		this.showCurrentImage( true );
 
 		// Events
 		$( window ).on(
@@ -229,8 +229,10 @@
 
 	/**
 	 * Displays the image set as {@link #$currentImage} in the carousel.
+	 *
+	 * @param {boolean} init Image being show during gallery init (i.e. first image)
 	 */
-	mw.GallerySlideshow.prototype.showCurrentImage = function () {
+	mw.GallerySlideshow.prototype.showCurrentImage = function ( init ) {
 		var $thumbnail, $imgLink,
 			$imageLi = this.getCurrentImage(),
 			$caption = $imageLi.find( '.gallerytext' );
@@ -279,7 +281,10 @@
 			if ( this.$thumbnail.attr( 'src' ) === $thumbnail.attr( 'src' ) ) {
 				this.$img.attr( 'src', info.thumburl );
 				this.setImageSize();
-				mw.hook( 'wikipage.content' ).fire( this.$imgContainer );
+				// Don't fire hook twice during init
+				if ( !init ) {
+					mw.hook( 'wikipage.content' ).fire( this.$imgContainer );
+				}
 
 				// Pre-fetch the next image
 				this.loadImage( this.getNextImage().find( 'img' ) );
