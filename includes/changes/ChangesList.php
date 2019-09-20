@@ -633,7 +633,7 @@ class ChangesList extends ContextSource {
 	 */
 	public function insertComment( $rc ) {
 		if ( $this->isDeleted( $rc, RevisionRecord::DELETED_COMMENT ) ) {
-			return ' <span class="history-deleted">' .
+			return ' <span class="history-deleted comment">' .
 				$this->msg( 'rev-deleted-comment' )->escaped() . '</span>';
 		} else {
 			return Linker::commentBlock( $rc->mAttribs['rc_comment'], $rc->getTitle(),
