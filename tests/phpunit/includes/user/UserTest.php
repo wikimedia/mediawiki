@@ -31,6 +31,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->setMwGlobals( [
 			'wgGroupPermissions' => [],
 			'wgRevokePermissions' => [],
+			'wgUseRCPatrol' => true,
 		] );
 
 		$this->setUpPermissionGlobals();
@@ -68,7 +69,23 @@ class UserTest extends MediaWikiTestCase {
 
 		# For the options test
 		$wgGroupPermissions['*'] = [
-			'editmyoptions' => true,
+			'editmyoptions' => true
+		];
+
+		# For patrol tests
+		$wgGroupPermissions['patroller'] = [
+			'patrol' => true,
+		];
+
+		# For account creation when blocked test
+		$wgGroupPermissions['accountcreator'] = [
+			'createaccount' => true,
+			'ipblock-exempt' => true
+		];
+
+		# For bot test
+		$wgGroupPermissions['bot'] = [
+			'bot' => true
 		];
 	}
 
@@ -203,6 +220,38 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers User::useRCPatrol
+	 * @covers User::useNPPatrol
+	 * @covers User::useFilePatrol
+	 */
+	public function testPatrolling() {
+		$user = $this->getTestUser( 'patroller' )->getUser();
+
+		$this->assertTrue( $user->useRCPatrol() );
+		$this->assertTrue( $user->useNPPatrol() );
+		$this->assertTrue( $user->useFilePatrol() );
+
+		$user = $this->getTestUser()->getUser();
+		$this->assertFalse( $user->useRCPatrol() );
+		$this->assertFalse( $user->useNPPatrol() );
+		$this->assertFalse( $user->useFilePatrol() );
+	}
+
+	/**
+	 * @covers User::getGroups
+	 * @covers User::isBot
+	 */
+	public function testBot() {
+		$user = $this->getTestUser( 'bot' )->getUser();
+
+		$this->assertSame( $user->getGroups(), [ 'bot' ] );
+		$this->assertTrue( $user->isBot() );
+
+		$user = $this->getTestUser()->getUser();
+		$this->assertFalse( $user->isBot() );
+	}
+
+	/**
 	 * @dataProvider provideIPs
 	 * @covers User::isIP
 	 */
@@ -262,6 +311,7 @@ class UserTest extends MediaWikiTestCase {
 	 * Test User::editCount
 	 * @group medium
 	 * @covers User::getEditCount
+	 * @covers User::setEditCountInternal
 	 */
 	public function testGetEditCount() {
 		$user = $this->getMutableTestUser()->getUser();
@@ -293,12 +343,21 @@ class UserTest extends MediaWikiTestCase {
 			$user->getEditCount(),
 			'After increasing the edit count manually, the user edit count should be 4'
 		);
+
+		// Update the edit count
+		$user->setEditCountInternal( 42 );
+		$this->assertEquals(
+			42,
+			$user->getEditCount(),
+			'After setting the edit count manually, the user edit count should be 42'
+		);
 	}
 
 	/**
 	 * Test User::editCount
 	 * @group medium
 	 * @covers User::getEditCount
+	 * @covers User::incEditCount
 	 */
 	public function testGetEditCountForAnons() {
 		$user = User::newFromName( 'Anonymous' );
@@ -308,7 +367,10 @@ class UserTest extends MediaWikiTestCase {
 			'Edit count starts null for anonymous users.'
 		);
 
-		$user->incEditCount();
+		$this->assertNull(
+			$user->incEditCount(),
+			'Edit count cannot be increased for anonymous users'
+		);
 
 		$this->assertNull(
 			$user->getEditCount(),
@@ -512,6 +574,9 @@ class UserTest extends MediaWikiTestCase {
 	public function testGetId() {
 		$user = static::getTestUser()->getUser();
 		$this->assertTrue( $user->getId() > 0 );
+
+		$user = User::newFromName( 'UserWithNoId' );
+		$this->assertEquals( $user->getId(), 0 );
 	}
 
 	/**
@@ -535,6 +600,18 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertFalse( $user->isRegistered() );
 		$this->assertFalse( $user->isLoggedIn() );
 		$this->assertTrue( $user->isAnon() );
+	}
+
+	/**
+	 * @covers User::setRealName
+	 * @covers User::getRealName
+	 */
+	public function testRealName() {
+		$user = $this->getMutableTestUser()->getUser();
+		$realName = 'John Doe';
+
+		$user->setRealName( $realName );
+		$this->assertEquals( $realName, $user->getRealName() );
 	}
 
 	/**
@@ -1185,7 +1262,33 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers User::newFromName
+	 * @covers User::getName
+	 * @covers User::getUserPage
+	 * @covers User::getTalkPage
+	 * @covers User::getTitleKey
+	 * @dataProvider provideNewFromName
+	 */
+	public function testNewFromName( $name, $titleKey ) {
+		$user = User::newFromName( $name );
+		$this->assertEquals( $user->getName(), $name );
+		$this->assertEquals( $user->getUserPage(), Title::makeTitle( NS_USER, $name ) );
+		$this->assertEquals( $user->getTalkPage(), Title::makeTitle( NS_USER_TALK, $name ) );
+		$this->assertEquals( $user->getTitleKey(), $titleKey );
+	}
+
+	public static function provideNewFromName() {
+		return [
+			[ 'Example1', 'Example1' ],
+			[ 'Mediawiki easter egg', 'Mediawiki_easter_egg' ],
+			[ 'See T22281 for more', 'See_T22281_for_more' ],
+			[ 'DannyS712', 'DannyS712' ],
+		];
+	}
+
+	/**
 	 * @covers User::getBlockedStatus
+	 * @covers User::getBlockId
 	 * @covers User::getBlock
 	 * @covers User::blockedBy
 	 * @covers User::blockedFor
@@ -1221,6 +1324,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertSame( 'Because', $user->blockedFor() );
 		$this->assertTrue( $user->isHidden() );
 		$this->assertTrue( $user->isBlockedFrom( $ut ) );
+		$this->assertEquals( $res['id'], $user->getBlockId() );
 
 		// Unblock
 		$block->delete();
@@ -1232,6 +1336,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertSame( '', $user->blockedFor() );
 		$this->assertFalse( $user->isHidden() );
 		$this->assertFalse( $user->isBlockedFrom( $ut ) );
+		$this->assertFalse( $user->getBlockId() );
 	}
 
 	/**
@@ -1390,6 +1495,43 @@ class UserTest extends MediaWikiTestCase {
 					'blockAllowsUTEdit' => false,
 				]
 			],
+		];
+	}
+
+	/**
+	 * @covers User::isBlockedFromEmailuser
+	 * @covers User::isAllowedToCreateAccount
+	 * @dataProvider provideIsBlockedFromAction
+	 * @param bool $blockFromEmail Whether to block email access.
+	 * @param bool $blockFromAccountCreation Whether to block account creation.
+	 */
+	public function testIsBlockedFromAction( $blockFromEmail, $blockFromAccountCreation ) {
+		$user = $this->getTestUser( 'accountcreator' )->getUser();
+
+		$block = new DatabaseBlock( [
+			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
+			'sitewide' => true,
+			'blockEmail' => $blockFromEmail,
+			'createAccount' => $blockFromAccountCreation
+		] );
+		$block->setTarget( $user );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+		$block->insert();
+
+		try {
+			$this->assertEquals( $user->isBlockedFromEmailuser(), $blockFromEmail );
+			$this->assertEquals( $user->isAllowedToCreateAccount(), !$blockFromAccountCreation );
+		} finally {
+			$block->delete();
+		}
+	}
+
+	public static function provideIsBlockedFromAction() {
+		return [
+			'Block email access and account creation' => [ true, true ],
+			'Block only email access' => [ true, false ],
+			'Block only account creation' => [ false, true ],
+			'Allow email access and account creation' => [ false, false ],
 		];
 	}
 
