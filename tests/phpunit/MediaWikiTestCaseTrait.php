@@ -51,8 +51,8 @@ trait MediaWikiTestCaseTrait {
 				$this->markTestSkipped( "Data file $fileName does not exist" );
 			}
 		} else {
-			self::assertFileExists( $fileName );
+			$this->assertFileExists( $fileName );
 		}
-		self::assertEquals( file_get_contents( $fileName ), $actualData, $msg );
+		$this->assertEquals( file_get_contents( $fileName ), $actualData, $msg );
 	}
 }
