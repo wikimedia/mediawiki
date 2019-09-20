@@ -14,7 +14,7 @@ class HttpTest extends MediaWikiTestCase {
 		$this->hideDeprecated( 'Http::getProxy' );
 
 		$this->setMwGlobals( 'wgHTTPProxy', false );
-		$this->assertEquals(
+		$this->assertSame(
 			'',
 			Http::getProxy(),
 			'default setting'

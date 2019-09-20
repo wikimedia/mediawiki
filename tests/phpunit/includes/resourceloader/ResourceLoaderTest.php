@@ -718,7 +718,7 @@ END
 		] );
 		$context = $this->getResourceLoaderContext( [], $rl );
 
-		$this->assertEquals(
+		$this->assertSame(
 			'',
 			$rl->getCombinedVersion( $context, [] ),
 			'empty list'

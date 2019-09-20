@@ -181,7 +181,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$content = null;
 
 		$text = ContentHandler::getContentText( $content );
-		$this->assertEquals( '', $text );
+		$this->assertSame( '', $text );
 	}
 
 	public static function dataGetContentText_TextContent() {

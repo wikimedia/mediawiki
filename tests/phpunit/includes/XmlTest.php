@@ -46,7 +46,7 @@ class XmlTest extends MediaWikiTestCase {
 		$this->assertNull( Xml::expandAttributes( null ),
 			'Converting a null list of attributes'
 		);
-		$this->assertEquals( '', Xml::expandAttributes( [] ),
+		$this->assertSame( '', Xml::expandAttributes( [] ),
 			'Converting an empty list of attributes'
 		);
 	}

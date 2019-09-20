@@ -45,6 +45,6 @@ trait MediaWikiCoversValidator {
 			}
 		}
 
-		$this->assertEquals( '', $bad );
+		$this->assertSame( '', $bad );
 	}
 }

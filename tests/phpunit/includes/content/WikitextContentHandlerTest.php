@@ -64,7 +64,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$content = $this->handler->makeEmptyContent();
 
 		$this->assertTrue( $content->isEmpty() );
-		$this->assertEquals( '', $content->getText() );
+		$this->assertSame( '', $content->getText() );
 	}
 
 	public static function dataIsSupportedFormat() {

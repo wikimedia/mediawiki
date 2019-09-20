@@ -1799,7 +1799,7 @@ class LanguageTest extends LanguageClassesTestCase {
 		$s = $lang->getMessageFromDB( 'word-separator' );
 		$c = $lang->getMessageFromDB( 'comma-separator' );
 
-		$this->assertEquals( '', $lang->listToText( [] ) );
+		$this->assertSame( '', $lang->listToText( [] ) );
 		$this->assertEquals( 'a', $lang->listToText( [ 'a' ] ) );
 		$this->assertEquals( "a{$and}{$s}b", $lang->listToText( [ 'a', 'b' ] ) );
 		$this->assertEquals( "a{$c}b{$and}{$s}c", $lang->listToText( [ 'a', 'b', 'c' ] ) );

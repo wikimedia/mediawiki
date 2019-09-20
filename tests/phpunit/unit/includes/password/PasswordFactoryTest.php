@@ -7,7 +7,7 @@ class PasswordFactoryTest extends MediaWikiUnitTestCase {
 	public function testConstruct() {
 		$pf = new PasswordFactory();
 		$this->assertEquals( [ '' ], array_keys( $pf->getTypes() ) );
-		$this->assertEquals( '', $pf->getDefaultType() );
+		$this->assertSame( '', $pf->getDefaultType() );
 
 		$pf = new PasswordFactory( [
 			'foo' => [ 'class' => 'FooPassword' ],
