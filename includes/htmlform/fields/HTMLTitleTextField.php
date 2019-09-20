@@ -7,9 +7,6 @@ use MediaWiki\Widget\TitleInputWidget;
  * Automatically does validation that the title is valid,
  * as well as autocompletion if using the OOUI display format.
  *
- * Note: Forms using GET requests will need to make sure the title value is not
- * an empty string.
- *
  * Optional parameters:
  * 'namespace' - Namespace the page must be in
  * 'relative' - If true and 'namespace' given, strip/add the namespace from/to the title as needed
@@ -33,14 +30,6 @@ class HTMLTitleTextField extends HTMLTextField {
 	}
 
 	public function validate( $value, $alldata ) {
-		if ( $this->mParent->getMethod() === 'get' && $value === '' ) {
-			// If the form is a GET form and has no value, assume it hasn't been
-			// submitted yet, and skip validation
-			// TODO This doesn't look right, we should be able to tell the difference
-			// between "not submitted" (null) and "submitted but empty" (empty string).
-			return parent::validate( $value, $alldata );
-		}
-
 		// Default value (from getDefault()) is null, which breaks Title::newFromTextThrow() below
 		if ( $value === null ) {
 			$value = '';
