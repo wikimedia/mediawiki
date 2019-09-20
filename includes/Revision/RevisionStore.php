@@ -1623,10 +1623,18 @@ class RevisionStore
 	 * @param object[]|IResultWrapper $slotRows
 	 * @param int $queryFlags
 	 * @param Title $title
+	 * @param array|null $slotContents a map from blobAddress to slot
+	 * 	content blob or Content object.
 	 *
 	 * @return SlotRecord[]
 	 */
-	private function constructSlotRecords( $revId, $slotRows, $queryFlags, Title $title ) {
+	private function constructSlotRecords(
+		$revId,
+		$slotRows,
+		$queryFlags,
+		Title $title,
+		$slotContents = null
+	) {
 		$slots = [];
 
 		foreach ( $slotRows as $row ) {
@@ -1651,8 +1659,15 @@ class RevisionStore
 					= $this->emulateContentId( intval( $row->rev_text_id ) );
 			}
 
-			$contentCallback = function ( SlotRecord $slot ) use ( $queryFlags ) {
-				return $this->loadSlotContent( $slot, null, null, null, $queryFlags );
+			$contentCallback = function ( SlotRecord $slot ) use ( $slotContents, $queryFlags ) {
+				$blob = null;
+				if ( isset( $slotContents[$slot->getAddress()] ) ) {
+					$blob = $slotContents[$slot->getAddress()];
+					if ( $blob instanceof Content ) {
+						return $blob;
+					}
+				}
+				return $this->loadSlotContent( $slot, $blob, null, null, $queryFlags );
 			};
 
 			$slots[$row->role_name] = new SlotRecord( $row, $contentCallback );
@@ -1804,8 +1819,10 @@ class RevisionStore
 
 	/**
 	 * @param object $row A database row generated from a query based on getQueryInfo()
-	 * @param null|object[] $slotRows Database rows generated from a query based on
-	 *        getSlotsQueryInfo with the 'content' flag set.
+	 * @param null|object[]|RevisionSlots $slots
+	 * 	- Database rows generated from a query based on getSlotsQueryInfo
+	 * 	  with the 'content' flag set. Or
+	 *  - RevisionSlots instance
 	 * @param int $queryFlags
 	 * @param Title|null $title
 	 * @param bool $fromCache if true, the returned RevisionRecord will ensure that no stale
@@ -1816,11 +1833,10 @@ class RevisionStore
 	 * @see RevisionFactory::newRevisionFromRow
 	 *
 	 * MCR migration note: this replaces Revision::newFromRow
-	 *
 	 */
 	public function newRevisionFromRowAndSlots(
 		$row,
-		$slotRows,
+		$slots,
 		$queryFlags = 0,
 		Title $title = null,
 		$fromCache = false
@@ -1857,7 +1873,9 @@ class RevisionStore
 		// Legacy because $row may have come from self::selectFields()
 		$comment = $this->commentStore->getCommentLegacy( $db, 'rev_comment', $row, true );
 
-		$slots = $this->newRevisionSlots( $row->rev_id, $row, $slotRows, $queryFlags, $title );
+		if ( !( $slots instanceof RevisionSlots ) ) {
+			$slots = $this->newRevisionSlots( $row->rev_id, $row, $slots, $queryFlags, $title );
+		}
 
 		// If this is a cached row, instantiate a cache-aware revision class to avoid stale data.
 		if ( $fromCache ) {
@@ -1887,7 +1905,7 @@ class RevisionStore
 	 *               loaded immediately. Supports falsy or truthy value as well
 	 *               as an explicit list of slot role names.
 	 *               'content'- whether the actual content of the slots should be
-	 *               preloaded. TODO: no supported yet.
+	 *               preloaded.
 	 * @param int $queryFlags
 	 * @param Title|null $title
 	 * @return StatusValue a status with a RevisionRecord[] of successfully fetched revisions
@@ -1957,24 +1975,40 @@ class RevisionStore
 			}, $options['slots'] );
 		}
 
-		// TODO: Support optional fetching of the content
-		$queryInfo = self::getSlotsQueryInfo( [ 'content' ] );
+		// We need to set the `content` flag because newRevisionFromRowAndSlots requires content
+		// metadata to be loaded.
+		$slotQueryInfo = self::getSlotsQueryInfo( [ 'content' ] );
 		$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
 		$slotRows = $db->select(
-			$queryInfo['tables'],
-			$queryInfo['fields'],
+			$slotQueryInfo['tables'],
+			$slotQueryInfo['fields'],
 			$slotQueryConds,
 			__METHOD__,
 			[],
-			$queryInfo['joins']
+			$slotQueryInfo['joins']
 		);
 
 		$slotRowsByRevId = [];
 		foreach ( $slotRows as $slotRow ) {
 			$slotRowsByRevId[$slotRow->slot_revision_id][] = $slotRow;
 		}
+
+		$slotContents = null;
+		if ( $options['content'] ?? false ) {
+			$blobAddresses = [];
+			foreach ( $slotRows as $slotRow ) {
+				$blobAddresses[] = $slotRow->content_address;
+			}
+			$slotContentFetchStatus = $this->blobStore
+				->getBlobBatch( $blobAddresses, $queryFlags );
+			foreach ( $slotContentFetchStatus->getErrors() as $error ) {
+				$result->warning( $error['message'], ...$error['params'] );
+			}
+			$slotContents = $slotContentFetchStatus->getValue();
+		}
+
 		$result->setResult( true, array_map( function ( $row ) use
-			( $slotRowsByRevId, $queryFlags, $titlesByPageId, $result ) {
+			( $slotRowsByRevId, $queryFlags, $titlesByPageId, $slotContents, $result ) {
 				if ( !isset( $slotRowsByRevId[$row->rev_id] ) ) {
 					$result->warning(
 						'internalerror',
@@ -1985,7 +2019,15 @@ class RevisionStore
 				try {
 					return $this->newRevisionFromRowAndSlots(
 						$row,
-						$slotRowsByRevId[$row->rev_id],
+						new RevisionSlots(
+							$this->constructSlotRecords(
+								$row->rev_id,
+								$slotRowsByRevId[$row->rev_id],
+								$queryFlags,
+								$titlesByPageId[$row->rev_page],
+								$slotContents
+							)
+						),
 						$queryFlags,
 						$titlesByPageId[$row->rev_page]
 					);
