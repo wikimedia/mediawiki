@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Block\AbstractBlock;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Show an error when the user tries to do something whilst blocked.
@@ -27,9 +28,19 @@ use MediaWiki\Block\AbstractBlock;
  * @ingroup Exception
  */
 class UserBlockedError extends ErrorPageError {
+	/**
+	 * @param AbstractBlock $block
+	 */
 	public function __construct( AbstractBlock $block ) {
-		// @todo FIXME: Implement a more proper way to get context here.
-		$params = $block->getPermissionsError( RequestContext::getMain() );
-		parent::__construct( 'blockedtitle', array_shift( $params ), $params );
+		// @todo FIXME: Implement a more proper way to get context here
+		// such as passing the user, language and IP from the caller.
+		$context = RequestContext::getMain();
+		$user = $context->getUser();
+		$language = $context->getLanguage();
+		$ip = $context->getRequest()->getIp();
+
+		$message = MediaWikiServices::getInstance()->getBlockErrorFormatter()
+			->getMessage( $block, $user, $language, $ip );
+		parent::__construct( 'blockedtitle', $message );
 	}
 }

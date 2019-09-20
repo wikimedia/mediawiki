@@ -47,6 +47,7 @@
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\BadFileLookup;
+use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Config\ConfigRepository;
@@ -110,6 +111,10 @@ return [
 			new ServiceOptions( BlobStoreFactory::$constructorOptions,
 				$services->getMainConfig() )
 		);
+	},
+
+	'BlockErrorFormatter' => function () : BlockErrorFormatter {
+		return new BlockErrorFormatter();
 	},
 
 	'BlockManager' => function ( MediaWikiServices $services ) : BlockManager {
@@ -578,7 +583,8 @@ return [
 			),
 			$services->getSpecialPageFactory(),
 			$services->getRevisionLookup(),
-			$services->getNamespaceInfo()
+			$services->getNamespaceInfo(),
+			$services->getBlockErrorFormatter()
 		);
 	},
 
