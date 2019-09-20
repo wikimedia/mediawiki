@@ -756,6 +756,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 */
 	public function getTrail() {
 		return WrappedString::join( "\n", [
+			// @phan-suppress-next-line PhanTypeMismatchArgument
 			MWDebug::getDebugHTML( $this->getSkin()->getContext() ),
 			$this->get( 'bottomscripts' ),
 			$this->get( 'reporttime' )

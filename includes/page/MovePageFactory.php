@@ -27,7 +27,6 @@ use MovePage;
 use NamespaceInfo;
 use RepoGroup;
 use Title;
-use WatchedItemStore;
 use WatchedItemStoreInterface;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -44,7 +43,7 @@ class MovePageFactory {
 	/** @var NamespaceInfo */
 	private $nsInfo;
 
-	/** @var WatchedItemStore */
+	/** @var WatchedItemStoreInterface */
 	private $watchedItems;
 
 	/** @var PermissionManager */
