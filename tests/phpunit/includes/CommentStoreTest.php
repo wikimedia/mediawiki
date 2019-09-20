@@ -74,6 +74,47 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @dataProvider provideConstructor
+	 * @param int $stage
+	 * @param string|null $exceptionMsg
+	 */
+	public function testConstructor( $stage, $exceptionMsg ) {
+		try {
+			$m = new CommentStore( Language::factory( 'qqx' ), $stage );
+			if ( $exceptionMsg !== null ) {
+				$this->fail( 'Expected exception not thrown' );
+			}
+			$this->assertInstanceOf( CommentStore::class, $m );
+		} catch ( InvalidArgumentException $ex ) {
+			$this->assertSame( $exceptionMsg, $ex->getMessage() );
+		}
+	}
+
+	public static function provideConstructor() {
+		return [
+			[ 0, '$stage must include a write mode' ],
+			[ SCHEMA_COMPAT_READ_OLD, '$stage must include a write mode' ],
+			[ SCHEMA_COMPAT_READ_NEW, '$stage must include a write mode' ],
+			[ SCHEMA_COMPAT_READ_BOTH, '$stage must include a write mode' ],
+
+			[ SCHEMA_COMPAT_WRITE_OLD, '$stage must include a read mode' ],
+			[ SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_OLD, null ],
+			[ SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_NEW, null ],
+			[ SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_BOTH, null ],
+
+			[ SCHEMA_COMPAT_WRITE_NEW, '$stage must include a read mode' ],
+			[ SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_OLD, null ],
+			[ SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_NEW, null ],
+			[ SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_BOTH, null ],
+
+			[ SCHEMA_COMPAT_WRITE_BOTH, '$stage must include a read mode' ],
+			[ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, null ],
+			[ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, null ],
+			[ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_BOTH, null ],
+		];
+	}
+
+	/**
 	 * @dataProvider provideGetFields
 	 * @param int $stage
 	 * @param string $key
@@ -115,6 +156,14 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 				MIGRATION_NEW, 'ipb_reason',
 				[ 'ipb_reason_id' => 'ipb_reason_id' ],
 			],
+			'Simple table, write-both/read-old' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'ipb_reason',
+				[ 'ipb_reason_text' => 'ipb_reason', 'ipb_reason_data' => 'NULL', 'ipb_reason_cid' => 'NULL' ],
+			],
+			'Simple table, write-both/read-new' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'ipb_reason',
+				[ 'ipb_reason_id' => 'ipb_reason_id' ],
+			],
 
 			'Revision, old' => [
 				MIGRATION_OLD, 'rev_comment',
@@ -134,6 +183,18 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 			],
 			'Revision, new' => [
 				MIGRATION_NEW, 'rev_comment',
+				[ 'rev_comment_pk' => 'rev_id' ],
+			],
+			'Revision, write-both/read-old' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'rev_comment',
+				[
+					'rev_comment_text' => 'rev_comment',
+					'rev_comment_data' => 'NULL',
+					'rev_comment_cid' => 'NULL',
+				],
+			],
+			'Revision, write-both/read-new' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'rev_comment',
 				[ 'rev_comment_pk' => 'rev_id' ],
 			],
 
@@ -161,6 +222,20 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 			],
 			'Image, new' => [
 				MIGRATION_NEW, 'img_description',
+				[
+					'img_description_id' => 'img_description_id'
+				],
+			],
+			'Image, write-both/read-old' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'img_description',
+				[
+					'img_description_text' => 'img_description',
+					'img_description_data' => 'NULL',
+					'img_description_cid' => 'NULL',
+				],
+			],
+			'Image, write-both/read-new' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'img_description',
 				[
 					'img_description_id' => 'img_description_id'
 				],
@@ -244,6 +319,30 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 					],
 				],
 			],
+			'Simple table, write-both/read-old' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'ipb_reason', [
+					'tables' => [],
+					'fields' => [
+						'ipb_reason_text' => 'ipb_reason',
+						'ipb_reason_data' => 'NULL',
+						'ipb_reason_cid' => 'NULL',
+					],
+					'joins' => [],
+				],
+			],
+			'Simple table, write-both/read-new' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'ipb_reason', [
+					'tables' => [ 'comment_ipb_reason' => 'comment' ],
+					'fields' => [
+						'ipb_reason_text' => 'comment_ipb_reason.comment_text',
+						'ipb_reason_data' => 'comment_ipb_reason.comment_data',
+						'ipb_reason_cid' => 'comment_ipb_reason.comment_id',
+					],
+					'joins' => [
+						'comment_ipb_reason' => [ 'JOIN', 'comment_ipb_reason.comment_id = ipb_reason_id' ],
+					],
+				],
+			],
 
 			'Revision, old' => [
 				MIGRATION_OLD, 'rev_comment', [
@@ -294,6 +393,35 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 			],
 			'Revision, new' => [
 				MIGRATION_NEW, 'rev_comment', [
+					'tables' => [
+						'temp_rev_comment' => 'revision_comment_temp',
+						'comment_rev_comment' => 'comment',
+					],
+					'fields' => [
+						'rev_comment_text' => 'comment_rev_comment.comment_text',
+						'rev_comment_data' => 'comment_rev_comment.comment_data',
+						'rev_comment_cid' => 'comment_rev_comment.comment_id',
+					],
+					'joins' => [
+						'temp_rev_comment' => [ 'JOIN', 'temp_rev_comment.revcomment_rev = rev_id' ],
+						'comment_rev_comment' => [ 'JOIN',
+							'comment_rev_comment.comment_id = temp_rev_comment.revcomment_comment_id' ],
+					],
+				],
+			],
+			'Revision, write-both/read-old' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'rev_comment', [
+					'tables' => [],
+					'fields' => [
+						'rev_comment_text' => 'rev_comment',
+						'rev_comment_data' => 'NULL',
+						'rev_comment_cid' => 'NULL',
+					],
+					'joins' => [],
+				],
+			],
+			'Revision, write-both/read-new' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'rev_comment', [
 					'tables' => [
 						'temp_rev_comment' => 'revision_comment_temp',
 						'comment_rev_comment' => 'comment',
@@ -373,6 +501,34 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 					],
 				],
 			],
+			'Image, write-both/read-old' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'img_description', [
+					'tables' => [],
+					'fields' => [
+						'img_description_text' => 'img_description',
+						'img_description_data' => 'NULL',
+						'img_description_cid' => 'NULL',
+					],
+					'joins' => [],
+				],
+			],
+			'Image, write-both/read-new' => [
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'img_description', [
+					'tables' => [
+						'comment_img_description' => 'comment',
+					],
+					'fields' => [
+						'img_description_text' => 'comment_img_description.comment_text',
+						'img_description_data' => 'comment_img_description.comment_data',
+						'img_description_cid' => 'comment_img_description.comment_id',
+					],
+					'joins' => [
+						'comment_img_description' => [ 'JOIN',
+							'comment_img_description.comment_id = img_description_id',
+						],
+					],
+				],
+			],
 		];
 	}
 
@@ -413,6 +569,15 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 				MIGRATION_NEW ],
 			MIGRATION_WRITE_NEW => [ MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW, MIGRATION_NEW ],
 			MIGRATION_NEW => [ MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW, MIGRATION_NEW ],
+
+			SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD => [
+				MIGRATION_OLD, SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, MIGRATION_NEW
+			],
+			SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW => [
+				MIGRATION_OLD, SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, MIGRATION_NEW
+			],
 		];
 
 		foreach ( $stages as $writeStage => $possibleReadStages ) {
@@ -427,12 +592,12 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 				$fields = $wstore->insert( $this->db, $key, $comment, $data );
 			}
 
-			if ( $writeStage <= MIGRATION_WRITE_BOTH ) {
+			if ( $writeStage & SCHEMA_COMPAT_WRITE_OLD ) {
 				$this->assertSame( $expect['text'], $fields[$key], "old field, stage=$writeStage" );
 			} else {
 				$this->assertArrayNotHasKey( $key, $fields, "old field, stage=$writeStage" );
 			}
-			if ( $writeStage >= MIGRATION_WRITE_BOTH && !$usesTemp ) {
+			if ( ( $writeStage & SCHEMA_COMPAT_WRITE_NEW ) && !$usesTemp ) {
 				$this->assertArrayHasKey( "{$key}_id", $fields, "new field, stage=$writeStage" );
 			} else {
 				$this->assertArrayNotHasKey( "{$key}_id", $fields, "new field, stage=$writeStage" );
@@ -463,13 +628,17 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 					$queryInfo['joins']
 				);
 
+				$expectForCombination = (
+					( $writeStage & SCHEMA_COMPAT_WRITE_BOTH ) === SCHEMA_COMPAT_WRITE_OLD ||
+					( $readStage & SCHEMA_COMPAT_READ_BOTH ) === SCHEMA_COMPAT_READ_OLD
+				) ? $expectOld : $expect;
 				$this->assertComment(
-					$writeStage === MIGRATION_OLD || $readStage === MIGRATION_OLD ? $expectOld : $expect,
+					$expectForCombination,
 					$rstore->getCommentLegacy( $this->db, $key, $fieldRow ),
 					"w=$writeStage, r=$readStage, from getFields()"
 				);
 				$this->assertComment(
-					$writeStage === MIGRATION_OLD || $readStage === MIGRATION_OLD ? $expectOld : $expect,
+					$expectForCombination,
 					$rstore->getComment( $key, $joinRow ),
 					"w=$writeStage, r=$readStage, from getJoin()"
 				);
@@ -503,6 +672,15 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 				MIGRATION_NEW ],
 			MIGRATION_WRITE_NEW => [ MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW, MIGRATION_NEW ],
 			MIGRATION_NEW => [ MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW, MIGRATION_NEW ],
+
+			SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD => [
+				MIGRATION_OLD, SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, MIGRATION_NEW
+			],
+			SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW => [
+				MIGRATION_OLD, SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
+				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, MIGRATION_NEW
+			],
 		];
 
 		foreach ( $stages as $writeStage => $possibleReadStages ) {
@@ -517,12 +695,12 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 				$fields = $wstore->insert( $this->db, $comment, $data );
 			}
 
-			if ( $writeStage <= MIGRATION_WRITE_BOTH ) {
+			if ( $writeStage & SCHEMA_COMPAT_WRITE_OLD ) {
 				$this->assertSame( $expect['text'], $fields[$key], "old field, stage=$writeStage" );
 			} else {
 				$this->assertArrayNotHasKey( $key, $fields, "old field, stage=$writeStage" );
 			}
-			if ( $writeStage >= MIGRATION_WRITE_BOTH && !$usesTemp ) {
+			if ( ( $writeStage & SCHEMA_COMPAT_WRITE_NEW ) && !$usesTemp ) {
 				$this->assertArrayHasKey( "{$key}_id", $fields, "new field, stage=$writeStage" );
 			} else {
 				$this->assertArrayNotHasKey( "{$key}_id", $fields, "new field, stage=$writeStage" );
@@ -553,13 +731,17 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 					$queryInfo['joins']
 				);
 
+				$expectForCombination = (
+					( $writeStage & SCHEMA_COMPAT_WRITE_BOTH ) === SCHEMA_COMPAT_WRITE_OLD ||
+					( $readStage & SCHEMA_COMPAT_READ_BOTH ) === SCHEMA_COMPAT_READ_OLD
+				) ? $expectOld : $expect;
 				$this->assertComment(
-					$writeStage === MIGRATION_OLD || $readStage === MIGRATION_OLD ? $expectOld : $expect,
+					$expectForCombination,
 					$rstore->getCommentLegacy( $this->db, $fieldRow ),
 					"w=$writeStage, r=$readStage, from getFields()"
 				);
 				$this->assertComment(
-					$writeStage === MIGRATION_OLD || $readStage === MIGRATION_OLD ? $expectOld : $expect,
+					$expectForCombination,
 					$rstore->getComment( $joinRow ),
 					"w=$writeStage, r=$readStage, from getJoin()"
 				);
@@ -725,6 +907,9 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 			'MIGRATION_WRITE_BOTH' => [ MIGRATION_WRITE_BOTH ],
 			'MIGRATION_WRITE_NEW' => [ MIGRATION_WRITE_NEW ],
 			'MIGRATION_NEW' => [ MIGRATION_NEW ],
+
+			'SCHEMA_COMPAT write-both/read-old' => [ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD ],
+			'SCHEMA_COMPAT write-both/read-new' => [ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW ],
 		];
 	}
 

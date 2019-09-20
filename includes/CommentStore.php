@@ -83,7 +83,8 @@ class CommentStore {
 	protected $key = null;
 
 	/**
-	 * @var int One of the MIGRATION_* constants
+	 * @var int One of the MIGRATION_* constants, or an appropriate combination
+	 *  of SCHEMA_COMPAT_* constants.
 	 * @todo Deprecate and remove once extensions seem unlikely to need to use
 	 *  it for migration anymore.
 	 */
@@ -98,11 +99,19 @@ class CommentStore {
 	/**
 	 * @param Language $lang Language to use for comment truncation. Defaults
 	 *  to content language.
-	 * @param int $migrationStage One of the MIGRATION_* constants. Always
-	 *  MIGRATION_NEW for MediaWiki core since 1.33.
+	 * @param int $stage One of the MIGRATION_* constants, or an appropriate
+	 *  combination of SCHEMA_COMPAT_* constants. Always MIGRATION_NEW for
+	 *  MediaWiki core since 1.33.
 	 */
-	public function __construct( Language $lang, $migrationStage ) {
-		$this->stage = $migrationStage;
+	public function __construct( Language $lang, $stage ) {
+		if ( ( $stage & SCHEMA_COMPAT_WRITE_BOTH ) === 0 ) {
+			throw new InvalidArgumentException( '$stage must include a write mode' );
+		}
+		if ( ( $stage & SCHEMA_COMPAT_READ_BOTH ) === 0 ) {
+			throw new InvalidArgumentException( '$stage must include a read mode' );
+		}
+
+		$this->stage = $stage;
 		$this->lang = $lang;
 	}
 
@@ -166,21 +175,21 @@ class CommentStore {
 	public function getFields( $key = null ) {
 		$key = $this->getKey( $key );
 		$fields = [];
-		if ( $this->stage === MIGRATION_OLD ) {
+		if ( ( $this->stage & SCHEMA_COMPAT_READ_BOTH ) === SCHEMA_COMPAT_READ_OLD ) {
 			$fields["{$key}_text"] = $key;
 			$fields["{$key}_data"] = 'NULL';
 			$fields["{$key}_cid"] = 'NULL';
-		} else {
-			if ( $this->stage < MIGRATION_NEW ) {
+		} else { // READ_BOTH or READ_NEW
+			if ( $this->stage & SCHEMA_COMPAT_READ_OLD ) {
 				$fields["{$key}_old"] = $key;
 			}
 
 			$tempTableStage = isset( $this->tempTables[$key] )
 				? $this->tempTables[$key]['stage'] : MIGRATION_NEW;
-			if ( $tempTableStage < MIGRATION_NEW ) {
+			if ( $tempTableStage & SCHEMA_COMPAT_READ_OLD ) {
 				$fields["{$key}_pk"] = $this->tempTables[$key]['joinPK'];
 			}
-			if ( $tempTableStage > MIGRATION_OLD ) {
+			if ( $tempTableStage & SCHEMA_COMPAT_READ_NEW ) {
 				$fields["{$key}_id"] = "{$key}_id";
 			}
 		}
@@ -211,21 +220,21 @@ class CommentStore {
 			$fields = [];
 			$joins = [];
 
-			if ( $this->stage === MIGRATION_OLD ) {
+			if ( ( $this->stage & SCHEMA_COMPAT_READ_BOTH ) === SCHEMA_COMPAT_READ_OLD ) {
 				$fields["{$key}_text"] = $key;
 				$fields["{$key}_data"] = 'NULL';
 				$fields["{$key}_cid"] = 'NULL';
-			} else {
-				$join = $this->stage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN';
+			} else { // READ_BOTH or READ_NEW
+				$join = ( $this->stage & SCHEMA_COMPAT_READ_OLD ) ? 'LEFT JOIN' : 'JOIN';
 
 				$tempTableStage = isset( $this->tempTables[$key] )
 					? $this->tempTables[$key]['stage'] : MIGRATION_NEW;
-				if ( $tempTableStage < MIGRATION_NEW ) {
+				if ( $tempTableStage & SCHEMA_COMPAT_READ_OLD ) {
 					$t = $this->tempTables[$key];
 					$alias = "temp_$key";
 					$tables[$alias] = $t['table'];
 					$joins[$alias] = [ $join, "{$alias}.{$t['pk']} = {$t['joinPK']}" ];
-					if ( $tempTableStage === MIGRATION_OLD ) {
+					if ( ( $tempTableStage & SCHEMA_COMPAT_READ_BOTH ) === SCHEMA_COMPAT_READ_OLD ) {
 						$joinField = "{$alias}.{$t['field']}";
 					} else {
 						// Nothing hits this code path for now, but will in the future when we set
@@ -245,7 +254,7 @@ class CommentStore {
 				$tables[$alias] = 'comment';
 				$joins[$alias] = [ $join, "{$alias}.comment_id = {$joinField}" ];
 
-				if ( $this->stage === MIGRATION_NEW ) {
+				if ( ( $this->stage & SCHEMA_COMPAT_READ_BOTH ) === SCHEMA_COMPAT_READ_NEW ) {
 					$fields["{$key}_text"] = "{$alias}.comment_text";
 				} else {
 					$fields["{$key}_text"] = "COALESCE( {$alias}.comment_text, $key )";
@@ -282,13 +291,15 @@ class CommentStore {
 			$cid = $row["{$key}_cid"] ?? null;
 			$text = $row["{$key}_text"];
 			$data = $row["{$key}_data"];
-		} elseif ( $this->stage === MIGRATION_OLD ) {
+		} elseif ( ( $this->stage & SCHEMA_COMPAT_READ_BOTH ) === SCHEMA_COMPAT_READ_OLD ) {
 			$cid = null;
 			if ( $fallback && isset( $row[$key] ) ) {
 				wfLogWarning( "Using deprecated fallback handling for comment $key" );
 				$text = $row[$key];
 			} else {
-				wfLogWarning( "Missing {$key}_text and {$key}_data fields in row with MIGRATION_OLD" );
+				wfLogWarning(
+					"Missing {$key}_text and {$key}_data fields in row with MIGRATION_OLD / READ_OLD"
+				);
 				$text = '';
 			}
 			$data = null;
@@ -296,7 +307,7 @@ class CommentStore {
 			$tempTableStage = isset( $this->tempTables[$key] )
 				? $this->tempTables[$key]['stage'] : MIGRATION_NEW;
 			$row2 = null;
-			if ( $tempTableStage > MIGRATION_OLD && array_key_exists( "{$key}_id", $row ) ) {
+			if ( ( $tempTableStage & SCHEMA_COMPAT_READ_NEW ) && array_key_exists( "{$key}_id", $row ) ) {
 				if ( !$db ) {
 					throw new InvalidArgumentException(
 						"\$row does not contain fields needed for comment $key and getComment(), but "
@@ -311,7 +322,9 @@ class CommentStore {
 					__METHOD__
 				);
 			}
-			if ( !$row2 && $tempTableStage < MIGRATION_NEW && array_key_exists( "{$key}_pk", $row ) ) {
+			if ( !$row2 && ( $tempTableStage & SCHEMA_COMPAT_READ_OLD ) &&
+				array_key_exists( "{$key}_pk", $row )
+			) {
 				if ( !$db ) {
 					throw new InvalidArgumentException(
 						"\$row does not contain fields needed for comment $key and getComment(), but "
@@ -341,7 +354,9 @@ class CommentStore {
 				$cid = $row2->comment_id;
 				$text = $row2->comment_text;
 				$data = $row2->comment_data;
-			} elseif ( $this->stage < MIGRATION_NEW && array_key_exists( "{$key}_old", $row ) ) {
+			} elseif ( ( $this->stage & SCHEMA_COMPAT_READ_OLD ) &&
+				array_key_exists( "{$key}_old", $row )
+			) {
 				$cid = null;
 				$text = $row["{$key}_old"];
 				$data = null;
@@ -474,7 +489,7 @@ class CommentStore {
 		# Truncate comment in a Unicode-sensitive manner
 		$comment->text = $this->lang->truncateForVisual( $comment->text, self::COMMENT_CHARACTER_LIMIT );
 
-		if ( $this->stage > MIGRATION_OLD && !$comment->id ) {
+		if ( ( $this->stage & SCHEMA_COMPAT_WRITE_NEW ) && !$comment->id ) {
 			$dbData = $comment->data;
 			if ( !$comment->message instanceof RawMessage ) {
 				if ( $dbData === null ) {
@@ -534,14 +549,14 @@ class CommentStore {
 
 		$comment = $this->createComment( $dbw, $comment, $data );
 
-		if ( $this->stage <= MIGRATION_WRITE_BOTH ) {
+		if ( $this->stage & SCHEMA_COMPAT_WRITE_OLD ) {
 			$fields[$key] = $this->lang->truncateForDatabase( $comment->text, 255 );
 		}
 
-		if ( $this->stage >= MIGRATION_WRITE_BOTH ) {
+		if ( $this->stage & SCHEMA_COMPAT_WRITE_NEW ) {
 			$tempTableStage = isset( $this->tempTables[$key] )
 				? $this->tempTables[$key]['stage'] : MIGRATION_NEW;
-			if ( $tempTableStage <= MIGRATION_WRITE_BOTH ) {
+			if ( $tempTableStage & SCHEMA_COMPAT_WRITE_OLD ) {
 				$t = $this->tempTables[$key];
 				$func = __METHOD__;
 				$commentId = $comment->id;
@@ -556,7 +571,7 @@ class CommentStore {
 					);
 				};
 			}
-			if ( $tempTableStage >= MIGRATION_WRITE_BOTH ) {
+			if ( $tempTableStage & SCHEMA_COMPAT_WRITE_NEW ) {
 				$fields["{$key}_id"] = $comment->id;
 			}
 		}
@@ -594,7 +609,7 @@ class CommentStore {
 
 		$tempTableStage = isset( $this->tempTables[$key] )
 			? $this->tempTables[$key]['stage'] : MIGRATION_NEW;
-		if ( $tempTableStage < MIGRATION_WRITE_NEW ) {
+		if ( $tempTableStage & SCHEMA_COMPAT_WRITE_OLD ) {
 			throw new InvalidArgumentException( "Must use insertWithTempTable() for $key" );
 		}
 
