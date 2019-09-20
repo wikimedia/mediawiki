@@ -3,7 +3,8 @@
 		"authors": [
 			"Zygimantus",
 			"Eitvys200",
-			"Hugo.arg"
+			"Hugo.arg",
+			"Homo"
 		]
 	},
 	"apihelp-main-param-action": "Kurį veiksmą atlikti.",
@@ -19,7 +20,7 @@
 	"apihelp-createaccount-summary": "Kurti naują vartotojo paskyrą.",
 	"apihelp-delete-summary": "Ištrinti puslapį.",
 	"apihelp-delete-param-watch": "Pridėti puslapį prie dabartinio vartotojo stebimųjų sąrašo.",
-	"apihelp-delete-param-unwatch": "Pašalinti puslapį iš dabartinio vartotojo stebimųjų sąrašo.",
+	"apihelp-delete-param-unwatch": "Pašalinti puslapį iš dabartinio naudotojo stebimųjų sąrašo.",
 	"apihelp-delete-example-simple": "Ištrinti <kbd>Main Page</kbd>.",
 	"apihelp-delete-example-reason": "Ištrinti <kbd>Main Page</kbd> su priežastimi <kbd>Preparing for move</kbd>.",
 	"apihelp-disabled-summary": "Šis modulis buvo išjungtas.",
@@ -36,7 +37,7 @@
 	"apihelp-edit-param-createonly": "Neredaguoti puslapio jei jis jau egzistuoja.",
 	"apihelp-edit-param-nocreate": "Parodyti klaidą, jei puslapis neegzistuoja.",
 	"apihelp-edit-param-watch": "Pridėti puslapį į dabartinio vartotojo stebimųjų sąrašą.",
-	"apihelp-edit-param-unwatch": "Pašalinti puslapį iš dabartinio vartotojo stebimųjų sąrašo.",
+	"apihelp-edit-param-unwatch": "Pašalinti puslapį iš dabartinio naudotojo stebimųjų sąrašo.",
 	"apihelp-edit-param-redirect": "Automatiškai išspręsti peradresavimus.",
 	"apihelp-edit-param-contentmodel": "Naujam turiniui taikomas turinio modelis.",
 	"apihelp-edit-example-edit": "Redaguoti puslapį.",
@@ -104,7 +105,7 @@
 	"apihelp-move-param-movetalk": "Pervadinti aptarimo puslapį, jei jis egzistuoja.",
 	"apihelp-move-param-noredirect": "Nekurti nukreipimo.",
 	"apihelp-move-param-watch": "Pridėti puslapį ir nukreipimą į dabartinio vartotojo stebimųjų sąrašą.",
-	"apihelp-move-param-unwatch": "Pašalinti puslapį ir nukreipimą iš dabartinio vartotojo stebimųjų sąrašo.",
+	"apihelp-move-param-unwatch": "Pašalinti puslapį ir nukreipimą iš dabartinio naudotojo stebimųjų sąrašo.",
 	"apihelp-move-param-ignorewarnings": "Ignuoruoti bet kokius įspėjimus.",
 	"apihelp-move-example-move": "Perkelti <kbd>Badtitle</kbd> į <kbd>Goodtitle</kbd> nepaliekant nukreipimo.",
 	"apihelp-opensearch-summary": "Ieškoti viki naudojant OpenSearch protokolą.",
@@ -301,7 +302,7 @@
 	"apihelp-query+watchlist-paramvalue-type-new": "Puslapio sukūrimai.",
 	"apihelp-query+watchlist-paramvalue-type-log": "Žurnalo įrašai.",
 	"apihelp-resetpassword-param-user": "Iš naujo nustatomas vartotojas.",
-	"apihelp-resetpassword-param-email": "Iš naujo nustatomo vartotojo el. pašto adresas.",
+	"apihelp-resetpassword-param-email": "Iš naujo nustatomo naudotojo el. pašto adresas.",
 	"apihelp-setpagelanguage-summary": "Keisti puslapio kalbą.",
 	"apihelp-setpagelanguage-param-reason": "Keitimo priežastis.",
 	"apihelp-stashedit-param-title": "Puslapio pavadinimas buvo redaguotas.",

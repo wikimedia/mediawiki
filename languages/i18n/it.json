@@ -1900,6 +1900,7 @@
 	"listfiles-userdoesnotexist": "L'utenza \"$1\" non è registrata.",
 	"imgfile": "file",
 	"listfiles": "Elenco dei file",
+	"listfiles_subpage": "Caricamenti di $1",
 	"listfiles_thumb": "Miniatura",
 	"listfiles_date": "Data",
 	"listfiles_name": "Nome",

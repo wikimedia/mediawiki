@@ -2053,7 +2053,7 @@
 	"emailuser-title-target": "Siųsti el. pašto žinutę {{GENDER:$1|naudotojui|naudotojai}}",
 	"emailuser-title-notarget": "El. pašto vartotojas",
 	"emailpagetext": "Jūs galite pasinaudoti šiuo pavyzdžiu, norėdami nusiųsti elektroninį laišką {{GENDER:$1|šiam naudotojui|šiai naudotojai}}.\nElektroninio pašto adresas, kurį įvedėte [[Special:Preferences|savo naudotojo nustatymuose]], bus rodomas kaip el. pašto siuntėjo adresas tam, kad gavėjas galėtų tiesiogiai jums atsakyti.",
-	"defemailsubject": "{{SITENAME}} el. pašto iš vartotojo \" $1 \"",
+	"defemailsubject": "{{SITENAME}} laiškas iš naudotojo „$1“",
 	"usermaildisabled": "Naudotojo elektroninis paštas išjungtas",
 	"usermaildisabledtext": "Jūs negalite siūlsti el. laiško kitiems šio wiki projekto naudotojams.",
 	"noemailtitle": "Nėra el. pašto adreso",

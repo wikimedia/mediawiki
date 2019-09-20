@@ -1892,6 +1892,7 @@
 	"listfiles-userdoesnotexist": "Das Benutzerkonto „$1“ ist nicht registriert.",
 	"imgfile": "Datei",
 	"listfiles": "Dateiliste",
+	"listfiles_subpage": "Von $1 hochgeladene Dateien",
 	"listfiles_thumb": "Vorschaubild",
 	"listfiles_date": "Datum",
 	"listfiles_name": "Name",
@@ -3930,5 +3931,6 @@
 	"mycustomjsredirectprotected": "Du hast keine Berechtigung, diese JavaScript-Seite zu bearbeiten, da sie eine Weiterleitung, die nicht in deinen Benutzernamensraum zeigt, enthält.",
 	"easydeflate-invaliddeflate": "Der angegebene Inhalt ist nicht ordnungsgemäß komprimiert",
 	"unprotected-js": "Aus Sicherheitsgründen kann JavaScript-Code nicht mehr von ungeschützten Seiten geladen werden. Erstelle die JavaScript-Seite bitte ausschließlich im Namensraum „MediaWiki“ oder als Benutzerunterseite.",
-	"userlogout-continue": "Möchtest du dich abmelden?"
+	"userlogout-continue": "Möchtest du dich abmelden?",
+	"rest-prefix-mismatch": "Der angeforderte Pfad ($1) kannte nicht innerhalb des REST-API-Root-Pfades ($2) gefunden werden"
 }
