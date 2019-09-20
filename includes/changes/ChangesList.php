@@ -455,13 +455,21 @@ class ChangesList extends ContextSource {
 	 * @param string &$s HTML to update
 	 * @param Title $title
 	 * @param string $logtype
+	 * @param bool $useParentheses (optional) Wrap log entry in parentheses where needed
 	 */
-	public function insertLog( &$s, $title, $logtype ) {
+	public function insertLog( &$s, $title, $logtype, $useParentheses = true ) {
 		$page = new LogPage( $logtype );
 		$logname = $page->getName()->setContext( $this->getContext() )->text();
-		$s .= Html::rawElement( 'span', [
-			'class' => 'mw-changeslist-links'
-		], $this->linkRenderer->makeKnownLink( $title, $logname ) );
+		$link = $this->linkRenderer->makeKnownLink( $title, $logname, [
+			'class' => $useParentheses ? '' : 'mw-changeslist-links'
+		] );
+		if ( $useParentheses ) {
+			$s .= $this->msg( 'parentheses' )->rawParams(
+				$link
+			)->escaped();
+		} else {
+			$s .= $link;
+		}
 	}
 
 	/**
