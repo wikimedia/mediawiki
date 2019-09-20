@@ -326,7 +326,7 @@ class ImportImages extends Maintenance {
 					$archive = $image->publish( $file, $flags, $publishOptions );
 					if ( !$archive->isGood() ) {
 						$this->output( "failed. (" .
-							 $archive->getWikiText( false, false, 'en' ) .
+							 $archive->getMessage( false, false, 'en' )->text() .
 							 ")\n" );
 						$failed++;
 						continue;

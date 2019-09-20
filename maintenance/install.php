@@ -118,7 +118,7 @@ class CommandLineInstaller extends Maintenance {
 		try {
 			$installer = InstallerOverrides::getCliInstaller( $siteName, $adminName, $this->mOptions );
 		} catch ( \MediaWiki\Installer\InstallException $e ) {
-			$this->output( $e->getStatus()->getMessage()->text() . "\n" );
+			$this->output( $e->getStatus()->getMessage( false, false, 'en' )->text() . "\n" );
 			return false;
 		}
 

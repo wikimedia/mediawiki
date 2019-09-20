@@ -121,7 +121,7 @@ class CreateAndPromote extends Maintenance {
 				false
 			);
 			if ( !$status->isGood() ) {
-				$this->fatalError( $status->getWikiText( null, null, 'en' ) );
+				$this->fatalError( $status->getMessage( false, false, 'en' )->text() );
 			}
 		}
 
@@ -134,7 +134,7 @@ class CreateAndPromote extends Maintenance {
 					'retype' => $password,
 				] );
 				if ( !$status->isGood() ) {
-					throw new PasswordError( $status->getWikiText( null, null, 'en' ) );
+					throw new PasswordError( $status->getMessage( false, false, 'en' )->text() );
 				}
 				if ( $exists ) {
 					$this->output( "Password set.\n" );

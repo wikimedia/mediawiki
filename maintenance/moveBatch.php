@@ -111,7 +111,7 @@ class MoveBatch extends Maintenance {
 				->newMovePage( $source, $dest );
 			$status = $mp->move( $wgUser, $reason, !$noredirects );
 			if ( !$status->isOK() ) {
-				$this->output( "\nFAILED: " . $status->getWikiText( false, false, 'en' ) );
+				$this->output( "\nFAILED: " . $status->getMessage( false, false, 'en' )->text() );
 			}
 			$this->commitTransaction( $dbw, __METHOD__ );
 			$this->output( "\n" );

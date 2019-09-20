@@ -326,7 +326,7 @@ TEXT
 			$statusRootPage = $importer->setTargetRootPage( $this->getOption( 'rootpage' ) );
 			if ( !$statusRootPage->isGood() ) {
 				// Die here so that it doesn't print "Done!"
-				$this->fatalError( $statusRootPage->getMessage()->text() );
+				$this->fatalError( $statusRootPage->getMessage( false, false, 'en' )->text() );
 				return false;
 			}
 		}
