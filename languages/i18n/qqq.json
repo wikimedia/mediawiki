@@ -4466,5 +4466,12 @@
 	"userlogout-continue": "Shown if user attempted to log out without a token specified. Probably the user clicked on an old link that hasn't been updated to use the new system. $1 - url that user should click on in order to log out.",
 	"rest-prefix-mismatch": "Error message for REST API debugging, shown if $wgRestPath is incorrect or otherwise not matched. Parameters:\n* $1: The requested path.\n* $2: The configured root path ($wgRestPath).",
 	"rest-wrong-method": "Error message for REST API debugging, shown if the HTTP method is incorrect. Parameters:\n* $1: The received request method.\n* $2: A comma-separated list of allowed methods for this path.\n* $3: The number of items in the list $2",
-	"rest-no-match": "Error message for REST API debugging, shown if the path has the correct prefix but did not match any registered handler. Parameters:\n* $1: The received request path, relative to $wgRestPath."
+	"rest-no-match": "Error message for REST API debugging, shown if the path has the correct prefix but did not match any registered handler. Parameters:\n* $1: The received request path, relative to $wgRestPath.",
+	"rest-pagehistory-incompatible-params": "Error message for REST API debugging, shown if incompatible parameters are specified.",
+	"rest-pagehistory-param-range-error": "Error message for REST API debugging, shown if a revision id is provided but is out of range.",
+	"rest-pagehistory-title-nonexistent": "Error message for REST API debugging, shown if the specified title does not exist.",
+	"rest-pagehistory-revision-nonexistent": "Error message for REST API debugging, shown if the specified revision does not exist.",
+	"rest-pagehistory-revisions-nonexistent": "Error message for REST API debugging, shown if no revisions exist for the specified page.",
+	"rest-pagehistory-revisions-nonexistent-with-params": "Error message for REST API debugging, shown if no revisions exist for the specified page, and if params that limit the returned revisions were specified.",
+	"rest-pagehistory-timestamp-error": "Error message for REST API debugging, shown if an error occurred loading the timestamp for the specified revision."
 }
