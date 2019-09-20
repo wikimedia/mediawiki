@@ -2014,7 +2014,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->startAtomic( __METHOD__ );
 		$wrapper->trxStatus = Database::STATUS_TRX_ERROR;
 		$this->database->rollback( __METHOD__ );
-		$this->assertEquals( 0, $this->database->trxLevel() );
+		$this->assertSame( 0, $this->database->trxLevel() );
 		$this->assertEquals( Database::STATUS_TRX_NONE, $wrapper->trxStatus() );
 		$this->assertLastSql( 'BEGIN; ROLLBACK' );
 
@@ -2024,7 +2024,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->endAtomic( __METHOD__ );
 		$this->assertEquals( Database::STATUS_TRX_NONE, $wrapper->trxStatus() );
 		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'1\'; COMMIT' );
-		$this->assertEquals( 0, $this->database->trxLevel(), 'Use after rollback()' );
+		$this->assertSame( 0, $this->database->trxLevel(), 'Use after rollback()' );
 
 		$this->database->begin( __METHOD__ );
 		$this->database->startAtomic( __METHOD__, Database::ATOMIC_CANCELABLE );
@@ -2038,7 +2038,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->commit( __METHOD__ );
 		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; UPDATE y SET a = \'1\' WHERE field = \'1\'; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; DELETE FROM y WHERE field = \'1\'; COMMIT' );
-		$this->assertEquals( 0, $this->database->trxLevel(), 'Use after rollback()' );
+		$this->assertSame( 0, $this->database->trxLevel(), 'Use after rollback()' );
 
 		// Next transaction
 		$this->database->startAtomic( __METHOD__ );
@@ -2047,7 +2047,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->endAtomic( __METHOD__ );
 		$this->assertEquals( Database::STATUS_TRX_NONE, $wrapper->trxStatus() );
 		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'3\'; COMMIT' );
-		$this->assertEquals( 0, $this->database->trxLevel() );
+		$this->assertSame( 0, $this->database->trxLevel() );
 	}
 
 	/**
@@ -2194,7 +2194,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 		$this->assertFalse( $this->database->isOpen() );
 		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'3\'; ROLLBACK; SELECT 2' );
-		$this->assertEquals( 0, $this->database->trxLevel() );
+		$this->assertSame( 0, $this->database->trxLevel() );
 	}
 
 	/**
@@ -2223,7 +2223,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 		$this->assertFalse( $this->database->isOpen() );
 		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'3\'; ROLLBACK; SELECT 2' );
-		$this->assertEquals( 0, $this->database->trxLevel() );
+		$this->assertSame( 0, $this->database->trxLevel() );
 	}
 
 	/**
@@ -2246,7 +2246,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 		$this->assertFalse( $this->database->isOpen() );
 		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'3\'; ROLLBACK' );
-		$this->assertEquals( 0, $this->database->trxLevel() );
+		$this->assertSame( 0, $this->database->trxLevel() );
 	}
 
 	/**
@@ -2261,7 +2261,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 		$this->assertFalse( $this->database->isOpen() );
 		$this->assertLastSql( 'BEGIN; SELECT 1; ROLLBACK' );
-		$this->assertEquals( 0, $this->database->trxLevel() );
+		$this->assertSame( 0, $this->database->trxLevel() );
 	}
 
 	/**

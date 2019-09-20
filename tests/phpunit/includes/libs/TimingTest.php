@@ -55,7 +55,7 @@ class TimingTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( 'a', $entry['name'] );
 		$this->assertEquals( 'mark', $entry['entryType'] );
 		$this->assertArrayHasKey( 'startTime', $entry );
-		$this->assertEquals( 0, $entry['duration'] );
+		$this->assertSame( 0, $entry['duration'] );
 
 		usleep( 100 );
 		$timing->mark( 'a' );

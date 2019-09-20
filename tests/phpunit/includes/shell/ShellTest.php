@@ -65,7 +65,7 @@ class ShellTest extends MediaWikiTestCase {
 
 		$wrapper = TestingAccessWrapper::newFromObject( $command );
 		$this->assertEquals( $expected, $wrapper->command );
-		$this->assertEquals( 0, $wrapper->restrictions & Shell::NO_LOCALSETTINGS );
+		$this->assertSame( 0, $wrapper->restrictions & Shell::NO_LOCALSETTINGS );
 	}
 
 	public function provideMakeScriptCommand() {

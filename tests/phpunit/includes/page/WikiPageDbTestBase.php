@@ -439,7 +439,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		$n = $res->numRows();
 		$res->free();
 
-		$this->assertEquals( 0, $n, 'pagelinks should contain no more links from the page' );
+		$this->assertSame( 0, $n, 'pagelinks should contain no more links from the page' );
 	}
 
 	/**
@@ -637,7 +637,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		$n = $res->numRows();
 		$res->free();
 
-		$this->assertEquals( 0, $n, 'pagelinks should contain no more links from the page' );
+		$this->assertSame( 0, $n, 'pagelinks should contain no more links from the page' );
 	}
 
 	/**
@@ -1577,20 +1577,20 @@ more stuff
 		$page->updateCategoryCounts( [ 'A' ], [], 0 );
 
 		$this->assertEquals( 1, Category::newFromName( 'A' )->getPageCount() );
-		$this->assertEquals( 0, Category::newFromName( 'B' )->getPageCount() );
-		$this->assertEquals( 0, Category::newFromName( 'C' )->getPageCount() );
+		$this->assertSame( 0, Category::newFromName( 'B' )->getPageCount() );
+		$this->assertSame( 0, Category::newFromName( 'C' )->getPageCount() );
 
 		// Add a new category
 		$page->updateCategoryCounts( [ 'B' ], [], 0 );
 
 		$this->assertEquals( 1, Category::newFromName( 'A' )->getPageCount() );
 		$this->assertEquals( 1, Category::newFromName( 'B' )->getPageCount() );
-		$this->assertEquals( 0, Category::newFromName( 'C' )->getPageCount() );
+		$this->assertSame( 0, Category::newFromName( 'C' )->getPageCount() );
 
 		// Add and remove a category
 		$page->updateCategoryCounts( [ 'C' ], [ 'A' ], 0 );
 
-		$this->assertEquals( 0, Category::newFromName( 'A' )->getPageCount() );
+		$this->assertSame( 0, Category::newFromName( 'A' )->getPageCount() );
 		$this->assertEquals( 1, Category::newFromName( 'B' )->getPageCount() );
 		$this->assertEquals( 1, Category::newFromName( 'C' )->getPageCount() );
 	}

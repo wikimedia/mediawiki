@@ -490,13 +490,13 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$db->method( 'isOpen' )->willReturn( true );
 		$db->method( 'getDBname' )->willReturn( 'unittest' );
 
-		$this->assertEquals( 0, $db->trxLevel() );
+		$this->assertSame( 0, $db->trxLevel() );
 		$this->assertEquals( true, $db->lockIsFree( 'x', __METHOD__ ) );
 		$this->assertEquals( true, $db->lock( 'x', __METHOD__ ) );
 		$this->assertEquals( false, $db->lockIsFree( 'x', __METHOD__ ) );
 		$this->assertEquals( true, $db->unlock( 'x', __METHOD__ ) );
 		$this->assertEquals( true, $db->lockIsFree( 'x', __METHOD__ ) );
-		$this->assertEquals( 0, $db->trxLevel() );
+		$this->assertSame( 0, $db->trxLevel() );
 
 		$db->setFlag( DBO_TRX );
 		$this->assertEquals( true, $db->lockIsFree( 'x', __METHOD__ ) );
@@ -507,7 +507,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$db->clearFlag( DBO_TRX );
 
 		// Pending writes with DBO_TRX
-		$this->assertEquals( 0, $db->trxLevel() );
+		$this->assertSame( 0, $db->trxLevel() );
 		$this->assertTrue( $db->lockIsFree( 'meow', __METHOD__ ) );
 		$db->setFlag( DBO_TRX );
 		$db->query( "DELETE FROM test WHERE t = 1" ); // trigger DBO_TRX transaction before lock
@@ -521,7 +521,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$db->rollback( __METHOD__, IDatabase::FLUSHING_ALL_PEERS );
 		// Pending writes without DBO_TRX
 		$db->clearFlag( DBO_TRX );
-		$this->assertEquals( 0, $db->trxLevel() );
+		$this->assertSame( 0, $db->trxLevel() );
 		$this->assertTrue( $db->lockIsFree( 'meow2', __METHOD__ ) );
 		$db->begin( __METHOD__ );
 		$db->query( "DELETE FROM test WHERE t = 1" ); // trigger DBO_TRX transaction before lock
@@ -535,17 +535,17 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$db->rollback( __METHOD__ );
 		// No pending writes, with DBO_TRX
 		$db->setFlag( DBO_TRX );
-		$this->assertEquals( 0, $db->trxLevel() );
+		$this->assertSame( 0, $db->trxLevel() );
 		$this->assertTrue( $db->lockIsFree( 'wuff', __METHOD__ ) );
 		$db->query( "SELECT 1", __METHOD__ );
 		$this->assertEquals( 1, $db->trxLevel() );
 		$lock = $db->getScopedLockAndFlush( 'wuff', __METHOD__, 1 );
-		$this->assertEquals( 0, $db->trxLevel() );
+		$this->assertSame( 0, $db->trxLevel() );
 		$this->assertFalse( $db->lockIsFree( 'wuff', __METHOD__ ), 'Lock already acquired' );
 		$db->rollback( __METHOD__, IDatabase::FLUSHING_ALL_PEERS );
 		// No pending writes, without DBO_TRX
 		$db->clearFlag( DBO_TRX );
-		$this->assertEquals( 0, $db->trxLevel() );
+		$this->assertSame( 0, $db->trxLevel() );
 		$this->assertTrue( $db->lockIsFree( 'wuff2', __METHOD__ ) );
 		$db->begin( __METHOD__ );
 		try {

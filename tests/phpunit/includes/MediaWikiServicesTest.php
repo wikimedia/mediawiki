@@ -227,7 +227,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 
 		// This should do nothing. In particular, it should not create a service instance.
 		$services->resetServiceForTesting( 'Test' );
-		$this->assertEquals( 0, $serviceCounter, 'No service instance should be created yet.' );
+		$this->assertSame( 0, $serviceCounter, 'No service instance should be created yet.' );
 
 		$oldInstance = $services->getService( 'Test' );
 		$this->assertEquals( 1, $serviceCounter, 'A service instance should exit now.' );

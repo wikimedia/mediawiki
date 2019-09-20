@@ -187,7 +187,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		};
 
 		$factory = $this->newLBFactoryMultiLBs();
-		$this->assertEquals( 0, $countLBsFunc( $factory ) );
+		$this->assertSame( 0, $countLBsFunc( $factory ) );
 		$dbw = $factory->getMainLB()->getConnection( DB_MASTER );
 		$this->assertEquals( 1, $countLBsFunc( $factory ) );
 		// Test that LoadBalancer instances made during pre-commit callbacks in do not
@@ -208,7 +208,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 
 		$called = 0;
 		$factory = $this->newLBFactoryMultiLBs();
-		$this->assertEquals( 0, $countLBsFunc( $factory ) );
+		$this->assertSame( 0, $countLBsFunc( $factory ) );
 		$dbw = $factory->getMainLB()->getConnection( DB_MASTER );
 		$this->assertEquals( 1, $countLBsFunc( $factory ) );
 		// Test that LoadBalancer instances made during pre-commit callbacks in do not
@@ -717,7 +717,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$lb->forEachOpenConnection( function () use ( &$n ) {
 			++$n;
 		} );
-		$this->assertEquals( 0, $n, "Connections closed" );
+		$this->assertSame( 0, $n, "Connections closed" );
 
 		$conn2 = $lb->getConnectionRef( DB_MASTER );
 		$this->assertEquals(

@@ -21,7 +21,7 @@ class SiteStatsTest extends MediaWikiTestCase {
 		);
 
 		$jobq->get( 'null' )->delete();  // clear jobqueue
-		$this->assertEquals( 0, $jobq->get( 'null' )->getSize(),
+		$this->assertSame( 0, $jobq->get( 'null' )->getSize(),
 			'Job queue for NullJob has been cleaned' );
 
 		$cache->delete( $cache->makeKey( 'SiteStats', 'jobscount' ) );
@@ -29,7 +29,7 @@ class SiteStatsTest extends MediaWikiTestCase {
 			'jobs count is kept in process cache' );
 
 		$cache->clearProcessCache();
-		$this->assertEquals( 0, SiteStats::jobs() );
+		$this->assertSame( 0, SiteStats::jobs() );
 	}
 
 }
