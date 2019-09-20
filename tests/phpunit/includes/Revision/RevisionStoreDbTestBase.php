@@ -4,8 +4,10 @@ namespace MediaWiki\Tests\Revision;
 
 use CommentStoreComment;
 use Content;
+use ContentHandler;
 use Exception;
 use HashBagOStuff;
+use IDBAccessObject;
 use InvalidArgumentException;
 use Language;
 use MediaWiki\Linker\LinkTarget;
@@ -105,7 +107,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @return WikiPage
 	 */
 	protected function getTestPage( $pageTitle = null ) {
-		if ( !is_null( $pageTitle ) && $this->testPage ) {
+		if ( is_null( $pageTitle ) && $this->testPage ) {
 			return $this->testPage;
 		}
 
@@ -1992,23 +1994,17 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	) {
 		$page1 = $this->getTestPage();
 		$text = __METHOD__ . 'b-ä';
+		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), $text . '1' );
+		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
 		/** @var Revision $rev1 */
-		$rev1 = $page1->doEditContent(
-			new WikitextContent( $text . '1' ),
-			__METHOD__ . 'b',
-			0,
-			false,
-			$this->getTestUser()->getUser()
-		)->value['revision'];
+		$rev1 = $editStatus->getValue()['revision'];
+
 		$page2 = $this->getTestPage( $otherPageTitle );
+		$editStatus = $this->editPage( $page2->getTitle()->getPrefixedDBkey(), $text . '2' );
+		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 2' );
 		/** @var Revision $rev2 */
-		$rev2 = $page2->doEditContent(
-			new WikitextContent( $text . '2' ),
-			__METHOD__ . 'b',
-			0,
-			false,
-			$this->getTestUser()->getUser()
-		)->value['revision'];
+		$rev2 = $editStatus->getValue()['revision'];
+
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$result = $store->newRevisionsFromBatch(
 			[ $this->revisionToRow( $rev1 ), $this->revisionToRow( $rev2 ) ],
@@ -2016,14 +2012,15 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		);
 		$this->assertTrue( $result->isGood() );
 		$this->assertEmpty( $result->getErrors() );
+		/** @var RevisionRecord[] $records */
 		$records = $result->getValue();
 		$this->assertRevisionRecordMatchesRevision( $rev1, $records[$rev1->getId()] );
 		$this->assertRevisionRecordMatchesRevision( $rev2, $records[$rev2->getId()] );
 
 		$this->assertSame( $text . '1',
-			$records[$rev1->getId()]->getContent( SlotRecord::MAIN )->serialize() );
+			ContentHandler::getContentText( $records[$rev1->getId()]->getContent( SlotRecord::MAIN ) ) );
 		$this->assertSame( $text . '2',
-			$records[$rev2->getId()]->getContent( SlotRecord::MAIN )->serialize() );
+			ContentHandler::getContentText( $records[$rev2->getId()]->getContent( SlotRecord::MAIN ) ) );
 		$this->assertEquals( $page1->getTitle()->getDBkey(),
 			$records[$rev1->getId()]->getPageAsLinkTarget()->getDBkey() );
 		$this->assertEquals( $page2->getTitle()->getDBkey(),
@@ -2045,5 +2042,42 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->assertTrue( $result->isGood() );
 		$this->assertEmpty( $result->getValue() );
 		$this->assertEmpty( $result->getErrors() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionsFromBatch
+	 */
+	public function testNewRevisionsFromBatch_wrongTitle() {
+		$page1 = $this->getTestPage();
+		$text = __METHOD__ . 'b-ä';
+		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), $text . '1' );
+		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
+		/** @var Revision $rev1 */
+		$rev1 = $editStatus->getValue()['revision'];
+
+		$this->setExpectedException( InvalidArgumentException::class );
+		MediaWikiServices::getInstance()->getRevisionStore()
+			->newRevisionsFromBatch(
+				[ $this->revisionToRow( $rev1 ) ],
+				[],
+				IDBAccessObject::READ_NORMAL,
+				$this->getTestPage( 'Title_Other_Then_The_One_Revision_Belongs_To' )->getTitle()
+			);
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionsFromBatch
+	 */
+	public function testNewRevisionsFromBatch_DuplicateRows() {
+		$page1 = $this->getTestPage();
+		$text = __METHOD__ . 'b-ä';
+		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), $text . '1' );
+		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
+		/** @var Revision $rev1 */
+		$rev1 = $editStatus->getValue()['revision'];
+
+		$this->setExpectedException( InvalidArgumentException::class );
+		MediaWikiServices::getInstance()->getRevisionStore()
+			->newRevisionsFromBatch( [ $this->revisionToRow( $rev1 ), $this->revisionToRow( $rev1 ) ] );
 	}
 }
