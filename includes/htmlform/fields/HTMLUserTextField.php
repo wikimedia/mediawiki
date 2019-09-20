@@ -6,8 +6,6 @@ use MediaWiki\Widget\UserInputWidget;
  * Implements a text input field for user names.
  * Automatically auto-completes if using the OOUI display format.
  *
- * FIXME: Does not work for forms that support GET requests.
- *
  * Optional parameters:
  * 'exists' - Whether to validate that the user already exists
  * 'ipallowed' - Whether an IP adress is interpreted as "valid"
