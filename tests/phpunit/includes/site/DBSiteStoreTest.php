@@ -138,7 +138,7 @@ class DBSiteStoreTest extends MediaWikiTestCase {
 		$this->assertNull( $site );
 
 		$sites = $store->getSites();
-		$this->assertEquals( 0, $sites->count() );
+		$this->assertSame( 0, $sites->count() );
 	}
 
 	/**

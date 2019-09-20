@@ -72,9 +72,9 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
 			'Png-native-test.png' );
 
-		$this->assertEquals( 0, $meta['frameCount'] );
+		$this->assertSame( 0, $meta['frameCount'] );
 		$this->assertEquals( 1, $meta['loopCount'] );
-		$this->assertEquals( 0, $meta['duration'] );
+		$this->assertSame( 0.0, $meta['duration'] );
 	}
 
 	/**
@@ -87,7 +87,7 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 
 		$this->assertEquals( 20, $meta['frameCount'] );
 		// Note loop count of 0 = infinity
-		$this->assertEquals( 0, $meta['loopCount'] );
+		$this->assertSame( 0, $meta['loopCount'] );
 		$this->assertEquals( 1.5, $meta['duration'], '', 0.00001 );
 	}
 

@@ -108,8 +108,8 @@ class JobQueueTest extends MediaWikiTestCase {
 		$this->assertTrue( $queue->isEmpty(), "Queue is empty ($desc)" );
 
 		$queue->flushCaches();
-		$this->assertEquals( 0, $queue->getSize(), "Queue is empty ($desc)" );
-		$this->assertEquals( 0, $queue->getAcquiredCount(), "Queue is empty ($desc)" );
+		$this->assertSame( 0, $queue->getSize(), "Queue is empty ($desc)" );
+		$this->assertSame( 0, $queue->getAcquiredCount(), "Queue is empty ($desc)" );
 
 		$this->assertNull( $queue->push( $this->newJob() ), "Push worked ($desc)" );
 		$this->assertNull( $queue->batchPush( [ $this->newJob() ] ), "Push worked ($desc)" );
@@ -118,7 +118,7 @@ class JobQueueTest extends MediaWikiTestCase {
 
 		$queue->flushCaches();
 		$this->assertEquals( 2, $queue->getSize(), "Queue size is correct ($desc)" );
-		$this->assertEquals( 0, $queue->getAcquiredCount(), "No jobs active ($desc)" );
+		$this->assertSame( 0, $queue->getAcquiredCount(), "No jobs active ($desc)" );
 		$jobs = iterator_to_array( $queue->getAllQueuedJobs() );
 		$this->assertEquals( 2, count( $jobs ), "Queue iterator size is correct ($desc)" );
 
@@ -135,7 +135,7 @@ class JobQueueTest extends MediaWikiTestCase {
 
 		$job2 = $queue->pop();
 		$this->assertTrue( $queue->isEmpty(), "Queue is empty ($desc)" );
-		$this->assertEquals( 0, $queue->getSize(), "Queue is empty ($desc)" );
+		$this->assertSame( 0, $queue->getSize(), "Queue is empty ($desc)" );
 
 		$queue->flushCaches();
 		if ( $recycles ) {
@@ -152,7 +152,7 @@ class JobQueueTest extends MediaWikiTestCase {
 		$queue->ack( $job2 );
 
 		$queue->flushCaches();
-		$this->assertEquals( 0, $queue->getAcquiredCount(), "Active job count ($desc)" );
+		$this->assertSame( 0, $queue->getAcquiredCount(), "Active job count ($desc)" );
 
 		$this->assertNull( $queue->batchPush( [ $this->newJob(), $this->newJob() ] ),
 			"Push worked ($desc)" );
@@ -161,7 +161,7 @@ class JobQueueTest extends MediaWikiTestCase {
 		$queue->delete();
 		$queue->flushCaches();
 		$this->assertTrue( $queue->isEmpty(), "Queue is empty ($desc)" );
-		$this->assertEquals( 0, $queue->getSize(), "Queue is empty ($desc)" );
+		$this->assertSame( 0, $queue->getSize(), "Queue is empty ($desc)" );
 	}
 
 	/**
@@ -177,8 +177,8 @@ class JobQueueTest extends MediaWikiTestCase {
 		$this->assertTrue( $queue->isEmpty(), "Queue is empty ($desc)" );
 
 		$queue->flushCaches();
-		$this->assertEquals( 0, $queue->getSize(), "Queue is empty ($desc)" );
-		$this->assertEquals( 0, $queue->getAcquiredCount(), "Queue is empty ($desc)" );
+		$this->assertSame( 0, $queue->getSize(), "Queue is empty ($desc)" );
+		$this->assertSame( 0, $queue->getAcquiredCount(), "Queue is empty ($desc)" );
 
 		$this->assertNull(
 			$queue->batchPush(
@@ -190,7 +190,7 @@ class JobQueueTest extends MediaWikiTestCase {
 
 		$queue->flushCaches();
 		$this->assertEquals( 1, $queue->getSize(), "Queue size is correct ($desc)" );
-		$this->assertEquals( 0, $queue->getAcquiredCount(), "No jobs active ($desc)" );
+		$this->assertSame( 0, $queue->getAcquiredCount(), "No jobs active ($desc)" );
 
 		$this->assertNull(
 			$queue->batchPush(
@@ -203,13 +203,13 @@ class JobQueueTest extends MediaWikiTestCase {
 
 		$queue->flushCaches();
 		$this->assertEquals( 1, $queue->getSize(), "Queue size is correct ($desc)" );
-		$this->assertEquals( 0, $queue->getAcquiredCount(), "No jobs active ($desc)" );
+		$this->assertSame( 0, $queue->getAcquiredCount(), "No jobs active ($desc)" );
 
 		$job1 = $queue->pop();
 		$this->assertTrue( $queue->isEmpty(), "Queue is empty ($desc)" );
 
 		$queue->flushCaches();
-		$this->assertEquals( 0, $queue->getSize(), "Queue is empty ($desc)" );
+		$this->assertSame( 0, $queue->getSize(), "Queue is empty ($desc)" );
 		if ( $recycles ) {
 			$this->assertEquals( 1, $queue->getAcquiredCount(), "Active job count ($desc)" );
 		}
@@ -217,7 +217,7 @@ class JobQueueTest extends MediaWikiTestCase {
 		$queue->ack( $job1 );
 
 		$queue->flushCaches();
-		$this->assertEquals( 0, $queue->getAcquiredCount(), "Active job count ($desc)" );
+		$this->assertSame( 0, $queue->getAcquiredCount(), "Active job count ($desc)" );
 	}
 
 	/**
@@ -256,8 +256,8 @@ class JobQueueTest extends MediaWikiTestCase {
 		$this->assertTrue( $queue->isEmpty(), "Queue is empty ($desc)" );
 
 		$queue->flushCaches();
-		$this->assertEquals( 0, $queue->getSize(), "Queue is empty ($desc)" );
-		$this->assertEquals( 0, $queue->getAcquiredCount(), "Queue is empty ($desc)" );
+		$this->assertSame( 0, $queue->getSize(), "Queue is empty ($desc)" );
+		$this->assertSame( 0, $queue->getAcquiredCount(), "Queue is empty ($desc)" );
 
 		$root1 = Job::newRootJobParams( "nulljobspam:testId" ); // task ID/timestamp
 		for ( $i = 0; $i < 5; ++$i ) {
@@ -282,7 +282,7 @@ class JobQueueTest extends MediaWikiTestCase {
 
 		$queue->flushCaches();
 		$this->assertEquals( 10, $queue->getSize(), "Queue size is correct ($desc)" );
-		$this->assertEquals( 0, $queue->getAcquiredCount(), "No jobs active ($desc)" );
+		$this->assertSame( 0, $queue->getAcquiredCount(), "No jobs active ($desc)" );
 
 		$dupcount = 0;
 		$jobs = [];
@@ -314,8 +314,8 @@ class JobQueueTest extends MediaWikiTestCase {
 		$this->assertTrue( $queue->isEmpty(), "Queue is empty ($desc)" );
 
 		$queue->flushCaches();
-		$this->assertEquals( 0, $queue->getSize(), "Queue is empty ($desc)" );
-		$this->assertEquals( 0, $queue->getAcquiredCount(), "Queue is empty ($desc)" );
+		$this->assertSame( 0, $queue->getSize(), "Queue is empty ($desc)" );
+		$this->assertSame( 0, $queue->getAcquiredCount(), "Queue is empty ($desc)" );
 
 		for ( $i = 0; $i < 10; ++$i ) {
 			$this->assertNull( $queue->push( $this->newJob( $i ) ), "Push worked ($desc)" );
@@ -332,8 +332,8 @@ class JobQueueTest extends MediaWikiTestCase {
 		$this->assertFalse( $queue->pop(), "Queue is not empty ($desc)" );
 
 		$queue->flushCaches();
-		$this->assertEquals( 0, $queue->getSize(), "Queue is empty ($desc)" );
-		$this->assertEquals( 0, $queue->getAcquiredCount(), "No jobs active ($desc)" );
+		$this->assertSame( 0, $queue->getSize(), "Queue is empty ($desc)" );
+		$this->assertSame( 0, $queue->getAcquiredCount(), "No jobs active ($desc)" );
 	}
 
 	/**

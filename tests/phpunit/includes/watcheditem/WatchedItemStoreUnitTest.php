@@ -1180,7 +1180,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$this->assertInstanceOf( WatchedItem::class, $watchedItem );
 		$this->assertEquals( 1, $watchedItem->getUser()->getId() );
 		$this->assertEquals( 'SomeDbKey', $watchedItem->getLinkTarget()->getDBkey() );
-		$this->assertEquals( 0, $watchedItem->getLinkTarget()->getNamespace() );
+		$this->assertSame( 0, $watchedItem->getLinkTarget()->getNamespace() );
 	}
 
 	public function testLoadWatchedItem_noItem() {
@@ -1382,7 +1382,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$this->assertInstanceOf( WatchedItem::class, $watchedItem );
 		$this->assertEquals( 1, $watchedItem->getUser()->getId() );
 		$this->assertEquals( 'SomeDbKey', $watchedItem->getLinkTarget()->getDBkey() );
-		$this->assertEquals( 0, $watchedItem->getLinkTarget()->getNamespace() );
+		$this->assertSame( 0, $watchedItem->getLinkTarget()->getNamespace() );
 	}
 
 	public function testGetWatchedItem_cachedItem() {

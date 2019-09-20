@@ -282,7 +282,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 			[ 'ir_ipb_id' => $block->getId() ]
 		);
 
-		$this->assertEquals( 0, $result->numRows() );
+		$this->assertSame( 0, $result->numRows() );
 	}
 
 	/**

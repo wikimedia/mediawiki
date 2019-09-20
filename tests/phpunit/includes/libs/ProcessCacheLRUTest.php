@@ -16,7 +16,7 @@ class ProcessCacheLRUTest extends PHPUnit\Framework\TestCase {
 	 * Compare against an array so we get the cache content difference.
 	 */
 	protected function assertCacheEmpty( $cache, $msg = 'Cache should be empty' ) {
-		$this->assertEquals( 0, $cache->getEntriesCount(), $msg );
+		$this->assertSame( 0, $cache->getEntriesCount(), $msg );
 	}
 
 	/**

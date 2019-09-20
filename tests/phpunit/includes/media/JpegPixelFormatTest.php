@@ -54,7 +54,7 @@ class JpegPixelFormatTest extends MediaWikiMediaTestCase {
 			'%[jpeg:sampling-factor]',
 			$path
 		)->execute();
-		$this->assertEquals( 0,
+		$this->assertSame( 0,
 			$result->getExitCode(),
 			"ImageMagick's identify command should return success"
 		);

@@ -1062,7 +1062,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 
 		$this->db->endAtomic( __METHOD__ ); // run deferred updates
 
-		$this->assertEquals( 0, DeferredUpdates::pendingUpdatesCount(), 'No pending updates' );
+		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount(), 'No pending updates' );
 	}
 
 	/**
@@ -1095,7 +1095,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 
 		$this->db->endAtomic( __METHOD__ ); // run deferred updates
 
-		$this->assertEquals( 0, DeferredUpdates::pendingUpdatesCount(), 'No pending updates' );
+		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount(), 'No pending updates' );
 		$this->assertNotFalse( $pcache->get( $page, $updater->getCanonicalParserOptions() ) );
 	}
 
