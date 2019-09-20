@@ -39,16 +39,8 @@ exports.config = {
 	// Sauce Labs
 	// ======
 	// See http://webdriver.io/guide/services/sauce.html
-	// and https://docs.saucelabs.com/reference/platforms-configurator
-	services: [ 'sauce' ],
-	user: process.env.SAUCE_USERNAME,
-	key: process.env.SAUCE_ACCESS_KEY,
-
-	// Default timeout in milliseconds for Selenium Grid requests
-	connectionRetryTimeout: 90 * 1000,
-
-	// Default request retries count
-	connectionRetryCount: 3,
+	// and https://github.com/bermi/sauce-connect-launcher#advanced-usage
+	services: process.env.SAUCE_ACCESS_KEY ? [ 'sauce' ] : [],
 
 	// ==================
 	// Test Files
