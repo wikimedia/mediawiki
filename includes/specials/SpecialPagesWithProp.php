@@ -40,7 +40,7 @@ class SpecialPagesWithProp extends QueryPage {
 	private $existingPropNames = null;
 
 	/**
-	 * @var string|null
+	 * @var int|null
 	 */
 	private $ns;
 
@@ -69,6 +69,7 @@ class SpecialPagesWithProp extends QueryPage {
 
 		$request = $this->getRequest();
 		$propname = $request->getVal( 'propname', $par );
+		$this->ns = $request->getIntOrNull( 'namespace' );
 		$this->reverse = $request->getBool( 'reverse' );
 		$this->sortByValue = $request->getBool( 'sortbyvalue' );
 
@@ -87,8 +88,8 @@ class SpecialPagesWithProp extends QueryPage {
 				'type' => 'namespaceselect',
 				'name' => 'namespace',
 				'label-message' => 'namespace',
-				'all' => null,
-				'default' => null,
+				'all' => '',
+				'default' => $this->ns,
 			],
 			'reverse' => [
 				'type' => 'check',
@@ -120,7 +121,6 @@ class SpecialPagesWithProp extends QueryPage {
 
 	public function onSubmit( $data, $form ) {
 		$this->propName = $data['propname'];
-		$this->ns = $data['namespace'];
 		parent::execute( $data['propname'] );
 	}
 
@@ -167,7 +167,7 @@ class SpecialPagesWithProp extends QueryPage {
 			'options' => []
 		];
 
-		if ( $this->ns && isset( $this->ns ) ) {
+		if ( $this->ns !== null ) {
 			$query['conds']['page_namespace'] = $this->ns;
 		}
 

@@ -455,12 +455,14 @@ class BlockManager {
 						// TODO: Improve on simply tracking the first trackable block (T225654)
 						foreach ( $block->getOriginalBlocks() as $originalBlock ) {
 							if ( $this->shouldTrackBlockWithCookie( $originalBlock, $isAnon ) ) {
+								'@phan-var DatabaseBlock $originalBlock';
 								$this->setBlockCookie( $originalBlock, $response );
 								return;
 							}
 						}
 					} else {
 						if ( $this->shouldTrackBlockWithCookie( $block, $isAnon ) ) {
+							'@phan-var DatabaseBlock $block';
 							$this->setBlockCookie( $block, $response );
 						}
 					}
