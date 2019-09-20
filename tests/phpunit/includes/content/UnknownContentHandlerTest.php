@@ -49,7 +49,7 @@ class UnknownContentHandlerTest extends MediaWikiLangTestCase {
 		$content = $handler->makeEmptyContent();
 
 		$this->assertTrue( $content->isEmpty() );
-		$this->assertEquals( '', $content->getData() );
+		$this->assertSame( '', $content->getData() );
 	}
 
 	public static function dataIsSupportedFormat() {

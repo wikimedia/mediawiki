@@ -139,7 +139,7 @@ class UnknownContentTest extends MediaWikiLangTestCase {
 	public function testGetWikitextForTransclusion() {
 		$content = $this->newContent( 'hello world.' );
 
-		$this->assertEquals( '', $content->getWikitextForTransclusion() );
+		$this->assertFalse( $content->getWikitextForTransclusion() );
 	}
 
 	/**

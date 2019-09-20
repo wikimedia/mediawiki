@@ -222,7 +222,7 @@ class SiteTest extends MediaWikiTestCase {
 		$path = '//acme.com/'; // protocol-relative URL
 		$site->setPath( $type, $path );
 
-		$this->assertEquals( '', $site->getProtocol() );
+		$this->assertSame( '', $site->getProtocol() );
 	}
 
 	public static function provideGetPageUrl() {

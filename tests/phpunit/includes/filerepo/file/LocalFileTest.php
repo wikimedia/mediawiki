@@ -52,7 +52,7 @@ class LocalFileTest extends MediaWikiTestCase {
 	 * @covers File::getHashPath
 	 */
 	public function testGetHashPath() {
-		$this->assertEquals( '', $this->file_hl0->getHashPath() );
+		$this->assertSame( '', $this->file_hl0->getHashPath() );
 		$this->assertEquals( 'a/a2/', $this->file_hl2->getHashPath() );
 		$this->assertEquals( 'c/c4/', $this->file_lc->getHashPath() );
 	}
