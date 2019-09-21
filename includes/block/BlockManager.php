@@ -28,6 +28,7 @@ use LogicException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserIdentity;
+use Message;
 use MWCryptHash;
 use Psr\Log\LoggerInterface;
 use User;
@@ -158,7 +159,7 @@ class BlockManager {
 				$block = new CompositeBlock( [
 					'address' => $ip,
 					'byText' => 'MediaWiki default',
-					'reason' => wfMessage( 'blockedtext-composite-reason' )->plain(),
+					'reason' => new Message( 'blockedtext-composite-reason' ),
 					'originalBlocks' => $blocks,
 				] );
 			}
@@ -202,14 +203,14 @@ class BlockManager {
 			if ( $this->isLocallyBlockedProxy( $ip ) ) {
 				$blocks[] = new SystemBlock( [
 					'byText' => wfMessage( 'proxyblocker' )->text(),
-					'reason' => wfMessage( 'proxyblockreason' )->plain(),
+					'reason' => new Message( 'proxyblockreason' ),
 					'address' => $ip,
 					'systemBlock' => 'proxy',
 				] );
 			} elseif ( $isAnon && $this->isDnsBlacklisted( $ip ) ) {
 				$blocks[] = new SystemBlock( [
 					'byText' => wfMessage( 'sorbs' )->text(),
-					'reason' => wfMessage( 'sorbsreason' )->plain(),
+					'reason' => new Message( 'sorbsreason' ),
 					'address' => $ip,
 					'systemBlock' => 'dnsbl',
 				] );
@@ -221,7 +222,7 @@ class BlockManager {
 			$blocks[] = new SystemBlock( [
 				'address' => $ip,
 				'byText' => 'MediaWiki default',
-				'reason' => wfMessage( 'softblockrangesreason', $ip )->plain(),
+				'reason' => new Message( 'softblockrangesreason', [ $ip ] ),
 				'anonOnly' => true,
 				'systemBlock' => 'wgSoftBlockRanges',
 			] );
