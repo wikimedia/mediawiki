@@ -12,6 +12,9 @@ THIS IS NOT A RELEASE YET
 * (T200088) Remove title protection correctly for undeletions and imports.
 * Add helper for HTTPFileStreamer header syntax.
 * (T118799) Fix XMP parser errors due to trailing nullchar.
+* (T233119) Improve documentation for the MinimumPasswordLengthToLogin policy.
+* Cache redirects from Special:Redirect.
+* (T231386) dispatchUser() should use a 302 http status code.
 
 == MediaWiki 1.32.3 ==
 
