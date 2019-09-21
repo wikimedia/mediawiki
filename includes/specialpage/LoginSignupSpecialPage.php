@@ -441,7 +441,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 		if ( $extraMessages ) {
 			$extraMessages = Status::wrap( $extraMessages );
-			$out->addWikiTextAsInterface( $extraMessages->getWikiText() );
+			$out->addWikiTextAsInterface(
+				$extraMessages->getWikiText( false, false, $this->getLanguage() )
+			);
 		}
 
 		$out->addHTML( $injected_html );

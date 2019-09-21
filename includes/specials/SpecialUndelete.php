@@ -1216,7 +1216,8 @@ class SpecialUndelete extends SpecialPage {
 				'<div id="mw-error-cannotundelete">' .
 				$status->getWikiText(
 					'cannotundelete',
-					'cannotundelete'
+					'cannotundelete',
+					$this->getLanguage()
 				) . '</div>'
 			);
 		}
@@ -1228,7 +1229,8 @@ class SpecialUndelete extends SpecialPage {
 				'error',
 				$status->getWikiText(
 					'undelete-error-short',
-					'undelete-error-long'
+					'undelete-error-long',
+					$this->getLanguage()
 				)
 			);
 		}

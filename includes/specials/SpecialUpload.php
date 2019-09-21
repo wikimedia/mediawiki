@@ -488,7 +488,9 @@ class SpecialUpload extends SpecialPage {
 		// Fetch the file if required
 		$status = $this->mUpload->fetchFile();
 		if ( !$status->isOK() ) {
-			$this->showUploadError( $this->getOutput()->parseAsInterface( $status->getWikiText() ) );
+			$this->showUploadError( $this->getOutput()->parseAsInterface(
+				$status->getWikiText( false, false, $this->getLanguage() )
+			) );
 
 			return;
 		}
@@ -559,7 +561,7 @@ class SpecialUpload extends SpecialPage {
 				$changeTags, $this->getUser() );
 			if ( !$changeTagsStatus->isOK() ) {
 				$this->showUploadError( $this->getOutput()->parseAsInterface(
-					$changeTagsStatus->getWikiText()
+					$changeTagsStatus->getWikiText( false, false, $this->getLanguage() )
 				) );
 
 				return;
@@ -576,7 +578,9 @@ class SpecialUpload extends SpecialPage {
 
 		if ( !$status->isGood() ) {
 			$this->showRecoverableUploadError(
-				$this->getOutput()->parseAsInterface( $status->getWikiText() )
+				$this->getOutput()->parseAsInterface(
+					$status->getWikiText( false, false, $this->getLanguage() )
+				)
 			);
 
 			return;

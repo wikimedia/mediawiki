@@ -187,7 +187,8 @@ class SpecialImport extends SpecialPage {
 		$out = $this->getOutput();
 		if ( !$source->isGood() ) {
 			$out->wrapWikiTextAsInterface( 'error',
-				$this->msg( 'importfailed', $source->getWikiText() )->plain()
+				$this->msg( 'importfailed', $source->getWikiText( false, false, $this->getLanguage() ) )
+					->plain()
 			);
 		} else {
 			$importer = new WikiImporter( $source->value, $this->getConfig() );
@@ -200,7 +201,7 @@ class SpecialImport extends SpecialPage {
 						"<div class=\"error\">\n$1\n</div>",
 						[
 							'import-options-wrong',
-							$statusRootPage->getWikiText(),
+							$statusRootPage->getWikiText( false, false, $this->getLanguage() ),
 							count( $statusRootPage->getErrorsArray() )
 						]
 					);
@@ -239,7 +240,7 @@ class SpecialImport extends SpecialPage {
 				# Zero revisions
 				$out->wrapWikiMsg(
 					"<div class=\"error\">\n$1\n</div>",
-					[ 'importfailed', $result->getWikiText() ]
+					[ 'importfailed', $result->getWikiText( false, false, $this->getLanguage() ) ]
 				);
 			} else {
 				# Success!
