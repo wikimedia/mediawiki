@@ -1,6 +1,6 @@
 == MediaWiki 1.31.4 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.31 branch.
 
 === Changes since MediaWiki 1.31.3 ===
 * (T207100) Updated LanguageTr for dotted and dotless I in PHP 7.3.
@@ -14,6 +14,10 @@ THIS IS NOT A RELEASE YET
 * (T202183) Give more specific error messages on Special:Redirect.
 * Cache redirects from Special:Redirect.
 * (T231386) dispatchUser() should use a 302 http status code.
+* (T227662) Split down patch-comment-table.sql and patch-actor-table.sql into
+  separate files to help allieviate potential migration problems.
+* Make SQLite's patch-add-3d.sql a no-op to prevent clobbering other database
+  updates.
 
 == MediaWiki 1.31.3 ==
 
