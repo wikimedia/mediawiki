@@ -1,6 +1,6 @@
 == MediaWiki 1.33.1 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.33 branch.
 
 === Changes since MediaWiki 1.33.0 ===
 * A change that kept people with a database table prefix that didn't
@@ -23,6 +23,8 @@ THIS IS NOT A RELEASE YET
   PostgreSQL.
 * (T230487) Handle changed defaults in Argon2PasswordTest::testPartialConfig().
 * (T233119) Improve documentation for the MinimumPasswordLengthToLogin policy.
+* (T227662) Split down patch-comment-table.sql and patch-actor-table.sql into
+  separate files to help allieviate potential migration problems.
 
 == MediaWiki 1.33 ==
 
