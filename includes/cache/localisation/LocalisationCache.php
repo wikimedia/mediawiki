@@ -519,16 +519,7 @@ class LocalisationCache {
 	 * @return array
 	 */
 	protected function readPHPFile( $_fileName, $_fileType ) {
-		// Disable APC caching
-		Wikimedia\suppressWarnings();
-		$_apcEnabled = ini_set( 'apc.cache_by_default', '0' );
-		Wikimedia\restoreWarnings();
-
 		include $_fileName;
-
-		Wikimedia\suppressWarnings();
-		ini_set( 'apc.cache_by_default', $_apcEnabled );
-		Wikimedia\restoreWarnings();
 
 		$data = [];
 		if ( $_fileType == 'core' || $_fileType == 'extension' ) {
