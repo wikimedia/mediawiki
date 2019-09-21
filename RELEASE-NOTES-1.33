@@ -21,6 +21,8 @@ THIS IS NOT A RELEASE YET
 * (T118799) Fix XMP parser errors due to trailing nullchar.
 * (T230618) Fix GROUP BY in ActiveUsersPager and RecentChangesUpdateJob for
   PostgreSQL.
+* (T230487) Handle changed defaults in Argon2PasswordTest::testPartialConfig().
+* (T233119) Improve documentation for the MinimumPasswordLengthToLogin policy.
 
 == MediaWiki 1.33 ==
 
