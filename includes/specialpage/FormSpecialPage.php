@@ -209,7 +209,12 @@ abstract class FormSpecialPage extends SpecialPage {
 		if ( $this->requiresUnblock() ) {
 			$block = $user->getBlock();
 			if ( $block && $block->isSitewide() ) {
-				throw new UserBlockedError( $block );
+				throw new UserBlockedError(
+					$block,
+					$user,
+					$this->getLanguage(),
+					$this->getRequest()->getIP()
+				);
 			}
 		}
 

@@ -1727,7 +1727,12 @@ class EditPage {
 				return false;
 
 			case self::AS_BLOCKED_PAGE_FOR_USER:
-				throw new UserBlockedError( $this->context->getUser()->getBlock() );
+				throw new UserBlockedError(
+					$this->context->getUser()->getBlock(),
+					$this->context->getUser(),
+					$this->context->getLanguage(),
+					$request->getIP()
+				);
 
 			case self::AS_IMAGE_REDIRECT_ANON:
 			case self::AS_IMAGE_REDIRECT_LOGGED:

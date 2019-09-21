@@ -30,15 +30,25 @@ use MediaWiki\MediaWikiServices;
 class UserBlockedError extends ErrorPageError {
 	/**
 	 * @param AbstractBlock $block
+	 * @param User|null $user
+	 * @param Language|null $language
+	 * @param string|null $ip
 	 */
-	public function __construct( AbstractBlock $block ) {
-		// @todo FIXME: Implement a more proper way to get context here
-		// such as passing the user, language and IP from the caller.
-		$context = RequestContext::getMain();
-		$user = $context->getUser();
-		$language = $context->getLanguage();
-		$ip = $context->getRequest()->getIp();
+	public function __construct(
+		AbstractBlock $block,
+		User $user = null,
+		Language $language = null,
+		$ip = null
+	) {
+		if ( $user === null || $language === null || $ip === null ) {
+			// If any of these are not passed in, use the global context
+			$context = RequestContext::getMain();
+			$user = $context->getUser();
+			$language = $context->getLanguage();
+			$ip = $context->getRequest()->getIp();
+		}
 
+		// @todo This should be passed in via the constructor
 		$message = MediaWikiServices::getInstance()->getBlockErrorFormatter()
 			->getMessage( $block, $user, $language, $ip );
 		parent::__construct( 'blockedtitle', $message );
