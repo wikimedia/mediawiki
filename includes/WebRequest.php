@@ -137,6 +137,7 @@ class WebRequest {
 	 * inside a rewrite path.
 	 *
 	 * @return array Any query arguments found in path matches.
+	 * @throws FatalError If invalid routes are configured (T48998)
 	 */
 	public static function getPathInfo( $want = 'all' ) {
 		// PATH_INFO is mangled due to https://bugs.php.net/bug.php?id=31892
@@ -179,6 +180,7 @@ class WebRequest {
 
 			global $wgArticlePath;
 			if ( $wgArticlePath ) {
+				$router->validateRoute( $wgArticlePath, 'wgArticlePath' );
 				$router->add( $wgArticlePath );
 			}
 
@@ -190,6 +192,7 @@ class WebRequest {
 
 			global $wgVariantArticlePath;
 			if ( $wgVariantArticlePath ) {
+				$router->validateRoute( $wgVariantArticlePath, 'wgVariantArticlePath' );
 				$router->add( $wgVariantArticlePath,
 					[ 'variant' => '$2' ],
 					[ '$2' => MediaWikiServices::getInstance()->getContentLanguage()->

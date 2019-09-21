@@ -166,6 +166,25 @@ class PathRouter {
 	}
 
 	/**
+	 * @internal For use by WebRequest::getPathInfo
+	 * @param string $path To be given to add()
+	 * @param string $varName Full name of configuration variable for use
+	 *  in error message and url to mediawiki.org Manual (e.g. "wgExample").
+	 * @throws FatalError If path is invalid
+	 */
+	public function validateRoute( $path, $varName ) {
+		if ( $path && !preg_match( '/^(https?:\/\/|\/)/', $path ) ) {
+			// T48998: Bail out early if path is non-absolute
+			throw new FatalError(
+				"If you use a relative URL for \$$varName, it must start " .
+				'with a slash (<code>/</code>).<br><br>See ' .
+				"<a href=\"https://www.mediawiki.org/wiki/Manual:\$$varName\">" .
+				"https://www.mediawiki.org/wiki/Manual:\$$varName</a>."
+			);
+		}
+	}
+
+	/**
 	 * Add a new path pattern to the path router with the strict option on
 	 * @see self::add
 	 * @param string|array $path

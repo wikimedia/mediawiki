@@ -322,4 +322,27 @@ class PathRouterTest extends MediaWikiUnitTestCase {
 
 		$this->assertEquals( $router->parse( $path ), $expected );
 	}
+
+	public static function provideValidateRoute() {
+		yield [ 'https://test/wiki/$1' ];
+		yield [ 'http://test/wiki/$1' ];
+		yield [ '//test/wiki/$1' ];
+		yield [ '/w/index.php?title=$1' ];
+		yield [ '/w/index.php/$1' ];
+		yield [ '/wiki/$1' ];
+
+		// T48998
+		yield [ 'wiki/$1', false ];
+	}
+
+	/**
+	 * @dataProvider provideValidateRoute
+	 */
+	public function testValidateRoute( $path, $valid = true ) {
+		$router = new PathRouter;
+		if ( !$valid ) {
+			$this->setExpectedException( FatalError::class );
+		}
+		$this->assertNull( $router->validateRoute( $path, 'wgExample' ) );
+	}
 }
