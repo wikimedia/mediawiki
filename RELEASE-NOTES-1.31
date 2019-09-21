@@ -10,6 +10,10 @@ THIS IS NOT A RELEASE YET
   Special:Redirect.
 * Add helper for HTTPFileStreamer header syntax.
 * (T118799) Fix XMP parser errors due to trailing nullchar.
+* (T233119) Improve documentation for the MinimumPasswordLengthToLogin policy.
+* (T202183) Give more specific error messages on Special:Redirect.
+* Cache redirects from Special:Redirect.
+* (T231386) dispatchUser() should use a 302 http status code.
 
 == MediaWiki 1.31.3 ==
 
