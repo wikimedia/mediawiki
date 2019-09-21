@@ -136,6 +136,11 @@
 				.toggleClass( 'mw-collapsible-toggle-expanded', wasCollapsed );
 		}
 
+		// Toggle `aria-expanded` attribute, if requested (for default and premade togglers by default).
+		if ( options.toggleARIA ) {
+			$toggle.attr( 'aria-expanded', wasCollapsed ? 'true' : 'false' );
+		}
+
 		// Toggle the text ("Show"/"Hide") within elements tagged with mw-collapsible-text
 		if ( options.toggleText ) {
 			collapseText = options.toggleText.collapseText;
@@ -211,6 +216,7 @@
 			actionHandler = function ( e, opts ) {
 				var defaultOpts = {
 					toggleClasses: true,
+					toggleARIA: true,
 					toggleText: { collapseText: collapseText, expandText: expandText }
 				};
 				opts = $.extend( defaultOpts, options, opts );
@@ -324,6 +330,7 @@
 
 			// Attach event handlers to togglelink
 			$toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler )
+				.attr( 'aria-expanded', 'true' )
 				.prop( 'tabIndex', 0 );
 
 			$( this ).data( 'mw-collapsible', {
