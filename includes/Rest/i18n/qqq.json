@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bill Pirkle",
+			"Tim Starling"
+		]
+	},
+	"rest-prefix-mismatch": "Error message for REST API debugging, shown if $wgRestPath is incorrect or otherwise not matched. Parameters:\n* $1: The requested path.\n* $2: The configured root path ($wgRestPath).",
+	"rest-wrong-method": "Error message for REST API debugging, shown if the HTTP method is incorrect. Parameters:\n* $1: The received request method.\n* $2: A comma-separated list of allowed methods for this path.\n* $3: The number of items in the list $2",
+	"rest-no-match": "Error message for REST API debugging, shown if the path has the correct prefix but did not match any registered handler. Parameters:\n* $1: The received request path, relative to $wgRestPath.",
+	"rest-pagehistory-incompatible-params": "Error message for REST API debugging, shown if incompatible parameters are specified.",
+	"rest-pagehistory-param-range-error": "Error message for REST API debugging, shown if a revision id is provided but is out of range.",
+	"rest-pagehistory-title-nonexistent": "Error message for REST API debugging, shown if the specified title does not exist.",
+	"rest-pagehistory-revision-nonexistent": "Error message for REST API debugging, shown if the specified revision does not exist.",
+	"rest-pagehistory-timestamp-error": "Error message for REST API debugging, shown if an error occurred loading the timestamp for the specified revision.",
+	"rest-pagehistorycount-title-nonexistent": "Error message for REST API debugging, shown if the specified title does not exist.",
+	"rest-pagehistory-title-permission-denied": "Error message for REST API debugging, shown if the user doesn't have read access to the specified title. Parameters:\n* $1 The page title",
+	"rest-pagehistorycount-type-unrecognized": "Error message for REST API debugging, shown if the specified type is not valid.",
+	"rest-revision-nonexistent": "Error message for REST API debugging, shown when the revision does not exist. Parameters:\n* $1: the specified revision.",
+	"rest-revision-permission-denied": "Error message for REST API debugging, shown when the user doesn't have access to the specified revision. Parameters:\n* $1: the specified revision.",
+	"rest-compare-page-mismatch": "Error message for REST API debugging, shown when the revisions belong to different pages.",
+	"rest-compare-permission-denied": "Error message for REST API debugging, shown when the user doesn't have access to the specified revisions.",
+	"rest-compare-nonexistent": "Error message for REST API debugging, shown when one of the revisions does not exist. Parameters:\n* $1: The parameter name, either \"from\" or \"to\".",
+	"rest-compare-inaccessible": "Error message for REST API debugging, shown when the text of one of the revisions has been deleted or suppressed so that only privileged users can view it. Parameters:\n* $1: The parameter name, either \"from\" or \"to\".",
+	"rest-compare-wrong-content": "Error message for REST API debugging, shown when Content::convert() fails to convert the revision to text. Parameters:\n* $1: The slot role name, usually \"main\".\n* $2: The parameter name, either \"from\" or \"to\".",
+	"rest-compare-wikidiff2": "Error message for REST API debugging."
+}

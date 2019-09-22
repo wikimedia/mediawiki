@@ -826,6 +826,7 @@ class LocalisationCache {
 			'core' => "$IP/languages/i18n",
 			'exif' => "$IP/languages/i18n/exif",
 			'api' => "$IP/includes/api/i18n",
+			'rest' => "$IP/includes/Rest/i18n",
 			'oojs-ui' => "$IP/resources/lib/ooui/i18n",
 		] + $this->options->get( 'MessagesDirs' );
 	}
