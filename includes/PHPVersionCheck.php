@@ -258,7 +258,7 @@ HTML;
 	<head>
 		<meta charset="UTF-8" />
 		<title>MediaWiki {$this->mwVersion}</title>
-		<style media='screen'>
+		<style media="screen">
 			body {
 				color: #000;
 				background-color: #fff;
@@ -266,7 +266,7 @@ HTML;
 				padding: 2em;
 				text-align: center;
 			}
-			p, img, h1, h2, ul  {
+			p, img, h1, h2, ul {
 				text-align: left;
 				margin: 0.5em 0 1em;
 			}
@@ -279,9 +279,9 @@ HTML;
 		</style>
 	</head>
 	<body>
-		<img src="{$encLogo}" alt='The MediaWiki logo' />
+		<img src="{$encLogo}" alt="The MediaWiki logo" />
 		<h1>MediaWiki {$this->mwVersion} internal error</h1>
-		<div class='error'>
+		<div class="error">
 		<p>
 			{$shortHtml}
 		</p>
