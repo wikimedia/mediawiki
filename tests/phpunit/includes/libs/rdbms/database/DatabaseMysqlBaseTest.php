@@ -23,6 +23,8 @@
  * @copyright © 2013 Wikimedia Foundation and contributors
  */
 
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\MySQLMasterPos;
 use Wikimedia\TestingAccessWrapper;
 
@@ -33,7 +35,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideDiapers
-	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::addIdentifierQuotes
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::addIdentifierQuotes
 	 */
 	public function testAddIdentifierQuotes( $expected, $in ) {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
@@ -41,6 +43,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 			->setMethods( null )
 			->getMock();
 
+		/** @var IDatabase $db */
 		$quoted = $db->addIdentifierQuotes( $in );
 		$this->assertEquals( $expected, $quoted );
 	}
@@ -97,7 +100,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		];
 	}
 
-	private function getMockForViews() {
+	private function getMockForViews() : IMaintainableDatabase {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
 			->setMethods( [ 'fetchRow', 'query', 'getDBname' ] )
@@ -116,7 +119,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::listViews
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::listViews
 	 */
 	public function testListviews() {
 		$db = $this->getMockForViews();
@@ -136,7 +139,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Wikimedia\Rdbms\MySQLMasterPos
+	 * @covers \Wikimedia\Rdbms\MySQLMasterPos
 	 */
 	public function testBinLogName() {
 		$pos = new MySQLMasterPos( "db1052.2424/4643", 1 );
@@ -148,7 +151,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideComparePositions
-	 * @covers Wikimedia\Rdbms\MySQLMasterPos
+	 * @covers \Wikimedia\Rdbms\MySQLMasterPos
 	 */
 	public function testHasReached(
 		MySQLMasterPos $lowerPos, MySQLMasterPos $higherPos, $match, $hetero
@@ -275,7 +278,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideChannelPositions
-	 * @covers Wikimedia\Rdbms\MySQLMasterPos
+	 * @covers \Wikimedia\Rdbms\MySQLMasterPos
 	 */
 	public function testChannelsMatch( MySQLMasterPos $pos1, MySQLMasterPos $pos2, $matches ) {
 		$this->assertEquals( $matches, $pos1->channelsMatch( $pos2 ) );
@@ -314,7 +317,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideCommonDomainGTIDs
-	 * @covers Wikimedia\Rdbms\MySQLMasterPos
+	 * @covers \Wikimedia\Rdbms\MySQLMasterPos
 	 */
 	public function testCommonGtidDomains( MySQLMasterPos $pos, MySQLMasterPos $ref, $gtids ) {
 		$this->assertEquals( $gtids, MySQLMasterPos::getCommonDomainGTIDs( $pos, $ref ) );
@@ -346,8 +349,8 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideLagAmounts
-	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::getLag
-	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::getLagFromPtHeartbeat
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::getLag
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::getLagFromPtHeartbeat
 	 */
 	public function testPtHeartbeat( $lag ) {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
@@ -378,6 +381,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 			->with( [ 'server_id' => 172 ] )
 			->willReturn( [ $ptTimeISO, $now ] );
 
+		/** @var IDatabase $db */
 		$db->setLBInfo( 'clusterMasterHost', 'db1052' );
 		$lagEst = $db->getLag();
 
@@ -400,9 +404,9 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideGtidData
-	 * @covers Wikimedia\Rdbms\MySQLMasterPos
-	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::getReplicaPos
-	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::getMasterPos
+	 * @covers \Wikimedia\Rdbms\MySQLMasterPos
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::getReplicaPos
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::getMasterPos
 	 */
 	public function testServerGtidTable( $gtable, $rBLtable, $mBLtable, $rGTIDs, $mGTIDs ) {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
@@ -432,6 +436,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		$db->method( 'getServerId' )->willReturn( 1 );
 		$db->method( 'getServerUUID' )->willReturn( '2E11FA47-71CA-11E1-9E33-C80AA9429562' );
 
+		/** @var DatabaseMysqlBase $db */
 		if ( is_array( $rGTIDs ) ) {
 			$this->assertEquals( $rGTIDs, $db->getReplicaPos()->getGTIDs() );
 		} else {
@@ -553,7 +558,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Wikimedia\Rdbms\MySQLMasterPos
+	 * @covers \Wikimedia\Rdbms\MySQLMasterPos
 	 */
 	public function testSerialize() {
 		$pos = new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:99', 53636363 );
@@ -568,7 +573,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::isInsertSelectSafe
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::isInsertSelectSafe
 	 * @dataProvider provideInsertSelectCases
 	 */
 	public function testInsertSelectIsSafe( $insertOpts, $selectOpts, $row, $safe ) {
@@ -579,6 +584,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		$db->method( 'getReplicationSafetyInfo' )->willReturn( (object)$row );
 		$dbw = TestingAccessWrapper::newFromObject( $db );
 
+		/** @var Database $dbw */
 		$this->assertEquals( $safe, $dbw->isInsertSelectSafe( $insertOpts, $selectOpts ) );
 	}
 
@@ -668,12 +674,14 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 			->disableOriginalConstructor()
 			->setMethods( null )
 			->getMock();
+
+		/** @var IDatabase $db */
 		$output = $db->buildIntegerCast( 'fieldName' );
 		$this->assertSame( 'CAST( fieldName AS SIGNED )', $output );
 	}
 
 	/**
-	 * @covers Wikimedia\Rdbms\Database::setIndexAliases
+	 * @covers \Wikimedia\Rdbms\Database::setIndexAliases
 	 */
 	public function testIndexAliases() {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
@@ -686,6 +694,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 			}
 		);
 
+		/** @var IDatabase $db */
 		$db->setIndexAliases( [ 'a_b_idx' => 'a_c_idx' ] );
 		$sql = $db->selectSQLText(
 			'zend', 'field', [ 'a' => 'x' ], __METHOD__, [ 'USE INDEX' => 'a_b_idx' ] );
@@ -706,7 +715,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Wikimedia\Rdbms\Database::setTableAliases
+	 * @covers \Wikimedia\Rdbms\Database::setTableAliases
 	 */
 	public function testTableAliases() {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
@@ -719,6 +728,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 			}
 		);
 
+		/** @var IDatabase $db */
 		$db->setTableAliases( [
 			'meow' => [ 'dbname' => 'feline', 'schema' => null, 'prefix' => 'cat_' ]
 		] );
