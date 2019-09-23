@@ -969,13 +969,20 @@
 					try {
 						sortDependencies( modules[ i ], resolved );
 					} catch ( err ) {
-						// This module is unknown or has unknown dependencies.
-						// Undo any incomplete resolutions made and keep going.
+						// This module is not currently known, or has invalid dependencies.
+						// Most likely due to a cached reference after the module was
+						// removed, otherwise made redundant, or omitted from the registry
+						// by the ResourceLoader "target" system.
 						resolved = saved;
-						mw.trackError( 'resourceloader.exception', {
-							exception: err,
-							source: 'resolve'
-						} );
+						mw.log.warn( 'Skipped unresolvable module ' + modules[ i ] );
+						if ( modules[ i ] in registry ) {
+							// If the module was known but had unknown or circular dependencies,
+							// also track it as an error.
+							mw.trackError( 'resourceloader.exception', {
+								exception: err,
+								source: 'resolve'
+							} );
+						}
 					}
 				}
 				return resolved;
