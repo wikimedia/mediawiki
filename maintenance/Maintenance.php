@@ -587,7 +587,7 @@ abstract class Maintenance {
 			"server name detection may fail in command line scripts.", false, true );
 		$this->addOption( 'profiler', 'Profiler output format (usually "text")', false, true );
 		// This is named --mwdebug, because --debug would conflict in the phpunit.php CLI script.
-		$this->addOption( 'mwdebug', 'Enable built-in MediaWiki development settings', false, true );
+		$this->addOption( 'mwdebug', 'Enable built-in MediaWiki development settings', false, false );
 
 		# Save generic options to display them separately in help
 		$this->mGenericParameters = $this->mParams;
