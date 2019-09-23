@@ -9095,6 +9095,13 @@ $wgSpecialSearchFormOptions = [];
 $wgNativeImageLazyLoading = false;
 
 /**
+ * Option to whether serve the main page as the domain root
+ * @since 1.34
+ * @var bool
+ */
+$wgMainPageIsDomainRoot = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
