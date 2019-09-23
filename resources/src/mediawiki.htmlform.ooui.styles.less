@@ -24,6 +24,10 @@
 		padding: @ooui-spacing-small;
 		// Make space for toggle icon defined below.
 		padding-left: 24 / @ooui-font-size-browser / @ooui-font-size-base;
+
+		.oo-ui-labelElement-label {
+			margin-bottom: 0;
+		}
 	}
 
 	// Trigger only when collapsible & JS is available via `.mw-collapsed`.
@@ -31,10 +35,6 @@
 		min-height: 30px;
 		// Negative margin to match the reduced distance on the top caused by the previous rule.
 		margin-bottom: -@ooui-spacing-medium;
-
-		.oo-ui-labelElement-label {
-			margin-bottom: 0;
-		}
 	}
 }
 
