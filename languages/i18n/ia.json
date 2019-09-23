@@ -64,6 +64,7 @@
 	"tog-useeditwarning": "Advertir me quando io quita un pagina de modification sin publicar le cambiamentos",
 	"tog-prefershttps": "Sempre usar un connexion secur durante session aperte",
 	"tog-showrollbackconfirmation": "Monstrar un demanda de confirmation al cliccar sur un ligamine de revocation",
+	"tog-requireemail": "Requirer e-mail pro reinitialisar contrasigno",
 	"underline-always": "Sempre",
 	"underline-never": "Nunquam",
 	"underline-default": "Como definite per tu navigator o apparentia",
@@ -1083,6 +1084,7 @@
 	"prefs-help-email": "Le adresse de e-mail es optional, ma es necessari pro le reinitialisation de tu contrasigno, in caso que tu lo oblida.",
 	"prefs-help-email-others": "Tu pote etiam optar pro permitter que altere personas te contacta via tu pagina de usator o de discussion, sin necessitate de revelar tu identitate.",
 	"prefs-help-email-required": "Un adresse de e-mail es obligatori.",
+	"prefs-help-requireemail": "Si es marcate, inviar messages pro reinitialisar contrasigno solmente si le persona reinitialisante forni non solmente le nomine de usator ma etiam le adresse de e-mail pro iste conto.",
 	"prefs-info": "Informationes de base",
 	"prefs-i18n": "Internationalisation",
 	"prefs-signature": "Signatura",
@@ -1801,6 +1803,7 @@
 	"listfiles-userdoesnotexist": "Le conto de usator \"$1\" non es registrate.",
 	"imgfile": "file",
 	"listfiles": "Lista de files",
+	"listfiles_subpage": "Files incargate per $1",
 	"listfiles_thumb": "Miniatura",
 	"listfiles_date": "Data",
 	"listfiles_name": "Nomine",
@@ -2534,6 +2537,7 @@
 	"ipblocklist-legend": "Cercar un usator blocate",
 	"blocklist-userblocks": "Celar blocadas de conto",
 	"blocklist-tempblocks": "Celar blocadas temporari",
+	"blocklist-indefblocks": "Celar blocadas infinite",
 	"blocklist-addressblocks": "Celar blocadas de singule adresse IP",
 	"blocklist-type": "Typo:",
 	"blocklist-type-opt-all": "Totes",
@@ -3802,5 +3806,8 @@
 	"mycustomjsredirectprotected": "Tu non ha le permission de modificar iste pagina JavaScript perque illo es un redirection e non puncta a un pagina in tu spatio de usator.",
 	"easydeflate-invaliddeflate": "Le contento fornite non es correctemente comprimite",
 	"unprotected-js": "Pro motivos de securitate, non es possibile cargar codice JavaScript de paginas non protegite. Crea JavaScript solmente in le spatio de nomines \"MediaWiki:\" o como un subpagina de usator.",
-	"userlogout-continue": "Vole tu clauder le session?"
+	"userlogout-continue": "Vole tu clauder le session?",
+	"rest-prefix-mismatch": "Le cammino requestate ($1) non es intra le cammino radice del REST API ($2)",
+	"rest-wrong-method": "Le methodo del requesta ($1) non es {{PLURAL:$3|le methodo|inter le methodos}} permittite pro iste cammino ($2)",
+	"rest-no-match": "Le cammino relative requestate ($1) non corresponde a un gestor cognoscite"
 }

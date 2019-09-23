@@ -146,7 +146,8 @@
 			"ЛингвоЧел",
 			"OlegVeliky",
 			"Saimongoltinio",
-			"Wikisaurus"
+			"Wikisaurus",
+			"Katunchik"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -1940,6 +1941,7 @@
 	"listfiles-userdoesnotexist": "Учётная запись «$1» не зарегистрирована.",
 	"imgfile": "файл",
 	"listfiles": "Список файлов",
+	"listfiles_subpage": "Загрузки $1",
 	"listfiles_thumb": "Миниатюра",
 	"listfiles_date": "Дата",
 	"listfiles_name": "Имя файла",
@@ -2678,7 +2680,7 @@
 	"ipblocklist-legend": "Поиск заблокированного участника",
 	"blocklist-userblocks": "Скрыть блокировки учётных записей",
 	"blocklist-tempblocks": "Скрыть временные блокировки",
-	"blocklist-indefblocks": "Скрыть неопределённые блокировки",
+	"blocklist-indefblocks": "Скрыть бессрочные блокировки",
 	"blocklist-addressblocks": "Скрыть блокировки отдельных IP",
 	"blocklist-type": "Тип:",
 	"blocklist-type-opt-all": "Все",
@@ -4055,5 +4057,8 @@
 	"mycustomjsredirectprotected": "У вас нет прав на редактирование этой JavaScript-страницы, так как она является перенаправлением и не указывает внутрь вашего пространства участника.",
 	"easydeflate-invaliddeflate": "Предоставленное содержимое не спущено надлежащим образом",
 	"unprotected-js": "По соображениям безопасности JavaScript нельзя загружать с незащищённых страниц. Пожалуйста, создавайте скрипты только в пространстве имён MediaWiki: или как подстраницы участника.",
-	"userlogout-continue": "Вы хотите выйти?"
+	"userlogout-continue": "Вы хотите выйти?",
+	"rest-prefix-mismatch": "Запрашиваемый путь ($1) не найден внутри корневого пути REST API ($2)",
+	"rest-wrong-method": "Метод запроса ($1) не был {{{{PLURAL:$3|}}|разрешенным методом для этого пути|одним из разрешенных методов для этого пути}} ($2)",
+	"rest-no-match": "Запрошенный относительный путь ($1) не соответствует ни одному известному обработчику"
 }

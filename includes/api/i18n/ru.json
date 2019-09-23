@@ -38,7 +38,8 @@
 			"Vlad5250",
 			"Diralik",
 			"DmitTrix",
-			"Марио"
+			"Марио",
+			"Katunchik"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документация]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почтовая рассылка]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> MediaWiki API — зрелый и стабильный интерфейс, активно поддерживаемый и улучшаемый. Мы стараемся избегать ломающих изменений, однако изредка они могут быть необходимы. Подпишитесь на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом «MediaWiki-API-Error», после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Ошибки и предупреждения]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тестирование:</strong> для удобства тестирования API-запросов, см. [[Special:ApiSandbox]].</p>",
@@ -1589,6 +1590,10 @@
 	"apierror-cantoverwrite-sharedfile": "Целевой файл существует в общем репозитории и у вас нет прав перезаписать его.",
 	"apierror-cantsend": "Вы не авторизованы, ваш электронный адрес не подтверждён или у вас нет прав на отправку электронной почты другим участникам, поэтому вы не можете отправить электронное письмо.",
 	"apierror-cantundelete": "Невозможно восстановить: возможно, запрашиваемые версии не существуют или уже были восстановлены.",
+	"apierror-cantview-deleted-comment": "У вас нет разрешения на просмотр удаленных комментариев.",
+	"apierror-cantview-deleted-description": "У вас нет разрешения на просмотр описаний удаленных файлов.",
+	"apierror-cantview-deleted-metadata": "У вас нет разрешения на просмотр метаданных удаленных файлов.",
+	"apierror-cantview-deleted-revision-content": "У вас нет разрешения на просмотр содержимого удаленных редакций.",
 	"apierror-changeauth-norequest": "Попытка создать запрос правки провалилась.",
 	"apierror-chunk-too-small": "Минимальный размер кусочка — $1 {{PLURAL:$1|байт|байта|байт}}, если кусочек не является последним.",
 	"apierror-cidrtoobroad": "Диапазоны $1 CIDR, шире /$2, не разрешены.",

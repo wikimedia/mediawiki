@@ -10,7 +10,8 @@
 			"Qiyue2001",
 			"Xiaomingyan",
 			"神樂坂秀吉",
-			"予弦"
+			"予弦",
+			"Wenyuan Liu"
 		]
 	},
 	"exif-imagewidth": "宽度",
@@ -277,6 +278,12 @@
 	"exif-scenetype-1": "直接照像图片",
 	"exif-customrendered-0": "标准处理",
 	"exif-customrendered-1": "自定义处理",
+	"exif-customrendered-2": "HDR（没有保留原始信息）",
+	"exif-customrendered-3": "HDR（保留原始信息）",
+	"exif-customrendered-4": "原始（用于HDR）",
+	"exif-customrendered-6": "全景",
+	"exif-customrendered-7": "竖向 HDR",
+	"exif-customrendered-8": "竖向",
 	"exif-exposuremode-0": "自动曝光",
 	"exif-exposuremode-1": "手动曝光",
 	"exif-exposuremode-2": "自动曝光感知调节",
