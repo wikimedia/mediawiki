@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -57,6 +59,10 @@ class MigrateArchiveText extends LoggedUpdateMaintenance {
 	protected function doDBUpdates() {
 		$replaceMissing = $this->hasOption( 'replace-missing' );
 		$defaultExternalStore = $this->getConfig()->get( 'DefaultExternalStore' );
+		// @phan-suppress-next-line PhanAccessMethodInternal
+		$blobStore = MediaWikiServices::getInstance()
+			->getBlobStoreFactory()
+			->newSqlBlobStore();
 		$batchSize = $this->getBatchSize();
 
 		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
@@ -90,8 +96,9 @@ class MigrateArchiveText extends LoggedUpdateMaintenance {
 
 				// Recompress the text (and store in external storage, if
 				// applicable) if it's not already in external storage.
-				if ( !in_array( 'external', explode( ',', $row->ar_flags ), true ) ) {
-					$data = Revision::getRevisionText( $row, 'ar_' );
+				$arFlags = explode( ',', $row->ar_flags );
+				if ( !in_array( 'external', $arFlags, true ) ) {
+					$data = $blobStore->decompressData( $row->ar_text, $arFlags );
 					if ( $data !== false ) {
 						$flags = Revision::compressRevisionText( $data );
 
