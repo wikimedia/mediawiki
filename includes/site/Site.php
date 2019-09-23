@@ -354,7 +354,7 @@ class Site implements Serializable {
 
 	/**
 	 * Returns the full URL for the given page on the site.
-	 * Or false if the needed information is not known.
+	 * Or null if the needed information is not known.
 	 *
 	 * This generated URL is usually based upon the path returned by getLinkPath(),
 	 * but this is not a requirement.
@@ -365,13 +365,13 @@ class Site implements Serializable {
 	 *
 	 * @param bool|string $pageName
 	 *
-	 * @return string|bool|null
+	 * @return string|null
 	 */
 	public function getPageUrl( $pageName = false ) {
 		$url = $this->getLinkPath();
 
-		if ( $url === false ) {
-			return false;
+		if ( $url === null ) {
+			return null;
 		}
 
 		if ( $pageName !== false ) {
