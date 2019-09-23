@@ -176,13 +176,13 @@ class MediaWikiSite extends Site {
 	 *
 	 * @param string|bool $pageName Page name or false (default: false)
 	 *
-	 * @return string|bool|null
+	 * @return string|null
 	 */
 	public function getPageUrl( $pageName = false ) {
 		$url = $this->getLinkPath();
 
-		if ( $url === false ) {
-			return false;
+		if ( $url === null ) {
+			return null;
 		}
 
 		if ( $pageName !== false ) {
