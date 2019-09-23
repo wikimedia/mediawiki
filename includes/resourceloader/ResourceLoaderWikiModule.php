@@ -165,11 +165,11 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 	/**
 	 * @param string $titleText
-	 * @param ResourceLoaderContext|null $context (but passing null is deprecated)
+	 * @param ResourceLoaderContext $context
 	 * @return null|string
 	 * @since 1.32 added the $context parameter
 	 */
-	protected function getContent( $titleText, ResourceLoaderContext $context = null ) {
+	protected function getContent( $titleText, ResourceLoaderContext $context ) {
 		$title = Title::newFromText( $titleText );
 		if ( !$title ) {
 			return null; // Bad title
@@ -194,20 +194,16 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 	/**
 	 * @param Title $title
-	 * @param ResourceLoaderContext|null $context (but passing null is deprecated)
+	 * @param ResourceLoaderContext $context
 	 * @param int|null $maxRedirects Maximum number of redirects to follow. If
 	 *  null, uses $wgMaxRedirects
 	 * @return Content|null
 	 * @since 1.32 added the $context and $maxRedirects parameters
 	 */
 	protected function getContentObj(
-		Title $title, ResourceLoaderContext $context = null, $maxRedirects = null
+		Title $title, ResourceLoaderContext $context, $maxRedirects = null
 	) {
-		if ( $context === null ) {
-			wfDeprecated( __METHOD__ . ' without a ResourceLoader context', '1.32' );
-		}
-
-		$overrideCallback = $context ? $context->getContentOverrideCallback() : null;
+		$overrideCallback = $context->getContentOverrideCallback();
 		$content = $overrideCallback ? call_user_func( $overrideCallback, $title ) : null;
 		if ( $content ) {
 			if ( !$content instanceof Content ) {
