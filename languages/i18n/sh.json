@@ -1801,6 +1801,7 @@
 	"listfiles-userdoesnotexist": "Korisnički račun \"$1\" nije registrovan.",
 	"imgfile": "datoteka",
 	"listfiles": "Spisak slika",
+	"listfiles_subpage": "Postavljene datoteke $1",
 	"listfiles_thumb": "Smanjeni pregled",
 	"listfiles_date": "Datum",
 	"listfiles_name": "Naziv",

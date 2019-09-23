@@ -438,7 +438,7 @@
 	"createaccountmail": "Ustvari začasno naključno geslo in ga pošlji na spodaj navedeni e-poštni naslov",
 	"createaccountmail-help": "Se lahko uporablja za ustvarjanje računa za drugo osebo brez da bi vedeli geslo.",
 	"createacct-realname": "Pravo ime (izbirno)",
-	"createacct-reason": "Razlog",
+	"createacct-reason": "Razlog (javno zabeležen)",
 	"createacct-reason-ph": "Zakaj ustvarjate drug račun",
 	"createacct-reason-help": "Sporočilo, prikazano v dnevniku ustvarjanja računov",
 	"createacct-submit": "Ustvarite svoj račun",
@@ -1804,6 +1804,7 @@
 	"listfiles-userdoesnotexist": "Uporabniški račun »$1« ni registriran.",
 	"imgfile": "dat.",
 	"listfiles": "Seznam datotek",
+	"listfiles_subpage": "Nalaganja $1",
 	"listfiles_thumb": "Sličica",
 	"listfiles_date": "Datum",
 	"listfiles_name": "Ime",
@@ -3812,5 +3813,8 @@
 	"mycustomjsredirectprotected": "Nimate pravic za urejanje te strani z JavaScriptom, ker je preusmeritev in ne kaže v vaš uporabniški prostor.",
 	"easydeflate-invaliddeflate": "Dana vsebina ni pravilno stisnjena",
 	"unprotected-js": "Iz varnostnih razlogov JavaScripta ni možno naložiti z nezaščitenih strani. Prosimo, da JavaScript ustvarite samo v imenskem prostoru MediaWiki ali kot uporabniško podstran.",
-	"userlogout-continue": "Se želite odjaviti?"
+	"userlogout-continue": "Se želite odjaviti?",
+	"rest-prefix-mismatch": "Zahtevana pot ($1) ni bila znotraj korenske poti REST API ($2)",
+	"rest-wrong-method": "Zahtevana metoda ($1) ni {{PLURAL:$3|veljavna metoda|ena od veljavnih metod}} za to pot ($2)",
+	"rest-no-match": "Zahtevana relativna pot ($1) se ne ujema z nobenim znanim krmilnikom"
 }

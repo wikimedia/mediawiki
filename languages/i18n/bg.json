@@ -462,7 +462,7 @@
 	"createacct-another-email-ph": "Въведете електронна поща",
 	"createaccountmail": "Използване на случайна временна парола, която се изпраща на посочената електронната поща",
 	"createacct-realname": "Истинско име (незадължително)",
-	"createacct-reason": "Причина",
+	"createacct-reason": "Причина (публично видима)",
 	"createacct-reason-ph": "Защо създавате друга сметка",
 	"createacct-reason-help": "Съобщение, показвано в дневника на създадени сметки",
 	"createacct-submit": "Създаване на сметката",
