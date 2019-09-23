@@ -88,14 +88,6 @@ class FauxRequest extends WebRequest {
 
 	/**
 	 * @return array
-	 * @suppress PhanParamSignatureMismatch
-	 */
-	public function getValues() {
-		return $this->data;
-	}
-
-	/**
-	 * @return array
 	 */
 	public function getQueryValues() {
 		if ( $this->wasPosted ) {
