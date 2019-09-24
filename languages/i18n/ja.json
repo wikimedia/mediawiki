@@ -98,7 +98,8 @@
 			"Puntti ja",
 			"マツムシ",
 			"神樂坂秀吉",
-			"Yuukin0248"
+			"Yuukin0248",
+			"Reiwa period"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -1604,6 +1605,7 @@
 	"rcfilters-filter-showlinkedto-label": "指定されたページのリンク元の変更を表示",
 	"rcfilters-filter-showlinkedto-option-label": "指定されたページに<strong>リンクしているページ（リンク元）</strong>",
 	"rcfilters-target-page-placeholder": "ページ名（またはカテゴリ名）を入力",
+	"rcfilters-alldiscussions-label": "全ての議論",
 	"rcnotefrom": "以下は<strong>$3 $4</strong>以降の{{PLURAL:$5|更新です}} (最大 <strong>$1</strong> 件)。",
 	"rclistfromreset": "日時指定をリセット",
 	"rclistfrom": "$3の$2以降の更新を表示する",
@@ -1815,6 +1817,7 @@
 	"backend-fail-contenttype": "「$1」に保存するコンテンツの種類が判断できませんでした。",
 	"backend-fail-batchsize": "ストレージバックエンドは $1 件のファイル{{PLURAL:$1|操作}}のバッチを与えられました; 上限は $2 件の{{PLURAL:$2|操作}}です。",
 	"backend-fail-usable": "権限が不足している、またはディレクトリ/コンテナーがないため、ファイル「$1」の読み取り/書き込みができません。",
+	"backend-fail-stat": "ファイル\"$1\"の状態を読み込めませんでした。",
 	"filejournal-fail-dbconnect": "ストレージバックエンド「$1」のジャーナルデータベースに接続できません。",
 	"filejournal-fail-dbquery": "ストレージバックエンド「$1」のジャーナルデータベースを更新できません。",
 	"lockmanager-notlocked": "「$1」をロック解除できませんでした。ロックされていません。",
@@ -1894,6 +1897,7 @@
 	"listfiles-userdoesnotexist": "利用者アカウント「$1」は登録されていません。",
 	"imgfile": "ファイル",
 	"listfiles": "ファイル一覧",
+	"listfiles_subpage": "$1 によるアップロード",
 	"listfiles_thumb": "サムネイル",
 	"listfiles_date": "日時",
 	"listfiles_name": "名前",

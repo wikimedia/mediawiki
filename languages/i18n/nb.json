@@ -474,7 +474,7 @@
 	"createaccountmail": "Bruk et midlertidig, tilfeldig passord, og send det til angitt e-postadresse",
 	"createaccountmail-help": "Kan brukes til å opprette en konto for en annen person uten at du får vite passordet.",
 	"createacct-realname": "Virkelig navn (valgfritt)",
-	"createacct-reason": "Årsak",
+	"createacct-reason": "Årsak (logges offentlig)",
 	"createacct-reason-ph": "Hvorfor lager du en annen bruker",
 	"createacct-reason-help": "Beskjed vist i kontoopprettelsesloggen",
 	"createacct-submit": "Opprett konto",
@@ -1841,6 +1841,7 @@
 	"listfiles-userdoesnotexist": "Brukerkontoen «$1» er ikke registrert.",
 	"imgfile": "fil",
 	"listfiles": "Filliste",
+	"listfiles_subpage": "Opplastinger av $1",
 	"listfiles_thumb": "Miniatyrbilde",
 	"listfiles_date": "Dato",
 	"listfiles_name": "Navn",
@@ -2575,6 +2576,7 @@
 	"ipblocklist-legend": "Finn en blokkert bruker",
 	"blocklist-userblocks": "Skjul kontoblokkeringer",
 	"blocklist-tempblocks": "Skjul midlertidige blokkeringer",
+	"blocklist-indefblocks": "Skjul blokkeringer på ubestemt tid",
 	"blocklist-addressblocks": "Skjul individuelle IP-blokkeringer",
 	"blocklist-type": "Type:",
 	"blocklist-type-opt-all": "Alle",
@@ -3888,5 +3890,8 @@
 	"mycustomjsredirectprotected": "Du har ikke tillatelse til å redigere denne JavaScript-siden fordi den er en omdirigering og ikke peker til en annen side i ditt brukernavnerom.",
 	"easydeflate-invaliddeflate": "Det gitte innholdet er ikke riktig komprimert",
 	"unprotected-js": "Av sikkerhetsårsaker kan ikke JavaScript lastes fra ubeskyttede sider. Bare skap JavaScript i MediaWiki-navnerommet eller som en brukerunderside",
-	"userlogout-continue": "Ønsker du å logge ut?"
+	"userlogout-continue": "Ønsker du å logge ut?",
+	"rest-prefix-mismatch": "Den forespurte stien ($1) var ikke i REST-API-ets rotsti ($2)",
+	"rest-wrong-method": "Den forespurte metoden ($1) var ikke {{PLURAL:$3|den tillatte metoden|blant de tillatte metodene}} for denne stien ($2)",
+	"rest-no-match": "Den forespurte relative stien ($1) passet ikke med noen kjent behandler"
 }

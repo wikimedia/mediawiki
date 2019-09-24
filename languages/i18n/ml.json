@@ -1747,6 +1747,7 @@
 	"listfiles-userdoesnotexist": "ഉപയോക്തൃ അംഗത്വം \"$1\" എടുക്കപ്പെട്ടിട്ടില്ല.",
 	"imgfile": "പ്രമാണം",
 	"listfiles": "പ്രമാണങ്ങളുടെ പട്ടിക",
+	"listfiles_subpage": "$1 ചെയ്ത അപ്‌ലോഡുകൾ",
 	"listfiles_thumb": "ലഘുചിത്രം",
 	"listfiles_date": "തീയതി",
 	"listfiles_name": "പേര്",

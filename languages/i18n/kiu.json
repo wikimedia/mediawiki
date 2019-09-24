@@ -584,7 +584,7 @@
 	"group-all": "(pêro)",
 	"group-user-member": "Karber",
 	"group-bot-member": "Bot",
-	"group-sysop-member": "İdareker",
+	"group-sysop-member": "{{GENDER:$1|idareker}}",
 	"group-bureaucrat-member": "Burokrat",
 	"grouppage-user": "{{ns:project}}:Karberi",
 	"grouppage-bot": "{{ns:project}}:Boti",
