@@ -1907,7 +1907,11 @@ class RevisionStore
 	 *               'content'- whether the actual content of the slots should be
 	 *               preloaded.
 	 * @param int $queryFlags
-	 * @param Title|null $title
+	 * @param Title|null $title The title to which all the revision rows belong, if there
+	 *        is such a title and the caller has it handy, so we don't have to look it up again.
+	 *        If this parameter is given and any of the rows has a rev_page_id that is different
+	 *        from $title->getArticleID(), an InvalidArgumentException is thrown.
+	 *
 	 * @return StatusValue a status with a RevisionRecord[] of successfully fetched revisions
 	 * 					   and an array of errors for the revisions failed to fetch.
 	 */
