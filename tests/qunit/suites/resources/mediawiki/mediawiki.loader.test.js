@@ -186,7 +186,7 @@
 			[ 'test.load.circleB', '0', [ 'test.load.circleC' ] ],
 			[ 'test.load.circleC', '0', [ 'test.load.circleA' ] ]
 		] );
-		this.sandbox.stub( mw, 'track', function ( topic, data ) {
+		this.sandbox.stub( mw, 'trackError', function ( topic, data ) {
 			capture.push( {
 				topic: topic,
 				error: data.exception && data.exception.message,
@@ -211,7 +211,7 @@
 		mw.loader.register( [
 			[ 'test.load.circleDirect', '0', [ 'test.load.circleDirect' ] ]
 		] );
-		this.sandbox.stub( mw, 'track', function ( topic, data ) {
+		this.sandbox.stub( mw, 'trackError', function ( topic, data ) {
 			capture.push( {
 				topic: topic,
 				error: data.exception && data.exception.message,
@@ -257,7 +257,7 @@
 	// Regression test for T36853
 	QUnit.test( '.load() - Error: Missing dependency', function ( assert ) {
 		var capture = [];
-		this.sandbox.stub( mw, 'track', function ( topic, data ) {
+		this.sandbox.stub( mw, 'trackError', function ( topic, data ) {
 			capture.push( {
 				topic: topic,
 				error: data.exception && data.exception.message,
@@ -673,7 +673,7 @@
 		this.useStubClock();
 
 		// Don't actually emit an error event
-		this.sandbox.stub( mw, 'track' );
+		this.sandbox.stub( mw, 'trackError' );
 
 		mw.loader.register( [
 			[ 'test.module1', '0' ],
@@ -685,11 +685,11 @@
 		}, {}, {} );
 		this.tick();
 
-		assert.strictEqual( mw.loader.getState( 'test.module1' ), 'error', 'Expected "error" state for test.module1' );
-		assert.strictEqual( mw.loader.getState( 'test.module2' ), 'error', 'Expected "error" state for test.module2' );
-		assert.strictEqual( mw.loader.getState( 'test.module3' ), 'error', 'Expected "error" state for test.module3' );
+		assert.strictEqual( mw.loader.getState( 'test.module1' ), 'error', 'State of test.module1' );
+		assert.strictEqual( mw.loader.getState( 'test.module2' ), 'error', 'State of test.module2' );
+		assert.strictEqual( mw.loader.getState( 'test.module3' ), 'error', 'State of test.module3' );
 
-		assert.strictEqual( mw.track.callCount, 1 );
+		assert.strictEqual( mw.trackError.callCount, 1 );
 	} );
 
 	QUnit.test( 'Out-of-order implementation', function ( assert ) {
@@ -703,21 +703,21 @@
 
 		mw.loader.implement( 'test.module4', function () {} );
 		this.tick();
-		assert.strictEqual( mw.loader.getState( 'test.module4' ), 'ready', 'Expected "ready" state for test.module4' );
-		assert.strictEqual( mw.loader.getState( 'test.module5' ), 'registered', 'Expected "registered" state for test.module5' );
-		assert.strictEqual( mw.loader.getState( 'test.module6' ), 'registered', 'Expected "registered" state for test.module6' );
+		assert.strictEqual( mw.loader.getState( 'test.module4' ), 'ready', 'State of test.module4' );
+		assert.strictEqual( mw.loader.getState( 'test.module5' ), 'registered', 'State of test.module5' );
+		assert.strictEqual( mw.loader.getState( 'test.module6' ), 'registered', 'State of test.module6' );
 
 		mw.loader.implement( 'test.module6', function () {} );
 		this.tick();
-		assert.strictEqual( mw.loader.getState( 'test.module4' ), 'ready', 'Expected "ready" state for test.module4' );
-		assert.strictEqual( mw.loader.getState( 'test.module5' ), 'registered', 'Expected "registered" state for test.module5' );
-		assert.strictEqual( mw.loader.getState( 'test.module6' ), 'loaded', 'Expected "loaded" state for test.module6' );
+		assert.strictEqual( mw.loader.getState( 'test.module4' ), 'ready', 'State of test.module4' );
+		assert.strictEqual( mw.loader.getState( 'test.module5' ), 'registered', 'State of test.module5' );
+		assert.strictEqual( mw.loader.getState( 'test.module6' ), 'loaded', 'State of test.module6' );
 
 		mw.loader.implement( 'test.module5', function () {} );
 		this.tick();
-		assert.strictEqual( mw.loader.getState( 'test.module4' ), 'ready', 'Expected "ready" state for test.module4' );
-		assert.strictEqual( mw.loader.getState( 'test.module5' ), 'ready', 'Expected "ready" state for test.module5' );
-		assert.strictEqual( mw.loader.getState( 'test.module6' ), 'ready', 'Expected "ready" state for test.module6' );
+		assert.strictEqual( mw.loader.getState( 'test.module4' ), 'ready', 'State of test.module4' );
+		assert.strictEqual( mw.loader.getState( 'test.module5' ), 'ready', 'State of test.module5' );
+		assert.strictEqual( mw.loader.getState( 'test.module6' ), 'ready', 'State of test.module6' );
 	} );
 
 	QUnit.test( 'Missing dependency', function ( assert ) {
