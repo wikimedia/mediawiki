@@ -738,7 +738,7 @@
 	"userinvalidconfigtitle": "'''Varning:''' Utseendet \"$1\" finns inte. Kom ihåg att .css-, .json- och .js-sidor för enskilda användare börjar på liten bokstav. Exempel: {{ns:user}}:Foo/vector.css i stället för {{ns:user}}:Foo/Vector.css.",
 	"updated": "(Uppdaterad)",
 	"note": "'''Obs!'''",
-	"previewnote": "'''Kom ihåg att detta bara är en förhandsvisning.'''\nDina ändringar har ännu inte sparats!",
+	"previewnote": "<strong>Kom ihåg att detta bara är en förhandsgranskning.</strong>\nDina ändringar har ännu inte sparats!",
 	"continue-editing": "Fortsätt redigera",
 	"previewconflict": "Den här förhandsvisningen är resultatet av den\nredigerbara texten ovanför,\nså som det kommer att se ut om du väljer att spara.",
 	"session_fail_preview": "Vi kunde inte behandla din redigering eftersom sessionsdata gått förlorad.\nDu kanske har loggats ut. Var god se till att du fortfarande är inloggad och försök igen.\nOm det fortfarande inte fungerar, prova att [[Special:UserLogout|logga ut]] och logga in igen, samt kontrollera att din webbläsare tillåter kakor från denna webbplats.",
