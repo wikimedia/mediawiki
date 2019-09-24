@@ -80,9 +80,10 @@ class UserNotLoggedIn extends ErrorPageError {
 		// since the message may not be compatible.
 		if ( !in_array( $this->msg, LoginHelper::getValidErrorMessages() ) ) {
 			parent::report();
+			return;
 		}
 
-		// Message is valid. Redirec to Special:Userlogin
+		// Message is valid. Redirect to Special:Userlogin
 
 		$context = RequestContext::getMain();
 
