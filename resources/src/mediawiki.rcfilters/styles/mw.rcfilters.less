@@ -181,6 +181,18 @@
 	font-weight: bold;
 }
 
+// on smaller screen, set .watchlistDetail to full width
+// so that the spinner doesn't appear beside it. T225127#5518870
+@media screen and ( max-width: @width-breakpoint-tablet ) {
+	.client-js {
+		/* stylelint-disable-next-line selector-class-pattern */
+		.watchlistDetails {
+			float: none;
+			width: auto;
+		}
+	}
+}
+
 @-webkit-keyframes rcfiltersBouncedelay {
 	// 50% equals 800ms
 	0%,

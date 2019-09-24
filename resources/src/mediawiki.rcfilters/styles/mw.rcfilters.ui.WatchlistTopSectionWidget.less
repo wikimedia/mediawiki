@@ -31,3 +31,19 @@
 		border-top: 2px solid @colorGray14;
 	}
 }
+
+// On small screens, remove the table properties from the
+// top section. T225127#5518870
+@media screen and ( max-width: @width-breakpoint-tablet ) {
+	.mw-rcfilters-ui-watchlistTopSectionWidget {
+		.mw-rcfilters-ui-table,
+		.mw-rcfilters-ui-row,
+		.mw-rcfilters-ui-cell {
+			display: block;
+		}
+
+		&-editWatchlistButton {
+			margin-top: 1em;
+		}
+	}
+}
