@@ -246,23 +246,12 @@
 
 	QUnit.test( '.load() - Error: Unregistered', function ( assert ) {
 		var capture = [];
-		this.sandbox.stub( mw, 'track', function ( topic, data ) {
-			capture.push( {
-				topic: topic,
-				error: data.exception && data.exception.message,
-				source: data.source
-			} );
+		this.sandbox.stub( mw.log, 'warn', function ( str ) {
+			capture.push( str );
 		} );
 
 		mw.loader.load( 'test.load.unreg' );
-		assert.deepEqual(
-			[ {
-				topic: 'resourceloader.exception',
-				error: 'Unknown module: test.load.unreg',
-				source: 'resolve'
-			} ],
-			capture
-		);
+		assert.deepEqual( capture, [ 'Skipped unresolvable module test.load.unreg' ] );
 	} );
 
 	// Regression test for T36853
