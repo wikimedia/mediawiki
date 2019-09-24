@@ -13,7 +13,7 @@
 	'use strict';
 
 	var mw, StringSet, log,
-		hasOwn = Object.prototype.hasOwnProperty;
+		hasOwn = Object.hasOwnProperty;
 
 	/**
 	 * FNV132 hash function
