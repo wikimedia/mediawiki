@@ -131,6 +131,32 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @covers WANObjectCache::getWithSetCallback
 	 */
+	public function testProcessCacheTTL() {
+		$cache = $this->cache;
+		$mockWallClock = 1549343530.2053;
+		$cache->setMockTime( $mockWallClock );
+
+		$key = "mykey-" . wfRandomString();
+
+		$hits = 0;
+		$callback = function ( $oldValue, &$ttl, &$setOpts ) use ( &$hits ) {
+			++$hits;
+			return 42;
+		};
+
+		$cache->getWithSetCallback( $key, 100, $callback, [ 'pcTTL' => 5 ] );
+		$cache->delete( $key, $cache::HOLDOFF_NONE ); // clear persistent cache
+		$cache->getWithSetCallback( $key, 100, $callback, [ 'pcTTL' => 5 ] );
+		$this->assertEquals( 1, $hits, "Value process cached" );
+
+		$mockWallClock += 6;
+		$cache->getWithSetCallback( $key, 100, $callback, [ 'pcTTL' => 5 ] );
+		$this->assertEquals( 2, $hits, "Value expired in process cache" );
+	}
+
+	/**
+	 * @covers WANObjectCache::getWithSetCallback
+	 */
 	public function testProcessCacheLruAndDelete() {
 		$cache = $this->cache;
 		$mockWallClock = 1549343530.2053;
