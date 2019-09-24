@@ -110,8 +110,9 @@ class UserDupes {
 	 * @return bool
 	 */
 	private function checkDupes( $doDelete = false ) {
+		$dbDomain = WikiMap::getCurrentWikiDbDomain()->getId();
 		if ( $this->hasUniqueIndex() ) {
-			echo wfWikiID() . " already has a unique index on its user table.\n";
+			echo "$dbDomain already has a unique index on its user table.\n";
 
 			return true;
 		}
@@ -122,7 +123,7 @@ class UserDupes {
 		$dupes = $this->getDupes();
 		$count = count( $dupes );
 
-		$this->out( "Found $count accounts with duplicate records on " . wfWikiID() . ".\n" );
+		$this->out( "Found $count accounts with duplicate records on $dbDomain.\n" );
 		$this->trimmed = 0;
 		$this->reassigned = 0;
 		$this->failed = 0;
@@ -145,11 +146,13 @@ class UserDupes {
 
 		if ( $this->trimmed > 0 ) {
 			if ( $doDelete ) {
-				$this->out( "$this->trimmed duplicate user records were deleted from "
-					. wfWikiID() . ".\n" );
+				$this->out(
+					"$this->trimmed duplicate user records were deleted from $dbDomain.\n" );
 			} else {
-				$this->out( "$this->trimmed duplicate user accounts were found on "
-					. wfWikiID() . " which can be removed safely.\n" );
+				$this->out(
+					"$this->trimmed duplicate user accounts were found on $dbDomain " .
+					"which can be removed safely.\n"
+				);
 			}
 		}
 
