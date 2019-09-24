@@ -1928,7 +1928,10 @@ class RevisionStore
 		$titlesByPageId = [];
 		foreach ( $rows as $row ) {
 			if ( isset( $rowsByRevId[$row->rev_id] ) ) {
-				throw new InvalidArgumentException( "Duplicate rows in newRevisionsFromBatch {$row->rev_id}" );
+				$result->warning(
+					'internalerror',
+					"Duplicate rows in newRevisionsFromBatch, rev_id {$row->rev_id}"
+				);
 			}
 			if ( $title && $row->rev_page != $title->getArticleID() ) {
 				throw new InvalidArgumentException(
