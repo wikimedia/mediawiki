@@ -9096,6 +9096,9 @@ $wgNativeImageLazyLoading = false;
 
 /**
  * Option to whether serve the main page as the domain root
+ *
+ * @warning EXPERIMENTAL!
+ *
  * @since 1.34
  * @var bool
  */
