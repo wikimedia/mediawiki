@@ -223,9 +223,13 @@ class ApiQueryContributors extends ApiQueryBase {
 		return 'public';
 	}
 
-	public function getAllowedParams() {
+	public function getAllowedParams( $flags = 0 ) {
 		$userGroups = User::getAllGroups();
 		$userRights = $this->getPermissionManager()->getAllPermissions();
+
+		if ( $flags & ApiBase::GET_VALUES_FOR_HELP ) {
+			sort( $userGroups );
+		}
 
 		return [
 			'group' => [

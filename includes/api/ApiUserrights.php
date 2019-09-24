@@ -160,7 +160,13 @@ class ApiUserrights extends ApiBase {
 		return true;
 	}
 
-	public function getAllowedParams() {
+	public function getAllowedParams( $flags = 0 ) {
+		$allGroups = $this->getAllGroups();
+
+		if ( $flags & ApiBase::GET_VALUES_FOR_HELP ) {
+			sort( $allGroups );
+		}
+
 		$a = [
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
@@ -169,7 +175,7 @@ class ApiUserrights extends ApiBase {
 				ApiBase::PARAM_TYPE => 'integer',
 			],
 			'add' => [
-				ApiBase::PARAM_TYPE => $this->getAllGroups(),
+				ApiBase::PARAM_TYPE => $allGroups,
 				ApiBase::PARAM_ISMULTI => true
 			],
 			'expiry' => [
@@ -178,7 +184,7 @@ class ApiUserrights extends ApiBase {
 				ApiBase::PARAM_DFLT => 'infinite',
 			],
 			'remove' => [
-				ApiBase::PARAM_TYPE => $this->getAllGroups(),
+				ApiBase::PARAM_TYPE => $allGroups,
 				ApiBase::PARAM_ISMULTI => true
 			],
 			'reason' => [

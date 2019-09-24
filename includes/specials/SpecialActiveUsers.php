@@ -84,7 +84,7 @@ class SpecialActiveUsers extends SpecialPage {
 			$msg = htmlspecialchars( UserGroupMembership::getGroupName( $group ) );
 			$options[$msg] = $group;
 		}
-		asort( $options );
+		ksort( $options );
 
 		// Backwards-compatibility with old URLs
 		$req = $this->getRequest();

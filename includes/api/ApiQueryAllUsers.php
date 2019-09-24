@@ -325,8 +325,12 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		return 'anon-public-user-private';
 	}
 
-	public function getAllowedParams() {
+	public function getAllowedParams( $flags = 0 ) {
 		$userGroups = User::getAllGroups();
+
+		if ( $flags & ApiBase::GET_VALUES_FOR_HELP ) {
+			sort( $userGroups );
+		}
 
 		return [
 			'from' => null,
