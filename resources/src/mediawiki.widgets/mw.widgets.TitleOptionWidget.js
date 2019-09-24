@@ -73,7 +73,7 @@
 
 		// Highlight matching parts of link suggestion
 		if ( config.query ) {
-			this.setHighlightedQuery( config.data, config.query, config.compare );
+			this.setHighlightedQuery( config.data, config.query, config.compare, true );
 		}
 		this.$label.attr( 'title', config.data );
 
