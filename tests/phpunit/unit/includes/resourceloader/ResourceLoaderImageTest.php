@@ -3,13 +3,17 @@
 /**
  * @group ResourceLoader
  */
-class ResourceLoaderImageTest extends ResourceLoaderTestCase {
+class ResourceLoaderImageTest extends MediaWikiUnitTestCase {
 
-	protected $imagesPath;
+	private $imagesPath;
 
 	protected function setUp() {
 		parent::setUp();
-		$this->imagesPath = __DIR__ . '/../../data/resourceloader';
+		$this->imagesPath = __DIR__ . '/../../../data/resourceloader';
+	}
+
+	protected function tearDown() {
+		Language::$dataCache = null;
 	}
 
 	protected function getTestImage( $name ) {
@@ -64,10 +68,18 @@ class ResourceLoaderImageTest extends ResourceLoaderTestCase {
 		];
 
 		$image = $this->getTestImage( $imageName );
-		$context = $this->getResourceLoaderContext( [
-			'lang' => $languageCode,
-			'dir' => $dirMap[$languageCode],
-		] );
+		$context = new DerivativeResourceLoaderContext(
+			$this->createMock( ResourceLoaderContext::class )
+		);
+		$context->setLanguage( $languageCode );
+		$context->setDirection( $dirMap[$languageCode] );
+		Language::$dataCache = $this->createMock( LocalisationCache::class );
+		Language::$dataCache->method( 'getItem' )->will( $this->returnCallback( function ( $code ) {
+			return ( [
+				'en-gb' => [ 'en' ],
+				'de-formal' => [ 'de' ],
+			] )[ $code ] ?? [];
+		} ) );
 
 		$this->assertEquals( $image->getPath( $context ), $this->imagesPath . '/' . $path );
 	}
@@ -93,7 +105,7 @@ class ResourceLoaderImageTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoaderImage::massageSvgPathdata
 	 */
 	public function testGetImageData() {
-		$context = $this->getResourceLoaderContext();
+		$context = $this->createMock( ResourceLoaderContext::class );
 
 		$image = $this->getTestImage( 'def' );
 		$data = file_get_contents( $this->imagesPath . '/def.svg' );
