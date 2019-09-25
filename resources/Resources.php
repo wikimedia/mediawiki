@@ -2147,6 +2147,7 @@ return [
 	'mediawiki.special.contributions' => [
 		'scripts' => 'resources/src/mediawiki.special.contributions.js',
 		'dependencies' => [
+			'jquery.makeCollapsible',
 			'oojs-ui',
 			'mediawiki.widgets.DateInputWidget',
 			'mediawiki.jqueryMsg',
