@@ -190,39 +190,69 @@ class MySQLMasterPos implements DBMasterPos {
 	}
 
 	/**
+	 * Set the GTID domain known to be used in new commits on a replication stream of interest
+	 *
+	 * This makes getRelevantActiveGTIDs() filter out GTIDs from other domains
+	 *
+	 * @see MySQLMasterPos::getRelevantActiveGTIDs()
+	 * @see https://mariadb.com/kb/en/library/gtid/#gtid_domain_id
+	 *
 	 * @param int|null $id @@gtid_domain_id of the active replication stream
+	 * @return MySQLMasterPos This instance (since 1.34)
 	 * @since 1.31
 	 */
 	public function setActiveDomain( $id ) {
 		$this->activeDomain = (int)$id;
+
+		return $this;
 	}
 
 	/**
+	 * Set the server ID known to be used in new commits on a replication stream of interest
+	 *
+	 * This makes getRelevantActiveGTIDs() filter out GTIDs from other origin servers
+	 *
+	 * @see MySQLMasterPos::getRelevantActiveGTIDs()
+	 *
 	 * @param int|null $id @@server_id of the server were writes originate
+	 * @return MySQLMasterPos This instance (since 1.34)
 	 * @since 1.31
 	 */
 	public function setActiveOriginServerId( $id ) {
 		$this->activeServerId = (int)$id;
+
+		return $this;
 	}
 
 	/**
+	 * Set the server UUID known to be used in new commits on a replication stream of interest
+	 *
+	 * This makes getRelevantActiveGTIDs() filter out GTIDs from other origin servers
+	 *
+	 * @see MySQLMasterPos::getRelevantActiveGTIDs()
+	 *
 	 * @param string|null $id @@server_uuid of the server were writes originate
+	 * @return MySQLMasterPos This instance (since 1.34)
 	 * @since 1.31
 	 */
 	public function setActiveOriginServerUUID( $id ) {
 		$this->activeServerUUID = $id;
+
+		return $this;
 	}
 
 	/**
 	 * @param MySQLMasterPos $pos
 	 * @param MySQLMasterPos $refPos
-	 * @return string[] List of GTIDs from $pos that have domains in $refPos
-	 * @since 1.31
+	 * @return string[] List of active GTIDs from $pos that have domains in $refPos
+	 * @since 1.34
 	 */
-	public static function getCommonDomainGTIDs( MySQLMasterPos $pos, MySQLMasterPos $refPos ) {
-		return array_values(
-			array_intersect_key( $pos->gtids, $refPos->getActiveGtidCoordinates() )
-		);
+	public static function getRelevantActiveGTIDs( MySQLMasterPos $pos, MySQLMasterPos $refPos ) {
+		return array_values( array_intersect_key(
+			$pos->gtids,
+			$pos->getActiveGtidCoordinates(),
+			$refPos->gtids
+		) );
 	}
 
 	/**
