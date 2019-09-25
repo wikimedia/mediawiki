@@ -118,7 +118,10 @@ try {
 // Potentially debug globals
 $maintenance->globals();
 
-if ( $maintenance->getDbType() !== Maintenance::DB_NONE ) {
+if ( $maintenance->getDbType() !== Maintenance::DB_NONE &&
+	// Service might be disabled, e.g. when running install.php
+	!MediaWikiServices::getInstance()->isServiceDisabled( 'DBLoadBalancerFactory' )
+) {
 	// Perform deferred updates.
 	$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 	$lbFactory->commitMasterChanges( $maintClass );
