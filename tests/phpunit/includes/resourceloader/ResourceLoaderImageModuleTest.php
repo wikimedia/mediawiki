@@ -292,9 +292,8 @@ TEXT
 			->disableOriginalConstructor()
 			->getMock();
 		$image->method( 'getDataUri' )
-			->will( $this->returnValue( $dataUriReturnValue ) );
-		$image->expects( $this->any() )
-			->method( 'getUrl' )
+			->willReturn( $dataUriReturnValue );
+		$image->method( 'getUrl' )
 			->will( $this->returnValueMap( [
 				[ $context, 'load.php', null, 'original', 'original.svg' ],
 				[ $context, 'load.php', null, 'rasterized', 'rasterized.png' ],
