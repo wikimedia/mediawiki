@@ -690,7 +690,7 @@ abstract class DatabaseInstaller {
 			$this->getPasswordBox( 'wgDBpassword', 'config-db-password' ) .
 			$this->parent->getHelpBox( 'config-db-web-help' );
 		if ( $noCreateMsg ) {
-			$s .= $this->parent->getWarningBox( wfMessage( $noCreateMsg )->plain() );
+			$s .= Html::warningBox( wfMessage( $noCreateMsg )->plain(), 'config-warning-box' );
 		} else {
 			$s .= $this->getCheckBox( '_CreateDBAccount', 'config-db-web-create' );
 		}
