@@ -276,8 +276,7 @@ class Router {
 		$request->setPathParams( array_map( 'rawurldecode', $match['params'] ) );
 		$spec = $match['userData'];
 		$objectFactorySpec = array_intersect_key( $spec,
-			// @todo ObjectFactory supports more keys than this.
-			[ 'factory' => true, 'class' => true, 'args' => true ] );
+			[ 'factory' => true, 'class' => true, 'args' => true, 'services' => true ] );
 		/** @var $handler Handler (annotation for PHPStorm) */
 		$handler = $this->objectFactory->createObject( $objectFactorySpec );
 		$handler->init( $this, $request, $spec, $this->responseFactory );
