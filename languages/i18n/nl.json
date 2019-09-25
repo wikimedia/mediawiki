@@ -3913,5 +3913,6 @@
 	"mycustomjsredirectprotected": "U hebt geen rechten om deze JavaScriptpagina te bewerken omdat het een doorverwijzing is en deze niet verwijst naar een pagina in uw gebruikersruimte.",
 	"easydeflate-invaliddeflate": "De opgegeven inhoud is onjuist gecomprimeerd",
 	"unprotected-js": "Vanwege veiligheidsredenen kan er geen JavaScript geladen worden vanaf onbeveiligde pagina's. Gelieve alleen JavaScript pagina's aan te maken in de MediaWiki: naamruimte of als een subpagina van een gebruikerspagina.",
-	"userlogout-continue": "Wilt u zich afmelden?"
+	"userlogout-continue": "Wilt u zich afmelden?",
+	"rest-wrong-method": "De requestmethode ($1) is {{PLURAL:$3|niet de toegestane methode voor dit pad|een van de toegestane methoden voor dit pad}} ($2)"
 }
