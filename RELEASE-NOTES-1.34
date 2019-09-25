@@ -150,6 +150,7 @@ $wgPasswordPolicy['policies']['default']['PasswordNotInLargeBlacklist'] = false;
 * Updated wikimedia/timestamp from 2.2.0 to 3.0.0.
 * Updated wikimedia/xmp-reader from 0.6.2 to 0.6.3.
 * Updated mediawiki/mediawiki-phan-config from 0.6.0 to 0.6.1 (dev-only).
+* Updated wikimedia/avro from 1.8.0 to 1.9.0 (dev-only).
 * …
 
 ==== Removed external libraries ====
