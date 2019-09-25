@@ -74,7 +74,7 @@
 		"nmred/kafka-php": "0.1.5",
 		"phpunit/phpunit": "4.8.36 || ^6.5",
 		"psy/psysh": "0.9.9",
-		"wikimedia/avro": "1.8.0",
+		"wikimedia/avro": "1.9.0",
 		"wikimedia/testing-access-wrapper": "~1.0",
 		"wmde/hamcrest-html-matchers": "^0.1.0",
 		"mediawiki/mediawiki-phan-config": "0.7.1",
