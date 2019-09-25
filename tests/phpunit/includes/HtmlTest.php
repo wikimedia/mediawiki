@@ -566,11 +566,11 @@ class HtmlTest extends MediaWikiTestCase {
 			'<div class="errorbox">err</div>'
 		);
 		$this->assertEquals(
-			Html::errorBox( 'err', 'heading' ),
-			'<div class="errorbox"><h2>heading</h2>err</div>'
+			Html::errorBox( 'err', 'heading', 'errorbox-custom-class' ),
+			'<div class="errorbox errorbox-custom-class"><h2>heading</h2>err</div>'
 		);
 		$this->assertEquals(
-			Html::errorBox( 'err', '0' ),
+			Html::errorBox( 'err', '0', '' ),
 			'<div class="errorbox"><h2>0</h2>err</div>'
 		);
 	}

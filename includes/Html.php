@@ -704,7 +704,7 @@ class Html {
 	 * Return the HTML for a message box.
 	 * @since 1.31
 	 * @param string $html of contents of box
-	 * @param string $className corresponding to box
+	 * @param string|array $className corresponding to box
 	 * @param string $heading (optional)
 	 * @return string of HTML representing a box.
 	 */
@@ -718,32 +718,38 @@ class Html {
 	/**
 	 * Return a warning box.
 	 * @since 1.31
+	 * @since 1.34 $className optional parameter added
 	 * @param string $html of contents of box
+	 * @param string $className (optional) corresponding to box
 	 * @return string of HTML representing a warning box.
 	 */
-	public static function warningBox( $html ) {
-		return self::messageBox( $html, 'warningbox' );
+	public static function warningBox( $html, $className = '' ) {
+		return self::messageBox( $html, [ 'warningbox', $className ] );
 	}
 
 	/**
 	 * Return an error box.
 	 * @since 1.31
+	 * @since 1.34 $className optional parameter added
 	 * @param string $html of contents of error box
 	 * @param string $heading (optional)
+	 * @param string $className (optional) corresponding to box
 	 * @return string of HTML representing an error box.
 	 */
-	public static function errorBox( $html, $heading = '' ) {
-		return self::messageBox( $html, 'errorbox', $heading );
+	public static function errorBox( $html, $heading = '', $className = '' ) {
+		return self::messageBox( $html, [ 'errorbox', $className ], $heading );
 	}
 
 	/**
 	 * Return a success box.
 	 * @since 1.31
+	 * @since 1.34 $className optional parameter added
 	 * @param string $html of contents of box
+	 * @param string $className (optional) corresponding to box
 	 * @return string of HTML representing a success box.
 	 */
-	public static function successBox( $html ) {
-		return self::messageBox( $html, 'successbox' );
+	public static function successBox( $html, $className = '' ) {
+		return self::messageBox( $html, [ 'successbox', $className ] );
 	}
 
 	/**
