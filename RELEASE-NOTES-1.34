@@ -604,6 +604,7 @@ because of Phabricator reports.
 * ApiQueryBase::showHiddenUsersAddBlockInfo() is deprecated. Use
   ApiQueryBlockInfoTrait instead.
 * PasswordReset is now a service, its direct instantiation is deprecated.
+* RESTBagOStuff users should specify either "JSON" or "PHP" serialization type.
 * Language::getLocalisationCache() is deprecated. Use MediaWikiServices
   instead.
 
