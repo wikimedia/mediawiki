@@ -1690,6 +1690,7 @@ return [
 		],
 	],
 	'mediawiki.page.watch.ajax' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'scripts' => 'resources/src/mediawiki.page.watch.ajax.js',
 		'dependencies' => [
 			'mediawiki.api',
