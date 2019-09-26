@@ -436,7 +436,8 @@ JAVASCRIPT;
 
 				// Link/embed each set
 				foreach ( $moduleSets as list( $embed, $moduleSet ) ) {
-					$context->setModules( array_keys( $moduleSet ) );
+					$moduleSetNames = array_keys( $moduleSet );
+					$context->setModules( $moduleSetNames );
 					if ( $embed ) {
 						// Decide whether to use style or script element
 						if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
@@ -456,10 +457,10 @@ JAVASCRIPT;
 						// This should NOT be done for the site group (T29564) because anons get that too
 						// and we shouldn't be putting timestamps in CDN-cached HTML
 						if ( $group === 'user' ) {
-							// Must setModules() before makeVersionQuery()
-							$context->setVersion( $rl->makeVersionQuery( $context ) );
+							$context->setVersion( $rl->makeVersionQuery( $context, $moduleSetNames ) );
 						}
 
+						// Must setModules() before createLoaderURL()
 						$url = $rl->createLoaderURL( $source, $context, $extraQuery );
 
 						// Decide whether to use 'style' or 'script' element
