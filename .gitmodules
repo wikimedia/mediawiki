@@ -1184,3 +1184,7 @@
 	path = extensions/CommonsMetadata
 	url = https://github.com/wikimedia/mediawiki-extensions-CommonsMetadata
 	branch = REL1_33
+[submodule "extensions/HeaderFooter"]
+	path = extensions/HeaderFooter
+	url = https://github.com/enterprisemediawiki/HeaderFooter.git
+	branch = master
