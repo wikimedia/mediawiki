@@ -87,14 +87,6 @@ $cfg['exclude_analysis_directory_list'] = [
 	'includes/libs/objectcache/utils/MemcachedClient.php',
 ];
 
-// NOTE: If you're facing an issue which you cannot easily fix, DO NOT add it here. Suppress it
-// either in-line with @phan-suppress-next-line and similar, at block-level (via @suppress), or at
-// file-level (with @phan-file-suppress), so that it stays enabled for the rest of the codebase.
-$cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
-	// approximate error count: 110
-	"PhanParamTooMany", // False positives with variargs. Unsuppress after dropping HHVM
-] );
-
 // This helps a lot in discovering bad code, but unfortunately it will always fail for
 // hooks + pass by reference, see phan issue #2943.
 // @todo Enable when the issue above is resolved and we update our config!

@@ -3765,7 +3765,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$slotContent = [ SlotRecord::MAIN => $rev ];
 		} else {
 			$slotContent = array_map( function ( SlotRecord $slot ) {
-				return $slot->getContent( RevisionRecord::RAW );
+				return $slot->getContent();
 			}, $rev->getSlots()->getSlots() );
 		}
 

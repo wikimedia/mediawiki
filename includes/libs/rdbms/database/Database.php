@@ -2531,22 +2531,20 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $relation;
 	}
 
-	public function tableNames() {
-		$inArray = func_get_args();
+	public function tableNames( ...$tables ) {
 		$retVal = [];
 
-		foreach ( $inArray as $name ) {
+		foreach ( $tables as $name ) {
 			$retVal[$name] = $this->tableName( $name );
 		}
 
 		return $retVal;
 	}
 
-	public function tableNamesN() {
-		$inArray = func_get_args();
+	public function tableNamesN( ...$tables ) {
 		$retVal = [];
 
-		foreach ( $inArray as $name ) {
+		foreach ( $tables as $name ) {
 			$retVal[] = $this->tableName( $name );
 		}
 
@@ -3361,8 +3359,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return false; // don't know; it could have caused a transaction rollback
 	}
 
-	public function deadlockLoop() {
-		$args = func_get_args();
+	public function deadlockLoop( ...$args ) {
 		$function = array_shift( $args );
 		$tries = self::$DEADLOCK_TRIES;
 

@@ -410,6 +410,7 @@ return [
 		}
 
 		$class = $params['class'];
+		// @phan-suppress-next-line PhanParamTooMany Not inferring the right type
 		$instance = new $class( $params );
 
 		'@phan-var WANObjectCache $instance';

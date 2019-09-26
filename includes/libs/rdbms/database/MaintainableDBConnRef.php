@@ -15,11 +15,11 @@ class MaintainableDBConnRef extends DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function tableNames() {
+	public function tableNames( ...$tables ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function tableNamesN() {
+	public function tableNamesN( ...$tables ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
@@ -53,7 +53,7 @@ class MaintainableDBConnRef extends DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function deadlockLoop() {
+	public function deadlockLoop( ...$args ) {
 		$this->assertRoleAllowsWrites();
 
 		return $this->__call( __FUNCTION__, func_get_args() );
