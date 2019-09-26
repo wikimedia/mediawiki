@@ -25,15 +25,39 @@ class RESTBagOStuffTest extends \MediaWikiUnitTestCase {
 		$this->bag = new RESTBagOStuff( [ 'client' => $this->client, 'url' => 'http://test/rest/' ] );
 	}
 
-	public function testGet() {
+	/**
+	 * @dataProvider dataGet
+	 */
+	public function testGet( $serializationType, $hmacKey, $data ) {
+		$classReflect = new ReflectionClass( RESTBagOStuff::class );
+
+		$serializationTypeReflect = $classReflect->getProperty( 'serializationType' );
+		$serializationTypeReflect->setAccessible( true );
+		$serializationTypeReflect->setValue( $this->bag, $serializationType );
+
+		$hmacKeyReflect = $classReflect->getProperty( 'hmacKey' );
+		$hmacKeyReflect->setAccessible( true );
+		$hmacKeyReflect->setValue( $this->bag, $hmacKey );
+
 		$this->client->expects( $this->once() )->method( 'run' )->with( [
 			'method' => 'GET',
 			'url' => 'http://test/rest/42xyz42',
 			'headers' => []
 			// list( $rcode, $rdesc, $rhdrs, $rbody, $rerr )
-		] )->willReturn( [ 200, 'OK', [], '"somedata"', 0 ] );
+		] )->willReturn( [ 200, 'OK', [], $data, 0 ] );
 		$result = $this->bag->get( '42xyz42' );
 		$this->assertEquals( 'somedata', $result );
+	}
+
+	public static function dataGet() {
+		// Make sure the defaults are last, so the $bag is left as expected for the next test
+		return [
+			[ 'JSON', '12345', 'JSON.Us1wli82zEJ6DNQnCG//w+MShOFrdx9wCdfTUhPPA2w=."somedata"' ],
+			[ 'JSON', '', 'JSON.."somedata"' ],
+			[ 'PHP', '12345', 'PHP.t2EKhUF4l65kZqWhoAnKW8ZPzekDYfrDxTkQcVmGsuM=.s:8:"somedata";' ],
+			[ 'PHP', '', 'PHP..s:8:"somedata";' ],
+			[ 'legacy', '', 's:8:"somedata";' ],
+		];
 	}
 
 	public function testGetNotExist() {
@@ -71,16 +95,40 @@ class RESTBagOStuffTest extends \MediaWikiUnitTestCase {
 		$this->assertEquals( BagOStuff::ERR_UNEXPECTED, $this->bag->getLastError() );
 	}
 
-	public function testPut() {
+	/**
+	 * @dataProvider dataPut
+	 */
+	public function testPut( $serializationType, $hmacKey, $data ) {
+		$classReflect = new ReflectionClass( RESTBagOStuff::class );
+
+		$serializationTypeReflect = $classReflect->getProperty( 'serializationType' );
+		$serializationTypeReflect->setAccessible( true );
+		$serializationTypeReflect->setValue( $this->bag, $serializationType );
+
+		$hmacKeyReflect = $classReflect->getProperty( 'hmacKey' );
+		$hmacKeyReflect->setAccessible( true );
+		$hmacKeyReflect->setValue( $this->bag, $hmacKey );
+
 		$this->client->expects( $this->once() )->method( 'run' )->with( [
 			'method' => 'PUT',
 			'url' => 'http://test/rest/42xyz42',
-			'body' => '"postdata"',
+			'body' => $data,
 			'headers' => []
 			// list( $rcode, $rdesc, $rhdrs, $rbody, $rerr )
 		] )->willReturn( [ 200, 'OK', [], 'Done', 0 ] );
-		$result = $this->bag->set( '42xyz42', 'postdata' );
+		$result = $this->bag->set( '42xyz42', 'somedata' );
 		$this->assertTrue( $result );
+	}
+
+	public static function dataPut() {
+		// Make sure the defaults are last, so the $bag is left as expected for the next test
+		return [
+			[ 'JSON', '12345', 'JSON.Us1wli82zEJ6DNQnCG//w+MShOFrdx9wCdfTUhPPA2w=."somedata"' ],
+			[ 'JSON', '', 'JSON.."somedata"' ],
+			[ 'PHP', '12345', 'PHP.t2EKhUF4l65kZqWhoAnKW8ZPzekDYfrDxTkQcVmGsuM=.s:8:"somedata";' ],
+			[ 'PHP', '', 'PHP..s:8:"somedata";' ],
+			[ 'legacy', '', 's:8:"somedata";' ],
+		];
 	}
 
 	public function testDelete() {
