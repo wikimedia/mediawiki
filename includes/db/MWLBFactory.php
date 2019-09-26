@@ -381,7 +381,6 @@ abstract class MWLBFactory {
 			 * T154872).
 			 */
 			$lbFactory->setIndexAliases( [
-				'ar_usertext_timestamp' => 'usertext_timestamp',
 				'un_user_id' => 'user_id',
 				'un_user_ip' => 'user_ip',
 			] );

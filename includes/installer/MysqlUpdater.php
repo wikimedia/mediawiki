@@ -386,6 +386,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyTable', 'job', 'patch-job-params-mediumblob.sql' ],
 
 			// 1.34
+			[ 'dropIndex', 'archive', 'ar_usertext_timestamp',
+				'patch-drop-archive-ar_usertext_timestamp.sql' ],
+			[ 'dropIndex', 'archive', 'usertext_timestamp', 'patch-drop-archive-usertext_timestamp.sql' ],
 			[ 'dropField', 'logging', 'log_user', 'patch-drop-user-fields.sql' ],
 		];
 	}
