@@ -75,11 +75,11 @@ class UserNotLoggedIn extends ErrorPageError {
 	 * Redirect to Special:Userlogin if the specified message is compatible. Otherwise,
 	 * show an error page as usual.
 	 */
-	public function report() {
+	public function report( $action = self::SEND_OUTPUT ) {
 		// If an unsupported message is used, don't try redirecting to Special:Userlogin,
 		// since the message may not be compatible.
 		if ( !in_array( $this->msg, LoginHelper::getValidErrorMessages() ) ) {
-			parent::report();
+			parent::report( $action );
 			return;
 		}
 
@@ -99,6 +99,8 @@ class UserNotLoggedIn extends ErrorPageError {
 			'warning' => $this->msg,
 		] ) );
 
-		$output->output();
+		if ( $action === self::SEND_OUTPUT ) {
+			$output->output();
+		}
 	}
 }

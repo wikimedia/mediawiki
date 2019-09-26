@@ -25,6 +25,8 @@
  * @ingroup Exception
  */
 class ErrorPageError extends MWException implements ILocalizedException {
+	const SEND_OUTPUT = 0;
+	const STAGE_OUTPUT = 1;
 	public $title, $msg, $params;
 
 	/**
@@ -60,13 +62,19 @@ class ErrorPageError extends MWException implements ILocalizedException {
 		return wfMessage( $this->msg, $this->params );
 	}
 
-	public function report() {
+	public function report( $action = self::SEND_OUTPUT ) {
 		if ( self::isCommandLine() || defined( 'MW_API' ) ) {
 			parent::report();
 		} else {
 			global $wgOut;
 			$wgOut->showErrorPage( $this->title, $this->msg, $this->params );
-			$wgOut->output();
+			// Allow skipping of the final output step, so that web-based page views
+			// from MediaWiki.php, can inspect the staged OutputPage state, and perform
+			// graceful shutdown via doPreOutputCommit first, just like for regular
+			// output when there isn't an error page.
+			if ( $action === self::SEND_OUTPUT ) {
+				$wgOut->output();
+			}
 		}
 	}
 }

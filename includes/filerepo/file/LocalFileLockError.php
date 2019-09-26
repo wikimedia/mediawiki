@@ -29,9 +29,9 @@ class LocalFileLockError extends ErrorPageError {
 		);
 	}
 
-	public function report() {
+	public function report( $action = self::SEND_OUTPUT ) {
 		global $wgOut;
 		$wgOut->setStatusCode( 429 );
-		parent::report();
+		parent::report( $action );
 	}
 }
