@@ -910,7 +910,7 @@ class Parser {
 	 */
 	public function setTitle( $t ) {
 		if ( !$t ) {
-			$t = Title::newFromText( 'NO TITLE' );
+			$t = Title::makeTitle( NS_SPECIAL, 'Badtitle/Parser' );
 		}
 
 		if ( $t->hasFragment() ) {
