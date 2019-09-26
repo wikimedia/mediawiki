@@ -155,12 +155,8 @@ class CacheHelper implements ICacheHelper {
 			unset( $refreshArgs['title'] );
 			$refreshArgs['action'] = 'purge';
 
-			$subPage = $context->getTitle()->getFullText();
-			$subPage = explode( '/', $subPage, 2 );
-			$subPage = count( $subPage ) > 1 ? $subPage[1] : false;
-
 			$message .= ' ' . MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
-				$context->getTitle( $subPage ),
+				$context->getTitle(),
 				$context->msg( 'cachedspecial-refresh-now' )->text(),
 				[],
 				$refreshArgs

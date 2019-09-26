@@ -33,8 +33,20 @@ class ForeignResourceManager {
 	private $libDir;
 	private $tmpParentDir;
 	private $cacheDir;
+	/**
+	 * @var callable|Closure
+	 * @phan-var callable(string):void
+	 */
 	private $infoPrinter;
+	/**
+	 * @var callable|Closure
+	 * @phan-var callable(string):void
+	 */
 	private $errorPrinter;
+	/**
+	 * @var callable|Closure
+	 * @phan-var callable(string):void
+	 */
 	private $verbosePrinter;
 	private $action;
 	private $registry;
@@ -56,10 +68,10 @@ class ForeignResourceManager {
 	) {
 		$this->registryFile = $registryFile;
 		$this->libDir = $libDir;
-		$this->infoPrinter = $infoPrinter ?? function () {
+		$this->infoPrinter = $infoPrinter ?? function ( $_ ) {
 		};
 		$this->errorPrinter = $errorPrinter ?? $this->infoPrinter;
-		$this->verbosePrinter = $verbosePrinter ?? function () {
+		$this->verbosePrinter = $verbosePrinter ?? function ( $_ ) {
 		};
 
 		// Use a temporary directory under the destination directory instead
