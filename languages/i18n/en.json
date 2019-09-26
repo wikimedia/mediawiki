@@ -353,6 +353,7 @@
 	"perfcached": "The following data is cached and may not be up to date. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
 	"perfcachedts": "The following data is cached, and was last updated $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 	"querypage-no-updates": "Updates for this page are currently disabled.\nData here will not presently be refreshed.",
+	"querypage-updates-periodical": "Updates for this page are run periodically.",
 	"viewsource": "View source",
 	"viewsource-title": "View source for $1",
 	"actionthrottled": "Action throttled",

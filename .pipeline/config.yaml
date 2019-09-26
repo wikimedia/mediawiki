@@ -1,0 +1,9 @@
+pipelines:
+  publish:
+    blubberfile: blubber.yaml
+    stages:
+      - name: dev
+        build: dev
+        publish:
+          image: true
+          tags: [dev]

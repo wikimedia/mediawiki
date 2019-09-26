@@ -119,6 +119,30 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
+	 * Get a list of query pages disabled and with it's run mode
+	 * @param Config $config
+	 * @return string[]
+	 */
+	public static function getDisabledQueryPages( Config $config ) {
+		$disableQueryPageUpdate = $config->get( 'DisableQueryPageUpdate' );
+
+		if ( !is_array( $disableQueryPageUpdate ) ) {
+			return [];
+		}
+
+		$pages = [];
+		foreach ( $disableQueryPageUpdate as $name => $runMode ) {
+			if ( is_int( $name ) ) {
+				// The run mode may be omitted
+				$pages[$runMode] = 'disabled';
+			} else {
+				$pages[$name] = $runMode;
+			}
+		}
+		return $pages;
+	}
+
+	/**
 	 * A mutator for $this->listoutput;
 	 *
 	 * @param bool $bool
@@ -632,13 +656,21 @@ abstract class QueryPage extends SpecialPage {
 
 				# If updates on this page have been disabled, let the user know
 				# that the data set won't be refreshed for now
-				if ( is_array( $this->getConfig()->get( 'DisableQueryPageUpdate' ) )
-					&& in_array( $this->getName(), $this->getConfig()->get( 'DisableQueryPageUpdate' ) )
-				) {
-					$out->wrapWikiMsg(
-						"<div class=\"mw-querypage-no-updates\">\n$1\n</div>",
-						'querypage-no-updates'
-					);
+				$disabledQueryPages = self::getDisabledQueryPages( $this->getConfig() );
+				if ( isset( $disabledQueryPages[$this->getName()] ) ) {
+					$runMode = $disabledQueryPages[$this->getName()];
+					if ( $runMode === 'disabled' ) {
+						$out->wrapWikiMsg(
+							"<div class=\"mw-querypage-no-updates\">\n$1\n</div>",
+							'querypage-no-updates'
+						);
+					} else {
+						// Messages used here: querypage-updates-periodical
+						$out->wrapWikiMsg(
+							"<div class=\"mw-querypage-updates-" . $runMode . "\">\n$1\n</div>",
+							'querypage-updates-' . $runMode
+						);
+					}
 				}
 			}
 		}

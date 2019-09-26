@@ -42,12 +42,13 @@ class UpdateSpecialPages extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgQueryCacheLimit, $wgDisableQueryPageUpdate;
+		global $wgQueryCacheLimit;
 
 		$dbw = $this->getDB( DB_MASTER );
 
 		$this->doSpecialPageCacheUpdates( $dbw );
 
+		$disabledQueryPages = QueryPage::getDisabledQueryPages( $this->getConfig() );
 		foreach ( QueryPage::getPages() as $page ) {
 			list( , $special ) = $page;
 			$limit = $page[2] ?? null;
@@ -59,7 +60,7 @@ class UpdateSpecialPages extends Maintenance {
 			}
 
 			if ( !$this->hasOption( 'override' )
-				&& $wgDisableQueryPageUpdate && in_array( $special, $wgDisableQueryPageUpdate )
+				&& isset( $disabledQueryPages[$special] )
 			) {
 				$this->output( sprintf( "%-30s [QueryPage] disabled\n", $special ) );
 				continue;

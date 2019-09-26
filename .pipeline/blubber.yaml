@@ -1,0 +1,14 @@
+version: v4
+base: docker-registry.wikimedia.org/dev/stretch-php72-fpm-apache2
+
+lives:
+  in: /var/www/html
+
+variants:
+  dev:
+    runs:
+      insecurely: true
+    builder:
+      command: [.pipeline/dev_prereq.sh]
+      requirements: [.pipeline, .pipeline/dev_prereq.sh, composer.json]
+    copies: [local]
