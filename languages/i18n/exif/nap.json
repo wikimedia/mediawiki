@@ -3,7 +3,8 @@
 		"authors": [
 			"C.R.",
 			"E. abu Filumena",
-			"SabineCretella"
+			"SabineCretella",
+			"Sannita"
 		]
 	},
 	"exif-imagewidth": "Larghezza",
@@ -31,10 +32,10 @@
 	"exif-imagedescription": "Titulo 'e l'immaggene",
 	"exif-make": "Frabbeca ca muntaje 'a camera",
 	"exif-model": "Mudello d' 'a camera",
-	"exif-software": "Software ausàto",
+	"exif-software": "Software ausato",
 	"exif-artist": "Autore",
 	"exif-copyright": "Titolare d' 'o Copyright",
-	"exif-exifversion": "Verzione d'Exif",
+	"exif-exifversion": "Verzione 'e ll'exif",
 	"exif-flashpixversion": "Verziona Flashpix suppurtata",
 	"exif-colorspace": "Spazio d' 'e culore",
 	"exif-componentsconfiguration": "Significato d'ogne componente",

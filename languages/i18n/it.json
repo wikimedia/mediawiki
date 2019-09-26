@@ -2635,6 +2635,7 @@
 	"ipblocklist-legend": "Cerca un utente bloccato",
 	"blocklist-userblocks": "Nascondi i blocchi degli utenti registrati",
 	"blocklist-tempblocks": "Nascondi i blocchi temporanei",
+	"blocklist-indefblocks": "Nascondi blocchi infiniti",
 	"blocklist-addressblocks": "Nascondi i blocchi di un solo IP",
 	"blocklist-type": "Tipo:",
 	"blocklist-type-opt-all": "Tutto",
