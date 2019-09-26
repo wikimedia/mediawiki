@@ -1011,7 +1011,7 @@ class Html {
 	/**
 	 * Get HTML for an information message box with an icon.
 	 *
-	 * @internal For use by the WebInstaller class.
+	 * @internal For use by the WebInstaller class only.
 	 * @param string $rawHtml HTML
 	 * @param string $icon Path to icon file (used as 'src' attribute)
 	 * @param string $alt Alternate text for the icon
