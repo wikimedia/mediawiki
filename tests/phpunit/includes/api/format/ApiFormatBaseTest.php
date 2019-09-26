@@ -17,6 +17,9 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 		] );
 	}
 
+	/**
+	 * @return ApiFormatBase|\PHPUnit\Framework\MockObject\MockObject
+	 */
 	public function getMockFormatter( ApiMain $main = null, $format, $methods = [] ) {
 		if ( $main === null ) {
 			$context = new RequestContext;
@@ -60,7 +63,8 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 		] );
 
 		$ret = parent::encodeData( $params, $data, $options );
-		$printer = TestingAccessWrapper::newFromObject( $ret['printer'] );
+		/** @var ApiFormatBase $printer */
+		$printer = $ret['printer'];
 		$text = $ret['text'];
 
 		if ( $options['name'] !== 'mockfm' ) {
@@ -340,6 +344,7 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 	}
 
 	public function testGetExamplesMessages() {
+		/** @var ApiFormatBase $printer */
 		$printer = TestingAccessWrapper::newFromObject( $this->getMockFormatter( null, 'mock' ) );
 		$this->assertSame( [
 			'action=query&meta=siteinfo&siprop=namespaces&format=mock'
