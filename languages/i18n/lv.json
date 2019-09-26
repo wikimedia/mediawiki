@@ -467,7 +467,7 @@
 	"password-login-forbidden": "Šī lietotājvārda un paroles izmantošana ir aizliegta.",
 	"mailmypassword": "Atiestatīt paroli",
 	"passwordremindertitle": "Jauna pagaidu parole no {{SITENAME}}s",
-	"passwordremindertext": "Kāds (iespējams, Tu pats, no IP adreses $1)\nlūdza, lai nosūtām Tev jaunu {{SITENAME}} ($4) paroli.\nLietotajam $2 pagaidu parole tagad ir $3.\nLudzu, nomaini paroli, kad esi veiksmīgi iekļuvis iekšš.\nTavas pagaidu paroles derīguma termiņš beigsies pēc {{PLURAL:$5|$5 dienām|$5 dienas|$5 dienām}}.\n\nJa paroles pieprasījumu bija nosūtījis kāds cits, vai arī tu atcerējies savu veco paroli, šo var ignorēt. Vecā parole joprojām darbojas.",
+	"passwordremindertext": "Kāds (no IP adreses $1)\nlūdza, lai nosūtām tev jaunu {{SITENAME}} ($4) paroli.\nLietotajam $2 izveidota pagaidu parole $3. Ja tāds bija tavs mērķis, tagad tev jāpieslēdzas un jānomaina parole. Tavas pagaidu paroles derīguma termiņš beigsies pēc {{PLURAL:$5|$5 dienām|$5 dienas|$5 dienām}}.\n\nJa paroles pieprasījumu bija nosūtījis kāds cits, vai arī tu atcerējies savu veco paroli, šo var ignorēt. Vecā parole joprojām darbojas.",
 	"noemail": "Lietotājs \"$1\" nav reģistrējis e-pasta adresi.",
 	"noemailcreate": "Tev jānorāda derīgu e-pasta adresi",
 	"passwordsent": "Esam nosūtījuši jaunu paroli uz e-pasta adresi, kuru ir norādījis lietotājs $1. Lūdzu, nāc iekšā ar jauno paroli, kad būsi to saņēmis.",
