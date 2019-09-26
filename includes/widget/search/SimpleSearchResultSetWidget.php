@@ -70,7 +70,7 @@ class SimpleSearchResultSetWidget implements SearchResultSetWidget {
 			// TODO: Assumes interwiki results are never paginated
 			$position = 0;
 			foreach ( $results as $result ) {
-				$out .= $this->resultWidget->render( $result, $term, $position++ );
+				$out .= $this->resultWidget->render( $result, $position++ );
 			}
 			$out .= "</ul>";
 		}

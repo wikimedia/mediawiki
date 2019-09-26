@@ -103,7 +103,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * Filter groups, and their contained filters
 	 * This is an associative array (with group name as key) of ChangesListFilterGroup objects.
 	 *
-	 * @var array $filterGroups
+	 * @var ChangesListFilterGroup[] $filterGroups
 	 */
 	protected $filterGroups = [];
 
@@ -1164,7 +1164,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		foreach ( $this->filterGroups as $group ) {
 			if ( $group instanceof  ChangesListBooleanFilterGroup ) {
 				foreach ( $group->getFilters() as $key => $filter ) {
-					if ( $filter->displaysOnUnstructuredUi( $this ) ) {
+					if ( $filter->displaysOnUnstructuredUi() ) {
 						$filters[ $key ] = $filter;
 					}
 				}
@@ -1287,7 +1287,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		} );
 
 		foreach ( $this->filterGroups as $groupName => $group ) {
-			$groupOutput = $group->getJsData( $this );
+			$groupOutput = $group->getJsData();
 			if ( $groupOutput !== null ) {
 				$output['messageKeys'] = array_merge(
 					$output['messageKeys'],
