@@ -2,6 +2,7 @@
 
 /**
  * @group ResourceLoader
+ * @covers ResourceLoaderImage
  */
 class ResourceLoaderImageTest extends MediaWikiUnitTestCase {
 
@@ -53,7 +54,6 @@ class ResourceLoaderImageTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ResourceLoaderImage::getPath
 	 * @dataProvider provideGetPath
 	 */
 	public function testGetPath( $imageName, $languageCode, $path ) {
@@ -84,10 +84,6 @@ class ResourceLoaderImageTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( $image->getPath( $context ), $this->imagesPath . '/' . $path );
 	}
 
-	/**
-	 * @covers ResourceLoaderImage::getExtension
-	 * @covers ResourceLoaderImage::getMimeType
-	 */
 	public function testGetExtension() {
 		$image = $this->getTestImage( 'def' );
 		$this->assertEquals( $image->getExtension(), 'svg' );
@@ -99,11 +95,6 @@ class ResourceLoaderImageTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( $image->getExtension( 'rasterized' ), 'gif' );
 	}
 
-	/**
-	 * @covers ResourceLoaderImage::getImageData
-	 * @covers ResourceLoaderImage::variantize
-	 * @covers ResourceLoaderImage::massageSvgPathdata
-	 */
 	public function testGetImageData() {
 		$context = $this->createMock( ResourceLoaderContext::class );
 
@@ -124,9 +115,6 @@ class ResourceLoaderImageTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( $image->getImageData( $context, null, 'rasterized' ), $data );
 	}
 
-	/**
-	 * @covers ResourceLoaderImage::massageSvgPathdata
-	 */
 	public function testMassageSvgPathdata() {
 		$image = $this->getTestImage( 'ghi' );
 		$data = file_get_contents( $this->imagesPath . '/ghi.svg' );

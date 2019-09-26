@@ -55,8 +55,9 @@ class ResourceLoaderImage {
 	private $extension;
 
 	/**
-	 * @param string $name Image name
-	 * @param string $module Module name
+	 * @param string $name Self-name of the image as known to ResourceLoaderImageModule.
+	 * @param string $module Self-name of the module containing this image.
+	 *  Used to find the image in the registry e.g. through a load.php url.
 	 * @param string|array $descriptor Path to image file, or array structure containing paths
 	 * @param string $basePath Directory to which paths in descriptor refer
 	 * @param array $variants
@@ -217,7 +218,7 @@ class ResourceLoaderImage {
 	 * @param string $script URL to load.php
 	 * @param string|null $variant Variant to get the URL for
 	 * @param string $format Format to get the URL for, 'original' or 'rasterized'
-	 * @return string
+	 * @return string URL
 	 */
 	public function getUrl( ResourceLoaderContext $context, $script, $variant, $format ) {
 		$query = [
@@ -231,7 +232,8 @@ class ResourceLoaderImage {
 		}
 		// The following parameters are at the end to keep the original order of the parameters.
 		$query['skin'] = $context->getSkin();
-		$query['version'] = $context->getVersion();
+		$rl = $context->getResourceLoader();
+		$query['version'] = $rl->makeVersionQuery( $context, [ $this->getModule() ] );
 
 		return wfAppendQuery( $script, $query );
 	}
