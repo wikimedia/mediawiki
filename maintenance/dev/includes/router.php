@@ -74,10 +74,22 @@ if ( $ext == 'php' ) {
 	} else {
 		header( "Content-Type: $mime" );
 	}
-	header( "Content-Length: " . filesize( $file ) );
-	// Stream that out to the browser
-	$f = fopen( $file, 'rb' );
-	fpassthru( $f );
+
+	$content = file_get_contents( $file );
+
+	header( 'Vary: Accept-Encoding' );
+	$acceptGzip = preg_match( '/\bgzip\b/', $_SERVER['HTTP_ACCEPT_ENCODING'] ?? '' );
+	if ( $acceptGzip &&
+		// Don't compress binary static files (e.g. png)
+		preg_match( '/text|javascript|json|css|xml|svg/', $mime ) &&
+		// Tiny files tend to grow instead of shrink. – <https://gerrit.wikimedia.org/r/537974>
+		strlen( $content ) > 150
+	) {
+		$content = gzencode( $content, 9 );
+		header( 'Content-Encoding: gzip' );
+	}
+	header( "Content-Length: " . strlen( $content ) );
+	echo $content;
 
 	return true;
 }
