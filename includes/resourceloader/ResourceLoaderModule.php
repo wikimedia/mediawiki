@@ -128,7 +128,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * @param ResourceLoaderContext $context
 	 * @return bool
 	 */
-	public function getFlip( $context ) {
+	public function getFlip( ResourceLoaderContext $context ) {
 		return MediaWikiServices::getInstance()->getContentLanguage()->getDir() !==
 			$context->getDirection();
 	}
