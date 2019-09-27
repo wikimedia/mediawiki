@@ -22,6 +22,7 @@
  * @ingroup Maintenance ExternalStorage
  */
 
+use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use MediaWiki\Logger\LegacyLogger;
 use MediaWiki\MediaWikiServices;
@@ -71,6 +72,8 @@ class RecompressTracked {
 	public $debugLog, $infoLog, $criticalLog;
 	/** @var ExternalStoreDB */
 	public $store;
+	/** @var SqlBlobStore */
+	private $blobStore;
 
 	private static $optionsWithArgs = [
 		'procs',
@@ -120,6 +123,10 @@ class RecompressTracked {
 		$this->pageBlobClass = function_exists( 'xdiff_string_bdiff' ) ?
 			DiffHistoryBlob::class : ConcatenatedGzipHistoryBlob::class;
 		$this->orphanBlobClass = ConcatenatedGzipHistoryBlob::class;
+		// @phan-suppress-next-line PhanAccessMethodInternal
+		$this->blobStore = MediaWikiServices::getInstance()
+			->getBlobStoreFactory()
+			->newSqlBlobStore();
 	}
 
 	function debug( $msg ) {
@@ -531,7 +538,7 @@ class RecompressTracked {
 				}
 				$lastTextId = $row->bt_text_id;
 				// Load the text
-				$text = Revision::getRevisionText( $row );
+				$text = $this->blobStore->expandBlob( $row->old_text, $row->old_flags );
 				if ( $text === false ) {
 					$this->critical( "Error loading {$row->bt_rev_id}/{$row->bt_text_id}" );
 					continue;
@@ -685,7 +692,7 @@ class RecompressTracked {
 		);
 
 		foreach ( $res as $row ) {
-			$text = Revision::getRevisionText( $row );
+			$text = $this->blobStore->expandBlob( $row->old_text, $row->old_flags );
 			if ( $text === false ) {
 				$this->critical( "Error: cannot load revision text for old_id={$row->old_id}" );
 				continue;

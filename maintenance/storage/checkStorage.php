@@ -556,10 +556,27 @@ class CheckStorage {
 
 		// Find text row again
 		$dbr = wfGetDB( DB_REPLICA );
-		$oldId = $dbr->selectField( 'revision', 'rev_text_id', [ 'rev_id' => $id ], __METHOD__ );
+		global $wgMultiContentRevisionSchemaMigrationStage;
+		if ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			$oldId = $dbr->selectField( 'revision', 'rev_text_id', [ 'rev_id' => $id ], __METHOD__ );
+		} else {
+			$res = $dbr->selectRow(
+				[ 'slots', 'content' ],
+				[ 'content_address' ],
+				[ 'slot_revision_id' => $id ],
+				__METHOD__,
+				[],
+				[ 'content' => [ 'INNER JOIN', [ 'content_id = slot_content_id' ] ] ]
+			);
+			// @phan-suppress-next-line PhanAccessMethodInternal
+			$blobStore = MediaWikiServices::getInstance()
+				->getBlobStoreFactory()
+				->newSqlBlobStore();
+			$oldId = $blobStore->getTextIdFromAddress( $res->content_address );
+		}
+
 		if ( !$oldId ) {
 			echo "Missing revision row for rev_id $id\n";
-
 			return;
 		}
 

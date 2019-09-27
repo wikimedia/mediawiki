@@ -239,6 +239,10 @@ class CompressOld extends Maintenance {
 			/** @var ExternalStoreDB $storeObj */
 			$storeObj = $esFactory->getStore( 'DB' );
 		}
+		// @phan-suppress-next-line PhanAccessMethodInternal
+		$blobStore = MediaWikiServices::getInstance()
+			->getBlobStoreFactory()
+			->newSqlBlobStore();
 
 		# Get all articles by page_id
 		if ( !$maxPageId ) {
@@ -370,8 +374,12 @@ class CompressOld extends Maintenance {
 				for ( $j = 0; $j < $thisChunkSize && $chunk->isHappy(); $j++ ) {
 					$oldid = $revs[$i + $j]->old_id;
 
-					# Get text
-					$text = Revision::getRevisionText( $revs[$i + $j] );
+					# Get text. We do not need the full `extractBlob` since the query is built
+					# to fetch non-externalstore blobs.
+					$text = $blobStore->decompressData(
+						$revs[$i + $j]->old_text,
+						explode( ',', $revs[$i + $j]->old_flags )
+					);
 
 					if ( $text === false ) {
 						$this->error( "\nError, unable to get text in old_id $oldid" );
