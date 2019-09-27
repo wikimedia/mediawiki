@@ -178,7 +178,6 @@ $wgAutoloadClasses += [
 	'MediaWiki\Tests\Revision\RevisionSlotsTest' => "$testDir/phpunit/includes/Revision/RevisionSlotsTest.php",
 	'MediaWiki\Tests\Revision\RevisionRecordTests' => "$testDir/phpunit/includes/Revision/RevisionRecordTests.php",
 	'MediaWiki\Tests\Revision\RevisionStoreDbTestBase' => "$testDir/phpunit/includes/Revision/RevisionStoreDbTestBase.php",
-	'MediaWiki\Tests\Revision\PreMcrSchemaOverride' => "$testDir/phpunit/includes/Revision/PreMcrSchemaOverride.php",
 	'MediaWiki\Tests\Revision\RevisionStoreRecordTest' => "$testDir/phpunit/includes/Revision/RevisionStoreRecordTest.php",
 
 	# tests/phpunit/languages
