@@ -63,10 +63,10 @@ class RecompressTracked {
 	public $numProcs = 1;
 	public $numBatches = 0;
 	public $pageBlobClass, $orphanBlobClass;
-	public $replicaPipes, $replicaProcs, $prevReplicaId;
+	public $childPipes, $childProcs, $prevChildId;
 	public $copyOnly = false;
 	public $isChild = false;
-	public $replicaId = false;
+	public $childId = false;
 	public $noCount = false;
 	public $debugLog, $infoLog, $criticalLog;
 	/** @var ExternalStoreDB */
@@ -74,7 +74,7 @@ class RecompressTracked {
 
 	private static $optionsWithArgs = [
 		'procs',
-		'replica-id',
+		'child-id',
 		'debug-log',
 		'info-log',
 		'critical-log'
@@ -85,7 +85,7 @@ class RecompressTracked {
 		'procs' => 'numProcs',
 		'copy-only' => 'copyOnly',
 		'child' => 'isChild',
-		'replica-id' => 'replicaId',
+		'child-id' => 'childId',
 		'debug-log' => 'debugLog',
 		'info-log' => 'infoLog',
 		'critical-log' => 'criticalLog',
@@ -114,8 +114,8 @@ class RecompressTracked {
 		$this->store = $esFactory->getStore( 'DB' );
 		if ( !$this->isChild ) {
 			$GLOBALS['wgDebugLogPrefix'] = "RCT M: ";
-		} elseif ( $this->replicaId !== false ) {
-			$GLOBALS['wgDebugLogPrefix'] = "RCT {$this->replicaId}: ";
+		} elseif ( $this->childId !== false ) {
+			$GLOBALS['wgDebugLogPrefix'] = "RCT {$this->childId}: ";
 		}
 		$this->pageBlobClass = function_exists( 'xdiff_string_bdiff' ) ?
 			DiffHistoryBlob::class : ConcatenatedGzipHistoryBlob::class;
@@ -145,8 +145,8 @@ class RecompressTracked {
 
 	function logToFile( $msg, $file ) {
 		$header = '[' . date( 'd\TH:i:s' ) . '] ' . wfHostname() . ' ' . posix_getpid();
-		if ( $this->replicaId !== false ) {
-			$header .= "({$this->replicaId})";
+		if ( $this->childId !== false ) {
+			$header .= "({$this->childId})";
 		}
 		$header .= ' ' . WikiMap::getCurrentWikiDbDomain()->getId();
 		LegacyLogger::emit( sprintf( "%-50s %s\n", $header, $msg ), $file );
@@ -184,10 +184,10 @@ class RecompressTracked {
 		}
 
 		$this->syncDBs();
-		$this->startReplicaProcs();
+		$this->startChildProcs();
 		$this->doAllPages();
 		$this->doAllOrphans();
-		$this->killReplicaProcs();
+		$this->killChildProcs();
 	}
 
 	/**
@@ -217,12 +217,12 @@ class RecompressTracked {
 	 * This necessary because text recompression is slow: loading, compressing and
 	 * writing are all slow.
 	 */
-	function startReplicaProcs() {
+	function startChildProcs() {
 		$wiki = WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() );
 
 		$cmd = 'php ' . Shell::escape( __FILE__ );
 		foreach ( self::$cmdLineOptionMap as $cmdOption => $classOption ) {
-			if ( $cmdOption == 'replica-id' ) {
+			if ( $cmdOption == 'child-id' ) {
 				continue;
 			} elseif ( in_array( $cmdOption, self::$optionsWithArgs ) && isset( $this->$classOption ) ) {
 				$cmd .= " --$cmdOption " . Shell::escape( $this->$classOption );
@@ -234,7 +234,7 @@ class RecompressTracked {
 			' --wiki ' . Shell::escape( $wiki ) .
 			' ' . Shell::escape( ...$this->destClusters );
 
-		$this->replicaPipes = $this->replicaProcs = [];
+		$this->childPipes = $this->childProcs = [];
 		for ( $i = 0; $i < $this->numProcs; $i++ ) {
 			$pipes = [];
 			$spec = [
@@ -243,28 +243,28 @@ class RecompressTracked {
 				[ 'file', 'php://stderr', 'w' ]
 			];
 			Wikimedia\suppressWarnings();
-			$proc = proc_open( "$cmd --replica-id $i", $spec, $pipes );
+			$proc = proc_open( "$cmd --child-id $i", $spec, $pipes );
 			Wikimedia\restoreWarnings();
 			if ( !$proc ) {
-				$this->critical( "Error opening replica DB process: $cmd" );
+				$this->critical( "Error opening child process: $cmd" );
 				exit( 1 );
 			}
-			$this->replicaProcs[$i] = $proc;
-			$this->replicaPipes[$i] = $pipes[0];
+			$this->childProcs[$i] = $proc;
+			$this->childPipes[$i] = $pipes[0];
 		}
-		$this->prevReplicaId = -1;
+		$this->prevChildId = -1;
 	}
 
 	/**
 	 * Gracefully terminate the child processes
 	 */
-	function killReplicaProcs() {
-		$this->info( "Waiting for replica DB processes to finish..." );
+	function killChildProcs() {
+		$this->info( "Waiting for child processes to finish..." );
 		for ( $i = 0; $i < $this->numProcs; $i++ ) {
-			$this->dispatchToReplica( $i, 'quit' );
+			$this->dispatchToChild( $i, 'quit' );
 		}
 		for ( $i = 0; $i < $this->numProcs; $i++ ) {
-			$status = proc_close( $this->replicaProcs[$i] );
+			$status = proc_close( $this->childProcs[$i] );
 			if ( $status ) {
 				$this->critical( "Warning: child #$i exited with status $status" );
 			}
@@ -273,24 +273,24 @@ class RecompressTracked {
 	}
 
 	/**
-	 * Dispatch a command to the next available replica DB.
-	 * This may block until a replica DB finishes its work and becomes available.
+	 * Dispatch a command to the next available child process.
+	 * This may block until a child process finishes its work and becomes available.
 	 * @param array|string ...$args
 	 */
 	function dispatch( ...$args ) {
-		$pipes = $this->replicaPipes;
+		$pipes = $this->childPipes;
 		$x = [];
 		$y = [];
 		$numPipes = stream_select( $x, $pipes, $y, 3600 );
 		if ( !$numPipes ) {
-			$this->critical( "Error waiting to write to replica DBs. Aborting" );
+			$this->critical( "Error waiting to write to child process. Aborting" );
 			exit( 1 );
 		}
 		for ( $i = 0; $i < $this->numProcs; $i++ ) {
-			$replicaId = ( $i + $this->prevReplicaId + 1 ) % $this->numProcs;
-			if ( isset( $pipes[$replicaId] ) ) {
-				$this->prevReplicaId = $replicaId;
-				$this->dispatchToReplica( $replicaId, $args );
+			$childId = ( $i + $this->prevChildId + 1 ) % $this->numProcs;
+			if ( isset( $pipes[$childId] ) ) {
+				$this->prevChildId = $childId;
+				$this->dispatchToChild( $childId, $args );
 
 				return;
 			}
@@ -300,14 +300,14 @@ class RecompressTracked {
 	}
 
 	/**
-	 * Dispatch a command to a specified replica DB
-	 * @param int $replicaId
+	 * Dispatch a command to a specified child process
+	 * @param int $childId
 	 * @param array|string $args
 	 */
-	function dispatchToReplica( $replicaId, $args ) {
+	function dispatchToChild( $childId, $args ) {
 		$args = (array)$args;
 		$cmd = implode( ' ', $args );
-		fwrite( $this->replicaPipes[$replicaId], "$cmd\n" );
+		fwrite( $this->childPipes[$childId], "$cmd\n" );
 	}
 
 	/**
