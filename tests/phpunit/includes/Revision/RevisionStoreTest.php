@@ -3,36 +3,25 @@
 namespace MediaWiki\Tests\Revision;
 
 use CommentStore;
-use HashBagOStuff;
 use InvalidArgumentException;
-use Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRoleRegistry;
-use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\MaintainableDBConnRef;
 use MediaWikiTestCase;
 use MWException;
-use Title;
 use WANObjectCache;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\TestingAccessWrapper;
-use WikitextContent;
 
 /**
  * Tests RevisionStore
  */
 class RevisionStoreTest extends MediaWikiTestCase {
-
-	private function useTextId() {
-		global $wgMultiContentRevisionSchemaMigrationStage;
-
-		return (bool)( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_READ_OLD );
-	}
 
 	/**
 	 * @param LoadBalancer $loadBalancer
@@ -432,131 +421,6 @@ class RevisionStoreTest extends MediaWikiTestCase {
 
 		$this->setExpectedException( RevisionAccessException::class );
 		$store->getTitle( 1, 2, RevisionStore::READ_NORMAL );
-	}
-
-	public function provideNewRevisionFromRow_legacyEncoding_applied() {
-		yield 'windows-1252, old_flags is empty' => [
-			'windows-1252',
-			'en',
-			[
-				'old_flags' => '',
-				'old_text' => "S\xF6me Content",
-			],
-			'Söme Content'
-		];
-
-		yield 'windows-1252, old_flags is null' => [
-			'windows-1252',
-			'en',
-			[
-				'old_flags' => null,
-				'old_text' => "S\xF6me Content",
-			],
-			'Söme Content'
-		];
-	}
-
-	/**
-	 * @dataProvider provideNewRevisionFromRow_legacyEncoding_applied
-	 *
-	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRow
-	 */
-	public function testNewRevisionFromRow_legacyEncoding_applied( $encoding, $locale, $row, $text ) {
-		if ( !$this->useTextId() ) {
-			$this->markTestSkipped( 'No longer applicable with MCR schema' );
-		}
-
-		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
-		$services = MediaWikiServices::getInstance();
-		$lb = $services->getDBLoadBalancer();
-		$access = $services->getExternalStoreAccess();
-
-		$blobStore = new SqlBlobStore( $lb, $access, $cache );
-
-		$blobStore->setLegacyEncoding( $encoding, Language::factory( $locale ) );
-
-		$store = $this->getRevisionStore( $lb, $blobStore, $cache );
-
-		$record = $store->newRevisionFromRow(
-			$this->makeRow( $row ),
-			0,
-			Title::newFromText( __METHOD__ . '-UTPage' )
-		);
-
-		$this->assertSame( $text, $record->getContent( SlotRecord::MAIN )->serialize() );
-	}
-
-	/**
-	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRow
-	 */
-	public function testNewRevisionFromRow_legacyEncoding_ignored() {
-		if ( !$this->useTextId() ) {
-			$this->markTestSkipped( 'No longer applicable with MCR schema' );
-		}
-
-		$row = [
-			'old_flags' => 'utf-8',
-			'old_text' => 'Söme Content',
-		];
-
-		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
-		$services = MediaWikiServices::getInstance();
-		$lb = $services->getDBLoadBalancer();
-		$access = $services->getExternalStoreAccess();
-
-		$blobStore = new SqlBlobStore( $lb, $access, $cache );
-		$blobStore->setLegacyEncoding( 'windows-1252', Language::factory( 'en' ) );
-
-		$store = $this->getRevisionStore( $lb, $blobStore, $cache );
-
-		$record = $store->newRevisionFromRow(
-			$this->makeRow( $row ),
-			0,
-			Title::newFromText( __METHOD__ . '-UTPage' )
-		);
-		$this->assertSame( 'Söme Content', $record->getContent( SlotRecord::MAIN )->serialize() );
-	}
-
-	private function makeRow( array $array ) {
-		$row = $array + [
-				'rev_id' => 7,
-				'rev_page' => 5,
-				'rev_timestamp' => '20110101000000',
-				'rev_user_text' => 'Tester',
-				'rev_user' => 17,
-				'rev_minor_edit' => 0,
-				'rev_deleted' => 0,
-				'rev_len' => 100,
-				'rev_parent_id' => 0,
-				'rev_sha1' => 'deadbeef',
-				'rev_comment_text' => 'Testing',
-				'rev_comment_data' => '{}',
-				'rev_comment_cid' => 111,
-				'page_namespace' => 0,
-				'page_title' => 'TEST',
-				'page_id' => 5,
-				'page_latest' => 7,
-				'page_is_redirect' => 0,
-				'page_len' => 100,
-				'user_name' => 'Tester',
-			];
-
-		if ( $this->useTextId() ) {
-			$row += [
-				'rev_content_format' => CONTENT_FORMAT_TEXT,
-				'rev_content_model' => CONTENT_MODEL_TEXT,
-				'rev_text_id' => 11,
-				'old_id' => 11,
-				'old_text' => 'Hello World',
-				'old_flags' => 'utf-8',
-			];
-		} elseif ( !isset( $row['content'] ) && isset( $array['old_text'] ) ) {
-			$row['content'] = [
-				'main' => new WikitextContent( $array['old_text'] ),
-			];
-		}
-
-		return (object)$row;
 	}
 
 	public function provideMigrationConstruction() {
