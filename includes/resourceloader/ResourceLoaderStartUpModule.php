@@ -58,7 +58,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
-	private function getConfigSettings( $context ) {
+	private function getConfigSettings( ResourceLoaderContext $context ) {
 		$conf = $this->getConfig();
 
 		/**
