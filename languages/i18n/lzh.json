@@ -499,7 +499,7 @@
 	"showpreview": "示覽",
 	"showdiff": "示異",
 	"anoneditwarning": "'''警示：'''子未登簿，若確纂，IP將誌。茍[$1 登]或[$2 開戶口]，是纂欲存以子名，及他效。",
-	"anonpreviewwarning": "''子未登簿，IP將誌。''",
+	"anonpreviewwarning": "子未登簿，IP將誌。",
 	"missingsummary": "'''醒示：'''子未概之，復「$1」則文倍焉。",
 	"missingcommenttext": "請贊之",
 	"missingcommentheader": "'''醒示：'''子未概標之，復「$1」則文倍焉。",
