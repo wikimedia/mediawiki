@@ -71,8 +71,7 @@ class ChangesListFilterGroupTest extends \MediaWikiUnitTestCase {
 			$group->getFilter( 'foo' )->getName()
 		);
 
-		$this->assertEquals(
-			null,
+		$this->assertNull(
 			$group->getFilter( 'bar' )
 		);
 	}

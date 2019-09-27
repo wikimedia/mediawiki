@@ -1567,11 +1567,11 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$tmpFile = $this->backend->getLocalCopy( [
 			'src' => "$base/unittest-cont1/not-there" ] );
-		$this->assertEquals( null, $tmpFile, "Local copy of not existing file is null ($backendName)." );
+		$this->assertNull( $tmpFile, "Local copy of not existing file is null ($backendName)." );
 
 		$tmpFile = $this->backend->getLocalReference( [
 			'src' => "$base/unittest-cont1/not-there" ] );
-		$this->assertEquals( null, $tmpFile, "Local ref of not existing file is null ($backendName)." );
+		$this->assertNull( $tmpFile, "Local ref of not existing file is null ($backendName)." );
 	}
 
 	/**
@@ -2484,7 +2484,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			"Scoped locking of files succeeded with OK status ($backendName)." );
 
 		ScopedLock::release( $sl );
-		$this->assertEquals( null, $sl,
+		$this->assertNull( $sl,
 			"Scoped unlocking of files succeeded ($backendName)." );
 		$this->assertEquals( [], $status->getErrors(),
 			"Scoped unlocking of files succeeded ($backendName)." );

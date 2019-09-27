@@ -42,7 +42,7 @@ class DiffOpTest extends \MediaWikiUnitTestCase {
 		$this->assertEquals( 'foo', $obj->getClosing( 0 ) );
 		$this->assertEquals( 'bar', $obj->getClosing( 1 ) );
 		$this->assertEquals( 'baz', $obj->getClosing( 2 ) );
-		$this->assertEquals( null, $obj->getClosing( 3 ) );
+		$this->assertNull( $obj->getClosing( 3 ) );
 	}
 
 	/**

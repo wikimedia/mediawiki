@@ -376,7 +376,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		] );
 
 		$request = new \FauxRequest();
-		$this->assertEquals( null, $provider->suggestLoginUsername( $request ) );
+		$this->assertNull( $provider->suggestLoginUsername( $request ) );
 
 		$request->setCookies( [
 			'xUserName' => 'Example',

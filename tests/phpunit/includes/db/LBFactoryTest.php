@@ -412,7 +412,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$cpIndex = null;
 		$cp->shutdown( null, 'sync', $cpIndex );
 
-		$this->assertEquals( null, $cpIndex, "CP write index retained" );
+		$this->assertNull( $cpIndex, "CP write index retained" );
 
 		$this->assertEquals( '45e93a9c215c031d38b7c42d8e4700ca', $cp->getClientId() );
 	}
