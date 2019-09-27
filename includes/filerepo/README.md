@@ -1,3 +1,8 @@
+@ingroup FileRepo
+
+FileRepo Architecture {#filerepoarch}
+=====================
+
 Some quick notes on the file/repository architecture.
 
 Functionality is, as always, driven by data model.

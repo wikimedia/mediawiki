@@ -25,6 +25,8 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 /**
  * Class to handle enqueueing and running of background jobs
  *
+ * See [the architecture doc](@ref jobqueuearch) for more information.
+ *
  * @ingroup JobQueue
  * @since 1.21
  */

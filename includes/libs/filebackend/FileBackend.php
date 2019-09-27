@@ -88,6 +88,8 @@ use Psr\Log\NullLogger;
  * Methods of subclasses should avoid throwing exceptions at all costs.
  * As a corollary, external dependencies should be kept to a minimum.
  *
+ * See [the architecture doc](@ref filebackendarch) for more information.
+ *
  * @ingroup FileBackend
  * @since 1.19
  */

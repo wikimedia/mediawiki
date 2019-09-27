@@ -1,10 +1,10 @@
-/*!
-\ingroup JobQueue
-\page jobqueue_design Job queue design
+@ingroup JobQueue
 
+JobQueue Architecture {#jobqueuearch}
+=====================
 Notes on the Job queuing system architecture.
 
-\section intro Introduction
+## Introduction
 
 The data model consist of the following main components:
 * The Job object represents a particular deferred task that happens in the
@@ -14,7 +14,7 @@ The data model consist of the following main components:
   For example there may be a queue for email jobs and a queue for CDN purge
   jobs.
 
-\section jobqueue Job queues
+## Job queues
 
 Each job type has its own queue and is associated to a storage medium. One
 queue might save its jobs in redis while another one uses would use a database.
@@ -48,7 +48,7 @@ dequeued by a job runner, which crashes before completion, the job will be
 lost. Some jobs, like purging CDN caches after a template change, may not
 require durable queues, whereas other jobs might be more important.
 
-\section aggregator Job queue aggregator
+## Job queue aggregator
 
 The aggregators are used by nextJobDB.php, which is a script that will return a
 random ready queue (on any wiki in the farm) that can be used with runJobs.php.
@@ -66,7 +66,7 @@ The following queue aggregator classes are available:
 Some aggregators cache data for a few minutes while others may be always up to date.
 This can be an important factor for jobs that need a low pickup time (or latency).
 
-\section jobs Jobs
+## Jobs
 
 Callers should also try to make jobs maintain correctness when executed twice.
 This is useful for queues that actually implement ack(), since they may recycle
