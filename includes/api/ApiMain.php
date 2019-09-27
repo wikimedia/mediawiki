@@ -1154,8 +1154,7 @@ class ApiMain extends ApiBase {
 		}
 
 		if ( $this->getParameter( 'curtimestamp' ) ) {
-			$result->addValue( null, 'curtimestamp', wfTimestamp( TS_ISO_8601, time() ),
-				ApiResult::NO_SIZE_CHECK );
+			$result->addValue( null, 'curtimestamp', wfTimestamp( TS_ISO_8601 ), ApiResult::NO_SIZE_CHECK );
 		}
 
 		if ( $this->getParameter( 'responselanginfo' ) ) {
