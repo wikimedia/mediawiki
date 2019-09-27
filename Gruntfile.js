@@ -117,7 +117,7 @@ module.exports = function ( grunt ) {
 					included: true,
 					served: false
 				} ],
-				logLevel: 'DEBUG',
+				logLevel: ( process.env.ZUUL_PROJECT ? 'DEBUG' : 'INFO' ),
 				frameworks: [ 'qunit' ],
 				reporters: [ 'mocha' ],
 				singleRun: true,
