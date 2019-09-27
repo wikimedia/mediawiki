@@ -120,9 +120,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 
 	public function provideSetContentHandlerUseDB() {
 		return [
-			// ContentHandlerUseDB can be true of false pre migration.
-			[ false, SCHEMA_COMPAT_OLD, false ],
-			[ true, SCHEMA_COMPAT_OLD, false ],
+			// ContentHandlerUseDB can be true or false pre migration.
 			// During and after migration it can not be false...
 			[ false, SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, true ],
 			[ false, SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, true ],
@@ -563,7 +561,6 @@ class RevisionStoreTest extends MediaWikiTestCase {
 
 	public function provideMigrationConstruction() {
 		return [
-			[ SCHEMA_COMPAT_OLD, false ],
 			[ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, false ],
 			[ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, false ],
 			[ SCHEMA_COMPAT_NEW, false ],

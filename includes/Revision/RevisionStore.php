@@ -182,21 +182,15 @@ class RevisionStore
 			'Reading needs to be enabled for the old or the new schema.'
 		);
 		Assert::parameter(
-			( $mcrMigrationStage & SCHEMA_COMPAT_WRITE_BOTH ) !== 0,
+			( $mcrMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) !== 0,
 			'$mcrMigrationStage',
-			'Writing needs to be enabled for the old or the new schema.'
+			'Writing needs to be enabled for the new schema.'
 		);
 		Assert::parameter(
 			( $mcrMigrationStage & SCHEMA_COMPAT_READ_OLD ) === 0
 			|| ( $mcrMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) !== 0,
 			'$mcrMigrationStage',
 			'Cannot read the old schema when not also writing it.'
-		);
-		Assert::parameter(
-			( $mcrMigrationStage & SCHEMA_COMPAT_READ_NEW ) === 0
-			|| ( $mcrMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) !== 0,
-			'$mcrMigrationStage',
-			'Cannot read the new schema when not also writing it.'
 		);
 
 		$this->loadBalancer = $loadBalancer;

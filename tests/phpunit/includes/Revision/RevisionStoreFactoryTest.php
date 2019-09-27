@@ -33,7 +33,7 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 			$this->getHashWANObjectCache(),
 			$this->getMockCommentStore(),
 			ActorMigration::newMigration(),
-			MIGRATION_OLD,
+			MIGRATION_NEW,
 			new NullLogger(),
 			true
 		);
@@ -44,8 +44,6 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 		yield [ true ];
 		yield [ false ];
 		yield [ 'somewiki' ];
-		yield [ 'somewiki', MIGRATION_OLD , false ];
-		yield [ 'somewiki', MIGRATION_NEW , true ];
 	}
 
 	/**
@@ -54,7 +52,7 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 	 */
 	public function testGetRevisionStore(
 		$dbDomain,
-		$mcrMigrationStage = MIGRATION_OLD,
+		$mcrMigrationStage = MIGRATION_NEW,
 		$contentHandlerUseDb = true
 	) {
 		$lbFactory = $this->getMockLoadBalancerFactory();
