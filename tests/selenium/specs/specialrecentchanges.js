@@ -9,7 +9,7 @@ describe( 'Special:RecentChanges', function () {
 		name;
 
 	beforeEach( function () {
-		browser.deleteCookie();
+		browser.deleteAllCookies();
 		content = Util.getTestString();
 		name = Util.getTestString();
 	} );

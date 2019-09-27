@@ -3,16 +3,15 @@ const Page = require( 'wdio-mediawiki/Page' ),
 	Util = require( 'wdio-mediawiki/Util' );
 
 class HistoryPage extends Page {
-	get heading() { return browser.element( '#firstHeading' ); }
-	get headingText() { return browser.getText( '#firstHeading' ); }
-	get comment() { return browser.element( '#pagehistory .comment' ); }
-	get rollback() { return browser.element( '.mw-rollback-link' ); }
-	get rollbackLink() { return browser.element( '.mw-rollback-link a' ); }
-	get rollbackConfirmable() { return browser.element( '.mw-rollback-link .jquery-confirmable-text' ); }
-	get rollbackConfirmableYes() { return browser.element( '.mw-rollback-link .jquery-confirmable-button-yes' ); }
-	get rollbackConfirmableNo() { return browser.element( '.mw-rollback-link .jquery-confirmable-button-no' ); }
-	get rollbackNonJsConfirmable() { return browser.element( '.mw-htmlform .oo-ui-fieldsetLayout-header .oo-ui-labelElement-label' ); }
-	get rollbackNonJsConfirmableYes() { return browser.element( '.mw-htmlform .mw-htmlform-submit-buttons button' ); }
+	get heading() { return $( '#firstHeading' ); }
+	get comment() { return $( '#pagehistory .comment' ); }
+	get rollback() { return $( '.mw-rollback-link' ); }
+	get rollbackLink() { return $( '.mw-rollback-link a' ); }
+	get rollbackConfirmable() { return $( '.mw-rollback-link .jquery-confirmable-text' ); }
+	get rollbackConfirmableYes() { return $( '.mw-rollback-link .jquery-confirmable-button-yes' ); }
+	get rollbackConfirmableNo() { return $( '.mw-rollback-link .jquery-confirmable-button-no' ); }
+	get rollbackNonJsConfirmable() { return $( '.mw-htmlform .oo-ui-fieldsetLayout-header .oo-ui-labelElement-label' ); }
+	get rollbackNonJsConfirmableYes() { return $( '.mw-htmlform .mw-htmlform-submit-buttons button' ); }
 
 	open( title ) {
 		super.openTitle( title, { action: 'history' } );
@@ -29,7 +28,7 @@ class HistoryPage extends Page {
 	}
 
 	vandalizePage( name, content ) {
-		const vandalUsername = 'Evil_' + browser.options.username;
+		const vandalUsername = 'Evil_' + browser.config.mwUser;
 
 		browser.call( function () {
 			return Api.edit( name, content );
@@ -37,7 +36,7 @@ class HistoryPage extends Page {
 
 		browser.call( function () {
 			return Api.createAccount(
-				vandalUsername, browser.options.password
+				vandalUsername, browser.config.mwPwd
 			);
 		} );
 

@@ -12,12 +12,12 @@ module.exports = {
 		var filename, filePath;
 		// Create sane file name for current test title
 		filename = encodeURIComponent( title.replace( /\s+/g, '-' ) );
-		filePath = `${browser.options.screenshotPath}/${filename}.png`;
+		filePath = `${browser.config.screenshotPath}/${filename}.png`;
 		// Ensure directory exists, based on WebDriverIO#saveScreenshotSync()
 		try {
-			fs.statSync( browser.options.screenshotPath );
+			fs.statSync( browser.config.screenshotPath );
 		} catch ( err ) {
-			fs.mkdirSync( browser.options.screenshotPath );
+			fs.mkdirSync( browser.config.screenshotPath );
 		}
 		// Create and save screenshot
 		browser.saveScreenshot( filePath );

@@ -4,7 +4,7 @@ const MWBot = require( 'mwbot' ),
 
 function getJobCount() {
 	const bot = new MWBot( {
-		apiUrl: `${browser.options.baseUrl}/api.php`
+		apiUrl: `${browser.config.baseUrl}/api.php`
 	} );
 	return bot.request( {
 		action: 'query',

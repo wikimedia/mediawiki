@@ -13,7 +13,7 @@
     "specs/"
   ],
   "engines": {
-    "node" : ">=6.0"
+    "node" : ">=10.0"
   },
   "dependencies": {
     "mwbot": "1.0.10"

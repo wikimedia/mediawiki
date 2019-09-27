@@ -11,11 +11,10 @@ module.exports = {
 	 */
 	waitForModuleState( moduleName, moduleStatus = 'ready', timeout = 2000 ) {
 		browser.waitUntil( () => {
-			const result = browser.execute( ( module ) => {
+			return browser.execute( ( arg ) => {
 				return typeof mw !== 'undefined' &&
-					mw.loader.getState( module.name ) === module.status;
+					mw.loader.getState( arg.name ) === arg.status;
 			}, { status: moduleStatus, name: moduleName } );
-			return result.value;
 		}, timeout, 'Failed to wait for ' + moduleName + ' to be ' + moduleStatus + ' after ' + timeout + ' ms.' );
 	}
 };

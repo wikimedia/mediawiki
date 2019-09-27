@@ -6,12 +6,21 @@
     "qunit": "grunt qunit",
     "doc": "jsduck",
     "postdoc": "grunt copy:jsduck",
-    "selenium": "bash ./tests/selenium/selenium.sh",
+    "selenium": "wdio ./tests/selenium/wdio.conf.js",
     "selenium-daily": "npm run selenium-test -- --mochaOpts.grep @daily",
-    "selenium-test": "wdio ./tests/selenium/wdio.conf.js"
+    "selenium-test": "wdio ./tests/selenium/wdio.conf.js --skip-chromedriver"
   },
   "devDependencies": {
-    "eslint-config-wikimedia": "0.13.0",
+    "@wdio/cli": "5.13.2",
+    "@wdio/devtools-service": "5.13.2",
+    "@wdio/dot-reporter": "5.13.2",
+    "@wdio/junit-reporter": "5.13.2",
+    "@wdio/local-runner": "5.13.2",
+    "@wdio/mocha-framework": "5.13.2",
+    "@wdio/sauce-service": "5.13.2",
+    "@wdio/sync": "5.13.2",
+    "chromedriver": "73.0.0",
+    "eslint-config-wikimedia": "0.14.1",
     "grunt": "1.0.4",
     "grunt-banana-checker": "0.7.0",
     "grunt-contrib-copy": "1.0.0",
@@ -29,11 +38,8 @@
     "postcss-less": "2.0.0",
     "qunit": "2.9.1",
     "stylelint-config-wikimedia": "0.6.0",
-    "wdio-dot-reporter": "0.0.10",
-    "wdio-junit-reporter": "0.4.4",
+    "wdio-chromedriver-service": "5.0.2",
     "wdio-mediawiki": "file:tests/selenium/wdio-mediawiki",
-    "wdio-mocha-framework": "0.6.4",
-    "wdio-sauce-service": "0.4.14",
-    "webdriverio": "4.14.4"
+    "webdriverio": "5.13.2"
   }
 }

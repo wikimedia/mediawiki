@@ -13,11 +13,11 @@ describe( 'User', function () {
 	before( function () {
 		// disable VisualEditor welcome dialog
 		BlankPage.open();
-		browser.localStorage( 'POST', { key: 've-beta-welcome-dialog', value: '1' } );
+		browser.setLocalStorage( 've-beta-welcome-dialog', '1' );
 	} );
 
 	beforeEach( function () {
-		browser.deleteCookie();
+		browser.deleteAllCookies();
 		username = Util.getTestString( 'User-' );
 		password = Util.getTestString();
 	} );
