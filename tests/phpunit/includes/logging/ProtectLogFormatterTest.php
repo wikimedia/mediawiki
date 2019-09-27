@@ -428,4 +428,46 @@ class ProtectLogFormatterTest extends LogFormatterTestCase {
 	public function testMoveProtLogDatabaseRows( $row, $extra ) {
 		$this->doTestLogFormatter( $row, $extra );
 	}
+
+	public function provideGetActionLinks() {
+		yield [
+			[ 'protect' ],
+			true
+		];
+		yield [
+			[],
+			false
+		];
+	}
+
+	/**
+	 * @param string[] $permissions
+	 * @param bool $shouldMatch
+	 * @dataProvider provideGetActionLinks
+	 * @covers ProtectLogFormatter::getActionLinks
+	 */
+	public function testGetActionLinks( array $permissions, $shouldMatch ) {
+		RequestContext::resetMain();
+		$user = $this->getTestUser()->getUser();
+		$this->overrideUserPermissions( $user, $permissions );
+		$row = $this->expandDatabaseRow( [
+			'type' => 'protect',
+			'action' => 'unprotect',
+			'comment' => 'unprotect comment',
+			'namespace' => NS_MAIN,
+			'title' => 'ProtectPage',
+			'params' => [],
+		], false );
+		$context = new RequestContext();
+		$context->setUser( $user );
+		$formatter = LogFormatter::newFromRow( $row );
+		$formatter->setContext( $context );
+		if ( $shouldMatch ) {
+			$this->assertStringMatchesFormat(
+				'%Aaction=protect%A', $formatter->getActionLinks() );
+		} else {
+			$this->assertStringNotMatchesFormat(
+				'%Aaction=protect%A', $formatter->getActionLinks() );
+		}
+	}
 }
