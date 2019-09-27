@@ -906,7 +906,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *     keyed by media type
 	 * @throws MWException
 	 */
-	public function readStyleFiles( array $styles, $flip, $context ) {
+	public function readStyleFiles( array $styles, $flip, ResourceLoaderContext $context ) {
 		if ( !$styles ) {
 			return [];
 		}
@@ -933,7 +933,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return string CSS data in script file
 	 * @throws MWException If the file doesn't exist
 	 */
-	protected function readStyleFile( $path, $flip, $context ) {
+	protected function readStyleFile( $path, $flip, ResourceLoaderContext $context ) {
 		$localPath = $this->getLocalPath( $path );
 		$remotePath = $this->getRemotePath( $path );
 		if ( !file_exists( $localPath ) ) {
@@ -973,7 +973,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @return bool
 	 */
-	public function getFlip( $context ) {
+	public function getFlip( ResourceLoaderContext $context ) {
 		return $context->getDirection() === 'rtl' && !$this->noflip;
 	}
 
