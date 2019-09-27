@@ -42,7 +42,7 @@ class ResourceLoaderUserDefaultsModule extends ResourceLoaderModule {
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		return 'mw.user.options.set('
-			. ResourceLoader::encodeJsonForScript( User::getDefaultOptions() )
+			. $context->encodeJson( User::getDefaultOptions() )
 			. ');';
 	}
 }

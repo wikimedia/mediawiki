@@ -213,7 +213,7 @@ class ResourceLoaderClientHtml {
 				// Load from load.php?only=styles via <link rel=stylesheet>
 				$data['styles'][] = $name;
 			}
-			$deprecation = $module->getDeprecationInformation();
+			$deprecation = $module->getDeprecationInformation( $context );
 			if ( $deprecation ) {
 				$data['styleDeprecations'][] = $deprecation;
 			}
@@ -254,14 +254,14 @@ class ResourceLoaderClientHtml {
 		// See also startup/startup.js.
 		$nojsClass = $nojsClass ?? $this->getDocumentAttributes()['class'];
 		$jsClass = preg_replace( '/(^|\s)client-nojs(\s|$)/', '$1client-js$2', $nojsClass );
-		$jsClassJson = ResourceLoader::encodeJsonForScript( $jsClass );
+		$jsClassJson = $this->context->encodeJson( $jsClass );
 		$script = <<<JAVASCRIPT
 document.documentElement.className = {$jsClassJson};
 JAVASCRIPT;
 
 		// Inline script: Declare mw.config variables for this page.
 		if ( $this->config ) {
-			$confJson = ResourceLoader::encodeJsonForScript( $this->config );
+			$confJson = $this->context->encodeJson( $this->config );
 			$script .= <<<JAVASCRIPT
 RLCONF = {$confJson};
 JAVASCRIPT;
@@ -270,7 +270,7 @@ JAVASCRIPT;
 		// Inline script: Declare initial module states for this page.
 		$states = array_merge( $this->exemptStates, $data['states'] );
 		if ( $states ) {
-			$stateJson = ResourceLoader::encodeJsonForScript( $states );
+			$stateJson = $this->context->encodeJson( $states );
 			$script .= <<<JAVASCRIPT
 RLSTATE = {$stateJson};
 JAVASCRIPT;
@@ -278,7 +278,7 @@ JAVASCRIPT;
 
 		// Inline script: Declare general modules to load on this page.
 		if ( $data['general'] ) {
-			$pageModulesJson = ResourceLoader::encodeJsonForScript( $data['general'] );
+			$pageModulesJson = $this->context->encodeJson( $data['general'] );
 			$script .= <<<JAVASCRIPT
 RLPAGEMODULES = {$pageModulesJson};
 JAVASCRIPT;
@@ -479,7 +479,7 @@ JAVASCRIPT;
 							] );
 						} else {
 							$chunk = ResourceLoader::makeInlineScript(
-								'mw.loader.load(' . ResourceLoader::encodeJsonForScript( $url ) . ');',
+								'mw.loader.load(' . $mainContext->encodeJson( $url ) . ');',
 								$nonce
 							);
 						}

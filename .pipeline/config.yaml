@@ -2,8 +2,7 @@ pipelines:
   publish:
     blubberfile: blubber.yaml
     stages:
-      - name: dev
+      - name: publish
         build: dev
         publish:
           image: true
-          tags: [dev]

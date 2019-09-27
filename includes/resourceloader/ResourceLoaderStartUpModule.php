@@ -310,7 +310,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			}
 
 			$skipFunction = $module->getSkipFunction();
-			if ( $skipFunction !== null && !ResourceLoader::inDebugMode() ) {
+			if ( $skipFunction !== null && !$context->getDebug() ) {
 				$skipFunction = ResourceLoader::filter( 'minify-js', $skipFunction );
 			}
 
@@ -326,7 +326,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		self::compileUnresolvedDependencies( $registryData );
 
 		// Register sources
-		$out .= ResourceLoader::makeLoaderSourcesScript( $resourceLoader->getSources() );
+		$out .= ResourceLoader::makeLoaderSourcesScript( $context, $resourceLoader->getSources() );
 
 		// Figure out the different call signatures for mw.loader.register
 		$registrations = [];
@@ -344,10 +344,10 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		}
 
 		// Register modules
-		$out .= "\n" . ResourceLoader::makeLoaderRegisterScript( $registrations );
+		$out .= "\n" . ResourceLoader::makeLoaderRegisterScript( $context, $registrations );
 
 		if ( $states ) {
-			$out .= "\n" . ResourceLoader::makeLoaderStateScript( $states );
+			$out .= "\n" . ResourceLoader::makeLoaderStateScript( $context, $states );
 		}
 
 		return $out;
@@ -426,23 +426,23 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		// Perform replacements for mediawiki.js
 		$mwLoaderPairs = [
-			'$VARS.reqBase' => ResourceLoader::encodeJsonForScript( $context->getReqBase() ),
-			'$VARS.baseModules' => ResourceLoader::encodeJsonForScript( $this->getBaseModules() ),
-			'$VARS.maxQueryLength' => ResourceLoader::encodeJsonForScript(
+			'$VARS.reqBase' => $context->encodeJson( $context->getReqBase() ),
+			'$VARS.baseModules' => $context->encodeJson( $this->getBaseModules() ),
+			'$VARS.maxQueryLength' => $context->encodeJson(
 				$conf->get( 'ResourceLoaderMaxQueryLength' )
 			),
 			// The client-side module cache can be disabled by site configuration.
 			// It is also always disabled in debug mode.
-			'$VARS.storeEnabled' => ResourceLoader::encodeJsonForScript(
+			'$VARS.storeEnabled' => $context->encodeJson(
 				$conf->get( 'ResourceLoaderStorageEnabled' ) && !$context->getDebug()
 			),
-			'$VARS.wgLegacyJavaScriptGlobals' => ResourceLoader::encodeJsonForScript(
+			'$VARS.wgLegacyJavaScriptGlobals' => $context->encodeJson(
 				$conf->get( 'LegacyJavaScriptGlobals' )
 			),
-			'$VARS.storeKey' => ResourceLoader::encodeJsonForScript( $this->getStoreKey() ),
-			'$VARS.storeVary' => ResourceLoader::encodeJsonForScript( $this->getStoreVary( $context ) ),
-			'$VARS.groupUser' => ResourceLoader::encodeJsonForScript( $this->getGroupId( 'user' ) ),
-			'$VARS.groupPrivate' => ResourceLoader::encodeJsonForScript( $this->getGroupId( 'private' ) ),
+			'$VARS.storeKey' => $context->encodeJson( $this->getStoreKey() ),
+			'$VARS.storeVary' => $context->encodeJson( $this->getStoreVary( $context ) ),
+			'$VARS.groupUser' => $context->encodeJson( $this->getGroupId( 'user' ) ),
+			'$VARS.groupPrivate' => $context->encodeJson( $this->getGroupId( 'private' ) ),
 		];
 		$profilerStubs = [
 			'$CODE.profileExecuteStart();' => 'mw.loader.profiler.onExecuteStart( module );',
@@ -461,7 +461,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		// Perform string replacements for startup.js
 		$pairs = [
-			'$VARS.configuration' => ResourceLoader::encodeJsonForScript(
+			'$VARS.configuration' => $context->encodeJson(
 				$this->getConfigSettings( $context )
 			),
 			// Raw JavaScript code (not JSON)
