@@ -2,6 +2,7 @@
 
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @group API
@@ -169,6 +170,10 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	public function testAddRequestedFieldsCurTimestamp() {
+		// Fake timestamp for better testability, CI can sometimes take
+		// unreasonably long to run the simple test request here.
+		$reset = ConvertibleTimestamp::setFakeTime( '20190102030405' );
+
 		$req = new FauxRequest( [
 			'action' => 'query',
 			'meta' => 'siteinfo',
@@ -177,7 +182,7 @@ class ApiMainTest extends ApiTestCase {
 		$api = new ApiMain( $req );
 		$api->execute();
 		$timestamp = $api->getResult()->getResultData()['curtimestamp'];
-		$this->assertLessThanOrEqual( 1, abs( strtotime( $timestamp ) - time() ) );
+		$this->assertSame( '2019-01-02T03:04:05Z', $timestamp );
 	}
 
 	public function testAddRequestedFieldsResponseLangInfo() {
