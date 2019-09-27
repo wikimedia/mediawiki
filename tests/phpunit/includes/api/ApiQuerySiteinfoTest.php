@@ -665,17 +665,13 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testContinuation() {
-		// We make lots and lots of URL protocols that are each 100 bytes
+		// Use $wgUrlProtocols to forge the size of the API query
 		global $wgAPIMaxResultSize, $wgUrlProtocols;
 
-		$this->setMwGlobals( 'wgUrlProtocols', [] );
+		$protocol = 'foo://';
 
-		// Just under the limit
-		$chunks = $wgAPIMaxResultSize / 100 - 1;
-
-		for ( $i = 0; $i < $chunks; $i++ ) {
-			$wgUrlProtocols[] = substr( str_repeat( "$i ", 50 ), 0, 100 );
-		}
+		$this->setMwGlobals( 'wgUrlProtocols', [ $protocol ] );
+		$this->setMwGlobals( 'wgAPIMaxResultSize', strlen( $protocol ) );
 
 		$res = $this->doApiRequest( [
 			'action' => 'query',
