@@ -1465,7 +1465,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$db->_originalTablePrefix = $oldPrefix;
 
 			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-			$lb->setTempTablesOnlyMode( self::$useTemporaryTables, $lb->getLocalDomainID() );
+			$lb->setTempTablesOnlyMode( self::$useTemporaryTables, $db->getDomainID() );
 		}
 
 		return true;
