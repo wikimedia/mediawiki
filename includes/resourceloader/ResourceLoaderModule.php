@@ -136,9 +136,13 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	/**
 	 * Get JS representing deprecation information for the current module if available
 	 *
+	 * @param ResourceLoaderContext|null $context Missing $context is deprecated in 1.34
 	 * @return string JavaScript code
 	 */
-	public function getDeprecationInformation() {
+	public function getDeprecationInformation( ResourceLoaderContext $context = null ) {
+		if ( $context === null ) {
+			wfDeprecated( __METHOD__ . ' without a ResourceLoader context', '1.34' );
+		}
 		$deprecationInfo = $this->deprecated;
 		if ( $deprecationInfo ) {
 			$name = $this->getName();
@@ -146,7 +150,10 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 			if ( is_string( $deprecationInfo ) ) {
 				$warning .= "\n" . $deprecationInfo;
 			}
-			return 'mw.log.warn(' . ResourceLoader::encodeJsonForScript( $warning ) . ');';
+			if ( $context === null ) {
+				return 'mw.log.warn(' . ResourceLoader::encodeJsonForScript( $warning ) . ');';
+			}
+			return 'mw.log.warn(' . $context->encodeJson( $warning ) . ');';
 		} else {
 			return '';
 		}

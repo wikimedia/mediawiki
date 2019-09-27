@@ -57,8 +57,8 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderFileModule {
 	public function getScript( ResourceLoaderContext $context ) {
 		return parent::getScript( $context )
 			. 'mw.language.setData('
-			. ResourceLoader::encodeJsonForScript( $context->getLanguage() ) . ','
-			. ResourceLoader::encodeJsonForScript( $this->getData( $context ) )
+			. $context->encodeJson( $context->getLanguage() ) . ','
+			. $context->encodeJson( $this->getData( $context ) )
 			. ');';
 	}
 

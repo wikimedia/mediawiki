@@ -819,7 +819,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			$errorResponse = self::makeComment( $errorText );
 			if ( $context->shouldIncludeScripts() ) {
 				$errorResponse .= 'if (window.console && console.error) { console.error('
-					. self::encodeJsonForScript( $errorText )
+					. $context->encodeJson( $errorText )
 					. "); }\n";
 			}
 
@@ -1093,7 +1093,14 @@ MESSAGE;
 							$strContent = $scripts;
 						} elseif ( is_array( $scripts ) ) {
 							// ...except when $scripts is an array of URLs or an associative array
-							$strContent = self::makeLoaderImplementScript( $implementKey, $scripts, [], [], [] );
+							$strContent = self::makeLoaderImplementScript(
+								$context,
+								$implementKey,
+								$scripts,
+								[],
+								[],
+								[]
+							);
 						}
 						break;
 					case 'styles':
@@ -1119,6 +1126,7 @@ MESSAGE;
 							}
 						}
 						$strContent = self::makeLoaderImplementScript(
+							$context,
 							$implementKey,
 							$scripts,
 							$content['styles'] ?? [],
@@ -1164,7 +1172,7 @@ MESSAGE;
 
 			// Set the state of modules we didn't respond to with mw.loader.implement
 			if ( $states ) {
-				$stateScript = self::makeLoaderStateScript( $states );
+				$stateScript = self::makeLoaderStateScript( $context, $states );
 				if ( !$context->getDebug() ) {
 					$stateScript = self::filter( 'minify-js', $stateScript );
 				}
@@ -1173,7 +1181,7 @@ MESSAGE;
 			}
 		} elseif ( $states ) {
 			$this->errors[] = 'Problematic modules: '
-				. self::encodeJsonForScript( $states );
+				. $context->encodeJson( $states );
 		}
 
 		return $out;
@@ -1212,6 +1220,7 @@ MESSAGE;
 	/**
 	 * Return JS code that calls mw.loader.implement with given module properties.
 	 *
+	 * @param ResourceLoaderContext $context
 	 * @param string $name Module name or implement key (format "`[name]@[version]`")
 	 * @param XmlJsCode|array|string $scripts Code as XmlJsCode (to be wrapped in a closure),
 	 *  list of URLs to JavaScript files, string of JavaScript for `$.globalEval`, or array with
@@ -1226,13 +1235,13 @@ MESSAGE;
 	 * @throws MWException
 	 * @return string JavaScript code
 	 */
-	protected static function makeLoaderImplementScript(
-		$name, $scripts, $styles, $messages, $templates
+	private static function makeLoaderImplementScript(
+		ResourceLoaderContext $context, $name, $scripts, $styles, $messages, $templates
 	) {
 		if ( $scripts instanceof XmlJsCode ) {
 			if ( $scripts->value === '' ) {
 				$scripts = null;
-			} elseif ( self::inDebugMode() ) {
+			} elseif ( $context->getDebug() ) {
 				$scripts = new XmlJsCode( "function ( $, jQuery, require, module ) {\n{$scripts->value}\n}" );
 			} else {
 				$scripts = new XmlJsCode( 'function($,jQuery,require,module){' . $scripts->value . '}' );
@@ -1244,7 +1253,7 @@ MESSAGE;
 				// All of these essentially do $file = $file['content'];, some just have wrapping around it
 				if ( $file['type'] === 'script' ) {
 					// Multi-file modules only get two parameters ($ and jQuery are being phased out)
-					if ( self::inDebugMode() ) {
+					if ( $context->getDebug() ) {
 						$file = new XmlJsCode( "function ( require, module ) {\n{$file['content']}\n}" );
 					} else {
 						$file = new XmlJsCode( 'function(require,module){' . $file['content'] . '}' );
@@ -1255,8 +1264,8 @@ MESSAGE;
 			}
 			$scripts = XmlJsCode::encodeObject( [
 				'main' => $scripts['main'],
-				'files' => XmlJsCode::encodeObject( $files, self::inDebugMode() )
-			], self::inDebugMode() );
+				'files' => XmlJsCode::encodeObject( $files, $context->getDebug() )
+			], $context->getDebug() );
 		} elseif ( !is_string( $scripts ) && !is_array( $scripts ) ) {
 			throw new MWException( 'Invalid scripts error. Array of URLs or string of code expected.' );
 		}
@@ -1273,7 +1282,7 @@ MESSAGE;
 		];
 		self::trimArray( $module );
 
-		return Xml::encodeJsCall( 'mw.loader.implement', $module, self::inDebugMode() );
+		return Xml::encodeJsCall( 'mw.loader.implement', $module, $context->getDebug() );
 	}
 
 	/**
@@ -1355,22 +1364,26 @@ MESSAGE;
 	 * Returns a JS call to mw.loader.state, which sets the state of one
 	 * ore more modules to a given value. Has two calling conventions:
 	 *
-	 *    - ResourceLoader::makeLoaderStateScript( $name, $state ):
+	 *    - ResourceLoader::makeLoaderStateScript( $context, $name, $state ):
 	 *         Set the state of a single module called $name to $state
 	 *
-	 *    - ResourceLoader::makeLoaderStateScript( [ $name => $state, ... ] ):
+	 *    - ResourceLoader::makeLoaderStateScript( $context, [ $name => $state, ... ] ):
 	 *         Set the state of modules with the given names to the given states
 	 *
+	 * @internal
+	 * @param ResourceLoaderContext $context
 	 * @param array|string $states
 	 * @param string|null $state
 	 * @return string JavaScript code
 	 */
-	public static function makeLoaderStateScript( $states, $state = null ) {
+	public static function makeLoaderStateScript(
+		ResourceLoaderContext $context, $states, $state = null
+	) {
 		if ( !is_array( $states ) ) {
 			$states = [ $states => $state ];
 		}
 		return 'mw.loader.state('
-			. self::encodeJsonForScript( $states )
+			. $context->encodeJson( $states )
 			. ');';
 	}
 
@@ -1415,15 +1428,15 @@ MESSAGE;
 	 * @par Example
 	 * @code
 	 *
-	 *     ResourceLoader::makeLoaderRegisterScript( [
+	 *     ResourceLoader::makeLoaderRegisterScript( $context, [
 	 *        [ $name1, $version1, $dependencies1, $group1, $source1, $skip1 ],
 	 *        [ $name2, $version2, $dependencies1, $group2, $source2, $skip2 ],
 	 *        ...
 	 *     ] ):
 	 * @endcode
 	 *
-	 * @internal
-	 * @since 1.32
+	 * @internal For use by ResourceLoaderStartUpModule only
+	 * @param ResourceLoaderContext $context
 	 * @param array $modules Array of module registration arrays, each containing
 	 *  - string: module name
 	 *  - string: module version
@@ -1433,7 +1446,9 @@ MESSAGE;
 	 *  - string|null: Script body of a skip function (optional)
 	 * @return string JavaScript code
 	 */
-	public static function makeLoaderRegisterScript( array $modules ) {
+	public static function makeLoaderRegisterScript(
+		ResourceLoaderContext $context, array $modules
+	) {
 		// Optimisation: Transform dependency names into indexes when possible
 		// to produce smaller output. They are expanded by mw.loader.register on
 		// the other end using resolveIndexedDependencies().
@@ -1456,7 +1471,7 @@ MESSAGE;
 		array_walk( $modules, [ self::class, 'trimArray' ] );
 
 		return 'mw.loader.register('
-			. self::encodeJsonForScript( $modules )
+			. $context->encodeJson( $modules )
 			. ');';
 	}
 
@@ -1464,22 +1479,28 @@ MESSAGE;
 	 * Returns JS code which calls mw.loader.addSource() with the given
 	 * parameters. Has two calling conventions:
 	 *
-	 *   - ResourceLoader::makeLoaderSourcesScript( $id, $properties ):
+	 *   - ResourceLoader::makeLoaderSourcesScript( $context, $id, $properties ):
 	 *       Register a single source
 	 *
-	 *   - ResourceLoader::makeLoaderSourcesScript( [ $id1 => $loadUrl, $id2 => $loadUrl, ... ] );
+	 *   - ResourceLoader::makeLoaderSourcesScript( $context,
+	 *         [ $id1 => $loadUrl, $id2 => $loadUrl, ... ]
+	 *     );
 	 *       Register sources with the given IDs and properties.
 	 *
+	 * @internal For use by ResourceLoaderStartUpModule only
+	 * @param ResourceLoaderContext $context
 	 * @param string|array $sources Source ID
 	 * @param string|null $loadUrl load.php url
 	 * @return string JavaScript code
 	 */
-	public static function makeLoaderSourcesScript( $sources, $loadUrl = null ) {
+	public static function makeLoaderSourcesScript(
+		ResourceLoaderContext $context, $sources, $loadUrl = null
+	) {
 		if ( !is_array( $sources ) ) {
 			$sources = [ $sources => $loadUrl ];
 		}
 		return 'mw.loader.addSource('
-			. self::encodeJsonForScript( $sources )
+			. $context->encodeJson( $sources )
 			. ');';
 	}
 
