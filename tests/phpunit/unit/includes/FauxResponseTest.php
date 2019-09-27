@@ -47,7 +47,7 @@ class FauxResponseTest extends \MediaWikiUnitTestCase {
 			'expire' => $expire,
 		];
 
-		$this->assertEquals( null, $this->response->getCookie( 'xkey' ), 'Non-existing cookie' );
+		$this->assertNull( $this->response->getCookie( 'xkey' ), 'Non-existing cookie' );
 		$this->response->setCookie( 'key', 'val', $expire, [
 			'prefix' => 'x',
 			'path' => '/path',
@@ -67,7 +67,7 @@ class FauxResponseTest extends \MediaWikiUnitTestCase {
 	 * @covers FauxResponse::header
 	 */
 	public function testHeader() {
-		$this->assertEquals( null, $this->response->getHeader( 'Location' ), 'Non-existing header' );
+		$this->assertNull( $this->response->getHeader( 'Location' ), 'Non-existing header' );
 
 		$this->response->header( 'Location: http://localhost/' );
 		$this->assertEquals(

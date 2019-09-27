@@ -26,10 +26,10 @@ class ResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 		// Request parameters
 		$this->assertEquals( [], $ctx->getModules() );
 		$this->assertEquals( 'qqx', $ctx->getLanguage() );
-		$this->assertEquals( false, $ctx->getDebug() );
-		$this->assertEquals( null, $ctx->getOnly() );
+		$this->assertFalse( $ctx->getDebug() );
+		$this->assertNull( $ctx->getOnly() );
 		$this->assertEquals( 'fallback', $ctx->getSkin() );
-		$this->assertEquals( null, $ctx->getUser() );
+		$this->assertNull( $ctx->getUser() );
 		$this->assertNull( $ctx->getContentOverrideCallback() );
 
 		// Misc
@@ -67,11 +67,11 @@ class ResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 			$ctx->getModules(),
 			[ 'foo', 'foo.quux', 'foo.baz', 'foo.bar', 'baz.quux' ]
 		);
-		$this->assertEquals( false, $ctx->getDebug() );
+		$this->assertFalse( $ctx->getDebug() );
 		$this->assertEquals( 'zh', $ctx->getLanguage() );
 		$this->assertEquals( 'styles', $ctx->getOnly() );
 		$this->assertEquals( 'fallback', $ctx->getSkin() );
-		$this->assertEquals( null, $ctx->getUser() );
+		$this->assertNull( $ctx->getUser() );
 
 		// Misc
 		$this->assertEquals( 'ltr', $ctx->getDirection() );

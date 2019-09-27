@@ -104,7 +104,7 @@ class SessionUnitTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( 'zero', $session->get( 0 ) );
 		$this->assertFalse( $backend->dirty );
 
-		$this->assertEquals( null, $session->get( 'null' ) );
+		$this->assertNull( $session->get( 'null' ) );
 		$this->assertEquals( 'default', $session->get( 'null', 'default' ) );
 		$this->assertFalse( $backend->dirty );
 
@@ -165,7 +165,7 @@ class SessionUnitTest extends MediaWikiUnitTestCase {
 		$this->assertFalse( $backend->dirty );
 
 		$logger->setCollect( true );
-		$this->assertEquals( null, $session['null'] );
+		$this->assertNull( $session['null'] );
 		$logger->setCollect( false );
 		$this->assertFalse( $backend->dirty );
 		$this->assertSame( [
