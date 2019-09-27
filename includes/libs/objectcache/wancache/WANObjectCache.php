@@ -1269,7 +1269,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		// Nested callback process cache use is not lag-safe with regard to HOLDOFF_TTL since
 		// process cached values are more lagged than persistent ones as they are not purged.
 		if ( $pCache && $this->callbackDepth == 0 ) {
-			$cached = $pCache->get( $this->getProcessCacheKey( $key, $version ), INF, false );
+			$cached = $pCache->get( $this->getProcessCacheKey( $key, $version ), $pcTTL, false );
 			if ( $cached !== false ) {
 				return $cached;
 			}
@@ -2545,6 +2545,9 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		if ( !isset( $this->processCaches[$group] ) ) {
 			list( , $size ) = explode( ':', $group );
 			$this->processCaches[$group] = new MapCacheLRU( (int)$size );
+			if ( $this->wallClockOverride !== null ) {
+				$this->processCaches[$group]->setMockTime( $this->wallClockOverride );
+			}
 		}
 
 		return $this->processCaches[$group];
@@ -2641,5 +2644,8 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	public function setMockTime( &$time ) {
 		$this->wallClockOverride =& $time;
 		$this->cache->setMockTime( $time );
+		foreach ( $this->processCaches as $pCache ) {
+			$pCache->setMockTime( $time );
+		}
 	}
 }
