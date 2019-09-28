@@ -358,6 +358,10 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * This method must not be used by getDefinitionSummary as doing so would cause
+	 * an infinite loop (we use ResourceLoaderImage::getUrl below which calls
+	 * Module:getVersionHash, which calls Module::getDefinitionSummary).
+	 *
 	 * @param ResourceLoaderContext $context
 	 * @param ResourceLoaderImage $image Image to get the style for
 	 * @param string $script URL to load.php
