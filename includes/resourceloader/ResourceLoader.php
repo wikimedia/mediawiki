@@ -689,24 +689,29 @@ class ResourceLoader implements LoggerAwareInterface {
 	 *
 	 * @since 1.28
 	 * @param ResourceLoaderContext $context
+	 * @param string[]|null $modules
 	 * @return string Hash
 	 */
-	public function makeVersionQuery( ResourceLoaderContext $context ) {
+	public function makeVersionQuery( ResourceLoaderContext $context, array $modules = null ) {
+		if ( $modules === null ) {
+			wfDeprecated( __METHOD__ . ' without $modules', '1.34' );
+			$modules = $context->getModules();
+		}
 		// As of MediaWiki 1.28, the server and client use the same algorithm for combining
 		// version hashes. There is no technical reason for this to be same, and for years the
 		// implementations differed. If getCombinedVersion in PHP (used for StartupModule and
 		// E-Tag headers) differs in the future from getCombinedVersion in JS (used for 'version'
 		// query parameter), then this method must continue to match the JS one.
-		$moduleNames = [];
-		foreach ( $context->getModules() as $name ) {
+		$filtered = [];
+		foreach ( $modules as $name ) {
 			if ( !$this->getModule( $name ) ) {
 				// If a versioned request contains a missing module, the version is a mismatch
 				// as the client considered a module (and version) we don't have.
 				return '';
 			}
-			$moduleNames[] = $name;
+			$filtered[] = $name;
 		}
-		return $this->getCombinedVersion( $context, $moduleNames );
+		return $this->getCombinedVersion( $context, $filtered );
 	}
 
 	/**
@@ -863,7 +868,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		// - Version mismatch (T117587, T47877)
 		if ( is_null( $context->getVersion() )
 			|| $errors
-			|| $context->getVersion() !== $this->makeVersionQuery( $context )
+			|| $context->getVersion() !== $this->makeVersionQuery( $context, $context->getModules() )
 		) {
 			$maxage = $rlMaxage['unversioned']['client'];
 			$smaxage = $rlMaxage['unversioned']['server'];
