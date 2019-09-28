@@ -334,7 +334,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			// [ 'addTable', 'image_comment_temp', 'patch-image_comment_temp-table.sql' ],
 			[ 'addField', 'archive', 'ar_comment_id', 'patch-archive-ar_comment_id.sql' ],
 			[ 'addField', 'filearchive', 'fa_description_id', 'patch-filearchive-fa_description_id.sql' ],
-			[ 'modifyField', 'image', 'img_description', 'patch-image-img_description-default..sql' ],
+			[ 'modifyField', 'image', 'img_description', 'patch-image-img_description-default.sql' ],
 			[ 'addField', 'ipblocks', 'ipb_reason_id', 'patch-ipblocks-ipb_reason_id.sql' ],
 			[ 'addField', 'logging', 'log_comment_id', 'patch-logging-log_comment_id.sql' ],
 			[ 'addField', 'oldimage', 'oi_description_id', 'patch-oldimage-oi_description_id.sql' ],
