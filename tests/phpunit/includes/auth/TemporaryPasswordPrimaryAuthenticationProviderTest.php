@@ -105,6 +105,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 			'EnableEmail' => false,
 			'NewPasswordExpiry' => 100,
 			'PasswordReminderResendTime' => 101,
+			'AllowRequiringEmailForResets' => false,
 		] );
 
 		$p = TestingAccessWrapper::newFromObject( new TemporaryPasswordPrimaryAuthenticationProvider() );
@@ -117,11 +118,13 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 			'emailEnabled' => true,
 			'newPasswordExpiry' => 42,
 			'passwordReminderResendTime' => 43,
+			'allowRequiringEmailForResets' => true,
 		] ) );
 		$p->setConfig( $config );
 		$this->assertSame( true, $p->emailEnabled );
 		$this->assertSame( 42, $p->newPasswordExpiry );
 		$this->assertSame( 43, $p->passwordReminderResendTime );
+		$this->assertSame( true, $p->allowRequiringEmail );
 	}
 
 	public function testTestUserCanAuthenticate() {

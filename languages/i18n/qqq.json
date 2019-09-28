@@ -816,6 +816,7 @@
 	"passwordreset-emailelement": "This is a body of a password reset email to allow them into the system with a new password. Parameters:\n* $1 - the user's login name. This parameter can be used for GENDER.\n* $2 - the temporary password given by the system",
 	"passwordreset-emailsentemail": "Used in [[Special:PasswordReset]].\n\nSee also:\n* {{msg-mw|Passwordreset-emailsent-capture}}\n* {{msg-mw|Passwordreset-emailerror-capture}}",
 	"passwordreset-emailsentusername": "Used in [[Special:PasswordReset]].\n\nSee also:\n* {{msg-mw|Passwordreset-emailsent-capture}}\n* {{msg-mw|Passwordreset-emailerror-capture}}",
+	"passwordreset-emailtext-require-email": "Used in password reset emails if the corresponding preference is allowed but not enabled by user.\n\nParameters:\n* $1 - URL to the appropriate section of [[Special:Preferences]]\n\nSee also:\n* {{msg-mw|tog-requireemail}}\n* {{msg-mw|prefs-help-requireemail}}",
 	"passwordreset-nocaller": "Shown when a password reset was requested but the process failed due to an internal error related to missing details about the origin (caller) of the password reset request.",
 	"passwordreset-nosuchcaller": "Shown when a password reset was requested but the username of the caller could not be resolved to a user. This is an internal error.\n\nParameters:\n* $1 - username of the caller",
 	"passwordreset-ignored": "Shown when password reset was unsuccessful due to configuration problems.",
