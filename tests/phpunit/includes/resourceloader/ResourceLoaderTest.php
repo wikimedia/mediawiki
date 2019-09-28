@@ -627,12 +627,6 @@ END
 			'mw.loader.addSource({
     "local": "/w/load.php"
 });',
-			ResourceLoader::makeLoaderSourcesScript( $context, 'local', '/w/load.php' )
-		);
-		$this->assertEquals(
-			'mw.loader.addSource({
-    "local": "/w/load.php"
-});',
 			ResourceLoader::makeLoaderSourcesScript( $context, [ 'local' => '/w/load.php' ] )
 		);
 		$this->assertEquals(

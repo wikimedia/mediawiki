@@ -1366,27 +1366,20 @@ MESSAGE;
 	}
 
 	/**
-	 * Returns a JS call to mw.loader.state, which sets the state of one
-	 * ore more modules to a given value. Has two calling conventions:
-	 *
-	 *    - ResourceLoader::makeLoaderStateScript( $context, $name, $state ):
-	 *         Set the state of a single module called $name to $state
+	 * Returns a JS call to mw.loader.state, which sets the state of modules
+	 * to a given value:
 	 *
 	 *    - ResourceLoader::makeLoaderStateScript( $context, [ $name => $state, ... ] ):
 	 *         Set the state of modules with the given names to the given states
 	 *
 	 * @internal
 	 * @param ResourceLoaderContext $context
-	 * @param array|string $states
-	 * @param string|null $state
+	 * @param array $states
 	 * @return string JavaScript code
 	 */
 	public static function makeLoaderStateScript(
-		ResourceLoaderContext $context, $states, $state = null
+		ResourceLoaderContext $context, array $states
 	) {
-		if ( !is_array( $states ) ) {
-			$states = [ $states => $state ];
-		}
 		return 'mw.loader.state('
 			. $context->encodeJson( $states )
 			. ');';
@@ -1482,10 +1475,7 @@ MESSAGE;
 
 	/**
 	 * Returns JS code which calls mw.loader.addSource() with the given
-	 * parameters. Has two calling conventions:
-	 *
-	 *   - ResourceLoader::makeLoaderSourcesScript( $context, $id, $properties ):
-	 *       Register a single source
+	 * parameters.
 	 *
 	 *   - ResourceLoader::makeLoaderSourcesScript( $context,
 	 *         [ $id1 => $loadUrl, $id2 => $loadUrl, ... ]
@@ -1494,16 +1484,12 @@ MESSAGE;
 	 *
 	 * @internal For use by ResourceLoaderStartUpModule only
 	 * @param ResourceLoaderContext $context
-	 * @param string|array $sources Source ID
-	 * @param string|null $loadUrl load.php url
+	 * @param array $sources
 	 * @return string JavaScript code
 	 */
 	public static function makeLoaderSourcesScript(
-		ResourceLoaderContext $context, $sources, $loadUrl = null
+		ResourceLoaderContext $context, array $sources
 	) {
-		if ( !is_array( $sources ) ) {
-			$sources = [ $sources => $loadUrl ];
-		}
 		return 'mw.loader.addSource('
 			. $context->encodeJson( $sources )
 			. ');';
