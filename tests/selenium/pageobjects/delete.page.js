@@ -1,5 +1,4 @@
-const Page = require( 'wdio-mediawiki/Page' ),
-	Api = require( 'wdio-mediawiki/Api' );
+const Page = require( 'wdio-mediawiki/Page' );
 
 class DeletePage extends Page {
 	get reason() { return $( '#wpReason' ); }
@@ -15,11 +14,6 @@ class DeletePage extends Page {
 		this.open( title );
 		this.reason.setValue( reason );
 		this.submit.click();
-	}
-
-	// @deprecated Use wdio-mediawiki/Api#delete() instead.
-	apiDelete( name, reason ) {
-		return Api.delete( name, reason );
 	}
 }
 
