@@ -41,6 +41,9 @@ exports.config = {
 	// See http://webdriver.io/guide/services/sauce.html
 	// and https://github.com/bermi/sauce-connect-launcher#advanced-usage
 	services: process.env.SAUCE_ACCESS_KEY ? [ 'sauce' ] : [],
+	user: process.env.SAUCE_USERNAME,
+	key: process.env.SAUCE_ACCESS_KEY,
+	sauceConnect: true,
 
 	// ==================
 	// Test Files
