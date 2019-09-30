@@ -1,8 +1,7 @@
 const assert = require( 'assert' ),
 	Api = require( 'wdio-mediawiki/Api' ),
 	RecentChangesPage = require( '../pageobjects/recentchanges.page' ),
-	Util = require( 'wdio-mediawiki/Util' ),
-	RunJobs = require( 'wdio-mediawiki/RunJobs' );
+	Util = require( 'wdio-mediawiki/Util' );
 
 describe( 'Special:RecentChanges', function () {
 	let content,
@@ -18,7 +17,6 @@ describe( 'Special:RecentChanges', function () {
 		browser.call( function () {
 			return Api.edit( name, content );
 		} );
-		RunJobs.run();
 
 		RecentChangesPage.open();
 
