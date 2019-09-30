@@ -2028,10 +2028,12 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 	public function provideNewRevisionsFromBatchOptions() {
 		yield 'No preload slots or content, single page' => [
+			[ 'comment' ],
 			null,
 			[]
 		];
 		yield 'Preload slots and content, single page' => [
+			[ 'comment' ],
 			null,
 			[
 				'slots' => [ SlotRecord::MAIN ],
@@ -2039,14 +2041,25 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			]
 		];
 		yield 'Ask for no slots' => [
+			[ 'comment' ],
 			null,
 			[ 'slots' => [] ]
 		];
 		yield 'No preload slots or content, multiple pages' => [
+			[ 'comment' ],
 			'Other_Page',
 			[]
 		];
 		yield 'Preload slots and content, multiple pages' => [
+			[ 'comment' ],
+			'Other_Page',
+			[
+				'slots' => [ SlotRecord::MAIN ],
+				'content' => true
+			]
+		];
+		yield 'Preload slots and content, multiple pages, preload page fields' => [
+			[ 'page', 'comment' ],
 			'Other_Page',
 			[
 				'slots' => [ SlotRecord::MAIN ],
@@ -2057,12 +2070,14 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideNewRevisionsFromBatchOptions
-	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionsFromBatch
+	 * @covers       \MediaWiki\Revision\RevisionStore::newRevisionsFromBatch
+	 * @param array|null $queryOptions options to provide to revisionToRow
 	 * @param string|null $otherPageTitle
 	 * @param array|null $options
 	 * @throws \MWException
 	 */
 	public function testNewRevisionsFromBatch_preloadContent(
+		$queryOptions,
 		$otherPageTitle = null,
 		array $options = []
 	) {
@@ -2081,7 +2096,10 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$result = $store->newRevisionsFromBatch(
-			[ $this->revisionToRow( $rev1 ), $this->revisionToRow( $rev2 ) ],
+			[
+				$this->revisionToRow( $rev1, $queryOptions ),
+				$this->revisionToRow( $rev2, $queryOptions )
+			],
 			$options
 		);
 		$this->assertTrue( $result->isGood() );
