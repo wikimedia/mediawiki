@@ -1924,7 +1924,7 @@ class RevisionStore
 		$result = new StatusValue();
 
 		$rowsByRevId = [];
-		$pageIds = [];
+		$pageIdsToFetchTitles = [];
 		$titlesByPageId = [];
 		foreach ( $rows as $row ) {
 			if ( isset( $rowsByRevId[$row->rev_id] ) ) {
@@ -1937,8 +1937,17 @@ class RevisionStore
 				throw new InvalidArgumentException(
 					"Revision {$row->rev_id} doesn't belong to page {$title->getArticleID()}"
 				);
+			} elseif ( !$title && !isset( $titlesByPageId[ $row->rev_page ] ) ) {
+				if ( isset( $row->page_namespace ) && isset( $row->page_title ) &&
+					// This should not happen, but just in case we don't have a page_id
+					// set or it doesn't match rev_page, let's fetch the title again.
+					isset( $row->page_id ) && $row->rev_page === $row->page_id
+				) {
+					$titlesByPageId[ $row->rev_page ] = Title::newFromRow( $row );
+				} else {
+					$pageIdsToFetchTitles[] = $row->rev_page;
+				}
 			}
-			$pageIds[] = $row->rev_page;
 			$rowsByRevId[$row->rev_id] = $row;
 		}
 
@@ -1950,9 +1959,9 @@ class RevisionStore
 		// If the title is not supplied, batch-fetch Title objects.
 		if ( $title ) {
 			$titlesByPageId[$title->getArticleID()] = $title;
-		} else {
-			$pageIds = array_unique( $pageIds );
-			foreach ( Title::newFromIDs( $pageIds ) as $t ) {
+		} elseif ( !empty( $pageIdsToFetchTitles ) ) {
+			$pageIdsToFetchTitles = array_unique( $pageIdsToFetchTitles );
+			foreach ( Title::newFromIDs( $pageIdsToFetchTitles ) as $t ) {
 				$titlesByPageId[$t->getArticleID()] = $t;
 			}
 		}
