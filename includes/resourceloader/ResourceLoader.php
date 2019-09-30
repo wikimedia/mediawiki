@@ -1817,10 +1817,11 @@ MESSAGE;
 	 * Get global LESS variables.
 	 *
 	 * @since 1.27
-	 * @deprecated since 1.32 Use ResourceLoderModule::getLessVars() instead.
+	 * @deprecated since 1.32 Use ResourceLoaderModule::getLessVars() instead.
 	 * @return array Map of variable names to string CSS values.
 	 */
 	public function getLessVars() {
+		wfDeprecated( __METHOD__, '1.32' );
 		return [];
 	}
 }
