@@ -697,7 +697,6 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * @return array
 	 */
 	final protected function buildContent( ResourceLoaderContext $context ) {
-		$rl = $context->getResourceLoader();
 		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 		$statStart = microtime( true );
 
@@ -766,7 +765,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 				}
 				// Wrap styles into @media groups as needed and flatten into a numerical array
 				$styles = [
-					'css' => $rl->makeCombinedStyles( $stylePairs )
+					'css' => ResourceLoader::makeCombinedStyles( $stylePairs )
 				];
 			}
 		}
