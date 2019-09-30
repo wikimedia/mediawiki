@@ -10,13 +10,13 @@ const assert = require( 'assert' ),
 	Util = require( 'wdio-mediawiki/Util' );
 
 describe( 'Page', function () {
-	var content,
-		name;
+	var content, name, bot;
 
-	before( function () {
+	before( async function () {
 		// disable VisualEditor welcome dialog
 		BlankPage.open();
 		browser.setLocalStorage( 've-beta-welcome-dialog', '1' );
+		bot = await Api.bot();
 	} );
 
 	beforeEach( function () {
@@ -46,17 +46,13 @@ describe( 'Page', function () {
 	it( 'should be re-creatable', function () {
 		const initialContent = Util.getTestString( 'initialContent-' );
 
-		// create
-		browser.call( function () {
-			return Api.edit( name, initialContent );
+		// create and delete
+		browser.call( async () => {
+			await bot.edit( name, initialContent, 'create for delete' );
+			await bot.delete( name, 'delete prior to recreate' );
 		} );
 
-		// delete
-		browser.call( function () {
-			return Api.delete( name, 'delete prior to recreate' );
-		} );
-
-		// create
+		// re-create
 		EditPage.edit( name, content );
 
 		// check
@@ -66,8 +62,8 @@ describe( 'Page', function () {
 
 	it( 'should be editable @daily', function () {
 		// create
-		browser.call( function () {
-			return Api.edit( name, content );
+		browser.call( async () => {
+			await bot.edit( name, content, 'create for edit' );
 		} );
 
 		// edit
@@ -81,26 +77,26 @@ describe( 'Page', function () {
 
 	it( 'should have history @daily', function () {
 		// create
-		browser.call( function () {
-			return Api.edit( name, content );
+		browser.call( async () => {
+			await bot.edit( name, content, `created with "${content}"` );
 		} );
 
 		// check
 		HistoryPage.open( name );
-		assert.strictEqual( HistoryPage.comment.getText(), `Created or updated page with "${content}"` );
+		assert.strictEqual( HistoryPage.comment.getText(), `created with "${content}"` );
 	} );
 
 	it( 'should be deletable', function () {
+		// create
+		browser.call( async () => {
+			await bot.edit( name, content, 'create for delete' );
+		} );
+
 		// login
 		UserLoginPage.loginAdmin();
 
-		// create
-		browser.call( function () {
-			return Api.edit( name, content );
-		} );
-
 		// delete
-		DeletePage.delete( name, content + '-deletereason' );
+		DeletePage.delete( name, 'delete reason' );
 
 		// check
 		assert.strictEqual(
@@ -110,40 +106,32 @@ describe( 'Page', function () {
 	} );
 
 	it( 'should be restorable', function () {
+		// create and delete
+		browser.call( async () => {
+			await bot.edit( name, content, 'create for delete' );
+			await bot.delete( name, 'delete for restore' );
+		} );
+
 		// login
 		UserLoginPage.loginAdmin();
 
-		// create
-		browser.call( function () {
-			return Api.edit( name, content );
-		} );
-
-		// delete
-		browser.call( function () {
-			return Api.delete( name, content + '-deletereason' );
-		} );
-
 		// restore
-		RestorePage.restore( name, content + '-restorereason' );
+		RestorePage.restore( name, 'restore reason' );
 
 		// check
 		assert.strictEqual( RestorePage.displayedContent.getText(), name + ' has been restored\nConsult the deletion log for a record of recent deletions and restorations.' );
 	} );
 
 	it( 'should be undoable', function () {
-		// create
-		browser.call( function () {
-			return Api.edit( name, content );
-		} );
-
-		// edit
 		let previousRev, undoRev;
-		browser.call( function () {
-			return Api.edit( name, Util.getTestString( 'editContent-' ) )
-				.then( ( response ) => {
-					previousRev = response.edit.oldrevid;
-					undoRev = response.edit.newrevid;
-				} );
+		browser.call( async () => {
+			// create
+			await bot.edit( name, content, 'create to edit and undo' );
+
+			// edit
+			const response = await bot.edit( name, Util.getTestString( 'editContent-' ) );
+			previousRev = response.edit.oldrevid;
+			undoRev = response.edit.newrevid;
 		} );
 
 		UndoPage.undo( name, previousRev, undoRev );
