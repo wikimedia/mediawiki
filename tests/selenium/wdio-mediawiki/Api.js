@@ -1,7 +1,5 @@
 const MWBot = require( 'mwbot' );
 
-// TODO: Once we require Node 7 or later, we can use async-await.
-
 module.exports = {
 	/**
 	 * Get a logged-in instance of `MWBot` with edit token already set up.
@@ -13,20 +11,19 @@ module.exports = {
 	 * @param {string} baseUrl - Optional
 	 * @return {Promise<MWBot>}
 	 */
-	bot(
+	async bot(
 		username = browser.config.mwUser,
 		password = browser.config.mwPwd,
 		baseUrl = browser.config.baseUrl
 	) {
 		const bot = new MWBot();
 
-		return bot.loginGetEditToken( {
+		await bot.loginGetEditToken( {
 			apiUrl: `${baseUrl}/api.php`,
 			username: username,
 			password: password
-		} ).then( function () {
-			return bot;
 		} );
+		return bot;
 	},
 
 	/**
@@ -42,16 +39,14 @@ module.exports = {
 	 * @param {baseUrl} baseUrl - Optional
 	 * @return {Object} Promise for API action=edit response data.
 	 */
-	edit( title,
+	async edit( title,
 		content,
 		username = browser.config.mwUser,
 		password = browser.config.mwPwd,
 		baseUrl = browser.config.baseUrl
 	) {
-		return this.bot( username, password, baseUrl )
-			.then( function ( bot ) {
-				return bot.edit( title, content, `Created or updated page with "${content}"` );
-			} );
+		const bot = await this.bot( username, password, baseUrl );
+		return await bot.edit( title, content, `Created or updated page with "${content}"` );
 	},
 
 	/**
@@ -63,11 +58,9 @@ module.exports = {
 	 * @param {string} reason
 	 * @return {Object} Promise for API action=delete response data.
 	 */
-	delete( title, reason ) {
-		return this.bot()
-			.then( function ( bot ) {
-				return bot.delete( title, reason );
-			} );
+	async delete( title, reason ) {
+		const bot = await this.bot();
+		return await bot.delete( title, reason );
 	},
 
 	/**
@@ -79,24 +72,23 @@ module.exports = {
 	 * @param {string} password
 	 * @return {Object} Promise for API action=createaccount response data.
 	 */
-	createAccount( username, password ) {
+	async createAccount( username, password ) {
 		const bot = new MWBot();
 
 		// Log in as admin
-		return bot.loginGetCreateaccountToken( {
+		await bot.loginGetCreateaccountToken( {
 			apiUrl: `${browser.config.baseUrl}/api.php`,
 			username: browser.config.mwUser,
 			password: browser.config.mwPwd
-		} ).then( function () {
-			// Create the new account
-			return bot.request( {
-				action: 'createaccount',
-				createreturnurl: browser.config.baseUrl,
-				createtoken: bot.createaccountToken,
-				username: username,
-				password: password,
-				retype: password
-			} );
+		} );
+		// Create the new account
+		return await bot.request( {
+			action: 'createaccount',
+			createreturnurl: browser.config.baseUrl,
+			createtoken: bot.createaccountToken,
+			username: username,
+			password: password,
+			retype: password
 		} );
 	},
 
@@ -109,18 +101,16 @@ module.exports = {
 	 * @param {string} [expiry] default is not set. For format see API docs
 	 * @return {Object} Promise for API action=block response data.
 	 */
-	blockUser( username, expiry ) {
-		return this.bot()
-			.then( function ( bot ) {
-				// block user. default = admin
-				return bot.request( {
-					action: 'block',
-					user: username || browser.config.mwUser,
-					reason: 'browser test',
-					token: bot.editToken,
-					expiry
-				} );
-			} );
+	async blockUser( username, expiry ) {
+		const bot = await this.bot();
+		// block user. default = admin
+		return await bot.request( {
+			action: 'block',
+			user: username || browser.config.mwUser,
+			reason: 'browser test',
+			token: bot.editToken,
+			expiry
+		} );
 	},
 
 	/**
@@ -131,16 +121,14 @@ module.exports = {
 	 * @param {string} [username] defaults to user making the request
 	 * @return {Object} Promise for API action=unblock response data.
 	 */
-	unblockUser( username ) {
-		return this.bot()
-			.then( function ( bot ) {
-				// unblock user. default = admin
-				return bot.request( {
-					action: 'unblock',
-					user: username || browser.config.mwUser,
-					reason: 'browser test done',
-					token: bot.editToken
-				} );
-			} );
+	async unblockUser( username ) {
+		const bot = await this.bot();
+		// unblock user. default = admin
+		return await bot.request( {
+			action: 'unblock',
+			user: username || browser.config.mwUser,
+			reason: 'browser test done',
+			token: bot.editToken
+		} );
 	}
 };
