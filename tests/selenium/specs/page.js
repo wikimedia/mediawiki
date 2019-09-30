@@ -16,11 +16,11 @@ describe( 'Page', function () {
 	before( function () {
 		// disable VisualEditor welcome dialog
 		BlankPage.open();
-		browser.localStorage( 'POST', { key: 've-beta-welcome-dialog', value: '1' } );
+		browser.setLocalStorage( 've-beta-welcome-dialog', '1' );
 	} );
 
 	beforeEach( function () {
-		browser.deleteCookie();
+		browser.deleteAllCookies();
 		content = Util.getTestString( 'beforeEach-content-' );
 		name = Util.getTestString( 'BeforeEach-name-' );
 	} );
@@ -30,13 +30,8 @@ describe( 'Page', function () {
 
 		assert.strictEqual( EditPage.heading.getText(), 'Creating ' + name );
 		assert.strictEqual( EditPage.displayedContent.getText(), content );
-		assert( EditPage.content.isVisible(), 'editor is still present' );
-		assert( !EditPage.conflictingContent.isVisible(), 'no edit conflict happened' );
-		// provoke and dismiss reload warning due to unsaved content
-		browser.url( 'data:text/html,Done' );
-		try {
-			browser.alertAccept();
-		} catch ( e ) {}
+		assert( EditPage.content.isDisplayed(), 'editor is still present' );
+		assert( !EditPage.conflictingContent.isDisplayed(), 'no edit conflict happened' );
 	} );
 
 	it( 'should be creatable', function () {
@@ -81,7 +76,6 @@ describe( 'Page', function () {
 
 		// check
 		assert.strictEqual( EditPage.heading.getText(), name );
-		// eslint-disable-next-line no-restricted-syntax
 		assert( EditPage.displayedContent.getText().includes( editContent ) );
 	} );
 

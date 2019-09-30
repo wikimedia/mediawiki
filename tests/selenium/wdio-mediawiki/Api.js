@@ -14,9 +14,9 @@ module.exports = {
 	 * @return {Promise<MWBot>}
 	 */
 	bot(
-		username = browser.options.username,
-		password = browser.options.password,
-		baseUrl = browser.options.baseUrl
+		username = browser.config.mwUser,
+		password = browser.config.mwPwd,
+		baseUrl = browser.config.baseUrl
 	) {
 		const bot = new MWBot();
 
@@ -44,9 +44,9 @@ module.exports = {
 	 */
 	edit( title,
 		content,
-		username = browser.options.username,
-		password = browser.options.password,
-		baseUrl = browser.options.baseUrl
+		username = browser.config.mwUser,
+		password = browser.config.mwPwd,
+		baseUrl = browser.config.baseUrl
 	) {
 		return this.bot( username, password, baseUrl )
 			.then( function ( bot ) {
@@ -84,14 +84,14 @@ module.exports = {
 
 		// Log in as admin
 		return bot.loginGetCreateaccountToken( {
-			apiUrl: `${browser.options.baseUrl}/api.php`,
-			username: browser.options.username,
-			password: browser.options.password
+			apiUrl: `${browser.config.baseUrl}/api.php`,
+			username: browser.config.mwUser,
+			password: browser.config.mwPwd
 		} ).then( function () {
 			// Create the new account
 			return bot.request( {
 				action: 'createaccount',
-				createreturnurl: browser.options.baseUrl,
+				createreturnurl: browser.config.baseUrl,
 				createtoken: bot.createaccountToken,
 				username: username,
 				password: password,
@@ -115,7 +115,7 @@ module.exports = {
 				// block user. default = admin
 				return bot.request( {
 					action: 'block',
-					user: username || browser.options.username,
+					user: username || browser.config.mwUser,
 					reason: 'browser test',
 					token: bot.editToken,
 					expiry
@@ -137,7 +137,7 @@ module.exports = {
 				// unblock user. default = admin
 				return bot.request( {
 					action: 'unblock',
-					user: username || browser.options.username,
+					user: username || browser.config.mwUser,
 					reason: 'browser test done',
 					token: bot.editToken
 				} );

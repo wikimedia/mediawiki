@@ -18,7 +18,7 @@ describe( 'Special:Watchlist', function () {
 	} );
 
 	beforeEach( function () {
-		browser.deleteCookie();
+		browser.deleteAllCookies();
 		LoginPage.login( username, password );
 	} );
 

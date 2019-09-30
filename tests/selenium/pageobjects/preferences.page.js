@@ -1,8 +1,8 @@
 const Page = require( 'wdio-mediawiki/Page' );
 
 class PreferencesPage extends Page {
-	get realName() { return browser.element( '#mw-input-wprealname' ); }
-	get save() { return browser.element( '#prefcontrol' ); }
+	get realName() { return $( '#mw-input-wprealname' ); }
+	get save() { return $( '#prefcontrol' ); }
 
 	open() {
 		super.openTitle( 'Special:Preferences' );
