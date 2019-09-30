@@ -1,5 +1,4 @@
 const assert = require( 'assert' ),
-	BlankPage = require( 'wdio-mediawiki/BlankPage' ),
 	HistoryPage = require( '../pageobjects/history.page' ),
 	UserLoginPage = require( 'wdio-mediawiki/LoginPage' ),
 	Util = require( 'wdio-mediawiki/Util' );
@@ -9,10 +8,7 @@ describe( 'Rollback with confirmation', function () {
 		name;
 
 	before( function () {
-		// disable VisualEditor welcome dialog
 		browser.deleteAllCookies();
-		BlankPage.open();
-		browser.setLocalStorage( 've-beta-welcome-dialog', '1' );
 
 		// Enable rollback confirmation for admin user
 		// Requires user to log in again, handled by deleteCookie() call in beforeEach function
@@ -89,10 +85,7 @@ describe( 'Rollback without confirmation', function () {
 		name;
 
 	before( function () {
-		// disable VisualEditor welcome dialog
 		browser.deleteAllCookies();
-		BlankPage.open();
-		browser.setLocalStorage( 've-beta-welcome-dialog', '1' );
 
 		// Disable rollback confirmation for admin user
 		// Requires user to log in again, handled by deleteCookie() call in beforeEach function
