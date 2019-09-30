@@ -1,5 +1,4 @@
 const assert = require( 'assert' ),
-	BlankPage = require( 'wdio-mediawiki/BlankPage' ),
 	CreateAccountPage = require( '../pageobjects/createaccount.page' ),
 	PreferencesPage = require( '../pageobjects/preferences.page' ),
 	UserLoginPage = require( 'wdio-mediawiki/LoginPage' ),
@@ -9,12 +8,6 @@ const assert = require( 'assert' ),
 describe( 'User', function () {
 	var password,
 		username;
-
-	before( function () {
-		// disable VisualEditor welcome dialog
-		BlankPage.open();
-		browser.setLocalStorage( 've-beta-welcome-dialog', '1' );
-	} );
 
 	beforeEach( function () {
 		browser.deleteAllCookies();

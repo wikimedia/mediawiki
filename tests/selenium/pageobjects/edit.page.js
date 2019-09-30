@@ -9,7 +9,7 @@ class EditPage extends Page {
 	get previewButton() { return $( '#wpPreview' ); }
 
 	openForEditing( title ) {
-		super.openTitle( title, { action: 'edit' } );
+		super.openTitle( title, { action: 'edit', vehidebetadialog: 1, hidewelcomedialog: 1 } );
 	}
 
 	preview( name, content ) {
