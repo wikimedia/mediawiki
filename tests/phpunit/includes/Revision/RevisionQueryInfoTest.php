@@ -393,6 +393,10 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 					'slot_role_id',
 				],
 				'joins' => [],
+				'keys' => [
+					'rev_id' => 'slot_revision_id',
+					'role_id' => 'slot_role_id'
+				],
 			]
 		];
 		yield 'MCR, role option' => [
@@ -414,6 +418,10 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 				],
 				'joins' => [
 					'slot_roles' => [ 'LEFT JOIN', [ 'slot_role_id = role_id' ] ],
+				],
+				'keys' => [
+					'rev_id' => 'slot_revision_id',
+					'role_id' => 'slot_role_id'
 				],
 			]
 		];
@@ -440,6 +448,11 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 				],
 				'joins' => [
 					'content' => [ 'JOIN', [ 'slot_content_id = content_id' ] ],
+				],
+				'keys' => [
+					'rev_id' => 'slot_revision_id',
+					'role_id' => 'slot_role_id',
+					'model_id' => 'content_model',
 				],
 			]
 		];
@@ -470,6 +483,11 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 					'content' => [ 'JOIN', [ 'slot_content_id = content_id' ] ],
 					'content_models' => [ 'LEFT JOIN', [ 'content_model = model_id' ] ],
 				],
+				'keys' => [
+					'rev_id' => 'slot_revision_id',
+					'role_id' => 'slot_role_id',
+					'model_id' => 'content_model',
+				],
 			]
 		];
 
@@ -494,6 +512,9 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 					]
 				),
 				'joins' => [],
+				'keys' => [
+					'rev_id' => 'rev_id'
+				],
 			]
 		];
 		yield 'MCR write-both/read-old, content' => [
@@ -521,6 +542,9 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 					]
 				),
 				'joins' => [],
+				'keys' => [
+					'rev_id' => 'rev_id'
+				],
 			]
 		];
 		yield 'MCR write-both/read-old, content, model, role' => [
@@ -548,6 +572,9 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 					]
 				),
 				'joins' => [],
+				'keys' => [
+					'rev_id' => 'rev_id'
+				],
 			]
 		];
 	}
@@ -633,6 +660,13 @@ class RevisionQueryInfoTest extends MediaWikiTestCase {
 			$queryInfo['joins'],
 			'joins'
 		);
+		if ( isset( $expected['keys'] ) ) {
+			$this->assertArrayEqualsIgnoringIntKeyOrder(
+				$expected['keys'],
+				$queryInfo['keys'],
+				'keys'
+			);
+		}
 	}
 
 	/**

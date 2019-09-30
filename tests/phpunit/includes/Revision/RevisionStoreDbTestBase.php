@@ -1956,6 +1956,76 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->assertSame( RevisionRecord::DELETED_TEXT, $deletedAfter );
 	}
 
+	public function provideGetContentBlobsForBatchOptions() {
+		yield 'all slots' => [ null ];
+		yield 'no slots' => [ [] ];
+		yield 'main slot' => [ [ SlotRecord::MAIN ] ];
+	}
+
+	/**
+	 * @dataProvider provideGetContentBlobsForBatchOptions
+	 * @covers       \MediaWiki\Revision\RevisionStore::newRevisionsFromBatch
+	 * @param array|null $slots
+	 * @throws \MWException
+	 */
+	public function testGetContentBlobsForBatch( $slots ) {
+		$page1 = $this->getTestPage();
+		$text = __METHOD__ . 'b-ä';
+		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), $text . '1' );
+		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
+		/** @var Revision $rev1 */
+		$rev1 = $editStatus->getValue()['revision'];
+
+		$page2 = $this->getTestPage( $page1->getTitle()->getPrefixedText() . '_other' );
+		$editStatus = $this->editPage( $page2->getTitle()->getPrefixedDBkey(), $text . '2' );
+		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 2' );
+		/** @var Revision $rev2 */
+		$rev2 = $editStatus->getValue()['revision'];
+
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$result = $store->getContentBlobsForBatch( [ $rev1->getId(), $rev2->getId() ], $slots );
+		$this->assertTrue( $result->isGood() );
+		$this->assertEmpty( $result->getErrors() );
+
+		$rowSetsByRevId = $result->getValue();
+		$this->assertArrayHasKey( $rev1->getId(), $rowSetsByRevId );
+		$this->assertArrayHasKey( $rev2->getId(), $rowSetsByRevId );
+
+		$rev1rows = $rowSetsByRevId[$rev1->getId()];
+		$rev2rows = $rowSetsByRevId[$rev2->getId()];
+
+		if ( is_array( $slots ) && !in_array( SlotRecord::MAIN, $slots ) ) {
+			$this->assertArrayNotHasKey( SlotRecord::MAIN, $rev1rows );
+			$this->assertArrayNotHasKey( SlotRecord::MAIN, $rev2rows );
+		} else {
+			$this->assertArrayHasKey( SlotRecord::MAIN, $rev1rows );
+			$this->assertArrayHasKey( SlotRecord::MAIN, $rev2rows );
+
+			$mainSlotRow1 = $rev1rows[ SlotRecord::MAIN ];
+			$mainSlotRow2 = $rev2rows[ SlotRecord::MAIN ];
+
+			if ( $mainSlotRow1->model_name ) {
+				$this->assertSame( $rev1->getContentModel(), $mainSlotRow1->model_name );
+				$this->assertSame( $rev2->getContentModel(), $mainSlotRow2->model_name );
+			}
+
+			$this->assertSame( $text . '1', $mainSlotRow1->blob_data );
+			$this->assertSame( $text . '2', $mainSlotRow2->blob_data );
+		}
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionsFromBatch
+	 */
+	public function testGetContentBlobsForBatch_emptyBatch() {
+		$rows = new FakeResultWrapper( [] );
+		$result = MediaWikiServices::getInstance()->getRevisionStore()
+			->getContentBlobsForBatch( $rows );
+		$this->assertTrue( $result->isGood() );
+		$this->assertEmpty( $result->getValue() );
+		$this->assertEmpty( $result->getErrors() );
+	}
+
 	public function provideNewRevisionsFromBatchOptions() {
 		yield 'No preload slots or content, single page' => [
 			null,
@@ -1967,6 +2037,10 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 				'slots' => [ SlotRecord::MAIN ],
 				'content' => true
 			]
+		];
+		yield 'Ask for no slots' => [
+			null,
+			[ 'slots' => [] ]
 		];
 		yield 'No preload slots or content, multiple pages' => [
 			'Other_Page',
@@ -2031,9 +2105,10 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionsFromBatch
 	 */
 	public function testNewRevisionsFromBatch_emptyBatch() {
+		$rows = new FakeResultWrapper( [] );
 		$result = MediaWikiServices::getInstance()->getRevisionStore()
 			->newRevisionsFromBatch(
-				[],
+				$rows,
 				[
 					'slots' => [ SlotRecord::MAIN ],
 					'content' => true
@@ -2082,4 +2157,5 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->assertFalse( $status->isGood() );
 		$this->assertTrue( $status->hasMessage( 'internalerror' ) );
 	}
+
 }
