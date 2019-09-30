@@ -30,7 +30,6 @@ class ApiQueryAllPagesTest extends ApiTestCase {
 
 		$this->assertArrayHasKey( 'query', $result[0] );
 		$this->assertArrayHasKey( 'allpages', $result[0]['query'] );
-		$this->assertNotEquals( 0, count( $result[0]['query']['allpages'] ),
-			'allpages list does not contain page Category:Template:xyz' );
+		$this->assertContains( 'Category:Template:xyz', $result[0]['query']['allpages'][0] );
 	}
 }
