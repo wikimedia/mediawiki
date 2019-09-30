@@ -2,7 +2,7 @@ const Page = require( 'wdio-mediawiki/Page' );
 
 class WatchablePage extends Page {
 
-	get confirmWatch() { return browser.element( '#mw-content-text button[type="submit"]' ); }
+	get confirmWatch() { return $( '#mw-content-text button[type="submit"]' ); }
 
 	watch( title ) {
 		super.openTitle( title, { action: 'watch' } );

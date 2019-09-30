@@ -18,7 +18,7 @@ class Page {
 	openTitle( title, query = {}, fragment = '' ) {
 		query.title = title;
 		browser.url(
-			browser.options.baseUrl + '/index.php?' +
+			browser.config.baseUrl + '/index.php?' +
 			querystring.stringify( query ) +
 			( fragment ? ( '#' + fragment ) : '' )
 		);

@@ -2,10 +2,10 @@ const Page = require( 'wdio-mediawiki/Page' ),
 	Api = require( 'wdio-mediawiki/Api' );
 
 class DeletePage extends Page {
-	get reason() { return browser.element( '#wpReason' ); }
-	get watch() { return browser.element( '#wpWatch' ); }
-	get submit() { return browser.element( '#wpConfirmB' ); }
-	get displayedContent() { return browser.element( '#mw-content-text' ); }
+	get reason() { return $( '#wpReason' ); }
+	get watch() { return $( '#wpWatch' ); }
+	get submit() { return $( '#wpConfirmB' ); }
+	get displayedContent() { return $( '#mw-content-text' ); }
 
 	open( title ) {
 		super.openTitle( title, { action: 'delete' } );

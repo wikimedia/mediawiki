@@ -10,9 +10,9 @@ describe( 'Rollback with confirmation', function () {
 
 	before( function () {
 		// disable VisualEditor welcome dialog
-		browser.deleteCookie();
+		browser.deleteAllCookies();
 		BlankPage.open();
-		browser.localStorage( 'POST', { key: 've-beta-welcome-dialog', value: '1' } );
+		browser.setLocalStorage( 've-beta-welcome-dialog', '1' );
 
 		// Enable rollback confirmation for admin user
 		// Requires user to log in again, handled by deleteCookie() call in beforeEach function
@@ -21,7 +21,7 @@ describe( 'Rollback with confirmation', function () {
 	} );
 
 	beforeEach( function () {
-		browser.deleteCookie();
+		browser.deleteAllCookies();
 
 		content = Util.getTestString( 'beforeEach-content-' );
 		name = Util.getTestString( 'BeforeEach-name-' );
@@ -45,7 +45,7 @@ describe( 'Rollback with confirmation', function () {
 	it.skip( 'should offer a way to cancel rollbacks', function () {
 		HistoryPage.rollback.click();
 
-		HistoryPage.rollbackConfirmableNo.waitForVisible( 5000 );
+		HistoryPage.rollbackConfirmableNo.waitForDisplayed( 5000 );
 
 		HistoryPage.rollbackConfirmableNo.click();
 
@@ -57,7 +57,7 @@ describe( 'Rollback with confirmation', function () {
 	it.skip( 'should perform rollbacks after confirming intention', function () {
 		HistoryPage.rollback.click();
 
-		HistoryPage.rollbackConfirmableYes.waitForVisible( 5000 );
+		HistoryPage.rollbackConfirmableYes.waitForDisplayed( 5000 );
 
 		HistoryPage.rollbackConfirmableYes.click();
 
@@ -90,9 +90,9 @@ describe( 'Rollback without confirmation', function () {
 
 	before( function () {
 		// disable VisualEditor welcome dialog
-		browser.deleteCookie();
+		browser.deleteAllCookies();
 		BlankPage.open();
-		browser.localStorage( 'POST', { key: 've-beta-welcome-dialog', value: '1' } );
+		browser.setLocalStorage( 've-beta-welcome-dialog', '1' );
 
 		// Disable rollback confirmation for admin user
 		// Requires user to log in again, handled by deleteCookie() call in beforeEach function
@@ -101,7 +101,7 @@ describe( 'Rollback without confirmation', function () {
 	} );
 
 	beforeEach( function () {
-		browser.deleteCookie();
+		browser.deleteAllCookies();
 
 		content = Util.getTestString( 'beforeEach-content-' );
 		name = Util.getTestString( 'BeforeEach-name-' );
@@ -117,7 +117,7 @@ describe( 'Rollback without confirmation', function () {
 
 		// waitUntil indirectly asserts that the content we are looking for is present
 		browser.waitUntil( function () {
-			return HistoryPage.headingText === 'Action complete';
+			return HistoryPage.heading.getText() === 'Action complete';
 		}, 5000, 'Expected rollback page to appear.' );
 	} );
 

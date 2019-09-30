@@ -2,12 +2,12 @@ const Page = require( 'wdio-mediawiki/Page' ),
 	Api = require( 'wdio-mediawiki/Api' );
 
 class EditPage extends Page {
-	get content() { return browser.element( '#wpTextbox1' ); }
-	get conflictingContent() { return browser.element( '#wpTextbox2' ); }
-	get displayedContent() { return browser.element( '#mw-content-text .mw-parser-output' ); }
-	get heading() { return browser.element( '#firstHeading' ); }
-	get save() { return browser.element( '#wpSave' ); }
-	get previewButton() { return browser.element( '#wpPreview' ); }
+	get content() { return $( '#wpTextbox1' ); }
+	get conflictingContent() { return $( '#wpTextbox2' ); }
+	get displayedContent() { return $( '#mw-content-text .mw-parser-output' ); }
+	get heading() { return $( '#firstHeading' ); }
+	get save() { return $( '#wpSave' ); }
+	get previewButton() { return $( '#wpPreview' ); }
 
 	openForEditing( title ) {
 		super.openTitle( title, { action: 'edit' } );
