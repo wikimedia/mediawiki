@@ -224,7 +224,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 		}
 
 		$session2 = null;
-		$this->assertSame( 0, count( $priv->requests ) );
+		$this->assertSame( [], $priv->requests );
 		$this->assertArrayNotHasKey( $backend->getId(), $manager->allSessionBackends );
 		$this->assertArrayHasKey( $backend->getId(), $manager->allSessionIds );
 	}

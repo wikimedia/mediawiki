@@ -610,7 +610,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$asycList[0](); // run the refresh callback
 		$asycList = [];
 		$this->assertEquals( 2, $wasSet, "Value calculated at later time" );
-		$this->assertSame( 0, count( $asycList ), "No deferred refreshes added." );
+		$this->assertSame( [], $asycList, "No deferred refreshes added." );
 		$v = $cache->getWithSetCallback( $key, 300, $func, $opts );
 		$this->assertEquals( $value, $v, "New value stored" );
 
