@@ -353,6 +353,7 @@
 	"perfcached": "Navedeni podatki so shranjeni v predpomnilniku in morda niso popolnoma posodobljeni. V predpomnilniku {{PLURAL:$1|je|sta|so|je}} na razpolago največ $1 {{PLURAL:$1|rezultat|rezultata|rezultate|rezultatov}}.",
 	"perfcachedts": "Prikazani podatki so shranjeni v predpomnilniku in so bili zadnjič osveženi $1. V predpomnilniku {{PLURAL:$4|je|sta|so|je}} na razpolago največ $4 {{PLURAL:$4|rezultat|rezultata|rezultate|rezultatov}}.",
 	"querypage-no-updates": "Posodobitve za to stran so trenutno onemogočene. Tukajšnji podatki se v kratkem ne bodo osvežili.",
+	"querypage-updates-periodical": "Posodobitve za to stran se poganjajo periodično.",
 	"viewsource": "Izvorno besedilo",
 	"viewsource-title": "Ogled vira $1",
 	"actionthrottled": "Dejanje zaustavljeno",

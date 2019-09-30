@@ -462,6 +462,7 @@
 	"perfcached": "Os seguintes dados encontram-se armazenados na ''cache'' e podem não estar atualizados. No máximo {{PLURAL:$1|um resultado está disponível|$1 resultados estão disponíveis}} na ''cache''.",
 	"perfcachedts": "Os seguintes dados encontram-se armazenados no ''cache'' e foram atualizados as $1. No máximo {{PLURAL:$4|um resultado está disponível|$4 resultados estão disponíveis}} no ''cache''.",
 	"querypage-no-updates": "Momentaneamente as atualizações para esta página estão desativadas. Por enquanto, os dados aqui presentes não poderão ser atualizados.",
+	"querypage-updates-periodical": "As atualizações para esta página são executadas periodicamente.",
 	"viewsource": "Ver código-fonte",
 	"viewsource-title": "Exibir código-fonte para $1",
 	"actionthrottled": "Ação controlada",

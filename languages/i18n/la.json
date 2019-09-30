@@ -30,7 +30,8 @@
 			"Guillermo2149",
 			"Fitoschido",
 			"LittlePuppers",
-			"Vlad5250"
+			"Vlad5250",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Versores linea denotandi:",
@@ -326,6 +327,7 @@
 	"virus-scanfailed": "scrutinium fefellit (codex $1)",
 	"virus-unknownscanner": "antivirus incognitus:",
 	"logouttext": "<strong>Secessisti a {{grammar:ablative|{{SITENAME}}}}.</strong>\n\nNota bene, paginae fortasse videantur quasi nomen tuum dedisses, priusquam navigatrum purgaveris.",
+	"cannotlogoutnow-title": "Nequitur secedere",
 	"welcomeuser": "Salve, $1!",
 	"welcomecreation-msg": "Tibi nomen impositum est.\nCura, ut [[Special:Preferences|modos tuos]] deligas.",
 	"yourname": "Nomen usoris:",
@@ -811,6 +813,7 @@
 	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (vide etiam [[Special:NewPages|indicem paginarum novarum]])",
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:non</strong> $1",
+	"rcfilters-alldiscussions-label": "Cunctae disputationes",
 	"rcnotefrom": "Subter sunt '''$1''' nuperrime mutata in proxima '''$2''' die.",
 	"rclistfrom": "Monstrare mutata nova incipiens ab $3 $2",
 	"rcshowhideminor": "$1 recensiones minores",

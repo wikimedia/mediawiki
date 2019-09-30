@@ -503,7 +503,7 @@
 	"createaccountmail": "Använd ett tillfälligt slumpvis valt lösenord och skicka det till den angivna e-postadressen",
 	"createaccountmail-help": "Kan användas för att skapa ett konto åt en annan person utan att kunna lösenordet.",
 	"createacct-realname": "Riktigt namn (valfritt)",
-	"createacct-reason": "Orsak",
+	"createacct-reason": "Orsak (loggas offentligt)",
 	"createacct-reason-ph": "Varför du skapar ett annat konto",
 	"createacct-reason-help": "Meddelande som visas i loggen för skapade konton",
 	"createacct-submit": "Skapa ditt konto",
@@ -1870,6 +1870,7 @@
 	"listfiles-userdoesnotexist": "Användarkontot \"$1\" är inte registrerat.",
 	"imgfile": "fil",
 	"listfiles": "Fillista",
+	"listfiles_subpage": "Uppladdningar av $1",
 	"listfiles_thumb": "Miniatyrbild",
 	"listfiles_date": "Datum",
 	"listfiles_name": "Namn",
@@ -3891,5 +3892,8 @@
 	"mycustomjsredirectprotected": "Du har inte behörighet att redigera denna JavaScript-sida eftersom det är en omdirigering och leder inte någonstans inom din användarnamnrymd.",
 	"easydeflate-invaliddeflate": "Innehåll som tillhandahålls är inte helt komprimerat",
 	"unprotected-js": "Av säkerhetsskäl kan inte JavaScript läsas in från oskyddade sidor. Skapa endast JavaScript i namnrymden MediaWiki: eller som en användarundersida.",
-	"userlogout-continue": "Vill du logga ut?"
+	"userlogout-continue": "Vill du logga ut?",
+	"rest-prefix-mismatch": "Den begärda sökvägen ($1) fanns inte inuti rotsökvägen för REST API ($2)",
+	"rest-wrong-method": "Den begärda metoden ($1) var inte {{PLURAL:$3|den tillåtna metoden för denna sökväg|en av de tillåtna metoderna för denna sökväg}} ($2)",
+	"rest-no-match": "Den begärda relativa sökvägen ($1) matchade inte några kända hanterare"
 }

@@ -440,6 +440,7 @@
 	"perfcached": "Poniższe dane są kopią z pamięci podręcznej i mogą być nieaktualne. W pamięci podręcznej {{PLURAL:$1|znajduje|znajdują|znajduje}} się maksymalnie {{PLURAL:$1|jeden wynik|$1 wyniki|$1 wyników}}.",
 	"perfcachedts": "Poniższe dane są kopią z pamięci podręcznej. Ostatnia aktualizacja odbyła się o $1. W pamięci podręcznej {{PLURAL:$4|znajduje|znajdują|znajduje}} się maksymalnie {{PLURAL:$4|jeden wynik|$4 wyniki|$4 wyników}}.",
 	"querypage-no-updates": "Uaktualnienia dla tej strony są obecnie wyłączone. Znajdujące się tutaj dane nie zostaną odświeżone.",
+	"querypage-updates-periodical": "Aktualizacje tej strony wykonywane są cyklicznie.",
 	"viewsource": "Tekst źródłowy",
 	"viewsource-title": "Tekst źródłowy strony $1",
 	"actionthrottled": "Akcja wstrzymana",

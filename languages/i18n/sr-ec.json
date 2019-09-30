@@ -466,7 +466,7 @@
 	"createaccountmail": "Користи привремену, насумичну лозинку и пошаљи је на наведену е-адресу",
 	"createaccountmail-help": "Може се користити да се некоме отвори налог без сазнања лозинке.",
 	"createacct-realname": "Право име (опционално)",
-	"createacct-reason": "Разлог",
+	"createacct-reason": "Разлог (јавно се бележи)",
 	"createacct-reason-ph": "Зашто отварате још један налог",
 	"createacct-reason-help": "Порука која се приказује у дневнику отварања налога",
 	"createacct-submit": "Отвори налог",

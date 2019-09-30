@@ -726,7 +726,7 @@
 	"showdiff": "显示更改",
 	"blankarticle": "<strong>警告</strong>：您创建的页面是空白的。如果您再次点击“$1”，您将真的创建没有任何内容的页面。",
 	"anoneditwarning": "<strong>警告：</strong>您没有登录。如果您做出任意编辑，您的IP地址将会公开可见。如果您<strong>[$1 登录]</strong>或<strong>[$2 创建]</strong>一个账户，您的编辑将归属于您的用户名，且将享受其他好处。",
-	"anonpreviewwarning": "<em>您没有登录。保存将您的IP地址记录至此页面的编辑历史中。</em>",
+	"anonpreviewwarning": "您没有登录。保存将您的IP地址记录至此页面的编辑历史中。",
 	"missingsummary": "<strong>提示：</strong>您没有提供编辑摘要。如果您再次点击“$1”，您的编辑将不带摘要保存。",
 	"selfredirect": "<strong>警告：</strong>您正在将此页面重定向至它自己。您可能指定了错误的重定向目标，或者您正在编辑错误的页面。如果您再次点击“$1”，重定向仍将被创建。",
 	"missingcommenttext": "请输入一段评论。",
