@@ -463,6 +463,7 @@
 	"perfcached": "I dati che seguono sono estratti da una copia ''cache'' del database, e potrebbero non essere aggiornati. Un massimo di {{PLURAL:$1|un risultato è disponibile|$1 risultati sono disponibili}} in cache.",
 	"perfcachedts": "I dati che seguono sono estratti da una copia ''cache'' del database, il cui ultimo aggiornamento risale al $1. Un massimo di {{PLURAL:$4|un risultato è disponibile|$4 risultati è disponibile}} in cache.",
 	"querypage-no-updates": "Gli aggiornamenti della pagina sono temporaneamente sospesi. I dati in essa contenuti non verranno aggiornati.",
+	"querypage-updates-periodical": "Gli aggiornamenti per questa pagina sono eseguiti periodicamente.",
 	"viewsource": "Visualizza wikitesto",
 	"viewsource-title": "Visualizza wikitesto di $1",
 	"actionthrottled": "Azione ritardata",

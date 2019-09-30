@@ -413,6 +413,7 @@
 	"perfcached": "다음 자료는 캐시된 것이며 최신이 아닐 수 있습니다. 캐시에 최대 {{PLURAL:$1|결과 한 개|결과 $1개}}가 있습니다.",
 	"perfcachedts": "다음 자료는 캐시된 것으로, $1에 마지막으로 업데이트되었습니다. 캐시에 최대 {{PLURAL:$4|결과 한 개|결과 $4개}}가 있습니다.",
 	"querypage-no-updates": "이 문서의 갱신이 현재 중지되어 있습니다.\n지금은 자료가 갱신되지 않을 것입니다.",
+	"querypage-updates-periodical": "이 문서의 갱신은 주기적으로 수행됩니다.",
 	"viewsource": "원본 보기",
 	"viewsource-title": "$1 문서 원본 보기",
 	"actionthrottled": "동작 중지",

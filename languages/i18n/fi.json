@@ -1851,6 +1851,7 @@
 	"listfiles-userdoesnotexist": "Käyttäjätunnusta ”$1” ei ole rekisteröity.",
 	"imgfile": "tiedosto",
 	"listfiles": "Tiedostoluettelo",
+	"listfiles_subpage": "Käyttäjän $1 tallennukset",
 	"listfiles_thumb": "Pienoiskuva",
 	"listfiles_date": "Päiväys",
 	"listfiles_name": "Nimi",

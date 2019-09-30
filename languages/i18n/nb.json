@@ -389,6 +389,7 @@
 	"perfcached": "Følgende data er en tidligere kopi og ikke nødvendigvis den siste versjonen i databasen. Maksimalt {{PLURAL:$1|ett resultat|$1 resultater}} er {{PLURAL:$1|tilgjengelig|tilgjengelige}} som tidligere kopier.",
 	"perfcachedts": "Listen ble sist oppdatert $1. Maksimalt {{PLURAL:$4|ett resultat|$4 resultater}} vises.",
 	"querypage-no-updates": "Oppdateringer for denne siden er slått av. Data her blir ikke gjenoppfrisket.",
+	"querypage-updates-periodical": "Oppdateringer for denne siden kjøres periodisk.",
 	"viewsource": "Vis kilde",
 	"viewsource-title": "Vis kilden til $1",
 	"actionthrottled": "Handlingsgrense overskredet",

@@ -192,7 +192,8 @@
 			"Waldyrious",
 			"Johny Weissmuller Jr",
 			"Dark Dragoon",
-			"Elisardojm"
+			"Elisardojm",
+			"Madamebiblio"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -1992,6 +1993,7 @@
 	"listfiles-userdoesnotexist": "La cuenta de usuario «$1» no está registrada.",
 	"imgfile": "archivo",
 	"listfiles": "Lista de archivos",
+	"listfiles_subpage": "Subidas por $1",
 	"listfiles_thumb": "Miniatura",
 	"listfiles_date": "Fecha",
 	"listfiles_name": "Nombre",

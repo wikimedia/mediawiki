@@ -437,6 +437,7 @@
 	"perfcached": "Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell. Maximal {{PLURAL:$1|ein Ergebnis ist|$1 Ergebnisse sind}} im Cache verfügbar.",
 	"perfcachedts": "Diese Daten stammen aus dem Cache. Der Zeitpunkt der letzten Aktualisierung: $2, $3 Uhr. Maximal {{PLURAL:$4|ein Ergebnis ist|$4 Ergebnisse sind}} im Cache verfügbar.",
 	"querypage-no-updates": "Die Aktualisierungsfunktion dieser Seite ist zurzeit deaktiviert.\nDie Daten werden bis auf Weiteres nicht erneuert.",
+	"querypage-updates-periodical": "Aktualisierungen für diese Seite werden periodisch erneuert.",
 	"viewsource": "Quelltext anzeigen",
 	"viewsource-title": "Quelltext der Seite $1",
 	"actionthrottled": "Aktionsanzahl limitiert",
@@ -3932,5 +3933,6 @@
 	"easydeflate-invaliddeflate": "Der angegebene Inhalt ist nicht ordnungsgemäß komprimiert",
 	"unprotected-js": "Aus Sicherheitsgründen kann JavaScript-Code nicht mehr von ungeschützten Seiten geladen werden. Erstelle die JavaScript-Seite bitte ausschließlich im Namensraum „MediaWiki“ oder als Benutzerunterseite.",
 	"userlogout-continue": "Möchtest du dich abmelden?",
-	"rest-prefix-mismatch": "Der angeforderte Pfad ($1) kannte nicht innerhalb des REST-API-Root-Pfades ($2) gefunden werden"
+	"rest-prefix-mismatch": "Der angeforderte Pfad ($1) kannte nicht innerhalb des REST-API-Root-Pfades ($2) gefunden werden",
+	"rest-wrong-method": "Die angeforderte Methode ($1) war keine {{PLURAL:$3|erlaubte Methode für diesen Pfad|der erlaubten Methoden für diesen Pfas}} ($2)"
 }

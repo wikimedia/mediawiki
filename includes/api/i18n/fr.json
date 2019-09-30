@@ -79,7 +79,7 @@
 	"apihelp-checktoken-param-type": "Type de jeton testé",
 	"apihelp-checktoken-param-token": "Jeton à tester.",
 	"apihelp-checktoken-param-maxtokenage": "Temps maximum autorisé pour l'utilisation du jeton, en secondes",
-	"apihelp-checktoken-example-simple": "Tester la validité d'un jeton de <kbd>csrf</kbd>.",
+	"apihelp-checktoken-example-simple": "Tester la validité d’un jeton <kbd>csrf</kbd>.",
 	"apihelp-clearhasmsg-summary": "Efface le drapeau <code>hasmsg</code> pour l’utilisateur courant.",
 	"apihelp-clearhasmsg-example-1": "Effacer le drapeau <code>hasmsg</code> pour l’utilisateur courant",
 	"apihelp-clientlogin-summary": "Se connecter au wiki en utilisant la procédure interactive.",
