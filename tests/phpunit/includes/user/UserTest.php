@@ -1201,7 +1201,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertNull( $user->getBlock( false ), 'sanity check' );
 		$this->assertSame( '', $user->blockedBy(), 'sanity check' );
 		$this->assertSame( '', $user->blockedFor(), 'sanity check' );
-		$this->assertFalse( (bool)$user->isHidden(), 'sanity check' );
+		$this->assertFalse( $user->isHidden(), 'sanity check' );
 		$this->assertFalse( $user->isBlockedFrom( $ut ), 'sanity check' );
 
 		// Block the user
@@ -1221,7 +1221,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertInstanceOf( DatabaseBlock::class, $user->getBlock( false ) );
 		$this->assertSame( $blocker->getName(), $user->blockedBy() );
 		$this->assertSame( 'Because', $user->blockedFor() );
-		$this->assertTrue( (bool)$user->isHidden() );
+		$this->assertTrue( $user->isHidden() );
 		$this->assertTrue( $user->isBlockedFrom( $ut ) );
 
 		// Unblock
@@ -1232,7 +1232,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertNull( $user->getBlock( false ) );
 		$this->assertSame( '', $user->blockedBy() );
 		$this->assertSame( '', $user->blockedFor() );
-		$this->assertFalse( (bool)$user->isHidden() );
+		$this->assertFalse( $user->isHidden() );
 		$this->assertFalse( $user->isBlockedFrom( $ut ) );
 	}
 
