@@ -64,7 +64,7 @@ class ApiWatchTest extends ApiTestCase {
 				unset( $data[0]['query']['watchlist'][$index] );
 			}
 		}
-		$this->assertSame( 0, count( $data[0]['query']['watchlist'] ) );
+		$this->assertSame( [], $data[0]['query']['watchlist'] );
 
 		return $data;
 	}
