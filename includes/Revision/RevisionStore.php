@@ -1653,6 +1653,11 @@ class RevisionStore
 					= $this->emulateContentId( intval( $row->rev_text_id ) );
 			}
 
+			// We may have a fake blob_data field from getSlotRowsForBatch(), use it!
+			if ( isset( $row->blob_data ) ) {
+				$slotContents[$row->content_address] = $row->blob_data;
+			}
+
 			$contentCallback = function ( SlotRecord $slot ) use ( $slotContents, $queryFlags ) {
 				$blob = null;
 				if ( isset( $slotContents[$slot->getAddress()] ) ) {
@@ -1897,7 +1902,8 @@ class RevisionStore
 	 * @param array $options Supports the following options:
 	 *               'slots' - whether metadata about revision slots should be
 	 *               loaded immediately. Supports falsy or truthy value as well
-	 *               as an explicit list of slot role names.
+	 *               as an explicit list of slot role names. The main slot will
+	 *               always be loaded.
 	 *               'content'- whether the actual content of the slots should be
 	 *               preloaded.
 	 * @param int $queryFlags
@@ -1969,47 +1975,25 @@ class RevisionStore
 			return $result;
 		}
 
-		$slotQueryConds = [ 'slot_revision_id' => array_keys( $rowsByRevId ) ];
-		if ( is_array( $options['slots'] ) ) {
-			$slotQueryConds['slot_role_id'] = array_map( function ( $slot_name ) {
-				return $this->slotRoleStore->getId( $slot_name );
-			}, $options['slots'] );
+		$slotRowOptions = [
+			'slots' => $options['slots'] ?? true,
+			'blobs' => $options['content'] ?? false,
+		];
+
+		if ( is_array( $slotRowOptions['slots'] )
+			&& !in_array( SlotRecord::MAIN, $slotRowOptions['slots'] )
+		) {
+			// Make sure the main slot is always loaded, RevisionRecord requires this.
+			$slotRowOptions['slots'][] = SlotRecord::MAIN;
 		}
 
-		// We need to set the `content` flag because newRevisionFromRowAndSlots requires content
-		// metadata to be loaded.
-		$slotQueryInfo = self::getSlotsQueryInfo( [ 'content' ] );
-		$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
-		$slotRows = $db->select(
-			$slotQueryInfo['tables'],
-			$slotQueryInfo['fields'],
-			$slotQueryConds,
-			__METHOD__,
-			[],
-			$slotQueryInfo['joins']
-		);
+		$slotRowsStatus = $this->getSlotRowsForBatch( $rowsByRevId, $slotRowOptions, $queryFlags );
 
-		$slotRowsByRevId = [];
-		foreach ( $slotRows as $slotRow ) {
-			$slotRowsByRevId[$slotRow->slot_revision_id][] = $slotRow;
-		}
-
-		$slotContents = null;
-		if ( $options['content'] ?? false ) {
-			$blobAddresses = [];
-			foreach ( $slotRows as $slotRow ) {
-				$blobAddresses[] = $slotRow->content_address;
-			}
-			$slotContentFetchStatus = $this->blobStore
-				->getBlobBatch( $blobAddresses, $queryFlags );
-			foreach ( $slotContentFetchStatus->getErrors() as $error ) {
-				$result->warning( $error['message'], ...$error['params'] );
-			}
-			$slotContents = $slotContentFetchStatus->getValue();
-		}
+		$result->merge( $slotRowsStatus );
+		$slotRowsByRevId = $slotRowsStatus->getValue();
 
 		$result->setResult( true, array_map( function ( $row ) use
-			( $slotRowsByRevId, $queryFlags, $titlesByPageId, $slotContents, $result ) {
+			( $slotRowsByRevId, $queryFlags, $titlesByPageId, $result ) {
 				if ( !isset( $slotRowsByRevId[$row->rev_id] ) ) {
 					$result->warning(
 						'internalerror',
@@ -2025,8 +2009,7 @@ class RevisionStore
 								$row->rev_id,
 								$slotRowsByRevId[$row->rev_id],
 								$queryFlags,
-								$titlesByPageId[$row->rev_page],
-								$slotContents
+								$titlesByPageId[$row->rev_page]
 							)
 						),
 						$queryFlags,
@@ -2037,6 +2020,174 @@ class RevisionStore
 					return null;
 				}
 		}, $rowsByRevId ) );
+		return $result;
+	}
+
+	/**
+	 * Gets the slot rows associated with a batch of revisions.
+	 * The serialized content of each slot can be included by setting the 'blobs' option.
+	 * Callers are responsible for unserializing and interpreting the content blobs
+	 * based on the model_name and role_name fields.
+	 *
+	 * @param Traversable|array $rowsOrIds list of revision ids, or revision rows from a db query.
+	 * @param array $options Supports the following options:
+	 *               'slots' - a list of slot role names to fetch. If omitted or true or null,
+	 *                         all slots are fetched
+	 *               'blobs'- whether the serialized content of each slot should be loaded.
+	 *                        If true, the serialiezd content will be present in the slot row
+	 *                        in the blob_data field.
+	 * @param int $queryFlags
+	 *
+	 * @return StatusValue a status containing, if isOK() returns true, a two-level nested
+	 *         associative array, mapping from revision ID to an associative array that maps from
+	 *         role name to a database row object. The database row object will contain the fields
+	 *         defined by getSlotQueryInfo() with the 'content' flag set, plus the blob_data field
+	 *         if the 'blobs' is set in $options. The model_name and role_name fields will also be
+	 *         set.
+	 */
+	private function getSlotRowsForBatch(
+		$rowsOrIds,
+		array $options = [],
+		$queryFlags = 0
+	) {
+		$readNew = $this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_NEW );
+		$result = new StatusValue();
+
+		$revIds = [];
+		foreach ( $rowsOrIds as $row ) {
+			$revIds[] = is_object( $row ) ? (int)$row->rev_id : (int)$row;
+		}
+
+		// Nothing to do.
+		// Note that $rowsOrIds may not be "empty" even if $revIds is, e.g. if it's a ResultWrapper.
+		if ( empty( $revIds ) ) {
+			$result->setResult( true, [] );
+			return $result;
+		}
+
+		// We need to set the `content` flag to join in content meta-data
+		$slotQueryInfo = self::getSlotsQueryInfo( [ 'content' ] );
+		$revIdField = $slotQueryInfo['keys']['rev_id'];
+		$slotQueryConds = [ $revIdField => $revIds ];
+
+		if ( $readNew && isset( $options['slots'] ) && is_array( $options['slots'] ) ) {
+			if ( empty( $options['slots'] ) ) {
+				// Degenerate case: return no slots for each revision.
+				$result->setResult( true, array_fill_keys( $revIds, [] ) );
+				return $result;
+			}
+
+			$roleIdField = $slotQueryInfo['keys']['role_id'];
+			$slotQueryConds[$roleIdField] = array_map( function ( $slot_name ) {
+				return $this->slotRoleStore->getId( $slot_name );
+			}, $options['slots'] );
+		}
+
+		$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
+		$slotRows = $db->select(
+			$slotQueryInfo['tables'],
+			$slotQueryInfo['fields'],
+			$slotQueryConds,
+			__METHOD__,
+			[],
+			$slotQueryInfo['joins']
+		);
+
+		$slotContents = null;
+		if ( $options['blobs'] ?? false ) {
+			$blobAddresses = [];
+			foreach ( $slotRows as $slotRow ) {
+				$blobAddresses[] = $slotRow->content_address;
+			}
+			$slotContentFetchStatus = $this->blobStore
+				->getBlobBatch( $blobAddresses, $queryFlags );
+			foreach ( $slotContentFetchStatus->getErrors() as $error ) {
+				$result->warning( $error['message'], ...$error['params'] );
+			}
+			$slotContents = $slotContentFetchStatus->getValue();
+		}
+
+		$slotRowsByRevId = [];
+		foreach ( $slotRows as $slotRow ) {
+			if ( $slotContents === null ) {
+				// nothing to do
+			} elseif ( isset( $slotContents[$slotRow->content_address] ) ) {
+				$slotRow->blob_data = $slotContents[$slotRow->content_address];
+			} else {
+				$result->warning(
+					'internalerror',
+					"Couldn't find blob data for rev {$slotRow->slot_revision_id}"
+				);
+				$slotRow->blob_data = null;
+			}
+
+			// conditional needed for SCHEMA_COMPAT_READ_OLD
+			if ( !isset( $slotRow->role_name ) && isset( $slotRow->slot_role_id ) ) {
+				$slotRow->role_name = $this->slotRoleStore->getName( (int)$slotRow->slot_role_id );
+			}
+
+			// conditional needed for SCHEMA_COMPAT_READ_OLD
+			if ( !isset( $slotRow->model_name ) && isset( $slotRow->content_model ) ) {
+				$slotRow->model_name = $this->contentModelStore->getName( (int)$slotRow->content_model );
+			}
+
+			$slotRowsByRevId[$slotRow->slot_revision_id][$slotRow->role_name] = $slotRow;
+		}
+
+		$result->setResult( true, $slotRowsByRevId );
+		return $result;
+	}
+
+	/**
+	 * Gets raw (serialized) content blobs for the given set of revisions.
+	 * Callers are responsible for unserializing and interpreting the content blobs
+	 * based on the model_name field and the slot role.
+	 *
+	 * This method is intended for bulk operations in maintenance scripts.
+	 * It may be chosen over newRevisionsFromBatch by code that are only interested
+	 * in raw content, as opposed to meta data. Code that needs to access meta data of revisions,
+	 * slots, or content objects should use newRevisionsFromBatch() instead.
+	 *
+	 * @param Traversable|array $rowsOrIds list of revision ids, or revision rows from a db query.
+	 * @param array|null $slots the role names for which to get slots.
+	 * @param int $queryFlags
+	 *
+	 * @return StatusValue a status containing, if isOK() returns true, a two-level nested
+	 *         associative array, mapping from revision ID to an associative array that maps from
+	 *         role name to an anonymous object object containing two fields:
+	 *         - model_name: the name of the content's model
+	 *         - blob_data: serialized content data
+	 */
+	public function getContentBlobsForBatch(
+		$rowsOrIds,
+		$slots = null,
+		$queryFlags = 0
+	) {
+		$result = $this->getSlotRowsForBatch(
+			$rowsOrIds,
+			[ 'slots' => $slots, 'blobs' => true ],
+			$queryFlags
+		);
+
+		if ( $result->isOK() ) {
+			// strip out all internal meta data that we don't want to expose
+			foreach ( $result->value as $revId => $rowsByRole ) {
+				foreach ( $rowsByRole as $role => $slotRow ) {
+					if ( is_array( $slots ) && !in_array( $role, $slots ) ) {
+						// In SCHEMA_COMPAT_READ_OLD mode we may get the main slot even
+						// if we didn't ask for it.
+						unset( $result->value[$revId][$role] );
+						continue;
+					}
+
+					$result->value[$revId][$role] = (object)[
+						'blob_data' => $slotRow->blob_data,
+						'model_name' => $slotRow->model_name,
+					];
+				}
+			}
+		}
+
 		return $result;
 	}
 
@@ -2589,16 +2740,22 @@ class RevisionStore
 	 *  - tables: (string[]) to include in the `$table` to `IDatabase->select()`
 	 *  - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
 	 *  - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 *  - keys: (associative array) to look up fields to match against.
+	 *          In particular, the field that can be used to find slots by rev_id
+	 *          can be found in ['keys']['rev_id'].
 	 */
 	public function getSlotsQueryInfo( $options = [] ) {
 		$ret = [
 			'tables' => [],
 			'fields' => [],
 			'joins'  => [],
+			'keys'  => [],
 		];
 
 		if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_OLD ) ) {
 			$db = $this->getDBConnectionRef( DB_REPLICA );
+			$ret['keys']['rev_id'] = 'rev_id';
+
 			$ret['tables'][] = 'revision';
 
 			$ret['fields']['slot_revision_id'] = 'rev_id';
@@ -2622,6 +2779,9 @@ class RevisionStore
 				}
 			}
 		} else {
+			$ret['keys']['rev_id'] = 'slot_revision_id';
+			$ret['keys']['role_id'] = 'slot_role_id';
+
 			$ret['tables'][] = 'slots';
 			$ret['fields'] = array_merge( $ret['fields'], [
 				'slot_revision_id',
@@ -2639,6 +2799,8 @@ class RevisionStore
 			}
 
 			if ( in_array( 'content', $options, true ) ) {
+				$ret['keys']['model_id'] = 'content_model';
+
 				$ret['tables'][] = 'content';
 				$ret['fields'] = array_merge( $ret['fields'], [
 					'content_size',
