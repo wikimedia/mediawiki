@@ -1440,7 +1440,10 @@ abstract class FileBackendStore extends FileBackend {
 				$name = strtolower( $name );
 				$maxHVLen = in_array( $name, $longs ) ? INF : 255;
 				if ( strlen( $name ) > 255 || strlen( $value ) > $maxHVLen ) {
-					trigger_error( "Header '$name: $value' is too long." );
+					$this->logger->error( "Header '{header}' is too long.", [
+						'filebackend' => $this->name,
+						'header' => "$name: $value",
+					] );
 				} else {
 					$newHeaders[$name] = strlen( $value ) ? $value : ''; // null/false => ""
 				}
@@ -1789,7 +1792,9 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	final protected function deleteContainerCache( $container ) {
 		if ( !$this->memCache->delete( $this->containerCacheKey( $container ), 300 ) ) {
-			trigger_error( "Unable to delete stat cache for container $container." );
+			$this->logger->warning( "Unable to delete stat cache for container {container}.",
+				[ 'filebackend' => $this->name, 'container' => $container ]
+			);
 		}
 	}
 
@@ -1887,7 +1892,9 @@ abstract class FileBackendStore extends FileBackend {
 			return; // invalid storage path
 		}
 		if ( !$this->memCache->delete( $this->fileCacheKey( $path ), 300 ) ) {
-			trigger_error( "Unable to delete stat cache for file $path." );
+			$this->logger->warning( "Unable to delete stat cache for file {path}.",
+				[ 'filebackend' => $this->name, 'path' => $path ]
+			);
 		}
 	}
 
