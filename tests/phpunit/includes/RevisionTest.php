@@ -372,6 +372,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @dataProvider provideGetRevisionText
 	 */
 	public function testGetRevisionText( $expected, $rowData, $prefix = 'old_', $wiki = false ) {
+		$this->hideDeprecated( 'Revision::getRevisionText' );
 		$this->assertEquals(
 			$expected,
 			Revision::getRevisionText( $rowData, $prefix, $wiki ) );
@@ -413,6 +414,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function testGetRevisionWithZlibExtension_badData( $expected, $rowData ) {
 		$this->checkPHPExtension( 'zlib' );
 		Wikimedia\suppressWarnings();
+		$this->hideDeprecated( 'Revision::getRevisionText' );
 		$this->assertFalse(
 			Revision::getRevisionText(
 				(object)$rowData
@@ -562,6 +564,7 @@ class RevisionTest extends MediaWikiTestCase {
 			"Flags should not contain 'gzip'" );
 		$this->assertEquals( "Wiki est l'\xc3\xa9cole superieur !",
 			$row->old_text, "Direct check" );
+		$this->hideDeprecated( 'Revision::getRevisionText' );
 		$this->assertEquals( "Wiki est l'\xc3\xa9cole superieur !",
 			Revision::getRevisionText( $row ), "getRevisionText" );
 	}
@@ -585,6 +588,7 @@ class RevisionTest extends MediaWikiTestCase {
 			"Flags should contain 'gzip'" );
 		$this->assertEquals( "Wiki est l'\xc3\xa9cole superieur !",
 			gzinflate( $row->old_text ), "Direct check" );
+		$this->hideDeprecated( 'Revision::getRevisionText' );
 		$this->assertEquals( "Wiki est l'\xc3\xa9cole superieur !",
 			Revision::getRevisionText( $row ), "getRevisionText" );
 	}
@@ -764,6 +768,7 @@ class RevisionTest extends MediaWikiTestCase {
 		$prefix,
 		$expected
 	) {
+		$this->hideDeprecated( 'Revision::getRevisionText' );
 		$this->assertSame( $expected, Revision::getRevisionText( $row, $prefix ) );
 	}
 
@@ -780,6 +785,7 @@ class RevisionTest extends MediaWikiTestCase {
 		$text
 	) {
 		Wikimedia\suppressWarnings();
+		$this->hideDeprecated( 'Revision::getRevisionText' );
 		$this->assertFalse(
 			Revision::getRevisionText(
 				(object)[
@@ -799,6 +805,7 @@ class RevisionTest extends MediaWikiTestCase {
 			'ExternalStoreFactory',
 			new ExternalStoreFactory( [ 'ForTesting' ], [ 'ForTesting://cluster1' ], 'test-id' )
 		);
+		$this->hideDeprecated( 'Revision::getRevisionText' );
 		$this->assertSame(
 			'AAAABBAAA',
 			Revision::getRevisionText(
@@ -830,6 +837,7 @@ class RevisionTest extends MediaWikiTestCase {
 		$blobStore = new SqlBlobStore( $lb, $access, $cache );
 		$this->setService( 'BlobStoreFactory', $this->mockBlobStoreFactory( $blobStore ) );
 
+		$this->hideDeprecated( 'Revision::getRevisionText' );
 		$this->assertSame(
 			'AAAABBAAA',
 			Revision::getRevisionText(
