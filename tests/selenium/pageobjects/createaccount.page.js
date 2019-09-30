@@ -1,5 +1,4 @@
-const Page = require( 'wdio-mediawiki/Page' ),
-	Api = require( 'wdio-mediawiki/Api' );
+const Page = require( 'wdio-mediawiki/Page' );
 
 class CreateAccountPage extends Page {
 	get username() { return $( '#wpName2' ); }
@@ -18,11 +17,6 @@ class CreateAccountPage extends Page {
 		this.password.setValue( password );
 		this.confirmPassword.setValue( password );
 		this.create.click();
-	}
-
-	// @deprecated Use wdio-mediawiki/Api#createAccount() instead.
-	apiCreateAccount( username, password ) {
-		return Api.createAccount( username, password );
 	}
 }
 

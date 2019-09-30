@@ -1,5 +1,4 @@
-const Page = require( 'wdio-mediawiki/Page' ),
-	Api = require( 'wdio-mediawiki/Api' );
+const Page = require( 'wdio-mediawiki/Page' );
 
 class EditPage extends Page {
 	get content() { return $( '#wpTextbox1' ); }
@@ -23,11 +22,6 @@ class EditPage extends Page {
 		this.openForEditing( name );
 		this.content.setValue( content );
 		this.save.click();
-	}
-
-	// @deprecated Use wdio-mediawiki/Api#edit() instead.
-	apiEdit( name, content ) {
-		return Api.edit( name, content );
 	}
 }
 
