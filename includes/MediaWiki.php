@@ -307,6 +307,7 @@ class MediaWiki {
 						. " returned neither an object nor a URL" );
 				}
 			}
+			$output->considerCacheSettingsFinal();
 		}
 	}
 
@@ -529,6 +530,7 @@ class MediaWiki {
 				$out = $this->context->getOutput();
 				// TODO: Should ErrorPageError::report accept a OutputPage parameter?
 				$e->report( ErrorPageError::STAGE_OUTPUT );
+				$out->considerCacheSettingsFinal();
 
 				// T64091: while exceptions are convenient to bubble up GUI errors,
 				// they are not internal application faults. As with normal requests, this
@@ -680,6 +682,22 @@ class MediaWiki {
 				$maxAge = $config->get( 'CdnMaxageSubstitute' );
 				$output->lowerCdnMaxage( $maxAge );
 				$request->response()->header( "X-Response-Substitute: true" );
+			}
+
+			if ( !$output->couldBePublicCached() || $output->haveCacheVaryCookies() ) {
+				// Autoblocks: If this user is autoblocked (and the cookie block feature is enabled
+				// for autoblocks), then set a cookie to track this block.
+				// This has to be done on all logged-in page loads (not just upon saving edits),
+				// because an autoblocked editor might not edit again from the same IP address.
+				//
+				// IP blocks: For anons, if their IP is blocked (and cookie block feature is enabled
+				// for IP blocks), we also want to set the cookie whenever it is safe to do.
+				// Basically from any url that are definitely not publicly cacheable (like viewing
+				// EditPage), or when the HTTP response is personalised for other reasons (e.g. viewing
+				// articles within the same browsing session after making an edit).
+				$user = $context->getUser();
+				MediaWikiServices::getInstance()->getBlockManager()
+					->trackBlockWithCookie( $user, $request->response() );
 			}
 		}
 	}

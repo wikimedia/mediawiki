@@ -622,6 +622,8 @@ class UserTest extends MediaWikiTestCase {
 		$user1 = User::newFromSession( $request1 );
 		$user1->mBlock = $block;
 		$user1->load();
+		MediaWikiServices::getInstance()->getBlockManager()
+			->trackBlockWithCookie( $user1, $request1->response() );
 
 		// Confirm that the block has been applied as required.
 		$this->assertTrue( $user1->isLoggedIn() );
@@ -644,6 +646,8 @@ class UserTest extends MediaWikiTestCase {
 		$request2->setCookie( 'BlockID', $block->getCookieValue() );
 		$user2 = User::newFromSession( $request2 );
 		$user2->load();
+		MediaWikiServices::getInstance()->getBlockManager()
+			->trackBlockWithCookie( $user2, $request2->response() );
 		$this->assertNotEquals( $user1->getId(), $user2->getId() );
 		$this->assertNotEquals( $user1->getToken(), $user2->getToken() );
 		$this->assertTrue( $user2->isAnon() );
@@ -663,6 +667,8 @@ class UserTest extends MediaWikiTestCase {
 		$request3->setCookie( 'BlockID', $block->getId() );
 		$user3 = User::newFromSession( $request3 );
 		$user3->load();
+		MediaWikiServices::getInstance()->getBlockManager()
+			->trackBlockWithCookie( $user3, $request3->response() );
 		$this->assertTrue( $user3->isLoggedIn() );
 		$this->assertInstanceOf( DatabaseBlock::class, $user3->getBlock() );
 		$this->assertEquals( true, $user3->getBlock()->isAutoblocking() ); // Non-strict type-check.
@@ -701,6 +707,8 @@ class UserTest extends MediaWikiTestCase {
 		$user = User::newFromSession( $request1 );
 		$user->mBlock = $block;
 		$user->load();
+		MediaWikiServices::getInstance()->getBlockManager()
+			->trackBlockWithCookie( $user, $request1->response() );
 
 		// 2. Test that the cookie IS NOT present.
 		$this->assertTrue( $user->isLoggedIn() );
@@ -746,6 +754,8 @@ class UserTest extends MediaWikiTestCase {
 		$user1 = User::newFromSession( $request1 );
 		$user1->mBlock = $block;
 		$user1->load();
+		MediaWikiServices::getInstance()->getBlockManager()
+			->trackBlockWithCookie( $user1, $request1->response() );
 
 		// 2. Test the cookie's expiry timestamp.
 		$this->assertTrue( $user1->isLoggedIn() );
@@ -775,6 +785,8 @@ class UserTest extends MediaWikiTestCase {
 		$user2 = User::newFromSession( $request2 );
 		$user2->mBlock = $block;
 		$user2->load();
+		MediaWikiServices::getInstance()->getBlockManager()
+			->trackBlockWithCookie( $user2, $request2->response() );
 		$cookies = $request2->response()->getCookies();
 		$this->assertEquals( wfTimestamp( TS_MW, $newExpiry ), $block->getExpiry() );
 		$this->assertEquals( $newExpiry, $cookies['wm_infinite_blockBlockID']['expire'] );
@@ -1409,7 +1421,8 @@ class UserTest extends MediaWikiTestCase {
 
 		// get user
 		$user = User::newFromSession( $request );
-		MediaWikiServices::getInstance()->getBlockManager()->trackBlockWithCookie( $user );
+		MediaWikiServices::getInstance()->getBlockManager()
+			->trackBlockWithCookie( $user, $request->response() );
 
 		// test cookie was set
 		$cookies = $request->response()->getCookies();
@@ -1445,7 +1458,8 @@ class UserTest extends MediaWikiTestCase {
 
 		// get user
 		$user = User::newFromSession( $request );
-		MediaWikiServices::getInstance()->getBlockManager()->trackBlockWithCookie( $user );
+		MediaWikiServices::getInstance()->getBlockManager()
+			->trackBlockWithCookie( $user, $request->response() );
 
 		// test cookie was not set
 		$cookies = $request->response()->getCookies();
