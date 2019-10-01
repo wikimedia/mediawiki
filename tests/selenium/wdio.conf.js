@@ -1,7 +1,8 @@
-const fs = require( 'fs' ),
-	path = require( 'path' ),
-	startChromedriver = !process.argv.includes( '--skip-chromedriver' ),
-	logPath = process.env.LOG_DIR || path.join( __dirname, '/log' );
+/* eslint-disable no-console */
+const fs = require( 'fs' );
+const path = require( 'path' );
+const startChromedriver = !process.argv.includes( '--skip-chromedriver' );
+const logPath = process.env.LOG_DIR || path.join( __dirname, '/log' );
 
 let ffmpeg;
 

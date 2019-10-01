@@ -14,7 +14,7 @@
 		"mw": false
 	},
 	"rules": {
-		"no-console": "off",
-		"prefer-template": "off"
+		"prefer-template": "off",
+		"one-var": [ "error", { "initialized": "never", "uninitialized": "always" } ]
 	}
 }
