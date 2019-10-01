@@ -3157,20 +3157,16 @@ class Title implements LinkTarget, IDBAccessObject {
 	public function isRedirect( $flags = 0 ) {
 		if ( DBAccessObjectUtils::hasFlags( $flags, self::READ_LATEST ) ) {
 			$this->mRedirect = (bool)$this->loadFieldFromDB( 'page_is_redirect', $flags );
-		} else {
-			if ( $this->mRedirect !== null ) {
-				return $this->mRedirect;
-			} elseif ( !$this->getArticleID( $flags ) ) {
+		} elseif ( $this->mRedirect === null ) {
+			if ( $this->getArticleID( $flags ) ) {
+				$linkCache = MediaWikiServices::getInstance()->getLinkCache();
+				$linkCache->addLinkObj( $this ); // in case we already had an article ID
+				// Note that LinkCache returns null if it thinks the page does not exist;
+				// always trust the state of LinkCache over that of this Title instance.
+				$this->mRedirect = (bool)$linkCache->getGoodLinkFieldObj( $this, 'redirect' );
+			} else {
 				$this->mRedirect = false;
-
-				return $this->mRedirect;
 			}
-
-			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
-			$linkCache->addLinkObj( $this ); // in case we already had an article ID
-			// Note that LinkCache returns null if it thinks the page does not exist;
-			// always trust the state of LinkCache over that of this Title instance.
-			$this->mRedirect = (bool)$linkCache->getGoodLinkFieldObj( $this, 'redirect' );
 		}
 
 		return $this->mRedirect;
