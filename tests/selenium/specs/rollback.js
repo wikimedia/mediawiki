@@ -1,11 +1,10 @@
-const assert = require( 'assert' ),
-	HistoryPage = require( '../pageobjects/history.page' ),
-	UserLoginPage = require( 'wdio-mediawiki/LoginPage' ),
-	Util = require( 'wdio-mediawiki/Util' );
+const assert = require( 'assert' );
+const HistoryPage = require( '../pageobjects/history.page' );
+const UserLoginPage = require( 'wdio-mediawiki/LoginPage' );
+const Util = require( 'wdio-mediawiki/Util' );
 
 describe( 'Rollback with confirmation', function () {
-	var content,
-		name;
+	let content, name;
 
 	before( function () {
 		browser.deleteAllCookies();
@@ -64,7 +63,7 @@ describe( 'Rollback with confirmation', function () {
 	} );
 
 	it.skip( 'should verify rollbacks via GET requests are confirmed on a follow-up page', function () {
-		var rollbackActionUrl = HistoryPage.rollbackLink.getAttribute( 'href' );
+		const rollbackActionUrl = HistoryPage.rollbackLink.getAttribute( 'href' );
 		browser.url( rollbackActionUrl );
 
 		browser.waitUntil( function () {
@@ -81,8 +80,7 @@ describe( 'Rollback with confirmation', function () {
 } );
 
 describe( 'Rollback without confirmation', function () {
-	var content,
-		name;
+	let content, name;
 
 	before( function () {
 		browser.deleteAllCookies();
@@ -115,7 +113,7 @@ describe( 'Rollback without confirmation', function () {
 	} );
 
 	it.skip( 'should perform rollback via GET request without asking the user to confirm', function () {
-		var rollbackActionUrl = HistoryPage.rollbackLink.getAttribute( 'href' );
+		const rollbackActionUrl = HistoryPage.rollbackLink.getAttribute( 'href' );
 		browser.url( rollbackActionUrl );
 
 		browser.waitUntil( function () {

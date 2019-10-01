@@ -1,15 +1,15 @@
-const assert = require( 'assert' ),
-	Api = require( 'wdio-mediawiki/Api' ),
-	DeletePage = require( '../pageobjects/delete.page' ),
-	RestorePage = require( '../pageobjects/restore.page' ),
-	EditPage = require( '../pageobjects/edit.page' ),
-	HistoryPage = require( '../pageobjects/history.page' ),
-	UndoPage = require( '../pageobjects/undo.page' ),
-	UserLoginPage = require( 'wdio-mediawiki/LoginPage' ),
-	Util = require( 'wdio-mediawiki/Util' );
+const assert = require( 'assert' );
+const Api = require( 'wdio-mediawiki/Api' );
+const DeletePage = require( '../pageobjects/delete.page' );
+const RestorePage = require( '../pageobjects/restore.page' );
+const EditPage = require( '../pageobjects/edit.page' );
+const HistoryPage = require( '../pageobjects/history.page' );
+const UndoPage = require( '../pageobjects/undo.page' );
+const UserLoginPage = require( 'wdio-mediawiki/LoginPage' );
+const Util = require( 'wdio-mediawiki/Util' );
 
 describe( 'Page', function () {
-	var content, name, bot;
+	let content, name, bot;
 
 	before( async function () {
 		bot = await Api.bot();
