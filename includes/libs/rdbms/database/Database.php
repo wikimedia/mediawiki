@@ -1238,8 +1238,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					# option is ROLLBACK, since the snapshots would have been released.
 					$corruptedTrx = true; // cannot recover
 					$this->trxStatus = self::STATUS_TRX_ERROR;
-					$this->trxStatusCause =
-						$this->getQueryExceptionAndLog( $err, $errno, $sql, $fname );
+					$this->trxStatusCause = $this->getQueryException( $err, $errno, $sql, $fname );
 					$this->trxStatusIgnoredCause = null;
 				}
 			}
@@ -1593,16 +1592,24 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				'trace' => ( new RuntimeException() )->getTraceAsString()
 			] )
 		);
+		return $this->getQueryException( $error, $errno, $sql, $fname );
+	}
 
+	/**
+	 * @param string $error
+	 * @param string|int $errno
+	 * @param string $sql
+	 * @param string $fname
+	 * @return DBError
+	 */
+	private function getQueryException( $error, $errno, $sql, $fname ) {
 		if ( $this->wasQueryTimeout( $error, $errno ) ) {
-			$e = new DBQueryTimeoutError( $this, $error, $errno, $sql, $fname );
+			return new DBQueryTimeoutError( $this, $error, $errno, $sql, $fname );
 		} elseif ( $this->wasConnectionError( $errno ) ) {
-			$e = new DBQueryDisconnectedError( $this, $error, $errno, $sql, $fname );
+			return new DBQueryDisconnectedError( $this, $error, $errno, $sql, $fname );
 		} else {
-			$e = new DBQueryError( $this, $error, $errno, $sql, $fname );
+			return new DBQueryError( $this, $error, $errno, $sql, $fname );
 		}
-
-		return $e;
 	}
 
 	/**
