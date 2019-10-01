@@ -40,6 +40,11 @@ class EditAction extends FormlessAction {
 
 		$out = $this->getOutput();
 		$out->setRobotPolicy( 'noindex,nofollow' );
+
+		// The editor should always see the latest content when starting their edit.
+		// Also to ensure cookie blocks can be set (T152462).
+		$out->enableClientCache( false );
+
 		if ( $this->getContext()->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
 			$out->addModuleStyles( [
 				'mediawiki.ui.input',

@@ -312,6 +312,8 @@ class BlockManagerTest extends MediaWikiTestCase {
 		if ( $options['cookieSet'] ) {
 			$request->setCookie( 'BlockID', 'the value does not matter' );
 		}
+		/** @var FauxResponse $response */
+		$response = $request->response();
 
 		$user = $this->getMockBuilder( User::class )
 			->setMethods( [ 'getBlock', 'getRequest' ] )
@@ -327,10 +329,8 @@ class BlockManagerTest extends MediaWikiTestCase {
 			'wgSecretKey' => '',
 			'wgCookieSetOnIpBlock' => true,
 		] );
-		$blockManager->trackBlockWithCookie( $user );
+		$blockManager->trackBlockWithCookie( $user, $response );
 
-		/** @var FauxResponse $response */
-		$response = $request->response();
 		$this->assertCount( $expectedVal ? 1 : 0, $response->getCookies() );
 		$this->assertEquals( $expectedVal ?: null, $response->getCookie( 'BlockID' ) );
 	}

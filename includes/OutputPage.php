@@ -67,6 +67,9 @@ class OutputPage extends ContextSource {
 	 */
 	private $displayTitle;
 
+	/** @var bool See OutputPage::couldBePublicCached. */
+	private $cacheIsFinal = false;
+
 	/**
 	 * @var string Contains all of the "<body>" content. Should be private we
 	 *   got set/get accessors and the append() method.
@@ -2185,6 +2188,39 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Whether the output might become publicly cached.
+	 *
+	 * @since 1.34
+	 * @return bool
+	 */
+	public function couldBePublicCached() {
+		if ( !$this->cacheIsFinal ) {
+			// - The entry point handles its own caching and/or doesn't use OutputPage.
+			//   (such as load.php, AjaxDispatcher, or MediaWiki\Rest\EntryPoint).
+			//
+			// - Or, we haven't finished processing the main part of the request yet
+			//   (e.g. Action::show, SpecialPage::execute), and the state may still
+			//   change via enableClientCache().
+			return true;
+		}
+		// e.g. various error-type pages disable all client caching
+		return $this->mEnableClientCache;
+	}
+
+	/**
+	 * Set the expectation that cache control will not change after this point.
+	 *
+	 * This should be called after the main processing logic has completed
+	 * (e.g. Action::show or SpecialPage::execute), but may be called
+	 * before Skin output has started (OutputPage::output).
+	 *
+	 * @since 1.34
+	 */
+	public function considerCacheSettingsFinal() {
+		$this->cacheIsFinal = true;
+	}
+
+	/**
 	 * Get the list of cookie names that will influence the cache
 	 *
 	 * @return array
@@ -2410,6 +2446,8 @@ class OutputPage extends ContextSource {
 			if (
 				$config->get( 'UseCdn' ) &&
 				!$response->hasCookies() &&
+				// The client might use methods other than cookies to appear logged-in.
+				// E.g. HTTP headers, or query parameter tokens, OAuth, etc.
 				!SessionManager::getGlobalSession()->isPersistent() &&
 				!$this->isPrintable() &&
 				$this->mCdnMaxage != 0 &&

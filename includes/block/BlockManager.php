@@ -22,9 +22,9 @@ namespace MediaWiki\Block;
 
 use DateTime;
 use DateTimeZone;
-use DeferredUpdates;
 use Hooks;
 use IP;
+use LogicException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserIdentity;
@@ -434,42 +434,48 @@ class BlockManager {
 	 *
 	 * @since 1.34
 	 * @param User $user
+	 * @param WebResponse $response The response on which to set the cookie.
+	 * @throws LogicException If called before the User object was loaded.
+	 * @throws LogicException If not called pre-send.
 	 */
-	public function trackBlockWithCookie( User $user ) {
+	public function trackBlockWithCookie( User $user, WebResponse $response ) {
 		$request = $user->getRequest();
 		if ( $request->getCookie( 'BlockID' ) !== null ) {
 			// User already has a block cookie
 			return;
 		}
 
-		// Defer checks until the user has been fully loaded to avoid circular dependency
-		// of User on itself (T180050 and T226777)
-		DeferredUpdates::addCallableUpdate(
-			function () use ( $user, $request ) {
-				$block = $user->getBlock();
-				$response = $request->response();
-				$isAnon = $user->isAnon();
+		if ( !$user->isSafeToLoad() ) {
+			// Prevent a circular dependency by not allowing this method to be called
+			// before or while the user is being loaded.
+			// E.g. User > BlockManager > Block > Message > getLanguage > User.
+			// See also T180050 and T226777.
+			throw new LogicException( __METHOD__ . ' requires a loaded User object' );
+		}
+		if ( $response->headersSent() ) {
+			throw new LogicException( __METHOD__ . ' must be called pre-send' );
+		}
 
-				if ( $block ) {
-					if ( $block instanceof CompositeBlock ) {
-						// TODO: Improve on simply tracking the first trackable block (T225654)
-						foreach ( $block->getOriginalBlocks() as $originalBlock ) {
-							if ( $this->shouldTrackBlockWithCookie( $originalBlock, $isAnon ) ) {
-								'@phan-var DatabaseBlock $originalBlock';
-								$this->setBlockCookie( $originalBlock, $response );
-								return;
-							}
-						}
-					} else {
-						if ( $this->shouldTrackBlockWithCookie( $block, $isAnon ) ) {
-							'@phan-var DatabaseBlock $block';
-							$this->setBlockCookie( $block, $response );
-						}
+		$block = $user->getBlock();
+		$isAnon = $user->isAnon();
+
+		if ( $block ) {
+			if ( $block instanceof CompositeBlock ) {
+				// TODO: Improve on simply tracking the first trackable block (T225654)
+				foreach ( $block->getOriginalBlocks() as $originalBlock ) {
+					if ( $this->shouldTrackBlockWithCookie( $originalBlock, $isAnon ) ) {
+						'@phan-var DatabaseBlock $originalBlock';
+						$this->setBlockCookie( $originalBlock, $response );
+						return;
 					}
 				}
-			},
-			DeferredUpdates::PRESEND
-		);
+			} else {
+				if ( $this->shouldTrackBlockWithCookie( $block, $isAnon ) ) {
+					'@phan-var DatabaseBlock $block';
+					$this->setBlockCookie( $block, $response );
+				}
+			}
+		}
 	}
 
 	/**
