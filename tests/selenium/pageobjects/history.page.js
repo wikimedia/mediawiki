@@ -1,6 +1,6 @@
-const Page = require( 'wdio-mediawiki/Page' ),
-	Api = require( 'wdio-mediawiki/Api' ),
-	Util = require( 'wdio-mediawiki/Util' );
+const Page = require( 'wdio-mediawiki/Page' );
+const Api = require( 'wdio-mediawiki/Api' );
+const Util = require( 'wdio-mediawiki/Util' );
 
 class HistoryPage extends Page {
 	get heading() { return $( '#firstHeading' ); }

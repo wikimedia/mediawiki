@@ -1,6 +1,6 @@
-const MWBot = require( 'mwbot' ),
-	Page = require( './Page' ),
-	MAINPAGE_REQUESTS_MAX_RUNS = 10; // (arbitrary) safe-guard against endless execution
+const MWBot = require( 'mwbot' );
+const Page = require( './Page' );
+const MAINPAGE_REQUESTS_MAX_RUNS = 10; // (arbitrary) safe-guard against endless execution
 
 function getJobCount() {
 	const bot = new MWBot( {
