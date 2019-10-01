@@ -15,9 +15,8 @@
  * @singleton
  */
 ( function () {
-	var watch,
-		// The name of the page to watch or unwatch
-		title = mw.config.get( 'wgRelevantPageName' );
+	// The name of the page to watch or unwatch
+	var title = mw.config.get( 'wgRelevantPageName' );
 
 	/**
 	 * Update the link text, link href attribute and (if applicable)
@@ -101,13 +100,10 @@
 		return 'view';
 	}
 
-	// Expose public methods
-	watch = {
-		updateWatchLink: updateWatchLink
-	};
-	module.exports = watch;
-
-	$( function () {
+	/**
+	 * @private
+	 */
+	function init() {
 		var $links = $( '.mw-watchlink a[data-mw="interface"], a.mw-watchlink[data-mw="interface"]' );
 		if ( !$links.length ) {
 			// Fallback to the class-based exclusion method for backwards-compatibility
@@ -115,7 +111,36 @@
 			// Restrict to core interfaces, ignore user-generated content
 			$links = $links.filter( ':not( #bodyContent *, #content * )' );
 		}
+		if ( $links.length ) {
+			// eslint-disable-next-line no-use-before-define
+			watchstar( $links, title, function ( $link, isWatched ) {
+				// Update the "Watch this page" checkbox on action=edit when the
+				// page is watched or unwatched via the tab (T14395).
+				$( '#wpWatchthis' ).prop( 'checked', isWatched === true );
+			} );
+		}
+	}
 
+	/**
+	 * Bind a given watchstar element to make it interactive.
+	 *
+	 * NOTE: This is meant to allow binding of watchstars for arbitrary page titles,
+	 * especially if different from the currently viewed page. As such, this function
+	 * will *not* synchronise its state with any "Watch this page" checkbox such as
+	 * found on the "Edit page" and "Publish changes" forms. The caller should either make
+	 * "current page" watchstars picked up by #init (and not use #watchstar) sync it manually
+	 * from the callback #watchstar provides.
+	 *
+	 * @param {jQuery} $links One or more anchor elements that must have an href
+	 *  with a url containing a `action=watch` or `action=unwatch` query parameter,
+	 *  from which the current state will be learned (e.g. link to unwatch is currently watched)
+	 * @param {string} title Title of page that this watchstar will affect
+	 * @param {Function} callback Callback to run after the action has been processed and API
+	 *  request completed. The callback receives two parameters:
+	 * @param {jQuery} callback.$link The element being manipulated
+	 * @param {boolean} callback.isWatched Whether the article is now watched
+	 */
+	function watchstar( $links, title, callback ) {
 		$links.on( 'click', function ( e ) {
 			var mwTitle, action, api, $link;
 
@@ -159,10 +184,7 @@
 
 					// Set link to opposite
 					updateWatchLink( $link, otherAction );
-
-					// Update the "Watch this page" checkbox on action=edit when the
-					// page is watched or unwatched via the tab (T14395).
-					$( '#wpWatchthis' ).prop( 'checked', watchResponse.watched === true );
+					callback( $link, watchResponse.watched === true );
 				} )
 				.fail( function () {
 					var msg, link;
@@ -186,6 +208,14 @@
 					} );
 				} );
 		} );
-	} );
+	}
+
+	$( init );
+
+	// Expose public methods.
+	module.exports = {
+		watchstar: watchstar,
+		updateWatchLink: updateWatchLink
+	};
 
 }() );
