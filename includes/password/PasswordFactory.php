@@ -46,7 +46,6 @@ final class PasswordFactory {
 	];
 
 	/**
-	 * Construct a new password factory.
 	 * Most of the time you'll want to use MediaWikiServices::getInstance()->getPasswordFactory
 	 * instead.
 	 * @param array $config Mapping of password type => config
