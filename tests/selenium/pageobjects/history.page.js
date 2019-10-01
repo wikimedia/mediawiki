@@ -1,5 +1,4 @@
 const Page = require( 'wdio-mediawiki/Page' );
-const Api = require( 'wdio-mediawiki/Api' );
 const Util = require( 'wdio-mediawiki/Util' );
 
 class HistoryPage extends Page {
@@ -25,28 +24,6 @@ class HistoryPage extends Page {
 				enable ? '1' : '0'
 			);
 		}, enable );
-	}
-
-	vandalizePage( name, content ) {
-		const vandalUsername = 'Evil_' + browser.config.mwUser;
-
-		browser.call( function () {
-			return Api.edit( name, content );
-		} );
-
-		browser.call( function () {
-			return Api.createAccount(
-				vandalUsername, browser.config.mwPwd
-			);
-		} );
-
-		browser.call( function () {
-			return Api.edit(
-				name,
-				'Vandalized: ' + content,
-				vandalUsername
-			);
-		} );
 	}
 }
 

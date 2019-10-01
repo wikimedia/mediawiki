@@ -6,7 +6,11 @@ const Api = require( 'wdio-mediawiki/Api' );
 const Util = require( 'wdio-mediawiki/Util' );
 
 describe( 'User', function () {
-	let password, username;
+	let password, username, bot;
+
+	before( async () => {
+		bot = await Api.bot();
+	} );
 
 	beforeEach( function () {
 		browser.deleteAllCookies();
@@ -24,8 +28,8 @@ describe( 'User', function () {
 
 	it( 'should be able to log in @daily', function () {
 		// create
-		browser.call( function () {
-			return Api.createAccount( username, password );
+		browser.call( async () => {
+			await Api.createAccount( bot, username, password );
 		} );
 
 		// log in
@@ -40,8 +44,8 @@ describe( 'User', function () {
 		var realName = Util.getTestString();
 
 		// create
-		browser.call( function () {
-			return Api.createAccount( username, password );
+		browser.call( async () => {
+			await Api.createAccount( bot, username, password );
 		} );
 
 		// log in

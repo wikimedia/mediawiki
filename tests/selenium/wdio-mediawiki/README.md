@@ -22,12 +22,19 @@ Utilities to interact with the MediaWiki API. Uses the [mwbot](https://github.co
 Actions are performed logged-in using `browser.config.mwUser` and `browser.config.mwPwd`,
 which typically come from `MEDIAWIKI_USER` and `MEDIAWIKI_PASSWORD` environment variables.
 
-* `edit(string title, string content [, string username [, string password [, string baseUrl ] ] ])`
-* `delete(string title, string reason)`
-* `createAccount(string username, string password)`
-* `blockUser([ string username [, string expiry ] ])`
-* `unblockUser([ string username ])`
 * `bot([string username [, string password [, string baseUrl ] ] ])`
+* `createAccount(MWBot bot, string username, string password)`
+* `blockUser(MWBot bot, [ string username [, string expiry ] ])`
+* `unblockUser(MWBot bot, [ string username ])`
+
+Example:
+
+```js
+bot = await Api.bot();
+await bot.edit( 'Some page', 'Some initial content' );
+await bot.edit( 'Some page', 'Some other content', 'Optional edit reason here' );
+await bot.delete( 'Some page', 'Some deletion reason here' );
+```
 
 ### RunJobs
 
