@@ -3033,6 +3033,7 @@
 	"version-poweredby-credits": "Ena wiki, dezginda '''[https://www.mediawiki.org/ MediaWiki]''' ya piya vıraziyaya, heqê telifi © 2001-$1 $2.",
 	"version-poweredby-others": "ê bini",
 	"version-poweredby-translators": "Açernere translatewiki.net'i",
+	"version-poweredby-various": "Nuştekarê mıxtelıfi",
 	"version-credits-summary": "Ma qayılime ke [[Special:Version|MediaWiki]] rê ke kami destek dayo wa mayê vanime inan bışınasne.",
 	"version-license-info": "MediaWiki xoseri jew nuştereno; MediaWiki'yer, weqfê xoseri nuşteren GNU lisansiya merdumi şene ke vıla kerê, bıvurnê u timar kerê.\n\nNuşterenê MediaWiki merdumi cı ra nahfat bivinê deye êyê mısade danê; feqet ke nêşeno BIROŞO yana XOSERİ VILA KERO qerantiya ney çına. bewni rê lisansta GNU'y.\n\nenê programiya piya [{{SERVER}}{{SCRIPTPATH}}/COPYING jew kopyay lisans dê GNU] zi şımarê icab keno; narak lisansê şıma çıno se, Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA adresi ra yana [//www.gnu.org/licenses/old-licenses/gpl-2.0.html enê lisansi buwane].",
 	"version-software": "Softwareyê ronayi",

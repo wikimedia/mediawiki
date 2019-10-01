@@ -3331,6 +3331,7 @@
 	"version-poweredby-credits": "تدار هذه الويكي بواسطة <strong>[https://www.mediawiki.org/ ميدياويكي]</strong>، حقوق النشر © 2001-$1 $2.",
 	"version-poweredby-others": "آخرون",
 	"version-poweredby-translators": "مترجمو ترانسليت ويكي دوت نت",
+	"version-poweredby-various": "مؤلفون متعددون",
 	"version-credits-summary": "نود أن نعرف بالأشخاص التالية أسماؤهم لمساهمتهم في [[Special:Version|ميدياويكي]].",
 	"version-license-info": "ميدياويكي برنامج حر، يحق لك توزيعه و/أو تعديله وفقاً لبنود رخصة جنو العمومية كما نشرتها مؤسسة البرمجيات الحرة، الإصدار الثاني أو (وفقا لاختيارك أنت) أي إصدار لاحق.\n\nهذا البرنامج يوزع على أمل أن يكون مفيداً، ولكن <em>دون أية ضمانات</em>، بما في ذلك ضمانات <strong>التسويق</strong> أو <strong>الملاءمة لغرض معين</strong>. انظر رخصة جنو العمومية لمزيد من التفاصيل.\n\nينبغي أن تكون قد تلقيت [{{SERVER}}{{SCRIPTPATH}}/COPYING نسخة من رخصة جنو العمومية] إذا لم يتم ذلك، اكتب إلى Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA أو [//www.gnu.org/licenses/old-licenses/gpl-2.0.html اقرأها على الإنترنت].",
 	"version-software": "البرنامج المثبت",

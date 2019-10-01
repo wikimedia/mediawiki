@@ -3284,6 +3284,7 @@
 	"version-poweredby-credits": "Questo wiki è realizzato con '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 	"version-poweredby-others": "altri",
 	"version-poweredby-translators": "traduttori di translatewiki.net",
+	"version-poweredby-various": "Autori vari",
 	"version-credits-summary": "Siamo lieti di riconoscere le seguenti persone per aver contribuito a [[Special:Version|MediaWiki]].",
 	"version-license-info": "MediaWiki è un software libero; puoi redistribuirlo e/o modificarlo secondo i termini della GNU General Public License, come pubblicata dalla Free Software Foundation; o la versione 2 della Licenza o (a propria scelta) qualunque versione successiva.\n\nMediaWiki è distribuito nella speranza che sia utile, ma <em>SENZA ALCUNA GARANZIA</em>; senza neppure la garanzia implicita di <strong>NEGOZIABILITÀ</strong> o di <strong>APPLICABILITÀ PER UN PARTICOLARE SCOPO</strong>. Si veda la GNU General Public License per maggiori dettagli.\n\nQuesto programma deve essere distribuito assieme ad [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia della GNU General Public License]; in caso contrario, se ne può ottenere una scrivendo alla Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA oppure [http://www.softwarelibero.it/gnudoc/gpl.it.txt leggerla in rete].",
 	"version-software": "Software installato",
