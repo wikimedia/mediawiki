@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Storage;
 
 use InvalidArgumentException;
-use Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\SqlBlobStore;
@@ -33,7 +32,7 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 			$store->setCompressBlobs( $compressRevisions );
 		}
 		if ( $legacyEncoding ) {
-			$store->setLegacyEncoding( $legacyEncoding, Language::factory( 'en' ) );
+			$store->setLegacyEncoding( $legacyEncoding );
 		}
 
 		return $store;
@@ -58,11 +57,11 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	public function testGetSetLegacyEncoding() {
 		$store = $this->getBlobStore();
 		$this->assertFalse( $store->getLegacyEncoding() );
-		$this->assertNull( $store->getLegacyEncodingConversionLang() );
-		$en = Language::factory( 'en' );
-		$store->setLegacyEncoding( 'foo', $en );
+		$store->setLegacyEncoding( 'foo' );
 		$this->assertSame( 'foo', $store->getLegacyEncoding() );
-		$this->assertSame( $en, $store->getLegacyEncodingConversionLang() );
+
+		$this->hideDeprecated( SqlBlobStore::class . '::getLegacyEncodingConversionLang' );
+		$this->assertNull( $store->getLegacyEncodingConversionLang() );
 	}
 
 	/**

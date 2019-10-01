@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Storage;
 
-use Language;
 use MediaWiki\Config\ServiceOptions;
 use WANObjectCache;
 use Wikimedia\Rdbms\ILBFactory;
@@ -56,11 +55,6 @@ class BlobStoreFactory {
 	private $options;
 
 	/**
-	 * @var Language
-	 */
-	private $contLang;
-
-	/**
 	 * @var array
 	 * @since 1.34
 	 */
@@ -75,8 +69,7 @@ class BlobStoreFactory {
 		ILBFactory $lbFactory,
 		ExternalStoreAccess $extStoreAccess,
 		WANObjectCache $cache,
-		ServiceOptions $options,
-		Language $contLang
+		ServiceOptions $options
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -84,7 +77,6 @@ class BlobStoreFactory {
 		$this->extStoreAccess = $extStoreAccess;
 		$this->cache = $cache;
 		$this->options = $options;
-		$this->contLang = $contLang;
 	}
 
 	/**
@@ -119,7 +111,7 @@ class BlobStoreFactory {
 		$store->setUseExternalStore( $this->options->get( 'DefaultExternalStore' ) !== false );
 
 		if ( $this->options->get( 'LegacyEncoding' ) ) {
-			$store->setLegacyEncoding( $this->options->get( 'LegacyEncoding' ), $this->contLang );
+			$store->setLegacyEncoding( $this->options->get( 'LegacyEncoding' ) );
 		}
 
 		return $store;
