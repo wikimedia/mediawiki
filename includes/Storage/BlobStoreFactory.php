@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Storage;
 
-use Language;
 use MediaWiki\Config\ServiceOptions;
 use WANObjectCache;
 use Wikimedia\Rdbms\ILBFactory;
@@ -56,11 +55,6 @@ class BlobStoreFactory {
 	private $options;
 
 	/**
-	 * @var Language
-	 */
-	private $contLang;
-
-	/**
 	 * TODO Make this a const when HHVM support is dropped (T192166)
 	 *
 	 * @var array
@@ -77,8 +71,7 @@ class BlobStoreFactory {
 		ILBFactory $lbFactory,
 		ExternalStoreAccess $extStoreAccess,
 		WANObjectCache $cache,
-		ServiceOptions $options,
-		Language $contLang
+		ServiceOptions $options
 	) {
 		$options->assertRequiredOptions( self::$constructorOptions );
 
@@ -86,7 +79,6 @@ class BlobStoreFactory {
 		$this->extStoreAccess = $extStoreAccess;
 		$this->cache = $cache;
 		$this->options = $options;
-		$this->contLang = $contLang;
 	}
 
 	/**
@@ -121,7 +113,7 @@ class BlobStoreFactory {
 		$store->setUseExternalStore( $this->options->get( 'DefaultExternalStore' ) !== false );
 
 		if ( $this->options->get( 'LegacyEncoding' ) ) {
-			$store->setLegacyEncoding( $this->options->get( 'LegacyEncoding' ), $this->contLang );
+			$store->setLegacyEncoding( $this->options->get( 'LegacyEncoding' ) );
 		}
 
 		return $store;
