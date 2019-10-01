@@ -65,11 +65,11 @@ abstract class AbstractBlock {
 	 */
 	public $mHideName = false;
 
-	/** @var User|string */
+	/** @var User|string|null */
 	protected $target;
 
 	/**
-	 * @var int AbstractBlock::TYPE_ constant. After the block has been loaded
+	 * @var int|null AbstractBlock::TYPE_ constant. After the block has been loaded
 	 * from the database, this can only be USER, IP or RANGE.
 	 */
 	protected $type;
@@ -359,8 +359,10 @@ abstract class AbstractBlock {
 	 * as a string; for User objects this will return User::__toString()
 	 * which in turn gives User::getName().
 	 *
+	 * If the type is not null, it will be an AbstractBlock::TYPE_ constant.
+	 *
 	 * @param string|int|User|null $target
-	 * @return array [ User|String|null, AbstractBlock::TYPE_ constant|null ]
+	 * @return array [ User|String|null, int|null ]
 	 */
 	public static function parseTarget( $target ) {
 		# We may have been through this before
@@ -414,7 +416,7 @@ abstract class AbstractBlock {
 
 	/**
 	 * Get the type of target for this particular block.
-	 * @return int AbstractBlock::TYPE_ constant, will never be TYPE_ID
+	 * @return int|null AbstractBlock::TYPE_ constant, will never be TYPE_ID
 	 */
 	public function getType() {
 		return $this->type;
@@ -424,7 +426,10 @@ abstract class AbstractBlock {
 	 * Get the target and target type for this particular block. Note that for autoblocks,
 	 * this returns the unredacted name; frontend functions need to call $block->getRedactedName()
 	 * in this situation.
-	 * @return array [ User|String, AbstractBlock::TYPE_ constant ]
+	 *
+	 * If the type is not null, it will be an AbstractBlock::TYPE_ constant.
+	 *
+	 * @return array [ User|String|null, int|null ]
 	 * @todo FIXME: This should be an integral part of the block member variables
 	 */
 	public function getTargetAndType() {
@@ -435,7 +440,7 @@ abstract class AbstractBlock {
 	 * Get the target for this particular block.  Note that for autoblocks,
 	 * this returns the unredacted name; frontend functions need to call $block->getRedactedName()
 	 * in this situation.
-	 * @return User|string
+	 * @return User|string|null
 	 */
 	public function getTarget() {
 		return $this->target;
