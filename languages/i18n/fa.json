@@ -504,7 +504,7 @@
 	"createacct-another-submit": "ایجاد حساب کاربری",
 	"createacct-continue-submit": "ادامهٔ ايجاد حساب",
 	"createacct-another-continue-submit": "ادامهٔ ايجاد حساب",
-	"createacct-benefit-heading": "{{SITENAME}} توسط افرادی مانند شما ساخته شده است",
+	"createacct-benefit-heading": "{{SITENAME}} را افرادی همچون شما ساخته‌اند",
 	"createacct-benefit-body1": "{{PLURAL:$1|ویرایش}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|صفحه}}",
 	"createacct-benefit-body3": "{{PLURAL:$1|مشارکت‌کنندهٔ}} اخیر",

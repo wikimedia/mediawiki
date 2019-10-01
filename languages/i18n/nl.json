@@ -432,6 +432,7 @@
 	"perfcached": "Deze gegevens komen uit een cache en zijn mogelijk niet actueel. Er {{PLURAL:$1|is maximaal één resultaat|zijn maximaal $1 resultaten}} beschikbaar in de cache.",
 	"perfcachedts": "Deze gegevens komen uit een cache die voor het laatst is bijgewerkt op $2 om $3. Er {{PLURAL:$4|is maximaal één resultaat|zijn maximaal $4 resultaten}} beschikbaar in de cache.",
 	"querypage-no-updates": "Deze pagina wordt niet bijgewerkt.\nGegevens op deze pagina worden niet ververst.",
+	"querypage-updates-periodical": "Gegevens op deze pagina worden periodiek bijgewerkt.",
 	"viewsource": "Brontekst bekijken",
 	"viewsource-title": "Brontekst bekijken van $1",
 	"actionthrottled": "Handeling tegengehouden",
