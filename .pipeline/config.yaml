@@ -6,4 +6,4 @@ pipelines:
         build: dev
         publish:
           image:
-	    tags: [dev]
+            tags: [dev]
