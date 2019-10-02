@@ -77,9 +77,8 @@ class PHPVersionCheck {
 	/**
 	 * Return the version of the installed PHP implementation.
 	 *
-	 * @param string|false $impl By default, the function returns the info of the currently installed
-	 *  PHP implementation. Using this parameter the caller can decide, what version info will be
-	 *  returned. Valid values: HHVM, PHP
+	 * TODO: Deprecate/remove this workaround now that HHVM isn't supported.
+	 *
 	 * @return array An array of information about the PHP implementation, containing:
 	 *  - 'version': The version of the PHP implementation (specific to the implementation, not
 	 *  the version of the implemented PHP version)
@@ -90,20 +89,7 @@ class PHPVersionCheck {
 	 *  - 'upgradeURL': The URL to the website of the implementation that contains
 	 *  upgrade/installation instructions.
 	 */
-	function getPHPInfo( $impl = false ) {
-		if (
-			( defined( 'HHVM_VERSION' ) && $impl !== 'PHP' ) ||
-			$impl === 'HHVM'
-		) {
-			return array(
-				'implementation' => 'HHVM',
-				'version' => defined( 'HHVM_VERSION' ) ? HHVM_VERSION : 'undefined',
-				'vendor' => 'Facebook',
-				'upstreamSupported' => '3.18.5',
-				'minSupported' => '3.18.5',
-				'upgradeURL' => 'https://docs.hhvm.com/hhvm/installation/introduction',
-			);
-		}
+	function getPHPInfo() {
 		return array(
 			'implementation' => 'PHP',
 			'version' => PHP_VERSION,
@@ -120,18 +106,15 @@ class PHPVersionCheck {
 	function checkRequiredPHPVersion() {
 		$phpInfo = $this->getPHPInfo();
 		$minimumVersion = $phpInfo['minSupported'];
-		$otherInfo = $this->getPHPInfo( $phpInfo['implementation'] === 'HHVM' ? 'PHP' : 'HHVM' );
 		if ( version_compare( $phpInfo['version'], $minimumVersion ) < 0 ) {
 			$shortText = "MediaWiki $this->mwVersion requires at least {$phpInfo['implementation']}"
-				. " version $minimumVersion or {$otherInfo['implementation']} version "
-				. "{$otherInfo['minSupported']}, you are using {$phpInfo['implementation']} "
+				. " version $minimumVersion, you are using {$phpInfo['implementation']} "
 				. "{$phpInfo['version']}.";
 
 			$longText = "Error: You might be using an older {$phpInfo['implementation']} version "
 				. "({$phpInfo['implementation']} {$phpInfo['version']}). \n"
 				. "MediaWiki $this->mwVersion needs {$phpInfo['implementation']}"
-				. " $minimumVersion or higher or {$otherInfo['implementation']} version "
-				. "{$otherInfo['minSupported']}.\n\nCheck if you have a"
+				. " $minimumVersion or higher.\n\nCheck if you have a"
 				. " newer PHP executable with a different name.\n\n";
 
 			// phpcs:disable Generic.Files.LineLength
