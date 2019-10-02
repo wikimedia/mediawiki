@@ -970,7 +970,7 @@
 	"page_first": "première",
 	"page_last": "dernière",
 	"histlegend": "Sélection du diff : cochez les boutons radio des versions à comparer et appuyez sur entrée ou sur le bouton en bas.<br />\nLégende : <strong>({{int:cur}})</strong> = différence avec la dernière version, <strong>({{int:last}})</strong> = différence avec la version précédente, <strong>{{int:minoreditletter}}</strong> = modification mineure.",
-	"history-fieldset-title": "Filtrer les révisions",
+	"history-fieldset-title": "Filtrer les versions",
 	"history-show-deleted": "Révision supprimée uniquement",
 	"histfirst": "les plus anciennes",
 	"histlast": "les plus récentes",

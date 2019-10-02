@@ -3178,6 +3178,7 @@
 	"version-poweredby-credits": "Ta wiki poganja '''[https://www.mediawiki.org/ MediaWiki]''', vse pravice pridržave © 2001-$1 $2.",
 	"version-poweredby-others": "drugi",
 	"version-poweredby-translators": "Prevajalci translatewiki.net",
+	"version-poweredby-various": "Različni avtorji",
 	"version-credits-summary": "Radi bi priznali prispevek naslednjih oseb k [[Special:Version|MediaWiki]].",
 	"version-license-info": "MediaWiki je prosto programje; lahko ga razširjate in / ali spreminjate pod pogoji GNU General Public License, kot ga je objavila Free Software Foundation; bodisi License različice 2 ali (po vaši izbiri) katerekoli poznejše različice.\n\nMediaWiki je razširjan v upanju, da bo uporaben, vendar <em>BREZ KAKRŠNEGA KOLI ZAGOTOVILA</em>; tudi brez posrednega jamstva <strong>PRODAJNE VREDNOSTI</strong> ali <strong>PRIMERNOSTI ZA DOLOČEN NAMEN</strong>. Oglejte si GNU General Public License za več podrobnosti.\n\nSkupaj s programom bi morali bi prejeti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopijo GNU General Public License]; če je niste, pišite Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA ali jo [//www.gnu.org/licenses/old-licenses/gpl-2.0.html preberite na spletu].",
 	"version-software": "Nameščena programska oprema",

@@ -2586,6 +2586,7 @@
 	"version-poweredby-credits": "Šis viki darbojas ar '''[https://www.mediawiki.org/ MediaWiki]''' programmatūru, autortiesības © 2001-$1 $2.",
 	"version-poweredby-others": "citi",
 	"version-poweredby-translators": "translatewiki.net tulkotāji",
+	"version-poweredby-various": "Dažādi autori",
 	"version-credits-summary": "Mēs vēlētos izteikt atzinību šīm personām par viņu ieguldījumu [[Special:Version|MediaWiki]].",
 	"version-software": "Instalētā programmatūra",
 	"version-software-product": "Produkts",
