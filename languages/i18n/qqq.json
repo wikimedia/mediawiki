@@ -820,6 +820,7 @@
 	"passwordreset-ignored": "Shown when password reset was unsuccessful due to configuration problems.",
 	"passwordreset-invalidemail": "Returned when the email address is syntatically invalid.",
 	"passwordreset-nodata": "Returned when no data was provided.",
+	"passwordreset-username-email-required": "Used in [[Special:PasswordReset]].\n\nSee also:\n* {{msg-mw|tog-requireemail}}\n* {{msg-mw|prefs-help-requireemail}}",
 	"changeemail": "Title of [[Special:ChangeEmail|special page]]. This page also allows removing the user's email address.",
 	"changeemail-summary": "{{ignored}}",
 	"changeemail-header": "Text of [[Special:ChangeEmail]].",

@@ -598,6 +598,7 @@ because of Phabricator reports.
   $wgGroupPermissions['sysop']['blockemail'] = true;
 * ApiQueryBase::showHiddenUsersAddBlockInfo() is deprecated. Use
   ApiQueryBlockInfoTrait instead.
+* PasswordReset is now a service, its direct instantiation is deprecated.
 
 === Other changes in 1.34 ===
 * Added option to specify "Various authors" as author in extension credits using
