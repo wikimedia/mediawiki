@@ -22,7 +22,6 @@ $cfg = require __DIR__ . '/../vendor/mediawiki/mediawiki-phan-config/src/config.
 
 $cfg['file_list'] = array_merge(
 	$cfg['file_list'],
-	function_exists( 'register_postsend_function' ) ? [] : [ '.phan/stubs/hhvm.php' ],
 	function_exists( 'wikidiff2_do_diff' ) ? [] : [ '.phan/stubs/wikidiff.php' ],
 	class_exists( PEAR::class ) ? [] : [ '.phan/stubs/mail.php' ],
 	defined( 'PASSWORD_ARGON2I' ) ? [] : [ '.phan/stubs/password.php' ],
