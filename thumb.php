@@ -40,7 +40,7 @@ if ( defined( 'THUMB_HANDLER' ) ) {
 }
 
 $mediawiki = new MediaWiki();
-$mediawiki->doPostOutputShutdown( 'fast' );
+$mediawiki->doPostOutputShutdown();
 
 // --------------------------------------------------------------------------
 
