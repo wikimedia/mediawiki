@@ -244,7 +244,7 @@ class HTMLForm extends ContextSource {
 	protected $mHiddenFields = [];
 	/**
 	 * @var array[]
-	 * @phan-var array<array{name:string,value:string,label-message?:string,label?:string,label-raw?:string,id?:string,attribs?:array,flags?:string|string[],framed?:bool}>
+	 * @phan-var array<array{name:string,value:string,label-message?:string|string[]|MessageSpecifier,label?:string,label-raw?:string,id?:string,attribs?:array,flags?:string|string[],framed?:bool}>
 	 */
 	protected $mButtons = [];
 
@@ -977,8 +977,8 @@ class HTMLForm extends ContextSource {
 	 * @param array $data Data to define the button:
 	 *  - name: (string) Button name.
 	 *  - value: (string) Button value.
-	 *  - label-message: (string, optional) Button label message key to use
-	 *    instead of 'value'. Overrides 'label' and 'label-raw'.
+	 *  - label-message: (string|string[]|MessageSpecifier, optional) Button label
+	 *    message key to use instead of 'value'. Overrides 'label' and 'label-raw'.
 	 *  - label: (string, optional) Button label text to use instead of
 	 *    'value'. Overrides 'label-raw'.
 	 *  - label-raw: (string, optional) Button label HTML to use instead of
@@ -988,7 +988,7 @@ class HTMLForm extends ContextSource {
 	 *  - flags: (string|string[], optional) OOUI flags.
 	 *  - framed: (boolean=true, optional) OOUI framed attribute.
 	 * @codingStandardsIgnoreStart
-	 * @phan-param array{name:string,value:string,label-message?:string,label?:string,label-raw?:string,id?:string,attribs?:array,flags?:string|string[],framed?:bool} $data
+	 * @phan-param array{name:string,value:string,label-message?:string|string[]|MessageSpecifier,label?:string,label-raw?:string,id?:string,attribs?:array,flags?:string|string[],framed?:bool} $data
 	 * @codingStandardsIgnoreEnd
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
