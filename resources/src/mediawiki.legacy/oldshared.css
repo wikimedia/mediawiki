@@ -125,7 +125,6 @@ div.magnify a {
 	height: 11px;
 	/* Use same SVG support hack as mediawiki.legacy's shared.css */
 	background: url( images/magnify-clip-ltr.png ) center center no-repeat;
-	/* @embed */
 	background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-ltr.svg );
 	/* Don't annoy people who copy-paste everything too much */
 	-moz-user-select: none;
