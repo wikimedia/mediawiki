@@ -540,10 +540,6 @@ class ApiMain extends ApiBase {
 			MediaWikiServices::getInstance()->getStatsdDataFactory()->timing(
 				'api.' . $this->mModule->getModuleName() . '.executeTiming', 1000 * $runTime
 			);
-		} catch ( Exception $e ) { // @todo Remove this block when HHVM is no longer supported
-			$this->handleException( $e );
-			$this->logRequest( microtime( true ) - $t, $e );
-			$isError = true;
 		} catch ( Throwable $e ) {
 			$this->handleException( $e );
 			$this->logRequest( microtime( true ) - $t, $e );
@@ -614,9 +610,6 @@ class ApiMain extends ApiBase {
 			foreach ( $ex->getStatusValue()->getErrors() as $error ) {
 				try {
 					$this->mPrinter->addWarning( $error );
-				} catch ( Exception $ex2 ) { // @todo Remove this block when HHVM is no longer supported
-					// WTF?
-					$this->addWarning( $error );
 				} catch ( Throwable $ex2 ) {
 					// WTF?
 					$this->addWarning( $error );
@@ -651,9 +644,6 @@ class ApiMain extends ApiBase {
 			$main = new self( RequestContext::getMain(), false );
 			$main->handleException( $e );
 			$main->logRequest( 0, $e );
-		} catch ( Exception $e2 ) { // @todo Remove this block when HHVM is no longer supported
-			// Nope, even that didn't work. Punt.
-			throw $e;
 		} catch ( Throwable $e2 ) {
 			// Nope, even that didn't work. Punt.
 			throw $e;
