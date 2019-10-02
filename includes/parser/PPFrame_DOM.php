@@ -65,7 +65,6 @@ class PPFrame_DOM implements PPFrame {
 	protected $childExpansionCache;
 
 	/**
-	 * Construct a new preprocessor frame.
 	 * @param Preprocessor $preprocessor The parent preprocessor
 	 */
 	public function __construct( $preprocessor ) {
