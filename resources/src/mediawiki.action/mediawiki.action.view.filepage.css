@@ -39,7 +39,6 @@
  */
 .filehistory a img,
 #file img:hover {
-	/* @embed */
 	background: #fff url( images/checker.png ) repeat;
 }
 
