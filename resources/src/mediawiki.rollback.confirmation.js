@@ -4,11 +4,13 @@
 ( function () {
 
 	var postRollback = function ( url ) {
-		var $form = $( '<form>', {
-			action: url,
-			method: 'post'
-		} );
-		$form.appendTo( 'body' ).trigger( 'submit' );
+		$( '<form>' )
+			.attr( {
+				action: url,
+				method: 'post'
+			} )
+			.appendTo( 'body' )
+			.trigger( 'submit' );
 	};
 
 	$( '#mw-content-text' ).confirmable( {
