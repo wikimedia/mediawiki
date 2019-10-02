@@ -99,12 +99,6 @@ class MessageCache {
 	protected $contLang;
 
 	/**
-	 * Track which languages have been loaded by load().
-	 * @var array
-	 */
-	private $loadedLanguages = [];
-
-	/**
 	 * Get the singleton instance of this class
 	 *
 	 * @deprecated in 1.34 inject an instance of this class instead of using global state
@@ -237,7 +231,7 @@ class MessageCache {
 		}
 
 		# Don't do double loading...
-		if ( isset( $this->loadedLanguages[$code] ) && $mode != self::FOR_UPDATE ) {
+		if ( $this->isLanguageLoaded( $code ) && $mode != self::FOR_UPDATE ) {
 			return true;
 		}
 
@@ -358,12 +352,9 @@ class MessageCache {
 			wfDebugLog( 'MessageCacheError', __METHOD__ . ": Failed to load $code\n" );
 			# This used to throw an exception, but that led to nasty side effects like
 			# the whole wiki being instantly down if the memcached server died
-		} else {
-			# All good, just record the success
-			$this->loadedLanguages[$code] = true;
 		}
 
-		if ( !$this->cache->has( $code ) ) { // sanity
+		if ( !$this->isLanguageLoaded( $code ) ) { // sanity
 			throw new LogicException( "Process cache for '$code' should be set by now." );
 		}
 
@@ -567,6 +558,22 @@ class MessageCache {
 		unset( $cache['EXCESSIVE'] ); // only needed for hash
 
 		return $cache;
+	}
+
+	/**
+	 * Whether the language was loaded and its data is still in the process cache.
+	 *
+	 * @param string $lang
+	 * @return bool
+	 */
+	private function isLanguageLoaded( $lang ) {
+		// It is important that this only returns true if the cache was fully
+		// populated by load(), so that callers can assume all cache keys exist.
+		// It is possible for $this->cache to be only patially populated through
+		// methods like MessageCache::replace(), which must not make this method
+		// return true (T208897). And this method must cease to return true
+		// if the language was evicted by MapCacheLRU (T230690).
+		return $this->cache->hasField( $lang, 'VERSION' );
 	}
 
 	/**
@@ -1281,7 +1288,6 @@ class MessageCache {
 			$this->wanCache->touchCheckKey( $this->getCheckKey( $code ) );
 		}
 		$this->cache->clear();
-		$this->loadedLanguages = [];
 	}
 
 	/**
