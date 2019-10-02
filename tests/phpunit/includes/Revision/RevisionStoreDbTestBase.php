@@ -9,7 +9,6 @@ use Exception;
 use HashBagOStuff;
 use IDBAccessObject;
 use InvalidArgumentException;
-use Language;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\IncompleteRevisionException;
@@ -1754,7 +1753,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$lb = $services->getDBLoadBalancer();
 		$access = $services->getExternalStoreAccess();
 		$blobStore = new SqlBlobStore( $lb, $access, $cache );
-		$blobStore->setLegacyEncoding( 'windows-1252', Language::factory( 'en' ) );
+		$blobStore->setLegacyEncoding( 'windows-1252' );
 
 		$factory = $this->getMockBuilder( BlobStoreFactory::class )
 			->setMethods( [ 'newBlobStore', 'newSqlBlobStore' ] )

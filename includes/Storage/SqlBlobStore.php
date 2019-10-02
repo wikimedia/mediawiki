@@ -31,12 +31,12 @@ use DBAccessObjectUtils;
 use IDBAccessObject;
 use IExpiringStore;
 use InvalidArgumentException;
-use Language;
 use MWException;
 use StatusValue;
 use WANObjectCache;
 use ExternalStoreAccess;
 use Wikimedia\Assert\Assert;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -87,11 +87,6 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 * @var bool|string
 	 */
 	private $legacyEncoding = false;
-
-	/**
-	 * @var Language|null
-	 */
-	private $legacyEncodingConversionLang = null;
 
 	/**
 	 * @var boolean
@@ -160,23 +155,26 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	}
 
 	/**
-	 * @return Language|null The locale to use when decoding from a legacy encoding, or null
-	 *         if handling of legacy encoding is disabled.
+	 * @deprecated since 1.34 No longer needed
+	 * @return null
 	 */
 	public function getLegacyEncodingConversionLang() {
-		return $this->legacyEncodingConversionLang;
+		wfDeprecated( __METHOD__ );
+		return null;
 	}
 
 	/**
+	 * Set the legacy encoding to assume for blobs that do not have the utf-8 flag set.
+	 *
+	 * @note The second parameter, Language $language, was removed in 1.34.
+	 *
 	 * @param string $legacyEncoding The legacy encoding to assume for blobs that are
 	 *        not marked as utf8.
-	 * @param Language $language The locale to use when decoding from a legacy encoding.
 	 */
-	public function setLegacyEncoding( $legacyEncoding, Language $language ) {
+	public function setLegacyEncoding( $legacyEncoding ) {
 		Assert::parameterType( 'string', $legacyEncoding, '$legacyEncoding' );
 
 		$this->legacyEncoding = $legacyEncoding;
-		$this->legacyEncodingConversionLang = $language;
 	}
 
 	/**
@@ -606,14 +604,20 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 		}
 
 		// Needed to support old revisions left over from from the 1.4 / 1.5 migration.
-		if ( $blob !== false && $this->legacyEncoding && $this->legacyEncodingConversionLang
+		if ( $blob !== false && $this->legacyEncoding
 			&& !in_array( 'utf-8', $blobFlags ) && !in_array( 'utf8', $blobFlags )
 		) {
 			# Old revisions kept around in a legacy encoding?
 			# Upconvert on demand.
 			# ("utf8" checked for compatibility with some broken
 			#  conversion scripts 2008-12-30)
-			$blob = $this->legacyEncodingConversionLang->iconv( $this->legacyEncoding, 'UTF-8', $blob );
+			# Even with //IGNORE iconv can whine about illegal characters in
+			# *input* string. We just ignore those too.
+			# REF: https://bugs.php.net/bug.php?id=37166
+			# REF: https://phabricator.wikimedia.org/T18885
+			AtEase::suppressWarnings();
+			$blob = iconv( $this->legacyEncoding, 'UTF-8//IGNORE', $blob );
+			AtEase::restoreWarnings();
 		}
 
 		return $blob;

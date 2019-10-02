@@ -108,8 +108,7 @@ return [
 			$services->getExternalStoreAccess(),
 			$services->getMainWANObjectCache(),
 			new ServiceOptions( BlobStoreFactory::$constructorOptions,
-				$services->getMainConfig() ),
-			$services->getContentLanguage()
+				$services->getMainConfig() )
 		);
 	},
 
