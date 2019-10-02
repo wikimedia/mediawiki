@@ -520,6 +520,17 @@ return [
 		);
 	},
 
+	'PasswordReset' => function ( MediaWikiServices $services ) : PasswordReset {
+		$options = new ServiceOptions( PasswordReset::$constructorOptions, $services->getMainConfig() );
+		return new PasswordReset(
+			$options,
+			AuthManager::singleton(),
+			$services->getPermissionManager(),
+			$services->getDBLoadBalancer(),
+			LoggerFactory::getInstance( 'authentication' )
+		);
+	},
+
 	'PerDbNameStatsdDataFactory' =>
 	function ( MediaWikiServices $services ) : StatsdDataFactoryInterface {
 		$config = $services->getMainConfig();

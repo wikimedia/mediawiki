@@ -4,23 +4,32 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\SystemBlock;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Permissions\PermissionManager;
+use Psr\Log\NullLogger;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * @covers PasswordReset
  * @group Database
  */
 class PasswordResetTest extends MediaWikiTestCase {
+	private function makeConfig( $enableEmail, array $passwordResetRoutes = [] ) {
+		$hash = new HashConfig( [
+			'EnableEmail' => $enableEmail,
+			'PasswordResetRoutes' => $passwordResetRoutes,
+		] );
+
+		return new ServiceOptions( PasswordReset::$constructorOptions, $hash );
+	}
+
 	/**
 	 * @dataProvider provideIsAllowed
 	 */
 	public function testIsAllowed( $passwordResetRoutes, $enableEmail,
 		$allowsAuthenticationDataChange, $canEditPrivate, $block, $globalBlock, $isAllowed
 	) {
-		$config = new HashConfig( [
-			'PasswordResetRoutes' => $passwordResetRoutes,
-			'EnableEmail' => $enableEmail,
-		] );
+		$config = $this->makeConfig( $enableEmail, $passwordResetRoutes );
 
 		$authManager = $this->getMockBuilder( AuthManager::class )->disableOriginalConstructor()
 			->getMock();
@@ -39,10 +48,14 @@ class PasswordResetTest extends MediaWikiTestCase {
 			->with( $user, 'editmyprivateinfo' )
 			->willReturn( $canEditPrivate );
 
+		$loadBalancer = $this->getMockBuilder( ILoadBalancer::class )->getMock();
+
 		$passwordReset = new PasswordReset(
 			$config,
 			$authManager,
-			$permissionManager
+			$permissionManager,
+			$loadBalancer,
+			new NullLogger()
 		);
 
 		$this->assertSame( $isAllowed, $passwordReset->isAllowed( $user )->isGood() );
@@ -187,10 +200,7 @@ class PasswordResetTest extends MediaWikiTestCase {
 	}
 
 	public function testExecute_email() {
-		$config = new HashConfig( [
-			'PasswordResetRoutes' => [ 'username' => true, 'email' => true ],
-			'EnableEmail' => true,
-		] );
+		$config = $this->makeConfig( true, [ 'username' => true, 'email' => true ] );
 
 		// Unregister the hooks for proper unit testing
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
@@ -203,6 +213,14 @@ class PasswordResetTest extends MediaWikiTestCase {
 		$authManager->expects( $this->any() )->method( 'allowsAuthenticationDataChange' )
 			->willReturn( Status::newGood() );
 		$authManager->expects( $this->exactly( 2 ) )->method( 'changeAuthenticationData' );
+
+		$permissionManager = $this->getMockBuilder( PermissionManager::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$permissionManager->method( 'userHasRight' )->willReturn( true );
+
+		$loadBalancer = $this->getMockBuilder( ILoadBalancer::class )
+			->getMock();
 
 		$request = new FauxRequest();
 		$request->setIP( '1.2.3.4' );
@@ -228,8 +246,14 @@ class PasswordResetTest extends MediaWikiTestCase {
 		$targetUser2->expects( $this->any() )->method( 'getEmail' )->willReturn( 'foo@bar.baz' );
 
 		$passwordReset = $this->getMockBuilder( PasswordReset::class )
-			->setConstructorArgs( [ $config, $authManager, $permissionManager ] )
 			->setMethods( [ 'getUsersByEmail' ] )
+			->setConstructorArgs( [
+				$config,
+				$authManager,
+				$permissionManager,
+				$loadBalancer,
+				new NullLogger()
+			] )
 			->getMock();
 		$passwordReset->expects( $this->any() )->method( 'getUsersByEmail' )->with( 'foo@bar.baz' )
 			->willReturn( [ $targetUser1, $targetUser2 ] );
