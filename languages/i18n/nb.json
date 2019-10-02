@@ -3254,6 +3254,7 @@
 	"version-poweredby-credits": "Denne wikien er drevet av '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 	"version-poweredby-others": "andre",
 	"version-poweredby-translators": "translatewiki.net-oversettere",
+	"version-poweredby-various": "Diverse opphavspersoner",
 	"version-credits-summary": "Vi ønsker å takke følgende personer for deres bidrag til [[Special:Version|MediaWiki]].",
 	"version-license-info": "MediaWiki er fri programvare; du kan redistribuere det og/eller modifisere det under betingelsene i GNU General Public License som publisert av Free Software Foundation; enten versjon 2 av lisensen, eller (etter eget valg) enhver senere versjon.\n\nMediaWiki er distribuert i håp om at det vil være nyttig, men <em>UTEN NOEN GARANTI</em>; ikke engang implisitt garanti av <strong>SALGBARHET</strong> eller <strong>EGNETHET FOR ET BESTEMT FORMÅL</strong>. Se GNU General Public License for flere detaljer.\n\nDu skal ha mottatt [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi av GNU General Public License] sammen med dette programmet; hvis ikke, skriv til Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA eller [//www.gnu.org/licenses/old-licenses/gpl-2.0.html les det på nettet].",
 	"version-software": "Installert programvare",

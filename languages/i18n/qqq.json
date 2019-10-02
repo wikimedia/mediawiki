@@ -209,7 +209,9 @@
 			"PiefPafPier",
 			"Bagas Chrisara",
 			"Waldyrious",
-			"Ktrst"
+			"Ktrst",
+			"Quiddity",
+			"Xiplus"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -2546,11 +2548,11 @@
 	"nowatchlist": "Displayed when there is no pages in the watchlist.",
 	"watchlistanontext": "Shown on Special:Userlogin when user tries to access their watchlist before logging in",
 	"watchnologin": "Used as error page title.\n\nThe error message for this title is:\n* {{msg-mw|Watchnologintext}}\n{{Identical|Not logged in}}",
-	"addwatch": "Link to a dialog box, displayed at the end of the list of categories at the foot of each page.\n\nSee also:\n* {{msg-mw|Removewatch}}",
+	"addwatch": "A confirmation message that is shown after a user clicks the watchlist star icon if the JavaScript does not or cannot load, or if they visit the \"action=\" link directly, e.g. https://translatewiki.net/w/i.php?title=MediaWiki:Addwatch/qqq&action=watch\n\nSee also:\n* {{msg-mw|Removewatch}}\n* {{msg-mw|Confirm-watch-top}}\n* {{msg-mw|Confirm-watch-button}}",
 	"addedwatchtext": "Message shown after clicking on the {{msg-mw|Watch}} tab in a content namespace page. Parameters:\n* $1 - page title\nSee also:\n* {{msg-mw|Removedwatchtext}}\n* {{msg-mw|Addedwatchtext-talk}}",
 	"addedwatchtext-talk": "Message shown after clicking on the {{msg-mw|Watch}} tab in a talk namespace page. Parameters:\n* $1 - page title\nSee also:\n* {{msg-mw|Removedwatchtext-talk}}\n* {{msg-mw|Addedwatchtext}}",
 	"addedwatchtext-short": "Explanation shown when watching item from [[Special:UnwatchedPages]].\n\nSee also:\n* {{msg-mw|Removedwatchtext-short}}\n* {{msg-mw|Addedwatchtext}}",
-	"removewatch": "Link to a dialog box, displayed at the end of the list of categories at the foot of each page.\n\nSee also:\n* {{msg-mw|Addwatch}}",
+	"removewatch": "A confirmation message that is shown after a user clicks the watchlist star icon if the JavaScript does not or cannot load, or if they visit the \"action=\" link directly, e.g. https://translatewiki.net/w/i.php?title=MediaWiki:Removewatch/qqq&action=unwatch\n\nSee also:\n* {{msg-mw|Addwatch}}\n* {{msg-mw|Confirm-unwatch-top}}\n* {{msg-mw|Confirm-unwatch-button}}",
 	"removedwatchtext": "Message shown after clicking on the {{msg-mw|Unwatch}} tab in a content namespace page. Parameters:\n* $1 - page title\nSee also:\n* {{msg-mw|Addedwatchtext}}\n* {{msg-mw|Removedwatchtext-talk}}",
 	"removedwatchtext-talk": "Message shown after clicking on the {{msg-mw|Unwatch}} tab in a talk namespace page. Parameters:\n* $1 - page title\nSee also:\n* {{msg-mw|Addedwatchtext-talk}}\n* {{msg-mw|Removedwatchtext}}",
 	"removedwatchtext-short": "Explanation shown when unwatching item from [[Special:UnwatchedPages]].\n\nSee also:\n* {{msg-mw|Addedwatchtext-short}}.\n* {{msg-mw|Removedwatchtext}}.",
@@ -4052,7 +4054,7 @@
 	"logentry-import-interwiki": "{{Logentry|[[Special:Log/import]]}}",
 	"logentry-import-interwiki-details": "{{Logentry|[[Special:Log/import]]}}\n* $4 - Number of imported revisions\n* $5 - Interwiki title\n\nCf. {{msg-mw|logentry-import-interwiki}}",
 	"logentry-merge-merge": "{{Logentry|[[Special:Log/merge]]}}\n* $4 - the page into which the content is merged\n* $5 - a timestamp of limit\n\nThe log and its associated special page 'MergeHistory' is not enabled by default.\n\nPlease note that the parameters in a log entry will appear in the log only in the default language of the wiki. View [[Special:Log]] for examples on translatewiki.net with English default language.",
-	"logentry-move-move": "{{Logentry|[[Special:Log/move]]}}\nParameter $4, the target page, is also not visible to parser functions.",
+	"logentry-move-move": "{{Logentry|[[Special:Log/move]]}}\n* $4 - the target page, is also not visible to parser functions.",
 	"logentry-move-move-noredirect": "{{Logentry|[[Special:Log/move]]}}\nParameter $4, the target page, is also not visible to parser functions.",
 	"logentry-move-move_redir": "{{Logentry|[[Special:Log/move]]}}\nParameter $4, the target page, is also not visible to parser functions.",
 	"logentry-move-move_redir-noredirect": "{{Logentry|[[Special:Log/move]]}}\nParameter $4, the target page, is also not visible to parser functions.",
