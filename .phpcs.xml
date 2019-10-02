@@ -90,7 +90,6 @@
 		<exclude-pattern>*/maintenance/edit\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/findDeprecated\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/getText\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/hhvm/makeRepo\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/importDump\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/install\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/invalidateUserSessions\.php</exclude-pattern>
