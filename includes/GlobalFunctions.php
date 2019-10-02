@@ -1666,6 +1666,7 @@ function wfHttpError( $code, $label, $desc ) {
 
 	MediaWiki\HeaderCallback::warnIfHeadersSent();
 	header( 'Content-type: text/html; charset=utf-8' );
+	ob_start();
 	print '<!DOCTYPE html>' .
 		'<html><head><title>' .
 		htmlspecialchars( $label ) .
@@ -1674,6 +1675,8 @@ function wfHttpError( $code, $label, $desc ) {
 		'</h1><p>' .
 		nl2br( htmlspecialchars( $desc ) ) .
 		"</p></body></html>\n";
+	header( 'Content-Length: ' . ob_get_length() );
+	ob_end_flush();
 }
 
 /**

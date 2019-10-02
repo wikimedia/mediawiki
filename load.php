@@ -50,4 +50,4 @@ $resourceLoader->respond( $context );
 Profiler::instance()->setAllowOutput();
 
 $mediawiki = new MediaWiki();
-$mediawiki->doPostOutputShutdown( 'fast' );
+$mediawiki->doPostOutputShutdown();

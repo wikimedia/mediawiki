@@ -50,7 +50,7 @@ $wgActionPaths = [ "$wgUploadPath/" ];
 wfImageAuthMain();
 
 $mediawiki = new MediaWiki();
-$mediawiki->doPostOutputShutdown( 'fast' );
+$mediawiki->doPostOutputShutdown();
 
 function wfImageAuthMain() {
 	global $wgImgAuthUrlPathMap;
