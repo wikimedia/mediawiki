@@ -86,10 +86,6 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	 * @return PHPUnit_Framework_MockObject_MockObject|HashBagOStuff
 	 */
 	private function getMockCache() {
-		if ( defined( 'HHVM_VERSION' ) ) {
-			$this->markTestSkipped( 'HHVM Reflection buggy' );
-		}
-
 		$mock = $this->getMockBuilder( HashBagOStuff::class )
 			->disableOriginalConstructor()
 			->setMethods( [ 'get', 'set', 'delete', 'makeKey' ] )
@@ -1863,10 +1859,6 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	}
 
 	public function testGetNotificationTimestampsBatch_anonymousUser() {
-		if ( defined( 'HHVM_VERSION' ) ) {
-			$this->markTestSkipped( 'HHVM Reflection buggy' );
-		}
-
 		$targets = [
 			new TitleValue( 0, 'SomeDbKey' ),
 			new TitleValue( 1, 'AnotherDbKey' ),
