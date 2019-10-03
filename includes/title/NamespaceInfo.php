@@ -54,12 +54,9 @@ class NamespaceInfo {
 	/**
 	 * Definitions of the NS_ constants are in Defines.php
 	 *
-	 * @todo Make this const when HHVM support is dropped (T192166)
-	 *
-	 * @var array
 	 * @internal
 	 */
-	public static $canonicalNames = [
+	public const CANONICAL_NAMES = [
 		NS_MEDIA            => 'Media',
 		NS_SPECIAL          => 'Special',
 		NS_MAIN             => '',
@@ -81,12 +78,10 @@ class NamespaceInfo {
 	];
 
 	/**
-	 * TODO Make this const when HHVM support is dropped (T192166)
-	 *
 	 * @since 1.34
-	 * @var array
+	 * @internal
 	 */
-	public static $constructorOptions = [
+	public const CONSTRUCTOR_OPTIONS = [
 		'AllowImageMoving',
 		'CanonicalNamespaceNames',
 		'CapitalLinkOverrides',
@@ -103,7 +98,7 @@ class NamespaceInfo {
 	 * @param ServiceOptions $options
 	 */
 	public function __construct( ServiceOptions $options ) {
-		$options->assertRequiredOptions( self::$constructorOptions );
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 	}
 
@@ -410,8 +405,6 @@ class NamespaceInfo {
 		return $this->validNamespaces;
 	}
 
-	/*
-
 	/**
 	 * Does this namespace ever have a talk namespace?
 	 *
@@ -616,6 +609,6 @@ class NamespaceInfo {
 	 * @return int[]
 	 */
 	public static function getCommonNamespaces() {
-		return array_keys( self::$canonicalNames );
+		return array_keys( self::CANONICAL_NAMES );
 	}
 }

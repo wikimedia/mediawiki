@@ -437,7 +437,7 @@ return [
 	},
 
 	'NamespaceInfo' => function ( MediaWikiServices $services ) : NamespaceInfo {
-		return new NamespaceInfo( new ServiceOptions( NamespaceInfo::$constructorOptions,
+		return new NamespaceInfo( new ServiceOptions( NamespaceInfo::CONSTRUCTOR_OPTIONS,
 			$services->getMainConfig() ) );
 	},
 
