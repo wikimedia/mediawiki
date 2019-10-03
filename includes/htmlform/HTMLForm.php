@@ -297,14 +297,10 @@ class HTMLForm extends ContextSource {
 	 * Construct a HTMLForm object for given display type. May return a HTMLForm subclass.
 	 *
 	 * @param string $displayFormat
-	 * @param mixed $arguments,... Additional arguments to pass to the constructor.
-	 * @suppress PhanCommentParamWithoutRealParam HHVM bug T228695#5450847
+	 * @param mixed ...$arguments Additional arguments to pass to the constructor.
 	 * @return HTMLForm
 	 */
-	public static function factory( $displayFormat/*, $arguments...*/ ) {
-		$arguments = func_get_args();
-		array_shift( $arguments );
-
+	public static function factory( $displayFormat, ...$arguments ) {
 		switch ( $displayFormat ) {
 			case 'vform':
 				return new VFormHTMLForm( ...$arguments );
