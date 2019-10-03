@@ -2789,6 +2789,15 @@ $wgCdnMaxAge = 18000;
 $wgCdnMaxageLagged = 30;
 
 /**
+ * Cache TTL for the user agent sent as max-age, for logged out users.
+ * Only applies if wgUseCdn is false.
+ * @see $wgUseCdn
+ *
+ * @since 1.35
+ */
+$wgLoggedOutMaxAge = 0;
+
+/**
  * If set, any SquidPurge call on a URL or URLs will send a second purge no less than
  * this many seconds later via the job queue. This requires delayed job support.
  * This should be safely higher than the 'max lag' value in $wgLBFactoryConf, so that
