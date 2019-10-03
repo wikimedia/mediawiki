@@ -141,9 +141,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$data['phpversion'] = PHP_VERSION;
 		$data['phpsapi'] = PHP_SAPI;
-		if ( defined( 'HHVM_VERSION' ) ) {
-			$data['hhvmversion'] = HHVM_VERSION; // @codeCoverageIgnore
-		}
 		$data['dbtype'] = $config->get( 'DBtype' );
 		$data['dbversion'] = $this->getDB()->getServerVersion();
 
