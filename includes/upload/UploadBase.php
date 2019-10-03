@@ -135,12 +135,7 @@ abstract class UploadBase {
 	public static function isEnabled() {
 		global $wgEnableUploads;
 
-		if ( !$wgEnableUploads ) {
-			return false;
-		}
-
-		# Check php's file_uploads setting
-		return wfIsHHVM() || wfIniGetBool( 'file_uploads' );
+		return $wgEnableUploads && wfIniGetBool( 'file_uploads' );
 	}
 
 	/**
@@ -2199,11 +2194,11 @@ abstract class UploadBase {
 	 */
 	public static function getMaxPhpUploadSize() {
 		$phpMaxFileSize = wfShorthandToInteger(
-			ini_get( 'upload_max_filesize' ) ?: ini_get( 'hhvm.server.upload.upload_max_file_size' ),
+			ini_get( 'upload_max_filesize' ),
 			PHP_INT_MAX
 		);
 		$phpMaxPostSize = wfShorthandToInteger(
-			ini_get( 'post_max_size' ) ?: ini_get( 'hhvm.server.max_post_size' ),
+			ini_get( 'post_max_size' ),
 			PHP_INT_MAX
 		) ?: PHP_INT_MAX;
 		return min( $phpMaxFileSize, $phpMaxPostSize );
