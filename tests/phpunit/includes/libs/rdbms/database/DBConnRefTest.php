@@ -12,13 +12,12 @@ use Wikimedia\Rdbms\IResultWrapper;
 class DBConnRefTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
-	use PHPUnit4And6Compat;
 
 	/**
 	 * @return ILoadBalancer
 	 */
 	private function getLoadBalancerMock() {
-		$lb = $this->getMock( ILoadBalancer::class );
+		$lb = $this->createMock( ILoadBalancer::class );
 
 		$lb->method( 'getConnection' )->willReturnCallback(
 			function () {
@@ -79,7 +78,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testConstruct_params() {
-		$lb = $this->getMock( ILoadBalancer::class );
+		$lb = $this->createMock( ILoadBalancer::class );
 
 		$lb->expects( $this->once() )
 			->method( 'getConnection' )
@@ -123,7 +122,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testConstruct_failure() {
-		$this->setExpectedException( InvalidArgumentException::class, '' );
+		$this->expectException( InvalidArgumentException::class );
 
 		$lb = $this->getLoadBalancerMock();
 		new DBConnRef( $lb, 17, DB_REPLICA ); // bad constructor argument
@@ -133,7 +132,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	 * @covers Wikimedia\Rdbms\DBConnRef::getDomainId
 	 */
 	public function testGetDomainID() {
-		$lb = $this->getMock( ILoadBalancer::class );
+		$lb = $this->createMock( ILoadBalancer::class );
 
 		// getDomainID is optimized to not create a connection
 		$lb->expects( $this->never() )

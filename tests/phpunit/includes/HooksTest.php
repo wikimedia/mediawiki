@@ -267,10 +267,9 @@ class HooksTest extends MediaWikiTestCase {
 		} );
 		$foo = 'original';
 
-		$this->setExpectedException(
-			UnexpectedValueException::class,
-			'Invalid return from hook-MediaWikiHooksTest001-closure for ' .
-				'unabortable MediaWikiHooksTest001'
+		$this->expectException( UnexpectedValueException::class );
+		$this->expectExceptionMessage( 'Invalid return from hook-MediaWikiHooksTest001-closure for ' .
+			'unabortable MediaWikiHooksTest001'
 		);
 		Hooks::runWithoutAbort( 'MediaWikiHooksTest001', [ &$foo ] );
 	}

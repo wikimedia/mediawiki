@@ -703,10 +703,8 @@ hello
 			'wpUnicodeCheck' => EditPage::UNICODE_CHECK,
 		];
 
-		$this->setExpectedException(
-			MWException::class,
-			'This content model is not supported: testing'
-		);
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( 'This content model is not supported: testing' );
 
 		$this->doEditDummyNonTextPage( $edit );
 	}

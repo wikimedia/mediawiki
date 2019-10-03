@@ -7,8 +7,6 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
  */
 class PrefixingStatsdDataFactoryProxyTest extends PHPUnit\Framework\TestCase {
 
-	use PHPUnit4And6Compat;
-
 	public function provideMethodNames() {
 		return [
 			[ 'timing' ],
@@ -26,7 +24,7 @@ class PrefixingStatsdDataFactoryProxyTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testPrefixingAndPassthrough( $method ) {
 		/** @var StatsdDataFactoryInterface|PHPUnit_Framework_MockObject_MockObject $innerFactory */
-		$innerFactory = $this->getMock(
+		$innerFactory = $this->createMock(
 			\Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface::class
 		);
 		$innerFactory->expects( $this->once() )
@@ -43,7 +41,7 @@ class PrefixingStatsdDataFactoryProxyTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testPrefixIsTrimmed( $method ) {
 		/** @var StatsdDataFactoryInterface|PHPUnit_Framework_MockObject_MockObject $innerFactory */
-		$innerFactory = $this->getMock(
+		$innerFactory = $this->createMock(
 			\Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface::class
 		);
 		$innerFactory->expects( $this->once() )
