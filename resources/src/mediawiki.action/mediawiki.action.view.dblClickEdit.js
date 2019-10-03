@@ -12,7 +12,6 @@
 				// Not every page has an edit link (T59713)
 				if ( $a.length ) {
 					e.preventDefault();
-					// eslint-disable-next-line no-jquery/no-event-shorthand
 					$a.get( 0 ).click();
 				}
 			}

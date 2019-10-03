@@ -20,7 +20,7 @@
     "@wdio/sauce-service": "5.13.2",
     "@wdio/sync": "5.13.2",
     "chromedriver": "73.0.0",
-    "eslint-config-wikimedia": "0.14.1",
+    "eslint-config-wikimedia": "0.14.3",
     "grunt": "1.0.4",
     "grunt-banana-checker": "0.7.0",
     "grunt-contrib-copy": "1.0.0",
