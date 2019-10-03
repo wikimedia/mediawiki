@@ -36,6 +36,7 @@ trait ApiBlockInfoTrait {
 	 *  - blockreason - reason provided for the block
 	 *  - blockedtimestamp - timestamp for when the block was placed/modified
 	 *  - blockexpiry - expiry time of the block
+	 *  - blockpartial - block only applies to certain pages, namespaces and/or actions
 	 *  - systemblocktype - system block type, if any
 	 */
 	private function getBlockDetails( AbstractBlock $block ) {
