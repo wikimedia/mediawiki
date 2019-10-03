@@ -1934,6 +1934,7 @@
 	"apisandbox-reset": "Pulizze",
 	"apisandbox-retry": "Pruève arrete",
 	"apisandbox-loading": "Stoche a careche le 'mbormaziune pu module API \"$1\"...",
+	"apisandbox-helpurls": "Collegaminde a 'a guide",
 	"apisandbox-examples": "Esembie",
 	"apisandbox-dynamic-parameters": "Parametre aggiundive",
 	"apisandbox-dynamic-parameters-add-label": "Aggiunge 'u parametre:",
