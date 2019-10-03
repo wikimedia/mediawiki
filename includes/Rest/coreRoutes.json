@@ -12,5 +12,14 @@
 			"PermissionManager",
 			"DBLoadBalancer"
 		]
+	},
+	{
+		"path": "/v1/page/{title}/history/counts/{type}",
+		"class": "MediaWiki\\Rest\\Handler\\PageHistoryCountHandler",
+		"services": [
+			"NameTableStoreFactory",
+			"PermissionManager",
+			"DBLoadBalancer"
+		]
 	}
 ]
