@@ -128,10 +128,7 @@ class WebRequestUpload {
 		}
 
 		$contentLength = $this->request->getHeader( 'Content-Length' );
-		$maxPostSize = wfShorthandToInteger(
-			ini_get( 'post_max_size' ) ?: ini_get( 'hhvm.server.max_post_size' ),
-			0
-		);
+		$maxPostSize = wfShorthandToInteger( ini_get( 'post_max_size' ), 0 );
 
 		if ( $maxPostSize && $contentLength > $maxPostSize ) {
 			# post_max_size is exceeded
