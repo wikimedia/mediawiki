@@ -78,6 +78,9 @@ because of Phabricator reports.
 * …
 
 === Deprecations in 1.35 ===
+* The PHPUnit4And6Compat class, used to provide compatibility with PHPUnit 4, is
+  now deprecated. MediaWiki support for PHPUnit 4 ended with the removal of HHVM
+  support.
 * …
 
 === Other changes in 1.35 ===
