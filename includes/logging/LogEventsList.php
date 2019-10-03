@@ -694,7 +694,7 @@ class LogEventsList extends ContextSource {
 				$lang = $context->getLanguage()->getHtmlCode();
 
 				$s = Xml::openElement( 'div', [
-					'class' => "mw-warning-with-logexcerpt mw-content-$dir",
+					'class' => "warningbox mw-warning-with-logexcerpt mw-content-$dir",
 					'dir' => $dir,
 					'lang' => $lang,
 				] );

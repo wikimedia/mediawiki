@@ -277,14 +277,11 @@ p.mw-delete-editreasons {
  * Page protection warning
  * incl. log entries for these warnings
  */
-div.mw-warning-with-logexcerpt {
-	padding: 3px;
-	margin-bottom: 3px;
-	border: 2px solid #2a4b8d;
+.mw-warning-with-logexcerpt {
 	clear: both;
 }
 
-div.mw-warning-with-logexcerpt ul li {
+.mw-warning-with-logexcerpt ul li {
 	font-size: 90%;
 }
 
