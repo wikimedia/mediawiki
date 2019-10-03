@@ -237,16 +237,10 @@ class SpecialVersion extends SpecialPage {
 		// be loaded here, so feel free to use wfMessage in the 'name'. Raw HTML or
 		// wikimarkup can be used.
 		$software = [
-			'[https://www.mediawiki.org/ MediaWiki]' => self::getVersionLinked()
+			'[https://www.mediawiki.org/ MediaWiki]' => self::getVersionLinked(),
+			'[https://php.net/ PHP]' => PHP_VERSION . " (" . PHP_SAPI . ")",
+			$dbr->getSoftwareLink() => $dbr->getServerInfo(),
 		];
-
-		if ( wfIsHHVM() ) {
-			$software['[https://hhvm.com/ HHVM]'] = HHVM_VERSION . " (" . PHP_SAPI . ")";
-		} else {
-			$software['[https://php.net/ PHP]'] = PHP_VERSION . " (" . PHP_SAPI . ")";
-		}
-
-		$software[$dbr->getSoftwareLink()] = $dbr->getServerInfo();
 
 		if ( defined( 'INTL_ICU_VERSION' ) ) {
 			$software['[http://site.icu-project.org/ ICU]'] = INTL_ICU_VERSION;

@@ -24,6 +24,7 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
+use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\ChronologyProtector;
 
@@ -83,10 +84,7 @@ if ( is_readable( "$IP/vendor/autoload.php" ) ) {
 }
 
 // Assert that composer dependencies were successfully loaded
-// Purposely no leading \ due to it breaking HHVM RepoAuthorative mode
-// PHP works fine with both versions
-// See https://github.com/facebook/hhvm/issues/5833
-if ( !interface_exists( 'Psr\Log\LoggerInterface' ) ) {
+if ( !interface_exists( LoggerInterface::class ) ) {
 	$message = (
 		'MediaWiki requires the <a href="https://github.com/php-fig/log">PSR-3 logging ' .
 		"library</a> to be present. This library is not embedded directly in MediaWiki's " .
@@ -458,7 +456,7 @@ $wgMinUploadChunkSize = min(
 	UploadBase::getMaxUploadSize( 'file' ),
 	UploadBase::getMaxPhpUploadSize(),
 	( wfShorthandToInteger(
-		ini_get( 'post_max_size' ) ?: ini_get( 'hhvm.server.max_post_size' ),
+		ini_get( 'post_max_size' ),
 		PHP_INT_MAX
 	) ?: PHP_INT_MAX ) - 1024 // Leave some room for other POST parameters
 );

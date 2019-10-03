@@ -427,16 +427,7 @@ class Command {
 				}
 			}
 
-			// clear get_last_error without actually raising an error
-			// from https://www.php.net/manual/en/function.error-get-last.php#113518
-			// TODO replace with error_clear_last after dropping HHVM
-			// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
-			set_error_handler( function () {
-			}, 0 );
-			AtEase::suppressWarnings();
-			trigger_error( '' );
-			AtEase::restoreWarnings();
-			restore_error_handler();
+			error_clear_last();
 
 			$readPipes = array_filter( $pipes, function ( $fd ) use ( $desc ) {
 				return $desc[$fd][0] === 'pipe' && $desc[$fd][1] === 'r';
