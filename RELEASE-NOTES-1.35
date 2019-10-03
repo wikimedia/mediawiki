@@ -117,6 +117,8 @@ because of Phabricator reports.
   CommentStoreComments, and getReason returns a string with no caller control
   over language or formatting. Instead use AbstractBlock::getReasonComment,
   which returns the CommentStoreComment.
+* The global function wfGetRusage() is deprecated and will now always call the
+  getrusage() function without checking for its existence.
 * …
 
 === Other changes in 1.35 ===
