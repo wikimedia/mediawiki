@@ -72,7 +72,6 @@
 	"config-env-good": "See also:\n* {{msg-mw|Config-env-bad}}",
 	"config-env-bad": "See also:\n* {{msg-mw|Config-env-good}}",
 	"config-env-php": "Parameters:\n* $1 - the version of PHP that has been installed\nSee also:\n* {{msg-mw|config-env-php-toolow}}",
-	"config-env-hhvm": "Parameters:\n* $1 - the version of HHVM that has been installed",
 	"config-unicode-using-intl": "Status message in the MediaWiki installer environment checks.",
 	"config-unicode-pure-php-warning": "PECL is the name of a group producing standard pieces of software for PHP, and intl is the name of their library handling some aspects of internationalization.",
 	"config-unicode-update-warning": "ICU is a body producing standard software tools for support of Unicode and other internationalization aspects. This message warns the system administrator installing MediaWiki that the server's software is not up-to-date and MediaWiki will have problems handling some characters.",

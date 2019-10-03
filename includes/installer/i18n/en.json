@@ -48,7 +48,6 @@
 	"config-env-good": "The environment has been checked.\nYou can install MediaWiki.",
 	"config-env-bad": "The environment has been checked.\nYou cannot install MediaWiki.",
 	"config-env-php": "PHP $1 is installed.",
-	"config-env-hhvm": "HHVM $1 is installed.",
 	"config-unicode-using-intl": "Using the [https://php.net/manual/en/book.intl.php PHP intl extension] for Unicode normalization.",
 	"config-unicode-pure-php-warning": "<strong>Warning:</strong> The [https://php.net/manual/en/book.intl.php PHP intl extension] is not available to handle Unicode normalization, falling back to slow pure-PHP implementation.\nIf you run a high-traffic site, you should read on [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode normalization].",
 	"config-unicode-update-warning": "<strong>Warning:</strong> The installed version of the Unicode normalization wrapper uses an older version of [http://site.icu-project.org/ the ICU project's] library.\nYou should [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations upgrade] if you are at all concerned about using Unicode.",
