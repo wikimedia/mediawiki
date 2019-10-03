@@ -107,10 +107,6 @@ class MultiWriteBagOStuffTest extends MediaWikiTestCase {
 	 * @covers MultiWriteBagOStuff::makeKey
 	 */
 	public function testMakeKey() {
-		if ( defined( 'HHVM_VERSION' ) ) {
-			$this->markTestSkipped( 'HHVM Reflection buggy' );
-		}
-
 		$cache1 = $this->getMockBuilder( HashBagOStuff::class )
 			->setMethods( [ 'makeKey' ] )->getMock();
 		$cache1->expects( $this->once() )->method( 'makeKey' )
@@ -128,10 +124,6 @@ class MultiWriteBagOStuffTest extends MediaWikiTestCase {
 	 * @covers MultiWriteBagOStuff::makeGlobalKey
 	 */
 	public function testMakeGlobalKey() {
-		if ( defined( 'HHVM_VERSION' ) ) {
-			$this->markTestSkipped( 'HHVM Reflection buggy' );
-		}
-
 		$cache1 = $this->getMockBuilder( HashBagOStuff::class )
 			->setMethods( [ 'makeGlobalKey' ] )->getMock();
 		$cache1->expects( $this->once() )->method( 'makeGlobalKey' )

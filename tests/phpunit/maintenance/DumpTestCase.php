@@ -215,17 +215,6 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 			$this->markAsRisky();
 			return;
 		}
-		if ( defined( 'HHVM_VERSION' ) ) {
-			// In HHVM, loading a schema from a file is disabled per default.
-			// This is controlled by hhvm.libxml.ext_entity_whitelist which
-			// cannot be read with ini_get(), see
-			// <https://docs.hhvm.com/hhvm/configuration/INI-settings#xml>.
-			// Would be nice to leave a warning somehow.
-			// We don't want to skip all of the test case that calls this, though.
-			$this->markAsRisky();
-			return;
-		}
-
 		$xml = new DOMDocument();
 		$this->assertTrue( $xml->load( $fname ),
 			"Opening temporary file $fname via DOMDocument failed" );

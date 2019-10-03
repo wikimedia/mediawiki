@@ -66,15 +66,6 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 			self::fail( 'This unit test needs to be in "tests/phpunit/unit"!' );
 		}
 
-		if ( defined( 'HHVM_VERSION' ) ) {
-			// There are a number of issues we encountered in trying to make this
-			// work on HHVM. Specifically, once an MediaWikiIntegrationTestCase executes
-			// before us, the original globals go missing. This might have to do with
-			// one of the non-unit tests passing GLOBALS somewhere and causing HHVM
-			// to get confused somehow.
-			return;
-		}
-
 		self::$unitGlobals =& TestSetup::$bootstrapGlobals;
 
 		foreach ( self::getGlobalsWhitelist() as $global ) {
@@ -90,7 +81,6 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 			self::$originalGlobals[$key] =& $GLOBALS[$key];
 
 			// Remove globals not part of the snapshot (see bootstrap.php, phpunit.php).
-			// Support: HHVM (avoid self-ref)
 			if ( $key !== 'GLOBALS' && !array_key_exists( $key, self::$unitGlobals ) ) {
 				unset( $GLOBALS[$key] );
 			}
@@ -119,33 +109,29 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 	}
 
 	protected function tearDown() {
-		if ( !defined( 'HHVM_VERSION' ) ) {
-			// Quick reset between tests
-			foreach ( $GLOBALS as $key => $_ ) {
-				if ( $key !== 'GLOBALS' && !array_key_exists( $key, self::$unitGlobals ) ) {
-					unset( $GLOBALS[$key] );
-				}
+		// Quick reset between tests
+		foreach ( $GLOBALS as $key => $_ ) {
+			if ( $key !== 'GLOBALS' && !array_key_exists( $key, self::$unitGlobals ) ) {
+				unset( $GLOBALS[$key] );
 			}
-			foreach ( self::$unitGlobals as $key => $value ) {
-				$GLOBALS[ $key ] = $value;
-			}
+		}
+		foreach ( self::$unitGlobals as $key => $value ) {
+			$GLOBALS[ $key ] = $value;
 		}
 
 		parent::tearDown();
 	}
 
 	public static function tearDownAfterClass() {
-		if ( !defined( 'HHVM_VERSION' ) ) {
-			// Remove globals created by the test
-			foreach ( $GLOBALS as $key => $_ ) {
-				if ( $key !== 'GLOBALS' && !array_key_exists( $key, self::$originalGlobals ) ) {
-					unset( $GLOBALS[$key] );
-				}
+		// Remove globals created by the test
+		foreach ( $GLOBALS as $key => $_ ) {
+			if ( $key !== 'GLOBALS' && !array_key_exists( $key, self::$originalGlobals ) ) {
+				unset( $GLOBALS[$key] );
 			}
-			// Restore values (including reference!)
-			foreach ( self::$originalGlobals as $key => &$value ) {
-				$GLOBALS[ $key ] =& $value;
-			}
+		}
+		// Restore values (including reference!)
+		foreach ( self::$originalGlobals as $key => &$value ) {
+			$GLOBALS[ $key ] =& $value;
 		}
 
 		parent::tearDownAfterClass();
