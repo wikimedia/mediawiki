@@ -605,6 +605,9 @@ because of Phabricator reports.
   ApiQueryBlockInfoTrait instead.
 * PasswordReset is now a service, its direct instantiation is deprecated.
 * RESTBagOStuff users should specify either "JSON" or "PHP" serialization type.
+* The global function wfIsHHVM() is deprecated and will now always return false
+  regardless of the runtime environment. This is part of the continuing work to
+  remove HHVM support from MediaWiki, which started in MediaWiki 1.31.
 * Language::getLocalisationCache() is deprecated. Use MediaWikiServices
   instead.
 
