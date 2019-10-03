@@ -263,7 +263,7 @@ ChangesListWrapperWidget.prototype.updateEnhancedParentHighlight = function () {
 		// Collect the relevant classes from the first nested child
 		firstChildClasses = activeHighlightClasses.filter( function ( className ) {
 			// eslint-disable-next-line no-jquery/no-class-state
-			return $table.find( 'tr:nth-child(2)' ).hasClass( className );
+			return $table.find( 'tr' ).eq( 2 ).hasClass( className );
 		} );
 		// Filter the non-head rows and see if they all have the same classes
 		// to the first row

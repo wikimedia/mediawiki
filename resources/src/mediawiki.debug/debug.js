@@ -352,7 +352,10 @@
 				$table = $( '<table>' ).appendTo( $unit );
 
 				$( '<tr>' )
-					.html( '<th scope="col">Key</th><th scope="col">Value</th>' )
+					.append(
+						$( '<th>' ).attr( 'scope', 'col' ).text( 'Key' ),
+						$( '<th>' ).attr( 'scope', 'col' ).text( 'Value' )
+					)
 					.appendTo( $table );
 
 				for ( key in data ) {

@@ -313,8 +313,15 @@
 				$( '<div>' )
 					.hide()
 					.attr( 'id', 'wikiDiff' )
-					.html( '<table class="diff"><col class="diff-marker"/><col class="diff-content"/>' +
-						'<col class="diff-marker"/><col class="diff-content"/><tbody/></table>' )
+					.append(
+						$( '<table>' ).addClass( 'diff' ).append(
+							$( '<col>' ).addClass( 'diff-marker' ),
+							$( '<col>' ).addClass( 'diff-content' ),
+							$( '<col>' ).addClass( 'diff-marker' ),
+							$( '<col>' ).addClass( 'diff-content' ),
+							$( '<tbody>' )
+						)
+					)
 			);
 		}
 
