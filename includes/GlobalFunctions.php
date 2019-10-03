@@ -3081,8 +3081,8 @@ function wfArrayPlus2d( array $baseArray, array $newValues ) {
 
 /**
  * Get system resource usage of current request context.
- * Invokes the getrusage(2) system call, requesting RUSAGE_SELF if on PHP5
- * or RUSAGE_THREAD if on HHVM. Returns false if getrusage is not available.
+ * Invokes the getrusage(2) system call, requesting RUSAGE_SELF. Returns false
+ * if getrusage is not available.
  *
  * @since 1.24
  * @return array|bool Resource usage data or false if no data available.
@@ -3090,8 +3090,6 @@ function wfArrayPlus2d( array $baseArray, array $newValues ) {
 function wfGetRusage() {
 	if ( !function_exists( 'getrusage' ) ) {
 		return false;
-	} elseif ( defined( 'HHVM_VERSION' ) && PHP_OS === 'Linux' ) {
-		return getrusage( 2 /* RUSAGE_THREAD */ );
 	} else {
 		return getrusage( 0 /* RUSAGE_SELF */ );
 	}
