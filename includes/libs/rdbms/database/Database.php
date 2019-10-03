@@ -2104,9 +2104,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return implode( ' ', $options );
 	}
 
-	public function insert( $table, $a, $fname = __METHOD__, $options = [] ) {
+	/**
+	 * @param array $a A single (field => value) map or a list of such maps
+	 * @return bool
+	 */
+	final protected function isMultiRowArray( array $a ) {
+		return ( isset( $a[0] ) && is_array( $a[0] ) );
+	}
+
+	public function insert( $table, $rows, $fname = __METHOD__, $options = [] ) {
 		# No rows to insert, easy just return now
-		if ( !count( $a ) ) {
+		if ( !count( $rows ) ) {
 			return true;
 		}
 
@@ -2118,12 +2126,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$options = $this->makeInsertOptions( $options );
 
-		if ( isset( $a[0] ) && is_array( $a[0] ) ) {
-			$multi = true;
-			$keys = array_keys( $a[0] );
+		$multi = $this->isMultiRowArray( $rows );
+		if ( $multi ) {
+			$firstRow = $rows[0];
+			$keys = array_keys( $firstRow );
 		} else {
-			$multi = false;
-			$keys = array_keys( $a );
+			$keys = array_keys( $rows );
 		}
 
 		$sql = 'INSERT ' . $options .
@@ -2131,7 +2139,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		if ( $multi ) {
 			$first = true;
-			foreach ( $a as $row ) {
+			foreach ( $rows as $row ) {
 				if ( $first ) {
 					$first = false;
 				} else {
@@ -2140,7 +2148,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$sql .= '(' . $this->makeList( $row ) . ')';
 			}
 		} else {
-			$sql .= '(' . $this->makeList( $a ) . ')';
+			$sql .= '(' . $this->makeList( $rows ) . ')';
 		}
 
 		$this->query( $sql, $fname );
