@@ -3230,6 +3230,7 @@
 	"limitreport-templateargumentsize-value": "$1/$2 {{PLURAL:$2|bajt|bajty|bajtov}}",
 	"limitreport-expansiondepth": "Najväčšia hĺbka expanzie",
 	"limitreport-expensivefunctioncount": "Počet náročných funkcií parseru",
+	"limitreport-unstrip-size": "Veľkosť unstrip po rozbalení",
 	"expandtemplates": "Substituovať šablóny",
 	"expand_templates_intro": "Táto špeciálna stránka prijme na\nvstup text a rekurzívne substituuje všetky šablóny,\nktoré sú v ňom použité. Tiež expanduje funkcie\nsyntaktického analyzátora ako <nowiki>{{</nowiki>#language:...}}\na premenné ako <nowiki>{{</nowiki>CURRENTDAY}}—v podstate\ntakmer všetko v zložených zátvorkách. Robí to pomocou\nvolania relevantnej fázy syntaktického analyzátora\nsamotného MediaWiki.",
 	"expand_templates_title": "Názov kontextu pre {{FULLPAGENAME}} atď.:",

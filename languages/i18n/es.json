@@ -535,6 +535,7 @@
 	"perfcached": "Los siguientes datos provienen de la caché y pueden no estar actualizados. La caché puede contener {{PLURAL:$1|un resultado|$1 resultados}} como máximo.",
 	"perfcachedts": "Los siguientes datos provienen de la caché, y fueron actualizados por última vez a fecha de: $1. La caché contiene {{PLURAL:$4|un resultado|$4 resultados}} como máximo.",
 	"querypage-no-updates": "Actualmente las actualizaciones de esta página están desactivadas. Estos datos no serán actualizados a corto plazo.",
+	"querypage-updates-periodical": "Esta página se actualiza periódicamente.",
 	"viewsource": "Ver código",
 	"viewsource-title": "Ver el código de «$1»",
 	"actionthrottled": "Acción limitada",
