@@ -8,7 +8,6 @@
 .redirectMsg p {
 	overflow: hidden;
 	height: 0;
-	zoom: 1;
 }
 
 .redirectText {
