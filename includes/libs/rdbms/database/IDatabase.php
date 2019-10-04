@@ -1170,11 +1170,10 @@ interface IDatabase {
 	 *
 	 * @since 1.16
 	 * @param array[]|string|LikeMatch $param
+	 * @param string|LikeMatch ...$params
 	 * @return string Fully built LIKE statement
-	 * @phan-suppress-next-line PhanMismatchVariadicComment
-	 * @phan-param array|string|LikeMatch ...$param T226223
 	 */
-	public function buildLike( $param );
+	public function buildLike( $param, ...$params );
 
 	/**
 	 * Returns a token for buildLike() that denotes a '_' to be used in a LIKE query
