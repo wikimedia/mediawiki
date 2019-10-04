@@ -213,7 +213,6 @@ td.mw-submit {
 	margin: 0;
 	padding: 0;
 	list-style: none none;
-	vertical-align: middle !ie;
 }
 
 .catlinks li {
@@ -222,8 +221,6 @@ td.mw-submit {
 	border-left: 1px solid #a2a9b1;
 	margin: 0.125em 0;
 	padding: 0 0.5em;
-	zoom: 1;
-	display: inline !ie; /* stylelint-disable-line declaration-block-no-duplicate-properties */
 }
 
 .catlinks li:first-child {
