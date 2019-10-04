@@ -2465,10 +2465,20 @@ class OutputPage extends ContextSource {
 					"s-maxage={$this->mCdnMaxage}, must-revalidate, max-age=0" );
 			} else {
 				# We do want clients to cache if they can, but they *must* check for updates
-				# on revisiting the page.
+				# on revisiting the page, after the max-age period.
 				wfDebug( __METHOD__ . ": private caching; {$this->mLastModified} **", 'private' );
-				$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
-				$response->header( "Cache-Control: private, must-revalidate, max-age=0" );
+
+				if ( $response->hasCookies() || SessionManager::getGlobalSession()->isPersistent() ) {
+					$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
+					$response->header( "Cache-Control: private, must-revalidate, max-age=0" );
+				} else {
+					$response->header(
+						'Expires: ' . gmdate( 'D, d M Y H:i:s', time() + $config->get( 'LoggedOutMaxAge' ) ) . ' GMT'
+					);
+					$response->header(
+						"Cache-Control: private, must-revalidate, max-age={$config->get( 'LoggedOutMaxAge' )}"
+					);
+				}
 			}
 			if ( $this->mLastModified ) {
 				$response->header( "Last-Modified: {$this->mLastModified}" );
