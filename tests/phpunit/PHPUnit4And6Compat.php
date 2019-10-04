@@ -46,18 +46,6 @@ trait PHPUnit4And6Compat {
 	}
 
 	/**
-	 * Future-compatible layer for PHPUnit 4's setExpectedException.
-	 */
-	public function expectException( $exception ) {
-		if ( is_callable( 'parent::expectException' ) ) {
-			parent::expectException( $exception );
-			return;
-		}
-
-		parent::setExpectedException( $exception );
-	}
-
-	/**
 	 * @see PHPUnit_Framework_TestCase::getMock
 	 *
 	 * @return PHPUnit_Framework_MockObject_MockObject
@@ -108,41 +96,4 @@ trait PHPUnit4And6Compat {
 			return $builder->getMock();
 		}
 	}
-
-	/**
-	 * Return a test double for the specified class. This
-	 * is a forward port of the createMock function that
-	 * was introduced in PHPUnit 5.4.
-	 *
-	 * @param string $originalClassName
-	 * @return PHPUnit_Framework_MockObject_MockObject
-	 * @throws Exception
-	 */
-	public function createMock( $originalClassName ) {
-		if ( is_callable( 'parent::createMock' ) ) {
-			return parent::createMock( $originalClassName );
-		}
-		// Compat for PHPUnit <= 5.4
-		return $this->getMockBuilder( $originalClassName )
-			->disableOriginalConstructor()
-			->disableOriginalClone()
-			->disableArgumentCloning()
-			// New in phpunit-mock-objects 3.2 (phpunit 5.4.0)
-			// ->disallowMockingUnknownTypes()
-			->getMock();
-	}
-
-	/**
-	 * Marks the current test as risky. This
-	 * is a forward port of the markAsRisky function that
-	 * was introduced in PHPUnit 5.7.6.
-	 */
-	public function markAsRisky() {
-		if ( is_callable( 'parent::markAsRisky' ) ) {
-			return parent::markAsRisky();
-		}
-
-		// "risky" tests are not supported in phpunit 4, so just ignore
-	}
-
 }
