@@ -111,7 +111,7 @@
 	 * @chainable
 	 */
 	mw.htmlform.Checker.prototype.setErrors = function ( valid, errors, forceReplacement ) {
-		var $oldErrorBox, tagName, showFunc, text, replace,
+		var $oldErrorBox, tagName, showFunc, $text, replace,
 			$errorBox = this.$errorBox;
 
 		if ( errors.length === 0 ) {
@@ -137,11 +137,11 @@
 				$errorBox[ 0 ].tagName.toLowerCase() !== tagName
 			);
 			if ( !replace ) {
-				text = $( '<' + tagName + '>' )
+				$text = $( '<' + tagName + '>' )
 					.append( errors.map( function ( e ) {
 						return errors.length === 1 ? e : $( '<li>' ).append( e );
 					} ) );
-				if ( text.text() !== $errorBox.text() ) {
+				if ( $text.text() !== $errorBox.text() ) {
 					replace = true;
 				}
 			}

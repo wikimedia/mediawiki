@@ -205,10 +205,10 @@ ChangesListWrapperWidget.prototype.emphasizeNewChanges = function ( from ) {
 		selector = this.inEnhancedMode() ?
 			'table.mw-enhanced-rc[data-mw-ts]' :
 			'li[data-mw-ts]',
-		set = this.$element.find( selector ),
-		length = set.length;
+		$set = this.$element.find( selector ),
+		length = $set.length;
 
-	set.each( function ( index ) {
+	$set.each( function ( index ) {
 		var $this = $( this ),
 			ts = $this.data( 'mw-ts' );
 

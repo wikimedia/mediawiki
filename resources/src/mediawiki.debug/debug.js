@@ -114,7 +114,7 @@
 		 * Construct the HTML for the debugging toolbar
 		 */
 		buildHtml: function () {
-			var $container, $bits, panes, id, gitInfo;
+			var $container, $bits, panes, id, gitInfoText, $gitInfo;
 
 			$container = $( '<div>' )
 				.attr( {
@@ -188,20 +188,21 @@
 
 			paneTriggerBitDiv( 'includes', 'PHP includes', this.data.includes.length );
 
-			gitInfo = '';
 			if ( this.data.gitRevision !== false ) {
-				gitInfo = '(' + this.data.gitRevision.slice( 0, 7 ) + ')';
+				gitInfoText = '(' + this.data.gitRevision.slice( 0, 7 ) + ')';
 				if ( this.data.gitViewUrl !== false ) {
-					gitInfo = $( '<a>' )
+					$gitInfo = $( '<a>' )
 						.attr( 'href', this.data.gitViewUrl )
-						.text( gitInfo );
+						.text( gitInfoText );
+				} else {
+					$gitInfo = $( document.createTextNode( gitInfoText ) );
 				}
 			}
 
 			bitDiv( 'mwversion' )
 				.append( $( '<a>' ).attr( 'href', 'https://www.mediawiki.org/' ).text( 'MediaWiki' ) )
 				.append( document.createTextNode( ': ' + this.data.mwVersion + ' ' ) )
-				.append( gitInfo );
+				.append( $gitInfo );
 
 			if ( this.data.gitBranch !== false ) {
 				bitDiv( 'gitbranch' ).text( 'Git branch: ' + this.data.gitBranch );

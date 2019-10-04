@@ -3,21 +3,19 @@
  */
 ( function () {
 	$( function () {
-		var allowEmail, allowEmailFromNewUsers;
-
-		allowEmail = $( '#wpAllowEmail' );
-		allowEmailFromNewUsers = $( '#wpAllowEmailFromNewUsers' );
+		var $allowEmail = $( '#wpAllowEmail' ),
+			$allowEmailFromNewUsers = $( '#wpAllowEmailFromNewUsers' );
 
 		function toggleDisabled() {
-			if ( allowEmail.is( ':checked' ) && allowEmail.is( ':enabled' ) ) {
-				allowEmailFromNewUsers.prop( 'disabled', false );
+			if ( $allowEmail.is( ':checked' ) && $allowEmail.is( ':enabled' ) ) {
+				$allowEmailFromNewUsers.prop( 'disabled', false );
 			} else {
-				allowEmailFromNewUsers.prop( 'disabled', true );
+				$allowEmailFromNewUsers.prop( 'disabled', true );
 			}
 		}
 
-		if ( allowEmail ) {
-			allowEmail.on( 'change', toggleDisabled );
+		if ( $allowEmail ) {
+			$allowEmail.on( 'change', toggleDisabled );
 			toggleDisabled();
 		}
 	} );
