@@ -60,10 +60,6 @@ a,
 a.external,
 a.new,
 a.stub {
-	/* IE 6 & 7 don't understand `inherit` */
-	color: #000 !important; /* stylelint-disable-line declaration-no-important */
-	text-decoration: none !important; /* stylelint-disable-line declaration-no-important */
-	/* Modern browser will apply this, IE 6 & 7 ignore the unknown */
 	color: inherit !important; /* stylelint-disable-line declaration-block-no-duplicate-properties, declaration-no-important */
 	text-decoration: inherit !important; /* stylelint-disable-line declaration-block-no-duplicate-properties, declaration-no-important */
 }
