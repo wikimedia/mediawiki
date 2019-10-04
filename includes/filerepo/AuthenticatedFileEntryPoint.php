@@ -223,9 +223,14 @@ class AuthenticatedFileEntryPoint extends MediaWikiEntryPoint {
 		$this->status( 403 );
 		$this->header( 'Cache-Control: no-cache' );
 		$this->header( 'Content-Type: text/html; charset=utf-8' );
+		$language = $context->getLanguage();
+		$lang = $language->getHtmlCode();
+		$this->header( "Content-Language: $lang" );
 		$templateParser = new TemplateParser();
 		$this->print(
 			$templateParser->processTemplate( 'ImageAuthForbidden', [
+				'dir' => $language->getDir(),
+				'lang' => $lang,
 				'msgHdr' => $msgHdr,
 				'detailMsg' => $detailMsg,
 			] )
