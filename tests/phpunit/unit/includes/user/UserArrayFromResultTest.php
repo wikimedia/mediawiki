@@ -7,7 +7,7 @@
 class UserArrayFromResultTest extends \MediaWikiUnitTestCase {
 
 	private function getMockResultWrapper( $row = null, $numRows = 1 ) {
-		$resultWrapper = $this->getMockBuilder( Wikimedia\Rdbms\ResultWrapper::class )
+		$resultWrapper = $this->getMockBuilder( Wikimedia\Rdbms\IResultWrapper::class )
 			->disableOriginalConstructor();
 
 		$resultWrapper = $resultWrapper->getMock();
