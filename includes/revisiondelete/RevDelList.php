@@ -32,7 +32,6 @@ use MediaWiki\Revision\RevisionRecord;
  * @method RevDelItem next()
  * @method RevDelItem reset()
  * @method RevDelItem current()
- * @phan-file-suppress PhanParamSignatureMismatch
  */
 abstract class RevDelList extends RevisionListBase {
 	function __construct( IContextSource $context, Title $title, array $ids ) {

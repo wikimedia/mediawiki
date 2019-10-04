@@ -26,7 +26,6 @@
  * @method ChangeTagsLogItem next()
  * @method ChangeTagsLogItem reset()
  * @method ChangeTagsLogItem current()
- * @phan-file-suppress PhanParamSignatureMismatch
  */
 abstract class ChangeTagsList extends RevisionListBase {
 	function __construct( IContextSource $context, Title $title, array $ids ) {
