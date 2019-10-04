@@ -850,13 +850,13 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	/**
 	 * Get the definition summary for this module.
 	 *
-	 * This is the method subclasses are recommended to use to track values in their
-	 * version hash. Call this in getVersionHash() and pass it to e.g. json_encode.
+	 * This is the method subclasses are recommended to use to track data that
+	 * should influence the module's version hash.
 	 *
-	 * Subclasses must call the parent getDefinitionSummary() and build on that.
-	 * It is recommended that each subclass appends its own new array. This prevents
-	 * clashes or accidental overwrites of existing keys and gives each subclass
-	 * its own scope for simple array keys.
+	 * Subclasses must call the parent getDefinitionSummary() and add to the
+	 * returned array. It is recommended that each subclass appends its own array,
+	 * to prevent clashes or accidental overwrites of array keys from the parent
+	 * class. This gives each subclass a clean scope.
 	 *
 	 * @code
 	 *     $summary = parent::getDefinitionSummary( $context );
@@ -867,24 +867,23 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 *     return $summary;
 	 * @endcode
 	 *
-	 * Return an array containing values from all significant properties of this
-	 * module's definition.
+	 * Return an array that contains all significant properties that define the
+	 * module. The returned data should be deterministic and only change when
+	 * the generated module response would change. Prefer content hashes over
+	 * modified timestamps because timestamps may change for unrelated reasons
+	 * and are not deterministic (T102578). For example, because timestamps are
+	 * not stored in Git, each branch checkout would cause all files to appear as
+	 * new. Timestamps also tend to not match between servers causing additional
+	 * ever-lasting churning of the version hash.
 	 *
-	 * Be careful not to normalise too much. Especially preserve the order of things
-	 * that carry significance in getScript and getStyles (T39812).
+	 * Be careful not to normalise the data too much in an effort to be deterministic.
+	 * For example, if a module concatenates files together (order is significant),
+	 * then the definition summary could be a list of file names, and a list of
+	 * file hashes. These lists should not be sorted as that would mean the cache
+	 * is not invalidated when the order changes (T39812).
 	 *
-	 * Avoid including things that are insiginificant (e.g. order of message keys is
-	 * insignificant and should be sorted to avoid unnecessary cache invalidation).
-	 *
-	 * This data structure must exclusively contain arrays and scalars as values (avoid
-	 * object instances) to allow simple serialisation using json_encode.
-	 *
-	 * If modules have a hash or timestamp from another source, that may be incuded as-is.
-	 *
-	 * A number of utility methods are available to help you gather data. These are not
-	 * called by default and must be included by the subclass' getDefinitionSummary().
-	 *
-	 * - getMessageBlob()
+	 * This data structure must exclusively contain primitive "scalar" values,
+	 * as it will be serialised using `json_encode`.
 	 *
 	 * @since 1.23
 	 * @param ResourceLoaderContext $context
