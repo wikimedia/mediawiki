@@ -352,13 +352,8 @@ class CSSMin {
 				if ( !$embedData || $ruleWithEmbedded === $ruleWithRemapped ) {
 					// We're not embedding anything, or we tried to but the file is not embeddable
 					return $ruleWithRemapped;
-				} elseif ( $embedData && $needsEmbedFallback ) {
-					// Build 2 CSS properties; one which uses a data URI in place of the @embed comment, and
-					// the other with a remapped and versioned URL with an Internet Explorer 6 and 7 hack
-					// making it ignored in all browsers that support data URIs
-					return "$ruleWithEmbedded;$ruleWithRemapped!ie";
 				} else {
-					// Look ma, no fallbacks! This is for files which IE 6 and 7 don't support anyway: SVG.
+					// Use a data URI in place of the @embed comment.
 					return $ruleWithEmbedded;
 				}
 			}, $source );
