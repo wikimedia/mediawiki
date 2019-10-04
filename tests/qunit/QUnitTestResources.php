@@ -1,10 +1,8 @@
 <?php
-
-/* Modules registered when $wgEnableJavaScriptTest is true */
+// These modules are only registered when $wgEnableJavaScriptTest is true
+// phpcs:disable Generic.Files.LineLength
 
 return [
-
-	/* Utilities */
 
 	'jquery.qunit' => [
 		'scripts' => 'resources/lib/qunitjs/qunit.js',
@@ -15,34 +13,27 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
-	'test.sinonjs' => [
+	'sinonjs' => [
 		'scripts' => [
-			'tests/qunit/suites/resources/test.sinonjs/index.js',
+			'tests/qunit/data/sinonjs-local.js',
 			'resources/lib/sinonjs/sinon.js',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
-	'test.mediawiki.qunit.testrunner' => [
+	'mediawiki.qunit-testrunner' => [
 		'scripts' => [
 			'tests/qunit/data/testrunner.js',
 		],
 		'dependencies' => [
-			// Test runner configures QUnit but can't have it as dependency,
-			// see SpecialJavaScriptTest::viewQUnit.
 			'mediawiki.page.ready',
 			'mediawiki.page.startup',
-			'test.sinonjs',
+			'sinonjs',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
-	/*
-		Test suites for MediaWiki core modules
-		These must have a dependency on test.mediawiki.qunit.testrunner!
-	*/
-
-	'test.mediawiki.qunit.suites' => [
+	'test.MediaWiki' => [
 		'scripts' => [
 			'tests/qunit/suites/resources/startup.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.accessKeyLabel.test.js',
@@ -92,8 +83,7 @@ return [
 			'tests/qunit/suites/resources/mediawiki.rcfilters/dm.SavedQueryItemModel.test.js',
 			'tests/qunit/suites/resources/mediawiki.rcfilters/dm.SavedQueriesModel.test.js',
 			'tests/qunit/suites/resources/mediawiki.rcfilters/UriProcessor.test.js',
-			'tests/qunit/suites/resources/mediawiki.widgets/' .
-				'MediaSearch/mediawiki.widgets.APIResultsQueue.test.js',
+			'tests/qunit/suites/resources/mediawiki.widgets/MediaSearch/mediawiki.widgets.APIResultsQueue.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.language.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.cldr.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.cookie.test.js',
@@ -130,7 +120,7 @@ return [
 			'mediawiki.inspect',
 			'mediawiki.visibleTimeout',
 			'mediawiki.widgets.MediaSearch',
-			'test.mediawiki.qunit.testrunner',
+			'mediawiki.qunit-testrunner',
 		],
 	]
 ];

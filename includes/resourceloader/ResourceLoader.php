@@ -415,7 +415,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			}
 
 			// Ensure the testrunner loads before any test suites
-			$module['dependencies'][] = 'test.mediawiki.qunit.testrunner';
+			$module['dependencies'][] = 'mediawiki.qunit-testrunner';
 
 			// Keep track of the test suites to load on SpecialJavaScriptTest
 			$testSuiteModuleNames[] = $name;
@@ -423,7 +423,7 @@ class ResourceLoader implements LoggerAwareInterface {
 
 		// Core test suites (their names have further precedence).
 		$testModules = ( include "$IP/tests/qunit/QUnitTestResources.php" ) + $testModules;
-		$testSuiteModuleNames[] = 'test.mediawiki.qunit.suites';
+		$testSuiteModuleNames[] = 'test.MediaWiki';
 
 		$this->register( $testModules );
 		$this->testSuiteModuleNames = $testSuiteModuleNames;
