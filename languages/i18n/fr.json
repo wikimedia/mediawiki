@@ -749,6 +749,7 @@
 	"passwordreset-ignored": "La réinitialisation du mot de passe n’a pas été gérée. Peut-être qu’aucun fournisseur n’a été configuré ?",
 	"passwordreset-invalidemail": "Adresse de messagerie non valide",
 	"passwordreset-nodata": "Aucun nom d’utilisateur ou adresse de messagerie n’a été fourni",
+	"passwordreset-username-email-required": "Le nom utilisateur et l’adresse de messagerie sont obligatoires pour recevoir un mot de passe temporaire via courriel.",
 	"changeemail": "Changer ou supprimer l’adresse de courriel",
 	"changeemail-header": "Complétez ce formulaire pour modifier votre adresse de courriel. Si vous voulez supprimer l’association d’une adresse de courriel avec votre compte, laissez la nouvelle adresse de courriel vide lors de la soumission du formulaire.",
 	"changeemail-no-info": "Vous devez être connecté pour pouvoir accéder directement à cette page.",

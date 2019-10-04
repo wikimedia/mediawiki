@@ -61,7 +61,6 @@
 	"config-env-good": "הסביבה שלכם נבדקה.\nאפשר להתקין מדיה־ויקי.",
 	"config-env-bad": "הסביבה שלכם נבדקה.\nאי־אפשר להתקין מדיה־ויקי.",
 	"config-env-php": "מותקנת <span dir=\"ltr\">PHP $1</span>.",
-	"config-env-hhvm": "מותקנת <span dir=\"ltr\">HHVM $1</span>.",
 	"config-unicode-using-intl": "משתמש ב[https://php.net/manual/en/book.intl.php הרחבת PHP intl] לנרמול יוניקוד.",
 	"config-unicode-pure-php-warning": "<strong>אזהרה:</strong> [https://pecl.php.net/intl הרחבת intl PECL] אינה זמינה לטיפול בנרמול יוניקוד. משתמש ביישום PHP טהור ואטי יותר.\nאם זהו אתר בעל תעבורה גבוהה, כדאי לקרוא את המסמך הבא: [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode normalization].",
 	"config-unicode-update-warning": "'''אזהרה''': הגרסה המותקנת של מעטפת נרמול יוניקוד משתמשת בגרסה ישנה של הספרייה של [http://site.icu-project.org/ פרויקט ICU].\nכדאי [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations לעדכן] אם הטיפול ביוניקוד חשוב לך.",

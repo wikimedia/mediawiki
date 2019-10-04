@@ -64,7 +64,6 @@
 	"config-env-good": "Перевірку середовища успішно завершено.\nВи можете встановити MediaWiki.",
 	"config-env-bad": "Було проведено перевірку середовища. Ви не можете встановити MediaWiki.",
 	"config-env-php": "Встановлено версію PHP: $1.",
-	"config-env-hhvm": "HHVM $1  встановлено.",
 	"config-unicode-using-intl": "За допомогою [https://php.net/manual/en/book.intl.php PHP-розширення intl] для нормалізації Юнікоду.",
 	"config-unicode-pure-php-warning": "'''Увага''': [https://php.net/manual/en/book.intl.php PHP-розширення intl] не може провести нормалізацію Юнікоду.\nЯкщо ваш сайт має високий трафік, вам варто почитати про [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations нормалізацію Юнікоду].",
 	"config-unicode-update-warning": "'''Увага''': Встановлена версія обгортки нормалізації Юнікоду використовує стару версію бібліотеки [http://site.icu-project.org/ проекту ICU].\nВи маєте [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations оновити версію], якщо плануєте повноцінно використовувати Юнікод.",

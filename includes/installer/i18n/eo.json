@@ -42,7 +42,6 @@
 	"config-env-good": "La medio estas kontrolita.\nVi povas instali MediaWiki.",
 	"config-env-bad": "La medio estas kontrolita.\nNe eblas instali MediaWiki.",
 	"config-env-php": "PHP $1 estas instalita.",
-	"config-env-hhvm": "HHVM $1 estas instalita.",
 	"config-memory-raised": "La parametro <code>memory_limit</code> de PHP estis $1, ŝanĝita al $2.",
 	"config-apc": "[https://www.php.net/apc APC] estas instalita",
 	"config-apcu": "[https://www.php.net/apcu APCu] estas instalita",

@@ -48,7 +48,6 @@
 	"config-env-good": "Okruženje je provereno.\nMožete da instalirate MediaWiki.",
 	"config-env-bad": "Okruženje je provereno.\nNe možete da instalirate MediaWiki.",
 	"config-env-php": "PHP $1 je instaliran.",
-	"config-env-hhvm": "HHVM $1 je instaliran.",
 	"config-unicode-using-intl": "Koristi se [https://pecl.php.net/intl dodatak intl PECL] za normalizaciju Unikoda.",
 	"config-outdated-sqlite": "<strong>Upozorenje:</strong> imate SQLite $1, koji je niži od najmanje tražene verzije ($2). SQLite će biti nedostupan.",
 	"config-no-fts3": "<strong>Upozorenje:</strong> SQLite je kompajliran bez [//sqlite.org/fts3.html FTS3 modula], funkcije pretrage biće nedostupne na ovoj bazi podataka.",

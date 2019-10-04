@@ -698,6 +698,7 @@
 	"passwordreset-ignored": "A redefinição da senha não foi realizada. Talvez o provedor não tenha sido configurado?",
 	"passwordreset-invalidemail": "Endereço de e-mail inválido",
 	"passwordreset-nodata": "Não foram fornecidos nome de usuário nem endereço de e-mail",
+	"passwordreset-username-email-required": "O nome de usuário e o endereço de e-mail são necessários para receber uma senha temporária por e mail.",
 	"changeemail": "Alterar ou remover endereço de email",
 	"changeemail-header": "Preencha este formulário para alterar seu endereço de e-mail. Se você gostaria de remover a associação de qualquer endereço de e-mail da sua conta, deixe o novo endereço de email em branco quando enviar o formulário.",
 	"changeemail-no-info": "Para acessar diretamente esta página você tem de estar autenticado.",

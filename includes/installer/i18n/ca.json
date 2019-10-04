@@ -60,7 +60,6 @@
 	"config-env-good": "S'ha comprovat l'entorn.\nPodeu instal·lar el MediaWiki.",
 	"config-env-bad": "S'ha comprovat l'entorn.\nNo podeu instal·lar el MediaWiki.",
 	"config-env-php": "El PHP $1 està instal·lat.",
-	"config-env-hhvm": "L’HHVM $1 és instal·lat.",
 	"config-unicode-using-intl": "S'utilitza l'[https://php.net/manual/en/book.intl.php extensió intl de PHP] per a la normalització de l'Unicode.",
 	"config-unicode-pure-php-warning": "<strong>Avís:</strong> L'[https://php.net/manual/en/book.intl.php extensió intl de PHP] no és disponible per gestionar la normalització d'Unicode. Es reverteix a una implementació més lenta en PHP pur.\nSi administreu un lloc web amb molt de trànsit, hauríeu de consultar la guia de [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations normalització d'Unicode].",
 	"config-unicode-update-warning": "<strong>Avís:</strong> La versió instal·lada del contenidor de normalització d'Unicode utilitza una versió antiga de la biblioteca [http://site.icu-project.org/ del projecte ICU].\nHauríeu [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations d'actualitzar-la] si us importa poder utilitzar Unicode.",

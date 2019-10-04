@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Helix84",
-			"Teslaton"
+			"Teslaton",
+			"Vlad5250"
 		]
 	},
 	"exif-imagewidth": "Šírka",
@@ -187,6 +188,7 @@
 	"exif-compression-4": "CCITT Group 4 faxové kódovanie",
 	"exif-copyrighted-true": "Chránené autorským právom",
 	"exif-copyrighted-false": "Príznak ochrany autorským právom nenastavený",
+	"exif-photometricinterpretation-0": "Čierna a biela (biela je 0)",
 	"exif-photometricinterpretation-1": "Čierna a biela (čierna je 0)",
 	"exif-unknowndate": "Neznámy dátum",
 	"exif-orientation-1": "Normálna",

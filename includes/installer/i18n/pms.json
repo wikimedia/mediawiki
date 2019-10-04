@@ -53,7 +53,6 @@
 	"config-env-good": "L'ambient a l'é stàit controlà.\nIt peule instalé MediaWiki.",
 	"config-env-bad": "L'ambient a l'é stàit controlà.\nIt peule pa instalé MediaWiki.",
 	"config-env-php": "PHP $1 a l'é instalà.",
-	"config-env-hhvm": "HHVM $1 a l'é instalà.",
 	"config-unicode-using-intl": "As deuvra l'[https://pecl.php.net/intl estension intl PECL] për la normalisassion Unicode.",
 	"config-unicode-pure-php-warning": "'''Avis:''' L'[https://pecl.php.net/intl estension intl PECL] a l'é pa disponìbil për gestì la normalisassion Unicode, da già che l'implementassion an PHP pur a faliss për lentëssa.\nS'a gestiss un sit a àut tràfich, a dovrìa lese cheicòs an sla [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations normalisassion Unicode].",
 	"config-unicode-update-warning": "'''Avis:''' La version instalà dlë spassiador ëd normalisassion Unicode a deuvra na version veja ëd la librarìa dël [http://site.icu-project.org/ proget ICU].\nA dovrìa fé n'[https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations agiornament] s'a l'é anteressà a dovré Unicode.",

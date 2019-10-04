@@ -37,7 +37,6 @@
 	"config-sidebar-license": "Stoche a copie",
 	"config-sidebar-upgrade": "Aggiornamende",
 	"config-env-php": "PHP $1 ha state installate.",
-	"config-env-hhvm": "HHVM $1 ha state installate.",
 	"config-outdated-sqlite": "<strong>Iapre l'uecchjie:</strong> tu è SQLite $2, ca jè 'na versione troppe vecchie respette a quedda minime $1. SQLite non g'è disponibbele.",
 	"config-db-type": "Tipe de database:",
 	"config-db-username": "Nome utende d'u database:",

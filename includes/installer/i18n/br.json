@@ -51,7 +51,6 @@
 	"config-env-good": "Gwiriet eo bet an endro.\nGallout a rit staliañ MediaWiki.",
 	"config-env-bad": "Gwiriet eo bet an endro.\nNe c'hallit ket staliañ MediaWiki.",
 	"config-env-php": "Staliet eo PHP $1.",
-	"config-env-hhvm": "HHVM $1 zo staliet.",
 	"config-unicode-using-intl": "Oc'h implijout [https://pecl.php.net/intl an astenn PECL intl] evit ar reolata Unicode.",
 	"config-unicode-pure-php-warning": "<strong>Diwallit</strong> : N'haller ket ober gant an [https://pecl.php.net/intl intl astenn PECL] evit merañ reoladur Unicode; distreiñ d'ar stumm gorrek emplementet e PHP-rik.\nMa rit war-dro ul lec'hienn darempredet-stank e vo mat deoc'h lenn un tammig bihan diwar-benn se war [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations reolennadur Unicode].",
 	"config-unicode-update-warning": "'''Diwallit''': ober a ra stumm staliet endalc'her skoueriekaat Unicode gant ur stumm kozh eus [http://site.icu-project.org/ levraoueg meziantoù ar raktres ICU].\nDleout a rafec'h [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations hizivaat] ma seblant deoc'h bezañ pouezus ober gant Unicode.",

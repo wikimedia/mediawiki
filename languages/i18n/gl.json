@@ -371,6 +371,7 @@
 	"perfcached": "Esta información é da memoria caché e pode ser que non estea completamente actualizada. Hai un máximo de {{PLURAL:$1|$1 resultado dispoñible|$1 resultados dispoñibles}} na caché.",
 	"perfcachedts": "Esta información é da memoria caché. Última actualización: $2 ás $3. Hai un máximo de {{PLURAL:$4|$4 resultado dispoñible|$4 resultados dispoñibles}} na caché.",
 	"querypage-no-updates": "Neste momento están desactivadas as actualizacións nesta páxina. O seu contido non se modificará.",
+	"querypage-updates-periodical": "Esta páxina actualízase periodicamente.",
 	"viewsource": "Ver o código fonte",
 	"viewsource-title": "Ver o código fonte de \"$1\"",
 	"actionthrottled": "Acción limitada",
@@ -606,6 +607,7 @@
 	"passwordreset-ignored": "Non se puido completar o restablecemento do contrasinal. Quizais non configurou o provedor?",
 	"passwordreset-invalidemail": "O enderezo de correo electrónico non é válido",
 	"passwordreset-nodata": "Non se indicou nin un nome de usuario nin un enderezo de correo electrónico",
+	"passwordreset-username-email-required": "Tanto o nome de usuario coma o enderezo de correo electrónico son necesarios para recibir un contrasinal temporal vía correo electrónico.",
 	"changeemail": "Cambiar ou eliminar o enderezo de correo electrónico",
 	"changeemail-header": "Encha este formulario para cambiar o seu enderezo de correo electrónico. Se quere eliminar a asociación do enderezo de correo electrónico á súa conta, deixe en branco o novo enderezo de correo electrónico cando envíe o formulario.",
 	"changeemail-no-info": "Debe rexistrarse para acceder directamente a esta páxina.",
@@ -1833,6 +1835,7 @@
 	"listfiles-userdoesnotexist": "A conta de usuario \"$1\" non está rexistrada.",
 	"imgfile": "ficheiro",
 	"listfiles": "Lista de ficheiros",
+	"listfiles_subpage": "Ficheiros subidos por $1",
 	"listfiles_thumb": "Miniatura",
 	"listfiles_date": "Data",
 	"listfiles_name": "Nome",
@@ -3260,6 +3263,7 @@
 	"version-poweredby-credits": "Este wiki está desenvolvido por '''[https://www.mediawiki.org/wiki/MediaWiki/gl MediaWiki]''', dereitos de autoría © 2001-$1 $2.",
 	"version-poweredby-others": "outros",
 	"version-poweredby-translators": "os tradutores de translatewiki.net",
+	"version-poweredby-various": "Varios autores",
 	"version-credits-summary": "Queremos recoñecer as seguintes persoas polas súas achegas a [[Special:Version|MediaWiki]].",
 	"version-license-info": "MediaWiki é software libre; pode redistribuílo e/ou modificalo segundo os termos da licenza pública xeral GNU publicada pola Free Software Foundation; versión 2 ou (na súa escolla) calquera outra posterior.\n\nMediaWiki distribúese coa esperanza de que poida ser útil, pero <em>SEN GARANTÍA NINGUNHA</em>; nin sequera a garantía implícita de <strong>COMERCIALIZACIÓN</strong> ou <strong>ADECUACIÓN A UNHA FINALIDADE ESPECÍFICA</strong>. Olle a licenza pública xeral GNU para obter máis detalles.\n\nDebería recibir [{{SERVER}}{{SCRIPTPATH}}/COPYING unha copia da licenza pública xeral GNU] xunto ao programa; se non é así, escriba á Free Software Foundation, Inc., rúa Franklin, número 51, quinto andar, Boston, Massachusetts, 02110-1301, Estados Unidos de América ou [//www.gnu.org/licenses/old-licenses/gpl-2.0.html lea a licenza en liña].",
 	"version-software": "Software instalado",
@@ -3896,5 +3900,8 @@
 	"mycustomjsredirectprotected": "Non ten permiso para editar esta páxina JavaScript porque é unha redirección e non apunta cara ó seu propio espazo de usuario.",
 	"easydeflate-invaliddeflate": "O contido fornecido non está debidamente comprimido",
 	"unprotected-js": "Por motivos de seguridade non se pode cargar JavaScript desde páxinas non protexidas. Por favor, cree só JavaScript no espazo de nomes MediaWiki ou como subpáxina de usuario",
-	"userlogout-continue": "Quere rematar a sesión?"
+	"userlogout-continue": "Quere rematar a sesión?",
+	"rest-prefix-mismatch": "O camiño solicitado ($1) non estaba no interior do camiño raíz da API REST ($2)",
+	"rest-wrong-method": "O método solicitado ($1) non era ̺{{PLURAL:$3|o método permitido para este camiño|un dos métodos permitidos para este camiño}} ($2)",
+	"rest-no-match": "O camiño relativo solicitado ($1) non corresponde con ningún manexador coñecido"
 }

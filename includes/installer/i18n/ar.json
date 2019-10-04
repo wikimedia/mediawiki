@@ -60,7 +60,6 @@
 	"config-env-good": "جرى التحقق من البيئة.\nيمكنك تنصيب ميدياويكي.",
 	"config-env-bad": "جرى التحقق من البيئة. لا يمكنك تنصيب ميدياويكي.",
 	"config-env-php": "بي إتش بي $1 مثبت.",
-	"config-env-hhvm": "نصبت HHVM $1.",
 	"config-unicode-using-intl": "باستخدام [https://php.net/manual/en/book.intl.php امتداد PHP intl] لتسوية يونيكود.",
 	"config-unicode-pure-php-warning": "<strong>تحذير:</strong> لا يتوفر [https://php.net/manual/en/book.intl.php امتداد PHP intl] للتعامل مع تطبيع يونيكود; حيث يتراجع لإبطاء تنفيذ Pure-Pure;\nإذا كنت تدير موقعا عالي الزيارات، فتجب عليك القراءة قليلا في [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations تطبيع يونيكود].",
 	"config-unicode-update-warning": "<strong>تحذير:</strong> يستخدم الإصدار المثبت من برنامج تطبيع نظام يونيكود إصدارًا قديما من مكتبة [http://site.icu-project.org/ مشروع ICU];\nتجب عليك [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations الترقية] إذا كنت مهتما باستخدام يونيكود.",

@@ -52,7 +52,6 @@
 	"config-env-good": "ตรวจสอบสภาพแวดล้อมแล้ว\nคุณสามารถติดตั้ง MediaWiki",
 	"config-env-bad": "ตรวจสอบสภาพแวดล้อมแล้ว\nคุณไม่สามารถติดตั้ง MediaWiki",
 	"config-env-php": "มี PHP $1 ติดตั้งอยู่",
-	"config-env-hhvm": "มี HHVM $1 ติดตั้งอยู่",
 	"config-unicode-using-intl": "ใช้[https://pecl.php.net/intl ส่วนขยาย intl PECL] สำหรับการปรับ Unicode เข้าสู่รูปปกติ (Unicode normalization)",
 	"config-unicode-pure-php-warning": "<strong>คำเตือน:</strong> [https://pecl.php.net/intl intl ส่วนขยาย PECL] ไม่พร้อมใช้งานสำหรับการจัดมาตรฐาน Unicode กำลังกลับไปใช้ PHP ที่แท้จริงแบบช้า\nถ้าคุณเปิดดำเนินการไซต์ที่มีปริมาณการใช้งานสูง คุณควรอ่านดูเกี่ยวกับ[https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations การจัดมาตรฐาน Unicode] สักเล็กน้อย",
 	"config-no-db": "ไม่พบไดรเวอร์ฐานข้อมูลที่เหมาะสม! คุณจำเป็นต้องติดตั้งไดรเวอร์ฐานข้อมูลสำหรับ PHP\nชนิดฐานข้อมูลต่อไปนี้ได้รับการสนับสนุน: $1\n\nถ้าคุณคอมไพล์ PHP ด้วยตนเอง ให้กำหนดค่าใหม่อีกครั้งโดยเปิดใช้งานไคลเอนต์ฐานข้อมูล ตัวอย่างเช่น ใช้ <code>./configure --with-mysqli</code>\nถ้าคุณติดตั้ง PHP จากแพกเกจ Debian หรือ Ubuntu คุณก็จำเป็นต้องติดตั้งแพกเกจต่อไปนี้ ตัวอย่างเช่น แพกเกจ <code>php-mysql</code>",

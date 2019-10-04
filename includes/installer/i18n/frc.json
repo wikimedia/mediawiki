@@ -27,7 +27,6 @@
 	"config-page-existingwiki": "Wiki existant",
 	"config-restart": "Oui, le relancer",
 	"config-env-php": "PHP $1 est installé.",
-	"config-env-hhvm": "HHVM $1 est installé.",
 	"config-unicode-using-intl": "Utilisation de [https://pecl.php.net/intl l'extension PECL intl] pour la normalisation Unicode.",
 	"config-diff3-bad": "GNU diff3 introuvable.",
 	"config-db-username": "Nom d’useur de la base de données:",

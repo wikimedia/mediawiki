@@ -53,7 +53,6 @@
 	"config-env-good": "Nasuri na ang kapaligiran.\nMailuluklok mo ang MediaWiki.",
 	"config-env-bad": "Nasuri na ang kapaligiran.\nHindi mo mailuklok ang MediaWiki.",
 	"config-env-php": "Naitalaga ang PHP na $1.",
-	"config-env-hhvm": "Naka-install ang HHVM $1.",
 	"config-unicode-using-intl": "Ginagamit ang [https://pecl.php.net/intl intl dugtong na PECL] para sa pagsasanormal ng Unikodigo.",
 	"config-unicode-pure-php-warning": "'''Babala''': Ang [https://pecl.php.net/intl dugtong ng internasyunal na PECL] ay hindi makukuha upang makapanghawak ng pagpapanormal ng Unikodigo, na babagsak na pabalik sa mabagal na pagsasakatuparan ng dalisay na PHP.\nKapag nagpapatakbo ka ng isang pook na mataas ang trapiko, dapat kang bumasa ng kaunti hinggil sa [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations pagpapanormal ng Unikodigo].",
 	"config-unicode-update-warning": "'''Babala''': Ang nakaluklok na bersiyon ng pambalot ng pagpapanormal ng Unikodigo ay gumagamit ng isang mas matandang bersiyon ng aklatan ng [http://site.icu-project.org/ proyekto ng ICU].\nDapat kang [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations magtaas ng uri] kung may pag-aalala ka hinggil sa paggamit ng Unikodigo.",

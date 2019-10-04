@@ -58,7 +58,6 @@
 	"config-env-good": "Đã kiểm tra môi trường.\nBạn có thể cài đặt MediaWiki.",
 	"config-env-bad": "Đã kiểm tra môi trường.\nBạn không thể cài đặt MediaWiki.",
 	"config-env-php": "PHP $1 đã được cài đặt.",
-	"config-env-hhvm": "HHVM $1 được cài đặt.",
 	"config-unicode-using-intl": "Sẽ sử dụng [https://pecl.php.net/intl phần mở rộng PECL intl] để chuẩn hóa Unicode.",
 	"config-unicode-pure-php-warning": "<strong>Cảnh báo:</strong>  [https://pecl.php.net/intl PECL intl extension] không được phép xử lý Unicode chuẩn hóa, trả lại thực thi PHP-gốc chậm.\nNếu bạn chạy một site lưu lượng lớn, bạn nên đọc qua  [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations chuẩn hóa Unicode].",
 	"config-unicode-update-warning": "<strong>Cảnh báo:</strong> Phiên bản cài đặt của gói Unicode chuẩn hóa sử dụng một phiên bản cũ của thư viện [http://site.icu-project.org/ the ICU project].\nBạn phải [https://www.mediawiki.org/wiki/Special:MyLanguage/nâng cấp Unicode_normalization_considerations] nếu bạn quan tâm đến việc sử dụng Unicode.",

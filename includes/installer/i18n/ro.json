@@ -59,7 +59,6 @@
 	"config-env-good": "Verificarea mediului a fost efectuată cu succes.\nPuteți instala MediaWiki.",
 	"config-env-bad": "Verificarea mediului a fost efectuată.\nNu puteți instala MediaWiki.",
 	"config-env-php": "PHP $1 este instalat.",
-	"config-env-hhvm": "HHVM $1 este instalat.",
 	"config-unicode-using-intl": "Se folosește extensia [https://php.net/manual/en/book.intl.php PHP intl] pentru normalizarea Unicode.",
 	"config-unicode-pure-php-warning": "<strong>Atenție:</strong> Extensia [https://php.net/manual/en/book.intl.php PHP intl] nu este disponibilă pentru a procesa normalizarea Unicode, se folosește o implementare lentă pur PHP.\nDacă rulați un site cu trafic ridicat, ar trebui să citiți despre [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Normalizarea Unicode].",
 	"config-unicode-update-warning": "<strong>Avertisment:</strong> Versiunea instalată a pachetului de normalizare Unicode utilizează o versiune mai veche a bibliotecii [http://site.icu-project.org/ proiectul ICU].\nAr trebui să faceți upgrade [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations] dacă sunteți preocupat de utilizarea Unicode.",

@@ -62,7 +62,6 @@
 	"config-env-good": "Prostředí bylo zkontrolováno.\nMůžete nainstalovat MediaWiki.",
 	"config-env-bad": "Prostředí bylo zkontrolováno.\nMediaWiki nelze nainstalovat.",
 	"config-env-php": "Je nainstalováno PHP $1.",
-	"config-env-hhvm": "Je nainstalováno HHVM $1.",
 	"config-unicode-using-intl": "Pro normalizaci Unicode se používá [https://php.net/manual/en/book.intl.php rozšíření PHP intl].",
 	"config-unicode-pure-php-warning": "<strong>Upozornění:</strong> Není dostupné [https://php.net/manual/en/book.intl.php rozšíření PHP intl] pro normalizaci Unicode, bude se využívat pomalá implementace v čistém PHP.\nPokud provozujete wiki s velkou návštěvností, měli byste si přečíst o [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations normalizaci Unicode].",
 	"config-unicode-update-warning": "<strong>Upozornění:</strong> Nainstalovaná verze vrstvy pro normalizaci Unicode používá starší verzi knihovny [http://site.icu-project.org/ projektu ICU].\nPokud vám aspoň trochu záleží na používání Unicode, měli byste [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations ji aktualizovat].",

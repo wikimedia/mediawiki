@@ -72,7 +72,6 @@
 	"config-env-good": "L'ambiente è stato controllato.\nÈ possibile installare MediaWiki.",
 	"config-env-bad": "L'ambiente è stato controllato.\nNon è possibile installare MediaWiki.",
 	"config-env-php": "PHP $1 è installato.",
-	"config-env-hhvm": "HHVM $1 è installato.",
 	"config-unicode-using-intl": "Usa [https://php.net/manual/en/book.intl.php l'estensione PHP intl] per la normalizzazione Unicode.",
 	"config-unicode-pure-php-warning": "<strong>Attenzione:</strong> [https://php.net/manual/en/book.intl.php l'estensione PHP intl] non è disponibile per gestire la normalizzazione Unicode, quindi si torna alla lenta implementazione in PHP puro.\nSe esegui un sito ad alto traffico, dovresti leggere [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations normalizzazione Unicode].",
 	"config-unicode-update-warning": "'''Attenzione:''' la versione installata del gestore per la normalizzazione Unicode usa una vecchia versione della libreria [http://site.icu-project.org/ del progetto ICU].\nDovresti [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations aggiornare] se vuoi usare l'Unicode.",

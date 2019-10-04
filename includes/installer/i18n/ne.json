@@ -35,7 +35,6 @@
 	"config-page-existingwiki": "विकि बन्द हुदै",
 	"config-restart": "हुन्छ, पुनः सुचारू गर्ने",
 	"config-env-php": "PHP $1 स्थापना गरिएको छ ।",
-	"config-env-hhvm": "HHVM $1 स्थापना गरिएको छ ।",
 	"config-db-type": "डाटाबेस प्रकारः",
 	"config-db-host": "डेटाबेस होस्ट:",
 	"config-db-name": "डाटाबेस नामः",

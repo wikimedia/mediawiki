@@ -57,7 +57,6 @@
 	"config-env-good": "Асяродзьдзе было праверанае.\nВы можаце ўсталёўваць MediaWiki.",
 	"config-env-bad": "Асяродзьдзе было праверанае.\nУсталяваньне MediaWiki немагчымае.",
 	"config-env-php": "Усталяваны PHP $1.",
-	"config-env-hhvm": "HHVM $1 усталяваная.",
 	"config-unicode-using-intl": "Выкарыстоўваецца [https://php.net/manual/en/book.intl.php PHP-пашырэньне intl] для Unicode-нармалізацыі.",
 	"config-unicode-pure-php-warning": "<strong>Папярэджаньне</strong>: [https://php.net/manual/en/book.intl.php PHP-пашырэньне intl] — ня слушнае для Unicode-нармалізацыі, цяпер выкарыстоўваецца марудная PHP-рэалізацыя.\nКалі ў вас сайт з высокай наведвальнасьцю, раім пачытаць пра [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode-нармалізацыю].",
 	"config-unicode-update-warning": "'''Папярэджаньне''': усталяваная вэрсія бібліятэкі для Unicode-нармалізацыі выкарыстоўвае састарэлую вэрсію бібліятэкі з [http://site.icu-project.org/ праекту ICU].\nРаім [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations абнавіць], калі ваш сайт будзе працаваць з Unicode.",

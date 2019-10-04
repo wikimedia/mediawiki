@@ -72,7 +72,6 @@
 	"config-env-good": "De omgeving is gecontroleerd.\nU kunt MediaWiki installeren.",
 	"config-env-bad": "De omgeving is gecontroleerd.\nU kunt MediaWiki niet installeren.",
 	"config-env-php": "PHP $1 is geïnstalleerd.",
-	"config-env-hhvm": "HHVM $1 is geïnstalleerd.",
 	"config-unicode-using-intl": "Voor Unicode-normalisatie wordt de [https://php.net/manual/en/book.intl.php PHP-extensie intl] gebruikt.",
 	"config-unicode-pure-php-warning": "<strong>Waarschuwing:</strong> de [https://php.net/manual/en/book.intl.php PHP-uitbreiding intl] is niet beschikbaar om de Unicodenormalisatie af te handelen en daarom wordt de langzamere PHP-implementatie gebruikt.\nAls u MediaWiki voor een website met veel verkeer installeert, lees u dan in over [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicodenormalisatie].",
 	"config-unicode-update-warning": "<strong>Waarschuwing:</strong> de geïnstalleerde versie van de Unicodenormalisatiewrapper maakt gebruik van een oudere versie van [http://site.icu-project.org/ de bibliotheek van het ICU-project].\nU moet [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations bijwerken] als Unicode voor u van belang is.",

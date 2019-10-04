@@ -51,7 +51,6 @@
 	"config-env-good": "Ingurumena egiaztatu egin da. \nMediaWiki instalatu ahal duzu.",
 	"config-env-bad": "Ingurumena egiaztatu egin da.\nEzin duzu MediaWiki-a instalatu.",
 	"config-env-php": "PHP $1 instalatuta dago.",
-	"config-env-hhvm": "HHVM $1 instalatuta dago.",
 	"config-unicode-using-intl": "[https://pecl.php.net/intl intl PECL extension] erabiltzen Unicode-ren normalizaziorako.",
 	"config-unicode-pure-php-warning": "<strong>Oharra:</strong> [https://pecl.php.net/intl intl PECL extension] ez dago prest Unicode-ren normalizazioa jasatzeko,PHP hutsaren ezarpena motelara itzultzen.\n\nTrafiko handiko gune bat exekutatzen baduzu, apur bat irakurri beharko zenuke [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode normalization]-ri buruz.",
 	"config-unicode-update-warning": "<strong>Oharra:</strong> Unicode-ren normalizazioaren bilgarriaren bertsio instalatua [http://site.icu-project.org/ ICU proiektuaren] liburutegia bertsio zaharrago bat erabiltzen du.\n[Https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations upgrade] behar duzu Unicode erabiltzeagatik kezkatuta bazaude.",
