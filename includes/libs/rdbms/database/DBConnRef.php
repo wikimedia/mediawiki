@@ -466,7 +466,7 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function buildLike( $param ) {
+	public function buildLike( $param, ...$params ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
