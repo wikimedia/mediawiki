@@ -172,10 +172,6 @@ img {
 	text-align: center;
 	display: inline-block;
 	display: table;
-
-	/* IE7 and earlier */
-	zoom: 1;
-	*display: inline; /* stylelint-disable-line declaration-block-no-duplicate-properties */
 }
 
 /* CSS for backwards-compatibility with cached page renders and creative uses in wikitext */
