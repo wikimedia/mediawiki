@@ -43,6 +43,10 @@ define( 'RUN_MAINTENANCE_IF_MAIN', __DIR__ . '/doMaintenance.php' );
  */
 define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN ); // original name, harmless
 
+/**
+ * @var string|false
+ * @phan-var class-string|false
+ */
 $maintClass = false;
 
 // Some extensions rely on MW_INSTALL_PATH to find core files to include. Setting it here helps them

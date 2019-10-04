@@ -544,12 +544,6 @@ class MWDebug {
 		global $wgVersion;
 		$request = $context->getRequest();
 
-		// HHVM's reported memory usage from memory_get_peak_usage()
-		// is not useful when passing false, but we continue passing
-		// false for consistency of historical data in zend.
-		// see: https://github.com/facebook/hhvm/issues/2257#issuecomment-39362246
-		$realMemoryUsage = wfIsHHVM();
-
 		$branch = GitInfo::currentBranch();
 		if ( GitInfo::isSHA1( $branch ) ) {
 			// If it's a detached HEAD, the SHA1 will already be
@@ -559,8 +553,8 @@ class MWDebug {
 
 		return [
 			'mwVersion' => $wgVersion,
-			'phpEngine' => wfIsHHVM() ? 'HHVM' : 'PHP',
-			'phpVersion' => wfIsHHVM() ? HHVM_VERSION : PHP_VERSION,
+			'phpEngine' => 'PHP',
+			'phpVersion' => PHP_VERSION,
 			'gitRevision' => GitInfo::headSHA1(),
 			'gitBranch' => $branch,
 			'gitViewUrl' => GitInfo::headViewUrl(),
@@ -574,8 +568,8 @@ class MWDebug {
 				'headers' => $request->getAllHeaders(),
 				'params' => $request->getValues(),
 			],
-			'memory' => $context->getLanguage()->formatSize( memory_get_usage( $realMemoryUsage ) ),
-			'memoryPeak' => $context->getLanguage()->formatSize( memory_get_peak_usage( $realMemoryUsage ) ),
+			'memory' => $context->getLanguage()->formatSize( memory_get_usage() ),
+			'memoryPeak' => $context->getLanguage()->formatSize( memory_get_peak_usage() ),
 			'includes' => self::getFilesIncluded( $context ),
 		];
 	}

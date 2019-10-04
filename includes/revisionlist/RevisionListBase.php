@@ -20,7 +20,7 @@
  * @file
  */
 
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -33,7 +33,7 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 	/** @var array */
 	protected $ids;
 
-	/** @var ResultWrapper|bool */
+	/** @var IResultWrapper|bool */
 	protected $res;
 
 	/** @var bool|Revision */
