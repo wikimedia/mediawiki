@@ -454,6 +454,13 @@
 						"type": "string"
 					}
 				},
+				"packageFiles": {
+					"type": ["array"],
+					"description": "Scripts to include (array of file paths)",
+					"items": {
+						"type": "string"
+					}
+				},
 				"dependencies": {
 					"type": ["string", "array"],
 					"description": "Modules which must be loaded before this module",
@@ -464,6 +471,13 @@
 				"styles": {
 					"type": ["string", "array", "object"],
 					"description": "Styles to load",
+					"items": {
+						"type": "string"
+					}
+				},
+				"templates": {
+					"type": ["object"],
+					"description": "templates to load",
 					"items": {
 						"type": "string"
 					}
