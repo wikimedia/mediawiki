@@ -1,0 +1,1163 @@
+{
+    "@": "Last generated with generateJqueryMsgData.php at Thu, 23 Apr 2020 20:59:43 +0000",
+    "messages": {
+        "en_undelete_short": "Undelete {{PLURAL:$1|one edit|$1 edits}}",
+        "en_category-subcat-count": "{{PLURAL:$2|This category has only the following subcategory.|This category has the following {{PLURAL:$1|subcategory|$1 subcategories}}, out of $2 total.}}",
+        "fr_undelete_short": "Restaurer {{PLURAL:$1|une modification|$1 modifications}}",
+        "fr_category-subcat-count": "Cette cat\u00e9gorie {{PLURAL:$2|0=ne comprend aucune sous-cat\u00e9gorie|1=comprend seulement la sous-cat\u00e9gorie ci-dessous|comprend $2 sous-cat\u00e9gories, dont {{PLURAL:$1|0=aucune|1=celle|les $1}} ci-dessous}}.",
+        "ar_undelete_short": "\u0627\u0633\u062a\u0631\u062c\u0627\u0639 {{PLURAL:$1||\u062a\u0639\u062f\u064a\u0644 \u0648\u0627\u062d\u062f|\u062a\u0639\u062f\u064a\u0644\u064a\u0646|$1 \u062a\u0639\u062f\u064a\u0644\u0627\u062a|$1 \u062a\u0639\u062f\u064a\u0644\u0627\u064b|$1 \u062a\u0639\u062f\u064a\u0644}}",
+        "ar_category-subcat-count": "{{PLURAL:$2|\u0647\u0630\u0627 \u0627\u0644\u062a\u0635\u0646\u064a\u0641 \u064a\u062d\u0648\u064a \u0627\u0644\u062a\u0635\u0646\u064a\u0641 \u0627\u0644\u0641\u0631\u0639\u064a \u0627\u0644\u062a\u0627\u0644\u064a|\u0647\u0630\u0627 \u0627\u0644\u062a\u0635\u0646\u064a\u0641 \u064a\u062d\u0648\u064a {{PLURAL:$1||\u0627\u0644\u062a\u0635\u0646\u064a\u0641 \u0627\u0644\u0641\u0631\u0639\u064a|\u062a\u0635\u0646\u064a\u0641\u064a\u0646 \u0641\u0631\u0639\u064a\u064a\u0646|$1 \u062a\u0635\u0646\u064a\u0641\u0627\u062a \u0641\u0631\u0639\u064a\u0629}}\u060c \u0645\u0646 \u0625\u062c\u0645\u0627\u0644\u064a $2.}}",
+        "jp_undelete_short": "Undelete {{PLURAL:$1|one edit|$1 edits}}",
+        "jp_category-subcat-count": "{{PLURAL:$2|This category has only the following subcategory.|This category has the following {{PLURAL:$1|subcategory|$1 subcategories}}, out of $2 total.}}",
+        "zh_undelete_short": "\u8fd8\u539f$1\u6b21\u7f16\u8f91",
+        "zh_category-subcat-count": "{{PLURAL:$2|\u672c\u5206\u7c7b\u53ea\u6709\u4ee5\u4e0b\u5b50\u5206\u7c7b\u3002|\u672c\u5206\u7c7b\u6709\u4ee5\u4e0b$1\u4e2a\u5b50\u5206\u7c7b\uff0c\u5171\u6709$2\u4e2a\u5b50\u5206\u7c7b\u3002}}",
+        "nl_undelete_short": "{{PLURAL:$1|\u00e9\u00e9n bewerking|$1 bewerkingen}} terugplaatsen",
+        "nl_category-subcat-count": "{{PLURAL:$2|Deze categorie bevat de volgende ondercategorie.|Deze categorie bevat de volgende {{PLURAL:$1|ondercategorie|$1 ondercategorie\u00ebn}}, van een totaal van $2.}}",
+        "ml_undelete_short": "{{PLURAL:$1|\u0d12\u0d30\u0d41 \u0d24\u0d3f\u0d30\u0d41\u0d24\u0d4d\u0d24\u0d4d|$1 \u0d24\u0d3f\u0d30\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d15\u0d7e}} \u0d2a\u0d41\u0d28\u0d03\u0d38\u0d4d\u0d25\u0d3e\u0d2a\u0d3f\u0d15\u0d4d\u0d15\u0d41\u0d15",
+        "ml_category-subcat-count": "{{PLURAL:$2|\u0d08 \u0d35\u0d7c\u0d17\u0d4d\u0d17\u0d24\u0d4d\u0d24\u0d3f\u0d7d \u0d24\u0d3e\u0d34\u0d46 \u0d28\u0d7d\u0d15\u0d3f\u0d2f\u0d3f\u0d30\u0d3f\u0d15\u0d4d\u0d15\u0d41\u0d28\u0d4d\u0d28 \u0d12\u0d30\u0d41 \u0d09\u0d2a\u0d35\u0d7c\u0d17\u0d4d\u0d17\u0d02 \u0d2e\u0d3e\u0d24\u0d4d\u0d30\u0d2e\u0d3e\u0d23\u0d41\u0d33\u0d4d\u0d33\u0d24\u0d4d.|\u0d08 \u0d35\u0d7c\u0d17\u0d4d\u0d17\u0d24\u0d4d\u0d24\u0d3f\u0d7d \u0d06\u0d15\u0d46 $2 \u0d09\u0d2a\u0d35\u0d7c\u0d17\u0d4d\u0d17\u0d19\u0d4d\u0d19\u0d7e \u0d09\u0d33\u0d4d\u0d33\u0d24\u0d3f\u0d7d {{PLURAL:$1|\u0d12\u0d30\u0d41 \u0d09\u0d2a\u0d35\u0d7c\u0d17\u0d4d\u0d17\u0d02|$1 \u0d09\u0d2a\u0d35\u0d7c\u0d17\u0d4d\u0d17\u0d19\u0d4d\u0d19\u0d7e}}, \u0d24\u0d3e\u0d34\u0d46\u0d15\u0d4d\u0d15\u0d4a\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d3f\u0d30\u0d3f\u0d15\u0d4d\u0d15\u0d41\u0d28\u0d4d\u0d28\u0d41.}}",
+        "hi_undelete_short": "{{PLURAL:$1|\u090f\u0915 \u0939\u091f\u093e\u092f\u093e \u0917\u092f\u093e|$1 \u0939\u091f\u093e\u090f \u0917\u090f}} \u092c\u0926\u0932\u093e\u0935 \u0935\u093e\u092a\u0938 \u0932\u093e\u092f\u0947\u0902",
+        "hi_category-subcat-count": "{{PLURAL:$2|\u0907\u0938 \u0936\u094d\u0930\u0947\u0923\u0940 \u092e\u0947\u0902 \u0915\u0947\u0935\u0932 \u0928\u093f\u092e\u094d\u0928\u0932\u093f\u0916\u093f\u0924 \u0909\u092a\u0936\u094d\u0930\u0947\u0923\u0940 \u0939\u0948\u0964|\u0907\u0938 \u0936\u094d\u0930\u0947\u0923\u0940 \u0915\u0940 \u0915\u0941\u0932 $2 \u092e\u0947\u0902 \u0938\u0947 {{PLURAL:$1|\u0909\u092a\u0936\u094d\u0930\u0947\u0923\u0940 \u0928\u093f\u092e\u094d\u0928\u0932\u093f\u0916\u093f\u0924 \u0939\u0948\u0964|$1 \u0909\u092a\u0936\u094d\u0930\u0947\u0923\u093f\u092f\u093e\u0901 \u0928\u093f\u092e\u094d\u0928\u0932\u093f\u0916\u093f\u0924 \u0939\u0948\u0902\u0964}}}}"
+    },
+    "tests": [
+        {
+            "name": "en undelete_short 0",
+            "key": "en_undelete_short",
+            "args": [
+                0
+            ],
+            "result": "Undelete 0 edits",
+            "lang": "en"
+        },
+        {
+            "name": "en undelete_short 1",
+            "key": "en_undelete_short",
+            "args": [
+                1
+            ],
+            "result": "Undelete one edit",
+            "lang": "en"
+        },
+        {
+            "name": "en undelete_short 2",
+            "key": "en_undelete_short",
+            "args": [
+                2
+            ],
+            "result": "Undelete 2 edits",
+            "lang": "en"
+        },
+        {
+            "name": "en undelete_short 5",
+            "key": "en_undelete_short",
+            "args": [
+                5
+            ],
+            "result": "Undelete 5 edits",
+            "lang": "en"
+        },
+        {
+            "name": "en undelete_short 21",
+            "key": "en_undelete_short",
+            "args": [
+                21
+            ],
+            "result": "Undelete 21 edits",
+            "lang": "en"
+        },
+        {
+            "name": "en undelete_short 101",
+            "key": "en_undelete_short",
+            "args": [
+                101
+            ],
+            "result": "Undelete 101 edits",
+            "lang": "en"
+        },
+        {
+            "name": "en category-subcat-count 0,10",
+            "key": "en_category-subcat-count",
+            "args": [
+                0,
+                10
+            ],
+            "result": "This category has the following 0 subcategories, out of 10 total.",
+            "lang": "en"
+        },
+        {
+            "name": "en category-subcat-count 1,1",
+            "key": "en_category-subcat-count",
+            "args": [
+                1,
+                1
+            ],
+            "result": "This category has only the following subcategory.",
+            "lang": "en"
+        },
+        {
+            "name": "en category-subcat-count 1,2",
+            "key": "en_category-subcat-count",
+            "args": [
+                1,
+                2
+            ],
+            "result": "This category has the following subcategory, out of 2 total.",
+            "lang": "en"
+        },
+        {
+            "name": "en category-subcat-count 3,30",
+            "key": "en_category-subcat-count",
+            "args": [
+                3,
+                30
+            ],
+            "result": "This category has the following 3 subcategories, out of 30 total.",
+            "lang": "en"
+        },
+        {
+            "name": "fr undelete_short 0",
+            "key": "fr_undelete_short",
+            "args": [
+                0
+            ],
+            "result": "Restaurer une modification",
+            "lang": "fr"
+        },
+        {
+            "name": "fr undelete_short 1",
+            "key": "fr_undelete_short",
+            "args": [
+                1
+            ],
+            "result": "Restaurer une modification",
+            "lang": "fr"
+        },
+        {
+            "name": "fr undelete_short 2",
+            "key": "fr_undelete_short",
+            "args": [
+                2
+            ],
+            "result": "Restaurer 2 modifications",
+            "lang": "fr"
+        },
+        {
+            "name": "fr undelete_short 5",
+            "key": "fr_undelete_short",
+            "args": [
+                5
+            ],
+            "result": "Restaurer 5 modifications",
+            "lang": "fr"
+        },
+        {
+            "name": "fr undelete_short 21",
+            "key": "fr_undelete_short",
+            "args": [
+                21
+            ],
+            "result": "Restaurer 21 modifications",
+            "lang": "fr"
+        },
+        {
+            "name": "fr undelete_short 101",
+            "key": "fr_undelete_short",
+            "args": [
+                101
+            ],
+            "result": "Restaurer 101 modifications",
+            "lang": "fr"
+        },
+        {
+            "name": "fr category-subcat-count 0,10",
+            "key": "fr_category-subcat-count",
+            "args": [
+                0,
+                10
+            ],
+            "result": "Cette cat\u00e9gorie comprend 10 sous-cat\u00e9gories, dont aucune ci-dessous.",
+            "lang": "fr"
+        },
+        {
+            "name": "fr category-subcat-count 1,1",
+            "key": "fr_category-subcat-count",
+            "args": [
+                1,
+                1
+            ],
+            "result": "Cette cat\u00e9gorie comprend seulement la sous-cat\u00e9gorie ci-dessous.",
+            "lang": "fr"
+        },
+        {
+            "name": "fr category-subcat-count 1,2",
+            "key": "fr_category-subcat-count",
+            "args": [
+                1,
+                2
+            ],
+            "result": "Cette cat\u00e9gorie comprend 2 sous-cat\u00e9gories, dont celle ci-dessous.",
+            "lang": "fr"
+        },
+        {
+            "name": "fr category-subcat-count 3,30",
+            "key": "fr_category-subcat-count",
+            "args": [
+                3,
+                30
+            ],
+            "result": "Cette cat\u00e9gorie comprend 30 sous-cat\u00e9gories, dont les 3 ci-dessous.",
+            "lang": "fr"
+        },
+        {
+            "name": "ar undelete_short 0",
+            "key": "ar_undelete_short",
+            "args": [
+                0
+            ],
+            "result": "\u0627\u0633\u062a\u0631\u062c\u0627\u0639 ",
+            "lang": "ar"
+        },
+        {
+            "name": "ar undelete_short 1",
+            "key": "ar_undelete_short",
+            "args": [
+                1
+            ],
+            "result": "\u0627\u0633\u062a\u0631\u062c\u0627\u0639 \u062a\u0639\u062f\u064a\u0644 \u0648\u0627\u062d\u062f",
+            "lang": "ar"
+        },
+        {
+            "name": "ar undelete_short 2",
+            "key": "ar_undelete_short",
+            "args": [
+                2
+            ],
+            "result": "\u0627\u0633\u062a\u0631\u062c\u0627\u0639 \u062a\u0639\u062f\u064a\u0644\u064a\u0646",
+            "lang": "ar"
+        },
+        {
+            "name": "ar undelete_short 5",
+            "key": "ar_undelete_short",
+            "args": [
+                5
+            ],
+            "result": "\u0627\u0633\u062a\u0631\u062c\u0627\u0639 5 \u062a\u0639\u062f\u064a\u0644\u0627\u062a",
+            "lang": "ar"
+        },
+        {
+            "name": "ar undelete_short 21",
+            "key": "ar_undelete_short",
+            "args": [
+                21
+            ],
+            "result": "\u0627\u0633\u062a\u0631\u062c\u0627\u0639 21 \u062a\u0639\u062f\u064a\u0644\u0627\u064b",
+            "lang": "ar"
+        },
+        {
+            "name": "ar undelete_short 101",
+            "key": "ar_undelete_short",
+            "args": [
+                101
+            ],
+            "result": "\u0627\u0633\u062a\u0631\u062c\u0627\u0639 101 \u062a\u0639\u062f\u064a\u0644",
+            "lang": "ar"
+        },
+        {
+            "name": "ar category-subcat-count 0,10",
+            "key": "ar_category-subcat-count",
+            "args": [
+                0,
+                10
+            ],
+            "result": "\u0647\u0630\u0627 \u0627\u0644\u062a\u0635\u0646\u064a\u0641 \u064a\u062d\u0648\u064a \u060c \u0645\u0646 \u0625\u062c\u0645\u0627\u0644\u064a 10.",
+            "lang": "ar"
+        },
+        {
+            "name": "ar category-subcat-count 1,1",
+            "key": "ar_category-subcat-count",
+            "args": [
+                1,
+                1
+            ],
+            "result": "\u0647\u0630\u0627 \u0627\u0644\u062a\u0635\u0646\u064a\u0641 \u064a\u062d\u0648\u064a \u0627\u0644\u062a\u0635\u0646\u064a\u0641 \u0627\u0644\u0641\u0631\u0639\u064a\u060c \u0645\u0646 \u0625\u062c\u0645\u0627\u0644\u064a 1.",
+            "lang": "ar"
+        },
+        {
+            "name": "ar category-subcat-count 1,2",
+            "key": "ar_category-subcat-count",
+            "args": [
+                1,
+                2
+            ],
+            "result": "\u0647\u0630\u0627 \u0627\u0644\u062a\u0635\u0646\u064a\u0641 \u064a\u062d\u0648\u064a \u0627\u0644\u062a\u0635\u0646\u064a\u0641 \u0627\u0644\u0641\u0631\u0639\u064a\u060c \u0645\u0646 \u0625\u062c\u0645\u0627\u0644\u064a 2.",
+            "lang": "ar"
+        },
+        {
+            "name": "ar category-subcat-count 3,30",
+            "key": "ar_category-subcat-count",
+            "args": [
+                3,
+                30
+            ],
+            "result": "\u0647\u0630\u0627 \u0627\u0644\u062a\u0635\u0646\u064a\u0641 \u064a\u062d\u0648\u064a 3 \u062a\u0635\u0646\u064a\u0641\u0627\u062a \u0641\u0631\u0639\u064a\u0629\u060c \u0645\u0646 \u0625\u062c\u0645\u0627\u0644\u064a 30.",
+            "lang": "ar"
+        },
+        {
+            "name": "jp undelete_short 0",
+            "key": "jp_undelete_short",
+            "args": [
+                0
+            ],
+            "result": "Undelete 0 edits",
+            "lang": "jp"
+        },
+        {
+            "name": "jp undelete_short 1",
+            "key": "jp_undelete_short",
+            "args": [
+                1
+            ],
+            "result": "Undelete one edit",
+            "lang": "jp"
+        },
+        {
+            "name": "jp undelete_short 2",
+            "key": "jp_undelete_short",
+            "args": [
+                2
+            ],
+            "result": "Undelete 2 edits",
+            "lang": "jp"
+        },
+        {
+            "name": "jp undelete_short 5",
+            "key": "jp_undelete_short",
+            "args": [
+                5
+            ],
+            "result": "Undelete 5 edits",
+            "lang": "jp"
+        },
+        {
+            "name": "jp undelete_short 21",
+            "key": "jp_undelete_short",
+            "args": [
+                21
+            ],
+            "result": "Undelete 21 edits",
+            "lang": "jp"
+        },
+        {
+            "name": "jp undelete_short 101",
+            "key": "jp_undelete_short",
+            "args": [
+                101
+            ],
+            "result": "Undelete 101 edits",
+            "lang": "jp"
+        },
+        {
+            "name": "jp category-subcat-count 0,10",
+            "key": "jp_category-subcat-count",
+            "args": [
+                0,
+                10
+            ],
+            "result": "This category has the following 0 subcategories, out of 10 total.",
+            "lang": "jp"
+        },
+        {
+            "name": "jp category-subcat-count 1,1",
+            "key": "jp_category-subcat-count",
+            "args": [
+                1,
+                1
+            ],
+            "result": "This category has only the following subcategory.",
+            "lang": "jp"
+        },
+        {
+            "name": "jp category-subcat-count 1,2",
+            "key": "jp_category-subcat-count",
+            "args": [
+                1,
+                2
+            ],
+            "result": "This category has the following subcategory, out of 2 total.",
+            "lang": "jp"
+        },
+        {
+            "name": "jp category-subcat-count 3,30",
+            "key": "jp_category-subcat-count",
+            "args": [
+                3,
+                30
+            ],
+            "result": "This category has the following 3 subcategories, out of 30 total.",
+            "lang": "jp"
+        },
+        {
+            "name": "zh undelete_short 0",
+            "key": "zh_undelete_short",
+            "args": [
+                0
+            ],
+            "result": "\u8fd8\u539f0\u6b21\u7f16\u8f91",
+            "lang": "zh"
+        },
+        {
+            "name": "zh undelete_short 1",
+            "key": "zh_undelete_short",
+            "args": [
+                1
+            ],
+            "result": "\u8fd8\u539f1\u6b21\u7f16\u8f91",
+            "lang": "zh"
+        },
+        {
+            "name": "zh undelete_short 2",
+            "key": "zh_undelete_short",
+            "args": [
+                2
+            ],
+            "result": "\u8fd8\u539f2\u6b21\u7f16\u8f91",
+            "lang": "zh"
+        },
+        {
+            "name": "zh undelete_short 5",
+            "key": "zh_undelete_short",
+            "args": [
+                5
+            ],
+            "result": "\u8fd8\u539f5\u6b21\u7f16\u8f91",
+            "lang": "zh"
+        },
+        {
+            "name": "zh undelete_short 21",
+            "key": "zh_undelete_short",
+            "args": [
+                21
+            ],
+            "result": "\u8fd8\u539f21\u6b21\u7f16\u8f91",
+            "lang": "zh"
+        },
+        {
+            "name": "zh undelete_short 101",
+            "key": "zh_undelete_short",
+            "args": [
+                101
+            ],
+            "result": "\u8fd8\u539f101\u6b21\u7f16\u8f91",
+            "lang": "zh"
+        },
+        {
+            "name": "zh category-subcat-count 0,10",
+            "key": "zh_category-subcat-count",
+            "args": [
+                0,
+                10
+            ],
+            "result": "\u672c\u5206\u7c7b\u6709\u4ee5\u4e0b0\u4e2a\u5b50\u5206\u7c7b\uff0c\u5171\u670910\u4e2a\u5b50\u5206\u7c7b\u3002",
+            "lang": "zh"
+        },
+        {
+            "name": "zh category-subcat-count 1,1",
+            "key": "zh_category-subcat-count",
+            "args": [
+                1,
+                1
+            ],
+            "result": "\u672c\u5206\u7c7b\u53ea\u6709\u4ee5\u4e0b\u5b50\u5206\u7c7b\u3002",
+            "lang": "zh"
+        },
+        {
+            "name": "zh category-subcat-count 1,2",
+            "key": "zh_category-subcat-count",
+            "args": [
+                1,
+                2
+            ],
+            "result": "\u672c\u5206\u7c7b\u6709\u4ee5\u4e0b1\u4e2a\u5b50\u5206\u7c7b\uff0c\u5171\u67092\u4e2a\u5b50\u5206\u7c7b\u3002",
+            "lang": "zh"
+        },
+        {
+            "name": "zh category-subcat-count 3,30",
+            "key": "zh_category-subcat-count",
+            "args": [
+                3,
+                30
+            ],
+            "result": "\u672c\u5206\u7c7b\u6709\u4ee5\u4e0b3\u4e2a\u5b50\u5206\u7c7b\uff0c\u5171\u670930\u4e2a\u5b50\u5206\u7c7b\u3002",
+            "lang": "zh"
+        },
+        {
+            "name": "nl undelete_short 0",
+            "key": "nl_undelete_short",
+            "args": [
+                0
+            ],
+            "result": "0 bewerkingen terugplaatsen",
+            "lang": "nl"
+        },
+        {
+            "name": "nl undelete_short 1",
+            "key": "nl_undelete_short",
+            "args": [
+                1
+            ],
+            "result": "\u00e9\u00e9n bewerking terugplaatsen",
+            "lang": "nl"
+        },
+        {
+            "name": "nl undelete_short 2",
+            "key": "nl_undelete_short",
+            "args": [
+                2
+            ],
+            "result": "2 bewerkingen terugplaatsen",
+            "lang": "nl"
+        },
+        {
+            "name": "nl undelete_short 5",
+            "key": "nl_undelete_short",
+            "args": [
+                5
+            ],
+            "result": "5 bewerkingen terugplaatsen",
+            "lang": "nl"
+        },
+        {
+            "name": "nl undelete_short 21",
+            "key": "nl_undelete_short",
+            "args": [
+                21
+            ],
+            "result": "21 bewerkingen terugplaatsen",
+            "lang": "nl"
+        },
+        {
+            "name": "nl undelete_short 101",
+            "key": "nl_undelete_short",
+            "args": [
+                101
+            ],
+            "result": "101 bewerkingen terugplaatsen",
+            "lang": "nl"
+        },
+        {
+            "name": "nl category-subcat-count 0,10",
+            "key": "nl_category-subcat-count",
+            "args": [
+                0,
+                10
+            ],
+            "result": "Deze categorie bevat de volgende 0 ondercategorie\u00ebn, van een totaal van 10.",
+            "lang": "nl"
+        },
+        {
+            "name": "nl category-subcat-count 1,1",
+            "key": "nl_category-subcat-count",
+            "args": [
+                1,
+                1
+            ],
+            "result": "Deze categorie bevat de volgende ondercategorie.",
+            "lang": "nl"
+        },
+        {
+            "name": "nl category-subcat-count 1,2",
+            "key": "nl_category-subcat-count",
+            "args": [
+                1,
+                2
+            ],
+            "result": "Deze categorie bevat de volgende ondercategorie, van een totaal van 2.",
+            "lang": "nl"
+        },
+        {
+            "name": "nl category-subcat-count 3,30",
+            "key": "nl_category-subcat-count",
+            "args": [
+                3,
+                30
+            ],
+            "result": "Deze categorie bevat de volgende 3 ondercategorie\u00ebn, van een totaal van 30.",
+            "lang": "nl"
+        },
+        {
+            "name": "ml undelete_short 0",
+            "key": "ml_undelete_short",
+            "args": [
+                0
+            ],
+            "result": "0 \u0d24\u0d3f\u0d30\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d15\u0d7e \u0d2a\u0d41\u0d28\u0d03\u0d38\u0d4d\u0d25\u0d3e\u0d2a\u0d3f\u0d15\u0d4d\u0d15\u0d41\u0d15",
+            "lang": "ml"
+        },
+        {
+            "name": "ml undelete_short 1",
+            "key": "ml_undelete_short",
+            "args": [
+                1
+            ],
+            "result": "\u0d12\u0d30\u0d41 \u0d24\u0d3f\u0d30\u0d41\u0d24\u0d4d\u0d24\u0d4d \u0d2a\u0d41\u0d28\u0d03\u0d38\u0d4d\u0d25\u0d3e\u0d2a\u0d3f\u0d15\u0d4d\u0d15\u0d41\u0d15",
+            "lang": "ml"
+        },
+        {
+            "name": "ml undelete_short 2",
+            "key": "ml_undelete_short",
+            "args": [
+                2
+            ],
+            "result": "2 \u0d24\u0d3f\u0d30\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d15\u0d7e \u0d2a\u0d41\u0d28\u0d03\u0d38\u0d4d\u0d25\u0d3e\u0d2a\u0d3f\u0d15\u0d4d\u0d15\u0d41\u0d15",
+            "lang": "ml"
+        },
+        {
+            "name": "ml undelete_short 5",
+            "key": "ml_undelete_short",
+            "args": [
+                5
+            ],
+            "result": "5 \u0d24\u0d3f\u0d30\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d15\u0d7e \u0d2a\u0d41\u0d28\u0d03\u0d38\u0d4d\u0d25\u0d3e\u0d2a\u0d3f\u0d15\u0d4d\u0d15\u0d41\u0d15",
+            "lang": "ml"
+        },
+        {
+            "name": "ml undelete_short 21",
+            "key": "ml_undelete_short",
+            "args": [
+                21
+            ],
+            "result": "21 \u0d24\u0d3f\u0d30\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d15\u0d7e \u0d2a\u0d41\u0d28\u0d03\u0d38\u0d4d\u0d25\u0d3e\u0d2a\u0d3f\u0d15\u0d4d\u0d15\u0d41\u0d15",
+            "lang": "ml"
+        },
+        {
+            "name": "ml undelete_short 101",
+            "key": "ml_undelete_short",
+            "args": [
+                101
+            ],
+            "result": "101 \u0d24\u0d3f\u0d30\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d15\u0d7e \u0d2a\u0d41\u0d28\u0d03\u0d38\u0d4d\u0d25\u0d3e\u0d2a\u0d3f\u0d15\u0d4d\u0d15\u0d41\u0d15",
+            "lang": "ml"
+        },
+        {
+            "name": "ml category-subcat-count 0,10",
+            "key": "ml_category-subcat-count",
+            "args": [
+                0,
+                10
+            ],
+            "result": "\u0d08 \u0d35\u0d7c\u0d17\u0d4d\u0d17\u0d24\u0d4d\u0d24\u0d3f\u0d7d \u0d06\u0d15\u0d46 10 \u0d09\u0d2a\u0d35\u0d7c\u0d17\u0d4d\u0d17\u0d19\u0d4d\u0d19\u0d7e \u0d09\u0d33\u0d4d\u0d33\u0d24\u0d3f\u0d7d 0 \u0d09\u0d2a\u0d35\u0d7c\u0d17\u0d4d\u0d17\u0d19\u0d4d\u0d19\u0d7e, \u0d24\u0d3e\u0d34\u0d46\u0d15\u0d4d\u0d15\u0d4a\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d3f\u0d30\u0d3f\u0d15\u0d4d\u0d15\u0d41\u0d28\u0d4d\u0d28\u0d41.",
+            "lang": "ml"
+        },
+        {
+            "name": "ml category-subcat-count 1,1",
+            "key": "ml_category-subcat-count",
+            "args": [
+                1,
+                1
+            ],
+            "result": "\u0d08 \u0d35\u0d7c\u0d17\u0d4d\u0d17\u0d24\u0d4d\u0d24\u0d3f\u0d7d \u0d24\u0d3e\u0d34\u0d46 \u0d28\u0d7d\u0d15\u0d3f\u0d2f\u0d3f\u0d30\u0d3f\u0d15\u0d4d\u0d15\u0d41\u0d28\u0d4d\u0d28 \u0d12\u0d30\u0d41 \u0d09\u0d2a\u0d35\u0d7c\u0d17\u0d4d\u0d17\u0d02 \u0d2e\u0d3e\u0d24\u0d4d\u0d30\u0d2e\u0d3e\u0d23\u0d41\u0d33\u0d4d\u0d33\u0d24\u0d4d.",
+            "lang": "ml"
+        },
+        {
+            "name": "ml category-subcat-count 1,2",
+            "key": "ml_category-subcat-count",
+            "args": [
+                1,
+                2
+            ],
+            "result": "\u0d08 \u0d35\u0d7c\u0d17\u0d4d\u0d17\u0d24\u0d4d\u0d24\u0d3f\u0d7d \u0d06\u0d15\u0d46 2 \u0d09\u0d2a\u0d35\u0d7c\u0d17\u0d4d\u0d17\u0d19\u0d4d\u0d19\u0d7e \u0d09\u0d33\u0d4d\u0d33\u0d24\u0d3f\u0d7d \u0d12\u0d30\u0d41 \u0d09\u0d2a\u0d35\u0d7c\u0d17\u0d4d\u0d17\u0d02, \u0d24\u0d3e\u0d34\u0d46\u0d15\u0d4d\u0d15\u0d4a\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d3f\u0d30\u0d3f\u0d15\u0d4d\u0d15\u0d41\u0d28\u0d4d\u0d28\u0d41.",
+            "lang": "ml"
+        },
+        {
+            "name": "ml category-subcat-count 3,30",
+            "key": "ml_category-subcat-count",
+            "args": [
+                3,
+                30
+            ],
+            "result": "\u0d08 \u0d35\u0d7c\u0d17\u0d4d\u0d17\u0d24\u0d4d\u0d24\u0d3f\u0d7d \u0d06\u0d15\u0d46 30 \u0d09\u0d2a\u0d35\u0d7c\u0d17\u0d4d\u0d17\u0d19\u0d4d\u0d19\u0d7e \u0d09\u0d33\u0d4d\u0d33\u0d24\u0d3f\u0d7d 3 \u0d09\u0d2a\u0d35\u0d7c\u0d17\u0d4d\u0d17\u0d19\u0d4d\u0d19\u0d7e, \u0d24\u0d3e\u0d34\u0d46\u0d15\u0d4d\u0d15\u0d4a\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d3f\u0d30\u0d3f\u0d15\u0d4d\u0d15\u0d41\u0d28\u0d4d\u0d28\u0d41.",
+            "lang": "ml"
+        },
+        {
+            "name": "hi undelete_short 0",
+            "key": "hi_undelete_short",
+            "args": [
+                0
+            ],
+            "result": "\u090f\u0915 \u0939\u091f\u093e\u092f\u093e \u0917\u092f\u093e \u092c\u0926\u0932\u093e\u0935 \u0935\u093e\u092a\u0938 \u0932\u093e\u092f\u0947\u0902",
+            "lang": "hi"
+        },
+        {
+            "name": "hi undelete_short 1",
+            "key": "hi_undelete_short",
+            "args": [
+                1
+            ],
+            "result": "\u090f\u0915 \u0939\u091f\u093e\u092f\u093e \u0917\u092f\u093e \u092c\u0926\u0932\u093e\u0935 \u0935\u093e\u092a\u0938 \u0932\u093e\u092f\u0947\u0902",
+            "lang": "hi"
+        },
+        {
+            "name": "hi undelete_short 2",
+            "key": "hi_undelete_short",
+            "args": [
+                2
+            ],
+            "result": "2 \u0939\u091f\u093e\u090f \u0917\u090f \u092c\u0926\u0932\u093e\u0935 \u0935\u093e\u092a\u0938 \u0932\u093e\u092f\u0947\u0902",
+            "lang": "hi"
+        },
+        {
+            "name": "hi undelete_short 5",
+            "key": "hi_undelete_short",
+            "args": [
+                5
+            ],
+            "result": "5 \u0939\u091f\u093e\u090f \u0917\u090f \u092c\u0926\u0932\u093e\u0935 \u0935\u093e\u092a\u0938 \u0932\u093e\u092f\u0947\u0902",
+            "lang": "hi"
+        },
+        {
+            "name": "hi undelete_short 21",
+            "key": "hi_undelete_short",
+            "args": [
+                21
+            ],
+            "result": "21 \u0939\u091f\u093e\u090f \u0917\u090f \u092c\u0926\u0932\u093e\u0935 \u0935\u093e\u092a\u0938 \u0932\u093e\u092f\u0947\u0902",
+            "lang": "hi"
+        },
+        {
+            "name": "hi undelete_short 101",
+            "key": "hi_undelete_short",
+            "args": [
+                101
+            ],
+            "result": "101 \u0939\u091f\u093e\u090f \u0917\u090f \u092c\u0926\u0932\u093e\u0935 \u0935\u093e\u092a\u0938 \u0932\u093e\u092f\u0947\u0902",
+            "lang": "hi"
+        },
+        {
+            "name": "hi category-subcat-count 0,10",
+            "key": "hi_category-subcat-count",
+            "args": [
+                0,
+                10
+            ],
+            "result": "\u0907\u0938 \u0936\u094d\u0930\u0947\u0923\u0940 \u0915\u0940 \u0915\u0941\u0932 10 \u092e\u0947\u0902 \u0938\u0947 \u0909\u092a\u0936\u094d\u0930\u0947\u0923\u0940 \u0928\u093f\u092e\u094d\u0928\u0932\u093f\u0916\u093f\u0924 \u0939\u0948\u0964",
+            "lang": "hi"
+        },
+        {
+            "name": "hi category-subcat-count 1,1",
+            "key": "hi_category-subcat-count",
+            "args": [
+                1,
+                1
+            ],
+            "result": "\u0907\u0938 \u0936\u094d\u0930\u0947\u0923\u0940 \u092e\u0947\u0902 \u0915\u0947\u0935\u0932 \u0928\u093f\u092e\u094d\u0928\u0932\u093f\u0916\u093f\u0924 \u0909\u092a\u0936\u094d\u0930\u0947\u0923\u0940 \u0939\u0948\u0964",
+            "lang": "hi"
+        },
+        {
+            "name": "hi category-subcat-count 1,2",
+            "key": "hi_category-subcat-count",
+            "args": [
+                1,
+                2
+            ],
+            "result": "\u0907\u0938 \u0936\u094d\u0930\u0947\u0923\u0940 \u0915\u0940 \u0915\u0941\u0932 2 \u092e\u0947\u0902 \u0938\u0947 \u0909\u092a\u0936\u094d\u0930\u0947\u0923\u0940 \u0928\u093f\u092e\u094d\u0928\u0932\u093f\u0916\u093f\u0924 \u0939\u0948\u0964",
+            "lang": "hi"
+        },
+        {
+            "name": "hi category-subcat-count 3,30",
+            "key": "hi_category-subcat-count",
+            "args": [
+                3,
+                30
+            ],
+            "result": "\u0907\u0938 \u0936\u094d\u0930\u0947\u0923\u0940 \u0915\u0940 \u0915\u0941\u0932 30 \u092e\u0947\u0902 \u0938\u0947 3 \u0909\u092a\u0936\u094d\u0930\u0947\u0923\u093f\u092f\u093e\u0901 \u0928\u093f\u092e\u094d\u0928\u0932\u093f\u0916\u093f\u0924 \u0939\u0948\u0902\u0964",
+            "lang": "hi"
+        }
+    ],
+    "jsData": {
+        "en": {
+            "digitTransformTable": null,
+            "separatorTransformTable": null,
+            "minimumGroupingDigits": null,
+            "grammarForms": [],
+            "grammarTransformations": [],
+            "pluralRules": [
+                "i = 1 and v = 0 @integer 1"
+            ],
+            "digitGroupingPattern": null,
+            "fallbackLanguages": [],
+            "bcp47Map": {
+                "als": "gsw",
+                "bat-smg": "sgs",
+                "be-x-old": "be-tarask",
+                "fiu-vro": "vro",
+                "roa-rup": "rup",
+                "zh-classical": "lzh",
+                "zh-min-nan": "nan",
+                "zh-yue": "yue",
+                "cbk-zam": "cbk",
+                "de-formal": "de-x-formal",
+                "eml": "egl",
+                "en-rtl": "en-x-rtl",
+                "es-formal": "es-x-formal",
+                "hu-formal": "hu-x-formal",
+                "map-bms": "jv-x-bms",
+                "mo": "ro-Cyrl-MD",
+                "nrm": "nrf",
+                "nl-informal": "nl-x-informal",
+                "roa-tara": "nap-x-tara",
+                "simple": "en-simple",
+                "sr-ec": "sr-Cyrl",
+                "sr-el": "sr-Latn",
+                "zh-cn": "zh-Hans-CN",
+                "zh-sg": "zh-Hans-SG",
+                "zh-my": "zh-Hans-MY",
+                "zh-tw": "zh-Hant-TW",
+                "zh-hk": "zh-Hant-HK",
+                "zh-mo": "zh-Hant-MO"
+            }
+        },
+        "fr": {
+            "digitTransformTable": null,
+            "separatorTransformTable": {
+                ",": "\u00a0",
+                ".": ","
+            },
+            "minimumGroupingDigits": null,
+            "grammarForms": [],
+            "grammarTransformations": [],
+            "pluralRules": [
+                "i = 0,1 @integer 0, 1 @decimal 0.0~1.5"
+            ],
+            "digitGroupingPattern": null,
+            "fallbackLanguages": [
+                "en"
+            ],
+            "bcp47Map": {
+                "als": "gsw",
+                "bat-smg": "sgs",
+                "be-x-old": "be-tarask",
+                "fiu-vro": "vro",
+                "roa-rup": "rup",
+                "zh-classical": "lzh",
+                "zh-min-nan": "nan",
+                "zh-yue": "yue",
+                "cbk-zam": "cbk",
+                "de-formal": "de-x-formal",
+                "eml": "egl",
+                "en-rtl": "en-x-rtl",
+                "es-formal": "es-x-formal",
+                "hu-formal": "hu-x-formal",
+                "map-bms": "jv-x-bms",
+                "mo": "ro-Cyrl-MD",
+                "nrm": "nrf",
+                "nl-informal": "nl-x-informal",
+                "roa-tara": "nap-x-tara",
+                "simple": "en-simple",
+                "sr-ec": "sr-Cyrl",
+                "sr-el": "sr-Latn",
+                "zh-cn": "zh-Hans-CN",
+                "zh-sg": "zh-Hans-SG",
+                "zh-my": "zh-Hans-MY",
+                "zh-tw": "zh-Hant-TW",
+                "zh-hk": "zh-Hant-HK",
+                "zh-mo": "zh-Hant-MO"
+            }
+        },
+        "ar": {
+            "digitTransformTable": [
+                "\u0660",
+                "\u0661",
+                "\u0662",
+                "\u0663",
+                "\u0664",
+                "\u0665",
+                "\u0666",
+                "\u0667",
+                "\u0668",
+                "\u0669"
+            ],
+            "separatorTransformTable": {
+                ".": "\u066b",
+                ",": "\u066c"
+            },
+            "minimumGroupingDigits": null,
+            "grammarForms": [],
+            "grammarTransformations": [],
+            "pluralRules": [
+                "n = 0 @integer 0 @decimal 0.0, 0.00, 0.000, 0.0000",
+                "n = 1 @integer 1 @decimal 1.0, 1.00, 1.000, 1.0000",
+                "n = 2 @integer 2 @decimal 2.0, 2.00, 2.000, 2.0000",
+                "n % 100 = 3..10 @integer 3~10, 103~110, 1003, \u2026 @decimal 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 103.0, 1003.0, \u2026",
+                "n % 100 = 11..99 @integer 11~26, 111, 1011, \u2026 @decimal 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 111.0, 1011.0, \u2026"
+            ],
+            "digitGroupingPattern": null,
+            "fallbackLanguages": [
+                "en"
+            ],
+            "bcp47Map": {
+                "als": "gsw",
+                "bat-smg": "sgs",
+                "be-x-old": "be-tarask",
+                "fiu-vro": "vro",
+                "roa-rup": "rup",
+                "zh-classical": "lzh",
+                "zh-min-nan": "nan",
+                "zh-yue": "yue",
+                "cbk-zam": "cbk",
+                "de-formal": "de-x-formal",
+                "eml": "egl",
+                "en-rtl": "en-x-rtl",
+                "es-formal": "es-x-formal",
+                "hu-formal": "hu-x-formal",
+                "map-bms": "jv-x-bms",
+                "mo": "ro-Cyrl-MD",
+                "nrm": "nrf",
+                "nl-informal": "nl-x-informal",
+                "roa-tara": "nap-x-tara",
+                "simple": "en-simple",
+                "sr-ec": "sr-Cyrl",
+                "sr-el": "sr-Latn",
+                "zh-cn": "zh-Hans-CN",
+                "zh-sg": "zh-Hans-SG",
+                "zh-my": "zh-Hans-MY",
+                "zh-tw": "zh-Hant-TW",
+                "zh-hk": "zh-Hant-HK",
+                "zh-mo": "zh-Hant-MO"
+            }
+        },
+        "jp": {
+            "digitTransformTable": null,
+            "separatorTransformTable": null,
+            "minimumGroupingDigits": null,
+            "grammarForms": [],
+            "grammarTransformations": [],
+            "pluralRules": [
+                "i = 1 and v = 0 @integer 1"
+            ],
+            "digitGroupingPattern": null,
+            "fallbackLanguages": [
+                "en"
+            ],
+            "bcp47Map": {
+                "als": "gsw",
+                "bat-smg": "sgs",
+                "be-x-old": "be-tarask",
+                "fiu-vro": "vro",
+                "roa-rup": "rup",
+                "zh-classical": "lzh",
+                "zh-min-nan": "nan",
+                "zh-yue": "yue",
+                "cbk-zam": "cbk",
+                "de-formal": "de-x-formal",
+                "eml": "egl",
+                "en-rtl": "en-x-rtl",
+                "es-formal": "es-x-formal",
+                "hu-formal": "hu-x-formal",
+                "map-bms": "jv-x-bms",
+                "mo": "ro-Cyrl-MD",
+                "nrm": "nrf",
+                "nl-informal": "nl-x-informal",
+                "roa-tara": "nap-x-tara",
+                "simple": "en-simple",
+                "sr-ec": "sr-Cyrl",
+                "sr-el": "sr-Latn",
+                "zh-cn": "zh-Hans-CN",
+                "zh-sg": "zh-Hans-SG",
+                "zh-my": "zh-Hans-MY",
+                "zh-tw": "zh-Hant-TW",
+                "zh-hk": "zh-Hant-HK",
+                "zh-mo": "zh-Hant-MO"
+            }
+        },
+        "zh": {
+            "digitTransformTable": null,
+            "separatorTransformTable": null,
+            "minimumGroupingDigits": null,
+            "grammarForms": [],
+            "grammarTransformations": [],
+            "pluralRules": [
+                "i = 1 and v = 0 @integer 1"
+            ],
+            "digitGroupingPattern": null,
+            "fallbackLanguages": [
+                "zh-hans",
+                "en"
+            ],
+            "bcp47Map": {
+                "als": "gsw",
+                "bat-smg": "sgs",
+                "be-x-old": "be-tarask",
+                "fiu-vro": "vro",
+                "roa-rup": "rup",
+                "zh-classical": "lzh",
+                "zh-min-nan": "nan",
+                "zh-yue": "yue",
+                "cbk-zam": "cbk",
+                "de-formal": "de-x-formal",
+                "eml": "egl",
+                "en-rtl": "en-x-rtl",
+                "es-formal": "es-x-formal",
+                "hu-formal": "hu-x-formal",
+                "map-bms": "jv-x-bms",
+                "mo": "ro-Cyrl-MD",
+                "nrm": "nrf",
+                "nl-informal": "nl-x-informal",
+                "roa-tara": "nap-x-tara",
+                "simple": "en-simple",
+                "sr-ec": "sr-Cyrl",
+                "sr-el": "sr-Latn",
+                "zh-cn": "zh-Hans-CN",
+                "zh-sg": "zh-Hans-SG",
+                "zh-my": "zh-Hans-MY",
+                "zh-tw": "zh-Hant-TW",
+                "zh-hk": "zh-Hant-HK",
+                "zh-mo": "zh-Hant-MO"
+            }
+        },
+        "nl": {
+            "digitTransformTable": null,
+            "separatorTransformTable": {
+                ",": ".",
+                ".": ","
+            },
+            "minimumGroupingDigits": null,
+            "grammarForms": [],
+            "grammarTransformations": [],
+            "pluralRules": [
+                "i = 1 and v = 0 @integer 1"
+            ],
+            "digitGroupingPattern": null,
+            "fallbackLanguages": [
+                "en"
+            ],
+            "bcp47Map": {
+                "als": "gsw",
+                "bat-smg": "sgs",
+                "be-x-old": "be-tarask",
+                "fiu-vro": "vro",
+                "roa-rup": "rup",
+                "zh-classical": "lzh",
+                "zh-min-nan": "nan",
+                "zh-yue": "yue",
+                "cbk-zam": "cbk",
+                "de-formal": "de-x-formal",
+                "eml": "egl",
+                "en-rtl": "en-x-rtl",
+                "es-formal": "es-x-formal",
+                "hu-formal": "hu-x-formal",
+                "map-bms": "jv-x-bms",
+                "mo": "ro-Cyrl-MD",
+                "nrm": "nrf",
+                "nl-informal": "nl-x-informal",
+                "roa-tara": "nap-x-tara",
+                "simple": "en-simple",
+                "sr-ec": "sr-Cyrl",
+                "sr-el": "sr-Latn",
+                "zh-cn": "zh-Hans-CN",
+                "zh-sg": "zh-Hans-SG",
+                "zh-my": "zh-Hans-MY",
+                "zh-tw": "zh-Hant-TW",
+                "zh-hk": "zh-Hant-HK",
+                "zh-mo": "zh-Hant-MO"
+            }
+        },
+        "ml": {
+            "digitTransformTable": null,
+            "separatorTransformTable": null,
+            "minimumGroupingDigits": null,
+            "grammarForms": [],
+            "grammarTransformations": [],
+            "pluralRules": [
+                "n = 1 @integer 1 @decimal 1.0, 1.00, 1.000, 1.0000"
+            ],
+            "digitGroupingPattern": "##,##,###",
+            "fallbackLanguages": [
+                "en"
+            ],
+            "bcp47Map": {
+                "als": "gsw",
+                "bat-smg": "sgs",
+                "be-x-old": "be-tarask",
+                "fiu-vro": "vro",
+                "roa-rup": "rup",
+                "zh-classical": "lzh",
+                "zh-min-nan": "nan",
+                "zh-yue": "yue",
+                "cbk-zam": "cbk",
+                "de-formal": "de-x-formal",
+                "eml": "egl",
+                "en-rtl": "en-x-rtl",
+                "es-formal": "es-x-formal",
+                "hu-formal": "hu-x-formal",
+                "map-bms": "jv-x-bms",
+                "mo": "ro-Cyrl-MD",
+                "nrm": "nrf",
+                "nl-informal": "nl-x-informal",
+                "roa-tara": "nap-x-tara",
+                "simple": "en-simple",
+                "sr-ec": "sr-Cyrl",
+                "sr-el": "sr-Latn",
+                "zh-cn": "zh-Hans-CN",
+                "zh-sg": "zh-Hans-SG",
+                "zh-my": "zh-Hans-MY",
+                "zh-tw": "zh-Hant-TW",
+                "zh-hk": "zh-Hant-HK",
+                "zh-mo": "zh-Hant-MO"
+            }
+        },
+        "hi": {
+            "digitTransformTable": [
+                "\u0966",
+                "\u0967",
+                "\u0968",
+                "\u0969",
+                "\u096a",
+                "\u096b",
+                "\u096c",
+                "\u096d",
+                "\u096e",
+                "\u096f"
+            ],
+            "separatorTransformTable": null,
+            "minimumGroupingDigits": null,
+            "grammarForms": [],
+            "grammarTransformations": [],
+            "pluralRules": [
+                "i = 0 or n = 1 @integer 0, 1 @decimal 0.0~1.0, 0.00~0.04"
+            ],
+            "digitGroupingPattern": "##,##,###",
+            "fallbackLanguages": [
+                "en"
+            ],
+            "bcp47Map": {
+                "als": "gsw",
+                "bat-smg": "sgs",
+                "be-x-old": "be-tarask",
+                "fiu-vro": "vro",
+                "roa-rup": "rup",
+                "zh-classical": "lzh",
+                "zh-min-nan": "nan",
+                "zh-yue": "yue",
+                "cbk-zam": "cbk",
+                "de-formal": "de-x-formal",
+                "eml": "egl",
+                "en-rtl": "en-x-rtl",
+                "es-formal": "es-x-formal",
+                "hu-formal": "hu-x-formal",
+                "map-bms": "jv-x-bms",
+                "mo": "ro-Cyrl-MD",
+                "nrm": "nrf",
+                "nl-informal": "nl-x-informal",
+                "roa-tara": "nap-x-tara",
+                "simple": "en-simple",
+                "sr-ec": "sr-Cyrl",
+                "sr-el": "sr-Latn",
+                "zh-cn": "zh-Hans-CN",
+                "zh-sg": "zh-Hans-SG",
+                "zh-my": "zh-Hans-MY",
+                "zh-tw": "zh-Hant-TW",
+                "zh-hk": "zh-Hant-HK",
+                "zh-mo": "zh-Hant-MO"
+            }
+        }
+    }
+}

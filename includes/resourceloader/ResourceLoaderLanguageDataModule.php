@@ -34,12 +34,13 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderFileModule {
 	/**
 	 * Get all the dynamic data for the content language to an array.
 	 *
-	 * @param ResourceLoaderContext $context
+	 * @internal Only public for use by GenerateJqueryMsgData (tests)
+	 * @param string $langCode
 	 * @return array
 	 */
-	protected function getData( ResourceLoaderContext $context ) {
+	public static function getData( $langCode ) {
 		$language = MediaWikiServices::getInstance()->getLanguageFactory()
-			->getLanguage( $context->getLanguage() );
+			->getLanguage( $langCode );
 		return [
 			'digitTransformTable' => $language->digitTransformTable(),
 			'separatorTransformTable' => $language->separatorTransformTable(),
@@ -61,7 +62,7 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderFileModule {
 		return parent::getScript( $context )
 			. 'mw.language.setData('
 			. $context->encodeJson( $context->getLanguage() ) . ','
-			. $context->encodeJson( $this->getData( $context ) )
+			. $context->encodeJson( self::getData( $context->getLanguage() ) )
 			. ');';
 	}
 
