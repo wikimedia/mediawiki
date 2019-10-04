@@ -4,7 +4,7 @@ use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseSqlite;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\TestingAccessWrapper;
 
@@ -428,7 +428,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 
 		$databaseCreation = $db->query( 'CREATE TABLE a ( a_1 )', __METHOD__ );
-		$this->assertInstanceOf( ResultWrapper::class, $databaseCreation, "Database creation" );
+		$this->assertInstanceOf( IResultWrapper::class, $databaseCreation, "Database creation" );
 
 		$insertion = $db->insert( 'a', [ 'a_1' => 10 ], __METHOD__ );
 		$this->assertTrue( $insertion, "Insertion worked" );
@@ -546,7 +546,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 
 		$databaseCreation = $db->query( 'CREATE TABLE a ( a_1 )', __METHOD__ );
-		$this->assertInstanceOf( ResultWrapper::class, $databaseCreation, "Failed to create table a" );
+		$this->assertInstanceOf( IResultWrapper::class, $databaseCreation, "Failed to create table a" );
 		$res = $db->select( 'a', '*' );
 		$this->assertSame( 0, $db->numFields( $res ), "expects to get 0 fields for an empty table" );
 		$insertion = $db->insert( 'a', [ 'a_1' => 10 ], __METHOD__ );

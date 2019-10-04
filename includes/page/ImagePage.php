@@ -21,7 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Class for viewing MediaWiki file description pages
@@ -802,7 +802,7 @@ EOT
 	/**
 	 * @param string|string[] $target
 	 * @param int $limit
-	 * @return ResultWrapper
+	 * @return IResultWrapper
 	 */
 	protected function queryImageLinks( $target, $limit ) {
 		$dbr = wfGetDB( DB_REPLICA );
