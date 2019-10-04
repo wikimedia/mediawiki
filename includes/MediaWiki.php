@@ -43,12 +43,10 @@ class MediaWiki {
 	/** @var int Class DEFER_* constant; how non-blocking post-response tasks should run */
 	private $postSendStrategy;
 
-	/** @var int Use register_postsend_function() */
-	const DEFER_REGISTER_POSTSEND_FUNCTION = 1;
 	/** @var int Use fastcgi_finish_request() */
-	const DEFER_FASTCGI_FINISH_REQUEST = 2;
+	const DEFER_FASTCGI_FINISH_REQUEST = 1;
 	/** @var int Use ob_end_flush() after explicitly setting the Content-Length */
-	const DEFER_SET_LENGTH_AND_FLUSH = 3;
+	const DEFER_SET_LENGTH_AND_FLUSH = 2;
 
 	/**
 	 * @param IContextSource|null $context
@@ -56,9 +54,7 @@ class MediaWiki {
 	public function __construct( IContextSource $context = null ) {
 		$this->context = $context ?: RequestContext::getMain();
 		$this->config = $this->context->getConfig();
-		if ( function_exists( 'register_postsend_function' ) ) {
-			$this->postSendStrategy = self::DEFER_REGISTER_POSTSEND_FUNCTION;
-		} elseif ( function_exists( 'fastcgi_finish_request' ) ) {
+		if ( function_exists( 'fastcgi_finish_request' ) ) {
 			$this->postSendStrategy = self::DEFER_FASTCGI_FINISH_REQUEST;
 		} else {
 			$this->postSendStrategy = self::DEFER_SET_LENGTH_AND_FLUSH;
@@ -841,10 +837,7 @@ class MediaWiki {
 			}
 		};
 
-		if ( $this->postSendStrategy === self::DEFER_REGISTER_POSTSEND_FUNCTION ) {
-			// https://github.com/facebook/hhvm/issues/1230
-			register_postsend_function( $callback );
-		} elseif ( $this->postSendStrategy === self::DEFER_FASTCGI_FINISH_REQUEST ) {
+		if ( $this->postSendStrategy === self::DEFER_FASTCGI_FINISH_REQUEST ) {
 			fastcgi_finish_request();
 			$callback();
 		} else {
