@@ -779,7 +779,7 @@ interface IDatabase {
 	 *
 	 * Takes the same arguments as IDatabase::select().
 	 *
-	 * @param string $table Table name
+	 * @param array|string $tables Table names
 	 * @param string $var Column for which NULL values are not counted [default "*"]
 	 * @param array|string $conds Filters on the table
 	 * @param string $fname Function name for profiling
@@ -789,7 +789,7 @@ interface IDatabase {
 	 * @throws DBError If an error occurs, see IDatabase::query()
 	 */
 	public function estimateRowCount(
-		$table, $var = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
+		$tables, $var = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	);
 
 	/**
