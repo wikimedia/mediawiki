@@ -4941,7 +4941,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		if ( $this->conn ) {
 			// Avoid connection leaks for sanity. Normally, resources close at script completion.
-			// The connection might already be closed in zend/hhvm by now, so suppress warnings.
+			// The connection might already be closed in PHP by now, so suppress warnings.
 			AtEase::suppressWarnings();
 			$this->closeConnection();
 			AtEase::restoreWarnings();
