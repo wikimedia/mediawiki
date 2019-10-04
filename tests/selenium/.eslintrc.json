@@ -3,17 +3,17 @@
 	"extends": [
 		"wikimedia",
 		"wikimedia/node",
-		"wikimedia/language/es2017"
+		"wikimedia/language/es2017",
+		"wikimedia/jquery"
 	],
 	"env": {
 		"mocha": true
 	},
 	"globals": {
-		"$": false,
-		"browser": false,
-		"mw": false
+		"browser": "readonly",
+		"mw": "readonly"
 	},
 	"rules": {
-		"one-var": [ "error", { "initialized": "never", "uninitialized": "always" } ]
+		"no-jquery/no-global-selector": "off"
 	}
 }
