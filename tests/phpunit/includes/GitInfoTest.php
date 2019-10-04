@@ -66,11 +66,11 @@ class GitInfoTest extends MediaWikiTestCase {
 
 		$this->assertFalse( $fixture->cacheIsComplete() );
 
-		$this->assertEquals( false, $fixture->getHead() );
-		$this->assertEquals( false, $fixture->getHeadSHA1() );
-		$this->assertEquals( false, $fixture->getHeadCommitDate() );
-		$this->assertEquals( false, $fixture->getCurrentBranch() );
-		$this->assertEquals( false, $fixture->getHeadViewUrl() );
+		$this->assertFalse( $fixture->getHead() );
+		$this->assertFalse( $fixture->getHeadSHA1() );
+		$this->assertFalse( $fixture->getHeadCommitDate() );
+		$this->assertFalse( $fixture->getCurrentBranch() );
+		$this->assertFalse( $fixture->getHeadViewUrl() );
 
 		// After calling all the outputs, the cache should be complete
 		$this->assertTrue( $fixture->cacheIsComplete() );

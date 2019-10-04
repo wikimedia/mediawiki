@@ -1498,7 +1498,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$v = $cache->getWithSetCallback( $key, 30, $funcV2, $verOpts + $extOpts );
 		$this->assertEquals( $valueV2, $v, "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value regenerated" );
-		$this->assertEquals( false, $priorValue, "Old value not given due to old format" );
+		$this->assertFalse( $priorValue, "Old value not given due to old format" );
 		$this->assertNull( $priorAsOf, "Old value not given due to old format" );
 
 		$wasSet = 0;
@@ -1765,12 +1765,12 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$key = wfRandomString();
 		$opts = [ 'lag' => 0, 'since' => microtime( true ) - 300 ];
 		$this->cache->set( $key, $value, 30, $opts );
-		$this->assertEquals( false, $this->cache->get( $key ), "Trx-lagged value not written." );
+		$this->assertFalse( $this->cache->get( $key ), "Trx-lagged value not written." );
 
 		$key = wfRandomString();
 		$opts = [ 'lag' => 5, 'since' => microtime( true ) - 5 ];
 		$this->cache->set( $key, $value, 30, $opts );
-		$this->assertEquals( false, $this->cache->get( $key ), "Lagged value not written." );
+		$this->assertFalse( $this->cache->get( $key ), "Lagged value not written." );
 	}
 
 	/**
@@ -1782,7 +1782,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$key = wfRandomString();
 		$opts = [ 'pending' => true ];
 		$this->cache->set( $key, $value, 30, $opts );
-		$this->assertEquals( false, $this->cache->get( $key ), "Pending value not written." );
+		$this->assertFalse( $this->cache->get( $key ), "Pending value not written." );
 	}
 
 	public function testMcRouterSupport() {

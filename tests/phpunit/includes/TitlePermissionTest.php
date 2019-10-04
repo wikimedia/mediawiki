@@ -448,7 +448,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->overrideUserPermissions( $this->user );
 		$this->assertEquals( [ [ 'badaccess-group0' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
-		$this->assertEquals( false,
+		$this->assertFalse(
 			$this->title->userCan( 'bogus', $this->user ) );
 	}
 
@@ -748,9 +748,9 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 		$this->title->mCascadeRestriction = true;
 		$this->overrideUserPermissions( $this->user, "edit" );
-		$this->assertEquals( false,
+		$this->assertFalse(
 			$this->title->quickUserCan( 'bogus', $this->user ) );
-		$this->assertEquals( false,
+		$this->assertFalse(
 			$this->title->quickUserCan( 'edit', $this->user ) );
 		$this->assertEquals( [ [ 'badaccess-group0' ],
 				[ 'protectedpagetext', 'bogus', 'bogus' ],
@@ -765,9 +765,9 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 				$this->user ) );
 
 		$this->overrideUserPermissions( $this->user, [ "edit", "editprotected" ] );
-		$this->assertEquals( false,
+		$this->assertFalse(
 			$this->title->quickUserCan( 'bogus', $this->user ) );
-		$this->assertEquals( false,
+		$this->assertFalse(
 			$this->title->quickUserCan( 'edit', $this->user ) );
 		$this->assertEquals( [ [ 'badaccess-group0' ],
 				[ 'protectedpagetext', 'bogus', 'bogus' ],
@@ -797,7 +797,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			"bogus" => [ 'bogus', "sysop", "protect", "" ]
 		];
 
-		$this->assertEquals( false,
+		$this->assertFalse(
 			$this->title->userCan( 'bogus', $this->user ) );
 		$this->assertEquals( [
 				[ "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n", 'bogus' ],
@@ -827,14 +827,14 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 		$this->assertEquals( [ [ 'titleprotected', 'Useruser', 'test' ] ],
 			$this->title->getUserPermissionsErrors( 'create', $this->user ) );
-		$this->assertEquals( false,
+		$this->assertFalse(
 			$this->title->userCan( 'create', $this->user ) );
 
 		$this->title->mTitleProtection['permission'] = 'editprotected';
 		$this->overrideUserPermissions( $this->user, [ 'createpage', 'protect' ] );
 		$this->assertEquals( [ [ 'titleprotected', 'Useruser', 'test' ] ],
 			$this->title->getUserPermissionsErrors( 'create', $this->user ) );
-		$this->assertEquals( false,
+		$this->assertFalse(
 			$this->title->userCan( 'create', $this->user ) );
 
 		$this->overrideUserPermissions( $this->user, [ 'createpage', 'editprotected' ] );
@@ -846,12 +846,12 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->overrideUserPermissions( $this->user, [ 'createpage' ] );
 		$this->assertEquals( [ [ 'titleprotected', 'Useruser', 'test' ] ],
 			$this->title->getUserPermissionsErrors( 'create', $this->user ) );
-		$this->assertEquals( false,
+		$this->assertFalse(
 			$this->title->userCan( 'create', $this->user ) );
 
 		$this->setTitle( NS_MEDIA, "test page" );
 		$this->overrideUserPermissions( $this->user, [ "move" ] );
-		$this->assertEquals( false,
+		$this->assertFalse(
 			$this->title->userCan( 'move', $this->user ) );
 		$this->assertEquals( [ [ 'immobile-source-namespace', 'Media' ] ],
 			$this->title->getUserPermissionsErrors( 'move', $this->user ) );
@@ -865,11 +865,11 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->title->mInterwiki = "no";
 		$this->assertEquals( [ [ 'immobile-source-page' ] ],
 			$this->title->getUserPermissionsErrors( 'move', $this->user ) );
-		$this->assertEquals( false,
+		$this->assertFalse(
 			$this->title->userCan( 'move', $this->user ) );
 
 		$this->setTitle( NS_MEDIA, "test page" );
-		$this->assertEquals( false,
+		$this->assertFalse(
 			$this->title->userCan( 'move-target', $this->user ) );
 		$this->assertEquals( [ [ 'immobile-target-namespace', 'Media' ] ],
 			$this->title->getUserPermissionsErrors( 'move-target', $this->user ) );
@@ -883,7 +883,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->title->mInterwiki = "no";
 		$this->assertEquals( [ [ 'immobile-target-page' ] ],
 			$this->title->getUserPermissionsErrors( 'move-target', $this->user ) );
-		$this->assertEquals( false,
+		$this->assertFalse(
 			$this->title->userCan( 'move-target', $this->user ) );
 	}
 
@@ -942,7 +942,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->title->getUserPermissionsErrors( 'move-target',
 				$this->user ) );
 
-		$this->assertEquals( false, $this->title->userCan( 'move-target', $this->user ) );
+		$this->assertFalse( $this->title->userCan( 'move-target', $this->user ) );
 		// quickUserCan should ignore user blocks
 		$this->assertEquals( true, $this->title->quickUserCan( 'move-target', $this->user ) );
 

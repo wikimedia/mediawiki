@@ -29,7 +29,7 @@ class ArticleTest extends MediaWikiUnitTestCase {
 	 * @covers Article::__get
 	 */
 	public function testImplementsGetMagic() {
-		$this->assertEquals( false, $this->article->mLatest, "Article __get magic" );
+		$this->assertFalse( $this->article->mLatest, "Article __get magic" );
 	}
 
 	/**
