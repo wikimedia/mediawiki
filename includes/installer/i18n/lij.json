@@ -47,7 +47,6 @@
 	"config-env-good": "L'ambiente o l'è stæto controllou.\nL'è poscibile installâ MediaWiki.",
 	"config-env-bad": "L'ambiente o l'è stæto controllou.\nNon l'è poscibbile installâ MediaWiki.",
 	"config-env-php": "PHP $1 o l'è installou.",
-	"config-env-hhvm": "HHVM $1 o l'è installou.",
 	"config-unicode-using-intl": "Adoeuvia [https://pecl.php.net/intl l'estenscion PECL intl] pe-a normalizzaçion Unicode.",
 	"config-unicode-pure-php-warning": "'''Attençion:''' [https://pecl.php.net/intl l'estenscion PECL intl] a no l'è disponibile pe gestî a normalizzaçion Unicode, quindi se torna a-a lenta implementaçion in PHP puo.\nSe ti esegui un scito a ato traffego, ti doviesci leze arcun-e conscidiaçioin in sciâ [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations normalizzaçion Unicode].",
 	"config-unicode-update-warning": "'''Attençion:''' a verscion installaa do gestô pe-a normalizzaçion Unicode a l'adoeuvia una vegia verscion da libraia [http://site.icu-project.org/ do progetto ICU].\nTi doviesci [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations aggiornâ] se ti voeu doeuviâ l'Unicode.",

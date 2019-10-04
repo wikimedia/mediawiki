@@ -78,7 +78,6 @@
 	"config-env-good": "Проверка внешней среды была успешно проведена.\nВы можете установить MediaWiki.",
 	"config-env-bad": "Была проведена проверка внешней среды.\nВы не можете установить MediaWiki.",
 	"config-env-php": "Установленная версия PHP: $1.",
-	"config-env-hhvm": "HHVM $1 установлена.",
 	"config-unicode-using-intl": "Будет использовано [https://php.net/manual/en/book.intl.php PHP intl расширение] для нормализации Юникода.",
 	"config-unicode-pure-php-warning": "'''Внимание!''': [https://php.net/manual/en/book.intl.php PHP intl расширение] недоступно для нормализации Юникода, будет использоваться медленная реализация на чистом PHP.\nЕсли ваш сайт работает под высокой нагрузкой, вам следует больше узнать о [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations нормализации Юникода].",
 	"config-unicode-update-warning": "'''Предупреждение''': установленная версия обёртки нормализации Юникода использует старую версию библиотеки [http://site.icu-project.org/ проекта ICU].\nВы должны [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations обновить версию], если хотите полноценно использовать Юникод.",

@@ -2316,7 +2316,7 @@
 	"sp-contributions-userrights": "{{GENDER:$1|naudotojų}} teisių valdymas",
 	"sp-contributions-blocked-notice": "Šis naudotojas šiuo metu užblokuotas.\nPateikiamas paskutinis blokavimo istorijos įrašas.",
 	"sp-contributions-blocked-notice-anon": "Šis IP adresas yra užblokuotas.\nPaskutinis blokavimo įrašas pateikiamas žemiau:",
-	"sp-contributions-search": "Ieškoti įnašų",
+	"sp-contributions-search": "Ieškoti indėlyje",
 	"sp-contributions-username": "IP adresas arba naudotojo vardas:",
 	"sp-contributions-toponly": "Rodyti tik paskutinius keitimus",
 	"sp-contributions-newonly": "Rodyti tik tuos keitimus, kuriais sukurti nauji straipsniai",

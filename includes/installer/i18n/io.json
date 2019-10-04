@@ -44,7 +44,6 @@
 	"config-env-good": "Omno verifikesis.\nVu povas intalar MediaWiki.",
 	"config-env-bad": "Omno verifikesis.\nVu NE POVAS intalar MediaWiki.",
 	"config-env-php": "PHP $1 instalesis.",
-	"config-env-hhvm": "HHVM $1 instalesis.",
 	"config-unicode-using-intl": "Uzanta [https://php.net/manual/en/book.intl.php PHP intl extension] por normaligo Unicode.",
 	"config-unicode-pure-php-warning": "<strong>Atencez:</strong> La [https://php.net/manual/en/book.intl.php prolonguro PHP intl] ne esas disponebla por traktar skribo-normaligo \"Unicode\". Vice, uzesas la plu lenta laborado en pura PHP.\nSe vu administras pagini multe vizitata, vu mustas lektar la [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations skribo-normaligo Unicode].",
 	"config-unicode-update-warning": "<strong>Atencez:</strong> La versiono di ''Unicode normalization wrapper'' instalata en vua komputero uzas obsoleta versiono di la biblioteko del [http://site.icu-project.org/ projeto ICU].\nVu mustas instalar [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations la nova versiono] se vu deziras uzar Unicode.",

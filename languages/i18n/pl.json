@@ -675,6 +675,7 @@
 	"passwordreset-ignored": "Zresetowanie hasła nie powiodło się. Może żaden dostawca nie został skonfigurowany?",
 	"passwordreset-invalidemail": "Nieprawidłowy adres e-mail",
 	"passwordreset-nodata": "Nie podano ani nazwy użytkownika, ani adresu e-mail",
+	"passwordreset-username-email-required": "Zarówno nazwa użytkownika jak i adres e-mnail są wymagane, aby otrzymać tymczasowe hasło na pocztę e-mail.",
 	"changeemail": "Zmiana lub usunięcie adresu e‐mail",
 	"changeemail-header": "Wypełnij ten formularz, aby zmienić swój adres e-mail. Jeśli chcesz usunąć swój adres e-mail, to przy wypełnianiu formularza pozostaw puste pole nowego adresu e-mail.",
 	"changeemail-no-info": "Musisz być zalogowany, by uzyskać bezpośredni dostęp do tej strony.",

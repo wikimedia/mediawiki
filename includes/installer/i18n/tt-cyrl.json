@@ -39,7 +39,6 @@
 	"config-sidebar-license": "Күчермә алу",
 	"config-sidebar-upgrade": "Яңарту",
 	"config-env-php": "PHP $1 куелды.",
-	"config-env-hhvm": "HHVM $1 куелды.",
 	"config-apc": "[https://www.php.net/apc APC] куелды",
 	"config-apcu": "[https://www.php.net/apcu APCu] куелды",
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] куелды",

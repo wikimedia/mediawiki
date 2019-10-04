@@ -56,7 +56,6 @@
 	"config-env-good": "Мөхитте тикшереү уңышлы тамамланды. MediaWiki урынлаштырырға мөмкин.",
 	"config-env-bad": "Мөхит тикшерелде. Һеҙ MediaWiki урынлаштыра алмайһығыҙ.",
 	"config-env-php": "PHP: $1 өлгөһө урынлаштырылды.",
-	"config-env-hhvm": "HHVM $1 урынлаштырылды.",
 	"config-unicode-using-intl": " [https://pecl.php.net/intl ҡушылмаһы файҙаланасаҡ, «intl» для PECL]  Юникод нормаль эшләһен өсөн.",
 	"config-unicode-pure-php-warning": "'''Иғтибар!''': [https://pecl.php.net/intl ҡушылмаһы intl из PECL] Юникод өсөн рөхсәт ителмәгән PHP менән бик әкрен эшләйәсәк.\nҺеҙҙең сайт бик көсөргәнешле эшләһә [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations нормализации Юникодты нормалләштереү] өсөн уҡығыҙ.",
 	"config-unicode-update-warning": "\"Иҫкәртеү\". Ҡуйылған тышлыҡ Юникодты нормаға килтереүҙең иҫке китапхана версияһын ҡуллана[http://site.icu-project.org/ проекта ICU].Әгәр Юникодты тулы мәғәнәһендә ҡулланырға теләһәгеҙ, һеҙ [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations версияны яңыртырға] тейешһегеҙ.",

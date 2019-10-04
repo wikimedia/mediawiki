@@ -24,7 +24,6 @@
 	"config-page-existingwiki": "Olemasolii wiki",
 	"config-restart": "Muga, käynnistä uvvelleh",
 	"config-env-php": "PHP $1 on azendettu.",
-	"config-env-hhvm": "HHVM $1 on azendettu.",
 	"config-db-name": "Tiedokannan nimi:",
 	"config-db-username": "Tiedokannan käyttäinimi:",
 	"config-db-password": "Tiedokannan salasana:",

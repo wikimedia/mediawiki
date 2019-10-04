@@ -58,7 +58,6 @@
 	"config-env-good": "Miljön har kontrollerats.\nDu kan installera MediaWiki.",
 	"config-env-bad": "Miljön har kontrollerats.\nDu kan inte installera MediaWiki.",
 	"config-env-php": "PHP $1 är installerat.",
-	"config-env-hhvm": "HHVM $1 är installerat.",
 	"config-unicode-using-intl": "Använder tillägget [https://pecl.php.net/intl PHP intl] för Unicode-normalisering.",
 	"config-unicode-pure-php-warning": "'''Varning:''' Tillägget [https://php.net/manual/en/book.intl.php PHP intl] är inte tillgängligt för att hantera Unicode-normalisering, faller tillbaka till en långsamt implementering i ren PHP.\nOm du driver en högtrafikerad webbplats bör du läsa lite om [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode-normalisering].",
 	"config-unicode-update-warning": "<strong>Varning:</strong> Den installerade versionen av Unicode-normaliserings \"wrappern\" använder en äldre version av [http://site.icu-project.org/ ICU projektets] bibliotek.\nDu bör [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations uppgradera] om är intresserad av att använda Unicode.",

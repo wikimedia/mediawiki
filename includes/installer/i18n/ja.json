@@ -75,7 +75,6 @@
 	"config-env-good": "環境を確認しました。\nMediaWiki をインストールできます。",
 	"config-env-bad": "環境を確認しました。\nMediaWiki のインストールはできません。",
 	"config-env-php": "PHP $1がインストールされています。",
-	"config-env-hhvm": "HHVM $1 がインストールされています。",
 	"config-unicode-using-intl": "Unicode正規化に[https://php.net/manual/en/book.intl.php PHP intl \n 拡張機能]を使用。",
 	"config-unicode-pure-php-warning": "<strong>警告:</strong> Unicode 正規化の処理に[https://php.net/manual/en/book.intl.php PHP intl 拡張機能]を利用できないため、処理が遅いピュア PHP の実装を代わりに使用しています。\n高トラフィックのサイトを運営する場合、[https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode 正規化]は必ず読むよう推奨されます。",
 	"config-unicode-update-warning": "<strong>警告:</strong> インストールされているバージョンの Unicode 正規化ラッパーは、[http://site.icu-project.org/ ICU プロジェクト]のライブラリの古いバージョンを使用しています。\nUnicode を少しでも利用する可能性がある場合は、[https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations アップグレード]してください。",

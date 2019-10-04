@@ -70,7 +70,6 @@
 	"config-env-good": "环境检查已经完成。您可以安装MediaWiki。",
 	"config-env-bad": "环境检查已经完成。您不能安装MediaWiki。",
 	"config-env-php": "PHP $1已安装。",
-	"config-env-hhvm": "HHVM $1已安装。",
 	"config-unicode-using-intl": "使用[https://pecl.php.net/intl intl PECL扩展程序]标准化Unicode。",
 	"config-unicode-pure-php-warning": "<strong>警告：</strong>因为尚未安装 [https://pecl.php.net/intl intl PECL 扩展]以处理 Unicode 正常化，故只能退而采用运行较慢的纯 PHP 实现的方法。如果您运行着一个高流量的网站，请参阅 [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode标准化]一文。",
 	"config-unicode-update-warning": "<strong>警告：</strong>Unicode正常化封装器的已安装版本使用了旧版本的[http://site.icu-project.org/ ICU项目]库。如果您需要使用Unicode，请将其[https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations 升级]。",

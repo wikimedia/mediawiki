@@ -65,7 +65,6 @@
 	"config-env-good": "Kondisi telah diperiksa.\nAnda dapat menginstal MediaWiki.",
 	"config-env-bad": "Kondisi telah diperiksa.\nAnda tidak dapat menginstal MediaWiki.",
 	"config-env-php": "PHP $1 diinstal.",
-	"config-env-hhvm": "HHVM $1 telah dipasang.",
 	"config-unicode-using-intl": "Menggunakan [https://php.net/manual/en/book.intl.php ekstensi internasional PHP] untuk normalisasi Unicode.",
 	"config-unicode-pure-php-warning": "<strong>Peringatan:</strong> [https://pecl.php.net/intl intl Ekstensi PECL] tidak tersedia untuk menangani normalisasi Unicode, dikembalikan untuk melambatkan implementasi PHP asli.\nApabila Anda menjalankan situs dengan lalu-lintas tinggi, Anda harus membaca [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations normalisasi Unicode].",
 	"config-unicode-update-warning": "<strong>Peringatan:</strong> Versi terinstal dari pembungkus normalisasi Unicode menggunakan versi lama pustaka [http://site.icu-project.org/ proyek ICU].\nAnda harus [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations meningkatkan versinya] jika ingin menggunakan Unicode.",

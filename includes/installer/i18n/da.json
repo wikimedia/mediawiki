@@ -46,7 +46,6 @@
 	"config-restart": "Ja, genstart den",
 	"config-sidebar-upgrade": "Opgraderer",
 	"config-env-php": "PHP $1 er installeret.",
-	"config-env-hhvm": "HHVM $1 er installeret.",
 	"config-apc": "[https://www.php.net/apc APC] er installeret",
 	"config-apcu": "[https://www.php.net/apcu APCu] er installeret",
 	"config-db-type": "Databasetype:",

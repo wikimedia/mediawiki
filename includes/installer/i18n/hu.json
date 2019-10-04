@@ -58,7 +58,6 @@
 	"config-env-good": "A környezet ellenőrzése befejeződött.\nA MediaWiki telepíthető.",
 	"config-env-bad": "A környezet ellenőrzése befejeződött.\nA MediaWiki nem telepíthető.",
 	"config-env-php": "A PHP verziója: $1",
-	"config-env-hhvm": "HHVM verziója: $1",
 	"config-unicode-using-intl": "A rendszer Unicode normalizálására az [https://pecl.php.net/intl intl PECL kiterjesztést] használja.",
 	"config-unicode-pure-php-warning": "<strong>Figyelmeztetés:</strong> A Unicode-normalizáláshoz szükséges [https://pecl.php.net/intl intl PECL kiterjesztés] nem érhető el, helyette a lassú, PHP-alapú implementáció lesz használatban.\nHa nagy látogatottságú oldalt üzemeltetsz, [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations itt] találhatsz további információkat a témáról.",
 	"config-unicode-update-warning": "<strong>Figyelmeztetés:</strong> A Unicode normalizáláshoz szükséges burkolókönyvtár [http://site.icu-project.org/ az ICU projekt] függvénykönyvtárának régebbi változatát használja.\nHa ügyelni kívánsz a Unicode használatára, fontold meg a [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations frissítését].",

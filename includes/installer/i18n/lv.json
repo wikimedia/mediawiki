@@ -26,7 +26,6 @@
 	"config-page-copying": "Kopē",
 	"config-restart": "Jā, restartēt",
 	"config-env-php": "PHP $1 ir uzstādīts.",
-	"config-env-hhvm": "HHVM $1 ir uzstādīts.",
 	"config-apcu": "[https://www.php.net/apcu APCu] ir uzstādīts",
 	"config-diff3-bad": "GNU diff3 nav atrasts.",
 	"config-db-name": "Datubāzes nosaukums:",

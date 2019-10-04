@@ -65,7 +65,6 @@
 	"config-env-good": "Ortam kontrol edildi.\nMediaWiki'yi kurabilirsiniz.",
 	"config-env-bad": "Ortam kontrol edildi.\nMediaWiki'yi kuramazsınız.",
 	"config-env-php": "PHP $1 kurulu.",
-	"config-env-hhvm": "HHVM $1 kuruldu",
 	"config-unicode-using-intl": "Unikod normalleştirmesi için [https://pecl.php.net/intl intl PECL uzantısı] kullanılıyor.",
 	"config-unicode-pure-php-warning": "<strong>Uyarı:</strong> [https://pecl.php.net/intl intl PECL uzantısı] Unicode normalizasyonunu kaldırabilecek şekilde müsait değil; bu yüzden sayfa saf PHP uygulamasına dönüyor. Yüksek trafik alan bir sayfa çalıştırıyorsanız, [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode normalizasyonu] ile ilgili biraz bilgi almalısınız.",
 	"config-unicode-update-warning": "<strong>Uyarı:</strong> Yüklü durumdaki Unicode normalleştirme sarıcı [http://site.icu-project.org/ ICU proje] kütüphanesinin eski bir sürümünü kullanır.\nUnicode kullanımı konusunda endişeleriniz varsa [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations yükseltme] yapmanız gerekmektedir.",

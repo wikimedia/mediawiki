@@ -58,7 +58,6 @@
 	"config-env-good": "환경이 확인되었습니다.\n미디어위키를 설치할 수 있습니다.",
 	"config-env-bad": "환경이 확인되었습니다.\n미디어위키를 설치할 수 없습니다.",
 	"config-env-php": "PHP $1이(가) 설치되어 있습니다.",
-	"config-env-hhvm": "HHVM $1이(가) 설치되어 있습니다.",
 	"config-unicode-using-intl": "유니코드 정규화에 [https://pecl.php.net/intl intl PECL 확장 기능]을 사용합니다.",
 	"config-unicode-pure-php-warning": "<strong>경고:</strong> 유니코드 정규화를 처리할 [https://pecl.php.net/intl intl PECL 확장 기능]을 사용할 수 없기 때문에 느린 pure-PHP 구현을 대신 사용합니다.\n트래픽이 높은 사이트에서 실행하시려면 [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations 유니코드 정규화]를 읽어보셔야 합니다.",
 	"config-unicode-update-warning": "<strong>경고:</strong> 유니코드 정규화 래퍼의 설치된 버전은 [http://site.icu-project.org/ ICU 프로젝트]의 라이브러리의 이전 버전을 사용합니다.\n만약 유니코드를 사용하는 것에 대해 우려가 된다면 [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations 업그레이드]해야합니다.",

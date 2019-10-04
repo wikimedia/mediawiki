@@ -50,7 +50,6 @@
 	"config-env-good": "The environment haes been checked.\nYe can install MediaWiki.",
 	"config-env-bad": "The environment haes been checked.\nYe canna install MediaWiki.",
 	"config-env-php": "PHP $1 is instâlled.",
-	"config-env-hhvm": "HHVM $1 is instawed.",
 	"config-unicode-using-intl": "Uising the [https://pecl.php.net/intl intl PECL extension] fer Unicode normalization.",
 	"config-unicode-pure-php-warning": "<strong>Warnishment:</strong> The [https://pecl.php.net/intl intl PECL extension] is no available tae haunle Unicode normalisation, fawin back tae slaw pure-PHP implementation.\nGif ye rin ae hei-traffic steid, ye shid read ae wee bit oan [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode normalization].",
 	"config-unicode-update-warning": "<strong>Wairnin:</strong> The installed version o the Unicode normalisation wrapper uises an aulder version o [http://site.icu-project.org/ the ICU project's] library.\nYe shoud [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations upgrade] if ye are at aw concerned aboot uisin Unicode.",

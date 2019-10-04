@@ -53,7 +53,6 @@
 	"config-env-good": "Okruženje je provjereno.\nMožete uspostaviti MediaWiki.",
 	"config-env-bad": "Okruženje je provjereno.\nNe možete uspostaviti MediaWiki.",
 	"config-env-php": "PHP $1 je uspostavljen.",
-	"config-env-hhvm": "HHVM $1 je uspostavljen.",
 	"config-unicode-using-intl": "Uz dodatak [https://pecl.php.net/intl intL PECL] za Unicode normalizaciju.",
 	"config-unicode-pure-php-warning": "'''Upozorenje''': Dodatak [https://pecl.php.net/intl intl PECL] nije dostupan za normalizaciju Unicode, vraćajući se na sporu primjenu čistog PHP-a.\n\nAko imate web-lokaciju s visokim prometom, morat ćete pročitati više o [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode normalizacije].",
 	"config-unicode-update-warning": "'''Upozorenje:''' Uspostavljena verzija omotnice Unicode normalizacije koristi stariju verziju biblioteke [http://site.icu-project.org/ projekta ICU].\nDa biste koristili Unicode, trebate napraviti [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations nadogradnju].",
