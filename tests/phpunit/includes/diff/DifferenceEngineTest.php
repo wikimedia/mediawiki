@@ -327,8 +327,10 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 		$customContent2 = clone $customContent;
 
 		$slotDiffRenderer = $customContentHandler->getSlotDiffRenderer( RequestContext::getMain() );
-		$this->setExpectedException( Exception::class,
-			': could not maintain backwards compatibility. Please use a SlotDiffRenderer.' );
+		$this->expectException( Exception::class );
+		$this->expectExceptionMessage(
+			': could not maintain backwards compatibility. Please use a SlotDiffRenderer.'
+		);
 		$slotDiffRenderer->getDiff( $customContent, $customContent2 );
 	}
 

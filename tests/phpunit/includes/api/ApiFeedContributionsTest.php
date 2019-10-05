@@ -9,8 +9,8 @@
 class ApiFeedContributionsTest extends ApiTestCase {
 
 	public function testInvalidExternalUser() {
-		$this->setExpectedException( ApiUsageException::class,
-			'Invalid value ">" for user parameter "user"' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'Invalid value ">" for user parameter "user"' );
 		$this->doApiRequest( [
 			'action' => 'feedcontributions',
 			'user' => '>'

@@ -1251,8 +1251,8 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::getCategories
 	 */
 	public function testGetCategoriesInvalid() {
-		$this->setExpectedException( InvalidArgumentException::class,
-			'Invalid category type given: hiddne' );
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( 'Invalid category type given: hiddne' );
 
 		$op = $this->newInstance();
 		$op->getCategories( 'hiddne' );
@@ -1647,7 +1647,8 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::addWikiTextAsInterface
 	 */
 	public function testAddWikiTextAsInterfaceNoTitle() {
-		$this->setExpectedException( MWException::class, 'Title is null' );
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( 'Title is null' );
 
 		$op = $this->newInstance( [], null, 'notitle' );
 		$op->addWikiTextAsInterface( 'a' );
@@ -1657,7 +1658,8 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::addWikiTextAsContent
 	 */
 	public function testAddWikiTextAsContentNoTitle() {
-		$this->setExpectedException( MWException::class, 'Title is null' );
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( 'Title is null' );
 
 		$op = $this->newInstance( [], null, 'notitle' );
 		$op->addWikiTextAsContent( 'a' );
@@ -1972,7 +1974,8 @@ class OutputPageTest extends MediaWikiTestCase {
 	 */
 	public function testParseNullTitle() {
 		$this->hideDeprecated( 'OutputPage::parse' );
-		$this->setExpectedException( MWException::class, 'Empty $mTitle in OutputPage::parseInternal' );
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( 'Empty $mTitle in OutputPage::parseInternal' );
 		$op = $this->newInstance( [], null, 'notitle' );
 		$op->parse( '' );
 	}
@@ -1982,7 +1985,8 @@ class OutputPageTest extends MediaWikiTestCase {
 	 */
 	public function testParseInlineNullTitle() {
 		$this->hideDeprecated( 'OutputPage::parseInline' );
-		$this->setExpectedException( MWException::class, 'Empty $mTitle in OutputPage::parseInternal' );
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( 'Empty $mTitle in OutputPage::parseInternal' );
 		$op = $this->newInstance( [], null, 'notitle' );
 		$op->parseInline( '' );
 	}
@@ -1991,7 +1995,8 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::parseAsContent
 	 */
 	public function testParseAsContentNullTitle() {
-		$this->setExpectedException( MWException::class, 'Empty $mTitle in OutputPage::parseInternal' );
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( 'Empty $mTitle in OutputPage::parseInternal' );
 		$op = $this->newInstance( [], null, 'notitle' );
 		$op->parseAsContent( '' );
 	}

@@ -192,7 +192,8 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::checkRedirect
 	 */
 	public function testCheckRedirect_invalidFile() {
-		$this->setExpectedException( MWException::class, '`Notafile` is not a valid file title.' );
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( '`Notafile` is not a valid file title.' );
 		$this->newRepo()->checkRedirect( Title::makeTitle( NS_MAIN, 'Notafile' ) );
 	}
 

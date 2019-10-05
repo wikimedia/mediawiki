@@ -78,7 +78,8 @@ class GlobalVarConfigTest extends MediaWikiTestCase {
 	public function testGet( $name, $prefix, $expected ) {
 		$config = new GlobalVarConfig( $prefix );
 		if ( $expected === false ) {
-			$this->setExpectedException( ConfigException::class, 'GlobalVarConfig::get: undefined option:' );
+			$this->expectException( ConfigException::class );
+			$this->expectExceptionMessage( 'GlobalVarConfig::get: undefined option:' );
 		}
 		$this->assertEquals( $config->get( $name ), $expected );
 	}
