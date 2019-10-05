@@ -5,7 +5,6 @@ use MediaWiki\Session\SessionManager;
 class FauxRequestTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
-	use PHPUnit4And6Compat;
 
 	public function setUp() {
 		parent::setUp();
@@ -21,7 +20,8 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 	 * @covers FauxRequest::__construct
 	 */
 	public function testConstructInvalidData() {
-		$this->setExpectedException( MWException::class, 'bogus data' );
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( 'bogus data' );
 		$req = new FauxRequest( 'x' );
 	}
 
@@ -29,7 +29,8 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 	 * @covers FauxRequest::__construct
 	 */
 	public function testConstructInvalidSession() {
-		$this->setExpectedException( MWException::class, 'bogus session' );
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( 'bogus session' );
 		$req = new FauxRequest( [], false, 'x' );
 	}
 
@@ -160,7 +161,7 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testGetRequestURL_disallowed() {
 		$req = new FauxRequest();
-		$this->setExpectedException( MWException::class );
+		$this->expectException( MWException::class );
 		$req->getRequestURL();
 	}
 
@@ -181,7 +182,7 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 		$GLOBALS['wgServer'] = '//wiki.test';
 		$req = new FauxRequest();
 
-		$this->setExpectedException( MWException::class );
+		$this->expectException( MWException::class );
 		$req->getFullRequestURL();
 	}
 

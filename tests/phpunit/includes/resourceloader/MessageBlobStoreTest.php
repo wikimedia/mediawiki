@@ -9,7 +9,6 @@ use Wikimedia\TestingAccessWrapper;
 class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
-	use PHPUnit4And6Compat;
 
 	const NAME = 'test.blobstore';
 

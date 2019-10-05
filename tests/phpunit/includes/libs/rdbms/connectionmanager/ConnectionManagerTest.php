@@ -13,8 +13,6 @@ use Wikimedia\Rdbms\ConnectionManager;
  * @author Daniel Kinzler
  */
 class ConnectionManagerTest extends \PHPUnit\Framework\TestCase {
-	use \PHPUnit4And6Compat;
-
 	/**
 	 * @return IDatabase|PHPUnit_Framework_MockObject_MockObject
 	 */

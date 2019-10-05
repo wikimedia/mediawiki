@@ -15,7 +15,6 @@ use Wikimedia\Rdbms\DBTransactionError;
 class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
-	use PHPUnit4And6Compat;
 
 	/** @var DatabaseTestHelper|Database */
 	private $database;
@@ -1412,7 +1411,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider provideBuildSubstring_invalidParams
 	 */
 	public function testBuildSubstring_invalidParams( $start, $length ) {
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$this->database->buildSubstring( 'foo', $start, $length );
 	}
 

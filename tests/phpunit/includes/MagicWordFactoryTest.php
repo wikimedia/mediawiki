@@ -32,7 +32,7 @@ class MagicWordFactoryTest extends MediaWikiTestCase {
 	public function testGetInvalidMagicWord() {
 		$magicWordFactory = $this->makeMagicWordFactory();
 
-		$this->setExpectedException( MWException::class );
+		$this->expectException( MWException::class );
 		\Wikimedia\suppressWarnings();
 		try {
 			$magicWordFactory->get( 'invalid magic word' );
