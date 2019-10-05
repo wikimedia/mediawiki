@@ -64,7 +64,7 @@ class ResourceLoaderImage {
 	 * @param string|null $defaultColor of the base variant
 	 * @throws InvalidArgumentException
 	 */
-	public function __construct( $name, $module, $descriptor, $basePath, $variants,
+	public function __construct( $name, $module, $descriptor, $basePath, array $variants,
 		$defaultColor = null
 	) {
 		$this->name = $name;
@@ -329,7 +329,7 @@ class ResourceLoaderImage {
 	 * @param ResourceLoaderContext $context Image context
 	 * @return string New SVG file data
 	 */
-	protected function variantize( $variantConf, ResourceLoaderContext $context ) {
+	protected function variantize( array $variantConf, ResourceLoaderContext $context ) {
 		$dom = new DOMDocument;
 		$dom->loadXML( file_get_contents( $this->getPath( $context ) ) );
 		$root = $dom->documentElement;

@@ -238,7 +238,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @endcode
 	 */
 	public function __construct(
-		$options = [],
+		array $options = [],
 		$localBasePath = null,
 		$remoteBasePath = null
 	) {
@@ -340,7 +340,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return array [ localBasePath, remoteBasePath ]
 	 */
 	public static function extractBasePaths(
-		$options = [],
+		array $options = [],
 		$localBasePath = null,
 		$remoteBasePath = null
 	) {

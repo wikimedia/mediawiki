@@ -175,7 +175,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 * @param array &$styles Associative array, keys are strings (media queries),
 	 *   values are strings or arrays
 	 */
-	private function normalizeStyles( &$styles ) {
+	private function normalizeStyles( array &$styles ) {
 		foreach ( $styles as $key => $val ) {
 			if ( !is_array( $val ) ) {
 				$styles[$key] = [ $val ];
