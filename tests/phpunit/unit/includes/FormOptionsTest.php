@@ -96,10 +96,10 @@ class FormOptionsTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @expectedException MWException
 	 * @covers FormOptions::guessType
 	 */
 	public function testGuessTypeOnNullThrowException() {
+		$this->expectException( MWException::class );
 		$this->object->guessType( null );
 	}
 }

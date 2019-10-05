@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Logger\Monolog;
 
+use Kafka\Exception;
 use Monolog\Logger;
 use Wikimedia\TestingAccessWrapper;
 
@@ -91,13 +92,13 @@ class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 			->getMock();
 		$produce->expects( $this->any() )
 			->method( 'getAvailablePartitions' )
-			->will( $this->throwException( new \Kafka\Exception ) );
+			->will( $this->throwException( new Exception ) );
 		$produce->expects( $this->any() )
 			->method( 'send' )
 			->will( $this->returnValue( true ) );
 
 		if ( $expectException ) {
-			$this->setExpectedException( 'Kafka\Exception' );
+			$this->expectException( Exception::class );
 		}
 
 		$handler = new KafkaHandler( $produce, $options );
@@ -125,10 +126,10 @@ class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 			->will( $this->returnValue( [ 'A' ] ) );
 		$produce->expects( $this->any() )
 			->method( 'send' )
-			->will( $this->throwException( new \Kafka\Exception ) );
+			->will( $this->throwException( new Exception ) );
 
 		if ( $expectException ) {
-			$this->setExpectedException( 'Kafka\Exception' );
+			$this->expectException( Exception::class );
 		}
 
 		$handler = new KafkaHandler( $produce, $options );

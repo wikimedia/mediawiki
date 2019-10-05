@@ -59,12 +59,12 @@ class EncryptedPasswordTest extends PasswordTestCase {
 
 	/**
 	 * Wrong encryption key selected
-	 * @expectedException PasswordError
 	 */
 	public function testDecryptionError() {
 		// phpcs:ignore Generic.Files.LineLength
 		$hash = ':secret1:aes-256-cbc:0:m1LCnQVIakfYBNlr9KEgQg==:5yPTctqrzsybdgaMEag18AZYbnL37pAtXVBqmWxkjXbnNmiDH+1bHoL8lsEVTH/sJntC82kNVgE7zeiD8xUVLYF2VUnvB5+sU+aysE45/zwsCu7a22TaischMAOWrsHZ/tIgS/TnZY2d+HNyxgsEeeYf/QoL+FhmqHquK02+4SRbA5lLuj9niYy1r5CoM9cQ';
 		$password = $this->passwordFactory->newFromCiphertext( $hash );
+		$this->expectException( PasswordError::class );
 		$password->crypt( 'password' );
 	}
 

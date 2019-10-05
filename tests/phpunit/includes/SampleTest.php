@@ -96,11 +96,10 @@ class SampleTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @expectedException InvalidArgumentException
-	 * See https://phpunit.de/manual/6.5/en/appendixes.annotations.html#appendixes.annotations.expectedException
+	 * See https://phpunit.de/manual/6.5/en/writing-tests-for-phpunit.html#writing-tests-for-phpunit.exceptions
 	 */
 	public function testTitleObjectFromObject() {
-		$title = Title::newFromText( Title::newFromText( "test" ) );
-		$this->assertEquals( "Test", $title->isLocal() );
+		$this->expectException( InvalidArgumentException::class );
+		Title::newFromText( Title::newFromText( "test" ) );
 	}
 }
