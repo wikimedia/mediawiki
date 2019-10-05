@@ -307,7 +307,7 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 	 */
 	public function testGetOtherPage( $text, $expected ) {
 		if ( $expected === null ) {
-			$this->setExpectedException( MWException::class );
+			$this->expectException( MWException::class );
 		}
 
 		$title = Title::newFromText( $text );

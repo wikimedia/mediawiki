@@ -79,7 +79,7 @@ class SubpageImportTitleFactoryTest extends MediaWikiTestCase {
 	 * @dataProvider failureProvider
 	 */
 	public function testFailures( Title $rootPage ) {
-		$this->setExpectedException( MWException::class );
+		$this->expectException( MWException::class );
 		new SubpageImportTitleFactory( $rootPage );
 	}
 }

@@ -90,7 +90,7 @@ trait RevisionRecordTests {
 	}
 
 	public function testSerialization_fails() {
-		$this->setExpectedException( LogicException::class );
+		$this->expectException( LogicException::class );
 		$rev = $this->newRevision();
 		serialize( $rev );
 	}

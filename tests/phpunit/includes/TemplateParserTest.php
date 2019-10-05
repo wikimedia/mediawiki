@@ -127,7 +127,7 @@ class TemplateParserTest extends MediaWikiTestCase {
 		$this->assertEquals( 'rrr', $tp->processTemplate( 'recurse', $data ) );
 
 		$tp->enableRecursivePartials( false );
-		$this->setExpectedException( Exception::class );
+		$this->expectException( Exception::class );
 		$tp->processTemplate( 'recurse', $data );
 	}
 

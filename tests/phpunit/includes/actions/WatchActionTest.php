@@ -93,7 +93,7 @@ class WatchActionTest extends MediaWikiTestCase {
 		$testContext = new DerivativeContext( $this->watchAction->getContext() );
 		$testContext->setUser( $notLoggedInUser );
 		$watchAction = new WatchAction( $this->testWikiPage, $testContext );
-		$this->setExpectedException( UserNotLoggedIn::class );
+		$this->expectException( UserNotLoggedIn::class );
 
 		$watchAction->show();
 	}

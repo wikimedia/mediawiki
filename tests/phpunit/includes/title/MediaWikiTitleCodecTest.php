@@ -457,7 +457,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 	 * @dataProvider provideParseTitle_invalid
 	 */
 	public function testParseTitle_invalid( $text ) {
-		$this->setExpectedException( MalformedTitleException::class );
+		$this->expectException( MalformedTitleException::class );
 
 		$codec = $this->makeCodec( 'en' );
 		$codec->parseTitle( $text, NS_MAIN );

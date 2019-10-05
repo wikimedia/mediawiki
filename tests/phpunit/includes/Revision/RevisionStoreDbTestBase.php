@@ -2147,7 +2147,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		/** @var Revision $rev1 */
 		$rev1 = $editStatus->getValue()['revision'];
 
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		MediaWikiServices::getInstance()->getRevisionStore()
 			->newRevisionsFromBatch(
 				[ $this->revisionToRow( $rev1 ) ],

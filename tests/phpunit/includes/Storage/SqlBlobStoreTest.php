@@ -173,7 +173,7 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	public function testDecompressData_InvalidArgumentException() {
 		$store = $this->getBlobStore();
 
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$store->decompressData( false, [] );
 	}
 
@@ -263,7 +263,7 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\SqlBlobStore::getBlob
 	 */
 	public function testSimpleStorageNonExistentBlob() {
-		$this->setExpectedException( BlobAccessException::class );
+		$this->expectException( BlobAccessException::class );
 		$store = $this->getBlobStore();
 		$store->getBlob( 'tt:this_will_not_exist' );
 	}
@@ -383,7 +383,7 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	 * @dataProvider provideGetTextIdFromAddressInvalidArgumentException
 	 */
 	public function testGetTextIdFromAddressInvalidArgumentException( $address ) {
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$store = $this->getBlobStore();
 		$store->getTextIdFromAddress( $address );
 	}

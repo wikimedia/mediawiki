@@ -350,7 +350,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		$rl->setName( 'testing' );
 
 		if ( $expected === false ) {
-			$this->setExpectedException( MWException::class );
+			$this->expectException( MWException::class );
 			$rl->getTemplates();
 		} else {
 			$this->assertEquals( $rl->getTemplates(), $expected );
@@ -724,7 +724,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 			$module->setName( $moduleDefinition['name'] );
 		}
 		if ( $expected === false ) {
-			$this->setExpectedException( MWException::class );
+			$this->expectException( MWException::class );
 			$module->getScript( $context );
 		} else {
 			$this->assertEquals( $expected, $module->getScript( $context ) );
