@@ -198,7 +198,7 @@ class PasswordResetTest extends MediaWikiTestCase {
 	 * @expectedException \LogicException
 	 */
 	public function testExecute_notAllowed() {
-		$user = $this->getMock( User::class );
+		$user = $this->createMock( User::class );
 		/** @var User $user */
 
 		$passwordReset = $this->getMockBuilder( PasswordReset::class )

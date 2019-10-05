@@ -307,7 +307,7 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 	 */
 	public function testGetOtherPage( $text, $expected ) {
 		if ( $expected === null ) {
-			$this->setExpectedException( MWException::class );
+			$this->expectException( MWException::class );
 		}
 
 		$title = Title::newFromText( $text );
@@ -406,7 +406,7 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 			'wgFragmentMode' => [ 'html5', 'legacy' ]
 		] );
 
-		$interwikiLookup = $this->getMock( InterwikiLookup::class );
+		$interwikiLookup = $this->createMock( InterwikiLookup::class );
 
 		$interwikiLookup->method( 'fetch' )
 			->willReturnCallback( function ( $interwiki ) {

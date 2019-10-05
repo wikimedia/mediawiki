@@ -110,7 +110,7 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 		Title $title,
 		$wikiId = false
 	) {
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		new MutableRevisionRecord( $title, $wikiId );
 	}
 
@@ -145,7 +145,7 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 
 	public function testGetMainContentWhenEmpty() {
 		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
-		$this->setExpectedException( RevisionAccessException::class );
+		$this->expectException( RevisionAccessException::class );
 		$this->assertNull( $record->getContent( SlotRecord::MAIN ) );
 	}
 
@@ -160,7 +160,7 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
 		$this->assertFalse( $record->hasSlot( SlotRecord::MAIN ) );
 
-		$this->setExpectedException( RevisionAccessException::class );
+		$this->expectException( RevisionAccessException::class );
 		$record->getSlot( SlotRecord::MAIN );
 	}
 
@@ -303,10 +303,10 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 
 	public function provideNotReadyForInsertion() {
 		/** @var Title $title */
-		$title = $this->getMock( Title::class );
+		$title = $this->createMock( Title::class );
 
 		/** @var User $user */
-		$user = $this->getMock( User::class );
+		$user = $this->createMock( User::class );
 
 		/** @var CommentStoreComment $comment */
 		$comment = $this->getMockBuilder( CommentStoreComment::class )

@@ -144,7 +144,7 @@ class SiteImporterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testImportFromXML_malformed() {
-		$this->setExpectedException( Exception::class );
+		$this->expectException( Exception::class );
 
 		$store = $this->getMockBuilder( SiteStore::class )->getMock();
 		$importer = new SiteImporter( $store );

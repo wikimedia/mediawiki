@@ -1427,7 +1427,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		} elseif ( count( $args ) === 2 ) {
 			$retVals = [ $args[0] => $args[1] ];
 		}
-		$pOut = $this->getMock( ParserOutput::class );
+		$pOut = $this->createMock( ParserOutput::class );
 		foreach ( $retVals as $method => $retVal ) {
 			$pOut->method( $method )->willReturn( $retVal );
 		}
@@ -1807,7 +1807,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::addTemplate
 	 */
 	public function testAddTemplate() {
-		$template = $this->getMock( QuickTemplate::class );
+		$template = $this->createMock( QuickTemplate::class );
 		$template->method( 'getHTML' )->willReturn( '<abc>&def;' );
 
 		$op = $this->newInstance();
@@ -2389,7 +2389,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		$op = $this->newInstance( [], $req, in_array( 'notitle', $options ) ? 'notitle' : null );
 
 		if ( !in_array( 'notitle', $options ) ) {
-			$mockLang = $this->getMock( Language::class );
+			$mockLang = $this->createMock( Language::class );
 
 			if ( in_array( 'varianturl', $options ) ) {
 				$mockLang->expects( $this->never() )->method( $this->anything() );
@@ -2399,7 +2399,7 @@ class OutputPageTest extends MediaWikiTestCase {
 				$mockLang->method( 'getCode' )->willReturn( $code );
 			}
 
-			$mockTitle = $this->getMock( Title::class );
+			$mockTitle = $this->createMock( Title::class );
 			$mockTitle->method( 'getPageLanguage' )->willReturn( $mockLang );
 
 			$op->setTitle( $mockTitle );

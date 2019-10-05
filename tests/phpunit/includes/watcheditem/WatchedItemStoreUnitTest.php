@@ -1551,7 +1551,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	public function testGetWatchedItemsForUser_badSortOptionThrowsException() {
 		$store = $this->newWatchedItemStore();
 
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$store->getWatchedItemsForUser(
 			new UserIdentityValue( 1, 'MockUser', 0 ),
 			[ 'sort' => 'foo' ]

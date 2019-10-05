@@ -46,7 +46,7 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 	}
 
 	public function testNotLoggedIn_throwsException() {
-		$this->setExpectedException( UserNotLoggedIn::class );
+		$this->expectException( UserNotLoggedIn::class );
 		$this->executeSpecialPage();
 	}
 

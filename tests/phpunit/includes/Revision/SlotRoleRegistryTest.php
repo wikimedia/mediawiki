@@ -75,7 +75,7 @@ class SlotRoleRegistryTest extends MediaWikiTestCase {
 			return new SlotRoleHandler( $role, 'FooModel' );
 		} );
 
-		$this->setExpectedException( LogicException::class );
+		$this->expectException( LogicException::class );
 		$registry->defineRole( 'foo', function ( $role ) {
 			return new SlotRoleHandler( $role, 'FooModel' );
 		} );
@@ -111,7 +111,7 @@ class SlotRoleRegistryTest extends MediaWikiTestCase {
 	public function testGetRoleHandlerForUnknownModel() {
 		$registry = $this->newSlotRoleRegistry();
 
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 
 		$registry->getRoleHandler( 'foo' );
 	}
@@ -140,7 +140,7 @@ class SlotRoleRegistryTest extends MediaWikiTestCase {
 			return 'Not a SlotRoleHandler instance';
 		} );
 
-		$this->setExpectedException( PostconditionException::class );
+		$this->expectException( PostconditionException::class );
 		$registry->getRoleHandler( 'foo' );
 	}
 

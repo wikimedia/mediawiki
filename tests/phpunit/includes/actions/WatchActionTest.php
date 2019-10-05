@@ -93,7 +93,7 @@ class WatchActionTest extends MediaWikiTestCase {
 		$testContext = new DerivativeContext( $this->watchAction->getContext() );
 		$testContext->setUser( $notLoggedInUser );
 		$watchAction = new WatchAction( $this->testWikiPage, $testContext );
-		$this->setExpectedException( UserNotLoggedIn::class );
+		$this->expectException( UserNotLoggedIn::class );
 
 		$watchAction->show();
 	}
@@ -102,7 +102,7 @@ class WatchActionTest extends MediaWikiTestCase {
 	 * @covers WatchAction::checkCanExecute()
 	 */
 	public function testShowUserLoggedInNoException() {
-		$loggedInUser = $this->getMock( User::class );
+		$loggedInUser = $this->createMock( User::class );
 		$loggedInUser->method( 'isLoggedIn' )->willReturn( true );
 		$testContext = new DerivativeContext( $this->watchAction->getContext() );
 		$testContext->setUser( $loggedInUser );
@@ -352,7 +352,7 @@ class WatchActionTest extends MediaWikiTestCase {
 		$isWatched = true,
 		$permissions = []
 	) {
-		$user = $this->getMock( User::class );
+		$user = $this->createMock( User::class );
 		$user->method( 'getId' )->willReturn( 42 );
 		$user->method( 'isLoggedIn' )->willReturn( $isLoggedIn );
 		$user->method( 'isWatched' )->willReturn( $isWatched );

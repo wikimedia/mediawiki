@@ -37,7 +37,7 @@ class MutableRevisionSlotsTest extends RevisionSlotsTest {
 	 * @covers \MediaWiki\Revision\RevisionSlots::setSlotsInternal
 	 */
 	public function testConstructorFailue( $slots ) {
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 
 		new MutableRevisionSlots( $slots );
 	}
@@ -125,7 +125,7 @@ class MutableRevisionSlotsTest extends RevisionSlotsTest {
 
 		$slots->removeSlot( SlotRecord::MAIN );
 		$this->assertSame( [], $slots->getSlots() );
-		$this->setExpectedException( RevisionAccessException::class );
+		$this->expectException( RevisionAccessException::class );
 		$slots->getSlot( SlotRecord::MAIN );
 	}
 

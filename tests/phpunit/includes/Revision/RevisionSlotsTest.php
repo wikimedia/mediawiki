@@ -37,7 +37,7 @@ class RevisionSlotsTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionSlots::setSlotsInternal
 	 */
 	public function testConstructorFailue( $slots ) {
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 
 		new RevisionSlots( $slots );
 	}
@@ -52,7 +52,7 @@ class RevisionSlotsTest extends MediaWikiTestCase {
 
 		$this->assertSame( $mainSlot, $slots->getSlot( SlotRecord::MAIN ) );
 		$this->assertSame( $auxSlot, $slots->getSlot( 'aux' ) );
-		$this->setExpectedException( RevisionAccessException::class );
+		$this->expectException( RevisionAccessException::class );
 		$slots->getSlot( 'nothere' );
 	}
 
@@ -82,7 +82,7 @@ class RevisionSlotsTest extends MediaWikiTestCase {
 
 		$this->assertSame( $mainContent, $slots->getContent( SlotRecord::MAIN ) );
 		$this->assertSame( $auxContent, $slots->getContent( 'aux' ) );
-		$this->setExpectedException( RevisionAccessException::class );
+		$this->expectException( RevisionAccessException::class );
 		$slots->getContent( 'nothere' );
 	}
 

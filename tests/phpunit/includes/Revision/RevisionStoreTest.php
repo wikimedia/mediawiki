@@ -128,7 +128,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	 */
 	public function testSetContentHandlerUseDB( $contentHandlerDb, $migrationMode, $expectedFail ) {
 		if ( $expectedFail ) {
-			$this->setExpectedException( MWException::class );
+			$this->expectException( MWException::class );
 		}
 
 		$nameTables = MediaWikiServices::getInstance()->getNameTableStoreFactory();
@@ -419,7 +419,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 
 		$store = $this->getRevisionStore( $mockLoadBalancer );
 
-		$this->setExpectedException( RevisionAccessException::class );
+		$this->expectException( RevisionAccessException::class );
 		$store->getTitle( 1, 2, RevisionStore::READ_NORMAL );
 	}
 
@@ -440,7 +440,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	 */
 	public function testMigrationConstruction( $migration, $expectException ) {
 		if ( $expectException ) {
-			$this->setExpectedException( InvalidArgumentException::class );
+			$this->expectException( InvalidArgumentException::class );
 		}
 		$loadBalancer = $this->getMockLoadBalancer();
 		$blobStore = $this->getMockSqlBlobStore();
