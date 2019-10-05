@@ -123,7 +123,8 @@ trait LanguageFallbackTestTrait {
 	 * @covers Language::getFallbacksFor
 	 */
 	public function testGetFallbacksFor_exception() {
-		$this->setExpectedException( MWException::class, 'Invalid fallback mode "7"' );
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( 'Invalid fallback mode "7"' );
 
 		$callee = $this->getCallee( [ 'expectedGets' => 0 ] );
 

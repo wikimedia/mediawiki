@@ -17,10 +17,8 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 	public function testQueue_invalid() {
 		$registry = new ExtensionRegistry();
 		$path = __DIR__ . '/doesnotexist.json';
-		$this->setExpectedException(
-			Exception::class,
-			"file $path"
-		);
+		$this->expectException( Exception::class );
+		$this->expectExceptionMessage( "file $path" );
 		$registry->queue( $path );
 	}
 
@@ -46,10 +44,9 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 		$registry = new ExtensionRegistry();
 		$registry->finish();
 		$registry->queue( "{$this->dataDir}/good.json" );
-		$this->setExpectedException(
-			MWException::class,
-			"The following paths tried to load late: {$this->dataDir}/good.json"
-		);
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage(
+			"The following paths tried to load late: {$this->dataDir}/good.json" );
 		$registry->loadFromQueue();
 	}
 
@@ -72,21 +69,17 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 		$this->assertFalse( $registry->isLoaded( 'FooBar', '^1.3.0' ) );
 	}
 
-	/**
-	 * @expectedException LogicException
-	 */
 	public function testLoadFromQueueWithConstraintWithoutVersion() {
 		$registry = new ExtensionRegistry();
 		$registry->queue( "{$this->dataDir}/good.json" );
 		$registry->loadFromQueue();
+		$this->expectException( LogicException::class );
 		$registry->isLoaded( 'FooBar', '>= 1.2.0' );
 	}
 
-	/**
-	 * @expectedException PHPUnit_Framework_Error
-	 */
 	public function testReadFromQueue_nonexistent() {
 		$registry = new ExtensionRegistry();
+		$this->expectException( PHPUnit\Framework\Error\Error::class );
 		$registry->readFromQueue( [
 			__DIR__ . '/doesnotexist.json' => 1
 		] );
@@ -416,13 +409,11 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 		$this->assertSame( [ 'test' ], $registry->getAttribute( 'FooBarAttr' ) );
 	}
 
-	/**
-	 * @expectedException Exception
-	 * @expectedExceptionMessage The attribute 'foo' has already been overridden
-	 */
 	public function testSetAttributeForTestDuplicate() {
 		$registry = new ExtensionRegistry();
 		$reset1 = $registry->setAttributeForTest( 'foo', [ 'val1' ] );
+		$this->expectException( Exception::class );
+		$this->expectExceptionMessage( "The attribute 'foo' has already been overridden" );
 		$reset2 = $registry->setAttributeForTest( 'foo', [ 'val2' ] );
 	}
 }

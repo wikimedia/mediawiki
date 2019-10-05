@@ -33,10 +33,8 @@ class ExtensionJsonValidatorTest extends MediaWikiTestCase {
 		} );
 
 		if ( is_string( $expected ) ) {
-			$this->setExpectedException(
-				ExtensionJsonValidationError::class,
-				$expected
-			);
+			$this->expectException( ExtensionJsonValidationError::class );
+			$this->expectExceptionMessage( $expected );
 		}
 
 		$dir = __DIR__ . '/../../data/registration/';

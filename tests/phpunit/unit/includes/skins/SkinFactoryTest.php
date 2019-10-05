@@ -11,7 +11,7 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 			return new SkinFallback();
 		} );
 		$this->assertTrue( true ); // No exception thrown
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$factory->register( 'invalid', 'Invalid', 'Invalid callback' );
 	}
 
@@ -20,7 +20,7 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 	 */
 	public function testMakeSkinWithNoBuilders() {
 		$factory = new SkinFactory();
-		$this->setExpectedException( SkinException::class );
+		$this->expectException( SkinException::class );
 		$factory->makeSkin( 'nobuilderregistered' );
 	}
 
@@ -32,7 +32,7 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 		$factory->register( 'unittest', 'Unittest', function () {
 			return true; // Not a Skin object
 		} );
-		$this->setExpectedException( UnexpectedValueException::class );
+		$this->expectException( UnexpectedValueException::class );
 		$factory->makeSkin( 'unittest' );
 	}
 
