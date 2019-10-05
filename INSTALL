@@ -7,7 +7,7 @@ Starting with MediaWiki 1.2.0, it's possible to install and configure the wiki
 
 Required software as of MediaWiki 1.34.0:
 
-* Web server with PHP 7.2.0 or higher, plus the following extesnsions:
+* Web server with PHP 7.2.0 or higher, plus the following extensions:
 ** ctype
 ** dom
 ** fileinfo
