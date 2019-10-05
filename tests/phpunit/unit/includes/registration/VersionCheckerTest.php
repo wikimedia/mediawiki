@@ -64,11 +64,9 @@ class VersionCheckerTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	/**
-	 * @expectedException UnexpectedValueException
-	 */
 	public function testPhpInvalidConstraint() {
 		$checker = new VersionChecker( '1.0.0', '7.0.0', [] );
+		$this->expectException( UnexpectedValueException::class );
 		$checker->checkArray( [
 			'FakeExtension' => [
 				'platform' => [
@@ -80,9 +78,9 @@ class VersionCheckerTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider providePhpInvalidVersion
-	 * @expectedException UnexpectedValueException
 	 */
 	public function testPhpInvalidVersion( $phpVersion ) {
+		$this->expectException( UnexpectedValueException::class );
 		 $checker = new VersionChecker( '1.0.0', $phpVersion, [] );
 	}
 
@@ -340,7 +338,7 @@ class VersionCheckerTest extends MediaWikiUnitTestCase {
 				],
 			] );
 
-		$this->setExpectedException( UnexpectedValueException::class );
+		$this->expectException( UnexpectedValueException::class );
 		$checker->checkArray( [
 			'FakeExtension' => [
 				'FakeDependency' => 'not really valid',
@@ -425,19 +423,16 @@ class VersionCheckerTest extends MediaWikiUnitTestCase {
 				'missingAbility' => false,
 			]
 		);
-		$this->setExpectedException(
-			UnexpectedValueException::class,
-			"Dependency type $type unknown in FakeExtension"
-		);
+		$this->expectException( UnexpectedValueException::class );
+		$this->expectExceptionMessage( "Dependency type $type unknown in FakeExtension" );
 		$checker->checkArray( $depencency );
 	}
 
 	public function testInvalidPhpExtensionConstraint() {
 		$checker = new VersionChecker( '1.0.0', '7.0.0', [ 'phpLoadedExtension' ] );
-		$this->setExpectedException(
-			UnexpectedValueException::class,
-			'Version constraints for PHP extensions are not supported in FakeExtension'
-		);
+		$this->expectException( UnexpectedValueException::class );
+		$this->expectExceptionMessage(
+			'Version constraints for PHP extensions are not supported in FakeExtension' );
 		$checker->checkArray( [
 			'FakeExtension' => [
 				'platform' => [
@@ -452,10 +447,9 @@ class VersionCheckerTest extends MediaWikiUnitTestCase {
 	 */
 	public function testInvalidAbilityType( $value ) {
 		$checker = new VersionChecker( '1.0.0', '7.0.0', [], [ 'presentAbility' => true ] );
-		$this->setExpectedException(
-			UnexpectedValueException::class,
-			'Only booleans are allowed to to indicate the presence of abilities in FakeExtension'
-		);
+		$this->expectException( UnexpectedValueException::class );
+		$this->expectExceptionMessage(
+			'Only booleans are allowed to to indicate the presence of abilities in FakeExtension' );
 		$checker->checkArray( [
 			'FakeExtension' => [
 				'platform' => [

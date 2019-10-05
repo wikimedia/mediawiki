@@ -32,7 +32,8 @@ class HashConfigTest extends \MediaWikiUnitTestCase {
 			'one' => '1',
 		] );
 		$this->assertEquals( '1', $conf->get( 'one' ) );
-		$this->setExpectedException( ConfigException::class, 'HashConfig::get: undefined option' );
+		$this->expectException( ConfigException::class );
+		$this->expectExceptionMessage( 'HashConfig::get: undefined option' );
 		$conf->get( 'two' );
 	}
 

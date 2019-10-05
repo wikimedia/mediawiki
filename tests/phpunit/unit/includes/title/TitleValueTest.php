@@ -84,7 +84,7 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 	 * @dataProvider badConstructorProvider
 	 */
 	public function testConstructionErrors( $ns, $text, $fragment, $interwiki ) {
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		new TitleValue( $ns, $text, $fragment, $interwiki );
 	}
 
