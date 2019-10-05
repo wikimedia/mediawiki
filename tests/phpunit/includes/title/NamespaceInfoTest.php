@@ -65,7 +65,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	private function newObj( array $options = [] ) : NamespaceInfo {
 		return new NamespaceInfo( new LoggedServiceOptions(
 			self::$serviceOptionsAccessLog,
-			NamespaceInfo::$constructorOptions,
+			NamespaceInfo::CONSTRUCTOR_OPTIONS,
 			$options, self::$defaultOptions
 		) );
 	}
@@ -94,10 +94,10 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 
 	public function provideConstructor() {
 		return [
-			[ new ServiceOptions( NamespaceInfo::$constructorOptions, self::$defaultOptions ) ],
+			[ new ServiceOptions( NamespaceInfo::CONSTRUCTOR_OPTIONS, self::$defaultOptions ) ],
 			[ new ServiceOptions( [], [] ), 'Required options missing: ' ],
 			[ new ServiceOptions(
-				array_merge( NamespaceInfo::$constructorOptions, [ 'invalid' ] ),
+				array_merge( NamespaceInfo::CONSTRUCTOR_OPTIONS, [ 'invalid' ] ),
 				self::$defaultOptions,
 				[ 'invalid' => '' ]
 			), 'Unsupported options passed: invalid' ],

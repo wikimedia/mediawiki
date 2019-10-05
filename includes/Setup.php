@@ -465,7 +465,7 @@ $wgMinUploadChunkSize = min(
  * Definitions of the NS_ constants are in Defines.php
  * @private
  */
-$wgCanonicalNamespaceNames = NamespaceInfo::$canonicalNames;
+$wgCanonicalNamespaceNames = NamespaceInfo::CANONICAL_NAMES;
 
 /// @todo UGLY UGLY
 if ( is_array( $wgExtraNamespaces ) ) {
