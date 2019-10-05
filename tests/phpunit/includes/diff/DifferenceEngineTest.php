@@ -165,12 +165,6 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 		$oldContent = ContentHandler::makeContent( ...$oldContentArgs );
 		$newContent = ContentHandler::makeContent( ...$newContentArgs );
 
-		// Set $wgExternalDiffEngine to something bogus to try to force use of
-		// the PHP engine rather than wikidiff2.
-		$this->setMwGlobals( [
-			'wgExternalDiffEngine' => '/dev/null',
-		] );
-
 		$differenceEngine = new DifferenceEngine();
 		$diff = $differenceEngine->generateContentDiffBody( $oldContent, $newContent );
 		$this->assertSame( $expectedDiff, $this->getPlainDiff( $diff ) );
@@ -187,12 +181,6 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 	}
 
 	public function testGenerateTextDiffBody() {
-		// Set $wgExternalDiffEngine to something bogus to try to force use of
-		// the PHP engine rather than wikidiff2.
-		$this->setMwGlobals( [
-			'wgExternalDiffEngine' => '/dev/null',
-		] );
-
 		$oldText = "aaa\nbbb\nccc";
 		$newText = "aaa\nxxx\nccc";
 		$expectedDiff = " aaa aaa\n-bbb+xxx\n ccc ccc";
@@ -203,12 +191,6 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 	}
 
 	public function testSetContent() {
-		// Set $wgExternalDiffEngine to something bogus to try to force use of
-		// the PHP engine rather than wikidiff2.
-		$this->setMwGlobals( [
-			'wgExternalDiffEngine' => '/dev/null',
-		] );
-
 		$oldContent = ContentHandler::makeContent( 'xxx', null, CONTENT_MODEL_TEXT );
 		$newContent = ContentHandler::makeContent( 'yyy', null, CONTENT_MODEL_TEXT );
 
@@ -243,12 +225,6 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 	public function testGetDiffBody(
 		RevisionRecord $oldRevision = null, RevisionRecord $newRevision = null, $expectedDiff
 	) {
-		// Set $wgExternalDiffEngine to something bogus to try to force use of
-		// the PHP engine rather than wikidiff2.
-		$this->setMwGlobals( [
-			'wgExternalDiffEngine' => '/dev/null',
-		] );
-
 		if ( $expectedDiff instanceof Exception ) {
 			$this->setExpectedException( get_class( $expectedDiff ), $expectedDiff->getMessage() );
 		}

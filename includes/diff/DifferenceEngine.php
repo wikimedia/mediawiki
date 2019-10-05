@@ -1288,35 +1288,32 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * Process $wgExternalDiffEngine and get a sane, usable engine
+	 * Process ExternalDiffEngine config and get a sane, usable engine
 	 *
 	 * @return bool|string 'wikidiff2', path to an executable, or false
 	 * @internal For use by this class and TextSlotDiffRenderer only.
 	 */
 	public static function getEngine() {
-		global $wgExternalDiffEngine;
-		// We use the global here instead of Config because we write to the value,
-		// and Config is not mutable.
-		if ( $wgExternalDiffEngine == 'wikidiff' || $wgExternalDiffEngine == 'wikidiff3' ) {
-			wfDeprecated( "\$wgExternalDiffEngine = '{$wgExternalDiffEngine}'", '1.27' );
-			$wgExternalDiffEngine = false;
-		} elseif ( $wgExternalDiffEngine == 'wikidiff2' ) {
-			wfDeprecated( "\$wgExternalDiffEngine = '{$wgExternalDiffEngine}'", '1.32' );
-			$wgExternalDiffEngine = false;
-		} elseif ( !is_string( $wgExternalDiffEngine ) && $wgExternalDiffEngine !== false ) {
-			// And prevent people from shooting themselves in the foot...
-			wfWarn( '$wgExternalDiffEngine is set to a non-string value, forcing it to false' );
-			$wgExternalDiffEngine = false;
+		$externalDiffEngine = MediaWikiServices::getInstance()->getMainConfig()
+			->get( 'ExternalDiffEngine' );
+
+		if ( $externalDiffEngine ) {
+			if ( is_string( $externalDiffEngine ) ) {
+				if ( is_executable( $externalDiffEngine ) ) {
+					return $externalDiffEngine;
+				}
+				wfDebug( 'ExternalDiffEngine config points to a non-executable, ignoring' );
+			} else {
+				wfWarn( 'ExternalDiffEngine config is set to a non-string value, ignoring' );
+			}
 		}
 
-		if ( is_string( $wgExternalDiffEngine ) && is_executable( $wgExternalDiffEngine ) ) {
-			return $wgExternalDiffEngine;
-		} elseif ( $wgExternalDiffEngine === false && function_exists( 'wikidiff2_do_diff' ) ) {
+		if ( function_exists( 'wikidiff2_do_diff' ) ) {
 			return 'wikidiff2';
-		} else {
-			// Native PHP
-			return false;
 		}
+
+		// Native PHP
+		return false;
 	}
 
 	/**
