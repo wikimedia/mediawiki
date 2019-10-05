@@ -186,7 +186,7 @@ class ArticleViewTest extends MediaWikiTestCase {
 		);
 
 		/** @var MockObject|Content $content */
-		$content = $this->getMock( Content::class );
+		$content = $this->createMock( Content::class );
 		$content->method( 'getParserOutput' )
 			->willReturn( new ParserOutput( 'Structured Output' ) );
 		$content->method( 'getModel' )

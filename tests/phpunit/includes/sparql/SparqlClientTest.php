@@ -78,14 +78,12 @@ JSON;
 		$this->assertNull( $result[1]['y'] );
 	}
 
-	/**
-	 * @expectedException \Mediawiki\Sparql\SparqlException
-	 */
 	public function testBadQuery() {
 		$request = $this->getMockBuilder( MWHttpRequest::class )->disableOriginalConstructor()->getMock();
 		$client = new SparqlClient( 'http://acme.test/', $this->getRequestFactory( $request ) );
 
 		$request->method( 'execute' )->willReturn( \Status::newFatal( "Bad query" ) );
+		$this->expectException( \Mediawiki\Sparql\SparqlException::class );
 		$result = $client->query( "TEST SPARQL 3" );
 	}
 

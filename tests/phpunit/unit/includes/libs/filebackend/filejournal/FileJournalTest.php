@@ -50,8 +50,8 @@ class FileJournalTest extends MediaWikiUnitTestCase {
 	 * @covers ::factory
 	 */
 	public function testFactory_invalidClass() {
-		$this->setExpectedException( UnexpectedValueException::class,
-			'Expected instance of FileJournal, got stdClass' );
+		$this->expectException( UnexpectedValueException::class );
+		$this->expectExceptionMessage( 'Expected instance of FileJournal, got stdClass' );
 
 		FileJournal::factory( [ 'class' => 'stdclass' ], '' );
 	}

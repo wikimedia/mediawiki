@@ -15,7 +15,7 @@ class NoWriteWatchedItemStoreUnitTest extends \MediaWikiUnitTestCase {
 		$innerService->expects( $this->never() )->method( 'addWatch' );
 		$noWriteService = new NoWriteWatchedItemStore( $innerService );
 
-		$this->setExpectedException( DBReadOnlyError::class );
+		$this->expectException( DBReadOnlyError::class );
 		$noWriteService->addWatch(
 			new UserIdentityValue( 1, 'MockUser', 0 ), new TitleValue( 0, 'Foo' ) );
 	}
@@ -26,7 +26,7 @@ class NoWriteWatchedItemStoreUnitTest extends \MediaWikiUnitTestCase {
 		$innerService->expects( $this->never() )->method( 'addWatchBatchForUser' );
 		$noWriteService = new NoWriteWatchedItemStore( $innerService );
 
-		$this->setExpectedException( DBReadOnlyError::class );
+		$this->expectException( DBReadOnlyError::class );
 		$noWriteService->addWatchBatchForUser( new UserIdentityValue( 1, 'MockUser', 0 ), [] );
 	}
 
@@ -36,7 +36,7 @@ class NoWriteWatchedItemStoreUnitTest extends \MediaWikiUnitTestCase {
 		$innerService->expects( $this->never() )->method( 'removeWatch' );
 		$noWriteService = new NoWriteWatchedItemStore( $innerService );
 
-		$this->setExpectedException( DBReadOnlyError::class );
+		$this->expectException( DBReadOnlyError::class );
 		$noWriteService->removeWatch(
 			new UserIdentityValue( 1, 'MockUser', 0 ), new TitleValue( 0, 'Foo' ) );
 	}
@@ -47,7 +47,7 @@ class NoWriteWatchedItemStoreUnitTest extends \MediaWikiUnitTestCase {
 		$innerService->expects( $this->never() )->method( 'setNotificationTimestampsForUser' );
 		$noWriteService = new NoWriteWatchedItemStore( $innerService );
 
-		$this->setExpectedException( DBReadOnlyError::class );
+		$this->expectException( DBReadOnlyError::class );
 		$noWriteService->setNotificationTimestampsForUser(
 			new UserIdentityValue( 1, 'MockUser', 0 ),
 			'timestamp',
@@ -61,7 +61,7 @@ class NoWriteWatchedItemStoreUnitTest extends \MediaWikiUnitTestCase {
 		$innerService->expects( $this->never() )->method( 'updateNotificationTimestamp' );
 		$noWriteService = new NoWriteWatchedItemStore( $innerService );
 
-		$this->setExpectedException( DBReadOnlyError::class );
+		$this->expectException( DBReadOnlyError::class );
 		$noWriteService->updateNotificationTimestamp(
 			new UserIdentityValue( 1, 'MockUser', 0 ),
 			new TitleValue( 0, 'Foo' ),
@@ -75,7 +75,7 @@ class NoWriteWatchedItemStoreUnitTest extends \MediaWikiUnitTestCase {
 		$innerService->expects( $this->never() )->method( 'resetNotificationTimestamp' );
 		$noWriteService = new NoWriteWatchedItemStore( $innerService );
 
-		$this->setExpectedException( DBReadOnlyError::class );
+		$this->expectException( DBReadOnlyError::class );
 		$noWriteService->resetNotificationTimestamp(
 			new UserIdentityValue( 1, 'MockUser', 0 ),
 			new TitleValue( 0, 'Foo' )
@@ -240,7 +240,7 @@ class NoWriteWatchedItemStoreUnitTest extends \MediaWikiUnitTestCase {
 		$innerService = $this->getMockForAbstractClass( WatchedItemStoreInterface::class );
 		$noWriteService = new NoWriteWatchedItemStore( $innerService );
 
-		$this->setExpectedException( DBReadOnlyError::class );
+		$this->expectException( DBReadOnlyError::class );
 		$noWriteService->duplicateAllAssociatedEntries(
 			new TitleValue( 0, 'Foo' ),
 			new TitleValue( 0, 'Bar' )

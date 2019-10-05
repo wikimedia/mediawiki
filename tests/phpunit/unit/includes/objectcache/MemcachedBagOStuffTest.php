@@ -90,7 +90,7 @@ class MemcachedBagOStuffTest extends \MediaWikiUnitTestCase {
 	 * @covers MemcachedBagOStuff::validateKeyEncoding
 	 */
 	public function testValidateKeyEncodingThrowsException( $key ) {
-		$this->setExpectedException( Exception::class );
+		$this->expectException( Exception::class );
 		$this->cache->validateKeyEncoding( $key );
 	}
 
