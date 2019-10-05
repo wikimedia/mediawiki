@@ -18,82 +18,72 @@
  *
  */
 
+use PHPUnit\Framework\MockObject\MockObject;
+
 /**
  * @since 1.31
  * @deprecated since 1.35; we don't support PHPUnit 4 any more
  */
 trait PHPUnit4And6Compat {
 	/**
-	 * @see PHPUnit_Framework_TestCase::setExpectedException
+	 * @deprecated since 1.35
 	 *
 	 * This function was renamed to expectException() in PHPUnit 6, so this
 	 * is a temporary backwards-compatibility layer while we transition.
 	 */
 	public function setExpectedException( $name, $message = '', $code = null ) {
-		if ( is_callable( 'parent::expectException' ) ) {
-			if ( $name !== null ) {
-				parent::expectException( $name );
-			}
-			if ( $message !== '' ) {
-				$this->expectExceptionMessage( $message );
-			}
-			if ( $code !== null ) {
-				$this->expectExceptionCode( $code );
-			}
-		} else {
-			parent::setExpectedException( $name, $message, $code );
+		if ( $name !== null ) {
+			$this->expectException( $name );
+		}
+		if ( $message !== '' ) {
+			$this->expectExceptionMessage( $message );
+		}
+		if ( $code !== null ) {
+			$this->expectExceptionCode( $code );
 		}
 	}
 
 	/**
-	 * @see PHPUnit_Framework_TestCase::getMock
+	 * @deprecated since 1.35, use createMock() or getMockBuilder()
 	 *
-	 * @return PHPUnit_Framework_MockObject_MockObject
+	 * @return MockObject
 	 */
 	public function getMock( $originalClassName, $methods = [], array $arguments = [],
 		$mockClassName = '', $callOriginalConstructor = true, $callOriginalClone = true,
 		$callAutoload = true, $cloneArguments = false, $callOriginalMethods = false,
 		$proxyTarget = null
 	) {
-		if ( is_callable( 'parent::getMock' ) ) {
-			return parent::getMock(
-				$originalClassName, $methods, $arguments, $mockClassName,
-				$callOriginalConstructor, $callOriginalClone, $callAutoload,
-				$cloneArguments, $callOriginalMethods, $proxyTarget
-			);
+		$builder = $this->getMockBuilder( $originalClassName )
+			->setMethods( $methods )
+			->setConstructorArgs( $arguments )
+			->setMockClassName( $mockClassName )
+			->setProxyTarget( $proxyTarget );
+		if ( $callOriginalConstructor ) {
+			$builder->enableOriginalConstructor();
 		} else {
-			$builder = $this->getMockBuilder( $originalClassName )
-				->setMethods( $methods )
-				->setConstructorArgs( $arguments )
-				->setMockClassName( $mockClassName )
-				->setProxyTarget( $proxyTarget );
-			if ( $callOriginalConstructor ) {
-				$builder->enableOriginalConstructor();
-			} else {
-				$builder->disableOriginalConstructor();
-			}
-			if ( $callOriginalClone ) {
-				$builder->enableOriginalClone();
-			} else {
-				$builder->disableOriginalClone();
-			}
-			if ( $callAutoload ) {
-				$builder->enableAutoload();
-			} else {
-				$builder->disableAutoload();
-			}
-			if ( $cloneArguments ) {
-				$builder->enableArgumentCloning();
-			} else {
-				$builder->disableArgumentCloning();
-			}
-			if ( $callOriginalMethods ) {
-				$builder->enableProxyingToOriginalMethods();
-			} else {
-				$builder->disableProxyingToOriginalMethods();
-			}
-
-			return $builder->getMock();
+			$builder->disableOriginalConstructor();
 		}
+		if ( $callOriginalClone ) {
+			$builder->enableOriginalClone();
+		} else {
+			$builder->disableOriginalClone();
+		}
+		if ( $callAutoload ) {
+			$builder->enableAutoload();
+		} else {
+			$builder->disableAutoload();
+		}
+		if ( $cloneArguments ) {
+			$builder->enableArgumentCloning();
+		} else {
+			$builder->disableArgumentCloning();
+		}
+		if ( $callOriginalMethods ) {
+			$builder->enableProxyingToOriginalMethods();
+		} else {
+			$builder->disableProxyingToOriginalMethods();
+		}
+
+		return $builder->getMock();
 	}
 }
