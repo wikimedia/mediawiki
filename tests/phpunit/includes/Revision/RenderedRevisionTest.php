@@ -304,7 +304,7 @@ class RenderedRevisionTest extends MediaWikiTestCase {
 		$options = ParserOptions::newCanonical( 'canonical' );
 		$rr = new RenderedRevision( $title, $rev, $options, $this->combinerCallback );
 
-		$this->setExpectedException( SuppressedDataException::class );
+		$this->expectException( SuppressedDataException::class );
 		$rr->getRevisionParserOutput();
 	}
 

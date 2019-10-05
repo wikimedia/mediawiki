@@ -175,7 +175,7 @@ class RevisionSlotsUpdateTest extends MediaWikiTestCase {
 		$slots->removeSlot( SlotRecord::MAIN );
 
 		// getting a slot after removing it should fail
-		$this->setExpectedException( RevisionAccessException::class );
+		$this->expectException( RevisionAccessException::class );
 		$slots->getModifiedSlot( SlotRecord::MAIN );
 	}
 

@@ -761,7 +761,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	 * @covers NamespaceInfo::isMethodValidFor
 	 */
 	public function testGetTalkPage_bad( LinkTarget $t ) {
-		$this->setExpectedException( MWException::class );
+		$this->expectException( MWException::class );
 		$this->newObj()->getTalkPage( $t );
 	}
 
@@ -772,7 +772,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	 * @covers NamespaceInfo::isMethodValidFor
 	 */
 	public function testGetAssociatedPage_bad( LinkTarget $t ) {
-		$this->setExpectedException( MWException::class );
+		$this->expectException( MWException::class );
 		$this->newObj()->getAssociatedPage( $t );
 	}
 

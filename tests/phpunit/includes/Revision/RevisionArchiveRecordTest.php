@@ -265,7 +265,7 @@ class RevisionArchiveRecordTest extends MediaWikiTestCase {
 		RevisionSlots $slots,
 		$wikiId = false
 	) {
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		new RevisionArchiveRecord( $title, $user, $comment, $row, $slots, $wikiId );
 	}
 

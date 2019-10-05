@@ -112,20 +112,20 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 	 * @dataProvider provideInvalidConstruction
 	 */
 	public function testInvalidConstruction( $row, $content ) {
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		new SlotRecord( $row, $content );
 	}
 
 	public function testGetContentId_fails() {
 		$record = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
-		$this->setExpectedException( IncompleteRevisionException::class );
+		$this->expectException( IncompleteRevisionException::class );
 
 		$record->getContentId();
 	}
 
 	public function testGetAddress_fails() {
 		$record = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
-		$this->setExpectedException( IncompleteRevisionException::class );
+		$this->expectException( IncompleteRevisionException::class );
 
 		$record->getAddress();
 	}
@@ -144,7 +144,7 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 	 */
 	public function testGetRevision_fails( SlotRecord $record ) {
 		$record = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
-		$this->setExpectedException( IncompleteRevisionException::class );
+		$this->expectException( IncompleteRevisionException::class );
 
 		$record->getRevision();
 	}
@@ -154,7 +154,7 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 	 */
 	public function testGetOrigin_fails( SlotRecord $record ) {
 		$record = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
-		$this->setExpectedException( IncompleteRevisionException::class );
+		$this->expectException( IncompleteRevisionException::class );
 
 		$record->getOrigin();
 	}
@@ -188,7 +188,7 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 		$input = new SlotRecord( $this->makeRow(), new WikitextContent( 'A' ) );
 		$output = SlotRecord::newWithSuppressedContent( $input );
 
-		$this->setExpectedException( SuppressedDataException::class );
+		$this->expectException( SuppressedDataException::class );
 		$output->getContent();
 	}
 
@@ -287,7 +287,7 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 		$contentAddress,
 		SlotRecord $protoSlot
 	) {
-		$this->setExpectedException( LogicException::class );
+		$this->expectException( LogicException::class );
 		SlotRecord::newSaved( $revisionId, $contentId, $contentAddress, $protoSlot );
 	}
 
@@ -308,7 +308,7 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 		$contentAddress,
 		SlotRecord $protoSlot
 	) {
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		SlotRecord::newSaved( $revisionId, $contentId, $contentAddress, $protoSlot );
 	}
 

@@ -30,7 +30,7 @@
 class SiteExporterTest extends MediaWikiIntegrationTestCase {
 
 	public function testConstructor_InvalidArgument() {
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 
 		new SiteExporter( 'Foo' );
 	}
