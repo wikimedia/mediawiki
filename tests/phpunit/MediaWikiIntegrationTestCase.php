@@ -852,11 +852,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 					$GLOBALS[$globalKey] instanceof FauxRequest
 				) {
 					$this->mwGlobals[$globalKey] = clone $GLOBALS[$globalKey];
-				} elseif ( $this->containsClosure( $GLOBALS[$globalKey] ) ) {
-					// Serializing Closure only gives a warning on HHVM while
-					// it throws an Exception on Zend.
-					// Workaround for https://github.com/facebook/hhvm/issues/6206
-					$this->mwGlobals[$globalKey] = $GLOBALS[$globalKey];
 				} else {
 					try {
 						$this->mwGlobals[$globalKey] = unserialize( serialize( $GLOBALS[$globalKey] ) );
@@ -866,28 +861,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				}
 			}
 		}
-	}
-
-	/**
-	 * @param mixed $var
-	 * @param int $maxDepth
-	 *
-	 * @return bool
-	 */
-	private function containsClosure( $var, $maxDepth = 15 ) {
-		if ( $var instanceof Closure ) {
-			return true;
-		}
-		if ( !is_array( $var ) || $maxDepth === 0 ) {
-			return false;
-		}
-
-		foreach ( $var as $value ) {
-			if ( $this->containsClosure( $value, $maxDepth - 1 ) ) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	/**

@@ -63,7 +63,6 @@ class SiteExporterTest extends MediaWikiIntegrationTestCase {
 		$this->assertContains( '<path type="link">http://acme.com/</path>', $xml );
 		$this->assertContains( '</sites>', $xml );
 
-		// NOTE: HHVM (at least on wmf Jenkins) doesn't like file URLs.
 		$xsdFile = __DIR__ . '/../../../../docs/sitelist-1.0.xsd';
 		$xsdData = file_get_contents( $xsdFile );
 

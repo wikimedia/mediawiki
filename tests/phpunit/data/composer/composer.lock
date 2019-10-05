@@ -976,12 +976,11 @@
                     "email": "sebastian@phpunit.de"
                 }
             ],
-            "description": "Provides functionality to handle HHVM/PHP environments",
+            "description": "Provides functionality to handle PHP environments",
             "homepage": "http://www.github.com/sebastianbergmann/environment",
             "keywords": [
                 "Xdebug",
-                "environment",
-                "hhvm"
+                "environment"
             ],
             "time": "2014-10-25 08:00:45"
         },

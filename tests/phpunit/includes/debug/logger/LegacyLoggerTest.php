@@ -37,6 +37,7 @@ class LegacyLoggerTest extends MediaWikiTestCase {
 	public function provideInterpolate() {
 		$e = new \Exception( 'boom!' );
 		$d = new \DateTime();
+		$err = new \Error( 'Test error' );
 		return [
 			[
 				'no-op',
@@ -121,27 +122,16 @@ class LegacyLoggerTest extends MediaWikiTestCase {
 				],
 				'[Object stdClass]',
 			],
+			[
+				'{exception}',
+				[
+					'exception' => $err,
+				],
+				'[Error ' . get_class( $err ) . '( ' .
+					$err->getFile() . ':' . $err->getLine() . ') ' .
+					$err->getMessage() . ']',
+			],
 		];
-	}
-
-	/**
-	 * @covers MediaWiki\Logger\LegacyLogger::interpolate
-	 */
-	public function testInterpolate_Error() {
-		// @todo Merge this into provideInterpolate once we drop HHVM support
-		if ( !class_exists( \Error::class ) ) {
-			$this->markTestSkipped( 'Error class does not exist' );
-		}
-
-		$err = new \Error( 'Test error' );
-		$message = '{exception}';
-		$context = [ 'exception' => $err ];
-		$expect = '[Error ' . get_class( $err ) . '( ' .
-			$err->getFile() . ':' . $err->getLine() . ') ' .
-			$err->getMessage() . ']';
-
-		$this->assertEquals(
-			$expect, LegacyLogger::interpolate( $message, $context ) );
 	}
 
 	/**

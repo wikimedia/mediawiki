@@ -65,9 +65,7 @@ class PHPUnitMaintClass extends Maintenance {
 			exit( 1 );
 		}
 
-		fwrite( STDERR, defined( 'HHVM_VERSION' ) ?
-			'Using HHVM ' . HHVM_VERSION . ' (' . PHP_VERSION . ")\n" :
-			'Using PHP ' . PHP_VERSION . "\n" );
+		fwrite( STDERR, 'Using PHP ' . PHP_VERSION . "\n" );
 
 		// Tell PHPUnit to ignore options meant for MediaWiki
 		$ignore = [];
