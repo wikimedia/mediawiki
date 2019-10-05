@@ -198,13 +198,14 @@ abstract class MWLBFactory {
 			$server += [ 'schema' => $options->get( 'DBmwschema' ) ];
 		}
 
-		$flags = DBO_DEFAULT;
-		$flags |= $options->get( 'DebugDumpSql' ) ? DBO_DEBUG : 0;
-		$flags |= $options->get( 'DebugLogFile' ) ? DBO_DEBUG : 0;
+		$flags = $server['flags'] ?? DBO_DEFAULT;
+		if ( $options->get( 'DebugDumpSql' ) || $options->get( 'DebugLogFile' ) ) {
+			$flags |= DBO_DEBUG;
+		}
+		$server['flags'] = $flags;
 
 		$server += [
 			'tablePrefix' => $options->get( 'DBprefix' ),
-			'flags' => $flags,
 			'sqlMode' => $options->get( 'SQLMode' ),
 		];
 
