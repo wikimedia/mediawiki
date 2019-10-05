@@ -32,12 +32,11 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * Get a Message object with its context set
 	 *
 	 * @param string $name Message name
-	 * @param mixed $params,... Message params
-	 * @suppress PhanCommentParamWithoutRealParam HHVM bug T228695#5450847
+	 * @param mixed ...$params Message params
 	 * @return Message
 	 */
-	public function getMsg( $name /* ... */ ) {
-		return $this->getSkin()->msg( ...func_get_args() );
+	public function getMsg( $name, ...$params ) {
+		return $this->getSkin()->msg( $name, ...$params );
 	}
 
 	function msg( $str ) {
