@@ -79,7 +79,7 @@ class MovePageTest extends MediaWikiTestCase {
 			$old,
 			$new,
 			new ServiceOptions(
-				MovePageFactory::$constructorOptions,
+				MovePageFactory::CONSTRUCTOR_OPTIONS,
 				$params['options'] ?? [],
 				[
 					'CategoryCollation' => 'uppercase',
@@ -144,7 +144,7 @@ class MovePageTest extends MediaWikiTestCase {
 		$obj2 = new MovePage(
 			Title::newFromText( 'A' ),
 			Title::newFromText( 'B' ),
-			new ServiceOptions( MovePageFactory::$constructorOptions, $services->getMainConfig() ),
+			new ServiceOptions( MovePageFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getDBLoadBalancer(),
 			$services->getNamespaceInfo(),
 			$services->getWatchedItemStore(),
