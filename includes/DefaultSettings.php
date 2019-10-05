@@ -6154,9 +6154,8 @@ $wgDebugComments = false;
  * Write SQL queries to the debug log.
  *
  * This setting is only used $wgLBFactoryConf['class'] is set to
- * '\Wikimedia\Rdbms\LBFactorySimple' and $wgDBservers is an empty array; otherwise
- * the DBO_DEBUG flag must be set in the 'flags' option of the database
- * connection to achieve the same functionality.
+ * '\Wikimedia\Rdbms\LBFactorySimple'; otherwise the DBO_DEBUG flag must be set in
+ * the 'flags' option of the database connection to achieve the same functionality.
  */
 $wgDebugDumpSql = false;
 
