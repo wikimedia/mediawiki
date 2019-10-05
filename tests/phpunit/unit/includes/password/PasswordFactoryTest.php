@@ -34,11 +34,9 @@ class PasswordFactoryTest extends MediaWikiUnitTestCase {
 		$this->assertSame( '2', $pf->getDefaultType() );
 	}
 
-	/**
-	 * @expectedException Exception
-	 */
 	public function testSetDefaultTypeError() {
 		$pf = new PasswordFactory;
+		$this->expectException( Exception::class );
 		$pf->setDefaultType( 'bogus' );
 	}
 
@@ -68,11 +66,11 @@ class PasswordFactoryTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideNewFromCiphertextErrors
-	 * @expectedException PasswordError
 	 */
 	public function testNewFromCiphertextErrors( $hash ) {
 		$pf = new PasswordFactory;
 		$pf->register( 'B', [ 'class' => MWSaltedPassword::class ] );
+		$this->expectException( PasswordError::class );
 		$pf->newFromCiphertext( $hash );
 	}
 
@@ -83,12 +81,10 @@ class PasswordFactoryTest extends MediaWikiUnitTestCase {
 		$this->assertInstanceOf( MWSaltedPassword::class, $pw );
 	}
 
-	/**
-	 * @expectedException PasswordError
-	 */
 	public function testNewFromTypeError() {
 		$pf = new PasswordFactory;
 		$pf->register( 'B', [ 'class' => MWSaltedPassword::class ] );
+		$this->expectException( PasswordError::class );
 		$pf->newFromType( 'bogus' );
 	}
 

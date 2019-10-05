@@ -15,7 +15,7 @@ class ComposerVersionNormalizerTest extends MediaWikiUnitTestCase {
 	public function testGivenNonString_normalizeThrowsInvalidArgumentException( $nonString ) {
 		$normalizer = new ComposerVersionNormalizer();
 
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$normalizer->normalizeSuffix( $nonString );
 	}
 

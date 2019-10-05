@@ -160,7 +160,8 @@ trait FileBackendGroupTestTrait {
 	 * @covers ::register
 	 */
 	public function testRegister_exception( $fileBackends, $class, $msg ) {
-		$this->setExpectedException( $class, $msg );
+		$this->expectException( $class );
+		$this->expectExceptionMessage( $msg );
 		$this->newObj( [ 'FileBackends' => $fileBackends ] );
 	}
 
@@ -196,8 +197,8 @@ trait FileBackendGroupTestTrait {
 	 * @covers ::get
 	 */
 	public function testGetUnrecognized() {
-		$this->setExpectedException( InvalidArgumentException::class,
-			"No backend defined with the name 'unrecognized'." );
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( "No backend defined with the name 'unrecognized'." );
 		$this->newObj()->get( 'unrecognized' );
 	}
 
@@ -327,8 +328,8 @@ trait FileBackendGroupTestTrait {
 	 * @covers ::config
 	 */
 	public function testConfigUnrecognized() {
-		$this->setExpectedException( InvalidArgumentException::class,
-			"No backend defined with the name 'unrecognized'." );
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( "No backend defined with the name 'unrecognized'." );
 		$this->newObj()->config( 'unrecognized' );
 	}
 

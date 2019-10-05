@@ -245,9 +245,6 @@ class ExtensionProcessorTest extends \MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @expectedException RuntimeException
-	 */
 	public function testDuplicateConfigKey1() {
 		$processor = new ExtensionProcessor;
 		$info = [
@@ -261,13 +258,11 @@ class ExtensionProcessorTest extends \MediaWikiUnitTestCase {
 			],
 			'name' => 'FooBar2',
 		];
+		$this->expectException( RuntimeException::class );
 		$processor->extractInfo( $this->dir, $info, 1 );
 		$processor->extractInfo( $this->dir, $info2, 1 );
 	}
 
-	/**
-	 * @expectedException RuntimeException
-	 */
 	public function testDuplicateConfigKey2() {
 		$processor = new ExtensionProcessor;
 		$info = [
@@ -281,6 +276,7 @@ class ExtensionProcessorTest extends \MediaWikiUnitTestCase {
 			],
 			'name' => 'FooBar2',
 		];
+		$this->expectException( RuntimeException::class );
 		$processor->extractInfo( $this->dir, $info, 2 );
 		$processor->extractInfo( $this->dir, $info2, 2 );
 	}
