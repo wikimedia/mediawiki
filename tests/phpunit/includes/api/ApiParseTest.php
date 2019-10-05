@@ -194,8 +194,8 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testRevDelNoPermission() {
-		$this->setExpectedException( ApiUsageException::class,
-			"You don't have permission to view deleted revision text." );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( "You don't have permission to view deleted revision text." );
 
 		$this->doApiRequest( [
 			'action' => 'parse',
@@ -258,8 +258,8 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testInvalidSection() {
-		$this->setExpectedException( ApiUsageException::class,
-			'The "section" parameter must be a valid section ID or "new".' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'The "section" parameter must be a valid section ID or "new".' );
 
 		$this->doApiRequest( [
 			'action' => 'parse',
@@ -273,8 +273,10 @@ class ApiParseTest extends ApiTestCase {
 		$status = $this->editPage( $name,
 			"Intro\n\n== Section 1 ==\n\nContent 1\n\n== Section 2 ==\n\nContent 2" );
 
-		$this->setExpectedException( ApiUsageException::class,
-			"Missing content for page ID {$status->value['revision']->getPage()}." );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage(
+			"Missing content for page ID {$status->value['revision']->getPage()}."
+		);
 
 		$this->db->delete( 'revision', [ 'rev_id' => $status->value['revision']->getId() ] );
 
@@ -304,8 +306,8 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testNonexistentOldId() {
-		$this->setExpectedException( ApiUsageException::class,
-			'There is no revision with ID 2147483647.' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'There is no revision with ID 2147483647.' );
 
 		$this->doApiRequest( [
 			'action' => 'parse',
@@ -361,7 +363,8 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testInvalidTitle() {
-		$this->setExpectedException( ApiUsageException::class, 'Bad title "|".' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'Bad title "|".' );
 
 		$this->doApiRequest( [
 			'action' => 'parse',
@@ -370,8 +373,8 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testTitleWithNonexistentRevId() {
-		$this->setExpectedException( ApiUsageException::class,
-			'There is no revision with ID 2147483647.' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'There is no revision with ID 2147483647.' );
 
 		$this->doApiRequest( [
 			'action' => 'parse',
@@ -437,8 +440,8 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testSerializationError() {
-		$this->setExpectedException( APIUsageException::class,
-			'Content serialization failed: Could not unserialize content' );
+		$this->expectException( APIUsageException::class );
+		$this->expectExceptionMessage( 'Content serialization failed: Could not unserialize content' );
 
 		$this->mergeMwGlobalArrayValue( 'wgContentHandlers',
 			[ 'testing-serialize-error' => 'DummySerializeErrorContentHandler' ] );
@@ -775,8 +778,8 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testParseTreeNonWikitext() {
-		$this->setExpectedException( ApiUsageException::class,
-			'"prop=parsetree" is only supported for wikitext content.' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( '"prop=parsetree" is only supported for wikitext content.' );
 
 		$this->doApiRequest( [
 			'action' => 'parse',

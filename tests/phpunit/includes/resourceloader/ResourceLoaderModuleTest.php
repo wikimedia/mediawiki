@@ -73,7 +73,8 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 			->setMethods( [ 'getDefinitionSummary' ] )->getMock();
 		$module->method( 'getDefinitionSummary' )->willReturn( [ 'a' => 'summary' ] );
 
-		$this->setExpectedException( LogicException::class, 'must call parent' );
+		$this->expectException( LogicException::class );
+		$this->expectExceptionMessage( 'must call parent' );
 		$module->getVersionHash( $context );
 	}
 

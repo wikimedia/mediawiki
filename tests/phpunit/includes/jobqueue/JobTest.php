@@ -95,7 +95,8 @@ class JobTest extends MediaWikiTestCase {
 	 */
 	public function testInvalidParamsArgument() {
 		$params = false;
-		$this->setExpectedException( InvalidArgumentException::class, '$params must be an array' );
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( '$params must be an array' );
 		$job = $this->getMockJob( $params );
 	}
 
