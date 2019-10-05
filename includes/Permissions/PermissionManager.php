@@ -1220,13 +1220,11 @@ class PermissionManager {
 	 * Check if user is allowed to make any action
 	 *
 	 * @param UserIdentity $user
-	 * // TODO: HHVM bug T228695#5450847 @param string ...$actions
-	 * @suppress PhanCommentParamWithoutRealParam
+	 * @param string ...$actions
 	 * @return bool True if user is allowed to perform *any* of the given actions
 	 * @since 1.34
 	 */
-	public function userHasAnyRight( UserIdentity $user ) {
-		$actions = array_slice( func_get_args(), 1 );
+	public function userHasAnyRight( UserIdentity $user, ...$actions ) {
 		foreach ( $actions as $action ) {
 			if ( $this->userHasRight( $user, $action ) ) {
 				return true;
@@ -1239,13 +1237,11 @@ class PermissionManager {
 	 * Check if user is allowed to make all actions
 	 *
 	 * @param UserIdentity $user
-	 * // TODO: HHVM bug T228695#5450847 @param string ...$actions
-	 * @suppress PhanCommentParamWithoutRealParam
+	 * @param string ...$actions
 	 * @return bool True if user is allowed to perform *all* of the given actions
 	 * @since 1.34
 	 */
-	public function userHasAllRights( UserIdentity $user ) {
-		$actions = array_slice( func_get_args(), 1 );
+	public function userHasAllRights( UserIdentity $user, ...$actions ) {
 		foreach ( $actions as $action ) {
 			if ( !$this->userHasRight( $user, $action ) ) {
 				return false;
