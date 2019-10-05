@@ -6,15 +6,13 @@ const LoginPage = require( 'wdio-mediawiki/LoginPage' );
 const Util = require( 'wdio-mediawiki/Util' );
 
 describe( 'Special:Watchlist', function () {
-	let username, password;
+	let username, password, bot;
 
-	before( function () {
+	before( async () => {
 		username = Util.getTestString( 'user-' );
 		password = Util.getTestString( 'password-' );
-
-		browser.call( function () {
-			return Api.createAccount( username, password );
-		} );
+		bot = await Api.bot();
+		await Api.createAccount( bot, username, password );
 	} );
 
 	beforeEach( function () {
@@ -25,12 +23,16 @@ describe( 'Special:Watchlist', function () {
 	it( 'should show page with new edit', function () {
 		const title = Util.getTestString( 'Title-' );
 
-		browser.call( function () {
-			return Api.edit( title, Util.getTestString() ); // create
+		// create
+		browser.call( async () => {
+			await bot.edit( title, Util.getTestString() );
 		} );
+
 		WatchablePage.watch( title );
-		browser.call( function () {
-			return Api.edit( title, Util.getTestString() ); // edit
+
+		// edit
+		browser.call( async () => {
+			await bot.edit( title, Util.getTestString() );
 		} );
 
 		WatchlistPage.open();

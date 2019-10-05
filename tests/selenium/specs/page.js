@@ -11,7 +11,7 @@ const Util = require( 'wdio-mediawiki/Util' );
 describe( 'Page', function () {
 	let content, name, bot;
 
-	before( async function () {
+	before( async () => {
 		bot = await Api.bot();
 	} );
 
