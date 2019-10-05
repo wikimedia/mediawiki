@@ -36,10 +36,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 		parent::tearDown();
 	}
 
-	/**
-	 * TODO Make this a const once HHVM support is dropped (T192166)
-	 */
-	private static $defaultOptions = [
+	private const DEFAULT_OPTIONS = [
 		'AllowImageMoving' => true,
 		'CanonicalNamespaceNames' => [
 			NS_TALK => 'Talk',
@@ -66,7 +63,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 		return new NamespaceInfo( new LoggedServiceOptions(
 			self::$serviceOptionsAccessLog,
 			NamespaceInfo::CONSTRUCTOR_OPTIONS,
-			$options, self::$defaultOptions
+			$options, self::DEFAULT_OPTIONS
 		) );
 	}
 
@@ -94,11 +91,11 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 
 	public function provideConstructor() {
 		return [
-			[ new ServiceOptions( NamespaceInfo::CONSTRUCTOR_OPTIONS, self::$defaultOptions ) ],
+			[ new ServiceOptions( NamespaceInfo::CONSTRUCTOR_OPTIONS, self::DEFAULT_OPTIONS ) ],
 			[ new ServiceOptions( [], [] ), 'Required options missing: ' ],
 			[ new ServiceOptions(
 				array_merge( NamespaceInfo::CONSTRUCTOR_OPTIONS, [ 'invalid' ] ),
-				self::$defaultOptions,
+				self::DEFAULT_OPTIONS,
 				[ 'invalid' => '' ]
 			), 'Unsupported options passed: invalid' ],
 		];
@@ -829,7 +826,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	// Default canonical namespaces
 	// %{
 	private function getDefaultNamespaces() {
-		return [ NS_MAIN => '' ] + self::$defaultOptions['CanonicalNamespaceNames'];
+		return [ NS_MAIN => '' ] + self::DEFAULT_OPTIONS['CanonicalNamespaceNames'];
 	}
 
 	/**

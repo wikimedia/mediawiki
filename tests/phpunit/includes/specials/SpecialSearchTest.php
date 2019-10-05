@@ -260,10 +260,6 @@ class SpecialSearchTest extends MediaWikiTestCase {
 		$sp = Title::newFromText( 'Special:Search/foo_bar' );
 		MediaWikiServices::getInstance()->getSpecialPageFactory()->executePath( $sp, $ctx );
 		$url = $ctx->getOutput()->getRedirect();
-		// some older versions of hhvm have a bug that doesn't parse relative
-		// urls with a port, so help it out a little bit.
-		// https://github.com/facebook/hhvm/issues/7136
-		$url = wfExpandUrl( $url, PROTO_CURRENT );
 
 		$parts = parse_url( $url );
 		$this->assertEquals( '/w/index.php', $parts['path'] );

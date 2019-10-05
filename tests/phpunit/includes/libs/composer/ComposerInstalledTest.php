@@ -192,7 +192,7 @@ class ComposerInstalledTest extends PHPUnit\Framework\TestCase {
 					'email' => 'sebastian@phpunit.de',
 				],
 			],
-			'description' => 'Provides functionality to handle HHVM/PHP ' .
+			'description' => 'Provides functionality to handle PHP ' .
 				'environments',
 		],
 		'sebastian/diff' => [
