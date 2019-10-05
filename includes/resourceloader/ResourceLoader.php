@@ -1587,7 +1587,7 @@ MESSAGE;
 	 * @param array $modules List of module names (strings)
 	 * @return string Packed query string
 	 */
-	public static function makePackedModulesString( $modules ) {
+	public static function makePackedModulesString( array $modules ) {
 		$moduleMap = []; // [ prefix => [ suffixes ] ]
 		foreach ( $modules as $module ) {
 			$pos = strrpos( $module, '.' );
@@ -1681,7 +1681,7 @@ MESSAGE;
 	 * @return string URL to load.php. May be protocol-relative if $wgLoadScript is, too.
 	 */
 	public function createLoaderURL( $source, ResourceLoaderContext $context,
-		$extraQuery = []
+		array $extraQuery = []
 	) {
 		$query = self::createLoaderQuery( $context, $extraQuery );
 		$script = $this->getLoadScript( $source );
@@ -1698,7 +1698,9 @@ MESSAGE;
 	 * @param array $extraQuery
 	 * @return array
 	 */
-	protected static function createLoaderQuery( ResourceLoaderContext $context, $extraQuery = [] ) {
+	protected static function createLoaderQuery(
+		ResourceLoaderContext $context, array $extraQuery = []
+	) {
 		return self::makeLoaderQuery(
 			$context->getModules(),
 			$context->getLanguage(),
@@ -1729,9 +1731,9 @@ MESSAGE;
 	 * @param array $extraQuery
 	 * @return array
 	 */
-	public static function makeLoaderQuery( $modules, $lang, $skin, $user = null,
+	public static function makeLoaderQuery( array $modules, $lang, $skin, $user = null,
 		$version = null, $debug = false, $only = null, $printable = false,
-		$handheld = false, $extraQuery = []
+		$handheld = false, array $extraQuery = []
 	) {
 		$query = [
 			'modules' => self::makePackedModulesString( $modules ),

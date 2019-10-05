@@ -450,7 +450,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * @param ResourceLoaderContext $context
 	 * @param array $localFileRefs List of files
 	 */
-	protected function saveFileDependencies( ResourceLoaderContext $context, $localFileRefs ) {
+	protected function saveFileDependencies( ResourceLoaderContext $context, array $localFileRefs ) {
 		try {
 			// Related bugs and performance considerations:
 			// 1. Don't needlessly change the database value with the same list in a

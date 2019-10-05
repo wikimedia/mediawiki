@@ -111,7 +111,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @endcode
 	 * @throws InvalidArgumentException
 	 */
-	public function __construct( $options = [], $localBasePath = null ) {
+	public function __construct( array $options = [], $localBasePath = null ) {
 		$this->localBasePath = static::extractLocalBasePath( $options, $localBasePath );
 
 		$this->definition = $options;
@@ -475,7 +475,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 *     to $IP
 	 * @return string Local base path
 	 */
-	public static function extractLocalBasePath( $options, $localBasePath = null ) {
+	public static function extractLocalBasePath( array $options, $localBasePath = null ) {
 		global $IP;
 
 		if ( $localBasePath === null ) {

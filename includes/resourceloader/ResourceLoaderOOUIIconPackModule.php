@@ -71,7 +71,7 @@ class ResourceLoaderOOUIIconPackModule extends ResourceLoaderOOUIImageModule {
 		return $definition;
 	}
 
-	public static function extractLocalBasePath( $options, $localBasePath = null ) {
+	public static function extractLocalBasePath( array $options, $localBasePath = null ) {
 		global $IP;
 		if ( $localBasePath === null ) {
 			$localBasePath = $IP;

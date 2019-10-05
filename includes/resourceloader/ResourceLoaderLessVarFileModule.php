@@ -56,7 +56,7 @@ class ResourceLoaderLessVarFileModule extends ResourceLoaderFileModule {
 	 * @param array $exclusions
 	 * @return object $blob
 	 */
-	protected function excludeMessagesFromBlob( $blob, $exclusions ) {
+	protected function excludeMessagesFromBlob( $blob, array $exclusions ) {
 		$data = json_decode( $blob, true );
 		// unset the LESS variables so that they are not forwarded to JavaScript
 		foreach ( $exclusions as $key ) {

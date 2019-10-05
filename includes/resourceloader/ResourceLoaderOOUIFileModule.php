@@ -77,7 +77,7 @@ class ResourceLoaderOOUIFileModule extends ResourceLoaderFileModule {
 	 * @param array &$skinSpecific
 	 * @param array $extraSkinSpecific
 	 */
-	private function extendSkinSpecific( &$skinSpecific, $extraSkinSpecific ) {
+	private function extendSkinSpecific( array &$skinSpecific, array $extraSkinSpecific ) {
 		// For each skin where skinStyles/skinScripts are defined, add our ones at the beginning
 		foreach ( $skinSpecific as $skin => $files ) {
 			if ( !is_array( $files ) ) {
