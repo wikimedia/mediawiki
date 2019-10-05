@@ -76,15 +76,15 @@ abstract class HTMLFormField {
 	 *
 	 * Parameters are the same as wfMessage().
 	 *
+	 * @param string|string[]|MessageSpecifier $key
+	 * @param mixed ...$params
 	 * @return Message
 	 */
-	public function msg() {
-		$args = func_get_args();
-
+	public function msg( $key, ...$params ) {
 		if ( $this->mParent ) {
-			return $this->mParent->msg( ...$args );
+			return $this->mParent->msg( $key, ...$params );
 		}
-		return wfMessage( ...$args );
+		return wfMessage( $key, ...$params );
 	}
 
 	/**
