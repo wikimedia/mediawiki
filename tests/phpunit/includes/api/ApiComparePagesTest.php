@@ -10,16 +10,6 @@ class ApiComparePagesTest extends ApiTestCase {
 
 	protected static $repl = [];
 
-	protected function setUp() {
-		parent::setUp();
-
-		// Set $wgExternalDiffEngine to something bogus to try to force use of
-		// the PHP engine rather than wikidiff2.
-		$this->setMwGlobals( [
-			'wgExternalDiffEngine' => '/dev/null',
-		] );
-	}
-
 	protected function addPage( $page, $text, $model = CONTENT_MODEL_WIKITEXT ) {
 		$title = Title::newFromText( 'ApiComparePagesTest ' . $page );
 		$content = ContentHandler::makeContent( $text, $title, $model );
