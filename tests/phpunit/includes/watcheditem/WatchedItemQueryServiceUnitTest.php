@@ -1414,7 +1414,8 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			->with( 'watchlisttoken' )
 			->willReturn( '0123456789abcdef' );
 
-		$this->setExpectedException( ApiUsageException::class, 'Incorrect watchlist token provided' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'Incorrect watchlist token provided' );
 		$queryService->getWatchedItemsWithRecentChangeInfo(
 			$user,
 			[ 'watchlistOwner' => $otherUser, 'watchlistOwnerToken' => $token ]

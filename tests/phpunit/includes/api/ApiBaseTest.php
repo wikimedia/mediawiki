@@ -79,8 +79,8 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	public function testRequireOnlyOneParameterMissing() {
-		$this->setExpectedException( ApiUsageException::class,
-			'One of the parameters "foo" and "bar" is required.' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'One of the parameters "foo" and "bar" is required.' );
 		$mock = new MockApi();
 		$mock->requireOnlyOneParameter(
 			[ "filename" => "foo.txt", "enablechunks" => false ],
@@ -104,8 +104,8 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	public function testRequireMaxOneParameterTwo() {
-		$this->setExpectedException( ApiUsageException::class,
-			'The parameters "foo" and "baz" can not be used together.' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'The parameters "foo" and "baz" can not be used together.' );
 		$mock = new MockApi();
 		$mock->requireMaxOneParameter(
 			[ 'foo' => 'bar', 'baz' => 'quz' ],
@@ -113,8 +113,8 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	public function testRequireAtLeastOneParameterZero() {
-		$this->setExpectedException( ApiUsageException::class,
-			'At least one of the parameters "foo" and "bar" is required.' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'At least one of the parameters "foo" and "bar" is required.' );
 		$mock = new MockApi();
 		$mock->requireAtLeastOneParameter(
 			[ 'a' => 'b', 'c' => 'd' ],
@@ -138,8 +138,8 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	public function testGetTitleOrPageIdBadParams() {
-		$this->setExpectedException( ApiUsageException::class,
-			'The parameters "title" and "pageid" can not be used together.' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'The parameters "title" and "pageid" can not be used together.' );
 		$mock = new MockApi();
 		$mock->getTitleOrPageId( [ 'title' => 'a', 'pageid' => 7 ] );
 	}
@@ -152,15 +152,15 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	public function testGetTitleOrPageIdInvalidTitle() {
-		$this->setExpectedException( ApiUsageException::class,
-			'Bad title "|".' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'Bad title "|".' );
 		$mock = new MockApi();
 		$mock->getTitleOrPageId( [ 'title' => '|' ] );
 	}
 
 	public function testGetTitleOrPageIdSpecialTitle() {
-		$this->setExpectedException( ApiUsageException::class,
-			"Namespace doesn't allow actual pages." );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( "Namespace doesn't allow actual pages." );
 		$mock = new MockApi();
 		$mock->getTitleOrPageId( [ 'title' => 'Special:RandomPage' ] );
 	}
@@ -180,15 +180,15 @@ class ApiBaseTest extends ApiTestCase {
 		// FIXME: fails under postgres
 		$this->markTestSkippedIfDbType( 'postgres' );
 
-		$this->setExpectedException( ApiUsageException::class,
-			'There is no page with ID 2147483648.' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'There is no page with ID 2147483648.' );
 		$mock = new MockApi();
 		$mock->getTitleOrPageId( [ 'pageid' => 2147483648 ] );
 	}
 
 	public function testGetTitleFromTitleOrPageIdBadParams() {
-		$this->setExpectedException( ApiUsageException::class,
-			'The parameters "title" and "pageid" can not be used together.' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'The parameters "title" and "pageid" can not be used together.' );
 		$mock = new MockApi();
 		$mock->getTitleFromTitleOrPageId( [ 'title' => 'a', 'pageid' => 7 ] );
 	}
@@ -201,8 +201,8 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	public function testGetTitleFromTitleOrPageIdInvalidTitle() {
-		$this->setExpectedException( ApiUsageException::class,
-			'Bad title "|".' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'Bad title "|".' );
 		$mock = new MockApi();
 		$mock->getTitleFromTitleOrPageId( [ 'title' => '|' ] );
 	}
@@ -216,8 +216,8 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	public function testGetTitleFromTitleOrPageIdInvalidPageId() {
-		$this->setExpectedException( ApiUsageException::class,
-			'There is no page with ID 298401643.' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'There is no page with ID 298401643.' );
 		$mock = new MockApi();
 		$mock->getTitleFromTitleOrPageId( [ 'pageid' => 298401643 ] );
 	}

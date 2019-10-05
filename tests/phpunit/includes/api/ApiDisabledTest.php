@@ -11,8 +11,8 @@ class ApiDisabledTest extends ApiTestCase {
 		$this->mergeMwGlobalArrayValue( 'wgAPIModules',
 			[ 'login' => 'ApiDisabled' ] );
 
-		$this->setExpectedException( ApiUsageException::class,
-			'The "login" module has been disabled.' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'The "login" module has been disabled.' );
 
 		$this->doApiRequest( [ 'action' => 'login' ] );
 	}

@@ -89,8 +89,10 @@ class ApiBlockTest extends ApiTestCase {
 	 * A blocked user can't block
 	 */
 	public function testBlockByBlockedUser() {
-		$this->setExpectedException( ApiUsageException::class,
-			'You cannot block or unblock other users because you are yourself blocked.' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage(
+			'You cannot block or unblock other users because you are yourself blocked.'
+		);
 
 		$blocked = $this->getMutableTestUser( [ 'sysop' ] )->getUser();
 		$block = new DatabaseBlock( [
@@ -106,16 +108,18 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockOfNonexistentUser() {
-		$this->setExpectedException( ApiUsageException::class,
-			'There is no user by the name "Nonexistent". Check your spelling.' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage(
+			'There is no user by the name "Nonexistent". Check your spelling.'
+		);
 
 		$this->doBlock( [ 'user' => 'Nonexistent' ] );
 	}
 
 	public function testBlockOfNonexistentUserId() {
 		$id = 948206325;
-		$this->setExpectedException( ApiUsageException::class,
-			"There is no user with ID $id." );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( "There is no user with ID $id." );
 
 		$this->assertFalse( User::whoIs( $id ), 'Sanity check' );
 
@@ -142,8 +146,10 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockWithProhibitedTag() {
-		$this->setExpectedException( ApiUsageException::class,
-			'You do not have permission to apply change tags along with your changes.' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage(
+			'You do not have permission to apply change tags along with your changes.'
+		);
 
 		ChangeTags::defineTag( 'custom tag' );
 
@@ -172,8 +178,10 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockWithProhibitedHide() {
-		$this->setExpectedException( ApiUsageException::class,
-			"You don't have permission to hide user names from the block log." );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage(
+			"You don't have permission to hide user names from the block log."
+		);
 
 		$this->doBlock( [ 'hidename' => '' ] );
 	}
@@ -201,8 +209,10 @@ class ApiBlockTest extends ApiTestCase {
 			'wgEnableUserEmail' => true,
 		] );
 
-		$this->setExpectedException( ApiUsageException::class,
-			"You don't have permission to block users from sending email through the wiki." );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage(
+			"You don't have permission to block users from sending email through the wiki."
+		);
 
 		$this->setMwGlobals( 'wgRevokePermissions',
 			[ 'sysop' => [ 'blockemail' => true ] ] );
@@ -227,7 +237,8 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockWithInvalidExpiry() {
-		$this->setExpectedException( ApiUsageException::class, "Expiry time invalid." );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( "Expiry time invalid." );
 
 		$this->doBlock( [ 'expiry' => '' ] );
 	}

@@ -502,7 +502,8 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 		$otherUser->setOption( 'watchlisttoken', '1234567890' );
 		$otherUser->saveSettings();
 
-		$this->setExpectedException( ApiUsageException::class, 'Incorrect watchlist token provided' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'Incorrect watchlist token provided' );
 
 		$this->doListWatchlistRawRequest( [
 			'wrowner' => $otherUser->getName(),
@@ -511,7 +512,8 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 	}
 
 	public function testOwnerAndTokenParams_userHasNoWatchlistToken() {
-		$this->setExpectedException( ApiUsageException::class, 'Incorrect watchlist token provided' );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'Incorrect watchlist token provided' );
 
 		$this->doListWatchlistRawRequest( [
 			'wrowner' => $this->getNotLoggedInTestUser()->getName(),

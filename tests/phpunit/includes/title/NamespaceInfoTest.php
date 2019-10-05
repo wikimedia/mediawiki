@@ -682,8 +682,10 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	 * @param int $ns
 	 */
 	public function testGetTalk_special( $ns ) {
-		$this->setExpectedException( MWException::class,
-			"NamespaceInfo::getTalk does not make any sense for given namespace $ns" );
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage(
+			"NamespaceInfo::getTalk does not make any sense for given namespace $ns"
+		);
 		$this->newObj()->getTalk( $ns );
 	}
 
@@ -695,8 +697,8 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	 * @param int $ns
 	 */
 	public function testGetAssociated_special( $ns ) {
-		$this->setExpectedException(
-			MWException::class,
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage(
 			"NamespaceInfo::getAssociated does not make any sense for given namespace $ns"
 		);
 		$this->newObj()->getAssociated( $ns );

@@ -102,7 +102,8 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 */
 	public function testRegisterInvalidName() {
 		$resourceLoader = new EmptyResourceLoader();
-		$this->setExpectedException( MWException::class, "name 'test!invalid' is invalid" );
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( "name 'test!invalid' is invalid" );
 		$resourceLoader->register( 'test!invalid', [] );
 	}
 
@@ -111,7 +112,8 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 */
 	public function testRegisterInvalidType() {
 		$resourceLoader = new EmptyResourceLoader();
-		$this->setExpectedException( InvalidArgumentException::class, 'Invalid module info' );
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( 'Invalid module info' );
 		$resourceLoader->register( 'test', new stdClass() );
 	}
 
@@ -370,9 +372,8 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 */
 	public function testAddSourceDupe() {
 		$rl = new EmptyResourceLoader;
-		$this->setExpectedException(
-			MWException::class, 'ResourceLoader duplicate source addition error'
-		);
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( 'ResourceLoader duplicate source addition error' );
 		$rl->addSource( 'foo', 'https://example.org/w/load.php' );
 		$rl->addSource( 'foo', 'https://example.com/w/load.php' );
 	}
@@ -382,7 +383,8 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 */
 	public function testAddSourceInvalid() {
 		$rl = new EmptyResourceLoader;
-		$this->setExpectedException( MWException::class, 'with no "loadScript" key' );
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( 'with no "loadScript" key' );
 		$rl->addSource( 'foo',  [ 'x' => 'https://example.org/w/load.php' ] );
 	}
 
@@ -542,7 +544,8 @@ END
 	 * @covers ResourceLoader::makeLoaderImplementScript
 	 */
 	public function testMakeLoaderImplementScriptInvalid() {
-		$this->setExpectedException( MWException::class, 'Invalid scripts error' );
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( 'Invalid scripts error' );
 		$rl = TestingAccessWrapper::newFromClass( ResourceLoader::class );
 		$context = new ResourceLoaderContext( new EmptyResourceLoader(), new FauxRequest() );
 		$rl->makeLoaderImplementScript(
