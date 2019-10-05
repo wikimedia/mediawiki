@@ -338,7 +338,7 @@ EOF
 	public function testGetText_failsIfNoText() {
 		$po = new ParserOutput( null );
 
-		$this->setExpectedException( LogicException::class );
+		$this->expectException( LogicException::class );
 		$po->getText();
 	}
 
@@ -348,7 +348,7 @@ EOF
 	public function testGetRawText_failsIfNoText() {
 		$po = new ParserOutput( null );
 
-		$this->setExpectedException( LogicException::class );
+		$this->expectException( LogicException::class );
 		$po->getRawText();
 	}
 

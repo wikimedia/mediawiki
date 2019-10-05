@@ -905,7 +905,7 @@ class TitleTest extends MediaWikiTestCase {
 	 * @covers Title::getTalkPageIfDefined
 	 */
 	public function testGetTalkPage_bad( Title $title ) {
-		$this->setExpectedException( MWException::class );
+		$this->expectException( MWException::class );
 		$title->getTalkPage();
 	}
 
@@ -971,7 +971,7 @@ class TitleTest extends MediaWikiTestCase {
 	 * @covers Title::getOtherPage
 	 */
 	public function testGetOtherPage_bad( Title $title ) {
-		$this->setExpectedException( MWException::class );
+		$this->expectException( MWException::class );
 		$title->getOtherPage();
 	}
 
