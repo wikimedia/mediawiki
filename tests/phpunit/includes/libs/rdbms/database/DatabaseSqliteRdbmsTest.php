@@ -11,7 +11,6 @@ use Wikimedia\Rdbms\DatabaseSqlite;
 class DatabaseSqliteRdbmsTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
-	use PHPUnit4And6Compat;
 
 	/**
 	 * @return PHPUnit_Framework_MockObject_MockObject|DatabaseSqlite
@@ -53,7 +52,7 @@ class DatabaseSqliteRdbmsTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testBuildSubstring_invalidParams( $start, $length ) {
 		$dbMock = $this->getMockDb();
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$dbMock->buildSubstring( 'foo', $start, $length );
 	}
 

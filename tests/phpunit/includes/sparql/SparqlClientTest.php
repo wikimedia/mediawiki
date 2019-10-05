@@ -5,17 +5,14 @@ namespace MediaWiki\Sparql;
 use Http;
 use MediaWiki\Http\HttpRequestFactory;
 use MWHttpRequest;
-use PHPUnit4And6Compat;
 
 /**
  * @covers \MediaWiki\Sparql\SparqlClient
  */
 class SparqlClientTest extends \PHPUnit\Framework\TestCase {
 
-	use PHPUnit4And6Compat;
-
 	private function getRequestFactory( $request ) {
-		$requestFactory = $this->getMock( HttpRequestFactory::class );
+		$requestFactory = $this->createMock( HttpRequestFactory::class );
 		$requestFactory->method( 'create' )->willReturn( $request );
 		return $requestFactory;
 	}
@@ -160,7 +157,7 @@ JSON;
 	 * @param array $expectedOptions
 	 */
 	public function testOptions( $sparql, $options, $timeout, $expectedUrl, $expectedOptions ) {
-		$requestFactory = $this->getMock( HttpRequestFactory::class );
+		$requestFactory = $this->createMock( HttpRequestFactory::class );
 		$client = new SparqlClient( 'http://acme.test/',  $requestFactory );
 
 		$request = $this->getRequestMock( '{}' );

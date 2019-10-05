@@ -8,7 +8,6 @@ use Wikimedia\Rdbms\DatabaseDomain;
 class DatabaseDomainTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
-	use PHPUnit4And6Compat;
 
 	public static function provideConstruct() {
 		return [
@@ -34,7 +33,7 @@ class DatabaseDomainTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testConstruct( $db, $schema, $prefix, $id, $exception = false ) {
 		if ( $exception ) {
-			$this->setExpectedException( InvalidArgumentException::class );
+			$this->expectException( InvalidArgumentException::class );
 			new DatabaseDomain( $db, $schema, $prefix );
 			return;
 		}
@@ -74,7 +73,7 @@ class DatabaseDomainTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testNewFromId( $id, $db, $schema, $prefix, $exception = false ) {
 		if ( $exception ) {
-			$this->setExpectedException( InvalidArgumentException::class );
+			$this->expectException( InvalidArgumentException::class );
 			DatabaseDomain::newFromId( $id );
 			return;
 		}

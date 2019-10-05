@@ -350,7 +350,7 @@ class ExtensionProcessorTest extends \MediaWikiUnitTestCase {
 	public function testExtractCredits() {
 		$processor = new ExtensionProcessor();
 		$processor->extractInfo( $this->dir, self::$default, 1 );
-		$this->setExpectedException( Exception::class );
+		$this->expectException( Exception::class );
 		$processor->extractInfo( $this->dir, self::$default, 1 );
 	}
 
@@ -662,8 +662,8 @@ class ExtensionProcessorTest extends \MediaWikiUnitTestCase {
 
 	public function testAttributes1_notarray() {
 		$processor = new ExtensionProcessor();
-		$this->setExpectedException(
-			InvalidArgumentException::class,
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage(
 			"The value for 'FooBarPlugins' should be an array (from {$this->dir})"
 		);
 		$processor->extractInfo(

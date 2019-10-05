@@ -29,7 +29,6 @@ use Wikimedia\TestingAccessWrapper;
 class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
-	use PHPUnit4And6Compat;
 
 	/**
 	 * @dataProvider provideDiapers
