@@ -68,7 +68,7 @@ class ForeignTitleTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testUnknownNamespaceError() {
-		$this->setExpectedException( MWException::class );
+		$this->expectException( MWException::class );
 		$title = new ForeignTitle( null, 'this', 'that' );
 		$title->getNamespaceId();
 	}

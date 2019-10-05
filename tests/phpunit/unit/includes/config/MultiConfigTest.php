@@ -17,7 +17,8 @@ class MultiConfigTest extends \MediaWikiUnitTestCase {
 
 		$this->assertEquals( 'bar', $multi->get( 'foo' ) );
 		$this->assertEquals( 'foo', $multi->get( 'bar' ) );
-		$this->setExpectedException( ConfigException::class, 'MultiConfig::get: undefined option:' );
+		$this->expectException( ConfigException::class );
+		$this->expectExceptionMessage( 'MultiConfig::get: undefined option:' );
 		$multi->get( 'notset' );
 	}
 

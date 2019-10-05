@@ -73,7 +73,7 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 		$config = $this->createSimpleConfigMock( [
 			'known' => 'value'
 		] );
-		$this->setExpectedException( ConfigException::class );
+		$this->expectException( ConfigException::class );
 		$config->get( 'unknown' );
 	}
 
@@ -210,7 +210,7 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 		$mock->expects( $this->once() )->method( 'fetchAllFromEtcd' )
 			->willReturn( self::createEtcdResponse( [ 'error' => 'Fake error', ] ) );
 
-		$this->setExpectedException( ConfigException::class );
+		$this->expectException( ConfigException::class );
 		$mock->get( 'key' );
 	}
 

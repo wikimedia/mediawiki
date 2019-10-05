@@ -24,24 +24,24 @@ class LockManagerGroupTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testConstructorConfigWithNoName() {
-		$this->setExpectedException( Exception::class,
-			'Cannot register a lock manager with no name.' );
+		$this->expectException( Exception::class );
+		$this->expectExceptionMessage( 'Cannot register a lock manager with no name.' );
 
 		new LockManagerGroup( 'domain',
 			[ [ 'name' => 'a', 'class' => 'b' ], [ 'class' => 'c' ] ], $this->getMockLBFactory() );
 	}
 
 	public function testConstructorConfigWithNoClass() {
-		$this->setExpectedException( Exception::class,
-			'Cannot register lock manager `c` with no class.' );
+		$this->expectException( Exception::class );
+		$this->expectExceptionMessage( 'Cannot register lock manager `c` with no class.' );
 
 		new LockManagerGroup( 'domain',
 			[ [ 'name' => 'a', 'class' => 'b' ], [ 'name' => 'c' ] ], $this->getMockLBFactory() );
 	}
 
 	public function testGetUndefined() {
-		$this->setExpectedException( Exception::class,
-			'No lock manager defined with the name `c`.' );
+		$this->expectException( Exception::class );
+		$this->expectExceptionMessage( 'No lock manager defined with the name `c`.' );
 
 		$lmg = new LockManagerGroup( 'domain', [ [ 'name' => 'a', 'class' => 'b' ] ],
 			$this->getMockLBFactory() );
@@ -49,8 +49,8 @@ class LockManagerGroupTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testConfigUndefined() {
-		$this->setExpectedException( Exception::class,
-			'No lock manager defined with the name `c`.' );
+		$this->expectException( Exception::class );
+		$this->expectExceptionMessage( 'No lock manager defined with the name `c`.' );
 
 		$lmg = new LockManagerGroup( 'domain', [ [ 'name' => 'a', 'class' => 'b' ] ],
 			$this->getMockLBFactory() );
@@ -78,8 +78,8 @@ class LockManagerGroupTest extends MediaWikiUnitTestCase {
 
 	public function testGetAnyException() {
 		// XXX Isn't the name 'getAny' misleading if we don't get whatever's available?
-		$this->setExpectedException( Exception::class,
-			'No lock manager defined with the name `fsLockManager`.' );
+		$this->expectException( Exception::class );
+		$this->expectExceptionMessage( 'No lock manager defined with the name `fsLockManager`.' );
 
 		$lmg = new LockManagerGroup( 'domain', [ [ 'name' => 'a', 'class' => 'b' ] ],
 			$this->getMockLBFactory() );
