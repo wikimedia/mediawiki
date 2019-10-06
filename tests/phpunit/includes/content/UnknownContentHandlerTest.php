@@ -79,7 +79,7 @@ class UnknownContentHandlerTest extends MediaWikiLangTestCase {
 		$content = new UnknownContent( '', 'horkyporky' );
 
 		/** @var SlotRenderingProvider $srp */
-		$srp = $this->getMock( SlotRenderingProvider::class );
+		$srp = $this->createMock( SlotRenderingProvider::class );
 
 		$handler = new UnknownContentHandler( 'horkyporky' );
 		$updates = $handler->getSecondaryDataUpdates( $title, $content, SlotRecord::MAIN, $srp );

@@ -303,10 +303,10 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 
 	public function provideNotReadyForInsertion() {
 		/** @var Title $title */
-		$title = $this->getMock( Title::class );
+		$title = $this->createMock( Title::class );
 
 		/** @var User $user */
-		$user = $this->getMock( User::class );
+		$user = $this->createMock( User::class );
 
 		/** @var CommentStoreComment $comment */
 		$comment = $this->getMockBuilder( CommentStoreComment::class )

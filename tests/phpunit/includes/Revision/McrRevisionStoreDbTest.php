@@ -219,7 +219,7 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		$blobStatus = StatusValue::newGood( [] );
 		$blobStatus->warning( 'internalerror', 'oops!' );
 
-		$mockBlobStore = $this->getMock( BlobStore::class );
+		$mockBlobStore = $this->createMock( BlobStore::class );
 		$mockBlobStore->method( 'getBlobBatch' )
 			->willReturn( $blobStatus );
 

@@ -87,7 +87,7 @@ class RevisionRendererTest extends MediaWikiTestCase {
 	 */
 	private function getMockDatabaseConnection( $maxRev = 100, $linkCount = 0 ) {
 		/** @var IDatabase|MockObject $db */
-		$db = $this->getMock( IDatabase::class );
+		$db = $this->createMock( IDatabase::class );
 		$db->method( 'selectField' )
 			->willReturnCallback(
 				function ( $table, $fields, $cond ) use ( $maxRev, $linkCount ) {
@@ -113,7 +113,7 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$db = $this->getMockDatabaseConnection( $maxRev );
 
 		/** @var ILoadBalancer|MockObject $lb */
-		$lb = $this->getMock( ILoadBalancer::class );
+		$lb = $this->createMock( ILoadBalancer::class );
 		$lb->method( 'getConnection' )
 			->with( $dbIndex )
 			->willReturn( $db );

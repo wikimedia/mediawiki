@@ -374,7 +374,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$content = new WikitextContent( '' );
 
 		/** @var SlotRenderingProvider $srp */
-		$srp = $this->getMock( SlotRenderingProvider::class );
+		$srp = $this->createMock( SlotRenderingProvider::class );
 
 		$handler = new WikitextContentHandler();
 		$updates = $handler->getSecondaryDataUpdates( $title, $content, SlotRecord::MAIN, $srp );
@@ -389,7 +389,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$title = Title::newFromText( 'Somefile.jpg', NS_FILE );
 		$content = new WikitextContent( '' );
 
-		$srp = $this->getMock( SlotRenderingProvider::class );
+		$srp = $this->createMock( SlotRenderingProvider::class );
 
 		$handler = new WikitextContentHandler();
 		$updates = $handler->getDeletionUpdates( $title, SlotRecord::MAIN );

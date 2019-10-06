@@ -406,7 +406,7 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 			'wgFragmentMode' => [ 'html5', 'legacy' ]
 		] );
 
-		$interwikiLookup = $this->getMock( InterwikiLookup::class );
+		$interwikiLookup = $this->createMock( InterwikiLookup::class );
 
 		$interwikiLookup->method( 'fetch' )
 			->willReturnCallback( function ( $interwiki ) {

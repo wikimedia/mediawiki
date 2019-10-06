@@ -304,7 +304,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 
 	public function provideGetWhere() {
 		$makeUserIdentity = function ( $id, $name, $actor ) {
-			$u = $this->getMock( UserIdentity::class );
+			$u = $this->createMock( UserIdentity::class );
 			$u->method( 'getId' )->willReturn( $id );
 			$u->method( 'getName' )->willReturn( $name );
 			$u->method( 'getActorId' )->willReturn( $actor );
@@ -495,7 +495,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 */
 	public function testInsertRoundTrip( $table, $key, $pk, $usesTemp ) {
 		$u = $this->getTestUser()->getUser();
-		$user = $this->getMock( UserIdentity::class );
+		$user = $this->createMock( UserIdentity::class );
 		$user->method( 'getId' )->willReturn( $u->getId() );
 		$user->method( 'getName' )->willReturn( $u->getName() );
 		$user->method( 'getActorId' )->willReturn( $u->getActorId( $this->db ) );
@@ -675,7 +675,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 */
 	public function testInsertUserIdentity( $stage ) {
 		$user = $this->getMutableTestUser()->getUser();
-		$userIdentity = $this->getMock( UserIdentity::class );
+		$userIdentity = $this->createMock( UserIdentity::class );
 		$userIdentity->method( 'getId' )->willReturn( $user->getId() );
 		$userIdentity->method( 'getName' )->willReturn( $user->getName() );
 		$userIdentity->method( 'getActorId' )->willReturn( 0 );
