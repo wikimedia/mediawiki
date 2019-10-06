@@ -181,7 +181,7 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		// No error even if the fd goes bad
 		$stream = new UploadedFileStream( $filename );
 		fclose( TestingAccessWrapper::newFromObject( $stream )->fp );
-		$this->assertInternalType( 'boolean', $stream->eof() );
+		$this->assertIsBool( $stream->eof() );
 	}
 
 	public function testIsFuncs() {

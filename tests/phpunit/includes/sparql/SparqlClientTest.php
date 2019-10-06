@@ -163,7 +163,7 @@ JSON;
 		$requestFactory->method( 'create' )->willReturnCallback(
 			function ( $url, $options ) use ( $request, $expectedUrl, $expectedOptions ) {
 				foreach ( $expectedUrl as $eurl ) {
-					$this->assertContains( $eurl, $url );
+					$this->assertStringContainsString( $eurl, $url );
 				}
 				foreach ( $expectedOptions as $ekey => $evalue ) {
 					$this->assertArrayHasKey( $ekey, $options );

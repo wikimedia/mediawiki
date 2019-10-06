@@ -356,7 +356,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $value, $v, "Value returned" );
 		$this->assertSame( 1, $wasSet, "Value regenerated due to check keys" );
 		$this->assertSame( $value, $priorValue, "Has prior value" );
-		$this->assertInternalType( 'float', $priorAsOf, "Has prior value" );
+		$this->assertIsFloat( $priorAsOf, "Has prior value" );
 		$t1 = $cache->getCheckKeyTime( $cKey1 );
 		$this->assertGreaterThanOrEqual( $priorTime, $t1, 'Check keys generated on miss' );
 		$t2 = $cache->getCheckKeyTime( $cKey2 );
@@ -731,7 +731,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $value, $v[$keyB], "Value returned" );
 		$this->assertSame( 1, $wasSet, "Value regenerated due to check keys" );
 		$this->assertSame( $value, $priorValue, "Has prior value" );
-		$this->assertInternalType( 'float', $priorAsOf, "Has prior value" );
+		$this->assertIsFloat( $priorAsOf, "Has prior value" );
 		$t1 = $cache->getCheckKeyTime( $cKey1 );
 		$this->assertGreaterThanOrEqual( $priorTime, $t1, 'Check keys generated on miss' );
 		$t2 = $cache->getCheckKeyTime( $cKey2 );
@@ -1882,7 +1882,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$then = $now;
 		$now += 30;
 		$this->assertSame( 'Do what thou Wilt', $cache->get( $key ) );
-		$this->assertEquals( $then, $cache->getCheckKeyTime( $key ), 'Check key init', 0.01 );
+		$this->assertEqualsWithDelta( $then, $cache->getCheckKeyTime( $key ), 0.01, 'Check key init' );
 
 		$cache = new WANObjectCache( [
 			'cache' => $bag,
@@ -1891,7 +1891,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$cache->setMockTime( $now );
 
 		$this->assertSame( 'Do what thou Wilt', $cache->get( $key ) );
-		$this->assertEquals( $then, $cache->getCheckKeyTime( $key ), 'Check key kept', 0.01 );
+		$this->assertEqualsWithDelta( $then, $cache->getCheckKeyTime( $key ), 0.01, 'Check key kept' );
 
 		$now += 30;
 		$cache = new WANObjectCache( [
@@ -1901,7 +1901,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$cache->setMockTime( $now );
 
 		$this->assertSame( false, $cache->get( $key ), 'Key rejected due to epoch' );
-		$this->assertEquals( $now, $cache->getCheckKeyTime( $key ), 'Check key reset', 0.01 );
+		$this->assertEqualsWithDelta( $now, $cache->getCheckKeyTime( $key ), 0.01, 'Check key reset' );
 	}
 
 	/**

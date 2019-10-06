@@ -6,6 +6,8 @@ use PHPUnit\Framework\TestSuite;
 require_once dirname( __DIR__ ) . '/includes/upload/UploadFromUrlTest.php';
 
 class UploadFromUrlTestSuite extends TestSuite {
+	use SuiteEventsTrait;
+
 	public $savedGlobals = [];
 
 	public static function addTables( &$tables ) {

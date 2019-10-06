@@ -23,7 +23,6 @@
  * @since 1.25
  */
 class XhprofDataTest extends PHPUnit\Framework\TestCase {
-
 	use MediaWikiCoversValidator;
 
 	/**
@@ -264,7 +263,7 @@ class XhprofDataTest extends PHPUnit\Framework\TestCase {
 	 * @param string $label
 	 */
 	protected function assertArrayStructure( $struct, $actual, $label = '' ) {
-		$this->assertInternalType( 'array', $actual, $label );
+		$this->assertIsArray( $actual, $label );
 		$this->assertCount( count( $struct ), $actual, $label );
 		foreach ( $struct as $key => $type ) {
 			$this->assertArrayHasKey( $key, $actual );
