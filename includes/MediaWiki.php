@@ -983,7 +983,7 @@ class MediaWiki {
 		$this->doPreOutputCommit( $outputWork );
 		// If needed, push a deferred update to run jobs after the output is send
 		$this->schedulePostSendJobs();
-		// If no exceptions occured then send the output since it is safe now
+		// If no exceptions occurred then send the output since it is safe now
 		$this->outputResponsePayload( $outputWork() );
 	}
 
