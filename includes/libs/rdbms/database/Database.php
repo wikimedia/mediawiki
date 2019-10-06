@@ -992,10 +992,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * sorts of concerns. This method should not trigger such higher level methods.
 	 *
 	 * The lastError() and lastErrno() methods should meaningfully reflect what error,
-	 * if any, occured during the last call to this method. Methods like executeQuery(),
+	 * if any, occurred during the last call to this method. Methods like executeQuery(),
 	 * query(), select(), insert(), update(), delete(), and upsert() implement their calls
 	 * to doQuery() such that an immediately subsequent call to lastError()/lastErrno()
-	 * meaningfully reflects any error that occured during that public query method call.
+	 * meaningfully reflects any error that occurred during that public query method call.
 	 *
 	 * For SELECT queries, this returns either:
 	 *   - a) A driver-specific value/resource, only on success. This can be iterated
@@ -1260,7 +1260,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *   - mixed|bool: An object, resource, or true on success; false on failure
 	 *   - string: The result of calling lastError()
 	 *   - int: The result of calling lastErrno()
-	 * 	 - bool: Whether a statement rollback error occured
+	 * 	 - bool: Whether a statement rollback error occurred
 	 *   - bool: Whether a disconnect *both* happened *and* was recoverable
 	 *   - bool: Whether a reconnection attempt was *both* made *and* succeeded
 	 * @throws DBUnexpectedError

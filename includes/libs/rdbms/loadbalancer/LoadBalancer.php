@@ -769,7 +769,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		foreach ( $candidateConns as $candidateConn ) {
 			if ( !$candidateConn->isOpen() ) {
-				continue; // some sort of error occured?
+				continue; // some sort of error occurred?
 			} elseif (
 				$autocommit &&
 				(

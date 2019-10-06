@@ -28,7 +28,7 @@ class UnsupportedSlotDiffRendererTest extends MediaWikiTestCase {
 			[ 'xyzzy' => 'UnknownContentHandler' ]
 		);
 
-		$localizer = $this->getMock( MessageLocalizer::class );
+		$localizer = $this->createMock( MessageLocalizer::class );
 
 		$localizer->method( 'msg' )
 			->willReturnCallback( function ( $key, ...$params ) {

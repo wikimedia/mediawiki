@@ -36,7 +36,7 @@ class DatabaseLogEntryTest extends MediaWikiTestCase {
 		array $expectedFields = null
 	) {
 		$row = $row ? (object)$row : null;
-		$db = $this->getMock( IDatabase::class );
+		$db = $this->createMock( IDatabase::class );
 		$db->expects( self::once() )
 			->method( 'selectRow' )
 			->with( $selectFields['tables'],

@@ -210,7 +210,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 	 * @return Title
 	 */
 	private function getMockTitle( $name ) {
-		$title = $this->getMock( Title::class );
+		$title = $this->createMock( Title::class );
 		$title->method( 'getPrefixedDBkey' )->willReturn( $name );
 		$title->method( 'getPrefixedText' )->willReturn( $name );
 		$title->method( 'getDBkey' )->willReturn( $name );

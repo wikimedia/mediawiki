@@ -548,7 +548,7 @@ class TitleTest extends MediaWikiTestCase {
 	 * @covers Title::getSubpage
 	 */
 	public function testSubpage( $title, $sub, LinkTarget $expected ) {
-		$interwikiLookup = $this->getMock( InterwikiLookup::class );
+		$interwikiLookup = $this->createMock( InterwikiLookup::class );
 		$interwikiLookup->expects( $this->any() )
 			->method( 'isValidInterwiki' )
 			->willReturnCallback(
