@@ -236,6 +236,8 @@ class LinkerTest extends MediaWikiLangTestCase {
 			'wgArticlePath' => '/wiki/$1',
 			'wgCapitalLinks' => true,
 			'wgConf' => $conf,
+			// TODO: update tests when the default changes
+			'wgFragmentMode' => [ 'legacy' ],
 		] );
 
 		if ( $title === false ) {
