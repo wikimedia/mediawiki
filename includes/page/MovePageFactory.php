@@ -52,11 +52,7 @@ class MovePageFactory {
 	/** @var RepoGroup */
 	private $repoGroup;
 
-	/**
-	 * @todo Make this a const when we drop HHVM support (T192166)
-	 * @var array
-	 */
-	public static $constructorOptions = [
+	public const CONSTRUCTOR_OPTIONS = [
 		'CategoryCollation',
 		'ContentHandlerUseDB',
 	];
@@ -69,7 +65,7 @@ class MovePageFactory {
 		PermissionManager $permMgr,
 		RepoGroup $repoGroup
 	) {
-		$options->assertRequiredOptions( self::$constructorOptions );
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
 		$this->options = $options;
 		$this->loadBalancer = $loadBalancer;

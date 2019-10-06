@@ -427,7 +427,7 @@ return [
 
 	'MovePageFactory' => function ( MediaWikiServices $services ) : MovePageFactory {
 		return new MovePageFactory(
-			new ServiceOptions( MovePageFactory::$constructorOptions, $services->getMainConfig() ),
+			new ServiceOptions( MovePageFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getDBLoadBalancer(),
 			$services->getNamespaceInfo(),
 			$services->getWatchedItemStore(),

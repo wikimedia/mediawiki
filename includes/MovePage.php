@@ -99,7 +99,7 @@ class MovePage {
 		$this->oldTitle = $oldTitle;
 		$this->newTitle = $newTitle;
 		$this->options = $options ??
-			new ServiceOptions( MovePageFactory::$constructorOptions,
+			new ServiceOptions( MovePageFactory::CONSTRUCTOR_OPTIONS,
 				MediaWikiServices::getInstance()->getMainConfig() );
 		$this->loadBalancer =
 			$loadBalancer ?? MediaWikiServices::getInstance()->getDBLoadBalancer();
