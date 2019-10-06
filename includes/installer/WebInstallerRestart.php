@@ -36,7 +36,7 @@ class WebInstallerRestart extends WebInstallerPage {
 		}
 
 		$this->startForm();
-		$s = Html::warningBox( wfMessage( 'config-help-restart' )->plain(), '', 'config-warning-box' );
+		$s = Html::warningBox( wfMessage( 'config-help-restart' )->plain(), 'config-warning-box' );
 		$this->addHTML( $s );
 		$this->endForm( 'restart' );
 
