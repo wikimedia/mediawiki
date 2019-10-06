@@ -1,5 +1,6 @@
 <?php
 
+use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -176,7 +177,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return PHPUnit_Framework_MockObject_MockObject|PageProps
+	 * @return MockObject|PageProps
 	 */
 	private function getMockPageProps() {
 		return $this->getMockBuilder( PageProps::class )

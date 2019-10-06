@@ -1,10 +1,11 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use PHPUnit\Framework\TestSuite;
 
 require_once dirname( __DIR__ ) . '/includes/upload/UploadFromUrlTest.php';
 
-class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
+class UploadFromUrlTestSuite extends TestSuite {
 	public $savedGlobals = [];
 
 	public static function addTables( &$tables ) {

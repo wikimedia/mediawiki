@@ -2,6 +2,7 @@
 
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserIdentityValue;
+use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\TestingAccessWrapper;
@@ -12,7 +13,7 @@ use Wikimedia\TestingAccessWrapper;
 class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 
 	/**
-	 * @return PHPUnit_Framework_MockObject_MockObject|CommentStore
+	 * @return MockObject|CommentStore
 	 */
 	private function getMockCommentStore() {
 		$mockStore = $this->getMockBuilder( CommentStore::class )
@@ -32,7 +33,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return PHPUnit_Framework_MockObject_MockObject|ActorMigration
+	 * @return MockObject|ActorMigration
 	 */
 	private function getMockActorMigration() {
 		$mockStore = $this->getMockBuilder( ActorMigration::class )
@@ -66,8 +67,8 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param PHPUnit_Framework_MockObject_MockObject|Database $mockDb
-	 * @param PHPUnit_Framework_MockObject_MockObject|PermissionManager $mockPM
+	 * @param MockObject|Database $mockDb
+	 * @param MockObject|PermissionManager $mockPM
 	 * @return WatchedItemQueryService
 	 */
 	private function newService( $mockDb, $mockPM = null ) {
@@ -81,7 +82,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return PHPUnit_Framework_MockObject_MockObject|IDatabase
+	 * @return MockObject|IDatabase
 	 */
 	private function getMockDb() {
 		$mock = $this->createMock( IDatabase::class );
@@ -127,8 +128,8 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param PHPUnit_Framework_MockObject_MockObject|IDatabase $mockDb
-	 * @return PHPUnit_Framework_MockObject_MockObject|LoadBalancer
+	 * @param MockObject|IDatabase $mockDb
+	 * @return MockObject|LoadBalancer
 	 */
 	private function getMockLoadBalancer( $mockDb ) {
 		$mock = $this->getMockBuilder( LoadBalancer::class )
@@ -142,7 +143,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return PHPUnit_Framework_MockObject_MockObject|WatchedItemStore
+	 * @return MockObject|WatchedItemStore
 	 */
 	private function getMockWatchedItemStore() {
 		$mock = $this->getMockBuilder( WatchedItemStore::class )
@@ -158,7 +159,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 
 	/**
 	 * @param string $notAllowedAction
-	 * @return PHPUnit_Framework_MockObject_MockObject|PermissionManager
+	 * @return MockObject|PermissionManager
 	 */
 	private function getMockPermissionManager( $notAllowedAction = null ) {
 		$mock = $this->getMockBuilder( PermissionManager::class )
@@ -178,7 +179,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 	/**
 	 * @param int $id
 	 * @param string[] $extraMethods Extra methods that are expected might be called
-	 * @return PHPUnit_Framework_MockObject_MockObject|User
+	 * @return MockObject|User
 	 */
 	private function getMockNonAnonUserWithId( $id, array $extraMethods = [] ) {
 		$mock = $this->getMockBuilder( User::class )->getMock();
@@ -195,7 +196,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 	/**
 	 * @param int $id
 	 * @param string[] $extraMethods Extra methods that are expected might be called
-	 * @return PHPUnit_Framework_MockObject_MockObject|User
+	 * @return MockObject|User
 	 */
 	private function getMockUnrestrictedNonAnonUserWithId( $id, array $extraMethods = [] ) {
 		$mock = $this->getMockNonAnonUserWithId( $id,
@@ -206,8 +207,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 
 	/**
 	 * @param int $id
-	 * @param string $notAllowedAction
-	 * @return PHPUnit_Framework_MockObject_MockObject|User
+	 * @return MockObject|User
 	 */
 	private function getMockNonAnonUserWithIdAndRestrictedPermissions( $id ) {
 		$mock = $this->getMockNonAnonUserWithId( $id,
@@ -220,7 +220,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 
 	/**
 	 * @param int $id
-	 * @return PHPUnit_Framework_MockObject_MockObject|User
+	 * @return MockObject|User
 	 */
 	private function getMockNonAnonUserWithIdAndNoPatrolRights( $id ) {
 		$mock = $this->getMockNonAnonUserWithId( $id,

@@ -4,6 +4,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentityValue;
+use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\TestingAccessWrapper;
@@ -16,14 +17,14 @@ use Wikimedia\TestingAccessWrapper;
 class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 	/**
-	 * @return PHPUnit_Framework_MockObject_MockObject|IDatabase
+	 * @return MockObject|IDatabase
 	 */
 	private function getMockDb() {
 		return $this->createMock( IDatabase::class );
 	}
 
 	/**
-	 * @return PHPUnit_Framework_MockObject_MockObject|LoadBalancer
+	 * @return MockObject|LoadBalancer
 	 */
 	private function getMockLoadBalancer(
 		$mockDb,
@@ -46,7 +47,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return PHPUnit_Framework_MockObject_MockObject|LBFactory
+	 * @return MockObject|LBFactory
 	 */
 	private function getMockLBFactory(
 		$mockDb,
@@ -63,7 +64,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return PHPUnit_Framework_MockObject_MockObject|JobQueueGroup
+	 * @return MockObject|JobQueueGroup
 	 */
 	private function getMockJobQueueGroup() {
 		$mock = $this->getMockBuilder( JobQueueGroup::class )
@@ -83,7 +84,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return PHPUnit_Framework_MockObject_MockObject|HashBagOStuff
+	 * @return MockObject|HashBagOStuff
 	 */
 	private function getMockCache() {
 		$mock = $this->getMockBuilder( HashBagOStuff::class )
@@ -99,7 +100,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return PHPUnit_Framework_MockObject_MockObject|ReadOnlyMode
+	 * @return MockObject|ReadOnlyMode
 	 */
 	private function getMockReadOnlyMode( $readOnly = false ) {
 		$mock = $this->getMockBuilder( ReadOnlyMode::class )

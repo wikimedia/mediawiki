@@ -5,6 +5,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\MonologSpi;
 use MediaWiki\Logger\LogCapturingSpi;
 use MediaWiki\MediaWikiServices;
+use PHPUnit\Framework\TestResult;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -409,7 +410,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		MediaWiki\Session\SessionManager::resetCache();
 	}
 
-	public function run( PHPUnit_Framework_TestResult $result = null ) {
+	public function run( TestResult $result = null ) {
 		if ( $result instanceof MediaWikiTestResult ) {
 			$this->cliArgs = $result->getMediaWikiCliArgs();
 		}

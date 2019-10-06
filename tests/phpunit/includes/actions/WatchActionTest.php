@@ -1,5 +1,7 @@
 <?php
 
+use PHPUnit\Framework\MockObject\MockObject;
+
 /**
  * @covers WatchAction
  *
@@ -344,7 +346,7 @@ class WatchActionTest extends MediaWikiTestCase {
 	 * @param bool $isLoggedIn Whether the user should be "marked" as logged in
 	 * @param bool $isWatched The value any call to isWatched should return
 	 * @param array $permissions The permissions of the user
-	 * @return PHPUnit_Framework_MockObject_MockObject
+	 * @return MockObject
 	 * @throws Exception
 	 */
 	private function getUser(

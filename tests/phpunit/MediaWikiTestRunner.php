@@ -1,6 +1,8 @@
 <?php
 
-class MediaWikiTestRunner extends PHPUnit_TextUI_TestRunner {
+use PHPUnit\TextUI\TestRunner;
+
+class MediaWikiTestRunner extends TestRunner {
 	private $cliArgs;
 
 	public function setMwCliArgs( array $cliArgs ) {

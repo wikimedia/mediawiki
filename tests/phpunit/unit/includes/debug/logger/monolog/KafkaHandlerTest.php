@@ -22,6 +22,7 @@ namespace MediaWiki\Logger\Monolog;
 
 use Kafka\Exception;
 use Monolog\Logger;
+use PHPUnit\Framework\MockObject\Matcher\ConsecutiveParameters;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -160,7 +161,7 @@ class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 		// evil hax
 		$matcher = TestingAccessWrapper::newFromObject( $mockMethod )->matcher;
 		TestingAccessWrapper::newFromObject( $matcher )->parametersMatcher =
-			new \PHPUnit_Framework_MockObject_Matcher_ConsecutiveParameters( [
+			new ConsecutiveParameters( [
 				[ $this->anything(), $this->anything(), [ 'words' ] ],
 				[ $this->anything(), $this->anything(), [ 'lines' ] ]
 			] );
