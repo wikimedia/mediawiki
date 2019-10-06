@@ -91,9 +91,6 @@ $cfg['exclude_analysis_directory_list'] = [
 // either in-line with @phan-suppress-next-line and similar, at block-level (via @suppress), or at
 // file-level (with @phan-file-suppress), so that it stays enabled for the rest of the codebase.
 $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
-	// approximate error count: 19
-	"PhanParamReqAfterOpt", // False positives with nullables (phan issue #3159). Use real nullables
-	//after dropping HHVM
 	// approximate error count: 110
 	"PhanParamTooMany", // False positives with variargs. Unsuppress after dropping HHVM
 ] );

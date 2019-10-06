@@ -1662,7 +1662,7 @@ class DifferenceEngine extends ContextSource {
 	 * @param RevisionRecord $newRevision
 	 */
 	public function setRevisions(
-		RevisionRecord $oldRevision = null, RevisionRecord $newRevision
+		?RevisionRecord $oldRevision, RevisionRecord $newRevision
 	) {
 		if ( $oldRevision ) {
 			$this->mOldRev = new Revision( $oldRevision );

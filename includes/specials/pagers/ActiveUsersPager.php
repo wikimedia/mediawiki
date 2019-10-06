@@ -55,7 +55,7 @@ class ActiveUsersPager extends UsersPager {
 	 * @param IContextSource|null $context
 	 * @param FormOptions $opts
 	 */
-	public function __construct( IContextSource $context = null, FormOptions $opts ) {
+	public function __construct( ?IContextSource $context, FormOptions $opts ) {
 		parent::__construct( $context );
 
 		$this->RCMaxAge = $this->getConfig()->get( 'ActiveUserDays' );

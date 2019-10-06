@@ -285,7 +285,7 @@ class CommentStore {
 	 * @param bool $fallback
 	 * @return CommentStoreComment
 	 */
-	private function getCommentInternal( IDatabase $db = null, $key, $row, $fallback = false ) {
+	private function getCommentInternal( ?IDatabase $db, $key, $row, $fallback = false ) {
 		$row = (array)$row;
 		if ( array_key_exists( "{$key}_text", $row ) && array_key_exists( "{$key}_data", $row ) ) {
 			$cid = $row["{$key}_cid"] ?? null;

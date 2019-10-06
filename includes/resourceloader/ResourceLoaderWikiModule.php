@@ -531,7 +531,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * @since 1.28
 	 */
 	public static function invalidateModuleCache(
-		Title $title, Revision $old = null, Revision $new = null, $domain
+		Title $title, ?Revision $old, ?Revision $new, $domain
 	) {
 		static $formats = [ CONTENT_FORMAT_CSS, CONTENT_FORMAT_JAVASCRIPT ];
 

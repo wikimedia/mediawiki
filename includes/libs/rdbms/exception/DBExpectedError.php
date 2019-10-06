@@ -40,7 +40,7 @@ class DBExpectedError extends DBError implements MessageSpecifier {
 	 * @param \Exception|\Throwable|null $prev
 	 */
 	public function __construct(
-		IDatabase $db = null, $error, array $params = [], $prev = null
+		?IDatabase $db, $error, array $params = [], $prev = null
 	) {
 		parent::__construct( $db, $error, $prev );
 		$this->params = $params;
