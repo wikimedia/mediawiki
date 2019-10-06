@@ -337,7 +337,8 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	public function testInsertOn_exceptionOnIncomplete( $array, $expException, $expMessage ) {
 		// If an ExternalStore is set don't use it.
 		$this->setMwGlobals( 'wgDefaultExternalStore', false );
-		$this->setExpectedException( $expException, $expMessage );
+		$this->expectException( $expException );
+		$this->expectExceptionMessage( $expMessage );
 
 		$title = Title::newFromText( 'Nonexistant-' . __METHOD__ );
 		$rev = new Revision( $array, 0, $title );
