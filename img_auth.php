@@ -203,9 +203,9 @@ function wfForbidden( $msg1, $msg2, ...$args ) {
 
 	$args = ( isset( $args[0] ) && is_array( $args[0] ) ) ? $args[0] : $args;
 
-	$msgHdr = wfMessage( $msg1 )->escaped();
+	$msgHdr = wfMessage( $msg1 )->text();
 	$detailMsgKey = $wgImgAuthDetails ? $msg2 : 'badaccess-group0';
-	$detailMsg = wfMessage( $detailMsgKey, $args )->escaped();
+	$detailMsg = wfMessage( $detailMsgKey, $args )->text();
 
 	wfDebugLog( 'img_auth',
 		"wfForbidden Hdr: " . wfMessage( $msg1 )->inLanguage( 'en' )->text() . " Msg: " .
@@ -215,17 +215,9 @@ function wfForbidden( $msg1, $msg2, ...$args ) {
 	HttpStatus::header( 403 );
 	header( 'Cache-Control: no-cache' );
 	header( 'Content-Type: text/html; charset=utf-8' );
-	echo <<<ENDS
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8" />
-<title>$msgHdr</title>
-</head>
-<body>
-<h1>$msgHdr</h1>
-<p>$detailMsg</p>
-</body>
-</html>
-ENDS;
+	$templateParser = new TemplateParser();
+	echo $templateParser->processTemplate( 'ImageAuthForbidden', [
+		'msgHdr' => $msgHdr,
+		'detailMsg' => $detailMsg,
+	] );
 }
