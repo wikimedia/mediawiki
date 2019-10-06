@@ -1,5 +1,7 @@
 <?php
 
+use PHPUnit\Framework\MockObject\MockObject;
+
 /**
  * @covers SkinTemplate
  *
@@ -40,7 +42,7 @@ class SkinTemplateTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return PHPUnit_Framework_MockObject_MockObject|OutputPage
+	 * @return MockObject|OutputPage
 	 */
 	private function getMockOutputPage( $isSyndicated, $html ) {
 		$mock = $this->getMockBuilder( OutputPage::class )

@@ -8,6 +8,7 @@ use HashBagOStuff;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWikiTestCase;
+use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\NullLogger;
 use WANObjectCache;
 use Wikimedia\Rdbms\IDatabase;
@@ -45,7 +46,7 @@ class NameTableStoreTest extends MediaWikiTestCase {
 
 	/**
 	 * @param $db
-	 * @return \PHPUnit_Framework_MockObject_MockObject|LoadBalancer
+	 * @return MockObject|LoadBalancer
 	 */
 	private function getMockLoadBalancer( $db ) {
 		$mock = $this->getMockBuilder( LoadBalancer::class )

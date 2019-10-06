@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Session;
 
+use PHPUnit\Framework\Assert;
 use Psr\Log\LoggerInterface;
 use Wikimedia\TestingAccessWrapper;
 
@@ -65,7 +66,7 @@ class TestUtils {
 	public static function getDummySessionBackend() {
 		$rc = new \ReflectionClass( SessionBackend::class );
 		if ( !method_exists( $rc, 'newInstanceWithoutConstructor' ) ) {
-			\PHPUnit_Framework_Assert::markTestSkipped(
+			Assert::markTestSkipped(
 				'ReflectionClass::newInstanceWithoutConstructor isn\'t available'
 			);
 		}

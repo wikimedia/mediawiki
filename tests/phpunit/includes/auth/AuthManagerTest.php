@@ -6,6 +6,7 @@ use Config;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\UserInfo;
+use PHPUnit\Framework\Assert;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use StatusValue;
@@ -961,7 +962,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$this->initializeManager( true );
 		$this->logger->setCollect( true );
 
-		$constraint = \PHPUnit_Framework_Assert::logicalOr(
+		$constraint = Assert::logicalOr(
 			$this->equalTo( AuthenticationResponse::PASS ),
 			$this->equalTo( AuthenticationResponse::FAIL )
 		);
@@ -1992,7 +1993,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$expectLog = [];
 		$this->initializeManager( true );
 
-		$constraint = \PHPUnit_Framework_Assert::logicalOr(
+		$constraint = Assert::logicalOr(
 			$this->equalTo( AuthenticationResponse::PASS ),
 			$this->equalTo( AuthenticationResponse::FAIL )
 		);
@@ -3487,7 +3488,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		} );
 		$this->initializeManager( true );
 
-		$constraint = \PHPUnit_Framework_Assert::logicalOr(
+		$constraint = Assert::logicalOr(
 			$this->equalTo( AuthenticationResponse::PASS ),
 			$this->equalTo( AuthenticationResponse::FAIL )
 		);

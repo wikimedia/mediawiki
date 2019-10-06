@@ -1,5 +1,6 @@
 <?php
 
+use PHPUnit\Framework\Assert;
 use Wikimedia\Services\ServiceContainer;
 
 /**
@@ -53,8 +54,8 @@ class ServiceContainerTest extends PHPUnit\Framework\TestCase {
 			$name,
 			function ( $actualLocator, $extra ) use ( $services, $theService, &$count ) {
 				$count++;
-				PHPUnit_Framework_Assert::assertSame( $services, $actualLocator );
-				PHPUnit_Framework_Assert::assertSame( $extra, 'Foo' );
+				Assert::assertSame( $services, $actualLocator );
+				Assert::assertSame( $extra, 'Foo' );
 				return $theService;
 			}
 		);
@@ -150,7 +151,7 @@ class ServiceContainerTest extends PHPUnit\Framework\TestCase {
 		$name = 'TestService92834576';
 
 		$services->defineService( $name, function ( $actualLocator ) use ( $services, $theService ) {
-			PHPUnit_Framework_Assert::assertSame( $services, $actualLocator );
+			Assert::assertSame( $services, $actualLocator );
 			return $theService;
 		} );
 
@@ -294,7 +295,7 @@ class ServiceContainerTest extends PHPUnit\Framework\TestCase {
 		$name = 'TestService92834576';
 
 		$services->defineService( $name, function () {
-			PHPUnit_Framework_Assert::fail(
+			Assert::fail(
 				'The original instantiator function should not get called'
 			);
 		} );
@@ -303,8 +304,8 @@ class ServiceContainerTest extends PHPUnit\Framework\TestCase {
 		$services->redefineService(
 			$name,
 			function ( $actualLocator, $extra ) use ( $services, $theService1 ) {
-				PHPUnit_Framework_Assert::assertSame( $services, $actualLocator );
-				PHPUnit_Framework_Assert::assertSame( 'Foo', $extra );
+				Assert::assertSame( $services, $actualLocator );
+				Assert::assertSame( 'Foo', $extra );
 				return $theService1;
 			}
 		);
@@ -377,8 +378,8 @@ class ServiceContainerTest extends PHPUnit\Framework\TestCase {
 		$services->defineService(
 			$name,
 			function ( $actualLocator, $extra ) use ( $services, $theService1 ) {
-				PHPUnit_Framework_Assert::assertSame( $services, $actualLocator );
-				PHPUnit_Framework_Assert::assertSame( 'Foo', $extra );
+				Assert::assertSame( $services, $actualLocator );
+				Assert::assertSame( 'Foo', $extra );
 				return $theService1;
 			}
 		);
@@ -390,9 +391,9 @@ class ServiceContainerTest extends PHPUnit\Framework\TestCase {
 			) use (
 				$services, $theService1, $theService2
 			) {
-				PHPUnit_Framework_Assert::assertSame( $theService1, $theService );
-				PHPUnit_Framework_Assert::assertSame( $services, $actualLocator );
-				PHPUnit_Framework_Assert::assertSame( 'Foo', $extra );
+				Assert::assertSame( $theService1, $theService );
+				Assert::assertSame( $services, $actualLocator );
+				Assert::assertSame( 'Foo', $extra );
 				return $theService2;
 			}
 		);

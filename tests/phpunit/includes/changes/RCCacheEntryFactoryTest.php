@@ -143,7 +143,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 
 	private function assertValidHTML( $actual ) {
 		// Throws if invalid
-		$doc = PHPUnit_Util_XML::load( $actual, /* isHtml */ true );
+		$doc = \PHPUnit\Util\Xml::load( $actual, /* isHtml */ true );
 	}
 
 	private function assertUserLinks( $user, $cacheEntry ) {

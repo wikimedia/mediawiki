@@ -18,6 +18,9 @@
  *
  */
 
+use PHPUnit\Framework\CodeCoverageException;
+use PHPUnit\Util\Test;
+
 /**
  * Trait that checks that covers tags are valid, since PHPUnit
  * won't do it unless you run it with coverage, which is super
@@ -38,8 +41,8 @@ trait MediaWikiCoversValidator {
 		foreach ( $methods as $method ) {
 			if ( strpos( $method, 'test' ) === 0 ) {
 				try {
-					PHPUnit_Util_Test::getLinesToBeCovered( $class, $method );
-				} catch ( PHPUnit_Framework_CodeCoverageException $e ) {
+					Test::getLinesToBeCovered( $class, $method );
+				} catch ( CodeCoverageException $e ) {
 					$bad .= "$class::$method: {$e->getMessage()}\n";
 				}
 			}

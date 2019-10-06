@@ -1,6 +1,8 @@
 <?php
 
-class MediaWikiTestResult extends PHPUnit_Framework_TestResult {
+use PHPUnit\Framework\TestResult;
+
+class MediaWikiTestResult extends TestResult {
 	private $cliArgs;
 
 	public function __construct( array $cliArgs ) {

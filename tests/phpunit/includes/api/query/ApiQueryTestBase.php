@@ -20,6 +20,9 @@
  * @file
  */
 
+use PHPUnit\Framework\ExpectationFailedException;
+use SebastianBergmann\Comparator\ComparisonFailure;
+
 /** This class has some common functionality for testing query module
  */
 abstract class ApiQueryTestBase extends ApiTestCase {
@@ -112,20 +115,14 @@ STR;
 			$exp = self::sanitizeResultArray( $exp );
 			$result = self::sanitizeResultArray( $result );
 			$this->assertEquals( $exp, $result );
-		} catch ( PHPUnit_Framework_ExpectationFailedException $e ) {
+		} catch ( ExpectationFailedException $e ) {
 			if ( is_array( $message ) ) {
 				$message = http_build_query( $message );
 			}
 
-			// FIXME: once we migrate to phpunit 4.1+, hardcode ComparisonFailure exception use
-			$compEx = 'SebastianBergmann\Comparator\ComparisonFailure';
-			if ( !class_exists( $compEx ) ) {
-				$compEx = 'PHPUnit_Framework_ComparisonFailure';
-			}
-
-			throw new PHPUnit_Framework_ExpectationFailedException(
+			throw new ExpectationFailedException(
 				$e->getMessage() . "\nRequest: $message",
-				new $compEx(
+				new ComparisonFailure(
 					$exp,
 					$result,
 					print_r( $exp, true ),

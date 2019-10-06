@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\Session\SessionManager;
+use PHPUnit\Framework\Assert;
+use PHPUnit\Util\Test;
 
 abstract class ApiTestCase extends MediaWikiLangTestCase {
 	protected static $apiUrl;
@@ -197,8 +199,8 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * @coversNothing
 	 */
 	public function testApiTestGroup() {
-		$groups = PHPUnit_Util_Test::getGroups( static::class );
-		$constraint = PHPUnit_Framework_Assert::logicalOr(
+		$groups = Test::getGroups( static::class );
+		$constraint = Assert::logicalOr(
 			$this->contains( 'medium' ),
 			$this->contains( 'large' )
 		);
@@ -217,6 +219,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		$msg, $code = null, array $data = null, $httpCode = 0
 	) {
 		$expected = ApiUsageException::newWithMessage( null, $msg, $code, $data, $httpCode );
-		$this->setExpectedException( ApiUsageException::class, $expected->getMessage() );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( $expected->getMessage() );
 	}
 }

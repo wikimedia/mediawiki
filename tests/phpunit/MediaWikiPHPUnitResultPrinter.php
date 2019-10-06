@@ -1,7 +1,10 @@
 <?php
 
-class MediaWikiPHPUnitResultPrinter extends PHPUnit_TextUI_ResultPrinter {
-	protected function printDefectTrace( PHPUnit_Framework_TestFailure $defect ) {
+use PHPUnit\Framework\TestFailure;
+use PHPUnit\TextUI\ResultPrinter;
+
+class MediaWikiPHPUnitResultPrinter extends ResultPrinter {
+	protected function printDefectTrace( TestFailure $defect ) {
 		$test = $defect->failedTest();
 		if ( $test !== null && isset( $test->_formattedMediaWikiLogs ) ) {
 			$log = $test->_formattedMediaWikiLogs;
