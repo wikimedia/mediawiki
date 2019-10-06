@@ -36,10 +36,7 @@ class UploadedFileStream implements StreamInterface {
 	 * @throws RuntimeException if $func returns $fail
 	 */
 	private static function quietCall( callable $func, array $args, $fail, $msg ) {
-		// TODO remove the function_exists check once we drop HHVM support
-		if ( function_exists( 'error_clear_last' ) ) {
-			error_clear_last();
-		}
+		error_clear_last();
 		$ret = AtEase::quietCall( $func, ...$args );
 		if ( $ret === $fail ) {
 			$err = error_get_last();
