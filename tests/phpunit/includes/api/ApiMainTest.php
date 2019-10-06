@@ -131,9 +131,11 @@ class ApiMainTest extends ApiTestCase {
 	 * @depends testSetContinuationManager
 	 */
 	public function testSetContinuationManagerTwice( $args ) {
-		$this->setExpectedException( UnexpectedValueException::class,
+		$this->expectException( UnexpectedValueException::class );
+		$this->expectExceptionMessage(
 			'ApiMain::setContinuationManager: tried to set manager from  ' .
-			'when a manager is already set from ' );
+				'when a manager is already set from '
+		);
 
 		list( $api, $manager ) = $args;
 		$api->setContinuationManager( $manager );
@@ -239,9 +241,11 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	public function testSetupModuleNeedsTokenTrue() {
-		$this->setExpectedException( MWException::class,
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage(
 			"Module 'testmodule' must be updated for the new token handling. " .
-			"See documentation for ApiBase::needsToken for details." );
+				"See documentation for ApiBase::needsToken for details."
+		);
 
 		$mock = $this->createMock( ApiBase::class );
 		$mock->method( 'getModuleName' )->willReturn( 'testmodule' );
@@ -718,10 +722,12 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	public function testCheckExecutePermissionWriteDisabled() {
-		$this->setExpectedException( ApiUsageException::class,
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage(
 			'Editing of this wiki through the API is disabled. Make sure the ' .
-			'"$wgEnableWriteAPI=true;" statement is included in the wiki\'s ' .
-			'"LocalSettings.php" file.' );
+				'"$wgEnableWriteAPI=true;" statement is included in the wiki\'s ' .
+				'"LocalSettings.php" file.'
+		);
 		$main = new ApiMain( new FauxRequest( [
 			'action' => 'edit',
 			'title' => 'Some page',
@@ -746,9 +752,11 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	public function testCheckExecutePermissionPromiseNonWrite() {
-		$this->setExpectedException( ApiUsageException::class,
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage(
 			'The "Promise-Non-Write-API-Action" HTTP header cannot be sent ' .
-			'to write-mode API modules.' );
+				'to write-mode API modules.'
+		);
 
 		$req = new FauxRequest( [
 			'action' => 'edit',

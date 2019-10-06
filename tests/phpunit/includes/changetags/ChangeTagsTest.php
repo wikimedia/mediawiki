@@ -38,7 +38,7 @@ class ChangeTagsTest extends MediaWikiTestCase {
 			);
 		}
 		if ( isset( $modifiedQuery['exception'] ) ) {
-			$this->setExpectedException( $modifiedQuery['exception'] );
+			$this->expectException( $modifiedQuery['exception'] );
 		}
 		ChangeTags::modifyDisplayQuery(
 			$origQuery['tables'],

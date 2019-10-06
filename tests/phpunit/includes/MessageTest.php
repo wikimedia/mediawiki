@@ -187,7 +187,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	 */
 	public function testKeys( $key, $expected, $exception = null ) {
 		if ( $exception ) {
-			$this->setExpectedException( $exception );
+			$this->expectException( $exception );
 		}
 
 		$msg = new Message( $key );

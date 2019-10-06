@@ -565,11 +565,9 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 
-		$this->setExpectedException(
-			get_class( $exception ),
-			$exception->getMessage(),
-			$exception->getCode()
-		);
+		$this->expectException( get_class( $exception ) );
+		$this->expectExceptionMessage( $exception->getMessage() );
+		$this->expectExceptionCode( $exception->getCode() );
 		$store->insertRevisionOn( $rev, wfGetDB( DB_MASTER ) );
 	}
 

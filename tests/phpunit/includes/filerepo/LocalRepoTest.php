@@ -77,7 +77,8 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::newFileFromRow
 	 */
 	public function testNewFileFromRow_invalid() {
-		$this->setExpectedException( 'MWException', 'LocalRepo::newFileFromRow: invalid row' );
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( 'LocalRepo::newFileFromRow: invalid row' );
 
 		$row = (object)[
 			"img_user" => '1',
