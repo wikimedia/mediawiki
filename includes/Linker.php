@@ -1241,12 +1241,7 @@ class Linker {
 						$sectionText = str_replace( '[[', '&#91;[', $auto );
 
 						$section = substr( Parser::guessSectionNameFromStrippedText( $section ), 1 );
-						// Support: HHVM (T222857)
-						// The guessSectionNameFromStrippedText method returns a non-empty string
-						// that starts with "#". Before PHP 7 (and still on HHVM) substr() would
-						// return false if the start offset is the end of the string.
-						// On PHP 7+, it gracefully returns empty string instead.
-						if ( $section !== '' && $section !== false ) {
+						if ( $section !== '' ) {
 							if ( $local ) {
 								$sectionTitle = new TitleValue( NS_MAIN, '', $section );
 							} else {
