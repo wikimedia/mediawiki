@@ -217,6 +217,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		$msg, $code = null, array $data = null, $httpCode = 0
 	) {
 		$expected = ApiUsageException::newWithMessage( null, $msg, $code, $data, $httpCode );
-		$this->setExpectedException( ApiUsageException::class, $expected->getMessage() );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( $expected->getMessage() );
 	}
 }

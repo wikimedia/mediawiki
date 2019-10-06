@@ -294,9 +294,11 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testNewSectionWithPage() {
-		$this->setExpectedException( ApiUsageException::class,
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage(
 			'"section=new" cannot be combined with the "oldid", "pageid" or "page" ' .
-			'parameters. Please use "title" and "text".' );
+				'parameters. Please use "title" and "text".'
+		);
 
 		$this->doApiRequest( [
 			'action' => 'parse',

@@ -82,8 +82,8 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	 */
 	public function testConstructor( ServiceOptions $options, $expectedExceptionText = null ) {
 		if ( $expectedExceptionText !== null ) {
-			$this->setExpectedException( \Wikimedia\Assert\PreconditionException::class,
-				$expectedExceptionText );
+			$this->expectException( \Wikimedia\Assert\PreconditionException::class );
+			$this->expectExceptionMessage( $expectedExceptionText );
 		}
 		new NamespaceInfo( $options );
 		$this->assertTrue( true );

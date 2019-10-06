@@ -187,11 +187,9 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testConstructFromArrayThrowsExceptions( $rowArray, Exception $expectedException ) {
-		$this->setExpectedException(
-			get_class( $expectedException ),
-			$expectedException->getMessage(),
-			$expectedException->getCode()
-		);
+		$this->expectException( get_class( $expectedException ) );
+		$this->expectExceptionMessage( $expectedException->getMessage() );
+		$this->expectExceptionCode( $expectedException->getCode() );
 		new Revision( $rowArray, 0, $this->getMockTitle() );
 	}
 
@@ -200,9 +198,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testConstructFromNothing() {
-		$this->setExpectedException(
-			InvalidArgumentException::class
-		);
+		$this->expectException( InvalidArgumentException::class );
 		new Revision( [] );
 	}
 

@@ -96,7 +96,8 @@ class ApiUserrightsTest extends ApiTestCase {
 	) {
 		$params['action'] = 'userrights';
 
-		$this->setExpectedException( ApiUsageException::class, $expectedException );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( $expectedException );
 
 		if ( !$user ) {
 			// If 'user' or 'userid' is specified and $user was not specified,

@@ -122,11 +122,10 @@ class WatchActionTest extends MediaWikiTestCase {
 	 * @covers WatchAction::onSuccess()
 	 */
 	public function testOnSuccessMainNamespaceTitle() {
-		$testContext = $this->getMock(
-			DerivativeContext::class,
-			[ 'msg' ],
-			[ $this->watchAction->getContext() ]
-		);
+		$testContext = $this->getMockBuilder( DerivativeContext::class )
+			->setMethods( [ 'msg' ] )
+			->setConstructorArgs( [ $this->watchAction->getContext() ] )
+			->getMock();
 		$testOutput = new OutputPage( $testContext );
 		$testContext->setOutput( $testOutput );
 		$testContext->method( 'msg' )->willReturnCallback( function ( $msgKey ) {
@@ -144,11 +143,9 @@ class WatchActionTest extends MediaWikiTestCase {
 	 * @covers WatchAction::onSuccess()
 	 */
 	public function testOnSuccessTalkPage() {
-		$testContext = $this->getMock(
-			DerivativeContext::class,
-			[],
-			[ $this->watchAction->getContext() ]
-		);
+		$testContext = $this->getMockBuilder( DerivativeContext::class )
+			->setConstructorArgs( [ $this->watchAction->getContext() ] )
+			->getMock();
 		$testOutput = new OutputPage( $testContext );
 		$testContext->method( 'getOutput' )->willReturn( $testOutput );
 		$testContext->method( 'msg' )->willReturnCallback( function ( $msgKey ) {

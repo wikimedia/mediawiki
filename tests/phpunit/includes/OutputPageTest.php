@@ -2005,7 +2005,8 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::parseAsInterface
 	 */
 	public function testParseAsInterfaceNullTitle() {
-		$this->setExpectedException( MWException::class, 'Empty $mTitle in OutputPage::parseInternal' );
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( 'Empty $mTitle in OutputPage::parseInternal' );
 		$op = $this->newInstance( [], null, 'notitle' );
 		$op->parseAsInterface( '' );
 	}
@@ -2014,7 +2015,8 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::parseInlineAsInterface
 	 */
 	public function testParseInlineAsInterfaceNullTitle() {
-		$this->setExpectedException( MWException::class, 'Empty $mTitle in OutputPage::parseInternal' );
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( 'Empty $mTitle in OutputPage::parseInternal' );
 		$op = $this->newInstance( [], null, 'notitle' );
 		$op->parseInlineAsInterface( '' );
 	}
@@ -3045,7 +3047,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @dataProvider provideIsRevisionCurrent
 	 */
 	public function testIsRevisionCurrent( $titleLastRevision, $outputRevision, $expectedResult ) {
-		$titleMock = $this->getMock( Title::class, [], [], '', false );
+		$titleMock = $this->createMock( Title::class );
 		$titleMock->expects( $this->any() )
 			->method( 'getLatestRevID' )
 			->willReturn( $titleLastRevision );

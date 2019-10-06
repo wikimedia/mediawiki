@@ -158,7 +158,7 @@ class DeprecationHelperTest extends MediaWikiTestCase {
 	 * @dataProvider provideBadMWVersion
 	 */
 	public function testBadMWVersion( $version, $expected ) {
-		$this->setExpectedException( $expected );
+		$this->expectException( $expected );
 
 		wfDeprecated( __METHOD__, $version );
 	}

@@ -23,7 +23,7 @@ class TemplateParserTest extends MediaWikiTestCase {
 	 */
 	public function testProcessTemplate( $name, $args, $result, $exception = false ) {
 		if ( $exception ) {
-			$this->setExpectedException( $exception );
+			$this->expectException( $exception );
 		}
 		$tp = new TemplateParser( $this->templateDir );
 		$this->assertEquals( $result, $tp->processTemplate( $name, $args ) );

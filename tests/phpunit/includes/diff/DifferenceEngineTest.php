@@ -226,7 +226,8 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 		RevisionRecord $oldRevision = null, RevisionRecord $newRevision = null, $expectedDiff
 	) {
 		if ( $expectedDiff instanceof Exception ) {
-			$this->setExpectedException( get_class( $expectedDiff ), $expectedDiff->getMessage() );
+			$this->expectException( get_class( $expectedDiff ) );
+			$this->expectExceptionMessage( $expectedDiff->getMessage() );
 		}
 		$differenceEngine = new DifferenceEngine();
 		$differenceEngine->setRevisions( $oldRevision, $newRevision );
