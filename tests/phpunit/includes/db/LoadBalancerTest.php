@@ -21,6 +21,7 @@
  * @file
  */
 
+use PHPUnit\Framework\Constraint\StringContains;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\Database;
@@ -329,7 +330,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 			$this->fail( 'Write operation should have failed!' );
 		} catch ( DBError $ex ) {
 			// check that the exception message contains "Write operation"
-			$constraint = new PHPUnit_Framework_Constraint_StringContains( 'Write operation' );
+			$constraint = new StringContains( 'Write operation' );
 
 			if ( !$constraint->evaluate( $ex->getMessage(), '', true ) ) {
 				// re-throw original error, to preserve stack trace

@@ -1,6 +1,7 @@
 <?php
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * @covers PrefixingStatsdDataFactoryProxy
@@ -23,7 +24,7 @@ class PrefixingStatsdDataFactoryProxyTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider provideMethodNames
 	 */
 	public function testPrefixingAndPassthrough( $method ) {
-		/** @var StatsdDataFactoryInterface|PHPUnit_Framework_MockObject_MockObject $innerFactory */
+		/** @var StatsdDataFactoryInterface|MockObject $innerFactory */
 		$innerFactory = $this->createMock(
 			\Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface::class
 		);
@@ -40,7 +41,7 @@ class PrefixingStatsdDataFactoryProxyTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider provideMethodNames
 	 */
 	public function testPrefixIsTrimmed( $method ) {
-		/** @var StatsdDataFactoryInterface|PHPUnit_Framework_MockObject_MockObject $innerFactory */
+		/** @var StatsdDataFactoryInterface|MockObject $innerFactory */
 		$innerFactory = $this->createMock(
 			\Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface::class
 		);

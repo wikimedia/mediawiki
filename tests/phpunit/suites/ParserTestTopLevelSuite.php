@@ -1,18 +1,19 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use PHPUnit\Framework\TestSuite;
 use Wikimedia\ScopedCallback;
 
 /**
  * The UnitTest must be either a class that inherits from MediaWikiTestCase
  * or a class that provides a public static suite() method which returns
- * an PHPUnit_Framework_Test object
+ * an PHPUnit\Framework\Test object
  *
  * @group Parser
  * @group ParserTests
  * @group Database
  */
-class ParserTestTopLevelSuite extends PHPUnit_Framework_TestSuite {
+class ParserTestTopLevelSuite extends TestSuite {
 	/** @var ParserTestRunner */
 	private $ptRunner;
 
@@ -58,7 +59,7 @@ class ParserTestTopLevelSuite extends PHPUnit_Framework_TestSuite {
 	 * @param int $flags Bitwise flag to filter out the $wgParserTestFiles that
 	 * will be included.  Default: ParserTestTopLevelSuite::CORE_ONLY
 	 *
-	 * @return PHPUnit_Framework_TestSuite
+	 * @return TestSuite
 	 */
 	public static function suite( $flags = self::CORE_ONLY ) {
 		return new self( $flags );

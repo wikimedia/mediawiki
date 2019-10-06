@@ -1,5 +1,7 @@
 <?php
 
+use PHPUnit\Framework\MockObject\MockObject;
+
 /**
  * @group API
  * @group Database
@@ -9,7 +11,7 @@
  */
 class ApiOptionsTest extends MediaWikiLangTestCase {
 
-	/** @var PHPUnit_Framework_MockObject_MockObject */
+	/** @var MockObject */
 	private $mUserMock;
 	/** @var ApiOptions */
 	private $mTested;

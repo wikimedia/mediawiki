@@ -12,6 +12,7 @@ use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\SqlBlobStore;
+use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use WANObjectCache;
@@ -101,7 +102,7 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @return \PHPUnit_Framework_MockObject_MockObject|ILoadBalancer
+	 * @return MockObject|ILoadBalancer
 	 */
 	private function getMockLoadBalancer() {
 		return $this->getMockBuilder( ILoadBalancer::class )
@@ -109,7 +110,7 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @return \PHPUnit_Framework_MockObject_MockObject|ILBFactory
+	 * @return MockObject|ILBFactory
 	 */
 	private function getMockLoadBalancerFactory() {
 		$mock = $this->getMockBuilder( ILBFactory::class )
@@ -124,7 +125,7 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @return \PHPUnit_Framework_MockObject_MockObject|SqlBlobStore
+	 * @return MockObject|SqlBlobStore
 	 */
 	private function getMockSqlBlobStore() {
 		return $this->getMockBuilder( SqlBlobStore::class )
@@ -132,7 +133,7 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @return \PHPUnit_Framework_MockObject_MockObject|BlobStoreFactory
+	 * @return MockObject|BlobStoreFactory
 	 */
 	private function getMockBlobStoreFactory() {
 		$mock = $this->getMockBuilder( BlobStoreFactory::class )
@@ -164,7 +165,7 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @return \PHPUnit_Framework_MockObject_MockObject|CommentStore
+	 * @return MockObject|CommentStore
 	 */
 	private function getMockCommentStore() {
 		return $this->getMockBuilder( CommentStore::class )

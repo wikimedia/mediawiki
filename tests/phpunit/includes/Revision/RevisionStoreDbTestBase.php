@@ -23,7 +23,7 @@ use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiTestCase;
-use PHPUnit_Framework_MockObject_MockObject;
+use PHPUnit\Framework\MockObject\MockObject;
 use Revision;
 use TestUserRegistry;
 use Title;
@@ -135,7 +135,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return LoadBalancer|PHPUnit_Framework_MockObject_MockObject
+	 * @return LoadBalancer|MockObject
 	 */
 	private function getLoadBalancerMock( array $server ) {
 		$domain = new DatabaseDomain( $server['dbname'], null, $server['tablePrefix'] );
@@ -157,7 +157,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return Database|PHPUnit_Framework_MockObject_MockObject
+	 * @return Database|MockObject
 	 */
 	private function getDatabaseMock( array $params ) {
 		$db = $this->getMockBuilder( DatabaseSqlite::class )

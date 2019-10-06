@@ -1,6 +1,8 @@
 <?php
 
-class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
+use PHPUnit\TextUI\Command;
+
+class MediaWikiPHPUnitCommand extends Command {
 	private $cliArgs;
 
 	public function __construct( $ignorableOptions, $cliArgs ) {

@@ -1,11 +1,13 @@
 <?php
 
+use PHPUnit\Framework\TestSuite;
+
 /**
  * This is the suite class for running tests within a single .txt source file.
  * It is not invoked directly. Use --filter to select files, or
  * use parserTests.php.
  */
-class ParserTestFileSuite extends PHPUnit_Framework_TestSuite {
+class ParserTestFileSuite extends TestSuite {
 	private $ptRunner;
 	private $ptFileName;
 	private $ptFileInfo;

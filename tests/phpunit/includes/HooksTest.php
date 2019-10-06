@@ -1,5 +1,7 @@
 <?php
 
+use PHPUnit\Framework\Error\Deprecated;
+
 class HooksTest extends MediaWikiTestCase {
 
 	function setUp() {
@@ -223,10 +225,10 @@ class HooksTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers Hooks::callHook
-	 * @expectedException PHPUnit_Framework_Error_Deprecated
 	 */
 	public function testCallHook_Deprecated() {
 		Hooks::register( 'MediaWikiHooksTest001', 'NothingClass::someStatic' );
+		$this->expectException( Deprecated::class );
 		Hooks::run( 'MediaWikiHooksTest001', [], '1.31' );
 	}
 

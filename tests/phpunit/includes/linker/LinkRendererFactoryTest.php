@@ -3,6 +3,7 @@
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\MediaWikiServices;
+use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * @covers MediaWiki\Linker\LinkRendererFactory
@@ -78,7 +79,7 @@ class LinkRendererFactoryTest extends MediaWikiLangTestCase {
 	}
 
 	public function testCreateForUser() {
-		/** @var PHPUnit_Framework_MockObject_MockObject|User $user */
+		/** @var MockObject|User $user */
 		$user = $this->getMockBuilder( User::class )
 			->setMethods( [ 'getStubThreshold' ] )->getMock();
 		$user->expects( $this->once() )

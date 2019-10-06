@@ -9,6 +9,7 @@ use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\SqlBlobStore;
+use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\MaintainableDBConnRef;
 use MediaWikiTestCase;
@@ -53,7 +54,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return \PHPUnit_Framework_MockObject_MockObject|LoadBalancer
+	 * @return MockObject|LoadBalancer
 	 */
 	private function getMockLoadBalancer() {
 		return $this->getMockBuilder( LoadBalancer::class )
@@ -61,7 +62,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return \PHPUnit_Framework_MockObject_MockObject|IDatabase
+	 * @return MockObject|IDatabase
 	 */
 	private function getMockDatabase() {
 		return $this->getMockBuilder( IDatabase::class )
@@ -80,7 +81,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return \PHPUnit_Framework_MockObject_MockObject|SqlBlobStore
+	 * @return MockObject|SqlBlobStore
 	 */
 	private function getMockSqlBlobStore() {
 		return $this->getMockBuilder( SqlBlobStore::class )
@@ -88,7 +89,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return \PHPUnit_Framework_MockObject_MockObject|CommentStore
+	 * @return MockObject|CommentStore
 	 */
 	private function getMockCommentStore() {
 		return $this->getMockBuilder( CommentStore::class )
@@ -96,7 +97,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return \PHPUnit_Framework_MockObject_MockObject|SlotRoleRegistry
+	 * @return MockObject|SlotRoleRegistry
 	 */
 	private function getMockSlotRoleRegistry() {
 		return $this->getMockBuilder( SlotRoleRegistry::class )

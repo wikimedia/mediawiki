@@ -1,5 +1,6 @@
 <?php
 
+use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\DatabaseSqlite;
 
 /**
@@ -13,7 +14,7 @@ class DatabaseSqliteRdbmsTest extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;
 
 	/**
-	 * @return PHPUnit_Framework_MockObject_MockObject|DatabaseSqlite
+	 * @return MockObject|DatabaseSqlite
 	 */
 	private function getMockDb() {
 		return $this->getMockBuilder( DatabaseSqlite::class )
