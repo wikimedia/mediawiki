@@ -467,8 +467,8 @@ class ApiEditPageTest extends ApiTestCase {
 	}
 
 	public function testCheckDirectApiEditingDisallowed_forNonTextContent() {
-		$this->setExpectedException(
-			ApiUsageException::class,
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage(
 			'Direct editing via API is not supported for content model ' .
 				'testing used by Dummy:ApiEditPageTest_nonTextPageEdit'
 		);
@@ -602,9 +602,11 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testMismatchedContentFormat() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$this->setExpectedException( ApiUsageException::class,
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage(
 			'The requested format text/plain is not supported for content ' .
-			"model wikitext used by $name." );
+				"model wikitext used by $name."
+		);
 
 		try {
 			$this->doApiRequestWithToken( [

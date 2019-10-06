@@ -26,7 +26,8 @@ class TextSlotDiffRendererTest extends MediaWikiTestCase {
 		$newContent = $newContentArgs ? self::makeContent( ...$newContentArgs ) : null;
 
 		if ( $expectedResult instanceof Exception ) {
-			$this->setExpectedException( get_class( $expectedResult ), $expectedResult->getMessage() );
+			$this->expectException( get_class( $expectedResult ) );
+			$this->expectExceptionMessage( $expectedResult->getMessage() );
 		}
 
 		$slotDiffRenderer = $this->getTextSlotDiffRenderer();

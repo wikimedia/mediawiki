@@ -1266,7 +1266,8 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUnrestrictedNonAnonUserWithId( 1 );
 
-		$this->setExpectedException( InvalidArgumentException::class, $expectedInExceptionMessage );
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( $expectedInExceptionMessage );
 		$queryService->getWatchedItemsWithRecentChangeInfo( $user, $options, $startFrom );
 	}
 
@@ -1697,7 +1698,8 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 	) {
 		$queryService = $this->newService( $this->getMockDb() );
 
-		$this->setExpectedException( InvalidArgumentException::class, $expectedInExceptionMessage );
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( $expectedInExceptionMessage );
 		$queryService->getWatchedItemsForUser( $this->getMockNonAnonUserWithId( 1 ), $options );
 	}
 

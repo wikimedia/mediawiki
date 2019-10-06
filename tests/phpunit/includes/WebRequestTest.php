@@ -377,7 +377,9 @@ class WebRequestTest extends MediaWikiTestCase {
 	public function testGetFullRequestURL() {
 		// Stub this for wfGetServerUrl()
 		$GLOBALS['wgServer'] = '//wiki.test';
-		$req = $this->getMock( WebRequest::class, [ 'getRequestURL', 'getProtocol' ] );
+		$req = $this->getMockBuilder( WebRequest::class )
+			->setMethods( [ 'getRequestURL', 'getProtocol' ] )
+			->getMock();
 		$req->method( 'getRequestURL' )->willReturn( '/path' );
 		$req->method( 'getProtocol' )->willReturn( 'https' );
 
