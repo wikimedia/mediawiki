@@ -1915,7 +1915,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function estimateRowCount(
-		$table, $var = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
+		$tables, $var = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
 		$conds = $this->normalizeConditions( $conds, $fname );
 		$column = $this->extractSingleFieldFromList( $var );
@@ -1924,7 +1924,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		$res = $this->select(
-			$table, [ 'rowcount' => 'COUNT(*)' ], $conds, $fname, $options, $join_conds
+			$tables, [ 'rowcount' => 'COUNT(*)' ], $conds, $fname, $options, $join_conds
 		);
 		$row = $res ? $this->fetchRow( $res ) : [];
 
