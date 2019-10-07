@@ -1922,7 +1922,7 @@ function wfIsWindows() {
  * @return bool
  */
 function wfIsHHVM() {
-	// wfDeprecated( __FUNCTION__, '1.34' );
+	wfDeprecated( __FUNCTION__, '1.34' );
 	return false;
 }
 
