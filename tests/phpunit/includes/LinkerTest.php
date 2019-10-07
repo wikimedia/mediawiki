@@ -288,6 +288,11 @@ class LinkerTest extends MediaWikiLangTestCase {
 				"/*  */ // Edit via via",
 			],
 			[
+				'<span dir="auto"><span class="autocomment">: </span> foobar</span>',
+				// Regression test for T222857
+				"/**/ foobar",
+			],
+			[
 				'<span dir="auto"><span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→‎autocomment</a>: </span> post</span>',
 				"/* autocomment */ post",
 			],
