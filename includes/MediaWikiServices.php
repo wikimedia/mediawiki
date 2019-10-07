@@ -19,6 +19,7 @@ use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Http\HttpRequestFactory;
+use PasswordReset;
 use Wikimedia\Message\IMessageFormatterFactory;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
@@ -816,6 +817,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getPasswordFactory() {
 		return $this->getService( 'PasswordFactory' );
+	}
+
+	/**
+	 * @since 1.34
+	 * @return PasswordReset
+	 */
+	public function getPasswordReset() : PasswordReset {
+		return $this->getService( 'PasswordReset' );
 	}
 
 	/**
