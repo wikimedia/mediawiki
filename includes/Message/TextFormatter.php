@@ -52,24 +52,20 @@ class TextFormatter implements ITextFormatter {
 				$convertedElements[] = $this->convertParam( $element );
 			}
 			return Message::listParam( $convertedElements, $param->getListType() );
-		} elseif ( $param instanceof MessageParam ) {
-			$value = $param->getValue();
-			if ( $value instanceof MessageValue ) {
-				$mv = $value;
-				$value = $this->createMessage( $mv->getKey() );
-				foreach ( $mv->getParams() as $mvParam ) {
-					$value->params( $this->convertParam( $mvParam ) );
-				}
-			}
-
-			if ( $param->getType() === ParamType::TEXT ) {
-				return $value;
-			} else {
-				return [ $param->getType() => $value ];
-			}
-		} else {
-			throw new \InvalidArgumentException( 'Invalid message parameter type' );
 		}
+		$value = $param->getValue();
+		if ( $value instanceof MessageValue ) {
+			$mv = $value;
+			$value = $this->createMessage( $mv->getKey() );
+			foreach ( $mv->getParams() as $mvParam ) {
+				$value->params( $this->convertParam( $mvParam ) );
+			}
+		}
+
+		if ( $param->getType() === ParamType::TEXT ) {
+			return $value;
+		}
+		return [ $param->getType() => $value ];
 	}
 
 	public function format( MessageValue $mv ) {
