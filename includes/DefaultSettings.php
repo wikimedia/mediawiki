@@ -8688,7 +8688,7 @@ $wgHttpsPort = 443;
 $wgSessionSecret = false;
 
 /**
- * If for some reason you can't install the PHP OpenSSL or mcrypt extensions,
+ * If for some reason you can't install the PHP OpenSSL extension,
  * you can set this to true to make MediaWiki work again at the cost of storing
  * sensitive session data insecurely. But it would be much more secure to just
  * install the OpenSSL extension.
