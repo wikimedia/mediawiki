@@ -21,7 +21,7 @@ trait RevisionSearchResultTrait {
 	protected $mImage = null;
 
 	/**
-	 * @var Title
+	 * @var Title|null
 	 */
 	protected $mTitle;
 
@@ -34,7 +34,7 @@ trait RevisionSearchResultTrait {
 	 * Initialize from a Title and if possible initializes a corresponding
 	 * Revision and File.
 	 *
-	 * @param Title $title
+	 * @param Title|null $title
 	 */
 	protected function initFromTitle( $title ) {
 		$this->mTitle = $title;
@@ -69,7 +69,7 @@ trait RevisionSearchResultTrait {
 	}
 
 	/**
-	 * @return Title
+	 * @return Title|null
 	 */
 	public function getTitle() {
 		return $this->mTitle;
