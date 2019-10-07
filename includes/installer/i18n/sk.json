@@ -4,7 +4,8 @@
 			"Kusavica",
 			"KuboF",
 			"Sudo77(new)",
-			"Hromoslav"
+			"Hromoslav",
+			"Vlad5250"
 		]
 	},
 	"config-desc": "Inštalátor pre MediaWiki",
@@ -35,6 +36,10 @@
 	"config-page-existingwiki": "Existujúca wiki",
 	"config-help-restart": "Chcete vymazať všetky uložené dáta, ktoré ste zadali a reštartovať proces inštalácie?",
 	"config-restart": "Áno, reštartovať",
+	"config-sidebar-readme": "Čítaj ma",
+	"config-sidebar-relnotes": "Poznámky k vydaniu",
+	"config-sidebar-license": "Licencia",
+	"config-sidebar-upgrade": "Aktualizácia",
 	"config-env-good": "Prostredie bolo skontrolované.\nMôžete nainštalovať MediaWiki.",
 	"config-env-bad": "Prostredie bolo skontrolované.\nNemôžete nainštalovať MediaWiki.",
 	"config-env-php": "PHP $1 je nainštalované.",
@@ -66,6 +71,8 @@
 	"config-profile-private": "Súkromná wiki",
 	"config-license-pd": "Voľné dielo",
 	"config-email-settings": "Nastavenia e-mailu",
+	"config-extensions": "Rozšírenia",
+	"config-skins": "Témy vzhľadu",
 	"config-install-step-done": "hotovo",
 	"config-install-step-failed": "zlyhalo",
 	"config-install-extensions": "Inštalujú sa rozšírenia",

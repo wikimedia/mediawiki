@@ -1106,6 +1106,8 @@
 	"rcfilters-filter-showlinkedto-label": "Feroarings werjaan op siden ferwizend nei",
 	"rcfilters-filter-showlinkedto-option-label": "<strong>Siden ferwizend nei</strong> de opjûne side",
 	"rcfilters-target-page-placeholder": "Jou in sidenamme (of kategory)",
+	"rcfilters-allcontents-label": "Alle ynhâld",
+	"rcfilters-alldiscussions-label": "Alle oerlis",
 	"rcnotefrom": "Hjirûnder {{PLURAL:$5|stiet de feroaring|steane de feroarings}} sûnt <strong>$3, $4</strong> (maksimaal <strong>$1</strong> werjûn).",
 	"rclistfromreset": "Datumseleksje werynstelle",
 	"rclistfrom": "Jou nije feroarings, begjinnend op $3, $2",
