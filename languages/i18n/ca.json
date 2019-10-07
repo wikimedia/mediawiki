@@ -1525,6 +1525,7 @@
 	"rcfilters-watchlist-edit-watchlist-button": "Editeu la vostra llista de pàgines seguides",
 	"rcfilters-watchlist-showupdated": "Els canvis fets en pàgines que no heu visitat des que s'efectuaren apareixen en <strong>negreta</strong> amb un punt sòlid al costat.",
 	"rcfilters-preference-label": "Utilitza la interfície sense JavaScript",
+	"rcfilters-preference-help": "Carrega els canvis recents sense filtres de cerca ni funció de ressaltat.",
 	"rcfilters-watchlist-preference-label": "Utilitza la interfície sense JavaScript",
 	"rcfilters-filter-showlinkedfrom-label": "Mostra els canvis en les pàgines enllaçades des de",
 	"rcfilters-filter-showlinkedfrom-option-label": "<strong>Pàgines enllaçades des de</strong> la pàgina seleccionada",
