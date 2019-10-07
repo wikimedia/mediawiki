@@ -70,6 +70,7 @@ class TestSetup {
 		// Assume UTC for testing purposes
 		$wgLocaltimezone = 'UTC';
 
+		$wgLocalisationCacheConf['class'] = TestLocalisationCache::class;
 		$wgLocalisationCacheConf['storeClass'] = LCStoreNull::class;
 
 		// Do not bother updating search tables

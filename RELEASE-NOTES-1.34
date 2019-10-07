@@ -458,6 +458,8 @@ because of Phabricator reports.
 * User::setNewpassword(), deprecated in 1.27 has been removed.
 * The ObjectCache::getMainWANInstance and ObjectCache::getMainStashInstance
   functions, deprecated since 1.28, have been removed.
+* Language::$dataCache has been removed (without prior deprecation, for
+  practical reasons). Use MediaWikiServices instead to get a LocalisationCache.
 
 === Deprecations in 1.34 ===
 * The MWNamespace class is deprecated. Use NamespaceInfo.
@@ -607,6 +609,8 @@ because of Phabricator reports.
   remove HHVM support from MediaWiki, which started in MediaWiki 1.31.
 * RESTBagOStuff users should specify either "JSON" or "PHP" serialization type.
 * Hard deprecate Revision::getRevisionText() method.
+* Language::getLocalisationCache() is deprecated. Use MediaWikiServices
+  instead.
 
 === Other changes in 1.34 ===
 * Added option to specify "Various authors" as author in extension credits using

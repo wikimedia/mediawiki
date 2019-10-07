@@ -1,4 +1,8 @@
 <?php
+
+use MediaWiki\Config\ServiceOptions;
+use Psr\Log\NullLogger;
+
 /**
  * @group Database
  * @group Cache
@@ -19,8 +23,18 @@ class LocalisationCacheTest extends MediaWikiTestCase {
 	 */
 	protected function getMockLocalisationCache() {
 		global $IP;
-		$lc = $this->getMockBuilder( \LocalisationCache::class )
-			->setConstructorArgs( [ [ 'store' => 'detect' ] ] )
+
+		$lc = $this->getMockBuilder( LocalisationCache::class )
+			->setConstructorArgs( [
+				new ServiceOptions( LocalisationCache::$constructorOptions, [
+					'forceRecache' => false,
+					'manualRecache' => false,
+					'ExtensionMessagesFiles' => [],
+					'MessagesDirs' => [],
+				] ),
+				new LCStoreDB( [] ),
+				new NullLogger
+			] )
 			->setMethods( [ 'getMessagesDirs' ] )
 			->getMock();
 		$lc->expects( $this->any() )->method( 'getMessagesDirs' )
@@ -31,7 +45,7 @@ class LocalisationCacheTest extends MediaWikiTestCase {
 		return $lc;
 	}
 
-	public function testPuralRulesFallback() {
+	public function testPluralRulesFallback() {
 		$cache = $this->getMockLocalisationCache();
 
 		$this->assertEquals(
