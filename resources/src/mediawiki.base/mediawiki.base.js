@@ -542,14 +542,11 @@
 			 *
 			 * @param {string} name The tag name.
 			 * @param {Object} [attrs] An object with members mapping element names to values
-			 * @param {string|mw.html.Raw|mw.html.Cdata|null} [contents=null] The contents of the element.
+			 * @param {string|mw.html.Raw|null} [contents=null] The contents of the element.
 			 *
 			 *  - string: Text to be escaped.
 			 *  - null: The element is treated as void with short closing form, e.g. `<br/>`.
 			 *  - this.Raw: The raw value is directly included.
-			 *  - this.Cdata: The raw value is directly included. An exception is
-			 *    thrown if it contains any illegal ETAGO delimiter.
-			 *    See <https://www.w3.org/TR/html401/appendix/notes.html#h-B.3.2>.
 			 * @return {string} HTML
 			 */
 			element: function ( name, attrs, contents ) {
@@ -575,29 +572,17 @@
 				}
 				// Regular open tag
 				s += '>';
-				switch ( typeof contents ) {
-					case 'string':
-						// Escaped
-						s += this.escape( contents );
-						break;
-					case 'number':
-					case 'boolean':
-						// Convert to string
-						s += String( contents );
-						break;
-					default:
-						if ( contents instanceof this.Raw ) {
-							// Raw HTML inclusion
-							s += contents.value;
-						} else if ( contents instanceof this.Cdata ) {
-							// CDATA
-							if ( /<\/[a-zA-z]/.test( contents.value ) ) {
-								throw new Error( 'Illegal end tag found in CDATA' );
-							}
-							s += contents.value;
-						} else {
-							throw new Error( 'Invalid type of contents' );
-						}
+				if ( typeof contents === 'string' ) {
+					// Escaped
+					s += this.escape( contents );
+				} else if ( typeof contents === 'number' || typeof contents === 'boolean' ) {
+					// Convert to string
+					s += String( contents );
+				} else if ( contents instanceof this.Raw ) {
+					// Raw HTML inclusion
+					s += contents.value;
+				} else {
+					throw new Error( 'Invalid content type' );
 				}
 				s += '</' + name + '>';
 				return s;
@@ -611,17 +596,6 @@
 			 * @param {string} value
 			 */
 			Raw: function ( value ) {
-				this.value = value;
-			},
-
-			/**
-			 * Wrapper object for CDATA element contents passed to mw.html.element()
-			 *
-			 * @class mw.html.Cdata
-			 * @constructor
-			 * @param {string} value
-			 */
-			Cdata: function ( value ) {
 				this.value = value;
 			}
 		};

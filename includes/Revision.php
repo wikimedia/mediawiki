@@ -848,6 +848,7 @@ class Revision implements IDBAccessObject {
 	 * @return string|false Text the text requested or false on failure
 	 */
 	public static function getRevisionText( $row, $prefix = 'old_', $wiki = false ) {
+		wfDeprecated( __METHOD__, '1.32' );
 		global $wgMultiContentRevisionSchemaMigrationStage;
 
 		if ( !$row ) {
@@ -873,13 +874,6 @@ class Revision implements IDBAccessObject {
 			$text = $row->$textField;
 		} else {
 			// Missing text field, we are probably looking at the MCR-enabled DB schema.
-
-			if ( !( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
-				// This method should no longer be used with the new schema. Ideally, we
-				// would already trigger a deprecation warning when SCHEMA_COMPAT_READ_NEW is set.
-				wfDeprecated( __METHOD__ . ' (MCR without SCHEMA_COMPAT_WRITE_OLD)', '1.32' );
-			}
-
 			$store = self::getRevisionStore( $wiki );
 			$rev = $prefix === 'ar_'
 				? $store->newRevisionFromArchiveRow( $row )
