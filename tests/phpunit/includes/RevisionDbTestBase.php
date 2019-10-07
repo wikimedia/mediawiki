@@ -1664,7 +1664,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 
 		$expected = $rev->getContent( SlotRecord::MAIN )->serialize();
 
-		$this->hideDeprecated( 'Revision::getRevisionText (MCR without SCHEMA_COMPAT_WRITE_OLD)' );
+		$this->hideDeprecated( 'Revision::getRevisionText' );
 		$this->assertSame( $expected, Revision::getRevisionText( $row ) );
 	}
 
