@@ -1266,13 +1266,11 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * Returns true if the title is inside one of the specified namespaces.
 	 *
-	 * @param int|int[] $namespaces,... The namespaces to check for
+	 * @param int|int[] ...$namespaces The namespaces to check for
 	 * @return bool
 	 * @since 1.19
-	 * @suppress PhanCommentParamOnEmptyParamList Cannot make variadic due to HHVM bug, T191668#5263929
 	 */
-	public function inNamespaces( /* ... */ ) {
-		$namespaces = func_get_args();
+	public function inNamespaces( ...$namespaces ) {
 		if ( count( $namespaces ) > 0 && is_array( $namespaces[0] ) ) {
 			$namespaces = $namespaces[0];
 		}
