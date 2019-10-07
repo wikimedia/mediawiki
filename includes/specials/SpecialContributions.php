@@ -479,7 +479,6 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->opts['title'] = $this->getPageTitle()->getPrefixedText();
 		// Modules required only for the form
 		$this->getOutput()->addModules( [
-			'mediawiki.userSuggest',
 			'mediawiki.special.contributions',
 		] );
 		$this->getOutput()->addModuleStyles( 'mediawiki.widgets.DateInputWidget.styles' );
@@ -517,8 +516,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		$target = $this->opts['target'] ?? null;
 		$fields['target'] = [
-			'type' => 'text',
-			'cssclass' => 'mw-autocomplete-user mw-ui-input-inline mw-input',
+			'type' => 'user',
 			'default' => $target ?
 				str_replace( '_', ' ', $target ) : '' ,
 			'label' => $this->msg( 'sp-contributions-username' )->text(),
