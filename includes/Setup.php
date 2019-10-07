@@ -627,18 +627,6 @@ define( 'MW_SERVICE_BOOTSTRAP_COMPLETE', 1 );
 
 MWExceptionHandler::installHandler();
 
-// T48998: Bail out early if $wgArticlePath is non-absolute
-foreach ( [ 'wgArticlePath', 'wgVariantArticlePath' ] as $varName ) {
-	if ( $$varName && !preg_match( '/^(https?:\/\/|\/)/', $$varName ) ) {
-		throw new FatalError(
-			"If you use a relative URL for \$$varName, it must start " .
-			'with a slash (<code>/</code>).<br><br>See ' .
-			"<a href=\"https://www.mediawiki.org/wiki/Manual:\$$varName\">" .
-			"https://www.mediawiki.org/wiki/Manual:\$$varName</a>."
-		);
-	}
-}
-
 if ( $wgCanonicalServer === false ) {
 	$wgCanonicalServer = wfExpandUrl( $wgServer, PROTO_HTTP );
 }
