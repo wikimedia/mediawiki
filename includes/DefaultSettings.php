@@ -2509,10 +2509,7 @@ $wgEnableWANCacheReaper = false;
  * avoiding assumptions of true linearizability (e.g. accepting anomalies). Modules that need
  * these kind of guarantees should use other storage mediums.
  *
- * The options are:
- *   - db:      Store cache objects in the DB
- *   - (other): A string may be used which identifies a cache
- *              configuration in $wgObjectCaches
+ * Valid options are the keys of $wgObjectCaches, e.g. CACHE_* constants.
  *
  * @since 1.26
  */
