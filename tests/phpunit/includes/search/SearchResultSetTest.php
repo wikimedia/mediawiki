@@ -58,4 +58,17 @@ class SearchResultSetTest extends MediaWikiTestCase {
 		$resultSet->shrink( 2 );
 		$this->assertTrue( $resultSet->hasMoreResults() );
 	}
+
+	/**
+	 * @covers SearchResultSet::shrink
+	 */
+	public function testShrink() {
+		$results = array_fill( 0, 3, SearchResult::newFromTitle( Title::newMainPage() ) );
+		$resultSet = new MockSearchResultSet( $results );
+		$this->assertCount( 3, $resultSet->extractResults() );
+		$this->assertCount( 3, $resultSet->extractTitles() );
+		$resultSet->shrink( 1 );
+		$this->assertCount( 1, $resultSet->extractResults() );
+		$this->assertCount( 1, $resultSet->extractTitles() );
+	}
 }
