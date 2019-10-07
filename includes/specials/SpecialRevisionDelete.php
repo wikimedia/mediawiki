@@ -21,7 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Permissions\PermissionManager;
 
@@ -193,11 +192,10 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$this->typeLabels = self::$UILabels[$this->typeName];
 		$list = $this->getList();
 		$list->reset();
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		$this->mIsAllowed = $permissionManager->userHasRight( $user,
+		$this->mIsAllowed = $this->permissionManager->userHasRight( $user,
 			RevisionDeleter::getRestriction( $this->typeName ) );
-		$canViewSuppressedOnly = $permissionManager->userHasRight( $user, 'viewsuppressed' ) &&
-			!$permissionManager->userHasRight( $user, 'suppressrevision' );
+		$canViewSuppressedOnly = $this->permissionManager->userHasRight( $user, 'viewsuppressed' ) &&
+			!$this->permissionManager->userHasRight( $user, 'suppressrevision' );
 		$pageIsSuppressed = $list->areAnySuppressed();
 		$this->mIsAllowed = $this->mIsAllowed && !( $canViewSuppressedOnly && $pageIsSuppressed );
 
@@ -214,7 +212,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			[ 'revdelete-hide-comment', 'wpHideComment', RevisionRecord::DELETED_COMMENT ],
 			[ 'revdelete-hide-user', 'wpHideUser', RevisionRecord::DELETED_USER ]
 		];
-		if ( $permissionManager->userHasRight( $user, 'suppressrevision' ) ) {
+		if ( $this->permissionManager->userHasRight( $user, 'suppressrevision' ) ) {
 			$this->checks[] = [ 'revdelete-hide-restricted',
 				'wpHideRestricted', RevisionRecord::DELETED_RESTRICTED ];
 		}
@@ -226,7 +224,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$this->showForm();
 		}
 
-		if ( $permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
+		if ( $this->permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
 			$qc = $this->getLogQueryCond();
 			# Show relevant lines from the deletion log
 			$deleteLogPage = new LogPage( 'delete' );
@@ -240,7 +238,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			);
 		}
 		# Show relevant lines from the suppression log
-		if ( $permissionManager->userHasRight( $user, 'suppressionlog' ) ) {
+		if ( $this->permissionManager->userHasRight( $user, 'suppressionlog' ) ) {
 			$suppressLogPage = new LogPage( 'suppress' );
 			$output->addHTML( "<h2>" . $suppressLogPage->getName()->escaped() . "</h2>\n" );
 			LogEventsList::showLogExtract(
@@ -279,10 +277,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 					[ 'action' => 'history' ]
 				);
 				# Link to deleted edits
-				if ( MediaWikiServices::getInstance()
-						->getPermissionManager()
-						->userHasRight( $this->getUser(), 'undelete' )
-				) {
+				if ( $this->permissionManager->userHasRight( $this->getUser(), 'undelete' ) ) {
 					$undelete = SpecialPage::getTitleFor( 'Undelete' );
 					$links[] = $linkRenderer->makeKnownLink(
 						$undelete,
@@ -495,10 +490,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				Xml::closeElement( 'fieldset' ) . "\n" .
 				Xml::closeElement( 'form' ) . "\n";
 			// Show link to edit the dropdown reasons
-			if ( MediaWikiServices::getInstance()
-					->getPermissionManager()
-					->userHasRight( $this->getUser(), 'editinterface' )
-			) {
+			if ( $this->permissionManager->userHasRight( $this->getUser(), 'editinterface' ) ) {
 				$link = '';
 				$linkRenderer = $this->getLinkRenderer();
 				if ( $suppressAllowed ) {
@@ -535,10 +527,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			'revdelete-text-others'
 		);
 
-		if ( MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $this->getUser(), 'suppressrevision' )
-		) {
+		if ( $this->permissionManager->userHasRight( $this->getUser(), 'suppressrevision' ) ) {
 			$this->getOutput()->addWikiMsg( 'revdelete-suppress-text' );
 		}
 
@@ -643,9 +632,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		}
 		# Can the user set this field?
 		if ( $bitParams[RevisionRecord::DELETED_RESTRICTED] == 1
-			&& !MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $this->getUser(), 'suppressrevision' )
+			&& !$this->permissionManager->userHasRight( $this->getUser(), 'suppressrevision' )
 		) {
 			throw new PermissionsError( 'suppressrevision' );
 		}
