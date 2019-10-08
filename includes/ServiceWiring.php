@@ -297,7 +297,7 @@ return [
 
 		return new $conf['class'](
 			new ServiceOptions(
-				LocalisationCache::$constructorOptions,
+				LocalisationCache::CONSTRUCTOR_OPTIONS,
 				// Two of the options are stored in $wgLocalisationCacheConf
 				$conf,
 				// In case someone set that config variable and didn't reset all keys, set defaults.
