@@ -56,12 +56,10 @@ class PermissionManager {
 	const RIGOR_SECURE = 'secure';
 
 	/**
-	 * TODO Make this const when HHVM support is dropped (T192166)
-	 *
 	 * @since 1.34
 	 * @var array
 	 */
-	public static $constructorOptions = [
+	public const CONSTRUCTOR_OPTIONS = [
 		'WhitelistRead',
 		'WhitelistReadRegexp',
 		'EmailConfirmToEdit',
@@ -201,7 +199,7 @@ class PermissionManager {
 		RevisionLookup $revisionLookup,
 		NamespaceInfo $nsInfo
 	) {
-		$options->assertRequiredOptions( self::$constructorOptions );
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->specialPageFactory = $specialPageFactory;
 		$this->revisionLookup = $revisionLookup;
