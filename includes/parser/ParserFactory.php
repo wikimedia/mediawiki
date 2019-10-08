@@ -104,7 +104,7 @@ class ParserFactory {
 			// Old calling convention had an array in the format of $wgParserConf as the first
 			// parameter, and a Config as the sixth, with LinkRendererFactory as the seventh.
 			wfDeprecated( __METHOD__ . ' with Config parameter', '1.34' );
-			$svcOptions = new ServiceOptions( Parser::$constructorOptions,
+			$svcOptions = new ServiceOptions( Parser::CONSTRUCTOR_OPTIONS,
 				$svcOptions,
 				[ 'class' => Parser::class,
 					'preprocessorClass' => Parser::getDefaultPreprocessorClass() ],
@@ -113,7 +113,7 @@ class ParserFactory {
 			$linkRendererFactory = func_get_arg( 6 );
 			$nsInfo = func_num_args() > 7 ? func_get_arg( 7 ) : null;
 		}
-		$svcOptions->assertRequiredOptions( Parser::$constructorOptions );
+		$svcOptions->assertRequiredOptions( Parser::CONSTRUCTOR_OPTIONS );
 
 		wfDebug( __CLASS__ . ": using preprocessor: {$svcOptions->get( 'preprocessorClass' )}\n" );
 
