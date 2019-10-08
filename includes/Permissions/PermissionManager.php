@@ -23,6 +23,7 @@ use Action;
 use Exception;
 use Hooks;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -85,6 +86,9 @@ class PermissionManager {
 
 	/** @var string[]|null Cached results of getAllRights() */
 	private $allRights;
+
+	/** @var BlockErrorFormatter */
+	private $blockErrorFormatter;
 
 	/** @var string[][] Cached user rights */
 	private $usersRights = null;
@@ -192,18 +196,21 @@ class PermissionManager {
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param RevisionLookup $revisionLookup
 	 * @param NamespaceInfo $nsInfo
+	 * @param BlockErrorFormatter $blockErrorFormatter
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		SpecialPageFactory $specialPageFactory,
 		RevisionLookup $revisionLookup,
-		NamespaceInfo $nsInfo
+		NamespaceInfo $nsInfo,
+		BlockErrorFormatter $blockErrorFormatter
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->specialPageFactory = $specialPageFactory;
 		$this->revisionLookup = $revisionLookup;
 		$this->nsInfo = $nsInfo;
+		$this->blockErrorFormatter = $blockErrorFormatter;
 	}
 
 	/**
@@ -689,7 +696,14 @@ class PermissionManager {
 		if ( !$actionObj || $actionObj->requiresUnblock() ) {
 			if ( $this->isBlockedFrom( $user, $page, $useReplica ) ) {
 				// @todo FIXME: Pass the relevant context into this function.
-				$errors[] = $block->getPermissionsError( RequestContext::getMain() );
+				$context = RequestContext::getMain();
+				$message = $this->blockErrorFormatter->getMessage(
+					$block,
+					$context->getUser(),
+					$context->getLanguage(),
+					$context->getRequest()->getIP()
+				);
+				$errors[] = array_merge( [ $message->getKey() ], $message->getParams() );
 			}
 		}
 
