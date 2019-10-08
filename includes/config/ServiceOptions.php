@@ -13,12 +13,12 @@ use Wikimedia\Assert\Assert;
  * objects).
  *
  * Services that take this type as a parameter to their constructor should specify a list of the
- * keys they expect to receive in an array. The convention is to make it a public static variable
- * called $constructorOptions. (When we drop HHVM support -- see T192166 -- it should become a
- * const.) In the constructor, they should call assertRequiredOptions() to make sure that they
- * weren't passed too few or too many options. This way it's clear what each class depends on, and
- * that it's getting passed the correct set of options. (This means there are no optional options.
- * This makes sense for services, since they shouldn't be constructed by outside code.)
+ * keys they expect to receive in an array. The convention is to make it a public const called
+ * CONSTRUCTOR_OPTIONS. In the constructor, they should call assertRequiredOptions() to make sure
+ * that they weren't passed too few or too many options. This way it's clear what each class
+ * depends on, and that it's getting passed the correct set of options. (This means there are no
+ * optional options. This makes sense for services, since they shouldn't be constructed by
+ * outside code.)
  *
  * @since 1.34
  */
