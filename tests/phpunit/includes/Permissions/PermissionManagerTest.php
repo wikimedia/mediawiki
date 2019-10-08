@@ -722,7 +722,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$permissionManager = new PermissionManager(
 			new LoggedServiceOptions(
 				self::$serviceOptionsAccessLog,
-				PermissionManager::$constructorOptions,
+				PermissionManager::CONSTRUCTOR_OPTIONS,
 				[
 					'WhitelistRead' => [],
 					'WhitelistReadRegexp' => [],

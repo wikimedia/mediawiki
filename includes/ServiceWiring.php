@@ -545,7 +545,7 @@ return [
 	'PermissionManager' => function ( MediaWikiServices $services ) : PermissionManager {
 		return new PermissionManager(
 			new ServiceOptions(
-				PermissionManager::$constructorOptions, $services->getMainConfig()
+				PermissionManager::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
 			),
 			$services->getSpecialPageFactory(),
 			$services->getRevisionLookup(),
