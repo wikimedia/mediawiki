@@ -3798,6 +3798,7 @@
 	"version-entrypoints-index-php": "A short description of the index.php entry point. Links to the mediawiki.org documentation page for index.php.",
 	"version-entrypoints-api-php": "A short description of the api.php entry point. Links to the mediawiki.org documentation page for api.php.",
 	"version-entrypoints-load-php": "A short description of the load.php entry point. Links to the mediawiki.org documentation page for load.php.",
+	"version-entrypoints-rest-php": "A short description of the rest.php entry point. Links to the mediawiki.org documentation page for rest.php.",
 	"version-libraries": "Header on [[Special:Version]] above a table that lists installed external libraries and their version numbers.",
 	"version-libraries-library": "Column header for the library's name\n{{Identical|Library}}",
 	"version-libraries-version": "Column header for the library's version number\n{{Identical|Version}}",

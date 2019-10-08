@@ -3586,6 +3586,7 @@
 	"version-entrypoints-index-php": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:index.php index.php]",
 	"version-entrypoints-api-php": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:api.php api.php]",
 	"version-entrypoints-load-php": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:load.php load.php]",
+	"version-entrypoints-rest-php": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:rest.php rest.php]",
 	"version-libraries": "Installed libraries",
 	"version-libraries-library": "Library",
 	"version-libraries-version": "Version",

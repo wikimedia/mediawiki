@@ -1178,6 +1178,7 @@ class SpecialVersion extends SpecialPage {
 			'version-entrypoints-index-php' => wfScript( 'index' ),
 			'version-entrypoints-api-php' => wfScript( 'api' ),
 			'version-entrypoints-load-php' => wfScript( 'load' ),
+			'version-entrypoints-rest-php' => wfScript( 'rest' ),
 		];
 
 		$language = $this->getLanguage();
