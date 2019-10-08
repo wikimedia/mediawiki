@@ -718,7 +718,16 @@ class TitleTest extends MediaWikiTestCase {
 	 * @param bool $isValid
 	 */
 	public function testIsValid( Title $title, $isValid ) {
-		$this->assertEquals( $isValid, $title->isValid(), $title->getPrefixedText() );
+		$iwLookup = $this->getMock( InterwikiLookup::class );
+		$iwLookup->method( 'isValidInterwiki' )
+			->willReturn( true );
+
+		$this->setService(
+			'InterwikiLookup',
+			$iwLookup
+		);
+
+		$this->assertEquals( $isValid, $title->isValid(), $title->getFullText() );
 	}
 
 	public static function provideIsValid() {
@@ -727,6 +736,42 @@ class TitleTest extends MediaWikiTestCase {
 			[ Title::makeTitle( NS_MAIN, '<>' ), false ],
 			[ Title::makeTitle( NS_MAIN, '|' ), false ],
 			[ Title::makeTitle( NS_MAIN, '#' ), false ],
+			[ Title::makeTitle( NS_PROJECT, '#' ), false ],
+			[ Title::makeTitle( NS_MAIN, '', 'test' ), true ],
+			[ Title::makeTitle( NS_PROJECT, '#test' ), false ],
+			[ Title::makeTitle( NS_MAIN, '', 'test', 'wikipedia' ), true ],
+			[ Title::makeTitle( NS_MAIN, 'Test', '', 'wikipedia' ), true ],
+			[ Title::makeTitle( NS_MAIN, 'Test' ), true ],
+			[ Title::makeTitle( NS_SPECIAL, 'Test' ), true ],
+			[ Title::makeTitle( NS_MAIN, ' Test' ), false ],
+			[ Title::makeTitle( NS_MAIN, '_Test' ), false ],
+			[ Title::makeTitle( NS_MAIN, 'Test ' ), false ],
+			[ Title::makeTitle( NS_MAIN, 'Test_' ), false ],
+			[ Title::makeTitle( NS_MAIN, "Test\nthis" ), false ],
+			[ Title::makeTitle( NS_MAIN, "Test\tthis" ), false ],
+			[ Title::makeTitle( -33, 'Test' ), false ],
+			[ Title::makeTitle( 77663399, 'Test' ), false ],
+		];
+	}
+
+	/**
+	 * @covers Title::canExist
+	 * @dataProvider provideCanExist
+	 * @param Title $title
+	 * @param bool $canExist
+	 */
+	public function testCanExist( Title $title, $canExist ) {
+		$this->assertEquals( $canExist, $title->canExist(), $title->getFullText() );
+	}
+
+	public static function provideCanExist() {
+		return [
+			[ Title::makeTitle( NS_MAIN, '' ), false ],
+			[ Title::makeTitle( NS_MAIN, '<>' ), false ],
+			[ Title::makeTitle( NS_MAIN, '|' ), false ],
+			[ Title::makeTitle( NS_MAIN, '#' ), false ],
+			[ Title::makeTitle( NS_PROJECT, '#test' ), false ],
+			[ Title::makeTitle( NS_MAIN, '', 'test', 'acme' ), false ],
 			[ Title::makeTitle( NS_MAIN, 'Test' ), true ],
 			[ Title::makeTitle( NS_MAIN, ' Test' ), false ],
 			[ Title::makeTitle( NS_MAIN, '_Test' ), false ],
@@ -736,6 +781,11 @@ class TitleTest extends MediaWikiTestCase {
 			[ Title::makeTitle( NS_MAIN, "Test\tthis" ), false ],
 			[ Title::makeTitle( -33, 'Test' ), false ],
 			[ Title::makeTitle( 77663399, 'Test' ), false ],
+
+			// Valid but can't exist
+			[ Title::makeTitle( NS_MAIN, '', 'test' ), false ],
+			[ Title::makeTitle( NS_SPECIAL, 'Test' ), false ],
+			[ Title::makeTitle( NS_MAIN, 'Test', '', 'acme' ), false ],
 		];
 	}
 

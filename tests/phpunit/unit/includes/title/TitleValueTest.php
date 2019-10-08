@@ -35,6 +35,7 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 			[ NS_USER, 'TestThis', '', 'baz', false, true ],
 			[ NS_MAIN, 'foo bar', '', '', false, false ],
 			[ NS_MAIN, 'foo_bar', '', '', false, false ],
+			[ NS_MAIN, '', '', '', false, false ],
 		];
 	}
 
@@ -54,6 +55,14 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 		$this->assertEquals( $hasFragment, $title->hasFragment() );
 		$this->assertEquals( $interwiki, $title->getInterwiki() );
 		$this->assertEquals( $hasInterwiki, $title->isExternal() );
+	}
+
+	/**
+	 * @dataProvider goodConstructorProvider
+	 */
+	public function testAssertValidSpec( $ns, $text, $fragment, $interwiki ) {
+		TitleValue::assertValidSpec( $ns, $text, $fragment, $interwiki );
+		$this->assertTrue( true ); // we are just checking that no exception is thrown
 	}
 
 	public function badConstructorProvider() {
@@ -86,6 +95,14 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 	public function testConstructionErrors( $ns, $text, $fragment, $interwiki ) {
 		$this->expectException( InvalidArgumentException::class );
 		new TitleValue( $ns, $text, $fragment, $interwiki );
+	}
+
+	/**
+	 * @dataProvider badConstructorProvider
+	 */
+	public function testAssertValidSpecErrors( $ns, $text, $fragment, $interwiki ) {
+		$this->setExpectedException( InvalidArgumentException::class );
+		TitleValue::assertValidSpec( $ns, $text, $fragment, $interwiki );
 	}
 
 	public function fragmentTitleProvider() {

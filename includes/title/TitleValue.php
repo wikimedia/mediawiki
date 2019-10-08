@@ -86,6 +86,28 @@ class TitleValue implements LinkTarget {
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct( $namespace, $title, $fragment = '', $interwiki = '' ) {
+		self::assertValidSpec( $namespace, $title, $fragment, $interwiki );
+
+		$this->namespace = $namespace;
+		$this->dbkey = strtr( $title, ' ', '_' );
+		$this->fragment = $fragment;
+		$this->interwiki = $interwiki;
+	}
+
+	/**
+	 * Asserts that the given parameters could be used to construct a TitleValue object.
+	 * Performs basic syntax and consistency checks. Does not perform full validation,
+	 * use TitleParser::makeTitleValueSafe() for that.
+	 *
+	 * @param int $namespace
+	 * @param string $title
+	 * @param string $fragment
+	 * @param string $interwiki
+	 *
+	 * @throws InvalidArgumentException if the combination of parameters is not valid for
+	 *         constructing a TitleValue.
+	 */
+	public static function assertValidSpec( $namespace, $title, $fragment = '', $interwiki = '' ) {
 		if ( !is_int( $namespace ) ) {
 			throw new ParameterTypeException( '$namespace', 'int' );
 		}
@@ -99,20 +121,19 @@ class TitleValue implements LinkTarget {
 			throw new ParameterTypeException( '$interwiki', 'string' );
 		}
 
-		// Sanity check, no full validation or normalization applied here!
 		Assert::parameter( !preg_match( '/^[_ ]|[\r\n\t]|[_ ]$/', $title ), '$title',
 			"invalid name '$title'" );
-		Assert::parameter(
-			$title !== '' ||
-				( $namespace === NS_MAIN && ( $fragment !== '' || $interwiki !== '' ) ),
-			'$title',
-			'should not be empty unless namespace is main and fragment or interwiki is non-empty'
-		);
 
-		$this->namespace = $namespace;
-		$this->dbkey = strtr( $title, ' ', '_' );
-		$this->fragment = $fragment;
-		$this->interwiki = $interwiki;
+		// NOTE: As of MW 1.34, [[#]] is rendered as a valid link, pointing to the empty
+		// page title, effectively leading to the wiki's main page. This means that a completely
+		// empty TitleValue has to be considered valid, for consistency with Title.
+		// Also note that [[#foo]] is a valid on-page section links, and that [[acme:#foo]] is
+		// a valid interwiki link.
+		Assert::parameter(
+			$title !== '' || $namespace === NS_MAIN,
+			'$title',
+			'should not be empty unless namespace is main'
+		);
 	}
 
 	/**

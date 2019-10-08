@@ -167,16 +167,10 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		// Convert things like &eacute; &#257; or &#x3017; into normalized (T16952) text
 		$filteredText = Sanitizer::decodeCharReferencesAndNormalize( $text );
 
-		// NOTE: this is an ugly cludge that allows this class to share the
+		// NOTE: this is an ugly kludge that allows this class to share the
 		// code for parsing with the old Title class. The parser code should
 		// be refactored to avoid this.
 		$parts = $this->splitTitleString( $filteredText, $defaultNamespace );
-
-		// Fragment-only is okay, but only with no namespace
-		if ( $parts['dbkey'] === '' &&
-		( $parts['fragment'] === '' || $parts['namespace'] !== NS_MAIN ) ) {
-			throw new MalformedTitleException( 'title-invalid-empty', $text );
-		}
 
 		return new TitleValue(
 			$parts['namespace'],
@@ -284,7 +278,8 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	}
 
 	/**
-	 * Normalizes and splits a title string.
+	 * Validates, normalizes and splits a title string.
+	 * This is the "source of truth" for title validity.
 	 *
 	 * This function removes illegal characters, splits off the interwiki and
 	 * namespace prefixes, sets the other forms, and canonicalizes
@@ -494,8 +489,21 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 			throw new MalformedTitleException( 'title-invalid-leading-colon', $text );
 		}
 
-		# Fill fields
+		// Fill fields
 		$parts['dbkey'] = $dbkey;
+
+		// Sanity check to ensure that the return value can be used to construct a TitleValue.
+		// All issues should in theory be caught above, this is here to enforce consistency.
+		try {
+			TitleValue::assertValidSpec(
+				$parts['namespace'],
+				$parts['dbkey'],
+				$parts['fragment'],
+				$parts['interwiki']
+			);
+		} catch ( InvalidArgumentException $ex ) {
+			throw new MalformedTitleException( 'title-invalid', $text, [ $ex->getMessage() ] );
+		}
 
 		return $parts;
 	}
