@@ -591,7 +591,7 @@ return [
 	'PreferencesFactory' => function ( MediaWikiServices $services ) : PreferencesFactory {
 		$factory = new DefaultPreferencesFactory(
 			new ServiceOptions(
-				DefaultPreferencesFactory::$constructorOptions, $services->getMainConfig() ),
+				DefaultPreferencesFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getContentLanguage(),
 			AuthManager::singleton(),
 			$services->getLinkRendererFactory()->create(),
