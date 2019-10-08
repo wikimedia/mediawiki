@@ -204,7 +204,7 @@ return [
 
 		$lbConf = MWLBFactory::applyDefaultConfig(
 			$mainConfig->get( 'LBFactoryConf' ),
-			new ServiceOptions( MWLBFactory::$applyDefaultConfigOptions, $mainConfig ),
+			new ServiceOptions( MWLBFactory::APPLY_DEFAULT_CONFIG_OPTIONS, $mainConfig ),
 			$services->getConfiguredReadOnlyMode(),
 			$services->getLocalServerObjectCache(),
 			$services->getMainObjectStash(),

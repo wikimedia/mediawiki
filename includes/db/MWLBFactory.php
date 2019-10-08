@@ -35,12 +35,10 @@ abstract class MWLBFactory {
 	private static $loggedDeprecations = [];
 
 	/**
-	 * TODO Make this a const when HHVM support is dropped (T192166)
-	 *
 	 * @var array
 	 * @since 1.34
 	 */
-	public static $applyDefaultConfigOptions = [
+	public const APPLY_DEFAULT_CONFIG_OPTIONS = [
 		'DBcompress',
 		'DBDefaultGroup',
 		'DBmwschema',
@@ -79,7 +77,7 @@ abstract class MWLBFactory {
 		BagOStuff $mainStash,
 		WANObjectCache $wanCache
 	) {
-		$options->assertRequiredOptions( self::$applyDefaultConfigOptions );
+		$options->assertRequiredOptions( self::APPLY_DEFAULT_CONFIG_OPTIONS );
 
 		global $wgCommandLineMode;
 
