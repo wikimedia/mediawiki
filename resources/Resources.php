@@ -1018,13 +1018,6 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'mediawiki.RegExp' => [
-		'deprecated' => 'Please use mw.util.escapeRegExp() instead.',
-		'targets' => [ 'desktop', 'mobile' ],
-		'dependencies' => [
-			'mediawiki.util',
-		],
-	],
 	'mediawiki.String' => [
 		'scripts' => 'resources/src/mediawiki.String.js',
 		'targets' => [ 'desktop', 'mobile' ],
