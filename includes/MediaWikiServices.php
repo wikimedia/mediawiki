@@ -22,6 +22,7 @@ use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Http\HttpRequestFactory;
 use PasswordReset;
+use MediaWiki\Languages\LanguageNameUtils;
 use Wikimedia\Message\IMessageFormatterFactory;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
@@ -634,6 +635,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getInterwikiLookup() {
 		return $this->getService( 'InterwikiLookup' );
+	}
+
+	/**
+	 * @since 1.34
+	 * @return LanguageNameUtils
+	 */
+	public function getLanguageNameUtils() {
+		return $this->getService( 'LanguageNameUtils' );
 	}
 
 	/**

@@ -57,6 +57,7 @@ use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
@@ -263,6 +264,13 @@ return [
 		);
 	},
 
+	'LanguageNameUtils' => function ( MediaWikiServices $services ) : LanguageNameUtils {
+		return new LanguageNameUtils( new ServiceOptions(
+			LanguageNameUtils::$constructorOptions,
+			$services->getMainConfig()
+		) );
+	},
+
 	'LinkCache' => function ( MediaWikiServices $services ) : LinkCache {
 		return new LinkCache(
 			$services->getTitleFormatter(),
@@ -317,7 +325,8 @@ return [
 			$logger,
 			[ function () use ( $services ) {
 				$services->getResourceLoader()->getMessageBlobStore()->clear();
-			} ]
+			} ],
+			$services->getLanguageNameUtils()
 		);
 	},
 
