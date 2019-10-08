@@ -88,10 +88,6 @@ class WrapOldPasswords extends Maintenance {
 			/** @var User[] $updateUsers */
 			$updateUsers = [];
 			foreach ( $res as $row ) {
-				if ( $this->hasOption( 'verbose' ) ) {
-					$this->output( "Updating password for user {$row->user_name} ({$row->user_id}).\n" );
-				}
-
 				$user = User::newFromId( $row->user_id );
 				/** @var ParameterizedPassword $password */
 				$password = $passwordFactory->newFromCiphertext( $row->user_password );
@@ -100,6 +96,13 @@ class WrapOldPasswords extends Maintenance {
 				$layeredPassword = $passwordFactory->newFromType( $layeredType );
 				'@phan-var LayeredParameterizedPassword $layeredPassword';
 				$layeredPassword->partialCrypt( $password );
+
+				if ( $this->hasOption( 'verbose' ) ) {
+					$this->output(
+						"Updating password for user {$row->user_name} ({$row->user_id}) from " .
+						"type {$password->getType()} to {$layeredPassword->getType()}.\n"
+					);
+				}
 
 				$updateUsers[] = $user;
 				$dbw->update( 'user',
