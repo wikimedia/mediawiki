@@ -81,12 +81,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	protected $permissionManager;
 
 	/**
-	 * TODO Make this a const when we drop HHVM support (T192166)
-	 *
 	 * @var array
 	 * @since 1.34
 	 */
-	public static $constructorOptions = [
+	public const CONSTRUCTOR_OPTIONS = [
 		'AllowRequiringEmailForResets',
 		'AllowUserCss',
 		'AllowUserCssPrefs',
@@ -132,7 +130,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		NamespaceInfo $nsInfo,
 		PermissionManager $permissionManager
 	) {
-		$options->assertRequiredOptions( self::$constructorOptions );
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
 		$this->options = $options;
 		$this->contLang = $contLang;
