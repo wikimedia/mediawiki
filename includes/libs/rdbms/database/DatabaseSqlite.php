@@ -45,8 +45,6 @@ class DatabaseSqlite extends Database {
 
 	/** @var int The number of rows affected as an integer */
 	protected $lastAffectedRowCount;
-	/** @var resource */
-	protected $lastResultHandle;
 
 	/** @var PDO */
 	protected $conn;
@@ -661,8 +659,8 @@ class DatabaseSqlite extends Database {
 			$affectedRowCount = 0;
 			try {
 				$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
-				foreach ( $rows as $v ) {
-					parent::insert( $table, $v, "$fname/multi-row", $options );
+				foreach ( $rows as $row ) {
+					parent::insert( $table, $row, "$fname/multi-row", $options );
 					$affectedRowCount += $this->affectedRows();
 				}
 				$this->endAtomic( $fname );
@@ -1007,8 +1005,11 @@ class DatabaseSqlite extends Database {
 	 * @throws RuntimeException
 	 */
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = __METHOD__ ) {
-		$res = $this->query( "SELECT sql FROM sqlite_master WHERE tbl_name=" .
-			$this->addQuotes( $oldName ) . " AND type='table'", $fname );
+		$res = $this->query(
+			"SELECT sql FROM sqlite_master WHERE tbl_name=" .
+			$this->addQuotes( $oldName ) . " AND type='table'",
+			$fname
+		);
 		$obj = $this->fetchObject( $res );
 		if ( !$obj ) {
 			throw new RuntimeException( "Couldn't retrieve structure for table $oldName" );
