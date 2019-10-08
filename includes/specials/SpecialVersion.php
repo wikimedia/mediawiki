@@ -1177,7 +1177,6 @@ class SpecialVersion extends SpecialPage {
 			'version-entrypoints-scriptpath' => $scriptPath,
 			'version-entrypoints-index-php' => wfScript( 'index' ),
 			'version-entrypoints-api-php' => wfScript( 'api' ),
-			'version-entrypoints-load-php' => wfScript( 'load' ),
 			'version-entrypoints-rest-php' => wfScript( 'rest' ),
 		];
 
