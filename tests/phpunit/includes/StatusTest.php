@@ -719,4 +719,24 @@ class StatusTest extends MediaWikiLangTestCase {
 		];
 	}
 
+	/**
+	 * Regression test for interference between cloning and references.
+	 * @coversNothing
+	 */
+	public function testWrapAndSplitByErrorType() {
+		$sv = StatusValue::newFatal( 'fatal' );
+		$sv->warning( 'warning' );
+		$s = Status::wrap( $sv );
+		list( $se, $sw ) = $s->splitByErrorType();
+		$this->assertTrue( $s->hasMessage( 'fatal' ) );
+		$this->assertTrue( $s->hasMessage( 'warning' ) );
+		$this->assertFalse( $s->isOK() );
+		$this->assertTrue( $se->hasMessage( 'fatal' ) );
+		$this->assertFalse( $se->hasMessage( 'warning' ) );
+		$this->assertFalse( $s->isOK() );
+		$this->assertFalse( $sw->hasMessage( 'fatal' ) );
+		$this->assertTrue( $sw->hasMessage( 'warning' ) );
+		$this->assertTrue( $sw->isOK() );
+	}
+
 }

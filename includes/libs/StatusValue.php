@@ -96,11 +96,11 @@ class StatusValue {
 	 * @return static[]
 	 */
 	public function splitByErrorType() {
-		$errorsOnlyStatusValue = clone $this;
-		$warningsOnlyStatusValue = clone $this;
-		$warningsOnlyStatusValue->ok = true;
+		$errorsOnlyStatusValue = static::newGood();
+		$warningsOnlyStatusValue = static::newGood();
+		$warningsOnlyStatusValue->setResult( true, $this->getValue() );
+		$errorsOnlyStatusValue->setResult( $this->isOK(), $this->getValue() );
 
-		$errorsOnlyStatusValue->errors = $warningsOnlyStatusValue->errors = [];
 		foreach ( $this->errors as $item ) {
 			if ( $item['type'] === 'warning' ) {
 				$warningsOnlyStatusValue->errors[] = $item;
