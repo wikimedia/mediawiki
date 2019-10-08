@@ -171,7 +171,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private $lastWriteTime = false;
 	/** @var string|bool */
 	private $lastPhpError = false;
-	/** @var float Query rount trip time estimate */
+	/** @var float Query round trip time estimate */
 	private $lastRoundTripEstimate = 0.0;
 
 	/** @var int|null Integer ID of the managing LBFactory instance or null if none */
@@ -449,7 +449,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	private static function getClass( $dbType, $driver = null ) {
 		// For database types with built-in support, the below maps type to IDatabase
-		// implementations. For types with multipe driver implementations (PHP extensions),
+		// implementations. For types with multiple driver implementations (PHP extensions),
 		// an array can be used, keyed by extension name. In case of an array, the
 		// optional 'driver' parameter can be used to force a specific driver. Otherwise,
 		// we auto-detect the first available driver. For types without built-in support,
@@ -1464,7 +1464,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		} elseif ( $sql === 'ROLLBACK' ) {
 			return true; // transaction lost...which is also what was requested :)
 		} elseif ( $this->explicitTrxActive() ) {
-			return false; // don't drop atomocity and explicit snapshots
+			return false; // don't drop atomicity and explicit snapshots
 		} elseif ( $priorWritesPending ) {
 			return false; // prior writes lost from implicit transaction
 		}
@@ -4290,7 +4290,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		} elseif ( $result instanceof IResultWrapper ) {
 			return $result;
 		} elseif ( $result === true ) {
-			return $result; // succesful write query
+			return $result; // successful write query
 		} else {
 			return new ResultWrapper( $this, $result );
 		}
@@ -4667,7 +4667,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public function lockIsFree( $lockName, $method ) {
 		// RDBMs methods for checking named locks may or may not count this thread itself.
 		// In MySQL, IS_FREE_LOCK() returns 0 if the thread already has the lock. This is
-		// the behavior choosen by the interface for this method.
+		// the behavior chosen by the interface for this method.
 		return !isset( $this->sessionNamedLocks[$lockName] );
 	}
 
