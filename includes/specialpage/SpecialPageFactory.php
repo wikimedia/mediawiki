@@ -236,12 +236,10 @@ class SpecialPageFactory {
 	private $objectFactory;
 
 	/**
-	 * TODO Make this a const when HHVM support is dropped (T192166)
-	 *
 	 * @var array
-	 * @since 1.33
+	 * @since 1.35
 	 */
-	public static $constructorOptions = [
+	public const CONSTRUCTOR_OPTIONS = [
 		'ContentHandlerUseDB',
 		'DisableInternalSearch',
 		'EmailAuthentication',
@@ -262,7 +260,7 @@ class SpecialPageFactory {
 		Language $contLang,
 		ObjectFactory $objectFactory
 	) {
-		$options->assertRequiredOptions( self::$constructorOptions );
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->contLang = $contLang;
 		$this->objectFactory = $objectFactory;

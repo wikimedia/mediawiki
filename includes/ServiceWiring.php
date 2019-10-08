@@ -800,7 +800,7 @@ return [
 	'SpecialPageFactory' => function ( MediaWikiServices $services ) : SpecialPageFactory {
 		return new SpecialPageFactory(
 			new ServiceOptions(
-				SpecialPageFactory::$constructorOptions, $services->getMainConfig() ),
+				SpecialPageFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getContentLanguage(),
 			$services->getObjectFactory()
 		);
