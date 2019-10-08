@@ -427,8 +427,8 @@
 	"apihelp-protect-example-unprotect2": "Unprotect a page by setting no restrictions.",
 
 	"apihelp-purge-summary": "Purge the cache for the given titles.",
-	"apihelp-purge-param-forcelinkupdate": "Update the links tables.",
-	"apihelp-purge-param-forcerecursivelinkupdate": "Update the links table, and update the links tables for any page that uses this page as a template.",
+	"apihelp-purge-param-forcelinkupdate": "Update the links tables and do other secondary data updates.",
+	"apihelp-purge-param-forcerecursivelinkupdate": "Same as <kbd>forcelinkupdate</kbd>, and update the links tables for any page that uses this page as a template.",
 	"apihelp-purge-example-simple": "Purge the <kbd>Main Page</kbd> and the <kbd>API</kbd> page.",
 	"apihelp-purge-example-generator": "Purge the first 10 pages in the main namespace.",
 
