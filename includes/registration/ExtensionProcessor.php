@@ -576,11 +576,18 @@ class ExtensionProcessor implements Processor {
 		if ( isset( $info['config'] ) ) {
 			foreach ( $info['config'] as $key => $data ) {
 				$value = $data['value'];
+				if ( isset( $data['path'] ) && $data['path'] ) {
+					$callback = function ( $value ) use ( $dir ) {
+						return "$dir/$value";
+					};
+					if ( is_array( $value ) ) {
+						$value = array_map( $callback, $value );
+					} else {
+						$value = $callback( $value );
+					}
+				}
 				if ( isset( $data['merge_strategy'] ) ) {
 					$value[ExtensionRegistry::MERGE_STRATEGY] = $data['merge_strategy'];
-				}
-				if ( isset( $data['path'] ) && $data['path'] ) {
-					$value = "$dir/$value";
 				}
 				$this->addConfigGlobal( "$prefix$key", $value, $info['name'] );
 				$data['providedby'] = $info['name'];
