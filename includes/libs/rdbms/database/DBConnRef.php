@@ -365,7 +365,7 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function insert( $table, $rows, $fname = __METHOD__, $options = [] ) {
+	public function insert( $table, $a, $fname = __METHOD__, $options = [] ) {
 		$this->assertRoleAllowsWrites();
 
 		return $this->__call( __FUNCTION__, func_get_args() );
