@@ -1756,10 +1756,6 @@ class LanguageTest extends LanguageClassesTestCase {
 		$lang = Language::factory( 'en' );
 		$this->assertNotCount( 0, Language::$mLangObjCache );
 
-		// Populate $fallbackLanguageCache
-		Language::getFallbacksIncludingSiteLanguage( 'en' );
-		$this->assertNotCount( 0, $languageClass->fallbackLanguageCache );
-
 		// Populate $grammarTransformations
 		$lang->getGrammarTransformations();
 		$this->assertNotNull( $languageClass->grammarTransformations );
@@ -1767,7 +1763,6 @@ class LanguageTest extends LanguageClassesTestCase {
 		Language::clearCaches();
 
 		$this->assertCount( 0, Language::$mLangObjCache );
-		$this->assertCount( 0, $languageClass->fallbackLanguageCache );
 		$this->assertNull( $languageClass->grammarTransformations );
 	}
 
