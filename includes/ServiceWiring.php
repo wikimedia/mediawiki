@@ -108,7 +108,7 @@ return [
 			$services->getDBLoadBalancerFactory(),
 			$services->getExternalStoreAccess(),
 			$services->getMainWANObjectCache(),
-			new ServiceOptions( BlobStoreFactory::$constructorOptions,
+			new ServiceOptions( BlobStoreFactory::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig() )
 		);
 	},

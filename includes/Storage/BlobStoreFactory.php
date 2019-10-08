@@ -55,12 +55,10 @@ class BlobStoreFactory {
 	private $options;
 
 	/**
-	 * TODO Make this a const when HHVM support is dropped (T192166)
-	 *
 	 * @var array
 	 * @since 1.34
 	 */
-	public static $constructorOptions = [
+	public const CONSTRUCTOR_OPTIONS = [
 		'CompressRevisions',
 		'DefaultExternalStore',
 		'LegacyEncoding',
@@ -73,7 +71,7 @@ class BlobStoreFactory {
 		WANObjectCache $cache,
 		ServiceOptions $options
 	) {
-		$options->assertRequiredOptions( self::$constructorOptions );
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
 		$this->lbFactory = $lbFactory;
 		$this->extStoreAccess = $extStoreAccess;
