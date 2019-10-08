@@ -650,25 +650,18 @@ class DatabaseSqlite extends Database {
 		return parent::makeInsertOptions( $options );
 	}
 
-	/**
-	 * Based on generic method (parent) with some prior SQLite-sepcific adjustments
-	 * @param string $table
-	 * @param array $a
-	 * @param string $fname
-	 * @param array $options
-	 * @return bool
-	 */
-	function insert( $table, $a, $fname = __METHOD__, $options = [] ) {
-		if ( !count( $a ) ) {
+	function insert( $table, $rows, $fname = __METHOD__, $options = [] ) {
+		if ( !count( $rows ) ) {
 			return true;
 		}
 
 		# SQLite can't handle multi-row inserts, so divide up into multiple single-row inserts
-		if ( isset( $a[0] ) && is_array( $a[0] ) ) {
+		$multi = $this->isMultiRowArray( $rows );
+		if ( $multi ) {
 			$affectedRowCount = 0;
 			try {
 				$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
-				foreach ( $a as $v ) {
+				foreach ( $rows as $v ) {
 					parent::insert( $table, $v, "$fname/multi-row", $options );
 					$affectedRowCount += $this->affectedRows();
 				}
@@ -679,7 +672,7 @@ class DatabaseSqlite extends Database {
 			}
 			$this->affectedRowCount = $affectedRowCount;
 		} else {
-			parent::insert( $table, $a, "$fname/single-row", $options );
+			parent::insert( $table, $rows, "$fname/single-row", $options );
 		}
 
 		return true;
