@@ -53,7 +53,7 @@ class BlockManagerTest extends MediaWikiTestCase {
 		return [
 			new LoggedServiceOptions(
 				self::$serviceOptionsAccessLog,
-				BlockManager::$constructorOptions,
+				BlockManager::CONSTRUCTOR_OPTIONS,
 				MediaWikiServices::getInstance()->getMainConfig()
 			),
 			MediaWikiServices::getInstance()->getPermissionManager(),
