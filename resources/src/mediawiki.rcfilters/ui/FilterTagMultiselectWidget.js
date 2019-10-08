@@ -22,7 +22,7 @@ var ViewSwitchWidget = require( './ViewSwitchWidget.js' ),
  * @cfg {boolean} [collapsed] Filter area is collapsed
  */
 FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( controller, model, savedQueriesModel, config ) {
-	var rcFiltersRow,
+	var $rcFiltersRow,
 		title = new OO.ui.LabelWidget( {
 			label: mw.msg( 'rcfilters-activefilters' ),
 			classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-content-title' ]
@@ -172,7 +172,7 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 	// wide the button is; the button also changes its width depending
 	// on language and its state, so the safest way to present both side
 	// by side is with a table layout
-	rcFiltersRow = $( '<div>' )
+	$rcFiltersRow = $( '<div>' )
 		.addClass( 'mw-rcfilters-ui-row' )
 		.append(
 			this.$content
@@ -181,7 +181,7 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 		);
 
 	if ( !mw.user.isAnon() ) {
-		rcFiltersRow.append(
+		$rcFiltersRow.append(
 			$( '<div>' )
 				.addClass( 'mw-rcfilters-ui-cell' )
 				.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-cell-save' )
@@ -198,7 +198,7 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 	// Event
 	this.viewsSelectWidget.connect( this, { choose: 'onViewsSelectWidgetChoose' } );
 
-	rcFiltersRow.append(
+	$rcFiltersRow.append(
 		$( '<div>' )
 			.addClass( 'mw-rcfilters-ui-cell' )
 			.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-cell-reset' )
@@ -225,7 +225,7 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 		$( '<div>' )
 			.addClass( 'mw-rcfilters-ui-table' )
 			.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-filters' )
-			.append( rcFiltersRow )
+			.append( $rcFiltersRow )
 	);
 
 	// Initialize

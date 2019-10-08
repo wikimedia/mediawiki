@@ -45,14 +45,14 @@
 			// Use this instead of <input type="hidden">, because hidden inputs do not have separate
 			// 'value' and 'defaultValue' properties. The script on Special:Preferences
 			// (mw.special.preferences.confirmClose) checks this property to see if a field was changed.
-			this.hiddenInput = $( '<textarea>' )
+			this.$hiddenInput = $( '<textarea>' )
 				.addClass( 'oo-ui-element-hidden' )
 				.attr( 'name', config.name )
 				.appendTo( this.$element );
 			// Update with preset values
 			this.updateHiddenInput();
 			// Set the default value (it might be different from just being empty)
-			this.hiddenInput.prop( 'defaultValue', this.getSelectedUsernames().join( '\n' ) );
+			this.$hiddenInput.prop( 'defaultValue', this.getSelectedUsernames().join( '\n' ) );
 		}
 
 		this.menu = this.getMenu();
@@ -153,10 +153,10 @@
 	 */
 	mw.widgets.UsersMultiselectWidget.prototype.updateHiddenInput = function () {
 		if ( 'hiddenInput' in this ) {
-			this.hiddenInput.val( this.getSelectedUsernames().join( '\n' ) );
+			this.$hiddenInput.val( this.getSelectedUsernames().join( '\n' ) );
 			// Trigger a 'change' event as if a user edited the text
 			// (it is not triggered when changing the value from JS code).
-			this.hiddenInput.trigger( 'change' );
+			this.$hiddenInput.trigger( 'change' );
 		}
 	};
 
