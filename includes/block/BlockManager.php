@@ -49,12 +49,10 @@ class BlockManager {
 	private $options;
 
 	/**
-	 * TODO Make this a const when HHVM support is dropped (T192166)
-	 *
 	 * @var array
 	 * @since 1.34
 	 */
-	public static $constructorOptions = [
+	public const CONSTRUCTOR_OPTIONS = [
 		'ApplyIpBlocksToXff',
 		'CookieSetOnAutoblock',
 		'CookieSetOnIpBlock',
@@ -79,7 +77,7 @@ class BlockManager {
 		PermissionManager $permissionManager,
 		LoggerInterface $logger
 	) {
-		$options->assertRequiredOptions( self::$constructorOptions );
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->permissionManager = $permissionManager;
 		$this->logger = $logger;
