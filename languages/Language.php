@@ -90,6 +90,9 @@ class Language {
 	/** @var LanguageFallback */
 	private $langFallback;
 
+	/** @var array[]|null */
+	private $grammarTransformCache;
+
 	public static $mLangObjCache = [];
 
 	/**
@@ -176,12 +179,6 @@ class Language {
 		'minutes' => 60,
 		'seconds' => 1,
 	];
-
-	/**
-	 * Cache for grammar rules data
-	 * @var MapCacheLRU|null
-	 */
-	private static $grammarTransformations;
 
 	/**
 	 * Unicode directional formatting characters, for embedBidi()
@@ -292,7 +289,6 @@ class Language {
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'LocalisationCache' );
 		}
 		self::$mLangObjCache = [];
-		self::$grammarTransformations = null;
 	}
 
 	/**
@@ -3802,33 +3798,26 @@ class Language {
 	 * @since 1.28
 	 */
 	public function getGrammarTransformations() {
-		$languageCode = $this->getCode();
-
-		if ( self::$grammarTransformations === null ) {
-			self::$grammarTransformations = new MapCacheLRU( 10 );
+		if ( $this->grammarTransformCache !== null ) {
+			return $this->grammarTransformCache;
 		}
 
-		if ( self::$grammarTransformations->has( $languageCode ) ) {
-			return self::$grammarTransformations->get( $languageCode );
+		$grammarDataFile = __DIR__ . "/data/grammarTransformations/{$this->getCode()}.json";
+
+		if ( !is_readable( $grammarDataFile ) ) {
+			return [];
 		}
 
-		$data = [];
+		$this->grammarTransformCache = FormatJson::decode(
+			file_get_contents( $grammarDataFile ),
+			true
+		);
 
-		$grammarDataFile = __DIR__ . "/data/grammarTransformations/$languageCode.json";
-		if ( is_readable( $grammarDataFile ) ) {
-			$data = FormatJson::decode(
-				file_get_contents( $grammarDataFile ),
-				true
-			);
-
-			if ( $data === null ) {
-				throw new MWException( "Invalid grammar data for \"$languageCode\"." );
-			}
-
-			self::$grammarTransformations->set( $languageCode, $data );
+		if ( $this->grammarTransformCache === null ) {
+			throw new MWException( "Invalid grammar data for \"{$this->getCode()}\"." );
 		}
 
-		return $data;
+		return $this->grammarTransformCache;
 	}
 
 	/**
