@@ -569,6 +569,10 @@ because of Phabricator reports.
 * IDatabase::bufferResults() has been deprecated. Use query batching instead.
 * MessageCache::singleton() is deprecated. Use
   MediaWikiServices::getMessageCache().
+* ObjectCache::getWANInstance() is deprecated. Use
+  MediaWikiServices::getMainWANObjectCache() instead.
+* ObjectCache::newWANCacheFromParams() is deprecated. Use
+  MediaWikiServices::getMainWANObjectCache() instead.
 * Constructing MovePage directly is deprecated. Use MovePageFactory.
 * TempFSFile::factory() has been deprecated. Use TempFSFileFactory instead.
 * wfIsBadImage() is deprecated. Use the BadFileLookup service instead.
