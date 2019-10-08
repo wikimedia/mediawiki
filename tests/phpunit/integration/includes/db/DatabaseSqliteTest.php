@@ -23,23 +23,11 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		if ( !Sqlite::isPresent() ) {
 			$this->markTestSkipped( 'No SQLite support detected' );
 		}
-		$this->db = $this->newMockDb();
-		if ( version_compare( $this->db->getServerVersion(), '3.6.0', '<' ) ) {
-			$this->markTestSkipped( "SQLite at least 3.6 required, {$this->db->getServerVersion()} found" );
-		}
-	}
-
-	/**
-	 * @param null $version
-	 * @param null $sqlDump
-	 * @return \PHPUnit\Framework\MockObject\MockObject|DatabaseSqlite
-	 */
-	private function newMockDb( $version = null, &$sqlDump = null ) {
-		$mock = $this->getMockBuilder( DatabaseSqlite::class )
+		$this->db = $this->getMockBuilder( DatabaseSqlite::class )
 			->setConstructorArgs( [ [
 				'dbFilePath' => ':memory:',
 				'dbname' => 'Foo',
-				'schema' => null,
+				'schema' => false,
 				'host' => false,
 				'user' => false,
 				'password' => false,
@@ -54,25 +42,13 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 				'queryLogger' => new NullLogger(),
 				'errorLogger' => null,
 				'deprecationLogger' => null,
-			] ] )->setMethods( array_merge(
-				[ 'query' ],
-				$version ? [ 'getServerVersion' ] : []
-			) )->getMock();
-
-		$mock->initConnection();
-
-		$sqlDump = '';
-		$mock->method( 'query' )->willReturnCallback( function ( $sql ) use ( &$sqlDump ) {
-			$sqlDump .= "$sql;";
-
-			return true;
-		} );
-
-		if ( $version ) {
-			$mock->method( 'getServerVersion' )->willReturn( $version );
+			] ] )->setMethods( [ 'query' ] )
+			->getMock();
+		$this->db->initConnection();
+		$this->db->method( 'query' )->willReturn( true );
+		if ( version_compare( $this->db->getServerVersion(), '3.6.0', '<' ) ) {
+			$this->markTestSkipped( "SQLite at least 3.6 required, {$this->db->getServerVersion()} found" );
 		}
-
-		return $mock;
 	}
 
 	/**
@@ -574,192 +550,5 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	public function testsAttributes() {
 		$attributes = Database::attributesFromType( 'sqlite' );
 		$this->assertTrue( $attributes[Database::ATTR_DB_LEVEL_LOCKING] );
-	}
-
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insert()
-	 * @param string $version
-	 * @param string $table
-	 * @param array $rows
-	 * @param string $expectedSql
-	 * @dataProvider provideNativeInserts
-	 */
-	public function testNativeInsertSupport( $version, $table, $rows, $expectedSql ) {
-		$sqlDump = '';
-		$db = $this->newMockDb( $version, $sqlDump );
-		$db->query( 'CREATE TABLE a ( a_1 )', __METHOD__ );
-
-		$sqlDump = '';
-		$db->insert( $table, $rows, __METHOD__ );
-		$this->assertEquals( $expectedSql, $sqlDump );
-	}
-
-	function provideNativeInserts() {
-		return [
-			[
-				'3.7.11',
-				'a',
-				[ 'a_1' => 1 ],
-				'INSERT  INTO a (a_1) VALUES (\'1\');'
-			],
-			[
-				'3.7.10',
-				'a',
-				[ 'a_1' => 1 ],
-				'INSERT  INTO a (a_1) VALUES (\'1\');'
-			],
-			[
-				'3.7.11',
-				'a',
-				[
-					[ 'a_1' => 2 ],
-					[ 'a_1' => 3 ]
-				],
-				'INSERT  INTO a (a_1) VALUES (\'2\'),(\'3\');'
-			],
-			[
-				'3.7.10',
-				'a',
-				[
-					[ 'a_1' => 2 ],
-					[ 'a_1' => 3 ]
-				],
-				'BEGIN;' .
-				'INSERT  INTO a (a_1) VALUES (\'2\');' .
-				'INSERT  INTO a (a_1) VALUES (\'3\');' .
-				'COMMIT;'
-			]
-		];
-	}
-
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::replace()
-	 * @param string $version
-	 * @param string $table
-	 * @param array $ukeys
-	 * @param array $rows
-	 * @param string $expectedSql
-	 * @dataProvider provideNativeReplaces
-	 */
-	public function testNativeReplaceSupport( $version, $table, $ukeys, $rows, $expectedSql ) {
-		$sqlDump = '';
-		$db = $this->newMockDb( $version, $sqlDump );
-		$db->query( 'CREATE TABLE a ( a_1 PRIMARY KEY, a_2 )', __METHOD__ );
-
-		$sqlDump = '';
-		$db->replace( $table, $ukeys, $rows, __METHOD__ );
-		$this->assertEquals( $expectedSql, $sqlDump );
-	}
-
-	function provideNativeReplaces() {
-		return [
-			[
-				'3.7.11',
-				'a',
-				[ 'a_1' ],
-				[ 'a_1' => 1, 'a_2' => 'x' ],
-				'REPLACE INTO a (a_1,a_2) VALUES (\'1\',\'x\');'
-			],
-			[
-				'3.7.10',
-				'a',
-				[ 'a_1' ],
-				[ 'a_1' => 1, 'a_2' => 'x' ],
-				'REPLACE INTO a (a_1,a_2) VALUES (\'1\',\'x\');'
-			],
-			[
-				'3.7.11',
-				'a',
-				[ 'a_1' ],
-				[
-					[ 'a_1' => 2, 'a_2' => 'x' ],
-					[ 'a_1' => 3, 'a_2' => 'y' ]
-				],
-				'REPLACE INTO a (a_1,a_2) VALUES (\'2\',\'x\'),(\'3\',\'y\');'
-			],
-			[
-				'3.7.10',
-				'a',
-				[ 'a_1' ],
-				[
-					[ 'a_1' => 2, 'a_2' => 'x' ],
-					[ 'a_1' => 3, 'a_2' => 'y' ]
-				],
-				'BEGIN;' .
-				'REPLACE INTO a (a_1,a_2) VALUES (\'2\',\'x\');' .
-				'REPLACE INTO a (a_1,a_2) VALUES (\'3\',\'y\');' .
-				'COMMIT;'
-			]
-		];
-	}
-
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::upsert()
-	 * @param string $version
-	 * @param string $table
-	 * @param array $rows
-	 * @param array $ukeys
-	 * @param array $set
-	 * @param string $expectedSql
-	 * @dataProvider provideNativeUpserts
-	 */
-	public function testNativeUpsertSupport( $version, $table, $rows, $ukeys, $set, $expectedSql ) {
-		$sqlDump = '';
-		$db = $this->newMockDb( $version, $sqlDump );
-		$db->query( 'CREATE TABLE a ( a_1 PRIMARY KEY, a_2 )', __METHOD__ );
-
-		$sqlDump = '';
-		$db->upsert( $table, $rows, $ukeys, $set, __METHOD__ );
-		$this->assertEquals( $expectedSql, $sqlDump );
-	}
-
-	function provideNativeUpserts() {
-		return [
-			[
-				'3.24.0',
-				'a',
-				[ 'a_1' => 1, 'a_2' => 'x' ],
-				[ 'a_1' ],
-				[ 'a_2 = a_2 + 1' ],
-				'INSERT INTO a (a_1,a_2) VALUES (\'1\',\'x\') ' .
-				'ON CONFLICT DO UPDATE SET a_2 = a_2 + 1;'
-			],
-			[
-				'3.23.0',
-				'a',
-				[ 'a_1' => 1, 'a_2' => 'x' ],
-				[ 'a_1' ],
-				[ 'a_2 = a_2 + 1' ],
-				'BEGIN;' .
-				'UPDATE  a SET a_2 = a_2 + 1 WHERE ((a_1 = \'1\'));' .
-				'INSERT OR IGNORE INTO a (a_1,a_2) VALUES (\'1\',\'x\');' .
-				'COMMIT;'
-			],
-			[
-				'3.24.0',
-				'a',
-				[
-					[ 'a_1' => 2, 'a_2' => 'x' ],
-					[ 'a_1' => 3, 'a_2' => 'y' ]
-				],
-				[ 'a_1' ],
-				[ 'a_2 = a_2 + 1' ],
-				'INSERT INTO a (a_1,a_2) VALUES (\'2\',\'x\'),(\'3\',\'y\') ' .
-				'ON CONFLICT DO UPDATE SET a_2 = a_2 + 1;'
-			],
-			[
-				'3.23.0',
-				'a',
-				[
-					[ 'a_1' => 2, 'a_2' => 'x' ],
-					[ 'a_1' => 3, 'a_2' => 'y' ]
-				],
-				[ 'a_1' ],
-				[ 'a_2 = a_2 + 1' ],
-				'BEGIN;UPDATE  a SET a_2 = a_2 + 1 WHERE ((a_1 = \'2\') OR (a_1 = \'3\'));' .
-				'INSERT OR IGNORE INTO a (a_1,a_2) VALUES (\'2\',\'x\'),(\'3\',\'y\');' .
-				'COMMIT;'
-			]
-		];
 	}
 }

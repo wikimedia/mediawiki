@@ -886,13 +886,13 @@ interface IDatabase {
 	 *
 	 * @param string $table Table name. This will be passed through
 	 *   Database::tableName().
-	 * @param array $rows Array of rows to insert
+	 * @param array $a Array of rows to insert
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 * @param array $options Array of options
 	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 * @throws DBError If an error occurs, see IDatabase::query()
 	 */
-	public function insert( $table, $rows, $fname = __METHOD__, $options = [] );
+	public function insert( $table, $a, $fname = __METHOD__, $options = [] );
 
 	/**
 	 * UPDATE wrapper. Takes a condition array and a SET array.
