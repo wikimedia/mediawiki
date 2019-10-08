@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
@@ -172,6 +173,15 @@ class MovePageTest extends MediaWikiTestCase {
 	public function testIsValidMove(
 		$old, $new, array $expectedErrors, array $extraOptions = []
 	) {
+		$iwLookup = $this->getMock( InterwikiLookup::class );
+		$iwLookup->method( 'isValidInterwiki' )
+			->willReturn( true );
+
+		$this->setService(
+			'InterwikiLookup',
+			$iwLookup
+		);
+
 		if ( is_string( $old ) ) {
 			$old = Title::newFromText( $old );
 		}
@@ -335,6 +345,15 @@ class MovePageTest extends MediaWikiTestCase {
 	 * @param array $extraOptions
 	 */
 	public function testMove( $old, $new, array $expectedErrors, array $extraOptions = [] ) {
+		$iwLookup = $this->getMock( InterwikiLookup::class );
+		$iwLookup->method( 'isValidInterwiki' )
+			->willReturn( true );
+
+		$this->setService(
+			'InterwikiLookup',
+			$iwLookup
+		);
+
 		if ( is_string( $old ) ) {
 			$old = Title::newFromText( $old );
 		}
