@@ -36,9 +36,6 @@ use stdClass;
  * @ingroup Database
  */
 class DatabaseSqlite extends Database {
-	/** @var FSLockManager (hopefully on the same server as the DB) */
-	protected $lockMgr;
-
 	/** @var string|null Directory for SQLite database files listed under their DB name */
 	protected $dbDir;
 	/** @var string|null Explicit path for the SQLite database file */
@@ -46,19 +43,19 @@ class DatabaseSqlite extends Database {
 	/** @var string Transaction mode */
 	protected $trxMode;
 
-	/** @var PDO */
-	protected $conn;
-
-	/** @var string|null */
-	private $version;
-
-	/** @var array List of shared database already attached to this connection */
-	private $sessionAttachedDbs = [];
-
 	/** @var int The number of rows affected as an integer */
 	protected $lastAffectedRowCount;
 	/** @var resource */
 	protected $lastResultHandle;
+
+	/** @var PDO */
+	protected $conn;
+
+	/** @var FSLockManager (hopefully on the same server as the DB) */
+	protected $lockMgr;
+
+	/** @var array List of shared database already attached to this connection */
+	private $sessionAttachedDbs = [];
 
 	/** @var string[] See https://www.sqlite.org/lang_transaction.html */
 	private static $VALID_TRX_MODES = [ '', 'DEFERRED', 'IMMEDIATE', 'EXCLUSIVE' ];
@@ -623,7 +620,7 @@ class DatabaseSqlite extends Database {
 	 */
 	protected function makeUpdateOptionsArray( $options ) {
 		$options = parent::makeUpdateOptionsArray( $options );
-		$options = $this->rewriteIgnoreKeyword( $options );
+		$options = self::fixIgnore( $options );
 
 		return $options;
 	}
@@ -632,7 +629,7 @@ class DatabaseSqlite extends Database {
 	 * @param array $options
 	 * @return array
 	 */
-	private function rewriteIgnoreKeyword( $options ) {
+	static function fixIgnore( $options ) {
 		# SQLite uses OR IGNORE not just IGNORE
 		foreach ( $options as $k => $v ) {
 			if ( $v == 'IGNORE' ) {
@@ -643,28 +640,35 @@ class DatabaseSqlite extends Database {
 		return $options;
 	}
 
-	protected function makeInsertOptions( $options ) {
-		$options = $this->rewriteIgnoreKeyword( $options );
+	/**
+	 * @param array $options
+	 * @return string
+	 */
+	function makeInsertOptions( $options ) {
+		$options = self::fixIgnore( $options );
 
 		return parent::makeInsertOptions( $options );
 	}
 
-	public function insert( $table, $rows, $fname = __METHOD__, $options = [] ) {
-		if ( version_compare( $this->getServerVersion(), '3.7.11', '>=' ) ) {
-			// Batch INSERT support per http://www.sqlite.org/releaselog/3_7_11.html
-			return parent::insert( $table, $rows, $fname, $options );
-		}
-
-		if ( !$rows ) {
+	/**
+	 * Based on generic method (parent) with some prior SQLite-sepcific adjustments
+	 * @param string $table
+	 * @param array $a
+	 * @param string $fname
+	 * @param array $options
+	 * @return bool
+	 */
+	function insert( $table, $a, $fname = __METHOD__, $options = [] ) {
+		if ( !count( $a ) ) {
 			return true;
 		}
 
-		$multi = $this->isMultiRowArray( $rows );
-		if ( $multi ) {
+		# SQLite can't handle multi-row inserts, so divide up into multiple single-row inserts
+		if ( isset( $a[0] ) && is_array( $a[0] ) ) {
 			$affectedRowCount = 0;
 			try {
 				$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
-				foreach ( $rows as $v ) {
+				foreach ( $a as $v ) {
 					parent::insert( $table, $v, "$fname/multi-row", $options );
 					$affectedRowCount += $this->affectedRows();
 				}
@@ -675,25 +679,25 @@ class DatabaseSqlite extends Database {
 			}
 			$this->affectedRowCount = $affectedRowCount;
 		} else {
-			parent::insert( $table, $rows, "$fname/single-row", $options );
+			parent::insert( $table, $a, "$fname/single-row", $options );
 		}
 
 		return true;
 	}
 
-	public function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
-		if ( version_compare( $this->getServerVersion(), '3.7.11', '>=' ) ) {
-			// REPLACE is an alias for "INSERT OR REPLACE" in sqlite
-			// Batch support for INSERT per http://www.sqlite.org/releaselog/3_7_11.html
-			$this->nativeReplace( $table, $rows, $fname );
+	/**
+	 * @param string $table
+	 * @param array $uniqueIndexes Unused
+	 * @param string|array $rows
+	 * @param string $fname
+	 */
+	function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
+		if ( !count( $rows ) ) {
 			return;
 		}
 
-		if ( !$rows ) {
-			return;
-		}
-
-		if ( $this->isMultiRowArray( $rows ) ) {
+		# SQLite can't handle multi-row replaces, so divide up into multiple single-row queries
+		if ( isset( $rows[0] ) && is_array( $rows[0] ) ) {
 			$affectedRowCount = 0;
 			try {
 				$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
@@ -710,44 +714,6 @@ class DatabaseSqlite extends Database {
 		} else {
 			$this->nativeReplace( $table, $rows, "$fname/single-row" );
 		}
-	}
-
-	public function upsert( $table, array $rows, $uniqueIndexes, array $set, $fname = __METHOD__ ) {
-		// Supports UPSERT-like clauses with INSERT, per http://www.sqlite.org/releaselog/3_24_0.html
-		if ( version_compare( $this->getServerVersion(), '3.24.0', '<' ) ) {
-			// Use inefficient fallback implementation
-			return parent::upsert( $table, $rows, $uniqueIndexes, $set, $fname );
-		}
-
-		if ( !$rows ) {
-			return true;
-		}
-
-		if ( $this->isMultiRowArray( $rows ) ) {
-			$firstRow = reset( $rows );
-			$keys = array_keys( $firstRow );
-		} else {
-			$keys = array_keys( $rows );
-			$rows = [ $rows ];
-		}
-
-		$table = $this->tableName( $table );
-
-		$first = true;
-		$sql = "INSERT INTO $table (" . implode( ',', $keys ) . ") VALUES ";
-		foreach ( $rows as $row ) {
-			if ( $first ) {
-				$first = false;
-			} else {
-				$sql .= ',';
-			}
-			$sql .= '(' . $this->makeList( $row ) . ')';
-		}
-		$sql .= ' ON CONFLICT DO UPDATE SET ' . $this->makeList( $set, self::LIST_SET );
-
-		$this->query( $sql, $fname );
-
-		return true;
 	}
 
 	/**
@@ -825,11 +791,9 @@ class DatabaseSqlite extends Database {
 	 * @return string Version information from the database
 	 */
 	function getServerVersion() {
-		if ( $this->version === null ) {
-			$this->version = $this->getBindingHandle()->getAttribute( PDO::ATTR_SERVER_VERSION );
-		}
+		$ver = $this->getBindingHandle()->getAttribute( PDO::ATTR_SERVER_VERSION );
 
-		return $this->version;
+		return $ver;
 	}
 
 	/**
