@@ -624,6 +624,7 @@
 	"passwordreset-ignored": "Passordtilbakestillingen ble ikke håndtert. Har ingen leverandør blitt konfigurert?",
 	"passwordreset-invalidemail": "Ugyldig e-postadresse",
 	"passwordreset-nodata": "Verken et brukernavn eller en e-postadresse ble oppgitt",
+	"passwordreset-username-email-required": "Både brukernavn og epostadresse kreves for å motta et midlertidig passord på epost.",
 	"changeemail": "Endre eller fjerne epostadresse",
 	"changeemail-header": "Fyll ut dette skjemaet for å bytte din epost-adresse. Hvis du vil fjerne epostadressen fra din konto, kan du la ny epostadresse-feltet være tomt når.",
 	"changeemail-no-info": "Du må være innlogget for å få direkte tilgang til denne siden.",
