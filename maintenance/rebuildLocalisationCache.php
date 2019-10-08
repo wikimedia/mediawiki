@@ -88,7 +88,7 @@ class RebuildLocalisationCache extends Maintenance {
 		// XXX Copy-pasted from ServiceWiring.php. Do we need a factory for this one caller?
 		$lc = new LocalisationCacheBulkLoad(
 			new ServiceOptions(
-				LocalisationCache::$constructorOptions,
+				LocalisationCache::CONSTRUCTOR_OPTIONS,
 				$conf,
 				MediaWikiServices::getInstance()->getMainConfig()
 			),
