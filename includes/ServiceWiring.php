@@ -47,6 +47,7 @@
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\BadFileLookup;
+use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Config\ConfigRepository;
@@ -112,10 +113,14 @@ return [
 		);
 	},
 
+	'BlockErrorFormatter' => function () : BlockErrorFormatter {
+		return new BlockErrorFormatter();
+	},
+
 	'BlockManager' => function ( MediaWikiServices $services ) : BlockManager {
 		return new BlockManager(
 			new ServiceOptions(
-				BlockManager::$constructorOptions, $services->getMainConfig()
+				BlockManager::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
 			),
 			$services->getPermissionManager(),
 			LoggerFactory::getInstance( 'BlockManager' )
@@ -297,7 +302,7 @@ return [
 
 		return new $conf['class'](
 			new ServiceOptions(
-				LocalisationCache::$constructorOptions,
+				LocalisationCache::CONSTRUCTOR_OPTIONS,
 				// Two of the options are stored in $wgLocalisationCacheConf
 				$conf,
 				// In case someone set that config variable and didn't reset all keys, set defaults.
@@ -551,7 +556,7 @@ return [
 	},
 
 	'PasswordReset' => function ( MediaWikiServices $services ) : PasswordReset {
-		$options = new ServiceOptions( PasswordReset::$constructorOptions, $services->getMainConfig() );
+		$options = new ServiceOptions( PasswordReset::CONSTRUCTOR_OPTIONS, $services->getMainConfig() );
 		return new PasswordReset(
 			$options,
 			AuthManager::singleton(),
@@ -578,7 +583,8 @@ return [
 			),
 			$services->getSpecialPageFactory(),
 			$services->getRevisionLookup(),
-			$services->getNamespaceInfo()
+			$services->getNamespaceInfo(),
+			$services->getBlockErrorFormatter()
 		);
 	},
 

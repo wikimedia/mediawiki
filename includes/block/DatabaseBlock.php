@@ -28,7 +28,6 @@ use CommentStore;
 use DeferredUpdates;
 use Hooks;
 use Html;
-use IContextSource;
 use IP;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
@@ -1411,22 +1410,9 @@ class DatabaseBlock extends AbstractBlock {
 
 	/**
 	 * @inheritDoc
-	 *
-	 * Build different messages for autoblocks and partial blocks.
 	 */
-	public function getPermissionsError( IContextSource $context ) {
-		$params = $this->getBlockErrorParams( $context );
-
-		$msg = 'blockedtext';
-		if ( $this->mAuto ) {
-			$msg = 'autoblockedtext';
-		} elseif ( !$this->isSitewide() ) {
-			$msg = 'blockedtext-partial';
-		}
-
-		array_unshift( $params, $msg );
-
-		return $params;
+	public function getIdentifier() {
+		return $this->getId();
 	}
 
 	/**

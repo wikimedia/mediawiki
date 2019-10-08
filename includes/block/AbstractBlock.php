@@ -152,6 +152,15 @@ abstract class AbstractBlock {
 	}
 
 	/**
+	 * Get the information that identifies this block, such that a user could
+	 * look up everything that can be found about this block. May be an ID,
+	 * array of IDs, type, etc.
+	 *
+	 * @return mixed Identifying information
+	 */
+	abstract public function getIdentifier();
+
+	/**
 	 * Get the reason given for creating the block
 	 *
 	 * @since 1.33
@@ -523,52 +532,40 @@ abstract class AbstractBlock {
 	/**
 	 * Get the key and parameters for the corresponding error message.
 	 *
+	 * @deprecated since 1.35 Use BlockErrorFormatter::getMessage instead, and
+	 *  build the array using Message::getKey and Message::getParams.
 	 * @since 1.22
 	 * @param IContextSource $context
 	 * @return array
 	 */
-	abstract public function getPermissionsError( IContextSource $context );
+	public function getPermissionsError( IContextSource $context ) {
+		$message = MediaWikiServices::getInstance()
+			->getBlockErrorFormatter()->getMessage(
+				$this,
+				$context->getUser(),
+				$context->getLanguage(),
+				$context->getRequest()->getIP()
+			);
+		return array_merge( [ [ $message->getKey() ], $message->getParams() ] );
+	}
 
 	/**
 	 * Get block information used in different block error messages
 	 *
+	 * @deprecated since 1.35 Use BlockErrorFormatter::getMessage instead, and
+	 *  extract the params from the Message object using Message::getParams.
 	 * @since 1.33
 	 * @param IContextSource $context
 	 * @return array
 	 */
 	public function getBlockErrorParams( IContextSource $context ) {
-		$lang = $context->getLanguage();
-
-		$blocker = $this->getBlocker();
-		if ( $blocker instanceof User ) { // local user
-			$blockerUserpage = $blocker->getUserPage();
-			$blockerText = $lang->embedBidi( $blockerUserpage->getText() );
-			$link = "[[{$blockerUserpage->getPrefixedText()}|{$blockerText}]]";
-		} else { // foreign user
-			$link = $blocker;
-		}
-
-		$reason = $this->getReason();
-		if ( $reason == '' ) {
-			$reason = $context->msg( 'blockednoreason' )->text();
-		}
-
-		/* $ip returns who *is* being blocked, $intended contains who was meant to be blocked.
-		 * This could be a username, an IP range, or a single IP. */
-		$intended = (string)$this->getTarget();
-
-		return [
-			$link,
-			$reason,
-			$context->getRequest()->getIP(),
-			$lang->embedBidi( $this->getByName() ),
-			// TODO: SystemBlock replaces this with the system block type. Clean up
-			// error params so that this is not necessary.
-			$this->getId(),
-			$lang->formatExpiry( $this->getExpiry() ),
-			$lang->embedBidi( $intended ),
-			$lang->userTimeAndDate( $this->getTimestamp(), $context->getUser() ),
-		];
+		return MediaWikiServices::getInstance()
+			->getBlockErrorFormatter()->getMessage(
+				$this,
+				$context->getUser(),
+				$context->getLanguage(),
+				$context->getRequest()->getIp()
+			)->getParams();
 	}
 
 	/**

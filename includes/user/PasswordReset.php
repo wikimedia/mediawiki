@@ -60,7 +60,7 @@ class PasswordReset implements LoggerAwareInterface {
 	 */
 	private $permissionCache;
 
-	public static $constructorOptions = [
+	public const CONSTRUCTOR_OPTIONS = [
 		'AllowRequiringEmailForResets',
 		'EnableEmail',
 		'PasswordResetRoutes',

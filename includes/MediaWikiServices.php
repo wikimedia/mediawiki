@@ -15,6 +15,7 @@ use Hooks;
 use IBufferingStatsdDataFactory;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LocalisationCache;
+use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
@@ -456,6 +457,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getBlobStoreFactory() {
 		return $this->getService( 'BlobStoreFactory' );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return BlockErrorFormatter
+	 */
+	public function getBlockErrorFormatter() : BlockErrorFormatter {
+		return $this->getService( 'BlockErrorFormatter' );
 	}
 
 	/**
