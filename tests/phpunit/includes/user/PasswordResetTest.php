@@ -517,7 +517,7 @@ class PasswordResetTest extends MediaWikiTestCase {
 			'PasswordResetRoutes' => $passwordResetRoutes,
 		];
 
-		return new ServiceOptions( PasswordReset::$constructorOptions, $hash );
+		return new ServiceOptions( PasswordReset::CONSTRUCTOR_OPTIONS, $hash );
 	}
 
 	/**

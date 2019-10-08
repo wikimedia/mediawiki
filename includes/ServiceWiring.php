@@ -522,7 +522,7 @@ return [
 	},
 
 	'PasswordReset' => function ( MediaWikiServices $services ) : PasswordReset {
-		$options = new ServiceOptions( PasswordReset::$constructorOptions, $services->getMainConfig() );
+		$options = new ServiceOptions( PasswordReset::CONSTRUCTOR_OPTIONS, $services->getMainConfig() );
 		return new PasswordReset(
 			$options,
 			AuthManager::singleton(),
