@@ -26,7 +26,7 @@ class LocalisationCacheTest extends MediaWikiTestCase {
 
 		$lc = $this->getMockBuilder( LocalisationCache::class )
 			->setConstructorArgs( [
-				new ServiceOptions( LocalisationCache::$constructorOptions, [
+				new ServiceOptions( LocalisationCache::CONSTRUCTOR_OPTIONS, [
 					'forceRecache' => false,
 					'manualRecache' => false,
 					'ExtensionMessagesFiles' => [],
