@@ -30,6 +30,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	public function testGeneral() {
 		$this->setMwGlobals( [
 			'wgAllowExternalImagesFrom' => '//localhost/',
+			'wgMainPageIsDomainRoot' => true,
 		] );
 
 		$data = $this->doQuery();
@@ -37,6 +38,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$this->assertSame( Title::newMainPage()->getPrefixedText(), $data['mainpage'] );
 		$this->assertSame( PHP_VERSION, $data['phpversion'] );
 		$this->assertSame( [ '//localhost/' ], $data['externalimages'] );
+		$this->assertTrue( $data['mainpageisdomainroot'] );
 	}
 
 	public function testLinkPrefixCharset() {
