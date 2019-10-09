@@ -368,7 +368,7 @@
 	"createaccountmail": "ⵙⵎⵔⵙ ⵜⴰⴳⵓⵔⵉ ⵏ ⵓⵣⵔⴰⵢ ⵜⴰⴷⵀⵎⴰⵙⵜ ⵜⴰⴽⵓⴷⴰⵏⵜ ⵜⴰⵣⵏⴷ ⵙⵜ ⵉ ⵡⴰⵏⵙⴰ ⴰⵍⵉⴽⵟⵕⵓⵏⵉ ⵉⵥⵍⵉⵏ",
 	"createaccountmail-help": "ⵉⵥⴹⴰⵕ ⴰ ⵜⵜⵡⴰⵙⵙⵎⵔⵙ ⴳ ⵓⵙⵏⴼⵍⵓⵍ ⵏ ⵓⵎⵉⴹⴰⵏ ⵏ ⴽⵔⴰ ⵏ ⵢⴰⵏ ⵢⴰⴹⵏ ⵎⵉⵏ ⴰⴷ ⵉⵙⵙⵏ ⵜⴰⴳⵓⵔⵉ ⵏ ⵓⵣⵔⴰⵢ.",
 	"createacct-realname": "ⵉⵙⵎ ⵏ ⵜⵉⴷⵜ (‍ⵎ ⵜⵔⵉⵜ)",
-	"createacct-reason": "ⵜⴰⵎⵏⵜⵉⵍⵜ",
+	"createacct-reason": "ⵜⴰⵎⵏⵜⵉⵍⵜ (ⵜⴰⵎⵙⴽⵜⵉⵜ ⵜⴰⵎⴰⵜⴰⵢⵜ)",
 	"createacct-reason-ph": "ⵎⴰⵖ ⴰⵍⵍⵉⴳ ⴰⵔ ⵜⵙⴽⴰⵔⴷ ⴰⵎⵉⴹⴰⵏ ⵢⴰⴹⵏ",
 	"createacct-reason-help": "ⵜⵓⵣⵉⵏⵜ ⵉⵜⵜⵓⵙⴽⴰⵏⴻⵏ ⴳ ⵜⵎⵙⵙⴽⵜⵉⵜ ⵏ ⵓⵙⵏⵓⵍⴼⵓ ⵏ ⵓⵎⵉⴹⴰⵏ",
 	"createacct-submit": "ⵔⵥⵎ ⴰⵎⵉⴹⴰⵏ {{GENDER:|ⵏⵏⴽ|ⵏⵏⵎ}}",
