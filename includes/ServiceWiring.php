@@ -544,7 +544,7 @@ return [
 	},
 
 	'ParserFactory' => function ( MediaWikiServices $services ) : ParserFactory {
-		$options = new ServiceOptions( Parser::$constructorOptions,
+		$options = new ServiceOptions( Parser::CONSTRUCTOR_OPTIONS,
 			// 'class' and 'preprocessorClass'
 			$services->getMainConfig()->get( 'ParserConf' ),
 			// Make sure to have defaults in case someone overrode ParserConf with something silly
@@ -800,7 +800,7 @@ return [
 	'SpecialPageFactory' => function ( MediaWikiServices $services ) : SpecialPageFactory {
 		return new SpecialPageFactory(
 			new ServiceOptions(
-				SpecialPageFactory::$constructorOptions, $services->getMainConfig() ),
+				SpecialPageFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getContentLanguage(),
 			$services->getObjectFactory()
 		);
