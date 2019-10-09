@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\NullLogger;
@@ -105,7 +106,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 
 		$this->logger = $options['logger'] ?? new NullLogger();
 
-		if ( !$this->parsedUrl || !Http::isValidURI( $this->url ) ) {
+		if ( !$this->parsedUrl || !self::isValidURI( $this->url ) ) {
 			$this->status = StatusValue::newFatal( 'http-invalid-url', $url );
 		} else {
 			$this->status = StatusValue::newGood( 100 ); // continue
@@ -190,8 +191,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 		if ( $options === null ) {
 			$options = [];
 		}
-		return \MediaWiki\MediaWikiServices::getInstance()
-			->getHttpRequestFactory()
+		return MediaWikiServices::getInstance()->getHttpRequestFactory()
 			->create( $url, $options, $caller );
 	}
 
@@ -393,7 +393,8 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 		}
 
 		if ( !isset( $this->reqHeaders['User-Agent'] ) ) {
-			$this->setUserAgent( Http::userAgent() );
+			$http = MediaWikiServices::getInstance()->getHttpRequestFactory();
+			$this->setUserAgent( $http->getUserAgent() );
 		}
 	}
 
