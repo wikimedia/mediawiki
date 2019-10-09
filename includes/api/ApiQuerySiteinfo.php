@@ -132,6 +132,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['mainpage'] = $mainPage->getPrefixedText();
 		$data['base'] = wfExpandUrl( $mainPage->getFullURL(), PROTO_CURRENT );
 		$data['sitename'] = $config->get( 'Sitename' );
+		$data['mainpageisdomainroot'] = (bool)$config->get( 'MainPageIsDomainRoot' );
 
 		// wgLogo can either be a relative or an absolute path
 		// make sure we always return an absolute path
