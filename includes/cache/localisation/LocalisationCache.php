@@ -23,6 +23,7 @@
 use CLDRPluralRuleParser\Evaluator;
 use CLDRPluralRuleParser\Error as CLDRPluralRuleError;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Languages\LanguageNameUtils;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -72,6 +73,9 @@ class LocalisationCache {
 
 	/** @var callable[] See comment for parameter in constructor */
 	private $clearStoreCallbacks;
+
+	/** @var LanguageNameUtils */
+	private $langNameUtils;
 
 	/**
 	 * A 2-d associative array, code/key, where presence indicates that the item
@@ -244,13 +248,15 @@ class LocalisationCache {
 	 * @param callable[] $clearStoreCallbacks To be called whenever the cache is cleared. Can be
 	 *   used to clear other caches that depend on this one, such as ResourceLoader's
 	 *   MessageBlobStore.
+	 * @param LanguageNameUtils $langNameUtils
 	 * @throws MWException
 	 */
 	function __construct(
 		ServiceOptions $options,
 		LCStore $store,
 		LoggerInterface $logger,
-		array $clearStoreCallbacks = []
+		array $clearStoreCallbacks,
+		LanguageNameUtils $langNameUtils
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -258,6 +264,7 @@ class LocalisationCache {
 		$this->store = $store;
 		$this->logger = $logger;
 		$this->clearStoreCallbacks = $clearStoreCallbacks;
+		$this->langNameUtils = $langNameUtils;
 
 		// Keep this separate from $this->options so it can be mutable
 		$this->manualRecache = $options->get( 'manualRecache' );
@@ -470,7 +477,7 @@ class LocalisationCache {
 		$this->initialisedLangs[$code] = true;
 
 		# If the code is of the wrong form for a Messages*.php file, do a shallow fallback
-		if ( !Language::isValidBuiltInCode( $code ) ) {
+		if ( !$this->langNameUtils->isValidBuiltInCode( $code ) ) {
 			$this->initShallowFallback( $code, 'en' );
 
 			return;
@@ -478,7 +485,7 @@ class LocalisationCache {
 
 		# Recache the data if necessary
 		if ( !$this->manualRecache && $this->isExpired( $code ) ) {
-			if ( Language::isSupportedLanguage( $code ) ) {
+			if ( $this->langNameUtils->isSupportedLanguage( $code ) ) {
 				$this->recache( $code );
 			} elseif ( $code === 'en' ) {
 				throw new MWException( 'MessagesEn.php is missing.' );
@@ -707,7 +714,7 @@ class LocalisationCache {
 		global $IP;
 
 		// This reads in the PHP i18n file with non-messages l10n data
-		$fileName = Language::getMessagesFileName( $code );
+		$fileName = $this->langNameUtils->getMessagesFileName( $code );
 		if ( !file_exists( $fileName ) ) {
 			$data = [];
 		} else {
