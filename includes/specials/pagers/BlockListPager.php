@@ -115,20 +115,18 @@ class BlockListPager extends TablePager {
 					$formatted = $this->msg( 'autoblockid', $row->ipb_id )->parse();
 				} else {
 					list( $target, $type ) = DatabaseBlock::parseTarget( $row->ipb_address );
-					switch ( $type ) {
-						case DatabaseBlock::TYPE_USER:
-						case DatabaseBlock::TYPE_IP:
-							$formatted = Linker::userLink( $target->getId(), $target );
-							$formatted .= Linker::userToolLinks(
-								$target->getId(),
-								$target,
-								false,
-								Linker::TOOL_LINKS_NOBLOCK
-							);
-							break;
-						case DatabaseBlock::TYPE_RANGE:
-							$formatted = htmlspecialchars( $target );
+					if ( $type === DatabaseBlock::TYPE_RANGE ) {
+						$user = User::newFromName( $target, false );
+					} else {
+						$user = $target;
 					}
+					$formatted = Linker::userLink( $user->getId(), $user );
+					$formatted .= Linker::userToolLinks(
+						$user->getId(),
+						$user,
+						false,
+						Linker::TOOL_LINKS_NOBLOCK
+					);
 				}
 				break;
 
