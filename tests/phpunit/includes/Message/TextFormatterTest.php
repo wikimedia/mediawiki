@@ -18,19 +18,32 @@ use Wikimedia\Message\ScalarParam;
  */
 class TextFormatterTest extends MediaWikiTestCase {
 	private function createTextFormatter( $langCode ) {
-		return new class( $langCode ) extends TextFormatter {
-			public function __construct( $langCode ) {
-				parent::__construct( $langCode );
-			}
+		$formatter = $this->getMockBuilder( TextFormatter::class )
+			->setConstructorArgs( [ $langCode ] )
+			->setMethods( [ 'createMessage' ] )
+			->getMock();
+		$formatter->method( 'createMessage' )
+			->willReturnCallback( function ( $key ) {
+				$message = $this->getMockBuilder( Message::class )
+					->setConstructorArgs( [ $key ] )
+					->setMethods( [ 'fetchMessage' ] )
+					->getMock();
 
-			protected function createMessage( $key ) {
-				return new FakeMessage( $key );
-			}
-		};
+				$message->method( 'fetchMessage' )
+					->willReturnCallback( function () use ( $message ) {
+						/** @var Message $message */
+						return "{$message->getKey()} $1 $2";
+					} );
+
+				return $message;
+			} );
+
+		/** @var TextFormatter $formatter */
+		return $formatter;
 	}
 
 	public function testGetLangCode() {
-		$formatter = $this->createTextFormatter( 'fr' );
+		$formatter = new TextFormatter( 'fr' );
 		$this->assertSame( 'fr', $formatter->getLangCode() );
 	}
 
@@ -62,11 +75,5 @@ class TextFormatterTest extends MediaWikiTestCase {
 			] );
 		$result = $formatter->format( $mv );
 		$this->assertSame( 'test test2 a b x, 100 bps, test3 c test4 d e', $result );
-	}
-}
-
-class FakeMessage extends Message {
-	public function fetchMessage() {
-		return "{$this->getKey()} $1 $2";
 	}
 }

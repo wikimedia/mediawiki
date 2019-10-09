@@ -21,7 +21,6 @@
 
 /**
  * Methods for dealing with language codes.
- * @todo Move some of the code-related static methods out of Language into this class
  *
  * @since 1.29
  * @ingroup Language

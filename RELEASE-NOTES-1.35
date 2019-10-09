@@ -86,7 +86,10 @@ because of Phabricator reports.
   support.
 * AbstractBlock::getPermissionsError and AbstractBlock::getBlockErrorParams are
   deprecated. Use BlockErrorFormatter::getMessage instead.
-* …
+* The following Language methods are deprecated: getFallbackFor,
+  getFallbacksFor, getFallbacksIncludingSiteLanguage. Use the corresponding new
+  methods on the LanguageFallback class: getFirst, getAll, and
+  getAllIncludingSiteLanguage.
 
 === Other changes in 1.35 ===
 * …

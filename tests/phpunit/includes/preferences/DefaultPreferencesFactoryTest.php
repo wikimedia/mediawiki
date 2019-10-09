@@ -63,7 +63,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 
 		return new DefaultPreferencesFactory(
 			new LoggedServiceOptions( self::$serviceOptionsAccessLog,
-				DefaultPreferencesFactory::$constructorOptions, $this->config ),
+				DefaultPreferencesFactory::CONSTRUCTOR_OPTIONS, $this->config ),
 			new Language(),
 			AuthManager::singleton(),
 			MediaWikiServices::getInstance()->getLinkRenderer(),

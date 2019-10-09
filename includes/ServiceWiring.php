@@ -57,6 +57,8 @@ use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\Languages\LanguageFallback;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
@@ -203,7 +205,7 @@ return [
 
 		$lbConf = MWLBFactory::applyDefaultConfig(
 			$mainConfig->get( 'LBFactoryConf' ),
-			new ServiceOptions( MWLBFactory::$applyDefaultConfigOptions, $mainConfig ),
+			new ServiceOptions( MWLBFactory::APPLY_DEFAULT_CONFIG_OPTIONS, $mainConfig ),
 			$services->getConfiguredReadOnlyMode(),
 			$services->getLocalServerObjectCache(),
 			$services->getMainObjectStash(),
@@ -263,6 +265,21 @@ return [
 		);
 	},
 
+	'LanguageFallback' => function ( MediaWikiServices $services ) : LanguageFallback {
+		return new LanguageFallback(
+			$services->getMainConfig()->get( 'LanguageCode' ),
+			$services->getLocalisationCache(),
+			$services->getLanguageNameUtils()
+		);
+	},
+
+	'LanguageNameUtils' => function ( MediaWikiServices $services ) : LanguageNameUtils {
+		return new LanguageNameUtils( new ServiceOptions(
+			LanguageNameUtils::$constructorOptions,
+			$services->getMainConfig()
+		) );
+	},
+
 	'LinkCache' => function ( MediaWikiServices $services ) : LinkCache {
 		return new LinkCache(
 			$services->getTitleFormatter(),
@@ -317,7 +334,8 @@ return [
 			$logger,
 			[ function () use ( $services ) {
 				$services->getResourceLoader()->getMessageBlobStore()->clear();
-			} ]
+			} ],
+			$services->getLanguageNameUtils()
 		);
 	},
 
@@ -591,7 +609,7 @@ return [
 	'PreferencesFactory' => function ( MediaWikiServices $services ) : PreferencesFactory {
 		$factory = new DefaultPreferencesFactory(
 			new ServiceOptions(
-				DefaultPreferencesFactory::$constructorOptions, $services->getMainConfig() ),
+				DefaultPreferencesFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getContentLanguage(),
 			AuthManager::singleton(),
 			$services->getLinkRendererFactory()->create(),

@@ -329,13 +329,13 @@
 	 * @return {Object|string} Plain JavaScript value representing the node.
 	 */
 	function getDomStructure( node ) {
-		var $node, children, processedChildren, i, len, el;
+		var $node, $children, processedChildren, i, len, el;
 		$node = $( node );
 		if ( node.nodeType === Node.ELEMENT_NODE ) {
-			children = $node.contents();
+			$children = $node.contents();
 			processedChildren = [];
-			for ( i = 0, len = children.length; i < len; i++ ) {
-				el = children[ i ];
+			for ( i = 0, len = $children.length; i < len; i++ ) {
+				el = $children[ i ];
 				if ( el.nodeType === Node.ELEMENT_NODE || el.nodeType === Node.TEXT_NODE ) {
 					processedChildren.push( getDomStructure( el ) );
 				}

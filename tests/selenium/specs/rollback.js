@@ -119,7 +119,7 @@ describe( 'Rollback without confirmation', function () {
 		HistoryPage.open( name );
 	} );
 
-	it( 'should perform rollback via POST request without asking the user to confirm', function () {
+	it.skip( 'should perform rollback via POST request without asking the user to confirm', function () {
 		HistoryPage.rollback.click();
 
 		// waitUntil indirectly asserts that the content we are looking for is present

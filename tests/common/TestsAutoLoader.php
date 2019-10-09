@@ -225,6 +225,7 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/unit/includes/language
 	'LanguageFallbackTestTrait' => "$testDir/phpunit/unit/includes/language/LanguageFallbackTestTrait.php",
+	'LanguageNameUtilsTestTrait' => "$testDir/phpunit/unit/includes/language/LanguageNameUtilsTestTrait.php",
 
 	# tests/phpunit/unit/includes/libs/filebackend/fsfile
 	'TempFSFileTestTrait' => "$testDir/phpunit/unit/includes/libs/filebackend/fsfile/TempFSFileTestTrait.php",

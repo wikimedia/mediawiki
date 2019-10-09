@@ -183,12 +183,8 @@ class TemplateParser {
 	 * Compile the Mustache code into PHP code using LightnCandy
 	 * @param string $code Mustache code
 	 * @return string PHP code (with '<?php')
-	 * @throws RuntimeException
 	 */
 	protected function compile( $code ) {
-		if ( !class_exists( 'LightnCandy' ) ) {
-			throw new RuntimeException( 'LightnCandy class not defined' );
-		}
 		return LightnCandy::compile(
 			$code,
 			[

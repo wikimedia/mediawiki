@@ -1383,7 +1383,7 @@
 	 * @return {OO.ui.FieldLayout} return.helpField
 	 */
 	ApiSandbox.PageLayout.prototype.makeWidgetFieldLayouts = function ( ppi, name ) {
-		var j, l, widget, descriptionContainer, tmp, flag, count, button, widgetField, helpField, layoutConfig;
+		var j, l, widget, $descriptionContainer, tmp, $tmp, flag, count, button, widgetField, helpField, layoutConfig;
 
 		widget = Util.createWidgetForParameter( ppi );
 		if ( ppi.tokentype ) {
@@ -1393,20 +1393,20 @@
 			widget.on( 'change', this.updateTemplatedParameters, [ null ], this );
 		}
 
-		descriptionContainer = $( '<div>' );
+		$descriptionContainer = $( '<div>' );
 
-		tmp = Util.parseHTML( ppi.description );
-		tmp.filter( 'dl' ).makeCollapsible( {
+		$tmp = Util.parseHTML( ppi.description );
+		$tmp.filter( 'dl' ).makeCollapsible( {
 			collapsed: true
 		} ).children( '.mw-collapsible-toggle' ).each( function () {
 			var $this = $( this );
 			$this.parent().prev( 'p' ).append( $this );
 		} );
-		descriptionContainer.append( $( '<div>' ).addClass( 'description' ).append( tmp ) );
+		$descriptionContainer.append( $( '<div>' ).addClass( 'description' ).append( $tmp ) );
 
 		if ( ppi.info && ppi.info.length ) {
 			for ( j = 0; j < ppi.info.length; j++ ) {
-				descriptionContainer.append( $( '<div>' )
+				$descriptionContainer.append( $( '<div>' )
 					.addClass( 'info' )
 					.append( Util.parseHTML( ppi.info[ j ] ) )
 				);
@@ -1422,7 +1422,7 @@
 
 			case 'limit':
 				if ( ppi.highmax !== undefined ) {
-					descriptionContainer.append( $( '<div>' )
+					$descriptionContainer.append( $( '<div>' )
 						.addClass( 'info' )
 						.append(
 							Util.parseMsg(
@@ -1433,7 +1433,7 @@
 						)
 					);
 				} else {
-					descriptionContainer.append( $( '<div>' )
+					$descriptionContainer.append( $( '<div>' )
 						.addClass( 'info' )
 						.append(
 							Util.parseMsg( 'api-help-param-limit', ppi.max ),
@@ -1453,7 +1453,7 @@
 					tmp += 'max';
 				}
 				if ( tmp !== '' ) {
-					descriptionContainer.append( $( '<div>' )
+					$descriptionContainer.append( $( '<div>' )
 						.addClass( 'info' )
 						.append( Util.parseMsg(
 							'api-help-param-integer-' + tmp,
@@ -1487,41 +1487,41 @@
 				);
 			}
 			if ( tmp.length ) {
-				descriptionContainer.append( $( '<div>' )
+				$descriptionContainer.append( $( '<div>' )
 					.addClass( 'info' )
 					.append( Util.parseHTML( tmp.join( ' ' ) ) )
 				);
 			}
 		}
 		if ( 'maxbytes' in ppi ) {
-			descriptionContainer.append( $( '<div>' )
+			$descriptionContainer.append( $( '<div>' )
 				.addClass( 'info' )
 				.append( Util.parseMsg( 'api-help-param-maxbytes', ppi.maxbytes ) )
 			);
 		}
 		if ( 'maxchars' in ppi ) {
-			descriptionContainer.append( $( '<div>' )
+			$descriptionContainer.append( $( '<div>' )
 				.addClass( 'info' )
 				.append( Util.parseMsg( 'api-help-param-maxchars', ppi.maxchars ) )
 			);
 		}
 		if ( ppi.usedTemplateVars && ppi.usedTemplateVars.length ) {
-			tmp = $();
+			$tmp = $();
 			for ( j = 0, l = ppi.usedTemplateVars.length; j < l; j++ ) {
-				tmp = tmp.add( $( '<var>' ).text( ppi.usedTemplateVars[ j ] ) );
+				$tmp = $tmp.add( $( '<var>' ).text( ppi.usedTemplateVars[ j ] ) );
 				if ( j === l - 2 ) {
-					tmp = tmp.add( mw.message( 'and' ).parseDom() );
-					tmp = tmp.add( mw.message( 'word-separator' ).parseDom() );
+					$tmp = $tmp.add( mw.message( 'and' ).parseDom() );
+					$tmp = $tmp.add( mw.message( 'word-separator' ).parseDom() );
 				} else if ( j !== l - 1 ) {
-					tmp = tmp.add( mw.message( 'comma-separator' ).parseDom() );
+					$tmp = $tmp.add( mw.message( 'comma-separator' ).parseDom() );
 				}
 			}
-			descriptionContainer.append( $( '<div>' )
+			$descriptionContainer.append( $( '<div>' )
 				.addClass( 'info' )
 				.append( Util.parseMsg(
 					'apisandbox-templated-parameter-reason',
 					ppi.usedTemplateVars.length,
-					tmp
+					$tmp
 				) )
 			);
 		}
@@ -1533,7 +1533,7 @@
 			} ), {
 				align: 'inline',
 				classes: [ 'mw-apisandbox-help-field' ],
-				label: descriptionContainer
+				label: $descriptionContainer
 			}
 		);
 
@@ -1784,7 +1784,7 @@
 
 		Util.fetchModuleInfo( this.apiModule )
 			.done( function ( pi ) {
-				var prefix, i, j, tmp,
+				var prefix, i, j, tmp, $tmp,
 					items = [],
 					deprecatedItems = [],
 					buttons = [],
@@ -1858,11 +1858,11 @@
 							width: 'auto',
 							padded: true,
 							$content: $( '<ul>' ).append( pi.examples.map( function ( example ) {
-								var a = $( '<a>' )
+								var $a = $( '<a>' )
 									.attr( 'href', '#' + example.query )
 									.html( example.description );
-								a.find( 'a' ).contents().unwrap(); // Can't nest links
-								return $( '<li>' ).append( a );
+								$a.find( 'a' ).contents().unwrap(); // Can't nest links
+								return $( '<li>' ).append( $a );
 							} ) )
 						}
 					} ) );
@@ -1939,7 +1939,7 @@
 				}
 
 				that.deprecatedItemsFieldset = new OO.ui.FieldsetLayout().addItems( deprecatedItems ).toggle( false );
-				tmp = $( '<fieldset>' )
+				$tmp = $( '<fieldset>' )
 					.toggle( !that.deprecatedItemsFieldset.isEmpty() )
 					.append(
 						$( '<legend>' ).append(
@@ -1952,10 +1952,10 @@
 					.appendTo( that.$element );
 				that.deprecatedItemsFieldset.on( 'add', function () {
 					this.toggle( !that.deprecatedItemsFieldset.isEmpty() );
-				}, [], tmp );
+				}, [], $tmp );
 				that.deprecatedItemsFieldset.on( 'remove', function () {
 					this.toggle( !that.deprecatedItemsFieldset.isEmpty() );
-				}, [], tmp );
+				}, [], $tmp );
 
 				// Load stored params, if any, then update the booklet if we
 				// have subpages (or else just update our valid-indicator).
