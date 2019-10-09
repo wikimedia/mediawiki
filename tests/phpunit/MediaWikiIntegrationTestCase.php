@@ -277,12 +277,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @deprecated since 1.32
-	 */
-	public static function prepareServices( Config $bootstrapConfig ) {
-	}
-
-	/**
 	 * Create a config suitable for testing, based on a base config, default overrides,
 	 * and custom overrides.
 	 *
