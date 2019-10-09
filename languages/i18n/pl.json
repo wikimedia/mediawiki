@@ -109,7 +109,7 @@
 	},
 	"tog-underline": "Podkreślenie linków:",
 	"tog-hideminor": "Ukryj drobne edycje z ostatnich zmian",
-	"tog-hidepatrolled": "Ukryj sprawdzone edycje z ostatnich zmianach",
+	"tog-hidepatrolled": "Ukryj sprawdzone edycje w ostatnich zmianach",
 	"tog-newpageshidepatrolled": "Ukryj sprawdzone strony z listy nowych stron",
 	"tog-hidecategorization": "Ukryj kategoryzację stron",
 	"tog-extendwatchlist": "Pokazuj na liście obserwowanych wszystkie zmiany, nie tylko ostatnie",
@@ -1015,7 +1015,7 @@
 	"lineno": "Linia $1:",
 	"compareselectedversions": "Porównaj wybrane wersje",
 	"showhideselectedversions": "Zmień widoczność wybranych wersji",
-	"editundo": "cofnij zmiane",
+	"editundo": "anuluj edycję",
 	"diff-empty": "(Brak różnic)",
 	"diff-multi-sameuser": "(Nie pokazano $1 {{PLURAL:$1|pośredniej wersji utworzonej|pośrednich wersji utworzonych}} przez tego samego użytkownika)",
 	"diff-multi-otherusers": "(Nie pokazano $1 wersji {{PLURAL:$1|utworzonej|utworzonych}} przez {{PLURAL:$2|jednego użytkownika|$2 użytkowników}})",
@@ -2959,7 +2959,7 @@
 	"tooltip-recreate": "Utwórz stronę pomimo jej wcześniejszego usunięcia.",
 	"tooltip-upload": "Rozpoczęcie przesyłania",
 	"tooltip-rollback": "„cofnij” jednym kliknięciem wycofuje wszystkie zmiany tej strony wykonane przez ostatniego edytującego.",
-	"tooltip-undo": "„Confnij edycję” wycofuje tę edycję i otwiera okno edycji w trybie podglądu.\nOno pozwala na wpisanie powodu w opisie zmian.",
+	"tooltip-undo": "„anuluj edycję” wycofuje tę edycję i otwiera okno edycji w trybie podglądu. Umożliwia wpisanie powodu w opisie zmian.",
 	"tooltip-preferences-save": "Zapisz preferencje",
 	"tooltip-summary": "Wpisz krótki opis",
 	"interlanguage-link-title": "$1 – $2",
@@ -3951,5 +3951,6 @@
 	"unprotected-js": "Ze względów bezpieczeństwa kod JavaScript nie może zostać załadowany z niezabezpieczonych stron. Prosimy dodawać JavaScript w przestrzeni MediaWiki lub jako podstronę strony użytkownika.",
 	"userlogout-continue": "Chcesz się wylogować?",
 	"rest-prefix-mismatch": "Żądana ścieżka ($1) nie była wewnątrz ścieżki root REST API ($2)",
+	"rest-wrong-method": "Żądana metoda ($1) nie była{{PLURAL:$3|dozwoloną metodą dla tej ścieżki|jedną z dozwolonych metod dla tej ścieżki}} ($2)",
 	"rest-no-match": "Żądana względna ścieżka ($1) nie pasowała do żadnego modułu obsługi"
 }

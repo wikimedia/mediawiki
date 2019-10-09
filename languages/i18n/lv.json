@@ -760,7 +760,7 @@
 	"pagehist": "Lapas vēsture",
 	"deletedhist": "Dzēstā vēsture",
 	"revdelete-modify-missing": "Kļūda, mainot vienumu ar ID $1: tas ir pazudis no datubāzes!",
-	"revdelete-reason-dropdown": "*Biežākie dzēšanas iemesli\n** autortiesību pārkāpums\n** nepiemērota personīgā informācija\n** nepiemērots dalībnieka vārds\n** potenciāli apmelojoša informācija",
+	"revdelete-reason-dropdown": "*Biežākie dzēšanas iemesli\n** autortiesību pārkāpums\n** nepiemērots komentārs\n** nepiemērots dalībnieka vārds\n** potenciāli apmelojoša informācija",
 	"revdelete-otherreason": "Cits/papildu iemesls:",
 	"revdelete-reasonotherlist": "Cits iemesls",
 	"revdelete-edit-reasonlist": "Izmainīt dzēšanas iemeslus",
