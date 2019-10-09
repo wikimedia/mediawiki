@@ -544,7 +544,7 @@ return [
 	},
 
 	'ParserFactory' => function ( MediaWikiServices $services ) : ParserFactory {
-		$options = new ServiceOptions( Parser::$constructorOptions,
+		$options = new ServiceOptions( Parser::CONSTRUCTOR_OPTIONS,
 			// 'class' and 'preprocessorClass'
 			$services->getMainConfig()->get( 'ParserConf' ),
 			// Make sure to have defaults in case someone overrode ParserConf with something silly

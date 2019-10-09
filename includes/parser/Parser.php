@@ -304,12 +304,10 @@ class Parser {
 	private $badFileLookup;
 
 	/**
-	 * TODO Make this a const when HHVM support is dropped (T192166)
-	 *
 	 * @var array
-	 * @since 1.33
+	 * @since 1.35
 	 */
-	public static $constructorOptions = [
+	public const CONSTRUCTOR_OPTIONS = [
 		// See $wgParserConf documentation
 		'class',
 		'preprocessorClass',
@@ -367,7 +365,7 @@ class Parser {
 			if ( empty( $this->mConf['preprocessorClass'] ) ) {
 				$this->mConf['preprocessorClass'] = self::getDefaultPreprocessorClass();
 			}
-			$this->svcOptions = new ServiceOptions( self::$constructorOptions,
+			$this->svcOptions = new ServiceOptions( self::CONSTRUCTOR_OPTIONS,
 				$this->mConf, func_num_args() > 6
 					? func_get_arg( 6 ) : MediaWikiServices::getInstance()->getMainConfig()
 			);
@@ -375,7 +373,7 @@ class Parser {
 			$nsInfo = func_num_args() > 8 ? func_get_arg( 8 ) : null;
 		} else {
 			// New calling convention
-			$svcOptions->assertRequiredOptions( self::$constructorOptions );
+			$svcOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 			// $this->mConf is public, so we'll keep those two options there as well for
 			// compatibility until it's removed
 			$this->mConf = [
