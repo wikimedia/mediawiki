@@ -77,17 +77,12 @@ class MWHttpRequestTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Test MWHttpRequest::isValidURI()
 	 * T29854 : Http::isValidURI is too lax
 	 * @dataProvider provideURI
-	 * @covers Http::isValidURI
+	 * @covers MWHttpRequest::isValidURI
 	 */
-	public function testIsValidUri( $expect, $URI, $message = '' ) {
-		$this->assertEquals(
-			$expect,
-			(bool)MWHttpRequest::isValidURI( $URI ),
-			$message
-		);
+	public function testIsValidUri( $expect, $uri, $message = '' ) {
+		$this->assertSame( $expect, MWHttpRequest::isValidURI( $uri ), $message );
 	}
 
 }
