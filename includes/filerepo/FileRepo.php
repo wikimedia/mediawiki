@@ -350,7 +350,7 @@ class FileRepo {
 	}
 
 	/**
-	 * The the storage container and base path of a zone
+	 * The storage container and base path of a zone
 	 *
 	 * @param string $zone
 	 * @return array (container, base path) or (null, null)
