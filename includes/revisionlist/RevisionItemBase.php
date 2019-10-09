@@ -36,7 +36,7 @@ abstract class RevisionItemBase {
 	 * @param RevisionListBase $list
 	 * @param object $row DB result row
 	 */
-	public function __construct( $list, $row ) {
+	public function __construct( RevisionListBase $list, $row ) {
 		$this->list = $list;
 		$this->row = $row;
 	}

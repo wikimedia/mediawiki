@@ -32,7 +32,7 @@ class RevisionItem extends RevisionItemBase {
 	/** @var RequestContext */
 	protected $context;
 
-	public function __construct( $list, $row ) {
+	public function __construct( RevisionListBase $list, $row ) {
 		parent::__construct( $list, $row );
 		$this->revision = new Revision( $row );
 		$this->context = $list->getContext();

@@ -30,7 +30,7 @@ class RevDelRevisionItem extends RevDelItem {
 	/** @var Revision */
 	public $revision;
 
-	public function __construct( $list, $row ) {
+	public function __construct( RevisionListBase $list, $row ) {
 		parent::__construct( $list, $row );
 		$this->revision = static::initRevision( $list, $row );
 	}
