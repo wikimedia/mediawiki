@@ -1311,7 +1311,6 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 *   - Cached or regenerated value version number or null if not versioned
 	 *   - Timestamp of the current cached value at the key or null if there is no value
 	 * @note Callable type hints are not used to avoid class-autoloading
-	 * @suppress PhanTypeArraySuspicious
 	 */
 	private function fetchOrRegenerate( $key, $ttl, $callback, array $opts ) {
 		$checkKeys = $opts['checkKeys'] ?? [];
