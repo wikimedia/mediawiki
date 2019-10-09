@@ -64,10 +64,8 @@ use Wikimedia\ObjectFactory;
 class SpecialPageFactory {
 	/**
 	 * List of special page names to the subclass of SpecialPage which handles them.
-	 * @todo Make this a const when we drop HHVM support (T192166).  It can still be private in PHP
-	 * 7.1.
 	 */
-	private static $coreList = [
+	private const CORE_LIST = [
 		// Maintenance Reports
 		'BrokenRedirects' => \SpecialBrokenRedirects::class,
 		'Deadendpages' => \SpecialDeadendPages::class,
@@ -285,7 +283,7 @@ class SpecialPageFactory {
 	 */
 	private function getPageList() : array {
 		if ( !is_array( $this->list ) ) {
-			$this->list = self::$coreList;
+			$this->list = self::CORE_LIST;
 
 			if ( !$this->options->get( 'DisableInternalSearch' ) ) {
 				$this->list['Search'] = \SpecialSearch::class;
