@@ -65,7 +65,7 @@ class ParserTestTopLevelSuite extends TestSuite {
 		return new self( $flags );
 	}
 
-	function __construct( $flags ) {
+	public function __construct( $flags ) {
 		parent::__construct();
 
 		$this->ptRecorder = new PhpunitTestRecorder;

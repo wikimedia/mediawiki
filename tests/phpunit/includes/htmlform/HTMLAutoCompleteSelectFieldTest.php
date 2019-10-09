@@ -18,7 +18,7 @@ class HTMLAutoCompleteSelectFieldTest extends MediaWikiTestCase {
 	 * @expectedException        MWException
 	 * @expectedExceptionMessage called without any autocompletions
 	 */
-	function testMissingAutocompletions() {
+	public function testMissingAutocompletions() {
 		new HTMLAutoCompleteSelectField( [ 'fieldname' => 'Test' ] );
 	}
 
@@ -28,7 +28,7 @@ class HTMLAutoCompleteSelectFieldTest extends MediaWikiTestCase {
 	 *
 	 * @covers HTMLAutoCompleteSelectField::getAttributes
 	 */
-	function testGetAttributes() {
+	public function testGetAttributes() {
 		$field = new HTMLAutoCompleteSelectField( [
 			'fieldname'    => 'Test',
 			'autocomplete' => $this->options,
@@ -45,7 +45,7 @@ class HTMLAutoCompleteSelectFieldTest extends MediaWikiTestCase {
 	 * Test that the optional select dropdown is included or excluded based on
 	 * the presence or absence of the 'options' parameter.
 	 */
-	function testOptionalSelectElement() {
+	public function testOptionalSelectElement() {
 		$params = [
 			'fieldname'         => 'Test',
 			'autocomplete-data' => $this->options,

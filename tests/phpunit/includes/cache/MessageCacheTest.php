@@ -26,7 +26,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		$this->setContentLang( 'de' );
 	}
 
-	function addDBDataOnce() {
+	public function addDBDataOnce() {
 		$this->configureLanguages();
 
 		// Set up messages and fallbacks ab -> ru -> de
@@ -89,7 +89,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expectedContent, $result, "Message fallback failed." );
 	}
 
-	function provideMessagesForFallback() {
+	public function provideMessagesForFallback() {
 		return [
 			[ 'FallbackLanguageTest-Full', 'ab', 'ab' ],
 			[ 'FallbackLanguageTest-Partial', 'ab', 'ru' ],

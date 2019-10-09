@@ -38,7 +38,7 @@ class QueryAllSpecialPagesTest extends MediaWikiTestCase {
 	/**
 	 * Initialize all query page objects
 	 */
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 
 		foreach ( QueryPage::getPages() as $page ) {

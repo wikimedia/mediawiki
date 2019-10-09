@@ -21,6 +21,12 @@
 		<exclude name="Squiz.Scope.MethodScope.Missing" />
 		<exclude name="MediaWiki.PHP71Features.NullableType.NotAllowed" />
 	</rule>
+	<!-- TODO Still to be done -->
+	<rule ref="Squiz.Scope.MethodScope.Missing">
+		<exclude-pattern>includes/</exclude-pattern>
+		<exclude-pattern>maintenance/</exclude-pattern>
+		<exclude-pattern>languages/</exclude-pattern>
+	</rule>
 	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
 		<properties>
 			<!--

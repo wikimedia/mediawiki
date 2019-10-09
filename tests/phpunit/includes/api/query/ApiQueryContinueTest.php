@@ -36,7 +36,7 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 	 *
 	 * @see MediaWikiTestCase::addDBDataOnce()
 	 */
-	function addDBDataOnce() {
+	public function addDBDataOnce() {
 		try {
 			$this->editPage( 'Template:AQCT-T1', '**Template:AQCT-T1**' );
 			$this->editPage( 'Template:AQCT-T2', '**Template:AQCT-T2**' );

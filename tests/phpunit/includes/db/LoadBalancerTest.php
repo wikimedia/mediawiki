@@ -431,7 +431,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getAnyOpenConnection()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getWriterIndex()
 	 */
-	function testOpenConnection() {
+	public function testOpenConnection() {
 		$lb = $this->newSingleServerLocalLoadBalancer();
 
 		$i = $lb->getWriterIndex();

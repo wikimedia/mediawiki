@@ -32,7 +32,7 @@ class DbTestPreviewer extends TestRecorder {
 	 * @param IDatabase $db
 	 * @param bool|string $filter
 	 */
-	function __construct( $db, $filter = false ) {
+	public function __construct( $db, $filter = false ) {
 		$this->db = $db;
 		$this->filter = $filter;
 	}
@@ -41,7 +41,7 @@ class DbTestPreviewer extends TestRecorder {
 	 * Set up result recording; insert a record for the run with the date
 	 * and all that fun stuff
 	 */
-	function start() {
+	public function start() {
 		if ( !$this->db->tableExists( 'testrun', __METHOD__ )
 			|| !$this->db->tableExists( 'testitem', __METHOD__ )
 		) {
@@ -55,11 +55,11 @@ class DbTestPreviewer extends TestRecorder {
 		$this->results = [];
 	}
 
-	function record( $test, ParserTestResult $result ) {
+	public function record( $test, ParserTestResult $result ) {
 		$this->results[$test['desc']] = $result->isSuccess() ? 1 : 0;
 	}
 
-	function report() {
+	public function report() {
 		if ( $this->prevRun ) {
 			// f = fail, p = pass, n = nonexistent
 			// codes show before then after

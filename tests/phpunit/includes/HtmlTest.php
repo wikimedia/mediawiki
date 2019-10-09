@@ -939,7 +939,7 @@ class HtmlTest extends MediaWikiTestCase {
 }
 
 class HtmlTestValue {
-	function __toString() {
+	public function __toString() {
 		return 'stringValue';
 	}
 }

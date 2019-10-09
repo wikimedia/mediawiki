@@ -8,7 +8,7 @@ use ParserOutput;
  * @covers \MediaWiki\Edit\PreparedEdit
  */
 class PreparedEditTest extends \MediaWikiUnitTestCase {
-	function testCallback() {
+	public function testCallback() {
 		$output = new ParserOutput();
 		$edit = new PreparedEdit();
 		$edit->parserOutputCallback = function () {

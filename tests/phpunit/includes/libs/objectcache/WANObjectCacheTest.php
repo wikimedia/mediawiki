@@ -487,7 +487,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	 * @param array $extOpts
 	 * @param bool $versioned
 	 */
-	function testGetWithSetcallback_touched( array $extOpts, $versioned ) {
+	public function testGetWithSetcallback_touched( array $extOpts, $versioned ) {
 		$cache = $this->cache;
 
 		$mockWallClock = 1549343530.2053;

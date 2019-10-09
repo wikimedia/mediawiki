@@ -1023,7 +1023,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 	}
 
-	function provider_quickOperations() {
+	public function provider_quickOperations() {
 		$base = self::baseStorePath();
 		$files = [
 			"$base/unittest-cont1/e/fileA.a",
@@ -2730,7 +2730,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		return $this->backend->doQuickOperations( [ $params ] );
 	}
 
-	function tearDownFiles() {
+	public function tearDownFiles() {
 		$containers = [ 'unittest-cont1', 'unittest-cont2' ];
 		foreach ( $containers as $container ) {
 			$this->deleteFiles( $container );

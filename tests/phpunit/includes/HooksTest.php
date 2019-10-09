@@ -4,7 +4,7 @@ use PHPUnit\Framework\Error\Deprecated;
 
 class HooksTest extends MediaWikiTestCase {
 
-	function setUp() {
+	public function setUp() {
 		global $wgHooks;
 		parent::setUp();
 		Hooks::clear( 'MediaWikiHooksTest001' );

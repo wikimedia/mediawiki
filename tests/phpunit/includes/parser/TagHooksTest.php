@@ -122,11 +122,11 @@ class TagHooksTest extends MediaWikiTestCase {
 		$this->fail( 'Exception not thrown.' );
 	}
 
-	function tagCallback( $text, $params, $parser ) {
+	public function tagCallback( $text, $params, $parser ) {
 		return str_rot13( $text );
 	}
 
-	function functionTagCallback( &$parser, $frame, $code, $attribs ) {
+	public function functionTagCallback( &$parser, $frame, $code, $attribs ) {
 		return str_rot13( $code );
 	}
 }

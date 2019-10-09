@@ -9,7 +9,7 @@
 class LinksUpdateTest extends MediaWikiLangTestCase {
 	protected static $testingPageId;
 
-	function __construct( $name = null, array $data = [], $dataName = '' ) {
+	public function __construct( $name = null, array $data = [], $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
 
 		$this->tablesUsed = array_merge( $this->tablesUsed,

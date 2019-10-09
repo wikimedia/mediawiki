@@ -201,7 +201,7 @@ class ExtraParserTest extends MediaWikiTestCase {
 	 *
 	 * @return array
 	 */
-	static function statelessFetchTemplate( $title, $parser = false ) {
+	public static function statelessFetchTemplate( $title, $parser = false ) {
 		$text = "Content of ''" . $title->getFullText() . "''";
 		$deps = [];
 

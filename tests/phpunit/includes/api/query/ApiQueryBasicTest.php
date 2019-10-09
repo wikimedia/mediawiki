@@ -36,7 +36,7 @@ class ApiQueryBasicTest extends ApiQueryTestBase {
 	 *
 	 * @see MediaWikiTestCase::addDBDataOnce()
 	 */
-	function addDBDataOnce() {
+	public function addDBDataOnce() {
 		try {
 			if ( Title::newFromText( 'AQBT-All' )->exists() ) {
 				return;

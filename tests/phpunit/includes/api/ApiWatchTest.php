@@ -9,7 +9,7 @@
  * @covers ApiWatch
  */
 class ApiWatchTest extends ApiTestCase {
-	function getTokens() {
+	protected function getTokens() {
 		return $this->getTokenList( self::$users['sysop'] );
 	}
 

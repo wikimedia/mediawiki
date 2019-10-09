@@ -36,7 +36,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 	private $revId4_1, $textId4_1;
 	private static $numOfRevs = 8;
 
-	function addDBData() {
+	public function addDBData() {
 		$this->tablesUsed[] = 'page';
 		$this->tablesUsed[] = 'revision';
 		$this->tablesUsed[] = 'ip_changes';
@@ -117,7 +117,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 			"Page ids increasing without holes" );
 	}
 
-	function testPlain() {
+	public function testPlain() {
 		// Setting up the dump
 		$nameStub = $this->setUpStub();
 		$nameFull = $this->getNewTempFile();
@@ -172,7 +172,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 		$asserter->assertDumpEnd();
 	}
 
-	function testPrefetchPlain() {
+	public function testPrefetchPlain() {
 		// The mapping between ids and text, for the hits of the prefetch mock
 		$prefetchMap = [
 			[ $this->pageId1, $this->revId1_1, "Prefetch_________1Text1" ],
@@ -484,7 +484,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 	 * @group large
 	 * @group Broken
 	 */
-	function testCheckpointPlain() {
+	public function testCheckpointPlain() {
 		$this->checkpointHelper();
 	}
 
@@ -503,7 +503,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 	 * @group large
 	 * @group Broken
 	 */
-	function testCheckpointGzip() {
+	public function testCheckpointGzip() {
 		$this->checkHasGzip();
 		$this->checkpointHelper( "gzip" );
 	}
@@ -702,7 +702,7 @@ class TextPassDumperDatabaselessTest extends MediaWikiLangTestCase {
 	 *
 	 * @dataProvider bufferSizeProvider
 	 */
-	function testBufferSizeSetting( $expected, $size, $msg ) {
+	public function testBufferSizeSetting( $expected, $size, $msg ) {
 		$dumper = new TextPassDumperAccessor();
 		$dumper->loadWithArgv( [ "--buffersize=" . $size ] );
 		$dumper->execute();
@@ -714,7 +714,7 @@ class TextPassDumperDatabaselessTest extends MediaWikiLangTestCase {
 	 *
 	 * @dataProvider bufferSizeProvider
 	 */
-	function bufferSizeProvider() {
+	public function bufferSizeProvider() {
 		// expected, bufferSize to initialize with, message
 		return [
 			[ 512 * 1024, 512 * 1024, "Setting 512KB is not effective" ],
@@ -746,7 +746,7 @@ class TextPassDumperAccessor extends TextPassDumper {
 		return $this->bufferSize;
 	}
 
-	function dump( $history, $text = null ) {
+	public function dump( $history, $text = null ) {
 		return true;
 	}
 }
