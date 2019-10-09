@@ -22,7 +22,7 @@ var cachedAccessKeyModifiers,
  *
  * @private
  * @param {Object|undefined} [nav] A Navigator object with `userAgent` and `platform` properties.
- * @return {Array} Array with 1 or more of the string values, in this order: ctrl, option, alt, shift, esc
+ * @return {string} Label with dash-separated segments in this order: ctrl, option, alt, shift, esc
  */
 function getAccessKeyModifiers( nav ) {
 	var profile, accessKeyModifiers;
@@ -43,13 +43,13 @@ function getAccessKeyModifiers( nav ) {
 		case 'chrome':
 			if ( profile.platform === 'mac' ) {
 				// Chromium on macOS
-				accessKeyModifiers = [ 'ctrl', 'option' ];
+				accessKeyModifiers = 'ctrl-option';
 			} else {
 				// Chromium on Windows or Linux
 				// (both alt- and alt-shift work, but alt with E, D, F etc does not
 				// work since they are native browser shortcuts as well, so advertise
 				// alt-shift- instead)
-				accessKeyModifiers = [ 'alt', 'shift' ];
+				accessKeyModifiers = 'alt-shift';
 			}
 			break;
 		// Historical: Firefox 1.x used alt- (no longer supported).
@@ -57,28 +57,28 @@ function getAccessKeyModifiers( nav ) {
 		case 'iceweasel':
 			if ( profile.platform === 'mac' ) {
 				if ( profile.versionNumber < 14 ) {
-					accessKeyModifiers = [ 'ctrl' ];
+					accessKeyModifiers = 'ctrl';
 				} else {
 					// Firefox 14+ on macOS
-					accessKeyModifiers = [ 'ctrl', 'option' ];
+					accessKeyModifiers = 'ctrl-option';
 				}
 			} else {
 				// Firefox 2+ on Windows or Linux
-				accessKeyModifiers = [ 'alt', 'shift' ];
+				accessKeyModifiers = 'alt-shift';
 			}
 			break;
 		// Historical: Safari <= 3 on Windows used alt- (no longer supported).
 		// Historical: Safari <= 3 on macOS used ctrl- (no longer supported).
 		case 'safari':
 			// Safari 4+ (WebKit 526+) on macOS
-			accessKeyModifiers = [ 'ctrl', 'option' ];
+			accessKeyModifiers = 'ctrl-option';
 			break;
 		case 'msie':
 		case 'edge':
-			accessKeyModifiers = [ 'alt' ];
+			accessKeyModifiers = 'alt';
 			break;
 		default:
-			accessKeyModifiers = profile.platform === 'mac' ? [ 'ctrl' ] : [ 'alt' ];
+			accessKeyModifiers = profile.platform === 'mac' ? 'ctrl' : 'alt';
 			break;
 	}
 
@@ -109,7 +109,7 @@ function getAccessKeyLabel( element ) {
 	if ( !testMode && element.accessKeyLabel ) {
 		return element.accessKeyLabel;
 	}
-	return ( testMode ? 'test' : getAccessKeyModifiers().join( '-' ) ) + '-' + element.accessKey;
+	return ( testMode ? 'test' : getAccessKeyModifiers() ) + '-' + element.accessKey;
 }
 
 /**
@@ -187,14 +187,6 @@ $.fn.updateTooltipAccessKeys = function () {
 };
 
 /**
- * getAccessKeyModifiers
- *
- * @method updateTooltipAccessKeys_getAccessKeyModifiers
- * @inheritdoc #getAccessKeyModifiers
- */
-$.fn.updateTooltipAccessKeys.getAccessKeyModifiers = getAccessKeyModifiers;
-
-/**
  * getAccessKeyLabel
  *
  * @method updateTooltipAccessKeys_getAccessKeyLabel
@@ -206,12 +198,11 @@ $.fn.updateTooltipAccessKeys.getAccessKeyLabel = getAccessKeyLabel;
  * getAccessKeyPrefix
  *
  * @method updateTooltipAccessKeys_getAccessKeyPrefix
- * @deprecated since 1.27 Use #getAccessKeyModifiers
- * @param {Object} [ua] An object with a 'userAgent' and 'platform' property.
+ * @param {Object} [nav] An object with a 'userAgent' and 'platform' property.
  * @return {string}
  */
-$.fn.updateTooltipAccessKeys.getAccessKeyPrefix = function ( ua ) {
-	return getAccessKeyModifiers( ua ).join( '-' ) + '-';
+$.fn.updateTooltipAccessKeys.getAccessKeyPrefix = function ( nav ) {
+	return getAccessKeyModifiers( nav ) + '-';
 };
 
 /**
