@@ -40,7 +40,7 @@ class UpdateLogging {
 	public $batchSize = 1000;
 	public $minTs = false;
 
-	function execute() {
+	public function execute() {
 		$this->dbw = wfGetDB( DB_MASTER );
 		$logging = $this->dbw->tableName( 'logging' );
 		$logging_1_10 = $this->dbw->tableName( 'logging_1_10' );

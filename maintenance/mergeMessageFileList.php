@@ -36,7 +36,7 @@ $mmfl = false;
  * @ingroup Maintenance
  */
 class MergeMessageFileList extends Maintenance {
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 		$this->addOption(
 			'list-file',

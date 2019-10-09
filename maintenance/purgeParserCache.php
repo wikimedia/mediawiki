@@ -36,7 +36,7 @@ class PurgeParserCache extends Maintenance {
 
 	private $usleep = 0;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 		$this->addDescription( "Remove old objects from the parser cache. " .
 			"This only works when the parser cache is in an SQL database." );
@@ -50,7 +50,7 @@ class PurgeParserCache extends Maintenance {
 		$this->addOption( 'msleep', 'Milliseconds to sleep between purge chunks', false, true );
 	}
 
-	function execute() {
+	public function execute() {
 		global $wgParserCacheExpireTime;
 
 		$inputDate = $this->getOption( 'expiredate' );

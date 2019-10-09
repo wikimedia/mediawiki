@@ -21,7 +21,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 class FindMissingFiles extends Maintenance {
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 
 		$this->addDescription( 'Find registered files with no corresponding file.' );
@@ -31,7 +31,7 @@ class FindMissingFiles extends Maintenance {
 		$this->setBatchSize( 300 );
 	}
 
-	function execute() {
+	public function execute() {
 		$lastName = $this->getOption( 'start', '' );
 
 		$repo = RepoGroup::singleton()->getLocalRepo();

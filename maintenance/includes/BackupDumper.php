@@ -109,7 +109,7 @@ abstract class BackupDumper extends Maintenance {
 	/**
 	 * @param array|null $args For backward compatibility
 	 */
-	function __construct( $args = null ) {
+	public function __construct( $args = null ) {
 		parent::__construct();
 		$this->stderr = fopen( "php://stderr", "wt" );
 
@@ -179,7 +179,7 @@ abstract class BackupDumper extends Maintenance {
 		$register( $this );
 	}
 
-	function execute() {
+	public function execute() {
 		throw new MWException( 'execute() must be overridden in subclasses' );
 	}
 
@@ -381,7 +381,7 @@ abstract class BackupDumper extends Maintenance {
 	 *
 	 * @param IMaintainableDatabase $db The database connection to use
 	 */
-	function setDB( IMaintainableDatabase $db ) {
+	public function setDB( IMaintainableDatabase $db ) {
 		parent::setDB( $db );
 		$this->forcedDb = $db;
 	}

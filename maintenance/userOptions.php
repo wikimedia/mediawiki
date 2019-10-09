@@ -31,7 +31,7 @@ require_once __DIR__ . '/Maintenance.php';
  */
 class UserOptionsMaintenance extends Maintenance {
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 
 		$this->addDescription( 'Pass through all users and change one of their options.
