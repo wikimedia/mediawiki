@@ -305,7 +305,7 @@ class BlockManagerTest extends MediaWikiTestCase {
 	 * @dataProvider provideTrackBlockWithCookie
 	 * @covers ::trackBlockWithCookie
 	 */
-	public function testTrackBlockWithCookie( $options, $expectedVal ) {
+	public function testTrackBlockWithCookie( $options, $expected ) {
 		$this->setMwGlobals( 'wgCookiePrefix', '' );
 
 		$request = new FauxRequest();
@@ -331,8 +331,8 @@ class BlockManagerTest extends MediaWikiTestCase {
 		] );
 		$blockManager->trackBlockWithCookie( $user, $response );
 
-		$this->assertCount( $expectedVal ? 1 : 0, $response->getCookies() );
-		$this->assertEquals( $expectedVal ?: null, $response->getCookie( 'BlockID' ) );
+		$this->assertCount( $expected['count'], $response->getCookies() );
+		$this->assertEquals( $expected['value'], $response->getCookie( 'BlockID' ) );
 	}
 
 	public function provideTrackBlockWithCookie() {
@@ -343,28 +343,41 @@ class BlockManagerTest extends MediaWikiTestCase {
 					'cookieSet' => true,
 					'block' => $this->getTrackableBlock( $blockId ),
 				],
-				null,
+				[
+					'count' => 1,
+					'value' => $blockId,
+				]
 			],
 			'Block cookie is already set; there is no block' => [
 				[
 					'cookieSet' => true,
 					'block' => null,
 				],
-				null,
+				[
+					// Cookie is cleared by setting it to empty value
+					'count' => 1,
+					'value' => '',
+				]
 			],
 			'Block cookie is not yet set; there is no block' => [
 				[
 					'cookieSet' => false,
 					'block' => null,
 				],
-				null,
+				[
+					'count' => 0,
+					'value' => null,
+				]
 			],
 			'Block cookie is not yet set; there is a trackable block' => [
 				[
 					'cookieSet' => false,
 					'block' => $this->getTrackableBlock( $blockId ),
 				],
-				$blockId,
+				[
+					'count' => 1,
+					'value' => $blockId,
+				]
 			],
 			'Block cookie is not yet set; there is a composite block with a trackable block' => [
 				[
@@ -376,7 +389,10 @@ class BlockManagerTest extends MediaWikiTestCase {
 						]
 					] ),
 				],
-				$blockId,
+				[
+					'count' => 1,
+					'value' => $blockId,
+				]
 			],
 			'Block cookie is not yet set; there is a composite block but no trackable block' => [
 				[
@@ -388,7 +404,10 @@ class BlockManagerTest extends MediaWikiTestCase {
 						]
 					] ),
 				],
-				null,
+				[
+					'count' => 0,
+					'value' => null,
+				]
 			],
 		];
 	}
