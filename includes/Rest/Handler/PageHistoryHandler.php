@@ -10,11 +10,14 @@ use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Rest\Response;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
-use Message;
+use RequestContext;
+use User;
 use Wikimedia\Message\MessageValue;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
+use Wikimedia\Message\ParamType;
+use Wikimedia\Message\ScalarParam;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -40,6 +43,9 @@ class PageHistoryHandler extends SimpleHandler {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
+	/** @var User */
+	private $user;
+
 	/**
 	 * @param RevisionStore $revisionStore
 	 * @param NameTableStoreFactory $nameTableStoreFactory
@@ -56,6 +62,9 @@ class PageHistoryHandler extends SimpleHandler {
 		$this->changeTagDefStore = $nameTableStoreFactory->getChangeTagDef();
 		$this->permissionManager = $permissionManager;
 		$this->loadBalancer = $loadBalancer;
+
+		// @todo Inject this, when there is a good way to do that
+		$this->user = RequestContext::getMain()->getUser();
 	}
 
 	/**
@@ -96,7 +105,7 @@ class PageHistoryHandler extends SimpleHandler {
 		if ( !$titleObj || !$titleObj->getArticleID() ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'rest-pagehistory-title-nonexistent',
-					[ Message::plaintextParam( $title ) ]
+					[ new ScalarParam( ParamType::PLAINTEXT, $title ) ]
 				),
 				404
 			);
@@ -112,7 +121,7 @@ class PageHistoryHandler extends SimpleHandler {
 			if ( !$rev ) {
 				throw new LocalizedHttpException(
 					new MessageValue( 'rest-pagehistory-revision-nonexistent',
-						[ $relativeRevId, Message::plaintextParam( $title ) ]
+						[ $relativeRevId, new ScalarParam( ParamType::PLAINTEXT, $title ) ]
 					),
 					404
 				);
@@ -131,24 +140,6 @@ class PageHistoryHandler extends SimpleHandler {
 		}
 
 		$res = $this->getDbResults( $titleObj, $params, $relativeRevId, $ts, $tagIds );
-		if ( $res === false || $res->numRows() == 0 ) {
-			if ( $relativeRevId ) {
-				throw new LocalizedHttpException(
-					new MessageValue( 'rest-pagehistory-revisions-nonexistent-with-params',
-						[ Message::plaintextParam( $title ) ]
-					),
-					404
-				);
-			} else {
-				throw new LocalizedHttpException(
-					new MessageValue( 'rest-pagehistory-revisions-nonexistent',
-						[ Message::plaintextParam( $title ) ] ),
-					404
-				);
-			}
-		}
-
-		// If we make it here, we will always have at least one revision to return.
 		$response = $this->processDbResults( $res, $titleObj, $params );
 		return $this->getResponseFactory()->createJson( $response );
 	}
@@ -177,22 +168,28 @@ class PageHistoryHandler extends SimpleHandler {
 			// The validator ensures this value, if present, is one of the expected values
 			switch ( $params['filter'] ) {
 				case 'bot':
-					// TODO: per T231599, it is possible we will need a STRAIGHT JOIN HERE.
-					$revQuery['tables']['user_groups'] = 'user_groups';
-					$revQuery['joins']['user_groups'] = [
-						'JOIN',
-						[
-							'actor_rev_user.actor_user = ug_user',
-							'ug_group' => $this->permissionManager->getGroupsWithPermission( 'bot' ),
-							'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
-						]
-					];
-					$cond[] = $dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . " = 0";
+					$cond[] = 'EXISTS(' . $dbr->selectSQLText(
+							'user_groups',
+							1,
+							[
+								'actor_rev_user.actor_user = ug_user',
+								'ug_group' => $this->permissionManager->getGroupsWithPermission( 'bot' ),
+								'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
+							],
+							__METHOD__
+						) . ')';
+					$bitmask = $this->getBitmask();
+					if ( $bitmask ) {
+						$cond[] = $dbr->bitAnd( 'rev_deleted', $bitmask ) . " != $bitmask";
+					}
 					break;
 
 				case 'anonymous':
 					$cond[] = "actor_user IS NULL";
-					$cond[] = $dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . " = 0";
+					$bitmask = $this->getBitmask();
+					if ( $bitmask ) {
+						$cond[] = $dbr->bitAnd( 'rev_deleted', $bitmask ) . " != $bitmask";
+					}
 					break;
 
 				case 'reverted':
@@ -238,7 +235,27 @@ class PageHistoryHandler extends SimpleHandler {
 	}
 
 	/**
-	 * @param IResultWrapper $res database results to process
+	 * Helper function for rev_deleted/user rights query conditions
+	 *
+	 * @todo Factor out rev_deleted logic per T233222
+	 *
+	 * @return int
+	 */
+	private function getBitmask() {
+		if ( !$this->permissionManager->userHasRight( $this->user, 'deletedhistory' ) ) {
+			$bitmask = RevisionRecord::DELETED_USER;
+		} elseif ( !$this->permissionManager
+			->userHasAnyRight( $this->user, 'suppressrevision', 'viewsuppressed' )
+		) {
+			$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
+		} else {
+			$bitmask = 0;
+		}
+		return $bitmask;
+	}
+
+	/**
+	 * @param IResultWrapper|bool $res database results, or false if no query was executed
 	 * @param Title $titleObj title object identifying the page to load history for
 	 * @param array $params request parameters
 	 * @return array response data
@@ -246,79 +263,83 @@ class PageHistoryHandler extends SimpleHandler {
 	private function processDbResults( $res, $titleObj, $params ) {
 		$revisions = [];
 
-		$sizes = [];
-		foreach ( $res as $row ) {
-			$rev = $this->revisionStore->newRevisionFromRow(
-				$row,
-				IDBAccessObject::READ_NORMAL,
-				$titleObj
-			);
-			if ( !$revisions ) {
-				$firstRevId = $row->rev_id;
-			}
-			$lastRevId = $row->rev_id;
+		if ( $res ) {
+			$sizes = [];
+			foreach ( $res as $row ) {
+				$rev = $this->revisionStore->newRevisionFromRow(
+					$row,
+					IDBAccessObject::READ_NORMAL,
+					$titleObj
+				);
+				if ( !$revisions ) {
+					$firstRevId = $row->rev_id;
+				}
+				$lastRevId = $row->rev_id;
 
-			$revision = [
-				'id' => $rev->getId(),
-				'timestamp' => wfTimestamp( TS_ISO_8601, $rev->getTimestamp() ),
-				'size' => $rev->getSize(),
-			];
-
-			// Remember revision sizes and parent ids for calculating deltas. If a revision's
-			// parent id is unknown, we will be unable to supply the delta for that revision.
-			$sizes[$rev->getId()] = $rev->getSize();
-			$parentId = $rev->getParentId();
-			if ( $parentId ) {
-				$revision['parent_id'] = $parentId;
-			}
-
-			$comment = $rev->getComment();
-			if ( $comment ) {
-				$revision['comment'] = $comment->text;
-			}
-
-			$user = $rev->getUser();
-			if ( $user ) {
-				$revision['user'] = [
-					'name' => $user->getName(),
-					'id' => $user->getId(),
+				$revision = [
+					'id' => $rev->getId(),
+					'timestamp' => wfTimestamp( TS_ISO_8601, $rev->getTimestamp() ),
+					'size' => $rev->getSize(),
 				];
-			}
 
-			$revisions[] = $revision;
-
-			// Break manually at the return limit. We may have more results than we can return.
-			if ( count( $revisions ) == self::REVISIONS_RETURN_LIMIT ) {
-				break;
-			}
-		}
-
-		// Request any parent sizes that we do not already know, then calculate deltas
-		$unknownSizes = [];
-		foreach ( $revisions as $revision ) {
-			if ( isset( $revision['parent_id'] ) && !isset( $sizes[$revision['parent_id']] ) ) {
-				$unknownSizes[] = $revision['parent_id'];
-			}
-		}
-		if ( $unknownSizes ) {
-			$sizes += $this->revisionStore->getRevisionSizes( $unknownSizes );
-		}
-		foreach ( $revisions as &$revision ) {
-			if ( isset( $revision['parent_id'] ) ) {
-				if ( isset( $sizes[$revision['parent_id']] ) ) {
-					$revision['delta'] = $revision['size'] - $sizes[$revision['parent_id']];
+				// Remember revision sizes and parent ids for calculating deltas. If a revision's
+				// parent id is unknown, we will be unable to supply the delta for that revision.
+				$sizes[$rev->getId()] = $rev->getSize();
+				$parentId = $rev->getParentId();
+				if ( $parentId ) {
+					$revision['parent_id'] = $parentId;
 				}
 
-				// We only remembered this for delta calculations. We do not want to return it.
-				unset( $revision['parent_id'] );
-			}
-		}
+				$comment = $rev->getComment( RevisionRecord::FOR_THIS_USER, $this->user );
+				if ( $comment && $comment->text !== '' ) {
+					$revision['comment'] = $comment->text;
+				}
 
-		if ( $params['newer_than'] ) {
-			$revisions = array_reverse( $revisions );
-			$temp = $lastRevId;
-			$lastRevId = $firstRevId;
-			$firstRevId = $temp;
+				$revUser = $rev->getUser( RevisionRecord::FOR_THIS_USER, $this->user );
+				if ( $revUser ) {
+					$revision['user'] = [
+						'name' => $revUser->getName(),
+					];
+					if ( $revUser->isRegistered() ) {
+						$revision['user']['id'] = $revUser->getId();
+					}
+				}
+
+				$revisions[] = $revision;
+
+				// Break manually at the return limit. We may have more results than we can return.
+				if ( count( $revisions ) == self::REVISIONS_RETURN_LIMIT ) {
+					break;
+				}
+			}
+
+			// Request any parent sizes that we do not already know, then calculate deltas
+			$unknownSizes = [];
+			foreach ( $revisions as $revision ) {
+				if ( isset( $revision['parent_id'] ) && !isset( $sizes[$revision['parent_id']] ) ) {
+					$unknownSizes[] = $revision['parent_id'];
+				}
+			}
+			if ( $unknownSizes ) {
+				$sizes += $this->revisionStore->getRevisionSizes( $unknownSizes );
+			}
+			foreach ( $revisions as &$revision ) {
+				if ( isset( $revision['parent_id'] ) ) {
+					if ( isset( $sizes[$revision['parent_id']] ) ) {
+						$revision['delta'] = $revision['size'] - $sizes[$revision['parent_id']];
+					}
+
+					// We only remembered this for delta calculations. We do not want to return it.
+					unset( $revision['parent_id'] );
+				}
+			}
+
+			if ( $revisions && $params['newer_than'] ) {
+				$revisions = array_reverse( $revisions );
+				$temp = $lastRevId;
+				$lastRevId = $firstRevId;
+				$firstRevId = $temp;
+			}
 		}
 
 		$response = [
@@ -327,13 +348,15 @@ class PageHistoryHandler extends SimpleHandler {
 
 		// Omit newer/older if there are no additional corresponding revisions.
 		// This facilitates clients doing "paging" style api operations.
-		if ( $params['newer_than'] || $res->numRows() > self::REVISIONS_RETURN_LIMIT ) {
-			$older = $lastRevId;
-		}
-		if ( $params['older_than'] ||
-			( $params['newer_than'] && $res->numRows() > self::REVISIONS_RETURN_LIMIT )
-		) {
-			$newer = $firstRevId;
+		if ( $revisions ) {
+			if ( $params['newer_than'] || $res->numRows() > self::REVISIONS_RETURN_LIMIT ) {
+				$older = $lastRevId;
+			}
+			if ( $params['older_than'] ||
+				( $params['newer_than'] && $res->numRows() > self::REVISIONS_RETURN_LIMIT )
+			) {
+				$newer = $firstRevId;
+			}
 		}
 
 		$wr = new \WebRequest();
@@ -353,7 +376,7 @@ class PageHistoryHandler extends SimpleHandler {
 				)->__toString();
 			}
 			if ( isset( $newer ) ) {
-				$response[' newer'] = Uri::withQueryValues(
+				$response['newer'] = Uri::withQueryValues(
 					$uri,
 					$queryParts + [ 'newer_than' => $newer ]
 				)->__toString();

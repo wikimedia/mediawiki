@@ -4471,8 +4471,6 @@
 	"rest-pagehistory-param-range-error": "Error message for REST API debugging, shown if a revision id is provided but is out of range.",
 	"rest-pagehistory-title-nonexistent": "Error message for REST API debugging, shown if the specified title does not exist.",
 	"rest-pagehistory-revision-nonexistent": "Error message for REST API debugging, shown if the specified revision does not exist.",
-	"rest-pagehistory-revisions-nonexistent": "Error message for REST API debugging, shown if no revisions exist for the specified page.",
-	"rest-pagehistory-revisions-nonexistent-with-params": "Error message for REST API debugging, shown if no revisions exist for the specified page, and if params that limit the returned revisions were specified.",
 	"rest-pagehistory-timestamp-error": "Error message for REST API debugging, shown if an error occurred loading the timestamp for the specified revision.",
 	"rest-pagehistorycount-title-nonexistent": "Error message for REST API debugging, shown if the specified title does not exist.",
 	"rest-pagehistorycount-type-unrecognized": "Error message for REST API debugging, shown if the specified type is not valid."
