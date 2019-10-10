@@ -98,6 +98,10 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 		$res = $this->select( __METHOD__ );
 
+		if ( $resultPageSet === null ) {
+			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__, 'pt' );
+		}
+
 		$count = 0;
 		$result = $this->getResult();
 

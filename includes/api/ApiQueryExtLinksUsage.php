@@ -137,6 +137,11 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		$res = $this->select( __METHOD__ );
 
 		$result = $this->getResult();
+
+		if ( $resultPageSet === null ) {
+			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__ );
+		}
+
 		$count = 0;
 		foreach ( $res as $row ) {
 			if ( ++$count > $limit ) {

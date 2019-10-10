@@ -587,6 +587,10 @@ abstract class ApiQueryBase extends ApiBase {
 		}
 
 		$services = MediaWikiServices::getInstance();
+		if ( !$services->getContentLanguage()->needsGenderDistinction() ) {
+			return;
+		}
+
 		$nsInfo = $services->getNamespaceInfo();
 		$namespaceField = $fieldPrefix . '_namespace';
 		$titleField = $fieldPrefix . '_title';

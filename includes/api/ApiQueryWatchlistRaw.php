@@ -97,8 +97,27 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 
 		$titles = [];
 		$count = 0;
-		$items = MediaWikiServices::getInstance()->getWatchedItemQueryService()
+		$services = MediaWikiServices::getInstance();
+		$items = $services->getWatchedItemQueryService()
 			->getWatchedItemsForUser( $user, $options );
+
+		// Get gender information
+		if ( $items !== [] && $resultPageSet === null &&
+			$services->getContentLanguage()->needsGenderDistinction()
+		) {
+			$nsInfo = $services->getNamespaceInfo();
+			$usernames = [];
+			foreach ( $items as $item ) {
+				$linkTarget = $item->getLinkTarget();
+				if ( $nsInfo->hasGenderDistinction( $linkTarget->getNamespace() ) ) {
+					$usernames[] = $linkTarget->getText();
+				}
+			}
+			if ( $usernames !== [] ) {
+				$services->getGenderCache()->doQuery( $usernames, __METHOD__ );
+			}
+		}
+
 		foreach ( $items as $item ) {
 			$ns = $item->getLinkTarget()->getNamespace();
 			$dbKey = $item->getLinkTarget()->getDBkey();
