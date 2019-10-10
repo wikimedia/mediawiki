@@ -103,7 +103,10 @@ class WebRequest {
 	/**
 	 * @var SessionId|null Session ID to use for this
 	 *  request. We can't save the session directly due to reference cycles not
-	 *  working too well (slow GC in Zend and never collected in HHVM).
+	 *  working too well (slow GC).
+	 *
+	 * TODO: Investigate whether this GC slowness concern (added in a73c5b7395 with regard to
+	 * PHP 5.6) still applies in PHP 7.2+.
 	 */
 	protected $sessionId = null;
 
