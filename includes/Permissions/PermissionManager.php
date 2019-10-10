@@ -1182,7 +1182,7 @@ class PermissionManager {
 				}
 			}
 		} else {
-			// Users need editmyuser* to edit their own CSS/JSON/JS subpages, except for
+			// Users need edituser* to edit others' CSS/JSON/JS subpages, except for
 			// deletion/suppression which cannot be used for attacks and we want to avoid the
 			// situation where an unprivileged user can post abusive content on their subpages
 			// and only very highly privileged users could remove it.
