@@ -385,14 +385,35 @@ return [
 		}
 
 		$params = $mainConfig->get( 'WANObjectCaches' )[$id];
+
+		$logger = LoggerFactory::getInstance( $params['loggroup'] ?? 'objectcache' );
+
 		$objectCacheId = $params['cacheId'];
 		if ( !isset( $mainConfig->get( 'ObjectCaches' )[$objectCacheId] ) ) {
 			throw new UnexpectedValueException(
 				"Cache type \"$objectCacheId\" is not present in \$wgObjectCaches." );
 		}
-		$params['store'] = $mainConfig->get( 'ObjectCaches' )[$objectCacheId];
+		$storeParams = $mainConfig->get( 'ObjectCaches' )[$objectCacheId];
+		$store = ObjectCache::newFromParams( $storeParams );
+		$logger->debug( 'MainWANObjectCache using store {class}', [
+			'class' => get_class( $store )
+		] );
 
-		return ObjectCache::newWANCacheFromParams( $params );
+		$params['logger'] = $logger;
+		$params['cache'] = $store;
+		$params['secret'] = $params['secret'] ?? $mainConfig->get( 'SecretKey' );
+		if ( !$mainConfig->get( 'CommandLineMode' ) ) {
+			// Send the statsd data post-send on HTTP requests; avoid in CLI mode (T181385)
+			$params['stats'] = $services->getStatsdDataFactory();
+			// Let pre-emptive refreshes happen post-send on HTTP requests
+			$params['asyncHandler'] = [ DeferredUpdates::class, 'addCallableUpdate' ];
+		}
+
+		$class = $params['class'];
+		$instance = new $class( $params );
+
+		'@phan-var WANObjectCache $instance';
+		return $instance;
 	},
 
 	'MediaHandlerFactory' => function ( MediaWikiServices $services ) : MediaHandlerFactory {
