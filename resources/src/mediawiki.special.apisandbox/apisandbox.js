@@ -243,6 +243,11 @@
 				) {
 					item.$element.addClass( 'apihelp-deprecated-value' );
 				}
+				if ( this.paramInfo.internalvalues &&
+					this.paramInfo.internalvalues.indexOf( data ) >= 0
+				) {
+					item.$element.addClass( 'apihelp-internal-value' );
+				}
 				return item;
 			}
 		},
@@ -571,6 +576,9 @@
 						if ( pi.deprecatedvalues && pi.deprecatedvalues.indexOf( v ) >= 0 ) {
 							config.classes.push( 'apihelp-deprecated-value' );
 						}
+						if ( pi.internalvalues && pi.internalvalues.indexOf( v ) >= 0 ) {
+							config.classes.push( 'apihelp-internal-value' );
+						}
 						return new OO.ui.MenuOptionWidget( config );
 					} );
 					if ( Util.apiBool( pi.multi ) ) {
@@ -607,6 +615,14 @@
 								this.$element.toggleClass(
 									'apihelp-deprecated-value',
 									pi.deprecatedvalues.indexOf( item.data ) >= 0
+								);
+							}, [], widget );
+						}
+						if ( pi.internalvalues ) {
+							widget.getMenu().on( 'select', function ( item ) {
+								this.$element.toggleClass(
+									'apihelp-internal-value',
+									pi.internalvalues.indexOf( item.data ) >= 0
 								);
 							}, [], widget );
 						}

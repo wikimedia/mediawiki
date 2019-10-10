@@ -1627,6 +1627,7 @@
 	"api-help-help-urls": "",
 	"api-help-parameters": "{{PLURAL:$1|Parameter|Parameters}}:",
 	"api-help-param-deprecated": "Deprecated.",
+	"api-help-param-internal": "Internal.",
 	"api-help-param-required": "This parameter is required.",
 	"api-help-param-templated": "This is a [[Special:ApiHelp/main#main/templatedparams|templated parameter]]. When making the request, $2.",
 	"api-help-param-templated-var-first": "<var>&#x7B;$1&#x7D;</var> in the parameter's name should be replaced with values of <var>$2</var>",
