@@ -109,7 +109,7 @@ class RecompressTracked {
 		return new self( $jobOptions );
 	}
 
-	function __construct( $options ) {
+	public function __construct( $options ) {
 		foreach ( $options as $name => $value ) {
 			$this->$name = $value;
 		}
@@ -174,7 +174,7 @@ class RecompressTracked {
 	/**
 	 * Execute parent or child depending on the isChild option
 	 */
-	function execute() {
+	public function execute() {
 		if ( $this->isChild ) {
 			$this->executeChild();
 		} else {
@@ -185,7 +185,7 @@ class RecompressTracked {
 	/**
 	 * Execute the parent process
 	 */
-	function executeParent() {
+	public function executeParent() {
 		if ( !$this->checkTrackingTable() ) {
 			return;
 		}
@@ -458,7 +458,7 @@ class RecompressTracked {
 	/**
 	 * Main entry point for worker processes
 	 */
-	function executeChild() {
+	public function executeChild() {
 		$this->debug( 'starting' );
 		$this->syncDBs();
 
@@ -728,7 +728,7 @@ class CgzCopyTransaction {
 	 * @param RecompressTracked $parent
 	 * @param string $blobClass
 	 */
-	function __construct( $parent, $blobClass ) {
+	public function __construct( $parent, $blobClass ) {
 		$this->blobClass = $blobClass;
 		$this->cgz = false;
 		$this->texts = [];

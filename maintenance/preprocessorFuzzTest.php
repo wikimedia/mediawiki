@@ -54,7 +54,7 @@ class PPFuzzTester {
 	 */
 	private static $currentTest = false;
 
-	function execute() {
+	public function execute() {
 		if ( !file_exists( 'results' ) ) {
 			mkdir( 'results' );
 		}
@@ -160,7 +160,7 @@ class PPFuzzTest {
 	/**
 	 * @param PPFuzzTester $tester
 	 */
-	function __construct( $tester ) {
+	public function __construct( $tester ) {
 		global $wgMaxSigChars;
 		$this->parent = $tester;
 		$this->mainText = $tester->makeInputText();
@@ -204,7 +204,7 @@ class PPFuzzTest {
 		return $this->templates[$titleText];
 	}
 
-	function execute() {
+	public function execute() {
 		global $wgUser;
 
 		$wgUser = new PPFuzzUser;

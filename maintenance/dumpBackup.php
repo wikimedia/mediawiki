@@ -29,7 +29,7 @@
 require_once __DIR__ . '/includes/BackupDumper.php';
 
 class DumpBackup extends BackupDumper {
-	function __construct( $args = null ) {
+	public function __construct( $args = null ) {
 		parent::__construct();
 
 		$this->addDescription( <<<TEXT
@@ -73,7 +73,7 @@ TEXT
 		}
 	}
 
-	function execute() {
+	public function execute() {
 		$this->processOptions();
 
 		$textMode = $this->hasOption( 'stub' ) ? WikiExporter::STUB : WikiExporter::TEXT;

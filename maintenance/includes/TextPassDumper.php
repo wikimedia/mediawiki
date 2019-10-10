@@ -108,7 +108,7 @@ class TextPassDumper extends BackupDumper {
 	/**
 	 * @param array|null $args For backward compatibility
 	 */
-	function __construct( $args = null ) {
+	public function __construct( $args = null ) {
 		parent::__construct();
 
 		$this->addDescription( <<<TEXT
@@ -153,7 +153,7 @@ TEXT
 		return MediaWikiServices::getInstance()->getBlobStore();
 	}
 
-	function execute() {
+	public function execute() {
 		$this->processOptions();
 		$this->dump( true );
 	}

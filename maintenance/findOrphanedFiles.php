@@ -21,7 +21,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 class FindOrphanedFiles extends Maintenance {
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 
 		$this->addDescription( "Find unregistered files in the 'public' repo zone." );
@@ -31,7 +31,7 @@ class FindOrphanedFiles extends Maintenance {
 		$this->setBatchSize( 500 );
 	}
 
-	function execute() {
+	public function execute() {
 		$subdir = $this->getOption( 'subdir', '' );
 		$verbose = $this->hasOption( 'verbose' );
 

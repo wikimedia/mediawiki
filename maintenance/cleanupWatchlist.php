@@ -52,7 +52,7 @@ class CleanupWatchlist extends TableCleanup {
 		$this->addOption( 'fix', 'Actually remove entries; without will only report.' );
 	}
 
-	function execute() {
+	public function execute() {
 		if ( !$this->hasOption( 'fix' ) ) {
 			$this->output( "Dry run only: use --fix to enable updates\n" );
 		}

@@ -336,7 +336,7 @@ class UcdXmlReader {
 	public $blocks = [];
 	public $currentBlock;
 
-	function __construct( $fileName ) {
+	public function __construct( $fileName ) {
 		$this->fileName = $fileName;
 	}
 
