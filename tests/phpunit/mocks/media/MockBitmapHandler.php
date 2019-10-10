@@ -22,11 +22,11 @@
  */
 
 class MockBitmapHandler extends BitmapHandler {
-	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
+	public function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
 		return MockImageHandler::doFakeTransform( $this, $image, $dstPath, $dstUrl, $params, $flags );
 	}
 
-	function doClientImage( $image, $scalerParams ) {
+	public function doClientImage( $image, $scalerParams ) {
 			return $this->getClientScalingThumbnailImage( $image, $scalerParams );
 	}
 }

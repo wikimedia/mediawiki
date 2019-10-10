@@ -33,7 +33,7 @@ require __DIR__ . '/../../maintenance/Maintenance.php';
 use MediaWiki\MediaWikiServices;
 
 class ParserTestsMaintenance extends Maintenance {
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Run parser tests' );
 

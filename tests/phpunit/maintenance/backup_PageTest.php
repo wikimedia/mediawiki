@@ -44,7 +44,7 @@ class BackupDumperPageTest extends DumpTestCase {
 	 */
 	private $streamingLoadBalancer = null;
 
-	function addDBData() {
+	public function addDBData() {
 		// be sure, titles created here using english namespace names
 		$this->setContentLang( 'en' );
 
@@ -171,7 +171,7 @@ class BackupDumperPageTest extends DumpTestCase {
 			"Page ids increasing without holes" );
 	}
 
-	function tearDown() {
+	public function tearDown() {
 		parent::tearDown();
 
 		if ( isset( $this->streamingLoadBalancer ) ) {
@@ -238,7 +238,7 @@ class BackupDumperPageTest extends DumpTestCase {
 	/**
 	 * @dataProvider schemaVersionProvider
 	 */
-	function testFullTextPlain( $schemaVersion ) {
+	public function testFullTextPlain( $schemaVersion ) {
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
 
@@ -370,7 +370,7 @@ class BackupDumperPageTest extends DumpTestCase {
 	/**
 	 * @dataProvider schemaVersionProvider
 	 */
-	function testFullStubPlain( $schemaVersion ) {
+	public function testFullStubPlain( $schemaVersion ) {
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
 
@@ -495,7 +495,7 @@ class BackupDumperPageTest extends DumpTestCase {
 	/**
 	 * @dataProvider schemaVersionProvider
 	 */
-	function testCurrentStubPlain( $schemaVersion ) {
+	public function testCurrentStubPlain( $schemaVersion ) {
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
 
@@ -567,7 +567,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		$asserter->assertDumpEnd();
 	}
 
-	function testCurrentStubGzip() {
+	public function testCurrentStubGzip() {
 		$this->checkHasGzip();
 
 		// Preparing the dump
@@ -649,7 +649,7 @@ class BackupDumperPageTest extends DumpTestCase {
 	 *
 	 * @dataProvider schemaVersionProvider
 	 */
-	function testXmlDumpsBackupUseCase( $schemaVersion ) {
+	public function testXmlDumpsBackupUseCase( $schemaVersion ) {
 		$this->checkHasGzip();
 
 		$fnameMetaHistory = $this->getNewTempFile();

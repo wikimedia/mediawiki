@@ -18,7 +18,7 @@ class StringUtilsTest extends PHPUnit\Framework\TestCase {
 	 * @param string $string
 	 * @return string
 	 */
-	function escaped( $string ) {
+	private function escaped( $string ) {
 		$escaped = '';
 		$length = strlen( $string );
 		for ( $i = 0; $i < $length; $i++ ) {

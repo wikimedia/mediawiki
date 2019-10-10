@@ -39,7 +39,7 @@ class SemiMockedFetchText extends FetchText {
 	 *
 	 * @param string $stdin The string to be used instead of stdin
 	 */
-	function mockStdin( $stdin ) {
+	public function mockStdin( $stdin ) {
 		$this->mockStdinText = $stdin;
 		$this->mockSetUp = true;
 	}
@@ -50,14 +50,14 @@ class SemiMockedFetchText extends FetchText {
 	 * @return array An array, whose keys are function names. The corresponding values
 	 * denote the number of times the function has been invoked.
 	 */
-	function mockGetInvocations() {
+	public function mockGetInvocations() {
 		return $this->mockInvocations;
 	}
 
 	// -----------------------------------------------------------------
 	// Mocked functions from FetchText follow.
 
-	function getStdin( $len = null ) {
+	public function getStdin( $len = null ) {
 		$this->mockInvocations['getStdin']++;
 		if ( $len !== null ) {
 			throw new ExpectationFailedException(
@@ -131,7 +131,7 @@ class FetchTextTest extends MediaWikiTestCase {
 		throw new MWException( "Could not create revision" );
 	}
 
-	function addDBDataOnce() {
+	public function addDBDataOnce() {
 		$wikitextNamespace = $this->getDefaultWikitextNS();
 
 		try {
@@ -201,22 +201,22 @@ class FetchTextTest extends MediaWikiTestCase {
 	// However, as data providers are evaluated /before/ addDBData, a data
 	// provider would not know the required ids.
 
-	function testExistingSimple() {
+	public function testExistingSimple() {
 		$this->assertFilter( self::$textId2,
 			self::$textId2 . "\n23\nFetchTextTestPage2Text1" );
 	}
 
-	function testExistingSimpleWithNewline() {
+	public function testExistingSimpleWithNewline() {
 		$this->assertFilter( self::$textId2 . "\n",
 			self::$textId2 . "\n23\nFetchTextTestPage2Text1" );
 	}
 
-	function testExistingInteger() {
+	public function testExistingInteger() {
 		$this->assertFilter( (int)preg_replace( '/^tt:/', '', self::$textId2 ),
 			self::$textId2 . "\n23\nFetchTextTestPage2Text1" );
 	}
 
-	function testExistingSeveral() {
+	public function testExistingSeveral() {
 		$this->assertFilter(
 			implode( "\n", [
 				self::$textId1,
@@ -233,49 +233,49 @@ class FetchTextTest extends MediaWikiTestCase {
 			] ) );
 	}
 
-	function testEmpty() {
+	public function testEmpty() {
 		$this->assertFilter( "", null );
 	}
 
-	function testNonExisting() {
+	public function testNonExisting() {
 		\Wikimedia\suppressWarnings();
 		$this->assertFilter( 'tt:77889911', 'tt:77889911' . "\n-1\n" );
 		\Wikimedia\suppressWarnings( true );
 	}
 
-	function testNonExistingInteger() {
+	public function testNonExistingInteger() {
 		\Wikimedia\suppressWarnings();
 		$this->assertFilter( '77889911', 'tt:77889911' . "\n-1\n" );
 		\Wikimedia\suppressWarnings( true );
 	}
 
-	function testBadBlobAddressWithColon() {
+	public function testBadBlobAddressWithColon() {
 		$this->assertFilter( 'foo:bar', 'foo:bar' . "\n-1\n" );
 	}
 
-	function testNegativeInteger() {
+	public function testNegativeInteger() {
 		$this->assertFilter( "-42", "tt:-42\n-1\n" );
 	}
 
-	function testFloatingPointNumberExisting() {
+	public function testFloatingPointNumberExisting() {
 		// float -> int -> address -> revision
 		$id = intval( preg_replace( '/^tt:/', '', self::$textId3 ) ) + 0.14159;
 		$this->assertFilter( 'tt:' . intval( $id ),
 			self::$textId3 . "\n23\nFetchTextTestPage2Text2" );
 	}
 
-	function testFloatingPointNumberNonExisting() {
+	public function testFloatingPointNumberNonExisting() {
 		\Wikimedia\suppressWarnings();
 		$id = intval( preg_replace( '/^tt:/', '', self::$textId5 ) ) + 3.14159;
 		$this->assertFilter( $id, 'tt:' . intval( $id ) . "\n-1\n" );
 		\Wikimedia\suppressWarnings( true );
 	}
 
-	function testCharacters() {
+	public function testCharacters() {
 		$this->assertFilter( "abc", "abc\n-1\n" );
 	}
 
-	function testMix() {
+	public function testMix() {
 		$this->assertFilter( "ab\n" . self::$textId4 . ".5cd\n\nefg\nfoo:bar\n" . self::$textId2
 				. "\n" . self::$textId3,
 			implode( "", [

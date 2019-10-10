@@ -54,7 +54,7 @@ class BackupReader extends Maintenance {
 	/** @var int */
 	protected $startTime;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 		$gz = in_array( 'compress.zlib', stream_get_wrappers() )
 			? 'ok'

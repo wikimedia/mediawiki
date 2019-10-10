@@ -82,7 +82,7 @@ class MWFileProps {
 			$handler = MediaHandler::getHandler( $info['mime'] );
 			if ( $handler ) {
 				$info['metadata'] = $handler->getMetadata( $fsFile, $path );
-				/** @noinspection PhpMethodParametersCountMismatchInspection */
+				// @phan-suppress-next-line PhanParamTooMany
 				$gis = $handler->getImageSize( $fsFile, $path, $info['metadata'] );
 				if ( is_array( $gis ) ) {
 					$info = $this->extractImageSizeInfo( $gis ) + $info;

@@ -22,7 +22,7 @@
 require_once __DIR__ . '/../Maintenance.php';
 
 class StorageTypeStats extends Maintenance {
-	function execute() {
+	public function execute() {
 		$dbr = $this->getDB( DB_REPLICA );
 
 		$endId = $dbr->selectField( 'text', 'MAX(old_id)', '', __METHOD__ );

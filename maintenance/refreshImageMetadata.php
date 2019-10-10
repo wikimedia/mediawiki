@@ -44,7 +44,7 @@ class RefreshImageMetadata extends Maintenance {
 	 */
 	protected $dbw;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 
 		$this->addDescription( 'Script to update image metadata records' );

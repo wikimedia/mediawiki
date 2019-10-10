@@ -17,7 +17,7 @@ class ParserEditTests extends Maintenance {
 	private $numSkipped;
 	private $numFailed;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 		$this->addOption( 'session-data', 'internal option, do not use', false, true );
 		$this->addOption( 'use-tidy-config',

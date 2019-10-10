@@ -11,7 +11,7 @@ class JobQueueTest extends MediaWikiTestCase {
 	protected $key;
 	protected $queueRand, $queueRandTTL, $queueFifo, $queueFifoTTL;
 
-	function __construct( $name = null, array $data = [], $dataName = '' ) {
+	public function __construct( $name = null, array $data = [], $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
 
 		$this->tablesUsed[] = 'job';
@@ -378,12 +378,12 @@ class JobQueueTest extends MediaWikiTestCase {
 		];
 	}
 
-	function newJob( $i = 0, $rootJob = [] ) {
+	protected function newJob( $i = 0, $rootJob = [] ) {
 		return Job::factory( 'null', Title::newMainPage(),
 			[ 'lives' => 0, 'usleep' => 0, 'removeDuplicates' => 0, 'i' => $i ] + $rootJob );
 	}
 
-	function newDedupedJob( $i = 0, $rootJob = [] ) {
+	protected function newDedupedJob( $i = 0, $rootJob = [] ) {
 		return Job::factory( 'null', Title::newMainPage(),
 			[ 'lives' => 0, 'usleep' => 0, 'removeDuplicates' => 1, 'i' => $i ] + $rootJob );
 	}

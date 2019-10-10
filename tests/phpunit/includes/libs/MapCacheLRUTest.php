@@ -14,7 +14,7 @@ class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 	 * @covers MapCacheLRU::getMaxSize()
 	 * @covers MapCacheLRU::setMaxSize()
 	 */
-	function testArrayConversion() {
+	public function testArrayConversion() {
 		$raw = [ 'd' => 4, 'c' => 3, 'b' => 2, 'a' => 1 ];
 		$cache = MapCacheLRU::newFromArray( $raw, 3 );
 
@@ -59,7 +59,7 @@ class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 	 * @covers MapCacheLRU::serialize()
 	 * @covers MapCacheLRU::unserialize()
 	 */
-	function testSerialize() {
+	public function testSerialize() {
 		$cache = MapCacheLRU::newFromArray( [ 'd' => 4, 'c' => 3, 'b' => 2, 'a' => 1 ], 10 );
 		$string = serialize( $cache );
 		$ncache = unserialize( $string );
@@ -74,7 +74,7 @@ class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 	 * @covers MapCacheLRU::get()
 	 * @covers MapCacheLRU::set()
 	 */
-	function testMissing() {
+	public function testMissing() {
 		$raw = [ 'a' => 1, 'b' => 2, 'c' => 3 ];
 		$cache = MapCacheLRU::newFromArray( $raw, 3 );
 
@@ -89,7 +89,7 @@ class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 	 * @covers MapCacheLRU::get()
 	 * @covers MapCacheLRU::set()
 	 */
-	function testLRU() {
+	public function testLRU() {
 		$raw = [ 'a' => 1, 'b' => 2, 'c' => 3 ];
 		$cache = MapCacheLRU::newFromArray( $raw, 3 );
 

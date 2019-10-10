@@ -110,7 +110,7 @@ class RandomImageGenerator {
 	 * @param string|null $dir Directory, optional (will default to current working directory)
 	 * @return array Filenames we just wrote
 	 */
-	function writeImages( $number, $format = 'jpg', $dir = null ) {
+	public function writeImages( $number, $format = 'jpg', $dir = null ) {
 		$filenames = $this->getRandomFilenames( $number, $format, $dir );
 		$imageWriteMethod = $this->getImageWriteMethod( $format );
 		foreach ( $filenames as $filename ) {
@@ -128,7 +128,7 @@ class RandomImageGenerator {
 	 * @throws Exception
 	 * @return string
 	 */
-	function getImageWriteMethod( $format ) {
+	public function getImageWriteMethod( $format ) {
 		global $wgUseImageMagick, $wgImageMagickConvertCommand;
 		if ( $format === 'svg' ) {
 			return 'writeSvg';
@@ -226,7 +226,7 @@ class RandomImageGenerator {
 	 * @param array $shape Array of arrays, each array containing x & y keys mapped to numeric values
 	 * @return string
 	 */
-	static function shapePointsToString( $shape ) {
+	public static function shapePointsToString( $shape ) {
 		$points = [];
 		foreach ( $shape as $point ) {
 			$points[] = $point['x'] . ',' . $point['y'];

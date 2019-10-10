@@ -121,7 +121,7 @@ class SpecialSearchTest extends MediaWikiTestCase {
 	 * User remains anonymous though
 	 * @param array|null $opt
 	 */
-	function newUserWithSearchNS( $opt = null ) {
+	protected function newUserWithSearchNS( $opt = null ) {
 		$u = User::newFromId( 0 );
 		if ( $opt === null ) {
 			return $u;

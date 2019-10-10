@@ -35,7 +35,7 @@ use Wikimedia\Rdbms\DatabaseSqlite;
  * @ingroup Maintenance
  */
 class UpdateMediaWiki extends Maintenance {
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'MediaWiki database updater' );
 		$this->addOption( 'skip-compat-checks', 'Skips compatibility checks, mostly for developers' );
@@ -57,7 +57,7 @@ class UpdateMediaWiki extends Maintenance {
 		);
 	}
 
-	function getDbType() {
+	public function getDbType() {
 		return Maintenance::DB_ADMIN;
 	}
 
@@ -84,7 +84,7 @@ class UpdateMediaWiki extends Maintenance {
 		}
 	}
 
-	function execute() {
+	public function execute() {
 		global $wgVersion, $wgLang, $wgAllowSchemaUpdates, $wgMessagesDirs;
 
 		if ( !$wgAllowSchemaUpdates

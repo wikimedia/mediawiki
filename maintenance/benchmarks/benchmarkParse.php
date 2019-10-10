@@ -46,7 +46,7 @@ class BenchmarkParse extends Maintenance {
 	/** @var array Cache that maps a Title DB key to revision ID for the requested timestamp */
 	private $idCache = [];
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Benchmark parse operation' );
 		$this->addArg( 'title', 'The name of the page to parse' );
@@ -65,7 +65,7 @@ class BenchmarkParse extends Maintenance {
 			false, false );
 	}
 
-	function execute() {
+	public function execute() {
 		if ( $this->hasOption( 'tpl-time' ) ) {
 			$this->templateTimestamp = wfTimestamp( TS_MW, strtotime( $this->getOption( 'tpl-time' ) ) );
 			Hooks::register( 'BeforeParserFetchTemplateAndtitle', [ $this, 'onFetchTemplate' ] );

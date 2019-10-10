@@ -58,7 +58,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		return $logEntry->insert();
 	}
 
-	function addDBData() {
+	public function addDBData() {
 		$this->tablesUsed[] = 'logging';
 		$this->tablesUsed[] = 'user';
 
@@ -99,7 +99,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		}
 	}
 
-	function testPlain() {
+	public function testPlain() {
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
 
@@ -137,7 +137,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		$asserter->assertDumpEnd();
 	}
 
-	function testXmlDumpsBackupUseCaseLogging() {
+	public function testXmlDumpsBackupUseCaseLogging() {
 		$this->checkHasGzip();
 
 		// Preparing the dump

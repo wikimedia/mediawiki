@@ -12,7 +12,7 @@ class ParserTestFileSuite extends TestSuite {
 	private $ptFileName;
 	private $ptFileInfo;
 
-	function __construct( $runner, $name, $fileName ) {
+	public function __construct( $runner, $name, $fileName ) {
 		parent::__construct( $name );
 		$this->ptRunner = $runner;
 		$this->ptFileName = $fileName;
@@ -24,7 +24,7 @@ class ParserTestFileSuite extends TestSuite {
 		}
 	}
 
-	function setUp() {
+	public function setUp() {
 		if ( !$this->ptRunner->meetsRequirements( $this->ptFileInfo['requirements'] ) ) {
 			$this->markTestSuiteSkipped( 'required extension not enabled' );
 		} else {

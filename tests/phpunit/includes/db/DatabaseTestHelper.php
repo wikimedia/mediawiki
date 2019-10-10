@@ -136,7 +136,7 @@ class DatabaseTestHelper extends Database {
 		}
 	}
 
-	function strencode( $s ) {
+	public function strencode( $s ) {
 		// Choose apos to avoid handling of escaping double quotes in quoted text
 		return str_replace( "'", "\'", $s );
 	}
@@ -168,49 +168,49 @@ class DatabaseTestHelper extends Database {
 		parent::nativeReplace( $table, $rows, $fname );
 	}
 
-	function getType() {
+	public function getType() {
 		return 'test';
 	}
 
-	function open( $server, $user, $password, $dbName, $schema, $tablePrefix ) {
+	public function open( $server, $user, $password, $dbName, $schema, $tablePrefix ) {
 		$this->conn = (object)[ 'test' ];
 
 		return true;
 	}
 
-	function fetchObject( $res ) {
+	public function fetchObject( $res ) {
 		return false;
 	}
 
-	function fetchRow( $res ) {
+	public function fetchRow( $res ) {
 		return false;
 	}
 
-	function numRows( $res ) {
+	public function numRows( $res ) {
 		return -1;
 	}
 
-	function numFields( $res ) {
+	public function numFields( $res ) {
 		return -1;
 	}
 
-	function fieldName( $res, $n ) {
+	public function fieldName( $res, $n ) {
 		return 'test';
 	}
 
-	function insertId() {
+	public function insertId() {
 		return -1;
 	}
 
-	function dataSeek( $res, $row ) {
+	public function dataSeek( $res, $row ) {
 		/* nop */
 	}
 
-	function lastErrno() {
+	public function lastErrno() {
 		return $this->lastError ? $this->lastError['errno'] : -1;
 	}
 
-	function lastError() {
+	public function lastError() {
 		return $this->lastError ? $this->lastError['error'] : 'test';
 	}
 
@@ -218,31 +218,31 @@ class DatabaseTestHelper extends Database {
 		return $this->lastError['wasKnownStatementRollbackError'] ?? false;
 	}
 
-	function fieldInfo( $table, $field ) {
+	public function fieldInfo( $table, $field ) {
 		return false;
 	}
 
-	function indexInfo( $table, $index, $fname = 'Database::indexInfo' ) {
+	public function indexInfo( $table, $index, $fname = 'Database::indexInfo' ) {
 		return false;
 	}
 
-	function fetchAffectedRowCount() {
+	public function fetchAffectedRowCount() {
 		return -1;
 	}
 
-	function getSoftwareLink() {
+	public function getSoftwareLink() {
 		return 'test';
 	}
 
-	function getServerVersion() {
+	public function getServerVersion() {
 		return 'test';
 	}
 
-	function getServerInfo() {
+	public function getServerInfo() {
 		return 'test';
 	}
 
-	function ping( &$rtt = null ) {
+	public function ping( &$rtt = null ) {
 		$rtt = 0.0;
 		return true;
 	}

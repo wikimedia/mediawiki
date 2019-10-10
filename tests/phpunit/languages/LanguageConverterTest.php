@@ -323,7 +323,7 @@ class TestConverter extends LanguageConverter {
 		'г' => 'g',
 	];
 
-	function loadDefaultTables() {
+	public function loadDefaultTables() {
 		$this->mTables = [
 			'sgs' => new ReplacementArray(),
 			'simple' => new ReplacementArray(),
@@ -334,7 +334,7 @@ class TestConverter extends LanguageConverter {
 }
 
 class LanguageToTest extends Language {
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 		$variants = [ 'tg', 'tg-latn' ];
 		$this->mConverter = new TestConverter( $this, 'tg', $variants );

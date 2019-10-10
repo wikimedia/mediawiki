@@ -47,7 +47,7 @@ class TrackBlobs {
 	public $batchSize = 1000;
 	public $reportingInterval = 10;
 
-	function __construct( $clusters ) {
+	public function __construct( $clusters ) {
 		$this->clusters = $clusters;
 		if ( extension_loaded( 'gmp' ) ) {
 			$this->doBlobOrphans = true;
