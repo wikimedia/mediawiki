@@ -91,8 +91,10 @@ class ObjectCache {
 	 * @since 1.26
 	 * @param string $id A key in $wgWANObjectCaches.
 	 * @return WANObjectCache
+	 * @deprecated since 1.34 Use MediaWikiServices::getMainWANObjectCache instead
 	 */
 	public static function getWANInstance( $id ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		if ( !isset( self::$wanInstances[$id] ) ) {
 			self::$wanInstances[$id] = self::newWANCacheFromId( $id );
 		}
@@ -308,8 +310,11 @@ class ObjectCache {
 	 * @return WANObjectCache
 	 * @throws UnexpectedValueException
 	 * @suppress PhanTypeMismatchReturn
+	 * @deprecated since 1.34 Use MediaWikiServices::getMainWANObjectCache
+	 *  instead or use WANObjectCache::__construct directly
 	 */
 	public static function newWANCacheFromParams( array $params ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		global $wgCommandLineMode, $wgSecretKey;
 
 		$services = MediaWikiServices::getInstance();

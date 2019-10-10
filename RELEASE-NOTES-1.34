@@ -569,6 +569,10 @@ because of Phabricator reports.
 * IDatabase::bufferResults() has been deprecated. Use query batching instead.
 * MessageCache::singleton() is deprecated. Use
   MediaWikiServices::getMessageCache().
+* ObjectCache::getWANInstance() is deprecated. Use
+  MediaWikiServices::getMainWANObjectCache() instead.
+* ObjectCache::newWANCacheFromParams() is deprecated. Use
+  MediaWikiServices::getMainWANObjectCache() instead.
 * Constructing MovePage directly is deprecated. Use MovePageFactory.
 * TempFSFile::factory() has been deprecated. Use TempFSFileFactory instead.
 * wfIsBadImage() is deprecated. Use the BadFileLookup service instead.
@@ -625,7 +629,7 @@ because of Phabricator reports.
 * …
 
 == Compatibility ==
-MediaWiki 1.34 requires PHP 7.2.0 or later, and the following PHP extensions:
+MediaWiki 1.34 requires PHP 7.2.9 or later, and the following PHP extensions:
 
 * ctype
 * dom
