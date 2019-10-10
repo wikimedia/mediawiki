@@ -154,7 +154,7 @@ class ApiFeedContributions extends ApiBase {
 		if ( $title && $this->getPermissionManager()->userCan( 'read', $user, $title ) ) {
 			$date = $row->rev_timestamp;
 			$comments = $title->getTalkPage()->getFullURL();
-			$revision = $this->revisionStore->newRevisionFromRow( $row );
+			$revision = $this->revisionStore->newRevisionFromRow( $row, 0, $title );
 
 			return new FeedItem(
 				$title->getPrefixedText(),
