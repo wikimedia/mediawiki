@@ -12,7 +12,7 @@ class ArrayUtilsTest extends PHPUnit\Framework\TestCase {
 	 * @covers ArrayUtils::findLowerBound
 	 * @dataProvider provideFindLowerBound
 	 */
-	function testFindLowerBound(
+	public function testFindLowerBound(
 		$valueCallback, $valueCount, $comparisonCallback, $target, $expected
 	) {
 		$this->assertSame(
@@ -22,7 +22,7 @@ class ArrayUtilsTest extends PHPUnit\Framework\TestCase {
 		);
 	}
 
-	function provideFindLowerBound() {
+	public function provideFindLowerBound() {
 		$indexValueCallback = function ( $size ) {
 			return function ( $val ) use ( $size ) {
 				$this->assertTrue( $val >= 0 );
@@ -133,13 +133,13 @@ class ArrayUtilsTest extends PHPUnit\Framework\TestCase {
 	 * @covers ArrayUtils::arrayDiffAssocRecursive
 	 * @dataProvider provideArrayDiffAssocRecursive
 	 */
-	function testArrayDiffAssocRecursive( $expected, ...$args ) {
+	public function testArrayDiffAssocRecursive( $expected, ...$args ) {
 		$this->assertEquals( call_user_func_array(
 			'ArrayUtils::arrayDiffAssocRecursive', $args
 		), $expected );
 	}
 
-	function provideArrayDiffAssocRecursive() {
+	public function provideArrayDiffAssocRecursive() {
 		return [
 			[
 				[],

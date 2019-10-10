@@ -39,7 +39,7 @@ class ParserTestPrinter extends TestRecorder {
 	private $markWhitespace;
 	private $xmlError;
 
-	function __construct( $term, $options ) {
+	public function __construct( $term, $options ) {
 		$this->term = $term;
 		$options += [
 			'showDiffs' => true,

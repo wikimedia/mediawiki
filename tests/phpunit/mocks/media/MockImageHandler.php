@@ -43,7 +43,7 @@ class MockImageHandler {
 	 * @param int $flags
 	 * @return ThumbnailImage
 	 */
-	static function doFakeTransform( $that, $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
+	public static function doFakeTransform( $that, $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
 		# Example of what we receive:
 		# $image: LocalFile
 		# $dstPath: /tmp/transform_7d0a7a2f1a09-1.jpg

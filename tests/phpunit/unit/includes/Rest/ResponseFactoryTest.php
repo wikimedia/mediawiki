@@ -23,11 +23,11 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 
 	private function createResponseFactory() {
 		$fakeTextFormatter = new class implements ITextFormatter {
-			function getLangCode() {
+			public function getLangCode() {
 				return 'qqx';
 			}
 
-			function format( MessageValue $message ) {
+			public function format( MessageValue $message ) {
 				return $message->getKey();
 			}
 		};

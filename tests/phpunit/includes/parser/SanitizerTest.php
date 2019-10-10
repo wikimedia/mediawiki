@@ -49,7 +49,7 @@ class SanitizerTest extends MediaWikiTestCase {
 		];
 	}
 
-	function dataRemoveHTMLtags() {
+	public function dataRemoveHTMLtags() {
 		return [
 			// former testSelfClosingTag
 			[

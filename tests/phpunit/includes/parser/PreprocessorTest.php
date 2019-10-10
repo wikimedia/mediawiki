@@ -57,7 +57,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 		}
 	}
 
-	function getStripList() {
+	public function getStripList() {
 		return [ 'gallery', 'display map' /* Used by Maps, see r80025 CR */, '/foo' ];
 	}
 

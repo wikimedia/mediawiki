@@ -172,7 +172,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	/**
 	 * Checks for test output consisting only of lines containing ETA announcements
 	 */
-	function expectETAOutput() {
+	protected function expectETAOutput() {
 		// Newer PHPUnits require assertion about the output using PHPUnit's own
 		// expectOutput[...] functions. However, the PHPUnit shipped prediactes
 		// do not allow to check /each/ line of the output using /readable/ REs.

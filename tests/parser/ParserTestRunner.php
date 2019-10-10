@@ -797,7 +797,7 @@ class ParserTestRunner {
 	 * @param string|null $preprocessor
 	 * @return Parser
 	 */
-	function getParser( $preprocessor = null ) {
+	public function getParser( $preprocessor = null ) {
 		global $wgParserConf;
 
 		$class = $wgParserConf['class'];

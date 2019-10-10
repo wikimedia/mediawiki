@@ -8,13 +8,13 @@ class FileTest extends MediaWikiMediaTestCase {
 	 * @dataProvider providerCanAnimate
 	 * @covers File::canAnimateThumbIfAppropriate
 	 */
-	function testCanAnimateThumbIfAppropriate( $filename, $expected ) {
+	public function testCanAnimateThumbIfAppropriate( $filename, $expected ) {
 		$this->setMwGlobals( 'wgMaxAnimatedGifArea', 9000 );
 		$file = $this->dataFile( $filename );
 		$this->assertEquals( $file->canAnimateThumbIfAppropriate(), $expected );
 	}
 
-	function providerCanAnimate() {
+	public function providerCanAnimate() {
 		return [
 			[ 'nonanimated.gif', true ],
 			[ 'jpeg-comment-utf.jpg', true ],

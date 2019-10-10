@@ -962,7 +962,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::setArticleRelated
 	 * @covers OutputPage::isArticleRelated
 	 */
-	function testArticleFlags() {
+	public function testArticleFlags() {
 		$op = $this->newInstance();
 		$this->assertFalse( $op->isArticle() );
 		$this->assertTrue( $op->isArticleRelated() );
@@ -992,7 +992,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::addParserOutputMetadata
 	 * @covers OutputPage::addParserOutput
 	 */
-	function testLanguageLinks() {
+	public function testLanguageLinks() {
 		$op = $this->newInstance();
 		$this->assertSame( [], $op->getLanguageLinks() );
 

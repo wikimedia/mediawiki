@@ -13,7 +13,7 @@ class ContribsPagerTest extends MediaWikiTestCase {
 	/** @var LinkRenderer */
 	private $linkRenderer;
 
-	function setUp() {
+	public function setUp() {
 		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$context = new RequestContext();
 		$this->pager = new ContribsPager( $context, [

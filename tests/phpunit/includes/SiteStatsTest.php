@@ -5,7 +5,7 @@ class SiteStatsTest extends MediaWikiTestCase {
 	/**
 	 * @covers SiteStats::jobs
 	 */
-	function testJobsCountGetCached() {
+	public function testJobsCountGetCached() {
 		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
 		$this->setService( 'MainWANObjectCache', $cache );
 		$jobq = JobQueueGroup::singleton();
