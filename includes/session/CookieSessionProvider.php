@@ -267,11 +267,8 @@ class CookieSessionProvider extends SessionProvider {
 	 * @param bool $set Whether the cookie should be set or not
 	 * @param SessionBackend|null $backend
 	 * @param WebRequest $request
-	 * @suppress PhanParamReqAfterOpt Overridden in CentralAuth
 	 */
-	protected function setForceHTTPSCookie(
-		$set, SessionBackend $backend = null, WebRequest $request
-	) {
+	protected function setForceHTTPSCookie( $set, ?SessionBackend $backend, WebRequest $request ) {
 		$response = $request->response();
 		if ( $set ) {
 			if ( $backend->shouldRememberUser() ) {
