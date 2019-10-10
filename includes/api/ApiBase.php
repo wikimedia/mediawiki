@@ -2345,6 +2345,7 @@ abstract class ApiBase extends ContextSource {
 	 * @since 1.21 $flags param added
 	 */
 	public function getFinalParams( $flags = 0 ) {
+		// @phan-suppress-next-line PhanParamTooMany
 		$params = $this->getAllowedParams( $flags );
 		if ( !$params ) {
 			$params = [];

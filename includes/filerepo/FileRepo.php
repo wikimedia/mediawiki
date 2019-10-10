@@ -1833,9 +1833,10 @@ class FileRepo {
 	 * The parameters are the parts of the key.
 	 *
 	 * STUB
+	 * @param mixed ...$args
 	 * @return bool
 	 */
-	public function getSharedCacheKey( /*...*/ ) {
+	public function getSharedCacheKey( ...$args ) {
 		return false;
 	}
 
@@ -1844,10 +1845,10 @@ class FileRepo {
 	 * not shared with remote instances of the repo.
 	 * The parameters are the parts of the key.
 	 *
+	 * @param mixed ...$args
 	 * @return string
 	 */
-	public function getLocalCacheKey( /*...*/ ) {
-		$args = func_get_args();
+	public function getLocalCacheKey( ...$args ) {
 		array_unshift( $args, 'filerepo', $this->getName() );
 
 		return $this->wanCache->makeKey( ...$args );

@@ -137,7 +137,7 @@ class PurgeChangedPages extends Maintenance {
 			}
 
 			// Send batch of purge requests out to CDN servers
-			$cdn = new CdnCacheUpdate( $urls, count( $urls ) );
+			$cdn = new CdnCacheUpdate( $urls );
 			$cdn->doUpdate();
 
 			if ( $this->hasOption( 'sleep-per-batch' ) ) {

@@ -896,10 +896,10 @@ class DatabaseSqlite extends Database {
 	/**
 	 * No-op version of deadlockLoop
 	 *
+	 * @param mixed ...$args
 	 * @return mixed
 	 */
-	public function deadlockLoop( /*...*/ ) {
-		$args = func_get_args();
+	public function deadlockLoop( ...$args ) {
 		$function = array_shift( $args );
 
 		return $function( ...$args );

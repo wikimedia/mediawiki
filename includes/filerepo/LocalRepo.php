@@ -503,11 +503,10 @@ class LocalRepo extends FileRepo {
 	 * Returns false if the repository's cache is not accessible at this site.
 	 * The parameters are the parts of the key.
 	 *
+	 * @param mixed ...$args
 	 * @return string
 	 */
-	function getSharedCacheKey( /*...*/ ) {
-		$args = func_get_args();
-
+	function getSharedCacheKey( ...$args ) {
 		return $this->wanCache->makeKey( ...$args );
 	}
 
