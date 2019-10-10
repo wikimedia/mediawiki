@@ -852,14 +852,14 @@ abstract class DatabaseMysqlBase extends Database {
 		if ( $this->getLBInfo( 'is static' ) === true ) {
 			$this->queryLogger->debug(
 				"Bypassed replication wait; database has a static dataset",
-				$this->getLogContext( [ 'method' => __METHOD__ ] )
+				$this->getLogContext( [ 'method' => __METHOD__, 'raw_pos' => $pos ] )
 			);
 
 			return 0; // this is a copy of a read-only dataset with no master DB
 		} elseif ( $this->lastKnownReplicaPos && $this->lastKnownReplicaPos->hasReached( $pos ) ) {
 			$this->queryLogger->debug(
-				"Bypassed replication wait; replication already known to have reached $pos",
-				$this->getLogContext( [ 'method' => __METHOD__ ] )
+				"Bypassed replication wait; replication known to have reached {raw_pos}",
+				$this->getLogContext( [ 'method' => __METHOD__, 'raw_pos' => $pos ] )
 			);
 
 			return 0; // already reached this point for sure
@@ -871,8 +871,8 @@ abstract class DatabaseMysqlBase extends Database {
 			$refPos = $this->getReplicaPos();
 			if ( !$refPos ) {
 				$this->queryLogger->error(
-					"Could not get replication position",
-					$this->getLogContext( [ 'method' => __METHOD__ ] )
+					"Could not get replication position on replica DB to compare to {raw_pos}",
+					$this->getLogContext( [ 'method' => __METHOD__, 'raw_pos' => $pos ] )
 				);
 
 				return -1; // this is the master itself?
@@ -881,8 +881,12 @@ abstract class DatabaseMysqlBase extends Database {
 			$gtidsWait = $pos::getRelevantActiveGTIDs( $pos, $refPos );
 			if ( !$gtidsWait ) {
 				$this->queryLogger->error(
-					"No active GTIDs in $pos share a domain with those in $refPos",
-					$this->getLogContext( [ 'method' => __METHOD__, 'activeDomain' => $pos ] )
+					"No active GTIDs in {raw_pos} share a domain with those in {current_pos}",
+					$this->getLogContext( [
+						'method' => __METHOD__,
+						'raw_pos' => $pos,
+						'current_pos' => $refPos
+					] )
 				);
 
 				return -1; // $pos is from the wrong cluster?
@@ -896,11 +900,13 @@ abstract class DatabaseMysqlBase extends Database {
 				// MariaDB GTIDs, e.g."domain:server:sequence"
 				$sql = "SELECT MASTER_GTID_WAIT($gtidArg, $timeout)";
 			}
+			$waitPos = implode( ',', $gtidsWait );
 		} else {
 			// Wait on the binlog coordinates
 			$encFile = $this->addQuotes( $pos->getLogFile() );
 			$encPos = intval( $pos->getLogPosition()[$pos::CORD_EVENT] );
 			$sql = "SELECT MASTER_POS_WAIT($encFile, $encPos, $timeout)";
+			$waitPos = $pos->__toString();
 		}
 
 		$res = $this->query( $sql, __METHOD__, self::QUERY_IGNORE_DBO_TRX );
@@ -910,20 +916,34 @@ abstract class DatabaseMysqlBase extends Database {
 		$status = ( $row[0] !== null ) ? intval( $row[0] ) : null;
 		if ( $status === null ) {
 			$this->queryLogger->error(
-				"An error occurred while waiting for replication to reach $pos",
-				$this->getLogContext( [ 'method' => __METHOD__, 'sql' => $sql ] )
+				"An error occurred while waiting for replication to reach {raw_pos}",
+				$this->getLogContext( [
+					'method' => __METHOD__,
+					'raw_pos' => $pos,
+					'wait_pos' => $waitPos,
+					'sql' => $sql
+				] )
 			);
 		} elseif ( $status < 0 ) {
 			$this->queryLogger->error(
-				"Timed out waiting for replication to reach $pos",
+				"Timed out waiting for replication to reach {raw_pos}",
 				$this->getLogContext( [
-					'method' => __METHOD__, 'sql' => $sql, 'timeout' => $timeout
+					'method' => __METHOD__,
+					'raw_pos' => $pos,
+					'wait_pos' => $waitPos,
+					'timeout' => $timeout,
+					'sql' => $sql,
+
 				] )
 			);
 		} elseif ( $status >= 0 ) {
 			$this->queryLogger->debug(
-				"Replication has reached $pos",
-				$this->getLogContext( [ 'method' => __METHOD__ ] )
+				"Replication has reached {raw_pos}",
+				$this->getLogContext( [
+					'method' => __METHOD__,
+					'raw_pos' => $pos,
+					'wait_pos' => $waitPos
+				] )
 			);
 			// Remember that this position was reached to save queries next time
 			$this->lastKnownReplicaPos = $pos;
