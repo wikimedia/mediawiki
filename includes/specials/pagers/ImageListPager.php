@@ -51,8 +51,8 @@ class ImageListPager extends TablePager {
 
 	protected $mTableName = 'image';
 
-	public function __construct( IContextSource $context, $userName = null, $search = '',
-		$including = false, $showAll = false, LinkRenderer $linkRenderer
+	public function __construct( IContextSource $context, $userName, $search,
+		$including, $showAll, LinkRenderer $linkRenderer
 	) {
 		$this->setContext( $context );
 

@@ -297,14 +297,14 @@ class XmlDumpWriter {
 	 *
 	 * @param object $obj
 	 * @param string $method
-	 * @param array $args
 	 * @param string $warning The warning to output in case of a storage related exception.
+	 * @param array $args
 	 *
 	 * @return mixed Returns the method's return value,
 	 *         or null in case of a storage related exception.
 	 * @throws Exception
 	 */
-	private function invokeLenient( $obj, $method, $args = [], $warning ) {
+	private function invokeLenient( $obj, $method, $warning, $args = [] ) {
 		try {
 			return call_user_func_array( [ $obj, $method ], $args );
 		} catch ( SuppressedDataException $ex ) {
@@ -386,7 +386,6 @@ class XmlDumpWriter {
 			$sha1 = $this->invokeLenient(
 				$rev,
 				'getSha1',
-				[],
 				'failed to determine sha1 for revision ' . $rev->getId()
 			);
 			$out .= "      " . Xml::element( 'sha1', null, strval( $sha1 ) ) . "\n";
@@ -400,8 +399,8 @@ class XmlDumpWriter {
 			$content = $this->invokeLenient(
 				$rev,
 				'getContent',
-				[ SlotRecord::MAIN, RevisionRecord::RAW ],
-				'Failed to load main slot content of revision ' . $rev->getId()
+				'Failed to load main slot content of revision ' . $rev->getId(),
+				[ SlotRecord::MAIN, RevisionRecord::RAW ]
 			);
 
 			$text = $content ? $content->serialize() : '';
@@ -456,7 +455,6 @@ class XmlDumpWriter {
 			'bytes' => $this->invokeLenient(
 				$slot,
 				'getSize',
-				[],
 				'failed to determine size for slot ' . $slot->getRole() . ' of revision '
 				. $slot->getRevision()
 			) ?: '0'
@@ -466,7 +464,6 @@ class XmlDumpWriter {
 			$textAttributes['sha1'] = $this->invokeLenient(
 				$slot,
 				'getSha1',
-				[],
 				'failed to determine sha1 for slot ' . $slot->getRole() . ' of revision '
 				. $slot->getRevision()
 			) ?: '';
@@ -476,7 +473,6 @@ class XmlDumpWriter {
 			$content = $this->invokeLenient(
 				$slot,
 				'getContent',
-				[],
 				'failed to load content for slot ' . $slot->getRole() . ' of revision '
 				. $slot->getRevision()
 			);

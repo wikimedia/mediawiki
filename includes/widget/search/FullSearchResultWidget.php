@@ -164,7 +164,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 	 *  to use the title
 	 * @return string HTML
 	 */
-	protected function generateAltTitleHtml( $msgKey, Title $title = null, $text ) {
+	protected function generateAltTitleHtml( $msgKey, ?Title $title, $text ) {
 		$inner = $title === null
 			? $text
 			: $this->linkRenderer->makeLink( $title, $text ? new HtmlArmor( $text ) : null );

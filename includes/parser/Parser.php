@@ -831,7 +831,7 @@ class Parser {
 	 * @param bool|PPFrame $frame
 	 * @return mixed|string
 	 */
-	public function preprocess( $text, Title $title = null,
+	public function preprocess( $text, ?Title $title,
 		ParserOptions $options, $revid = null, $frame = false
 	) {
 		$magicScopeVariable = $this->lock();
@@ -4882,7 +4882,7 @@ class Parser {
 	 * @param bool $clearState
 	 * @param int|null $revId
 	 */
-	public function startExternalParse( Title $title = null, ParserOptions $options,
+	public function startExternalParse( ?Title $title, ParserOptions $options,
 		$outputType, $clearState = true, $revId = null
 	) {
 		$this->startParse( $title, $options, $outputType, $clearState );
@@ -4897,7 +4897,7 @@ class Parser {
 	 * @param int $outputType
 	 * @param bool $clearState
 	 */
-	private function startParse( Title $title = null, ParserOptions $options,
+	private function startParse( ?Title $title, ParserOptions $options,
 		$outputType, $clearState = true
 	) {
 		$this->setTitle( $title );

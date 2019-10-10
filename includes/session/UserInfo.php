@@ -55,7 +55,7 @@ final class UserInfo {
 	/** @var User|null */
 	private $user = null;
 
-	private function __construct( User $user = null, $verified ) {
+	private function __construct( ?User $user, $verified ) {
 		if ( $user && $user->isAnon() && !User::isUsableName( $user->getName() ) ) {
 			$this->verified = true;
 			$this->user = null;

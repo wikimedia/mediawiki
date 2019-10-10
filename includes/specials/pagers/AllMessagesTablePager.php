@@ -66,7 +66,7 @@ class AllMessagesTablePager extends TablePager {
 	 * @param FormOptions $opts
 	 * @param LinkRenderer $linkRenderer
 	 */
-	public function __construct( IContextSource $context = null, FormOptions $opts,
+	public function __construct( ?IContextSource $context, FormOptions $opts,
 		LinkRenderer $linkRenderer
 	) {
 		parent::__construct( $context, $linkRenderer );
