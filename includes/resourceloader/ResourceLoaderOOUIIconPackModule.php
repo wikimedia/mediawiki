@@ -25,7 +25,7 @@
  * @since 1.34
  */
 class ResourceLoaderOOUIIconPackModule extends ResourceLoaderOOUIImageModule {
-	public function __construct( $options = [], $localBasePath = null ) {
+	public function __construct( array $options = [], $localBasePath = null ) {
 		parent::__construct( $options, $localBasePath );
 
 		if ( !isset( $this->definition['icons'] ) || !$this->definition['icons'] ) {
