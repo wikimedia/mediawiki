@@ -359,7 +359,15 @@ return [
 				"Cache type \"$id\" is not present in \$wgObjectCaches." );
 		}
 
-		return ObjectCache::newFromParams( $mainConfig->get( 'ObjectCaches' )[$id] );
+		$params = $mainConfig->get( 'ObjectCaches' )[$id];
+		$logger = $params['logger'] = LoggerFactory::getInstance( $params['loggroup'] ?? 'objectcache' );
+
+		$store = ObjectCache::newFromParams( $params );
+		$logger->debug( 'MainObjectStash using store {class}', [
+			'class' => get_class( $store )
+		] );
+
+		return $store;
 	},
 
 	'MainWANObjectCache' => function ( MediaWikiServices $services ) : WANObjectCache {
