@@ -451,6 +451,7 @@
 	"no-null-revision": "Non è stato possibile creare una versione nulla per la pagina \"$1\"",
 	"badtitle": "Titolo non corretto",
 	"badtitletext": "Il titolo della pagina richiesta è vuoto, errato oppure deriva da un errore nei collegamenti interlingua o interwiki.\nPotrebbe inoltre contenere uno o più caratteri il cui uso non è ammesso nei titoli.",
+	"title-invalid": "Il titolo della pagina richiesto non è valido",
 	"title-invalid-empty": "Il titolo della pagina richiesta è vuoto o contiene solamente il nome di un namespace.",
 	"title-invalid-utf8": "Il titolo della pagina richiesta contiene una sequenza UTF-8 non valida.",
 	"title-invalid-interwiki": "Il titolo della pagina richiesta contiene un collegamento interwiki che non può essere usato nei titoli.",

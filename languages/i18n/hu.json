@@ -293,7 +293,7 @@
 	"retrievedfrom": "A lap eredeti címe: „$1”",
 	"youhavenewmessages": "{{PLURAL:$3|Van egy|Vannak}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Van egy|Vannak}} $1 {{PLURAL:$3|egy|$3}} másik szerkesztőtől ($2).",
-	"youhavenewmessagesmanyusers": "Vannak $1 sok szerkesztőtől ($2).",
+	"youhavenewmessagesmanyusers": "Sok szerkesztőtől vannak $1 ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|új üzenet|999=új üzenetek}} a vitalapodon",
 	"newmessagesdifflinkplural": "{{PLURAL:$1|változás|999=változás}}",
 	"youhavenewmessagesmulti": "Új üzenetek várnak a(z) $1 wikin",

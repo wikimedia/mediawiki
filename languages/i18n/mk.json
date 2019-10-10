@@ -3967,5 +3967,12 @@
 	"userlogout-continue": "Дали сакате да се одјавите?",
 	"rest-prefix-mismatch": "Побараната патека ($1) не беше во основната приложничка патека REST ($2)",
 	"rest-wrong-method": "Наинот на барање ($1) {{PLURAL:$3|не е допуштениот за оваа патека|не е меѓу допуштените за оваа патека}} ($2)",
-	"rest-no-match": "Побараната односна патека ($1) не одговара на познат обработувач"
+	"rest-no-match": "Побараната односна патека ($1) не одговара на познат обработувач",
+	"rest-pagehistory-incompatible-params": "Не може да бидат укажани параметрите „older_than“ и „newer_than“ истовремено",
+	"rest-pagehistory-param-range-error": "Назнаката на преработката мора да биде поголема од 0",
+	"rest-pagehistory-title-nonexistent": "Укажаниот наслов ($1) не постои",
+	"rest-pagehistory-revision-nonexistent": "Укажаната преработка ($1) не постои за дадената страница ($2)",
+	"rest-pagehistory-revisions-nonexistent": "Не најдов преработки за дадената страница ($1)",
+	"rest-pagehistory-revisions-nonexistent-with-params": "Не најдов преработки за дадената страница ($1) што одговараат на укажаните параметри",
+	"rest-pagehistory-timestamp-error": "Не можев да ги добијам времето и датумот за дадената преработка ($1)"
 }
