@@ -36,7 +36,7 @@ class ApiUsageException extends MWException implements ILocalizedException {
 	 * @param int $httpCode HTTP error code to use
 	 */
 	public function __construct(
-		ApiBase $module = null, StatusValue $status, $httpCode = 0
+		?ApiBase $module, StatusValue $status, $httpCode = 0
 	) {
 		if ( $status->isOK() ) {
 			throw new InvalidArgumentException( __METHOD__ . ' requires a fatal Status' );
@@ -61,7 +61,7 @@ class ApiUsageException extends MWException implements ILocalizedException {
 	 * @return static
 	 */
 	public static function newWithMessage(
-		ApiBase $module = null, $msg, $code = null, $data = null, $httpCode = 0
+		?ApiBase $module, $msg, $code = null, $data = null, $httpCode = 0
 	) {
 		return new static(
 			$module,

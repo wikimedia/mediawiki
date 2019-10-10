@@ -907,7 +907,7 @@ class RecentChange implements Taggable {
 	public static function newForCategorization(
 		$timestamp,
 		Title $categoryTitle,
-		User $user = null,
+		?User $user,
 		$comment,
 		Title $pageTitle,
 		$oldRevId,

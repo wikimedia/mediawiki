@@ -155,7 +155,7 @@ class CategoryMembershipChange {
 	private function notifyCategorization(
 		$timestamp,
 		Title $categoryTitle,
-		User $user = null,
+		?User $user,
 		$comment,
 		Title $pageTitle,
 		$lastTimestamp,

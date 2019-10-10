@@ -37,7 +37,7 @@ class DBError extends RuntimeException {
 	 * @param string $error A simple error message to be used for debugging
 	 * @param \Exception|\Throwable|null $prev Previous exception
 	 */
-	public function __construct( IDatabase $db = null, $error, $prev = null ) {
+	public function __construct( ?IDatabase $db, $error, $prev = null ) {
 		parent::__construct( $error, 0, $prev );
 		$this->db = $db;
 	}

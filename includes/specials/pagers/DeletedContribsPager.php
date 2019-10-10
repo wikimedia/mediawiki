@@ -61,7 +61,7 @@ class DeletedContribsPager extends IndexPager {
 	 */
 	protected $mNavigationBar;
 
-	public function __construct( IContextSource $context, $target, $namespace = false,
+	public function __construct( IContextSource $context, $target, $namespace,
 		LinkRenderer $linkRenderer
 	) {
 		parent::__construct( $context, $linkRenderer );
