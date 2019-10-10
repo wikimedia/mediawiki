@@ -478,7 +478,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				// template-added sections don't count and Parser::preprocess()
 				// will have less input
 				if ( $content && $this->section !== false ) {
-					$content = $content->getSection( $this->section, false );
+					$content = $content->getSection( $this->section );
 					if ( !$content ) {
 						$vals['nosuchsection'] = true;
 					}

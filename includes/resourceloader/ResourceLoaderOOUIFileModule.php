@@ -28,7 +28,7 @@
 class ResourceLoaderOOUIFileModule extends ResourceLoaderFileModule {
 	use ResourceLoaderOOUIModule;
 
-	public function __construct( $options = [] ) {
+	public function __construct( array $options = [] ) {
 		if ( isset( $options['themeScripts'] ) ) {
 			$skinScripts = $this->getSkinSpecific( $options['themeScripts'], 'scripts' );
 			if ( !isset( $options['skinScripts'] ) ) {

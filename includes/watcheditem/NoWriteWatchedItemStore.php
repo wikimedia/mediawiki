@@ -131,7 +131,7 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
-	public function resetAllNotificationTimestampsForUser( UserIdentity $user ) {
+	public function resetAllNotificationTimestampsForUser( UserIdentity $user, $timestamp = null ) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 

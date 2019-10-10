@@ -230,8 +230,9 @@ interface WatchedItemStoreInterface {
 	 * @since 1.31
 	 *
 	 * @param UserIdentity $user The user to reset the timestamps for
+	 * @param string|int|null $timestamp Value to set all timestamps to, null to clear them
 	 */
-	public function resetAllNotificationTimestampsForUser( UserIdentity $user );
+	public function resetAllNotificationTimestampsForUser( UserIdentity $user, $timestamp = null );
 
 	/**
 	 * @since 1.31
