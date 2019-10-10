@@ -994,6 +994,7 @@
 			 * For example, resolveRelativePath( '../foo.js', 'resources/src/bar/bar.js' )
 			 * returns 'resources/src/foo.js'.
 			 *
+			 * @private
 			 * @param {string} relativePath Relative file path, starting with ./ or ../
 			 * @param {string} basePath Path of the file (not directory) relativePath is relative to
 			 * @return {string|null} Resolved path, or null if relativePath does not start with ./ or ../
