@@ -4259,8 +4259,6 @@
 	"rest-pagehistory-param-range-error": "Revision id must be greater than 0",
 	"rest-pagehistory-title-nonexistent": "The specified title ($1) does not exist",
 	"rest-pagehistory-revision-nonexistent": "The specified revision ($1) does not exist for the specified page ($2)",
-	"rest-pagehistory-revisions-nonexistent": "No revisions were found for the specified page ($1)",
-	"rest-pagehistory-revisions-nonexistent-with-params": "No revisions were found for the specified page ($1) that match the specified parameters",
 	"rest-pagehistory-timestamp-error": "Unable to retrieve timestamp for the specified revision ($1)",
 	"rest-pagehistorycount-title-nonexistent": "The specified title ($1) does not exist",
 	"rest-pagehistorycount-type-unrecognized": "The specified count type ($1) is not valid"
