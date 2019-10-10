@@ -262,7 +262,7 @@ return [
 
 	'LanguageNameUtils' => function ( MediaWikiServices $services ) : LanguageNameUtils {
 		return new LanguageNameUtils( new ServiceOptions(
-			LanguageNameUtils::$constructorOptions,
+			LanguageNameUtils::CONSTRUCTOR_OPTIONS,
 			$services->getMainConfig()
 		) );
 	},

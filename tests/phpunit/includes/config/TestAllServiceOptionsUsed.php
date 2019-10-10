@@ -2,7 +2,7 @@
 
 /**
  * Use this trait to check that code run by tests accesses every key declared for this class'
- * ServiceOptions, e.g., in a $constructorOptions member variable. To use this trait, you need to do
+ * ServiceOptions, e.g., in a CONSTRUCTOR_OPTIONS member const. To use this trait, you need to do
  * two things (other than use-ing it):
  *
  * 1) Don't use the regular ServiceOptions when constructing your objects, but rather
