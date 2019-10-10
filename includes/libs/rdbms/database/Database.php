@@ -151,7 +151,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private $trxIdleCallbacks = [];
 	/** @var array[] List of (callable, method name, atomic section id) */
 	private $trxPreCommitCallbacks = [];
-	/** @var array[] List of (callable, method name, atomic section id) */
+	/**
+	 * @var array[] List of (callable, method name, atomic section id)
+	 * @phan-var array<array{0:callable,1:string,2:AtomicSectionIdentifier|null}>
+	 */
 	private $trxEndCallbacks = [];
 	/** @var array[] List of (callable, method name, atomic section id) */
 	private $trxSectionCancelCallbacks = [];
@@ -3550,7 +3553,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			if ( in_array( $entry[2], $sectionIds, true ) ) {
 				$callback = $entry[0];
 				$this->trxEndCallbacks[$key][0] = function () use ( $callback ) {
-					// @phan-suppress-next-line PhanInfiniteRecursion, PhanUndeclaredInvokeInCallable
 					return $callback( self::TRIGGER_ROLLBACK, $this );
 				};
 				// This "on resolution" callback no longer belongs to a section.

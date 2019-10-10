@@ -75,13 +75,7 @@ abstract class WantedQueryPage extends QueryPage {
 					? '<del>' . $linkRenderer->makeLink( $title ) . '</del>'
 					: $linkRenderer->makeLink( $title );
 			} else {
-				$pageLink = $linkRenderer->makeLink(
-					$title,
-					null,
-					[],
-					[],
-					[ 'broken' ]
-				);
+				$pageLink = $linkRenderer->makeBrokenLink( $title );
 			}
 			return $this->getLanguage()->specialList( $pageLink, $this->makeWlhLink( $title, $result ) );
 		} else {

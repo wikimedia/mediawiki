@@ -1342,7 +1342,7 @@ abstract class DatabaseUpdater {
 	 * @since 1.31
 	 */
 	 protected function populateArchiveRevId() {
-		 $info = $this->db->fieldInfo( 'archive', 'ar_rev_id', __METHOD__ );
+		 $info = $this->db->fieldInfo( 'archive', 'ar_rev_id' );
 		 if ( !$info ) {
 			 throw new MWException( 'Missing ar_rev_id field of archive table. Should not happen.' );
 		 }
