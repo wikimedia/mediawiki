@@ -104,7 +104,6 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param string $model
 	 * @return Title
 	 */
 	protected function getMockTitle() {
