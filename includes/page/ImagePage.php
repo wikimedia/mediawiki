@@ -1166,7 +1166,8 @@ EOT
 	 * @note This will only list several alternatives if thumbnails are rendered on 404
 	 * @param int $origWidth Actual width of image
 	 * @param int $origHeight Actual height of image
-	 * @return array An array of [width, height] pairs.
+	 * @return int[][] An array of [width, height] pairs.
+	 * @phan-return array<int,array{0:int,1:int}>
 	 */
 	protected function getThumbSizes( $origWidth, $origHeight ) {
 		global $wgImageLimits;

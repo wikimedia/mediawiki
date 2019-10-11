@@ -1254,7 +1254,7 @@ interface IDatabase {
 	 * errors which wouldn't have occurred in MySQL.
 	 *
 	 * @param string $table Table name. This will be passed through Database::tableName().
-	 * @param array $rows A single row or list of rows to insert
+	 * @param array|array[] $rows A single row or list of rows to insert
 	 * @param array[]|string[]|string $uniqueIndexes All unique indexes. One of the following:
 	 *   a) the one unique field in the table (when no composite unique key exist)
 	 *   b) a list of all unique fields in the table (when no composite unique key exist)
