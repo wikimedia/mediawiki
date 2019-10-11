@@ -1,8 +1,9 @@
 == MediaWiki 1.32.5 ==
 
-THIS IS NOT A RELEASE YET
+This is a maintenance release of the MediaWiki 1.32 branch.
 
 === Changes since MediaWiki 1.32.4 ===
+* Compute sha1 and length if needed in maintenance/populateContentTables.php.
 * Fix extra newlines in the installer.
 * Followup T230402, PermissionManager doesn't exist until 1.33, so fix the
   backported patches to use User::isAllowed() instead.
