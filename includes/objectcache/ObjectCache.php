@@ -159,7 +159,8 @@ class ObjectCache {
 	 * @throws InvalidArgumentException
 	 */
 	public static function newFromParams( $params ) {
-		$params['logger'] = LoggerFactory::getInstance( $params['loggroup'] ?? 'objectcache' );
+		$params['logger'] = $params['logger'] ??
+			LoggerFactory::getInstance( $params['loggroup'] ?? 'objectcache' );
 		if ( !isset( $params['keyspace'] ) ) {
 			$params['keyspace'] = self::getDefaultKeyspace();
 		}
