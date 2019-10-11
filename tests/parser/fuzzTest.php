@@ -114,9 +114,6 @@ class ParserFuzzTest extends Maintenance {
 					foreach ( $memStats as $name => $usage ) {
 						echo "$name: $usage\n";
 					}
-					if ( function_exists( 'hphpd_break' ) ) {
-						hphpd_break();
-					}
 					return;
 				}
 			}
