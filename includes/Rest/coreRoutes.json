@@ -21,5 +21,12 @@
 			"PermissionManager",
 			"DBLoadBalancer"
 		]
+	},
+	{
+		"path": "/v1/revision/{id}/bare",
+		"class": "MediaWiki\\Rest\\Handler\\RevisionHandler",
+		"services": [
+			"RevisionLookup"
+		]
 	}
 ]

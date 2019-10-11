@@ -4261,5 +4261,6 @@
 	"rest-pagehistory-revision-nonexistent": "The specified revision ($1) does not exist for the specified page ($2)",
 	"rest-pagehistory-timestamp-error": "Unable to retrieve timestamp for the specified revision ($1)",
 	"rest-pagehistorycount-title-nonexistent": "The specified title ($1) does not exist",
-	"rest-pagehistorycount-type-unrecognized": "The specified count type ($1) is not valid"
+	"rest-pagehistorycount-type-unrecognized": "The specified count type ($1) is not valid",
+	"rest-revision-nonexistent": "The requested revision ($1) does not exist."
 }
