@@ -221,6 +221,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 				'trxProfiler' => new TransactionProfiler(),
 				'connLogger' => new NullLogger(),
 				'queryLogger' => new NullLogger(),
+				'replLogger' => new NullLogger(),
 				'errorLogger' => function () {
 				},
 				'deprecationLogger' => function () {

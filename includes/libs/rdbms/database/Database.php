@@ -53,6 +53,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $connLogger;
 	/** @var LoggerInterface */
 	protected $queryLogger;
+	/** @var LoggerInterface */
+	protected $replLogger;
 	/** @var callable Error logging callback */
 	protected $errorLogger;
 	/** @var callable Deprecation logging callback */
@@ -274,6 +276,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->trxProfiler = $params['trxProfiler'];
 		$this->connLogger = $params['connLogger'];
 		$this->queryLogger = $params['queryLogger'];
+		$this->replLogger = $params['replLogger'];
 		$this->errorLogger = $params['errorLogger'];
 		$this->deprecationLogger = $params['deprecationLogger'];
 
@@ -413,6 +416,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				'trxProfiler' => $params['trxProfiler'] ?? new TransactionProfiler(),
 				'connLogger' => $params['connLogger'] ?? new NullLogger(),
 				'queryLogger' => $params['queryLogger'] ?? new NullLogger(),
+				'replLogger' => $params['replLogger'] ?? new NullLogger(),
 				'errorLogger' => $params['errorLogger'] ?? function ( Exception $e ) {
 					trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 				},

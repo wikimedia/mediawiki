@@ -52,6 +52,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 				'trxProfiler' => new TransactionProfiler(),
 				'connLogger' => new NullLogger(),
 				'queryLogger' => new NullLogger(),
+				'replLogger' => new NullLogger(),
 				'errorLogger' => null,
 				'deprecationLogger' => null,
 			] ] )->setMethods( array_merge(

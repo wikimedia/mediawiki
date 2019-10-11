@@ -900,40 +900,43 @@ abstract class DatabaseMysqlBase extends Database {
 			$waitPos = $pos->__toString();
 		}
 
+		$start = microtime( true );
 		$res = $this->query( $sql, __METHOD__, self::QUERY_IGNORE_DBO_TRX );
 		$row = $this->fetchRow( $res );
+		$seconds = max( microtime( true ) - $start, 0 );
 
 		// Result can be NULL (error), -1 (timeout), or 0+ per the MySQL manual
 		$status = ( $row[0] !== null ) ? intval( $row[0] ) : null;
 		if ( $status === null ) {
-			$this->queryLogger->error(
+			$this->replLogger->error(
 				"An error occurred while waiting for replication to reach {raw_pos}",
 				$this->getLogContext( [
-					'method' => __METHOD__,
 					'raw_pos' => $pos,
 					'wait_pos' => $waitPos,
-					'sql' => $sql
+					'sql' => $sql,
+					'seconds_waited' => $seconds,
+					'exception' => new RuntimeException()
 				] )
 			);
 		} elseif ( $status < 0 ) {
-			$this->queryLogger->error(
+			$this->replLogger->error(
 				"Timed out waiting for replication to reach {raw_pos}",
 				$this->getLogContext( [
-					'method' => __METHOD__,
 					'raw_pos' => $pos,
 					'wait_pos' => $waitPos,
 					'timeout' => $timeout,
 					'sql' => $sql,
-
+					'seconds_waited' => $seconds,
+					'exception' => new RuntimeException()
 				] )
 			);
 		} elseif ( $status >= 0 ) {
-			$this->queryLogger->debug(
+			$this->replLogger->debug(
 				"Replication has reached {raw_pos}",
 				$this->getLogContext( [
-					'method' => __METHOD__,
 					'raw_pos' => $pos,
-					'wait_pos' => $waitPos
+					'wait_pos' => $waitPos,
+					'seconds_waited' => $seconds,
 				] )
 			);
 			// Remember that this position was reached to save queries next time
