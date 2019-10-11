@@ -22,8 +22,7 @@ use Wikimedia\RunningStat;
 
 /**
  * Convenience class for working with XHProf profiling data
- * <https://github.com/phacility/xhprof>. XHProf can be installed as a PECL
- * package for use with PHP5 (Zend PHP) and is built-in to HHVM 3.3.0.
+ * <https://github.com/phacility/xhprof>. XHProf can be installed via PECL.
  *
  * @copyright © 2014 Wikimedia Foundation and contributors
  * @since 1.28
