@@ -81,9 +81,7 @@ class SpecialRedirect extends FormSpecialPage {
 			// Message: redirect-not-exists
 			return Status::newFatal( $this->getMessagePrefix() . '-not-exists' );
 		}
-		if ( $user->isHidden() && !MediaWikiServices::getInstance()->getPermissionManager()
-			->userHasRight( $this->getUser(), 'hideuser' )
-		) {
+		if ( $user->isHidden() && !$this->getUser()->isAllowed( 'hideuser' ) ) {
 			throw new PermissionsError( null, [ 'badaccess-group0' ] );
 		}
 		$userpage = Title::makeTitle( NS_USER, $username );
