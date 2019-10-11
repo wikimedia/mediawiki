@@ -52,10 +52,11 @@ class BatchRowWriter {
 	}
 
 	/**
-	 * @param array $updates Array of arrays each containing two keys, 'primaryKey'
+	 * @param array[][] $updates Array of arrays each containing two keys, 'primaryKey'
 	 *  and 'changes'. primaryKey must contain a map of column names to values
-	 *  sufficient to uniquely identify the row changes must contain a map of column
+	 *  sufficient to uniquely identify the row. changes must contain a map of column
 	 *  names to update values to apply to the row.
+	 * @phan-param array<int,array{primaryKey:array,changes:array}> $updates
 	 */
 	public function write( array $updates ) {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();

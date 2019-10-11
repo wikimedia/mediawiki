@@ -57,6 +57,7 @@ class GeneratePhpCharToUpperMappings extends Maintenance {
 		}
 
 		$jsUpperChars = json_decode( $result->getStdout() );
+		'@phan-var string[] $jsUpperChars';
 
 		for ( $i = 0; $i <= 0x10ffff; $i++ ) {
 			if ( $i >= 0xd800 && $i <= 0xdfff ) {
