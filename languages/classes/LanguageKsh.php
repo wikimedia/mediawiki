@@ -86,7 +86,7 @@ class LanguageKsh extends Language {
 	 *
 	 * @return string
 	 */
-	function convertGrammar( $word, $case ) {
+	public function convertGrammar( $word, $case ) {
 		$lord = strtolower( $word );
 		$gender = 'm'; // Nuutnaarel // default
 		if ( preg_match( '/wiki$/', $lord ) ) {

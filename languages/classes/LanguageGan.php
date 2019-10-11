@@ -105,7 +105,7 @@ class LanguageGan extends LanguageZh {
 	 * @param string $autoVariant
 	 * @return string
 	 */
-	function normalizeForSearch( $string, $autoVariant = 'gan-hans' ) {
+	public function normalizeForSearch( $string, $autoVariant = 'gan-hans' ) {
 		// LanguageZh::normalizeForSearch
 		return parent::normalizeForSearch( $string, $autoVariant );
 	}
