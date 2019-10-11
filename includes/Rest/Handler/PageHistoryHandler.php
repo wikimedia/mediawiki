@@ -291,18 +291,16 @@ class PageHistoryHandler extends SimpleHandler {
 				}
 
 				$comment = $rev->getComment( RevisionRecord::FOR_THIS_USER, $this->user );
-				if ( $comment && $comment->text !== '' ) {
-					$revision['comment'] = $comment->text;
-				}
+				$revision['comment'] = ( $comment && $comment->text !== '' ) ? $comment->text : null;
 
 				$revUser = $rev->getUser( RevisionRecord::FOR_THIS_USER, $this->user );
 				if ( $revUser ) {
 					$revision['user'] = [
-						'name' => $revUser->getName(),
+						'id' => $revUser->isRegistered() ? $revUser->getId() : null,
+						'name' => $revUser->getName()
 					];
-					if ( $revUser->isRegistered() ) {
-						$revision['user']['id'] = $revUser->getId();
-					}
+				} else {
+					$revision['user'] = null;
 				}
 
 				$revisions[] = $revision;
