@@ -238,12 +238,25 @@ class SpecialSearchTest extends MediaWikiTestCase {
 
 	protected function mockSearchEngine( $results ) {
 		$mock = $this->getMockBuilder( SearchEngine::class )
-			->setMethods( [ 'searchText', 'searchTitle' ] )
+			->setMethods( [ 'searchText', 'searchTitle', 'getNearMatcher' ] )
 			->getMock();
 
 		$mock->expects( $this->any() )
 			->method( 'searchText' )
 			->will( $this->returnValue( $results ) );
+
+		$nearMatcherMock = $this->getMockBuilder( SearchNearMatcher::class )
+			->disableOriginalConstructor()
+			->setMethods( [ 'getNearMatch' ] )
+			->getMock();
+
+		$nearMatcherMock->expects( $this->any() )
+			->method( 'getNearMatch' )
+			->willReturn( $results->getFirstResult() );
+
+		$mock->expects( $this->any() )
+			->method( 'getNearMatcher' )
+			->willReturn( $nearMatcherMock );
 
 		return $mock;
 	}
@@ -266,6 +279,62 @@ class SpecialSearchTest extends MediaWikiTestCase {
 		parse_str( $parts['query'], $query );
 		$this->assertEquals( 'Special:Search', $query['title'] );
 		$this->assertEquals( 'foo bar', $query['search'] );
+	}
+
+	/**
+	 * If the 'search-match-redirect' user pref is false, then SpecialSearch::goResult() should
+	 * return null
+	 *
+	 * @covers SpecialSearch::goResult
+	 */
+	public function testGoResult_userPrefRedirectOn() {
+		$context = new RequestContext;
+		$context->setUser(
+			$this->newUserWithSearchNS( [ 'search-match-redirect' => false ] )
+		);
+		$context->setRequest(
+			new FauxRequest( [ 'search' => 'TEST_SEARCH_PARAM', 'fulltext' => 1 ] )
+		);
+		$search = new SpecialSearch();
+		$search->setContext( $context );
+		$search->load();
+
+		$this->assertNull( $search->goResult( 'TEST_SEARCH_PARAM' ) );
+	}
+
+	/**
+	 * If the 'search-match-redirect' user pref is true, then SpecialSearch::goResult() should
+	 * NOT return null if there is a near match found for the search term
+	 *
+	 * @covers SpecialSearch::goResult
+	 */
+	public function testGoResult_userPrefRedirectOff() {
+		// mock the search engine so it returns a near match for an arbitrary search term
+		$searchResults = new SpecialSearchTestMockResultSet(
+			'TEST_SEARCH_SUGGESTION',
+			'',
+			[ SearchResult::newFromTitle( Title::newMainPage() ) ]
+		);
+		$mockSearchEngine = $this->mockSearchEngine( $searchResults );
+		$search = $this->getMockBuilder( SpecialSearch::class )
+			->setMethods( [ 'getSearchEngine' ] )
+			->getMock();
+		$search->expects( $this->any() )
+			->method( 'getSearchEngine' )
+			->will( $this->returnValue( $mockSearchEngine ) );
+
+		// set up a mock user with 'search-match-redirect' set to true
+		$context = new RequestContext;
+		$context->setUser(
+			$this->newUserWithSearchNS( [ 'search-match-redirect' => true ] )
+		);
+		$context->setRequest(
+			new FauxRequest( [ 'search' => 'TEST_SEARCH_PARAM', 'fulltext' => 1 ] )
+		);
+		$search->setContext( $context );
+		$search->load();
+
+		$this->assertNotNull( $search->goResult( 'TEST_SEARCH_PARAM' ) );
 	}
 }
 
@@ -315,5 +384,12 @@ class SpecialSearchTestMockResultSet extends SearchResultSet {
 
 	public function getQueryAfterRewriteSnippet() {
 		return htmlspecialchars( $this->rewrittenQuery );
+	}
+
+	public function getFirstResult() {
+		if ( count( $this->results ) === 0 ) {
+			return null;
+		}
+		return $this->results[0]->getTitle();
 	}
 }

@@ -277,6 +277,9 @@ class SpecialSearch extends SpecialPage {
 	 * @return string|null The url to redirect to, or null if no redirect.
 	 */
 	public function goResult( $term ) {
+		if ( !$this->redirectOnExactMatch() ) {
+			return null;
+		}
 		# If the string cannot be used to create a title
 		if ( is_null( Title::newFromText( $term ) ) ) {
 			return null;
@@ -293,6 +296,18 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		return $url ?? $title->getFullUrlForRedirect();
+	}
+
+	private function redirectOnExactMatch() {
+		global $wgSearchMatchRedirectPreference;
+		if ( !$wgSearchMatchRedirectPreference ) {
+			// If the preference for whether to redirect is disabled, use the default setting
+			$defaultOptions = $this->getUser()->getDefaultOptions();
+			return $defaultOptions['search-match-redirect'];
+		} else {
+			// Otherwise use the user's preference
+			return $this->getUser()->getOption( 'search-match-redirect' );
+		}
 	}
 
 	/**

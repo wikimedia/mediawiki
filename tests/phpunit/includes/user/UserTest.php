@@ -1656,7 +1656,12 @@ class UserTest extends MediaWikiTestCase {
 		return [
 			'Basic creation' => [ 'missing', [], [], 'user' ],
 			'No creation' => [ 'missing', [ 'create' => false ], [], 'null' ],
-			'Validation fail' => [ 'missing', [ 'validate' => 'usable' ], [ 'reserved' => true ], 'null' ],
+			'Validation fail' => [
+				'missing',
+				[ 'validate' => 'usable' ],
+				[ 'reserved' => true ],
+				'null'
+			],
 			'No stealing' => [ 'user', [], [], 'null' ],
 			'Stealing allowed' => [ 'user', [ 'steal' => true ], [], 'user' ],
 			'Stealing an already-system user' => [ 'system', [ 'steal' => true ], [], 'user' ],
@@ -1665,5 +1670,14 @@ class UserTest extends MediaWikiTestCase {
 			'Anonymous actor but no creation' => [ 'actor', [ 'create' => false ], [], 'null' ],
 			'Anonymous actor but not reserved' => [ 'actor', [], [], 'exception' ],
 		];
+	}
+
+	/**
+	 * @covers User::getDefaultOptions
+	 */
+	public function testGetDefaultOptions() {
+		User::resetGetDefaultOptionsForTestsOnly();
+		$defaultOptions = User::getDefaultOptions();
+		$this->assertArrayHasKey( 'search-match-redirect', $defaultOptions );
 	}
 }

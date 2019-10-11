@@ -32,6 +32,12 @@ For notes on 1.34.x and older releases, see HISTORY.
 * $wgDiffEngine can be used to specify the difference engine to use, rather
   than choosing the first of $wgExternalDiffEngine, wikidiff2, or php that
   is usable.
+* $wgSearchMatchRedirectPreference – This configuration setting controls whether
+  users can set a new preference, search-match-redirect, which decides if search
+  should redirect them to exact matches is available. By default, this is set to
+  false, which maintains the previous behaviour without preference bloat. Change
+  your site's default by setting $wgDefaultUserOptions['search-match-redirect'].
+* …
 
 ==== Changed configuration ====
 * $wgResourceLoaderMaxage (T235314) - This configuration array controls the

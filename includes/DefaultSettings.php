@@ -4862,6 +4862,7 @@ $wgDefaultUserOptions = [
 	'rcenhancedfilters-disable' => 0,
 	'rclimit' => 50,
 	'rows' => 25, // @deprecated since 1.29 No longer used in core
+	'search-match-redirect' => true,
 	'showhiddencats' => 0,
 	'shownumberswatching' => 1,
 	'showrollbackconfirmation' => 0,
@@ -9078,6 +9079,17 @@ $wgFeaturePolicyReportOnly = [];
  * @var array
  */
 $wgSpecialSearchFormOptions = [];
+
+/**
+ * Set true to allow logged-in users to set a preference whether or not matches in
+ * search results should force redirection to that page. If false, the preference is
+ * not exposed and cannot be altered from site default. To change your site's default
+ * preference, set via $wgDefaultUserOptions['search-match-redirect'].
+ *
+ * @since 1.35
+ * @var bool
+ */
+$wgSearchMatchRedirectPreference = false;
 
 /**
  * Toggles native image lazy loading, via the "loading" attribute.

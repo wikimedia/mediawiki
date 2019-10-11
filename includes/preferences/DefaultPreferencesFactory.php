@@ -108,6 +108,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		'RCMaxAge',
 		'RCShowWatchingUsers',
 		'RCWatchCategoryMembership',
+		'SearchMatchRedirectPreference',
 		'SecureLogin',
 		'ThumbLimits',
 	];
@@ -1276,6 +1277,19 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	protected function searchPreferences( &$defaultPreferences ) {
 		foreach ( $this->nsInfo->getValidNamespaces() as $n ) {
 			$defaultPreferences['searchNs' . $n] = [
+				'type' => 'api',
+			];
+		}
+
+		if ( $this->options->get( 'SearchMatchRedirectPreference' ) ) {
+			$defaultPreferences['search-match-redirect'] = [
+				'type' => 'toggle',
+				'section' => 'searchoptions',
+				'label-message' => 'search-match-redirect-label',
+				'help-message' => 'search-match-redirect-help',
+			];
+		} else {
+			$defaultPreferences['search-match-redirect'] = [
 				'type' => 'api',
 			];
 		}
