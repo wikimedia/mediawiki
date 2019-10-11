@@ -272,6 +272,7 @@ interface ResponseInterface {
 	 *  - options: An associative array of further options
 	 *
 	 * @return array
+	 * @phan-return array{name:string,value:mixed,expire:int,options:array}
 	 */
 	public function getCookies();
 }

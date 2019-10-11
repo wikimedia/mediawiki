@@ -270,7 +270,7 @@ class PermissionManager {
 	 * @param array $ignoreErrors Array of Strings Set this to a list of message keys
 	 *   whose corresponding errors may be ignored.
 	 *
-	 * @return array Array of arrays of the arguments to wfMessage to explain permissions problems.
+	 * @return array[] Array of arrays of the arguments to wfMessage to explain permissions problems.
 	 */
 	public function getPermissionErrors(
 		$action,
@@ -349,7 +349,7 @@ class PermissionManager {
 	 *   - RIGOR_SECURE : does cheap and expensive checks, using the master as needed
 	 * @param bool $short Set this to true to stop after the first permission error.
 	 *
-	 * @return array Array of arrays of the arguments to wfMessage to explain permissions problems.
+	 * @return array[] Array of arrays of the arguments to wfMessage to explain permissions problems.
 	 * @throws Exception
 	 */
 	private function getPermissionErrorsInternal(
