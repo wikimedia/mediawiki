@@ -99,7 +99,6 @@ class TestUserRegistry {
 	 *
 	 * @since 1.28
 	 *
-	 * @param string[] $groups Groups the test user should be added to.
 	 * @return TestUser
 	 */
 	public static function clear() {
