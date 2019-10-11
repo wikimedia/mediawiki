@@ -518,6 +518,8 @@ because of Phabricator reports.
 * The Profiler::setTemplated and Profiler::getTemplated methods have been
   deprecated. Use Profiler::setAllowOutput and Profiler::getAllowOutput
   instead.
+* The ProfilerOutputDb class, 'profiling' table, and profileinfo.php entry
+  point had been deprecated (T231366).
 * The Preprocessor_DOM implementation has been deprecated.  It will be
   removed in a future release.  Use the Preprocessor_Hash implementation
   instead.
