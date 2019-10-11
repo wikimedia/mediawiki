@@ -392,12 +392,10 @@ class ApiParamInfo extends ApiBase {
 			if ( isset( $settings[ApiBase::PARAM_TYPE] ) ) {
 				if ( $settings[ApiBase::PARAM_TYPE] === 'submodule' ) {
 					if ( isset( $settings[ApiBase::PARAM_SUBMODULE_MAP] ) ) {
-						ksort( $settings[ApiBase::PARAM_SUBMODULE_MAP] );
 						$item['type'] = array_keys( $settings[ApiBase::PARAM_SUBMODULE_MAP] );
 						$item['submodules'] = $settings[ApiBase::PARAM_SUBMODULE_MAP];
 					} else {
 						$item['type'] = $module->getModuleManager()->getNames( $name );
-						sort( $item['type'] );
 						$prefix = $module->isMain()
 							? '' : ( $module->getModulePath() . '+' );
 						$item['submodules'] = [];
@@ -409,23 +407,35 @@ class ApiParamInfo extends ApiBase {
 						$item['submoduleparamprefix'] = $settings[ApiBase::PARAM_SUBMODULE_PARAM_PREFIX];
 					}
 
-					$deprecatedSubmodules = [];
+					$submoduleFlags = []; // for sorting: higher flags are sorted later
+					$submoduleNames = []; // for sorting: lexicographical, ascending
 					foreach ( $item['submodules'] as $v => $submodulePath ) {
 						try {
 							$submod = $this->getModuleFromPath( $submodulePath );
-							if ( $submod && $submod->isDeprecated() ) {
-								$deprecatedSubmodules[] = $v;
-							}
 						} catch ( ApiUsageException $ex ) {
-							// Ignore
+							$submoduleFlags[] = 0;
+							$submoduleNames[] = $v;
+							continue;
 						}
+						$flags = 0;
+						if ( $submod && $submod->isDeprecated() ) {
+							$item['deprecatedvalues'][] = $v;
+							$flags |= 1;
+						}
+						if ( $submod && $submod->isInternal() ) {
+							$item['internalvalues'][] = $v;
+							$flags |= 2;
+						}
+						$submoduleFlags[] = $flags;
+						$submoduleNames[] = $v;
 					}
-					if ( $deprecatedSubmodules ) {
-						$item['type'] = array_merge(
-							array_diff( $item['type'], $deprecatedSubmodules ),
-							$deprecatedSubmodules
-						);
-						$item['deprecatedvalues'] = $deprecatedSubmodules;
+					// sort $item['submodules'] and $item['type'] by $submoduleFlags and $submoduleNames
+					array_multisort( $submoduleFlags, $submoduleNames, $item['submodules'], $item['type'] );
+					if ( isset( $item['deprecatedvalues'] ) ) {
+						sort( $item['deprecatedvalues'] );
+					}
+					if ( isset( $item['internalvalues'] ) ) {
+						sort( $item['internalvalues'] );
 					}
 				} elseif ( $settings[ApiBase::PARAM_TYPE] === 'tags' ) {
 					$item['type'] = ChangeTags::listExplicitlyDefinedTags();

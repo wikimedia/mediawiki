@@ -568,28 +568,33 @@ class ApiHelp extends ApiBase {
 										}
 										$defaultAttrs = [ 'dir' => 'ltr', 'lang' => 'en' ];
 									}
-									ksort( $map );
 
 									$submodules = [];
-									$deprecatedSubmodules = [];
+									$submoduleFlags = []; // for sorting: higher flags are sorted later
+									$submoduleNames = []; // for sorting: lexicographical, ascending
 									foreach ( $map as $v => $m ) {
 										$attrs = $defaultAttrs;
-										$arr = &$submodules;
+										$flags = 0;
 										try {
 											$submod = $module->getModuleFromPath( $m );
 											if ( $submod && $submod->isDeprecated() ) {
-												$arr = &$deprecatedSubmodules;
-												$attrs['class'] = 'apihelp-deprecated-value';
+												$attrs['class'][] = 'apihelp-deprecated-value';
+												$flags |= 1;
+											}
+											if ( $submod && $submod->isInternal() ) {
+												$attrs['class'][] = 'apihelp-internal-value';
+												$flags |= 2;
 											}
 										} catch ( ApiUsageException $ex ) {
 											// Ignore
 										}
-										if ( $attrs ) {
-											$v = Html::element( 'span', $attrs, $v );
-										}
-										$arr[] = "[[Special:ApiHelp/{$m}|{$v}]]";
+										$v = Html::element( 'span', $attrs, $v );
+										$submodules[] = "[[Special:ApiHelp/{$m}|{$v}]]";
+										$submoduleFlags[] = $flags;
+										$submoduleNames[] = $v;
 									}
-									$submodules = array_merge( $submodules, $deprecatedSubmodules );
+									// sort $submodules by $submoduleFlags and $submoduleNames
+									array_multisort( $submoduleFlags, $submoduleNames, $submodules );
 									$count = count( $submodules );
 									$info[] = $context->msg( 'api-help-param-list' )
 										->params( $multi ? 2 : 1 )
