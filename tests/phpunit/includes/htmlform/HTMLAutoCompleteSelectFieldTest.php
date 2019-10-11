@@ -14,11 +14,10 @@ class HTMLAutoCompleteSelectFieldTest extends MediaWikiTestCase {
 	 * Verify that attempting to instantiate an HTMLAutoCompleteSelectField
 	 * without providing any autocomplete options causes an exception to be
 	 * thrown.
-	 *
-	 * @expectedException        MWException
-	 * @expectedExceptionMessage called without any autocompletions
 	 */
 	public function testMissingAutocompletions() {
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( "called without any autocompletions" );
 		new HTMLAutoCompleteSelectField( [ 'fieldname' => 'Test' ] );
 	}
 

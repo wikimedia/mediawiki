@@ -1992,7 +1992,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @expectedException \Wikimedia\Rdbms\DBTransactionStateError
 	 * @covers \Wikimedia\Rdbms\Database::assertQueryIsCurrentlyAllowed
 	 */
 	public function testTransactionErrorState1() {
@@ -2000,8 +1999,8 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 		$this->database->begin( __METHOD__ );
 		$wrapper->trxStatus = Database::STATUS_TRX_ERROR;
+		$this->expectException( \Wikimedia\Rdbms\DBTransactionStateError::class );
 		$this->database->delete( 'x', [ 'field' => 3 ], __METHOD__ );
-		$this->database->commit( __METHOD__ );
 	}
 
 	/**

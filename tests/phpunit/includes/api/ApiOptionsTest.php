@@ -172,12 +172,10 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		return $this->mTested->getResult()->getResultData( null, [ 'Strip' => 'all' ] );
 	}
 
-	/**
-	 * @expectedException ApiUsageException
-	 */
 	public function testNoToken() {
 		$request = $this->getSampleRequest( [ 'token' => null ] );
 
+		$this->expectException( ApiUsageException::class );
 		$this->executeQuery( $request );
 	}
 

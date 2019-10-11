@@ -56,22 +56,18 @@ class ApiBaseTest extends ApiTestCase {
 		$this->assertTrue( true );
 	}
 
-	/**
-	 * @expectedException ApiUsageException
-	 */
 	public function testRequireOnlyOneParameterZero() {
 		$mock = new MockApi();
+		$this->expectException( ApiUsageException::class );
 		$mock->requireOnlyOneParameter(
 			[ "filename" => "foo.txt", "enablechunks" => 0 ],
 			"filename", "enablechunks"
 		);
 	}
 
-	/**
-	 * @expectedException ApiUsageException
-	 */
 	public function testRequireOnlyOneParameterTrue() {
 		$mock = new MockApi();
+		$this->expectException( ApiUsageException::class );
 		$mock->requireOnlyOneParameter(
 			[ "filename" => "foo.txt", "enablechunks" => true ],
 			"filename", "enablechunks"

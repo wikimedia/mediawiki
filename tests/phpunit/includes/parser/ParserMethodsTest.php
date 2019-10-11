@@ -73,16 +73,15 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, Parser::stripOuterParagraph( $text ) );
 	}
 
-	/**
-	 * @expectedException MWException
-	 * @expectedExceptionMessage Parser state cleared while parsing.
-	 *  Did you call Parser::parse recursively?
-	 */
 	public function testRecursiveParse() {
 		$title = Title::newFromText( 'foo' );
 		$parser = MediaWikiServices::getInstance()->getParser();
 		$po = new ParserOptions;
 		$parser->setHook( 'recursivecallparser', [ $this, 'helperParserFunc' ] );
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage(
+			"Parser state cleared while parsing. Did you call Parser::parse recursively?"
+		);
 		$parser->parse( '<recursivecallparser>baz</recursivecallparser>', $title, $po );
 	}
 

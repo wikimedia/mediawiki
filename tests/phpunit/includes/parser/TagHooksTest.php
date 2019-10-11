@@ -71,18 +71,12 @@ class TagHooksTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideBadNames
-	 * @expectedException MWException
 	 */
 	public function testBadTagHooks( $tag ) {
 		$parser = MediaWikiServices::getInstance()->getParserFactory()->create();
 
+		$this->expectException( MWException::class );
 		$parser->setHook( $tag, [ $this, 'tagCallback' ] );
-		$parser->parse(
-			"Foo<$tag>Bar</$tag>Baz",
-			Title::newFromText( 'Test' ),
-			$this->getParserOptions()
-		);
-		$this->fail( 'Exception not thrown.' );
 	}
 
 	/**
@@ -104,22 +98,16 @@ class TagHooksTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideBadNames
-	 * @expectedException MWException
 	 */
 	public function testBadFunctionTagHooks( $tag ) {
 		$parser = MediaWikiServices::getInstance()->getParserFactory()->create();
 
+		$this->expectException( MWException::class );
 		$parser->setFunctionTagHook(
 			$tag,
 			[ $this, 'functionTagCallback' ],
 			Parser::SFH_OBJECT_ARGS
 		);
-		$parser->parse(
-			"Foo<$tag>Bar</$tag>Baz",
-			Title::newFromText( 'Test' ),
-			$this->getParserOptions()
-		);
-		$this->fail( 'Exception not thrown.' );
 	}
 
 	public function tagCallback( $text, $params, $parser ) {

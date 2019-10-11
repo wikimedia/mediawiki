@@ -246,29 +246,29 @@ class SanitizerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @expectedException InvalidArgumentException
 	 * @covers Sanitizer::escapeIdInternal()
 	 */
 	public function testInvalidFragmentThrows() {
 		$this->setMwGlobals( 'wgFragmentMode', [ 'boom!' ] );
+		$this->expectException( InvalidArgumentException::class );
 		Sanitizer::escapeIdForAttribute( 'This should throw' );
 	}
 
 	/**
-	 * @expectedException UnexpectedValueException
 	 * @covers Sanitizer::escapeIdForAttribute()
 	 */
 	public function testNoPrimaryFragmentModeThrows() {
 		$this->setMwGlobals( 'wgFragmentMode', [ 666 => 'html5' ] );
+		$this->expectException( UnexpectedValueException::class );
 		Sanitizer::escapeIdForAttribute( 'This should throw' );
 	}
 
 	/**
-	 * @expectedException UnexpectedValueException
 	 * @covers Sanitizer::escapeIdForLink()
 	 */
 	public function testNoPrimaryFragmentModeThrows2() {
 		$this->setMwGlobals( 'wgFragmentMode', [ 666 => 'html5' ] );
+		$this->expectException( UnexpectedValueException::class );
 		Sanitizer::escapeIdForLink( 'This should throw' );
 	}
 

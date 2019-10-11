@@ -282,11 +282,9 @@ class ApiBlockTest extends ApiTestCase {
 		$this->assertEquals( $namespace, $block->getRestrictions()[1]->getValue() );
 	}
 
-	/**
-	 * @expectedException ApiUsageException
-	 * @expectedExceptionMessage The "token" parameter must be set
-	 */
 	public function testBlockingActionWithNoToken() {
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'The "token" parameter must be set' );
 		$this->doApiRequest(
 			[
 				'action' => 'block',
@@ -299,13 +297,11 @@ class ApiBlockTest extends ApiTestCase {
 		);
 	}
 
-	/**
-	 * @expectedException ApiUsageException
-	 * @expectedExceptionMessage Invalid value "127.0.0.1/64" for user parameter "user".
-	 */
 	public function testBlockWithLargeRange() {
 		$tokens = $this->getTokens();
 
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'Invalid value "127.0.0.1/64" for user parameter "user".' );
 		$this->doApiRequest(
 			[
 				'action' => 'block',
@@ -319,11 +315,6 @@ class ApiBlockTest extends ApiTestCase {
 		);
 	}
 
-	/**
-	 * @expectedException ApiUsageException
-	 * @expectedExceptionMessage Too many values supplied for parameter "pagerestrictions". The
-	 * limit is 10.
-	 */
 	public function testBlockingTooManyPageRestrictions() {
 		$this->setMwGlobals( [
 			'wgEnablePartialBlocks' => true,
@@ -331,6 +322,9 @@ class ApiBlockTest extends ApiTestCase {
 
 		$tokens = $this->getTokens();
 
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage(
+			"Too many values supplied for parameter \"pagerestrictions\". The limit is 10." );
 		$this->doApiRequest(
 			[
 				'action' => 'block',
@@ -351,12 +345,10 @@ class ApiBlockTest extends ApiTestCase {
 		$this->doBlock();
 	}
 
-	/**
-	 * @expectedException ApiUsageException
-	 * @expectedExceptionMessage Range blocks larger than /16 are not allowed.
-	 */
 	public function testVeryLargeRangeBlock() {
 		$this->mUser = User::newFromName( '128.0.0.0/1', false );
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( "Range blocks larger than /16 are not allowed." );
 		$this->doBlock();
 	}
 }

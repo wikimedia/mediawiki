@@ -13,26 +13,22 @@ use Wikimedia\TestingAccessWrapper;
  */
 class UploadedFileStreamTest extends UploadedFileTestBase {
 
-	/**
-	 * @expectedException RuntimeException
-	 * @expectedExceptionMessage Failed to open file:
-	 */
 	public function testConstruct_doesNotExist() {
 		$filename = $this->makeTemp( __FUNCTION__ );
 		unlink( $filename );
 
 		$this->assertFileNotExists( $filename, 'sanity check' );
+		$this->expectException( RuntimeException::class );
+		$this->expectExceptionMessage( "Failed to open file:" );
 		$stream = new UploadedFileStream( $filename );
 	}
 
-	/**
-	 * @expectedException RuntimeException
-	 * @expectedExceptionMessage Failed to open file:
-	 */
 	public function testConstruct_notReadable() {
 		$filename = $this->makeTemp( __FUNCTION__ );
 
 		chmod( $filename, 0000 );
+		$this->expectException( RuntimeException::class );
+		$this->expectExceptionMessage( "Failed to open file:" );
 		$stream = new UploadedFileStream( $filename );
 	}
 

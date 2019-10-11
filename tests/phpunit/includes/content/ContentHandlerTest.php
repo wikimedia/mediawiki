@@ -207,7 +207,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 	/**
 	 * ContentHandler::getContentText should have thrown an exception for non-text Content object
-	 * @expectedException MWException
+	 *
 	 * @covers ContentHandler::getContentText
 	 */
 	public function testGetContentText_NonTextContent_fail() {
@@ -215,6 +215,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 		$content = new DummyContentForTesting( "hello world" );
 
+		$this->expectException( MWException::class );
 		ContentHandler::getContentText( $content );
 	}
 

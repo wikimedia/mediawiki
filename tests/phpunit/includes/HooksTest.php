@@ -155,12 +155,12 @@ class HooksTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @expectedException MWException
 	 * @covers Hooks::run
 	 * @covers Hooks::callHook
 	 */
 	public function testUncallableFunction() {
 		Hooks::register( 'MediaWikiHooksTest001', 'ThisFunctionDoesntExist' );
+		$this->expectException( MWException::class );
 		Hooks::run( 'MediaWikiHooksTest001', [] );
 	}
 
@@ -216,10 +216,10 @@ class HooksTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers Hooks::callHook
-	 * @expectedException MWException
 	 */
 	public function testCallHook_UnknownDatatype() {
 		Hooks::register( 'MediaWikiHooksTest001', 12345 );
+		$this->expectException( MWException::class );
 		Hooks::run( 'MediaWikiHooksTest001' );
 	}
 
@@ -277,13 +277,13 @@ class HooksTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @expectedException FatalError
 	 * @covers Hooks::run
 	 */
 	public function testFatalError() {
 		Hooks::register( 'MediaWikiHooksTest001', function () {
 			return 'test';
 		} );
+		$this->expectException( FatalError::class );
 		Hooks::run( 'MediaWikiHooksTest001', [] );
 	}
 }

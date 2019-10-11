@@ -9,9 +9,6 @@
 		<exclude name="MediaWiki.Commenting.FunctionComment.WrongStyle" />
 		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentEnd" />
 		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentStart" />
-		<exclude name="MediaWiki.Commenting.PhpunitAnnotations.ForbiddenExpectedException" />
-		<exclude name="MediaWiki.Commenting.PhpunitAnnotations.ForbiddenExpectedExceptionMessage" />
-		<exclude name="MediaWiki.Commenting.PhpunitAnnotations.ForbiddenExpectedExceptionMessageRegExp" />
 		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures" />
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName" />
 		<exclude name="MediaWiki.PHP71Features.NullableType.NotAllowed" />

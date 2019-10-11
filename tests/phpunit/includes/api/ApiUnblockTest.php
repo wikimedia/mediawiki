@@ -70,10 +70,8 @@ class ApiUnblockTest extends ApiTestCase {
 		$this->assertNull( $this->getBlockFromParams( $params ), 'Block should have been removed' );
 	}
 
-	/**
-	 * @expectedException ApiUsageException
-	 */
 	public function testWithNoToken() {
+		$this->expectException( ApiUsageException::class );
 		$this->doApiRequest( [
 			'action' => 'unblock',
 			'user' => $this->blockee->getName(),

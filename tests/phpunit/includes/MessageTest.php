@@ -789,10 +789,10 @@ class MessageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @expectedException MWException
 	 * @covers Message::inLanguage
 	 */
 	public function testInLanguageThrows() {
+		$this->expectException( MWException::class );
 		wfMessage( 'foo' )->inLanguage( 123 );
 	}
 

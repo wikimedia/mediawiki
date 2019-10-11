@@ -10,19 +10,15 @@ class ExternalStoreFactoryTest extends MediaWikiTestCase {
 
 	use MediaWikiCoversValidator;
 
-	/**
-	 * @expectedException ExternalStoreException
-	 */
 	public function testExternalStoreFactory_noStores1() {
 		$factory = new ExternalStoreFactory( [], [], 'test-id' );
+		$this->expectException( ExternalStoreException::class );
 		$factory->getStore( 'ForTesting' );
 	}
 
-	/**
-	 * @expectedException ExternalStoreException
-	 */
 	public function testExternalStoreFactory_noStores2() {
 		$factory = new ExternalStoreFactory( [], [], 'test-id' );
+		$this->expectException( ExternalStoreException::class );
 		$factory->getStore( 'foo' );
 	}
 
@@ -44,10 +40,10 @@ class ExternalStoreFactoryTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideStoreNames
-	 * @expectedException ExternalStoreException
 	 */
 	public function testExternalStoreFactory_someStore_noProtoMatch( $proto ) {
 		$factory = new ExternalStoreFactory( [ 'SomeOtherClassName' ], [], 'test-id' );
+		$this->expectException( ExternalStoreException::class );
 		$factory->getStore( $proto );
 	}
 
