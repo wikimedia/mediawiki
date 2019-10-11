@@ -20,12 +20,10 @@
 
 /**
  * Convenience class for working with XHProf
- * <https://github.com/phacility/xhprof>. XHProf can be installed as a PECL
- * package for use with PHP5 (Zend PHP) and is built-in to HHVM 3.3.0.
+ * <https://github.com/phacility/xhprof>. XHProf can be installed via PECL.
  *
  * This also supports using the Tideways profiler
- * <https://github.com/tideways/php-profiler-extension>, which additionally
- * has support for PHP7.
+ * <https://github.com/tideways/php-xhprof-extension>.
  *
  * @since 1.28
  */

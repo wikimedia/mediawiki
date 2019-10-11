@@ -34,9 +34,8 @@
  * $wgProfiler['output'] = 'udp';
  * @endcode
  *
- * ProfilerXhprof profiles all functions using the XHProf PHP extenstion.
- * For PHP5 users, this extension can be installed via PECL or your operating
- * system's package manager. XHProf support is built into HHVM.
+ * ProfilerXhprof profiles all functions using the XHProf PHP extenstion. This
+ * extension can be installed via PECL or your operating system's package manager.
  *
  * To restrict the functions for which profiling data is collected, you can
  * use either a whitelist ($wgProfiler['include']) or a blacklist
@@ -51,7 +50,6 @@
  * @ingroup Profiler
  * @see Xhprof
  * @see https://php.net/xhprof
- * @see https://github.com/facebook/hhvm/blob/master/hphp/doc/profiling.md
  * @see https://github.com/tideways/php-xhprof-extension
  */
 class ProfilerXhprof extends Profiler {
