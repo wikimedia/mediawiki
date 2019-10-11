@@ -1725,6 +1725,10 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * @see WANObjectCache::getWithSetCallback()
 	 * @see WANObjectCache::getMultiWithSetCallback()
 	 *
+	 * @warning Usage of this method appears to have caused cache corruption, see T235188.
+	 *          This method should not be used until the root cause of T235188 has been resolved
+	 *          and I94c6f9ba7b9caeeb has been reverted.
+	 *
 	 * Example usage:
 	 * @code
 	 *     $rows = $cache->getMultiWithUnionSetCallback(
