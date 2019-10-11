@@ -86,7 +86,7 @@ class DeferredUpdates {
 		global $wgCommandLineMode;
 
 		if (
-			self::$executeContext &&
+			self::$executeContext !== null &&
 			self::$executeContext['stage'] >= $stage &&
 			!( $update instanceof MergeableUpdate )
 		) {

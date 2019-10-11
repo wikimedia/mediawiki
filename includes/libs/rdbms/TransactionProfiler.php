@@ -45,7 +45,10 @@ class TransactionProfiler implements LoggerAwareInterface {
 
 	/** @var array transaction ID => (write start time, list of DBs involved) */
 	protected $dbTrxHoldingLocks = [];
-	/** @var array transaction ID => list of (query name, start time, end time) */
+	/**
+	 * @var array[][] transaction ID => list of (query name, start time, end time)
+	 * @phan-var array<string,array<int,array{0:string,1:int,2:int}>>
+	 */
 	protected $dbTrxMethodTimes = [];
 
 	/** @var array */

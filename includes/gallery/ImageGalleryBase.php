@@ -31,7 +31,8 @@ use MediaWiki\MediaWikiServices;
  */
 abstract class ImageGalleryBase extends ContextSource {
 	/**
-	 * @var array Gallery images
+	 * @var array[] Gallery images
+	 * @phan-var array<int,array{0:Title,1:string,2:string,3:string,4:array}>
 	 */
 	protected $mImages;
 

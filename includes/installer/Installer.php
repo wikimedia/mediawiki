@@ -227,7 +227,8 @@ abstract class Installer {
 	/**
 	 * The actual list of installation steps. This will be initialized by getInstallSteps()
 	 *
-	 * @var array
+	 * @var array[]
+	 * @phan-var array<int,array{name:string,callback:array{0:object,1:string}}>
 	 */
 	private $installSteps = [];
 
@@ -1551,7 +1552,8 @@ abstract class Installer {
 	 * be shown on install.
 	 *
 	 * @param DatabaseInstaller $installer DatabaseInstaller so we can make callbacks
-	 * @return array
+	 * @return array[]
+	 * @phan-return array<int,array{name:string,callback:array{0:object,1:string}}>
 	 */
 	protected function getInstallSteps( DatabaseInstaller $installer ) {
 		$coreInstallSteps = [
