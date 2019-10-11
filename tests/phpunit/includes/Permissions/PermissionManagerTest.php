@@ -1104,36 +1104,27 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @dataProvider provideTestCheckUserBlockActions
 	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserBlock
 	 */
-	public function testUserBlock() {
+	public function testCheckUserBlockActions( $block, $restriction, $expected ) {
 		$this->setMwGlobals( [
-			'wgEmailConfirmToEdit' => true,
-			'wgEmailAuthentication' => true,
-			'wgBlockDisablesLogin' => false,
+			'wgEmailConfirmToEdit' => false,
 		] );
 
-		$this->overrideUserPermissions( $this->user, [
-			'createpage',
-			'edit',
-			'move',
-			'rollback',
-			'patrol',
-			'upload',
-			'purge'
-		] );
-		$this->setTitle( NS_HELP, "test page" );
+		if ( $restriction ) {
+			$pageRestriction = new PageRestriction( 0, $this->title->getArticleID() );
+			$pageRestriction->setTitle( $this->title );
+			$block->setRestrictions( [ $pageRestriction ] );
+		}
 
-		# $wgEmailConfirmToEdit only applies to 'edit' action
-		$this->assertEquals( [],
-			MediaWikiServices::getInstance()->getPermissionManager()->getPermissionErrors(
-				'move-target', $this->user, $this->title ) );
-		$this->assertContains( [ 'confirmedittext' ],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'edit', $this->user, $this->title ) );
+		$user = $this->getMockBuilder( User::class )
+			->setMethods( [ 'getBlock' ] )
+			->getMock();
+		$user->method( 'getBlock' )
+			->willReturn( $block );
 
-		$this->setMwGlobals( 'wgEmailConfirmToEdit', false );
-		$this->overrideUserPermissions( $this->user, [
+		$this->overrideUserPermissions( $user, [
 			'createpage',
 			'edit',
 			'move',
@@ -1143,161 +1134,259 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			'purge'
 		] );
 
-		$this->assertNotContains( [ 'confirmedittext' ],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'edit', $this->user, $this->title ) );
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
-		# $wgEmailConfirmToEdit && !$user->isEmailConfirmed() && $action != 'createaccount'
-		$this->assertEquals( [],
-			MediaWikiServices::getInstance()->getPermissionManager()->getPermissionErrors(
-				'move-target', $this->user, $this->title ) );
+		// Check that user is blocked or unblocked from specific actions
+		foreach ( $expected as $action => $blocked ) {
+			$expectedErrorCount = $blocked ? 1 : 0;
+			$this->assertEquals(
+				$expectedErrorCount,
+				count( $permissionManager->getPermissionErrors(
+					$action,
+					$user,
+					$this->title
+				) )
+			);
+		}
 
-		global $wgLang;
-		$prev = time();
-		$now = time() + 120;
-		$this->user->mBlockedby = $this->user->getId();
-		$this->user->mBlock = new DatabaseBlock( [
-			'address' => '127.0.8.1',
-			'by' => $this->user->getId(),
-			'reason' => 'no reason given',
-			'timestamp' => $prev + 3600,
-			'auto' => true,
-			'expiry' => 0
-		] );
-		$this->user->mBlock->setTimestamp( 0 );
-		$this->assertEquals( [ [ 'autoblockedtext',
-			"[[User:Useruser|\u{202A}Useruser\u{202C}]]", 'no reason given', '127.0.0.1',
-			"\u{202A}Useruser\u{202C}", null, 'infinite', '127.0.8.1',
-			$wgLang->timeanddate( wfTimestamp( TS_MW, $prev ), true ) ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()->getPermissionErrors(
-				'move-target', $this->user, $this->title ) );
-
-		$this->assertFalse( MediaWikiServices::getInstance()->getPermissionManager()
-			->userCan( 'move-target', $this->user, $this->title ) );
 		// quickUserCan should ignore user blocks
-		$this->assertEquals( true, MediaWikiServices::getInstance()->getPermissionManager()
-			->quickUserCan( 'move-target', $this->user, $this->title ) );
+		$this->assertEquals(
+			true,
+			$permissionManager->quickUserCan( 'move-target', $this->user, $this->title )
+		);
+	}
 
-		global $wgLocalTZoffset;
-		$wgLocalTZoffset = -60;
-		$this->user->mBlockedby = $this->user->getName();
-		$this->user->mBlock = new DatabaseBlock( [
+	public static function provideTestCheckUserBlockActions() {
+		return [
+			'Sitewide autoblock' => [
+				new DatabaseBlock( [
+					'address' => '127.0.8.1',
+					'by' => 100,
+					'auto' => true,
+				] ),
+				false,
+				[
+					'edit' => true,
+					'move-target' => true,
+					'rollback' => true,
+					'patrol' => true,
+					'upload' => true,
+					'purge' => false,
+				]
+			],
+			'Sitewide block' => [
+				new DatabaseBlock( [
+					'address' => '127.0.8.1',
+					'by' => 100,
+				] ),
+				false,
+				[
+					'edit' => true,
+					'move-target' => true,
+					'rollback' => true,
+					'patrol' => true,
+					'upload' => true,
+					'purge' => false,
+				]
+			],
+			'Partial block without restriction against this page' => [
+				new DatabaseBlock( [
+					'address' => '127.0.8.1',
+					'by' => 100,
+					'sitewide' => false,
+				] ),
+				false,
+				[
+					'edit' => false,
+					'move-target' => false,
+					'rollback' => false,
+					'patrol' => false,
+					'upload' => false,
+					'purge' => false,
+				]
+			],
+			'Partial block with restriction against this page' => [
+				new DatabaseBlock( [
+					'address' => '127.0.8.1',
+					'by' => 100,
+					'sitewide' => false,
+				] ),
+				true,
+				[
+					'edit' => true,
+					'move-target' => true,
+					'rollback' => true,
+					'patrol' => true,
+					'upload' => false,
+					'purge' => false,
+				]
+			],
+			'System block' => [
+				new SystemBlock( [
+					'address' => '127.0.8.1',
+					'by' => 100,
+					'systemBlock' => 'test',
+				] ),
+				false,
+				[
+					'edit' => true,
+					'move-target' => true,
+					'rollback' => true,
+					'patrol' => true,
+					'upload' => true,
+					'purge' => false,
+				]
+			],
+			'No block' => [
+				null,
+				false,
+				[
+					'edit' => false,
+					'move-target' => false,
+					'rollback' => false,
+					'patrol' => false,
+					'upload' => false,
+					'purge' => false,
+				]
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideTestCheckUserBlockMessage
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserBlock
+	 */
+	public function testCheckUserBlockMessage( $blockType, $blockParams, $restriction, $expected ) {
+		$this->setMwGlobals( [
+			'wgEmailConfirmToEdit' => false,
+		] );
+
+		$block = new $blockType( array_merge( [
 			'address' => '127.0.8.1',
 			'by' => $this->user->getId(),
-			'reason' => 'no reason given',
-			'timestamp' => $now,
-			'auto' => false,
-			'expiry' => 10,
+			'reason' => 'Test reason',
+			'timestamp' => '20000101000000',
+			'expiry' => 0,
+		], $blockParams ) );
+
+		if ( $restriction ) {
+			$pageRestriction = new PageRestriction( 0, $this->title->getArticleID() );
+			$pageRestriction->setTitle( $this->title );
+			$block->setRestrictions( [ $pageRestriction ] );
+		}
+
+		$user = $this->getMockBuilder( User::class )
+			->setMethods( [ 'getBlock' ] )
+			->getMock();
+		$user->method( 'getBlock' )
+			->willReturn( $block );
+
+		$this->overrideUserPermissions( $user, [ 'edit' ] );
+
+		// TODO: PermissionManager::checkUserBlock gets the global IP because
+		// the correct context is not currently passed in. When that is fixed,
+		// this should be updated.
+		$expectedErrors = [ [
+			$expected['message'],
+			"[[User:Useruser|\u{202A}Useruser\u{202C}]]",
+			'Test reason',
+			RequestContext::getMain()->getRequest()->getIP(),
+			"\u{202A}Useruser\u{202C}",
+			$expected['identifier'],
+			'infinite',
+			'127.0.8.1',
+			'00:00, 1 January 2000'
+		] ];
+
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
+		$this->assertEquals(
+			$expectedErrors,
+			$permissionManager->getPermissionErrors(
+				'edit',
+				$user,
+				$this->title
+			)
+		);
+	}
+
+	public static function provideTestCheckUserBlockMessage() {
+		return [
+			'Sitewide autoblock' => [
+				DatabaseBlock::class,
+				[ 'auto' => true ],
+				false,
+				[
+					'message' => 'autoblockedtext',
+					'identifier' => null, // Block not inserted
+				],
+			],
+			'Sitewide block' => [
+				DatabaseBlock::class,
+				[],
+				false,
+				[
+					'message' => 'blockedtext',
+					'identifier' => null, // Block not inserted
+				],
+			],
+			'Partial block with restriction against this page' => [
+				DatabaseBlock::class,
+				[ 'sitewide' => false ],
+				true,
+				[
+					'message' => 'blockedtext-partial',
+					'identifier' => null, // Block not inserted
+				],
+			],
+			'System block' => [
+				SystemBlock::class,
+				[ 'systemBlock' => 'test' ],
+				false,
+				[
+					'message' => 'systemblockedtext',
+					'identifier' => 'test',
+				],
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideTestCheckUserBlockEmailConfirmToEdit
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserBlock
+	 */
+	public function testCheckUserBlockEmailConfirmToEdit( $emailConfirmToEdit, $assertion ) {
+		$this->setMwGlobals( [
+			'wgEmailConfirmToEdit' => $emailConfirmToEdit,
+			'wgEmailAuthentication' => true,
 		] );
-		$this->assertEquals( [ [ 'blockedtext',
-			"[[User:Useruser|\u{202A}Useruser\u{202C}]]", 'no reason given', '127.0.0.1',
-			"\u{202A}Useruser\u{202C}", null, '23:00, 31 December 1969', '127.0.8.1',
-			$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ] ],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'move-target', $this->user, $this->title ) );
-		# $action != 'read' && $action != 'createaccount' && $user->isBlockedFrom( $this )
-		#   $user->blockedFor() == ''
-		#   $user->mBlock->mExpiry == 'infinity'
 
-		$this->user->mBlockedby = $this->user->getName();
-		$this->user->mBlock = new SystemBlock( [
-			'address' => '127.0.8.1',
-			'by' => $this->user->getId(),
-			'reason' => 'no reason given',
-			'timestamp' => $now,
-			'auto' => false,
-			'systemBlock' => 'test',
+		$this->overrideUserPermissions( $this->user, [
+			'edit',
+			'move',
 		] );
 
-		$errors = [ [ 'systemblockedtext',
-			"[[User:Useruser|\u{202A}Useruser\u{202C}]]", 'no reason given', '127.0.0.1',
-			"\u{202A}Useruser\u{202C}", 'test', 'infinite', '127.0.8.1',
-			$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ] ];
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
-		$this->assertEquals( $errors,
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'edit', $this->user, $this->title ) );
-		$this->assertEquals( $errors,
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'move-target', $this->user, $this->title ) );
-		$this->assertEquals( $errors,
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'rollback', $this->user, $this->title ) );
-		$this->assertEquals( $errors,
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'patrol', $this->user, $this->title ) );
-		$this->assertEquals( $errors,
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'upload', $this->user, $this->title ) );
-		$this->assertEquals( [],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'purge', $this->user, $this->title ) );
+		$this->$assertion( [ 'confirmedittext' ],
+			$permissionManager->getPermissionErrors( 'edit', $this->user, $this->title ) );
 
-		// partial block message test
-		$this->user->mBlockedby = $this->user->getName();
-		$this->user->mBlock = new DatabaseBlock( [
-			'address' => '127.0.8.1',
-			'by' => $this->user->getId(),
-			'reason' => 'no reason given',
-			'timestamp' => $now,
-			'sitewide' => false,
-			'expiry' => 10,
-		] );
+		// $wgEmailConfirmToEdit only applies to 'edit' action
+		$this->assertEquals( [],
+			$permissionManager->getPermissionErrors( 'move-target', $this->user, $this->title ) );
+	}
 
-		$this->assertEquals( [],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'edit', $this->user, $this->title ) );
-		$this->assertEquals( [],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'move-target', $this->user, $this->title ) );
-		$this->assertEquals( [],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'rollback', $this->user, $this->title ) );
-		$this->assertEquals( [],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'patrol', $this->user, $this->title ) );
-		$this->assertEquals( [],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'upload', $this->user, $this->title ) );
-		$this->assertEquals( [],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'purge', $this->user, $this->title ) );
-
-		$this->user->mBlock->setRestrictions( [
-			( new PageRestriction( 0, $this->title->getArticleID() ) )->setTitle( $this->title ),
-		] );
-
-		$errors = [ [ 'blockedtext-partial',
-			"[[User:Useruser|\u{202A}Useruser\u{202C}]]", 'no reason given', '127.0.0.1',
-			"\u{202A}Useruser\u{202C}", null, '23:00, 31 December 1969', '127.0.8.1',
-			$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ] ];
-
-		$this->assertEquals( $errors,
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'edit', $this->user, $this->title ) );
-		$this->assertEquals( $errors,
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'move-target', $this->user, $this->title ) );
-		$this->assertEquals( $errors,
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'rollback', $this->user, $this->title ) );
-		$this->assertEquals( $errors,
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'patrol', $this->user, $this->title ) );
-		$this->assertEquals( [],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'upload', $this->user, $this->title ) );
-		$this->assertEquals( [],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'purge', $this->user, $this->title ) );
-
-		// Test no block.
-		$this->user->mBlockedby = null;
-		$this->user->mBlock = null;
-
-		$this->assertEquals( [],
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'edit', $this->user, $this->title ) );
+	public static function provideTestCheckUserBlockEmailConfirmToEdit() {
+		return [
+			'User must confirm email to edit' => [
+				true,
+				'assertContains',
+			],
+			'User may edit without confirming email' => [
+				false,
+				'assertNotContains',
+			],
+		];
 	}
 
 	/**
@@ -1306,9 +1395,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 * Tests to determine that the passed in permission does not get mixed up with
 	 * an action of the same name.
 	 */
-	public function testUserBlockAction() {
-		global $wgLang;
-
+	public function testCheckUserBlockActionPermission() {
 		$tester = $this->getMockBuilder( Action::class )
 					   ->disableOriginalConstructor()
 					   ->getMock();
@@ -1330,25 +1417,22 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			],
 		] );
 
-		$now = time();
-		$this->user->mBlockedby = $this->user->getName();
-		$this->user->mBlock = new DatabaseBlock( [
-			'address' => '127.0.8.1',
-			'by' => $this->user->getId(),
-			'reason' => 'no reason given',
-			'timestamp' => $now,
-			'auto' => false,
-			'expiry' => 'infinity',
-		] );
+		$user = $this->getMockBuilder( User::class )
+			->setMethods( [ 'getBlock' ] )
+			->getMock();
+		$user->method( 'getBlock' )
+			->willReturn( new DatabaseBlock( [
+				'address' => '127.0.8.1',
+				'by' => $this->user->getId(),
+			] ) );
 
-		$errors = [ [ 'blockedtext',
-			"[[User:Useruser|\u{202A}Useruser\u{202C}]]", 'no reason given', '127.0.0.1',
-			"\u{202A}Useruser\u{202C}", null, 'infinite', '127.0.8.1',
-			$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ] ];
-
-		$this->assertEquals( $errors,
-			MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'tester', $this->user, $this->title ) );
+		$this->assertEquals(
+			1,
+			count(
+				MediaWikiServices::getInstance()->getPermissionManager()
+					->getPermissionErrors( 'tester', $user, $this->title )
+			)
+		);
 	}
 
 	/**
