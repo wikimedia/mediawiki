@@ -123,7 +123,7 @@ class CompareParsers extends DumpIterator {
 		}
 	}
 
-	function stripParameters( $text ) {
+	private function stripParameters( $text ) {
 		if ( !$this->stripParametersEnabled ) {
 			return $text;
 		}

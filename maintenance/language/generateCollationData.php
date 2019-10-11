@@ -138,12 +138,12 @@ class GenerateCollationData extends Maintenance {
 		$this->generateFirstChars();
 	}
 
-	function loadUcd() {
+	private function loadUcd() {
 		$uxr = new UcdXmlReader( "{$this->dataDir}/ucd.all.grouped.xml" );
 		$uxr->readChars( [ $this, 'charCallback' ] );
 	}
 
-	function charCallback( $data ) {
+	private function charCallback( $data ) {
 		// Skip non-printable characters,
 		// but do not skip a normal space (U+0020) since
 		// people like to use that as a fake no header symbol.
@@ -193,7 +193,7 @@ class GenerateCollationData extends Maintenance {
 		}
 	}
 
-	function generateFirstChars() {
+	private function generateFirstChars() {
 		$file = fopen( "{$this->dataDir}/allkeys.txt", 'r' );
 		if ( !$file ) {
 			$this->fatalError( "Unable to open allkeys.txt" );
