@@ -58,6 +58,9 @@
 			"file": "images/icons/unLock.svg",
 			"variants": [ "destructive" ]
 		},
+		"restore": {
+			"file": "images/icons/restore.svg"
+		},
 		"star": {
 			"file": "images/icons/star.svg"
 		},
@@ -75,7 +78,8 @@
 			"variants": [ "destructive" ]
 		},
 		"unTrash": {
-			"file": "images/icons/unTrash.svg"
+			"file": "images/icons/restore.svg",
+			"deprecated": "Changed and renamed since v0.31.1, use 'restore' instead."
 		},
 		"pushPin": {
 			"file": "images/icons/pushPin.svg"
