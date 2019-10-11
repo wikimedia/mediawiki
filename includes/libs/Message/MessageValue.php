@@ -30,6 +30,16 @@ class MessageValue {
 	}
 
 	/**
+	 * Static constructor for easier chaining of `->params()` methods
+	 * @param string $key
+	 * @param (MessageParam|MessageValue|string|int|float)[] $params
+	 * @return MessageValue
+	 */
+	public static function new( $key, $params = [] ) {
+		return new MessageValue( $key, $params );
+	}
+
+	/**
 	 * Get the message key
 	 *
 	 * @return string
