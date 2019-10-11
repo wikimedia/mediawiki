@@ -1,6 +1,6 @@
 == MediaWiki 1.31.5 ==
 
-THIS IS NOT A RELEASE YET
+This is a maintenance release of the MediaWiki 1.31 branch.
 
 === Changes since MediaWiki 1.31.4 ===
 * Fix extra newlines in installer.
