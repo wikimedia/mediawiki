@@ -121,7 +121,7 @@ abstract class ApiUploadTestCase extends ApiTestCase {
 		return true;
 	}
 
-	public function fakeUploadChunk( $fieldName, $fileName, $type, & $chunkData ) {
+	public function fakeUploadChunk( $fieldName, $fileName, $type, &$chunkData ) {
 		$tmpName = $this->getNewTempFile();
 		// copy the chunk data to temp location:
 		if ( !file_put_contents( $tmpName, $chunkData ) ) {
