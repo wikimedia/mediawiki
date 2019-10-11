@@ -30,7 +30,6 @@ use MediaWiki\Shell\Shell;
  * Can fetch a random image, or also write a number of them to disk with random filenames.
  */
 class RandomImageGenerator {
-	private $dictionaryFile;
 	private $minWidth = 400;
 	private $maxWidth = 800;
 	private $minHeight = 400;
@@ -72,32 +71,12 @@ class RandomImageGenerator {
 	];
 
 	public function __construct( $options = [] ) {
-		foreach ( [ 'dictionaryFile', 'minWidth', 'minHeight',
+		foreach ( [ 'minWidth', 'minHeight',
 			'maxWidth', 'maxHeight', 'shapesToDraw' ] as $property
 		) {
 			if ( isset( $options[$property] ) ) {
 				$this->$property = $options[$property];
 			}
-		}
-
-		// find the dictionary file, to generate random names
-		if ( !isset( $this->dictionaryFile ) ) {
-			foreach (
-				[
-					'/usr/share/dict/words',
-					'/usr/dict/words',
-					__DIR__ . '/words.txt'
-				] as $dictionaryFile
-			) {
-				if ( is_file( $dictionaryFile ) && is_readable( $dictionaryFile ) ) {
-					$this->dictionaryFile = $dictionaryFile;
-					break;
-				}
-			}
-		}
-		if ( !isset( $this->dictionaryFile ) ) {
-			throw new Exception( "RandomImageGenerator: dictionary file not "
-				. "found or not specified properly" );
 		}
 	}
 
@@ -149,8 +128,9 @@ class RandomImageGenerator {
 	}
 
 	/**
-	 * Return a number of randomly-generated filenames
-	 * Each filename uses two words randomly drawn from the dictionary, like elephantine_spatula.jpg
+	 * Return a number of randomly-generated filenames.
+	 *
+	 * Each filename uses follows the pattern "hex_timestamp_1.jpg".
 	 *
 	 * @param int $number Number of filenames to generate
 	 * @param string $extension Optional, defaults to 'jpg'
@@ -162,13 +142,13 @@ class RandomImageGenerator {
 			$dir = getcwd();
 		}
 		$filenames = [];
-		foreach ( $this->getRandomWordPairs( $number ) as $pair ) {
-			$basename = $pair[0] . '_' . $pair[1];
-			if ( !is_null( $extension ) ) {
-				$basename .= '.' . $extension;
+		$prefix = wfRandomString( 3 ) . '_' . gmdate( 'YmdHis' ) . '_';
+		foreach ( range( 1, $number ) as $offset ) {
+			$filename = $prefix . $offset;
+			if ( $extension !== null ) {
+				$filename .= '.' . $extension;
 			}
-			$basename = preg_replace( '/\s+/', '', $basename );
-			$filenames[] = "$dir/$basename";
+			$filenames[] = "$dir/$filename";
 		}
 
 		return $filenames;
@@ -431,75 +411,5 @@ class RandomImageGenerator {
 		}
 
 		return 'rgb(' . implode( ', ', $components ) . ')';
-	}
-
-	/**
-	 * Get an array of random pairs of random words, like
-	 * [ [ 'foo', 'bar' ], [ 'quux', 'baz' ] ];
-	 *
-	 * @param int $number Number of pairs
-	 * @return array Two-element arrays
-	 */
-	private function getRandomWordPairs( $number ) {
-		$lines = $this->getRandomLines( $number * 2 );
-		// construct pairs of words
-		$pairs = [];
-		$count = count( $lines );
-		for ( $i = 0; $i < $count; $i += 2 ) {
-			$pairs[] = [ $lines[$i], $lines[$i + 1] ];
-		}
-
-		return $pairs;
-	}
-
-	/**
-	 * Return N random lines from a file
-	 *
-	 * Will throw exception if the file could not be read or if it had fewer lines than requested.
-	 *
-	 * @param int $number_desired Number of lines desired
-	 *
-	 * @throws Exception
-	 * @return array Array of exactly n elements, drawn randomly from lines the file
-	 */
-	private function getRandomLines( $number_desired ) {
-		$filepath = $this->dictionaryFile;
-
-		// initialize array of lines
-		$lines = [];
-		for ( $i = 0; $i < $number_desired; $i++ ) {
-			$lines[] = null;
-		}
-
-		/*
-		 * This algorithm obtains N random lines from a file in one single pass.
-		 * It does this by replacing elements of a fixed-size array of lines,
-		 * less and less frequently as it reads the file.
-		 */
-		$fh = fopen( $filepath, "r" );
-		if ( !$fh ) {
-			throw new Exception( "couldn't open $filepath" );
-		}
-		$line_number = 0;
-		while ( !feof( $fh ) ) {
-			$line = fgets( $fh );
-			if ( $line !== false ) {
-				$line_number++;
-				$line = trim( $line );
-				$index = mt_rand( 0, $line_number - 1 );
-				if ( $index < $number_desired ) {
-					if ( $line_number <= $number_desired ) {
-						$lines[$line_number - 1] = $lines[$index];
-					}
-					$lines[$index] = $line;
-				}
-			}
-		}
-		fclose( $fh );
-		if ( $line_number < $number_desired ) {
-			throw new Exception( "not enough lines in $filepath" );
-		}
-
-		return $lines;
 	}
 }
