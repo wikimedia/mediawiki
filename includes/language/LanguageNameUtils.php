@@ -78,7 +78,7 @@ class LanguageNameUtils {
 	 */
 	private $validCodeCache = [];
 
-	public static $constructorOptions = [
+	public const CONSTRUCTOR_OPTIONS = [
 		'ExtraLanguageNames',
 		'UsePigLatinVariant',
 	];
@@ -87,7 +87,7 @@ class LanguageNameUtils {
 	 * @param ServiceOptions $options
 	 */
 	public function __construct( ServiceOptions $options ) {
-		$options->assertRequiredOptions( self::$constructorOptions );
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 	}
 

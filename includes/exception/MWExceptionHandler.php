@@ -317,7 +317,7 @@ TXT;
 			// phpcs:enable
 		}
 
-		// We can't just create an exception and log it as it is likely that
+		// We can't just create an exception and log it, as it is likely that
 		// the interpreter has unwound the stack already. If that is true the
 		// stacktrace we would get would be functionally empty.
 		$trace = debug_backtrace();

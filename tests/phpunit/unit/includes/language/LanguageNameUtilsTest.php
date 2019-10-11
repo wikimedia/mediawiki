@@ -9,7 +9,7 @@ class LanguageNameUtilsTest extends MediaWikiUnitTestCase {
 	 */
 	private static function newObj( array $optionsArray = [] ) : LanguageNameUtils {
 		return new LanguageNameUtils( new ServiceOptions(
-			LanguageNameUtils::$constructorOptions,
+			LanguageNameUtils::CONSTRUCTOR_OPTIONS,
 			$optionsArray,
 			[
 				'ExtraLanguageNames' => [],

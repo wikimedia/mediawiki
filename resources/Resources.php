@@ -2819,22 +2819,11 @@ return [
 		],
 	],
 
-	/* EasyDeflate */
-
-	'easy-deflate.core' => [
-		'scripts' => [ 'resources/lib/easy-deflate/easydeflate.js' ],
-		'targets' => [ 'desktop', 'mobile' ],
-	],
-
 	'easy-deflate.deflate' => [
-		'scripts' => [ 'resources/lib/easy-deflate/deflate.js' ],
-		'dependencies' => [ 'easy-deflate.core' ],
-		'targets' => [ 'desktop', 'mobile' ],
-	],
-
-	'easy-deflate.inflate' => [
-		'scripts' => [ 'resources/lib/easy-deflate/inflate.js' ],
-		'dependencies' => [ 'easy-deflate.core' ],
+		'scripts' => [
+			'resources/lib/easy-deflate/easydeflate.js',
+			'resources/lib/easy-deflate/deflate.js',
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
