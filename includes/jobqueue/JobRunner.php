@@ -137,6 +137,13 @@ class JobRunner implements LoggerAwareInterface {
 			return $response;
 		}
 
+		// Use an appropriate timeout to balance lag avoidance and job progress
+		$oldTimeout = $lbFactory->setDefaultReplicationWaitTimeout( self::MAX_ALLOWED_LAG );
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$restorer = new ScopedCallback( function () use ( $lbFactory, $oldTimeout ) {
+			$lbFactory->setDefaultReplicationWaitTimeout( $oldTimeout );
+		} );
+
 		// Catch huge single updates that lead to replica DB lag
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
@@ -224,11 +231,8 @@ class JobRunner implements LoggerAwareInterface {
 				// other wikis in the farm (on different masters) get a chance.
 				$timePassed = microtime( true ) - $lastCheckTime;
 				if ( $timePassed >= self::LAG_CHECK_PERIOD || $timePassed < 0 ) {
-					$success = $lbFactory->waitForReplication( [
-						'ifWritesSince' => $lastCheckTime,
-						'timeout' => self::MAX_ALLOWED_LAG,
-					] );
-					if ( !$success ) {
+					$ok = $lbFactory->waitForReplication( [ 'ifWritesSince' => $lastCheckTime ] );
+					if ( !$ok ) {
 						$response['reached'] = 'replica-lag-limit';
 						break;
 					}
@@ -307,7 +311,7 @@ class JobRunner implements LoggerAwareInterface {
 			$status = false;
 			$error = get_class( $e ) . ': ' . $e->getMessage();
 		}
-		// Always attempt to call teardown() even if Job throws exception.
+		// Always attempt to call teardown(), even if Job throws exception
 		try {
 			$job->tearDown( $status );
 		} catch ( Exception $e ) {

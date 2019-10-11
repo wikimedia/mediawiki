@@ -389,6 +389,13 @@ interface ILBFactory {
 	public function setRequestInfo( array $info );
 
 	/**
+	 * @param int $seconds Default timeout for replication wait checks
+	 * @return int The previous default timeout
+	 * @since 1.35
+	 */
+	public function setDefaultReplicationWaitTimeout( $seconds );
+
+	/**
 	 * Make certain table names use their own database, schema, and table prefix
 	 * when passed into SQL queries pre-escaped and without a qualified database name
 	 *
