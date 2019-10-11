@@ -102,8 +102,8 @@ class ActorMigration {
 		'ipb_by' => [ 'ipb_by_text', 'ipb_by_actor' ],
 	];
 
-	/** @var array|null Cache for `self::getJoin()` */
-	private $joinCache = null;
+	/** @var array Cache for `self::getJoin()` */
+	private $joinCache = [];
 
 	/** @var int Combination of SCHEMA_COMPAT_* constants */
 	private $stage;

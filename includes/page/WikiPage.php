@@ -3067,7 +3067,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Callers are responsible for permission checks
 	 * (with ChangeTags::canAddTagsAccompanyingChange)
 	 *
-	 * @return array Array of errors, each error formatted as
+	 * @return array[] Array of errors, each error formatted as
 	 *   [ messagekey, param1, param2, ... ].
 	 * On success, the array is empty.  This array can also be passed to
 	 * OutputPage::showPermissionsErrorPage().

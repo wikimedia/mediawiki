@@ -39,6 +39,7 @@ class MagicWordArray {
 	/** @var array */
 	private $hash;
 
+	/** @var string[]|null */
 	private $baseRegex;
 
 	private $regex;

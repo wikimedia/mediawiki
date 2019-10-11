@@ -1704,7 +1704,7 @@ class Linker {
 	 * Generate a table of contents from a section tree.
 	 *
 	 * @since 1.16.3. $lang added in 1.17
-	 * @param array $tree Return value of ParserOutput::getSections()
+	 * @param array[] $tree Return value of ParserOutput::getSections()
 	 * @param Language|null $lang Language for the toc title, defaults to user language
 	 * @return string HTML fragment
 	 */

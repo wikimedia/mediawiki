@@ -54,7 +54,7 @@ class ExtensionRegistry {
 	/**
 	 * Array of loaded things, keyed by name, values are credits information
 	 *
-	 * @var array
+	 * @var array[]
 	 */
 	private $loaded = [];
 
@@ -515,7 +515,7 @@ class ExtensionRegistry {
 	/**
 	 * Get information about all things
 	 *
-	 * @return array
+	 * @return array[]
 	 */
 	public function getAllThings() {
 		return $this->loaded;

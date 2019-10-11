@@ -2886,7 +2886,7 @@ class Article implements Page {
 	 * @param bool $bot
 	 * @param array &$resultDetails
 	 * @param User|null $user
-	 * @return array
+	 * @return array[]
 	 */
 	public function doRollback( $fromP, $summary, $token, $bot, &$resultDetails, User $user = null ) {
 		if ( !$user ) {

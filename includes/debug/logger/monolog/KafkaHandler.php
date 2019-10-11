@@ -139,6 +139,7 @@ class KafkaHandler extends AbstractProcessingHandler {
 
 	/**
 	 * @inheritDoc
+	 * @phan-param array[] $batch
 	 */
 	public function handleBatch( array $batch ) {
 		$channels = [];

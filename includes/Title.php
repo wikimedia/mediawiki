@@ -2422,7 +2422,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @param array $ignoreErrors Array of Strings Set this to a list of message keys
 	 *   whose corresponding errors may be ignored.
 	 *
-	 * @return array Array of arrays of the arguments to wfMessage to explain permissions problems.
+	 * @return array[] Array of arrays of the arguments to wfMessage to explain permissions problems.
 	 * @throws Exception
 	 *
 	 * @deprecated since 1.33,
