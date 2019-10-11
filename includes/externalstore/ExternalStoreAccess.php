@@ -3,9 +3,9 @@
  * @defgroup ExternalStorage ExternalStorage
  */
 
-use \Psr\Log\LoggerAwareInterface;
-use \Psr\Log\LoggerInterface;
-use \Psr\Log\NullLogger;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 
 /**
  * Key/value blob storage for a collection of storage medium types (e.g. RDBMs, files)

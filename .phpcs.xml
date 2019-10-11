@@ -26,7 +26,6 @@
 		<exclude name="MediaWiki.Usage.PHPUnitTypeHints.MissingTypehint" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.SingleSpaceBeforeSingleLineComment" />
-		<exclude name="PSR12.Files.ImportStatement.LeadingSlash" />
 		<exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
 		<exclude name="Squiz.Scope.MethodScope.Missing" />
 	</rule>
