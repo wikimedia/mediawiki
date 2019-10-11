@@ -155,7 +155,12 @@ class SpecialBrokenRedirects extends QueryPage {
 				$fromObj,
 				$this->msg( 'brokenredirects-delete' )->text(),
 				[],
-				[ 'action' => 'delete' ]
+				[
+					'action' => 'delete',
+					'wpReason' => $this->msg( 'brokenredirects-delete-reason' )
+						->inContentLanguage()
+						->text()
+				]
 			);
 		}
 
