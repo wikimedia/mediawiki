@@ -68,20 +68,27 @@
 			prop: 'info',
 			titles: title.getPrefixedDb()
 		} ).then( function ( data ) {
-			var contentModel, moduleName, page = data.query.pages[ 0 ];
+			var contentModel, moduleName, loading, page = data.query.pages[ 0 ];
 			if ( !page ) {
 				return $.Deferred().reject( 'unexpected-response', 'Unexpected API response' );
 			}
 			contentModel = page.contentmodel;
-			moduleName = 'mediawiki.messagePoster.' + contentModel;
-			return mw.loader.using( moduleName ).then( function () {
+			if ( factory.contentModelToClass[ contentModel ] !== undefined ) {
+				// TODO: After T235315 is resolved, always reject class is not yet known.
+				loading = $.Deferred().resolve();
+			} else {
+				// For compatibility, allow lazy-loading (T235315)
+				moduleName = 'mediawiki.messagePoster.' + contentModel;
+				loading = mw.loader.using( moduleName ).catch( function () {
+					return $.Deferred().reject( 'failed-to-load-module', 'Failed to load "' + moduleName + '"' );
+				} );
+			}
+			return loading.then( function () {
 				return factory.createForContentModel(
 					contentModel,
 					title,
 					api
 				);
-			}, function () {
-				return $.Deferred().reject( 'failed-to-load-module', 'Failed to load "' + moduleName + '"' );
 			} );
 		}, function ( error, details ) {
 			return $.Deferred().reject( 'content-model-query-failed', error, details );
