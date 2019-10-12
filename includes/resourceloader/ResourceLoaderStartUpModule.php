@@ -82,24 +82,21 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		// Build list of variables
 		$skin = $context->getSkin();
+
+		// Start of supported and stable config vars (for use by extensions/gadgets).
 		$vars = [
 			'debug' => $context->getDebug(),
 			'skin' => $skin,
 			'stylepath' => $conf->get( 'StylePath' ),
-			'wgUrlProtocols' => wfUrlProtocols(),
 			'wgArticlePath' => $conf->get( 'ArticlePath' ),
 			'wgScriptPath' => $conf->get( 'ScriptPath' ),
 			'wgScript' => $conf->get( 'Script' ),
 			'wgSearchType' => $conf->get( 'SearchType' ),
 			'wgVariantArticlePath' => $conf->get( 'VariantArticlePath' ),
-			// Force object to avoid "empty" associative array from
-			// becoming [] instead of {} in JS (T36604)
-			'wgActionPaths' => (object)$conf->get( 'ActionPaths' ),
 			'wgServer' => $conf->get( 'Server' ),
 			'wgServerName' => $conf->get( 'ServerName' ),
 			'wgUserLanguage' => $context->getLanguage(),
 			'wgContentLanguage' => $contLang->getCode(),
-			'wgTranslateNumerals' => $conf->get( 'TranslateNumerals' ),
 			'wgVersion' => $conf->get( 'Version' ),
 			'wgEnableAPI' => true, // Deprecated since MW 1.32
 			'wgEnableWriteAPI' => true, // Deprecated since MW 1.32
@@ -109,20 +106,36 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgSiteName' => $conf->get( 'Sitename' ),
 			'wgDBname' => $conf->get( 'DBname' ),
 			'wgWikiID' => WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() ),
-			'wgExtraSignatureNamespaces' => $conf->get( 'ExtraSignatureNamespaces' ),
+			'wgCaseSensitiveNamespaces' => $caseSensitiveNamespaces,
+			'wgCommentByteLimit' => null,
+			'wgCommentCodePointLimit' => CommentStore::COMMENT_CHARACTER_LIMIT,
 			'wgExtensionAssetsPath' => $conf->get( 'ExtensionAssetsPath' ),
-			// MediaWiki sets cookies to have this prefix by default
+		];
+		// End of stable config vars.
+
+		// Internal variables for use by MediaWiki core and/or ResourceLoader.
+		$vars += [
+			// @internal For mediawiki.widgets
+			'wgUrlProtocols' => wfUrlProtocols(),
+			// @internal For mediawiki.page.watch
+			// Force object to avoid "empty" associative array from
+			// becoming [] instead of {} in JS (T36604)
+			'wgActionPaths' => (object)$conf->get( 'ActionPaths' ),
+			// @internal For mediawiki.language
+			'wgTranslateNumerals' => $conf->get( 'TranslateNumerals' ),
+			// @internal For mediawiki.Title
+			'wgExtraSignatureNamespaces' => $conf->get( 'ExtraSignatureNamespaces' ),
+			// @internal For mediawiki.cookie
 			'wgCookiePrefix' => $conf->get( 'CookiePrefix' ),
 			'wgCookieDomain' => $conf->get( 'CookieDomain' ),
 			'wgCookiePath' => $conf->get( 'CookiePath' ),
 			'wgCookieExpiration' => $conf->get( 'CookieExpiration' ),
-			'wgCaseSensitiveNamespaces' => $caseSensitiveNamespaces,
+			// @internal For mediawiki.Title
 			'wgLegalTitleChars' => Title::convertByteClassToUnicodeClass( Title::legalChars() ),
 			'wgIllegalFileChars' => Title::convertByteClassToUnicodeClass( $illegalFileChars ),
+			// @internal For mediawiki.ForeignUpload
 			'wgForeignUploadTargets' => $conf->get( 'ForeignUploadTargets' ),
 			'wgEnableUploads' => $conf->get( 'EnableUploads' ),
-			'wgCommentByteLimit' => null,
-			'wgCommentCodePointLimit' => CommentStore::COMMENT_CHARACTER_LIMIT,
 		];
 
 		Hooks::run( 'ResourceLoaderGetConfigVars', [ &$vars, $skin, $conf ] );
