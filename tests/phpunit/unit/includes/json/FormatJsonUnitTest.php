@@ -351,7 +351,7 @@ class FormatJsonUnitTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expect, FormatJson::encode(
 			FormatJson::decode( $json, true ) ) );
 
-		// Decoding to object differs between supported PHP versions
+		// Decoding to object differed for PHP versions less than 7.1
 		$obj = FormatJson::decode( $json );
 		$this->assertEquals( 'foo', $obj->{$php71Name} );
 	}
