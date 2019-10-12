@@ -523,7 +523,8 @@ trait LanguageNameUtilsTestTrait {
 	 * @param string $code
 	 */
 	public function testExceptionFromInvalidCode( $callback, $code ) {
-		$this->setExpectedException( MWException::class, "Invalid language code \"$code\"" );
+		$this->expectException( MWException::class );
+		$this->expectExceptionMessage( "Invalid language code \"$code\"" );
 
 		$callback( $code );
 	}

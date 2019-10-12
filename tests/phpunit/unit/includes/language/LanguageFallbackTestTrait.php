@@ -170,11 +170,10 @@ trait LanguageFallbackTestTrait {
 	 * @covers Language::getFallbacksFor
 	 */
 	public function testGetAll_invalidFallback() {
-		$this->setExpectedException( PostconditionException::class,
-			"Invalid fallback code '!!!' in fallback sequence for 'qqz'" );
-
 		$callee = $this->getCallee( [ 'fallbackMap' => [ 'qqz' => [ 'fr', 'de', '!!!', 'hi' ] ] ] );
 
+		$this->expectException( PostconditionException::class );
+		$this->expectExceptionMessage( "Invalid fallback code '!!!' in fallback sequence for 'qqz'" );
 		$this->callMethod( $callee, 'getAll', 'qqz' );
 	}
 
@@ -183,11 +182,10 @@ trait LanguageFallbackTestTrait {
 	 * @covers Language::getFallbacksFor
 	 */
 	public function testGetAll_invalidFallback_strict() {
-		$this->setExpectedException( PostconditionException::class,
-			"Invalid fallback code '!!!' in fallback sequence for 'qqz'" );
-
 		$callee = $this->getCallee( [ 'fallbackMap' => [ 'qqz' => [ 'fr', 'de', '!!!', 'hi' ] ] ] );
 
+		$this->expectException( PostconditionException::class );
+		$this->expectExceptionMessage( "Invalid fallback code '!!!' in fallback sequence for 'qqz'" );
 		$this->callMethod( $callee, 'getAll', 'qqz', $this->getStrictKey() );
 	}
 

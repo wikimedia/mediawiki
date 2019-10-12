@@ -341,7 +341,7 @@ class PathRouterTest extends MediaWikiUnitTestCase {
 	public function testValidateRoute( $path, $valid = true ) {
 		$router = new PathRouter;
 		if ( !$valid ) {
-			$this->setExpectedException( FatalError::class );
+			$this->expectException( FatalError::class );
 		}
 		$this->assertNull( $router->validateRoute( $path, 'wgExample' ) );
 	}
