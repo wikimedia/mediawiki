@@ -220,6 +220,10 @@ class MigrateFileRepoLayout extends Maintenance {
 		return RepoGroup::singleton()->getLocalRepo();
 	}
 
+	/**
+	 * @param array[] $ops
+	 * @param FileBackend $be
+	 */
 	protected function runBatch( array $ops, FileBackend $be ) {
 		$this->output( "Migrating file batch:\n" );
 		foreach ( $ops as $op ) {

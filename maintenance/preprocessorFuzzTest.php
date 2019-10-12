@@ -148,7 +148,12 @@ class PPFuzzTester {
 }
 
 class PPFuzzTest {
-	public $templates, $mainText, $title, $entryPoint, $output;
+	/**
+	 * @var array[]
+	 * @phan-var array<string,array{text:string|false,finalTitle:Title}>
+	 */
+	public $templates;
+	public $mainText, $title, $entryPoint, $output;
 
 	/** @var PPFuzzTester */
 	private $parent;

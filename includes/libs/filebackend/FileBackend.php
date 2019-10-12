@@ -447,9 +447,9 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *   - a) unexpected operation errors occurred (network partitions, disk full...)
 	 *   - b) predicted operation errors occurred and 'force' was not set
 	 *
-	 * @param array $ops List of operations to execute in order
+	 * @param array[] $ops List of operations to execute in order
 	 * @codingStandardsIgnoreStart
-	 * @phan-param array{ignoreMissingSource?:bool,overwrite?:bool,overwriteSame?:bool,headers?:bool} $ops
+	 * @phan-param array<int,array{ignoreMissingSource?:bool,overwrite?:bool,overwriteSame?:bool,headers?:bool}> $ops
 	 * @param array $opts Batch operation options
 	 * @phan-param array{force?:bool,nonLocking?:bool,nonJournaled?:bool,parallelize?:bool,bypassReadOnly?:bool,preserveCache?:bool} $opts
 	 * @codingStandardsIgnoreEnd
