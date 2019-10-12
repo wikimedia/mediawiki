@@ -682,7 +682,8 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	/**
-	 * @return array
+	 * @return array[]
+	 * @phan-return array<string,array{message:string,tooltip:string,namespaces:int|string|(int|string)[],namespace-messages?:string[]}>
 	 */
 	protected function getSearchProfiles() {
 		// Builds list of Search Types (profiles)

@@ -27,8 +27,11 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Parser
  */
 class LinkHolderArray {
+	/** @var array[][] */
 	public $internals = [];
+	/** @var array[] */
 	public $interwikis = [];
+	/** @var int */
 	public $size = 0;
 
 	/**
@@ -180,8 +183,8 @@ class LinkHolderArray {
 			) {
 				break;
 			}
-			$ns = $m[1][0];
-			$key = $m[2][0];
+			$ns = (int)$m[1][0];
+			$key = (int)$m[2][0];
 			$sub->internals[$ns][$key] = $this->internals[$ns][$key];
 			$pos = $m[0][1] + strlen( $m[0][0] );
 		}

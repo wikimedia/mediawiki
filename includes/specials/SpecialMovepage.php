@@ -136,7 +136,7 @@ class MovePageForm extends UnlistedSpecialPage {
 	/**
 	 * Show the form
 	 *
-	 * @param array $err Error messages. Each item is an error message.
+	 * @param (string|array)[] $err Error messages. Each item is an error message.
 	 *    It may either be a string message name or array message name and
 	 *    parameters, like the second argument to OutputPage::wrapWikiMsg().
 	 * @param bool $isPermError Whether the error message is about user permissions.

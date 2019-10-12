@@ -117,7 +117,7 @@ class WebPHandler extends BitmapHandler {
 
 	/**
 	 * Extracts the image size and WebP type from a file based on the chunk list
-	 * @param array $chunks Chunks as extracted by RiffExtractor
+	 * @param array[] $chunks Chunks as extracted by RiffExtractor
 	 * @param string $filename
 	 * @return array Header data array with entries 'compression', 'width' and 'height', where
 	 * 'compression' can be 'lossy', 'lossless', 'animated' or 'unknown'

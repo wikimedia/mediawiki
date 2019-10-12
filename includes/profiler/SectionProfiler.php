@@ -81,7 +81,7 @@ class SectionProfiler {
 	 * delays in usage of the profiler skewing the results. A "-total" entry
 	 * is always included in the results.
 	 *
-	 * @return array List of method entries arrays, each having:
+	 * @return array[] List of method entries arrays, each having:
 	 *   - name    : method name
 	 *   - calls   : the number of invoking calls
 	 *   - real    : real time elapsed (ms)
