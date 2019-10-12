@@ -68,6 +68,7 @@ use WikiPage;
  *
  * @since 1.32
  * @ingroup Page
+ * @phan-file-suppress PhanTypeArraySuspiciousNullable Cannot read type of $this->status->value
  */
 class PageUpdater {
 

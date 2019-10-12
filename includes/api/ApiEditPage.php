@@ -58,6 +58,7 @@ class ApiEditPage extends ApiBase {
 					->getContent( RevisionRecord::FOR_THIS_USER, $user )
 					->getRedirectChain();
 				// array_shift( $titles );
+				'@phan-var Title[] $titles';
 
 				$redirValues = [];
 

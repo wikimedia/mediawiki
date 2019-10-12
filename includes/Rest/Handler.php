@@ -126,7 +126,7 @@ abstract class Handler {
 	 * Fetch the validated parameters
 	 *
 	 * @return array|null Array mapping parameter names to validated values,
-	 *  or null if validateParams() was not called yet or validation failed.
+	 *  or null if validate() was not called yet.
 	 */
 	public function getValidatedParams() {
 		return $this->validatedParams;
@@ -134,7 +134,7 @@ abstract class Handler {
 
 	/**
 	 * Fetch the validated body
-	 * @return mixed Value returned by the body validator, or null if validateParams() was
+	 * @return mixed Value returned by the body validator, or null if validate() was
 	 *  not called yet, validation failed, there was no body, or the body was form data.
 	 */
 	public function getValidatedBody() {

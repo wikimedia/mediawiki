@@ -24,6 +24,7 @@ class SimpleHandler extends Handler {
 				$unvalidatedParams[] = $name;
 				$params[] = $value;
 			} else {
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$params[] = $validatedParams[$name];
 			}
 		}

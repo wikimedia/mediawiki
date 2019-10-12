@@ -302,6 +302,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 		}
 
 		foreach ( $dirNode['nodes'] as $node ) {
+			'@phan-var array $node';
 			$baseName = basename( $node['key'] );
 			$fullName = $dirName === '' ? $baseName : "$dirName/$baseName";
 			if ( !empty( $node['dir'] ) ) {

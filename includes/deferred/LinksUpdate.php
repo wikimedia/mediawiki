@@ -89,7 +89,7 @@ class LinksUpdate extends DataUpdate {
 	private $linkDeletions = null;
 
 	/**
-	 * @var null|array Added external links if calculated.
+	 * @var null|array[] Added external links if calculated.
 	 */
 	private $externalLinkInsertions = null;
 
@@ -583,7 +583,7 @@ class LinksUpdate extends DataUpdate {
 	/**
 	 * Get an array of externallinks insertions. Skips the names specified in $existing
 	 * @param array $existing
-	 * @return array
+	 * @return array[]
 	 */
 	private function getExternalInsertions( $existing = [] ) {
 		$arr = [];
