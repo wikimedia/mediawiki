@@ -1424,6 +1424,7 @@ abstract class ApiBase extends ContextSource {
 					$m = $p;
 				}
 				foreach ( $usedDeprecatedValues as $v ) {
+					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 					$msg = $deprecatedValues[$v];
 					if ( $msg === true ) {
 						$msg = [ 'apiwarn-deprecation-parameter', "$encParamName=$v" ];
