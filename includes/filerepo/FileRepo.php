@@ -151,6 +151,7 @@ class FileRepo {
 	/**
 	 * @param array|null $info
 	 * @throws MWException
+	 * @phan-assert array $info
 	 */
 	public function __construct( array $info = null ) {
 		// Verify required settings presence
