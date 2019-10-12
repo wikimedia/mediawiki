@@ -353,10 +353,6 @@ class FormatJsonUnitTest extends MediaWikiUnitTestCase {
 
 		// Decoding to object differs between supported PHP versions
 		$obj = FormatJson::decode( $json );
-		if ( version_compare( PHP_VERSION, '7.1', '<' ) ) {
-			$this->assertEquals( 'foo', $obj->_empty_ );
-		} else {
-			$this->assertEquals( 'foo', $obj->{$php71Name} );
-		}
+		$this->assertEquals( 'foo', $obj->{$php71Name} );
 	}
 }
