@@ -967,21 +967,12 @@ return [
 		'scripts' => [
 			'resources/src/mediawiki.messagePoster/factory.js',
 			'resources/src/mediawiki.messagePoster/MessagePoster.js',
+			'resources/src/mediawiki.messagePoster/WikitextMessagePoster.js',
 		],
 		'dependencies' => [
 			'oojs',
 			'mediawiki.api',
 			'mediawiki.ForeignApi',
-		],
-		'targets' => [ 'desktop', 'mobile' ],
-	],
-	'mediawiki.messagePoster.wikitext' => [
-		'scripts' => [
-			'resources/src/mediawiki.messagePoster.wikitext/WikitextMessagePoster.js',
-		],
-		'dependencies' => [
-			'mediawiki.api',
-			'mediawiki.messagePoster',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
