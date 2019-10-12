@@ -770,7 +770,7 @@ abstract class DatabaseMysqlBase extends Database {
 			'mysql',
 			'master-info',
 			// Using one key for all cluster replica DBs is preferable
-			$this->getLBInfo( 'clusterMasterHost' ) ?: $this->getServer()
+			$this->topologyRootMaster ?? $this->getServer()
 		);
 		$fname = __METHOD__;
 
@@ -849,7 +849,7 @@ abstract class DatabaseMysqlBase extends Database {
 			throw new InvalidArgumentException( "Position not an instance of MySQLMasterPos" );
 		}
 
-		if ( $this->getLBInfo( 'is static' ) === true ) {
+		if ( $this->topologyRole === self::ROLE_STATIC_CLONE ) {
 			$this->queryLogger->debug(
 				"Bypassed replication wait; database has a static dataset",
 				$this->getLogContext( [ 'method' => __METHOD__, 'raw_pos' => $pos ] )

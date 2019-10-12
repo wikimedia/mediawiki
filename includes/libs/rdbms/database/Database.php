@@ -81,6 +81,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $cliMode;
 	/** @var string Agent name for query profiling */
 	protected $agent;
+	/** @var string Replication topology role of the server; one of the class ROLE_* constants */
+	protected $topologyRole;
+	/** @var string|null Host (or address) of the root master server for the replication topology */
+	protected $topologyRootMaster;
 	/** @var array Parameters used by initConnection() to establish a connection */
 	protected $connectionParams;
 	/** @var string[]|int[]|float[] SQL variables values to use for all new connections */
@@ -180,6 +184,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var int|null Integer ID of the managing LBFactory instance or null if none */
 	private $ownerId;
 
+	/** @var string Whether the database is a file on disk */
+	const ATTR_DB_IS_FILE = 'db-is-file';
 	/** @var string Lock granularity is on the level of the entire database */
 	const ATTR_DB_LEVEL_LOCKING = 'db-level-locking';
 	/** @var string The SCHEMA keyword refers to a grouping of tables in a database */
@@ -243,24 +249,27 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param array $params Parameters passed from Database::factory()
 	 */
 	public function __construct( array $params ) {
-		$this->connectionParams = [];
-		foreach ( [ 'host', 'user', 'password', 'dbname', 'schema', 'tablePrefix' ] as $name ) {
-			$this->connectionParams[$name] = $params[$name];
-		}
+		$this->connectionParams = [
+			'host' => strlen( $params['host'] ) ? $params['host'] : null,
+			'user' => strlen( $params['user'] ) ? $params['user'] : null,
+			'dbname' => strlen( $params['dbname'] ) ? $params['dbname'] : null,
+			'schema' => strlen( $params['schema'] ) ? $params['schema'] : null,
+			'password' => is_string( $params['password'] ) ? $params['password'] : null,
+			'tablePrefix' => (string)$params['tablePrefix']
+		];
+
+		$this->lbInfo = $params['lbInfo'] ?? [];
+		$this->lazyMasterHandle = $params['lazyMasterHandle'] ?? null;
 		$this->connectionVariables = $params['variables'] ?? [];
-		$this->cliMode = $params['cliMode'];
-		$this->agent = $params['agent'];
-		$this->flags = $params['flags'];
-		if ( $this->flags & self::DBO_DEFAULT ) {
-			if ( $this->cliMode ) {
-				$this->flags &= ~self::DBO_TRX;
-			} else {
-				$this->flags |= self::DBO_TRX;
-			}
-		}
+
+		$this->flags = (int)$params['flags'];
+		$this->cliMode = (bool)$params['cliMode'];
+		$this->agent = (string)$params['agent'];
+		$this->topologyRole = (string)$params['topologyRole'];
+		$this->topologyRootMaster = (string)$params['topologicalMaster'];
 		$this->nonNativeInsertSelectBatchSize = $params['nonNativeInsertSelectBatchSize'] ?? 10000;
 
-		$this->srvCache = $params['srvCache'] ?? new HashBagOStuff();
+		$this->srvCache = $params['srvCache'];
 		$this->profiler = is_callable( $params['profiler'] ) ? $params['profiler'] : null;
 		$this->trxProfiler = $params['trxProfiler'];
 		$this->connLogger = $params['connLogger'];
@@ -351,6 +360,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *      'mysqli' driver; the old one 'mysql' has been removed.
 	 *   - variables: Optional map of session variables to set after connecting. This can be
 	 *      used to adjust lock timeouts or encoding modes and the like.
+	 *   - topologyRole: Optional IDatabase::ROLE_* constant for the server.
+	 *   - topologicalMaster: Optional name of the master server within the replication topology.
+	 *   - lbInfo: Optional map of field/values for the managing load balancer instance.
+	 *      The "master" and "replica" fields are used to flag the replication role of this
+	 *      database server and whether methods like getLag() should actually issue queries.
+	 *   - lazyMasterHandle: lazy-connecting IDatabase handle to the master DB for the cluster
+	 *      that this database belongs to. This is used for replication status purposes.
 	 *   - connLogger: Optional PSR-3 logger interface instance.
 	 *   - queryLogger: Optional PSR-3 logger interface instance.
 	 *   - profiler : Optional callback that takes a section name argument and returns
@@ -375,6 +391,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		if ( class_exists( $class ) && is_subclass_of( $class, IDatabase::class ) ) {
 			$params += [
+				// Default configuration
 				'host' => null,
 				'user' => null,
 				'password' => null,
@@ -383,24 +400,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				'tablePrefix' => '',
 				'flags' => 0,
 				'variables' => [],
+				'lbInfo' => [],
 				'cliMode' => ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' ),
 				'agent' => basename( $_SERVER['SCRIPT_NAME'] ) . '@' . gethostname(),
-				'ownerId' => null
-			];
-
-			$normalizedParams = [
-				// Configuration
-				'host' => strlen( $params['host'] ) ? $params['host'] : null,
-				'user' => strlen( $params['user'] ) ? $params['user'] : null,
-				'password' => is_string( $params['password'] ) ? $params['password'] : null,
-				'dbname' => strlen( $params['dbname'] ) ? $params['dbname'] : null,
-				'schema' => strlen( $params['schema'] ) ? $params['schema'] : null,
-				'tablePrefix' => (string)$params['tablePrefix'],
-				'flags' => (int)$params['flags'],
-				'variables' => $params['variables'],
-				'cliMode' => (bool)$params['cliMode'],
-				'agent' => (string)$params['agent'],
+				'ownerId' => null,
+				'topologyRole' => null,
+				'topologicalMaster' => null,
 				// Objects and callbacks
+				'lazyMasterHandle' => $params['lazyMasterHandle'] ?? null,
 				'srvCache' => $params['srvCache'] ?? new HashBagOStuff(),
 				'profiler' => $params['profiler'] ?? null,
 				'trxProfiler' => $params['trxProfiler'] ?? new TransactionProfiler(),
@@ -412,10 +419,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				'deprecationLogger' => $params['deprecationLogger'] ?? function ( $msg ) {
 					trigger_error( $msg, E_USER_DEPRECATED );
 				}
-			] + $params;
+			];
 
 			/** @var Database $conn */
-			$conn = new $class( $normalizedParams );
+			$conn = new $class( $params );
 			if ( $connect === self::NEW_CONNECTED ) {
 				$conn->initConnection();
 			}
@@ -435,6 +442,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	final public static function attributesFromType( $dbType, $driver = null ) {
 		static $defaults = [
+			self::ATTR_DB_IS_FILE => false,
 			self::ATTR_DB_LEVEL_LOCKING => false,
 			self::ATTR_SCHEMAS_AS_TABLE_GROUPS => false
 		];
@@ -518,6 +526,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function getServerInfo() {
 		return $this->getServerVersion();
+	}
+
+	public function getTopologyRole() {
+		return $this->topologyRole;
+	}
+
+	public function getTopologyRootMaster() {
+		return $this->topologyRootMaster;
 	}
 
 	/**
@@ -611,13 +627,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
-	public function setLazyMasterHandle( IDatabase $conn ) {
-		$this->lazyMasterHandle = $conn;
-	}
-
 	/**
+	 * Get a handle to the master server of the cluster to which this server belongs
+	 *
 	 * @return IDatabase|null
-	 * @see setLazyMasterHandle()
 	 * @since 1.27
 	 */
 	protected function getLazyMasterHandle() {
@@ -660,7 +673,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	final protected function getTransactionRoundId() {
 		// If transaction round participation is enabled, see if one is active
 		if ( $this->getFlag( self::DBO_TRX ) ) {
-			$id = $this->getLBInfo( 'trxRoundId' );
+			$id = $this->getLBInfo( self::LB_TRX_ROUND_ID );
 
 			return is_string( $id ) ? $id : null;
 		}
@@ -963,19 +976,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Make sure that this server is not marked as a replica nor read-only as a sanity check
 	 *
-	 * @throws DBReadOnlyRoleError
 	 * @throws DBReadOnlyError
 	 */
 	protected function assertIsWritableMaster() {
-		if ( $this->getLBInfo( 'replica' ) ) {
-			throw new DBReadOnlyRoleError(
-				$this,
-				'Write operations are not allowed on replica database connections'
-			);
-		}
-		$reason = $this->getReadOnlyReason();
-		if ( $reason !== false ) {
-			throw new DBReadOnlyError( $this, "Database is read-only: $reason" );
+		$info = $this->getReadOnlyReason();
+		if ( $info ) {
+			list( $reason, $source ) = $info;
+			if ( $source === 'role' ) {
+				throw new DBReadOnlyRoleError( $this, "Database is read-only: $reason" );
+			} else {
+				throw new DBReadOnlyError( $this, "Database is read-only: $reason" );
+			}
 		}
 	}
 
@@ -1285,7 +1296,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			}
 		}
 
-		$prefix = $this->getLBInfo( 'master' ) ? 'query-m: ' : 'query: ';
+		$prefix = $this->topologyRole ? 'query-m: ' : 'query: ';
 		$generalizedSql = new GeneralizedSql( $sql, $this->trxShortId, $prefix );
 
 		$startTime = microtime( true );
@@ -4384,14 +4395,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Get a replica DB lag estimate for this server
+	 * Get a replica DB lag estimate for this server at the start of a transaction
+	 *
+	 * This is a no-op unless the server is known a priori to be a replica DB
 	 *
 	 * @return array ('lag': seconds or false on error, 'since': UNIX timestamp of estimate)
 	 * @since 1.27
 	 */
 	protected function getApproximateLagStatus() {
 		return [
-			'lag'   => $this->getLBInfo( 'replica' ) ? $this->getLag() : 0,
+			'lag' => ( $this->topologyRole === self::ROLE_STREAMING_REPLICA ) ? $this->getLag() : 0,
 			'since' => microtime( true )
 		];
 	}
@@ -4433,9 +4446,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function getLag() {
-		if ( $this->getLBInfo( 'master' ) ) {
+		if ( $this->topologyRole === self::ROLE_STREAMING_MASTER ) {
 			return 0; // this is the master
-		} elseif ( $this->getLBInfo( 'is static' ) ) {
+		} elseif ( $this->topologyRole === self::ROLE_STATIC_CLONE ) {
 			return 0; // static dataset
 		}
 
@@ -4814,14 +4827,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @return string|bool Reason this DB is read-only or false if it is not
+	 * @return array|bool Tuple of (read-only reason, "role" or "lb") or false if it is not
 	 */
 	protected function getReadOnlyReason() {
-		$reason = $this->getLBInfo( 'readOnlyReason' );
+		if ( $this->topologyRole === self::ROLE_STREAMING_REPLICA ) {
+			return [ 'Server is configured as a read-only replica database.', 'role' ];
+		} elseif ( $this->topologyRole === self::ROLE_STATIC_CLONE ) {
+			return [ 'Server is configured as a read-only static clone database.', 'role' ];
+		}
+
+		$reason = $this->getLBInfo( self::LB_READ_ONLY_REASON );
 		if ( is_string( $reason ) ) {
-			return $reason;
-		} elseif ( $this->getLBInfo( 'replica' ) ) {
-			return "Server is configured in the role of a read-only replica database.";
+			return [ $reason, 'lb' ];
 		}
 
 		return false;

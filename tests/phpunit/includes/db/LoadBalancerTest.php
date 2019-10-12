@@ -20,7 +20,6 @@
  *
  * @file
  */
-
 use PHPUnit\Framework\Constraint\StringContains;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DatabaseDomain;
@@ -91,12 +90,15 @@ class LoadBalancerTest extends MediaWikiTestCase {
 
 		$dbw = $lb->getConnection( DB_MASTER );
 		$this->assertTrue( $called );
-		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
+		$this->assertEquals(
+			$dbw::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'master shows as master'
+		);
 		$this->assertTrue( $dbw->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on master" );
 		$this->assertWriteAllowed( $dbw );
 
 		$dbr = $lb->getConnection( DB_REPLICA );
-		$this->assertTrue( $dbr->getLBInfo( 'master' ), 'DB_REPLICA also gets the master' );
+		$this->assertEquals(
+			$dbr::ROLE_STREAMING_MASTER, $dbr->getTopologyRole(), 'DB_REPLICA also gets the master' );
 		$this->assertTrue( $dbr->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on replica" );
 
 		if ( !$lb->getServerAttributes( $lb->getWriterIndex() )[$dbw::ATTR_DB_LEVEL_LOCKING] ) {
@@ -155,23 +157,26 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		}
 
 		$dbw = $lb->getConnection( DB_MASTER );
-		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
+		$this->assertEquals(
+			$dbw::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'master shows as master' );
 		$this->assertEquals(
 			( $wgDBserver != '' ) ? $wgDBserver : 'localhost',
-			$dbw->getLBInfo( 'clusterMasterHost' ),
-			'cluster master set' );
+			$dbw->getTopologyRootMaster(),
+			'cluster master set'
+		);
 		$this->assertTrue( $dbw->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on master" );
 		$this->assertWriteAllowed( $dbw );
 
 		$dbr = $lb->getConnection( DB_REPLICA );
-		$this->assertTrue( $dbr->getLBInfo( 'replica' ), 'replica shows as replica' );
+		$this->assertEquals(
+			$dbr::ROLE_STREAMING_REPLICA, $dbr->getTopologyRole(), 'replica shows as replica' );
 		$this->assertTrue( $dbr->isReadOnly(), 'replica shows as replica' );
 		$this->assertEquals(
 			( $wgDBserver != '' ) ? $wgDBserver : 'localhost',
-			$dbr->getLBInfo( 'clusterMasterHost' ),
-			'cluster master set' );
+			$dbr->getTopologyRootMaster(),
+			'cluster master set'
+		);
 		$this->assertTrue( $dbr->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on replica" );
-		$this->assertWriteForbidden( $dbr );
 		$this->assertEquals( $dbr->getLBInfo( 'serverIndex' ), $lb->getReaderIndex() );
 
 		if ( !$lb->getServerAttributes( $lb->getWriterIndex() )[$dbw::ATTR_DB_LEVEL_LOCKING] ) {
@@ -575,7 +580,23 @@ class LoadBalancerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef()
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection()
+	 * @expectedException \Wikimedia\Rdbms\DBReadOnlyRoleError
+	 */
+	public function testForbiddenWritesNoRef() {
+		// Simulate web request with DBO_TRX
+		$lb = $this->newMultiServerLocalLoadBalancer( [], [ 'flags' => DBO_TRX ] );
+
+		$dbr = $lb->getConnection( DB_REPLICA );
+		$this->assertTrue( $dbr->isReadOnly(), 'replica shows as replica' );
+		$dbr->delete( 'some_table', [ 'id' => 57634126 ], __METHOD__ );
+
+		$lb->closeAll();
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection()
 	 */
 	public function testDBConnRefReadsMasterAndReplicaRoles() {
@@ -602,7 +623,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef()
 	 * @expectedException \Wikimedia\Rdbms\DBReadOnlyRoleError
 	 */
 	public function testDBConnRefWritesReplicaRole() {
@@ -614,7 +635,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef()
 	 * @expectedException \Wikimedia\Rdbms\DBReadOnlyRoleError
 	 */
 	public function testDBConnRefWritesReplicaRoleIndex() {
@@ -626,7 +647,19 @@ class LoadBalancerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef()
+	 * @expectedException \Wikimedia\Rdbms\DBReadOnlyRoleError
+	 */
+	public function testLazyDBConnRefWritesReplicaRoleIndex() {
+		$lb = $this->newMultiServerLocalLoadBalancer();
+
+		$rConn = $lb->getLazyConnectionRef( 1 );
+
+		$rConn->query( 'DELETE FROM sometesttable WHERE 1=0' );
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef()
 	 * @expectedException \Wikimedia\Rdbms\DBReadOnlyRoleError
 	 */
 	public function testDBConnRefWritesReplicaRoleInsert() {
