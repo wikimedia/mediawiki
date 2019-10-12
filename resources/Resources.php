@@ -963,19 +963,6 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'mediawiki.messagePoster' => [
-		'scripts' => [
-			'resources/src/mediawiki.messagePoster/factory.js',
-			'resources/src/mediawiki.messagePoster/MessagePoster.js',
-			'resources/src/mediawiki.messagePoster/WikitextMessagePoster.js',
-		],
-		'dependencies' => [
-			'oojs',
-			'mediawiki.api',
-			'mediawiki.ForeignApi',
-		],
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'mediawiki.notification' => [
 		'styles' => [
 			'resources/src/mediawiki.notification/common.css',

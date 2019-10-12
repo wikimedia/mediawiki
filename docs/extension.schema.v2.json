@@ -491,6 +491,31 @@
 				}
 			}
 		},
+		"MessagePosterModule": {
+			"type": "object",
+			"description": "Additional JavaScript files and modules that will register content models with mw.messagePoster.factory.",
+			"additionalProperties": false,
+			"properties": {
+				"localBasePath": {
+					"type": "string",
+					"description": "Prefix for local paths to files in $options, relative to extenion directory"
+				},
+				"scripts": {
+					"type": "array",
+					"description": "Scripts to include as array of file paths",
+					"items": {
+						"type": "string"
+					}
+				},
+				"dependencies": {
+					"type": "array",
+					"description": "Modules which must load before these files",
+					"items": {
+						"type": "string"
+					}
+				}
+			}
+		},
 		"ConfigRegistry": {
 			"type": "object",
 			"description": "Registry of factory functions to create Config objects"
