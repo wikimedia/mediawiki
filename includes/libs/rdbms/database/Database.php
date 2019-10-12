@@ -2951,6 +2951,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( !is_array( reset( $rows ) ) ) {
 			$rows = [ $rows ];
 		}
+		'@phan-var array[] $rows';
 
 		if ( count( $uniqueIndexes ) ) {
 			$clauses = []; // list WHERE clauses that each identify a single row

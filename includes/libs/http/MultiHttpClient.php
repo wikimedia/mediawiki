@@ -158,7 +158,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - reqTimeout      : post-connection timeout per request (seconds)
 	 *   - usePipelining   : whether to use HTTP pipelining if possible (for all hosts)
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
-	 * @return array $reqs With response array populated for each
+	 * @return array[] $reqs With response array populated for each
 	 * @throws Exception
 	 */
 	public function runMulti( array $reqs, array $opts = [] ) {

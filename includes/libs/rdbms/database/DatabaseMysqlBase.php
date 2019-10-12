@@ -904,6 +904,7 @@ abstract class DatabaseMysqlBase extends Database {
 		} else {
 			// Wait on the binlog coordinates
 			$encFile = $this->addQuotes( $pos->getLogFile() );
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			$encPos = intval( $pos->getLogPosition()[$pos::CORD_EVENT] );
 			$sql = "SELECT MASTER_POS_WAIT($encFile, $encPos, $timeout)";
 			$waitPos = $pos->__toString();
