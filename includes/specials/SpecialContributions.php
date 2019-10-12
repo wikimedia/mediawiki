@@ -610,6 +610,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			'SpecialContributions::getForm::filters',
 			[ $this, &$rawFilters ]
 		);
+		// @phan-suppress-next-line PhanEmptyForeach False positive
 		foreach ( $rawFilters as $filter ) {
 			// Backwards compatibility support for previous hook function signature.
 			if ( is_string( $filter ) ) {

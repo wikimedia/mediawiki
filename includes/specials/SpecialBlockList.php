@@ -244,6 +244,7 @@ class SpecialBlockList extends SpecialPage {
 				) . "\n"
 			);
 			$list = '';
+			// @phan-suppress-next-line PhanEmptyForeach False positive
 			foreach ( $otherBlockLink as $link ) {
 				$list .= Html::rawElement( 'li', [], $link ) . "\n";
 			}

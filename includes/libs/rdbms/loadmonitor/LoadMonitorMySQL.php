@@ -43,7 +43,7 @@ class LoadMonitorMySQL extends LoadMonitor {
 	}
 
 	protected function getWeightScale( $index, IDatabase $conn = null ) {
-		if ( !$conn ) {
+		if ( $conn === null ) {
 			return parent::getWeightScale( $index, $conn );
 		}
 
