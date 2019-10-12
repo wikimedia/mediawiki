@@ -162,6 +162,7 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 			$revIds = $dbw->selectFieldValues(
 				'revision',
 				'rev_id',
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				[ 'rev_timestamp' => self::$dummyRev['rev_timestamp'] ],
 				$fname
 			);

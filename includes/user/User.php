@@ -2932,6 +2932,7 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 
 		if ( array_key_exists( $oname, $this->mOptions ) ) {
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable Obvious false positive
 			return $this->mOptions[$oname];
 		}
 

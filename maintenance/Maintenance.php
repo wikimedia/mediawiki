@@ -1142,6 +1142,7 @@ abstract class Maintenance {
 			$this->mGenericParameters,
 			$this->mDependantParameters
 		);
+		'@phan-var array[] $scriptSpecificParams';
 		if ( count( $scriptSpecificParams ) > 0 ) {
 			$this->output( "Script specific parameters:\n" );
 			// Parameters description

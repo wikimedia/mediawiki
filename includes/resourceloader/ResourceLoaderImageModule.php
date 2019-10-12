@@ -27,8 +27,8 @@
  */
 class ResourceLoaderImageModule extends ResourceLoaderModule {
 
-	/** @var array|null */
-	protected $definition = null;
+	/** @var array */
+	protected $definition;
 
 	/**
 	 * Local base path, see __construct()

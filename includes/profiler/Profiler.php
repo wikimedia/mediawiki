@@ -342,7 +342,7 @@ abstract class Profiler {
 	 * entries for the cyclic invocation should be be demarked with "@".
 	 * This makes filtering them out easier and follows the xhprof style.
 	 *
-	 * @return array List of method entries arrays, each having:
+	 * @return array[] List of method entries arrays, each having:
 	 *   - name     : method name
 	 *   - calls    : the number of invoking calls
 	 *   - real     : real time elapsed (ms)

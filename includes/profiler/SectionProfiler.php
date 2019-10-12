@@ -37,7 +37,7 @@ class SectionProfiler {
 	/** @var array Queue of open profile calls with start data */
 	protected $workStack = [];
 
-	/** @var array Map of (function name => aggregate data array) */
+	/** @var array[] Map of (function name => aggregate data array) */
 	protected $collated = [];
 	/** @var bool */
 	protected $collateDone = false;
