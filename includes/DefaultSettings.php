@@ -3711,14 +3711,8 @@ $wgResourceBasePath = null;
  * - client: On the client side (e.g. in the browser cache).
  */
 $wgResourceLoaderMaxage = [
-	'versioned' => [
-		'server' => 30 * 24 * 60 * 60, // 30 days
-		'client' => 30 * 24 * 60 * 60, // 30 days
-	],
-	'unversioned' => [
-		'server' => 5 * 60, // 5 minutes
-		'client' => 5 * 60, // 5 minutes
-	],
+	'versioned' => 30 * 24 * 60 * 60, // 30 days
+	'unversioned' => 5 * 60, // 5 minutes
 ];
 
 /**

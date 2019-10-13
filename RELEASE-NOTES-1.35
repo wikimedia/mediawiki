@@ -33,6 +33,11 @@ For notes on 1.34.x and older releases, see HISTORY.
 
 
 ==== Changed configuration ====
+* $wgResourceLoaderMaxage (T235314) - This configuration array controls the
+  max-age for HTTP caching through the Cache-Control header. It has uses the
+  "versioned" key for urls that do have a version parameter, and the
+  "unversioned" key for urls without a version parameter. The sub keys for
+  "client" and "server" are no longer supported in MediaWiki 1.35.
 * …
 
 ==== Removed configuration ====
