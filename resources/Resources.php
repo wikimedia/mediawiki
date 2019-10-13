@@ -268,6 +268,7 @@ return [
 		'dependencies' => 'jquery.highlightText',
 	],
 	'jquery.tabIndex' => [
+		'deprecated' => true,
 		'scripts' => 'resources/src/jquery/jquery.tabIndex.js',
 	],
 	'jquery.tablesorter' => [
