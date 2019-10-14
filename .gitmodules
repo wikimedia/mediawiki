@@ -1188,7 +1188,3 @@
 	path = extensions/HeaderFooter
 	url = https://github.com/enterprisemediawiki/HeaderFooter.git
 	branch = master
-[submodule "AutoCreatePage"]
-	path = AutoCreatePage
-	url = https://github.com/mkroetzsch/AutoCreatePage
-	branch = master
