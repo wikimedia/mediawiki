@@ -80,6 +80,14 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function getTopologyRole() {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function getTopologyRootMaster() {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	/**
 	 * @param bool|null $buffer
 	 * @return bool
@@ -138,11 +146,6 @@ class DBConnRef implements IDatabase {
 	public function setLBInfo( $nameOrArray, $value = null ) {
 		// Disallow things that might confuse the LoadBalancer tracking
 		throw new DBUnexpectedError( $this, "Changing LB info is disallowed to enable reuse." );
-	}
-
-	public function setLazyMasterHandle( IDatabase $conn ) {
-		// Disallow things that might confuse the LoadBalancer tracking
-		throw new DBUnexpectedError( $this, "Database injection is disallowed to enable reuse." );
 	}
 
 	public function implicitOrderby() {

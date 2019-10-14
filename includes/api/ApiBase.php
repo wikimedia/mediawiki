@@ -888,12 +888,9 @@ abstract class ApiBase extends ContextSource {
 	 * Die if none or more than one of a certain set of parameters is set and not false.
 	 *
 	 * @param array $params User provided set of parameters, as from $this->extractRequestParams()
-	 * @param string $required,... Names of parameters of which exactly one must be set
+	 * @param string ...$required Names of parameters of which exactly one must be set
 	 */
-	public function requireOnlyOneParameter( $params, $required /*...*/ ) {
-		$required = func_get_args();
-		array_shift( $required );
-
+	public function requireOnlyOneParameter( $params, ...$required ) {
 		$intersection = array_intersect( array_keys( array_filter( $params,
 			[ $this, 'parameterNotEmpty' ] ) ), $required );
 
@@ -926,12 +923,9 @@ abstract class ApiBase extends ContextSource {
 	 * Die if more than one of a certain set of parameters is set and not false.
 	 *
 	 * @param array $params User provided set of parameters, as from $this->extractRequestParams()
-	 * @param string $required,... Names of parameters of which at most one must be set
+	 * @param string ...$required Names of parameters of which at most one must be set
 	 */
-	public function requireMaxOneParameter( $params, $required /*...*/ ) {
-		$required = func_get_args();
-		array_shift( $required );
-
+	public function requireMaxOneParameter( $params, ...$required ) {
 		$intersection = array_intersect( array_keys( array_filter( $params,
 			[ $this, 'parameterNotEmpty' ] ) ), $required );
 
@@ -954,12 +948,9 @@ abstract class ApiBase extends ContextSource {
 	 *
 	 * @since 1.23
 	 * @param array $params User provided set of parameters, as from $this->extractRequestParams()
-	 * @param string $required,... Names of parameters of which at least one must be set
+	 * @param string ...$required Names of parameters of which at least one must be set
 	 */
-	public function requireAtLeastOneParameter( $params, $required /*...*/ ) {
-		$required = func_get_args();
-		array_shift( $required );
-
+	public function requireAtLeastOneParameter( $params, ...$required ) {
 		$intersection = array_intersect(
 			array_keys( array_filter( $params, [ $this, 'parameterNotEmpty' ] ) ),
 			$required
@@ -2414,21 +2405,20 @@ abstract class ApiBase extends ContextSource {
 						$map[$submoduleName] = $prefix . $submoduleName;
 					}
 				}
-				ksort( $map );
+
 				$submodules = [];
-				$deprecatedSubmodules = [];
+				$submoduleFlags = []; // for sorting: higher flags are sorted later
+				$submoduleNames = []; // for sorting: lexicographical, ascending
 				foreach ( $map as $v => $m ) {
-					$arr = &$submodules;
 					$isDeprecated = false;
+					$isInternal = false;
 					$summary = null;
 					try {
 						$submod = $this->getModuleFromPath( $m );
 						if ( $submod ) {
 							$summary = $submod->getFinalSummary();
 							$isDeprecated = $submod->isDeprecated();
-							if ( $isDeprecated ) {
-								$arr = &$deprecatedSubmodules;
-							}
+							$isInternal = $submod->isInternal();
 						}
 					} catch ( ApiUsageException $ex ) {
 						// Ignore
@@ -2440,10 +2430,20 @@ abstract class ApiBase extends ContextSource {
 						$key = 'api-help-undocumented-module';
 						$params = [ $m ];
 					}
-					$m = new ApiHelpParamValueMessage( "[[Special:ApiHelp/$m|$v]]", $key, $params, $isDeprecated );
-					$arr[] = $m->setContext( $this->getContext() );
+					$m = new ApiHelpParamValueMessage(
+						"[[Special:ApiHelp/$m|$v]]",
+						$key,
+						$params,
+						$isDeprecated,
+						$isInternal
+					);
+					$submodules[] = $m->setContext( $this->getContext() );
+					$submoduleFlags[] = ( $isDeprecated ? 1 : 0 ) | ( $isInternal ? 2 : 0 );
+					$submoduleNames[] = $v;
 				}
-				$msgs[$param] = array_merge( $msgs[$param], $submodules, $deprecatedSubmodules );
+				// sort $submodules by $submoduleFlags and $submoduleNames
+				array_multisort( $submoduleFlags, $submoduleNames, $submodules );
+				$msgs[$param] = array_merge( $msgs[$param], $submodules );
 			} elseif ( isset( $settings[self::PARAM_HELP_MSG_PER_VALUE] ) ) {
 				if ( !is_array( $settings[self::PARAM_HELP_MSG_PER_VALUE] ) ) {
 					self::dieDebug( __METHOD__,

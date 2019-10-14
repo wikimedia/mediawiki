@@ -34,7 +34,10 @@ class FileBackendGroup {
 	/** @var FileBackendGroup */
 	protected static $instance = null;
 
-	/** @var array (name => ('class' => string, 'config' => array, 'instance' => object)) */
+	/**
+	 * @var array[] (name => ('class' => string, 'config' => array, 'instance' => object))
+	 * @phan-var array<string,array{class:class-string,config:array,instance:object}>
+	 */
 	protected $backends = [];
 
 	protected function __construct() {

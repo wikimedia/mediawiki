@@ -59,7 +59,7 @@ class HttpRequestFactory {
 	 *    - originalRequest     Information about the original request (as a WebRequest object or
 	 *                          an associative array with 'ip' and 'userAgent').
 	 * @codingStandardsIgnoreStart
-	 * @phan-param array{timeout?:int|string,connectTimeout?:int|string,postData?:array,proxy?:string,noProxy?:bool,sslVerifyHost?:bool,sslVerifyCert?:bool,caInfo?:string,maxRedirects?:int,followRedirects?:bool,userAgent?:string,method?:string,logger?:\Psr\Log\LoggerInterface,username?:string,password?:string,originalRequest?:\WebRequest|array{ip:string,userAgent:string}} $options
+	 * @phan-param array{timeout?:int|string,connectTimeout?:int|string,postData?:string|array,proxy?:?string,noProxy?:bool,sslVerifyHost?:bool,sslVerifyCert?:bool,caInfo?:?string,maxRedirects?:int,followRedirects?:bool,userAgent?:string,method?:string,logger?:\Psr\Log\LoggerInterface,username?:string,password?:string,originalRequest?:\WebRequest|array{ip:string,userAgent:string}} $options
 	 * @codingStandardsIgnoreEnd
 	 * @param string $caller The method making this request, for profiling
 	 * @throws RuntimeException

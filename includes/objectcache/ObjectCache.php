@@ -59,7 +59,7 @@ use MediaWiki\MediaWikiServices;
  *   Purpose: Special cases (like tiered memory/disk caches).
  *   Get a specific cache type by key in $wgObjectCaches.
  *
- * All the above cache instances (BagOStuff and WANObjectCache) have their makeKey()
+ * All the above BagOStuff cache instances have their makeKey()
  * method scoped to the *current* wiki ID. Use makeGlobalKey() to avoid this scoping
  * when using keys that need to be shared amongst wikis.
  *
@@ -68,8 +68,6 @@ use MediaWiki\MediaWikiServices;
 class ObjectCache {
 	/** @var BagOStuff[] Map of (id => BagOStuff) */
 	public static $instances = [];
-	/** @var WANObjectCache[] Map of (id => WANObjectCache) */
-	public static $wanInstances = [];
 
 	/**
 	 * Get a cached instance of the specified type of cache object.
@@ -83,23 +81,6 @@ class ObjectCache {
 		}
 
 		return self::$instances[$id];
-	}
-
-	/**
-	 * Get a cached instance of the specified type of WAN cache object.
-	 *
-	 * @since 1.26
-	 * @param string $id A key in $wgWANObjectCaches.
-	 * @return WANObjectCache
-	 * @deprecated since 1.34 Use MediaWikiServices::getMainWANObjectCache instead
-	 */
-	public static function getWANInstance( $id ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		if ( !isset( self::$wanInstances[$id] ) ) {
-			self::$wanInstances[$id] = self::newWANCacheFromId( $id );
-		}
-
-		return self::$wanInstances[$id];
 	}
 
 	/**
@@ -159,7 +140,8 @@ class ObjectCache {
 	 * @throws InvalidArgumentException
 	 */
 	public static function newFromParams( $params ) {
-		$params['logger'] = LoggerFactory::getInstance( $params['loggroup'] ?? 'objectcache' );
+		$params['logger'] = $params['logger'] ??
+			LoggerFactory::getInstance( $params['loggroup'] ?? 'objectcache' );
 		if ( !isset( $params['keyspace'] ) ) {
 			$params['keyspace'] = self::getDefaultKeyspace();
 		}
@@ -277,62 +259,6 @@ class ObjectCache {
 	}
 
 	/**
-	 * Create a new cache object of the specified type.
-	 *
-	 * @since 1.26
-	 * @param string $id A key in $wgWANObjectCaches.
-	 * @return WANObjectCache
-	 * @throws UnexpectedValueException
-	 */
-	private static function newWANCacheFromId( $id ) {
-		global $wgWANObjectCaches, $wgObjectCaches;
-
-		if ( !isset( $wgWANObjectCaches[$id] ) ) {
-			throw new UnexpectedValueException(
-				"Cache type \"$id\" requested is not present in \$wgWANObjectCaches." );
-		}
-
-		$params = $wgWANObjectCaches[$id];
-		if ( !isset( $wgObjectCaches[$params['cacheId']] ) ) {
-			throw new UnexpectedValueException(
-				"Cache type \"{$params['cacheId']}\" is not present in \$wgObjectCaches." );
-		}
-		$params['store'] = $wgObjectCaches[$params['cacheId']];
-
-		return self::newWANCacheFromParams( $params );
-	}
-
-	/**
-	 * Create a new cache object of the specified type.
-	 *
-	 * @since 1.28
-	 * @param array $params
-	 * @return WANObjectCache
-	 * @throws UnexpectedValueException
-	 * @suppress PhanTypeMismatchReturn
-	 * @deprecated since 1.34 Use MediaWikiServices::getMainWANObjectCache
-	 *  instead or use WANObjectCache::__construct directly
-	 */
-	public static function newWANCacheFromParams( array $params ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		global $wgCommandLineMode, $wgSecretKey;
-
-		$services = MediaWikiServices::getInstance();
-		$params['cache'] = self::newFromParams( $params['store'] );
-		$params['logger'] = LoggerFactory::getInstance( $params['loggroup'] ?? 'objectcache' );
-		if ( !$wgCommandLineMode ) {
-			// Send the statsd data post-send on HTTP requests; avoid in CLI mode (T181385)
-			$params['stats'] = $services->getStatsdDataFactory();
-			// Let pre-emptive refreshes happen post-send on HTTP requests
-			$params['asyncHandler'] = [ DeferredUpdates::class, 'addCallableUpdate' ];
-		}
-		$params['secret'] = $params['secret'] ?? $wgSecretKey;
-		$class = $params['class'];
-
-		return new $class( $params );
-	}
-
-	/**
 	 * Get the main cluster-local cache object.
 	 *
 	 * @since 1.27
@@ -349,7 +275,6 @@ class ObjectCache {
 	 */
 	public static function clear() {
 		self::$instances = [];
-		self::$wanInstances = [];
 	}
 
 	/**

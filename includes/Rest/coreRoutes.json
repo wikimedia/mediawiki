@@ -23,6 +23,13 @@
 		]
 	},
 	{
+		"path": "/v1/revision/{from}/compare/{to}",
+		"class": "MediaWiki\\Rest\\Handler\\CompareHandler",
+		"services": [
+			"RevisionLookup"
+		]
+	},
+	{
 		"path": "/v1/revision/{id}/bare",
 		"class": "MediaWiki\\Rest\\Handler\\RevisionHandler",
 		"services": [

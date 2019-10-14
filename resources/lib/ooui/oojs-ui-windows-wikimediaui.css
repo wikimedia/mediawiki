@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.34.1-pre (3913589098)
+ * OOUI v0.35.0-pre (44324afb98)
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-09-10T23:46:11Z
+ * Date: 2019-10-10T21:22:17Z
  */
 
 .oo-ui-window {
@@ -211,12 +211,15 @@
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
+.oo-ui-processDialog-content .oo-ui-window-head,
+.oo-ui-processDialog-content .oo-ui-window-foot {
+  outline: 1px solid #c8ccd1;
+}
 .oo-ui-processDialog-content .oo-ui-window-head {
   min-height: 2.85714286em;
 }
 .oo-ui-processDialog-content .oo-ui-window-body {
   top: 2.85714286em;
-  outline: 1px solid #c8ccd1;
 }
 .oo-ui-processDialog-navigation {
   position: relative;
@@ -235,15 +238,12 @@
 .oo-ui-processDialog .oo-ui-actionWidget > .oo-ui-buttonElement-button {
   border-radius: 0;
   border-top-color: transparent;
-  border-bottom-color: #c8ccd1;
+  border-bottom-color: transparent;
 }
 .oo-ui-processDialog .oo-ui-actionWidget > .oo-ui-buttonElement-button:hover,
 .oo-ui-processDialog .oo-ui-actionWidget > .oo-ui-buttonElement-button:active {
   border-top-color: transparent;
-  border-bottom-color: #c8ccd1;
-}
-.oo-ui-processDialog .oo-ui-actionWidget > .oo-ui-buttonElement-button:focus {
-  border-color: #36c;
+  border-bottom-color: transparent;
 }
 .oo-ui-processDialog .oo-ui-actionWidget:not( .oo-ui-flaggedElement-progressive ):not( .oo-ui-flaggedElement-destructive ) > .oo-ui-buttonElement-button:hover,
 .oo-ui-processDialog .oo-ui-actionWidget:not( .oo-ui-flaggedElement-progressive ):not( .oo-ui-flaggedElement-destructive ) > .oo-ui-buttonElement-button:active {
@@ -260,13 +260,13 @@
   padding-right: 0;
 }
 .oo-ui-processDialog .oo-ui-actionWidget.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
-  left: 0.85714286em;
+  margin-left: -0.85714286em;
 }
 .oo-ui-processDialog .oo-ui-actionWidget.oo-ui-labelElement:first-child {
   margin-left: 0;
 }
 .oo-ui-processDialog .oo-ui-actionWidget.oo-ui-labelElement > .oo-ui-buttonElement-button {
-  padding: 0.71428571em 0.85714286em;
+  padding: 0.71428571em 12px;
 }
 .oo-ui-processDialog .oo-ui-actionWidget.oo-ui-labelElement.oo-ui-iconElement > .oo-ui-buttonElement-button {
   padding-left: 2.64285714em;
@@ -306,10 +306,6 @@
 .oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-buttonElement {
   margin-right: 0;
 }
-.oo-ui-processDialog-actions-other .oo-ui-actionWidget:not( .oo-ui-flaggedElement-progressive ):not( .oo-ui-flaggedElement-destructive ) > .oo-ui-buttonElement-button {
-  border-top-color: #c8ccd1;
-  border-bottom-color: transparent;
-}
 .oo-ui-processDialog > .oo-ui-window-frame {
   min-height: 5em;
 }
@@ -330,7 +326,7 @@
   background-color: #fee7e6;
   margin: 1em 0 0;
   border: 1px solid #d33;
-  padding: 1.14285714em 1.71428571em;
+  padding: 16px 24px;
   text-align: left;
 }
 .oo-ui-processDialog.oo-ui-isMobile .oo-ui-processDialog-content .oo-ui-window-head,
@@ -353,7 +349,7 @@
   padding-left: 3.14285714em;
 }
 .oo-ui-processDialog.oo-ui-isMobile .oo-ui-actionWidget.oo-ui-labelElement > .oo-ui-buttonElement-button {
-  padding: 0.85714286em 0.85714286em;
+  padding: 0.85714286em 12px;
 }
 .oo-ui-processDialog.oo-ui-isMobile .oo-ui-actionWidget.oo-ui-labelElement.oo-ui-iconElement > .oo-ui-buttonElement-button {
   padding-left: 2.64285714em;

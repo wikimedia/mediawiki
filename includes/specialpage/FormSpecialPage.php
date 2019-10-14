@@ -149,10 +149,12 @@ abstract class FormSpecialPage extends SpecialPage {
 
 	/**
 	 * Process the form on POST submission.
+	 * @phpcs:disable MediaWiki.Commenting.FunctionComment.ExtraParamComment
 	 * @param array $data
 	 * @param HTMLForm|null $form
 	 * @suppress PhanCommentParamWithoutRealParam Many implementations don't have $form
 	 * @return bool|string|array|Status As documented for HTMLForm::trySubmit.
+	 * @phpcs:enable MediaWiki.Commenting.FunctionComment.ExtraParamComment
 	 */
 	abstract public function onSubmit( array $data /* HTMLForm $form = null */ );
 

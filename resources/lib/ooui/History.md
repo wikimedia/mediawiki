@@ -1,4 +1,35 @@
 # OOUI Release History
+## v0.35.0 / 2019-10-08
+### Breaking changes
+* [BREAKING CHANGE] Remove deprecated infuse-by-id feature (Ed Sanders)
+
+### Deprecating changes
+* [DEPRECATING CHANGE] icons: Change and rename 'unTrash' to 'restore' (Volker E.)
+
+### Styles
+* ButtonElement: Fix frameless padding (Volker E.)
+* ToolGroup: Add `color: inherit` to toolbar link reset styles (Ed Sanders)
+* themes: Fix positioning of TagItemWidget's close button (Volker E.)
+* WikimediaUI theme: Fix ProcessDialog head and foot states & button border (Volker E.)
+* WikimediaUI theme: Reduce indicator padding to account for size disparities (Volker E.)
+* WikimediaUI theme: Use `px` instead of `em`s (Volker E.)
+* WikimediaUI theme: Variablize and simplify widget margins (Volker E.)
+
+### Code
+* ButtonWidget Add support for setting the relationship attribute (mainframe98)
+* SelectFileInputWidget: Remove obsolete `&-label` styles (Volker E.)
+* TagMultiselectWidget: Fix pending animation and enable it on Apex (Volker E.)
+* WindowManager: Instead of swallowing WindowManager#openWindow errors, throw asynchronously (David Chan)
+* WikimediaUI, Apex theme: Remove IE 6 fallbacks (Volker E.)
+* build: Enforce LESS strict units (Bartosz Dziewoński)
+* demos: Don't rebuild whole interface of PopupButtonWidgetTest on change (Bartosz Dziewoński)
+* docs: Remove taint-check escapes_html* annotations (Daimona Eaytoy)
+* docs: Tweak docs of Tag::appendContent (Daimona Eaytoy)
+* demos: Use `px` in new unit application logic (Volker E.)
+* eslint: Fix errors and warnings (Volker E.)
+* hygiene: Fix typo in History.md (Lucas Werkmeister)
+
+
 ## v0.34.1 / 2019-09-10
 ### Deprecating changes
 * [DEPRECATING CHANGE] icons: Rename 'beaker' to 'labFlask' (Volker E.)
@@ -112,7 +143,7 @@
 * [BREAKING CHANGE] Make OO.ui.throttle always work asynchronously (David Chan)
 * [BREAKING CHANGE] Toolbar: Drop support for unnamed groups, deprecated since v0.27.1 (James D. Forrester)
 * [BREAKING CHANGE] core: Drop OO.ui.now(), deprecated since 0.31.1 (James D. Forrester)
-* [BREAKING CHANGE] {Icon,Iindicator}Element: Drop get$1Title, deprecated in 0.30.0 (James D. Forrester)
+* [BREAKING CHANGE] {Icon,Indicator}Element: Drop get$1Title, deprecated in 0.30.0 (James D. Forrester)
 * [BREAKING CHANGE] Drop textures, deprecated since 0.31.1 (James D. Forrester)
 
 ### Features

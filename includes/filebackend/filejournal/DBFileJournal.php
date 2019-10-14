@@ -50,7 +50,7 @@ class DBFileJournal extends FileJournal {
 
 	/**
 	 * @see FileJournal::logChangeBatch()
-	 * @param array $entries
+	 * @param array[] $entries
 	 * @param string $batchId
 	 * @return StatusValue
 	 */

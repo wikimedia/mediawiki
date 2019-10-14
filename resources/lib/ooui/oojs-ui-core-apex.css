@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.34.1-pre (3913589098)
+ * OOUI v0.35.0-pre (44324afb98)
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-09-10T23:46:11Z
+ * Date: 2019-10-10T21:22:17Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -113,6 +113,9 @@
   color: #333;
   margin-left: 0.25em;
 }
+.oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-noIcon + .oo-ui-labelElement-label {
+  margin-left: 0;
+}
 .oo-ui-buttonElement-frameless.oo-ui-indicatorElement > .oo-ui-buttonElement-button {
   padding: 0;
 }
@@ -131,7 +134,6 @@
 }
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-iconElement > .oo-ui-buttonElement-button:focus:active,
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-labelElement > .oo-ui-buttonElement-button:focus:active {
-  border-color: #fff;
   border-color: transparent;
   box-shadow: none;
 }
@@ -1772,14 +1774,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-selectFileInputWidget-info > .oo-ui-inputWidget-input {
   pointer-events: none;
 }
-.oo-ui-selectFileInputWidget-label {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-overflow: ellipsis;
-}
 .oo-ui-selectFileInputWidget-clearButton {
   position: absolute;
   z-index: 2;
@@ -1789,18 +1783,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-selectFileInputWidget-empty.oo-ui-widget-enabled .oo-ui-selectFileInputWidget-label {
   cursor: default;
-}
-.oo-ui-selectFileInputWidget-label {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  left: 0.5em;
-  right: 2.175em;
-  line-height: 2.3em;
-  margin: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 .oo-ui-defaultOverlay {

@@ -95,7 +95,7 @@ interface IDatabase {
 	const DBO_IGNORE = 4;
 	/** @var int Automatically start a transaction before running a query if none is active */
 	const DBO_TRX = 8;
-	/** @var int Use DBO_TRX in non-CLI mode */
+	/** @var int Join load balancer transaction rounds (which control DBO_TRX) in non-CLI mode */
 	const DBO_DEFAULT = 16;
 	/** @var int Use DB persistent connections if possible */
 	const DBO_PERSISTENT = 32;
@@ -129,6 +129,20 @@ interface IDatabase {
 	/** @var bool Parameter to unionQueries() for UNION DISTINCT */
 	const UNION_DISTINCT = false;
 
+	/** @var string Field for getLBInfo()/setLBInfo() */
+	const LB_TRX_ROUND_ID = 'trxRoundId';
+	/** @var string Field for getLBInfo()/setLBInfo() */
+	const LB_READ_ONLY_REASON = 'readOnlyReason';
+
+	/** @var string Master server than can stream OLTP updates to replica servers */
+	const ROLE_STREAMING_MASTER = 'streaming-master';
+	/** @var string Replica server that streams OLTP updates from the master server */
+	const ROLE_STREAMING_REPLICA = 'streaming-replica';
+	/** @var string Replica server of a static dataset that does not get OLTP updates */
+	const ROLE_STATIC_CLONE = 'static-clone';
+	/** @var string Unknown replication topology role */
+	const ROLE_UNKNOWN = 'unknown';
+
 	/**
 	 * Get a human-readable string describing the current software version
 	 *
@@ -137,6 +151,22 @@ interface IDatabase {
 	 * @return string Version information from the database server
 	 */
 	public function getServerInfo();
+
+	/**
+	 * Get the replication topology role of this server
+	 *
+	 * @return string One of the class ROLE_* constants
+	 * @since 1.34
+	 */
+	public function getTopologyRole();
+
+	/**
+	 * Get the host (or address) of the root master server for the replication topology
+	 *
+	 * @return string|null Master server name or null if not known
+	 * @since 1.34
+	 */
+	public function getTopologyRootMaster();
 
 	/**
 	 * Gets the current transaction level.
@@ -202,18 +232,12 @@ interface IDatabase {
 	/**
 	 * Set the entire array or a particular key of the managing load balancer info array
 	 *
+	 * Keys matching the IDatabase::LB_* constants are also used internally by subclasses
+	 *
 	 * @param array|string $nameOrArray The new array or the name of a key to set
 	 * @param array|null $value If $nameOrArray is a string, the new key value (null to unset)
 	 */
 	public function setLBInfo( $nameOrArray, $value = null );
-
-	/**
-	 * Set a lazy-connecting DB handle to the master DB (for replication status purposes)
-	 *
-	 * @param IDatabase $conn
-	 * @since 1.27
-	 */
-	public function setLazyMasterHandle( IDatabase $conn );
 
 	/**
 	 * Returns true if this database does an implicit order by when the column has an index
@@ -1088,8 +1112,9 @@ interface IDatabase {
 	 *
 	 * In systems like mysql/mariadb, different databases can easily be referenced on a single
 	 * connection merely by name, even in a single query via JOIN. On the other hand, Postgres
-	 * treats databases as fully separate, only allowing mechanisms like postgres_fdw to
-	 * effectively "mount" foreign DBs. This is true even among DBs on the same server.
+	 * treats databases as logically separate, with different database users, requiring special
+	 * mechanisms like postgres_fdw to "mount" foreign DBs. This is true even among DBs on the
+	 * same server. Changing the selected database via selectDomain() requires a new connection.
 	 *
 	 * @return bool
 	 * @since 1.29
@@ -1254,7 +1279,7 @@ interface IDatabase {
 	 * errors which wouldn't have occurred in MySQL.
 	 *
 	 * @param string $table Table name. This will be passed through Database::tableName().
-	 * @param array $rows A single row or list of rows to insert
+	 * @param array|array[] $rows A single row or list of rows to insert
 	 * @param array[]|string[]|string $uniqueIndexes All unique indexes. One of the following:
 	 *   a) the one unique field in the table (when no composite unique key exist)
 	 *   b) a list of all unique fields in the table (when no composite unique key exist)
@@ -2048,11 +2073,11 @@ interface IDatabase {
 	public function setSessionOptions( array $options );
 
 	/**
-	 * Set variables to be used in sourceFile/sourceStream, in preference to the
-	 * ones in $GLOBALS. If an array is set here, $GLOBALS will not be used at
-	 * all. If it's set to false, $GLOBALS will be used.
+	 * Set schema variables to be used when streaming commands from SQL files or stdin
 	 *
-	 * @param bool|array $vars Mapping variable name to value.
+	 * Variables appear as SQL comments and are substituted by their corresponding values
+	 *
+	 * @param array|null $vars Map of (variable => value) or null to use the defaults
 	 */
 	public function setSchemaVars( $vars );
 

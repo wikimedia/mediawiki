@@ -2357,7 +2357,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * If there are no new messages, it returns an empty array.
 	 * @note This function was designed to accomodate multiple talk pages, but
 	 * currently only returns a single link and revision.
-	 * @return array
+	 * @return array[]
 	 */
 	public function getNewMessageLinks() {
 		// Avoid PHP 7.1 warning of passing $this by reference

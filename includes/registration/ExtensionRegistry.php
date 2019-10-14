@@ -54,7 +54,7 @@ class ExtensionRegistry {
 	/**
 	 * Array of loaded things, keyed by name, values are credits information
 	 *
-	 * @var array
+	 * @var array[]
 	 */
 	private $loaded = [];
 
@@ -271,7 +271,6 @@ class ExtensionRegistry {
 		$processor = new ExtensionProcessor();
 		$versionChecker = $this->buildVersionChecker();
 		$extDependencies = [];
-		$incompatible = [];
 		$warnings = false;
 		foreach ( $queue as $path => $mtime ) {
 			$json = file_get_contents( $path );
@@ -294,7 +293,7 @@ class ExtensionRegistry {
 			}
 			$version = $info['manifest_version'];
 			if ( $version < self::OLDEST_MANIFEST_VERSION || $version > self::MANIFEST_VERSION ) {
-				$incompatible[] = "$path: unsupported manifest_version: {$version}";
+				throw new Exception( "$path: unsupported manifest_version: {$version}" );
 			}
 
 			$dir = dirname( $path );
@@ -323,12 +322,9 @@ class ExtensionRegistry {
 		$data['warnings'] = $warnings;
 
 		// check for incompatible extensions
-		$incompatible = array_merge(
-			$incompatible,
-			$versionChecker
-				->setLoadedExtensionsAndSkins( $data['credits'] )
-				->checkArray( $extDependencies )
-		);
+		$incompatible = $versionChecker
+			->setLoadedExtensionsAndSkins( $data['credits'] )
+			->checkArray( $extDependencies );
 
 		if ( $incompatible ) {
 			throw new ExtensionDependencyError( $incompatible );
@@ -515,7 +511,7 @@ class ExtensionRegistry {
 	/**
 	 * Get information about all things
 	 *
-	 * @return array
+	 * @return array[]
 	 */
 	public function getAllThings() {
 		return $this->loaded;

@@ -33,6 +33,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * @var FormOptions
 	 */
 	protected $opts;
+	/** @var array[] */
 	protected $customFilters;
 
 	protected $showNavigation = false;

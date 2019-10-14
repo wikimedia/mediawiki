@@ -64,7 +64,7 @@ class ExtensionDependencyError extends Exception {
 	public $missingAbilities = [];
 
 	/**
-	 * @param array $errors Each error has a 'msg' and 'type' key at minimum
+	 * @param array[] $errors Each error has a 'msg' and 'type' key at minimum
 	 */
 	public function __construct( array $errors ) {
 		$msg = '';

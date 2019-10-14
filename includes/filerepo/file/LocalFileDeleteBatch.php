@@ -366,7 +366,7 @@ class LocalFileDeleteBatch {
 
 	/**
 	 * Removes non-existent files from a deletion batch.
-	 * @param array $batch
+	 * @param array[] $batch
 	 * @return Status
 	 */
 	protected function removeNonexistentFiles( $batch ) {

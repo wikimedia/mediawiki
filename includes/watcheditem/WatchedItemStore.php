@@ -56,10 +56,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	private $latestUpdateCache;
 
 	/**
-	 * @var array[] Looks like $cacheIndex[Namespace ID][Target DB Key][User Id] => 'key'
+	 * @var array[][] Looks like $cacheIndex[Namespace ID][Target DB Key][User Id] => 'key'
 	 * The index is needed so that on mass changes all relevant items can be un-cached.
 	 * For example: Clearing a users watchlist of all items or updating notification timestamps
 	 *              for all users watching a single target.
+	 * @phan-var array<int,array<string,array<int,string>>>
 	 */
 	private $cacheIndex = [];
 

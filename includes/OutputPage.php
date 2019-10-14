@@ -510,7 +510,7 @@ class OutputPage extends ContextSource {
 			return;
 		}
 		$warnings[$this->mTarget][$moduleName] = true;
-		$this->getResourceLoader()->getLogger()->debug(
+		$this->getResourceLoader()->getLogger()->warning(
 			'Module "{module}" not loadable on target "{target}".',
 			[
 				'module' => $moduleName,
@@ -3992,9 +3992,10 @@ class OutputPage extends ContextSource {
 	 * This is equivalent to:
 	 *
 	 *    $wgOut->addWikiText( wfMessage( ... )->plain() )
+	 *
+	 * @param mixed ...$args
 	 */
-	public function addWikiMsg( /*...*/ ) {
-		$args = func_get_args();
+	public function addWikiMsg( ...$args ) {
 		$name = array_shift( $args );
 		$this->addWikiMsgArray( $name, $args );
 	}
@@ -4035,10 +4036,9 @@ class OutputPage extends ContextSource {
 	 * The newline after the opening div is needed in some wikitext. See T21226.
 	 *
 	 * @param string $wrap
+	 * @param mixed ...$msgSpecs
 	 */
-	public function wrapWikiMsg( $wrap /*, ...*/ ) {
-		$msgSpecs = func_get_args();
-		array_shift( $msgSpecs );
+	public function wrapWikiMsg( $wrap, ...$msgSpecs ) {
 		$msgSpecs = array_values( $msgSpecs );
 		$s = $wrap;
 		foreach ( $msgSpecs as $n => $spec ) {

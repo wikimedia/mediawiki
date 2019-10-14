@@ -254,7 +254,7 @@ class CliInstaller extends Installer {
 	/**
 	 * Dummy
 	 */
-	public function showHelpBox( $msg /*, ... */ ) {
+	public function showHelpBox( $msg, ...$params ) {
 	}
 
 	public function showStatusMessage( Status $status ) {

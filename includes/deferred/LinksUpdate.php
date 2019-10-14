@@ -44,7 +44,10 @@ class LinksUpdate extends DataUpdate {
 	/** @var ParserOutput */
 	public $mParserOutput;
 
-	/** @var array Map of title strings to IDs for the links in the document */
+	/**
+	 * @var int[][] Map of title strings to IDs for the links in the document
+	 * @phan-var array<int,array<string,int>>
+	 */
 	public $mLinks;
 
 	/** @var array DB keys of the images used, in the array key only */
@@ -75,7 +78,8 @@ class LinksUpdate extends DataUpdate {
 	private $mRevision;
 
 	/**
-	 * @var null|array Added links if calculated.
+	 * @var array[]|null Added links if calculated.
+	 * @phan-var array<int,array{pl_from:int,pl_from_namespace:int,pl_namespace:int,pl_title:string}>|null
 	 */
 	private $linkInsertions = null;
 
@@ -512,7 +516,8 @@ class LinksUpdate extends DataUpdate {
 	 * Get an array of pagelinks insertions for passing to the DB
 	 * Skips the titles specified by the 2-D array $existing
 	 * @param array $existing
-	 * @return array
+	 * @return array[]
+	 * @phan-return array<int,array{pl_from:int,pl_from_namespace:int,pl_namespace:int,pl_title:string}>
 	 */
 	private function getLinkInsertions( $existing = [] ) {
 		$arr = [];

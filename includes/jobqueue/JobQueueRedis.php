@@ -243,7 +243,7 @@ class JobQueueRedis extends JobQueue {
 
 	/**
 	 * @param RedisConnRef $conn
-	 * @param array $items List of results from JobQueueRedis::getNewJobFields()
+	 * @param array[] $items List of results from JobQueueRedis::getNewJobFields()
 	 * @return int Number of jobs inserted (duplicates are ignored)
 	 * @throws RedisException
 	 */

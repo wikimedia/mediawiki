@@ -241,6 +241,10 @@ class HTMLForm extends ContextSource {
 	protected $mAutocomplete = null;
 
 	protected $mUseMultipart = false;
+	/**
+	 * @var array[]
+	 * @phan-var array<int,array{0:string,1:array}>
+	 */
 	protected $mHiddenFields = [];
 	/**
 	 * @var array[]

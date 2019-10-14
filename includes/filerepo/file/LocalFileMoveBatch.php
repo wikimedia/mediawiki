@@ -298,7 +298,7 @@ class LocalFileMoveBatch {
 
 	/**
 	 * Removes non-existent files from move batch.
-	 * @param array $triplets
+	 * @param array[] $triplets
 	 * @return Status
 	 */
 	protected function removeNonexistentFiles( $triplets ) {

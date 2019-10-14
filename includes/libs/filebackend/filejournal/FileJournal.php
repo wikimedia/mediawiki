@@ -155,7 +155,7 @@ abstract class FileJournal {
 	 * @param int|null $start Starting change ID or null
 	 * @param int $limit Maximum number of items to return (0 = unlimited)
 	 * @param string|null &$next Updated to the ID of the next entry.
-	 * @return array List of associative arrays, each having:
+	 * @return array[] List of associative arrays, each having:
 	 *     id         : unique, monotonic, ID for this change
 	 *     batch_uuid : UUID for an operation batch
 	 *     backend    : the backend name
@@ -164,6 +164,7 @@ abstract class FileJournal {
 	 *     new_sha1   : base 36 sha1 of the new file had the operation succeeded
 	 *     timestamp  : TS_MW timestamp of the batch change
 	 *   Also, $next is updated to the ID of the next entry.
+	 * @phan-return array<int,array{id:int,batch_uuid:string,backend:string,op:string,path:string,new_sha1:string,timestamp:string}>
 	 */
 	final public function getChangeEntries( $start = null, $limit = 0, &$next = null ) {
 		$entries = $this->doGetChangeEntries( $start, $limit ? $limit + 1 : 0 );

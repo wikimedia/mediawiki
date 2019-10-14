@@ -36,7 +36,7 @@ class XhprofData {
 
 	/**
 	 * Hierarchical profiling data returned by xhprof.
-	 * @var array $hieraData
+	 * @var array[] $hieraData
 	 */
 	protected $hieraData;
 
@@ -117,8 +117,8 @@ class XhprofData {
 	 * Remove data for functions that are not included in the 'include'
 	 * configuration array.
 	 *
-	 * @param array $data Raw xhprof data
-	 * @return array
+	 * @param array[] $data Raw xhprof data
+	 * @return array[]
 	 */
 	protected function pruneData( $data ) {
 		if ( !$this->config['include'] ) {

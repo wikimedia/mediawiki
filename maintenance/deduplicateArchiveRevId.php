@@ -13,7 +13,10 @@ require_once __DIR__ . '/Maintenance.php';
  */
 class DeduplicateArchiveRevId extends LoggedUpdateMaintenance {
 
-	/** @var array|null */
+	/**
+	 * @var array[]|null
+	 * @phan-var array{tables:string[],fields:string[],joins:array}|null
+	 */
 	private $arActorQuery = null;
 
 	private $deleted = 0;

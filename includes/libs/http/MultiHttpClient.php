@@ -435,9 +435,13 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 * @todo Remove dependency on MediaWikiServices: use a separate HTTP client
 	 *  library or copy code from PhpHttpRequest
 	 * @param array $reqs Map of HTTP request arrays
+	 * @codingStandardsIgnoreStart
+	 * @phan-param array<int,array{url:string,query:array,method:string,body:string,proxy?:?string,headers?:string[]}> $reqs
+	 * @codingStandardsIgnoreEnd
 	 * @param array $opts
 	 *   - connTimeout     : connection timeout per request (seconds)
 	 *   - reqTimeout      : post-connection timeout per request (seconds)
+	 * @phan-param array{connTimeout:int,reqTimeout:int} $opts
 	 * @return array $reqs With response array populated for each
 	 * @throws Exception
 	 */

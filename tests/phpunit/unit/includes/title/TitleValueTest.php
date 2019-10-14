@@ -101,7 +101,7 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 	 * @dataProvider badConstructorProvider
 	 */
 	public function testAssertValidSpecErrors( $ns, $text, $fragment, $interwiki ) {
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		TitleValue::assertValidSpec( $ns, $text, $fragment, $interwiki );
 	}
 

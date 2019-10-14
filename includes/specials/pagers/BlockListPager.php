@@ -95,6 +95,7 @@ class BlockListPager extends TablePager {
 				$msg[$key] = $this->msg( $key )->text();
 			}
 		}
+		'@phan-var string[] $msg';
 
 		/** @var object $row */
 		$row = $this->mCurrentRow;

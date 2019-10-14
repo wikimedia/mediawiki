@@ -6,20 +6,24 @@
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingParamTag" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingReturn" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.ExtraParamComment" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.WrongStyle" />
-		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentStart" />
 		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentEnd" />
+		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentStart" />
+		<exclude name="MediaWiki.Commenting.PhpunitAnnotations.ForbiddenExpectedException" />
+		<exclude name="MediaWiki.Commenting.PhpunitAnnotations.ForbiddenExpectedExceptionMessage" />
+		<exclude name="MediaWiki.Commenting.PhpunitAnnotations.ForbiddenExpectedExceptionMessageRegExp" />
 		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures" />
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName" />
+		<exclude name="MediaWiki.PHP71Features.NullableType.NotAllowed" />
 		<exclude name="MediaWiki.Usage.DbrQueryUsage.DbrQueryFound" />
 		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgContLang" />
 		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle" />
 		<exclude name="MediaWiki.Usage.ForbiddenFunctions.passthru" />
+		<exclude name="MediaWiki.Usage.NullableType.PHP71NullableStyle" />
+		<exclude name="MediaWiki.Usage.PHPUnitTypeHints.MissingTypehint" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.SingleSpaceBeforeSingleLineComment" />
-		<exclude name="Squiz.Scope.MethodScope.Missing" />
-		<exclude name="MediaWiki.PHP71Features.NullableType.NotAllowed" />
+		<exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
 	</rule>
 	<!-- TODO Still to be done -->
 	<rule ref="Squiz.Scope.MethodScope.Missing">

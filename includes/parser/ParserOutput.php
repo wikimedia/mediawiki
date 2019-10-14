@@ -63,8 +63,9 @@ class ParserOutput extends CacheTime {
 	public $mTitleText;
 
 	/**
-	 * @var array $mLinks 2-D map of NS/DBK to ID for the links in the document.
+	 * @var int[][] $mLinks 2-D map of NS/DBK to ID for the links in the document.
 	 *  ID=zero for broken.
+	 * @phan-var array<int,array<string,int>>
 	 */
 	public $mLinks = [];
 

@@ -1737,7 +1737,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	/**
 	 * Get a list of all time zones
 	 * @param Language $language Language used for the localized names
-	 * @return array A list of all time zones. The system name of the time zone is used as key and
+	 * @return array[] A list of all time zones. The system name of the time zone is used as key and
 	 *  the value is an array which contains localized name, the timecorrection value used for
 	 *  preferences and the region
 	 * @since 1.26

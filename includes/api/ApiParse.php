@@ -599,7 +599,9 @@ class ApiParse extends ApiBase {
 			$pout = $page->getParserOutput( $popts, $revId, $suppressCache );
 		}
 		if ( !$pout ) {
-			$this->dieWithError( [ 'apierror-nosuchrevid', $revId ?: $page->getLatest() ] ); // @codeCoverageIgnore
+			// @codeCoverageIgnoreStart
+			$this->dieWithError( [ 'apierror-nosuchrevid', $revId ?: $page->getLatest() ] );
+			// @codeCoverageIgnoreEnd
 		}
 
 		return $pout;

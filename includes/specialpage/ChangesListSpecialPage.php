@@ -1162,7 +1162,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	protected function getLegacyShowHideFilters() {
 		$filters = [];
 		foreach ( $this->filterGroups as $group ) {
-			if ( $group instanceof  ChangesListBooleanFilterGroup ) {
+			if ( $group instanceof ChangesListBooleanFilterGroup ) {
 				foreach ( $group->getFilters() as $key => $filter ) {
 					if ( $filter->displaysOnUnstructuredUi() ) {
 						$filters[ $key ] = $filter;

@@ -175,7 +175,7 @@ function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
  *       [ 'y' ]
  *     ]
  *
- * @param array ...$args
+ * @param array[] ...$args
  * @return array
  */
 function wfMergeErrorArrays( ...$args ) {

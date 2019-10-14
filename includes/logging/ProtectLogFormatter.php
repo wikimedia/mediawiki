@@ -168,7 +168,7 @@ class ProtectLogFormatter extends LogFormatter {
 	/**
 	 * Create the protect description to show in the log formatter
 	 *
-	 * @param array $details
+	 * @param array[] $details
 	 * @return string
 	 */
 	public function createProtectDescription( array $details ) {

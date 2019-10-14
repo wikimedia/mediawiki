@@ -49,6 +49,7 @@ class ForeignResourceManager {
 	 */
 	private $verbosePrinter;
 	private $action;
+	/** @var array */
 	private $registry;
 
 	/**

@@ -35,7 +35,8 @@ class SearchEngineConfig {
 
 	/**
 	 * Make a list of searchable namespaces and their canonical names.
-	 * @return array Namespace ID => name
+	 * @return string[] Namespace ID => name
+	 * @phan-return array<int,string>
 	 */
 	public function searchableNamespaces() {
 		$arr = [];
