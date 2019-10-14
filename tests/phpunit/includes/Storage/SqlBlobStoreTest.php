@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Tests\Storage;
 
+use ExternalStoreAccess;
+use HashBagOStuff;
 use InvalidArgumentException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\BlobAccessException;
@@ -9,6 +11,7 @@ use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiTestCase;
 use stdClass;
 use TitleValue;
+use WANObjectCache;
 
 /**
  * @covers \MediaWiki\Storage\SqlBlobStore
@@ -17,23 +20,22 @@ use TitleValue;
 class SqlBlobStoreTest extends MediaWikiTestCase {
 
 	/**
+	 * @param WANObjectCache|null $cache
+	 * @param ExternalStoreAccess|null $extStore
+	 *
 	 * @return SqlBlobStore
 	 */
-	public function getBlobStore( $legacyEncoding = false, $compressRevisions = false ) {
+	public function getBlobStore(
+		WANObjectCache $cache = null,
+		ExternalStoreAccess $extStore = null
+	) {
 		$services = MediaWikiServices::getInstance();
 
 		$store = new SqlBlobStore(
 			$services->getDBLoadBalancer(),
-			$services->getExternalStoreAccess(),
-			$services->getMainWANObjectCache()
+			$extStore ?: $services->getExternalStoreAccess(),
+			$cache ?: $services->getMainWANObjectCache()
 		);
-
-		if ( $compressRevisions ) {
-			$store->setCompressBlobs( $compressRevisions );
-		}
-		if ( $legacyEncoding ) {
-			$store->setLegacyEncoding( $legacyEncoding );
-		}
 
 		return $store;
 	}
@@ -160,7 +162,12 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	 * @param mixed $expected
 	 */
 	public function testDecompressData( $legacyEncoding, $data, $flags, $expected ) {
-		$store = $this->getBlobStore( $legacyEncoding );
+		$store = $this->getBlobStore();
+
+		if ( $legacyEncoding ) {
+			$store->setLegacyEncoding( $legacyEncoding );
+		}
+
 		$this->assertSame(
 			$expected,
 			$store->decompressData( $data, $flags )
@@ -197,7 +204,8 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\SqlBlobStore::compressData
 	 */
 	public function testCompressRevisionTextUtf8Gzip() {
-		$store = $this->getBlobStore( false, true );
+		$store = $this->getBlobStore();
+		$store->setCompressBlobs( true );
 		$this->checkPHPExtension( 'zlib' );
 
 		$row = new stdClass;
@@ -214,7 +222,7 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	public function provideBlobs() {
 		yield [ '' ];
 		yield [ 'someText' ];
-		yield [ "sammansättningar" ];
+		yield [ "söme\ntäxt" ];
 	}
 
 	/**
@@ -256,6 +264,48 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 		$this->assertArrayEquals(
 			array_combine( $addresses, [ $blob, $blob . '1' ] ),
 			$store->getBlobBatch( $addresses )->getValue()
+		);
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\SqlBlobStore::storeBlob
+	 * @covers \MediaWiki\Storage\SqlBlobStore::getBlobBatch
+	 */
+	public function testCachingConsistency() {
+		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
+		$store = $this->getBlobStore( $cache );
+
+		$addrA = $store->storeBlob( 'A' );
+		$addrB = $store->storeBlob( 'B' );
+		$addrC = $store->storeBlob( 'C' );
+		$addrD = $store->storeBlob( 'D' );
+		$addrX = 'tt:0';
+
+		$dataZ = "söme\ntäxt!";
+		$addrZ = $store->storeBlob( $dataZ );
+
+		$this->assertArrayEquals(
+			[ $addrA => 'A', $addrC => 'C', $addrX => null ],
+			$store->getBlobBatch( [ $addrA, $addrC, $addrX ] )->getValue(),
+			false, true
+		);
+
+		$this->assertEquals( 'A', $store->getBlob( $addrA ) );
+		$this->assertEquals( 'B', $store->getBlob( $addrB ) );
+		$this->assertEquals( 'C', $store->getBlob( $addrC ) );
+
+		$this->assertArrayEquals(
+			[ $addrB => 'B', $addrC => 'C', $addrD => 'D' ],
+			$store->getBlobBatch( [ $addrB, $addrC, $addrD ] )->getValue(),
+			false, true
+		);
+
+		$this->assertEquals( $dataZ, $store->getBlob( $addrZ ) );
+
+		$this->assertArrayEquals(
+			[ $addrA => 'A', $addrZ => $dataZ ],
+			$store->getBlobBatch( [ $addrA, $addrZ ] )->getValue(),
+			false, true
 		);
 	}
 
@@ -338,7 +388,8 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\SqlBlobStore::getBlob
 	 */
 	public function testSimpleStoreGetBlobSimpleRoundtripWindowsLegacyEncoding( $blob ) {
-		$store = $this->getBlobStore( 'windows-1252' );
+		$store = $this->getBlobStore();
+		$store->setLegacyEncoding( 'windows-1252' );
 		$address = $store->storeBlob( $blob );
 		$this->assertSame( $blob, $store->getBlob( $address ) );
 	}
@@ -351,7 +402,9 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	public function testSimpleStoreGetBlobSimpleRoundtripWindowsLegacyEncodingGzip( $blob ) {
 		// FIXME: fails under postgres
 		$this->markTestSkippedIfDbType( 'postgres' );
-		$store = $this->getBlobStore( 'windows-1252', true );
+		$store = $this->getBlobStore();
+		$store->setLegacyEncoding( 'windows-1252' );
+		$store->setCompressBlobs( true );
 		$address = $store->storeBlob( $blob );
 		$this->assertSame( $blob, $store->getBlob( $address ) );
 	}
