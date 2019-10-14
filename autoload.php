@@ -388,6 +388,7 @@ $wgAutoloadLocalClasses = [
 	'DeleteOrphanedRevisions' => __DIR__ . '/maintenance/deleteOrphanedRevisions.php',
 	'DeletePageJob' => __DIR__ . '/includes/jobqueue/jobs/DeletePageJob.php',
 	'DeleteSelfExternals' => __DIR__ . '/maintenance/deleteSelfExternals.php',
+	'DeleteTag' => __DIR__ . '/maintenance/deleteTag.php',
 	'DeletedContribsPager' => __DIR__ . '/includes/specials/pagers/DeletedContribsPager.php',
 	'DependencyWrapper' => __DIR__ . '/includes/cache/dependency/DependencyWrapper.php',
 	'DeprecatedGlobal' => __DIR__ . '/includes/DeprecatedGlobal.php',

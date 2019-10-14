@@ -1301,10 +1301,11 @@ class ChangeTags {
 	 * @param string $tag Tag that you are interested in deleting
 	 * @param User|null $user User whose permission you wish to check, or null if
 	 * you don't care (e.g. maintenance scripts)
+	 * @param bool $ignoreCounts If true, no check for tag usage will be preformed
 	 * @return Status
 	 * @since 1.25
 	 */
-	public static function canDeleteTag( $tag, User $user = null ) {
+	public static function canDeleteTag( $tag, User $user = null, bool $ignoreCounts = false ) {
 		$tagUsage = self::tagUsageStatistics();
 
 		if ( !is_null( $user ) ) {
@@ -1321,7 +1322,7 @@ class ChangeTags {
 			return Status::newFatal( 'tags-delete-not-found', $tag );
 		}
 
-		if ( isset( $tagUsage[$tag] ) && $tagUsage[$tag] > self::MAX_DELETE_USES ) {
+		if ( !$ignoreCounts && isset( $tagUsage[$tag] ) && $tagUsage[$tag] > self::MAX_DELETE_USES ) {
 			return Status::newFatal( 'tags-delete-too-many-uses', $tag, self::MAX_DELETE_USES );
 		}
 
