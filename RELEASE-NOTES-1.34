@@ -1,11 +1,14 @@
 = MediaWiki 1.34 =
 
-== MediaWiki 1.34.0-rc.0 ==
-
 THIS IS NOT A RELEASE YET
 
 MediaWiki 1.34 is an pre-release testing branch, and is not recommended
 for use in production.
+
+=== Changes since MediaWiki 1.34.0-rc.0 ===
+* (T231742) rdbms: Restore debug toolbar "Queries" feature.
+
+== MediaWiki 1.34.0-rc.0 ==
 
 == Upgrading notes for 1.34 ==
 1.34 has several database changes since 1.33, and will not work without schema
