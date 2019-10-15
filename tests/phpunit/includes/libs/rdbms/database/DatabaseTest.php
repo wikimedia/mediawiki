@@ -607,7 +607,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @expectedException DBUnexpectedError
 	 * @covers Wikimedia\Rdbms\Database::setFlag
 	 * @dataProvider provideImmutableDBOFlags
 	 * @param int $flag
@@ -618,11 +617,11 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			->setMethods( null )
 			->getMock();
 
+		$this->expectException( DBUnexpectedError::class );
 		$db->setFlag( $flag );
 	}
 
 	/**
-	 * @expectedException DBUnexpectedError
 	 * @covers Wikimedia\Rdbms\Database::clearFlag
 	 * @dataProvider provideImmutableDBOFlags
 	 * @param int $flag
@@ -633,6 +632,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			->setMethods( null )
 			->getMock();
 
+		$this->expectException( DBUnexpectedError::class );
 		$db->clearFlag( $flag );
 	}
 
@@ -671,7 +671,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @covers Wikimedia\Rdbms\Database::tablePrefix
 	 * @covers Wikimedia\Rdbms\Database::dbSchema
-	 * @expectedException DBUnexpectedError
 	 */
 	public function testSchemaWithNoDB() {
 		$ud = DatabaseDomain::newUnspecified();
@@ -679,6 +678,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( $ud->getId(), $this->db->getDomainID() );
 		$this->assertSame( '', $this->db->dbSchema() );
 
+		$this->expectException( DBUnexpectedError::class );
 		$this->db->dbSchema( 'xxx' );
 	}
 

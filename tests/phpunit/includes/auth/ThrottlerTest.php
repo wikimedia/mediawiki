@@ -173,11 +173,11 @@ class ThrottlerTest extends \MediaWikiTestCase {
 	}
 
 	/**
-	 * @expectedException \InvalidArgumentException
 	 */
 	public function testException() {
 		$throttler = new Throttler( [ [ 'count' => 3, 'seconds' => 10 ] ] );
 		$throttler->setLogger( new NullLogger() );
+		$this->expectException( \InvalidArgumentException::class );
 		$throttler->increase();
 	}
 

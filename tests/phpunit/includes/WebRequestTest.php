@@ -583,7 +583,6 @@ class WebRequestTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @expectedException MWException
 	 * @covers WebRequest::getIP
 	 */
 	public function testGetIpLackOfRemoteAddrThrowAnException() {
@@ -597,7 +596,8 @@ class WebRequestTest extends MediaWikiTestCase {
 		$this->setService( 'ProxyLookup', new ProxyLookup( [], [] ) );
 
 		$request = new WebRequest();
-		# Next call throw an exception about lacking an IP
+		# Next call should throw an exception about lacking an IP
+		$this->expectException( MWException::class );
 		$request->getIP();
 	}
 

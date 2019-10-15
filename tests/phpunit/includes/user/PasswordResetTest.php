@@ -194,9 +194,6 @@ class PasswordResetTest extends MediaWikiTestCase {
 		];
 	}
 
-	/**
-	 * @expectedException \LogicException
-	 */
 	public function testExecute_notAllowed() {
 		$user = $this->createMock( User::class );
 		/** @var User $user */
@@ -211,6 +208,7 @@ class PasswordResetTest extends MediaWikiTestCase {
 			->willReturn( Status::newFatal( 'somestatuscode' ) );
 		/** @var PasswordReset $passwordReset */
 
+		$this->expectException( \LogicException::class );
 		$passwordReset->execute( $user );
 	}
 

@@ -163,11 +163,11 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers Wikimedia\Rdbms\DBConnRef::close
-	 * @expectedException \Wikimedia\Rdbms\DBUnexpectedError
 	 */
 	public function testClose() {
 		$lb = $this->getLoadBalancerMock();
 		$ref = new DBConnRef( $lb, [ DB_REPLICA, [], 'dummy', 0 ], DB_MASTER );
+		$this->expectException( \Wikimedia\Rdbms\DBUnexpectedError::class );
 		$ref->close();
 	}
 
@@ -191,12 +191,12 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers Wikimedia\Rdbms\DBConnRef::getReferenceRole
-	 * @expectedException Wikimedia\Rdbms\DBReadOnlyRoleError
 	 * @dataProvider provideRoleExceptions
 	 */
 	public function testRoleExceptions( $method, $args ) {
 		$lb = $this->getLoadBalancerMock();
 		$ref = new DBConnRef( $lb, [ DB_REPLICA, [], 'dummy', 0 ], DB_REPLICA );
+		$this->expectException( Wikimedia\Rdbms\DBReadOnlyRoleError::class );
 		$ref->$method( ...$args );
 	}
 

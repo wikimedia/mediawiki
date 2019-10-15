@@ -337,11 +337,11 @@ class HtmlTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers Html::expandAttributes
-	 * @expectedException MWException
 	 */
 	public function testExpandAttributes_ArrayOnNonListValueAttribute_ThrowsException() {
 		// Real-life test case found in the Popups extension (see Gerrit cf0fd64),
 		// when used with an outdated BetaFeatures extension (see Gerrit deda1e7)
+		$this->expectException( MWException::class );
 		Html::expandAttributes( [
 			'src' => [
 				'ltr' => 'ltr.svg',

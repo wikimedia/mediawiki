@@ -2085,11 +2085,11 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers WANObjectCache::makeMultiKeys
-	 * @expectedException UnexpectedValueException
 	 */
 	public function testMakeMultiKeysCollision() {
 		$ids = [ 1, 2, 3, 4, '4', 5, 6, 6, 7 ];
 
+		$this->expectException( UnexpectedValueException::class );
 		$this->cache->makeMultiKeys(
 			$ids,
 			function ( $id ) {

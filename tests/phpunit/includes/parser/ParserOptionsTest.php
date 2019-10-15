@@ -234,21 +234,17 @@ class ParserOptionsTest extends MediaWikiTestCase {
 		$confstr .= '!onPageRenderingHash';
 	}
 
-	/**
-	 * @expectedException InvalidArgumentException
-	 * @expectedExceptionMessage Unknown parser option bogus
-	 */
 	public function testGetInvalidOption() {
 		$popt = ParserOptions::newCanonical();
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( "Unknown parser option bogus" );
 		$popt->getOption( 'bogus' );
 	}
 
-	/**
-	 * @expectedException InvalidArgumentException
-	 * @expectedExceptionMessage Unknown parser option bogus
-	 */
 	public function testSetInvalidOption() {
 		$popt = ParserOptions::newCanonical();
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( "Unknown parser option bogus" );
 		$popt->setOption( 'bogus', true );
 	}
 

@@ -21,25 +21,25 @@ class HashBagOStuffTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers HashBagOStuff::__construct
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testConstructBadZero() {
+		$this->expectException( InvalidArgumentException::class );
 		$cache = new HashBagOStuff( [ 'maxKeys' => 0 ] );
 	}
 
 	/**
 	 * @covers HashBagOStuff::__construct
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testConstructBadNeg() {
+		$this->expectException( InvalidArgumentException::class );
 		$cache = new HashBagOStuff( [ 'maxKeys' => -1 ] );
 	}
 
 	/**
 	 * @covers HashBagOStuff::__construct
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testConstructBadType() {
+		$this->expectException( InvalidArgumentException::class );
 		$cache = new HashBagOStuff( [ 'maxKeys' => 'x' ] );
 	}
 

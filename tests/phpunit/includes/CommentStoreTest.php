@@ -916,22 +916,22 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideStages
 	 * @param int $stage
-	 * @expectedException InvalidArgumentException
-	 * @expectedExceptionMessage Must use insertWithTempTable() for rev_comment
 	 */
 	public function testInsertWrong( $stage ) {
 		$store = $this->makeStore( $stage );
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( "Must use insertWithTempTable() for rev_comment" );
 		$store->insert( $this->db, 'rev_comment', 'foo' );
 	}
 
 	/**
 	 * @dataProvider provideStages
 	 * @param int $stage
-	 * @expectedException InvalidArgumentException
-	 * @expectedExceptionMessage Must use insert() for ipb_reason
 	 */
 	public function testInsertWithTempTableWrong( $stage ) {
 		$store = $this->makeStore( $stage );
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( "Must use insert() for ipb_reason" );
 		$store->insertWithTempTable( $this->db, 'ipb_reason', 'foo' );
 	}
 
@@ -966,12 +966,10 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		$this->assertSame( $truncated2, $stored );
 	}
 
-	/**
-	 * @expectedException OverflowException
-	 * @expectedExceptionMessage Comment data is too long (65611 bytes, maximum is 65535)
-	 */
 	public function testInsertTooMuchData() {
 		$store = $this->makeStore( MIGRATION_WRITE_BOTH );
+		$this->expectException( OverflowException::class );
+		$this->expectExceptionMessage( "Comment data is too long (65611 bytes, maximum is 65535)" );
 		$store->insert( $this->db, 'ipb_reason', 'foo', [
 			'long' => str_repeat( '💣', 16400 )
 		] );

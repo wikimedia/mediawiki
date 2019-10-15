@@ -611,22 +611,22 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideStages
 	 * @param int $stage
-	 * @expectedException InvalidArgumentException
-	 * @expectedExceptionMessage Must use getInsertValuesWithTempTable() for am2_user
 	 */
 	public function testInsertWrong( $stage ) {
 		$m = new ActorMigration( $stage );
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( "Must use getInsertValuesWithTempTable() for am2_user" );
 		$m->getInsertValues( $this->db, 'am2_user', $this->getTestUser()->getUser() );
 	}
 
 	/**
 	 * @dataProvider provideStages
 	 * @param int $stage
-	 * @expectedException InvalidArgumentException
-	 * @expectedExceptionMessage Must use getInsertValues() for am1_user
 	 */
 	public function testInsertWithTempTableWrong( $stage ) {
 		$m = new ActorMigration( $stage );
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( "Must use getInsertValues() for am1_user" );
 		$m->getInsertValuesWithTempTable( $this->db, 'am1_user', $this->getTestUser()->getUser() );
 	}
 
@@ -648,8 +648,6 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideStages
 	 * @param int $stage
-	 * @expectedException InvalidArgumentException
-	 * @expectedExceptionMessage $extra[foo_timestamp] is not provided
 	 */
 	public function testInsertWithTempTableCallbackMissingFields( $stage ) {
 		$w = TestingAccessWrapper::newFromClass( ActorMigration::class );
@@ -666,6 +664,8 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		$m = new ActorMigration( $stage );
 		list( $fields, $callback )
 			= $m->getInsertValuesWithTempTable( $this->db, 'foo_user', $this->getTestUser()->getUser() );
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( '$extra[foo_timestamp] is not provided' );
 		$callback( 1, [] );
 	}
 

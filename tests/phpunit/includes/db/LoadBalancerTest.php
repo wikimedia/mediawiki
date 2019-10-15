@@ -24,6 +24,7 @@ use PHPUnit\Framework\Constraint\StringContains;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\DBReadOnlyRoleError;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\LoadMonitorNull;
 use Wikimedia\TestingAccessWrapper;
@@ -582,7 +583,6 @@ class LoadBalancerTest extends MediaWikiTestCase {
 	/**
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection()
-	 * @expectedException \Wikimedia\Rdbms\DBReadOnlyRoleError
 	 */
 	public function testForbiddenWritesNoRef() {
 		// Simulate web request with DBO_TRX
@@ -590,8 +590,10 @@ class LoadBalancerTest extends MediaWikiTestCase {
 
 		$dbr = $lb->getConnection( DB_REPLICA );
 		$this->assertTrue( $dbr->isReadOnly(), 'replica shows as replica' );
+		$this->expectException( DBReadOnlyRoleError::class );
 		$dbr->delete( 'some_table', [ 'id' => 57634126 ], __METHOD__ );
 
+		// FIXME: not needed?
 		$lb->closeAll();
 	}
 
@@ -624,49 +626,49 @@ class LoadBalancerTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef()
-	 * @expectedException \Wikimedia\Rdbms\DBReadOnlyRoleError
 	 */
 	public function testDBConnRefWritesReplicaRole() {
 		$lb = $this->newSingleServerLocalLoadBalancer();
 
 		$rConn = $lb->getConnectionRef( DB_REPLICA );
 
+		$this->expectException( DBReadOnlyRoleError::class );
 		$rConn->query( 'DELETE FROM sometesttable WHERE 1=0' );
 	}
 
 	/**
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef()
-	 * @expectedException \Wikimedia\Rdbms\DBReadOnlyRoleError
 	 */
 	public function testDBConnRefWritesReplicaRoleIndex() {
 		$lb = $this->newMultiServerLocalLoadBalancer();
 
 		$rConn = $lb->getConnectionRef( 1 );
 
+		$this->expectException( DBReadOnlyRoleError::class );
 		$rConn->query( 'DELETE FROM sometesttable WHERE 1=0' );
 	}
 
 	/**
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef()
-	 * @expectedException \Wikimedia\Rdbms\DBReadOnlyRoleError
 	 */
 	public function testLazyDBConnRefWritesReplicaRoleIndex() {
 		$lb = $this->newMultiServerLocalLoadBalancer();
 
 		$rConn = $lb->getLazyConnectionRef( 1 );
 
+		$this->expectException( DBReadOnlyRoleError::class );
 		$rConn->query( 'DELETE FROM sometesttable WHERE 1=0' );
 	}
 
 	/**
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef()
-	 * @expectedException \Wikimedia\Rdbms\DBReadOnlyRoleError
 	 */
 	public function testDBConnRefWritesReplicaRoleInsert() {
 		$lb = $this->newMultiServerLocalLoadBalancer();
 
 		$rConn = $lb->getConnectionRef( DB_REPLICA );
 
+		$this->expectException( DBReadOnlyRoleError::class );
 		$rConn->insert( 'test', [ 't' => 1 ], __METHOD__ );
 	}
 

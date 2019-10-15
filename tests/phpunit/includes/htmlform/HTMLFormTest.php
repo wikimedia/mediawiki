@@ -21,11 +21,9 @@ class HTMLFormTest extends MediaWikiTestCase {
 		$this->assertStringStartsWith( '<form ', $html );
 	}
 
-	/**
-	 * @expectedException LogicException
-	 */
 	public function testGetHTML_noPrepare() {
 		$form = $this->newInstance();
+		$this->expectException( LogicException::class );
 		$form->getHTML( false );
 	}
 

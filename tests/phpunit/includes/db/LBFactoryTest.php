@@ -644,7 +644,6 @@ class LBFactoryTest extends MediaWikiTestCase {
 	/**
 	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::selectDB
 	 * @covers \Wikimedia\Rdbms\DatabasePostgres::selectDB
-	 * @expectedException \Wikimedia\Rdbms\DBConnectionError
 	 */
 	public function testInvalidSelectDBIndependent() {
 		$dbname = 'unittest-domain'; // explodes if DB is selected
@@ -657,6 +656,8 @@ class LBFactoryTest extends MediaWikiTestCase {
 		);
 		$lb = $factory->getMainLB();
 
+		// FIXME: this should probaly be lower (T235311)
+		$this->expectException( \Wikimedia\Rdbms\DBConnectionError::class );
 		if ( !$factory->getMainLB()->getServerAttributes( 0 )[Database::ATTR_DB_IS_FILE] ) {
 			$this->markTestSkipped( "Not applicable per ATTR_DB_IS_FILE" );
 		}
@@ -668,7 +669,6 @@ class LBFactoryTest extends MediaWikiTestCase {
 	/**
 	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::selectDB
 	 * @covers \Wikimedia\Rdbms\DatabasePostgres::selectDB
-	 * @expectedException \Wikimedia\Rdbms\DBExpectedError
 	 */
 	public function testInvalidSelectDBIndependent2() {
 		$dbname = 'unittest-domain'; // explodes if DB is selected
@@ -681,6 +681,8 @@ class LBFactoryTest extends MediaWikiTestCase {
 		);
 		$lb = $factory->getMainLB();
 
+		// FIXME: this should probaly be lower (T235311)
+		$this->expectException( \Wikimedia\Rdbms\DBExpectedError::class );
 		if ( !$lb->getConnection( DB_MASTER )->databasesAreIndependent() ) {
 			$this->markTestSkipped( "Not applicable per databasesAreIndependent()" );
 		}

@@ -197,17 +197,13 @@ class DatabaseDomainTest extends PHPUnit\Framework\TestCase {
 		$this->assertFalse( $fromId->isCompatible( $compareIdObj ), 'fromId equals string' );
 	}
 
-	/**
-	 * @expectedException InvalidArgumentException
-	 */
 	public function testSchemaWithNoDB1() {
+		$this->expectException( InvalidArgumentException::class );
 		new DatabaseDomain( null, 'schema', '' );
 	}
 
-	/**
-	 * @expectedException InvalidArgumentException
-	 */
 	public function testSchemaWithNoDB2() {
+		$this->expectException( InvalidArgumentException::class );
 		DatabaseDomain::newFromId( '-schema-prefix' );
 	}
 

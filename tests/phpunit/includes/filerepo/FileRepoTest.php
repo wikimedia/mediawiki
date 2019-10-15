@@ -3,36 +3,36 @@
 class FileRepoTest extends MediaWikiTestCase {
 
 	/**
-	 * @expectedException MWException
 	 * @covers FileRepo::__construct
 	 */
 	public function testFileRepoConstructionOptionCanNotBeNull() {
+		$this->expectException( MWException::class );
 		new FileRepo();
 	}
 
 	/**
-	 * @expectedException MWException
 	 * @covers FileRepo::__construct
 	 */
 	public function testFileRepoConstructionOptionCanNotBeAnEmptyArray() {
+		$this->expectException( MWException::class );
 		new FileRepo( [] );
 	}
 
 	/**
-	 * @expectedException MWException
 	 * @covers FileRepo::__construct
 	 */
 	public function testFileRepoConstructionOptionNeedNameKey() {
+		$this->expectException( MWException::class );
 		new FileRepo( [
 			'backend' => 'foobar'
 		] );
 	}
 
 	/**
-	 * @expectedException MWException
 	 * @covers FileRepo::__construct
 	 */
 	public function testFileRepoConstructionOptionNeedBackendKey() {
+		$this->expectException( MWException::class );
 		new FileRepo( [
 			'name' => 'foobar'
 		] );

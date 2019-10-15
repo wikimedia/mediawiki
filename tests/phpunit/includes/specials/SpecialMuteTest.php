@@ -23,11 +23,11 @@ class SpecialMuteTest extends SpecialPageTestBase {
 
 	/**
 	 * @covers SpecialMute::execute
-	 * @expectedExceptionMessage username requested could not be found
-	 * @expectedException ErrorPageError
 	 */
 	public function testInvalidTarget() {
 		$user = $this->getTestUser()->getUser();
+		$this->expectException( ErrorPageError::class );
+		$this->expectExceptionMessage( "username requested could not be found" );
 		$this->executeSpecialPage(
 			'InvalidUser', null, 'qqx', $user
 		);
@@ -35,8 +35,6 @@ class SpecialMuteTest extends SpecialPageTestBase {
 
 	/**
 	 * @covers SpecialMute::execute
-	 * @expectedExceptionMessage Mute features are unavailable
-	 * @expectedException ErrorPageError
 	 */
 	public function testEmailBlacklistNotEnabled() {
 		$this->setTemporaryHook(
@@ -49,6 +47,8 @@ class SpecialMuteTest extends SpecialPageTestBase {
 		] );
 
 		$user = $this->getTestUser()->getUser();
+		$this->expectException( ErrorPageError::class );
+		$this->expectExceptionMessage( "Mute features are unavailable" );
 		$this->executeSpecialPage(
 			$user->getName(), null, 'qqx', $user
 		);
@@ -56,9 +56,9 @@ class SpecialMuteTest extends SpecialPageTestBase {
 
 	/**
 	 * @covers SpecialMute::execute
-	 * @expectedException UserNotLoggedIn
 	 */
 	public function testUserNotLoggedIn() {
+		$this->expectException( UserNotLoggedIn::class );
 		$this->executeSpecialPage( 'TestUser' );
 	}
 

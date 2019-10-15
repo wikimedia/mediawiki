@@ -530,28 +530,28 @@ class LanguageTest extends LanguageClassesTestCase {
 
 	/**
 	 * Test too short timestamp
-	 * @expectedException MWException
 	 * @covers Language::sprintfDate
 	 */
 	public function testSprintfDateTooShortTimestamp() {
+		$this->expectException( MWException::class );
 		$this->getLang()->sprintfDate( 'xiY', '1234567890123' );
 	}
 
 	/**
 	 * Test too long timestamp
-	 * @expectedException MWException
 	 * @covers Language::sprintfDate
 	 */
 	public function testSprintfDateTooLongTimestamp() {
+		$this->expectException( MWException::class );
 		$this->getLang()->sprintfDate( 'xiY', '123456789012345' );
 	}
 
 	/**
 	 * Test too short timestamp
-	 * @expectedException MWException
 	 * @covers Language::sprintfDate
 	 */
 	public function testSprintfDateNotAllDigitTimestamp() {
+		$this->expectException( MWException::class );
 		$this->getLang()->sprintfDate( 'xiY', '-1234567890123' );
 	}
 

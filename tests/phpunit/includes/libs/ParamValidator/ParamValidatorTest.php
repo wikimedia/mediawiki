@@ -2,6 +2,7 @@
 
 namespace Wikimedia\ParamValidator;
 
+use DomainException;
 use Psr\Container\ContainerInterface;
 use Wikimedia\ObjectFactory;
 
@@ -100,8 +101,6 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @expectedException \UnexpectedValueException
-	 * @expectedExceptionMessage Expected instance of Wikimedia\ParamValidator\TypeDef, got stdClass
 	 */
 	public function testGetTypeDef_error() {
 		$validator = new ParamValidator(
@@ -109,6 +108,9 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 			new ObjectFactory( $this->getMockForAbstractClass( ContainerInterface::class ) ),
 			[ 'typeDefs' => [ 'foo' => [ 'class' => \stdClass::class ] ] ]
 		);
+		$this->expectException( \UnexpectedValueException::class );
+		$this->expectExceptionMessage(
+			"Expected instance of Wikimedia\ParamValidator\TypeDef, got stdClass" );
 		$validator->getTypeDef( 'foo' );
 	}
 
@@ -175,16 +177,14 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 		];
 	}
 
-	/**
-	 * @expectedException DomainException
-	 * @expectedExceptionMessage Param foo's type is unknown - string
-	 */
 	public function testGetValue_badType() {
 		$validator = new ParamValidator(
 			new SimpleCallbacks( [] ),
 			new ObjectFactory( $this->getMockForAbstractClass( ContainerInterface::class ) ),
 			[ 'typeDefs' => [] ]
 		);
+		$this->expectException( DomainException::class );
+		$this->expectExceptionMessage( "Param foo's type is unknown - string" );
 		$validator->getValue( 'foo', 'default', [] );
 	}
 
@@ -254,16 +254,14 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 		];
 	}
 
-	/**
-	 * @expectedException DomainException
-	 * @expectedExceptionMessage Param foo's type is unknown - string
-	 */
 	public function testValidateValue_badType() {
 		$validator = new ParamValidator(
 			new SimpleCallbacks( [] ),
 			new ObjectFactory( $this->getMockForAbstractClass( ContainerInterface::class ) ),
 			[ 'typeDefs' => [] ]
 		);
+		$this->expectException( DomainException::class );
+		$this->expectExceptionMessage( "Param foo's type is unknown - string" );
 		$validator->validateValue( 'foo', null, 'default', [] );
 	}
 

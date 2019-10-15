@@ -26,8 +26,6 @@ class XhprofTest extends PHPUnit\Framework\TestCase {
 	 * Trying to enable Xhprof when it is already enabled causes an exception
 	 * to be thrown.
 	 *
-	 * @expectedException        Exception
-	 * @expectedExceptionMessage already enabled
 	 * @covers Xhprof::enable
 	 */
 	public function testEnable() {
@@ -35,6 +33,8 @@ class XhprofTest extends PHPUnit\Framework\TestCase {
 		$enabled = $xhprof->getProperty( 'enabled' );
 		$enabled->setAccessible( true );
 		$enabled->setValue( true );
+		$this->expectException( Exception::class );
+		$this->expectExceptionMessage( "already enabled" );
 		$xhprof->getMethod( 'enable' )->invoke( null );
 	}
 
@@ -80,8 +80,6 @@ class XhprofTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * callAny() throws an exception when all functions are unavailable.
 	 *
-	 * @expectedException        Exception
-	 * @expectedExceptionMessage Neither xhprof nor tideways are installed
 	 * @covers Xhprof::callAny
 	 */
 	public function testCallAnyNoneAvailable() {
@@ -89,6 +87,8 @@ class XhprofTest extends PHPUnit\Framework\TestCase {
 		$callAny = $xhprof->getMethod( 'callAny' );
 		$callAny->setAccessible( true );
 
+		$this->expectException( Exception::class );
+		$this->expectExceptionMessage( "Neither xhprof nor tideways are installed" );
 		$callAny->invoke( $xhprof, [
 			'wfTestCallAny_nosuchfunc1',
 			'wfTestCallAny_nosuchfunc2',

@@ -9,10 +9,10 @@
 class MWExceptionTest extends MediaWikiTestCase {
 
 	/**
-	 * @expectedException MWException
 	 * @covers MWException
 	 */
 	public function testMwexceptionThrowing() {
+		$this->expectException( MWException::class );
 		throw new MWException();
 	}
 
