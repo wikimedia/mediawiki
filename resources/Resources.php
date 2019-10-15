@@ -237,7 +237,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.lengthLimit' => [
-		'scripts' => 'resources/src/jquery/jquery.lengthLimit.js',
+		'scripts' => 'resources/src/jquery.lengthLimit.js',
 		'dependencies' => 'mediawiki.String',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
