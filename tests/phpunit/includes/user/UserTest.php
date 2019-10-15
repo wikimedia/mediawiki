@@ -620,7 +620,6 @@ class UserTest extends MediaWikiTestCase {
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user1 = User::newFromSession( $request1 );
-		$user1->mBlock = $block;
 		$user1->load();
 		MediaWikiServices::getInstance()->getBlockManager()
 			->trackBlockWithCookie( $user1, $request1->response() );
@@ -705,7 +704,6 @@ class UserTest extends MediaWikiTestCase {
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user = User::newFromSession( $request1 );
-		$user->mBlock = $block;
 		$user->load();
 		MediaWikiServices::getInstance()->getBlockManager()
 			->trackBlockWithCookie( $user, $request1->response() );
@@ -752,7 +750,6 @@ class UserTest extends MediaWikiTestCase {
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user1 = User::newFromSession( $request1 );
-		$user1->mBlock = $block;
 		$user1->load();
 		MediaWikiServices::getInstance()->getBlockManager()
 			->trackBlockWithCookie( $user1, $request1->response() );
@@ -783,7 +780,6 @@ class UserTest extends MediaWikiTestCase {
 		$request2 = new FauxRequest();
 		$request2->getSession()->setUser( $user2tmp );
 		$user2 = User::newFromSession( $request2 );
-		$user2->mBlock = $block;
 		$user2->load();
 		MediaWikiServices::getInstance()->getBlockManager()
 			->trackBlockWithCookie( $user2, $request2->response() );
@@ -852,9 +848,6 @@ class UserTest extends MediaWikiTestCase {
 		$block->setTarget( $user1tmp );
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
-		$user1 = User::newFromSession( $request1 );
-		$user1->mBlock = $block;
-		$user1->load();
 
 		// 2. Create a new request, set the cookie to an invalid value, and make sure the (anon)
 		// user not blocked.
@@ -898,7 +891,6 @@ class UserTest extends MediaWikiTestCase {
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user1 = User::newFromSession( $request1 );
-		$user1->mBlock = $block;
 		$user1->load();
 		$this->assertInstanceOf( DatabaseBlock::class, $user1->getBlock() );
 
