@@ -371,11 +371,11 @@ class MWDebug {
 	 * @since 1.19
 	 * @param string $sql
 	 * @param string $function
-	 * @param bool $isMaster
 	 * @param float $runTime Query run time
+	 * @param string $dbhost
 	 * @return bool True if debugger is enabled, false otherwise
 	 */
-	public static function query( $sql, $function, $isMaster, $runTime ) {
+	public static function query( $sql, $function, $runTime, $dbhost ) {
 		if ( !self::$enabled ) {
 			return false;
 		}
@@ -406,9 +406,8 @@ class MWDebug {
 		$sql = UtfNormal\Validator::cleanUp( $sql );
 
 		self::$query[] = [
-			'sql' => $sql,
+			'sql' => "$dbhost: $sql",
 			'function' => $function,
-			'master' => (bool)$isMaster,
 			'time' => $runTime,
 		];
 
