@@ -4263,7 +4263,7 @@
 	"rest-pagehistorycount-title-nonexistent": "The specified title ($1) does not exist",
 	"rest-pagehistorycount-type-unrecognized": "The specified count type ($1) is not valid",
 	"rest-revision-nonexistent": "The requested revision ($1) does not exist.",
-	"rest-compare-page-mismatch": "The specified belong to different pages; refusing to compare them.",
+	"rest-compare-page-mismatch": "The specified revisions belong to different pages; refusing to compare them.",
 	"rest-compare-nonexistent": "The revision specified by the $1 parameter does not exist.",
 	"rest-compare-inaccessible": "The revision specified by the $1 parameter is not publicly accessible.",
 	"rest-compare-wrong-content": "The $1 slot of the revision specified by the $2 parameter has a content type which cannot be converted to text.",
