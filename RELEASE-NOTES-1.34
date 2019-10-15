@@ -1,6 +1,6 @@
 = MediaWiki 1.34 =
 
-== MediaWiki 1.34.0-PRERELEASE ==
+== MediaWiki 1.34.0-rc.0 ==
 
 THIS IS NOT A RELEASE YET
 
@@ -20,7 +20,8 @@ important information when upgrading from versions prior to 1.11.
 
 Some specific notes for MediaWiki 1.34 upgrades are below:
 
-* …
+* MediaWiki now requires PHP 7.2.9 or above.
+* MediaWiki no longer supports HHVM.
 
 For notes on 1.33.x and older releases, see HISTORY.
 
@@ -77,7 +78,6 @@ $wgPasswordPolicy['policies']['default']['PasswordNotInLargeBlacklist'] = false;
   an array with IP addresses as the values, or a string path to a file
   containing one IP address per line.
 * $wgCookieSetOnAutoblock and $wgCookieSetOnIpBlock are now enabled by default.
-* …
 
 ==== Removed configuration ====
 * $wgWikiDiff2MovedParagraphDetectionCutoff — If you still want a custom change
@@ -135,9 +135,6 @@ $wgPasswordPolicy['policies']['default']['PasswordNotInLargeBlacklist'] = false;
 
 === External library changes in 1.34 ===
 
-==== New external libraries ====
-* …
-
 ==== Changed external libraries ====
 * Updated Mustache from 1.0.0 to v3.0.1.
 * Updated OOUI from v0.31.3 to v0.34.0.
@@ -154,11 +151,9 @@ $wgPasswordPolicy['policies']['default']['PasswordNotInLargeBlacklist'] = false;
 * Updated wikimedia/xmp-reader from 0.6.2 to 0.6.3.
 * Updated mediawiki/mediawiki-phan-config from 0.6.0 to 0.6.1 (dev-only).
 * Updated wikimedia/avro from 1.8.0 to 1.9.0 (dev-only).
-* …
 
 ==== Removed external libraries ====
 * The jquery.async module, deprecated in 1.33, was removed.
-* …
 
 === Bug fixes in 1.34 ===
 * (T222529) If a log entry or page revision is recorded in the database with an
@@ -626,7 +621,6 @@ because of Phabricator reports.
   "..." as the only author name. If the "author" array contains more than one
   entry and "..." is one of the entries in the array, "..." will be parsed as
   "others" (version-poweredby-others i18n message) like previously.
-* …
 
 == Compatibility ==
 MediaWiki 1.34 requires PHP 7.2.9 or later, and the following PHP extensions:
