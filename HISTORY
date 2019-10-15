@@ -512,6 +512,16 @@ because of Phabricator reports.
 
 = MediaWiki 1.32 =
 
+== MediaWiki 1.32.5 ==
+
+This is a maintenance release of the MediaWiki 1.32 branch.
+
+=== Changes since MediaWiki 1.32.4 ===
+* Compute sha1 and length if needed in maintenance/populateContentTables.php.
+* Fix extra newlines in the installer.
+* Followup T230402, PermissionManager doesn't exist until 1.33, so fix the
+  backported patches to use User::isAllowed() instead.
+
 == MediaWiki 1.32.4 ==
 
 This is a security and maintenance release of the MediaWiki 1.32 branch.
@@ -1292,6 +1302,15 @@ because of Phabricator reports.
   recentchanges.rc_cur_time from the PostgreSQL schema.
 
 = MediaWiki 1.31 =
+
+== MediaWiki 1.31.5 ==
+
+This is a maintenance release of the MediaWiki 1.31 branch.
+
+=== Changes since MediaWiki 1.31.4 ===
+* Fix extra newlines in installer.
+* Followup T230402, PermissionManager doesn't exist until 1.33, so fix the
+  backported patches to use User::isAllowed() instead.
 
 == MediaWiki 1.31.4 ==
 
