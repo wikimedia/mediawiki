@@ -433,9 +433,9 @@ class BlockManager {
 	 *
 	 * If a block cookie is already set, this will check the block that the cookie references
 	 * and do the following:
-	 *  - If the block is a valid block that should be tracked with a cookie, do nothing and
-	 *    return early. This ensures that the cookie's expiry time is based on the time of
-	 *    the first page load or attempt. (See discussion on T233595.)
+	 *  - If the block is a valid block that should be applied, do nothing and return early.
+	 *    This ensures that the cookie's expiry time is based on the time of the first page
+	 *    load or attempt. (See discussion on T233595.)
 	 *  - If the block is invalid (e.g. has expired), clear the cookie and continue to check
 	 *    whether there is another block that should be tracked.
 	 *  - If the block is a valid block, but should not be tracked by a cookie, clear the
@@ -452,7 +452,7 @@ class BlockManager {
 
 		if ( $request->getCookie( 'BlockID' ) !== null ) {
 			$cookieBlock = $this->getBlockFromCookieValue( $user, $request );
-			if ( $cookieBlock && $this->shouldTrackBlockWithCookie( $cookieBlock, $user->isAnon() ) ) {
+			if ( $cookieBlock && $this->shouldApplyCookieBlock( $cookieBlock, $user->isAnon() ) ) {
 				return;
 			}
 			// The block pointed to by the cookie is invalid or should not be tracked.
