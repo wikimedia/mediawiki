@@ -178,6 +178,7 @@ if ( isset( $_REQUEST['expand'] ) ) {
 		$expand[$f] = true;
 	}
 }
+wfDeprecated( 'profileinfo.php', '1.34' );
 
 // phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class profile_point {
