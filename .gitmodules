@@ -1192,3 +1192,7 @@
 	path = extensions/AutoCreatePage
 	url = https://github.com/mkroetzsch/AutoCreatePage
 	branch = master
+[submodule "extensions/lastmodified"]
+	path = extensions/lastmodified
+	url = https://github.com/wikimedia/mediawiki-extensions-LastModified.git
+	branch = REL1_33
