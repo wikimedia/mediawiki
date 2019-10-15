@@ -40,6 +40,27 @@ class HTTPFileStreamer {
 	const STREAM_ALLOW_OB = 2;
 
 	/**
+	 * Takes HTTP headers in a name => value format and converts them to the weird format
+	 * expected by stream().
+	 * @param string[] $headers
+	 * @return array[] [ $headers, $optHeaders ]
+	 * @since 1.34
+	 */
+	public static function preprocessHeaders( $headers ) {
+		$rawHeaders = [];
+		$optHeaders = [];
+		foreach ( $headers as $name => $header ) {
+			$nameLower = strtolower( $name );
+			if ( in_array( $nameLower, [ 'range', 'if-modified-since' ], true ) ) {
+				$optHeaders[$nameLower] = $header;
+			} else {
+				$rawHeaders[] = "$name: $header";
+			}
+		}
+		return [ $rawHeaders, $optHeaders ];
+	}
+
+	/**
 	 * @param string $path Local filesystem path to a file
 	 * @param array $params Options map, which includes:
 	 *   - obResetFunc : alternative callback to clear the output buffer

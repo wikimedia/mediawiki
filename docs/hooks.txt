@@ -1822,7 +1822,7 @@ $page: ImagePage object
 $page: ImagePage object
 &$toc: Array of <li> strings
 
-'ImgAuthBeforeStream': executed before file is streamed to user, but only when
+'ImgAuthBeforeStream': Executed before file is streamed to user, but only when
 using img_auth.php.
 &$title: the Title object of the file as it would appear for the upload page
 &$path: the original file and path name when img_auth was invoked by the web
@@ -1834,6 +1834,14 @@ using img_auth.php.
   $result[1]=The index of the body text message
   $result[2 through n]=Parameters passed to body text message. Please note the
   header message cannot receive/use parameters.
+
+'ImgAuthModifyHeaders': Executed just before a file is streamed to a user via
+img_auth.php, allowing headers to be modified beforehand.
+$title: LinkTarget object
+&$headers: HTTP headers ( name => value, names are case insensitive ).
+  Two headers get special handling: If-Modified-Since (value must be
+  a valid HTTP date) and Range (must be of the form "bytes=(\d*-\d*)")
+  will be honored when streaming the file.
 
 'ImportHandleLogItemXMLTag': When parsing a XML tag in a log item.
 Return false to stop further processing of the tag

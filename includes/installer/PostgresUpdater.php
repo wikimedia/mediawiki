@@ -481,6 +481,11 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeNullableField', 'protected_titles', 'pt_reason', 'NOT NULL', true ],
 			[ 'addPgField', 'protected_titles', 'pt_reason_id', 'INTEGER NOT NULL DEFAULT 0' ],
 			[ 'addTable', 'comment', 'patch-comment-table.sql' ],
+			[ 'addTable', 'revision_comment_temp', 'patch-revision_comment_temp-table.sql' ],
+			// image_comment_temp is no longer needed when upgrading to MW 1.31 or newer,
+			// as it is dropped later in the update process as part of 'migrateImageCommentTemp'.
+			// File kept on disk and the updater entry here for historical purposes.
+			// [ 'addTable', 'image_comment_temp', 'patch-image_comment_temp-table.sql' ],
 
 			// This field was added in 1.31, but is put here so it can be used by 'migrateComments'
 			[ 'addPgField', 'image', 'img_description_id', 'INTEGER NOT NULL DEFAULT 0' ],
@@ -505,6 +510,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addTable', 'slot_roles', 'patch-slot_roles-table.sql' ],
 			[ 'migrateArchiveText' ],
 			[ 'addTable', 'actor', 'patch-actor-table.sql' ],
+			[ 'addTable', 'revision_actor_temp', 'patch-revision_actor_temp-table.sql' ],
 			[ 'setDefault', 'revision', 'rev_user', 0 ],
 			[ 'setDefault', 'revision', 'rev_user_text', '' ],
 			[ 'setDefault', 'archive', 'ar_user', 0 ],
