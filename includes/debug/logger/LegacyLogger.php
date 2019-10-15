@@ -102,16 +102,15 @@ class LegacyLogger extends AbstractLogger {
 			$level = self::$levelMapping[$level];
 		}
 		if ( $this->channel === 'DBQuery'
-			&& isset( $context['method'] )
-			&& isset( $context['master'] )
-			&& isset( $context['runtime'] )
+			&& $level === self::$levelMapping[LogLevel::DEBUG]
+			&& isset( $context['sql'] )
 		) {
 			// Also give the query information to the MWDebug tools
 			$enabled = MWDebug::query(
-				$message,
+				$context['sql'],
 				$context['method'],
-				$context['master'],
-				$context['runtime']
+				$context['runtime'],
+				$context['db_host']
 			);
 			if ( $enabled ) {
 				// If we the toolbar was enabled, return early so that we don't
