@@ -34,7 +34,7 @@ This is a security and maintenance release of the MediaWiki 1.33 branch.
 * (T227662) Split down patch-comment-table.sql and patch-actor-table.sql into
   separate files to help allieviate potential migration problems.
 
-== MediaWiki 1.33 ==
+== MediaWiki 1.33.0 ==
 
 === Upgrading notes for 1.33 ===
 1.33 has several database changes since 1.32, and will not work without schema
