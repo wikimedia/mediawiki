@@ -287,7 +287,7 @@ class ApiMoveTest extends ApiTestCase {
 			Title::newFromText( "Talk:$name 2" )->getArticleID() );
 		$this->assertSame( [ [
 			'message' => 'articleexists',
-			'params' => [],
+			'params' => [ "Talk:$name 2" ],
 			'code' => 'articleexists',
 			'type' => 'error',
 		] ], $res[0]['move']['talkmove-errors'] );
@@ -328,7 +328,7 @@ class ApiMoveTest extends ApiTestCase {
 			if ( $arr['from'] === "$name/error" ) {
 				$this->assertSame( [ [
 					'message' => 'articleexists',
-					'params' => [],
+					'params' => [ "$name 2/error" ],
 					'code' => 'articleexists',
 					'type' => 'error'
 				] ], $arr['errors'] );

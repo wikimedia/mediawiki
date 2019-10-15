@@ -2807,7 +2807,7 @@
 	"movepage-moved-redirect": "A redirect has been created.",
 	"movepage-moved-noredirect": "The creation of a redirect has been suppressed.",
 	"movepage-delete-first": "The target page has too many revisions to delete as part of a page move.  Please first delete the page manually, then try again.",
-	"articleexists": "A page of that name already exists, or the name you have chosen is not valid.\nPlease choose another name.",
+	"articleexists": "A page already exists at [[:$1]], or the page name you have chosen is not valid.\nPlease choose another name.",
 	"cantmove-titleprotected": "You cannot move a page to this location because the new title has been protected from creation.",
 	"movetalk": "Move associated talk page",
 	"move-subpages": "Move subpages (up to $1)",

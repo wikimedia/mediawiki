@@ -248,7 +248,7 @@ class MovePageTest extends MediaWikiTestCase {
 			'Move over existing' => [
 				'Existent',
 				'Existent2',
-				[ [ 'articleexists' ] ],
+				[ [ 'articleexists', 'Existent2' ] ],
 			],
 			'Move from another wiki' => [
 				Title::makeTitle( NS_MAIN, 'Test', '', 'otherwiki' ),
@@ -304,7 +304,7 @@ class MovePageTest extends MediaWikiTestCase {
 			'Existing file to existing file' => [
 				'File:Existent.jpg',
 				'File:Existent2.jpg',
-				[ [ 'articleexists' ] ],
+				[ [ 'articleexists', 'File:Existent2.jpg' ] ],
 			],
 			'Existing file to existing file with no page' => [
 				'File:Existent.jpg',

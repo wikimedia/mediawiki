@@ -169,7 +169,7 @@ class MovePage {
 			// The move is allowed only if (1) the target doesn't exist, or (2) the target is a
 			// redirect to the source, and has no history (so we can undo bad moves right after
 			// they're done).
-			$status->fatal( 'articleexists' );
+			$status->fatal( 'articleexists', $this->newTitle->getPrefixedText() );
 		}
 
 		// @todo If the old title is invalid, maybe we should check if it somehow exists in the
