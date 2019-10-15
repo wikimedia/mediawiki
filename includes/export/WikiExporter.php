@@ -48,16 +48,16 @@ class WikiExporter {
 	/** @var string */
 	public $author_list = "";
 
-	const FULL = 1;
-	const CURRENT = 2;
-	const STABLE = 4; // extension defined
-	const LOGS = 8;
-	const RANGE = 16;
+	public const FULL = 1;
+	public const CURRENT = 2;
+	public const STABLE = 4; // extension defined
+	public const LOGS = 8;
+	public const RANGE = 16;
 
-	const TEXT = XmlDumpWriter::WRITE_CONTENT;
-	const STUB = XmlDumpWriter::WRITE_STUB;
+	public const TEXT = XmlDumpWriter::WRITE_CONTENT;
+	public const STUB = XmlDumpWriter::WRITE_STUB;
 
-	const BATCH_SIZE = 50000;
+	protected const BATCH_SIZE = 50000;
 
 	/** @var int */
 	public $text;

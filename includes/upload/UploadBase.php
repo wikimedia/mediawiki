@@ -92,19 +92,19 @@ abstract class UploadBase {
 		'WINDOWS-1258',
 	];
 
-	const SUCCESS = 0;
-	const OK = 0;
-	const EMPTY_FILE = 3;
-	const MIN_LENGTH_PARTNAME = 4;
-	const ILLEGAL_FILENAME = 5;
-	const OVERWRITE_EXISTING_FILE = 7; # Not used anymore; handled by verifyTitlePermissions()
-	const FILETYPE_MISSING = 8;
-	const FILETYPE_BADTYPE = 9;
-	const VERIFICATION_ERROR = 10;
-	const HOOK_ABORTED = 11;
-	const FILE_TOO_LARGE = 12;
-	const WINDOWS_NONASCII_FILENAME = 13;
-	const FILENAME_TOO_LONG = 14;
+	public const SUCCESS = 0;
+	public const OK = 0;
+	public const EMPTY_FILE = 3;
+	public const MIN_LENGTH_PARTNAME = 4;
+	public const ILLEGAL_FILENAME = 5;
+	public const OVERWRITE_EXISTING_FILE = 7; # Not used anymore; handled by verifyTitlePermissions()
+	public const FILETYPE_MISSING = 8;
+	public const FILETYPE_BADTYPE = 9;
+	public const VERIFICATION_ERROR = 10;
+	public const HOOK_ABORTED = 11;
+	public const FILE_TOO_LARGE = 12;
+	public const WINDOWS_NONASCII_FILENAME = 13;
+	public const FILENAME_TOO_LONG = 14;
 
 	/**
 	 * @param int $error
