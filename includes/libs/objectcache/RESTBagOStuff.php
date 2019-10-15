@@ -38,8 +38,8 @@ use Psr\Log\LoggerInterface;
  *		'writeHeaders' => [ 'content-type' => 'application/octet-stream' ],
  *		'deleteHeaders' => [],
  *		'writeMethod' => 'POST',
- *		'serialization_type' => 'JSON',
  *	],
+ *	'serialization_type' => 'JSON',
  * 	'extendedErrorBodyFields' => [ 'type', 'title', 'detail', 'instance' ]
  * );
  * $wgSessionCacheType = 'sessions';
