@@ -524,7 +524,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @return ErrorPageError
 	 */
 	private function getBlockedEmailError() {
-		$block = $this->getUser()->mBlock;
+		$block = $this->getUser()->getBlock();
 		$params = $block->getBlockErrorParams( $this->getContext() );
 
 		$msg = $block->isSitewide() ? 'blockedtext' : 'blocked-email-user';
