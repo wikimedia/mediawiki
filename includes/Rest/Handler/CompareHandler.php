@@ -2,12 +2,15 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\StringStream;
+use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Revision\SuppressedDataException;
 use RequestContext;
 use TextContent;
 use User;
@@ -18,14 +21,21 @@ class CompareHandler extends Handler {
 	/** @var RevisionLookup */
 	private $revisionLookup;
 
+	/** @var PermissionManager */
+	private $permissionManager;
+
 	/** @var User */
 	private $user;
 
 	/** @var RevisionRecord[] */
 	private $revisions = [];
 
-	public function __construct( RevisionLookup $revisionLookup ) {
+	public function __construct(
+		RevisionLookup $revisionLookup,
+		PermissionManager $permissionManager
+	) {
 		$this->revisionLookup = $revisionLookup;
+		$this->permissionManager = $permissionManager;
 
 		// @todo Inject this, when there is a good way to do that
 		$this->user = RequestContext::getMain()->getUser();
@@ -38,6 +48,13 @@ class CompareHandler extends Handler {
 		if ( $fromRev->getPageId() !== $toRev->getPageId() ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'rest-compare-page-mismatch' ), 400 );
+		}
+
+		if ( !$this->permissionManager->userCan( 'read', $this->user,
+			$toRev->getPageAsLinkTarget() )
+		) {
+			throw new LocalizedHttpException(
+				new MessageValue( 'rest-compare-permission-denied' ), 403 );
 		}
 
 		$data = [
@@ -112,15 +129,28 @@ class CompareHandler extends Handler {
 	}
 
 	private function getRevisionText( $paramName ) {
-		$revision = $this->getRevisionOrThrow( $paramName );
-		$content = $revision->getSlot( $this->getRole() )->getContent()
-			->convert( CONTENT_MODEL_TEXT );
-		if ( $content instanceof TextContent ) {
-			return $content->getText();
-		} else {
+		$revision = $this->getRevision( $paramName );
+		try {
+			$content = $revision
+				->getSlot( $this->getRole(), RevisionRecord::FOR_THIS_USER, $this->user )
+				->getContent()
+				->convert( CONTENT_MODEL_TEXT );
+			if ( $content instanceof TextContent ) {
+				return $content->getText();
+			} else {
+				throw new LocalizedHttpException(
+					new MessageValue(
+						'rest-compare-wrong-content',
+						[ $this->getRole(), $paramName ]
+					),
+					400 );
+			}
+		} catch ( SuppressedDataException $e ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'rest-compare-wrong-content', [ $this->getRole(), $paramName ] ),
-				400 );
+				new MessageValue( 'rest-compare-inaccessible', [ $paramName ] ), 403 );
+		} catch ( RevisionAccessException $e ) {
+			throw new LocalizedHttpException(
+				new MessageValue( 'rest-compare-nonexistent', [ $paramName ] ), 404 );
 		}
 	}
 

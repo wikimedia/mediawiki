@@ -110,6 +110,13 @@ class PageHistoryHandler extends SimpleHandler {
 				404
 			);
 		}
+		if ( !$this->permissionManager->userCan( 'read', $this->user, $titleObj ) ) {
+			throw new LocalizedHttpException(
+				new MessageValue( 'rest-pagehistory-title-permission-denied',
+					[ new ScalarParam( ParamType::PLAINTEXT, $title ) ] ),
+				403
+			);
+		}
 
 		$relativeRevId = $params['older_than'] ?? $params['newer_than'] ?? 0;
 		if ( $relativeRevId ) {
@@ -291,7 +298,7 @@ class PageHistoryHandler extends SimpleHandler {
 				}
 
 				$comment = $rev->getComment( RevisionRecord::FOR_THIS_USER, $this->user );
-				$revision['comment'] = ( $comment && $comment->text !== '' ) ? $comment->text : null;
+				$revision['comment'] = $comment ? $comment->text : null;
 
 				$revUser = $rev->getUser( RevisionRecord::FOR_THIS_USER, $this->user );
 				if ( $revUser ) {
