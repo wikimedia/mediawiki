@@ -22,8 +22,9 @@
  */
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
-use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\Database;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * MediaWiki message cache structure version.
@@ -37,7 +38,7 @@ define( 'MSG_CACHE_VERSION', 2 );
  * Performs various MediaWiki namespace-related functions
  * @ingroup Cache
  */
-class MessageCache {
+class MessageCache implements LoggerAwareInterface {
 	const FOR_UPDATE = 1; // force message reload
 
 	/** How long to wait for memcached locks */
@@ -50,6 +51,9 @@ class MessageCache {
 	 * @var int
 	 */
 	const WAN_TTL = IExpiringStore::TTL_DAY;
+
+	/** @var LoggerInterface */
+	private $logger;
 
 	/**
 	 * Process cache of loaded messages that are defined in MediaWiki namespace
@@ -127,27 +131,37 @@ class MessageCache {
 	}
 
 	/**
+	 * @internal For use by ServiceWiring
 	 * @param WANObjectCache $wanCache
 	 * @param BagOStuff $clusterCache
 	 * @param BagOStuff $serverCache
-	 * @param bool $useDB Whether to look for message overrides (e.g. MediaWiki: pages)
-	 * @param Language|null $contLang Content language of site
+	 * @param Language $contLang Content language of site
+	 * @param LoggerInterface $logger
+	 * @param array $options
+	 *  - useDB (bool): Whether to allow message overrides from "MediaWiki:" pages.
+	 *    Default: true.
 	 */
 	public function __construct(
 		WANObjectCache $wanCache,
 		BagOStuff $clusterCache,
 		BagOStuff $serverCache,
-		$useDB,
-		Language $contLang = null
+		Language $contLang,
+		LoggerInterface $logger,
+		array $options
 	) {
 		$this->wanCache = $wanCache;
 		$this->clusterCache = $clusterCache;
 		$this->srvCache = $serverCache;
+		$this->contLang = $contLang;
+		$this->logger = $logger;
 
 		$this->cache = new MapCacheLRU( 5 ); // limit size for sanity
 
-		$this->mDisable = !$useDB;
-		$this->contLang = $contLang ?? MediaWikiServices::getInstance()->getContentLanguage();
+		$this->mDisable = !( $options['useDB'] ?? true );
+	}
+
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
 	}
 
 	/**
@@ -241,7 +255,7 @@ class MessageCache {
 		if ( $this->mDisable ) {
 			static $shownDisabled = false;
 			if ( !$shownDisabled ) {
-				wfDebug( __METHOD__ . ": disabled\n" );
+				$this->logger->debug( __METHOD__ . ': disabled' );
 				$shownDisabled = true;
 			}
 
@@ -349,7 +363,7 @@ class MessageCache {
 			$where[] = 'loading FAILED - cache is disabled';
 			$this->mDisable = true;
 			$this->cache->set( $code, [] );
-			wfDebugLog( 'MessageCacheError', __METHOD__ . ": Failed to load $code\n" );
+			$this->logger->error( __METHOD__ . ": Failed to load $code" );
 			# This used to throw an exception, but that led to nasty side effects like
 			# the whole wiki being instantly down if the memcached server died
 		}
@@ -359,14 +373,14 @@ class MessageCache {
 		}
 
 		$info = implode( ', ', $where );
-		wfDebugLog( 'MessageCache', __METHOD__ . ": Loading $code... $info\n" );
+		$this->logger->debug( __METHOD__ . ": Loading $code... $info" );
 
 		return $success;
 	}
 
 	/**
 	 * @param string $code
-	 * @param array &$where List of wfDebug() comments
+	 * @param string[] &$where List of debug comments
 	 * @param int|null $mode Use MessageCache::FOR_UPDATE to use DB_MASTER
 	 * @return bool|string True on success or one of ("cantacquire", "disabled")
 	 */
@@ -531,8 +545,7 @@ class MessageCache {
 
 				if ( !is_string( $text ) ) {
 					$entry = '!ERROR';
-					wfDebugLog(
-						'MessageCache',
+					$this->logger->error(
 						__METHOD__
 						. ": failed to load message page text for {$row->page_title} ($code)"
 					);
@@ -639,7 +652,7 @@ class MessageCache {
 		);
 		if ( !$scopedLock ) {
 			foreach ( $replacements as list( $title ) ) {
-				LoggerFactory::getInstance( 'MessageCache' )->error(
+				$this->logger->error(
 					__METHOD__ . ': could not acquire lock to update {title} ({code})',
 					[ 'title' => $title, 'code' => $code ] );
 			}
@@ -1084,7 +1097,7 @@ class MessageCache {
 		if ( $entry !== false && substr( $entry, 0, 1 ) === ' ' ) {
 			if ( $this->cacheVolatile[$code] ) {
 				// Make sure that individual keys respect the WAN cache holdoff period too
-				LoggerFactory::getInstance( 'MessageCache' )->debug(
+				$this->logger->debug(
 					__METHOD__ . ': loading volatile key \'{titleKey}\'',
 					[ 'titleKey' => $title, 'code' => $code ] );
 			} else {
@@ -1130,7 +1143,7 @@ class MessageCache {
 						if ( $content ) {
 							$message = $this->getMessageTextFromContent( $content );
 						} else {
-							LoggerFactory::getInstance( 'MessageCache' )->warning(
+							$this->logger->warning(
 								$fname . ': failed to load page text for \'{titleKey}\'',
 								[ 'titleKey' => $dbKey, 'code' => $code ]
 							);
@@ -1382,7 +1395,7 @@ class MessageCache {
 			if ( $msgText === false || $msgText === null ) {
 				// This might be due to some kind of misconfiguration...
 				$msgText = null;
-				LoggerFactory::getInstance( 'MessageCache' )->warning(
+				$this->logger->warning(
 					__METHOD__ . ": message content doesn't provide wikitext "
 					. "(content model: " . $content->getModel() . ")" );
 			}
