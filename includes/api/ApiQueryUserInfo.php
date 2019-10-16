@@ -20,7 +20,6 @@
  * @file
  */
 
-use MediaWiki\Block\AbstractBlock;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -53,26 +52,6 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 		$r = $this->getCurrentUserInfo();
 		$result->addValue( 'query', $this->getModuleName(), $r );
-	}
-
-	/**
-	 * Get basic info about a given block
-	 *
-	 * @deprecated since 1.34 Use ApiBlockInfoTrait::getBlockDetails() instead.
-	 * @param AbstractBlock $block
-	 * @return array See ApiBlockInfoTrait::getBlockDetails
-	 */
-	public static function getBlockInfo( AbstractBlock $block ) {
-		wfDeprecated( __METHOD__, '1.34' );
-
-		// Hack to access a private method from a trait:
-		$dummy = new class {
-			use ApiBlockInfoTrait {
-				getBlockDetails as public;
-			}
-		};
-
-		return $dummy->getBlockDetails( $block );
 	}
 
 	/**
