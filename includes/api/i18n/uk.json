@@ -15,7 +15,8 @@
 			"Umherirrender",
 			"Choomaq",
 			"Zoranzoki21",
-			"Vlad5250"
+			"Vlad5250",
+			"Movses"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документація]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧаПи]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Список розсилки]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Оголошення API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Баґи і запити]\n</div>\n<strong>Статус:</strong> Усі функції, вказані на цій сторінці, мають працювати, але API далі перебуває в активній розробці і може змінитися у будь-який момент. Підпишіться на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ список розсилки mediawiki-api-announce], щоб помічати оновлення.\n\n<strong>Хибні запити:</strong> Коли до API надсилаються хибні запити, буде відіслано HTTP-шапку з ключем «MediaWiki-API-Error», а тоді і значення шапки, і код помилки, надіслані назад, будуть встановлені з тим же значенням. Більше інформації див. на сторінці [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Помилки й попередження]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тестування:</strong> Для зручності тестування запитів API, див. [[Special:ApiSandbox]].</p>",
@@ -404,8 +405,8 @@
 	"apihelp-protect-example-unprotect": "Зняти захист зі сторінки, встановивши обмеження для <kbd>all</kbd> (тобто будь-хто зможе робити дії).",
 	"apihelp-protect-example-unprotect2": "Зняти захист з сторінки, встановивши відсутність обмежень.",
 	"apihelp-purge-summary": "Очистити кеш для вказаних заголовків.",
-	"apihelp-purge-param-forcelinkupdate": "Оновити таблиці посилань.",
-	"apihelp-purge-param-forcerecursivelinkupdate": "Оновити таблицю посилань, і оновити таблиці посилань для кожної сторінки, що використовує цю сторінку як шаблон.",
+	"apihelp-purge-param-forcelinkupdate": "Оновити таблиці посилань та виконати інші другорядні оновлення даних.",
+	"apihelp-purge-param-forcerecursivelinkupdate": "Так само, як і <kbd>forcelinkupdate</kbd>, оновити таблицю посилань для кожної сторінки, що використовує цю як шаблон.",
 	"apihelp-purge-example-simple": "Очистити кеш <kbd>Main Page</kbd> і сторінки <kbd>API</kbd>.",
 	"apihelp-purge-example-generator": "Очистити кеш перших десяти сторінок у головному просторі назв.",
 	"apihelp-query-summary": "Вибірка даних з і про MediaWiki.",
@@ -1498,6 +1499,7 @@
 	"api-help-license-unknown": "Ліцензія: <span class=\"apihelp-unknown\">невідома</span>",
 	"api-help-parameters": "{{PLURAL:$1|Параметр|Параметри}}:",
 	"api-help-param-deprecated": "Застарілий.",
+	"api-help-param-internal": "Внутрішній.",
 	"api-help-param-required": "Цей параметр є обов'язковим.",
 	"api-help-param-templated": "Це — [[Special:ApiHelp/main#main/templatedparams|шаблонний параметр]].Коли робите запит, $2.",
 	"api-help-param-templated-var-first": "<var>&#x7B;$1&#x7D;</var> у назві параметра слід замінити значеннями <var>$2</var>",

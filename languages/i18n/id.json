@@ -2350,7 +2350,7 @@
 	"delete-edit-reasonlist": "Alasan penghapusan suntingan",
 	"delete-toobig": "Halaman ini memiliki sejarah penyuntingan yang panjang, melebihi {{PLURAL:$1|revisi|revisi}}.\nPenghapusan halaman dengan sejarah penyuntingan yang panjang tidak diperbolehkan untuk mencegah kerusakan di {{SITENAME}}.",
 	"delete-warning-toobig": "Halaman ini memiliki sejarah penyuntingan yang panjang, melebihi {{PLURAL:$1|revisi|revisi}}.\nMenghapus halaman ini dapat menyebabkan masalah dalam operasional basis data {{SITENAME}}.",
-	"deleteprotected": "Tampilkan revisi",
+	"deleteprotected": "Anda tidak dapat menghapus laman ini karena telah dilindungi.",
 	"deleting-backlinks-warning": "<strong>Peringatan:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|Halaman lain]] mengarah atau memiliki transklusi ke halaman yang akan Anda hapus.",
 	"deleting-subpages-warning": "<strong>Peringatan:</strong> Halaman yang akan Anda hapus memiliki [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|subhalaman|$1 subhalaman|51=lebih dari 50 subhalaman}}]].",
 	"rollback": "Kembalikan suntingan",

@@ -172,6 +172,7 @@
 	"tooltip-ca-nstab-user": "檢視用戶頁面",
 	"pageinfo-toolboxlink": "頁面資訊",
 	"newimages-showbots": "顯示機械人上傳的檔案",
+	"restricted-displaytitle": "<strong>警告：</strong> 由於顯示標題與頁面實際標題不同，已忽略顯示標題 \"$1\"。",
 	"redirect-user": "用戶 ID",
 	"specialpages": "特殊頁面",
 	"tags-source-manual": "由使用者與機械人手動套用",

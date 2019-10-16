@@ -617,6 +617,7 @@
 	"api-help-license-unknown": "Licencja: <span class=\"apihelp-unknown\">nieznana</span>",
 	"api-help-parameters": "{{PLURAL:$1|Parametr|Parametry}}:",
 	"api-help-param-deprecated": "Przestarzałe.",
+	"api-help-param-internal": "Wewnętrzny.",
 	"api-help-param-required": "Ten parametr jest wymagany.",
 	"api-help-datatypes-header": "Typy danych",
 	"api-help-param-type-integer": "Typ: {{PLURAL:$1|1=liczba całkowita|2=lista liczb całkowitych}}",

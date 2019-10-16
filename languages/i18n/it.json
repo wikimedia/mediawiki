@@ -3912,5 +3912,8 @@
 	"mycustomjsredirectprotected": "Non si dispone dei permessi necessari a modificare questa pagina JavaScript perché si tratta di un redirect che non punta al proprio spazio utente.",
 	"easydeflate-invaliddeflate": "Il contenuto fornito non è compresso correttamente",
 	"unprotected-js": "Per motivi di sicurezza, non è possibile caricare JavaScript da pagine non protette. Crea javascript solo nel namespace MediaWiki o come sottopagina Utente",
-	"userlogout-continue": "Vuoi davvero uscire?"
+	"userlogout-continue": "Vuoi davvero uscire?",
+	"rest-pagehistory-title-nonexistent": "Il titolo indicato ($1) non esiste",
+	"rest-pagehistorycount-title-nonexistent": "Il titolo indicato ($1) non esiste",
+	"rest-revision-nonexistent": "La versione richiesta ($1) non esiste."
 }

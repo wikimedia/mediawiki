@@ -1511,6 +1511,7 @@
 	"api-help-license-unknown": "الترخيص: <span class=\"apihelp-unknown\">غير معروف</span>",
 	"api-help-parameters": "{{PLURAL:$1|وسيط|وسائط}}:",
 	"api-help-param-deprecated": "مهمل.",
+	"api-help-param-internal": "داخلي.",
 	"api-help-param-required": "هذا الوسيط مطلوب.",
 	"api-help-param-templated": "هذا [[Special:ApiHelp/main#main/templatedparams|وسيط قالب]]، عند تقديم الطلب، $2.",
 	"api-help-param-templated-var-first": "يجب استبدال <var>&#x7B;$1&#x7D;</var> في اسم الوسيط بقيم <var>$2</var>",
