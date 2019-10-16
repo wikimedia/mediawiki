@@ -212,7 +212,7 @@ class ParserOutput extends CacheTime {
 	private $mFlags = [];
 
 	/** @var string[] */
-	private static $speculativeFields = [
+	private const SPECULATIVE_FIELDS = [
 		'speculativePageIdUsed',
 		'mSpeculativeRevId',
 		'revisionTimestampUsed'
@@ -1354,7 +1354,7 @@ class ParserOutput extends CacheTime {
 		$this->mWarnings = self::mergeMap( $this->mWarnings, $source->mWarnings ); // don't use getter
 		$this->mTimestamp = $this->useMaxValue( $this->mTimestamp, $source->getTimestamp() );
 
-		foreach ( self::$speculativeFields as $field ) {
+		foreach ( self::SPECULATIVE_FIELDS as $field ) {
 			if ( $this->$field && $source->$field && $this->$field !== $source->$field ) {
 				wfLogWarning( __METHOD__ . ": inconsistent '$field' properties!" );
 			}
