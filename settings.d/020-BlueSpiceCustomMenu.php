@@ -1,3 +1,2 @@
 <?php
-
 wfLoadExtension( 'BlueSpiceCustomMenu' );
