@@ -177,6 +177,7 @@ final class SessionManager implements SessionManagerInterface {
 		} else {
 			$store = \ObjectCache::getInstance( $this->config->get( 'SessionCacheType' ) );
 		}
+		$this->logger->debug( 'SessionManager using store ' . get_class( $store ) );
 		$this->store = $store instanceof CachedBagOStuff ? $store : new CachedBagOStuff( $store );
 
 		register_shutdown_function( [ $this, 'shutdown' ] );
