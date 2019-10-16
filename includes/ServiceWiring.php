@@ -433,12 +433,21 @@ return [
 
 	'MessageCache' => function ( MediaWikiServices $services ) : MessageCache {
 		$mainConfig = $services->getMainConfig();
+		$clusterCache = ObjectCache::getInstance( $mainConfig->get( 'MessageCacheType' ) );
+		$srvCache = $mainConfig->get( 'UseLocalMessageCache' )
+			? $services->getLocalServerObjectCache()
+			: new EmptyBagOStuff();
+
+		// TODO: Inject this into MessageCache.
+		$logger = LoggerFactory::getInstance( 'MessageCache' );
+		$logger->debug( 'MessageCache using store {class}', [
+			'class' => get_class( $clusterCache )
+		] );
+
 		return new MessageCache(
 			$services->getMainWANObjectCache(),
-			ObjectCache::getInstance( $mainConfig->get( 'MessageCacheType' ) ),
-			$mainConfig->get( 'UseLocalMessageCache' )
-				? $services->getLocalServerObjectCache()
-				: new EmptyBagOStuff(),
+			$clusterCache,
+			$srvCache,
 			$mainConfig->get( 'UseDatabaseMessages' ),
 			$services->getContentLanguage()
 		);
