@@ -420,6 +420,7 @@
 	"no-null-revision": "Het was niet mogelijk een lege nieuwe versie te maken voor de pagina \"$1\"",
 	"badtitle": "Ongeldige paginanaam",
 	"badtitletext": "De naam van de opgegeven pagina was ongeldig, leeg of bevatte een verkeerde intertaal- of interwikikoppeling.\nWellicht bevat de paginanaam niet toegestane tekens.",
+	"title-invalid": "De opgevraagde paginatitle in ongeldig",
 	"title-invalid-empty": "De opgevraagde paginanaam is leeg of bevat de naam van een naamruimte.",
 	"title-invalid-utf8": "De opgevraagde paginanaam bevat een ongeldige UFT-8-reeks.",
 	"title-invalid-interwiki": "De aangevraagde paginanaam bevat een interwikikoppeling die niet gebruikt kan worden in paginanamen.",
@@ -702,7 +703,7 @@
 	"showpreview": "Bewerking ter controle bekijken",
 	"showdiff": "Wijzigingen bekijken",
 	"blankarticle": "<strong>Waarschuwing:</strong> de pagina die u wilt aanmaken is leeg.\nAls u opnieuw op \"$1\" klikt, wordt de pagina aangemaakt zonder enige inhoud.",
-	"anoneditwarning": "<strong>Waarschuwing:</strong> U bent niet aangemeld.\nUw IP-adres zal voor iedereen zichtbaar zijn als u wijzigingen op deze pagina maakt. Wanneer u <strong>[$1 zich aanmeldt]</strong> of <strong>[$2 een account aanmaakt]</strong>, worden uw bewerkingen aan uw gebruikersnaam toegeschreven, naast andere voordelen.",
+	"anoneditwarning": "<strong>Waarschuwing:</strong> U bent niet aangemeld.\nUw IP-adres zal voor iedereen zichtbaar zijn als u wijzigingen op deze pagina maakt. Wanneer u <strong>[$1 zich aanmeldt]</strong> of <strong>[$2 een account aanmaakt]</strong>, dan worden uw bewerkingen aan uw gebruikersnaam toegeschreven. Daarnaast zijn er andere voordelen.",
 	"anonpreviewwarning": "<em>U bent niet aangemeld. Door uw bewerking op te slaan wordt uw IP-adres in de paginageschiedenis opgenomen.</em>",
 	"missingsummary": "'''Let op:''' u hebt geen bewerkingssamenvatting opgegeven.\nAls u nogmaals op \"$1\" klikt wordt de bewerking zonder samenvatting opgeslagen.",
 	"selfredirect": "<strong>Waarschuwing:</strong> U verwijst deze pagina naar zichzelf.\nMogelijk hebt u de verkeerde bestemming voor de doorverwijzing ingegeven, of bewerkt u de verkeerde pagina. Door nogmaals op \"$1\" te klikken wordt de doorverwijzing alsnog aangemaakt.",
@@ -3917,5 +3918,10 @@
 	"easydeflate-invaliddeflate": "De opgegeven inhoud is onjuist gecomprimeerd",
 	"unprotected-js": "Vanwege veiligheidsredenen kan er geen JavaScript geladen worden vanaf onbeveiligde pagina's. Gelieve alleen JavaScript pagina's aan te maken in de MediaWiki: naamruimte of als een subpagina van een gebruikerspagina.",
 	"userlogout-continue": "Wilt u zich afmelden?",
-	"rest-wrong-method": "De requestmethode ($1) is {{PLURAL:$3|niet de toegestane methode voor dit pad|een van de toegestane methoden voor dit pad}} ($2)"
+	"rest-wrong-method": "De requestmethode ($1) is {{PLURAL:$3|niet de toegestane methode voor dit pad|een van de toegestane methoden voor dit pad}} ($2)",
+	"rest-pagehistory-incompatible-params": "Parameters \"older_than\" en \"newer_than\" kunnen niet beide worden opgegeven",
+	"rest-pagehistory-param-range-error": "Versie ID moet groter zijn dan 0",
+	"rest-pagehistory-title-nonexistent": "De opgegeven titel ($1) bestaat niet",
+	"rest-pagehistorycount-title-nonexistent": "De opgegeven titel ($1) bestaat niet",
+	"rest-revision-nonexistent": "De opgevraagde versie ($1) bestaat niet."
 }

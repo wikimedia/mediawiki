@@ -469,7 +469,7 @@
 	"createacct-another-submit": "Otvori račun",
 	"createacct-continue-submit": "Pritisni za stvaranje računa",
 	"createacct-another-continue-submit": "Nastavi za stvaranje računa",
-	"createacct-benefit-heading": "Projekt {{SITENAME}} su stvorili ljudi poput Vas.",
+	"createacct-benefit-heading": "Projekt {{SITENAME}} stvorili su ljudi poput Vas.",
 	"createacct-benefit-body1": "{{PLURAL:$1|uređivanje|uređivanja}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|stranica|stranice|stranica}}",
 	"createacct-benefit-body3": "{{PLURAL:$1|nedavni suradnik|nedavna suradnika|nedavnih suradnika}}",

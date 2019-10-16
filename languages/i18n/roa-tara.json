@@ -342,6 +342,7 @@
 	"no-null-revision": "Non ge se pò ccrejà 'na revisiona nove vacande pa pàgene \"$1\"",
 	"badtitle": "Titele sbagliete",
 	"badtitletext": "'A pàgene ca è cerchete tène 'nu titele errete, vacande, o jè 'nu collegamende inter-lènghe o inter-uicchi errete.\nPò essere ca tène une o cchiù carattere ca non ge ponne essere ausete jndr'à le titele.",
+	"title-invalid": "'U titole cercate d'a pàgene jè invalide",
 	"title-invalid-empty": "'U titole d'a pàgene cercate jè vacande o téne sulamende 'u nome d'u namespace.",
 	"title-invalid-utf8": "'U titole d'a pàgene cercate téne 'na sequenze UTF-8 invalide.",
 	"title-invalid-interwiki": "'U titole d'a vôsce cercate téne 'nu collegamende inderuicchi ca non ge pò essere ausate jndr'à le titole.",
@@ -1675,6 +1676,10 @@
 	"uploadstash-file-not-found-no-local-path": "Nisciune percorse locale pa vôsce in scale.",
 	"uploadstash-file-not-found-no-object": "Non ge pozze ccrejà 'nu oggette file locale pa miniature.",
 	"uploadstash-file-not-found-no-remote-thumb": "Recupere d'a miniature schiute a male: $1\nURL = $2",
+	"uploadstash-file-not-found-missing-content-type": "'Ndestazione content-type mangande.",
+	"uploadstash-file-not-found-not-exists": "Non ge pozze acchià 'u percorse, o non g'è 'nu file de teste.",
+	"uploadstash-file-too-large": "Non ge pozze servì 'nu file cchiù granne de $1 byte.",
+	"uploadstash-not-logged-in": "Nisciune utende trasute, le file onna essere de le utinde.",
 	"uploadstash-no-extension": "L'estenzione jè vacande.",
 	"uploadstash-zero-length": "'U file tène lunghezze zero.",
 	"invalid-chunk-offset": "distanze d'u chunk invalide",
@@ -3628,5 +3633,13 @@
 	"passwordpolicies-policies": "Politeche",
 	"passwordpolicies-policyflag-forcechange": "adda cangià quanne tràse",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "suggerite cangiamende quanne tràse",
-	"userlogout-continue": "Vue ccù isse?"
+	"userlogout-continue": "Vue ccù isse?",
+	"rest-pagehistory-incompatible-params": "Le parametre \"older_than\" e \"newer_than\" non ge ponne essere specificate tutte e doje",
+	"rest-pagehistory-param-range-error": "ID d'a revisione adda essere cchiù granne de 0",
+	"rest-pagehistory-title-nonexistent": "'U titole specificate ($1) non g'esiste",
+	"rest-pagehistory-revision-nonexistent": "'A revisione specificate ($1) non g'esiste pa pàgene specificate ($2)",
+	"rest-pagehistory-timestamp-error": "Non ge riesce a pigghià l'orarie de stambe pa revisione specificate ($1)",
+	"rest-pagehistorycount-title-nonexistent": "'U titole specificate ($1) non g'è valide",
+	"rest-pagehistorycount-type-unrecognized": "'U cunde d'u tipe specificate ($1) non g'è valide",
+	"rest-revision-nonexistent": "'A revisione cercate ($1) non g'esiste."
 }

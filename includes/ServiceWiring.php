@@ -438,7 +438,6 @@ return [
 			? $services->getLocalServerObjectCache()
 			: new EmptyBagOStuff();
 
-		// TODO: Inject this into MessageCache.
 		$logger = LoggerFactory::getInstance( 'MessageCache' );
 		$logger->debug( 'MessageCache using store {class}', [
 			'class' => get_class( $clusterCache )
@@ -448,8 +447,9 @@ return [
 			$services->getMainWANObjectCache(),
 			$clusterCache,
 			$srvCache,
-			$mainConfig->get( 'UseDatabaseMessages' ),
-			$services->getContentLanguage()
+			$services->getContentLanguage(),
+			$logger,
+			[ 'useDB' => $mainConfig->get( 'UseDatabaseMessages' ) ]
 		);
 	},
 

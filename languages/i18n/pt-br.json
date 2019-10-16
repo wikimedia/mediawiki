@@ -450,6 +450,7 @@
 	"no-null-revision": "Não foi possível criar nova revisão nula para a página “$1”",
 	"badtitle": "Título inválido",
 	"badtitletext": "O título de página solicitado era inválido, vazio, ou um link interlínguas ou interwikis incorreto.\nTalvez contenha um ou mais caracteres que não podem ser usados em títulos.",
+	"title-invalid": "O título da página solicitado é inválido",
 	"title-invalid-empty": "O título da página solicitada está vazio ou contém somente o nome do espaço de nomes.",
 	"title-invalid-utf8": "O título da página solicitada contém uma sequência UTF-8 inválida.",
 	"title-invalid-interwiki": "O título da página solicitado contém um link interwiki que não pode ser usado em títulos.",
@@ -3376,6 +3377,7 @@
 	"version-poweredby-credits": "Este é um wiki '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 	"version-poweredby-others": "outros",
 	"version-poweredby-translators": "tradutores da translatewiki.net",
+	"version-poweredby-various": "Vários autores",
 	"version-credits-summary": "Gostaríamos de agradecer às seguintes pessoas por suas contribuições no [[Special:Version|MediaWiki]]",
 	"version-license-info": "O MediaWiki é software livre; pode redistribuí-lo e/ou modificá-lo nos termos da licença GNU General Public License, tal como publicada pela Free Software Foundation; tanto a versão 2 da Licença, como (por opção sua) qualquer versão posterior.\n\nO MediaWiki é distribuído na esperança de que seja útil, mas <em>SEM QUALQUER GARANTIA</em>; inclusive, sem a garantia implícita da <strong>POSSIBILIDADE DE SER COMERCIALIZADO</strong> ou de <strong>ADEQUAÇÃO PARA QUALQUER FINALIDADE ESPECÍFICA</strong>. Consulte a licença GNU General Public License para mais detalhes.\n\nEm conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYING uma cópia da licença GNU General Public License]; se não a recebeu, peça-a por escrito para Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA ou [//www.gnu.org/licenses/old-licenses/gpl-2.0.html leia-a na internet].",
 	"version-software": "Software instalado",
@@ -4015,5 +4017,13 @@
 	"userlogout-continue": "Você quer sair?",
 	"rest-prefix-mismatch": "O caminho pedido ($1) não estava no interior do caminho raiz da API REST ($2)",
 	"rest-wrong-method": "O método pedido ($1) não era {{PLURAL:$3|o método permitido para este caminho|um dos métodos permitidos para este caminho}} ($2)",
-	"rest-no-match": "O caminho relativo pedido ($1) não corresponde a nenhuma rotina de tratamento conhecida"
+	"rest-no-match": "O caminho relativo pedido ($1) não corresponde a nenhuma rotina de tratamento conhecida",
+	"rest-pagehistory-incompatible-params": "Os parâmetros \"older_than\" ''(anterior a)'' e \"newer_than\" ''(posterior a)'' não podem ser especificados em simultâneo",
+	"rest-pagehistory-param-range-error": "O ID da revisão deve ser maior que 0",
+	"rest-pagehistory-title-nonexistent": "O título especificado ($1) não existe",
+	"rest-pagehistory-revision-nonexistent": "A revisão especificada ($1) não existe para a página especificada ($2)",
+	"rest-pagehistory-timestamp-error": "Não foi possível recuperar o carimbo de data/hora para a revisão especificada ($1)",
+	"rest-pagehistorycount-title-nonexistent": "O título especificado ($1) não existe",
+	"rest-pagehistorycount-type-unrecognized": "O tipo de contagem especificado ($1) não é válido",
+	"rest-revision-nonexistent": "A revisão pedida ($1) não existe."
 }

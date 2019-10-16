@@ -527,6 +527,7 @@
 	"api-help-flag-generator": "Denna modul kan användas som en generator.",
 	"api-help-parameters": "{{PLURAL:$1|Parameter|Parametrar}}:",
 	"api-help-param-deprecated": "Föråldrad.",
+	"api-help-param-internal": "Intern.",
 	"api-help-param-required": "Denna parameter är obligatorisk.",
 	"api-help-param-list": "{{PLURAL:$1|1=Ett av följande värden|2=Värden (separerade med <kbd>{{!}}</kbd> eller [[Special:ApiHelp/main#main/datatypes|alternativ]])}}: $2",
 	"api-help-param-list-can-be-empty": "{{PLURAL:$1|0=Måste vara tom|Kan vara tom, eller $2}}",

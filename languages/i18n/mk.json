@@ -3972,7 +3972,13 @@
 	"rest-pagehistory-param-range-error": "Назнаката на преработката мора да биде поголема од 0",
 	"rest-pagehistory-title-nonexistent": "Укажаниот наслов ($1) не постои",
 	"rest-pagehistory-revision-nonexistent": "Укажаната преработка ($1) не постои за дадената страница ($2)",
-	"rest-pagehistory-revisions-nonexistent": "Не најдов преработки за дадената страница ($1)",
-	"rest-pagehistory-revisions-nonexistent-with-params": "Не најдов преработки за дадената страница ($1) што одговараат на укажаните параметри",
-	"rest-pagehistory-timestamp-error": "Не можев да ги добијам времето и датумот за дадената преработка ($1)"
+	"rest-pagehistory-timestamp-error": "Не можев да ги добијам времето и датумот за дадената преработка ($1)",
+	"rest-pagehistorycount-title-nonexistent": "Укажаниот наслов ($1) не постои",
+	"rest-pagehistorycount-type-unrecognized": "Укажаниот тип на пребројување ($1) е неважечки",
+	"rest-revision-nonexistent": "Побараната преработка ($1) не постои.",
+	"rest-compare-page-mismatch": "Укажаното припаѓа во други страници; не може да се спореди.",
+	"rest-compare-nonexistent": "Преработката укажана од параметарот $1 не постои.",
+	"rest-compare-inaccessible": "Преработката укажана од параметарот $1 не е јавно пристапна.",
+	"rest-compare-wrong-content": "Жлебот $1 на преработката укажана од параметарот $2 има содржински тип што не може да се претвори во текст.",
+	"rest-compare-wikidiff2": "Оваа завршна точка бара wikidiff2 1.9.0 или понова верзија."
 }
