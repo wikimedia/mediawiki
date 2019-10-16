@@ -73,7 +73,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	/**
 	 * UI labels for each type.
 	 */
-	private static $UILabels = [
+	private const UI_LABELS = [
 		'revision' => [
 			'check-label' => 'revdelete-hide-text',
 			'success' => 'revdelete-success',
@@ -189,7 +189,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			throw new UserBlockedError( $user->getBlock() );
 		}
 
-		$this->typeLabels = self::$UILabels[$this->typeName];
+		$this->typeLabels = self::UI_LABELS[$this->typeName];
 		$list = $this->getList();
 		$list->reset();
 		$this->mIsAllowed = $this->permissionManager->userHasRight( $user,

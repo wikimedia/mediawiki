@@ -120,7 +120,7 @@ class RecentChange implements Taggable {
 	/**
 	 * @var array Array of change types
 	 */
-	private static $changeTypes = [
+	private const CHANGE_TYPES = [
 		'edit' => RC_EDIT,
 		'new' => RC_NEW,
 		'log' => RC_LOG,
@@ -158,10 +158,10 @@ class RecentChange implements Taggable {
 			return $retval;
 		}
 
-		if ( !array_key_exists( $type, self::$changeTypes ) ) {
+		if ( !array_key_exists( $type, self::CHANGE_TYPES ) ) {
 			throw new MWException( "Unknown type '$type'" );
 		}
-		return self::$changeTypes[$type];
+		return self::CHANGE_TYPES[$type];
 	}
 
 	/**
@@ -171,7 +171,7 @@ class RecentChange implements Taggable {
 	 * @return string $type
 	 */
 	public static function parseFromRCType( $rcType ) {
-		return array_search( $rcType, self::$changeTypes, true ) ?: "$rcType";
+		return array_search( $rcType, self::CHANGE_TYPES, true ) ?: "$rcType";
 	}
 
 	/**
@@ -182,7 +182,7 @@ class RecentChange implements Taggable {
 	 * @return array
 	 */
 	public static function getChangeTypes() {
-		return array_keys( self::$changeTypes );
+		return array_keys( self::CHANGE_TYPES );
 	}
 
 	/**
