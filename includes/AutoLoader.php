@@ -121,7 +121,7 @@ class AutoLoader {
 	 * Get a mapping of namespace => file path
 	 * The namespaces should follow the PSR-4 standard for autoloading
 	 *
-	 * @see <http://www.php-fig.org/psr/psr-4/>
+	 * @see <https://www.php-fig.org/psr/psr-4/>
 	 * @private Only public for usage in AutoloadGenerator
 	 * @codeCoverageIgnore
 	 * @since 1.31
