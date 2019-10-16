@@ -55,10 +55,11 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	];
 
 	/**
+	 * @internal Exposed for WMF maintenance script
 	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
-	private function getConfigSettings( ResourceLoaderContext $context ) {
+	public function getConfigSettings( ResourceLoaderContext $context ) {
 		$conf = $this->getConfig();
 
 		/**
