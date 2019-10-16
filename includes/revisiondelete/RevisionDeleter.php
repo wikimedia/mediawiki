@@ -30,7 +30,7 @@ use MediaWiki\Revision\RevisionRecord;
  */
 class RevisionDeleter {
 	/** List of known revdel types, with their corresponding list classes */
-	private static $allowedTypes = [
+	private const ALLOWED_TYPES = [
 		'revision' => RevDelRevisionList::class,
 		'archive' => RevDelArchiveList::class,
 		'oldimage' => RevDelFileList::class,
@@ -39,7 +39,7 @@ class RevisionDeleter {
 	];
 
 	/** Type map to support old log entries */
-	private static $deprecatedTypeMap = [
+	private const DEPRECATED_TYPE_MAP = [
 		'oldid' => 'revision',
 		'artimestamp' => 'archive',
 		'oldimage' => 'oldimage',
@@ -54,7 +54,7 @@ class RevisionDeleter {
 	 * @return array
 	 */
 	public static function getTypes() {
-		return array_keys( self::$allowedTypes );
+		return array_keys( self::ALLOWED_TYPES );
 	}
 
 	/**
@@ -65,10 +65,10 @@ class RevisionDeleter {
 	 * @return string|null
 	 */
 	public static function getCanonicalTypeName( $typeName ) {
-		if ( isset( self::$deprecatedTypeMap[$typeName] ) ) {
-			$typeName = self::$deprecatedTypeMap[$typeName];
+		if ( isset( self::DEPRECATED_TYPE_MAP[$typeName] ) ) {
+			$typeName = self::DEPRECATED_TYPE_MAP[$typeName];
 		}
-		return isset( self::$allowedTypes[$typeName] ) ? $typeName : null;
+		return isset( self::ALLOWED_TYPES[$typeName] ) ? $typeName : null;
 	}
 
 	/**
@@ -87,7 +87,7 @@ class RevisionDeleter {
 		if ( !$typeName ) {
 			throw new MWException( __METHOD__ . ": Unknown RevDel type '$typeName'" );
 		}
-		$class = self::$allowedTypes[$typeName];
+		$class = self::ALLOWED_TYPES[$typeName];
 		return new $class( $context, $title, $ids );
 	}
 
@@ -158,7 +158,7 @@ class RevisionDeleter {
 		if ( !$typeName ) {
 			return null;
 		}
-		return call_user_func( [ self::$allowedTypes[$typeName], 'getRelationType' ] );
+		return call_user_func( [ self::ALLOWED_TYPES[$typeName], 'getRelationType' ] );
 	}
 
 	/**
@@ -172,7 +172,7 @@ class RevisionDeleter {
 		if ( !$typeName ) {
 			return null;
 		}
-		return call_user_func( [ self::$allowedTypes[$typeName], 'getRestriction' ] );
+		return call_user_func( [ self::ALLOWED_TYPES[$typeName], 'getRestriction' ] );
 	}
 
 	/**
@@ -186,7 +186,7 @@ class RevisionDeleter {
 		if ( !$typeName ) {
 			return null;
 		}
-		return call_user_func( [ self::$allowedTypes[$typeName], 'getRevdelConstant' ] );
+		return call_user_func( [ self::ALLOWED_TYPES[$typeName], 'getRevdelConstant' ] );
 	}
 
 	/**
@@ -202,7 +202,7 @@ class RevisionDeleter {
 		if ( !$typeName ) {
 			return $target;
 		}
-		return call_user_func( [ self::$allowedTypes[$typeName], 'suggestTarget' ], $target, $ids );
+		return call_user_func( [ self::ALLOWED_TYPES[$typeName], 'suggestTarget' ], $target, $ids );
 	}
 
 	/**

@@ -78,7 +78,7 @@ class Sanitizer {
 	 * https://www.w3.org/TR/html4/sgml/entities.html
 	 * As well as &apos; which is only defined starting in XHTML1.
 	 */
-	private static $htmlEntities = [
+	private const HTML_ENTITIES = [
 		'Aacute'   => 193,
 		'aacute'   => 225,
 		'Acirc'    => 194,
@@ -337,7 +337,7 @@ class Sanitizer {
 	/**
 	 * Character entity aliases accepted by MediaWiki
 	 */
-	private static $htmlEntityAliases = [
+	private const HTML_ENTITY_ALIASES = [
 		'רלמ' => 'rlm',
 		'رلم' => 'rlm',
 	];
@@ -1604,12 +1604,12 @@ class Sanitizer {
 	 * @return string
 	 */
 	static function normalizeEntity( $name ) {
-		if ( isset( self::$htmlEntityAliases[$name] ) ) {
-			return '&' . self::$htmlEntityAliases[$name] . ';';
+		if ( isset( self::HTML_ENTITY_ALIASES[$name] ) ) {
+			return '&' . self::HTML_ENTITY_ALIASES[$name] . ';';
 		} elseif ( in_array( $name, [ 'lt', 'gt', 'amp', 'quot' ] ) ) {
 			return "&$name;";
-		} elseif ( isset( self::$htmlEntities[$name] ) ) {
-			return '&#' . self::$htmlEntities[$name] . ';';
+		} elseif ( isset( self::HTML_ENTITIES[$name] ) ) {
+			return '&#' . self::HTML_ENTITIES[$name] . ';';
 		} else {
 			return "&amp;$name;";
 		}
@@ -1739,11 +1739,11 @@ class Sanitizer {
 	 * @return string
 	 */
 	static function decodeEntity( $name ) {
-		if ( isset( self::$htmlEntityAliases[$name] ) ) {
-			$name = self::$htmlEntityAliases[$name];
+		if ( isset( self::HTML_ENTITY_ALIASES[$name] ) ) {
+			$name = self::HTML_ENTITY_ALIASES[$name];
 		}
-		if ( isset( self::$htmlEntities[$name] ) ) {
-			return UtfNormal\Utils::codepointToUtf8( self::$htmlEntities[$name] );
+		if ( isset( self::HTML_ENTITIES[$name] ) ) {
+			return UtfNormal\Utils::codepointToUtf8( self::HTML_ENTITIES[$name] );
 		} else {
 			return "&$name;";
 		}
@@ -2065,7 +2065,7 @@ class Sanitizer {
 	 */
 	static function hackDocType() {
 		$out = "<!DOCTYPE html [\n";
-		foreach ( self::$htmlEntities as $entity => $codepoint ) {
+		foreach ( self::HTML_ENTITIES as $entity => $codepoint ) {
 			$out .= "<!ENTITY $entity \"&#$codepoint;\">";
 		}
 		$out .= "]>\n";

@@ -31,7 +31,7 @@ class Argon2Password extends Password {
 	/**
 	 * @var null[] Array with known password_hash() option names as keys
 	 */
-	private static $knownOptions = [
+	private const KNOWN_OPTIONS = [
 		'memory_cost' => null,
 		'time_cost' => null,
 		'threads' => null,
@@ -64,7 +64,7 @@ class Argon2Password extends Password {
 
 		}
 
-		$params = array_intersect_key( $this->config, self::$knownOptions );
+		$params = array_intersect_key( $this->config, self::KNOWN_OPTIONS );
 
 		return [ $algo, $params ];
 	}

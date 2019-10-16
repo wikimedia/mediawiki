@@ -245,7 +245,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 *
 	 * @var array[]
 	 */
-	private static $transitions = [
+	private const TRANSITIONS = [
 		'new' => [
 			'new' => true,
 			'knows-current' => true,
@@ -338,7 +338,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 * @throws LogicException If this instance is not in the expected stage
 	 */
 	private function assertTransition( $newStage ) {
-		if ( empty( self::$transitions[$this->stage][$newStage] ) ) {
+		if ( empty( self::TRANSITIONS[$this->stage][$newStage] ) ) {
 			throw new LogicException( "Cannot transition from {$this->stage} to $newStage" );
 		}
 	}
