@@ -418,6 +418,7 @@ class Names {
 		'sv' => 'svenska', # Swedish
 		'sw' => 'Kiswahili', # Swahili
 		'szl' => 'ślůnski', # Silesian
+		'szy' => 'Sakizaya', # Sakizaya - T174601
 		'ta' => 'தமிழ்', # Tamil
 		'tay' => 'Tayal', # Atayal
 		'tcy' => 'ತುಳು', # Tulu
