@@ -347,6 +347,7 @@
 	"no-null-revision": "Nije se mogla stvoriti nova ništavna revizija za stranicu \"$1\"",
 	"badtitle": "Loš naslov",
 	"badtitletext": "Zatražena stranica je bila nevaljana, prazna ili neispravno povezana s među-jezičkim ili inter-wiki naslovom.\nMože sadržavati jedno ili više slova koja se ne mogu koristiti u naslovima.",
+	"title-invalid": "Zatraženi naziv stranice nije valjan",
 	"title-invalid-empty": "Zatraženo ime stranice je prazno ili samo sadrži naziv imenskog prostora.",
 	"title-invalid-utf8": "Vaš zatraženi naziv stranice sadrži nevažeći UTF-8 znak.",
 	"title-invalid-interwiki": "Traženi naslov stranice sadrži interwiki link koji ne može biti korišten u naslovima.",

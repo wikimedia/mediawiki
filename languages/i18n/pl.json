@@ -429,6 +429,7 @@
 	"no-null-revision": "Nie można utworzyć zerowej wersji strony \"$1\"",
 	"badtitle": "Niepoprawny tytuł",
 	"badtitletext": "Podano niepoprawny tytuł strony. Prawdopodobnie jest pusty lub zawiera znaki, których użycie jest zabronione.",
+	"title-invalid": "Tytuł żądanej strony jest nieprawidłowy",
 	"title-invalid-empty": "Żądany tytuł strony jest pusty lub zawiera tylko nazwę przestrzeni nazw.",
 	"title-invalid-utf8": "Żądany tytuł strony zawiera błędny ciąg znaków UTF-8.",
 	"title-invalid-interwiki": "Podany tytuł strony zawiera link interwiki, który nie może być używany w tytułach.",
@@ -3952,5 +3953,16 @@
 	"userlogout-continue": "Chcesz się wylogować?",
 	"rest-prefix-mismatch": "Żądana ścieżka ($1) nie była wewnątrz ścieżki root REST API ($2)",
 	"rest-wrong-method": "Żądana metoda ($1) nie była{{PLURAL:$3|dozwoloną metodą dla tej ścieżki|jedną z dozwolonych metod dla tej ścieżki}} ($2)",
-	"rest-no-match": "Żądana względna ścieżka ($1) nie pasowała do żadnego modułu obsługi"
+	"rest-no-match": "Żądana względna ścieżka ($1) nie pasowała do żadnego modułu obsługi",
+	"rest-pagehistory-incompatible-params": "Parametry \"older_than\" i \"newer_than\" nie mogą być podawane razem",
+	"rest-pagehistory-param-range-error": "ID wersji musi być większe niż 0",
+	"rest-pagehistory-title-nonexistent": "Podany tytuł ($1) nie istnieje",
+	"rest-pagehistory-revision-nonexistent": "Podana rewizja ($1) strony ($2) nie istnieje",
+	"rest-pagehistory-timestamp-error": "Nie można pozyskać czasu dla podanej wersji ($1)",
+	"rest-pagehistorycount-title-nonexistent": "Podany tytuł ($1) nie istnieje",
+	"rest-revision-nonexistent": "Żądana wersja ($1) nie istnieje.",
+	"rest-compare-nonexistent": "Wersja podana przez parametr $1 nie istnieje.",
+	"rest-compare-inaccessible": "Wersja podana przez parametr $1 nie jest publicznie dostępna.",
+	"rest-compare-wrong-content": "Slot $1 wersji podanej przez parametr $2 posiada typ treści, który nie może zostać zamieniony na tekst.",
+	"rest-compare-wikidiff2": "Ten endpoint wymaga oprogramowania wikidiff2 w wersji 1.9.0 lub nowszej."
 }
