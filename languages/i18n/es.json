@@ -4021,5 +4021,7 @@
 	"mycustomjsredirectprotected": "No tienes permiso para editar esta página JavaScript porque es una redirección y no apunta hacia tu propio espacio de usuario.",
 	"easydeflate-invaliddeflate": "El contenido proporcionado no esta comprimido correctamente",
 	"unprotected-js": "Por razones de seguridad, JavaScript no se puede cargar desde páginas desprotegidas. Crea javascript solo en MediaWiki: espacio de nombres o como subpágina de usuario",
-	"userlogout-continue": "¿Quieres finalizar la sesión?"
+	"userlogout-continue": "¿Quieres finalizar la sesión?",
+	"rest-revision-nonexistent": "No existe la revisión solicitada ($1).",
+	"rest-compare-page-mismatch": "Las revisiones especificadas perteneces a páginas distintas; no se compararán."
 }

@@ -3982,7 +3982,7 @@
 	"rest-pagehistorycount-title-nonexistent": "العنوان المحدد \"$1\" غير موجود",
 	"rest-pagehistorycount-type-unrecognized": "نوع العد المحدد ($1) غير صالح",
 	"rest-revision-nonexistent": "المراجعة المطلوبة ($1) غير موجودة.",
-	"rest-compare-page-mismatch": "المحدد ينتمي إلى صفحات مختلفة؛ رفض مقارنتها.",
+	"rest-compare-page-mismatch": "المراجعات المحددة تنتمي إلى صفحات مختلفة؛ رفض مقارنتها.",
 	"rest-compare-nonexistent": "المراجعة المحددة بواسطة الوسيط $1 غير موجودة.",
 	"rest-compare-inaccessible": "المراجعة المحددة بواسطة الوسيط $1 ليست متاحة علانية.",
 	"rest-compare-wrong-content": "تحتوي فتحة $1 للمراجعة المحددة بواسطة الوسيط $2 على نوع محتوى لا يمكن تحويله إلى نص.",

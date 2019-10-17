@@ -3910,7 +3910,7 @@
 	"rest-pagehistorycount-title-nonexistent": "Den angivna titeln ($1) finns inte.",
 	"rest-pagehistorycount-type-unrecognized": "Den angivna antalstypen ($1) är inte giltig.",
 	"rest-revision-nonexistent": "Den angivna sidversionen ($1) finns inte.",
-	"rest-compare-page-mismatch": "Den angivna tillhör andra sidor vilket gör det omöjligt att jämföra dem.",
+	"rest-compare-page-mismatch": "De angivna versionerna tillhör olika sidor vilket gör det omöjligt att jämföra dem.",
 	"rest-compare-nonexistent": "Sidversionen som angavs av parametern $1 finns inte.",
 	"rest-compare-inaccessible": "Sidversionen som angavs av parametern $1 är inte offentligt åtkomlig.",
 	"rest-compare-wrong-content": "$1platsen för sidversionen som specificeras av parametern $2 har en innehållstyp som inte kan omvandlas till text.",

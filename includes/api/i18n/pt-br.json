@@ -1514,6 +1514,7 @@
 	"api-help-license-unknown": "Licensa: <span class=\"apihelp-unknown\">desconhecida</span>",
 	"api-help-parameters": "{{PLURAL:$1|Parâmetro|Parâmetros}}:",
 	"api-help-param-deprecated": "Obsoleto.",
+	"api-help-param-internal": "Interno.",
 	"api-help-param-required": "Este parâmetro é obrigatório.",
 	"api-help-param-templated": "Este parâmetro é um [[Special:ApiHelp/main#main/templatedparams|parâmetro de predefinição]]. Ao fazer o pedido, $2.",
 	"api-help-param-templated-var-first": "<var>&#x7B;$1&#x7D;</var> no nome do parâmetro deve ser substituído com os valores de <var>$2</var>",

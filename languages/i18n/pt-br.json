@@ -4025,5 +4025,9 @@
 	"rest-pagehistory-timestamp-error": "Não foi possível recuperar o carimbo de data/hora para a revisão especificada ($1)",
 	"rest-pagehistorycount-title-nonexistent": "O título especificado ($1) não existe",
 	"rest-pagehistorycount-type-unrecognized": "O tipo de contagem especificado ($1) não é válido",
-	"rest-revision-nonexistent": "A revisão pedida ($1) não existe."
+	"rest-revision-nonexistent": "A revisão pedida ($1) não existe.",
+	"rest-compare-nonexistent": "A revisão especificada pelo parâmetro $1 não existe.",
+	"rest-compare-inaccessible": "A revisão especificada pelo parâmetro $1 não é acessível pelo público.",
+	"rest-compare-wrong-content": "O segmento $1 da revisão especificada pelo parâmetro $2 tem um tipo de conteúdo que não pode ser convertido para texto.",
+	"rest-compare-wikidiff2": "O ponto final requer wikidiff2 1.9.0 ou posterior."
 }
