@@ -34,7 +34,9 @@ class SessionManagerTest extends MediaWikiTestCase {
 			]
 		] );
 		$this->logger = new \TestLogger( false, function ( $m ) {
-			return substr( $m, 0, 15 ) === 'SessionBackend ' ? null : $m;
+			return ( strpos( $m, 'SessionBackend ' ) === 0
+				|| strpos( $m, 'SessionManager using store ' ) === 0
+			) ? null : $m;
 		} );
 		$this->store = new TestBagOStuff();
 
