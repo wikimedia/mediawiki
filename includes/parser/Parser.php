@@ -228,7 +228,11 @@ class Parser {
 	public $mOptions;
 
 	/**
-	 * @var Title|null Beware - this is not always set
+	 * Since 1.34, leaving `mTitle` uninitialized or setting `mTitle` to
+	 * `null` is deprecated.
+	 *
+	 * @internal
+	 * @var Title|null
 	 */
 	public $mTitle;        # Title context, used for self-link rendering and similar things
 	public $mOutputType;   # Output type, one of the OT_xxx constants
@@ -924,9 +928,14 @@ class Parser {
 	/**
 	 * Accessor for the Title object
 	 *
+	 * Since 1.34, leaving `mTitle` uninitialized as `null` is deprecated.
+	 *
 	 * @return Title|null
 	 */
 	public function getTitle() : ?Title {
+		if ( $this->mTitle === null ) {
+			wfDeprecated( 'Parser title should never be null', '1.34' );
+		}
 		return $this->mTitle;
 	}
 
