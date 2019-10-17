@@ -24,6 +24,7 @@ use MediaWiki\Http\HttpRequestFactory;
 use PasswordReset;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
+use TitleFactory;
 use Wikimedia\Message\IMessageFormatterFactory;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
@@ -1054,6 +1055,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getTempFSFileFactory() : TempFSFileFactory {
 		return $this->getService( 'TempFSFileFactory' );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return TitleFactory
+	 */
+	public function getTitleFactory() : TitleFactory {
+		return $this->getService( 'TitleFactory' );
 	}
 
 	/**

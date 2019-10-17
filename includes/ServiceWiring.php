@@ -855,6 +855,10 @@ return [
 		return new TempFSFileFactory( $services->getMainConfig()->get( 'TmpDirectory' ) );
 	},
 
+	'TitleFactory' => function ( MediaWikiServices $services ) : TitleFactory {
+		return new TitleFactory();
+	},
+
 	'TitleFormatter' => function ( MediaWikiServices $services ) : TitleFormatter {
 		return $services->getService( '_MediaWikiTitleCodec' );
 	},

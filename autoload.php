@@ -1515,6 +1515,7 @@ $wgAutoloadLocalClasses = [
 	'TitleArray' => __DIR__ . '/includes/TitleArray.php',
 	'TitleArrayFromResult' => __DIR__ . '/includes/TitleArrayFromResult.php',
 	'TitleCleanup' => __DIR__ . '/maintenance/cleanupTitles.php',
+	'TitleFactory' => __DIR__ . '/includes/TitleFactory.php',
 	'TitleFormatter' => __DIR__ . '/includes/title/TitleFormatter.php',
 	'TitleParser' => __DIR__ . '/includes/title/TitleParser.php',
 	'TitlePrefixSearch' => __DIR__ . '/includes/search/TitlePrefixSearch.php',
