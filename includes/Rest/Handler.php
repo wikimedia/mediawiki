@@ -32,6 +32,9 @@ abstract class Handler {
 	/** @var mixed */
 	private $validatedBody;
 
+	/** @var ConditionalHeaderUtil */
+	private $conditionalHeaderUtil;
+
 	/**
 	 * Initialise with dependencies from the Router. This is called after construction.
 	 * @internal
@@ -101,6 +104,41 @@ abstract class Handler {
 	}
 
 	/**
+	 * Check the conditional request headers and generate a response if appropriate.
+	 * This is called by the Router before execute() and may be overridden.
+	 *
+	 * @return ResponseInterface|null
+	 */
+	public function checkPreconditions() {
+		if ( $this->conditionalHeaderUtil === null ) {
+			$this->conditionalHeaderUtil = new ConditionalHeaderUtil;
+		}
+		$this->conditionalHeaderUtil->setValidators(
+			$this->getETag(),
+			$this->getLastModified(),
+			$this->hasRepresentation() );
+		$status = $this->conditionalHeaderUtil->checkPreconditions( $this->getRequest() );
+		if ( $status ) {
+			$response = $this->getResponseFactory()->create();
+			$response->setStatus( $status );
+			return $response;
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Modify the response, adding Last-Modified and ETag headers as indicated
+	 * the values previously returned by ETag and getLastModified(). This is
+	 * called after execute() returns, and may be overridden.
+	 *
+	 * @param ResponseInterface $response
+	 */
+	public function applyConditionalResponseHeaders( ResponseInterface $response ) {
+		$this->conditionalHeaderUtil->applyResponseHeaders( $response );
+	}
+
+	/**
 	 * Fetch ParamValidator settings for parameters
 	 *
 	 * Every setting must include self::PARAM_SOURCE to specify which part of
@@ -160,11 +198,24 @@ abstract class Handler {
 	 * request. This is called before execute() in order to decide whether to
 	 * send a 304.
 	 *
+	 * This must be a complete ETag, including double quotes.
+	 *
 	 * See RFC 7232 § 2.3 for semantics.
 	 *
 	 * @return string|null
 	 */
 	protected function getETag() {
+		return null;
+	}
+
+	/**
+	 * The subclass should override this to indicate whether the resource
+	 * exists. This is used for wildcard validators, for example "If-Match: *"
+	 * fails if the resource does not exist.
+	 *
+	 * @return bool|null
+	 */
+	protected function hasRepresentation() {
 		return null;
 	}
 

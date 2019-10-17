@@ -295,18 +295,31 @@ class Router {
 	 * @return ResponseInterface
 	 */
 	private function executeHandler( $handler ): ResponseInterface {
+		// Check for basic authorization, to avoid leaking data from private wikis
 		// @phan-suppress-next-line PhanAccessMethodInternal
 		$authResult = $this->basicAuth->authorize( $handler->getRequest(), $handler );
 		if ( $authResult ) {
 			return $this->responseFactory->createHttpError( 403, [ 'error' => $authResult ] );
 		}
 
+		// Validate the parameters
 		$handler->validate( $this->restValidator );
 
+		// Check conditional request headers
+		$earlyResponse = $handler->checkPreconditions();
+		if ( $earlyResponse ) {
+			return $earlyResponse;
+		}
+
+		// Run the main part of the handler
 		$response = $handler->execute();
 		if ( !( $response instanceof ResponseInterface ) ) {
 			$response = $this->responseFactory->createFromReturnValue( $response );
 		}
+
+		// Set Last-Modified and ETag headers in the response if available
+		$handler->applyConditionalResponseHeaders( $response );
+
 		return $response;
 	}
 }
