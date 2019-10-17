@@ -1200,3 +1200,7 @@
 	path = extensions/CreatePageUw
 	url = https://github.com/wikimedia/mediawiki-extensions-CreatePageUw
 	branch = REL1_33
+[submodule "extensions/RecentChangesLogFilter"]
+	path = extensions/RecentChangesLogFilter
+	url = https://github.com/poke/mediawiki-RecentChangesLogFilter
+	branch = master
