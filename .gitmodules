@@ -1194,7 +1194,7 @@
 	branch = master
 [submodule "extensions/LastModified"]
 	path = extensions/LastModified
-	url = https://github.com/wikimedia/mediawiki-extensions-LastModified.git
+	url = https://github.com/wikimedia/mediawiki-extensions-LastModified
 	branch = REL1_33
 [submodule "extensions/CreatePageUw"]
 	path = extensions/CreatePageUw
