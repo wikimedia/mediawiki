@@ -180,7 +180,11 @@ class User implements IDBAccessObject, UserIdentity {
 	public $mBlockedby;
 	/** @var string */
 	protected $mHash;
-	/** @var string */
+	/**
+	 * TODO: This should be removed when User::BlockedFor
+	 * and AbstractBlock::getReason are hard deprecated.
+	 * @var string
+	 */
 	protected $mBlockreason;
 	/** @var array */
 	protected $mEffectiveGroups;
@@ -2093,7 +2097,9 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * If user is blocked, return the specified reason for the block
+	 * If user is blocked, return the specified reason for the block.
+	 *
+	 * @deprecated since 1.35 Use AbstractBlock::getReasonComment instead
 	 * @return string Blocking reason
 	 */
 	public function blockedFor() {
