@@ -7,6 +7,16 @@ for use in production.
 
 === Changes since MediaWiki 1.34.0-rc.0 ===
 * (T231742) rdbms: Restore debug toolbar "Queries" feature.
+* (T231366) The ProfilerOutputDb class, 'profiling' table, and profileinfo.php
+  entry point had been deprecated.
+* (T234361) localisation: Log debug message for backend of MessageCache.
+* (T235559) Fix example Kask configuration in RESTBagOStuff class comment.
+* (T235137) Don't apply styling for Special:Contributions on other pages.
+* (T234361) session: Add debug message for the used store class.
+* Upgrade mediawiki-codesniffer from 26.0.0 to 28.0.0 (dev-only).
+* (T235392) Deprecate setting Parser::mTitle to null.
+* Supporting commits for T235392 were also backported to prevent divergence
+  from master (MediaWiki 1.35).
 
 == MediaWiki 1.34.0-rc.0 ==
 
@@ -144,7 +154,7 @@ $wgPasswordPolicy['policies']['default']['PasswordNotInLargeBlacklist'] = false;
 * Updated OOjs from v2.2.2 to v3.0.0.
 * Updated composer/semver from 1.4.2 to 1.5.0.
 * Updated composer/spdx-licenses from 1.4.0 to 1.5.1 (dev-only).
-* Updated mediawiki/codesniffer from 25.0.0 to 26.0.0 (dev-only).
+* Updated mediawiki/codesniffer from 25.0.0 to 28.0.0 (dev-only).
 * Updated cssjanus/cssjanus from 1.2.1 to 1.3.0.
 * Updated wikimedia/at-ease from 1.2.0 to 2.0.0.
 * Updated wikimedia/remex-html from 2.0.1 to 2.1.0.
