@@ -415,6 +415,10 @@
 			"type": "object",
 			"description": "A ResourceLoaderFileModule definition registered only when wgEnableJavaScriptTest is true."
 		},
+		"MessagePosterModule": {
+			"type": "object",
+			"description": "Additional JavaScript files and modules that will register content models with mw.messagePoster.factory."
+		},
 		"ConfigRegistry": {
 			"type": "object",
 			"description": "Registry of factory functions to create Config objects"

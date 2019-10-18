@@ -3,6 +3,23 @@
 	 * Factory for MessagePoster objects. This provides a pluggable to way to script the action
 	 * of adding a message to someone's talk page.
 	 *
+	 * Usage example:
+	 *
+	 *   function MyExamplePoster() {}
+	 *   OO.inheritClass( MyExamplePoster, mw.messagePoster.MessagePoster );
+	 *
+	 *   mw.messagePoster.factory.register( 'mycontentmodel', MyExamplePoster );
+	 *
+	 * The JavaScript files(s) that register message posters for additional content
+	 * models must be registered with MediaWiki via the `MessagePosterModule`
+	 * extension attribute, like follows:
+	 *
+	 *    "MessagePosterModule": {
+	 *         "localBasePath": "", // (required)
+	 *         "scripts": [], // relative file path(s) (required)
+	 *         "dependencies": [], // module name(s) (optional)
+	 *    }
+	 *
 	 * @class mw.messagePoster.factory
 	 * @singleton
 	 */

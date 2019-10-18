@@ -702,6 +702,30 @@ return [
 		$rl->register( $config->get( 'ResourceModules' ) );
 		Hooks::run( 'ResourceLoaderRegisterModules', [ &$rl ] );
 
+		$extRegistry = ExtensionRegistry::getInstance();
+		$msgPosterAttrib = $extRegistry->getAttribute( 'MessagePosterModule' );
+		$rl->register( 'mediawiki.messagePoster', [
+			'localBasePath' => '',
+			'debugRaw' => false,
+			'scripts' => array_merge(
+				[
+					"$IP/resources/src/mediawiki.messagePoster/factory.js",
+					"$IP/resources/src/mediawiki.messagePoster/MessagePoster.js",
+					"$IP/resources/src/mediawiki.messagePoster/WikitextMessagePoster.js",
+				],
+				$msgPosterAttrib['scripts'] ?? []
+			),
+			'dependencies' => array_merge(
+				[
+					'oojs',
+					'mediawiki.api',
+					'mediawiki.ForeignApi',
+				],
+				$msgPosterAttrib['dependencies'] ?? []
+			),
+			'targets' => [ 'desktop', 'mobile' ],
+		] );
+
 		if ( $config->get( 'EnableJavaScriptTest' ) === true ) {
 			$rl->registerTestModules();
 		}
