@@ -569,9 +569,8 @@ return [
 
 	'moment' => [
 		'scripts' => [
-			// HACK: For some reason if you don't define window.moment first, loading moment fatals
-			'resources/src/moment/moment-global.js',
 			'resources/lib/moment/moment.js',
+			'resources/src/moment/moment-module.js',
 		],
 		'languageScripts' => [
 			'aeb-arab' => 'resources/lib/moment/locale/ar-tn.js',
