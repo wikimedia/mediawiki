@@ -24,7 +24,7 @@
 	 * @singleton
 	 */
 	function MessagePosterFactory() {
-		this.contentModelToClass = {};
+		this.contentModelToClass = Object.create( null );
 	}
 
 	OO.initClass( MessagePosterFactory );
@@ -39,7 +39,7 @@
 	 * @param {Function} constructor Constructor of a MessagePoster subclass
 	 */
 	MessagePosterFactory.prototype.register = function ( contentModel, constructor ) {
-		if ( this.contentModelToClass[ contentModel ] !== undefined ) {
+		if ( this.contentModelToClass[ contentModel ] ) {
 			throw new Error( 'Content model "' + contentModel + '" is already registered' );
 		}
 
@@ -85,44 +85,18 @@
 			prop: 'info',
 			titles: title.getPrefixedDb()
 		} ).then( function ( data ) {
-			var contentModel, moduleName, loading, page = data.query.pages[ 0 ];
+			var contentModel, page = data.query.pages[ 0 ];
 			if ( !page ) {
 				return $.Deferred().reject( 'unexpected-response', 'Unexpected API response' );
 			}
 			contentModel = page.contentmodel;
-			if ( factory.contentModelToClass[ contentModel ] !== undefined ) {
-				// TODO: After T235315 is resolved, always reject class is not yet known.
-				loading = $.Deferred().resolve();
-			} else {
-				// For compatibility, allow lazy-loading (T235315)
-				moduleName = 'mediawiki.messagePoster.' + contentModel;
-				loading = mw.loader.using( moduleName ).catch( function () {
-					return $.Deferred().reject( 'failed-to-load-module', 'Failed to load "' + moduleName + '"' );
-				} );
+			if ( !factory.contentModelToClass[ contentModel ] ) {
+				return $.Deferred().reject( 'content-model-unknown', 'No handler for "' + contentModel + '"' );
 			}
-			return loading.then( function () {
-				return factory.createForContentModel(
-					contentModel,
-					title,
-					api
-				);
-			} );
+			return new factory.contentModelToClass[ contentModel ]( title, api );
 		}, function ( error, details ) {
 			return $.Deferred().reject( 'content-model-query-failed', error, details );
 		} );
-	};
-
-	/**
-	 * Creates a MessagePoster instance, given a title and content model
-	 *
-	 * @private
-	 * @param {string} contentModel Content model of title
-	 * @param {mw.Title} title Title being posted to
-	 * @param {mw.Api} api mw.Api instance that the instance should use
-	 * @return {mw.messagePoster.MessagePoster}
-	 */
-	MessagePosterFactory.prototype.createForContentModel = function ( contentModel, title, api ) {
-		return new this.contentModelToClass[ contentModel ]( title, api );
 	};
 
 	mw.messagePoster = {
