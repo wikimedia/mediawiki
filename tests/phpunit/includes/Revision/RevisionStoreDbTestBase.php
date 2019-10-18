@@ -2177,4 +2177,52 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->assertTrue( $status->hasMessage( 'internalerror' ) );
 	}
 
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::countRevisionsBetween
+	 */
+	public function testCountRevisionsBetween() {
+		$NUM = 5;
+		$MAX = 1;
+		$page = $this->getTestPage();
+		$revisions = [];
+		for ( $revNum = 0; $revNum < $NUM; $revNum++ ) {
+			$editStatus = $this->editPage( $page->getTitle()->getPrefixedDBkey(), 'Revision ' . $revNum );
+			$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision ' . $revNum );
+			$revisions[] = $editStatus->getValue()['revision']->getRevisionRecord();
+		}
+
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$this->assertEquals( $NUM - 2, // The count is non-inclusive on both ends.
+			$revisionStore->countRevisionsBetween( $revisions[0], $revisions[$NUM - 1] ) );
+		$this->assertEquals( $MAX + 1, // Returns $max + 1 to detect truncation.
+			$revisionStore->countRevisionsBetween( $revisions[0], $revisions[$NUM - 1], $MAX ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::countRevisionsBetween
+	 */
+	public function testCountRevisionsBetween_differentPages() {
+		$page1 = $this->getTestPage();
+		$page2 = $this->getTestPage( 'Other_Page' );
+		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), 'Revision 1' );
+		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
+		$rev1 = $editStatus->getValue()['revision']->getRevisionRecord();
+		$editStatus = $this->editPage( $page2->getTitle()->getPrefixedDBkey(), 'Revision 1' );
+		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
+		$rev2 = $editStatus->getValue()['revision']->getRevisionRecord();
+
+		$this->expectException( InvalidArgumentException::class );
+		MediaWikiServices::getInstance()->getRevisionStore()->countRevisionsBetween( $rev1, $rev2 );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::countRevisionsBetween
+	 */
+	public function testCountRevisionsBetween_unsavedRevision() {
+		$rev1 = new MutableRevisionRecord( $this->getTestPageTitle() );
+		$rev2 = new MutableRevisionRecord( $this->getTestPageTitle() );
+
+		$this->expectException( InvalidArgumentException::class );
+		MediaWikiServices::getInstance()->getRevisionStore()->countRevisionsBetween( $rev1, $rev2 );
+	}
 }

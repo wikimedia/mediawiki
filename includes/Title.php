@@ -4021,6 +4021,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * Get the number of revisions between the given revision.
 	 * Used for diffs and other things that really need it.
 	 *
+	 * @deprecated since 1.35 Use RevisionStore::countRevisionsBetween instead.
+	 *
 	 * @param int|Revision $old Old revision or rev ID (first before range)
 	 * @param int|Revision $new New revision or rev ID (first after range)
 	 * @param int|null $max Limit of Revisions to count, will be incremented to detect truncations
@@ -4036,21 +4038,9 @@ class Title implements LinkTarget, IDBAccessObject {
 		if ( !$old || !$new ) {
 			return 0; // nothing to compare
 		}
-		$dbr = wfGetDB( DB_REPLICA );
-		$conds = [
-			'rev_page' => $this->getArticleID(),
-			'rev_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) ),
-			'rev_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) )
-		];
-		if ( $max !== null ) {
-			return $dbr->selectRowCount( 'revision', '1',
-				$conds,
-				__METHOD__,
-				[ 'LIMIT' => $max + 1 ] // extra to detect truncation
-			);
-		} else {
-			return (int)$dbr->selectField( 'revision', 'count(*)', $conds, __METHOD__ );
-		}
+		return MediaWikiServices::getInstance()
+			->getRevisionStore()
+			->countRevisionsBetween( $old->getRevisionRecord(), $new->getRevisionRecord(), $max );
 	}
 
 	/**

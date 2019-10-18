@@ -102,6 +102,7 @@ because of Phabricator reports.
   getFallbacksFor, getFallbacksIncludingSiteLanguage. Use the corresponding new
   methods on the LanguageFallback class: getFirst, getAll, and
   getAllIncludingSiteLanguage.
+* Title::countRevisionsBetween has been deprecated and moved into RevisionStore.
 
 === Other changes in 1.35 ===
 * …
