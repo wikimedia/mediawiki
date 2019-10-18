@@ -122,8 +122,8 @@ class MessageValueTest extends \PHPUnit\Framework\TestCase {
 		$mv = new MessageValue( 'key' );
 		$mv2 = $mv->shortDurationParams( 1, 2 );
 		$this->assertSame( '<message key="key">' .
-			'<timeperiod>1</timeperiod>' .
-			'<timeperiod>2</timeperiod>' .
+			'<period>1</period>' .
+			'<period>2</period>' .
 			'</message>',
 			$mv->dump() );
 		$this->assertSame( $mv, $mv2 );

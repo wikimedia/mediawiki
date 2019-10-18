@@ -25,7 +25,7 @@ class ParamType {
 	 * A number of seconds, to be formatted as natural language text in an abbreviated way.
 	 * The output will be rounded to an appropriate magnitude.
 	 */
-	const DURATION_SHORT = 'timeperiod';
+	const DURATION_SHORT = 'period';
 
 	/**
 	 * An expiry time.
