@@ -271,7 +271,7 @@
 	"newarticletext": "Linkki vei sinun sivule, joka ei vielä ole.\nSaatat luoa sivun kirjottamalla alla olehvaan kenthään (katto [$1 apusivu] lissää tietoja).\nJos et halua luoa sivua, käytä browserin <strong>takashii</strong> knappia.",
 	"noarticletext": "Tällä hetkelä tällä sivula ei ole tekstiä.\nSaatat [[Special:Search/{{PAGENAME}}|hakea sivun nimelä]] muilta sivuilta,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} hakea aiheesheen liittyviä lokkia]\neli [{{fullurl:{{FULLPAGENAME}}|action=edit}} luoa tämä sivu]</span>.",
 	"noarticletext-nopermission": "Tällä hetkelä tällä sivula ei ole tekstiä.\nSaatat [[Special:Search/{{PAGENAME}}|hakea sivun nimelä]] muilta sivuilta,\neli <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} hakea relevantista lokista], mutta sulla ei ole luppaa luoda tätä sivua.",
-	"userpage-userdoesnotexist-view": "Käyttäkäkonttua ”$1” ei ole rekisteröity.",
+	"userpage-userdoesnotexist-view": "Käyttäjäkonttua ”$1” ei ole rekisteröity.",
 	"previewnote": "<strong>Tämä on vasta sivun etukattelu.</strong>\nSivua ei ole vielä säästetty!",
 	"continue-editing": "Siiry mookkauskenthään",
 	"editing": "Mookathaan sivua $1",
