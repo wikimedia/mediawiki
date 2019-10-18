@@ -20,39 +20,39 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 class WatchedItemQueryService {
 
-	const DIR_OLDER = 'older';
-	const DIR_NEWER = 'newer';
+	public const DIR_OLDER = 'older';
+	public const DIR_NEWER = 'newer';
 
-	const INCLUDE_FLAGS = 'flags';
-	const INCLUDE_USER = 'user';
-	const INCLUDE_USER_ID = 'userid';
-	const INCLUDE_COMMENT = 'comment';
-	const INCLUDE_PATROL_INFO = 'patrol';
-	const INCLUDE_AUTOPATROL_INFO = 'autopatrol';
-	const INCLUDE_SIZES = 'sizes';
-	const INCLUDE_LOG_INFO = 'loginfo';
-	const INCLUDE_TAGS = 'tags';
+	public const INCLUDE_FLAGS = 'flags';
+	public const INCLUDE_USER = 'user';
+	public const INCLUDE_USER_ID = 'userid';
+	public const INCLUDE_COMMENT = 'comment';
+	public const INCLUDE_PATROL_INFO = 'patrol';
+	public const INCLUDE_AUTOPATROL_INFO = 'autopatrol';
+	public const INCLUDE_SIZES = 'sizes';
+	public const INCLUDE_LOG_INFO = 'loginfo';
+	public const INCLUDE_TAGS = 'tags';
 
 	// FILTER_* constants are part of public API (are used in ApiQueryWatchlist and
 	// ApiQueryWatchlistRaw classes) and should not be changed.
 	// Changing values of those constants will result in a breaking change in the API
-	const FILTER_MINOR = 'minor';
-	const FILTER_NOT_MINOR = '!minor';
-	const FILTER_BOT = 'bot';
-	const FILTER_NOT_BOT = '!bot';
-	const FILTER_ANON = 'anon';
-	const FILTER_NOT_ANON = '!anon';
-	const FILTER_PATROLLED = 'patrolled';
-	const FILTER_NOT_PATROLLED = '!patrolled';
-	const FILTER_AUTOPATROLLED = 'autopatrolled';
-	const FILTER_NOT_AUTOPATROLLED = '!autopatrolled';
-	const FILTER_UNREAD = 'unread';
-	const FILTER_NOT_UNREAD = '!unread';
-	const FILTER_CHANGED = 'changed';
-	const FILTER_NOT_CHANGED = '!changed';
+	public const FILTER_MINOR = 'minor';
+	public const FILTER_NOT_MINOR = '!minor';
+	public const FILTER_BOT = 'bot';
+	public const FILTER_NOT_BOT = '!bot';
+	public const FILTER_ANON = 'anon';
+	public const FILTER_NOT_ANON = '!anon';
+	public const FILTER_PATROLLED = 'patrolled';
+	public const FILTER_NOT_PATROLLED = '!patrolled';
+	public const FILTER_AUTOPATROLLED = 'autopatrolled';
+	public const FILTER_NOT_AUTOPATROLLED = '!autopatrolled';
+	public const FILTER_UNREAD = 'unread';
+	public const FILTER_NOT_UNREAD = '!unread';
+	public const FILTER_CHANGED = 'changed';
+	public const FILTER_NOT_CHANGED = '!changed';
 
-	const SORT_ASC = 'ASC';
-	const SORT_DESC = 'DESC';
+	public const SORT_ASC = 'ASC';
+	public const SORT_DESC = 'DESC';
 
 	/**
 	 * @var ILoadBalancer

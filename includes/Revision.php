@@ -43,19 +43,19 @@ class Revision implements IDBAccessObject {
 	protected $mRecord;
 
 	// Revision deletion constants
-	const DELETED_TEXT = RevisionRecord::DELETED_TEXT;
-	const DELETED_COMMENT = RevisionRecord::DELETED_COMMENT;
-	const DELETED_USER = RevisionRecord::DELETED_USER;
-	const DELETED_RESTRICTED = RevisionRecord::DELETED_RESTRICTED;
-	const SUPPRESSED_USER = RevisionRecord::SUPPRESSED_USER;
-	const SUPPRESSED_ALL = RevisionRecord::SUPPRESSED_ALL;
+	public const DELETED_TEXT = RevisionRecord::DELETED_TEXT;
+	public const DELETED_COMMENT = RevisionRecord::DELETED_COMMENT;
+	public const DELETED_USER = RevisionRecord::DELETED_USER;
+	public const DELETED_RESTRICTED = RevisionRecord::DELETED_RESTRICTED;
+	public const SUPPRESSED_USER = RevisionRecord::SUPPRESSED_USER;
+	public const SUPPRESSED_ALL = RevisionRecord::SUPPRESSED_ALL;
 
 	// Audience options for accessors
-	const FOR_PUBLIC = RevisionRecord::FOR_PUBLIC;
-	const FOR_THIS_USER = RevisionRecord::FOR_THIS_USER;
-	const RAW = RevisionRecord::RAW;
+	public const FOR_PUBLIC = RevisionRecord::FOR_PUBLIC;
+	public const FOR_THIS_USER = RevisionRecord::FOR_THIS_USER;
+	public const RAW = RevisionRecord::RAW;
 
-	const TEXT_CACHE_GROUP = SqlBlobStore::TEXT_CACHE_GROUP;
+	public const TEXT_CACHE_GROUP = SqlBlobStore::TEXT_CACHE_GROUP;
 
 	/**
 	 * @return RevisionStore

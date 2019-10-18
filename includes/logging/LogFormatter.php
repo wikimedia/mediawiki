@@ -37,8 +37,8 @@ use MediaWiki\MediaWikiServices;
  */
 class LogFormatter {
 	// Audience options for viewing usernames, comments, and actions
-	const FOR_PUBLIC = 1;
-	const FOR_THIS_USER = 2;
+	public const FOR_PUBLIC = 1;
+	public const FOR_THIS_USER = 2;
 
 	// Static->
 

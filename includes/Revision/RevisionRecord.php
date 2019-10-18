@@ -46,18 +46,18 @@ use Wikimedia\Assert\Assert;
 abstract class RevisionRecord {
 
 	// RevisionRecord deletion constants
-	const DELETED_TEXT = 1;
-	const DELETED_COMMENT = 2;
-	const DELETED_USER = 4;
-	const DELETED_RESTRICTED = 8;
-	const SUPPRESSED_USER = self::DELETED_USER | self::DELETED_RESTRICTED; // convenience
-	const SUPPRESSED_ALL = self::DELETED_TEXT | self::DELETED_COMMENT | self::DELETED_USER |
+	public const DELETED_TEXT = 1;
+	public const DELETED_COMMENT = 2;
+	public const DELETED_USER = 4;
+	public const DELETED_RESTRICTED = 8;
+	public const SUPPRESSED_USER = self::DELETED_USER | self::DELETED_RESTRICTED; // convenience
+	public const SUPPRESSED_ALL = self::DELETED_TEXT | self::DELETED_COMMENT | self::DELETED_USER |
 		self::DELETED_RESTRICTED; // convenience
 
 	// Audience options for accessors
-	const FOR_PUBLIC = 1;
-	const FOR_THIS_USER = 2;
-	const RAW = 3;
+	public const FOR_PUBLIC = 1;
+	public const FOR_THIS_USER = 2;
+	public const RAW = 3;
 
 	/** @var string|false Wiki ID; false means the current wiki */
 	protected $mWiki = false;

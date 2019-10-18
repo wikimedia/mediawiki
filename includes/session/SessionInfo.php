@@ -33,10 +33,10 @@ namespace MediaWiki\Session;
  */
 class SessionInfo {
 	/** Minimum allowed priority */
-	const MIN_PRIORITY = 1;
+	public const MIN_PRIORITY = 1;
 
 	/** Maximum allowed priority */
-	const MAX_PRIORITY = 100;
+	public const MAX_PRIORITY = 100;
 
 	/** @var SessionProvider|null */
 	private $provider;
