@@ -177,12 +177,22 @@ class SpecialUpload extends SpecialPage {
 
 		# Check blocks
 		if ( $user->isBlockedFromUpload() ) {
-			throw new UserBlockedError( $user->getBlock() );
+			throw new UserBlockedError(
+				$user->getBlock(),
+				$user,
+				$this->getLanguage(),
+				$this->getRequest()->getIP()
+			);
 		}
 
 		// Global blocks
 		if ( $user->isBlockedGlobally() ) {
-			throw new UserBlockedError( $user->getGlobalBlock() );
+			throw new UserBlockedError(
+				$user->getGlobalBlock(),
+				$user,
+				$this->getLanguage(),
+				$this->getRequest()->getIP()
+			);
 		}
 
 		# Check whether we actually want to allow changing stuff
