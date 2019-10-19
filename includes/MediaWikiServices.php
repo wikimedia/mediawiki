@@ -28,6 +28,7 @@ use MediaHandlerFactory;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockRestrictionStore;
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
@@ -688,6 +689,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getLanguageNameUtils() {
 		return $this->getService( 'LanguageNameUtils' );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return LinkBatchFactory
+	 */
+	public function getLinkBatchFactory() : LinkBatchFactory {
+		return $this->getService( 'LinkBatchFactory' );
 	}
 
 	/**

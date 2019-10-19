@@ -50,6 +50,7 @@ use MediaWiki\BadFileLookup;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockRestrictionStore;
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
@@ -324,6 +325,16 @@ return [
 			LanguageNameUtils::CONSTRUCTOR_OPTIONS,
 			$services->getMainConfig()
 		) );
+	},
+
+	'LinkBatchFactory' => function ( MediaWikiServices $services ) : LinkBatchFactory {
+		return new LinkBatchFactory(
+			$services->getLinkCache(),
+			$services->getTitleFormatter(),
+			$services->getContentLanguage(),
+			$services->getGenderCache(),
+			$services->getDBLoadBalancer()
+		);
 	},
 
 	'LinkCache' => function ( MediaWikiServices $services ) : LinkCache {

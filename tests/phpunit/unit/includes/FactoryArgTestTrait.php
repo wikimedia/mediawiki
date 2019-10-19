@@ -99,7 +99,7 @@ trait FactoryArgTestTrait {
 
 		$type = $type->getName();
 
-		if ( $type === 'array' ) {
+		if ( $type === 'array' || $type === 'iterable' ) {
 			return [ "some unlikely string $pos" ];
 		}
 

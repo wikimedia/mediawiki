@@ -864,6 +864,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWikiTitleCodec' => __DIR__ . '/includes/title/MediaWikiTitleCodec.php',
 	'MediaWikiVersionFetcher' => __DIR__ . '/includes/MediaWikiVersionFetcher.php',
 	'MediaWiki\\BadFileLookup' => __DIR__ . '/includes/BadFileLookup.php',
+	'MediaWiki\\Cache\\LinkBatchFactory' => __DIR__ . '/includes/cache/LinkBatchFactory.php',
 	'MediaWiki\\ChangeTags\\Taggable' => __DIR__ . '/includes/changetags/Taggable.php',
 	'MediaWiki\\Config\\ConfigRepository' => __DIR__ . '/includes/config/ConfigRepository.php',
 	'MediaWiki\\Config\\ServiceOptions' => __DIR__ . '/includes/config/ServiceOptions.php',
