@@ -20,12 +20,10 @@
 
 namespace MediaWiki\Block;
 
-use CommentStoreComment;
 use IContextSource;
 use InvalidArgumentException;
 use IP;
 use MediaWiki\MediaWikiServices;
-use Message;
 use RequestContext;
 use Title;
 use User;
@@ -35,13 +33,10 @@ use User;
  */
 abstract class AbstractBlock {
 	/**
-	 * @deprecated since 1.34. Use getReasonComment and setReason instead.
-	 *  Internally, use $reason.
+	 * @deprecated since 1.34. Use getReason and setReason instead.
+	 * @var string
 	 */
-	private $mReason;
-
-	/** @var CommentStoreComment */
-	protected $reason;
+	public $mReason;
 
 	/**
 	 * @deprecated since 1.34. Use getTimestamp and setTimestamp instead.
@@ -98,7 +93,7 @@ abstract class AbstractBlock {
 	 * @param array $options Parameters of the block, with supported options:
 	 *  - address: (string|User) Target user name, User object, IP address or IP range
 	 *  - by: (int) User ID of the blocker
-	 *  - reason: (string|Message|CommentStoreComment) Reason for the block
+	 *  - reason: (string) Reason of the block
 	 *  - timestamp: (string) The time at which the block comes into effect
 	 *  - byText: (string) Username of the blocker (for foreign users)
 	 *  - hideName: (bool) Hide the target user name
@@ -166,38 +161,23 @@ abstract class AbstractBlock {
 	abstract public function getIdentifier();
 
 	/**
-	 * Get the reason given for creating the block, as a string.
+	 * Get the reason given for creating the block
 	 *
-	 * Deprecated, since this gives the caller no control over the language
-	 * or format, and no access to the comment's data.
-	 *
-	 * @deprecated since 1.35. Use getReasonComment instead.
 	 * @since 1.33
 	 * @return string
 	 */
 	public function getReason() {
-		$language = RequestContext::getMain()->getLanguage();
-		return $this->reason->message->inLanguage( $language )->plain();
+		return $this->mReason;
 	}
 
 	/**
-	 * Get the reason for creating the block.
-	 *
-	 * @since 1.35
-	 * @return CommentStoreComment
-	 */
-	public function getReasonComment() {
-		return $this->reason;
-	}
-
-	/**
-	 * Set the reason for creating the block.
+	 * Set the reason for creating the block
 	 *
 	 * @since 1.33
-	 * @param string|Message|CommentStoreComment $reason
+	 * @param string $reason
 	 */
 	public function setReason( $reason ) {
-		$this->reason = CommentStoreComment::newUnsavedComment( $reason );
+		$this->mReason = $reason;
 	}
 
 	/**

@@ -29,7 +29,6 @@ trait ApiBlockInfoTrait {
 	/**
 	 * Get basic info about a given block
 	 * @param AbstractBlock $block
-	 * @param Language|null $language
 	 * @return array Array containing several keys:
 	 *  - blockid - ID of the block
 	 *  - blockedby - username of the blocker
@@ -40,20 +39,12 @@ trait ApiBlockInfoTrait {
 	 *  - blockpartial - block only applies to certain pages, namespaces and/or actions
 	 *  - systemblocktype - system block type, if any
 	 */
-	private function getBlockDetails(
-		AbstractBlock $block,
-		$language = null
-	) {
-		if ( $language === null ) {
-			$language = $this->getLanguage();
-		}
-
+	private function getBlockDetails( AbstractBlock $block ) {
 		$vals = [];
 		$vals['blockid'] = $block->getId();
 		$vals['blockedby'] = $block->getByName();
 		$vals['blockedbyid'] = $block->getBy();
-		$vals['blockreason'] = $block->getReasonComment()
-			->message->inLanguage( $language )->plain();
+		$vals['blockreason'] = $block->getReason();
 		$vals['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $block->getTimestamp() );
 		$vals['blockexpiry'] = ApiResult::formatExpiry( $block->getExpiry(), 'infinite' );
 		$vals['blockpartial'] = !$block->isSitewide();
@@ -62,15 +53,5 @@ trait ApiBlockInfoTrait {
 		}
 		return $vals;
 	}
-
-	/**
-	 * @name Methods required from ApiBase
-	 * @{
-	 */
-
-	/** @see IContextSource::getLanguage */
-	abstract public function getLanguage();
-
-	/**@}*/
 
 }
