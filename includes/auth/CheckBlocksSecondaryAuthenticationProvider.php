@@ -23,7 +23,6 @@ namespace MediaWiki\Auth;
 
 use Config;
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\MediaWikiServices;
 use StatusValue;
 
 /**
@@ -81,14 +80,20 @@ class CheckBlocksSecondaryAuthenticationProvider extends AbstractSecondaryAuthen
 	public function testUserForCreation( $user, $autocreate, array $options = [] ) {
 		$block = $user->isBlockedFromCreateAccount();
 		if ( $block ) {
-			$language = \RequestContext::getMain()->getUser()->isSafeToLoad() ?
-				\RequestContext::getMain()->getLanguage() :
-				MediaWikiServices::getInstance()->getContentLanguage();
+			if ( $block->getReason() ) {
+				$reason = $block->getReason();
+			} else {
+				$msg = \Message::newFromKey( 'blockednoreason' );
+				if ( !\RequestContext::getMain()->getUser()->isSafeToLoad() ) {
+					$msg->inContentLanguage();
+				}
+				$reason = $msg->text();
+			}
 
 			$errorParams = [
-				$language->embedBidi( $block->getTarget() ),
-				$block->getReasonComment()->message->inLanguage( $language )->plain(),
-				$language->embedBidi( $block->getByName() ),
+				$block->getTarget(),
+				$reason,
+				$block->getByName()
 			];
 
 			if ( $block->getType() === DatabaseBlock::TYPE_RANGE ) {

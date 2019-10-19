@@ -1008,12 +1008,10 @@ class AuthManager implements LoggerAwareInterface {
 
 		$block = $creator->isBlockedFromCreateAccount();
 		if ( $block ) {
-			$language = \RequestContext::getMain()->getLanguage();
-
 			$errorParams = [
-				$language->embedBidi( $block->getTarget() ),
-				$block->getReasonComment()->message->inLanguage( $language )->plain(),
-				$language->embedBidi( $block->getByName() ),
+				$block->getTarget(),
+				$block->getReason() ?: wfMessage( 'blockednoreason' )->text(),
+				$block->getByName()
 			];
 
 			if ( $block->getType() === DatabaseBlock::TYPE_RANGE ) {

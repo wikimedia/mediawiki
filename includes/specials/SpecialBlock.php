@@ -371,7 +371,7 @@ class SpecialBlock extends FormSpecialPage {
 					->getPermissionManager()
 					->userHasRight( $this->getUser(), 'hideuser' )
 			) {
-				$fields['Reason']['default'] = $block->getReasonComment()->text;
+				$fields['Reason']['default'] = $block->getReason();
 			} else {
 				$fields['Reason']['default'] = '';
 			}
@@ -964,7 +964,7 @@ class SpecialBlock extends FormSpecialPage {
 				$currentBlock->setHideName( $block->getHideName() );
 				$currentBlock->isEmailBlocked( $block->isEmailBlocked() );
 				$currentBlock->isUsertalkEditAllowed( $block->isUsertalkEditAllowed() );
-				$currentBlock->setReason( $block->getReasonComment() );
+				$currentBlock->setReason( $block->getReason() );
 
 				if ( $enablePartialBlocks ) {
 					// Maintain the sitewide status. If partial blocks is not enabled,
