@@ -58,10 +58,8 @@ For notes on 1.34.x and older releases, see HISTORY.
   for SQL Server was removed in 1.34. (T230418)
 * …
 
-
 === New user-facing features in 1.35 ===
 * …
-
 
 === New developer features in 1.35 ===
 * If CSP is enabled, extensions can now add additional sources using the
@@ -172,7 +170,10 @@ because of Phabricator reports.
   call parent::getSlotDiffRendererInternal (no instances of which are known).
 * TextContent::getHighlightHtml, deprecated since 1.24, has been removed. Use
   TextContent::getHtml instead.
+* ExtensionRegistry::load(), deprecated in 1.34, was removed.
+  Use ::queue() instead.
 * …
+
 === Deprecations in 1.35 ===
 * The PHPUnit4And6Compat class, used to provide compatibility with PHPUnit 4, is
   now deprecated. MediaWiki support for PHPUnit 4 ended with the removal of HHVM
