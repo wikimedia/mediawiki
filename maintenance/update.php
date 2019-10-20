@@ -243,18 +243,27 @@ class UpdateMediaWiki extends Maintenance {
 		];
 	}
 
+	/**
+	 * @throws FatalError
+	 * @throws MWException
+	 * @suppress PhanPluginDuplicateConditionalNullCoalescing
+	 */
 	public function validateParamsAndArgs() {
 		// Allow extensions to add additional params.
 		$params = [];
 		Hooks::run( 'MaintenanceUpdateAddParams', [ &$params ] );
+
+		// This executes before the PHP version check, so don't use null coalesce (??).
+		// Keeping this compatible with older PHP versions lets us reach the code that
+		// displays a more helpful error.
 		foreach ( $params as $name => $param ) {
 			$this->addOption(
 				$name,
 				$param['desc'],
-				$param['require'] ?? false,
-				$param['withArg'] ?? false,
-				$param['shortName'] ?? false,
-				$param['multiOccurrence'] ?? false
+				isset( $param['require'] ) ? $param['require'] : false,
+				isset( $param['withArg'] ) ? $param['withArg'] : false,
+				isset( $param['shortName'] ) ? $param['shortName'] : false,
+				isset( $param['multiOccurrence'] ) ? $param['multiOccurrence'] : false
 			);
 		}
 

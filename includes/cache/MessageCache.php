@@ -223,7 +223,7 @@ class MessageCache {
 	/**
 	 * Try to load the cache from APC.
 	 *
-	 * @param string $code Optional language code, see documenation of load().
+	 * @param string $code Optional language code, see documentation of load().
 	 * @return array|bool The cache array, or false if not in cache.
 	 */
 	protected function getLocalCache( $code ) {
@@ -337,7 +337,7 @@ class MessageCache {
 					} elseif ( $hashVolatile ) {
 						# DB results are replica DB lag prone until the holdoff TTL passes.
 						# By then, updates should be reflected in loadFromDBWithLock().
-						# One thread renerates the cache while others use old values.
+						# One thread regenerates the cache while others use old values.
 						$where[] = 'global cache is expired/volatile';
 						$staleCache = $cache;
 					} else {
@@ -374,7 +374,7 @@ class MessageCache {
 					break;
 				} elseif ( $loadStatus === 'cantacquire' ) {
 					# Wait for the other thread to finish, then retry. Normally,
-					# the memcached get() will then yeild the other thread's result.
+					# the memcached get() will then yield the other thread's result.
 					$where[] = 'waited for other thread to complete';
 					$this->getReentrantScopedLock( $cacheKey );
 				} else {

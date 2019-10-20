@@ -1,3 +1,31 @@
+== MediaWiki 1.33.1 ==
+
+This is a security and maintenance release of the MediaWiki 1.33 branch.
+
+=== Changes since MediaWiki 1.33.0 ===
+* A change that kept people with a database table prefix that didn't
+  end with an underscore from updating was reverted.
+* (T207100) Updated LanguageTr for dotted and dotless I in PHP 7.3.
+* The ImgAuthModifyHeaders hook was added to img_auth.php to allow modification
+  of headers in private wikis.
+* (T230317) Allow upgrading from MediaWiki before 1.15 where the valid_tag table
+  doesn't yet exist.
+* (T208897) MessageCache: Restore 'loadedLanguages' tracking for load().
+* (T228555) MessageCache: Fix isMainCacheable() logic for non-content languages.
+* (T200088) Remove title protection correctly for undeletions and imports.
+* (T230402) SECURITY: Add permission check for suppressed account to
+  Special:Redirect.
+* Add helper for HTTPFileStreamer header syntax.
+* (T227461) ObjectCache: avoid using deprecated phpredis::delete() alias.
+* (T231386) SpecialRedirect::dispatchUser() should use a 302 http status code.
+* (T118799) Fix XMP parser errors due to trailing nullchar.
+* (T230618) Fix GROUP BY in ActiveUsersPager and RecentChangesUpdateJob for
+  PostgreSQL.
+* (T230487) Handle changed defaults in Argon2PasswordTest::testPartialConfig().
+* (T233119) Improve documentation for the MinimumPasswordLengthToLogin policy.
+* (T227662) Split down patch-comment-table.sql and patch-actor-table.sql into
+  separate files to help allieviate potential migration problems.
+
 == MediaWiki 1.33 ==
 
 === Upgrading notes for 1.33 ===
@@ -29,7 +57,7 @@ Some specific notes for MediaWiki 1.33 upgrades are below:
 
 For notes on 1.32.x and older releases, see HISTORY.
 
-=== Changes since MediaWiki 1.32.0-rc.0 ===
+=== Changes since MediaWiki 1.33.0-rc.0 ===
 * (T225558) Update installer link to PHP intl.
 * (T225901) Only attempt to deduplicate if there is data in archive and revision
   tables.
@@ -385,6 +413,11 @@ because of Phabricator reports.
 * The .background-size() LESS mixin, deprecated in 1.27, has been removed.
 * ReadOnlyMode::clearCache() and ConfiguredReadOnlyMode::clearCache() have been
   removed. Use MediaWikiTestCase::overrideMwServices() instead.
+* Support for the 'aggregator' option of JobQueue (and thus $wgJobTypeConf) was
+  removed. The JobQueueAggregator interface and JobQueueAggregatorRedis class
+  have also been removed. They were experimentally developed for use by the
+  Wikimedia Foundation, but were never used, with no known use cases. (Note that
+  this does not affect JobQueueRedis which is still supported.)
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected

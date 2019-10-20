@@ -53,9 +53,7 @@ class DatabaseDomain {
 		}
 		$this->schema = $schema;
 		if ( !is_string( $prefix ) ) {
-			throw new InvalidArgumentException( 'Prefix must be a string.' );
-		} elseif ( $prefix !== '' && substr( $prefix, -1, 1 ) !== '_' ) {
-			throw new InvalidArgumentException( 'A non-empty prefix must end with "_".' );
+			throw new InvalidArgumentException( "Prefix must be a string." );
 		}
 		$this->prefix = $prefix;
 	}
