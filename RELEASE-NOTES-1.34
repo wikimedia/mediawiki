@@ -9,11 +9,13 @@ for use in production.
 * (T231742) rdbms: Restore debug toolbar "Queries" feature.
 * (T231366) The ProfilerOutputDb class, 'profiling' table, and profileinfo.php
   entry point had been deprecated.
-* (T234361) localisation: Log debug message for backend of MessageCache.
+* (T234361) localisation: Add debug message for backend of MessageCache.
+* (T234361) session: Add debug message for the used store class.
 * (T235559) Fix example Kask configuration in RESTBagOStuff class comment.
 * (T235137) Don't apply styling for Special:Contributions on other pages.
-* (T234361) session: Add debug message for the used store class.
 * Upgrade mediawiki-codesniffer from 26.0.0 to 28.0.0 (dev-only).
+* (T219604) The "jquery.ui.*" and "jquery.effects.*" modules are now
+  deprecated as aliases for the "jquery.ui" module.
 * (T235392) Deprecate setting Parser::mTitle to null.
 * Supporting commits for T235392 were also backported to prevent divergence
   from master (MediaWiki 1.35).
