@@ -19,7 +19,7 @@ class WatchActionTest extends MediaWikiTestCase {
 	 */
 	private $testWikiPage;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$testTitle = Title::newFromText( 'UTTest' );
@@ -32,7 +32,7 @@ class WatchActionTest extends MediaWikiTestCase {
 	/**
 	 * @throws MWException
 	 */
-	protected function tearDown() {
+	protected function tearDown() : void {
 		parent::tearDown();
 
 		Hooks::clear( 'WatchArticle' );

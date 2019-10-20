@@ -16,7 +16,7 @@ class PageDataRequestHandlerTest extends \MediaWikiLangTestCase {
 	 */
 	private $obLevel;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->interfaceTitle = Title::newFromText( __CLASS__ );
@@ -25,7 +25,7 @@ class PageDataRequestHandlerTest extends \MediaWikiLangTestCase {
 		$this->setMwGlobals( 'wgArticlePath', '/wiki/$1' );
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		$obLevel = ob_get_level();
 
 		while ( ob_get_level() > $this->obLevel ) {

@@ -28,7 +28,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	 */
 	protected $user, $anonUser, $userUser, $altUser;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$localZone = 'UTC';

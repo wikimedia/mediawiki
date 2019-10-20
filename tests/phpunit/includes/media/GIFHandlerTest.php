@@ -8,7 +8,7 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	/** @var GIFHandler */
 	protected $handler;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->handler = new GIFHandler();

@@ -30,7 +30,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		if ( !class_exists( 'Monolog\Handler\AbstractProcessingHandler' )
 			|| !class_exists( 'Kafka\Produce' )
 		) {

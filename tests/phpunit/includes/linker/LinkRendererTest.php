@@ -14,7 +14,7 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 	 */
 	private $factory;
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 		$this->setMwGlobals( [
 			'wgArticlePath' => '/wiki/$1',
@@ -192,7 +192,7 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public function tearDown() {
+	public function tearDown() : void {
 		Title::clearCaches();
 		parent::tearDown();
 	}

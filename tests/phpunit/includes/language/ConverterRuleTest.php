@@ -5,7 +5,7 @@
  */
 class ConverterRuleTest extends MediaWikiTestCase {
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 		$this->setMwGlobals( 'wgUser', new User );
 	}

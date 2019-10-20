@@ -8,7 +8,7 @@ use Wikimedia\TestingAccessWrapper;
 class ChangesListFilterTest extends MediaWikiTestCase {
 	protected $group;
 
-	public function setUp() {
+	public function setUp() : void {
 		$this->group = $this->getGroup( [ 'name' => 'group' ] );
 
 		parent::setUp();

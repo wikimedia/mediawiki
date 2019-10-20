@@ -4,7 +4,7 @@ class JavaScriptMinifierTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		parent::tearDown();
 		// Reset
 		$this->setMaxLineLength( 1000 );

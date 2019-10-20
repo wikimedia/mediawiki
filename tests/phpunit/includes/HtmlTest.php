@@ -6,7 +6,7 @@ use PHPUnit\Framework\Error\Notice;
 class HtmlTest extends MediaWikiTestCase {
 	private $restoreWarnings;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( [
@@ -69,7 +69,7 @@ class HtmlTest extends MediaWikiTestCase {
 		$this->restoreWarnings = false;
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		if ( $this->restoreWarnings ) {
 			$this->restoreWarnings = false;
 			Wikimedia\restoreWarnings();

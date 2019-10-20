@@ -11,7 +11,7 @@ class StoreBatchTest extends MediaWikiTestCase {
 	/** @var FileRepo */
 	protected $repo;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		global $wgFileBackends;
 		parent::setUp();
 
@@ -51,7 +51,7 @@ class StoreBatchTest extends MediaWikiTestCase {
 		$this->createdFiles = [];
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		// Delete files
 		$this->repo->cleanupBatch( $this->createdFiles );
 		parent::tearDown();

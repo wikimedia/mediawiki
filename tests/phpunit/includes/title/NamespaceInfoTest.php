@@ -17,7 +17,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	 */
 	private $scopedCallback;
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 
 		// Boo, there's still some global state in the class :(
@@ -30,7 +30,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 			ExtensionRegistry::getInstance()->setAttributeForTest( 'ExtensionNamespaces', [] );
 	}
 
-	public function tearDown() {
+	public function tearDown() : void {
 		$this->scopedCallback = null;
 
 		parent::tearDown();

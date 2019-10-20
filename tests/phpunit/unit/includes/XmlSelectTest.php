@@ -10,12 +10,12 @@ class XmlSelectTest extends \MediaWikiUnitTestCase {
 	 */
 	protected $select;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->select = new XmlSelect();
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		parent::tearDown();
 		$this->select = null;
 	}

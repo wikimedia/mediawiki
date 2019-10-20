@@ -12,7 +12,7 @@ class ExifRotationTest extends MediaWikiMediaTestCase {
 	/** @var BitmapHandler */
 	private $handler;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->checkPHPExtension( 'exif' );
 

@@ -9,7 +9,7 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 
 	private $dataDir;
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 		$this->dataDir = __DIR__ . '/../../data/registration';
 	}

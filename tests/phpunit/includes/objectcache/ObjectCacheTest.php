@@ -2,7 +2,7 @@
 
 class ObjectCacheTest extends MediaWikiTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		// Parent calls ObjectCache::clear() among other things
 		parent::setUp();
 

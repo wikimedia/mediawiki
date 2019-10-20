@@ -17,7 +17,7 @@ class JobQueueTest extends MediaWikiTestCase {
 		$this->tablesUsed[] = 'job';
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		global $wgJobTypeConf;
 		parent::setUp();
 
@@ -52,7 +52,7 @@ class JobQueueTest extends MediaWikiTestCase {
 		}
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		parent::tearDown();
 		foreach (
 			[

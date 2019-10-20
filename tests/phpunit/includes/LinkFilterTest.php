@@ -8,7 +8,7 @@ use Wikimedia\Rdbms\LikeMatch;
  */
 class LinkFilterTest extends MediaWikiLangTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( 'wgUrlProtocols', [

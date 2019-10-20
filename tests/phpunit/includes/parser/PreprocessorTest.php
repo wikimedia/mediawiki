@@ -43,7 +43,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 		Preprocessor_Hash::class
 	];
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->mOptions = ParserOptions::newFromUserAndLang( new User,
 			MediaWikiServices::getInstance()->getContentLanguage() );

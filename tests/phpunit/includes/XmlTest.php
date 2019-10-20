@@ -7,7 +7,7 @@ use MediaWiki\MediaWikiServices;
  */
 class XmlTest extends MediaWikiTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$langObj = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );

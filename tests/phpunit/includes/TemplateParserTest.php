@@ -8,7 +8,7 @@ class TemplateParserTest extends MediaWikiTestCase {
 
 	protected $templateDir;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( [

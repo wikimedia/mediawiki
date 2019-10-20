@@ -7,7 +7,7 @@
  * @covers ApiQuery
  */
 class ApiQueryTest extends ApiTestCase {
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		// Setup apiquerytestiw: as interwiki prefix

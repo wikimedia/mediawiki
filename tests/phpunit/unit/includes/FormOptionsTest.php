@@ -27,7 +27,7 @@ class FormOptionsTest extends \MediaWikiUnitTestCase {
 	 * so we assume the function is well tested already an use it to create
 	 * the fixture.
 	 */
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->object = new FormOptions;
 		$this->object->add( 'string1', 'string one' );

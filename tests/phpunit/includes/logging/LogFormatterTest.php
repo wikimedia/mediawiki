@@ -48,7 +48,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		parent::tearDownAfterClass();
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( [

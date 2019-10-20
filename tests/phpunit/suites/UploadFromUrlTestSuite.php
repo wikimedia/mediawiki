@@ -18,7 +18,7 @@ class UploadFromUrlTestSuite extends TestSuite {
 		return true;
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		global $IP, $wgMemc, $wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory,
 			$wgParserCacheType, $wgNamespaceAliases, $wgNamespaceProtection;
 
@@ -77,7 +77,7 @@ class UploadFromUrlTestSuite extends TestSuite {
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'FileBackendGroup' );
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		foreach ( $this->savedGlobals as $var => $val ) {
 			$GLOBALS[$var] = $val;
 		}

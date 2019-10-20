@@ -28,7 +28,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->replace(

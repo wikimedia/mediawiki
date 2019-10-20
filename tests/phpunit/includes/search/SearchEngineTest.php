@@ -20,7 +20,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	 * Checks for database type & version.
 	 * Will skip current test if DB does not support search.
 	 */
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		// Search tests require MySQL or SQLite with FTS
@@ -45,7 +45,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		$this->search = new $searchType( $lb );
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		unset( $this->search );
 
 		parent::tearDown();

@@ -16,7 +16,7 @@ class UploadStashTest extends MediaWikiTestCase {
 	 */
 	private $tmpFile;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->tmpFile = $this->getNewTempFile();

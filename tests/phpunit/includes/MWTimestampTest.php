@@ -4,7 +4,7 @@
  * Tests timestamp parsing and output.
  */
 class MWTimestampTest extends MediaWikiLangTestCase {
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		// Avoid 'GetHumanTimestamp' hook and others

@@ -26,7 +26,7 @@ class ParserOptionsTest extends MediaWikiTestCase {
 		];
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		self::clearCache();
 
@@ -39,7 +39,7 @@ class ParserOptionsTest extends MediaWikiTestCase {
 		$this->setTemporaryHook( 'PageRenderingHash', null );
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		self::clearCache();
 		parent::tearDown();
 	}

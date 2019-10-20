@@ -14,7 +14,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 
 	const TEST_KEY = 'test';
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		// type defined through parameter
@@ -499,7 +499,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$this->assertTrue( $this->cache->unlock( $key2 ) );
 	}
 
-	public function tearDown() {
+	public function tearDown() : void {
 		$this->cache->delete( $this->cache->makeKey( self::TEST_KEY ) );
 		$this->cache->delete( $this->cache->makeKey( self::TEST_KEY ) . ':lock' );
 

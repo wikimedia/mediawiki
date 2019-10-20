@@ -116,7 +116,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		] ) );
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		// Quick reset between tests
 		foreach ( $GLOBALS as $key => $_ ) {
 			if ( $key !== 'GLOBALS' && !array_key_exists( $key, self::$unitGlobals ) ) {

@@ -142,7 +142,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 *
 	 * Clears $wgUser, and reports errors from addDBData to PHPUnit
 	 */
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		// Check if any Exception is stored for rethrowing from addDBData

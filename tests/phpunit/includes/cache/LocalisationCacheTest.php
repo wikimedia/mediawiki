@@ -11,7 +11,7 @@ use Psr\Log\NullLogger;
  * @author Niklas Laxström
  */
 class LocalisationCacheTest extends MediaWikiTestCase {
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->setMwGlobals( [
 			'wgExtensionMessagesFiles' => [],

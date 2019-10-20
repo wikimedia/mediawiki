@@ -15,7 +15,7 @@ use MediaWiki\Block\DatabaseBlock;
  */
 class ApiEditPageTest extends ApiTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( [

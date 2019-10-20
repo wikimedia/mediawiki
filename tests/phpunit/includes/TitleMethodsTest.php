@@ -12,7 +12,7 @@ use MediaWiki\MediaWikiServices;
  */
 class TitleMethodsTest extends MediaWikiLangTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->mergeMwGlobalArrayValue(
@@ -462,7 +462,7 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public function tearDown() {
+	public function tearDown() : void {
 		Title::clearCaches();
 		parent::tearDown();
 	}

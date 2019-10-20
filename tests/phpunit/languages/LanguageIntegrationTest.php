@@ -20,7 +20,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		);
 	}
 
-	public function setUp() {
+	public function setUp() : void {
 		global $wgHooks;
 
 		parent::setUp();

@@ -8,7 +8,7 @@ class ZipDirectoryReaderTest extends MediaWikiIntegrationTestCase {
 	protected $zipDir;
 	protected $entries;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->zipDir = __DIR__ . '/../../data/zip';
 	}

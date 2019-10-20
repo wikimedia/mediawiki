@@ -7,7 +7,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class SanitizerTest extends MediaWikiTestCase {
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		MWTidy::destroySingleton();
 		parent::tearDown();
 	}

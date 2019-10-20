@@ -76,7 +76,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 		return new HashConfig( self::getSettings() );
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		ResourceLoader::clearCache();

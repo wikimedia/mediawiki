@@ -25,7 +25,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	/** @var BagOStuff */
 	private $internalCache;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->cache = new WANObjectCache( [

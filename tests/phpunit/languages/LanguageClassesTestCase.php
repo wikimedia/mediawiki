@@ -48,7 +48,7 @@ abstract class LanguageClassesTestCase extends MediaWikiTestCase {
 	/**
 	 * Create a new language object before each test.
 	 */
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$found = preg_match( '/Language(.+)Test/', static::class, $m );
 		if ( $found ) {
@@ -71,7 +71,7 @@ abstract class LanguageClassesTestCase extends MediaWikiTestCase {
 	 * Delete the internal language object so each test start
 	 * out with a fresh language instance.
 	 */
-	protected function tearDown() {
+	protected function tearDown() : void {
 		unset( $this->languageObject );
 		parent::tearDown();
 	}

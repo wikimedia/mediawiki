@@ -39,7 +39,7 @@ class MagicVariableTest extends MediaWikiTestCase {
 	];
 
 	/** setup a basic parser object */
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$contLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );

@@ -10,7 +10,7 @@ use MediaWiki\MediaWikiServices;
 class LocalIdLookupTest extends MediaWikiTestCase {
 	private $localUsers = [];
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setGroupPermissions( 'local-id-lookup-test', 'hideuser', true );
