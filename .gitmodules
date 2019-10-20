@@ -1023,18 +1023,18 @@
 [submodule "extensions/ImageRating"]
 	path = extensions/ImageRating
 	url = https://github.com/wikimedia/mediawiki-extensions-ImageRating.git
-		branch = REL1_33
-		ignore = dirty
+	branch = REL1_33
+	ignore = dirty
 [submodule "extensions/RandomImage"]
 	path = extensions/RandomImage
 	url = https://github.com/wikimedia/mediawiki-extensions-RandomImage.git
-		branch = REL1_33
-		ignore = dirty
+	branch = REL1_33
+	ignore = dirty
 [submodule "extensions/PollNY"]
 	path = extensions/PollNY
 	url = https://github.com/wikimedia/mediawiki-extensions-PollNY.git
-		branch = master
-		ignore = dirty
+	branch = master
+	ignore = dirty
 [submodule "extensions/WikimediaIncubator"]
 	path = extensions/WikimediaIncubator
 	url = https://github.com/wikimedia/mediawiki-extensions-WikimediaIncubator
@@ -1114,12 +1114,12 @@
 	path = extensions/IncidentReporting
 	url = https://github.com/miraheze/IncidentReporting
 	branch = master
-		ignore = dirty
+	ignore = dirty
 [submodule "extensions/NumberedHeadings"]
 	path = extensions/NumberedHeadings
 	url = https://github.com/staspika/mediawiki-numberedheadings
 	branch = master
-		ignore = dirty
+	ignore = dirty
 [submodule "extensions/CirrusSearch"]
 	path = extensions/CirrusSearch
 	url = https://github.com/wikimedia/mediawiki-extensions-CirrusSearch.git
@@ -1188,23 +1188,29 @@
 	path = extensions/HeaderFooter
 	url = https://github.com/enterprisemediawiki/HeaderFooter.git
 	branch = master
+	ignore = dirty
 [submodule "extensions/AutoCreatePage"]
 	path = extensions/AutoCreatePage
 	url = https://github.com/mkroetzsch/AutoCreatePage
 	branch = master
+	ignore = dirty
 [submodule "extensions/LastModified"]
 	path = extensions/LastModified
 	url = https://github.com/wikimedia/mediawiki-extensions-LastModified
 	branch = REL1_33
+	ignore = dirty
 [submodule "extensions/CreatePageUw"]
 	path = extensions/CreatePageUw
 	url = https://github.com/wikimedia/mediawiki-extensions-CreatePageUw
 	branch = REL1_33
+	ignore = dirty
 [submodule "extensions/RecentChangesLogFilter"]
 	path = extensions/RecentChangesLogFilter
 	url = https://github.com/poke/mediawiki-RecentChangesLogFilter
 	branch = master
+	ignore = dirty
 [submodule "extensions/ParsoidBatchAPI"]
 	path = extensions/ParsoidBatchAPI
 	url = https://github.com/wikimedia/mediawiki-extensions-ParsoidBatchAPI
 	branch = REL1_33
+	ignore = dirty
