@@ -1204,3 +1204,7 @@
 	path = extensions/RecentChangesLogFilter
 	url = https://github.com/poke/mediawiki-RecentChangesLogFilter
 	branch = master
+[submodule "extensions/ParsoidBatchAPI"]
+	path = extensions/ParsoidBatchAPI
+	url = https://github.com/wikimedia/mediawiki-extensions-ParsoidBatchAPI
+	branch = REL1_33
