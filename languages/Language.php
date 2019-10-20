@@ -1033,6 +1033,7 @@ class Language {
 	 *
 	 * @throws MWException
 	 * @return string
+	 * @return-taint tainted
 	 */
 	public function sprintfDate( $format, $ts, DateTimeZone $zone = null, &$ttl = 'unused' ) {
 		$s = '';
