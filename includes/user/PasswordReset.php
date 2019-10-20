@@ -179,9 +179,18 @@ class PasswordReset implements LoggerAwareInterface {
 			if ( !Sanitizer::validateEmail( $email ) ) {
 				return StatusValue::newFatal( 'passwordreset-invalidemail' );
 			}
+			// Only email was provided
 			$method = 'email';
 			$users = $this->getUsersByEmail( $email );
 			$username = null;
+			// Remove users whose preference 'requireemail' is on since username was not submitted
+			if ( $this->config->get( 'AllowRequiringEmailForResets' ) ) {
+				foreach ( $users as $index => $user ) {
+					if ( $user->getBoolOption( 'requireemail' ) ) {
+						unset( $users[$index] );
+					}
+				}
+			}
 		} else {
 			// The user didn't supply any data
 			return StatusValue::newFatal( 'passwordreset-nodata' );
@@ -197,8 +206,9 @@ class PasswordReset implements LoggerAwareInterface {
 		if ( !Hooks::run( 'SpecialPasswordResetOnSubmit', [ &$users, $data, &$error ] ) ) {
 			return StatusValue::newFatal( Message::newFromSpecifier( $error ) );
 		}
-
-		$firstUser = $users[0] ?? null;
+		// Use 'reset' since users[ 0 ] might not exist because users with 'requireemail' option
+		// turned on might have been unset from users array
+		$firstUser = reset( $users ) ?? null;
 		$requireEmail = $this->config->get( 'AllowRequiringEmailForResets' )
 			&& $method === 'username'
 			&& $firstUser
@@ -240,7 +250,7 @@ class PasswordReset implements LoggerAwareInterface {
 		}
 
 		if ( $requireEmail && $firstUser->getEmail() !== $email ) {
-			// Pretend everything's fine to avoid disclosure
+			// Pretend everything's fine to avoid disclosure but do not send email
 			return StatusValue::newGood();
 		}
 
