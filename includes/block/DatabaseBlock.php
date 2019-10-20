@@ -211,7 +211,7 @@ class DatabaseBlock extends AbstractBlock {
 			&& $this->getHideName() == $block->getHideName()
 			&& $this->isEmailBlocked() == $block->isEmailBlocked()
 			&& $this->isUsertalkEditAllowed() == $block->isUsertalkEditAllowed()
-			&& $this->getReason() == $block->getReason()
+			&& $this->getReasonComment()->text == $block->getReasonComment()->text
 			&& $this->isSitewide() == $block->isSitewide()
 			// DatabaseBlock::getRestrictions() may perform a database query, so
 			// keep it at the end.
@@ -436,7 +436,7 @@ class DatabaseBlock extends AbstractBlock {
 		$this->setReason(
 			CommentStore::getStore()
 			// Legacy because $row may have come from self::selectFields()
-			->getCommentLegacy( $db, 'ipb_reason', $row )->text
+			->getCommentLegacy( $db, 'ipb_reason', $row )
 		);
 
 		$this->isHardblock( !$row->ipb_anon_only );
@@ -657,7 +657,7 @@ class DatabaseBlock extends AbstractBlock {
 			'ipb_allow_usertalk'   => $this->isUsertalkEditAllowed(),
 			'ipb_parent_block_id'  => $this->mParentBlockId,
 			'ipb_sitewide'         => $this->isSitewide(),
-		] + CommentStore::getStore()->insert( $dbw, 'ipb_reason', $this->getReason() )
+		] + CommentStore::getStore()->insert( $dbw, 'ipb_reason', $this->getReasonComment() )
 			+ ActorMigration::newMigration()->getInsertValues( $dbw, 'ipb_by', $this->getBlocker() );
 
 		return $a;
@@ -673,7 +673,7 @@ class DatabaseBlock extends AbstractBlock {
 			'ipb_deleted'          => (int)$this->getHideName(), // typecast required for SQLite
 			'ipb_allow_usertalk'   => $this->isUsertalkEditAllowed(),
 			'ipb_sitewide'         => $this->isSitewide(),
-		] + CommentStore::getStore()->insert( $dbw, 'ipb_reason', $this->getReason() )
+		] + CommentStore::getStore()->insert( $dbw, 'ipb_reason', $this->getReasonComment() )
 			+ ActorMigration::newMigration()->getInsertValues( $dbw, 'ipb_by', $this->getBlocker() );
 	}
 
@@ -847,8 +847,7 @@ class DatabaseBlock extends AbstractBlock {
 		$autoblock->setTarget( $autoblockIP );
 		$autoblock->setBlocker( $this->getBlocker() );
 		$autoblock->setReason(
-			wfMessage( 'autoblocker', $this->getTarget(), $this->getReason() )
-				->inContentLanguage()->plain()
+			wfMessage( 'autoblocker', $this->getTarget(), $this->getReasonComment()->text )
 		);
 		$timestamp = wfTimestampNow();
 		$autoblock->setTimestamp( $timestamp );
@@ -978,6 +977,17 @@ class DatabaseBlock extends AbstractBlock {
 			default:
 				throw new MWException( "Block with invalid type" );
 		}
+	}
+
+	/**
+	 * @inheritDoc
+	 * @deprecated since 1.35. Use getReasonComment instead.
+	 */
+	public function getReason() {
+		if ( $this->getType() === self::TYPE_AUTO ) {
+			return $this->reason->message->inContentLanguage()->plain();
+		}
+		return $this->reason->text;
 	}
 
 	/**

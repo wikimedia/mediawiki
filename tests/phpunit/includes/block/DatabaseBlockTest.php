@@ -445,7 +445,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $exCount, count( $xffblocks ), 'Number of blocks for ' . $xff );
 		$block = DatabaseBlock::chooseBlock( $xffblocks, $list );
 		$this->assertEquals(
-			$exResult, $block->getReason(), 'Correct block type for XFF header ' . $xff
+			$exResult, $block->getReasonComment()->text, 'Correct block type for XFF header ' . $xff
 		);
 	}
 

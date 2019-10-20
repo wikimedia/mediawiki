@@ -1342,9 +1342,10 @@ class ApiBaseTest extends ApiTestCase {
 			'expiry' => time() + 100500,
 		] );
 		$block->insert();
-		$userInfoTrait = TestingAccessWrapper::newFromObject(
-			$this->getMockForTrait( ApiBlockInfoTrait::class )
-		);
+
+		$mockTrait = $this->getMockForTrait( ApiBlockInfoTrait::class );
+		$mockTrait->method( 'getLanguage' )->willReturn( 'en' );
+		$userInfoTrait = TestingAccessWrapper::newFromObject( $mockTrait );
 		$blockinfo = [ 'blockinfo' => $userInfoTrait->getBlockDetails( $block ) ];
 
 		$expect = Status::newGood();
@@ -1400,9 +1401,10 @@ class ApiBaseTest extends ApiTestCase {
 			'expiry' => time() + 100500,
 		] );
 		$block->insert();
-		$userInfoTrait = TestingAccessWrapper::newFromObject(
-			$this->getObjectForTrait( ApiBlockInfoTrait::class )
-		);
+
+		$mockTrait = $this->getMockForTrait( ApiBlockInfoTrait::class );
+		$mockTrait->method( 'getLanguage' )->willReturn( 'en' );
+		$userInfoTrait = TestingAccessWrapper::newFromObject( $mockTrait );
 		$blockinfo = [ 'blockinfo' => $userInfoTrait->getBlockDetails( $block ) ];
 
 		$expect = Status::newGood();

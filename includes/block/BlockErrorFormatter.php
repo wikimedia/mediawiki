@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Block;
 
+use CommentStoreComment;
 use Language;
 use Message;
 use User;
@@ -72,7 +73,7 @@ class BlockErrorFormatter {
 			'targetName' => (string)$block->getTarget(),
 			'blockerName' => $block->getByName(),
 			'blockerId' => $block->getBy(),
-			'reason' => $block->getReason(),
+			'reason' => $block->getReasonComment(),
 			'expiry' => $block->getExpiry(),
 			'timestamp' => $block->getTimestamp(),
 		];
@@ -82,6 +83,7 @@ class BlockErrorFormatter {
 	 * Get a standard set of block details for building a block error message,
 	 * formatted for a specified user and language.
 	 *
+	 * @since 1.35
 	 * @param AbstractBlock $block
 	 * @param User $user
 	 * @param Language $language
@@ -105,16 +107,18 @@ class BlockErrorFormatter {
 	}
 
 	/**
-	 * @param string $reason
+	 * Format the block reason as plain wikitext in the specified language.
+	 *
+	 * @param CommentStoreComment $reason
 	 * @param Language $language
 	 * @return string
 	 */
-	private function formatBlockReason( $reason, Language $language ) {
-		if ( $reason === '' ) {
+	private function formatBlockReason( CommentStoreComment $reason, Language $language ) {
+		if ( $reason->text === '' ) {
 			$message = new Message( 'blockednoreason', [], $language );
 			return $message->text();
 		}
-		return $reason;
+		return $reason->message->inLanguage( $language )->plain();
 	}
 
 	/**
