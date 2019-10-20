@@ -30,7 +30,7 @@
 	"tog-oldsig": "Your existing signature:",
 	"tog-fancysig": "Treat signature as wikitext (without an automatic link)",
 	"tog-uselivepreview": "Show previews without reloading the page",
-	"tog-forceeditsummary": "Prompt me when entering a blank edit summary",
+	"tog-forceeditsummary": "Prompt me when entering a blank edit summary (or the default undo summary)",
 	"tog-watchlisthideown": "Hide my edits from the watchlist",
 	"tog-watchlisthidebots": "Hide bot edits from the watchlist",
 	"tog-watchlisthideminor": "Hide minor edits from the watchlist",
