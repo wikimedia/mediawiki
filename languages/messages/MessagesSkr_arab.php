@@ -6,6 +6,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Sraiki
  */
 
 $fallback = 'ur, pnb';
@@ -25,3 +26,24 @@ $digitTransformTable = [
 	'9' => '٩', # U+0669
 	'%' => '٪', # U+066a
 ];
+
+$namespaceNames = [
+	NS_MEDIA            => 'میڈیا',
+	NS_SPECIAL          => 'خاص',
+	NS_TALK             => 'ڳالھ_مہاڑ',
+	NS_USER             => 'ورتݨ_آلا',
+	NS_USER_TALK        => 'ورتݨ_آلے_دی_ڳالھ_مہاڑ',
+	NS_PROJECT_TALK     => '$1_ڳالھ_مہاڑ',
+	NS_FILE             => 'فائل',
+	NS_FILE_TALK        => 'فائل_ڳالھ_مہاڑ',
+	NS_MEDIAWIKI        => 'میڈیا_وکی',
+	NS_MEDIAWIKI_TALK   => 'میڈیا_وکی_ڳالھ_مہاڑ',
+	NS_TEMPLATE         => 'سانچہ',
+	NS_TEMPLATE_TALK    => 'سانچہ_ڳالھ_مہاڑ',
+	NS_HELP             => 'مدد',
+	NS_HELP_TALK        => 'مدد_ڳالھ_مہاڑ',
+	NS_CATEGORY         => 'ونکی',
+	NS_CATEGORY_TALK    => 'ونکی_ڳالھ_مہاڑ',
+];
+
+$linkTrail = "/^([ابپتٹثجچحخدڈذرڑزژسشصضطظعغفقکگلمنںوؤہھیئےآأءۃٻڄݙڋڰڳݨ]+)(.*)$/sDu";
