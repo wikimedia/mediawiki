@@ -30,7 +30,7 @@
 		"liuggio/statsd-php-client": "1.0.18",
 		"oojs/oojs-ui": "0.35.1",
 		"pear/mail": "1.4.1",
-		"pear/mail_mime": "1.10.2",
+		"pear/mail_mime": "1.10.4",
 		"pear/net_smtp": "1.8.1",
 		"php": ">=7.2.9",
 		"psr/container": "1.0.0",
