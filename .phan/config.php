@@ -92,6 +92,9 @@ $cfg['exclude_analysis_directory_list'] = [
 // @todo Enable when the issue above is resolved and we update our config!
 $cfg['redundant_condition_detection'] = false;
 
+// @fixme TEMPORARY, remove this
+unset( $cfg['plugins'][ array_search( 'UnusedSuppressionPlugin', $cfg['plugins'] ) ] );
+
 // Do not use aliases in core.
 // Use the correct name, because we don't need backward compatibility
 $cfg['enable_class_alias_support'] = false;

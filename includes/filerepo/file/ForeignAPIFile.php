@@ -196,6 +196,7 @@ class ForeignAPIFile extends File {
 		if ( !is_array( $metadata ) ) {
 			return $metadata;
 		}
+		'@phan-var array[] $metadata';
 		$ret = [];
 		foreach ( $metadata as $meta ) {
 			$ret[$meta['name']] = self::parseMetadata( $meta['value'] );

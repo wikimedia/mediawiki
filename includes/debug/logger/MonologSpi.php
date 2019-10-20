@@ -122,7 +122,7 @@ class MonologSpi implements Spi {
 
 	/**
 	 * Configuration for creating new loggers.
-	 * @var array[] $config
+	 * @var array[][] $config
 	 */
 	protected $config;
 

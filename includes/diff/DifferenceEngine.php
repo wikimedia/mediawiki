@@ -1474,6 +1474,7 @@ class DifferenceEngine extends ContextSource {
 			$users = $this->mNewPage->getAuthorsBetween( $oldRev, $newRev, $limit );
 			$numUsers = count( $users );
 
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable False positive
 			if ( $numUsers == 1 && $users[0] == $newRev->getUserText( RevisionRecord::RAW ) ) {
 				$numUsers = 0; // special case to say "by the same user" instead of "by one other user"
 			}

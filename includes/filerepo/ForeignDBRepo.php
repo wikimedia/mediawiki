@@ -67,6 +67,7 @@ class ForeignDBRepo extends LocalRepo {
 	 */
 	function __construct( $info ) {
 		parent::__construct( $info );
+		'@phan-var array $info';
 		$this->dbType = $info['dbType'];
 		$this->dbServer = $info['dbServer'];
 		$this->dbUser = $info['dbUser'];

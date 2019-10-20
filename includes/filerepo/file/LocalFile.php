@@ -1650,6 +1650,7 @@ class LocalFile extends File {
 			new AutoCommitUpdate(
 				$dbw,
 				__METHOD__,
+				/** @suppress PhanTypeArraySuspiciousNullable False positives with $this->status->value */
 				function () use (
 					$reupload, $wikiPage, $newPageContent, $comment, $user,
 					$logEntry, $logId, $descId, $tags, $fname
