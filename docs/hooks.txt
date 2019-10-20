@@ -1730,6 +1730,9 @@ $context: IContextSource
 'GetUserBlock': Modify the block found by the block manager. This may be a
 single block or a composite block made from multiple blocks; the original
 blocks can be seen using CompositeBlock::getOriginalBlocks()
+$user: User targeted by the block
+$ip: string|null The IP of the current request if $user is the current user
+  and they're not exempted from IP blocks. Null otherwise.
 &$block: AbstractBlock object
 
 'getUserPermissionsErrors': Add a permissions error when permissions errors are
