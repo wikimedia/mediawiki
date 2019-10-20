@@ -1182,7 +1182,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * The result must have the same number of items as the input.
 	 * An exception is thrown if an unsupported operation is requested.
 	 *
-	 * @param array $ops Same format as doOperations()
+	 * @param array[] $ops Same format as doOperations()
 	 * @return FileOp[] List of FileOp objects
 	 * @throws FileBackendError
 	 */

@@ -178,6 +178,7 @@ class MySQLMasterPos implements DBMasterPos {
 	 * @since 1.31
 	 */
 	public function getLogFile() {
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		return $this->gtids ? null : "{$this->binLog}.{$this->logPos[self::CORD_INDEX]}";
 	}
 
@@ -351,6 +352,7 @@ class MySQLMasterPos implements DBMasterPos {
 	public function __toString() {
 		return $this->gtids
 			? implode( ',', $this->gtids )
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			: $this->getLogFile() . "/{$this->logPos[self::CORD_EVENT]}";
 	}
 }

@@ -156,7 +156,7 @@ class VirtualRESTServiceClient {
 	 *     list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $responses[0];
 	 * @endcode
 	 *
-	 * @param array $reqs Map of Virtual HTTP request maps
+	 * @param array[] $reqs Map of Virtual HTTP request maps
 	 * @return array $reqs Map of corresponding response values with the same keys/order
 	 * @throws Exception
 	 */

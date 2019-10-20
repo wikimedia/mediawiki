@@ -59,6 +59,7 @@ class FakeResultWrapper implements IResultWrapper {
 	}
 
 	public function current() {
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		$row = $this->valid() ? $this->result[$this->pos] : false;
 
 		return is_array( $row ) ? (object)$row : $row;

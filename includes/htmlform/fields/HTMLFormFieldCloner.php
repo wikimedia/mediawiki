@@ -211,6 +211,10 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		return $ret;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @phan-param array[] $values
+	 */
 	public function cancelSubmit( $values, $alldata ) {
 		if ( isset( $values['nonjs'] ) ) {
 			return true;
@@ -231,6 +235,10 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		return parent::cancelSubmit( $values, $alldata );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @phan-param array[] $values
+	 */
 	public function validate( $values, $alldata ) {
 		if ( isset( $this->mParams['required'] )
 			&& $this->mParams['required'] !== false

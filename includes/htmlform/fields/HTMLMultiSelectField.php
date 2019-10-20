@@ -162,6 +162,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 				$optionsOouiSections
 			);
 		}
+		'@phan-var array[] $optionsOouiSections';
 
 		$out = [];
 		foreach ( $optionsOouiSections as $sectionLabel => $optionsOoui ) {

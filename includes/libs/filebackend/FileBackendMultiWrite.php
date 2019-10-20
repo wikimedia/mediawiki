@@ -399,6 +399,7 @@ class FileBackendMultiWrite extends FileBackend {
 					if (
 						$resyncMode === 'conservative' &&
 						$cloneStat &&
+						// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 						$cloneStat['mtime'] > $masterStat['mtime']
 					) {
 						// Do not replace files with older ones; reduces the risk of data loss
@@ -527,7 +528,7 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	/**
-	 * @param array $ops File operations for FileBackend::doOperations()
+	 * @param array[] $ops File operations for FileBackend::doOperations()
 	 * @return bool Whether there are file path sources with outside lifetime/ownership
 	 */
 	protected function hasVolatileSources( array $ops ) {

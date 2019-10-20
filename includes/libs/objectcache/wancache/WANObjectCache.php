@@ -1327,8 +1327,10 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 
 		// Get the current key value and its metadata
 		$curTTL = self::PASS_BY_REF;
-		$curInfo = self::PASS_BY_REF; /** @var array $curInfo */
+		$curInfo = self::PASS_BY_REF;
 		$curValue = $this->get( $key, $curTTL, $checkKeys, $curInfo );
+		/** @var array $curInfo */
+		'@phan-var array $curInfo';
 		// Apply any $touchedCb invalidation timestamp to get the "last purge timestamp"
 		list( $curTTL, $LPT ) = $this->resolveCTL( $curValue, $curTTL, $curInfo, $touchedCb );
 		// Use the cached value if it exists and is not due for synchronous regeneration
