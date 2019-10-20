@@ -419,6 +419,7 @@ abstract class Skin extends ContextSource {
 	 * @return array
 	 */
 	public static function getDynamicStylesheetQuery() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return [
 				'action' => 'raw',
 				'ctype' => 'text/css',
@@ -1202,8 +1203,10 @@ abstract class Skin extends ContextSource {
 	 * @param string $name
 	 * @param string|string[] $urlaction
 	 * @return string
+	 * @deprecated since 1.35, no longer used
 	 */
 	static function makeI18nUrl( $name, $urlaction = '' ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$title = Title::newFromText( wfMessage( $name )->inContentLanguage()->text() );
 		self::checkTitle( $title, $name );
 		return $title->getLocalURL( $urlaction );
@@ -1241,8 +1244,10 @@ abstract class Skin extends ContextSource {
 	 * @param string|string[] $urlaction
 	 * @param int $namespace
 	 * @return string
+	 * @deprecated since 1.35, no longer used
 	 */
 	static function makeNSUrl( $name, $urlaction = '', $namespace = NS_MAIN ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$title = Title::makeTitleSafe( $namespace, $name );
 		self::checkTitle( $title, $name );
 

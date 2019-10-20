@@ -139,6 +139,7 @@ because of Phabricator reports.
   MediaWikiServices instead to get a LanguageFactory.
 * OutputPage::getCSPNonce() is deprecated, use OutputPage::getCSP()->getNonce()
   instead.
+* Skin::makeI18nUrl() and makeNSUrl() have been deprecated, no longer used.
 * …
 
 === Other changes in 1.35 ===
