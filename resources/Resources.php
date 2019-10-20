@@ -2381,15 +2381,6 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	// Lightweight module for text styles
-	'mediawiki.ui.text' => [
-		'skinStyles' => [
-			'default' => [
-				'resources/src/mediawiki.ui/components/text.less',
-			],
-		],
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 
 	'mediawiki.widgets' => [
 		'scripts' => [
