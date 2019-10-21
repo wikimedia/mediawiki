@@ -39,7 +39,6 @@
 			throw new Error( 'Invalid action' );
 		}
 
-		// message keys 'watch', 'watching', 'unwatch' or 'unwatching'.
 		msgKey = state === 'loading' ? action + 'ing' : action;
 		otherAction = action === 'watch' ? 'unwatch' : 'watch';
 		$li = $link.closest( 'li' );
@@ -53,6 +52,11 @@
 		}
 
 		$link
+			// The following messages can be used here:
+			// * watch
+			// * watching
+			// * unwatch
+			// * unwatching
 			.text( mw.msg( msgKey ) )
 			.attr( 'title', mw.msg( 'tooltip-ca-' + action ) )
 			.updateTooltipAccessKeys()
@@ -178,6 +182,11 @@
 						message = action === 'watch' ? 'addedwatchtext' : 'removedwatchtext';
 					}
 
+					// The following messages can be used here:
+					// * addedwatchtext-talk
+					// * addedwatchtest
+					// * removedwatchtext-talk
+					// * removedwatchtext
 					mw.notify( mw.message( message, mwTitle.getPrefixedText() ).parseDom(), {
 						tag: 'watch-self'
 					} );

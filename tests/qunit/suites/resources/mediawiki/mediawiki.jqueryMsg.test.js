@@ -765,6 +765,7 @@
 			var message;
 			outerCalled = false;
 			innerCalled = false;
+			// eslint-disable-next-line mediawiki/msg-doc
 			message = mw.message( key );
 			message[ format ]();
 			assert.strictEqual( outerCalled, shouldCall, 'Outer function called for ' + key );
@@ -1212,6 +1213,7 @@
 		for ( i = 0; i < cases.length; i++ ) {
 			mw.messages.set( cases[ i ].key, cases[ i ].msg );
 			assert.strictEqual(
+				// eslint-disable-next-line mediawiki/msg-doc
 				mw.message( cases[ i ].key, $( '<b>' ).text( 'x' ) ).parse(),
 				cases[ i ].expected,
 				cases[ i ].key

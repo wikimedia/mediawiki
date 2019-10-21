@@ -120,6 +120,8 @@ ChangesListWrapperWidget.prototype.onModelUpdate = function (
 						.text( mw.message( 'rcfilters-noresults-conflict' ).text() ),
 					$( '<div>' )
 						.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results-message' )
+						// TODO: Document possible messages
+						// eslint-disable-next-line mediawiki/msg-doc
 						.text( mw.message( conflictItem.getCurrentConflictResultMessage() ).text() )
 				);
 		} else {
@@ -127,6 +129,12 @@ ChangesListWrapperWidget.prototype.onModelUpdate = function (
 				.append(
 					$( '<div>' )
 						.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results-noresult' )
+						// The following messages can be used here:
+						// * recentchanges-noresult
+						// * recentchanges-timeout
+						// * recentchanges-network
+						// * recentchanges-notargetpage
+						// * allpagesbadtitle
 						.text( mw.msg( this.getMsgKeyForNoResults( noResultsDetails ) ) )
 				);
 
