@@ -21,6 +21,12 @@
 
 /**
  * Generic list for change tagging.
+ *
+ * @property ChangeTagsLogItem $current
+ * @method ChangeTagsLogItem next()
+ * @method ChangeTagsLogItem reset()
+ * @method ChangeTagsLogItem current()
+ * @phan-file-suppress PhanParamSignatureMismatch
  */
 abstract class ChangeTagsList extends RevisionListBase {
 	function __construct( IContextSource $context, Title $title, array $ids ) {
@@ -68,7 +74,7 @@ abstract class ChangeTagsList extends RevisionListBase {
 	 *
 	 * @param array $tagsToAdd
 	 * @param array $tagsToRemove
-	 * @param array $params
+	 * @param string|null $params
 	 * @param string $reason
 	 * @param User $user
 	 * @return Status

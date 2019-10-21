@@ -82,8 +82,6 @@ abstract class PasswordTestCase extends MediaWikiTestCase {
 		$invalid = $this->passwordFactory->newFromCiphertext( null );
 		$normal = $this->passwordFactory->newFromCiphertext( $hash );
 
-		$this->assertFalse( $invalid->equals( $normal ) );
-		$this->assertFalse( $normal->equals( $invalid ) );
 		$this->assertFalse( $invalid->verify( $hash ) );
 	}
 

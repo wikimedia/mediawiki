@@ -1,6 +1,6 @@
 <?php
 /**
- * A Block restriction object of type 'Page'.
+ * A block restriction object of type 'Page'.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -87,7 +87,9 @@ class PageRestriction extends AbstractRestriction {
 	 * @inheritDoc
 	 */
 	public static function newFromRow( \stdClass $row ) {
+		/** @var self $restriction */
 		$restriction = parent::newFromRow( $row );
+		'@phan-var self $restriction';
 
 		// If the page_namespace and the page_title were provided, add the title to
 		// the restriction.

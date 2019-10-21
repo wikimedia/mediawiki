@@ -137,4 +137,66 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 		$actualType = $this->doGuessMimeType( [ $file, 'doc' ] );
 		$this->assertEquals( 'application/msword', $actualType );
 	}
+
+	/**
+	 * @covers MimeAnalyzer::detectZipType
+	 * @dataProvider provideOpendocumentsformatHeaders
+	 */
+	function testDetectZipTypeRecognizesOpendocuments( $expected, $header ) {
+		$this->assertEquals(
+			$expected,
+			$this->mimeAnalyzer->detectZipType( $header )
+		);
+	}
+
+	/**
+	 * An ODF file is a ZIP file of multiple files. The first one being
+	 * 'mimetype' and is not compressed.
+	 */
+	function provideOpendocumentsformatHeaders() {
+		$thirtychars = str_repeat( 0, 30 );
+		return [
+			'Database front end document header based on ODF 1.2' => [
+				'application/vnd.oasis.opendocument.base',
+				$thirtychars . 'mimetypeapplication/vnd.oasis.opendocument.basePK',
+			],
+		];
+	}
+
+	function providePngZipConfusion() {
+		return [
+			[
+				'An invalid ZIP file due to the signature being too close to the ' .
+					'end to accomodate an EOCDR',
+				'zip-sig-near-end.png',
+				'image/png',
+			],
+			[
+				'An invalid ZIP file due to the comment length running beyond the ' .
+					'end of the file',
+				'zip-comment-overflow.png',
+				'image/png',
+			],
+			[
+				'A ZIP file similar to the above, but without either of those two ' .
+					'problems. Not a valid ZIP file, but it passes MimeAnalyzer\'s ' .
+					'definition of a ZIP file. This is mostly a sanity check of the ' .
+					'above two tests.',
+				'zip-kind-of-valid.png',
+				'application/zip',
+			],
+			[
+				'As above with non-zero comment length',
+				'zip-kind-of-valid-2.png',
+				'application/zip',
+			],
+		];
+	}
+
+	/** @dataProvider providePngZipConfusion */
+	function testPngZipConfusion( $description, $fileName, $expectedType ) {
+		$file = __DIR__ . '/../../../data/media/' . $fileName;
+		$actualType = $this->doGuessMimeType( [ $file, 'png' ] );
+		$this->assertEquals( $expectedType, $actualType, $description );
+	}
 }

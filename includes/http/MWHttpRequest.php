@@ -46,6 +46,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	protected $sslVerifyCert = true;
 	protected $caInfo = null;
 	protected $method = "GET";
+	/** @var array */
 	protected $reqHeaders = [];
 	protected $url;
 	protected $parsedUrl;
@@ -63,6 +64,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	protected $headerList = [];
 	protected $respVersion = "0.9";
 	protected $respStatus = "200 Ok";
+	/** @var string[][] */
 	protected $respHeaders = [];
 
 	/** @var StatusValue */
@@ -85,7 +87,10 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 
 	/**
 	 * @param string $url Url to use. If protocol-relative, will be expanded to an http:// URL
-	 * @param array $options (optional) extra params to pass (see Http::request())
+	 * @param array $options (optional) extra params to pass (see HttpRequestFactory::create())
+	 * @codingStandardsIgnoreStart
+	 * @phan-param array{timeout?:int|string,connectTimeout?:int|string,postData?:array,proxy?:string,noProxy?:bool,sslVerifyHost?:bool,sslVerifyCert?:bool,caInfo?:string,maxRedirects?:int,followRedirects?:bool,userAgent?:string,logger?:LoggerInterface,username?:string,password?:string,originalRequest?:WebRequest|array{ip:string,userAgent:string},method?:string} $options
+	 * @codingStandardsIgnoreEnd
 	 * @param string $caller The method making this request, for profiling
 	 * @param Profiler|null $profiler An instance of the profiler for profiling, or null
 	 * @throws Exception
@@ -139,6 +144,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 				// ensure that MWHttpRequest::method is always
 				// uppercased. T38137
 				if ( $o == 'method' ) {
+					// @phan-suppress-next-line PhanTypeInvalidDimOffset
 					$options[$o] = strtoupper( $options[$o] );
 				}
 				$this->$o = $options[$o];
@@ -172,9 +178,9 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 
 	/**
 	 * Generate a new request object
-	 * Deprecated: @see HttpRequestFactory::create
+	 * @deprecated since 1.34, use HttpRequestFactory instead
 	 * @param string $url Url to use
-	 * @param array|null $options (optional) extra params to pass (see Http::request())
+	 * @param array|null $options (optional) extra params to pass (see HttpRequestFactory::create())
 	 * @param string $caller The method making this request, for profiling
 	 * @throws DomainException
 	 * @return MWHttpRequest
@@ -224,7 +230,8 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 		if ( self::isLocalURL( $this->url ) || $this->noProxy ) {
 			$this->proxy = '';
 		} else {
-			$this->proxy = Http::getProxy();
+			global $wgHTTPProxy;
+			$this->proxy = (string)$wgHTTPProxy;
 		}
 	}
 
@@ -365,7 +372,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	/**
 	 * Take care of whatever is necessary to perform the URI request.
 	 *
-	 * @return StatusValue
+	 * @return Status
 	 * @note currently returns Status for B/C
 	 */
 	public function execute() {
@@ -661,5 +668,28 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 
 		$this->reqHeaders['X-Forwarded-For'] = $originalRequest['ip'];
 		$this->reqHeaders['X-Original-User-Agent'] = $originalRequest['userAgent'];
+	}
+
+	/**
+	 * Check that the given URI is a valid one.
+	 *
+	 * This hardcodes a small set of protocols only, because we want to
+	 * deterministically reject protocols not supported by all HTTP-transport
+	 * methods.
+	 *
+	 * "file://" specifically must not be allowed, for security reasons
+	 * (see <https://www.mediawiki.org/wiki/Special:Code/MediaWiki/r67684>).
+	 *
+	 * @todo FIXME this is wildly inaccurate and fails to actually check most stuff
+	 *
+	 * @since 1.34
+	 * @param string $uri URI to check for validity
+	 * @return bool
+	 */
+	public static function isValidURI( $uri ) {
+		return (bool)preg_match(
+			'/^https?:\/\/[^\/\s]\S*$/D',
+			$uri
+		);
 	}
 }

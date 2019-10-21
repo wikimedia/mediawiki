@@ -87,7 +87,8 @@ TEXT
 
 		$this->outputStatus( 'Done!' );
 		if ( $this->hasOption( 'fix' ) ) {
-			$this->outputStatus( ' Cleaned up invalid DB keys on ' . wfWikiID() . "!\n" );
+			$dbDomain = WikiMap::getCurrentWikiDbDomain()->getId();
+			$this->outputStatus( " Cleaned up invalid DB keys on $dbDomain!\n" );
 		}
 	}
 

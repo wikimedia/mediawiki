@@ -20,6 +20,8 @@
  * @file
  * @ingroup Deployment
  */
+
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LBFactorySingle;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
@@ -37,8 +39,6 @@ abstract class DatabaseInstaller {
 	/**
 	 * The Installer object.
 	 *
-	 * @todo Naming this parent is confusing, 'installer' would be clearer.
-	 *
 	 * @var WebInstaller
 	 */
 	public $parent;
@@ -51,7 +51,7 @@ abstract class DatabaseInstaller {
 	/**
 	 * @var string Set by subclasses
 	 */
-	protected static $notMiniumumVerisonMessage;
+	protected static $notMinimumVersionMessage;
 
 	/**
 	 * The database connection.
@@ -84,7 +84,7 @@ abstract class DatabaseInstaller {
 	public static function meetsMinimumRequirement( $serverVersion ) {
 		if ( version_compare( $serverVersion, static::$minimumVersion ) < 0 ) {
 			return Status::newFatal(
-				static::$notMiniumumVerisonMessage, static::$minimumVersion, $serverVersion
+				static::$notMinimumVersionMessage, static::$minimumVersion, $serverVersion
 			);
 		}
 
@@ -177,6 +177,7 @@ abstract class DatabaseInstaller {
 	 * This will return a cached connection if one is available.
 	 *
 	 * @return Status
+	 * @suppress PhanUndeclaredMethod
 	 */
 	public function getConnection() {
 		if ( $this->db ) {
@@ -341,6 +342,7 @@ abstract class DatabaseInstaller {
 	public function setupSchemaVars() {
 		$status = $this->getConnection();
 		if ( $status->isOK() ) {
+			// @phan-suppress-next-line PhanUndeclaredMethod
 			$status->value->setSchemaVars( $this->getSchemaVars() );
 		} else {
 			$msg = __METHOD__ . ': unexpected error while establishing'
@@ -361,8 +363,8 @@ abstract class DatabaseInstaller {
 			throw new MWException( __METHOD__ . ': unexpected DB connection error' );
 		}
 
-		\MediaWiki\MediaWikiServices::resetGlobalInstance();
-		$services = \MediaWiki\MediaWikiServices::getInstance();
+		MediaWikiServices::resetGlobalInstance();
+		$services = MediaWikiServices::getInstance();
 
 		$connection = $status->value;
 		$services->redefineService( 'DBLoadBalancerFactory', function () use ( $connection ) {
@@ -447,8 +449,7 @@ abstract class DatabaseInstaller {
 	 * @return string
 	 */
 	public function getReadableName() {
-		// Messages: config-type-mysql, config-type-postgres, config-type-sqlite,
-		// config-type-oracle
+		// Messages: config-type-mysql, config-type-postgres, config-type-sqlite
 		return wfMessage( 'config-type-' . $this->getName() )->text();
 	}
 
@@ -689,7 +690,7 @@ abstract class DatabaseInstaller {
 			$this->getPasswordBox( 'wgDBpassword', 'config-db-password' ) .
 			$this->parent->getHelpBox( 'config-db-web-help' );
 		if ( $noCreateMsg ) {
-			$s .= $this->parent->getWarningBox( wfMessage( $noCreateMsg )->plain() );
+			$s .= Html::warningBox( wfMessage( $noCreateMsg )->plain(), 'config-warning-box' );
 		} else {
 			$s .= $this->getCheckBox( '_CreateDBAccount', 'config-db-web-create' );
 		}

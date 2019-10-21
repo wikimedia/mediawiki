@@ -228,16 +228,8 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		}
 	}
 
-	private function getTitleFormatter() {
-		return new MediaWikiTitleCodec(
-			Language::factory( 'en' ),
-			MediaWikiServices::getInstance()->getGenderCache()
-		);
-	}
-
 	private function getPrefixedText( LinkTarget $target ) {
-		$formatter = $this->getTitleFormatter();
-		return $formatter->getPrefixedText( $target );
+		return MediaWikiServices::getInstance()->getTitleFormatter()->getPrefixedText( $target );
 	}
 
 	private function cleanTestUsersWatchlist() {
@@ -1583,7 +1575,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		$pages = array_values( $result[0]['query']['pages'] );
 
 		$this->assertCount( 1, $pages );
-		$this->assertEquals( 0, $pages[0]['ns'] );
+		$this->assertSame( 0, $pages[0]['ns'] );
 		$this->assertEquals( $this->getPrefixedText( $target ), $pages[0]['title'] );
 		$this->assertArraySubsetsEqual(
 			$pages[0]['revisions'],

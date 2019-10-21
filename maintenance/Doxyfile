@@ -50,28 +50,17 @@ TAB_SIZE               = 4
 ALIASES                = "type{1}=<b> \1 </b>:" \
                          "types{2}=<b> \1 </b> or <b> \2 </b>:" \
                          "types{3}=<b> \1 </b>, <b> \2 </b>, or <b> \3 </b>:" \
-                         "arrayof{2}=<b> Array </b> of \2" \
-                         "null=\type{Null}" \
-                         "boolean=\type{Boolean}" \
-                         "bool=\type{Boolean}" \
-                         "integer=\type{Integer}" \
-                         "int=\type{Integer}" \
-                         "string=\type{String}" \
-                         "str=\type{String}" \
-                         "mixed=\type{Mixed}" \
                          "access=\par Access:\n" \
                          "private=\access private" \
                          "protected=\access protected" \
-                         "public=\access public" \
                          "copyright=\note" \
                          "license=\note" \
+                         "inheritDoc=\inheritdoc" \
                          "codeCoverageIgnore=" \
+                         "codingStandardsIgnoreEnd=" \
                          "codingStandardsIgnoreStart=" \
-                         "group=" \
-                         "covers=" \
-                         "dataProvider=" \
-                         "expectedException=" \
-                         "expectedExceptionMessage="
+                         "phan=" \
+                         "suppress="
 TCL_SUBST              =
 OPTIMIZE_OUTPUT_FOR_C  = NO
 OPTIMIZE_OUTPUT_JAVA   = NO
@@ -118,8 +107,8 @@ SORT_GROUP_NAMES       = NO
 SORT_BY_SCOPE_NAME     = NO
 STRICT_PROTO_MATCHING  = NO
 GENERATE_TODOLIST      = YES
-GENERATE_TESTLIST      = YES
-GENERATE_BUGLIST       = YES
+GENERATE_TESTLIST      = NO
+GENERATE_BUGLIST       = NO
 GENERATE_DEPRECATEDLIST= YES
 ENABLED_SECTIONS       =
 MAX_INITIALIZER_LINES  = 30
@@ -144,34 +133,9 @@ WARN_LOGFILE           =
 #---------------------------------------------------------------------------
 INPUT                  = {{INPUT}}
 INPUT_ENCODING         = UTF-8
-FILE_PATTERNS          = *.c \
-                         *.cc \
-                         *.cxx \
-                         *.cpp \
-                         *.c++ \
-                         *.d \
-                         *.java \
-                         *.ii \
-                         *.ixx \
-                         *.ipp \
-                         *.i++ \
-                         *.inl \
-                         *.h \
-                         *.hh \
-                         *.hxx \
-                         *.hpp \
-                         *.h++ \
-                         *.idl \
-                         *.odl \
-                         *.cs \
-                         *.php \
-                         *.inc \
-                         *.m \
-                         *.mm \
-                         *.dox \
-                         *.py \
-                         *.txt \
-                         README
+FILE_PATTERNS          = *.php \
+                         *.md \
+                         *.inc
 RECURSIVE              = YES
 EXCLUDE                = {{EXCLUDE}}
 EXCLUDE_SYMLINKS       = YES
@@ -179,6 +143,7 @@ EXCLUDE_PATTERNS       = LocalSettings.php \
                          AdminSettings.php \
                          .svn \
                          */.git/* \
+                         */README.md \
                          {{EXCLUDE_PATTERNS}}
 EXCLUDE_SYMBOLS        =
 EXAMPLE_PATH           =
@@ -267,63 +232,6 @@ SEARCHDATA_FILE        = searchdata.xml
 EXTERNAL_SEARCH_ID     =
 EXTRA_SEARCH_MAPPINGS  =
 #---------------------------------------------------------------------------
-# Configuration options related to the LaTeX output
-#---------------------------------------------------------------------------
-GENERATE_LATEX         = NO
-LATEX_OUTPUT           = latex
-LATEX_CMD_NAME         = latex
-MAKEINDEX_CMD_NAME     = makeindex
-COMPACT_LATEX          = NO
-PAPER_TYPE             = a4wide
-EXTRA_PACKAGES         =
-LATEX_HEADER           =
-LATEX_FOOTER           =
-LATEX_EXTRA_FILES      =
-PDF_HYPERLINKS         = YES
-USE_PDFLATEX           = YES
-LATEX_BATCHMODE        = NO
-LATEX_HIDE_INDICES     = NO
-LATEX_SOURCE_CODE      = NO
-LATEX_BIB_STYLE        = plain
-#---------------------------------------------------------------------------
-# Configuration options related to the RTF output
-#---------------------------------------------------------------------------
-GENERATE_RTF           = NO
-RTF_OUTPUT             = rtf
-COMPACT_RTF            = NO
-RTF_HYPERLINKS         = NO
-RTF_STYLESHEET_FILE    =
-RTF_EXTENSIONS_FILE    =
-#---------------------------------------------------------------------------
-# Configuration options related to the man page output
-#---------------------------------------------------------------------------
-GENERATE_MAN           = {{GENERATE_MAN}}
-MAN_OUTPUT             = man
-MAN_EXTENSION          = .3
-MAN_LINKS              = NO
-#---------------------------------------------------------------------------
-# Configuration options related to the XML output
-#---------------------------------------------------------------------------
-GENERATE_XML           = NO
-XML_OUTPUT             = xml
-XML_PROGRAMLISTING     = YES
-#---------------------------------------------------------------------------
-# Configuration options related to the DOCBOOK output
-#---------------------------------------------------------------------------
-GENERATE_DOCBOOK       = NO
-DOCBOOK_OUTPUT         = docbook
-#---------------------------------------------------------------------------
-# Configuration options for the AutoGen Definitions output
-#---------------------------------------------------------------------------
-GENERATE_AUTOGEN_DEF   = NO
-#---------------------------------------------------------------------------
-# Configuration options related to the Perl module output
-#---------------------------------------------------------------------------
-GENERATE_PERLMOD       = NO
-PERLMOD_LATEX          = NO
-PERLMOD_PRETTY         = YES
-PERLMOD_MAKEVAR_PREFIX =
-#---------------------------------------------------------------------------
 # Configuration options related to the preprocessor
 #---------------------------------------------------------------------------
 ENABLE_PREPROCESSING   = YES
@@ -343,7 +251,6 @@ GENERATE_TAGFILE       = {{OUTPUT_DIRECTORY}}/html/tagfile.xml
 ALLEXTERNALS           = NO
 EXTERNAL_GROUPS        = YES
 EXTERNAL_PAGES         = YES
-PERL_PATH              = /usr/bin/perl
 #---------------------------------------------------------------------------
 # Configuration options related to the dot tool
 #---------------------------------------------------------------------------

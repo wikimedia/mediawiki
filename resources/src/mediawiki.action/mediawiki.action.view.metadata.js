@@ -30,6 +30,7 @@
 						e.type === 'click' ||
 						e.type === 'keypress' && e.which === 13
 					) {
+						// eslint-disable-next-line no-jquery/no-class-state
 						if ( $table.hasClass( 'collapsed' ) ) {
 							// From collapsed to expanded. Button will now collapse.
 							$( this ).text( collapseText );
@@ -37,6 +38,7 @@
 							// From expanded to collapsed. Button will now expand.
 							$( this ).text( expandText );
 						}
+						// eslint-disable-next-line no-jquery/no-class-state
 						$table.toggleClass( 'collapsed' );
 					}
 				} );
@@ -47,11 +49,5 @@
 				)
 			);
 		} );
-
-		// Initial collapsed state
-		// (For back-compat with cached HTML from before ImagePage.php
-		// did this by default)
-		$tables.addClass( 'collapsed' );
 	} );
-
 }() );

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.3
+ * OOUI v0.34.1-pre (3913589098)
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-04-04T19:10:48Z
+ * Date: 2019-09-10T23:46:03Z
  */
 ( function ( OO ) {
 
@@ -405,7 +405,7 @@ OO.ui.Toolbar.prototype.getToolGroupFactory = function () {
  *
  * @private
  * @param {jQuery.Event} e Mouse down event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.Toolbar.prototype.onPointerDown = function ( e ) {
 	var $closestWidgetToEvent = $( e.target ).closest( '.oo-ui-widget' ),
@@ -500,12 +500,7 @@ OO.ui.Toolbar.prototype.setup = function ( groups ) {
 			groupConfig.type : defaultType;
 		toolGroup = this.getToolGroupFactory().create( type, this, groupConfig );
 		items.push( toolGroup );
-		if ( groupConfig.name ) {
-			this.groupsByName[ groupConfig.name ] = toolGroup;
-		} else {
-			// Groups without name are deprecated
-			OO.ui.warnDeprecation( 'Toolgroups must have a \'name\' property' );
-		}
+		this.groupsByName[ groupConfig.name ] = toolGroup;
 		toolGroup.connect( this, {
 			active: 'onToolGroupActive'
 		} );
@@ -710,6 +705,13 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 		.addClass( 'oo-ui-tool-link' )
 		.append( this.checkIcon.$element, this.$icon, this.$title, this.$accel )
 		.attr( 'role', 'button' );
+
+	// Don't show keyboard shortcuts on mobile as users are unlikely to have
+	// a physical keyboard, and likely to have limited screen space.
+	if ( !OO.ui.isMobile() ) {
+		this.$link.append( this.$accel );
+	}
+
 	this.$element
 		.data( 'oo-ui-tool', this )
 		.addClass( 'oo-ui-tool' )
@@ -935,6 +937,18 @@ OO.ui.Tool.prototype.updateTitle = function () {
 };
 
 /**
+ * @inheritdoc OO.ui.mixin.IconElement
+ */
+OO.ui.Tool.prototype.setIcon = function ( icon ) {
+	// Mixin method
+	OO.ui.mixin.IconElement.prototype.setIcon.call( this, icon );
+
+	this.$element.toggleClass( 'oo-ui-tool-with-icon', !!this.icon );
+
+	return this;
+};
+
+/**
  * Destroy tool.
  *
  * Destroying the tool removes all event handlers and the tool’s DOM elements.
@@ -1143,7 +1157,7 @@ OO.ui.ToolGroup.prototype.onDisable = function ( isDisabled ) {
  *
  * @protected
  * @param {jQuery.Event} e Mouse down or key down event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.ToolGroup.prototype.onMouseKeyDown = function ( e ) {
 	if (
@@ -2119,7 +2133,7 @@ OO.ui.PopupToolGroup.prototype.onMouseKeyDown = function ( e ) {
  *
  * @protected
  * @param {jQuery.Event} e Mouse up or key up event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.PopupToolGroup.prototype.onHandleMouseKeyUp = function ( e ) {
 	if (
@@ -2138,7 +2152,7 @@ OO.ui.PopupToolGroup.prototype.onHandleMouseKeyUp = function ( e ) {
  *
  * @protected
  * @param {jQuery.Event} e Mouse down or key down event
- * @return {undefined/boolean} False to prevent default if event is handled
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.PopupToolGroup.prototype.onHandleMouseKeyDown = function ( e ) {
 	var $focusable;

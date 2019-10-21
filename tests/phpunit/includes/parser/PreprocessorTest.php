@@ -48,6 +48,9 @@ class PreprocessorTest extends MediaWikiTestCase {
 		$this->mOptions = ParserOptions::newFromUserAndLang( new User,
 			MediaWikiServices::getInstance()->getContentLanguage() );
 
+		# Suppress deprecation warning for Preprocessor_DOM while testing
+		$this->hideDeprecated( 'Preprocessor_DOM::__construct' );
+
 		$this->mPreprocessors = [];
 		foreach ( self::$classNames as $className ) {
 			$this->mPreprocessors[$className] = new $className( $this );

@@ -33,6 +33,7 @@ class ApiValidatePassword extends ApiBase {
 			$user = $this->getUser();
 		}
 
+		$r = [];
 		$validity = $user->checkPasswordValidity( $params['password'] );
 		$r['validity'] = $validity->isGood() ? 'Good' : ( $validity->isOK() ? 'Change' : 'Invalid' );
 		$messages = array_merge(

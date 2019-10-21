@@ -5,6 +5,7 @@
  *
  * Represents files in a repository.
  */
+use Wikimedia\AtEase\AtEase;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -44,8 +45,16 @@ use MediaWiki\MediaWikiServices;
  *
  * RepoGroup::singleton()->getLocalRepo()->newFile( $title );
  *
- * The convenience functions wfLocalFile() and wfFindFile() should be sufficient
- * in most cases.
+ * Consider the services container below;
+ *
+ * $services = MediaWikiServices::getInstance();
+ *
+ * The convenience services $services->getRepoGroup()->getLocalRepo()->newFile()
+ * and $services->getRepoGroup()->findFile() should be sufficient in most cases.
+ *
+ * @TODO: DI - Instead of using MediaWikiServices::getInstance(), a service should
+ * ideally accept a RepoGroup in its constructor and then, use $this->repoGroup->findFile()
+ * and $this->repoGroup->getLocalRepo()->newFile().
  *
  * @ingroup FileAbstraction
  */
@@ -296,7 +305,7 @@ abstract class File implements IDBAccessObject {
 	 * @return string
 	 */
 	public function getName() {
-		if ( !isset( $this->name ) ) {
+		if ( $this->name === null ) {
 			$this->assertRepoDefined();
 			$this->name = $this->repo->getNameFromTitle( $this->title );
 		}
@@ -1163,6 +1172,7 @@ abstract class File implements IDBAccessObject {
 			$thumb = false;
 		} elseif ( $thumb->isError() ) { // transform error
 			/** @var MediaTransformError $thumb */
+			'@phan-var MediaTransformError $thumb';
 			$this->lastError = $thumb->toText();
 			// Ignore errors if requested
 			if ( $wgIgnoreImageErrors && !( $flags & self::RENDER_NOW ) ) {
@@ -1343,7 +1353,8 @@ abstract class File implements IDBAccessObject {
 	 */
 	protected function makeTransformTmpFile( $thumbPath ) {
 		$thumbExt = FileBackend::extensionFromPath( $thumbPath );
-		return TempFSFile::factory( 'transform_', $thumbExt, wfTempDir() );
+		return MediaWikiServices::getInstance()->getTempFSFileFactory()
+			->newTempFSFile( 'transform_', $thumbExt );
 	}
 
 	/**
@@ -1456,13 +1467,15 @@ abstract class File implements IDBAccessObject {
 		// Delete thumbnails and refresh file metadata cache
 		$this->purgeCache();
 		$this->purgeDescription();
-
 		// Purge cache of all pages using this file
 		$title = $this->getTitle();
 		if ( $title ) {
-			DeferredUpdates::addUpdate(
-				new HTMLCacheUpdate( $title, 'imagelinks', 'file-purge' )
+			$job = HTMLCacheUpdateJob::newForBacklinks(
+				$title,
+				'imagelinks',
+				[ 'causeAction' => 'file-purge' ]
 			);
+			JobQueueGroup::singleton()->lazyPush( $job );
 		}
 	}
 
@@ -1511,7 +1524,7 @@ abstract class File implements IDBAccessObject {
 	 * @return string
 	 */
 	function getHashPath() {
-		if ( !isset( $this->hashPath ) ) {
+		if ( $this->hashPath === null ) {
 			$this->assertRepoDefined();
 			$this->hashPath = $this->repo->getHashPath( $this->getName() );
 		}
@@ -1952,8 +1965,7 @@ abstract class File implements IDBAccessObject {
 	 * @param array $versions Set of record ids of deleted items to restore,
 	 *   or empty to restore all revisions.
 	 * @param bool $unsuppress Remove restrictions on content upon restoration?
-	 * @return int|bool The number of file revisions restored if successful,
-	 *   or false on failure
+	 * @return Status
 	 * STUB
 	 * Overridden by LocalFile
 	 */
@@ -2030,7 +2042,7 @@ abstract class File implements IDBAccessObject {
 	 * Get the URL of the image description page. May return false if it is
 	 * unknown or not applicable.
 	 *
-	 * @return string
+	 * @return string|bool
 	 */
 	function getDescriptionUrl() {
 		if ( $this->repo ) {
@@ -2070,7 +2082,8 @@ abstract class File implements IDBAccessObject {
 				$this->repo->descriptionCacheExpiry ?: $cache::TTL_UNCACHEABLE,
 				function ( $oldValue, &$ttl, array &$setOpts ) use ( $renderUrl, $fname ) {
 					wfDebug( "Fetching shared description from $renderUrl\n" );
-					$res = Http::get( $renderUrl, [], $fname );
+					$res = MediaWikiServices::getInstance()->getHttpRequestFactory()->
+						get( $renderUrl, [], $fname );
 					if ( !$res ) {
 						$ttl = WANObjectCache::TTL_UNCACHEABLE;
 					}
@@ -2170,7 +2183,7 @@ abstract class File implements IDBAccessObject {
 			$metadata = $this->getMetadata();
 
 			if ( is_string( $metadata ) ) {
-				$metadata = Wikimedia\quietCall( 'unserialize', $metadata );
+				$metadata = AtEase::quietCall( 'unserialize', $metadata );
 			}
 
 			if ( !is_array( $metadata ) ) {

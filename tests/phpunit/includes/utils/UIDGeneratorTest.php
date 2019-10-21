@@ -67,7 +67,7 @@ class UIDGeneratorTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * array( method, length, bits, hostbits )
+	 * [ method, length, bits, hostbits ]
 	 * NOTE: When adding a new method name here please update the covers tags for the tests!
 	 */
 	public static function provider_testTimestampedUID() {

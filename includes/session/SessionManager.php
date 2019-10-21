@@ -86,8 +86,7 @@ final class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Get the global SessionManager
-	 * @return SessionManagerInterface
-	 *  (really a SessionManager, but this is to make IDEs less confused)
+	 * @return self
 	 */
 	public static function singleton() {
 		if ( self::$instance === null ) {
@@ -178,6 +177,7 @@ final class SessionManager implements SessionManagerInterface {
 		} else {
 			$store = \ObjectCache::getInstance( $this->config->get( 'SessionCacheType' ) );
 		}
+		$this->logger->debug( 'SessionManager using store ' . get_class( $store ) );
 		$this->store = $store instanceof CachedBagOStuff ? $store : new CachedBagOStuff( $store );
 
 		register_shutdown_function( [ $this, 'shutdown' ] );
@@ -321,6 +321,7 @@ final class SessionManager implements SessionManagerInterface {
 
 	public function getVaryHeaders() {
 		// @codeCoverageIgnoreStart
+		// @phan-suppress-next-line PhanUndeclaredConstant
 		if ( defined( 'MW_NO_SESSION' ) && MW_NO_SESSION !== 'warn' ) {
 			return [];
 		}
@@ -329,12 +330,9 @@ final class SessionManager implements SessionManagerInterface {
 			$headers = [];
 			foreach ( $this->getProviders() as $provider ) {
 				foreach ( $provider->getVaryHeaders() as $header => $options ) {
-					if ( !isset( $headers[$header] ) ) {
-						$headers[$header] = [];
-					}
-					if ( is_array( $options ) ) {
-						$headers[$header] = array_unique( array_merge( $headers[$header], $options ) );
-					}
+					# Note that the $options value returned has been deprecated
+					# and is ignored.
+					$headers[$header] = null;
 				}
 			}
 			$this->varyHeaders = $headers;
@@ -344,6 +342,7 @@ final class SessionManager implements SessionManagerInterface {
 
 	public function getVaryCookies() {
 		// @codeCoverageIgnoreStart
+		// @phan-suppress-next-line PhanUndeclaredConstant
 		if ( defined( 'MW_NO_SESSION' ) && MW_NO_SESSION !== 'warn' ) {
 			return [];
 		}
@@ -413,6 +412,7 @@ final class SessionManager implements SessionManagerInterface {
 				$provider->setConfig( $this->config );
 				$provider->setManager( $this );
 				if ( isset( $this->sessionProviders[(string)$provider] ) ) {
+					// @phan-suppress-next-line PhanTypeSuspiciousStringExpression
 					throw new \UnexpectedValueException( "Duplicate provider name \"$provider\"" );
 				}
 				$this->sessionProviders[(string)$provider] = $provider;
@@ -506,11 +506,10 @@ final class SessionManager implements SessionManagerInterface {
 		}
 
 		if ( count( $retInfos ) > 1 ) {
-			$ex = new \OverflowException(
+			throw new SessionOverflowException(
+				$retInfos,
 				'Multiple sessions for this request tied for top priority: ' . implode( ', ', $retInfos )
 			);
-			$ex->sessionInfos = $retInfos;
-			throw $ex;
 		}
 
 		return $retInfos ? $retInfos[0] : null;
@@ -817,6 +816,7 @@ final class SessionManager implements SessionManagerInterface {
 	public function getSessionFromInfo( SessionInfo $info, WebRequest $request ) {
 		// @codeCoverageIgnoreStart
 		if ( defined( 'MW_NO_SESSION' ) ) {
+			// @phan-suppress-next-line PhanUndeclaredConstant
 			if ( MW_NO_SESSION === 'warn' ) {
 				// Undocumented safety case for converting existing entry points
 				$this->logger->error( 'Sessions are supposed to be disabled for this entry point', [
@@ -942,6 +942,6 @@ final class SessionManager implements SessionManagerInterface {
 		self::$globalSessionRequest = null;
 	}
 
-	/**@}*/
+	/** @} */
 
 }

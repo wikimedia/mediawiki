@@ -22,6 +22,7 @@
  */
 
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Base search engine base class for database-backed searches
@@ -29,25 +30,28 @@ use Wikimedia\Rdbms\IDatabase;
  * @since 1.23
  */
 abstract class SearchDatabase extends SearchEngine {
-	/**
-	 * @var IDatabase Replica database from which to read results
-	 */
+	/** @var ILoadBalancer */
+	protected $lb;
+	/** @var IDatabase (backwards compatibility) */
 	protected $db;
 
 	/**
-	 * @param IDatabase|null $db The database to search from
+	 * @var string[] search terms
 	 */
-	public function __construct( IDatabase $db = null ) {
-		if ( $db ) {
-			$this->db = $db;
-		} else {
-			$this->db = wfGetDB( DB_REPLICA );
-		}
+	protected $searchTerms = [];
+
+	/**
+	 * @param ILoadBalancer $lb The load balancer for the DB cluster to search on
+	 */
+	public function __construct( ILoadBalancer $lb ) {
+		$this->lb = $lb;
+		// @TODO: remove this deprecated field in 1.35
+		$this->db = $lb->getLazyConnectionRef( DB_REPLICA ); // b/c
 	}
 
 	/**
 	 * @param string $term
-	 * @return SearchResultSet|Status|null
+	 * @return ISearchResultSet|Status|null
 	 */
 	final public function doSearchText( $term ) {
 		return $this->doSearchTextInDB( $this->extractNamespacePrefix( $term ) );
@@ -57,13 +61,13 @@ abstract class SearchDatabase extends SearchEngine {
 	 * Perform a full text search query and return a result set.
 	 *
 	 * @param string $term Raw search term
-	 * @return SqlSearchResultSet
+	 * @return SqlSearchResultSet|null
 	 */
 	abstract protected function doSearchTextInDB( $term );
 
 	/**
 	 * @param string $term
-	 * @return SearchResultSet|null
+	 * @return ISearchResultSet|null
 	 */
 	final public function doSearchTitle( $term ) {
 		return $this->doSearchTitleInDB( $this->extractNamespacePrefix( $term ) );
@@ -73,7 +77,7 @@ abstract class SearchDatabase extends SearchEngine {
 	 * Perform a title-only search query and return a result set.
 	 *
 	 * @param string $term Raw search term
-	 * @return SqlSearchResultSet
+	 * @return SqlSearchResultSet|null
 	 */
 	abstract protected function doSearchTitleInDB( $term );
 

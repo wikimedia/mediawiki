@@ -55,7 +55,10 @@ class CleanupCaps extends TableCleanup {
 
 		$this->namespace = intval( $this->getOption( 'namespace', 0 ) );
 
-		if ( MWNamespace::isCapitalized( $this->namespace ) ) {
+		if (
+			MediaWikiServices::getInstance()->getNamespaceInfo()->
+				isCapitalized( $this->namespace )
+		) {
 			$this->output( "Will be moving pages to first letter capitalized titles" );
 			$callback = 'processRowToUppercase';
 		} else {
@@ -157,9 +160,10 @@ class CleanupCaps extends TableCleanup {
 			$this->output( "\"$display\" -> \"$targetDisplay\": DRY RUN, NOT MOVED\n" );
 			$ok = 'OK';
 		} else {
-			$mp = new MovePage( $current, $target );
+			$mp = MediaWikiServices::getInstance()->getMovePageFactory()
+				->newMovePage( $current, $target );
 			$status = $mp->move( $this->user, $reason, $createRedirect );
-			$ok = $status->isOK() ? 'OK' : $status->getWikiText( false, false, 'en' );
+			$ok = $status->isOK() ? 'OK' : $status->getMessage( false, false, 'en' )->text();
 			$this->output( "\"$display\" -> \"$targetDisplay\": $ok\n" );
 		}
 

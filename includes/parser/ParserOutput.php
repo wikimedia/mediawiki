@@ -26,8 +26,14 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Feature flags to indicate to extensions that MediaWiki core supports and
 	 * uses getText() stateless transforms.
+	 *
+	 * @since 1.31
 	 */
 	const SUPPORTS_STATELESS_TRANSFORMS = 1;
+
+	/**
+	 * @since 1.31
+	 */
 	const SUPPORTS_UNWRAP_TRANSFORM = 1;
 
 	/**
@@ -42,7 +48,7 @@ class ParserOutput extends CacheTime {
 	public $mLanguageLinks;
 
 	/**
-	 * @var array $mCategoriesMap of category names to sort keys
+	 * @var array $mCategories Map of category names to sort keys
 	 */
 	public $mCategories;
 
@@ -204,8 +210,22 @@ class ParserOutput extends CacheTime {
 	 */
 	private $mFlags = [];
 
+	/** @var string[] */
+	private static $speculativeFields = [
+		'speculativePageIdUsed',
+		'mSpeculativeRevId',
+		'revisionTimestampUsed'
+	];
+
 	/** @var int|null Assumed rev ID for {{REVISIONID}} if no revision is set */
 	private $mSpeculativeRevId;
+	/** @var int|null Assumed page ID for {{PAGEID}} if no revision is set */
+	private $speculativePageIdUsed;
+	/** @var int|null Assumed rev timestamp for {{REVISIONTIMESTAMP}} if no revision is set */
+	private $revisionTimestampUsed;
+
+	/** @var string|null SHA-1 base 36 hash of any self-transclusion */
+	private $revisionUsedSha1Base36;
 
 	/** string CSS classes to use for the wrapping div, stored in the array keys.
 	 * If no class is given, no wrapper is added.
@@ -439,6 +459,65 @@ class ParserOutput extends CacheTime {
 		return $this->mSpeculativeRevId;
 	}
 
+	/**
+	 * @param int $id
+	 * @since 1.34
+	 */
+	public function setSpeculativePageIdUsed( $id ) {
+		$this->speculativePageIdUsed = $id;
+	}
+
+	/**
+	 * @return int|null
+	 * @since 1.34
+	 */
+	public function getSpeculativePageIdUsed() {
+		return $this->speculativePageIdUsed;
+	}
+
+	/**
+	 * @param string $timestamp TS_MW timestamp
+	 * @since 1.34
+	 */
+	public function setRevisionTimestampUsed( $timestamp ) {
+		$this->revisionTimestampUsed = $timestamp;
+	}
+
+	/**
+	 * @return string|null TS_MW timestamp or null if not used
+	 * @since 1.34
+	 */
+	public function getRevisionTimestampUsed() {
+		return $this->revisionTimestampUsed;
+	}
+
+	/**
+	 * @param string $hash Lowercase SHA-1 base 36 hash
+	 * @since 1.34
+	 */
+	public function setRevisionUsedSha1Base36( $hash ) {
+		if ( $hash === null ) {
+			return; // e.g. RevisionRecord::getSha1() returned null
+		}
+
+		if (
+			$this->revisionUsedSha1Base36 !== null &&
+			$this->revisionUsedSha1Base36 !== $hash
+		) {
+			$this->revisionUsedSha1Base36 = ''; // mismatched
+		} else {
+			$this->revisionUsedSha1Base36 = $hash;
+		}
+	}
+
+	/**
+	 * @return string|null Lowercase SHA-1 base 36 hash, null if unused, or "" on inconsistency
+	 * @since 1.34
+	 */
+	public function getRevisionUsedSha1Base36() {
+		return $this->revisionUsedSha1Base36;
+	}
+
 	public function &getLanguageLinks() {
 		return $this->mLanguageLinks;
 	}
@@ -471,14 +550,6 @@ class ParserOutput extends CacheTime {
 		return $this->mSections;
 	}
 
-	/**
-	 * @deprecated since 1.31 Use getText() options.
-	 */
-	public function getEditSectionTokens() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return true;
-	}
-
 	public function &getLinks() {
 		return $this->mLinks;
 	}
@@ -506,6 +577,7 @@ class ParserOutput extends CacheTime {
 	public function setNoGallery( $value ) {
 		$this->mNoGallery = (bool)$value;
 	}
+
 	public function getNoGallery() {
 		return $this->mNoGallery;
 	}
@@ -516,11 +588,6 @@ class ParserOutput extends CacheTime {
 
 	public function getModules() {
 		return $this->mModules;
-	}
-
-	public function getModuleScripts() {
-		wfDeprecated( __METHOD__, '1.33' );
-		return [];
 	}
 
 	public function getModuleStyles() {
@@ -566,14 +633,6 @@ class ParserOutput extends CacheTime {
 		return $this->mLimitReportJSData;
 	}
 
-	/**
-	 * @deprecated since 1.31 Use getText() options.
-	 */
-	public function getTOCEnabled() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return true;
-	}
-
 	public function getEnableOOUI() {
 		return $this->mEnableOOUI;
 	}
@@ -598,14 +657,6 @@ class ParserOutput extends CacheTime {
 		return wfSetVar( $this->mSections, $toc );
 	}
 
-	/**
-	 * @deprecated since 1.31 Use getText() options.
-	 */
-	public function setEditSectionTokens( $t ) {
-		wfDeprecated( __METHOD__, '1.31' );
-		return true;
-	}
-
 	public function setIndexPolicy( $policy ) {
 		return wfSetVar( $this->mIndexPolicy, $policy );
 	}
@@ -616,14 +667,6 @@ class ParserOutput extends CacheTime {
 
 	public function setTimestamp( $timestamp ) {
 		return wfSetVar( $this->mTimestamp, $timestamp );
-	}
-
-	/**
-	 * @deprecated since 1.31 Use getText() options.
-	 */
-	public function setTOCEnabled( $flag ) {
-		wfDeprecated( __METHOD__, '1.31' );
-		return true;
 	}
 
 	public function addCategory( $c, $sort ) {
@@ -665,12 +708,15 @@ class ParserOutput extends CacheTime {
 	public function setNewSection( $value ) {
 		$this->mNewSection = (bool)$value;
 	}
+
 	public function hideNewSection( $value ) {
 		$this->mHideNewSection = (bool)$value;
 	}
+
 	public function getHideNewSection() {
 		return (bool)$this->mHideNewSection;
 	}
+
 	public function getNewSection() {
 		return (bool)$this->mNewSection;
 	}
@@ -928,15 +974,28 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * Fairly generic flag setter thingy.
+	 * Attach a flag to the output so that it can be checked later to handle special cases
+	 *
 	 * @param string $flag
 	 */
 	public function setFlag( $flag ) {
 		$this->mFlags[$flag] = true;
 	}
 
+	/**
+	 * @param string $flag
+	 * @return bool Whether the given flag was set to signify a special case
+	 */
 	public function getFlag( $flag ) {
 		return isset( $this->mFlags[$flag] );
+	}
+
+	/**
+	 * @return string[] List of flags signifying special cases
+	 * @since 1.34
+	 */
+	public function getAllFlags() {
+		return array_keys( $this->mFlags );
 	}
 
 	/**
@@ -1267,9 +1326,18 @@ class ParserOutput extends CacheTime {
 	}
 
 	public function __sleep() {
-		return array_diff(
-			array_keys( get_object_vars( $this ) ),
-			[ 'mParseStartTime' ]
+		return array_filter( array_keys( get_object_vars( $this ) ),
+			function ( $field ) {
+				if ( $field === 'mParseStartTime' ) {
+					return false;
+				} elseif ( strpos( $field, "\0" ) !== false ) {
+					// Unserializing unknown private fields in HHVM causes
+					// member variables with nulls in their names (T229366)
+					return false;
+				} else {
+					return true;
+				}
+			}
 		);
 	}
 
@@ -1285,18 +1353,13 @@ class ParserOutput extends CacheTime {
 		$this->mWarnings = self::mergeMap( $this->mWarnings, $source->mWarnings ); // don't use getter
 		$this->mTimestamp = $this->useMaxValue( $this->mTimestamp, $source->getTimestamp() );
 
-		if ( $this->mSpeculativeRevId && $source->mSpeculativeRevId
-			&& $this->mSpeculativeRevId !== $source->mSpeculativeRevId
-		) {
-			wfLogWarning(
-				'Inconsistent speculative revision ID encountered while merging parser output!'
-			);
+		foreach ( self::$speculativeFields as $field ) {
+			if ( $this->$field && $source->$field && $this->$field !== $source->$field ) {
+				wfLogWarning( __METHOD__ . ": inconsistent '$field' properties!" );
+			}
+			$this->$field = $this->useMaxValue( $this->$field, $source->$field );
 		}
 
-		$this->mSpeculativeRevId = $this->useMaxValue(
-			$this->mSpeculativeRevId,
-			$source->getSpeculativeRevIdUsed()
-		);
 		$this->mParseStartTime = $this->useEachMinValue(
 			$this->mParseStartTime,
 			$source->mParseStartTime

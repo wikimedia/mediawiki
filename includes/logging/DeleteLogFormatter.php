@@ -23,12 +23,21 @@
  * @since 1.22
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
+
 /**
  * This class formats delete log entries.
  *
  * @since 1.19
  */
 class DeleteLogFormatter extends LogFormatter {
+	/** @var array|null */
+	private $parsedParametersDeleteLog;
+
+	/**
+	 * @inheritDoc
+	 */
 	protected function getMessageKey() {
 		$key = parent::getMessageKey();
 		if ( in_array( $this->entry->getSubtype(), [ 'event', 'revision' ] ) ) {
@@ -48,8 +57,11 @@ class DeleteLogFormatter extends LogFormatter {
 		return $key;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	protected function getMessageParameters() {
-		if ( isset( $this->parsedParametersDeleteLog ) ) {
+		if ( $this->parsedParametersDeleteLog !== null ) {
 			return $this->parsedParametersDeleteLog;
 		}
 
@@ -134,7 +146,8 @@ class DeleteLogFormatter extends LogFormatter {
 	public function getActionLinks() {
 		$user = $this->context->getUser();
 		$linkRenderer = $this->getLinkRenderer();
-		if ( !$user->isAllowed( 'deletedhistory' )
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( !$permissionManager->userHasRight( $user, 'deletedhistory' )
 			|| $this->entry->isDeleted( LogPage::DELETED_ACTION )
 		) {
 			return '';
@@ -143,7 +156,7 @@ class DeleteLogFormatter extends LogFormatter {
 		switch ( $this->entry->getSubtype() ) {
 			case 'delete': // Show undelete link
 			case 'delete_redir':
-				if ( $user->isAllowed( 'undelete' ) ) {
+				if ( $permissionManager->userHasRight( $user, 'undelete' ) ) {
 					$message = 'undeletelink';
 				} else {
 					$message = 'undeleteviewlink';
@@ -270,8 +283,6 @@ class DeleteLogFormatter extends LogFormatter {
 				}
 			}
 
-			$old = $this->parseBitField( $rawParams['6::ofield'] );
-			$new = $this->parseBitField( $rawParams['7::nfield'] );
 			if ( !is_array( $rawParams['5::ids'] ) ) {
 				$rawParams['5::ids'] = explode( ',', $rawParams['5::ids'] );
 			}
@@ -279,19 +290,28 @@ class DeleteLogFormatter extends LogFormatter {
 			$params = [
 				'::type' => $rawParams['4::type'],
 				':array:ids' => $rawParams['5::ids'],
-				':assoc:old' => [ 'bitmask' => $old ],
-				':assoc:new' => [ 'bitmask' => $new ],
 			];
 
 			static $fields = [
-				Revision::DELETED_TEXT => 'content',
-				Revision::DELETED_COMMENT => 'comment',
-				Revision::DELETED_USER => 'user',
-				Revision::DELETED_RESTRICTED => 'restricted',
+				RevisionRecord::DELETED_TEXT => 'content',
+				RevisionRecord::DELETED_COMMENT => 'comment',
+				RevisionRecord::DELETED_USER => 'user',
+				RevisionRecord::DELETED_RESTRICTED => 'restricted',
 			];
-			foreach ( $fields as $bit => $key ) {
-				$params[':assoc:old'][$key] = (bool)( $old & $bit );
-				$params[':assoc:new'][$key] = (bool)( $new & $bit );
+
+			if ( isset( $rawParams['6::ofield'] ) ) {
+				$old = $this->parseBitField( $rawParams['6::ofield'] );
+				$params[':assoc:old'] = [ 'bitmask' => $old ];
+				foreach ( $fields as $bit => $key ) {
+					$params[':assoc:old'][$key] = (bool)( $old & $bit );
+				}
+			}
+			if ( isset( $rawParams['7::nfield'] ) ) {
+				$new = $this->parseBitField( $rawParams['7::nfield'] );
+				$params[':assoc:new'] = [ 'bitmask' => $new ];
+				foreach ( $fields as $bit => $key ) {
+					$params[':assoc:new'][$key] = (bool)( $new & $bit );
+				}
 			}
 		} elseif ( $subtype === 'restore' ) {
 			$rawParams = $entry->getParameters();

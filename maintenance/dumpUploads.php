@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -30,6 +32,9 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class DumpUploads extends Maintenance {
+	/** @var string */
+	private $mBasePath;
+
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Generates list of uploaded files which can be fed to tar or similar.
@@ -42,30 +47,29 @@ By default, outputs relative paths against the parent directory of $wgUploadDire
 
 	public function execute() {
 		global $IP;
-		$this->mAction = 'fetchLocal';
 		$this->mBasePath = $this->getOption( 'base', $IP );
-		$this->mShared = false;
-		$this->mSharedSupplement = false;
-
-		if ( $this->hasOption( 'local' ) ) {
-			$this->mAction = 'fetchLocal';
-		}
-
-		if ( $this->hasOption( 'used' ) ) {
-			$this->mAction = 'fetchUsed';
-		}
+		$shared = false;
+		$sharedSupplement = false;
 
 		if ( $this->hasOption( 'shared' ) ) {
 			if ( $this->hasOption( 'used' ) ) {
 				// Include shared-repo files in the used check
-				$this->mShared = true;
+				$shared = true;
 			} else {
 				// Grab all local *plus* used shared
-				$this->mSharedSupplement = true;
+				$sharedSupplement = true;
 			}
 		}
-		$this->{$this->mAction} ( $this->mShared );
-		if ( $this->mSharedSupplement ) {
+
+		if ( $this->hasOption( 'local' ) ) {
+			$this->fetchLocal( $shared );
+		} elseif ( $this->hasOption( 'used' ) ) {
+			$this->fetchUsed( $shared );
+		} else {
+			$this->fetchLocal( $shared );
+		}
+
+		if ( $sharedSupplement ) {
 			$this->fetchUsed( true );
 		}
 	}
@@ -109,7 +113,7 @@ By default, outputs relative paths against the parent directory of $wgUploadDire
 	}
 
 	function outputItem( $name, $shared ) {
-		$file = wfFindFile( $name );
+		$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $name );
 		if ( $file && $this->filterItem( $file, $shared ) ) {
 			$filename = $file->getLocalRefPath();
 			$rel = wfRelativePath( $filename, $this->mBasePath );

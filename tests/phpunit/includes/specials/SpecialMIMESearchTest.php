@@ -2,15 +2,15 @@
 
 /**
  * @group Database
- * @covers MIMEsearchPage
+ * @covers SpecialMIMESearch
  */
 class SpecialMIMESearchTest extends MediaWikiTestCase {
 
-	/** @var MIMEsearchPage */
+	/** @var SpecialMIMESearch */
 	private $page;
 
 	function setUp() {
-		$this->page = new MIMEsearchPage;
+		$this->page = new SpecialMIMESearch;
 		$context = new RequestContext();
 		$context->setTitle( Title::makeTitle( NS_SPECIAL, 'MIMESearch' ) );
 		$context->setRequest( new FauxRequest() );

@@ -24,20 +24,8 @@ cache:
 matrix:
   fast_finish: true
   include:
-    # On Trusty, mysql user 'travis' doesn't have create database rights
-    # Postgres has no user called 'root'.
-    - env: dbtype=mysql dbuser=root
-      php: 7.3
-    - env: dbtype=mysql dbuser=root
-      php: 7.2
-    - env: dbtype=mysql dbuser=root
-      php: 7.1
-    - env: dbtype=postgres dbuser=travis
-      php: 7.1
-    - env: dbtype=mysql dbuser=root
-      php: 7
-  allow_failures:
     - php: 7.3
+    - php: 7.2
 
 services:
   - mysql
@@ -58,14 +46,15 @@ addons:
     - tidy
 
 before_script:
+  - echo 'opcache.enable_cli = 1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - composer install --prefer-source --quiet --no-interaction
-  - if [ "$dbtype" = postgres ]; then psql -c "CREATE DATABASE traviswiki WITH OWNER travis;" -U postgres; fi
+  # At Travis CI, the mysql user 'travis' doesn't have create database rights, use 'root' instead.
   - >
       php maintenance/install.php traviswiki admin
       --pass travis
-      --dbtype "$dbtype"
+      --dbtype "mysql"
       --dbname traviswiki
-      --dbuser "$dbuser"
+      --dbuser "root"
       --dbpass ""
       --scriptpath "/w"
   - echo -en "\n\nrequire_once __DIR__ . '/includes/DevelopmentSettings.php';\n" >> ./LocalSettings.php

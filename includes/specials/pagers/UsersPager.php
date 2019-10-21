@@ -23,6 +23,8 @@
  * @ingroup Pager
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This class is used to get a list of user. The ones with specials
  * rights (sysop, bureaucrat, developer) will have them displayed
@@ -37,6 +39,24 @@ class UsersPager extends AlphabeticPager {
 	 */
 	protected $userGroupCache;
 
+	/** @var string */
+	protected $requestedGroup;
+
+	/** @var bool */
+	protected $editsOnly;
+
+	/** @var bool */
+	protected $temporaryGroupsOnly;
+
+	/** @var bool */
+	protected $creationSort;
+
+	/** @var bool|null */
+	protected $including;
+
+	/** @var string */
+	protected $requestedUser;
+
 	/**
 	 * @param IContextSource|null $context
 	 * @param array|null $par (Default null)
@@ -49,7 +69,7 @@ class UsersPager extends AlphabeticPager {
 		}
 
 		$request = $this->getRequest();
-		$par = ( $par !== null ) ? $par : '';
+		$par = $par ?? '';
 		$parms = explode( '/', $par );
 		$symsForAll = [ '*', 'user' ];
 
@@ -105,7 +125,10 @@ class UsersPager extends AlphabeticPager {
 		$conds = [];
 
 		// Don't show hidden names
-		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
+		if ( !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $this->getUser(), 'hideuser' )
+		) {
 			$conds[] = 'ipb_deleted IS NULL OR ipb_deleted = 0';
 		}
 
@@ -178,7 +201,9 @@ class UsersPager extends AlphabeticPager {
 		$ulinks .= Linker::userToolLinksRedContribs(
 			$row->user_id,
 			$userName,
-			(int)$row->edits
+			(int)$row->edits,
+			// don't render parentheses in HTML markup (CSS will provide)
+			false
 		);
 
 		$lang = $this->getLanguage();
@@ -275,7 +300,7 @@ class UsersPager extends AlphabeticPager {
 	 * @return string
 	 */
 	function getPageHeader() {
-		list( $self ) = explode( '/', $this->getTitle()->getPrefixedDBkey() );
+		$self = explode( '/', $this->getTitle()->getPrefixedDBkey(), 2 )[0];
 
 		$groupOptions = [ $this->msg( 'group-all' )->text() => '' ];
 		foreach ( $this->getAllGroups() as $group => $groupText ) {

@@ -390,7 +390,7 @@ just a test"
 		$this->assertEquals( 'hello world.', $wikitext,
 			'Wikitext passed to hook was not as expected'
 		);
-		$this->assertEquals( null, $redirectTarget, 'Redirect seen in hook was not null' );
+		$this->assertNull( $redirectTarget, 'Redirect seen in hook was not null' );
 		$this->assertEquals( $title, $options->getRedirectTarget(),
 			'ParserOptions\' redirectTarget was changed'
 		);
@@ -417,8 +417,7 @@ just a test"
 			$redirectTarget->getFullText(),
 			'Redirect seen in hook was not the expected title'
 		);
-		$this->assertEquals(
-			null,
+		$this->assertNull(
 			$options->getRedirectTarget(),
 			'ParserOptions\' redirectTarget was changed'
 		);

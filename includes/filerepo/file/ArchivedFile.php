@@ -94,6 +94,9 @@ class ArchivedFile {
 	/** @var Title */
 	protected $title; # image title
 
+	/** @var bool */
+	private $exists;
+
 	/**
 	 * @throws MWException
 	 * @param Title $title
@@ -211,50 +214,6 @@ class ArchivedFile {
 		$file->loadFromRow( $row );
 
 		return $file;
-	}
-
-	/**
-	 * Fields in the filearchive table
-	 * @deprecated since 1.31, use self::getQueryInfo() instead.
-	 * @return string[]
-	 */
-	static function selectFields() {
-		global $wgActorTableSchemaMigrationStage;
-
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
-			// If code is using this instead of self::getQueryInfo(), there's a
-			// decent chance it's going to try to directly access
-			// $row->fa_user or $row->fa_user_text and we can't give it
-			// useful values here once those aren't being used anymore.
-			throw new BadMethodCallException(
-				'Cannot use ' . __METHOD__
-					. ' when $wgActorTableSchemaMigrationStage has SCHEMA_COMPAT_READ_NEW'
-			);
-		}
-
-		wfDeprecated( __METHOD__, '1.31' );
-		return [
-			'fa_id',
-			'fa_name',
-			'fa_archive_name',
-			'fa_storage_key',
-			'fa_storage_group',
-			'fa_size',
-			'fa_bits',
-			'fa_width',
-			'fa_height',
-			'fa_metadata',
-			'fa_media_type',
-			'fa_major_mime',
-			'fa_minor_mime',
-			'fa_user',
-			'fa_user_text',
-			'fa_actor' => 'NULL',
-			'fa_timestamp',
-			'fa_deleted',
-			'fa_deleted_timestamp', /* Used by LocalFileRestoreBatch */
-			'fa_sha1',
-		] + MediaWikiServices::getInstance()->getCommentStore()->getFields( 'fa_description' );
 	}
 
 	/**
@@ -479,7 +438,9 @@ class ArchivedFile {
 	function pageCount() {
 		if ( !isset( $this->pageCount ) ) {
 			// @FIXME: callers expect File objects
+			// @phan-suppress-next-line PhanTypeMismatchArgument
 			if ( $this->getHandler() && $this->handler->isMultiPage( $this ) ) {
+				// @phan-suppress-next-line PhanTypeMismatchArgument
 				$this->pageCount = $this->handler->pageCount( $this );
 			} else {
 				$this->pageCount = false;

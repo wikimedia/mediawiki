@@ -91,23 +91,29 @@ title-reversing if-blocks spread all over the codebase in showAnArticle,
 deleteAnArticle, exportArticle, etc., we can concentrate it all in an extension
 file:
 
-	function reverseArticleTitle( $article ) {
+	function onArticleShow( &$article ) {
 		# ...
 	}
 
-	function reverseForExport( $article ) {
+	function onArticleDelete( &$article ) {
 		# ...
 	}
 
-The setup function for the extension just has to add its hook functions to the
-appropriate events:
+	function onArticleExport( &$article ) {
+		# ...
+	}
 
-	setupTitleReversingExtension() {
-		global $wgHooks;
+General practice is to have a dedicated file for functions activated by hooks,
+which functions named 'onHookName'. In the example above, the file
+'ReverseHooks.php' includes the functions that should be activated by the
+'ArticleShow', 'ArticleDelete', and 'ArticleExport' hooks. The 'extension.json'
+file with the extension's registration just has to add its hook functions
+to the appropriate events:
 
-		$wgHooks['ArticleShow'][] = 'reverseArticleTitle';
-		$wgHooks['ArticleDelete'][] = 'reverseArticleTitle';
-		$wgHooks['ArticleExport'][] = 'reverseForExport';
+	"Hooks": {
+		"ArticleShow": "ReverseHooks:onArticleShow",
+		"ArticleDelete": "ReverseHooks::onArticleDelete",
+		"ArticleExport": "ReverseHooks::onArticleExport"
 	}
 
 Having all this code related to the title-reversion option in one place means
@@ -346,19 +352,6 @@ $user: Current user
 from ApiBase::addDeprecation().
 &$msgs: Message[] Messages to include in the help. Multiple messages will be
   joined with spaces.
-
-'APIEditBeforeSave': DEPRECATED since 1.28! Use EditFilterMergedContent instead.
-Before saving a page with api.php?action=edit, after
-processing request parameters. Return false to let the request fail, returning
-an error message or an <edit result="Failure"> tag if $resultArr was filled.
-Unlike for example 'EditFilterMergedContent' this also being run on undo.
-Since MediaWiki 1.25, 'EditFilterMergedContent' can also return error details
-for the API and it's recommended to use it instead of this hook.
-$editPage: the EditPage object
-$text: the text passed to the API. Note that this includes only the single
-  section for section edit, and is not necessarily the final text in case of
-  automatically resolved edit conflicts.
-&$resultArr: data in this array will be added to the API result
 
 'ApiFeedContributions::feedItem': Called to convert the result of ContribsPager
 into a FeedItem instance that ApiFeedContributions can consume. Implementors of
@@ -957,16 +950,10 @@ No return data is accepted; this hook is for auditing only.
 $req: AuthenticationRequest object describing the change (and target user)
 $status: StatusValue with the result of the action
 
-'ChangePasswordForm': DEPRECATED since 1.27! Use AuthChangeFormFields or
-security levels. For extensions that need to add a field to the ChangePassword
-form via the Preferences form.
-&$extraFields: An array of arrays that hold fields like would be passed to the
-  pretty function.
-
 'ChangesListInitRows': Batch process change list rows prior to rendering.
 $changesList: ChangesList instance
-$rows: The data that will be rendered. May be a ResultWrapper instance or
-  an array.
+$rows: The data that will be rendered. May be a \Wikimedia\Rdbms\IResultWrapper
+  instance or an array.
 
 'ChangesListInsertArticleLink': Override or augment link to article in RC list.
 &$changesList: ChangesList instance.
@@ -1192,9 +1179,6 @@ Return true to allow the normal editor to be used, or false if implementing
 a custom editor, e.g. for a special namespace, etc.
 $article: Article being edited
 $user: User performing the edit
-
-'DatabaseOraclePostInit': Called after initialising an Oracle database
-$db: the DatabaseOracle object
 
 'DeletedContribsPager::reallyDoQuery': Called before really executing the query
 for Special:DeletedContributions
@@ -1549,6 +1533,7 @@ $user: User the list is being fetched for
 &$skin: Skin object to be used with the list
 &$list: List object (defaults to NULL, change it to an object instance and
   return false override the list derivative used)
+$groups Array of ChangesListFilterGroup objects (added in 1.34)
 
 'FileDeleteComplete': When a file is deleted.
 &$file: reference to the deleted file
@@ -1600,7 +1585,8 @@ entitled to be in.
 $user: user to promote.
 &$promote: groups that will be added.
 
-'GetBlockedStatus': after loading blocking status of an user from the database
+'GetBlockedStatus': DEPRECATED since 1.34 - use GetUserBlock instead. After
+loading blocking status of a user from the database
 &$user: user (object) being checked
 
 'GetCacheVaryCookies': Get cookies that should vary cache options.
@@ -1740,6 +1726,14 @@ content type.
 $contentHandler: ContentHandler for which the slot diff renderer is fetched.
 &$slotDiffRenderer: SlotDiffRenderer to change or replace.
 $context: IContextSource
+
+'GetUserBlock': Modify the block found by the block manager. This may be a
+single block or a composite block made from multiple blocks; the original
+blocks can be seen using CompositeBlock::getOriginalBlocks()
+$user: User targeted by the block
+$ip: string|null The IP of the current request if $user is the current user
+  and they're not exempted from IP blocks. Null otherwise.
+&$block: AbstractBlock object
 
 'getUserPermissionsErrors': Add a permissions error when permissions errors are
 checked for. Use instead of userCan for most cases. Return false if the user
@@ -2117,8 +2111,6 @@ cache.
 $cache: The LocalisationCache object
 $code: language code
 &$alldata: The localisation data from core and extensions
-&$purgeBlobs: whether to purge/update the message blobs via
-  MessageBlobStore::clear()
 
 'LocalisationCacheRecacheFallback': Called for each language when merging
 fallback data into the cache.
@@ -2341,7 +2333,7 @@ namespace.
 $index: Integer; the index of the namespace being checked.
 &$result: Boolean; whether MediaWiki currently thinks that pages in this
   namespace are movable. Hooks may change this value to override the return
-  value of MWNamespace::isMovable().
+  value of NamespaceInfo::isMovable().
 
 'NewDifferenceEngine': Called when a new DifferenceEngine object is made
 $title: the diff page title (nullable)
@@ -2459,7 +2451,7 @@ $title: Title object
 &$pageLang: the page content language. Input can be anything (under control of
   hook subscribers), but hooks should return Language objects. Language code
   strings are deprecated.
-$userLang: the user language (Language or StubUserLang object)
+$userLang: the user language (Language object)
 
 'PageContentSave': Before an article is saved.
 $wikiPage: the WikiPage (object) being saved
@@ -2839,6 +2831,7 @@ or request state must be added through MakeGlobalVariablesScript instead.
 Skin is made available for skin specific config.
 &$vars: [ variable name => value ]
 $skin: Skin
+$config: Config object (since 1.34)
 
 'ResourceLoaderJqueryMsgModuleMagicWords': Called in
 ResourceLoaderJqueryMsgModule to allow adding magic words for jQueryMsg.
@@ -2931,7 +2924,7 @@ result augmentors.
 Note that lists should be in the format name => object and the names in both
   lists should be distinct.
 
-'SecondaryDataUpdates': DEPRECATED! Use RevisionDataUpdates or override
+'SecondaryDataUpdates': DEPRECATED since 1.32! Use RevisionDataUpdates or override
 ContentHandler::getSecondaryDataUpdates instead.
 Allows modification of the list of DataUpdates to perform when page content is modified.
 $title: Title of the page that is being edited.
@@ -2997,7 +2990,7 @@ $article: The article object corresponding to the page
 'ShowSearchHit': Customize display of search hit.
 $searchPage: The SpecialSearch instance.
 $result: The SearchResult to show
-$terms: Search terms, for highlighting
+$terms: Search terms, for highlighting (unreliable as search engine dependent).
 &$link: HTML of link to the matching page. May be modified.
 &$redirect: HTML of redirect info. May be modified.
 &$section: HTML of matching section. May be modified.
@@ -3015,7 +3008,8 @@ $terms: Search terms, for highlighting
 &$titleSnippet: Label for the link representing the search result. Typically the
   article title.
 $result: The SearchResult object
-$terms: String of the search terms entered
+$terms: array of search terms extracted by SearchDatabase search engines
+  (may not be populated by other search engines).
 $specialSearch: The SpecialSearch object
 &$query: Array of query string parameters for the link representing the search
   result.
@@ -3079,7 +3073,6 @@ $tooltip: The default tooltip.  Escape before using.
     - text - String for the text
     - attribs - Array of attributes
     - query - Array of query parameters to add to the URL
-    - options - Array of options for Linker::link
 $lang: The language code to use for the link in the wfMessage function
 
 'SkinGetPoweredBy': TODO
@@ -3187,7 +3180,7 @@ $row: Revision information from the database
 'SpecialContributions::getForm::filters': Called with a list of filters to render
 on Special:Contributions.
 $sp: SpecialContributions object, for context
-&$filters: List of filters rendered as HTML
+&$filters: List of filter object definitions (compatible with OOUI form)
 
 'SpecialListusersDefaultQuery': Called right before the end of
 UsersPager::getDefaultQuery().
@@ -3223,6 +3216,13 @@ $request: WebRequest object for getting the value provided by the current user
 &$movePage: MovePageForm object
 &$oldTitle: old title (object)
 &$newTitle: new title (object)
+
+'SpecialMuteModifyFormFields': Add more fields to Special:Mute
+$sp: SpecialPage object, for context
+&$fields: Current HTMLForm fields descriptors
+
+'SpecialMuteSubmit': DEPRECATED since 1.34! Used only for instrumentation on SpecialMute
+$data: Array containing information about submitted options on SpecialMute form
 
 'SpecialNewpagesConditions': Called when building sql query for
 Special:NewPages.
@@ -3324,8 +3324,8 @@ $opts: Array: key => value of hidden options for inclusion in custom forms
 
 'SpecialSearchResults': Called before search result display
 $term: string of search term
-&$titleMatches: empty or SearchResultSet object
-&$textMatches: empty or SearchResultSet object
+&$titleMatches: empty or ISearchResultSet object
+&$textMatches: empty or ISearchResultSet object
 
 'SpecialSearchResultsPrepend': Called immediately before returning HTML
 on the search results page.  Useful for including an external search
@@ -3509,6 +3509,12 @@ processing.
 &$archive: PageArchive object
 $title: Title object of the page that we're about to undelete
 
+'UndeletePageToolLinks': Add one or more links to edit page subtitle when a page
+has been previously deleted.
+$context: IContextSource (object)
+$linkRenderer: LinkRenderer instance
+&$links: Array of HTML strings
+
 'UndeleteShowRevision': Called when showing a revision in Special:Undelete.
 $title: title object related to the revision
 $rev: revision (object) that will be viewed
@@ -3580,19 +3586,14 @@ hook. If your extension absolutely, positively must prevent some files from
 being uploaded, use UploadVerifyFile or UploadVerifyUpload.
 $upload: (object) An instance of UploadBase, with all info about the upload
 $user: (object) An instance of User, the user uploading this file
-$props: (array) File properties, as returned by FSFile::getPropsFromPath()
+$props: (array|null) File properties, as returned by
+  MWFileProps::getPropsFromPath(). Note this is not always guaranteed to be set,
+  e.g. in test scenarios. Call MWFileProps::getPropsFromPath() yourself in case
+  you need the information.
 &$error: output: If the file stashing should be prevented, set this to the
   reason in the form of [ messagename, param1, param2, ... ] or a
   MessageSpecifier instance (you might want to use ApiMessage to provide machine
   -readable details for the API).
-
-'UploadVerification': DEPRECATED since 1.28! Use UploadVerifyFile instead.
-Additional chances to reject an uploaded file.
-$saveName: (string) destination file name
-$tempName: (string) filesystem path to the temporary file for checks
-&$error: (string) output: message key for message to show if upload canceled by
-  returning false. May also be an array, where the first element is the message
-  key and the remaining elements are used as parameters to the message.
 
 'UploadVerifyFile': extra file verification, based on MIME type, etc. Preferred
 in most cases over UploadVerification.
@@ -3609,7 +3610,10 @@ MIME type (same as UploadVerifyFile) and the information entered by the user
 (upload comment, file page contents etc.).
 $upload: (object) An instance of UploadBase, with all info about the upload
 $user: (object) An instance of User, the user uploading this file
-$props: (array) File properties, as returned by FSFile::getPropsFromPath()
+$props: (array|null) File properties, as returned by
+  MWFileProps::getPropsFromPath(). Note this is not always guaranteed to be set,
+  e.g. in test scenarios. Call MWFileProps::getPropsFromPath() yourself in case
+  you need the information.
 $comment: (string) Upload log comment (also used as edit summary)
 $pageText: (string) File description page text (only used for new uploads)
 &$error: output: If the file upload should be prevented, set this to the reason
@@ -3712,7 +3716,7 @@ $newUGMs: An associative array (group name => UserGroupMembership object) of
 the user's current group memberships.
 
 'UserIsBlockedFrom': Check if a user is blocked from a specific page (for
-specific block exemptions).
+specific block exemptions if a user is already blocked).
 $user: User in question
 $title: Title of the page in question
 &$blocked: Out-param, whether or not the user is blocked from that page.
@@ -3729,7 +3733,9 @@ $ip: User's IP address
 false if a UserGetRights hook might remove the named right.
 $right: The user right being checked
 
-'UserIsHidden': Check if the user's name should be hidden. See User::isHidden().
+'UserIsHidden': DEPRECATED since 1.34 - use GetUserBlock instead, and add a
+system block that hides the user. Check if the user's name should be hidden.
+See User::isHidden().
 $user: User in question.
 &$hidden: Set true if the user's name should be hidden.
 
@@ -3748,14 +3754,6 @@ $name: user name
 'UserLoadFromDatabase': Called when loading a user from the database.
 $user: user object
 &$s: database query object
-
-'UserLoadFromSession': DEPRECATED since 1.27! Create a
-MediaWiki\Session\SessionProvider instead.
-Called to authenticate users on external/environmental means; occurs before
-session is loaded.
-$user: user object being loaded
-&$result: set this to a boolean value to abort the normal authentication
-  process
 
 'UserLoadOptions': When user options/preferences are being loaded from the
 database.
@@ -3836,12 +3834,6 @@ $resetKinds: array containing the kinds of preferences to reset
 message(s).
 &$user: user retrieving new talks messages
 &$talks: array of new talks page(s)
-
-'UserRights': DEPRECATED since 1.26! Use UserGroupsChanged instead.
-After a user's group memberships are changed.
-&$user: User object that was changed
-$add: Array of strings corresponding to groups added
-$remove: Array of strings corresponding to groups removed
 
 'UserSaveOptions': Called just before saving user preferences. Hook handlers can
 either add or manipulate options, or reset one back to it's default to block
@@ -3980,7 +3972,7 @@ dumps. One, and only one hook should set this, and return false.
 &$opts: Options to use for the query
 &$join: Join conditions
 
-'WikiPageDeletionUpdates': DEPRECATED! Use PageDeletionDataUpdates or
+'WikiPageDeletionUpdates': DEPRECATED since 1.32! Use PageDeletionDataUpdates or
 override ContentHandler::getDeletionDataUpdates instead.
 Manipulates the list of DeferrableUpdates to be applied when a page is deleted.
 $page: the WikiPage
@@ -4004,8 +3996,9 @@ $title: The title of the page.
 add extra metadata.
 &$obj: The XmlDumpWriter object.
 &$out: The text being output.
-$row: The database row for the revision.
-$text: The revision text.
+$row: The database row for the revision being dumped. DEPRECATED, use $rev instead.
+$text: The revision text to be dumped. DEPRECATED, use $rev instead.
+$rev: The RevisionRecord that is being dumped to XML
 
 More hooks might be available but undocumented, you can execute
 "php maintenance/findHooks.php" to find hidden ones.

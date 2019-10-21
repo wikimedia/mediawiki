@@ -23,7 +23,7 @@
 
 require __DIR__ . '/../commandLine.inc';
 
-use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\Database;
 
 /**
  * Maintenance script that upgrade for log_id/log_deleted fields in a
@@ -34,14 +34,14 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
 class UpdateLogging {
 
 	/**
-	 * @var IMaintainableDatabase
+	 * @var Database
 	 */
 	public $dbw;
 	public $batchSize = 1000;
 	public $minTs = false;
 
 	function execute() {
-		$this->dbw = $this->getDB( DB_MASTER );
+		$this->dbw = wfGetDB( DB_MASTER );
 		$logging = $this->dbw->tableName( 'logging' );
 		$logging_1_10 = $this->dbw->tableName( 'logging_1_10' );
 		$logging_pre_1_10 = $this->dbw->tableName( 'logging_pre_1_10' );

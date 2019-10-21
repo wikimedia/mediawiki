@@ -71,6 +71,7 @@ class ApiOpenSearch extends ApiBase {
 
 			case 'xml':
 				$printer = $this->getMain()->createPrinterByName( 'xml' . $this->fm );
+				'@phan-var ApiFormatXML $printer';
 				$printer->setRootElement( 'SearchSuggestion' );
 				return $printer;
 
@@ -96,6 +97,7 @@ class ApiOpenSearch extends ApiBase {
 			// Trim extracts, if necessary
 			$length = $this->getConfig()->get( 'OpenSearchDescriptionLength' );
 			foreach ( $results as &$r ) {
+				// @phan-suppress-next-line PhanTypeInvalidDimOffset
 				if ( is_string( $r['extract'] ) && !$r['extract trimmed'] ) {
 					$r['extract'] = self::trimExtract( $r['extract'], $length );
 				}
@@ -111,6 +113,8 @@ class ApiOpenSearch extends ApiBase {
 	 * @param string $search the search query
 	 * @param array $params api request params
 	 * @return array search results. Keys are integers.
+	 * @phan-return array<array{title:Title,redirect_from:?Title,extract:false,extract_trimmed:false,image:false,url:string}>
+	 *  Note that phan annotations don't support keys containing a space.
 	 */
 	private function search( $search, array $params ) {
 		$searchEngine = $this->buildSearchEngine( $params );
@@ -247,6 +251,7 @@ class ApiOpenSearch extends ApiBase {
 					if ( is_string( $r['extract'] ) && $r['extract'] !== '' ) {
 						$item['Description'] = $r['extract'];
 					}
+					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 					if ( is_array( $r['image'] ) && isset( $r['image']['source'] ) ) {
 						$item['Image'] = array_intersect_key( $r['image'], $imageKeys );
 					}
@@ -377,43 +382,5 @@ class ApiOpenSearch extends ApiBase {
 			default:
 				throw new MWException( __METHOD__ . ": Unknown type '$type'" );
 		}
-	}
-}
-
-/**
- * @ingroup API
- */
-class ApiOpenSearchFormatJson extends ApiFormatJson {
-	private $warningsAsError = false;
-
-	public function __construct( ApiMain $main, $fm, $warningsAsError ) {
-		parent::__construct( $main, "json$fm" );
-		$this->warningsAsError = $warningsAsError;
-	}
-
-	public function execute() {
-		$result = $this->getResult();
-		if ( !$result->getResultData( 'error' ) && !$result->getResultData( 'errors' ) ) {
-			// Ignore warnings or treat as errors, as requested
-			$warnings = $result->removeValue( 'warnings', null );
-			if ( $this->warningsAsError && $warnings ) {
-				$this->dieWithError(
-					'apierror-opensearch-json-warnings',
-					'warnings',
-					[ 'warnings' => $warnings ]
-				);
-			}
-
-			// Ignore any other unexpected keys (e.g. from $wgDebugToolbar)
-			$remove = array_keys( array_diff_key(
-				$result->getResultData(),
-				[ 0 => 'search', 1 => 'terms', 2 => 'descriptions', 3 => 'urls' ]
-			) );
-			foreach ( $remove as $key ) {
-				$result->removeValue( $key, null );
-			}
-		}
-
-		parent::execute();
 	}
 }

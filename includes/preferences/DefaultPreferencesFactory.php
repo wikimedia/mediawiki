@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Preferences;
 
-use Config;
 use DateTime;
 use DateTimeZone;
 use Exception;
@@ -34,16 +33,18 @@ use LanguageCode;
 use LanguageConverter;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\PasswordAuthenticationRequest;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 use MessageLocalizer;
 use MWException;
-use MWNamespace;
 use MWTimestamp;
+use NamespaceInfo;
 use OutputPage;
 use Parser;
 use ParserOptions;
-use PreferencesFormLegacy;
+use PreferencesFormOOUI;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 use Skin;
@@ -61,8 +62,8 @@ use Xml;
 class DefaultPreferencesFactory implements PreferencesFactory {
 	use LoggerAwareTrait;
 
-	/** @var Config */
-	protected $config;
+	/** @var ServiceOptions */
+	protected $options;
 
 	/** @var Language The wiki's content language. */
 	protected $contLang;
@@ -73,22 +74,70 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	/** @var LinkRenderer */
 	protected $linkRenderer;
 
+	/** @var NamespaceInfo */
+	protected $nsInfo;
+
+	/** @var PermissionManager */
+	protected $permissionManager;
+
 	/**
-	 * @param Config $config
+	 * @var array
+	 * @since 1.34
+	 */
+	public const CONSTRUCTOR_OPTIONS = [
+		'AllowRequiringEmailForResets',
+		'AllowUserCss',
+		'AllowUserCssPrefs',
+		'AllowUserJs',
+		'DefaultSkin',
+		'DisableLangConversion',
+		'EmailAuthentication',
+		'EmailConfirmToEdit',
+		'EnableEmail',
+		'EnableUserEmail',
+		'EnableUserEmailBlacklist',
+		'EnotifMinorEdits',
+		'EnotifRevealEditorAddress',
+		'EnotifUserTalk',
+		'EnotifWatchlist',
+		'HiddenPrefs',
+		'ImageLimits',
+		'LanguageCode',
+		'LocalTZoffset',
+		'MaxSigChars',
+		'RCMaxAge',
+		'RCShowWatchingUsers',
+		'RCWatchCategoryMembership',
+		'SecureLogin',
+		'ThumbLimits',
+	];
+
+	/**
+	 * Do not call this directly.  Get it from MediaWikiServices.
+	 *
+	 * @param ServiceOptions $options
 	 * @param Language $contLang
 	 * @param AuthManager $authManager
 	 * @param LinkRenderer $linkRenderer
+	 * @param NamespaceInfo $nsInfo
+	 * @param PermissionManager $permissionManager
 	 */
 	public function __construct(
-		Config $config,
+		ServiceOptions $options,
 		Language $contLang,
 		AuthManager $authManager,
-		LinkRenderer $linkRenderer
+		LinkRenderer $linkRenderer,
+		NamespaceInfo $nsInfo,
+		PermissionManager $permissionManager
 	) {
-		$this->config = $config;
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+
+		$this->options = $options;
 		$this->contLang = $contLang;
 		$this->authManager = $authManager;
 		$this->linkRenderer = $linkRenderer;
+		$this->nsInfo = $nsInfo;
+		$this->permissionManager = $permissionManager;
 		$this->logger = new NullLogger();
 	}
 
@@ -146,7 +195,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		User $user, IContextSource $context, &$defaultPreferences
 	) {
 		# # Remove preferences that wikis don't want to use
-		foreach ( $this->config->get( 'HiddenPrefs' ) as $pref ) {
+		foreach ( $this->options->get( 'HiddenPrefs' ) as $pref ) {
 			if ( isset( $defaultPreferences[$pref] ) ) {
 				unset( $defaultPreferences[$pref] );
 			}
@@ -155,7 +204,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		# # Make sure that form fields have their parent set. See T43337.
 		$dummyForm = new HTMLForm( [], $context );
 
-		$disable = !$user->isAllowed( 'editmyoptions' );
+		$disable = !$this->permissionManager->userHasRight( $user, 'editmyoptions' );
 
 		$defaultOptions = User::getDefaultOptions();
 		$userOptions = $user->getOptions();
@@ -179,7 +228,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			} elseif ( $field->validate( $globalDefault, $user->getOptions() ) === true ) {
 				$info['default'] = $globalDefault;
 			} else {
-				throw new MWException( "Global default '$globalDefault' is invalid for field $name" );
+				$globalDefault = json_encode( $globalDefault );
+				throw new MWException(
+					"Default '$globalDefault' is invalid for preference $name of user $user"
+				);
 			}
 		}
 
@@ -333,8 +385,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			];
 		}
 
-		$canViewPrivateInfo = $user->isAllowed( 'viewmyprivateinfo' );
-		$canEditPrivateInfo = $user->isAllowed( 'editmyprivateinfo' );
+		$canViewPrivateInfo = $this->permissionManager->userHasRight( $user, 'viewmyprivateinfo' );
+		$canEditPrivateInfo = $this->permissionManager->userHasRight( $user, 'editmyprivateinfo' );
 
 		// Actually changeable stuff
 		$defaultPreferences['realname'] = [
@@ -364,7 +416,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			];
 		}
 		// Only show prefershttps if secure login is turned on
-		if ( $this->config->get( 'SecureLogin' ) && $canIPUseHTTPS ) {
+		if ( $this->options->get( 'SecureLogin' ) && $canIPUseHTTPS ) {
 			$defaultPreferences['prefershttps'] = [
 				'type' => 'toggle',
 				'label-message' => 'tog-prefershttps',
@@ -374,7 +426,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 
 		$languages = Language::fetchLanguageNames( null, 'mwfile' );
-		$languageCode = $this->config->get( 'LanguageCode' );
+		$languageCode = $this->options->get( 'LanguageCode' );
 		if ( !array_key_exists( $languageCode, $languages ) ) {
 			$languages[$languageCode] = $languageCode;
 			// Sort the array again
@@ -408,7 +460,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		];
 
 		// see if there are multiple language variants to choose from
-		if ( !$this->config->get( 'DisableLangConversion' ) ) {
+		if ( !$this->options->get( 'DisableLangConversion' ) ) {
 			foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
 				if ( $langCode == $this->contLang->getCode() ) {
 					if ( !$this->contLang->hasVariants() ) {
@@ -443,18 +495,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			}
 		}
 
-		// Stuff from Language::getExtraUserToggles()
-		// FIXME is this dead code? $extraUserToggles doesn't seem to be defined for any language
-		$toggles = $this->contLang->getExtraUserToggles();
-
-		foreach ( $toggles as $toggle ) {
-			$defaultPreferences[$toggle] = [
-				'type' => 'toggle',
-				'section' => 'personal/i18n',
-				'label-message' => "tog-$toggle",
-			];
-		}
-
 		// show a preview of the old signature first
 		$oldsigWikiText = MediaWikiServices::getInstance()->getParser()->preSaveTransform(
 			'~~~',
@@ -474,7 +514,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		];
 		$defaultPreferences['nickname'] = [
 			'type' => $this->authManager->allowsPropertyChange( 'nickname' ) ? 'text' : 'info',
-			'maxlength' => $this->config->get( 'MaxSigChars' ),
+			'maxlength' => $this->options->get( 'MaxSigChars' ),
 			'label-message' => 'yournick',
 			'validation-callback' => function ( $signature, $alldata, HTMLForm $form ) {
 				return $this->validateSignature( $signature, $alldata, $form );
@@ -494,13 +534,14 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		# # Email stuff
 
-		if ( $this->config->get( 'EnableEmail' ) ) {
+		if ( $this->options->get( 'EnableEmail' ) ) {
 			if ( $canViewPrivateInfo ) {
-				$helpMessages[] = $this->config->get( 'EmailConfirmToEdit' )
+				$helpMessages = [];
+				$helpMessages[] = $this->options->get( 'EmailConfirmToEdit' )
 						? 'prefs-help-email-required'
 						: 'prefs-help-email';
 
-				if ( $this->config->get( 'EnableUserEmail' ) ) {
+				if ( $this->options->get( 'EnableUserEmail' ) ) {
 					// additional messages when users can send email to each other
 					$helpMessages[] = 'prefs-help-email-others';
 				}
@@ -531,7 +572,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 			$disableEmailPrefs = false;
 
-			if ( $this->config->get( 'EmailAuthentication' ) ) {
+			if ( $this->options->get( 'EmailAuthentication' ) ) {
 				$emailauthenticationclass = 'mw-email-not-authenticated';
 				if ( $user->getEmail() ) {
 					if ( $user->getEmailAuthenticationTimestamp() ) {
@@ -575,7 +616,19 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				}
 			}
 
-			if ( $this->config->get( 'EnableUserEmail' ) && $user->isAllowed( 'sendemail' ) ) {
+			if ( $this->options->get( 'AllowRequiringEmailForResets' ) ) {
+				$defaultPreferences['requireemail'] = [
+					'type' => 'toggle',
+					'label-message' => 'tog-requireemail',
+					'help-message' => 'prefs-help-requireemail',
+					'section' => 'personal/email',
+					'disabled' => $disableEmailPrefs,
+				];
+			}
+
+			if ( $this->options->get( 'EnableUserEmail' ) &&
+				$this->permissionManager->userHasRight( $user, 'sendemail' )
+			) {
 				$defaultPreferences['disablemail'] = [
 					'id' => 'wpAllowEmail',
 					'type' => 'toggle',
@@ -600,7 +653,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 					'disabled' => $disableEmailPrefs,
 				];
 
-				if ( $this->config->get( 'EnableUserEmailBlacklist' ) ) {
+				if ( $this->options->get( 'EnableUserEmailBlacklist' ) ) {
 					$defaultPreferences['email-blacklist'] = [
 						'type' => 'usersmultiselect',
 						'label-message' => 'email-blacklist-label',
@@ -611,7 +664,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				}
 			}
 
-			if ( $this->config->get( 'EnotifWatchlist' ) ) {
+			if ( $this->options->get( 'EnotifWatchlist' ) ) {
 				$defaultPreferences['enotifwatchlistpages'] = [
 					'type' => 'toggle',
 					'section' => 'personal/email',
@@ -619,7 +672,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 					'disabled' => $disableEmailPrefs,
 				];
 			}
-			if ( $this->config->get( 'EnotifUserTalk' ) ) {
+			if ( $this->options->get( 'EnotifUserTalk' ) ) {
 				$defaultPreferences['enotifusertalkpages'] = [
 					'type' => 'toggle',
 					'section' => 'personal/email',
@@ -627,8 +680,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 					'disabled' => $disableEmailPrefs,
 				];
 			}
-			if ( $this->config->get( 'EnotifUserTalk' ) || $this->config->get( 'EnotifWatchlist' ) ) {
-				if ( $this->config->get( 'EnotifMinorEdits' ) ) {
+			if ( $this->options->get( 'EnotifUserTalk' ) ||
+			$this->options->get( 'EnotifWatchlist' ) ) {
+				if ( $this->options->get( 'EnotifMinorEdits' ) ) {
 					$defaultPreferences['enotifminoredits'] = [
 						'type' => 'toggle',
 						'section' => 'personal/email',
@@ -637,7 +691,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 					];
 				}
 
-				if ( $this->config->get( 'EnotifRevealEditorAddress' ) ) {
+				if ( $this->options->get( 'EnotifRevealEditorAddress' ) ) {
 					$defaultPreferences['enotifrevealaddr'] = [
 						'type' => 'toggle',
 						'section' => 'personal/email',
@@ -668,8 +722,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			];
 		}
 
-		$allowUserCss = $this->config->get( 'AllowUserCss' );
-		$allowUserJs = $this->config->get( 'AllowUserJs' );
+		$allowUserCss = $this->options->get( 'AllowUserCss' );
+		$allowUserJs = $this->options->get( 'AllowUserJs' );
 		# Create links to user CSS/JS pages for all skins
 		# This code is basically copied from generateSkinOptions().  It'd
 		# be nice to somehow merge this back in there to avoid redundancy.
@@ -822,7 +876,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		];
 
 		# # Page Rendering ##############################
-		if ( $this->config->get( 'AllowUserCssPrefs' ) ) {
+		if ( $this->options->get( 'AllowUserCssPrefs' ) ) {
 			$defaultPreferences['underline'] = [
 				'type' => 'select',
 				'options' => [
@@ -864,7 +918,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'label-message' => 'tog-numberheadings',
 		];
 
-		if ( $user->isAllowed( 'rollback' ) ) {
+		if ( $this->permissionManager->userHasRight( $user, 'rollback' ) ) {
 			$defaultPreferences['showrollbackconfirmation'] = [
 				'type' => 'toggle',
 				'section' => 'rendering/advancedrendering',
@@ -891,7 +945,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'label-message' => 'tog-editondblclick',
 		];
 
-		if ( $this->config->get( 'AllowUserCssPrefs' ) ) {
+		if ( $this->options->get( 'AllowUserCssPrefs' ) ) {
 			$defaultPreferences['editfont'] = [
 				'type' => 'select',
 				'section' => 'editing/editor',
@@ -904,7 +958,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			];
 		}
 
-		if ( $user->isAllowed( 'minoredit' ) ) {
+		if ( $this->permissionManager->userHasRight( $user, 'minoredit' ) ) {
 			$defaultPreferences['minordefault'] = [
 				'type' => 'toggle',
 				'section' => 'editing/editor',
@@ -946,7 +1000,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param array &$defaultPreferences
 	 */
 	protected function rcPreferences( User $user, MessageLocalizer $l10n, &$defaultPreferences ) {
-		$rcMaxAge = $this->config->get( 'RCMaxAge' );
+		$rcMaxAge = $this->options->get( 'RCMaxAge' );
 		# # RecentChanges #####################################
 		$defaultPreferences['rcdays'] = [
 			'type' => 'float',
@@ -999,7 +1053,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'type' => 'api',
 		];
 
-		if ( $this->config->get( 'RCWatchCategoryMembership' ) ) {
+		if ( $this->options->get( 'RCWatchCategoryMembership' ) ) {
 			$defaultPreferences['hidecategorization'] = [
 				'type' => 'toggle',
 				'label-message' => 'tog-hidecategorization',
@@ -1023,7 +1077,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			];
 		}
 
-		if ( $this->config->get( 'RCShowWatchingUsers' ) ) {
+		if ( $this->options->get( 'RCShowWatchingUsers' ) ) {
 			$defaultPreferences['shownumberswatching'] = [
 				'type' => 'toggle',
 				'section' => 'rc/advancedrc',
@@ -1047,10 +1101,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	protected function watchlistPreferences(
 		User $user, IContextSource $context, &$defaultPreferences
 	) {
-		$watchlistdaysMax = ceil( $this->config->get( 'RCMaxAge' ) / ( 3600 * 24 ) );
+		$watchlistdaysMax = ceil( $this->options->get( 'RCMaxAge' ) / ( 3600 * 24 ) );
 
 		# # Watchlist #####################################
-		if ( $user->isAllowed( 'editmywatchlist' ) ) {
+		if ( $this->permissionManager->userHasRight( $user, 'editmywatchlist' ) ) {
 			$editWatchlistLinks = '';
 			$editWatchlistModes = [
 				'edit' => [ 'subpage' => false, 'flags' => [] ],
@@ -1127,10 +1181,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'label-message' => 'tog-watchlisthideliu',
 		];
 
-		if ( !\SpecialWatchlist::checkStructuredFilterUiEnabled(
-			$this->config,
-			$user
-		) ) {
+		if ( !\SpecialWatchlist::checkStructuredFilterUiEnabled( $user ) ) {
 			$defaultPreferences['watchlistreloadautomatically'] = [
 				'type' => 'toggle',
 				'section' => 'watchlist/advancedwatchlist',
@@ -1144,7 +1195,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'label-message' => 'tog-watchlistunwatchlinks',
 		];
 
-		if ( $this->config->get( 'RCWatchCategoryMembership' ) ) {
+		if ( $this->options->get( 'RCWatchCategoryMembership' ) ) {
 			$defaultPreferences['watchlisthidecategorization'] = [
 				'type' => 'toggle',
 				'section' => 'watchlist/changeswatchlist',
@@ -1167,20 +1218,20 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		];
 
 		// Kinda hacky
-		if ( $user->isAllowed( 'createpage' ) || $user->isAllowed( 'createtalk' ) ) {
+		if ( $this->permissionManager->userHasAnyRight( $user, 'createpage', 'createtalk' ) ) {
 			$watchTypes['read'] = 'watchcreations';
 		}
 
-		if ( $user->isAllowed( 'rollback' ) ) {
+		if ( $this->permissionManager->userHasRight( $user, 'rollback' ) ) {
 			$watchTypes['rollback'] = 'watchrollback';
 		}
 
-		if ( $user->isAllowed( 'upload' ) ) {
+		if ( $this->permissionManager->userHasRight( $user, 'upload' ) ) {
 			$watchTypes['upload'] = 'watchuploads';
 		}
 
 		foreach ( $watchTypes as $action => $pref ) {
-			if ( $user->isAllowed( $action ) ) {
+			if ( $this->permissionManager->userHasRight( $user, $action ) ) {
 				// Messages:
 				// tog-watchdefault, tog-watchmoves, tog-watchdeletion, tog-watchcreations, tog-watchuploads
 				// tog-watchrollback
@@ -1223,7 +1274,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param array &$defaultPreferences
 	 */
 	protected function searchPreferences( &$defaultPreferences ) {
-		foreach ( MWNamespace::getValidNamespaces() as $n ) {
+		foreach ( $this->nsInfo->getValidNamespaces() as $n ) {
 			$defaultPreferences['searchNs' . $n] = [
 				'type' => 'api',
 			];
@@ -1243,6 +1294,23 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		# Only show skins that aren't disabled in $wgSkipSkins
 		$validSkinNames = Skin::getAllowedSkins();
+		$allInstalledSkins = Skin::getSkinNames();
+
+		// Display the installed skin the user has specifically requested via useskin=….
+		$useSkin = $context->getRequest()->getRawVal( 'useskin' );
+		if ( isset( $allInstalledSkins[$useSkin] )
+			&& $context->msg( "skinname-$useSkin" )->exists()
+		) {
+			$validSkinNames[$useSkin] = $useSkin;
+		}
+
+		// Display the skin if the user has set it as a preference already before it was hidden.
+		$currentUserSkin = $user->getOption( 'skin' );
+		if ( isset( $allInstalledSkins[$currentUserSkin] )
+			&& $context->msg( "skinname-$currentUserSkin" )->exists()
+		) {
+			$validSkinNames[$currentUserSkin] = $currentUserSkin;
+		}
 
 		foreach ( $validSkinNames as $skinkey => &$skinname ) {
 			$msg = $context->msg( "skinname-{$skinkey}" );
@@ -1251,9 +1319,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			}
 		}
 
-		$defaultSkin = $this->config->get( 'DefaultSkin' );
-		$allowUserCss = $this->config->get( 'AllowUserCss' );
-		$allowUserJs = $this->config->get( 'AllowUserJs' );
+		$defaultSkin = $this->options->get( 'DefaultSkin' );
+		$allowUserCss = $this->options->get( 'AllowUserCss' );
+		$allowUserJs = $this->options->get( 'AllowUserJs' );
 
 		# Sort by the internal name, so that the ordering is the same for each display language,
 		# especially if some skin names are translated to use a different alphabet and some are not.
@@ -1352,7 +1420,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$ret = [];
 		$pixels = $l10n->msg( 'unit-pixel' )->text();
 
-		foreach ( $this->config->get( 'ImageLimits' ) as $index => $limits ) {
+		foreach ( $this->options->get( 'ImageLimits' ) as $index => $limits ) {
 			// Note: A left-to-right marker (U+200E) is inserted, see T144386
 			$display = "{$limits[0]}\u{200E}×{$limits[1]}$pixels";
 			$ret[$display] = $index;
@@ -1369,7 +1437,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$ret = [];
 		$pixels = $l10n->msg( 'unit-pixel' )->text();
 
-		foreach ( $this->config->get( 'ThumbLimits' ) as $index => $size ) {
+		foreach ( $this->options->get( 'ThumbLimits' ) as $index => $size ) {
 			$display = $size . $pixels;
 			$ret[$display] = $index;
 		}
@@ -1384,7 +1452,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @return bool|string
 	 */
 	protected function validateSignature( $signature, $alldata, HTMLForm $form ) {
-		$maxSigChars = $this->config->get( 'MaxSigChars' );
+		$maxSigChars = $this->options->get( 'MaxSigChars' );
 		if ( mb_strlen( $signature ) > $maxSigChars ) {
 			return Xml::element( 'span', [ 'class' => 'error' ],
 				$form->msg( 'badsiglength' )->numParams( $maxSigChars )->text() );
@@ -1430,7 +1498,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	public function getForm(
 		User $user,
 		IContextSource $context,
-		$formClass = PreferencesFormLegacy::class,
+		$formClass = PreferencesFormOOUI::class,
 		array $remove = []
 	) {
 		// We use ButtonWidgets in some of the getPreferences() functions
@@ -1450,11 +1518,23 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 
 		/**
-		 * @var $htmlForm HTMLForm
+		 * @var PreferencesFormOOUI $htmlForm
 		 */
 		$htmlForm = new $formClass( $formDescriptor, $context, 'prefs' );
 
+		// This allows users to opt-in to hidden skins. While this should be discouraged and is not
+		// discoverable, this allows users to still use hidden skins while preventing new users from
+		// adopting unsupported skins. If no useskin=… parameter was provided, it will not show up
+		// in the resulting URL.
+		$htmlForm->setAction( $context->getTitle()->getLocalURL( [
+			'useskin' => $context->getRequest()->getRawVal( 'useskin' )
+		] ) );
+
 		$htmlForm->setModifiedUser( $user );
+		$htmlForm->setOptionsEditable( $this->permissionManager
+			->userHasRight( $user, 'editmyoptions' ) );
+		$htmlForm->setPrivateInfoEditable( $this->permissionManager
+			->userHasRight( $user, 'editmyprivateinfo' ) );
 		$htmlForm->setId( 'mw-prefs-form' );
 		$htmlForm->setAutocomplete( 'off' );
 		$htmlForm->setSubmitText( $context->msg( 'saveprefs' )->text() );
@@ -1462,7 +1542,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$htmlForm->setSubmitTooltip( 'preferences-save' );
 		$htmlForm->setSubmitID( 'prefcontrol' );
 		$htmlForm->setSubmitCallback(
-			function ( array $formData, HTMLForm $form ) use ( $formDescriptor ) {
+			function ( array $formData, PreferencesFormOOUI $form ) use ( $formDescriptor ) {
 				return $this->submitForm( $formData, $form, $formDescriptor );
 			}
 		);
@@ -1477,7 +1557,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	protected function getTimezoneOptions( IContextSource $context ) {
 		$opt = [];
 
-		$localTZoffset = $this->config->get( 'LocalTZoffset' );
+		$localTZoffset = $this->options->get( 'LocalTZoffset' );
 		$timeZoneList = $this->getTimeZoneList( $context->getLanguage() );
 
 		$timestamp = MWTimestamp::getLocalInstance();
@@ -1518,17 +1598,18 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * Handle the form submission if everything validated properly
 	 *
 	 * @param array $formData
-	 * @param HTMLForm $form
+	 * @param PreferencesFormOOUI $form
 	 * @param array[] $formDescriptor
 	 * @return bool|Status|string
 	 */
-	protected function saveFormData( $formData, HTMLForm $form, array $formDescriptor ) {
-		/** @var \User $user */
+	protected function saveFormData( $formData, PreferencesFormOOUI $form, array $formDescriptor ) {
 		$user = $form->getModifiedUser();
-		$hiddenPrefs = $this->config->get( 'HiddenPrefs' );
+		$hiddenPrefs = $this->options->get( 'HiddenPrefs' );
 		$result = true;
 
-		if ( !$user->isAllowedAny( 'editmyprivateinfo', 'editmyoptions' ) ) {
+		if ( !$this->permissionManager
+				->userHasAnyRight( $user, 'editmyprivateinfo', 'editmyoptions' )
+		) {
 			return Status::newFatal( 'mypreferencesprotected' );
 		}
 
@@ -1539,14 +1620,14 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		// (not really "private", but still shouldn't be edited without permission)
 
 		if ( !in_array( 'realname', $hiddenPrefs )
-			&& $user->isAllowed( 'editmyprivateinfo' )
+			&& $this->permissionManager->userHasRight( $user, 'editmyprivateinfo' )
 			&& array_key_exists( 'realname', $formData )
 		) {
 			$realName = $formData['realname'];
 			$user->setRealName( $realName );
 		}
 
-		if ( $user->isAllowed( 'editmyoptions' ) ) {
+		if ( $this->permissionManager->userHasRight( $user, 'editmyoptions' ) ) {
 			$oldUserOptions = $user->getOptions();
 
 			foreach ( $this->getSaveBlacklist() as $b ) {
@@ -1621,11 +1702,15 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * Save the form data and reload the page
 	 *
 	 * @param array $formData
-	 * @param HTMLForm $form
+	 * @param PreferencesFormOOUI $form
 	 * @param array $formDescriptor
 	 * @return Status
 	 */
-	protected function submitForm( array $formData, HTMLForm $form, array $formDescriptor ) {
+	protected function submitForm(
+		array $formData,
+		PreferencesFormOOUI $form,
+		array $formDescriptor
+	) {
 		$res = $this->saveFormData( $formData, $form, $formDescriptor );
 
 		if ( $res === true ) {
@@ -1659,6 +1744,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 */
 	protected function getTimeZoneList( Language $language ) {
 		$identifiers = DateTimeZone::listIdentifiers();
+		// @phan-suppress-next-line PhanTypeComparisonFromArray See phan issue #3162
 		if ( $identifiers === false ) {
 			return [];
 		}

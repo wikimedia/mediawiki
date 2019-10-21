@@ -220,7 +220,7 @@ class JsonContent extends TextContent {
 			return Html::rawElement( 'td', [], $this->arrayTable( $val ) );
 		}
 
-		return Html::element( 'td', [ 'class' => 'value' ], $this->primitiveValue( $val ) );
+		return Html::element( 'td', [ 'class' => 'mw-json-value' ], $this->primitiveValue( $val ) );
 	}
 
 	/**

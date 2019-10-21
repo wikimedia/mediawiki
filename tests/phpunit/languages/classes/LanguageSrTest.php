@@ -238,8 +238,9 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	}
 
 	# #### HELPERS #####################################################
+
 	/**
-	 *Wrapper to verify text stay the same after applying conversion
+	 * Wrapper to verify text stay the same after applying conversion
 	 * @param string $text Text to convert
 	 * @param string $variant Language variant 'sr-ec' or 'sr-el'
 	 * @param string $msg Optional message
@@ -290,7 +291,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 		$this->assertConverted( $text, 'sr-ec', $msg );
 	}
 
-	/** Wrapper for converter::convertTo() method*/
+	/** Wrapper for converter::convertTo() method */
 	protected function convertTo( $text, $variant ) {
 		return $this->getLang()
 			->mConverter

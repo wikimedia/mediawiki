@@ -116,7 +116,7 @@ abstract class WantedQueryPage extends QueryPage {
 	 * @param object $result Result row
 	 * @return string
 	 */
-	private function makeWlhLink( $title, $result ) {
+	protected function makeWlhLink( $title, $result ) {
 		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedText() );
 		$label = $this->msg( 'nlinks' )->numParams( $result->value )->text();
 		return $this->getLinkRenderer()->makeLink( $wlh, $label );

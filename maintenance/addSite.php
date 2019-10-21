@@ -39,7 +39,10 @@ class AddSite extends Maintenance {
 	 */
 	public function execute() {
 		$siteStore = MediaWikiServices::getInstance()->getSiteStore();
-		$siteStore->reset();
+		if ( method_exists( $siteStore, 'reset' ) ) {
+			// @phan-suppress-next-line PhanUndeclaredMethod
+			$siteStore->reset();
+		}
 
 		$globalId = $this->getArg( 0 );
 		$group = $this->getArg( 1 );
@@ -81,6 +84,7 @@ class AddSite extends Maintenance {
 		$siteStore->saveSites( [ $site ] );
 
 		if ( method_exists( $siteStore, 'reset' ) ) {
+			// @phan-suppress-next-line PhanUndeclaredMethod
 			$siteStore->reset();
 		}
 

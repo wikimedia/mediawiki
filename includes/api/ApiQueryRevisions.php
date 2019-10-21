@@ -76,7 +76,8 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	 */
 	public static function getRollbackToken( $pageid, $title, $rev ) {
 		global $wgUser;
-		if ( !$wgUser->isAllowed( 'rollback' ) ) {
+		if ( !MediaWikiServices::getInstance()->getPermissionManager()
+				->userHasRight( $wgUser, 'rollback' ) ) {
 			return false;
 		}
 
@@ -84,8 +85,6 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	}
 
 	protected function run( ApiPageSet $resultPageSet = null ) {
-		global $wgActorTableSchemaMigrationStage;
-
 		$params = $this->extractRequestParams( false );
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 
@@ -114,7 +113,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 		if ( $revCount > 0 && $enumRevMode ) {
 			$this->dieWithError(
-				[ 'apierror-revisions-nolist', $this->getModulePrefix() ], 'invalidparammix'
+				[ 'apierror-revisions-norevids', $this->getModulePrefix() ], 'invalidparammix'
 			);
 		}
 
@@ -136,9 +135,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		$idField = 'rev_id';
 		$tsField = 'rev_timestamp';
 		$pageField = 'rev_page';
-		if ( $params['user'] !== null &&
-			( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW )
-		) {
+		if ( $params['user'] !== null ) {
 			// We're going to want to use the page_actor_timestamp index (on revision_actor_temp)
 			// so use that table's denormalized fields.
 			$idField = 'revactor_rev';
@@ -152,9 +149,6 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			$opts = [];
 			if ( $this->token !== null || $pageCount > 0 ) {
 				$opts[] = 'page';
-			}
-			if ( $this->fetchContent ) {
-				$opts[] = 'text';
 			}
 			if ( $this->fld_user ) {
 				$opts[] = 'user';
@@ -204,11 +198,12 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 		if ( $resultPageSet === null && $this->fetchContent ) {
 			// For each page we will request, the user must have read rights for that page
-			$user = $this->getUser();
 			$status = Status::newGood();
+			$user = $this->getUser();
+
 			/** @var Title $title */
 			foreach ( $pageSet->getGoodTitles() as $title ) {
-				if ( !$title->userCan( 'read', $user ) ) {
+				if ( !$this->getPermissionManager()->userCan( 'read', $user, $title ) ) {
 					$status->fatal( ApiMessage::create(
 						[ 'apierror-cannotviewtitle', wfEscapeWikiText( $title->getPrefixedText() ) ],
 						'accessdenied'
@@ -334,9 +329,11 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			}
 			if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
 				// Paranoia: avoid brute force searches (T19342)
-				if ( !$this->getUser()->isAllowed( 'deletedhistory' ) ) {
+				if ( !$this->getPermissionManager()->userHasRight( $this->getUser(), 'deletedhistory' ) ) {
 					$bitmask = RevisionRecord::DELETED_USER;
-				} elseif ( !$this->getUser()->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
+				} elseif ( !$this->getPermissionManager()
+					->userHasAnyRight( $this->getUser(), 'suppressrevision', 'viewsuppressed' )
+				) {
 					$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
 				} else {
 					$bitmask = 0;
@@ -391,6 +388,10 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		}
 
 		$this->addOption( 'LIMIT', $this->limit + 1 );
+
+		// T224017: `rev_timestamp` is never the correct index to use for this module, but
+		// MariaDB (10.1.37-39) sometimes insists on trying to use it anyway. Tell it not to.
+		$this->addOption( 'IGNORE INDEX', [ 'revision' => 'rev_timestamp' ] );
 
 		$count = 0;
 		$generated = [];

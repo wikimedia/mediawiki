@@ -28,6 +28,7 @@ use Wikimedia\Rdbms\DBError;
  *
  * @ingroup Profiler
  * @since 1.25
+ * @deprecated since 1.34 No longer maintained (T231366)
  */
 class ProfilerOutputDb extends ProfilerOutput {
 	/** @var bool Whether to store host data with profiling calls */
@@ -35,6 +36,7 @@ class ProfilerOutputDb extends ProfilerOutput {
 
 	public function __construct( Profiler $collector, array $params ) {
 		parent::__construct( $collector, $params );
+		wfDeprecated( __CLASS__, '1.34' );
 
 		// Initialize per-host profiling from config, back-compat if available
 		if ( isset( $this->params['perHost'] ) ) {

@@ -26,12 +26,12 @@
 			if ( mw.Title && content instanceof mw.Title ) {
 				// Parse existing page
 				config.page = content.getPrefixedDb();
+				apiPromise = this.get( config );
 			} else {
 				// Parse wikitext from input
 				config.text = String( content );
+				apiPromise = this.post( config );
 			}
-
-			apiPromise = this.get( config );
 
 			return apiPromise
 				.then( function ( data ) {

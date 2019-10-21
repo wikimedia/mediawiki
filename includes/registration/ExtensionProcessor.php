@@ -65,6 +65,7 @@ class ExtensionProcessor implements Processor {
 	protected static $coreAttributes = [
 		'SkinOOUIThemes',
 		'TrackingCategories',
+		'RestRoutes',
 	];
 
 	/**
@@ -119,6 +120,7 @@ class ExtensionProcessor implements Processor {
 		'ResourceFileModulePaths',
 		'ResourceModules',
 		'ResourceModuleSkinStyles',
+		'OOUIThemePaths',
 		'QUnitTestModule',
 		'ExtensionMessagesFiles',
 		'MessagesDirs',
@@ -304,8 +306,76 @@ class ExtensionProcessor implements Processor {
 		];
 	}
 
-	public function getRequirements( array $info ) {
-		return $info['requires'] ?? [];
+	public function getRequirements( array $info, $includeDev ) {
+		// Quick shortcuts
+		if ( !$includeDev || !isset( $info['dev-requires'] ) ) {
+			return $info['requires'] ?? [];
+		}
+
+		if ( !isset( $info['requires'] ) ) {
+			return $info['dev-requires'] ?? [];
+		}
+
+		// OK, we actually have to merge everything
+		$merged = [];
+
+		// Helper that combines version requirements by
+		// picking the non-null if one is, or combines
+		// the two. Note that it is not possible for
+		// both inputs to be null.
+		$pick = function ( $a, $b ) {
+			if ( $a === null ) {
+				return $b;
+			} elseif ( $b === null ) {
+				return $a;
+			} else {
+				return "$a $b";
+			}
+		};
+
+		$req = $info['requires'];
+		$dev = $info['dev-requires'];
+		if ( isset( $req['MediaWiki'] ) || isset( $dev['MediaWiki'] ) ) {
+			$merged['MediaWiki'] = $pick(
+				$req['MediaWiki'] ?? null,
+				$dev['MediaWiki'] ?? null
+			);
+		}
+
+		$platform = array_merge(
+			array_keys( $req['platform'] ?? [] ),
+			array_keys( $dev['platform'] ?? [] )
+		);
+		if ( $platform ) {
+			foreach ( $platform as $pkey ) {
+				if ( $pkey === 'php' ) {
+					$value = $pick(
+						$req['platform']['php'] ?? null,
+						$dev['platform']['php'] ?? null
+					);
+				} else {
+					// Prefer dev value, but these should be constant
+					// anyways (ext-* and ability-*)
+					$value = $dev['platform'][$pkey] ?? $req['platform'][$pkey];
+				}
+				$merged['platform'][$pkey] = $value;
+			}
+		}
+
+		foreach ( [ 'extensions', 'skins' ] as $thing ) {
+			$things = array_merge(
+				array_keys( $req[$thing] ?? [] ),
+				array_keys( $dev[$thing] ?? [] )
+			);
+			foreach ( $things as $name ) {
+				$merged[$thing][$name] = $pick(
+					$req[$thing][$name] ?? null,
+					$dev[$thing][$name] ?? null
+				);
+			}
+		}
+
+		return $merged;
 	}
 
 	protected function extractHooks( array $info ) {
@@ -376,7 +446,7 @@ class ExtensionProcessor implements Processor {
 			}
 		}
 
-		foreach ( [ 'ResourceModules', 'ResourceModuleSkinStyles' ] as $setting ) {
+		foreach ( [ 'ResourceModules', 'ResourceModuleSkinStyles', 'OOUIThemePaths' ] as $setting ) {
 			if ( isset( $info[$setting] ) ) {
 				foreach ( $info[$setting] as $name => $data ) {
 					if ( isset( $data['localBasePath'] ) ) {
@@ -390,7 +460,11 @@ class ExtensionProcessor implements Processor {
 					if ( $defaultPaths ) {
 						$data += $defaultPaths;
 					}
-					$this->globals["wg$setting"][$name] = $data;
+					if ( $setting === 'OOUIThemePaths' ) {
+						$this->attributes[$setting][$name] = $data;
+					} else {
+						$this->globals["wg$setting"][$name] = $data;
+					}
 				}
 			}
 		}

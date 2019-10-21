@@ -351,7 +351,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 		wfGetDB( DB_MASTER )->commit( __METHOD__ );
 
-		$this->assertEquals( 0, DeferredUpdates::pendingUpdatesCount(), 'No deferred updates' );
+		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount(), 'No deferred updates' );
 
 		if ( $expectedCode != EditPage::AS_BLANK_ARTICLE ) {
 			$latest = $page->getLatest();
@@ -693,14 +693,6 @@ hello
 	 * @covers EditPage
 	 */
 	public function testCheckDirectEditingDisallowed_forNonTextContent() {
-		$title = Title::newFromText( 'Dummy:NonTextPageForEditPage' );
-		$page = WikiPage::factory( $title );
-
-		$article = new Article( $title );
-		$article->getContext()->setTitle( $title );
-		$ep = new EditPage( $article );
-		$ep->setContextTitle( $title );
-
 		$user = $GLOBALS['wgUser'];
 
 		$edit = [
@@ -711,15 +703,79 @@ hello
 			'wpUnicodeCheck' => EditPage::UNICODE_CHECK,
 		];
 
-		$req = new FauxRequest( $edit, true );
-		$ep->importFormData( $req );
-
 		$this->setExpectedException(
 			MWException::class,
 			'This content model is not supported: testing'
 		);
 
-		$ep->internalAttemptSave( $result, false );
+		$this->doEditDummyNonTextPage( $edit );
 	}
 
+	/** @covers EditPage */
+	public function testShouldPreventChangingContentModelWhenUserCannotChangeModelForTitle() {
+		$this->setTemporaryHook( 'getUserPermissionsErrors',
+			function ( Title $page, $user, $action, &$result ) {
+				if ( $action === 'editcontentmodel' &&
+					 $page->getContentModel() === CONTENT_MODEL_WIKITEXT ) {
+					$result = false;
+
+					return false;
+				}
+			} );
+
+		$user = $GLOBALS['wgUser'];
+
+		$status = $this->doEditDummyNonTextPage( [
+			'wpTextbox1' => 'some text',
+			'wpEditToken' => $user->getEditToken(),
+			'wpEdittime' => '',
+			'wpStarttime' => wfTimestampNow(),
+			'wpUnicodeCheck' => EditPage::UNICODE_CHECK,
+			'model' => CONTENT_MODEL_WIKITEXT,
+			'format' => CONTENT_FORMAT_WIKITEXT,
+		] );
+
+		$this->assertFalse( $status->isOK() );
+		$this->assertEquals( EditPage::AS_NO_CHANGE_CONTENT_MODEL, $status->getValue() );
+	}
+
+	/** @covers EditPage */
+	public function testShouldPreventChangingContentModelWhenUserCannotEditTargetTitle() {
+		$this->setTemporaryHook( 'getUserPermissionsErrors',
+			function ( Title $page, $user, $action, &$result ) {
+				if ( $action === 'edit' && $page->getContentModel() === CONTENT_MODEL_WIKITEXT ) {
+					$result = false;
+					return false;
+				}
+			} );
+
+		$user = $GLOBALS['wgUser'];
+
+		$status = $this->doEditDummyNonTextPage( [
+			'wpTextbox1' => 'some text',
+			'wpEditToken' => $user->getEditToken(),
+			'wpEdittime' => '',
+			'wpStarttime' => wfTimestampNow(),
+			'wpUnicodeCheck' => EditPage::UNICODE_CHECK,
+			'model' => CONTENT_MODEL_WIKITEXT,
+			'format' => CONTENT_FORMAT_WIKITEXT,
+		] );
+
+		$this->assertFalse( $status->isOK() );
+		$this->assertEquals( EditPage::AS_NO_CHANGE_CONTENT_MODEL, $status->getValue() );
+	}
+
+	private function doEditDummyNonTextPage( array $edit ): Status {
+		$title = Title::newFromText( 'Dummy:NonTextPageForEditPage' );
+
+		$article = new Article( $title );
+		$article->getContext()->setTitle( $title );
+		$ep = new EditPage( $article );
+		$ep->setContextTitle( $title );
+
+		$req = new FauxRequest( $edit, true );
+		$ep->importFormData( $req );
+
+		return $ep->internalAttemptSave( $result, false );
+	}
 }

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Block\DatabaseBlock;
+
 /**
  * @group API
  * @group Database
@@ -132,9 +134,9 @@ class ApiMoveTest extends ApiTestCase {
 	}
 
 	public function testMoveWhileBlocked() {
-		$this->assertNull( Block::newFromTarget( '127.0.0.1' ), 'Sanity check' );
+		$this->assertNull( DatabaseBlock::newFromTarget( '127.0.0.1' ), 'Sanity check' );
 
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'address' => self::$users['sysop']->getUser()->getName(),
 			'by' => self::$users['sysop']->getUser()->getId(),
 			'reason' => 'Capriciousness',
@@ -156,7 +158,7 @@ class ApiMoveTest extends ApiTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( ApiUsageException $ex ) {
 			$this->assertSame( 'You have been blocked from editing.', $ex->getMessage() );
-			$this->assertNotNull( Block::newFromTarget( '127.0.0.1' ), 'Autoblock spread' );
+			$this->assertNotNull( DatabaseBlock::newFromTarget( '127.0.0.1' ), 'Autoblock spread' );
 		} finally {
 			$block->delete();
 			self::$users['sysop']->getUser()->clearInstanceCache();
@@ -377,7 +379,6 @@ class ApiMoveTest extends ApiTestCase {
 		$name = ucfirst( __FUNCTION__ );
 
 		$this->setGroupPermissions( 'sysop', 'suppressredirect', false );
-
 		$id = $this->createPage( $name );
 
 		$res = $this->doApiRequestWithToken( [

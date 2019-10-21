@@ -19,12 +19,15 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\Revision\RevisionRecord;
+
 /**
  * Item class for a filearchive table row
+ *
+ * @property ArchivedFile $file
+ * @property RevDelArchivedFileList $list
  */
 class RevDelArchivedFileItem extends RevDelFileItem {
-	/** @var RevDelArchivedFileList $list */
-	/** @var ArchivedFile $file */
 	/** @var LocalFile */
 	protected $lockFile;
 
@@ -109,8 +112,8 @@ class RevDelArchivedFileItem extends RevDelFileItem {
 			'width' => $file->getWidth(),
 			'height' => $file->getHeight(),
 			'size' => $file->getSize(),
-			'userhidden' => (bool)$file->isDeleted( Revision::DELETED_USER ),
-			'commenthidden' => (bool)$file->isDeleted( Revision::DELETED_COMMENT ),
+			'userhidden' => (bool)$file->isDeleted( RevisionRecord::DELETED_USER ),
+			'commenthidden' => (bool)$file->isDeleted( RevisionRecord::DELETED_COMMENT ),
 			'contenthidden' => (bool)$this->isDeleted(),
 		];
 		if ( $this->canViewContent() ) {
@@ -124,13 +127,13 @@ class RevDelArchivedFileItem extends RevDelFileItem {
 				),
 			];
 		}
-		if ( $file->userCan( Revision::DELETED_USER, $user ) ) {
+		if ( $file->userCan( RevisionRecord::DELETED_USER, $user ) ) {
 			$ret += [
 				'userid' => $file->getUser( 'id' ),
 				'user' => $file->getUser( 'text' ),
 			];
 		}
-		if ( $file->userCan( Revision::DELETED_COMMENT, $user ) ) {
+		if ( $file->userCan( RevisionRecord::DELETED_COMMENT, $user ) ) {
 			$ret += [
 				'comment' => $file->getRawDescription(),
 			];

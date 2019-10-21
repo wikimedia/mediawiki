@@ -48,6 +48,7 @@ class LinkHolderArray {
 	 * Reduce memory usage to reduce the impact of circular references
 	 */
 	public function __destruct() {
+		// @phan-suppress-next-line PhanTypeSuspiciousNonTraversableForeach
 		foreach ( $this as $name => $value ) {
 			unset( $this->$name );
 		}

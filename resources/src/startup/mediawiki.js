@@ -13,7 +13,7 @@
 	'use strict';
 
 	var mw, StringSet, log,
-		hasOwn = Object.prototype.hasOwnProperty;
+		hasOwn = Object.hasOwnProperty;
 
 	/**
 	 * FNV132 hash function
@@ -37,8 +37,8 @@
 			hash ^= str.charCodeAt( i );
 		}
 
-		hash = ( hash >>> 0 ).toString( 36 );
-		while ( hash.length < 7 ) {
+		hash = ( hash >>> 0 ).toString( 36 ).slice( 0, 5 );
+		while ( hash.length < 5 ) {
 			hash = '0' + hash;
 		}
 		/* eslint-enable no-bitwise */
@@ -361,12 +361,7 @@
 	 * @class mw
 	 */
 	mw = {
-		redefineFallbacksForTest: function () {
-			if ( !window.QUnit ) {
-				throw new Error( 'Not allowed' );
-			}
-			defineFallbacks();
-		},
+		redefineFallbacksForTest: window.QUnit && defineFallbacks,
 
 		/**
 		 * Get the current time, measured in milliseconds since January 1, 1970 (UTC).
@@ -432,30 +427,7 @@
 		 *
 		 * @property {mw.Map} config
 		 */
-		// Dummy placeholder later assigned in ResourceLoaderStartUpModule
-		config: null,
-
-		/**
-		 * Empty object for third-party libraries, for cases where you don't
-		 * want to add a new global, or the global is bad and needs containment
-		 * or wrapping.
-		 *
-		 * @property
-		 */
-		libs: {},
-
-		/**
-		 * Access container for deprecated functionality that can be moved from
-		 * from their legacy location and attached to this object (e.g. a global
-		 * function that is deprecated and as stop-gap can be exposed through here).
-		 *
-		 * This was reserved for future use but never ended up being used.
-		 *
-		 * @deprecated since 1.22 Let deprecated identifiers keep their original name
-		 *  and use mw.log#deprecate to create an access container for tracking.
-		 * @property
-		 */
-		legacy: {},
+		config: new Map( $VARS.wgLegacyJavaScriptGlobals ),
 
 		/**
 		 * Store for messages.
@@ -534,7 +506,7 @@
 			 *             // From mw.loader.register()
 			 *             'version': '########' (hash)
 			 *             'dependencies': ['required.foo', 'bar.also', ...]
-			 *             'group': 'somegroup', (or) null
+			 *             'group': string, integer, (or) null
 			 *             'source': 'local', (or) 'anotherwiki'
 			 *             'skip': 'return !!window.Example', (or) null, (or) boolean result of skip
 			 *             'module': export Object
@@ -997,13 +969,20 @@
 					try {
 						sortDependencies( modules[ i ], resolved );
 					} catch ( err ) {
-						// This module is unknown or has unknown dependencies.
-						// Undo any incomplete resolutions made and keep going.
+						// This module is not currently known, or has invalid dependencies.
+						// Most likely due to a cached reference after the module was
+						// removed, otherwise made redundant, or omitted from the registry
+						// by the ResourceLoader "target" system.
 						resolved = saved;
-						mw.trackError( 'resourceloader.exception', {
-							exception: err,
-							source: 'resolve'
-						} );
+						mw.log.warn( 'Skipped unresolvable module ' + modules[ i ] );
+						if ( modules[ i ] in registry ) {
+							// If the module was known but had unknown or circular dependencies,
+							// also track it as an error.
+							mw.trackError( 'resourceloader.exception', {
+								exception: err,
+								source: 'resolve'
+							} );
+						}
 					}
 				}
 				return resolved;
@@ -1066,7 +1045,7 @@
 					}
 
 					if ( !hasOwn.call( scriptFiles, fileName ) ) {
-						throw new Error( 'Cannot require() undefined file ' + fileName );
+						throw new Error( 'Cannot require undefined file ' + fileName );
 					}
 					if ( hasOwn.call( moduleObj.packageExports, fileName ) ) {
 						// File has already been executed, return the cached result
@@ -1156,10 +1135,11 @@
 			 * Utility function for execute()
 			 *
 			 * @ignore
-			 * @param {string} [media] Media attribute
 			 * @param {string} url URL
+			 * @param {string} [media] Media attribute
+			 * @param {Node|null} [nextNode]
 			 */
-			function addLink( media, url ) {
+			function addLink( url, media, nextNode ) {
 				var el = document.createElement( 'link' );
 
 				el.rel = 'stylesheet';
@@ -1170,8 +1150,8 @@
 				// see #addEmbeddedCSS, T33676, T43331, and T49277 for details.
 				el.href = url;
 
-				if ( marker && marker.parentNode ) {
-					marker.parentNode.insertBefore( el, marker );
+				if ( nextNode && nextNode.parentNode ) {
+					nextNode.parentNode.insertBefore( el, nextNode );
 				} else {
 					document.head.appendChild( el );
 				}
@@ -1238,15 +1218,9 @@
 
 				dependencies.forEach( function ( module ) {
 					// Only queue modules that are still in the initial 'registered' state
-					// (not ones already loading, ready or error).
+					// (e.g. not ones already loading or loaded etc.).
 					if ( registry[ module ].state === 'registered' && queue.indexOf( module ) === -1 ) {
-						// Private modules must be embedded in the page. Don't bother queuing
-						// these as the server will deny them anyway (T101806).
-						if ( registry[ module ].group === 'private' ) {
-							setAndPropagate( module, 'error' );
-						} else {
-							queue.push( module );
-						}
+						queue.push( module );
 					}
 				} );
 
@@ -1264,7 +1238,7 @@
 					cssPending = 0;
 
 				if ( registry[ module ].state !== 'loaded' ) {
-					throw new Error( 'Module in state "' + registry[ module ].state + '" may not be executed: ' + module );
+					throw new Error( 'Module in state "' + registry[ module ].state + '" may not execute: ' + module );
 				}
 
 				registry[ module ].state = 'executing';
@@ -1320,8 +1294,7 @@
 							} else {
 								mainScript = script.files[ script.main ];
 								if ( typeof mainScript !== 'function' ) {
-									throw new Error( 'Main file ' + script.main + ' in module ' + module +
-										' must be of type function, found ' + typeof mainScript );
+									throw new Error( 'Main file in module ' + module + ' must be a function' );
 								}
 								// jQuery parameters are not passed for multi-file modules
 								mainScript(
@@ -1425,7 +1398,7 @@
 							for ( i = 0; i < value.length; i++ ) {
 								if ( key === 'bc-url' ) {
 									// back-compat: { <media>: [url, ..] }
-									addLink( media, value[ i ] );
+									addLink( value[ i ], media, marker );
 								} else if ( key === 'css' ) {
 									// { "css": [css, ..] }
 									addEmbeddedCSS( value[ i ], cssHandle() );
@@ -1438,7 +1411,7 @@
 							for ( media in value ) {
 								urls = value[ media ];
 								for ( i = 0; i < urls.length; i++ ) {
-									addLink( media, urls[ i ] );
+									addLink( urls[ i ], media, marker );
 								}
 							}
 						}
@@ -1605,11 +1578,7 @@
 				batch.sort();
 
 				// Query parameters common to all requests
-				reqBase = {
-					skin: mw.config.get( 'skin' ),
-					lang: mw.config.get( 'wgUserLanguage' ),
-					debug: mw.config.get( 'debug' )
-				};
+				reqBase = $VARS.reqBase;
 
 				// Split module list by source and by group.
 				splits = Object.create( null );
@@ -1638,15 +1607,15 @@
 						// Optimisation: Inherit (Object.create), not copy ($.extend)
 						currReqBase = Object.create( reqBase );
 						// User modules require a user name in the query string.
-						if ( group === 'user' && mw.config.get( 'wgUserName' ) !== null ) {
+						if ( group === $VARS.groupUser && mw.config.get( 'wgUserName' ) !== null ) {
 							currReqBase.user = mw.config.get( 'wgUserName' );
 						}
 
 						// In addition to currReqBase, doRequest() will also add 'modules' and 'version'.
 						// > '&modules='.length === 9
-						// > '&version=1234567'.length === 16
-						// > 9 + 16 = 25
-						currReqBaseLength = makeQueryString( currReqBase ).length + 25;
+						// > '&version=12345'.length === 14
+						// > 9 + 14 = 23
+						currReqBaseLength = makeQueryString( currReqBase ).length + 23;
 
 						// We may need to split up the request to honor the query string length limit,
 						// so build it piece by piece.
@@ -1764,7 +1733,7 @@
 					packageExports: {},
 					version: String( version || '' ),
 					dependencies: dependencies || [],
-					group: typeof group === 'string' ? group : null,
+					group: typeof group === 'undefined' ? null : group,
 					source: typeof source === 'string' ? source : 'local',
 					state: 'registered',
 					skip: typeof skip === 'string' ? skip : null
@@ -2018,42 +1987,31 @@
 				 * @param {string} [type='text/javascript'] MIME type to use if calling with a URL of an
 				 *  external script or style; acceptable values are "text/css" and
 				 *  "text/javascript"; if no type is provided, text/javascript is assumed.
+				 * @throws {Error} If type is invalid
 				 */
 				load: function ( modules, type ) {
-					var filtered, l;
-
-					// Allow calling with a url or single dependency as a string
-					if ( typeof modules === 'string' ) {
-						// "https://example.org/x.js", "http://example.org/x.js", "//example.org/x.js", "/x.js"
-						if ( /^(https?:)?\/?\//.test( modules ) ) {
-							if ( type === 'text/css' ) {
-								l = document.createElement( 'link' );
-								l.rel = 'stylesheet';
-								l.href = modules;
-								document.head.appendChild( l );
-								return;
-							}
-							if ( type === 'text/javascript' || type === undefined ) {
-								addScript( modules );
-								return;
-							}
+					if ( typeof modules === 'string' && /^(https?:)?\/?\//.test( modules ) ) {
+						// Called with a url like so:
+						// - "https://example.org/x.js"
+						// - "http://example.org/x.js"
+						// - "//example.org/x.js"
+						// - "/x.js"
+						if ( type === 'text/css' ) {
+							addLink( modules );
+						} else if ( type === 'text/javascript' || type === undefined ) {
+							addScript( modules );
+						} else {
 							// Unknown type
-							throw new Error( 'type must be text/css or text/javascript, found ' + type );
+							throw new Error( 'Invalid type ' + type );
 						}
-						// Called with single module
-						modules = [ modules ];
+					} else {
+						// One or more modules
+						modules = typeof modules === 'string' ? [ modules ] : modules;
+						// Resolve modules into flat list for internal queuing.
+						// This also filters out unknown modules and modules with
+						// unknown dependencies, allowing the rest to continue. (T36853)
+						enqueue( resolveStubbornly( modules ), undefined, undefined );
 					}
-
-					// Filter out top-level modules that are unknown or failed to load before.
-					filtered = modules.filter( function ( module ) {
-						var state = mw.loader.getState( module );
-						return state !== 'error' && state !== 'missing';
-					} );
-					// Resolve remaining list using the known dependency tree.
-					// This also filters out modules with unknown dependencies. (T36853)
-					filtered = resolveStubbornly( filtered );
-					// Some modules are not yet ready, add to module load queue.
-					enqueue( filtered, undefined, undefined );
 				},
 
 				/**
@@ -2145,9 +2103,8 @@
 					// Whether the store is in use on this page.
 					enabled: null,
 
-					// Modules whose string representation exceeds 100 kB are
-					// ineligible for storage. See bug T66721.
-					MODULE_SIZE_MAX: 100 * 1000,
+					// Modules whose serialised form exceeds 100 kB won't be stored (T66721).
+					MODULE_SIZE_MAX: 1e5,
 
 					// The contents of the store, mapping '[name]@[version]' keys
 					// to module implementations.
@@ -2166,29 +2123,29 @@
 					 * @return {Object} Module store contents.
 					 */
 					toJSON: function () {
-						return { items: mw.loader.store.items, vary: mw.loader.store.getVary() };
+						return {
+							items: mw.loader.store.items,
+							vary: mw.loader.store.vary,
+							// Store with 1e7 ms accuracy (1e4 seconds, or ~ 2.7 hours),
+							// which is enough for the purpose of expiring after ~ 30 days.
+							asOf: Math.ceil( Date.now() / 1e7 )
+						};
 					},
 
 					/**
-					 * Get the localStorage key for the entire module store. The key references
+					 * The localStorage key for the entire module store. The key references
 					 * $wgDBname to prevent clashes between wikis which share a common host.
 					 *
-					 * @return {string} localStorage item key
+					 * @property {string}
 					 */
-					getStoreKey: function () {
-						return 'MediaWikiModuleStore:' + mw.config.get( 'wgDBname' );
-					},
+					key: $VARS.storeKey,
 
 					/**
-					 * Get a key on which to vary the module cache.
+					 * A string containing various factors on which to the module cache should vary.
 					 *
-					 * @return {string} String of concatenated vary conditions.
+					 * @property {string}
 					 */
-					getVary: function () {
-						return mw.config.get( 'skin' ) + ':' +
-							mw.config.get( 'wgResourceLoaderStorageVersion' ) + ':' +
-							mw.config.get( 'wgUserLanguage' );
-					},
+					vary: $VARS.storeVary,
 
 					/**
 					 * Initialize the store.
@@ -2210,33 +2167,34 @@
 						}
 
 						if (
+							!$VARS.storeEnabled ||
+
 							// Disabled because localStorage quotas are tight and (in Firefox's case)
 							// shared by multiple origins.
 							// See T66721, and <https://bugzilla.mozilla.org/show_bug.cgi?id=1064466>.
-							/Firefox/.test( navigator.userAgent ) ||
-
-							// Disabled by configuration.
-							!mw.config.get( 'wgResourceLoaderStorageEnabled' )
+							/Firefox/.test( navigator.userAgent )
 						) {
 							// Clear any previous store to free up space. (T66721)
 							this.clear();
 							this.enabled = false;
 							return;
 						}
-						if ( mw.config.get( 'debug' ) ) {
-							// Disable module store in debug mode
-							this.enabled = false;
-							return;
-						}
 
 						try {
 							// This a string we stored, or `null` if the key does not (yet) exist.
-							raw = localStorage.getItem( this.getStoreKey() );
+							raw = localStorage.getItem( this.key );
 							// If we get here, localStorage is available; mark enabled
 							this.enabled = true;
 							// If null, JSON.parse() will cast to string and re-parse, still null.
 							data = JSON.parse( raw );
-							if ( data && typeof data.items === 'object' && data.vary === this.getVary() ) {
+							if ( data &&
+								typeof data.items === 'object' &&
+								data.vary === this.vary &&
+								// Only use if it's been less than 30 days since the data was written
+								// 30 days = 2,592,000 s = 2,592,000,000 ms = ± 259e7 ms
+								Date.now() < ( data.asOf * 1e7 ) + 259e7
+							) {
+								// The data is not corrupt, matches our vary context, and has not expired.
 								this.items = data.items;
 								return;
 							}
@@ -2252,7 +2210,7 @@
 						//    The store was enabled, and `items` starts fresh.
 						//
 						// 2. localStorage contained parseable data under our store key,
-						//    but it's not applicable to our current context (see getVary).
+						//    but it's not applicable to our current context (see #vary).
 						//    The store was enabled, and `items` starts fresh.
 						//
 						// 3. JSON.parse threw (localStorage contained corrupt data).
@@ -2332,8 +2290,8 @@
 							descriptor.state !== 'ready' ||
 							// Unversioned, private, or site-/user-specific
 							!descriptor.version ||
-							descriptor.group === 'private' ||
-							descriptor.group === 'user' ||
+							descriptor.group === $VARS.groupPrivate ||
+							descriptor.group === $VARS.groupUser ||
 							// Partial descriptor
 							// (e.g. skipped module, or style module with state=ready)
 							[ descriptor.script, descriptor.style, descriptor.messages,
@@ -2414,7 +2372,7 @@
 					clear: function () {
 						this.items = {};
 						try {
-							localStorage.removeItem( this.getStoreKey() );
+							localStorage.removeItem( this.key );
 						} catch ( e ) {}
 					},
 
@@ -2463,7 +2421,7 @@
 								mw.loader.store.set( mw.loader.store.queue.shift() );
 							}
 
-							key = mw.loader.store.getStoreKey();
+							key = mw.loader.store.key;
 							try {
 								// Replacing the content of the module store might fail if the new
 								// contents would exceed the browser's localStorage size limit. To
@@ -2502,27 +2460,7 @@
 					}() )
 				}
 			};
-		}() ),
-
-		// Skeleton user object, extended by the 'mediawiki.user' module.
-		/**
-		 * @class mw.user
-		 * @singleton
-		 */
-		user: {
-			/**
-			 * @property {mw.Map}
-			 */
-			options: new Map(),
-			/**
-			 * @property {mw.Map}
-			 */
-			tokens: new Map()
-		},
-
-		// OOUI widgets specific to MediaWiki
-		widgets: {}
-
+		}() )
 	};
 
 	// Attach to window and globally alias

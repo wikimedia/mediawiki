@@ -162,13 +162,11 @@ abstract class ContextSource implements IContextSource {
 	 * @since 1.18
 	 * @param string|string[]|MessageSpecifier $key Message key, or array of keys,
 	 *   or a MessageSpecifier.
-	 * @param mixed $args,...
+	 * @param mixed ...$params
 	 * @return Message
 	 */
-	public function msg( $key /* $args */ ) {
-		$args = func_get_args();
-
-		return $this->getContext()->msg( ...$args );
+	public function msg( $key, ...$params ) {
+		return $this->getContext()->msg( $key, ...$params );
 	}
 
 	/**

@@ -279,30 +279,44 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendNamespaces( $property ) {
+		$nsProtection = $this->getConfig()->get( 'NamespaceProtection' );
+
 		$data = [
 			ApiResult::META_TYPE => 'assoc',
 		];
+		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 		foreach (
 			MediaWikiServices::getInstance()->getContentLanguage()->getFormattedNamespaces()
 			as $ns => $title
 		) {
 			$data[$ns] = [
 				'id' => (int)$ns,
-				'case' => MWNamespace::isCapitalized( $ns ) ? 'first-letter' : 'case-sensitive',
+				'case' => $nsInfo->isCapitalized( $ns ) ? 'first-letter' : 'case-sensitive',
 			];
 			ApiResult::setContentValue( $data[$ns], 'name', $title );
-			$canonical = MWNamespace::getCanonicalName( $ns );
+			$canonical = $nsInfo->getCanonicalName( $ns );
 
-			$data[$ns]['subpages'] = MWNamespace::hasSubpages( $ns );
+			$data[$ns]['subpages'] = $nsInfo->hasSubpages( $ns );
 
 			if ( $canonical ) {
 				$data[$ns]['canonical'] = strtr( $canonical, '_', ' ' );
 			}
 
-			$data[$ns]['content'] = MWNamespace::isContent( $ns );
-			$data[$ns]['nonincludable'] = MWNamespace::isNonincludable( $ns );
+			$data[$ns]['content'] = $nsInfo->isContent( $ns );
+			$data[$ns]['nonincludable'] = $nsInfo->isNonincludable( $ns );
 
-			$contentmodel = MWNamespace::getNamespaceContentModel( $ns );
+			if ( isset( $nsProtection[$ns] ) ) {
+				if ( is_array( $nsProtection[$ns] ) ) {
+					$specificNs = implode( "|", array_filter( $nsProtection[$ns] ) );
+				} elseif ( $nsProtection[$ns] !== '' ) {
+					$specificNs = $nsProtection[$ns];
+				}
+				if ( isset( $specificNs ) && $specificNs !== '' ) {
+					$data[$ns]['namespaceprotection'] = $specificNs;
+				}
+			}
+
+			$contentmodel = $nsInfo->getNamespaceContentModel( $ns );
 			if ( $contentmodel ) {
 				$data[$ns]['defaultcontentmodel'] = $contentmodel;
 			}
@@ -787,12 +801,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function appendExtensionTags( $property ) {
-		global $wgParser;
 		$tags = array_map(
 			function ( $item ) {
 				return "<$item>";
 			},
-			$wgParser->getTags()
+			MediaWikiServices::getInstance()->getParser()->getTags()
 		);
 		ApiResult::setArrayType( $tags, 'BCarray' );
 		ApiResult::setIndexedTagName( $tags, 't' );
@@ -801,8 +814,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function appendFunctionHooks( $property ) {
-		global $wgParser;
-		$hooks = $wgParser->getFunctionHooks();
+		$hooks = MediaWikiServices::getInstance()->getParser()->getFunctionHooks();
 		ApiResult::setArrayType( $hooks, 'BCarray' );
 		ApiResult::setIndexedTagName( $hooks, 'h' );
 

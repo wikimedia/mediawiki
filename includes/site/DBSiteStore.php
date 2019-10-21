@@ -1,6 +1,6 @@
 <?php
 
-use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Represents the site configuration of a wiki.
@@ -38,7 +38,7 @@ class DBSiteStore implements SiteStore {
 	protected $sites = null;
 
 	/**
-	 * @var LoadBalancer
+	 * @var ILoadBalancer
 	 */
 	private $dbLoadBalancer;
 
@@ -48,9 +48,9 @@ class DBSiteStore implements SiteStore {
 	 * @todo inject some kind of connection manager that is aware of the target wiki,
 	 * instead of injecting a LoadBalancer.
 	 *
-	 * @param LoadBalancer $dbLoadBalancer
+	 * @param ILoadBalancer $dbLoadBalancer
 	 */
-	public function __construct( LoadBalancer $dbLoadBalancer ) {
+	public function __construct( ILoadBalancer $dbLoadBalancer ) {
 		$this->dbLoadBalancer = $dbLoadBalancer;
 	}
 
@@ -75,7 +75,7 @@ class DBSiteStore implements SiteStore {
 	protected function loadSites() {
 		$this->sites = new SiteList();
 
-		$dbr = $this->dbLoadBalancer->getConnection( DB_REPLICA );
+		$dbr = $this->dbLoadBalancer->getConnectionRef( DB_REPLICA );
 
 		$res = $dbr->select(
 			'sites',
@@ -178,7 +178,7 @@ class DBSiteStore implements SiteStore {
 			return true;
 		}
 
-		$dbw = $this->dbLoadBalancer->getConnection( DB_MASTER );
+		$dbw = $this->dbLoadBalancer->getConnectionRef( DB_MASTER );
 
 		$dbw->startAtomic( __METHOD__ );
 
@@ -269,7 +269,7 @@ class DBSiteStore implements SiteStore {
 	 * @return bool Success
 	 */
 	public function clear() {
-		$dbw = $this->dbLoadBalancer->getConnection( DB_MASTER );
+		$dbw = $this->dbLoadBalancer->getConnectionRef( DB_MASTER );
 
 		$dbw->startAtomic( __METHOD__ );
 		$ok = $dbw->delete( 'sites', '*', __METHOD__ );

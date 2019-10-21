@@ -9,7 +9,6 @@ use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Rdbms\DatabaseSqlite;
 use Wikimedia\Rdbms\DatabasePostgres;
-use Wikimedia\Rdbms\DatabaseMssql;
 use Wikimedia\Rdbms\DBUnexpectedError;
 
 class DatabaseTest extends PHPUnit\Framework\TestCase {
@@ -37,7 +36,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertInstanceOf( DatabasePostgres::class, Database::factory( 'Postgres', $p, $m ) );
 
 		$x = $p + [ 'port' => 10000, 'UseWindowsAuth' => false ];
-		$this->assertInstanceOf( DatabaseMssql::class, Database::factory( 'mssql', $x, $m ) );
 
 		$x = $p + [ 'dbFilePath' => 'some/file.sqlite' ];
 		$this->assertInstanceOf( DatabaseSqlite::class, Database::factory( 'sqlite', $x, $m ) );
@@ -492,13 +490,13 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$db->method( 'isOpen' )->willReturn( true );
 		$db->method( 'getDBname' )->willReturn( 'unittest' );
 
-		$this->assertEquals( 0, $db->trxLevel() );
+		$this->assertSame( 0, $db->trxLevel() );
 		$this->assertEquals( true, $db->lockIsFree( 'x', __METHOD__ ) );
 		$this->assertEquals( true, $db->lock( 'x', __METHOD__ ) );
 		$this->assertEquals( false, $db->lockIsFree( 'x', __METHOD__ ) );
 		$this->assertEquals( true, $db->unlock( 'x', __METHOD__ ) );
 		$this->assertEquals( true, $db->lockIsFree( 'x', __METHOD__ ) );
-		$this->assertEquals( 0, $db->trxLevel() );
+		$this->assertSame( 0, $db->trxLevel() );
 
 		$db->setFlag( DBO_TRX );
 		$this->assertEquals( true, $db->lockIsFree( 'x', __METHOD__ ) );
@@ -509,7 +507,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$db->clearFlag( DBO_TRX );
 
 		// Pending writes with DBO_TRX
-		$this->assertEquals( 0, $db->trxLevel() );
+		$this->assertSame( 0, $db->trxLevel() );
 		$this->assertTrue( $db->lockIsFree( 'meow', __METHOD__ ) );
 		$db->setFlag( DBO_TRX );
 		$db->query( "DELETE FROM test WHERE t = 1" ); // trigger DBO_TRX transaction before lock
@@ -523,7 +521,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$db->rollback( __METHOD__, IDatabase::FLUSHING_ALL_PEERS );
 		// Pending writes without DBO_TRX
 		$db->clearFlag( DBO_TRX );
-		$this->assertEquals( 0, $db->trxLevel() );
+		$this->assertSame( 0, $db->trxLevel() );
 		$this->assertTrue( $db->lockIsFree( 'meow2', __METHOD__ ) );
 		$db->begin( __METHOD__ );
 		$db->query( "DELETE FROM test WHERE t = 1" ); // trigger DBO_TRX transaction before lock
@@ -537,17 +535,17 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$db->rollback( __METHOD__ );
 		// No pending writes, with DBO_TRX
 		$db->setFlag( DBO_TRX );
-		$this->assertEquals( 0, $db->trxLevel() );
+		$this->assertSame( 0, $db->trxLevel() );
 		$this->assertTrue( $db->lockIsFree( 'wuff', __METHOD__ ) );
 		$db->query( "SELECT 1", __METHOD__ );
 		$this->assertEquals( 1, $db->trxLevel() );
 		$lock = $db->getScopedLockAndFlush( 'wuff', __METHOD__, 1 );
-		$this->assertEquals( 0, $db->trxLevel() );
+		$this->assertSame( 0, $db->trxLevel() );
 		$this->assertFalse( $db->lockIsFree( 'wuff', __METHOD__ ), 'Lock already acquired' );
 		$db->rollback( __METHOD__, IDatabase::FLUSHING_ALL_PEERS );
 		// No pending writes, without DBO_TRX
 		$db->clearFlag( DBO_TRX );
-		$this->assertEquals( 0, $db->trxLevel() );
+		$this->assertSame( 0, $db->trxLevel() );
 		$this->assertTrue( $db->lockIsFree( 'wuff2', __METHOD__ ) );
 		$db->begin( __METHOD__ );
 		try {
@@ -568,62 +566,74 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	public function testFlagSetting() {
 		$db = $this->db;
 		$origTrx = $db->getFlag( DBO_TRX );
-		$origSsl = $db->getFlag( DBO_SSL );
+		$origNoBuffer = $db->getFlag( DBO_NOBUFFER );
 
 		$origTrx
 			? $db->clearFlag( DBO_TRX, $db::REMEMBER_PRIOR )
 			: $db->setFlag( DBO_TRX, $db::REMEMBER_PRIOR );
 		$this->assertEquals( !$origTrx, $db->getFlag( DBO_TRX ) );
 
-		$origSsl
-			? $db->clearFlag( DBO_SSL, $db::REMEMBER_PRIOR )
-			: $db->setFlag( DBO_SSL, $db::REMEMBER_PRIOR );
-		$this->assertEquals( !$origSsl, $db->getFlag( DBO_SSL ) );
+		$origNoBuffer
+			? $db->clearFlag( DBO_NOBUFFER, $db::REMEMBER_PRIOR )
+			: $db->setFlag( DBO_NOBUFFER, $db::REMEMBER_PRIOR );
+		$this->assertEquals( !$origNoBuffer, $db->getFlag( DBO_NOBUFFER ) );
 
 		$db->restoreFlags( $db::RESTORE_INITIAL );
 		$this->assertEquals( $origTrx, $db->getFlag( DBO_TRX ) );
-		$this->assertEquals( $origSsl, $db->getFlag( DBO_SSL ) );
+		$this->assertEquals( $origNoBuffer, $db->getFlag( DBO_NOBUFFER ) );
 
 		$origTrx
 			? $db->clearFlag( DBO_TRX, $db::REMEMBER_PRIOR )
 			: $db->setFlag( DBO_TRX, $db::REMEMBER_PRIOR );
-		$origSsl
-			? $db->clearFlag( DBO_SSL, $db::REMEMBER_PRIOR )
-			: $db->setFlag( DBO_SSL, $db::REMEMBER_PRIOR );
+		$origNoBuffer
+			? $db->clearFlag( DBO_NOBUFFER, $db::REMEMBER_PRIOR )
+			: $db->setFlag( DBO_NOBUFFER, $db::REMEMBER_PRIOR );
 
 		$db->restoreFlags();
-		$this->assertEquals( $origSsl, $db->getFlag( DBO_SSL ) );
+		$this->assertEquals( $origNoBuffer, $db->getFlag( DBO_NOBUFFER ) );
 		$this->assertEquals( !$origTrx, $db->getFlag( DBO_TRX ) );
 
 		$db->restoreFlags();
-		$this->assertEquals( $origSsl, $db->getFlag( DBO_SSL ) );
+		$this->assertEquals( $origNoBuffer, $db->getFlag( DBO_NOBUFFER ) );
 		$this->assertEquals( $origTrx, $db->getFlag( DBO_TRX ) );
 	}
 
-	/**
-	 * @expectedException UnexpectedValueException
-	 * @covers Wikimedia\Rdbms\Database::setFlag
-	 */
-	public function testDBOIgnoreSet() {
-		$db = $this->getMockBuilder( DatabaseMysqli::class )
-			->disableOriginalConstructor()
-			->setMethods( null )
-			->getMock();
-
-		$db->setFlag( Database::DBO_IGNORE );
+	public function provideImmutableDBOFlags() {
+		return [
+			[ Database::DBO_IGNORE ],
+			[ Database::DBO_DEFAULT ],
+			[ Database::DBO_PERSISTENT ]
+		];
 	}
 
 	/**
-	 * @expectedException UnexpectedValueException
-	 * @covers Wikimedia\Rdbms\Database::clearFlag
+	 * @expectedException DBUnexpectedError
+	 * @covers Wikimedia\Rdbms\Database::setFlag
+	 * @dataProvider provideImmutableDBOFlags
+	 * @param int $flag
 	 */
-	public function testDBOIgnoreClear() {
+	public function testDBOCannotSet( $flag ) {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
 			->setMethods( null )
 			->getMock();
 
-		$db->clearFlag( Database::DBO_IGNORE );
+		$db->setFlag( $flag );
+	}
+
+	/**
+	 * @expectedException DBUnexpectedError
+	 * @covers Wikimedia\Rdbms\Database::clearFlag
+	 * @dataProvider provideImmutableDBOFlags
+	 * @param int $flag
+	 */
+	public function testDBOCannotClear( $flag ) {
+		$db = $this->getMockBuilder( DatabaseMysqli::class )
+			->disableOriginalConstructor()
+			->setMethods( null )
+			->getMock();
+
+		$db->clearFlag( $flag );
 	}
 
 	/**
@@ -704,4 +714,31 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $oldDomain, $this->db->getDomainId() );
 	}
 
+	/**
+	 * @covers Wikimedia\Rdbms\Database::getLBInfo
+	 * @covers Wikimedia\Rdbms\Database::setLBInfo
+	 */
+	public function testGetSetLBInfo() {
+		$db = $this->getMockDB();
+
+		$this->assertEquals( [], $db->getLBInfo() );
+		$this->assertNull( $db->getLBInfo( 'pringles' ) );
+
+		$db->setLBInfo( 'soda', 'water' );
+		$this->assertEquals( [ 'soda' => 'water' ], $db->getLBInfo() );
+		$this->assertNull( $db->getLBInfo( 'pringles' ) );
+		$this->assertEquals( 'water', $db->getLBInfo( 'soda' ) );
+
+		$db->setLBInfo( 'basketball', 'Lebron' );
+		$this->assertEquals( [ 'soda' => 'water', 'basketball' => 'Lebron' ], $db->getLBInfo() );
+		$this->assertEquals( 'water', $db->getLBInfo( 'soda' ) );
+		$this->assertEquals( 'Lebron', $db->getLBInfo( 'basketball' ) );
+
+		$db->setLBInfo( 'soda', null );
+		$this->assertEquals( [ 'basketball' => 'Lebron' ], $db->getLBInfo() );
+
+		$db->setLBInfo( [ 'King' => 'James' ] );
+		$this->assertNull( $db->getLBInfo( 'basketball' ) );
+		$this->assertEquals( [ 'King' => 'James' ], $db->getLBInfo() );
+	}
 }

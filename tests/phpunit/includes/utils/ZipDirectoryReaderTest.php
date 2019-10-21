@@ -2,11 +2,8 @@
 
 /**
  * @covers ZipDirectoryReader
- * NOTE: this test is more like an integration test than a unit test
  */
-class ZipDirectoryReaderTest extends PHPUnit\Framework\TestCase {
-
-	use MediaWikiCoversValidator;
+class ZipDirectoryReaderTest extends MediaWikiIntegrationTestCase {
 
 	protected $zipDir;
 	protected $entries;

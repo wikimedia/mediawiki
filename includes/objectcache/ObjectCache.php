@@ -43,11 +43,6 @@ use MediaWiki\MediaWikiServices;
  *
  * Primary entry points:
  *
- * - ObjectCache::getMainWANInstance()
- *   Purpose: Memory cache.
- *   Stored in the local data-center's main cache (keyspace different from local-cluster cache).
- *   Delete events are broadcasted to other DCs main cache. See WANObjectCache for details.
- *
  * - ObjectCache::getLocalServerInstance( $fallbackType )
  *   Purpose: Memory cache for very hot keys.
  *   Stored only on the individual web server (typically APC or APCu for web requests,
@@ -59,13 +54,6 @@ use MediaWiki\MediaWikiServices;
  *   A typical use case would be a rate limit counter or cache regeneration mutex.
  *   Stored centrally within the local data-center. Not replicated to other DCs.
  *   Configured by $wgMainCacheType.
- *
- * - ObjectCache::getMainStashInstance()
- *   Purpose: Ephemeral global storage.
- *   Stored centrally within the primary data-center.
- *   Changes are applied there first and replicated to other DCs (best-effort).
- *   To retrieve the latest value (e.g. not from a replica DB), use BagOStuff::READ_LATEST.
- *   This store may be subject to LRU style evictions.
  *
  * - ObjectCache::getInstance( $cacheType )
  *   Purpose: Special cases (like tiered memory/disk caches).
@@ -103,8 +91,10 @@ class ObjectCache {
 	 * @since 1.26
 	 * @param string $id A key in $wgWANObjectCaches.
 	 * @return WANObjectCache
+	 * @deprecated since 1.34 Use MediaWikiServices::getMainWANObjectCache instead
 	 */
 	public static function getWANInstance( $id ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		if ( !isset( self::$wanInstances[$id] ) ) {
 			self::$wanInstances[$id] = self::newWANCacheFromId( $id );
 		}
@@ -119,7 +109,7 @@ class ObjectCache {
 	 * @return BagOStuff
 	 * @throws InvalidArgumentException
 	 */
-	public static function newFromId( $id ) {
+	private static function newFromId( $id ) {
 		global $wgObjectCaches;
 
 		if ( !isset( $wgObjectCaches[$id] ) ) {
@@ -146,7 +136,7 @@ class ObjectCache {
 	 *
 	 * @return string
 	 */
-	public static function getDefaultKeyspace() {
+	private static function getDefaultKeyspace() {
 		global $wgCachePrefix;
 
 		$keyspace = $wgCachePrefix;
@@ -169,7 +159,8 @@ class ObjectCache {
 	 * @throws InvalidArgumentException
 	 */
 	public static function newFromParams( $params ) {
-		$params['logger'] = LoggerFactory::getInstance( $params['loggroup'] ?? 'objectcache' );
+		$params['logger'] = $params['logger'] ??
+			LoggerFactory::getInstance( $params['loggroup'] ?? 'objectcache' );
 		if ( !isset( $params['keyspace'] ) ) {
 			$params['keyspace'] = self::getDefaultKeyspace();
 		}
@@ -178,7 +169,8 @@ class ObjectCache {
 		} elseif ( isset( $params['class'] ) ) {
 			$class = $params['class'];
 			// Automatically set the 'async' update handler
-			$params['asyncHandler'] = $params['asyncHandler'] ?? 'DeferredUpdates::addCallableUpdate';
+			$params['asyncHandler'] = $params['asyncHandler']
+				?? [ DeferredUpdates::class, 'addCallableUpdate' ];
 			// Enable reportDupes by default
 			$params['reportDupes'] = $params['reportDupes'] ?? true;
 			// Do b/c logic for SqlBagOStuff
@@ -202,9 +194,6 @@ class ObjectCache {
 			if ( is_subclass_of( $class, MemcachedBagOStuff::class ) ) {
 				if ( !isset( $params['servers'] ) ) {
 					$params['servers'] = $GLOBALS['wgMemCachedServers'];
-				}
-				if ( !isset( $params['debug'] ) ) {
-					$params['debug'] = $GLOBALS['wgMemCachedDebug'];
 				}
 				if ( !isset( $params['persistent'] ) ) {
 					$params['persistent'] = $GLOBALS['wgMemCachedPersistent'];
@@ -296,7 +285,7 @@ class ObjectCache {
 	 * @return WANObjectCache
 	 * @throws UnexpectedValueException
 	 */
-	public static function newWANCacheFromId( $id ) {
+	private static function newWANCacheFromId( $id ) {
 		global $wgWANObjectCaches, $wgObjectCaches;
 
 		if ( !isset( $wgWANObjectCaches[$id] ) ) {
@@ -321,19 +310,15 @@ class ObjectCache {
 	 * @param array $params
 	 * @return WANObjectCache
 	 * @throws UnexpectedValueException
+	 * @suppress PhanTypeMismatchReturn
+	 * @deprecated since 1.34 Use MediaWikiServices::getMainWANObjectCache
+	 *  instead or use WANObjectCache::__construct directly
 	 */
 	public static function newWANCacheFromParams( array $params ) {
-		global $wgCommandLineMode;
+		wfDeprecated( __METHOD__, '1.34' );
+		global $wgCommandLineMode, $wgSecretKey;
 
 		$services = MediaWikiServices::getInstance();
-
-		$erGroup = $services->getEventRelayerGroup();
-		if ( isset( $params['channels'] ) ) {
-			foreach ( $params['channels'] as $action => $channel ) {
-				$params['relayers'][$action] = $erGroup->getRelayer( $channel );
-				$params['channels'][$action] = $channel;
-			}
-		}
 		$params['cache'] = self::newFromParams( $params['store'] );
 		$params['logger'] = LoggerFactory::getInstance( $params['loggroup'] ?? 'objectcache' );
 		if ( !$wgCommandLineMode ) {
@@ -342,6 +327,7 @@ class ObjectCache {
 			// Let pre-emptive refreshes happen post-send on HTTP requests
 			$params['asyncHandler'] = [ DeferredUpdates::class, 'addCallableUpdate' ];
 		}
+		$params['secret'] = $params['secret'] ?? $wgSecretKey;
 		$class = $params['class'];
 
 		return new $class( $params );
@@ -360,40 +346,6 @@ class ObjectCache {
 	}
 
 	/**
-	 * Get the main WAN cache object.
-	 *
-	 * @since 1.26
-	 * @return WANObjectCache
-	 * @deprecated Since 1.28 Use MediaWikiServices::getInstance()->getMainWANObjectCache()
-	 */
-	public static function getMainWANInstance() {
-		return MediaWikiServices::getInstance()->getMainWANObjectCache();
-	}
-
-	/**
-	 * Get the cache object for the main stash.
-	 *
-	 * Stash objects are BagOStuff instances suitable for storing light
-	 * weight data that is not canonically stored elsewhere (such as RDBMS).
-	 * Stashes should be configured to propagate changes to all data-centers.
-	 *
-	 * Callers should be prepared for:
-	 *   - a) Writes to be slower in non-"primary" (e.g. HTTP GET/HEAD only) DCs
-	 *   - b) Reads to be eventually consistent, e.g. for get()/getMulti()
-	 * In general, this means avoiding updates on idempotent HTTP requests and
-	 * avoiding an assumption of perfect serializability (or accepting anomalies).
-	 * Reads may be eventually consistent or data might rollback as nodes flap.
-	 * Callers can use BagOStuff:READ_LATEST to see the latest available data.
-	 *
-	 * @return BagOStuff
-	 * @since 1.26
-	 * @deprecated Since 1.28 Use MediaWikiServices::getInstance()->getMainObjectStash()
-	 */
-	public static function getMainStashInstance() {
-		return MediaWikiServices::getInstance()->getMainObjectStash();
-	}
-
-	/**
 	 * Clear all the cached instances.
 	 */
 	public static function clear() {
@@ -408,13 +360,20 @@ class ObjectCache {
 	 * @return int|string Index to cache in $wgObjectCaches
 	 */
 	public static function detectLocalServerCache() {
-		if ( function_exists( 'apc_fetch' ) ) {
-			return 'apc';
-		} elseif ( function_exists( 'apcu_fetch' ) ) {
-			return 'apcu';
+		if ( function_exists( 'apcu_fetch' ) ) {
+			// Make sure the APCu methods actually store anything
+			if ( PHP_SAPI !== 'cli' || ini_get( 'apc.enable_cli' ) ) {
+				return 'apcu';
+			}
+		} elseif ( function_exists( 'apc_fetch' ) ) {
+			// Make sure the APC methods actually store anything
+			if ( PHP_SAPI !== 'cli' || ini_get( 'apc.enable_cli' ) ) {
+				return 'apc';
+			}
 		} elseif ( function_exists( 'wincache_ucache_get' ) ) {
 			return 'wincache';
 		}
+
 		return CACHE_NONE;
 	}
 }

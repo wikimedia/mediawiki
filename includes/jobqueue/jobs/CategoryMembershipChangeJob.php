@@ -81,7 +81,7 @@ class CategoryMembershipChangeJob extends Job {
 	public function run() {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$lb = $lbFactory->getMainLB();
-		$dbw = $lb->getConnection( DB_MASTER );
+		$dbw = $lb->getConnectionRef( DB_MASTER );
 
 		$this->ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
 
@@ -91,15 +91,15 @@ class CategoryMembershipChangeJob extends Job {
 			return false; // deleted?
 		}
 
-		// Cut down on the time spent in safeWaitForMasterPos() in the critical section
-		$dbr = $lb->getConnection( DB_REPLICA, [ 'recentchanges' ] );
-		if ( !$lb->safeWaitForMasterPos( $dbr ) ) {
+		// Cut down on the time spent in waitForMasterPos() in the critical section
+		$dbr = $lb->getConnectionRef( DB_REPLICA, [ 'recentchanges' ] );
+		if ( !$lb->waitForMasterPos( $dbr ) ) {
 			$this->setLastError( "Timed out while pre-waiting for replica DB to catch up" );
 			return false;
 		}
 
 		// Use a named lock so that jobs for this page see each others' changes
-		$lockKey = "CategoryMembershipUpdates:{$page->getId()}";
+		$lockKey = "{$dbw->getDomainID()}:CategoryMembershipChange:{$page->getId()}"; // per-wiki
 		$scopedLock = $dbw->getScopedLockAndFlush( $lockKey, __METHOD__, 3 );
 		if ( !$scopedLock ) {
 			$this->setLastError( "Could not acquire lock '$lockKey'" );
@@ -107,7 +107,7 @@ class CategoryMembershipChangeJob extends Job {
 		}
 
 		// Wait till replica DB is caught up so that jobs for this page see each others' changes
-		if ( !$lb->safeWaitForMasterPos( $dbr ) ) {
+		if ( !$lb->waitForMasterPos( $dbr ) ) {
 			$this->setLastError( "Timed out while waiting for replica DB to catch up" );
 			return false;
 		}

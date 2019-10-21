@@ -41,7 +41,18 @@ class BackupReader extends Maintenance {
 	public $uploads = false;
 	protected $uploadCount = 0;
 	public $imageBasePath = false;
+	/** @var array|false */
 	public $nsFilter = false;
+	/** @var bool|resource */
+	public $stderr;
+	/** @var callable|null */
+	protected $importCallback;
+	/** @var callable|null */
+	protected $logItemCallback;
+	/** @var callable|null */
+	protected $uploadCallback;
+	/** @var int */
+	protected $startTime;
 
 	function __construct() {
 		parent::__construct();
@@ -210,6 +221,7 @@ TEXT
 			}
 			$this->uploadCount++;
 			// $this->report();
+			// @phan-suppress-next-line PhanUndeclaredMethod
 			$this->progress( "upload: " . $revision->getFilename() );
 
 			if ( !$this->dryRun ) {
@@ -314,7 +326,7 @@ TEXT
 			$statusRootPage = $importer->setTargetRootPage( $this->getOption( 'rootpage' ) );
 			if ( !$statusRootPage->isGood() ) {
 				// Die here so that it doesn't print "Done!"
-				$this->fatalError( $statusRootPage->getMessage()->text() );
+				$this->fatalError( $statusRootPage->getMessage( false, false, 'en' )->text() );
 				return false;
 			}
 		}

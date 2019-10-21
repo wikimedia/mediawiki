@@ -29,6 +29,8 @@ use Wikimedia\Rdbms\IResultWrapper;
 /**
  * The TitleArray class only exists to provide the newFromResult method at pre-
  * sent.
+ *
+ * @method int count()
  */
 abstract class TitleArray implements Iterator {
 	/**
@@ -42,18 +44,6 @@ abstract class TitleArray implements Iterator {
 		if ( !Hooks::run( 'TitleArrayFromResult', [ &$array, $res ] ) ) {
 			return null;
 		}
-		if ( $array === null ) {
-			$array = self::newFromResult_internal( $res );
-		}
-		return $array;
-	}
-
-	/**
-	 * @param IResultWrapper $res
-	 * @return TitleArrayFromResult
-	 */
-	protected static function newFromResult_internal( $res ) {
-		$array = new TitleArrayFromResult( $res );
-		return $array;
+		return $array ?? new TitleArrayFromResult( $res );
 	}
 }

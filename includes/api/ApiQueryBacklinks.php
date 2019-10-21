@@ -35,8 +35,14 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	 */
 	private $rootTitle;
 
-	private $params, $cont, $redirect;
+	private $params;
+	/** @var array */
+	private $cont;
+	private $redirect;
 	private $bl_ns, $bl_from, $bl_from_ns, $bl_table, $bl_code, $bl_title, $bl_fields, $hasNS;
+
+	/** @var string */
+	private $helpUrl;
 
 	/**
 	 * Maps ns and title to pageid
@@ -306,7 +312,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			}
 
 			if ( is_null( $resultPageSet ) ) {
-				$a['pageid'] = (int)$row->page_id;
+				$a = [ 'pageid' => (int)$row->page_id ];
 				ApiQueryBase::addTitleInfo( $a, Title::makeTitle( $row->page_namespace, $row->page_title ) );
 				if ( $row->page_is_redirect ) {
 					$a['redirect'] = true;

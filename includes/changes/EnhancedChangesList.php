@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\Revision\RevisionRecord;
+
 /**
  * Generates a list of changes using an Enhanced system (uses javascript).
  *
@@ -184,9 +187,7 @@ class EnhancedChangesList extends ChangesList {
 			$tableClasses[] = Sanitizer::escapeClass( 'mw-changeslist-ns'
 				. $block[0]->mAttribs['rc_namespace'] . '-' . $block[0]->mAttribs['rc_title'] );
 		}
-		if ( $block[0]->watched
-			&& $block[0]->mAttribs['rc_timestamp'] >= $block[0]->watched
-		) {
+		if ( $block[0]->watched ) {
 			$tableClasses[] = 'mw-changeslist-line-watched';
 		} else {
 			$tableClasses[] = 'mw-changeslist-line-not-watched';
@@ -219,7 +220,7 @@ class EnhancedChangesList extends ChangesList {
 		foreach ( $block as $rcObj ) {
 			// If all log actions to this page were hidden, then don't
 			// give the name of the affected page for this block!
-			if ( !$this->isDeleted( $rcObj, LogPage::DELETED_ACTION ) ) {
+			if ( !static::isDeleted( $rcObj, LogPage::DELETED_ACTION ) ) {
 				$namehidden = false;
 			}
 			$u = $rcObj->userlink;
@@ -260,10 +261,11 @@ class EnhancedChangesList extends ChangesList {
 		} elseif ( $allLogs ) {
 			$articleLink = $this->maybeWatchedLink( $block[0]->link, $block[0]->watched );
 		} else {
-			$articleLink = $this->getArticleLink( $block[0], $block[0]->unpatrolled, $block[0]->watched );
+			$articleLink = $this->getArticleLink(
+				$block[0], $block[0]->unpatrolled, $block[0]->watched );
 		}
 
-		$queryParams['curid'] = $curId;
+		$queryParams = [ 'curid' => $curId ];
 
 		# Sub-entries
 		$lines = [];
@@ -386,9 +388,7 @@ class EnhancedChangesList extends ChangesList {
 		$lineParams = [ 'targetTitle' => $rcObj->getTitle() ];
 
 		$classes = [ 'mw-enhanced-rc' ];
-		if ( $rcObj->watched
-			&& $rcObj->mAttribs['rc_timestamp'] >= $rcObj->watched
-		) {
+		if ( $rcObj->watched ) {
 			$classes[] = 'mw-enhanced-watched';
 		}
 		$classes = array_merge( $classes, $this->getHTMLClasses( $rcObj, $rcObj->watched ) );
@@ -412,7 +412,7 @@ class EnhancedChangesList extends ChangesList {
 		if ( $type == RC_LOG ) {
 			$link = htmlspecialchars( $rcObj->timestamp );
 			# Revision link
-		} elseif ( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() ) ) {
+		} elseif ( !ChangesList::userCan( $rcObj, RevisionRecord::DELETED_TEXT, $this->getUser() ) ) {
 			$link = Html::element( 'span', [ 'class' => 'history-deleted' ], $rcObj->timestamp );
 		} else {
 			$link = $this->linkRenderer->makeKnownLink(
@@ -421,7 +421,7 @@ class EnhancedChangesList extends ChangesList {
 				[],
 				$params
 			);
-			if ( $this->isDeleted( $rcObj, Revision::DELETED_TEXT ) ) {
+			if ( static::isDeleted( $rcObj, RevisionRecord::DELETED_TEXT ) ) {
 				$link = '<span class="history-deleted">' . $link . '</span> ';
 			}
 		}
@@ -503,7 +503,7 @@ class EnhancedChangesList extends ChangesList {
 	/**
 	 * Generates amount of changes (linking to diff ) & link to history.
 	 *
-	 * @param array $block
+	 * @param RCCacheEntry[] $block
 	 * @param array $queryParams
 	 * @param bool $allLogs
 	 * @param bool $isnew
@@ -529,7 +529,7 @@ class EnhancedChangesList extends ChangesList {
 		/** @var RCCacheEntry $rcObj */
 		foreach ( $block as $rcObj ) {
 			// Same logic as below inside main foreach
-			if ( $rcObj->watched && $rcObj->mAttribs['rc_timestamp'] >= $rcObj->watched ) {
+			if ( $rcObj->watched ) {
 				$sinceLast++;
 				$unvisitedOldid = $rcObj->mAttribs['rc_last_oldid'];
 			}
@@ -552,9 +552,10 @@ class EnhancedChangesList extends ChangesList {
 		$block0 = $block[0];
 		$last = $block[count( $block ) - 1];
 		if ( !$allLogs ) {
-			if ( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() ) ||
+			if (
 				$isnew ||
-				$rcObj->mAttribs['rc_type'] == RC_CATEGORIZE
+				$rcObj->mAttribs['rc_type'] == RC_CATEGORIZE ||
+				!ChangesList::userCan( $rcObj, RevisionRecord::DELETED_TEXT, $this->getUser() )
 			) {
 				$links['total-changes'] = Html::rawElement( 'span', [], $nchanges[$n] );
 			} else {
@@ -569,19 +570,24 @@ class EnhancedChangesList extends ChangesList {
 						]
 					)
 				);
-				if ( $sinceLast > 0 && $sinceLast < $n ) {
-					$links['total-changes-since-last'] = Html::rawElement( 'span', [],
-						$this->linkRenderer->makeKnownLink(
-							$block0->getTitle(),
-							new HtmlArmor( $sinceLastVisitMsg[$sinceLast] ),
-							[ 'class' => 'mw-changeslist-groupdiff' ],
-							$queryParams + [
-								'diff' => $currentRevision,
-								'oldid' => $unvisitedOldid,
-							]
-						)
-					);
-				}
+			}
+
+			if (
+				$rcObj->mAttribs['rc_type'] != RC_CATEGORIZE &&
+				$sinceLast > 0 &&
+				$sinceLast < $n
+			) {
+				$links['total-changes-since-last'] = Html::rawElement( 'span', [],
+					$this->linkRenderer->makeKnownLink(
+						$block0->getTitle(),
+						new HtmlArmor( $sinceLastVisitMsg[$sinceLast] ),
+						[ 'class' => 'mw-changeslist-groupdiff' ],
+						$queryParams + [
+							'diff' => $currentRevision,
+							'oldid' => $unvisitedOldid,
+						]
+					)
+				);
 			}
 		}
 
@@ -626,7 +632,7 @@ class EnhancedChangesList extends ChangesList {
 	protected function recentChangesBlockLine( $rcObj ) {
 		$data = [];
 
-		$query['curid'] = $rcObj->mAttribs['rc_cur_id'];
+		$query = [ 'curid' => $rcObj->mAttribs['rc_cur_id'] ];
 
 		$type = $rcObj->mAttribs['rc_type'];
 		$logType = $rcObj->mAttribs['rc_log_type'];

@@ -1,3 +1,5 @@
+/* stylelint-disable selector-class-pattern */
+
 .env-check {
 	font-size: 90%;
 	margin: 1em 0 1em 2.5em;
@@ -140,10 +142,6 @@
 	color: #008000;
 }
 
-.success-box {
-	font-size: 130%;
-}
-
 .config-cc-wrapper {
 	clear: left;
 	/* If you change this height, also change it in WebInstallerOptions::submitCC() */
@@ -178,11 +176,13 @@
 	display: none;
 }
 
+.config-help-field-checkbox {
+	display: none;
+}
+
 /* tooltip styles */
 .config-help-field-hint {
-	display: none;
 	margin-left: 2px;
-	margin-bottom: -8px;
 	padding: 0 0 0 15px;
 	/* @embed */
 	background-image: url( images/help-question.gif );
@@ -205,4 +205,12 @@
 	padding: 5px 8px 4px 8px;
 	border: 1px solid #5dc9f4;
 	margin-left: 20px;
+}
+
+.config-help-field-checkbox:not( :checked ) ~ .config-help-field-data {
+	display: none;
+}
+
+#p-logo a {
+	background-image: url( images/installer-logo.png );
 }

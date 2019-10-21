@@ -7,13 +7,12 @@ use LogicException;
 use MediaWiki\Revision\IncompleteRevisionException;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
-use MediaWikiTestCase;
 use WikitextContent;
 
 /**
  * @covers \MediaWiki\Revision\SlotRecord
  */
-class SlotRecordTest extends MediaWikiTestCase {
+class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 
 	private function makeRow( $data = [] ) {
 		$data = $data + [
@@ -77,7 +76,7 @@ class SlotRecordTest extends MediaWikiTestCase {
 		$this->assertFalse( $record->isInherited() );
 		$this->assertSame( 'A', $record->getContent()->getText() );
 		$this->assertSame( 1, $record->getSize() );
-		$this->assertNotNull( $record->getSha1() );
+		$this->assertNotEmpty( $record->getSha1() );
 		$this->assertSame( CONTENT_MODEL_WIKITEXT, $record->getModel() );
 		$this->assertSame( 2, $record->getRevision() );
 		$this->assertSame( 2, $record->getRevision() );
@@ -96,7 +95,7 @@ class SlotRecordTest extends MediaWikiTestCase {
 		$this->assertFalse( $record->hasOrigin() );
 		$this->assertSame( 'A', $record->getContent()->getText() );
 		$this->assertSame( 1, $record->getSize() );
-		$this->assertNotNull( $record->getSha1() );
+		$this->assertNotEmpty( $record->getSha1() );
 		$this->assertSame( CONTENT_MODEL_WIKITEXT, $record->getModel() );
 		$this->assertSame( 'myRole', $record->getRole() );
 	}
@@ -175,6 +174,14 @@ class SlotRecordTest extends MediaWikiTestCase {
 
 		$record = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( $text ) );
 		$this->assertSame( $hash, $record->getSha1() );
+	}
+
+	public function testHashComputed() {
+		$row = $this->makeRow();
+		$row->content_sha1 = '';
+
+		$rec = new SlotRecord( $row, new WikitextContent( 'A' ) );
+		$this->assertNotEmpty( $rec->getSha1() );
 	}
 
 	public function testNewWithSuppressedContent() {

@@ -43,7 +43,7 @@ class SpecialAllMessages extends SpecialPage {
 		$this->setHeaders();
 
 		if ( !$this->getConfig()->get( 'UseDatabaseMessages' ) ) {
-			$out->addWikiMsg( 'allmessagesnotsupportedDB' );
+			$out->addWikiMsg( 'allmessages-not-supported-database' );
 
 			return;
 		}
@@ -64,7 +64,7 @@ class SpecialAllMessages extends SpecialPage {
 		$opts->fetchValuesFromRequest( $this->getRequest() );
 		$opts->validateIntBounds( 'limit', 0, 5000 );
 
-		$pager = new AllMessagesTablePager( $this->getContext(), $opts );
+		$pager = new AllMessagesTablePager( $this->getContext(), $opts, $this->getLinkRenderer() );
 
 		$formDescriptor = [
 			'prefix' => [

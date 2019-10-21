@@ -35,6 +35,8 @@
  * e.g. immobile_namespace for namespaces which can't be moved
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -105,10 +107,11 @@ class MoveBatch extends Maintenance {
 
 			$this->output( $source->getPrefixedText() . ' --> ' . $dest->getPrefixedText() );
 			$this->beginTransaction( $dbw, __METHOD__ );
-			$mp = new MovePage( $source, $dest );
+			$mp = MediaWikiServices::getInstance()->getMovePageFactory()
+				->newMovePage( $source, $dest );
 			$status = $mp->move( $wgUser, $reason, !$noredirects );
 			if ( !$status->isOK() ) {
-				$this->output( "\nFAILED: " . $status->getWikiText( false, false, 'en' ) );
+				$this->output( "\nFAILED: " . $status->getMessage( false, false, 'en' )->text() );
 			}
 			$this->commitTransaction( $dbw, __METHOD__ );
 			$this->output( "\n" );

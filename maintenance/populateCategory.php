@@ -137,7 +137,7 @@ TEXT
 			'updatelog',
 			[ 'ul_key' => 'populate category' ],
 			__METHOD__,
-			'IGNORE'
+			[ 'IGNORE' ]
 		);
 
 		return true;

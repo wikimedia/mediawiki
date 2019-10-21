@@ -1,6 +1,8 @@
 <?php
 
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Factory class for SearchEngine.
@@ -23,41 +25,42 @@ class SearchEngineFactory {
 	 * @return SearchEngine
 	 */
 	public function create( $type = null ) {
-		$dbr = null;
+		$configuredClass = $this->config->getSearchType();
+		$alternativesClasses = $this->config->getSearchTypes();
 
-		$configType = $this->config->getSearchType();
-		$alternatives = $this->config->getSearchTypes();
-
-		if ( $type && in_array( $type, $alternatives ) ) {
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		if ( $type !== null && in_array( $type, $alternativesClasses ) ) {
 			$class = $type;
-		} elseif ( $configType !== null ) {
-			$class = $configType;
+		} elseif ( $configuredClass !== null ) {
+			$class = $configuredClass;
 		} else {
-			$dbr = wfGetDB( DB_REPLICA );
-			$class = self::getSearchEngineClass( $dbr );
+			$class = self::getSearchEngineClass( $lb );
 		}
 
-		$search = new $class( $dbr );
-		return $search;
+		if ( is_subclass_of( $class, SearchDatabase::class ) ) {
+			return new $class( $lb );
+		} else {
+			return new $class();
+		}
 	}
 
 	/**
-	 * @param IDatabase $db
+	 * @param IDatabase|ILoadBalancer $dbOrLb
 	 * @return string SearchEngine subclass name
 	 * @since 1.28
 	 */
-	public static function getSearchEngineClass( IDatabase $db ) {
-		switch ( $db->getType() ) {
+	public static function getSearchEngineClass( $dbOrLb ) {
+		$type = ( $dbOrLb instanceof IDatabase )
+			? $dbOrLb->getType()
+			: $dbOrLb->getServerType( $dbOrLb->getWriterIndex() );
+
+		switch ( $type ) {
 			case 'sqlite':
 				return SearchSqlite::class;
 			case 'mysql':
 				return SearchMySQL::class;
 			case 'postgres':
 				return SearchPostgres::class;
-			case 'mssql':
-				return SearchMssql::class;
-			case 'oracle':
-				return SearchOracle::class;
 			default:
 				return SearchEngineDummy::class;
 		}

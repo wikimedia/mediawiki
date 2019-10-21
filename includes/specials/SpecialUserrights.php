@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Special page to allow managing user group membership
  *
@@ -61,15 +63,23 @@ class UserrightsPage extends SpecialPage {
 		$isself = $this->getUser()->equals( $targetUser );
 
 		$available = $this->changeableGroups();
-		if ( $targetUser->getId() == 0 ) {
+		if ( $targetUser->getId() === 0 ) {
 			return false;
 		}
 
-		return !empty( $available['add'] )
-			|| !empty( $available['remove'] )
-			|| ( ( $isself || !$checkIfSelf ) &&
-				( !empty( $available['add-self'] )
-					|| !empty( $available['remove-self'] ) ) );
+		if ( $available['add'] || $available['remove'] ) {
+			// can change some rights for any user
+			return true;
+		}
+
+		if ( ( $available['add-self'] || $available['remove-self'] )
+			&& ( $isself || !$checkIfSelf )
+		) {
+			// can change some rights for self
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -78,6 +88,7 @@ class UserrightsPage extends SpecialPage {
 	 *
 	 * @param string|null $par String if any subpage provided, else null
 	 * @throws UserBlockedError|PermissionsError
+	 * @suppress PhanUndeclaredMethod
 	 */
 	public function execute( $par ) {
 		$user = $this->getUser();
@@ -148,19 +159,27 @@ class UserrightsPage extends SpecialPage {
 			$user->matchEditToken( $request->getVal( 'wpEditToken' ), $this->mTarget )
 		) {
 			/*
-			* If the user is blocked and they only have "partial" access
-			* (e.g. they don't have the userrights permission), then don't
-			* allow them to change any user rights.
-			*/
-			if ( $user->isBlocked() && !$user->isAllowed( 'userrights' ) ) {
-				throw new UserBlockedError( $user->getBlock() );
+			 * If the user is blocked and they only have "partial" access
+			 * (e.g. they don't have the userrights permission), then don't
+			 * allow them to change any user rights.
+			 */
+			if ( !MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->userHasRight( $user, 'userrights' )
+			) {
+				$block = $user->getBlock();
+				if ( $block && $block->isSitewide() ) {
+					throw new UserBlockedError( $block );
+				}
 			}
 
 			$this->checkReadOnly();
 
 			// save settings
 			if ( !$fetchedStatus->isOK() ) {
-				$this->getOutput()->addWikiTextAsInterface( $fetchedStatus->getWikiText() );
+				$this->getOutput()->addWikiTextAsInterface(
+					$fetchedStatus->getWikiText( false, false, $this->getLanguage() )
+				);
 
 				return;
 			}
@@ -191,7 +210,9 @@ class UserrightsPage extends SpecialPage {
 					return;
 				} else {
 					// Print an error message and redisplay the form
-					$out->wrapWikiTextAsInterface( 'error', $status->getWikiText() );
+					$out->wrapWikiTextAsInterface(
+						'error', $status->getWikiText( false, false, $this->getLanguage() )
+					);
 				}
 			}
 		}
@@ -392,8 +413,6 @@ class UserrightsPage extends SpecialPage {
 		wfDebug( 'newGroups: ' . print_r( $newGroups, true ) . "\n" );
 		wfDebug( 'oldUGMs: ' . print_r( $oldUGMs, true ) . "\n" );
 		wfDebug( 'newUGMs: ' . print_r( $newUGMs, true ) . "\n" );
-		// Deprecated in favor of UserGroupsChanged hook
-		Hooks::run( 'UserRights', [ &$user, $add, $remove ], '1.26' );
 
 		// Only add a log entry if something actually changed
 		if ( $newGroups != $oldGroups || $newUGMs != $oldUGMs ) {
@@ -455,7 +474,7 @@ class UserrightsPage extends SpecialPage {
 		] );
 		$logid = $logEntry->insert();
 		if ( count( $tags ) ) {
-			$logEntry->setTags( $tags );
+			$logEntry->addTags( $tags );
 		}
 		$logEntry->publish( $logid );
 	}
@@ -467,12 +486,16 @@ class UserrightsPage extends SpecialPage {
 	function editUserGroupsForm( $username ) {
 		$status = $this->fetchUser( $username, true );
 		if ( !$status->isOK() ) {
-			$this->getOutput()->addWikiTextAsInterface( $status->getWikiText() );
+			$this->getOutput()->addWikiTextAsInterface(
+				$status->getWikiText( false, false, $this->getLanguage() )
+			);
 
 			return;
-		} else {
-			$user = $status->value;
 		}
+
+		/** @var User $user */
+		$user = $status->value;
+		'@phan-var User $user';
 
 		$groups = $user->getGroups();
 		$groupMemberships = $user->getGroupMemberships();
@@ -496,18 +519,21 @@ class UserrightsPage extends SpecialPage {
 		$parts = explode( $this->getConfig()->get( 'UserrightsInterwikiDelimiter' ), $username );
 		if ( count( $parts ) < 2 ) {
 			$name = trim( $username );
-			$wikiId = '';
+			$dbDomain = '';
 		} else {
-			list( $name, $wikiId ) = array_map( 'trim', $parts );
+			list( $name, $dbDomain ) = array_map( 'trim', $parts );
 
-			if ( WikiMap::isCurrentWikiId( $wikiId ) ) {
-				$wikiId = '';
+			if ( WikiMap::isCurrentWikiId( $dbDomain ) ) {
+				$dbDomain = '';
 			} else {
-				if ( $writing && !$this->getUser()->isAllowed( 'userrights-interwiki' ) ) {
+				if ( $writing && !MediaWikiServices::getInstance()
+						->getPermissionManager()
+						->userHasRight( $this->getUser(), 'userrights-interwiki' )
+				) {
 					return Status::newFatal( 'userrights-no-interwiki' );
 				}
-				if ( !UserRightsProxy::validDatabase( $wikiId ) ) {
-					return Status::newFatal( 'userrights-nodatabase', $wikiId );
+				if ( !UserRightsProxy::validDatabase( $dbDomain ) ) {
+					return Status::newFatal( 'userrights-nodatabase', $dbDomain );
 				}
 			}
 		}
@@ -521,10 +547,10 @@ class UserrightsPage extends SpecialPage {
 			// We'll do a lookup for the name internally.
 			$id = intval( substr( $name, 1 ) );
 
-			if ( $wikiId == '' ) {
+			if ( $dbDomain == '' ) {
 				$name = User::whoIs( $id );
 			} else {
-				$name = UserRightsProxy::whoIs( $wikiId, $id );
+				$name = UserRightsProxy::whoIs( $dbDomain, $id );
 			}
 
 			if ( !$name ) {
@@ -538,10 +564,10 @@ class UserrightsPage extends SpecialPage {
 			}
 		}
 
-		if ( $wikiId == '' ) {
+		if ( $dbDomain == '' ) {
 			$user = User::newFromName( $name );
 		} else {
-			$user = UserRightsProxy::newFromName( $wikiId, $name );
+			$user = UserRightsProxy::newFromName( $dbDomain, $name );
 		}
 
 		if ( !$user || $user->isAnon() ) {
@@ -988,12 +1014,12 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Returns $this->getUser()->changeableGroups()
 	 *
-	 * @return array Array(
-	 *   'add' => array( addablegroups ),
-	 *   'remove' => array( removablegroups ),
-	 *   'add-self' => array( addablegroups to self ),
-	 *   'remove-self' => array( removable groups from self )
-	 *  )
+	 * @return array [
+	 *   'add' => [ addablegroups ],
+	 *   'remove' => [ removablegroups ],
+	 *   'add-self' => [ addablegroups to self ],
+	 *   'remove-self' => [ removable groups from self ]
+	 *  ]
 	 */
 	function changeableGroups() {
 		return $this->getUser()->changeableGroups();

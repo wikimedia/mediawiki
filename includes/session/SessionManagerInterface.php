@@ -96,6 +96,9 @@ interface SessionManagerInterface extends LoggerAwareInterface {
 	 * }
 	 * @endcode
 	 *
+	 * Note that the $options argument to OutputPage::addVaryHeader() has
+	 * been deprecated and should always be null.
+	 *
 	 * @return array
 	 */
 	public function getVaryHeaders();

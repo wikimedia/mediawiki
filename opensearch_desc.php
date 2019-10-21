@@ -24,6 +24,8 @@
 // details of the session. Enforce this constraint with respect to session use.
 define( 'MW_NO_SESSION', 1 );
 
+define( 'MW_ENTRY_POINT', 'opensearch_desc' );
+
 require_once __DIR__ . '/includes/WebStart.php';
 
 if ( $wgRequest->getVal( 'ctype' ) == 'application/xml' ) {
@@ -36,7 +38,7 @@ if ( $wgRequest->getVal( 'ctype' ) == 'application/xml' ) {
 $response = $wgRequest->response();
 $response->header( "Content-type: $ctype" );
 
-// Set an Expires header so that squid can cache it for a short time
+// Set an Expires header so that CDN can cache it for a short time
 // Short enough so that the sysadmin barely notices when $wgSitename is changed
 $expiryTime = 600; # 10 minutes
 $response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', time() + $expiryTime ) . ' GMT' );
@@ -48,17 +50,16 @@ print Xml::openElement( 'OpenSearchDescription',
 		'xmlns' => 'http://a9.com/-/spec/opensearch/1.1/',
 		'xmlns:moz' => 'http://www.mozilla.org/2006/browser/search/' ] );
 
-/* The spec says the ShortName must be no longer than 16 characters,
- * but 16 is *realllly* short. In practice, browsers don't appear to care
- * when we give them a longer string, so we're no longer attempting to trim.
- *
- * Note: ShortName and the <link title=""> need to match; they are used as
- * a key for identifying if the search engine has been added already, *and*
- * as the display name presented to the end-user.
- *
- * Behavior seems about the same between Firefox and IE 7/8 here.
- * 'Description' doesn't appear to be used by either.
- */
+// The spec says the ShortName must be no longer than 16 characters,
+// but 16 is *realllly* short. In practice, browsers don't appear to care
+// when we give them a longer string, so we're no longer attempting to trim.
+//
+// Note: ShortName and the <link title=""> need to match; they are used as
+// a key for identifying if the search engine has been added already, *and*
+// as the display name presented to the end-user.
+//
+// Behavior seems about the same between Firefox and IE 7/8 here.
+// 'Description' doesn't appear to be used by either.
 $fullName = wfMessage( 'opensearch-desc' )->inContentLanguage()->text();
 print Xml::element( 'ShortName', null, $fullName );
 print Xml::element( 'Description', null, $fullName );

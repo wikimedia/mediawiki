@@ -1,17 +1,21 @@
 <?php
 
+use MediaWiki\Block\DatabaseBlock;
+
 /**
  * @group medium
  * @covers ApiQueryUserInfo
  */
 class ApiQueryUserInfoTest extends ApiTestCase {
 	public function testGetBlockInfo() {
+		$this->hideDeprecated( 'ApiQueryUserInfo::getBlockInfo' );
+
 		$apiQueryUserInfo = new ApiQueryUserInfo(
 			new ApiQuery( new ApiMain( $this->apiContext ), 'userinfo' ),
 			'userinfo'
 		);
 
-		$block = new Block();
+		$block = new DatabaseBlock();
 		$info = $apiQueryUserInfo->getBlockInfo( $block );
 		$subset = [
 			'blockid' => null,
@@ -25,12 +29,14 @@ class ApiQueryUserInfoTest extends ApiTestCase {
 	}
 
 	public function testGetBlockInfoPartial() {
+		$this->hideDeprecated( 'ApiQueryUserInfo::getBlockInfo' );
+
 		$apiQueryUserInfo = new ApiQueryUserInfo(
 			new ApiQuery( new ApiMain( $this->apiContext ), 'userinfo' ),
 			'userinfo'
 		);
 
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'sitewide' => false,
 		] );
 		$info = $apiQueryUserInfo->getBlockInfo( $block );

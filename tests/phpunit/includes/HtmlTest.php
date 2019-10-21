@@ -161,12 +161,12 @@ class HtmlTest extends MediaWikiTestCase {
 	 * @covers Html::expandAttributes
 	 */
 	public function testExpandAttributesForBooleans() {
-		$this->assertEquals(
+		$this->assertSame(
 			'',
 			Html::expandAttributes( [ 'selected' => false ] ),
 			'Boolean attributes do not generates output when value is false'
 		);
-		$this->assertEquals(
+		$this->assertSame(
 			'',
 			Html::expandAttributes( [ 'selected' => null ] ),
 			'Boolean attributes do not generates output when value is null'
@@ -316,7 +316,7 @@ class HtmlTest extends MediaWikiTestCase {
 
 	/**
 	 * How do we handle duplicate keys in HTML attributes expansion?
-	 * We could pass a "class" the values: 'GREEN' and array( 'GREEN' => false )
+	 * We could pass a "class" the values: 'GREEN' and [ 'GREEN' => false ]
 	 * The latter will take precedence.
 	 *
 	 * Feature added by r96188
@@ -481,6 +481,26 @@ class HtmlTest extends MediaWikiTestCase {
 			),
 			'Namespace selector namespace filtering.'
 		);
+		$this->assertEquals(
+			'<select id="namespace" name="namespace">' . "\n" .
+				'<option value="" selected="">todos</option>' . "\n" .
+				'<option value="2">User</option>' . "\n" .
+				'<option value="4">MyWiki</option>' . "\n" .
+				'<option value="5">MyWiki Talk</option>' . "\n" .
+				'<option value="6">File</option>' . "\n" .
+				'<option value="7">File talk</option>' . "\n" .
+				'<option value="8">MediaWiki</option>' . "\n" .
+				'<option value="9">MediaWiki talk</option>' . "\n" .
+				'<option value="10">Template</option>' . "\n" .
+				'<option value="11">Template talk</option>' . "\n" .
+				'<option value="14">Category</option>' . "\n" .
+				'<option value="15">Category talk</option>' . "\n" .
+				'</select>',
+			Html::namespaceSelector(
+				[ 'exclude' => [ 0, 1, 3, 100, 101 ], 'all' => '' ]
+			),
+			'Namespace selector namespace filtering with empty custom "all" option.'
+		);
 	}
 
 	/**
@@ -546,11 +566,11 @@ class HtmlTest extends MediaWikiTestCase {
 			'<div class="errorbox">err</div>'
 		);
 		$this->assertEquals(
-			Html::errorBox( 'err', 'heading' ),
-			'<div class="errorbox"><h2>heading</h2>err</div>'
+			Html::errorBox( 'err', 'heading', 'errorbox-custom-class' ),
+			'<div class="errorbox errorbox-custom-class"><h2>heading</h2>err</div>'
 		);
 		$this->assertEquals(
-			Html::errorBox( 'err', '0' ),
+			Html::errorBox( 'err', '0', '' ),
 			'<div class="errorbox"><h2>0</h2>err</div>'
 		);
 	}

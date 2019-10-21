@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Revision\RevisionRecord;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -43,7 +45,7 @@ class ViewCLI extends Maintenance {
 
 		$page = WikiPage::factory( $title );
 
-		$content = $page->getContent( Revision::RAW );
+		$content = $page->getContent( RevisionRecord::RAW );
 		if ( !$content ) {
 			$this->fatalError( "Page has no content" );
 		}

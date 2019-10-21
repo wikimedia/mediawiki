@@ -26,6 +26,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 
 require_once __DIR__ . '/dumpIterator.php';
 
@@ -40,6 +41,8 @@ class PreprocessDump extends DumpIterator {
 	/* Variables for dressing up as a parser */
 	public $mTitle = 'PreprocessDump';
 	public $mPPNodeCount = 0;
+	/** @var Preprocessor */
+	public $mPreprocessor;
 
 	public function getStripList() {
 		$parser = MediaWikiServices::getInstance()->getParser();
@@ -58,7 +61,7 @@ class PreprocessDump extends DumpIterator {
 	}
 
 	public function checkOptions() {
-		global $wgParser, $wgParserConf, $wgPreprocessorCacheThreshold;
+		global $wgParserConf, $wgPreprocessorCacheThreshold;
 
 		if ( !$this->hasOption( 'cache' ) ) {
 			$wgPreprocessorCacheThreshold = false;
@@ -72,8 +75,9 @@ class PreprocessDump extends DumpIterator {
 			$name = Preprocessor_DOM::class;
 		}
 
-		$wgParser->firstCallInit();
-		$this->mPreprocessor = new $name( $this );
+		$parser = MediaWikiServices::getInstance()->getParser();
+		$parser->firstCallInit();
+		$this->mPreprocessor = new $name( $parser );
 	}
 
 	/**
@@ -81,11 +85,13 @@ class PreprocessDump extends DumpIterator {
 	 * @param Revision $rev
 	 */
 	public function processRevision( $rev ) {
-		$content = $rev->getContent( Revision::RAW );
+		$content = $rev->getContent( RevisionRecord::RAW );
 
 		if ( $content->getModel() !== CONTENT_MODEL_WIKITEXT ) {
 			return;
 		}
+		/** @var WikitextContent $content */
+		'@phan-var WikitextContent $content';
 
 		try {
 			$this->mPreprocessor->preprocessToObj( strval( $content->getText() ), 0 );

@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -41,17 +43,17 @@ class RebuildFileCache extends Maintenance {
 	}
 
 	public function finalSetup() {
-		global $wgDebugToolbar, $wgUseFileCache;
+		global $wgUseFileCache;
 
 		$this->enabled = $wgUseFileCache;
 		// Script will handle capturing output and saving it itself
 		$wgUseFileCache = false;
-		// Debug toolbar makes content uncacheable so we disable it.
-		// Has to be done before Setup.php initialize MWDebug
-		$wgDebugToolbar = false;
 		//  Avoid DB writes (like enotif/counters)
 		MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode()
 			->setReason( 'Building cache' );
+
+		// Ensure no debug-specific logic ends up in the cache (must be after Setup.php)
+		MWDebug::deinit();
 
 		parent::finalSetup();
 	}
@@ -102,7 +104,8 @@ class RebuildFileCache extends Maintenance {
 			// Get the pages
 			$res = $dbr->select( 'page',
 				[ 'page_namespace', 'page_title', 'page_id' ],
-				[ 'page_namespace' => MWNamespace::getContentNamespaces(),
+				[ 'page_namespace' => MediaWikiServices::getInstance()->getNamespaceInfo()->
+					getContentNamespaces(),
 					"page_id BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd ],
 				__METHOD__,
 				[ 'ORDER BY' => 'page_id ASC', 'USE INDEX' => 'PRIMARY' ]

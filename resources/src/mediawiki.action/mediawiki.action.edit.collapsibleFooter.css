@@ -12,6 +12,7 @@
 
 /* Show/hide animation is incorrect if the table has a margin set. Extra
  * ".wikitable" is needed in the selector for CSS specificity. */
+/* stylelint-disable-next-line selector-class-pattern */
 .wikitable.preview-limit-report {
 	margin: 0;
 }

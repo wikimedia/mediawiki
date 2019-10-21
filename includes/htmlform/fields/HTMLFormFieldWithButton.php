@@ -18,7 +18,7 @@ class HTMLFormFieldWithButton extends HTMLFormField {
 	/** @var string $mButtonType Value for the button in this field */
 	protected $mButtonValue;
 
-	/** @var string $mButtonType Value for the button in this field */
+	/** @var string[] $mButtonType Value for the button in this field */
 	protected $mButtonFlags = [ 'progressive' ];
 
 	public function __construct( $info ) {
@@ -59,6 +59,7 @@ class HTMLFormFieldWithButton extends HTMLFormField {
 			'type' => $this->mButtonType,
 			'label' => $this->mButtonValue,
 			'flags' => $this->mButtonFlags,
+			'id' => $this->mButtonId ?: null,
 		] + OOUI\Element::configFromHtmlAttributes(
 			$this->getAttributes( [ 'disabled', 'tabindex' ] )
 		) );

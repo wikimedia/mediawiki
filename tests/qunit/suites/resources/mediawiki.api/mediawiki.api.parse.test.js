@@ -7,7 +7,7 @@
 	} ) );
 
 	QUnit.test( '.parse( string )', function ( assert ) {
-		this.server.respondWith( /action=parse.*&text='''Hello(\+|%20)world'''/, [ 200,
+		this.server.respondWith( 'POST', /api.php/, [ 200,
 			{ 'Content-Type': 'application/json' },
 			'{ "parse": { "text": "<p><b>Hello world</b></p>" } }'
 		] );
@@ -18,7 +18,7 @@
 	} );
 
 	QUnit.test( '.parse( Object.toString )', function ( assert ) {
-		this.server.respondWith( /action=parse.*&text='''Hello(\+|%20)world'''/, [ 200,
+		this.server.respondWith( 'POST', /api.php/, [ 200,
 			{ 'Content-Type': 'application/json' },
 			'{ "parse": { "text": "<p><b>Hello world</b></p>" } }'
 		] );
@@ -33,7 +33,7 @@
 	} );
 
 	QUnit.test( '.parse( mw.Title )', function ( assert ) {
-		this.server.respondWith( /action=parse.*&page=Earth/, [ 200,
+		this.server.respondWith( 'GET', /action=parse.*&page=Earth/, [ 200,
 			{ 'Content-Type': 'application/json' },
 			'{ "parse": { "text": "<p><b>Earth</b> is a planet.</p>" } }'
 		] );

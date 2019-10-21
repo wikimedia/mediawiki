@@ -291,7 +291,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 
 		return [
 			"action=query&list={$name}&{$p}from=B&{$p}prop=ids|title"
-				=> "apihelp-$path-example-B",
+				=> "apihelp-$path-example-b",
 			"action=query&list={$name}&{$p}unique=&{$p}from=B"
 				=> "apihelp-$path-example-unique",
 			"action=query&generator={$name}&g{$p}unique=&g{$p}from=B"

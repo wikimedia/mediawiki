@@ -11,28 +11,29 @@
 
 // Corrections for the standard special page
 .client-js {
+	/* stylelint-disable-next-line selector-class-pattern */
 	.cloptions {
 		border: 0;
 	}
 
 	// Reserve space for the UI while it loads
-	.rcfilters-head {
+	.mw-rcfilters-head {
 		min-height: @rcfilters-head-min-height;
 		margin-bottom: @rcfilters-head-margin-bottom;
 	}
 
 	// On the watchlist, reserve a bit more
-	.mw-special-Watchlist .rcfilters-head {
+	.mw-special-Watchlist .mw-rcfilters-head {
 		min-height: @rcfilters-wl-head-min-height;
 	}
 
 	.mw-rcfilters-collapsed {
-		.rcfilters-head {
+		.mw-rcfilters-head {
 			min-height: @rcfilters-head-min-height-collapsed;
 		}
 
 		// On the watchlist, reserve a bit more
-		&.mw-special-Watchlist .rcfilters-head {
+		&.mw-special-Watchlist .mw-rcfilters-head {
 			min-height: @rcfilters-wl-head-min-height-collapsed;
 		}
 	}
@@ -71,10 +72,11 @@
 			}
 		}
 
-		.rcfilters-head {
+		.mw-rcfilters-head {
 			opacity: 0.5;
 			pointer-events: none;
 
+			/* stylelint-disable-next-line selector-class-pattern */
 			.cloptions {
 				display: none;
 			}
@@ -98,6 +100,7 @@
 		display: none;
 	}
 
+	/* stylelint-disable-next-line selector-class-pattern */
 	.errorbox {
 		display: none;
 	}
@@ -106,7 +109,7 @@
 		opacity: 0.5;
 	}
 
-	.rcfilters-spinner {
+	.mw-rcfilters-spinner {
 		display: none;
 		position: absolute;
 		left: 50%;
@@ -114,7 +117,7 @@
 		margin-left: -3 * @rcfilters-spinner-size / 2;
 		white-space: nowrap;
 
-		& .rcfilters-spinner-bounce,
+		& .mw-rcfilters-spinner-bounce,
 		&:before,
 		&:after {
 			content: '';
@@ -138,13 +141,13 @@
 		}
 	}
 
-	body:not( .mw-rcfilters-ui-initialized ) .rcfilters-spinner {
+	body:not( .mw-rcfilters-ui-initialized ) .mw-rcfilters-spinner {
 		display: block;
 		// When initializing, display the spinner on top of the area where the UI will appear
 		margin-top: -( @rcfilters-head-min-height + @rcfilters-head-margin-bottom ) / 1.5;
 	}
 
-	body.mw-rcfilters-ui-loading .rcfilters-spinner {
+	body.mw-rcfilters-ui-loading .mw-rcfilters-spinner {
 		display: block;
 		// When loading new results, display the spinner on top of the results area
 		margin-top: -( @rcfilters-head-min-height + @rcfilters-head-margin-bottom ) / 8;
@@ -164,6 +167,7 @@
 
 	// Make the watchlist-details message display while loading, but make it not take up any
 	// space. This makes the min-height trick work better.
+	/* stylelint-disable-next-line selector-class-pattern */
 	.watchlistDetails {
 		float: left;
 		// The 20em should match the min-width we are setting up
@@ -177,14 +181,28 @@
 	font-weight: bold;
 }
 
+// on smaller screen, set .watchlistDetail to full width
+// so that the spinner doesn't appear beside it. T225127#5518870
+@media screen and ( max-width: @width-breakpoint-tablet ) {
+	.client-js {
+		/* stylelint-disable-next-line selector-class-pattern */
+		.watchlistDetails {
+			float: none;
+			width: auto;
+		}
+	}
+}
+
 @-webkit-keyframes rcfiltersBouncedelay {
+	// 50% equals 800ms
 	0%,
-	50%, // equals 800ms
+	50%,
 	100% {
 		-webkit-transform: scale( 0.625 );
 	}
 
-	20% { // equals 320ms
+	// equals 320ms
+	20% {
 		opacity: 0.87;
 		-webkit-transform: scale( 1 );
 	}

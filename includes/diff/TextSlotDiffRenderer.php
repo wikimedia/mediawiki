@@ -51,14 +51,6 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	/** @var Language|null The language this content is in. */
 	private $language;
 
-	/**
-	 * Number of paragraph moves the algorithm should attempt to detect.
-	 * Only used with the wikidiff2 engine.
-	 * @var int
-	 * @see $wgWikiDiff2MovedParagraphDetectionCutoff
-	 */
-	private $wikiDiff2MovedParagraphDetectionCutoff = 0;
-
 	/** @var string One of the ENGINE_* constants. */
 	private $engine = self::ENGINE_PHP;
 
@@ -72,9 +64,10 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	 * @return string
 	 */
 	public static function diff( $oldText, $newText ) {
-		/** @var $slotDiffRenderer TextSlotDiffRenderer */
+		/** @var TextSlotDiffRenderer $slotDiffRenderer */
 		$slotDiffRenderer = ContentHandler::getForModelID( CONTENT_MODEL_TEXT )
 			->getSlotDiffRenderer( RequestContext::getMain() );
+		'@phan-var TextSlotDiffRenderer $slotDiffRenderer';
 		return $slotDiffRenderer->getTextDiff( $oldText, $newText );
 	}
 
@@ -84,15 +77,6 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 
 	public function setLanguage( Language $language ) {
 		$this->language = $language;
-	}
-
-	/**
-	 * @param int $cutoff
-	 * @see $wgWikiDiff2MovedParagraphDetectionCutoff
-	 */
-	public function setWikiDiff2MovedParagraphDetectionCutoff( $cutoff ) {
-		Assert::parameterType( 'integer', $cutoff, '$cutoff' );
-		$this->wikiDiff2MovedParagraphDetectionCutoff = $cutoff;
 	}
 
 	/**
@@ -129,7 +113,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	 * Diff the text representations of two content objects (or just two pieces of text in general).
 	 * @param string $oldText
 	 * @param string $newText
-	 * @return string
+	 * @return string HTML, one or more <tr> tags.
 	 */
 	public function getTextDiff( $oldText, $newText ) {
 		Assert::parameterType( 'string', $oldText, '$oldText' );
@@ -205,7 +189,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 					$oldText,
 					$newText,
 					2,
-					$this->wikiDiff2MovedParagraphDetectionCutoff
+					0
 				);
 			} else {
 				// Don't pass the 4th parameter introduced in version 1.5.0 and removed in version 1.8.0

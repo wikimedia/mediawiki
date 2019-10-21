@@ -2,6 +2,8 @@
 
 class TestDeprecatedSubclass extends TestDeprecatedClass {
 
+	private $subclassPrivateNondeprecated = 1;
+
 	public function getDeprecatedPrivateParentProperty() {
 		return $this->privateDeprecated;
 	}

@@ -11,6 +11,9 @@
  * @todo FIXME: If made 'required', only the text field should be compulsory.
  */
 class HTMLSelectAndOtherField extends HTMLSelectField {
+	/** @var string[] */
+	private $mFlatOptions;
+
 	public function __construct( $params ) {
 		if ( array_key_exists( 'other', $params ) ) {
 			// Do nothing
@@ -130,6 +133,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			'textinput' => $textAttribs,
 			'dropdowninput' => $dropdownInputAttribs,
 			'or' => false,
+			'required' => $this->mParams[ 'required' ] ?? false,
 			'classes' => [ 'mw-htmlform-select-and-other-field' ],
 			'data' => [
 				'maxlengthUnit' => $this->mParams['maxlength-unit'] ?? 'bytes'
@@ -139,6 +143,35 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 
 	public function getInputWidget( $params ) {
 		return new MediaWiki\Widget\SelectWithInputWidget( $params );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getDefault() {
+		$default = parent::getDefault();
+
+		// Default values of empty form
+		$final = '';
+		$list = 'other';
+		$text = '';
+
+		if ( $default !== null ) {
+			$final = $default;
+			// Assume the default is a text value, with the 'other' option selected.
+			// Then check if that assumption is correct, and update $list and $text if not.
+			$text = $final;
+			foreach ( $this->mFlatOptions as $option ) {
+				$match = $option . $this->msg( 'colon-separator' )->inContentLanguage()->text();
+				if ( strpos( $final, $match ) === 0 ) {
+					$list = $option;
+					$text = substr( $final, strlen( $match ) );
+					break;
+				}
+			}
+		}
+
+		return [ $final, $list, $text ];
 	}
 
 	/**
@@ -163,22 +196,9 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			} else {
 				$final = $list . $this->msg( 'colon-separator' )->inContentLanguage()->text() . $text;
 			}
-		} else {
-			$final = $this->getDefault();
-
-			$list = 'other';
-			$text = $final;
-			foreach ( $this->mFlatOptions as $option ) {
-				$match = $option . $this->msg( 'colon-separator' )->inContentLanguage()->text();
-				if ( strpos( $text, $match ) === 0 ) {
-					$list = $option;
-					$text = substr( $text, strlen( $match ) );
-					break;
-				}
-			}
+			return [ $final, $list, $text ];
 		}
-
-		return [ $final, $list, $text ];
+		return $this->getDefault();
 	}
 
 	public function getSize() {
@@ -197,7 +217,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 
 		if ( isset( $this->mParams['required'] )
 			&& $this->mParams['required'] !== false
-			&& $value[1] === ''
+			&& $value[0] === ''
 		) {
 			return $this->msg( 'htmlform-required' );
 		}

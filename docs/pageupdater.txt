@@ -148,7 +148,7 @@ parent of $revision parameter passed to prepareUpdate().
 transformation (PST) and allow subsequent access to the canonical ParserOutput of the
 revision. getSlots() and getCanonicalParserOutput() as well as getSecondaryDataUpdates()
 may be used after prepareContent() was called. Calling prepareContent() with the same
-parameters again has no effect. Calling it again with mismatching paramters, or calling
+parameters again has no effect. Calling it again with mismatching parameters, or calling
 it after prepareUpdate() was called, triggers a LogicException.
 
 - prepareUpdate() is called after the new revision has been created. This may happen
@@ -161,11 +161,11 @@ Calling prepareUpdate() with the same parameters again has no effect.
 Calling it again with mismatching parameters, or calling it with parameters mismatching
 the ones prepareContent() was called with, triggers a LogicException.
 
-- getSecondaryDataUpdtes() returns DataUpdates that represent derived data for the revision.
+- getSecondaryDataUpdates() returns DataUpdates that represent derived data for the revision.
 These may be used to update such data, e.g. in ApiPurge, RefreshLinksJob, and the refreshLinks
 script.
 
-- doUpdates() triggers the updates defined by getSecondaryDataUpdtes(), and also causes
+- doUpdates() triggers the updates defined by getSecondaryDataUpdates(), and also causes
 updates to cached artifacts in the ParserCache, the CDN layer, etc. This is primarily
 used by PageUpdater, but also by PageArchive during undeletion, and when importing
 revisions from XML. doUpdates() can only be called after prepareUpdate() was used to

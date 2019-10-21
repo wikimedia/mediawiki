@@ -135,7 +135,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 
 				if ( isset( $prop['parsedcomment'] ) ) {
 					$vals['parsedcomment'] = Linker::formatComment(
-						$commentStore->getComment( 'pt_reason', $row )->text, $titles
+						$commentStore->getComment( 'pt_reason', $row )->text
 					);
 				}
 

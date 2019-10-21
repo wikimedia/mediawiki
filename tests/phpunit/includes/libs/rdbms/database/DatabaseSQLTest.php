@@ -1343,7 +1343,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Wikimedia\Rdbms\Database::registerTempTableWrite
+	 * @covers Wikimedia\Rdbms\Database::getTempWrites
 	 */
 	public function testSessionTempTables() {
 		$temp1 = $this->database->tableName( 'tmp_table_1' );
@@ -1488,7 +1488,8 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$triggerMap = [
 			'-' => '-',
 			IDatabase::TRIGGER_COMMIT => 'tCommit',
-			IDatabase::TRIGGER_ROLLBACK => 'tRollback'
+			IDatabase::TRIGGER_ROLLBACK => 'tRollback',
+			IDatabase::TRIGGER_CANCEL => 'tCancel',
 		];
 		$pcCallback = function ( IDatabase $db ) use ( $fname ) {
 			$this->database->query( "SELECT 0", $fname );
@@ -1515,6 +1516,11 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 		$this->database->onTransactionResolution( $callback1, __METHOD__ );
+		$this->database->cancelAtomic( __METHOD__ );
+		$this->assertLastSql( 'BEGIN; ROLLBACK; SELECT 1, tRollback AS t' );
+
+		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
+		$this->database->onAtomicSectionCancel( $callback1, __METHOD__ );
 		$this->database->cancelAtomic( __METHOD__ );
 		$this->assertLastSql( 'BEGIN; ROLLBACK; SELECT 1, tRollback AS t' );
 
@@ -1567,6 +1573,21 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			'SELECT 3, tCommit AS t'
 		] ) );
 
+		$this->database->startAtomic( __METHOD__ . '_outer' );
+		$this->database->onAtomicSectionCancel( $callback1, __METHOD__ );
+		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
+		$this->database->onAtomicSectionCancel( $callback2, __METHOD__ );
+		$this->database->cancelAtomic( __METHOD__ );
+		$this->database->onAtomicSectionCancel( $callback3, __METHOD__ );
+		$this->database->endAtomic( __METHOD__ . '_outer' );
+		$this->assertLastSql( implode( "; ", [
+			'BEGIN',
+			'SAVEPOINT wikimedia_rdbms_atomic1',
+			'ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1',
+			'SELECT 2, tCancel AS t',
+			'COMMIT',
+		] ) );
+
 		$makeCallback = function ( $id ) use ( $fname, $triggerMap ) {
 			return function ( $trigger = '-' ) use ( $id, $fname, $triggerMap ) {
 				$this->database->query( "SELECT $id, {$triggerMap[$trigger]} AS t", $fname );
@@ -1608,6 +1629,29 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			'SELECT 2, tRollback AS t',
 			'SELECT 3, tRollback AS t',
 			'SELECT 4, tCommit AS t'
+		] ) );
+
+		$this->database->startAtomic( __METHOD__ . '_level1', IDatabase::ATOMIC_CANCELABLE );
+		$this->database->onAtomicSectionCancel( $makeCallback( 1 ), __METHOD__ );
+		$this->database->startAtomic( __METHOD__ . '_level2' );
+		$this->database->startAtomic( __METHOD__ . '_level3', IDatabase::ATOMIC_CANCELABLE );
+		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
+		$this->database->onAtomicSectionCancel( $makeCallback( 2 ), __METHOD__ );
+		$this->database->endAtomic( __METHOD__ );
+		$this->database->onAtomicSectionCancel( $makeCallback( 3 ), __METHOD__ );
+		$this->database->cancelAtomic( __METHOD__ . '_level3' );
+		$this->database->endAtomic( __METHOD__ . '_level2' );
+		$this->database->onAtomicSectionCancel( $makeCallback( 4 ), __METHOD__ );
+		$this->database->endAtomic( __METHOD__ . '_level1' );
+		$this->assertLastSql( implode( "; ", [
+			'BEGIN',
+			'SAVEPOINT wikimedia_rdbms_atomic1',
+			'SAVEPOINT wikimedia_rdbms_atomic2',
+			'RELEASE SAVEPOINT wikimedia_rdbms_atomic2',
+			'ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1',
+			'SELECT 2, tCancel AS t',
+			'SELECT 3, tCancel AS t',
+			'COMMIT',
 		] ) );
 	}
 
@@ -1658,7 +1702,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			$this->fail( 'Test exception not thrown' );
 		} catch ( DBTransactionError $ex ) {
 			$this->assertSame(
-				'Cannot execute query from ' . __METHOD__ . ' while transaction status is ERROR.',
+				'Cannot execute query from ' . __METHOD__ . ' while transaction status is ERROR',
 				$ex->getMessage()
 			);
 		}
@@ -1692,6 +1736,16 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			$callback3Called = $trigger;
 			$this->database->query( "SELECT 3", $fname );
 		};
+		$callback4Called = 0;
+		$callback4 = function () use ( $fname, &$callback4Called ) {
+			$callback4Called++;
+			$this->database->query( "SELECT 4", $fname );
+		};
+		$callback5Called = 0;
+		$callback5 = function () use ( $fname, &$callback5Called ) {
+			$callback5Called++;
+			$this->database->query( "SELECT 5", $fname );
+		};
 
 		$this->database->startAtomic( __METHOD__ . '_outer' );
 		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
@@ -1699,63 +1753,73 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->onTransactionCommitOrIdle( $callback1, __METHOD__ );
 		$this->database->onTransactionPreCommitOrIdle( $callback2, __METHOD__ );
 		$this->database->onTransactionResolution( $callback3, __METHOD__ );
+		$this->database->onAtomicSectionCancel( $callback4, __METHOD__ );
 		$this->database->endAtomic( __METHOD__ . '_inner' );
 		$this->database->cancelAtomic( __METHOD__ );
 		$this->database->endAtomic( __METHOD__ . '_outer' );
 		$this->assertNull( $callback1Called );
 		$this->assertNull( $callback2Called );
 		$this->assertEquals( IDatabase::TRIGGER_ROLLBACK, $callback3Called );
+		$this->assertEquals( 1, $callback4Called );
 		// phpcs:ignore Generic.Files.LineLength
-		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; COMMIT; SELECT 3' );
+		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; SELECT 4; COMMIT; SELECT 3' );
 
 		$callback1Called = null;
 		$callback2Called = null;
 		$callback3Called = null;
+		$callback4Called = 0;
 		$this->database->startAtomic( __METHOD__ . '_outer' );
 		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 		$this->database->startAtomic( __METHOD__ . '_inner', IDatabase::ATOMIC_CANCELABLE );
 		$this->database->onTransactionCommitOrIdle( $callback1, __METHOD__ );
 		$this->database->onTransactionPreCommitOrIdle( $callback2, __METHOD__ );
 		$this->database->onTransactionResolution( $callback3, __METHOD__ );
+		$this->database->onAtomicSectionCancel( $callback4, __METHOD__ );
 		$this->database->endAtomic( __METHOD__ . '_inner' );
 		$this->database->cancelAtomic( __METHOD__ );
 		$this->database->endAtomic( __METHOD__ . '_outer' );
 		$this->assertNull( $callback1Called );
 		$this->assertNull( $callback2Called );
 		$this->assertEquals( IDatabase::TRIGGER_ROLLBACK, $callback3Called );
+		$this->assertEquals( 1, $callback4Called );
 		// phpcs:ignore Generic.Files.LineLength
-		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; SAVEPOINT wikimedia_rdbms_atomic2; RELEASE SAVEPOINT wikimedia_rdbms_atomic2; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; COMMIT; SELECT 3' );
+		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; SAVEPOINT wikimedia_rdbms_atomic2; RELEASE SAVEPOINT wikimedia_rdbms_atomic2; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; SELECT 4; COMMIT; SELECT 3' );
 
 		$callback1Called = null;
 		$callback2Called = null;
 		$callback3Called = null;
+		$callback4Called = 0;
 		$this->database->startAtomic( __METHOD__ . '_outer' );
 		$atomicId = $this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 		$this->database->startAtomic( __METHOD__ . '_inner' );
 		$this->database->onTransactionCommitOrIdle( $callback1, __METHOD__ );
 		$this->database->onTransactionPreCommitOrIdle( $callback2, __METHOD__ );
 		$this->database->onTransactionResolution( $callback3, __METHOD__ );
+		$this->database->onAtomicSectionCancel( $callback4, __METHOD__ );
 		$this->database->cancelAtomic( __METHOD__, $atomicId );
 		$this->database->endAtomic( __METHOD__ . '_outer' );
 		$this->assertNull( $callback1Called );
 		$this->assertNull( $callback2Called );
 		$this->assertEquals( IDatabase::TRIGGER_ROLLBACK, $callback3Called );
+		$this->assertEquals( 1, $callback4Called );
 
 		$callback1Called = null;
 		$callback2Called = null;
 		$callback3Called = null;
+		$callback4Called = 0;
 		$this->database->startAtomic( __METHOD__ . '_outer' );
 		$atomicId = $this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 		$this->database->startAtomic( __METHOD__ . '_inner' );
 		$this->database->onTransactionCommitOrIdle( $callback1, __METHOD__ );
 		$this->database->onTransactionPreCommitOrIdle( $callback2, __METHOD__ );
 		$this->database->onTransactionResolution( $callback3, __METHOD__ );
+		$this->database->onAtomicSectionCancel( $callback4, __METHOD__ );
 		try {
 			$this->database->cancelAtomic( __METHOD__ . '_X', $atomicId );
 		} catch ( DBUnexpectedError $e ) {
 			$m = __METHOD__;
 			$this->assertSame(
-				"Invalid atomic section ended (got {$m}_X but expected {$m}).",
+				"Invalid atomic section ended (got {$m}_X but expected {$m})",
 				$e->getMessage()
 			);
 		}
@@ -1764,30 +1828,65 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertNull( $callback1Called );
 		$this->assertNull( $callback2Called );
 		$this->assertEquals( IDatabase::TRIGGER_ROLLBACK, $callback3Called );
+		$this->assertEquals( 1, $callback4Called );
 
+		$callback4Called = 0;
+		$callback5Called = 0;
+		$this->database->getLastSqls(); // flush
 		$this->database->startAtomic( __METHOD__ . '_outer' );
 		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
-		$this->database->startAtomic( __METHOD__ . '_inner' );
-		$this->database->onTransactionCommitOrIdle( $callback1, __METHOD__ );
-		$this->database->onTransactionPreCommitOrIdle( $callback2, __METHOD__ );
-		$this->database->onTransactionResolution( $callback3, __METHOD__ );
+		$this->database->onAtomicSectionCancel( $callback5, __METHOD__ );
+		$this->database->startAtomic( __METHOD__ . '_inner', IDatabase::ATOMIC_CANCELABLE );
+		$this->database->onAtomicSectionCancel( $callback4, __METHOD__ );
 		$this->database->cancelAtomic( __METHOD__ . '_inner' );
 		$this->database->cancelAtomic( __METHOD__ );
 		$this->database->endAtomic( __METHOD__ . '_outer' );
-		$this->assertNull( $callback1Called );
-		$this->assertNull( $callback2Called );
-		$this->assertEquals( IDatabase::TRIGGER_ROLLBACK, $callback3Called );
+		// phpcs:ignore Generic.Files.LineLength
+		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; SAVEPOINT wikimedia_rdbms_atomic2; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic2; SELECT 4; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; SELECT 5; COMMIT' );
+		$this->assertEquals( 1, $callback4Called );
+		$this->assertEquals( 1, $callback5Called );
+
+		$callback4Called = 0;
+		$callback5Called = 0;
+		$this->database->startAtomic( __METHOD__ . '_outer' );
+		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
+		$this->database->onAtomicSectionCancel( $callback5, __METHOD__ );
+		$this->database->startAtomic( __METHOD__ . '_inner', IDatabase::ATOMIC_CANCELABLE );
+		$this->database->onAtomicSectionCancel( $callback4, __METHOD__ );
+		$this->database->endAtomic( __METHOD__ . '_inner' );
+		$this->database->cancelAtomic( __METHOD__ );
+		$this->database->endAtomic( __METHOD__ . '_outer' );
+		// phpcs:ignore Generic.Files.LineLength
+		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; SAVEPOINT wikimedia_rdbms_atomic2; RELEASE SAVEPOINT wikimedia_rdbms_atomic2; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; SELECT 5; SELECT 4; COMMIT' );
+		$this->assertEquals( 1, $callback4Called );
+		$this->assertEquals( 1, $callback5Called );
+
+		$callback4Called = 0;
+		$callback5Called = 0;
+		$this->database->startAtomic( __METHOD__ . '_outer' );
+		$sectionId = $this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
+		$this->database->onAtomicSectionCancel( $callback5, __METHOD__ );
+		$this->database->startAtomic( __METHOD__ . '_inner', IDatabase::ATOMIC_CANCELABLE );
+		$this->database->onAtomicSectionCancel( $callback4, __METHOD__ );
+		$this->database->cancelAtomic( __METHOD__, $sectionId );
+		$this->database->endAtomic( __METHOD__ . '_outer' );
+		// phpcs:ignore Generic.Files.LineLength
+		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; SAVEPOINT wikimedia_rdbms_atomic2; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; SELECT 5; SELECT 4; COMMIT' );
+		$this->assertEquals( 1, $callback4Called );
+		$this->assertEquals( 1, $callback5Called );
 
 		$wrapper = TestingAccessWrapper::newFromObject( $this->database );
 		$callback1Called = null;
 		$callback2Called = null;
 		$callback3Called = null;
+		$callback4Called = 0;
 		$this->database->startAtomic( __METHOD__ . '_outer' );
 		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 		$this->database->startAtomic( __METHOD__ . '_inner' );
 		$this->database->onTransactionCommitOrIdle( $callback1, __METHOD__ );
 		$this->database->onTransactionPreCommitOrIdle( $callback2, __METHOD__ );
 		$this->database->onTransactionResolution( $callback3, __METHOD__ );
+		$this->database->onAtomicSectionCancel( $callback4, __METHOD__ );
 		$wrapper->trxStatus = Database::STATUS_TRX_ERROR;
 		$this->database->cancelAtomic( __METHOD__ . '_inner' );
 		$this->database->cancelAtomic( __METHOD__ );
@@ -1795,6 +1894,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertNull( $callback1Called );
 		$this->assertNull( $callback2Called );
 		$this->assertEquals( IDatabase::TRIGGER_ROLLBACK, $callback3Called );
+		$this->assertEquals( 1, $callback4Called );
 	}
 
 	/**
@@ -1834,7 +1934,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( DBUnexpectedError $ex ) {
 			$this->assertSame(
-				'No atomic section is open (got ' . __METHOD__ . ').',
+				'No atomic section is open (got ' . __METHOD__ . ')',
 				$ex->getMessage()
 			);
 		}
@@ -1853,7 +1953,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		} catch ( DBUnexpectedError $ex ) {
 			$this->assertSame(
 				'Invalid atomic section ended (got ' . __METHOD__ . ' but expected ' .
-					__METHOD__ . 'X).',
+					__METHOD__ . 'X)',
 				$ex->getMessage()
 			);
 		}
@@ -1870,7 +1970,23 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( DBTransactionError $ex ) {
 			$this->assertSame(
-				'Cannot execute query from ' . __METHOD__ . ' while transaction status is ERROR.',
+				'Cannot execute query from ' . __METHOD__ . ' while transaction status is ERROR',
+				$ex->getMessage()
+			);
+		}
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::onAtomicSectionCancel
+	 */
+	public function testNoAtomicSectionForCallback() {
+		try {
+			$this->database->onAtomicSectionCancel( function () {
+			}, __METHOD__ );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( DBUnexpectedError $ex ) {
+			$this->assertSame(
+				'No atomic section is open (got ' . __METHOD__ . ')',
 				$ex->getMessage()
 			);
 		}
@@ -1878,7 +1994,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @expectedException \Wikimedia\Rdbms\DBTransactionStateError
-	 * @covers \Wikimedia\Rdbms\Database::assertTransactionStatus
+	 * @covers \Wikimedia\Rdbms\Database::assertQueryIsCurrentlyAllowed
 	 */
 	public function testTransactionErrorState1() {
 		$wrapper = TestingAccessWrapper::newFromObject( $this->database );
@@ -1898,7 +2014,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->startAtomic( __METHOD__ );
 		$wrapper->trxStatus = Database::STATUS_TRX_ERROR;
 		$this->database->rollback( __METHOD__ );
-		$this->assertEquals( 0, $this->database->trxLevel() );
+		$this->assertSame( 0, $this->database->trxLevel() );
 		$this->assertEquals( Database::STATUS_TRX_NONE, $wrapper->trxStatus() );
 		$this->assertLastSql( 'BEGIN; ROLLBACK' );
 
@@ -1908,7 +2024,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->endAtomic( __METHOD__ );
 		$this->assertEquals( Database::STATUS_TRX_NONE, $wrapper->trxStatus() );
 		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'1\'; COMMIT' );
-		$this->assertEquals( 0, $this->database->trxLevel(), 'Use after rollback()' );
+		$this->assertSame( 0, $this->database->trxLevel(), 'Use after rollback()' );
 
 		$this->database->begin( __METHOD__ );
 		$this->database->startAtomic( __METHOD__, Database::ATOMIC_CANCELABLE );
@@ -1922,7 +2038,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->commit( __METHOD__ );
 		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; UPDATE y SET a = \'1\' WHERE field = \'1\'; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; DELETE FROM y WHERE field = \'1\'; COMMIT' );
-		$this->assertEquals( 0, $this->database->trxLevel(), 'Use after rollback()' );
+		$this->assertSame( 0, $this->database->trxLevel(), 'Use after rollback()' );
 
 		// Next transaction
 		$this->database->startAtomic( __METHOD__ );
@@ -1931,7 +2047,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->endAtomic( __METHOD__ );
 		$this->assertEquals( Database::STATUS_TRX_NONE, $wrapper->trxStatus() );
 		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'3\'; COMMIT' );
-		$this->assertEquals( 0, $this->database->trxLevel() );
+		$this->assertSame( 0, $this->database->trxLevel() );
 	}
 
 	/**
@@ -1958,7 +2074,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( DBTransactionError $e ) {
 			$this->assertEquals(
-				'Cannot execute query from ' . __METHOD__ . ' while transaction status is ERROR.',
+				'Cannot execute query from ' . __METHOD__ . ' while transaction status is ERROR',
 				$e->getMessage()
 			);
 		}
@@ -1967,7 +2083,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( DBTransactionError $e ) {
 			$this->assertEquals(
-				'Cannot execute query from ' . __METHOD__ . ' while transaction status is ERROR.',
+				'Cannot execute query from ' . __METHOD__ . ' while transaction status is ERROR',
 				$e->getMessage()
 			);
 		}
@@ -2071,14 +2187,14 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( DBUnexpectedError $ex ) {
 			$this->assertSame(
-				"Wikimedia\Rdbms\Database::close: transaction is still open (from $fname).",
+				"Wikimedia\Rdbms\Database::close: transaction is still open (from $fname)",
 				$ex->getMessage()
 			);
 		}
 
 		$this->assertFalse( $this->database->isOpen() );
 		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'3\'; ROLLBACK; SELECT 2' );
-		$this->assertEquals( 0, $this->database->trxLevel() );
+		$this->assertSame( 0, $this->database->trxLevel() );
 	}
 
 	/**
@@ -2091,20 +2207,23 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			$this->database->onTransactionCommitOrIdle( function () use ( $fname ) {
 				$this->database->query( 'SELECT 1', $fname );
 			} );
+			$this->database->onAtomicSectionCancel( function () use ( $fname ) {
+				$this->database->query( 'SELECT 2', $fname );
+			} );
 			$this->database->delete( 'x', [ 'field' => 3 ], __METHOD__ );
 			$this->database->close();
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( DBUnexpectedError $ex ) {
 			$this->assertSame(
 				'Wikimedia\Rdbms\Database::close: atomic sections ' .
-				'DatabaseSQLTest::testPrematureClose2 are still open.',
+				'DatabaseSQLTest::testPrematureClose2 are still open',
 				$ex->getMessage()
 			);
 		}
 
 		$this->assertFalse( $this->database->isOpen() );
-		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'3\'; ROLLBACK' );
-		$this->assertEquals( 0, $this->database->trxLevel() );
+		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'3\'; ROLLBACK; SELECT 2' );
+		$this->assertSame( 0, $this->database->trxLevel() );
 	}
 
 	/**
@@ -2120,14 +2239,14 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		} catch ( DBUnexpectedError $ex ) {
 			$this->assertSame(
 				'Wikimedia\Rdbms\Database::close: ' .
-				'mass commit/rollback of peer transaction required (DBO_TRX set).',
+				'expected mass rollback of all peer transactions (DBO_TRX set)',
 				$ex->getMessage()
 			);
 		}
 
 		$this->assertFalse( $this->database->isOpen() );
 		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'3\'; ROLLBACK' );
-		$this->assertEquals( 0, $this->database->trxLevel() );
+		$this->assertSame( 0, $this->database->trxLevel() );
 	}
 
 	/**
@@ -2142,7 +2261,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 		$this->assertFalse( $this->database->isOpen() );
 		$this->assertLastSql( 'BEGIN; SELECT 1; ROLLBACK' );
-		$this->assertEquals( 0, $this->database->trxLevel() );
+		$this->assertSame( 0, $this->database->trxLevel() );
 	}
 
 	/**

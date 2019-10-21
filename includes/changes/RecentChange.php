@@ -20,6 +20,7 @@
  * @file
  */
 use MediaWiki\ChangeTags\Taggable;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Utility class for creating new RC entries
@@ -89,16 +90,17 @@ class RecentChange implements Taggable {
 	 */
 	const SEND_FEED = false;
 
+	/** @var array */
 	public $mAttribs = [];
 	public $mExtra = [];
 
 	/**
-	 * @var Title
+	 * @var Title|false
 	 */
 	public $mTitle = false;
 
 	/**
-	 * @var User
+	 * @var User|false
 	 */
 	private $mPerformer = false;
 
@@ -220,55 +222,6 @@ class RecentChange implements Taggable {
 	}
 
 	/**
-	 * Return the list of recentchanges fields that should be selected to create
-	 * a new recentchanges object.
-	 * @deprecated since 1.31, use self::getQueryInfo() instead.
-	 * @return array
-	 */
-	public static function selectFields() {
-		global $wgActorTableSchemaMigrationStage;
-
-		wfDeprecated( __METHOD__, '1.31' );
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
-			// If code is using this instead of self::getQueryInfo(), there's a
-			// decent chance it's going to try to directly access
-			// $row->rc_user or $row->rc_user_text and we can't give it
-			// useful values here once those aren't being used anymore.
-			throw new BadMethodCallException(
-				'Cannot use ' . __METHOD__
-					. ' when $wgActorTableSchemaMigrationStage has SCHEMA_COMPAT_READ_NEW'
-			);
-		}
-
-		return [
-			'rc_id',
-			'rc_timestamp',
-			'rc_user',
-			'rc_user_text',
-			'rc_actor' => 'NULL',
-			'rc_namespace',
-			'rc_title',
-			'rc_minor',
-			'rc_bot',
-			'rc_new',
-			'rc_cur_id',
-			'rc_this_oldid',
-			'rc_last_oldid',
-			'rc_type',
-			'rc_source',
-			'rc_patrolled',
-			'rc_ip',
-			'rc_old_len',
-			'rc_new_len',
-			'rc_deleted',
-			'rc_logid',
-			'rc_log_type',
-			'rc_log_action',
-			'rc_params',
-		] + CommentStore::getStore()->getFields( 'rc_comment' );
-	}
-
-	/**
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new recentchanges object.
 	 * @since 1.31
@@ -369,13 +322,6 @@ class RecentChange implements Taggable {
 	public function save( $send = self::SEND_FEED ) {
 		global $wgPutIPinRC, $wgUseEnotif, $wgShowUpdatedMarker;
 
-		if ( is_string( $send ) ) {
-			// Callers used to pass undocumented strings like 'noudp'
-			// or 'pleasedontudp' instead of self::SEND_NONE (true).
-			// @deprecated since 1.31 Use SEND_NONE instead.
-			$send = self::SEND_NONE;
-		}
-
 		$dbw = wfGetDB( DB_MASTER );
 		if ( !is_array( $this->mExtra ) ) {
 			$this->mExtra = [];
@@ -397,7 +343,7 @@ class RecentChange implements Taggable {
 		}
 
 		# If our database is strict about IP addresses, use NULL instead of an empty string
-		$strictIPs = in_array( $dbw->getType(), [ 'oracle', 'postgres' ] ); // legacy
+		$strictIPs = $dbw->getType() === 'postgres'; // legacy
 		if ( $strictIPs && $this->mAttribs['rc_ip'] == '' ) {
 			unset( $this->mAttribs['rc_ip'] );
 		}
@@ -615,8 +561,9 @@ class RecentChange implements Taggable {
 		}
 		// Users without the 'autopatrol' right can't patrol their
 		// own revisions
-		if ( $user->getName() === $this->getAttribute( 'rc_user_text' )
-			&& !$user->isAllowed( 'autopatrol' )
+		if ( $user->getName() === $this->getAttribute( 'rc_user_text' ) &&
+				!MediaWikiServices::getInstance()->getPermissionManager()
+					->userHasRight( $user, 'autopatrol' )
 		) {
 			$errors[] = [ 'markedaspatrollederror-noautopatrol' ];
 		}
@@ -864,6 +811,7 @@ class RecentChange implements Taggable {
 		$type, $action, $target, $logComment, $params, $newId = 0, $actionCommentIRC = '',
 		$revId = 0, $isPatrollable = false ) {
 		global $wgRequest;
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		# # Get pageStatus for email notification
 		switch ( $type . '-' . $action ) {
@@ -888,7 +836,8 @@ class RecentChange implements Taggable {
 		}
 
 		// Allow unpatrolled status for patrollable log entries
-		$markPatrolled = $isPatrollable ? $user->isAllowed( 'autopatrol' ) : true;
+		$canAutopatrol = $permissionManager->userHasRight( $user, 'autopatrol' );
+		$markPatrolled = $isPatrollable ? $canAutopatrol : true;
 
 		$rc = new RecentChange;
 		$rc->mTitle = $target;
@@ -909,7 +858,8 @@ class RecentChange implements Taggable {
 			'rc_comment_data' => null,
 			'rc_this_oldid' => $revId,
 			'rc_last_oldid' => 0,
-			'rc_bot' => $user->isAllowed( 'bot' ) ? (int)$wgRequest->getBool( 'bot', true ) : 0,
+			'rc_bot' => $permissionManager->userHasRight( $user, 'bot' ) ?
+				(int)$wgRequest->getBool( 'bot', true ) : 0,
 			'rc_ip' => self::checkIPAddress( $ip ),
 			'rc_patrolled' => $markPatrolled ? self::PRC_AUTOPATROLLED : self::PRC_UNPATROLLED,
 			'rc_new' => 0, # obsolete

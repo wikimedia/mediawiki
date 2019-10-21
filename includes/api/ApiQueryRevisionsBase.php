@@ -43,7 +43,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	const IS_DELETED = 1; // Whether the field is revision-deleted
 	const CANNOT_VIEW = 2; // Whether the user cannot view the field due to revdel
 
-	/**@}*/
+	/** @} */
 
 	protected $limit, $diffto, $difftotext, $difftotextpst, $expandTemplates, $generateXML,
 		$section, $parseContent, $fetchContent, $contentFormat, $setParsedLimit = true,
@@ -496,24 +496,28 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	 * @return array
 	 */
 	private function extractDeprecatedContent( Content $content, RevisionRecord $revision ) {
-		global $wgParser;
-
 		$vals = [];
 		$title = Title::newFromLinkTarget( $revision->getPageAsLinkTarget() );
 
 		if ( $this->fld_parsetree || ( $this->fld_content && $this->generateXML ) ) {
 			if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
+				/** @var WikitextContent $content */
+				'@phan-var WikitextContent $content';
 				$t = $content->getText(); # note: don't set $text
 
-				$wgParser->startExternalParse(
+				$parser = MediaWikiServices::getInstance()->getParser();
+				$parser->startExternalParse(
 					$title,
 					ParserOptions::newFromContext( $this->getContext() ),
 					Parser::OT_PREPROCESS
 				);
-				$dom = $wgParser->preprocessToDom( $t );
+				$dom = $parser->preprocessToDom( $t );
+				// @phan-suppress-next-line PhanUndeclaredMethodInCallable
 				if ( is_callable( [ $dom, 'saveXML' ] ) ) {
+					// @phan-suppress-next-line PhanUndeclaredMethod
 					$xml = $dom->saveXML();
 				} else {
+					// @phan-suppress-next-line PhanUndeclaredMethod
 					$xml = $dom->__toString();
 				}
 				$vals['parsetree'] = $xml;
@@ -535,9 +539,11 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 			if ( $this->expandTemplates && !$this->parseContent ) {
 				if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
+					/** @var WikitextContent $content */
+					'@phan-var WikitextContent $content';
 					$text = $content->getText();
 
-					$text = $wgParser->preprocess(
+					$text = MediaWikiServices::getInstance()->getParser()->preprocess(
 						$text,
 						$title,
 						ParserOptions::newFromContext( $this->getContext() )

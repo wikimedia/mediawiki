@@ -21,8 +21,8 @@
  * @ingroup Database
  */
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
-use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\DatabaseDomain;
 
 /**
@@ -35,31 +35,59 @@ abstract class MWLBFactory {
 	private static $loggedDeprecations = [];
 
 	/**
+	 * @var array
+	 * @since 1.34
+	 */
+	public const APPLY_DEFAULT_CONFIG_OPTIONS = [
+		'DBcompress',
+		'DBDefaultGroup',
+		'DBmwschema',
+		'DBname',
+		'DBpassword',
+		'DBport',
+		'DBprefix',
+		'DBserver',
+		'DBservers',
+		'DBssl',
+		'DBtype',
+		'DBuser',
+		'DBWindowsAuthentication',
+		'DebugDumpSql',
+		'DebugLogFile',
+		'ExternalServers',
+		'SQLiteDataDir',
+		'SQLMode',
+	];
+
+	/**
 	 * @param array $lbConf Config for LBFactory::__construct()
-	 * @param Config $mainConfig Main config object from MediaWikiServices
+	 * @param ServiceOptions $options
 	 * @param ConfiguredReadOnlyMode $readOnlyMode
-	 * @param BagOStuff $srvCace
+	 * @param BagOStuff $srvCache
 	 * @param BagOStuff $mainStash
 	 * @param WANObjectCache $wanCache
 	 * @return array
+	 * @internal For use with service wiring
 	 */
 	public static function applyDefaultConfig(
 		array $lbConf,
-		Config $mainConfig,
+		ServiceOptions $options,
 		ConfiguredReadOnlyMode $readOnlyMode,
-		BagOStuff $srvCace,
+		BagOStuff $srvCache,
 		BagOStuff $mainStash,
 		WANObjectCache $wanCache
 	) {
+		$options->assertRequiredOptions( self::APPLY_DEFAULT_CONFIG_OPTIONS );
+
 		global $wgCommandLineMode;
 
-		static $typesWithSchema = [ 'postgres', 'msssql' ];
+		$typesWithSchema = self::getDbTypesWithSchemas();
 
 		$lbConf += [
 			'localDomain' => new DatabaseDomain(
-				$mainConfig->get( 'DBname' ),
-				$mainConfig->get( 'DBmwschema' ),
-				$mainConfig->get( 'DBprefix' )
+				$options->get( 'DBname' ),
+				$options->get( 'DBmwschema' ),
+				$options->get( 'DBprefix' )
 			),
 			'profiler' => function ( $section ) {
 				return Profiler::instance()->scopedProfileIn( $section );
@@ -74,7 +102,7 @@ abstract class MWLBFactory {
 			'cliMode' => $wgCommandLineMode,
 			'hostname' => wfHostname(),
 			'readOnlyReason' => $readOnlyMode->getReason(),
-			'defaultGroup' => $mainConfig->get( 'DBDefaultGroup' ),
+			'defaultGroup' => $options->get( 'DBDefaultGroup' ),
 		];
 
 		$serversCheck = [];
@@ -82,98 +110,104 @@ abstract class MWLBFactory {
 		// for Database classes in the relevant Installer subclass.
 		// Such as MysqlInstaller::openConnection and PostgresInstaller::openConnectionWithParams.
 		if ( $lbConf['class'] === Wikimedia\Rdbms\LBFactorySimple::class ) {
-			$httpMethod = $_SERVER['REQUEST_METHOD'] ?? null;
-			// T93097: hint for how file-based databases (e.g. sqlite) should go about locking.
-			// See https://www.sqlite.org/lang_transaction.html
-			// See https://www.sqlite.org/lockingv3.html#shared_lock
-			$isReadRequest = in_array( $httpMethod, [ 'GET', 'HEAD', 'OPTIONS', 'TRACE' ] );
-
 			if ( isset( $lbConf['servers'] ) ) {
-				// Server array is already explicitly configured; leave alone
-			} elseif ( is_array( $mainConfig->get( 'DBservers' ) ) ) {
+				// Server array is already explicitly configured
+			} elseif ( is_array( $options->get( 'DBservers' ) ) ) {
 				$lbConf['servers'] = [];
-				foreach ( $mainConfig->get( 'DBservers' ) as $i => $server ) {
-					if ( $server['type'] === 'sqlite' ) {
-						$server += [
-							'dbDirectory' => $mainConfig->get( 'SQLiteDataDir' ),
-							'trxMode' => $isReadRequest ? 'DEFERRED' : 'IMMEDIATE'
-						];
-					} elseif ( $server['type'] === 'postgres' ) {
-						$server += [
-							'port' => $mainConfig->get( 'DBport' ),
-							// Work around the reserved word usage in MediaWiki schema
-							'keywordTableMap' => [ 'user' => 'mwuser', 'text' => 'pagecontent' ]
-						];
-					} elseif ( $server['type'] === 'mssql' ) {
-						$server += [
-							'port' => $mainConfig->get( 'DBport' ),
-							'useWindowsAuth' => $mainConfig->get( 'DBWindowsAuthentication' )
-						];
-					}
-
-					if ( in_array( $server['type'], $typesWithSchema, true ) ) {
-						$server += [ 'schema' => $mainConfig->get( 'DBmwschema' ) ];
-					}
-
-					$server += [
-						'tablePrefix' => $mainConfig->get( 'DBprefix' ),
-						'flags' => DBO_DEFAULT,
-						'sqlMode' => $mainConfig->get( 'SQLMode' ),
-					];
-
-					$lbConf['servers'][$i] = $server;
+				foreach ( $options->get( 'DBservers' ) as $i => $server ) {
+					$lbConf['servers'][$i] = self::initServerInfo( $server, $options );
 				}
 			} else {
-				$flags = DBO_DEFAULT;
-				$flags |= $mainConfig->get( 'DebugDumpSql' ) ? DBO_DEBUG : 0;
-				$flags |= $mainConfig->get( 'DBssl' ) ? DBO_SSL : 0;
-				$flags |= $mainConfig->get( 'DBcompress' ) ? DBO_COMPRESS : 0;
-				$server = [
-					'host' => $mainConfig->get( 'DBserver' ),
-					'user' => $mainConfig->get( 'DBuser' ),
-					'password' => $mainConfig->get( 'DBpassword' ),
-					'dbname' => $mainConfig->get( 'DBname' ),
-					'tablePrefix' => $mainConfig->get( 'DBprefix' ),
-					'type' => $mainConfig->get( 'DBtype' ),
-					'load' => 1,
-					'flags' => $flags,
-					'sqlMode' => $mainConfig->get( 'SQLMode' ),
-					'trxMode' => $isReadRequest ? 'DEFERRED' : 'IMMEDIATE'
-				];
-				if ( in_array( $server['type'], $typesWithSchema, true ) ) {
-					$server += [ 'schema' => $mainConfig->get( 'DBmwschema' ) ];
-				}
-				if ( $server['type'] === 'sqlite' ) {
-					$server[ 'dbDirectory'] = $mainConfig->get( 'SQLiteDataDir' );
-				} elseif ( $server['type'] === 'postgres' ) {
-					$server['port'] = $mainConfig->get( 'DBport' );
-					// Work around the reserved word usage in MediaWiki schema
-					$server['keywordTableMap'] = [ 'user' => 'mwuser', 'text' => 'pagecontent' ];
-				} elseif ( $server['type'] === 'mssql' ) {
-					$server['port'] = $mainConfig->get( 'DBport' );
-					$server['useWindowsAuth'] = $mainConfig->get( 'DBWindowsAuthentication' );
-				}
+				$server = self::initServerInfo(
+					[
+						'host' => $options->get( 'DBserver' ),
+						'user' => $options->get( 'DBuser' ),
+						'password' => $options->get( 'DBpassword' ),
+						'dbname' => $options->get( 'DBname' ),
+						'type' => $options->get( 'DBtype' ),
+						'load' => 1
+					],
+					$options
+				);
+
+				$server['flags'] |= $options->get( 'DBssl' ) ? DBO_SSL : 0;
+				$server['flags'] |= $options->get( 'DBcompress' ) ? DBO_COMPRESS : 0;
+
 				$lbConf['servers'] = [ $server ];
 			}
 			if ( !isset( $lbConf['externalClusters'] ) ) {
-				$lbConf['externalClusters'] = $mainConfig->get( 'ExternalServers' );
+				$lbConf['externalClusters'] = $options->get( 'ExternalServers' );
 			}
 
 			$serversCheck = $lbConf['servers'];
 		} elseif ( $lbConf['class'] === Wikimedia\Rdbms\LBFactoryMulti::class ) {
 			if ( isset( $lbConf['serverTemplate'] ) ) {
 				if ( in_array( $lbConf['serverTemplate']['type'], $typesWithSchema, true ) ) {
-					$lbConf['serverTemplate']['schema'] = $mainConfig->get( 'DBmwschema' );
+					$lbConf['serverTemplate']['schema'] = $options->get( 'DBmwschema' );
 				}
-				$lbConf['serverTemplate']['sqlMode'] = $mainConfig->get( 'SQLMode' );
+				$lbConf['serverTemplate']['sqlMode'] = $options->get( 'SQLMode' );
 			}
-			$serversCheck = $lbConf['serverTemplate'] ?? [];
+			$serversCheck = [ $lbConf['serverTemplate'] ] ?? [];
 		}
 
-		self::sanityCheckServerConfig( $serversCheck, $mainConfig );
-		$lbConf = self::applyDefaultCaching( $lbConf, $srvCace, $mainStash, $wanCache );
+		self::assertValidServerConfigs(
+			$serversCheck,
+			$options->get( 'DBname' ),
+			$options->get( 'DBprefix' )
+		);
+
+		$lbConf = self::injectObjectCaches( $lbConf, $srvCache, $mainStash, $wanCache );
 
 		return $lbConf;
+	}
+
+	/**
+	 * @return array
+	 */
+	private static function getDbTypesWithSchemas() {
+		return [ 'postgres' ];
+	}
+
+	/**
+	 * @param array $server
+	 * @param ServiceOptions $options
+	 * @return array
+	 */
+	private static function initServerInfo( array $server, ServiceOptions $options ) {
+		if ( $server['type'] === 'sqlite' ) {
+			$httpMethod = $_SERVER['REQUEST_METHOD'] ?? null;
+			// T93097: hint for how file-based databases (e.g. sqlite) should go about locking.
+			// See https://www.sqlite.org/lang_transaction.html
+			// See https://www.sqlite.org/lockingv3.html#shared_lock
+			$isHttpRead = in_array( $httpMethod, [ 'GET', 'HEAD', 'OPTIONS', 'TRACE' ] );
+			$server += [
+				'dbDirectory' => $options->get( 'SQLiteDataDir' ),
+				'trxMode' => $isHttpRead ? 'DEFERRED' : 'IMMEDIATE'
+			];
+		} elseif ( $server['type'] === 'postgres' ) {
+			$server += [
+				'port' => $options->get( 'DBport' ),
+				// Work around the reserved word usage in MediaWiki schema
+				'keywordTableMap' => [ 'user' => 'mwuser', 'text' => 'pagecontent' ]
+			];
+		}
+
+		if ( in_array( $server['type'], self::getDbTypesWithSchemas(), true ) ) {
+			$server += [ 'schema' => $options->get( 'DBmwschema' ) ];
+		}
+
+		$flags = $server['flags'] ?? DBO_DEFAULT;
+		if ( $options->get( 'DebugDumpSql' ) || $options->get( 'DebugLogFile' ) ) {
+			$flags |= DBO_DEBUG;
+		}
+		$server['flags'] = $flags;
+
+		$server += [
+			'tablePrefix' => $options->get( 'DBprefix' ),
+			'sqlMode' => $options->get( 'SQLMode' ),
+		];
+
+		return $server;
 	}
 
 	/**
@@ -183,9 +217,14 @@ abstract class MWLBFactory {
 	 * @param WANObjectCache $wCache
 	 * @return array
 	 */
-	private static function applyDefaultCaching(
+	private static function injectObjectCaches(
 		array $lbConf, BagOStuff $sCache, BagOStuff $mStash, WANObjectCache $wCache
 	) {
+		// Fallback if APC style caching is not an option
+		if ( $sCache instanceof EmptyBagOStuff ) {
+			$sCache = new HashBagOStuff( [ 'maxKeys' => 100 ] );
+		}
+
 		// Use APC/memcached style caching, but avoids loops with CACHE_DB (T141804)
 		if ( $sCache->getQoS( $sCache::ATTR_EMULATION ) > $sCache::QOS_EMULATION_SQL ) {
 			$lbConf['srvCache'] = $sCache;
@@ -202,12 +241,10 @@ abstract class MWLBFactory {
 
 	/**
 	 * @param array $servers
-	 * @param Config $mainConfig
+	 * @param string $ldDB Local domain database name
+	 * @param string $ldTP Local domain prefix
 	 */
-	private static function sanityCheckServerConfig( array $servers, Config $mainConfig ) {
-		$ldDB = $mainConfig->get( 'DBname' ); // local domain DB
-		$ldTP = $mainConfig->get( 'DBprefix' ); // local domain prefix
-
+	private static function assertValidServerConfigs( array $servers, $ldDB, $ldTP ) {
 		foreach ( $servers as $server ) {
 			$type = $server['type'] ?? null;
 			$srvDB = $server['dbname'] ?? null; // server DB
@@ -285,6 +322,7 @@ abstract class MWLBFactory {
 	 *
 	 * @param array $config (e.g. $wgLBFactoryConf)
 	 * @return string Class name
+	 * @internal For use with service wiring
 	 */
 	public static function getLBFactoryClass( array $config ) {
 		// For configuration backward compatibility after removing
@@ -319,33 +357,10 @@ abstract class MWLBFactory {
 		return $class;
 	}
 
-	public static function setSchemaAliases( LBFactory $lbFactory, Config $config ) {
-		if ( $config->get( 'DBtype' ) === 'mysql' ) {
-			/**
-			 * When SQLite indexes were introduced in r45764, it was noted that
-			 * SQLite requires index names to be unique within the whole database,
-			 * not just within a schema. As discussed in CR r45819, to avoid the
-			 * need for a schema change on existing installations, the indexes
-			 * were implicitly mapped from the new names to the old names.
-			 *
-			 * This mapping can be removed if DB patches are introduced to alter
-			 * the relevant tables in existing installations. Note that because
-			 * this index mapping applies to table creation, even new installations
-			 * of MySQL have the old names (except for installations created during
-			 * a period where this mapping was inappropriately removed, see
-			 * T154872).
-			 */
-			$lbFactory->setIndexAliases( [
-				'ar_usertext_timestamp' => 'usertext_timestamp',
-				'un_user_id' => 'user_id',
-				'un_user_ip' => 'user_ip',
-			] );
-		}
-	}
-
 	/**
 	 * Log a database deprecation warning
 	 * @param string $msg Deprecation message
+	 * @internal For use with service wiring
 	 */
 	public static function logDeprecation( $msg ) {
 		global $wgDevelopmentWarnings;

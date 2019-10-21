@@ -1,4 +1,5 @@
 <?php
+
 namespace MediaWiki\Tests\Revision;
 
 use InvalidArgumentException;
@@ -180,6 +181,16 @@ class McrWriteBothRevisionStoreDbTest extends RevisionStoreDbTestBase {
 
 		// can we find it directly in the database?
 		$this->assertRevisionExistsInDatabase( $return );
+	}
+
+	/**
+	 * Conditions to use together with getSlotsQueryInfo() when selecting slot rows for a given
+	 * revision.
+	 *
+	 * @return array
+	 */
+	protected function getSlotRevisionConditions( $revId ) {
+		return [ 'rev_id' => $revId ];
 	}
 
 }

@@ -14,121 +14,310 @@ class ResourceLoaderStartUpModuleTest extends ResourceLoaderTestCase {
 				'msg' => 'Empty registry',
 				'modules' => [],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [] );'
+});
+mw.loader.register([]);'
 			] ],
 			[ [
 				'msg' => 'Basic registry',
 				'modules' => [
-					'test.blank' => new ResourceLoaderTestModule(),
+					'test.blank' => [ 'class' => ResourceLoaderTestModule::class ],
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.blank",
         "{blankVer}"
     ]
-] );',
+]);',
 			] ],
 			[ [
-				'msg' => 'Omit raw modules from registry',
+				'msg' => 'Optimise the dependency tree (basic case)',
 				'modules' => [
-					'test.raw' => new ResourceLoaderTestModule( [ 'isRaw' => true ] ),
-					'test.blank' => new ResourceLoaderTestModule(),
+					'a' => [
+						'class' => ResourceLoaderTestModule::class,
+						'dependencies' => [ 'b', 'c', 'd' ],
+					],
+					'b' => [
+						'class' => ResourceLoaderTestModule::class,
+						'dependencies' => [ 'c' ],
+					],
+					'c' => [
+						'class' => ResourceLoaderTestModule::class,
+						'dependencies' => [],
+					],
+					'd' => [
+						'class' => ResourceLoaderTestModule::class,
+						'dependencies' => [],
+					],
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
-        "test.blank",
+        "a",
+        "{blankVer}",
+        [
+            1,
+            3
+        ]
+    ],
+    [
+        "b",
+        "{blankVer}",
+        [
+            2
+        ]
+    ],
+    [
+        "c",
+        "{blankVer}"
+    ],
+    [
+        "d",
         "{blankVer}"
     ]
-] );',
+]);',
+			] ],
+			[ [
+				'msg' => 'Optimise the dependency tree (tolerate unknown deps)',
+				'modules' => [
+					'a' => [
+						'class' => ResourceLoaderTestModule::class,
+						'dependencies' => [ 'b', 'c', 'x' ]
+					],
+					'b' => [
+						'class' => ResourceLoaderTestModule::class,
+						'dependencies' => [ 'c', 'x' ]
+					],
+					'c' => [
+						'class' => ResourceLoaderTestModule::class,
+						'dependencies' => []
+					],
+				],
+				'out' => '
+mw.loader.addSource({
+    "local": "/w/load.php"
+});
+mw.loader.register([
+    [
+        "a",
+        "{blankVer}",
+        [
+            1,
+            "x"
+        ]
+    ],
+    [
+        "b",
+        "{blankVer}",
+        [
+            2,
+            "x"
+        ]
+    ],
+    [
+        "c",
+        "{blankVer}"
+    ]
+]);',
+			] ],
+			[ [
+				// Regression test for T223402.
+				'msg' => 'Optimise the dependency tree (indirect circular dependency)',
+				'modules' => [
+					'top' => [
+						'class' => ResourceLoaderTestModule::class,
+						'dependencies' => [ 'middle1', 'util' ],
+					],
+					'middle1' => [
+						'class' => ResourceLoaderTestModule::class,
+						'dependencies' => [ 'middle2', 'util' ],
+					],
+					'middle2' => [
+						'class' => ResourceLoaderTestModule::class,
+						'dependencies' => [ 'bottom' ],
+					],
+					'bottom' => [
+						'class' => ResourceLoaderTestModule::class,
+						'dependencies' => [ 'top' ],
+					],
+					'util' => [
+						'class' => ResourceLoaderTestModule::class,
+						'dependencies' => [],
+					],
+				],
+				'out' => '
+mw.loader.addSource({
+    "local": "/w/load.php"
+});
+mw.loader.register([
+    [
+        "top",
+        "{blankVer}",
+        [
+            1,
+            4
+        ]
+    ],
+    [
+        "middle1",
+        "{blankVer}",
+        [
+            2,
+            4
+        ]
+    ],
+    [
+        "middle2",
+        "{blankVer}",
+        [
+            3
+        ]
+    ],
+    [
+        "bottom",
+        "{blankVer}",
+        [
+            0
+        ]
+    ],
+    [
+        "util",
+        "{blankVer}"
+    ]
+]);',
+			] ],
+			[ [
+				// Regression test for T223402.
+				'msg' => 'Optimise the dependency tree (direct circular dependency)',
+				'modules' => [
+					'top' => [
+						'class' => ResourceLoaderTestModule::class,
+						'dependencies' => [ 'util', 'top' ],
+					],
+					'util' => [
+						'class' => ResourceLoaderTestModule::class,
+						'dependencies' => [],
+					],
+				],
+				'out' => '
+mw.loader.addSource({
+    "local": "/w/load.php"
+});
+mw.loader.register([
+    [
+        "top",
+        "{blankVer}",
+        [
+            1,
+            0
+        ]
+    ],
+    [
+        "util",
+        "{blankVer}"
+    ]
+]);',
 			] ],
 			[ [
 				'msg' => 'Version falls back gracefully if getVersionHash throws',
 				'modules' => [
-					'test.fail' => (
-						( $mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-							->setMethods( [ 'getVersionHash' ] )->getMock() )
-						&& $mock->method( 'getVersionHash' )->will(
-							$this->throwException( new Exception )
-						)
-					) ? $mock : $mock
+					'test.fail' => [
+						'factory' => function () {
+							$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
+								->setMethods( [ 'getVersionHash' ] )->getMock();
+							$mock->method( 'getVersionHash' )->will(
+								$this->throwException( new Exception )
+							);
+							return $mock;
+						}
+					]
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.fail",
         ""
     ]
-] );
-mw.loader.state( {
+]);
+mw.loader.state({
     "test.fail": "error"
-} );',
+});',
 			] ],
 			[ [
 				'msg' => 'Use version from getVersionHash',
 				'modules' => [
-					'test.version' => (
-						( $mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-							->setMethods( [ 'getVersionHash' ] )->getMock() )
-						&& $mock->method( 'getVersionHash' )->willReturn( '1234567' )
-					) ? $mock : $mock
+					'test.version' => [
+						'factory' => function () {
+							$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
+								->setMethods( [ 'getVersionHash' ] )->getMock();
+							$mock->method( 'getVersionHash' )->willReturn( '12345' );
+							return $mock;
+						}
+					]
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.version",
-        "1234567"
+        "12345"
     ]
-] );',
+]);',
 			] ],
 			[ [
 				'msg' => 'Re-hash version from getVersionHash if too long',
 				'modules' => [
-					'test.version' => (
-						( $mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-							->setMethods( [ 'getVersionHash' ] )->getMock() )
-						&& $mock->method( 'getVersionHash' )->willReturn( '12345678' )
-					) ? $mock : $mock
+					'test.version' => [
+						'factory' => function () {
+							$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
+								->setMethods( [ 'getVersionHash' ] )->getMock();
+							$mock->method( 'getVersionHash' )->willReturn( '12345678' );
+							return $mock;
+						}
+					],
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.version",
-        "016es8l"
+        "16es8"
     ]
-] );',
+]);',
 			] ],
 			[ [
 				'msg' => 'Group signature',
 				'modules' => [
-					'test.blank' => new ResourceLoaderTestModule(),
-					'test.group.foo' => new ResourceLoaderTestModule( [ 'group' => 'x-foo' ] ),
-					'test.group.bar' => new ResourceLoaderTestModule( [ 'group' => 'x-bar' ] ),
+					'test.blank' => [ 'class' => ResourceLoaderTestModule::class ],
+					'test.group.foo' => [
+						'class' => ResourceLoaderTestModule::class,
+						'group' => 'x-foo',
+					],
+					'test.group.bar' => [
+						'class' => ResourceLoaderTestModule::class,
+						'group' => 'x-bar',
+					],
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.blank",
         "{blankVer}"
@@ -137,53 +326,59 @@ mw.loader.register( [
         "test.group.foo",
         "{blankVer}",
         [],
-        "x-foo"
+        2
     ],
     [
         "test.group.bar",
         "{blankVer}",
         [],
-        "x-bar"
+        3
     ]
-] );'
+]);'
 			] ],
 			[ [
 				'msg' => 'Different target (non-test should not be registered)',
 				'modules' => [
-					'test.blank' => new ResourceLoaderTestModule(),
-					'test.target.foo' => new ResourceLoaderTestModule( [ 'targets' => [ 'x-foo' ] ] ),
+					'test.blank' => [ 'class' => ResourceLoaderTestModule::class ],
+					'test.target.foo' => [
+						'class' => ResourceLoaderTestModule::class,
+						'targets' => [ 'x-foo' ],
+					],
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.blank",
         "{blankVer}"
     ]
-] );'
+]);'
 			] ],
 			[ [
 				'msg' => 'Safemode disabled (default; register all modules)',
 				'modules' => [
 					// Default origin: ORIGIN_CORE_SITEWIDE
-					'test.blank' => new ResourceLoaderTestModule(),
-					'test.core-generated' => new ResourceLoaderTestModule( [
+					'test.blank' => [ 'class' => ResourceLoaderTestModule::class ],
+					'test.core-generated' => [
+						'class' => ResourceLoaderTestModule::class,
 						'origin' => ResourceLoaderModule::ORIGIN_CORE_INDIVIDUAL
-					] ),
-					'test.sitewide' => new ResourceLoaderTestModule( [
+					],
+					'test.sitewide' => [
+						'class' => ResourceLoaderTestModule::class,
 						'origin' => ResourceLoaderModule::ORIGIN_USER_SITEWIDE
-					] ),
-					'test.user' => new ResourceLoaderTestModule( [
+					],
+					'test.user' => [
+						'class' => ResourceLoaderTestModule::class,
 						'origin' => ResourceLoaderModule::ORIGIN_USER_INDIVIDUAL
-					] ),
+					],
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.blank",
         "{blankVer}"
@@ -200,29 +395,32 @@ mw.loader.register( [
         "test.user",
         "{blankVer}"
     ]
-] );'
+]);'
 			] ],
 			[ [
 				'msg' => 'Safemode enabled (filter modules with user/site origin)',
 				'extraQuery' => [ 'safemode' => '1' ],
 				'modules' => [
 					// Default origin: ORIGIN_CORE_SITEWIDE
-					'test.blank' => new ResourceLoaderTestModule(),
-					'test.core-generated' => new ResourceLoaderTestModule( [
+					'test.blank' => [ 'class' => ResourceLoaderTestModule::class ],
+					'test.core-generated' => [
+						'class' => ResourceLoaderTestModule::class,
 						'origin' => ResourceLoaderModule::ORIGIN_CORE_INDIVIDUAL
-					] ),
-					'test.sitewide' => new ResourceLoaderTestModule( [
+					],
+					'test.sitewide' => [
+						'class' => ResourceLoaderTestModule::class,
 						'origin' => ResourceLoaderModule::ORIGIN_USER_SITEWIDE
-					] ),
-					'test.user' => new ResourceLoaderTestModule( [
+					],
+					'test.user' => [
+						'class' => ResourceLoaderTestModule::class,
 						'origin' => ResourceLoaderModule::ORIGIN_USER_INDIVIDUAL
-					] ),
+					],
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.blank",
         "{blankVer}"
@@ -231,7 +429,7 @@ mw.loader.register( [
         "test.core-generated",
         "{blankVer}"
     ]
-] );'
+]);'
 			] ],
 			[ [
 				'msg' => 'Foreign source',
@@ -242,14 +440,17 @@ mw.loader.register( [
 					],
 				],
 				'modules' => [
-					'test.blank' => new ResourceLoaderTestModule( [ 'source' => 'example' ] ),
+					'test.blank' => [
+						'class' => ResourceLoaderTestModule::class,
+						'source' => 'example'
+					],
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php",
     "example": "http://example.org/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.blank",
         "{blankVer}",
@@ -257,36 +458,39 @@ mw.loader.register( [
         null,
         "example"
     ]
-] );'
+]);'
 			] ],
 			[ [
 				'msg' => 'Conditional dependency function',
 				'modules' => [
-					'test.x.core' => new ResourceLoaderTestModule(),
-					'test.x.polyfill' => new ResourceLoaderTestModule( [
+					'test.x.core' => [ 'class' => ResourceLoaderTestModule::class ],
+					'test.x.polyfill' => [
+						'class' => ResourceLoaderTestModule::class,
 						'skipFunction' => 'return true;'
-					] ),
-					'test.y.polyfill' => new ResourceLoaderTestModule( [
+					],
+					'test.y.polyfill' => [
+						'class' => ResourceLoaderTestModule::class,
 						'skipFunction' =>
 							'return !!(' .
 							'    window.JSON &&' .
 							'    JSON.parse &&' .
 							'    JSON.stringify' .
 							');'
-					] ),
-					'test.z.foo' => new ResourceLoaderTestModule( [
+					],
+					'test.z.foo' => [
+						'class' => ResourceLoaderTestModule::class,
 						'dependencies' => [
 							'test.x.core',
 							'test.x.polyfill',
 							'test.y.polyfill',
 						],
-					] ),
+					],
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.x.core",
         "{blankVer}"
@@ -316,7 +520,7 @@ mw.loader.register( [
             2
         ]
     ]
-] );',
+]);',
 			] ],
 			[ [
 				// This may seem like an edge case, but a plain MediaWiki core install
@@ -331,59 +535,69 @@ mw.loader.register( [
 					],
 				],
 				'modules' => [
-					'test.blank' => new ResourceLoaderTestModule(),
-					'test.x.core' => new ResourceLoaderTestModule(),
-					'test.x.util' => new ResourceLoaderTestModule( [
+					'test.blank' => [ 'class' => ResourceLoaderTestModule::class ],
+					'test.x.core' => [ 'class' => ResourceLoaderTestModule::class ],
+					'test.x.util' => [
+						'class' => ResourceLoaderTestModule::class,
 						'dependencies' => [
 							'test.x.core',
 						],
-					] ),
-					'test.x.foo' => new ResourceLoaderTestModule( [
+					],
+					'test.x.foo' => [
+						'class' => ResourceLoaderTestModule::class,
 						'dependencies' => [
 							'test.x.core',
 						],
-					] ),
-					'test.x.bar' => new ResourceLoaderTestModule( [
+					],
+					'test.x.bar' => [
+						'class' => ResourceLoaderTestModule::class,
 						'dependencies' => [
 							'test.x.core',
 							'test.x.util',
 						],
-					] ),
-					'test.x.quux' => new ResourceLoaderTestModule( [
+					],
+					'test.x.quux' => [
+						'class' => ResourceLoaderTestModule::class,
 						'dependencies' => [
 							'test.x.foo',
 							'test.x.bar',
 							'test.x.util',
 							'test.x.unknown',
 						],
-					] ),
-					'test.group.foo.1' => new ResourceLoaderTestModule( [
+					],
+					'test.group.foo.1' => [
+						'class' => ResourceLoaderTestModule::class,
 						'group' => 'x-foo',
-					] ),
-					'test.group.foo.2' => new ResourceLoaderTestModule( [
+					],
+					'test.group.foo.2' => [
+						'class' => ResourceLoaderTestModule::class,
 						'group' => 'x-foo',
-					] ),
-					'test.group.bar.1' => new ResourceLoaderTestModule( [
+					],
+					'test.group.bar.1' => [
+						'class' => ResourceLoaderTestModule::class,
 						'group' => 'x-bar',
-					] ),
-					'test.group.bar.2' => new ResourceLoaderTestModule( [
+					],
+					'test.group.bar.2' => [
+						'class' => ResourceLoaderTestModule::class,
 						'group' => 'x-bar',
 						'source' => 'example',
-					] ),
-					'test.target.foo' => new ResourceLoaderTestModule( [
+					],
+					'test.target.foo' => [
+						'class' => ResourceLoaderTestModule::class,
 						'targets' => [ 'x-foo' ],
-					] ),
-					'test.target.bar' => new ResourceLoaderTestModule( [
+					],
+					'test.target.bar' => [
+						'class' => ResourceLoaderTestModule::class,
 						'source' => 'example',
 						'targets' => [ 'x-foo' ],
-					] ),
+					],
 				],
 				'out' => '
-mw.loader.addSource( {
+mw.loader.addSource({
     "local": "/w/load.php",
     "example": "http://example.org/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.blank",
         "{blankVer}"
@@ -426,36 +640,35 @@ mw.loader.register( [
         "test.group.foo.1",
         "{blankVer}",
         [],
-        "x-foo"
+        2
     ],
     [
         "test.group.foo.2",
         "{blankVer}",
         [],
-        "x-foo"
+        2
     ],
     [
         "test.group.bar.1",
         "{blankVer}",
         [],
-        "x-bar"
+        3
     ],
     [
         "test.group.bar.2",
         "{blankVer}",
         [],
-        "x-bar",
+        3,
         "example"
     ]
-] );'
+]);'
 			] ],
 		];
 	}
 
 	/**
 	 * @dataProvider provideGetModuleRegistrations
-	 * @covers ResourceLoaderStartUpModule::getModuleRegistrations
-	 * @covers ResourceLoaderStartUpModule::compileUnresolvedDependencies
+	 * @covers ResourceLoaderStartUpModule
 	 * @covers ResourceLoader::makeLoaderRegisterScript
 	 */
 	public function testGetModuleRegistrations( $case ) {
@@ -483,8 +696,9 @@ mw.loader.register( [
 	public static function provideRegistrations() {
 		return [
 			[ [
-				'test.blank' => new ResourceLoaderTestModule(),
-				'test.min' => new ResourceLoaderTestModule( [
+				'test.blank' => [ 'class' => ResourceLoaderTestModule::class ],
+				'test.min' => [
+					'class' => ResourceLoaderTestModule::class,
 					'skipFunction' =>
 						'return !!(' .
 						'    window.JSON &&' .
@@ -494,7 +708,7 @@ mw.loader.register( [
 					'dependencies' => [
 						'test.blank',
 					],
-				] ),
+				],
 			] ]
 		];
 	}
@@ -504,9 +718,9 @@ mw.loader.register( [
 	 * @dataProvider provideRegistrations
 	 */
 	public function testRegistrationsMinified( $modules ) {
-		$this->setMwGlobals( 'wgResourceLoaderDebug', false );
-
-		$context = $this->getResourceLoaderContext();
+		$context = $this->getResourceLoaderContext( [
+			'debug' => 'false',
+		] );
 		$rl = $context->getResourceLoader();
 		$rl->register( $modules );
 		$module = new ResourceLoaderStartUpModule();
@@ -529,15 +743,17 @@ mw.loader.register( [
 	 * @dataProvider provideRegistrations
 	 */
 	public function testRegistrationsUnminified( $modules ) {
-		$context = $this->getResourceLoaderContext();
+		$context = $this->getResourceLoaderContext( [
+			'debug' => 'true',
+		] );
 		$rl = $context->getResourceLoader();
 		$rl->register( $modules );
 		$module = new ResourceLoaderStartUpModule();
 		$out =
-'mw.loader.addSource( {
+'mw.loader.addSource({
     "local": "/w/load.php"
-} );
-mw.loader.register( [
+});
+mw.loader.register([
     [
         "test.blank",
         "{blankVer}"
@@ -552,7 +768,7 @@ mw.loader.register( [
         null,
         "return !!(    window.JSON \u0026\u0026    JSON.parse \u0026\u0026    JSON.stringify);"
     ]
-] );';
+]);';
 
 		$this->assertEquals(
 			self::expandPlaceholders( $out ),
@@ -597,8 +813,8 @@ mw.loader.register( [
 		$context1 = $this->getResourceLoaderContext();
 		$rl1 = $context1->getResourceLoader();
 		$rl1->register( [
-			'test.a' => new ResourceLoaderTestModule(),
-			'test.b' => new ResourceLoaderTestModule(),
+			'test.a' => [ 'class' => ResourceLoaderTestModule::class ],
+			'test.b' => [ 'class' => ResourceLoaderTestModule::class ],
 		] );
 		$module = new ResourceLoaderStartupModule();
 		$version1 = $module->getVersionHash( $context1 );
@@ -606,8 +822,8 @@ mw.loader.register( [
 		$context2 = $this->getResourceLoaderContext();
 		$rl2 = $context2->getResourceLoader();
 		$rl2->register( [
-			'test.b' => new ResourceLoaderTestModule(),
-			'test.c' => new ResourceLoaderTestModule(),
+			'test.b' => [ 'class' => ResourceLoaderTestModule::class ],
+			'test.c' => [ 'class' => ResourceLoaderTestModule::class ],
 		] );
 		$module = new ResourceLoaderStartupModule();
 		$version2 = $module->getVersionHash( $context2 );
@@ -615,8 +831,11 @@ mw.loader.register( [
 		$context3 = $this->getResourceLoaderContext();
 		$rl3 = $context3->getResourceLoader();
 		$rl3->register( [
-			'test.a' => new ResourceLoaderTestModule(),
-			'test.b' => new ResourceLoaderTestModule( [ 'script' => 'different' ] ),
+			'test.a' => [ 'class' => ResourceLoaderTestModule::class ],
+			'test.b' => [
+				'class' => ResourceLoaderTestModule::class,
+				'script' => 'different',
+			],
 		] );
 		$module = new ResourceLoaderStartupModule();
 		$version3 = $module->getVersionHash( $context3 );
@@ -642,7 +861,10 @@ mw.loader.register( [
 		$context = $this->getResourceLoaderContext();
 		$rl = $context->getResourceLoader();
 		$rl->register( [
-			'test.a' => new ResourceLoaderTestModule( [ 'dependencies' => [ 'x', 'y' ] ] ),
+			'test.a' => [
+				'class' => ResourceLoaderTestModule::class,
+				'dependencies' => [ 'x', 'y' ],
+			],
 		] );
 		$module = new ResourceLoaderStartupModule();
 		$version1 = $module->getVersionHash( $context );
@@ -650,7 +872,10 @@ mw.loader.register( [
 		$context = $this->getResourceLoaderContext();
 		$rl = $context->getResourceLoader();
 		$rl->register( [
-			'test.a' => new ResourceLoaderTestModule( [ 'dependencies' => [ 'x', 'z' ] ] ),
+			'test.a' => [
+				'class' => ResourceLoaderTestModule::class,
+				'dependencies' => [ 'x', 'z' ],
+			],
 		] );
 		$module = new ResourceLoaderStartupModule();
 		$version2 = $module->getVersionHash( $context );

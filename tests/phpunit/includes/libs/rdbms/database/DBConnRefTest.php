@@ -1,11 +1,10 @@
 <?php
 
-use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\FakeResultWrapper;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * @covers Wikimedia\Rdbms\DBConnRef
@@ -40,7 +39,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	 * @return IDatabase
 	 */
 	private function getDatabaseMock() {
-		$db = $this->getMockBuilder( Database::class )
+		$db = $this->getMockBuilder( IDatabase::class )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -60,12 +59,6 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 		$db->method( 'isOpen' )->willReturnCallback( function () use ( &$open ) {
 			return $open;
 		} );
-		$db->method( 'open' )->willReturnCallback( function () use ( &$open ) {
-			$open = true;
-
-			return $open;
-		} );
-		$db->method( '__toString' )->willReturn( 'MOCK_DB' );
 
 		return $db;
 	}
@@ -82,7 +75,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 		$lb = $this->getLoadBalancerMock();
 		$ref = new DBConnRef( $lb, $this->getDatabaseMock(), DB_MASTER );
 
-		$this->assertInstanceOf( ResultWrapper::class, $ref->select( 'whatever', '*' ) );
+		$this->assertInstanceOf( IResultWrapper::class, $ref->select( 'whatever', '*' ) );
 	}
 
 	public function testConstruct_params() {
@@ -103,7 +96,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 			DB_MASTER
 		);
 
-		$this->assertInstanceOf( ResultWrapper::class, $ref->select( 'whatever', '*' ) );
+		$this->assertInstanceOf( IResultWrapper::class, $ref->select( 'whatever', '*' ) );
 		$this->assertEquals( DB_MASTER, $ref->getReferenceRole() );
 
 		$ref2 = new DBConnRef(
@@ -126,7 +119,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	private function innerMethodForTestDestruct( ILoadBalancer $lb ) {
 		$ref = $lb->getConnectionRef( DB_REPLICA );
 
-		$this->assertInstanceOf( ResultWrapper::class, $ref->select( 'whatever', '*' ) );
+		$this->assertInstanceOf( IResultWrapper::class, $ref->select( 'whatever', '*' ) );
 	}
 
 	public function testConstruct_failure() {
@@ -157,7 +150,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	public function testSelect() {
 		// select should get passed through normally
 		$ref = $this->getDBConnRef();
-		$this->assertInstanceOf( ResultWrapper::class, $ref->select( 'whatever', '*' ) );
+		$this->assertInstanceOf( IResultWrapper::class, $ref->select( 'whatever', '*' ) );
 	}
 
 	public function testToString() {

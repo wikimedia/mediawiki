@@ -1,0 +1,22 @@
+[
+	{
+		"path": "/user/{name}/hello",
+		"class": "MediaWiki\\Rest\\Handler\\HelloHandler"
+	},
+	{
+		"path": "/mock/EntryPoint/header",
+		"factory": "MediaWiki\\Tests\\Rest\\EntryPointTest::mockHandlerHeader"
+	},
+	{
+		"path": "/mock/EntryPoint/bodyRewind",
+		"factory": "MediaWiki\\Tests\\Rest\\EntryPointTest::mockHandlerBodyRewind"
+	},
+	{
+		"path": "/mock/RouterTest/throw",
+		"factory": "MediaWiki\\Tests\\Rest\\RouterTest::throwHandlerFactory"
+	},
+	{
+		"path": "/mock/MWBasicRequestAuthorizerTest/write",
+		"factory": "MediaWiki\\Tests\\Rest\\BasicAccess\\MWBasicRequestAuthorizerTest::writeHandlerFactory"
+	}
+]

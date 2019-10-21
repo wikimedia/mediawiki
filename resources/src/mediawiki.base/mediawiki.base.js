@@ -103,11 +103,12 @@
 		 * @return {string} Parsed message
 		 */
 		parser: function () {
-			var text;
-			if ( mw.config.get( 'wgUserLanguage' ) === 'qqx' ) {
+			var text = this.map.get( this.key );
+			if (
+				mw.config.get( 'wgUserLanguage' ) === 'qqx' &&
+				( !text || text === '(' + this.key + ')' )
+			) {
 				text = '(' + this.key + '$*)';
-			} else {
-				text = this.map.get( this.key );
 			}
 			return mw.format.apply( null, [ text ].concat( this.parameters ) );
 		},
@@ -234,6 +235,18 @@
 	 * @class mw
 	 * @singleton
 	 */
+
+	/**
+	 * Empty object for third-party libraries, for cases where you don't
+	 * want to add a new global, or the global is bad and needs containment
+	 * or wrapping.
+	 *
+	 * @property
+	 */
+	mw.libs = {};
+
+	// OOUI widgets specific to MediaWiki
+	mw.widgets = {};
 
 	/**
 	 * @inheritdoc mw.inspect#runReports
@@ -696,6 +709,22 @@
 			.catch( function () {
 				throw new Error( 'Failed to load script' );
 			} );
+	};
+
+	// Skeleton user object, extended by the 'mediawiki.user' module.
+	/**
+	 * @class mw.user
+	 * @singleton
+	 */
+	mw.user = {
+		/**
+		 * @property {mw.Map}
+		 */
+		options: new mw.Map(),
+		/**
+		 * @property {mw.Map}
+		 */
+		tokens: new mw.Map()
 	};
 
 	// Alias $j to jQuery for backwards compatibility

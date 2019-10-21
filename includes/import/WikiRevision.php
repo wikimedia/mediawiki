@@ -56,14 +56,6 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.2
-	 * @var int
-	 * @deprecated in 1.29. Unused.
-	 * @note Introduced in 436a028086fb3f01c4605c5ad2964d56f9306aca, unused there, unused now.
-	 */
-	public $user = 0;
-
-	/**
-	 * @since 1.2
 	 * @var string
 	 */
 	public $user_text = "";
@@ -153,6 +145,12 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	public $sha1base36 = false;
 
 	/**
+	 * @since 1.34
+	 * @var string[]
+	 */
+	protected $tags = [];
+
+	/**
 	 * @since 1.17
 	 * @var string
 	 */
@@ -187,9 +185,16 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	/** @var bool */
 	private $mNoUpdates = false;
 
-	/** @var Config $config */
+	/**
+	 * @deprecated since 1.31, along with self::downloadSource()
+	 * @var Config $config
+	 */
 	private $config;
 
+	/**
+	 * @param Config $config Deprecated since 1.31, along with self::downloadSource(). Just pass an
+	 *  empty HashConfig.
+	 */
 	public function __construct( Config $config ) {
 		$this->config = $config;
 	}
@@ -319,6 +324,14 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	}
 
 	/**
+	 * @since 1.34
+	 * @param string[] $tags
+	 */
+	public function setTags( array $tags ) {
+		$this->tags = $tags;
+	}
+
+	/**
 	 * @since 1.12.2
 	 * @param string $filename
 	 */
@@ -360,7 +373,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.12.2
-	 * @param array $params
+	 * @param string $params
 	 */
 	public function setParams( $params ) {
 		$this->params = $params;
@@ -518,6 +531,14 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	}
 
 	/**
+	 * @since 1.34
+	 * @return string[]
+	 */
+	public function getTags() {
+		return $this->tags;
+	}
+
+	/**
 	 * @since 1.17
 	 * @return string
 	 */
@@ -644,7 +665,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.12.2
-	 * @deprecated in 1.31. Use UploadImporter::import
+	 * @deprecated in 1.31. Use UploadRevisionImporter::import
 	 * @return bool
 	 */
 	public function importUpload() {
@@ -655,7 +676,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.12.2
-	 * @deprecated in 1.31. Use UploadImporter::downloadSource
+	 * @deprecated in 1.31. No replacement
 	 * @return bool|string
 	 */
 	public function downloadSource() {

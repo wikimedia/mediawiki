@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 /**
  * Image gallery.
  *
@@ -87,7 +90,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					# Fetch and register the file (file title may be different via hooks)
 					list( $img, $nt ) = $this->mParser->fetchFileAndTitle( $nt, $options );
 				} else {
-					$img = wfFindFile( $nt );
+					$img = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $nt );
 				}
 			} else {
 				$img = false;
@@ -108,8 +111,8 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				if ( $this->mParser instanceof Parser ) {
 					$this->mParser->addTrackingCategory( 'broken-file-category' );
 				}
-			} elseif ( $this->mHideBadImages
-				&& wfIsBadImage( $nt->getDBkey(), $this->getContextTitle() )
+			} elseif ( $this->mHideBadImages && MediaWikiServices::getInstance()->getBadFileLookup()
+				->isBadFile( $nt->getDBkey(), $this->getContextTitle() )
 			) {
 				# The image is blacklisted, just show it as a text link.
 				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: ' .
@@ -169,7 +172,8 @@ class TraditionalImageGallery extends ImageGalleryBase {
 
 			// @todo Code is incomplete.
 			// $linkTarget = Title::newFromText( MediaWikiServices::getInstance()->
-			// getContentLanguage()->getNsText( MWNamespace::getUser() ) . ":{$ut}" );
+			// getContentLanguage()->getNsText( MediaWikiServices::getInstance()->
+			// getNamespaceInfo()->getUser() ) . ":{$ut}" );
 			// $ul = Linker::link( $linkTarget, $ut );
 
 			$meta = [];

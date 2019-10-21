@@ -21,7 +21,7 @@
 namespace MediaWiki\Preferences;
 
 /**
- * Base interface for user preference flters that work as a middleware between
+ * Base interface for user preference filters that work as a middleware between
  * storage and interface.
  */
 interface Filter {

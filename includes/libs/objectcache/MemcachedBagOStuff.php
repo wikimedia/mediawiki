@@ -26,77 +26,12 @@
  *
  * @ingroup Cache
  */
-class MemcachedBagOStuff extends BagOStuff {
-	/** @var MemcachedClient|Memcached */
-	protected $client;
-
+abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 	function __construct( array $params ) {
 		parent::__construct( $params );
 
 		$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_BE; // unreliable
-	}
-
-	/**
-	 * Fill in some defaults for missing keys in $params.
-	 *
-	 * @param array $params
-	 * @return array
-	 */
-	protected function applyDefaultParams( $params ) {
-		return $params + [
-			'compress_threshold' => 1500,
-			'connect_timeout' => 0.5,
-			'debug' => false
-		];
-	}
-
-	protected function doGet( $key, $flags = 0, &$casToken = null ) {
-		return $this->client->get( $this->validateKeyEncoding( $key ), $casToken );
-	}
-
-	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
-		return $this->client->set( $this->validateKeyEncoding( $key ), $value,
-			$this->fixExpiry( $exptime ) );
-	}
-
-	protected function cas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
-		return $this->client->cas( $casToken, $this->validateKeyEncoding( $key ),
-			$value, $this->fixExpiry( $exptime ) );
-	}
-
-	public function delete( $key, $flags = 0 ) {
-		return $this->client->delete( $this->validateKeyEncoding( $key ) );
-	}
-
-	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
-		return $this->client->add( $this->validateKeyEncoding( $key ), $value,
-			$this->fixExpiry( $exptime ) );
-	}
-
-	public function incr( $key, $value = 1 ) {
-		$n = $this->client->incr( $this->validateKeyEncoding( $key ), $value );
-
-		return ( $n !== false && $n !== null ) ? $n : false;
-	}
-
-	public function decr( $key, $value = 1 ) {
-		$n = $this->client->decr( $this->validateKeyEncoding( $key ), $value );
-
-		return ( $n !== false && $n !== null ) ? $n : false;
-	}
-
-	public function changeTTL( $key, $exptime = 0, $flags = 0 ) {
-		return $this->client->touch( $this->validateKeyEncoding( $key ),
-			$this->fixExpiry( $exptime ) );
-	}
-
-	/**
-	 * Get the underlying client object. This is provided for debugging
-	 * purposes.
-	 * @return MemcachedClient|Memcached
-	 */
-	public function getClient() {
-		return $this->client;
+		$this->segmentationSize = $params['maxPreferedKeySize'] ?? 917504; // < 1MiB
 	}
 
 	/**
@@ -114,29 +49,25 @@ class MemcachedBagOStuff extends BagOStuff {
 		// custom prefixes used by thing like WANObjectCache, limit to 205.
 		$charsLeft = 205 - strlen( $keyspace ) - count( $args );
 
-		$args = array_map(
-			function ( $arg ) use ( &$charsLeft ) {
-				$arg = strtr( $arg, ' ', '_' );
+		foreach ( $args as &$arg ) {
+			$arg = strtr( $arg, ' ', '_' );
 
-				// Make sure %, #, and non-ASCII chars are escaped
-				$arg = preg_replace_callback(
-					'/[^\x21-\x22\x24\x26-\x39\x3b-\x7e]+/',
-					function ( $m ) {
-						return rawurlencode( $m[0] );
-					},
-					$arg
-				);
+			// Make sure %, #, and non-ASCII chars are escaped
+			$arg = preg_replace_callback(
+				'/[^\x21-\x22\x24\x26-\x39\x3b-\x7e]+/',
+				function ( $m ) {
+					return rawurlencode( $m[0] );
+				},
+				$arg
+			);
 
-				// 33 = 32 characters for the MD5 + 1 for the '#' prefix.
-				if ( $charsLeft > 33 && strlen( $arg ) > $charsLeft ) {
-					$arg = '#' . md5( $arg );
-				}
+			// 33 = 32 characters for the MD5 + 1 for the '#' prefix.
+			if ( $charsLeft > 33 && strlen( $arg ) > $charsLeft ) {
+				$arg = '#' . md5( $arg );
+			}
 
-				$charsLeft -= strlen( $arg );
-				return $arg;
-			},
-			$args
-		);
+			$charsLeft -= strlen( $arg );
+		}
 
 		if ( $charsLeft < 0 ) {
 			return $keyspace . ':BagOStuff-long-key:##' . md5( implode( ':', $args ) );
@@ -161,26 +92,24 @@ class MemcachedBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * TTLs higher than 30 days will be detected as absolute TTLs
-	 * (UNIX timestamps), and will result in the cache entry being
-	 * discarded immediately because the expiry is in the past.
-	 * Clamp expires >30d at 30d, unless they're >=1e9 in which
-	 * case they are likely to really be absolute (1e9 = 2011-09-09)
-	 * @param int $expiry
+	 * @param int|float $exptime
 	 * @return int
 	 */
-	function fixExpiry( $expiry ) {
-		if ( $expiry > 2592000 && $expiry < 1000000000 ) {
-			$expiry = 2592000;
+	protected function fixExpiry( $exptime ) {
+		if ( $exptime < 0 ) {
+			// The PECL driver does not seem to like negative relative values
+			$expiresAt = $this->getCurrentTime() + $exptime;
+		} elseif ( $this->isRelativeExpiration( $exptime ) ) {
+			// TTLs higher than 30 days will be detected as absolute TTLs
+			// (UNIX timestamps), and will result in the cache entry being
+			// discarded immediately because the expiry is in the past.
+			// Clamp expires >30d at 30d, unless they're >=1e9 in which
+			// case they are likely to really be absolute (1e9 = 2011-09-09)
+			$expiresAt = min( $exptime, self::TTL_MONTH );
+		} else {
+			$expiresAt = $exptime;
 		}
-		return (int)$expiry;
-	}
 
-	/**
-	 * Send a debug message to the log
-	 * @param string $text
-	 */
-	protected function debugLog( $text ) {
-		$this->logger->debug( $text );
+		return (int)$expiresAt;
 	}
 }

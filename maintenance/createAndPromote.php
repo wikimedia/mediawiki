@@ -103,24 +103,25 @@ class CreateAndPromote extends Maintenance {
 
 			return;
 		} elseif ( count( $promotions ) !== 0 ) {
+			$dbDomain = WikiMap::getCurrentWikiDbDomain()->getId();
 			$promoText = "User:{$username} into " . implode( ', ', $promotions ) . "...\n";
 			if ( $exists ) {
-				$this->output( wfWikiID() . ": Promoting $promoText" );
+				$this->output( "$dbDomain: Promoting $promoText" );
 			} else {
-				$this->output( wfWikiID() . ": Creating and promoting $promoText" );
+				$this->output( "$dbDomain: Creating and promoting $promoText" );
 			}
 		}
 
 		if ( !$exists ) {
 			// Create the user via AuthManager as there may be various side
-			// effects that are perfomed by the configured AuthManager chain.
+			// effects that are performed by the configured AuthManager chain.
 			$status = MediaWiki\Auth\AuthManager::singleton()->autoCreateUser(
 				$user,
 				MediaWiki\Auth\AuthManager::AUTOCREATE_SOURCE_MAINT,
 				false
 			);
 			if ( !$status->isGood() ) {
-				$this->fatalError( $status->getWikiText( null, null, 'en' ) );
+				$this->fatalError( $status->getMessage( false, false, 'en' )->text() );
 			}
 		}
 
@@ -133,7 +134,7 @@ class CreateAndPromote extends Maintenance {
 					'retype' => $password,
 				] );
 				if ( !$status->isGood() ) {
-					throw new PasswordError( $status->getWikiText( null, null, 'en' ) );
+					throw new PasswordError( $status->getMessage( false, false, 'en' )->text() );
 				}
 				if ( $exists ) {
 					$this->output( "Password set.\n" );
@@ -149,7 +150,7 @@ class CreateAndPromote extends Maintenance {
 
 		if ( !$exists ) {
 			# Increment site_stats.ss_users
-			$ssu = new SiteStatsUpdate( 0, 0, 0, 0, 1 );
+			$ssu = SiteStatsUpdate::factory( [ 'users' => 1 ] );
 			$ssu->doUpdate();
 		}
 

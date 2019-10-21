@@ -133,7 +133,7 @@ class TitleCleanup extends TableCleanup {
 	 * @param Title $title
 	 */
 	protected function moveInconsistentPage( $row, Title $title ) {
-		if ( $title->exists( Title::GAID_FOR_UPDATE )
+		if ( $title->exists( Title::READ_LATEST )
 			|| $title->getInterwiki()
 			|| !$title->canExist()
 		) {
@@ -152,7 +152,7 @@ class TitleCleanup extends TableCleanup {
 
 			# Namespace which no longer exists. Put the page in the main namespace
 			# since we don't have any idea of the old namespace name. See T70501.
-			if ( !MWNamespace::exists( $ns ) ) {
+			if ( !MediaWikiServices::getInstance()->getNamespaceInfo()->exists( $ns ) ) {
 				$ns = 0;
 			}
 

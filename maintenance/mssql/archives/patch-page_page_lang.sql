@@ -1,1 +1,0 @@
-ALTER TABLE /*_*/page ADD page_lang VARBINARY(35) DEFAULT NULL

@@ -23,7 +23,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -76,7 +76,7 @@ class ConvertUserOptions extends Maintenance {
 	}
 
 	/**
-	 * @param ResultWrapper $res
+	 * @param IResultWrapper $res
 	 * @param IDatabase $dbw
 	 * @return null|int
 	 */

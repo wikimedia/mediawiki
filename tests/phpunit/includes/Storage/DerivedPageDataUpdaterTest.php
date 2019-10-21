@@ -24,6 +24,7 @@ use User;
 use Wikimedia\TestingAccessWrapper;
 use WikiPage;
 use WikitextContent;
+use DeferredUpdates;
 
 /**
  * @group Database
@@ -60,16 +61,20 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 
 	/**
 	 * @param string|Title|WikiPage $page
+	 * @param RevisionRecord|null $rec
+	 * @param User|null $user
 	 *
 	 * @return DerivedPageDataUpdater
 	 */
-	private function getDerivedPageDataUpdater( $page, RevisionRecord $rec = null ) {
+	private function getDerivedPageDataUpdater(
+		$page, RevisionRecord $rec = null, User $user = null
+	) {
 		if ( is_string( $page ) || $page instanceof Title ) {
 			$page = $this->getPage( $page );
 		}
 
 		$page = TestingAccessWrapper::newFromObject( $page );
-		return $page->getDerivedDataUpdater( null, $rec );
+		return $page->getDerivedDataUpdater( $user, $rec );
 	}
 
 	/**
@@ -78,11 +83,12 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 	 * @param WikiPage $page
 	 * @param string|Message|CommentStoreComment $summary
 	 * @param null|string|Content $content
+	 * @param User|null $user
 	 *
 	 * @return RevisionRecord|null
 	 */
-	private function createRevision( WikiPage $page, $summary, $content = null ) {
-		$user = $this->getTestUser()->getUser();
+	private function createRevision( WikiPage $page, $summary, $content = null, $user = null ) {
+		$user = $user ?: $this->getTestUser()->getUser();
 		$comment = CommentStoreComment::newUnsavedComment( $summary );
 
 		if ( $content === null || is_string( $content ) ) {
@@ -869,6 +875,92 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * * @covers \MediaWiki\Storage\DerivedPageDataUpdater::isCountable
+	 */
+	public function testIsCountableNotContentPage() {
+		$updater = $this->getDerivedPageDataUpdater(
+			Title::newFromText( 'Main_Page', NS_TALK )
+		);
+		self::assertFalse( $updater->isCountable() );
+	}
+
+	public function provideIsCountable() {
+		yield 'deleted revision' => [
+			'$articleCountMethod' => 'any',
+			'$wikitextContent' => 'Test',
+			'$revisionVisibility' => RevisionRecord::SUPPRESSED_ALL,
+			'$isCountable' => false
+		];
+		yield 'redirect' => [
+			'$articleCountMethod' => 'any',
+			'$wikitextContent' => '#REDIRECT [[Main_Page]]',
+			'$revisionVisibility' => 0,
+			'$isCountable' => false
+		];
+		yield 'no links count method any' => [
+			'$articleCountMethod' => 'any',
+			'$wikitextContent' => 'Test',
+			'$revisionVisibility' => 0,
+			'$isCountable' => true
+		];
+		yield 'no links count method link' => [
+			'$articleCountMethod' => 'link',
+			'$wikitextContent' => 'Test',
+			'$revisionVisibility' => 0,
+			'$isCountable' => false
+		];
+		yield 'with links count method link' => [
+			'$articleCountMethod' => 'link',
+			'$wikitextContent' => '[[Test]]',
+			'$revisionVisibility' => 0,
+			'$isCountable' => true
+		];
+	}
+
+	/**
+	 * @dataProvider provideIsCountable
+	 *
+	 * @param string $articleCountMethod
+	 * @param string $wikitextContent
+	 * @param int $revisionVisibility
+	 * @param bool $isCountable
+	 * @throws \MWException
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::isCountable
+	 */
+	public function testIsCountable(
+		$articleCountMethod,
+		$wikitextContent,
+		$revisionVisibility,
+		$isCountable
+	) {
+		$this->setMwGlobals( [ 'wgArticleCountMethod' => $articleCountMethod ] );
+		$title = $this->getTitle( 'Main_Page' );
+		$content = new WikitextContent( $wikitextContent );
+		$update = new RevisionSlotsUpdate();
+		$update->modifyContent( SlotRecord::MAIN, $content );
+		$revision = $this->makeRevision( $title, $update, User::newFromName( 'Alice' ), 'rev1', 13 );
+		$revision->setVisibility( $revisionVisibility );
+		$updater = $this->getDerivedPageDataUpdater( $title );
+		$updater->prepareUpdate( $revision );
+		self::assertSame( $isCountable, $updater->isCountable() );
+	}
+
+	/**
+	 * @throws \MWException
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::isCountable
+	 */
+	public function testIsCountableNoModifiedSlots() {
+		$page = $this->getPage( __METHOD__ );
+		$content = [ 'main' => new WikitextContent( '[[Test]]' ) ];
+		$rev = $this->createRevision( $page, 'first', $content );
+		$nullRevision = MutableRevisionRecord::newFromParentRevision( $rev );
+		$nullRevision->setId( 14 );
+		$updater = $this->getDerivedPageDataUpdater( $page, $nullRevision );
+		$updater->prepareUpdate( $nullRevision );
+		$this->assertTrue( $updater->isCountable() );
+	}
+
+	/**
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doUpdates()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doSecondaryDataUpdates()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParserCacheUpdate()
@@ -943,6 +1035,68 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		// TODO: test search update
 		// TODO: test site stats good_articles while turning the page into (or back from) a redir.
 		// TODO: test category membership update (with setRcWatchCategoryMembership())
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doUpdates()
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doSecondaryDataUpdates()
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParserCacheUpdate()
+	 */
+	public function testDoUpdatesCacheSaveDeferral_canonical() {
+		$page = $this->getPage( __METHOD__ );
+
+		// Case where user has canonical parser options
+		$content = [ 'main' => new WikitextContent( 'rev ID ver #1: {{REVISIONID}}' ) ];
+		$rev = $this->createRevision( $page, 'first', $content );
+		$pcache = MediaWikiServices::getInstance()->getParserCache();
+		$pcache->deleteOptionsKey( $page );
+
+		$this->db->startAtomic( __METHOD__ ); // let deferred updates queue up
+
+		$updater = $this->getDerivedPageDataUpdater( $page, $rev );
+		$updater->prepareUpdate( $rev, [] );
+		$updater->doUpdates();
+
+		$this->assertGreaterThan( 0, DeferredUpdates::pendingUpdatesCount(), 'Pending updates' );
+		$this->assertNotFalse( $pcache->get( $page, $updater->getCanonicalParserOptions() ) );
+
+		$this->db->endAtomic( __METHOD__ ); // run deferred updates
+
+		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount(), 'No pending updates' );
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doUpdates()
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doSecondaryDataUpdates()
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParserCacheUpdate()
+	 */
+	public function testDoUpdatesCacheSaveDeferral_noncanonical() {
+		$page = $this->getPage( __METHOD__ );
+
+		// Case where user does not have canonical parser options
+		$user = $this->getMutableTestUser()->getUser();
+		$user->setOption(
+			'thumbsize',
+			$user->getOption( 'thumbsize' ) + 1
+		);
+		$content = [ 'main' => new WikitextContent( 'rev ID ver #2: {{REVISIONID}}' ) ];
+		$rev = $this->createRevision( $page, 'first', $content, $user );
+		$pcache = MediaWikiServices::getInstance()->getParserCache();
+		$pcache->deleteOptionsKey( $page );
+
+		$this->db->startAtomic( __METHOD__ ); // let deferred updates queue up
+
+		$updater = $this->getDerivedPageDataUpdater( $page, $rev, $user );
+		$updater->prepareUpdate( $rev, [] );
+		$updater->doUpdates();
+
+		$this->assertGreaterThan( 1, DeferredUpdates::pendingUpdatesCount(), 'Pending updates' );
+		$this->assertFalse( $pcache->get( $page, $updater->getCanonicalParserOptions() ) );
+
+		$this->db->endAtomic( __METHOD__ ); // run deferred updates
+
+		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount(), 'No pending updates' );
+		$this->assertNotFalse( $pcache->get( $page, $updater->getCanonicalParserOptions() ) );
 	}
 
 	/**

@@ -284,6 +284,31 @@ class ParserOptionsTest extends MediaWikiTestCase {
 		ScopedCallback::consume( $reset );
 	}
 
+	public function testMatchesForCacheKey() {
+		$cOpts = ParserOptions::newCanonical( null, 'en' );
+
+		$uOpts = ParserOptions::newFromAnon();
+		$this->assertTrue( $cOpts->matchesForCacheKey( $uOpts ) );
+
+		$user = new User();
+		$uOpts = ParserOptions::newFromUser( $user );
+		$this->assertTrue( $cOpts->matchesForCacheKey( $uOpts ) );
+
+		$user = new User();
+		$user->setOption( 'thumbsize', 251 );
+		$uOpts = ParserOptions::newFromUser( $user );
+		$this->assertFalse( $cOpts->matchesForCacheKey( $uOpts ) );
+
+		$user = new User();
+		$user->setOption( 'stubthreshold', 800 );
+		$uOpts = ParserOptions::newFromUser( $user );
+		$this->assertFalse( $cOpts->matchesForCacheKey( $uOpts ) );
+
+		$user = new User();
+		$uOpts = ParserOptions::newFromUserAndLang( $user, Language::factory( 'zh' ) );
+		$this->assertFalse( $cOpts->matchesForCacheKey( $uOpts ) );
+	}
+
 	public function testAllCacheVaryingOptions() {
 		$this->setTemporaryHook( 'ParserOptionsRegister', null );
 		$this->assertSame( [

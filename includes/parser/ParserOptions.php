@@ -62,6 +62,7 @@ class ParserOptions {
 	private static $lazyOptions = [
 		'dateformat' => [ __CLASS__, 'initDateFormat' ],
 		'speculativeRevId' => [ __CLASS__, 'initSpeculativeRevId' ],
+		'speculativePageId' => [ __CLASS__, 'initSpeculativePageId' ],
 	];
 
 	/**
@@ -118,12 +119,7 @@ class ParserOptions {
 	private $mExtraKey = '';
 
 	/**
-	 * @name Option accessors
-	 * @{
-	 */
-
-	/**
-	 * Fetch an option, generically
+	 * Fetch an option and track that is was accessed
 	 * @since 1.30
 	 * @param string $name Option name
 	 * @return mixed
@@ -133,13 +129,20 @@ class ParserOptions {
 			throw new InvalidArgumentException( "Unknown parser option $name" );
 		}
 
-		if ( isset( self::$lazyOptions[$name] ) && $this->options[$name] === null ) {
-			$this->options[$name] = call_user_func( self::$lazyOptions[$name], $this, $name );
-		}
+		$this->lazyLoadOption( $name );
 		if ( !empty( self::$inCacheKey[$name] ) ) {
 			$this->optionUsed( $name );
 		}
 		return $this->options[$name];
+	}
+
+	/**
+	 * @param string $name Lazy load option without tracking usage
+	 */
+	private function lazyLoadOption( $name ) {
+		if ( isset( self::$lazyOptions[$name] ) && $this->options[$name] === null ) {
+			$this->options[$name] = call_user_func( self::$lazyOptions[$name], $this, $name );
+		}
 	}
 
 	/**
@@ -850,10 +853,24 @@ class ParserOptions {
 	}
 
 	/**
+	 * A guess for {{PAGEID}}, calculated using the callback provided via
+	 * setSpeculativeRevPageCallback(). For consistency, the value will be calculated upon the
+	 * first call of this method, and re-used for subsequent calls.
+	 *
+	 * If no callback was defined via setSpeculativePageIdCallback(), this method will return false.
+	 *
+	 * @since 1.34
+	 * @return int|false
+	 */
+	public function getSpeculativePageId() {
+		return $this->getOption( 'speculativePageId' );
+	}
+
+	/**
 	 * Callback registered with ParserOptions::$lazyOptions, triggered by getSpeculativeRevId().
 	 *
 	 * @param ParserOptions $popt
-	 * @return bool|false
+	 * @return int|false
 	 */
 	private static function initSpeculativeRevId( ParserOptions $popt ) {
 		$cb = $popt->getOption( 'speculativeRevIdCallback' );
@@ -864,31 +881,44 @@ class ParserOptions {
 	}
 
 	/**
-	 * Callback to generate a guess for {{REVISIONID}}
-	 * @since 1.28
-	 * @deprecated since 1.32, use getSpeculativeRevId() instead!
-	 * @return callable|null
+	 * Callback registered with ParserOptions::$lazyOptions, triggered by getSpeculativePageId().
+	 *
+	 * @param ParserOptions $popt
+	 * @return int|false
 	 */
-	public function getSpeculativeRevIdCallback() {
-		return $this->getOption( 'speculativeRevIdCallback' );
+	private static function initSpeculativePageId( ParserOptions $popt ) {
+		$cb = $popt->getOption( 'speculativePageIdCallback' );
+		$id = $cb ? $cb() : null;
+
+		// returning null would result in this being re-called every access
+		return $id ?? false;
 	}
 
 	/**
 	 * Callback to generate a guess for {{REVISIONID}}
-	 * @since 1.28
-	 * @param callable|null $x New value (null is no change)
+	 * @param callable|null $x New value
 	 * @return callable|null Old value
+	 * @since 1.28
 	 */
 	public function setSpeculativeRevIdCallback( $x ) {
 		$this->setOption( 'speculativeRevId', null ); // reset
-		return $this->setOptionLegacy( 'speculativeRevIdCallback', $x );
+		return $this->setOption( 'speculativeRevIdCallback', $x );
 	}
 
-	/**@}*/
+	/**
+	 * Callback to generate a guess for {{PAGEID}}
+	 * @param callable|null $x New value
+	 * @return callable|null Old value
+	 * @since 1.34
+	 */
+	public function setSpeculativePageIdCallback( $x ) {
+		$this->setOption( 'speculativePageId', null ); // reset
+		return $this->setOption( 'speculativePageIdCallback', $x );
+	}
 
 	/**
 	 * Timestamp used for {{CURRENTDAY}} etc.
-	 * @return string
+	 * @return string TS_MW timestamp
 	 */
 	public function getTimestamp() {
 		if ( !isset( $this->mTimestamp ) ) {
@@ -904,27 +934,6 @@ class ParserOptions {
 	 */
 	public function setTimestamp( $x ) {
 		return wfSetVar( $this->mTimestamp, $x );
-	}
-
-	/**
-	 * Create "edit section" links?
-	 * @deprecated since 1.31, use ParserOutput::getText() options instead.
-	 * @return bool
-	 */
-	public function getEditSection() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return true;
-	}
-
-	/**
-	 * Create "edit section" links?
-	 * @deprecated since 1.31, use ParserOutput::getText() options instead.
-	 * @param bool|null $x New value (null is no change)
-	 * @return bool Old value
-	 */
-	public function setEditSection( $x ) {
-		wfDeprecated( __METHOD__, '1.31' );
-		return true;
 	}
 
 	/**
@@ -1116,6 +1125,8 @@ class ParserOptions {
 				'templateCallback' => [ Parser::class, 'statelessFetchTemplate' ],
 				'speculativeRevIdCallback' => null,
 				'speculativeRevId' => null,
+				'speculativePageIdCallback' => null,
+				'speculativePageId' => null,
 			];
 
 			Hooks::run( 'ParserOptionsRegister', [
@@ -1197,22 +1208,16 @@ class ParserOptions {
 	 * @since 1.25
 	 */
 	public function matches( ParserOptions $other ) {
-		// Populate lazy options
-		foreach ( self::$lazyOptions as $name => $callback ) {
-			if ( $this->options[$name] === null ) {
-				$this->options[$name] = call_user_func( $callback, $this, $name );
-			}
-			if ( $other->options[$name] === null ) {
-				$other->options[$name] = call_user_func( $callback, $other, $name );
-			}
-		}
-
 		// Compare most options
 		$options = array_keys( $this->options );
 		$options = array_diff( $options, [
 			'enableLimitReport', // only affects HTML comments
 		] );
 		foreach ( $options as $option ) {
+			// Resolve any lazy options
+			$this->lazyLoadOption( $option );
+			$other->lazyLoadOption( $option );
+
 			$o1 = $this->optionToString( $this->options[$option] );
 			$o2 = $this->optionToString( $other->options[$option] );
 			if ( $o1 !== $o2 ) {
@@ -1231,6 +1236,27 @@ class ParserOptions {
 		] );
 		foreach ( $fields as $field ) {
 			if ( !is_object( $this->$field ) && $this->$field !== $other->$field ) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/**
+	 * @param ParserOptions $other
+	 * @return bool Whether the cache key relevant options match those of $other
+	 * @since 1.33
+	 */
+	public function matchesForCacheKey( ParserOptions $other ) {
+		foreach ( self::allCacheVaryingOptions() as $option ) {
+			// Populate any lazy options
+			$this->lazyLoadOption( $option );
+			$other->lazyLoadOption( $option );
+
+			$o1 = $this->optionToString( $this->options[$option] );
+			$o2 = $this->optionToString( $other->options[$option] );
+			if ( $o1 !== $o2 ) {
 				return false;
 			}
 		}
@@ -1314,10 +1340,9 @@ class ParserOptions {
 		$inCacheKey = self::allCacheVaryingOptions();
 
 		// Resolve any lazy options
-		foreach ( array_intersect( $forOptions, $inCacheKey, array_keys( self::$lazyOptions ) ) as $k ) {
-			if ( $this->options[$k] === null ) {
-				$this->options[$k] = call_user_func( self::$lazyOptions[$k], $this, $k );
-			}
+		$lazyOpts = array_intersect( $forOptions, $inCacheKey, array_keys( self::$lazyOptions ) );
+		foreach ( $lazyOpts as $k ) {
+			$this->lazyLoadOption( $k );
 		}
 
 		$options = $this->options;

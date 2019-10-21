@@ -289,8 +289,9 @@ class McrUndoAction extends FormAction {
 				'h2', [ 'id' => 'mw-previewheader' ],
 				$this->context->msg( 'preview' )->text()
 			) .
-			$out->parseAsInterface( $note ) .
-			"<hr />"
+			Html::rawElement( 'div', [ 'class' => 'warningbox' ],
+				$out->parseAsInterface( $note )
+			)
 		);
 
 		$pageViewLang = $this->getTitle()->getPageViewLanguage();
@@ -336,8 +337,14 @@ class McrUndoAction extends FormAction {
 			$updater->setOriginalRevisionId( false );
 			$updater->setUndidRevisionId( $this->undo );
 
+			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
 			// TODO: Ugh.
-			if ( $wgUseRCPatrol && $this->getTitle()->userCan( 'autopatrol', $this->getUser() ) ) {
+			if ( $wgUseRCPatrol && $permissionManager->userCan(
+				'autopatrol',
+				$this->getUser(),
+				$this->getTitle() )
+			) {
 				$updater->setRcPatrolStatus( RecentChange::PRC_AUTOPATROLLED );
 			}
 

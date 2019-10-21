@@ -106,4 +106,25 @@ abstract class RedirectSpecialArticle extends RedirectSpecialPage {
 		Hooks::run( "RedirectSpecialArticleRedirectParams", [ &$redirectParams ] );
 		$this->mAllowedRedirectParams = $redirectParams;
 	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getRedirectQuery( $subpage ) {
+		$query = parent::getRedirectQuery( $subpage );
+		$title = $this->getRedirect( $subpage );
+		// Avoid double redirect for action=edit&redlink=1 for existing pages
+		// (compare to the check in EditPage::edit)
+		if (
+			$query && isset( $query['action'] ) && isset( $query['redlink'] ) &&
+			( $query['action'] === 'edit' || $query['action'] === 'submit' ) &&
+			(bool)$query['redlink'] &&
+			$title instanceof Title &&
+			$title->exists()
+		) {
+			return false;
+		}
+		return $query;
+	}
+
 }

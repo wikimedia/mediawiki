@@ -155,7 +155,9 @@ class TextContent extends AbstractContent {
 	 * @return string|bool The raw text, or false if the conversion failed.
 	 */
 	public function getWikitextForTransclusion() {
+		/** @var WikitextContent $wikitext */
 		$wikitext = $this->convert( CONTENT_MODEL_WIKITEXT, 'lossy' );
+		'@phan-var WikitextContent $wikitext';
 
 		if ( $wikitext ) {
 			return $wikitext->getText();
@@ -214,7 +216,8 @@ class TextContent extends AbstractContent {
 	 */
 	public function diff( Content $that, Language $lang = null ) {
 		$this->checkModelID( $that->getModel() );
-
+		/** @var self $that */
+		'@phan-var self $that';
 		// @todo could implement this in DifferenceEngine and just delegate here?
 
 		if ( !$lang ) {
@@ -253,11 +256,12 @@ class TextContent extends AbstractContent {
 	protected function fillParserOutput( Title $title, $revId,
 		ParserOptions $options, $generateHtml, ParserOutput &$output
 	) {
-		global $wgParser, $wgTextModelsToParse;
+		global $wgTextModelsToParse;
 
 		if ( in_array( $this->getModel(), $wgTextModelsToParse ) ) {
 			// parse just to get links etc into the database, HTML is replaced below.
-			$output = $wgParser->parse( $this->getText(), $title, $options, true, true, $revId );
+			$output = MediaWikiServices::getInstance()->getParser()
+				->parse( $this->getText(), $title, $options, true, true, $revId );
 		}
 
 		if ( $generateHtml ) {

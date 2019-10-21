@@ -16,7 +16,7 @@
 		var $li,
 			$ul = $createButton.prev( 'ul.mw-htmlform-cloner-ul' ),
 			html = $ul.data( 'template' ).replace(
-				new RegExp( mw.RegExp.escape( $ul.data( 'uniqueId' ) ), 'g' ),
+				new RegExp( mw.util.escapeRegExp( $ul.data( 'uniqueId' ) ), 'g' ),
 				'clone' + ( ++cloneCounter )
 			);
 
@@ -37,12 +37,14 @@
 			var $element = $( this ),
 				deleteButton;
 
+			// eslint-disable-next-line no-jquery/no-class-state
 			if ( $element.hasClass( 'oo-ui-widget' ) ) {
 				deleteButton = OO.ui.infuse( $element );
 				deleteButton.on( 'click', function () {
 					deleteButton.$element.closest( 'li.mw-htmlform-cloner-li' ).remove();
 				} );
 			} else {
+				// eslint-disable-next-line no-jquery/no-sizzle
 				$element.filter( ':input' ).on( 'click', function ( e ) {
 					e.preventDefault();
 					$( this ).closest( 'li.mw-htmlform-cloner-li' ).remove();
@@ -50,12 +52,14 @@
 			}
 		} );
 
+		// eslint-disable-next-line no-jquery/no-class-state
 		if ( $createElement.hasClass( 'oo-ui-widget' ) ) {
 			createButton = OO.ui.infuse( $createElement );
 			createButton.on( 'click', function () {
 				appendToCloner( createButton.$element );
 			} );
 		} else {
+			// eslint-disable-next-line no-jquery/no-sizzle
 			$createElement.filter( ':input' ).on( 'click', function ( e ) {
 				e.preventDefault();
 

@@ -61,7 +61,7 @@ on port 11211, using up to 64MB of memory)
 In your LocalSettings.php file, set:
 
 	$wgMainCacheType = CACHE_MEMCACHED;
-	$wgMemCachedServers = array( "127.0.0.1:11211" );
+	$wgMemCachedServers = [ "127.0.0.1:11211" ];
 
 The wiki should then use memcached to cache various data. To use
 multiple servers (physically separate boxes or multiple caches
@@ -70,10 +70,10 @@ to the array. To increase the weight of a server (say, because
 it has twice the memory of the others and you want to spread
 usage evenly), make its entry a subarray:
 
-  $wgMemCachedServers = array(
+  $wgMemCachedServers = [
     "127.0.0.1:11211", # one gig on this box
-    array("192.168.0.1:11211", 2 ) # two gigs on the other box
-  );
+    [ "192.168.0.1:11211", 2 ] # two gigs on the other box
+  ];
 
 == PHP client for memcached ==
 
@@ -131,13 +131,7 @@ Localisation:
 	cleared by: Language::loadLocalisation()
 
 Message Cache:
-	backend: $wgMessageCacheType
-	key: $wgDBname:messages, $wgDBname:messages-hash, $wgDBname:messages-status
-	ex: wikidb:messages, wikidb:messages-hash, wikidb:messages-status
-	stores: an array where the keys are DB keys and the values are messages
-	set in: wfMessage(), Article::editUpdates() and Title::moveTo()
-	expiry: $wgMsgCacheExpiry
-	cleared by: nothing
+	See MessageCache.php.
 
 Newtalk:
 	key: $wgDBname:newtalk:ip:$ip

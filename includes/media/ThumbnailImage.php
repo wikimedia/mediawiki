@@ -110,9 +110,9 @@ class ThumbnailImage extends MediaTransformOutput {
 	 * @return string
 	 */
 	function toHtml( $options = [] ) {
-		global $wgPriorityHints, $wgElementTiming;
+		global $wgPriorityHints, $wgPriorityHintsRatio, $wgElementTiming, $wgNativeImageLazyLoading;
 
-		if ( count( func_get_args() ) == 2 ) {
+		if ( func_num_args() == 2 ) {
 			throw new MWException( __METHOD__ . ' called in the old style' );
 		}
 
@@ -126,6 +126,10 @@ class ThumbnailImage extends MediaTransformOutput {
 			'decoding' => 'async',
 		];
 
+		if ( $wgNativeImageLazyLoading ) {
+			$attribs['loading'] = 'lazy';
+		}
+
 		$elementTimingName = 'thumbnail';
 
 		if ( $wgPriorityHints
@@ -133,8 +137,16 @@ class ThumbnailImage extends MediaTransformOutput {
 			&& $this->width * $this->height > 100 * 100 ) {
 			self::$firstNonIconImageRendered = true;
 
-			$attribs['importance'] = 'high';
-			$elementTimingName = 'thumbnail-high';
+			// Generate a random number between 0.01 and 1.0, included
+			$random = rand( 1, 100 ) / 100.0;
+
+			if ( $random <= $wgPriorityHintsRatio ) {
+				$attribs['importance'] = 'high';
+				$elementTimingName = 'thumbnail-high';
+			} else {
+				// This lets us track that the thumbnail *would* have gotten high priority but didn't.
+				$elementTimingName = 'thumbnail-top';
+			}
 		}
 
 		if ( $wgElementTiming ) {

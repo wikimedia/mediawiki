@@ -41,11 +41,31 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
  * @ingroup Maintenance
  */
 class ImageBuilder extends Maintenance {
-
 	/**
 	 * @var IMaintainableDatabase
 	 */
 	protected $dbw;
+
+	/** @var bool */
+	private $dryrun;
+
+	/** @var LocalRepo|null */
+	private $repo;
+
+	/** @var int */
+	private $updated;
+
+	/** @var int */
+	private $processed;
+
+	/** @var int */
+	private $count;
+
+	/** @var int */
+	private $startTime;
+
+	/** @var string */
+	private $table;
 
 	function __construct() {
 		parent::__construct();
@@ -76,10 +96,10 @@ class ImageBuilder extends Maintenance {
 	}
 
 	/**
-	 * @return FileRepo
+	 * @return LocalRepo
 	 */
 	function getRepo() {
-		if ( !isset( $this->repo ) ) {
+		if ( $this->repo === null ) {
 			$this->repo = RepoGroup::singleton()->getLocalRepo();
 		}
 
@@ -91,6 +111,10 @@ class ImageBuilder extends Maintenance {
 		$this->buildOldImage();
 	}
 
+	/**
+	 * @param int $count
+	 * @param string $table
+	 */
 	function init( $count, $table ) {
 		$this->processed = 0;
 		$this->updated = 0;
@@ -195,15 +219,16 @@ class ImageBuilder extends Maintenance {
 
 	function addMissingImage( $filename, $fullpath ) {
 		$timestamp = $this->dbw->timestamp( $this->getRepo()->getFileTimestamp( $fullpath ) );
+		$services = MediaWikiServices::getInstance();
 
-		$altname = MediaWikiServices::getInstance()->getContentLanguage()->
-			checkTitleEncoding( $filename );
+		$altname = $services->getContentLanguage()->checkTitleEncoding( $filename );
 		if ( $altname != $filename ) {
 			if ( $this->dryrun ) {
 				$filename = $altname;
 				$this->output( "Estimating transcoding... $altname\n" );
 			} else {
-				# @todo FIXME: create renameFile()
+				// @fixme create renameFile()
+				// @phan-suppress-next-line PhanUndeclaredMethod See comment above...
 				$filename = $this->renameFile( $filename );
 			}
 		}
@@ -214,7 +239,7 @@ class ImageBuilder extends Maintenance {
 			return;
 		}
 		if ( !$this->dryrun ) {
-			$file = wfLocalFile( $filename );
+			$file = $services->getRepoGroup()->getLocalRepo()->newFile( $filename );
 			if ( !$file->recordUpload(
 				'',
 				'(recovered file, missing upload log entry)',

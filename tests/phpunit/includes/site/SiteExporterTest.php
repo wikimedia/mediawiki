@@ -27,10 +27,7 @@
  *
  * @author Daniel Kinzler
  */
-class SiteExporterTest extends PHPUnit\Framework\TestCase {
-
-	use MediaWikiCoversValidator;
-	use PHPUnit4And6Compat;
+class SiteExporterTest extends MediaWikiIntegrationTestCase {
 
 	public function testConstructor_InvalidArgument() {
 		$this->setExpectedException( InvalidArgumentException::class );

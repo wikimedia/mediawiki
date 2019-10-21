@@ -47,9 +47,9 @@ class SqliteUpdater extends DatabaseUpdater {
 			// 1.16
 			[ 'addTable', 'user_properties', 'patch-user_properties.sql' ],
 			[ 'addTable', 'log_search', 'patch-log_search.sql' ],
-			[ 'addField', 'logging', 'log_user_text', 'patch-log_user_text.sql' ],
+			[ 'ifNoActorTable', 'addField', 'logging', 'log_user_text', 'patch-log_user_text.sql' ],
 			# listed separately from the previous update because 1.16 was released without this update
-			[ 'doLogUsertextPopulation' ],
+			[ 'ifNoActorTable', 'doLogUsertextPopulation' ],
 			[ 'doLogSearchPopulation' ],
 			[ 'addTable', 'l10n_cache', 'patch-l10n_cache.sql' ],
 			[ 'dropIndex', 'change_tag', 'ct_rc_id', 'patch-change_tag-indexes.sql' ],
@@ -119,9 +119,10 @@ class SqliteUpdater extends DatabaseUpdater {
 
 			// 1.23
 			[ 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ],
-			[ 'addIndex', 'logging', 'log_user_text_type_time',
+			[ 'ifNoActorTable', 'addIndex', 'logging', 'log_user_text_type_time',
 				'patch-logging_user_text_type_time_index.sql' ],
-			[ 'addIndex', 'logging', 'log_user_text_time', 'patch-logging_user_text_time_index.sql' ],
+			[ 'ifNoActorTable', 'addIndex', 'logging', 'log_user_text_time',
+				'patch-logging_user_text_time_index.sql' ],
 			[ 'addField', 'page', 'page_links_updated', 'patch-page_links_updated.sql' ],
 			[ 'addField', 'user', 'user_password_expires', 'patch-user_password_expire.sql' ],
 
@@ -159,7 +160,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			// 1.29
 			[ 'addField', 'externallinks', 'el_index_60', 'patch-externallinks-el_index_60.sql' ],
 			[ 'addField', 'user_groups', 'ug_expiry', 'patch-user_groups-ug_expiry.sql' ],
-			[ 'addIndex', 'image', 'img_user_timestamp', 'patch-image-user-index-2.sql' ],
+			[ 'ifNoActorTable', 'addIndex', 'image', 'img_user_timestamp', 'patch-image-user-index-2.sql' ],
 
 			// 1.30
 			[ 'modifyField', 'image', 'img_media_type', 'patch-add-3d.sql' ],
@@ -269,6 +270,15 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'dropField', 'recentchanges', 'rc_comment', 'patch-recentchanges-drop-rc_comment.sql' ],
 			[ 'dropField', 'logging', 'log_comment', 'patch-logging-drop-log_comment.sql' ],
 			[ 'dropField', 'protected_titles', 'pt_reason', 'patch-protected_titles-drop-pt_reason.sql' ],
+
+			// 1.34
+			[ 'dropField', 'archive', 'ar_user', 'patch-archive-drop-ar_user.sql' ],
+			[ 'dropField', 'ipblocks', 'ipb_by', 'patch-ipblocks-drop-ipb_by.sql' ],
+			[ 'dropField', 'image', 'img_user', 'patch-image-drop-img_user.sql' ],
+			[ 'dropField', 'oldimage', 'oi_user', 'patch-oldimage-drop-oi_user.sql' ],
+			[ 'dropField', 'filearchive', 'fa_user', 'patch-filearchive-drop-fa_user.sql' ],
+			[ 'dropField', 'recentchanges', 'rc_user', 'patch-recentchanges-drop-rc_user.sql' ],
+			[ 'dropField', 'logging', 'log_user', 'patch-logging-drop-log_user.sql' ],
 		];
 	}
 

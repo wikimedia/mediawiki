@@ -15,7 +15,7 @@ class CeeFormatter extends LogstashFormatter {
 	/**
 	 * Format records with a cee cookie
 	 * @param array $record
-	 * @return array
+	 * @return mixed
 	 */
 	public function format( array $record ) {
 		return "@cee: " . parent::format( $record );

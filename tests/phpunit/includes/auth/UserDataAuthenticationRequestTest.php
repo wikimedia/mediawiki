@@ -32,7 +32,7 @@ class UserDataAuthenticationRequestTest extends AuthenticationRequestTestCase {
 		$req->email = $email;
 		$req->realname = $realname;
 		$this->assertEquals( $expect, $req->populateUser( $user ) );
-		if ( $expect->isOk() ) {
+		if ( $expect->isOK() ) {
 			$this->assertSame( $email ?: 'default@example.com', $user->getEmail() );
 			$this->assertSame( $realname ?: 'Fake Name', $user->getRealName() );
 		}
@@ -53,9 +53,8 @@ class UserDataAuthenticationRequestTest extends AuthenticationRequestTestCase {
 	 * @dataProvider provideLoadFromSubmission
 	 */
 	public function testLoadFromSubmission(
-		array $args, array $data, $expectState /* $hiddenPref, $enableEmail */
+		array $args, array $data, $expectState, $hiddenPref = null, $enableEmail = null
 	) {
-		list( $args, $data, $expectState, $hiddenPref, $enableEmail ) = func_get_args();
 		$this->setMwGlobals( 'wgHiddenPrefs', $hiddenPref );
 		$this->setMwGlobals( 'wgEnableEmail', $enableEmail );
 		parent::testLoadFromSubmission( $args, $data, $expectState );

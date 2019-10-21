@@ -31,10 +31,10 @@ class ApiManageTags extends ApiBase {
 
 		// make sure the user is allowed
 		if ( $params['operation'] !== 'delete'
-			&& !$this->getUser()->isAllowed( 'managechangetags' )
+			&& !$this->getPermissionManager()->userHasRight( $user, 'managechangetags' )
 		) {
 			$this->dieWithError( 'tags-manage-no-permission', 'permissiondenied' );
-		} elseif ( !$this->getUser()->isAllowed( 'deletechangetags' ) ) {
+		} elseif ( !$this->getPermissionManager()->userHasRight( $user, 'deletechangetags' ) ) {
 			$this->dieWithError( 'tags-delete-no-permission', 'permissiondenied' );
 		}
 

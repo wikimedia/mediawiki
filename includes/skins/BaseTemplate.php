@@ -32,11 +32,11 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * Get a Message object with its context set
 	 *
 	 * @param string $name Message name
-	 * @param mixed $params,... Message params
+	 * @param mixed ...$params Message params
 	 * @return Message
 	 */
-	public function getMsg( $name /* ... */ ) {
-		return $this->getSkin()->msg( ...func_get_args() );
+	public function getMsg( $name, ...$params ) {
+		return $this->getSkin()->msg( $name, ...$params );
 	}
 
 	function msg( $str ) {
@@ -44,22 +44,10 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
-	 * @param string $str
-	 * @warning You should never use this method. I18n messages should be escaped
-	 * @deprecated 1.32 Use ->msg() or ->getMsg() instead.
-	 * @suppress SecurityCheck-XSS
-	 * @return-taint exec_html
-	 */
-	function msgHtml( $str ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		echo $this->getMsg( $str )->text();
-	}
-
-	/**
 	 * @deprecated since 1.33 Use ->msg() or ->getMsg() instead.
 	 */
 	function msgWiki( $str ) {
-		// TODO: Add wfDeprecated( __METHOD__, '1.33' ) after 1.33 got released
+		wfDeprecated( __METHOD__, '1.33' ); // Hard-deprecated in 1.34
 		echo $this->getMsg( $str )->parseAsBlock();
 	}
 
@@ -97,7 +85,7 @@ abstract class BaseTemplate extends QuickTemplate {
 				$toolbox['feeds']['links'][$key]['class'] = 'feedlink';
 			}
 		}
-		foreach ( [ 'contributions', 'log', 'blockip', 'emailuser',
+		foreach ( [ 'contributions', 'log', 'blockip', 'emailuser', 'mute',
 			'userrights', 'upload', 'specialpages' ] as $special
 		) {
 			if ( isset( $this->data['nav_urls'][$special] ) && $this->data['nav_urls'][$special] ) {
@@ -455,8 +443,10 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @param array $item Array of list item data containing some of a specific set of keys.
 	 * The "id", "class" and "itemtitle" keys will be used as attributes for the list item,
 	 * if "active" contains a value of true a "active" class will also be appended to class.
+	 * @phan-param array{id?:string,class?:string,itemtitle?:string,active?:bool} $item
 	 *
 	 * @param array $options
+	 * @phan-param array{tag?:string} $options
 	 *
 	 * If you want something other than a "<li>" you can pass a tag name such as
 	 * "tag" => "span" in the $options array to change the tag used.
@@ -478,6 +468,10 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @return string
 	 */
 	function makeListItem( $key, $item, $options = [] ) {
+		// In case this is still set from SkinTemplate, we don't want it to appear in
+		// the HTML output (normally removed in SkinTemplate::buildContentActionUrls())
+		unset( $item['redundant'] );
+
 		if ( isset( $item['links'] ) ) {
 			$links = [];
 			foreach ( $item['links'] as $linkKey => $link ) {
@@ -761,6 +755,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 */
 	public function getTrail() {
 		return WrappedString::join( "\n", [
+			// @phan-suppress-next-line PhanTypeMismatchArgument
 			MWDebug::getDebugHTML( $this->getSkin()->getContext() ),
 			$this->get( 'bottomscripts' ),
 			$this->get( 'reporttime' )

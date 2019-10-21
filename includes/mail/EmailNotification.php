@@ -129,7 +129,10 @@ class EmailNotification {
 		if ( $watchers === [] && !count( $wgUsersNotifiedOnAllChanges ) ) {
 			$sendEmail = false;
 			// Only send notification for non minor edits, unless $wgEnotifMinorEdits
-			if ( !$minorEdit || ( $wgEnotifMinorEdits && !$editor->isAllowed( 'nominornewtalk' ) ) ) {
+			if ( !$minorEdit || ( $wgEnotifMinorEdits && !MediaWikiServices::getInstance()
+						->getPermissionManager()
+						->userHasRight( $editor, 'nominornewtalk' ) )
+			) {
 				$isUserTalkPage = ( $title->getNamespace() == NS_USER_TALK );
 				if ( $wgEnotifUserTalk
 					&& $isUserTalkPage
@@ -173,12 +176,22 @@ class EmailNotification {
 	 * @param string $pageStatus
 	 * @throws MWException
 	 */
-	public function actuallyNotifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit,
-		$oldid, $watchers, $pageStatus = 'changed' ) {
+	public function actuallyNotifyOnPageChange(
+		$editor,
+		$title,
+		$timestamp,
+		$summary,
+		$minorEdit,
+		$oldid,
+		$watchers,
+		$pageStatus = 'changed'
+	) {
 		# we use $wgPasswordSender as sender's address
 		global $wgUsersNotifiedOnAllChanges;
 		global $wgEnotifWatchlist, $wgBlockDisablesLogin;
 		global $wgEnotifMinorEdits, $wgEnotifUserTalk;
+
+		$messageCache = MediaWikiServices::getInstance()->getMessageCache();
 
 		# The following code is only run, if several conditions are met:
 		# 1. EmailNotification for pages (other than user_talk pages) must be enabled
@@ -204,13 +217,16 @@ class EmailNotification {
 
 		$userTalkId = false;
 
-		if ( !$minorEdit || ( $wgEnotifMinorEdits && !$editor->isAllowed( 'nominornewtalk' ) ) ) {
+		if ( !$minorEdit || ( $wgEnotifMinorEdits && !MediaWikiServices::getInstance()
+				   ->getPermissionManager()
+				   ->userHasRight( $editor, 'nominornewtalk' ) )
+		) {
 			if ( $wgEnotifUserTalk
 				&& $isUserTalkPage
 				&& $this->canSendUserTalkEmail( $editor, $title, $minorEdit )
 			) {
 				$targetUser = User::newFromName( $title->getText() );
-				$this->compose( $targetUser, self::USER_TALK );
+				$this->compose( $targetUser, self::USER_TALK, $messageCache );
 				$userTalkId = $targetUser->getId();
 			}
 
@@ -224,10 +240,12 @@ class EmailNotification {
 						&& $watchingUser->isEmailConfirmed()
 						&& $watchingUser->getId() != $userTalkId
 						&& !in_array( $watchingUser->getName(), $wgUsersNotifiedOnAllChanges )
-						&& !( $wgBlockDisablesLogin && $watchingUser->isBlocked() )
+						// @TODO Partial blocks should not prevent the user from logging in.
+						//       see: https://phabricator.wikimedia.org/T208895
+						&& !( $wgBlockDisablesLogin && $watchingUser->getBlock() )
 						&& Hooks::run( 'SendWatchlistEmailNotification', [ $watchingUser, $title, $this ] )
 					) {
-						$this->compose( $watchingUser, self::WATCHLIST );
+						$this->compose( $watchingUser, self::WATCHLIST, $messageCache );
 					}
 				}
 			}
@@ -239,7 +257,7 @@ class EmailNotification {
 				continue;
 			}
 			$user = User::newFromName( $name );
-			$this->compose( $user, self::ALL_CHANGES );
+			$this->compose( $user, self::ALL_CHANGES, $messageCache );
 		}
 
 		$this->sendMails();
@@ -262,7 +280,9 @@ class EmailNotification {
 				wfDebug( __METHOD__ . ": user talk page edited, but user does not exist\n" );
 			} elseif ( $targetUser->getId() == $editor->getId() ) {
 				wfDebug( __METHOD__ . ": user edited their own talk page, no notification sent\n" );
-			} elseif ( $wgBlockDisablesLogin && $targetUser->isBlocked() ) {
+			} elseif ( $wgBlockDisablesLogin && $targetUser->getBlock() ) {
+				// @TODO Partial blocks should not prevent the user from logging in.
+				//       see: https://phabricator.wikimedia.org/T208895
 				wfDebug( __METHOD__ . ": talk page owner is blocked and cannot login, no notification sent\n" );
 			} elseif ( $targetUser->getOption( 'enotifusertalkpages' )
 				&& ( !$minorEdit || $targetUser->getOption( 'enotifminoredits' ) )
@@ -284,8 +304,9 @@ class EmailNotification {
 
 	/**
 	 * Generate the generic "this page has been changed" e-mail text.
+	 * @param MessageCache $messageCache
 	 */
-	private function composeCommonMailtext() {
+	private function composeCommonMailtext( MessageCache $messageCache ) {
 		global $wgPasswordSender, $wgNoReplyAddress;
 		global $wgEnotifFromEditor, $wgEnotifRevealEditorAddress;
 		global $wgEnotifImpersonal, $wgEnotifUseRealName;
@@ -370,7 +391,7 @@ class EmailNotification {
 
 		$body = wfMessage( 'enotif_body' )->inContentLanguage()->plain();
 		$body = strtr( $body, $keys );
-		$body = MessageCache::singleton()->transform( $body, false, null, $this->title );
+		$body = $messageCache->transform( $body, false, null, $this->title );
 		$this->body = wordwrap( strtr( $body, $postTransformKeys ), 72 );
 
 		# Reveal the page editor's address as REPLY-TO address only if
@@ -402,12 +423,13 @@ class EmailNotification {
 	 * Call sendMails() to send any mails that were queued.
 	 * @param User $user
 	 * @param string $source
+	 * @param MessageCache $messageCache
 	 */
-	function compose( $user, $source ) {
+	private function compose( $user, $source, MessageCache $messageCache ) {
 		global $wgEnotifImpersonal;
 
 		if ( !$this->composed_common ) {
-			$this->composeCommonMailtext();
+			$this->composeCommonMailtext( $messageCache );
 		}
 
 		if ( $wgEnotifImpersonal ) {
@@ -420,7 +442,7 @@ class EmailNotification {
 	/**
 	 * Send any queued mails
 	 */
-	function sendMails() {
+	private function sendMails() {
 		global $wgEnotifImpersonal;
 		if ( $wgEnotifImpersonal ) {
 			$this->sendImpersonal( $this->mailTargets );
@@ -436,9 +458,8 @@ class EmailNotification {
 	 * @param User $watchingUser
 	 * @param string $source
 	 * @return Status
-	 * @private
 	 */
-	function sendPersonalised( $watchingUser, $source ) {
+	private function sendPersonalised( $watchingUser, $source ) {
 		global $wgEnotifUseRealName;
 		// From the PHP manual:
 		//   Note: The to parameter cannot be an address in the form of
@@ -477,7 +498,7 @@ class EmailNotification {
 	 * @param MailAddress[] $addresses
 	 * @return Status|null
 	 */
-	function sendImpersonal( $addresses ) {
+	private function sendImpersonal( $addresses ) {
 		if ( empty( $addresses ) ) {
 			return null;
 		}

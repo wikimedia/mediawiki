@@ -114,7 +114,9 @@ class PoolWorkArticleView extends PoolCounterWork {
 		$this->revision = $revision;
 		$this->audience = $audience;
 		$this->cacheKey = $this->parserCache->getKey( $page, $parserOptions );
-		$keyPrefix = $this->cacheKey ?: wfMemcKey( 'articleview', 'missingcachekey' );
+		$keyPrefix = $this->cacheKey ?: ObjectCache::getLocalClusterInstance()->makeKey(
+			'articleview', 'missingcachekey'
+		);
 
 		parent::__construct( 'ArticleView', $keyPrefix . ':revid:' . $revid );
 	}

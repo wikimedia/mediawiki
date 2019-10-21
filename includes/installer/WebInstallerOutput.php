@@ -92,15 +92,6 @@ class WebInstallerOutput {
 
 	/**
 	 * @param string $text
-	 * @deprecated since 1.32; use addWikiTextAsInterface instead
-	 */
-	public function addWikiText( $text ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		$this->addWikiTextAsInterface( $text );
-	}
-
-	/**
-	 * @param string $text
 	 * @since 1.32
 	 */
 	public function addWikiTextAsInterface( $text ) {
@@ -177,6 +168,7 @@ class WebInstallerOutput {
 		foreach ( $moduleNames as $moduleName ) {
 			/** @var ResourceLoaderFileModule $module */
 			$module = $resourceLoader->getModule( $moduleName );
+			'@phan-var ResourceLoaderFileModule $module';
 			if ( !$module ) {
 				// T98043: Don't fatal, but it won't look as pretty.
 				continue;
@@ -285,7 +277,7 @@ class WebInstallerOutput {
 <?php echo Html::openElement( 'body', [ 'class' => $this->getLanguage()->getDir() ] ) . "\n"; ?>
 <div id="mw-page-base"></div>
 <div id="mw-head-base"></div>
-<div id="content" class="mw-body">
+<div id="content" class="mw-body" role="main">
 <div id="bodyContent" class="mw-body-content">
 
 <h1><?php $this->outputTitle(); ?></h1>
@@ -304,17 +296,31 @@ class WebInstallerOutput {
 
 <div id="mw-panel">
 	<div class="portal" id="p-logo">
-		<a style="background-image: url(images/installer-logo.png);"
-			href="https://www.mediawiki.org/"
-			title="Main Page"></a>
+		<a href="https://www.mediawiki.org/" title="Main Page"></a>
 	</div>
 <?php
 	$message = wfMessage( 'config-sidebar' )->plain();
+	// Section 1: External links
+	// @todo FIXME: Migrate to plain link label messages (T227297).
 	foreach ( explode( '----', $message ) as $section ) {
 		echo '<div class="portal"><div class="body">';
 		echo $this->parent->parse( $section, true );
 		echo '</div></div>';
 	}
+	// Section 2: Installer pages
+	echo '<div class="portal"><div class="body"><ul>';
+	foreach ( [
+		'config-sidebar-readme' => 'Readme',
+		'config-sidebar-relnotes' => 'ReleaseNotes',
+		'config-sidebar-license' => 'Copying',
+		'config-sidebar-upgrade' => 'UpgradeDoc',
+	] as $msgKey => $pageName ) {
+		echo $this->parent->makeLinkItem(
+			$this->parent->getDocUrl( $pageName ),
+			wfMessage( $msgKey )->text()
+		);
+	}
+	echo '</ul></div></div>';
 ?>
 </div>
 
@@ -325,13 +331,14 @@ class WebInstallerOutput {
 	public function outputShortHeader() {
 ?>
 <?php echo Html::htmlHeader( $this->getHeadAttribs() ); ?>
+
 <head>
-	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<meta name="robots" content="noindex, nofollow" />
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title><?php $this->outputTitle(); ?></title>
 	<?php echo $this->getCssUrl() . "\n"; ?>
-	<?php echo $this->getJQuery(); ?>
-	<?php echo Html::linkedScript( 'config.js' ); ?>
+	<?php echo $this->getJQuery() . "\n"; ?>
+	<?php echo Html::linkedScript( 'config.js' ) . "\n"; ?>
 </head>
 
 <body style="background-image: none">

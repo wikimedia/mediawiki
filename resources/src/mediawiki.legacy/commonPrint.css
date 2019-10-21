@@ -6,6 +6,8 @@
  * Copyright Alexander Limi
  */
 
+/* stylelint-disable selector-class-pattern */
+
 /**
  * Hide all the elements irrelevant for printing
  * Skins however can and should override.
@@ -122,7 +124,7 @@ pre,
 	background: #fff;
 	color: #000;
 	border: 1pt dashed #000;
-	padding: 1em 0;
+	padding: 1em;
 	font-size: 8pt;
 	white-space: pre-wrap;
 	word-wrap: break-word;
@@ -265,7 +267,7 @@ div.thumbinner {
 	color: #666;
 	text-align: center;
 	/* new block formatting context,
-	 * to clear background from floating content  */
+	 * to clear background from floating content */
 	overflow: hidden;
 	min-width: 100px;
 }

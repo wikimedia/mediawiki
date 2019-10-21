@@ -20,7 +20,7 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -77,6 +77,7 @@ class ApiPageSet extends ApiBase {
 	private $mGeneratorData = []; // [ns][dbkey] => data array
 	private $mFakePageId = -1;
 	private $mCacheMode = 'public';
+	/** @var array */
 	private $mRequestedPageFields = [];
 	/** @var int */
 	private $mDefaultNamespace = NS_MAIN;
@@ -735,7 +736,7 @@ class ApiPageSet extends ApiBase {
 	 * $this->getPageTableFields().
 	 *
 	 * @param IDatabase $db
-	 * @param ResultWrapper $queryResult
+	 * @param IResultWrapper $queryResult
 	 */
 	public function populateFromQueryResult( $db, $queryResult ) {
 		$this->initFromQueryResult( $queryResult );
@@ -854,7 +855,7 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Iterate through the result of the query on 'page' table,
 	 * and for each row create and store title object and save any extra fields requested.
-	 * @param ResultWrapper $res DB Query result
+	 * @param IResultWrapper $res DB Query result
 	 * @param array $remaining Array of either pageID or ns/title elements (optional).
 	 *        If given, any missing items will go to $mMissingPageIDs and $mMissingTitles
 	 * @param bool $processTitles Must be provided together with $remaining.
@@ -865,6 +866,8 @@ class ApiPageSet extends ApiBase {
 		if ( !is_null( $remaining ) && is_null( $processTitles ) ) {
 			ApiBase::dieDebug( __METHOD__, 'Missing $processTitles parameter when $remaining is provided' );
 		}
+
+		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 
 		$usernames = [];
 		if ( $res ) {
@@ -884,7 +887,7 @@ class ApiPageSet extends ApiBase {
 				$this->processDbRow( $row );
 
 				// Need gender information
-				if ( MWNamespace::hasGenderDistinction( $row->page_namespace ) ) {
+				if ( $nsInfo->hasGenderDistinction( $row->page_namespace ) ) {
 					$usernames[] = $row->page_title;
 				}
 			}
@@ -907,7 +910,7 @@ class ApiPageSet extends ApiBase {
 						$this->mTitles[] = $title;
 
 						// need gender information
-						if ( MWNamespace::hasGenderDistinction( $ns ) ) {
+						if ( $nsInfo->hasGenderDistinction( $ns ) ) {
 							$usernames[] = $dbkey;
 						}
 					}
@@ -969,7 +972,8 @@ class ApiPageSet extends ApiBase {
 		// If the user can see deleted revisions, pull out the corresponding
 		// titles from the archive table and include them too. We ignore
 		// ar_page_id because deleted revisions are tied by title, not page_id.
-		if ( $goodRemaining && $this->getUser()->isAllowed( 'deletedhistory' ) ) {
+		if ( $goodRemaining &&
+			 $this->getPermissionManager()->userHasRight( $this->getUser(), 'deletedhistory' ) ) {
 			$tables = [ 'archive' ];
 			$fields = [ 'ar_rev_id', 'ar_namespace', 'ar_title' ];
 			$where = [ 'ar_rev_id' => array_keys( $goodRemaining ) ];
@@ -1162,7 +1166,8 @@ class ApiPageSet extends ApiBase {
 		$services = MediaWikiServices::getInstance();
 		$contLang = $services->getContentLanguage();
 
-		foreach ( $titles as $title ) {
+		$titleObjects = [];
+		foreach ( $titles as $index => $title ) {
 			if ( is_string( $title ) ) {
 				try {
 					$titleObj = Title::newFromTextThrow( $title, $this->mDefaultNamespace );
@@ -1181,6 +1186,16 @@ class ApiPageSet extends ApiBase {
 			} else {
 				$titleObj = $title;
 			}
+
+			$titleObjects[$index] = $titleObj;
+		}
+
+		// Get gender information
+		$genderCache = $services->getGenderCache();
+		$genderCache->doTitlesArray( $titleObjects, __METHOD__ );
+
+		foreach ( $titleObjects as $index => $titleObj ) {
+			$title = is_string( $titles[$index] ) ? $titles[$index] : false;
 			$unconvertedTitle = $titleObj->getPrefixedText();
 			$titleWasConverted = false;
 			if ( $titleObj->isExternal() ) {
@@ -1193,7 +1208,7 @@ class ApiPageSet extends ApiBase {
 				) {
 					// Language::findVariantLink will modify titleText and titleObj into
 					// the canonical variant if possible
-					$titleText = is_string( $title ) ? $title : $titleObj->getPrefixedText();
+					$titleText = $title !== false ? $title : $titleObj->getPrefixedText();
 					$contLang->findVariantLink( $titleText, $titleObj );
 					$titleWasConverted = $unconvertedTitle !== $titleObj->getPrefixedText();
 				}
@@ -1241,21 +1256,13 @@ class ApiPageSet extends ApiBase {
 			if ( $titleWasConverted ) {
 				$this->mConvertedTitles[$unconvertedTitle] = $titleObj->getPrefixedText();
 				// In this case the page can't be Special.
-				if ( is_string( $title ) && $title !== $unconvertedTitle ) {
+				if ( $title !== false && $title !== $unconvertedTitle ) {
 					$this->mNormalizedTitles[$title] = $unconvertedTitle;
 				}
-			} elseif ( is_string( $title ) && $title !== $titleObj->getPrefixedText() ) {
+			} elseif ( $title !== false && $title !== $titleObj->getPrefixedText() ) {
 				$this->mNormalizedTitles[$title] = $titleObj->getPrefixedText();
 			}
-
-			// Need gender information
-			if ( MWNamespace::hasGenderDistinction( $titleObj->getNamespace() ) ) {
-				$usernames[] = $titleObj->getText();
-			}
 		}
-		// Get gender information
-		$genderCache = $services->getGenderCache();
-		$genderCache->doQuery( $usernames, __METHOD__ );
 
 		return $linkBatch;
 	}

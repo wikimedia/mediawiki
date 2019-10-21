@@ -4,7 +4,6 @@
  * Checks that all API query modules, core and extensions, have unique prefixes.
  *
  * @group API
- * @coversNothing
  */
 class ApiPrefixUniquenessTest extends MediaWikiTestCase {
 

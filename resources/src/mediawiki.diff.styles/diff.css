@@ -2,6 +2,8 @@
  * Diff rendering
  */
 
+/* stylelint-disable selector-class-pattern */
+
 .diff {
 	border: 0;
 	border-spacing: 4px;

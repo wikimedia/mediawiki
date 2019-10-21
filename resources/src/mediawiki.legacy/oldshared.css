@@ -4,6 +4,8 @@
  * CologneBlue, the old pre-Monobook skins
  */
 
+/* stylelint-disable selector-class-pattern */
+
 /* For clarity, explicitly state some recommendations from
  * https://www.w3.org/TR/CSS21/sample.html to make sure the editsection links scale right
  */
@@ -91,7 +93,7 @@ div.thumbinner {
 	font-size: 94%;
 	text-align: center;
 	/* new block formatting context,
-	 * to clear background from floating content  */
+	 * to clear background from floating content */
 	overflow: hidden;
 }
 
@@ -278,21 +280,6 @@ span.comment {
 .previewnote {
 	text-align: center;
 	color: #c00;
-}
-
-.editExternally {
-	border: 1px solid #808080;
-	background: #fff;
-	padding: 3px;
-	margin-top: 0.5em;
-	float: left;
-	font-size: small;
-	text-align: center;
-}
-
-.editExternallyHelp {
-	font-style: italic;
-	color: #808080;
 }
 
 li span.deleted {

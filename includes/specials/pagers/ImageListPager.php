@@ -22,6 +22,7 @@
 /**
  * @ingroup Pager
  */
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
@@ -51,9 +52,10 @@ class ImageListPager extends TablePager {
 	protected $mTableName = 'image';
 
 	public function __construct( IContextSource $context, $userName = null, $search = '',
-		$including = false, $showAll = false
+		$including = false, $showAll = false, LinkRenderer $linkRenderer
 	) {
 		$this->setContext( $context );
+
 		$this->mIncluding = $including;
 		$this->mShowAll = $showAll;
 
@@ -95,7 +97,7 @@ class ImageListPager extends TablePager {
 			$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 		}
 
-		parent::__construct( $context );
+		parent::__construct( $context, $linkRenderer );
 	}
 
 	/**
@@ -436,7 +438,8 @@ class ImageListPager extends TablePager {
 	 * @throws MWException
 	 */
 	function formatValue( $field, $value ) {
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$services = MediaWikiServices::getInstance();
+		$linkRenderer = $this->getLinkRenderer();
 		switch ( $field ) {
 			case 'thumb':
 				$opt = [ 'time' => wfTimestamp( TS_MW, $this->mCurrentRow->img_timestamp ) ];
@@ -468,15 +471,18 @@ class ImageListPager extends TablePager {
 						$filePage,
 						$filePage->getText()
 					);
-					$download = Xml::element( 'a',
-						[ 'href' => wfLocalFile( $filePage )->getUrl() ],
+					$download = Xml::element(
+						'a',
+						[ 'href' => $services->getRepoGroup()->getLocalRepo()->newFile( $filePage )->getUrl() ],
 						$imgfile
 					);
 					$download = $this->msg( 'parentheses' )->rawParams( $download )->escaped();
 
 					// Add delete links if allowed
 					// From https://github.com/Wikia/app/pull/3859
-					if ( $filePage->userCan( 'delete', $this->getUser() ) ) {
+					$permissionManager = $services->getPermissionManager();
+
+					if ( $permissionManager->userCan( 'delete', $this->getUser(), $filePage ) ) {
 						$deleteMsg = $this->msg( 'listfiles-delete' )->text();
 
 						$delete = $linkRenderer->makeKnownLink(
@@ -513,7 +519,7 @@ class ImageListPager extends TablePager {
 				return $this->getLanguage()->formatNum( intval( $value ) + 1 );
 			case 'top':
 				// Messages: listfiles-latestversion-yes, listfiles-latestversion-no
-				return $this->msg( 'listfiles-latestversion-' . $value );
+				return $this->msg( 'listfiles-latestversion-' . $value )->escaped();
 			default:
 				throw new MWException( "Unknown field '$field'" );
 		}

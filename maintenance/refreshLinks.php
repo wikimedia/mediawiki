@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\IDatabase;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -231,7 +232,7 @@ class RefreshLinks extends Maintenance {
 		}
 
 		$rt = null;
-		$content = $page->getContent( Revision::RAW );
+		$content = $page->getContent( RevisionRecord::RAW );
 		if ( $content !== null ) {
 			$rt = $content->getUltimateRedirectTarget();
 		}

@@ -1,1 +1,0 @@
-ALTER TABLE /*_*/mwuser ADD user_password_expires VARCHAR(14) DEFAULT NULL

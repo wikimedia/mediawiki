@@ -30,6 +30,7 @@
  * @ingroup Pager
  */
 interface Pager {
-	function getNavigationBar();
-	function getBody();
+	public function getNavigationBar();
+
+	public function getBody();
 }

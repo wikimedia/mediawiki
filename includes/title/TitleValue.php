@@ -72,26 +72,25 @@ class TitleValue implements LinkTarget {
 	/**
 	 * Constructs a TitleValue.
 	 *
-	 * @note TitleValue expects a valid DB key; typically, a TitleValue is constructed either
-	 * from a database entry, or by a TitleParser. We could apply "some" normalization here,
-	 * such as substituting spaces by underscores, but that would encourage the use of
-	 * un-normalized text when constructing TitleValues. For constructing a TitleValue from
-	 * user input or external sources, use a TitleParser.
+	 * @note TitleValue expects a valid namespace and name; typically, a TitleValue is constructed
+	 * either from a database entry, or by a TitleParser. For constructing a TitleValue from user
+	 * input or external sources, use a TitleParser.
 	 *
 	 * @param int $namespace The namespace ID. This is not validated.
-	 * @param string $dbkey The page title in valid DBkey form. No normalization is applied.
+	 * @param string $title The page title in either DBkey or text form. No normalization is applied
+	 *   beyond underscore/space conversion.
 	 * @param string $fragment The fragment title. Use '' to represent the whole page.
 	 *   No validation or normalization is applied.
 	 * @param string $interwiki The interwiki component
 	 *
 	 * @throws InvalidArgumentException
 	 */
-	public function __construct( $namespace, $dbkey, $fragment = '', $interwiki = '' ) {
+	public function __construct( $namespace, $title, $fragment = '', $interwiki = '' ) {
 		if ( !is_int( $namespace ) ) {
 			throw new ParameterTypeException( '$namespace', 'int' );
 		}
-		if ( !is_string( $dbkey ) ) {
-			throw new ParameterTypeException( '$dbkey', 'string' );
+		if ( !is_string( $title ) ) {
+			throw new ParameterTypeException( '$title', 'string' );
 		}
 		if ( !is_string( $fragment ) ) {
 			throw new ParameterTypeException( '$fragment', 'string' );
@@ -101,12 +100,17 @@ class TitleValue implements LinkTarget {
 		}
 
 		// Sanity check, no full validation or normalization applied here!
-		Assert::parameter( !preg_match( '/^_|[ \r\n\t]|_$/', $dbkey ), '$dbkey',
-			"invalid DB key '$dbkey'" );
-		Assert::parameter( $dbkey !== '', '$dbkey', 'should not be empty' );
+		Assert::parameter( !preg_match( '/^[_ ]|[\r\n\t]|[_ ]$/', $title ), '$title',
+			"invalid name '$title'" );
+		Assert::parameter(
+			$title !== '' ||
+				( $namespace === NS_MAIN && ( $fragment !== '' || $interwiki !== '' ) ),
+			'$title',
+			'should not be empty unless namespace is main and fragment or interwiki is non-empty'
+		);
 
 		$this->namespace = $namespace;
-		$this->dbkey = $dbkey;
+		$this->dbkey = strtr( $title, ' ', '_' );
 		$this->fragment = $fragment;
 		$this->interwiki = $interwiki;
 	}

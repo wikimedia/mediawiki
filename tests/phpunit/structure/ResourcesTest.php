@@ -9,12 +9,9 @@ use Wikimedia\TestingAccessWrapper;
  * @author Antoine Musso
  * @author Niklas Laxström
  * @author Santhosh Thottingal
- * @author Timo Tijhof
  * @copyright © 2012, Antoine Musso
  * @copyright © 2012, Niklas Laxström
  * @copyright © 2012, Santhosh Thottingal
- * @copyright © 2012, Timo Tijhof
- * @coversNothing
  */
 class ResourcesTest extends MediaWikiTestCase {
 
@@ -39,62 +36,44 @@ class ResourcesTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function testVersionHash() {
-		$data = self::getAllModules();
-		foreach ( $data['modules'] as $moduleName => $module ) {
-			$version = $module->getVersionHash( $data['context'] );
-			$this->assertEquals( 7, strlen( $version ), "$moduleName must use ResourceLoader::makeHash" );
-		}
-	}
-
 	/**
-	 * Verify that nothing explicitly depends on raw modules (such as "query").
+	 * Verify that all modules specified as dependencies of other modules actually
+	 * exist and are not illegal.
 	 *
-	 * Depending on them is unsupported as they are not registered client-side by the startup module.
-	 *
-	 * @todo Modules can dynamically choose dependencies based on context. This method does not
-	 * test such dependencies. The same goes for testMissingDependencies() and
-	 * testUnsatisfiableDependencies().
+	 * @todo Modules can dynamically choose dependencies based on context. This method
+	 * does not find all such variations. The same applies to testUnsatisfiableDependencies().
 	 */
-	public function testIllegalDependencies() {
+	public function testValidDependencies() {
 		$data = self::getAllModules();
+		$knownDeps = array_keys( $data['modules'] );
+		$illegalDeps = [ 'startup' ];
 
-		$illegalDeps = [];
-		foreach ( $data['modules'] as $moduleName => $module ) {
-			if ( $module->isRaw() ) {
-				$illegalDeps[] = $moduleName;
-			}
-		}
-
-		/** @var ResourceLoaderModule $module */
-		foreach ( $data['modules'] as $moduleName => $module ) {
-			foreach ( $illegalDeps as $illegalDep ) {
-				$this->assertNotContains(
-					$illegalDep,
-					$module->getDependencies( $data['context'] ),
-					"Module '$moduleName' must not depend on '$illegalDep'"
-				);
-			}
-		}
-	}
-
-	/**
-	 * Verify that all modules specified as dependencies of other modules actually exist.
-	 */
-	public function testMissingDependencies() {
-		$data = self::getAllModules();
-		$validDeps = array_keys( $data['modules'] );
+		// Avoid an assert for each module to keep the test fast.
+		// Instead, perform a single assertion against everything at once.
+		// When all is good, actual/expected are both empty arrays.
+		// When we find issues, add the violations to 'actual' and add an empty
+		// key to 'expected'. These keys in expected are because the PHPUnit diff
+		// (as of 6.5) only goes one level deep.
+		$actualUnknown = [];
+		$expectedUnknown = [];
+		$actualIllegal = [];
+		$expectedIllegal = [];
 
 		/** @var ResourceLoaderModule $module */
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			foreach ( $module->getDependencies( $data['context'] ) as $dep ) {
-				$this->assertContains(
-					$dep,
-					$validDeps,
-					"The module '$dep' required by '$moduleName' must exist"
-				);
+				if ( !in_array( $dep, $knownDeps, true ) ) {
+					$actualUnknown[$moduleName][] = $dep;
+					$expectedUnknown[$moduleName] = [];
+				}
+				if ( in_array( $dep, $illegalDeps, true ) ) {
+					$actualIllegal[$moduleName][] = $dep;
+					$expectedIllegal[$moduleName] = [];
+				}
 			}
 		}
+		$this->assertEquals( $expectedUnknown, $actualUnknown, 'Dependencies that do not exist' );
+		$this->assertEquals( $expectedIllegal, $actualIllegal, 'Dependencies that are not legal' );
 	}
 
 	/**

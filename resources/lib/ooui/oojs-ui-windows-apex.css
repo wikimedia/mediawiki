@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.3
+ * OOUI v0.34.1-pre (3913589098)
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-04-04T19:10:54Z
+ * Date: 2019-09-10T23:46:11Z
  */
 
 .oo-ui-window {
@@ -61,7 +61,7 @@
 }
 .oo-ui-dialog-content > .oo-ui-window-head {
   overflow: hidden;
-  z-index: 1;
+  z-index: 3;
   top: 0;
 }
 .oo-ui-dialog-content > .oo-ui-window-body {
@@ -239,7 +239,6 @@
 .oo-ui-processDialog-navigation {
   position: relative;
   height: 3.4em;
-  padding: 0 1em;
 }
 .oo-ui-processDialog-location {
   padding: 0.75em 0;
@@ -261,11 +260,6 @@
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget .oo-ui-labelElement-label,
 .oo-ui-processDialog-actions-other .oo-ui-actionWidget .oo-ui-labelElement-label {
   line-height: 1.875em;
-}
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-iconElement .oo-ui-iconElement-icon,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-iconElement .oo-ui-iconElement-icon,
-.oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-iconElement .oo-ui-iconElement-icon {
-  margin-top: -0.125em;
 }
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-framed,
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-framed,
@@ -341,9 +335,11 @@
   text-align: left;
   margin: 1em;
   padding: 1em;
-  border: 1px solid #ff9e9e;
-  background-color: #fff7f7;
-  border-radius: 3px;
+  border: 1px solid #d45353;
+  background-color: #ffdcdc;
+}
+.oo-ui-processDialog.oo-ui-isMobile .oo-ui-processDialog-location {
+  text-align: left;
 }
 
 .oo-ui-windowManager-modal > .oo-ui-dialog {
@@ -379,6 +375,10 @@
 .oo-ui-windowManager-modal-active {
   overflow: hidden;
   position: relative;
+}
+.oo-ui-windowManager-ios-modal-ready {
+  height: 100%;
+  overflow: hidden;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog {
   background-color: rgba(255, 255, 255, 0.5);

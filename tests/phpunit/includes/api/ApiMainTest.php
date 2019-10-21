@@ -2,6 +2,7 @@
 
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @group API
@@ -150,7 +151,6 @@ class ApiMainTest extends ApiTestCase {
 
 	public function testSetCacheModePrivateWiki() {
 		$this->setGroupPermissions( '*', 'read', false );
-
 		$wrappedApi = TestingAccessWrapper::newFromObject( new ApiMain() );
 		$wrappedApi->setCacheMode( 'public' );
 		$this->assertSame( 'private', $wrappedApi->mCacheMode );
@@ -170,6 +170,10 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	public function testAddRequestedFieldsCurTimestamp() {
+		// Fake timestamp for better testability, CI can sometimes take
+		// unreasonably long to run the simple test request here.
+		$reset = ConvertibleTimestamp::setFakeTime( '20190102030405' );
+
 		$req = new FauxRequest( [
 			'action' => 'query',
 			'meta' => 'siteinfo',
@@ -178,7 +182,7 @@ class ApiMainTest extends ApiTestCase {
 		$api = new ApiMain( $req );
 		$api->execute();
 		$timestamp = $api->getResult()->getResultData()['curtimestamp'];
-		$this->assertLessThanOrEqual( 1, abs( strtotime( $timestamp ) - time() ) );
+		$this->assertSame( '2019-01-02T03:04:05Z', $timestamp );
 	}
 
 	public function testAddRequestedFieldsResponseLangInfo() {
@@ -243,11 +247,12 @@ class ApiMainTest extends ApiTestCase {
 		$mock->method( 'needsToken' )->willReturn( true );
 
 		$api = new ApiMain( new FauxRequest( [ 'action' => 'testmodule' ] ) );
-		$api->getModuleManager()->addModule( 'testmodule', 'action', get_class( $mock ),
-			function () use ( $mock ) {
+		$api->getModuleManager()->addModule( 'testmodule', 'action', [
+			'class' => get_class( $mock ),
+			'factory' => function () use ( $mock ) {
 				return $mock;
 			}
-		);
+		] );
 		$api->execute();
 	}
 
@@ -261,11 +266,12 @@ class ApiMainTest extends ApiTestCase {
 		$mock->method( 'mustBePosted' )->willReturn( false );
 
 		$api = new ApiMain( new FauxRequest( [ 'action' => 'testmodule' ] ) );
-		$api->getModuleManager()->addModule( 'testmodule', 'action', get_class( $mock ),
-			function () use ( $mock ) {
+		$api->getModuleManager()->addModule( 'testmodule', 'action', [
+			'class' => get_class( $mock ),
+			'factory' => function () use ( $mock ) {
 				return $mock;
 			}
-		);
+		] );
 		$api->execute();
 	}
 
@@ -310,11 +316,12 @@ class ApiMainTest extends ApiTestCase {
 		$req->setRequestURL( "http://localhost" );
 
 		$api = new ApiMain( $req );
-		$api->getModuleManager()->addModule( 'testmodule', 'action', get_class( $mock ),
-			function () use ( $mock ) {
+		$api->getModuleManager()->addModule( 'testmodule', 'action', [
+			'class' => get_class( $mock ),
+			'factory' => function () use ( $mock ) {
 				return $mock;
 			}
-		);
+		] );
 
 		$wrapper = TestingAccessWrapper::newFromObject( $api );
 		$wrapper->mInternalMode = false;
@@ -401,7 +408,7 @@ class ApiMainTest extends ApiTestCase {
 		} else {
 			$user = new User();
 		}
-		$user->mRights = $rights;
+		$this->overrideUserPermissions( $user, $rights );
 		try {
 			$this->doApiRequest( [
 				'action' => 'query',
@@ -490,7 +497,7 @@ class ApiMainTest extends ApiTestCase {
 	 * @param int $status Expected response status
 	 * @param array $options Array of options:
 	 *   post => true Request is a POST
-	 *   cdn => true CDN is enabled ($wgUseSquid)
+	 *   cdn => true CDN is enabled ($wgUseCdn)
 	 */
 	public function testCheckConditionalRequestHeaders(
 		$headers, $conditions, $status, $options = []
@@ -508,7 +515,7 @@ class ApiMainTest extends ApiTestCase {
 		$priv->mInternalMode = false;
 
 		if ( !empty( $options['cdn'] ) ) {
-			$this->setMwGlobals( 'wgUseSquid', true );
+			$this->setMwGlobals( 'wgUseCdn', true );
 		}
 
 		// Can't do this in TestSetup.php because Setup.php will override it
@@ -531,7 +538,7 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	public static function provideCheckConditionalRequestHeaders() {
-		global $wgSquidMaxage;
+		global $wgCdnMaxAge;
 		$now = time();
 
 		return [
@@ -614,15 +621,15 @@ class ApiMainTest extends ApiTestCase {
 				[ [ 'If-Modified-Since' => 'a potato' ],
 					[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 200 ],
 
-			// Anything before $wgSquidMaxage seconds ago should be considered
+			// Anything before $wgCdnMaxAge seconds ago should be considered
 			// expired.
 			'If-Modified-Since with CDN post-expiry' =>
-				[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now - $wgSquidMaxage * 2 ) ],
-					[ 'last-modified' => wfTimestamp( TS_MW, $now - $wgSquidMaxage * 3 ) ],
+				[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now - $wgCdnMaxAge * 2 ) ],
+					[ 'last-modified' => wfTimestamp( TS_MW, $now - $wgCdnMaxAge * 3 ) ],
 					200, [ 'cdn' => true ] ],
 			'If-Modified-Since with CDN pre-expiry' =>
-				[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now - $wgSquidMaxage / 2 ) ],
-					[ 'last-modified' => wfTimestamp( TS_MW, $now - $wgSquidMaxage * 3 ) ],
+				[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now - $wgCdnMaxAge / 2 ) ],
+					[ 'last-modified' => wfTimestamp( TS_MW, $now - $wgCdnMaxAge * 3 ) ],
 					304, [ 'cdn' => true ] ],
 		];
 	}

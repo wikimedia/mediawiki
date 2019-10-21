@@ -87,7 +87,7 @@ class TableCleanup extends Maintenance {
 
 		$this->output(
 			sprintf( "%s %s: %6.2f%% done on %s; ETA %s [%d/%d] %.2f/sec <%.2f%% updated>\n",
-				wfWikiID(),
+				WikiMap::getCurrentWikiDbDomain()->getId(),
 				wfTimestamp( TS_DB, intval( $now ) ),
 				$portion * 100.0,
 				$this->table,

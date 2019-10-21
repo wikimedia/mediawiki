@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\IDatabase;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -144,7 +145,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 			? Revision::newFromArchiveRow( $row )
 			: new Revision( $row );
 
-		$content = $rev->getContent( Revision::RAW );
+		$content = $rev->getContent( RevisionRecord::RAW );
 		if ( !$content ) {
 			# This should not happen, but sometimes does (T22757)
 			$id = $row->$idCol;

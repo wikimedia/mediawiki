@@ -1,15 +1,20 @@
 <?php
+use MediaWiki\Linker\LinkTarget;
 
 /**
  * @since 1.26
  */
 abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
 
-	public function doTestLogFormatter( $row, $extra ) {
+	public function doTestLogFormatter( $row, $extra, $userGroups = [] ) {
 		RequestContext::resetMain();
 		$row = $this->expandDatabaseRow( $row, $this->isLegacy( $extra ) );
 
+		$context = new RequestContext();
+		$context->setUser( $this->getTestUser( $userGroups )->getUser() );
+
 		$formatter = LogFormatter::newFromRow( $row );
+		$formatter->setContext( $context );
 
 		$this->assertEquals(
 			$extra['text'],
@@ -22,6 +27,22 @@ abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
 			self::removeApiMetaData( $formatter->formatParametersForApi() ),
 			'Api log params is equal to expected array'
 		);
+
+		if ( isset( $extra['preload'] ) ) {
+			$this->assertArrayEquals(
+				$this->getLinkTargetsAsStrings( $extra['preload'] ),
+				$this->getLinkTargetsAsStrings(
+					$formatter->getPreloadTitles()
+				)
+			);
+		}
+	}
+
+	private function getLinkTargetsAsStrings( array $linkTargets ) {
+		return array_map( function ( LinkTarget $t ) {
+			return $t->getInterwiki() . ':' . $t->getNamespace() . ':'
+				. $t->getDBkey() . '#' . $t->getFragment();
+		}, $linkTargets );
 	}
 
 	protected function isLegacy( $extra ) {

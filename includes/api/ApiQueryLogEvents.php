@@ -186,6 +186,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 			// T71222: MariaDB's optimizer, at least 10.1.37 and .38, likes to choose a wildly bad plan for
 			// some reason for this code path. Tell it not to use the wrong index it wants to pick.
+			// @phan-suppress-next-line PhanTypeMismatchArgument
 			$this->addOption( 'IGNORE INDEX', [ 'logging' => [ 'times' ] ] );
 		}
 
@@ -220,10 +221,12 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		// Paranoia: avoid brute force searches (T19342)
 		if ( $params['namespace'] !== null || !is_null( $title ) || !is_null( $user ) ) {
-			if ( !$this->getUser()->isAllowed( 'deletedhistory' ) ) {
+			if ( !$this->getPermissionManager()->userHasRight( $this->getUser(), 'deletedhistory' ) ) {
 				$titleBits = LogPage::DELETED_ACTION;
 				$userBits = LogPage::DELETED_USER;
-			} elseif ( !$this->getUser()->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
+			} elseif ( !$this->getPermissionManager()
+				->userHasAnyRight( $this->getUser(), 'suppressrevision', 'viewsuppressed' )
+			) {
 				$titleBits = LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED;
 				$userBits = LogPage::DELETED_USER | LogPage::DELETED_RESTRICTED;
 			} else {
@@ -236,6 +239,14 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			if ( !is_null( $user ) && $userBits ) {
 				$this->addWhere( $db->bitAnd( 'log_deleted', $userBits ) . " != $userBits" );
 			}
+		}
+
+		// T220999: MySQL/MariaDB (10.1.37) can sometimes irrationally decide that querying `actor` before
+		// `logging` and filesorting is somehow better than querying $limit+1 rows from `logging`.
+		// Tell it not to reorder the query. But not when `letag` was used, as it seems as likely
+		// to be harmed as helped in that case.
+		if ( $params['tag'] === null ) {
+			$this->addOption( 'STRAIGHT_JOIN' );
 		}
 
 		$count = 0;

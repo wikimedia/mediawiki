@@ -64,7 +64,7 @@ class SessionConsistentConnectionManager extends ConnectionManager {
 	 *
 	 * @param string[]|null $groups
 	 *
-	 * @return Database
+	 * @return IDatabase
 	 */
 	public function getReadConnection( array $groups = null ) {
 		if ( $this->forceWriteConnection ) {
@@ -77,7 +77,7 @@ class SessionConsistentConnectionManager extends ConnectionManager {
 	/**
 	 * @since 1.29
 	 *
-	 * @return Database
+	 * @return IDatabase
 	 */
 	public function getWriteConnection() {
 		$this->prepareForUpdates();

@@ -4,16 +4,19 @@
  * @group WebRequest
  */
 class WebRequestTest extends MediaWikiTestCase {
-	protected $oldServer;
 
 	protected function setUp() {
 		parent::setUp();
 
 		$this->oldServer = $_SERVER;
+		$this->oldWgRequest = $GLOBALS['wgRequest'];
+		$this->oldWgServer = $GLOBALS['wgServer'];
 	}
 
 	protected function tearDown() {
 		$_SERVER = $this->oldServer;
+		$GLOBALS['wgRequest'] = $this->oldWgRequest;
+		$GLOBALS['wgServer'] = $this->oldWgServer;
 
 		parent::tearDown();
 	}
@@ -369,10 +372,26 @@ class WebRequestTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers WebRequest
+	 */
+	public function testGetFullRequestURL() {
+		// Stub this for wfGetServerUrl()
+		$GLOBALS['wgServer'] = '//wiki.test';
+		$req = $this->getMock( WebRequest::class, [ 'getRequestURL', 'getProtocol' ] );
+		$req->method( 'getRequestURL' )->willReturn( '/path' );
+		$req->method( 'getProtocol' )->willReturn( 'https' );
+
+		$this->assertSame(
+			'https://wiki.test/path',
+			$req->getFullRequestURL()
+		);
+	}
+
+	/**
 	 * @dataProvider provideGetIP
 	 * @covers WebRequest::getIP
 	 */
-	public function testGetIP( $expected, $input, $squid, $xffList, $private, $description ) {
+	public function testGetIP( $expected, $input, $cdn, $xffList, $private, $description ) {
 		$this->setServerVars( $input );
 		$this->setMwGlobals( [
 			'wgUsePrivateIPs' => $private,
@@ -386,7 +405,7 @@ class WebRequestTest extends MediaWikiTestCase {
 			]
 		] );
 
-		$this->setService( 'ProxyLookup', new ProxyLookup( [], $squid ) );
+		$this->setService( 'ProxyLookup', new ProxyLookup( [], $cdn ) );
 
 		$request = new WebRequest();
 		$result = $request->getIP();
@@ -568,8 +587,8 @@ class WebRequestTest extends MediaWikiTestCase {
 	public function testGetIpLackOfRemoteAddrThrowAnException() {
 		// ensure that local install state doesn't interfere with test
 		$this->setMwGlobals( [
-			'wgSquidServersNoPurge' => [],
-			'wgSquidServers' => [],
+			'wgCdnServers' => [],
+			'wgCdnServersNoPurge' => [],
 			'wgUsePrivateIPs' => false,
 			'wgHooks' => [],
 		] );

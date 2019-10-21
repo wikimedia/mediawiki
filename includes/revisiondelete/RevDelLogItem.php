@@ -19,6 +19,8 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\Revision\RevisionRecord;
+
 /**
  * Item class for a logging table row
  */
@@ -44,7 +46,9 @@ class RevDelLogItem extends RevDelItem {
 	}
 
 	public function canView() {
-		return LogEventsList::userCan( $this->row, Revision::DELETED_RESTRICTED, $this->list->getUser() );
+		return LogEventsList::userCan(
+			$this->row, RevisionRecord::DELETED_RESTRICTED, $this->list->getUser()
+		);
 	}
 
 	public function canViewContent() {

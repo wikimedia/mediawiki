@@ -25,8 +25,6 @@
  * Category objects are immutable, strictly speaking. If you call methods that change the database,
  * like to refresh link counts, the objects will be appropriately reinitialized.
  * Member variables are lazy-initialized.
- *
- * @todo Move some stuff from CategoryPage.php to here, and use that.
  */
 class Category {
 	/** Name of the category, normalized to DB-key form */
@@ -42,6 +40,8 @@ class Category {
 
 	const LOAD_ONLY = 0;
 	const LAZY_INIT_ROW = 1;
+
+	const ROW_COUNT_SMALL = 100;
 
 	private function __construct() {
 	}
@@ -340,7 +340,7 @@ class Category {
 		$dbw->lockForUpdate( 'category', [ 'cat_title' => $this->mName ], __METHOD__ );
 
 		// Lock all the `categorylinks` records and gaps for this category;
-		// this is a separate query due to postgres/oracle limitations
+		// this is a separate query due to postgres limitations
 		$dbw->selectRowCount(
 			[ 'categorylinks', 'page' ],
 			'*',
@@ -433,28 +433,57 @@ class Category {
 	 * @since 1.32
 	 */
 	public function refreshCountsIfEmpty() {
+		return $this->refreshCountsIfSmall( 0 );
+	}
+
+	/**
+	 * Call refreshCounts() if there are few entries in the categorylinks table
+	 *
+	 * Due to lock errors or other failures, the precomputed counts can get out of sync,
+	 * making it hard to know when to delete the category row without checking the
+	 * categorylinks table.
+	 *
+	 * This method will do a non-locking select first to reduce contention.
+	 *
+	 * @param int $maxSize Only refresh if there are this or less many backlinks
+	 * @return bool Whether links were refreshed
+	 * @since 1.34
+	 */
+	public function refreshCountsIfSmall( $maxSize = self::ROW_COUNT_SMALL ) {
 		$dbw = wfGetDB( DB_MASTER );
+		$dbw->startAtomic( __METHOD__ );
 
-		$hasLink = $dbw->selectField(
+		$typeOccurances = $dbw->selectFieldValues(
 			'categorylinks',
-			'1',
+			'cl_type',
 			[ 'cl_to' => $this->getName() ],
-			__METHOD__
+			__METHOD__,
+			[ 'LIMIT' => $maxSize + 1 ]
 		);
-		if ( !$hasLink ) {
-			$this->refreshCounts(); // delete any category table entry
 
-			return true;
+		if ( !$typeOccurances ) {
+			$doRefresh = true; // delete any category table entry
+		} elseif ( count( $typeOccurances ) <= $maxSize ) {
+			$countByType = array_count_values( $typeOccurances );
+			$doRefresh = !$dbw->selectField(
+				'category',
+				'1',
+				[
+					'cat_title' => $this->getName(),
+					'cat_pages' => $countByType['page'] ?? 0,
+					'cat_subcats' => $countByType['subcat'] ?? 0,
+					'cat_files' => $countByType['file'] ?? 0
+				],
+				__METHOD__
+			);
+		} else {
+			$doRefresh = false; // category is too big
 		}
 
-		$hasBadRow = $dbw->selectField(
-			'category',
-			'1',
-			[ 'cat_title' => $this->getName(), 'cat_pages <= 0' ],
-			__METHOD__
-		);
-		if ( $hasBadRow ) {
-			$this->refreshCounts(); // clean up this row
+		$dbw->endAtomic( __METHOD__ );
+
+		if ( $doRefresh ) {
+			$this->refreshCounts(); // update the row
 
 			return true;
 		}

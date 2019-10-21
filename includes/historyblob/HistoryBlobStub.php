@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Pointer object for an item within a CGZ blob stored in the text table.
  */
@@ -99,8 +101,9 @@ class HistoryBlobStub {
 				if ( !isset( $parts[1] ) || $parts[1] == '' ) {
 					return false;
 				}
-				$row->old_text = ExternalStore::fetchFromURL( $url );
-
+				$row->old_text = MediaWikiServices::getInstance()
+					->getExternalStoreAccess()
+					->fetchFromURL( $url );
 			}
 
 			if ( !in_array( 'object', $flags ) ) {

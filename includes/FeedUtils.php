@@ -20,7 +20,8 @@
  * @file
  * @ingroup Feed
  */
-use MediaWiki\MediaWikiServices;
+
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * Helper functions for feeds
@@ -28,25 +29,6 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Feed
  */
 class FeedUtils {
-
-	/**
-	 * Check whether feed's cache should be cleared; for changes feeds
-	 * If the feed should be purged; $timekey and $key will be removed from cache
-	 *
-	 * @param string $timekey Cache key of the timestamp of the last item
-	 * @param string $key Cache key of feed's content
-	 */
-	public static function checkPurge( $timekey, $key ) {
-		global $wgRequest, $wgUser;
-
-		$purge = $wgRequest->getVal( 'action' ) === 'purge';
-		// Allow users with 'purge' right to clear feed caches
-		if ( $purge && $wgUser->isAllowed( 'purge' ) ) {
-			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-			$cache->delete( $timekey, 1 );
-			$cache->delete( $key, 1 );
-		}
-	}
 
 	/**
 	 * Check whether feeds can be used and that $type is a valid feed type
@@ -88,7 +70,7 @@ class FeedUtils {
 		return self::formatDiffRow( $titleObj,
 			$row->rc_last_oldid, $row->rc_this_oldid,
 			$timestamp,
-			$row->rc_deleted & Revision::DELETED_COMMENT
+			$row->rc_deleted & RevisionRecord::DELETED_COMMENT
 				? wfMessage( 'rev-deleted-comment' )->escaped()
 				: CommentStore::getStore()->getComment( 'rc_comment', $row )->text,
 			$actiontext

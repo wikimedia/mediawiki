@@ -11,7 +11,6 @@ use MediaWiki\MediaWikiServices;
  *
  * @since 1.32
  * @author Addshore
- * @coversNothing
  */
 class SpecialPageFatalTest extends MediaWikiTestCase {
 	public function provideSpecialPages() {
@@ -31,7 +30,10 @@ class SpecialPageFatalTest extends MediaWikiTestCase {
 		$user = User::newFromName( 'UTSysop' );
 
 		try {
-			$executor->executeSpecialPage( $page, '', null, null, $user );
+			$executor->executeSpecialPage( $page, '', null, 'qqx', $user );
+		} catch ( \PHPUnit\Framework\Error\Deprecated $deprecated ) {
+			// Allow deprecation,
+			// this test want to check fatals or other things breaking the extension
 		} catch ( \PHPUnit\Framework\Error\Error $error ) {
 			// Let phpunit settings working:
 			// - convertErrorsToExceptions="true"

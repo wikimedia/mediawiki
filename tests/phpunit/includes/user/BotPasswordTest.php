@@ -184,11 +184,12 @@ class BotPasswordTest extends MediaWikiTestCase {
 	}
 
 	public function testGetPassword() {
+		/** @var BotPassword $bp */
 		$bp = TestingAccessWrapper::newFromObject( BotPassword::newFromCentralId( 42, 'BotPassword' ) );
 
 		$password = $bp->getPassword();
 		$this->assertInstanceOf( Password::class, $password );
-		$this->assertTrue( $password->equals( 'foobaz' ) );
+		$this->assertTrue( $password->verify( 'foobaz' ) );
 
 		$bp->centralId = 44;
 		$password = $bp->getPassword();
@@ -373,11 +374,12 @@ class BotPasswordTest extends MediaWikiTestCase {
 		$this->assertEquals( $bp->getToken(), $bp2->getToken() );
 		$this->assertEquals( $bp->getRestrictions(), $bp2->getRestrictions() );
 		$this->assertEquals( $bp->getGrants(), $bp2->getGrants() );
+		/** @var Password $pw */
 		$pw = TestingAccessWrapper::newFromObject( $bp )->getPassword();
 		if ( $password === null ) {
 			$this->assertInstanceOf( InvalidPassword::class, $pw );
 		} else {
-			$this->assertTrue( $pw->equals( $password ) );
+			$this->assertTrue( $pw->verify( $password ) );
 		}
 
 		$token = $bp->getToken();
@@ -389,19 +391,21 @@ class BotPasswordTest extends MediaWikiTestCase {
 		$bp2 = BotPassword::newFromCentralId( 42, 'TestSave', BotPassword::READ_LATEST );
 		$this->assertInstanceOf( BotPassword::class, $bp2 );
 		$this->assertEquals( $bp->getToken(), $bp2->getToken() );
+		/** @var Password $pw */
 		$pw = TestingAccessWrapper::newFromObject( $bp )->getPassword();
 		if ( $password === null ) {
 			$this->assertInstanceOf( InvalidPassword::class, $pw );
 		} else {
-			$this->assertTrue( $pw->equals( $password ) );
+			$this->assertTrue( $pw->verify( $password ) );
 		}
 
 		$passwordHash = $passwordFactory->newFromPlaintext( 'XXX' );
 		$token = $bp->getToken();
 		$this->assertTrue( $bp->save( 'update', $passwordHash ) );
 		$this->assertNotEquals( $token, $bp->getToken() );
+		/** @var Password $pw */
 		$pw = TestingAccessWrapper::newFromObject( $bp )->getPassword();
-		$this->assertTrue( $pw->equals( 'XXX' ) );
+		$this->assertTrue( $pw->verify( 'XXX' ) );
 
 		$this->assertTrue( $bp->delete() );
 		$this->assertFalse( $bp->isSaved() );

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 class SpecialChangeContentModel extends FormSpecialPage {
 
 	public function __construct() {
@@ -101,11 +103,18 @@ class SpecialChangeContentModel extends FormSpecialPage {
 				throw new ErrorPageError(
 					'changecontentmodel-emptymodels-title',
 					'changecontentmodel-emptymodels-text',
-					$this->title->getPrefixedText()
+					[ $this->title->getPrefixedText() ]
 				);
 			}
 			$fields['pagetitle']['readonly'] = true;
 			$fields += [
+				'currentmodel' => [
+					'type' => 'text',
+					'name' => 'currentcontentmodel',
+					'default' => $this->title->getContentModel(),
+					'label-message' => 'changecontentmodel-current-label',
+					'readonly' => true
+				],
 				'model' => [
 					'type' => 'select',
 					'name' => 'model',
@@ -219,7 +228,10 @@ class SpecialChangeContentModel extends FormSpecialPage {
 
 		$flags = $this->oldRevision ? EDIT_UPDATE : EDIT_NEW;
 		$flags |= EDIT_INTERNAL;
-		if ( $user->isAllowed( 'bot' ) ) {
+		if ( MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $user, 'bot' )
+		) {
 			$flags |= EDIT_FORCE_BOT;
 		}
 

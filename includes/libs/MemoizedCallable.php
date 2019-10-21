@@ -48,6 +48,9 @@ class MemoizedCallable {
 	/** @var string Unique name of callable; used for cache keys. */
 	private $callableName;
 
+	/** @var int */
+	private $ttl;
+
 	/**
 	 * @throws InvalidArgumentException if $callable is not a callable.
 	 * @param callable $callable Function or method to memoize.
@@ -135,11 +138,11 @@ class MemoizedCallable {
 	 *
 	 * Like MemoizedCallable::invokeArgs(), but variadic.
 	 *
-	 * @param mixed $params,... Parameters for memoized function or method.
+	 * @param mixed ...$params Parameters for memoized function or method.
 	 * @return mixed The memoized callable's return value.
 	 */
-	public function invoke() {
-		return $this->invokeArgs( func_get_args() );
+	public function invoke( ...$params ) {
+		return $this->invokeArgs( $params );
 	}
 
 	/**

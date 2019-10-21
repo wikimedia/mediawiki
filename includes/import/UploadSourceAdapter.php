@@ -29,7 +29,7 @@
  * @ingroup SpecialPage
  */
 class UploadSourceAdapter {
-	/** @var array */
+	/** @var ImportSource[] */
 	public static $sourceRegistrations = [];
 
 	/** @var ImportSource */
@@ -56,7 +56,7 @@ class UploadSourceAdapter {
 	/**
 	 * @param string $path
 	 * @param string $mode
-	 * @param array $options
+	 * @param int $options
 	 * @param string &$opened_path
 	 * @return bool
 	 */
@@ -104,14 +104,14 @@ class UploadSourceAdapter {
 
 	/**
 	 * @param string $data
-	 * @return bool
+	 * @return false
 	 */
 	function stream_write( $data ) {
 		return false;
 	}
 
 	/**
-	 * @return mixed
+	 * @return int
 	 */
 	function stream_tell() {
 		return $this->mPosition;
@@ -125,7 +125,7 @@ class UploadSourceAdapter {
 	}
 
 	/**
-	 * @return array
+	 * @return int[]
 	 */
 	function url_stat() {
 		$result = [];

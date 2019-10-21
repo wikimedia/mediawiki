@@ -2,6 +2,9 @@
  * Stylesheet for mediawiki.hlist module
  * @author [[User:Edokter]]
  */
+
+/* stylelint-disable selector-class-pattern */
+
 /* Generate interpuncts */
 .hlist dt:after {
 	content: ':';

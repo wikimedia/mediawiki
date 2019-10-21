@@ -32,10 +32,7 @@ abstract class UserArray implements Iterator {
 		if ( !Hooks::run( 'UserArrayFromResult', [ &$userArray, $res ] ) ) {
 			return null;
 		}
-		if ( $userArray === null ) {
-			$userArray = self::newFromResult_internal( $res );
-		}
-		return $userArray;
+		return $userArray ?? new UserArrayFromResult( $res );
 	}
 
 	/**
@@ -83,13 +80,5 @@ abstract class UserArray implements Iterator {
 			$userQuery['joins']
 		);
 		return self::newFromResult( $res );
-	}
-
-	/**
-	 * @param IResultWrapper $res
-	 * @return UserArrayFromResult
-	 */
-	protected static function newFromResult_internal( $res ) {
-		return new UserArrayFromResult( $res );
 	}
 }

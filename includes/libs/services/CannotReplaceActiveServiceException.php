@@ -1,7 +1,9 @@
 <?php
+
 namespace Wikimedia\Services;
 
 use Exception;
+use Psr\Container\ContainerExceptionInterface;
 use RuntimeException;
 
 /**
@@ -30,7 +32,8 @@ use RuntimeException;
 /**
  * Exception thrown when trying to replace an already active service.
  */
-class CannotReplaceActiveServiceException extends RuntimeException {
+class CannotReplaceActiveServiceException extends RuntimeException
+	implements ContainerExceptionInterface {
 
 	/**
 	 * @param string $serviceName

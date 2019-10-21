@@ -20,6 +20,9 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
+
 /**
  * A module that allows for editing and creating pages.
  *
@@ -52,7 +55,7 @@ class ApiEditPage extends ApiBase {
 				$oldTitle = $titleObj;
 
 				$titles = Revision::newFromTitle( $oldTitle, false, Revision::READ_LATEST )
-					->getContent( Revision::FOR_THIS_USER, $user )
+					->getContent( RevisionRecord::FOR_THIS_USER, $user )
 					->getRedirectChain();
 				// array_shift( $titles );
 
@@ -60,9 +63,7 @@ class ApiEditPage extends ApiBase {
 
 				/** @var Title $newTitle */
 				foreach ( $titles as $id => $newTitle ) {
-					if ( !isset( $titles[$id - 1] ) ) {
-						$titles[$id - 1] = $oldTitle;
-					}
+					$titles[ $id - 1 ] = $titles[ $id - 1 ] ?? $oldTitle;
 
 					$redirValues[] = [
 						'from' => $titles[$id - 1]->getPrefixedText(),
@@ -193,14 +194,14 @@ class ApiEditPage extends ApiBase {
 				$undoafterRev = Revision::newFromId( $params['undoafter'] );
 			}
 			$undoRev = Revision::newFromId( $params['undo'] );
-			if ( is_null( $undoRev ) || $undoRev->isDeleted( Revision::DELETED_TEXT ) ) {
+			if ( is_null( $undoRev ) || $undoRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 				$this->dieWithError( [ 'apierror-nosuchrevid', $params['undo'] ] );
 			}
 
 			if ( $params['undoafter'] == 0 ) {
 				$undoafterRev = $undoRev->getPrevious();
 			}
-			if ( is_null( $undoafterRev ) || $undoafterRev->isDeleted( Revision::DELETED_TEXT ) ) {
+			if ( is_null( $undoafterRev ) || $undoafterRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 				$this->dieWithError( [ 'apierror-nosuchrevid', $params['undoafter'] ] );
 			}
 
@@ -239,11 +240,15 @@ class ApiEditPage extends ApiBase {
 			$params['text'] = $newContent->serialize( $contentFormat );
 			// If no summary was given and we only undid one rev,
 			// use an autosummary
-			if ( is_null( $params['summary'] ) &&
-				$titleObj->getNextRevisionID( $undoafterRev->getId() ) == $params['undo']
-			) {
-				$params['summary'] = wfMessage( 'undo-summary' )
-					->params( $params['undo'], $undoRev->getUserText() )->inContentLanguage()->text();
+
+			if ( is_null( $params['summary'] ) ) {
+				$nextRev = MediaWikiServices::getInstance()->getRevisionLookup()
+					->getNextRevision( $undoafterRev->getRevisionRecord() );
+				if ( $nextRev && $nextRev->getId() == $params['undo'] ) {
+					$params['summary'] = wfMessage( 'undo-summary' )
+						->params( $params['undo'], $undoRev->getUserText() )
+						->inContentLanguage()->text();
+				}
 			}
 		}
 
@@ -367,21 +372,6 @@ class ApiEditPage extends ApiBase {
 		$ep->importFormData( $req );
 		$content = $ep->textbox1;
 
-		// Run hooks
-		// Handle APIEditBeforeSave parameters
-		$r = [];
-		// Deprecated in favour of EditFilterMergedContent
-		if ( !Hooks::run( 'APIEditBeforeSave', [ $ep, $content, &$r ], '1.28' ) ) {
-			if ( count( $r ) ) {
-				$r['result'] = 'Failure';
-				$apiResult->addValue( null, $this->getModuleName(), $r );
-
-				return;
-			}
-
-			$this->dieWithError( 'hookaborted' );
-		}
-
 		// Do the actual save
 		$oldRevId = $articleObject->getRevIdFetched();
 		$result = null;
@@ -393,6 +383,7 @@ class ApiEditPage extends ApiBase {
 		$status = $ep->attemptSave( $result );
 		$wgRequest = $oldRequest;
 
+		$r = [];
 		switch ( $status->value ) {
 			case EditPage::AS_HOOK_ERROR:
 			case EditPage::AS_HOOK_ERROR_EXPECTED:

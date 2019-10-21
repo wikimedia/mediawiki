@@ -58,6 +58,7 @@ class CheckLess extends Maintenance {
 			"$IP/tests/phpunit/phpunit.php",
 			"$IP/tests/phpunit/suites/LessTestSuite.php"
 		];
+		// @phan-suppress-next-line PhanUndeclaredMethod
 		$textUICommand->run( $argv );
 	}
 }

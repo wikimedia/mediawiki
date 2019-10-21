@@ -27,6 +27,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * A simple method to retrieve the plain source of an article,
@@ -49,6 +50,7 @@ class RawAction extends FormlessAction {
 
 	/**
 	 * @suppress SecurityCheck-XSS Non html mime type
+	 * @return string|null
 	 */
 	function onView() {
 		$this->getOutput()->disable();
@@ -57,16 +59,16 @@ class RawAction extends FormlessAction {
 		$config = $this->context->getConfig();
 
 		if ( !$request->checkUrlExtension() ) {
-			return;
+			return null;
 		}
 
 		if ( $this->getOutput()->checkLastModified( $this->page->getTouched() ) ) {
-			return; // Client cache fresh and headers sent, nothing more to do.
+			return null; // Client cache fresh and headers sent, nothing more to do.
 		}
 
 		$contentType = $this->getContentType();
 
-		$maxage = $request->getInt( 'maxage', $config->get( 'SquidMaxage' ) );
+		$maxage = $request->getInt( 'maxage', $config->get( 'CdnMaxAge' ) );
 		$smaxage = $request->getIntOrNull( 'smaxage' );
 		if ( $smaxage === null ) {
 			if (
@@ -86,9 +88,6 @@ class RawAction extends FormlessAction {
 
 		// Set standard Vary headers so cache varies on cookies and such (T125283)
 		$response->header( $this->getOutput()->getVaryHeader() );
-		if ( $config->get( 'UseKeyHeader' ) ) {
-			$response->header( $this->getOutput()->getKeyHeader() );
-		}
 
 		// Output may contain user-specific data;
 		// vary generated content for open sessions on private wikis
@@ -112,7 +111,8 @@ class RawAction extends FormlessAction {
 			$rootPage = strtok( $title->getText(), '/' );
 			$userFromTitle = User::newFromName( $rootPage, 'usable' );
 			if ( !$userFromTitle || $userFromTitle->getId() === 0 ) {
-				$elevated = $this->getUser()->isAllowed( 'editinterface' );
+				$elevated = MediaWikiServices::getInstance()->getPermissionManager()
+					->userHasRight( $this->getUser(), 'editinterface' );
 				$elevatedText = $elevated ? 'by elevated ' : '';
 				$log = LoggerFactory::getInstance( "security" );
 				$log->warning(
@@ -172,6 +172,8 @@ class RawAction extends FormlessAction {
 		}
 
 		echo $text;
+
+		return null;
 	}
 
 	/**
@@ -181,8 +183,6 @@ class RawAction extends FormlessAction {
 	 * @return string|bool
 	 */
 	public function getRawText() {
-		global $wgParser;
-
 		$text = false;
 		$title = $this->getTitle();
 		$request = $this->getRequest();
@@ -221,7 +221,7 @@ class RawAction extends FormlessAction {
 		}
 
 		if ( $text !== false && $text !== '' && $request->getRawVal( 'templates' ) === 'expand' ) {
-			$text = $wgParser->preprocess(
+			$text = MediaWikiServices::getInstance()->getParser()->preprocess(
 				$text,
 				$title,
 				ParserOptions::newFromContext( $this->getContext() )
@@ -238,23 +238,31 @@ class RawAction extends FormlessAction {
 	 */
 	public function getOldId() {
 		$oldid = $this->getRequest()->getInt( 'oldid' );
+		$rl = MediaWikiServices::getInstance()->getRevisionLookup();
 		switch ( $this->getRequest()->getText( 'direction' ) ) {
 			case 'next':
 				# output next revision, or nothing if there isn't one
-				$nextid = 0;
+				$nextRev = null;
 				if ( $oldid ) {
-					$nextid = $this->getTitle()->getNextRevisionID( $oldid );
+					$oldRev = $rl->getRevisionById( $oldid );
+					if ( $oldRev ) {
+						$nextRev = $rl->getNextRevision( $oldRev );
+					}
 				}
-				$oldid = $nextid ?: -1;
+				$oldid = $nextRev ? $nextRev->getId() : -1;
 				break;
 			case 'prev':
 				# output previous revision, or nothing if there isn't one
+				$prevRev = null;
 				if ( !$oldid ) {
 					# get the current revision so we can get the penultimate one
 					$oldid = $this->page->getLatest();
 				}
-				$previd = $this->getTitle()->getPreviousRevisionID( $oldid );
-				$oldid = $previd ?: -1;
+				$oldRev = $rl->getRevisionById( $oldid );
+				if ( $oldRev ) {
+					$prevRev = $rl->getPreviousRevision( $oldRev );
+				}
+				$oldid = $prevRev ? $prevRev->getId() : -1;
 				break;
 			case 'cur':
 				$oldid = 0;
@@ -270,9 +278,7 @@ class RawAction extends FormlessAction {
 	 * @return string
 	 */
 	public function getContentType() {
-		// Use getRawVal instead of getVal because we only
-		// need to match against known strings, there is no
-		// storing of localised content or other user input.
+		// Optimisation: Avoid slow getVal(), this isn't user-generated content.
 		$ctype = $this->getRequest()->getRawVal( 'ctype' );
 
 		if ( $ctype == '' ) {

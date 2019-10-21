@@ -20,11 +20,16 @@
  * @file
  * @ingroup Parser
  */
+use MediaWiki\BadFileLookup;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Special\SpecialPageFactory;
+use Psr\Log\NullLogger;
 use Wikimedia\ScopedCallback;
+use Psr\Log\LoggerInterface;
 
 /**
  * @defgroup Parser Parser
@@ -168,8 +173,15 @@ class Parser {
 	 * @var MagicWordArray
 	 */
 	public $mSubstWords;
+
+	/**
+	 * @deprecated since 1.34, there should be no need to use this
+	 * @var array
+	 */
+	public $mConf;
+
 	# Initialised in constructor
-	public $mConf, $mExtLinkBracketedRegex, $mUrlProtocols;
+	public $mExtLinkBracketedRegex, $mUrlProtocols;
 
 	# Initialized in getPreprocessor()
 	/** @var Preprocessor */
@@ -196,9 +208,11 @@ class Parser {
 	public $mLinkID;
 	public $mIncludeSizes, $mPPNodeCount, $mGeneratedPPNodeCount, $mHighestExpansionDepth;
 	public $mDefaultSort;
-	public $mTplRedirCache, $mTplDomCache, $mHeadings, $mDoubleUnderscores;
+	public $mTplRedirCache, $mHeadings, $mDoubleUnderscores;
 	public $mExpensiveFunctionCount; # number of expensive parser function calls
 	public $mShowToc, $mForceTocPosition;
+	/** @var array */
+	public $mTplDomCache;
 
 	/**
 	 * @var User
@@ -214,7 +228,11 @@ class Parser {
 	public $mOptions;
 
 	/**
-	 * @var Title
+	 * Since 1.34, leaving `mTitle` uninitialized or setting `mTitle` to
+	 * `null` is deprecated.
+	 *
+	 * @internal
+	 * @var Title|null
 	 */
 	public $mTitle;        # Title context, used for self-link rendering and similar things
 	public $mOutputType;   # Output type, one of the OT_xxx constants
@@ -226,12 +244,6 @@ class Parser {
 	public $mRevisionSize; # Size to display in {{REVISIONSIZE}} variable
 	public $mRevIdForTs;   # The revision ID which was used to fetch the timestamp
 	public $mInputSize = false; # For {{PAGESIZE}} on current page.
-
-	/**
-	 * @var string Deprecated accessor for the strip marker prefix.
-	 * @deprecated since 1.26; use Parser::MARKER_PREFIX instead.
-	 */
-	public $mUniqPrefix = self::MARKER_PREFIX;
 
 	/**
 	 * @var array Array with the language name of each language link (i.e. the
@@ -274,61 +286,128 @@ class Parser {
 	/** @var SpecialPageFactory */
 	private $specialPageFactory;
 
-	/** @var Config */
-	private $siteConfig;
+	/**
+	 * This is called $svcOptions instead of $options like elsewhere to avoid confusion with
+	 * $mOptions, which is public and widely used, and also with the local variable $options used
+	 * for ParserOptions throughout this file.
+	 *
+	 * @var ServiceOptions
+	 */
+	private $svcOptions;
 
 	/** @var LinkRendererFactory */
 	private $linkRendererFactory;
 
+	/** @var NamespaceInfo */
+	private $nsInfo;
+
+	/** @var LoggerInterface */
+	private $logger;
+
+	/** @var BadFileLookup */
+	private $badFileLookup;
+
 	/**
-	 * @param array $parserConf See $wgParserConf documentation
+	 * TODO Make this a const when HHVM support is dropped (T192166)
+	 *
+	 * @var array
+	 * @since 1.33
+	 */
+	public static $constructorOptions = [
+		// See $wgParserConf documentation
+		'class',
+		'preprocessorClass',
+		// See documentation for the corresponding config options
+		'ArticlePath',
+		'EnableScaryTranscluding',
+		'ExtraInterlanguageLinkPrefixes',
+		'FragmentMode',
+		'LanguageCode',
+		'MaxSigChars',
+		'MaxTocLevel',
+		'MiserMode',
+		'ScriptPath',
+		'Server',
+		'ServerName',
+		'ShowHostnames',
+		'Sitename',
+		'StylePath',
+		'TranscludeCacheExpiry',
+	];
+
+	/**
+	 * Constructing parsers directly is deprecated! Use a ParserFactory.
+	 *
+	 * @param ServiceOptions|null $svcOptions
 	 * @param MagicWordFactory|null $magicWordFactory
 	 * @param Language|null $contLang Content language
 	 * @param ParserFactory|null $factory
 	 * @param string|null $urlProtocols As returned from wfUrlProtocols()
 	 * @param SpecialPageFactory|null $spFactory
-	 * @param Config|null $siteConfig
 	 * @param LinkRendererFactory|null $linkRendererFactory
+	 * @param NamespaceInfo|null $nsInfo
+	 * @param LoggerInterface|null $logger
+	 * @param BadFileLookup|null $badFileLookup
 	 */
 	public function __construct(
-		array $parserConf = [], MagicWordFactory $magicWordFactory = null,
-		Language $contLang = null, ParserFactory $factory = null, $urlProtocols = null,
-		SpecialPageFactory $spFactory = null, Config $siteConfig = null,
-		LinkRendererFactory $linkRendererFactory = null
+		$svcOptions = null,
+		MagicWordFactory $magicWordFactory = null,
+		Language $contLang = null,
+		ParserFactory $factory = null,
+		$urlProtocols = null,
+		SpecialPageFactory $spFactory = null,
+		$linkRendererFactory = null,
+		$nsInfo = null,
+		$logger = null,
+		BadFileLookup $badFileLookup = null
 	) {
-		$this->mConf = $parserConf;
+		if ( !$svcOptions || is_array( $svcOptions ) ) {
+			// Pre-1.34 calling convention is the first parameter is just ParserConf, the seventh is
+			// Config, and the eighth is LinkRendererFactory.
+			$this->mConf = (array)$svcOptions;
+			if ( empty( $this->mConf['class'] ) ) {
+				$this->mConf['class'] = self::class;
+			}
+			if ( empty( $this->mConf['preprocessorClass'] ) ) {
+				$this->mConf['preprocessorClass'] = self::getDefaultPreprocessorClass();
+			}
+			$this->svcOptions = new ServiceOptions( self::$constructorOptions,
+				$this->mConf, func_num_args() > 6
+					? func_get_arg( 6 ) : MediaWikiServices::getInstance()->getMainConfig()
+			);
+			$linkRendererFactory = func_num_args() > 7 ? func_get_arg( 7 ) : null;
+			$nsInfo = func_num_args() > 8 ? func_get_arg( 8 ) : null;
+		} else {
+			// New calling convention
+			$svcOptions->assertRequiredOptions( self::$constructorOptions );
+			// $this->mConf is public, so we'll keep those two options there as well for
+			// compatibility until it's removed
+			$this->mConf = [
+				'class' => $svcOptions->get( 'class' ),
+				'preprocessorClass' => $svcOptions->get( 'preprocessorClass' ),
+			];
+			$this->svcOptions = $svcOptions;
+		}
+
 		$this->mUrlProtocols = $urlProtocols ?? wfUrlProtocols();
 		$this->mExtLinkBracketedRegex = '/\[(((?i)' . $this->mUrlProtocols . ')' .
 			self::EXT_LINK_ADDR .
 			self::EXT_LINK_URL_CLASS . '*)\p{Zs}*([^\]\\x00-\\x08\\x0a-\\x1F\\x{FFFD}]*?)\]/Su';
-		if ( isset( $parserConf['preprocessorClass'] ) ) {
-			$this->mPreprocessorClass = $parserConf['preprocessorClass'];
-		} elseif ( wfIsHHVM() ) {
-			# Under HHVM Preprocessor_Hash is much faster than Preprocessor_DOM
-			$this->mPreprocessorClass = Preprocessor_Hash::class;
-		} elseif ( extension_loaded( 'domxml' ) ) {
-			# PECL extension that conflicts with the core DOM extension (T15770)
-			wfDebug( "Warning: you have the obsolete domxml extension for PHP. Please remove it!\n" );
-			$this->mPreprocessorClass = Preprocessor_Hash::class;
-		} elseif ( extension_loaded( 'dom' ) ) {
-			$this->mPreprocessorClass = Preprocessor_DOM::class;
-		} else {
-			$this->mPreprocessorClass = Preprocessor_Hash::class;
-		}
-		wfDebug( __CLASS__ . ": using preprocessor: {$this->mPreprocessorClass}\n" );
 
-		$services = MediaWikiServices::getInstance();
 		$this->magicWordFactory = $magicWordFactory ??
-			$services->getMagicWordFactory();
+			MediaWikiServices::getInstance()->getMagicWordFactory();
 
-		$this->contLang = $contLang ?? $services->getContentLanguage();
+		$this->contLang = $contLang ?? MediaWikiServices::getInstance()->getContentLanguage();
 
-		$this->factory = $factory ?? $services->getParserFactory();
-		$this->specialPageFactory = $spFactory ?? $services->getSpecialPageFactory();
-		$this->siteConfig = $siteConfig ?? MediaWikiServices::getInstance()->getMainConfig();
-
-		$this->linkRendererFactory =
-			$linkRendererFactory ?? MediaWikiServices::getInstance()->getLinkRendererFactory();
+		$this->factory = $factory ?? MediaWikiServices::getInstance()->getParserFactory();
+		$this->specialPageFactory = $spFactory ??
+			MediaWikiServices::getInstance()->getSpecialPageFactory();
+		$this->linkRendererFactory = $linkRendererFactory ??
+			MediaWikiServices::getInstance()->getLinkRendererFactory();
+		$this->nsInfo = $nsInfo ?? MediaWikiServices::getInstance()->getNamespaceInfo();
+		$this->logger = $logger ?: new NullLogger();
+		$this->badFileLookup = $badFileLookup ??
+			MediaWikiServices::getInstance()->getBadFileLookup();
 	}
 
 	/**
@@ -336,8 +415,10 @@ class Parser {
 	 */
 	public function __destruct() {
 		if ( isset( $this->mLinkHolders ) ) {
+			// @phan-suppress-next-line PhanTypeObjectUnsetDeclaredProperty
 			unset( $this->mLinkHolders );
 		}
+		// @phan-suppress-next-line PhanTypeSuspiciousNonTraversableForeach
 		foreach ( $this as $name => $value ) {
 			unset( $this->$name );
 		}
@@ -367,6 +448,17 @@ class Parser {
 	}
 
 	/**
+	 * Which class should we use for the preprocessor if not otherwise specified?
+	 *
+	 * @since 1.34
+	 * @deprecated since 1.34, removing configurability of preprocessor
+	 * @return string
+	 */
+	public static function getDefaultPreprocessorClass() {
+		return Preprocessor_Hash::class;
+	}
+
+	/**
 	 * Do various kinds of initialisation on the first call of the parser
 	 */
 	public function firstCallInit() {
@@ -391,8 +483,7 @@ class Parser {
 	 */
 	public function clearState() {
 		$this->firstCallInit();
-		$this->mOutput = new ParserOutput;
-		$this->mOptions->registerWatcher( [ $this->mOutput, 'recordOption' ] );
+		$this->resetOutput();
 		$this->mAutonumber = 0;
 		$this->mIncludeCount = [];
 		$this->mLinkHolders = new LinkHolderArray( $this );
@@ -436,6 +527,14 @@ class Parser {
 	}
 
 	/**
+	 * Reset the ParserOutput
+	 */
+	public function resetOutput() {
+		$this->mOutput = new ParserOutput;
+		$this->mOptions->registerWatcher( [ $this->mOutput, 'recordOption' ] );
+	}
+
+	/**
 	 * Convert wikitext to HTML
 	 * Do not call this function recursively.
 	 *
@@ -445,7 +544,10 @@ class Parser {
 	 * @param ParserOptions $options
 	 * @param bool $linestart
 	 * @param bool $clearState
-	 * @param int|null $revid Number to pass in {{REVISIONID}}
+	 * @param int|null $revid ID of the revision being rendered. This is used to render
+	 *  REVISION* magic words. 0 means that any current revision will be used. Null means
+	 *  that {{REVISIONID}}/{{REVISIONUSER}} will be empty and {{REVISIONTIMESTAMP}} will
+	 *  use the current timestamp.
 	 * @return ParserOutput A ParserOutput
 	 * @return-taint escaped
 	 */
@@ -597,7 +699,7 @@ class Parser {
 		Hooks::run( 'ParserLimitReportPrepare', [ $this, $this->mOutput ] );
 
 		$limitReport = "NewPP limit report\n";
-		if ( $this->siteConfig->get( 'ShowHostnames' ) ) {
+		if ( $this->svcOptions->get( 'ShowHostnames' ) ) {
 			$limitReport .= 'Parsed by ' . wfHostname() . "\n";
 		}
 		$limitReport .= 'Cached time: ' . $this->mOutput->getCacheTime() . "\n";
@@ -605,6 +707,7 @@ class Parser {
 		$limitReport .= 'Dynamic content: ' .
 			( $this->mOutput->hasDynamicContent() ? 'true' : 'false' ) .
 			"\n";
+		$limitReport .= 'Complications: [' . implode( ', ', $this->mOutput->getAllFlags() ) . "]\n";
 
 		foreach ( $this->mOutput->getLimitReportData() as $key => $value ) {
 			if ( Hooks::run( 'ParserLimitReportFormat',
@@ -648,7 +751,7 @@ class Parser {
 		$this->mOutput->setLimitReportData( 'limitreport-timingprofile', $profileReport );
 
 		// Add other cache related metadata
-		if ( $this->siteConfig->get( 'ShowHostnames' ) ) {
+		if ( $this->svcOptions->get( 'ShowHostnames' ) ) {
 			$this->mOutput->setLimitReportData( 'cachereport-origin', wfHostname() );
 		}
 		$this->mOutput->setLimitReportData( 'cachereport-timestamp',
@@ -807,11 +910,11 @@ class Parser {
 	/**
 	 * Set the context title
 	 *
-	 * @param Title $t
+	 * @param Title|null $t
 	 */
-	public function setTitle( $t ) {
+	public function setTitle( Title $t = null ) {
 		if ( !$t ) {
-			$t = Title::newFromText( 'NO TITLE' );
+			$t = Title::makeTitle( NS_SPECIAL, 'Badtitle/Parser' );
 		}
 
 		if ( $t->hasFragment() ) {
@@ -825,9 +928,14 @@ class Parser {
 	/**
 	 * Accessor for the Title object
 	 *
-	 * @return Title
+	 * Since 1.34, leaving `mTitle` uninitialized as `null` is deprecated.
+	 *
+	 * @return Title|null
 	 */
-	public function getTitle() {
+	public function getTitle() : ?Title {
+		if ( $this->mTitle === null ) {
+			wfDeprecated( 'Parser title should never be null', '1.34' );
+		}
 		return $this->mTitle;
 	}
 
@@ -835,9 +943,9 @@ class Parser {
 	 * Accessor/mutator for the Title object
 	 *
 	 * @param Title|null $x Title object or null to just get the current one
-	 * @return Title
+	 * @return Title|null
 	 */
-	public function Title( $x = null ) {
+	public function Title( Title $x = null ) : ?Title {
 		return wfSetVar( $this->mTitle, $x );
 	}
 
@@ -969,7 +1077,7 @@ class Parser {
 	 */
 	public function getPreprocessor() {
 		if ( !isset( $this->mPreprocessor ) ) {
-			$class = $this->mPreprocessorClass;
+			$class = $this->svcOptions->get( 'preprocessorClass' );
 			$this->mPreprocessor = new $class( $this );
 		}
 		return $this->mPreprocessor;
@@ -1097,6 +1205,15 @@ class Parser {
 	 */
 	public function getStripList() {
 		return $this->mStripList;
+	}
+
+	/**
+	 * Get the StripState
+	 *
+	 * @return StripState
+	 */
+	public function getStripState() {
+		return $this->mStripState;
 	}
 
 	/**
@@ -1902,6 +2019,7 @@ class Parser {
 	 */
 	public function replaceExternalLinks( $text ) {
 		$bits = preg_split( $this->mExtLinkBracketedRegex, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
+		// @phan-suppress-next-line PhanTypeComparisonFromArray See phan issue #3161
 		if ( $bits === false ) {
 			throw new MWException( "PCRE needs to be compiled with "
 				. "--enable-unicode-properties in order for MediaWiki to function" );
@@ -1975,7 +2093,7 @@ class Parser {
 	 * @since 1.21
 	 * @param string|bool $url Optional URL, to extract the domain from for rel =>
 	 *   nofollow if appropriate
-	 * @param Title|null $title Optional Title, for wgNoFollowNsExceptions lookups
+	 * @param LinkTarget|null $title Optional LinkTarget, for wgNoFollowNsExceptions lookups
 	 * @return string|null Rel attribute for $url
 	 */
 	public static function getExternalLinkRel( $url = false, $title = null ) {
@@ -2203,6 +2321,11 @@ class Parser {
 		$line = $a->current(); # Workaround for broken ArrayIterator::next() that returns "void"
 		$s = substr( $s, 1 );
 
+		if ( is_null( $this->mTitle ) ) {
+			throw new MWException( __METHOD__ . ": \$this->mTitle is null\n" );
+		}
+		$nottalk = !$this->mTitle->isTalkPage();
+
 		$useLinkPrefixExtension = $this->getTargetLanguage()->linkPrefixExtension();
 		$e2 = null;
 		if ( $useLinkPrefixExtension ) {
@@ -2210,14 +2333,6 @@ class Parser {
 			# e.g. in the case of 'The Arab al[[Razi]]', 'al' will be matched
 			$charset = $this->contLang->linkPrefixCharset();
 			$e2 = "/^((?>.*[^$charset]|))(.+)$/sDu";
-		}
-
-		if ( is_null( $this->mTitle ) ) {
-			throw new MWException( __METHOD__ . ": \$this->mTitle is null\n" );
-		}
-		$nottalk = !$this->mTitle->isTalkPage();
-
-		if ( $useLinkPrefixExtension ) {
 			$m = [];
 			if ( preg_match( $e2, $s, $m ) ) {
 				$first_prefix = $m[2];
@@ -2386,7 +2501,7 @@ class Parser {
 				if (
 					$iw && $this->mOptions->getInterwikiMagic() && $nottalk && (
 						Language::fetchLanguageName( $iw, null, 'mw' ) ||
-						in_array( $iw, $this->siteConfig->get( 'ExtraInterlanguageLinkPrefixes' ) )
+						in_array( $iw, $this->svcOptions->get( 'ExtraInterlanguageLinkPrefixes' ) )
 					)
 				) {
 					# T26502: filter duplicates
@@ -2403,7 +2518,7 @@ class Parser {
 				}
 
 				if ( $ns == NS_FILE ) {
-					if ( !wfIsBadImage( $nt->getDBkey(), $this->mTitle ) ) {
+					if ( !$this->badFileLookup->isBadFile( $nt->getDBkey(), $this->mTitle ) ) {
 						if ( $wasblank ) {
 							# if no parameters were passed, $text
 							# becomes something like "File:Foo.png",
@@ -2529,7 +2644,7 @@ class Parser {
 	 */
 	public function areSubpagesAllowed() {
 		# Some namespaces don't allow subpages
-		return MWNamespace::hasSubpages( $this->mTitle->getNamespace() );
+		return $this->nsInfo->hasSubpages( $this->mTitle->getNamespace() );
 	}
 
 	/**
@@ -2584,26 +2699,15 @@ class Parser {
 		 * Some of these require message or data lookups and can be
 		 * expensive to check many times.
 		 */
-		if ( Hooks::run( 'ParserGetVariableValueVarCache', [ &$parser, &$this->mVarCache ] )
-			&& isset( $this->mVarCache[$index] )
+		if (
+			Hooks::run( 'ParserGetVariableValueVarCache', [ &$parser, &$this->mVarCache ] ) &&
+			isset( $this->mVarCache[$index] )
 		) {
 			return $this->mVarCache[$index];
 		}
 
 		$ts = wfTimestamp( TS_UNIX, $this->mOptions->getTimestamp() );
 		Hooks::run( 'ParserGetVariableValueTs', [ &$parser, &$ts ] );
-
-		// In miser mode, disable words that always cause double-parses on page save (T137900)
-		static $slowRevWords = [ 'revisionid' => true ]; // @TODO: 'revisiontimestamp'
-		if (
-			isset( $slowRevWords[$index] ) &&
-			$this->siteConfig->get( 'MiserMode' ) &&
-			!$this->mOptions->getInterfaceMessage() &&
-			// @TODO: disallow this word on all namespaces
-			MWNamespace::isContent( $this->mTitle->getNamespace() )
-		) {
-			return $this->mRevisionId ? '-' : '';
-		};
 
 		$pageLang = $this->getFunctionLang();
 
@@ -2716,35 +2820,46 @@ class Parser {
 				$value = wfEscapeWikiText( $subjPage->getPrefixedURL() );
 				break;
 			case 'pageid': // requested in T25427
-				$pageid = $this->getTitle()->getArticleID();
-				if ( $pageid == 0 ) {
-					# 0 means the page doesn't exist in the database,
-					# which means the user is previewing a new page.
-					# The vary-revision flag must be set, because the magic word
-					# will have a different value once the page is saved.
-					$this->mOutput->setFlag( 'vary-revision' );
-					wfDebug( __METHOD__ . ": {{PAGEID}} used in a new page, setting vary-revision...\n" );
-				}
-				$value = $pageid ?: null;
-				break;
-			case 'revisionid':
-				# Let the edit saving system know we should parse the page
-				# *after* a revision ID has been assigned.
-				$this->mOutput->setFlag( 'vary-revision-id' );
-				wfDebug( __METHOD__ . ": {{REVISIONID}} used, setting vary-revision-id...\n" );
-				$value = $this->mRevisionId;
-
+				# Inform the edit saving system that getting the canonical output
+				# after page insertion requires a parse that used that exact page ID
+				$this->setOutputFlag( 'vary-page-id', '{{PAGEID}} used' );
+				$value = $this->mTitle->getArticleID();
 				if ( !$value ) {
-					$rev = $this->getRevisionObject();
-					if ( $rev ) {
-						$value = $rev->getId();
+					$value = $this->mOptions->getSpeculativePageId();
+					if ( $value ) {
+						$this->mOutput->setSpeculativePageIdUsed( $value );
 					}
 				}
-
-				if ( !$value ) {
-					$value = $this->mOptions->getSpeculativeRevId();
-					if ( $value ) {
-						$this->mOutput->setSpeculativeRevIdUsed( $value );
+				break;
+			case 'revisionid':
+				if (
+					$this->svcOptions->get( 'MiserMode' ) &&
+					!$this->mOptions->getInterfaceMessage() &&
+					// @TODO: disallow this word on all namespaces
+					$this->nsInfo->isContent( $this->mTitle->getNamespace() )
+				) {
+					// Use a stub result instead of the actual revision ID in order to avoid
+					// double parses on page save but still allow preview detection (T137900)
+					if ( $this->getRevisionId() || $this->mOptions->getSpeculativeRevId() ) {
+						$value = '-';
+					} else {
+						$this->setOutputFlag( 'vary-revision-exists', '{{REVISIONID}} used' );
+						$value = '';
+					}
+				} else {
+					# Inform the edit saving system that getting the canonical output after
+					# revision insertion requires a parse that used that exact revision ID
+					$this->setOutputFlag( 'vary-revision-id', '{{REVISIONID}} used' );
+					$value = $this->getRevisionId();
+					if ( $value === 0 ) {
+						$rev = $this->getRevisionObject();
+						$value = $rev ? $rev->getId() : $value;
+					}
+					if ( !$value ) {
+						$value = $this->mOptions->getSpeculativeRevId();
+						if ( $value ) {
+							$this->mOutput->setSpeculativeRevIdUsed( $value );
+						}
 					}
 				}
 				break;
@@ -2764,17 +2879,12 @@ class Parser {
 				$value = $this->getRevisionTimestampSubstring( 0, 4, self::MAX_TTS, $index );
 				break;
 			case 'revisiontimestamp':
-				# Let the edit saving system know we should parse the page
-				# *after* a revision ID has been assigned. This is for null edits.
-				$this->mOutput->setFlag( 'vary-revision' );
-				wfDebug( __METHOD__ . ": {{REVISIONTIMESTAMP}} used, setting vary-revision...\n" );
-				$value = $this->getRevisionTimestamp();
+				$value = $this->getRevisionTimestampSubstring( 0, 14, self::MAX_TTS, $index );
 				break;
 			case 'revisionuser':
-				# Let the edit saving system know we should parse the page
-				# *after* a revision ID has been assigned for null edits.
-				$this->mOutput->setFlag( 'vary-user' );
-				wfDebug( __METHOD__ . ": {{REVISIONUSER}} used, setting vary-user...\n" );
+				# Inform the edit saving system that getting the canonical output after
+				# revision insertion requires a parse that used the actual user ID
+				$this->setOutputFlag( 'vary-user', '{{REVISIONUSER}} used' );
 				$value = $this->getRevisionUser();
 				break;
 			case 'revisionsize':
@@ -2881,21 +2991,21 @@ class Parser {
 				$value = SpecialVersion::getVersion();
 				break;
 			case 'articlepath':
-				return $this->siteConfig->get( 'ArticlePath' );
+				return $this->svcOptions->get( 'ArticlePath' );
 			case 'sitename':
-				return $this->siteConfig->get( 'Sitename' );
+				return $this->svcOptions->get( 'Sitename' );
 			case 'server':
-				return $this->siteConfig->get( 'Server' );
+				return $this->svcOptions->get( 'Server' );
 			case 'servername':
-				return $this->siteConfig->get( 'ServerName' );
+				return $this->svcOptions->get( 'ServerName' );
 			case 'scriptpath':
-				return $this->siteConfig->get( 'ScriptPath' );
+				return $this->svcOptions->get( 'ScriptPath' );
 			case 'stylepath':
-				return $this->siteConfig->get( 'StylePath' );
+				return $this->svcOptions->get( 'StylePath' );
 			case 'directionmark':
 				return $pageLang->getDirMark();
 			case 'contentlanguage':
-				return $this->siteConfig->get( 'LanguageCode' );
+				return $this->svcOptions->get( 'LanguageCode' );
 			case 'pagelanguage':
 				$value = $pageLang->getCode();
 				break;
@@ -2922,7 +3032,7 @@ class Parser {
 	/**
 	 * @param int $start
 	 * @param int $len
-	 * @param int $mtts Max time-till-save; sets vary-revision if result might change by then
+	 * @param int $mtts Max time-till-save; sets vary-revision-timestamp if result changes by then
 	 * @param string $variable Parser variable name
 	 * @return string
 	 */
@@ -2931,7 +3041,10 @@ class Parser {
 		$resNow = substr( $this->getRevisionTimestamp(), $start, $len );
 		# Possibly set vary-revision if there is not yet an associated revision
 		if ( !$this->getRevisionObject() ) {
-			# Get the timezone-adjusted timestamp $mtts seconds in the future
+			# Get the timezone-adjusted timestamp $mtts seconds in the future.
+			# This future is relative to the current time and not that of the
+			# parser options. The rendered timestamp can be compared to that
+			# of the timestamp specified by the parser options.
 			$resThen = substr(
 				$this->contLang->userAdjust( wfTimestamp( TS_MW, time() + $mtts ), '' ),
 				$start,
@@ -2939,10 +3052,9 @@ class Parser {
 			);
 
 			if ( $resNow !== $resThen ) {
-				# Let the edit saving system know we should parse the page
-				# *after* a revision ID has been assigned. This is for null edits.
-				$this->mOutput->setFlag( 'vary-revision' );
-				wfDebug( __METHOD__ . ": $variable used, setting vary-revision...\n" );
+				# Inform the edit saving system that getting the canonical output after
+				# revision insertion requires a parse that used an actual revision timestamp
+				$this->setOutputFlag( 'vary-revision-timestamp', "$variable used" );
 			}
 		}
 
@@ -3020,7 +3132,7 @@ class Parser {
 	 *  self::OT_HTML: all templates and extension tags
 	 *
 	 * @param string $text The text to transform
-	 * @param bool|PPFrame $frame Object describing the arguments passed to the
+	 * @param false|PPFrame|array $frame Object describing the arguments passed to the
 	 *   template. Arguments may also be provided as an associative array, as
 	 *   was the usual case before MW1.12. Providing arguments this way may be
 	 *   useful for extensions wishing to perform variable replacement
@@ -3039,8 +3151,10 @@ class Parser {
 		if ( $frame === false ) {
 			$frame = $this->getPreprocessor()->newFrame();
 		} elseif ( !( $frame instanceof PPFrame ) ) {
-			wfDebug( __METHOD__ . " called using plain parameters instead of "
-				. "a PPFrame instance. Creating custom frame.\n" );
+			$this->logger->debug(
+				__METHOD__ . " called using plain parameters instead of " .
+				"a PPFrame instance. Creating custom frame."
+			);
 			$frame = $this->getPreprocessor()->newCustomFrame( $frame );
 		}
 
@@ -3126,7 +3240,7 @@ class Parser {
 	 *   $piece['lineStart']: whether the brace was at the start of a line
 	 * @param PPFrame $frame The current frame, contains template arguments
 	 * @throws Exception
-	 * @return string The text of the template
+	 * @return string|array The text of the template
 	 */
 	public function braceSubstitution( $piece, $frame ) {
 		// Flags
@@ -3339,10 +3453,12 @@ class Parser {
 							);
 						}
 					}
-				} elseif ( MWNamespace::isNonincludable( $title->getNamespace() ) ) {
+				} elseif ( $this->nsInfo->isNonincludable( $title->getNamespace() ) ) {
 					$found = false; # access denied
-					wfDebug( __METHOD__ . ": template inclusion denied for " .
-						$title->getPrefixedDBkey() . "\n" );
+					$this->logger->debug(
+						__METHOD__ .
+						": template inclusion denied for " . $title->getPrefixedDBkey()
+					);
 				} else {
 					list( $text, $title ) = $this->getTemplateDom( $title );
 					if ( $text !== false ) {
@@ -3380,7 +3496,7 @@ class Parser {
 				$this->addTrackingCategory( 'template-loop-category' );
 				$this->mOutput->addWarning( wfMessage( 'template-loop-warning',
 					wfEscapeWikiText( $titleText ) )->text() );
-				wfDebug( __METHOD__ . ": template loop broken at '$titleText'\n" );
+				$this->logger->debug( __METHOD__ . ": template loop broken at '$titleText'" );
 			}
 		}
 
@@ -3628,6 +3744,18 @@ class Parser {
 	}
 
 	/**
+	 * @param Title $title
+	 * @return bool
+	 * @since 1.34
+	 */
+	public function isCurrentRevisionOfTitleCached( $title ) {
+		return (
+			$this->currentRevisionCache &&
+			$this->currentRevisionCache->has( $title->getPrefixedText() )
+		);
+	}
+
+	/**
 	 * Wrapper around Revision::newFromTitle to allow passing additional parameters
 	 * without passing them on to it.
 	 *
@@ -3651,22 +3779,22 @@ class Parser {
 		// Defaults to Parser::statelessFetchTemplate()
 		$templateCb = $this->mOptions->getTemplateCallback();
 		$stuff = call_user_func( $templateCb, $title, $this );
-		// We use U+007F DELETE to distinguish strip markers from regular text.
+		$rev = $stuff['revision'] ?? null;
 		$text = $stuff['text'];
 		if ( is_string( $stuff['text'] ) ) {
+			// We use U+007F DELETE to distinguish strip markers from regular text
 			$text = strtr( $text, "\x7f", "?" );
 		}
 		$finalTitle = $stuff['finalTitle'] ?? $title;
-		if ( isset( $stuff['deps'] ) ) {
-			foreach ( $stuff['deps'] as $dep ) {
-				$this->mOutput->addTemplate( $dep['title'], $dep['page_id'], $dep['rev_id'] );
-				if ( $dep['title']->equals( $this->getTitle() ) ) {
-					// If we transclude ourselves, the final result
-					// will change based on the new version of the page
-					$this->mOutput->setFlag( 'vary-revision' );
-				}
+		foreach ( ( $stuff['deps'] ?? [] ) as $dep ) {
+			$this->mOutput->addTemplate( $dep['title'], $dep['page_id'], $dep['rev_id'] );
+			if ( $dep['title']->equals( $this->getTitle() ) && $rev instanceof Revision ) {
+				// Self-transclusion; final result may change based on the new page version
+				$this->setOutputFlag( 'vary-revision-sha1', 'Self transclusion' );
+				$this->getOutput()->setRevisionUsedSha1Base36( $rev->getSha1() );
 			}
 		}
+
 		return [ $text, $finalTitle ];
 	}
 
@@ -3692,6 +3820,7 @@ class Parser {
 		$text = $skip = false;
 		$finalTitle = $title;
 		$deps = [];
+		$rev = null;
 
 		# Loop to fetch the article, with up to 1 redirect
 		for ( $i = 0; $i < 2 && is_object( $title ); $i++ ) {
@@ -3727,13 +3856,15 @@ class Parser {
 			$deps[] = [
 				'title' => $title,
 				'page_id' => $title->getArticleID(),
-				'rev_id' => $rev_id ];
+				'rev_id' => $rev_id
+			];
 			if ( $rev && !$title->equals( $rev->getTitle() ) ) {
 				# We fetched a rev from a different title; register it too...
 				$deps[] = [
 					'title' => $rev->getTitle(),
 					'page_id' => $rev->getPage(),
-					'rev_id' => $rev_id ];
+					'rev_id' => $rev_id
+				];
 			}
 
 			if ( $rev ) {
@@ -3767,22 +3898,11 @@ class Parser {
 			$title = $content->getRedirectTarget();
 		}
 		return [
+			'revision' => $rev,
 			'text' => $text,
 			'finalTitle' => $finalTitle,
-			'deps' => $deps ];
-	}
-
-	/**
-	 * Fetch a file and its title and register a reference to it.
-	 * If 'broken' is a key in $options then the file will appear as a broken thumbnail.
-	 * @param Title $title
-	 * @param array $options Array of options to RepoGroup::findFile
-	 * @return File|bool
-	 * @deprecated since 1.32, use fetchFileAndTitle instead
-	 */
-	public function fetchFile( $title, $options = [] ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		return $this->fetchFileAndTitle( $title, $options )[0];
+			'deps' => $deps
+		];
 	}
 
 	/**
@@ -3823,7 +3943,7 @@ class Parser {
 		} elseif ( isset( $options['sha1'] ) ) { // get by (sha1,timestamp)
 			$file = RepoGroup::singleton()->findFileFromKey( $options['sha1'], $options );
 		} else { // get by (name,timestamp)
-			$file = wfFindFile( $title, $options );
+			$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title, $options );
 		}
 		return $file;
 	}
@@ -3837,7 +3957,7 @@ class Parser {
 	 * @return string
 	 */
 	public function interwikiTransclude( $title, $action ) {
-		if ( !$this->siteConfig->get( 'EnableScaryTranscluding' ) ) {
+		if ( !$this->svcOptions->get( 'EnableScaryTranscluding' ) ) {
 			return wfMessage( 'scarytranscludedisabled' )->inContentLanguage()->text();
 		}
 
@@ -3857,7 +3977,7 @@ class Parser {
 				( $wikiId !== false ) ? $wikiId : 'external',
 				sha1( $url )
 			),
-			$this->siteConfig->get( 'TranscludeCacheExpiry' ),
+			$this->svcOptions->get( 'TranscludeCacheExpiry' ),
 			function ( $oldValue, &$ttl ) use ( $url, $fname, $cache ) {
 				$req = MWHttpRequest::factory( $url, [], $fname );
 
@@ -4229,7 +4349,7 @@ class Parser {
 
 		$headlines = $numMatches !== false ? $matches[3] : [];
 
-		$maxTocLevel = $this->siteConfig->get( 'MaxTocLevel' );
+		$maxTocLevel = $this->svcOptions->get( 'MaxTocLevel' );
 		foreach ( $headlines as $headline ) {
 			$isTemplate = false;
 			$titleText = false;
@@ -4620,7 +4740,7 @@ class Parser {
 				'~~~' => $sigText
 			] );
 			# The main two signature forms used above are time-sensitive
-			$this->mOutput->setFlag( 'user-signature' );
+			$this->setOutputFlag( 'user-signature', 'User signature detected' );
 		}
 
 		# Context links ("pipe tricks"): [[|name]] and [[name (context)|]]
@@ -4661,7 +4781,7 @@ class Parser {
 	 * If you have pre-fetched the nickname or the fancySig option, you can
 	 * specify them here to save a database query.
 	 * Do not reuse this parser instance after calling getUserSig(),
-	 * as it may have changed if it's the $wgParser.
+	 * as it may have changed.
 	 *
 	 * @param User &$user
 	 * @param string|bool $nickname Nickname to use or false to use user's default nickname
@@ -4683,9 +4803,9 @@ class Parser {
 
 		$nickname = $nickname == null ? $username : $nickname;
 
-		if ( mb_strlen( $nickname ) > $this->siteConfig->get( 'MaxSigChars' ) ) {
+		if ( mb_strlen( $nickname ) > $this->svcOptions->get( 'MaxSigChars' ) ) {
 			$nickname = $username;
-			wfDebug( __METHOD__ . ": $username has overlong signature.\n" );
+			$this->logger->debug( __METHOD__ . ": $username has overlong signature." );
 		} elseif ( $fancySig !== false ) {
 			# Sig. might contain markup; validate this
 			if ( $this->validateSig( $nickname ) !== false ) {
@@ -4694,7 +4814,7 @@ class Parser {
 			} else {
 				# Failed to validate; fall back to the default
 				$nickname = $username;
-				wfDebug( __METHOD__ . ": $username has bad XML tags in signature.\n" );
+				$this->logger->debug( __METHOD__ . ": $username has bad XML tags in signature." );
 			}
 		}
 
@@ -4780,11 +4900,15 @@ class Parser {
 	 * @param ParserOptions $options
 	 * @param int $outputType
 	 * @param bool $clearState
+	 * @param int|null $revId
 	 */
 	public function startExternalParse( Title $title = null, ParserOptions $options,
-		$outputType, $clearState = true
+		$outputType, $clearState = true, $revId = null
 	) {
 		$this->startParse( $title, $options, $outputType, $clearState );
+		if ( $revId !== null ) {
+			$this->mRevisionId = $revId;
+		}
 	}
 
 	/**
@@ -5191,7 +5315,8 @@ class Parser {
 									$handlerOptions[$paramName] = $match;
 								} else {
 									// Guess not, consider it as caption.
-									wfDebug( "$parameterMatch failed parameter validation\n" );
+									$this->logger->debug(
+										"$parameterMatch failed parameter validation" );
 									$label = $parameterMatch;
 								}
 						}
@@ -5577,7 +5702,7 @@ class Parser {
 	 * @deprecated since 1.28; use getOutput()->updateCacheExpiry()
 	 */
 	public function disableCache() {
-		wfDebug( "Parser output marked as uncacheable.\n" );
+		$this->logger->debug( "Parser output marked as uncacheable." );
 		if ( !$this->mOutput ) {
 			throw new MWException( __METHOD__ .
 				" can only be called when actually parsing something" );
@@ -5839,6 +5964,11 @@ class Parser {
 	/**
 	 * Get the ID of the revision we are parsing
 	 *
+	 * The return value will be either:
+	 *   - a) Positive, indicating a specific revision ID (current or old)
+	 *   - b) Zero, meaning the revision ID is specified by getCurrentRevisionCallback()
+	 *   - c) Null, meaning the parse is for preview mode and there is no revision
+	 *
 	 * @return int|null
 	 */
 	public function getRevisionId() {
@@ -5852,19 +5982,21 @@ class Parser {
 	 * @since 1.23 (public since 1.23)
 	 */
 	public function getRevisionObject() {
-		if ( !is_null( $this->mRevisionObject ) ) {
+		if ( $this->mRevisionObject ) {
 			return $this->mRevisionObject;
 		}
 
 		// NOTE: try to get the RevisionObject even if mRevisionId is null.
-		// This is useful when parsing revision that has not yet been saved.
+		// This is useful when parsing a revision that has not yet been saved.
 		// However, if we get back a saved revision even though we are in
 		// preview mode, we'll have to ignore it, see below.
 		// NOTE: This callback may be used to inject an OLD revision that was
 		// already loaded, so "current" is a bit of a misnomer. We can't just
 		// skip it if mRevisionId is set.
 		$rev = call_user_func(
-			$this->mOptions->getCurrentRevisionCallback(), $this->getTitle(), $this
+			$this->mOptions->getCurrentRevisionCallback(),
+			$this->getTitle(),
+			$this
 		);
 
 		if ( $this->mRevisionId === null && $rev && $rev->getId() ) {
@@ -5891,20 +6023,25 @@ class Parser {
 	/**
 	 * Get the timestamp associated with the current revision, adjusted for
 	 * the default server-local timestamp
-	 * @return string
+	 * @return string TS_MW timestamp
 	 */
 	public function getRevisionTimestamp() {
-		if ( is_null( $this->mRevisionTimestamp ) ) {
-			$revObject = $this->getRevisionObject();
-			$timestamp = $revObject ? $revObject->getTimestamp() : wfTimestampNow();
-
-			# The cryptic '' timezone parameter tells to use the site-default
-			# timezone offset instead of the user settings.
-			# Since this value will be saved into the parser cache, served
-			# to other users, and potentially even used inside links and such,
-			# it needs to be consistent for all visitors.
-			$this->mRevisionTimestamp = $this->contLang->userAdjust( $timestamp, '' );
+		if ( $this->mRevisionTimestamp !== null ) {
+			return $this->mRevisionTimestamp;
 		}
+
+		# Use specified revision timestamp, falling back to the current timestamp
+		$revObject = $this->getRevisionObject();
+		$timestamp = $revObject ? $revObject->getTimestamp() : $this->mOptions->getTimestamp();
+		$this->mOutput->setRevisionTimestampUsed( $timestamp ); // unadjusted time zone
+
+		# The cryptic '' timezone parameter tells to use the site-default
+		# timezone offset instead of the user settings.
+		# Since this value will be saved into the parser cache, served
+		# to other users, and potentially even used inside links and such,
+		# it needs to be consistent for all visitors.
+		$this->mRevisionTimestamp = $this->contLang->userAdjust( $timestamp, '' );
+
 		return $this->mRevisionTimestamp;
 	}
 
@@ -5999,7 +6136,7 @@ class Parser {
 	}
 
 	private function makeLegacyAnchor( $sectionName ) {
-		$fragmentMode = $this->siteConfig->get( 'FragmentMode' );
+		$fragmentMode = $this->svcOptions->get( 'FragmentMode' );
 		if ( isset( $fragmentMode[1] ) && $fragmentMode[1] === 'legacy' ) {
 			// ForAttribute() and ForLink() are the same for legacy encoding
 			$id = Sanitizer::escapeIdForAttribute( $sectionName, Sanitizer::ID_FALLBACK );
@@ -6059,7 +6196,9 @@ class Parser {
 	 */
 	private static function normalizeSectionName( $text ) {
 		# T90902: ensure the same normalization is applied for IDs as to links
+		/** @var MediaWikiTitleCodec $titleParser */
 		$titleParser = MediaWikiServices::getInstance()->getTitleParser();
+		'@phan-var MediaWikiTitleCodec $titleParser';
 		try {
 
 			$parts = $titleParser->splitTitleString( "#$text" );
@@ -6348,9 +6487,9 @@ class Parser {
 	/**
 	 * Return this parser if it is not doing anything, otherwise
 	 * get a fresh parser. You can use this method by doing
-	 * $myParser = $wgParser->getFreshParser(), or more simply
-	 * $wgParser->getFreshParser()->parse( ... );
-	 * if you're unsure if $wgParser is safe to use.
+	 * $newParser = $oldParser->getFreshParser(), or more simply
+	 * $oldParser->getFreshParser()->parse( ... );
+	 * if you're unsure if $oldParser is safe to use.
 	 *
 	 * @since 1.24
 	 * @return Parser A parser object that is not parsing anything
@@ -6372,5 +6511,15 @@ class Parser {
 	public function enableOOUI() {
 		OutputPage::setupOOUI();
 		$this->mOutput->setEnableOOUI( true );
+	}
+
+	/**
+	 * @param string $flag
+	 * @param string $reason
+	 */
+	protected function setOutputFlag( $flag, $reason ) {
+		$this->mOutput->setFlag( $flag );
+		$name = $this->mTitle->getPrefixedText();
+		$this->logger->debug( __METHOD__ . ": set $flag flag on '$name'; $reason" );
 	}
 }

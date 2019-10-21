@@ -27,13 +27,13 @@
 
 class XmlTypeCheck {
 	/**
-	 * Will be set to true or false to indicate whether the file is
+	 * @var bool|null Will be set to true or false to indicate whether the file is
 	 * well-formed XML. Note that this doesn't check schema validity.
 	 */
 	public $wellFormed = null;
 
 	/**
-	 * Will be set to true if the optional element filter returned
+	 * @var bool Will be set to true if the optional element filter returned
 	 * a match at some point.
 	 */
 	public $filterMatch = false;
@@ -46,30 +46,33 @@ class XmlTypeCheck {
 	public $filterMatchType = false;
 
 	/**
-	 * Name of the document's root element, including any namespace
+	 * @var string Name of the document's root element, including any namespace
 	 * as an expanded URL.
 	 */
 	public $rootElement = '';
 
 	/**
-	 * A stack of strings containing the data of each xml element as it's processed. Append
-	 * data to the top string of the stack, then pop off the string and process it when the
+	 * @var string[] A stack of strings containing the data of each xml element as it's processed.
+	 * Append data to the top string of the stack, then pop off the string and process it when the
 	 * element is closed.
 	 */
 	protected $elementData = [];
 
 	/**
-	 * A stack of element names and attributes, as we process them.
+	 * @var array A stack of element names and attributes, as we process them.
 	 */
 	protected $elementDataContext = [];
 
 	/**
-	 * Current depth of the data stack.
+	 * @var int Current depth of the data stack.
 	 */
 	protected $stackDepth = 0;
 
+	/** @var callable|null */
+	protected $filterCallback;
+
 	/**
-	 * Additional parsing options
+	 * @var array Additional parsing options
 	 */
 	private $parserOptions = [
 		'processing_instruction_handler' => null,
@@ -150,7 +153,8 @@ class XmlTypeCheck {
 	}
 
 	/**
-	 * @param string $fname the filename
+	 * @param string $xml
+	 * @param bool $isFile
 	 */
 	private function validateFromInput( $xml, $isFile ) {
 		$reader = new XMLReader();
@@ -308,7 +312,7 @@ class XmlTypeCheck {
 
 	/**
 	 * @param string $name
-	 * @param string $attribs
+	 * @param array $attribs
 	 */
 	private function elementOpen( $name, $attribs ) {
 		$this->elementDataContext[] = [ $name, $attribs ];
@@ -422,7 +426,7 @@ class XmlTypeCheck {
 	 *  * Only contains entity definitions (e.g. No <!ATLIST )
 	 *  * Entity definitions are not "system" entities
 	 *  * Entity definitions are not "parameter" (i.e. %) entities
-	 *  * Entity definitions do not reference other entites except &amp;
+	 *  * Entity definitions do not reference other entities except &amp;
 	 *    and quotes. Entity aliases (where the entity contains only
 	 *    another entity are allowed)
 	 *  * Entity references aren't overly long (>255 bytes).

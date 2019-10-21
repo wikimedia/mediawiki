@@ -40,10 +40,14 @@
 		"link": {
 			"file": "images/icons/link.svg"
 		},
+		"unLink": {
+			"file": "images/icons/unLink.svg",
+			"variants": [ "destructive" ]
+		},
 		"linkExternal": {
 			"file": {
 				"ltr": "images/icons/linkExternal-ltr.svg",
-				"rtl":  "images/icons/linkExternal-rtl.svg"
+				"rtl": "images/icons/linkExternal-rtl.svg"
 			}
 		},
 		"linkSecure": {

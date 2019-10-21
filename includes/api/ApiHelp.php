@@ -40,7 +40,8 @@ class ApiHelp extends ApiBase {
 
 		// Get the help
 		$context = new DerivativeContext( $this->getMain()->getContext() );
-		$context->setSkin( SkinFactory::getDefaultInstance()->makeSkin( 'apioutput' ) );
+		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
+		$context->setSkin( $skinFactory->makeSkin( 'apioutput' ) );
 		$context->setLanguage( $this->getMain()->getLanguage() );
 		$context->setTitle( SpecialPage::getTitleFor( 'ApiHelp' ) );
 		$out = new OutputPage( $context );
@@ -65,6 +66,23 @@ class ApiHelp extends ApiBase {
 			ApiResult::setSubelementsList( $data, 'help' );
 			$result->addValue( null, $this->getModuleName(), $data );
 		} else {
+			// Show any errors at the top of the HTML
+			$transform = [
+				'Types' => [ 'AssocAsObject' => true ],
+				'Strip' => 'all',
+			];
+			$errors = array_filter( [
+				'errors' => $this->getResult()->getResultData( [ 'errors' ], $transform ),
+				'warnings' => $this->getResult()->getResultData( [ 'warnings' ], $transform ),
+			] );
+			if ( $errors ) {
+				$json = FormatJson::encode( $errors, true, FormatJson::UTF8_OK );
+				// Escape any "--", some parsers might interpret that as end-of-comment.
+				// The above already escaped any "<" and ">".
+				$json = str_replace( '--', '-\u002D', $json );
+				$html = "<!-- API warnings and errors:\n$json\n-->\n$html";
+			}
+
 			$result->reset();
 			$result->addValue( null, 'text', $html, ApiResult::NO_SIZE_CHECK );
 			$result->addValue( null, 'mime', 'text/html', ApiResult::NO_SIZE_CHECK );
@@ -99,7 +117,7 @@ class ApiHelp extends ApiBase {
 		$out = $context->getOutput();
 		$out->addModuleStyles( [
 			'mediawiki.hlist',
-			'mediawiki.apihelp',
+			'mediawiki.apipretty',
 		] );
 		if ( !empty( $options['toc'] ) ) {
 			$out->addModuleStyles( 'mediawiki.toc.styles' );
@@ -583,7 +601,8 @@ class ApiHelp extends ApiBase {
 									break;
 
 								case 'namespace':
-									$namespaces = MWNamespace::getValidNamespaces();
+									$namespaces = MediaWikiServices::getInstance()->
+										getNamespaceInfo()->getValidNamespaces();
 									if ( isset( $settings[ApiBase::PARAM_EXTRA_NAMESPACES] ) &&
 										is_array( $settings[ApiBase::PARAM_EXTRA_NAMESPACES] )
 									) {

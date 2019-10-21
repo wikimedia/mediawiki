@@ -27,9 +27,8 @@
  * @code
  * $job = new JobSpecification(
  *		'null',
- *		array( 'lives' => 1, 'usleep' => 100, 'pi' => 3.141569 ),
- *		array( 'removeDuplicates' => 1 ),
- *		Title::makeTitle( NS_SPECIAL, 'nullity' )
+ *		[ 'lives' => 1, 'usleep' => 100, 'pi' => 3.141569 ],
+ *		[ 'removeDuplicates' => 1 ]
  * );
  * JobQueueGroup::singleton()->push( $job )
  * @endcode
@@ -63,8 +62,19 @@ class JobSpecification implements IJobSpecification {
 		$this->validateParams( $opts );
 
 		$this->type = $type;
+		if ( $title instanceof Title ) {
+			// Make sure JobQueue classes can pull the title from parameters alone
+			if ( $title->getDBkey() !== '' ) {
+				$params += [
+					'namespace' => $title->getNamespace(),
+					'title' => $title->getDBkey()
+				];
+			}
+		} else {
+			$title = Title::makeTitle( NS_SPECIAL, '' );
+		}
 		$this->params = $params;
-		$this->title = $title ?: Title::makeTitle( NS_SPECIAL, 'Blankpage' );
+		$this->title = $title;
 		$this->opts = $opts;
 	}
 

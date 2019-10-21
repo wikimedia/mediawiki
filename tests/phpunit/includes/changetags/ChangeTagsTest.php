@@ -23,7 +23,7 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		$this->tablesUsed[] = 'archive';
 	}
 
-	// TODO only modifyDisplayQuery and getSoftwareTags are tested, nothing else is
+	// TODO most methods are not tested
 
 	/** @dataProvider provideModifyDisplayQuery */
 	public function testModifyDisplayQuery( $origQuery, $filter_tag, $useTags, $modifiedQuery ) {
@@ -553,6 +553,48 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		];
 		$res2 = $dbr->select( 'change_tag', [ 'ct_tag_id', 'ct_rc_id' ], '' );
 		$this->assertEquals( $expected2, iterator_to_array( $res2, false ) );
+	}
+
+	public function provideTags() {
+		$tags = [ 'tag 1', 'tag 2', 'tag 3' ];
+		$rcId = 123;
+		$revId = 456;
+		$logId = 789;
+
+		yield [ $tags, $rcId, null, null ];
+		yield [ $tags, null, $revId, null ];
+		yield [ $tags, null, null, $logId ];
+		yield [ $tags, $rcId, $revId, null ];
+		yield [ $tags, $rcId, null, $logId ];
+		yield [ $tags, $rcId, $revId, $logId ];
+	}
+
+	/**
+	 * @dataProvider provideTags
+	 */
+	public function testGetTags( array $tags, $rcId, $revId, $logId ) {
+		ChangeTags::addTags( $tags, $rcId, $revId, $logId );
+
+		$actualTags = ChangeTags::getTags( $this->db, $rcId, $revId, $logId );
+
+		$this->assertSame( $tags, $actualTags );
+	}
+
+	public function testGetTags_multiple_arguments() {
+		$rcId = 123;
+		$revId = 456;
+		$logId = 789;
+
+		ChangeTags::addTags( [ 'tag 1' ], $rcId );
+		ChangeTags::addTags( [ 'tag 2' ], $rcId, $revId );
+		ChangeTags::addTags( [ 'tag 3' ], $rcId, $revId, $logId );
+
+		$tags3 = [ 'tag 3' ];
+		$tags2 = array_merge( $tags3, [ 'tag 2' ] );
+		$tags1 = array_merge( $tags2, [ 'tag 1' ] );
+		$this->assertArrayEquals( $tags3, ChangeTags::getTags( $this->db, $rcId, $revId, $logId ) );
+		$this->assertArrayEquals( $tags2, ChangeTags::getTags( $this->db, $rcId, $revId ) );
+		$this->assertArrayEquals( $tags1, ChangeTags::getTags( $this->db, $rcId ) );
 	}
 
 	public function testTagUsageStatistics() {

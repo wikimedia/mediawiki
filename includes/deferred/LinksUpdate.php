@@ -32,7 +32,7 @@ use Wikimedia\ScopedCallback;
  *
  * See docs/deferred.txt
  */
-class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
+class LinksUpdate extends DataUpdate {
 	// @todo make members protected, but make sure extensions don't break
 
 	/** @var int Page ID of the article linked from */
@@ -125,7 +125,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 
 		if ( !$this->mId ) {
 			// NOTE: subclasses may initialize mId before calling this constructor!
-			$this->mId = $title->getArticleID( Title::GAID_FOR_UPDATE );
+			$this->mId = $title->getArticleID( Title::READ_LATEST );
 		}
 
 		if ( !$this->mId ) {
@@ -203,7 +203,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	}
 
 	/**
-	 * Acquire a lock for performing link table updates for a page on a DB
+	 * Acquire a session-level lock for performing link table updates for a page on a DB
 	 *
 	 * @param IDatabase $dbw
 	 * @param int $pageId
@@ -212,7 +212,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	 * @since 1.27
 	 */
 	public static function acquirePageLock( IDatabase $dbw, $pageId, $why = 'atomicity' ) {
-		$key = "LinksUpdate:$why:pageid:$pageId";
+		$key = "{$dbw->getDomainID()}:LinksUpdate:$why:pageid:$pageId"; // per-wiki
 		$scopedLock = $dbw->getScopedLockAndFlush( $key, __METHOD__, 15 );
 		if ( !$scopedLock ) {
 			$logger = LoggerFactory::getInstance( 'SecondaryDataUpdate' );
@@ -497,7 +497,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 
 		$insertBatches = array_chunk( $insertions, $bSize );
 		foreach ( $insertBatches as $insertBatch ) {
-			$this->getDB()->insert( $table, $insertBatch, __METHOD__, 'IGNORE' );
+			$this->getDB()->insert( $table, $insertBatch, __METHOD__, [ 'IGNORE' ] );
 			$lbf->commitAndWaitForReplication(
 				__METHOD__, $this->ticket, [ 'domain' => $domainId ]
 			);
@@ -615,7 +615,8 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 			$nt = Title::makeTitleSafe( NS_CATEGORY, $name );
 			$contLang->findVariantLink( $name, $nt, true );
 
-			$type = MWNamespace::getCategoryLinkType( $this->mTitle->getNamespace() );
+			$type = MediaWikiServices::getInstance()->getNamespaceInfo()->
+				getCategoryLinkType( $this->mTitle->getNamespace() );
 
 			# Treat custom sortkeys as a prefix, so that if multiple
 			# things are forced to sort as '*' or something, they'll
@@ -964,7 +965,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 
 	/**
 	 * Get an array of existing inline interwiki links, as a 2-D array
-	 * @return array (prefix => array(dbkey => 1))
+	 * @return array [ prefix => [ dbkey => 1 ] ]
 	 */
 	private function getExistingInterwikis() {
 		$res = $this->getDB()->select( 'iwlinks', [ 'iwl_prefix', 'iwl_title' ],
@@ -1065,6 +1066,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	private function invalidateProperties( $changed ) {
 		global $wgPagePropLinkInvalidations;
 
+		$jobs = [];
 		foreach ( $changed as $name => $value ) {
 			if ( isset( $wgPagePropLinkInvalidations[$name] ) ) {
 				$inv = $wgPagePropLinkInvalidations[$name];
@@ -1072,12 +1074,16 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 					$inv = [ $inv ];
 				}
 				foreach ( $inv as $table ) {
-					DeferredUpdates::addUpdate(
-						new HTMLCacheUpdate( $this->mTitle, $table, 'page-props' )
+					$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
+						$this->mTitle,
+						$table,
+						[ 'causeAction' => 'page-props' ]
 					);
 				}
 			}
 		}
+
+		JobQueueGroup::singleton()->lazyPush( $jobs );
 	}
 
 	/**
@@ -1192,38 +1198,13 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 		return $this->db;
 	}
 
-	public function getAsJobSpecification() {
-		if ( $this->user ) {
-			$userInfo = [
-				'userId' => $this->user->getId(),
-				'userName' => $this->user->getName(),
-			];
-		} else {
-			$userInfo = false;
-		}
-
-		if ( $this->mRevision ) {
-			$triggeringRevisionId = $this->mRevision->getId();
-		} else {
-			$triggeringRevisionId = false;
-		}
-
-		return [
-			'domain' => $this->getDB()->getDomainID(),
-			'job'  => new JobSpecification(
-				'refreshLinksPrioritized',
-				[
-					// Reuse the parser cache if it was saved
-					'rootJobTimestamp' => $this->mParserOutput->getCacheTime(),
-					'useRecursiveLinksUpdate' => $this->mRecursive,
-					'triggeringUser' => $userInfo,
-					'triggeringRevisionId' => $triggeringRevisionId,
-					'causeAction' => $this->getCauseAction(),
-					'causeAgent' => $this->getCauseAgent()
-				],
-				[ 'removeDuplicates' => true ],
-				$this->getTitle()
-			)
-		];
+	/**
+	 * Whether or not this LinksUpdate will also update pages which transclude the
+	 * current page or otherwise depend on it.
+	 *
+	 * @return bool
+	 */
+	public function isRecursive() {
+		return $this->mRecursive;
 	}
 }

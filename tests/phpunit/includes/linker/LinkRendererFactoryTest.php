@@ -19,10 +19,18 @@ class LinkRendererFactoryTest extends MediaWikiLangTestCase {
 	 */
 	private $linkCache;
 
+	/**
+	 * @var NamespaceInfo
+	 */
+	private $nsInfo;
+
 	public function setUp() {
 		parent::setUp();
-		$this->titleFormatter = MediaWikiServices::getInstance()->getTitleFormatter();
-		$this->linkCache = MediaWikiServices::getInstance()->getLinkCache();
+
+		$services = MediaWikiServices::getInstance();
+		$this->titleFormatter = $services->getTitleFormatter();
+		$this->linkCache = $services->getLinkCache();
+		$this->nsInfo = $services->getNamespaceInfo();
 	}
 
 	public static function provideCreateFromLegacyOptions() {
@@ -54,7 +62,8 @@ class LinkRendererFactoryTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideCreateFromLegacyOptions
 	 */
 	public function testCreateFromLegacyOptions( $options, $func, $val ) {
-		$factory = new LinkRendererFactory( $this->titleFormatter, $this->linkCache );
+		$factory =
+			new LinkRendererFactory( $this->titleFormatter, $this->linkCache, $this->nsInfo );
 		$linkRenderer = $factory->createFromLegacyOptions(
 			$options
 		);
@@ -63,7 +72,8 @@ class LinkRendererFactoryTest extends MediaWikiLangTestCase {
 	}
 
 	public function testCreate() {
-		$factory = new LinkRendererFactory( $this->titleFormatter, $this->linkCache );
+		$factory =
+			new LinkRendererFactory( $this->titleFormatter, $this->linkCache, $this->nsInfo );
 		$this->assertInstanceOf( LinkRenderer::class, $factory->create() );
 	}
 
@@ -74,7 +84,8 @@ class LinkRendererFactoryTest extends MediaWikiLangTestCase {
 		$user->expects( $this->once() )
 			->method( 'getStubThreshold' )
 			->willReturn( 15 );
-		$factory = new LinkRendererFactory( $this->titleFormatter, $this->linkCache );
+		$factory =
+			new LinkRendererFactory( $this->titleFormatter, $this->linkCache, $this->nsInfo );
 		$linkRenderer = $factory->createForUser( $user );
 		$this->assertInstanceOf( LinkRenderer::class, $linkRenderer );
 		$this->assertEquals( 15, $linkRenderer->getStubThreshold() );

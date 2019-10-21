@@ -88,6 +88,7 @@
 			sideMargin = 'marginLeft';
 		}
 
+		// eslint-disable-next-line no-jquery/no-class-state
 		if ( $element.hasClass( 'jquery-confirmable-element' ) ) {
 			$wrapper = $element.closest( '.jquery-confirmable-wrapper' );
 			$interface = $wrapper.find( '.jquery-confirmable-interface' );

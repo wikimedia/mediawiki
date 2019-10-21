@@ -27,7 +27,7 @@
  *
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class CachingSiteStoreTest extends MediaWikiTestCase {
+class CachingSiteStoreTest extends \MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers CachingSiteStore::getSites
@@ -37,7 +37,7 @@ class CachingSiteStoreTest extends MediaWikiTestCase {
 
 		$store = new CachingSiteStore(
 			$this->getHashSiteStore( $testSites ),
-			wfGetMainCache()
+			ObjectCache::getLocalClusterInstance()
 		);
 
 		$sites = $store->getSites();
@@ -62,7 +62,9 @@ class CachingSiteStoreTest extends MediaWikiTestCase {
 	 * @covers CachingSiteStore::saveSites
 	 */
 	public function testSaveSites() {
-		$store = new CachingSiteStore( new HashSiteStore(), wfGetMainCache() );
+		$store = new CachingSiteStore(
+			new HashSiteStore(), ObjectCache::getLocalClusterInstance()
+		);
 
 		$sites = [];
 
@@ -108,7 +110,7 @@ class CachingSiteStoreTest extends MediaWikiTestCase {
 				return $siteList;
 			} ) );
 
-		$store = new CachingSiteStore( $dbSiteStore, wfGetMainCache() );
+		$store = new CachingSiteStore( $dbSiteStore, ObjectCache::getLocalClusterInstance() );
 
 		// initialize internal cache
 		$this->assertGreaterThan( 0, $store->getSites()->count(), 'count sites' );
@@ -138,14 +140,16 @@ class CachingSiteStoreTest extends MediaWikiTestCase {
 	 * @covers CachingSiteStore::clear
 	 */
 	public function testClear() {
-		$store = new CachingSiteStore( new HashSiteStore(), wfGetMainCache() );
+		$store = new CachingSiteStore(
+			new HashSiteStore(), ObjectCache::getLocalClusterInstance()
+		);
 		$this->assertTrue( $store->clear() );
 
 		$site = $store->getSite( 'enwiki' );
 		$this->assertNull( $site );
 
 		$sites = $store->getSites();
-		$this->assertEquals( 0, $sites->count() );
+		$this->assertSame( 0, $sites->count() );
 	}
 
 	/**

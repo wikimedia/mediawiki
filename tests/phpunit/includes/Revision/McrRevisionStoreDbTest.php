@@ -1,13 +1,20 @@
 <?php
+
 namespace MediaWiki\Tests\Revision;
 
 use CommentStoreComment;
+use ContentHandler;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Storage\BlobStore;
+use MediaWiki\Storage\SqlBlobStore;
+use Revision;
+use StatusValue;
 use TextContent;
 use Title;
+use Wikimedia\TestingAccessWrapper;
 use WikitextContent;
 
 /**
@@ -186,4 +193,196 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		$this->assertRevisionRecordsEqual( $return, $loaded );
 	}
 
+	/**
+	 * Conditions to use together with getSlotsQueryInfo() when selecting slot rows for a given
+	 * revision.
+	 *
+	 * @return array
+	 */
+	protected function getSlotRevisionConditions( $revId ) {
+		return [ 'slot_revision_id' => $revId ];
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::getContentBlobsForBatch
+	 * @throws \MWException
+	 */
+	public function testGetContentBlobsForBatch_error() {
+		$page1 = $this->getTestPage();
+		$text = __METHOD__ . 'b-ä';
+		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), $text . '1' );
+		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
+		/** @var Revision $rev1 */
+		$rev1 = $editStatus->getValue()['revision'];
+
+		$contentAddress = $rev1->getRevisionRecord()->getSlot( SlotRecord::MAIN )->getAddress();
+		$blobStatus = StatusValue::newGood( [] );
+		$blobStatus->warning( 'internalerror', 'oops!' );
+
+		$mockBlobStore = $this->getMock( BlobStore::class );
+		$mockBlobStore->method( 'getBlobBatch' )
+			->willReturn( $blobStatus );
+
+		$revStore = MediaWikiServices::getInstance()
+			->getRevisionStoreFactory()
+			->getRevisionStore();
+		$wrappedRevStore = TestingAccessWrapper::newFromObject( $revStore );
+		$wrappedRevStore->blobStore = $mockBlobStore;
+
+		$result = $revStore->getContentBlobsForBatch( [ $rev1->getId() ] );
+		$this->assertTrue( $result->isOK() );
+		$this->assertFalse( $result->isGood() );
+		$this->assertNotEmpty( $result->getErrors() );
+
+		$records = $result->getValue();
+		$this->assertArrayHasKey( $rev1->getId(), $records );
+
+		$mainRow = $records[$rev1->getId()][SlotRecord::MAIN];
+		$this->assertNull( $mainRow->blob_data );
+		$this->assertSame( [
+			[
+				'type' => 'warning',
+				'message' => 'internalerror',
+				'params' => [
+					"oops!"
+				]
+			],
+			[
+				'type' => 'warning',
+				'message' => 'internalerror',
+				'params' => [
+					"Couldn't find blob data for rev " . $rev1->getId()
+				]
+			]
+		], $result->getErrors() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::getContentBlobsForBatch
+	 */
+	public function testGetContentBlobsForBatchUsesGetBlobBatch() {
+		$page1 = $this->getTestPage();
+		$text = __METHOD__ . 'b-ä';
+		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), $text . '1' );
+		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
+		/** @var Revision $rev1 */
+		$rev1 = $editStatus->getValue()['revision'];
+
+		$contentAddress = $rev1->getRevisionRecord()->getSlot( SlotRecord::MAIN )->getAddress();
+		$mockBlobStore = $this->getMockBuilder( SqlBlobStore::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$mockBlobStore
+			->expects( $this->once() )
+			->method( 'getBlobBatch' )
+			->with( [ $contentAddress ], $this->anything() )
+			->willReturn( StatusValue::newGood( [
+				$contentAddress => 'Content_From_Mock'
+			] ) );
+		$mockBlobStore
+			->expects( $this->never() )
+			->method( 'getBlob' );
+
+		$revStore = MediaWikiServices::getInstance()
+			->getRevisionStoreFactory()
+			->getRevisionStore();
+		$wrappedRevStore = TestingAccessWrapper::newFromObject( $revStore );
+		$wrappedRevStore->blobStore = $mockBlobStore;
+
+		$result = $revStore->getContentBlobsForBatch(
+			[ $rev1->getId() ],
+			[ SlotRecord::MAIN ]
+		);
+		$this->assertTrue( $result->isGood() );
+		$this->assertSame( 'Content_From_Mock',
+			$result->getValue()[$rev1->getId()][SlotRecord::MAIN]->blob_data );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionsFromBatch
+	 * @throws \MWException
+	 */
+	public function testNewRevisionsFromBatch_error() {
+		$page = $this->getTestPage();
+		$text = __METHOD__ . 'b-ä';
+		/** @var Revision $rev1 */
+		$rev1 = $page->doEditContent(
+			new WikitextContent( $text . '1' ),
+			__METHOD__ . 'b',
+			0,
+			false,
+			$this->getTestUser()->getUser()
+		)->value['revision'];
+		$invalidRow = $this->revisionToRow( $rev1 );
+		$invalidRow->rev_id = 100500;
+		$result = MediaWikiServices::getInstance()->getRevisionStore()
+			->newRevisionsFromBatch(
+				[ $this->revisionToRow( $rev1 ), $invalidRow ],
+				[
+					'slots' => [ SlotRecord::MAIN ],
+					'content' => true
+				]
+			);
+		$this->assertFalse( $result->isGood() );
+		$this->assertNotEmpty( $result->getErrors() );
+		$records = $result->getValue();
+		$this->assertRevisionRecordMatchesRevision( $rev1, $records[$rev1->getId()] );
+		$this->assertSame( $text . '1',
+			$records[$rev1->getId()]->getContent( SlotRecord::MAIN )->serialize() );
+		$this->assertEquals( $page->getTitle()->getDBkey(),
+			$records[$rev1->getId()]->getPageAsLinkTarget()->getDBkey() );
+		$this->assertNull( $records[$invalidRow->rev_id] );
+		$this->assertSame( [ [
+			'type' => 'warning',
+			'message' => 'internalerror',
+			'params' => [
+				"Couldn't find slots for rev 100500"
+			]
+		] ], $result->getErrors() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionsFromBatch
+	 */
+	public function testNewRevisionFromBatchUsesGetBlobBatch() {
+		$page1 = $this->getTestPage();
+		$text = __METHOD__ . 'b-ä';
+		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), $text . '1' );
+		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
+		/** @var Revision $rev1 */
+		$rev1 = $editStatus->getValue()['revision'];
+
+		$contentAddress = $rev1->getRevisionRecord()->getSlot( SlotRecord::MAIN )->getAddress();
+		$mockBlobStore = $this->getMockBuilder( SqlBlobStore::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$mockBlobStore
+			->expects( $this->once() )
+			->method( 'getBlobBatch' )
+			->with( [ $contentAddress ], $this->anything() )
+			->willReturn( StatusValue::newGood( [
+				$contentAddress => 'Content_From_Mock'
+			] ) );
+		$mockBlobStore
+			->expects( $this->never() )
+			->method( 'getBlob' );
+
+		$revStore = MediaWikiServices::getInstance()
+			->getRevisionStoreFactory()
+			->getRevisionStore();
+		$wrappedRevStore = TestingAccessWrapper::newFromObject( $revStore );
+		$wrappedRevStore->blobStore = $mockBlobStore;
+
+		$result = $revStore->newRevisionsFromBatch(
+			[ $this->revisionToRow( $rev1 ) ],
+			[
+				'slots' => [ SlotRecord::MAIN ],
+				'content' => true
+			]
+		);
+		$this->assertTrue( $result->isGood() );
+		$this->assertSame( 'Content_From_Mock',
+			ContentHandler::getContentText( $result->getValue()[$rev1->getId()]
+				->getContent( SlotRecord::MAIN ) ) );
+	}
 }

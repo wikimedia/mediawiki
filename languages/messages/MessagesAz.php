@@ -59,3 +59,4 @@ $magicWords = [
 ];
 
 $separatorTransformTable = [ ',' => '.', '.' => ',' ];
+$linkTrail = '/^([a-zçəğıöşü]+)(.*)$/sDu';

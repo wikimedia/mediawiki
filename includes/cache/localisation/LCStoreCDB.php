@@ -22,9 +22,7 @@ use Cdb\Reader;
 use Cdb\Writer;
 
 /**
- * LCStore implementation which stores data as a collection of CDB files in the
- * directory given by $wgCacheDirectory. If $wgCacheDirectory is not set, this
- * will throw an exception.
+ * LCStore implementation which stores data as a collection of CDB files.
  *
  * Profiling indicates that on Linux, this implementation outperforms MySQL if
  * the directory is on a local filesystem and there is ample kernel cache
@@ -35,7 +33,7 @@ use Cdb\Writer;
  */
 class LCStoreCDB implements LCStore {
 
-	/** @var Reader[] */
+	/** @var Reader[]|false[] */
 	private $readers;
 
 	/** @var Writer */
@@ -44,13 +42,11 @@ class LCStoreCDB implements LCStore {
 	/** @var string Current language code */
 	private $currentLang;
 
-	/** @var bool|string Cache directory. False if not set */
+	/** @var string Cache directory */
 	private $directory;
 
 	function __construct( $conf = [] ) {
-		global $wgCacheDirectory;
-
-		$this->directory = $conf['directory'] ?? $wgCacheDirectory;
+		$this->directory = $conf['directory'];
 	}
 
 	public function get( $code, $key ) {

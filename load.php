@@ -28,6 +28,8 @@ use MediaWiki\MediaWikiServices;
 // details of the session. Enforce this constraint with respect to session use.
 define( 'MW_NO_SESSION', 1 );
 
+define( 'MW_ENTRY_POINT', 'load' );
+
 require __DIR__ . '/includes/WebStart.php';
 
 // URL safety checks
@@ -45,7 +47,7 @@ $context = new ResourceLoaderContext( $resourceLoader, $wgRequest );
 // Respond to ResourceLoader request
 $resourceLoader->respond( $context );
 
-Profiler::instance()->setTemplated( true );
+Profiler::instance()->setAllowOutput();
 
 $mediawiki = new MediaWiki();
 $mediawiki->doPostOutputShutdown( 'fast' );

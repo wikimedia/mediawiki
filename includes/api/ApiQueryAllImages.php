@@ -205,7 +205,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 				$this->addJoinConds( [ 'user_groups' => [
 					'LEFT JOIN',
 					[
-						'ug_group' => User::getGroupsWithPermission( 'bot' ),
+						'ug_group' => $this->getPermissionManager()->getGroupsWithPermission( 'bot' ),
 						'ug_user = ' . $actorQuery['fields']['img_user'],
 						'ug_expiry IS NULL OR ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
 					]
@@ -406,7 +406,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 	protected function getExamplesMessages() {
 		return [
 			'action=query&list=allimages&aifrom=B'
-				=> 'apihelp-query+allimages-example-B',
+				=> 'apihelp-query+allimages-example-b',
 			'action=query&list=allimages&aiprop=user|timestamp|url&' .
 				'aisort=timestamp&aidir=older'
 				=> 'apihelp-query+allimages-example-recent',

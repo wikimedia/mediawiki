@@ -30,7 +30,7 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Parser
  */
 class MagicWordArray {
-	/** @var array */
+	/** @var string[] */
 	public $names = [];
 
 	/** @var MagicWordFactory */
@@ -44,15 +44,12 @@ class MagicWordArray {
 	private $regex;
 
 	/**
-	 * @param array $names
+	 * @param string[] $names
 	 * @param MagicWordFactory|null $factory
 	 */
 	public function __construct( $names = [], MagicWordFactory $factory = null ) {
 		$this->names = $names;
-		$this->factory = $factory;
-		if ( !$factory ) {
-			$this->factory = MediaWikiServices::getInstance()->getMagicWordFactory();
-		}
+		$this->factory = $factory ?: MediaWikiServices::getInstance()->getMagicWordFactory();
 	}
 
 	/**
@@ -68,7 +65,7 @@ class MagicWordArray {
 	/**
 	 * Add a number of magic words by name
 	 *
-	 * @param array $names
+	 * @param string[] $names
 	 */
 	public function addArray( $names ) {
 		$this->names = array_merge( $this->names, array_values( $names ) );
@@ -98,7 +95,7 @@ class MagicWordArray {
 
 	/**
 	 * Get the base regex
-	 * @return array
+	 * @return string[]
 	 */
 	public function getBaseRegex() {
 		if ( is_null( $this->baseRegex ) ) {
@@ -132,7 +129,7 @@ class MagicWordArray {
 
 	/**
 	 * Get an unanchored regex that does not match parameters
-	 * @return array
+	 * @return string[]
 	 */
 	public function getRegex() {
 		if ( is_null( $this->regex ) ) {
@@ -151,7 +148,7 @@ class MagicWordArray {
 	/**
 	 * Get a regex for matching variables with parameters
 	 *
-	 * @return string
+	 * @return string[]
 	 */
 	public function getVariableRegex() {
 		return str_replace( "\\$1", "(.*?)", $this->getRegex() );
@@ -160,7 +157,7 @@ class MagicWordArray {
 	/**
 	 * Get a regex anchored to the start of the string that does not match parameters
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public function getRegexStart() {
 		$base = $this->getBaseRegex();
@@ -177,7 +174,7 @@ class MagicWordArray {
 	/**
 	 * Get an anchored regex for matching variables with parameters
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public function getVariableStartToEndRegex() {
 		$base = $this->getBaseRegex();
@@ -193,7 +190,7 @@ class MagicWordArray {
 
 	/**
 	 * @since 1.20
-	 * @return array
+	 * @return string[]
 	 */
 	public function getNames() {
 		return $this->names;

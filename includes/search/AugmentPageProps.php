@@ -13,7 +13,7 @@ class AugmentPageProps implements ResultSetAugmentor {
 		$this->propnames = $propnames;
 	}
 
-	public function augmentAll( SearchResultSet $resultSet ) {
+	public function augmentAll( ISearchResultSet $resultSet ) {
 		$titles = $resultSet->extractTitles();
 		return PageProps::getInstance()->getProperties( $titles, $this->propnames );
 	}

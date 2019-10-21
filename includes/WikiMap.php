@@ -221,19 +221,29 @@ class WikiMap {
 	 * @since 1.30
 	 */
 	public static function getWikiFromUrl( $url ) {
+		global $wgCanonicalServer;
+
+		if ( strpos( $url, "$wgCanonicalServer/" ) === 0 ) {
+			// Optimisation: Handle the the common case.
+			// (Duplicates self::getCanonicalServerInfoForAllWikis)
+			return self::getWikiIdFromDbDomain( self::getCurrentWikiDbDomain() );
+		}
+
 		$urlPartsCheck = wfParseUrl( $url );
 		if ( $urlPartsCheck === false ) {
 			return false;
 		}
 
-		$urlPartsCheck = array_intersect_key( $urlPartsCheck, [ 'host' => 1, 'port' => 1 ] );
+		static $relevantKeys = [ 'host' => 1, 'port' => 1 ];
+		$urlPartsCheck = array_intersect_key( $urlPartsCheck, $relevantKeys );
+
 		foreach ( self::getCanonicalServerInfoForAllWikis() as $wikiId => $info ) {
 			$urlParts = $info['parts'];
 			if ( $urlParts === false ) {
 				continue; // sanity
 			}
 
-			$urlParts = array_intersect_key( $urlParts, [ 'host' => 1, 'port' => 1 ] );
+			$urlParts = array_intersect_key( $urlParts, $relevantKeys );
 			if ( $urlParts == $urlPartsCheck ) {
 				return $wikiId;
 			}
@@ -246,11 +256,10 @@ class WikiMap {
 	 * Get the wiki ID of a database domain
 	 *
 	 * This is like DatabaseDomain::getId() without encoding (for legacy reasons) and
-	 * without the schema if it is the generic installer default of "mediawiki"/"dbo"
+	 * without the schema if it is the generic installer default of "mediawiki"
 	 *
 	 * @see $wgDBmwschema
 	 * @see PostgresInstaller
-	 * @see MssqlInstaller
 	 *
 	 * @param string|DatabaseDomain $domain
 	 * @return string
@@ -263,7 +272,7 @@ class WikiMap {
 		// the installer default then it is probably the case that the schema is the same for
 		// all wikis in the farm. Historically, any wiki farm had to make the database/prefix
 		// combination unique per wiki. Ommit the schema if it does not seem wiki specific.
-		if ( !in_array( $domain->getSchema(), [ null, 'mediawiki', 'dbo' ], true ) ) {
+		if ( !in_array( $domain->getSchema(), [ null, 'mediawiki' ], true ) ) {
 			// This means a site admin may have specifically taylored the schemas.
 			// Domain IDs might use the form <DB>-<project>- or <DB>-<project>-<language>_,
 			// meaning that the schema portion must be accounted for to disambiguate wikis.
@@ -274,15 +283,6 @@ class WikiMap {
 		return strlen( $domain->getTablePrefix() )
 			? "{$domain->getDatabase()}-{$domain->getTablePrefix()}"
 			: (string)$domain->getDatabase();
-	}
-
-	/**
-	 * @param string $domain
-	 * @return string
-	 * @deprecated Since 1.33; use getWikiIdFromDbDomain()
-	 */
-	public static function getWikiIdFromDomain( $domain ) {
-		return self::getWikiIdFromDbDomain( $domain );
 	}
 
 	/**
@@ -301,7 +301,7 @@ class WikiMap {
 	 * @since 1.33
 	 */
 	public static function isCurrentWikiDbDomain( $domain ) {
-		return self::getCurrentWikiDbDomain()->equals( DatabaseDomain::newFromId( $domain ) );
+		return self::getCurrentWikiDbDomain()->equals( $domain );
 	}
 
 	/**

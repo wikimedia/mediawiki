@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 
@@ -149,13 +150,6 @@ class TitleTest extends MediaWikiTestCase {
 				]
 			]
 		] );
-
-		// Reset TitleParser since we modified $wgLocalInterwikis
-		$this->setService( 'TitleParser', new MediaWikiTitleCodec(
-				Language::factory( 'en' ),
-				new GenderCache(),
-				[ 'localtestiw' ]
-		) );
 	}
 
 	/**
@@ -283,43 +277,6 @@ class TitleTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Auth-less test of Title::isValidMoveOperation
-	 *
-	 * @param string $source
-	 * @param string $target
-	 * @param array|string|bool $expected Required error
-	 * @dataProvider provideTestIsValidMoveOperation
-	 * @covers Title::isValidMoveOperation
-	 */
-	public function testIsValidMoveOperation( $source, $target, $expected ) {
-		$this->setMwGlobals( 'wgContentHandlerUseDB', false );
-		$title = Title::newFromText( $source );
-		$nt = Title::newFromText( $target );
-		$errors = $title->isValidMoveOperation( $nt, false );
-		if ( $expected === true ) {
-			$this->assertTrue( $errors );
-		} else {
-			$errors = $this->flattenErrorsArray( $errors );
-			foreach ( (array)$expected as $error ) {
-				$this->assertContains( $error, $errors );
-			}
-		}
-	}
-
-	public static function provideTestIsValidMoveOperation() {
-		return [
-			// for Title::isValidMoveOperation
-			[ 'Some page', '', 'badtitletext' ],
-			[ 'Test', 'Test', 'selfmove' ],
-			[ 'Special:FooBar', 'Test', 'immobile-source-namespace' ],
-			[ 'Test', 'Special:FooBar', 'immobile-target-namespace' ],
-			[ 'MediaWiki:Common.js', 'Help:Some wikitext page', 'bad-target-model' ],
-			[ 'Page', 'File:Test.jpg', 'nonfile-cannot-move-to-file' ],
-			[ 'File:Test.jpg', 'Page', 'imagenocrossnamespace' ],
-		];
-	}
-
-	/**
 	 * Auth-less test of Title::userCan
 	 *
 	 * @param array $whitelistRegexp
@@ -333,7 +290,7 @@ class TitleTest extends MediaWikiTestCase {
 	public function testWgWhitelistReadRegexp( $whitelistRegexp, $source, $action, $expected ) {
 		// $wgWhitelistReadRegexp must be an array. Since the provided test cases
 		// usually have only one regex, it is more concise to write the lonely regex
-		// as a string. Thus we cast to an array() to honor $wgWhitelistReadRegexp
+		// as a string. Thus we cast to a [] to honor $wgWhitelistReadRegexp
 		// type requisite.
 		if ( is_string( $whitelistRegexp ) ) {
 			$whitelistRegexp = [ $whitelistRegexp ];
@@ -350,7 +307,7 @@ class TitleTest extends MediaWikiTestCase {
 
 		// New anonymous user with no rights
 		$user = new User;
-		$user->mRights = [];
+		$this->overrideUserPermissions( $user, [] );
 		$errors = $title->userCan( $action, $user );
 
 		if ( is_bool( $expected ) ) {
@@ -489,8 +446,22 @@ class TitleTest extends MediaWikiTestCase {
 	 */
 	public function testGetBaseText( $title, $expected, $msg = '' ) {
 		$title = Title::newFromText( $title );
-		$this->assertEquals( $expected,
+		$this->assertSame( $expected,
 			$title->getBaseText(),
+			$msg
+		);
+	}
+
+	/**
+	 * @dataProvider provideBaseTitleCases
+	 * @covers Title::getBaseTitle
+	 */
+	public function testGetBaseTitle( $title, $expected, $msg = '' ) {
+		$title = Title::newFromText( $title );
+		$base = $title->getBaseTitle();
+		$this->assertTrue( $base->isValid(), $msg );
+		$this->assertTrue(
+			$base->equals( Title::makeTitleSafe( $title->getNamespace(), $expected ) ),
 			$msg
 		);
 	}
@@ -499,7 +470,7 @@ class TitleTest extends MediaWikiTestCase {
 		return [
 			# Title, expected base, optional message
 			[ 'User:John_Doe/subOne/subTwo', 'John Doe/subOne' ],
-			[ 'User:Foo/Bar/Baz', 'Foo/Bar' ],
+			[ 'User:Foo / Bar / Baz', 'Foo / Bar ' ],
 		];
 	}
 
@@ -515,11 +486,29 @@ class TitleTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @dataProvider provideRootTitleCases
+	 * @covers Title::getRootTitle
+	 */
+	public function testGetRootTitle( $title, $expected, $msg = '' ) {
+		$title = Title::newFromText( $title );
+		$root = $title->getRootTitle();
+		$this->assertTrue( $root->isValid(), $msg );
+		$this->assertTrue(
+			$root->equals( Title::makeTitleSafe( $title->getNamespace(), $expected ) ),
+			$msg
+		);
+	}
+
 	public static function provideRootTitleCases() {
 		return [
 			# Title, expected base, optional message
 			[ 'User:John_Doe/subOne/subTwo', 'John Doe' ],
-			[ 'User:Foo/Bar/Baz', 'Foo' ],
+			[ 'User:Foo / Bar / Baz', 'Foo ' ],
+			[ 'Talk:////', '////' ],
+			[ 'Template:////', '////' ],
+			[ 'Template:Foo////', 'Foo' ],
+			[ 'Template:Foo////Bar', 'Foo' ],
 		];
 	}
 
@@ -542,6 +531,41 @@ class TitleTest extends MediaWikiTestCase {
 			[ 'User:John_Doe/subOne/subTwo', 'subTwo' ],
 			[ 'User:John_Doe/subOne', 'subOne' ],
 		];
+	}
+
+	public function provideSubpage() {
+		// NOTE: avoid constructing Title objects in the provider, since it may access the database.
+		return [
+			[ 'Foo', 'x', new TitleValue( NS_MAIN, 'Foo/x' ) ],
+			[ 'Foo#bar', 'x', new TitleValue( NS_MAIN, 'Foo/x' ) ],
+			[ 'User:Foo', 'x', new TitleValue( NS_USER, 'Foo/x' ) ],
+			[ 'wiki:User:Foo', 'x', new TitleValue( NS_MAIN, 'User:Foo/x', '', 'wiki' ) ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideSubpage
+	 * @covers Title::getSubpage
+	 */
+	public function testSubpage( $title, $sub, LinkTarget $expected ) {
+		$interwikiLookup = $this->getMock( InterwikiLookup::class );
+		$interwikiLookup->expects( $this->any() )
+			->method( 'isValidInterwiki' )
+			->willReturnCallback(
+				function ( $prefix ) {
+					return $prefix == 'wiki';
+				}
+			);
+
+		$this->setService( 'InterwikiLookup', $interwikiLookup );
+
+		$title = Title::newFromText( $title );
+		$expected = Title::newFromLinkTarget( $expected );
+		$actual = $title->getSubpage( $sub );
+
+		// NOTE: convert to string for comparison
+		$this->assertSame( $expected->getPrefixedText(), $actual->getPrefixedText(), 'text form' );
+		$this->assertTrue( $expected->equals( $actual ), 'Title equality' );
 	}
 
 	public static function provideNewFromTitleValue() {
@@ -589,6 +613,27 @@ class TitleTest extends MediaWikiTestCase {
 		$clone = Title::newFromLinkTarget( $title, Title::NEW_CLONE );
 		$this->assertNotSame( $title, $clone );
 		$this->assertTrue( $clone->equals( $title ) );
+	}
+
+	public function provideCastFromLinkTarget() {
+		return array_merge( [ [ null ] ], self::provideNewFromTitleValue() );
+	}
+
+	/**
+	 * @covers Title::castFromLinkTarget
+	 * @dataProvider provideCastFromLinkTarget
+	 */
+	public function testCastFromLinkTarget( $value ) {
+		$title = Title::castFromLinkTarget( $value );
+
+		if ( $value === null ) {
+			$this->assertNull( $title );
+		} else {
+			$dbkey = str_replace( ' ', '_', $value->getText() );
+			$this->assertSame( $dbkey, $title->getDBkey() );
+			$this->assertSame( $value->getNamespace(), $title->getNamespace() );
+			$this->assertSame( $value->getFragment(), $title->getFragment() );
+		}
 	}
 
 	public static function provideGetTitleValue() {
@@ -683,6 +728,12 @@ class TitleTest extends MediaWikiTestCase {
 			[ Title::makeTitle( NS_MAIN, '|' ), false ],
 			[ Title::makeTitle( NS_MAIN, '#' ), false ],
 			[ Title::makeTitle( NS_MAIN, 'Test' ), true ],
+			[ Title::makeTitle( NS_MAIN, ' Test' ), false ],
+			[ Title::makeTitle( NS_MAIN, '_Test' ), false ],
+			[ Title::makeTitle( NS_MAIN, 'Test ' ), false ],
+			[ Title::makeTitle( NS_MAIN, 'Test_' ), false ],
+			[ Title::makeTitle( NS_MAIN, "Test\nthis" ), false ],
+			[ Title::makeTitle( NS_MAIN, "Test\tthis" ), false ],
 			[ Title::makeTitle( -33, 'Test' ), false ],
 			[ Title::makeTitle( 77663399, 'Test' ), false ],
 		];
@@ -710,19 +761,19 @@ class TitleTest extends MediaWikiTestCase {
 		// Tell Title it doesn't know whether it exists
 		$title->mArticleID = -1;
 
-		// Tell the link cache it doesn't exists when it really does
+		// Tell the link cache it doesn't exist when it really does
 		$linkCache->clearLink( $title );
 		$linkCache->addBadLinkObj( $title );
 
 		$this->assertEquals(
 			false,
 			$title->exists(),
-			'exists() should rely on link cache unless GAID_FOR_UPDATE is used'
+			'exists() should rely on link cache unless READ_LATEST is used'
 		);
 		$this->assertEquals(
 			true,
-			$title->exists( Title::GAID_FOR_UPDATE ),
-			'exists() should re-query database when GAID_FOR_UPDATE is used'
+			$title->exists( Title::READ_LATEST ),
+			'exists() should re-query database when READ_LATEST is used'
 		);
 	}
 
@@ -740,6 +791,80 @@ class TitleTest extends MediaWikiTestCase {
 			'Virtual namespace cannot have talk page' => [
 				Title::makeTitle( NS_MEDIA, 'Kitten.jpg' ), false
 			],
+			'Relative link has no talk page' => [
+				Title::makeTitle( NS_MAIN, '', 'Kittens' ), false
+			],
+			'Interwiki link has no talk page' => [
+				Title::makeTitle( NS_MAIN, 'Kittens', '', 'acme' ), false
+			],
+		];
+	}
+
+	public function provideIsWatchable() {
+		return [
+			'User page is watchable' => [
+				Title::makeTitle( NS_USER, 'Jane' ), true
+			],
+			'Talke page is watchable' => [
+				Title::makeTitle( NS_TALK, 'Foo' ), true
+			],
+			'Special page is not watchable' => [
+				Title::makeTitle( NS_SPECIAL, 'Thing' ), false
+			],
+			'Virtual namespace is not watchable' => [
+				Title::makeTitle( NS_MEDIA, 'Kitten.jpg' ), false
+			],
+			'Relative link is not watchable' => [
+				Title::makeTitle( NS_MAIN, '', 'Kittens' ), false
+			],
+			'Interwiki link is not watchable' => [
+				Title::makeTitle( NS_MAIN, 'Kittens', '', 'acme' ), false
+			],
+		];
+	}
+
+	public static function provideGetTalkPage_good() {
+		return [
+			[ Title::makeTitle( NS_MAIN, 'Test' ), Title::makeTitle( NS_TALK, 'Test' ) ],
+			[ Title::makeTitle( NS_TALK, 'Test' ), Title::makeTitle( NS_TALK, 'Test' ) ],
+		];
+	}
+
+	public static function provideGetTalkPage_bad() {
+		return [
+			[ Title::makeTitle( NS_SPECIAL, 'Test' ) ],
+			[ Title::makeTitle( NS_MEDIA, 'Test' ) ],
+		];
+	}
+
+	public static function provideGetTalkPage_broken() {
+		// These cases *should* be bad, but are not treated as bad, for backwards compatibility.
+		// See discussion on T227817.
+		return [
+			[
+				Title::makeTitle( NS_MAIN, '', 'Kittens' ),
+				Title::makeTitle( NS_TALK, '' ), // Section is lost!
+				false,
+			],
+			[
+				Title::makeTitle( NS_MAIN, 'Kittens', '', 'acme' ),
+				Title::makeTitle( NS_TALK, 'Kittens', '' ), // Interwiki prefix is lost!
+				true,
+			],
+		];
+	}
+
+	public static function provideGetSubjectPage_good() {
+		return [
+			[ Title::makeTitle( NS_TALK, 'Test' ), Title::makeTitle( NS_MAIN, 'Test' ) ],
+			[ Title::makeTitle( NS_MAIN, 'Test' ), Title::makeTitle( NS_MAIN, 'Test' ) ],
+		];
+	}
+
+	public static function provideGetOtherPage_good() {
+		return [
+			[ Title::makeTitle( NS_MAIN, 'Test' ), Title::makeTitle( NS_TALK, 'Test' ) ],
+			[ Title::makeTitle( NS_TALK, 'Test' ), Title::makeTitle( NS_MAIN, 'Test' ) ],
 		];
 	}
 
@@ -755,44 +880,61 @@ class TitleTest extends MediaWikiTestCase {
 		$this->assertSame( $expected, $actual, $title->getPrefixedDBkey() );
 	}
 
-	public static function provideGetTalkPage_good() {
-		return [
-			[ Title::makeTitle( NS_MAIN, 'Test' ), Title::makeTitle( NS_TALK, 'Test' ) ],
-			[ Title::makeTitle( NS_TALK, 'Test' ), Title::makeTitle( NS_TALK, 'Test' ) ],
-		];
-	}
-
 	/**
-	 * @dataProvider provideGetTalkPage_good
-	 * @covers Title::getTalkPage
+	 * @dataProvider provideIsWatchable
+	 * @covers Title::isWatchable
+	 *
+	 * @param Title $title
+	 * @param bool $expected
 	 */
-	public function testGetTalkPage_good( Title $title, Title $expected ) {
-		$talk = $title->getTalkPage();
-		$this->assertSame(
-			$expected->getPrefixedDBKey(),
-			$talk->getPrefixedDBKey(),
-			$title->getPrefixedDBKey()
-		);
+	public function testIsWatchable( Title $title, $expected ) {
+		$actual = $title->canHaveTalkPage();
+		$this->assertSame( $expected, $actual, $title->getPrefixedDBkey() );
 	}
 
 	/**
 	 * @dataProvider provideGetTalkPage_good
 	 * @covers Title::getTalkPageIfDefined
 	 */
-	public function testGetTalkPageIfDefined_good( Title $title ) {
-		$talk = $title->getTalkPageIfDefined();
-		$this->assertInstanceOf(
-			Title::class,
-			$talk,
-			$title->getPrefixedDBKey()
-		);
+	public function testGetTalkPage_good( Title $title, Title $expected ) {
+		$actual = $title->getTalkPage();
+		$this->assertTrue( $expected->equals( $actual ), $title->getPrefixedDBkey() );
 	}
 
-	public static function provideGetTalkPage_bad() {
-		return [
-			[ Title::makeTitle( NS_SPECIAL, 'Test' ) ],
-			[ Title::makeTitle( NS_MEDIA, 'Test' ) ],
-		];
+	/**
+	 * @dataProvider provideGetTalkPage_bad
+	 * @covers Title::getTalkPageIfDefined
+	 */
+	public function testGetTalkPage_bad( Title $title ) {
+		$this->setExpectedException( MWException::class );
+		$title->getTalkPage();
+	}
+
+	/**
+	 * @dataProvider provideGetTalkPage_broken
+	 * @covers Title::getTalkPageIfDefined
+	 */
+	public function testGetTalkPage_broken( Title $title, Title $expected, $valid ) {
+		$errorLevel = error_reporting( E_ERROR );
+
+		// NOTE: Eventually we want to throw in this case. But while there is still code that
+		// calls this method without checking, we want to avoid fatal errors.
+		// See discussion on T227817.
+		$result = $title->getTalkPage();
+		$this->assertTrue( $expected->equals( $result ) );
+		$this->assertSame( $valid, $result->isValid() );
+
+		error_reporting( $errorLevel );
+	}
+
+	/**
+	 * @dataProvider provideGetTalkPage_good
+	 * @covers Title::getTalkPageIfDefined
+	 */
+	public function testGetTalkPageIfDefined_good( Title $title, Title $expected ) {
+		$actual = $title->getTalkPageIfDefined();
+		$this->assertNotNull( $actual, $title->getPrefixedDBkey() );
+		$this->assertTrue( $expected->equals( $actual ), $title->getPrefixedDBkey() );
 	}
 
 	/**
@@ -803,8 +945,70 @@ class TitleTest extends MediaWikiTestCase {
 		$talk = $title->getTalkPageIfDefined();
 		$this->assertNull(
 			$talk,
-			$title->getPrefixedDBKey()
+			$title->getPrefixedDBkey()
 		);
+	}
+
+	/**
+	 * @dataProvider provideGetSubjectPage_good
+	 * @covers Title::getSubjectPage
+	 */
+	public function testGetSubjectPage_good( Title $title, Title $expected ) {
+		$actual = $title->getSubjectPage();
+		$this->assertTrue( $expected->equals( $actual ), $title->getPrefixedDBkey() );
+	}
+
+	/**
+	 * @dataProvider provideGetOtherPage_good
+	 * @covers Title::getOtherPage
+	 */
+	public function testGetOtherPage_good( Title $title, Title $expected ) {
+		$actual = $title->getOtherPage();
+		$this->assertTrue( $expected->equals( $actual ), $title->getPrefixedDBkey() );
+	}
+
+	/**
+	 * @dataProvider provideGetTalkPage_bad
+	 * @covers Title::getOtherPage
+	 */
+	public function testGetOtherPage_bad( Title $title ) {
+		$this->setExpectedException( MWException::class );
+		$title->getOtherPage();
+	}
+
+	/**
+	 * @dataProvider provideIsMovable
+	 * @covers Title::isMovable
+	 *
+	 * @param string|Title $title
+	 * @param bool $expected
+	 * @param callable|null $hookCallback For TitleIsMovable
+	 */
+	public function testIsMovable( $title, $expected, $hookCallback = null ) {
+		if ( $hookCallback ) {
+			$this->setTemporaryHook( 'TitleIsMovable', $hookCallback );
+		}
+		if ( is_string( $title ) ) {
+			$title = Title::newFromText( $title );
+		}
+
+		$this->assertSame( $expected, $title->isMovable() );
+	}
+
+	public static function provideIsMovable() {
+		return [
+			'Simple title' => [ 'Foo', true ],
+			// @todo Should these next two really be true?
+			'Empty name' => [ Title::makeTitle( NS_MAIN, '' ), true ],
+			'Invalid name' => [ Title::makeTitle( NS_MAIN, '<' ), true ],
+			'Interwiki' => [ Title::makeTitle( NS_MAIN, 'Test', '', 'otherwiki' ), false ],
+			'Special page' => [ 'Special:FooBar', false ],
+			'Aborted by hook' => [ 'Hooked in place', false,
+				function ( Title $title, &$result ) {
+					$result = false;
+				}
+			],
+		];
 	}
 
 	public function provideCreateFragmentTitle() {
@@ -1095,6 +1299,35 @@ class TitleTest extends MediaWikiTestCase {
 		$this->assertSame(
 			$expectedSame,
 			$firstValue->equals( $secondValue )
+		);
+	}
+
+	/**
+	 * @covers Title::newMainPage
+	 */
+	public function testNewMainPage() {
+		$mock = $this->createMock( MessageCache::class );
+		$mock->method( 'get' )->willReturn( 'Foresheet' );
+		$mock->method( 'transform' )->willReturn( 'Foresheet' );
+
+		$this->setService( 'MessageCache', $mock );
+
+		$this->assertSame(
+			'Foresheet',
+			Title::newMainPage()->getText()
+		);
+	}
+
+	/**
+	 * @covers Title::newMainPage
+	 */
+	public function testNewMainPageWithLocal() {
+		$local = $this->createMock( MessageLocalizer::class );
+		$local->method( 'msg' )->willReturn( new RawMessage( 'Prime Article' ) );
+
+		$this->assertSame(
+			'Prime Article',
+			Title::newMainPage( $local )->getText()
 		);
 	}
 }

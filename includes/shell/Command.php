@@ -26,6 +26,7 @@ use MediaWiki\ShellDisabledError;
 use Profiler;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * Class used for executing shell commands
@@ -72,14 +73,14 @@ class Command {
 	private $cgroup = false;
 
 	/**
-	 * bitfield with restrictions
+	 * Bitfield with restrictions
 	 *
 	 * @var int
 	 */
 	protected $restrictions = 0;
 
 	/**
-	 * Constructor. Don't call directly, instead use Shell::command()
+	 * Don't call directly, instead use Shell::command()
 	 *
 	 * @throws ShellDisabledError
 	 */
@@ -92,7 +93,7 @@ class Command {
 	}
 
 	/**
-	 * Destructor. Makes sure programmer didn't forget to execute the command after all
+	 * Makes sure the programmer didn't forget to execute the command after all
 	 */
 	public function __destruct() {
 		if ( !$this->everExecuted ) {
@@ -111,11 +112,10 @@ class Command {
 	 * Adds parameters to the command. All parameters are sanitized via Shell::escape().
 	 * Null values are ignored.
 	 *
-	 * @param string|string[] $args,...
+	 * @param string|string[] ...$args
 	 * @return $this
 	 */
-	public function params( /* ... */ ) {
-		$args = func_get_args();
+	public function params( ...$args ): Command {
 		if ( count( $args ) === 1 && is_array( reset( $args ) ) ) {
 			// If only one argument has been passed, and that argument is an array,
 			// treat it as a list of arguments
@@ -130,11 +130,10 @@ class Command {
 	 * Adds unsafe parameters to the command. These parameters are NOT sanitized in any way.
 	 * Null values are ignored.
 	 *
-	 * @param string|string[] $args,...
+	 * @param string|string[] ...$args
 	 * @return $this
 	 */
-	public function unsafeParams( /* ... */ ) {
-		$args = func_get_args();
+	public function unsafeParams( ...$args ): Command {
 		if ( count( $args ) === 1 && is_array( reset( $args ) ) ) {
 			// If only one argument has been passed, and that argument is an array,
 			// treat it as a list of arguments
@@ -157,7 +156,7 @@ class Command {
 	 *   filesize (for ulimit -f), memory, time, walltime.
 	 * @return $this
 	 */
-	public function limits( array $limits ) {
+	public function limits( array $limits ): Command {
 		if ( !isset( $limits['walltime'] ) && isset( $limits['time'] ) ) {
 			// Emulate the behavior of old wfShellExec() where walltime fell back on time
 			// if the latter was overridden and the former wasn't
@@ -174,7 +173,7 @@ class Command {
 	 * @param string[] $env array of variable name => value
 	 * @return $this
 	 */
-	public function environment( array $env ) {
+	public function environment( array $env ): Command {
 		$this->env = $env;
 
 		return $this;
@@ -186,7 +185,7 @@ class Command {
 	 * @param string $method
 	 * @return $this
 	 */
-	public function profileMethod( $method ) {
+	public function profileMethod( $method ): Command {
 		$this->method = $method;
 
 		return $this;
@@ -198,7 +197,7 @@ class Command {
 	 * @param string|null $inputString
 	 * @return $this
 	 */
-	public function input( $inputString ) {
+	public function input( $inputString ): Command {
 		$this->inputString = is_null( $inputString ) ? null : (string)$inputString;
 
 		return $this;
@@ -211,7 +210,7 @@ class Command {
 	 * @param bool $yesno
 	 * @return $this
 	 */
-	public function includeStderr( $yesno = true ) {
+	public function includeStderr( $yesno = true ): Command {
 		$this->doIncludeStderr = $yesno;
 
 		return $this;
@@ -223,7 +222,7 @@ class Command {
 	 * @param bool $yesno
 	 * @return $this
 	 */
-	public function logStderr( $yesno = true ) {
+	public function logStderr( $yesno = true ): Command {
 		$this->doLogStderr = $yesno;
 
 		return $this;
@@ -235,7 +234,7 @@ class Command {
 	 * @param string|false $cgroup Absolute file path to the cgroup, or false to not use a cgroup
 	 * @return $this
 	 */
-	public function cgroup( $cgroup ) {
+	public function cgroup( $cgroup ): Command {
 		$this->cgroup = $cgroup;
 
 		return $this;
@@ -248,7 +247,7 @@ class Command {
 	 * @param int $restrictions
 	 * @return $this
 	 */
-	public function restrict( $restrictions ) {
+	public function restrict( $restrictions ): Command {
 		$this->restrictions |= $restrictions;
 
 		return $this;
@@ -275,7 +274,7 @@ class Command {
 	 *
 	 * @return $this
 	 */
-	public function whitelistPaths( array $paths ) {
+	public function whitelistPaths( array $paths ): Command {
 		// Default implementation is a no-op
 		return $this;
 	}
@@ -429,13 +428,14 @@ class Command {
 			}
 
 			// clear get_last_error without actually raising an error
-			// from https://secure.php.net/manual/en/function.error-get-last.php#113518
-			// TODO replace with clear_last_error when requirements are bumped to PHP7
+			// from https://www.php.net/manual/en/function.error-get-last.php#113518
+			// TODO replace with error_clear_last after dropping HHVM
+			// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 			set_error_handler( function () {
 			}, 0 );
-			\Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			trigger_error( '' );
-			\Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 			restore_error_handler();
 
 			$readPipes = array_filter( $pipes, function ( $fd ) use ( $desc ) {
@@ -447,8 +447,9 @@ class Command {
 			// stream_select parameter names are from the POV of us being able to do the operation;
 			// proc_open desriptor types are from the POV of the process doing it.
 			// So $writePipes is passed as the $read parameter and $readPipes as $write.
-			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-			$numReadyPipes = @stream_select( $writePipes, $readPipes, $emptyArray, $timeout );
+			AtEase::suppressWarnings();
+			$numReadyPipes = stream_select( $writePipes, $readPipes, $emptyArray, $timeout );
+			AtEase::restoreWarnings();
 			if ( $numReadyPipes === false ) {
 				$error = error_get_last();
 				if ( strncmp( $error['message'], $eintrMessage, strlen( $eintrMessage ) ) == 0 ) {

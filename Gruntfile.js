@@ -9,7 +9,6 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
 	grunt.loadNpmTasks( 'grunt-contrib-copy' );
 	grunt.loadNpmTasks( 'grunt-eslint' );
-	grunt.loadNpmTasks( 'grunt-jsonlint' );
 	grunt.loadNpmTasks( 'grunt-karma' );
 	grunt.loadNpmTasks( 'grunt-stylelint' );
 	grunt.loadNpmTasks( 'grunt-svgmin' );
@@ -23,10 +22,11 @@ module.exports = function ( grunt ) {
 		eslint: {
 			options: {
 				reportUnusedDisableDirectives: true,
+				extensions: [ '.js', '.json' ],
 				cache: true
 			},
 			all: [
-				'**/*.js',
+				'**/*.{js,json}',
 				'!docs/**',
 				'!node_modules/**',
 				'!resources/lib/**',
@@ -36,18 +36,13 @@ module.exports = function ( grunt ) {
 				'!tests/coverage/**',
 				'!vendor/**',
 				// Explicitly say "**/*.js" here in case of symlinks
-				'!extensions/**/*.js',
-				'!skins/**/*.js'
-			]
-		},
-		jsonlint: {
-			all: [
-				'**/*.json',
-				'!{docs/js,extensions,node_modules,skins,vendor}/**'
+				'!extensions/**/*.js{,on}',
+				'!skins/**/*.js{,on}'
 			]
 		},
 		banana: {
 			options: {
+				requireLowerCase: false,
 				disallowBlankTranslations: false
 			},
 			core: 'languages/i18n/',
@@ -122,7 +117,7 @@ module.exports = function ( grunt ) {
 					included: true,
 					served: false
 				} ],
-				logLevel: 'DEBUG',
+				logLevel: ( process.env.ZUUL_PROJECT ? 'DEBUG' : 'INFO' ),
 				frameworks: [ 'qunit' ],
 				reporters: [ 'mocha' ],
 				singleRun: true,

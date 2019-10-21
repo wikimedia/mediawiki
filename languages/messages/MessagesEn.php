@@ -38,13 +38,6 @@ $digitTransformTable = null;
 $separatorTransformTable = null;
 
 /**
- * Extra user preferences, which will be shown in Special:Preferences as
- * checkboxes. Extra settings in derived languages will automatically be
- * appended to the array of the fallback languages.
- */
-$extraUserToggles = [];
-
-/**
  * URLs do not specify their encoding. UTF-8 is used by default, but if the
  * URL is not a valid UTF-8 sequence, we have to try to guess what the real
  * encoding is. The encoding used in this case is defined below, and must be
@@ -400,6 +393,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Badtitle' ],
 	'Blankpage'                 => [ 'BlankPage' ],
 	'Block'                     => [ 'Block', 'BlockIP', 'BlockUser' ],
+	'BlockList'                 => [ 'BlockList', 'ListBlocks', 'IPBlockList' ],
 	'Booksources'               => [ 'BookSources' ],
 	'BotPasswords'              => [ 'BotPasswords' ],
 	'BrokenRedirects'           => [ 'BrokenRedirects' ],
@@ -428,7 +422,6 @@ $specialPageAliases = [
 	'Import'                    => [ 'Import' ],
 	'Invalidateemail'           => [ 'InvalidateEmail' ],
 	'JavaScriptTest'            => [ 'JavaScriptTest' ],
-	'BlockList'                 => [ 'BlockList', 'ListBlocks', 'IPBlockList' ],
 	'LinkSearch'                => [ 'LinkSearch' ],
 	'LinkAccounts'              => [ 'LinkAccounts' ],
 	'Listadmins'                => [ 'ListAdmins' ],
@@ -454,12 +447,14 @@ $specialPageAliases = [
 	'Mostlinkedtemplates'       => [ 'MostTranscludedPages', 'MostLinkedTemplates', 'MostUsedTemplates' ],
 	'Mostrevisions'             => [ 'MostRevisions' ],
 	'Movepage'                  => [ 'MovePage' ],
+	'Mute'                      => [ 'Mute' ],
 	'Mycontributions'           => [ 'MyContributions' ],
 	'MyLanguage'                => [ 'MyLanguage' ],
 	'Mypage'                    => [ 'MyPage' ],
 	'Mytalk'                    => [ 'MyTalk' ],
 	'Myuploads'                 => [ 'MyUploads', 'MyFiles' ],
 	'Newimages'                 => [ 'NewFiles', 'NewImages' ],
+	'NewSection'                => [ 'NewSection', 'Newsection' ],
 	'Newpages'                  => [ 'NewPages' ],
 	'PagesWithProp'             => [ 'PagesWithProp', 'Pageswithprop', 'PagesByProp', 'Pagesbyprop' ],
 	'PageData'                  => [ 'PageData' ],

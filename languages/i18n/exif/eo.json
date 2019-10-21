@@ -8,7 +8,8 @@
 			"Robin van der Vliet",
 			"Tlustulimu",
 			"Yekrats",
-			"YvesNevelsteen"
+			"YvesNevelsteen",
+			"Mirin"
 		]
 	},
 	"exif-imagewidth": "Larĝeco",
@@ -194,7 +195,14 @@
 	"exif-compression-8": "Malŝveli (Adobe)",
 	"exif-copyrighted-true": "Sub aŭtorrajto",
 	"exif-copyrighted-false": "Sub publika domajno",
+	"exif-photometricinterpretation-0": "Nigra-blanka (blanko estas 0)",
 	"exif-photometricinterpretation-1": "Nigra kaj blanka (nigra estas 0)",
+	"exif-photometricinterpretation-3": "Paletro",
+	"exif-photometricinterpretation-4": "Masko de travideblo",
+	"exif-photometricinterpretation-5": "Apartigita (Verŝajne Cejanblua-Fuksina-Flava-Nigra)",
+	"exif-photometricinterpretation-8": "CIE L*a*b*",
+	"exif-photometricinterpretation-9": "CIE L*a*b* (laŭ enkodigo de ICC)",
+	"exif-photometricinterpretation-10": "CIE L*a*b* (laŭ enkodigo de ITU)",
 	"exif-unknowndate": "Nekonata dato",
 	"exif-orientation-1": "Normala",
 	"exif-orientation-2": "Spegulumita horizontale",

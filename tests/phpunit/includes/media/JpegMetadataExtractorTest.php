@@ -9,7 +9,7 @@
  * @group Media
  * @covers JpegMetadataExtractor
  */
-class JpegMetadataExtractorTest extends MediaWikiTestCase {
+class JpegMetadataExtractorTest extends MediaWikiIntegrationTestCase {
 
 	protected $filePath;
 

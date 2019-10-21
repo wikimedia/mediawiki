@@ -19,9 +19,13 @@
  * @file
  */
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\MovePageFactory;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Handles the backend logic of moving a page from one title
@@ -41,19 +45,87 @@ class MovePage {
 	 */
 	protected $newTitle;
 
-	public function __construct( Title $oldTitle, Title $newTitle ) {
+	/**
+	 * @var ServiceOptions
+	 */
+	protected $options;
+
+	/**
+	 * @var ILoadBalancer
+	 */
+	protected $loadBalancer;
+
+	/**
+	 * @var NamespaceInfo
+	 */
+	protected $nsInfo;
+
+	/**
+	 * @var WatchedItemStoreInterface
+	 */
+	protected $watchedItems;
+
+	/**
+	 * @var PermissionManager
+	 */
+	protected $permMgr;
+
+	/**
+	 * @var RepoGroup
+	 */
+	protected $repoGroup;
+
+	/**
+	 * Calling this directly is deprecated in 1.34. Use MovePageFactory instead.
+	 *
+	 * @param Title $oldTitle
+	 * @param Title $newTitle
+	 * @param ServiceOptions|null $options
+	 * @param ILoadBalancer|null $loadBalancer
+	 * @param NamespaceInfo|null $nsInfo
+	 * @param WatchedItemStoreInterface|null $watchedItems
+	 * @param PermissionManager|null $permMgr
+	 */
+	public function __construct(
+		Title $oldTitle,
+		Title $newTitle,
+		ServiceOptions $options = null,
+		ILoadBalancer $loadBalancer = null,
+		NamespaceInfo $nsInfo = null,
+		WatchedItemStoreInterface $watchedItems = null,
+		PermissionManager $permMgr = null,
+		RepoGroup $repoGroup = null
+	) {
 		$this->oldTitle = $oldTitle;
 		$this->newTitle = $newTitle;
+		$this->options = $options ??
+			new ServiceOptions( MovePageFactory::$constructorOptions,
+				MediaWikiServices::getInstance()->getMainConfig() );
+		$this->loadBalancer =
+			$loadBalancer ?? MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$this->nsInfo = $nsInfo ?? MediaWikiServices::getInstance()->getNamespaceInfo();
+		$this->watchedItems =
+			$watchedItems ?? MediaWikiServices::getInstance()->getWatchedItemStore();
+		$this->permMgr = $permMgr ?? MediaWikiServices::getInstance()->getPermissionManager();
+		$this->repoGroup = $repoGroup ?? MediaWikiServices::getInstance()->getRepoGroup();
 	}
 
+	/**
+	 * Check if the user is allowed to perform the move.
+	 *
+	 * @param User $user
+	 * @param string|null $reason To check against summary spam regex. Set to null to skip the check,
+	 *   for instance to display errors preemptively before the user has filled in a summary.
+	 * @return Status
+	 */
 	public function checkPermissions( User $user, $reason ) {
 		$status = new Status();
 
 		$errors = wfMergeErrorArrays(
-			$this->oldTitle->getUserPermissionsErrors( 'move', $user ),
-			$this->oldTitle->getUserPermissionsErrors( 'edit', $user ),
-			$this->newTitle->getUserPermissionsErrors( 'move-target', $user ),
-			$this->newTitle->getUserPermissionsErrors( 'edit', $user )
+			$this->permMgr->getPermissionErrors( 'move', $user, $this->oldTitle ),
+			$this->permMgr->getPermissionErrors( 'edit', $user, $this->oldTitle ),
+			$this->permMgr->getPermissionErrors( 'move-target', $user, $this->newTitle ),
+			$this->permMgr->getPermissionErrors( 'edit', $user, $this->newTitle )
 		);
 
 		// Convert into a Status object
@@ -63,14 +135,15 @@ class MovePage {
 			}
 		}
 
-		if ( EditPage::matchSummarySpamRegex( $reason ) !== false ) {
+		if ( $reason !== null && EditPage::matchSummarySpamRegex( $reason ) !== false ) {
 			// This is kind of lame, won't display nice
 			$status->fatal( 'spamprotectiontext' );
 		}
 
 		$tp = $this->newTitle->getTitleProtection();
-		if ( $tp !== false && !$user->isAllowed( $tp['permission'] ) ) {
-				$status->fatal( 'cantmove-titleprotected' );
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( $tp !== false && !$permissionManager->userHasRight( $user, $tp['permission'] ) ) {
+			$status->fatal( 'cantmove-titleprotected' );
 		}
 
 		Hooks::run( 'MovePageCheckPermissions',
@@ -88,44 +161,41 @@ class MovePage {
 	 * @return Status
 	 */
 	public function isValidMove() {
-		global $wgContentHandlerUseDB;
 		$status = new Status();
 
 		if ( $this->oldTitle->equals( $this->newTitle ) ) {
 			$status->fatal( 'selfmove' );
+		} elseif ( $this->newTitle->getArticleID() && !$this->isValidMoveTarget() ) {
+			// The move is allowed only if (1) the target doesn't exist, or (2) the target is a
+			// redirect to the source, and has no history (so we can undo bad moves right after
+			// they're done).
+			$status->fatal( 'articleexists' );
 		}
-		if ( !$this->oldTitle->isMovable() ) {
+
+		// @todo If the old title is invalid, maybe we should check if it somehow exists in the
+		// database and allow moving it to a valid name? Why prohibit the move from an empty name
+		// without checking in the database?
+		if ( $this->oldTitle->getDBkey() == '' ) {
+			$status->fatal( 'badarticleerror' );
+		} elseif ( $this->oldTitle->isExternal() ) {
+			$status->fatal( 'immobile-source-namespace-iw' );
+		} elseif ( !$this->oldTitle->isMovable() ) {
 			$status->fatal( 'immobile-source-namespace', $this->oldTitle->getNsText() );
+		} elseif ( !$this->oldTitle->exists() ) {
+			$status->fatal( 'movepage-source-doesnt-exist' );
 		}
+
 		if ( $this->newTitle->isExternal() ) {
 			$status->fatal( 'immobile-target-namespace-iw' );
-		}
-		if ( !$this->newTitle->isMovable() ) {
+		} elseif ( !$this->newTitle->isMovable() ) {
 			$status->fatal( 'immobile-target-namespace', $this->newTitle->getNsText() );
 		}
-
-		$oldid = $this->oldTitle->getArticleID();
-
-		if ( $this->newTitle->getDBkey() === '' ) {
-			$status->fatal( 'articleexists' );
-		}
-		if (
-			( $this->oldTitle->getDBkey() == '' ) ||
-			( !$oldid ) ||
-			( $this->newTitle->getDBkey() == '' )
-		) {
-			$status->fatal( 'badarticleerror' );
-		}
-
-		# The move is allowed only if (1) the target doesn't exist, or
-		# (2) the target is a redirect to the source, and has no history
-		# (so we can undo bad moves right after they're done).
-		if ( $this->newTitle->getArticleID() && !$this->isValidMoveTarget() ) {
-			$status->fatal( 'articleexists' );
+		if ( !$this->newTitle->isValid() ) {
+			$status->fatal( 'movepage-invalid-target-title' );
 		}
 
 		// Content model checks
-		if ( !$wgContentHandlerUseDB &&
+		if ( !$this->options->get( 'ContentHandlerUseDB' ) &&
 			$this->oldTitle->getContentModel() !== $this->newTitle->getContentModel() ) {
 			// can't move a page if that would change the page's content model
 			$status->fatal(
@@ -166,7 +236,14 @@ class MovePage {
 	 */
 	protected function isValidFileMove() {
 		$status = new Status();
-		$file = wfLocalFile( $this->oldTitle );
+
+		if ( !$this->newTitle->inNamespace( NS_FILE ) ) {
+			$status->fatal( 'imagenocrossnamespace' );
+			// No need for further errors about the target filename being wrong
+			return $status;
+		}
+
+		$file = $this->repoGroup->getLocalRepo()->newFile( $this->oldTitle );
 		$file->load( File::READ_LATEST );
 		if ( $file->exists() ) {
 			if ( $this->newTitle->getText() != wfStripIllegalFilenameChars( $this->newTitle->getText() ) ) {
@@ -175,10 +252,6 @@ class MovePage {
 			if ( !File::checkExtensionCompatibility( $file, $this->newTitle->getDBkey() ) ) {
 				$status->fatal( 'imagetypemismatch' );
 			}
-		}
-
-		if ( !$this->newTitle->inNamespace( NS_FILE ) ) {
-			$status->fatal( 'imagenocrossnamespace' );
 		}
 
 		return $status;
@@ -194,7 +267,7 @@ class MovePage {
 	protected function isValidMoveTarget() {
 		# Is it an existing file?
 		if ( $this->newTitle->inNamespace( NS_FILE ) ) {
-			$file = wfLocalFile( $this->newTitle );
+			$file = $this->repoGroup->getLocalRepo()->newFile( $this->newTitle );
 			$file->load( File::READ_LATEST );
 			if ( $file->exists() ) {
 				wfDebug( __METHOD__ . ": file exists\n" );
@@ -233,16 +306,197 @@ class MovePage {
 	}
 
 	/**
+	 * Move a page without taking user permissions into account. Only checks if the move is itself
+	 * invalid, e.g., trying to move a special page or trying to move a page onto one that already
+	 * exists.
+	 *
+	 * @param User $user
+	 * @param string|null $reason
+	 * @param bool|null $createRedirect
+	 * @param string[] $changeTags Change tags to apply to the entry in the move log
+	 * @return Status
+	 */
+	public function move(
+		User $user, $reason = null, $createRedirect = true, array $changeTags = []
+	) {
+		$status = $this->isValidMove();
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+
+		return $this->moveUnsafe( $user, $reason, $createRedirect, $changeTags );
+	}
+
+	/**
+	 * Same as move(), but with permissions checks.
+	 *
+	 * @param User $user
+	 * @param string|null $reason
+	 * @param bool|null $createRedirect Ignored if user doesn't have suppressredirect permission
+	 * @param string[] $changeTags Change tags to apply to the entry in the move log
+	 * @return Status
+	 */
+	public function moveIfAllowed(
+		User $user, $reason = null, $createRedirect = true, array $changeTags = []
+	) {
+		$status = $this->isValidMove();
+		$status->merge( $this->checkPermissions( $user, $reason ) );
+		if ( $changeTags ) {
+			$status->merge( ChangeTags::canAddTagsAccompanyingChange( $changeTags, $user ) );
+		}
+
+		if ( !$status->isOK() ) {
+			// Auto-block user's IP if the account was "hard" blocked
+			$user->spreadAnyEditBlock();
+			return $status;
+		}
+
+		// Check suppressredirect permission
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( !$permissionManager->userHasRight( $user, 'suppressredirect' ) ) {
+			$createRedirect = true;
+		}
+
+		return $this->moveUnsafe( $user, $reason, $createRedirect, $changeTags );
+	}
+
+	/**
+	 * Move the source page's subpages to be subpages of the target page, without checking user
+	 * permissions. The caller is responsible for moving the source page itself. We will still not
+	 * do moves that are inherently not allowed, nor will we move more than $wgMaximumMovedPages.
+	 *
+	 * @param User $user
+	 * @param string|null $reason The reason for the move
+	 * @param bool|null $createRedirect Whether to create redirects from the old subpages to
+	 *  the new ones
+	 * @param string[] $changeTags Applied to entries in the move log and redirect page revision
+	 * @return Status Good if no errors occurred. Ok if at least one page succeeded. The "value"
+	 *  of the top-level status is an array containing the per-title status for each page. For any
+	 *  move that succeeded, the "value" of the per-title status is the new page title.
+	 */
+	public function moveSubpages(
+		User $user, $reason = null, $createRedirect = true, array $changeTags = []
+	) {
+		return $this->moveSubpagesInternal( false, $user, $reason, $createRedirect, $changeTags );
+	}
+
+	/**
+	 * Move the source page's subpages to be subpages of the target page, with user permission
+	 * checks. The caller is responsible for moving the source page itself.
+	 *
+	 * @param User $user
+	 * @param string|null $reason The reason for the move
+	 * @param bool|null $createRedirect Whether to create redirects from the old subpages to
+	 *  the new ones. Ignored if the user doesn't have the 'suppressredirect' right.
+	 * @param string[] $changeTags Applied to entries in the move log and redirect page revision
+	 * @return Status Good if no errors occurred. Ok if at least one page succeeded. The "value"
+	 *  of the top-level status is an array containing the per-title status for each page. For any
+	 *  move that succeeded, the "value" of the per-title status is the new page title.
+	 */
+	public function moveSubpagesIfAllowed(
+		User $user, $reason = null, $createRedirect = true, array $changeTags = []
+	) {
+		return $this->moveSubpagesInternal( true, $user, $reason, $createRedirect, $changeTags );
+	}
+
+	/**
+	 * @param bool $checkPermissions
 	 * @param User $user
 	 * @param string $reason
 	 * @param bool $createRedirect
-	 * @param string[] $changeTags Change tags to apply to the entry in the move log. Caller
-	 *  should perform permission checks with ChangeTags::canAddTagsAccompanyingChange
+	 * @param array $changeTags
 	 * @return Status
 	 */
-	public function move( User $user, $reason, $createRedirect, array $changeTags = [] ) {
-		global $wgCategoryCollation;
+	private function moveSubpagesInternal(
+		$checkPermissions, User $user, $reason, $createRedirect, array $changeTags
+	) {
+		global $wgMaximumMovedPages;
+		$services = MediaWikiServices::getInstance();
 
+		if ( $checkPermissions ) {
+			if ( !$services->getPermissionManager()->userCan(
+				'move-subpages', $user, $this->oldTitle )
+			) {
+				return Status::newFatal( 'cant-move-subpages' );
+			}
+		}
+
+		$nsInfo = $services->getNamespaceInfo();
+
+		// Do the source and target namespaces support subpages?
+		if ( !$nsInfo->hasSubpages( $this->oldTitle->getNamespace() ) ) {
+			return Status::newFatal( 'namespace-nosubpages',
+				$nsInfo->getCanonicalName( $this->oldTitle->getNamespace() ) );
+		}
+		if ( !$nsInfo->hasSubpages( $this->newTitle->getNamespace() ) ) {
+			return Status::newFatal( 'namespace-nosubpages',
+				$nsInfo->getCanonicalName( $this->newTitle->getNamespace() ) );
+		}
+
+		// Return a status for the overall result. Its value will be an array with per-title
+		// status for each subpage. Merge any errors from the per-title statuses into the
+		// top-level status without resetting the overall result.
+		$topStatus = Status::newGood();
+		$perTitleStatus = [];
+		$subpages = $this->oldTitle->getSubpages( $wgMaximumMovedPages + 1 );
+		$count = 0;
+		foreach ( $subpages as $oldSubpage ) {
+			$count++;
+			if ( $count > $wgMaximumMovedPages ) {
+				$status = Status::newFatal( 'movepage-max-pages', $wgMaximumMovedPages );
+				$perTitleStatus[$oldSubpage->getPrefixedText()] = $status;
+				$topStatus->merge( $status );
+				$topStatus->setOK( true );
+				break;
+			}
+
+			// We don't know whether this function was called before or after moving the root page,
+			// so check both titles
+			if ( $oldSubpage->getArticleID() == $this->oldTitle->getArticleID() ||
+				$oldSubpage->getArticleID() == $this->newTitle->getArticleID()
+			) {
+				// When moving a page to a subpage of itself, don't move it twice
+				continue;
+			}
+			$newPageName = preg_replace(
+					'#^' . preg_quote( $this->oldTitle->getDBkey(), '#' ) . '#',
+					StringUtils::escapeRegexReplacement( $this->newTitle->getDBkey() ), # T23234
+					$oldSubpage->getDBkey() );
+			if ( $oldSubpage->isTalkPage() ) {
+				$newNs = $this->newTitle->getTalkPage()->getNamespace();
+			} else {
+				$newNs = $this->newTitle->getSubjectPage()->getNamespace();
+			}
+			// T16385: we need makeTitleSafe because the new page names may be longer than 255
+			// characters.
+			$newSubpage = Title::makeTitleSafe( $newNs, $newPageName );
+
+			$mp = new MovePage( $oldSubpage, $newSubpage );
+			$method = $checkPermissions ? 'moveIfAllowed' : 'move';
+			/** @var Status $status */
+			$status = $mp->$method( $user, $reason, $createRedirect, $changeTags );
+			if ( $status->isOK() ) {
+				$status->setResult( true, $newSubpage->getPrefixedText() );
+			}
+			$perTitleStatus[$oldSubpage->getPrefixedText()] = $status;
+			$topStatus->merge( $status );
+			$topStatus->setOK( true );
+		}
+
+		$topStatus->value = $perTitleStatus;
+		return $topStatus;
+	}
+
+	/**
+	 * Moves *without* any sort of safety or sanity checks. Hooks can still fail the move, however.
+	 *
+	 * @param User $user
+	 * @param string $reason
+	 * @param bool $createRedirect
+	 * @param string[] $changeTags Change tags to apply to the entry in the move log
+	 * @return Status
+	 */
+	private function moveUnsafe( User $user, $reason, $createRedirect, array $changeTags ) {
 		$status = Status::newGood();
 		Hooks::run( 'TitleMove', [ $this->oldTitle, $this->newTitle, $user, $reason, &$status ] );
 		if ( !$status->isOK() ) {
@@ -250,12 +504,12 @@ class MovePage {
 			return $status;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
 		$dbw->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 
 		Hooks::run( 'TitleMoveStarting', [ $this->oldTitle, $this->newTitle, $user ] );
 
-		$pageid = $this->oldTitle->getArticleID( Title::GAID_FOR_UPDATE );
+		$pageid = $this->oldTitle->getArticleID( Title::READ_LATEST );
 		$protected = $this->oldTitle->isProtected();
 
 		// Do the actual move; if this fails, it will throw an MWException(!)
@@ -272,7 +526,7 @@ class MovePage {
 			[ 'cl_from' => $pageid ],
 			__METHOD__
 		);
-		$type = MWNamespace::getCategoryLinkType( $this->newTitle->getNamespace() );
+		$type = $this->nsInfo->getCategoryLinkType( $this->newTitle->getNamespace() );
 		foreach ( $prefixes as $prefixRow ) {
 			$prefix = $prefixRow->cl_sortkey_prefix;
 			$catTo = $prefixRow->cl_to;
@@ -280,7 +534,7 @@ class MovePage {
 				[
 					'cl_sortkey' => Collation::singleton()->getSortKey(
 							$this->newTitle->getCategorySortkey( $prefix ) ),
-					'cl_collation' => $wgCategoryCollation,
+					'cl_collation' => $this->options->get( 'CategoryCollation' ),
 					'cl_type' => $type,
 					'cl_timestamp=cl_timestamp' ],
 				[
@@ -345,7 +599,7 @@ class MovePage {
 				'4::oldtitle' => $this->oldTitle->getPrefixedText(),
 			] );
 			$logEntry->setRelations( [ 'pr_id' => $logRelationsValues ] );
-			$logEntry->setTags( $changeTags );
+			$logEntry->addTags( $changeTags );
 			$logId = $logEntry->insert();
 			$logEntry->publish( $logId );
 		}
@@ -372,11 +626,10 @@ class MovePage {
 		# Update watchlists
 		$oldtitle = $this->oldTitle->getDBkey();
 		$newtitle = $this->newTitle->getDBkey();
-		$oldsnamespace = MWNamespace::getSubject( $this->oldTitle->getNamespace() );
-		$newsnamespace = MWNamespace::getSubject( $this->newTitle->getNamespace() );
+		$oldsnamespace = $this->nsInfo->getSubject( $this->oldTitle->getNamespace() );
+		$newsnamespace = $this->nsInfo->getSubject( $this->newTitle->getNamespace() );
 		if ( $oldsnamespace != $newsnamespace || $oldtitle != $newtitle ) {
-			$store = MediaWikiServices::getInstance()->getWatchedItemStore();
-			$store->duplicateAllAssociatedEntries( $this->oldTitle, $this->newTitle );
+			$this->watchedItems->duplicateAllAssociatedEntries( $this->oldTitle, $this->newTitle );
 		}
 
 		// If it is a file then move it last.
@@ -437,15 +690,15 @@ class MovePage {
 			$oldTitle->getPrefixedText()
 		);
 
-		$file = wfLocalFile( $oldTitle );
+		$file = $this->repoGroup->getLocalRepo()->newFile( $oldTitle );
 		$file->load( File::READ_LATEST );
 		if ( $file->exists() ) {
 			$status = $file->move( $newTitle );
 		}
 
 		// Clear RepoGroup process cache
-		RepoGroup::singleton()->clearCache( $oldTitle );
-		RepoGroup::singleton()->clearCache( $newTitle ); # clear false negative cache
+		$this->repoGroup->clearCache( $oldTitle );
+		$this->repoGroup->clearCache( $newTitle ); # clear false negative cache
 		return $status;
 	}
 
@@ -546,7 +799,7 @@ class MovePage {
 			$comment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $reason;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
 
 		$oldpage = WikiPage::factory( $this->oldTitle );
 		$oldcountable = $oldpage->isCountable();
@@ -643,7 +896,7 @@ class MovePage {
 		# Log the move
 		$logid = $logEntry->insert();
 
-		$logEntry->setTags( $changeTags );
+		$logEntry->addTags( $changeTags );
 		$logEntry->publish( $logid );
 
 		return $nullRevision;

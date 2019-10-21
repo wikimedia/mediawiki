@@ -46,6 +46,7 @@ SPARQL;
 DELETE {
 ?category ?x ?y
 } WHERE {
+   ?category ?x ?y
    VALUES ?category {
      %s
    }
@@ -62,6 +63,7 @@ DELETE {
 } INSERT {
 %s
 } WHERE {
+  ?category ?x ?y
    VALUES ?category {
      %s
    }
@@ -113,19 +115,18 @@ SPARQLDI;
 	}
 
 	public function execute() {
-		global $wgRCMaxAge;
-
 		$this->initialize();
 		$startTS = new MWTimestamp( $this->getOption( "start" ) );
 
 		$endTS = new MWTimestamp( $this->getOption( "end" ) );
 		$now = new MWTimestamp();
+		$rcMaxAge = $this->getConfig()->get( 'RCMaxAge' );
 
-		if ( $now->getTimestamp() - $startTS->getTimestamp() > $wgRCMaxAge ) {
-			$this->error( "Start timestamp too old, maximum RC age is $wgRCMaxAge!" );
+		if ( $now->getTimestamp() - $startTS->getTimestamp() > $rcMaxAge ) {
+			$this->error( "Start timestamp too old, maximum RC age is $rcMaxAge!" );
 		}
-		if ( $now->getTimestamp() - $endTS->getTimestamp() > $wgRCMaxAge ) {
-			$this->error( "End timestamp too old, maximum RC age is $wgRCMaxAge!" );
+		if ( $now->getTimestamp() - $endTS->getTimestamp() > $rcMaxAge ) {
+			$this->error( "End timestamp too old, maximum RC age is $rcMaxAge!" );
 		}
 
 		$this->startTS = $startTS->getTimestamp();
@@ -593,6 +594,8 @@ SPARQL;
 			 * TODO: For now, we do full update even though some data hasn't changed,
 			 * e.g. parents for parent cat and counts for child cat.
 			 */
+			$childPages = [];
+			$parentCats = [];
 			foreach ( $batch as $row ) {
 				$childPages[$row->rc_cur_id] = true;
 				$parentCats[$row->rc_title] = true;
@@ -612,7 +615,7 @@ SPARQL;
 			$pages = [];
 			$deleteUrls = [];
 
-			if ( !empty( $childPages ) ) {
+			if ( $childPages ) {
 				// Load child rows by ID
 				$childRows = $dbr->select(
 					[ 'page', 'page_props', 'category' ],
@@ -640,7 +643,7 @@ SPARQL;
 				}
 			}
 
-			if ( !empty( $parentCats ) ) {
+			if ( $parentCats ) {
 				// Load parent rows by title
 				$joinConditions = [
 					'page' => [

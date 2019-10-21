@@ -202,7 +202,8 @@ abstract class MediaTransformOutput {
 			return Status::newFatal( 'backend-fail-stream', '<no path>' );
 		} elseif ( FileBackend::isStoragePath( $this->path ) ) {
 			$be = $this->file->getRepo()->getBackend();
-			return $be->streamFile( [ 'src' => $this->path, 'headers' => $headers ] );
+			return Status::wrap(
+				$be->streamFile( [ 'src' => $this->path, 'headers' => $headers ] ) );
 		} else { // FS-file
 			$success = StreamFile::stream( $this->getLocalCopyPath(), $headers );
 			return $success ? Status::newGood() : Status::newFatal( 'backend-fail-stream', $this->path );

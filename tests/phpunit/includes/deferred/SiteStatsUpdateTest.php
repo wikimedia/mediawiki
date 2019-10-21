@@ -20,8 +20,8 @@ class SiteStatsUpdateTest extends MediaWikiTestCase {
 		$this->assertEquals( 1, $wrapped->pages );
 		$this->assertEquals( 3, $wrapped->users );
 		$this->assertEquals( 1, $wrapped->images );
-		$this->assertEquals( 0, $wrapped->edits );
-		$this->assertEquals( 0, $wrapped->articles );
+		$this->assertSame( 0, $wrapped->edits );
+		$this->assertSame( 0, $wrapped->articles );
 	}
 
 	/**
@@ -42,11 +42,13 @@ class SiteStatsUpdateTest extends MediaWikiTestCase {
 		$fi = SiteStats::images();
 		$ai = SiteStats::articles();
 
+		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount() );
+
 		$dbw->begin( __METHOD__ ); // block opportunistic updates
 
-		$update = SiteStatsUpdate::factory( [ 'pages' => 2, 'images' => 1, 'edits' => 2 ] );
-		$this->assertEquals( 0, DeferredUpdates::pendingUpdatesCount() );
-		$update->doUpdate();
+		DeferredUpdates::addUpdate(
+			SiteStatsUpdate::factory( [ 'pages' => 2, 'images' => 1, 'edits' => 2 ] )
+		);
 		$this->assertEquals( 1, DeferredUpdates::pendingUpdatesCount() );
 
 		// Still the same
@@ -62,7 +64,7 @@ class SiteStatsUpdateTest extends MediaWikiTestCase {
 
 		$this->assertEquals( 1, DeferredUpdates::pendingUpdatesCount() );
 		DeferredUpdates::doUpdates();
-		$this->assertEquals( 0, DeferredUpdates::pendingUpdatesCount() );
+		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount() );
 
 		SiteStats::unload();
 		$this->assertEquals( $pi + 2, SiteStats::pages(), 'page count' );

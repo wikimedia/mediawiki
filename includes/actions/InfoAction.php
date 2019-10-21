@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\Database;
 
 /**
@@ -102,6 +103,9 @@ class InfoAction extends FormlessAction {
 				return $this->msg( 'pageinfo-not-current' )->plain();
 			}
 		}
+
+		// "Help" button
+		$this->addHelpLink( 'Page information' );
 
 		// Page header
 		if ( !$this->msg( 'pageinfo-header' )->isDisabled() ) {
@@ -279,8 +283,9 @@ class InfoAction extends FormlessAction {
 		$pageLangHtml = $pageLang . ' - ' .
 			Language::fetchLanguageName( $pageLang, $lang->getCode() );
 		// Link to Special:PageLanguage with pre-filled page title if user has permissions
+		$permissionManager = $services->getPermissionManager();
 		if ( $config->get( 'PageLanguageUseDB' )
-			&& $title->userCan( 'pagelang', $user )
+			&& $permissionManager->userCan( 'pagelang', $user, $title )
 		) {
 			$pageLangHtml .= ' ' . $this->msg( 'parentheses' )->rawParams( $linkRenderer->makeLink(
 				SpecialPage::getTitleValueFor( 'PageLanguage', $title->getPrefixedText() ),
@@ -297,7 +302,7 @@ class InfoAction extends FormlessAction {
 		$modelHtml = htmlspecialchars( ContentHandler::getLocalizedName( $title->getContentModel() ) );
 		// If the user can change it, add a link to Special:ChangeContentModel
 		if ( $config->get( 'ContentHandlerUseDB' )
-			&& $title->userCan( 'editcontentmodel', $user )
+			&& $permissionManager->userCan( 'editcontentmodel', $user, $title )
 		) {
 			$modelHtml .= ' ' . $this->msg( 'parentheses' )->rawParams( $linkRenderer->makeLink(
 				SpecialPage::getTitleValueFor( 'ChangeContentModel', $title->getPrefixedText() ),
@@ -338,8 +343,7 @@ class InfoAction extends FormlessAction {
 		];
 
 		$unwatchedPageThreshold = $config->get( 'UnwatchedPageThreshold' );
-		if (
-			$user->isAllowed( 'unwatchedpages' ) ||
+		if ( $permissionManager->userHasRight( $user, 'unwatchedpages' ) ||
 			( $unwatchedPageThreshold !== false &&
 				$pageCounts['watchers'] >= $unwatchedPageThreshold )
 		) {
@@ -354,7 +358,7 @@ class InfoAction extends FormlessAction {
 			) {
 				$minToDisclose = $config->get( 'UnwatchedPageSecret' );
 				if ( $pageCounts['visitingWatchers'] > $minToDisclose ||
-					$user->isAllowed( 'unwatchedpages' ) ) {
+					$permissionManager->userHasRight( $user, 'unwatchedpages' ) ) {
 					$pageInfo['header-basic'][] = [
 						$this->msg( 'pageinfo-visiting-watchers' ),
 						$lang->formatNum( $pageCounts['visitingWatchers'] )
@@ -399,7 +403,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Subpages of this page, if subpages are enabled for the current NS
-		if ( MWNamespace::hasSubpages( $title->getNamespace() ) ) {
+		if ( $services->getNamespaceInfo()->hasSubpages( $title->getNamespace() ) ) {
 			$prefixIndex = SpecialPage::getTitleFor(
 				'Prefixindex', $title->getPrefixedText() . '/' );
 			$pageInfo['header-basic'][] = [
@@ -447,7 +451,7 @@ class InfoAction extends FormlessAction {
 
 		// Display image SHA-1 value
 		if ( $title->inNamespace( NS_FILE ) ) {
-			$fileObj = wfFindFile( $title );
+			$fileObj = $services->getRepoGroup()->findFile( $title );
 			if ( $fileObj !== false ) {
 				// Convert the base-36 sha1 value obtained from database to base-16
 				$output = Wikimedia\base_convert( $fileObj->getSha1(), 36, 16, 40 );
@@ -538,7 +542,7 @@ class InfoAction extends FormlessAction {
 		$batch = new LinkBatch;
 
 		if ( $firstRev ) {
-			$firstRevUser = $firstRev->getUserText( Revision::FOR_THIS_USER );
+			$firstRevUser = $firstRev->getUserText( RevisionRecord::FOR_THIS_USER );
 			if ( $firstRevUser !== '' ) {
 				$firstRevUserTitle = Title::makeTitle( NS_USER, $firstRevUser );
 				$batch->addObj( $firstRevUserTitle );
@@ -547,7 +551,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		if ( $lastRev ) {
-			$lastRevUser = $lastRev->getUserText( Revision::FOR_THIS_USER );
+			$lastRevUser = $lastRev->getUserText( RevisionRecord::FOR_THIS_USER );
 			if ( $lastRevUser !== '' ) {
 				$lastRevUserTitle = Title::makeTitle( NS_USER, $lastRevUser );
 				$batch->addObj( $lastRevUserTitle );
@@ -730,14 +734,13 @@ class InfoAction extends FormlessAction {
 	protected function pageCounts( Page $page ) {
 		$fname = __METHOD__;
 		$config = $this->context->getConfig();
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$services = MediaWikiServices::getInstance();
+		$cache = $services->getMainWANObjectCache();
 
 		return $cache->getWithSetCallback(
 			self::getCacheKey( $cache, $page->getTitle(), $page->getLatest() ),
 			WANObjectCache::TTL_WEEK,
-			function ( $oldValue, &$ttl, &$setOpts ) use ( $page, $config, $fname ) {
-				global $wgActorTableSchemaMigrationStage;
-
+			function ( $oldValue, &$ttl, &$setOpts ) use ( $page, $config, $fname, $services ) {
 				$title = $page->getTitle();
 				$id = $title->getArticleID();
 
@@ -745,21 +748,13 @@ class InfoAction extends FormlessAction {
 				$dbrWatchlist = wfGetDB( DB_REPLICA, 'watchlist' );
 				$setOpts += Database::getCacheSetOptions( $dbr, $dbrWatchlist );
 
-				if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
-					$tables = [ 'revision_actor_temp' ];
-					$field = 'revactor_actor';
-					$pageField = 'revactor_page';
-					$tsField = 'revactor_timestamp';
-					$joins = [];
-				} else {
-					$tables = [ 'revision' ];
-					$field = 'rev_user_text';
-					$pageField = 'rev_page';
-					$tsField = 'rev_timestamp';
-					$joins = [];
-				}
+				$tables = [ 'revision_actor_temp' ];
+				$field = 'revactor_actor';
+				$pageField = 'revactor_page';
+				$tsField = 'revactor_timestamp';
+				$joins = [];
 
-				$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
+				$watchedItemStore = $services->getWatchedItemStore();
 
 				$result = [];
 				$result['watchers'] = $watchedItemStore->countWatchers( $title );
@@ -824,7 +819,7 @@ class InfoAction extends FormlessAction {
 				);
 
 				// Subpages (if enabled)
-				if ( MWNamespace::hasSubpages( $title->getNamespace() ) ) {
+				if ( $services->getNamespaceInfo()->hasSubpages( $title->getNamespace() ) ) {
 					$conds = [ 'page_namespace' => $title->getNamespace() ];
 					$conds[] = 'page_title ' .
 						$dbr->buildLike( $title->getDBkey() . '/', $dbr->anyString() );

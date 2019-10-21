@@ -36,10 +36,11 @@ interface Processor {
 	 *
 	 * @since 1.26
 	 * @param array $info
+	 * @param bool $includeDev
 	 * @return array Where keys are the name to have a constraint on,
 	 * 		like 'MediaWiki'. Values are a constraint string like "1.26.1".
 	 */
-	public function getRequirements( array $info );
+	public function getRequirements( array $info, $includeDev );
 
 	/**
 	 * Get the path for additional autoloaders, e.g. the one of Composer.

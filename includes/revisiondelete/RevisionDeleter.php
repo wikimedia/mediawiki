@@ -21,6 +21,8 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\Revision\RevisionRecord;
+
 /**
  * General controller for RevDel, used by both SpecialRevisiondelete and
  * ApiRevisionDelete.
@@ -129,14 +131,14 @@ class RevisionDeleter {
 		$ret = [ 0 => [], 1 => [], 2 => [] ];
 		// Build bitfield changes in language
 		self::checkItem( 'revdelete-content',
-			Revision::DELETED_TEXT, $diff, $n, $ret );
+			RevisionRecord::DELETED_TEXT, $diff, $n, $ret );
 		self::checkItem( 'revdelete-summary',
-			Revision::DELETED_COMMENT, $diff, $n, $ret );
+			RevisionRecord::DELETED_COMMENT, $diff, $n, $ret );
 		self::checkItem( 'revdelete-uname',
-			Revision::DELETED_USER, $diff, $n, $ret );
+			RevisionRecord::DELETED_USER, $diff, $n, $ret );
 		// Restriction application to sysops
-		if ( $diff & Revision::DELETED_RESTRICTED ) {
-			if ( $n & Revision::DELETED_RESTRICTED ) {
+		if ( $diff & RevisionRecord::DELETED_RESTRICTED ) {
+			if ( $n & RevisionRecord::DELETED_RESTRICTED ) {
 				$ret[2][] = 'revdelete-restricted';
 			} else {
 				$ret[2][] = 'revdelete-unrestricted';

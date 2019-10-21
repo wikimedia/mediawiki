@@ -68,9 +68,8 @@ class SquidPurgeClient {
 
 	/**
 	 * @param string $server
-	 * @param array $options
 	 */
-	public function __construct( $server, $options = [] ) {
+	public function __construct( $server ) {
 		$parts = explode( ':', $server, 2 );
 		$this->host = $parts[0];
 		$this->port = $parts[1] ?? 80;
@@ -151,7 +150,7 @@ class SquidPurgeClient {
 			if ( IP::isIPv4( $this->host ) ) {
 				$this->ip = $this->host;
 			} elseif ( IP::isIPv6( $this->host ) ) {
-				throw new MWException( '$wgSquidServers does not support IPv6' );
+				throw new MWException( '$wgCdnServers does not support IPv6' );
 			} else {
 				Wikimedia\suppressWarnings();
 				$this->ip = gethostbyname( $this->host );
@@ -192,7 +191,7 @@ class SquidPurgeClient {
 	/**
 	 * Queue a purge operation
 	 *
-	 * @param string $url
+	 * @param string $url Fully expanded URL (with host and protocol)
 	 */
 	//begin changes by southparkfan
 	// Miraheze specific PATCH: $mobileHeader was added
@@ -205,7 +204,7 @@ class SquidPurgeClient {
 	public function queuePurge( $url, $deviceHeader ) {
 	//end changes by southparkfan
 		global $wgSquidPurgeUseHostHeader;
-		$url = CdnCacheUpdate::expand( str_replace( "\n", '', $url ) );
+		$url = str_replace( "\n", '', $url ); // sanity
 		$request = [];
 		if ( $wgSquidPurgeUseHostHeader ) {
 			$url = wfParseUrl( $url );

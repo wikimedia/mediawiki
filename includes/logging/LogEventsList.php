@@ -36,6 +36,7 @@ class LogEventsList extends ContextSource {
 
 	/**
 	 * @var array
+	 * @deprecated since 1.34, no longer used.
 	 */
 	protected $mDefaultQuery;
 
@@ -220,21 +221,6 @@ class LogEventsList extends ContextSource {
 		];
 	}
 
-	private function getDefaultQuery() {
-		if ( !isset( $this->mDefaultQuery ) ) {
-			$this->mDefaultQuery = $this->getRequest()->getQueryValues();
-			unset( $this->mDefaultQuery['title'] );
-			unset( $this->mDefaultQuery['dir'] );
-			unset( $this->mDefaultQuery['offset'] );
-			unset( $this->mDefaultQuery['limit'] );
-			unset( $this->mDefaultQuery['order'] );
-			unset( $this->mDefaultQuery['month'] );
-			unset( $this->mDefaultQuery['year'] );
-		}
-
-		return $this->mDefaultQuery;
-	}
-
 	/**
 	 * @param array $queryTypes
 	 * @return array Form descriptor
@@ -247,7 +233,10 @@ class LogEventsList extends ContextSource {
 		foreach ( LogPage::validTypes() as $type ) {
 			$page = new LogPage( $type );
 			$restriction = $page->getRestriction();
-			if ( $this->getUser()->isAllowed( $restriction ) ) {
+			if ( MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $this->getUser(), $restriction )
+			) {
 				$typesByName[$type] = $page->getName()->text();
 			}
 		}
@@ -464,11 +453,12 @@ class LogEventsList extends ContextSource {
 		}
 
 		$del = '';
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		// Don't show useless checkbox to people who cannot hide log entries
-		if ( $user->isAllowed( 'deletedhistory' ) ) {
-			$canHide = $user->isAllowed( 'deletelogentry' );
-			$canViewSuppressedOnly = $user->isAllowed( 'viewsuppressed' ) &&
-				!$user->isAllowed( 'suppressrevision' );
+		if ( $permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
+			$canHide = $permissionManager->userHasRight( $user, 'deletelogentry' );
+			$canViewSuppressedOnly = $permissionManager->userHasRight( $user, 'viewsuppressed' ) &&
+				!$permissionManager->userHasRight( $user, 'suppressrevision' );
 			$entryIsSuppressed = self::isDeleted( $row, LogPage::DELETED_RESTRICTED );
 			$canViewThisSuppressedEntry = $canViewSuppressedOnly && $entryIsSuppressed;
 			if ( $row->log_deleted || $canHide ) {
@@ -522,7 +512,9 @@ class LogEventsList extends ContextSource {
 				in_array( $row->log_action, $action ) : $row->log_action == $action;
 			if ( $match && $right ) {
 				global $wgUser;
-				$match = $wgUser->isAllowed( $right );
+				$match = MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->userHasRight( $wgUser, $right );
 			}
 		}
 
@@ -565,7 +557,32 @@ class LogEventsList extends ContextSource {
 			}
 			$permissionlist = implode( ', ', $permissions );
 			wfDebug( "Checking for $permissionlist due to $field match on $bitfield\n" );
-			return $user->isAllowedAny( ...$permissions );
+			return MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasAnyRight( $user, ...$permissions );
+		}
+		return true;
+	}
+
+	/**
+	 * Determine if the current user is allowed to view a particular
+	 * field of this log row, if it's marked as restricted log type.
+	 *
+	 * @param stdClass $type
+	 * @param User|null $user User to check, or null to use $wgUser
+	 * @return bool
+	 */
+	public static function userCanViewLogType( $type, User $user = null ) {
+		if ( $user === null ) {
+			global $wgUser;
+			$user = $wgUser;
+		}
+		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogRestrictions' );
+		if ( isset( $logRestrictions[$type] ) && !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $user, $logRestrictions[$type] )
+		) {
+			return false;
 		}
 		return true;
 	}
@@ -795,7 +812,10 @@ class LogEventsList extends ContextSource {
 
 		// Don't show private logs to unprivileged users
 		foreach ( $wgLogRestrictions as $logType => $right ) {
-			if ( $audience == 'public' || !$user->isAllowed( $right ) ) {
+			if ( $audience == 'public' || !MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->userHasRight( $user, $right )
+			) {
 				$hiddenLogs[] = $logType;
 			}
 		}

@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group API
  * @group Database
@@ -73,6 +76,7 @@ class ApiUserrightsTest extends ApiTestCase {
 		$res = $this->doApiRequestWithToken( $params );
 
 		$user->clearInstanceCache();
+		MediaWikiServices::getInstance()->getPermissionManager()->invalidateUsersRightsCache();
 		$this->assertSame( $expectedGroups, $user->getGroups() );
 
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
@@ -128,7 +132,7 @@ class ApiUserrightsTest extends ApiTestCase {
 	public function testBlockedWithUserrights() {
 		global $wgUser;
 
-		$block = new Block( [ 'address' => $wgUser, 'by' => $wgUser->getId(), ] );
+		$block = new DatabaseBlock( [ 'address' => $wgUser, 'by' => $wgUser->getId(), ] );
 		$block->insert();
 
 		try {
@@ -144,7 +148,7 @@ class ApiUserrightsTest extends ApiTestCase {
 
 		$this->setPermissions( true, true );
 
-		$block = new Block( [ 'address' => $user, 'by' => $user->getId() ] );
+		$block = new DatabaseBlock( [ 'address' => $user, 'by' => $user->getId() ] );
 		$block->insert();
 
 		try {

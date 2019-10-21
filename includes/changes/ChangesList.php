@@ -23,7 +23,8 @@
  */
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ResultWrapper;
+use MediaWiki\Revision\RevisionRecord;
+use Wikimedia\Rdbms\IResultWrapper;
 
 class ChangesList extends ContextSource {
 	const CSS_CLASS_PREFIX = 'mw-changeslist-';
@@ -87,7 +88,7 @@ class ChangesList extends ContextSource {
 		$user = $context->getUser();
 		$sk = $context->getSkin();
 		$list = null;
-		if ( Hooks::run( 'FetchChangesList', [ $user, &$sk, &$list ] ) ) {
+		if ( Hooks::run( 'FetchChangesList', [ $user, &$sk, &$list, $groups ] ) ) {
 			$new = $context->getRequest()->getBool( 'enhanced', $user->getOption( 'usenewrc' ) );
 
 			return $new ?
@@ -160,6 +161,7 @@ class ChangesList extends ContextSource {
 	 */
 	private function preCacheMessages() {
 		if ( !isset( $this->message ) ) {
+			$this->message = [];
 			foreach ( [
 				'cur', 'diff', 'hist', 'enhancedrc-history', 'last', 'blocklink', 'history',
 				'semicolon-separator', 'pipe-separator' ] as $msg
@@ -192,7 +194,7 @@ class ChangesList extends ContextSource {
 	 * @param RecentChange|RCCacheEntry $rc
 	 * @param string|bool $watched Optionally timestamp for adding watched class
 	 *
-	 * @return array of classes
+	 * @return string[] List of CSS class names
 	 */
 	protected function getHTMLClasses( $rc, $watched ) {
 		$classes = [ self::CSS_CLASS_PREFIX . 'line' ];
@@ -230,6 +232,13 @@ class ChangesList extends ContextSource {
 
 		$classes[] = Sanitizer::escapeClass( self::CSS_CLASS_PREFIX . 'ns-' .
 			$rc->mAttribs['rc_namespace'] );
+
+		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		$classes[] = Sanitizer::escapeClass(
+			self::CSS_CLASS_PREFIX .
+			'ns-' .
+			( $nsInfo->isTalk( $rc->mAttribs['rc_namespace'] ) ? 'talk' : 'subject' )
+		);
 
 		if ( $this->filterGroups !== null ) {
 			foreach ( $this->filterGroups as $filterGroup ) {
@@ -298,7 +307,7 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * @param ResultWrapper|array $rows
+	 * @param IResultWrapper|array $rows
 	 */
 	public function initChangesListRows( $rows ) {
 		Hooks::run( 'ChangesListInitRows', [ $this, $rows ] );
@@ -409,9 +418,9 @@ class ChangesList extends ContextSource {
 	public static function revDateLink( Revision $rev, User $user, Language $lang, $title = null ) {
 		$ts = $rev->getTimestamp();
 		$date = $lang->userTimeAndDate( $ts, $user );
-		if ( $rev->userCan( Revision::DELETED_TEXT, $user ) ) {
+		if ( $rev->userCan( RevisionRecord::DELETED_TEXT, $user ) ) {
 			$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
-				$title !== null ? $title : $rev->getTitle(),
+				$title ?? $rev->getTitle(),
 				$date,
 				[ 'class' => 'mw-changeslist-date' ],
 				[ 'oldid' => $rev->getId() ]
@@ -419,7 +428,7 @@ class ChangesList extends ContextSource {
 		} else {
 			$link = htmlspecialchars( $date );
 		}
-		if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
+		if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 			$link = "<span class=\"history-deleted mw-changeslist-date\">$link</span>";
 		}
 		return $link;
@@ -446,13 +455,21 @@ class ChangesList extends ContextSource {
 	 * @param string &$s HTML to update
 	 * @param Title $title
 	 * @param string $logtype
+	 * @param bool $useParentheses (optional) Wrap log entry in parentheses where needed
 	 */
-	public function insertLog( &$s, $title, $logtype ) {
+	public function insertLog( &$s, $title, $logtype, $useParentheses = true ) {
 		$page = new LogPage( $logtype );
 		$logname = $page->getName()->setContext( $this->getContext() )->text();
-		$s .= $this->msg( 'parentheses' )->rawParams(
-			$this->linkRenderer->makeKnownLink( $title, $logname )
-		)->escaped();
+		$link = $this->linkRenderer->makeKnownLink( $title, $logname, [
+			'class' => $useParentheses ? '' : 'mw-changeslist-links'
+		] );
+		if ( $useParentheses ) {
+			$s .= $this->msg( 'parentheses' )->rawParams(
+				$link
+			)->escaped();
+		} else {
+			$s .= $link;
+		}
 	}
 
 	/**
@@ -468,7 +485,7 @@ class ChangesList extends ContextSource {
 			$rc->mAttribs['rc_type'] == RC_CATEGORIZE
 		) {
 			$diffLink = $this->message['diff'];
-		} elseif ( !self::userCan( $rc, Revision::DELETED_TEXT, $this->getUser() ) ) {
+		} elseif ( !self::userCan( $rc, RevisionRecord::DELETED_TEXT, $this->getUser() ) ) {
 			$diffLink = $this->message['diff'];
 		} else {
 			$query = [
@@ -524,7 +541,7 @@ class ChangesList extends ContextSource {
 			[ 'class' => 'mw-changeslist-title' ],
 			$params
 		);
-		if ( $this->isDeleted( $rc, Revision::DELETED_TEXT ) ) {
+		if ( $this->isDeleted( $rc, RevisionRecord::DELETED_TEXT ) ) {
 			$articlelink = '<span class="history-deleted">' . $articlelink . '</span>';
 		}
 		# To allow for boldening pages watched by this user
@@ -576,7 +593,7 @@ class ChangesList extends ContextSource {
 	 * @param RecentChange &$rc
 	 */
 	public function insertUserRelatedLinks( &$s, &$rc ) {
-		if ( $this->isDeleted( $rc, Revision::DELETED_USER ) ) {
+		if ( $this->isDeleted( $rc, RevisionRecord::DELETED_USER ) ) {
 			$s .= ' <span class="history-deleted">' .
 				$this->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		} else {
@@ -604,7 +621,9 @@ class ChangesList extends ContextSource {
 		$formatter->setShowUserToolLinks( true );
 		$mark = $this->getLanguage()->getDirMark();
 
-		return $formatter->getActionText() . " $mark" . $formatter->getComment();
+		return Html::openElement( 'span', [ 'class' => 'mw-changeslist-log-entry' ] )
+			. $formatter->getActionText() . " $mark" . $formatter->getComment()
+			. Html::closeElement( 'span' );
 	}
 
 	/**
@@ -613,8 +632,8 @@ class ChangesList extends ContextSource {
 	 * @return string
 	 */
 	public function insertComment( $rc ) {
-		if ( $this->isDeleted( $rc, Revision::DELETED_COMMENT ) ) {
-			return ' <span class="history-deleted">' .
+		if ( $this->isDeleted( $rc, RevisionRecord::DELETED_COMMENT ) ) {
+			return ' <span class="history-deleted comment">' .
 				$this->msg( 'rev-deleted-comment' )->escaped() . '</span>';
 		} else {
 			return Linker::commentBlock( $rc->mAttribs['rc_comment'], $rc->getTitle(),
@@ -640,7 +659,7 @@ class ChangesList extends ContextSource {
 		return $this->watchMsgCache->getWithSetCallback(
 			"watching-users-msg:$count",
 			function () use ( $count ) {
-				return $this->msg( 'number_of_watching_users_RCview' )
+				return $this->msg( 'number-of-watching-users-for-recent-changes' )
 					->numParams( $count )->escaped();
 			}
 		);
@@ -661,15 +680,20 @@ class ChangesList extends ContextSource {
 	 * field of this revision, if it's marked as deleted.
 	 * @param RCCacheEntry|RecentChange $rc
 	 * @param int $field
-	 * @param User|null $user User object to check, or null to use $wgUser
+	 * @param User|null $user User object to check against. If null, the global RequestContext's
+	 * User is assumed instead.
 	 * @return bool
 	 */
 	public static function userCan( $rc, $field, User $user = null ) {
+		if ( $user === null ) {
+			$user = RequestContext::getMain()->getUser();
+		}
+
 		if ( $rc->mAttribs['rc_type'] == RC_LOG ) {
 			return LogEventsList::userCanBitfield( $rc->mAttribs['rc_deleted'], $field, $user );
-		} else {
-			return Revision::userCanBitfield( $rc->mAttribs['rc_deleted'], $field, $user );
 		}
+
+		return RevisionRecord::userCanBitfield( $rc->mAttribs['rc_deleted'], $field, $user );
 	}
 
 	/**
@@ -699,8 +723,11 @@ class ChangesList extends ContextSource {
 		) {
 			$title = $rc->getTitle();
 			/** Check for rollback permissions, disallow special pages, and only
-			 * show a link on the top-most revision */
-			if ( $title->quickUserCan( 'rollback', $this->getUser() ) ) {
+			 * show a link on the top-most revision
+			 */
+			if ( MediaWikiServices::getInstance()->getPermissionManager()
+				->quickUserCan( 'rollback', $this->getUser(), $title )
+			) {
 				$rev = new Revision( [
 					'title' => $title,
 					'id' => $rc->mAttribs['rc_this_oldid'],
@@ -709,7 +736,8 @@ class ChangesList extends ContextSource {
 					'actor' => $rc->mAttribs['rc_actor'] ?? null,
 					'deleted' => $rc->mAttribs['rc_deleted']
 				] );
-				$s .= ' ' . Linker::generateRollback( $rev, $this->getContext() );
+				$s .= ' ' . Linker::generateRollback( $rev, $this->getContext(),
+					[ 'noBrackets' ] );
 			}
 		}
 	}

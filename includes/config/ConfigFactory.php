@@ -66,7 +66,8 @@ class ConfigFactory implements SalvageableService {
 	public function salvage( SalvageableService $other ) {
 		Assert::parameterType( self::class, $other, '$other' );
 
-		/** @var ConfigFactory $other */
+		/** @var self $other */
+		'@phan-var self $other';
 		foreach ( $other->factoryFunctions as $name => $otherFunc ) {
 			if ( !isset( $this->factoryFunctions[$name] ) ) {
 				continue;

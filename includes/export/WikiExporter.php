@@ -27,7 +27,9 @@
  * @defgroup Dump Dump
  */
 
-use Wikimedia\Rdbms\ResultWrapper;
+use MediaWiki\MediaWikiServices as MediaWikiServicesAlias;
+use MediaWiki\Revision\RevisionRecord;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -52,8 +54,8 @@ class WikiExporter {
 	const LOGS = 8;
 	const RANGE = 16;
 
-	const TEXT = 0;
-	const STUB = 1;
+	const TEXT = XmlDumpWriter::WRITE_CONTENT;
+	const STUB = XmlDumpWriter::WRITE_STUB;
 
 	const BATCH_SIZE = 50000;
 
@@ -65,6 +67,15 @@ class WikiExporter {
 
 	/** @var XmlDumpWriter */
 	private $writer;
+
+	/** @var IDatabase */
+	protected $db;
+
+	/** @var array|int */
+	protected $history;
+
+	/** @var array|null */
+	protected $limitNamespaces;
 
 	/**
 	 * Returns the default export schema version, as defined by $wgXmlDumpSchemaVersion.
@@ -83,13 +94,21 @@ class WikiExporter {
 	 *   - limit: maximum number of rows to return
 	 *   - dir: "asc" or "desc" timestamp order
 	 * @param int $text One of WikiExporter::TEXT or WikiExporter::STUB
+	 * @param null|array $limitNamespaces Comma-separated list of namespace numbers
+	 *   to limit results
 	 */
-	function __construct( $db, $history = self::CURRENT, $text = self::TEXT ) {
+	function __construct(
+		$db,
+		$history = self::CURRENT,
+		$text = self::TEXT,
+		$limitNamespaces = null
+	) {
 		$this->db = $db;
 		$this->history = $history;
 		$this->writer = new XmlDumpWriter( $text, self::schemaVersion() );
 		$this->sink = new DumpOutput();
 		$this->text = $text;
+		$this->limitNamespaces = $limitNamespaces;
 	}
 
 	/**
@@ -106,7 +125,7 @@ class WikiExporter {
 	 * various row objects and XML output for filtering. Filters
 	 * can be chained or used as callbacks.
 	 *
-	 * @param DumpOutput &$sink
+	 * @param DumpOutput|DumpFilter &$sink
 	 */
 	public function setOutputSink( &$sink ) {
 		$this->sink =& $sink;
@@ -221,7 +240,7 @@ class WikiExporter {
 	 * Not called by default (depends on $this->list_authors)
 	 * Can be set by Special:Export when not exporting whole history
 	 *
-	 * @param array $cond
+	 * @param string $cond
 	 */
 	protected function do_list_authors( $cond ) {
 		$this->author_list = "<contributors>";
@@ -235,7 +254,7 @@ class WikiExporter {
 				'rev_user' => $revQuery['fields']['rev_user'],
 			],
 			[
-				$this->db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0',
+				$this->db->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . ' = 0',
 				$cond,
 			],
 			__METHOD__,
@@ -285,29 +304,36 @@ class WikiExporter {
 		if ( $cond ) {
 			$where[] = $cond;
 		}
-		# Get logging table name for logging.* clause
-		$logging = $this->db->tableName( 'logging' );
-
 		$result = null; // Assuring $result is not undefined, if exception occurs early
 
 		$commentQuery = CommentStore::getStore()->getJoin( 'log_comment' );
 		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
 
+		$tables = array_merge(
+			[ 'logging' ], $commentQuery['tables'], $actorQuery['tables'], [ 'user' ]
+		);
+		$fields = [
+			'log_id', 'log_type', 'log_action', 'log_timestamp', 'log_namespace',
+			'log_title', 'log_params', 'log_deleted', 'user_name'
+		] + $commentQuery['fields'] + $actorQuery['fields'];
+		$options = [
+			'ORDER BY' => 'log_id',
+			'USE INDEX' => [ 'logging' => 'PRIMARY' ],
+			'LIMIT' => self::BATCH_SIZE,
+		];
+		$joins = [
+			'user' => [ 'JOIN', 'user_id = ' . $actorQuery['fields']['log_user'] ]
+		] + $commentQuery['joins'] + $actorQuery['joins'];
+
 		$lastLogId = 0;
 		while ( true ) {
 			$result = $this->db->select(
-				array_merge( [ 'logging' ], $commentQuery['tables'], $actorQuery['tables'], [ 'user' ] ),
-				[ "{$logging}.*", 'user_name' ] + $commentQuery['fields'] + $actorQuery['fields'],
+				$tables,
+				$fields,
 				array_merge( $where, [ 'log_id > ' . intval( $lastLogId ) ] ),
 				__METHOD__,
-				[
-					'ORDER BY' => 'log_id',
-					'USE INDEX' => [ 'logging' => 'PRIMARY' ],
-					'LIMIT' => self::BATCH_SIZE,
-				],
-				[
-					'user' => [ 'JOIN', 'user_id = ' . $actorQuery['fields']['log_user'] ]
-				] + $commentQuery['joins'] + $actorQuery['joins']
+				$options,
+				$joins
 			);
 
 			if ( !$result->numRows() ) {
@@ -315,7 +341,7 @@ class WikiExporter {
 			}
 
 			$lastLogId = $this->outputLogStream( $result );
-		};
+		}
 	}
 
 	/**
@@ -334,18 +360,28 @@ class WikiExporter {
 			);
 		}
 
-		$revOpts = [ 'page' ];
+		$revQuery = MediaWikiServicesAlias::getInstance()->getRevisionStore()->getQueryInfo(
+			[ 'page' ]
+		);
+		$slotQuery = MediaWikiServicesAlias::getInstance()->getRevisionStore()->getSlotsQueryInfo(
+			[ 'content' ]
+		);
 
-		$revQuery = Revision::getQueryInfo( $revOpts );
-
-		// We want page primary rather than revision
+		// We want page primary rather than revision.
+		// We also want to join in the slots and content tables.
+		// NOTE: This means we may get multiple rows per revision, and more rows
+		// than the batch size! Should be ok, since the max number of slots is
+		// fixed and low (dozens at worst).
 		$tables = array_merge( [ 'page' ], array_diff( $revQuery['tables'], [ 'page' ] ) );
+		$tables = array_merge( $tables, array_diff( $slotQuery['tables'], $tables ) );
 		$join = $revQuery['joins'] + [
-				'revision' => $revQuery['joins']['page']
+				'revision' => $revQuery['joins']['page'],
+				'slots' => [ 'JOIN', [ 'slot_revision_id = rev_id' ] ],
+				'content' => [ 'JOIN', [ 'content_id = slot_content_id' ] ],
 			];
 		unset( $join['page'] );
 
-		$fields = $revQuery['fields'];
+		$fields = array_merge( $revQuery['fields'], $slotQuery['fields'] );
 		$fields[] = 'page_restrictions';
 
 		if ( $this->text != self::STUB ) {
@@ -382,7 +418,6 @@ class WikiExporter {
 			# Full history dumps...
 			# query optimization for history stub dumps
 			if ( $this->text == self::STUB ) {
-				$tables = $revQuery['tables'];
 				$opts[] = 'STRAIGHT_JOIN';
 				$opts['USE INDEX']['revision'] = 'rev_page_id';
 				unset( $join['revision'] );
@@ -394,6 +429,7 @@ class WikiExporter {
 				$this->do_list_authors( $cond );
 			}
 			$join['revision'] = [ 'JOIN', 'page_id=rev_page AND page_latest=rev_id' ];
+			$opts[ 'ORDER BY' ] = [ 'page_id ASC' ];
 		} elseif ( $this->history & self::STABLE ) {
 			# "Stable" revision dumps...
 			# Default JOIN, to be overridden...
@@ -458,19 +494,36 @@ class WikiExporter {
 	}
 
 	/**
-	 * Runs through a query result set dumping page and revision records.
-	 * The result set should be sorted/grouped by page to avoid duplicate
-	 * page records in the output.
+	 * Runs through a query result set dumping page, revision, and slot records.
+	 * The result set should join the page, revision, slots, and content tables,
+	 * and be sorted/grouped by page and revision to avoid duplicate page records in the output.
 	 *
-	 * @param ResultWrapper $results
+	 * @param IResultWrapper $results
 	 * @param object $lastRow the last row output from the previous call (or null if none)
 	 * @return object the last row processed
 	 */
 	protected function outputPageStreamBatch( $results, $lastRow ) {
-		foreach ( $results as $row ) {
+		$rowCarry = null;
+		while ( true ) {
+			$slotRows = $this->getSlotRowBatch( $results, $rowCarry );
+
+			if ( !$slotRows ) {
+				break;
+			}
+
+			// All revision info is present in all slot rows.
+			// Use the first slot row as the revision row.
+			$revRow = $slotRows[0];
+
+			if ( $this->limitNamespaces &&
+				!in_array( $revRow->page_namespace, $this->limitNamespaces ) ) {
+				$lastRow = $revRow;
+				continue;
+			}
+
 			if ( $lastRow === null ||
-				$lastRow->page_namespace !== $row->page_namespace ||
-				$lastRow->page_title !== $row->page_title ) {
+				$lastRow->page_namespace !== $revRow->page_namespace ||
+				$lastRow->page_title !== $revRow->page_title ) {
 				if ( $lastRow !== null ) {
 					$output = '';
 					if ( $this->dumpUploads ) {
@@ -479,15 +532,50 @@ class WikiExporter {
 					$output .= $this->writer->closePage();
 					$this->sink->writeClosePage( $output );
 				}
-				$output = $this->writer->openPage( $row );
-				$this->sink->writeOpenPage( $row, $output );
+				$output = $this->writer->openPage( $revRow );
+				$this->sink->writeOpenPage( $revRow, $output );
 			}
-			$output = $this->writer->writeRevision( $row );
-			$this->sink->writeRevision( $row, $output );
-			$lastRow = $row;
+			$output = $this->writer->writeRevision( $revRow, $slotRows );
+			$this->sink->writeRevision( $revRow, $output );
+			$lastRow = $revRow;
+		}
+
+		if ( $rowCarry ) {
+			throw new LogicException( 'Error while processing a stream of slot rows' );
 		}
 
 		return $lastRow;
+	}
+
+	/**
+	 * Returns all slot rows for a revision.
+	 * Takes and returns a carry row from the last batch;
+	 *
+	 * @param IResultWrapper|array $results
+	 * @param null|object &$carry A row carried over from the last call to getSlotRowBatch()
+	 *
+	 * @return object[]
+	 */
+	protected function getSlotRowBatch( $results, &$carry = null ) {
+		$slotRows = [];
+		$prev = null;
+
+		if ( $carry ) {
+			$slotRows[] = $carry;
+			$prev = $carry;
+			$carry = null;
+		}
+
+		while ( $row = $results->fetchObject() ) {
+			if ( $prev && $prev->rev_id !== $row->rev_id ) {
+				$carry = $row;
+				break;
+			}
+			$slotRows[] = $row;
+			$prev = $row;
+		}
+
+		return $slotRows;
 	}
 
 	/**
@@ -506,7 +594,7 @@ class WikiExporter {
 	}
 
 	/**
-	 * @param ResultWrapper $resultset
+	 * @param IResultWrapper $resultset
 	 * @return int the log_id value of the last item output, or null if none
 	 */
 	protected function outputLogStream( $resultset ) {

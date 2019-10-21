@@ -21,7 +21,7 @@
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\BotPasswordSessionProvider;
-use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Utility class for bot passwords
@@ -71,7 +71,7 @@ class BotPassword implements IDBAccessObject {
 	/**
 	 * Get a database connection for the bot passwords database
 	 * @param int $db Index of the connection to get, e.g. DB_MASTER or DB_REPLICA.
-	 * @return IMaintainableDatabase
+	 * @return IDatabase
 	 */
 	public static function getDB( $db ) {
 		global $wgBotPasswordsCluster, $wgBotPasswordsDatabase;
@@ -514,6 +514,7 @@ class BotPassword implements IDBAccessObject {
 			$throttle->clear( $user->getName(), $request->getIP() );
 		}
 		return self::loginHook( $user, $bp,
+			// @phan-suppress-next-line PhanUndeclaredMethod
 			Status::newGood( $provider->newSessionForRequest( $user, $bp, $request ) ) );
 	}
 

@@ -21,11 +21,14 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MediaWikiServices;
+
 /**
  * Implements Special:DeletedContributions to display archived revisions
  * @ingroup SpecialPage
  */
-class DeletedContributionsPage extends SpecialPage {
+class SpecialDeletedContributions extends SpecialPage {
 	/** @var FormOptions */
 	protected $mOpts;
 
@@ -43,6 +46,7 @@ class DeletedContributionsPage extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->checkPermissions();
+		$this->addHelpLink( 'Help:User contributions' );
 
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'deletedcontributions-title' ) );
@@ -89,7 +93,8 @@ class DeletedContributionsPage extends SpecialPage {
 
 		$this->getForm();
 
-		$pager = new DeletedContribsPager( $this->getContext(), $target, $opts->getValue( 'namespace' ) );
+		$pager = new DeletedContribsPager( $this->getContext(), $target, $opts->getValue( 'namespace' ),
+			$this->getLinkRenderer() );
 		if ( !$pager->getNumRows() ) {
 			$out->addWikiMsg( 'nocontribs' );
 
@@ -109,17 +114,15 @@ class DeletedContributionsPage extends SpecialPage {
 
 		# If there were contributions, and it was a valid user or IP, show
 		# the appropriate "footer" message - WHOIS tools, etc.
-		if ( $target != 'newbies' ) {
-			$message = IP::isIPAddress( $target ) ?
-				'sp-contributions-footer-anon' :
-				'sp-contributions-footer';
+		$message = IP::isIPAddress( $target ) ?
+			'sp-contributions-footer-anon' :
+			'sp-contributions-footer';
 
-			if ( !$this->msg( $message )->isDisabled() ) {
-				$out->wrapWikiMsg(
-					"<div class='mw-contributions-footer'>\n$1\n</div>",
-					[ $message, $target ]
-				);
-			}
+		if ( !$this->msg( $message )->isDisabled() ) {
+			$out->wrapWikiMsg(
+				"<div class='mw-contributions-footer'>\n$1\n</div>",
+				[ $message, $target ]
+			);
 		}
 	}
 
@@ -157,10 +160,11 @@ class DeletedContributionsPage extends SpecialPage {
 			$links = $this->getLanguage()->pipeList( $tools );
 
 			// Show a note if the user is blocked and display the last block log entry.
-			$block = Block::newFromTarget( $userObj, $userObj );
-			if ( !is_null( $block ) && $block->getType() != Block::TYPE_AUTO ) {
-				if ( $block->getType() == Block::TYPE_RANGE ) {
-					$nt = MWNamespace::getCanonicalName( NS_USER ) . ':' . $block->getTarget();
+			$block = DatabaseBlock::newFromTarget( $userObj, $userObj );
+			if ( !is_null( $block ) && $block->getType() != DatabaseBlock::TYPE_AUTO ) {
+				if ( $block->getType() == DatabaseBlock::TYPE_RANGE ) {
+					$nt = MediaWikiServices::getInstance()->getNamespaceInfo()->
+						getCanonicalName( NS_USER ) . ':' . $block->getTarget();
 				}
 
 				// LogEventsList::showLogExtract() wants the first parameter by ref

@@ -22,6 +22,8 @@
  */
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionRenderer;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 
 /**
  * Job to update link tables for pages
@@ -37,10 +39,8 @@ use MediaWiki\Revision\RevisionRecord;
  * @ingroup JobQueue
  */
 class RefreshLinksJob extends Job {
-	/** @var float Cache parser output when it takes this long to render */
-	const PARSE_THRESHOLD_SEC = 1.0;
 	/** @var int Lag safety margin when comparing root job times to last-refresh times */
-	const CLOCK_FUDGE = 10;
+	const NORMAL_MAX_LAG = 10;
 	/** @var int How many seconds to wait for replica DBs to catch up */
 	const LAG_WAIT_TIMEOUT = 15;
 
@@ -54,7 +54,9 @@ class RefreshLinksJob extends Job {
 			!( isset( $params['pages'] ) && count( $params['pages'] ) != 1 )
 		);
 		$this->params += [ 'causeAction' => 'unknown', 'causeAgent' => 'unknown' ];
-		// This will control transaction rounds in order to run DataUpdates
+		// Tell JobRunner to not automatically wrap run() in a transaction round.
+		// Each runForTitle() call will manage its own rounds in order to run DataUpdates
+		// and to avoid contention as well.
 		$this->executionFlags |= self::JOB_NO_EXPLICIT_TRX_ROUND;
 	}
 
@@ -83,21 +85,21 @@ class RefreshLinksJob extends Job {
 	}
 
 	function run() {
-		global $wgUpdateRowsPerJob;
-
 		$ok = true;
+
 		// Job to update all (or a range of) backlink pages for a page
 		if ( !empty( $this->params['recursive'] ) ) {
+			$services = MediaWikiServices::getInstance();
 			// When the base job branches, wait for the replica DBs to catch up to the master.
 			// From then on, we know that any template changes at the time the base job was
 			// enqueued will be reflected in backlink page parses when the leaf jobs run.
 			if ( !isset( $this->params['range'] ) ) {
-				$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+				$lbFactory = $services->getDBLoadBalancerFactory();
 				if ( !$lbFactory->waitForReplication( [
-						'domain'  => $lbFactory->getLocalDomainID(),
-						'timeout' => self::LAG_WAIT_TIMEOUT
+					'domain'  => $lbFactory->getLocalDomainID(),
+					'timeout' => self::LAG_WAIT_TIMEOUT
 				] ) ) { // only try so hard
-					$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+					$stats = $services->getStatsdDataFactory();
 					$stats->increment( 'refreshlinks.lag_wait_failed' );
 				}
 			}
@@ -111,7 +113,7 @@ class RefreshLinksJob extends Job {
 			// jobs and possibly a recursive RefreshLinks job for the rest of the backlinks
 			$jobs = BacklinkJobUtils::partitionBacklinkJob(
 				$this,
-				$wgUpdateRowsPerJob,
+				$services->getMainConfig()->get( 'UpdateRowsPerJob' ),
 				1, // job-per-title
 				[ 'params' => $extraParams ]
 			);
@@ -121,7 +123,7 @@ class RefreshLinksJob extends Job {
 			foreach ( $this->params['pages'] as list( $ns, $dbKey ) ) {
 				$title = Title::makeTitleSafe( $ns, $dbKey );
 				if ( $title ) {
-					$this->runForTitle( $title );
+					$ok = $this->runForTitle( $title ) && $ok;
 				} else {
 					$ok = false;
 					$this->setLastError( "Invalid title ($ns,$dbKey)." );
@@ -129,7 +131,7 @@ class RefreshLinksJob extends Job {
 			}
 		// Job to update link tables for a given title
 		} else {
-			$this->runForTitle( $this->title );
+			$ok = $this->runForTitle( $this->title );
 		}
 
 		return $ok;
@@ -142,146 +144,240 @@ class RefreshLinksJob extends Job {
 	protected function runForTitle( Title $title ) {
 		$services = MediaWikiServices::getInstance();
 		$stats = $services->getStatsdDataFactory();
-		$lbFactory = $services->getDBLoadBalancerFactory();
-		$revisionStore = $services->getRevisionStore();
 		$renderer = $services->getRevisionRenderer();
+		$parserCache = $services->getParserCache();
+		$lbFactory = $services->getDBLoadBalancerFactory();
 		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
 
-		$lbFactory->beginMasterChanges( __METHOD__ );
-
+		// Load the page from the master DB
 		$page = WikiPage::factory( $title );
 		$page->loadPageData( WikiPage::READ_LATEST );
 
+		// Serialize link update job by page ID so they see each others' changes.
+		// The page ID and latest revision ID will be queried again after the lock
+		// is acquired to bail if they are changed from that of loadPageData() above.
 		// Serialize links updates by page ID so they see each others' changes
-		$dbw = $lbFactory->getMainLB()->getConnection( DB_MASTER );
+		$dbw = $lbFactory->getMainLB()->getConnectionRef( DB_MASTER );
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scopedLock = LinksUpdate::acquirePageLock( $dbw, $page->getId(), 'job' );
 		if ( $scopedLock === null ) {
-			$lbFactory->commitMasterChanges( __METHOD__ );
-			// Another job is already updating the page, likely for an older revision (T170596).
+			// Another job is already updating the page, likely for a prior revision (T170596)
 			$this->setLastError( 'LinksUpdate already running for this page, try again later.' );
+			$stats->increment( 'refreshlinks.lock_failure' );
+
 			return false;
 		}
-		// Get the latest ID *after* acquirePageLock() flushed the transaction.
-		// This is used to detect edits/moves after loadPageData() but before the scope lock.
-		// The works around the chicken/egg problem of determining the scope lock key.
-		$latest = $title->getLatestRevID( Title::GAID_FOR_UPDATE );
 
-		if ( !empty( $this->params['triggeringRevisionId'] ) ) {
-			// Fetch the specified revision; lockAndGetLatest() below detects if the page
-			// was edited since and aborts in order to avoid corrupting the link tables
-			$revision = $revisionStore->getRevisionById(
-				(int)$this->params['triggeringRevisionId'],
-				Revision::READ_LATEST
-			);
-		} else {
-			// Fetch current revision; READ_LATEST reduces lockAndGetLatest() check failures
-			$revision = $revisionStore->getRevisionByTitle( $title, 0, Revision::READ_LATEST );
+		if ( $this->isAlreadyRefreshed( $page ) ) {
+			$stats->increment( 'refreshlinks.update_skipped' );
+
+			return true;
 		}
 
+		// Parse during a fresh transaction round for better read consistency
+		$lbFactory->beginMasterChanges( __METHOD__ );
+		$output = $this->getParserOutput( $renderer, $parserCache, $page, $stats );
+		$options = $this->getDataUpdateOptions();
+		$lbFactory->commitMasterChanges( __METHOD__ );
+
+		if ( !$output ) {
+			return false; // raced out?
+		}
+
+		// Tell DerivedPageDataUpdater to use this parser output
+		$options['known-revision-output'] = $output;
+		// Execute corresponding DataUpdates immediately
+		$page->doSecondaryDataUpdates( $options );
+		InfoAction::invalidateCache( $title );
+
+		// Commit any writes here in case this method is called in a loop.
+		// In that case, the scoped lock will fail to be acquired.
+		$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+
+		return true;
+	}
+
+	/**
+	 * @param WikiPage $page
+	 * @return bool Whether something updated the backlinks with data newer than this job
+	 */
+	private function isAlreadyRefreshed( WikiPage $page ) {
+		// Get the timestamp of the change that triggered this job
+		$rootTimestamp = $this->params['rootJobTimestamp'] ?? null;
+		if ( $rootTimestamp === null ) {
+			return false;
+		}
+
+		if ( !empty( $this->params['isOpportunistic'] ) ) {
+			// Neither clock skew nor DB snapshot/replica DB lag matter much for
+			// such updates; focus on reusing the (often recently updated) cache
+			$lagAwareTimestamp = $rootTimestamp;
+		} else {
+			// For transclusion updates, the template changes must be reflected
+			$lagAwareTimestamp = wfTimestamp(
+				TS_MW,
+				wfTimestamp( TS_UNIX, $rootTimestamp ) + self::NORMAL_MAX_LAG
+			);
+		}
+
+		return ( $page->getLinksTimestamp() > $lagAwareTimestamp );
+	}
+
+	/**
+	 * Get the parser output if the page is unchanged from what was loaded in $page
+	 *
+	 * @param RevisionRenderer $renderer
+	 * @param ParserCache $parserCache
+	 * @param WikiPage $page Page already loaded with READ_LATEST
+	 * @param StatsdDataFactoryInterface $stats
+	 * @return ParserOutput|null Combined output for all slots; might only contain metadata
+	 */
+	private function getParserOutput(
+		RevisionRenderer $renderer,
+		ParserCache $parserCache,
+		WikiPage $page,
+		StatsdDataFactoryInterface $stats
+	) {
+		$revision = $this->getCurrentRevisionIfUnchanged( $page, $stats );
 		if ( !$revision ) {
-			$lbFactory->commitMasterChanges( __METHOD__ );
+			return null; // race condition?
+		}
+
+		$cachedOutput = $this->getParserOutputFromCache( $parserCache, $page, $revision, $stats );
+		if ( $cachedOutput ) {
+			return $cachedOutput;
+		}
+
+		$renderedRevision = $renderer->getRenderedRevision(
+			$revision,
+			$page->makeParserOptions( 'canonical' ),
+			null,
+			[ 'audience' => $revision::RAW ]
+		);
+
+		$parseTimestamp = wfTimestampNow(); // timestamp that parsing started
+		$output = $renderedRevision->getRevisionParserOutput( [ 'generate-html' => false ] );
+		$output->setCacheTime( $parseTimestamp ); // notify LinksUpdate::doUpdate()
+
+		return $output;
+	}
+
+	/**
+	 * Get the current revision record if it is unchanged from what was loaded in $page
+	 *
+	 * @param WikiPage $page Page already loaded with READ_LATEST
+	 * @param StatsdDataFactoryInterface $stats
+	 * @return RevisionRecord|null The same instance that $page->getRevisionRecord() uses
+	 */
+	private function getCurrentRevisionIfUnchanged(
+		WikiPage $page,
+		StatsdDataFactoryInterface $stats
+	) {
+		$title = $page->getTitle();
+		// Get the latest ID since acquirePageLock() in runForTitle() flushed the transaction.
+		// This is used to detect edits/moves after loadPageData() but before the scope lock.
+		// The works around the chicken/egg problem of determining the scope lock key name
+		$latest = $title->getLatestRevID( Title::READ_LATEST );
+
+		$triggeringRevisionId = $this->params['triggeringRevisionId'] ?? null;
+		if ( $triggeringRevisionId && $triggeringRevisionId !== $latest ) {
+			// This job is obsolete and one for the latest revision will handle updates
+			$stats->increment( 'refreshlinks.rev_not_current' );
+			$this->setLastError( "Revision $triggeringRevisionId is not current" );
+
+			return null;
+		}
+
+		// Load the current revision. Note that $page should have loaded with READ_LATEST.
+		// This instance will be reused in WikiPage::doSecondaryDataUpdates() later on.
+		$revision = $page->getRevisionRecord();
+		if ( !$revision ) {
 			$stats->increment( 'refreshlinks.rev_not_found' );
 			$this->setLastError( "Revision not found for {$title->getPrefixedDBkey()}" );
-			return false; // just deleted?
-		} elseif ( $revision->getId() != $latest || $revision->getPageId() !== $page->getId() ) {
-			$lbFactory->commitMasterChanges( __METHOD__ );
+
+			return null; // just deleted?
+		} elseif ( $revision->getId() !== $latest || $revision->getPageId() !== $page->getId() ) {
 			// Do not clobber over newer updates with older ones. If all jobs where FIFO and
 			// serialized, it would be OK to update links based on older revisions since it
 			// would eventually get to the latest. Since that is not the case (by design),
 			// only update the link tables to a state matching the current revision's output.
 			$stats->increment( 'refreshlinks.rev_not_current' );
 			$this->setLastError( "Revision {$revision->getId()} is not current" );
-			return false;
+
+			return null;
 		}
 
-		$parserOutput = false;
-		$parserOptions = $page->makeParserOptions( 'canonical' );
+		return $revision;
+	}
+
+	/**
+	 * Get the parser output from cache if it reflects the change that triggered this job
+	 *
+	 * @param ParserCache $parserCache
+	 * @param WikiPage $page
+	 * @param RevisionRecord $currentRevision
+	 * @param StatsdDataFactoryInterface $stats
+	 * @return ParserOutput|null
+	 */
+	private function getParserOutputFromCache(
+		ParserCache $parserCache,
+		WikiPage $page,
+		RevisionRecord $currentRevision,
+		StatsdDataFactoryInterface $stats
+	) {
+		$cachedOutput = null;
 		// If page_touched changed after this root job, then it is likely that
 		// any views of the pages already resulted in re-parses which are now in
 		// cache. The cache can be reused to avoid expensive parsing in some cases.
-		if ( isset( $this->params['rootJobTimestamp'] ) ) {
+		$rootTimestamp = $this->params['rootJobTimestamp'] ?? null;
+		if ( $rootTimestamp !== null ) {
 			$opportunistic = !empty( $this->params['isOpportunistic'] );
-
-			$skewedTimestamp = $this->params['rootJobTimestamp'];
 			if ( $opportunistic ) {
-				// Neither clock skew nor DB snapshot/replica DB lag matter much for such
-				// updates; focus on reusing the (often recently updated) cache
+				// Neither clock skew nor DB snapshot/replica DB lag matter much for
+				// such updates; focus on reusing the (often recently updated) cache
+				$lagAwareTimestamp = $rootTimestamp;
 			} else {
 				// For transclusion updates, the template changes must be reflected
-				$skewedTimestamp = wfTimestamp( TS_MW,
-					wfTimestamp( TS_UNIX, $skewedTimestamp ) + self::CLOCK_FUDGE
+				$lagAwareTimestamp = wfTimestamp(
+					TS_MW,
+					wfTimestamp( TS_UNIX, $rootTimestamp ) + self::NORMAL_MAX_LAG
 				);
 			}
 
-			if ( $page->getLinksTimestamp() > $skewedTimestamp ) {
-				$lbFactory->commitMasterChanges( __METHOD__ );
-				// Something already updated the backlinks since this job was made
-				$stats->increment( 'refreshlinks.update_skipped' );
-				return true;
-			}
-
-			if ( $page->getTouched() >= $this->params['rootJobTimestamp'] || $opportunistic ) {
-				// Cache is suspected to be up-to-date. As long as the cache rev ID matches
-				// and it reflects the job's triggering change, then it is usable.
-				$parserOutput = $services->getParserCache()->getDirty( $page, $parserOptions );
-				if ( !$parserOutput
-					|| $parserOutput->getCacheRevisionId() != $revision->getId()
-					|| $parserOutput->getCacheTime() < $skewedTimestamp
+			if ( $page->getTouched() >= $rootTimestamp || $opportunistic ) {
+				// Cache is suspected to be up-to-date so it's worth the I/O of checking.
+				// As long as the cache rev ID matches the current rev ID and it reflects
+				// the job's triggering change, then it is usable.
+				$parserOptions = $page->makeParserOptions( 'canonical' );
+				$output = $parserCache->getDirty( $page, $parserOptions );
+				if (
+					$output &&
+					$output->getCacheRevisionId() == $currentRevision->getId() &&
+					$output->getCacheTime() >= $lagAwareTimestamp
 				) {
-					$parserOutput = false; // too stale
+					$cachedOutput = $output;
 				}
 			}
 		}
 
-		// Fetch the current revision and parse it if necessary...
-		if ( $parserOutput ) {
+		if ( $cachedOutput ) {
 			$stats->increment( 'refreshlinks.parser_cached' );
 		} else {
-			$start = microtime( true );
-
-			$checkCache = $page->shouldCheckParserCache( $parserOptions, $revision->getId() );
-
-			// Revision ID must be passed to the parser output to get revision variables correct
-			$renderedRevision = $renderer->getRenderedRevision(
-				$revision,
-				$parserOptions,
-				null,
-				[
-					// use master, for consistency with the getRevisionByTitle call above.
-					'use-master' => true,
-					// bypass audience checks, since we know that this is the current revision.
-					'audience' => RevisionRecord::RAW
-				]
-			);
-			$parserOutput = $renderedRevision->getRevisionParserOutput(
-				// HTML is only needed if the output is to be placed in the parser cache
-				[ 'generate-html' => $checkCache ]
-			);
-
-			// If it took a long time to render, then save this back to the cache to avoid
-			// wasted CPU by other apaches or job runners. We don't want to always save to
-			// cache as this can cause high cache I/O and LRU churn when a template changes.
-			$elapsed = microtime( true ) - $start;
-
-			$parseThreshold = $this->params['parseThreshold'] ?? self::PARSE_THRESHOLD_SEC;
-
-			if ( $checkCache && $elapsed >= $parseThreshold && $parserOutput->isCacheable() ) {
-				$ctime = wfTimestamp( TS_MW, (int)$start ); // cache time
-				$services->getParserCache()->save(
-					$parserOutput, $page, $parserOptions, $ctime, $revision->getId()
-				);
-			}
 			$stats->increment( 'refreshlinks.parser_uncached' );
 		}
 
+		return $cachedOutput;
+	}
+
+	/**
+	 * @return array
+	 */
+	private function getDataUpdateOptions() {
 		$options = [
 			'recursive' => !empty( $this->params['useRecursiveLinksUpdate'] ),
 			// Carry over cause so the update can do extra logging
 			'causeAction' => $this->params['causeAction'],
-			'causeAgent' => $this->params['causeAgent'],
-			'defer' => false,
-			'transactionTicket' => $ticket,
+			'causeAgent' => $this->params['causeAgent']
 		];
 		if ( !empty( $this->params['triggeringUser'] ) ) {
 			$userInfo = $this->params['triggeringUser'];
@@ -293,17 +389,7 @@ class RefreshLinksJob extends Job {
 			}
 		}
 
-		$lbFactory->commitMasterChanges( __METHOD__ );
-
-		$page->doSecondaryDataUpdates( $options );
-
-		InfoAction::invalidateCache( $title );
-
-		// Commit any writes here in case this method is called in a loop.
-		// In that case, the scoped lock will fail to be acquired.
-		$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
-
-		return true;
+		return $options;
 	}
 
 	public function getDeduplicationInfo() {

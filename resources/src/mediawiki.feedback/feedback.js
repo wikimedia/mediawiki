@@ -337,7 +337,7 @@
 				this.messagePosterPromise = settings.messagePosterPromise;
 				this.setBugReportLink( settings.bugsTaskSubmissionLink );
 				this.feedbackPageTitle = settings.title;
-				this.feedbackPageName = settings.title.getNameText();
+				this.feedbackPageName = settings.title.getMainText();
 
 				// Useragent checkbox
 				if ( settings.useragentCheckbox.show ) {

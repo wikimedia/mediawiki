@@ -52,7 +52,7 @@
 		if ( $extraElements ) {
 			$e = $e.add( $extraElements );
 		}
-		$e.on( events, $.debounce( 1000, this.validate.bind( this ) ) );
+		$e.on( events, mw.util.debounce( 1000, this.validate.bind( this ) ) );
 
 		return this;
 	};
@@ -171,6 +171,7 @@
 			};
 			if (
 				$oldErrorBox !== $errorBox &&
+				// eslint-disable-next-line no-jquery/no-class-state
 				( $oldErrorBox.hasClass( 'error' ) || $oldErrorBox.hasClass( 'warning' ) )
 			) {
 				// eslint-disable-next-line no-jquery/no-slide

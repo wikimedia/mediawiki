@@ -68,6 +68,30 @@ class MWDebug {
 	protected static $deprecationWarnings = [];
 
 	/**
+	 * @internal For use by Setup.php only.
+	 */
+	public static function setup() {
+		global $wgDebugToolbar,
+			$wgUseCdn, $wgUseFileCache, $wgCommandLineMode;
+
+		if (
+			// Easy to forget to falsify $wgDebugToolbar for static caches.
+			// If file cache or CDN cache is on, just disable this (DWIMD).
+			$wgUseCdn ||
+			$wgUseFileCache ||
+			// Keep MWDebug off on CLI. This prevents MWDebug from eating up
+			// all the memory for logging SQL queries in maintenance scripts.
+			$wgCommandLineMode
+		) {
+			return;
+		}
+
+		if ( $wgDebugToolbar ) {
+			self::init();
+		}
+	}
+
+	/**
 	 * Enabled the debugger and load resource module.
 	 * This is called by Setup.php when $wgDebugToolbar is true.
 	 *
@@ -347,11 +371,11 @@ class MWDebug {
 	 * @since 1.19
 	 * @param string $sql
 	 * @param string $function
-	 * @param bool $isMaster
 	 * @param float $runTime Query run time
+	 * @param string $dbhost
 	 * @return bool True if debugger is enabled, false otherwise
 	 */
-	public static function query( $sql, $function, $isMaster, $runTime ) {
+	public static function query( $sql, $function, $runTime, $dbhost ) {
 		if ( !self::$enabled ) {
 			return false;
 		}
@@ -382,9 +406,8 @@ class MWDebug {
 		$sql = UtfNormal\Validator::cleanUp( $sql );
 
 		self::$query[] = [
-			'sql' => $sql,
+			'sql' => "$dbhost: $sql",
 			'function' => $function,
-			'master' => (bool)$isMaster,
 			'time' => $runTime,
 		];
 

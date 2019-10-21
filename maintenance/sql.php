@@ -25,7 +25,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBQueryError;
 
@@ -67,7 +67,7 @@ class MwSql extends Maintenance {
 		$replicaDB = $this->getOption( 'replicadb', $this->getOption( 'slave', '' ) );
 		if ( $replicaDB === 'any' ) {
 			$index = DB_REPLICA;
-		} elseif ( $replicaDB != '' ) {
+		} elseif ( $replicaDB !== '' ) {
 			$index = null;
 			$serverCount = $lb->getServerCount();
 			for ( $i = 0; $i < $serverCount; ++$i ) {
@@ -76,15 +76,14 @@ class MwSql extends Maintenance {
 					break;
 				}
 			}
-			if ( $index === null ) {
+			if ( $index === null || $index === $lb->getWriterIndex() ) {
 				$this->fatalError( "No replica DB server configured with the name '$replicaDB'." );
 			}
 		} else {
 			$index = DB_MASTER;
 		}
 
-		/** @var IDatabase $db DB handle for the appropriate cluster/wiki */
-		$db = $lb->getConnection( $index, [], $wiki );
+		$db = $lb->getMaintenanceConnectionRef( $index, [], $wiki );
 		if ( $replicaDB != '' && $db->getLBInfo( 'master' ) !== null ) {
 			$this->fatalError( "The server selected ({$db->getServer()}) is not a replica DB." );
 		}
@@ -176,9 +175,9 @@ class MwSql extends Maintenance {
 			return $this->sqlPrintResult( $res, $db );
 		} catch ( DBQueryError $e ) {
 			if ( $dieOnError ) {
-				$this->fatalError( $e );
+				$this->fatalError( (string)$e );
 			} else {
-				$this->error( $e );
+				$this->error( (string)$e );
 			}
 		}
 		return null;
@@ -186,7 +185,7 @@ class MwSql extends Maintenance {
 
 	/**
 	 * Print the results, callback for $db->sourceStream()
-	 * @param ResultWrapper|bool $res
+	 * @param IResultWrapper|bool $res
 	 * @param IDatabase $db
 	 * @return int|null Number of rows selected or updated, or null if the query was unsuccessful.
 	 */

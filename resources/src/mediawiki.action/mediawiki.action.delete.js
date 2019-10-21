@@ -8,7 +8,7 @@
 			summaryByteLimit = mw.config.get( 'wgCommentByteLimit' ),
 			reasonList = OO.ui.infuse( $( '#wpDeleteReasonList' ).closest( '.oo-ui-widget' ) ),
 			reason = OO.ui.infuse( $( '#wpReason' ).closest( '.oo-ui-widget' ) ),
-			filterFn = function ( input ) {
+			filterFunction = function ( input ) {
 				// Should be built the same as in Article::delete()
 				var comment = reasonList.getValue();
 				if ( comment === 'other' ) {
@@ -22,9 +22,9 @@
 
 		// Limit to bytes or UTF-8 codepoints, depending on MediaWiki's configuration
 		if ( summaryCodePointLimit ) {
-			reason.$input.codePointLimit( summaryCodePointLimit, filterFn );
+			reason.$input.codePointLimit( summaryCodePointLimit, filterFunction );
 		} else if ( summaryByteLimit ) {
-			reason.$input.byteLimit( summaryByteLimit, filterFn );
+			reason.$input.byteLimit( summaryByteLimit, filterFunction );
 		}
 	} );
 }() );

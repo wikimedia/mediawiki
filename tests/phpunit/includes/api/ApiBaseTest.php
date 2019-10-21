@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -643,7 +645,7 @@ class ApiBaseTest extends ApiTestCase {
 					ApiBase::PARAM_ISMULTI => true,
 					ApiBase::PARAM_TYPE => 'namespace',
 				],
-				MWNamespace::getValidNamespaces(),
+				MediaWikiServices::getInstance()->getNamespaceInfo()->getValidNamespaces(),
 				[],
 			],
 			// PARAM_ALL is ignored with namespace types.
@@ -654,7 +656,7 @@ class ApiBaseTest extends ApiTestCase {
 					ApiBase::PARAM_TYPE => 'namespace',
 					ApiBase::PARAM_ALL => false,
 				],
-				MWNamespace::getValidNamespaces(),
+				MediaWikiServices::getInstance()->getNamespaceInfo()->getValidNamespaces(),
 				[],
 			],
 			'Namespace with wildcard "x"' => [
@@ -887,10 +889,24 @@ class ApiBaseTest extends ApiTestCase {
 				[],
 				[ 'internalmode' => false ],
 			],
-			'Limit with parseLimits false' => [
+			'Limit with parseLimits false (numeric)' => [
 				'100',
 				[ ApiBase::PARAM_TYPE => 'limit' ],
-				'100',
+				100,
+				[],
+				[ 'parseLimits' => false ],
+			],
+			'Limit with parseLimits false (max)' => [
+				'max',
+				[ ApiBase::PARAM_TYPE => 'limit' ],
+				'max',
+				[],
+				[ 'parseLimits' => false ],
+			],
+			'Limit with parseLimits false (invalid)' => [
+				'kitten',
+				[ ApiBase::PARAM_TYPE => 'limit' ],
+				0,
 				[],
 				[ 'parseLimits' => false ],
 			],
@@ -899,7 +915,6 @@ class ApiBaseTest extends ApiTestCase {
 				[
 					ApiBase::PARAM_TYPE => 'limit',
 					ApiBase::PARAM_MAX2 => 10,
-					ApiBase::PARAM_ISMULTI => true,
 				],
 				new MWException(
 					'Internal error in ApiBase::getParameterFromSettings: ' .
@@ -911,7 +926,6 @@ class ApiBaseTest extends ApiTestCase {
 				[
 					ApiBase::PARAM_TYPE => 'limit',
 					ApiBase::PARAM_MAX => 10,
-					ApiBase::PARAM_ISMULTI => true,
 				],
 				new MWException(
 					'Internal error in ApiBase::getParameterFromSettings: ' .
@@ -1324,7 +1338,7 @@ class ApiBaseTest extends ApiTestCase {
 
 		// Has a blocked $user, so special block handling
 		$user = $this->getMutableTestUser()->getUser();
-		$block = new \Block( [
+		$block = new DatabaseBlock( [
 			'address' => $user->getName(),
 			'user' => $user->getID(),
 			'by' => $this->getTestSysop()->getUser()->getId(),
@@ -1332,7 +1346,10 @@ class ApiBaseTest extends ApiTestCase {
 			'expiry' => time() + 100500,
 		] );
 		$block->insert();
-		$blockinfo = [ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) ];
+		$userInfoTrait = TestingAccessWrapper::newFromObject(
+			$this->getMockForTrait( ApiBlockInfoTrait::class )
+		);
+		$blockinfo = [ 'blockinfo' => $userInfoTrait->getBlockDetails( $block ) ];
 
 		$expect = Status::newGood();
 		$expect->fatal( ApiMessage::create( 'apierror-blocked', 'blocked', $blockinfo ) );
@@ -1379,7 +1396,7 @@ class ApiBaseTest extends ApiTestCase {
 
 		// Has a blocked $user, so special block handling
 		$user = $this->getMutableTestUser()->getUser();
-		$block = new \Block( [
+		$block = new DatabaseBlock( [
 			'address' => $user->getName(),
 			'user' => $user->getID(),
 			'by' => $this->getTestSysop()->getUser()->getId(),
@@ -1387,7 +1404,10 @@ class ApiBaseTest extends ApiTestCase {
 			'expiry' => time() + 100500,
 		] );
 		$block->insert();
-		$blockinfo = [ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) ];
+		$userInfoTrait = TestingAccessWrapper::newFromObject(
+			$this->getObjectForTrait( ApiBlockInfoTrait::class )
+		);
+		$blockinfo = [ 'blockinfo' => $userInfoTrait->getBlockDetails( $block ) ];
 
 		$expect = Status::newGood();
 		$expect->fatal( ApiMessage::create( 'apierror-blocked', 'blocked', $blockinfo ) );
@@ -1435,7 +1455,7 @@ class ApiBaseTest extends ApiTestCase {
 		}
 
 		$status = StatusValue::newGood();
-		$status->setOk( false );
+		$status->setOK( false );
 		try {
 			$mock->dieStatus( $status );
 			$this->fail( 'Expected exception not thrown' );

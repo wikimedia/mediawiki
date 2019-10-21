@@ -79,13 +79,44 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$this->assertSame( 'Need more donations', $data['readonlyreason'] );
 	}
 
-	public function testNamespaces() {
-		$this->setMwGlobals( 'wgExtraNamespaces', [ '138' => 'Testing' ] );
-
+	public function testNamespacesBasic() {
 		$this->assertSame(
 			array_keys( MediaWikiServices::getInstance()->getContentLanguage()->getFormattedNamespaces() ),
 			array_keys( $this->doQuery( 'namespaces' ) )
 		);
+	}
+
+	public function testNamespacesExtraNS() {
+		$this->setMwGlobals( 'wgExtraNamespaces', [ '138' => 'Testing' ] );
+		$this->assertSame(
+			array_keys( MediaWikiServices::getInstance()->getContentLanguage()->getFormattedNamespaces() ),
+			array_keys( $this->doQuery( 'namespaces' ) )
+		);
+	}
+
+	public function testNamespacesProtection() {
+		$this->setMwGlobals(
+			'wgNamespaceProtection',
+			[
+				'0' => '',
+				'2' => [ '' ],
+				'4' => 'editsemiprotected',
+				'8' => [
+					'editinterface',
+					'noratelimit'
+				],
+				'14' => [
+					'move-categorypages',
+					''
+				]
+			]
+		);
+		$data = $this->doQuery( 'namespaces' );
+		$this->assertArrayNotHasKey( 'namespaceprotection', $data['0'] );
+		$this->assertArrayNotHasKey( 'namespaceprotection', $data['2'] );
+		$this->assertSame( 'editsemiprotected', $data['4']['namespaceprotection'] );
+		$this->assertSame( 'editinterface|noratelimit', $data['8']['namespaceprotection'] );
+		$this->assertSame( 'move-categorypages', $data['14']['namespaceprotection'] );
 	}
 
 	public function testNamespaceAliases() {
@@ -160,6 +191,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			'wgExtraInterlanguageLinkPrefixes' => [ 'self' ],
 			'wgExtraLanguageNames' => [ 'self' => 'Recursion' ],
 		] );
+		$this->resetServices();
 
 		MessageCache::singleton()->enable();
 
@@ -210,15 +242,16 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			$this->setExpectedApiException( 'apierror-siteinfo-includealldenied' );
 		}
 
-		$mockLB = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->setMethods( [ 'getMaxLag', 'getLagTimes', 'getServerName', '__destruct' ] )
-			->getMock();
+		$mockLB = $this->createMock( LoadBalancer::class );
 		$mockLB->method( 'getMaxLag' )->willReturn( [ null, 7, 1 ] );
 		$mockLB->method( 'getLagTimes' )->willReturn( [ 5, 7 ] );
 		$mockLB->method( 'getServerName' )->will( $this->returnValueMap( [
 			[ 0, 'apple' ], [ 1, 'carrot' ]
 		] ) );
+		$mockLB->method( 'getLocalDomainID' )->willReturn( 'testdomain' );
+		$mockLB->expects( $this->never() )->method( $this->anythingBut(
+			'getMaxLag', 'getLagTimes', 'getServerName', 'getLocalDomainID', '__destruct'
+		) );
 		$this->setService( 'DBLoadBalancer', $mockLB );
 
 		$this->setMwGlobals( 'wgShowHostnames', $showHostnames );
@@ -571,22 +604,19 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testExtensionTags() {
-		global $wgParser;
-
 		$expected = array_map(
 			function ( $tag ) {
 				return "<$tag>";
 			},
-			$wgParser->getTags()
+			MediaWikiServices::getInstance()->getParser()->getTags()
 		);
 
 		$this->assertSame( $expected, $this->doQuery( 'extensiontags' ) );
 	}
 
 	public function testFunctionHooks() {
-		global $wgParser;
-
-		$this->assertSame( $wgParser->getFunctionHooks(), $this->doQuery( 'functionhooks' ) );
+		$this->assertSame( MediaWikiServices::getInstance()->getParser()->getFunctionHooks(),
+			$this->doQuery( 'functionhooks' ) );
 	}
 
 	public function testVariables() {
@@ -636,17 +666,13 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testContinuation() {
-		// We make lots and lots of URL protocols that are each 100 bytes
+		// Use $wgUrlProtocols to forge the size of the API query
 		global $wgAPIMaxResultSize, $wgUrlProtocols;
 
-		$this->setMwGlobals( 'wgUrlProtocols', [] );
+		$protocol = 'foo://';
 
-		// Just under the limit
-		$chunks = $wgAPIMaxResultSize / 100 - 1;
-
-		for ( $i = 0; $i < $chunks; $i++ ) {
-			$wgUrlProtocols[] = substr( str_repeat( "$i ", 50 ), 0, 100 );
-		}
+		$this->setMwGlobals( 'wgUrlProtocols', [ $protocol ] );
+		$this->setMwGlobals( 'wgAPIMaxResultSize', strlen( $protocol ) );
 
 		$res = $this->doApiRequest( [
 			'action' => 'query',

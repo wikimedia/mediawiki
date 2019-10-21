@@ -48,10 +48,10 @@ class MysqlInstaller extends DatabaseInstaller {
 		'_InstallUser' => 'root',
 	];
 
-	public $supportedEngines = [ 'InnoDB', 'MyISAM' ];
+	public $supportedEngines = [ 'InnoDB' ];
 
 	public static $minimumVersion = '5.5.8';
-	protected static $notMiniumumVerisonMessage = 'config-mysql-old';
+	protected static $notMinimumVersionMessage = 'config-mysql-old';
 
 	public $webUserPrivs = [
 		'DELETE',
@@ -128,9 +128,10 @@ class MysqlInstaller extends DatabaseInstaller {
 			return $status;
 		}
 		/**
-		 * @var $conn Database
+		 * @var Database $conn
 		 */
 		$conn = $status->value;
+		'@phan-var Database $conn';
 
 		// Check version
 		return static::meetsMinimumRequirement( $conn->getServerVersion() );
@@ -142,6 +143,7 @@ class MysqlInstaller extends DatabaseInstaller {
 	public function openConnection() {
 		$status = Status::newGood();
 		try {
+			/** @var DatabaseMysqlBase $db */
 			$db = Database::factory( 'mysql', [
 				'host' => $this->getVar( 'wgDBserver' ),
 				'user' => $this->getVar( '_InstallUser' ),
@@ -162,12 +164,12 @@ class MysqlInstaller extends DatabaseInstaller {
 
 		$status = $this->getConnection();
 		if ( !$status->isOK() ) {
-			$this->parent->showStatusError( $status );
+			$this->parent->showStatusMessage( $status );
 
 			return;
 		}
 		/**
-		 * @var $conn Database
+		 * @var Database $conn
 		 */
 		$conn = $status->value;
 		$conn->selectDB( $this->getVar( 'wgDBname' ) );
@@ -232,7 +234,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		$status = $this->getConnection();
 
 		/**
-		 * @var $conn Database
+		 * @var Database $conn
 		 */
 		$conn = $status->value;
 
@@ -362,45 +364,6 @@ class MysqlInstaller extends DatabaseInstaller {
 		// If the current default engine is not supported, use an engine that is
 		if ( !in_array( $this->getVar( '_MysqlEngine' ), $engines ) ) {
 			$this->setVar( '_MysqlEngine', reset( $engines ) );
-		}
-
-		$s .= Xml::openElement( 'div', [
-			'id' => 'dbMyisamWarning'
-		] );
-		$myisamWarning = 'config-mysql-myisam-dep';
-		if ( count( $engines ) === 1 ) {
-			$myisamWarning = 'config-mysql-only-myisam-dep';
-		}
-		$s .= $this->parent->getWarningBox( wfMessage( $myisamWarning )->text() );
-		$s .= Xml::closeElement( 'div' );
-
-		if ( $this->getVar( '_MysqlEngine' ) != 'MyISAM' ) {
-			$s .= Xml::openElement( 'script' );
-			$s .= '$(\'#dbMyisamWarning\').hide();';
-			$s .= Xml::closeElement( 'script' );
-		}
-
-		if ( count( $engines ) >= 2 ) {
-			// getRadioSet() builds a set of labeled radio buttons.
-			// For grep: The following messages are used as the item labels:
-			// config-mysql-innodb, config-mysql-myisam
-			$s .= $this->getRadioSet( [
-				'var' => '_MysqlEngine',
-				'label' => 'config-mysql-engine',
-				'itemLabelPrefix' => 'config-mysql-',
-				'values' => $engines,
-				'itemAttribs' => [
-					'MyISAM' => [
-						'class' => 'showHideRadio',
-						'rel' => 'dbMyisamWarning'
-					],
-					'InnoDB' => [
-						'class' => 'hideShowRadio',
-						'rel' => 'dbMyisamWarning'
-					]
-				]
-			] );
-			$s .= $this->parent->getHelpBox( 'config-mysql-engine-help' );
 		}
 
 		// If the current default charset is not supported, use a charset that is

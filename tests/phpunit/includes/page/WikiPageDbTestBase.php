@@ -65,13 +65,11 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 			$this->getMcrMigrationStage()
 		);
 		$this->pagesToDelete = [];
-
-		$this->overrideMwServices();
 	}
 
 	protected function tearDown() {
 		foreach ( $this->pagesToDelete as $p ) {
-			/* @var $p WikiPage */
+			/* @var WikiPage $p */
 
 			try {
 				if ( $p->exists() ) {
@@ -441,7 +439,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		$n = $res->numRows();
 		$res->free();
 
-		$this->assertEquals( 0, $n, 'pagelinks should contain no more links from the page' );
+		$this->assertSame( 0, $n, 'pagelinks should contain no more links from the page' );
 	}
 
 	/**
@@ -639,7 +637,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		$n = $res->numRows();
 		$res->free();
 
-		$this->assertEquals( 0, $n, 'pagelinks should contain no more links from the page' );
+		$this->assertSame( 0, $n, 'pagelinks should contain no more links from the page' );
 	}
 
 	/**
@@ -1374,6 +1372,7 @@ more stuff
 
 		// Now, try the rollback
 		$admin->addGroup( 'sysop' ); // Make the test user a sysop
+		MediaWikiServices::getInstance()->getPermissionManager()->invalidateUsersRightsCache();
 		$token = $admin->getEditToken( 'rollback' );
 		$errors = $page->doRollback(
 			$secondUser->getName(),
@@ -1433,7 +1432,13 @@ more stuff
 							. " nonumy eirmod tempor invidunt ut labore et dolore magna "
 							. "aliquyam erat, sed diam voluptua. At vero eos et accusam "
 							. "et justo duo dolores et ea rebum. Stet clita kasd gubergren, "
-							. "no sea  takimata sanctus est Lorem ipsum dolor sit amet.'",
+							. "no sea  takimata sanctus est Lorem ipsum dolor sit amet. "
+							. " this here is some more filler content added to try and "
+							. "reach the maximum automatic summary length so that this is"
+							. " truncated ipot sodit colrad ut ad olve amit basul dat"
+							. "Dorbet romt crobit trop bri. DannyS712 put me here lor pe"
+							. " ode quob zot bozro see also T22281 for background pol sup"
+							. "Lorem ipsum dolor sit amet'",
 						null
 					],
 				],
@@ -1572,29 +1577,29 @@ more stuff
 		$page->updateCategoryCounts( [ 'A' ], [], 0 );
 
 		$this->assertEquals( 1, Category::newFromName( 'A' )->getPageCount() );
-		$this->assertEquals( 0, Category::newFromName( 'B' )->getPageCount() );
-		$this->assertEquals( 0, Category::newFromName( 'C' )->getPageCount() );
+		$this->assertSame( 0, Category::newFromName( 'B' )->getPageCount() );
+		$this->assertSame( 0, Category::newFromName( 'C' )->getPageCount() );
 
 		// Add a new category
 		$page->updateCategoryCounts( [ 'B' ], [], 0 );
 
 		$this->assertEquals( 1, Category::newFromName( 'A' )->getPageCount() );
 		$this->assertEquals( 1, Category::newFromName( 'B' )->getPageCount() );
-		$this->assertEquals( 0, Category::newFromName( 'C' )->getPageCount() );
+		$this->assertSame( 0, Category::newFromName( 'C' )->getPageCount() );
 
 		// Add and remove a category
 		$page->updateCategoryCounts( [ 'C' ], [ 'A' ], 0 );
 
-		$this->assertEquals( 0, Category::newFromName( 'A' )->getPageCount() );
+		$this->assertSame( 0, Category::newFromName( 'A' )->getPageCount() );
 		$this->assertEquals( 1, Category::newFromName( 'B' )->getPageCount() );
 		$this->assertEquals( 1, Category::newFromName( 'C' )->getPageCount() );
 	}
 
 	public function provideUpdateRedirectOn() {
 		yield [ '#REDIRECT [[Foo]]', true, null, true, true, 0 ];
-		yield [ '#REDIRECT [[Foo]]', true, 'Foo', true, false, 1 ];
+		yield [ '#REDIRECT [[Foo]]', true, 'Foo', true, true, 1 ];
 		yield [ 'SomeText', false, null, false, true, 0 ];
-		yield [ 'SomeText', false, 'Foo', false, false, 1 ];
+		yield [ 'SomeText', false, 'Foo', false, true, 1 ];
 	}
 
 	/**

@@ -54,7 +54,7 @@ class ApiQuerySearchTest extends ApiTestCase {
 			'one wiki response' => [
 				[ 'utwiki' => [ 'Qwerty' ] ],
 				[
-					SearchResultSet::SECONDARY_RESULTS => [
+					ISearchResultSet::SECONDARY_RESULTS => [
 						'utwiki' => new MockSearchResultSet( [
 							$this->mockResultClosure(
 								'Qwerty',
@@ -119,7 +119,7 @@ class ApiQuerySearchTest extends ApiTestCase {
 	 */
 	private function mockResultClosure( $title, $setters = [] ) {
 		return function () use ( $title, $setters ){
-			$result = MockSearchResult::newFromTitle( Title::newFromText( $title ) );
+			$result = new MockSearchResult( Title::newFromText( $title ) );
 
 			foreach ( $setters as $method => $param ) {
 				$result->$method( $param );

@@ -19,6 +19,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Permissions\PermissionManager;
+
 /**
  * Special page for adding and removing change tags to individual revisions.
  * A lot of this is copied out of SpecialRevisiondelete.
@@ -51,8 +53,18 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	/** @var string */
 	private $reason;
 
-	public function __construct() {
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/**
+	 * @inheritDoc
+	 *
+	 * @param PermissionManager $permissionManager
+	 */
+	public function __construct( PermissionManager $permissionManager ) {
 		parent::__construct( 'EditTags', 'changetags' );
+
+		$this->permissionManager = $permissionManager;
 	}
 
 	public function doesWrites() {
@@ -66,11 +78,6 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$output = $this->getOutput();
 		$user = $this->getUser();
 		$request = $this->getRequest();
-
-		// Check blocks
-		if ( $user->isBlocked() ) {
-			throw new UserBlockedError( $user->getBlock() );
-		}
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -122,7 +129,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			$this->ids
 		);
 
-		$this->isAllowed = $user->isAllowed( 'changetags' );
+		$this->isAllowed = $this->permissionManager->userHasRight( $user, 'changetags' );
 
 		$this->reason = $request->getVal( 'wpReason' );
 		// We need a target page!
@@ -130,6 +137,12 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			$output->addWikiMsg( 'undelete-header' );
 			return;
 		}
+
+		// Check blocks
+		if ( $this->permissionManager->isBlockedFrom( $user, $this->targetObj ) ) {
+			throw new UserBlockedError( $user->getBlock() );
+		}
+
 		// Give a link to the logs/hist for this page
 		$this->showConvenienceLinks();
 
@@ -259,8 +272,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 							// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
 							// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
 							// Unicode codepoints.
-							// "- 155" is to leave room for the auto-generated part of the log entry.
-							'maxlength' => CommentStore::COMMENT_CHARACTER_LIMIT - 155,
+							'maxlength' => CommentStore::COMMENT_CHARACTER_LIMIT,
 						] ) .
 					'</td>' .
 				"</tr><tr>\n" .
@@ -453,7 +465,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	protected function failure( $status ) {
 		$this->getOutput()->setPageTitle( $this->msg( 'actionfailed' ) );
 		$this->getOutput()->wrapWikiTextAsInterface(
-			'errorbox', $status->getWikiText( 'tags-edit-failure' )
+			'errorbox', $status->getWikiText( 'tags-edit-failure', false, $this->getLanguage() )
 		);
 		$this->showForm();
 	}

@@ -1,12 +1,13 @@
 <?php
 
-class MockSearchResult extends SearchResult {
+class MockSearchResult extends RevisionSearchResult {
 	private $isMissingRevision = false;
 	private $isBrokenTitle = false;
 
 	public function isMissingRevision() {
 		return $this->isMissingRevision;
 	}
+
 	public function setMissingRevision( $isMissingRevision ) {
 		$this->isMissingRevision = $isMissingRevision;
 		return $this;

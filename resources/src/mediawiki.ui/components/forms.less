@@ -3,6 +3,8 @@
 @import 'mediawiki.mixins';
 @import 'mediawiki.ui/variables';
 
+/* stylelint-disable selector-class-pattern */
+
 // --------------------------------------------------------------------------
 // Layouts
 // --------------------------------------------------------------------------
@@ -82,13 +84,11 @@
 	//
 	// Markup:
 	// <form class="mw-ui-vform">
-	//   <div class="errorbox">An error occurred</div>
+	//   <div class="errorbox">
+	//     <ul><li>An error occurred. There are problems with some of your input.</li></ul>
+	//   </div>
 	//   <div class="warningbox">A warning to be noted</div>
 	//   <div class="successbox">Action successful!</div>
-	//   <div class="error">A different kind of error</div>
-	//   <div class="error">
-	//     <ul><li>There are problems with some of your input.</li></ul>
-	//   </div>
 	//   <div class="mw-ui-vform-field">
 	//     <input type="text" value="input" class="mw-ui-input">
 	//   </div>
@@ -105,39 +105,22 @@
 	// </form>
 	//
 	// Styleguide 5.2.
-	.error,
-	.warning,
 	.errorbox,
 	.warningbox,
 	.successbox {
 		.box-sizing( border-box );
 		font-size: 0.9em;
 		margin: 0 0 1em 0;
-		padding: 0.5em;
+		padding: 0.5em 1em;
 		word-wrap: break-word;
-	}
-
-	// Colours taken from those for .errorbox in shared.css
-	.error {
-		color: @colorErrorText;
-		border: 1px solid #fac5c5;
-		background-color: #fae3e3;
-	}
-
-	// Colours taken from those for .warningbox in shared.css
-	.warning {
-		color: @colorWarningText;
-		border: 1px solid #fde29b;
-		background-color: #fdf1d1;
 	}
 
 	// This specifies styling for individual field validation error messages.
 	// Show them below the fields to prevent line break glitches, and leave
 	// some space between the field and the error message box.
 	.mw-ui-vform-field {
-		.error,
-		.warning {
-			display: block;
+		.errorbox,
+		.warningbox {
 			margin-top: 5px;
 		}
 	}

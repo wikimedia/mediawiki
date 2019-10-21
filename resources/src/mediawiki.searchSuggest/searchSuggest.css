@@ -1,3 +1,5 @@
+/* stylelint-disable selector-class-pattern */
+
 /* Make sure the links are not underlined or colored, ever. */
 /* There is already a :focus / :hover indication on the <div>. */
 .suggestions a.mw-searchSuggest-link,

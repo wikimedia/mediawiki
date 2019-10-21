@@ -27,6 +27,12 @@
 	padding: 1em 0;
 }
 
+// Support Edge: The `position: sticky` rule above causes the buttons to
+// disappear in RTL languages on Microsoft Edge. This magically fixes the issue. See T220706.
+#preferences {
+	filter: brightness( 1 );
+}
+
 /* This is needed because add extra buttons in a weird way */
 .mw-prefs-buttons .mw-htmlform-submit-buttons {
 	display: inline;

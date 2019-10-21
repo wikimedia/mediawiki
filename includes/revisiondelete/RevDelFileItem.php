@@ -19,6 +19,8 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\Revision\RevisionRecord;
+
 /**
  * Item class for an oldimage table row
  */
@@ -164,14 +166,14 @@ class RevDelFileItem extends RevDelItem {
 	 * @return string HTML
 	 */
 	protected function getUserTools() {
-		if ( $this->file->userCan( Revision::DELETED_USER, $this->list->getUser() ) ) {
+		if ( $this->file->userCan( RevisionRecord::DELETED_USER, $this->list->getUser() ) ) {
 			$uid = $this->file->getUser( 'id' );
 			$name = $this->file->getUser( 'text' );
 			$link = Linker::userLink( $uid, $name ) . Linker::userToolLinks( $uid, $name );
 		} else {
 			$link = $this->list->msg( 'rev-deleted-user' )->escaped();
 		}
-		if ( $this->file->isDeleted( Revision::DELETED_USER ) ) {
+		if ( $this->file->isDeleted( RevisionRecord::DELETED_USER ) ) {
 			return '<span class="history-deleted">' . $link . '</span>';
 		}
 
@@ -217,8 +219,8 @@ class RevDelFileItem extends RevDelItem {
 			'width' => $file->getWidth(),
 			'height' => $file->getHeight(),
 			'size' => $file->getSize(),
-			'userhidden' => (bool)$file->isDeleted( Revision::DELETED_USER ),
-			'commenthidden' => (bool)$file->isDeleted( Revision::DELETED_COMMENT ),
+			'userhidden' => (bool)$file->isDeleted( RevisionRecord::DELETED_USER ),
+			'commenthidden' => (bool)$file->isDeleted( RevisionRecord::DELETED_COMMENT ),
 			'contenthidden' => (bool)$this->isDeleted(),
 		];
 		if ( !$this->isDeleted() ) {
@@ -236,13 +238,13 @@ class RevDelFileItem extends RevDelItem {
 				),
 			];
 		}
-		if ( $file->userCan( Revision::DELETED_USER, $user ) ) {
+		if ( $file->userCan( RevisionRecord::DELETED_USER, $user ) ) {
 			$ret += [
 				'userid' => $file->user,
 				'user' => $file->user_text,
 			];
 		}
-		if ( $file->userCan( Revision::DELETED_COMMENT, $user ) ) {
+		if ( $file->userCan( RevisionRecord::DELETED_COMMENT, $user ) ) {
 			$ret += [
 				'comment' => $file->description,
 			];

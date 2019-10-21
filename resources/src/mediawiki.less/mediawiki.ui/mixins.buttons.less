@@ -1,0 +1,132 @@
+// Mediawiki.ui button mixins for MediaWiki (deprecated)
+//
+// Helper mixins used to create button styles. This file is importable
+// by all LESS files via `@import 'mediawiki.ui/mixins.buttons';`.
+
+/* stylelint-disable selector-class-pattern */
+
+// Default button mixin.
+.mw-ui-button() {
+	// Container layout
+	display: inline-block;
+	.box-sizing( border-box );
+	min-width: 4em;
+	max-width: 28.75em; // equivalent to 460px, @see T95367
+	margin: 0;
+	padding: 0.57142857em 0.9375em; // equivalent to `8px 12px`
+	border: @border-width-base @border-style-base @border-color-base;
+	border-radius: @borderRadius;
+	cursor: pointer;
+	// Ensure that buttons and inputs are nicely aligned when they have differing heights
+	vertical-align: middle;
+	// Inherit the font rather than apply user agent stylesheet (T72072)
+	font-family: inherit;
+	font-size: 1em;
+	font-weight: bold;
+	line-height: 1;
+	text-align: center;
+	// Disable weird iOS styling
+	-webkit-appearance: none;
+	// IE 6 & 7 hack
+	// https://stackoverflow.com/a/5838575/365238
+	*display: inline; /* stylelint-disable-line declaration-block-no-duplicate-properties */
+	zoom: 1;
+}
+
+// Mixin for button interaction states.
+.mw-ui-button-states() {
+	// Make sure that `color` isn't inheriting from user-agent styles
+	&:visited {
+		color: @colorButtonText;
+	}
+
+	&:hover {
+		background-color: @background-color-base;
+		color: @colorGray4;
+		border-color: @colorGray10;
+	}
+
+	&:focus {
+		background-color: @background-color-base;
+		// Make sure that `color` isn't inheriting from user-agent styles
+		color: @colorButtonText;
+		border-color: @colorProgressive;
+		box-shadow: inset 0 0 0 1px @colorProgressive, inset 0 0 0 2px @background-color-base;
+		outline-width: 0;
+
+		// Remove the inner border and padding in Firefox.
+		&::-moz-focus-inner {
+			border-color: transparent;
+			padding: 0;
+		}
+	}
+
+	&:active,
+	&.is-on {
+		background-color: @colorGray12;
+		color: @colorGray1;
+		border-color: @colorGray7;
+		box-shadow: none;
+	}
+
+	&:disabled {
+		background-color: @colorGray12;
+		color: @colorBaseInverted;
+		border-color: @colorGray12;
+		cursor: default;
+
+		// Make sure disabled buttons don't have hover and active states
+		&:hover,
+		&:active {
+			background-color: @colorGray12;
+			color: @colorBaseInverted;
+			box-shadow: none;
+			border-color: @colorGray12;
+		}
+	}
+
+	// `:not()` is used exclusively for `transition`s as both are not supported by IE < 9
+	&:not( :disabled ) {
+		.transition( ~'background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms' );
+	}
+}
+
+// Primary buttons mixin.
+.mw-ui-button-colors-primary( @bgColor, @highlightColor, @activeColor ) {
+	background-color: @bgColor;
+	color: #fff;
+	// border of the same color as background so that light background and
+	// dark background buttons are the same height and width
+	border: 1px solid @bgColor;
+
+	&:hover {
+		background-color: @highlightColor;
+		border-color: @highlightColor;
+	}
+
+	&:focus {
+		box-shadow: inset 0 0 0 1px @bgColor, inset 0 0 0 2px #fff;
+	}
+
+	&:active,
+	&.is-on {
+		background-color: @activeColor;
+		border-color: @activeColor;
+		box-shadow: none;
+	}
+
+	&:disabled {
+		background-color: @colorGray12;
+		color: #fff;
+		border-color: @colorGray12;
+
+		// Make sure disabled buttons don't have hover and active states
+		&:hover,
+		&:active {
+			background-color: @colorGray12;
+			color: #fff;
+			border-color: @colorGray12;
+			box-shadow: none;
+		}
+	}
+}

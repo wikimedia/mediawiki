@@ -2,7 +2,7 @@ const Page = require( 'wdio-mediawiki/Page' );
 
 class WatchlistPage extends Page {
 	get titles() {
-		return browser.element( '.mw-changeslist' )
+		return $( '.mw-changeslist' )
 			.$$( '.mw-changeslist-line .mw-title' );
 	}
 

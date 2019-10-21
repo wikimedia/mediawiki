@@ -35,23 +35,19 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 
 	/**
 	 * @param string|null $subpage
-	 * @return Title|bool
 	 */
 	public function execute( $subpage ) {
 		$redirect = $this->getRedirect( $subpage );
-		$query = $this->getRedirectQuery();
-		// Redirect to a page title with possible query parameters
+		$query = $this->getRedirectQuery( $subpage );
+
 		if ( $redirect instanceof Title ) {
+			// Redirect to a page title with possible query parameters
 			$url = $redirect->getFullUrlForRedirect( $query );
 			$this->getOutput()->redirect( $url );
-
-			return $redirect;
 		} elseif ( $redirect === true ) {
 			// Redirect to index.php with query parameters
 			$url = wfAppendQuery( wfScript( 'index' ), $query );
 			$this->getOutput()->redirect( $url );
-
-			return $redirect;
 		} else {
 			$this->showNoRedirectPage();
 		}
@@ -70,14 +66,15 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	 * Return part of the request string for a special redirect page
 	 * This allows passing, e.g. action=history to Special:Mypage, etc.
 	 *
+	 * @param string|null $subpage
 	 * @return array|bool
 	 */
-	public function getRedirectQuery() {
+	public function getRedirectQuery( $subpage ) {
 		$params = [];
 		$request = $this->getRequest();
 
 		foreach ( array_merge( $this->mAllowedRedirectParams,
-				[ 'uselang', 'useskin', 'debug' ] // parameters which can be passed to all pages
+				[ 'uselang', 'useskin', 'debug', 'safemode' ] // parameters which can be passed to all pages
 			) as $arg ) {
 			if ( $request->getVal( $arg, null ) !== null ) {
 				$params[$arg] = $request->getVal( $arg );

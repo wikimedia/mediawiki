@@ -77,7 +77,7 @@ abstract class FileOp {
 	 * @param FileBackendStore $backend
 	 * @param array $params
 	 * @param LoggerInterface $logger PSR logger instance
-	 * @throws FileBackendError
+	 * @throws InvalidArgumentException
 	 */
 	final public function __construct(
 		FileBackendStore $backend, array $params, LoggerInterface $logger
@@ -255,6 +255,18 @@ abstract class FileOp {
 			return StatusValue::newFatal( 'fileop-fail-state', self::STATE_NEW, $this->state );
 		}
 		$this->state = self::STATE_CHECKED;
+
+		$status = StatusValue::newGood();
+		$storagePaths = array_merge( $this->storagePathsRead(), $this->storagePathsChanged() );
+		foreach ( array_unique( $storagePaths ) as $storagePath ) {
+			if ( !$this->backend->isPathUsableInternal( $storagePath ) ) {
+				$status->fatal( 'backend-fail-usable', $storagePath );
+			}
+		}
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+
 		$status = $this->doPrecheck( $predicates );
 		if ( !$status->isOK() ) {
 			$this->failed = true;
@@ -391,6 +403,8 @@ abstract class FileOp {
 
 				return $status;
 			}
+		} elseif ( $this->destExists === FileBackend::EXISTENCE_ERROR ) {
+			$status->fatal( 'backend-fail-stat', $this->params['dst'] );
 		}
 
 		return $status;
@@ -409,9 +423,12 @@ abstract class FileOp {
 	/**
 	 * Check if a file will exist in storage when this operation is attempted
 	 *
+	 * Ideally, the file stat entry should already be preloaded via preloadFileStat().
+	 * Otherwise, this will query the backend.
+	 *
 	 * @param string $source Storage path
 	 * @param array $predicates
-	 * @return bool
+	 * @return bool|null Whether the file will exist or null on error
 	 */
 	final protected function fileExists( $source, array $predicates ) {
 		if ( isset( $predicates['exists'][$source] ) ) {
@@ -424,11 +441,14 @@ abstract class FileOp {
 	}
 
 	/**
-	 * Get the SHA-1 of a file in storage when this operation is attempted
+	 * Get the SHA-1 hash a file in storage will have when this operation is attempted
+	 *
+	 * Ideally, file the stat entry should already be preloaded via preloadFileStat() and
+	 * the backend tracks hashes as extended attributes. Otherwise, this will query the backend.
 	 *
 	 * @param string $source Storage path
 	 * @param array $predicates
-	 * @return string|bool False on failure
+	 * @return string|bool The SHA-1 hash the file will have or false if non-existent or on error
 	 */
 	final protected function fileSha1( $source, array $predicates ) {
 		if ( isset( $predicates['sha1'][$source] ) ) {

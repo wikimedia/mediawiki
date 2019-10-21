@@ -46,6 +46,7 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 	public function merge( MergeableUpdate $update ) {
 		/** @var UserEditCountUpdate $update */
 		Assert::parameterType( __CLASS__, $update, '$update' );
+		'@phan-var UserEditCountUpdate $update';
 
 		foreach ( $update->infoByUser as $userId => $info ) {
 			if ( !isset( $this->infoByUser[$userId] ) ) {
@@ -67,7 +68,7 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 	 */
 	public function doUpdate() {
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		$dbw = $lb->getConnection( DB_MASTER );
+		$dbw = $lb->getConnectionRef( DB_MASTER );
 		$fname = __METHOD__;
 
 		( new AutoCommitUpdate( $dbw, __METHOD__, function () use ( $lb, $dbw, $fname ) {
@@ -82,20 +83,19 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 				$affectedInstances = $info['instances'];
 				// Lazy initialization check...
 				if ( $dbw->affectedRows() == 0 ) {
-					// No rows will be "affected" if user_editcount is NULL.
-					// Check if the generic "replica" connection is not the master.
-					$dbr = $lb->getConnection( DB_REPLICA );
-					if ( $dbr !== $dbw ) {
-						// This method runs after the new revisions were committed.
-						// Wait for the replica to catch up so they will all be counted.
-						$dbr->flushSnapshot( $fname );
-						$lb->safeWaitForMasterPos( $dbr );
-					}
-					$affectedInstances[0]->initEditCountInternal();
+					// The user_editcount is probably NULL (e.g. not initialized).
+					// Since this update runs after the new revisions were committed,
+					// wait for the replica DB to catch up so they will be counted.
+					$dbr = $lb->getConnectionRef( DB_REPLICA );
+					// If $dbr is actually the master DB, then clearing the snapshot
+					// is harmless and waitForMasterPos() will just no-op.
+					$dbr->flushSnapshot( $fname );
+					$lb->waitForMasterPos( $dbr );
+					$affectedInstances[0]->initEditCountInternal( $dbr );
 				}
 				$newCount = (int)$dbw->selectField(
 					'user',
-					[ 'user_editcount' ],
+					'user_editcount',
 					[ 'user_id' => $userId ],
 					$fname
 				);

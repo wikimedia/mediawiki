@@ -9,7 +9,7 @@
 			originalText = $emailLabel.text(),
 			requiredText = mw.message( 'createacct-emailrequired' ).text(),
 			$createByMailCheckbox = $( '#wpCreateaccountMail' ),
-			$beforePwds = $( '.mw-row-password:first' ).prev(),
+			$beforePwds = $( '.mw-row-password' ).first().prev(),
 			$pwds;
 
 		function updateForCheckbox() {

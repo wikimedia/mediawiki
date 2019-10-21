@@ -9,8 +9,10 @@ namespace MediaWiki\Widget;
  * @license MIT
  */
 class NamespaceInputWidget extends \OOUI\DropdownInputWidget {
-
-	protected $includeAllValue = null;
+	/** @var string */
+	protected $includeAllValue;
+	/** @var int[] */
+	protected $exclude;
 
 	/**
 	 * @param array $config Configuration options

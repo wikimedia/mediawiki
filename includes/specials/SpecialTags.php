@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A special page that lists tags for edits
  *
@@ -50,6 +52,7 @@ class SpecialTags extends SpecialPage {
 	function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
+		$this->addHelpLink( 'Manual:Tags' );
 
 		$request = $this->getRequest();
 		switch ( $par ) {
@@ -76,9 +79,10 @@ class SpecialTags extends SpecialPage {
 		$out->wrapWikiMsg( "<div class='mw-tags-intro'>\n$1\n</div>", 'tags-intro' );
 
 		$user = $this->getUser();
-		$userCanManage = $user->isAllowed( 'managechangetags' );
-		$userCanDelete = $user->isAllowed( 'deletechangetags' );
-		$userCanEditInterface = $user->isAllowed( 'editinterface' );
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$userCanManage = $permissionManager->userHasRight( $user, 'managechangetags' );
+		$userCanDelete = $permissionManager->userHasRight( $user, 'deletechangetags' );
+		$userCanEditInterface = $permissionManager->userHasRight( $user, 'editinterface' );
 
 		// Show form to create a tag
 		if ( $userCanManage ) {
@@ -328,7 +332,9 @@ class SpecialTags extends SpecialPage {
 
 	protected function showDeleteTagForm( $tag ) {
 		$user = $this->getUser();
-		if ( !$user->isAllowed( 'deletechangetags' ) ) {
+		if ( !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $user, 'deletechangetags' ) ) {
 			throw new PermissionsError( 'deletechangetags' );
 		}
 
@@ -375,6 +381,7 @@ class SpecialTags extends SpecialPage {
 
 		$form = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
 		$form->setAction( $this->getPageTitle( 'delete' )->getLocalURL() );
+		// @phan-suppress-next-line PhanUndeclaredProperty
 		$form->tagAction = 'delete'; // custom property on HTMLForm object
 		$form->setSubmitCallback( [ $this, 'processTagForm' ] );
 		$form->setSubmitTextMsg( 'tags-delete-submit' );
@@ -387,7 +394,9 @@ class SpecialTags extends SpecialPage {
 		$actionStr = $activate ? 'activate' : 'deactivate';
 
 		$user = $this->getUser();
-		if ( !$user->isAllowed( 'managechangetags' ) ) {
+		if ( !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $user, 'managechangetags' ) ) {
 			throw new PermissionsError( 'managechangetags' );
 		}
 
@@ -425,6 +434,7 @@ class SpecialTags extends SpecialPage {
 
 		$form = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
 		$form->setAction( $this->getPageTitle( $actionStr )->getLocalURL() );
+		// @phan-suppress-next-line PhanUndeclaredProperty
 		$form->tagAction = $actionStr;
 		$form->setSubmitCallback( [ $this, 'processTagForm' ] );
 		// tags-activate-submit, tags-deactivate-submit
@@ -433,6 +443,12 @@ class SpecialTags extends SpecialPage {
 		$form->show();
 	}
 
+	/**
+	 * @param array $data
+	 * @param HTMLForm $form
+	 * @return bool
+	 * @suppress PhanUndeclaredProperty $form->tagAction
+	 */
 	public function processTagForm( array $data, HTMLForm $form ) {
 		$context = $form->getContext();
 		$out = $context->getOutput();

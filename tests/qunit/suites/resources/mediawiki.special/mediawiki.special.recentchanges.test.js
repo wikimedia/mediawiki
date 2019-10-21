@@ -33,14 +33,18 @@
 		// TODO abstract the double strictEquals
 
 		// At first checkboxes are hidden
+		// eslint-disable-next-line no-jquery/no-class-state
 		assert.strictEqual( $( '#nsinvert' ).closest( '.mw-input-with-label' ).hasClass( 'mw-input-hidden' ), true );
+		// eslint-disable-next-line no-jquery/no-class-state
 		assert.strictEqual( $( '#nsassociated' ).closest( '.mw-input-with-label' ).hasClass( 'mw-input-hidden' ), true );
 
 		// Initiate the recentchanges module
 		rc.init();
 
 		// By default
+		// eslint-disable-next-line no-jquery/no-class-state
 		assert.strictEqual( $( '#nsinvert' ).closest( '.mw-input-with-label' ).hasClass( 'mw-input-hidden' ), true );
+		// eslint-disable-next-line no-jquery/no-class-state
 		assert.strictEqual( $( '#nsassociated' ).closest( '.mw-input-with-label' ).hasClass( 'mw-input-hidden' ), true );
 
 		// select second option...
@@ -50,7 +54,9 @@
 		$( '#namespace' ).trigger( 'change' );
 
 		// ... and checkboxes should be visible again
+		// eslint-disable-next-line no-jquery/no-class-state
 		assert.strictEqual( $( '#nsinvert' ).closest( '.mw-input-with-label' ).hasClass( 'mw-input-hidden' ), false );
+		// eslint-disable-next-line no-jquery/no-class-state
 		assert.strictEqual( $( '#nsassociated' ).closest( '.mw-input-with-label' ).hasClass( 'mw-input-hidden' ), false );
 
 		// select first option ( 'all' namespace)...
@@ -59,7 +65,9 @@
 		$( '#namespace' ).trigger( 'change' );
 
 		// ... and checkboxes should now be hidden
+		// eslint-disable-next-line no-jquery/no-class-state
 		assert.strictEqual( $( '#nsinvert' ).closest( '.mw-input-with-label' ).hasClass( 'mw-input-hidden' ), true );
+		// eslint-disable-next-line no-jquery/no-class-state
 		assert.strictEqual( $( '#nsassociated' ).closest( '.mw-input-with-label' ).hasClass( 'mw-input-hidden' ), true );
 
 		// DOM cleanup

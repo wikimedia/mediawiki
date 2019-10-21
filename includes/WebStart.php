@@ -50,6 +50,7 @@ if ( !defined( 'MW_CONFIG_CALLBACK' ) ) {
 		define( 'MW_CONFIG_FILE', "$IP/LocalSettings.php" );
 	}
 	if ( !is_readable( MW_CONFIG_FILE ) ) {
+
 		function wfWebStartNoLocalSettings() {
 			# LocalSettings.php is the per-site customization file. If it does not exist
 			# the wiki installer needs to be launched or the generated file uploaded to
@@ -58,12 +59,14 @@ if ( !defined( 'MW_CONFIG_CALLBACK' ) ) {
 			require_once "$IP/includes/NoLocalSettings.php";
 			die();
 		}
+
 		define( 'MW_CONFIG_CALLBACK', 'wfWebStartNoLocalSettings' );
 	}
 }
 
 // Custom setup for WebStart entry point
 if ( !defined( 'MW_SETUP_CALLBACK' ) ) {
+
 	function wfWebStartSetup() {
 		// Initialise output buffering
 		// Check for previously set up buffers, to avoid a mix of gzip and non-gzip output.
@@ -71,6 +74,7 @@ if ( !defined( 'MW_SETUP_CALLBACK' ) ) {
 			ob_start( 'MediaWiki\\OutputHandler::handle' );
 		}
 	}
+
 	define( 'MW_SETUP_CALLBACK', 'wfWebStartSetup' );
 }
 
@@ -87,17 +91,20 @@ if ( !defined( 'MW_API' ) &&
 	header( 'Cache-Control: no-cache' );
 	header( 'Content-Type: text/html; charset=utf-8' );
 	HttpStatus::header( 400 );
-	$error = wfMessage( 'nonwrite-api-promise-error' )->escaped();
-	$content = <<<EOT
+	$errorHtml = wfMessage( 'nonwrite-api-promise-error' )
+		->useDatabase( false )
+		->inContentLanguage()
+		->escaped();
+	$content = <<<HTML
 <!DOCTYPE html>
 <html>
 <head><meta charset="UTF-8" /></head>
 <body>
-$error
+$errorHtml
 </body>
 </html>
 
-EOT;
+HTML;
 	header( 'Content-Length: ' . strlen( $content ) );
 	echo $content;
 	die();

@@ -125,4 +125,29 @@ class StringUtilsTest extends PHPUnit\Framework\TestCase {
 			'noncharacters 2' => [ $PASS, "\xef\xbf\xbf" ],
 		];
 	}
+
+	/**
+	 * @param strin $input
+	 * @param bool $expected
+	 * @dataProvider provideRegexps
+	 * @covers StringUtils::isValidPCRERegex
+	 */
+	public function testIsValidPCRERegex( $input, $expected ) {
+		$this->assertSame( $expected, StringUtils::isValidPCRERegex( $input ) );
+	}
+
+	/**
+	 * Data provider for testIsValidPCRERegex
+	 * @return array
+	 */
+	public static function provideRegexps() {
+		return [
+			[ 'foo', false ],
+			[ '/foo/', true ],
+			[ '//', true ],
+			[ '/(foo/', false ],
+			[ '!(f[o]{2})!', true ],
+			[ '/foo\/', false ]
+		];
+	}
 }

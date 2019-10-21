@@ -168,14 +168,10 @@ class ParserTestPrinter extends TestRecorder {
 			$output = strtr( $output, $pairs );
 		}
 
-		# Windows, or at least the fc utility, is retarded
-		$slash = wfIsWindows() ? '\\' : '/';
-		$prefix = wfTempDir() . "{$slash}mwParser-" . mt_rand();
-
-		$infile = "$prefix-$inFileTail";
+		$infile = tempnam( wfTempDir(), "mwParser-$inFileTail" );
 		$this->dumpToFile( $input, $infile );
 
-		$outfile = "$prefix-$outFileTail";
+		$outfile = tempnam( wfTempDir(), "mwParser-$outFileTail" );
 		$this->dumpToFile( $output, $outfile );
 
 		global $wgDiff3;

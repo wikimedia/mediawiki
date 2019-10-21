@@ -63,12 +63,12 @@ class StatusValue {
 	 * Factory function for fatal errors
 	 *
 	 * @param string|MessageSpecifier $message Message key or object
+	 * @param mixed ...$parameters
 	 * @return static
 	 */
-	public static function newFatal( $message /*, parameters...*/ ) {
-		$params = func_get_args();
+	public static function newFatal( $message, ...$parameters ) {
 		$result = new static();
-		$result->fatal( ...$params );
+		$result->fatal( $message, ...$parameters );
 		return $result;
 	}
 
@@ -93,7 +93,7 @@ class StatusValue {
 	 *     1 => object(StatusValue) # The StatusValue with warning messages, only
 	 * ]
 	 *
-	 * @return StatusValue[]
+	 * @return static[]
 	 */
 	public function splitByErrorType() {
 		$errorsOnlyStatusValue = clone $this;
@@ -107,7 +107,7 @@ class StatusValue {
 			} else {
 				$errorsOnlyStatusValue->errors[] = $item;
 			}
-		};
+		}
 
 		return [ $errorsOnlyStatusValue, $warningsOnlyStatusValue ];
 	}
@@ -173,12 +173,13 @@ class StatusValue {
 	 * Add a new warning
 	 *
 	 * @param string|MessageSpecifier $message Message key or object
+	 * @param mixed ...$parameters
 	 */
-	public function warning( $message /*, parameters... */ ) {
+	public function warning( $message, ...$parameters ) {
 		$this->errors[] = [
 			'type' => 'warning',
 			'message' => $message,
-			'params' => array_slice( func_get_args(), 1 )
+			'params' => $parameters
 		];
 	}
 
@@ -187,12 +188,13 @@ class StatusValue {
 	 * This can be used for non-fatal errors
 	 *
 	 * @param string|MessageSpecifier $message Message key or object
+	 * @param mixed ...$parameters
 	 */
-	public function error( $message /*, parameters... */ ) {
+	public function error( $message, ...$parameters ) {
 		$this->errors[] = [
 			'type' => 'error',
 			'message' => $message,
-			'params' => array_slice( func_get_args(), 1 )
+			'params' => $parameters
 		];
 	}
 
@@ -201,12 +203,13 @@ class StatusValue {
 	 * as a whole was fatal
 	 *
 	 * @param string|MessageSpecifier $message Message key or object
+	 * @param mixed ...$parameters
 	 */
-	public function fatal( $message /*, parameters... */ ) {
+	public function fatal( $message, ...$parameters ) {
 		$this->errors[] = [
 			'type' => 'error',
 			'message' => $message,
-			'params' => array_slice( func_get_args(), 1 )
+			'params' => $parameters
 		];
 		$this->ok = false;
 	}

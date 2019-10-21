@@ -29,10 +29,10 @@
  *
  * @par Example:
  * @code
- * $wgRCFeeds['redis'] = array(
+ * $wgRCFeeds['redis'] = [
  *      'formatter' => 'JSONRCFeedFormatter',
  *      'uri'       => "redis://127.0.0.1:6379/rc.$wgDBname",
- * );
+ * ];
  * @endcode
  *
  * @since 1.22

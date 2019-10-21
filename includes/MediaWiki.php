@@ -23,8 +23,8 @@
 use MediaWiki\Logger\LoggerFactory;
 use Psr\Log\LoggerInterface;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ChronologyProtector;
-use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\DBConnectionError;
 use Liuggio\StatsdClient\Sender\SocketSender;
 
@@ -260,9 +260,17 @@ class MediaWiki {
 					) {
 						list( , $subpage ) = $spFactory->resolveAlias( $title->getDBkey() );
 						$target = $specialPage->getRedirect( $subpage );
-						// target can also be true. We let that case fall through to normal processing.
+						// Target can also be true. We let that case fall through to normal processing.
 						if ( $target instanceof Title ) {
-							$query = $specialPage->getRedirectQuery() ?: [];
+							if ( $target->isExternal() ) {
+								// Handle interwiki redirects
+								$target = SpecialPage::getTitleFor(
+									'GoToInterwiki',
+									'force/' . $target->getPrefixedDBkey()
+								);
+							}
+
+							$query = $specialPage->getRedirectQuery( $subpage ) ?: [];
 							$request = new DerivativeRequest( $this->context->getRequest(), $query );
 							$request->setRequestURL( $this->context->getRequest()->getRequestURL() );
 							$this->context->setRequest( $request );
@@ -335,6 +343,10 @@ class MediaWiki {
 			|| count( $request->getValueNames( [ 'action', 'title' ] ) )
 			|| !Hooks::run( 'TestCanonicalRedirect', [ $request, $title, $output ] )
 		) {
+			return false;
+		}
+
+		if ( $this->config->get( 'MainPageIsDomainRoot' ) && $request->getRequestURL() === '/' ) {
 			return false;
 		}
 
@@ -486,14 +498,14 @@ class MediaWiki {
 			}
 
 			# Let CDN cache things if we can purge them.
-			if ( $this->config->get( 'UseSquid' ) &&
+			if ( $this->config->get( 'UseCdn' ) &&
 				in_array(
 					// Use PROTO_INTERNAL because that's what getCdnUrls() uses
 					wfExpandUrl( $request->getRequestURL(), PROTO_INTERNAL ),
 					$requestTitle->getCdnUrls()
 				)
 			) {
-				$output->setCdnMaxage( $this->config->get( 'SquidMaxage' ) );
+				$output->setCdnMaxage( $this->config->get( 'CdnMaxAge' ) );
 			}
 
 			$action->show();
@@ -514,11 +526,15 @@ class MediaWiki {
 			try {
 				$this->main();
 			} catch ( ErrorPageError $e ) {
+				$out = $this->context->getOutput();
+				// TODO: Should ErrorPageError::report accept a OutputPage parameter?
+				$e->report( ErrorPageError::STAGE_OUTPUT );
+
 				// T64091: while exceptions are convenient to bubble up GUI errors,
 				// they are not internal application faults. As with normal requests, this
 				// should commit, print the output, do deferred updates, jobs, and profiling.
 				$this->doPreOutputCommit();
-				$e->report(); // display the GUI error
+				$out->output(); // display the GUI error
 			}
 		} catch ( Exception $e ) {
 			$context = $this->context;
@@ -580,15 +596,15 @@ class MediaWiki {
 	public static function preOutputCommit(
 		IContextSource $context, callable $postCommitWork = null
 	) {
-		// Either all DBs should commit or none
-		ignore_user_abort( true );
-
 		$config = $context->getConfig();
 		$request = $context->getRequest();
 		$output = $context->getOutput();
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
-		// Commit all changes
+		// Try to make sure that all RDBMs, session, and other storage updates complete
+		ignore_user_abort( true );
+
+		// Commit all RDBMs changes from the main transaction round
 		$lbFactory->commitMasterChanges(
 			__METHOD__,
 			// Abort if any transaction was too big
@@ -596,12 +612,84 @@ class MediaWiki {
 		);
 		wfDebug( __METHOD__ . ': primary transaction round committed' );
 
-		// Run updates that need to block the user or affect output (this is the last chance)
-		DeferredUpdates::doUpdates( 'enqueue', DeferredUpdates::PRESEND );
+		// Run updates that need to block the client or affect output (this is the last chance)
+		DeferredUpdates::doUpdates( 'run', DeferredUpdates::PRESEND );
 		wfDebug( __METHOD__ . ': pre-send deferred updates completed' );
-		// T214471: persist the session to avoid race conditions on subsequent requests
-		$request->getSession()->save();
+		// Persist the session to avoid race conditions on subsequent requests by the client
+		$request->getSession()->save(); // T214471
+		wfDebug( __METHOD__ . ': session changes committed' );
 
+		// Figure out whether to wait for DB replication now or to use some method that assures
+		// that subsequent requests by the client will use the DB replication positions written
+		// during the shutdown() call below; the later requires working around replication lag
+		// of the store containing DB replication positions (e.g. dynomite, mcrouter).
+		list( $flags, $strategy ) = self::getChronProtStrategy( $lbFactory, $output );
+		// Record ChronologyProtector positions for DBs affected in this request at this point
+		$cpIndex = null;
+		$cpClientId = null;
+		$lbFactory->shutdown( $flags, $postCommitWork, $cpIndex, $cpClientId );
+		wfDebug( __METHOD__ . ': LBFactory shutdown completed' );
+
+		$allowHeaders = !( $output->isDisabled() || headers_sent() );
+		if ( $cpIndex > 0 ) {
+			if ( $allowHeaders ) {
+				$now = time();
+				$expires = $now + ChronologyProtector::POSITION_COOKIE_TTL;
+				$options = [ 'prefix' => '' ];
+				$value = $lbFactory::makeCookieValueFromCPIndex( $cpIndex, $now, $cpClientId );
+				$request->response()->setCookie( 'cpPosIndex', $value, $expires, $options );
+			}
+
+			if ( $strategy === 'cookie+url' ) {
+				if ( $output->getRedirect() ) { // sanity
+					$safeUrl = $lbFactory->appendShutdownCPIndexAsQuery(
+						$output->getRedirect(),
+						$cpIndex
+					);
+					$output->redirect( $safeUrl );
+				} else {
+					$e = new LogicException( "No redirect; cannot append cpPosIndex parameter." );
+					MWExceptionHandler::logException( $e );
+				}
+			}
+		}
+
+		if ( $allowHeaders ) {
+			// Set a cookie to tell all CDN edge nodes to "stick" the user to the DC that
+			// handles this POST request (e.g. the "master" data center). Also have the user
+			// briefly bypass CDN so ChronologyProtector works for cacheable URLs.
+			if ( $request->wasPosted() && $lbFactory->hasOrMadeRecentMasterChanges() ) {
+				$expires = time() + $config->get( 'DataCenterUpdateStickTTL' );
+				$options = [ 'prefix' => '' ];
+				$request->response()->setCookie( 'UseDC', 'master', $expires, $options );
+				$request->response()->setCookie( 'UseCDNCache', 'false', $expires, $options );
+			}
+
+			// Avoid letting a few seconds of replica DB lag cause a month of stale data.
+			// This logic is also intimately related to the value of $wgCdnReboundPurgeDelay.
+			if ( $lbFactory->laggedReplicaUsed() ) {
+				$maxAge = $config->get( 'CdnMaxageLagged' );
+				$output->lowerCdnMaxage( $maxAge );
+				$request->response()->header( "X-Database-Lagged: true" );
+				wfDebugLog( 'replication',
+					"Lagged DB used; CDN cache TTL limited to $maxAge seconds" );
+			}
+
+			// Avoid long-term cache pollution due to message cache rebuild timeouts (T133069)
+			if ( MessageCache::singleton()->isDisabled() ) {
+				$maxAge = $config->get( 'CdnMaxageSubstitute' );
+				$output->lowerCdnMaxage( $maxAge );
+				$request->response()->header( "X-Response-Substitute: true" );
+			}
+		}
+	}
+
+	/**
+	 * @param ILBFactory $lbFactory
+	 * @param OutputPage $output
+	 * @return array
+	 */
+	private static function getChronProtStrategy( ILBFactory $lbFactory, OutputPage $output ) {
 		// Should the client return, their request should observe the new ChronologyProtector
 		// DB positions. This request might be on a foreign wiki domain, so synchronously update
 		// the DB positions in all datacenters to be safe. If this output is not a redirect,
@@ -625,60 +713,7 @@ class MediaWiki {
 			}
 		}
 
-		// Record ChronologyProtector positions for DBs affected in this request at this point
-		$cpIndex = null;
-		$cpClientId = null;
-		$lbFactory->shutdown( $flags, $postCommitWork, $cpIndex, $cpClientId );
-		wfDebug( __METHOD__ . ': LBFactory shutdown completed' );
-
-		if ( $cpIndex > 0 ) {
-			if ( $allowHeaders ) {
-				$now = time();
-				$expires = $now + ChronologyProtector::POSITION_COOKIE_TTL;
-				$options = [ 'prefix' => '' ];
-				$value = LBFactory::makeCookieValueFromCPIndex( $cpIndex, $now, $cpClientId );
-				$request->response()->setCookie( 'cpPosIndex', $value, $expires, $options );
-			}
-
-			if ( $strategy === 'cookie+url' ) {
-				if ( $output->getRedirect() ) { // sanity
-					$safeUrl = $lbFactory->appendShutdownCPIndexAsQuery(
-						$output->getRedirect(),
-						$cpIndex
-					);
-					$output->redirect( $safeUrl );
-				} else {
-					$e = new LogicException( "No redirect; cannot append cpPosIndex parameter." );
-					MWExceptionHandler::logException( $e );
-				}
-			}
-		}
-
-		// Set a cookie to tell all CDN edge nodes to "stick" the user to the DC that handles this
-		// POST request (e.g. the "master" data center). Also have the user briefly bypass CDN so
-		// ChronologyProtector works for cacheable URLs.
-		if ( $request->wasPosted() && $lbFactory->hasOrMadeRecentMasterChanges() ) {
-			$expires = time() + $config->get( 'DataCenterUpdateStickTTL' );
-			$options = [ 'prefix' => '' ];
-			$request->response()->setCookie( 'UseDC', 'master', $expires, $options );
-			$request->response()->setCookie( 'UseCDNCache', 'false', $expires, $options );
-		}
-
-		// Avoid letting a few seconds of replica DB lag cause a month of stale data. This logic is
-		// also intimately related to the value of $wgCdnReboundPurgeDelay.
-		if ( $lbFactory->laggedReplicaUsed() ) {
-			$maxAge = $config->get( 'CdnMaxageLagged' );
-			$output->lowerCdnMaxage( $maxAge );
-			$request->response()->header( "X-Database-Lagged: true" );
-			wfDebugLog( 'replication', "Lagged DB used; CDN cache TTL limited to $maxAge seconds" );
-		}
-
-		// Avoid long-term cache pollution due to message cache rebuild timeouts (T133069)
-		if ( MessageCache::singleton()->isDisabled() ) {
-			$maxAge = $config->get( 'CdnMaxageSubstitute' );
-			$output->lowerCdnMaxage( $maxAge );
-			$request->response()->header( "X-Response-Substitute: true" );
-		}
+		return [ $flags, $strategy ];
 	}
 
 	/**
@@ -718,7 +753,7 @@ class MediaWiki {
 			Profiler::instance()->logDataPageOutputOnly();
 		} catch ( Exception $e ) {
 			// An error may already have been shown in run(), so just log it to be safe
-			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
+			MWExceptionHandler::logException( $e );
 		}
 
 		// Disable WebResponse setters for post-send processing (T191537).
@@ -917,7 +952,7 @@ class MediaWiki {
 
 		// Commit and close up!
 		$lbFactory->commitMasterChanges( __METHOD__ );
-		$lbFactory->shutdown( LBFactory::SHUTDOWN_NO_CHRONPROT );
+		$lbFactory->shutdown( $lbFactory::SHUTDOWN_NO_CHRONPROT );
 
 		wfDebug( "Request ended normally\n" );
 	}

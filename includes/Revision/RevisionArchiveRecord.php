@@ -54,8 +54,7 @@ class RevisionArchiveRecord extends RevisionRecord {
 	 * @param object $row An archive table row. Use RevisionStore::getArchiveQueryInfo() to build
 	 *        a query that yields the required fields.
 	 * @param RevisionSlots $slots The slots of this revision.
-	 * @param bool|string $wikiId the wiki ID of the site this Revision belongs to,
-	 *        or false for the local site.
+	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one.
 	 */
 	function __construct(
 		Title $title,
@@ -63,9 +62,9 @@ class RevisionArchiveRecord extends RevisionRecord {
 		CommentStoreComment $comment,
 		$row,
 		RevisionSlots $slots,
-		$wikiId = false
+		$dbDomain = false
 	) {
-		parent::__construct( $title, $slots, $wikiId );
+		parent::__construct( $title, $slots, $dbDomain );
 		Assert::parameterType( 'object', $row, '$row' );
 
 		$timestamp = wfTimestamp( TS_MW, $row->ar_timestamp );

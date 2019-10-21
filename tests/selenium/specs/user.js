@@ -1,22 +1,15 @@
-const assert = require( 'assert' ),
-	CreateAccountPage = require( '../pageobjects/createaccount.page' ),
-	PreferencesPage = require( '../pageobjects/preferences.page' ),
-	UserLoginPage = require( 'wdio-mediawiki/LoginPage' ),
-	Api = require( 'wdio-mediawiki/Api' ),
-	Util = require( 'wdio-mediawiki/Util' );
+const assert = require( 'assert' );
+const CreateAccountPage = require( '../pageobjects/createaccount.page' );
+const PreferencesPage = require( '../pageobjects/preferences.page' );
+const UserLoginPage = require( 'wdio-mediawiki/LoginPage' );
+const Api = require( 'wdio-mediawiki/Api' );
+const Util = require( 'wdio-mediawiki/Util' );
 
 describe( 'User', function () {
-	var password,
-		username;
-
-	before( function () {
-		// disable VisualEditor welcome dialog
-		UserLoginPage.open();
-		browser.localStorage( 'POST', { key: 've-beta-welcome-dialog', value: '1' } );
-	} );
+	let password, username;
 
 	beforeEach( function () {
-		browser.deleteCookie();
+		browser.deleteAllCookies();
 		username = Util.getTestString( 'User-' );
 		password = Util.getTestString();
 	} );

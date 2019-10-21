@@ -27,7 +27,7 @@ use HtmlArmor;
 use LinkCache;
 use Linker;
 use MediaWiki\MediaWikiServices;
-use MWNamespace;
+use NamespaceInfo;
 use Sanitizer;
 use Title;
 use TitleFormatter;
@@ -70,6 +70,11 @@ class LinkRenderer {
 	private $linkCache;
 
 	/**
+	 * @var NamespaceInfo
+	 */
+	private $nsInfo;
+
+	/**
 	 * Whether to run the legacy Linker hooks
 	 *
 	 * @var bool
@@ -79,10 +84,14 @@ class LinkRenderer {
 	/**
 	 * @param TitleFormatter $titleFormatter
 	 * @param LinkCache $linkCache
+	 * @param NamespaceInfo $nsInfo
 	 */
-	public function __construct( TitleFormatter $titleFormatter, LinkCache $linkCache ) {
+	public function __construct(
+		TitleFormatter $titleFormatter, LinkCache $linkCache, NamespaceInfo $nsInfo
+	) {
 		$this->titleFormatter = $titleFormatter;
 		$this->linkCache = $linkCache;
+		$this->nsInfo = $nsInfo;
 	}
 
 	/**
@@ -293,7 +302,7 @@ class LinkRenderer {
 		return $this->makePreloadedLink(
 			$target,
 			$text,
-			$classes ? implode( ' ', $classes ) : '',
+			implode( ' ', $classes ),
 			$extraAttribs,
 			$query
 		);
@@ -468,8 +477,9 @@ class LinkRenderer {
 		if ( $this->linkCache->getGoodLinkFieldObj( $target, 'redirect' ) ) {
 			# Page is a redirect
 			return 'mw-redirect';
-		} elseif ( $this->stubThreshold > 0 && MWNamespace::isContent( $target->getNamespace() )
-			&& $this->linkCache->getGoodLinkFieldObj( $target, 'length' ) < $this->stubThreshold
+		} elseif (
+			$this->stubThreshold > 0 && $this->nsInfo->isContent( $target->getNamespace() ) &&
+			$this->linkCache->getGoodLinkFieldObj( $target, 'length' ) < $this->stubThreshold
 		) {
 			# Page is a stub
 			return 'stub';

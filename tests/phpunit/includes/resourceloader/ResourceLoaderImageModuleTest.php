@@ -145,6 +145,55 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 	}
 
 	/**
+	 * Test reading files from elsewhere than localBasePath using ResourceLoaderFilePath.
+	 *
+	 * This mimics modules modified by skins using 'ResourceModuleSkinStyles' and 'OOUIThemePaths'
+	 * skin attributes.
+	 *
+	 * @covers ResourceLoaderFilePath::getLocalBasePath
+	 * @covers ResourceLoaderFilePath::getRemoteBasePath
+	 */
+	public function testResourceLoaderFilePath() {
+		$basePath = __DIR__ . '/../../data/blahblah';
+		$filePath = __DIR__ . '/../../data/rlfilepath';
+		$testModule = new ResourceLoaderImageModule( [
+			'localBasePath' => $basePath,
+			'remoteBasePath' => 'blahblah',
+			'prefix' => 'foo',
+			'images' => [
+				'eye' => new ResourceLoaderFilePath( 'eye.svg', $filePath, 'rlfilepath' ),
+				'flag' => [
+					'file' => [
+						'ltr' => new ResourceLoaderFilePath( 'flag-ltr.svg', $filePath, 'rlfilepath' ),
+						'rtl' => new ResourceLoaderFilePath( 'flag-rtl.svg', $filePath, 'rlfilepath' ),
+					],
+				],
+			],
+		] );
+		$expectedModule = new ResourceLoaderImageModule( [
+			'localBasePath' => $filePath,
+			'remoteBasePath' => 'rlfilepath',
+			'prefix' => 'foo',
+			'images' => [
+				'eye' => 'eye.svg',
+				'flag' => [
+					'file' => [
+						'ltr' => 'flag-ltr.svg',
+						'rtl' => 'flag-rtl.svg',
+					],
+				],
+			],
+		] );
+
+		$context = $this->getResourceLoaderContext();
+		$this->assertEquals(
+			$expectedModule->getModuleContent( $context ),
+			$testModule->getModuleContent( $context ),
+			"Using ResourceLoaderFilePath works correctly"
+		);
+	}
+
+	/**
 	 * @dataProvider providerGetModules
 	 * @covers ResourceLoaderImageModule::getStyles
 	 */
@@ -243,9 +292,8 @@ TEXT
 			->disableOriginalConstructor()
 			->getMock();
 		$image->method( 'getDataUri' )
-			->will( $this->returnValue( $dataUriReturnValue ) );
-		$image->expects( $this->any() )
-			->method( 'getUrl' )
+			->willReturn( $dataUriReturnValue );
+		$image->method( 'getUrl' )
 			->will( $this->returnValueMap( [
 				[ $context, 'load.php', null, 'original', 'original.svg' ],
 				[ $context, 'load.php', null, 'rasterized', 'rasterized.png' ],

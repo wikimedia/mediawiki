@@ -23,7 +23,7 @@
 	 * @cfg {boolean} [redirect] Page is a redirect
 	 * @cfg {boolean} [disambiguation] Page is a disambiguation page
 	 * @cfg {string} [query] Matching query string to highlight
-	 * @cfg {string} [compare] String comparison function for query highlighting
+	 * @cfg {Function} [compare] String comparison function for query highlighting
 	 */
 	mw.widgets.TitleOptionWidget = function MwWidgetsTitleOptionWidget( config ) {
 		var icon;
@@ -31,13 +31,13 @@
 		if ( !config.showImages ) {
 			icon = null;
 		} else if ( config.missing ) {
-			icon = 'page-not-found';
+			icon = 'articleNotFound';
 		} else if ( config.redirect ) {
-			icon = 'page-redirect';
+			icon = 'articleRedirect';
 		} else if ( config.disambiguation ) {
-			icon = 'page-disambiguation';
+			icon = 'articleDisambiguation';
 		} else {
-			icon = 'page-existing';
+			icon = 'article';
 		}
 
 		// Config initialization
@@ -73,7 +73,7 @@
 
 		// Highlight matching parts of link suggestion
 		if ( config.query ) {
-			this.setHighlightedQuery( config.data, config.query, config.compare );
+			this.setHighlightedQuery( config.data, config.query, config.compare, true );
 		}
 		this.$label.attr( 'title', config.data );
 

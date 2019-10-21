@@ -62,4 +62,12 @@ interface UserIdentity {
 	 */
 	public function equals( UserIdentity $user );
 
+	/**
+	 * @since 1.34
+	 *
+	 * @return bool True if user is registered on this wiki, i.e., has a user ID. False if user is
+	 *   anonymous or has no local account (which can happen when importing). This must be
+	 *   equivalent to getId() != 0 and is provided for code readability.
+	 */
+	public function isRegistered();
 }

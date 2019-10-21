@@ -27,6 +27,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IResultWrapper;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -131,7 +132,7 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * A resource pointing to a sitemap file
 	 *
-	 * @var resource
+	 * @var resource|false
 	 */
 	public $file;
 
@@ -187,18 +188,20 @@ class GenerateSitemap extends Maintenance {
 			$this->fatalError( "Can not create directory $fspath." );
 		}
 
+		$dbDomain = WikiMap::getCurrentWikiDbDomain()->getId();
 		$this->fspath = realpath( $fspath ) . DIRECTORY_SEPARATOR;
 		$this->urlpath = $this->getOption( 'urlpath', "" );
 		if ( $this->urlpath !== "" && substr( $this->urlpath, -1 ) !== '/' ) {
 			$this->urlpath .= '/';
 		}
-		$this->identifier = $this->getOption( 'identifier', wfWikiID() );
+		$this->identifier = $this->getOption( 'identifier', $dbDomain );
 		$this->compress = $this->getOption( 'compress', 'yes' ) !== 'no';
 		$this->skipRedirects = $this->hasOption( 'skip-redirects' );
 		$this->dbr = $this->getDB( DB_REPLICA );
 		$this->generateNamespaces();
 		$this->timestamp = wfTimestamp( TS_ISO_8601, wfTimestampNow() );
-		$this->findex = fopen( "{$this->fspath}sitemap-index-{$this->identifier}.xml", 'wb' );
+		$encIdentifier = rawurlencode( $this->identifier );
+		$this->findex = fopen( "{$this->fspath}sitemap-index-{$encIdentifier}.xml", 'wb' );
 		$this->main();
 	}
 
@@ -230,7 +233,7 @@ class GenerateSitemap extends Maintenance {
 		// Custom priorities
 		if ( $wgSitemapNamespacesPriorities !== false ) {
 			/**
-			 * @var $wgSitemapNamespacesPriorities array
+			 * @var array $wgSitemapNamespacesPriorities
 			 */
 			foreach ( $wgSitemapNamespacesPriorities as $namespace => $priority ) {
 				$float = floatval( $priority );
@@ -290,7 +293,7 @@ class GenerateSitemap extends Maintenance {
 	 * @return string
 	 */
 	function guessPriority( $namespace ) {
-		return MWNamespace::isSubject( $namespace )
+		return MediaWikiServices::getInstance()->getNamespaceInfo()->isSubject( $namespace )
 			? $this->priorities[self::GS_MAIN]
 			: $this->priorities[self::GS_TALK];
 	}
@@ -299,7 +302,7 @@ class GenerateSitemap extends Maintenance {
 	 * Return a database resolution of all the pages in a given namespace
 	 *
 	 * @param int $namespace Limit the query to this namespace
-	 * @return Resource
+	 * @return IResultWrapper
 	 */
 	function getPageRes( $namespace ) {
 		return $this->dbr->select( 'page',

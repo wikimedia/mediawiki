@@ -20,12 +20,15 @@
  * @defgroup Maintenance Maintenance
  */
 
+define( 'MW_ENTRY_POINT', 'cli' );
+
 // Bail on old versions of PHP, or if composer has not been run yet to install
 // dependencies.
 require_once __DIR__ . '/../includes/PHPVersionCheck.php';
 wfEntryPointCheck( 'text' );
 
 use MediaWiki\Shell\Shell;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * @defgroup MaintenanceArchive Maintenance archives
@@ -41,6 +44,13 @@ define( 'RUN_MAINTENANCE_IF_MAIN', __DIR__ . '/doMaintenance.php' );
 define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN ); // original name, harmless
 
 $maintClass = false;
+
+// Some extensions rely on MW_INSTALL_PATH to find core files to include. Setting it here helps them
+// if they're included by a core script (like DatabaseUpdater) after Maintenance.php has already
+// been run.
+if ( strval( getenv( 'MW_INSTALL_PATH' ) ) === '' ) {
+	putenv( 'MW_INSTALL_PATH=' . realpath( __DIR__ . '/..' ) );
+}
 
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Logger\LoggerFactory;
@@ -81,7 +91,11 @@ abstract class Maintenance {
 	// Const for getStdin()
 	const STDIN_ALL = 'all';
 
-	// Array of desired/allowed params
+	/**
+	 * Array of desired/allowed params
+	 * @var array[]
+	 * @phan-var array<string,array{desc:string,require:bool,withArg:string,shortName:string,multiOccurrence:bool}>
+	 */
 	protected $mParams = [];
 
 	// Array of mapping short parameters to long ones
@@ -120,9 +134,17 @@ abstract class Maintenance {
 	 */
 	protected $mBatchSize = null;
 
-	// Generic options added by addDefaultParams()
+	/**
+	 * Generic options added by addDefaultParams()
+	 * @var array[]
+	 * @phan-var array<string,array{desc:string,require:bool,withArg:string,shortName:string,multiOccurrence:bool}>
+	 */
 	private $mGenericParameters = [];
-	// Generic options which might or not be supported by the script
+	/**
+	 * Generic options which might or not be supported by the script
+	 * @var array[]
+	 * @phan-var array<string,array{desc:string,require:bool,withArg:string,shortName:string,multiOccurrence:bool}>
+	 */
 	private $mDependantParameters = [];
 
 	/**
@@ -171,11 +193,8 @@ abstract class Maintenance {
 	 * their own constructors
 	 */
 	public function __construct() {
-		// Setup $IP, using MW_INSTALL_PATH if it exists
 		global $IP;
-		$IP = strval( getenv( 'MW_INSTALL_PATH' ) ) !== ''
-			? getenv( 'MW_INSTALL_PATH' )
-			: realpath( __DIR__ . '/..' );
+		$IP = getenv( 'MW_INSTALL_PATH' );
 
 		$this->addDefaultParams();
 		register_shutdown_function( [ $this, 'outputChanneled' ], false );
@@ -354,7 +373,7 @@ abstract class Maintenance {
 			wfDeprecated( __METHOD__ . ' without an $argId', '1.33' );
 		}
 
-		return $this->hasArg( $argId ) ? $this->mArgs[$argId] : $default;
+		return $this->mArgs[$argId] ?? $default;
 	}
 
 	/**
@@ -568,7 +587,7 @@ abstract class Maintenance {
 			"server name detection may fail in command line scripts.", false, true );
 		$this->addOption( 'profiler', 'Profiler output format (usually "text")', false, true );
 		// This is named --mwdebug, because --debug would conflict in the phpunit.php CLI script.
-		$this->addOption( 'mwdebug', 'Enable built-in MediaWiki development settings', false, true );
+		$this->addOption( 'mwdebug', 'Enable built-in MediaWiki development settings', false, false );
 
 		# Save generic options to display them separately in help
 		$this->mGenericParameters = $this->mParams;
@@ -717,7 +736,7 @@ abstract class Maintenance {
 		}
 
 		/**
-		 * @var $child Maintenance
+		 * @var Maintenance $child
 		 */
 		$child = new $maintClass();
 		$child->loadParamsAndArgs( $this->mSelf, $this->mOptions, $this->mArgs );
@@ -826,7 +845,7 @@ abstract class Maintenance {
 					+ $wgProfiler
 					+ [ 'threshold' => $wgProfileLimit ]
 			);
-			$profiler->setTemplated( true );
+			$profiler->setAllowOutput();
 			Profiler::replaceStubInstance( $profiler );
 		}
 
@@ -1191,7 +1210,7 @@ abstract class Maintenance {
 
 			if ( $wgDBservers ) {
 				/**
-				 * @var $wgDBservers array
+				 * @var array $wgDBservers
 				 */
 				foreach ( $wgDBservers as $i => $server ) {
 					$wgDBservers[$i]['user'] = $wgDBuser;
@@ -1230,6 +1249,7 @@ abstract class Maintenance {
 	 */
 	protected function afterFinalSetup() {
 		if ( defined( 'MW_CMDLINE_CALLBACK' ) ) {
+			// @phan-suppress-next-line PhanUndeclaredConstant
 			call_user_func( MW_CMDLINE_CALLBACK );
 		}
 	}
@@ -1319,6 +1339,7 @@ abstract class Maintenance {
 			$res = $dbw->select( 'content', 'content_address', [], __METHOD__, [ 'DISTINCT' ] );
 			$blobStore = MediaWikiServices::getInstance()->getBlobStore();
 			foreach ( $res as $row ) {
+				// @phan-suppress-next-line PhanUndeclaredMethod
 				$textId = $blobStore->getTextIdFromAddress( $row->content_address );
 				if ( $textId ) {
 					$cur[] = $textId;
@@ -1361,28 +1382,34 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Returns a database to be used by current maintenance script. It can be set by setDB().
-	 * If not set, wfGetDB() will be used.
-	 * This function has the same parameters as wfGetDB()
+	 * Returns a database to be used by current maintenance script.
+	 *
+	 * This uses the main LBFactory instance by default unless overriden via setDB().
+	 *
+	 * This function has the same parameters as LoadBalancer::getConnection().
 	 *
 	 * @param int $db DB index (DB_REPLICA/DB_MASTER)
 	 * @param string|string[] $groups default: empty array
-	 * @param string|bool $wiki default: current wiki
+	 * @param string|bool $dbDomain default: current wiki
 	 * @return IMaintainableDatabase
 	 */
-	protected function getDB( $db, $groups = [], $wiki = false ) {
+	protected function getDB( $db, $groups = [], $dbDomain = false ) {
 		if ( $this->mDb === null ) {
-			return wfGetDB( $db, $groups, $wiki );
+			return MediaWikiServices::getInstance()
+				->getDBLoadBalancerFactory()
+				->getMainLB( $dbDomain )
+				->getMaintenanceConnectionRef( $db, $groups, $dbDomain );
 		}
+
 		return $this->mDb;
 	}
 
 	/**
 	 * Sets database object to be returned by getDB().
 	 *
-	 * @param IDatabase $db
+	 * @param IMaintainableDatabase $db
 	 */
-	public function setDB( IDatabase $db ) {
+	public function setDB( IMaintainableDatabase $db ) {
 		$this->mDb = $db;
 	}
 
@@ -1474,9 +1501,9 @@ abstract class Maintenance {
 	/**
 	 * Perform a search index update with locking
 	 * @param int $maxLockTime The maximum time to keep the search index locked.
-	 * @param string $callback The function that will update the function.
+	 * @param callable $callback The function that will update the function.
 	 * @param IMaintainableDatabase $dbw
-	 * @param array $results
+	 * @param array|IResultWrapper $results
 	 */
 	public function updateSearchIndex( $maxLockTime, $callback, $dbw, $results ) {
 		$lockTime = time();
@@ -1524,7 +1551,7 @@ abstract class Maintenance {
 			$title = $titleObj->getPrefixedDBkey();
 			$this->output( "$title..." );
 			# Update searchindex
-			$u = new SearchUpdate( $pageId, $titleObj->getText(), $rev->getContent() );
+			$u = new SearchUpdate( $pageId, $titleObj, $rev->getContent() );
 			$u->doUpdate();
 			$this->output( "\n" );
 		}
@@ -1720,7 +1747,7 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 			return false;
 		}
 
-		$db->insert( 'updatelog', [ 'ul_key' => $key ], __METHOD__, 'IGNORE' );
+		$db->insert( 'updatelog', [ 'ul_key' => $key ], __METHOD__, [ 'IGNORE' ] );
 
 		return true;
 	}
@@ -1732,7 +1759,7 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 	protected function updateSkippedMessage() {
 		$key = $this->getUpdateKey();
 
-		return "Update '{$key}' already logged as completed.";
+		return "Update '{$key}' already logged as completed. Use --force to run it again.";
 	}
 
 	/**

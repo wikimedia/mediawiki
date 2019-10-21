@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -113,7 +114,7 @@ class ParserTestTopLevelSuite extends PHPUnit_Framework_TestSuite {
 			$testsName = $extensionName . '__' . basename( $fileName, '.txt' );
 			$parserTestClassName = ucfirst( $testsName );
 
-			// Official spec for class names: https://secure.php.net/manual/en/language.oop5.basic.php
+			// Official spec for class names: https://www.php.net/manual/en/language.oop5.basic.php
 			// Prepend 'ParserTest_' to be paranoid about it not starting with a number
 			$parserTestClassName = 'ParserTest_' .
 				preg_replace( '/[^a-zA-Z0-9_\x7f-\xff]/', '_', $parserTestClassName );
@@ -137,10 +138,10 @@ class ParserTestTopLevelSuite extends PHPUnit_Framework_TestSuite {
 	public function setUp() {
 		wfDebug( __METHOD__ );
 
-		$db = wfGetDB( DB_MASTER );
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$db = $lb->getConnection( DB_MASTER );
 		$type = $db->getType();
-		$prefix = $type === 'oracle' ?
-			MediaWikiTestCase::ORA_DB_PREFIX : MediaWikiTestCase::DB_PREFIX;
+		$prefix = MediaWikiTestCase::DB_PREFIX;
 		$this->oldTablePrefix = $db->tablePrefix();
 		MediaWikiTestCase::setupTestDB( $db, $prefix );
 		CloneDatabase::changePrefix( $prefix );

@@ -26,82 +26,102 @@
  *
  * @ingroup SpecialPage
  */
-class SpecialUserLogout extends UnlistedSpecialPage {
-	function __construct() {
-		parent::__construct( 'Userlogout' );
-	}
+class SpecialUserLogout extends FormSpecialPage {
+    function __construct() {
+        parent::__construct( 'Userlogout' );
+    }
 
-	public function doesWrites() {
-		return true;
-	}
+    public function doesWrites() {
+        return true;
+    }
 
-	function execute( $par ) {
-		/**
-		 * Some satellite ISPs use broken precaching schemes that log people out straight after
-		 * they're logged in (T19790). Luckily, there's a way to detect such requests.
-		 */
-		if ( isset( $_SERVER['REQUEST_URI'] ) && strpos( $_SERVER['REQUEST_URI'], '&amp;' ) !== false ) {
-			wfDebug( "Special:UserLogout request {$_SERVER['REQUEST_URI']} looks suspicious, denying.\n" );
-			throw new HttpError( 400, $this->msg( 'suspicious-userlogout' ), $this->msg( 'loginerror' ) );
-		}
+    public function isListed() {
+        return false;
+    }
 
-		$this->setHeaders();
-		$this->outputHeader();
+    protected function getGroupName() {
+        return 'login';
+    }
 
-		$out = $this->getOutput();
-		$user = $this->getUser();
-		$request = $this->getRequest();
+    protected function getFormFields() {
+        return [];
+    }
 
-		$logoutToken = $request->getVal( 'logoutToken' );
-		$urlParams = [
-			'logoutToken' => $user->getEditToken( 'logoutToken', $request )
-		] + $request->getValues();
-		unset( $urlParams['title'] );
-		$continueLink = $this->getFullTitle()->getFullUrl( $urlParams );
+    protected function getDisplayFormat() {
+        return 'ooui';
+    }
 
-		if ( $logoutToken === null ) {
-			$this->getOutput()->addWikiMsg( 'userlogout-continue', $continueLink );
-			return;
-		}
-		if ( !$this->getUser()->matchEditToken(
-			$logoutToken, 'logoutToken', $this->getRequest(), 24 * 60 * 60
-		) ) {
-			$this->getOutput()->addWikiMsg( 'userlogout-sessionerror', $continueLink );
-			return;
-		}
+    public function execute( $par ) {
+        if ( $this->getUser()->isAnon() ) {
+            $this->setHeaders();
+            $this->showSuccess();
+            return;
+        }
 
-		// Make sure it's possible to log out
-		$session = MediaWiki\Session\SessionManager::getGlobalSession();
-		if ( !$session->canSetUser() ) {
-			throw new ErrorPageError(
-				'cannotlogoutnow-title',
-				'cannotlogoutnow-text',
-				[
-					$session->getProvider()->describe( RequestContext::getMain()->getLanguage() )
-				]
-			);
-		}
+        parent::execute( $par );
+    }
 
-		$user = $this->getUser();
-		$oldName = $user->getName();
+    public function alterForm( HTMLForm $form ) {
+        $form->setTokenSalt( 'logoutToken' );
+        $form->addHeaderText( $this->msg( 'userlogout-continue' ) );
 
-		$user->logout();
+        $form->addHiddenFields( $this->getRequest()->getValues( 'returnto', 'returntoquery' ) );
+    }
 
-		$loginURL = SpecialPage::getTitleFor( 'Userlogin' )->getFullURL(
-			$this->getRequest()->getValues( 'returnto', 'returntoquery' ) );
+    /**
+     * Process the form.  At this point we know that the user passes all the criteria in
+     * userCanExecute(), and if the data array contains 'Username', etc, then Username
+     * resets are allowed.
+     * @param array $data
+     * @throws MWException
+     * @throws ThrottledError|PermissionsError
+     * @return Status
+     */
+    public function onSubmit( array $data ) {
+        // Make sure it's possible to log out
+        $session = MediaWiki\Session\SessionManager::getGlobalSession();
+        if ( !$session->canSetUser() ) {
+            throw new ErrorPageError(
+                'cannotlogoutnow-title',
+                'cannotlogoutnow-text',
+                [
+                    $session->getProvider()->describe( RequestContext::getMain()->getLanguage() )
+                ]
+            );
+        }
 
-		$out = $this->getOutput();
-		$out->addWikiMsg( 'logouttext', $loginURL );
+        $user = $this->getUser();
 
-		// Hook.
-		$injected_html = '';
-		Hooks::run( 'UserLogoutComplete', [ &$user, &$injected_html, $oldName ] );
-		$out->addHTML( $injected_html );
+        $user->logout();
+        return new Status();
+    }
 
-		$out->returnToMain();
-	}
+    public function onSuccess() {
+        $this->showSuccess();
 
-	protected function getGroupName() {
-		return 'login';
-	}
+        $user = $this->getUser();
+        $oldName = $user->getName();
+        $out = $this->getOutput();
+        // Hook.
+        $injected_html = '';
+        Hooks::run( 'UserLogoutComplete', [ &$user, &$injected_html, $oldName ] );
+        $out->addHTML( $injected_html );
+    }
+
+    private function showSuccess() {
+        $loginURL = SpecialPage::getTitleFor( 'Userlogin' )->getFullURL(
+            $this->getRequest()->getValues( 'returnto', 'returntoquery' ) );
+
+        $out = $this->getOutput();
+        $out->addWikiMsg( 'logouttext', $loginURL );
+
+        $out->returnToMain();
+    }
+
+    /**
+     * Let blocked users to log out and come back with their sockpuppets
+     */
+    public function requiresUnblock() {
+        return false;
+    }
 }

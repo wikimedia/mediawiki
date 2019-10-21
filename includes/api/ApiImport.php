@@ -29,7 +29,6 @@ class ApiImport extends ApiBase {
 
 	public function execute() {
 		$this->useTransactionalTimeLimit();
-
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
@@ -37,7 +36,7 @@ class ApiImport extends ApiBase {
 
 		$isUpload = false;
 		if ( isset( $params['interwikisource'] ) ) {
-			if ( !$user->isAllowed( 'import' ) ) {
+			if ( !$this->getPermissionManager()->userHasRight( $user, 'import' ) ) {
 				$this->dieWithError( 'apierror-cantimport' );
 			}
 			if ( !isset( $params['interwikipage'] ) ) {
@@ -52,7 +51,7 @@ class ApiImport extends ApiBase {
 			$usernamePrefix = $params['interwikisource'];
 		} else {
 			$isUpload = true;
-			if ( !$user->isAllowed( 'importupload' ) ) {
+			if ( !$this->getPermissionManager()->userHasRight( $user, 'importupload' ) ) {
 				$this->dieWithError( 'apierror-cantimport-upload' );
 			}
 			$source = ImportStreamSource::newFromUpload( 'xml' );
@@ -179,44 +178,5 @@ class ApiImport extends ApiBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Import';
-	}
-}
-
-/**
- * Import reporter for the API
- * @ingroup API
- */
-class ApiImportReporter extends ImportReporter {
-	private $mResultArr = [];
-
-	/**
-	 * @param Title $title
-	 * @param Title $origTitle
-	 * @param int $revisionCount
-	 * @param int $successCount
-	 * @param array $pageInfo
-	 * @return void
-	 */
-	public function reportPage( $title, $origTitle, $revisionCount, $successCount, $pageInfo ) {
-		// Add a result entry
-		$r = [];
-
-		if ( $title === null ) {
-			# Invalid or non-importable title
-			$r['title'] = $pageInfo['title'];
-			$r['invalid'] = true;
-		} else {
-			ApiQueryBase::addTitleInfo( $r, $title );
-			$r['revisions'] = (int)$successCount;
-		}
-
-		$this->mResultArr[] = $r;
-
-		// Piggyback on the parent to do the logging
-		parent::reportPage( $title, $origTitle, $revisionCount, $successCount, $pageInfo );
-	}
-
-	public function getData() {
-		return $this->mResultArr;
 	}
 }

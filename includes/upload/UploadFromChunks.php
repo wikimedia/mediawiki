@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 /**
  * Backend for uploading files from chunks.
  *
@@ -28,12 +31,19 @@
  * @author Michael Dale
  */
 class UploadFromChunks extends UploadFromFile {
+	/** @var LocalRepo */
+	private $repo;
+	/** @var UploadStash */
+	public $stash;
+	/** @var User */
+	public $user;
+
 	protected $mOffset;
 	protected $mChunkIndex;
 	protected $mFileKey;
 	protected $mVirtualTempPath;
-	/** @var LocalRepo */
-	private $repo;
+
+	/** @noinspection PhpMissingParentConstructorInspection */
 
 	/**
 	 * Setup local pointers to stash, repo and user (similar to UploadFromStash)
@@ -79,30 +89,9 @@ class UploadFromChunks extends UploadFromFile {
 	 */
 	public function stashFile( User $user = null ) {
 		wfDeprecated( __METHOD__, '1.28' );
+
 		$this->verifyChunk();
 		return parent::stashFile( $user );
-	}
-
-	/**
-	 * @inheritDoc
-	 * @throws UploadChunkVerificationException
-	 * @deprecated since 1.28
-	 */
-	public function stashFileGetKey() {
-		wfDeprecated( __METHOD__, '1.28' );
-		$this->verifyChunk();
-		return parent::stashFileGetKey();
-	}
-
-	/**
-	 * @inheritDoc
-	 * @throws UploadChunkVerificationException
-	 * @deprecated since 1.28
-	 */
-	public function stashSession() {
-		wfDeprecated( __METHOD__, '1.28' );
-		$this->verifyChunk();
-		return parent::stashSession();
 	}
 
 	/**
@@ -171,7 +160,8 @@ class UploadFromChunks extends UploadFromFile {
 		// Get the file extension from the last chunk
 		$ext = FileBackend::extensionFromPath( $this->mVirtualTempPath );
 		// Get a 0-byte temp file to perform the concatenation at
-		$tmpFile = TempFSFile::factory( 'chunkedupload_', $ext, wfTempDir() );
+		$tmpFile = MediaWikiServices::getInstance()->getTempFSFileFactory()
+			->newTempFSFile( 'chunkedupload_', $ext );
 		$tmpPath = false; // fail in concatenate()
 		if ( $tmpFile ) {
 			// keep alive with $this

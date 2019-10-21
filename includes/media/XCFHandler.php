@@ -58,7 +58,7 @@ class XCFHandler extends BitmapHandler {
 	 *
 	 * @param File|FSFile $image
 	 * @param string $filename
-	 * @return array
+	 * @return array|false
 	 */
 	function getImageSize( $image, $filename ) {
 		$header = self::getXCFMetaData( $filename );
@@ -67,7 +67,7 @@ class XCFHandler extends BitmapHandler {
 		}
 
 		# Forge a return array containing metadata information just like getimagesize()
-		# See PHP documentation at: https://secure.php.net/getimagesize
+		# See PHP documentation at: https://www.php.net/getimagesize
 		return [
 			0 => $header['width'],
 			1 => $header['height'],
@@ -186,7 +186,7 @@ class XCFHandler extends BitmapHandler {
 	 *
 	 * @param File $file The file object for the file in question
 	 * @param string $metadata Serialized metadata
-	 * @return bool One of the self::METADATA_(BAD|GOOD|COMPATIBLE) constants
+	 * @return bool|int One of the self::METADATA_(BAD|GOOD|COMPATIBLE) constants
 	 */
 	public function isMetadataValid( $file, $metadata ) {
 		if ( !$metadata ) {

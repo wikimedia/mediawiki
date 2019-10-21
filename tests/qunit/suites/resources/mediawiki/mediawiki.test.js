@@ -334,8 +334,15 @@
 		);
 
 		mw.config.set( 'wgUserLanguage', 'qqx' );
-		assert.strictEqual( mw.message( 'foo' ).plain(), '(foo)', 'qqx message' );
-		assert.strictEqual( mw.message( 'foo', 'bar', 'baz' ).plain(), '(foo: bar, baz)', 'qqx message with parameters' );
+
+		mw.messages.set( 'qqx-message', '(qqx-message)' );
+		mw.messages.set( 'non-qqx-message', 'hello world' );
+
+		assert.strictEqual( mw.message( 'missing-message' ).plain(), '(missing-message)', 'qqx message (missing)' );
+		assert.strictEqual( mw.message( 'missing-message', 'bar', 'baz' ).plain(), '(missing-message: bar, baz)', 'qqx message (missing) with parameters' );
+		assert.strictEqual( mw.message( 'qqx-message' ).plain(), '(qqx-message)', 'qqx message (defined)' );
+		assert.strictEqual( mw.message( 'qqx-message', 'bar', 'baz' ).plain(), '(qqx-message: bar, baz)', 'qqx message (defined) with parameters' );
+		assert.strictEqual( mw.message( 'non-qqx-message' ).plain(), 'hello world', 'non-qqx message in qqx mode' );
 	} );
 
 	QUnit.test( 'mw.msg', function ( assert ) {

@@ -98,6 +98,7 @@ class FormatMetadata extends ContextSource {
 	 *   Exif::getFilteredData() or BitmapMetadataHandler )
 	 * @return array
 	 * @since 1.23
+	 * @suppress PhanTypeArraySuspiciousNullable
 	 */
 	public function makeFormattedData( $tags ) {
 		$resolutionunit = !isset( $tags['ResolutionUnit'] ) || $tags['ResolutionUnit'] == 2 ? 2 : 3;
@@ -490,8 +491,16 @@ class FormatMetadata extends ContextSource {
 
 					case 'CustomRendered':
 						switch ( $val ) {
-							case 0:
-							case 1:
+							case 0: /* normal */
+							case 1: /* custom */
+								/* The following are unofficial Apple additions */
+							case 2: /* HDR (no original saved) */
+							case 3: /* HDR (original saved) */
+							case 4: /* Original (for HDR) */
+								/* Yes 5 is not present ;) */
+							case 6: /* Panorama */
+							case 7: /* Portrait HDR */
+							case 8: /* Portrait */
 								$val = $this->exifMsg( $tag, $val );
 								break;
 							default:
@@ -1181,7 +1190,7 @@ class FormatMetadata extends ContextSource {
 		$langName = Language::fetchLanguageName( $lowLang );
 		if ( $langName === '' ) {
 			// try just the base language name. (aka en-US -> en ).
-			list( $langPrefix ) = explode( '-', $lowLang, 2 );
+			$langPrefix = explode( '-', $lowLang, 2 )[0];
 			$langName = Language::fetchLanguageName( $langPrefix );
 			if ( $langName === '' ) {
 				// give up.

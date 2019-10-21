@@ -17,6 +17,7 @@
 			mw.loader.load( 'mediawiki.notification' );
 
 			// Use the class to determine whether to watch or unwatch
+			// eslint-disable-next-line no-jquery/no-class-state
 			if ( !$subjectLink.hasClass( 'mw-watched-item' ) ) {
 				$link.text( mw.msg( 'watching' ) );
 				promise = api.watch( title ).done( function () {

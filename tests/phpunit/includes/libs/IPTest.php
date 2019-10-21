@@ -481,7 +481,7 @@ class IPTest extends PHPUnit\Framework\TestCase {
 		$this->assertFalseCIDR( '192.0.2.0/33', "mask > 32" );
 
 		// Check internal logic
-		# 0 mask always result in array(0,0)
+		# 0 mask always result in [ 0, 0 ]
 		$this->assertEquals( [ 0, 0 ], IP::parseCIDR( '192.0.0.2/0' ) );
 		$this->assertEquals( [ 0, 0 ], IP::parseCIDR( '0.0.0.0/0' ) );
 		$this->assertEquals( [ 0, 0 ], IP::parseCIDR( '255.255.255.255/0' ) );

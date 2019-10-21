@@ -157,25 +157,22 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 	 * @dataProvider provideGenerateContentDiffBody
 	 */
 	public function testGenerateContentDiffBody(
-		Content $oldContent, Content $newContent, $expectedDiff
+		array $oldContentArgs, array $newContentArgs, $expectedDiff
 	) {
-		// Set $wgExternalDiffEngine to something bogus to try to force use of
-		// the PHP engine rather than wikidiff2.
-		$this->setMwGlobals( [
-			'wgExternalDiffEngine' => '/dev/null',
+		$this->mergeMwGlobalArrayValue( 'wgContentHandlers', [
+			'testing-nontext' => DummyNonTextContentHandler::class,
 		] );
+		$oldContent = ContentHandler::makeContent( ...$oldContentArgs );
+		$newContent = ContentHandler::makeContent( ...$newContentArgs );
 
 		$differenceEngine = new DifferenceEngine();
 		$diff = $differenceEngine->generateContentDiffBody( $oldContent, $newContent );
 		$this->assertSame( $expectedDiff, $this->getPlainDiff( $diff ) );
 	}
 
-	public function provideGenerateContentDiffBody() {
-		$this->mergeMwGlobalArrayValue( 'wgContentHandlers', [
-			'testing-nontext' => DummyNonTextContentHandler::class,
-		] );
-		$content1 = ContentHandler::makeContent( 'xxx', null, CONTENT_MODEL_TEXT );
-		$content2 = ContentHandler::makeContent( 'yyy', null, CONTENT_MODEL_TEXT );
+	public static function provideGenerateContentDiffBody() {
+		$content1 = [ 'xxx', null, CONTENT_MODEL_TEXT ];
+		$content2 = [ 'yyy', null, CONTENT_MODEL_TEXT ];
 
 		return [
 			'self-diff' => [ $content1, $content1, '' ],
@@ -184,12 +181,6 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 	}
 
 	public function testGenerateTextDiffBody() {
-		// Set $wgExternalDiffEngine to something bogus to try to force use of
-		// the PHP engine rather than wikidiff2.
-		$this->setMwGlobals( [
-			'wgExternalDiffEngine' => '/dev/null',
-		] );
-
 		$oldText = "aaa\nbbb\nccc";
 		$newText = "aaa\nxxx\nccc";
 		$expectedDiff = " aaa aaa\n-bbb+xxx\n ccc ccc";
@@ -200,12 +191,6 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 	}
 
 	public function testSetContent() {
-		// Set $wgExternalDiffEngine to something bogus to try to force use of
-		// the PHP engine rather than wikidiff2.
-		$this->setMwGlobals( [
-			'wgExternalDiffEngine' => '/dev/null',
-		] );
-
 		$oldContent = ContentHandler::makeContent( 'xxx', null, CONTENT_MODEL_TEXT );
 		$newContent = ContentHandler::makeContent( 'yyy', null, CONTENT_MODEL_TEXT );
 
@@ -240,12 +225,6 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 	public function testGetDiffBody(
 		RevisionRecord $oldRevision = null, RevisionRecord $newRevision = null, $expectedDiff
 	) {
-		// Set $wgExternalDiffEngine to something bogus to try to force use of
-		// the PHP engine rather than wikidiff2.
-		$this->setMwGlobals( [
-			'wgExternalDiffEngine' => '/dev/null',
-		] );
-
 		if ( $expectedDiff instanceof Exception ) {
 			$this->setExpectedException( get_class( $expectedDiff ), $expectedDiff->getMessage() );
 		}
@@ -313,14 +292,14 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 		$customContentHandler->expects( $this->any() )
 			->method( 'createDifferenceEngine' )
 			->willReturn( $customDifferenceEngine );
-		/** @var $customContentHandler ContentHandler */
+		/** @var ContentHandler $customContentHandler */
 		$customContent = $this->getMockBuilder( Content::class )
 			->setMethods( [ 'getContentHandler' ] )
 			->getMockForAbstractClass();
 		$customContent->expects( $this->any() )
 			->method( 'getContentHandler' )
 			->willReturn( $customContentHandler );
-		/** @var $customContent Content */
+		/** @var Content $customContent */
 		$customContent2 = clone $customContent;
 
 		$slotDiffRenderer = $customContentHandler->getSlotDiffRenderer( RequestContext::getMain() );

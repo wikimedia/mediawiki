@@ -188,8 +188,8 @@ class LanguageZh extends LanguageZh_hans {
 	}
 
 	/**
-	 * @param array $termsArray
-	 * @return array
+	 * @param string[] $termsArray
+	 * @return string[]
 	 */
 	function convertForSearchResult( $termsArray ) {
 		$terms = implode( '|', $termsArray );

@@ -4,6 +4,7 @@
  * @ingroup FileBackend
  */
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Wikimedia\WaitConditionLoop;
 
 /**
@@ -101,7 +102,7 @@ abstract class LockManager {
 		}
 		$this->session = md5( implode( '-', $random ) );
 
-		$this->logger = $config['logger'] ?? new \Psr\Log\NullLogger();
+		$this->logger = $config['logger'] ?? new NullLogger();
 	}
 
 	/**

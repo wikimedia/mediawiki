@@ -1,7 +1,5 @@
 <?php
 /**
- * Message blobs storage used by ResourceLoader.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -20,7 +18,6 @@
  * @file
  * @author Roan Kattouw
  * @author Trevor Parscal
- * @author Timo Tijhof
  */
 
 use MediaWiki\MediaWikiServices;
@@ -30,10 +27,13 @@ use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\Database;
 
 /**
- * This class generates message blobs for use by ResourceLoader modules.
+ * This class generates message blobs for use by ResourceLoader.
  *
- * A message blob is a JSON object containing the interface messages for a certain module in
- * a certain language.
+ * A message blob is a JSON object containing the interface messages for a
+ * certain module in a certain language.
+ *
+ * @ingroup ResourceLoader
+ * @since 1.17
  */
 class MessageBlobStore implements LoggerAwareInterface {
 
@@ -96,7 +96,7 @@ class MessageBlobStore implements LoggerAwareInterface {
 		$cache = $this->wanCache;
 		$checkKeys = [
 			// Global check key, see clear()
-			$cache->makeKey( __CLASS__ )
+			$cache->makeGlobalKey( __CLASS__ )
 		];
 		$cacheKeys = [];
 		foreach ( $modules as $name => $module ) {
@@ -173,9 +173,14 @@ class MessageBlobStore implements LoggerAwareInterface {
 	 */
 	public function clear() {
 		$cache = $this->wanCache;
-		// Disable holdoff because this invalidates all modules and also not needed since
-		// LocalisationCache is stored outside the database and doesn't have lag.
-		$cache->touchCheckKey( $cache->makeKey( __CLASS__ ), $cache::HOLDOFF_NONE );
+		// Disable hold-off because:
+		// - LocalisationCache is populated by messages on-disk and don't have DB lag,
+		//   thus there is no need for hold off. We only clear it after new localisation
+		//   updates are known to be deployed to all servers.
+		// - This global check key invalidates message blobs for all modules for all wikis
+		//   in cache contexts (e.g. languages, skins). Setting a hold-off on this key could
+		//   cause a cache stampede since no values would be stored for several seconds.
+		$cache->touchCheckKey( $cache->makeGlobalKey( __CLASS__ ), $cache::HOLDOFF_TTL_NONE );
 	}
 
 	/**
@@ -190,16 +195,18 @@ class MessageBlobStore implements LoggerAwareInterface {
 	 * @since 1.27
 	 * @param string $key Message key
 	 * @param string $lang Language code
-	 * @return string
+	 * @return string|null
 	 */
 	protected function fetchMessage( $key, $lang ) {
 		$message = wfMessage( $key )->inLanguage( $lang );
-		$value = $message->plain();
 		if ( !$message->exists() ) {
 			$this->logger->warning( 'Failed to find {messageKey} ({lang})', [
 				'messageKey' => $key,
 				'lang' => $lang,
 			] );
+			$value = null;
+		} else {
+			$value = $message->plain();
 		}
 		return $value;
 	}
@@ -214,10 +221,13 @@ class MessageBlobStore implements LoggerAwareInterface {
 	private function generateMessageBlob( ResourceLoaderModule $module, $lang ) {
 		$messages = [];
 		foreach ( $module->getMessages() as $key ) {
-			$messages[$key] = $this->fetchMessage( $key, $lang );
+			$value = $this->fetchMessage( $key, $lang );
+			if ( $value !== null ) {
+				$messages[$key] = $value;
+			}
 		}
 
-		$json = FormatJson::encode( (object)$messages );
+		$json = FormatJson::encode( (object)$messages, false, FormatJson::UTF8_OK );
 		// @codeCoverageIgnoreStart
 		if ( $json === false ) {
 			$this->logger->warning( 'Failed to encode message blob for {module} ({lang})', [

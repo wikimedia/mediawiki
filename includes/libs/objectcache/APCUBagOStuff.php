@@ -33,19 +33,29 @@
  *
  * @ingroup Cache
  */
-class APCUBagOStuff extends BagOStuff {
+class APCUBagOStuff extends MediumSpecificBagOStuff {
+	/** @var bool Whether to trust the APC implementation to serialization */
+	private $nativeSerialize;
+
 	/**
 	 * @var string String to append to each APC key. This may be changed
 	 *  whenever the handling of values is changed, to prevent existing code
 	 *  from encountering older values which it cannot handle.
 	 */
-	const KEY_SUFFIX = ':3';
+	const KEY_SUFFIX = ':4';
+
+	public function __construct( array $params = [] ) {
+		$params['segmentationSize'] = $params['segmentationSize'] ?? INF;
+		parent::__construct( $params );
+		// The extension serializer is still buggy, unlike "php" and "igbinary"
+		$this->nativeSerialize = ( ini_get( 'apc.serializer' ) !== 'default' );
+	}
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$casToken = null;
 
 		$blob = apcu_fetch( $key . self::KEY_SUFFIX );
-		$value = $this->unserialize( $blob );
+		$value = $this->nativeSerialize ? $blob : $this->unserialize( $blob );
 		if ( $value !== false ) {
 			$casToken = $blob; // don't bother hashing this
 		}
@@ -53,36 +63,30 @@ class APCUBagOStuff extends BagOStuff {
 		return $value;
 	}
 
-	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
-		apcu_store(
+	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
+		return apcu_store(
 			$key . self::KEY_SUFFIX,
-			$this->serialize( $value ),
+			$this->nativeSerialize ? $value : $this->serialize( $value ),
 			$exptime
 		);
-
-		return true;
 	}
 
-	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
+	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
 		return apcu_add(
 			$key . self::KEY_SUFFIX,
-			$this->serialize( $value ),
+			$this->nativeSerialize ? $value : $this->serialize( $value ),
 			$exptime
 		);
 	}
 
-	public function delete( $key, $flags = 0 ) {
+	protected function doDelete( $key, $flags = 0 ) {
 		apcu_delete( $key . self::KEY_SUFFIX );
 
 		return true;
 	}
 
-	public function incr( $key, $value = 1 ) {
-		/**
-		 * @todo When we only support php 7 or higher remove this hack
-		 *
-		 * https://github.com/krakjoe/apcu/issues/166
-		 */
+	public function incr( $key, $value = 1, $flags = 0 ) {
+		// https://github.com/krakjoe/apcu/issues/166
 		if ( apcu_exists( $key . self::KEY_SUFFIX ) ) {
 			return apcu_inc( $key . self::KEY_SUFFIX, $value );
 		} else {
@@ -90,24 +94,12 @@ class APCUBagOStuff extends BagOStuff {
 		}
 	}
 
-	public function decr( $key, $value = 1 ) {
-		/**
-		 * @todo When we only support php 7 or higher remove this hack
-		 *
-		 * https://github.com/krakjoe/apcu/issues/166
-		 */
+	public function decr( $key, $value = 1, $flags = 0 ) {
+		// https://github.com/krakjoe/apcu/issues/166
 		if ( apcu_exists( $key . self::KEY_SUFFIX ) ) {
 			return apcu_dec( $key . self::KEY_SUFFIX, $value );
 		} else {
 			return false;
 		}
-	}
-
-	protected function serialize( $value ) {
-		return $this->isInteger( $value ) ? (int)$value : serialize( $value );
-	}
-
-	protected function unserialize( $value ) {
-		return $this->isInteger( $value ) ? (int)$value : unserialize( $value );
 	}
 }

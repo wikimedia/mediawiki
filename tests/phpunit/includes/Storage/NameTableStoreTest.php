@@ -5,13 +5,17 @@ namespace MediaWiki\Tests\Storage;
 use BagOStuff;
 use EmptyBagOStuff;
 use HashBagOStuff;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWikiTestCase;
+use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\NullLogger;
+use RuntimeException;
 use WANObjectCache;
-use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\MaintainableDBConnRef;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -51,35 +55,44 @@ class NameTableStoreTest extends MediaWikiTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 		$mock->expects( $this->any() )
-			->method( 'getConnection' )
-			->willReturn( $db );
+			->method( 'getConnectionRef' )
+			->willReturnCallback( function ( $i ) use ( $mock, $db ) {
+				return new MaintainableDBConnRef( $mock, $db, $i );
+			} );
 		return $mock;
 	}
 
-	private function getCallCheckingDb( $insertCalls, $selectCalls ) {
-		$mock = $this->getMockBuilder( Database::class )
+	/**
+	 * @param null $insertCalls
+	 * @param null $selectCalls
+	 *
+	 * @return MockObject|IDatabase
+	 */
+	private function getProxyDb( $insertCalls = null, $selectCalls = null ) {
+		$proxiedMethods = [
+			'select' => $selectCalls,
+			'insert' => $insertCalls,
+			'affectedRows' => null,
+			'insertId' => null,
+			'getSessionLagStatus' => null,
+			'writesPending' => null,
+			'onTransactionPreCommitOrIdle' => null,
+			'onAtomicSectionCancel' => null,
+			'doAtomicSection' => null,
+			'begin' => null,
+			'rollback' => null,
+			'commit' => null,
+		];
+		$mock = $this->getMockBuilder( IDatabase::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$mock->expects( $this->exactly( $insertCalls ) )
-			->method( 'insert' )
-			->willReturnCallback( function () {
-				return call_user_func_array( [ $this->db, 'insert' ], func_get_args() );
-			} );
-		$mock->expects( $this->exactly( $selectCalls ) )
-			->method( 'select' )
-			->willReturnCallback( function () {
-				return call_user_func_array( [ $this->db, 'select' ], func_get_args() );
-			} );
-		$mock->expects( $this->exactly( $insertCalls ) )
-			->method( 'affectedRows' )
-			->willReturnCallback( function () {
-				return call_user_func_array( [ $this->db, 'affectedRows' ], func_get_args() );
-			} );
-		$mock->expects( $this->any() )
-			->method( 'insertId' )
-			->willReturnCallback( function () {
-				return call_user_func_array( [ $this->db, 'insertId' ], func_get_args() );
-			} );
+		foreach ( $proxiedMethods as $method => $count ) {
+			$mock->expects( is_int( $count ) ? $this->exactly( $count ) : $this->any() )
+				->method( $method )
+				->willReturnCallback( function ( ...$args ) use ( $method ) {
+					return call_user_func_array( [ $this->db, $method ], $args );
+				} );
+		}
 		return $mock;
 	}
 
@@ -91,7 +104,7 @@ class NameTableStoreTest extends MediaWikiTestCase {
 		$insertCallback = null
 	) {
 		return new NameTableStore(
-			$this->getMockLoadBalancer( $this->getCallCheckingDb( $insertCalls, $selectCalls ) ),
+			$this->getMockLoadBalancer( $this->getProxyDb( $insertCalls, $selectCalls ) ),
 			$this->getHashWANObjectCache( $cacheBag ),
 			new NullLogger(),
 			'slot_roles', 'role_id', 'role_name',
@@ -216,17 +229,23 @@ class NameTableStoreTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideGetName
 	 */
-	public function testGetName( $cacheBag, $insertCalls, $selectCalls ) {
+	public function testGetName( BagOStuff $cacheBag, $insertCalls, $selectCalls ) {
+		$now = microtime( true );
+		$cacheBag->setMockTime( $now );
 		// Check for operations to in-memory cache (IMC) and persistent cache (PC)
 		$store = $this->getNameTableSqlStore( $cacheBag, $insertCalls, $selectCalls );
 
 		// Get 1 ID and make sure getName returns correctly
 		$fooId = $store->acquireId( 'foo' ); // regen PC, set IMC, update IMC, tombstone PC
+		$now += 0.01;
 		$this->assertSame( 'foo', $store->getName( $fooId ) ); // use IMC
+		$now += 0.01;
 
 		// Get another ID and make sure getName returns correctly
 		$barId = $store->acquireId( 'bar' ); // update IMC, tombstone PC
+		$now += 0.01;
 		$this->assertSame( 'bar', $store->getName( $barId ) ); // use IMC
+		$now += 0.01;
 
 		// Blitz the cache and make sure it still returns
 		TestingAccessWrapper::newFromObject( $store )->tableCache = null; // clear IMC
@@ -236,6 +255,7 @@ class NameTableStoreTest extends MediaWikiTestCase {
 		// Blitz the cache again and get another ID and make sure getName returns correctly
 		TestingAccessWrapper::newFromObject( $store )->tableCache = null; // clear IMC
 		$bazId = $store->acquireId( 'baz' ); // set IMC using interim PC, update IMC, tombstone PC
+		$now += 0.01;
 		$this->assertSame( 'baz', $store->getName( $bazId ) ); // uses IMC
 		$this->assertSame( 'baz', $store->getName( $bazId ) ); // uses IMC
 	}
@@ -336,6 +356,152 @@ class NameTableStoreTest extends MediaWikiTestCase {
 			}
 		);
 		$this->assertSame( 7251, $store->acquireId( 'A' ) );
+	}
+
+	public function testTransactionRollback() {
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+
+		// Two instances hitting the real database using separate caches.
+		$store1 = new NameTableStore(
+			$lb,
+			$this->getHashWANObjectCache( new HashBagOStuff() ),
+			new NullLogger(),
+			'slot_roles', 'role_id', 'role_name'
+		);
+		$store2 = new NameTableStore(
+			$lb,
+			$this->getHashWANObjectCache( new HashBagOStuff() ),
+			new NullLogger(),
+			'slot_roles', 'role_id', 'role_name'
+		);
+
+		$this->db->begin( __METHOD__ );
+		$fooId = $store1->acquireId( 'foo' );
+		$this->db->rollback( __METHOD__ );
+
+		$this->assertSame( $fooId, $store2->getId( 'foo' ) );
+		$this->assertSame( $fooId, $store1->getId( 'foo' ) );
+	}
+
+	public function testTransactionRollbackWithFailedRedo() {
+		$insertCalls = 0;
+
+		$db = $this->getProxyDb( 2 );
+		$db->method( 'insert' )
+			->willReturnCallback( function () use ( &$insertCalls, $db ) {
+				$insertCalls++;
+				switch ( $insertCalls ) {
+					case 1:
+						return true;
+					case 2:
+						throw new RuntimeException( 'Testing' );
+				}
+
+				return true;
+			} );
+
+		$lb = $this->getMockBuilder( LoadBalancer::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$lb->method( 'getConnectionRef' )
+			->willReturn( $db );
+		$lb->method( 'resolveDomainID' )
+			->willReturnArgument( 0 );
+
+		// Two instances hitting the real database using separate caches.
+		$store1 = new NameTableStore(
+			$lb,
+			$this->getHashWANObjectCache( new HashBagOStuff() ),
+			new NullLogger(),
+			'slot_roles', 'role_id', 'role_name'
+		);
+
+		$this->db->begin( __METHOD__ );
+		$store1->acquireId( 'foo' );
+		$this->db->rollback( __METHOD__ );
+
+		$this->assertArrayNotHasKey( 'foo', $store1->getMap() );
+	}
+
+	public function testTransactionRollbackWithInterference() {
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+
+		// Two instances hitting the real database using separate caches.
+		$store1 = new NameTableStore(
+			$lb,
+			$this->getHashWANObjectCache( new HashBagOStuff() ),
+			new NullLogger(),
+			'slot_roles', 'role_id', 'role_name'
+		);
+		$store2 = new NameTableStore(
+			$lb,
+			$this->getHashWANObjectCache( new HashBagOStuff() ),
+			new NullLogger(),
+			'slot_roles', 'role_id', 'role_name'
+		);
+
+		$this->db->begin( __METHOD__ );
+
+		$quuxId = null;
+		$this->db->onTransactionResolution(
+			function () use ( $store1, &$quuxId ) {
+				$quuxId = $store1->acquireId( 'quux' );
+			}
+		);
+
+		$store1->acquireId( 'foo' );
+		$this->db->rollback( __METHOD__ );
+
+		// $store2 should know about the insert by $store1
+		$this->assertSame( $quuxId, $store2->getId( 'quux' ) );
+
+		// A "best effort" attempt was made to restore the entry for 'foo'
+		// after the transaction failed. This may succeed on some databases like MySQL,
+		// while it fails on others. Since we are giving no guarantee about this,
+		// the only thing we can test here is that acquireId( 'foo' ) returns an
+		// ID that is distinct from the ID of quux (but might be different from the
+		// value returned by the original call to acquireId( 'foo' ).
+		// Note that $store2 will not know about the ID for 'foo' acquired by $store1,
+		// because it's using a separate cache, and getId() does not fall back to
+		// checking the database.
+		$this->assertNotSame( $quuxId, $store1->acquireId( 'foo' ) );
+	}
+
+	public function testTransactionDoubleRollback() {
+		$fname = __METHOD__;
+
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$store = new NameTableStore(
+			$lb,
+			$this->getHashWANObjectCache( new HashBagOStuff() ),
+			new NullLogger(),
+			'slot_roles', 'role_id', 'role_name'
+		);
+
+		// Nested atomic sections
+		$atomic1 = $this->db->startAtomic( $fname, $this->db::ATOMIC_CANCELABLE );
+		$atomic2 = $this->db->startAtomic( $fname, $this->db::ATOMIC_CANCELABLE );
+
+		// Acquire ID
+		$id = $store->acquireId( 'foo' );
+
+		// Oops, rolled back
+		$this->db->cancelAtomic( $fname, $atomic2 );
+
+		// Should have been re-inserted
+		$store->reloadMap();
+		$this->assertSame( $id, $store->getId( 'foo' ) );
+
+		// Oops, re-insert was rolled back too.
+		$this->db->cancelAtomic( $fname, $atomic1 );
+
+		// This time, no re-insertion happened.
+		try {
+			$id2 = $store->getId( 'foo' );
+			$this->fail( "Expected NameTableAccessException, got $id2 (originally was $id)" );
+		} catch ( NameTableAccessException $ex ) {
+			// expected
+		}
 	}
 
 }

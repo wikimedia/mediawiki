@@ -327,7 +327,7 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 
 		$title2 = Title::newFromText( 'Foo' );
 		$this->assertNotSame( $title1, $title2, 'title cache should be empty' );
-		$this->assertEquals( 0, $linkCache->getGoodLinkID( 'Foo' ), 'link cache should be empty' );
+		$this->assertSame( 0, $linkCache->getGoodLinkID( 'Foo' ), 'link cache should be empty' );
 	}
 
 	public function provideGetLinkURL() {
@@ -435,6 +435,31 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 
 		$title = Title::makeTitle( $ns, $title, $fragment, $interwiki );
 		$this->assertSame( $expected, $title->getLinkURL( $query, $query2, $proto ) );
+	}
+
+	/**
+	 * Integration test to catch regressions like T74870. Taken and modified
+	 * from SemanticMediaWiki
+	 *
+	 * @covers Title::moveTo
+	 */
+	public function testTitleMoveCompleteIntegrationTest() {
+		$this->hideDeprecated( 'Title::moveTo' );
+
+		$oldTitle = Title::newFromText( 'Help:Some title' );
+		WikiPage::factory( $oldTitle )->doEditContent( new WikitextContent( 'foo' ), 'bar' );
+		$newTitle = Title::newFromText( 'Help:Some other title' );
+		$this->assertNull(
+			WikiPage::factory( $newTitle )->getRevision()
+		);
+
+		$this->assertTrue( $oldTitle->moveTo( $newTitle, false, 'test1', true ) );
+		$this->assertNotNull(
+			WikiPage::factory( $oldTitle )->getRevision()
+		);
+		$this->assertNotNull(
+			WikiPage::factory( $newTitle )->getRevision()
+		);
 	}
 
 	function tearDown() {

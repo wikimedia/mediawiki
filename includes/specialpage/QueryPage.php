@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -76,45 +77,69 @@ abstract class QueryPage extends SpecialPage {
 		if ( $qp === null ) {
 			// QueryPage subclass, Special page name
 			$qp = [
-				[ AncientPagesPage::class, 'Ancientpages' ],
-				[ BrokenRedirectsPage::class, 'BrokenRedirects' ],
-				[ DeadendPagesPage::class, 'Deadendpages' ],
-				[ DoubleRedirectsPage::class, 'DoubleRedirects' ],
-				[ FileDuplicateSearchPage::class, 'FileDuplicateSearch' ],
-				[ ListDuplicatedFilesPage::class, 'ListDuplicatedFiles' ],
-				[ LinkSearchPage::class, 'LinkSearch' ],
-				[ ListredirectsPage::class, 'Listredirects' ],
-				[ LonelyPagesPage::class, 'Lonelypages' ],
-				[ LongPagesPage::class, 'Longpages' ],
-				[ MediaStatisticsPage::class, 'MediaStatistics' ],
-				[ MIMEsearchPage::class, 'MIMEsearch' ],
-				[ MostcategoriesPage::class, 'Mostcategories' ],
+				[ SpecialAncientPages::class, 'Ancientpages' ],
+				[ SpecialBrokenRedirects::class, 'BrokenRedirects' ],
+				[ SpecialDeadendPages::class, 'Deadendpages' ],
+				[ SpecialDoubleRedirects::class, 'DoubleRedirects' ],
+				[ SpecialFileDuplicateSearch::class, 'FileDuplicateSearch' ],
+				[ SpecialListDuplicatedFiles::class, 'ListDuplicatedFiles' ],
+				[ SpecialLinkSearch::class, 'LinkSearch' ],
+				[ SpecialListRedirects::class, 'Listredirects' ],
+				[ SpecialLonelyPages::class, 'Lonelypages' ],
+				[ SpecialLongPages::class, 'Longpages' ],
+				[ SpecialMediaStatistics::class, 'MediaStatistics' ],
+				[ SpecialMIMESearch::class, 'MIMEsearch' ],
+				[ SpecialMostCategories::class, 'Mostcategories' ],
 				[ MostimagesPage::class, 'Mostimages' ],
-				[ MostinterwikisPage::class, 'Mostinterwikis' ],
-				[ MostlinkedCategoriesPage::class, 'Mostlinkedcategories' ],
-				[ MostlinkedTemplatesPage::class, 'Mostlinkedtemplates' ],
-				[ MostlinkedPage::class, 'Mostlinked' ],
-				[ MostrevisionsPage::class, 'Mostrevisions' ],
-				[ FewestrevisionsPage::class, 'Fewestrevisions' ],
-				[ ShortPagesPage::class, 'Shortpages' ],
-				[ UncategorizedCategoriesPage::class, 'Uncategorizedcategories' ],
-				[ UncategorizedPagesPage::class, 'Uncategorizedpages' ],
-				[ UncategorizedImagesPage::class, 'Uncategorizedimages' ],
-				[ UncategorizedTemplatesPage::class, 'Uncategorizedtemplates' ],
-				[ UnusedCategoriesPage::class, 'Unusedcategories' ],
-				[ UnusedimagesPage::class, 'Unusedimages' ],
-				[ WantedCategoriesPage::class, 'Wantedcategories' ],
+				[ SpecialMostInterwikis::class, 'Mostinterwikis' ],
+				[ SpecialMostLinkedCategories::class, 'Mostlinkedcategories' ],
+				[ SpecialMostLinkedTemplates::class, 'Mostlinkedtemplates' ],
+				[ SpecialMostLinked::class, 'Mostlinked' ],
+				[ SpecialMostRevisions::class, 'Mostrevisions' ],
+				[ SpecialFewestRevisions::class, 'Fewestrevisions' ],
+				[ SpecialShortPages::class, 'Shortpages' ],
+				[ SpecialUncategorizedCategories::class, 'Uncategorizedcategories' ],
+				[ SpecialUncategorizedPages::class, 'Uncategorizedpages' ],
+				[ SpecialUncategorizedImages::class, 'Uncategorizedimages' ],
+				[ SpecialUncategorizedTemplates::class, 'Uncategorizedtemplates' ],
+				[ SpecialUnusedCategories::class, 'Unusedcategories' ],
+				[ SpecialUnusedImages::class, 'Unusedimages' ],
+				[ SpecialWantedCategories::class, 'Wantedcategories' ],
 				[ WantedFilesPage::class, 'Wantedfiles' ],
 				[ WantedPagesPage::class, 'Wantedpages' ],
-				[ WantedTemplatesPage::class, 'Wantedtemplates' ],
-				[ UnwatchedpagesPage::class, 'Unwatchedpages' ],
-				[ UnusedtemplatesPage::class, 'Unusedtemplates' ],
-				[ WithoutInterwikiPage::class, 'Withoutinterwiki' ],
+				[ SpecialWantedTemplates::class, 'Wantedtemplates' ],
+				[ SpecialUnwatchedPages::class, 'Unwatchedpages' ],
+				[ SpecialUnusedTemplates::class, 'Unusedtemplates' ],
+				[ SpecialWithoutInterwiki::class, 'Withoutinterwiki' ],
 			];
 			Hooks::run( 'wgQueryPages', [ &$qp ] );
 		}
 
 		return $qp;
+	}
+
+	/**
+	 * Get a list of query pages disabled and with it's run mode
+	 * @param Config $config
+	 * @return string[]
+	 */
+	public static function getDisabledQueryPages( Config $config ) {
+		$disableQueryPageUpdate = $config->get( 'DisableQueryPageUpdate' );
+
+		if ( !is_array( $disableQueryPageUpdate ) ) {
+			return [];
+		}
+
+		$pages = [];
+		foreach ( $disableQueryPageUpdate as $name => $runMode ) {
+			if ( is_int( $name ) ) {
+				// The run mode may be omitted
+				$pages[$runMode] = 'disabled';
+			} else {
+				$pages[$name] = $runMode;
+			}
+		}
+		return $pages;
 	}
 
 	/**
@@ -286,21 +311,6 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
-	 * Some special pages (for example SpecialListusers used to) might not return the
-	 * current object formatted, but return the previous one instead.
-	 * Setting this to return true will ensure formatResult() is called
-	 * one more time to make sure that the very last result is formatted
-	 * as well.
-	 *
-	 * @deprecated since 1.27
-	 *
-	 * @return bool
-	 */
-	function tryLastResult() {
-		return false;
-	}
-
-	/**
 	 * Clear the cache and save new results
 	 *
 	 * @param int|bool $limit Limit for SQL statement
@@ -327,7 +337,7 @@ abstract class QueryPage extends SpecialPage {
 				$num = $res->numRows();
 				# Fetch results
 				$vals = [];
-				foreach ( $res as $row ) {
+				foreach ( $res as $i => $row ) {
 					if ( isset( $row->value ) ) {
 						if ( $this->usesTimestamps() ) {
 							$value = wfTimestamp( TS_UNIX,
@@ -336,7 +346,7 @@ abstract class QueryPage extends SpecialPage {
 							$value = intval( $row->value ); // T16414
 						}
 					} else {
-						$value = 0;
+						$value = $i;
 					}
 
 					$vals[] = [
@@ -384,10 +394,27 @@ abstract class QueryPage extends SpecialPage {
 
 	/**
 	 * Get a DB connection to be used for slow recache queries
-	 * @return \Wikimedia\Rdbms\Database
+	 * @return IDatabase
 	 */
 	function getRecacheDB() {
 		return wfGetDB( DB_REPLICA, [ $this->getName(), 'QueryPage::recache', 'vslow' ] );
+	}
+
+	/**
+	 * Remove a cached result.
+	 * Useful for interactive backlogs where the user can fix problems in-place.
+	 * @param LinkTarget $title The page to remove.
+	 * @since 1.34
+	 */
+	public function delete( LinkTarget $title ) {
+		if ( $this->isCached() ) {
+			$dbw = wfGetDB( DB_MASTER );
+			$dbw->delete( 'querycache', [
+				'qc_type' => $this->getName(),
+				'qc_namespace' => $title->getNamespace(),
+				'qc_title' => $title->getDBkey(),
+			], __METHOD__ );
+		}
 	}
 
 	/**
@@ -629,13 +656,21 @@ abstract class QueryPage extends SpecialPage {
 
 				# If updates on this page have been disabled, let the user know
 				# that the data set won't be refreshed for now
-				if ( is_array( $this->getConfig()->get( 'DisableQueryPageUpdate' ) )
-					&& in_array( $this->getName(), $this->getConfig()->get( 'DisableQueryPageUpdate' ) )
-				) {
-					$out->wrapWikiMsg(
-						"<div class=\"mw-querypage-no-updates\">\n$1\n</div>",
-						'querypage-no-updates'
-					);
+				$disabledQueryPages = self::getDisabledQueryPages( $this->getConfig() );
+				if ( isset( $disabledQueryPages[$this->getName()] ) ) {
+					$runMode = $disabledQueryPages[$this->getName()];
+					if ( $runMode === 'disabled' ) {
+						$out->wrapWikiMsg(
+							"<div class=\"mw-querypage-no-updates\">\n$1\n</div>",
+							'querypage-no-updates'
+						);
+					} else {
+						// Messages used here: querypage-updates-periodical
+						$out->wrapWikiMsg(
+							"<div class=\"mw-querypage-updates-" . $runMode . "\">\n$1\n</div>",
+							'querypage-updates-' . $runMode
+						);
+					}
 				}
 			}
 		}
@@ -675,7 +710,7 @@ abstract class QueryPage extends SpecialPage {
 		# an OutputPage, and let them get on with it
 		$this->outputResults( $out,
 			$this->getSkin(),
-			$dbr, # Should use a ResultWrapper for this
+			$dbr, # Should use IResultWrapper for this
 			$res,
 			min( $this->numRows, $this->limit ), # do not format the one extra row, if exist
 			$this->offset );
@@ -709,17 +744,6 @@ abstract class QueryPage extends SpecialPage {
 			# $res might contain the whole 1,000 rows, so we read up to
 			# $num [should update this to use a Pager]
 			for ( $i = 0; $i < $num && $row = $res->fetchObject(); $i++ ) {
-				$line = $this->formatResult( $skin, $row );
-				if ( $line ) {
-					$html[] = $this->listoutput
-						? $line
-						: "<li>{$line}</li>\n";
-				}
-			}
-
-			# Flush the final result
-			if ( $this->tryLastResult() ) {
-				$row = null;
 				$line = $this->formatResult( $skin, $row );
 				if ( $line ) {
 					$html[] = $this->listoutput
@@ -764,13 +788,13 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
-	 * Creates a new LinkBatch object, adds all pages from the passed ResultWrapper (MUST include
+	 * Creates a new LinkBatch object, adds all pages from the passed result wrapper (MUST include
 	 * title and optional the namespace field) and executes the batch. This operation will pre-cache
 	 * LinkCache information like page existence and information for stub color and redirect hints.
 	 *
-	 * @param IResultWrapper $res The ResultWrapper object to process. Needs to include the title
+	 * @param IResultWrapper $res The result wrapper to process. Needs to include the title
 	 *  field and namespace field, if the $ns parameter isn't set.
-	 * @param null $ns Use this namespace for the given titles in the ResultWrapper object,
+	 * @param null $ns Use this namespace for the given titles in the result wrapper,
 	 *  instead of the namespace value of $res.
 	 */
 	protected function executeLBFromResultWrapper( IResultWrapper $res, $ns = null ) {

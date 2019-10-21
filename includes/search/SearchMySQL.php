@@ -124,7 +124,8 @@ class SearchMySQL extends SearchDatabase {
 			wfDebug( __METHOD__ . ": Can't understand search query '{$filteredText}'\n" );
 		}
 
-		$searchon = $this->db->addQuotes( $searchon );
+		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+		$searchon = $dbr->addQuotes( $searchon );
 		$field = $this->getIndexField( $fulltext );
 		return [
 			" MATCH($field) AGAINST($searchon IN BOOLEAN MODE) ",
@@ -149,7 +150,7 @@ class SearchMySQL extends SearchDatabase {
 		return $regex;
 	}
 
-	public static function legalSearchChars( $type = self::CHARS_ALL ) {
+	public function legalSearchChars( $type = self::CHARS_ALL ) {
 		$searchChars = parent::legalSearchChars( $type );
 		if ( $type === self::CHARS_ALL ) {
 			// " for phrase, * for wildcard
@@ -162,7 +163,7 @@ class SearchMySQL extends SearchDatabase {
 	 * Perform a full text search query and return a result set.
 	 *
 	 * @param string $term Raw search term
-	 * @return SqlSearchResultSet
+	 * @return SqlSearchResultSet|null
 	 */
 	protected function doSearchTextInDB( $term ) {
 		return $this->searchInternal( $term, true );
@@ -172,7 +173,7 @@ class SearchMySQL extends SearchDatabase {
 	 * Perform a title-only search query and return a result set.
 	 *
 	 * @param string $term Raw search term
-	 * @return SqlSearchResultSet
+	 * @return SqlSearchResultSet|null
 	 */
 	protected function doSearchTitleInDB( $term ) {
 		return $this->searchInternal( $term, false );
@@ -186,14 +187,15 @@ class SearchMySQL extends SearchDatabase {
 
 		$filteredTerm = $this->filter( $term );
 		$query = $this->getQuery( $filteredTerm, $fulltext );
-		$resultSet = $this->db->select(
+		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+		$resultSet = $dbr->select(
 			$query['tables'], $query['fields'], $query['conds'],
 			__METHOD__, $query['options'], $query['joins']
 		);
 
 		$total = null;
 		$query = $this->getCountQuery( $filteredTerm, $fulltext );
-		$totalResult = $this->db->select(
+		$totalResult = $dbr->select(
 			$query['tables'], $query['fields'], $query['conds'],
 			__METHOD__, $query['options'], $query['joins']
 		);
@@ -224,7 +226,8 @@ class SearchMySQL extends SearchDatabase {
 	protected function queryFeatures( &$query ) {
 		foreach ( $this->features as $feature => $value ) {
 			if ( $feature === 'title-suffix-filter' && $value ) {
-				$query['conds'][] = 'page_title' . $this->db->buildLike( $this->db->anyString(), $value );
+				$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+				$query['conds'][] = 'page_title' . $dbr->buildLike( $dbr->anyString(), $value );
 			}
 		}
 	}
@@ -339,7 +342,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param string $text
 	 */
 	function update( $id, $title, $text ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->lb->getConnectionRef( DB_MASTER );
 		$dbw->replace( 'searchindex',
 			[ 'si_page' ],
 			[
@@ -357,13 +360,12 @@ class SearchMySQL extends SearchDatabase {
 	 * @param string $title
 	 */
 	function updateTitle( $id, $title ) {
-		$dbw = wfGetDB( DB_MASTER );
-
+		$dbw = $this->lb->getConnectionRef( DB_MASTER );
 		$dbw->update( 'searchindex',
 			[ 'si_title' => $this->normalizeText( $title ) ],
 			[ 'si_page' => $id ],
-			__METHOD__,
-			[ $dbw->lowPriorityOption() ] );
+			__METHOD__
+		);
 	}
 
 	/**
@@ -374,8 +376,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param string $title Title of page that was deleted
 	 */
 	function delete( $id, $title ) {
-		$dbw = wfGetDB( DB_MASTER );
-
+		$dbw = $this->lb->getConnectionRef( DB_MASTER );
 		$dbw->delete( 'searchindex', [ 'si_page' => $id ], __METHOD__ );
 	}
 
@@ -441,7 +442,7 @@ class SearchMySQL extends SearchDatabase {
 		if ( is_null( self::$mMinSearchLength ) ) {
 			$sql = "SHOW GLOBAL VARIABLES LIKE 'ft\\_min\\_word\\_len'";
 
-			$dbr = wfGetDB( DB_REPLICA );
+			$dbr = $this->lb->getConnectionRef( DB_REPLICA );
 			$result = $dbr->query( $sql, __METHOD__ );
 			$row = $result->fetchObject();
 			$result->free();

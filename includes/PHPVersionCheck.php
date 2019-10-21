@@ -31,12 +31,10 @@
  *
  * @note This class uses setter methods instead of a constructor so that
  * it can be compatible with PHP 4, PHP 5 and PHP 7 (without warnings).
- *
- * @class
  */
 class PHPVersionCheck {
 	/* @var string The number of the MediaWiki version used. */
-	var $mwVersion = '1.33';
+	var $mwVersion = '1.34';
 
 	/* @var array A mapping of PHP functions to PHP extensions. */
 	var $functionsExtensionsMapping = array(
@@ -79,9 +77,8 @@ class PHPVersionCheck {
 	/**
 	 * Return the version of the installed PHP implementation.
 	 *
-	 * @param string $impl By default, the function returns the info of the currently installed PHP
-	 *  implementation. Using this parameter the caller can decide, what version info will be
-	 *  returned. Valid values: HHVM, PHP
+	 * TODO: Deprecate/remove this workaround now that HHVM isn't supported.
+	 *
 	 * @return array An array of information about the PHP implementation, containing:
 	 *  - 'version': The version of the PHP implementation (specific to the implementation, not
 	 *  the version of the implemented PHP version)
@@ -92,27 +89,14 @@ class PHPVersionCheck {
 	 *  - 'upgradeURL': The URL to the website of the implementation that contains
 	 *  upgrade/installation instructions.
 	 */
-	function getPHPInfo( $impl = false ) {
-		if (
-			( defined( 'HHVM_VERSION' ) && $impl !== 'PHP' ) ||
-			$impl === 'HHVM'
-		) {
-			return array(
-				'implementation' => 'HHVM',
-				'version' => defined( 'HHVM_VERSION' ) ? HHVM_VERSION : 'undefined',
-				'vendor' => 'Facebook',
-				'upstreamSupported' => '3.18.5',
-				'minSupported' => '3.18.5',
-				'upgradeURL' => 'https://docs.hhvm.com/hhvm/installation/introduction',
-			);
-		}
+	function getPHPInfo() {
 		return array(
 			'implementation' => 'PHP',
 			'version' => PHP_VERSION,
 			'vendor' => 'the PHP Group',
-			'upstreamSupported' => '5.6.0',
-			'minSupported' => '7.0.13',
-			'upgradeURL' => 'https://secure.php.net/downloads.php',
+			'upstreamSupported' => '7.1.0',
+			'minSupported' => '7.2.9',
+			'upgradeURL' => 'https://www.php.net/downloads.php',
 		);
 	}
 
@@ -122,21 +106,15 @@ class PHPVersionCheck {
 	function checkRequiredPHPVersion() {
 		$phpInfo = $this->getPHPInfo();
 		$minimumVersion = $phpInfo['minSupported'];
-		$otherInfo = $this->getPHPInfo( $phpInfo['implementation'] === 'HHVM' ? 'PHP' : 'HHVM' );
-		if (
-			!function_exists( 'version_compare' )
-			|| version_compare( $phpInfo['version'], $minimumVersion ) < 0
-		) {
+		if ( version_compare( $phpInfo['version'], $minimumVersion ) < 0 ) {
 			$shortText = "MediaWiki $this->mwVersion requires at least {$phpInfo['implementation']}"
-				. " version $minimumVersion or {$otherInfo['implementation']} version "
-				. "{$otherInfo['minSupported']}, you are using {$phpInfo['implementation']} "
+				. " version $minimumVersion, you are using {$phpInfo['implementation']} "
 				. "{$phpInfo['version']}.";
 
 			$longText = "Error: You might be using an older {$phpInfo['implementation']} version "
 				. "({$phpInfo['implementation']} {$phpInfo['version']}). \n"
 				. "MediaWiki $this->mwVersion needs {$phpInfo['implementation']}"
-				. " $minimumVersion or higher or {$otherInfo['implementation']} version "
-				. "{$otherInfo['minSupported']}.\n\nCheck if you have a"
+				. " $minimumVersion or higher.\n\nCheck if you have a"
 				. " newer PHP executable with a different name.\n\n";
 
 			// phpcs:disable Generic.Files.LineLength
@@ -206,7 +184,7 @@ HTML;
 
 			$missingExtText = '';
 			$missingExtHtml = '';
-			$baseUrl = 'https://secure.php.net';
+			$baseUrl = 'https://www.php.net';
 			foreach ( $missingExtensions as $ext ) {
 				$missingExtText .= " * $ext <$baseUrl/$ext>\n";
 				$missingExtHtml .= "<li><b>$ext</b> "
@@ -263,7 +241,7 @@ HTML;
 	<head>
 		<meta charset="UTF-8" />
 		<title>MediaWiki {$this->mwVersion}</title>
-		<style media='screen'>
+		<style media="screen">
 			body {
 				color: #000;
 				background-color: #fff;
@@ -271,7 +249,7 @@ HTML;
 				padding: 2em;
 				text-align: center;
 			}
-			p, img, h1, h2, ul  {
+			p, img, h1, h2, ul {
 				text-align: left;
 				margin: 0.5em 0 1em;
 			}
@@ -284,9 +262,9 @@ HTML;
 		</style>
 	</head>
 	<body>
-		<img src="{$encLogo}" alt='The MediaWiki logo' />
+		<img src="{$encLogo}" alt="The MediaWiki logo" />
 		<h1>MediaWiki {$this->mwVersion} internal error</h1>
-		<div class='error'>
+		<div class="error">
 		<p>
 			{$shortHtml}
 		</p>

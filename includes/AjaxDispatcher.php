@@ -114,6 +114,7 @@ class AjaxDispatcher {
 			return;
 		}
 
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		if ( !in_array( $this->func_name, $this->config->get( 'AjaxExportList' ) ) ) {
 			wfDebug( __METHOD__ . ' Bad Request for unknown function ' . $this->func_name . "\n" );
 			wfHttpError(
@@ -121,7 +122,8 @@ class AjaxDispatcher {
 				'Bad Request',
 				"unknown function " . $this->func_name
 			);
-		} elseif ( !User::isEveryoneAllowed( 'read' ) && !$user->isAllowed( 'read' ) ) {
+		} elseif ( !$permissionManager->isEveryoneAllowed( 'read' ) &&
+				   !$permissionManager->userHasRight( $user, 'read' ) ) {
 			wfHttpError(
 				403,
 				'Forbidden',

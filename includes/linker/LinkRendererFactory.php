@@ -21,6 +21,7 @@
 namespace MediaWiki\Linker;
 
 use LinkCache;
+use NamespaceInfo;
 use TitleFormatter;
 use User;
 
@@ -41,19 +42,28 @@ class LinkRendererFactory {
 	private $linkCache;
 
 	/**
+	 * @var NamespaceInfo
+	 */
+	private $nsInfo;
+
+	/**
 	 * @param TitleFormatter $titleFormatter
 	 * @param LinkCache $linkCache
+	 * @param NamespaceInfo $nsInfo
 	 */
-	public function __construct( TitleFormatter $titleFormatter, LinkCache $linkCache ) {
+	public function __construct(
+		TitleFormatter $titleFormatter, LinkCache $linkCache, NamespaceInfo $nsInfo
+	) {
 		$this->titleFormatter = $titleFormatter;
 		$this->linkCache = $linkCache;
+		$this->nsInfo = $nsInfo;
 	}
 
 	/**
 	 * @return LinkRenderer
 	 */
 	public function create() {
-		return new LinkRenderer( $this->titleFormatter, $this->linkCache );
+		return new LinkRenderer( $this->titleFormatter, $this->linkCache, $this->nsInfo );
 	}
 
 	/**

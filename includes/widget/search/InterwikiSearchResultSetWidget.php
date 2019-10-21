@@ -4,29 +4,29 @@ namespace MediaWiki\Widget\Search;
 
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkRenderer;
-use SearchResultSet;
+use ISearchResultSet;
 use SpecialSearch;
 use Title;
 use Html;
 use OOUI;
 
 /**
- * Renders one or more SearchResultSets into a sidebar grouped by
+ * Renders one or more ISearchResultSets into a sidebar grouped by
  * interwiki prefix. Includes a per-wiki header indicating where
  * the results are from.
  */
 class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
-	/** @var SpecialSearch */
+	/** @var SpecialSearch $specialSearch */
 	protected $specialSearch;
-	/** @var SearchResultWidget */
+	/** @var SearchResultWidget $resultWidget */
 	protected $resultWidget;
-	/** @var string[]|null */
+	/** @var string[]|null $customCaptions */
 	protected $customCaptions;
-	/** @var LinkRenderer */
+	/** @var LinkRenderer $linkRenderer */
 	protected $linkRenderer;
-	/** @var InterwikiLookup */
+	/** @var InterwikiLookup $iwLookup */
 	protected $iwLookup;
-	/** @var $output */
+	/** @var \OutputPage $output */
 	protected $output;
 	/** @var bool $showMultimedia */
 	protected $showMultimedia;
@@ -48,7 +48,7 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 
 	/**
 	 * @param string $term User provided search term
-	 * @param SearchResultSet|SearchResultSet[] $resultSets List of interwiki
+	 * @param ISearchResultSet|ISearchResultSet[] $resultSets List of interwiki
 	 *  results to render.
 	 * @return string HTML
 	 */
@@ -82,7 +82,7 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 			$iwResultItemOutput = '';
 
 			foreach ( $results as $result ) {
-				$iwResultItemOutput .= $this->resultWidget->render( $result, $term, $position++ );
+				$iwResultItemOutput .= $this->resultWidget->render( $result, $position++ );
 			}
 
 			$footerHtml = $this->footerHtml( $term, $iwPrefix );

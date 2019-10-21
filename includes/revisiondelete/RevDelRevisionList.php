@@ -19,6 +19,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -48,7 +49,7 @@ class RevDelRevisionList extends RevDelList {
 	}
 
 	public static function getRevdelConstant() {
-		return Revision::DELETED_TEXT;
+		return RevisionRecord::DELETED_TEXT;
 	}
 
 	public static function suggestTarget( $target, array $ids ) {
@@ -167,7 +168,7 @@ class RevDelRevisionList extends RevDelList {
 	}
 
 	public function getSuppressBit() {
-		return Revision::DELETED_RESTRICTED;
+		return RevisionRecord::DELETED_RESTRICTED;
 	}
 
 	public function doPreCommitUpdates() {

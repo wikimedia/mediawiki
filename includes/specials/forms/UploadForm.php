@@ -40,6 +40,7 @@ class UploadForm extends HTMLForm {
 
 	protected $mMaxFileSize = [];
 
+	/** @var array */
 	protected $mMaxUploadSize = [];
 
 	public function __construct( array $options = [], IContextSource $context = null,
@@ -75,7 +76,10 @@ class UploadForm extends HTMLForm {
 		parent::__construct( $descriptor, $context, 'upload' );
 
 		# Add a link to edit MediaWiki:Licenses
-		if ( $this->getUser()->isAllowed( 'editinterface' ) ) {
+		if ( MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $this->getUser(), 'editinterface' )
+		) {
 			$this->getOutput()->addModuleStyles( 'mediawiki.special' );
 			$licensesLink = $linkRenderer->makeKnownLink(
 				$this->msg( 'licenses' )->inContentLanguage()->getTitle(),
@@ -415,7 +419,8 @@ class UploadForm extends HTMLForm {
 			'wgCheckFileExtensions' => $config->get( 'CheckFileExtensions' ),
 			'wgStrictFileExtensions' => $config->get( 'StrictFileExtensions' ),
 			'wgFileExtensions' => array_values( array_unique( $config->get( 'FileExtensions' ) ) ),
-			'wgCapitalizeUploads' => MWNamespace::isCapitalized( NS_FILE ),
+			'wgCapitalizeUploads' => MediaWikiServices::getInstance()->getNamespaceInfo()->
+				isCapitalized( NS_FILE ),
 			'wgMaxUploadSize' => $this->mMaxUploadSize,
 			'wgFileCanRotate' => SpecialUpload::rotationEnabled(),
 		];

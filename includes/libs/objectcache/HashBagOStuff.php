@@ -28,7 +28,7 @@
  *
  * @ingroup Cache
  */
-class HashBagOStuff extends BagOStuff {
+class HashBagOStuff extends MediumSpecificBagOStuff {
 	/** @var mixed[] */
 	protected $bag = [];
 	/** @var int Max entries allowed */
@@ -47,8 +47,12 @@ class HashBagOStuff extends BagOStuff {
 	/**
 	 * @param array $params Additional parameters include:
 	 *   - maxKeys : only allow this many keys (using oldest-first eviction)
+	 * @codingStandardsIgnoreStart
+	 * @phan-param array{logger?:Psr\Log\LoggerInterface,asyncHandler?:callable,keyspace?:string,reportDupes?:bool,syncTimeout?:int,segmentationSize?:int,segmentedValueMaxSize?:int,maxKeys?:int} $params
+	 * @codingStandardsIgnoreEnd
 	 */
 	function __construct( $params = [] ) {
+		$params['segmentationSize'] = $params['segmentationSize'] ?? INF;
 		parent::__construct( $params );
 
 		$this->token = microtime( true ) . ':' . mt_rand();
@@ -75,12 +79,12 @@ class HashBagOStuff extends BagOStuff {
 		return $this->bag[$key][self::KEY_VAL];
 	}
 
-	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
+	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
 		// Refresh key position for maxCacheKeys eviction
 		unset( $this->bag[$key] );
 		$this->bag[$key] = [
 			self::KEY_VAL => $value,
-			self::KEY_EXP => $this->convertToExpiry( $exptime ),
+			self::KEY_EXP => $this->getExpirationAsTimestamp( $exptime ),
 			self::KEY_CAS => $this->token . ':' . ++self::$casCounter
 		];
 
@@ -93,30 +97,34 @@ class HashBagOStuff extends BagOStuff {
 		return true;
 	}
 
-	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
-		if ( $this->get( $key ) === false ) {
-			return $this->set( $key, $value, $exptime, $flags );
+	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
+		if ( $this->hasKey( $key ) && !$this->expire( $key ) ) {
+			return false; // key already set
 		}
 
-		return false; // key already set
+		return $this->doSet( $key, $value, $exptime, $flags );
 	}
 
-	public function delete( $key, $flags = 0 ) {
+	protected function doDelete( $key, $flags = 0 ) {
 		unset( $this->bag[$key] );
 
 		return true;
 	}
 
-	public function incr( $key, $value = 1 ) {
+	public function incr( $key, $value = 1, $flags = 0 ) {
 		$n = $this->get( $key );
 		if ( $this->isInteger( $n ) ) {
-			$n = max( $n + intval( $value ), 0 );
+			$n = max( $n + (int)$value, 0 );
 			$this->bag[$key][self::KEY_VAL] = $n;
 
 			return $n;
 		}
 
 		return false;
+	}
+
+	public function decr( $key, $value = 1, $flags = 0 ) {
+		return $this->incr( $key, -$value, $flags );
 	}
 
 	/**
@@ -136,7 +144,7 @@ class HashBagOStuff extends BagOStuff {
 			return false;
 		}
 
-		$this->delete( $key );
+		$this->doDelete( $key );
 
 		return true;
 	}
@@ -148,7 +156,7 @@ class HashBagOStuff extends BagOStuff {
 	 * @return bool
 	 * @since 1.27
 	 */
-	protected function hasKey( $key ) {
+	public function hasKey( $key ) {
 		return isset( $this->bag[$key] );
 	}
 }

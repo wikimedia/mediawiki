@@ -1,9 +1,13 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\PageEditStash;
 use Wikimedia\TestingAccessWrapper;
+use Psr\Log\NullLogger;
 
 /**
  * @covers ApiStashEdit
+ * @covers \MediaWiki\Storage\PageEditStash
  * @group API
  * @group medium
  * @group Database
@@ -11,10 +15,19 @@ use Wikimedia\TestingAccessWrapper;
 class ApiStashEditTest extends ApiTestCase {
 	public function setUp() {
 		parent::setUp();
-
-		// We need caching here, but note that the cache gets cleared in between tests, so it
-		// doesn't work with @depends
+		$this->setService( 'PageEditStash', new PageEditStash(
+			new HashBagOStuff( [] ),
+			MediaWikiServices::getInstance()->getDBLoadBalancer(),
+			new NullLogger(),
+			new NullStatsdDataFactory(),
+			PageEditStash::INITIATOR_USER
+		) );
+		// Clear rate-limiting cache between tests
 		$this->setMwGlobals( 'wgMainCacheType', 'hash' );
+	}
+
+	public function tearDown() {
+		parent::tearDown();
 	}
 
 	/**
@@ -24,6 +37,7 @@ class ApiStashEditTest extends ApiTestCase {
 	 *   sensible defaults filled in.  To make a parameter actually not passed, set to null.
 	 * @param User $user User to do the request
 	 * @param string $expectedResult 'stashed', 'editconflict'
+	 * @return array
 	 */
 	protected function doStash(
 		array $params = [], User $user = null, $expectedResult = 'stashed'
@@ -88,13 +102,11 @@ class ApiStashEditTest extends ApiTestCase {
 	 * @return string
 	 */
 	protected function getStashedText( $hash ) {
-		$cache = ObjectCache::getLocalClusterInstance();
-		$key = $cache->makeKey( 'stashedit', 'text', $hash );
-		return $cache->get( $key );
+		return MediaWikiServices::getInstance()->getPageEditStash()->fetchInputText( $hash );
 	}
 
 	/**
-	 * Return a key that can be passed to the cache to obtain a PreparedEdit object.
+	 * Return a key that can be passed to the cache to obtain a stashed edit object.
 	 *
 	 * @param string $title Title of page
 	 * @param string Content $text Content of edit
@@ -107,8 +119,10 @@ class ApiStashEditTest extends ApiTestCase {
 		if ( !$user ) {
 			$user = $this->getTestSysop()->getUser();
 		}
-		$wrapper = TestingAccessWrapper::newFromClass( ApiStashEdit::class );
-		return $wrapper->getStashKey( $titleObj, $wrapper->getContentHash( $content ), $user );
+		$editStash = TestingAccessWrapper::newFromObject(
+			MediaWikiServices::getInstance()->getPageEditStash() );
+
+		return $editStash->getStashKey( $titleObj, $editStash->getContentHash( $content ), $user );
 	}
 
 	public function testBasicEdit() {
@@ -263,15 +277,15 @@ class ApiStashEditTest extends ApiTestCase {
 	}
 
 	/**
-	 * Shortcut for calling ApiStashEdit::checkCache() without having to create Titles and Contents
-	 * in every test.
+	 * Shortcut for calling PageStashEdit::checkCache() without
+	 * having to create Titles and Contents in every test.
 	 *
 	 * @param User $user
 	 * @param string $text The text of the article
-	 * @return stdClass|bool Return value of ApiStashEdit::checkCache(), false if not in cache
+	 * @return stdClass|bool Return value of PageStashEdit::checkCache(), false if not in cache
 	 */
 	protected function doCheckCache( User $user, $text = 'Content' ) {
-		return ApiStashEdit::checkCache(
+		return MediaWikiServices::getInstance()->getPageEditStash()->checkCache(
 			Title::newFromText( __CLASS__ ),
 			new WikitextContent( $text ),
 			$user
@@ -293,6 +307,7 @@ class ApiStashEditTest extends ApiTestCase {
 
 		// Nor does the original one if they become a bot
 		$user->addGroup( 'bot' );
+		MediaWikiServices::getInstance()->getPermissionManager()->invalidateUsersRightsCache();
 		$this->assertFalse(
 			$this->doCheckCache( $user ),
 			"We assume bots don't have cache entries"
@@ -301,15 +316,16 @@ class ApiStashEditTest extends ApiTestCase {
 		// But other groups are okay
 		$user->removeGroup( 'bot' );
 		$user->addGroup( 'sysop' );
+		MediaWikiServices::getInstance()->getPermissionManager()->invalidateUsersRightsCache();
 		$this->assertInstanceOf( stdClass::class, $this->doCheckCache( $user ) );
 	}
 
 	public function testCheckCacheAnon() {
-		$user = new User();
+		$user = User::newFromName( '174.5.4.6', false );
 
 		$this->doStash( [], $user );
 
-		$this->assertInstanceOf( stdClass::class, $this->docheckCache( $user ) );
+		$this->assertInstanceOf( stdClass::class, $this->doCheckCache( $user ) );
 	}
 
 	/**
@@ -320,7 +336,7 @@ class ApiStashEditTest extends ApiTestCase {
 	 * @param int $howOld How many seconds is "old" (we actually set it one second before this)
 	 */
 	protected function doStashOld(
-		User $user, $text = 'Content', $howOld = ApiStashEdit::PRESUME_FRESH_TTL_SEC
+		User $user, $text = 'Content', $howOld = PageEditStash::PRESUME_FRESH_TTL_SEC
 	) {
 		$this->doStash( [ 'text' => $text ], $user );
 
@@ -328,11 +344,11 @@ class ApiStashEditTest extends ApiTestCase {
 		// fake the time?
 		$key = $this->getStashKey( __CLASS__, $text, $user );
 
-		$cache = ObjectCache::getLocalClusterInstance();
+		$editStash = TestingAccessWrapper::newFromObject(
+			MediaWikiServices::getInstance()->getPageEditStash() );
+		$cache = $editStash->cache;
 
 		$editInfo = $cache->get( $key );
-		$outputKey = $cache->makeKey( 'stashed-edit-output', $editInfo->outputID );
-		$editInfo->output = $cache->get( $outputKey );
 		$editInfo->output->setCacheTime( wfTimestamp( TS_MW,
 			wfTimestamp( TS_UNIX, $editInfo->output->getCacheTime() ) - $howOld - 1 ) );
 
@@ -350,7 +366,7 @@ class ApiStashEditTest extends ApiTestCase {
 
 	public function testCheckCacheOldNoEditsAnon() {
 		// Specify a made-up IP address to make sure no edits are lying around
-		$user = User::newFromName( '192.0.2.77', false );
+		$user = User::newFromName( '172.0.2.77', false );
 
 		$this->doStashOld( $user );
 
@@ -379,7 +395,9 @@ class ApiStashEditTest extends ApiTestCase {
 	public function testSignatureTtl( $text, $ttl ) {
 		$this->doStash( [ 'text' => $text ] );
 
-		$cache = ObjectCache::getLocalClusterInstance();
+		$editStash = TestingAccessWrapper::newFromObject(
+			MediaWikiServices::getInstance()->getPageEditStash() );
+		$cache = $editStash->cache;
 		$key = $this->getStashKey( __CLASS__, $text );
 
 		$wrapper = TestingAccessWrapper::newFromObject( $cache );
@@ -389,9 +407,9 @@ class ApiStashEditTest extends ApiTestCase {
 
 	public function signatureProvider() {
 		return [
-			'~~~' => [ '~~~', ApiStashEdit::MAX_SIGNATURE_TTL ],
-			'~~~~' => [ '~~~~', ApiStashEdit::MAX_SIGNATURE_TTL ],
-			'~~~~~' => [ '~~~~~', ApiStashEdit::MAX_SIGNATURE_TTL ],
+			'~~~' => [ '~~~', PageEditStash::MAX_SIGNATURE_TTL ],
+			'~~~~' => [ '~~~~', PageEditStash::MAX_SIGNATURE_TTL ],
+			'~~~~~' => [ '~~~~~', PageEditStash::MAX_SIGNATURE_TTL ],
 		];
 	}
 

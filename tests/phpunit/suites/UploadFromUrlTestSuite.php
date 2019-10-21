@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 require_once dirname( __DIR__ ) . '/includes/upload/UploadFromUrlTest.php';
 
 class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
@@ -16,8 +18,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 	}
 
 	protected function setUp() {
-		global $wgParser, $wgParserConf, $IP, $messageMemc, $wgMemc, $wgUser,
-			$wgLang, $wgOut, $wgRequest, $wgStyleDirectory,
+		global $IP, $wgMemc, $wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory,
 			$wgParserCacheType, $wgNamespaceAliases, $wgNamespaceProtection;
 
 		$tmpDir = $this->getNewTempDirectory();
@@ -58,22 +59,20 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 
 		$wgParserCacheType = CACHE_NONE;
 		DeferredUpdates::clearPendingUpdates();
-		$wgMemc = wfGetMainCache();
-		$messageMemc = wfGetMessageCacheStorage();
+		$wgMemc = ObjectCache::getLocalClusterInstance();
 
 		RequestContext::resetMain();
 		$context = RequestContext::getMain();
 		$wgUser = new User;
 		$wgLang = $context->getLanguage();
 		$wgOut = $context->getOutput();
-		$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], [ $wgParserConf ] );
 		$wgRequest = $context->getRequest();
 
 		if ( $wgStyleDirectory === false ) {
 			$wgStyleDirectory = "$IP/skins";
 		}
 
-		RepoGroup::destroySingleton();
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'RepoGroup' );
 		FileBackendGroup::destroySingleton();
 	}
 
@@ -82,7 +81,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 			$GLOBALS[$var] = $val;
 		}
 		// Restore backends
-		RepoGroup::destroySingleton();
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'RepoGroup' );
 		FileBackendGroup::destroySingleton();
 
 		parent::tearDown();

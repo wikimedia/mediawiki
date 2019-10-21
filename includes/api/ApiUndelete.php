@@ -41,7 +41,7 @@ class ApiUndelete extends ApiBase {
 			$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['title'] ) ] );
 		}
 
-		if ( !$titleObj->userCan( 'undelete', $user, 'secure' ) ) {
+		if ( !$this->getPermissionManager()->userCan( 'undelete', $this->getUser(), $titleObj ) ) {
 			$this->dieWithError( 'permdenied-undelete' );
 		}
 
@@ -84,10 +84,12 @@ class ApiUndelete extends ApiBase {
 
 		$this->setWatch( $params['watchlist'], $titleObj );
 
-		$info['title'] = $titleObj->getPrefixedText();
-		$info['revisions'] = (int)$retval[0];
-		$info['fileversions'] = (int)$retval[1];
-		$info['reason'] = $retval[2];
+		$info = [
+			'title' => $titleObj->getPrefixedText(),
+			'revisions' => (int)$retval[0],
+			'fileversions' => (int)$retval[1],
+			'reason' => $retval[2]
+		];
 		$this->getResult()->addValue( null, $this->getModuleName(), $info );
 	}
 

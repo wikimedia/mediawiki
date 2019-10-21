@@ -11,7 +11,7 @@ use Wikimedia\Services\ServiceDisabledException;
  * @group MediaWiki
  */
 class MediaWikiServicesTest extends MediaWikiTestCase {
-	private $deprecatedServices = [ 'CryptRand' ];
+	private $deprecatedServices = [];
 
 	/**
 	 * @return Config
@@ -227,7 +227,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 
 		// This should do nothing. In particular, it should not create a service instance.
 		$services->resetServiceForTesting( 'Test' );
-		$this->assertEquals( 0, $serviceCounter, 'No service instance should be created yet.' );
+		$this->assertSame( 0, $serviceCounter, 'No service instance should be created yet.' );
 
 		$oldInstance = $services->getService( 'Test' );
 		$this->assertEquals( 1, $serviceCounter, 'A service instance should exit now.' );
@@ -308,7 +308,16 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 				throw new MWException( 'All service callbacks must have a return type defined, ' .
 					"none found for $name" );
 			}
-			$ret[$name] = [ $name, $fun->getReturnType()->__toString() ];
+
+			$returnType = $fun->getReturnType();
+
+			// ReflectionType::__toString() generates deprecation notices in PHP 7.4 and above
+			// TODO: T228342 - remove this check after MediaWiki only supports PHP 7.1+
+			if ( is_callable( [ $returnType, 'getName' ] ) ) {
+				$ret[$name] = [ $name, $returnType->getName() ];
+			} else {
+				$ret[$name] = [ $name, $fun->getReturnType()->__toString() ];
+			}
 		}
 		return $ret;
 	}
@@ -364,7 +373,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 		} ) );
 
 		$sortedNames = $names;
-		sort( $sortedNames );
+		natcasesort( $sortedNames );
 
 		$this->assertSame( $sortedNames, $names,
 			'Please keep service getters sorted alphabetically' );

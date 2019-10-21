@@ -123,6 +123,7 @@ class ForkController {
 				pcntl_signal_dispatch();
 			} else {
 				declare( ticks = 1 ) {
+					// @phan-suppress-next-line PhanPluginDuplicateExpressionAssignment
 					$status = $status;
 				}
 			}
@@ -153,7 +154,6 @@ class ForkController {
 		// Don't share DB, storage, or memcached connections
 		MediaWikiServices::resetChildProcessServices();
 		FileBackendGroup::destroySingleton();
-		LockManagerGroup::destroySingletons();
 		JobQueueGroup::destroySingletons();
 		ObjectCache::clear();
 		RedisConnectionPool::destroySingletons();

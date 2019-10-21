@@ -55,7 +55,7 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Parser
  */
 class MagicWord {
-	/**#@-*/
+	/** #@- */
 
 	/** @var string */
 	public $mId;
@@ -93,7 +93,7 @@ class MagicWord {
 	/** @var Language */
 	private $contLang;
 
-	/**#@-*/
+	/** #@- */
 
 	/**
 	 * Create a new MagicWord object
@@ -109,11 +109,7 @@ class MagicWord {
 		$this->mId = $id;
 		$this->mSynonyms = (array)$syn;
 		$this->mCaseSensitive = $cs;
-		$this->contLang = $contLang;
-
-		if ( !$contLang ) {
-			$this->contLang = MediaWikiServices::getInstance()->getContentLanguage();
-		}
+		$this->contLang = $contLang ?: MediaWikiServices::getInstance()->getContentLanguage();
 	}
 
 	/**

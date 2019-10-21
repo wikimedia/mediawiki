@@ -69,6 +69,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 	function execute( $par ) {
 		$this->getOutput()->disallowUserJs();
 		$this->requireLogin();
+		$this->addHelpLink( 'Manual:Bot_passwords' );
 
 		$par = trim( $par );
 		if ( strlen( $par ) === 0 ) {
@@ -315,6 +316,8 @@ class SpecialBotPasswords extends FormSpecialPage {
 			'restrictions' => $data['restrictions'],
 			'grants' => array_merge(
 				MWGrants::getHiddenGrants(),
+				// @phan-suppress-next-next-line PhanTypeMismatchArgumentInternal See phan issue #3163,
+				// it's probably failing to infer the type of $data['grants']
 				preg_replace( '/^grant-/', '', $data['grants'] )
 			)
 		] );

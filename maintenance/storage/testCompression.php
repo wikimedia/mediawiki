@@ -47,8 +47,8 @@ if ( isset( $options['limit'] ) ) {
 }
 $type = $options['type'] ?? ConcatenatedGzipHistoryBlob::class;
 
-$dbr = $this->getDB( DB_REPLICA );
-$revQuery = Revision::getQueryInfo( [ 'page', 'text' ] );
+$dbr = wfGetDB( DB_REPLICA );
+$revQuery = Revision::getQueryInfo( [ 'page' ] );
 $res = $dbr->select(
 	$revQuery['tables'],
 	$revQuery['fields'],

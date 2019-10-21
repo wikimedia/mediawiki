@@ -21,6 +21,9 @@
  * @ingroup FileBackend
  */
 
+use Wikimedia\AtEase\AtEase;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+
 /**
  * Simulation of a backend storage in memory.
  *
@@ -39,7 +42,7 @@ class MemoryFileBackend extends FileBackendStore {
 	}
 
 	public function isPathUsableInternal( $storagePath ) {
-		return true;
+		return ( $this->resolveHashKey( $storagePath ) !== null );
 	}
 
 	protected function doCreateInternal( array $params ) {
@@ -54,7 +57,7 @@ class MemoryFileBackend extends FileBackendStore {
 
 		$this->files[$dst] = [
 			'data' => $params['content'],
-			'mtime' => wfTimestamp( TS_MW, time() )
+			'mtime' => ConvertibleTimestamp::convert( TS_MW, time() )
 		];
 
 		return $status;
@@ -70,9 +73,9 @@ class MemoryFileBackend extends FileBackendStore {
 			return $status;
 		}
 
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$data = file_get_contents( $params['src'] );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		if ( $data === false ) { // source doesn't exist?
 			$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
 
@@ -81,7 +84,7 @@ class MemoryFileBackend extends FileBackendStore {
 
 		$this->files[$dst] = [
 			'data' => $data,
-			'mtime' => wfTimestamp( TS_MW, time() )
+			'mtime' => ConvertibleTimestamp::convert( TS_MW, time() )
 		];
 
 		return $status;
@@ -114,7 +117,7 @@ class MemoryFileBackend extends FileBackendStore {
 
 		$this->files[$dst] = [
 			'data' => $this->files[$src]['data'],
-			'mtime' => wfTimestamp( TS_MW, time() )
+			'mtime' => ConvertibleTimestamp::convert( TS_MW, time() )
 		];
 
 		return $status;
@@ -146,7 +149,7 @@ class MemoryFileBackend extends FileBackendStore {
 	protected function doGetFileStat( array $params ) {
 		$src = $this->resolveHashKey( $params['src'] );
 		if ( $src === null ) {
-			return null;
+			return self::$RES_ERROR; // invalid path
 		}
 
 		if ( isset( $this->files[$src] ) ) {
@@ -156,23 +159,25 @@ class MemoryFileBackend extends FileBackendStore {
 			];
 		}
 
-		return false;
+		return self::$RES_ABSENT;
 	}
 
 	protected function doGetLocalCopyMulti( array $params ) {
 		$tmpFiles = []; // (path => TempFSFile)
 		foreach ( $params['srcs'] as $srcPath ) {
 			$src = $this->resolveHashKey( $srcPath );
-			if ( $src === null || !isset( $this->files[$src] ) ) {
-				$fsFile = null;
+			if ( $src === null ) {
+				$fsFile = self::$RES_ERROR;
+			} elseif ( !isset( $this->files[$src] ) ) {
+				$fsFile = self::$RES_ABSENT;
 			} else {
 				// Create a new temporary file with the same extension...
 				$ext = FileBackend::extensionFromPath( $src );
-				$fsFile = TempFSFile::factory( 'localcopy_', $ext, $this->tmpDirectory );
+				$fsFile = $this->tmpFileFactory->newTempFSFile( 'localcopy_', $ext );
 				if ( $fsFile ) {
 					$bytes = file_put_contents( $fsFile->getPath(), $this->files[$src]['data'] );
 					if ( $bytes !== strlen( $this->files[$src]['data'] ) ) {
-						$fsFile = null;
+						$fsFile = self::$RES_ERROR;
 					}
 				}
 			}

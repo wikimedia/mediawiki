@@ -118,6 +118,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		return $this->tokenFunctions;
 	}
 
+	/** @var string[] */
 	protected static $cachedTokens = [];
 
 	/**
@@ -135,7 +136,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		// but that's too expensive for this purpose
 		// and would break caching
 		global $wgUser;
-		if ( !$wgUser->isAllowed( 'edit' ) ) {
+		if ( !MediaWikiServices::getInstance()->getPermissionManager()
+				->userHasRight( $wgUser, 'edit' ) ) {
 			return false;
 		}
 
@@ -152,7 +154,8 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	public static function getDeleteToken( $pageid, $title ) {
 		global $wgUser;
-		if ( !$wgUser->isAllowed( 'delete' ) ) {
+		if ( !MediaWikiServices::getInstance()->getPermissionManager()
+				->userHasRight( $wgUser, 'delete' ) ) {
 			return false;
 		}
 
@@ -169,7 +172,8 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	public static function getProtectToken( $pageid, $title ) {
 		global $wgUser;
-		if ( !$wgUser->isAllowed( 'protect' ) ) {
+		if ( !MediaWikiServices::getInstance()->getPermissionManager()
+				->userHasRight( $wgUser, 'protect' ) ) {
 			return false;
 		}
 
@@ -186,7 +190,8 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	public static function getMoveToken( $pageid, $title ) {
 		global $wgUser;
-		if ( !$wgUser->isAllowed( 'move' ) ) {
+		if ( !MediaWikiServices::getInstance()->getPermissionManager()
+				->userHasRight( $wgUser, 'move' ) ) {
 			return false;
 		}
 
@@ -203,7 +208,8 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	public static function getBlockToken( $pageid, $title ) {
 		global $wgUser;
-		if ( !$wgUser->isAllowed( 'block' ) ) {
+		if ( !MediaWikiServices::getInstance()->getPermissionManager()
+				->userHasRight( $wgUser, 'block' ) ) {
 			return false;
 		}
 
@@ -245,7 +251,9 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	public static function getImportToken( $pageid, $title ) {
 		global $wgUser;
-		if ( !$wgUser->isAllowedAny( 'import', 'importupload' ) ) {
+		if ( !MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->userHasAnyRight( $wgUser, 'import', 'importupload' ) ) {
 			return false;
 		}
 
@@ -409,6 +417,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		$pageInfo['pagelanguagehtmlcode'] = $pageLanguage->getHtmlCode();
 		$pageInfo['pagelanguagedir'] = $pageLanguage->getDir();
 
+		$user = $this->getUser();
+
 		if ( $titleExists ) {
 			$pageInfo['touched'] = wfTimestamp( TS_ISO_8601, $this->pageTouched[$pageid] );
 			$pageInfo['lastrevid'] = (int)$this->pageLatest[$pageid];
@@ -493,7 +503,9 @@ class ApiQueryInfo extends ApiQueryBase {
 			$pageInfo['canonicalurl'] = wfExpandUrl( $title->getFullURL(), PROTO_CANONICAL );
 		}
 		if ( $this->fld_readable ) {
-			$pageInfo['readable'] = $title->userCan( 'read', $this->getUser() );
+			$pageInfo['readable'] = $this->getPermissionManager()->userCan(
+				'read', $user, $title
+			);
 		}
 
 		if ( $this->fld_preload ) {
@@ -539,10 +551,14 @@ class ApiQueryInfo extends ApiQueryBase {
 				$this->countTestedActions++;
 
 				if ( $detailLevel === 'boolean' ) {
-					$pageInfo['actions'][$action] = $title->userCan( $action, $user );
+					$pageInfo['actions'][$action] = $this->getPermissionManager()->userCan(
+						$action, $user, $title
+					);
 				} else {
 					$pageInfo['actions'][$action] = $errorFormatter->arrayFromStatus( $this->errorArrayToStatus(
-						$title->getUserPermissionsErrors( $action, $user, $rigor ),
+						$this->getPermissionManager()->getPermissionErrors(
+							$action, $user, $title, $rigor
+						),
 						$user
 					) );
 				}
@@ -708,10 +724,11 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	private function getTSIDs() {
 		$getTitles = $this->talkids = $this->subjectids = [];
+		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 
 		/** @var Title $t */
 		foreach ( $this->everything as $t ) {
-			if ( MWNamespace::isTalk( $t->getNamespace() ) ) {
+			if ( $nsInfo->isTalk( $t->getNamespace() ) ) {
 				if ( $this->fld_subjectid ) {
 					$getTitles[] = $t->getSubjectPage();
 				}
@@ -734,12 +751,12 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->addWhere( $lb->constructSet( 'page', $db ) );
 		$res = $this->select( __METHOD__ );
 		foreach ( $res as $row ) {
-			if ( MWNamespace::isTalk( $row->page_namespace ) ) {
-				$this->talkids[MWNamespace::getSubject( $row->page_namespace )][$row->page_title] =
-					(int)$row->page_id;
+			if ( $nsInfo->isTalk( $row->page_namespace ) ) {
+				$this->talkids[$nsInfo->getSubject( $row->page_namespace )][$row->page_title] =
+					(int)( $row->page_id );
 			} else {
-				$this->subjectids[MWNamespace::getTalk( $row->page_namespace )][$row->page_title] =
-					(int)$row->page_id;
+				$this->subjectids[$nsInfo->getTalk( $row->page_namespace )][$row->page_title] =
+					(int)( $row->page_id );
 			}
 		}
 	}
@@ -799,7 +816,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$user = $this->getUser();
 
 		if ( $user->isAnon() || count( $this->everything ) == 0
-			|| !$user->isAllowed( 'viewmywatchlist' )
+			|| !$this->getPermissionManager()->userHasRight( $user, 'viewmywatchlist' )
 		) {
 			return;
 		}
@@ -834,7 +851,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		$user = $this->getUser();
-		$canUnwatchedpages = $user->isAllowed( 'unwatchedpages' );
+		$canUnwatchedpages = $this->getPermissionManager()->userHasRight( $user, 'unwatchedpages' );
 		$unwatchedPageThreshold = $this->getConfig()->get( 'UnwatchedPageThreshold' );
 		if ( !$canUnwatchedpages && !is_int( $unwatchedPageThreshold ) ) {
 			return;
@@ -864,7 +881,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$user = $this->getUser();
 		$db = $this->getDB();
 
-		$canUnwatchedpages = $user->isAllowed( 'unwatchedpages' );
+		$canUnwatchedpages = $this->getPermissionManager()->userHasRight( $user, 'unwatchedpages' );
 		$unwatchedPageThreshold = $this->getConfig()->get( 'UnwatchedPageThreshold' );
 		if ( !$canUnwatchedpages && !is_int( $unwatchedPageThreshold ) ) {
 			return;

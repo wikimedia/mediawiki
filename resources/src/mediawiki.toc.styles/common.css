@@ -1,6 +1,7 @@
 /* This style is loaded on all media. */
 
 /* Hide the content of the TOC when the checkbox is checked. */
+/* stylelint-disable-next-line selector-class-pattern */
 .toctogglecheckbox:checked ~ ul {
 	display: none;
 }

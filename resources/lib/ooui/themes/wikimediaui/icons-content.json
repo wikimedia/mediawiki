@@ -43,6 +43,21 @@
 		"articleCheck": {
 			"file": "images/icons/articleCheck.svg"
 		},
+		"articleDisambiguation": {
+			"file": {
+				"ltr": "images/icons/articleDisambiguation-ltr.svg",
+				"rtl": "images/icons/articleDisambiguation-rtl.svg"
+			}
+		},
+		"articleNotFound": {
+			"file": {
+				"ltr": "images/icons/articleNotFound-ltr.svg",
+				"rtl": "images/icons/articleNotFound-rtl.svg",
+				"lang": {
+					"he,yi": "images/icons/articleNotFound-ltr.svg"
+				}
+			}
+		},
 		"articleSearch": {
 			"file": "images/icons/articleSearch.svg"
 		},
@@ -70,6 +85,14 @@
 		"info": {
 			"file": {
 				"default": "images/icons/info.svg",
+				"lang": {
+					"ar": "images/icons/lightbulb.svg"
+				}
+			}
+		},
+		"infoFilled": {
+			"file": {
+				"default": "images/icons/infoFilled.svg",
 				"lang": {
 					"ar": "images/icons/lightbulb.svg"
 				}

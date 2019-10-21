@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @covers PageProps
  *
@@ -234,7 +236,8 @@ class PagePropsTest extends MediaWikiLangTestCase {
 				( $model === null || $model === CONTENT_MODEL_WIKITEXT )
 			) {
 				$ns = $this->getDefaultWikitextNS();
-				$page = MWNamespace::getCanonicalName( $ns ) . ':' . $page;
+				$page = MediaWikiServices::getInstance()->getNamespaceInfo()->
+					getCanonicalName( $ns ) . ':' . $page;
 			}
 
 			$page = Title::newFromText( $page );

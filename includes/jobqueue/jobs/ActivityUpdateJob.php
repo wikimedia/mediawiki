@@ -19,6 +19,8 @@
  * @ingroup JobQueue
  */
 
+use MediaWiki\Linker\LinkTarget;
+
 /**
  * Job for updating user activity like "last viewed" timestamps
  *
@@ -32,13 +34,15 @@
  * @since 1.26
  */
 class ActivityUpdateJob extends Job {
-	function __construct( Title $title, array $params ) {
+	function __construct( LinkTarget $title, array $params ) {
+		$title = Title::newFromLinkTarget( $title );
+
 		parent::__construct( 'activityUpdateJob', $title, $params );
 
 		static $required = [ 'type', 'userid', 'notifTime', 'curTime' ];
 		$missing = implode( ', ', array_diff( $required, array_keys( $this->params ) ) );
 		if ( $missing != '' ) {
-			throw new InvalidArgumentException( "Missing paramter(s) $missing" );
+			throw new InvalidArgumentException( "Missing parameter(s) $missing" );
 		}
 
 		$this->removeDuplicates = true;
@@ -55,9 +59,7 @@ class ActivityUpdateJob extends Job {
 	}
 
 	protected function updateWatchlistNotification() {
-		$casTimestamp = ( $this->params['notifTime'] !== null )
-			? $this->params['notifTime']
-			: $this->params['curTime'];
+		$casTimestamp = $this->params['notifTime'] ?? $this->params['curTime'];
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update( 'watchlist',

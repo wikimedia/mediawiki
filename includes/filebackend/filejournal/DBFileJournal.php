@@ -24,6 +24,7 @@
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBError;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Version of FileJournal that logs to a DB table
@@ -36,12 +37,12 @@ class DBFileJournal extends FileJournal {
 	protected $domain;
 
 	/**
-	 * Construct a new instance from configuration.
+	 * Construct a new instance from configuration. Do not call directly, use FileJournal::factory.
 	 *
 	 * @param array $config Includes:
 	 *   domain: database domain ID of the wiki
 	 */
-	protected function __construct( array $config ) {
+	public function __construct( array $config ) {
 		parent::__construct( $config );
 
 		$this->domain = $config['domain'] ?? $config['wiki']; // b/c
@@ -64,7 +65,7 @@ class DBFileJournal extends FileJournal {
 			return $status;
 		}
 
-		$now = wfTimestamp( TS_UNIX );
+		$now = ConvertibleTimestamp::time();
 
 		$data = [];
 		foreach ( $entries as $entry ) {
@@ -80,8 +81,11 @@ class DBFileJournal extends FileJournal {
 
 		try {
 			$dbw->insert( 'filejournal', $data, __METHOD__ );
+			// XXX Should we do this deterministically so it's testable? Maybe look at the last two
+			// digits of a hash of a bunch of the data?
 			if ( mt_rand( 0, 99 ) == 0 ) {
-				$this->purgeOldLogs(); // occasionally delete old logs
+				// occasionally delete old logs
+				$this->purgeOldLogs(); // @codeCoverageIgnore
 			}
 		} catch ( DBError $e ) {
 			$status->fatal( 'filejournal-fail-dbquery', $this->backend );
@@ -164,7 +168,7 @@ class DBFileJournal extends FileJournal {
 		}
 
 		$dbw = $this->getMasterDB();
-		$dbCutoff = $dbw->timestamp( time() - 86400 * $this->ttlDays );
+		$dbCutoff = $dbw->timestamp( ConvertibleTimestamp::time() - 86400 * $this->ttlDays );
 
 		$dbw->delete( 'filejournal',
 			[ 'fj_timestamp < ' . $dbw->addQuotes( $dbCutoff ) ],

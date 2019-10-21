@@ -27,11 +27,6 @@ use InvalidArgumentException;
 
 /**
  * Trivial LoadBalancer that always returns an injected connection handle.
- *
- * Note that, while this LoadBalancer does not open any connections itself,
- * it still closes the injected connection at times, including during destruction.
- * It is therefore unsuitable for use in tests unless you have a Database instance
- * separate from the main test database (which is expected to stay open).
  */
 class LoadBalancerSingle extends LoadBalancer {
 	/** @var IDatabase */
@@ -85,6 +80,10 @@ class LoadBalancerSingle extends LoadBalancer {
 
 	protected function reallyOpenConnection( array $server, DatabaseDomain $domain ) {
 		return $this->db;
+	}
+
+	public function __destruct() {
+		// do nothing since the connection was injected
 	}
 }
 

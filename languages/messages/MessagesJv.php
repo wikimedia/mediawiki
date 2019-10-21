@@ -1,5 +1,5 @@
 <?php
-/** Javanese (Basa Jawa)
+/** Javanese (Jawa)
  *
  * To improve a translation please visit https://translatewiki.net
  *

@@ -5,6 +5,7 @@
  * (defined in htmlform.Element.js) picks up the extra config when constructed using OO.ui.infuse().
  *
  * Currently only supports passing 'hide-if' data.
+ * @phan-file-suppress PhanUndeclaredMethod
  */
 trait HTMLFormElement {
 
@@ -31,35 +32,5 @@ trait HTMLFormElement {
 				$config['hideIf'] = $this->hideIf;
 			}
 		} );
-	}
-}
-
-class HTMLFormFieldLayout extends OOUI\FieldLayout {
-	use HTMLFormElement;
-
-	public function __construct( $fieldWidget, array $config = [] ) {
-		parent::__construct( $fieldWidget, $config );
-
-		// Traits
-		$this->initializeHTMLFormElement( $config );
-	}
-
-	protected function getJavaScriptClassName() {
-		return 'mw.htmlform.FieldLayout';
-	}
-}
-
-class HTMLFormActionFieldLayout extends OOUI\ActionFieldLayout {
-	use HTMLFormElement;
-
-	public function __construct( $fieldWidget, $buttonWidget = false, array $config = [] ) {
-		parent::__construct( $fieldWidget, $buttonWidget, $config );
-
-		// Traits
-		$this->initializeHTMLFormElement( $config );
-	}
-
-	protected function getJavaScriptClassName() {
-		return 'mw.htmlform.ActionFieldLayout';
 	}
 }

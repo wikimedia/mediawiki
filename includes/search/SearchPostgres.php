@@ -42,7 +42,8 @@ class SearchPostgres extends SearchDatabase {
 	protected function doSearchTitleInDB( $term ) {
 		$q = $this->searchQuery( $term, 'titlevector', 'page_title' );
 		$olderror = error_reporting( E_ERROR );
-		$resultSet = $this->db->query( $q, 'SearchPostgres', true );
+		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+		$resultSet = $dbr->query( $q, 'SearchPostgres', true );
 		error_reporting( $olderror );
 		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
@@ -50,7 +51,8 @@ class SearchPostgres extends SearchDatabase {
 	protected function doSearchTextInDB( $term ) {
 		$q = $this->searchQuery( $term, 'textvector', 'old_text' );
 		$olderror = error_reporting( E_ERROR );
-		$resultSet = $this->db->query( $q, 'SearchPostgres', true );
+		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+		$resultSet = $dbr->query( $q, 'SearchPostgres', true );
 		error_reporting( $olderror );
 		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
@@ -111,7 +113,8 @@ class SearchPostgres extends SearchDatabase {
 		$searchstring = preg_replace( '/^[\'"](.*)[\'"]$/', "$1", $searchstring );
 
 		# # Quote the whole thing
-		$searchstring = $this->db->addQuotes( $searchstring );
+		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+		$searchstring = $dbr->addQuotes( $searchstring );
 
 		wfDebug( "parseQuery returned: $searchstring \n" );
 
@@ -131,7 +134,8 @@ class SearchPostgres extends SearchDatabase {
 
 		# # We need a separate query here so gin does not complain about empty searches
 		$sql = "SELECT to_tsquery($searchstring)";
-		$res = $this->db->query( $sql );
+		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+		$res = $dbr->query( $sql );
 		if ( !$res ) {
 			# # TODO: Better output (example to catch: one 'two)
 			die( "Sorry, that was not a valid search string. Please go back and try again" );
@@ -172,14 +176,14 @@ class SearchPostgres extends SearchDatabase {
 			if ( count( $this->namespaces ) < 1 ) {
 				$query .= ' AND page_namespace = 0';
 			} else {
-				$namespaces = $this->db->makeList( $this->namespaces );
+				$namespaces = $dbr->makeList( $this->namespaces );
 				$query .= " AND page_namespace IN ($namespaces)";
 			}
 		}
 
 		$query .= " ORDER BY score DESC, page_id DESC";
 
-		$query .= $this->db->limitResult( '', $this->limit, $this->offset );
+		$query .= $dbr->limitResult( '', $this->limit, $this->offset );
 
 		wfDebug( "searchQuery returned: $query \n" );
 
@@ -201,12 +205,14 @@ class SearchPostgres extends SearchDatabase {
 			" AND s.slot_role_id = " . $slotRoleStore->getId( SlotRecord::MAIN ) . " " .
 			" AND c.content_id = s.slot_content_id " .
 			" ORDER BY old_rev_text_id DESC OFFSET 1)";
-		$this->db->query( $sql );
+
+		$dbw = $this->lb->getConnectionRef( DB_MASTER );
+		$dbw->query( $sql );
+
 		return true;
 	}
 
 	function updateTitle( $id, $title ) {
 		return true;
 	}
-
 }

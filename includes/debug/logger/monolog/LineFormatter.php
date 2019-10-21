@@ -20,9 +20,11 @@
 
 namespace MediaWiki\Logger\Monolog;
 
+use Error;
 use Exception;
 use Monolog\Formatter\LineFormatter as MonologLineFormatter;
 use MWExceptionHandler;
+use Throwable;
 
 /**
  * Formats incoming records into a one-line string.
@@ -32,7 +34,7 @@ use MWExceptionHandler;
  * excluded from '%context%' output if the '%exception%' placeholder is
  * present.
  *
- * Exceptions that are logged with this formatter will optional have their
+ * Throwables that are logged with this formatter will optional have their
  * stack traces appended. If that is done, MWExceptionHandler::redactedTrace()
  * will be used to redact the trace information.
  *
@@ -75,7 +77,7 @@ class LineFormatter extends MonologLineFormatter {
 			$e = $record['context']['exception'];
 			unset( $record['context']['exception'] );
 
-			if ( $e instanceof Exception ) {
+			if ( $e instanceof Throwable || $e instanceof Exception ) {
 				$prettyException = $this->normalizeException( $e );
 			} elseif ( is_array( $e ) ) {
 				$prettyException = $this->normalizeExceptionArray( $e );
@@ -93,9 +95,9 @@ class LineFormatter extends MonologLineFormatter {
 	}
 
 	/**
-	 * Convert an Exception to a string.
+	 * Convert a Throwable to a string.
 	 *
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 * @return string
 	 */
 	protected function normalizeException( $e ) {
@@ -103,12 +105,12 @@ class LineFormatter extends MonologLineFormatter {
 	}
 
 	/**
-	 * Convert an exception to an array of structured data.
+	 * Convert a throwable to an array of structured data.
 	 *
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 * @return array
 	 */
-	protected function exceptionAsArray( Exception $e ) {
+	protected function exceptionAsArray( $e ) {
 		$out = [
 			'class' => get_class( $e ),
 			'message' => $e->getMessage(),
@@ -127,7 +129,7 @@ class LineFormatter extends MonologLineFormatter {
 	}
 
 	/**
-	 * Convert an array of Exception data to a string.
+	 * Convert an array of Throwable data to a string.
 	 *
 	 * @param array $e
 	 * @return string
@@ -142,7 +144,8 @@ class LineFormatter extends MonologLineFormatter {
 		];
 		$e = array_merge( $defaults, $e );
 
-		$str = "\n[Exception {$e['class']}] (" .
+		$which = is_a( $e['class'], Error::class, true ) ? 'Error' : 'Exception';
+		$str = "\n[$which {$e['class']}] (" .
 			"{$e['file']}:{$e['line']}) {$e['message']}";
 
 		if ( $this->includeStacktraces && $e['trace'] ) {
@@ -154,7 +157,8 @@ class LineFormatter extends MonologLineFormatter {
 			$prev = $e['previous'];
 			while ( $prev ) {
 				$prev = array_merge( $defaults, $prev );
-				$str .= "\nCaused by: [Exception {$prev['class']}] (" .
+				$which = is_a( $prev['class'], Error::class, true ) ? 'Error' : 'Exception';
+				$str .= "\nCaused by: [$which {$prev['class']}] (" .
 					"{$prev['file']}:{$prev['line']}) {$prev['message']}";
 
 				if ( $this->includeStacktraces && $prev['trace'] ) {

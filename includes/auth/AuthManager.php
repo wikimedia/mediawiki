@@ -24,6 +24,7 @@
 namespace MediaWiki\Auth;
 
 use Config;
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -85,17 +86,20 @@ class AuthManager implements LoggerAwareInterface {
 	/** Log in with an existing (not necessarily local) user */
 	const ACTION_LOGIN = 'login';
 	/** Continue a login process that was interrupted by the need for user input or communication
-	 * with an external provider */
+	 * with an external provider
+	 */
 	const ACTION_LOGIN_CONTINUE = 'login-continue';
 	/** Create a new user */
 	const ACTION_CREATE = 'create';
 	/** Continue a user creation process that was interrupted by the need for user input or
-	 * communication with an external provider */
+	 * communication with an external provider
+	 */
 	const ACTION_CREATE_CONTINUE = 'create-continue';
 	/** Link an existing user to a third-party account */
 	const ACTION_LINK = 'link';
 	/** Continue a user linking process that was interrupted by the need for user input or
-	 * communication with an external provider */
+	 * communication with an external provider
+	 */
 	const ACTION_LINK_CONTINUE = 'link-continue';
 	/** Change a user's credentials */
 	const ACTION_CHANGE = 'change';
@@ -826,7 +830,7 @@ class AuthManager implements LoggerAwareInterface {
 		return array_keys( $ret );
 	}
 
-	/**@}*/
+	/** @} */
 
 	/**
 	 * @name Authentication data changing
@@ -907,7 +911,7 @@ class AuthManager implements LoggerAwareInterface {
 		}
 	}
 
-	/**@}*/
+	/** @} */
 
 	/**
 	 * @name Account creation
@@ -1010,7 +1014,7 @@ class AuthManager implements LoggerAwareInterface {
 				$block->getByName()
 			];
 
-			if ( $block->getType() === \Block::TYPE_RANGE ) {
+			if ( $block->getType() === DatabaseBlock::TYPE_RANGE ) {
 				$errorMessage = 'cantcreateaccount-range-text';
 				$errorParams[] = $this->getRequest()->getIP();
 			} else {
@@ -1021,7 +1025,10 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		$ip = $this->getRequest()->getIP();
-		if ( $creator->isDnsBlacklisted( $ip, true /* check $wgProxyWhitelist */ ) ) {
+		if (
+			MediaWikiServices::getInstance()->getBlockManager()
+				->isDnsBlacklisted( $ip, true /* check $wgProxyWhitelist */ )
+		) {
 			return Status::newFatal( 'sorbs_create_account_reason' );
 		}
 
@@ -1632,8 +1639,9 @@ class AuthManager implements LoggerAwareInterface {
 
 		// Is the IP user able to create accounts?
 		$anon = new User;
-		if ( $source !== self::AUTOCREATE_SOURCE_MAINT &&
-			!$anon->isAllowedAny( 'createaccount', 'autocreateaccount' )
+		if ( $source !== self::AUTOCREATE_SOURCE_MAINT && !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasAnyRight( $anon, 'createaccount', 'autocreateaccount' )
 		) {
 			$this->logger->debug( __METHOD__ . ': IP lacks the ability to create or autocreate accounts', [
 				'username' => $username,
@@ -1773,7 +1781,7 @@ class AuthManager implements LoggerAwareInterface {
 		return Status::newGood();
 	}
 
-	/**@}*/
+	/** @} */
 
 	/**
 	 * @name Account linking
@@ -1998,7 +2006,7 @@ class AuthManager implements LoggerAwareInterface {
 		}
 	}
 
-	/**@}*/
+	/** @} */
 
 	/**
 	 * @name Information methods
@@ -2231,7 +2239,7 @@ class AuthManager implements LoggerAwareInterface {
 		return null;
 	}
 
-	/**@}*/
+	/** @} */
 
 	/**
 	 * @name Internal methods
@@ -2459,7 +2467,7 @@ class AuthManager implements LoggerAwareInterface {
 		self::$instance = null;
 	}
 
-	/**@}*/
+	/** @} */
 
 }
 

@@ -185,6 +185,7 @@ class RenderedRevision implements SlotRenderingProvider {
 	 * @param array $hints Hints given as an associative array. Known keys:
 	 *      - 'generate-html' => bool: Whether the caller is interested in output HTML (as opposed
 	 *        to just meta-data). Default is to generate HTML.
+	 * @phan-param array{generate-html?:bool} $hints
 	 *
 	 * @return ParserOutput
 	 */
@@ -212,6 +213,7 @@ class RenderedRevision implements SlotRenderingProvider {
 	 * @param array $hints Hints given as an associative array. Known keys:
 	 *      - 'generate-html' => bool: Whether the caller is interested in output HTML (as opposed
 	 *        to just meta-data). Default is to generate HTML.
+	 * @phan-param array{generate-html?:bool} $hints
 	 *
 	 * @throws SuppressedDataException if the content is not accessible for the audience
 	 *         specified in the constructor.
@@ -291,27 +293,51 @@ class RenderedRevision implements SlotRenderingProvider {
 
 		$this->setRevisionInternal( $rev );
 
-		$this->pruneRevisionSensitiveOutput( $this->revision->getId() );
+		$this->pruneRevisionSensitiveOutput(
+			$this->revision->getPageId(),
+			$this->revision->getId(),
+			$this->revision->getTimestamp()
+		);
 	}
 
 	/**
 	 * Prune any output that depends on the revision ID.
 	 *
-	 * @param int|bool  $actualRevId The actual rev id, to check the used speculative rev ID
-	 *        against, or false to not purge on vary-revision-id, or true to purge on
+	 * @param int|bool $actualPageId The actual page id, to check the used speculative page ID
+	 *        against; false, to not purge on vary-page-id; true, to purge on vary-page-id
+	 *        unconditionally.
+	 * @param int|bool $actualRevId The actual rev id, to check the used speculative rev ID
+	 *        against,; false, to not purge on vary-revision-id; true, to purge on
 	 *        vary-revision-id unconditionally.
+	 * @param string|bool $actualRevTimestamp The actual rev timestamp, to check against the
+	 *        parser output revision timestamp; false, to not purge on vary-revision-timestamp;
+	 *        true, to purge on vary-revision-timestamp unconditionally.
 	 */
-	private function pruneRevisionSensitiveOutput( $actualRevId ) {
+	private function pruneRevisionSensitiveOutput(
+		$actualPageId,
+		$actualRevId,
+		$actualRevTimestamp
+	) {
 		if ( $this->revisionOutput ) {
-			if ( $this->outputVariesOnRevisionMetaData( $this->revisionOutput, $actualRevId ) ) {
+			if ( $this->outputVariesOnRevisionMetaData(
+				$this->revisionOutput,
+				$actualPageId,
+				$actualRevId,
+				$actualRevTimestamp
+			) ) {
 				$this->revisionOutput = null;
 			}
 		} else {
-			$this->saveParseLogger->debug( __METHOD__ . ": no prepared revision output...\n" );
+			$this->saveParseLogger->debug( __METHOD__ . ": no prepared revision output" );
 		}
 
 		foreach ( $this->slotsOutput as $role => $output ) {
-			if ( $this->outputVariesOnRevisionMetaData( $output, $actualRevId ) ) {
+			if ( $this->outputVariesOnRevisionMetaData(
+				$output,
+				$actualPageId,
+				$actualRevId,
+				$actualRevTimestamp
+			) ) {
 				unset( $this->slotsOutput[$role] );
 			}
 		}
@@ -371,42 +397,77 @@ class RenderedRevision implements SlotRenderingProvider {
 
 	/**
 	 * @param ParserOutput $out
-	 * @param int|bool  $actualRevId The actual rev id, to check the used speculative rev ID
-	 *        against, or false to not purge on vary-revision-id, or true to purge on
+	 * @param int|bool $actualPageId The actual page id, to check the used speculative page ID
+	 *        against; false, to not purge on vary-page-id; true, to purge on vary-page-id
+	 *        unconditionally.
+	 * @param int|bool $actualRevId The actual rev id, to check the used speculative rev ID
+	 *        against,; false, to not purge on vary-revision-id; true, to purge on
 	 *        vary-revision-id unconditionally.
+	 * @param string|bool $actualRevTimestamp The actual rev timestamp, to check against the
+	 *        parser output revision timestamp; false, to not purge on vary-revision-timestamp;
+	 *        true, to purge on vary-revision-timestamp unconditionally.
 	 * @return bool
 	 */
-	private function outputVariesOnRevisionMetaData( ParserOutput $out, $actualRevId ) {
-		$method = __METHOD__;
+	private function outputVariesOnRevisionMetaData(
+		ParserOutput $out,
+		$actualPageId,
+		$actualRevId,
+		$actualRevTimestamp
+	) {
+		$logger = $this->saveParseLogger;
+		$varyMsg = __METHOD__ . ": cannot use prepared output for '{title}'";
+		$context = [ 'title' => $this->title->getPrefixedText() ];
 
 		if ( $out->getFlag( 'vary-revision' ) ) {
-			// XXX: Would be just keep the output if the speculative revision ID was correct,
-			// but that can go wrong for some edge cases, like {{PAGEID}} during page creation.
-			// For that specific case, it would perhaps nice to have a vary-page flag.
-			$this->saveParseLogger->info(
-				"$method: Prepared output has vary-revision...\n"
-			);
+			// If {{PAGEID}} resolved to 0, then that word need to resolve to the actual page ID
+			$logger->info( "$varyMsg (vary-revision)", $context );
 			return true;
-		} elseif ( $out->getFlag( 'vary-revision-id' )
+		} elseif (
+			$out->getFlag( 'vary-revision-id' )
 			&& $actualRevId !== false
 			&& ( $actualRevId === true || $out->getSpeculativeRevIdUsed() !== $actualRevId )
 		) {
-			$this->saveParseLogger->info(
-				"$method: Prepared output has vary-revision-id with wrong ID...\n"
-			);
+			$logger->info( "$varyMsg (vary-revision-id and wrong ID)", $context );
 			return true;
-		} else {
-			// NOTE: In the original fix for T135261, the output was discarded if 'vary-user' was
-			// set for a null-edit. The reason was that the original rendering in that case was
-			// targeting the user making the null-edit, not the user who made the original edit,
-			// causing {{REVISIONUSER}} to return the wrong name.
-			// This case is now expected to be handled by the code in RevisionRenderer that
-			// constructs the ParserOptions: For a null-edit, setCurrentRevisionCallback is called
-			// with the old, existing revision.
-
-			wfDebug( "$method: Keeping prepared output...\n" );
-			return false;
+		} elseif (
+			$out->getFlag( 'vary-revision-timestamp' )
+			&& $actualRevTimestamp !== false
+			&& ( $actualRevTimestamp === true ||
+				$out->getRevisionTimestampUsed() !== $actualRevTimestamp )
+		) {
+			$logger->info( "$varyMsg (vary-revision-timestamp and wrong timestamp)", $context );
+			return true;
+		} elseif (
+			$out->getFlag( 'vary-page-id' )
+			&& $actualPageId !== false
+			&& ( $actualPageId === true || $out->getSpeculativePageIdUsed() !== $actualPageId )
+		) {
+			$logger->info( "$varyMsg (vary-page-id and wrong ID)", $context );
+			return true;
+		} elseif ( $out->getFlag( 'vary-revision-exists' ) ) {
+			// If {{REVISIONID}} resolved to '', it now needs to resolve to '-'.
+			// Note that edit stashing always uses '-', which can be used for both
+			// edit filter checks and canonical parser cache.
+			$logger->info( "$varyMsg (vary-revision-exists)", $context );
+			return true;
+		} elseif (
+			$out->getFlag( 'vary-revision-sha1' ) &&
+			$out->getRevisionUsedSha1Base36() !== $this->revision->getSha1()
+		) {
+			// If a self-transclusion used the proposed page text, it must match the final
+			// page content after PST transformations and automatically merged edit conflicts
+			$logger->info( "$varyMsg (vary-revision-sha1 with wrong SHA-1)", $context );
+			return true;
 		}
-	}
 
+		// NOTE: In the original fix for T135261, the output was discarded if 'vary-user' was
+		// set for a null-edit. The reason was that the original rendering in that case was
+		// targeting the user making the null-edit, not the user who made the original edit,
+		// causing {{REVISIONUSER}} to return the wrong name.
+		// This case is now expected to be handled by the code in RevisionRenderer that
+		// constructs the ParserOptions: For a null-edit, setCurrentRevisionCallback is called
+		// with the old, existing revision.
+		$logger->debug( __METHOD__ . ": reusing prepared output for '{title}'", $context );
+		return false;
+	}
 }

@@ -25,12 +25,14 @@ namespace MediaWiki\Block\Restriction;
 abstract class AbstractRestriction implements Restriction {
 
 	/**
-	 * @var string
+	 * String constant identifying the type of restriction. Expected to be overriden in subclasses
+	 * with a non-empty string value.
 	 */
 	const TYPE = '';
 
 	/**
-	 * @var int
+	 * Numeric type identifier. Expected to be overriden in subclasses with a non-zero integer
+	 * number. Must not exceed 127 to fit into a TINYINT database field.
 	 */
 	const TYPE_ID = 0;
 
@@ -97,7 +99,7 @@ abstract class AbstractRestriction implements Restriction {
 	 * @inheritDoc
 	 */
 	public static function newFromRow( \stdClass $row ) {
-		// @phan-suppress-next-line PhanTypeInstantiateAbstract
+		// @phan-suppress-next-line PhanTypeInstantiateAbstractStatic
 		return new static( $row->ir_ipb_id, $row->ir_value );
 	}
 

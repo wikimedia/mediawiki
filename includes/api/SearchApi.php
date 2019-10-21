@@ -1,4 +1,5 @@
 <?php
+
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -98,6 +99,7 @@ trait SearchApi {
 	 *
 	 * @return array array containing available additional api param definitions.
 	 *  Empty if profiles are not supported by the searchEngine implementation.
+	 * @suppress PhanTypeMismatchDimFetch
 	 */
 	private function buildProfileApiParam() {
 		$configs = $this->getSearchProfileParams();
@@ -118,6 +120,7 @@ trait SearchApi {
 				if ( isset( $profile['desc-message'] ) ) {
 					$helpMessages[$profile['name']] = $profile['desc-message'];
 				}
+
 				if ( !empty( $profile['default'] ) ) {
 					$defaultProfile = $profile['name'];
 				}

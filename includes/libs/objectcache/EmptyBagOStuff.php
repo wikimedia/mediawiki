@@ -26,27 +26,35 @@
  *
  * @ingroup Cache
  */
-class EmptyBagOStuff extends BagOStuff {
+class EmptyBagOStuff extends MediumSpecificBagOStuff {
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$casToken = null;
 
 		return false;
 	}
 
-	public function add( $key, $value, $exp = 0, $flags = 0 ) {
+	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
 		return true;
 	}
 
-	public function set( $key, $value, $exp = 0, $flags = 0 ) {
+	protected function doDelete( $key, $flags = 0 ) {
 		return true;
 	}
 
-	public function delete( $key, $flags = 0 ) {
+	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
 		return true;
 	}
 
-	public function incr( $key, $value = 1 ) {
+	public function incr( $key, $value = 1, $flags = 0 ) {
 		return false;
+	}
+
+	public function decr( $key, $value = 1, $flags = 0 ) {
+		return false;
+	}
+
+	public function incrWithInit( $key, $exptime, $value = 1, $init = null, $flags = 0 ) {
+		return false; // faster
 	}
 
 	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {

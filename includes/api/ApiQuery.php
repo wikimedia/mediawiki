@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -115,6 +116,7 @@ class ApiQuery extends ApiBase {
 		'userinfo' => ApiQueryUserInfo::class,
 		'filerepoinfo' => ApiQueryFileRepoInfo::class,
 		'tokens' => ApiQueryTokens::class,
+		'languageinfo' => ApiQueryLanguageinfo::class,
 	];
 
 	/**
@@ -133,7 +135,10 @@ class ApiQuery extends ApiBase {
 	public function __construct( ApiMain $main, $action ) {
 		parent::__construct( $main, $action );
 
-		$this->mModuleMgr = new ApiModuleManager( $this );
+		$this->mModuleMgr = new ApiModuleManager(
+			$this,
+			MediaWikiServices::getInstance()->getObjectFactory()
+		);
 
 		// Allow custom modules to be added in LocalSettings.php
 		$config = $this->getConfig();
@@ -222,7 +227,9 @@ class ApiQuery extends ApiBase {
 		// Filter modules based on continue parameter
 		$continuationManager = new ApiContinuationManager( $this, $allModules, $propModules );
 		$this->setContinuationManager( $continuationManager );
+		/** @var ApiQueryBase[] $modules */
 		$modules = $continuationManager->getRunModules();
+		'@phan-var ApiQueryBase[] $modules';
 
 		if ( !$continuationManager->isGeneratorDone() ) {
 			// Query modules may optimize data requests through the $this->getPageSet()
@@ -241,7 +248,6 @@ class ApiQuery extends ApiBase {
 		$cacheMode = $this->mPageSet->getCacheMode();
 
 		// Execute all unfinished modules
-		/** @var ApiQueryBase $module */
 		foreach ( $modules as $module ) {
 			$params = $module->extractRequestParams();
 			$cacheMode = $this->mergeCacheMode(
@@ -429,10 +435,9 @@ class ApiQuery extends ApiBase {
 		$exportTitles = [];
 		$titles = $pageSet->getGoodTitles();
 		if ( count( $titles ) ) {
-			$user = $this->getUser();
 			/** @var Title $title */
 			foreach ( $titles as $title ) {
-				if ( $title->userCan( 'read', $user ) ) {
+				if ( $this->getPermissionManager()->userCan( 'read', $this->getUser(), $title ) ) {
 					$exportTitles[] = $title;
 				}
 			}
@@ -441,6 +446,7 @@ class ApiQuery extends ApiBase {
 		$exporter = new WikiExporter( $this->getDB() );
 		$sink = new DumpStringOutput;
 		$exporter->setOutputSink( $sink );
+		$exporter->setSchemaVersion( $this->mParams['exportschema'] );
 		$exporter->openStream();
 		foreach ( $exportTitles as $title ) {
 			$exporter->pageByTitle( $title );
@@ -479,6 +485,10 @@ class ApiQuery extends ApiBase {
 			'indexpageids' => false,
 			'export' => false,
 			'exportnowrap' => false,
+			'exportschema' => [
+				ApiBase::PARAM_DFLT => WikiExporter::schemaVersion(),
+				ApiBase::PARAM_TYPE => XmlDumpWriter::$supportedSchemas,
+			],
 			'iwurl' => false,
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',

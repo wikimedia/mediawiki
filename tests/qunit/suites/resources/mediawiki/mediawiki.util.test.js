@@ -77,10 +77,14 @@
 	QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		setup: function () {
 			$.fn.updateTooltipAccessKeys.setTestMode( true );
+			this.origConfig = mw.util.setOptionsForTest( {
+				FragmentMode: [ 'legacy', 'html5' ],
+				LoadScript: '/w/load.php'
+			} );
 		},
 		teardown: function () {
 			$.fn.updateTooltipAccessKeys.setTestMode( false );
-			mw.util.resetOptionsForTest();
+			mw.util.setOptionsForTest( this.origConfig );
 		},
 		messages: {
 			// Used by accessKeyLabel in test for addPortletLink
@@ -232,11 +236,12 @@
 	} );
 
 	QUnit.test( 'wikiScript', function ( assert ) {
+		mw.util.setOptionsForTest( {
+			LoadScript: '/w/l.php'
+		} );
 		mw.config.set( {
 			// customized wgScript for T41103
 			wgScript: '/w/i.php',
-			// customized wgLoadScript for T41103
-			wgLoadScript: '/w/l.php',
 			wgScriptPath: '/w'
 		} );
 
@@ -246,8 +251,8 @@
 		assert.strictEqual( util.wikiScript( 'index' ), mw.config.get( 'wgScript' ),
 			'wikiScript( index ) returns wgScript'
 		);
-		assert.strictEqual( util.wikiScript( 'load' ), mw.config.get( 'wgLoadScript' ),
-			'wikiScript( load ) returns wgLoadScript'
+		assert.strictEqual( util.wikiScript( 'load' ), '/w/l.php',
+			'wikiScript( load ) returns /w/l.php'
 		);
 		assert.strictEqual( util.wikiScript( 'api' ), '/w/api.php', 'API path' );
 	} );
@@ -388,7 +393,7 @@
 			'Default modules', 't-rldm-nonexistent', 'List of all default modules ', 'd', '#t-rl-nonexistent' );
 		assert.strictEqual(
 			tbRLDMnonexistentid,
-			$( '#p-test-tb li:last' )[ 0 ],
+			$( '#p-test-tb li' ).last()[ 0 ],
 			'Next node as non-matching CSS selector falls back to appending'
 		);
 
@@ -396,7 +401,7 @@
 			'Default modules', 't-rldm-empty-jquery', 'List of all default modules ', 'd', $( '#t-rl-nonexistent' ) );
 		assert.strictEqual(
 			tbRLDMemptyjquery,
-			$( '#p-test-tb li:last' )[ 0 ],
+			$( '#p-test-tb li' ).last()[ 0 ],
 			'Next node as empty jQuery object falls back to appending'
 		);
 	} );
@@ -433,6 +438,63 @@
 
 		IPV6_CASES.forEach( function ( ipCase ) {
 			assert.strictEqual( util.isIPv6Address( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
+		} );
+	} );
+
+	QUnit.test( 'escapeRegExp', function ( assert ) {
+		var specials, normal;
+
+		specials = [
+			'\\',
+			'{',
+			'}',
+			'(',
+			')',
+			'[',
+			']',
+			'|',
+			'.',
+			'?',
+			'*',
+			'+',
+			'-',
+			'^',
+			'$'
+		];
+
+		normal = [
+			'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+			'abcdefghijklmnopqrstuvwxyz',
+			'0123456789'
+		].join( '' );
+
+		specials.forEach( function ( str ) {
+			assert.propEqual( str.match( new RegExp( mw.util.escapeRegExp( str ) ) ), [ str ], 'Match ' + str );
+		} );
+
+		assert.strictEqual( mw.util.escapeRegExp( normal ), normal, 'Alphanumerals are left alone' );
+	} );
+
+	QUnit.test( 'debounce', function ( assert ) {
+		var fn,
+			q = [],
+			done = assert.async();
+
+		fn = mw.util.debounce( 0, function ( data ) {
+			q.push( data );
+		} );
+
+		fn( 1 );
+		fn( 2 );
+		fn( 3 );
+
+		setTimeout( function () {
+			assert.deepEqual(
+				q,
+				[ 3 ],
+				'Last one ran'
+			);
+			done();
 		} );
 	} );
 }() );

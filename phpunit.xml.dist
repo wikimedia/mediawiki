@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="tests/phpunit/bootstrap.php"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.8/phpunit.xsd"
+
+		 colors="true"
+		 backupGlobals="false"
+		 convertErrorsToExceptions="true"
+		 convertNoticesToExceptions="true"
+		 convertWarningsToExceptions="true"
+		 forceCoversAnnotation="true"
+		 stopOnFailure="false"
+		 timeoutForSmallTests="10"
+		 timeoutForMediumTests="30"
+		 timeoutForLargeTests="60"
+		 beStrictAboutTestsThatDoNotTestAnything="true"
+		 beStrictAboutOutputDuringTests="true"
+		 beStrictAboutTestSize="true"
+		 verbose="false">
+	<php>
+		<ini name="memory_limit" value="512M" />
+	</php>
+	<testsuites>
+		<testsuite name="core:unit">
+			<directory>tests/phpunit/unit</directory>
+		</testsuite>
+		<testsuite name="extensions:unit">
+			<directory>extensions/**/tests/phpunit/unit</directory>
+			<directory>extensions/**/tests/phpunit/Unit</directory>
+		</testsuite>
+		<testsuite name="skins:unit">
+			<directory>skins/**/tests/phpunit/unit</directory>
+			<directory>skins/**/tests/phpunit/Unit</directory>
+		</testsuite>
+		<testsuite name="core:integration">
+			<directory>tests/phpunit/integration</directory>
+		</testsuite>
+		<testsuite name="extensions:integration">
+			<directory>extensions/**/tests/phpunit/integration</directory>
+		</testsuite>
+		<testsuite name="skins:integration">
+			<directory>skins/**/tests/phpunit/integration</directory>
+		</testsuite>
+	</testsuites>
+	<groups>
+		<exclude>
+			<group>Broken</group>
+		</exclude>
+	</groups>
+	<filter>
+		<whitelist addUncoveredFilesFromWhitelist="false">
+			<directory suffix=".php">includes</directory>
+			<directory suffix=".php">languages</directory>
+			<directory suffix=".php">maintenance</directory>
+			<directory suffix=".php">extensions</directory>
+			<directory suffix=".php">skins</directory>
+			<exclude>
+				<directory suffix=".php">languages/messages</directory>
+				<directory suffix=".php">extensions/*/tests</directory>
+				<directory suffix=".php">skins/*/tests</directory>
+				<file>languages/data/normalize-ar.php</file>
+				<file>languages/data/normalize-ml.php</file>
+			</exclude>
+		</whitelist>
+	</filter>
+	<listeners>
+		<listener class="JohnKary\PHPUnit\Listener\SpeedTrapListener">
+			<arguments>
+				<array>
+					<element key="slowThreshold">
+						<integer>50</integer>
+					</element>
+					<element key="reportLength">
+						<integer>50</integer>
+					</element>
+				</array>
+			</arguments>
+		</listener>
+	</listeners>
+</phpunit>

@@ -62,7 +62,7 @@ class OutputHandler {
 		/// @todo FIXME: this sort of dupes some code in WebRequest::getRequestUrl()
 		if ( isset( $_SERVER['REQUEST_URI'] ) ) {
 			// Strip the query string...
-			list( $path ) = explode( '?', $_SERVER['REQUEST_URI'], 2 );
+			$path = explode( '?', $_SERVER['REQUEST_URI'], 2 )[0];
 		} elseif ( isset( $_SERVER['SCRIPT_NAME'] ) ) {
 			// Probably IIS. QUERY_STRING appears separately.
 			$path = $_SERVER['SCRIPT_NAME'];
@@ -123,10 +123,6 @@ class OutputHandler {
 		}
 		if ( !$foundVary ) {
 			header( 'Vary: Accept-Encoding' );
-			global $wgUseKeyHeader;
-			if ( $wgUseKeyHeader ) {
-				header( 'Key: Accept-Encoding;match=gzip' );
-			}
 		}
 		return $s;
 	}

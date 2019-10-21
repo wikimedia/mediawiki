@@ -7,6 +7,10 @@
  * @since 1.27
  */
 class ComposerInstalled {
+	/**
+	 * @var array[]
+	 */
+	private $contents;
 
 	/**
 	 * @param string $location
@@ -18,7 +22,7 @@ class ComposerInstalled {
 	/**
 	 * Dependencies currently installed according to installed.json
 	 *
-	 * @return array
+	 * @return array[]
 	 */
 	public function getInstalledDependencies() {
 		$deps = [];

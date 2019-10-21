@@ -1,9 +1,9 @@
-const assert = require( 'assert' ),
-	Api = require( 'wdio-mediawiki/Api' ),
-	WatchlistPage = require( '../pageobjects/watchlist.page' ),
-	WatchablePage = require( '../pageobjects/watchable.page' ),
-	LoginPage = require( 'wdio-mediawiki/LoginPage' ),
-	Util = require( 'wdio-mediawiki/Util' );
+const assert = require( 'assert' );
+const Api = require( 'wdio-mediawiki/Api' );
+const WatchlistPage = require( '../pageobjects/watchlist.page' );
+const WatchablePage = require( '../pageobjects/watchable.page' );
+const LoginPage = require( 'wdio-mediawiki/LoginPage' );
+const Util = require( 'wdio-mediawiki/Util' );
 
 describe( 'Special:Watchlist', function () {
 	let username, password;
@@ -18,7 +18,7 @@ describe( 'Special:Watchlist', function () {
 	} );
 
 	beforeEach( function () {
-		browser.deleteCookie();
+		browser.deleteAllCookies();
 		LoginPage.login( username, password );
 	} );
 

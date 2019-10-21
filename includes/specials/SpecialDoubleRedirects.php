@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -30,7 +31,7 @@ use Wikimedia\Rdbms\IDatabase;
  *
  * @ingroup SpecialPage
  */
-class DoubleRedirectsPage extends QueryPage {
+class SpecialDoubleRedirects extends QueryPage {
 	function __construct( $name = 'DoubleRedirects' ) {
 		parent::__construct( $name );
 	}
@@ -155,7 +156,9 @@ class DoubleRedirectsPage extends QueryPage {
 		// if the page is editable, add an edit link
 		if (
 			// check user permissions
-			$this->getUser()->isAllowed( 'edit' ) &&
+			MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $this->getUser(), 'edit' ) &&
 			// check, if the content model is editable through action=edit
 			ContentHandler::getForTitle( $titleA )->supportsDirectEditing()
 		) {
@@ -196,6 +199,11 @@ class DoubleRedirectsPage extends QueryPage {
 		$arr = $lang->getArrow() . $lang->getDirMark();
 
 		return ( "{$linkA} {$edit} {$arr} {$linkB} {$arr} {$linkC}" );
+	}
+
+	public function execute( $par ) {
+		$this->addHelpLink( 'Help:Redirects' );
+		parent::execute( $par );
 	}
 
 	/**

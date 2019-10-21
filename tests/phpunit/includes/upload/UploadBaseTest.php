@@ -585,6 +585,42 @@ class UploadBaseTest extends MediaWikiTestCase {
 			[ '<?xml version="1.0" encoding="WINDOWS-1252"?><svg></svg>', false ],
 		];
 	}
+
+	/**
+	 * @covers UploadBase::detectScript
+	 * @dataProvider provideDetectScript
+	 */
+	public function testDetectScript( $filename, $mime, $extension, $expected, $message ) {
+		$result = $this->upload->detectScript( $filename, $mime, $extension );
+		$this->assertSame( $expected, $result, $message );
+	}
+
+	public static function provideDetectScript() {
+		global $IP;
+		return [
+			[
+				"$IP/tests/phpunit/data/upload/png-plain.png",
+				'image/png',
+				'png',
+				false,
+				'PNG with no suspicious things in it, should pass.'
+			],
+			[
+				"$IP/tests/phpunit/data/upload/png-embedded-breaks-ie5.png",
+				'image/png',
+				'png',
+				true,
+				'PNG with embedded data that IE5/6 interprets as HTML; should be rejected.'
+			],
+			[
+				"$IP/tests/phpunit/data/upload/jpeg-a-href-in-metadata.jpg",
+				'image/jpeg',
+				'jpeg',
+				false,
+				'JPEG with innocuous HTML in metadata from a flickr photo; should pass (T27707).'
+			],
+		];
+	}
 }
 
 class UploadTestHandler extends UploadBase {

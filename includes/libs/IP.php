@@ -120,19 +120,6 @@ class IP {
 	 * SIIT IPv4-translated addresses are rejected.
 	 * @note canonicalize() tries to convert translated addresses to IPv4.
 	 *
-	 * @deprecated since 1.30. Use the equivalent IP::isValidRange().
-	 * @param string $ipRange
-	 * @return bool True if it is valid
-	 */
-	public static function isValidBlock( $ipRange ) {
-		return self::isValidRange( $ipRange );
-	}
-
-	/**
-	 * Validate an IP range (valid address with a valid CIDR prefix).
-	 * SIIT IPv4-translated addresses are rejected.
-	 * @note canonicalize() tries to convert translated addresses to IPv4.
-	 *
 	 * @param string $ipRange
 	 * @return bool True if it is valid
 	 * @since 1.30

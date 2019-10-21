@@ -1,9 +1,5 @@
 <?php
 /**
- * action=protect handler
- *
- * Copyright © 2012 Timo Tijhof
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -20,11 +16,10 @@
  *
  * @file
  * @ingroup Actions
- * @author Timo Tijhof
  */
 
 /**
- * Handle page protection
+ * Handle page protection (action=protect)
  *
  * This is a wrapper that will call Article::protect().
  *

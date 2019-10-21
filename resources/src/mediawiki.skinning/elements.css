@@ -6,6 +6,8 @@
  * This style sheet is used by the Monobook and Vector skins.
  */
 
+/* stylelint-disable selector-class-pattern */
+
 /* Links */
 a {
 	text-decoration: none;
@@ -108,7 +110,6 @@ img {
 
 hr {
 	height: 1px;
-	color: #a2a9b1;
 	background-color: #a2a9b1;
 	border: 0;
 	margin: 0.2em 0;

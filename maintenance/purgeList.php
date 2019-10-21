@@ -1,6 +1,6 @@
 <?php
 /**
- * Send purge requests for listed pages to squid
+ * Send purge requests for listed pages to CDN
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,14 +24,14 @@
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Maintenance script that sends purge requests for listed pages to squid.
+ * Maintenance script that sends purge requests for listed pages to CDN.
  *
  * @ingroup Maintenance
  */
 class PurgeList extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->addDescription( 'Send purge requests for listed pages to squid' );
+		$this->addDescription( 'Send purge requests for listed pages to CDN' );
 		$this->addOption( 'purge', 'Whether to update page_touched.', false, false );
 		$this->addOption( 'namespace', 'Namespace number', false, true );
 		$this->addOption( 'all', 'Purge all pages', false, false );
@@ -65,9 +65,14 @@ class PurgeList extends Maintenance {
 			} elseif ( $page !== '' ) {
 				$title = Title::newFromText( $page );
 				if ( $title ) {
-					$url = $title->getInternalURL();
-					$this->output( "$url\n" );
-					$urls[] = $url;
+					$newUrls = $title->getCdnUrls();
+
+					foreach ( $newUrls as $url ) {
+						$this->output( "$url\n" );
+					}
+
+					$urls = array_merge( $urls, $newUrls );
+
 					if ( $this->getOption( 'purge' ) ) {
 						$title->invalidateCache();
 					}
@@ -110,8 +115,7 @@ class PurgeList extends Maintenance {
 			$urls = [];
 			foreach ( $res as $row ) {
 				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$url = $title->getInternalURL();
-				$urls[] = $url;
+				$urls = array_merge( $urls, $title->getCdnUrls() );
 				$startId = $row->page_id;
 			}
 			$this->sendPurgeRequest( $urls );
@@ -120,7 +124,7 @@ class PurgeList extends Maintenance {
 
 	/**
 	 * Helper to purge an array of $urls
-	 * @param array $urls List of URLS to purge from squids
+	 * @param array $urls List of URLS to purge from CDNs
 	 */
 	private function sendPurgeRequest( $urls ) {
 		if ( $this->hasOption( 'delay' ) ) {

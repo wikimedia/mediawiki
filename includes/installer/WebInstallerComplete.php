@@ -45,17 +45,17 @@ class WebInstallerComplete extends WebInstallerPage {
 		}
 		$this->addHTML(
 			$this->parent->getInfoBox(
-				wfMessage( $msg,
+				new HtmlArmor( wfMessage( $msg,
 					$lsUrl,
 					$this->getVar( 'wgServer' ) .
-					$this->getVar( 'wgScriptPath' ) . '/index.php',
-					'<downloadlink/>',
+						$this->getVar( 'wgScriptPath' ) . '/index.php',
+					Message::rawParam( $this->parent->makeDownloadLinkHtml() ),
 					$location ?: ''
-				)->plain(), 'tick-32.png'
+				)->parse() ), 'tick-32.png'
 			)
 		);
 		$this->addHTML( $this->parent->getInfoBox(
-			wfMessage( 'config-extension-link' )->text() ) );
+			wfMessage( 'config-extension-link' )->plain() ) );
 
 		$this->parent->restoreLinkPopups();
 		$this->endForm( false, false );

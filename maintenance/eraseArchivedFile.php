@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -66,7 +68,7 @@ class EraseArchivedFile extends Maintenance {
 			$afile = ArchivedFile::newFromRow( $row );
 		}
 
-		$file = wfLocalFile( $filename );
+		$file = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()->newFile( $filename );
 		if ( $file->exists() ) {
 			$this->fatalError( "File '$filename' is still a public file, use the delete form.\n" );
 		}
@@ -107,6 +109,7 @@ class EraseArchivedFile extends Maintenance {
 				$this->output( "Deleted version '$key' ($ts) of file '$name'\n" );
 			} else {
 				$this->output( "Failed to delete version '$key' ($ts) of file '$name'\n" );
+				// @phan-suppress-next-line PhanUndeclaredMethod
 				$this->output( print_r( $status->getErrorsArray(), true ) );
 			}
 		} else {

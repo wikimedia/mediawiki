@@ -37,14 +37,14 @@ class TextContentHandlerTest extends MediaWikiLangTestCase {
 			} );
 
 		/**
-		 * @var $mockEngine SearchEngine
+		 * @var SearchEngine $mockEngine
 		 */
 		$fields = $handler->getFieldsForSearchIndex( $mockEngine );
 		$mappedFields = [];
 		foreach ( $fields as $name => $field ) {
 			$this->assertInstanceOf( SearchIndexField::class, $field );
 			/**
-			 * @var $field SearchIndexField
+			 * @var SearchIndexField $field
 			 */
 			$mappedFields[$name] = $field->getMapping( $mockEngine );
 		}

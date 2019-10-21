@@ -177,7 +177,7 @@ class TextboxBuilderTest extends MediaWikiTestCase {
 		$expected
 	) {
 		$this->setMwGlobals( [
-			// set to trick MWNamespace::getRestrictionLevels
+			// set to trick NamespaceInfo::getRestrictionLevels
 			'wgRestrictionLevels' => $restrictionLevels
 		] );
 

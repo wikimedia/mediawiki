@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\User\UserIdentity;
 
 /**
  * Representation of a pair of user and title for watchlist entries.
@@ -36,7 +37,7 @@ class WatchedItem {
 	private $linkTarget;
 
 	/**
-	 * @var User
+	 * @var UserIdentity
 	 */
 	private $user;
 
@@ -46,12 +47,12 @@ class WatchedItem {
 	private $notificationTimestamp;
 
 	/**
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param LinkTarget $linkTarget
 	 * @param null|string $notificationTimestamp the value of the wl_notificationtimestamp field
 	 */
 	public function __construct(
-		User $user,
+		UserIdentity $user,
 		LinkTarget $linkTarget,
 		$notificationTimestamp
 	) {
@@ -61,9 +62,17 @@ class WatchedItem {
 	}
 
 	/**
+	 * @deprecated since 1.34, use getUserIdentity()
 	 * @return User
 	 */
 	public function getUser() {
+		return User::newFromIdentity( $this->user );
+	}
+
+	/**
+	 * @return UserIdentity
+	 */
+	public function getUserIdentity() {
 		return $this->user;
 	}
 

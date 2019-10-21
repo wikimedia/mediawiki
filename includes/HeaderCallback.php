@@ -2,6 +2,9 @@
 
 namespace MediaWiki;
 
+/**
+ * @since 1.29
+ */
 class HeaderCallback {
 	private static $headersSentException;
 	private static $messageSent = false;
@@ -10,6 +13,8 @@ class HeaderCallback {
 	 * Register a callback to be called when headers are sent. There can only
 	 * be one of these handlers active, so all relevant actions have to be in
 	 * here.
+	 *
+	 * @since 1.29
 	 */
 	public static function register() {
 		header_register_callback( [ __CLASS__, 'callback' ] );
@@ -17,6 +22,8 @@ class HeaderCallback {
 
 	/**
 	 * The callback, which is called by the transport
+	 *
+	 * @since 1.29
 	 */
 	public static function callback() {
 		// Prevent caching of responses with cookies (T127993)
@@ -57,6 +64,8 @@ class HeaderCallback {
 	/**
 	 * Log a warning message if headers have already been sent. This can be
 	 * called before flushing the output.
+	 *
+	 * @since 1.29
 	 */
 	public static function warnIfHeadersSent() {
 		if ( headers_sent() && !self::$messageSent ) {

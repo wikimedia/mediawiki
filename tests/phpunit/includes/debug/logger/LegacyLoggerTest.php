@@ -125,6 +125,26 @@ class LegacyLoggerTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers MediaWiki\Logger\LegacyLogger::interpolate
+	 */
+	public function testInterpolate_Error() {
+		// @todo Merge this into provideInterpolate once we drop HHVM support
+		if ( !class_exists( \Error::class ) ) {
+			$this->markTestSkipped( 'Error class does not exist' );
+		}
+
+		$err = new \Error( 'Test error' );
+		$message = '{exception}';
+		$context = [ 'exception' => $err ];
+		$expect = '[Error ' . get_class( $err ) . '( ' .
+			$err->getFile() . ':' . $err->getLine() . ') ' .
+			$err->getMessage() . ']';
+
+		$this->assertEquals(
+			$expect, LegacyLogger::interpolate( $message, $context ) );
+	}
+
+	/**
 	 * @covers MediaWiki\Logger\LegacyLogger::shouldEmit
 	 * @dataProvider provideShouldEmit
 	 */

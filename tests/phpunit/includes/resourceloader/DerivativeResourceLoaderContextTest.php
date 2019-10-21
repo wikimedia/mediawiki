@@ -16,7 +16,10 @@ class DerivativeResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 				'skin' => 'fallback',
 				'target' => 'test',
 		] );
-		return new ResourceLoaderContext( new ResourceLoader(), $request );
+		return new ResourceLoaderContext(
+			new ResourceLoader( ResourceLoaderTestCase::getMinimalConfig() ),
+			$request
+		);
 	}
 
 	public function testChangeModules() {
@@ -30,6 +33,7 @@ class DerivativeResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 	public function testChangeLanguageAndDirection() {
 		$derived = new DerivativeResourceLoaderContext( self::makeContext() );
 		$this->assertSame( $derived->getLanguage(), 'qqx', 'inherit from parent' );
+		$this->assertSame( $derived->getDirection(), 'ltr', 'inherit from parent' );
 
 		$derived->setLanguage( 'nl' );
 		$this->assertSame( $derived->getLanguage(), 'nl' );

@@ -196,7 +196,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 	 * line above the options in the case of a checkbox matrix, i.e. it's always
 	 * a "vertical-label".
 	 *
-	 * @param string $value The value to set the input to
+	 * @param string|array $value The value to set the input to
 	 *
 	 * @return string Complete HTML table row
 	 */

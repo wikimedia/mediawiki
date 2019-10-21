@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\MediaWikiServices;
@@ -10,6 +11,17 @@ use Wikimedia\TestingAccessWrapper;
  * @coversDefaultClass BlockListPager
  */
 class BlockListPagerTest extends MediaWikiTestCase {
+
+	/**
+	 * @var LinkRenderer
+	 */
+	private $linkRenderer;
+
+	protected function setUp() {
+		parent::setUp();
+
+		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+	}
 
 	/**
 	 * @covers ::formatValue
@@ -29,7 +41,7 @@ class BlockListPagerTest extends MediaWikiTestCase {
 		$expected = $expected ?? MWTimestamp::getInstance()->format( 'H:i, j F Y' );
 
 		$row = $row ?: new stdClass;
-		$pager = new BlockListPager( new SpecialPage(),  [] );
+		$pager = new BlockListPager( new SpecialPage(),  [], $this->linkRenderer );
 		$wrappedPager = TestingAccessWrapper::newFromObject( $pager );
 		$wrappedPager->mCurrentRow = $row;
 
@@ -117,7 +129,7 @@ class BlockListPagerTest extends MediaWikiTestCase {
 			'wgScript' => '/w/index.php',
 		] );
 
-		$pager = new BlockListPager( new SpecialPage(),  [] );
+		$pager = new BlockListPager( new SpecialPage(),  [], $this->linkRenderer );
 
 		$row = (object)[
 			'ipb_id' => 0,
@@ -197,7 +209,7 @@ class BlockListPagerTest extends MediaWikiTestCase {
 			'ipb_sitewide' => 1,
 			'ipb_timestamp' => $this->db->timestamp( wfTimestamp( TS_MW ) ),
 		];
-		$pager = new BlockListPager( new SpecialPage(),  [] );
+		$pager = new BlockListPager( new SpecialPage(),  [], $this->linkRenderer );
 		$pager->preprocessResults( [ $row ] );
 
 		foreach ( $links as $link ) {
@@ -210,7 +222,7 @@ class BlockListPagerTest extends MediaWikiTestCase {
 			'by_user_name' => 'Admin',
 			'ipb_sitewide' => 1,
 		];
-		$pager = new BlockListPager( new SpecialPage(),  [] );
+		$pager = new BlockListPager( new SpecialPage(),  [], $this->linkRenderer );
 		$pager->preprocessResults( [ $row ] );
 
 		$this->assertObjectNotHasAttribute( 'ipb_restrictions', $row );
@@ -222,7 +234,7 @@ class BlockListPagerTest extends MediaWikiTestCase {
 		$target = '127.0.0.1';
 
 		// Test Partial Blocks Blocks.
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'address' => $target,
 			'by' => $this->getTestSysop()->getUser()->getId(),
 			'reason' => 'Parce que',
@@ -236,7 +248,7 @@ class BlockListPagerTest extends MediaWikiTestCase {
 
 		$result = $this->db->select( 'ipblocks', [ '*' ], [ 'ipb_id' => $block->getId() ] );
 
-		$pager = new BlockListPager( new SpecialPage(),  [] );
+		$pager = new BlockListPager( new SpecialPage(),  [], $this->linkRenderer );
 		$pager->preprocessResults( $result );
 
 		$wrappedPager = TestingAccessWrapper::newFromObject( $pager );
@@ -247,7 +259,7 @@ class BlockListPagerTest extends MediaWikiTestCase {
 		$restriction = $restrictions[0];
 		$this->assertEquals( $page->getId(), $restriction->getValue() );
 		$this->assertEquals( $page->getId(), $restriction->getTitle()->getArticleID() );
-		$this->assertEquals( $title->getDBKey(), $restriction->getTitle()->getDBKey() );
+		$this->assertEquals( $title->getDBkey(), $restriction->getTitle()->getDBkey() );
 		$this->assertEquals( $title->getNamespace(), $restriction->getTitle()->getNamespace() );
 
 		// Delete the block and the restrictions.

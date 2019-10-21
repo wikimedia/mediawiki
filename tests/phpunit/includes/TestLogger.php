@@ -73,8 +73,8 @@ class TestLogger extends \Psr\Log\AbstractLogger {
 
 	/**
 	 * Return the collected logs
-	 * @return array Array of array( string $level, string $message ), or
-	 *   array( string $level, string $message, array $context ) if $collectContext was true.
+	 * @return array Array of [ string $level, string $message ], or
+	 *   [ string $level, string $message, array $context ] if $collectContext was true.
 	 */
 	public function getBuffer() {
 		return $this->buffer;

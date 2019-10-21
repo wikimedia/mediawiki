@@ -29,6 +29,9 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Search
  */
 class SearchHighlighter {
+	const DEFAULT_CONTEXT_LINES = 2;
+	const DEFAULT_CONTEXT_CHARS = 75;
+
 	protected $mCleanWikitext = true;
 
 	/**
@@ -44,13 +47,18 @@ class SearchHighlighter {
 	 * Wikitext highlighting when $wgAdvancedSearchHighlighting = true
 	 *
 	 * @param string $text
-	 * @param array $terms Terms to highlight (not html escaped but
+	 * @param string[] $terms Terms to highlight (not html escaped but
 	 *   regex escaped via SearchDatabase::regexTerm())
 	 * @param int $contextlines
 	 * @param int $contextchars
 	 * @return string
 	 */
-	public function highlightText( $text, $terms, $contextlines, $contextchars ) {
+	public function highlightText(
+		$text,
+		$terms,
+		$contextlines = self::DEFAULT_CONTEXT_LINES,
+		$contextchars = self::DEFAULT_CONTEXT_CHARS
+	) {
 		global $wgSearchHighlightBoundaries;
 
 		if ( $text == '' ) {
@@ -66,8 +74,8 @@ class SearchHighlighter {
 			3 => "/(\n\\{\\|)|(\n\\|\\})/" ]; // table
 
 		// @todo FIXME: This should prolly be a hook or something
-		// instead of hardcoding a class name from the Cite extension
-		if ( class_exists( 'Cite' ) ) {
+		// instead of hardcoding the name of the Cite extension
+		if ( \ExtensionRegistry::getInstance()->isLoaded( 'Cite' ) ) {
 			$spat .= '|(<ref>)'; // references via cite extension
 			$endPatterns[4] = '/(<ref>)|(<\/ref>)/';
 		}
@@ -502,12 +510,17 @@ class SearchHighlighter {
 	 * Used when $wgAdvancedSearchHighlighting is false.
 	 *
 	 * @param string $text
-	 * @param array $terms Escaped for regex by SearchDatabase::regexTerm()
+	 * @param string[] $terms Escaped for regex by SearchDatabase::regexTerm()
 	 * @param int $contextlines
 	 * @param int $contextchars
 	 * @return string
 	 */
-	public function highlightSimple( $text, $terms, $contextlines, $contextchars ) {
+	public function highlightSimple(
+		$text,
+		$terms,
+		$contextlines = self::DEFAULT_CONTEXT_LINES,
+		$contextchars = self::DEFAULT_CONTEXT_CHARS
+	) {
 		$lines = explode( "\n", $text );
 
 		$terms = implode( '|', $terms );
@@ -557,7 +570,11 @@ class SearchHighlighter {
 	 * @param int $contextchars Average number of characters per line
 	 * @return string
 	 */
-	public function highlightNone( $text, $contextlines, $contextchars ) {
+	public function highlightNone(
+		$text,
+		$contextlines = self::DEFAULT_CONTEXT_LINES,
+		$contextchars = self::DEFAULT_CONTEXT_CHARS
+	) {
 		$match = [];
 		$text = ltrim( $text ) . "\n"; // make sure the preg_match may find the last line
 		$text = str_replace( "\n\n", "\n", $text ); // remove empty lines

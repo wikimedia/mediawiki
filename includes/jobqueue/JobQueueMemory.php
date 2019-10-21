@@ -33,9 +33,9 @@ class JobQueueMemory extends JobQueue {
 	protected static $data = [];
 
 	public function __construct( array $params ) {
-		parent::__construct( $params );
+		$params['wanCache'] = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
 
-		$this->dupCache = new HashBagOStuff();
+		parent::__construct( $params );
 	}
 
 	/**
@@ -111,7 +111,7 @@ class JobQueueMemory extends JobQueue {
 	/**
 	 * @see JobQueue::doPop
 	 *
-	 * @return Job|bool
+	 * @return RunnableJob|bool
 	 */
 	protected function doPop() {
 		if ( $this->doGetSize() == 0 ) {
@@ -143,9 +143,9 @@ class JobQueueMemory extends JobQueue {
 	/**
 	 * @see JobQueue::doAck
 	 *
-	 * @param Job $job
+	 * @param RunnableJob $job
 	 */
-	protected function doAck( Job $job ) {
+	protected function doAck( RunnableJob $job ) {
 		if ( $this->getAcquiredCount() == 0 ) {
 			return;
 		}
@@ -206,11 +206,10 @@ class JobQueueMemory extends JobQueue {
 
 	/**
 	 * @param IJobSpecification $spec
-	 *
-	 * @return Job
+	 * @return RunnableJob
 	 */
 	public function jobFromSpecInternal( IJobSpecification $spec ) {
-		return Job::factory( $spec->getType(), $spec->getTitle(), $spec->getParams() );
+		return $this->factoryJob( $spec->getType(), $spec->getParams() );
 	}
 
 	/**

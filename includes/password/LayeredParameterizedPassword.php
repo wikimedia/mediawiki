@@ -59,6 +59,7 @@ class LayeredParameterizedPassword extends ParameterizedPassword {
 			// Construct pseudo-hash based on params and arguments
 			/** @var ParameterizedPassword $passObj */
 			$passObj = $this->factory->newFromType( $type );
+			'@phan-var ParameterizedPassword $passObj';
 
 			$params = '';
 			$args = '';
@@ -72,6 +73,7 @@ class LayeredParameterizedPassword extends ParameterizedPassword {
 
 			// Hash the last hash with the next type in the layer
 			$passObj = $this->factory->newFromCiphertext( $existingHash );
+			'@phan-var ParameterizedPassword $passObj';
 			$passObj->crypt( $lastHash );
 
 			// Move over the params and args
@@ -109,11 +111,12 @@ class LayeredParameterizedPassword extends ParameterizedPassword {
 		foreach ( $this->config['types'] as $i => $type ) {
 			if ( $i == 0 ) {
 				continue;
-			};
+			}
 
 			// Construct pseudo-hash based on params and arguments
 			/** @var ParameterizedPassword $passObj */
 			$passObj = $this->factory->newFromType( $type );
+			'@phan-var ParameterizedPassword $passObj';
 
 			$params = '';
 			$args = '';
@@ -127,6 +130,7 @@ class LayeredParameterizedPassword extends ParameterizedPassword {
 
 			// Hash the last hash with the next type in the layer
 			$passObj = $this->factory->newFromCiphertext( $existingHash );
+			'@phan-var ParameterizedPassword $passObj';
 			$passObj->crypt( $lastHash );
 
 			// Move over the params and args

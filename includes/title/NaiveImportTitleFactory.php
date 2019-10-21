@@ -46,7 +46,10 @@ class NaiveImportTitleFactory implements ImportTitleFactory {
 
 			// For built-in namespaces (0 <= ID < 100), we try to find a local NS with
 			// the same namespace ID
-			if ( $foreignNs < 100 && MWNamespace::exists( $foreignNs ) ) {
+			if (
+				$foreignNs < 100 &&
+				MediaWikiServices::getInstance()->getNamespaceInfo()->exists( $foreignNs )
+			) {
 				return Title::makeTitleSafe( $foreignNs, $foreignTitle->getText() );
 			}
 		}

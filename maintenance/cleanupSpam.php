@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Revision\RevisionRecord;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -67,9 +69,9 @@ class CleanupSpam extends Maintenance {
 			// Clean up spam on all wikis
 			$this->output( "Finding spam on " . count( $wgLocalDatabases ) . " wikis\n" );
 			$found = false;
-			foreach ( $wgLocalDatabases as $wikiID ) {
-				/** @var $dbr Database */
-				$dbr = $this->getDB( DB_REPLICA, [], $wikiID );
+			foreach ( $wgLocalDatabases as $wikiId ) {
+				/** @var Database $dbr */
+				$dbr = $this->getDB( DB_REPLICA, [], $wikiId );
 
 				foreach ( $protConds as $conds ) {
 					$count = $dbr->selectField(
@@ -82,9 +84,9 @@ class CleanupSpam extends Maintenance {
 						$found = true;
 						$cmd = wfShellWikiCmd(
 							"$IP/maintenance/cleanupSpam.php",
-							[ '--wiki', $wikiID, $spec ]
+							[ '--wiki', $wikiId, $spec ]
 						);
-						passthru( "$cmd | sed 's/^/$wikiID:  /'" );
+						passthru( "$cmd | sed 's/^/$wikiId:  /'" );
 					}
 				}
 			}
@@ -97,7 +99,7 @@ class CleanupSpam extends Maintenance {
 			// Clean up spam on this wiki
 
 			$count = 0;
-			/** @var $dbr Database */
+			/** @var Database $dbr */
 			$dbr = $this->getDB( DB_REPLICA );
 			foreach ( $protConds as $prot => $conds ) {
 				$res = $dbr->select(
@@ -136,8 +138,8 @@ class CleanupSpam extends Maintenance {
 		$rev = Revision::newFromTitle( $title );
 		$currentRevId = $rev->getId();
 
-		while ( $rev && ( $rev->isDeleted( Revision::DELETED_TEXT )
-			|| LinkFilter::matchEntry( $rev->getContent( Revision::RAW ), $domain, $protocol ) )
+		while ( $rev && ( $rev->isDeleted( RevisionRecord::DELETED_TEXT )
+			|| LinkFilter::matchEntry( $rev->getContent( RevisionRecord::RAW ), $domain, $protocol ) )
 		) {
 			$rev = $rev->getPrevious();
 		}
@@ -152,7 +154,7 @@ class CleanupSpam extends Maintenance {
 			$page = WikiPage::factory( $title );
 			if ( $rev ) {
 				// Revert to this revision
-				$content = $rev->getContent( Revision::RAW );
+				$content = $rev->getContent( RevisionRecord::RAW );
 
 				$this->output( "reverting\n" );
 				$page->doEditContent(

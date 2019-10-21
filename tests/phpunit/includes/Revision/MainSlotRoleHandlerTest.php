@@ -3,14 +3,13 @@
 namespace MediaWiki\Tests\Revision;
 
 use MediaWiki\Revision\MainSlotRoleHandler;
-use MediaWikiTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Title;
 
 /**
  * @covers \MediaWiki\Revision\MainSlotRoleHandler
  */
-class MainSlotRoleHandlerTest extends MediaWikiTestCase {
+class MainSlotRoleHandlerTest extends \MediaWikiIntegrationTestCase {
 
 	private function makeTitleObject( $ns ) {
 		/** @var Title|MockObject $title */

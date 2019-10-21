@@ -21,6 +21,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This class checks if user can get extra rights
  * because of conditions specified in $wgAutopromote
@@ -89,12 +91,12 @@ class Autopromote {
 
 	/**
 	 * Recursively check a condition.  Conditions are in the form
-	 *   array( '&' or '|' or '^' or '!', cond1, cond2, ... )
+	 *   [ '&' or '|' or '^' or '!', cond1, cond2, ... ]
 	 * where cond1, cond2, ... are themselves conditions; *OR*
 	 *   APCOND_EMAILCONFIRMED, *OR*
-	 *   array( APCOND_EMAILCONFIRMED ), *OR*
-	 *   array( APCOND_EDITCOUNT, number of edits ), *OR*
-	 *   array( APCOND_AGE, seconds since registration ), *OR*
+	 *   [ APCOND_EMAILCONFIRMED ], *OR*
+	 *   [ APCOND_EDITCOUNT, number of edits ], *OR*
+	 *   [ APCOND_AGE, seconds since registration ], *OR*
 	 *   similar constructs defined by extensions.
 	 * This function evaluates the former type recursively, and passes off to
 	 * self::checkCondition for evaluation of the latter type.
@@ -185,10 +187,10 @@ class Autopromote {
 				}
 				return $user->getEditCount() >= $reqEditCount;
 			case APCOND_AGE:
-				$age = time() - wfTimestampOrNull( TS_UNIX, $user->getRegistration() );
+				$age = time() - (int)wfTimestampOrNull( TS_UNIX, $user->getRegistration() );
 				return $age >= $cond[1];
 			case APCOND_AGE_FROM_EDIT:
-				$age = time() - wfTimestampOrNull( TS_UNIX, $user->getFirstEditTimestamp() );
+				$age = time() - (int)wfTimestampOrNull( TS_UNIX, $user->getFirstEditTimestamp() );
 				return $age >= $cond[1];
 			case APCOND_INGROUPS:
 				$groups = array_slice( $cond, 1 );
@@ -198,9 +200,11 @@ class Autopromote {
 			case APCOND_IPINRANGE:
 				return IP::isInRange( $user->getRequest()->getIP(), $cond[1] );
 			case APCOND_BLOCKED:
-				return $user->isBlocked();
+				return $user->getBlock() && $user->getBlock()->isSitewide();
 			case APCOND_ISBOT:
-				return in_array( 'bot', User::getGroupPermissions( $user->getGroups() ) );
+				return in_array( 'bot', MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->getGroupPermissions( $user->getGroups() ) );
 			default:
 				$result = null;
 				Hooks::run( 'AutopromoteCondition', [ $cond[0],

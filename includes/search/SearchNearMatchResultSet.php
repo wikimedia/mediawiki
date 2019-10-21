@@ -1,6 +1,6 @@
 <?php
 /**
- * A SearchResultSet wrapper for SearchNearMatcher
+ * A ISearchResultSet wrapper for SearchNearMatcher
  */
 class SearchNearMatchResultSet extends SearchResultSet {
 	/**

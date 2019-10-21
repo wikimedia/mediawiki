@@ -17,7 +17,6 @@
  *
  * @file
  * @ingroup Cache
- * @author 2015 Timo Tijhof
  */
 
 /**

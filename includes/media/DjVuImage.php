@@ -36,10 +36,14 @@ use MediaWiki\Shell\Shell;
  * @ingroup Media
  */
 class DjVuImage {
+
 	/**
-	 * @const DJVUTXT_MEMORY_LIMIT Memory limit for the DjVu description software
+	 * Memory limit for the DjVu description software
 	 */
 	const DJVUTXT_MEMORY_LIMIT = 300000;
+
+	/** @var string */
+	private $mFilename;
 
 	/**
 	 * @param string $filename The DjVu file name.
@@ -60,7 +64,7 @@ class DjVuImage {
 
 	/**
 	 * Return data in the style of getimagesize()
-	 * @return array|bool Array or false on failure
+	 * @return array|false Array or false on failure
 	 */
 	public function getImageSize() {
 		$data = $this->getInfo();
@@ -110,7 +114,7 @@ class DjVuImage {
 				$this->dumpForm( $file, $chunkLength, $indent + 1 );
 			} else {
 				fseek( $file, $chunkLength, SEEK_CUR );
-				if ( ( $chunkLength & 1 ) == 1 ) {
+				if ( $chunkLength & 1 ) {
 					// Padding byte between chunks
 					fseek( $file, 1, SEEK_CUR );
 				}
@@ -168,7 +172,7 @@ class DjVuImage {
 	private function skipChunk( $file, $chunkLength ) {
 		fseek( $file, $chunkLength, SEEK_CUR );
 
-		if ( ( $chunkLength & 0x01 ) == 1 && !feof( $file ) ) {
+		if ( ( $chunkLength & 1 ) && !feof( $file ) ) {
 			// padding byte
 			fseek( $file, 1, SEEK_CUR );
 		}

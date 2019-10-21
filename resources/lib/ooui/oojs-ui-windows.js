@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.3
+ * OOUI v0.34.1-pre (3913589098)
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-04-04T19:10:48Z
+ * Date: 2019-09-10T23:46:03Z
  */
 ( function ( OO ) {
 
@@ -120,10 +120,12 @@ OO.ui.ActionWidget.prototype.getModes = function () {
  *     MyProcessDialog.static.name = 'myProcessDialog';
  *     // An action set that uses modes ('edit' and 'help' mode, in this example).
  *     MyProcessDialog.static.actions = [
- *         { action: 'continue', modes: 'edit', label: 'Continue',
- *           flags: [
- *               'primary', 'progressive'
- *         ] },
+ *         {
+ *           action: 'continue',
+ *           modes: 'edit',
+ *           label: 'Continue',
+ *           flags: [ 'primary', 'progressive' ]
+ *         },
  *         { action: 'help', modes: 'edit', label: 'Help' },
  *         { modes: 'edit', label: 'Cancel', flags: 'safe' },
  *         { action: 'back', modes: 'help', label: 'Back', flags: 'safe' }
@@ -707,7 +709,7 @@ OO.ui.Error.prototype.getMessageText = function () {
 
 /**
  * A Process is a list of steps that are called in sequence. The step can be a number, a
- * jQuery promise, or a function:
+ * promise (jQuery, native, or any other “thenable”), or a function:
  *
  * - **number**: the process will wait for the specified number of milliseconds before proceeding.
  * - **promise**: the process will continue to the next step when the promise is successfully
@@ -790,9 +792,9 @@ OO.ui.Process.prototype.execute = function () {
 				return $.Deferred().reject( result ).promise();
 			}
 			// Duck-type the object to see if it can produce a promise
-			if ( result && typeof result.promise === 'function' ) {
+			if ( result && typeof result.then === 'function' ) {
 				// Use a promise generated from the result
-				return result.promise();
+				return $.when( result ).promise();
 			}
 			// Use resolved promise for other results
 			return $.Deferred().resolve().promise();
@@ -831,7 +833,7 @@ OO.ui.Process.prototype.execute = function () {
  * @return {Object} Step object, with `callback` and `context` properties
  */
 OO.ui.Process.prototype.createStep = function ( step, context ) {
-	if ( typeof step === 'number' || typeof step.promise === 'function' ) {
+	if ( typeof step === 'number' || typeof step.then === 'function' ) {
 		return {
 			callback: function () {
 				return step;
@@ -1413,6 +1415,7 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data, lifecycle, comp
 						compatOpening.notify( { state: 'ready' } );
 						lifecycle.deferreds.opened.resolve( data );
 						compatOpening.resolve( manager.compatOpened.promise(), data );
+						manager.togglePreventIosScrolling( true );
 					}, function () {
 						lifecycle.deferreds.opened.reject();
 						compatOpening.reject();
@@ -1503,6 +1506,7 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
 		compatOpened = manager.compatOpened;
 		manager.compatOpened = null;
 		compatOpened.resolve( compatClosing.promise(), data );
+		manager.togglePreventIosScrolling( false );
 		setTimeout( function () {
 			win.hold( data ).then( function () {
 				compatClosing.notify( { state: 'hold' } );
@@ -1673,6 +1677,47 @@ OO.ui.WindowManager.prototype.updateWindowSize = function ( win ) {
 
 	this.emit( 'resize', win );
 
+	return this;
+};
+
+/**
+ * Prevent scrolling of the document on iOS devices that don't respect `body { overflow: hidden; }`.
+ *
+ * This function is called when the window is opened (ready), and so the background is covered up,
+ * and the user won't see that we're doing weird things to the scroll position.
+ *
+ * @private
+ * @param {boolean} on
+ * @chainable
+ * @return {OO.ui.WindowManager} The manager, for chaining
+ */
+OO.ui.WindowManager.prototype.togglePreventIosScrolling = function ( on ) {
+	var
+		isIos = /ipad|iphone|ipod/i.test( navigator.userAgent ),
+		$body = $( this.getElementDocument().body ),
+		scrollableRoot = OO.ui.Element.static.getRootScrollableElement( $body[ 0 ] ),
+		stackDepth = $body.data( 'windowManagerGlobalEvents' ) || 0;
+
+	// Only if this is the first/last WindowManager (see #toggleGlobalEvents)
+	if ( !isIos || stackDepth !== 1 ) {
+		return this;
+	}
+
+	if ( on ) {
+		// We can't apply this workaround for non-fullscreen dialogs, because the user would see the
+		// scroll position change. If they have content that needs scrolling, you're out of luck…
+		// Always remember the scroll position in case dialog is closed with different size.
+		this.iosOrigScrollPosition = scrollableRoot.scrollTop;
+		if ( this.getCurrentWindow().getSize() === 'full' ) {
+			$body.add( $body.parent() ).addClass( 'oo-ui-windowManager-ios-modal-ready' );
+		}
+	} else {
+		// Always restore ability to scroll in case dialog was opened with different size.
+		$body.add( $body.parent() ).removeClass( 'oo-ui-windowManager-ios-modal-ready' );
+		if ( this.getCurrentWindow().getSize() === 'full' ) {
+			scrollableRoot.scrollTop = this.iosOrigScrollPosition;
+		}
+	}
 	return this;
 };
 
@@ -3234,6 +3279,9 @@ OO.ui.ProcessDialog = function OoUiProcessDialog( config ) {
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-processDialog' );
+	if ( OO.ui.isMobile() ) {
+		this.$element.addClass( 'oo-ui-isMobile' );
+	}
 };
 
 /* Setup */
@@ -3328,21 +3376,23 @@ OO.ui.ProcessDialog.prototype.initialize = function () {
  * @inheritdoc
  */
 OO.ui.ProcessDialog.prototype.getActionWidgetConfig = function ( config ) {
-	var isMobile = OO.ui.isMobile();
+	function checkFlag( flag ) {
+		return config.flags === flag ||
+			( Array.isArray( config.flags ) && config.flags.indexOf( flag ) !== -1 );
+	}
 
-	// Default to unframed on mobile
-	config = $.extend( { framed: !isMobile }, config );
-	// Change back buttons to icon only on mobile
-	if (
-		isMobile &&
-		(
-			config.flags === 'back' ||
-			( Array.isArray( config.flags ) && config.flags.indexOf( 'back' ) !== -1 )
-		)
-	) {
+	config = $.extend( { framed: true }, config );
+	if ( checkFlag( 'close' ) ) {
+		// Change close buttons to icon only.
+		$.extend( config, {
+			icon: 'close',
+			invisibleLabel: true
+		} );
+	} else if ( checkFlag( 'back' ) ) {
+		// Change back buttons to icon only.
 		$.extend( config, {
 			icon: 'previous',
-			label: ''
+			invisibleLabel: true
 		} );
 	}
 
@@ -3433,13 +3483,13 @@ OO.ui.ProcessDialog.prototype.fitLabel = function () {
 		navigationWidth = size.width - 20;
 	}
 
-	safeWidth = this.$safeActions.is( ':visible' ) ? this.$safeActions.width() : 0;
-	primaryWidth = this.$primaryActions.is( ':visible' ) ? this.$primaryActions.width() : 0;
+	safeWidth = this.$safeActions.width();
+	primaryWidth = this.$primaryActions.width();
 	biggerWidth = Math.max( safeWidth, primaryWidth );
 
 	labelWidth = this.title.$element.width();
 
-	if ( 2 * biggerWidth + labelWidth < navigationWidth ) {
+	if ( !OO.ui.isMobile() && 2 * biggerWidth + labelWidth < navigationWidth ) {
 		// We have enough space to center the label
 		leftWidth = rightWidth = biggerWidth;
 	} else {

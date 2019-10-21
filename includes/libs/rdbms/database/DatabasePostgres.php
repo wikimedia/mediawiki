@@ -24,29 +24,26 @@ namespace Wikimedia\Rdbms;
 
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WaitConditionLoop;
-use Wikimedia;
+use Wikimedia\AtEase\AtEase;
 use Exception;
 
 /**
  * @ingroup Database
  */
 class DatabasePostgres extends Database {
-	/** @var int|bool */
-	protected $port;
-
-	/** @var resource */
-	protected $lastResultHandle = null;
-
-	/** @var float|string */
-	private $numericVersion = null;
-	/** @var string Connect string to open a PostgreSQL connection */
-	private $connectString;
+	/** @var int|null */
+	private $port;
 	/** @var string */
 	private $coreSchema;
 	/** @var string */
 	private $tempSchema;
 	/** @var string[] Map of (reserved table name => alternate table name) */
 	private $keywordTableMap = [];
+	/** @var float|string */
+	private $numericVersion;
+
+	/** @var resource|null */
+	private $lastResultHandle;
 
 	/**
 	 * @see Database::__construct()
@@ -54,7 +51,7 @@ class DatabasePostgres extends Database {
 	 *   - keywordTableMap : Map of reserved table names to alternative table names to use
 	 */
 	public function __construct( array $params ) {
-		$this->port = $params['port'] ?? false;
+		$this->port = intval( $params['port'] ?? null );
 		$this->keywordTableMap = $params['keywordTableMap'] ?? [];
 
 		parent::__construct( $params );
@@ -62,10 +59,6 @@ class DatabasePostgres extends Database {
 
 	public function getType() {
 		return 'postgres';
-	}
-
-	public function implicitGroupby() {
-		return false;
 	}
 
 	public function implicitOrderby() {
@@ -87,79 +80,75 @@ class DatabasePostgres extends Database {
 	}
 
 	protected function open( $server, $user, $password, $dbName, $schema, $tablePrefix ) {
-		# Test for Postgres support, to avoid suppressed fatal error
 		if ( !function_exists( 'pg_connect' ) ) {
-			throw new DBConnectionError(
-				$this,
+			throw $this->newExceptionAfterConnectError(
 				"Postgres functions missing, have you compiled PHP with the --with-pgsql\n" .
 				"option? (Note: if you recently installed PHP, you may need to restart your\n" .
-				"webserver and database)\n"
+				"webserver and database)"
 			);
 		}
+
+		$this->close();
 
 		$this->server = $server;
 		$this->user = $user;
 		$this->password = $password;
 
 		$connectVars = [
-			// pg_connect() user $user as the default database. Since a database is *required*,
-			// at least pick a "don't care" database that is more likely to exist. This case
-			// arrises when LoadBalancer::getConnection( $i, [], '' ) is used.
+			// pg_connect() user $user as the default database. Since a database is required,
+			// then pick a "don't care" database that is more likely to exist than that one.
 			'dbname' => strlen( $dbName ) ? $dbName : 'postgres',
 			'user' => $user,
 			'password' => $password
 		];
-		if ( $server != false && $server != '' ) {
+		if ( strlen( $server ) ) {
 			$connectVars['host'] = $server;
 		}
-		if ( (int)$this->port > 0 ) {
-			$connectVars['port'] = (int)$this->port;
+		if ( $this->port > 0 ) {
+			$connectVars['port'] = $this->port;
 		}
-		if ( $this->flags & self::DBO_SSL ) {
+		if ( $this->getFlag( self::DBO_SSL ) ) {
 			$connectVars['sslmode'] = 'require';
 		}
+		$connectString = $this->makeConnectionString( $connectVars );
 
-		$this->connectString = $this->makeConnectionString( $connectVars );
-		$this->close();
 		$this->installErrorHandler();
-
 		try {
-			// Use new connections to let LoadBalancer/LBFactory handle reuse
-			$this->conn = pg_connect( $this->connectString, PGSQL_CONNECT_FORCE_NEW );
-		} catch ( Exception $ex ) {
+			$this->conn = pg_connect( $connectString, PGSQL_CONNECT_FORCE_NEW ) ?: null;
+		} catch ( Exception $e ) {
 			$this->restoreErrorHandler();
-			throw $ex;
+			throw $this->newExceptionAfterConnectError( $e->getMessage() );
 		}
-
-		$phpError = $this->restoreErrorHandler();
+		$error = $this->restoreErrorHandler();
 
 		if ( !$this->conn ) {
-			$this->queryLogger->debug(
-				"DB connection error\n" .
-				"Server: $server, Database: $dbName, User: $user, Password: " .
-				substr( $password, 0, 3 ) . "...\n"
-			);
-			$this->queryLogger->debug( $this->lastError() . "\n" );
-			throw new DBConnectionError( $this, str_replace( "\n", ' ', $phpError ) );
+			throw $this->newExceptionAfterConnectError( $error ?: $this->lastError() );
 		}
 
-		$this->opened = true;
-
-		# If called from the command-line (e.g. importDump), only show errors
-		if ( $this->cliMode ) {
-			$this->doQuery( "SET client_min_messages = 'ERROR'" );
+		try {
+			// Since no transaction is active at this point, any SET commands should apply
+			// for the entire session (e.g. will not be reverted on transaction rollback).
+			// See https://www.postgresql.org/docs/8.3/sql-set.html
+			$variables = [
+				'client_encoding' => 'UTF8',
+				'datestyle' => 'ISO, YMD',
+				'timezone' => 'GMT',
+				'standard_conforming_strings' => 'on',
+				'bytea_output' => 'escape',
+				'client_min_messages' => 'ERROR'
+			];
+			foreach ( $variables as $var => $val ) {
+				$this->query(
+					'SET ' . $this->addIdentifierQuotes( $var ) . ' = ' . $this->addQuotes( $val ),
+					__METHOD__,
+					self::QUERY_IGNORE_DBO_TRX | self::QUERY_NO_RETRY
+				);
+			}
+			$this->determineCoreSchema( $schema );
+			$this->currentDomain = new DatabaseDomain( $dbName, $schema, $tablePrefix );
+		} catch ( Exception $e ) {
+			throw $this->newExceptionAfterConnectError( $e->getMessage() );
 		}
-
-		$this->query( "SET client_encoding='UTF8'", __METHOD__ );
-		$this->query( "SET datestyle = 'ISO, YMD'", __METHOD__ );
-		$this->query( "SET timezone = 'GMT'", __METHOD__ );
-		$this->query( "SET standard_conforming_strings = on", __METHOD__ );
-		$this->query( "SET bytea_output = 'escape'", __METHOD__ ); // PHP bug 53127
-
-		$this->determineCoreSchema( $schema );
-		$this->currentDomain = new DatabaseDomain( $dbName, $schema, $tablePrefix );
-
-		return (bool)$this->conn;
 	}
 
 	protected function relationSchemaQualifier() {
@@ -261,24 +250,18 @@ class DatabasePostgres extends Database {
 	}
 
 	public function freeResult( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-		Wikimedia\suppressWarnings();
-		$ok = pg_free_result( $res );
-		Wikimedia\restoreWarnings();
+		AtEase::suppressWarnings();
+		$ok = pg_free_result( ResultWrapper::unwrap( $res ) );
+		AtEase::restoreWarnings();
 		if ( !$ok ) {
 			throw new DBUnexpectedError( $this, "Unable to free Postgres result\n" );
 		}
 	}
 
 	public function fetchObject( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-		Wikimedia\suppressWarnings();
-		$row = pg_fetch_object( $res );
-		Wikimedia\restoreWarnings();
+		AtEase::suppressWarnings();
+		$row = pg_fetch_object( ResultWrapper::unwrap( $res ) );
+		AtEase::restoreWarnings();
 		# @todo FIXME: HACK HACK HACK HACK debug
 
 		# @todo hashar: not sure if the following test really trigger if the object
@@ -295,12 +278,9 @@ class DatabasePostgres extends Database {
 	}
 
 	public function fetchRow( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-		Wikimedia\suppressWarnings();
-		$row = pg_fetch_array( $res );
-		Wikimedia\restoreWarnings();
+		AtEase::suppressWarnings();
+		$row = pg_fetch_array( ResultWrapper::unwrap( $res ) );
+		AtEase::restoreWarnings();
 
 		$conn = $this->getBindingHandle();
 		if ( pg_last_error( $conn ) ) {
@@ -318,12 +298,9 @@ class DatabasePostgres extends Database {
 			return 0;
 		}
 
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-		Wikimedia\suppressWarnings();
-		$n = pg_num_rows( $res );
-		Wikimedia\restoreWarnings();
+		AtEase::suppressWarnings();
+		$n = pg_num_rows( ResultWrapper::unwrap( $res ) );
+		AtEase::restoreWarnings();
 
 		$conn = $this->getBindingHandle();
 		if ( pg_last_error( $conn ) ) {
@@ -337,19 +314,11 @@ class DatabasePostgres extends Database {
 	}
 
 	public function numFields( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		return pg_num_fields( $res );
+		return pg_num_fields( ResultWrapper::unwrap( $res ) );
 	}
 
 	public function fieldName( $res, $n ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		return pg_field_name( $res, $n );
+		return pg_field_name( ResultWrapper::unwrap( $res ), $n );
 	}
 
 	public function insertId() {
@@ -359,11 +328,7 @@ class DatabasePostgres extends Database {
 	}
 
 	public function dataSeek( $res, $row ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		return pg_result_seek( $res, $row );
+		return pg_result_seek( ResultWrapper::unwrap( $res ), $row );
 	}
 
 	public function lastError() {
@@ -895,9 +860,12 @@ __INDEXATTR__;
 	}
 
 	/**
+	 * @param string $prefix Only show tables with this prefix, e.g. mw_
+	 * @param string $fname Calling function name
+	 * @return string[]
 	 * @suppress SecurityCheck-SQLInjection array_map not recognized T204911
 	 */
-	public function listTables( $prefix = null, $fname = __METHOD__ ) {
+	public function listTables( $prefix = '', $fname = __METHOD__ ) {
 		$eschemas = implode( ',', array_map( [ $this, 'addQuotes' ], $this->getCoreSchemas() ) );
 		$result = $this->query(
 			"SELECT DISTINCT tablename FROM pg_tables WHERE schemaname IN ($eschemas)", $fname );
@@ -906,7 +874,7 @@ __INDEXATTR__;
 		foreach ( $result as $table ) {
 			$vars = get_object_vars( $table );
 			$table = array_pop( $vars );
-			if ( !$prefix || strpos( $table, $prefix ) === 0 ) {
+			if ( $prefix == '' || strpos( $table, $prefix ) === 0 ) {
 				$endArray[] = $table;
 			}
 		}
@@ -922,7 +890,7 @@ __INDEXATTR__;
 
 	/**
 	 * Posted by cc[plus]php[at]c2se[dot]com on 25-Mar-2009 09:12
-	 * to https://secure.php.net/manual/en/ref.pgsql.php
+	 * to https://www.php.net/manual/en/ref.pgsql.php
 	 *
 	 * Parsing a postgres array can be a tricky problem, he's my
 	 * take on this, it handles multi-dimensional arrays plus
@@ -981,7 +949,7 @@ __INDEXATTR__;
 	 * @return string Default schema for the current session
 	 */
 	public function getCurrentSchema() {
-		$res = $this->query( "SELECT current_schema()", __METHOD__ );
+		$res = $this->query( "SELECT current_schema()", __METHOD__, self::QUERY_IGNORE_DBO_TRX );
 		$row = $this->fetchRow( $res );
 
 		return $row[0];
@@ -998,7 +966,11 @@ __INDEXATTR__;
 	 * @return array List of actual schemas for the current sesson
 	 */
 	public function getSchemas() {
-		$res = $this->query( "SELECT current_schemas(false)", __METHOD__ );
+		$res = $this->query(
+			"SELECT current_schemas(false)",
+			__METHOD__,
+			self::QUERY_IGNORE_DBO_TRX
+		);
 		$row = $this->fetchRow( $res );
 		$schemas = [];
 
@@ -1017,7 +989,7 @@ __INDEXATTR__;
 	 * @return array How to search for table names schemas for the current user
 	 */
 	public function getSearchPath() {
-		$res = $this->query( "SHOW search_path", __METHOD__ );
+		$res = $this->query( "SHOW search_path", __METHOD__, self::QUERY_IGNORE_DBO_TRX );
 		$row = $this->fetchRow( $res );
 
 		/* PostgreSQL returns SHOW values as strings */
@@ -1030,10 +1002,14 @@ __INDEXATTR__;
 	 * Values may contain magic keywords like "$user"
 	 * @since 1.19
 	 *
-	 * @param array $search_path List of schemas to be searched by default
+	 * @param string[] $search_path List of schemas to be searched by default
 	 */
 	private function setSearchPath( $search_path ) {
-		$this->query( "SET search_path = " . implode( ", ", $search_path ) );
+		$this->query(
+			"SET search_path = " . implode( ", ", $search_path ),
+			__METHOD__,
+			self::QUERY_IGNORE_DBO_TRX
+		);
 	}
 
 	/**
@@ -1051,21 +1027,24 @@ __INDEXATTR__;
 	 * @param string $desiredSchema
 	 */
 	public function determineCoreSchema( $desiredSchema ) {
-		$this->begin( __METHOD__, self::TRANSACTION_INTERNAL );
+		if ( $this->trxLevel() ) {
+			// We do not want the schema selection to change on ROLLBACK or INSERT SELECT.
+			// See https://www.postgresql.org/docs/8.3/sql-set.html
+			throw new DBUnexpectedError(
+				$this,
+				__METHOD__ . ": a transaction is currently active"
+			);
+		}
+
 		if ( $this->schemaExists( $desiredSchema ) ) {
 			if ( in_array( $desiredSchema, $this->getSchemas() ) ) {
 				$this->coreSchema = $desiredSchema;
 				$this->queryLogger->debug(
 					"Schema \"" . $desiredSchema . "\" already in the search path\n" );
 			} else {
-				/**
-				 * Prepend our schema (e.g. 'mediawiki') in front
-				 * of the search path
-				 * Fixes T17816
-				 */
+				// Prepend the desired schema to the search path (T17816)
 				$search_path = $this->getSearchPath();
-				array_unshift( $search_path,
-					$this->addIdentifierQuotes( $desiredSchema ) );
+				array_unshift( $search_path, $this->addIdentifierQuotes( $desiredSchema ) );
 				$this->setSearchPath( $search_path );
 				$this->coreSchema = $desiredSchema;
 				$this->queryLogger->debug(
@@ -1077,8 +1056,6 @@ __INDEXATTR__;
 				"Schema \"" . $desiredSchema . "\" not found, using current \"" .
 				$this->coreSchema . "\"\n" );
 		}
-		/* Commit SET otherwise it will be rollbacked on error or IGNORE SELECT */
-		$this->commit( __METHOD__, self::FLUSHING_INTERNAL );
 	}
 
 	/**
@@ -1243,10 +1220,14 @@ SQL;
 			return false; // short-circuit
 		}
 
-		$exists = $this->selectField(
-			'"pg_catalog"."pg_namespace"', 1, [ 'nspname' => $schema ], __METHOD__ );
+		$res = $this->query(
+			"SELECT 1 FROM pg_catalog.pg_namespace " .
+			"WHERE nspname = " . $this->addQuotes( $schema ) . " LIMIT 1",
+			__METHOD__,
+			self::QUERY_IGNORE_DBO_TRX
+		);
 
-		return (bool)$exists;
+		return ( $this->numRows( $res ) > 0 );
 	}
 
 	/**
@@ -1277,11 +1258,7 @@ SQL;
 	 * @return string
 	 */
 	public function fieldType( $res, $index ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
-		}
-
-		return pg_field_type( $res, $index );
+		return pg_field_type( ResultWrapper::unwrap( $res ), $index );
 	}
 
 	public function encodeBlob( $b ) {
@@ -1324,7 +1301,7 @@ SQL;
 		return "'" . pg_escape_string( $conn, (string)$s ) . "'";
 	}
 
-	public function makeSelectOptions( $options ) {
+	protected function makeSelectOptions( array $options ) {
 		$preLimitTail = $postLimitTail = '';
 		$startOpts = $useIndex = $ignoreIndex = '';
 

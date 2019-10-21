@@ -237,7 +237,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @param array $messageDetails E.g. array( 'KEY' => array(/PARAMS/) )
+	 * @param array $messageDetails E.g. [ 'KEY' => [ /PARAMS/ ] ]
 	 * @return Message[]
 	 */
 	protected function getMockMessages( $messageDetails ) {

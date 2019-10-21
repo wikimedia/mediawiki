@@ -1281,8 +1281,16 @@
 		);
 
 		mw.config.set( 'wgUserLanguage', 'qqx' );
+
 		$bar = $( '<b>' ).text( 'bar' );
-		assert.strictEqual( mw.message( 'foo', $bar, 'baz' ).parse(), '(foo: <b>bar</b>, baz)', 'qqx message with parameters' );
+		mw.messages.set( 'qqx-message', '(qqx-message)' );
+		mw.messages.set( 'non-qqx-message', '<b>hello world</b>' );
+
+		assert.strictEqual( mw.message( 'missing-message' ).parse(), '(missing-message)', 'qqx message (missing)' );
+		assert.strictEqual( mw.message( 'missing-message', $bar, 'baz' ).parse(), '(missing-message: <b>bar</b>, baz)', 'qqx message (missing) with parameters' );
+		assert.strictEqual( mw.message( 'qqx-message' ).parse(), '(qqx-message)', 'qqx message (defined)' );
+		assert.strictEqual( mw.message( 'qqx-message', $bar, 'baz' ).parse(), '(qqx-message: <b>bar</b>, baz)', 'qqx message (defined) with parameters' );
+		assert.strictEqual( mw.message( 'non-qqx-message' ).parse(), '<b>hello world</b>', 'non-qqx message in qqx mode' );
 	} );
 
 	QUnit.test( 'setParserDefaults', function ( assert ) {

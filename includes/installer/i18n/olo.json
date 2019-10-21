@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Mashoi7",
-			"Ilja.mos"
+			"Ilja.mos",
+			"Pyscowicz"
 		]
 	},
 	"config-your-language": "Sinun kieli:",
@@ -27,14 +28,10 @@
 	"config-db-name": "Tiedokannan nimi:",
 	"config-db-username": "Tiedokannan käyttäinimi:",
 	"config-db-password": "Tiedokannan salasana:",
-	"config-type-mssql": "Microsoft SQL Server",
-	"config-header-mysql": "MySQL-azetukset",
+	"config-header-mysql": "MariaDB/MySQL-azetukset",
 	"config-header-postgres": "PostgreSQL-azetukset",
 	"config-header-sqlite": "SQLite-azetukset",
-	"config-header-oracle": "Oracle-azetukset",
-	"config-header-mssql": "Microsoft SQL Server azetukset",
 	"config-mysql-innodb": "InnoDB",
-	"config-mysql-myisam": "MyISAM",
 	"config-site-name": "Wikin nimi:",
 	"config-site-name-blank": "Kirjuta sivun nimi.",
 	"config-project-namespace": "Projektan nimitila:",

@@ -1,4 +1,5 @@
 <?php
+
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -51,13 +52,9 @@ class ClearUserWatchlistJobTest extends MediaWikiTestCase {
 		$this->setMwGlobals( 'wgUpdateRowsPerQuery', 2 );
 
 		JobQueueGroup::singleton()->push(
-			new ClearUserWatchlistJob(
-				null,
-				[
-					'userId' => $user->getId(),
-					'maxWatchlistId' => $maxId,
-				]
-			)
+			new ClearUserWatchlistJob( [
+				'userId' => $user->getId(), 'maxWatchlistId' => $maxId,
+			] )
 		);
 
 		$this->assertEquals( 1, JobQueueGroup::singleton()->getQueueSizes()['clearUserWatchlist'] );
@@ -69,7 +66,7 @@ class ClearUserWatchlistJobTest extends MediaWikiTestCase {
 		$this->assertEquals( 1, JobQueueGroup::singleton()->getQueueSizes()['clearUserWatchlist'] );
 		$this->assertEquals( 2, $watchedItemStore->countWatchedItems( $user ) );
 		$this->runJobs( 1 );
-		$this->assertEquals( 0, JobQueueGroup::singleton()->getQueueSizes()['clearUserWatchlist'] );
+		$this->assertSame( 0, JobQueueGroup::singleton()->getQueueSizes()['clearUserWatchlist'] );
 		$this->assertEquals( 2, $watchedItemStore->countWatchedItems( $user ) );
 
 		$this->assertTrue( $watchedItemStore->isWatched( $user, new TitleValue( 0, 'C' ) ) );

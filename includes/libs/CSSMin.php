@@ -29,7 +29,7 @@
  */
 class CSSMin {
 
-	/** @var string Strip marker for comments. **/
+	/** @var string Strip marker for comments. */
 	const PLACEHOLDER = "\x7fPLACEHOLDER\x7f";
 
 	/**
@@ -407,14 +407,14 @@ class CSSMin {
 			// FIXME: Simplify now we only support PHP 7.0.0+
 			// Note: PCRE doesn't support multiple capture groups with the same name by default.
 			// - PCRE 6.7 introduced the "J" modifier (PCRE_INFO_JCHANGED for PCRE_DUPNAMES).
-			//   https://secure.php.net/manual/en/reference.pcre.pattern.modifiers.php
+			//   https://www.php.net/manual/en/reference.pcre.pattern.modifiers.php
 			//   However this isn't useful since it just ignores all but the first one.
 			//   Also, while the modifier was introduced in PCRE 6.7 (PHP 5.2+) it was
 			//   not exposed to public preg_* functions until PHP 5.6.0.
 			// - PCRE 8.36 fixed this to work as expected (e.g. merge conceptually to
 			//   only return the one matched in the part that actually matched).
 			//   However MediaWiki supports 5.5.9, which has PCRE 8.32
-			//   Per https://secure.php.net/manual/en/pcre.installation.php:
+			//   Per https://www.php.net/manual/en/pcre.installation.php:
 			//   - PCRE 8.32 (PHP 5.5.0)
 			//   - PCRE 8.34 (PHP 5.5.10, PHP 5.6.0)
 			//   - PCRE 8.37 (PHP 5.5.26, PHP 5.6.9, PHP 7.0.0)

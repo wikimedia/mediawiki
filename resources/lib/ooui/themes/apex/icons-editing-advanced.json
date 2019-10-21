@@ -15,7 +15,8 @@
 			"file": "../wikimediaui/images/icons/attachment.svg"
 		},
 		"beaker": {
-			"file": "../wikimediaui/images/icons/beaker.svg"
+			"file": "../wikimediaui/images/icons/labFlask.svg",
+			"deprecated": "Renamed since v0.34.1, use 'labFlask' instead."
 		},
 		"calendar": {
 			"file": "../wikimediaui/images/icons/calendar.svg"
@@ -25,6 +26,21 @@
 		},
 		"hieroglyph": {
 			"file": "../wikimediaui/images/icons/hieroglyph.svg"
+		},
+		"imageLayoutBasic": {
+			"file": "../wikimediaui/images/icons/imageLayoutBasic.svg"
+		},
+		"imageLayoutFrame": {
+			"file": "../wikimediaui/images/icons/imageLayoutFrame.svg"
+		},
+		"imageLayoutFrameless": {
+			"file": "../wikimediaui/images/icons/imageLayoutFrameless.svg"
+		},
+		"imageLayoutThumbnail": {
+			"file": "../wikimediaui/images/icons/imageLayoutThumbnail.svg"
+		},
+		"labFlask": {
+			"file": "../wikimediaui/images/icons/labFlask.svg"
 		},
 		"language": {
 			"file": "../wikimediaui/images/icons/language.svg"

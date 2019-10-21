@@ -33,7 +33,7 @@ abstract class AlphabeticPager extends IndexPager {
 	 *
 	 * @return string HTML
 	 */
-	function getNavigationBar() {
+	public function getNavigationBar() {
 		if ( !$this->isNavigationBarShown() ) {
 			return '';
 		}

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\Block\DatabaseBlock;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -68,7 +69,7 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiTestCase 
 			\TestUser::setPasswordForUser( $user, 'UTBlockeePassword' );
 			$user->saveSettings();
 		}
-		$oldBlock = \Block::newFromTarget( 'UTBlockee' );
+		$oldBlock = DatabaseBlock::newFromTarget( 'UTBlockee' );
 		if ( $oldBlock ) {
 			// An old block will prevent our new one from saving.
 			$oldBlock->delete();
@@ -81,7 +82,7 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiTestCase 
 			'expiry' => time() + 100500,
 			'createAccount' => true,
 		];
-		$block = new \Block( $blockOptions );
+		$block = new DatabaseBlock( $blockOptions );
 		$block->insert();
 		return $user;
 	}
@@ -154,7 +155,7 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiTestCase 
 			'expiry' => time() + 100500,
 			'createAccount' => true,
 		];
-		$block = new \Block( $blockOptions );
+		$block = new DatabaseBlock( $blockOptions );
 		$block->insert();
 		$scopeVariable = new \Wikimedia\ScopedCallback( [ $block, 'delete' ] );
 

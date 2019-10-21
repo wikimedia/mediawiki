@@ -267,8 +267,6 @@ class ApiLogin extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=login&lgname=user&lgpassword=password'
-				=> 'apihelp-login-example-gettoken',
 			'action=login&lgname=user&lgpassword=password&lgtoken=123ABC'
 				=> 'apihelp-login-example-login',
 		];
@@ -289,7 +287,7 @@ class ApiLogin extends ApiBase {
 		];
 		if ( $response->message ) {
 			$ret['message'] = $response->message->inLanguage( 'en' )->plain();
-		};
+		}
 		$reqs = [
 			'neededRequests' => $response->neededRequests,
 			'createRequest' => $response->createRequest,

@@ -1,15 +1,13 @@
-const assert = require( 'assert' ),
-	Api = require( 'wdio-mediawiki/Api' ),
-	RecentChangesPage = require( '../pageobjects/recentchanges.page' ),
-	Util = require( 'wdio-mediawiki/Util' ),
-	RunJobs = require( 'wdio-mediawiki/RunJobs' );
+const assert = require( 'assert' );
+const Api = require( 'wdio-mediawiki/Api' );
+const RecentChangesPage = require( '../pageobjects/recentchanges.page' );
+const Util = require( 'wdio-mediawiki/Util' );
 
 describe( 'Special:RecentChanges', function () {
-	let content,
-		name;
+	let content, name;
 
 	beforeEach( function () {
-		browser.deleteCookie();
+		browser.deleteAllCookies();
 		content = Util.getTestString();
 		name = Util.getTestString();
 	} );
@@ -18,7 +16,6 @@ describe( 'Special:RecentChanges', function () {
 		browser.call( function () {
 			return Api.edit( name, content );
 		} );
-		RunJobs.run();
 
 		RecentChangesPage.open();
 

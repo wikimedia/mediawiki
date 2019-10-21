@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.3
+ * OOUI v0.34.1-pre (3913589098)
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-04-04T19:10:54Z
+ * Date: 2019-09-10T23:46:11Z
  */
 
 .oo-ui-window {
@@ -60,7 +60,7 @@
 }
 .oo-ui-dialog-content > .oo-ui-window-head {
   overflow: hidden;
-  z-index: 1;
+  z-index: 3;
   top: 0;
 }
 .oo-ui-dialog-content > .oo-ui-window-body {
@@ -212,104 +212,110 @@
   -webkit-overflow-scrolling: touch;
 }
 .oo-ui-processDialog-content .oo-ui-window-head {
-  height: 3.14285714em;
+  min-height: 2.85714286em;
 }
 .oo-ui-processDialog-content .oo-ui-window-body {
-  top: 3.14285714em;
+  top: 2.85714286em;
   outline: 1px solid #c8ccd1;
 }
 .oo-ui-processDialog-navigation {
   position: relative;
-  height: 3.14285714em;
+  min-height: 2.85714286em;
 }
 .oo-ui-processDialog-location {
-  height: 3.14285714em;
-  cursor: default;
+  min-height: 2.85714286em;
   text-align: center;
+  cursor: default;
 }
 .oo-ui-processDialog-title {
+  font-size: 1.1em;
   font-weight: bold;
-  line-height: 3.14285714em;
+  line-height: 2.5974026em;
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-framed,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-framed,
-.oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-buttonElement-framed {
-  margin: 0.42857143em;
+.oo-ui-processDialog .oo-ui-actionWidget > .oo-ui-buttonElement-button {
+  border-radius: 0;
+  border-top-color: transparent;
+  border-bottom-color: #c8ccd1;
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-iconElement:first-child,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-iconElement:first-child,
-.oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-iconElement:first-child {
-  margin-left: 0;
+.oo-ui-processDialog .oo-ui-actionWidget > .oo-ui-buttonElement-button:hover,
+.oo-ui-processDialog .oo-ui-actionWidget > .oo-ui-buttonElement-button:active {
+  border-top-color: transparent;
+  border-bottom-color: #c8ccd1;
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-iconElement > .oo-ui-buttonElement-button,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-iconElement > .oo-ui-buttonElement-button,
-.oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-iconElement > .oo-ui-buttonElement-button {
-  padding-left: 2.42857143em;
+.oo-ui-processDialog .oo-ui-actionWidget > .oo-ui-buttonElement-button:focus {
+  border-color: #36c;
+}
+.oo-ui-processDialog .oo-ui-actionWidget:not( .oo-ui-flaggedElement-progressive ):not( .oo-ui-flaggedElement-destructive ) > .oo-ui-buttonElement-button:hover,
+.oo-ui-processDialog .oo-ui-actionWidget:not( .oo-ui-flaggedElement-progressive ):not( .oo-ui-flaggedElement-destructive ) > .oo-ui-buttonElement-button:active {
+  border-right-color: #c8ccd1;
+  border-left-color: transparent;
+}
+.oo-ui-processDialog .oo-ui-actionWidget:not( .oo-ui-flaggedElement-progressive ):not( .oo-ui-flaggedElement-destructive ) > .oo-ui-buttonElement-button:focus {
+  border-color: #36c;
+}
+.oo-ui-processDialog .oo-ui-actionWidget.oo-ui-iconElement > .oo-ui-buttonElement-button {
+  min-height: 2.85714286em;
   padding-top: 0;
-  min-height: 3.14285714em;
+  padding-left: 3.14285714em;
+  padding-right: 0;
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon,
-.oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
-  left: 0.5em;
+.oo-ui-processDialog .oo-ui-actionWidget.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
+  left: 0.85714286em;
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-labelElement:first-child,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-labelElement:first-child,
-.oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-labelElement:first-child {
+.oo-ui-processDialog .oo-ui-actionWidget.oo-ui-labelElement:first-child {
   margin-left: 0;
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button,
-.oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button {
-  padding: 0.75em 1em;
+.oo-ui-processDialog .oo-ui-actionWidget.oo-ui-labelElement > .oo-ui-buttonElement-button {
+  padding: 0.71428571em 0.85714286em;
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-labelElement.oo-ui-iconElement > .oo-ui-buttonElement-button,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-labelElement.oo-ui-iconElement > .oo-ui-buttonElement-button,
-.oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-labelElement.oo-ui-iconElement > .oo-ui-buttonElement-button {
-  padding-left: 2.17857143em;
+.oo-ui-processDialog .oo-ui-actionWidget.oo-ui-labelElement.oo-ui-iconElement > .oo-ui-buttonElement-button {
+  padding-left: 2.64285714em;
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless .oo-ui-labelElement-label,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless .oo-ui-labelElement-label,
-.oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-buttonElement-frameless .oo-ui-labelElement-label {
-  line-height: 1.42857143em;
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget > .oo-ui-buttonElement-button {
+  border-left-color: #c8ccd1;
+  border-right-color: transparent;
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless:hover,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget:not( .oo-ui-flaggedElement-progressive ):not( .oo-ui-flaggedElement-destructive ) > .oo-ui-buttonElement-button:hover,
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget:not( .oo-ui-flaggedElement-progressive ):not( .oo-ui-flaggedElement-destructive ) > .oo-ui-buttonElement-button:active {
+  border-left-color: #c8ccd1;
+  border-right-color: transparent;
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless:active,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless:active {
-  background-color: rgba(0, 0, 0, 0.1);
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget:not( .oo-ui-flaggedElement-progressive ):not( .oo-ui-flaggedElement-destructive ) > .oo-ui-buttonElement-button:focus {
+  border-color: #36c;
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive:hover,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive:hover {
-  background-color: rgba(8, 126, 204, 0.05);
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget > .oo-ui-buttonElement-button,
+.oo-ui-processDialog-actions-other .oo-ui-actionWidget > .oo-ui-buttonElement-button {
+  border-right-color: #c8ccd1;
+  border-left-color: transparent;
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive:active,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive:active {
-  background-color: rgba(8, 126, 204, 0.1);
+.oo-ui-processDialog-actions-safe .oo-ui-widget-enabled.oo-ui-iconElement:not( .oo-ui-labelElement ) > .oo-ui-buttonElement-button {
+  background-color: transparent;
+  border-right-color: transparent;
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive .oo-ui-labelElement-label,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive .oo-ui-labelElement-label {
-  font-weight: bold;
+.oo-ui-processDialog-actions-safe .oo-ui-widget-enabled.oo-ui-iconElement:not( .oo-ui-labelElement ) > .oo-ui-buttonElement-button:hover {
+  background-color: #f8f9fa;
+  border-right-color: #c8ccd1;
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-destructive:hover,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-destructive:hover {
-  background-color: rgba(212, 83, 83, 0.05);
+.oo-ui-processDialog-actions-safe .oo-ui-widget-enabled.oo-ui-iconElement:not( .oo-ui-labelElement ) > .oo-ui-buttonElement-button:active {
+  background-color: #c8ccd1;
+  border-right-color: #c8ccd1;
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-destructive:active,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-destructive:active {
-  background-color: rgba(212, 83, 83, 0.1);
+.oo-ui-processDialog-actions-safe .oo-ui-widget-enabled.oo-ui-iconElement:not( .oo-ui-labelElement ) > .oo-ui-buttonElement-button:focus {
+  border-color: #36c;
 }
 .oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-buttonElement {
   margin-right: 0;
+}
+.oo-ui-processDialog-actions-other .oo-ui-actionWidget:not( .oo-ui-flaggedElement-progressive ):not( .oo-ui-flaggedElement-destructive ) > .oo-ui-buttonElement-button {
+  border-top-color: #c8ccd1;
+  border-bottom-color: transparent;
 }
 .oo-ui-processDialog > .oo-ui-window-frame {
   min-height: 5em;
 }
 .oo-ui-processDialog-errors {
   background-color: rgba(255, 255, 255, 0.9);
-  padding: 3em 3em 1.5em 3em;
+  padding: 3em 3em 0 3em;
   text-align: center;
 }
 .oo-ui-processDialog-errors .oo-ui-buttonWidget {
@@ -318,15 +324,39 @@
 .oo-ui-processDialog-errors-title {
   font-size: 1.5em;
   color: #000;
-  margin-bottom: 2em;
+  margin-bottom: 1.5em;
 }
 .oo-ui-processDialog-error {
-  text-align: left;
-  margin: 1em;
-  padding: 1em;
+  background-color: #fee7e6;
+  margin: 1em 0 0;
   border: 1px solid #d33;
-  background-color: #fff7f7;
-  border-radius: 2px;
+  padding: 1.14285714em 1.71428571em;
+  text-align: left;
+}
+.oo-ui-processDialog.oo-ui-isMobile .oo-ui-processDialog-content .oo-ui-window-head,
+.oo-ui-processDialog.oo-ui-isMobile .oo-ui-processDialog-navigation,
+.oo-ui-processDialog.oo-ui-isMobile .oo-ui-processDialog-location {
+  min-height: 3.14285714em;
+}
+.oo-ui-processDialog.oo-ui-isMobile .oo-ui-processDialog-location {
+  margin-left: 1em;
+  text-align: left;
+}
+.oo-ui-processDialog.oo-ui-isMobile .oo-ui-processDialog-title {
+  line-height: 2.85714286em;
+}
+.oo-ui-processDialog.oo-ui-isMobile .oo-ui-processDialog-content .oo-ui-window-body {
+  top: 3.14285714em;
+}
+.oo-ui-processDialog.oo-ui-isMobile .oo-ui-actionWidget.oo-ui-iconElement > .oo-ui-buttonElement-button {
+  min-height: 3.14285714em;
+  padding-left: 3.14285714em;
+}
+.oo-ui-processDialog.oo-ui-isMobile .oo-ui-actionWidget.oo-ui-labelElement > .oo-ui-buttonElement-button {
+  padding: 0.85714286em 0.85714286em;
+}
+.oo-ui-processDialog.oo-ui-isMobile .oo-ui-actionWidget.oo-ui-labelElement.oo-ui-iconElement > .oo-ui-buttonElement-button {
+  padding-left: 2.64285714em;
 }
 
 .oo-ui-windowManager-modal > .oo-ui-dialog {
@@ -362,6 +392,10 @@
 .oo-ui-windowManager-modal-active {
   overflow: hidden;
   position: relative;
+}
+.oo-ui-windowManager-ios-modal-ready {
+  height: 100%;
+  overflow: hidden;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog {
   background-color: rgba(255, 255, 255, 0.5);

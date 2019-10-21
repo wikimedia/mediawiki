@@ -527,23 +527,6 @@ class IcuCollation extends Collation {
 	}
 
 	/**
-	 * Return the version of ICU library used by PHP's intl extension,
-	 * or false when the extension is not installed of the version
-	 * can't be determined.
-	 *
-	 * The constant INTL_ICU_VERSION this function refers to isn't really
-	 * documented, but see https://bugs.php.net/bug.php?id=54561.
-	 *
-	 * @since 1.21
-	 * @deprecated since 1.32, use INTL_ICU_VERSION directly
-	 * @return string
-	 */
-	static function getICUVersion() {
-		wfDeprecated( __METHOD__, '1.32' );
-		return INTL_ICU_VERSION;
-	}
-
-	/**
 	 * Return the version of Unicode appropriate for the version of ICU library
 	 * currently in use, or false when it can't be determined.
 	 *

@@ -40,11 +40,10 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 	 * @return void
 	 */
 	protected function run( ApiPageSet $resultPageSet = null ) {
-		global $wgActorTableSchemaMigrationStage;
-
 		$db = $this->getDB();
 		$params = $this->extractRequestParams( false );
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$services = MediaWikiServices::getInstance();
+		$revisionStore = $services->getRevisionStore();
 
 		$result = $this->getResult();
 
@@ -53,9 +52,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		$tsField = 'rev_timestamp';
 		$idField = 'rev_id';
 		$pageField = 'rev_page';
-		if ( $params['user'] !== null &&
-			( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW )
-		) {
+		if ( $params['user'] !== null ) {
 			// The query is probably best done using the actor_timestamp index on
 			// revision_actor_temp. Use the denormalized fields from that table.
 			$tsField = 'revactor_timestamp';
@@ -70,7 +67,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		if ( $params['namespace'] !== null ) {
 			$params['namespace'] = array_unique( $params['namespace'] );
 			sort( $params['namespace'] );
-			if ( $params['namespace'] != MWNamespace::getValidNamespaces() ) {
+			if ( $params['namespace'] != $services->getNamespaceInfo()->getValidNamespaces() ) {
 				$needPageTable = true;
 				if ( $this->getConfig()->get( 'MiserMode' ) ) {
 					$miser_ns = $params['namespace'];
@@ -82,9 +79,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 
 		if ( $resultPageSet === null ) {
 			$this->parseParameters( $params );
-			$revQuery = $revisionStore->getQueryInfo(
-				$this->fetchContent ? [ 'page', 'text' ] : [ 'page' ]
-			);
+			$revQuery = $revisionStore->getQueryInfo( [ 'page' ] );
 		} else {
 			$this->limit = $this->getParameter( 'limit' ) ?: 10;
 			$revQuery = [
@@ -155,9 +150,11 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 
 		if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
 			// Paranoia: avoid brute force searches (T19342)
-			if ( !$this->getUser()->isAllowed( 'deletedhistory' ) ) {
+			if ( !$this->getPermissionManager()->userHasRight( $this->getUser(), 'deletedhistory' ) ) {
 				$bitmask = RevisionRecord::DELETED_USER;
-			} elseif ( !$this->getUser()->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
+			} elseif ( !$this->getPermissionManager()
+				->userHasAnyRight( $this->getUser(), 'suppressrevision', 'viewsuppressed' )
+			) {
 				$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
 			} else {
 				$bitmask = 0;

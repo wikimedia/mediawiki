@@ -95,8 +95,10 @@ class WrapOldPasswords extends Maintenance {
 				$user = User::newFromId( $row->user_id );
 				/** @var ParameterizedPassword $password */
 				$password = $passwordFactory->newFromCiphertext( $row->user_password );
+				'@phan-var ParameterizedPassword $password';
 				/** @var LayeredParameterizedPassword $layeredPassword */
 				$layeredPassword = $passwordFactory->newFromType( $layeredType );
+				'@phan-var LayeredParameterizedPassword $layeredPassword';
 				$layeredPassword->partialCrypt( $password );
 
 				$updateUsers[] = $user;

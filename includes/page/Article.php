@@ -19,6 +19,7 @@
  *
  * @file
  */
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -362,8 +363,16 @@ class Article implements Page {
 			}
 		}
 
+		$rl = MediaWikiServices::getInstance()->getRevisionLookup();
+		$oldRev = $this->mRevision ? $this->mRevision->getRevisionRecord() : null;
 		if ( $request->getVal( 'direction' ) == 'next' ) {
-			$nextid = $this->getTitle()->getNextRevisionID( $oldid );
+			$nextid = 0;
+			if ( $oldRev ) {
+				$nextRev = $rl->getNextRevision( $oldRev );
+				if ( $nextRev ) {
+					$nextid = $nextRev->getId();
+				}
+			}
 			if ( $nextid ) {
 				$oldid = $nextid;
 				$this->mRevision = null;
@@ -371,7 +380,13 @@ class Article implements Page {
 				$this->mRedirectUrl = $this->getTitle()->getFullURL( 'redirect=no' );
 			}
 		} elseif ( $request->getVal( 'direction' ) == 'prev' ) {
-			$previd = $this->getTitle()->getPreviousRevisionID( $oldid );
+			$previd = 0;
+			if ( $oldRev ) {
+				$prevRev = $rl->getPreviousRevision( $oldRev );
+				if ( $prevRev ) {
+					$previd = $prevRev->getId();
+				}
+			}
 			if ( $previd ) {
 				$oldid = $previd;
 				$this->mRevision = null;
@@ -453,7 +468,9 @@ class Article implements Page {
 		$this->mRevIdFetched = $this->mRevision->getId();
 		$this->fetchResult = Status::newGood( $this->mRevision );
 
-		if ( !$this->mRevision->userCan( Revision::DELETED_TEXT, $this->getContext()->getUser() ) ) {
+		if (
+			!$this->mRevision->userCan( RevisionRecord::DELETED_TEXT, $this->getContext()->getUser() )
+		) {
 			wfDebug( __METHOD__ . " failed to retrieve content of revision " .
 				$this->mRevision->getId() . "\n" );
 
@@ -465,7 +482,7 @@ class Article implements Page {
 
 		if ( Hooks::isRegistered( 'ArticleAfterFetchContentObject' ) ) {
 			$contentObject = $this->mRevision->getContent(
-				Revision::FOR_THIS_USER,
+				RevisionRecord::FOR_THIS_USER,
 				$this->getContext()->getUser()
 			);
 
@@ -488,7 +505,7 @@ class Article implements Page {
 
 		// For B/C only
 		$this->mContentObject = $this->mRevision->getContent(
-			Revision::FOR_THIS_USER,
+			RevisionRecord::FOR_THIS_USER,
 			$this->getContext()->getUser()
 		);
 
@@ -584,7 +601,7 @@ class Article implements Page {
 	 * page of the given title.
 	 */
 	public function view() {
-		global $wgUseFileCache, $wgDebugToolbar;
+		global $wgUseFileCache;
 
 		# Get variables from query string
 		# As side effect this will load the revision and update the title
@@ -632,14 +649,15 @@ class Article implements Page {
 		if ( $outputPage->isPrintable() ) {
 			$parserOptions->setIsPrintable( true );
 			$poOptions['enableSectionEditLinks'] = false;
-		} elseif ( $this->viewIsRenderAction
-			|| !$this->isCurrent() || !$this->getTitle()->quickUserCan( 'edit', $user )
+		} elseif ( $this->viewIsRenderAction || !$this->isCurrent() ||
+			!MediaWikiServices::getInstance()->getPermissionManager()
+				->quickUserCan( 'edit', $user, $this->getTitle() )
 		) {
 			$poOptions['enableSectionEditLinks'] = false;
 		}
 
 		# Try client and file cache
-		if ( !$wgDebugToolbar && $oldid === 0 && $this->mPage->checkTouched() ) {
+		if ( $oldid === 0 && $this->mPage->checkTouched() ) {
 			# Try to stream the output from file cache
 			if ( $wgUseFileCache && $this->tryFileCache() ) {
 				wfDebug( __METHOD__ . ": done file cache\n" );
@@ -790,7 +808,9 @@ class Article implements Page {
 							$outputPage->enableClientCache( false );
 							$outputPage->setRobotPolicy( 'noindex,nofollow' );
 
-							$errortext = $error->getWikiText( false, 'view-pool-error' );
+							$errortext = $error->getWikiText(
+								false, 'view-pool-error', $this->getContext()->getLanguage()
+							);
 							$outputPage->wrapWikiTextAsInterface( 'errorbox', $errortext );
 						}
 						# Connection or timeout error
@@ -959,7 +979,7 @@ class Article implements Page {
 			} else {
 				$specificTarget = $titleText;
 			}
-			if ( Block::newFromTarget( $specificTarget, $vagueTarget ) instanceof Block ) {
+			if ( DatabaseBlock::newFromTarget( $specificTarget, $vagueTarget ) instanceof DatabaseBlock ) {
 				return [
 					'index' => 'noindex',
 					'follow' => 'nofollow'
@@ -1178,7 +1198,8 @@ class Article implements Page {
 		$title = $this->getTitle();
 		$rc = false;
 
-		if ( !$title->quickUserCan( 'patrol', $user )
+		if ( !MediaWikiServices::getInstance()->getPermissionManager()
+				->quickUserCan( 'patrol', $user, $title )
 			|| !( $wgUseRCPatrol || $wgUseNPPatrol
 				|| ( $wgUseFilePatrol && $title->inNamespace( NS_FILE ) ) )
 		) {
@@ -1305,7 +1326,10 @@ class Article implements Page {
 		}
 
 		$outputPage->preventClickjacking();
-		if ( $user->isAllowed( 'writeapi' ) ) {
+		if ( MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $user, 'writeapi' )
+		) {
 			$outputPage->addModules( 'mediawiki.page.patrol.ajax' );
 		}
 
@@ -1352,6 +1376,8 @@ class Article implements Page {
 
 		$title = $this->getTitle();
 
+		$services = MediaWikiServices::getInstance();
+
 		# Show info in user (talk) namespace. Does the user exist? Is he blocked?
 		if ( $title->getNamespace() == NS_USER
 			|| $title->getNamespace() == NS_USER_TALK
@@ -1359,14 +1385,14 @@ class Article implements Page {
 			$rootPart = explode( '/', $title->getText() )[0];
 			$user = User::newFromName( $rootPart, false /* allow IP users */ );
 			$ip = User::isIP( $rootPart );
-			$block = Block::newFromTarget( $user, $user );
+			$block = DatabaseBlock::newFromTarget( $user, $user );
 
 			if ( !( $user && $user->isLoggedIn() ) && !$ip ) { # User does not exist
 				$outputPage->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
 					[ 'userpage-userdoesnotexist-view', wfEscapeWikiText( $rootPart ) ] );
 			} elseif (
 				!is_null( $block ) &&
-				$block->getType() != Block::TYPE_AUTO &&
+				$block->getType() != DatabaseBlock::TYPE_AUTO &&
 				( $block->isSitewide() || $user->isBlockedFrom( $title ) )
 			) {
 				// Show log extract if the user is sitewide blocked or is partially
@@ -1374,7 +1400,8 @@ class Article implements Page {
 				LogEventsList::showLogExtract(
 					$outputPage,
 					'block',
-					MWNamespace::getCanonicalName( NS_USER ) . ':' . $block->getTarget(),
+					$services->getNamespaceInfo()->getCanonicalName( NS_USER ) . ':' .
+						$block->getTarget(),
 					'',
 					[
 						'lim' => 1,
@@ -1396,11 +1423,11 @@ class Article implements Page {
 		# Show delete and move logs if there were any such events.
 		# The logging query can DOS the site when bots/crawlers cause 404 floods,
 		# so be careful showing this. 404 pages must be cheap as they are hard to cache.
-		$cache = MediaWikiServices::getInstance()->getMainObjectStash();
-		$key = $cache->makeKey( 'page-recent-delete', md5( $title->getPrefixedText() ) );
+		$dbCache = ObjectCache::getInstance( 'db-replicated' );
+		$key = $dbCache->makeKey( 'page-recent-delete', md5( $title->getPrefixedText() ) );
 		$loggedIn = $this->getContext()->getUser()->isLoggedIn();
 		$sessionExists = $this->getContext()->getRequest()->getSession()->isPersistent();
-		if ( $loggedIn || $cache->get( $key ) || $sessionExists ) {
+		if ( $loggedIn || $dbCache->get( $key ) || $sessionExists ) {
 			$logTypes = [ 'delete', 'move', 'protect' ];
 
 			$dbr = wfGetDB( DB_REPLICA );
@@ -1444,6 +1471,7 @@ class Article implements Page {
 
 		# Show error message
 		$oldid = $this->getOldID();
+		$pm = MediaWikiServices::getInstance()->getPermissionManager();
 		if ( !$oldid && $title->getNamespace() === NS_MEDIAWIKI && $title->hasSourceText() ) {
 			// use fake Content object for system message
 			$parserOptions = ParserOptions::newCanonical( 'canonical' );
@@ -1451,8 +1479,8 @@ class Article implements Page {
 		} else {
 			if ( $oldid ) {
 				$text = wfMessage( 'missing-revision', $oldid )->plain();
-			} elseif ( $title->quickUserCan( 'create', $this->getContext()->getUser() )
-				&& $title->quickUserCan( 'edit', $this->getContext()->getUser() )
+			} elseif ( $pm->quickUserCan( 'create', $this->getContext()->getUser(), $title ) &&
+				$pm->quickUserCan( 'edit', $this->getContext()->getUser(), $title )
 			) {
 				$message = $this->getContext()->getUser()->isLoggedIn() ? 'noarticletext' : 'noarticletextanon';
 				$text = wfMessage( $message )->plain();
@@ -1477,7 +1505,7 @@ class Article implements Page {
 	 * @return bool True if the view is allowed, false if not.
 	 */
 	public function showDeletedRevisionHeader() {
-		if ( !$this->mRevision->isDeleted( Revision::DELETED_TEXT ) ) {
+		if ( !$this->mRevision->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 			// Not deleted
 			return true;
 		}
@@ -1485,7 +1513,7 @@ class Article implements Page {
 		$outputPage = $this->getContext()->getOutput();
 		$user = $this->getContext()->getUser();
 		// If the user is not allowed to see it...
-		if ( !$this->mRevision->userCan( Revision::DELETED_TEXT, $user ) ) {
+		if ( !$this->mRevision->userCan( RevisionRecord::DELETED_TEXT, $user ) ) {
 			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
 				'rev-deleted-text-permission' );
 
@@ -1495,7 +1523,7 @@ class Article implements Page {
 			# Give explanation and add a link to view the revision...
 			$oldid = intval( $this->getOldID() );
 			$link = $this->getTitle()->getFullURL( "oldid={$oldid}&unhide=1" );
-			$msg = $this->mRevision->isDeleted( Revision::DELETED_RESTRICTED ) ?
+			$msg = $this->mRevision->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ?
 				'rev-suppressed-text-unhide' : 'rev-deleted-text-unhide';
 			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
 				[ $msg, $link ] );
@@ -1503,7 +1531,7 @@ class Article implements Page {
 			return false;
 		// We are allowed to see...
 		} else {
-			$msg = $this->mRevision->isDeleted( Revision::DELETED_RESTRICTED ) ?
+			$msg = $this->mRevision->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ?
 				'rev-suppressed-text-view' : 'rev-deleted-text-view';
 			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", $msg );
 
@@ -1587,8 +1615,9 @@ class Article implements Page {
 					'oldid' => $oldid
 				] + $extraParams
 			);
-		$prev = $this->getTitle()->getPreviousRevisionID( $oldid );
-		$prevlink = $prev
+		$rl = MediaWikiServices::getInstance()->getRevisionLookup();
+		$prevExist = (bool)$rl->getPreviousRevision( $revision->getRevisionRecord() );
+		$prevlink = $prevExist
 			? Linker::linkKnown(
 				$this->getTitle(),
 				$context->msg( 'previousrevision' )->escaped(),
@@ -1599,7 +1628,7 @@ class Article implements Page {
 				] + $extraParams
 			)
 			: $context->msg( 'previousrevision' )->escaped();
-		$prevdiff = $prev
+		$prevdiff = $prevExist
 			? Linker::linkKnown(
 				$this->getTitle(),
 				$context->msg( 'diff' )->escaped(),
@@ -1639,7 +1668,7 @@ class Article implements Page {
 		}
 
 		// the outer div is need for styling the revision info and nav in MobileFrontend
-		$outputPage->addSubtitle( "<div class=\"mw-revision\">" . $revisionInfo .
+		$outputPage->addSubtitle( "<div class=\"mw-revision warningbox\">" . $revisionInfo .
 			"<div id=\"mw-revision-nav\">" . $cdel .
 			$context->msg( 'revision-nav' )->rawParams(
 				$prevdiff, $prevlink, $lnk, $curdiff, $nextlink, $nextdiff
@@ -1818,7 +1847,10 @@ class Article implements Page {
 			[ 'delete', $this->getTitle()->getPrefixedText() ] )
 		) {
 			# Flag to hide all contents of the archived revisions
-			$suppress = $request->getCheck( 'wpSuppress' ) && $user->isAllowed( 'suppressrevision' );
+
+			$suppress = $request->getCheck( 'wpSuppress' ) && MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->userHasRight( $user, 'suppressrevision' );
 
 			$this->doDelete( $reason, $suppress );
 
@@ -1920,6 +1952,8 @@ class Article implements Page {
 
 		$outputPage->enableOOUI();
 
+		$fields = [];
+
 		$options = Xml::listDropDownOptions(
 			$ctx->msg( 'deletereason-dropdown' )->inContentLanguage()->text(),
 			[ 'other' => $ctx->msg( 'deletereasonotherlist' )->inContentLanguage()->text() ]
@@ -1975,8 +2009,8 @@ class Article implements Page {
 				]
 			);
 		}
-
-		if ( $user->isAllowed( 'suppressrevision' ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( $permissionManager->userHasRight( $user, 'suppressrevision' ) ) {
 			$fields[] = new OOUI\FieldLayout(
 				new OOUI\CheckboxInputWidget( [
 					'name' => 'wpSuppress',
@@ -2034,7 +2068,7 @@ class Article implements Page {
 			] )
 		);
 
-		if ( $user->isAllowed( 'editinterface' ) ) {
+		if ( $permissionManager->userHasRight( $user, 'editinterface' ) ) {
 			$link = Linker::linkKnown(
 				$ctx->msg( 'deletereason-dropdown' )->inContentLanguage()->getTitle(),
 				wfMessage( 'delete-edit-reasonlist' )->escaped(),
@@ -2089,7 +2123,7 @@ class Article implements Page {
 			if ( $error == '' ) {
 				$outputPage->wrapWikiTextAsInterface(
 					'error mw-error-cannotdelete',
-					$status->getWikiText()
+					$status->getWikiText( false, false, $context->getLanguage() )
 				);
 				$deleteLogPage = new LogPage( 'delete' );
 				$outputPage->addHTML( Xml::element( 'h2', null, $deleteLogPage->getName()->text() ) );
@@ -2162,7 +2196,7 @@ class Article implements Page {
 		return $cacheable;
 	}
 
-	/**#@-*/
+	/** #@- */
 
 	/**
 	 * Lightweight method to get the parser output for a page, checking the parser cache
@@ -2408,7 +2442,7 @@ class Article implements Page {
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getComment
 	 */
-	public function getComment( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+	public function getComment( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		return $this->mPage->getComment( $audience, $user );
 	}
 
@@ -2440,7 +2474,7 @@ class Article implements Page {
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getCreator
 	 */
-	public function getCreator( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+	public function getCreator( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		return $this->mPage->getCreator( $audience, $user );
 	}
 
@@ -2552,7 +2586,7 @@ class Article implements Page {
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getUser
 	 */
-	public function getUser( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+	public function getUser( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		return $this->mPage->getUser( $audience, $user );
 	}
 
@@ -2560,7 +2594,7 @@ class Article implements Page {
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getUserText
 	 */
-	public function getUserText( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+	public function getUserText( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		return $this->mPage->getUserText( $audience, $user );
 	}
 

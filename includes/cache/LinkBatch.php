@@ -22,7 +22,7 @@
  */
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -146,13 +146,13 @@ class LinkBatch {
 	}
 
 	/**
-	 * Add a ResultWrapper containing IDs and titles to a LinkCache object.
+	 * Add a result wrapper containing IDs and titles to a LinkCache object.
 	 * As normal, titles will go into the static Title cache field.
 	 * This function *also* stores extra fields of the title used for link
 	 * parsing to avoid extra DB queries.
 	 *
 	 * @param LinkCache $cache
-	 * @param ResultWrapper $res
+	 * @param IResultWrapper $res
 	 * @return array Array of remaining titles
 	 */
 	public function addResultToCache( $cache, $res ) {
@@ -187,8 +187,8 @@ class LinkBatch {
 	}
 
 	/**
-	 * Perform the existence test query, return a ResultWrapper with page_id fields
-	 * @return bool|ResultWrapper
+	 * Perform the existence test query, return a result wrapper with page_id fields
+	 * @return bool|IResultWrapper
 	 */
 	public function doQuery() {
 		if ( $this->isEmpty() ) {

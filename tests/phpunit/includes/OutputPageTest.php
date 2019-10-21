@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -25,6 +26,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		parent::setUp();
 		ResourceLoader::clearCache();
 	}
+
 	protected function tearDown() {
 		parent::tearDown();
 		ResourceLoader::clearCache();
@@ -91,7 +93,7 @@ class OutputPageTest extends MediaWikiTestCase {
 				'Some syndication links should be there' );
 		} else {
 			$this->assertFalse( $outputPage->isSyndicated(), 'No syndication should be offered' );
-			$this->assertEquals( 0, count( $outputPage->getSyndicationLinks() ),
+			$this->assertSame( 0, count( $outputPage->getSyndicationLinks() ),
 				'No syndication links should be there' );
 		}
 	}
@@ -297,33 +299,6 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Test that addScriptFile() throws due to deprecation.
-	 *
-	 * @covers OutputPage::addScriptFile
-	 */
-	public function testAddDeprecatedScriptFileWarning() {
-		$this->setExpectedException( PHPUnit_Framework_Error_Deprecated::class,
-			'Use of OutputPage::addScriptFile was deprecated in MediaWiki 1.24.' );
-
-		$op = $this->newInstance();
-		$op->addScriptFile( 'ignored-script.js' );
-	}
-
-	/**
-	 * Test the actual behavior of the method (in the case where it doesn't throw, e.g., in
-	 * production).
-	 *
-	 * @covers OutputPage::addScriptFile
-	 */
-	public function testAddDeprecatedScriptFileNoOp() {
-		$this->hideDeprecated( 'OutputPage::addScriptFile' );
-		$op = $this->newInstance();
-		$op->addScriptFile( 'ignored-script.js' );
-
-		$this->assertNotContains( 'ignored-script.js', '' . $op->getBottomScripts() );
-	}
-
-	/**
 	 * @covers OutputPage::addInlineScript
 	 */
 	public function testAddInlineScript() {
@@ -525,9 +500,9 @@ class OutputPageTest extends MediaWikiTestCase {
 				function ( $op ) {
 					$op->getContext()->setUser( $this->getTestUser()->getUser() );
 				} ],
-			'After Squid expiry' =>
+			'After CDN expiry' =>
 				[ $lastModified, $lastModified, false,
-					[ 'UseSquid' => true, 'SquidMaxage' => 3599 ] ],
+					[ 'UseCdn' => true, 'CdnMaxAge' => 3599 ] ],
 			'Hook allows cache use' =>
 				[ $lastModified + 1, $lastModified, true, [],
 				function ( $op, $that ) {
@@ -1568,34 +1543,15 @@ class OutputPageTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideAddWikiText
-	 * @covers OutputPage::addWikiText
 	 * @covers OutputPage::addWikiTextAsInterface
 	 * @covers OutputPage::wrapWikiTextAsInterface
 	 * @covers OutputPage::addWikiTextAsContent
-	 * @covers OutputPage::addWikiTextWithTitle
-	 * @covers OutputPage::addWikiTextTitle
-	 * @covers OutputPage::addWikiTextTidy
-	 * @covers OutputPage::addWikiTextTitleTidy
 	 * @covers OutputPage::getHTML
 	 */
 	public function testAddWikiText( $method, array $args, $expected ) {
 		$op = $this->newInstance();
 		$this->assertSame( '', $op->getHTML() );
 
-		$this->hideDeprecated( 'OutputPage::addWikiText' );
-		$this->hideDeprecated( 'OutputPage::addWikiTextTitle' );
-		$this->hideDeprecated( 'OutputPage::addWikiTextWithTitle' );
-		$this->hideDeprecated( 'OutputPage::addWikiTextTidy' );
-		$this->hideDeprecated( 'OutputPage::addWikiTextTitleTidy' );
-		$this->hideDeprecated( 'disabling tidy' );
-
-		if ( in_array(
-			$method,
-			[ 'addWikiTextWithTitle', 'addWikiTextTitleTidy', 'addWikiTextTitle' ]
-		) && count( $args ) >= 2 && $args[1] === null ) {
-			// Special placeholder because we can't get the actual title in the provider
-			$args[1] = $op->getTitle();
-		}
 		if ( in_array(
 			$method,
 			[ 'addWikiTextAsInterface', 'addWikiTextAsContent' ]
@@ -1610,37 +1566,7 @@ class OutputPageTest extends MediaWikiTestCase {
 
 	public function provideAddWikiText() {
 		$tests = [
-			'addWikiText' => [
-				// Not tidied; this API is deprecated.
-				'Simple wikitext' => [
-					[ "'''Bold'''" ],
-					"<p><b>Bold</b>\n</p>",
-				], 'List at start' => [
-					[ '* List' ],
-					"<ul><li>List</li></ul>\n",
-				], 'List not at start' => [
-					[ '* Not a list', false ],
-					'* Not a list',
-				], 'Non-interface' => [
-					[ "'''Bold'''", true, false ],
-					"<p><b>Bold</b>\n</p>",
-				], 'No section edit links' => [
-					[ '== Title ==' ],
-					"<h2><span class=\"mw-headline\" id=\"Title\">Title</span></h2>",
-				],
-			],
-			'addWikiTextWithTitle' => [
-				// Untidied; this API is deprecated
-				'With title at start' => [
-					[ '* {{PAGENAME}}', Title::newFromText( 'Talk:Some page' ) ],
-					"<ul><li>Some page</li></ul>\n",
-				], 'With title at start' => [
-					[ '* {{PAGENAME}}', Title::newFromText( 'Talk:Some page' ), false ],
-					"* Some page",
-				],
-			],
 			'addWikiTextAsInterface' => [
-				// Preferred interface: output is tidied
 				'Simple wikitext' => [
 					[ "'''Bold'''" ],
 					"<p><b>Bold</b>\n</p>",
@@ -1668,7 +1594,6 @@ class OutputPageTest extends MediaWikiTestCase {
 				],
 			],
 			'addWikiTextAsContent' => [
-				// Preferred interface: output is tidied
 				'SpecialNewimages' => [
 					[ "<p lang='en' dir='ltr'>\nMy message" ],
 					'<p lang="en" dir="ltr">' . "\nMy message</p>"
@@ -1706,41 +1631,6 @@ class OutputPageTest extends MediaWikiTestCase {
 			],
 		];
 
-		// Test all the others on addWikiTextTitle as well
-		foreach ( $tests['addWikiText'] as $key => $val ) {
-			$args = [ $val[0][0], null, $val[0][1] ?? true, false, $val[0][2] ?? true ];
-			$tests['addWikiTextTitle']["$key (addWikiTextTitle)"] =
-				array_merge( [ $args ], array_slice( $val, 1 ) );
-		}
-		foreach ( $tests['addWikiTextWithTitle'] as $key => $val ) {
-			$args = [ $val[0][0], $val[0][1], $val[0][2] ?? true ];
-			$tests['addWikiTextTitle']["$key (addWikiTextTitle)"] =
-				array_merge( [ $args ], array_slice( $val, 1 ) );
-		}
-		foreach ( $tests['addWikiTextAsInterface'] as $key => $val ) {
-			$args = [ $val[0][0], $val[0][2] ?? null, $val[0][1] ?? true, true, true ];
-			$tests['addWikiTextTitle']["$key (addWikiTextTitle)"] =
-				array_merge( [ $args ], array_slice( $val, 1 ) );
-		}
-		foreach ( $tests['addWikiTextAsContent'] as $key => $val ) {
-			$args = [ $val[0][0], $val[0][2] ?? null, $val[0][1] ?? true, true, false ];
-			$tests['addWikiTextTitle']["$key (addWikiTextTitle)"] =
-				array_merge( [ $args ], array_slice( $val, 1 ) );
-		}
-		// addWikiTextTidy / addWikiTextTitleTidy were old aliases of
-		// addWikiTextAsContent
-		foreach ( $tests['addWikiTextAsContent'] as $key => $val ) {
-			if ( count( $val[0] ) > 2 ) {
-				$args = [ $val[0][0], $val[0][2], $val[0][1] ?? true ];
-				$tests['addWikiTextTitleTidy']["$key (addWikiTextTitleTidy)"] =
-					array_merge( [ $args ], array_slice( $val, 1 ) );
-			} else {
-				$args = [ $val[0][0], $val[0][1] ?? true ];
-				$tests['addWikiTextTidy']["$key (addWikiTextTidy)"] =
-					array_merge( [ $args ], array_slice( $val, 1 ) );
-			}
-		}
-
 		// We have to reformat our array to match what PHPUnit wants
 		$ret = [];
 		foreach ( $tests as $key => $subarray ) {
@@ -1751,17 +1641,6 @@ class OutputPageTest extends MediaWikiTestCase {
 		}
 
 		return $ret;
-	}
-
-	/**
-	 * @covers OutputPage::addWikiText
-	 */
-	public function testAddWikiTextNoTitle() {
-		$this->hideDeprecated( 'OutputPage::addWikiText' );
-		$this->setExpectedException( MWException::class, 'Title is null' );
-
-		$op = $this->newInstance( [], null, 'notitle' );
-		$op->addWikiText( 'a' );
 	}
 
 	/**
@@ -2224,7 +2103,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	public function provideAdaptCdnTTL() {
-		global $wgSquidMaxage;
+		global $wgCdnMaxAge;
 		$now = time();
 		self::$fakeTime = $now;
 		return [
@@ -2233,7 +2112,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			'Five minutes from now' => [ [ $now + 300 ], IExpiringStore::TTL_MINUTE ],
 			'Five minutes ago, initial maxage four minutes' =>
 				[ [ $now - 300 ], 270, [ 'initialMaxage' => 240 ] ],
-			'A very long time ago' => [ [ $now - 1000000000 ], $wgSquidMaxage ],
+			'A very long time ago' => [ [ $now - 1000000000 ], $wgCdnMaxAge ],
 			'Initial maxage zero' => [ [ $now - 300 ], 270, [ 'initialMaxage' => 0 ] ],
 
 			'false' => [ [ false ], IExpiringStore::TTL_MINUTE ],
@@ -2340,14 +2219,12 @@ class OutputPageTest extends MediaWikiTestCase {
 	 *
 	 * @covers OutputPage::addVaryHeader
 	 * @covers OutputPage::getVaryHeader
-	 * @covers OutputPage::getKeyHeader
 	 *
 	 * @param array[] $calls For each array, call addVaryHeader() with those arguments
 	 * @param string[] $cookies Array of cookie names to vary on
 	 * @param string $vary Text of expected Vary header (including the 'Vary: ')
-	 * @param string $key Text of expected Key header (including the 'Key: ')
 	 */
-	public function testVaryHeaders( array $calls, array $cookies, $vary, $key ) {
+	public function testVaryHeaders( array $calls, array $cookies, $vary ) {
 		// Get rid of default Vary fields
 		$op = $this->getMockBuilder( OutputPage::class )
 			->setConstructorArgs( [ new RequestContext() ] )
@@ -2358,22 +2235,19 @@ class OutputPageTest extends MediaWikiTestCase {
 			->will( $this->returnValue( $cookies ) );
 		TestingAccessWrapper::newFromObject( $op )->mVaryHeader = [];
 
-		$this->hideDeprecated( '$wgUseKeyHeader' );
+		$this->hideDeprecated( 'addVaryHeader $option is ignored' );
 		foreach ( $calls as $call ) {
 			$op->addVaryHeader( ...$call );
 		}
 		$this->assertEquals( $vary, $op->getVaryHeader(), 'Vary:' );
-		$this->assertEquals( $key, $op->getKeyHeader(), 'Key:' );
 	}
 
 	public function provideVaryHeaders() {
-		// note: getKeyHeader() automatically adds Vary: Cookie
 		return [
 			'No header' => [
 				[],
 				[],
 				'Vary: ',
-				'Key: Cookie',
 			],
 			'Single header' => [
 				[
@@ -2381,7 +2255,6 @@ class OutputPageTest extends MediaWikiTestCase {
 				],
 				[],
 				'Vary: Cookie',
-				'Key: Cookie',
 			],
 			'Non-unique headers' => [
 				[
@@ -2391,26 +2264,26 @@ class OutputPageTest extends MediaWikiTestCase {
 				],
 				[],
 				'Vary: Cookie, Accept-Language',
-				'Key: Cookie,Accept-Language',
 			],
 			'Two headers with single options' => [
+				// Options are deprecated since 1.34
 				[
 					[ 'Cookie', [ 'param=phpsessid' ] ],
 					[ 'Accept-Language', [ 'substr=en' ] ],
 				],
 				[],
 				'Vary: Cookie, Accept-Language',
-				'Key: Cookie;param=phpsessid,Accept-Language;substr=en',
 			],
 			'One header with multiple options' => [
+				// Options are deprecated since 1.34
 				[
 					[ 'Cookie', [ 'param=phpsessid', 'param=userId' ] ],
 				],
 				[],
 				'Vary: Cookie',
-				'Key: Cookie;param=phpsessid;param=userId',
 			],
 			'Duplicate option' => [
+				// Options are deprecated since 1.34
 				[
 					[ 'Cookie', [ 'param=phpsessid' ] ],
 					[ 'Cookie', [ 'param=phpsessid' ] ],
@@ -2418,30 +2291,28 @@ class OutputPageTest extends MediaWikiTestCase {
 				],
 				[],
 				'Vary: Cookie, Accept-Language',
-				'Key: Cookie;param=phpsessid,Accept-Language;substr=en',
 			],
 			'Same header, different options' => [
+				// Options are deprecated since 1.34
 				[
 					[ 'Cookie', [ 'param=phpsessid' ] ],
 					[ 'Cookie', [ 'param=userId' ] ],
 				],
 				[],
 				'Vary: Cookie',
-				'Key: Cookie;param=phpsessid;param=userId',
 			],
 			'No header, vary cookies' => [
 				[],
 				[ 'cookie1', 'cookie2' ],
 				'Vary: Cookie',
-				'Key: Cookie;param=cookie1;param=cookie2',
 			],
 			'Cookie header with option plus vary cookies' => [
+				// Options are deprecated since 1.34
 				[
 					[ 'Cookie', [ 'param=cookie1' ] ],
 				],
 				[ 'cookie2', 'cookie3' ],
 				'Vary: Cookie',
-				'Key: Cookie;param=cookie1;param=cookie2;param=cookie3',
 			],
 			'Non-cookie header plus vary cookies' => [
 				[
@@ -2449,16 +2320,15 @@ class OutputPageTest extends MediaWikiTestCase {
 				],
 				[ 'cookie' ],
 				'Vary: Accept-Language, Cookie',
-				'Key: Accept-Language,Cookie;param=cookie',
 			],
 			'Cookie and non-cookie headers plus vary cookies' => [
+				// Options are deprecated since 1.34
 				[
 					[ 'Cookie', [ 'param=cookie1' ] ],
 					[ 'Accept-Language' ],
 				],
 				[ 'cookie2' ],
 				'Vary: Cookie, Accept-Language',
-				'Key: Cookie;param=cookie1;param=cookie2,Accept-Language',
 			],
 		];
 	}
@@ -2511,10 +2381,9 @@ class OutputPageTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideAddAcceptLanguage
 	 * @covers OutputPage::addAcceptLanguage
-	 * @covers OutputPage::getKeyHeader
 	 */
 	public function testAddAcceptLanguage(
-		$code, array $variants, array $expected, array $options = []
+		$code, array $variants, $expected, array $options = []
 	) {
 		$req = new FauxRequest( in_array( 'varianturl', $options ) ? [ 'variant' => 'x' ] : [] );
 		$op = $this->newInstance( [], $req, in_array( 'notitle', $options ) ? 'notitle' : null );
@@ -2538,41 +2407,38 @@ class OutputPageTest extends MediaWikiTestCase {
 
 		// This will run addAcceptLanguage()
 		$op->sendCacheControl();
-
-		$this->hideDeprecated( '$wgUseKeyHeader' );
-		$keyHeader = $op->getKeyHeader();
-
-		if ( !$expected ) {
-			$this->assertFalse( strpos( 'Accept-Language', $keyHeader ) );
-			return;
-		}
-
-		$keyHeader = explode( ' ', $keyHeader, 2 )[1];
-		$keyHeader = explode( ',', $keyHeader );
-
-		$acceptLanguage = null;
-		foreach ( $keyHeader as $item ) {
-			if ( strpos( $item, 'Accept-Language;' ) === 0 ) {
-				$acceptLanguage = $item;
-				break;
-			}
-		}
-
-		$expectedString = 'Accept-Language;substr=' . implode( ';substr=', $expected );
-		$this->assertSame( $expectedString, $acceptLanguage );
+		$this->assertSame( "Vary: $expected", $op->getVaryHeader() );
 	}
 
 	public function provideAddAcceptLanguage() {
 		return [
-			'No variants' => [ 'en', [ 'en' ], [] ],
-			'One simple variant' => [ 'en', [ 'en', 'en-x-piglatin' ], [ 'en-x-piglatin' ] ],
+			'No variants' => [
+				'en',
+				[ 'en' ],
+				'Accept-Encoding, Cookie',
+			],
+			'One simple variant' => [
+				'en',
+				[ 'en', 'en-x-piglatin' ],
+				'Accept-Encoding, Cookie, Accept-Language',
+			],
 			'Multiple variants with BCP47 alternatives' => [
 				'zh',
 				[ 'zh', 'zh-hans', 'zh-cn', 'zh-tw' ],
-				[ 'zh-hans', 'zh-Hans', 'zh-cn', 'zh-Hans-CN', 'zh-tw', 'zh-Hant-TW' ],
+				'Accept-Encoding, Cookie, Accept-Language',
 			],
-			'No title' => [ 'en', [ 'en', 'en-x-piglatin' ], [], [ 'notitle' ] ],
-			'Variant in URL' => [ 'en', [ 'en', 'en-x-piglatin' ], [], [ 'varianturl' ] ],
+			'No title' => [
+				'en',
+				[ 'en', 'en-x-piglatin' ],
+				'Accept-Encoding, Cookie',
+				[ 'notitle' ]
+			],
+			'Variant in URL' => [
+				'en',
+				[ 'en', 'en-x-piglatin' ],
+				'Accept-Encoding, Cookie',
+				[ 'varianturl' ]
+			],
 		];
 	}
 
@@ -2661,7 +2527,8 @@ class OutputPageTest extends MediaWikiTestCase {
 		$method = $class->getMethod( 'makeResourceLoaderLink' );
 		$method->setAccessible( true );
 		$ctx = new RequestContext();
-		$ctx->setSkin( SkinFactory::getDefaultInstance()->makeSkin( 'fallback' ) );
+		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
+		$ctx->setSkin( $skinFactory->makeSkin( 'fallback' ) );
 		$ctx->setLanguage( 'en' );
 		$out = new OutputPage( $ctx );
 		$nonce = $class->getProperty( 'CSPNonce' );
@@ -2670,35 +2537,42 @@ class OutputPageTest extends MediaWikiTestCase {
 		$rl = $out->getResourceLoader();
 		$rl->setMessageBlobStore( $this->createMock( MessageBlobStore::class ) );
 		$rl->register( [
-			'test.foo' => new ResourceLoaderTestModule( [
+			'test.foo' => [
+				'class' => ResourceLoaderTestModule::class,
 				'script' => 'mw.test.foo( { a: true } );',
 				'styles' => '.mw-test-foo { content: "style"; }',
-			] ),
-			'test.bar' => new ResourceLoaderTestModule( [
+			],
+			'test.bar' => [
+				'class' => ResourceLoaderTestModule::class,
 				'script' => 'mw.test.bar( { a: true } );',
 				'styles' => '.mw-test-bar { content: "style"; }',
-			] ),
-			'test.baz' => new ResourceLoaderTestModule( [
+			],
+			'test.baz' => [
+				'class' => ResourceLoaderTestModule::class,
 				'script' => 'mw.test.baz( { a: true } );',
 				'styles' => '.mw-test-baz { content: "style"; }',
-			] ),
-			'test.quux' => new ResourceLoaderTestModule( [
+			],
+			'test.quux' => [
+				'class' => ResourceLoaderTestModule::class,
 				'script' => 'mw.test.baz( { token: 123 } );',
 				'styles' => '/* pref-animate=off */ .mw-icon { transition: none; }',
 				'group' => 'private',
-			] ),
-			'test.noscript' => new ResourceLoaderTestModule( [
+			],
+			'test.noscript' => [
+				'class' => ResourceLoaderTestModule::class,
 				'styles' => '.stuff { color: red; }',
 				'group' => 'noscript',
-			] ),
-			'test.group.foo' => new ResourceLoaderTestModule( [
+			],
+			'test.group.foo' => [
+				'class' => ResourceLoaderTestModule::class,
 				'script' => 'mw.doStuff( "foo" );',
 				'group' => 'foo',
-			] ),
-			'test.group.bar' => new ResourceLoaderTestModule( [
+			],
+			'test.group.bar' => [
+				'class' => ResourceLoaderTestModule::class,
 				'script' => 'mw.doStuff( "bar" );',
 				'group' => 'bar',
-			] ),
+			],
 		] );
 		$links = $method->invokeArgs( $out, $args );
 		$actualHtml = strval( $links );
@@ -2711,28 +2585,28 @@ class OutputPageTest extends MediaWikiTestCase {
 			// Single only=scripts load
 			[
 				[ 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS ],
-				"<script nonce=\"secret\">(window.RLQ=window.RLQ||[]).push(function(){"
-					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?lang=en\u0026modules=test.foo\u0026only=scripts\u0026skin=fallback");'
+				"<script nonce=\"secret\">(RLQ=window.RLQ||[]).push(function(){"
+					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?lang=en\u0026modules=test.foo\u0026only=scripts");'
 					. "});</script>"
 			],
 			// Multiple only=styles load
 			[
 				[ [ 'test.baz', 'test.foo', 'test.bar' ], ResourceLoaderModule::TYPE_STYLES ],
 
-				'<link rel="stylesheet" href="http://127.0.0.1:8080/w/load.php?lang=en&amp;modules=test.bar%2Cbaz%2Cfoo&amp;only=styles&amp;skin=fallback"/>'
+				'<link rel="stylesheet" href="http://127.0.0.1:8080/w/load.php?lang=en&amp;modules=test.bar%2Cbaz%2Cfoo&amp;only=styles"/>'
 			],
 			// Private embed (only=scripts)
 			[
 				[ 'test.quux', ResourceLoaderModule::TYPE_SCRIPTS ],
-				"<script nonce=\"secret\">(window.RLQ=window.RLQ||[]).push(function(){"
+				"<script nonce=\"secret\">(RLQ=window.RLQ||[]).push(function(){"
 					. "mw.test.baz({token:123});\nmw.loader.state({\"test.quux\":\"ready\"});"
 					. "});</script>"
 			],
 			// Load private module (combined)
 			[
 				[ 'test.quux', ResourceLoaderModule::TYPE_COMBINED ],
-				"<script nonce=\"secret\">(window.RLQ=window.RLQ||[]).push(function(){"
-					. "mw.loader.implement(\"test.quux@1ev0ijv\",function($,jQuery,require,module){"
+				"<script nonce=\"secret\">(RLQ=window.RLQ||[]).push(function(){"
+					. "mw.loader.implement(\"test.quux@1ev0i\",function($,jQuery,require,module){"
 					. "mw.test.baz({token:123});},{\"css\":[\".mw-icon{transition:none}"
 					. "\"]});});</script>"
 			],
@@ -2744,14 +2618,14 @@ class OutputPageTest extends MediaWikiTestCase {
 			// noscript group
 			[
 				[ 'test.noscript', ResourceLoaderModule::TYPE_STYLES ],
-				'<noscript><link rel="stylesheet" href="http://127.0.0.1:8080/w/load.php?lang=en&amp;modules=test.noscript&amp;only=styles&amp;skin=fallback"/></noscript>'
+				'<noscript><link rel="stylesheet" href="http://127.0.0.1:8080/w/load.php?lang=en&amp;modules=test.noscript&amp;only=styles"/></noscript>'
 			],
 			// Load two modules in separate groups
 			[
 				[ [ 'test.group.foo', 'test.group.bar' ], ResourceLoaderModule::TYPE_COMBINED ],
-				"<script nonce=\"secret\">(window.RLQ=window.RLQ||[]).push(function(){"
-					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?lang=en\u0026modules=test.group.bar\u0026skin=fallback");'
-					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?lang=en\u0026modules=test.group.foo\u0026skin=fallback");'
+				"<script nonce=\"secret\">(RLQ=window.RLQ||[]).push(function(){"
+					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?lang=en\u0026modules=test.group.bar");'
+					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?lang=en\u0026modules=test.group.foo");'
 					. "});</script>"
 			],
 		];
@@ -2774,27 +2648,30 @@ class OutputPageTest extends MediaWikiTestCase {
 
 		// Set up stubs
 		$ctx = new RequestContext();
-		$ctx->setSkin( SkinFactory::getDefaultInstance()->makeSkin( 'fallback' ) );
+		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
+		$ctx->setSkin( $skinFactory->makeSkin( 'fallback' ) );
 		$ctx->setLanguage( 'en' );
 		$op = $this->getMockBuilder( OutputPage::class )
 			->setConstructorArgs( [ $ctx ] )
 			->setMethods( [ 'buildCssLinksArray' ] )
 			->getMock();
-		$op->expects( $this->any() )
-			->method( 'buildCssLinksArray' )
+		$op->method( 'buildCssLinksArray' )
 			->willReturn( [] );
 		$rl = $op->getResourceLoader();
 		$rl->setMessageBlobStore( $this->createMock( MessageBlobStore::class ) );
 
 		// Register custom modules
 		$rl->register( [
-			'example.site.a' => new ResourceLoaderTestModule( [ 'group' => 'site' ] ),
-			'example.site.b' => new ResourceLoaderTestModule( [ 'group' => 'site' ] ),
-			'example.user' => new ResourceLoaderTestModule( [ 'group' => 'user' ] ),
+			'example.site.a' => [ 'class' => ResourceLoaderTestModule::class, 'group' => 'site' ],
+			'example.site.b' => [ 'class' => ResourceLoaderTestModule::class, 'group' => 'site' ],
+			'example.user' => [ 'class' => ResourceLoaderTestModule::class, 'group' => 'user' ],
 		] );
 
 		$op = TestingAccessWrapper::newFromObject( $op );
 		$op->rlExemptStyleModules = $exemptStyleModules;
+		$expect = strtr( $expect, [
+			'{blankCombi}' => ResourceLoaderTestCase::BLANK_COMBI,
+		] );
 		$this->assertEquals(
 			$expect,
 			strval( $op->buildExemptModules() )
@@ -2806,22 +2683,22 @@ class OutputPageTest extends MediaWikiTestCase {
 		return [
 			'empty' => [
 				'exemptStyleModules' => [],
-				'<meta name="ResourceLoaderDynamicStyles" content=""/>',
+				'',
 			],
 			'empty sets' => [
 				'exemptStyleModules' => [ 'site' => [], 'noscript' => [], 'private' => [], 'user' => [] ],
-				'<meta name="ResourceLoaderDynamicStyles" content=""/>',
+				'',
 			],
 			'default logged-out' => [
 				'exemptStyleModules' => [ 'site' => [ 'site.styles' ] ],
 				'<meta name="ResourceLoaderDynamicStyles" content=""/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=fallback"/>',
+				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=site.styles&amp;only=styles"/>',
 			],
 			'default logged-in' => [
 				'exemptStyleModules' => [ 'site' => [ 'site.styles' ], 'user' => [ 'user.styles' ] ],
 				'<meta name="ResourceLoaderDynamicStyles" content=""/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=fallback"/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;skin=fallback&amp;version=1ai9g6t"/>',
+				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=site.styles&amp;only=styles"/>' . "\n" .
+				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;version=15pue"/>',
 			],
 			'custom modules' => [
 				'exemptStyleModules' => [
@@ -2829,10 +2706,10 @@ class OutputPageTest extends MediaWikiTestCase {
 					'user' => [ 'user.styles', 'example.user' ],
 				],
 				'<meta name="ResourceLoaderDynamicStyles" content=""/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=example.site.a%2Cb&amp;only=styles&amp;skin=fallback"/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=fallback"/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=example.user&amp;only=styles&amp;skin=fallback&amp;version=0a56zyi"/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;skin=fallback&amp;version=1ai9g6t"/>',
+				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=example.site.a%2Cb&amp;only=styles"/>' . "\n" .
+				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=site.styles&amp;only=styles"/>' . "\n" .
+				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=example.user&amp;only=styles&amp;version={blankCombi}"/>' . "\n" .
+				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;version=15pue"/>',
 			],
 		];
 		// phpcs:enable
@@ -3152,6 +3029,35 @@ class OutputPageTest extends MediaWikiTestCase {
 				],
 				'Link: </w/test.jpg?edcf2>;rel=preload;as=image',
 			],
+		];
+	}
+
+	/**
+	 * @param int $titleLastRevision Last Title revision to set
+	 * @param int $outputRevision Revision stored in OutputPage
+	 * @param bool $expectedResult Expected result of $output->isRevisionCurrent call
+	 * @covers OutputPage::isRevisionCurrent
+	 * @dataProvider provideIsRevisionCurrent
+	 */
+	public function testIsRevisionCurrent( $titleLastRevision, $outputRevision, $expectedResult ) {
+		$titleMock = $this->getMock( Title::class, [], [], '', false );
+		$titleMock->expects( $this->any() )
+			->method( 'getLatestRevID' )
+			->willReturn( $titleLastRevision );
+
+		$output = $this->newInstance( [], null, [ 'notitle' => true ] );
+		$output->setTitle( $titleMock );
+		$output->setRevisionId( $outputRevision );
+		$this->assertEquals( $expectedResult, $output->isRevisionCurrent() );
+	}
+
+	public function provideIsRevisionCurrent() {
+		return [
+			[ 10, null, true ],
+			[ 42, 42, true ],
+			[ null, 0, true ],
+			[ 42, 47, false ],
+			[ 47, 42, false ]
 		];
 	}
 

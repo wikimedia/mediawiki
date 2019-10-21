@@ -110,7 +110,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	 * Get ImageMagick subsampling factors for the target JPEG pixel format.
 	 *
 	 * @param string $pixelFormat one of 'yuv444', 'yuv422', 'yuv420'
-	 * @return array of string keys
+	 * @return string[] List of sampling factors
 	 */
 	protected function imageMagickSubsampling( $pixelFormat ) {
 		switch ( $pixelFormat ) {
@@ -131,7 +131,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	 * @param File $image File associated with this thumbnail
 	 * @param array $params Array with scaler params
 	 *
-	 * @return MediaTransformError|bool Error object if error occurred, false (=no error) otherwise
+	 * @return MediaTransformError|false Error object if error occurred, false (=no error) otherwise
 	 */
 	protected function transformImageMagick( $image, $params ) {
 		# use ImageMagick
@@ -275,7 +275,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	 * @param File $image File associated with this thumbnail
 	 * @param array $params Array with scaler params
 	 *
-	 * @return MediaTransformError Error|bool object if error occurred, false (=no error) otherwise
+	 * @return MediaTransformError|false Error object if error occurred, false (=no error) otherwise
 	 */
 	protected function transformImageMagickExt( $image, $params ) {
 		global $wgSharpenReductionThreshold, $wgSharpenParameter, $wgMaxAnimatedGifArea,
@@ -368,7 +368,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	 * @param File $image File associated with this thumbnail
 	 * @param array $params Array with scaler params
 	 *
-	 * @return MediaTransformError Error|bool object if error occurred, false (=no error) otherwise
+	 * @return MediaTransformError|false Error object if error occurred, false (=no error) otherwise
 	 */
 	protected function transformCustom( $image, $params ) {
 		# Use a custom convert command

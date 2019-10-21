@@ -93,9 +93,7 @@ class CloneDatabase {
 
 			// Postgres: Temp tables are automatically deleted upon end of session
 			//           Same Temp table name hides existing table for current session
-			if ( $this->dropCurrentTables
-				&& !in_array( $this->db->getType(), [ 'oracle' ] )
-			) {
+			if ( $this->dropCurrentTables ) {
 				if ( $oldTableName === $newTableName ) {
 					// Last ditch check to avoid data loss
 					throw new LogicException( "Not dropping new table, as '$newTableName'"

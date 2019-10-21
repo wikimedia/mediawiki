@@ -64,9 +64,11 @@ class ExternalUserNames {
 		if ( $pos !== false ) {
 			$iw = explode( ':', substr( $userName, 0, $pos ) );
 			$firstIw = array_shift( $iw );
-			$interwikiLookup = MediaWikiServices::getInstance()->getInterwikiLookup();
+			$services = MediaWikiServices::getInstance();
+			$interwikiLookup = $services->getInterwikiLookup();
 			if ( $interwikiLookup->isValidInterwiki( $firstIw ) ) {
-				$title = MWNamespace::getCanonicalName( NS_USER ) . ':' . substr( $userName, $pos + 1 );
+				$title = $services->getNamespaceInfo()->getCanonicalName( NS_USER ) .
+					':' . substr( $userName, $pos + 1 );
 				if ( $iw ) {
 					$title = implode( ':', $iw ) . ':' . $title;
 				}

@@ -1,16 +1,20 @@
 {
 	"root": true,
 	"extends": [
-		"wikimedia/server"
+		"wikimedia",
+		"wikimedia/node",
+		"wikimedia/language/es2017"
 	],
 	"env": {
 		"mocha": true
 	},
 	"globals": {
+		"$": false,
 		"browser": false,
 		"mw": false
 	},
 	"rules": {
-		"no-console": 0
+		"prefer-template": "off",
+		"one-var": [ "error", { "initialized": "never", "uninitialized": "always" } ]
 	}
 }

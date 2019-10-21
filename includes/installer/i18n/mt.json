@@ -41,7 +41,6 @@
 	"config-db-schema": "Skema għal MediaWiki:",
 	"config-db-web-create": "Oħloq il-kont jekk għadu ma jeżistix",
 	"config-mysql-innodb": "InnoDB",
-	"config-mysql-myisam": "MyISAM",
 	"config-site-name": "Isem tal-wiki:",
 	"config-site-name-help": "Dan se jidher fil-barra tat-titlu tal-browżer u f'diversi postijiet oħra.",
 	"config-site-name-blank": "Daħħal isem tas-sit.",

@@ -27,7 +27,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\DatabaseSqlite;
 
 /**
  * Maintenance script to run database schema updates.
@@ -64,7 +64,7 @@ class UpdateMediaWiki extends Maintenance {
 	function compatChecks() {
 		$minimumPcreVersion = Installer::MINIMUM_PCRE_VERSION;
 
-		list( $pcreVersion ) = explode( ' ', PCRE_VERSION, 2 );
+		$pcreVersion = explode( ' ', PCRE_VERSION, 2 )[0];
 		if ( version_compare( $pcreVersion, $minimumPcreVersion, '<' ) ) {
 			$this->fatalError(
 				"PCRE $minimumPcreVersion or later is required.\n" .
@@ -156,9 +156,11 @@ class UpdateMediaWiki extends Maintenance {
 			$this->fatalError( $text );
 		}
 
-		$this->output( "Going to run database updates for " . wfWikiID() . "\n" );
+		$dbDomain = WikiMap::getCurrentWikiDbDomain()->getId();
+		$this->output( "Going to run database updates for $dbDomain\n" );
 		if ( $db->getType() === 'sqlite' ) {
-			/** @var IMaintainableDatabase|DatabaseSqlite $db */
+			/** @var DatabaseSqlite $db */
+			'@phan-var DatabaseSqlite $db';
 			$this->output( "Using SQLite file: '{$db->getDbFilePath()}'\n" );
 		}
 		$this->output( "Depending on the size of your database this may take a while!\n" );

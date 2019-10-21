@@ -1,6 +1,6 @@
 <?php
 
-use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * A service class for fetching the wiki's current read-only mode.
@@ -12,10 +12,10 @@ class ReadOnlyMode {
 	/** @var ConfiguredReadOnlyMode */
 	private $configuredReadOnly;
 
-	/** @var LoadBalancer */
+	/** @var ILoadBalancer */
 	private $loadBalancer;
 
-	public function __construct( ConfiguredReadOnlyMode $cro, LoadBalancer $loadBalancer ) {
+	public function __construct( ConfiguredReadOnlyMode $cro, ILoadBalancer $loadBalancer ) {
 		$this->configuredReadOnly = $cro;
 		$this->loadBalancer = $loadBalancer;
 	}

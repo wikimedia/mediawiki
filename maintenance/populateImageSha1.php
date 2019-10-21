@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -108,10 +109,10 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 			// with the database write operation, because the writes are queued
 			// in the pipe buffer. This can improve performance by up to a
 			// factor of 2.
-			global $wgDBuser, $wgDBserver, $wgDBpassword, $wgDBname;
-			$cmd = 'mysql -u' . Shell::escape( $wgDBuser ) .
-				' -h' . Shell::escape( $wgDBserver ) .
-				' -p' . Shell::escape( $wgDBpassword, $wgDBname );
+			$config = $this->getConfig();
+			$cmd = 'mysql -u' . Shell::escape( $config->get( 'DBuser' ) ) .
+				' -h' . Shell::escape( $config->get( 'DBserver' ) ) .
+				' -p' . Shell::escape( $config->get( 'DBpassword' ), $config->get( 'DBname' ) );
 			$this->output( "Using pipe method\n" );
 			$pipe = popen( $cmd, 'w' );
 		}
@@ -125,7 +126,8 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 				wfWaitForSlaves();
 			}
 
-			$file = wfLocalFile( $row->img_name );
+			$file = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
+				->newFile( $row->img_name );
 			if ( !$file ) {
 				continue;
 			}
@@ -149,6 +151,8 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 			}
 			// Upgrade the old file versions...
 			foreach ( $file->getHistory() as $oldFile ) {
+				/** @var OldLocalFile $oldFile */
+				'@phan-var OldLocalFile $oldFile';
 				$sha1 = $oldFile->getRepo()->getFileSha1( $oldFile->getPath() );
 				if ( strval( $sha1 ) !== '' ) { // file on disk and hashed properly
 					if ( $isRegen && $oldFile->getSha1() !== $sha1 ) {

@@ -316,8 +316,8 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider provideCommonDomainGTIDs
 	 * @covers Wikimedia\Rdbms\MySQLMasterPos
 	 */
-	public function testCommonGtidDomains( MySQLMasterPos $pos, MySQLMasterPos $ref, $gtids ) {
-		$this->assertEquals( $gtids, MySQLMasterPos::getCommonDomainGTIDs( $pos, $ref ) );
+	public function testGetRelevantActiveGTIDs( MySQLMasterPos $pos, MySQLMasterPos $ref, $gtids ) {
+		$this->assertEquals( $gtids, MySQLMasterPos::getRelevantActiveGTIDs( $pos, $ref ) );
 	}
 
 	public static function provideCommonDomainGTIDs() {
@@ -326,6 +326,12 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 				new MySQLMasterPos( '255-13-99,256-12-50,257-14-50', 1 ),
 				new MySQLMasterPos( '255-11-1000', 1 ),
 				[ '255-13-99' ]
+			],
+			[
+				( new MySQLMasterPos( '255-13-99,256-12-50,257-14-50', 1 ) )
+					->setActiveDomain( 257 ),
+				new MySQLMasterPos( '255-11-1000,257-14-30', 1 ),
+				[ '257-14-50' ]
 			],
 			[
 				new MySQLMasterPos(

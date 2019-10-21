@@ -27,6 +27,7 @@ use CachedBagOStuff;
 use Psr\Log\LoggerInterface;
 use User;
 use WebRequest;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * This is the actual workhorse for Session.
@@ -262,7 +263,7 @@ final class SessionBackend {
 
 			if ( $restart ) {
 				session_id( (string)$this->id );
-				\Wikimedia\quietCall( 'session_start' );
+				AtEase::quietCall( 'session_start' );
 			}
 
 			$this->autosave();
@@ -785,7 +786,7 @@ final class SessionBackend {
 						'session' => $this->id,
 				] );
 				session_id( (string)$this->id );
-				\Wikimedia\quietCall( 'session_start' );
+				AtEase::quietCall( 'session_start' );
 			}
 		}
 	}

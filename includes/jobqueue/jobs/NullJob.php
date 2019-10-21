@@ -31,7 +31,7 @@
  * @code
  * $ php maintenance/eval.php
  * > $queue = JobQueueGroup::singleton();
- * > $job = new NullJob( Title::newMainPage(), [ 'lives' => 10 ] );
+ * > $job = new NullJob( [ 'lives' => 10 ] );
  * > $queue->push( $job );
  * @endcode
  * You can then confirm the job has been enqueued by using the showJobs.php
@@ -44,13 +44,12 @@
  *
  * @ingroup JobQueue
  */
-class NullJob extends Job {
+class NullJob extends Job implements GenericParameterJob {
 	/**
-	 * @param Title $title
 	 * @param array $params Job parameters (lives, usleep)
 	 */
-	function __construct( Title $title, array $params ) {
-		parent::__construct( 'null', $title, $params );
+	function __construct( array $params ) {
+		parent::__construct( 'null', $params );
 		if ( !isset( $this->params['lives'] ) ) {
 			$this->params['lives'] = 1;
 		}
@@ -67,7 +66,7 @@ class NullJob extends Job {
 		if ( $this->params['lives'] > 1 ) {
 			$params = $this->params;
 			$params['lives']--;
-			$job = new self( $this->title, $params );
+			$job = new self( $params );
 			JobQueueGroup::singleton()->push( $job );
 		}
 

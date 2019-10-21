@@ -18,9 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @package MediaWiki
- * @author Timo Tijhof
- * @since 1.20
  */
 
 // This file doesn't run as part of MediaWiki

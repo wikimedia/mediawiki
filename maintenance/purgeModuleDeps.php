@@ -1,7 +1,5 @@
 <?php
 /**
- * Remove all cache entries for ResourceLoader modules from the database.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,7 +17,6 @@
  *
  * @file
  * @ingroup Maintenance
- * @author Timo Tijhof
  */
 
 use Wikimedia\Rdbms\IDatabase;
@@ -27,7 +24,7 @@ use Wikimedia\Rdbms\IDatabase;
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Maintenance script to purge the module_deps database cache table.
+ * Maintenance script to purge the module_deps database cache table for ResourceLoader.
  *
  * @ingroup Maintenance
  */

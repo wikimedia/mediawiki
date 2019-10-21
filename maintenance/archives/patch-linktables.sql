@@ -28,7 +28,7 @@ CREATE TABLE /*$wgDBprefix*/brokenlinks (
   -- Key to the page_id of the page containing the link.
   bl_from int unsigned NOT NULL default '0',
 
-  -- Text of the target page title ("namesapce:title").
+  -- Text of the target page title ("namespace:title").
   -- Unfortunately this doesn't split the namespace index
   -- key and therefore can't easily be joined to anything.
   bl_to varchar(255) binary NOT NULL default '',

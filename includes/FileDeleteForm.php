@@ -36,18 +36,18 @@ class FileDeleteForm {
 	private $title = null;
 
 	/**
-	 * @var File
+	 * @var LocalFile
 	 */
 	private $file = null;
 
 	/**
-	 * @var File
+	 * @var LocalFile
 	 */
 	private $oldfile = null;
 	private $oldimage = '';
 
 	/**
-	 * @param File $file File object we're deleting
+	 * @param LocalFile $file File object we're deleting
 	 */
 	public function __construct( $file ) {
 		$this->title = $file->getTitle();
@@ -79,7 +79,9 @@ class FileDeleteForm {
 		$this->oldimage = $wgRequest->getText( 'oldimage', false );
 		$token = $wgRequest->getText( 'wpEditToken' );
 		# Flag to hide all contents of the archived revisions
-		$suppress = $wgRequest->getCheck( 'wpSuppress' ) && $wgUser->isAllowed( 'suppressrevision' );
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$suppress = $wgRequest->getCheck( 'wpSuppress' ) &&
+					$permissionManager->userHasRight( $wgUser, 'suppressrevision' );
 
 		if ( $this->oldimage ) {
 			$this->oldfile = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName(
@@ -145,7 +147,7 @@ class FileDeleteForm {
 	 * Really delete the file
 	 *
 	 * @param Title &$title
-	 * @param File &$file
+	 * @param LocalFile &$file
 	 * @param string &$oldimage Archive name
 	 * @param string $reason Reason of the deletion
 	 * @param bool $suppress Whether to mark all deleted versions as restricted
@@ -165,7 +167,7 @@ class FileDeleteForm {
 		if ( $oldimage ) {
 			$page = null;
 			$status = $file->deleteOld( $oldimage, $reason, $suppress, $user );
-			if ( $status->ok ) {
+			if ( $status->isOK() ) {
 				// Need to do a log item
 				$logComment = wfMessage( 'deletedrevision', $oldimage )->inContentLanguage()->text();
 				if ( trim( $reason ) != '' ) {
@@ -179,7 +181,7 @@ class FileDeleteForm {
 				$logEntry->setPerformer( $user );
 				$logEntry->setTarget( $title );
 				$logEntry->setComment( $logComment );
-				$logEntry->setTags( $tags );
+				$logEntry->addTags( $tags );
 				$logid = $logEntry->insert();
 				$logEntry->publish( $logid );
 
@@ -210,7 +212,7 @@ class FileDeleteForm {
 						$logEntry->setPerformer( $user );
 						$logEntry->setTarget( clone $title );
 						$logEntry->setComment( $reason );
-						$logEntry->setTags( $tags );
+						$logEntry->addTags( $tags );
 						$logid = $logEntry->insert();
 						$dbw->onTransactionPreCommitOrIdle(
 							function () use ( $logEntry, $logid ) {
@@ -245,6 +247,7 @@ class FileDeleteForm {
 	 */
 	private function showForm() {
 		global $wgOut, $wgUser, $wgRequest;
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		$wgOut->addModules( 'mediawiki.action.delete.file' );
 
@@ -252,15 +255,17 @@ class FileDeleteForm {
 
 		$wgOut->enableOOUI();
 
+		$fields = [];
+
+		$fields[] = new OOUI\LabelWidget( [ 'label' => new OOUI\HtmlSnippet(
+			$this->prepareMessage( 'filedelete-intro' ) ) ]
+		);
+
 		$options = Xml::listDropDownOptions(
 			$wgOut->msg( 'filedelete-reason-dropdown' )->inContentLanguage()->text(),
 			[ 'other' => $wgOut->msg( 'filedelete-reason-otherlist' )->inContentLanguage()->text() ]
 		);
 		$options = Xml::listDropDownOptionsOoui( $options );
-
-		$fields[] = new OOUI\LabelWidget( [ 'label' => new OOUI\HtmlSnippet(
-			$this->prepareMessage( 'filedelete-intro' ) ) ]
-		);
 
 		$fields[] = new OOUI\FieldLayout(
 			new OOUI\DropdownInputWidget( [
@@ -296,7 +301,7 @@ class FileDeleteForm {
 			]
 		);
 
-		if ( $wgUser->isAllowed( 'suppressrevision' ) ) {
+		if ( $permissionManager->userHasRight( $wgUser, 'suppressrevision' ) ) {
 			$fields[] = new OOUI\FieldLayout(
 				new OOUI\CheckboxInputWidget( [
 					'name' => 'wpSuppress',
@@ -370,7 +375,7 @@ class FileDeleteForm {
 			] )
 		);
 
-		if ( $wgUser->isAllowed( 'editinterface' ) ) {
+		if ( $permissionManager->userHasRight( $wgUser, 'editinterface' ) ) {
 			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 			$link = $linkRenderer->makeKnownLink(
 				$wgOut->msg( 'filedelete-reason-dropdown' )->inContentLanguage()->getTitle(),
@@ -446,9 +451,9 @@ class FileDeleteForm {
 	 * value was provided, does it correspond to an
 	 * existing, local, old version of this file?
 	 *
-	 * @param File &$file
-	 * @param File &$oldfile
-	 * @param File $oldimage
+	 * @param LocalFile &$file
+	 * @param LocalFile &$oldfile
+	 * @param LocalFile $oldimage
 	 * @return bool
 	 */
 	public static function haveDeletableFile( &$file, &$oldfile, $oldimage ) {

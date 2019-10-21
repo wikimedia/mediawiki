@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Widget\NamespacesMultiselectWidget;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Implements a tag multiselect input field for namespaces.
@@ -27,7 +28,7 @@ class HTMLNamespacesMultiselectField extends HTMLSelectNamespace {
 	}
 
 	public function validate( $value, $alldata ) {
-		if ( !$this->mParams['exists'] ) {
+		if ( !$this->mParams['exists'] || $value === '' ) {
 			return true;
 		}
 
@@ -43,7 +44,10 @@ class HTMLNamespacesMultiselectField extends HTMLSelectNamespace {
 		}
 
 		foreach ( $namespaces as $namespace ) {
-			if ( $namespace < 0 ) {
+			if (
+				$namespace < 0 ||
+				!MediaWikiServices::getInstance()->getNamespaceInfo()->exists( $namespace )
+			) {
 				return $this->msg( 'htmlform-select-badoption' );
 			}
 

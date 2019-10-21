@@ -26,6 +26,9 @@ use MediaWiki\Revision\RevisionArchiveRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 
+/**
+ * @ingroup API
+ */
 class ApiComparePages extends ApiBase {
 
 	/** @var RevisionStore */
@@ -231,7 +234,9 @@ class ApiComparePages extends ApiBase {
 	 */
 	private function getRevisionById( $id ) {
 		$rev = $this->revisionStore->getRevisionById( $id );
-		if ( !$rev && $this->getUser()->isAllowedAny( 'deletedtext', 'undelete' ) ) {
+		if ( !$rev && $this->getPermissionManager()
+				->userHasAnyRight( $this->getUser(), 'deletedtext', 'undelete' )
+		) {
 			// Try the 'archive' table
 			$arQuery = $this->revisionStore->getArchiveQueryInfo();
 			$row = $this->getDB()->selectRow(
@@ -247,6 +252,7 @@ class ApiComparePages extends ApiBase {
 			);
 			if ( $row ) {
 				$rev = $this->revisionStore->newRevisionFromArchiveRow( $row );
+				// @phan-suppress-next-line PhanUndeclaredProperty
 				$rev->isArchive = true;
 			}
 		}
@@ -562,7 +568,7 @@ class ApiComparePages extends ApiBase {
 	 */
 	private function setVals( &$vals, $prefix, $rev ) {
 		if ( $rev ) {
-			$title = $rev->getPageAsLinkTarget();
+			$title = Title::newFromLinkTarget( $rev->getPageAsLinkTarget() );
 			if ( isset( $this->props['ids'] ) ) {
 				$vals["{$prefix}id"] = $title->getArticleID();
 				$vals["{$prefix}revid"] = $rev->getId();
@@ -603,7 +609,7 @@ class ApiComparePages extends ApiBase {
 						$vals["{$prefix}comment"] = $comment->text;
 					}
 					$vals["{$prefix}parsedcomment"] = Linker::formatComment(
-						$comment->text, Title::newFromLinkTarget( $title )
+						$comment->text, $title
 					);
 				}
 			}
@@ -615,6 +621,7 @@ class ApiComparePages extends ApiBase {
 				}
 			}
 
+			// @phan-suppress-next-line PhanUndeclaredProperty
 			if ( !empty( $rev->isArchive ) ) {
 				$this->getMain()->setCacheMode( 'private' );
 				$vals["{$prefix}archive"] = true;

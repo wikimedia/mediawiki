@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Block\AbstractBlock;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -29,9 +30,13 @@ use MediaWiki\MediaWikiServices;
  */
 class ApiQueryUserInfo extends ApiQueryBase {
 
+	use ApiBlockInfoTrait;
+
 	const WL_UNREAD_LIMIT = 1000;
 
+	/** @var array */
 	private $params = [];
+	/** @var array */
 	private $prop = [];
 
 	public function __construct( ApiQuery $query, $moduleName ) {
@@ -52,29 +57,22 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 	/**
 	 * Get basic info about a given block
-	 * @param Block $block
-	 * @return array Array containing several keys:
-	 *  - blockid - ID of the block
-	 *  - blockedby - username of the blocker
-	 *  - blockedbyid - user ID of the blocker
-	 *  - blockreason - reason provided for the block
-	 *  - blockedtimestamp - timestamp for when the block was placed/modified
-	 *  - blockexpiry - expiry time of the block
-	 *  - systemblocktype - system block type, if any
+	 *
+	 * @deprecated since 1.34 Use ApiBlockInfoTrait::getBlockDetails() instead.
+	 * @param AbstractBlock $block
+	 * @return array See ApiBlockInfoTrait::getBlockDetails
 	 */
-	public static function getBlockInfo( Block $block ) {
-		$vals = [];
-		$vals['blockid'] = $block->getId();
-		$vals['blockedby'] = $block->getByName();
-		$vals['blockedbyid'] = $block->getBy();
-		$vals['blockreason'] = $block->getReason();
-		$vals['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $block->getTimestamp() );
-		$vals['blockexpiry'] = ApiResult::formatExpiry( $block->getExpiry(), 'infinite' );
-		$vals['blockpartial'] = !$block->isSitewide();
-		if ( $block->getSystemBlockType() !== null ) {
-			$vals['systemblocktype'] = $block->getSystemBlockType();
-		}
-		return $vals;
+	public static function getBlockInfo( AbstractBlock $block ) {
+		wfDeprecated( __METHOD__, '1.34' );
+
+		// Hack to access a private method from a trait:
+		$dummy = new class {
+			use ApiBlockInfoTrait {
+				getBlockDetails as public;
+			}
+		};
+
+		return $dummy->getBlockDetails( $block );
 	}
 
 	/**
@@ -126,8 +124,11 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$vals['anon'] = true;
 		}
 
-		if ( isset( $this->prop['blockinfo'] ) && $user->isBlocked() ) {
-			$vals = array_merge( $vals, self::getBlockInfo( $user->getBlock() ) );
+		if ( isset( $this->prop['blockinfo'] ) ) {
+			$block = $user->getBlock();
+			if ( $block ) {
+				$vals = array_merge( $vals, $this->getBlockDetails( $block ) );
+			}
 		}
 
 		if ( isset( $this->prop['hasmsg'] ) ) {
@@ -160,8 +161,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['rights'] ) ) {
-			// User::getRights() may return duplicate values, strip them
-			$vals['rights'] = array_values( array_unique( $user->getRights() ) );
+			$vals['rights'] = $this->getPermissionManager()->getUserPermissions( $user );
 			ApiResult::setArrayType( $vals['rights'], 'array' ); // even if empty
 			ApiResult::setIndexedTagName( $vals['rights'], 'r' ); // even if empty
 		}
@@ -181,7 +181,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 		if ( isset( $this->prop['preferencestoken'] ) &&
 			!$this->lacksSameOriginSecurity() &&
-			$user->isAllowed( 'editmyoptions' )
+			$this->getPermissionManager()->userHasRight( $user, 'editmyoptions' )
 		) {
 			$vals['preferencestoken'] = $user->getEditToken( '', $this->getMain()->getRequest() );
 		}
@@ -202,7 +202,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$vals['realname'] = $user->getRealName();
 		}
 
-		if ( $user->isAllowed( 'viewmyprivateinfo' ) && isset( $this->prop['email'] ) ) {
+		if ( $this->getPermissionManager()->userHasRight( $user, 'viewmyprivateinfo' ) &&
+				isset( $this->prop['email'] ) ) {
 			$vals['email'] = $user->getEmail();
 			$auth = $user->getEmailAuthenticationTimestamp();
 			if ( $auth !== null ) {
@@ -302,32 +303,17 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	 * @return string|null ISO 8601 timestamp of current user's last contribution or null if none
 	 */
 	protected function getLatestContributionTime() {
-		global $wgActorTableSchemaMigrationStage;
-
 		$user = $this->getUser();
 		$dbr = $this->getDB();
 
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
-			if ( $user->getActorId() === null ) {
-				return null;
-			}
-			$res = $dbr->selectField( 'revision_actor_temp',
-				'MAX(revactor_timestamp)',
-				[ 'revactor_actor' => $user->getActorId() ],
-				__METHOD__
-			);
-		} else {
-			if ( $user->isLoggedIn() ) {
-				$conds = [ 'rev_user' => $user->getId() ];
-			} else {
-				$conds = [ 'rev_user_text' => $user->getName() ];
-			}
-			$res = $dbr->selectField( 'revision',
-				'MAX(rev_timestamp)',
-				$conds,
-				__METHOD__
-			);
+		if ( $user->getActorId() === null ) {
+			return null;
 		}
+		$res = $dbr->selectField( 'revision_actor_temp',
+			'MAX(revactor_timestamp)',
+			[ 'revactor_actor' => $user->getActorId() ],
+			__METHOD__
+		);
 
 		return $res ? wfTimestamp( TS_ISO_8601, $res ) : null;
 	}

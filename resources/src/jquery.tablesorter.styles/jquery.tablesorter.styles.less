@@ -1,8 +1,16 @@
 @import 'mediawiki.mixins';
 
+/* stylelint-disable selector-class-pattern */
+
 /* Table Sorting */
 
-.client-js .sortable:not( .jquery-tablesorter ) > thead > :last-of-type > th:not( .unsortable ),
+// Reserve space for table sortable controls
+// This selector is not perfect as it will not correctly handle cases with
+// merged header cells, so ensure it is removed after the JS has run by using
+// the :not( .jquery-tablesorter ) selector.
+// It will still prevent a visible jump in the majority of simpler cases.
+// The second selector in this rule is for after the JS has run.
+.client-js .sortable:not( .jquery-tablesorter ) > * > tr:first-child > th:not( .unsortable ),
 .jquery-tablesorter th.headerSort {
 	.background-image-svg( 'images/sort_both.svg', 'images/sort_both.png' );
 	cursor: pointer;

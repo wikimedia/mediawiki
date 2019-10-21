@@ -21,12 +21,15 @@
  * @ingroup Maintenance
  */
 
+if ( !defined( 'MEDIAWIKI' ) ) {
+	// So extensions (and other code) can check whether they're running in job mode.
+	// This is not defined if this script is included from installer/updater or phpunit.
+	define( 'MEDIAWIKI_JOB_RUNNER', true );
+}
+
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\Logger\LoggerFactory;
-
-// So extensions (and other code) can check whether they're running in job mode
-define( 'MEDIAWIKI_JOB_RUNNER', true );
 
 /**
  * Maintenance script that runs pending jobs.

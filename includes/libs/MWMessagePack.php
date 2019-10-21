@@ -31,9 +31,10 @@
  *
  * @since 1.23
  * @file
+ * @deprecated since 1.34, no longer used
  */
 class MWMessagePack {
-	/** @var bool|null Whether current system is bigendian. **/
+	/** @var bool|null Whether current system is bigendian. */
 	public static $bigendian = null;
 
 	/**
@@ -43,11 +44,14 @@ class MWMessagePack {
 	 * (both indexed and associative) types. Object serialization is not
 	 * supported.
 	 *
+	 * @deprecated since 1.34, no longer used
+	 *
 	 * @param mixed $value
 	 * @return string
 	 * @throws InvalidArgumentException if $value is an unsupported type or too long a string
 	 */
 	public static function pack( $value ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		if ( self::$bigendian === null ) {
 			self::$bigendian = pack( 'S', 1 ) === pack( 'n', 1 );
 		}
@@ -130,6 +134,7 @@ class MWMessagePack {
 						// int64
 						// pack() does not support 64-bit ints either so pack into two 32-bits
 						$p1 = pack( 'l', $value & 0xFFFFFFFF );
+						// @phan-suppress-next-line PhanTypeInvalidLeftOperandOfIntegerOp
 						$p2 = pack( 'l', ( $value >> 32 ) & 0xFFFFFFFF );
 						return self::$bigendian
 							? pack( 'Ca4a4', 0xD3, $p1, $p2 )

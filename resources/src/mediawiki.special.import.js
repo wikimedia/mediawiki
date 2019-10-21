@@ -6,6 +6,7 @@
 	function updateImportSubprojectList() {
 		var $projectField = $( '#mw-import-table-interwiki #interwiki' ),
 			$subprojectField = $projectField.parent().find( '#subproject' ),
+			// eslint-disable-next-line no-jquery/no-sizzle
 			$selected = $projectField.find( ':selected' ),
 			oldValue = $subprojectField.val(),
 			option, options;

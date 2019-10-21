@@ -30,6 +30,9 @@ class ImportReporter extends ContextSource {
 	private $mOriginalLogCallback = null;
 	private $mOriginalPageOutCallback = null;
 	private $mLogItemCount = 0;
+	private $mPageCount;
+	private $mIsUpload;
+	private $mInterwiki;
 
 	/**
 	 * @param WikiImporter $importer
@@ -69,10 +72,10 @@ class ImportReporter extends ContextSource {
 		);
 	}
 
-	function reportLogItem( /* ... */ ) {
+	function reportLogItem( ...$args ) {
 		$this->mLogItemCount++;
 		if ( is_callable( $this->mOriginalLogCallback ) ) {
-			call_user_func_array( $this->mOriginalLogCallback, func_get_args() );
+			call_user_func_array( $this->mOriginalLogCallback, $args );
 		}
 	}
 
@@ -86,8 +89,7 @@ class ImportReporter extends ContextSource {
 	 */
 	public function reportPage( $title, $foreignTitle, $revisionCount,
 			$successCount, $pageInfo ) {
-		$args = func_get_args();
-		call_user_func_array( $this->mOriginalPageOutCallback, $args );
+		call_user_func_array( $this->mOriginalPageOutCallback, func_get_args() );
 
 		if ( $title === null ) {
 			# Invalid or non-importable title; a notice is already displayed
@@ -161,7 +163,7 @@ class ImportReporter extends ContextSource {
 			// Make sure the null revision will be tagged as well
 			$logEntry->setAssociatedRevId( $nullRevId );
 			if ( count( $this->logTags ) ) {
-				$logEntry->setTags( $this->logTags );
+				$logEntry->addTags( $this->logTags );
 			}
 			$logid = $logEntry->insert();
 			$logEntry->publish( $logid );

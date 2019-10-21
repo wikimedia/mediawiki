@@ -306,9 +306,10 @@ class ApiAuthManagerHelper {
 
 	/**
 	 * Clean up a field array for output
-	 * @param ApiBase $module For context and parameters 'mergerequestfields'
-	 *  and 'messageformat'
 	 * @param array $fields
+	 * @codingStandardsIgnoreStart
+	 * @phan-param array{type:string,options:array,value:string,label:Message,help:Message,optional:bool,sensitive:bool,skippable:bool} $fields
+	 * @codingStandardsIgnoreEnd
 	 * @return array
 	 */
 	private function formatFields( array $fields ) {
@@ -345,10 +346,10 @@ class ApiAuthManagerHelper {
 	/**
 	 * Fetch the standard parameters this helper recognizes
 	 * @param string $action AuthManager action
-	 * @param string $param,... Parameters to use
+	 * @param string ...$wantedParams Parameters to use
 	 * @return array
 	 */
-	public static function getStandardParams( $action, $param /* ... */ ) {
+	public static function getStandardParams( $action, ...$wantedParams ) {
 		$params = [
 			'requests' => [
 				ApiBase::PARAM_TYPE => 'string',
@@ -384,8 +385,6 @@ class ApiAuthManagerHelper {
 		];
 
 		$ret = [];
-		$wantedParams = func_get_args();
-		array_shift( $wantedParams );
 		foreach ( $wantedParams as $name ) {
 			if ( isset( $params[$name] ) ) {
 				$ret[$name] = $params[$name];

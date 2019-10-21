@@ -54,7 +54,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	protected $securityLevel;
 
 	/** @var bool True if the user if creating an account for someone else. Flag used for internal
-	 * communication, only set at the very end. */
+	 * communication, only set at the very end.
+	 */
 	protected $proxyAccountCreation;
 	/** @var User FIXME another flag for passing data. */
 	protected $targetUser;
@@ -94,9 +95,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 	/**
 	 * Load basic request parameters for this Special page.
-	 * @param string $subPage
 	 */
-	private function loadRequestParameters( $subPage ) {
+	private function loadRequestParameters() {
 		if ( $this->mLoadedRequest ) {
 			return;
 		}
@@ -104,7 +104,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$request = $this->getRequest();
 
 		$this->mPosted = $request->wasPosted();
-		$this->mIsReturn = $subPage === 'return';
 		$this->mAction = $request->getVal( 'action' );
 		$this->mFromHTTP = $request->getBool( 'fromhttp', false )
 			|| $request->getBool( 'wpFromhttp', false );
@@ -123,7 +122,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	protected function load( $subPage ) {
 		global $wgSecureLogin;
 
-		$this->loadRequestParameters( $subPage );
+		$this->loadRequestParameters();
 		if ( $this->mLoaded ) {
 			return;
 		}
@@ -202,12 +201,13 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 	protected function beforeExecute( $subPage ) {
 		// finish initializing the class before processing the request - T135924
-		$this->loadRequestParameters( $subPage );
+		$this->loadRequestParameters();
 		return parent::beforeExecute( $subPage );
 	}
 
 	/**
 	 * @param string|null $subPage
+	 * @suppress PhanTypeObjectUnsetDeclaredProperty
 	 */
 	public function execute( $subPage ) {
 		if ( $this->mPosted ) {
@@ -441,7 +441,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 		if ( $extraMessages ) {
 			$extraMessages = Status::wrap( $extraMessages );
-			$out->addWikiTextAsInterface( $extraMessages->getWikiText() );
+			$out->addWikiTextAsInterface(
+				$extraMessages->getWikiText( false, false, $this->getLanguage() )
+			);
 		}
 
 		$out->addHTML( $injected_html );
@@ -758,6 +760,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$isLoggedIn = $this->getUser()->isLoggedIn();
 		$continuePart = $this->isContinued() ? 'continue-' : '';
 		$anotherPart = $isLoggedIn ? 'another-' : '';
+		// @phan-suppress-next-line PhanUndeclaredMethod
 		$expiration = $this->getRequest()->getSession()->getProvider()->getRememberUserDuration();
 		$expirationDays = ceil( $expiration / ( 3600 * 24 ) );
 		$secureLoginLink = '';
@@ -974,7 +977,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			}
 		}
 		if ( !$this->isSignup() && $this->showExtraInformation() ) {
-			$passwordReset = new PasswordReset( $this->getConfig(), AuthManager::singleton() );
+			$passwordReset = MediaWikiServices::getInstance()->getPasswordReset();
 			if ( $passwordReset->isAllowed( $this->getUser() )->isGood() ) {
 				$fieldDefinitions['passwordReset'] = [
 					'type' => 'info',
@@ -1071,7 +1074,10 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	private function showCreateAccountLink() {
 		if ( $this->isSignup() ) {
 			return true;
-		} elseif ( $this->getUser()->isAllowed( 'createaccount' ) ) {
+		} elseif ( MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->userHasRight( $this->getUser(), 'createaccount' )
+		) {
 			return true;
 		} else {
 			return false;

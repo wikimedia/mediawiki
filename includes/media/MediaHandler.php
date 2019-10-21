@@ -103,8 +103,8 @@ abstract class MediaHandler {
 	 * @param File|FSFile $image The image object, or false if there isn't one.
 	 *   Warning, FSFile::getPropsFromPath might pass an FSFile instead of File (!)
 	 * @param string $path The filename
-	 * @return array|bool Follow the format of PHP getimagesize() internal function.
-	 *   See https://secure.php.net/getimagesize. MediaWiki will only ever use the
+	 * @return array|false Follow the format of PHP getimagesize() internal function.
+	 *   See https://www.php.net/getimagesize. MediaWiki will only ever use the
 	 *   first two array keys (the width and height), and the 'bits' associative
 	 *   key. All other array keys are ignored. Returning a 'bits' key is optional
 	 *   as not all formats have a notion of "bitdepth". Returns false on failure.
@@ -193,7 +193,7 @@ abstract class MediaHandler {
 	 *  performance problems.
 	 * @param File $image
 	 * @param string $metadata The metadata in serialized form
-	 * @return bool
+	 * @return bool|int
 	 */
 	public function isMetadataValid( $image, $metadata ) {
 		return self::METADATA_GOOD;

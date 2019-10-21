@@ -1,8 +1,5 @@
 <?php
 
-/**
- * @coversNothing
- */
 class AutoLoaderStructureTest extends MediaWikiTestCase {
 	/**
 	 * Assert that there were no classes loaded that are not registered with the AutoLoader.
@@ -49,7 +46,9 @@ class AutoLoaderStructureTest extends MediaWikiTestCase {
 			// Check that the expected class name (based on the filename) is the
 			// same as the one we found.
 			// Strip directory prefix from front of filename, and .php extension
-			$abbrFileName = substr( substr( $file, strlen( $dir ) ), 0, -4 );
+			$dirNameLength = strlen( realpath( $dir ) ) + 1; // +1 for the trailing slash
+			$fileBaseName = substr( $file, $dirNameLength );
+			$abbrFileName = substr( $fileBaseName, 0, -4 );
 			$expectedClassName = $prefix . str_replace( '/', '\\', $abbrFileName );
 
 			$this->assertSame(
@@ -199,7 +198,7 @@ class AutoLoaderStructureTest extends MediaWikiTestCase {
 	}
 
 	public function testAutoloadOrder() {
-		$path = realpath( __DIR__ . '/../../..' );
+		$path = __DIR__ . '/../../..';
 		$oldAutoload = file_get_contents( $path . '/autoload.php' );
 		$generator = new AutoloadGenerator( $path, 'local' );
 		$generator->setPsr4Namespaces( AutoLoader::getAutoloadNamespaces() );

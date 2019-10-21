@@ -22,6 +22,7 @@
  * @author Pitr2311
  * @author Ragimiri
  * @author Reedy
+ * @author Robertvazan
  * @author Rudko
  * @author Sp5uhe
  * @author Sudo77(new)
@@ -30,6 +31,7 @@
  * @author Urhixidur
  * @author Valasek
  * @author Wizzard
+ * @author Zoranzoki21
  * @author לערי ריינהארט
  */
 
@@ -40,19 +42,28 @@ $specialPageAliases = [
 	'Allmessages'               => [ 'VšetkySprávy' ],
 	'Allpages'                  => [ 'VšetkyStránky' ],
 	'Ancientpages'              => [ 'StaréStránky' ],
+	'ApiSandbox'                => [ 'APIPieskovisko' ],
+	'AutoblockList'             => [ 'AutomatickéBlokovania' ],
 	'Blankpage'                 => [ 'PrázdnaStránka' ],
 	'Block'                     => [ 'Blokovanie' ],
 	'Booksources'               => [ 'KnižnéZdroje' ],
+	'BotPasswords'              => [ 'HesláPreBotov' ],
 	'BrokenRedirects'           => [ 'PokazenéPresmerovania' ],
 	'Categories'                => [ 'Kategórie' ],
+	'ChangeCredentials'         => [ 'ZmenaPrihlasovacíchÚdajov' ],
+	'ChangeEmail'               => [ 'ZmenaEmailu' ],
 	'ChangePassword'            => [ 'ZmenaHesla' ],
+	'ComparePages'              => [ 'PorovnaťStránky' ],
 	'Confirmemail'              => [ 'PotvrdiťEmail' ],
 	'Contributions'             => [ 'Príspevky' ],
 	'CreateAccount'             => [ 'VytvorenieÚčtu' ],
 	'Deadendpages'              => [ 'StránkyBezOdkazov' ],
 	'DeletedContributions'      => [ 'ZmazanéPríspevky' ],
+	'Diff'                      => [ 'Rozdiel' ],
 	'DoubleRedirects'           => [ 'DvojitéPresmerovania' ],
 	'Emailuser'                 => [ 'EmailPoužívateľovi' ],
+	'ExpandTemplates'           => [ 'SubstituovaťŠablóny' ],
+	'Export'                    => [ 'ExportovaťStránky' ],
 	'Fewestrevisions'           => [ 'NajmenejRevízií' ],
 	'FileDuplicateSearch'       => [ 'HľadanieDuplicitnýchSúborov' ],
 	'Filepath'                  => [ 'CestaKSúboru' ],
@@ -61,7 +72,9 @@ $specialPageAliases = [
 	'LinkSearch'                => [ 'HľadanieOdkazov' ],
 	'Listadmins'                => [ 'ZoznamSprávcov' ],
 	'Listbots'                  => [ 'ZoznamBotov' ],
+	'ListDuplicatedFiles'       => [ 'ZoznamDuplicitnýchSúborov' ],
 	'Listfiles'                 => [ 'ZoznamSúborov' ],
+	'Listgrants'                => [ 'SkupinyOprávnení' ],
 	'Listgrouprights'           => [ 'ZoznamSkupinovýchPráv' ],
 	'Listredirects'             => [ 'ZoznamPresmerovaní' ],
 	'Listusers'                 => [ 'ZoznamPoužívateľov' ],
@@ -69,10 +82,12 @@ $specialPageAliases = [
 	'Log'                       => [ 'Záznamy' ],
 	'Lonelypages'               => [ 'OsirotenéStránky' ],
 	'Longpages'                 => [ 'DlhéStránky' ],
+	'MediaStatistics'           => [ 'ŠtatistikaSúborov' ],
 	'MergeHistory'              => [ 'HistóriaZlúčení' ],
 	'MIMEsearch'                => [ 'HľadanieMIME' ],
 	'Mostcategories'            => [ 'NajviacKategórií' ],
 	'Mostimages'                => [ 'NajodkazovanejšieSúbory' ],
+	'MostInterwikis'            => [ 'NajviacInterwiki' ],
 	'Mostlinked'                => [ 'NajodkazovanejšieStránky' ],
 	'Mostlinkedcategories'      => [ 'NajodkazovanejšieKategórie' ],
 	'Mostlinkedtemplates'       => [ 'NajodkazovanejšieŠablóny' ],
@@ -83,20 +98,30 @@ $specialPageAliases = [
 	'Mytalk'                    => [ 'MojaDiskusia' ],
 	'Newimages'                 => [ 'NovéSúbory' ],
 	'Newpages'                  => [ 'NovéStránky' ],
+	'PagesWithProp'             => [ 'StránkySVlastnosťou' ],
+	'PasswordPolicies'          => [ 'PravidláPreHeslá' ],
+	'PasswordReset'             => [ 'ObnovaHesla' ],
+	'PermanentLink'             => [ 'TrvalýOdkaz' ],
 	'Preferences'               => [ 'Nastavenia' ],
-	'Prefixindex'               => [ 'IndexPredpon' ],
+	'Prefixindex'               => [ 'StránkyZačínajúceNa', 'IndexPredpon' ],
 	'Protectedpages'            => [ 'ZamknutéStránky' ],
 	'Protectedtitles'           => [ 'ZamknutéNázvy' ],
+	'RandomInCategory'          => [ 'NáhodnáVKategórii' ],
 	'Randompage'                => [ 'Náhodná', 'NáhodnáStránka' ],
 	'Randomredirect'            => [ 'NáhodnéPresmerovanie' ],
+	'Randomrootpage'            => [ 'NáhodnáKoreňováStránka' ],
 	'Recentchanges'             => [ 'PoslednéÚpravy' ],
 	'Recentchangeslinked'       => [ 'SúvisiacePoslednéÚpravy' ],
+	'Redirect'                  => [ 'Presmerovanie' ],
+	'RemoveCredentials'         => [ 'OdstráneniePrihlasovacíchÚdajov' ],
+	'ResetTokens'               => [ 'ObnovaKľúčov' ],
 	'Revisiondelete'            => [ 'ZmazaťRevíziu' ],
 	'Search'                    => [ 'Hľadanie' ],
 	'Shortpages'                => [ 'KrátkeStránky' ],
 	'Specialpages'              => [ 'ŠpeciálneStránky' ],
 	'Statistics'                => [ 'Štatistika' ],
 	'Tags'                      => [ 'Značky' ],
+	'TrackingCategories'        => [ 'SledovacieKategórie' ],
 	'Uncategorizedcategories'   => [ 'NekategorizovanéKategórie' ],
 	'Uncategorizedimages'       => [ 'NekategorizovanéSúbory' ],
 	'Uncategorizedpages'        => [ 'NekategorizovanéStránky' ],

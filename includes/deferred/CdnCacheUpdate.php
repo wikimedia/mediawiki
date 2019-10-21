@@ -24,263 +24,253 @@ use Wikimedia\Assert\Assert;
 use MediaWiki\MediaWikiServices;
 
 /**
- * Handles purging appropriate CDN URLs given a title (or titles)
+ * Handles purging the appropriate CDN objects given a list of URLs or Title instances
  * @ingroup Cache
  */
 class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
-	/** @var string[] Collection of URLs to purge */
-	protected $urls = [];
+    /** @var string[] Collection of URLs to purge */
+    private $urls = [];
 
-	/**
-	 * @param string[] $urlArr Collection of URLs to purge
-	 */
-	public function __construct( array $urlArr ) {
-		$this->urls = $urlArr;
-	}
+    /**
+     * @param string[] $urlArr Collection of URLs to purge
+     */
+    public function __construct( array $urlArr ) {
+        $this->urls = $urlArr;
+    }
 
-	public function merge( MergeableUpdate $update ) {
-		/** @var CdnCacheUpdate $update */
-		Assert::parameterType( __CLASS__, $update, '$update' );
+    public function merge( MergeableUpdate $update ) {
+        /** @var self $update */
+        Assert::parameterType( __CLASS__, $update, '$update' );
+        '@phan-var self $update';
 
-		$this->urls = array_merge( $this->urls, $update->urls );
-	}
+        $this->urls = array_merge( $this->urls, $update->urls );
+    }
 
-	/**
-	 * Create an update object from an array of Title objects, or a TitleArray object
-	 *
-	 * @param Traversable|Title[] $titles
-	 * @param string[] $urlArr
-	 * @return CdnCacheUpdate
-	 */
-	public static function newFromTitles( $titles, $urlArr = [] ) {
-		( new LinkBatch( $titles ) )->execute();
-		/** @var Title $title */
-		foreach ( $titles as $title ) {
-			$urlArr = array_merge( $urlArr, $title->getCdnUrls() );
-		}
+    /**
+     * Create an update object from an array of Title objects, or a TitleArray object
+     *
+     * @param Traversable|Title[] $titles
+     * @param string[] $urlArr
+     * @return CdnCacheUpdate
+     */
+    public static function newFromTitles( $titles, $urlArr = [] ) {
+        ( new LinkBatch( $titles ) )->execute();
+        /** @var Title $title */
+        foreach ( $titles as $title ) {
+            $urlArr = array_merge( $urlArr, $title->getCdnUrls() );
+        }
 
-		return new CdnCacheUpdate( $urlArr );
-	}
+        return new CdnCacheUpdate( $urlArr );
+    }
 
-	/**
-	 * Purges the list of URLs passed to the constructor.
-	 */
-	public function doUpdate() {
-		global $wgCdnReboundPurgeDelay;
+    /**
+     * Purges the list of URLs passed to the constructor.
+     */
+    public function doUpdate() {
+        global $wgCdnReboundPurgeDelay;
 
-		self::purge( $this->urls );
+        self::purge( $this->urls );
 
-		if ( $wgCdnReboundPurgeDelay > 0 ) {
-			JobQueueGroup::singleton()->lazyPush( new CdnPurgeJob(
-				Title::makeTitle( NS_SPECIAL, 'Badtitle/' . __CLASS__ ),
-				[
-					'urls' => $this->urls,
-					'jobReleaseTimestamp' => time() + $wgCdnReboundPurgeDelay
-				]
-			) );
-		}
-	}
+        if ( $wgCdnReboundPurgeDelay > 0 ) {
+            JobQueueGroup::singleton()->lazyPush( new CdnPurgeJob( [
+                'urls' => $this->urls,
+                'jobReleaseTimestamp' => time() + $wgCdnReboundPurgeDelay
+            ] ) );
+        }
+    }
 
-	/**
-	 * Purges a list of CDN nodes defined in $wgSquidServers.
-	 * $urlArr should contain the full URLs to purge as values
-	 * (example: $urlArr[] = 'http://my.host/something')
-	 *
-	 * @param string[] $urlArr List of full URLs to purge
-	 */
-	public static function purge( array $urlArr ) {
-		global $wgSquidServers, $wgHTCPRouting;
+    /**
+     * Purges a list of CDN nodes defined in $wgCdnServers.
+     * $urlArr should contain the full URLs to purge as values
+     * (example: $urlArr[] = 'http://my.host/something')
+     *
+     * @param string[] $urlArr List of full URLs to purge
+     */
+    public static function purge( array $urlArr ) {
+        global $wgCdnServers, $wgHTCPRouting;
 
-		if ( !$urlArr ) {
-			return;
-		}
+        if ( !$urlArr ) {
+            return;
+        }
 
-		// Remove duplicate URLs from list
-		$urlArr = array_unique( $urlArr );
+        // Remove duplicate URLs from list
+        $urlArr = array_unique( $urlArr );
 
-		wfDebugLog( 'squid', __METHOD__ . ': ' . implode( ' ', $urlArr ) );
+        wfDebugLog( 'squid', __METHOD__ . ': ' . implode( ' ', $urlArr ) );
 
-		// Reliably broadcast the purge to all edge nodes
-		$relayer = MediaWikiServices::getInstance()->getEventRelayerGroup()
-					->getRelayer( 'cdn-url-purges' );
-		$ts = microtime( true );
-		$relayer->notifyMulti(
-			'cdn-url-purges',
-			array_map(
-				function ( $url ) use ( $ts ) {
-					return [
-						'url' => $url,
-						'timestamp' => $ts,
-					];
-				},
-				$urlArr
-			)
-		);
+        // Reliably broadcast the purge to all edge nodes
+        $ts = microtime( true );
+        $relayerGroup = MediaWikiServices::getInstance()->getEventRelayerGroup();
+        $relayerGroup->getRelayer( 'cdn-url-purges' )->notifyMulti(
+            'cdn-url-purges',
+            array_map(
+                function ( $url ) use ( $ts ) {
+                    return [
+                        'url' => $url,
+                        'timestamp' => $ts,
+                    ];
+                },
+                $urlArr
+            )
+        );
 
-		// Send lossy UDP broadcasting if enabled
-		if ( $wgHTCPRouting ) {
-			self::HTCPPurge( $urlArr );
-		}
+        // Send lossy UDP broadcasting if enabled
+        if ( $wgHTCPRouting ) {
+            self::HTCPPurge( $urlArr );
+        }
 
-		// Do direct server purges if enabled (this does not scale very well)
-		if ( $wgSquidServers ) {
-			// Maximum number of parallel connections per squid
-			$maxSocketsPerSquid = 8;
-			// Number of requests to send per socket
-			// 400 seems to be a good tradeoff, opening a socket takes a while
-			$urlsPerSocket = 400;
-			$socketsPerSquid = ceil( count( $urlArr ) / $urlsPerSocket );
-			if ( $socketsPerSquid > $maxSocketsPerSquid ) {
-				$socketsPerSquid = $maxSocketsPerSquid;
-			}
+        // Do direct server purges if enabled (this does not scale very well)
+        if ( $wgCdnServers ) {
+            // Maximum number of parallel connections per CDN
+            $maxSocketsPerCdn = 8;
+            // Number of requests to send per socket
+            // 400 seems to be a good tradeoff, opening a socket takes a while
+            $urlsPerSocket = 400;
+            $socketsPerCdn = ceil( count( $urlArr ) / $urlsPerSocket );
+            if ( $socketsPerCdn > $maxSocketsPerCdn ) {
+                $socketsPerCdn = $maxSocketsPerCdn;
+            }
 
-			$pool = new SquidPurgeClientPool;
-			$chunks = array_chunk( $urlArr, ceil( count( $urlArr ) / $socketsPerSquid ) );
-			foreach ( $wgSquidServers as $server ) {
-				foreach ( $chunks as $chunk ) {
-					$client = new SquidPurgeClient( $server );
-					// begin changes by southparkfan
-					// Miraheze patch: send PURGEs with X-Device
-					// desktop and phone-tablet respectively.
-					// Needed due to Varnish' vcl_hash
-					foreach ( $chunk as $url ) {
-						foreach ( array( 'desktop', 'phone-tablet' ) as $device ) {
-							$client->queuePurge( $url, $device );
-						}
-					}
-					// end changes by southparkfan
-					$pool->addClient( $client );
-				}
-			}
+            $pool = new SquidPurgeClientPool;
+            $chunks = array_chunk( $urlArr, ceil( count( $urlArr ) / $socketsPerCdn ) );
+            foreach ( $wgCdnServers as $server ) {
+                foreach ( $chunks as $chunk ) {
+                    $client = new SquidPurgeClient( $server );
+                    foreach ( $chunk as $url ) {
+                        $client->queuePurge( self::expand( $url ) );
+                    }
+                    $pool->addClient( $client );
+                }
+            }
 
-			$pool->run();
-		}
-	}
+            $pool->run();
+        }
+    }
 
-	/**
-	 * Send Hyper Text Caching Protocol (HTCP) CLR requests.
-	 *
-	 * @throws MWException
-	 * @param string[] $urlArr Collection of URLs to purge
-	 */
-	private static function HTCPPurge( array $urlArr ) {
-		global $wgHTCPRouting, $wgHTCPMulticastTTL;
+    /**
+     * Send Hyper Text Caching Protocol (HTCP) CLR requests.
+     *
+     * @throws MWException
+     * @param string[] $urlArr Collection of URLs to purge
+     */
+    private static function HTCPPurge( array $urlArr ) {
+        global $wgHTCPRouting, $wgHTCPMulticastTTL;
 
-		// HTCP CLR operation
-		$htcpOpCLR = 4;
+        // HTCP CLR operation
+        $htcpOpCLR = 4;
 
-		// @todo FIXME: PHP doesn't support these socket constants (include/linux/in.h)
-		if ( !defined( "IPPROTO_IP" ) ) {
-			define( "IPPROTO_IP", 0 );
-			define( "IP_MULTICAST_LOOP", 34 );
-			define( "IP_MULTICAST_TTL", 33 );
-		}
+        // @todo FIXME: PHP doesn't support these socket constants (include/linux/in.h)
+        if ( !defined( "IPPROTO_IP" ) ) {
+            define( "IPPROTO_IP", 0 );
+            define( "IP_MULTICAST_LOOP", 34 );
+            define( "IP_MULTICAST_TTL", 33 );
+        }
 
-		// pfsockopen doesn't work because we need set_sock_opt
-		$conn = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
-		if ( !$conn ) {
-			$errstr = socket_strerror( socket_last_error() );
-			wfDebugLog( 'squid', __METHOD__ .
-				": Error opening UDP socket: $errstr" );
+        // pfsockopen doesn't work because we need set_sock_opt
+        $conn = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
+        if ( !$conn ) {
+            $errstr = socket_strerror( socket_last_error() );
+            wfDebugLog( 'squid', __METHOD__ .
+                ": Error opening UDP socket: $errstr" );
 
-			return;
-		}
+            return;
+        }
 
-		// Set socket options
-		socket_set_option( $conn, IPPROTO_IP, IP_MULTICAST_LOOP, 0 );
-		if ( $wgHTCPMulticastTTL != 1 ) {
-			// Set multicast time to live (hop count) option on socket
-			socket_set_option( $conn, IPPROTO_IP, IP_MULTICAST_TTL,
-				$wgHTCPMulticastTTL );
-		}
+        // Set socket options
+        socket_set_option( $conn, IPPROTO_IP, IP_MULTICAST_LOOP, 0 );
+        if ( $wgHTCPMulticastTTL != 1 ) {
+            // Set multicast time to live (hop count) option on socket
+            socket_set_option( $conn, IPPROTO_IP, IP_MULTICAST_TTL,
+                $wgHTCPMulticastTTL );
+        }
 
-		// Get sequential trx IDs for packet loss counting
-		$ids = UIDGenerator::newSequentialPerNodeIDs(
-			'squidhtcppurge', 32, count( $urlArr ), UIDGenerator::QUICK_VOLATILE
-		);
+        // Get sequential trx IDs for packet loss counting
+        $ids = UIDGenerator::newSequentialPerNodeIDs(
+            'squidhtcppurge', 32, count( $urlArr ), UIDGenerator::QUICK_VOLATILE
+        );
 
-		foreach ( $urlArr as $url ) {
-			if ( !is_string( $url ) ) {
-				throw new MWException( 'Bad purge URL' );
-			}
-			$url = self::expand( $url );
-			$conf = self::getRuleForURL( $url, $wgHTCPRouting );
-			if ( !$conf ) {
-				wfDebugLog( 'squid', __METHOD__ .
-					"No HTCP rule configured for URL {$url} , skipping" );
-				continue;
-			}
+        foreach ( $urlArr as $url ) {
+            if ( !is_string( $url ) ) {
+                throw new MWException( 'Bad purge URL' );
+            }
+            $url = self::expand( $url );
+            $conf = self::getRuleForURL( $url, $wgHTCPRouting );
+            if ( !$conf ) {
+                wfDebugLog( 'squid', __METHOD__ .
+                    "No HTCP rule configured for URL {$url} , skipping" );
+                continue;
+            }
 
-			if ( isset( $conf['host'] ) && isset( $conf['port'] ) ) {
-				// Normalize single entries
-				$conf = [ $conf ];
-			}
-			foreach ( $conf as $subconf ) {
-				if ( !isset( $subconf['host'] ) || !isset( $subconf['port'] ) ) {
-					throw new MWException( "Invalid HTCP rule for URL $url\n" );
-				}
-			}
+            if ( isset( $conf['host'] ) && isset( $conf['port'] ) ) {
+                // Normalize single entries
+                $conf = [ $conf ];
+            }
+            foreach ( $conf as $subconf ) {
+                if ( !isset( $subconf['host'] ) || !isset( $subconf['port'] ) ) {
+                    throw new MWException( "Invalid HTCP rule for URL $url\n" );
+                }
+            }
 
-			// Construct a minimal HTCP request diagram
-			// as per RFC 2756
-			// Opcode 'CLR', no response desired, no auth
-			$htcpTransID = current( $ids );
-			next( $ids );
+            // Construct a minimal HTCP request diagram
+            // as per RFC 2756
+            // Opcode 'CLR', no response desired, no auth
+            $htcpTransID = current( $ids );
+            next( $ids );
 
-			$htcpSpecifier = pack( 'na4na*na8n',
-				4, 'HEAD', strlen( $url ), $url,
-				8, 'HTTP/1.0', 0 );
+            $htcpSpecifier = pack( 'na4na*na8n',
+                4, 'HEAD', strlen( $url ), $url,
+                8, 'HTTP/1.0', 0 );
 
-			$htcpDataLen = 8 + 2 + strlen( $htcpSpecifier );
-			$htcpLen = 4 + $htcpDataLen + 2;
+            $htcpDataLen = 8 + 2 + strlen( $htcpSpecifier );
+            $htcpLen = 4 + $htcpDataLen + 2;
 
-			// Note! Squid gets the bit order of the first
-			// word wrong, wrt the RFC. Apparently no other
-			// implementation exists, so adapt to Squid
-			$htcpPacket = pack( 'nxxnCxNxxa*n',
-				$htcpLen, $htcpDataLen, $htcpOpCLR,
-				$htcpTransID, $htcpSpecifier, 2 );
+            // Note! Squid gets the bit order of the first
+            // word wrong, wrt the RFC. Apparently no other
+            // implementation exists, so adapt to Squid
+            $htcpPacket = pack( 'nxxnCxNxxa*n',
+                $htcpLen, $htcpDataLen, $htcpOpCLR,
+                $htcpTransID, $htcpSpecifier, 2 );
 
-			wfDebugLog( 'squid', __METHOD__ .
-				"Purging URL $url via HTCP" );
-			foreach ( $conf as $subconf ) {
-				socket_sendto( $conn, $htcpPacket, $htcpLen, 0,
-					$subconf['host'], $subconf['port'] );
-			}
-		}
-	}
+            wfDebugLog( 'squid', __METHOD__ .
+                "Purging URL $url via HTCP" );
+            foreach ( $conf as $subconf ) {
+                socket_sendto( $conn, $htcpPacket, $htcpLen, 0,
+                    $subconf['host'], $subconf['port'] );
+            }
+        }
+    }
 
-	/**
-	 * Expand local URLs to fully-qualified URLs using the internal protocol
-	 * and host defined in $wgInternalServer. Input that's already fully-
-	 * qualified will be passed through unchanged.
-	 *
-	 * This is used to generate purge URLs that may be either local to the
-	 * main wiki or include a non-native host, such as images hosted on a
-	 * second internal server.
-	 *
-	 * Client functions should not need to call this.
-	 *
-	 * @param string $url
-	 * @return string
-	 */
-	public static function expand( $url ) {
-		return wfExpandUrl( $url, PROTO_INTERNAL );
-	}
+    /**
+     * Expand local URLs to fully-qualified URLs using the internal protocol
+     * and host defined in $wgInternalServer. Input that's already fully-
+     * qualified will be passed through unchanged.
+     *
+     * This is used to generate purge URLs that may be either local to the
+     * main wiki or include a non-native host, such as images hosted on a
+     * second internal server.
+     *
+     * Client functions should not need to call this.
+     *
+     * @param string $url
+     * @return string
+     */
+    private static function expand( $url ) {
+        return wfExpandUrl( $url, PROTO_INTERNAL );
+    }
 
-	/**
-	 * Find the HTCP routing rule to use for a given URL.
-	 * @param string $url URL to match
-	 * @param array $rules Array of rules, see $wgHTCPRouting for format and behavior
-	 * @return mixed Element of $rules that matched, or false if nothing matched
-	 */
-	private static function getRuleForURL( $url, $rules ) {
-		foreach ( $rules as $regex => $routing ) {
-			if ( $regex === '' || preg_match( $regex, $url ) ) {
-				return $routing;
-			}
-		}
+    /**
+     * Find the HTCP routing rule to use for a given URL.
+     * @param string $url URL to match
+     * @param array $rules Array of rules, see $wgHTCPRouting for format and behavior
+     * @return mixed Element of $rules that matched, or false if nothing matched
+     */
+    private static function getRuleForURL( $url, $rules ) {
+        foreach ( $rules as $regex => $routing ) {
+            if ( $regex === '' || preg_match( $regex, $url ) ) {
+                return $routing;
+            }
+        }
 
-		return false;
-	}
+        return false;
+    }
 }

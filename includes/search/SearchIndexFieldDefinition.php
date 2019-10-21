@@ -20,7 +20,7 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 	/**
 	 * Type of the field, one of the constants above
 	 *
-	 * @var int
+	 * @var string
 	 */
 	protected $type;
 
@@ -44,7 +44,7 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 
 	/**
 	 * @param string $name Field name
-	 * @param int $type Index type
+	 * @param string $type Index type
 	 */
 	public function __construct( $name, $type ) {
 		$this->name = $name;

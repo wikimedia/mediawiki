@@ -543,11 +543,12 @@ class Exif {
 		}
 	}
 
-	/**#@-*/
+	/** #@- */
 
-	/**#@+
+	/** #@+
 	 * @return array
 	 */
+
 	/**
 	 * Get $this->mRawExifData
 	 * @return array
@@ -564,7 +565,7 @@ class Exif {
 		return $this->mFilteredExifData;
 	}
 
-	/**#@-*/
+	/** #@- */
 
 	/**
 	 * The version of the output format
@@ -720,7 +721,7 @@ class Exif {
 		}
 	}
 
-	/**#@-*/
+	/** #@- */
 
 	/**
 	 * Validates if a tag has a legal value according to the Exif spec

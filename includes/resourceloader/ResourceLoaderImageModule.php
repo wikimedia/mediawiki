@@ -1,7 +1,5 @@
 <?php
 /**
- * ResourceLoader module for generated and embedded images.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -22,8 +20,9 @@
  */
 
 /**
- * ResourceLoader module for generated and embedded images.
+ * Module for generated and embedded images.
  *
+ * @ingroup ResourceLoader
  * @since 1.25
  */
 class ResourceLoaderImageModule extends ResourceLoaderModule {
@@ -39,7 +38,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 
 	protected $origin = self::ORIGIN_CORE_SITEWIDE;
 
-	/** @var ResourceLoaderImage[]|null */
+	/** @var ResourceLoaderImage[][]|null */
 	protected $imageObjects = null;
 	/** @var array */
 	protected $images = [];
@@ -113,7 +112,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct( $options = [], $localBasePath = null ) {
-		$this->localBasePath = self::extractLocalBasePath( $options, $localBasePath );
+		$this->localBasePath = static::extractLocalBasePath( $options, $localBasePath );
 
 		$this->definition = $options;
 	}
@@ -130,7 +129,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 		$this->definition = null;
 
 		if ( isset( $options['data'] ) ) {
-			$dataPath = $this->localBasePath . '/' . $options['data'];
+			$dataPath = $this->getLocalPath( $options['data'] );
 			$data = json_decode( file_get_contents( $dataPath ), true );
 			$options = array_merge( $data, $options );
 		}
@@ -259,7 +258,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 				$this->images[$skin] = $this->images['default'] ?? [];
 			}
 			foreach ( $this->images[$skin] as $name => $options ) {
-				$fileDescriptor = is_string( $options ) ? $options : $options['file'];
+				$fileDescriptor = is_array( $options ) ? $options['file'] : $options;
 
 				$allowedVariants = array_merge(
 					( is_array( $options ) && isset( $options['variants'] ) ) ? $options['variants'] : [],
@@ -359,6 +358,10 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * This method must not be used by getDefinitionSummary as doing so would cause
+	 * an infinite loop (we use ResourceLoaderImage::getUrl below which calls
+	 * Module:getVersionHash, which calls Module::getDefinitionSummary).
+	 *
 	 * @param ResourceLoaderContext $context
 	 * @param ResourceLoaderImage $image Image to get the style for
 	 * @param string $script URL to load.php
@@ -450,6 +453,18 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 		}
 		$files = array_values( array_unique( $files ) );
 		return array_map( [ __CLASS__, 'safeFileHash' ], $files );
+	}
+
+	/**
+	 * @param string|ResourceLoaderFilePath $path
+	 * @return string
+	 */
+	protected function getLocalPath( $path ) {
+		if ( $path instanceof ResourceLoaderFilePath ) {
+			return $path->getLocalPath();
+		}
+
+		return "{$this->localBasePath}/$path";
 	}
 
 	/**

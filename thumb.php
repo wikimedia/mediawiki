@@ -25,6 +25,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
+define( 'MW_ENTRY_POINT', 'thumb' );
 require __DIR__ . '/includes/WebStart.php';
 
 // Don't use fancy MIME detection, just check the file extension for jpg/gif/png
@@ -35,7 +36,7 @@ if ( defined( 'THUMB_HANDLER' ) ) {
 	wfThumbHandle404();
 } else {
 	// Called directly, use $_GET params
-	wfStreamThumb( $wgRequest->getQueryValues() );
+	wfStreamThumb( $wgRequest->getQueryValuesOnly() );
 }
 
 $mediawiki = new MediaWiki();
@@ -91,6 +92,7 @@ function wfThumbHandle404() {
  */
 function wfStreamThumb( array $params ) {
 	global $wgVaryOnXFP;
+	$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 	$headers = []; // HTTP headers to send
 
@@ -154,8 +156,11 @@ function wfStreamThumb( array $params ) {
 
 	// Check permissions if there are read restrictions
 	$varyHeader = [];
-	if ( !in_array( 'read', User::getGroupPermissions( [ '*' ] ), true ) ) {
-		if ( !$img->getTitle() || !$img->getTitle()->userCan( 'read' ) ) {
+	if ( !in_array( 'read', $permissionManager->getGroupPermissions( [ '*' ] ), true ) ) {
+		$user = RequestContext::getMain()->getUser();
+		$imgTitle = $img->getTitle();
+
+		if ( !$imgTitle || !$permissionManager->userCan( 'read', $user, $imgTitle ) ) {
 			wfThumbError( 403, 'Access denied. You do not have permission to access ' .
 				'the source file.' );
 			return;
@@ -272,7 +277,7 @@ function wfStreamThumb( array $params ) {
 
 	// For 404 handled thumbnails, we only use the base name of the URI
 	// for the thumb params and the parent directory for the source file name.
-	// Check that the zone relative path matches up so squid caches won't pick
+	// Check that the zone relative path matches up so CDN caches won't pick
 	// up thumbs that would not be purged on source file deletion (T36231).
 	if ( $rel404 !== null ) { // thumbnail was handled via 404
 		if ( rawurldecode( $rel404 ) === $img->getThumbRel( $thumbName ) ) {
@@ -409,6 +414,8 @@ function wfProxyThumbnailRequest( $img, $thumbName ) {
 	// Send request to proxied service
 	$status = $req->execute();
 
+	MediaWiki\HeaderCallback::warnIfHeadersSent();
+
 	// Simply serve the response from the proxied service as-is
 	header( 'HTTP/1.1 ' . $req->getStatus() );
 
@@ -517,7 +524,7 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
  * /w/images/thumb/a/ab/Foo.png/120px-Foo.png. The $thumbRel parameter
  * of this function would be set to "a/ab/Foo.png/120px-Foo.png".
  * This method is responsible for turning that into an array
- * with the folowing keys:
+ * with the following keys:
  *  * f => the filename (Foo.png)
  *  * rel404 => the whole thing (a/ab/Foo.png/120px-Foo.png)
  *  * archived => 1 (If the request is for an archived thumb)
@@ -633,6 +640,8 @@ function wfThumbErrorText( $status, $msgText ) {
  */
 function wfThumbError( $status, $msgHtml, $msgText = null, $context = [] ) {
 	global $wgShowHostnames;
+
+	MediaWiki\HeaderCallback::warnIfHeadersSent();
 
 	header( 'Cache-Control: no-cache' );
 	header( 'Content-Type: text/html; charset=utf-8' );

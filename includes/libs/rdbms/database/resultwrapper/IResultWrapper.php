@@ -52,9 +52,9 @@ interface IResultWrapper extends Iterator {
 	 * Change the position of the cursor in a result object.
 	 * See mysql_data_seek()
 	 *
-	 * @param int $row
+	 * @param int $pos
 	 */
-	public function seek( $row );
+	public function seek( $pos );
 
 	/**
 	 * Free a result object
@@ -76,6 +76,7 @@ interface IResultWrapper extends Iterator {
 
 	/**
 	 * @return stdClass
+	 * @suppress PhanParamSignatureMismatchInternal
 	 */
 	function next();
 }

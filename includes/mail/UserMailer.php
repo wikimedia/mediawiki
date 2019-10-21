@@ -34,8 +34,8 @@ class UserMailer {
 	 * Send mail using a PEAR mailer
 	 *
 	 * @param Mail_smtp $mailer
-	 * @param string $dest
-	 * @param string $headers
+	 * @param string[]|string $dest
+	 * @param array $headers
 	 * @param string $body
 	 *
 	 * @return Status
@@ -64,7 +64,7 @@ class UserMailer {
 	 *
 	 * @return string
 	 */
-	static function arrayToHeaderString( $headers, $endl = PHP_EOL ) {
+	private static function arrayToHeaderString( $headers, $endl = PHP_EOL ) {
 		$strings = [];
 		foreach ( $headers as $name => $value ) {
 			// Prevent header injection by stripping newlines from value
@@ -79,7 +79,7 @@ class UserMailer {
 	 *
 	 * @return string
 	 */
-	static function makeMsgId() {
+	private static function makeMsgId() {
 		global $wgSMTP, $wgServer;
 
 		$domainId = WikiMap::getCurrentWikiDbDomain()->getId();
@@ -382,6 +382,8 @@ class UserMailer {
 				throw new MWException( 'PEAR mail package is not installed' );
 			}
 
+			$recips = array_map( 'strval', $to );
+
 			Wikimedia\suppressWarnings();
 
 			// Create the mail object using the Mail::factory method
@@ -391,19 +393,20 @@ class UserMailer {
 				Wikimedia\restoreWarnings();
 				return Status::newFatal( 'pear-mail-error', $mail_object->getMessage() );
 			}
+			'@phan-var Mail_smtp $mail_object';
 
 			wfDebug( "Sending mail via PEAR::Mail\n" );
 
 			$headers['Subject'] = self::quotedPrintable( $subject );
 
 			// When sending only to one recipient, shows it its email using To:
-			if ( count( $to ) == 1 ) {
-				$headers['To'] = $to[0]->toString();
+			if ( count( $recips ) == 1 ) {
+				$headers['To'] = $recips[0];
 			}
 
 			// Split jobs since SMTP servers tends to limit the maximum
 			// number of possible recipients.
-			$chunks = array_chunk( $to, $wgEnotifMaxRecips );
+			$chunks = array_chunk( $recips, $wgEnotifMaxRecips );
 			foreach ( $chunks as $chunk ) {
 				$status = self::sendWithPear( $mail_object, $chunk, $headers, $body );
 				// FIXME : some chunks might be sent while others are not!
@@ -465,7 +468,7 @@ class UserMailer {
 	 * @param int $code Error number
 	 * @param string $string Error message
 	 */
-	static function errorHandler( $code, $string ) {
+	private static function errorHandler( $code, $string ) {
 		self::$mErrorString = preg_replace( '/^mail\(\)(\s*\[.*?\])?: /', '', $string );
 	}
 

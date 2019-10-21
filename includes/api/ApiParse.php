@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * @ingroup API
@@ -83,7 +84,7 @@ class ApiParse extends ApiBase {
 		// The parser needs $wgTitle to be set, apparently the
 		// $title parameter in Parser::parse isn't enough *sigh*
 		// TODO: Does this still need $wgTitle?
-		global $wgParser, $wgTitle;
+		global $wgTitle;
 
 		$redirValues = null;
 
@@ -105,7 +106,7 @@ class ApiParse extends ApiBase {
 				}
 
 				$this->checkTitleUserPermissions( $rev->getTitle(), 'read' );
-				if ( !$rev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
+				if ( !$rev->userCan( RevisionRecord::DELETED_TEXT, $this->getUser() ) ) {
 					$this->dieWithError(
 						[ 'apierror-permissiondenied', $this->msg( 'action-deletedtext' ) ]
 					);
@@ -488,8 +489,10 @@ class ApiParse extends ApiBase {
 				$this->dieWithError( 'apierror-parsetree-notwikitext', 'notwikitext' );
 			}
 
-			$wgParser->startExternalParse( $titleObj, $popts, Parser::OT_PREPROCESS );
-			$xml = $wgParser->preprocessToDom( $this->content->getText() )->__toString();
+			$parser = MediaWikiServices::getInstance()->getParser();
+			$parser->startExternalParse( $titleObj, $popts, Parser::OT_PREPROCESS );
+			// @phan-suppress-next-line PhanUndeclaredMethod
+			$xml = $parser->preprocessToDom( $this->content->getText() )->__toString();
 			$result_array['parsetree'] = $xml;
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'parsetree';
 		}
@@ -561,23 +564,23 @@ class ApiParse extends ApiBase {
 		WikiPage $page, $popts, $suppressCache, $pageId, $rev, $getContent
 	) {
 		$revId = $rev ? $rev->getId() : null;
-		$isDeleted = $rev && $rev->isDeleted( Revision::DELETED_TEXT );
+		$isDeleted = $rev && $rev->isDeleted( RevisionRecord::DELETED_TEXT );
 
 		if ( $getContent || $this->section !== false || $isDeleted ) {
 			if ( $rev ) {
-				$this->content = $rev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
+				$this->content = $rev->getContent( RevisionRecord::FOR_THIS_USER, $this->getUser() );
 				if ( !$this->content ) {
 					$this->dieWithError( [ 'apierror-missingcontent-revid', $revId ] );
 				}
 			} else {
-				$this->content = $page->getContent( Revision::FOR_THIS_USER, $this->getUser() );
+				$this->content = $page->getContent( RevisionRecord::FOR_THIS_USER, $this->getUser() );
 				if ( !$this->content ) {
 					$this->dieWithError( [ 'apierror-missingcontent-pageid', $page->getId() ] );
 				}
 			}
 			$this->contentIsDeleted = $isDeleted;
 			$this->contentIsSuppressed = $rev &&
-				$rev->isDeleted( Revision::DELETED_TEXT | Revision::DELETED_RESTRICTED );
+				$rev->isDeleted( RevisionRecord::DELETED_TEXT | RevisionRecord::DELETED_RESTRICTED );
 		}
 
 		if ( $this->section !== false ) {
@@ -596,7 +599,9 @@ class ApiParse extends ApiBase {
 			$pout = $page->getParserOutput( $popts, $revId, $suppressCache );
 		}
 		if ( !$pout ) {
-			$this->dieWithError( [ 'apierror-nosuchrevid', $revId ?: $page->getLatest() ] ); // @codeCoverageIgnore
+			// @codeCoverageIgnoreStart
+			$this->dieWithError( [ 'apierror-nosuchrevid', $revId ?: $page->getLatest() ] );
+			// @codeCoverageIgnoreEnd
 		}
 
 		return $pout;
@@ -631,7 +636,6 @@ class ApiParse extends ApiBase {
 	 * @return Content|bool
 	 */
 	private function formatSummary( $title, $params ) {
-		global $wgParser;
 		$summary = $params['summary'] ?? '';
 		$sectionTitle = $params['sectiontitle'] ?? '';
 
@@ -641,8 +645,9 @@ class ApiParse extends ApiBase {
 			}
 			if ( $summary !== '' ) {
 				$summary = wfMessage( 'newsectionsummary' )
-					->rawParams( $wgParser->stripSectionName( $summary ) )
-						->inContentLanguage()->text();
+					->rawParams( MediaWikiServices::getInstance()->getParser()
+						->stripSectionName( $summary ) )
+					->inContentLanguage()->text();
 			}
 		}
 		return Linker::formatComment( $summary, $title, $this->section === 'new' );

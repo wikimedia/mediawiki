@@ -176,7 +176,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$this->addWhereIf( 'ipb_range_end > ipb_range_start', isset( $show['range'] ) );
 		}
 
-		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
+		if ( !$this->getPermissionManager()->userHasRight( $this->getUser(), 'hideuser' ) ) {
 			$this->addWhereFld( 'ipb_deleted', 0 );
 		}
 
@@ -305,6 +305,8 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$id = $restriction->getBlockId();
 			switch ( $restriction->getType() ) {
 				case 'page':
+					/** @var \MediaWiki\Block\Restriction\PageRestriction $restriction */
+					'@phan-var \MediaWiki\Block\Restriction\PageRestriction $restriction';
 					$value = [ 'id' => $restriction->getValue() ];
 					if ( $restriction->getTitle() ) {
 						self::addTitleInfo( $value, $restriction->getTitle() );

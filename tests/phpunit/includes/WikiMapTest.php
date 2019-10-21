@@ -1,4 +1,5 @@
 <?php
+
 use Wikimedia\Rdbms\DatabaseDomain;
 
 /**
@@ -235,7 +236,7 @@ class WikiMapTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $wiki, WikiMap::getWikiFromUrl( $url ) );
 	}
 
-	public function provideGetWikiIdFromDomain() {
+	public function provideGetWikiIdFromDbDomain() {
 		return [
 			[ 'db-prefix_', 'db-prefix_' ],
 			[ wfWikiID(), wfWikiID() ],
@@ -248,10 +249,10 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider provideGetWikiIdFromDomain
+	 * @dataProvider provideGetWikiIdFromDbDomain
 	 * @covers WikiMap::getWikiIdFromDbDomain()
 	 */
-	public function testGetWikiIdFromDomain( $domain, $wikiId ) {
+	public function testGetWikiIdFromDbDomain( $domain, $wikiId ) {
 		$this->assertEquals( $wikiId, WikiMap::getWikiIdFromDbDomain( $domain ) );
 	}
 

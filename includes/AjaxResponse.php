@@ -55,7 +55,7 @@ class AjaxResponse {
 
 	/**
 	 * HTTP response code
-	 * @var string $mResponseCode
+	 * @var int|string $mResponseCode
 	 */
 	private $mResponseCode;
 
@@ -114,7 +114,7 @@ class AjaxResponse {
 
 	/**
 	 * Set the HTTP response code
-	 * @param string $code
+	 * @param int|string $code
 	 */
 	function setResponseCode( $code ) {
 		$this->mResponseCode = $code;
@@ -162,7 +162,7 @@ class AjaxResponse {
 			// For back-compat, it is supported that mResponseCode be a string like " 200 OK"
 			// (with leading space and the status message after). Cast response code to an integer
 			// to take advantage of PHP's conversion rules which will turn "  200 OK" into 200.
-			// https://secure.php.net/manual/en/language.types.string.php#language.types.string.conversion
+			// https://www.php.net/manual/en/language.types.string.php#language.types.string.conversion
 			$n = intval( trim( $this->mResponseCode ) );
 			HttpStatus::header( $n );
 		}
@@ -179,20 +179,10 @@ class AjaxResponse {
 			# If CDN caches are configured, tell them to cache the response,
 			# and tell the client to always check with the CDN. Otherwise,
 			# tell the client to use a cached copy, without a way to purge it.
-
-			if ( $this->mConfig->get( 'UseSquid' ) ) {
+			if ( $this->mConfig->get( 'UseCdn' ) ) {
 				# Expect explicit purge of the proxy cache, but require end user agents
 				# to revalidate against the proxy on each visit.
-				# Surrogate-Control controls our CDN, Cache-Control downstream caches
-
-				if ( $this->mConfig->get( 'UseESI' ) ) {
-					wfDeprecated( '$wgUseESI = true', '1.33' );
-					header( 'Surrogate-Control: max-age=' . $this->mCacheDuration . ', content="ESI/1.0"' );
-					header( 'Cache-Control: s-maxage=0, must-revalidate, max-age=0' );
-				} else {
-					header( 'Cache-Control: s-maxage=' . $this->mCacheDuration . ', must-revalidate, max-age=0' );
-				}
-
+				header( 'Cache-Control: s-maxage=' . $this->mCacheDuration . ', must-revalidate, max-age=0' );
 			} else {
 				# Let the client do the caching. Cache is not purged.
 				header( "Expires: " . gmdate( "D, d M Y H:i:s", time() + $this->mCacheDuration ) . " GMT" );

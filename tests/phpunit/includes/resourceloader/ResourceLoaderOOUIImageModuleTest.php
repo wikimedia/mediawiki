@@ -16,26 +16,18 @@ class ResourceLoaderOOUIImageModuleTest extends ResourceLoaderTestCase {
 		] );
 
 		// Pretend that 'fakemonobook' is a real skin using the Apex theme
-		SkinFactory::getDefaultInstance()->register(
+		$skinFactory = new SkinFactory();
+		$skinFactory->register(
 			'fakemonobook',
 			'FakeMonoBook',
 			function () {
 			}
 		);
-		$r = new ReflectionMethod( ExtensionRegistry::class, 'exportExtractedData' );
-		$r->setAccessible( true );
-		$r->invoke( ExtensionRegistry::getInstance(), [
-			'globals' => [],
-			'defines' => [],
-			'callbacks' => [],
-			'credits' => [],
-			'autoloaderPaths' => [],
-			'attributes' => [
-				'SkinOOUIThemes' => [
-					'fakemonobook' => 'Apex',
-				],
-			],
-		] );
+		$this->setService( 'SkinFactory', $skinFactory );
+
+		$reset = ExtensionRegistry::getInstance()->setAttributeForTest(
+			'SkinOOUIThemes', [ 'fakemonobook' => 'Apex' ]
+		);
 
 		$styles = $module->getStyles( $this->getResourceLoaderContext( [ 'skin' => 'fakemonobook' ] ) );
 		$this->assertRegExp(
@@ -56,9 +48,9 @@ class ResourceLoaderOOUIImageModuleTest extends ResourceLoaderTestCase {
 			'Generated styles use the default image (embed)'
 		);
 		$this->assertRegExp(
-			'/vector/',
+			'/fallback/',
 			$styles['all'],
-			'Generated styles use the default image (link)'
+			'Generated styles use the default skin (link)'
 		);
 	}
 

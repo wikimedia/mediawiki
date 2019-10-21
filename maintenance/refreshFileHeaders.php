@@ -143,6 +143,10 @@ class RefreshFileHeaders extends Maintenance {
 		$this->output( "Done. Updated headers for $count file(s).\n" );
 	}
 
+	/**
+	 * @param LocalRepo $repo
+	 * @param array $backendOperations
+	 */
 	protected function updateFileHeaders( $repo, $backendOperations ) {
 		$status = $repo->getBackend()->doQuickOperations( $backendOperations );
 

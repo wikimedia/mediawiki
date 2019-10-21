@@ -53,8 +53,7 @@ class RevisionStoreCacheRecord extends RevisionStoreRecord {
 	 * @param object $row A row from the revision table. Use RevisionStore::getQueryInfo() to build
 	 *        a query that yields the required fields.
 	 * @param RevisionSlots $slots The slots of this revision.
-	 * @param bool|string $wikiId the wiki ID of the site this Revision belongs to,
-	 *        or false for the local site.
+	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one.
 	 */
 	function __construct(
 		$callback,
@@ -63,9 +62,9 @@ class RevisionStoreCacheRecord extends RevisionStoreRecord {
 		CommentStoreComment $comment,
 		$row,
 		RevisionSlots $slots,
-		$wikiId = false
+		$dbDomain = false
 	) {
-		parent::__construct( $title, $user, $comment, $row, $slots, $wikiId );
+		parent::__construct( $title, $user, $comment, $row, $slots, $dbDomain );
 		$this->mCallback = $callback;
 	}
 
@@ -98,7 +97,7 @@ class RevisionStoreCacheRecord extends RevisionStoreRecord {
 
 	/**
 	 * Load a fresh row from the database to ensure we return updated information
-
+	 *
 	 * @throws RevisionAccessException if the row could not be loaded
 	 */
 	private function loadFreshRow() {

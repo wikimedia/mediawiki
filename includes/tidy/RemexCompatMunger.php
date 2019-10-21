@@ -482,9 +482,8 @@ class RemexCompatMunger implements TreeHandler {
 	}
 
 	public function comment( $preposition, $refElement, $text, $sourceStart, $sourceLength ) {
-		list( $parent, $refNode ) = $this->getParentForInsert( $preposition, $refElement );
-		$this->serializer->comment( $preposition, $refNode, $text,
-			$sourceStart, $sourceLength );
+		list( , $refNode ) = $this->getParentForInsert( $preposition, $refElement );
+		$this->serializer->comment( $preposition, $refNode, $text, $sourceStart, $sourceLength );
 	}
 
 	public function error( $text, $pos ) {

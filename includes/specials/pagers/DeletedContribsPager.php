@@ -22,7 +22,9 @@
 /**
  * @ingroup Pager
  */
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
@@ -50,7 +52,7 @@ class DeletedContribsPager extends IndexPager {
 	public $namespace = '';
 
 	/**
-	 * @var \Wikimedia\Rdbms\Database
+	 * @var IDatabase
 	 */
 	public $mDb;
 
@@ -59,8 +61,10 @@ class DeletedContribsPager extends IndexPager {
 	 */
 	protected $mNavigationBar;
 
-	public function __construct( IContextSource $context, $target, $namespace = false ) {
-		parent::__construct( $context );
+	public function __construct( IContextSource $context, $target, $namespace = false,
+		LinkRenderer $linkRenderer
+	) {
+		parent::__construct( $context, $linkRenderer );
 		$msgs = [ 'deletionlog', 'undeleteviewlink', 'diff' ];
 		foreach ( $msgs as $msg ) {
 			$this->messages[$msg] = $this->msg( $msg )->text();
@@ -86,12 +90,13 @@ class DeletedContribsPager extends IndexPager {
 		];
 		$conds = array_merge( $userCond, $this->getNamespaceCond() );
 		$user = $this->getUser();
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		// Paranoia: avoid brute force searches (T19792)
-		if ( !$user->isAllowed( 'deletedhistory' ) ) {
-			$conds[] = $this->mDb->bitAnd( 'ar_deleted', Revision::DELETED_USER ) . ' = 0';
-		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
-			$conds[] = $this->mDb->bitAnd( 'ar_deleted', Revision::SUPPRESSED_USER ) .
-				' != ' . Revision::SUPPRESSED_USER;
+		if ( !$permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
+			$conds[] = $this->mDb->bitAnd( 'ar_deleted', RevisionRecord::DELETED_USER ) . ' = 0';
+		} elseif ( !$permissionManager->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' ) ) {
+			$conds[] = $this->mDb->bitAnd( 'ar_deleted', RevisionRecord::SUPPRESSED_USER ) .
+				' != ' . RevisionRecord::SUPPRESSED_USER;
 		}
 
 		$commentQuery = CommentStore::getStore()->getJoin( 'ar_comment' );
@@ -285,7 +290,7 @@ class DeletedContribsPager extends IndexPager {
 	function formatRevisionRow( $row ) {
 		$page = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$linkRenderer = $this->getLinkRenderer();
 
 		$rev = new Revision( [
 			'title' => $page,
@@ -318,8 +323,9 @@ class DeletedContribsPager extends IndexPager {
 		);
 
 		$user = $this->getUser();
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
-		if ( $user->isAllowed( 'deletedtext' ) ) {
+		if ( $permissionManager->userHasRight( $user, 'deletedtext' ) ) {
 			$last = $linkRenderer->makeKnownLink(
 				$undelete,
 				$this->messages['diff'],
@@ -337,7 +343,9 @@ class DeletedContribsPager extends IndexPager {
 		$comment = Linker::revComment( $rev );
 		$date = $this->getLanguage()->userTimeAndDate( $rev->getTimestamp(), $user );
 
-		if ( !$user->isAllowed( 'undelete' ) || !$rev->userCan( Revision::DELETED_TEXT, $user ) ) {
+		if ( !$permissionManager->userHasRight( $user, 'undelete' ) ||
+			 !$rev->userCan( RevisionRecord::DELETED_TEXT, $user )
+		) {
 			$link = htmlspecialchars( $date ); // unusable link
 		} else {
 			$link = $linkRenderer->makeKnownLink(
@@ -351,7 +359,7 @@ class DeletedContribsPager extends IndexPager {
 			);
 		}
 		// Style deleted items
-		if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
+		if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 			$link = '<span class="history-deleted">' . $link . '</span>';
 		}
 
@@ -384,7 +392,7 @@ class DeletedContribsPager extends IndexPager {
 		$ret = "{$del}{$link} {$tools} {$separator} {$mflag} {$pagelink} {$comment}";
 
 		# Denote if username is redacted for this edit
-		if ( $rev->isDeleted( Revision::DELETED_USER ) ) {
+		if ( $rev->isDeleted( RevisionRecord::DELETED_USER ) ) {
 			$ret .= " <strong>" . $this->msg( 'rev-deleted-user-contribs' )->escaped() . "</strong>";
 		}
 

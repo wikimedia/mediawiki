@@ -9,6 +9,8 @@
  * blocking CSS common to all pages.
  */
 
+/* stylelint-disable selector-class-pattern */
+
 /* GENERAL CLASSES FOR DIRECTIONALITY SUPPORT */
 
 /**
@@ -352,7 +354,7 @@ a.new {
 	font-weight: bold;
 }
 
-/* success and error messages */
+/* Error, warning, success and neutral messages */
 .error,
 .warning,
 .success {
@@ -364,56 +366,58 @@ a.new {
 }
 
 .warning {
-	color: #705000;
+	color: #ac6600;
 }
 
 .success {
-	color: #009000;
+	color: #14866d;
 }
 
+.messagebox,
 .errorbox,
 .warningbox,
 .successbox {
+	color: #000;
+	margin-bottom: 1em;
 	border: 1px solid;
 	padding: 0.5em 1em;
-	margin-bottom: 1em;
-	display: inline-block;
-	zoom: 1;
-	*display: inline; /* stylelint-disable-line declaration-block-no-duplicate-properties */
 }
 
+.messagebox h2,
 .errorbox h2,
 .warningbox h2,
 .successbox h2 {
-	font-size: 1em;
 	color: inherit;
-	font-weight: bold;
 	display: inline;
 	margin: 0 0.5em 0 0;
 	border: 0;
+	font-size: 1em;
+	font-weight: bold;
+}
+
+.messagebox {
+	background-color: #eaecf0;
+	border-color: #a2a9b1;
 }
 
 .errorbox {
-	color: #d33;
-	border-color: #fac5c5;
-	background-color: #fae3e3;
+	background-color: #fee7e6;
+	border-color: #d33;
 }
 
 .warningbox {
-	color: #705000;
-	border-color: #fde29b;
-	background-color: #fdf1d1;
+	background-color: #fef6e7;
+	border-color: #fc3;
 }
 
 .successbox {
-	color: #008000;
-	border-color: #b7fdb5;
-	background-color: #e1fddf;
+	background-color: #d5fdf4;
+	border-color: #14866d;
 }
 
 /* general info/warning box for SP */
 .mw-infobox {
-	border: 2px solid #ff7f00;
+	border: 2px solid #fc3;
 	margin: 0.5em;
 	clear: left;
 	overflow: hidden;
@@ -431,13 +435,7 @@ a.new {
 
 /* Note on preview page */
 .previewnote {
-	color: #d33;
 	margin-bottom: 1em;
-}
-
-.previewnote p {
-	text-indent: 3em;
-	margin: 0.8em 0;
 }
 
 .visualClear {
@@ -596,13 +594,11 @@ ol:lang( kk-arab ) li,
 ol:lang( lrc ) li,
 ol:lang( luz ) li,
 ol:lang( mzn ) li {
-	list-style-type: -moz-persian;
 	list-style-type: persian;
 }
 
 ol:lang( ckb ) li,
 ol:lang( sdh ) li {
-	list-style-type: -moz-arabic-indic;
 	list-style-type: arabic-indic;
 }
 
@@ -610,18 +606,15 @@ ol:lang( hi ) li,
 ol:lang( mai ) li,
 ol:lang( mr ) li,
 ol:lang( ne ) li {
-	list-style-type: -moz-devanagari;
 	list-style-type: devanagari;
 }
 
 ol:lang( as ) li,
 ol:lang( bn ) li {
-	list-style-type: -moz-bengali;
 	list-style-type: bengali;
 }
 
 ol:lang( or ) li {
-	list-style-type: -moz-oriya;
 	list-style-type: oriya;
 }
 

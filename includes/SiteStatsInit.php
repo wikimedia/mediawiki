@@ -68,15 +68,15 @@ class SiteStatsInit {
 	 * @return int
 	 */
 	public function articles() {
-		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$services = MediaWikiServices::getInstance();
 
 		$tables = [ 'page' ];
 		$conds = [
-			'page_namespace' => MWNamespace::getContentNamespaces(),
+			'page_namespace' => $services->getNamespaceInfo()->getContentNamespaces(),
 			'page_is_redirect' => 0,
 		];
 
-		if ( $config->get( 'ArticleCountMethod' ) == 'link' ) {
+		if ( $services->getMainConfig()->get( 'ArticleCountMethod' ) == 'link' ) {
 			$tables[] = 'pagelinks';
 			$conds[] = 'pl_from=page_id';
 		}
@@ -191,12 +191,12 @@ class SiteStatsInit {
 
 	/**
 	 * @param int $index
-	 * @param string[] $groups
+	 * @param string[]|string $groups
 	 * @return IDatabase
 	 */
 	private static function getDB( $index, $groups = [] ) {
-		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-
-		return $lb->getConnection( $index, $groups );
+		return MediaWikiServices::getInstance()
+			->getDBLoadBalancer()
+			->getConnectionRef( $index, $groups );
 	}
 }

@@ -48,6 +48,7 @@ class MapCacheLRU implements IExpiringStore, Serializable {
 	/** @var float|null */
 	private $wallClockOverride;
 
+	/** @var float */
 	const RANK_TOP = 1.0;
 
 	/** @var int Array key that holds the entry's main timestamp (flat key use) */
@@ -103,7 +104,7 @@ class MapCacheLRU implements IExpiringStore, Serializable {
 	 *
 	 * @param string $key
 	 * @param mixed $value
-	 * @param float $rank Bottom fraction of the list where keys start off [Default: 1.0]
+	 * @param float $rank Bottom fraction of the list where keys start off [default: 1.0]
 	 * @return void
 	 */
 	public function set( $key, $value, $rank = self::RANK_TOP ) {
@@ -135,10 +136,11 @@ class MapCacheLRU implements IExpiringStore, Serializable {
 	 * Check if a key exists
 	 *
 	 * @param string $key
-	 * @param float $maxAge Ignore items older than this many seconds [optional] (since 1.32)
+	 * @param float $maxAge Ignore items older than this many seconds [default: INF]
 	 * @return bool
+	 * @since 1.32 Added $maxAge
 	 */
-	public function has( $key, $maxAge = 0.0 ) {
+	public function has( $key, $maxAge = INF ) {
 		if ( !is_int( $key ) && !is_string( $key ) ) {
 			throw new UnexpectedValueException(
 				__METHOD__ . ': invalid key; must be string or integer.' );
@@ -157,12 +159,15 @@ class MapCacheLRU implements IExpiringStore, Serializable {
 	 * If the item is already set, it will be pushed to the top of the cache.
 	 *
 	 * @param string $key
-	 * @param float $maxAge Ignore items older than this many seconds [optional] (since 1.32)
-	 * @return mixed Returns null if the key was not found or is older than $maxAge
+	 * @param float $maxAge Ignore items older than this many seconds [default: INF]
+	 * @param mixed|null $default Value to return if no key is found [default: null]
+	 * @return mixed Returns $default if the key was not found or is older than $maxAge
+	 * @since 1.32 Added $maxAge
+	 * @since 1.34 Added $default
 	 */
-	public function get( $key, $maxAge = 0.0 ) {
+	public function get( $key, $maxAge = INF, $default = null ) {
 		if ( !$this->has( $key, $maxAge ) ) {
-			return null;
+			return $default;
 		}
 
 		$this->ping( $key );
@@ -201,10 +206,11 @@ class MapCacheLRU implements IExpiringStore, Serializable {
 	/**
 	 * @param string|int $key
 	 * @param string|int $field
-	 * @param float $maxAge Ignore items older than this many seconds [optional] (since 1.32)
+	 * @param float $maxAge Ignore items older than this many seconds [default: INF]
 	 * @return bool
+	 * @since 1.32 Added $maxAge
 	 */
-	public function hasField( $key, $field, $maxAge = 0.0 ) {
+	public function hasField( $key, $field, $maxAge = INF ) {
 		$value = $this->get( $key );
 
 		if ( !is_int( $field ) && !is_string( $field ) ) {
@@ -222,10 +228,11 @@ class MapCacheLRU implements IExpiringStore, Serializable {
 	/**
 	 * @param string|int $key
 	 * @param string|int $field
-	 * @param float $maxAge Ignore items older than this many seconds [optional] (since 1.32)
+	 * @param float $maxAge Ignore items older than this many seconds [default: INF]
 	 * @return mixed Returns null if the key was not found or is older than $maxAge
+	 * @since 1.32 Added $maxAge
 	 */
-	public function getField( $key, $field, $maxAge = 0.0 ) {
+	public function getField( $key, $field, $maxAge = INF ) {
 		if ( !$this->hasField( $key, $field, $maxAge ) ) {
 			return null;
 		}
@@ -249,12 +256,13 @@ class MapCacheLRU implements IExpiringStore, Serializable {
 	 * @since 1.28
 	 * @param string $key
 	 * @param callable $callback Callback that will produce the value
-	 * @param float $rank Bottom fraction of the list where keys start off [Default: 1.0]
-	 * @param float $maxAge Ignore items older than this many seconds [Default: 0.0] (since 1.32)
+	 * @param float $rank Bottom fraction of the list where keys start off [default: 1.0]
+	 * @param float $maxAge Ignore items older than this many seconds [default: INF]
 	 * @return mixed The cached value if found or the result of $callback otherwise
+	 * @since 1.32 Added $maxAge
 	 */
 	public function getWithSetCallback(
-		$key, callable $callback, $rank = self::RANK_TOP, $maxAge = 0.0
+		$key, callable $callback, $rank = self::RANK_TOP, $maxAge = INF
 	) {
 		if ( $this->has( $key, $maxAge ) ) {
 			$value = $this->get( $key );

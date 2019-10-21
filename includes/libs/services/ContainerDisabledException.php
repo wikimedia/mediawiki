@@ -1,7 +1,9 @@
 <?php
+
 namespace Wikimedia\Services;
 
 use Exception;
+use Psr\Container\ContainerExceptionInterface;
 use RuntimeException;
 
 /**
@@ -30,7 +32,8 @@ use RuntimeException;
 /**
  * Exception thrown when trying to access a service on a disabled container or factory.
  */
-class ContainerDisabledException extends RuntimeException {
+class ContainerDisabledException extends RuntimeException
+	implements ContainerExceptionInterface {
 
 	/**
 	 * @param Exception|null $previous

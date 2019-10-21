@@ -56,7 +56,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		);
 
 		// Subclass
-		$module = new ResourceLoaderFileModuleTestModule( $baseParams );
+		$module = new ResourceLoaderFileModuleTestingSubclass( $baseParams );
 		$this->assertNotEquals(
 			$version,
 			json_encode( $module->getVersionHash( $context ) ),
@@ -86,6 +86,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		$context = $this->getResourceLoaderContext();
 
 		$module = new ResourceLoaderTestModule( [
+			'mayValidateScript' => true,
 			'script' => "var a = 'this is';\n {\ninvalid"
 		] );
 		$this->assertEquals(

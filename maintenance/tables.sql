@@ -228,7 +228,7 @@ CREATE INDEX /*i*/un_user_ip ON /*_*/user_newtalk (user_ip);
 -- User preferences and perhaps other fun stuff. :)
 -- Replaces the old user.user_options blob, with a couple nice properties:
 --
--- 1) We only store non-default settings, so changes to the defauls
+-- 1) We only store non-default settings, so changes to the defaults
 --    are now reflected for everybody, not just new accounts.
 -- 2) We can more easily do bulk lookups, statistics, or modifications of
 --    saved options since it's a sane table structure.
@@ -594,9 +594,7 @@ CREATE TABLE /*_*/archive (
 
   -- Basic revision stuff...
   ar_comment_id bigint unsigned NOT NULL,
-  ar_user int unsigned NOT NULL default 0, -- Deprecated in favor of ar_actor
-  ar_user_text varchar(255) binary NOT NULL DEFAULT '', -- Deprecated in favor of ar_actor
-  ar_actor bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that ar_user/ar_user_text should be used)
+  ar_actor bigint unsigned NOT NULL,
   ar_timestamp binary(14) NOT NULL default '',
   ar_minor_edit tinyint NOT NULL default 0,
 
@@ -661,7 +659,6 @@ CREATE TABLE /*_*/archive (
 CREATE INDEX /*i*/name_title_timestamp ON /*_*/archive (ar_namespace,ar_title,ar_timestamp);
 
 -- Index for Special:DeletedContributions
-CREATE INDEX /*i*/ar_usertext_timestamp ON /*_*/archive (ar_user_text,ar_timestamp);
 CREATE INDEX /*i*/ar_actor_timestamp ON /*_*/archive (ar_actor,ar_timestamp);
 
 -- Index for linking archive rows with tables that normally link with revision
@@ -1034,14 +1031,8 @@ CREATE TABLE /*_*/ipblocks (
   -- Blocked user ID or 0 for IP blocks.
   ipb_user int unsigned NOT NULL default 0,
 
-  -- User ID who made the block.
-  ipb_by int unsigned NOT NULL default 0, -- Deprecated in favor of ipb_by_actor
-
-  -- User name of blocker
-  ipb_by_text varchar(255) binary NOT NULL default '', -- Deprecated in favor of ipb_by_actor
-
   -- Actor who made the block.
-  ipb_by_actor bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that ipb_by/ipb_by_text should be used)
+  ipb_by_actor bigint unsigned NOT NULL,
 
   -- Key to comment_id. Text comment made by blocker.
   ipb_reason_id bigint unsigned NOT NULL,
@@ -1173,18 +1164,12 @@ CREATE TABLE /*_*/image (
   -- see https://www.iana.org/assignments/media-types/
   img_minor_mime varbinary(100) NOT NULL default "unknown",
 
-  -- Description field as entered by the uploader.
+  -- Foreign key to comment table, which contains the description field as entered by the uploader.
   -- This is displayed in image upload history and logs.
   img_description_id bigint unsigned NOT NULL,
 
-  -- user_id and user_name of uploader.
-  -- Deprecated in favor of img_actor.
-  img_user int unsigned NOT NULL default 0,
-  img_user_text varchar(255) binary NOT NULL DEFAULT '',
-
   -- actor_id of the uploader.
-  -- ("DEFAULT 0" is temporary, signaling that img_user/img_user_text should be used)
-  img_actor bigint unsigned NOT NULL DEFAULT 0,
+  img_actor bigint unsigned NOT NULL,
 
   -- Time of the upload.
   img_timestamp varbinary(14) NOT NULL default '',
@@ -1194,8 +1179,6 @@ CREATE TABLE /*_*/image (
 ) /*$wgDBTableOptions*/;
 
 -- Used by Special:Newimages and ApiQueryAllImages
-CREATE INDEX /*i*/img_user_timestamp ON /*_*/image (img_user,img_timestamp);
-CREATE INDEX /*i*/img_usertext_timestamp ON /*_*/image (img_user_text,img_timestamp);
 CREATE INDEX /*i*/img_actor_timestamp ON /*_*/image (img_actor,img_timestamp);
 -- Used by Special:ListFiles for sort-by-size
 CREATE INDEX /*i*/img_size ON /*_*/image (img_size);
@@ -1226,9 +1209,7 @@ CREATE TABLE /*_*/oldimage (
   oi_height int NOT NULL default 0,
   oi_bits int NOT NULL default 0,
   oi_description_id bigint unsigned NOT NULL,
-  oi_user int unsigned NOT NULL default 0, -- Deprecated in favor of oi_actor
-  oi_user_text varchar(255) binary NOT NULL DEFAULT '', -- Deprecated in favor of oi_actor
-  oi_actor bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that oi_user/oi_user_text should be used)
+  oi_actor bigint unsigned NOT NULL,
   oi_timestamp binary(14) NOT NULL default '',
 
   oi_metadata mediumblob NOT NULL,
@@ -1239,7 +1220,6 @@ CREATE TABLE /*_*/oldimage (
   oi_sha1 varbinary(32) NOT NULL default ''
 ) /*$wgDBTableOptions*/;
 
-CREATE INDEX /*i*/oi_usertext_timestamp ON /*_*/oldimage (oi_user_text,oi_timestamp);
 CREATE INDEX /*i*/oi_actor_timestamp ON /*_*/oldimage (oi_actor,oi_timestamp);
 CREATE INDEX /*i*/oi_name_timestamp ON /*_*/oldimage (oi_name,oi_timestamp);
 -- oi_archive_name truncated to 14 to avoid key length overflow
@@ -1287,9 +1267,7 @@ CREATE TABLE /*_*/filearchive (
   fa_major_mime ENUM("unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart", "chemical") default "unknown",
   fa_minor_mime varbinary(100) default "unknown",
   fa_description_id bigint unsigned NOT NULL,
-  fa_user int unsigned default 0, -- Deprecated in favor of fa_actor
-  fa_user_text varchar(255) binary DEFAULT '', -- Deprecated in favor of fa_actor
-  fa_actor bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that fa_user/fa_user_text should be used)
+  fa_actor bigint unsigned NOT NULL,
   fa_timestamp binary(14) default '',
 
   -- Visibility of deleted revisions, bitfield
@@ -1306,7 +1284,6 @@ CREATE INDEX /*i*/fa_storage_group ON /*_*/filearchive (fa_storage_group, fa_sto
 -- sort by deletion time
 CREATE INDEX /*i*/fa_deleted_timestamp ON /*_*/filearchive (fa_deleted_timestamp);
 -- sort by uploader
-CREATE INDEX /*i*/fa_user_timestamp ON /*_*/filearchive (fa_user_text,fa_timestamp);
 CREATE INDEX /*i*/fa_actor_timestamp ON /*_*/filearchive (fa_actor,fa_timestamp);
 -- find file by sha1, 10 bytes will be enough for hashes to be indexed
 CREATE INDEX /*i*/fa_sha1 ON /*_*/filearchive (fa_sha1(10));
@@ -1378,9 +1355,7 @@ CREATE TABLE /*_*/recentchanges (
   rc_timestamp varbinary(14) NOT NULL default '',
 
   -- As in revision
-  rc_user int unsigned NOT NULL default 0, -- Deprecated in favor of rc_actor
-  rc_user_text varchar(255) binary NOT NULL DEFAULT '', -- Deprecated in favor of rc_actor
-  rc_actor bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that rc_user/rc_user_text should be used)
+  rc_actor bigint unsigned NOT NULL,
 
   -- When pages are renamed, their RC entries do _not_ change.
   rc_namespace int NOT NULL default 0,
@@ -1461,11 +1436,9 @@ CREATE INDEX /*i*/new_name_timestamp ON /*_*/recentchanges (rc_new,rc_namespace,
 CREATE INDEX /*i*/rc_ip ON /*_*/recentchanges (rc_ip);
 
 -- Probably intended for Special:NewPages namespace filter
-CREATE INDEX /*i*/rc_ns_usertext ON /*_*/recentchanges (rc_namespace, rc_user_text);
 CREATE INDEX /*i*/rc_ns_actor ON /*_*/recentchanges (rc_namespace, rc_actor);
 
 -- SiteStats active user count, Special:ActiveUsers, Special:NewPages user filter
-CREATE INDEX /*i*/rc_user_text ON /*_*/recentchanges (rc_user_text, rc_timestamp);
 CREATE INDEX /*i*/rc_actor ON /*_*/recentchanges (rc_actor, rc_timestamp);
 
 -- ApiQueryRecentChanges (T140108)
@@ -1595,14 +1568,8 @@ CREATE TABLE /*_*/logging (
   -- Timestamp. Duh.
   log_timestamp binary(14) NOT NULL default '19700101000000',
 
-  -- The user who performed this action; key to user_id
-  log_user int unsigned NOT NULL default 0, -- Deprecated in favor of log_actor
-
-  -- Name of the user who performed this action
-  log_user_text varchar(255) binary NOT NULL default '', -- Deprecated in favor of log_actor
-
   -- The actor who performed this action
-  log_actor bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that log_user/log_user_text should be used)
+  log_actor bigint unsigned NOT NULL,
 
   -- Key to the page affected. Where a user is the target,
   -- this will point to the user page.
@@ -1625,7 +1592,6 @@ CREATE TABLE /*_*/logging (
 CREATE INDEX /*i*/type_time ON /*_*/logging (log_type, log_timestamp);
 
 -- Special:Log performer filter
-CREATE INDEX /*i*/user_time ON /*_*/logging (log_user, log_timestamp);
 CREATE INDEX /*i*/actor_time ON /*_*/logging (log_actor, log_timestamp);
 
 -- Special:Log title filter, log extract
@@ -1635,7 +1601,6 @@ CREATE INDEX /*i*/page_time ON /*_*/logging (log_namespace, log_title, log_times
 CREATE INDEX /*i*/times ON /*_*/logging (log_timestamp);
 
 -- Special:Log filter by performer and type
-CREATE INDEX /*i*/log_user_type_time ON /*_*/logging (log_user, log_type, log_timestamp);
 CREATE INDEX /*i*/log_actor_type_time ON /*_*/logging (log_actor, log_type, log_timestamp);
 
 -- Apparently just used for a few maintenance pages (findMissingFiles.php, Flow).
@@ -1644,12 +1609,6 @@ CREATE INDEX /*i*/log_page_id_time ON /*_*/logging (log_page,log_timestamp);
 
 -- Special:Log action filter
 CREATE INDEX /*i*/log_type_action ON /*_*/logging (log_type, log_action, log_timestamp);
-
--- Special:Log filter by type and anonymous performer
-CREATE INDEX /*i*/log_user_text_type_time ON /*_*/logging (log_user_text, log_type, log_timestamp);
-
--- Special:Log filter by anonymous performer
-CREATE INDEX /*i*/log_user_text_time ON /*_*/logging (log_user_text, log_timestamp);
 
 
 CREATE TABLE /*_*/log_search (

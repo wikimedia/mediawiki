@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
+
 /**
  * Location holder of files stored temporarily
  *
@@ -21,6 +24,8 @@
  * @ingroup FileBackend
  */
 
+use Wikimedia\AtEase\AtEase;
+
 /**
  * This class is used to hold the location and do limited manipulation
  * of files stored temporarily (this will be whatever wfTempDir() returns)
@@ -34,12 +39,19 @@ class TempFSFile extends FSFile {
 	/** @var array Map of (path => 1) for paths to delete on shutdown */
 	protected static $pathsCollect = null;
 
+	/**
+	 * Do not call directly. Use TempFSFileFactory
+	 *
+	 * @param string $path
+	 */
 	public function __construct( $path ) {
 		parent::__construct( $path );
 
 		if ( self::$pathsCollect === null ) {
+			// @codeCoverageIgnoreStart
 			self::$pathsCollect = [];
 			register_shutdown_function( [ __CLASS__, 'purgeAllOnShutdown' ] );
+			// @codeCoverageIgnoreEnd
 		}
 	}
 
@@ -47,40 +59,23 @@ class TempFSFile extends FSFile {
 	 * Make a new temporary file on the file system.
 	 * Temporary files may be purged when the file object falls out of scope.
 	 *
+	 * @deprecated since 1.34, use TempFSFileFactory directly
+	 *
 	 * @param string $prefix
 	 * @param string $extension Optional file extension
 	 * @param string|null $tmpDirectory Optional parent directory
 	 * @return TempFSFile|null
 	 */
 	public static function factory( $prefix, $extension = '', $tmpDirectory = null ) {
-		$ext = ( $extension != '' ) ? ".{$extension}" : '';
-
-		$attempts = 5;
-		while ( $attempts-- ) {
-			$hex = sprintf( '%06x%06x', mt_rand( 0, 0xffffff ), mt_rand( 0, 0xffffff ) );
-			if ( !is_string( $tmpDirectory ) ) {
-				$tmpDirectory = self::getUsableTempDirectory();
-			}
-			$path = $tmpDirectory . '/' . $prefix . $hex . $ext;
-			Wikimedia\suppressWarnings();
-			$newFileHandle = fopen( $path, 'x' );
-			Wikimedia\restoreWarnings();
-			if ( $newFileHandle ) {
-				fclose( $newFileHandle );
-				$tmpFile = new self( $path );
-				$tmpFile->autocollect();
-				// Safely instantiated, end loop.
-				return $tmpFile;
-			}
-		}
-
-		// Give up
-		return null;
+		return ( new TempFSFileFactory( $tmpDirectory ) )->newTempFSFile( $prefix, $extension );
 	}
 
 	/**
+	 * @todo Is there any useful way to test this? Would it be useful to make this non-static on
+	 * TempFSFileFactory?
+	 *
 	 * @return string Filesystem path to a temporary directory
-	 * @throws RuntimeException
+	 * @throws RuntimeException if no writable temporary directory can be found
 	 */
 	public static function getUsableTempDirectory() {
 		$tmpDir = array_map( 'getenv', [ 'TMPDIR', 'TMP', 'TEMP' ] );
@@ -119,9 +114,9 @@ class TempFSFile extends FSFile {
 	 */
 	public function purge() {
 		$this->canDelete = false; // done
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$ok = unlink( $this->path );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		unset( self::$pathsCollect[$this->path] );
 
@@ -176,12 +171,14 @@ class TempFSFile extends FSFile {
 	 * Try to make sure that all files are purged on error
 	 *
 	 * This method should only be called internally
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public static function purgeAllOnShutdown() {
-		foreach ( self::$pathsCollect as $path ) {
-			Wikimedia\suppressWarnings();
+		foreach ( self::$pathsCollect as $path => $unused ) {
+			AtEase::suppressWarnings();
 			unlink( $path );
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 		}
 	}
 

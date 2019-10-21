@@ -54,7 +54,7 @@ class ApiCSPReport extends ApiBase {
 			// XXX Is it ok to put untrusted data into log??
 			'csp-report' => $report,
 			'method' => __METHOD__,
-			'user' => $this->getUser()->getName(),
+			'user_id' => $this->getUser()->getId() ?: 'logged-out',
 			'user-agent' => $userAgent,
 			'source' => $this->getParameter( 'source' ),
 		] );
@@ -104,11 +104,11 @@ class ApiCSPReport extends ApiBase {
 			) ||
 			(
 				isset( $report['blocked-uri'] ) &&
-				isset( $falsePositives[$report['blocked-uri']] )
+				$this->matchUrlPattern( $report['blocked-uri'], $falsePositives )
 			) ||
 			(
 				isset( $report['source-file'] ) &&
-				isset( $falsePositives[$report['source-file']] )
+				$this->matchUrlPattern( $report['source-file'], $falsePositives )
 			)
 		) {
 			// False positive due to:
@@ -117,6 +117,39 @@ class ApiCSPReport extends ApiBase {
 			$flags[] = 'false-positive';
 		}
 		return $flags;
+	}
+
+	/**
+	 * @param string $url
+	 * @param string[] $patterns
+	 * @return bool
+	 */
+	private function matchUrlPattern( $url, array $patterns ) {
+		if ( isset( $patterns[ $url ] ) ) {
+			return true;
+		}
+
+		$bits = wfParseUrl( $url );
+		unset( $bits['user'], $bits['pass'], $bits['query'], $bits['fragment'] );
+		$bits['path'] = '';
+		$serverUrl = wfAssembleUrl( $bits );
+		if ( isset( $patterns[$serverUrl] ) ) {
+			// The origin of the url matches a pattern,
+			// e.g. "https://example.org" matches "https://example.org/foo/b?a#r"
+			return true;
+		}
+		foreach ( $patterns as $pattern => $val ) {
+			// We only use this pattern if it ends in a slash, this prevents
+			// "/foos" from matching "/foo", and "https://good.combo.bad" matching
+			// "https://good.com".
+			if ( substr( $pattern, -1 ) === '/' && strpos( $url, $pattern ) === 0 ) {
+				// The pattern starts with the same as the url
+				// e.g. "https://example.org/foo/" matches "https://example.org/foo/b?a#r"
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -176,13 +209,30 @@ class ApiCSPReport extends ApiBase {
 			$flagText = '[' . implode( ', ', $flags ) . ']';
 		}
 
-		$blockedFile = $report['blocked-uri'] ?? 'n/a';
+		$blockedOrigin = isset( $report['blocked-uri'] )
+			? $this->originFromUrl( $report['blocked-uri'] )
+			: 'n/a';
 		$page = $report['document-uri'] ?? 'n/a';
-		$line = isset( $report['line-number'] ) ? ':' . $report['line-number'] : '';
+		$line = isset( $report['line-number'] )
+			? ':' . $report['line-number']
+			: '';
 		$warningText = $flagText .
-			' Received CSP report: <' . $blockedFile .
-			'> blocked from being loaded on <' . $page . '>' . $line;
+			' Received CSP report: <' . $blockedOrigin . '>' .
+			' blocked from being loaded on <' . $page . '>' . $line;
 		return $warningText;
+	}
+
+	/**
+	 * @param string $url
+	 * @return string
+	 */
+	private function originFromUrl( $url ) {
+		$bits = wfParseUrl( $url );
+		unset( $bits['user'], $bits['pass'], $bits['query'], $bits['fragment'] );
+		$bits['path'] = '';
+		$serverUrl = wfAssembleUrl( $bits );
+		// e.g. "https://example.org" from "https://example.org/foo/b?a#r"
+		return $serverUrl;
 	}
 
 	/**

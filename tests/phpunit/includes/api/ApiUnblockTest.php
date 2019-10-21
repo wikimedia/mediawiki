@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Block\DatabaseBlock;
+
 /**
  * @group API
  * @group Database
@@ -26,24 +28,24 @@ class ApiUnblockTest extends ApiTestCase {
 		$this->blockee = $this->getMutableTestUser()->getUser();
 
 		// Initialize a blocked user (used by most tests, although not all)
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'address' => $this->blockee->getName(),
 			'by' => $this->blocker->getId(),
 		] );
 		$result = $block->insert();
 		$this->assertNotFalse( $result, 'Could not insert block' );
-		$blockFromDB = Block::newFromID( $result['id'] );
+		$blockFromDB = DatabaseBlock::newFromID( $result['id'] );
 		$this->assertTrue( !is_null( $blockFromDB ), 'Could not retrieve block' );
 	}
 
 	private function getBlockFromParams( array $params ) {
 		if ( array_key_exists( 'user', $params ) ) {
-			return Block::newFromTarget( $params['user'] );
+			return DatabaseBlock::newFromTarget( $params['user'] );
 		}
 		if ( array_key_exists( 'userid', $params ) ) {
-			return Block::newFromTarget( User::newFromId( $params['userid'] ) );
+			return DatabaseBlock::newFromTarget( User::newFromId( $params['userid'] ) );
 		}
-		return Block::newFromId( $params['id'] );
+		return DatabaseBlock::newFromId( $params['id'] );
 	}
 
 	/**
@@ -64,7 +66,7 @@ class ApiUnblockTest extends ApiTestCase {
 		// We only check later on whether the block existed to begin with, because maybe the caller
 		// expects doApiRequestWithToken to throw, in which case the block might not be expected to
 		// exist to begin with.
-		$this->assertInstanceOf( Block::class, $originalBlock, 'Block should initially exist' );
+		$this->assertInstanceOf( DatabaseBlock::class, $originalBlock, 'Block should initially exist' );
 		$this->assertNull( $this->getBlockFromParams( $params ), 'Block should have been removed' );
 	}
 
@@ -94,7 +96,7 @@ class ApiUnblockTest extends ApiTestCase {
 	public function testUnblockWhenBlocked() {
 		$this->setExpectedApiException( 'ipbblocked' );
 
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'address' => $this->blocker->getName(),
 			'by' => $this->getTestUser( 'sysop' )->getUser()->getId(),
 		] );
@@ -104,7 +106,7 @@ class ApiUnblockTest extends ApiTestCase {
 	}
 
 	public function testUnblockSelfWhenBlocked() {
-		$block = new Block( [
+		$block = new DatabaseBlock( [
 			'address' => $this->blocker->getName(),
 			'by' => $this->getTestUser( 'sysop' )->getUser()->getId(),
 		] );

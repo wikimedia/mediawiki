@@ -1,6 +1,8 @@
-const fs = require( 'fs' ),
-	path = require( 'path' ),
-	logPath = process.env.LOG_DIR || path.join( __dirname, '/log' );
+/* eslint-disable no-console */
+const fs = require( 'fs' );
+const path = require( 'path' );
+const startChromedriver = !process.argv.includes( '--skip-chromedriver' );
+const logPath = process.env.LOG_DIR || path.join( __dirname, '/log' );
 
 let ffmpeg;
 
@@ -14,73 +16,57 @@ function filePath( test, screenshotPath, extension ) {
 	return path.join( screenshotPath, `${fileName( test.parent )}-${fileName( test.title )}.${extension}` );
 }
 
-// relative path
-function relPath( foo ) {
-	return path.resolve( __dirname, '../..', foo );
-}
-
+/**
+ * For more details documentation and available options,
+ * see <https://webdriver.io/docs/configurationfile.html>
+ * and <https://webdriver.io/docs/options.html>.
+ */
 exports.config = {
 	// ======
-	// Custom WDIO config specific to MediaWiki
+	// Custom conf keys for MediaWiki
+	//
+	// Access via `browser.config.<key>`.
+	// Defaults are for MediaWiki-Vagrant
 	// ======
-	// Use in a test as `browser.options.<key>`.
-	// Defaults are for convenience with MediaWiki-Vagrant
+	mwUser: process.env.MEDIAWIKI_USER || 'Admin',
+	mwPwd: process.env.MEDIAWIKI_PASSWORD || 'vagrant',
 
-	// Wiki admin
-	username: process.env.MEDIAWIKI_USER || 'Admin',
-	password: process.env.MEDIAWIKI_PASSWORD || 'vagrant',
-
-	// Base for browser.url() and Page#openTitle()
-	baseUrl: ( process.env.MW_SERVER || 'http://127.0.0.1:8080' ) + (
-		process.env.MW_SCRIPT_PATH || '/w'
-	),
+	// ==================
+	// Runner Configuration
+	// ==================
+	runner: 'local',
+	// The standalone chromedriver (also used by WMF CI) uses "/wd/hub".
+	// The one provided by wdio uses "/".
+	path: startChromedriver ? '/' : '/wd/hub',
 
 	// ======
 	// Sauce Labs
 	// ======
 	// See http://webdriver.io/guide/services/sauce.html
-	// and https://docs.saucelabs.com/reference/platforms-configurator
-	services: [ 'sauce' ],
+	// and https://github.com/bermi/sauce-connect-launcher#advanced-usage
 	user: process.env.SAUCE_USERNAME,
 	key: process.env.SAUCE_ACCESS_KEY,
-
-	// Default timeout in milliseconds for Selenium Grid requests
-	connectionRetryTimeout: 90 * 1000,
-
-	// Default request retries count
-	connectionRetryCount: 3,
+	sauceConnect: true,
 
 	// ==================
 	// Test Files
 	// ==================
 	specs: [
-		relPath( './tests/selenium/wdio-mediawiki/specs/*.js' ),
-		relPath( './tests/selenium/specs/**/*.js' ),
-		relPath( './extensions/*/tests/selenium/specs/**/*.js' ),
-		relPath( './extensions/VisualEditor/modules/ve-mw/tests/selenium/specs/**/*.js' ),
-		relPath( './extensions/Wikibase/repo/tests/selenium/specs/**/*.js' ),
-		relPath( './skins/*/tests/selenium/specs/**/*.js' )
-	],
-	// Patterns to exclude
-	exclude: [
-		relPath( './extensions/CirrusSearch/tests/selenium/specs/**/*.js' )
+		'./tests/selenium/wdio-mediawiki/specs/*.js',
+		'./tests/selenium/specs/**/*.js'
 	],
 
 	// ============
 	// Capabilities
+	// Define the different browser configurations to use ("capabilities") here.
 	// ============
-
-	// How many instances of the same capability (browser) may be started at the same time.
 	maxInstances: 1,
-
 	capabilities: [ {
 		// For Chrome/Chromium https://sites.google.com/a/chromium.org/chromedriver/capabilities
 		browserName: 'chrome',
-		maxInstances: 1,
-		chromeOptions: {
+		'goog:chromeOptions': {
 			// If DISPLAY is set, assume developer asked non-headless or CI with Xvfb.
-			// Otherwise, use --headless (added in Chrome 59)
-			// https://chromium.googlesource.com/chromium/src/+/59.0.3030.0/headless/README.md
+			// Otherwise, use --headless.
 			args: [
 				...( process.env.DISPLAY ? [] : [ '--headless' ] ),
 				// Chrome sandbox does not work in Docker
@@ -91,53 +77,31 @@ exports.config = {
 
 	// ===================
 	// Test Configurations
+	// Define all options that are relevant for the WebdriverIO instance here
 	// ===================
-
-	// Enabling synchronous mode (via the wdio-sync package), means specs don't have to
-	// use Promise#then() or await for browser commands, such as like `brower.element()`.
-	// Instead, it will automatically pause JavaScript execution until th command finishes.
-	//
-	// For non-browser commands (such as MWBot and other promises), this means you
-	// have to use `browser.call()` to make sure WDIO waits for it before the next
-	// browser command.
-	sync: true,
-
-	// Level of logging verbosity: silent | verbose | command | data | result | error
+	// Level of logging verbosity: trace | debug | info | warn | error | silent
 	logLevel: 'error',
-
-	// Enables colors for log output.
-	coloredLogs: true,
-
-	// Warns when a deprecated command is used
-	deprecationWarnings: true,
-
-	// Stop the tests once a certain number of failed tests have been recorded.
-	// Default is 0 - don't bail, run all tests.
+	// Stop after this many failures, or 0 to run all tests before reporting failures.
 	bail: 0,
-
-	// Setting this enables automatic screenshots for when a browser command fails
-	// It is also used by afterTest for capturig failed assertions.
-	// We disable it since we have our screenshot handler in the afterTest hook.
-	screenshotPath: null,
-
-	// Default timeout for each waitFor* command.
-	waitforTimeout: 10 * 1000,
-
-	// Framework you want to run your specs with.
-	// See also: http://webdriver.io/guide/testrunner/frameworks.html
+	// Base for browser.url() and wdio-mediawiki/Page#openTitle()
+	baseUrl: ( process.env.MW_SERVER || 'http://127.0.0.1:8080' ) + (
+		process.env.MW_SCRIPT_PATH || '/w'
+	),
+	services: [
+		...( startChromedriver ? [ 'chromedriver' ] : [] ),
+		...( process.env.SAUCE_ACCESS_KEY ? [ 'sauce' ] : [] )
+	],
+	// See also: https://webdriver.io/docs/frameworks.html
 	framework: 'mocha',
-
-	// Test reporter for stdout.
-	// See also: http://webdriver.io/guide/testrunner/reporters.html
-	reporters: [ 'spec', 'junit' ],
-	reporterOptions: {
-		junit: {
+	// See also: https://webdriver.io/docs/dot-reporter.html
+	reporters: [
+		'dot',
+		// See also: https://webdriver.io/docs/junit-reporter.html#configuration
+		[ 'junit', {
 			outputDir: logPath
-		}
-	},
-
-	// Options to be passed to Mocha.
-	// See the full list at http://mochajs.org/
+		} ]
+	],
+	// See also: http://mochajs.org/
 	mochaOpts: {
 		ui: 'bdd',
 		timeout: 60 * 1000
@@ -146,16 +110,13 @@ exports.config = {
 	// =====
 	// Hooks
 	// =====
-	// See also: http://webdriver.io/guide/testrunner/configurationfile.html
-
 	/**
-	* Function to be executed before a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
-	* @param {Object} test test details
-	*/
+	 * Executed before a Mocha test starts.
+	 * @param {Object} test Mocha Test object
+	 */
 	beforeTest: function ( test ) {
 		if ( process.env.DISPLAY && process.env.DISPLAY.startsWith( ':' ) ) {
-			var logBuffer;
-			let videoPath = filePath( test, logPath, 'mp4' );
+			const videoPath = filePath( test, logPath, 'mp4' );
 			const { spawn } = require( 'child_process' );
 			ffmpeg = spawn( 'ffmpeg', [
 				'-f', 'x11grab', //  grab the X11 display
@@ -167,8 +128,8 @@ exports.config = {
 				videoPath // output file
 			] );
 
-			logBuffer = function ( buffer, prefix ) {
-				let lines = buffer.toString().trim().split( '\n' );
+			const logBuffer = function ( buffer, prefix ) {
+				const lines = buffer.toString().trim().split( '\n' );
 				lines.forEach( function ( line ) {
 					console.log( prefix + line );
 				} );
@@ -193,10 +154,8 @@ exports.config = {
 			} );
 		}
 	},
-
 	/**
-	 * Save a screenshot when test fails.
-	 *
+	 * Executed after a Mocha test ends.
 	 * @param {Object} test Mocha Test object
 	 */
 	afterTest: function ( test ) {
@@ -210,7 +169,7 @@ exports.config = {
 			return;
 		}
 		// save screenshot
-		let screenshotfile = filePath( test, logPath, 'png' );
+		const screenshotfile = filePath( test, logPath, 'png' );
 		browser.saveScreenshot( screenshotfile );
 		console.log( '\n\tScreenshot location:', screenshotfile, '\n' );
 	}

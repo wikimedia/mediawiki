@@ -2,6 +2,8 @@
  * File description page
  */
 
+/* stylelint-disable selector-class-pattern */
+
 .mw-filepage-resolutioninfo {
 	font-size: smaller;
 }

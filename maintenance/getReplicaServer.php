@@ -38,10 +38,7 @@ class GetReplicaServer extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgAllDBsAreLocalhost;
-		if ( $wgAllDBsAreLocalhost ) {
-			$host = 'localhost';
-		} elseif ( $this->hasOption( 'group' ) ) {
+		if ( $this->hasOption( 'group' ) ) {
 			$db = $this->getDB( DB_REPLICA, $this->getOption( 'group' ) );
 			$host = $db->getServer();
 		} else {

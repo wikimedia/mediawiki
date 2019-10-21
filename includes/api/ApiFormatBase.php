@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This is the abstract base class for API formatters.
  *
@@ -73,7 +75,7 @@ abstract class ApiFormatBase extends ApiBase {
 		} elseif ( $this->getIsHtml() ) {
 			return 'api-result.html';
 		} else {
-			$exts = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer()
+			$exts = MediaWikiServices::getInstance()->getMimeAnalyzer()
 				->getExtensionsForType( $this->getMimeType() );
 			$ext = $exts ? strtok( $exts, ' ' ) : strtolower( $this->mFormat );
 			return "api-result.$ext";
@@ -245,7 +247,8 @@ abstract class ApiFormatBase extends ApiBase {
 			$result = $this->getBuffer();
 
 			$context = new DerivativeContext( $this->getMain() );
-			$context->setSkin( SkinFactory::getDefaultInstance()->makeSkin( 'apioutput' ) );
+			$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
+			$context->setSkin( $skinFactory->makeSkin( 'apioutput' ) );
 			$context->setTitle( SpecialPage::getTitleFor( 'ApiHelp' ) );
 			$out = new OutputPage( $context );
 			$context->setOutput( $out );

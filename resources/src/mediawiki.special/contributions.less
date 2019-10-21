@@ -1,0 +1,67 @@
+/*!
+ * Styling for Special:Contributions
+ */
+@import 'mediawiki.ui/variables.less';
+
+// OOUIHTMLForm styles.
+@ooui-font-size-browser: 16; // Assumed browser default of `16px`.
+@ooui-font-size-base: 0.875em; // Equals `14px` at browser default of `16px`.
+
+@ooui-spacing-small: 8 / @ooui-font-size-browser / @ooui-font-size-base; // Equals `0.57142857em`≈`8px`.
+@ooui-spacing-medium: 12 / @ooui-font-size-browser / @ooui-font-size-base; // Equals `0.8571429em`≈`12px`.
+@ooui-spacing-large: 16 / @ooui-font-size-browser / @ooui-font-size-base; // Equals `1.1428571em`≈`16px`.
+
+.mw-special-Contributions {
+	.oo-ui-fieldsetLayout-group {
+		max-width: 50em;
+
+		.oo-ui-panelLayout-padded.oo-ui-panelLayout-framed {
+			margin: 0;
+			border: 0;
+			padding: 0;
+		}
+
+		// Hide extra `legend`s when grouping form in sections.
+		.oo-ui-fieldsetLayout.oo-ui-labelElement > .oo-ui-fieldsetLayout-header {
+			display: none;
+		}
+	}
+
+	.mw-autocomplete-user.oo-ui-fieldLayout {
+		margin-top: @ooui-spacing-small;
+	}
+
+	// Higher specificity needed to override OOUIHTMLForm styles.
+	.mw-htmlform-field-HTMLMultiSelectField.mw-htmlform-flatlist.oo-ui-fieldLayout {
+		margin-top: @ooui-spacing-small;
+	}
+
+	.mw-htmlform-field-HTMLTagFilter ~ .mw-htmlform-field-HTMLCheckField.oo-ui-fieldLayout {
+		display: inline-block;
+		padding-right: @ooui-spacing-large;
+	}
+
+	// Clearfix for floated `.mw-htmlform-field-HTMLDateTimeField` below.
+	#mw-htmlform-contribs-date:after {
+		content: '';
+		clear: both;
+		display: block;
+	}
+
+	.mw-htmlform-field-HTMLDateTimeField {
+		margin-right: @ooui-spacing-large;
+		margin-bottom: @ooui-spacing-small;
+	}
+
+	.oo-ui-fieldLayout.oo-ui-labelElement.mw-htmlform-field-HTMLDateTimeField:first-child {
+		margin-top: @ooui-spacing-medium;
+	}
+
+	@media all and ( min-width: @width-breakpoint-tablet ) {
+		.mw-htmlform-field-HTMLDateTimeField {
+			float: left;
+			// Same `width` as DateInputWidget.
+			width: 21em;
+		}
+	}
+}

@@ -33,7 +33,7 @@ class TestUserRegistry {
 	 */
 	public static function getMutableTestUser( $testName, $groups = [] ) {
 		$id = self::getNextId();
-		$password = wfRandomString( 20 );
+		$password = "password_for_test_user_id_{$id}";
 		$testUser = new TestUser(
 			"TestUser $testName $id",  // username
 			"Name $id",                // real name
@@ -75,7 +75,7 @@ class TestUserRegistry {
 				$password = 'UTSysopPassword';
 			} else {
 				$username = "TestUser $id";
-				$password = wfRandomString( 20 );
+				$password = "password_for_test_user_id_{$id}";
 			}
 			self::$testUsers[$key] = $testUser = new TestUser(
 				$username,            // username

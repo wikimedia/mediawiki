@@ -2,7 +2,7 @@
  * These plugins provide extra functionality for interaction with textareas.
  *
  * - encapsulateSelection: Ported from skins/common/edit.js by Trevor Parscal
- *   © 2009 Wikimedia Foundation (GPLv2) - http://www.wikimedia.org
+ *   © 2009 Wikimedia Foundation (GPLv2) - https://www.wikimedia.org
  * - getCaretPosition, scrollToCaretPosition: Ported from Wikia's LinkSuggest extension
  *   https://github.com/Wikia/app/blob/c0cd8b763/extensions/wikia/LinkSuggest/js/jquery.wikia.linksuggest.js
  *   © 2010 Inez Korczyński (korczynski@gmail.com) & Jesús Martínez Novo (martineznovo@gmail.com) (GPLv2)

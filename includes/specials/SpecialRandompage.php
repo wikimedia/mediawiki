@@ -35,7 +35,8 @@ class RandomPage extends SpecialPage {
 	protected $extra = []; // Extra SQL statements
 
 	public function __construct( $name = 'Randompage' ) {
-		$this->namespaces = MWNamespace::getContentNamespaces();
+		$this->namespaces = MediaWikiServices::getInstance()->getNamespaceInfo()->
+			getContentNamespaces();
 		parent::__construct( $name );
 	}
 

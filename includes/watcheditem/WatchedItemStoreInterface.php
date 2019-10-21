@@ -18,7 +18,9 @@
  * @file
  * @ingroup Watchlist
  */
+
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\DBUnexpectedError;
 
 /**
@@ -43,11 +45,11 @@ interface WatchedItemStoreInterface {
 	 *
 	 * @since 1.31
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 *
 	 * @return int
 	 */
-	public function countWatchedItems( User $user );
+	public function countWatchedItems( UserIdentity $user );
 
 	/**
 	 * @since 1.31
@@ -115,29 +117,29 @@ interface WatchedItemStoreInterface {
 	 *
 	 * @since 1.31
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param LinkTarget $target
 	 *
 	 * @return WatchedItem|false
 	 */
-	public function getWatchedItem( User $user, LinkTarget $target );
+	public function getWatchedItem( UserIdentity $user, LinkTarget $target );
 
 	/**
 	 * Loads an item from the db
 	 *
 	 * @since 1.31
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param LinkTarget $target
 	 *
 	 * @return WatchedItem|false
 	 */
-	public function loadWatchedItem( User $user, LinkTarget $target );
+	public function loadWatchedItem( UserIdentity $user, LinkTarget $target );
 
 	/**
 	 * @since 1.31
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param array $options Allowed keys:
 	 *        'forWrite' => bool defaults to false
 	 *        'sort' => string optional sorting by namespace ID and title
@@ -145,24 +147,24 @@ interface WatchedItemStoreInterface {
 	 *
 	 * @return WatchedItem[]
 	 */
-	public function getWatchedItemsForUser( User $user, array $options = [] );
+	public function getWatchedItemsForUser( UserIdentity $user, array $options = [] );
 
 	/**
 	 * Must be called separately for Subject & Talk namespaces
 	 *
 	 * @since 1.31
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param LinkTarget $target
 	 *
 	 * @return bool
 	 */
-	public function isWatched( User $user, LinkTarget $target );
+	public function isWatched( UserIdentity $user, LinkTarget $target );
 
 	/**
 	 * @since 1.31
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param LinkTarget[] $targets
 	 *
 	 * @return array multi-dimensional like $return[$namespaceId][$titleString] = $timestamp,
@@ -170,54 +172,54 @@ interface WatchedItemStoreInterface {
 	 *         - string|null value of wl_notificationtimestamp,
 	 *         - false if $target is not watched by $user.
 	 */
-	public function getNotificationTimestampsBatch( User $user, array $targets );
+	public function getNotificationTimestampsBatch( UserIdentity $user, array $targets );
 
 	/**
 	 * Must be called separately for Subject & Talk namespaces
 	 *
 	 * @since 1.31
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param LinkTarget $target
 	 */
-	public function addWatch( User $user, LinkTarget $target );
+	public function addWatch( UserIdentity $user, LinkTarget $target );
 
 	/**
 	 * @since 1.31
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param LinkTarget[] $targets
 	 *
 	 * @return bool success
 	 */
-	public function addWatchBatchForUser( User $user, array $targets );
+	public function addWatchBatchForUser( UserIdentity $user, array $targets );
 
 	/**
-	 * Removes an entry for the User watching the LinkTarget
+	 * Removes an entry for the UserIdentity watching the LinkTarget
 	 * Must be called separately for Subject & Talk namespaces
 	 *
 	 * @since 1.31
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param LinkTarget $target
 	 *
 	 * @return bool success
 	 * @throws DBUnexpectedError
 	 * @throws MWException
 	 */
-	public function removeWatch( User $user, LinkTarget $target );
+	public function removeWatch( UserIdentity $user, LinkTarget $target );
 
 	/**
 	 * @since 1.31
 	 *
-	 * @param User $user The user to set the timestamps for
+	 * @param UserIdentity $user The user to set the timestamps for
 	 * @param string|null $timestamp Set the update timestamp to this value
 	 * @param LinkTarget[] $targets List of targets to update. Default to all targets
 	 *
 	 * @return bool success
 	 */
 	public function setNotificationTimestampsForUser(
-		User $user,
+		UserIdentity $user,
 		$timestamp,
 		array $targets = []
 	);
@@ -227,29 +229,30 @@ interface WatchedItemStoreInterface {
 	 *
 	 * @since 1.31
 	 *
-	 * @param User $user The user to reset the timestamps for
+	 * @param UserIdentity $user The user to reset the timestamps for
 	 */
-	public function resetAllNotificationTimestampsForUser( User $user );
+	public function resetAllNotificationTimestampsForUser( UserIdentity $user );
 
 	/**
 	 * @since 1.31
 	 *
-	 * @param User $editor The editor that triggered the update. Their notification
+	 * @param UserIdentity $editor The editor that triggered the update. Their notification
 	 *  timestamp will not be updated(they have already seen it)
 	 * @param LinkTarget $target The target to update timestamps for
-	 * @param string $timestamp Set the update timestamp to this value
+	 * @param string $timestamp Set the update (first unseen revision) timestamp to this value
 	 *
 	 * @return int[] Array of user IDs the timestamp has been updated for
 	 */
-	public function updateNotificationTimestamp( User $editor, LinkTarget $target, $timestamp );
+	public function updateNotificationTimestamp(
+		UserIdentity $editor, LinkTarget $target, $timestamp );
 
 	/**
 	 * Reset the notification timestamp of this entry
 	 *
 	 * @since 1.31
 	 *
-	 * @param User $user
-	 * @param Title $title
+	 * @param UserIdentity $user
+	 * @param LinkTarget $title
 	 * @param string $force Whether to force the write query to be executed even if the
 	 *    page is not watched or the notification timestamp is already NULL.
 	 *    'force' in order to force
@@ -258,18 +261,19 @@ interface WatchedItemStoreInterface {
 	 *
 	 * @return bool success Whether a job was enqueued
 	 */
-	public function resetNotificationTimestamp( User $user, Title $title, $force = '', $oldid = 0 );
+	public function resetNotificationTimestamp(
+		UserIdentity $user, LinkTarget $title, $force = '', $oldid = 0 );
 
 	/**
 	 * @since 1.31
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param int|null $unreadLimit
 	 *
 	 * @return int|bool The number of unread notifications
 	 *                  true if greater than or equal to $unreadLimit
 	 */
-	public function countUnreadNotifications( User $user, $unreadLimit = null );
+	public function countUnreadNotifications( UserIdentity $user, $unreadLimit = null );
 
 	/**
 	 * Check if the given title already is watched by the user, and if so
@@ -303,28 +307,28 @@ interface WatchedItemStoreInterface {
 	 *
 	 * @since 1.31
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 */
-	public function clearUserWatchedItems( User $user );
+	public function clearUserWatchedItems( UserIdentity $user );
 
 	/**
 	 * Queues a job that will clear the users watchlist using the Job Queue.
 	 *
 	 * @since 1.31
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 */
-	public function clearUserWatchedItemsUsingJobQueue( User $user );
+	public function clearUserWatchedItemsUsingJobQueue( UserIdentity $user );
 
 	/**
 	 * @since 1.32
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param LinkTarget[] $targets
 	 *
 	 * @return bool success
 	 */
-	public function removeWatchBatchForUser( User $user, array $targets );
+	public function removeWatchBatchForUser( UserIdentity $user, array $targets );
 
 	/**
 	 * Convert $timestamp to TS_MW or return null if the page was visited since then by $user
@@ -335,9 +339,10 @@ interface WatchedItemStoreInterface {
 	 * Usage of this method should be limited to WatchedItem* classes
 	 *
 	 * @param string|null $timestamp Value of wl_notificationtimestamp from the DB
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param LinkTarget $target
-	 * @return string TS_MW timestamp or null
+	 * @return string|null TS_MW timestamp of first unseen revision or null if there isn't one
 	 */
-	public function getLatestNotificationTimestamp( $timestamp, User $user, LinkTarget $target );
+	public function getLatestNotificationTimestamp(
+		$timestamp, UserIdentity $user, LinkTarget $target );
 }

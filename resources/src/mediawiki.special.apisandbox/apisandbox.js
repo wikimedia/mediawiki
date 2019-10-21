@@ -289,8 +289,8 @@
 				// Can't, sorry.
 			},
 			apiCheckValid: function () {
-				var ok = this.getValue() !== null || suppressErrors;
-				this.setIcon( ok ? null : 'alert' );
+				var ok = this.getValue() !== null && this.getValue() !== undefined || suppressErrors;
+				this.info.setIcon( ok ? null : 'alert' );
 				this.setTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
 				return $.Deferred().resolve( ok ).promise();
 			}
@@ -724,37 +724,32 @@
 		 * @return {OO.ui.MenuOptionWidget[]} Each item's data should be an OO.ui.FieldLayout
 		 */
 		formatRequest: function ( displayParams, rawParams ) {
-			var jsonInput,
+			var jsonLayout,
 				items = [
 					new OO.ui.MenuOptionWidget( {
 						label: Util.parseMsg( 'apisandbox-request-format-url-label' ),
-						data: new OO.ui.FieldLayout(
-							new OO.ui.TextInputWidget( {
-								readOnly: true,
-								value: mw.util.wikiScript( 'api' ) + '?' + $.param( displayParams )
-							} ), {
-								label: Util.parseMsg( 'apisandbox-request-url-label' )
-							}
-						)
+						data: new mw.widgets.CopyTextLayout( {
+							label: Util.parseMsg( 'apisandbox-request-url-label' ),
+							copyText: mw.util.wikiScript( 'api' ) + '?' + $.param( displayParams )
+						} )
 					} ),
 					new OO.ui.MenuOptionWidget( {
 						label: Util.parseMsg( 'apisandbox-request-format-json-label' ),
-						data: new OO.ui.FieldLayout(
-							jsonInput = new OO.ui.MultilineTextInputWidget( {
+						data: jsonLayout = new mw.widgets.CopyTextLayout( {
+							label: Util.parseMsg( 'apisandbox-request-json-label' ),
+							copyText: JSON.stringify( displayParams, null, '\t' ),
+							multiline: true,
+							textInput: {
 								classes: [ 'mw-apisandbox-textInputCode' ],
-								readOnly: true,
 								autosize: true,
-								maxRows: 6,
-								value: JSON.stringify( displayParams, null, '\t' )
-							} ), {
-								label: Util.parseMsg( 'apisandbox-request-json-label' )
+								maxRows: 6
 							}
-						).on( 'toggle', function ( visible ) {
+						} ).on( 'toggle', function ( visible ) {
 							if ( visible ) {
 								// Call updatePosition instead of adjustSize
 								// because the latter has weird caching
 								// behavior and the former bypasses it.
-								jsonInput.updatePosition();
+								jsonLayout.textInput.updatePosition();
 							}
 						} )
 					} )
@@ -781,10 +776,10 @@
 	};
 
 	/**
-	* Interface to ApiSandbox UI
-	*
-	* @class mw.special.ApiSandbox
-	*/
+	 * Interface to ApiSandbox UI
+	 *
+	 * @class mw.special.ApiSandbox
+	 */
 	ApiSandbox = {
 		/**
 		 * Initialize the UI
@@ -1083,12 +1078,11 @@
 				progressLoading = false;
 				$progressText = $( '<span>' ).text( mw.message( 'apisandbox-sending-request' ).text() );
 				progress = new OO.ui.ProgressBarWidget( {
-					progress: false,
-					$content: $progressText
+					progress: false
 				} );
 
 				$result = $( '<div>' )
-					.append( progress.$element );
+					.append( $progressText, progress.$element );
 
 				resultPage = page = new OO.ui.PageLayout( '|results|', { expanded: false } );
 				page.setupOutlineItem = function () {
@@ -1781,10 +1775,12 @@
 			};
 
 		this.$element.empty()
-			.append( new OO.ui.ProgressBarWidget( {
-				progress: false,
-				text: mw.message( 'apisandbox-loading', this.displayText ).text()
-			} ).$element );
+			.append(
+				document.createTextNode(
+					mw.message( 'apisandbox-loading', this.displayText ).text()
+				),
+				new OO.ui.ProgressBarWidget( { progress: false } ).$element
+			);
 
 		Util.fetchModuleInfo( this.apiModule )
 			.done( function ( pi ) {

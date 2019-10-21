@@ -1,6 +1,6 @@
 <?php
 /**
- * Benchmark for Squid purge.
+ * Benchmark for CDN purge.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,22 +24,23 @@
 require_once __DIR__ . '/Benchmarker.php';
 
 /**
- * Maintenance script that benchmarks Squid purge.
+ * Maintenance script that benchmarks CDN purge.
  *
  * @ingroup Benchmark
  */
 class BenchmarkPurge extends Benchmarker {
 	public function __construct() {
 		parent::__construct();
-		$this->addDescription( 'Benchmark the Squid purge functions.' );
+		$this->addDescription( 'Benchmark the CDN purge functions.' );
 	}
 
 	public function execute() {
-		global $wgUseSquid, $wgSquidServers;
-		if ( !$wgUseSquid ) {
-			$this->fatalError( "Squid purge benchmark doesn't do much without squid support on." );
+		global $wgUseCdn, $wgCdnServers;
+
+		if ( !$wgUseCdn ) {
+			$this->error( "CDN purge benchmark doesn't do much without CDN support on." );
 		} else {
-			$this->output( "There are " . count( $wgSquidServers ) . " defined squid servers:\n" );
+			$this->output( "There are " . count( $wgCdnServers ) . " defined CDN servers:\n" );
 			if ( $this->hasOption( 'count' ) ) {
 				$lengths = [ intval( $this->getOption( 'count' ) ) ];
 			} else {
@@ -47,7 +48,7 @@ class BenchmarkPurge extends Benchmarker {
 			}
 			foreach ( $lengths as $length ) {
 				$urls = $this->randomUrlList( $length );
-				$trial = $this->benchSquid( $urls );
+				$trial = $this->benchCdn( $urls );
 				$this->output( $trial . "\n" );
 			}
 		}
@@ -55,12 +56,12 @@ class BenchmarkPurge extends Benchmarker {
 
 	/**
 	 * Run a bunch of URLs through CdnCacheUpdate::purge()
-	 * to benchmark Squid response times.
+	 * to benchmark CDN response times.
 	 * @param array $urls A bunch of URLs to purge
 	 * @param int $trials How many times to run the test?
 	 * @return string
 	 */
-	private function benchSquid( $urls, $trials = 1 ) {
+	private function benchCdn( $urls, $trials = 1 ) {
 		$start = microtime( true );
 		for ( $i = 0; $i < $trials; $i++ ) {
 			CdnCacheUpdate::purge( $urls );

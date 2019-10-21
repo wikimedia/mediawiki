@@ -22,6 +22,8 @@
  * Trait to implement the IApiMessage interface for Message subclasses
  * @since 1.27
  * @ingroup API
+ * @phan-file-suppress PhanTraitParentReference
+ * @phan-file-suppress PhanUndeclaredMethod
  */
 trait ApiMessageTrait {
 
@@ -37,6 +39,8 @@ trait ApiMessageTrait {
 		'badipaddress' => 'invalidip',
 		'blankpage' => 'emptypage',
 		'blockedtext' => 'blocked',
+		'blockedtext-composite' => 'blocked',
+		'blockedtext-partial' => 'blocked',
 		'cannotdelete' => 'cantdelete',
 		'cannotundelete' => 'cantundelete',
 		'cantmove-titleprotected' => 'protectedtitle',

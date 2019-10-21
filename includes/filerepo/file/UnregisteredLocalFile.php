@@ -43,7 +43,7 @@ class UnregisteredLocalFile extends File {
 	/** @var bool|string */
 	protected $mime;
 
-	/** @var array Dimension data */
+	/** @var array[]|bool[] Dimension data */
 	protected $dims;
 
 	/** @var bool|string Handler-specific metadata which will be saved in the img_metadata field */
@@ -55,19 +55,19 @@ class UnregisteredLocalFile extends File {
 	/**
 	 * @param string $path Storage path
 	 * @param string $mime
-	 * @return UnregisteredLocalFile
+	 * @return static
 	 */
 	static function newFromPath( $path, $mime ) {
-		return new self( false, false, $path, $mime );
+		return new static( false, false, $path, $mime );
 	}
 
 	/**
 	 * @param Title $title
 	 * @param FileRepo $repo
-	 * @return UnregisteredLocalFile
+	 * @return static
 	 */
 	static function newFromTitle( $title, $repo ) {
-		return new self( $title, $repo, false, false );
+		return new static( $title, $repo, false, false );
 	}
 
 	/**
@@ -108,7 +108,7 @@ class UnregisteredLocalFile extends File {
 
 	/**
 	 * @param int $page
-	 * @return bool
+	 * @return array|bool
 	 */
 	private function cachePageDimensions( $page = 1 ) {
 		$page = (int)$page;

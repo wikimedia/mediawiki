@@ -26,6 +26,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -43,10 +44,10 @@ class UpdateCollation extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 
-		global $wgCategoryCollation;
+		$categoryCollation = $this->getConfig()->get( 'CategoryCollation' );
 		$this->addDescription( <<<TEXT
 This script will find all rows in the categorylinks table whose collation is
-out-of-date (cl_collation != '$wgCategoryCollation') and repopulate cl_sortkey
+out-of-date (cl_collation != '$categoryCollation') and repopulate cl_sortkey
 using the page title and cl_sortkey_prefix.  If all collations are
 up-to-date, it will do nothing.
 TEXT
@@ -69,8 +70,6 @@ TEXT
 	}
 
 	public function execute() {
-		global $wgCategoryCollation;
-
 		$dbw = $this->getDB( DB_MASTER );
 		$dbr = $this->getDB( DB_REPLICA );
 		$force = $this->getOption( 'force' );
@@ -80,7 +79,7 @@ TEXT
 			$collationName = $this->getOption( 'target-collation' );
 			$collation = Collation::factory( $collationName );
 		} else {
-			$collationName = $wgCategoryCollation;
+			$collationName = $this->getConfig()->get( 'CategoryCollation' );
 			$collation = Collation::singleton();
 		}
 
@@ -103,9 +102,8 @@ TEXT
 			'STRAIGHT_JOIN' // per T58041
 		];
 
-		if ( $force ) {
-			$collationConds = [];
-		} else {
+		$collationConds = [];
+		if ( !$force ) {
 			if ( $this->hasOption( 'previous-collation' ) ) {
 				$collationConds['cl_collation'] = $this->getOption( 'previous-collation' );
 			} else {
@@ -186,7 +184,8 @@ TEXT
 				}
 				# cl_type will be wrong for lots of pages if cl_collation is 0,
 				# so let's update it while we're here.
-				$type = MWNamespace::getCategoryLinkType( $title->getNamespace() );
+				$type = MediaWikiServices::getInstance()->getNamespaceInfo()->
+					getCategoryLinkType( $title->getNamespace() );
 				$newSortKey = $collation->getSortKey(
 					$title->getCategorySortkey( $prefix ) );
 				if ( $verboseStats ) {

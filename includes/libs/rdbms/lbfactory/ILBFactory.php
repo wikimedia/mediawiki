@@ -31,9 +31,15 @@ use InvalidArgumentException;
  * @since 1.28
  */
 interface ILBFactory {
+	/** @var int Don't save DB positions at all */
 	const SHUTDOWN_NO_CHRONPROT = 0; // don't save DB positions at all
-	const SHUTDOWN_CHRONPROT_ASYNC = 1; // save DB positions, but don't wait on remote DCs
-	const SHUTDOWN_CHRONPROT_SYNC = 2; // save DB positions, waiting on all DCs
+	/** @var int Save DB positions, but don't wait on remote DCs */
+	const SHUTDOWN_CHRONPROT_ASYNC = 1;
+	/** @var int Save DB positions, waiting on all DCs */
+	const SHUTDOWN_CHRONPROT_SYNC = 2;
+
+	/** @var string Default main LB cluster name (do not change this) */
+	const CLUSTER_MAIN_DEFAULT = 'DEFAULT';
 
 	/**
 	 * Construct a manager of ILoadBalancer objects
@@ -57,6 +63,7 @@ interface ILBFactory {
 	 *  - perfLogger: PSR-3 logger instance. [optional]
 	 *  - errorLogger: Callback that takes an Exception and logs it. [optional]
 	 *  - deprecationLogger: Callback to log a deprecation warning. [optional]
+	 *  - secret: Secret string to use for HMAC hashing [optional]
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct( array $conf );
@@ -102,9 +109,10 @@ interface ILBFactory {
 	 * but still use DBO_TRX transaction rounds on other tables.
 	 *
 	 * @param bool|string $domain Domain ID, or false for the current domain
+	 * @param int|null $owner Owner ID of the new instance (e.g. this LBFactory ID)
 	 * @return ILoadBalancer
 	 */
-	public function newMainLB( $domain = false );
+	public function newMainLB( $domain = false, $owner = null );
 
 	/**
 	 * Get a cached (tracked) load balancer object.
@@ -124,9 +132,10 @@ interface ILBFactory {
 	 * (DBO_TRX off) but still use DBO_TRX transaction rounds on other tables.
 	 *
 	 * @param string $cluster External storage cluster name
+	 * @param int|null $owner Owner ID of the new instance (e.g. this LBFactory ID)
 	 * @return ILoadBalancer
 	 */
-	public function newExternalLB( $cluster );
+	public function newExternalLB( $cluster, $owner = null );
 
 	/**
 	 * Get a cached (tracked) load balancer for external storage
@@ -139,7 +148,9 @@ interface ILBFactory {
 	/**
 	 * Get cached (tracked) load balancers for all main database clusters
 	 *
-	 * @return LoadBalancer[] Map of (cluster name => LoadBalancer)
+	 * The default cluster name is ILoadBalancer::CLUSTER_MAIN_DEFAULT
+	 *
+	 * @return ILoadBalancer[] Map of (cluster name => ILoadBalancer)
 	 * @since 1.29
 	 */
 	public function getAllMainLBs();
@@ -147,13 +158,14 @@ interface ILBFactory {
 	/**
 	 * Get cached (tracked) load balancers for all external database clusters
 	 *
-	 * @return LoadBalancer[] Map of (cluster name => LoadBalancer)
+	 * @return ILoadBalancer[] Map of (cluster name => ILoadBalancer)
 	 * @since 1.29
 	 */
 	public function getAllExternalLBs();
 
 	/**
-	 * Execute a function for each tracked load balancer
+	 * Execute a function for each currently tracked (instantiated) load balancer
+	 *
 	 * The callback is called with the load balancer as the first parameter,
 	 * and $params passed as the subsequent parameters.
 	 *
@@ -163,7 +175,8 @@ interface ILBFactory {
 	public function forEachLB( $callback, array $params = [] );
 
 	/**
-	 * Prepare all tracked load balancers for shutdown
+	 * Prepare all currently tracked (instantiated) load balancers for shutdown
+	 *
 	 * @param int $mode One of the class SHUTDOWN_* constants
 	 * @param callable|null $workCallback Work to mask ChronologyProtector writes
 	 * @param int|null &$cpIndex Position key write counter for ChronologyProtector
@@ -178,6 +191,8 @@ interface ILBFactory {
 
 	/**
 	 * Commit all replica DB transactions so as to flush any REPEATABLE-READ or SSI snapshot
+	 *
+	 * This is useful for getting rid of stale data from an implicit transaction round
 	 *
 	 * @param string $fname Caller name
 	 */
@@ -355,6 +370,14 @@ interface ILBFactory {
 	 * @return string
 	 */
 	public function appendShutdownCPIndexAsQuery( $url, $index );
+
+	/**
+	 * Get the client ID of the ChronologyProtector instance
+	 *
+	 * @return string Client ID
+	 * @since 1.34
+	 */
+	public function getChronologyProtectorClientId();
 
 	/**
 	 * @param array $info Map of fields, including:

@@ -1,4 +1,5 @@
 <?php
+
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -68,15 +69,6 @@ class RefreshLinksJobTest extends MediaWikiTestCase {
 		$job = new RefreshLinksJob( $page->getTitle(), [ 'parseThreshold' => 0 ] );
 		$job->run();
 
-		// assert state
-		$options = ParserOptions::newCanonical( 'canonical' );
-		$out = $parserCache->get( $page, $options );
-		$this->assertNotFalse( $out, 'parser cache entry' );
-
-		$text = $out->getText();
-		$this->assertContains( 'MAIN', $text );
-		$this->assertContains( 'AUX', $text );
-
 		$this->assertSelect(
 			'pagelinks',
 			'pl_title',
@@ -91,4 +83,60 @@ class RefreshLinksJobTest extends MediaWikiTestCase {
 		);
 	}
 
+	public function testRunForMultiPage() {
+		MediaWikiServices::getInstance()->getSlotRoleRegistry()->defineRoleWithModel(
+			'aux',
+			CONTENT_MODEL_WIKITEXT
+		);
+
+		$fname = __METHOD__;
+
+		$mainContent = new WikitextContent( 'MAIN [[Kittens]]' );
+		$auxContent = new WikitextContent( 'AUX [[Category:Goats]]' );
+		$page1 = $this->createPage( "$fname-1", [ 'main' => $mainContent, 'aux' => $auxContent ] );
+
+		$mainContent = new WikitextContent( 'MAIN [[Dogs]]' );
+		$auxContent = new WikitextContent( 'AUX [[Category:Hamsters]]' );
+		$page2 = $this->createPage( "$fname-2", [ 'main' => $mainContent, 'aux' => $auxContent ] );
+
+		// clear state
+		$parserCache = MediaWikiServices::getInstance()->getParserCache();
+		$parserCache->deleteOptionsKey( $page1 );
+		$parserCache->deleteOptionsKey( $page2 );
+
+		$this->db->delete( 'pagelinks', '*', __METHOD__ );
+		$this->db->delete( 'categorylinks', '*', __METHOD__ );
+
+		// run job
+		$job = new RefreshLinksJob(
+			Title::newMainPage(),
+			[ 'pages' => [ [ 0, "$fname-1" ], [ 0, "$fname-2" ] ] ]
+		);
+		$job->run();
+
+		$this->assertSelect(
+			'pagelinks',
+			'pl_title',
+			[ 'pl_from' => $page1->getId() ],
+			[ [ 'Kittens' ] ]
+		);
+		$this->assertSelect(
+			'categorylinks',
+			'cl_to',
+			[ 'cl_from' => $page1->getId() ],
+			[ [ 'Goats' ] ]
+		);
+		$this->assertSelect(
+			'pagelinks',
+			'pl_title',
+			[ 'pl_from' => $page2->getId() ],
+			[ [ 'Dogs' ] ]
+		);
+		$this->assertSelect(
+			'categorylinks',
+			'cl_to',
+			[ 'cl_from' => $page2->getId() ],
+			[ [ 'Hamsters' ] ]
+		);
+	}
 }

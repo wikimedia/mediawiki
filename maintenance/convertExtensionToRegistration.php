@@ -168,9 +168,8 @@ class ConvertExtensionToRegistration extends Maintenance {
 				$this->fatalError( "Error: Closures cannot be converted to JSON. " .
 					"Please move your extension function somewhere else."
 				);
-			}
-			// check if $func exists in the global scope
-			if ( function_exists( $func ) ) {
+			} elseif ( function_exists( $func ) ) {
+				// check if $func exists in the global scope
 				$this->fatalError( "Error: Global functions cannot be converted to JSON. " .
 					"Please move your extension function ($func) into a class."
 				);
@@ -263,9 +262,8 @@ class ConvertExtensionToRegistration extends Maintenance {
 					$this->fatalError( "Error: Closures cannot be converted to JSON. " .
 						"Please move the handler for $hookName somewhere else."
 					);
-				}
-				// Check if $func exists in the global scope
-				if ( function_exists( $func ) ) {
+				} elseif ( function_exists( $func ) ) {
+					// Check if $func exists in the global scope
 					$this->fatalError( "Error: Global functions cannot be converted to JSON. " .
 						"Please move the handler for $hookName inside a class."
 					);
@@ -278,6 +276,10 @@ class ConvertExtensionToRegistration extends Maintenance {
 		$this->json[$realName] = $value;
 	}
 
+	/**
+	 * @param string $realName
+	 * @param array[] $value
+	 */
 	protected function handleResourceModules( $realName, $value ) {
 		$defaults = [];
 		$remote = $this->hasOption( 'skin' ) ? 'remoteSkinPath' : 'remoteExtPath';

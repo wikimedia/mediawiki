@@ -24,6 +24,7 @@
 	 * @cfg {boolean} [showImages] Show page images
 	 * @cfg {boolean} [showDescriptions] Show page descriptions
 	 * @cfg {boolean} [showMissing=true] Show missing pages
+	 * @cfg {boolean} [showInterwikis=false] Show pages with a valid interwiki prefix
 	 * @cfg {boolean} [addQueryInput=true] Add exact user's input query to results
 	 * @cfg {boolean} [excludeCurrentPage] Exclude the current page from suggestions
 	 * @cfg {boolean} [excludeDynamicNamespaces] Exclude pages whose namespace is negative
@@ -50,6 +51,7 @@
 		this.showImages = !!config.showImages;
 		this.showDescriptions = !!config.showDescriptions;
 		this.showMissing = config.showMissing !== false;
+		this.showInterwikis = !!config.showInterwikis;
 		this.addQueryInput = config.addQueryInput !== false;
 		this.excludeCurrentPage = !!config.excludeCurrentPage;
 		this.excludeDynamicNamespaces = !!config.excludeDynamicNamespaces;
@@ -103,9 +105,16 @@
 	};
 
 	mw.widgets.TitleWidget.prototype.getInterwikiPrefixesPromise = function () {
-		var api = this.getApi(),
-			cache = this.constructor.static.interwikiPrefixesPromiseCache,
-			key = api.defaults.ajax.url;
+		var api, cache, key;
+
+		if ( !this.showInterwikis ) {
+			return $.Deferred().resolve( [] ).promise();
+		}
+
+		api = this.getApi();
+		cache = this.constructor.static.interwikiPrefixesPromiseCache;
+		key = api.defaults.ajax.url;
+
 		if ( !Object.prototype.hasOwnProperty.call( cache, key ) ) {
 			cache[ key ] = api.get( {
 				action: 'query',
@@ -147,27 +156,33 @@
 		}
 
 		return this.getInterwikiPrefixesPromise().then( function ( interwikiPrefixes ) {
-			var interwiki = query.substring( 0, query.indexOf( ':' ) );
-			if (
-				interwiki && interwiki !== '' &&
-				interwikiPrefixes.indexOf( interwiki ) !== -1
-			) {
-				return $.Deferred().resolve( { query: {
-					pages: [ {
-						title: query
-					} ]
-				} } ).promise( promiseAbortObject );
-			} else {
-				req = api.get( widget.getApiParams( query ) );
-				promiseAbortObject.abort = req.abort.bind( req ); // TODO ew
-				return req.then( function ( ret ) {
-					if ( widget.showMissing && ret.query === undefined ) {
-						ret = api.get( { action: 'query', titles: query } );
-						promiseAbortObject.abort = ret.abort.bind( ret );
-					}
-					return ret;
-				} );
+			var interwiki;
+			// Optimization: check we have any prefixes.
+			if ( interwikiPrefixes.length ) {
+				interwiki = query.substring( 0, query.indexOf( ':' ) );
+				if (
+					interwiki && interwiki !== '' &&
+					interwikiPrefixes.indexOf( interwiki ) !== -1
+				) {
+					// Interwiki prefix is valid: return the original query as a valid title
+					// NB: This doesn't check if the title actually exists on the other wiki
+					return $.Deferred().resolve( { query: {
+						pages: [ {
+							title: query
+						} ]
+					} } ).promise( promiseAbortObject );
+				}
 			}
+			// Not a interwiki: do an API lookup of the query
+			req = api.get( widget.getApiParams( query ) );
+			promiseAbortObject.abort = req.abort.bind( req ); // TODO ew
+			return req.then( function ( ret ) {
+				if ( widget.showMissing && ret.query === undefined ) {
+					ret = api.get( { action: 'query', titles: query } );
+					promiseAbortObject.abort = ret.abort.bind( ret );
+				}
+				return ret;
+			} );
 		} ).promise( promiseAbortObject );
 	};
 
@@ -302,13 +317,15 @@
 			)
 		);
 
-		if ( this.cache ) {
-			this.cache.set( pageData );
-		}
-
 		// Offer the exact text as a suggestion if the page exists
 		if ( this.addQueryInput && pageExists && !pageExistsExact ) {
 			titles.unshift( this.getQueryValue() );
+			// Ensure correct page metadata gets used
+			pageData[ this.getQueryValue() ] = pageData[ titleObj.getPrefixedText() ];
+		}
+
+		if ( this.cache ) {
+			this.cache.set( pageData );
 		}
 
 		for ( i = 0, len = titles.length; i < len; i++ ) {

@@ -23,6 +23,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\Block\DatabaseBlock;
+
 /**
  * Maintenance script to clean up user blocks with user names not matching the
  * 'user' table.
@@ -39,7 +41,7 @@ class CleanupBlocks extends Maintenance {
 
 	public function execute() {
 		$db = $this->getDB( DB_MASTER );
-		$blockQuery = Block::getQueryInfo();
+		$blockQuery = DatabaseBlock::getQueryInfo();
 
 		$max = $db->selectField( 'ipblocks', 'MAX(ipb_user)' );
 
@@ -77,14 +79,14 @@ class CleanupBlocks extends Maintenance {
 					$blockQuery['joins']
 				);
 				foreach ( $res2 as $row2 ) {
-					$block = Block::newFromRow( $row2 );
+					$block = DatabaseBlock::newFromRow( $row2 );
 					if ( !$bestBlock ) {
 						$bestBlock = $block;
 						continue;
 					}
 
 					// Find the most-restrictive block. Can't use
-					// Block::chooseBlock because that's for IP blocks, not
+					// DatabaseBlock::chooseBlock because that's for IP blocks, not
 					// user blocks.
 					$keep = null;
 					if ( $keep === null && $block->getExpiry() !== $bestBlock->getExpiry() ) {

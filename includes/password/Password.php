@@ -155,11 +155,14 @@ abstract class Password {
 	 * custom comparison, but it is not recommended unless necessary.
 	 *
 	 * @deprecated since 1.33, use verify()
+	 * @codeCoverageIgnore
 	 *
 	 * @param Password|string $other The other password
 	 * @return bool True if equal, false otherwise
 	 */
 	public function equals( $other ) {
+		wfDeprecated( __METHOD__, '1.33' );
+
 		if ( is_string( $other ) ) {
 			return $this->verify( $other );
 		}

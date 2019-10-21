@@ -1,11 +1,12 @@
 <?php
+
 use Wikimedia\Assert\ParameterTypeException;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers SlotDiffRenderer
  */
-class SlotDiffRendererTest extends \PHPUnit\Framework\TestCase {
+class SlotDiffRendererTest extends \MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideNormalizeContents

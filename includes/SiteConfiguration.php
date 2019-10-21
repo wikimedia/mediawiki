@@ -582,14 +582,14 @@ class SiteConfiguration {
 	 * which is not fun
 	 *
 	 * @param array $array1
+	 * @param array ...$arrays
 	 *
 	 * @return array
 	 */
-	static function arrayMerge( $array1/* ... */ ) {
+	static function arrayMerge( array $array1, ...$arrays ) {
 		$out = $array1;
-		$argsCount = func_num_args();
-		for ( $i = 1; $i < $argsCount; $i++ ) {
-			foreach ( func_get_arg( $i ) as $key => $value ) {
+		foreach ( $arrays as $array ) {
+			foreach ( $array as $key => $value ) {
 				if ( isset( $out[$key] ) && is_array( $out[$key] ) && is_array( $value ) ) {
 					$out[$key] = self::arrayMerge( $out[$key], $value );
 				} elseif ( !isset( $out[$key] ) || !$out[$key] && !is_numeric( $key ) ) {

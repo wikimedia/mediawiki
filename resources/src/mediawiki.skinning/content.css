@@ -5,6 +5,8 @@
  * (ie: the CSS classing built into the system), like the TOC.
  */
 
+/* stylelint-disable selector-class-pattern */
+
 /* Table of Contents */
 .toc,
 .mw-warning,
@@ -77,10 +79,10 @@ table.toc td {
 .toctext {
 	display: table-cell;
 	/*
-	Text decorations are not propagated to the contents of inline blocks and inline tables,
-	according to <https://www.w3.org/TR/css-text-decor-3/#line-decoration>, and 'display: table-cell'
-	generates an inline table when used without any parent table-rows and tables.
-	*/
+	 * Text decorations are not propagated to the contents of inline blocks and inline tables,
+	 * according to <https://www.w3.org/TR/css-text-decor-3/#line-decoration>, and 'display: table-cell'
+	 * generates an inline table when used without any parent table-rows and tables.
+	 */
 	text-decoration: inherit;
 }
 
@@ -136,7 +138,7 @@ div.thumbinner {
 	font-size: 94%;
 	text-align: center;
 	/* new block formatting context,
-	 * to clear background from floating content  */
+	 * to clear background from floating content */
 	overflow: hidden;
 }
 

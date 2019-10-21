@@ -264,6 +264,8 @@
 	"exif-scenetype-1": "Normal",
 	"exif-customrendered-0": "Standard",
 	"exif-customrendered-1": "Brugerdefineret",
+	"exif-customrendered-4": "Oprindelig (for HDR)",
+	"exif-customrendered-8": "Portræt",
 	"exif-exposuremode-0": "Automatisk belysning",
 	"exif-exposuremode-1": "Manuel belysning",
 	"exif-exposuremode-2": "Belysningsrække",

@@ -5,7 +5,8 @@
 			"Xelgen",
 			"Դավիթ Սարոյան",
 			"Vahe Gharakhanyan",
-			"Kareyac"
+			"Kareyac",
+			"GeoO"
 		]
 	},
 	"ooui-outline-control-move-down": "Իջեցնել ներքև",
@@ -24,5 +25,5 @@
 	"ooui-selectfile-button-select": "Ընտրել նիշք",
 	"ooui-selectfile-not-supported": "Ֆայլի ընտրությունը չի պաշտպանվում",
 	"ooui-selectfile-placeholder": "Ֆայլն ընտրված չէ",
-	"ooui-selectfile-dragdrop-placeholder": "Ֆայլը գցել այստե"
+	"ooui-selectfile-dragdrop-placeholder": "Ֆայլը բերել այստեղ"
 }

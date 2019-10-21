@@ -29,9 +29,9 @@
 	ul.mw-collapsible:before,
 	.mw-collapsible-toggle-li {
 		/*
-		Rather than inherit any margins from the general li selector - make sure this is explicit
-		to avoid reflows
-		*/
+		 * Rather than inherit any margins from the general li selector - make sure this is explicit
+		 * to avoid reflows
+		 */
 		display: list-item;
 		list-style: none;
 		margin-bottom: 0.1em;
@@ -43,9 +43,9 @@
 		display: none;
 	}
 
+	// table.: Where the tbody or thead is the first child of the collapsible table
 	ol.mw-collapsible:not( @{exclude} ):before,
 	ul.mw-collapsible:not( @{exclude} ):before,
-	// Where the tbody or thead is the first child of the collapsible table
 	table.mw-collapsible:not( @{exclude} ) :first-child tr:first-child th:last-child:before,
 	table.mw-collapsible:not( @{exclude} ) > caption:first-child:after,
 	div.mw-collapsible:not( @{exclude} ):before {
@@ -74,9 +74,10 @@
 	// Use the exclude selector to ensure animations do not break
 	.mw-collapsed:not( @{exclude} ) {
 		// Avoid FOUC/reflows on collapsed elements by making sure they are opened by default (T42812)
+		// > thead + tbody: 'https://www.mediawiki.org/wiki/Manual:Collapsible_elements/Demo/Simple#Collapsed_by_default'
 		> p,
 		> table,
-		> thead + tbody, // 'https://www.mediawiki.org/wiki/Manual:Collapsible_elements/Demo/Simple#Collapsed_by_default'
+		> thead + tbody,
 		tr:not( :first-child ),
 		.mw-collapsible-content {
 			display: none;
@@ -92,7 +93,7 @@
 	float: right;
 }
 
-/* For collapsible elements in the content area, override the alginment based on the content language.  */
+/* For collapsible elements in the content area, override the alginment based on the content language. */
 /* @noflip */
 .mw-content-ltr,
 .mw-content-rtl .mw-content-ltr {

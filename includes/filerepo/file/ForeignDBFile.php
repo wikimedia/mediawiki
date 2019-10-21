@@ -31,31 +31,6 @@ use Wikimedia\Rdbms\DBUnexpectedError;
  * @ingroup FileAbstraction
  */
 class ForeignDBFile extends LocalFile {
-	/**
-	 * @param Title $title
-	 * @param FileRepo $repo
-	 * @param null $unused
-	 * @return ForeignDBFile
-	 */
-	static function newFromTitle( $title, $repo, $unused = null ) {
-		return new self( $title, $repo );
-	}
-
-	/**
-	 * Create a ForeignDBFile from a title
-	 * Do not call this except from inside a repo class.
-	 *
-	 * @param stdClass $row
-	 * @param FileRepo $repo
-	 * @return ForeignDBFile
-	 */
-	static function newFromRow( $row, $repo ) {
-		$title = Title::makeTitle( NS_FILE, $row->img_name );
-		$file = new self( $title, $repo );
-		$file->loadFromRow( $row );
-
-		return $file;
-	}
 
 	/**
 	 * @param string $srcPath
@@ -165,7 +140,8 @@ class ForeignDBFile extends LocalFile {
 			$this->repo->descriptionCacheExpiry ?: $cache::TTL_UNCACHEABLE,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $renderUrl, $fname ) {
 				wfDebug( "Fetching shared description from $renderUrl\n" );
-				$res = Http::get( $renderUrl, [], $fname );
+				$res = MediaWikiServices::getInstance()->getHttpRequestFactory()->
+					get( $renderUrl, [], $fname );
 				if ( !$res ) {
 					$ttl = WANObjectCache::TTL_UNCACHEABLE;
 				}

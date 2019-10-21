@@ -1,4 +1,5 @@
 <?php
+
 use Liuggio\StatsdClient\Entity\StatsdData;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 

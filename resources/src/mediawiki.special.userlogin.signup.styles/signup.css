@@ -23,16 +23,19 @@
 	margin-bottom: 30px;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .mw-number-text.icon-edits {
 	/* @embed */
 	background: url( images/icon-edits.png ) no-repeat left center;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .mw-number-text.icon-pages {
 	/* @embed */
 	background: url( images/icon-pages.png ) no-repeat left center;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .mw-number-text.icon-contributors {
 	/* @embed */
 	background: url( images/icon-contributors.png ) no-repeat left center;
@@ -40,9 +43,9 @@
 
 /*
  * Special font for numbers in benefits, same as Vector's `@content-heading-font-family`.
- * Needs an ID so that it's more specific than Vector's div#content h3.
+ * Needs to be more specific than Vector's `.mw-body-content h3`.
  */
-#bodyContent .mw-number-text h3 {
+.mw-body-content .mw-number-text h3 {
 	color: #222;
 	margin: 0;
 	padding: 0;

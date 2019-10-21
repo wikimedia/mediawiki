@@ -245,7 +245,7 @@ class TextConflictHelper {
 	 * @param string $text
 	 * @return Content
 	 */
-	public function toEditContent( $text ) {
+	private function toEditContent( $text ) {
 		return ContentHandler::makeContent(
 			$text,
 			$this->title,

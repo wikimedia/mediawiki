@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Block\AbstractBlock;
+
 /**
  * Show an error when the user tries to do something whilst blocked.
  *
@@ -25,7 +27,7 @@
  * @ingroup Exception
  */
 class UserBlockedError extends ErrorPageError {
-	public function __construct( Block $block ) {
+	public function __construct( AbstractBlock $block ) {
 		// @todo FIXME: Implement a more proper way to get context here.
 		$params = $block->getPermissionsError( RequestContext::getMain() );
 		parent::__construct( 'blockedtitle', array_shift( $params ), $params );

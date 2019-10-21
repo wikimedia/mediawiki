@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 
 /**
  * Job to clear a users watchlist in batches.
@@ -10,35 +11,26 @@ use MediaWiki\MediaWikiServices;
  * @ingroup JobQueue
  * @since 1.31
  */
-class ClearUserWatchlistJob extends Job {
-
+class ClearUserWatchlistJob extends Job implements GenericParameterJob {
 	/**
-	 * @param User $user User to clear the watchlist for.
-	 * @param int $maxWatchlistId The maximum wl_id at the time the job was first created.
-	 *
-	 * @return ClearUserWatchlistJob
-	 */
-	public static function newForUser( User $user, $maxWatchlistId ) {
-		return new self(
-			null,
-			[ 'userId' => $user->getId(), 'maxWatchlistId' => $maxWatchlistId ]
-		);
-	}
-
-	/**
-	 * @param Title|null $title Not used by this job.
 	 * @param array $params
 	 *  - userId,         The ID for the user whose watchlist is being cleared.
 	 *  - maxWatchlistId, The maximum wl_id at the time the job was first created,
 	 */
-	public function __construct( Title $title = null, array $params ) {
-		parent::__construct(
-			'clearUserWatchlist',
-			SpecialPage::getTitleFor( 'EditWatchlist', 'clear' ),
-			$params
-		);
+	public function __construct( array $params ) {
+		parent::__construct( 'clearUserWatchlist', $params );
 
 		$this->removeDuplicates = true;
+	}
+
+	/**
+	 * @param UserIdentity $user User to clear the watchlist for.
+	 * @param int $maxWatchlistId The maximum wl_id at the time the job was first created.
+	 *
+	 * @return ClearUserWatchlistJob
+	 */
+	public static function newForUser( UserIdentity $user, $maxWatchlistId ) {
+		return new self( [ 'userId' => $user->getId(), 'maxWatchlistId' => $maxWatchlistId ] );
 	}
 
 	public function run() {
@@ -48,24 +40,24 @@ class ClearUserWatchlistJob extends Job {
 		$batchSize = $wgUpdateRowsPerQuery;
 
 		$loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		$dbw = $loadBalancer->getConnection( DB_MASTER );
-		$dbr = $loadBalancer->getConnection( DB_REPLICA, [ 'watchlist' ] );
+		$dbw = $loadBalancer->getConnectionRef( DB_MASTER );
+		$dbr = $loadBalancer->getConnectionRef( DB_REPLICA, [ 'watchlist' ] );
 
 		// Wait before lock to try to reduce time waiting in the lock.
-		if ( !$loadBalancer->safeWaitForMasterPos( $dbr ) ) {
+		if ( !$loadBalancer->waitForMasterPos( $dbr ) ) {
 			$this->setLastError( 'Timed out waiting for replica to catch up before lock' );
 			return false;
 		}
 
 		// Use a named lock so that jobs for this user see each others' changes
-		$lockKey = "ClearUserWatchlistJob:$userId";
+		$lockKey = "{{$dbw->getDomainID()}}:ClearUserWatchlist:$userId"; // per-wiki
 		$scopedLock = $dbw->getScopedLockAndFlush( $lockKey, __METHOD__, 10 );
 		if ( !$scopedLock ) {
 			$this->setLastError( "Could not acquire lock '$lockKey'" );
 			return false;
 		}
 
-		if ( !$loadBalancer->safeWaitForMasterPos( $dbr ) ) {
+		if ( !$loadBalancer->waitForMasterPos( $dbr ) ) {
 			$this->setLastError( 'Timed out waiting for replica to catch up within lock' );
 			return false;
 		}
@@ -101,7 +93,7 @@ class ClearUserWatchlistJob extends Job {
 		if ( count( $watchlistIds ) === (int)$batchSize ) {
 			// Until we get less results than the limit, recursively push
 			// the same job again.
-			JobQueueGroup::singleton()->push( new self( $this->getTitle(), $this->getParams() ) );
+			JobQueueGroup::singleton()->push( new self( $this->getParams() ) );
 		}
 
 		return true;

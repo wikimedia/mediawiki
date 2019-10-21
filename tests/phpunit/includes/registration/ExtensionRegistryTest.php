@@ -19,7 +19,7 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 		$path = __DIR__ . '/doesnotexist.json';
 		$this->setExpectedException(
 			Exception::class,
-			"$path does not exist!"
+			"file $path"
 		);
 		$registry->queue( $path );
 	}

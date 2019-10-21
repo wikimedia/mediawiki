@@ -1,7 +1,5 @@
 <?php
 /**
- * Abstraction for ResourceLoader modules that pull from wiki pages.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -23,6 +21,7 @@
  */
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
@@ -47,6 +46,9 @@ use MediaWiki\MediaWikiServices;
  *   - getDB()
  *   - isKnownEmpty()
  *   - getTitleInfo()
+ *
+ * @ingroup ResourceLoader
+ * @since 1.17
  */
 class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
@@ -82,7 +84,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 *  getPages.
 	 */
 	public function __construct( array $options = null ) {
-		if ( is_null( $options ) ) {
+		if ( $options === null ) {
 			return;
 		}
 
@@ -144,15 +146,18 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Get the Database object used in getTitleInfo().
+	 * Get the Database handle used for computing the module version.
 	 *
-	 * Defaults to the local replica DB. Subclasses may want to override this to return a foreign
-	 * database object, or null if getTitleInfo() shouldn't access the database.
+	 * Subclasses may override this to return a foreign database, which would
+	 * allow them to register a module on wiki A that fetches wiki pages from
+	 * wiki B.
 	 *
-	 * NOTE: This ONLY works for getTitleInfo() and isKnownEmpty(), NOT FOR ANYTHING ELSE.
-	 * In particular, it doesn't work for getContent() or getScript() etc.
+	 * The way this works is that the local module is a placeholder that can
+	 * only computer a module version hash. The 'source' of the module must
+	 * be set to the foreign wiki directly. Methods getScript() and getContent()
+	 * will not use this handle and are not valid on the local wiki.
 	 *
-	 * @return IDatabase|null
+	 * @return IDatabase
 	 */
 	protected function getDB() {
 		return wfGetDB( DB_REPLICA );
@@ -160,11 +165,11 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 	/**
 	 * @param string $titleText
-	 * @param ResourceLoaderContext|null $context (but passing null is deprecated)
+	 * @param ResourceLoaderContext $context
 	 * @return null|string
 	 * @since 1.32 added the $context parameter
 	 */
-	protected function getContent( $titleText, ResourceLoaderContext $context = null ) {
+	protected function getContent( $titleText, ResourceLoaderContext $context ) {
 		$title = Title::newFromText( $titleText );
 		if ( !$title ) {
 			return null; // Bad title
@@ -189,20 +194,16 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 	/**
 	 * @param Title $title
-	 * @param ResourceLoaderContext|null $context (but passing null is deprecated)
+	 * @param ResourceLoaderContext $context
 	 * @param int|null $maxRedirects Maximum number of redirects to follow. If
 	 *  null, uses $wgMaxRedirects
 	 * @return Content|null
 	 * @since 1.32 added the $context and $maxRedirects parameters
 	 */
 	protected function getContentObj(
-		Title $title, ResourceLoaderContext $context = null, $maxRedirects = null
+		Title $title, ResourceLoaderContext $context, $maxRedirects = null
 	) {
-		if ( $context === null ) {
-			wfDeprecated( __METHOD__ . ' without a ResourceLoader context', '1.32' );
-		}
-
-		$overrideCallback = $context ? $context->getContentOverrideCallback() : null;
+		$overrideCallback = $context->getContentOverrideCallback();
 		$content = $overrideCallback ? call_user_func( $overrideCallback, $title ) : null;
 		if ( $content ) {
 			if ( !$content instanceof Content ) {
@@ -217,7 +218,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			if ( !$revision ) {
 				return null;
 			}
-			$content = $revision->getContent( Revision::RAW );
+			$content = $revision->getContent( RevisionRecord::RAW );
 
 			if ( !$content ) {
 				$this->getLogger()->error(
@@ -379,10 +380,6 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 */
 	protected function getTitleInfo( ResourceLoaderContext $context ) {
 		$dbr = $this->getDB();
-		if ( !$dbr ) {
-			// We're dealing with a subclass that doesn't have a DB
-			return [];
-		}
 
 		$pageNames = array_keys( $this->getPages( $context ) );
 		sort( $pageNames );
@@ -412,6 +409,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		return $titleInfo;
 	}
 
+	/** @return array */
 	protected static function fetchTitleInfo( IDatabase $db, array $pages, $fname = __METHOD__ ) {
 		$titleInfo = [];
 		$batch = new LinkBatch;
@@ -462,8 +460,8 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			$module = $rl->getModule( $name );
 			if ( $module instanceof self ) {
 				$mDB = $module->getDB();
-				// Subclasses may disable getDB and implement getTitleInfo differently
-				if ( $mDB && $mDB->getDomainID() === $db->getDomainID() ) {
+				// Subclasses may implement getDB differently
+				if ( $mDB->getDomainID() === $db->getDomainID() ) {
 					$wikiModules[] = $module;
 					$allPages += $module->getPages( $context );
 				}
@@ -485,7 +483,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$allInfo = $cache->getWithSetCallback(
-			$cache->makeGlobalKey( 'resourceloader', 'titleinfo', $db->getDomainID(), $hash ),
+			$cache->makeGlobalKey( 'resourceloader-titleinfo', $db->getDomainID(), $hash ),
 			$cache::TTL_HOUR,
 			function ( $curVal, &$ttl, array &$setOpts ) use ( $func, $pageNames, $db, $fname ) {
 				$setOpts += Database::getCacheSetOptions( $db );
@@ -494,7 +492,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			},
 			[
 				'checkKeys' => [
-					$cache->makeGlobalKey( 'resourceloader', 'titleinfo', $db->getDomainID() ) ]
+					$cache->makeGlobalKey( 'resourceloader-titleinfo', $db->getDomainID() ) ]
 			]
 		);
 
@@ -551,7 +549,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 		if ( $purge ) {
 			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-			$key = $cache->makeGlobalKey( 'resourceloader', 'titleinfo', $domain );
+			$key = $cache->makeGlobalKey( 'resourceloader-titleinfo', $domain );
 			$cache->touchCheckKey( $key );
 		}
 	}

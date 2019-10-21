@@ -25,6 +25,8 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Content object for CSS pages.
  *
@@ -58,11 +60,11 @@ class CssContent extends TextContent {
 	 * @see TextContent::preSaveTransform
 	 */
 	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
-		global $wgParser;
 		// @todo Make pre-save transformation optional for script pages
 
 		$text = $this->getText();
-		$pst = $wgParser->preSaveTransform( $text, $title, $user, $popts );
+		$pst = MediaWikiServices::getInstance()->getParser()
+			->preSaveTransform( $text, $title, $user, $popts );
 
 		return new static( $pst );
 	}

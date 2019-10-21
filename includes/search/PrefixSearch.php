@@ -32,21 +32,6 @@ use MediaWiki\MediaWikiServices;
 abstract class PrefixSearch {
 	/**
 	 * Do a prefix search of titles and return a list of matching page names.
-	 * @deprecated Since 1.23, use TitlePrefixSearch or StringPrefixSearch classes
-	 *
-	 * @param string $search
-	 * @param int $limit
-	 * @param array $namespaces Used if query is not explicitly prefixed
-	 * @param int $offset How many results to offset from the beginning
-	 * @return array Array of strings
-	 */
-	public static function titleSearch( $search, $limit, $namespaces = [], $offset = 0 ) {
-		$prefixSearch = new StringPrefixSearch;
-		return $prefixSearch->search( $search, $limit, $namespaces, $offset );
-	}
-
-	/**
-	 * Do a prefix search of titles and return a list of matching page names.
 	 *
 	 * @param string $search
 	 * @param int $limit

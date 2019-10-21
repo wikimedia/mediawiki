@@ -20,8 +20,9 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * This is a base class for all Query modules.
@@ -31,6 +32,7 @@ use Wikimedia\Rdbms\ResultWrapper;
  * @ingroup API
  */
 abstract class ApiQueryBase extends ApiBase {
+	use ApiQueryBlockInfoTrait;
 
 	private $mQueryModule, $mDb, $tables, $where, $fields, $options, $join_conds;
 
@@ -78,7 +80,7 @@ abstract class ApiQueryBase extends ApiBase {
 	public function requestExtraData( $pageSet ) {
 	}
 
-	/**@}*/
+	/** @} */
 
 	/************************************************************************//**
 	 * @name   Data access
@@ -131,7 +133,7 @@ abstract class ApiQueryBase extends ApiBase {
 		return $this->getQuery()->getPageSet();
 	}
 
-	/**@}*/
+	/** @} */
 
 	/************************************************************************//**
 	 * @name   Querying
@@ -151,7 +153,8 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Add a set of tables to the internal array
-	 * @param string|string[] $tables Table name or array of table names
+	 * @param string|array $tables Table name or array of table names
+	 *  or nested arrays for joins using parentheses for grouping
 	 * @param string|null $alias Table alias, or null for no alias. Cannot be
 	 *  used with multiple tables
 	 */
@@ -251,7 +254,7 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * Equivalent to addWhere(array($field => $value))
+	 * Equivalent to addWhere( [ $field => $value ] )
 	 * @param string $field Field name
 	 * @param string|string[] $value Value; ignored if null or empty array
 	 */
@@ -367,7 +370,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param array|null &$hookData If set, the ApiQueryBaseBeforeQuery and
 	 *  ApiQueryBaseAfterQuery hooks will be called, and the
 	 *  ApiQueryBaseProcessRow hook will be expected.
-	 * @return ResultWrapper
+	 * @return IResultWrapper
 	 */
 	protected function select( $method, $extraQuery = [], array &$hookData = null ) {
 		$tables = array_merge(
@@ -423,77 +426,7 @@ abstract class ApiQueryBase extends ApiBase {
 		return Hooks::run( 'ApiQueryBaseProcessRow', [ $this, $row, &$data, &$hookData ] );
 	}
 
-	/**
-	 * @deprecated since 1.33, use LinkFilter::getQueryConditions() instead
-	 * @param string|null $query
-	 * @param string|null $protocol
-	 * @return null|string
-	 */
-	public function prepareUrlQuerySearchString( $query = null, $protocol = null ) {
-		wfDeprecated( __METHOD__, '1.33' );
-		$db = $this->getDB();
-		if ( $query !== null && $query !== '' ) {
-			if ( is_null( $protocol ) ) {
-				$protocol = 'http://';
-			}
-
-			$likeQuery = LinkFilter::makeLikeArray( $query, $protocol );
-			if ( !$likeQuery ) {
-				$this->dieWithError( 'apierror-badquery' );
-			}
-
-			$likeQuery = LinkFilter::keepOneWildcard( $likeQuery );
-
-			return 'el_index ' . $db->buildLike( $likeQuery );
-		} elseif ( !is_null( $protocol ) ) {
-			return 'el_index ' . $db->buildLike( "$protocol", $db->anyString() );
-		}
-
-		return null;
-	}
-
-	/**
-	 * Filters hidden users (where the user doesn't have the right to view them)
-	 * Also adds relevant block information
-	 *
-	 * @param bool $showBlockInfo
-	 * @return void
-	 */
-	public function showHiddenUsersAddBlockInfo( $showBlockInfo ) {
-		$db = $this->getDB();
-
-		$tables = [ 'ipblocks' ];
-		$fields = [ 'ipb_deleted' ];
-		$joinConds = [
-			'blk' => [ 'LEFT JOIN', [
-				'ipb_user=user_id',
-				'ipb_expiry > ' . $db->addQuotes( $db->timestamp() ),
-			] ],
-		];
-
-		if ( $showBlockInfo ) {
-			$actorQuery = ActorMigration::newMigration()->getJoin( 'ipb_by' );
-			$commentQuery = CommentStore::getStore()->getJoin( 'ipb_reason' );
-			$tables += $actorQuery['tables'] + $commentQuery['tables'];
-			$joinConds += $actorQuery['joins'] + $commentQuery['joins'];
-			$fields = array_merge( $fields, [
-				'ipb_id',
-				'ipb_expiry',
-				'ipb_timestamp'
-			], $actorQuery['fields'], $commentQuery['fields'] );
-		}
-
-		$this->addTables( [ 'blk' => $tables ] );
-		$this->addFields( $fields );
-		$this->addJoinConds( $joinConds );
-
-		// Don't show hidden names
-		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
-			$this->addWhere( 'ipb_deleted = 0 OR ipb_deleted IS NULL' );
-		}
-	}
-
-	/**@}*/
+	/** @} */
 
 	/************************************************************************//**
 	 * @name   Utility methods
@@ -530,7 +463,7 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Same as addPageSubItems(), but one element of $data at a time
 	 * @param int $pageId Page ID
-	 * @param array $item Data array à la ApiResult
+	 * @param mixed $item Data à la ApiResult
 	 * @param string|null $elemname XML element name. If null, getModuleName()
 	 *  is used
 	 * @return bool Whether the element fit in the result
@@ -628,7 +561,8 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return bool
 	 */
 	public function userCanSeeRevDel() {
-		return $this->getUser()->isAllowedAny(
+		return $this->getPermissionManager()->userHasAnyRight(
+			$this->getUser(),
 			'deletedhistory',
 			'deletedtext',
 			'suppressrevision',
@@ -636,5 +570,61 @@ abstract class ApiQueryBase extends ApiBase {
 		);
 	}
 
-	/**@}*/
+	/**
+	 * Preprocess the result set to fill the GenderCache with the necessary information
+	 * before using self::addTitleInfo
+	 *
+	 * @param IResultWrapper $res Result set to work on.
+	 *  The result set must have _namespace and _title fields with the provided field prefix
+	 * @param string $fname The caller function name, always use __METHOD__
+	 * @param string $fieldPrefix Prefix for fields to check gender for
+	 */
+	protected function executeGenderCacheFromResultWrapper(
+		IResultWrapper $res, $fname = __METHOD__, $fieldPrefix = 'page'
+	) {
+		if ( !$res->numRows() ) {
+			return;
+		}
+
+		$services = MediaWikiServices::getInstance();
+		$nsInfo = $services->getNamespaceInfo();
+		$namespaceField = $fieldPrefix . '_namespace';
+		$titleField = $fieldPrefix . '_title';
+
+		$usernames = [];
+		foreach ( $res as $row ) {
+			if ( $nsInfo->hasGenderDistinction( $row->$namespaceField ) ) {
+				$usernames[] = $row->$titleField;
+			}
+		}
+
+		if ( $usernames === [] ) {
+			return;
+		}
+
+		$genderCache = $services->getGenderCache();
+		$genderCache->doQuery( $usernames, $fname );
+	}
+
+	/** @} */
+
+	/************************************************************************//**
+	 * @name   Deprecated methods
+	 * @{
+	 */
+
+	/**
+	 * Filters hidden users (where the user doesn't have the right to view them)
+	 * Also adds relevant block information
+	 *
+	 * @deprecated since 1.34, use ApiQueryBlockInfoTrait instead
+	 * @param bool $showBlockInfo
+	 * @return void
+	 */
+	public function showHiddenUsersAddBlockInfo( $showBlockInfo ) {
+		wfDeprecated( __METHOD__, '1.34' );
+		return $this->addBlockInfoToQuery( $showBlockInfo );
+	}
+
+	/** @} */
 }

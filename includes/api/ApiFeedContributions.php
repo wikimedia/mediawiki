@@ -34,6 +34,9 @@ class ApiFeedContributions extends ApiBase {
 	/** @var RevisionStore */
 	private $revisionStore;
 
+	/** @var TitleParser */
+	private $titleParser;
+
 	/**
 	 * This module uses a custom feed wrapper printer.
 	 *
@@ -45,6 +48,7 @@ class ApiFeedContributions extends ApiBase {
 
 	public function execute() {
 		$this->revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$this->titleParser = MediaWikiServices::getInstance()->getTitleParser();
 
 		$params = $this->extractRequestParams();
 
@@ -67,9 +71,16 @@ class ApiFeedContributions extends ApiBase {
 			' [' . $config->get( 'LanguageCode' ) . ']';
 		$feedUrl = SpecialPage::getTitleFor( 'Contributions', $params['user'] )->getFullURL();
 
-		$target = $params['user'] == 'newbies'
-			? 'newbies'
-			: Title::makeTitleSafe( NS_USER, $params['user'] )->getText();
+		try {
+			$target = $this->titleParser
+				->parseTitle( $params['user'], NS_USER )
+				->getText();
+		} catch ( MalformedTitleException $e ) {
+			$this->dieWithError(
+				[ 'apierror-baduser', 'user', wfEscapeWikiText( $params['user'] ) ],
+				'baduser_' . $this->encodeParamName( 'user' )
+			);
+		}
 
 		$feed = new $feedClasses[$params['feedformat']] (
 			$feedTitle,
@@ -138,7 +149,9 @@ class ApiFeedContributions extends ApiBase {
 
 		// Hook completed and did not return a valid feed item
 		$title = Title::makeTitle( (int)$row->page_namespace, $row->page_title );
-		if ( $title && $title->userCan( 'read', $this->getUser() ) ) {
+		$user = $this->getUser();
+
+		if ( $title && $this->getPermissionManager()->userCan( 'read', $user, $title ) ) {
 			$date = $row->rev_timestamp;
 			$comments = $title->getTalkPage()->getFullURL();
 			$revision = $this->revisionStore->newRevisionFromRow( $row );

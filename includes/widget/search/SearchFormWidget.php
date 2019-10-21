@@ -6,7 +6,6 @@ use Hooks;
 use Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Widget\SearchInputWidget;
-use MWNamespace;
 use SearchEngineConfig;
 use SpecialSearch;
 use Xml;
@@ -41,6 +40,7 @@ class SearchFormWidget {
 	 * @param int $totalResults The total estimated results found
 	 * @param int $offset Current offset in search results
 	 * @param bool $isPowerSearch Is the 'advanced' section open?
+	 * @param array $options Widget options
 	 * @return string HTML
 	 */
 	public function render(
@@ -49,19 +49,23 @@ class SearchFormWidget {
 		$numResults,
 		$totalResults,
 		$offset,
-		$isPowerSearch
+		$isPowerSearch,
+		array $options = []
 	) {
+		$user = $this->specialSearch->getUser();
+
 		return '<div class="mw-search-form-wrapper">' .
 			Xml::openElement(
 				'form',
 				[
 					'id' => $isPowerSearch ? 'powersearch' : 'search',
-					'method' => 'get',
+					// T151903: default to POST in case JS is disabled
+					'method' => ( $isPowerSearch && $user->isLoggedIn() ) ? 'post' : 'get',
 					'action' => wfScript(),
 				]
 			) .
 				'<div id="mw-search-top-table">' .
-					$this->shortDialogHtml( $profile, $term, $numResults, $totalResults, $offset ) .
+					$this->shortDialogHtml( $profile, $term, $numResults, $totalResults, $offset, $options ) .
 				'</div>' .
 				"<div class='mw-search-visualclear'></div>" .
 				"<div class='mw-search-profile-tabs'>" .
@@ -79,12 +83,20 @@ class SearchFormWidget {
 	 * @param int $numResults The number of results shown
 	 * @param int $totalResults The total estimated results found
 	 * @param int $offset Current offset in search results
+	 * @param array $options Widget options
 	 * @return string HTML
 	 */
-	protected function shortDialogHtml( $profile, $term, $numResults, $totalResults, $offset ) {
+	protected function shortDialogHtml(
+		$profile,
+		$term,
+		$numResults,
+		$totalResults,
+		$offset,
+		array $options = []
+	) {
 		$html = '';
 
-		$searchWidget = new SearchInputWidget( [
+		$searchWidget = new SearchInputWidget( $options + [
 			'id' => 'searchText',
 			'name' => 'search',
 			'autofocus' => trim( $term ) === '',
@@ -136,6 +148,7 @@ class SearchFormWidget {
 	 * @param string $profile The currently selected profile
 	 * @param string $term The user provided search terms
 	 * @return string HTML
+	 * @suppress PhanTypeArraySuspiciousNullable
 	 */
 	protected function profileTabsHtml( $profile, $term ) {
 		$bareterm = $this->startsWithImage( $term )
@@ -240,7 +253,8 @@ class SearchFormWidget {
 		$activeNamespaces = $this->specialSearch->getNamespaces();
 		$langConverter = $this->specialSearch->getLanguage();
 		foreach ( $this->searchConfig->searchableNamespaces() as $namespace => $name ) {
-			$subject = MWNamespace::getSubject( $namespace );
+			$subject = MediaWikiServices::getInstance()->getNamespaceInfo()->
+				getSubject( $namespace );
 			if ( !isset( $rows[$subject] ) ) {
 				$rows[$subject] = "";
 			}

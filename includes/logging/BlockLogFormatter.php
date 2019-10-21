@@ -22,6 +22,8 @@
  * @since 1.25
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This class formats block log entries.
  *
@@ -127,7 +129,7 @@ class BlockLogFormatter extends LogFormatter {
 	public function getPreloadTitles() {
 		$title = $this->entry->getTarget();
 		// Preload user page for non-autoblocks
-		if ( substr( $title->getText(), 0, 1 ) !== '#' ) {
+		if ( substr( $title->getText(), 0, 1 ) !== '#' && $title->isValid() ) {
 			return [ $title->getTalkPage() ];
 		}
 		return [];
@@ -138,7 +140,9 @@ class BlockLogFormatter extends LogFormatter {
 		$linkRenderer = $this->getLinkRenderer();
 		if ( $this->entry->isDeleted( LogPage::DELETED_ACTION ) // Action is hidden
 			|| !( $subtype === 'block' || $subtype === 'reblock' )
-			|| !$this->context->getUser()->isAllowed( 'block' )
+			|| !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $this->context->getUser(), 'block' )
 		) {
 			return '';
 		}
@@ -262,6 +266,10 @@ class BlockLogFormatter extends LogFormatter {
 		return $params;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @suppress PhanTypeInvalidDimOffset
+	 */
 	public function formatParametersForApi() {
 		$ret = parent::formatParametersForApi();
 		if ( isset( $ret['flags'] ) ) {

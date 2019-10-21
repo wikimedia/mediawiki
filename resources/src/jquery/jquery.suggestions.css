@@ -1,5 +1,7 @@
 /* suggestions plugin */
 
+/* stylelint-disable selector-class-pattern */
+
 .suggestions {
 	overflow: hidden;
 	position: absolute;

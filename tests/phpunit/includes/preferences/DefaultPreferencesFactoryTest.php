@@ -2,6 +2,7 @@
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use Wikimedia\TestingAccessWrapper;
 
@@ -28,6 +29,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Preferences
  */
 class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
+	use TestAllServiceOptionsUsed;
 
 	/** @var IContextSource */
 	protected $context;
@@ -48,14 +50,25 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 
 	/**
 	 * Get a basic PreferencesFactory for testing with.
+	 * @param PermissionManager $mockPM
 	 * @return DefaultPreferencesFactory
 	 */
-	protected function getPreferencesFactory() {
+	protected function getPreferencesFactory( PermissionManager $mockPM ) {
+		$mockNsInfo = $this->createMock( NamespaceInfo::class );
+		$mockNsInfo->method( 'getValidNamespaces' )->willReturn( [
+			NS_MAIN, NS_TALK, NS_USER, NS_USER_TALK
+		] );
+		$mockNsInfo->expects( $this->never() )
+			->method( $this->anythingBut( 'getValidNamespaces', '__destruct' ) );
+
 		return new DefaultPreferencesFactory(
-			$this->config,
+			new LoggedServiceOptions( self::$serviceOptionsAccessLog,
+				DefaultPreferencesFactory::CONSTRUCTOR_OPTIONS, $this->config ),
 			new Language(),
 			AuthManager::singleton(),
-			MediaWikiServices::getInstance()->getLinkRenderer()
+			MediaWikiServices::getInstance()->getLinkRenderer(),
+			$mockNsInfo,
+			$mockPM
 		);
 	}
 
@@ -66,8 +79,10 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 		$this->setTemporaryHook( 'GetPreferences', null );
 
 		$testUser = $this->getTestUser();
-		$form = $this->getPreferencesFactory()->getForm( $testUser->getUser(), $this->context );
-		$this->assertInstanceOf( PreferencesFormLegacy::class, $form );
+		$pm = $this->createMock( PermissionManager::class );
+		$pm->method( 'userHasRight' )->willReturn( true );
+		$form = $this->getPreferencesFactory( $pm )->getForm( $testUser->getUser(), $this->context );
+		$this->assertInstanceOf( PreferencesFormOOUI::class, $form );
 		$this->assertCount( 5, $form->getPreferenceSections() );
 	}
 
@@ -78,7 +93,9 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 	 * @dataProvider emailAuthenticationProvider
 	 */
 	public function testEmailAuthentication( $user, $cssClass ) {
-		$prefs = $this->getPreferencesFactory()->getFormDescriptor( $user, $this->context );
+		$pm = $this->createMock( PermissionManager::class );
+		$pm->method( 'userHasRight' )->willReturn( true );
+		$prefs = $this->getPreferencesFactory( $pm )->getFormDescriptor( $user, $this->context );
 		$this->assertArrayHasKey( 'cssclass', $prefs['emailauthentication'] );
 		$this->assertEquals( $cssClass, $prefs['emailauthentication']['cssclass'] );
 	}
@@ -90,16 +107,18 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 		$userMock = $this->getMockBuilder( User::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$userMock->method( 'isAllowed' )
-			->willReturn( false );
 		$userMock->method( 'getEffectiveGroups' )
 			->willReturn( [] );
 		$userMock->method( 'getGroupMemberships' )
 			->willReturn( [] );
 		$userMock->method( 'getOptions' )
 			->willReturn( [ 'test' => 'yes' ] );
-
-		$prefs = $this->getPreferencesFactory()->getFormDescriptor( $userMock, $this->context );
+		$pm = $this->createMock( PermissionManager::class );
+		$pm->method( 'userHasRight' )
+			->will( $this->returnValueMap( [
+				[ $userMock, 'editmyoptions', true ]
+			] ) );
+		$prefs = $this->getPreferencesFactory( $pm )->getFormDescriptor( $userMock, $this->context );
 		$this->assertArrayNotHasKey( 'showrollbackconfirmation', $prefs );
 	}
 
@@ -110,16 +129,19 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 		$userMock = $this->getMockBuilder( User::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$userMock->method( 'isAllowed' )
-			->willReturn( true );
 		$userMock->method( 'getEffectiveGroups' )
 			->willReturn( [] );
 		$userMock->method( 'getGroupMemberships' )
 			->willReturn( [] );
 		$userMock->method( 'getOptions' )
 			->willReturn( [ 'test' => 'yes' ] );
-
-		$prefs = $this->getPreferencesFactory()->getFormDescriptor( $userMock, $this->context );
+		$pm = $this->createMock( PermissionManager::class );
+		$pm->method( 'userHasRight' )
+			->will( $this->returnValueMap( [
+				[ $userMock, 'editmyoptions', true ],
+				[ $userMock, 'rollback', true ]
+			] ) );
+		$prefs = $this->getPreferencesFactory( $pm )->getFormDescriptor( $userMock, $this->context );
 		$this->assertArrayHasKey( 'showrollbackconfirmation', $prefs );
 		$this->assertEquals(
 			'rendering/advancedrendering',
@@ -162,7 +184,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 		$configMock = new HashConfig( [
 			'HiddenPrefs' => []
 		] );
-		$form = $this->getMockBuilder( PreferencesFormLegacy::class )
+		$form = $this->getMockBuilder( PreferencesFormOOUI::class )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -171,10 +193,6 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 			->getMock();
 		$userMock->method( 'getOptions' )
 			->willReturn( $oldOptions );
-		$userMock->method( 'isAllowedAny' )
-			->willReturn( true );
-		$userMock->method( 'isAllowed' )
-			->willReturn( true );
 
 		$userMock->expects( $this->exactly( 2 ) )
 			->method( 'setOption' )
@@ -183,17 +201,24 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 				[ $this->equalTo( 'option' ), $this->equalTo( $newOptions[ 'option' ] ) ]
 			);
 
-		$form->expects( $this->any() )
-			->method( 'getModifiedUser' )
+		$form->method( 'getModifiedUser' )
 			->willReturn( $userMock );
 
-		$form->expects( $this->any() )
-			->method( 'getContext' )
+		$form->method( 'getContext' )
 			->willReturn( $this->context );
 
-		$form->expects( $this->any() )
-			->method( 'getConfig' )
+		$form->method( 'getConfig' )
 			->willReturn( $configMock );
+
+		$pm = $this->createMock( PermissionManager::class );
+		$pm->method( 'userHasAnyRight' )
+			->will( $this->returnValueMap( [
+				[ $userMock, 'editmyprivateinfo', 'editmyoptions', true ]
+			] ) );
+		$pm->method( 'userHasRight' )
+			->will( $this->returnValueMap( [
+				[ $userMock, 'editmyoptions', true ]
+			] ) );
 
 		$this->setTemporaryHook( 'PreferencesFormPreSave',
 			function ( $formData, $form, $user, &$result, $oldUserOptions )
@@ -210,7 +235,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 		);
 
 		/** @var DefaultPreferencesFactory $factory */
-		$factory = TestingAccessWrapper::newFromObject( $this->getPreferencesFactory() );
+		$factory = TestingAccessWrapper::newFromObject( $this->getPreferencesFactory( $pm ) );
 		$factory->saveFormData( $newOptions, $form, [] );
 	}
 
@@ -223,9 +248,23 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 		// Test a string with leading zeros (i.e. not octal) and spaces.
 		$this->context->getRequest()->setVal( 'wprclimit', ' 0012 ' );
 		$user = new User;
-		$form = $this->getPreferencesFactory()->getForm( $user, $this->context );
+		$pm = $this->createMock( PermissionManager::class );
+		$pm->method( 'userHasAnyRight' )
+			->willReturn( true );
+		$pm->method( 'userHasRight' )
+			->will( $this->returnValueMap( [
+				[ $user, 'editmyoptions', true ]
+			] ) );
+		$form = $this->getPreferencesFactory( $pm )->getForm( $user, $this->context );
 		$form->show();
 		$form->trySubmit();
 		$this->assertEquals( 12, $user->getOption( 'rclimit' ) );
+	}
+
+	/**
+	 * @coversNothing
+	 */
+	public function testAllServiceOptionsUsed() {
+		$this->assertAllServiceOptionsUsed( [ 'EnotifMinorEdits', 'EnotifRevealEditorAddress' ] );
 	}
 }

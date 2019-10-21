@@ -22,6 +22,7 @@
 namespace MediaWiki\Auth;
 
 use Config;
+use MediaWiki\Block\DatabaseBlock;
 use StatusValue;
 
 /**
@@ -59,9 +60,11 @@ class CheckBlocksSecondaryAuthenticationProvider extends AbstractSecondaryAuthen
 	}
 
 	public function beginSecondaryAuthentication( $user, array $reqs ) {
+		// @TODO Partial blocks should not prevent the user from logging in.
+		//       see: https://phabricator.wikimedia.org/T208895
 		if ( !$this->blockDisablesLogin ) {
 			return AuthenticationResponse::newAbstain();
-		} elseif ( $user->isBlocked() ) {
+		} elseif ( $user->getBlock() ) {
 			return AuthenticationResponse::newFail(
 				new \Message( 'login-userblocked', [ $user->getName() ] )
 			);
@@ -93,7 +96,7 @@ class CheckBlocksSecondaryAuthenticationProvider extends AbstractSecondaryAuthen
 				$block->getByName()
 			];
 
-			if ( $block->getType() === \Block::TYPE_RANGE ) {
+			if ( $block->getType() === DatabaseBlock::TYPE_RANGE ) {
 				$errorMessage = 'cantcreateaccount-range-text';
 				$errorParams[] = $this->manager->getRequest()->getIP();
 			} else {

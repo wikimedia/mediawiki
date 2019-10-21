@@ -17,7 +17,6 @@
  *
  * @file
  * @ingroup Benchmark
- * @author Timo Tijhof
  */
 
 require_once __DIR__ . '/Benchmarker.php';

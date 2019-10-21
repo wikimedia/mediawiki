@@ -19,6 +19,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -109,7 +110,8 @@ class RevDelFileList extends RevDelList {
 	}
 
 	public function doPostCommitUpdates( array $visibilityChangeMap ) {
-		$file = wfLocalFile( $this->title );
+		$file = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
+			->newFile( $this->title );
 		$file->purgeCache();
 		$file->purgeDescription();
 

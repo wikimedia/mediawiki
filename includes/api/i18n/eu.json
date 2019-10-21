@@ -6,7 +6,8 @@
 			"An13sa",
 			"Gorkaazk",
 			"Mikel Ibaiba",
-			"Iñaki LL"
+			"Iñaki LL",
+			"Xabier Armendaritz"
 		]
 	},
 	"apihelp-main-param-action": "Zein ekintza burutuko da.",
@@ -37,7 +38,7 @@
 	"apihelp-compare-param-torev": "Aldaratzeko bigarren berrikusketa.",
 	"apihelp-compare-param-prop": "Hartu beharreko informazio zatiak.",
 	"apihelp-compare-paramvalue-prop-diff": "HTML diff-a",
-	"apihelp-compare-paramvalue-prop-diffsize": "HTML diff-aren tamainia, byte-tan",
+	"apihelp-compare-paramvalue-prop-diffsize": "Aldeen HTMLaren tamaina, bytetan",
 	"apihelp-compare-paramvalue-prop-size": "\"nondik\" eta \"nora\" berrikuspenen tamaina.",
 	"apihelp-compare-example-1": "1. eta 2. berrikusketen arteko \"diff\"-a sortu.",
 	"apihelp-createaccount-summary": "Erabiltzaile kontu berria sortu.",

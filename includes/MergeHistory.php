@@ -32,7 +32,7 @@ use Wikimedia\Rdbms\IDatabase;
  */
 class MergeHistory {
 
-	/** @const int Maximum number of revisions that can be merged at once */
+	/** Maximum number of revisions that can be merged at once */
 	const REVISION_LIMIT = 5000;
 
 	/** @var Title Page from which history will be merged */
@@ -178,7 +178,8 @@ class MergeHistory {
 		}
 
 		// Check mergehistory permission
-		if ( !$user->isAllowed( 'mergehistory' ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( !$permissionManager->userHasRight( $user, 'mergehistory' ) ) {
 			// User doesn't have the right to merge histories
 			$status->fatal( 'mergehistory-fail-permission' );
 		}
@@ -271,6 +272,18 @@ class MergeHistory {
 
 			return $status;
 		}
+
+		// Update denormalized revactor_page too
+		$this->dbw->update(
+			'revision_actor_temp',
+			[ 'revactor_page' => $this->dest->getArticleID() ],
+			[
+				'revactor_page' => $this->source->getArticleID(),
+				// Slightly hacky, but should work given the values assigned in this class
+				str_replace( 'rev_timestamp', 'revactor_timestamp', $this->timeWhere )
+			],
+			__METHOD__
+		);
 
 		// Make the source page a redirect if no revisions are left
 		$haveRevisions = $this->dbw->lockForUpdate(

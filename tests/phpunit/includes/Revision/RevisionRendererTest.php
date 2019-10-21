@@ -19,7 +19,6 @@ use ParserOptions;
 use ParserOutput;
 use PHPUnit\Framework\MockObject\MockObject;
 use Title;
-use User;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use WikitextContent;
@@ -74,12 +73,8 @@ class RevisionRendererTest extends MediaWikiTestCase {
 				}
 			);
 		$mock->expects( $this->any() )
-			->method( 'userCan' )
-			->willReturnCallback(
-				function ( $perm, User $user ) use ( $mock ) {
-					return $user->isAllowed( $perm );
-				}
-			);
+			->method( 'getRestrictions' )
+			->willReturn( [] );
 
 		return $mock;
 	}
@@ -368,6 +363,7 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$sysop = $this->getTestUser( [ 'sysop' ] )->getUser(); // privileged!
 		$rr = $renderer->getRenderedRevision( $rev, $options, $sysop );
 
+		$this->assertNotNull( $rr, 'getRenderedRevision' );
 		$this->assertTrue( $rr->isContentDeleted(), 'isContentDeleted' );
 
 		$this->assertSame( $rev, $rr->getRevision() );

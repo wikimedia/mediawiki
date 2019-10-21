@@ -115,6 +115,7 @@ class Status extends StatusValue {
 	 * ]
 	 *
 	 * @return Status[]
+	 * @suppress PhanUndeclaredProperty Status vs StatusValue
 	 */
 	public function splitByErrorType() {
 		list( $errorsOnlyStatus, $warningsOnlyStatus ) = parent::splitByErrorType();

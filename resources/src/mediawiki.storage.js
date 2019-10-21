@@ -33,7 +33,7 @@
 	 *
 	 * @param {string} key Key of item to retrieve
 	 * @return {string|null|boolean} String value, null if no value exists, or false
-	 *  if localStorage is not available.
+	 *  if storage is not available.
 	 */
 	SafeStorage.prototype.get = function ( key ) {
 		try {
@@ -47,7 +47,7 @@
 	 *
 	 * @param {string} key Key name to store under
 	 * @param {string} value Value to be stored
-	 * @return {boolean} Whether the save succeeded or not
+	 * @return {boolean} The value was set
 	 */
 	SafeStorage.prototype.set = function ( key, value ) {
 		try {
@@ -61,12 +61,49 @@
 	 * Remove a value from device storage.
 	 *
 	 * @param {string} key Key of item to remove
-	 * @return {boolean} Whether the save succeeded or not
+	 * @return {boolean} Whether the key was removed
 	 */
 	SafeStorage.prototype.remove = function ( key ) {
 		try {
 			this.store.removeItem( key );
 			return true;
+		} catch ( e ) {}
+		return false;
+	};
+
+	/**
+	 * Retrieve JSON object from device storage.
+	 *
+	 * @param {string} key Key of item to retrieve
+	 * @return {Object|null|boolean} Object, null if no value exists or value
+	 *  is not JSON-parseable, or false if storage is not available.
+	 */
+	SafeStorage.prototype.getObject = function ( key ) {
+		var json = this.get( key );
+
+		if ( json === false ) {
+			return false;
+		}
+
+		try {
+			return JSON.parse( json );
+		} catch ( e ) {}
+
+		return null;
+	};
+
+	/**
+	 * Set an object value in device storage by JSON encoding
+	 *
+	 * @param {string} key Key name to store under
+	 * @param {Object} value Object value to be stored
+	 * @return {boolean} The value was set
+	 */
+	SafeStorage.prototype.setObject = function ( key, value ) {
+		var json;
+		try {
+			json = JSON.stringify( value );
+			return this.set( key, json );
 		} catch ( e ) {}
 		return false;
 	};

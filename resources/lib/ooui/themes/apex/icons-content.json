@@ -20,6 +20,21 @@
 		"articleCheck": {
 			"file": "../wikimediaui/images/icons/articleCheck.svg"
 		},
+		"articleDisambiguation": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/articleDisambiguation-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/articleDisambiguation-rtl.svg"
+			}
+		},
+		"articleNotFound": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/articleNotFound-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/articleNotFound-rtl.svg",
+				"lang": {
+					"he,yi": "../wikimediaui/images/icons/articleNotFound-ltr.svg"
+				}
+			}
+		},
 		"articleSearch": {
 			"file": "../wikimediaui/images/icons/articleSearch.svg"
 		},
@@ -47,6 +62,14 @@
 		"info": {
 			"file": {
 				"default": "../wikimediaui/images/icons/info.svg",
+				"lang": {
+					"ar": "../wikimediaui/images/icons/lightbulb.svg"
+				}
+			}
+		},
+		"infoFilled": {
+			"file": {
+				"default": "../wikimediaui/images/icons/infoFilled.svg",
 				"lang": {
 					"ar": "../wikimediaui/images/icons/lightbulb.svg"
 				}

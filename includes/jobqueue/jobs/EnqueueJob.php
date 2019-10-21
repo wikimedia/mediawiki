@@ -32,15 +32,14 @@
  * @ingroup JobQueue
  * @since 1.25
  */
-final class EnqueueJob extends Job {
+final class EnqueueJob extends Job implements GenericParameterJob {
 	/**
 	 * Callers should use the factory methods instead
 	 *
-	 * @param Title $title
 	 * @param array $params Job parameters
 	 */
-	function __construct( Title $title, array $params ) {
-		parent::__construct( 'enqueue', $title, $params );
+	public function __construct( array $params ) {
+		parent::__construct( 'enqueue', $params );
 	}
 
 	/**
@@ -75,10 +74,7 @@ final class EnqueueJob extends Job {
 			}
 		}
 
-		$eJob = new self(
-			Title::makeTitle( NS_SPECIAL, 'Badtitle/' . __CLASS__ ),
-			[ 'jobsByDomain' => $jobMapsByDomain ]
-		);
+		$eJob = new self( [ 'jobsByDomain' => $jobMapsByDomain ] );
 		// If *all* jobs to be pushed are to be de-duplicated (a common case), then
 		// de-duplicate this whole job itself to avoid build up in high traffic cases
 		$eJob->removeDuplicates = $deduplicate;

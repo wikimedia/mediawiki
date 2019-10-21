@@ -19,6 +19,8 @@
  * @ingroup Pager
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This class is used to get a list of active users. The ones with specials
  * rights (sysop, bureaucrat, developer) will have them displayed
@@ -42,6 +44,12 @@ class ActiveUsersPager extends UsersPager {
 	 * @var array
 	 */
 	private $blockStatusByUid;
+
+	/** @var int */
+	private $RCMaxAge;
+
+	/** @var string[] */
+	private $excludegroups;
 
 	/**
 	 * @param IContextSource|null $context
@@ -79,19 +87,16 @@ class ActiveUsersPager extends UsersPager {
 	function getQueryInfo( $data = null ) {
 		$dbr = $this->getDatabase();
 
-		$useActor = (bool)(
-			$this->getConfig()->get( 'ActorTableSchemaMigrationStage' ) & SCHEMA_COMPAT_READ_NEW
-		);
-
 		$activeUserSeconds = $this->getConfig()->get( 'ActiveUserDays' ) * 86400;
 		$timestamp = $dbr->timestamp( wfTimestamp( TS_UNIX ) - $activeUserSeconds );
 		$fname = __METHOD__ . ' (' . $this->getSqlComment() . ')';
 
 		// Inner subselect to pull the active users out of querycachetwo
-		$tables = [ 'querycachetwo', 'user' ];
-		$fields = [ 'qcc_title', 'user_id' ];
+		$tables = [ 'querycachetwo', 'user', 'actor' ];
+		$fields = [ 'qcc_title', 'user_id', 'actor_id' ];
 		$jconds = [
 			'user' => [ 'JOIN', 'user_name = qcc_title' ],
+			'actor' => [ 'JOIN', 'actor_user = user_id' ],
 		];
 		$conds = [
 			'qcc_type' => 'activeusers',
@@ -121,25 +126,20 @@ class ActiveUsersPager extends UsersPager {
 			] ];
 			$conds['ug2.ug_user'] = null;
 		}
-		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
+		if ( !MediaWikiServices::getInstance()
+				  ->getPermissionManager()
+				  ->userHasRight( $this->getUser(), 'hideuser' )
+		) {
 			$conds[] = 'NOT EXISTS (' . $dbr->selectSQLText(
 					'ipblocks', '1', [ 'ipb_user=user_id', 'ipb_deleted' => 1 ]
 				) . ')';
-		}
-		if ( $useActor ) {
-			$tables[] = 'actor';
-			$jconds['actor'] = [
-				'JOIN',
-				'actor_user = user_id',
-			];
-			$fields[] = 'actor_id';
 		}
 		$subquery = $dbr->buildSelectSubquery( $tables, $fields, $conds, $fname, $options, $jconds );
 
 		// Outer query to select the recent edit counts for the selected active users
 		$tables = [ 'qcc_users' => $subquery, 'recentchanges' ];
 		$jconds = [ 'recentchanges' => [ 'LEFT JOIN', [
-			$useActor ? 'rc_actor = actor_id' : 'rc_user_text = qcc_title',
+			'rc_actor = actor_id',
 			'rc_type != ' . $dbr->addQuotes( RC_EXTERNAL ), // Don't count wikidata.
 			'rc_type != ' . $dbr->addQuotes( RC_CATEGORIZE ), // Don't count categorization changes.
 			'rc_log_type IS NULL OR rc_log_type != ' . $dbr->addQuotes( 'newusers' ),
@@ -225,7 +225,18 @@ class ActiveUsersPager extends UsersPager {
 		$userName = $row->user_name;
 
 		$ulinks = Linker::userLink( $row->user_id, $userName );
-		$ulinks .= Linker::userToolLinks( $row->user_id, $userName );
+		$ulinks .= Linker::userToolLinks(
+			$row->user_id,
+			$userName,
+			// Should the contributions link be red if the user has no edits (using default)
+			false,
+			// Customisation flags (using default 0)
+			0,
+			// User edit count (using default)
+			null,
+			// do not wrap the message in parentheses (CSS will provide these)
+			false
+		);
 
 		$lang = $this->getLanguage();
 

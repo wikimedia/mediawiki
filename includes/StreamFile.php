@@ -25,8 +25,10 @@
  */
 class StreamFile {
 	// Do not send any HTTP headers unless requested by caller (e.g. body only)
+	/** @deprecated since 1.34 */
 	const STREAM_HEADLESS = HTTPFileStreamer::STREAM_HEADLESS;
 	// Do not try to tear down any PHP output buffers
+	/** @deprecated since 1.34 */
 	const STREAM_ALLOW_OB = HTTPFileStreamer::STREAM_ALLOW_OB;
 
 	/**
@@ -66,8 +68,10 @@ class StreamFile {
 	 * @param string $fname Full name and path of the file to stream
 	 * @param int $flags Bitfield of STREAM_* constants
 	 * @since 1.24
+	 * @deprecated since 1.34, use HTTPFileStreamer::send404Message() instead
 	 */
 	public static function send404Message( $fname, $flags = 0 ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		HTTPFileStreamer::send404Message( $fname, $flags );
 	}
 
@@ -78,8 +82,10 @@ class StreamFile {
 	 * @param int $size File size
 	 * @return array|string Returns error string on failure (start, end, length)
 	 * @since 1.24
+	 * @deprecated since 1.34, use HTTPFileStreamer::parseRange() instead
 	 */
 	public static function parseRange( $range, $size ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return HTTPFileStreamer::parseRange( $range, $size );
 	}
 
@@ -105,7 +111,6 @@ class StreamFile {
 				case 'png':
 					return 'image/png';
 				case 'jpg':
-					return 'image/jpeg';
 				case 'jpeg':
 					return 'image/jpeg';
 			}

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.31.3
+ * OOUI v0.34.1-pre (3913589098)
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-04-04T19:10:54Z
+ * Date: 2019-09-10T23:46:11Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -486,6 +486,10 @@
 .oo-ui-selectFileWidget-dropTarget .oo-ui-pendingElement-pending {
   background-size: 1.42857143em 1.42857143em;
 }
+.oo-ui-selectFileWidget-buttonOnly {
+  width: auto;
+  max-width: none;
+}
 .oo-ui-selectFileWidget.oo-ui-widget-enabled.oo-ui-selectFileWidget-dropTarget {
   background-color: #fff;
   -webkit-transition: background-color 250ms, color 250ms, border-color 250ms;
@@ -600,8 +604,42 @@
   text-align: left;
   overflow-x: auto;
   overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: auto;
+}
+.oo-ui-tabSelectWidget-mobile {
+  white-space: nowrap;
+}
+.oo-ui-tabSelectWidget-framed {
   background-color: #eaecf0;
+}
+.oo-ui-tabSelectWidget-frameless {
+  box-shadow: inset 0 -1px 0 0 #a2a9b1;
+}
+.oo-ui-tabSelectWidget-mobile:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 1.28571429em;
+  height: 2.28571429em;
+  pointer-events: none;
+}
+.oo-ui-tabSelectWidget-mobile.oo-ui-tabSelectWidget-framed:after {
+  background-color: #eaecf0;
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, rgba(234, 236, 240, 0)), color-stop(100%, #eaecf0));
+  background-image: -webkit-linear-gradient(left, rgba(234, 236, 240, 0) 0, #eaecf0 100%);
+  background-image: -moz-linear-gradient(left, rgba(234, 236, 240, 0) 0, #eaecf0 100%);
+  background-image: linear-gradient(to right, rgba(234, 236, 240, 0) 0, #eaecf0 100%);
+  background-color: transparent;
+}
+.oo-ui-tabSelectWidget-mobile.oo-ui-tabSelectWidget-frameless:after {
+  background-color: #ffffff;
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, rgba(255, 255, 255, 0)), color-stop(100%, #fff));
+  background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0, #fff 100%);
+  background-image: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0, #fff 100%);
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0, #fff 100%);
+  background-color: transparent;
+  bottom: 0.14285714em;
 }
 .oo-ui-tabSelectWidget.oo-ui-widget-enabled:focus {
   outline: 0;
@@ -615,12 +653,9 @@
   vertical-align: bottom;
   color: #444;
   margin: 0.42857143em 0 0 0.42857143em;
+  padding: 0 0.57142857em;
   border-color: transparent;
   border-style: solid;
-  border-width: 1px 1px 0 1px;
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-  padding: 0 0.57142857em;
   font-weight: bold;
   line-height: 1;
   -webkit-transition: background-color 100ms, color 100ms, border-color 100ms;
@@ -628,34 +663,71 @@
   transition: background-color 100ms, color 100ms, border-color 100ms;
 }
 .oo-ui-tabOptionWidget.oo-ui-optionWidget-selected {
-  background-color: #fff;
-  color: #000;
   cursor: default;
 }
-.oo-ui-tabOptionWidget.oo-ui-optionWidget-selected .oo-ui-labelElement-label {
-  border-bottom-color: #fff;
-}
 .oo-ui-tabOptionWidget .oo-ui-labelElement-label {
+  padding: 0.42857143em 0.35714286em;
+  line-height: 1.28571429em;
+}
+.oo-ui-tabSelectWidget-mobile .oo-ui-tabOptionWidget:last-child {
+  margin-right: 1.28571429em;
+}
+.oo-ui-tabSelectWidget-framed .oo-ui-tabOptionWidget {
+  border-width: 1px 1px 0 1px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+.oo-ui-tabSelectWidget-framed .oo-ui-tabOptionWidget .oo-ui-labelElement-label {
   border-bottom: 2px solid transparent;
   padding: 0.42857143em 0.35714286em 0.28571429em;
-  line-height: 1.28571429em;
   -webkit-transition: border-color 100ms;
   -moz-transition: border-color 100ms;
   transition: border-color 100ms;
 }
-.oo-ui-tabOptionWidget.oo-ui-widget-enabled:hover {
+.oo-ui-tabSelectWidget-framed .oo-ui-tabOptionWidget.oo-ui-optionWidget-selected {
+  background-color: #fff;
+  color: #000;
+}
+.oo-ui-tabSelectWidget-framed .oo-ui-tabOptionWidget.oo-ui-optionWidget-selected .oo-ui-labelElement-label {
+  border-bottom-color: #fff;
+}
+.oo-ui-tabSelectWidget-framed .oo-ui-tabOptionWidget.oo-ui-widget-enabled:hover {
   background-color: rgba(255, 255, 255, 0.3);
   color: #222;
 }
-.oo-ui-tabOptionWidget.oo-ui-widget-enabled:active {
+.oo-ui-tabSelectWidget-framed .oo-ui-tabOptionWidget.oo-ui-widget-enabled:active {
   background-color: rgba(255, 255, 255, 0.8);
   color: #000;
 }
-.oo-ui-tabOptionWidget.oo-ui-widget-enabled.oo-ui-optionWidget-selected:hover {
+.oo-ui-tabSelectWidget-framed .oo-ui-tabOptionWidget.oo-ui-widget-enabled.oo-ui-optionWidget-selected:hover {
   background-color: #fff;
 }
-.oo-ui-tabSelectWidget.oo-ui-widget-enabled:focus .oo-ui-tabOptionWidget.oo-ui-widget-enabled.oo-ui-optionWidget-selected .oo-ui-labelElement-label {
+.oo-ui-tabSelectWidget-framed.oo-ui-widget-enabled:focus .oo-ui-tabOptionWidget.oo-ui-optionWidget-selected .oo-ui-labelElement-label {
   border-bottom-color: #36c;
+}
+.oo-ui-tabSelectWidget-frameless .oo-ui-tabOptionWidget {
+  margin: 0.42857143em 0.42857143em -1px 0;
+  border-width: 1px 0;
+  box-shadow: inset 0 0 0 0 #36c;
+  -webkit-transition: color 100ms, box-shadow 100ms;
+  -moz-transition: color 100ms, box-shadow 100ms;
+  transition: color 100ms, box-shadow 100ms;
+}
+.oo-ui-tabSelectWidget-frameless .oo-ui-tabOptionWidget.oo-ui-optionWidget-selected {
+  color: #36c;
+  box-shadow: inset 0 -2px 0 0 #36c;
+}
+.oo-ui-tabSelectWidget-frameless .oo-ui-tabOptionWidget.oo-ui-widget-enabled:hover {
+  color: #447ff5;
+  box-shadow: inset 0 -2px 0 0 #447ff5;
+}
+.oo-ui-tabSelectWidget-frameless .oo-ui-tabOptionWidget.oo-ui-widget-enabled:active {
+  color: #2a4b8d;
+  box-shadow: inset 0 -2px 0 0 #2a4b8d;
+}
+.oo-ui-tabSelectWidget-frameless.oo-ui-widget-enabled:focus .oo-ui-tabOptionWidget.oo-ui-optionWidget-selected {
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 2px #36c;
 }
 
 .oo-ui-tagMultiselectWidget {

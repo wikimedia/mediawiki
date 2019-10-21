@@ -27,7 +27,7 @@
  *
  * @ingroup JobQueue
  */
-abstract class Job implements IJobSpecification {
+abstract class Job implements RunnableJob {
 	/** @var string */
 	public $command;
 
@@ -52,15 +52,6 @@ abstract class Job implements IJobSpecification {
 	/** @var int Bitfield of JOB_* class constants */
 	protected $executionFlags = 0;
 
-	/** @var int Job must not be wrapped in the usual explicit LBFactory transaction round */
-	const JOB_NO_EXPLICIT_TRX_ROUND = 1;
-
-	/**
-	 * Run the job
-	 * @return bool Success
-	 */
-	abstract public function run();
-
 	/**
 	 * Create the appropriate object to handle a specific job
 	 *
@@ -76,8 +67,16 @@ abstract class Job implements IJobSpecification {
 			// Backwards compatibility for old signature ($command, $title, $params)
 			$title = $params;
 			$params = func_num_args() >= 3 ? func_get_arg( 2 ) : [];
+		} elseif ( isset( $params['namespace'] ) && isset( $params['title'] ) ) {
+			// Handle job classes that take title as constructor parameter.
+			// If a newer classes like GenericParameterJob uses these parameters,
+			// then this happens in Job::__construct instead.
+			$title = Title::makeTitle( $params['namespace'], $params['title'] );
 		} else {
-			// Subclasses can override getTitle() to return something more meaningful
+			// Default title for job classes not implementing GenericParameterJob.
+			// This must be a valid title because it not directly passed to
+			// our Job constructor, but rather it's subclasses which may expect
+			// to be able to use it.
 			$title = Title::makeTitle( NS_SPECIAL, 'Blankpage' );
 		}
 
@@ -87,7 +86,11 @@ abstract class Job implements IJobSpecification {
 			if ( is_callable( $handler ) ) {
 				$job = call_user_func( $handler, $title, $params );
 			} elseif ( class_exists( $handler ) ) {
-				$job = new $handler( $title, $params );
+				if ( is_subclass_of( $handler, GenericParameterJob::class ) ) {
+					$job = new $handler( $params );
+				} else {
+					$job = new $handler( $title, $params );
+				}
 			} else {
 				$job = null;
 			}
@@ -114,25 +117,40 @@ abstract class Job implements IJobSpecification {
 		if ( $params instanceof Title ) {
 			// Backwards compatibility for old signature ($command, $title, $params)
 			$title = $params;
-			$params = func_get_arg( 2 );
+			$params = func_num_args() >= 3 ? func_get_arg( 2 ) : [];
 		} else {
-			// Subclasses can override getTitle() to return something more meaningful
-			$title = Title::makeTitle( NS_SPECIAL, 'Blankpage' );
+			// Newer jobs may choose to not have a top-level title (e.g. GenericParameterJob)
+			$title = null;
+		}
+
+		if ( !is_array( $params ) ) {
+			throw new InvalidArgumentException( '$params must be an array' );
+		}
+
+		if (
+			$title &&
+			!isset( $params['namespace'] ) &&
+			!isset( $params['title'] )
+		) {
+			// When constructing this class for submitting to the queue,
+			// normalise the $title arg of old job classes as part of $params.
+			$params['namespace'] = $title->getNamespace();
+			$params['title'] = $title->getDBkey();
 		}
 
 		$this->command = $command;
-		$this->title = $title;
-		$this->params = is_array( $params ) ? $params : [];
-		if ( !isset( $this->params['requestId'] ) ) {
-			$this->params['requestId'] = WebRequest::getRequestId();
+		$this->params = $params + [ 'requestId' => WebRequest::getRequestId() ];
+
+		if ( $this->title === null ) {
+			// Set this field for access via getTitle().
+			$this->title = ( isset( $params['namespace'] ) && isset( $params['title'] ) )
+				? Title::makeTitle( $params['namespace'], $params['title'] )
+				// GenericParameterJob classes without namespace/title params
+				// should not use getTitle(). Set an invalid title as placeholder.
+				: Title::makeTitle( NS_SPECIAL, '' );
 		}
 	}
 
-	/**
-	 * @param int $flag JOB_* class constant
-	 * @return bool
-	 * @since 1.31
-	 */
 	public function hasExecutionFlag( $flag ) {
 		return ( $this->executionFlags & $flag ) === $flag;
 	}
@@ -147,7 +165,7 @@ abstract class Job implements IJobSpecification {
 	/**
 	 * @return Title
 	 */
-	public function getTitle() {
+	final public function getTitle() {
 		return $this->title;
 	}
 
@@ -208,20 +226,10 @@ abstract class Job implements IJobSpecification {
 			: null;
 	}
 
-	/**
-	 * @return string|null Id of the request that created this job. Follows
-	 *  jobs recursively, allowing to track the id of the request that started a
-	 *  job when jobs insert jobs which insert other jobs.
-	 * @since 1.27
-	 */
 	public function getRequestId() {
 		return $this->params['requestId'] ?? null;
 	}
 
-	/**
-	 * @return int|null UNIX timestamp of when the job was runnable, or null
-	 * @since 1.26
-	 */
 	public function getReadyTimestamp() {
 		return $this->getReleaseTimestamp() ?: $this->getQueuedTimestamp();
 	}
@@ -241,19 +249,10 @@ abstract class Job implements IJobSpecification {
 		return $this->removeDuplicates;
 	}
 
-	/**
-	 * @return bool Whether this job can be retried on failure by job runners
-	 * @since 1.21
-	 */
 	public function allowRetries() {
 		return true;
 	}
 
-	/**
-	 * @return int Number of actually "work items" handled in this job
-	 * @see $wgJobBackoffThrottling
-	 * @since 1.23
-	 */
 	public function workItemCount() {
 		return 1;
 	}
@@ -270,8 +269,6 @@ abstract class Job implements IJobSpecification {
 	public function getDeduplicationInfo() {
 		$info = [
 			'type' => $this->getType(),
-			'namespace' => $this->getTitle()->getNamespace(),
-			'title' => $this->getTitle()->getDBkey(),
 			'params' => $this->getParams()
 		];
 		if ( is_array( $info['params'] ) ) {
@@ -356,20 +353,12 @@ abstract class Job implements IJobSpecification {
 		$this->teardownCallbacks[] = $callback;
 	}
 
-	/**
-	 * Do any final cleanup after run(), deferred updates, and all DB commits happen
-	 * @param bool $status Whether the job, its deferred updates, and DB commit all succeeded
-	 * @since 1.27
-	 */
 	public function teardown( $status ) {
 		foreach ( $this->teardownCallbacks as $callback ) {
 			call_user_func( $callback, $status );
 		}
 	}
 
-	/**
-	 * @return string
-	 */
 	public function toString() {
 		$paramString = '';
 		if ( $this->params ) {

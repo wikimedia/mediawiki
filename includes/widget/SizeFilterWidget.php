@@ -13,9 +13,14 @@ use \OOUI\LabelWidget;
  * @license MIT
  */
 class SizeFilterWidget extends \OOUI\Widget {
-
-	protected $radioselectinput = null;
-	protected $textinput = null;
+	/** @var array */
+	protected $config;
+	/** @var LabelWidget */
+	protected $label;
+	/** @var RadioSelectInputWidget */
+	protected $radioselectinput;
+	/** @var TextInputWidget */
+	protected $textinput;
 
 	/**
 	 * RadioSelectInputWidget and a TextInputWidget to set minimum or maximum byte size

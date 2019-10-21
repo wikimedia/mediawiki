@@ -1,3 +1,5 @@
+/* stylelint-disable selector-class-pattern */
+
 /* Styles for the JavaScript enhancements of the history page */
 
 #pagehistory li.before input[ name='oldid' ],

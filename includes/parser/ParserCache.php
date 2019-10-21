@@ -49,7 +49,7 @@ class ParserCache {
 	const USE_ANYTHING = 3;
 
 	/** @var BagOStuff */
-	private $mMemc;
+	private $cache;
 
 	/**
 	 * Anything cached prior to this is invalidated
@@ -57,6 +57,7 @@ class ParserCache {
 	 * @var string
 	 */
 	private $cacheEpoch;
+
 	/**
 	 * Get an instance of this object
 	 *
@@ -78,7 +79,7 @@ class ParserCache {
 	 * @throws MWException
 	 */
 	public function __construct( BagOStuff $cache, $cacheEpoch = '20030516000000' ) {
-		$this->mMemc = $cache;
+		$this->cache = $cache;
 		$this->cacheEpoch = $cacheEpoch;
 	}
 
@@ -94,7 +95,7 @@ class ParserCache {
 		$pageid = $article->getId();
 		$renderkey = (int)( $wgRequest->getVal( 'action' ) == 'render' );
 
-		$key = $this->mMemc->makeKey( 'pcache', 'idhash', "{$pageid}-{$renderkey}!{$hash}" );
+		$key = $this->cache->makeKey( 'pcache', 'idhash', "{$pageid}-{$renderkey}!{$hash}" );
 		return $key;
 	}
 
@@ -103,7 +104,7 @@ class ParserCache {
 	 * @return mixed|string
 	 */
 	protected function getOptionsKey( $page ) {
-		return $this->mMemc->makeKey( 'pcache', 'idoptions', $page->getId() );
+		return $this->cache->makeKey( 'pcache', 'idoptions', $page->getId() );
 	}
 
 	/**
@@ -111,7 +112,7 @@ class ParserCache {
 	 * @since 1.28
 	 */
 	public function deleteOptionsKey( $page ) {
-		$this->mMemc->delete( $this->getOptionsKey( $page ) );
+		$this->cache->delete( $this->getOptionsKey( $page ) );
 	}
 
 	/**
@@ -189,7 +190,7 @@ class ParserCache {
 		}
 
 		// Determine the options which affect this article
-		$optionsKey = $this->mMemc->get(
+		$optionsKey = $this->cache->get(
 			$this->getOptionsKey( $article ), BagOStuff::READ_VERIFIED );
 		if ( $optionsKey instanceof CacheTime ) {
 			if ( $useOutdated < self::USE_EXPIRED && $optionsKey->expired( $article->getTouched() ) ) {
@@ -256,7 +257,7 @@ class ParserCache {
 
 		$casToken = null;
 		/** @var ParserOutput $value */
-		$value = $this->mMemc->get( $parserOutputKey, BagOStuff::READ_VERIFIED );
+		$value = $this->cache->get( $parserOutputKey, BagOStuff::READ_VERIFIED );
 		if ( !$value ) {
 			wfDebug( "ParserOutput cache miss.\n" );
 			$this->incrementStats( $article, "miss.absent" );
@@ -318,7 +319,7 @@ class ParserCache {
 		}
 
 		$expire = $parserOutput->getCacheExpiry();
-		if ( $expire > 0 && !$this->mMemc instanceof EmptyBagOStuff ) {
+		if ( $expire > 0 && !$this->cache instanceof EmptyBagOStuff ) {
 			$cacheTime = $cacheTime ?: wfTimestampNow();
 			if ( !$revId ) {
 				$revision = $page->getRevision();
@@ -349,10 +350,15 @@ class ParserCache {
 			wfDebug( $msg );
 
 			// Save the parser output
-			$this->mMemc->set( $parserOutputKey, $parserOutput, $expire );
+			$this->cache->set(
+				$parserOutputKey,
+				$parserOutput,
+				$expire,
+				BagOStuff::WRITE_ALLOW_SEGMENTS
+			);
 
 			// ...and its pointer
-			$this->mMemc->set( $this->getOptionsKey( $page ), $optionsKey, $expire );
+			$this->cache->set( $this->getOptionsKey( $page ), $optionsKey, $expire );
 
 			Hooks::run(
 				'ParserCacheSaveComplete',
@@ -371,6 +377,6 @@ class ParserCache {
 	 * @return BagOStuff
 	 */
 	public function getCacheStorage() {
-		return $this->mMemc;
+		return $this->cache;
 	}
 }

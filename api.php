@@ -31,6 +31,7 @@ use MediaWiki\Logger\LegacyLogger;
 
 // So extensions (and other code) can check whether they're running in API mode
 define( 'MW_API', true );
+define( 'MW_ENTRY_POINT', 'api' );
 
 require __DIR__ . '/includes/WebStart.php';
 
@@ -44,7 +45,7 @@ if ( !$wgRequest->checkUrlExtension() ) {
 // PATH_INFO can be used for stupid things. We don't support it for api.php at
 // all, so error out if it's present.
 if ( isset( $_SERVER['PATH_INFO'] ) && $_SERVER['PATH_INFO'] != '' ) {
-	$correctUrl = wfAppendQuery( wfScript( 'api' ), $wgRequest->getQueryValues() );
+	$correctUrl = wfAppendQuery( wfScript( 'api' ), $wgRequest->getQueryValuesOnly() );
 	$correctUrl = wfExpandUrl( $correctUrl, PROTO_CANONICAL );
 	header( "Location: $correctUrl", true, 301 );
 	echo 'This endpoint does not support "path info", i.e. extra text between "api.php"'
@@ -61,10 +62,9 @@ $wgTitle = Title::makeTitle( NS_SPECIAL, 'Badtitle/dummy title for API calls set
 RequestContext::getMain()->setTitle( $wgTitle );
 
 try {
-	/* Construct an ApiMain with the arguments passed via the URL. What we get back
-	 * is some form of an ApiMain, possibly even one that produces an error message,
-	 * but we don't care here, as that is handled by the constructor.
-	 */
+	// Construct an ApiMain with the arguments passed via the URL. What we get back
+	// is some form of an ApiMain, possibly even one that produces an error message,
+	// but we don't care here, as that is handled by the constructor.
 	$processor = new ApiMain( RequestContext::getMain(), true );
 
 	// Last chance hook before executing the API

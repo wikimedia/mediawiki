@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\Restriction\PageRestriction;
+
 /**
  * Tests for action=revisiondelete
  * @covers APIRevisionDelete
@@ -22,8 +25,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 		// Make a few edits for us to play with
 		for ( $i = 1; $i <= 5; $i++ ) {
 			self::editPage( self::$page, MWCryptRand::generateHex( 10 ), 'summary' );
-			$this->revs[] = Title::newFromText( self::$page )
-				->getLatestRevID( Title::GAID_FOR_UPDATE );
+			$this->revs[] = Title::newFromText( self::$page )->getLatestRevID( Title::READ_LATEST );
 		}
 	}
 
@@ -113,5 +115,33 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 		$this->assertFalse( $item['commenthidden'], 'commenthidden' );
 		$this->assertTrue( $item['texthidden'], 'texthidden' );
 		$this->assertEquals( $item['id'], $revid );
+	}
+
+	public function testPartiallyBlockedPage() {
+		$this->setExpectedApiException( 'apierror-blocked-partial' );
+
+		$user = static::getTestSysop()->getUser();
+
+		$block = new DatabaseBlock( [
+			'address' => $user,
+			'by' => static::getTestSysop()->getUser()->getId(),
+			'sitewide' => false,
+		] );
+
+		$block->setRestrictions( [
+			new PageRestriction( 0, Title::newFromText( self::$page )->getArticleID() )
+		] );
+		$block->insert();
+
+		$revid = array_shift( $this->revs );
+
+		$this->doApiRequest( [
+			'action' => 'revisiondelete',
+			'type' => 'revision',
+			'target' => self::$page,
+			'ids' => $revid,
+			'hide' => 'content|user|comment',
+			'token' => $user->getEditToken(),
+		] );
 	}
 }

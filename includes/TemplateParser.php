@@ -1,4 +1,5 @@
 <?php
+
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -62,9 +63,9 @@ class TemplateParser {
 	 */
 	public function enableRecursivePartials( $enable ) {
 		if ( $enable ) {
-			$this->compileFlags = $this->compileFlags | LightnCandy::FLAG_RUNTIMEPARTIAL;
+			$this->compileFlags |= LightnCandy::FLAG_RUNTIMEPARTIAL;
 		} else {
-			$this->compileFlags = $this->compileFlags & ~LightnCandy::FLAG_RUNTIMEPARTIAL;
+			$this->compileFlags &= ~LightnCandy::FLAG_RUNTIMEPARTIAL;
 		}
 	}
 

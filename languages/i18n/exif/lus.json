@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"RMizo"
+			"RMizo",
+			"INerdguyI"
 		]
 	},
 	"exif-imagewidth": "Zàuzáwng",
@@ -48,5 +49,11 @@
 	"exif-writer": "Ziaktu",
 	"exif-languagecode": "Ţawng",
 	"exif-iimversion": "IIM chhuah",
-	"exif-iimcategory": "Pawl"
+	"exif-iimcategory": "Pawl",
+	"exif-customrendered-2": "HDR(original save a awm lo)",
+	"exif-customrendered-3": "HDR(original a in save)",
+	"exif-customrendered-4": "Original(HDR atan)",
+	"exif-customrendered-6": "Panorama",
+	"exif-customrendered-7": "Portriat HDR",
+	"exif-customrendered-8": "Thlalak"
 }

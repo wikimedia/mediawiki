@@ -200,7 +200,8 @@
 			"Akapochtli",
 			"ديفيد",
 			"Daimona Eaytoy",
-			"A2093064"
+			"A2093064",
+			"Waldyrious"
 		]
 	},
 	"exif-imagewidth": "{{exif-qqq}}\n{{Identical|Width}}",
@@ -364,7 +365,7 @@
 	"exif-copyrighted": "Copyright status. This is a true or false field showing either Copyrighted or Public Domain. It should be noted that Copyrighted includes freely-licensed works.",
 	"exif-copyrightowner": "{{exif-qqq}}\n\nCopyright owner. Can have more than one person or entity.",
 	"exif-usageterms": "Terms under which you're allowed to use the image/media.",
-	"exif-webstatement": "{{exif-qqq}}\n\nURL detailing the copyright status of the image, and how you're allowed to use the image. Often this is a link to a creative commons license, however the creative commons people recommend using a page that generally contains specific information about the image, and recommend using {{msg-mw|exif-licenseurl}} for linking to the license. See http://wiki.creativecommons.org/XMP",
+	"exif-webstatement": "{{exif-qqq}}\n\nURL detailing the copyright status of the image, and how you're allowed to use the image. Often this is a link to a creative commons license, however the creative commons people recommend using a page that generally contains specific information about the image, and recommend using {{msg-mw|exif-licenseurl}} for linking to the license. See https://wiki.creativecommons.org/wiki/XMP",
 	"exif-originaldocumentid": "A unique ID of the original document (image) that this document (image) is based on.",
 	"exif-licenseurl": "{{exif-qqq}}\n\nURL for copyright license. This is almost always a creative commons license since this information comes from the creative commons namespace of XMP (but could be a link to any type of license). See also {{msg-mw|exif-webstatement}}",
 	"exif-morepermissionsurl": "A URL where you can \"buy\" (or otherwise negotiate) to get more rights for the image.",
@@ -496,6 +497,12 @@
 	"exif-scenetype-1": "See also:\n* {{msg-mw|Exif-scenetype}}\n* {{msg-mw|Exif-scenetype-1}}",
 	"exif-customrendered-0": "{{exif-qqq}}\n\nSee also:\n* {{msg-mw|Exif-customrendered}}\n* {{msg-mw|Exif-customrendered-0}}\n* {{msg-mw|Exif-customrendered-1}}",
 	"exif-customrendered-1": "{{exif-qqq}}\n\nSee also:\n* {{msg-mw|Exif-customrendered}}\n* {{msg-mw|Exif-customrendered-0}}\n* {{msg-mw|Exif-customrendered-1}}",
+	"exif-customrendered-2": "{{exif-qqq}}\n\nSee also:\n* {{msg-mw|Exif-customrendered}}",
+	"exif-customrendered-3": "{{exif-qqq}}\n\nSee also:\n* {{msg-mw|Exif-customrendered}}",
+	"exif-customrendered-4": "{{exif-qqq}}\n\nSee also:\n* {{msg-mw|Exif-customrendered}}",
+	"exif-customrendered-6": "{{exif-qqq}}\n\nSee also:\n* {{msg-mw|Exif-customrendered}}",
+	"exif-customrendered-7": "{{exif-qqq}}\n\nSee also:\n* {{msg-mw|Exif-customrendered}}",
+	"exif-customrendered-8": "{{exif-qqq}}\n\nSee also:\n* {{msg-mw|Exif-customrendered}}",
 	"exif-exposuremode-0": "{{exif-qqq}}\n{{Related|Exif-exposuremode}}",
 	"exif-exposuremode-1": "{{exif-qqq}}\n{{Related|Exif-exposuremode}}",
 	"exif-exposuremode-2": "{{exif-qqq}}\n\nA type of exposure mode shown as part of the metadata on image description pages. The Wikipedia article on [[w:Bracketing#Exposure_bracketing|bracketing]] says that 'auto bracket' is a camera exposure setting which automatically takes a series of pictures at slightly different light exposures.\n\n{{Related|Exif-exposuremode}}",

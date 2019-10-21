@@ -5,6 +5,7 @@
  * be a subclass of this.
  */
 abstract class HTMLFormField {
+	/** @var array|array[] */
 	public $mParams;
 
 	protected $mValidationCallback;
@@ -40,7 +41,7 @@ abstract class HTMLFormField {
 	 * the input object itself.  It should not implement the surrounding
 	 * table cells/rows, or labels/help messages.
 	 *
-	 * @param string $value The value to set the input to; eg a default
+	 * @param mixed $value The value to set the input to; eg a default
 	 *     text for a text input.
 	 *
 	 * @return string Valid HTML.
@@ -75,15 +76,15 @@ abstract class HTMLFormField {
 	 *
 	 * Parameters are the same as wfMessage().
 	 *
+	 * @param string|string[]|MessageSpecifier $key
+	 * @param mixed ...$params
 	 * @return Message
 	 */
-	public function msg() {
-		$args = func_get_args();
-
+	public function msg( $key, ...$params ) {
 		if ( $this->mParent ) {
-			return $this->mParent->msg( ...$args );
+			return $this->mParent->msg( $key, ...$params );
 		}
-		return wfMessage( ...$args );
+		return wfMessage( $key, ...$params );
 	}
 
 	/**
@@ -367,7 +368,7 @@ abstract class HTMLFormField {
 	 * or the input's default value if it has not been set.
 	 *
 	 * @param WebRequest $request
-	 * @return string The value
+	 * @return mixed The value
 	 */
 	public function loadDataFromRequest( $request ) {
 		if ( $request->getCheck( $this->mName ) ) {
@@ -653,9 +654,10 @@ abstract class HTMLFormField {
 
 	/**
 	 * Get a FieldLayout (or subclass thereof) to wrap this field in when using OOUI output.
-	 * @param string $inputField
+	 * @param OOUI\Widget $inputField
 	 * @param array $config
 	 * @return OOUI\FieldLayout|OOUI\ActionFieldLayout
+	 * @suppress PhanUndeclaredProperty Only some subclasses declare mClassWithButton
 	 */
 	protected function getFieldLayoutOOUI( $inputField, $config ) {
 		if ( isset( $this->mClassWithButton ) ) {
@@ -866,7 +868,7 @@ abstract class HTMLFormField {
 	 * that return value has no taint.
 	 *
 	 * @param string $value The value of the input
-	 * @return array array( $errors, $errorClass )
+	 * @return array [ $errors, $errorClass ]
 	 * @return-taint none
 	 */
 	public function getErrorsAndErrorClass( $value ) {
@@ -1032,7 +1034,7 @@ abstract class HTMLFormField {
 	 * Recursively forces values in an array to strings, because issues arise
 	 * with integer 0 as a value.
 	 *
-	 * @param array $array
+	 * @param array|string $array
 	 * @return array|string
 	 */
 	public static function forceToStringRecursive( $array ) {

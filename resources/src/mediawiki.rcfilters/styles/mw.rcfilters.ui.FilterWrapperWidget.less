@@ -1,5 +1,11 @@
 @import 'mediawiki.mixins';
 
+.mw-rcfilters-collapsed {
+	.mw-rcfilters-ui-filterWrapperWidget-bottom {
+		display: none;
+	}
+}
+
 .mw-rcfilters-ui-filterWrapperWidget {
 	width: 100%;
 	// Make sure this uses the interface direction, not the content direction
@@ -10,8 +16,38 @@
 	}
 
 	&-bottom {
-		.flex-display;
-		.flex;
+		.flex-display();
+		.flex();
+		flex-wrap: wrap;
 		margin-top: 1em;
+	}
+
+	&-bottom-mobile {
+		.oo-ui-buttonElement {
+			margin-bottom: 1em;
+
+			&-button {
+				text-align: left;
+			}
+		}
+
+		.mw-rcfilters-ui-changesLimitAndDateButtonWidget {
+			order: 1;
+		}
+
+		.mw-rcfilters-ui-liveUpdateButtonWidget {
+			order: 2;
+		}
+
+		.mw-rcfilters-ui-filterWrapperWidget-showNewChanges {
+			order: 3;
+			font-size: 0.85em;
+
+			& > a {
+				white-space: normal;
+				/* stylelint-disable-next-line */
+				padding-top: 0 !important; //overrides .oo-ui-buttonElement-button
+			}
+		}
 	}
 }

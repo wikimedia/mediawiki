@@ -39,7 +39,6 @@
 	"config-diff3-bad": "Tekstivõrdluse vahendit GNU diff3 ei leitud. Saad seda eirata, aga võid sattuda edaspidi sagedamini redigeerimiskonfliktidesse.",
 	"config-db-type": "Andmebaasi tüüp:",
 	"config-db-name": "Andmebaasi nimi (sidekriipsudeta):",
-	"config-db-name-oracle": "Andmebaasi skeem:",
 	"config-db-username": "Andmebaasi kasutajanimi:",
 	"config-db-password": "Andmebaasi parool:",
 	"config-db-port": "Andmebaasi port:",

@@ -20,6 +20,8 @@
  * @ingroup Actions
  */
 
+use MediaWiki\Revision\RevisionRecord;
+
 /**
  * User interface for the rollback action
  *
@@ -167,8 +169,8 @@ class RollbackAction extends FormAction {
 		$this->getOutput()->addHTML(
 			$this->msg( 'rollback-success' )
 				->rawParams( $old, $new )
-				->params( $current->getUserText( Revision::FOR_THIS_USER, $user ) )
-				->params( $target->getUserText( Revision::FOR_THIS_USER, $user ) )
+				->params( $current->getUserText( RevisionRecord::FOR_THIS_USER, $user ) )
+				->params( $target->getUserText( RevisionRecord::FOR_THIS_USER, $user ) )
 				->parseAsBlock()
 		);
 

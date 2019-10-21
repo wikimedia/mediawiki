@@ -149,16 +149,8 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 		return $response[0]['query']['recentchanges'];
 	}
 
-	private function getTitleFormatter() {
-		return new MediaWikiTitleCodec(
-			Language::factory( 'en' ),
-			MediaWikiServices::getInstance()->getGenderCache()
-		);
-	}
-
 	private function getPrefixedText( LinkTarget $target ) {
-		$formatter = $this->getTitleFormatter();
-		return $formatter->getPrefixedText( $target );
+		return MediaWikiServices::getInstance()->getTitleFormatter()->getPrefixedText( $target );
 	}
 
 	public function testListRecentChanges_returnsRCInfo() {

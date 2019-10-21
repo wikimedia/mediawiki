@@ -89,6 +89,7 @@ class Revision implements IDBAccessObject {
 	 * @return SqlBlobStore
 	 */
 	protected static function getBlobStore( $wiki = false ) {
+		// @phan-suppress-next-line PhanAccessMethodInternal
 		$store = MediaWikiServices::getInstance()
 			->getBlobStoreFactory()
 			->newSqlBlobStore( $wiki );
@@ -295,203 +296,6 @@ class Revision implements IDBAccessObject {
 	public static function loadFromTimestamp( $db, $title, $timestamp ) {
 		$rec = self::getRevisionStore()->loadRevisionFromTimestamp( $db, $title, $timestamp );
 		return $rec ? new Revision( $rec ) : null;
-	}
-
-	/**
-	 * Return the value of a select() JOIN conds array for the user table.
-	 * This will get user table rows for logged-in users.
-	 * @since 1.19
-	 * @deprecated since 1.31, use RevisionStore::getQueryInfo( [ 'user' ] ) instead.
-	 * @return array
-	 */
-	public static function userJoinCond() {
-		global $wgActorTableSchemaMigrationStage;
-
-		wfDeprecated( __METHOD__, '1.31' );
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
-			// If code is using this instead of self::getQueryInfo(), there's
-			// no way the join it's trying to do can work once the old fields
-			// aren't being used anymore.
-			throw new BadMethodCallException(
-				'Cannot use ' . __METHOD__
-					. ' when $wgActorTableSchemaMigrationStage has SCHEMA_COMPAT_READ_NEW'
-			);
-		}
-
-		return [ 'LEFT JOIN', [ 'rev_user != 0', 'user_id = rev_user' ] ];
-	}
-
-	/**
-	 * Return the value of a select() page conds array for the page table.
-	 * This will assure that the revision(s) are not orphaned from live pages.
-	 * @since 1.19
-	 * @deprecated since 1.31, use RevisionStore::getQueryInfo( [ 'page' ] ) instead.
-	 * @return array
-	 */
-	public static function pageJoinCond() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return [ 'JOIN', [ 'page_id = rev_page' ] ];
-	}
-
-	/**
-	 * Return the list of revision fields that should be selected to create
-	 * a new revision.
-	 * @deprecated since 1.31, use RevisionStore::getQueryInfo() instead.
-	 * @return array
-	 */
-	public static function selectFields() {
-		global $wgContentHandlerUseDB, $wgActorTableSchemaMigrationStage;
-		global $wgMultiContentRevisionSchemaMigrationStage;
-
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
-			// If code is using this instead of self::getQueryInfo(), there's a
-			// decent chance it's going to try to directly access
-			// $row->rev_user or $row->rev_user_text and we can't give it
-			// useful values here once those aren't being used anymore.
-			throw new BadMethodCallException(
-				'Cannot use ' . __METHOD__
-					. ' when $wgActorTableSchemaMigrationStage has SCHEMA_COMPAT_READ_NEW'
-			);
-		}
-
-		if ( !( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
-			// If code is using this instead of self::getQueryInfo(), there's a
-			// decent chance it's going to try to directly access
-			// $row->rev_text_id or $row->rev_content_model and we can't give it
-			// useful values here once those aren't being written anymore,
-			// and may not exist at all.
-			throw new BadMethodCallException(
-				'Cannot use ' . __METHOD__ . ' when $wgMultiContentRevisionSchemaMigrationStage '
-				. 'does not have SCHEMA_COMPAT_WRITE_OLD set.'
-			);
-		}
-
-		wfDeprecated( __METHOD__, '1.31' );
-
-		$fields = [
-			'rev_id',
-			'rev_page',
-			'rev_text_id',
-			'rev_timestamp',
-			'rev_user_text',
-			'rev_user',
-			'rev_actor' => 'NULL',
-			'rev_minor_edit',
-			'rev_deleted',
-			'rev_len',
-			'rev_parent_id',
-			'rev_sha1',
-		];
-
-		$fields += CommentStore::getStore()->getFields( 'rev_comment' );
-
-		if ( $wgContentHandlerUseDB ) {
-			$fields[] = 'rev_content_format';
-			$fields[] = 'rev_content_model';
-		}
-
-		return $fields;
-	}
-
-	/**
-	 * Return the list of revision fields that should be selected to create
-	 * a new revision from an archive row.
-	 * @deprecated since 1.31, use RevisionStore::getArchiveQueryInfo() instead.
-	 * @return array
-	 */
-	public static function selectArchiveFields() {
-		global $wgContentHandlerUseDB, $wgActorTableSchemaMigrationStage;
-		global $wgMultiContentRevisionSchemaMigrationStage;
-
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
-			// If code is using this instead of self::getQueryInfo(), there's a
-			// decent chance it's going to try to directly access
-			// $row->ar_user or $row->ar_user_text and we can't give it
-			// useful values here once those aren't being used anymore.
-			throw new BadMethodCallException(
-				'Cannot use ' . __METHOD__
-					. ' when $wgActorTableSchemaMigrationStage has SCHEMA_COMPAT_READ_NEW'
-			);
-		}
-
-		if ( !( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
-			// If code is using this instead of self::getQueryInfo(), there's a
-			// decent chance it's going to try to directly access
-			// $row->ar_text_id or $row->ar_content_model and we can't give it
-			// useful values here once those aren't being written anymore,
-			// and may not exist at all.
-			throw new BadMethodCallException(
-				'Cannot use ' . __METHOD__ . ' when $wgMultiContentRevisionSchemaMigrationStage '
-				. 'does not have SCHEMA_COMPAT_WRITE_OLD set.'
-			);
-		}
-
-		wfDeprecated( __METHOD__, '1.31' );
-
-		$fields = [
-			'ar_id',
-			'ar_page_id',
-			'ar_rev_id',
-			'ar_text_id',
-			'ar_timestamp',
-			'ar_user_text',
-			'ar_user',
-			'ar_actor' => 'NULL',
-			'ar_minor_edit',
-			'ar_deleted',
-			'ar_len',
-			'ar_parent_id',
-			'ar_sha1',
-		];
-
-		$fields += CommentStore::getStore()->getFields( 'ar_comment' );
-
-		if ( $wgContentHandlerUseDB ) {
-			$fields[] = 'ar_content_format';
-			$fields[] = 'ar_content_model';
-		}
-		return $fields;
-	}
-
-	/**
-	 * Return the list of text fields that should be selected to read the
-	 * revision text
-	 * @deprecated since 1.31, use RevisionStore::getQueryInfo( [ 'text' ] ) instead.
-	 * @return array
-	 */
-	public static function selectTextFields() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return [
-			'old_text',
-			'old_flags'
-		];
-	}
-
-	/**
-	 * Return the list of page fields that should be selected from page table
-	 * @deprecated since 1.31, use RevisionStore::getQueryInfo( [ 'page' ] ) instead.
-	 * @return array
-	 */
-	public static function selectPageFields() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return [
-			'page_namespace',
-			'page_title',
-			'page_id',
-			'page_latest',
-			'page_is_redirect',
-			'page_len',
-		];
-	}
-
-	/**
-	 * Return the list of user fields that should be selected from user table
-	 * @deprecated since 1.31, use RevisionStore::getQueryInfo( [ 'user' ] ) instead.
-	 * @return array
-	 */
-	public static function selectUserFields() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return [ 'user_name' ];
 	}
 
 	/**
@@ -1008,9 +812,8 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public function getPrevious() {
-		$title = $this->getTitle();
-		$rec = self::getRevisionLookup()->getPreviousRevision( $this->mRecord, $title );
-		return $rec ? new Revision( $rec, self::READ_NORMAL, $title ) : null;
+		$rec = self::getRevisionLookup()->getPreviousRevision( $this->mRecord );
+		return $rec ? new Revision( $rec, self::READ_NORMAL, $this->getTitle() ) : null;
 	}
 
 	/**
@@ -1019,9 +822,8 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public function getNext() {
-		$title = $this->getTitle();
-		$rec = self::getRevisionLookup()->getNextRevision( $this->mRecord, $title );
-		return $rec ? new Revision( $rec, self::READ_NORMAL, $title ) : null;
+		$rec = self::getRevisionLookup()->getNextRevision( $this->mRecord );
+		return $rec ? new Revision( $rec, self::READ_NORMAL, $this->getTitle() ) : null;
 	}
 
 	/**
@@ -1203,7 +1005,7 @@ class Revision implements IDBAccessObject {
 
 		$comment = CommentStoreComment::newUnsavedComment( $summary, null );
 
-		$title = Title::newFromID( $pageId, Title::GAID_FOR_UPDATE );
+		$title = Title::newFromID( $pageId, Title::READ_LATEST );
 		if ( $title === null ) {
 			return null;
 		}
@@ -1256,13 +1058,13 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Get rev_timestamp from rev_id, without loading the rest of the row
 	 *
-	 * @param Title $title
+	 * @param Title $title (ignored since 1.34)
 	 * @param int $id
 	 * @param int $flags
 	 * @return string|bool False if not found
 	 */
 	static function getTimestampFromId( $title, $id, $flags = 0 ) {
-		return self::getRevisionStore()->getTimestampFromId( $title, $id, $flags );
+		return self::getRevisionStore()->getTimestampFromId( $id, $flags );
 	}
 
 	/**

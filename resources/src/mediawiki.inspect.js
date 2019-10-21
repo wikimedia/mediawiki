@@ -242,7 +242,7 @@
 	 */
 	inspect.grep = function ( pattern ) {
 		if ( typeof pattern.test !== 'function' ) {
-			pattern = new RegExp( mw.RegExp.escape( pattern ), 'g' );
+			pattern = new RegExp( mw.util.escapeRegExp( pattern ), 'g' );
 		}
 
 		return inspect.getLoadedModules().filter( function ( moduleName ) {
@@ -340,7 +340,7 @@
 			if ( stats.enabled ) {
 				$.extend( stats, mw.loader.store.stats );
 				try {
-					raw = localStorage.getItem( mw.loader.store.getStoreKey() );
+					raw = localStorage.getItem( mw.loader.store.key );
 					stats.totalSizeInBytes = byteLength( raw );
 					stats.totalSize = humanSize( byteLength( raw ) );
 				} catch ( e ) {}

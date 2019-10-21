@@ -23,6 +23,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @ingroup Pager
  */
@@ -51,6 +53,12 @@ class LogPager extends ReverseChronologicalPager {
 	/** @var bool */
 	private $actionRestrictionsEnforced = false;
 
+	/** @var array */
+	private $mConds;
+
+	/** @var string */
+	private $mTagFilter;
+
 	/** @var LogEventsList */
 	public $mLogEventsList;
 
@@ -78,12 +86,13 @@ class LogPager extends ReverseChronologicalPager {
 		$this->mLogEventsList = $list;
 
 		$this->limitType( $types ); // also excludes hidden types
+		$this->limitLogId( $logId );
+		$this->limitFilterTypes();
 		$this->limitPerformer( $performer );
 		$this->limitTitle( $title, $pattern );
 		$this->limitAction( $action );
 		$this->getDateCond( $year, $month, $day );
 		$this->mTagFilter = $tagFilter;
-		$this->limitLogId( $logId );
 
 		$this->mDb = wfGetDB( DB_REPLICA, 'logpager' );
 	}
@@ -99,7 +108,18 @@ class LogPager extends ReverseChronologicalPager {
 		return $query;
 	}
 
-	// Call ONLY after calling $this->limitType() already!
+	private function limitFilterTypes() {
+		if ( $this->hasEqualsClause( 'log_id' ) ) { // T220834
+			return;
+		}
+		$filterTypes = $this->getFilterParams();
+		foreach ( $filterTypes as $type => $hide ) {
+			if ( $hide ) {
+				$this->mConds[] = 'log_type != ' . $this->mDb->addQuotes( $type );
+			}
+		}
+	}
+
 	public function getFilterParams() {
 		global $wgFilterLogTypes;
 		$filters = [];
@@ -119,9 +139,6 @@ class LogPager extends ReverseChronologicalPager {
 			}
 
 			$filters[$type] = $hide;
-			if ( $hide ) {
-				$this->mConds[] = 'log_type != ' . $this->mDb->addQuotes( $type );
-			}
 		}
 
 		return $filters;
@@ -144,7 +161,9 @@ class LogPager extends ReverseChronologicalPager {
 		$needReindex = false;
 		foreach ( $types as $type ) {
 			if ( isset( $wgLogRestrictions[$type] )
-				&& !$user->isAllowed( $wgLogRestrictions[$type] )
+				&& !MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->userHasRight( $user, $wgLogRestrictions[$type] )
 			) {
 				$needReindex = true;
 				$types = array_diff( $types, [ $type ] );
@@ -256,7 +275,7 @@ class LogPager extends ReverseChronologicalPager {
 				$params[] = $db->anyString();
 			}
 			array_pop( $params ); // Get rid of the last % we added.
-			$this->mConds[] = 'log_title' . $db->buildLike( $params );
+			$this->mConds[] = 'log_title' . $db->buildLike( ...$params );
 		} elseif ( $pattern && !$wgMiserMode ) {
 			$this->mConds[] = 'log_title' . $db->buildLike( $title->getDBkey(), $db->anyString() );
 			$this->pattern = $pattern;
@@ -334,6 +353,19 @@ class LogPager extends ReverseChronologicalPager {
 		}
 		# Don't show duplicate rows when using log_search
 		$joins['log_search'] = [ 'JOIN', 'ls_log_id=log_id' ];
+
+		// T221458: MySQL/MariaDB (10.1.37) can sometimes irrationally decide that querying `actor` before
+		// `logging` and filesorting is somehow better than querying $limit+1 rows from `logging`.
+		// Tell it not to reorder the query. But not when tag filtering or log_search was used, as it
+		// seems as likely to be harmed as helped in that case.
+		if ( !$this->mTagFilter && !array_key_exists( 'ls_field', $this->mConds ) ) {
+			$options[] = 'STRAIGHT_JOIN';
+		}
+		if ( $this->performer !== '' ) {
+			// T223151: MariaDB's optimizer, at least 10.1, likes to choose a wildly bad plan for
+			// some reason for this code path. Tell it not to use the wrong index it wants to pick.
+			$options['IGNORE INDEX'] = [ 'logging' => [ 'times' ] ];
+		}
 
 		$info = [
 			'tables' => $tables,
@@ -452,9 +484,10 @@ class LogPager extends ReverseChronologicalPager {
 		}
 		$this->actionRestrictionsEnforced = true;
 		$user = $this->getUser();
-		if ( !$user->isAllowed( 'deletedhistory' ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( !$permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
 			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::DELETED_ACTION ) . ' = 0';
-		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
+		} elseif ( !$permissionManager->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' ) ) {
 			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::SUPPRESSED_ACTION ) .
 				' != ' . LogPage::SUPPRESSED_USER;
 		}
@@ -470,9 +503,10 @@ class LogPager extends ReverseChronologicalPager {
 		}
 		$this->performerRestrictionsEnforced = true;
 		$user = $this->getUser();
-		if ( !$user->isAllowed( 'deletedhistory' ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( !$permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
 			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::DELETED_USER ) . ' = 0';
-		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
+		} elseif ( !$permissionManager->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' ) ) {
 			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::SUPPRESSED_USER ) .
 				' != ' . LogPage::SUPPRESSED_ACTION;
 		}

@@ -35,11 +35,8 @@ class ApiFormatRaw extends ApiFormatBase {
 	 */
 	public function __construct( ApiMain $main, ApiFormatBase $errorFallback = null ) {
 		parent::__construct( $main, 'raw' );
-		if ( $errorFallback === null ) {
-			$this->errorFallback = $main->createPrinterByName( $main->getParameter( 'format' ) );
-		} else {
-			$this->errorFallback = $errorFallback;
-		}
+		$this->errorFallback = $errorFallback ?:
+			$main->createPrinterByName( $main->getParameter( 'format' ) );
 	}
 
 	public function getMimeType() {

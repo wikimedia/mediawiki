@@ -176,15 +176,15 @@ class ForeignAPIRepo extends FileRepo {
 
 	/**
 	 * @param string $virtualUrl
-	 * @return false
+	 * @return array
 	 */
 	function getFileProps( $virtualUrl ) {
-		return false;
+		return [];
 	}
 
 	/**
 	 * @param array $query
-	 * @return string
+	 * @return array|null
 	 */
 	function fetchImageQuery( $query ) {
 		global $wgLanguageCode;
@@ -502,8 +502,9 @@ class ForeignAPIRepo extends FileRepo {
 	}
 
 	/**
-	 * Like a Http:get request, but with custom User-Agent.
-	 * @see Http::get
+	 * Like a HttpRequestFactory::get request, but with custom User-Agent.
+	 * @see HttpRequestFactory::get
+	 * @todo Can this use HttpRequestFactory::get() but just pass the 'userAgent' option?
 	 * @param string $url
 	 * @param string $timeout
 	 * @param array $options
@@ -579,7 +580,7 @@ class ForeignAPIRepo extends FileRepo {
 
 				return $html;
 			},
-			[ 'pcTTL' => WANObjectCache::TTL_PROC_LONG ]
+			[ 'pcGroup' => 'http-get:3', 'pcTTL' => WANObjectCache::TTL_PROC_LONG ]
 		);
 	}
 

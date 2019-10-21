@@ -83,6 +83,7 @@
 		// eslint-disable-next-line no-jquery/no-map-util
 		return $.map( node.childNodes, function ( elem ) {
 			if ( elem.nodeType === Node.ELEMENT_NODE ) {
+				// eslint-disable-next-line no-jquery/no-class-state
 				if ( $( elem ).hasClass( 'reference' ) ) {
 					return null;
 				}
@@ -112,6 +113,7 @@
 
 		while ( i < l ) {
 			// if this is a child row, continue to the next row (as buildCache())
+			// eslint-disable-next-line no-jquery/no-class-state
 			if ( rows[ rowIndex ] && !$( rows[ rowIndex ] ).hasClass( config.cssChildRow ) ) {
 				if ( rowIndex !== lastRowIndex ) {
 					lastRowIndex = rowIndex;
@@ -216,6 +218,7 @@
 
 			// if this is a child row, add it to the last row's children and
 			// continue to the next row
+			// eslint-disable-next-line no-jquery/no-class-state
 			if ( $row.hasClass( config.cssChildRow ) ) {
 				cache.row[ cache.row.length - 1 ] = cache.row[ cache.row.length - 1 ].add( $row );
 				// go to the next for loop
@@ -283,7 +286,7 @@
 				}
 				$thead.append( this );
 			} );
-			$table.find( ' > tbody:first' ).before( $thead );
+			$table.find( ' > tbody' ).first().before( $thead );
 		}
 		if ( !$table.get( 0 ).tFoot ) {
 			$tfoot = $( '<tfoot>' );
@@ -322,7 +325,7 @@
 			headerIndex,
 			exploded,
 			$tableHeaders = $( [] ),
-			$tableRows = $( 'thead:eq(0) > tr', table );
+			$tableRows = $( table ).find( 'thead' ).eq( 0 ).find( '> tr' );
 
 		if ( $tableRows.length <= 1 ) {
 			$tableHeaders = $tableRows.children( 'th' );
@@ -378,6 +381,7 @@
 			$cell = $( this );
 			columns = [];
 
+			// eslint-disable-next-line no-jquery/no-class-state
 			if ( !$cell.hasClass( config.unsortableClass ) ) {
 				$cell
 					.addClass( config.cssHeader )
@@ -480,25 +484,37 @@
 	}
 
 	function sortText( a, b ) {
-		return ( ( a < b ) ? -1 : ( ( a > b ) ? 1 : 0 ) );
+		return ts.collator.compare( a, b );
 	}
 
-	function sortTextDesc( a, b ) {
-		return ( ( b < a ) ? -1 : ( ( b > a ) ? 1 : 0 ) );
+	function sortNumeric( a, b ) {
+		return ( ( a < b ) ? -1 : ( ( a > b ) ? 1 : 0 ) );
 	}
 
 	function multisort( table, sortList, cache ) {
 		var i,
-			sortFn = [];
+			sortFn = [],
+			parsers = $( table ).data( 'tablesorter' ).config.parsers;
 
 		for ( i = 0; i < sortList.length; i++ ) {
-			sortFn[ i ] = ( sortList[ i ][ 1 ] ) ? sortTextDesc : sortText;
+			// Android doesn't support Intl.Collator
+			if ( window.Intl && Intl.Collator && parsers[ sortList[ i ][ 0 ] ].type === 'text' ) {
+				sortFn[ i ] = sortText;
+			} else {
+				sortFn[ i ] = sortNumeric;
+			}
 		}
 		cache.normalized.sort( function ( array1, array2 ) {
 			var i, col, ret;
 			for ( i = 0; i < sortList.length; i++ ) {
 				col = sortList[ i ][ 0 ];
-				ret = sortFn[ i ].call( this, array1[ col ], array2[ col ] );
+				if ( sortList[ i ][ 1 ] ) {
+					// descending
+					ret = sortFn[ i ].call( this, array2[ col ], array1[ col ] );
+				} else {
+					// ascending
+					ret = sortFn[ i ].call( this, array1[ col ], array2[ col ] );
+				}
 				if ( ret !== 0 ) {
 					return ret;
 				}
@@ -527,7 +543,7 @@
 			// Construct regexes for number identification
 			for ( i = 0; i < ascii.length; i++ ) {
 				ts.transformTable[ localised[ i ] ] = ascii[ i ];
-				digits.push( mw.RegExp.escape( localised[ i ] ) );
+				digits.push( mw.util.escapeRegExp( localised[ i ] ) );
 			}
 		}
 		digitClass = '[' + digits.join( '', digits ) + ']';
@@ -553,13 +569,13 @@
 		for ( i = 0; i < 12; i++ ) {
 			name = mw.language.months.names[ i ].toLowerCase();
 			ts.monthNames[ name ] = i + 1;
-			regex.push( mw.RegExp.escape( name ) );
+			regex.push( mw.util.escapeRegExp( name ) );
 			name = mw.language.months.genitive[ i ].toLowerCase();
 			ts.monthNames[ name ] = i + 1;
-			regex.push( mw.RegExp.escape( name ) );
+			regex.push( mw.util.escapeRegExp( name ) );
 			name = mw.language.months.abbrev[ i ].toLowerCase().replace( '.', '' );
 			ts.monthNames[ name ] = i + 1;
-			regex.push( mw.RegExp.escape( name ) );
+			regex.push( mw.util.escapeRegExp( name ) );
 		}
 
 		// Build piped string
@@ -703,6 +719,7 @@
 
 			$row = $rows.eq( i );
 			// if this is a child row, continue to the next row (as buildCache())
+			// eslint-disable-next-line no-jquery/no-class-state
 			if ( $row.hasClass( config.cssChildRow ) ) {
 				// go to the next for loop
 				continue;
@@ -726,18 +743,26 @@
 		}
 	}
 
-	function buildCollationTable() {
+	function buildCollation() {
 		var key, keys = [];
 		ts.collationTable = mw.config.get( 'tableSorterCollation' );
 		ts.collationRegex = null;
 		if ( ts.collationTable ) {
 			// Build array of key names
 			for ( key in ts.collationTable ) {
-				keys.push( mw.RegExp.escape( key ) );
+				keys.push( mw.util.escapeRegExp( key ) );
 			}
 			if ( keys.length ) {
 				ts.collationRegex = new RegExp( keys.join( '|' ), 'ig' );
 			}
+		}
+		if ( window.Intl && Intl.Collator ) {
+			ts.collator = new Intl.Collator( [
+				mw.config.get( 'wgPageContentLanguage' ),
+				mw.config.get( 'wgUserLanguage' )
+			], {
+				numeric: true
+			} );
 		}
 	}
 
@@ -879,7 +904,7 @@
 					// may customize tableSorterCollation but load after $.ready(), other
 					// scripts may call .tablesorter() before they have done the
 					// tableSorterCollation customizations.
-					buildCollationTable();
+					buildCollation();
 
 					// Legacy fix of .sortbottoms
 					// Wrap them inside a tfoot (because that's what they actually want to be)
@@ -1084,7 +1109,7 @@
 			buildTransformTable();
 			buildDateTable();
 			cacheRegexs();
-			buildCollationTable();
+			buildCollation();
 
 			return getParserById( id );
 		},
@@ -1110,12 +1135,20 @@
 		},
 		format: function ( s ) {
 			var tsc;
-			s = s.toLowerCase().trim();
+			s = s.trim();
 			if ( ts.collationRegex ) {
 				tsc = ts.collationTable;
 				s = s.replace( ts.collationRegex, function ( match ) {
-					var r = tsc[ match ] ? tsc[ match ] : tsc[ match.toUpperCase() ];
-					return r.toLowerCase();
+					var r,
+						upper = match.toUpperCase(),
+						lower = match.toLowerCase();
+					if ( upper === match && !lower === match ) {
+						r = tsc[ lower ] ? tsc[ lower ] : tsc[ upper ];
+						r = r.toUpperCase();
+					} else {
+						r = tsc[ match.toLowerCase() ];
+					}
+					return r;
 				} );
 			}
 			return s;

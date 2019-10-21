@@ -43,13 +43,13 @@ class XhprofData {
 
 	/**
 	 * Per-function inclusive data.
-	 * @var array $inclusive
+	 * @var array[] $inclusive
 	 */
 	protected $inclusive;
 
 	/**
 	 * Per-function inclusive and exclusive data.
-	 * @var array $complete
+	 * @var array[] $complete
 	 */
 	protected $complete;
 
@@ -153,7 +153,7 @@ class XhprofData {
 	 * - max: Maximum value
 	 * - variance: Variance (spread) of the values
 	 *
-	 * @return array
+	 * @return array[]
 	 * @see getRawData()
 	 * @see getCompleteMetrics()
 	 */
@@ -239,7 +239,7 @@ class XhprofData {
 	 * metrics have an additional 'exclusive' measurement which is the total
 	 * minus the totals of all child function calls.
 	 *
-	 * @return array
+	 * @return array[]
 	 * @see getRawData()
 	 * @see getInclusiveMetrics()
 	 */

@@ -119,10 +119,10 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 		$ok = false;
 		while ( !$ok ) {
 			try {
-				$dbw->doAtomicSection( __METHOD__, function ( $dbw, $fname ) {
+				$dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) {
 					$dbw->insert( 'revision', self::$dummyRev, $fname );
 					$id = $dbw->insertId();
-					$toDelete[] = $id;
+					$toDelete = [ $id ];
 
 					$maxId = max(
 						(int)$dbw->selectField( 'archive', 'MAX(ar_rev_id)', [], $fname ),
@@ -156,7 +156,7 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 			self::$dummyRev = self::makeDummyRevisionRow( $dbw );
 		}
 
-		$updates = $dbw->doAtomicSection( __METHOD__, function ( $dbw, $fname ) use ( $arIds ) {
+		$updates = $dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) use ( $arIds ) {
 			// Create new rev_ids by inserting dummy rows into revision and then deleting them.
 			$dbw->insert( 'revision', array_fill( 0, count( $arIds ), self::$dummyRev ), $fname );
 			$revIds = $dbw->selectFieldValues(

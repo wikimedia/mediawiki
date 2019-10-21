@@ -40,7 +40,7 @@ class Licenses extends HTMLFormField {
 
 	/** @var string|null */
 	protected $selected;
-	/**#@-*/
+	/** #@- */
 
 	/**
 	 * @param array $params
@@ -191,7 +191,7 @@ class Licenses extends HTMLFormField {
 		return str_repeat( "\t", $depth ) . Xml::element( 'option', $attribs, $val ) . "\n";
 	}
 
-	/**#@-*/
+	/** #@- */
 
 	/**
 	 * Accessor for $this->lines

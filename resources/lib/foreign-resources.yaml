@@ -115,15 +115,38 @@ html5shiv:
   integrity: sha384-RPXhaTf22QktT8KTwZ6bUz/C+7CnccaIw5W/y/t0FW5WSDGj3wc3YtRIJC0w47in
 
 jquery:
-  type: file
-  src: https://code.jquery.com/jquery-3.3.1.js
-  # Integrity from link modals https://code.jquery.com/jquery/
-  integrity: sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=
-  dest: jquery.js
+  type: multi-file
+  files:
+    # Integrities from link modals https://code.jquery.com/jquery/
+    jquery.migrate.js:
+      src: https://code.jquery.com/jquery-migrate-3.0.1.js
+      integrity: sha256-VvnF+Zgpd00LL73P2XULYXEn6ROvoFaa/vbfoiFlZZ4=
+    jquery.js:
+      src: https://code.jquery.com/jquery-3.3.1.js
+      integrity: sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=
 
-# TODO: jquery.async.js
-
-# TODO: jquery.chosen
+jquery.chosen:
+  type: multi-file
+  files:
+    LICENSE:
+      src: https://raw.githubusercontent.com/harvesthq/chosen/v1.8.2/LICENSE.md
+      integrity: sha384-hxUqOVbJZTd9clMlf9yV18PjyKQ2rUOCXLgFNYlV/blpyeCyiUCpmVjAmNP0yc8M
+    README.md:
+      src: https://raw.githubusercontent.com/harvesthq/chosen/v1.8.2/README.md
+      integrity: sha384-ps8fQiOF1anPibj6QMNii4OcAbZNcy+dkmdJUZzqBgmfjaPth9YDe0TRIk89lfID
+    # Following files taken from CDN because they're built, and don't exist in the repo
+    chosen-sprite.png:
+      src: https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.2/chosen-sprite.png
+      integrity: sha384-QL0lDMjIhfcd5uzKEIPehkhx7l0gHWxFo1taNsY2hdDuYdGAadNhiwKueQ91R8KW
+    chosen-sprite@2x.png:
+      src: https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.2/chosen-sprite%402x.png
+      integrity: sha384-MSDzP+ofFO+lRrCZQn3dztHS/GdR8Ai907bxrRZeuGSi87G8XffEKTxxM99GTvr1
+    chosen.css:
+      src: https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.2/chosen.css
+      integrity: sha384-VeNz/jFhcqEG5UB40sPZW8Bg8sdtbtXW1038aqBPAZy/z/6j1XsSQjRUJ7NEM3nE
+    chosen.jquery.js:
+      src: https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.2/chosen.jquery.js
+      integrity: sha384-EzfvMGW4mwDo/InJrmR/UvtxTUUYUA0cfybfS8aqPG1ItoAQYYYDImWl1gaBzMfQ
 
 jquery.client:
   type: tar
@@ -163,7 +186,17 @@ jquery.hoverIntent:
   src: https://raw.githubusercontent.com/briancherne/jquery-hoverIntent/823603fdac/jquery.hoverIntent.js
   integrity: sha384-lca0haN0hqFGGh2aYUhtAgX9dhVHfQnTADH4svDeM6gcXnL7aFGeAi1NYwipDMyS
 
-# TODO: jquery.i18n
+jquery.i18n:
+  type: tar
+  src: https://codeload.github.com/wikimedia/jquery.i18n/tar.gz/v1.0.5
+  integrity: sha384-bkmmKC2byOVjTg4di3o6sSISU49JwXynV9gNGH2zl4U9nh8vZJiauiIvoWgvhwsK
+  dest:
+    jquery.i18n-1.0.5/CODE_OF_CONDUCT.md:
+    jquery.i18n-1.0.5/CREDITS:
+    jquery.i18n-1.0.5/GPL-LICENSE:
+    jquery.i18n-1.0.5/MIT-LICENSE:
+    jquery.i18n-1.0.5/README.md:
+    jquery.i18n-1.0.5/src:
 
 jquery.jStorage:
   type: file
@@ -192,16 +225,16 @@ mustache:
   type: multi-file
   files:
     mustache.js:
-      src: https://raw.githubusercontent.com/janl/mustache.js/v1.0.0/mustache.js
-      integrity: sha384-k2UYqmzoiq/qgIzZvcYBxbXQW4YdPAsXDOTkHTGb9TCZ9sjCkyT4TlaUN0wQRkql
+      src: https://raw.githubusercontent.com/janl/mustache.js/v3.0.1/mustache.js
+      integrity: sha384-YjAj6Nll7fkEWzxTlE9o3NWC9qdZt1Upat6Afjib9eLs8lTODpSKEBHeXq8o/VUH
     LICENSE:
-      src: https://raw.githubusercontent.com/janl/mustache.js/v1.0.0/LICENSE
-      integrity: sha384-MYVwXwula9+YkyXexOJVZ0v0DaVvG22uX57mNq5Di+7u8OH9EG9q3yuXkp1Iehiq
+      src: https://raw.githubusercontent.com/janl/mustache.js/v3.0.1/LICENSE
+      integrity: sha384-j2EDj6YtCRgFvYDtzo6pXzbskIj/K1Yg65BL0j3/L6UIHxbMtRMJwC/W+XoYx0FZ
 
 oojs:
   type: tar
-  src: https://registry.npmjs.org/oojs/-/oojs-2.2.2.tgz
-  integrity: sha256-ebgQW2EGrSkBCnDJBGqDpsBDjA3PMN/M8U5DyLHt9mw=
+  src: https://registry.npmjs.org/oojs/-/oojs-3.0.0.tgz
+  integrity: sha256-cNQ5UOHczNGzfEvm6jKM5zcmg3tqFxnJ2UnEOSt9/1M=
   dest:
     package/dist/oojs.jquery.js:
     package/AUTHORS.txt:
@@ -220,8 +253,9 @@ oojs-router:
 
 ooui:
   type: tar
-  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.31.3.tgz
-  integrity: sha384-4Z7gxGPS5BlbUecWzyy/Pr7cZDfl1BRb3UMkE1xxYTm+FIo+0zJjTD3yrLSSDd1j
+  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.34.1.tgz
+  integrity: sha384-QXYp5vK60xpu4nkv/JStszI6U4TYGCNe7uXb5rYb7FYURLTR41mtNO74gl7HXgpz
+
   dest:
     # Main stuff
     package/dist/oojs-ui-core.js{,.map.json}:
@@ -238,10 +272,9 @@ ooui:
     # WikimediaUI theme
     package/dist/themes/wikimediaui/images/icons/*.{svg,png}: themes/wikimediaui/images/icons
     package/dist/themes/wikimediaui/images/indicators/*.{svg,png}: themes/wikimediaui/images/indicators
-    package/dist/themes/wikimediaui/images/textures/*.{gif,svg}: themes/wikimediaui/images/textures
     package/dist/themes/wikimediaui/*.json: themes/wikimediaui
     package/dist/wikimedia-ui-base.less:
-    # Apex theme (icons, indicators, and textures)
+    # Apex theme (icons and indicators)
     package/dist/themes/apex/*.json: themes/apex
     # Misc stuff
     package/dist/AUTHORS.txt:

@@ -148,4 +148,28 @@ class ApiQueryTest extends ApiTestCase {
 			);
 		}
 	}
+
+	public function testShouldNotExportPagesThatUserCanNotRead() {
+		$title = Title::makeTitle( NS_MAIN, 'Test article' );
+		$this->insertPage( $title );
+
+		$this->setTemporaryHook( 'getUserPermissionsErrors',
+			function ( Title $page, &$user, $action, &$result ) use ( $title ) {
+				if ( $page->equals( $title ) && $action === 'read' ) {
+					$result = false;
+					return false;
+				}
+			} );
+
+		$data = $this->doApiRequest( [
+			'action' => 'query',
+			'titles' => $title->getPrefixedText(),
+			'export' => 1,
+		] );
+
+		$this->assertArrayHasKey( 'query', $data[0] );
+		$this->assertArrayHasKey( 'export', $data[0]['query'] );
+		// This response field contains an XML document even if no pages were exported
+		$this->assertNotContains( $title->getPrefixedText(), $data[0]['query']['export'] );
+	}
 }

@@ -131,6 +131,9 @@ class HTMLTextField extends HTMLFormField {
 				case 'url':
 					$type = $this->mParams['type'];
 					break;
+				case 'textwithbutton':
+					$type = $this->mParams['inputtype'] ?? 'text';
+					break;
 			}
 		}
 

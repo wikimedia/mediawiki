@@ -30,7 +30,7 @@ require_once __DIR__ . '/../../includes/export/WikiExporter.php';
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LoadBalancer;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
  * @ingroup Dump
@@ -48,6 +48,9 @@ abstract class BackupDumper extends Maintenance {
 	public $dumpUploads = false;
 	public $dumpUploadFileContents = false;
 	public $orderRevs = false;
+	public $limitNamespaces = [];
+	/** @var bool|resource */
+	public $stderr;
 
 	protected $reportingInterval = 100;
 	protected $pageCount = 0;
@@ -64,10 +67,37 @@ abstract class BackupDumper extends Maintenance {
 
 	protected $ID = 0;
 
+	/** @var int */
+	protected $startTime;
+	/** @var int */
+	protected $pageCountPart;
+	/** @var int */
+	protected $revCountPart;
+	/** @var int */
+	protected $maxCount;
+	/** @var int */
+	protected $timeOfCheckpoint;
+	/** @var ExportProgressFilter */
+	protected $egress;
+	/** @var string */
+	protected $buffer;
+	/** @var array|false */
+	protected $openElement;
+	/** @var bool */
+	protected $atStart;
+	/** @var string|null */
+	protected $thisRevModel;
+	/** @var string|null */
+	protected $thisRevFormat;
+	/** @var string */
+	protected $lastName;
+	/** @var string */
+	protected $state;
+
 	/**
 	 * The dependency-injected database to use.
 	 *
-	 * @var IDatabase|null
+	 * @var IMaintainableDatabase|null
 	 *
 	 * @see self::setDB
 	 */
@@ -264,7 +294,7 @@ abstract class BackupDumper extends Maintenance {
 		$this->initProgress( $history );
 
 		$db = $this->backupDb();
-		$exporter = new WikiExporter( $db, $history, $text );
+		$exporter = new WikiExporter( $db, $history, $text, $this->limitNamespaces );
 		$exporter->setSchemaVersion( $this->schemaVersion );
 		$exporter->dumpUploads = $this->dumpUploads;
 		$exporter->dumpUploadFileContents = $this->dumpUploadFileContents;
@@ -315,7 +345,7 @@ abstract class BackupDumper extends Maintenance {
 
 		$dbr = $this->forcedDb;
 		if ( $this->forcedDb === null ) {
-			$dbr = wfGetDB( DB_REPLICA );
+			$dbr = $this->getDB( DB_REPLICA );
 		}
 		$this->maxCount = $dbr->selectField( $table, "MAX($field)", '', __METHOD__ );
 		$this->startTime = microtime( true );
@@ -327,7 +357,7 @@ abstract class BackupDumper extends Maintenance {
 	 * @todo Fixme: the --server parameter is currently not respected, as it
 	 * doesn't seem terribly easy to ask the load balancer for a particular
 	 * connection by name.
-	 * @return IDatabase
+	 * @return IMaintainableDatabase
 	 */
 	function backupDb() {
 		if ( $this->forcedDb !== null ) {
@@ -336,7 +366,7 @@ abstract class BackupDumper extends Maintenance {
 
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$this->lb = $lbFactory->newMainLB();
-		$db = $this->lb->getConnection( DB_REPLICA, 'dump' );
+		$db = $this->lb->getMaintenanceConnectionRef( DB_REPLICA, 'dump' );
 
 		// Discourage the server from disconnecting us if it takes a long time
 		// to read out the big ol' batch query.
@@ -349,10 +379,9 @@ abstract class BackupDumper extends Maintenance {
 	 * Force the dump to use the provided database connection for database
 	 * operations, wherever possible.
 	 *
-	 * @param IDatabase|null $db (Optional) the database connection to use. If null, resort to
-	 *   use the globally provided ways to get database connections.
+	 * @param IMaintainableDatabase $db The database connection to use
 	 */
-	function setDB( IDatabase $db = null ) {
+	function setDB( IMaintainableDatabase $db ) {
 		parent::setDB( $db );
 		$this->forcedDb = $db;
 	}
@@ -411,10 +440,12 @@ abstract class BackupDumper extends Maintenance {
 				$pageRatePart = '-';
 				$revRatePart = '-';
 			}
+
+			$dbDomain = WikiMap::getCurrentWikiDbDomain()->getId();
 			$this->progress( sprintf(
 				"%s: %s (ID %d) %d pages (%0.1f|%0.1f/sec all|curr), "
 					. "%d revs (%0.1f|%0.1f/sec all|curr), ETA %s [max %d]",
-				$now, wfWikiID(), $this->ID, $this->pageCount, $pageRate,
+				$now, $dbDomain, $this->ID, $this->pageCount, $pageRate,
 				$pageRatePart, $this->revCount, $revRate, $revRatePart, $etats,
 				$this->maxCount
 			) );

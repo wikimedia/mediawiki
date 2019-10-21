@@ -51,7 +51,7 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DBUnexpectedError;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\ILoadBalancer;
 use WikiPage;
 
 /**
@@ -87,7 +87,7 @@ class PageUpdater {
 	private $derivedDataUpdater;
 
 	/**
-	 * @var LoadBalancer
+	 * @var ILoadBalancer
 	 */
 	private $loadBalancer;
 
@@ -151,7 +151,7 @@ class PageUpdater {
 	 * @param User $user
 	 * @param WikiPage $wikiPage
 	 * @param DerivedPageDataUpdater $derivedDataUpdater
-	 * @param LoadBalancer $loadBalancer
+	 * @param ILoadBalancer $loadBalancer
 	 * @param RevisionStore $revisionStore
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 */
@@ -159,7 +159,7 @@ class PageUpdater {
 		User $user,
 		WikiPage $wikiPage,
 		DerivedPageDataUpdater $derivedDataUpdater,
-		LoadBalancer $loadBalancer,
+		ILoadBalancer $loadBalancer,
 		RevisionStore $revisionStore,
 		SlotRoleRegistry $slotRoleRegistry
 	) {
@@ -889,6 +889,7 @@ class PageUpdater {
 		// TODO: introduce something like an UnsavedRevisionFactory service instead!
 		/** @var MutableRevisionRecord $rev */
 		$rev = $this->derivedDataUpdater->getRevision();
+		'@phan-var MutableRevisionRecord $rev';
 
 		$rev->setPageId( $title->getArticleID() );
 

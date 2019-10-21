@@ -22,7 +22,7 @@
 use MediaWiki\MediaWikiServices;
 
 /**
- * @defgroup Actions Action done on pages
+ * @defgroup Actions Actions
  */
 
 /**
@@ -252,11 +252,12 @@ abstract class Action implements MessageLocalizer {
 	 * Get a Message object with context set
 	 * Parameters are the same as wfMessage()
 	 *
+	 * @param string|string[]|MessageSpecifier $key
+	 * @param mixed ...$params
 	 * @return Message
 	 */
-	final public function msg( $key ) {
-		$params = func_get_args();
-		return $this->getContext()->msg( ...$params );
+	final public function msg( $key, ...$params ) {
+		return $this->getContext()->msg( $key, ...$params );
 	}
 
 	/**

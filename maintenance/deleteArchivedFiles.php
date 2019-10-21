@@ -66,7 +66,6 @@ class DeleteArchivedFiles extends Maintenance {
 				continue;
 			}
 
-			/** @var LocalFile $file */
 			$file = $repo->newFile( $row->fa_name );
 			try {
 				$file->lock();

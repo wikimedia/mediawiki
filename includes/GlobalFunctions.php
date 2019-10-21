@@ -24,12 +24,14 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( "This file is part of MediaWiki, it is not a valid entry point" );
 }
 
+use MediaWiki\BadFileLookup;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\ProcOpenError;
 use MediaWiki\Session\SessionManager;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
-use Wikimedia\ScopedCallback;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\WrappedString;
 
 /**
@@ -137,32 +139,6 @@ function wfArrayDiff2_cmp( $a, $b ) {
 		}
 		return 0;
 	}
-}
-
-/**
- * @deprecated since 1.32, use array_filter() with ARRAY_FILTER_USE_BOTH directly
- *
- * @param array $arr
- * @param callable $callback Will be called with the array value and key (in that order) and
- *   should return a bool which will determine whether the array element is kept.
- * @return array
- */
-function wfArrayFilter( array $arr, callable $callback ) {
-	wfDeprecated( __FUNCTION__, '1.32' );
-	return array_filter( $arr, $callback, ARRAY_FILTER_USE_BOTH );
-}
-
-/**
- * @deprecated since 1.32, use array_filter() with ARRAY_FILTER_USE_KEY directly
- *
- * @param array $arr
- * @param callable $callback Will be called with the array key and should return a bool which
- *   will determine whether the array element is kept.
- * @return array
- */
-function wfArrayFilterByKey( array $arr, callable $callback ) {
-	wfDeprecated( __FUNCTION__, '1.32' );
-	return array_filter( $arr, $callback, ARRAY_FILTER_USE_KEY );
 }
 
 /**
@@ -542,7 +518,7 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 		}
 	}
 
-	$defaultProtoWithoutSlashes = substr( $defaultProto, 0, -2 );
+	$defaultProtoWithoutSlashes = $defaultProto !== null ? substr( $defaultProto, 0, -2 ) : '';
 
 	if ( substr( $url, 0, 2 ) == '//' ) {
 		$url = $defaultProtoWithoutSlashes . $url;
@@ -824,9 +800,9 @@ function wfParseUrl( $url ) {
 	if ( $wasRelative ) {
 		$url = "http:$url";
 	}
-	Wikimedia\suppressWarnings();
+	AtEase::suppressWarnings();
 	$bits = parse_url( $url );
-	Wikimedia\restoreWarnings();
+	AtEase::restoreWarnings();
 	// parse_url() returns an array without scheme for some invalid URLs, e.g.
 	// parse_url("%0Ahttp://example.com") == [ 'host' => '%0Ahttp', 'path' => 'example.com' ]
 	if ( !$bits || !isset( $bits['scheme'] ) ) {
@@ -892,18 +868,6 @@ function wfExpandIRI( $url ) {
 		},
 		wfExpandUrl( $url )
 	);
-}
-
-/**
- * Make URL indexes, appropriate for the el_index field of externallinks.
- *
- * @deprecated since 1.33, use LinkFilter::makeIndexes() instead
- * @param string $url
- * @return array
- */
-function wfMakeUrlIndexes( $url ) {
-	wfDeprecated( __FUNCTION__, '1.33' );
-	return LinkFilter::makeIndexes( $url );
 }
 
 /**
@@ -1074,9 +1038,18 @@ function wfLogDBError( $text, array $context = [] ) {
  * @param int $callerOffset How far up the call stack is the original
  *    caller. 2 = function that called the function that called
  *    wfDeprecated (Added in 1.20).
+ *
+ * @throws Exception If the MediaWiki version number is not a string or boolean.
  */
 function wfDeprecated( $function, $version = false, $component = false, $callerOffset = 2 ) {
-	MWDebug::deprecated( $function, $version, $component, $callerOffset + 1 );
+	if ( is_string( $version ) || is_bool( $version ) ) {
+		MWDebug::deprecated( $function, $version, $component, $callerOffset + 1 );
+	} else {
+		throw new Exception(
+			"MediaWiki version must either be a string or a boolean. " .
+			"Example valid version: '1.33'"
+		);
+	}
 }
 
 /**
@@ -1154,6 +1127,7 @@ function wfLogProfilingData() {
 	if ( isset( $ctx['forwarded_for'] ) ||
 		isset( $ctx['client_ip'] ) ||
 		isset( $ctx['from'] ) ) {
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		$ctx['proxy'] = $_SERVER['REMOTE_ADDR'];
 	}
 
@@ -1842,10 +1816,11 @@ function mimeTypeMatch( $type, $avail ) {
  *
  * @param array $cprefs Client's acceptable type list
  * @param array $sprefs Server's offered types
- * @return string
+ * @return string|null
  *
  * @todo FIXME: Doesn't handle params like 'text/plain; charset=UTF-8'
  * XXX: generalize to negotiate other stuff
+ * @todo The function appears unused. Is it worth to keep?
  */
 function wfNegotiateType( $cprefs, $sprefs ) {
 	$combine = [];
@@ -1884,24 +1859,6 @@ function wfNegotiateType( $cprefs, $sprefs ) {
 }
 
 /**
- * Reference-counted warning suppression
- *
- * @deprecated since 1.26, use Wikimedia\suppressWarnings() directly
- * @param bool $end
- */
-function wfSuppressWarnings( $end = false ) {
-	Wikimedia\suppressWarnings( $end );
-}
-
-/**
- * @deprecated since 1.26, use Wikimedia\restoreWarnings() directly
- * Restore error level to previous value
- */
-function wfRestoreWarnings() {
-	Wikimedia\restoreWarnings();
-}
-
-/**
  * Get a timestamp string in one of various formats
  *
  * @param mixed $outputtype A timestamp in one of the supported formats, the
@@ -1936,10 +1893,9 @@ function wfTimestampOrNull( $outputtype = TS_UNIX, $ts = null ) {
 /**
  * Convenience function; returns MediaWiki timestamp for the present time.
  *
- * @return string
+ * @return string TS_MW timestamp
  */
 function wfTimestampNow() {
-	# return NOW
 	return MWTimestamp::now( TS_MW );
 }
 
@@ -1959,10 +1915,12 @@ function wfIsWindows() {
 /**
  * Check if we are running under HHVM
  *
+ * @deprecated since 1.34, HHVM is no longer supported
  * @return bool
  */
 function wfIsHHVM() {
-	return defined( 'HHVM_VERSION' );
+	// wfDeprecated( __FUNCTION__, '1.34' );
+	return false;
 }
 
 /**
@@ -2027,9 +1985,9 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 	}
 
 	// Turn off the normal warning, we're doing our own below
-	Wikimedia\suppressWarnings();
+	AtEase::suppressWarnings();
 	$ok = mkdir( $dir, $mode, true ); // PHP5 <3
-	Wikimedia\restoreWarnings();
+	AtEase::restoreWarnings();
 
 	if ( !$ok ) {
 		// directory may have been created on another request since we last checked
@@ -2050,7 +2008,7 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
  */
 function wfRecursiveRemoveDir( $dir ) {
 	wfDebug( __FUNCTION__ . "( $dir )\n" );
-	// taken from https://secure.php.net/manual/en/function.rmdir.php#98622
+	// taken from https://www.php.net/manual/en/function.rmdir.php#98622
 	if ( is_dir( $dir ) ) {
 		$objects = scandir( $dir );
 		foreach ( $objects as $object ) {
@@ -2075,7 +2033,7 @@ function wfRecursiveRemoveDir( $dir ) {
  */
 function wfPercent( $nr, $acc = 2, $round = true ) {
 	$ret = sprintf( "%.${acc}f", $nr );
-	return $round ? round( $ret, $acc ) . '%' : "$ret%";
+	return $round ? round( (float)$ret, $acc ) . '%' : "$ret%";
 }
 
 /**
@@ -2161,6 +2119,7 @@ function wfEscapeShellArg( ...$args ) {
  *     including errors from limit.sh
  *   - profileMethod: By default this function will profile based on the calling
  *     method. Set this to a string for an alternative method to profile from
+ * @phan-param array{duplicateStderr?:bool,profileMethod?:string} $options
  *
  * @return string Collected stdout as a string
  * @deprecated since 1.30 use class MediaWiki\Shell\Shell
@@ -2235,6 +2194,7 @@ function wfShellExecWithStderr( $cmd, &$retval = null, $environ = [], $limits = 
  * @param array $options Associative array of options:
  *     'php': The path to the php executable
  *     'wrapper': Path to a PHP wrapper to handle the maintenance script
+ * @phan-param array{php?:string,wrapper?:string} $options
  * @return string
  */
 function wfShellWikiCmd( $script, array $parameters = [], array $options = [] ) {
@@ -2267,9 +2227,9 @@ function wfMerge( $old, $mine, $yours, &$result, &$mergeAttemptResult = null ) {
 
 	# This check may also protect against code injection in
 	# case of broken installations.
-	Wikimedia\suppressWarnings();
+	AtEase::suppressWarnings();
 	$haveDiff3 = $wgDiff3 && file_exists( $wgDiff3 );
-	Wikimedia\restoreWarnings();
+	AtEase::restoreWarnings();
 
 	if ( !$haveDiff3 ) {
 		wfDebug( "diff3 not found\n" );
@@ -2351,9 +2311,9 @@ function wfDiff( $before, $after, $params = '-u' ) {
 	}
 
 	global $wgDiff;
-	Wikimedia\suppressWarnings();
+	AtEase::suppressWarnings();
 	$haveDiff = $wgDiff && file_exists( $wgDiff );
-	Wikimedia\restoreWarnings();
+	AtEase::restoreWarnings();
 
 	# This check may also protect against code injection in
 	# case of broken installations.
@@ -2486,28 +2446,6 @@ function wfRelativePath( $path, $from ) {
 }
 
 /**
- * Reset the session id
- *
- * @deprecated since 1.27, use MediaWiki\Session\SessionManager instead
- * @since 1.22
- */
-function wfResetSessionID() {
-	wfDeprecated( __FUNCTION__, '1.27' );
-	$session = SessionManager::getGlobalSession();
-	$delay = $session->delaySave();
-
-	$session->resetId();
-
-	// Make sure a session is started, since that's what the old
-	// wfResetSessionID() did.
-	if ( session_id() !== $session->getId() ) {
-		wfSetupSession( $session->getId() );
-	}
-
-	ScopedCallback::consume( $delay );
-}
-
-/**
  * Initialise php session
  *
  * @deprecated since 1.27, use MediaWiki\Session\SessionManager instead.
@@ -2529,7 +2467,7 @@ function wfSetupSession( $sessionId = false ) {
 	if ( session_id() !== $session->getId() ) {
 		session_id( $session->getId() );
 	}
-	Wikimedia\quietCall( 'session_start' );
+	AtEase::quietCall( 'session_start' );
 }
 
 /**
@@ -2590,6 +2528,7 @@ function wfForeignMemcKey( $db, $prefix, ...$args ) {
  * @return string
  */
 function wfGlobalCacheKey( ...$args ) {
+	wfDeprecated( __METHOD__, '1.30' );
 	return ObjectCache::getLocalClusterInstance()->makeGlobalKey( ...$args );
 }
 
@@ -2631,10 +2570,10 @@ function wfWikiID() {
  * @todo Replace calls to wfGetDB with calls to LoadBalancer::getConnection()
  *       on an injected instance of LoadBalancer.
  *
- * @return \Wikimedia\Rdbms\Database
+ * @return \Wikimedia\Rdbms\DBConnRef
  */
 function wfGetDB( $db, $groups = [], $wiki = false ) {
-	return wfGetLB( $wiki )->getConnection( $db, $groups, $wiki );
+	return wfGetLB( $wiki )->getMaintenanceConnectionRef( $db, $groups, $wiki );
 }
 
 /**
@@ -2656,37 +2595,26 @@ function wfGetLB( $wiki = false ) {
 }
 
 /**
- * Get the load balancer factory object
- *
- * @deprecated since 1.27, use MediaWikiServices::getInstance()->getDBLoadBalancerFactory() instead.
- *
- * @return \Wikimedia\Rdbms\LBFactory
- */
-function wfGetLBFactory() {
-	return MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-}
-
-/**
  * Find a file.
- * Shortcut for RepoGroup::singleton()->findFile()
- *
- * @param string|Title $title String or Title object
+ * @deprecated since 1.34, use MediaWikiServices
+ * @param string|LinkTarget $title String or LinkTarget object
  * @param array $options Associative array of options (see RepoGroup::findFile)
  * @return File|bool File, or false if the file does not exist
  */
 function wfFindFile( $title, $options = [] ) {
-	return RepoGroup::singleton()->findFile( $title, $options );
+	return MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title, $options );
 }
 
 /**
  * Get an object referring to a locally registered file.
  * Returns a valid placeholder object if the file does not exist.
  *
+ * @deprecated since 1.34, use MediaWikiServices
  * @param Title|string $title
  * @return LocalFile|null A File, or null if passed an invalid Title
  */
 function wfLocalFile( $title ) {
-	return RepoGroup::singleton()->getLocalRepo()->newFile( $title );
+	return MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()->newFile( $title );
 }
 
 /**
@@ -2815,30 +2743,6 @@ function wfWaitForSlaves(
 }
 
 /**
- * Count down from $seconds to zero on the terminal, with a one-second pause
- * between showing each number. For use in command-line scripts.
- *
- * @deprecated since 1.31, use Maintenance::countDown()
- *
- * @codeCoverageIgnore
- * @param int $seconds
- */
-function wfCountDown( $seconds ) {
-	wfDeprecated( __FUNCTION__, '1.31' );
-	for ( $i = $seconds; $i >= 0; $i-- ) {
-		if ( $i != $seconds ) {
-			echo str_repeat( "\x08", strlen( $i + 1 ) );
-		}
-		echo $i;
-		flush();
-		if ( $i ) {
-			sleep( 1 );
-		}
-	}
-	echo "\n";
-}
-
-/**
  * Replace all invalid characters with '-'.
  * Additional characters can be defined in $wgIllegalFileChars (see T22489).
  * By default, $wgIllegalFileChars includes ':', '/', '\'.
@@ -2860,30 +2764,27 @@ function wfStripIllegalFilenameChars( $name ) {
 }
 
 /**
- * Set PHP's memory limit to the larger of php.ini or $wgMemoryLimit
+ * Raise PHP's memory limit (if needed).
  *
- * @return int Resulting value of the memory limit.
+ * @internal For use by Setup.php
  */
-function wfMemoryLimit() {
-	global $wgMemoryLimit;
-	$memlimit = wfShorthandToInteger( ini_get( 'memory_limit' ) );
-	if ( $memlimit != -1 ) {
-		$conflimit = wfShorthandToInteger( $wgMemoryLimit );
-		if ( $conflimit == -1 ) {
+function wfMemoryLimit( $newLimit ) {
+	$oldLimit = wfShorthandToInteger( ini_get( 'memory_limit' ) );
+	// If the INI config is already unlimited, there is nothing larger
+	if ( $oldLimit != -1 ) {
+		$newLimit = wfShorthandToInteger( $newLimit );
+		if ( $newLimit == -1 ) {
 			wfDebug( "Removing PHP's memory limit\n" );
 			Wikimedia\suppressWarnings();
-			ini_set( 'memory_limit', $conflimit );
+			ini_set( 'memory_limit', $newLimit );
 			Wikimedia\restoreWarnings();
-			return $conflimit;
-		} elseif ( $conflimit > $memlimit ) {
-			wfDebug( "Raising PHP's memory limit to $conflimit bytes\n" );
+		} elseif ( $newLimit > $oldLimit ) {
+			wfDebug( "Raising PHP's memory limit to $newLimit bytes\n" );
 			Wikimedia\suppressWarnings();
-			ini_set( 'memory_limit', $conflimit );
+			ini_set( 'memory_limit', $newLimit );
 			Wikimedia\restoreWarnings();
-			return $conflimit;
 		}
 	}
-	return $memlimit;
 }
 
 /**
@@ -2895,7 +2796,7 @@ function wfMemoryLimit() {
 function wfTransactionalTimeLimit() {
 	global $wgTransactionalTimeLimit;
 
-	$timeLimit = ini_get( 'max_execution_time' );
+	$timeLimit = (int)ini_get( 'max_execution_time' );
 	// Note that CLI scripts use 0
 	if ( $timeLimit > 0 && $wgTransactionalTimeLimit > $timeLimit ) {
 		set_time_limit( $wgTransactionalTimeLimit );
@@ -2935,21 +2836,6 @@ function wfShorthandToInteger( $string = '', $default = -1 ) {
 	}
 
 	return $val;
-}
-
-/**
- * Get the normalised IETF language tag
- * See unit test for examples.
- * See mediawiki.language.bcp47 for the JavaScript implementation.
- *
- * @deprecated since 1.31, use LanguageCode::bcp47() directly.
- *
- * @param string $code The language code.
- * @return string The language code which complying with BCP 47 standards.
- */
-function wfBCP47( $code ) {
-	wfDeprecated( __METHOD__, '1.31' );
-	return LanguageCode::bcp47( $code );
 }
 
 /**
@@ -3028,72 +2914,27 @@ function wfUnpack( $format, $data, $length = false ) {
  *    * Any subsequent links on the same line are considered to be exceptions,
  *      i.e. articles where the image may occur inline.
  *
+ * @deprecated since 1.34, use the BadFileLookup service directly instead
+ *
  * @param string $name The image name to check
  * @param Title|bool $contextTitle The page on which the image occurs, if known
  * @param string|null $blacklist Wikitext of a file blacklist
  * @return bool
  */
 function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
-	# Handle redirects; callers almost always hit wfFindFile() anyway,
-	# so just use that method because it has a fast process cache.
-	$file = wfFindFile( $name ); // get the final name
-	$name = $file ? $file->getTitle()->getDBkey() : $name;
-
-	# Run the extension hook
-	$bad = false;
-	if ( !Hooks::run( 'BadImage', [ $name, &$bad ] ) ) {
-		return (bool)$bad;
+	$services = MediaWikiServices::getInstance();
+	if ( $blacklist !== null ) {
+		wfDeprecated( __METHOD__ . ' with $blacklist parameter', '1.34' );
+		return ( new BadFileLookup(
+			function () use ( $blacklist ) {
+				return $blacklist;
+			},
+			$services->getLocalServerObjectCache(),
+			$services->getRepoGroup(),
+			$services->getTitleParser()
+		) )->isBadFile( $name, $contextTitle ?: null );
 	}
-
-	$cache = ObjectCache::getLocalServerInstance( 'hash' );
-	$key = $cache->makeKey(
-		'bad-image-list', ( $blacklist === null ) ? 'default' : md5( $blacklist )
-	);
-	$badImages = $cache->get( $key );
-
-	if ( $badImages === false ) { // cache miss
-		if ( $blacklist === null ) {
-			$blacklist = wfMessage( 'bad_image_list' )->inContentLanguage()->plain(); // site list
-		}
-		# Build the list now
-		$badImages = [];
-		$lines = explode( "\n", $blacklist );
-		foreach ( $lines as $line ) {
-			# List items only
-			if ( substr( $line, 0, 1 ) !== '*' ) {
-				continue;
-			}
-
-			# Find all links
-			$m = [];
-			if ( !preg_match_all( '/\[\[:?(.*?)\]\]/', $line, $m ) ) {
-				continue;
-			}
-
-			$exceptions = [];
-			$imageDBkey = false;
-			foreach ( $m[1] as $i => $titleText ) {
-				$title = Title::newFromText( $titleText );
-				if ( !is_null( $title ) ) {
-					if ( $i == 0 ) {
-						$imageDBkey = $title->getDBkey();
-					} else {
-						$exceptions[$title->getPrefixedDBkey()] = true;
-					}
-				}
-			}
-
-			if ( $imageDBkey !== false ) {
-				$badImages[$imageDBkey] = $exceptions;
-			}
-		}
-		$cache->set( $key, $badImages, 60 );
-	}
-
-	$contextKey = $contextTitle ? $contextTitle->getPrefixedDBkey() : false;
-	$bad = isset( $badImages[$name] ) && !isset( $badImages[$name][$contextKey] );
-
-	return $bad;
+	return $services->getBadFileLookup()->isBadFile( $name, $contextTitle ?: null );
 }
 
 /**

@@ -39,6 +39,8 @@ section.mw-form-header {
 	margin-top: 6px;
 }
 
+/* FIXME: These should be namespaced to mw-ext-confirmedit-fancycaptcha-, and really shouldn't be in core at all */
+/* stylelint-disable-next-line selector-class-pattern */
 .fancycaptcha-captcha-container {
 	background-color: #f8f9fa;
 	margin-bottom: 15px;
@@ -54,6 +56,7 @@ section.mw-form-header {
 }
 
 /* Put a border around the fancycaptcha-image-container. */
+/* stylelint-disable-next-line selector-class-pattern */
 .fancycaptcha-captcha-and-reload {
 	border: 1px solid #c8ccd1;
 	border-radius: 2px 2px 0 0;
@@ -63,6 +66,7 @@ section.mw-form-header {
 	background-color: #fff;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .fancycaptcha-captcha-container .mw-ui-input {
 	margin-top: -1px;
 	border-color: #c8ccd1;
@@ -70,6 +74,7 @@ section.mw-form-header {
 }
 
 /* Make the fancycaptcha-image-container full-width within its parent. */
+/* stylelint-disable-next-line selector-class-pattern */
 .fancycaptcha-image-container {
 	width: 100%;
 }

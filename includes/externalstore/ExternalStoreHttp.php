@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Example class for HTTP accessible external objects.
  * Only supports reading, not storing.
@@ -28,7 +30,8 @@
  */
 class ExternalStoreHttp extends ExternalStoreMedium {
 	public function fetchFromURL( $url ) {
-		return Http::get( $url, [], __METHOD__ );
+		return MediaWikiServices::getInstance()->getHttpRequestFactory()->
+			get( $url, [], __METHOD__ );
 	}
 
 	public function store( $location, $data ) {

@@ -63,8 +63,8 @@ class SpecialRedirect extends FormSpecialPage {
 	function setParameter( $subpage ) {
 		// parse $subpage to pull out the parts
 		$parts = explode( '/', $subpage, 2 );
-		$this->mType = count( $parts ) > 0 ? $parts[0] : null;
-		$this->mValue = count( $parts ) > 1 ? $parts[1] : null;
+		$this->mType = $parts[0];
+		$this->mValue = $parts[1] ?? null;
 	}
 
 	/**
@@ -110,7 +110,7 @@ class SpecialRedirect extends FormSpecialPage {
 		} catch ( MalformedTitleException $e ) {
 			return Status::newFatal( $e->getMessageObject() );
 		}
-		$file = wfFindFile( $title );
+		$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title );
 
 		if ( !$file || !$file->exists() ) {
 			// Message: redirect-not-exists

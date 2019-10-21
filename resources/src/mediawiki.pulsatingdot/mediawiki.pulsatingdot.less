@@ -1,0 +1,70 @@
+.mw-pulsating-dot {
+	&:before,
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+		border-radius: 50%;
+		background-color: #36c;
+	}
+
+	&:before {
+		width: 36px;
+		height: 36px;
+		top: -18px;
+		left: -18px;
+		opacity: 0;
+		-webkit-animation: mw-pulsating-dot-pulse 3s ease-out;
+		-moz-animation: mw-pulsating-dot-pulse 3s ease-out;
+		animation: mw-pulsating-dot-pulse 3s ease-out;
+		-webkit-animation-iteration-count: infinite;
+		-moz-animation-iteration-count: infinite;
+		animation-iteration-count: infinite;
+	}
+
+	&:after {
+		width: 12px;
+		height: 12px;
+		top: -6px;
+		left: -6px;
+	}
+}
+
+.mw-pulsating-dot-pulse-frames() {
+	0% {
+		transform: scale( 0 );
+		opacity: 0;
+	}
+
+	25% {
+		transform: scale( 0 );
+		opacity: 0.1;
+	}
+
+	50% {
+		transform: scale( 0.1 );
+		opacity: 0.3;
+	}
+
+	75% {
+		transform: scale( 0.5 );
+		opacity: 0.5;
+	}
+
+	100% {
+		transform: scale( 1 );
+		opacity: 0;
+	}
+}
+
+@-webkit-keyframes mw-pulsating-dot-pulse {
+	.mw-pulsating-dot-pulse-frames;
+}
+
+@-moz-keyframes mw-pulsating-dot-pulse {
+	.mw-pulsating-dot-pulse-frames;
+}
+
+@keyframes mw-pulsating-dot-pulse {
+	.mw-pulsating-dot-pulse-frames;
+}

@@ -47,6 +47,7 @@ class SpecialPermanentLink extends RedirectSpecialPage {
 	}
 
 	protected function showNoRedirectPage() {
+		$this->addHelpLink( 'Help:PermanentLink' );
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->showForm();

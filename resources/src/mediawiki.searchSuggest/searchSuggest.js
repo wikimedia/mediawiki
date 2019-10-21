@@ -198,6 +198,7 @@
 					.text( query );
 			}
 
+			// eslint-disable-next-line no-jquery/no-class-state
 			if ( $el.parent().hasClass( 'mw-searchSuggest-link' ) ) {
 				$el.parent().attr( 'href', formData.baseHref + $.param( formData.linkParams ) + '&fulltext=1' );
 			} else {

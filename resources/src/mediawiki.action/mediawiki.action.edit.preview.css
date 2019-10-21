@@ -1,0 +1,7 @@
+.mw-preview-copyelements {
+	transition: opacity 200ms;
+}
+
+.mw-preview-copyelements-loading {
+	opacity: 0.4;
+}

@@ -25,9 +25,9 @@
  * @copyright © 2011, Antoine Musso
  */
 
-use Wikimedia\Rdbms\ResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -67,7 +67,7 @@ class BacklinkCache {
 	 *
 	 * Initialized with BacklinkCache::getLinks()
 	 * Cleared with BacklinkCache::clear()
-	 * @var ResultWrapper[]
+	 * @var IResultWrapper[]
 	 */
 	protected $fullResultCache = [];
 
@@ -135,7 +135,7 @@ class BacklinkCache {
 		$this->partitionCache = [];
 		$this->fullResultCache = [];
 		$this->wanCache->touchCheckKey( $this->makeCheckKey() );
-		unset( $this->db );
+		$this->db = null;
 	}
 
 	/**
@@ -153,7 +153,7 @@ class BacklinkCache {
 	 * @return IDatabase
 	 */
 	protected function getDB() {
-		if ( !isset( $this->db ) ) {
+		if ( $this->db === null ) {
 			$this->db = wfGetDB( DB_REPLICA );
 		}
 
@@ -179,7 +179,7 @@ class BacklinkCache {
 	 * @param int|bool $endId
 	 * @param int $max
 	 * @param string $select 'all' or 'ids'
-	 * @return ResultWrapper
+	 * @return IResultWrapper
 	 */
 	protected function queryLinks( $table, $startId, $endId, $max, $select = 'all' ) {
 		$fromField = $this->getPrefix( $table ) . '_from';
@@ -472,7 +472,7 @@ class BacklinkCache {
 
 	/**
 	 * Partition a DB result with backlinks in it into batches
-	 * @param ResultWrapper $res Database result
+	 * @param IResultWrapper $res Database result
 	 * @param int $batchSize
 	 * @param bool $isComplete Whether $res includes all the backlinks
 	 * @throws MWException

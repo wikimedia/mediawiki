@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group Database
  */
@@ -61,7 +63,9 @@ class UserGroupMembershipTest extends MediaWikiTestCase {
 		$user->clearInstanceCache();
 		$this->assertContains( 'unittesters', $user->getGroups() );
 		$this->assertArrayHasKey( 'unittesters', $user->getGroupMemberships() );
-		$this->assertTrue( $user->isAllowed( 'runtest' ) );
+		$this->assertTrue( MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->userHasRight( $user, 'runtest' ) );
 
 		// try updating without allowUpdate. Should fail
 		$ugm = new UserGroupMembership( $user->getId(), 'unittesters', $this->expiryTime );
@@ -72,7 +76,9 @@ class UserGroupMembershipTest extends MediaWikiTestCase {
 		$user->clearInstanceCache();
 		$this->assertContains( 'unittesters', $user->getGroups() );
 		$this->assertArrayHasKey( 'unittesters', $user->getGroupMemberships() );
-		$this->assertTrue( $user->isAllowed( 'runtest' ) );
+		$this->assertTrue( MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->userHasRight( $user, 'runtest' ) );
 
 		// try removing the group
 		$ugm->delete();
@@ -81,7 +87,9 @@ class UserGroupMembershipTest extends MediaWikiTestCase {
 			$this->logicalNot( $this->contains( 'unittesters' ) ) );
 		$this->assertThat( $user->getGroupMemberships(),
 			$this->logicalNot( $this->arrayHasKey( 'unittesters' ) ) );
-		$this->assertFalse( $user->isAllowed( 'runtest' ) );
+		$this->assertFalse( MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->userHasRight( $user, 'runtest' ) );
 
 		// check that the user group is now in user_former_groups
 		$this->assertContains( 'unittesters', $user->getFormerGroups() );

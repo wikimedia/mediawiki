@@ -39,6 +39,7 @@
  */
 
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
+define( 'MW_ENTRY_POINT', 'img_auth' );
 require __DIR__ . '/includes/WebStart.php';
 
 # Set action base paths so that WebRequest::getPathInfo()
@@ -53,9 +54,10 @@ $mediawiki->doPostOutputShutdown( 'fast' );
 
 function wfImageAuthMain() {
 	global $wgImgAuthUrlPathMap;
+	$permissionManager = \MediaWiki\MediaWikiServices::getInstance()->getPermissionManager();
 
 	$request = RequestContext::getMain()->getRequest();
-	$publicWiki = in_array( 'read', User::getGroupPermissions( [ '*' ] ), true );
+	$publicWiki = in_array( 'read', $permissionManager->getGroupPermissions( [ '*' ] ), true );
 
 	// Get the requested file path (source file or thumbnail)
 	$matches = WebRequest::getPathInfo();
@@ -79,6 +81,8 @@ function wfImageAuthMain() {
 		return;
 	}
 
+	$user = RequestContext::getMain()->getUser();
+
 	// Various extensions may have their own backends that need access.
 	// Check if there is a special backend and storage base path for this file.
 	foreach ( $wgImgAuthUrlPathMap as $prefix => $storageDir ) {
@@ -87,7 +91,7 @@ function wfImageAuthMain() {
 			$be = FileBackendGroup::singleton()->backendFromPath( $storageDir );
 			$filename = $storageDir . substr( $path, strlen( $prefix ) ); // strip prefix
 			// Check basic user authorization
-			if ( !RequestContext::getMain()->getUser()->isAllowed( 'read' ) ) {
+			if ( !$user->isAllowed( 'read' ) ) {
 				wfForbidden( 'img-auth-accessdenied', 'img-auth-noread', $path );
 				return;
 			}
@@ -149,7 +153,7 @@ function wfImageAuthMain() {
 		}
 
 		// Run hook for extension authorization plugins
-		/** @var $result array */
+		/** @var array $result */
 		$result = null;
 		if ( !Hooks::run( 'ImgAuthBeforeStream', [ &$title, &$path, &$name, &$result ] ) ) {
 			wfForbidden( $result[0], $result[1], array_slice( $result, 2 ) );
@@ -158,7 +162,8 @@ function wfImageAuthMain() {
 
 		// Check user authorization for this title
 		// Checks Whitelist too
-		if ( !$title->userCan( 'read' ) ) {
+
+		if ( !$permissionManager->userCan( 'read', $user, $title ) ) {
 			wfForbidden( 'img-auth-accessdenied', 'img-auth-noread', $name );
 			return;
 		}
@@ -181,7 +186,7 @@ function wfImageAuthMain() {
 	// Stream the requested file
 	list( $headers, $options ) = HTTPFileStreamer::preprocessHeaders( $headers );
 	wfDebugLog( 'img_auth', "Streaming `" . $filename . "`." );
-	$repo->streamFile( $filename, $headers, $options );
+	$repo->streamFileWithStatus( $filename, $headers, $options );
 }
 
 /**
@@ -190,13 +195,12 @@ function wfImageAuthMain() {
  * subsequent arguments to $msg2 will be passed as parameters only for replacing in $msg2
  * @param string $msg1
  * @param string $msg2
+ * @param mixed ...$args To pass as params to wfMessage() with $msg2. Either variadic, or a single
+ *   array argument.
  */
-function wfForbidden( $msg1, $msg2 ) {
+function wfForbidden( $msg1, $msg2, ...$args ) {
 	global $wgImgAuthDetails;
 
-	$args = func_get_args();
-	array_shift( $args );
-	array_shift( $args );
 	$args = ( isset( $args[0] ) && is_array( $args[0] ) ) ? $args[0] : $args;
 
 	$msgHdr = wfMessage( $msg1 )->escaped();

@@ -34,6 +34,7 @@ class AvroValidator {
 	 * @return string|string[] An error or list of errors in the
 	 *  provided $datum. When no errors exist the empty array is
 	 *  returned.
+	 * @suppress PhanUndeclaredMethod,PhanUndeclaredProperty
 	 */
 	public static function getErrors( AvroSchema $schema, $datum ) {
 		switch ( $schema->type ) {
@@ -124,6 +125,7 @@ class AvroValidator {
 					$errors[] = $result;
 				}
 				if ( $errors ) {
+					// @phan-suppress-next-line PhanTypeMismatchReturn
 					return [ "Expected any one of these to be true", $errors ];
 				}
 				return "No schemas provided to union";

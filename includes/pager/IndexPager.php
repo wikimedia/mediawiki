@@ -21,8 +21,11 @@
  * @ingroup Pager
  */
 
-use Wikimedia\Rdbms\IResultWrapper;
+use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Navigation\PrevNextNavigationRenderer;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * IndexPager is an efficient pager which uses a (roughly unique) index in the
@@ -155,7 +158,10 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 */
 	public $mResult;
 
-	public function __construct( IContextSource $context = null ) {
+	/** @var LinkRenderer */
+	private $linkRenderer;
+
+	public function __construct( IContextSource $context = null, LinkRenderer $linkRenderer = null ) {
 		if ( $context ) {
 			$this->setContext( $context );
 		}
@@ -207,6 +213,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 				? $dir[$this->mOrderType]
 				: $dir;
 		}
+		$this->linkRenderer = $linkRenderer;
 	}
 
 	/**
@@ -524,9 +531,9 @@ abstract class IndexPager extends ContextSource implements Pager {
 			$attrs['class'] = "mw-{$type}link";
 		}
 
-		return Linker::linkKnown(
+		return $this->getLinkRenderer()->makeKnownLink(
 			$this->getTitle(),
-			$text,
+			new HtmlArmor( $text ),
 			$attrs,
 			$query + $this->getDefaultQuery()
 		);
@@ -783,5 +790,30 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 */
 	protected function getDefaultDirections() {
 		return self::DIR_ASCENDING;
+	}
+
+	/**
+	 * Generate (prev x| next x) (20|50|100...) type links for paging
+	 *
+	 * @param Title $title
+	 * @param int $offset
+	 * @param int $limit
+	 * @param array $query Optional URL query parameter string
+	 * @param bool $atend Optional param for specified if this is the last page
+	 * @return string
+	 */
+	protected function buildPrevNextNavigation( Title $title, $offset, $limit,
+												array $query = [], $atend = false
+	) {
+		$prevNext = new PrevNextNavigationRenderer( $this );
+
+		return $prevNext->buildPrevNextNavigation( $title, $offset, $limit, $query,  $atend );
+	}
+
+	protected function getLinkRenderer() {
+		if ( $this->linkRenderer === null ) {
+			 $this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		}
+		return $this->linkRenderer;
 	}
 }

@@ -32,7 +32,7 @@ use Wikimedia\Rdbms\IDatabase;
  *   a duplicate of the current version of some other file.
  * @ingroup SpecialPage
  */
-class ListDuplicatedFilesPage extends QueryPage {
+class SpecialListDuplicatedFiles extends QueryPage {
 	function __construct( $name = 'ListDuplicatedFiles' ) {
 		parent::__construct( $name );
 	}
@@ -98,6 +98,11 @@ class ListDuplicatedFilesPage extends QueryPage {
 			->params( $dupeSearch->getPrefixedDBkey() );
 
 		return $msg->parse();
+	}
+
+	public function execute( $par ) {
+		$this->addHelpLink( 'Help:Managing_files' );
+		parent::execute( $par );
 	}
 
 	protected function getGroupName() {

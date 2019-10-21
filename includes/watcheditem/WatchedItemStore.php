@@ -1,12 +1,14 @@
 <?php
 
-use Wikimedia\Rdbms\IDatabase;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
-use Wikimedia\ScopedCallback;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\ScopedCallback;
 
 /**
  * Storage layer class for WatchedItems.
@@ -67,14 +69,19 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	private $deferredUpdatesAddCallableUpdateCallback;
 
 	/**
-	 * @var callable|null
-	 */
-	private $revisionGetTimestampFromIdCallback;
-
-	/**
 	 * @var int
 	 */
 	private $updateRowsPerQuery;
+
+	/**
+	 * @var NamespaceInfo
+	 */
+	private $nsInfo;
+
+	/**
+	 * @var RevisionLookup
+	 */
+	private $revisionLookup;
 
 	/**
 	 * @var StatsdDataFactoryInterface
@@ -88,6 +95,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param HashBagOStuff $cache
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param int $updateRowsPerQuery
+	 * @param NamespaceInfo $nsInfo
+	 * @param RevisionLookup $revisionLookup
 	 */
 	public function __construct(
 		ILBFactory $lbFactory,
@@ -95,7 +104,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		BagOStuff $stash,
 		HashBagOStuff $cache,
 		ReadOnlyMode $readOnlyMode,
-		$updateRowsPerQuery
+		$updateRowsPerQuery,
+		NamespaceInfo $nsInfo,
+		RevisionLookup $revisionLookup
 	) {
 		$this->lbFactory = $lbFactory;
 		$this->loadBalancer = $lbFactory->getMainLB();
@@ -106,9 +117,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$this->stats = new NullStatsdDataFactory();
 		$this->deferredUpdatesAddCallableUpdateCallback =
 			[ DeferredUpdates::class, 'addCallableUpdate' ];
-		$this->revisionGetTimestampFromIdCallback =
-			[ Revision::class, 'getTimestampFromId' ];
 		$this->updateRowsPerQuery = $updateRowsPerQuery;
+		$this->nsInfo = $nsInfo;
+		$this->revisionLookup = $revisionLookup;
 
 		$this->latestUpdateCache = new HashBagOStuff( [ 'maxKeys' => 3 ] );
 	}
@@ -144,30 +155,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		} );
 	}
 
-	/**
-	 * Overrides the Revision::getTimestampFromId callback
-	 * This is intended for use while testing and will fail if MW_PHPUNIT_TEST is not defined.
-	 *
-	 * @param callable $callback
-	 * @see Revision::getTimestampFromId for callback signiture
-	 *
-	 * @return ScopedCallback to reset the overridden value
-	 * @throws MWException
-	 */
-	public function overrideRevisionGetTimestampFromIdCallback( callable $callback ) {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new MWException(
-				'Cannot override Revision::getTimestampFromId callback in operation.'
-			);
-		}
-		$previousValue = $this->revisionGetTimestampFromIdCallback;
-		$this->revisionGetTimestampFromIdCallback = $callback;
-		return new ScopedCallback( function () use ( $previousValue ) {
-			$this->revisionGetTimestampFromIdCallback = $previousValue;
-		} );
-	}
-
-	private function getCacheKey( User $user, LinkTarget $target ) {
+	private function getCacheKey( UserIdentity $user, LinkTarget $target ) {
 		return $this->cache->makeKey(
 			(string)$target->getNamespace(),
 			$target->getDBkey(),
@@ -176,7 +164,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	}
 
 	private function cache( WatchedItem $item ) {
-		$user = $item->getUser();
+		$user = $item->getUserIdentity();
 		$target = $item->getLinkTarget();
 		$key = $this->getCacheKey( $user, $target );
 		$this->cache->set( $key, $item );
@@ -184,7 +172,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$this->stats->increment( 'WatchedItemStore.cache' );
 	}
 
-	private function uncache( User $user, LinkTarget $target ) {
+	private function uncache( UserIdentity $user, LinkTarget $target ) {
 		$this->cache->delete( $this->getCacheKey( $user, $target ) );
 		unset( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()][$user->getId()] );
 		$this->stats->increment( 'WatchedItemStore.uncache' );
@@ -201,7 +189,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 	}
 
-	private function uncacheUser( User $user ) {
+	private function uncacheUser( UserIdentity $user ) {
 		$this->stats->increment( 'WatchedItemStore.uncacheUser' );
 		foreach ( $this->cacheIndex as $ns => $dbKeyArray ) {
 			foreach ( $dbKeyArray as $dbKey => $userArray ) {
@@ -218,12 +206,12 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	}
 
 	/**
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param LinkTarget $target
 	 *
 	 * @return WatchedItem|false
 	 */
-	private function getCached( User $user, LinkTarget $target ) {
+	private function getCached( UserIdentity $user, LinkTarget $target ) {
 		return $this->cache->get( $this->getCacheKey( $user, $target ) );
 	}
 
@@ -231,12 +219,12 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * Return an array of conditions to select or update the appropriate database
 	 * row.
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param LinkTarget $target
 	 *
 	 * @return array
 	 */
-	private function dbCond( User $user, LinkTarget $target ) {
+	private function dbCond( UserIdentity $user, LinkTarget $target ) {
 		return [
 			'wl_user' => $user->getId(),
 			'wl_namespace' => $target->getNamespace(),
@@ -248,7 +236,6 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param int $dbIndex DB_MASTER or DB_REPLICA
 	 *
 	 * @return IDatabase
-	 * @throws MWException
 	 */
 	private function getConnectionRef( $dbIndex ) {
 		return $this->loadBalancer->getConnectionRef( $dbIndex, [ 'watchlist' ] );
@@ -260,11 +247,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 *
 	 * @since 1.30
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 *
 	 * @return bool true on success, false when too many items are watched
 	 */
-	public function clearUserWatchedItems( User $user ) {
+	public function clearUserWatchedItems( UserIdentity $user ) {
 		if ( $this->countWatchedItems( $user ) > $this->updateRowsPerQuery ) {
 			return false;
 		}
@@ -280,7 +267,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		return true;
 	}
 
-	private function uncacheAllItemsForUser( User $user ) {
+	private function uncacheAllItemsForUser( UserIdentity $user ) {
 		$userId = $user->getId();
 		foreach ( $this->cacheIndex as $ns => $dbKeyIndex ) {
 			foreach ( $dbKeyIndex as $dbKey => $userIndex ) {
@@ -309,9 +296,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 *
 	 * @since 1.31
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 */
-	public function clearUserWatchedItemsUsingJobQueue( User $user ) {
+	public function clearUserWatchedItemsUsingJobQueue( UserIdentity $user ) {
 		$job = ClearUserWatchlistJob::newForUser( $user, $this->getMaxId() );
 		$this->queueGroup->push( $job );
 	}
@@ -332,10 +319,10 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.31
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @return int
 	 */
-	public function countWatchedItems( User $user ) {
+	public function countWatchedItems( UserIdentity $user ) {
 		$dbr = $this->getConnectionRef( DB_REPLICA );
 		$return = (int)$dbr->selectField(
 			'watchlist',
@@ -394,16 +381,15 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	}
 
 	/**
-	 * @param User $user
-	 * @param TitleValue[] $titles
+	 * @param UserIdentity $user
+	 * @param LinkTarget[] $titles
 	 * @return bool
-	 * @throws MWException
 	 */
-	public function removeWatchBatchForUser( User $user, array $titles ) {
+	public function removeWatchBatchForUser( UserIdentity $user, array $titles ) {
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			return false;
 		}
-		if ( $user->isAnon() ) {
+		if ( !$user->isRegistered() ) {
 			return false;
 		}
 		if ( !$titles ) {
@@ -563,12 +549,12 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param LinkTarget $target
-	 * @return bool
+	 * @return WatchedItem|false
 	 */
-	public function getWatchedItem( User $user, LinkTarget $target ) {
-		if ( $user->isAnon() ) {
+	public function getWatchedItem( UserIdentity $user, LinkTarget $target ) {
+		if ( !$user->isRegistered() ) {
 			return false;
 		}
 
@@ -583,13 +569,13 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param LinkTarget $target
-	 * @return WatchedItem|bool
+	 * @return WatchedItem|false
 	 */
-	public function loadWatchedItem( User $user, LinkTarget $target ) {
-		// Only loggedin user can have a watchlist
-		if ( $user->isAnon() ) {
+	public function loadWatchedItem( UserIdentity $user, LinkTarget $target ) {
+		// Only registered user can have a watchlist
+		if ( !$user->isRegistered() ) {
 			return false;
 		}
 
@@ -618,11 +604,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param array $options
 	 * @return WatchedItem[]
 	 */
-	public function getWatchedItemsForUser( User $user, array $options = [] ) {
+	public function getWatchedItemsForUser( UserIdentity $user, array $options = [] ) {
 		$options += [ 'forWrite' => false ];
 
 		$dbOptions = [];
@@ -653,7 +639,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			// @todo: Should we add these to the process cache?
 			$watchedItems[] = new WatchedItem(
 				$user,
-				new TitleValue( (int)$row->wl_namespace, $row->wl_title ),
+				$target,
 				$this->getLatestNotificationTimestamp(
 					$row->wl_notificationtimestamp, $user, $target )
 			);
@@ -664,27 +650,27 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param LinkTarget $target
 	 * @return bool
 	 */
-	public function isWatched( User $user, LinkTarget $target ) {
+	public function isWatched( UserIdentity $user, LinkTarget $target ) {
 		return (bool)$this->getWatchedItem( $user, $target );
 	}
 
 	/**
 	 * @since 1.27
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param LinkTarget[] $targets
 	 * @return array
 	 */
-	public function getNotificationTimestampsBatch( User $user, array $targets ) {
+	public function getNotificationTimestampsBatch( UserIdentity $user, array $targets ) {
 		$timestamps = [];
 		foreach ( $targets as $target ) {
 			$timestamps[$target->getNamespace()][$target->getDBkey()] = false;
 		}
 
-		if ( $user->isAnon() ) {
+		if ( !$user->isRegistered() ) {
 			return $timestamps;
 		}
 
@@ -728,27 +714,25 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param LinkTarget $target
-	 * @throws MWException
 	 */
-	public function addWatch( User $user, LinkTarget $target ) {
+	public function addWatch( UserIdentity $user, LinkTarget $target ) {
 		$this->addWatchBatchForUser( $user, [ $target ] );
 	}
 
 	/**
 	 * @since 1.27
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param LinkTarget[] $targets
 	 * @return bool
-	 * @throws MWException
 	 */
-	public function addWatchBatchForUser( User $user, array $targets ) {
+	public function addWatchBatchForUser( UserIdentity $user, array $targets ) {
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			return false;
 		}
-		// Only logged-in user can have a watchlist
-		if ( $user->isAnon() ) {
+		// Only registered user can have a watchlist
+		if ( !$user->isRegistered() ) {
 			return false;
 		}
 
@@ -781,7 +765,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		foreach ( $rowBatches as $toInsert ) {
 			// Use INSERT IGNORE to avoid overwriting the notification timestamp
 			// if there's already an entry for this page
-			$dbw->insert( 'watchlist', $toInsert, __METHOD__, 'IGNORE' );
+			$dbw->insert( 'watchlist', $toInsert, __METHOD__, [ 'IGNORE' ] );
 			$affectedRows += $dbw->affectedRows();
 			if ( $ticket ) {
 				$this->lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
@@ -799,12 +783,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param LinkTarget $target
 	 * @return bool
-	 * @throws MWException
 	 */
-	public function removeWatch( User $user, LinkTarget $target ) {
+	public function removeWatch( UserIdentity $user, LinkTarget $target ) {
 		return $this->removeWatchBatchForUser( $user, [ $target ] );
 	}
 
@@ -820,14 +803,16 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * only the specified titles will be updated, and this will be done immediately (not deferred).
 	 *
 	 * @since 1.27
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string|int $timestamp Value to set the "last viewed" timestamp to (null to clear)
 	 * @param LinkTarget[] $targets Titles to set the timestamp for; [] means the entire watchlist
 	 * @return bool
 	 */
-	public function setNotificationTimestampsForUser( User $user, $timestamp, array $targets = [] ) {
-		// Only loggedin user can have a watchlist
-		if ( $user->isAnon() || $this->readOnlyMode->isReadOnly() ) {
+	public function setNotificationTimestampsForUser(
+		UserIdentity $user, $timestamp, array $targets = []
+	) {
+		// Only registered user can have a watchlist
+		if ( !$user->isRegistered() || $this->readOnlyMode->isReadOnly() ) {
 			return false;
 		}
 
@@ -873,7 +858,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		return true;
 	}
 
-	public function getLatestNotificationTimestamp( $timestamp, User $user, LinkTarget $target ) {
+	public function getLatestNotificationTimestamp(
+		$timestamp, UserIdentity $user, LinkTarget $target
+	) {
 		$timestamp = wfTimestampOrNull( TS_MW, $timestamp );
 		if ( $timestamp === null ) {
 			return null; // no notification
@@ -894,20 +881,19 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	/**
 	 * Schedule a DeferredUpdate that sets all of the "last viewed" timestamps for a given user
 	 * to the same value.
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string|int|null $timestamp Value to set all timestamps to, null to clear them
 	 */
-	public function resetAllNotificationTimestampsForUser( User $user, $timestamp = null ) {
-		// Only loggedin user can have a watchlist
-		if ( $user->isAnon() ) {
+	public function resetAllNotificationTimestampsForUser( UserIdentity $user, $timestamp = null ) {
+		// Only registered user can have a watchlist
+		if ( !$user->isRegistered() ) {
 			return;
 		}
 
 		// If the page is watched by the user (or may be watched), update the timestamp
-		$job = new ClearWatchlistNotificationsJob(
-			$user->getUserPage(),
-			[ 'userId'  => $user->getId(), 'timestamp' => $timestamp, 'casTime' => time() ]
-		);
+		$job = new ClearWatchlistNotificationsJob( [
+			'userId'  => $user->getId(), 'timestamp' => $timestamp, 'casTime' => time()
+		] );
 
 		// Try to run this post-send
 		// Calls DeferredUpdates::addCallableUpdate in normal operation
@@ -921,12 +907,14 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
-	 * @param User $editor
+	 * @param UserIdentity $editor
 	 * @param LinkTarget $target
 	 * @param string|int $timestamp
 	 * @return int[]
 	 */
-	public function updateNotificationTimestamp( User $editor, LinkTarget $target, $timestamp ) {
+	public function updateNotificationTimestamp(
+		UserIdentity $editor, LinkTarget $target, $timestamp
+	) {
 		$dbw = $this->getConnectionRef( DB_MASTER );
 		$uids = $dbw->selectFieldValues(
 			'watchlist',
@@ -978,22 +966,35 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
-	 * @param User $user
-	 * @param Title $title
+	 * @param UserIdentity $user
+	 * @param LinkTarget $title
 	 * @param string $force
 	 * @param int $oldid
 	 * @return bool
 	 */
-	public function resetNotificationTimestamp( User $user, Title $title, $force = '', $oldid = 0 ) {
+	public function resetNotificationTimestamp(
+		UserIdentity $user, LinkTarget $title, $force = '', $oldid = 0
+	) {
 		$time = time();
 
-		// Only loggedin user can have a watchlist
-		if ( $this->readOnlyMode->isReadOnly() || $user->isAnon() ) {
+		// Only registered user can have a watchlist
+		if ( $this->readOnlyMode->isReadOnly() || !$user->isRegistered() ) {
 			return false;
 		}
 
-		if ( !Hooks::run( 'BeforeResetNotificationTimestamp', [ &$user, &$title, $force, &$oldid ] ) ) {
+		// Hook expects User and Title, not UserIdentity and LinkTarget
+		$userObj = User::newFromId( $user->getId() );
+		$titleObj = Title::castFromLinkTarget( $title );
+		if ( !Hooks::run( 'BeforeResetNotificationTimestamp',
+			[ &$userObj, &$titleObj, $force, &$oldid ] )
+		) {
 			return false;
+		}
+		if ( !$userObj->equals( $user ) ) {
+			$user = $userObj;
+		}
+		if ( !$titleObj->equals( $title ) ) {
+			$title = $titleObj;
 		}
 
 		$item = null;
@@ -1005,11 +1006,19 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 
 		// Get the timestamp (TS_MW) of this revision to track the latest one seen
-		$seenTime = call_user_func(
-			$this->revisionGetTimestampFromIdCallback,
-			$title,
-			$oldid ?: $title->getLatestRevID()
-		);
+		$id = $oldid;
+		$seenTime = null;
+		if ( !$id ) {
+			$latestRev = $this->revisionLookup->getRevisionByTitle( $title );
+			if ( $latestRev ) {
+				$id = $latestRev->getId();
+				// Save a DB query
+				$seenTime = $latestRev->getTimestamp();
+			}
+		}
+		if ( $seenTime === null ) {
+			$seenTime = $this->revisionLookup->getTimestampFromId( $id );
+		}
 
 		// Mark the item as read immediately in lightweight storage
 		$this->stash->merge(
@@ -1021,18 +1030,18 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 				if ( $seenTime > $value->get( $subKey ) ) {
 					// Revision is newer than the last one seen
 					$value->set( $subKey, $seenTime );
-					$this->latestUpdateCache->set( $key, $value, IExpiringStore::TTL_PROC_LONG );
+					$this->latestUpdateCache->set( $key, $value, BagOStuff::TTL_PROC_LONG );
 				} elseif ( $seenTime === false ) {
 					// Revision does not exist
 					$value->set( $subKey, wfTimestamp( TS_MW ) );
-					$this->latestUpdateCache->set( $key, $value, IExpiringStore::TTL_PROC_LONG );
+					$this->latestUpdateCache->set( $key, $value, BagOStuff::TTL_PROC_LONG );
 				} else {
 					return false; // nothing to update
 				}
 
 				return $value;
 			},
-			IExpiringStore::TTL_HOUR
+			BagOStuff::TTL_HOUR
 		);
 
 		// If the page is watched by the user (or may be watched), update the timestamp
@@ -1054,15 +1063,15 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	}
 
 	/**
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @return MapCacheLRU|null The map contains prefixed title keys and TS_MW values
 	 */
-	private function getPageSeenTimestamps( User $user ) {
+	private function getPageSeenTimestamps( UserIdentity $user ) {
 		$key = $this->getPageSeenTimestampsKey( $user );
 
 		return $this->latestUpdateCache->getWithSetCallback(
 			$key,
-			IExpiringStore::TTL_PROC_LONG,
+			BagOStuff::TTL_PROC_LONG,
 			function () use ( $key ) {
 				return $this->stash->get( $key ) ?: null;
 			}
@@ -1070,10 +1079,10 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	}
 
 	/**
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @return string
 	 */
-	private function getPageSeenTimestampsKey( User $user ) {
+	private function getPageSeenTimestampsKey( UserIdentity $user ) {
 		return $this->stash->makeGlobalKey(
 			'watchlist-recent-updates',
 			$this->lbFactory->getLocalDomainID(),
@@ -1089,13 +1098,30 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		return "{$target->getNamespace()}:{$target->getDBkey()}";
 	}
 
-	private function getNotificationTimestamp( User $user, Title $title, $item, $force, $oldid ) {
+	/**
+	 * @param UserIdentity $user
+	 * @param LinkTarget $title
+	 * @param WatchedItem $item
+	 * @param bool $force
+	 * @param int|bool $oldid The ID of the last revision that the user viewed
+	 * @return bool|string|null
+	 */
+	private function getNotificationTimestamp(
+		UserIdentity $user, LinkTarget $title, $item, $force, $oldid
+	) {
 		if ( !$oldid ) {
 			// No oldid given, assuming latest revision; clear the timestamp.
 			return null;
 		}
 
-		if ( !$title->getNextRevisionID( $oldid ) ) {
+		$oldRev = $this->revisionLookup->getRevisionById( $oldid );
+		if ( !$oldRev ) {
+			// Oldid given but does not exist (probably deleted)
+			return false;
+		}
+
+		$nextRev = $this->revisionLookup->getNextRevision( $oldRev );
+		if ( !$nextRev ) {
 			// Oldid given and is the latest revision for this title; clear the timestamp.
 			return null;
 		}
@@ -1111,12 +1137,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 		// Oldid given and isn't the latest; update the timestamp.
 		// This will result in no further notification emails being sent!
-		// Calls Revision::getTimestampFromId in normal operation
-		$notificationTimestamp = call_user_func(
-			$this->revisionGetTimestampFromIdCallback,
-			$title,
-			$oldid
-		);
+		$notificationTimestamp = $this->revisionLookup->getTimestampFromId( $oldid );
+		// @FIXME: this should use getTimestamp() for consistency with updates on new edits
+		// $notificationTimestamp = $nextRev->getTimestamp(); // first unseen revision timestamp
 
 		// We need to go one second to the future because of various strict comparisons
 		// throughout the codebase
@@ -1138,11 +1161,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param int|null $unreadLimit
 	 * @return int|bool
 	 */
-	public function countUnreadNotifications( User $user, $unreadLimit = null ) {
+	public function countUnreadNotifications( UserIdentity $user, $unreadLimit = null ) {
 		$dbr = $this->getConnectionRef( DB_REPLICA );
 
 		$queryOptions = [];
@@ -1175,11 +1198,15 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param LinkTarget $newTarget
 	 */
 	public function duplicateAllAssociatedEntries( LinkTarget $oldTarget, LinkTarget $newTarget ) {
-		$oldTarget = Title::newFromLinkTarget( $oldTarget );
-		$newTarget = Title::newFromLinkTarget( $newTarget );
-
-		$this->duplicateEntry( $oldTarget->getSubjectPage(), $newTarget->getSubjectPage() );
-		$this->duplicateEntry( $oldTarget->getTalkPage(), $newTarget->getTalkPage() );
+		// Duplicate first the subject page, then the talk page
+		$this->duplicateEntry(
+			$this->nsInfo->getSubjectPage( $oldTarget ),
+			$this->nsInfo->getSubjectPage( $newTarget )
+		);
+		$this->duplicateEntry(
+			$this->nsInfo->getTalkPage( $oldTarget ),
+			$this->nsInfo->getTalkPage( $newTarget )
+		);
 	}
 
 	/**
@@ -1242,10 +1269,10 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	}
 
 	/**
-	 * @param User $user
-	 * @param Title[] $titles
+	 * @param UserIdentity $user
+	 * @param LinkTarget[] $titles
 	 */
-	private function uncacheTitlesForUser( User $user, array $titles ) {
+	private function uncacheTitlesForUser( UserIdentity $user, array $titles ) {
 		foreach ( $titles as $title ) {
 			$this->uncache( $user, $title );
 		}

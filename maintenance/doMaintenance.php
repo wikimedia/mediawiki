@@ -61,6 +61,7 @@ if ( !defined( 'MW_CONFIG_CALLBACK' ) && !defined( 'MW_CONFIG_FILE' ) ) {
 
 // Custom setup for Maintenance entry point
 if ( !defined( 'MW_SETUP_CALLBACK' ) ) {
+
 	function wfMaintenanceSetup() {
 		// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
 		global $maintenance, $wgLocalisationCacheConf, $wgCacheDirectory;
@@ -75,6 +76,7 @@ if ( !defined( 'MW_SETUP_CALLBACK' ) ) {
 
 		$maintenance->finalSetup();
 	}
+
 	define( 'MW_SETUP_CALLBACK', 'wfMaintenanceSetup' );
 }
 
@@ -93,7 +95,25 @@ $maintenance->setAgentAndTriggers();
 $maintenance->validateParamsAndArgs();
 
 // Do the work
-$success = $maintenance->execute();
+try {
+	$success = $maintenance->execute();
+} catch ( Exception $ex ) {
+	$success = false;
+	$exReportMessage = '';
+	while ( $ex ) {
+		$cls = get_class( $ex );
+		$exReportMessage .= "$cls from line {$ex->getLine()} of {$ex->getFile()}: {$ex->getMessage()}\n";
+		$exReportMessage .= $ex->getTraceAsString() . "\n";
+		$ex = $ex->getPrevious();
+	}
+	// Print the exception to stderr if possible, don't mix it in
+	// with stdout output.
+	if ( defined( 'STDERR' ) ) {
+		fwrite( STDERR, $exReportMessage );
+	} else {
+		echo $exReportMessage;
+	}
+}
 
 // Potentially debug globals
 $maintenance->globals();

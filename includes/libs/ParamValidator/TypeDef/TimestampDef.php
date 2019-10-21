@@ -1,0 +1,100 @@
+<?php
+
+namespace Wikimedia\ParamValidator\TypeDef;
+
+use Wikimedia\ParamValidator\Callbacks;
+use Wikimedia\ParamValidator\TypeDef;
+use Wikimedia\ParamValidator\ValidationException;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\Timestamp\TimestampException;
+
+/**
+ * Type definition for timestamp types
+ *
+ * This uses the wikimedia/timestamp library for parsing and formatting the
+ * timestamps.
+ *
+ * The result from validate() is a ConvertibleTimestamp by default, but this
+ * may be changed by both a constructor option and a PARAM constant.
+ *
+ * ValidationException codes:
+ *  - 'badtimestamp': The timestamp is not valid. No data, but the
+ *    TimestampException is available via Exception::getPrevious().
+ *  - 'unclearnowtimestamp': Non-fatal. The value is the empty string or "0".
+ *    Use 'now' instead if you really want the current timestamp. No data.
+ *
+ * @since 1.34
+ */
+class TimestampDef extends TypeDef {
+
+	/**
+	 * (string|int) Timestamp format to return from validate()
+	 *
+	 * Values include:
+	 *  - 'ConvertibleTimestamp': A ConvertibleTimestamp object.
+	 *  - 'DateTime': A PHP DateTime object
+	 *  - One of ConvertibleTimestamp's TS_* constants.
+	 *
+	 * This does not affect the format returned by stringifyValue().
+	 */
+	const PARAM_TIMESTAMP_FORMAT = 'param-timestamp-format';
+
+	/** @var string|int */
+	protected $defaultFormat;
+
+	/** @var int */
+	protected $stringifyFormat;
+
+	/**
+	 * @param Callbacks $callbacks
+	 * @param array $options Options:
+	 *  - defaultFormat: (string|int) Default for PARAM_TIMESTAMP_FORMAT.
+	 *    Default if not specified is 'ConvertibleTimestamp'.
+	 *  - stringifyFormat: (int) Format to use for stringifyValue().
+	 *    Default is TS_ISO_8601.
+	 */
+	public function __construct( Callbacks $callbacks, array $options = [] ) {
+		parent::__construct( $callbacks );
+
+		$this->defaultFormat = $options['defaultFormat'] ?? 'ConvertibleTimestamp';
+		$this->stringifyFormat = $options['stringifyFormat'] ?? TS_ISO_8601;
+	}
+
+	public function validate( $name, $value, array $settings, array $options ) {
+		// Confusing synonyms for the current time accepted by ConvertibleTimestamp
+		if ( !$value ) {
+			$this->callbacks->recordCondition(
+				new ValidationException( $name, $value, $settings, 'unclearnowtimestamp', [] ),
+				$options
+			);
+			$value = 'now';
+		}
+
+		try {
+			$timestamp = new ConvertibleTimestamp( $value === 'now' ? false : $value );
+		} catch ( TimestampException $ex ) {
+			throw new ValidationException( $name, $value, $settings, 'badtimestamp', [], $ex );
+		}
+
+		$format = $settings[self::PARAM_TIMESTAMP_FORMAT] ?? $this->defaultFormat;
+		switch ( $format ) {
+			case 'ConvertibleTimestamp':
+				return $timestamp;
+
+			case 'DateTime':
+				// Eew, no getter.
+				return $timestamp->timestamp;
+
+			default:
+				return $timestamp->getTimestamp( $format );
+		}
+	}
+
+	public function stringifyValue( $name, $value, array $settings, array $options ) {
+		if ( !$value instanceof ConvertibleTimestamp ) {
+			$value = new ConvertibleTimestamp( $value );
+		}
+		return $value->getTimestamp( $this->stringifyFormat );
+	}
+
+}

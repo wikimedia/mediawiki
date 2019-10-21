@@ -150,7 +150,7 @@ interface IMaintainableDatabase extends IDatabase {
 	 * Delete a table
 	 * @param string $tableName
 	 * @param string $fName
-	 * @return bool|ResultWrapper
+	 * @return bool|IResultWrapper
 	 */
 	public function dropTable( $tableName, $fName = __METHOD__ );
 
@@ -303,7 +303,7 @@ interface IMaintainableDatabase extends IDatabase {
 	 * @param string $table Table name
 	 * @param string $field Field name
 	 *
-	 * @return Field
+	 * @return false|Field
 	 */
 	public function fieldInfo( $table, $field );
 }

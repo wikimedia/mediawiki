@@ -28,16 +28,16 @@ Create a file called ExtensionName.i18n.magic.php with the following contents:
 ----
 <?php
 
-$magicWords = array();
+$magicWords = [];
 
-$magicWords['en'] = array(
+$magicWords['en'] = [
 	// Case sensitive.
-	'mag_custom' => array( 1, 'CUSTOM' ),
-);
+	'mag_custom' => [ 1, 'CUSTOM' ],
+];
 
-$magicWords['es'] = array(
-	'mag_custom' => array( 1, 'ADUANERO' ),
-);
+$magicWords['es'] = [
+	'mag_custom' => [ 1, 'ADUANERO' ],
+];
 ----
 
 $wgExtensionMessagesFiles['ExtensionNameMagic'] = __DIR__ . '/ExtensionName.i18n.magic.php';
@@ -62,16 +62,16 @@ Create a file called ExtensionName.i18n.magic.php with the following contents:
 ----
 <?php
 
-$magicWords = array();
+$magicWords = [];
 
-$magicWords['en'] = array(
+$magicWords['en'] = [
 	// Case insensitive.
-	'mag_custom' => array( 0, 'custom' ),
-);
+	'mag_custom' => [ 0, 'custom' ],
+];
 
-$magicWords['es'] = array(
-	'mag_custom' => array( 0, 'aduanero' ),
-);
+$magicWords['es'] = [
+	'mag_custom' => [ 0, 'aduanero' ],
+];
 ----
 
 $wgExtensionMessagesFiles['ExtensionNameMagic'] = __DIR__ . '/ExtensionName.i18n.magic.php';

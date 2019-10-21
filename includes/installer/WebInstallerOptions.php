@@ -104,7 +104,8 @@ class WebInstallerOptions extends WebInstallerPage {
 			$this->getFieldsetEnd()
 		);
 
-		$skins = $this->parent->findExtensions( 'skins' );
+		$skins = $this->parent->findExtensions( 'skins' )->value;
+		'@phan-var array[] $skins';
 		$skinHtml = $this->getFieldsetStart( 'config-skins' );
 
 		$skinNames = array_map( 'strtolower', array_keys( $skins ) );
@@ -136,7 +137,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			}
 		} else {
 			$skinHtml .=
-				$this->parent->getWarningBox( wfMessage( 'config-skins-missing' )->plain() ) .
+				Html::warningBox( wfMessage( 'config-skins-missing' )->plain(), 'config-warning-box' ) .
 				Html::hidden( 'config_wgDefaultSkin', $chosenSkinName );
 		}
 
@@ -144,7 +145,8 @@ class WebInstallerOptions extends WebInstallerPage {
 			$this->getFieldsetEnd();
 		$this->addHTML( $skinHtml );
 
-		$extensions = $this->parent->findExtensions();
+		$extensions = $this->parent->findExtensions()->value;
+		'@phan-var array[] $extensions';
 		$dependencyMap = [];
 
 		if ( $extensions ) {
@@ -324,11 +326,16 @@ class WebInstallerOptions extends WebInstallerPage {
 		return null;
 	}
 
+	/**
+	 * @param string $name
+	 * @param array $screenshots
+	 */
 	private function makeScreenshotsLink( $name, $screenshots ) {
 		global $wgLang;
 		if ( count( $screenshots ) > 1 ) {
 			$links = [];
 			$counter = 1;
+
 			foreach ( $screenshots as $shot ) {
 				$links[] = Html::element(
 					'a',
@@ -364,7 +371,7 @@ class WebInstallerOptions extends WebInstallerPage {
 		] );
 		$styleUrl = $server . dirname( dirname( $this->parent->getUrl() ) ) .
 			'/mw-config/config-cc.css';
-		$iframeUrl = '//creativecommons.org/license/?' .
+		$iframeUrl = 'https://creativecommons.org/license/?' .
 			wfArrayToCgi( [
 				'partner' => 'MediaWiki',
 				'exit_url' => $exitUrl,
@@ -448,7 +455,7 @@ class WebInstallerOptions extends WebInstallerPage {
 	 * @return bool
 	 */
 	public function submitSkins() {
-		$skins = array_keys( $this->parent->findExtensions( 'skins' ) );
+		$skins = array_keys( $this->parent->findExtensions( 'skins' )->value );
 		$this->parent->setVar( '_Skins', $skins );
 
 		if ( $skins ) {
@@ -498,7 +505,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			$this->setVar( 'wgRightsIcon', '' );
 		}
 
-		$skinsAvailable = array_keys( $this->parent->findExtensions( 'skins' ) );
+		$skinsAvailable = array_keys( $this->parent->findExtensions( 'skins' )->value );
 		$skinsToInstall = [];
 		foreach ( $skinsAvailable as $skin ) {
 			$this->parent->setVarsFromRequest( [ "skin-$skin" ] );
@@ -519,7 +526,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			$retVal = false;
 		}
 
-		$extsAvailable = array_keys( $this->parent->findExtensions() );
+		$extsAvailable = array_keys( $this->parent->findExtensions()->value );
 		$extsToInstall = [];
 		foreach ( $extsAvailable as $ext ) {
 			$this->parent->setVarsFromRequest( [ "ext-$ext" ] );

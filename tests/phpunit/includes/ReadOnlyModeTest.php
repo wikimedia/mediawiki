@@ -98,12 +98,7 @@ class ReadOnlyModeTest extends MediaWikiTestCase {
 	}
 
 	private function createMode( $params, $makeLB ) {
-		$config = new HashConfig( [
-			'ReadOnly' => $params['confMessage'],
-			'ReadOnlyFile' => $this->createFile( $params ),
-		] );
-
-		$rom = new ConfiguredReadOnlyMode( $config );
+		$rom = new ConfiguredReadOnlyMode( $params['confMessage'], $this->createFile( $params ) );
 
 		if ( $makeLB ) {
 			$lb = $this->createLB( $params );

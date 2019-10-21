@@ -43,13 +43,11 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 	 * @return void
 	 */
 	protected function run( ApiPageSet $resultPageSet = null ) {
-		// Before doing anything at all, let's check permissions
-		$this->checkUserRightsAny( 'deletedhistory' );
-
 		$user = $this->getUser();
 		$db = $this->getDB();
 		$params = $this->extractRequestParams( false );
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$services = MediaWikiServices::getInstance();
+		$revisionStore = $services->getRevisionStore();
 
 		$result = $this->getResult();
 
@@ -133,7 +131,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			$this->addJoinConds(
 				[ 'change_tag' => [ 'JOIN', [ 'ar_rev_id=ct_rev_id' ] ] ]
 			);
-			$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
+			$changeTagDefStore = $services->getChangeTagDefStore();
 			try {
 				$this->addWhereFld( 'ct_tag_id', $changeTagDefStore->getId( $params['tag'] ) );
 			} catch ( NameTableAccessException $exception ) {
@@ -142,21 +140,23 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			}
 		}
 
-		if ( $this->fetchContent ) {
-			$this->addTables( 'text' );
-			$this->addJoinConds(
-				[ 'text' => [ 'LEFT JOIN', [ 'ar_text_id=old_id' ] ] ]
-			);
-			$this->addFields( [ 'old_text', 'old_flags' ] );
-
-			// This also means stricter restrictions
-			$this->checkUserRightsAny( [ 'deletedtext', 'undelete' ] );
+		// This means stricter restrictions
+		if ( ( $this->fld_comment || $this->fld_parsedcomment ) &&
+			!$this->getPermissionManager()->userHasRight( $user, 'deletedhistory' )
+		) {
+			$this->dieWithError( 'apierror-cantview-deleted-comment', 'permissiondenied' );
+		}
+		if ( $this->fetchContent &&
+			!$this->getPermissionManager()->userHasAnyRight( $user, 'deletedtext', 'undelete' )
+		) {
+			$this->dieWithError( 'apierror-cantview-deleted-revision-content', 'permissiondenied' );
 		}
 
 		$miser_ns = null;
 
 		if ( $mode == 'all' ) {
-			$namespaces = $params['namespace'] ?? MWNamespace::getValidNamespaces();
+			$namespaces = $params['namespace'] ??
+				$services->getNamespaceInfo()->getValidNamespaces();
 			$this->addWhereFld( 'ar_namespace', $namespaces );
 
 			// For from/to/prefix, we have to consider the potential
@@ -239,11 +239,11 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 
 		if ( !is_null( $params['user'] ) || !is_null( $params['excludeuser'] ) ) {
 			// Paranoia: avoid brute force searches (T19342)
-			// (shouldn't be able to get here without 'deletedhistory', but
-			// check it again just in case)
-			if ( !$user->isAllowed( 'deletedhistory' ) ) {
+			if ( !$this->getPermissionManager()->userHasRight( $user, 'deletedhistory' ) ) {
 				$bitmask = RevisionRecord::DELETED_USER;
-			} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
+			} elseif ( !$this->getPermissionManager()
+				->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' )
+			) {
 				$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
 			} else {
 				$bitmask = 0;

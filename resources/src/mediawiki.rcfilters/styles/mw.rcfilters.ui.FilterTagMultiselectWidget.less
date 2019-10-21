@@ -44,13 +44,17 @@
 		}
 
 		&.oo-ui-tagMultiselectWidget-outlined {
+			// per T177206#4271707 we avoid keeping the collapsed element to take the whole width of the screen
+			// we are providing enough cues (keeping the labels) for it to be clear that the panel gets compacted
+			// to the left and the user not to feel lost with the transition.
 			width: unset;
 			max-width: 100%;
 		}
 
 		// Hide inner elements
 		.mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-filters,
-		.mw-rcfilters-ui-filterTagMultiselectWidget-views {
+		.mw-rcfilters-ui-filterTagMultiselectWidget-views,
+		.mw-rcfilters-ui-filterTagMultiselectWidget-views-input {
 			display: none;
 		}
 	}
@@ -128,8 +132,6 @@
 		}
 
 		&-select {
-			width: 1em;
-
 			&-widget.oo-ui-widget {
 				display: block;
 				.box-sizing( border-box );

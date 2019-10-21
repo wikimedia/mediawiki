@@ -39,7 +39,7 @@ namespace MediaWiki\Languages\Data;
  * If you are adding support for such a language, add it also to
  * the relevant section in shared.css.
  *
- * Do not use this class directly. Use Language::fetchLanguageNames(), which
+ * Do not use this class directly. Use LanguageNameUtils::getLanguageNames(), which
  * includes support for the CLDR extension.
  *
  * @ingroup Language
@@ -80,7 +80,7 @@ class Names {
 		'az' => 'azərbaycanca', # Azerbaijani
 		'azb' => 'تۆرکجه', # South Azerbaijani
 		'ba' => 'башҡортса', # Bashkir
-		'ban' => 'Basa Bali', # Balinese
+		'ban' => 'Bali', # Balinese
 		'bar' => 'Boarisch', # Bavarian (Austro-Bavarian and South Tyrolean)
 		'bat-smg' => 'žemaitėška', # Samogitian (deprecated code, 'sgs' in ISO 639-3 since 2010-06-30 )
 		'bbc' => 'Batak Toba', # Batak Toba (falls back to bbc-latn)
@@ -95,7 +95,7 @@ class Names {
 		'bh' => 'भोजपुरी', # Bihari macro language. Falls back to Bhojpuri (bho)
 		'bho' => 'भोजपुरी', # Bhojpuri
 		'bi' => 'Bislama', # Bislama
-		'bjn' => 'Bahasa Banjar', # Banjarese
+		'bjn' => 'Banjar', # Banjarese
 		'bm' => 'bamanankan', # Bambara
 		'bn' => 'বাংলা', # Bengali
 		'bo' => 'བོད་ཡིག', # Tibetan
@@ -203,7 +203,7 @@ class Names {
 		'hu' => 'magyar', # Hungarian
 		'hu-formal' => "magyar (formal)\u{200E}", # Hungarian formal address
 		'hy' => 'հայերեն', # Armenian, T202611
-		'hyw' => 'արեւմտահայերէն', # Western Armenian, T201276
+		'hyw' => 'Արեւմտահայերէն', # Western Armenian, T201276, T219975
 		'hz' => 'Otsiherero', # Herero
 		'ia' => 'interlingua', # Interlingua (IALA)
 		'id' => 'Bahasa Indonesia', # Indonesian
@@ -223,7 +223,7 @@ class Names {
 		'jam' => 'Patois', # Jamaican Creole English
 		'jbo' => 'la .lojban.', # Lojban
 		'jut' => 'jysk', # Jutish / Jutlandic
-		'jv' => 'Basa Jawa', # Javanese
+		'jv' => 'Jawa', # Javanese
 		'ka' => 'ქართული', # Georgian
 		'kaa' => 'Qaraqalpaqsha', # Karakalpak
 		'kab' => 'Taqbaylit', # Kabyle
@@ -295,11 +295,11 @@ class Names {
 		'mh' => 'Ebon', # Marshallese
 		'mhr' => 'олык марий', # Eastern Mari
 		'mi' => 'Māori', # Maori
-		'min' => 'Baso Minangkabau', # Minangkabau
+		'min' => 'Minangkabau', # Minangkabau
 		'mk' => 'македонски', # Macedonian
 		'ml' => 'മലയാളം', # Malayalam
 		'mn' => 'монгол', # Halh Mongolian (Cyrillic) (ISO 639-3: khk)
-		'mni' => 'মেইতেই লোন্', # Manipuri/Meitei
+		'mni' => 'ꯃꯤꯇꯩ ꯂꯣꯟ', # Manipuri/Meitei
 		'mnw' => 'ဘာသာ မန်', # Mon, T201583
 		'mo' => 'молдовеняскэ', # Moldovan, deprecated (ISO 639-2: ro-Cyrl-MD)
 		'mr' => 'मराठी', # Marathi
@@ -327,6 +327,7 @@ class Names {
 		'nn' => 'norsk nynorsk', # Norwegian (Nynorsk)
 		'no' => 'norsk', # Norwegian macro language (falls back to nb).
 		'nov' => 'Novial', # Novial
+		'nqo' => 'ߒߞߏ', # N'Ko
 		'nrm' => 'Nouormand', # Norman (invalid code; 'nrf' in ISO 639 since 2014)
 		'nso' => 'Sesotho sa Leboa', # Northern Sotho
 		'nv' => 'Diné bizaad', # Navajo
@@ -360,7 +361,7 @@ class Names {
 		'rgn' => 'Rumagnôl', # Romagnol
 		'rif' => 'Tarifit', # Tarifit
 		'rm' => 'rumantsch', # Raeto-Romance
-		'rmy' => 'Romani', # Vlax Romany
+		'rmy' => 'romani čhib', # Vlax Romany
 		'rn' => 'Kirundi', # Rundi/Kirundi/Urundi
 		'ro' => 'română', # Romanian
 		'roa-rup' => 'armãneashti', # Aromanian (deprecated code, 'rup' exists in ISO 639-3)
@@ -413,7 +414,7 @@ class Names {
 		'st' => 'Sesotho', # Southern Sotho
 		'sty' => 'cебертатар', # Siberian Tatar
 		'stq' => 'Seeltersk', # Saterland Frisian
-		'su' => 'Basa Sunda', # Sundanese
+		'su' => 'Sunda', # Sundanese
 		'sv' => 'svenska', # Swedish
 		'sw' => 'Kiswahili', # Swahili
 		'szl' => 'ślůnski', # Silesian

@@ -84,7 +84,7 @@ class GenerateJqueryMsgData extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Create a specification for message parsing ini JSON format';
+		$this->addDescription( 'Create a specification for message parsing ini JSON format' );
 		// add any other options here
 	}
 

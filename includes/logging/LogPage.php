@@ -58,7 +58,8 @@ class LogPage {
 	private $type;
 
 	/** @var string One of '', 'block', 'protect', 'rights', 'delete',
-	 *   'upload', 'move', 'move_redir' */
+	 *   'upload', 'move', 'move_redir'
+	 */
 	private $action;
 
 	/** @var string Comment associated with action */
@@ -93,8 +94,7 @@ class LogPage {
 
 		$dbw = wfGetDB( DB_MASTER );
 
-		// @todo FIXME private/protected/public property?
-		$this->timestamp = $now = wfTimestampNow();
+		$now = wfTimestampNow();
 		$data = [
 			'log_type' => $this->type,
 			'log_action' => $this->action,
@@ -104,7 +104,11 @@ class LogPage {
 			'log_page' => $this->target->getArticleID(),
 			'log_params' => $this->params
 		];
-		$data += CommentStore::getStore()->insert( $dbw, 'log_comment', $this->comment );
+		$data += MediaWikiServices::getInstance()->getCommentStore()->insert(
+			$dbw,
+			'log_comment',
+			$this->comment
+		);
 		$data += ActorMigration::newMigration()->getInsertValues( $dbw, 'log_user', $this->doer );
 		$dbw->insert( 'logging', $data, __METHOD__ );
 		$newId = $dbw->insertId();
@@ -399,7 +403,7 @@ class LogPage {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->insert( 'log_search', $data, __METHOD__, 'IGNORE' );
+		$dbw->insert( 'log_search', $data, __METHOD__, [ 'IGNORE' ] );
 
 		return true;
 	}

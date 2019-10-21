@@ -1,5 +1,5 @@
 warmup: true
-runs: 5
+runs: 7
 scenarios:
   Read a page:
     # The only page that exists by default is the main page.

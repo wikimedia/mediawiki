@@ -1,66 +1,64 @@
-( function () {
-	/**
-	 * A widget representing a single toggle filter
-	 *
-	 * @class mw.rcfilters.ui.CheckboxInputWidget
-	 * @extends OO.ui.CheckboxInputWidget
-	 *
-	 * @constructor
-	 * @param {Object} config Configuration object
-	 */
-	var CheckboxInputWidget = function MwRcfiltersUiCheckboxInputWidget( config ) {
-		config = config || {};
+/**
+ * A widget representing a single toggle filter
+ *
+ * @class mw.rcfilters.ui.CheckboxInputWidget
+ * @extends OO.ui.CheckboxInputWidget
+ *
+ * @constructor
+ * @param {Object} config Configuration object
+ */
+var CheckboxInputWidget = function MwRcfiltersUiCheckboxInputWidget( config ) {
+	config = config || {};
 
-		// Parent
-		CheckboxInputWidget.parent.call( this, config );
+	// Parent
+	CheckboxInputWidget.parent.call( this, config );
 
-		// Event
-		this.$input
-			// HACK: This widget just pretends to be a checkbox for visual purposes.
-			// In reality, all actions - setting to true or false, etc - are
-			// decided by the model, and executed by the controller. This means
-			// that we want to let the controller and model make the decision
-			// of whether to check/uncheck this checkboxInputWidget, and for that,
-			// we have to bypass the browser action that checks/unchecks it during
-			// click.
-			.on( 'click', false )
-			.on( 'change', this.onUserChange.bind( this ) );
-	};
+	// Event
+	this.$input
+		// HACK: This widget just pretends to be a checkbox for visual purposes.
+		// In reality, all actions - setting to true or false, etc - are
+		// decided by the model, and executed by the controller. This means
+		// that we want to let the controller and model make the decision
+		// of whether to check/uncheck this checkboxInputWidget, and for that,
+		// we have to bypass the browser action that checks/unchecks it during
+		// click.
+		.on( 'click', false )
+		.on( 'change', this.onUserChange.bind( this ) );
+};
 
-	/* Initialization */
+/* Initialization */
 
-	OO.inheritClass( CheckboxInputWidget, OO.ui.CheckboxInputWidget );
+OO.inheritClass( CheckboxInputWidget, OO.ui.CheckboxInputWidget );
 
-	/* Events */
+/* Events */
 
-	/**
-	 * @event userChange
-	 * @param {boolean} Current state of the checkbox
-	 *
-	 * The user has checked or unchecked this checkbox
-	 */
+/**
+ * @event userChange
+ * @param {boolean} Current state of the checkbox
+ *
+ * The user has checked or unchecked this checkbox
+ */
 
-	/* Methods */
+/* Methods */
 
-	/**
-	 * @inheritdoc
-	 */
-	CheckboxInputWidget.prototype.onEdit = function () {
-		// Similarly to preventing defaults in 'click' event, we want
-		// to prevent this widget from deciding anything about its own
-		// state; it emits a change event and the model and controller
-		// make a decision about what its select state is.
-		// onEdit has a widget.$input.prop( 'checked' ) inside a setTimeout()
-		// so we really want to prevent that from messing with what
-		// the model decides the state of the widget is.
-	};
+/**
+ * @inheritdoc
+ */
+CheckboxInputWidget.prototype.onEdit = function () {
+	// Similarly to preventing defaults in 'click' event, we want
+	// to prevent this widget from deciding anything about its own
+	// state; it emits a change event and the model and controller
+	// make a decision about what its select state is.
+	// onEdit has a widget.$input.prop( 'checked' ) inside a setTimeout()
+	// so we really want to prevent that from messing with what
+	// the model decides the state of the widget is.
+};
 
-	/**
-	 * Respond to checkbox change by a user and emit 'userChange'.
-	 */
-	CheckboxInputWidget.prototype.onUserChange = function () {
-		this.emit( 'userChange', this.$input.prop( 'checked' ) );
-	};
+/**
+ * Respond to checkbox change by a user and emit 'userChange'.
+ */
+CheckboxInputWidget.prototype.onUserChange = function () {
+	this.emit( 'userChange', this.$input.prop( 'checked' ) );
+};
 
-	module.exports = CheckboxInputWidget;
-}() );
+module.exports = CheckboxInputWidget;

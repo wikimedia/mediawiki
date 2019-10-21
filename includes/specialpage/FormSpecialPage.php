@@ -150,10 +150,11 @@ abstract class FormSpecialPage extends SpecialPage {
 	/**
 	 * Process the form on POST submission.
 	 * @param array $data
-	 * @param HTMLForm $form
+	 * @param HTMLForm|null $form
+	 * @suppress PhanCommentParamWithoutRealParam Many implementations don't have $form
 	 * @return bool|string|array|Status As documented for HTMLForm::trySubmit.
 	 */
-	abstract public function onSubmit( array $data /* $form = null */ );
+	abstract public function onSubmit( array $data /* HTMLForm $form = null */ );
 
 	/**
 	 * Do something exciting on successful processing of the form, most likely to show a

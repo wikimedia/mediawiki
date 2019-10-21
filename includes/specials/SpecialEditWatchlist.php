@@ -380,8 +380,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	protected function getWatchlistInfo() {
 		$titles = [];
+		$services = MediaWikiServices::getInstance();
 
-		$watchedItems = MediaWikiServices::getInstance()->getWatchedItemStore()
+		$watchedItems = $services->getWatchedItemStore()
 			->getWatchedItemsForUser( $this->getUser(), [ 'sort' => WatchedItemStore::SORT_ASC ] );
 
 		$lb = new LinkBatch();
@@ -390,7 +391,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			$namespace = $watchedItem->getLinkTarget()->getNamespace();
 			$dbKey = $watchedItem->getLinkTarget()->getDBkey();
 			$lb->add( $namespace, $dbKey );
-			if ( !MWNamespace::isTalk( $namespace ) ) {
+			if ( !$services->getNamespaceInfo()->isTalk( $namespace ) ) {
 				$titles[$namespace][$dbKey] = 1;
 			}
 		}
@@ -511,6 +512,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	private function getExpandedTargets( array $targets ) {
 		$expandedTargets = [];
+		$services = MediaWikiServices::getInstance();
 		foreach ( $targets as $target ) {
 			if ( !$target instanceof LinkTarget ) {
 				try {
@@ -523,8 +525,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 			$ns = $target->getNamespace();
 			$dbKey = $target->getDBkey();
-			$expandedTargets[] = new TitleValue( MWNamespace::getSubject( $ns ), $dbKey );
-			$expandedTargets[] = new TitleValue( MWNamespace::getTalk( $ns ), $dbKey );
+			$expandedTargets[] =
+				new TitleValue( $services->getNamespaceInfo()->getSubject( $ns ), $dbKey );
+			$expandedTargets[] =
+				new TitleValue( $services->getNamespaceInfo()->getTalk( $ns ), $dbKey );
 		}
 		return $expandedTargets;
 	}
@@ -635,6 +639,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$linkRenderer = $this->getLinkRenderer();
 		$link = $linkRenderer->makeLink( $title );
 
+		$tools = [];
 		$tools['talk'] = $linkRenderer->makeLink(
 			$title->getTalkPage(),
 			$this->msg( 'talkpagelinktext' )->text()

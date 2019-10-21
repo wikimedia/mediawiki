@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Base class for content handling.
  *
@@ -25,6 +26,7 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Assert\Assert;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -278,8 +280,10 @@ abstract class ContentHandler {
 			}
 
 			if ( !( $handler instanceof ContentHandler ) ) {
-				throw new MWException( "$classOrCallback from \$wgContentHandlers is not " .
-					"compatible with ContentHandler" );
+				throw new MWException(
+					var_export( $classOrCallback, true ) . " from \$wgContentHandlers is not " .
+					"compatible with ContentHandler"
+				);
 			}
 		}
 
@@ -645,9 +649,6 @@ abstract class ContentHandler {
 		$slotDiffRenderer->setStatsdDataFactory( $statsdDataFactory );
 		// XXX using the page language would be better, but it's unclear how that should be injected
 		$slotDiffRenderer->setLanguage( $contentLanguage );
-		$slotDiffRenderer->setWikiDiff2MovedParagraphDetectionCutoff(
-			$context->getConfig()->get( 'WikiDiff2MovedParagraphDetectionCutoff' )
-		);
 
 		$engine = DifferenceEngine::getEngine();
 		if ( $engine === false ) {
@@ -689,6 +690,10 @@ abstract class ContentHandler {
 			list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $title->getText() );
 			$pageLang = Language::factory( $lang );
 		}
+
+		// Simplify hook handlers by only passing objects of one type, in case nothing
+		// else has unstubbed the StubUserLang object by now.
+		StubObject::unstub( $wgLang );
 
 		Hooks::run( 'PageContentLanguage', [ $title, &$pageLang, $wgLang ] );
 
@@ -1023,7 +1028,7 @@ abstract class ContentHandler {
 			[ 'rev_user_text' => $revQuery['fields']['rev_user_text'] ],
 			[
 				'rev_page' => $title->getArticleID(),
-				$dbr->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0'
+				$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . ' = 0'
 			],
 			__METHOD__,
 			[ 'LIMIT' => 20 ],
@@ -1074,7 +1079,8 @@ abstract class ContentHandler {
 		}
 
 		// Max content length = max comment length - length of the comment (excl. $1)
-		$text = $content ? $content->getTextForSummary( 255 - ( strlen( $reason ) - 2 ) ) : '';
+		$maxLength = CommentStore::COMMENT_CHARACTER_LIMIT - ( strlen( $reason ) - 2 );
+		$text = $content ? $content->getTextForSummary( $maxLength ) : '';
 
 		// Now replace the '$1' placeholder
 		$reason = str_replace( '$1', $text, $reason );
@@ -1096,7 +1102,7 @@ abstract class ContentHandler {
 	 * @param Revision|Content $undoafter Must be from an earlier revision than $undo
 	 * @param bool $undoIsLatest Set true if $undo is from the current revision (since 1.32)
 	 *
-	 * @return mixed Content on success, false on failure
+	 * @return Content|false Content on success, false on failure
 	 */
 	public function getUndoContent( $current, $undo, $undoafter, $undoIsLatest = false ) {
 		Assert::parameterType( Revision::class . '|' . Content::class, $current, '$current' );
@@ -1254,6 +1260,7 @@ abstract class ContentHandler {
 	 * @since 1.28
 	 */
 	public function getFieldsForSearchIndex( SearchEngine $engine ) {
+		$fields = [];
 		$fields['category'] = $engine->makeSearchFieldMapping(
 			'category',
 			SearchIndexField::INDEX_TYPE_TEXT

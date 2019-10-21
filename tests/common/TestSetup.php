@@ -4,6 +4,23 @@
  * Common code for test environment initialisation and teardown
  */
 class TestSetup {
+	public static $bootstrapGlobals;
+
+	/**
+	 * For use in MediaWikiUnitTestCase.
+	 *
+	 * This should be called before DefaultSettings.php or Setup.php loads.
+	 */
+	public static function snapshotGlobals() {
+		self::$bootstrapGlobals = [];
+		foreach ( $GLOBALS as $key => $_ ) {
+			// Support: HHVM (avoid self-ref)
+			if ( $key !== 'GLOBALS' ) {
+				self::$bootstrapGlobals[ $key ] =& $GLOBALS[$key];
+			}
+		}
+	}
+
 	/**
 	 * This should be called before Setup.php, e.g. from the finalSetup() method
 	 * of a Maintenance subclass
@@ -11,6 +28,7 @@ class TestSetup {
 	public static function applyInitialConfig() {
 		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgMainWANCache;
 		global $wgMainStash;
+		global $wgObjectCaches;
 		global $wgLanguageConverterCacheType, $wgUseDatabaseMessages;
 		global $wgLocaltimezone, $wgLocalisationCacheConf;
 		global $wgSearchType;
@@ -18,6 +36,9 @@ class TestSetup {
 		global $wgSessionProviders, $wgSessionPbkdf2Iterations;
 		global $wgJobTypeConf;
 		global $wgAuthManagerConfig;
+		global $wgShowExceptionDetails;
+
+		$wgShowExceptionDetails = true;
 
 		// wfWarn should cause tests to fail
 		$wgDevelopmentWarnings = true;
@@ -37,6 +58,8 @@ class TestSetup {
 		$wgLanguageConverterCacheType = 'hash';
 		// Uses db-replicated in DefaultSettings
 		$wgMainStash = 'hash';
+		// Use hash instead of db
+		$wgObjectCaches['db-replicated'] = $wgObjectCaches['hash'];
 		// Use memory job queue
 		$wgJobTypeConf = [
 			'default' => [ 'class' => JobQueueMemory::class, 'order' => 'fifo' ],
@@ -47,6 +70,7 @@ class TestSetup {
 		// Assume UTC for testing purposes
 		$wgLocaltimezone = 'UTC';
 
+		$wgLocalisationCacheConf['class'] = TestLocalisationCache::class;
 		$wgLocalisationCacheConf['storeClass'] = LCStoreNull::class;
 
 		// Do not bother updating search tables

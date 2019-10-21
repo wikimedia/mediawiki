@@ -13,7 +13,8 @@
 
 			// Hide/show the table of contents element
 			function toggleToc() {
-				if ( $tocList.is( ':hidden' ) ) {
+				// eslint-disable-next-line no-jquery/no-class-state
+				if ( $this.hasClass( 'tochidden' ) ) {
 					// FIXME: Use CSS transitions
 					// eslint-disable-next-line no-jquery/no-slide
 					$tocList.slideDown( 'fast' );

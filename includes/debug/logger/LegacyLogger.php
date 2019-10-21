@@ -21,12 +21,14 @@
 namespace MediaWiki\Logger;
 
 use DateTimeZone;
+use Error;
 use Exception;
 use WikiMap;
 use MWDebug;
 use MWExceptionHandler;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
+use Throwable;
 use UDPTransport;
 
 /**
@@ -100,16 +102,15 @@ class LegacyLogger extends AbstractLogger {
 			$level = self::$levelMapping[$level];
 		}
 		if ( $this->channel === 'DBQuery'
-			&& isset( $context['method'] )
-			&& isset( $context['master'] )
-			&& isset( $context['runtime'] )
+			&& $level === self::$levelMapping[LogLevel::DEBUG]
+			&& isset( $context['sql'] )
 		) {
 			// Also give the query information to the MWDebug tools
 			$enabled = MWDebug::query(
-				$message,
+				$context['sql'],
 				$context['method'],
-				$context['master'],
-				$context['runtime']
+				$context['runtime'],
+				$context['db_host']
 			);
 			if ( $enabled ) {
 				// If we the toolbar was enabled, return early so that we don't
@@ -269,7 +270,7 @@ class LegacyLogger extends AbstractLogger {
 			$e = $context['exception'];
 			$backtrace = false;
 
-			if ( $e instanceof Exception ) {
+			if ( $e instanceof Throwable || $e instanceof Exception ) {
 				$backtrace = MWExceptionHandler::getRedactedTrace( $e );
 
 			} elseif ( is_array( $e ) && isset( $e['trace'] ) ) {
@@ -405,8 +406,9 @@ class LegacyLogger extends AbstractLogger {
 			return $item->format( 'c' );
 		}
 
-		if ( $item instanceof Exception ) {
-			return '[Exception ' . get_class( $item ) . '( ' .
+		if ( $item instanceof Throwable || $item instanceof Exception ) {
+			$which = $item instanceof Error ? 'Error' : 'Exception';
+			return '[' . $which . ' ' . get_class( $item ) . '( ' .
 				$item->getFile() . ':' . $item->getLine() . ') ' .
 				$item->getMessage() . ']';
 		}

@@ -21,9 +21,9 @@
  * @ingroup JobQueue
  */
 
-class UserGroupExpiryJob extends Job {
-	public function __construct( $params = [] ) {
-		parent::__construct( 'userGroupExpiry', Title::newMainPage(), $params );
+class UserGroupExpiryJob extends Job implements GenericParameterJob {
+	public function __construct( array $params = [] ) {
+		parent::__construct( 'userGroupExpiry', $params );
 		$this->removeDuplicates = true;
 	}
 

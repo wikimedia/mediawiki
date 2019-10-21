@@ -91,7 +91,7 @@
 		actionPaths = mw.config.get( 'wgActionPaths' );
 		for ( key in actionPaths ) {
 			parts = actionPaths[ key ].split( '$1' );
-			parts = parts.map( mw.RegExp.escape );
+			parts = parts.map( mw.util.escapeRegExp );
 			m = new RegExp( parts.join( '(.+)' ) ).exec( url );
 			if ( m && m[ 1 ] ) {
 				return key;
@@ -131,6 +131,7 @@
 
 			$link = $( this );
 
+			// eslint-disable-next-line no-jquery/no-class-state
 			if ( $link.hasClass( 'loading' ) ) {
 				return;
 			}

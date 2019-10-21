@@ -78,7 +78,7 @@ class PoolCounterTest extends MediaWikiTestCase {
 // That call will die if the contructor is not public, unless we use disableOriginalConstructor(),
 // in which case we could not test the constructor.
 abstract class PoolCounterAbstractMock extends PoolCounter {
-	public function __construct() {
-		call_user_func_array( 'parent::__construct', func_get_args() );
+	public function __construct( ...$args ) {
+		call_user_func_array( 'parent::__construct', $args );
 	}
 }

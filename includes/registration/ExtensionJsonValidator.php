@@ -141,6 +141,12 @@ class ExtensionJsonValidator {
 			}
 		}
 
+		// Deprecated stuff
+		if ( isset( $data->ParserTestFiles ) ) {
+			// phpcs:ignore Generic.Files.LineLength.TooLong
+			$extraErrors[] = '[ParserTestFiles] DEPRECATED: see <https://www.mediawiki.org/wiki/Manual:Extension.json/Schema#ParserTestFiles>';
+		}
+
 		$validator = new Validator;
 		$validator->check( $data, (object)[ '$ref' => 'file://' . $schemaPath ] );
 		if ( $validator->isValid() && !$extraErrors ) {

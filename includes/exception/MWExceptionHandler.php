@@ -74,9 +74,32 @@ class MWExceptionHandler {
 	 * Install handlers with PHP.
 	 */
 	public static function installHandler() {
+		// This catches:
+		// * Exception objects that were explicitly thrown but not
+		//   caught anywhere in the application. This is rare given those
+		//   would normally be caught at a high-level like MediaWiki::run (index.php),
+		//   api.php, or ResourceLoader::respond (load.php). These high-level
+		//   catch clauses would then call MWExceptionHandler::logException
+		//   or MWExceptionHandler::handleException.
+		//   If they are not caught, then they are handled here.
+		// * Error objects (on PHP 7+), for issues that would historically
+		//   cause fatal errors but may now be caught as Throwable (not Exception).
+		//   Same as previous case, but more common to bubble to here instead of
+		//   caught locally because they tend to not be safe to recover from.
+		//   (e.g. argument TypeErorr, devision by zero, etc.)
 		set_exception_handler( 'MWExceptionHandler::handleUncaughtException' );
+
+		// This catches:
+		// * Non-fatal errors (e.g. PHP Notice, PHP Warning, PHP Error) that do not
+		//   interrupt execution in any way. We log these in the background and then
+		//   continue execution.
+		// * Fatal errors (on HHVM in PHP5 mode) where PHP 7 would throw Throwable.
 		set_error_handler( 'MWExceptionHandler::handleError' );
 
+		// This catches:
+		// * Fatal error for which no Throwable is thrown (PHP 7), and no Error emitted (HHVM).
+		//   This includes Out-Of-Memory and Timeout fatals.
+		//
 		// Reserve 16k of memory so we can report OOM fatals
 		self::$reservedMemory = str_repeat( ' ', 16384 );
 		register_shutdown_function( 'MWExceptionHandler::handleFatalError' );
@@ -327,7 +350,7 @@ class MWExceptionHandler {
 
 		// Look at message to see if this is a class not found failure
 		// HHVM: Class undefined: foo
-		// PHP5: Class 'foo' not found
+		// PHP7: Class 'foo' not found
 		if ( preg_match( "/Class (undefined: \w+|'\w+' not found)/", $message ) ) {
 			// phpcs:disable Generic.Files.LineLength
 			$msg = <<<TXT
@@ -660,16 +683,21 @@ TXT;
 	 * This method must not assume the exception is an MWException,
 	 * it is also used to handle PHP exceptions or exceptions from other libraries.
 	 *
-	 * @since 1.22
 	 * @param Exception|Throwable $e
 	 * @param string $catcher CAUGHT_BY_* class constant indicating what caught the error
+	 * @param array $extraData (since 1.34) Additional data to log
+	 * @since 1.22
 	 */
-	public static function logException( $e, $catcher = self::CAUGHT_BY_OTHER ) {
+	public static function logException( $e, $catcher = self::CAUGHT_BY_OTHER, $extraData = [] ) {
 		if ( !( $e instanceof MWException ) || $e->isLoggable() ) {
 			$logger = LoggerFactory::getInstance( 'exception' );
+			$context = self::getLogContext( $e, $catcher );
+			if ( $extraData ) {
+				$context['extraData'] = $extraData;
+			}
 			$logger->error(
 				self::getLogNormalMessage( $e ),
-				self::getLogContext( $e, $catcher )
+				$context
 			);
 
 			$json = self::jsonSerializeException( $e, false, FormatJson::ALL_OK, $catcher );

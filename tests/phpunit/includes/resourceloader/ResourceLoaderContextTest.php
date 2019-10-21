@@ -14,9 +14,9 @@ class ResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 	protected static function getResourceLoader() {
 		return new EmptyResourceLoader( new HashConfig( [
 			'ResourceLoaderDebug' => false,
-			'DefaultSkin' => 'fallback',
-			'LanguageCode' => 'nl',
 			'LoadScript' => '/w/load.php',
+			// For ResourceLoader::register()
+			'ResourceModuleSkinStyles' => [],
 		] ) );
 	}
 
@@ -25,16 +25,17 @@ class ResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 
 		// Request parameters
 		$this->assertEquals( [], $ctx->getModules() );
-		$this->assertEquals( 'nl', $ctx->getLanguage() );
-		$this->assertEquals( false, $ctx->getDebug() );
-		$this->assertEquals( null, $ctx->getOnly() );
+		$this->assertEquals( 'qqx', $ctx->getLanguage() );
+		$this->assertFalse( $ctx->getDebug() );
+		$this->assertNull( $ctx->getOnly() );
 		$this->assertEquals( 'fallback', $ctx->getSkin() );
-		$this->assertEquals( null, $ctx->getUser() );
+		$this->assertNull( $ctx->getUser() );
 		$this->assertNull( $ctx->getContentOverrideCallback() );
 
 		// Misc
 		$this->assertEquals( 'ltr', $ctx->getDirection() );
-		$this->assertEquals( 'nl|fallback||||||||', $ctx->getHash() );
+		$this->assertEquals( 'qqx|fallback||||||||', $ctx->getHash() );
+		$this->assertSame( [], $ctx->getReqBase() );
 		$this->assertInstanceOf( User::class, $ctx->getUserObj() );
 	}
 
@@ -47,8 +48,9 @@ class ResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 
 	public function testAccessors() {
 		$ctx = new ResourceLoaderContext( $this->getResourceLoader(), new FauxRequest( [] ) );
+		$this->assertInstanceOf( ResourceLoader::class, $ctx->getResourceLoader() );
 		$this->assertInstanceOf( WebRequest::class, $ctx->getRequest() );
-		$this->assertInstanceOf( \Psr\Log\LoggerInterface::class, $ctx->getLogger() );
+		$this->assertInstanceOf( Psr\Log\LoggerInterface::class, $ctx->getLogger() );
 	}
 
 	public function testTypicalRequest() {
@@ -65,15 +67,48 @@ class ResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 			$ctx->getModules(),
 			[ 'foo', 'foo.quux', 'foo.baz', 'foo.bar', 'baz.quux' ]
 		);
-		$this->assertEquals( false, $ctx->getDebug() );
+		$this->assertFalse( $ctx->getDebug() );
 		$this->assertEquals( 'zh', $ctx->getLanguage() );
 		$this->assertEquals( 'styles', $ctx->getOnly() );
 		$this->assertEquals( 'fallback', $ctx->getSkin() );
-		$this->assertEquals( null, $ctx->getUser() );
+		$this->assertNull( $ctx->getUser() );
 
 		// Misc
 		$this->assertEquals( 'ltr', $ctx->getDirection() );
 		$this->assertEquals( 'zh|fallback|||styles|||||', $ctx->getHash() );
+		$this->assertSame( [ 'lang' => 'zh' ], $ctx->getReqBase() );
+	}
+
+	public static function provideDirection() {
+		yield 'LTR language' => [
+			[ 'lang' => 'en' ],
+			'ltr',
+		];
+		yield 'RTL language' => [
+			[ 'lang' => 'he' ],
+			'rtl',
+		];
+		yield 'explicit LTR' => [
+			[ 'lang' => 'he', 'dir' => 'ltr' ],
+			'ltr',
+		];
+		yield 'explicit RTL' => [
+			[ 'lang' => 'en', 'dir' => 'rtl' ],
+			'rtl',
+		];
+		// Not supported, but tested to cover the case and detect change
+		yield 'invalid dir' => [
+			[ 'lang' => 'he', 'dir' => 'xyz' ],
+			'rtl',
+		];
+	}
+
+	/**
+	 * @dataProvider provideDirection
+	 */
+	public function testDirection( array $params, $expected ) {
+		$ctx = new ResourceLoaderContext( $this->getResourceLoader(), new FauxRequest( $params ) );
+		$this->assertEquals( $expected, $ctx->getDirection() );
 	}
 
 	public function testShouldInclude() {

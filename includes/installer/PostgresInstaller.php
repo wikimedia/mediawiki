@@ -22,6 +22,7 @@
  */
 
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\DatabasePostgres;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\DBConnectionError;
 
@@ -47,7 +48,7 @@ class PostgresInstaller extends DatabaseInstaller {
 	];
 
 	public static $minimumVersion = '9.2';
-	protected static $notMiniumumVerisonMessage = 'config-postgres-old';
+	protected static $notMinimumVersionMessage = 'config-postgres-old';
 	public $maxRoleSearchDepth = 5;
 
 	protected $pgConns = [];
@@ -119,7 +120,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			return $status;
 		}
 		/**
-		 * @var $conn Database
+		 * @var Database $conn
 		 */
 		$conn = $status->value;
 
@@ -190,7 +191,7 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		if ( $status->isOK() ) {
 			/**
-			 * @var $conn Database
+			 * @var Database $conn
 			 */
 			$conn = $status->value;
 			$conn->clearFlag( DBO_TRX );
@@ -242,7 +243,7 @@ class PostgresInstaller extends DatabaseInstaller {
 				$status = $this->openPgConnection( 'create-schema' );
 				if ( $status->isOK() ) {
 					/**
-					 * @var $conn Database
+					 * @var Database $conn
 					 */
 					$conn = $status->value;
 					$safeRole = $conn->addIdentifierQuotes( $this->getVar( 'wgDBuser' ) );
@@ -296,7 +297,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			return false;
 		}
 		/**
-		 * @var $conn Database
+		 * @var Database $conn
 		 */
 		$conn = $status->value;
 		$superuser = $this->getVar( '_InstallUser' );
@@ -353,6 +354,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			if ( !$status->isOK() ) {
 				return $status;
 			}
+			// @phan-suppress-next-line PhanUndeclaredMethod
 			$exists = $status->value->roleExists( $this->getVar( 'wgDBuser' ) );
 		}
 
@@ -505,7 +507,9 @@ class PostgresInstaller extends DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
+		/** @var DatabasePostgres $conn */
 		$conn = $status->value;
+		'@phan-var DatabasePostgres $conn';
 
 		// Create the schema if necessary
 		$schema = $this->getVar( 'wgDBmwschema' );
@@ -541,7 +545,9 @@ class PostgresInstaller extends DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
+		/** @var DatabasePostgres $conn */
 		$conn = $status->value;
+		'@phan-var DatabasePostgres $conn';
 
 		$safeuser = $conn->addIdentifierQuotes( $this->getVar( 'wgDBuser' ) );
 		$safepass = $conn->addQuotes( $this->getVar( 'wgDBpassword' ) );
@@ -598,6 +604,7 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		/** @var DatabasePostgres $conn */
 		$conn = $status->value;
+		'@phan-var DatabasePostgres $conn';
 
 		if ( $conn->tableExists( 'archive' ) ) {
 			$status->warning( 'config-install-tables-exist' );
@@ -645,7 +652,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			return $status;
 		}
 		/**
-		 * @var $conn Database
+		 * @var Database $conn
 		 */
 		$conn = $status->value;
 
