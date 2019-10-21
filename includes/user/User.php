@@ -1760,11 +1760,6 @@ class User implements IDBAccessObject, UserIdentity {
 			$this->mHideName = 0;
 			$this->mAllowUsertalk = false;
 		}
-
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$thisUser = $this;
-		// Extensions
-		Hooks::run( 'GetBlockedStatus', [ &$thisUser ], '1.34' );
 	}
 
 	/**
