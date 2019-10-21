@@ -1026,6 +1026,7 @@
 	"apihelp-query+recentchanges-param-user": "{{doc-apihelp-param|query+recentchanges|user}}",
 	"apihelp-query+recentchanges-param-excludeuser": "{{doc-apihelp-param|query+recentchanges|excludeuser}}",
 	"apihelp-query+recentchanges-param-tag": "{{doc-apihelp-param|query+recentchanges|tag}}",
+	"apihelp-query+recentchanges-param-slot": "{{doc-apihelp-param|query+recentchanges|slot}}",
 	"apihelp-query+recentchanges-param-prop": "{{doc-apihelp-param|query+recentchanges|prop|paramvalues=1}}",
 	"apihelp-query+recentchanges-paramvalue-prop-user": "{{doc-apihelp-paramvalue|query+recentchanges|prop|user}}",
 	"apihelp-query+recentchanges-paramvalue-prop-userid": "{{doc-apihelp-paramvalue|query+recentchanges|prop|userid}}",
