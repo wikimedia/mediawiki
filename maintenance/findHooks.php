@@ -119,6 +119,7 @@ class FindHooks extends Maintenance {
 				// Could not get parameter information
 				continue;
 			}
+			'@phan-var array $args';
 			if ( count( $argsDoc ) !== count( $args ) ) {
 				$badParameterCount[] = $hook . ': Doc: ' . count( $argsDoc ) . ' vs. Code: ' . count( $args );
 			} else {

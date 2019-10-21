@@ -259,6 +259,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 			if ( count( $err ) == 1 ) {
 				$errMsg = $err[0];
+				'@phan-var array $errMsg';
 				$errMsgName = array_shift( $errMsg );
 
 				if ( $errMsgName == 'hookaborted' ) {

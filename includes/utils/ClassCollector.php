@@ -129,6 +129,7 @@ class ClassCollector {
 	 * @param array|string $token
 	 */
 	protected function tryEndExpect( $token ) {
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		switch ( $this->startToken[0] ) {
 			case T_DOUBLE_COLON:
 				// Skip over T_CLASS after T_DOUBLE_COLON because this is something like
