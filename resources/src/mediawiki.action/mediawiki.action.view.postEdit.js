@@ -70,9 +70,9 @@
 	if ( postEdit ) {
 		mw.hook( 'postEdit' ).fire( {
 			// The following messages can be used here:
-			// postedit-confirmation-saved
-			// postedit-confirmation-created
-			// postedit-confirmation-restored
+			// * postedit-confirmation-saved
+			// * postedit-confirmation-created
+			// * postedit-confirmation-restored
 			message: mw.msg(
 				'postedit-confirmation-' + postEdit,
 				mw.user

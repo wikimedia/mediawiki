@@ -1419,6 +1419,7 @@ mw.Message.prototype.parser = function () {
 mw.Message.prototype.parseDom = ( function () {
 	var $wrapper = $( '<div>' );
 	return function () {
+		// eslint-disable-next-line mediawiki/msg-doc
 		return $wrapper.msg( this.key, this.parameters ).contents().detach();
 	};
 }() );

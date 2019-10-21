@@ -35,6 +35,7 @@
 	function loadMessage( $target, message ) {
 		if ( message ) {
 			$target.removeClass( 'empty' )
+				// eslint-disable-next-line mediawiki/msg-doc
 				.text( mw.message( message ).text() );
 		}
 	}

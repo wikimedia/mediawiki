@@ -152,6 +152,9 @@
 		this.constructor.static.windowManager.openWindow(
 			this.constructor.static.dialog,
 			{
+				// The following messages are used here
+				// * feedback-dialog-title
+				// * config.dialogTitleMessageKey ...
 				title: mw.msg( this.dialogTitleMessageKey ),
 				foreignApi: this.foreignApi,
 				settings: {
@@ -426,7 +429,11 @@
 	 * @return {OO.ui.Error}
 	 */
 	mw.Feedback.Dialog.prototype.getErrorMessage = function () {
-		// Messages: feedback-error1, feedback-error2, feedback-error3, feedback-error4
+		// The following messages can be used here:
+		// * feedback-error1
+		// * feedback-error2
+		// * feedback-error3
+		// * feedback-error4
 		return new OO.ui.Error( mw.msg( 'feedback-' + this.status ) );
 	};
 

@@ -163,12 +163,24 @@
 
 				if ( response.parse.displaytitle ) {
 					$displaytitle = $( $.parseHTML( response.parse.displaytitle ) );
+					// The following messages can be used here:
+					// * editconflict
+					// * editingcomment
+					// * editingsection
+					// * editing
+					// * creating
 					$( '#firstHeading' ).msg(
 						mw.config.get( 'wgEditMessage', 'editing' ),
 						$displaytitle
 					);
 					document.title = mw.msg(
 						'pagetitle',
+						// The following messages can be used here:
+						// * editconflict
+						// * editingcomment
+						// * editingsection
+						// * editing
+						// * creating
 						mw.msg(
 							mw.config.get( 'wgEditMessage', 'editing' ),
 							$displaytitle.text()
@@ -235,11 +247,10 @@
 		$.when( parseRequest, diffRequest ).done( function ( parseResp ) {
 			var parse = parseResp && parseResp[ 0 ].parse,
 				isSubject = ( section === 'new' ),
-				summaryMsg = isSubject ? 'subject-preview' : 'summary-preview',
 				$summaryPreview = $editform.find( '.mw-summary-preview' ).empty();
 			if ( parse && parse.parsedsummary ) {
 				$summaryPreview.append(
-					mw.message( summaryMsg ).parse(),
+					mw.message( isSubject ? 'subject-preview' : 'summary-preview' ).parse(),
 					' ',
 					$( '<span>' ).addClass( 'comment' ).html(
 						// There is no equivalent to rawParams

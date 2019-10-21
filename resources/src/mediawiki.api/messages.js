@@ -59,6 +59,7 @@
 		 */
 		loadMessagesIfMissing: function ( messages, options ) {
 			var missing = messages.filter( function ( msg ) {
+				// eslint-disable-next-line mediawiki/msg-doc
 				return !mw.message( msg ).exists();
 			} );
 
