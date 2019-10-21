@@ -3883,5 +3883,8 @@
 	"easydeflate-invaliddeflate": "주어진 컨텐츠가 적절히 압축되지 않았습니다",
 	"unprotected-js": "보안 상의 이유로 자바스크립트는 보호되지 않은 문서로부터 불러올 수 없습니다. 미디어위키: 이름공간이나 사용자의 하위 문서에서만 자바스크립트를 만들어 주십시오.",
 	"userlogout-continue": "로그아웃하시겠습니까?",
-	"rest-no-match": "요청된 상대 경로($1)는 알려진 핸들러와 일치하지 않습니다"
+	"rest-no-match": "요청된 상대 경로($1)는 알려진 핸들러와 일치하지 않습니다",
+	"rest-pagehistory-title-nonexistent": "지정한 주제($1)가 존재하지 않습니다.",
+	"rest-pagehistory-title-permission-denied": "사용자는 제목($1)을 읽을 권한이 없습니다",
+	"rest-revision-nonexistent": "요청한 판($1)이 존재하지 않습니다."
 }

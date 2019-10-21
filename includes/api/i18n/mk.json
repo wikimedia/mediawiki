@@ -539,6 +539,7 @@
 	"api-help-license-unknown": "Лиценца: <span class=\"apihelp-unknown\">непозната</span>",
 	"api-help-parameters": "{{PLURAL:$1|Параметар|Параметри}}:",
 	"api-help-param-deprecated": "Застарен.",
+	"api-help-param-internal": "Внатрешен.",
 	"api-help-param-required": "Овој параметар е задолжителен.",
 	"api-help-datatypes-header": "Типови на податоци",
 	"api-help-param-type-limit": "Тип: цел број или <kbd>max</kbd>",

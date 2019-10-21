@@ -193,7 +193,8 @@
 			"Johny Weissmuller Jr",
 			"Dark Dragoon",
 			"Elisardojm",
-			"Madamebiblio"
+			"Madamebiblio",
+			"Hasley"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -1068,6 +1069,7 @@
 	"revdelete-otherreason": "Otro motivo:",
 	"revdelete-reasonotherlist": "Otro motivo",
 	"revdelete-edit-reasonlist": "Editar motivos de borrado",
+	"revdelete-edit-reasonlist-suppress": "Editar motivos de supresión",
 	"revdelete-offender": "Autor de la revisión:",
 	"suppressionlog": "Registro de supresiones",
 	"suppressionlogtext": "A continuación se muestra una lista de borrados y bloqueos relacionados con contenido oculto para los administradores.\nVéase la [[Special:BlockList|lista de bloqueos]], que incluye las prohibiciones y bloqueos actualmente activos.",

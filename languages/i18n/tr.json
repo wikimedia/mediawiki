@@ -745,7 +745,7 @@
 	"loginreqlink": "oturum aç",
 	"loginreqpagetext": "Diğer sayfaları görmek için $1 .",
 	"accmailtitle": "Parola gönderildi.",
-	"accmailtext": "[[User talk:$1|$1]] için rastgele oluşturulan parola $2 adresine gönderildi.\n\nBu yeni hesap için parola, giriş yapıldıktan sonra ''[[Special:ChangePassword|parolayı değiştir]]'' bölümünde değiştirilebilir.",
+	"accmailtext": "[[User talk:$1|$1]] için rastgele oluşturulmuş bir şifre $2'e gönderildi. Giriş yaptıktan sonra <em>[[Special:ChangePassword|parola değiştir]]</em> sayfasında değiştirilebilir.",
 	"newarticle": "(Yeni)",
 	"newarticletext": "Henüz varolmayan bir sayfaya konulmuş bir bağlantıya tıkladınız.\nSayfayı oluşturmak için aşağıdaki metin kutusunu kullanın. ([$1 yardım sayfasına] bakınız).\nBuraya yanlışlıkla geldiyseniz tarayıcınızın  <strong>geri </strong> tuşuna tıklayın.",
 	"anontalkpagetext": "----\n<em>Bu sayfa henüz bir kullanıcı hesabı oluşturmamış veya hesabını kullanmayan bir anonim kullanıcının mesaj sayfasıdır.</em>\nBu nedenle bu kişileri belirtmek için rakamsal IP adresini kullanmak zorundayız.\nBu gibi IP adresleri birçok kullanıcı tarafından paylaşılabilir.\nEğer siz de bir anonim kullanıcıysanız ve size sizin ilginiz olmayan iletiler geliyorsa, lütfen diğer anonim kullanıcılarla olabilecek olan karmaşayı önlemek için [[Special:CreateAccount|bir hesap edinin]] veya [[Special:UserLogin|oturum açın]].",
@@ -2663,6 +2663,7 @@
 	"block-log-flags-hiddenname": "kullanıcı adı gizli",
 	"range_block_disabled": "Hizmetliler için aralık engellemesi oluşturma yeteneği devre dışı.",
 	"ipb_expiry_invalid": "Geçersiz bitiş zamanı.",
+	"ipb_expiry_old": "Son kullanma süresi geçmişte kaldı.",
 	"ipb_expiry_temp": "Gizli kullanıcı adı engellemeleri kalıcı olmalı.",
 	"ipb_hide_invalid": "Kullanıcı hesabı gizlenemiyor;  {{PLURAL:$1|Bir düzenleme|$1 düzenleme}}den daha fazla düzenlemesi var.",
 	"ipb_already_blocked": "\"$1\" zaten engellenmiş",
@@ -3696,5 +3697,8 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Şifre özellikle kara listeye alınmış şifrelerle aynı olamaz",
 	"passwordpolicies-policy-maximalpasswordlength": "Parola $1 karakterden kısa olmalı",
 	"passwordpolicies-policy-passwordcannotbepopular": "Parola, $1 popüler parola listesinde olamaz",
-	"passwordpolicies-policy-passwordnotinlargeblacklist": "Parola, en sık kullanılan 100.000 parola listesinde olamaz."
+	"passwordpolicies-policy-passwordnotinlargeblacklist": "Parola, en sık kullanılan 100.000 parola listesinde olamaz.",
+	"rest-pagehistory-title-permission-denied": "Kullanıcının başlığı ($1) okuma hakkı yok.",
+	"rest-revision-permission-denied": "Kullanıcı istenen revizyonlara ($1) erişemiyor.",
+	"rest-compare-permission-denied": "Kullanıcı istenen revizyonlara erişemiyor"
 }

@@ -1242,6 +1242,7 @@
 	"grant-editmycssjs": "Cange le CSS/JSON/JavaScript tune",
 	"grant-editmyoptions": "Cange le preferenze tune e 'a configurazione d'u JSON",
 	"grant-editmywatchlist": "Cange le pàggene condrollate tune",
+	"grant-editsiteconfig": "Cange le CSS/JS d'u site e de le utinde",
 	"grant-editpage": "Cange le pàggene esistende",
 	"grant-editprotected": "Cange le pàggene prutette",
 	"grant-highvolume": "Cangiaminde massive",
@@ -1312,6 +1313,10 @@
 	"action-changetags": "Aggiunge e live arbitrariamende tag sus a le revisiune individuale e vôsce de l'archivije",
 	"action-deletechangetags": "scangille le tag da 'u database",
 	"action-purge": "aggiorne sta pàgene",
+	"action-apihighlimits": "ause 'nu limite cchiù ierte jndr'à l'inderrogaziune de le API",
+	"action-bigdelete": "scangìlle le pàggene cu 'nu cunde luènghe luènghe",
+	"action-blockemail": "blocche 'n'utente a fà mannà le email",
+	"action-bot": "adda essere trattate cumme a nu processe automateche",
 	"action-editprotected": "cange le pàggene prutette cumme a \"{{int:protect-level-sysop}}\"",
 	"action-editsemiprotected": "cange le pàggene prutette cumme a \"{{int:protect-level-autoconfirmed}}\"",
 	"action-editinterface": "cange l'inderfacce utende",
@@ -3629,8 +3634,11 @@
 	"gotointerwiki-invalid": "'U titole specificate non g'è valide.",
 	"pagedata-title": "Date d'a pàgene",
 	"pagedata-bad-title": "Titole invalide: $1.",
+	"passwordpolicies": "Politeche sus a le passuord",
+	"passwordpolicies-summary": "Quiste jè 'n'elenghe de le politeche sus a le passuord efficace pe le gruppe de utinde definite jndr'à sta uicchi.",
 	"passwordpolicies-group": "Gruppe",
 	"passwordpolicies-policies": "Politeche",
+	"passwordpolicies-policy-minimalpasswordlength": "'A password adda essere longhe almene {{PLURAL:$1|1 carattere|$1 carattere}}.",
 	"passwordpolicies-policyflag-forcechange": "adda cangià quanne tràse",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "suggerite cangiamende quanne tràse",
 	"userlogout-continue": "Vue ccù isse?",
@@ -3641,5 +3649,6 @@
 	"rest-pagehistory-timestamp-error": "Non ge riesce a pigghià l'orarie de stambe pa revisione specificate ($1)",
 	"rest-pagehistorycount-title-nonexistent": "'U titole specificate ($1) non g'è valide",
 	"rest-pagehistorycount-type-unrecognized": "'U cunde d'u tipe specificate ($1) non g'è valide",
-	"rest-revision-nonexistent": "'A revisione cercate ($1) non g'esiste."
+	"rest-revision-nonexistent": "'A revisione cercate ($1) non g'esiste.",
+	"rest-compare-wikidiff2": "Stu punde finale vole wikidiff2 1.9.0 o cchiù nuève."
 }

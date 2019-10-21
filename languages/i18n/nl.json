@@ -98,7 +98,8 @@
 			"Elroy",
 			"PiefPafPier",
 			"Ecthelion3",
-			"RadioAzureus"
+			"RadioAzureus",
+			"LongJohn nl"
 		]
 	},
 	"tog-underline": "Links onderstrepen:",
@@ -714,7 +715,7 @@
 	"previewerrortext": "Er is een fout opgetreden tijdens het weergeven van uw wijzigingen.",
 	"blockedtitle": "Gebruiker is geblokkeerd",
 	"blocked-email-user": "<strong>Uw gebruikersnaam is geblokkeerd voor het versturen van e-mail. U kunt nog steeds andere pagina's op deze wiki bewerken.</strong> U kunt de volledige details van de blokkade bekijken op de pagina met uw [[Special:MyContributions|gebruikersbijdragen]].\n\nDe blokkade is opgelegd door $1.\n\nDe opgegeven reden is <em>$2</em>.\n\n* Aanvang blokkade: $8\n* Einde blokkade: $6\n* Bedoeld te blokkeren: $7\n* Blokkadenummer #$5",
-	"blockedtext-partial": "<strong>Uw gebruikersnaam of IP-adres is geblokkeerd voor het maken van veranderingen aan deze pgina. U kunt nog steeds andere pagina's op deze wiki bewerken.</strong> U kunt de volledige details van de blokkade bekijken op de pagina met uw [[Special:MyContributions|gebruikersbijdragen]].\n\nDe blokkade is opgelegd door $1.\n\nDe opgegeven reden is <em>$2</em>.\n\n* Aanvang blokkade: $8\n* Einde blokkade: $6\n* Bedoeld te blokkeren: $7\n* Blokkadenummer #$5",
+	"blockedtext-partial": "<strong>Uw gebruikersnaam of IP-adres is geblokkeerd voor het uitvoeren van deze handeling. U kunt mogelijk nog andere dingen doen, zoals bepaalde pagina's op deze wiki bewerken.</strong> U kunt de volledige details van de blokkade bekijken op de pagina met uw [[Special:MyContributions|gebruikersbijdragen]].\n\nDe blokkade is opgelegd door $1.\n\nDe opgegeven reden is <em>$2</em>.\n\n* Aanvang blokkade: $8\n* Einde blokkade: $6\n* Bedoeld te blokkeren: $7\n* Blokkadenummer #$5",
 	"blockedtext": "'''Uw gebruikersaccount of IP-adres is geblokkeerd.'''\n\nDe blokkade is uitgevoerd door $1.\nDe opgegeven reden is ''$2''.\n\n* Aanvang blokkade: $8\n* Einde blokkade: $6\n* Bedoeld te blokkeren: $7\n\nU kunt contact opnemen met $1 of een andere [[{{MediaWiki:Grouppage-sysop}}|beheerder]] om de blokkade te bespreken.\nU kunt geen gebruik maken van de functie \"{{int:emailuser}}\", tenzij u een geldig e-mailadres hebt opgegeven in uw [[Special:Preferences|voorkeuren]] en het gebruik van deze functie niet geblokkeerd is.\nUw huidige IP-adres is $3 en het blokkadenummer is #$5.\nVermeld alle bovenstaande gegevens als u ergens op deze blokkade reageert.",
 	"autoblockedtext": "Uw IP-adres is automatisch geblokkeerd, omdat het gebruikt is door een andere gebruiker, die geblokkeerd is door $1.\nDe opgegeven reden is:\n\n:''$2''\n\n* Aanvang blokkade: $8\n* Einde blokkade: $6\n* Bedoeld te blokkeren: $7\n\nU kunt contact opnemen met $1 of een andere [[{{MediaWiki:Grouppage-sysop}}|beheerder]] om de blokkade te bespreken.\n\nU kunt geen gebruik maken van de functie \"{{int:emailuser}}\", tenzij u een geldig e-mailadres hebt opgegeven in uw [[Special:Preferences|voorkeuren]], en het gebruik van deze functie niet is geblokkeerd.\n\nUw huidige IP-adres is $3 en het blokkadenummer is #$5.\nVermeld alle bovenstaande gegevens als u ergens op deze blokkade reageert.",
 	"systemblockedtext": "Uw gebruikersaccount of IP-adres is automatisch geblokkeerd door MediaWiki.\nDe opgegeven reden is:\n\n:<em>$2</em>\n\n* Aanvang blokkade: $8\n* Einde blokkade: $6\n* Bedoeld te blokkeren: $7\n\nUw huidige IP-adres is $3.\nVermeld alle bovenstaande gegevens als u ergens op deze blokkade reageert.",
@@ -3923,5 +3924,6 @@
 	"rest-pagehistory-param-range-error": "Versie ID moet groter zijn dan 0",
 	"rest-pagehistory-title-nonexistent": "De opgegeven titel ($1) bestaat niet",
 	"rest-pagehistorycount-title-nonexistent": "De opgegeven titel ($1) bestaat niet",
-	"rest-revision-nonexistent": "De opgevraagde versie ($1) bestaat niet."
+	"rest-revision-nonexistent": "De opgevraagde versie ($1) bestaat niet.",
+	"rest-compare-permission-denied": "Gebruiker heeft geen toegang tot de gevraagde herzieningen"
 }

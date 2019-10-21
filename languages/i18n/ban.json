@@ -514,6 +514,8 @@
 	"post-expand-template-argument-warning": "\"peminget\" lembar puniki madaging kiranglangkungnyane siki argumen templat anggen ukuran ekspansi sane kaliwat ageng. argumen-argumen punika sampun kacampahang.",
 	"post-expand-template-argument-category": "lembar sane medaging argumen templat sane kacampahang",
 	"undo-failure": "Uwahan puniki nénten prasida kabalikang krana wénten konflik panguwahan antara.",
+	"undo-summary": "Ulihang révisi $1 antuk [[Special:Contributions/$2|$2]] ([[User talk:$2|pabligbagan]])",
+	"undo-summary-anon": "Ulihang révisi $1 antuk [[Special:Contributions/$2|$2]]",
 	"viewpagelogs": "Cingak log saking kaca puniki",
 	"nohistory": "Nénten wénten babad uahan ring kaca puniki.",
 	"currentrev-asof": "Révisi sané pinih anyar ring $1",
