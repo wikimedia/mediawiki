@@ -489,7 +489,7 @@
 	ignore = dirty
 [submodule "extensions/Tabs"]
 	path = extensions/Tabs
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Tabs
+	url = https://github.com/wikimedia/mediawiki-extensions-Tabs
 	branch = REL1_34
 	ignore = dirty
 [submodule "extensions/RandomSelection"]
@@ -714,7 +714,7 @@
 	ignore = dirty
 [submodule "extensions/News"]
 	path = extensions/News
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/News
+	url = https://github.com/wikimedia/mediawiki-extensions-News
 	branch = REL1_34
 	ignore = dirty
 [submodule "extensions/Spoilers"]
@@ -809,7 +809,7 @@
 	ignore = dirty
 [submodule "extensions/ArticleFeedbackv5"]
 	path = extensions/ArticleFeedbackv5
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/ArticleFeedbackv5
+	url = https://github.com/wikimedia/mediawiki-extensions-ArticleFeedbackv5
 	branch = master
 	ignore = dirty
 [submodule "vendor"]
@@ -1174,7 +1174,7 @@
 	branch = REL1_34
 [submodule "extensions/SoftRedirector"]
 	path = extensions/SoftRedirector
-	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/SoftRedirector
+	url = https://github.com/wikimedia/mediawiki-extensions-SoftRedirector
 	branch = REL1_35
 [submodule "extensions/AdvancedSearch"]
 	path = extensions/AdvancedSearch
