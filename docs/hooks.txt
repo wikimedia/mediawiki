@@ -1733,7 +1733,7 @@ blocks can be seen using CompositeBlock::getOriginalBlocks()
 $user: User targeted by the block
 $ip: string|null The IP of the current request if $user is the current user
   and they're not exempted from IP blocks. Null otherwise.
-&$block: AbstractBlock object
+&$block: AbstractBlock|null The user's block, or null if none was found.
 
 'getUserPermissionsErrors': Add a permissions error when permissions errors are
 checked for. Use instead of userCan for most cases. Return false if the user
