@@ -36,6 +36,8 @@
 class APCUBagOStuff extends MediumSpecificBagOStuff {
 	/** @var bool Whether to trust the APC implementation to serialization */
 	private $nativeSerialize;
+	/** @var bool */
+	private $useIncrTTLArg;
 
 	/**
 	 * @var string String to append to each APC key. This may be changed
@@ -44,11 +46,15 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 	 */
 	const KEY_SUFFIX = ':4';
 
+	/** @var int Max attempts for implicit CAS operations */
+	private static $CAS_MAX_ATTEMPTS = 100;
+
 	public function __construct( array $params = [] ) {
 		$params['segmentationSize'] = $params['segmentationSize'] ?? INF;
 		parent::__construct( $params );
 		// The extension serializer is still buggy, unlike "php" and "igbinary"
 		$this->nativeSerialize = ( ini_get( 'apc.serializer' ) !== 'default' );
+		$this->useIncrTTLArg = version_compare( phpversion( 'apcu' ), '5.1.12', '>=' );
 	}
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
@@ -87,11 +93,18 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 
 	public function incr( $key, $value = 1, $flags = 0 ) {
 		// https://github.com/krakjoe/apcu/issues/166
-		if ( apcu_exists( $key . self::KEY_SUFFIX ) ) {
-			return apcu_inc( $key . self::KEY_SUFFIX, $value );
-		} else {
-			return false;
+		for ( $i = 0; $i < self::$CAS_MAX_ATTEMPTS; ++$i ) {
+			$oldCount = apcu_fetch( $key . self::KEY_SUFFIX );
+			if ( !is_int( $oldCount ) ) {
+				return false;
+			}
+			$count = $oldCount + (int)$value;
+			if ( apcu_cas( $key . self::KEY_SUFFIX, $oldCount, $count ) ) {
+				return $count;
+			}
 		}
+
+		return false;
 	}
 
 	public function decr( $key, $value = 1, $flags = 0 ) {
@@ -101,5 +114,33 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 		} else {
 			return false;
 		}
+	}
+
+	public function incrWithInit( $key, $exptime, $value = 1, $init = null, $flags = 0 ) {
+		// Use apcu 5.1.12 $ttl argument if apcu_inc() will initialize to $init:
+		// https://www.php.net/manual/en/function.apcu-inc.php
+		if ( $value === $init && $this->useIncrTTLArg ) {
+			/** @noinspection PhpMethodParametersCountMismatchInspection */
+			return apcu_inc( $key . self::KEY_SUFFIX, $value, $success, $exptime );
+		}
+
+		for ( $i = 0; $i < self::$CAS_MAX_ATTEMPTS; ++$i ) {
+			$oldCount = apcu_fetch( $key . self::KEY_SUFFIX );
+			if ( $oldCount === false ) {
+				$count = (int)$init;
+				if ( apcu_add( $key . self::KEY_SUFFIX, $count, $exptime ) ) {
+					return $count;
+				}
+			} elseif ( !is_int( $oldCount ) ) {
+				return false;
+			} else {
+				$count = $oldCount + (int)$value;
+				if ( apcu_cas( $key . self::KEY_SUFFIX, $oldCount, $count ) ) {
+					return $count;
+				}
+			}
+		}
+
+		return false;
 	}
 }
