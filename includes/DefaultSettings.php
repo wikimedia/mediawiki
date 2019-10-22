@@ -8496,21 +8496,6 @@ $wgUpdateRowsPerQuery = 100;
 $wgExternalDiffEngine = false;
 
 /**
- * wikidiff2 supports detection of changes in moved paragraphs.
- * This setting controls the maximum number of paragraphs to compare before it bails out.
- * Supported values:
- * * 0: detection of moved paragraphs is disabled
- * * int > 0: maximum number of paragraphs to compare
- * Note: number of paragraph comparisons is in O(n^2).
- * This setting is only effective if the wikidiff2 PHP extension is used as diff engine.
- * See $wgExternalDiffEngine.
- *
- * @since 1.30
- * @deprecated since 1.34
- */
-$wgWikiDiff2MovedParagraphDetectionCutoff = 0;
-
-/**
  * Disable redirects to special pages and interwiki redirects, which use a 302
  * and have no "redirected from" link.
  *
