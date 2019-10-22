@@ -365,7 +365,7 @@ class JobRunner implements LoggerAwareInterface {
 	 * @return int|null Max memory RSS in kilobytes
 	 */
 	private function getMaxRssKb() {
-		$info = wfGetRusage() ?: [];
+		$info = getrusage( 0 /* RUSAGE_SELF */ );
 		// see https://linux.die.net/man/2/getrusage
 		return isset( $info['ru_maxrss'] ) ? (int)$info['ru_maxrss'] : null;
 	}
