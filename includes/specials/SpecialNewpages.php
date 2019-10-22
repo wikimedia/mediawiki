@@ -65,6 +65,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		$this->customFilters = [];
 		Hooks::run( 'SpecialNewPagesFilters', [ $this, &$this->customFilters ] );
+		// @phan-suppress-next-line PhanEmptyForeach False positive
 		foreach ( $this->customFilters as $key => $params ) {
 			$opts->add( $key, $params['default'] );
 		}

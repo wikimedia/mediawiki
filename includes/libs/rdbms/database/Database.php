@@ -2218,11 +2218,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return true;
 	}
 
-	public function makeList( $a, $mode = self::LIST_COMMA ) {
-		if ( !is_array( $a ) ) {
-			throw new DBUnexpectedError( $this, __METHOD__ . ' called with incorrect parameters' );
-		}
-
+	public function makeList( array $a, $mode = self::LIST_COMMA ) {
 		$first = true;
 		$list = '';
 

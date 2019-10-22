@@ -143,6 +143,7 @@ class SpecialAutoblockList extends SpecialPage {
 				) . "\n"
 			);
 			$list = '';
+			// @phan-suppress-next-line PhanEmptyForeach False positive
 			foreach ( $otherAutoblockLink as $link ) {
 				$list .= Html::rawElement( 'li', [], $link ) . "\n";
 			}

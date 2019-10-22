@@ -2450,6 +2450,7 @@ class AuthManager implements LoggerAwareInterface {
 		if ( $which & 4 ) {
 			$providers += $this->getSecondaryAuthenticationProviders();
 		}
+		// @phan-suppress-next-line PhanEmptyForeach False positive
 		foreach ( $providers as $provider ) {
 			$provider->$method( ...$args );
 		}

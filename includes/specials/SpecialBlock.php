@@ -491,6 +491,7 @@ class SpecialBlock extends FormSpecialPage {
 
 				$list = '';
 
+				// @phan-suppress-next-line PhanEmptyForeach False positive
 				foreach ( $otherBlockMessages as $link ) {
 					$list .= Html::rawElement( 'li', [], $link ) . "\n";
 				}

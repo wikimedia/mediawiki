@@ -258,6 +258,7 @@ class UpdateMediaWiki extends Maintenance {
 		// This executes before the PHP version check, so don't use null coalesce (??).
 		// Keeping this compatible with older PHP versions lets us reach the code that
 		// displays a more helpful error.
+		// @phan-suppress-next-line PhanEmptyForeach False positive
 		foreach ( $params as $name => $param ) {
 			$this->addOption(
 				$name,
