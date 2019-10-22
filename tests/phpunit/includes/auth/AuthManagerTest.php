@@ -1450,7 +1450,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$this->resetServices();
 		$status = $this->manager->checkAccountCreatePermissions( $user );
 		$this->assertFalse( $status->isOK() );
-		$this->assertTrue( $status->hasMessage( 'cantcreateaccount-text' ) );
+		$this->assertTrue( $status->hasMessage( 'blockedtext' ) );
 
 		$blockOptions = [
 			'address' => '127.0.0.0/24',
@@ -1458,13 +1458,14 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
 			'createAccount' => true,
+			'sitewide' => false,
 		];
 		$block = new DatabaseBlock( $blockOptions );
 		$block->insert();
 		$scopeVariable = new ScopedCallback( [ $block, 'delete' ] );
 		$status = $this->manager->checkAccountCreatePermissions( new \User );
 		$this->assertFalse( $status->isOK() );
-		$this->assertTrue( $status->hasMessage( 'cantcreateaccount-range-text' ) );
+		$this->assertTrue( $status->hasMessage( 'blockedtext-partial' ) );
 		ScopedCallback::consume( $scopeVariable );
 
 		$this->setMwGlobals( [

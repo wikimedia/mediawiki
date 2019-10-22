@@ -22,7 +22,6 @@
 namespace MediaWiki\Auth;
 
 use Config;
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
 use StatusValue;
 
@@ -81,25 +80,16 @@ class CheckBlocksSecondaryAuthenticationProvider extends AbstractSecondaryAuthen
 	public function testUserForCreation( $user, $autocreate, array $options = [] ) {
 		$block = $user->isBlockedFromCreateAccount();
 		if ( $block ) {
+			$formatter = MediaWikiServices::getInstance()->getBlockErrorFormatter();
+
 			$language = \RequestContext::getMain()->getUser()->isSafeToLoad() ?
 				\RequestContext::getMain()->getLanguage() :
 				MediaWikiServices::getInstance()->getContentLanguage();
 
-			$errorParams = [
-				$language->embedBidi( $block->getTarget() ),
-				$block->getReasonComment()->message->inLanguage( $language )->plain(),
-				$language->embedBidi( $block->getByName() ),
-			];
-
-			if ( $block->getType() === DatabaseBlock::TYPE_RANGE ) {
-				$errorMessage = 'cantcreateaccount-range-text';
-				$errorParams[] = $this->manager->getRequest()->getIP();
-			} else {
-				$errorMessage = 'cantcreateaccount-text';
-			}
+			$ip = $this->manager->getRequest()->getIP();
 
 			return StatusValue::newFatal(
-				new \Message( $errorMessage, $errorParams )
+				$formatter->getMessage( $block, $user, $language, $ip )
 			);
 		} else {
 			return StatusValue::newGood();

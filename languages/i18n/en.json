@@ -825,8 +825,6 @@
 	"undo-summary": "Undo revision $1 by [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]])",
 	"undo-summary-anon": "Undo revision $1 by [[Special:Contributions/$2|$2]]",
 	"undo-summary-username-hidden": "Undo revision $1 by a hidden user",
-	"cantcreateaccount-text": "Account creation from this IP address (<strong>$1</strong>) has been blocked by [[User:$3|$3]].\n\nThe reason given by $3 is <em>$2</em>",
-	"cantcreateaccount-range-text": "Account creation from IP addresses in the range <strong>$1</strong>, which includes your IP address (<strong>$4</strong>), has been blocked by [[User:$3|$3]].\n\nThe reason given by $3 is <em>$2</em>",
 	"createaccount-hook-aborted": "$1",
 	"viewpagelogs": "View logs for this page",
 	"nohistory": "There is no edit history for this page.",
