@@ -3083,13 +3083,11 @@ function wfArrayPlus2d( array $baseArray, array $newValues ) {
  * Invokes the getrusage(2) system call, requesting RUSAGE_SELF. Returns false
  * if getrusage is not available.
  *
+ * @deprecated since 1.35
  * @since 1.24
  * @return array|bool Resource usage data or false if no data available.
  */
 function wfGetRusage() {
-	if ( !function_exists( 'getrusage' ) ) {
-		return false;
-	} else {
-		return getrusage( 0 /* RUSAGE_SELF */ );
-	}
+	// wfDeprecated( __FUNCTION__, '1.35' );
+	return getrusage( 0 /* RUSAGE_SELF */ );
 }
