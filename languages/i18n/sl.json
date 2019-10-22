@@ -3819,16 +3819,5 @@
 	"mycustomjsredirectprotected": "Nimate pravic za urejanje te strani z JavaScriptom, ker je preusmeritev in ne kaže v vaš uporabniški prostor.",
 	"easydeflate-invaliddeflate": "Dana vsebina ni pravilno stisnjena",
 	"unprotected-js": "Iz varnostnih razlogov JavaScripta ni možno naložiti z nezaščitenih strani. Prosimo, da JavaScript ustvarite samo v imenskem prostoru MediaWiki ali kot uporabniško podstran.",
-	"userlogout-continue": "Se želite odjaviti?",
-	"rest-prefix-mismatch": "Zahtevana pot ($1) ni bila znotraj korenske poti REST API ($2)",
-	"rest-wrong-method": "Zahtevana metoda ($1) ni {{PLURAL:$3|veljavna metoda|ena od veljavnih metod}} za to pot ($2)",
-	"rest-no-match": "Zahtevana relativna pot ($1) se ne ujema z nobenim znanim krmilnikom",
-	"rest-pagehistory-incompatible-params": "Parametra »older_than« in »newer_than« ne moreta biti določena hkrati",
-	"rest-pagehistory-param-range-error": "ID redakcije mora biti večji od 0",
-	"rest-pagehistory-title-nonexistent": "Navedeni naslov ($1) ne obstaja",
-	"rest-pagehistory-revision-nonexistent": "Navedena redakcija ($1) ne obstaja za izbrano stran ($2)",
-	"rest-pagehistory-timestamp-error": "Ne moremo pridobiti časovnega žiga za navedeno redakcijo ($1)",
-	"rest-pagehistorycount-title-nonexistent": "Navedeni naslov ($1) ne obstaja",
-	"rest-pagehistorycount-type-unrecognized": "Navedena vrsta štetja ($1) ni veljavna",
-	"rest-revision-nonexistent": "Zahtevana redakcija ($1) ne obstaja."
+	"userlogout-continue": "Se želite odjaviti?"
 }

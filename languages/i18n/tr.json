@@ -3697,8 +3697,5 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Şifre özellikle kara listeye alınmış şifrelerle aynı olamaz",
 	"passwordpolicies-policy-maximalpasswordlength": "Parola $1 karakterden kısa olmalı",
 	"passwordpolicies-policy-passwordcannotbepopular": "Parola, $1 popüler parola listesinde olamaz",
-	"passwordpolicies-policy-passwordnotinlargeblacklist": "Parola, en sık kullanılan 100.000 parola listesinde olamaz.",
-	"rest-pagehistory-title-permission-denied": "Kullanıcının başlığı ($1) okuma hakkı yok.",
-	"rest-revision-permission-denied": "Kullanıcı istenen revizyonlara ($1) erişemiyor.",
-	"rest-compare-permission-denied": "Kullanıcı istenen revizyonlara erişemiyor"
+	"passwordpolicies-policy-passwordnotinlargeblacklist": "Parola, en sık kullanılan 100.000 parola listesinde olamaz."
 }

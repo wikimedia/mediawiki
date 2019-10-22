@@ -1,18 +1,27 @@
 {
 	"@metadata": {
 		"authors": [
-			"Rotemliss"
+			"Rotemliss",
+			"Amire80"
 		]
 	},
-	"rest-prefix-mismatch": "הנתיב המבוקש ($1) אינו בתוך נתיב השורש ($2) של ה־REST API",
-	"rest-wrong-method": "שיטת הבקשה ($1) אינה {{PLURAL:$3|השיטה המותרת עבור נתיב זה|אחת השיטות המותרות עבור נתיב זה}} ($2)",
-	"rest-no-match": "הנתיב היחסי המבוקש ($1) אינו מתאים לאף הליך טיפול (handler) ידוע",
+	"rest-prefix-mismatch": "הנתיב המבוקש ($1) לא היה בתוך נתיב השורש ($2) של ה־REST API",
+	"rest-wrong-method": "שיטת הבקשה ($1) לא הייתה {{PLURAL:$3|השיטה המותרת עבור נתיב זה|אחת השיטות המותרות עבור נתיב זה}} ($2)",
+	"rest-no-match": "הנתיב היחסי המבוקש ($1) אינו מתאים לשום הליך טיפול (handler) ידוע",
 	"rest-pagehistory-incompatible-params": "לא ניתן לציין בו זמנית את שני הפרמטרים \"older_than\" ו־\"newer_than\"",
-	"rest-pagehistory-param-range-error": "מספר הגרסה חייב להיות גדול מ־0",
+	"rest-pagehistory-param-range-error": "מזהה הגרסה חייב להיות גדול מ־0",
 	"rest-pagehistory-title-nonexistent": "הכותרת שצוינה ($1) אינה קיימת",
 	"rest-pagehistory-revision-nonexistent": "הגרסה שצוינה ($1) אינה קיימת עבור הדף שצוין ($2)",
 	"rest-pagehistory-timestamp-error": "לא ניתן למצוא את התאריך והשעה של הגרסה שצוינה ($1)",
 	"rest-pagehistorycount-title-nonexistent": "הכותרת שצוינה ($1) אינה קיימת",
+	"rest-pagehistory-title-permission-denied": "למשתמש אין הרשאה לקרוא כותבת ($1)",
 	"rest-pagehistorycount-type-unrecognized": "סוג הספירה שצוין ($1) אינו תקין",
-	"rest-revision-nonexistent": "הגרסה שצוינה ($1) אינה קיימת."
+	"rest-revision-nonexistent": "הגרסה שצוינה ($1) אינה קיימת.",
+	"rest-revision-permission-denied": "למשתמש אין גישה לגרסה המבוקשת ($1).",
+	"rest-compare-page-mismatch": "הגרסאות שצוינו שייכות לדפים שונים; ההשוואה שלהן סורבה.",
+	"rest-compare-permission-denied": "למשתמש אין גישה לגרסאות המבוקשות",
+	"rest-compare-nonexistent": "הגרסה שצוינה בפרמטר $1 אינה קיימת.",
+	"rest-compare-inaccessible": "הגרסה שצוינההגרסה שצוינה בפרמטר $1 אינה נגישה באופן ציבורי.",
+	"rest-compare-wrong-content": "למשבצת $1 של הגרסה שצוינה בפרמטר $2 יש סוג תוכן שאינו יכול להיות מומר לטקסט.",
+	"rest-compare-wikidiff2": "נקודת הקצה הזאת דורשת wikidiff2 1.9.0 או גרסה חדשה יותר."
 }
