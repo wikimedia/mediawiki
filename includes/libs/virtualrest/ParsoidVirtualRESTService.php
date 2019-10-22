@@ -75,6 +75,10 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 		parent::__construct( $mparams );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @phan-param array[] $reqs
+	 */
 	public function onRequests( array $reqs, Closure $idGeneratorFunc ) {
 		$result = [];
 		foreach ( $reqs as $key => $req ) {

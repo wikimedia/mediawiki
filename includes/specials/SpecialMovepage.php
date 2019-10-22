@@ -249,6 +249,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		if ( count( $err ) ) {
+			'@phan-var array[] $err';
 			if ( $isPermError ) {
 				$action_desc = $this->msg( 'action-move' )->plain();
 				$errMsgHtml = $this->msg( 'permissionserrorstext-withaction',
@@ -259,7 +260,6 @@ class MovePageForm extends UnlistedSpecialPage {
 
 			if ( count( $err ) == 1 ) {
 				$errMsg = $err[0];
-				'@phan-var array $errMsg';
 				$errMsgName = array_shift( $errMsg );
 
 				if ( $errMsgName == 'hookaborted' ) {

@@ -98,7 +98,7 @@ class MagicWordArray {
 	 * Get the base regex
 	 * @return string[]
 	 */
-	public function getBaseRegex() {
+	public function getBaseRegex() : array {
 		if ( is_null( $this->baseRegex ) ) {
 			$this->baseRegex = [ 0 => '', 1 => '' ];
 			$allGroups = [];
@@ -131,6 +131,7 @@ class MagicWordArray {
 	/**
 	 * Get an unanchored regex that does not match parameters
 	 * @return string[]
+	 * @suppress PhanTypeArraySuspiciousNullable False positive
 	 */
 	public function getRegex() {
 		if ( is_null( $this->regex ) ) {

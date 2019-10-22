@@ -196,11 +196,14 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * This way we can reasonably reduce the amount of module registration
 	 * data send to the client.
 	 *
-	 * @param array &$registryData Modules keyed by name with properties:
+	 * @param array[] &$registryData Modules keyed by name with properties:
 	 *  - string 'version'
 	 *  - array 'dependencies'
 	 *  - string|null 'group'
 	 *  - string 'source'
+	 * @codingStandardsIgnoreStart
+	 * @phan-param array<string,array{version:string,dependencies:array,group:?string,source:string}> &$registryData
+	 * @codingStandardsIgnoreEnd
 	 */
 	public static function compileUnresolvedDependencies( array &$registryData ) {
 		foreach ( $registryData as $name => &$data ) {

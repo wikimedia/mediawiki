@@ -32,7 +32,7 @@ class SectionProfiler {
 	protected $start;
 	/** @var array Map of (mem,real,cpu) */
 	protected $end;
-	/** @var array List of resolved profile calls with start/end data */
+	/** @var array[] List of resolved profile calls with start/end data */
 	protected $stack = [];
 	/** @var array Queue of open profile calls with start data */
 	protected $workStack = [];
