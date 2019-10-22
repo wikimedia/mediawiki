@@ -70,7 +70,7 @@
 	"tog-oldsig": "החתימה הנוכחית שלך:",
 	"tog-fancysig": "התייחסות לחתימה כקוד ויקי (ללא קישור אוטומטי)",
 	"tog-uselivepreview": "הצגת תצוגה מקדימה בלי לטעון מחדש את הדף",
-	"tog-forceeditsummary": "הצגת אזהרה בעת הכנסת תקציר עריכה ריק",
+	"tog-forceeditsummary": "הצגת אזהרה בעת הכנסת תקציר עריכה ריק (או התקציר ההתחלתי של פעולת הביטול)",
 	"tog-watchlisthideown": "הסתרת עריכות שלי ברשימת המעקב",
 	"tog-watchlisthidebots": "הסתרת עריכות של בוטים ברשימת המעקב",
 	"tog-watchlisthideminor": "הסתרת עריכות משניות ברשימת המעקב",
@@ -3932,16 +3932,5 @@
 	"mycustomjsredirectprotected": "אין לך הרשאה לערוך את דף ה־JavaScript הזה, כיוון שהוא הפניה לדף שנמצא מחוץ למרחב המשתמש שלך.",
 	"easydeflate-invaliddeflate": "התוכן שהועבר אינו דחוס כנדרש",
 	"unprotected-js": "מסיבות אבטחה, לא ניתן לטעון JavaScript מדפים שאינם מוגנים. ניתן ליצור סקריפטי JavaScript רק במרחב השם \"מדיה ויקי:\" או בדפי משנה של דף המשתמש.",
-	"userlogout-continue": "האם ברצונך לצאת מהחשבון?",
-	"rest-prefix-mismatch": "הנתיב המבוקש ($1) אינו בתוך נתיב השורש ($2) של ה־REST API",
-	"rest-wrong-method": "שיטת הבקשה ($1) אינה {{PLURAL:$3|השיטה המותרת עבור נתיב זה|אחת השיטות המותרות עבור נתיב זה}} ($2)",
-	"rest-no-match": "הנתיב היחסי המבוקש ($1) אינו מתאים לאף הליך טיפול (handler) ידוע",
-	"rest-pagehistory-incompatible-params": "לא ניתן לציין בו זמנית את שני הפרמטרים \"older_than\" ו־\"newer_than\"",
-	"rest-pagehistory-param-range-error": "מספר הגרסה חייב להיות גדול מ־0",
-	"rest-pagehistory-title-nonexistent": "הכותרת שצוינה ($1) אינה קיימת",
-	"rest-pagehistory-revision-nonexistent": "הגרסה שצוינה ($1) אינה קיימת עבור הדף שצוין ($2)",
-	"rest-pagehistory-timestamp-error": "לא ניתן למצוא את התאריך והשעה של הגרסה שצוינה ($1)",
-	"rest-pagehistorycount-title-nonexistent": "הכותרת שצוינה ($1) אינה קיימת",
-	"rest-pagehistorycount-type-unrecognized": "סוג הספירה שצוין ($1) אינו תקין",
-	"rest-revision-nonexistent": "הגרסה שצוינה ($1) אינה קיימת."
+	"userlogout-continue": "האם ברצונך לצאת מהחשבון?"
 }

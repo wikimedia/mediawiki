@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Grkn gll"
+		]
+	},
+	"rest-pagehistory-title-permission-denied": "Kullanıcının başlığı ($1) okuma hakkı yok.",
+	"rest-revision-permission-denied": "Kullanıcı istenen revizyonlara ($1) erişemiyor.",
+	"rest-compare-permission-denied": "Kullanıcı istenen revizyonlara erişemiyor"
+}

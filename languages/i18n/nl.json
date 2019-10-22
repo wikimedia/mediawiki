@@ -3918,12 +3918,5 @@
 	"mycustomjsredirectprotected": "U hebt geen rechten om deze JavaScriptpagina te bewerken omdat het een doorverwijzing is en deze niet verwijst naar een pagina in uw gebruikersruimte.",
 	"easydeflate-invaliddeflate": "De opgegeven inhoud is onjuist gecomprimeerd",
 	"unprotected-js": "Vanwege veiligheidsredenen kan er geen JavaScript geladen worden vanaf onbeveiligde pagina's. Gelieve alleen JavaScript pagina's aan te maken in de MediaWiki: naamruimte of als een subpagina van een gebruikerspagina.",
-	"userlogout-continue": "Wilt u zich afmelden?",
-	"rest-wrong-method": "De requestmethode ($1) is {{PLURAL:$3|niet de toegestane methode voor dit pad|een van de toegestane methoden voor dit pad}} ($2)",
-	"rest-pagehistory-incompatible-params": "Parameters \"older_than\" en \"newer_than\" kunnen niet beide worden opgegeven",
-	"rest-pagehistory-param-range-error": "Versie ID moet groter zijn dan 0",
-	"rest-pagehistory-title-nonexistent": "De opgegeven titel ($1) bestaat niet",
-	"rest-pagehistorycount-title-nonexistent": "De opgegeven titel ($1) bestaat niet",
-	"rest-revision-nonexistent": "De opgevraagde versie ($1) bestaat niet.",
-	"rest-compare-permission-denied": "Gebruiker heeft geen toegang tot de gevraagde herzieningen"
+	"userlogout-continue": "Wilt u zich afmelden?"
 }

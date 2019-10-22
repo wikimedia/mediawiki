@@ -3780,8 +3780,5 @@
 	"mycustomjsredirectprotected": "You do not have permission to edit this JavaScript page because it is a redirect and it does not point inside your userspace.",
 	"easydeflate-invaliddeflate": "Content provided is not properly deflated",
 	"unprotected-js": "सुरक्षा कारणों से जावास्क्रिप्ट असुरक्षित पन्नों से लोड नहीं किया जा सका। कृपया जावास्क्रिप्ट केवल मीडियाविकि में बनाये:नामस्थान या सदस्य उपपृष्ठ",
-	"userlogout-continue": "का आप लॉग आउट करा चाहत अहैं?",
-	"rest-prefix-mismatch": "अनुरोधित पथ ($1) REST API रूट पथ ($2) के अंदर नही रहा।",
-	"rest-wrong-method": "अनुरोध विधि ($1) {{PLURAL:$3| एह पथ के बरे अनुमत विधि नही अहै। एह पथ के बरे अनुमत तरीकऽन् मा से एक}} ($2)",
-	"rest-no-match": "अनुरोधित सापेक्ष पथ ($1) कउनो भी ज्ञात हैंडलर से मेल नही खात"
+	"userlogout-continue": "का आप लॉग आउट करा चाहत अहैं?"
 }

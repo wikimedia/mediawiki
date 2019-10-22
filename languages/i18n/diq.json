@@ -63,7 +63,7 @@
 	"tog-oldsig": "İmzaya mewcud:",
 	"tog-fancysig": "İmza goreyê metınê wikiyi (bê gıreyo otomatik) ra bıgurene",
 	"tog-uselivepreview": "Bêbarkerdışê pele verqayti bımocne",
-	"tog-forceeditsummary": "Mı ke xulasa veng verdaye, hay a mı ser de",
+	"tog-forceeditsummary": "Mı ke xulasa veng verdaye (ya zi xulasaya peysergırewtışiyê hesabiyayiye) hay a mı ser de",
 	"tog-watchlisthideown": "Vurnayışanê mı lista mına seyr kerdışi de bınımne",
 	"tog-watchlisthidebots": "Lista seyr kerdışi ra vurnayışanê boti bınımne",
 	"tog-watchlisthideminor": "Vurnayışanê qıckekan lista mına seyr kerdışi de bınımne",
@@ -3497,6 +3497,5 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Parola be parolayanê lista xırabınan ra zey yewbini nêbena",
 	"passwordpolicies-policyflag-forcechange": "Lazımo ke cıkewtışi bıvırnê",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "Vırnayışê cıkewtış bıwaz",
-	"userlogout-continue": "Şıma qayılê bıvıciyê?",
-	"rest-pagehistory-param-range-error": "Kamiya çımraviyarnayışi gani 0 ra gırd bo"
+	"userlogout-continue": "Şıma qayılê bıvıciyê?"
 }

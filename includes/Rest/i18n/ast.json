@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Xuacu"
+		]
+	},
+	"rest-prefix-mismatch": "El camín solicitáu ($1) nun taba dientro del camín raíz de la API REST ($2)",
+	"rest-wrong-method": "El métodu solicitáu ($1) nun ̺{{PLURAL:$3|yera'l métodu permitíu pa esti camín|yera unu de los métodos permitíos pa esti camín}} ($2)",
+	"rest-no-match": "El camín relativu solicitáu ($1) nun casa con nengún xestor conocíu"
+}

@@ -101,7 +101,8 @@
 			"1233qwer1234qwer4",
 			"MarkusRost",
 			"Mcandri13",
-			"Tobi 406"
+			"Tobi 406",
+			"Ferdinand0101"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -425,6 +426,7 @@
 	"no-null-revision": "Die neue Nullversion für die Seite „$1“ konnte nicht erstellt werden",
 	"badtitle": "Ungültiger Titel",
 	"badtitletext": "Der Titel der angeforderten Seite ist ungültig, leer oder ein ungültiger Sprachlink von einem anderen Wiki.",
+	"title-invalid": "Der angefragte Seitentitel ist ungültig",
 	"title-invalid-empty": "Der angeforderte Seitentitel ist leer oder enthält nur den Namen eines Namensraums.",
 	"title-invalid-utf8": "Der angeforderte Seitentitel enthält eine ungültige UTF-8-Sequenz.",
 	"title-invalid-interwiki": "Der angeforderte Seitentitel enthält einen Interwiki-Link, der nicht in Titel verwendet werden kann.",
@@ -3932,7 +3934,5 @@
 	"mycustomjsredirectprotected": "Du hast keine Berechtigung, diese JavaScript-Seite zu bearbeiten, da sie eine Weiterleitung, die nicht in deinen Benutzernamensraum zeigt, enthält.",
 	"easydeflate-invaliddeflate": "Der angegebene Inhalt ist nicht ordnungsgemäß komprimiert",
 	"unprotected-js": "Aus Sicherheitsgründen kann JavaScript-Code nicht mehr von ungeschützten Seiten geladen werden. Erstelle die JavaScript-Seite bitte ausschließlich im Namensraum „MediaWiki“ oder als Benutzerunterseite.",
-	"userlogout-continue": "Möchtest du dich abmelden?",
-	"rest-prefix-mismatch": "Der angeforderte Pfad ($1) kannte nicht innerhalb des REST-API-Root-Pfades ($2) gefunden werden",
-	"rest-wrong-method": "Die angeforderte Methode ($1) war keine {{PLURAL:$3|erlaubte Methode für diesen Pfad|der erlaubten Methoden für diesen Pfas}} ($2)"
+	"userlogout-continue": "Möchtest du dich abmelden?"
 }

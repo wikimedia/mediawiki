@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Beta16"
+		]
+	},
+	"rest-pagehistory-title-nonexistent": "Il titolo indicato ($1) non esiste",
+	"rest-pagehistorycount-title-nonexistent": "Il titolo indicato ($1) non esiste",
+	"rest-revision-nonexistent": "La versione richiesta ($1) non esiste."
+}

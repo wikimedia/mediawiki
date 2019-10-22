@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Elisardojm"
+		]
+	},
+	"rest-prefix-mismatch": "O camiño solicitado ($1) non estaba no interior do camiño raíz da API REST ($2)",
+	"rest-wrong-method": "O método solicitado ($1) non era ̺{{PLURAL:$3|o método permitido para este camiño|un dos métodos permitidos para este camiño}} ($2)",
+	"rest-no-match": "O camiño relativo solicitado ($1) non corresponde con ningún manexador coñecido"
+}

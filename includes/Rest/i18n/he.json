@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rotemliss"
+		]
+	},
+	"rest-prefix-mismatch": "הנתיב המבוקש ($1) אינו בתוך נתיב השורש ($2) של ה־REST API",
+	"rest-wrong-method": "שיטת הבקשה ($1) אינה {{PLURAL:$3|השיטה המותרת עבור נתיב זה|אחת השיטות המותרות עבור נתיב זה}} ($2)",
+	"rest-no-match": "הנתיב היחסי המבוקש ($1) אינו מתאים לאף הליך טיפול (handler) ידוע",
+	"rest-pagehistory-incompatible-params": "לא ניתן לציין בו זמנית את שני הפרמטרים \"older_than\" ו־\"newer_than\"",
+	"rest-pagehistory-param-range-error": "מספר הגרסה חייב להיות גדול מ־0",
+	"rest-pagehistory-title-nonexistent": "הכותרת שצוינה ($1) אינה קיימת",
+	"rest-pagehistory-revision-nonexistent": "הגרסה שצוינה ($1) אינה קיימת עבור הדף שצוין ($2)",
+	"rest-pagehistory-timestamp-error": "לא ניתן למצוא את התאריך והשעה של הגרסה שצוינה ($1)",
+	"rest-pagehistorycount-title-nonexistent": "הכותרת שצוינה ($1) אינה קיימת",
+	"rest-pagehistorycount-type-unrecognized": "סוג הספירה שצוין ($1) אינו תקין",
+	"rest-revision-nonexistent": "הגרסה שצוינה ($1) אינה קיימת."
+}

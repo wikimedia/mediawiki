@@ -672,7 +672,7 @@
 	"previewerrortext": "En feil oppsto mens dine endringer skulle forhåndsvises.",
 	"blockedtitle": "Brukeren er blokkert",
 	"blocked-email-user": "<strong>Brukernavnet ditt er blokkert fra å sende epost. Du kan fortsatt redigere andre sider på denne wikien.</strong> Du kan se blokkeringsdetaljene under [[Special:MyContributions|bidragslisten]].\n\nBlokkeringen ble gjort av $1.\n\nDen angitte årsaken er <em>$2</em>.\n\n* Blokkeringen startet: $8\n* Blokkeringen løper ut: $6\n* Blokkeringen er ment for: $7\n* Blokkerings-ID #$5",
-	"blockedtext-partial": "<strong>Brukernavnet ditt eller IP-adressen din er blokkert fra å endre denne siden. Du kan fortsatt redigere andre sider på denne wikien.</strong> Du kan se blokkeringsdetaljene under [[Special:MyContributions|bidragslisten]].\n\nBlokkeringen ble gjort av $1.\n\nDen angitte årsaken er <em>$2</em>.\n\n* Blokkeringen startet: $8\n* Blokkeringen løper ut: $6\n* Blokkeringen er ment for: $7\n* Blokkerings-ID #$5",
+	"blockedtext-partial": "<strong>Brukernavnet ditt eller IP-adressen din er blokkert fra å gjøre dette. Du kan fortsatt redigere andre sider på denne wikien.</strong> Du kan se blokkeringsdetaljene under [[Special:MyContributions|bidragslisten]].\n\nBlokkeringen ble gjort av $1.\n\nDen angitte årsaken er <em>$2</em>.\n\n* Blokkeringen startet: $8\n* Blokkeringen løper ut: $6\n* Blokkeringen er ment for: $7\n* Blokkerings-ID #$5",
 	"blockedtext": "<strong>Ditt brukernavn eller din IP-adresse har blitt blokkert.</strong>\n\nBlokkeringen ble utført av $1. Grunnen som ble oppgitt var <em>$2</em>.\n\n* Blokkeringen begynte:  $8\n* Blokkeringen opphører: $6\n* Blokkeringen ment for: $7\n\nDu kan kontakte $1 eller en annen [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringen.\nDu kan ikke bruke «{{int:emailuser}}»-funksjonen med mindre du har oppgitt en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]] og du ikke har blitt blokkert fra å sende e-post.\nDin nåværende IP-adresse er $3, og blokkerings-ID-en er #$5.\nVennligst ta med all denne informasjonen ved henvendelser.",
 	"autoblockedtext": "Din IP-adresse har blitt automatisk blokkert fordi den ble brukt av en annen bruker som ble blokkert av $1.\nDen oppgitte grunnen var:\n\n:'''$2'''\n\n* Blokkeringen begynte: $8\n* Blokkeringen utgår: $6\n* Blokkeringen er ment for: $7\n\nDu kan kontakte $1 eller en av de andre [[{{MediaWiki:Grouppage-sysop}}|administratorene]] for å diskutere blokkeringen.\n\nMerk at du ikke kan bruke «{{int:emailuser}}»-funksjonen med mindre du har registrert en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]].\n\nDin IP-adresse er $3, og blokkerings-ID-en er #$5.\nVennligst ta med all denne informasjonen ved henvendelser.",
 	"systemblockedtext": "Ditt brukernavn eller IP-adresse har blitt blokkert automatisk av MediaWiki.\n\nBlokkeringen grunnes:\n\n:<em>$2</em>\n\n* Blokkeringen startet: $8\n* Blokkeringen gjelder til: $6\n* Blokkeringen er ment for: $7\n\nDin nåværende IP-adresse er $3.\nVennligst inkluder informasjonen over i alle spørsmål du spør angående dette.",
@@ -3896,18 +3896,5 @@
 	"mycustomjsredirectprotected": "Du har ikke tillatelse til å redigere denne JavaScript-siden fordi den er en omdirigering og ikke peker til en annen side i ditt brukernavnerom.",
 	"easydeflate-invaliddeflate": "Det gitte innholdet er ikke riktig komprimert",
 	"unprotected-js": "Av sikkerhetsårsaker kan ikke JavaScript lastes fra ubeskyttede sider. Bare skap JavaScript i MediaWiki-navnerommet eller som en brukerunderside",
-	"userlogout-continue": "Ønsker du å logge ut?",
-	"rest-prefix-mismatch": "Den forespurte stien ($1) var ikke i REST-API-ets rotsti ($2)",
-	"rest-wrong-method": "Den forespurte metoden ($1) var ikke {{PLURAL:$3|den tillatte metoden|blant de tillatte metodene}} for denne stien ($2)",
-	"rest-no-match": "Den forespurte relative stien ($1) passet ikke med noen kjent behandler",
-	"rest-pagehistory-incompatible-params": "Parameterne «older_than» og «newer_than» kan ikke spesifiseres samtidig",
-	"rest-pagehistory-param-range-error": "Revisjons-ID-en må være større enn 0",
-	"rest-pagehistory-title-nonexistent": "Den gitte tittelen ($1) finnes ikke",
-	"rest-pagehistory-revision-nonexistent": "Den gitte revisjonen ($1) eksisterer ikke for den gitte siden ($2)",
-	"rest-pagehistory-timestamp-error": "Kunne ikke hente tidsstempel for den gitte revisjonen ($1)",
-	"rest-pagehistorycount-title-nonexistent": "Den gitte tittelen ($1) finnes ikke",
-	"rest-pagehistorycount-type-unrecognized": "Den gitte tellingstypen ($1) er ugyldig",
-	"rest-revision-nonexistent": "Den etterspurte revisjonen ($1) finnes ikke.",
-	"rest-compare-nonexistent": "Revisjonen angitt i parameteren $1 finnes ikke.",
-	"rest-compare-inaccessible": "Revisjonen angitt i parameteren $1 er ikke offentlig tilgjengelig."
+	"userlogout-continue": "Ønsker du å logge ut?"
 }

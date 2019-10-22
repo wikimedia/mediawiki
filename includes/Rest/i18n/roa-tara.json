@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joetaras"
+		]
+	},
+	"rest-pagehistory-incompatible-params": "Le parametre \"older_than\" e \"newer_than\" non ge ponne essere specificate tutte e doje",
+	"rest-pagehistory-param-range-error": "ID d'a revisione adda essere cchiù granne de 0",
+	"rest-pagehistory-title-nonexistent": "'U titole specificate ($1) non g'esiste",
+	"rest-pagehistory-revision-nonexistent": "'A revisione specificate ($1) non g'esiste pa pàgene specificate ($2)",
+	"rest-pagehistory-timestamp-error": "Non ge riesce a pigghià l'orarie de stambe pa revisione specificate ($1)",
+	"rest-pagehistorycount-title-nonexistent": "'U titole specificate ($1) non g'è valide",
+	"rest-pagehistorycount-type-unrecognized": "'U cunde d'u tipe specificate ($1) non g'è valide",
+	"rest-revision-nonexistent": "'A revisione cercate ($1) non g'esiste.",
+	"rest-compare-wikidiff2": "Stu punde finale vole wikidiff2 1.9.0 o cchiù nuève."
+}

@@ -43,7 +43,7 @@
 	"tog-oldsig": "'A firma toje:",
 	"tog-fancysig": "Firma grezze cumme a 'nu teste de Uicchi (senza collegamende automatiche)",
 	"tog-uselivepreview": "Face 'ndrucà l'andeprime senze recarecà 'a pàgene",
-	"tog-forceeditsummary": "Ciércame conferme quanne stoche a 'nzerische 'nu riepighe vianghe",
+	"tog-forceeditsummary": "Cércame conferme quanne stoche a 'nzerische 'nu riepiloghe vianghe (o pe 'mbostazione predefinite annulle 'u riepiloghe)",
 	"tog-watchlisthideown": "Scunne le cangiaminde mije da l'elenghe de le pàggene condrollate",
 	"tog-watchlisthidebots": "Scunne le cangiaminde de le bot da l'elenghe de le pàggene condrollate",
 	"tog-watchlisthideminor": "Scunne le cangiaminde stuèdeche da l'elenghe de le pàggene condrollate",
@@ -3641,14 +3641,5 @@
 	"passwordpolicies-policy-minimalpasswordlength": "'A password adda essere longhe almene {{PLURAL:$1|1 carattere|$1 carattere}}.",
 	"passwordpolicies-policyflag-forcechange": "adda cangià quanne tràse",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "suggerite cangiamende quanne tràse",
-	"userlogout-continue": "Vue ccù isse?",
-	"rest-pagehistory-incompatible-params": "Le parametre \"older_than\" e \"newer_than\" non ge ponne essere specificate tutte e doje",
-	"rest-pagehistory-param-range-error": "ID d'a revisione adda essere cchiù granne de 0",
-	"rest-pagehistory-title-nonexistent": "'U titole specificate ($1) non g'esiste",
-	"rest-pagehistory-revision-nonexistent": "'A revisione specificate ($1) non g'esiste pa pàgene specificate ($2)",
-	"rest-pagehistory-timestamp-error": "Non ge riesce a pigghià l'orarie de stambe pa revisione specificate ($1)",
-	"rest-pagehistorycount-title-nonexistent": "'U titole specificate ($1) non g'è valide",
-	"rest-pagehistorycount-type-unrecognized": "'U cunde d'u tipe specificate ($1) non g'è valide",
-	"rest-revision-nonexistent": "'A revisione cercate ($1) non g'esiste.",
-	"rest-compare-wikidiff2": "Stu punde finale vole wikidiff2 1.9.0 o cchiù nuève."
+	"userlogout-continue": "Vue ccù isse?"
 }

@@ -74,7 +74,7 @@
 	"tog-oldsig": "Вашият текущ подпис:",
 	"tog-fancysig": "Без превръщане на подписа в препратка към потребителската страница",
 	"tog-uselivepreview": "Показване на предварителен преглед без презареждане на страницата",
-	"tog-forceeditsummary": "Предупреждаване при празно поле за резюме на редакцията",
+	"tog-forceeditsummary": "Предупреждаване при празно поле за резюме на редакцията (или при резюме за връщане по подразбиране)",
 	"tog-watchlisthideown": "Скриване на моите редакции в списъка ми за наблюдение",
 	"tog-watchlisthidebots": "Скриване на редакциите на ботове в списъка ми за наблюдение",
 	"tog-watchlisthideminor": "Скриване на малките промени в списъка ми за наблюдение",
@@ -3615,6 +3615,5 @@
 	"passwordpolicies-policy-passwordcannotbepopular": "Паролата не може да бъде {{PLURAL:$1|най-популярната такава|от списъка на най-популярните $1 пароли}}",
 	"passwordpolicies-policyflag-forcechange": "трябва да бъде променена при влизане",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "предложи промяна при вход",
-	"userlogout-continue": "Искате да излезете?",
-	"rest-compare-wikidiff2": "Тази крайна точна изисква wikidiff2 версия 1.9.0 или по-нова."
+	"userlogout-continue": "Искате да излезете?"
 }

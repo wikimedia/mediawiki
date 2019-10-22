@@ -3413,9 +3413,5 @@
 	"passwordpolicies-policies": "Richtlinnen",
 	"passwordpolicies-policy-minimalpasswordlength": "Passwuert muss mindestens {{PLURAL:$1|1 Zeeche|$1 Zeeche}} laang sinn.",
 	"passwordpolicies-policy-passwordcannotmatchusername": "Passwuert kann net selwecht si wéi de Benotzernumm",
-	"passwordpolicies-policy-maximalpasswordlength": "Passwurt muss manner wéi {{PLURAL:$1|een|$1}} Zeeche laang sinn",
-	"rest-pagehistory-title-nonexistent": "Den titel \"$1\" deen ugi gouf gëtt et net.",
-	"rest-pagehistorycount-title-nonexistent": "De spezifizéierten titel ($1) gëtt et net",
-	"rest-pagehistory-title-permission-denied": "Dëse Benotzer huet net d'Recht fir den Titel ($1) ze liesen",
-	"rest-revision-nonexistent": "Déi ugefrot Versioun ($1) gëtt et net."
+	"passwordpolicies-policy-maximalpasswordlength": "Passwurt muss manner wéi {{PLURAL:$1|een|$1}} Zeeche laang sinn"
 }

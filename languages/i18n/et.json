@@ -3847,8 +3847,5 @@
 	"mycustomjsredirectprotected": "Sul pole õigust seda JavaScripti lehekülge redigeerida, sest see on ümbersuunamine ja see ei viita sinu kasutajaruumi.",
 	"easydeflate-invaliddeflate": "Ette antud sisu ei ole õigesti vähendatud",
 	"unprotected-js": "Turvalisuse huvides ei saa JavaScripti laadida kaitsmata lehekülgedelt. Palun koosta JavaScripti ainult nimeruumis MediaWiki või kasutajate nimeruumi alamleheküljel.",
-	"userlogout-continue": "Kas soovid välja logida?",
-	"rest-prefix-mismatch": "Päritud tee ($1) is sisaldu REST API juurtees ($2)",
-	"rest-wrong-method": "Päritud meetod ($1) ei ole sellel teel ($2) {{PLURAL:$3|lubatud meetod|üks lubatud meetoditest}}",
-	"rest-no-match": "Päritud suhteline tee ($1) ei vasta ühelegi teadaolevale käsitlejale"
+	"userlogout-continue": "Kas soovid välja logida?"
 }

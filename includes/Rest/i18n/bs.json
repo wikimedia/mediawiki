@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Semina x"
+		]
+	},
+	"rest-pagehistory-title-permission-denied": "Korisnik nema pravo da pročita naslov ($1)",
+	"rest-revision-permission-denied": "Korisnik nema pristup zatraženoj reviziji ($1).",
+	"rest-compare-permission-denied": "Korisnik nema pristup zatraženim revizijama."
+}

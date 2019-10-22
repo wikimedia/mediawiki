@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ykhwong"
+		]
+	},
+	"rest-no-match": "요청된 상대 경로($1)는 알려진 핸들러와 일치하지 않습니다",
+	"rest-pagehistory-title-nonexistent": "지정한 주제($1)가 존재하지 않습니다.",
+	"rest-pagehistory-title-permission-denied": "사용자는 제목($1)을 읽을 권한이 없습니다",
+	"rest-revision-nonexistent": "요청한 판($1)이 존재하지 않습니다."
+}
