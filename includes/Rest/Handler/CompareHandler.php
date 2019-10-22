@@ -88,6 +88,7 @@ class CompareHandler extends Handler {
 	private function getRevision( $paramName ) {
 		if ( !isset( $this->revisions[$paramName] ) ) {
 			$this->revisions[$paramName] =
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable T235355
 				$this->revisionLookup->getRevisionById( $this->getValidatedParams()[$paramName] );
 		}
 		return $this->revisions[$paramName];

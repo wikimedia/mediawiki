@@ -36,7 +36,6 @@ class IPTC {
 	 *
 	 * @param string $rawData The app13 block from jpeg containing iptc/iim data
 	 * @return array IPTC metadata array
-	 * @suppress PhanTypeArraySuspicious
 	 */
 	static function parse( $rawData ) {
 		$parsed = iptcparse( $rawData );

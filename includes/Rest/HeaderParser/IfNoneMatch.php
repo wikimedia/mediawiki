@@ -32,7 +32,7 @@ class IfNoneMatch extends HeaderParserBase {
 	 * getLastError().
 	 *
 	 * @param string[] $headerList
-	 * @return array
+	 * @return array[]
 	 */
 	public function parseHeaderList( $headerList ) {
 		$this->lastError = null;
