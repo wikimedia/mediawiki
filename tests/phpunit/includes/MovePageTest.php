@@ -173,7 +173,7 @@ class MovePageTest extends MediaWikiTestCase {
 	public function testIsValidMove(
 		$old, $new, array $expectedErrors, array $extraOptions = []
 	) {
-		$iwLookup = $this->getMock( InterwikiLookup::class );
+		$iwLookup = $this->createMock( InterwikiLookup::class );
 		$iwLookup->method( 'isValidInterwiki' )
 			->willReturn( true );
 
@@ -345,7 +345,7 @@ class MovePageTest extends MediaWikiTestCase {
 	 * @param array $extraOptions
 	 */
 	public function testMove( $old, $new, array $expectedErrors, array $extraOptions = [] ) {
-		$iwLookup = $this->getMock( InterwikiLookup::class );
+		$iwLookup = $this->createMock( InterwikiLookup::class );
 		$iwLookup->method( 'isValidInterwiki' )
 			->willReturn( true );
 
