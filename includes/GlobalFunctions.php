@@ -3089,6 +3089,6 @@ function wfArrayPlus2d( array $baseArray, array $newValues ) {
  * @return array|bool Resource usage data or false if no data available.
  */
 function wfGetRusage() {
-	// wfDeprecated( __FUNCTION__, '1.35' );
+	wfDeprecated( __FUNCTION__, '1.35' );
 	return getrusage( 0 /* RUSAGE_SELF */ );
 }
