@@ -1331,7 +1331,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	/**
 	 * Restores MediaWiki to using the table set (table prefix) it was using before
 	 * setupTestDB() was called. Useful if we need to perform database operations
-	 * after the test run has finished (such as saving logs or profiling info).
+	 * after the test run has finished (such as saving logs).
 	 *
 	 * This is called by phpunit/bootstrap.php after the last test.
 	 *

@@ -78,7 +78,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addTable', 'querycachetwo', 'patch-querycachetwo.sql' ],
 			[ 'addTable', 'page_props', 'patch-page_props.sql' ],
 			[ 'addTable', 'page_restrictions', 'patch-page_restrictions.sql' ],
-			[ 'addTable', 'profiling', 'patch-profiling.sql' ],
 			[ 'addTable', 'protected_titles', 'patch-protected_titles.sql' ],
 			[ 'addTable', 'redirect', 'patch-redirect.sql' ],
 			[ 'addTable', 'updatelog', 'patch-updatelog.sql' ],
@@ -135,7 +134,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addPgField', 'page', 'page_content_model', 'TEXT' ],
 			[ 'addPgField', 'page_restrictions', 'pr_id',
 				"INTEGER NOT NULL UNIQUE DEFAULT nextval('page_restrictions_pr_id_seq')" ],
-			[ 'addPgField', 'profiling', 'pf_memory', 'NUMERIC(18,10) NOT NULL DEFAULT 0' ],
 			[ 'addPgField', 'recentchanges', 'rc_deleted', 'SMALLINT NOT NULL DEFAULT 0' ],
 			[ 'addPgField', 'recentchanges', 'rc_log_action', 'TEXT' ],
 			[ 'addPgField', 'recentchanges', 'rc_log_type', 'TEXT' ],
@@ -224,8 +222,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeField', 'templatelinks', 'tl_namespace', 'smallint', 'tl_namespace::smallint' ],
 			[ 'changeField', 'user_newtalk', 'user_ip', 'text', 'host(user_ip)' ],
 			[ 'changeField', 'uploadstash', 'us_image_bits', 'smallint', '' ],
-			[ 'changeField', 'profiling', 'pf_time', 'float', '' ],
-			[ 'changeField', 'profiling', 'pf_memory', 'float', '' ],
 
 			# null changes
 			[ 'changeNullableField', 'oldimage', 'oi_bits', 'NULL' ],

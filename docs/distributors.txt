@@ -58,8 +58,8 @@ If you really must mess around with the directory structure, note that the
 following files *must* all be web-accessible for MediaWiki to function
 correctly:
 
-  * api.php, img_auth.php, index.php, load.php, opensearch_desc.php, thumb.php,
-  profileinfo.php. These are the entry points for normal usage. This list may be
+  * api.php, img_auth.php, index.php, load.php, opensearch_desc.php, thumb.php.
+  These are the entry points for normal usage. This list may be
   incomplete and is subject to change.
   * mw-config/index.php: Used for web-based installation (sets up the database,
   prompts for the name of the wiki, etc.).
@@ -113,16 +113,16 @@ intelligently:
 
 == Updates ==
 
-The correct way for updating a wiki is to update the files and then run from 
+The correct way for updating a wiki is to update the files and then run from
 command line the maintenance/update.php script (with appropriate parameters if
-files were moved). It will perform all the needed steps to update the database 
+files were moved). It will perform all the needed steps to update the database
 schema and contents to the version from whatever old one it has.
 Any package manager which replaces the files but doesn't update the db is leaving
-an inconsistent wiki that may produce blank pages (php errors) when new features 
+an inconsistent wiki that may produce blank pages (php errors) when new features
 using the changed schema would be used.
 
 Since MediaWiki 1.17 it is possible to upgrade using the web installer by providing
-an arbitrary secret value stored as $wgUpgradeKey in LocalSettings (older versions 
+an arbitrary secret value stored as $wgUpgradeKey in LocalSettings (older versions
 needed to rename LocalSettings.php in order to upgrade using the installer).
 
 == Documentation ==

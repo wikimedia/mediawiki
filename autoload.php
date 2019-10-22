@@ -1138,7 +1138,6 @@ $wgAutoloadLocalClasses = [
 	'Profiler' => __DIR__ . '/includes/profiler/Profiler.php',
 	'ProfilerExcimer' => __DIR__ . '/includes/profiler/ProfilerExcimer.php',
 	'ProfilerOutput' => __DIR__ . '/includes/profiler/output/ProfilerOutput.php',
-	'ProfilerOutputDb' => __DIR__ . '/includes/profiler/output/ProfilerOutputDb.php',
 	'ProfilerOutputDump' => __DIR__ . '/includes/profiler/output/ProfilerOutputDump.php',
 	'ProfilerOutputStats' => __DIR__ . '/includes/profiler/output/ProfilerOutputStats.php',
 	'ProfilerOutputText' => __DIR__ . '/includes/profiler/output/ProfilerOutputText.php',
@@ -1730,5 +1729,4 @@ $wgAutoloadLocalClasses = [
 	'concatenatedgziphistoryblob' => __DIR__ . '/includes/historyblob/ConcatenatedGzipHistoryBlob.php',
 	'historyblobcurstub' => __DIR__ . '/includes/historyblob/HistoryBlobCurStub.php',
 	'historyblobstub' => __DIR__ . '/includes/historyblob/HistoryBlobStub.php',
-	'profile_point' => __DIR__ . '/profileinfo.php',
 ];

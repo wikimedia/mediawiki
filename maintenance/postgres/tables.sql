@@ -726,16 +726,6 @@ $mw$
   SELECT 1;
 $mw$;
 
--- This table is not used unless profiling is turned on
-CREATE TABLE profiling (
-  pf_count   INTEGER         NOT NULL DEFAULT 0,
-  pf_time    FLOAT           NOT NULL DEFAULT 0,
-  pf_memory  FLOAT           NOT NULL DEFAULT 0,
-  pf_name    TEXT            NOT NULL,
-  pf_server  TEXT            NULL
-);
-CREATE UNIQUE INDEX pf_name_server ON profiling (pf_name, pf_server);
-
 CREATE TABLE protected_titles (
   pt_namespace   SMALLINT    NOT NULL,
   pt_title       TEXT        NOT NULL,

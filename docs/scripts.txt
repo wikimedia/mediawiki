@@ -27,11 +27,6 @@ Primary scripts:
     Returns a OpenSearch description document (see http://www.opensearch.org/)
     that points to the search engines of the wiki.
 
-  profileinfo.php
-    Simple interface for displaying request profiles that were stored in the
-    database. For more information, see the documentation in that file, and at
-    https://www.mediawiki.org/wiki/Manual:Profiling.
-
   thumb.php
     Script used to resize images if it is configured to be done when the web
     browser requests the image and not when generating the page. This script can

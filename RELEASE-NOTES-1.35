@@ -108,6 +108,8 @@ because of Phabricator reports.
   Use MediaWikiServices::getMainWANObjectCache instead.
 * ObjectCache::newWANCacheFromParams, deprecated in 1.34, was removed.
   Construct WANObjectCache directly instead, or use MediaWikiServices.
+* (T231366) The ProfilerOutputDb class and profileinfo.php entry point,
+  deprecated in 1.34, was removed.
 * ApiQueryUserInfo::getBlockInfo, deprecated in 1.34, was removed. Use
   ApiBlockInfoTrait::getBlockDetails instead.
 * Password::equals(), deprecated in 1.33, was removed. Use Password::verify().

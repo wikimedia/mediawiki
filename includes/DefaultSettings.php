@@ -6369,9 +6369,8 @@ $wgDeprecationReleaseLimit = false;
  *  $wgProfiler['output'] = [ ProfilerOutputText::class ];
  * @endcode
  *
- * The output classes available to you by default are ProfilerOutputDb,
- * ProfilerOutputDump, ProfilerOutputStats, ProfilerOutputText, and
- * ProfilerOutputUdp.
+ * The output classes available to you by default are ProfilerOutputDump,
+ * ProfilerOutputStats, ProfilerOutputText, and ProfilerOutputUdp.
  *
  * ProfilerOutputStats outputs profiling data as StatsD metrics. It expects
  * that you have set the $wgStatsdServer configuration variable to the host (or
@@ -6385,16 +6384,13 @@ $wgDeprecationReleaseLimit = false;
  *  $wgProfiler['visible'] = true;
  * @endcode
  *
- * 'ProfilerOutputDb' expects a database table that can be created by applying
- * maintenance/archives/patch-profiling.sql to your database.
- *
  * 'ProfilerOutputDump' expects a $wgProfiler['outputDir'] telling it where to
  * write dump files. The files produced are compatible with the XHProf gui.
  * For a rudimentary sampling profiler:
  *
  * @code
  *   $wgProfiler['class'] = 'ProfilerXhprof';
- *   $wgProfiler['output'] = [ 'ProfilerOutputDb' ];
+ *   $wgProfiler['output'] = [ 'ProfilerOutputText' ];
  *   $wgProfiler['sampling'] = 50; // one every 50 requests
  * @endcode
  *
@@ -6408,13 +6404,6 @@ $wgDeprecationReleaseLimit = false;
  * @since 1.17.0
  */
 $wgProfiler = [];
-
-/**
- * Allow the profileinfo.php entrypoint to be used.
- *
- * @since 1.5.0
- */
-$wgEnableProfileInfo = false;
 
 /**
  * Only record profiling info for pages that took longer than this
