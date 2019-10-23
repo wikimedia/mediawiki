@@ -2165,8 +2165,8 @@ class Language {
 		}
 
 		if ( !isset( $this->dateFormatStrings[$type][$pref] ) ) {
-			$df =
-				$this->localisationCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
+			$df = $this->localisationCache
+				->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
 
 			if ( $type === 'pretty' && $df === null ) {
 				$df = $this->getDateFormatString( 'date', $pref );
@@ -2174,7 +2174,7 @@ class Language {
 
 			if ( !$wasDefault && $df === null ) {
 				$pref = $this->getDefaultDateFormat();
-				$df = $this->getLocalisationCache()
+				$df = $this->localisationCache
 					->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
 			}
 
