@@ -728,8 +728,6 @@
 	"undo-nochange": "Di Änderong schingk ald retuur jemaat woode ze sin.",
 	"undo-summary": "Di Änderong $1 wood {{GENDER:$2|vum|vum|vumm Metmaacher|vun dä|vum}} [[Special:Contributions/$2|$2]] ([[User talk:$2|Klaaf]]) zeröck jenomme.",
 	"undo-summary-username-hidden": "Nemm di Väsjohn $1 vun enem verschtoche Metmaacher widder retuhr.",
-	"cantcreateaccount-text": "Dä [[User:$3|$3]] hät verbodde, dat mer sich vun dä IP-Adress '''$1''' uß als ene neue Metmaacher aanmelde könne soll.\n\nAls Jrund för et Sperre es enjedraare: ''$2''",
-	"cantcreateaccount-range-text": "Ne neue Metmaacher aanmälde vun <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Internet Protocol\">IP</i>-Adräße em Berett vun <strong>$1</strong>, woh de Dinge dren es, wood vum {{GENDER:$3|vum|vum|vumm Metmaacher|vun dä|vum}} [[User:$3|$3]] verbodde.\nDer Jrond: <em><$2</em>\n\nDing <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Internet Protocol\">IP</i>-Adräß es: <strong>$4</strong>",
 	"viewpagelogs": "De Logböcher för heh di Sigg beloore",
 	"nohistory": "Et jitt kei fottjeschmeße, zeröckhollbaa Väsjohne vun dä Sigg.",
 	"currentrev": "Neuste Väsjohn",

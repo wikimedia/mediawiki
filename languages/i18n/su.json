@@ -728,8 +728,6 @@
 	"undo-nochange": "Éditan nu patingpucunghul geus teu bisa dibolaykeun",
 	"undo-summary": "←Ngabolaykeun révisi $1 ku [[Special:Contributions/$2|$2]] ([[User talk:$2|Obrolan]])",
 	"undo-summary-username-hidden": "Bolaykeun révisi $1 ku pamaké nyumput",
-	"cantcreateaccount-text": "Nyieun akun ti ieu alamat IP ('''$1''') dipeungpeuk ku [[User:$3|$3]].\n\nAlesana $3 cenah ''$2''.",
-	"cantcreateaccount-range-text": "Nyieun akun ti alamat IP dina rentang <strong>$1</strong>, kaasup alamat IP anjeun (<strong>$4</strong>), dipeungpeuk ku [[User:$3|$3]].\n\nAlesan $3 nyaéta <em>$2</em>",
 	"viewpagelogs": "Tempo log kaca ieu",
 	"nohistory": "Teu aya jujutan édit pikeun kaca ieu.",
 	"currentrev": "Révisi kiwari",

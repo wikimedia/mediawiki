@@ -430,7 +430,6 @@
 	"undo-failure": "E maliaring iurung ing edit a ini uling e la mipapareu deng minunang me-edit.",
 	"undo-norev": "E maliaring iurung ing edit a ini uling ala yu o mebura ya.",
 	"undo-summary": "Iurung ya ing miyalilan $1 nang [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]])",
-	"cantcreateaccount-text": "Sebat neng [[User:$3|$3]] ing pamaglalang account manibat kaniting IP address ('''$1''').\n\nIni ing sangkan a binie nang $3: ''$2''",
 	"viewpagelogs": "Lon la reng log para king bulung a ini",
 	"nohistory": "Alang amlat ning pamag-edit (edit history) para king bulung a ini.",
 	"currentrev": "Kasalungsungan a pangayalili",

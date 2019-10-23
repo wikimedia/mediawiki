@@ -783,8 +783,6 @@
 	"undo-nochange": "معلوم ہوتا ہے کہ اس ترمیم کو پہلے ہی واپس پھیر دیا گیا ہے۔",
 	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|تبادلۂ خیال]]) کی جانب سے کی گئی $1ویں ترمیم رد کر دی گئی ہے۔",
 	"undo-summary-username-hidden": "پوشیدہ صارف کے نسخہ $1 کو واپس پھیریں",
-	"cantcreateaccount-text": "[[User:$3|$3]] نے اس آئی پی پتہ (<strong>$1</strong>) کی کھاتہ سازی پر پابندی لگا رکھی ہے۔\n\n$3 نے «<em>$2</em>» وجہ بیان کی ہے",
-	"cantcreateaccount-range-text": "[[User:$3|$3]] نے <strong>$1</strong> رینج کے آئی پی پتوں پر جس میں آپ کا آئی پی پتہ (<strong>$4</strong>) بھی موجود ہے پر پابندی لگا دی ہے۔\n\n$3 نے «<em>$2</em>» وجہ بیان کی ہے",
 	"viewpagelogs": "اس صفحہ کے نوشتے دیکھیں",
 	"nohistory": "اس صفحہ کا ترمیمی تاریخچہ موجود نہیں ہے۔",
 	"currentrev": "تازہ ترین نسخہ",

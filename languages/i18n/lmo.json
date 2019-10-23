@@ -532,8 +532,6 @@
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
 	"undo-summary": "Scancelada la mudifega $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Ciciarada]])",
-	"cantcreateaccount-text": "La creasiù de ütènse de part de chèsto indirìs IP (<strong>$1</strong>) l'è stàda blocàda de l'ütènt [[User:$3|$3]]. El mutìf specificàt de $3 l'è <em>$2</em>",
-	"cantcreateaccount-range-text": "La creasiù de ütènse de part de indirìs IP endèl interval <strong>$1</strong>, del qual el fà part apò a 'l tò (<strong>$4</strong>), l'è stàda blocàda de [[User:$3|$3]].\n\nEl mutìf specificàt de $3 l'è <em>$2</em>.",
 	"viewpagelogs": "Varda i register de quela pagina chì",
 	"nohistory": "El sistéma el rìa mìa a catà la crunulugìa de le versiù de chèsta pàgina.",
 	"currentrev": "Versiù de adès",

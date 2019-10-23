@@ -590,7 +590,6 @@
 	"undo-failure": "Ta edycyjŏ niy może być cŏfniyntŏ skuli kōnfliktu ze wersyjami postrzednimi.",
 	"undo-norev": "Edycyje niy idzie cŏfnōńć, bo ôna niy istniyje abo była wyciepniyntŏ.",
 	"undo-summary": "Wycŏfanie wersyje $1 ôd [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusyjŏ]])",
-	"cantcreateaccount-text": "Tworzyńy kůnta s tygo adresu IP ('''$1''') uostoło zawarte bez użytkowńika [[User:$3|$3]].\n\nSkuli: ''$2''",
 	"viewpagelogs": "Ôbejzdrz regesty dlŏ tyj strōny",
 	"nohistory": "Ta zajta ńy mo swojij historyje sprowjyń.",
 	"currentrev": "Aktuelno wersyjo",

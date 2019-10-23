@@ -728,8 +728,6 @@
 	"undo-nochange": "Tha coltas gun deach am mùthadh seo a neo-dhèanamh mu thràth.",
 	"undo-summary": "Neo-dhèan mùthadh $1 leis [[Special:Contributions/$2|$2]] ([[User talk:$2|an deasbaireachd]])",
 	"undo-summary-username-hidden": "Neo-dhèan am mùthadh $1 le cleachdaiche falaichte",
-	"cantcreateaccount-text": "Chuir [[User:$3|$3]] bacadh air cruthachadh chunntasan on t-seòladh IP seo (<strong>$1</strong>).\n\nDh'innis $3 gun do rinn {{GENDER:$3|e|i}} seo air sgàth: <em>$2</em>",
-	"cantcreateaccount-range-text": "Chuir [[User:$3|$3]] casg air daoine a tha airson cunntasan a chruthachadh on sheòlaidhean IP taobh a-staigh na rainse <strong>$1</strong> agus tha sin a' gabhail a-steach an t-seòlaidh IP agad-sa (<strong>$4</strong>).\n\nDh'innis $3 gun do {{GENDER:$1|rinn e|rinn i|rinneadh}} seo air sgàth an adhbhair seo: <em>$2</em>",
 	"viewpagelogs": "Seall logaichean na duilleige seo",
 	"nohistory": "Chan eil eachdraidh deasachaidh aig an duilleag seo.",
 	"currentrev": "Am mùthadh mu dheireadh",

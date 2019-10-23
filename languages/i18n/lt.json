@@ -763,8 +763,6 @@
 	"undo-nochange": "Panašu, kad keitimas jau buvo atšauktas.",
 	"undo-summary": "Atšauktas [[Special:Contributions/$2|$2]] ([[User talk:$2|Aptarimas]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]]) keitimas ($1 versija)",
 	"undo-summary-username-hidden": "Atmesti versiją $1, atliktą paslėpto naudotojo",
-	"cantcreateaccount-text": "Paskyrų kūrimą iš šio IP adreso ('''$1''') užblokavo [[User:$3|$3]].\n\n$3 nurodyta priežastis yra ''$2''",
-	"cantcreateaccount-range-text": "Naudotojas [[User:$3|$3]] nustatė draudimą kurti paskyras iš IP adresų plotmės <strong>$1</strong>, į kurią patenka ir jūsiškis IP adresas (<strong>$4</strong>).\n\n$3 nurodyta priežastis yra <em>$2</em>",
 	"viewpagelogs": "Rodyti šio puslapio specialiuosius veiksmus",
 	"nohistory": "Šis puslapis neturi keitimų istorijos.",
 	"currentrev": "Dabartinė versija",

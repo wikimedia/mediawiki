@@ -671,8 +671,6 @@
 	"undo-nochange": "چوش که پیداگ انت ویرایش مان انیگء باطل بوتگ انت.",
 	"undo-summary": "بازبینی برگردین $1 گون [[Special:مشارکتان/$2|$2]] ([[User talk:$2|گپ]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])",
 	"undo-summary-username-hidden": "بی اثر کتن نسخهٔ $1 گون یک نامالومین کاربرء واسته",
-	"cantcreateaccount-text": "شرکتن حساب چی ای آدرس آی پی ('''$1''') محدود بوتت توسط [[User:$3|$3]].\n\nدلیلی داتگین توسط $3  شی انت ''$2''",
-	"cantcreateaccount-range-text": "اکانتء اڈ کتن چه آی پی ادرسء مان ائ هوار <strong>$1</strong>، که شمئی آی پی (<strong>$4</strong>) مان آئی توکاانت، گون [[User:$3|$3]] متوقف بیتگ انت.\nدرشان کتگین دلیل گون $3، $2 انت.",
 	"viewpagelogs": "آمار ای صفحه بچار",
 	"nohistory": "په ای صفحه تاریح اصلاح نیست.",
 	"currentrev": "هنوکین بازبینی",

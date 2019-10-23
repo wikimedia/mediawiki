@@ -538,7 +538,6 @@
 	"undo-success": "Tagasivõtminõ läts' kõrda. Kaeq üle, kas taa om tuu, midä sa tetäq tahtsõt ja pästäq muutusõq.",
 	"undo-failure": "Tagasivõtminõ lää-s kõrda samal aol tettüide muutmiisi vastaolo peräst. Võit muutusõq käsilde tagasi võttaq.",
 	"undo-summary": "Tagasi võet muutminõ #$1, mink tekk' [[Special:Contributions/$2|$2]] ([[User talk:$2|Arotus]])",
-	"cantcreateaccount-text": "Pruukjanime luuminõ taa puutri võrgoaadrõsi päält ('''$1''') om ärq keelet. Kiildjä: [[User:$3|$3]].\n\n$3 kirjäpant põhjus: ''$2''",
 	"viewpagelogs": "Kaeq seo lehe muutmisnimekirjä.",
 	"nohistory": "Seo leheküle pääl ei olõq vanõmbit kujjõ.",
 	"currentrev": "Viimäne kujo",

@@ -683,8 +683,6 @@
 	"undo-nochange": "A ga hima kaŋ barmaa n' ka taafeeri ka ben.",
 	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|deede]]) na $1 fillaa taafeeri",
 	"undo-summary-username-hidden": "Goykaw tugante na $1 fillaa taafeeri",
-	"cantcreateaccount-text": "[User:$3|$3]] ganji kontu ma tee IP aderesu (<strong>$1</strong>) ga.\n\nDaliloo kaŋ $3 n'a noo ti <em>$2</em>",
-	"cantcreateaccount-range-text": "[[User:$3|$3]] ganji kaŋ kontu ma tee IP aderesey kaŋyaŋ goo <strong>$1</strong> laamaa ra ga, sanda war IP aderesoo (<strong>$4</strong>).\n\nDaliloo kaŋ $3 n'a noo ti <em>$2</em>",
 	"viewpagelogs": "Hantum taarikey guna moɲoo woo se",
 	"nohistory": "Barmay taariki kul šii moɲoo woo se.",
 	"currentrev": "Filla kokorantaa",

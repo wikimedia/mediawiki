@@ -736,8 +736,6 @@
 	"undo-nochange": "D'Ännerung gouf anscheinend schonn zréckgesat.",
 	"undo-summary": "Ännerung $1 vu(n) [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussioun]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]]) annulléieren.",
 	"undo-summary-username-hidden": "Versioun $1 vun engem verstoppte Benotzer zrécksetzen",
-	"cantcreateaccount-text": "D'Opmaache vu Benotzerkonten vun dëser IP Adress ('''$1''') gouf vum [[User:$3|$3]] gespaart.\n\nDe Benotzer $3 huet \"$2\" als Grond uginn.",
-	"cantcreateaccount-range-text": "D'Uleeë vu Benotzerkonte vun IP-Adressen aus dem Beräich \"$1\", zu deem Är IP-Adress (<strong>$4</strong>) gehéiert, gouf vum [[User:$3|$3]] gespaart.\n\nDe Grond den den $3 uginn huet ass <em>$2</em>",
 	"viewpagelogs": "Logbicher fir dës Säit weisen",
 	"nohistory": "Et gëtt keng al Versioune vun dëser Säit.",
 	"currentrev": "Aktuell Versioun",

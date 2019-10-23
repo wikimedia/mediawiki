@@ -763,8 +763,6 @@
 	"undo-nochange": "War a seblant eo bet nullet ar c'hemm dija.",
 	"undo-summary": "Dizober kemmoù $1 a-berzh [[Special:Contributions/$2|$2]] ([[User talk:$2|kaozeal]])",
 	"undo-summary-username-hidden": "Dizober ar reizhadenn $1 gant un implijer kuzhet",
-	"cantcreateaccount-text": "Stanket eo bet ar c'hrouiñ kontoù adal ar chomlec'h IP ('''$1''') gant [[User:$3|$3]].\n\nAn abeg roet gant $3 zo ''$2''",
-	"cantcreateaccount-range-text": "Berzet eo bet gant [[User:$3|$3]] ar c'hrouiñ kontoù adalek ar chomlec'hioù IP el lijorennoù <strong>$1</strong> m'emañ ho chomlec'h IP (<strong>$4</strong>), \n\n<em>$2</em> eo an abeg roet gant $3",
 	"viewpagelogs": "Gwelet ar marilhoù evit ar bajenn-mañ",
 	"nohistory": "Ar bajenn-mañ n'he deus tamm istor ebet.",
 	"currentrev": "Stumm a-vremañ pe stumm red",

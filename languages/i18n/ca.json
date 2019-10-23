@@ -826,8 +826,6 @@
 	"undo-nochange": "Sembla que ja s'ha desfet la modificació.",
 	"undo-summary": "Es desfà la revisió $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussió]])",
 	"undo-summary-username-hidden": "Desfés la revisió $1 d'un usuari ocult",
-	"cantcreateaccount-text": "[[User:$3|$3]] ha blocat la creació de comptes des d'aquesta adreça IP ('''$1''').\n\nEl motiu donat per $3 és ''$2''",
-	"cantcreateaccount-range-text": "La creació de comptes des de les adreces IP en el rang <strong>$1</strong>, que inclou la vostra adreça IP (<strong>$4</strong>), ha estat blocada per [[User:$3|$3]].\n\nEl motiu donat per $3 és <em>$2</em>",
 	"viewpagelogs": "Visualitza els registres d’aquesta pàgina",
 	"nohistory": "No hi ha un historial de revisions per a aquesta pàgina.",
 	"currentrev": "Revisió actual",

@@ -794,8 +794,6 @@
 	"undo-summary": "Revízia $1 používateľa [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusia]]) bola vrátená",
 	"undo-summary-anon": "Revízia $1 používateľa [[Special:Contributions/$2|$2]] bola vrátená",
 	"undo-summary-username-hidden": "Vrátiť revíziu $1, ktorú vykonal skrytý používateľ",
-	"cantcreateaccount-text": "Zakladanie nových účtov z tejto IP adresy (<strong>$1</strong>) bolo zablokované {{GENDER:$3|používateľom|používateľkou}} [[User:$3|$3]].\n\nDôvod, ktorý $3 {{GENDER:$3|uviedol|uviedla}}, je: <em>$2</em>",
-	"cantcreateaccount-range-text": "Zakladanie nových účtov z IP adries v rozsahu <strong>$1</strong>, do ktorého spadá aj vaša IP adresu (<strong>$4</strong>), bolo zablokované {{GENDER:$3|používateľom|používateľkou}} [[User:$3|$3]].\n\nDôvod, ktorý $3 {{GENDER:$3|uviedol|uviedla}}, je: <em>$2</em>",
 	"viewpagelogs": "Zobraziť záznamy pre túto stránku",
 	"nohistory": "Pre túto stránku neexistuje história.",
 	"currentrev": "Aktuálna verzia",

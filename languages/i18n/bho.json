@@ -753,8 +753,6 @@
 	"undo-nochange": "लागत बा की ई संपादन पहिलहीं वापस लिहल जा चुकल बाटे।",
 	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|वार्ता]]) के कइल $1 बदलाव वापस कइल गइल",
 	"undo-summary-username-hidden": "केहू छिपल सदस्य द्वारा कइल बदलाव $1 वापस कइल गइल",
-	"cantcreateaccount-text": "एह आइपी पता (IP address)(<strong>$1</strong>) द्वारा नया खाता बनावे पर [[User:$3|$3]] द्वारा रोक लगावल गइल बा।\n\nएकरा खातिर $3 के दिहल कारण:<em>$2</em>",
-	"cantcreateaccount-range-text": "आइपी पता बिस्तार (IP address range) <strong>$1</strong> पर, जेवना में आपके आइपी (<strong>$4</strong>) भी बा, नया खाता बनावे पर [[User:$3|$3]] द्वारा रोक लगावल गइल बा।\n\nएकरा खातिर $3 के दिहल कारण बा:<em>$2</em>",
 	"viewpagelogs": "ए पन्ना खातिर लॉग देखीं",
 	"nohistory": "ए पन्ना के कौनों संपादन इतिहास नइखे",
 	"currentrev": "सबसे नया बदलाव",

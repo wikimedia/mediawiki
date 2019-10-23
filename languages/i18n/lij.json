@@ -752,8 +752,6 @@
 	"undo-nochange": "Pâ che-a modiffica a sæ zà stæta anullâ.",
 	"undo-summary": "Annullou a modiffica $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discuscion]])",
 	"undo-summary-username-hidden": "Anullou a modiffica $1 de un utente ascoso",
-	"cantcreateaccount-text": "A registrassion da questo addresso IP (<b>$1</b>) a l'è stæta bloccâ da [[User:$3|$3]].\n\nA raxon dæta a l'è ''$2''",
-	"cantcreateaccount-range-text": "A registraçion da di addressi IP inte l'intervallo <strong>$1</strong>, ch'o  l'includde o teu (<strong>$4</strong>), a l'è stæta bloccâ da [[User:$3|$3]].\n\nA raxon dæta da $3 a l'è <em>$2</em>",
 	"viewpagelogs": "Amia i log relativi a 'sta paggina.",
 	"nohistory": "A stoia de verscioin de sta paggina a no gh'è.",
 	"currentrev": "Verscion attuâle",

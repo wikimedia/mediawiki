@@ -462,7 +462,6 @@
 	"post-expand-template-inclusion-category": "Boggaga ku xad gudbay weyninka tusmo'da",
 	"post-expand-template-argument-warning": "'''Digniin:'''Boggaan waxaa ku jira ugu yaraan hal iyo wixii ka badan oo template ah, waxaana ku xiran kuwa kale.",
 	"undo-summary": "Noqay bedelaadka $1 ee sameeyay  [[Special:Contributions/$2|$2]] ([[User talk:$2|hadal]])",
-	"cantcreateaccount-text": "Akoon'ka sameeyaha leh ciwaankaan  IP:ka ('''$1''') waxaa mamnuucay [[User:$3|$3]].\n\nSababta uu qoray $3 waa ''$2''",
 	"viewpagelogs": "Fiiri guadagalayaasha boggaan",
 	"nohistory": "Boggaan malahan taariikhda bedelaadka",
 	"currentrev": "Bedelkii ugu danbeeyay",

@@ -567,7 +567,6 @@
 	"undo-failure": "由於中途嘅編寫毋一致，本編輯毋做得撤銷。",
 	"undo-norev": "由於其嘅修訂版本毋存在或已刪除，本編寫毋做得撤銷。",
 	"undo-summary": "Chhí-sêu yù [[Special:Contributions/$2|$2]] （[[User talk:$2|tui-fa]]） só chok-chhut ke siû-thin $1",
-	"cantcreateaccount-text": "從邇隻IP地址（'''$1'''）建立帳號已經分[[User:$3|$3]]禁止。\n\n當中分$3封禁嘅原因是''$2''",
 	"viewpagelogs": "Chhà-khon liá-chak ya̍p-mien ke ngit-chì",
 	"nohistory": "無本頁嘅修訂版本記錄。",
 	"currentrev": "最新版本",

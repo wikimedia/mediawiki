@@ -630,8 +630,6 @@
 	"undo-nochange": "Zda se, až změna jo se južo anulěrowała.",
 	"undo-summary": "Wersija $1 wót [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]) jo se anulěrowała",
 	"undo-summary-username-hidden": "Změna $1 schowanego wužywarja jo se anulěrowała",
-	"cantcreateaccount-text": "Wutwórjenje wužywarskego konta z toś teje IP adresy ('''$1''') jo blokěrowane pśez [[User:$3|$3]].\n\nPśicyna, kótaruž $3 jo zapódał, jo ''$2''.",
-	"cantcreateaccount-range-text": "Napóranje kontow z IP-adresow we wobcerku <strong>$1</strong>, kótaryž wopśimujo twóju IP-adresu (<strong>$4</strong>), jo se wót [[User:$3|$3]] zablokěrowało.\n\nPśicyna pódana wót $3 jo <em>$2</em>",
 	"viewpagelogs": "Protokole boka pokazaś",
 	"nohistory": "Stawizny wobźěłanja za toś ten bok njeeksistěruju.",
 	"currentrev": "Aktualna wersija",

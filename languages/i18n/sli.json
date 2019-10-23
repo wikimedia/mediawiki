@@ -416,7 +416,6 @@
 	"undo-failure": "De Änderung konnte ne rickgängig gemacht waan, do dar betroffene Obschnitt zwischazeitlich verändert wurde.",
 	"undo-norev": "De Beoarbeetung konnte ne rickgängig gemacht waan, do se ne vorhanden ies oder geläscht wurde.",
 	"undo-summary": "Änderung $1 vu [[Special:Contributions/$2|$2]] ([[User talk:$2|Dischkur]]) wurde rickgängig gemacht.",
-	"cantcreateaccount-text": "De Erstellung annes Nutzerkontos vu dar IP-Atresse '''($1)''' aus wurde durch [[User:$3|$3]] gesperrt.\n\nGrund dar Sperre: ''$2''",
 	"viewpagelogs": "Logbicher fier diese Seite oazeega",
 	"nohistory": "'S gitt kenne Versionsgeschichte fier diese Seite.",
 	"currentrev-asof": "Aktuelle Version vum $1",

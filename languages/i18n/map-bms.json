@@ -607,7 +607,6 @@
 	"undo-failure": "Suntingan kiye ora teyeng dibatalna jalaran ana konflik panyuntingan antara.",
 	"undo-norev": "Suntingan kiye ora teyeng dibatalna jalaran wis ora ana utawa anu wis dibusek.",
 	"undo-summary": "Mbatalna revisi $1 sekang [[Special:Contributions/$2|$2]] ([[User talk:$2|dopokan]])",
-	"cantcreateaccount-text": "Ngawe akun sekang alamat IP kiye ('''$1''') wis diblokir nang [[User:$3|$3]].\n\nAlesane miturut $3 yakuwe ''$2''",
 	"viewpagelogs": "Deleng log-e kaca kiye",
 	"nohistory": "Ora ana sajarah panyuntingan kanggo kaca kiye.",
 	"currentrev": "Revisi sekiyé",

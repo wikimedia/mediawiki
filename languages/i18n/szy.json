@@ -710,8 +710,6 @@
 	"undo-nochange": "tina mikawaway-kalumyiti mapatiku tuway.",
 	"undo-summary": "palawpes nay [[Special:Contributions/$2|$2]] ([[User talk:$2|sasukamu]]) sapisanga’ay a sumad $1",
 	"undo-summary-username-hidden": "patiku midimut misaungayay sumad $1",
-	"cantcreateaccount-text": "namakay IP puenengan a subal <strong>$1</strong>, yamalyilu IP puenengan nu misu (<strong>$1</strong>) napatizengay a canghaw malangat tu ku [[User:$3|$3]].\n\n$3 malangatay a mahicaay ku <em>$2</em>",
-	"cantcreateaccount-range-text": "namakay IP puenengan a subal <strong>$1</strong>, yamalyilu IP puenengan nu misu (<strong>$4</strong>) napatizengay a canghaw malangat tu ku [[User:$3|$3]].\n\n$3 malangatay a mahicaay ku <em>$2</em>",
 	"viewpagelogs": "ciwsace kina kasabelih a nasulitan nakawawan",
 	"nohistory": "tina kasabilih inayi’ amahicahica tu sumad a nasulitan.",
 	"currentrev": "sabaluhay masumad",

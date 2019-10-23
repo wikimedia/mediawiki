@@ -631,7 +631,6 @@
 	"undo-failure": "Huwa impossibbli li tiġi annullata l-modifika, minħabba kunflitt ta' modifiki intermedji.",
 	"undo-norev": "Il-modifika ma tistax tiġi annullata peress li ma teżistix jew inkella għax ġiet diġà imħassra.",
 	"undo-summary": "Neħħi r-reviżjoni $1 ta' [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussjoni]])",
-	"cantcreateaccount-text": "Ħolqien tal-kont minn dan l-indirizz IP ('''$1''') ġie imblukkat minn [[User:$3|$3]].\n\nIr-raġuni li ngħatat minħabba l-blokk mingħand $3 kienet ''$2''",
 	"viewpagelogs": "Ara r-reġistri ta' din il-paġna",
 	"nohistory": "M'hemm l-ebda kronoloġija ta' modifika f'din il-paġna.",
 	"currentrev": "Reviżjoni kurrenti",

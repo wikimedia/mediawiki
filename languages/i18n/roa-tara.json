@@ -781,8 +781,6 @@
 	"undo-nochange": "'U cangiamende pare ca ha state già annullate.",
 	"undo-summary": "Repristine 'a revisione $1 da [[Special:Contributions/$2|$2]] ([[User talk:$2|'Ngazzaminde]])",
 	"undo-summary-username-hidden": "Annulle 'a revisione $1 da 'n'utende scunnute",
-	"cantcreateaccount-text": "'A creazione d'u cunde utende da stu 'ndirizze IP ('''$1''') ha state blocchete da [[User:$3|$3]].\n\n'U mutive dete da $3 jè ''$2''",
-	"cantcreateaccount-range-text": "'A crejazzione d'u cunde da l'indirizze IP jndr'à l'indervalle \"$1\", 'u quale 'nglude 'u 'ndirizze IP tune (<strong>$4</strong>), ha state bloccate da [[User:$3|$2]].",
 	"viewpagelogs": "Vide l'archivie pe sta pàgene",
 	"nohistory": "Sta pàgene non ge tène 'a storie de le cangiaminde ca onne state fatte.",
 	"currentrev": "Versione de osce a die",

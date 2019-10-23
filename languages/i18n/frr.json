@@ -735,8 +735,6 @@
 	"undo-nochange": "Detdiar feranrang as wel al ans turagsaat wurden.",
 	"undo-summary": "Feranrang $1 faan [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuschuun]]) turagsaat.",
 	"undo-summary-username-hidden": "Feranrang $1 faan en ferbürgenen brüker turagsaat",
-	"cantcreateaccount-text": "Det iinrachten faan en brükerkonto faan det IP-adres '''($1)''' as faan [[User:$3|$3]] speret wurden.\n\nGrünj för det sper: ''$2''",
-	"cantcreateaccount-range-text": "Det iinrachten faan brükerkontos uun det IP-adresfial <strong>$1</strong>, huar uk din IP (<strong>$4</strong>) uun as, as faan [[User:$3|$3]] speret wurden.\n\nDi grünj faan $3 wiar: <em>$2</em>",
 	"viewpagelogs": "Logbuken faan detdiar sidj uunwise",
 	"nohistory": "Detdiar sidj hää nään ferluup faan werjuunen.",
 	"currentrev": "Leetst werjuun",

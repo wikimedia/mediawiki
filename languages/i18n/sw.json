@@ -660,7 +660,6 @@
 	"undo-nochange": "Hariri inaonekana kuwa tayari imerudishwa tena.",
 	"undo-summary": "Tengua pitio $1 lililoandikwa na [[Special:Contributions/$2|$2]] ([[User talk:$2|Majadiliano]])",
 	"undo-summary-username-hidden": "Tednua toleo $1 na mtumiaji aliyejificha",
-	"cantcreateaccount-text": "Kusajili akaunti kwa kutumia anwani ya IP hii ('''$1''') imezuiwa na [[User:$3|$3]].\n\nSababu iliyotolewa na $3 ni ''$2''",
 	"viewpagelogs": "Tazama kumbukumbu kwa ukurasa huu",
 	"nohistory": "Hakuna historia ya kuhariri kwa ajili ya ukurasa huu.",
 	"currentrev": "Toleo la sasa",

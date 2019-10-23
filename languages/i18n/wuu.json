@@ -645,7 +645,6 @@
 	"undo-norev": "由于其版本弗存在或已删除，此编辑弗好撤销。",
 	"undo-nochange": "箇笔编辑看出来已经畀撤销过哉。",
 	"undo-summary": "撤销由[[Special:Contributions/$2|$2]]（[[User talk:$2|讨论]]）作出个版本$1",
-	"cantcreateaccount-text": "从箇只IP地址 （<b>$1</b>） 创建账户已经畀[[User:$3|$3]]禁止。\n\n$3封禁个原因是''$2''",
 	"viewpagelogs": "望箇页日志",
 	"nohistory": "该只页面呒不编辑历史。",
 	"currentrev": "最新版本",

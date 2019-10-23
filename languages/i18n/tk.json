@@ -469,7 +469,6 @@
 	"undo-failure": "Gapma-garşylykly aralyk özgerdişler zerarly bu özgerdişi yzyna alyp bolmaýar.",
 	"undo-norev": "Özgerdişi yzyna alyp bolmaýar, sebäbi ol ýok ýa-da öçürilipdir.",
 	"undo-summary": "$1 wersiýasy [[Special:Contributions/$2|$2]] ([[User talk:$2|Çekişme]]) tarapyndan yzyna alyndy.",
-	"cantcreateaccount-text": "Bu IP adresinden ('''$1''') ulanyjy hasaby döretmeklik [[User:$3|$3]] tarapyndan blokirlenipdir.\n\n$3 tarapyndan görkezilen sebäp: ''$2''",
 	"viewpagelogs": "Bu sahypanyň gündeliklerini görkez",
 	"nohistory": "Bu sahypanyň özgerdişler geçmişi ýok.",
 	"currentrev": "Häzirki wersiýa",

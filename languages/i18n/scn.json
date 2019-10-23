@@ -662,8 +662,6 @@
 	"undo-nochange": "Pari chi lu canciamentu già fu annullatu.",
 	"undo-summary": "Annullatu lu canciamentu $1 di [[Special:Contributions/$2|$2]] ([[User talk:$2|discussioni]])",
 	"undo-summary-username-hidden": "Annullata la virsioni $1 fatta di n'utenti ammucciatu",
-	"cantcreateaccount-text": "La criazzioni di cunti a pàrtiri di stu nnirizzu IP (<strong>$1</strong>), fu bluccata di [[User:$3|$3]].\n\nLa spigazzioni data di $3 è <em>$2</em>",
-	"cantcreateaccount-range-text": "La criazzioni di cunti a pàrtiri dî nnirizzi IP ntô ntervallu <strong>$1</strong>, chi cumprenni lu tò nnirizzu IP (<strong>$4</strong>), fu bluccata di [[User:$3|$3]].\n\nLa spigazzioni data di $3 è <em>$2</em>",
 	"viewpagelogs": "Talìa li riggistri di sta pàggina",
 	"nohistory": "Nun c'è crunuluggìa dî canciamenti pi sta pàggina.",
 	"currentrev": "Virsioni currenti",

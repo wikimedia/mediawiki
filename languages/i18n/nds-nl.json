@@ -634,7 +634,6 @@
 	"undo-nochange": "Et likt derup dat de bewarking al weaderümmedraid is.",
 	"undo-summary": "Versy $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|oaverleg]]) weaderümmedraid",
 	"undo-summary-username-hidden": "Versie $1 deur n verbörgen gebruker weerummedreid",
-	"cantcreateaccount-text": "t Anmaken van gebrukers van dit IP-adres (<b>$1</b>) is eblokkeerd deur [[User:$3|$3]].\n\nDe deur $3 op-egeven reden is ''$2''",
 	"viewpagelogs": "Bekyk logboken vöär disse syde",
 	"nohistory": "Der bin gien eerdere versies van disse zied.",
 	"currentrev": "Leste versie",

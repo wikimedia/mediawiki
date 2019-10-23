@@ -688,8 +688,6 @@
 	"undo-nochange": "Ad yettban d akken abeddel yettwasefsex yakan.",
 	"undo-summary": "Ssefsu tasiwelt $1 sɣur [[Special:Contributions/$2|$2]] ([[User talk:$2|Meslay]])",
 	"undo-summary-username-hidden": "Semmewet tacaggart $1 sɣur amseqdac yeffren",
-	"cantcreateaccount-text": "Asnulfu n umiḍan seg tansa IP (<b>$1</b>) tekyef sɣur [[User:$3|$3]].\n\nTaɣẓint n $3 : <em>$2</em>",
-	"cantcreateaccount-range-text": "Asnulfu n umiḍan seg tansiwin IP deg tagrumma <strong>$1</strong>, i sseddan tansa inek/inem IP (<strong>$4</strong>), twawḥelen sɣur [[User:$3|$3]].\n\nTaɣẓint i-d yefka/tefka $3 : <em>$2</em>",
 	"viewpagelogs": "Ẓer aɣmis n usebter-agi",
 	"nohistory": "Ulac amezruy n yibeddlen i usebter-agi.",
 	"currentrev": "Tasiwelt n tura",

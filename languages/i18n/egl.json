@@ -636,8 +636,6 @@
 	"undo-nochange": "A sèmbra che la mudéfica la sìa bèle stêda scanşlêda.",
 	"undo-summary": "Scanşlê la mudéfica $1 ed [[Special:Contributions/$2|$2]]\n([[User talk:$2|discusiòun]])",
 	"undo-summary-username-hidden": "Scanşlê la modéfica $1 ed 'n utèin lughê",
-	"cantcreateaccount-text": "La registrasiòun ed cl'indirés IP ché ('''$1''') l'é stêda bluchêda da [[User:$3|$3]]. \n\nAl mutîv dal blôch dê da $3 l'é còst: ''$2''.",
-	"cantcreateaccount-range-text": "La registrasiòun da indirés IP int l'intervâl <strong>$1</strong>, in dó gh'é dèinter al tó  (<strong>$4</strong>), l'é stêda bluchêda da [[User:$3|$3]]. \n\nAl mutîv dê da $3 l'é <em>$2</em>",
 	"viewpagelogs": "Guêrda la stòria 'd cla pàgina ché",
 	"nohistory": "L'elèinch ed la stôria dal versiòun ed cla pàgina ché an 's câta mìa.",
 	"currentrev": "Ûltma versiòun",

@@ -403,7 +403,6 @@
 	"undo-success": "In viroiş metavonad botil şavad. Lutfan muqoisai zerinro baroi ta'jid kardani amalī xud, barrasī kuned, va ba'dan baroi ançom dodani botilkuniji viroiş taƣjiroti zerinro zaxira kuned.",
 	"undo-failure": "Ba illati barxūrdani viroişhoi dar mijon omada, in viroişro botil nametavon kard.",
 	"undo-summary": "Botili nusxai $1 az tarafi [[Special:Contributions/$2|$2]] ([[User talk:$2|Bahs]])",
-	"cantcreateaccount-text": "Imkoni soxtani hisobi korbarī az in nişonai IP ('''$1''') az tarafi [[User:$3|$3]] basta şudaast.\n\nDaleli $3 cunin ast ''$2''",
 	"viewpagelogs": "Namoişi guzorişhoi marbuta ba in sahifa",
 	"nohistory": "Ta'rixi viroiş baroi in sahifa vuçud nadorad.",
 	"currentrev": "Viroişoti kununī",

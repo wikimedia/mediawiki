@@ -448,7 +448,6 @@
 	"undo-failure": "Nu es posibri eshazel la eición ebiu a que otru usuáriu á realizau una eición entelmeya.",
 	"undo-norev": "La eición nu pué sel eshecha ebiu a que nu dessisti, u hue esborrá",
 	"undo-summary": "Eshazel revisión $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Caraba]])",
-	"cantcreateaccount-text": "La criación de cuentas pol parti e la IP ('''$1''') á siu pará pol el usuáriu [[User:$3|$3]].\n\nLa razón dá pol $3 es ''$2''",
 	"viewpagelogs": "Vel los rustrihus d’esta páhina",
 	"nohistory": "Nu ai dengún estorial d’eicionis pa esta páhina.",
 	"currentrev": "Revisión atual",

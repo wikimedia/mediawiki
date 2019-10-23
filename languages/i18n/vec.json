@@ -639,7 +639,6 @@
 	"undo-failure": "No se pol mìa anular la modifica, par via de un conflito con modifiche intermedie.",
 	"undo-norev": "La modifica no la pode vegner anulà parché no la esiste o la xe stà scancelà.",
 	"undo-summary": "Anulà la modifica $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])",
-	"cantcreateaccount-text": "La creazion de account novi a partir da sto indirizo IP ('''$1''') la xe stà blocà da [[User:$3|$3]].\n\nLa motivazion del bloco fornìa da $3 la xe sta qua: ''$2''",
 	"viewpagelogs": "Varda i registri de sta pagina",
 	"nohistory": "La cronołogia de łe version de sta pàxena no la xè reperibiłe.",
 	"currentrev": "Ultima version",

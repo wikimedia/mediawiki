@@ -737,8 +737,6 @@
 	"undo-nochange": "Ymddengys fod y golygiad wedi ei ddadwneud yn barod.",
 	"undo-summary": "Dadwneud y golygiad $1 gan [[Special:Contributions/$2|$2]] ([[User talk:$2|Sgwrs]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])",
 	"undo-summary-username-hidden": "Dadwneud y golygiad $1 gan ddefnyddiwr cudd",
-	"cantcreateaccount-text": "Rhwystrwyd y gallu i greu cyfrif ar gyfer y cyfeiriad IP hwn, ('''$1'''), gan [[User:$3|$3]].\n\nY rheswm a roddwyd dros y bloc gan $3 yw ''$2''.",
-	"cantcreateaccount-range-text": "Gosododd [[User:$3|$3]] floc ar agor cyfrifon o gyfeiriadau IP yn yr ystod <strong>$1</strong>, sy'n cynnwys eich cyfeiriad IP chi (<strong>$4</strong>).\n\nY rheswm a roddwyd gan $3 yw \"$2\"",
 	"viewpagelogs": "Dangos logiau'r dudalen hon",
 	"nohistory": "Does dim hanes golygu i'r dudalen hon.",
 	"currentrev": "Diwygiad cyfoes",

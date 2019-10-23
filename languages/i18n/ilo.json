@@ -737,8 +737,6 @@
 	"undo-nochange": "Ti inurnos ket kasla naibabawin.",
 	"undo-summary": "Ibabawi ti $1 a binaliwan babaen ni [[Special:Contributions/$2|$2]] ([[User talk:$2|tungtungan]])",
 	"undo-summary-username-hidden": "Isubli ti $1 a binaliwan babaen ti nailemmeng nga agar-aramat",
-	"cantcreateaccount-text": "Ti panagpartuat iti pakabilangan manipud iti daytoy nga adres ti IP (<strong>$1</strong>) ket sinerraan babaen ni [[User:$3|$3]].\n\nTi inted a rason babaen ni $3 ket <em>$2</em>",
-	"cantcreateaccount-range-text": "Ti panagpartuat iti pakabilangan manipud kadagiti adres ti IP iti sakop ti <strong>$1</strong>, a mairaman ti adres ti IP (<strong>$4</strong>), ket sinerraan babaen ni [[User:$3|$3]].\n\nTi inted a rason babaen ni $3 ket <em>$2</em>",
 	"viewpagelogs": "Kitaen dagiti listaan para iti daytoy a panid",
 	"nohistory": "Awan ti pakasaritaan ti panagurnos iti daytoy a panid.",
 	"currentrev": "Kinaudi a rebision",

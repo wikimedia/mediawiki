@@ -677,8 +677,6 @@
 	"undo-nochange": "A smija che la modìfica a sia già stàita anulà.",
 	"undo-summary": "Gavà la revision $1 fàita da [[Special:Contributions/$2|$2]] ([[User talk:$2|Ciaciarade]])",
 	"undo-summary-username-hidden": "Anulé la revision $1 ëd n'utent ëstërmà",
-	"cantcreateaccount-text": "La cression ëd cont neuv a parte da st'adrëssa IP-sì ('''$1''') a l'é stàita blocà da [[User:$3|$3]].\n\nLa rason butà da $3 për ël blocagi a l'é stàita: ''$2''",
-	"cantcreateaccount-range-text": "La creassion ëd cont da l'adrëssa IP ant l'antërval <strong>$1</strong>, ch'a comprend soa adrëssa IP (<strong>$4</strong>), a l'é stàita blocà da [[User:$3|$3]].\n\nLa rason dàita da $3 a l'é <em>$2</em>",
 	"viewpagelogs": "Smon ij registr dë sta pàgina-sì",
 	"nohistory": "La stòria dle version dë sta pàgina-sì a l'é pa trovasse.",
 	"currentrev": "Version dël dì d'ancheuj",

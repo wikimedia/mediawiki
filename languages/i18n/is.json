@@ -742,8 +742,6 @@
 	"undo-nochange": "Breytingin virðist þegar hafa verið tekin til baka.",
 	"undo-summary": "Tek aftur breytingu $1 frá [[Special:Contributions/$2|$2]] ([[User talk:$2|spjall]])",
 	"undo-summary-username-hidden": "Afturkalla breytingu $1 eftir faldan notanda",
-	"cantcreateaccount-text": "Aðgangsgerð fyrir þetta vistfang ('''$1''') hefur verið bannað af [[User:$3|$3]].\n\nÁstæðan sem $3 gaf fyrir því er ''$2''",
-	"cantcreateaccount-range-text": "Aðgangsgerð frá visföngunum „$1”, sem innihalda vistfang þitt („$4”) hefur verið bönnuð af [[User:$3|$3]].\n\nÁstæðan sem $3 gaf fyrir því er „$2”",
 	"viewpagelogs": "Sýna aðgerðir varðandi þessa síðu",
 	"nohistory": "Þessi síða hefur enga breytingaskrá.",
 	"currentrev": "Núverandi útgáfa",

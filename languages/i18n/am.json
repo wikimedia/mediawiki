@@ -489,7 +489,6 @@
 	"undo-failure": "ከዚሁ ለውጥ በኋላ ቅራኔ ለውጦች ስለ ገቡ ሊገለበጥ አይቻልም።",
 	"undo-norev": "ለውጡ አይኖርም ወይም ጠፍቷልና ሊገለበጥ አልተቻለም።",
 	"undo-summary": "አንድ ለውጥ $1 ከ[[Special:Contributions/$2|$2]] ([[User talk:$2|ውይይት]]) ገለበጠ",
-	"cantcreateaccount-text": "ከዚሁ የቁጥር አድራሻ ('''$1''') የብዕር ስም መፍጠር በ[[User:$3|$3]] ታግዷል።\n\nበ$3 የተሰጠው ምክንያት ''$2'' ነው።",
 	"viewpagelogs": "መዝገቦች ለዚሁ ገጽ",
 	"nohistory": "ለዚሁ ገጽ የዕትሞች ታሪክ የለም።",
 	"currentrev": "የአሁኑ እትም",

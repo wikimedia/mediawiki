@@ -573,7 +573,6 @@
 	"undo-failure": "Ang pag-ilis indi na maliwat pa tungod sang nagakonplikto nga mga pang-tunga nga pag-ilis.",
 	"undo-norev": "Ang pag-ilis indii na maliwat pa tungod kay ini wala naga-eksister ukon ginpanas na.",
 	"undo-summary": "Liwaton ang pagbag-o sang $1 sa [[Special:Contributions/$2|$2]] ([[User talk:$2|$2]])",
-	"cantcreateaccount-text": "Ang pagbuhat sang akawnt sang sini nga adres sang IP ('''$1''') ginpunggan ni [[User:$3|$3]].\n\nAng rason nga ginhatag ni $3 amo ang ''$2''",
 	"viewpagelogs": "Tan-awon ang mga log para sa sini nga pahina",
 	"nohistory": "Wala sang kasaysayan sang pag-ilis sang sini nga panid.",
 	"currentrev": "Mga Inislan Subong",

@@ -422,7 +422,6 @@
 	"undo-success": "箇隻編輯可以拕取銷。請檢查吖以確定箇係倷想扤嗰，接到保存修改去完成撤銷編輯。",
 	"undo-failure": "半中嗰編輯有人挭仗，箇隻編輯伓可以拕取銷。",
 	"undo-summary": "取消由[[Special:Contributions/$2|$2]] （[[User talk:$2|對話]]）所修訂嗰 $1",
-	"cantcreateaccount-text": "IP 位址伓能 （'''$1'''） 新開帳戶。箇可能係因為經常有來自倷嗰學堂或網絡供應商 （ISP）故意嗰破壞扤得。",
 	"viewpagelogs": "眵吖箇頁嗰日誌",
 	"nohistory": "箇頁冇修改歷史。",
 	"currentrev": "眼前嗰修改版本",

@@ -696,7 +696,6 @@
 	"undo-norev": "An pagliwat dae tabi magigibo nin huli ta ini bakong eksistido o pinagpura na.",
 	"undo-summary": "Dae idagos an rebisyon $1 sa [[Special:Contributions/$2|$2]] ([[User talk:$2|olay]])",
 	"undo-summary-username-hidden": "Dae idagos an rebisyon sa $1 nin sarong nakatago na paragamit",
-	"cantcreateaccount-text": "An pagbukas nin account halì sa IP na ('''$1''') binágat ni [[User:$3|$3]].\n\n''$2'' an rason na pigtao ni $3",
 	"viewpagelogs": "\nHilingon an mga katalaanan para sa pahinang ini",
 	"nohistory": "Mayong paghirá nin uusipón sa pahinang ini.",
 	"currentrev": "Ppagpakarhay sa ngunyan",

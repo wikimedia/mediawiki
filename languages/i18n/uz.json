@@ -516,8 +516,6 @@
 	"undo-success": "Tahrirni bekor qilish imkoniyati bor. Iltimos, solishtirish oynasini koʻrib chiqib, aynan shu oʻzgarishlarni bekor qilmoqchiligingizga ishonch hosil qiling va undan keyin «Saqla» tugmasini bosing.",
 	"undo-failure": "Keyingi tahrirlar bilan chalkashib ketgani sababli, ushbu tahrirni alohida oʻzini bekor qilishni iloji yoʻq.",
 	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|mun.]]) tomonidan qilingan $1-sonli tahrir qaytarildi",
-	"cantcreateaccount-text": "[[User:$3|$3]] ushbu IP manzil (<strong>$1</strong>) orqali ro‘yxatdan o‘tishni bloklab qo‘ygan.\n\n$3 <em>$2</em>ni sabab qilib ko‘rsatdi",
-	"cantcreateaccount-range-text": "[[User:$3|$3]] <strong>$1</strong> sohaga tegishli IP manzillar, shu jumladan sizning IP manzilingiz (<strong>$4</strong>), orqali ro‘yxatdan o‘tishni bloklab qo‘ygan.\n\n$3 <em>$2</em>ni sabab qilib ko‘rsatdi",
 	"viewpagelogs": "Ushbu sahifaga doir qaydlarni koʻrsat",
 	"nohistory": "Ushbu sahifa uchun oʻzgarishlar tarixi mavjud emas.",
 	"currentrev": "Hozirgi koʻrinishi",

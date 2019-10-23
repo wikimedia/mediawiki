@@ -527,7 +527,6 @@
 	"undo-failure": "No se puet desfer a edición pues un atro usuario ha feito una edición intermeya.",
 	"undo-norev": "No s'ha puesto desfer a edición porque no existiba u ya s'heba borrato.",
 	"undo-summary": "Desfeita a edición $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|desc.]])",
-	"cantcreateaccount-text": "A creyación de cuentas dende ixa adreza IP ('''$1''') estió bloqueyata por [[User:$3|$3]].\n\nA razón indicada por $3 ye ''$2''",
 	"viewpagelogs": "Veyer os rechistros d'ista pachina",
 	"nohistory": "Ista pachina no tiene un historial d'edicions.",
 	"currentrev": "Versión actual",

@@ -765,8 +765,6 @@
 	"undo-nochange": "Бу уларытыы хайыы-үйэ сотуллубут курдук.",
 	"undo-summary": "[[Special:Contributions/$2|$2]] кыттааччы ([[User talk:$2|ырытыы]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]]) $1 нүөмэрдээх уларытыытын сотон оннугар түһэрэргэ.",
 	"undo-summary-username-hidden": "Кистэммит кыттааччы $1 уларытыытын төннөр",
-	"cantcreateaccount-text": "[[User:$3|$3]] кыттааччы бу IP-ттан ('''$1''') саҥа бэлиэтэниини бопто.\n\nБыһаарыыта: $3 - ''$2''",
-	"cantcreateaccount-range-text": "Бу IP-диапазонтан <strong>$1</strong> ааты бэлиэтиири [[User:$3|$3]] боппут. Эн IP-аадырыһыҥ (<strong>$4</strong>) онно киирсэр эбит. \n\nЫйыллыбыт төрүөтэ: $2.",
 	"viewpagelogs": "Бу сирэй сурунаалларын көрүү",
 	"nohistory": "Бу сирэй историята суох эбит.",
 	"currentrev": "Билиҥҥи барыл",

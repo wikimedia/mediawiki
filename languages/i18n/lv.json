@@ -692,7 +692,6 @@
 	"undo-norev": "Šo izmaiņu nevar atcelt, jo tādas nav vai tā ir izdzēsta.",
 	"undo-summary": "Atcēlu [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]) izdarīto izmaiņu $1",
 	"undo-summary-username-hidden": "Atsaukta slēpta lietotāja revīzija $1",
-	"cantcreateaccount-text": "[[Lietotājs:$3|$3]] ir bloķējis lietotāja izveidošanu no šīs IP adreses ('''$1''').\n\n$3 norādītais iemesls ir ''$2''",
 	"viewpagelogs": "Apskatīt ar šo lapu saistītos reģistru ierakstus",
 	"nohistory": "Šai lapai nav pieejama versiju hronoloģija.",
 	"currentrev": "Pašreizējā versija",

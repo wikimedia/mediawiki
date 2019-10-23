@@ -495,7 +495,6 @@
 	"parser-template-loop-warning": "Ansa formulae detecta: [[$1]]",
 	"undo-norev": "Recensio abrogari non potuit quia non est aut deleta est.",
 	"undo-summary": "Abrogans recensionem $1 ab usore [[Special:Contributions/$2|$2]] ([[User talk:$2|Disputatio]])",
-	"cantcreateaccount-text": "Ex hoc loco IP ('''$1''') nomen sibi imponere ab usore [[User:$3|$3]] interdicitur.\nQui hanc causam dedit: ''$2''",
 	"viewpagelogs": "Vide acta huius paginae",
 	"nohistory": "Huic paginae non est historia.",
 	"currentrev": "Redactio novissima",
