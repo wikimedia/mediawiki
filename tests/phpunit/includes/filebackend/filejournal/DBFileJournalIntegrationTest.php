@@ -33,9 +33,8 @@ class DBFileJournalIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function getJournal( $options = [] ) {
-		return FileJournal::factory(
-			$options + [ 'class' => DBFileJournal::class, 'domain' => wfWikiID() ],
-			'local-backend' );
+		return new DBFileJournal(
+			$options + [ 'domain' => wfWikiID(), 'backend' => 'local-backend' ] );
 	}
 
 	/**

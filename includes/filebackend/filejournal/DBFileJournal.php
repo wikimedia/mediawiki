@@ -37,10 +37,10 @@ class DBFileJournal extends FileJournal {
 	protected $domain;
 
 	/**
-	 * Construct a new instance from configuration. Do not call directly, use FileJournal::factory.
+	 * Construct a new instance from configuration.
 	 *
 	 * @param array $config Includes:
-	 *   domain: database domain ID of the wiki
+	 *   - domain: database domain ID of the wiki
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );

@@ -249,8 +249,7 @@ trait FileBackendGroupTestTrait {
 			'class' => FSFileBackend::class,
 			'lockManager' =>
 				$this->lmgFactory->getLockManagerGroup( self::getWikiID() )->get( 'fsLockManager' ),
-			'fileJournal' =>
-				FileJournal::factory( [ 'class' => NullFileJournal::class ], 'local-backend' ),
+			'fileJournal' => new NullFileJournal,
 		], $config );
 
 		// For config values that are objects, check object identity.

@@ -271,7 +271,8 @@ return [
 			$services->getMainWANObjectCache(),
 			$services->getMimeAnalyzer(),
 			$services->getLockManagerGroupFactory(),
-			$services->getTempFSFileFactory()
+			$services->getTempFSFileFactory(),
+			$services->getObjectFactory()
 		);
 	},
 

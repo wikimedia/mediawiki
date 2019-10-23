@@ -75,7 +75,10 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 					'unittest-cont1' => [ 'levels' => 1, 'base' => 16, 'repeat' => 1 ]
 				];
 				if ( isset( $useConfig['fileJournal'] ) ) {
-					$useConfig['fileJournal'] = FileJournal::factory( $useConfig['fileJournal'], $name );
+					$useConfig['fileJournal'] = ObjectFactory::getObjectFromSpec(
+						[ 'backend' => $name ] + $useConfig['fileJournal'],
+						[ 'specIsArg' => true, 'assertClass' => FileJournal::class ]
+					);
 				}
 				$useConfig['lockManager'] = LockManagerGroup::singleton()->get( $useConfig['lockManager'] );
 				$class = $useConfig['class'];
