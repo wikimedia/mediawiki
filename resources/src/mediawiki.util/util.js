@@ -353,6 +353,7 @@ util = {
 		}
 
 		if ( nextnode && ( typeof nextnode === 'string' || nextnode.nodeType || nextnode.jquery ) ) {
+			// eslint-disable-next-line no-jquery/variable-pattern
 			nextnode = $( ul ).find( nextnode );
 			if ( nextnode.length === 1 && nextnode[ 0 ].parentNode === ul ) {
 				// Insertion point: Before nextnode
