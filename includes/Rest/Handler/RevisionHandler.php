@@ -63,6 +63,7 @@ class RevisionHandler extends SimpleHandler {
 				'id' => $rev->getPageId(),
 				'title' => $rev->getPageAsLinkTarget()->getText(),
 			],
+			'size' => $rev->getSize(),
 			'timestamp' => wfTimestamp( TS_ISO_8601, $rev->getTimestamp() ),
 		];
 
@@ -79,6 +80,12 @@ class RevisionHandler extends SimpleHandler {
 		$comment = $rev->getComment( RevisionRecord::FOR_THIS_USER, $this->user );
 		$responseData['comment'] = $comment ? $comment->text : null;
 
+		$parent = $this->revisionLookup->getPreviousRevision( $rev );
+		if ( $parent ) {
+			$responseData['delta'] = $rev->getSize() - $parent->getSize();
+		} else {
+			$responseData['delta'] = null;
+		}
 		return $this->getResponseFactory()->createJson( $responseData );
 	}
 

@@ -330,6 +330,7 @@ class PageHistoryHandler extends SimpleHandler {
 				$sizes += $this->revisionStore->getRevisionSizes( $unknownSizes );
 			}
 			foreach ( $revisions as &$revision ) {
+				$revision['delta'] = null;
 				if ( isset( $revision['parent_id'] ) ) {
 					if ( isset( $sizes[$revision['parent_id']] ) ) {
 						$revision['delta'] = $revision['size'] - $sizes[$revision['parent_id']];
