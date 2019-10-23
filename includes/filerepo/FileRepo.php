@@ -185,8 +185,22 @@ class FileRepo {
 		}
 
 		// Optional settings that have a default
-		$this->initialCapital = $info['initialCapital'] ??
+		$localCapitalLinks =
 			MediaWikiServices::getInstance()->getNamespaceInfo()->isCapitalized( NS_FILE );
+		$this->initialCapital = $info['initialCapital'] ?? $localCapitalLinks;
+		if ( $localCapitalLinks && !$this->initialCapital ) {
+			// If the local wiki's file namespace requires an initial capital, but a foreign file
+			// repo doesn't, complications will result. Linker code will want to auto-capitalize the
+			// first letter of links to files, but those links might actually point to files on
+			// foreign wikis with initial-lowercase names. This combination is not likely to be
+			// used by anyone anyway, so we just outlaw it to save ourselves the bugs. If you want
+			// to include a foreign file repo with initialCapital false, set your local file
+			// namespace to not be capitalized either.
+			throw new InvalidArgumentException(
+				'File repos with initial capital false are not allowed on wikis where the File ' .
+				'namespace has initial capital true' );
+		}
+
 		$this->url = $info['url'] ?? false; // a subclass may set the URL (e.g. ForeignAPIRepo)
 		if ( isset( $info['thumbUrl'] ) ) {
 			$this->thumbUrl = $info['thumbUrl'];
@@ -659,7 +673,7 @@ class FileRepo {
 			$this->initialCapital !=
 			MediaWikiServices::getInstance()->getNamespaceInfo()->isCapitalized( NS_FILE )
 		) {
-			$name = $title->getUserCaseDBKey();
+			$name = $title->getDBkey();
 			if ( $this->initialCapital ) {
 				$name = MediaWikiServices::getInstance()->getContentLanguage()->ucfirst( $name );
 			}

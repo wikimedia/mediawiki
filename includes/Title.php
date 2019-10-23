@@ -79,8 +79,6 @@ class Title implements LinkTarget, IDBAccessObject {
 	public $mUrlform = '';
 	/** @var string Main part with underscores */
 	public $mDbkeyform = '';
-	/** @var string Database key with the initial letter in the case specified by the user */
-	protected $mUserCaseDBKey;
 	/** @var int Namespace index, i.e. one of the NS_xxxx constants */
 	public $mNamespace = NS_MAIN;
 	/** @var string Interwiki prefix */
@@ -1018,18 +1016,15 @@ class Title implements LinkTarget, IDBAccessObject {
 	}
 
 	/**
-	 * Get the DB key with the initial letter case as specified by the user
-	 * @deprecated since 1.33; please use Title::getDBKey() instead
+	 * Same as getDBkey()
 	 *
+	 * @deprecated since 1.33; please use Title::getDBKey() instead
 	 * @return string DB key
 	 */
 	function getUserCaseDBKey() {
-		if ( !is_null( $this->mUserCaseDBKey ) ) {
-			return $this->mUserCaseDBKey;
-		} else {
-			// If created via makeTitle(), $this->mUserCaseDBKey is not set.
-			return $this->mDbkeyform;
-		}
+		wfDeprecated( __METHOD__, '1.33' );
+
+		return $this->getDBkey();
 	}
 
 	/**
@@ -3360,7 +3355,6 @@ class Title implements LinkTarget, IDBAccessObject {
 		$this->mLocalInterwiki = $parts['local_interwiki'];
 		$this->mNamespace = $parts['namespace'];
 		$this->mDefaultNamespace = $defaultNamespace;
-		$this->mUserCaseDBKey = $parts['user_case_dbkey'];
 
 		$this->mDbkeyform = $parts['dbkey'];
 		$this->mUrlform = wfUrlencode( $this->mDbkeyform );
@@ -4808,7 +4802,6 @@ class Title implements LinkTarget, IDBAccessObject {
 			'mFragment',
 			'mInterwiki',
 			'mLocalInterwiki',
-			'mUserCaseDBKey',
 			'mDefaultNamespace',
 		];
 	}
