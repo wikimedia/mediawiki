@@ -240,13 +240,13 @@ class RevDelFileItem extends RevDelItem {
 		}
 		if ( $file->userCan( RevisionRecord::DELETED_USER, $user ) ) {
 			$ret += [
-				'userid' => $file->user,
-				'user' => $file->user_text,
+				'userid' => $file->getUser( 'id' ),
+				'user' => $file->getUser( 'text' ),
 			];
 		}
 		if ( $file->userCan( RevisionRecord::DELETED_COMMENT, $user ) ) {
 			$ret += [
-				'comment' => $file->description,
+				'comment' => $file->getDescription( LocalFile::RAW ),
 			];
 		}
 
