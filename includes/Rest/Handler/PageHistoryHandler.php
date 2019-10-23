@@ -29,7 +29,7 @@ use Title;
 class PageHistoryHandler extends SimpleHandler {
 	const REVISIONS_RETURN_LIMIT = 20;
 	const REVERTED_TAG_NAMES = [ 'mw-undo', 'mw-rollback' ];
-	const ALLOWED_FILTER_TYPES = [ 'anonymous', 'bot', 'reverted' ];
+	const ALLOWED_FILTER_TYPES = [ 'anonymous', 'bot', 'reverted', 'minor' ];
 
 	/** @var RevisionStore */
 	private $revisionStore;
@@ -210,6 +210,10 @@ class PageHistoryHandler extends SimpleHandler {
 							[ 'ct_rev_id = rev_id', 'ct_tag_id' => $tagIds ],
 							__METHOD__
 						) . ')';
+					break;
+
+				case 'minor':
+					$cond[] = 'rev_minor_edit != 0';
 					break;
 			}
 		}
