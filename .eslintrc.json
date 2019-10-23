@@ -1,19 +1,17 @@
 {
 	"extends": [
 		"wikimedia/client",
-		"wikimedia/jquery"
+		"wikimedia/jquery",
+		"wikimedia/mediawiki"
 	],
 	"globals": {
 		"require": "readonly",
 		"module": "readonly",
-		"mw": "readonly",
 		"OO": "readonly"
 	},
 	"rules": {
 		"quote-props": [ "error", "as-needed" ],
 		"max-len": "off",
-		"no-jquery/no-global-selector": "off",
-		"mediawiki/msg-doc": "error"
-	},
-	"plugins": [ "mediawiki" ]
+		"no-jquery/no-global-selector": "off"
+	}
 }
