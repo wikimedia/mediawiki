@@ -190,4 +190,3 @@ Other DBMSs (especially Postgres) are stricter and require that all the
 non-aggregate items in the SELECT clause appear in the GROUP BY. For 
 this reason, it is highly discouraged to use SELECT * with GROUP BY 
 queries.
-

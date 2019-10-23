@@ -6,4 +6,3 @@ ALTER TABLE /*$wgDBprefix*/user_groups
 ALTER TABLE /*$wgDBprefix*/user_rights
 	CHANGE user_id ur_user INT UNSIGNED NOT NULL,
 	CHANGE user_rights ur_rights TINYBLOB NOT NULL;
-

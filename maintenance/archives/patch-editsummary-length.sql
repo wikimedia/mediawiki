@@ -8,4 +8,3 @@ ALTER TABLE /*_*/recentchanges MODIFY rc_comment varbinary(767) NOT NULL default
 ALTER TABLE /*_*/logging MODIFY log_comment varbinary(767) NOT NULL default '';
 ALTER TABLE /*_*/ipblocks MODIFY ipb_reason varbinary(767) NOT NULL default '';
 ALTER TABLE /*_*/protected_titles MODIFY pt_reason varbinary(767) default '';
-
