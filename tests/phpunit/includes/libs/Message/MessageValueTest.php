@@ -34,6 +34,12 @@ class MessageValueTest extends \PHPUnit\Framework\TestCase {
 		$this->assertSame( $expected, $mv->dump() );
 	}
 
+	/** @dataProvider provideConstruct */
+	public function testNew( $input, $expected ) {
+		$mv = MessageValue::new( 'key', $input );
+		$this->assertSame( $expected, $mv->dump() );
+	}
+
 	public function testGetKey() {
 		$mv = new MessageValue( 'key' );
 		$this->assertSame( 'key', $mv->getKey() );
