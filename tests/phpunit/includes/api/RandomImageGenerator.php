@@ -481,14 +481,17 @@ class RandomImageGenerator {
 			throw new Exception( "couldn't open $filepath" );
 		}
 		$line_number = 0;
-		$max_index = $number_desired - 1;
 		while ( !feof( $fh ) ) {
 			$line = fgets( $fh );
 			if ( $line !== false ) {
 				$line_number++;
 				$line = trim( $line );
-				if ( mt_rand( 0, $line_number ) <= $max_index ) {
-					$lines[mt_rand( 0, $max_index )] = $line;
+				$index = mt_rand( 0, $line_number - 1 );
+				if ( $index < $number_desired ) {
+					if ( $line_number <= $number_desired ) {
+						$lines[$line_number - 1] = $lines[$index];
+					}
+					$lines[$index] = $line;
 				}
 			}
 		}
