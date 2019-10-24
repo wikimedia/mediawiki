@@ -58,17 +58,15 @@ class CompareHandler extends Handler {
 		}
 
 		$data = [
-			'response' => [
-				'from' => [
-					'id' => $fromRev->getId(),
-					'slot_role' => $this->getRole(),
-				],
-				'to' => [
-					'id' => $toRev->getId(),
-					'slot_role' => $this->getRole()
-				],
-				'diff' => [ 'PLACEHOLDER' => null ]
-			]
+			'from' => [
+				'id' => $fromRev->getId(),
+				'slot_role' => $this->getRole(),
+			],
+			'to' => [
+				'id' => $toRev->getId(),
+				'slot_role' => $this->getRole()
+			],
+			'diff' => [ 'PLACEHOLDER' => null ]
 		];
 		$rf = $this->getResponseFactory();
 		$wrapperJson = $rf->encodeJson( $data );
