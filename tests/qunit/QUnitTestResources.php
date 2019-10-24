@@ -8,7 +8,10 @@ return [
 
 	'jquery.qunit' => [
 		'scripts' => 'resources/lib/qunitjs/qunit.js',
-		'styles' => 'resources/lib/qunitjs/qunit.css',
+		'styles' => [
+			'resources/lib/qunitjs/qunit.css',
+			'resources/src/qunitjs/qunit-local.css',
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
