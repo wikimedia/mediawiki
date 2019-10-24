@@ -473,9 +473,10 @@ class MessageTest extends MediaWikiLangTestCase {
 		$lang = Language::factory( 'en' );
 		$msg = new RawMessage( '$1' );
 
+		$ts = wfTimestampNow();
 		$this->assertSame(
-			$lang->formatExpiry( wfTimestampNow() ),
-			$msg->inLanguage( $lang )->expiryParams( wfTimestampNow() )->plain(),
+			$lang->formatExpiry( $ts ),
+			$msg->inLanguage( $lang )->expiryParams( $ts )->plain(),
 			'expiryParams is handled correctly'
 		);
 	}
