@@ -97,11 +97,12 @@ class ApiWatch extends ApiBase {
 	private function watchTitle( Title $title, User $user, array $params,
 		$compatibilityMode = false
 	) {
-		if ( !$title->isWatchable() ) {
-			return [ 'title' => $title->getPrefixedText(), 'watchable' => 0 ];
-		}
+		$res = [ 'title' => $title->getPrefixedText(), 'ns' => $title->getNamespace() ];
 
-		$res = [ 'title' => $title->getPrefixedText() ];
+		if ( !$title->isWatchable() ) {
+			$res['watchable'] = 0;
+			return $res;
+		}
 
 		if ( $params['unwatch'] ) {
 			$status = UnwatchAction::doUnwatch( $title, $user );
