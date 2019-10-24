@@ -31,6 +31,19 @@ trait MediaWikiTestCaseTrait {
 	}
 
 	/**
+	 * Don't throw a warning if $function is deprecated and called later
+	 *
+	 * @since 1.19
+	 *
+	 * @param string $function
+	 */
+	public function hideDeprecated( $function ) {
+		Wikimedia\suppressWarnings();
+		wfDeprecated( $function );
+		Wikimedia\restoreWarnings();
+	}
+
+	/**
 	 * Check whether file contains given data.
 	 * @param string $fileName
 	 * @param string $actualData

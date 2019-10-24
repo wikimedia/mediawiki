@@ -67,6 +67,8 @@ class LockManagerGroupTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testGetDefaultNull() {
+		$this->hideDeprecated( 'LockManagerGroup::getDefault' );
+
 		$lmg = new LockManagerGroup( 'domain', [], $this->getMockLBFactory() );
 		$expected = new NullLockManager( [] );
 		$actual = $lmg->getDefault();
@@ -77,6 +79,8 @@ class LockManagerGroupTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testGetAnyException() {
+		$this->hideDeprecated( 'LockManagerGroup::getAny' );
+
 		// XXX Isn't the name 'getAny' misleading if we don't get whatever's available?
 		$this->expectException( Exception::class );
 		$this->expectExceptionMessage( 'No lock manager defined with the name `fsLockManager`.' );
