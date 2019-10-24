@@ -28,6 +28,7 @@ use Psr\Log\NullLogger;
 use Revision;
 use TestUserRegistry;
 use Title;
+use User;
 use WANObjectCache;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
@@ -2201,6 +2202,14 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->assertEquals( $NUM - 3,
 			$revisionStore->countRevisionsBetween( $page->getId(), $revisions[0], $revisions[$NUM - 2] ),
 			'The count is non-inclusive on both ends if both beginning and end are provided' );
+		$this->assertEquals( $NUM - 2,
+			$revisionStore->countRevisionsBetween( $page->getId(), $revisions[0], $revisions[$NUM - 2],
+				null, 'include_new' ),
+			'The count string options are respected' );
+		$this->assertEquals( $NUM - 1,
+			$revisionStore->countRevisionsBetween( $page->getId(), $revisions[0], $revisions[$NUM - 2],
+				null, [ 'include_both' ] ),
+			'The count array options are respected' );
 		$this->assertEquals( $NUM - 1,
 			$revisionStore->countRevisionsBetween( $page->getId(), $revisions[0] ),
 			'The count is inclusive on the end if the end is omitted' );
@@ -2214,9 +2223,71 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Revision\RevisionStore::countRevisionsBetween
+	 * @covers \MediaWiki\Revision\RevisionStore::getAuthorsBetween
+	 * @covers \MediaWiki\Revision\RevisionStore::countAuthorsBetween
 	 */
-	public function testCountRevisionsBetween_differentPages() {
+	public function testAuthorsBetween() {
+		$NUM = 5;
+		$page = $this->getTestPage( __METHOD__ );
+		$users = [
+			$this->getTestUser()->getUser(),
+			$this->getTestUser()->getUser(),
+			$this->getTestSysop()->getUser(),
+			new User(),
+			$this->getMutableTestUser()->getUser()
+		];
+		$revisions = [];
+		for ( $revNum = 0; $revNum < $NUM; $revNum++ ) {
+			$editStatus = $this->editPage(
+				$page->getTitle()->getPrefixedDBkey(),
+				'Revision ' . $revNum,
+				'',
+				NS_MAIN,
+				$users[$revNum] );
+			$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision ' . $revNum );
+			$revisions[] = $editStatus->getValue()['revision']->getRevisionRecord();
+		}
+
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$this->assertEquals( 0,
+			$revisionStore->countAuthorsBetween( $page->getId(), $revisions[0], $revisions[0] ),
+			'countAuthorsBetween must return 0 if the same old and new revisions provided' );
+		$this->assertArrayEquals( [],
+			$revisionStore->getAuthorsBetween( $page->getId(), $revisions[0], $revisions[0] ),
+			'getAuthorsBetween must return [] if the same old and new revisions provided' );
+
+		$this->assertEquals( 0,
+			$revisionStore->countAuthorsBetween( $page->getId(), $revisions[0], $revisions[1] ),
+			'countAuthorsBetween must return 0 if the consecutive old and new revisions provided' );
+		$this->assertArrayEquals( [],
+			$revisionStore->getAuthorsBetween( $page->getId(), $revisions[0], $revisions[1] ),
+			'getAuthorsBetween must return [] if the consecutive old and new revisions provided' );
+
+		$this->assertEquals( 2,
+			$revisionStore->countAuthorsBetween( $page->getId(), $revisions[0], $revisions[$NUM - 2] ),
+			'countAuthorsBetween is non-inclusive on both ends if both beginning and end are provided' );
+		$result = $revisionStore->getAuthorsBetween( $page->getId(),
+			$revisions[0], $revisions[$NUM - 2] );
+		$this->assertEquals( 2, count( $result ),
+			'getAuthorsBetween provides right number of users' );
+	}
+
+	public function provideBetweenMethodNames() {
+		yield [ 'countRevisionsBetween' ];
+		yield [ 'countAuthorsBetween' ];
+		yield [ 'getAuthorsBetween' ];
+	}
+
+	/**
+	 * @dataProvider provideBetweenMethodNames
+	 *
+	 * @covers \MediaWiki\Revision\RevisionStore::countRevisionsBetween
+	 * @covers \MediaWiki\Revision\RevisionStore::countAuthorsBetween
+	 * @covers \MediaWiki\Revision\RevisionStore::getAuthorsBetween
+	 *
+	 * @param string $method the name of the method to test
+	 */
+	public function testBetweenMethod_differentPages( $method ) {
 		$page1 = $this->getTestPage( __METHOD__ );
 		$page2 = $this->getTestPage( 'Other_Page' );
 		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), 'Revision 1' );
@@ -2228,18 +2299,24 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 		$this->expectException( InvalidArgumentException::class );
 		MediaWikiServices::getInstance()->getRevisionStore()
-			->countRevisionsBetween( $page1->getId(), $rev1, $rev2 );
+			->{$method}( $page1->getId(), $rev1, $rev2 );
 	}
 
 	/**
+	 * @dataProvider provideBetweenMethodNames
+	 *
 	 * @covers \MediaWiki\Revision\RevisionStore::countRevisionsBetween
+	 * @covers \MediaWiki\Revision\RevisionStore::countAuthorsBetween
+	 * @covers \MediaWiki\Revision\RevisionStore::getAuthorsBetween
+	 *
+	 * @param string $method the name of the method to test
 	 */
-	public function testCountRevisionsBetween_unsavedRevision() {
+	public function testBetweenMethod_unsavedRevision( $method ) {
 		$rev1 = new MutableRevisionRecord( $this->getTestPageTitle() );
 		$rev2 = new MutableRevisionRecord( $this->getTestPageTitle() );
 
 		$this->expectException( InvalidArgumentException::class );
-		MediaWikiServices::getInstance()->getRevisionStore()->countRevisionsBetween(
-			$this->getTestPage( __METHOD__ )->getId(), $rev1, $rev2 );
+		MediaWikiServices::getInstance()->getRevisionStore()->{$method}(
+			$this->getTestPage()->getId(), $rev1, $rev2 );
 	}
 }

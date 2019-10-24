@@ -90,7 +90,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 		}
 
 		if ( $params['from'] || $params['to'] ) {
-			if ( $type === 'edits' ) {
+			if ( $type === 'edits' || $type === 'editors' ) {
 				if ( !$params['from'] || !$params['to'] ) {
 					throw new LocalizedHttpException(
 						new MessageValue( 'rest-pagehistorycount-parameters-invalid' ),
@@ -164,7 +164,11 @@ class PageHistoryCountHandler extends SimpleHandler {
 				return [ 'count' => $this->getBotCount( $pageId ) ];
 
 			case 'editors':
-				return [ 'count' => $this->getEditorsCount( $pageId ) ];
+				$count = $this->getEditorsCount( $pageId );
+				return [
+					'count' => $count > self::LIMIT ? self::LIMIT : $count,
+					'limit' => $count > self::LIMIT
+				];
 
 			case 'edits':
 				$count = $this->getEditsCount( $pageId, self::LIMIT );
@@ -296,35 +300,25 @@ class PageHistoryCountHandler extends SimpleHandler {
 	/**
 	 * @param int $pageId the id of the page to load history for
 	 * @return int the count
+	 * @throws LocalizedHttpException
 	 */
 	protected function getEditorsCount( $pageId ) {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+		$from = $this->getValidatedParams()['from'] ?? null;
+		$to = $this->getValidatedParams()['to'] ?? null;
+		$fromRev = $from ? $this->getRevisionOrThrow( $from ) : null;
+		$toRev = $to ? $this->getRevisionOrThrow( $to ) : null;
 
-		$cond = [
-			'rev_page' => $pageId,
-		];
-		$bitmask = $this->getBitmask();
-		if ( $bitmask ) {
-			$cond[] = $dbr->bitAnd( 'rev_deleted', $bitmask ) . " != $bitmask";
+		// Reorder from and to parameters if they are out of order.
+		if ( $fromRev && $toRev && ( $fromRev->getTimestamp() > $toRev->getTimestamp() ||
+				( $fromRev->getTimestamp() === $toRev->getTimestamp() && $from > $to ) )
+		) {
+			$tmp = $fromRev;
+			$fromRev = $toRev;
+			$toRev = $tmp;
 		}
 
-		$edits = (int)$dbr->selectField(
-			[
-				'revision_actor_temp',
-				'revision'
-			],
-			'COUNT(DISTINCT revactor_actor)',
-			$cond,
-			__METHOD__,
-			[],
-			[
-				'revision' => [
-					'JOIN',
-					'revactor_rev = rev_id AND revactor_page = rev_page'
-				]
-			]
-		);
-		return $edits;
+		return $this->revisionStore->countAuthorsBetween( $pageId, $fromRev,
+			$toRev, $this->user, self::LIMIT );
 	}
 
 	/**

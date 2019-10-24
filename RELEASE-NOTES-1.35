@@ -178,6 +178,8 @@ because of Phabricator reports.
 * OutputPage::getCSPNonce() is deprecated, use OutputPage::getCSP()->getNonce()
   instead.
 * Skin::makeI18nUrl() and makeNSUrl() have been deprecated, no longer used.
+* Title::countAuthorsBetween and Title::getAuthorsBetween have been deprecated.
+  Use respective methods in RevisionStore instead.
 * …
 
 === Other changes in 1.35 ===

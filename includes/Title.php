@@ -23,7 +23,7 @@
  */
 
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
@@ -4047,6 +4047,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * Used for diffs and other things that really need it.
 	 *
 	 * @since 1.23
+	 * @deprecated since 1.35 Use RevisionStore::getAuthorsBetween instead.
 	 *
 	 * @param int|Revision $old Old revision or rev ID (first before range by default)
 	 * @param int|Revision $new New revision or rev ID (first after range by default)
@@ -4065,64 +4066,30 @@ class Title implements LinkTarget, IDBAccessObject {
 		if ( !( $new instanceof Revision ) ) {
 			$new = Revision::newFromTitle( $this, (int)$new );
 		}
-		// XXX: what if Revision objects are passed in, but they don't refer to this title?
-		// Add $old->getPage() != $new->getPage() || $old->getPage() != $this->getArticleID()
-		// in the sanity check below?
-		if ( !$old || !$new ) {
-			return null; // nothing to compare
+		try {
+			$users = MediaWikiServices::getInstance()
+				->getRevisionStore()
+				->getAuthorsBetween(
+					$this->getArticleID(),
+					$old->getRevisionRecord(),
+					$new->getRevisionRecord(),
+					null,
+					$limit,
+					$options
+				);
+			return array_map( function ( UserIdentity $user ) {
+				return $user->getName();
+			}, $users );
+		} catch ( InvalidArgumentException $e ) {
+			 return null; // b/c
 		}
-		$authors = [];
-		$old_cmp = '>';
-		$new_cmp = '<';
-		$options = (array)$options;
-		if ( in_array( 'include_old', $options ) ) {
-			$old_cmp = '>=';
-		}
-		if ( in_array( 'include_new', $options ) ) {
-			$new_cmp = '<=';
-		}
-		if ( in_array( 'include_both', $options ) ) {
-			$old_cmp = '>=';
-			$new_cmp = '<=';
-		}
-		// No DB query needed if $old and $new are the same or successive revisions:
-		if ( $old->getId() === $new->getId() ) {
-			return ( $old_cmp === '>' && $new_cmp === '<' ) ?
-				[] :
-				[ $old->getUserText( RevisionRecord::RAW ) ];
-		} elseif ( $old->getId() === $new->getParentId() ) {
-			if ( $old_cmp === '>=' && $new_cmp === '<=' ) {
-				$authors[] = $oldUserText = $old->getUserText( RevisionRecord::RAW );
-				$newUserText = $new->getUserText( RevisionRecord::RAW );
-				if ( $oldUserText != $newUserText ) {
-					$authors[] = $newUserText;
-				}
-			} elseif ( $old_cmp === '>=' ) {
-				$authors[] = $old->getUserText( RevisionRecord::RAW );
-			} elseif ( $new_cmp === '<=' ) {
-				$authors[] = $new->getUserText( RevisionRecord::RAW );
-			}
-			return $authors;
-		}
-		$dbr = wfGetDB( DB_REPLICA );
-		$revQuery = Revision::getQueryInfo();
-		$authors = $dbr->selectFieldValues(
-			$revQuery['tables'],
-			$revQuery['fields']['rev_user_text'],
-			[
-				'rev_page' => $this->getArticleID(),
-				"rev_timestamp $old_cmp " . $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) ),
-				"rev_timestamp $new_cmp " . $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) )
-			], __METHOD__,
-			[ 'DISTINCT', 'LIMIT' => $limit + 1 ], // add one so caller knows it was truncated
-			$revQuery['joins']
-		);
-		return $authors;
 	}
 
 	/**
 	 * Get the number of authors between the given revisions or revision IDs.
 	 * Used for diffs and other things that really need it.
+	 *
+	 * @deprecated since 1.35 Use RevisionStore::countAuthorsBetween instead.
 	 *
 	 * @param int|Revision $old Old revision or rev ID (first before range by default)
 	 * @param int|Revision $new New revision or rev ID (first after range by default)
