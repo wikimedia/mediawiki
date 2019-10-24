@@ -581,7 +581,7 @@
 	"undo-success": "De feroaring kin werom set wurde.\nKontrolearje de ferliking hjirûnder om wis te wêzen dat jo dit feroarje wolle en druk dan op bewarje om it werom setten troch te fieren.",
 	"undo-failure": "De feroarings kinne net werom set wurde troch in konflikt mei oare feroarings tuskentroch.",
 	"undo-norev": "De feroaring kin werom set wurde, omdat it net bestiet of is wiske.",
-	"undo-summary": "Werom sette fan ferzje $1 fan [[Special:Contributions/$2|$2]] ([[User talk:$2|Oerlis]])",
+	"undo-summary": "Weromsetten fan ferzje $1 fan [[Special:Contributions/$2|$2]] ([[User talk:$2|oerlis]])",
 	"viewpagelogs": "Lochboek foar dizze side besjen",
 	"nohistory": "Dit is de earste ferzje fan de side.",
 	"currentrev": "Aktuele ferzje",

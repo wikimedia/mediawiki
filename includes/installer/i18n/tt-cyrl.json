@@ -101,7 +101,7 @@
 	"config-install-user-create-failed": "«$1» кулланучыны китереп булмады: $2",
 	"config-install-tables": "Җәдвәлләр төзү",
 	"config-install-stats": "Инициализация статистикасы",
-	"config-download-localsettings": "<code>LocalSettings.php</code> йөкләү",
+	"config-download-localsettings": "<code>LocalSettings.php</code> күчереп алу",
 	"config-help": "белешмә",
 	"config-help-tooltip": "ачу өчен басыгыз",
 	"config-skins-screenshots": "$1 (скриншотлар: $2)",

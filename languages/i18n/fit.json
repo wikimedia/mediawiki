@@ -430,7 +430,7 @@
 	"recentchangeslinked": "Relateerattuja muutoksia",
 	"recentchangeslinked-toolbox": "Relateerattuja muutoksia",
 	"recentchangeslinked-title": "Muutokset relatterattuja \"$1\"",
-	"recentchangeslinked-summary": "Tämä on lista vereksistä muutoksista sivhuin, joihin on linkattu erikoiselta sivulta. Sivut sinun  [[Special:Watchlist|valvontalistala]] on markeerattu lihavala tyylilä",
+	"recentchangeslinked-summary": "Tämä on lista vereksistä muutoksista sivhuin, joihin on linkattu erikoiselta sivulta. Sivut sinun [[Special:Watchlist|valvontalistala]] on markeerattu <strong>lihavala</strong> tyylilä.",
 	"recentchangeslinked-page": "Sivun nimi",
 	"recentchangeslinked-to": "Näytä muutokset sivhuin, jolla sen eestä on länkki annethuun sivhuun",
 	"upload": "Lattaa ylös fiili",

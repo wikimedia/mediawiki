@@ -674,7 +674,7 @@
 	"passwordreset-ignored": "Die Passwortzurücksetzung konnte nicht verarbeitet werden. Vielleicht wurde kein Dienstanbieter konfiguriert?",
 	"passwordreset-invalidemail": "Ungültige E-Mail-Adresse",
 	"passwordreset-nodata": "Weder ein Benutzername noch eine E-Mail-Adresse wurde angegeben",
-	"passwordreset-username-email-required": "Beides, Benutzername und E-Mail-Adresse werden benötigt um ein temporäres Passwort durch eine E-Mail zu erhalten.",
+	"passwordreset-username-email-required": "Sowohl Benutzername als auch E-Mail-Adresse werden benötigt, um ein temporäres Passwort durch eine E-Mail zu erhalten.",
 	"changeemail": "E-Mail-Adresse ändern oder entfernen",
 	"changeemail-header": "Fülle dieses Formular vollständig aus, um deine E-Mail-Adresse zu ändern. Falls du die Zuweisung einer E-Mail-Adresse zu deinem Benutzerkonto entfernen möchtest, lasse beim Übermitteln des Formulars das Feld für die neue E-Mail-Adresse leer.",
 	"changeemail-no-info": "Du musst angemeldet sein, um direkt auf diese Seite zugreifen zu können.",
