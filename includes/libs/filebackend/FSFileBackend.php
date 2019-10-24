@@ -61,6 +61,9 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @since 1.19
  */
 class FSFileBackend extends FileBackendStore {
+	/** @var MapCacheLRU Cache for known prepared/usable directorries */
+	protected $usableDirCache;
+
 	/** @var string Directory holding the container directories */
 	protected $basePath;
 
@@ -118,9 +121,11 @@ class FSFileBackend extends FileBackendStore {
 		$this->dirMode = $config['directoryMode'] ?? 0777;
 		if ( isset( $config['fileOwner'] ) && function_exists( 'posix_getuid' ) ) {
 			$this->fileOwner = $config['fileOwner'];
-			// cache this, assuming it doesn't change
+			// Cache this, assuming it doesn't change
 			$this->currentUser = posix_getpwuid( posix_getuid() )['name'];
 		}
+
+		$this->usableDirCache = new MapCacheLRU( self::CACHE_CHEAP_SIZE );
 	}
 
 	public function getFeatures() {
@@ -200,20 +205,22 @@ class FSFileBackend extends FileBackendStore {
 		if ( $fsPath === null ) {
 			return false; // invalid
 		}
-		$parentDir = dirname( $fsPath );
-
-		if ( file_exists( $fsPath ) ) {
-			$ok = is_file( $fsPath ) && is_writable( $fsPath );
-		} else {
-			$ok = is_dir( $parentDir ) && is_writable( $parentDir );
-		}
 
 		if ( $this->fileOwner !== null && $this->currentUser !== $this->fileOwner ) {
-			$ok = false;
 			trigger_error( __METHOD__ . ": PHP process owner is not '{$this->fileOwner}'." );
+			return false;
 		}
 
-		return $ok;
+		$fsDirectory = dirname( $fsPath );
+		$usable = $this->usableDirCache->get( $fsDirectory, MapCacheLRU::TTL_PROC_SHORT );
+		if ( $usable === null ) {
+			AtEase::suppressWarnings();
+			$usable = is_dir( $fsDirectory ) && is_writable( $fsDirectory );
+			AtEase::restoreWarnings();
+			$this->usableDirCache->set( $fsDirectory, $usable ? 1 : 0 );
+		}
+
+		return $usable;
 	}
 
 	protected function doCreateInternal( array $params ) {
@@ -483,23 +490,32 @@ class FSFileBackend extends FileBackendStore {
 		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
-		$existed = is_dir( $dir ); // already there?
 		// Create the directory and its parents as needed...
+		$created = false;
 		AtEase::suppressWarnings();
-		if ( !$existed && !mkdir( $dir, $this->dirMode, true ) && !is_dir( $dir ) ) {
+		$alreadyExisted = is_dir( $dir ); // already there?
+		if ( !$alreadyExisted ) {
+			$created = mkdir( $dir, $this->dirMode, true );
+			if ( !$created ) {
+				$alreadyExisted = is_dir( $dir ); // another thread made it?
+			}
+		}
+		$isWritable = $created ?: is_writable( $dir ); // assume writable if created here
+		AtEase::restoreWarnings();
+		if ( !$alreadyExisted && !$created ) {
 			$this->logger->error( __METHOD__ . ": cannot create directory $dir" );
 			$status->fatal( 'directorycreateerror', $params['dir'] ); // fails on races
-		} elseif ( !is_writable( $dir ) ) {
+		} elseif ( !$isWritable ) {
 			$this->logger->error( __METHOD__ . ": directory $dir is read-only" );
 			$status->fatal( 'directoryreadonlyerror', $params['dir'] );
-		} elseif ( !is_readable( $dir ) ) {
-			$this->logger->error( __METHOD__ . ": directory $dir is not readable" );
-			$status->fatal( 'directorynotreadableerror', $params['dir'] );
 		}
-		AtEase::restoreWarnings();
 		// Respect any 'noAccess' or 'noListing' flags...
-		if ( is_dir( $dir ) && !$existed ) {
+		if ( $created ) {
 			$status->merge( $this->doSecureInternal( $fullCont, $dirRel, $params ) );
+		}
+
+		if ( $status->isOK() ) {
+			$this->usableDirCache->set( $dir, 1 );
 		}
 
 		return $status;
@@ -511,7 +527,7 @@ class FSFileBackend extends FileBackendStore {
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 		// Seed new directories with a blank index.html, to prevent crawling...
-		if ( !empty( $params['noListing'] ) && !file_exists( "{$dir}/index.html" ) ) {
+		if ( !empty( $params['noListing'] ) && !is_file( "{$dir}/index.html" ) ) {
 			$this->trapWarnings();
 			$bytes = file_put_contents( "{$dir}/index.html", $this->indexHtmlPrivate() );
 			$this->untrapWarnings();
@@ -520,7 +536,7 @@ class FSFileBackend extends FileBackendStore {
 			}
 		}
 		// Add a .htaccess file to the root of the container...
-		if ( !empty( $params['noAccess'] ) && !file_exists( "{$contRoot}/.htaccess" ) ) {
+		if ( !empty( $params['noAccess'] ) && !is_file( "{$contRoot}/.htaccess" ) ) {
 			AtEase::suppressWarnings();
 			$bytes = file_put_contents( "{$contRoot}/.htaccess", $this->htaccessPrivate() );
 			AtEase::restoreWarnings();
@@ -562,21 +578,19 @@ class FSFileBackend extends FileBackendStore {
 		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
-		AtEase::suppressWarnings();
-		rmdir( $dir ); // remove directory if empty
-		AtEase::restoreWarnings();
+		$this->rmdir( $dir );
 
 		return $status;
 	}
 
 	protected function doGetFileStat( array $params ) {
-		$source = $this->resolveToFSPath( $params['src'] );
-		if ( $source === null ) {
+		$fsSrcPath = $this->resolveToFSPath( $params['src'] );
+		if ( $fsSrcPath === null ) {
 			return self::$RES_ERROR; // invalid storage path
 		}
 
 		$this->trapWarnings(); // don't trust 'false' if there were errors
-		$stat = is_file( $source ) ? stat( $source ) : false; // regular files only
+		$stat = is_file( $fsSrcPath ) ? stat( $fsSrcPath ) : false; // regular files only
 		$hadError = $this->untrapWarnings();
 
 		if ( is_array( $stat ) ) {
@@ -592,7 +606,18 @@ class FSFileBackend extends FileBackendStore {
 	}
 
 	protected function doClearCache( array $paths = null ) {
-		clearstatcache(); // clear the PHP file stat cache
+		if ( is_array( $paths ) ) {
+			foreach ( $paths as $path ) {
+				$fsPath = $this->resolveToFSPath( $path );
+				if ( $fsPath !== null ) {
+					clearstatcache( true, $fsPath );
+					$this->usableDirCache->clear( $fsPath );
+				}
+			}
+		} else {
+			clearstatcache( true ); // clear the PHP file stat cache
+			$this->usableDirCache->clear();
+		}
 	}
 
 	protected function doDirectoryExists( $fullCont, $dirRel, array $params ) {
@@ -619,26 +644,25 @@ class FSFileBackend extends FileBackendStore {
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 
-		$this->trapWarnings(); // don't trust 'false' if there were errors
-		$exists = is_dir( $dir );
-		$isReadable = $exists ? is_readable( $dir ) : false;
-		$hadError = $this->untrapWarnings();
+		$list = new FSFileBackendDirList( $dir, $params );
+		$error = $list->getLastError();
+		if ( $error !== null ) {
+			if ( preg_match( '/: No such file or directory$/', $error ) ) {
+				$this->logger->info( __METHOD__ . ": given directory does not exist: '$dir'" );
 
-		if ( $isReadable ) {
-			return new FSFileBackendDirList( $dir, $params );
-		} elseif ( $exists ) {
-			$this->logger->warning( __METHOD__ . ": given directory is unreadable: '$dir'" );
+				return []; // nothing under this dir
+			} elseif ( is_dir( $dir ) ) {
+				$this->logger->warning( __METHOD__ . ": given directory is unreadable: '$dir'" );
 
-			return self::$RES_ERROR; // bad permissions?
-		} elseif ( $hadError ) {
-			$this->logger->warning( __METHOD__ . ": given directory was unreachable: '$dir'" );
+				return self::$RES_ERROR; // bad permissions?
+			} else {
+				$this->logger->warning( __METHOD__ . ": given directory was unreachable: '$dir'" );
 
-			return self::$RES_ERROR;
-		} else {
-			$this->logger->info( __METHOD__ . ": given directory does not exist: '$dir'" );
-
-			return []; // nothing under this dir
+				return self::$RES_ERROR;
+			}
 		}
+
+		return $list;
 	}
 
 	/**
@@ -653,26 +677,25 @@ class FSFileBackend extends FileBackendStore {
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 
-		$this->trapWarnings(); // don't trust 'false' if there were errors
-		$exists = is_dir( $dir );
-		$isReadable = $exists ? is_readable( $dir ) : false;
-		$hadError = $this->untrapWarnings();
+		$list = new FSFileBackendFileList( $dir, $params );
+		$error = $list->getLastError();
+		if ( $error !== null ) {
+			if ( preg_match( '/: No such file or directory$/', $error ) ) {
+				$this->logger->info( __METHOD__ . ": given directory does not exist: '$dir'" );
 
-		if ( $exists && $isReadable ) {
-			return new FSFileBackendFileList( $dir, $params );
-		} elseif ( $exists ) {
-			$this->logger->warning( __METHOD__ . ": given directory is unreadable: '$dir'\n" );
+				return []; // nothing under this dir
+			} elseif ( is_dir( $dir ) ) {
+				$this->logger->warning( __METHOD__ . ": given directory is unreadable: '$dir'" );
 
-			return self::$RES_ERROR; // bad permissions?
-		} elseif ( $hadError ) {
-			$this->logger->warning( __METHOD__ . ": given directory was unreachable: '$dir'\n" );
+				return self::$RES_ERROR; // bad permissions?
+			} else {
+				$this->logger->warning( __METHOD__ . ": given directory was unreachable: '$dir'" );
 
-			return self::$RES_ERROR;
-		} else {
-			$this->logger->info( __METHOD__ . ": given directory does not exist: '$dir'\n" );
-
-			return []; // nothing under this dir
+				return self::$RES_ERROR;
+			}
 		}
+
+		return $list;
 	}
 
 	protected function doGetLocalReferenceMulti( array $params ) {
@@ -769,8 +792,6 @@ class FSFileBackend extends FileBackendStore {
 			$function( $errs[$index], $status, $fileOpHandle->params, $fileOpHandle->cmd );
 			$statuses[$index] = $status;
 		}
-
-		clearstatcache(); // files changed
 
 		return $statuses;
 	}
@@ -890,6 +911,22 @@ class FSFileBackend extends FileBackendStore {
 		AtEase::suppressWarnings();
 		$ok = unlink( $fsPath );
 		AtEase::restoreWarnings();
+		clearstatcache( true, $fsPath );
+
+		return $ok;
+	}
+
+	/**
+	 * Remove an empty directory, suppressing the warnings
+	 *
+	 * @param string $fsDirectory Absolute file system path
+	 * @return bool Success
+	 */
+	protected function rmdir( $fsDirectory ) {
+		AtEase::suppressWarnings();
+		$ok = rmdir( $fsDirectory ); // remove directory if empty
+		AtEase::restoreWarnings();
+		clearstatcache( true, $fsDirectory );
 
 		return $ok;
 	}

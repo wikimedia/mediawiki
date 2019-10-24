@@ -94,7 +94,7 @@ class TempFSFile extends FSFile {
 		// not be able to access each others temporary files.
 		if ( strtoupper( substr( PHP_OS, 0, 3 ) ) === 'WIN' ) {
 			$tmp = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'mwtmp-' . get_current_user();
-			if ( !file_exists( $tmp ) ) {
+			if ( !is_dir( $tmp ) ) {
 				mkdir( $tmp );
 			}
 			if ( is_dir( $tmp ) && is_writable( $tmp ) ) {

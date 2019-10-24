@@ -151,11 +151,11 @@ class FileBackendMultiWrite extends FileBackend {
 				return $status; // abort
 			}
 		}
-		// Clear any cache entries (after locks acquired)
-		$this->clearCache();
-		$opts['preserveCache'] = true; // only locked files are cached
 		// Get the list of paths to read/write
 		$relevantPaths = $this->fileStoragePathsForOps( $ops );
+		// Clear any cache entries (after locks acquired)
+		$this->clearCache( $relevantPaths );
+		$opts['preserveCache'] = true; // only locked files are cached
 		// Check if the paths are valid and accessible on all backends
 		$status->merge( $this->accessibilityCheck( $relevantPaths ) );
 		if ( !$status->isOK() ) {
