@@ -27,6 +27,7 @@ use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IResultWrapper;
 
 class BlockListPager extends TablePager {
@@ -116,18 +117,24 @@ class BlockListPager extends TablePager {
 					$formatted = $this->msg( 'autoblockid', $row->ipb_id )->parse();
 				} else {
 					list( $target, $type ) = DatabaseBlock::parseTarget( $row->ipb_address );
-					if ( $type === DatabaseBlock::TYPE_RANGE ) {
-						$user = User::newFromName( $target, false );
-					} else {
-						$user = $target;
+
+					if ( is_string( $target ) ) {
+						if ( IP::isValidRange( $target ) ) {
+							$target = User::newFromName( $target, false );
+						} else {
+							$formatted = $target;
+						}
 					}
-					$formatted = Linker::userLink( $user->getId(), $user );
-					$formatted .= Linker::userToolLinks(
-						$user->getId(),
-						$user,
-						false,
-						Linker::TOOL_LINKS_NOBLOCK
-					);
+
+					if ( $target instanceof UserIdentity ) {
+						$formatted = Linker::userLink( $target->getId(), $target->getName() );
+						$formatted .= Linker::userToolLinks(
+							$target->getId(),
+							$target->getName(),
+							false,
+							Linker::TOOL_LINKS_NOBLOCK
+						);
+					}
 				}
 				break;
 
