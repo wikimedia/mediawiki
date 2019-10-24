@@ -77,3 +77,7 @@ $wgLegacyJavaScriptGlobals = false;
 
 // Localisation Cache to StaticArray (T218207)
 $wgLocalisationCacheConf['store'] = 'array';
+
+// Experimental Book Referencing feature (T236255)
+global $wgCiteBookReferencing;
+$wgCiteBookReferencing = true;
