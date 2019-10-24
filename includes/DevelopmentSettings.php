@@ -94,3 +94,7 @@ $wgCiteBookReferencing = true;
 $wgCacheDirectory = TempFSFile::getUsableTempDirectory() .
 	DIRECTORY_SEPARATOR .
 	rawurlencode( WikiMap::getCurrentWikiId() );
+
+// Enable uploads for FileImporter browser tests (T190829)
+global $wgEnableUploads;
+$wgEnableUploads = true;
