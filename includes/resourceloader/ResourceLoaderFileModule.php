@@ -101,7 +101,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @var array List of packaged files to make available through require()
 	 * @par Usage:
 	 * @code
-	 * [ [file-path], [file-path], ... ]
+	 * [ [file-path-or-object], [file-path-or-object], ... ]
 	 * @endcode
 	 */
 	protected $packageFiles = null;
@@ -1117,7 +1117,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$expandedFiles = [];
 		$mainFile = null;
 
-		foreach ( $this->packageFiles as $alias => $fileInfo ) {
+		foreach ( $this->packageFiles as $fileInfo ) {
 			if ( is_string( $fileInfo ) ) {
 				$fileInfo = [ 'name' => $fileInfo, 'file' => $fileInfo ];
 			} elseif ( !isset( $fileInfo['name'] ) ) {
