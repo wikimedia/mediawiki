@@ -73,9 +73,10 @@ class CompareHandler extends Handler {
 		$diff = $this->getJsonDiff();
 		$response = $rf->create();
 		$response->setHeader( 'Content-Type', 'application/json' );
-
+		// A hack until getJsonDiff() is moved to SlotDiffRenderer and only nested inner diff is returned
+		$innerDiff = substr( $diff, 1, -1 );
 		$response->setBody( new StringStream(
-			str_replace( '{"PLACEHOLDER":null}', $diff, $wrapperJson ) ) );
+			str_replace( '"diff":{"PLACEHOLDER":null}', $innerDiff, $wrapperJson ) ) );
 		return $response;
 	}
 
