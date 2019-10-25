@@ -52,4 +52,20 @@ class FileRepoTest extends MediaWikiTestCase {
 		] );
 		$this->assertInstanceOf( FileRepo::class, $f );
 	}
+
+	/**
+	 * @covers FileRepo::__construct
+	 */
+	public function testFileRepoConstructionWithInvalidCasing() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( 'File repos with initial capital false' );
+
+		$this->setMwGlobals( 'wgCapitalLinks', true );
+
+		new FileRepo( [
+			'name' => 'foobar',
+			'backend' => 'local-backend',
+			'initialCapital' => false,
+		] );
+	}
 }

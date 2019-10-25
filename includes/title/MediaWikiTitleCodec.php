@@ -294,9 +294,9 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * @param string $text
 	 * @param int $defaultNamespace
 	 *
+	 * @internal
 	 * @throws MalformedTitleException If $text is not a valid title string.
-	 * @return array A map with the fields 'interwiki', 'fragment', 'namespace',
-	 *         'user_case_dbkey', and 'dbkey'.
+	 * @return array A map with the fields 'interwiki', 'fragment', 'namespace', and 'dbkey'.
 	 */
 	public function splitTitleString( $text, $defaultNamespace = NS_MAIN ) {
 		$dbkey = str_replace( ' ', '_', $text );
@@ -308,7 +308,6 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 			'fragment' => '',
 			'namespace' => $defaultNamespace,
 			'dbkey' => $dbkey,
-			'user_case_dbkey' => $dbkey,
 		];
 
 		# Strip Unicode bidi override characters.
@@ -385,7 +384,6 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 									'fragment' => $mainPage->getFragment(),
 									'namespace' => $mainPage->getNamespace(),
 									'dbkey' => $mainPage->getDBkey(),
-									'user_case_dbkey' => $mainPage->getUserCaseDBKey()
 								];
 							}
 							$parts['interwiki'] = '';
@@ -463,7 +461,6 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		# Normally, all wiki links are forced to have an initial capital letter so [[foo]]
 		# and [[Foo]] point to the same place.  Don't force it for interwikis, since the
 		# other site might be case-sensitive.
-		$parts['user_case_dbkey'] = $dbkey;
 		if ( $parts['interwiki'] === '' && $this->nsInfo->isCapitalized( $parts['namespace'] ) ) {
 			$dbkey = $this->language->ucfirst( $dbkey );
 		}
