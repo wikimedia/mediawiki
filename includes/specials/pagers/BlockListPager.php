@@ -200,7 +200,8 @@ class BlockListPager extends TablePager {
 				break;
 
 			case 'ipb_reason':
-				$value = CommentStore::getStore()->getComment( 'ipb_reason', $row )->text;
+				$value = CommentStore::getStore()->getComment( 'ipb_reason', $row )
+					->message->plain();
 				$formatted = Linker::formatComment( $value );
 				break;
 
