@@ -23,7 +23,14 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * Handler class for Core REST API endpoints that perform operations on revisions
  */
 class PageHistoryCountHandler extends SimpleHandler {
-	const ALLOWED_COUNT_TYPES = [ 'anonedits', 'botedits', 'editors', 'edits', 'revertededits' ];
+	const ALLOWED_COUNT_TYPES = [ 'anonymous', 'bot', 'editors', 'edits', 'reverted' ];
+
+	// These types work identically to their similarly-named synonyms, but will be removed in the
+	// next major version of the API. Callers should use the corresponding non-deprecated type.
+	const DEPRECATED_COUNT_TYPES = [
+		'anonedits', 'botedits', 'revertededits'
+	];
+
 	const REVERTED_TAG_NAMES = [ 'mw-undo', 'mw-rollback' ];
 
 	/** @var NameTableStore */
@@ -74,7 +81,17 @@ class PageHistoryCountHandler extends SimpleHandler {
 		}
 
 		$count = $this->getCount( $titleObj, $type );
-		return $this->getResponseFactory()->createJson( [ 'count' => $count ] );
+		$response = $this->getResponseFactory()->createJson( [ 'count' => $count ] );
+
+		// Inform clients who use a deprecated "type" value, so they can adjust
+		if ( in_array( $type, self::DEPRECATED_COUNT_TYPES ) ) {
+			$docs = '<https://www.mediawiki.org/wiki/API:REST/History_API' .
+				'#Get_page_history_counts>; rel="deprecation"';
+			$response->setHeader( 'Deprecation', 'version="v1"' );
+			$response->setHeader( 'Link', $docs );
+		}
+
+		return $response;
 	}
 
 	/**
@@ -86,10 +103,12 @@ class PageHistoryCountHandler extends SimpleHandler {
 	protected function getCount( $titleObj, $type ) {
 		switch ( $type ) {
 			case 'anonedits':
-				return $this->getAnonEditsCount( $titleObj );
+			case 'anonymous':
+				return $this->getAnonCount( $titleObj );
 
 			case 'botedits':
-				return $this->getBotEditsCount( $titleObj );
+			case 'bot':
+				return $this->getBotCount( $titleObj );
 
 			case 'editors':
 				return $this->getEditorsCount( $titleObj );
@@ -98,7 +117,8 @@ class PageHistoryCountHandler extends SimpleHandler {
 				return $this->getEditsCount( $titleObj );
 
 			case 'revertededits':
-				return $this->getRevertedEditsCount( $titleObj );
+			case 'reverted':
+				return $this->getRevertedCount( $titleObj );
 
 			// Sanity check
 			default:
@@ -115,7 +135,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @param Title $titleObj title object identifying the page to load history for
 	 * @return int the count
 	 */
-	protected function getAnonEditsCount( $titleObj ) {
+	protected function getAnonCount( $titleObj ) {
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 
 		$cond = [
@@ -155,7 +175,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @param Title $titleObj title object identifying the page to load history for
 	 * @return int the count
 	 */
-	protected function getBotEditsCount( $titleObj ) {
+	protected function getBotCount( $titleObj ) {
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 
 		$cond = [
@@ -255,7 +275,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @param Title $titleObj title object identifying the page to load history for
 	 * @return int the count
 	 */
-	protected function getRevertedEditsCount( $titleObj ) {
+	protected function getRevertedCount( $titleObj ) {
 		$tagIds = [];
 
 		foreach ( self::REVERTED_TAG_NAMES as $tagName ) {
@@ -325,7 +345,10 @@ class PageHistoryCountHandler extends SimpleHandler {
 			],
 			'type' => [
 				self::PARAM_SOURCE => 'path',
-				ParamValidator::PARAM_TYPE => self::ALLOWED_COUNT_TYPES,
+				ParamValidator::PARAM_TYPE => array_merge(
+					self::ALLOWED_COUNT_TYPES,
+					self::DEPRECATED_COUNT_TYPES
+				),
 				ParamValidator::PARAM_REQUIRED => true,
 			],
 		];
