@@ -194,7 +194,8 @@
 			"Dark Dragoon",
 			"Elisardojm",
 			"Madamebiblio",
-			"Hasley"
+			"Hasley",
+			"Canaan9801"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -768,6 +769,7 @@
 	"passwordreset-emailelement": "Nombre de {{GENDER:$1|usuario|usuaria}}: \n$1\n\nContraseña temporal: \n$2",
 	"passwordreset-emailsentemail": "Si esta dirección de correo electrónico está asociada a tu cuenta, entonces se enviará un correo electrónico para restablecer la contraseña.",
 	"passwordreset-emailsentusername": "Si existe una dirección de correo electrónico asociada a este nombre de usuario, entonces se enviará un correo para restablecer la contraseña.",
+	"passwordreset-emailtext-require-email": "Sin embargo, si usted no ha generado esta solicitud y quiere evitar correos electrónicos no solicitados, quizás quiere actualizar sus opciones de correo en $1. Puede requerir tanto un nombre de usuario como una dirección de correo electrónico para general correos eléctronicos de reajuste de contraseñas. Esto puede reducir el número de tales incidentes.",
 	"passwordreset-nocaller": "Debes proporcionar un interlocutor",
 	"passwordreset-nosuchcaller": "El interlocutor no existe: $1",
 	"passwordreset-ignored": "No se logró el reestablecimiento de la contraseña. ¿Tal vez no se configuró un proveedor?",

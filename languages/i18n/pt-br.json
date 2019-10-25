@@ -694,6 +694,7 @@
 	"passwordreset-emailelement": "Usuário: \n$1\n\nSenha temporária: \n$2",
 	"passwordreset-emailsentemail": "Se este é um endereço de e-mail registrado para a sua conta, em seguida, um e-mail de redefinição de senha será enviada.",
 	"passwordreset-emailsentusername": "Se houver um endereço de email associado a esta conta, ser-lhe-á enviada uma mensagem para redefinir a sua senha.",
+	"passwordreset-emailtext-require-email": "No entanto, se você não gerou essa solicitação e deseja impedir e-mails não solicitados, atualize suas opções de e-mail a $1. Você pode exigir nome de usuário e endereço de e-mail para gerar emails de redefinição de senha. Isso pode reduzir o número desses incidentes.",
 	"passwordreset-nocaller": "Um interlocutor deve ser fornecido",
 	"passwordreset-nosuchcaller": "O interlocutor não existe: $1",
 	"passwordreset-ignored": "A redefinição da senha não foi realizada. Talvez o provedor não tenha sido configurado?",

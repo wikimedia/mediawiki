@@ -649,6 +649,7 @@
 	"passwordreset-emailelement": "Användarnamn: \n$1\n\nTillfälligt lösenord: \n$2",
 	"passwordreset-emailsentemail": "Om denna e-postadress är associerad med ditt konto kommer en lösenordsåterställning skickas via e-post.",
 	"passwordreset-emailsentusername": "Om det finns en e-postadress som associeras med detta användarnamn kommer en lösenordsåterställning skickas via e-post.",
+	"passwordreset-emailtext-require-email": "Om du inte gjorde denna begäran och vill förhindra oombedda e-postmeddelanden kan du uppdatera dina e-postalternativ på $1. Du kan kräva både användarnamn och e-postadress för att kunna begära lösenordsåterställningar och reducera risken att detta händer igen.",
 	"passwordreset-nocaller": "En användare måste anges",
 	"passwordreset-nosuchcaller": "Användare finns inte: $1",
 	"passwordreset-ignored": "Lösenordsåterställningen hanterades inte. Kanske ingen leverantör har konfigurerats?",
