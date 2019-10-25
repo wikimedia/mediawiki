@@ -342,7 +342,12 @@
 			'List item attributes'
 		);
 		assert.propEqual(
-			$tbMW.find( 'a' ).getAttrs(),
+			$tbMW.children().get().map( function ( node ) { return node.nodeName; } ),
+			[ 'A' ],
+			'List item children'
+		);
+		assert.propEqual(
+			$tbMW.children( 'a' ).getAttrs(),
 			{
 				href: '//example.org/',
 				title: 'Go to Example [test-x]',
@@ -359,11 +364,6 @@
 			$tbMW.next()[ 0 ],
 			tbRL,
 			'Next node (set as Node object)'
-		);
-		assert.strictEqual(
-			$tbMW.find( 'span' ).length,
-			0,
-			'No <span> wrap for porlets without vectorTabs class'
 		);
 
 		cuQuux = util.addPortletLink( 'p-test-custom', '#', 'Quux', null, 'Example [shift-x]', 'q' );
@@ -384,7 +384,11 @@
 		assert.strictEqual( $( tbRLDM ).next()[ 0 ], tbRL, 'Next node (set as CSS selector)' );
 
 		caFoo = util.addPortletLink( 'p-test-views', '#', 'Foo' );
-		assert.strictEqual( $( caFoo ).find( 'span' ).length, 1, 'Added <span> element for porlet with vectorTabs class' );
+		assert.propEqual(
+			[].map.call( caFoo.children, function ( node ) { return node.nodeName; } ),
+			[ 'A' ],
+			'List item children for porlet with vectorTabs class'
+		);
 
 		addedAfter = util.addPortletLink( 'p-test-tb', '#', 'After foo', 'post-foo', 'After foo', null, $( tbRL ) );
 		assert.strictEqual( $( addedAfter ).next()[ 0 ], tbRL, 'Next node (set as jQuery object)' );
