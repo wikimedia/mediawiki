@@ -40,6 +40,9 @@ use Wikimedia\ScopedCallback;
  */
 class JobRunner implements LoggerAwareInterface {
 
+	/**
+	 * @internal For use by ServiceWiring
+	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'JobBackoffThrottling',
 		'JobClasses',

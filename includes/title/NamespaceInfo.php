@@ -83,8 +83,7 @@ class NamespaceInfo {
 	];
 
 	/**
-	 * @since 1.34
-	 * @internal
+	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'AllowImageMoving',

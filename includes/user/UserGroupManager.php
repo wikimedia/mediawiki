@@ -50,6 +50,9 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 class UserGroupManager implements IDBAccessObject {
 
+	/**
+	 * @internal For use by ServiceWiring
+	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'Autopromote',
 		'AutopromoteOnce',

@@ -68,6 +68,9 @@ class PasswordReset implements LoggerAwareInterface {
 	 */
 	private $permissionCache;
 
+	/**
+	 * @internal For use by ServiceWiring
+	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'AllowRequiringEmailForResets',
 		'EnableEmail',

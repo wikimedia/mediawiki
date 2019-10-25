@@ -58,8 +58,7 @@ class PermissionManager {
 	public const RIGOR_SECURE = 'secure';
 
 	/**
-	 * @since 1.34
-	 * @var array
+	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'WhitelistRead',
