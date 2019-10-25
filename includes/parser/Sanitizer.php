@@ -1183,7 +1183,7 @@ class Sanitizer {
 			# French spaces, last one Guillemet-left
 			# only if there is something before the space
 			# and a non-word character after the punctuation.
-			'/(\S) (?=[?:;!%»›](?!\w))/u' => "\\1$space",
+			'/(?<=\S) (?=[?:;!%»›](?!\w))/u' => "$space",
 			# French spaces, Guillemet-right
 			'/([«‹]) /u' => "\\1$space",
 		];
