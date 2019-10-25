@@ -641,6 +641,9 @@ because of Phabricator reports.
   "..." as the only author name. If the "author" array contains more than one
   entry and "..." is one of the entries in the array, "..." will be parsed as
   "others" (version-poweredby-others i18n message) like previously.
+* (T232563) Browser support ("Grade C") for Internet Explorer 6 and 7
+  was discontinued. Basic content and security features may no longer
+  work correctly in these browsers.
 
 == Compatibility ==
 MediaWiki 1.34 requires PHP 7.2.9 or later, and the following PHP extensions:
