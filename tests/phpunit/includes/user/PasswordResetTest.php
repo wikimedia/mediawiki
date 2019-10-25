@@ -328,7 +328,7 @@ class PasswordResetTest extends MediaWikiTestCase {
 				'email' => self::VALID_EMAIL,
 				'usersWithEmail' => [],
 			],
-			'Email reqiured for resets, but is empty' => [
+			'Email required for resets, but is empty' => [
 				'expectedError' => 'passwordreset-username-email-required',
 				'config' => $emailRequiredConfig,
 				'performingUser' => $throttledUser,
@@ -338,7 +338,7 @@ class PasswordResetTest extends MediaWikiTestCase {
 				'email' => '',
 				'usersWithEmail' => [],
 			],
-			'Email reqiured for resets, is invalid' => [
+			'Email required for resets, is invalid' => [
 				'expectedError' => 'passwordreset-invalidemail',
 				'config' => $emailRequiredConfig,
 				'performingUser' => $throttledUser,
@@ -388,7 +388,7 @@ class PasswordResetTest extends MediaWikiTestCase {
 				'email' => '',
 				'usersWithEmail' => [],
 			],
-			'Email reqiured for resets, no match' => [
+			'Email required for resets, no match' => [
 				'expectedError' => false,
 				'config' => $emailRequiredConfig,
 				'performingUser' => $performingUser,
@@ -488,6 +488,16 @@ class PasswordResetTest extends MediaWikiTestCase {
 				'username' => 'User2',
 				'email' => self::VALID_EMAIL,
 				'usersWithEmail' => [ 'User2' ],
+			],
+			'Reset three users via email that did not opt in, multiple users with same email' => [
+				'expectedError' => false,
+				'config' => $emailRequiredConfig,
+				'performingUser' => $performingUser,
+				'permissionManager' => $permissionManager,
+				'authManager' => $this->makeAuthManager( [ 'User2', 'User3', 'User4' ], 3, [ 'User1' ] ),
+				'username' => '',
+				'email' => self::VALID_EMAIL,
+				'usersWithEmail' => [ 'User1', 'User2', 'User3', 'User4' ],
 			],
 		];
 	}
@@ -595,12 +605,20 @@ class PasswordResetTest extends MediaWikiTestCase {
 	private function makeUsers() {
 		$user1 = $this->getMockBuilder( User::class )->getMock();
 		$user2 = $this->getMockBuilder( User::class )->getMock();
+		$user3 = $this->getMockBuilder( User::class )->getMock();
+		$user4 = $this->getMockBuilder( User::class )->getMock();
 		$user1->method( 'getName' )->willReturn( 'User1' );
 		$user2->method( 'getName' )->willReturn( 'User2' );
+		$user3->method( 'getName' )->willReturn( 'User3' );
+		$user4->method( 'getName' )->willReturn( 'User4' );
 		$user1->method( 'getId' )->willReturn( 1 );
 		$user2->method( 'getId' )->willReturn( 2 );
+		$user3->method( 'getId' )->willReturn( 3 );
+		$user4->method( 'getId' )->willReturn( 4 );
 		$user1->method( 'getEmail' )->willReturn( self::VALID_EMAIL );
 		$user2->method( 'getEmail' )->willReturn( self::VALID_EMAIL );
+		$user3->method( 'getEmail' )->willReturn( self::VALID_EMAIL );
+		$user4->method( 'getEmail' )->willReturn( self::VALID_EMAIL );
 
 		$user1->method( 'getBoolOption' )
 			->with( 'requireemail' )
@@ -608,12 +626,14 @@ class PasswordResetTest extends MediaWikiTestCase {
 
 		$badUser = $this->getMockBuilder( User::class )->getMock();
 		$badUser->method( 'getName' )->willReturn( 'BadUser' );
-		$badUser->method( 'getId' )->willReturn( 3 );
+		$badUser->method( 'getId' )->willReturn( 5 );
 		$badUser->method( 'getEmail' )->willReturn( null );
 
 		return [
 			'User1' => $user1,
 			'User2' => $user2,
+			'User3' => $user3,
+			'User4' => $user4,
 			'BadUser' => $badUser,
 		];
 	}
