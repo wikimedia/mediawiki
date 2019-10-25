@@ -300,7 +300,7 @@
 	 * one element can have a given id.
 	 */
 	QUnit.test( 'addPortletLink', function ( assert ) {
-		var tbRL, cuQuux, $cuQuux, tbMW, $tbMW, tbRLDM, caFoo,
+		var tbRL, cuQuux, $cuQuux, tbMW, $tbMW, tbRLDM, caFoo, listPortletItem,
 			addedAfter, tbRLDMnonexistentid, tbRLDMemptyjquery;
 
 		$( '#qunit-fixture' ).append(
@@ -319,6 +319,7 @@
 					'</li>' +
 				'</ul>' +
 			'</div>' +
+			'<ul id="p-list"></ul>' +
 			'<div id="p-test-views" class="vectorTabs">' +
 				'<h3>Views</h3>' +
 				'<ul></ul>' +
@@ -403,6 +404,12 @@
 			tbRLDMemptyjquery,
 			$( '#p-test-tb li' ).last()[ 0 ],
 			'Next node as empty jQuery object falls back to appending'
+		);
+
+		listPortletItem = util.addPortletLink( 'p-list', 'foo.html', 'Foo' );
+		assert.strictEqual(
+			$( listPortletItem ).parents( 'ul' ).length, 1,
+			'Minerva support: The portlet is the list and a new item is added'
 		);
 	} );
 

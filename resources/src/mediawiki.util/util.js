@@ -337,7 +337,7 @@ util = {
 		}
 
 		// Select the first (most likely only) unordered list inside the portlet
-		ul = portlet.querySelector( 'ul' );
+		ul = portlet.tagName.toLowerCase() === 'ul' ? portlet : portlet.querySelector( 'ul' );
 		if ( !ul ) {
 			// If it didn't have an unordered list yet, create one
 			ul = document.createElement( 'ul' );
