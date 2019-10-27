@@ -80,20 +80,6 @@ class Argon2Password extends Password {
 	/**
 	 * @inheritDoc
 	 */
-	public function equals( $other ) {
-		wfDeprecated( __METHOD__, '1.33' );
-
-		if ( is_string( $other ) ) {
-			return $this->verify( $other );
-		}
-
-		// Argon2 key derivation is not deterministic, can't pass objects to equals()
-		return false;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
 	public function verify( $password ) {
 		Assert::parameterType( 'string', $password, '$password' );
 
