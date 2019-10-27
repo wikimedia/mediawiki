@@ -96,6 +96,7 @@ because of Phabricator reports.
   Construct WANObjectCache directly instead, or use MediaWikiServices.
 * ApiQueryUserInfo::getBlockInfo, deprecated in 1.34, was removed. Use
   ApiBlockInfoTrait::getBlockDetails instead.
+* Password::equals(), deprecated in 1.33, was removed. Use Password::verify().
 * The mediawiki.ui.text module, deprecated in 1.28 and unused, was removed.
 * AbstractBlock::mReason, deprecated in 1.34, is no longer public.
 * The GetBlockedStatus, deprecated in 1.34, has been removed. Instead, use the
