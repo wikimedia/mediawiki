@@ -958,6 +958,7 @@ class SpecialBlock extends FormSpecialPage {
 				}
 
 				$priorBlock = clone $currentBlock;
+				$currentBlock->setBlocker( $performer );
 				$currentBlock->isHardblock( $block->isHardblock() );
 				$currentBlock->isCreateAccountBlocked( $block->isCreateAccountBlocked() );
 				$currentBlock->setExpiry( $block->getExpiry() );
