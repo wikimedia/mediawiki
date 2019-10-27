@@ -52,7 +52,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 		$this->context = $context;
 	}
 
-	public function getModules() {
+	public function getModules() : array {
 		if ( $this->modules === self::INHERIT_VALUE ) {
 			return $this->context->getModules();
 		}
@@ -67,24 +67,21 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 		$this->modules = $modules;
 	}
 
-	public function getLanguage() {
+	public function getLanguage() : string {
 		if ( $this->language === self::INHERIT_VALUE ) {
 			return $this->context->getLanguage();
 		}
 		return $this->language;
 	}
 
-	/**
-	 * @param string $language
-	 */
-	public function setLanguage( $language ) {
+	public function setLanguage( string $language ) {
 		$this->language = $language;
 		// Invalidate direction since it is based on language
 		$this->direction = null;
 		$this->hash = null;
 	}
 
-	public function getDirection() {
+	public function getDirection() : string {
 		if ( $this->direction === self::INHERIT_VALUE ) {
 			return $this->context->getDirection();
 		}
@@ -94,30 +91,24 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 		return $this->direction;
 	}
 
-	/**
-	 * @param string $direction
-	 */
-	public function setDirection( $direction ) {
+	public function setDirection( string $direction ) {
 		$this->direction = $direction;
 		$this->hash = null;
 	}
 
-	public function getSkin() {
+	public function getSkin() : string {
 		if ( $this->skin === self::INHERIT_VALUE ) {
 			return $this->context->getSkin();
 		}
 		return $this->skin;
 	}
 
-	/**
-	 * @param string $skin
-	 */
-	public function setSkin( $skin ) {
+	public function setSkin( string $skin ) {
 		$this->skin = $skin;
 		$this->hash = null;
 	}
 
-	public function getUser() {
+	public function getUser() : ?string {
 		if ( $this->user === self::INHERIT_VALUE ) {
 			return $this->context->getUser();
 		}
@@ -127,28 +118,26 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	/**
 	 * @param string|null $user
 	 */
-	public function setUser( $user ) {
+	public function setUser( ?string $user ) {
 		$this->user = $user;
 		$this->hash = null;
+		// Clear getUserObj cache
 		$this->userObj = null;
 	}
 
-	public function getDebug() {
+	public function getDebug() : bool {
 		if ( $this->debug === self::INHERIT_VALUE ) {
 			return $this->context->getDebug();
 		}
 		return $this->debug;
 	}
 
-	/**
-	 * @param bool $debug
-	 */
-	public function setDebug( $debug ) {
+	public function setDebug( bool $debug ) {
 		$this->debug = $debug;
 		$this->hash = null;
 	}
 
-	public function getOnly() {
+	public function getOnly() : ?string {
 		if ( $this->only === self::INHERIT_VALUE ) {
 			return $this->context->getOnly();
 		}
@@ -158,12 +147,12 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	/**
 	 * @param string|null $only
 	 */
-	public function setOnly( $only ) {
+	public function setOnly( ?string $only ) {
 		$this->only = $only;
 		$this->hash = null;
 	}
 
-	public function getVersion() {
+	public function getVersion() : ?string {
 		if ( $this->version === self::INHERIT_VALUE ) {
 			return $this->context->getVersion();
 		}
@@ -173,30 +162,27 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	/**
 	 * @param string|null $version
 	 */
-	public function setVersion( $version ) {
+	public function setVersion( ?string $version ) {
 		$this->version = $version;
 		$this->hash = null;
 	}
 
-	public function getRaw() {
+	public function getRaw() : bool {
 		if ( $this->raw === self::INHERIT_VALUE ) {
 			return $this->context->getRaw();
 		}
 		return $this->raw;
 	}
 
-	/**
-	 * @param bool $raw
-	 */
-	public function setRaw( $raw ) {
+	public function setRaw( bool $raw ) {
 		$this->raw = $raw;
 	}
 
-	public function getRequest() {
+	public function getRequest() : WebRequest {
 		return $this->context->getRequest();
 	}
 
-	public function getResourceLoader() {
+	public function getResourceLoader() : ResourceLoader {
 		return $this->context->getResourceLoader();
 	}
 
