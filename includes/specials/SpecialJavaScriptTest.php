@@ -66,15 +66,12 @@ class SpecialJavaScriptTest extends SpecialPage {
 	}
 
 	/**
-	 * Get summary text wrapped in a container
-	 *
-	 * @return string HTML
+	 * @return string HTML Introduction paragraph
 	 */
 	private function getSummaryHtml() {
-		$summary = $this->msg( 'javascripttest-qunit-intro' )
+		return $this->msg( 'javascripttest-qunit-intro' )
 			->params( 'https://www.mediawiki.org/wiki/Manual:JavaScript_unit_testing' )
 			->parseAsBlock();
-		return "<div id=\"mw-javascripttest-summary\">$summary</div>";
 	}
 
 	/**
