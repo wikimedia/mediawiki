@@ -1,5 +1,7 @@
 <?php
 /**
+ * For people without PHP, close tag for easier debugging: ><pre>
+ *
  * This is the main web entry point for MediaWiki.
  *
  * If you are reading this in your web browser, your server is probably
