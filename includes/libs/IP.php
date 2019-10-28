@@ -400,7 +400,7 @@ class IP {
 	 * function for an IPv6 address will be prefixed with "v6-", a non-
 	 * hexadecimal string which sorts after the IPv4 addresses.
 	 *
-	 * @param string $ip Quad dotted/octet IP address.
+	 * @param string $ip Quad dotted/octet IP address. This should not be a range.
 	 * @return string|bool False on failure
 	 */
 	public static function toHex( $ip ) {
