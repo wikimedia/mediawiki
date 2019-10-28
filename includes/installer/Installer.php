@@ -1753,7 +1753,7 @@ abstract class Installer {
 				'',
 				EDIT_NEW,
 				false,
-				User::newFromName( 'MediaWiki default' )
+				User::newSystemUser( 'MediaWiki default' )
 			);
 		} catch ( Exception $e ) {
 			// using raw, because $wgShowExceptionDetails can not be set yet

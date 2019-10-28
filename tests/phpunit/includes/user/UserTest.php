@@ -36,6 +36,13 @@ class UserTest extends MediaWikiTestCase {
 		$this->setUpPermissionGlobals();
 
 		$this->user = $this->getTestUser( [ 'unittesters' ] )->getUser();
+
+		TestingAccessWrapper::newFromClass( User::class )->reservedUsernames = false;
+	}
+
+	protected function tearDown() : void {
+		parent::tearDown();
+		TestingAccessWrapper::newFromClass( User::class )->reservedUsernames = false;
 	}
 
 	private function setUpPermissionGlobals() {
@@ -1568,5 +1575,95 @@ class UserTest extends MediaWikiTestCase {
 			'Username will be cached when requested once.'
 		);
 		$this->assertSame( null, User::idFromName( 'NotExisitngUser' ) );
+	}
+
+	/**
+	 * @covers User::newSystemUser
+	 * @dataProvider provideNewSystemUser
+	 * @param string $exists How/whether to create the user before calling User::newSystemUser
+	 *  - 'missing': Do not create the user
+	 *  - 'actor': Create an anonymous actor
+	 *  - 'user': Create a non-system user
+	 *  - 'system': Create a system user
+	 * @param string $options Options to User::newSystemUser
+	 * @param array $testOpts Test options
+	 * @param string $expect 'user', 'exception', or 'null'
+	 */
+	public function testNewSystemUser( $exists, $options, $testOpts, $expect ) {
+		$origUser = null;
+		$actorId = null;
+
+		switch ( $exists ) {
+			case 'missing':
+				$name = 'TestNewSystemUser ' . TestUserRegistry::getNextId();
+				break;
+
+			case 'actor':
+				$name = 'TestNewSystemUser ' . TestUserRegistry::getNextId();
+				$this->db->insert( 'actor', [ 'actor_name' => $name ] );
+				$actorId = (int)$this->db->insertId();
+				break;
+
+			case 'user':
+				$origUser = $this->getMutableTestUser()->getUser();
+				$name = $origUser->getName();
+				$actorId = $origUser->getActorId();
+				break;
+
+			case 'system':
+				$name = 'TestNewSystemUser ' . TestUserRegistry::getNextId();
+				$user = User::newSystemUser( $name ); // Heh.
+				$actorId = $user->getActorId();
+				// Use this hook as a proxy for detecting when a "steal" happens.
+				$this->setTemporaryHook( 'InvalidateEmailComplete', function () {
+					$this->fail( 'InvalidateEmailComplete hook should not have been called' );
+				} );
+				break;
+		}
+
+		$globals = $testOpts['globals'] ?? [];
+		if ( !empty( $testOpts['reserved'] ) ) {
+			$globals['wgReservedUsernames'] = [ $name ];
+		}
+		$this->setMwGlobals( $globals );
+		$this->assertTrue( User::isValidUserName( $name ) );
+		$this->assertSame( empty( $testOpts['reserved'] ), User::isUsableName( $name ) );
+
+		if ( $expect === 'exception' ) {
+			$this->expectException( Exception::class );
+		}
+		$user = User::newSystemUser( $name, $options );
+		if ( $expect === 'null' ) {
+			$this->assertNull( $user );
+			if ( $origUser ) {
+				$this->assertNotSame(
+					User::INVALID_TOKEN, TestingAccessWrapper::newFromObject( $origUser )->mToken
+				);
+				$this->assertNotSame( '', $origUser->getEmail() );
+			}
+		} else {
+			$this->assertInstanceOf( User::class, $user );
+			$this->assertSame( $name, $user->getName() );
+			if ( $actorId !== null ) {
+				$this->assertSame( $actorId, $user->getActorId() );
+			}
+			$this->assertSame( User::INVALID_TOKEN, TestingAccessWrapper::newFromObject( $user )->mToken );
+			$this->assertSame( '', $user->getEmail() );
+		}
+	}
+
+	public static function provideNewSystemUser() {
+		return [
+			'Basic creation' => [ 'missing', [], [], 'user' ],
+			'No creation' => [ 'missing', [ 'create' => false ], [], 'null' ],
+			'Validation fail' => [ 'missing', [ 'validate' => 'usable' ], [ 'reserved' => true ], 'null' ],
+			'No stealing' => [ 'user', [], [], 'null' ],
+			'Stealing allowed' => [ 'user', [ 'steal' => true ], [], 'user' ],
+			'Stealing an already-system user' => [ 'system', [ 'steal' => true ], [], 'user' ],
+			'Anonymous actor (T236444)' => [ 'actor', [], [ 'reserved' => true ], 'user' ],
+			'Reserved but no anonymous actor' => [ 'missing', [], [ 'reserved' => true ], 'user' ],
+			'Anonymous actor but no creation' => [ 'actor', [ 'create' => false ], [], 'null' ],
+			'Anonymous actor but not reserved' => [ 'actor', [], [], 'exception' ],
+		];
 	}
 }

@@ -76,7 +76,7 @@ class DeleteDefaultMessages extends Maintenance {
 
 		// Deletions will be made by $user temporarly added to the bot group
 		// in order to hide it in RecentChanges.
-		$user = User::newFromName( 'MediaWiki default' );
+		$user = User::newSystemUser( 'MediaWiki default', [ 'steal' => true ] );
 		if ( !$user ) {
 			$this->fatalError( "Invalid username" );
 		}
