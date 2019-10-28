@@ -104,6 +104,8 @@ class MessageCache implements LoggerAwareInterface {
 	protected $contLang;
 	/** @var LanguageFactory */
 	protected $langFactory;
+	/** @var LocalisationCache */
+	protected $localisationCache;
 
 	/**
 	 * Get the singleton instance of this class
@@ -144,6 +146,7 @@ class MessageCache implements LoggerAwareInterface {
 	 *  - useDB (bool): Whether to allow message overrides from "MediaWiki:" pages.
 	 *    Default: true.
 	 * @param LanguageFactory $langFactory
+	 * @param LocalisationCache $localisationCache
 	 */
 	public function __construct(
 		WANObjectCache $wanCache,
@@ -152,7 +155,8 @@ class MessageCache implements LoggerAwareInterface {
 		Language $contLang,
 		LoggerInterface $logger,
 		array $options,
-		LanguageFactory $langFactory
+		LanguageFactory $langFactory,
+		LocalisationCache $localisationCache
 	) {
 		$this->wanCache = $wanCache;
 		$this->clusterCache = $clusterCache;
@@ -160,6 +164,7 @@ class MessageCache implements LoggerAwareInterface {
 		$this->contLang = $contLang;
 		$this->logger = $logger;
 		$this->langFactory = $langFactory;
+		$this->localisationCache = $localisationCache;
 
 		$this->cache = new MapCacheLRU( 5 ); // limit size for sanity
 
@@ -255,7 +260,8 @@ class MessageCache implements LoggerAwareInterface {
 			return true;
 		}
 
-		$this->overridable = array_flip( Language::getMessageKeysFor( $code ) );
+		$this->overridable =
+			array_flip( $this->localisationCache->getSubitemList( $code, 'messages' ) );
 
 		# 8 lines of code just to say (once) that message cache is disabled
 		if ( $this->mDisable ) {
@@ -475,7 +481,8 @@ class MessageCache implements LoggerAwareInterface {
 		}
 
 		// Get the list of software-defined messages in core/extensions
-		$overridable = array_flip( Language::getMessageKeysFor( $wgLanguageCode ) );
+		$overridable =
+			array_flip( $this->localisationCache->getSubitemList( $wgLanguageCode, 'messages' ) );
 
 		// Common conditions
 		$conds = [
@@ -903,7 +910,7 @@ class MessageCache implements LoggerAwareInterface {
 			// Let's not load nonexistent languages for those
 			// They usually have more than one slash.
 			if ( count( $parts ) == 2 && $parts[1] !== '' ) {
-				$message = Language::getMessageFor( $parts[0], $parts[1] );
+				$message = $this->localisationCache->getSubitem( $parts[1], 'messages', $parts[0] );
 				if ( $message === null ) {
 					$message = false;
 				}

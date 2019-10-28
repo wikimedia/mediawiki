@@ -495,7 +495,8 @@ return [
 			$services->getContentLanguage(),
 			$logger,
 			[ 'useDB' => $mainConfig->get( 'UseDatabaseMessages' ) ],
-			$services->getLanguageFactory()
+			$services->getLanguageFactory(),
+			$services->getLocalisationCache()
 		);
 	},
 

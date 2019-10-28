@@ -4376,6 +4376,8 @@ class Language {
 	 * WARNING: this may take a long time. If you just need all message *keys*
 	 * but need the *contents* of only a few messages, consider using getMessageKeysFor().
 	 *
+	 * @deprecated since 1.35, use LocalisationCache directly
+	 *
 	 * @param string $code
 	 *
 	 * @return array
@@ -4386,6 +4388,8 @@ class Language {
 
 	/**
 	 * Get a message for a given language
+	 *
+	 * @deprecated since 1.35, use LocalisationCache directly
 	 *
 	 * @param string $key
 	 * @param string $code
@@ -4399,6 +4403,8 @@ class Language {
 	/**
 	 * Get all message keys for a given language. This is a faster alternative to
 	 * array_keys( Language::getMessagesFor( $code ) )
+	 *
+	 * @deprecated since 1.35, use LocalisationCache directly
 	 *
 	 * @since 1.19
 	 * @param string $code Language code

@@ -139,8 +139,11 @@ because of Phabricator reports.
   outside the Language class itself.
 * Language::clearCaches() is deprecated. Instead, reset services in your test
   framework.
-* Language::$mLangObjCache is deprecated and should be removed in 1.35. Use
+* Language::$mLangObjCache is deprecated and should be removed in 1.36. Use
   MediaWikiServices instead to get a LanguageFactory.
+* Language::getMessagesFor(), getMessageFor(), and getMessageKeysFor() are
+  deprecated. Use LocalisationCache's getItem(), getSubitem(), and
+  getSubitemList() methods directly.
 * OutputPage::getCSPNonce() is deprecated, use OutputPage::getCSP()->getNonce()
   instead.
 * …
