@@ -60,6 +60,20 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 *     .firstHeading, #contentSub, et cetera which are not outputted by MediaWiki but are common
 	 *     to skins like MonoBook, Vector, etc... Essentially this level is for styles that are
 	 *     common to MonoBook clones.
+	 *
+	 * "i18n-ordered-lists":
+	 *     Styles for ordered lists elements that support mixed language content.
+	 *
+	 * "i18n-all-lists-margins":
+	 *     Styles for margins of list elements where LTR and RTL are mixed.
+	 *
+	 * "i18n-headings":
+	 *     Styles for line-heights of headings across different languages.
+	 *
+	 * "legacy":
+	 *     For backwards compatibility a legacy feature is provided.
+	 *     New skins should not use this if they can avoid doing so.
+	 *     This feature also contains all `i18n-` prefixed features.
 	 */
 	private const FEATURE_FILES = [
 		'logo' => [],
@@ -71,6 +85,18 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		],
 		'elements' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/elements.css' ],
+		],
+		'legacy' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/legacy.less' ],
+		],
+		'i18n-ordered-lists' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/i18n-ordered-lists.less' ],
+		],
+		'i18n-all-lists-margins' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/i18n-lists.less' ],
+		],
+		'i18n-headings' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/i18n-headings.less' ],
 		],
 	];
 
