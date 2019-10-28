@@ -422,7 +422,7 @@ abstract class Installer {
 		$mwServices->getLocalisationCache()->disableBackend();
 
 		// Clear language cache so the old i18n cache doesn't sneak back in
-		Language::clearCaches();
+		$mwServices->resetLanguageServices();
 
 		// Disable object cache (otherwise CACHE_ANYTHING will try CACHE_DB and
 		// SqlBagOStuff will then throw since we just disabled wfGetDB)

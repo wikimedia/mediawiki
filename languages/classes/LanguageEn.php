@@ -74,13 +74,12 @@ class EnConverter extends LanguageConverter {
  * @ingroup Language
  */
 class LanguageEn extends Language {
-	function __construct() {
+	protected function newConverter() {
 		global $wgUsePigLatinVariant;
 
-		parent::__construct();
-
 		if ( $wgUsePigLatinVariant ) {
-			$this->mConverter = new EnConverter( $this, 'en', [ 'en', 'en-x-piglatin' ] );
+			return new EnConverter( $this, 'en', [ 'en', 'en-x-piglatin' ] );
 		}
+		return parent::newConverter();
 	}
 }

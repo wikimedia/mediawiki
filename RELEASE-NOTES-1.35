@@ -125,6 +125,15 @@ because of Phabricator reports.
   deprecated. Instead, use User::getBlock to get the block, then use
   AbstractBlock::getByName or AbstractBlock::getHideName.Use the GetUserBlock
   hook to set, unset or modify a block, including hiding or unhiding a user.
+* Language::factory() and Language::getParentLanguage() are deprecated, and so
+  is directly calling the Language constructor. Use the new LanguageFactory
+  class instead.
+* Language::classFromCode() is deprecated. There is no reason it should be used
+  outside the Language class itself.
+* Language::clearCaches() is deprecated. Instead, reset services in your test
+  framework.
+* Language::$mLangObjCache is deprecated and should be removed in 1.35. Use
+  MediaWikiServices instead to get a LanguageFactory.
 * …
 
 === Other changes in 1.35 ===

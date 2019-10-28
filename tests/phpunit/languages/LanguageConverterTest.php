@@ -1,10 +1,10 @@
 <?php
 
 class LanguageConverterTest extends MediaWikiLangTestCase {
-	/** @var LanguageToTest */
-	protected $lang = null;
+	/** @var Language */
+	protected $lang;
 	/** @var TestConverter */
-	protected $lc = null;
+	protected $lc;
 
 	protected function setUp() {
 		parent::setUp();
@@ -17,7 +17,13 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 			'wgUser' => new User,
 		] );
 
-		$this->lang = new LanguageToTest();
+		$this->lang = $this->createMock( Language::class );
+		$this->lang->method( 'getNsText' )->with( NS_MEDIAWIKI )->willReturn( 'MediaWiki' );
+		$this->lang->method( 'ucfirst' )->will( $this->returnCallback( function ( $s ) {
+			return ucfirst( $s );
+		} ) );
+		$this->lang->expects( $this->never() )
+			->method( $this->anythingBut( 'factory', 'getNsText', 'ucfirst' ) );
 		$this->lc = new TestConverter(
 			$this->lang, 'tg',
 			# Adding 'sgs' as a variant to ensure we handle deprecated codes
@@ -330,13 +336,5 @@ class TestConverter extends LanguageConverter {
 			'tg-latn' => new ReplacementArray( $this->table ),
 			'tg' => new ReplacementArray()
 		];
-	}
-}
-
-class LanguageToTest extends Language {
-	public function __construct() {
-		parent::__construct();
-		$variants = [ 'tg', 'tg-latn' ];
-		$this->mConverter = new TestConverter( $this, 'tg', $variants );
 	}
 }

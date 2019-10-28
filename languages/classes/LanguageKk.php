@@ -363,9 +363,7 @@ class KkConverter extends LanguageConverter {
  * @ingroup Language
  */
 class LanguageKk extends LanguageKk_cyrl {
-	function __construct() {
-		parent::__construct();
-
+	protected function newConverter() : KKConverter {
 		$variants = [ 'kk', 'kk-cyrl', 'kk-latn', 'kk-arab', 'kk-kz', 'kk-tr', 'kk-cn' ];
 		$variantfallbacks = [
 			'kk' => 'kk-cyrl',
@@ -377,7 +375,7 @@ class LanguageKk extends LanguageKk_cyrl {
 			'kk-cn' => 'kk-arab'
 		];
 
-		$this->mConverter = new KkConverter( $this, 'kk', $variants, $variantfallbacks );
+		return new KkConverter( $this, 'kk', $variants, $variantfallbacks );
 	}
 
 	/**

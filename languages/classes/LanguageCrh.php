@@ -290,10 +290,7 @@ class CrhConverter extends LanguageConverter {
  * @ingroup Language
  */
 class LanguageCrh extends Language {
-
-	function __construct() {
-		parent::__construct();
-
+	protected function newConverter() : CrhConverter {
 		$variants = [ 'crh', 'crh-cyrl', 'crh-latn' ];
 		$variantfallbacks = [
 			'crh' => 'crh-latn',
@@ -301,6 +298,6 @@ class LanguageCrh extends Language {
 			'crh-latn' => 'crh-cyrl',
 		];
 
-		$this->mConverter = new CrhConverter( $this, 'crh', $variants, $variantfallbacks );
+		return new CrhConverter( $this, 'crh', $variants, $variantfallbacks );
 	}
 }

@@ -151,9 +151,7 @@ class IuConverter extends LanguageConverter {
  * @ingroup Language
  */
 class LanguageIu extends Language {
-	function __construct() {
-		parent::__construct();
-
+	protected function newConverter() : IuConverter {
 		$variants = [ 'iu', 'ike-cans', 'ike-latn' ];
 		$variantfallbacks = [
 			'iu' => 'ike-cans',
@@ -162,6 +160,6 @@ class LanguageIu extends Language {
 		];
 
 		$flags = [];
-		$this->mConverter = new IuConverter( $this, 'iu', $variants, $variantfallbacks, $flags );
+		return new IuConverter( $this, 'iu', $variants, $variantfallbacks, $flags );
 	}
 }

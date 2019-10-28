@@ -1174,7 +1174,6 @@ class OutputPageTest extends MediaWikiTestCase {
 
 		if ( $variantLinkCallback ) {
 			$mockContLang = $this->getMockBuilder( Language::class )
-				->setConstructorArgs( [ 'en' ] )
 				->setMethods( [ 'findVariantLink' ] )
 				->getMock();
 			$mockContLang->expects( $this->any() )
