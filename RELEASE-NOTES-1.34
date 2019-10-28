@@ -635,6 +635,11 @@ because of Phabricator reports.
 * Using the Parser without initializing its $mTitle property to non-null has
   been deprecated.  In a future release Parser::getTitle() will throw a
   TypeError if $mTitle is uninitialized.
+* A number of public methods of Parser were exposed only for historical
+  reasons and have been deprecated: doMagicLinks, doDoubleUnderscore,
+  doHeadings, doAllQuotes, replaceExternalLinks, replaceInternalLinks,
+  replaceInternalLinks2, getVariableValue, initialiseVariables, formatHeadings,
+  testPst, testPreprocess, testSrvus.
 
 === Other changes in 1.34 ===
 * Added option to specify "Various authors" as author in extension credits using
