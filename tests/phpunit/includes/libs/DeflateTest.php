@@ -19,9 +19,9 @@
  */
 
 /**
- * @covers EasyDeflate
+ * @covers Deflate
  */
-class EasyDeflateTest extends PHPUnit\Framework\TestCase {
+class DeflateTest extends PHPUnit\Framework\TestCase {
 
 	public function provideIsDeflated() {
 		return [
@@ -34,7 +34,7 @@ class EasyDeflateTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider provideIsDeflated
 	 */
 	public function testIsDeflated( $data, $expected ) {
-		$actual = EasyDeflate::isDeflated( $data );
+		$actual = Deflate::isDeflated( $data );
 		$this->assertSame( $expected, $actual );
 	}
 
@@ -42,9 +42,9 @@ class EasyDeflateTest extends PHPUnit\Framework\TestCase {
 		return [
 			[ 'rawdeflate,S8vPT0osAgA=', true, 'foobar' ],
 			// Fails base64_decode
-			[ 'rawdeflate,🌻', false, 'easydeflate-invaliddeflate' ],
+			[ 'rawdeflate,🌻', false, 'deflate-invaliddeflate' ],
 			// Fails gzinflate
-			[ 'rawdeflate,S8vPT0dfdAgB=', false, 'easydeflate-invaliddeflate' ],
+			[ 'rawdeflate,S8vPT0dfdAgB=', false, 'deflate-invaliddeflate' ],
 		];
 	}
 
@@ -52,7 +52,7 @@ class EasyDeflateTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider provideInflate
 	 */
 	public function testInflate( $data, $ok, $value ) {
-		$actual = EasyDeflate::inflate( $data );
+		$actual = Deflate::inflate( $data );
 		if ( $ok ) {
 			$this->assertTrue( $actual->isOK() );
 			$this->assertSame( $value, $actual->getValue() );

@@ -4247,7 +4247,7 @@
 	"passwordpolicies-policyflag-forcechange": "must change on login",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "suggest change on login",
 	"mycustomjsredirectprotected": "You do not have permission to edit this JavaScript page because it is a redirect and it does not point inside your userspace.",
-	"easydeflate-invaliddeflate": "Content provided is not properly deflated",
+	"deflate-invaliddeflate": "Content provided is not properly deflated",
 	"unprotected-js": "For security reasons JavaScript cannot be loaded from unprotected pages. Please only create javascript in the MediaWiki: namespace or as a User subpage",
 	"userlogout-continue": "Do you want to log out?"
 }

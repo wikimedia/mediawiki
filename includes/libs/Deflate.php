@@ -17,11 +17,11 @@
  */
 
 /**
- * Server-side helper for the easy-deflate library
+ * Server-side helper for client-side compressed content.
  *
  * @since 1.32
  */
-class EasyDeflate {
+class Deflate {
 
 	/**
 	 * Whether the content is deflated
@@ -40,12 +40,11 @@ class EasyDeflate {
 	 *
 	 * If data is not prefixed with 'rawdeflate,' it will be returned unmodified.
 	 *
-	 * Data can be compressed in the client using the 'easy-deflate.deflate'
-	 * module:
+	 * Data can be compressed in the client using the 'mediawiki.deflate' module:
 	 *
 	 * @code
-	 *    mw.loader.using( 'easy-deflate.deflate' ).then( function () {
-	 *        var deflated = EasyDeflate.deflate( myContent );
+	 *    mw.loader.using( 'mediawiki.deflate' ).then( function () {
+	 *        var deflated = mw.deflate( myContent );
 	 *    } );
 	 * @endcode
 	 *
@@ -59,14 +58,19 @@ class EasyDeflate {
 		}
 		$deflated = base64_decode( substr( $data, 11 ), true );
 		if ( $deflated === false ) {
-			return StatusValue::newFatal( 'easydeflate-invaliddeflate' );
+			return StatusValue::newFatal( 'deflate-invaliddeflate' );
 		}
 		Wikimedia\suppressWarnings();
 		$inflated = gzinflate( $deflated );
 		Wikimedia\restoreWarnings();
 		if ( $inflated === false ) {
-			return StatusValue::newFatal( 'easydeflate-invaliddeflate' );
+			return StatusValue::newFatal( 'deflate-invaliddeflate' );
 		}
 		return StatusValue::newGood( $inflated );
 	}
 }
+
+/**
+ * @deprecated since 1.35
+ */
+class_alias( Deflate::class, 'EasyDeflate' );
