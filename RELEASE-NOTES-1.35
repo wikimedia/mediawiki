@@ -49,6 +49,9 @@ For notes on 1.34.x and older releases, see HISTORY.
 
 
 === New developer features in 1.35 ===
+* If CSP is enabled, extensions can now add additional sources using the
+  ContentSecurityPolicy::addDefaultSource, ::addStyleSrc and ::addScriptSrc
+  methods (e.g. $context->getOutput()->getCSP()->addDefaultSrc( 'example.com' ))
 * …
 
 === External library changes in 1.35 ===

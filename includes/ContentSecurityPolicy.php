@@ -35,6 +35,13 @@ class ContentSecurityPolicy {
 	/** @var WebResponse */
 	private $response;
 
+	/** @var array */
+	private $extraDefaultSrc = [];
+	/** @var array */
+	private $extraScriptSrc = [];
+	/** @var array */
+	private $extraStyleSrc = [];
+
 	/**
 	 *
 	 * @note As a general rule, you would not construct this class directly
@@ -204,13 +211,13 @@ class ContentSecurityPolicy {
 			}
 		}
 
+		$defaultSrc = array_merge( $defaultSrc, $this->extraDefaultSrc );
+		$scriptSrc = array_merge( $scriptSrc, $this->extraScriptSrc );
+
+		$cssSrc = array_merge( $defaultSrc, $this->extraStyleSrc, [ "'unsafe-inline'" ] );
+
 		Hooks::run( 'ContentSecurityPolicyDefaultSource', [ &$defaultSrc, $policyConfig, $mode ] );
 		Hooks::run( 'ContentSecurityPolicyScriptSource', [ &$scriptSrc, $policyConfig, $mode ] );
-
-		// Check if array just in case the hook made it false
-		if ( is_array( $defaultSrc ) ) {
-			$cssSrc = array_merge( $defaultSrc, [ "'unsafe-inline'" ] );
-		}
 
 		if ( isset( $policyConfig['report-uri'] ) && $policyConfig['report-uri'] !== true ) {
 			if ( $policyConfig['report-uri'] === false ) {
@@ -250,16 +257,16 @@ class ContentSecurityPolicy {
 
 		$directives = [];
 		if ( $scriptSrc ) {
-			$directives[] = 'script-src ' . implode( ' ', $scriptSrc );
+			$directives[] = 'script-src ' . implode( ' ', array_unique( $scriptSrc ) );
 		}
 		if ( $defaultSrc ) {
-			$directives[] = 'default-src ' . implode( ' ', $defaultSrc );
+			$directives[] = 'default-src ' . implode( ' ', array_unique( $defaultSrc ) );
 		}
 		if ( $cssSrc ) {
-			$directives[] = 'style-src ' . implode( ' ', $cssSrc );
+			$directives[] = 'style-src ' . implode( ' ', array_unique( $cssSrc ) );
 		}
 		if ( $imgSrc ) {
-			$directives[] = 'img-src ' . implode( ' ', $imgSrc );
+			$directives[] = 'img-src ' . implode( ' ', array_unique( $imgSrc ) );
 		}
 		if ( $reportUri ) {
 			$directives[] = 'report-uri ' . $reportUri;
@@ -528,5 +535,50 @@ class ContentSecurityPolicy {
 		}
 
 		return $this->nonce;
+	}
+
+	/**
+	 * Add an additional default src
+	 *
+	 * If possible you should use a more specific source type then default.
+	 *
+	 * So for example, if an extension added a special page that loaded something
+	 * it might call $this->getOutput()->getCSP()->addDefaultSrc( '*.example.com' );
+	 *
+	 * @since 1.35
+	 * @param string $source Source to add.
+	 *   e.g. blob:, example.com, https://*.example.com, example.com/foo
+	 */
+	public function addDefaultSrc( $source ) {
+		$this->extraDefaultSrc[] = $this->prepareUrlForCSP( $source );
+	}
+
+	/**
+	 * Add an additional CSS src
+	 *
+	 * So for example, if an extension added a special page that loaded external CSS
+	 * it might call $this->getOutput()->getCSP()->addStyleSrc( '*.example.com' );
+	 *
+	 * @since 1.35
+	 * @param string $source Source to add.
+	 *   e.g. blob:, example.com, https://*.example.com, example.com/foo
+	 */
+	public function addStyleSrc( $source ) {
+		$this->extraStyleSrc[] = $this->prepareUrlForCSP( $source );
+	}
+
+	/**
+	 * Add an additional script src
+	 *
+	 * So for example, if an extension added a special page that loaded something
+	 * it might call $this->getOutput()->getCSP()->addScriptSrc( '*.example.com' );
+	 *
+	 * @since 1.35
+	 * @warning Be careful including external scripts, as they can take over accounts.
+	 * @param string $source Source to add.
+	 *   e.g. blob:, example.com, https://*.example.com, example.com/foo
+	 */
+	public function addScriptSrc( $source ) {
+		$this->extraScriptSrc[] = $this->prepareUrlForCSP( $source );
 	}
 }

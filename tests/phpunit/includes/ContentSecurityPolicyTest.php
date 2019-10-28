@@ -94,6 +94,48 @@ class ContentSecurityPolicyTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers ContentSecurityPolicy::addScriptSrc
+	 * @covers ContentSecurityPolicy::makeCSPDirectives
+	 */
+	public function testAddScriptSrc() {
+		$this->csp->addScriptSrc( 'https://example.com:71' );
+		$actual = $this->csp->makeCSPDirectives( true, ContentSecurityPolicy::FULL_MODE );
+		$expected = "script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline'" .
+			" sister-site.somewhere.com *.wikipedia.org https://example.com:71; default-src *" .
+			" data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri" .
+			" /w/api.php?action=cspreport&format=json";
+		$this->assertEquals( $expected, $actual );
+	}
+
+	/**
+	 * @covers ContentSecurityPolicy::addStyleSrc
+	 * @covers ContentSecurityPolicy::makeCSPDirectives
+	 */
+	public function testAddStyleSrc() {
+		$this->csp->addStyleSrc( 'style.example.com' );
+		$actual = $this->csp->makeCSPDirectives( true, ContentSecurityPolicy::REPORT_ONLY_MODE );
+		$expected = "script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline'" .
+			" sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:;" .
+			" style-src * data: blob: style.example.com 'unsafe-inline'; report-uri" .
+			" /w/api.php?action=cspreport&format=json&reportonly=1";
+		$this->assertEquals( $expected, $actual );
+	}
+
+	/**
+	 * @covers ContentSecurityPolicy::addDefaultSrc
+	 * @covers ContentSecurityPolicy::makeCSPDirectives
+	 */
+	public function testAddDefaultSrc() {
+		$this->csp->addDefaultSrc( '*.example.com' );
+		$actual = $this->csp->makeCSPDirectives( true, ContentSecurityPolicy::FULL_MODE );
+		$expected = "script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline'" .
+			" sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:" .
+			" *.example.com; style-src * data: blob: *.example.com 'unsafe-inline';" .
+			" report-uri /w/api.php?action=cspreport&format=json";
+		$this->assertEquals( $expected, $actual );
+	}
+
+	/**
 	 * @dataProvider providerMakeCSPDirectives
 	 * @covers ContentSecurityPolicy::makeCSPDirectives
 	 */
