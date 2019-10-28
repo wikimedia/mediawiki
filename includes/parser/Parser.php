@@ -1075,9 +1075,10 @@ class Parser {
 	/**
 	 * Get the language object for language conversion
 	 * @deprecated since 1.32, just use getTargetLanguage()
-	 * @return Language|null
+	 * @return Language
 	 */
 	public function getConverterLanguage() {
+		wfDeprecated( __METHOD__, '1.32' );
 		return $this->getTargetLanguage();
 	}
 
