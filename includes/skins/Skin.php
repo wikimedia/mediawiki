@@ -399,7 +399,7 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * @param array $data
-	 * @param string|null $nonce OutputPage::getCSPNonce()
+	 * @param string|null $nonce OutputPage->getCSP()->getNonce()
 	 * @return string|WrappedString HTML
 	 */
 	public static function makeVariablesScript( $data, $nonce = null ) {

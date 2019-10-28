@@ -37,6 +37,7 @@ class ContentSecurityPolicyTest extends MediaWikiTestCase {
 				'directory' => $wgUploadDirectory,
 				'backend' => 'wikimediacommons-backend',
 			] ],
+			'wgCSPHeader' => true, // enable nonce by default
 		] );
 		// Note, there are some obscure globals which
 		// could affect the results which aren't included above.
@@ -44,8 +45,9 @@ class ContentSecurityPolicyTest extends MediaWikiTestCase {
 		$context = RequestContext::getMain();
 		$resp = $context->getRequest()->response();
 		$conf = $context->getConfig();
-		$csp = new ContentSecurityPolicy( 'secret', $resp, $conf );
+		$csp = new ContentSecurityPolicy( $resp, $conf );
 		$this->csp = TestingAccessWrapper::newFromObject( $csp );
+		$this->csp->nonce = 'secret';
 
 		return parent::setUp();
 	}

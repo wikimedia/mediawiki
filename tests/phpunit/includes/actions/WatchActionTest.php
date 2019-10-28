@@ -146,6 +146,7 @@ class WatchActionTest extends MediaWikiTestCase {
 	 */
 	public function testOnSuccessTalkPage() {
 		$testContext = $this->getMockBuilder( DerivativeContext::class )
+			->setMethods( [ 'getOutput', 'msg' ] )
 			->setConstructorArgs( [ $this->watchAction->getContext() ] )
 			->getMock();
 		$testOutput = new OutputPage( $testContext );

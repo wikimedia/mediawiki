@@ -292,8 +292,8 @@ class OutputPageTest extends MediaWikiTestCase {
 		$op->addScriptFile( '//example.com/somescript.js' );
 
 		$this->assertContains(
-			"\n" . Html::linkedScript( '/somescript.js', $op->getCSPNonce() ) .
-				Html::linkedScript( '//example.com/somescript.js', $op->getCSPNonce() ) . "\n",
+			"\n" . Html::linkedScript( '/somescript.js', $op->getCSP()->getNonce() ) .
+				Html::linkedScript( '//example.com/somescript.js', $op->getCSP()->getNonce() ) . "\n",
 			"\n" . $op->getBottomScripts() . "\n"
 		);
 	}
@@ -307,8 +307,8 @@ class OutputPageTest extends MediaWikiTestCase {
 		$op->addInlineScript( 'alert( foo );' );
 
 		$this->assertContains(
-			"\n" . Html::inlineScript( "\nlet foo = \"bar\";\n", $op->getCSPNonce() ) . "\n" .
-				Html::inlineScript( "\nalert( foo );\n", $op->getCSPNonce() ) . "\n",
+			"\n" . Html::inlineScript( "\nlet foo = \"bar\";\n", $op->getCSP()->getNonce() ) . "\n" .
+				Html::inlineScript( "\nalert( foo );\n", $op->getCSP()->getNonce() ) . "\n",
 			"\n" . $op->getBottomScripts() . "\n"
 		);
 	}
@@ -2537,9 +2537,10 @@ class OutputPageTest extends MediaWikiTestCase {
 		$ctx->setSkin( $skinFactory->makeSkin( 'fallback' ) );
 		$ctx->setLanguage( 'en' );
 		$out = new OutputPage( $ctx );
-		$nonce = $class->getProperty( 'CSPNonce' );
+		$reflectCSP = new ReflectionClass( ContentSecurityPolicy::class );
+		$nonce = $reflectCSP->getProperty( 'nonce' );
 		$nonce->setAccessible( true );
-		$nonce->setValue( $out, 'secret' );
+		$nonce->setValue( $out->getCSP(), 'secret' );
 		$rl = $out->getResourceLoader();
 		$rl->setMessageBlobStore( $this->createMock( MessageBlobStore::class ) );
 		$rl->register( [

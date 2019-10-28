@@ -1531,7 +1531,7 @@ MESSAGE;
 	 *
 	 * @param string $script JavaScript code
 	 * @param string|null $nonce [optional] Content-Security-Policy nonce
-	 *  (from OutputPage::getCSPNonce)
+	 *  (from OutputPage->getCSP()->getNonce())
 	 * @return string|WrappedString HTML
 	 */
 	public static function makeInlineScript( $script, $nonce = null ) {

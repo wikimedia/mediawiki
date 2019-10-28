@@ -320,9 +320,9 @@ class OutputPage extends ContextSource {
 	private $mLinkHeader = [];
 
 	/**
-	 * @var string The nonce for Content-Security-Policy
+	 * @var ContentSecurityPolicy
 	 */
-	private $CSPNonce;
+	private $CSP;
 
 	/**
 	 * @var array A cache of the names of the cookies that will influence the cache
@@ -337,6 +337,10 @@ class OutputPage extends ContextSource {
 	 */
 	public function __construct( IContextSource $context ) {
 		$this->setContext( $context );
+		$this->CSP = new ContentSecurityPolicy(
+			$context->getRequest()->response(),
+			$context->getConfig()
+		);
 	}
 
 	/**
@@ -463,7 +467,7 @@ class OutputPage extends ContextSource {
 	 * @param string|null $unused Previously used to change the cache-busting query parameter
 	 */
 	public function addScriptFile( $file, $unused = null ) {
-		$this->addScript( Html::linkedScript( $file, $this->getCSPNonce() ) );
+		$this->addScript( Html::linkedScript( $file, $this->CSP->getNonce() ) );
 	}
 
 	/**
@@ -473,7 +477,7 @@ class OutputPage extends ContextSource {
 	 * @param string $script JavaScript text, no script tags
 	 */
 	public function addInlineScript( $script ) {
-		$this->mScripts .= Html::inlineScript( "\n$script\n", $this->getCSPNonce() ) . "\n";
+		$this->mScripts .= Html::inlineScript( "\n$script\n", $this->CSP->getNonce() ) . "\n";
 	}
 
 	/**
@@ -2597,7 +2601,7 @@ class OutputPage extends ContextSource {
 			$response->header( "Feature-Policy-Report-Only: $featurePolicyReportOnly" );
 		}
 
-		ContentSecurityPolicy::sendHeaders( $this );
+		$this->CSP->sendHeaders();
 
 		if ( $this->mArticleBodyOnly ) {
 			echo $this->mBodytext;
@@ -3026,7 +3030,7 @@ class OutputPage extends ContextSource {
 
 			$rlClient = new ResourceLoaderClientHtml( $context, [
 				'target' => $this->getTarget(),
-				'nonce' => $this->getCSPNonce(),
+				'nonce' => $this->CSP->getNonce(),
 				// When 'safemode', disallowUserJs(), or reduceAllowedModules() is used
 				// to only restrict modules to ORIGIN_CORE (ie. disallow ORIGIN_USER), the list of
 				// modules enqueud for loading on this page is filtered to just those.
@@ -3095,7 +3099,7 @@ class OutputPage extends ContextSource {
 		// Use an IE conditional comment to serve the script only to old IE
 		$shivUrl = $config->get( 'ResourceBasePath' ) . '/resources/lib/html5shiv/html5shiv.js';
 		$pieces[] = '<!--[if lt IE 9]>' .
-			Html::linkedScript( $shivUrl, $this->getCSPNonce() ) .
+			Html::linkedScript( $shivUrl, $this->CSP->getNonce() ) .
 			'<![endif]-->';
 
 		$pieces[] = Html::closeElement( 'head' );
@@ -3174,7 +3178,7 @@ class OutputPage extends ContextSource {
 			$modules,
 			$only,
 			$extraQuery,
-			$this->getCSPNonce()
+			$this->CSP->getNonce()
 		);
 	}
 
@@ -3208,7 +3212,7 @@ class OutputPage extends ContextSource {
 				ResourceLoader::makeConfigSetScript(
 					[ 'wgPageParseReport' => $this->limitReportJSData ]
 				),
-				$this->getCSPNonce()
+				$this->CSP->getNonce()
 			);
 		}
 
@@ -3324,7 +3328,7 @@ class OutputPage extends ContextSource {
 			'wgRelevantPageName' => $relevantTitle->getPrefixedDBkey(),
 			'wgRelevantArticleId' => $relevantTitle->getArticleID(),
 			'wgRequestId' => WebRequest::getRequestId(),
-			'wgCSPNonce' => $this->getCSPNonce(),
+			'wgCSPNonce' => $this->CSP->getNonce(),
 		];
 
 		if ( $user->isLoggedIn() ) {
@@ -4106,18 +4110,19 @@ class OutputPage extends ContextSource {
 	 *
 	 * @return string|bool Nonce or false to mean don't output nonce
 	 * @since 1.32
+	 * @deprecated Since 1.35 use getCSP()->getNonce() instead
 	 */
 	public function getCSPNonce() {
-		if ( !ContentSecurityPolicy::isNonceRequired( $this->getConfig() ) ) {
-			return false;
-		}
-		if ( $this->CSPNonce === null ) {
-			// XXX It might be expensive to generate randomness
-			// on every request, on Windows.
-			$rand = random_bytes( 15 );
-			$this->CSPNonce = base64_encode( $rand );
-		}
-		return $this->CSPNonce;
+		return $this->CSP->getNonce();
 	}
 
+	/**
+	 * Get the ContentSecurityPolicy object
+	 *
+	 * @since 1.35
+	 * @return ContentSecurityPolicy
+	 */
+	public function getCSP() {
+		return $this->CSP;
+	}
 }

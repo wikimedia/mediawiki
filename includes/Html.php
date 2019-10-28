@@ -566,7 +566,7 @@ class Html {
 	 * a warning is logged server-side.
 	 *
 	 * @param string $contents JavaScript
-	 * @param string|null $nonce Nonce for CSP header, from OutputPage::getCSPNonce()
+	 * @param string|null $nonce Nonce for CSP header, from OutputPage->getCSP()->getNonce()
 	 * @return string Raw HTML
 	 */
 	public static function inlineScript( $contents, $nonce = null ) {
@@ -590,7 +590,7 @@ class Html {
 	 * "<script src=foo.js></script>".
 	 *
 	 * @param string $url
-	 * @param string|null $nonce Nonce for CSP header, from OutputPage::getCSPNonce()
+	 * @param string|null $nonce Nonce for CSP header, from OutputPage->getCSP()->getNonce()
 	 * @return string Raw HTML
 	 */
 	public static function linkedScript( $url, $nonce = null ) {

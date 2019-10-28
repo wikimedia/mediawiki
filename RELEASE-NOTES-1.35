@@ -134,6 +134,8 @@ because of Phabricator reports.
   framework.
 * Language::$mLangObjCache is deprecated and should be removed in 1.35. Use
   MediaWikiServices instead to get a LanguageFactory.
+* OutputPage::getCSPNonce() is deprecated, use OutputPage::getCSP()->getNonce()
+  instead.
 * …
 
 === Other changes in 1.35 ===

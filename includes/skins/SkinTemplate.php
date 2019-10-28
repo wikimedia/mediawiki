@@ -460,7 +460,7 @@ class SkinTemplate extends Skin {
 
 		$tpl->set( 'debug', '' );
 		$tpl->set( 'debughtml', $this->generateDebugHTML() );
-		$tpl->set( 'reporttime', wfReportTime( $out->getCSPNonce() ) );
+		$tpl->set( 'reporttime', wfReportTime( $out->getCSP()->getNonce() ) );
 
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$skinTemplate = $this;
