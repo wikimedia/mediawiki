@@ -1311,7 +1311,7 @@ abstract class FileBackendStore extends FileBackend {
 		return $status;
 	}
 
-	final protected function doQuickOperationsInternal( array $ops ) {
+	final protected function doQuickOperationsInternal( array $ops, array $opts ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = $this->newStatus();

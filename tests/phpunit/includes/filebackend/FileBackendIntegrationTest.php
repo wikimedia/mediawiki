@@ -44,7 +44,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers LockManager
  * @covers NullLockManager
  */
-class FileBackendTest extends MediaWikiTestCase {
+class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	/** @var FileBackend */
 	private $backend;

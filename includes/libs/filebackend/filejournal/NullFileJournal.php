@@ -4,6 +4,10 @@
  * @since 1.20
  */
 class NullFileJournal extends FileJournal {
+	public function __construct() {
+		// No-op
+	}
+
 	/**
 	 * @see FileJournal::doLogChangeBatch()
 	 * @param array $entries

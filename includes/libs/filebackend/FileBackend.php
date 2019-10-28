@@ -185,6 +185,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *   - logger : Optional PSR logger object.
 	 *   - profiler : Optional callback that takes a section name argument and returns
 	 *      a ScopedCallback instance that ends the profile section in its destructor.
+	 *   - statusWrapper : Optional callback that is used to wrap returned StatusValues
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct( array $config ) {
@@ -198,8 +199,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 				"Backend domain ID not provided for '{$this->name}'." );
 		}
 		$this->lockManager = $config['lockManager'] ?? new NullLockManager( [] );
-		$this->fileJournal = $config['fileJournal']
-			?? FileJournal::factory( [ 'class' => NullFileJournal::class ], $this->name );
+		$this->fileJournal = $config['fileJournal'] ?? new NullFileJournal;
 		$this->readOnly = isset( $config['readOnly'] )
 			? (string)$config['readOnly']
 			: '';
@@ -712,16 +712,17 @@ abstract class FileBackend implements LoggerAwareInterface {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = ScopedCallback::newScopedIgnoreUserAbort(); // try to ignore client aborts
 
-		return $this->doQuickOperationsInternal( $ops );
+		return $this->doQuickOperationsInternal( $ops, $opts );
 	}
 
 	/**
 	 * @see FileBackend::doQuickOperations()
 	 * @param array $ops
+	 * @param array $opts
 	 * @return StatusValue
 	 * @since 1.20
 	 */
-	abstract protected function doQuickOperationsInternal( array $ops );
+	abstract protected function doQuickOperationsInternal( array $ops, array $opts );
 
 	/**
 	 * Same as doQuickOperations() except it takes a single operation.
@@ -730,11 +731,12 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @see FileBackend::doQuickOperations()
 	 *
 	 * @param array $op Operation
+	 * @param array $opts Batch operation options
 	 * @return StatusValue
 	 * @since 1.20
 	 */
-	final public function doQuickOperation( array $op ) {
-		return $this->doQuickOperations( [ $op ] );
+	final public function doQuickOperation( array $op, array $opts = [] ) {
+		return $this->doQuickOperations( [ $op ], $opts );
 	}
 
 	/**
@@ -744,11 +746,12 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @see FileBackend::doQuickOperation()
 	 *
 	 * @param array $params Operation parameters
+	 * @param array $opts Operation options
 	 * @return StatusValue
 	 * @since 1.20
 	 */
-	final public function quickCreate( array $params ) {
-		return $this->doQuickOperation( [ 'op' => 'create' ] + $params );
+	final public function quickCreate( array $params, array $opts = [] ) {
+		return $this->doQuickOperation( [ 'op' => 'create' ] + $params, $opts );
 	}
 
 	/**
@@ -758,11 +761,12 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @see FileBackend::doQuickOperation()
 	 *
 	 * @param array $params Operation parameters
+	 * @param array $opts Operation options
 	 * @return StatusValue
 	 * @since 1.20
 	 */
-	final public function quickStore( array $params ) {
-		return $this->doQuickOperation( [ 'op' => 'store' ] + $params );
+	final public function quickStore( array $params, array $opts = [] ) {
+		return $this->doQuickOperation( [ 'op' => 'store' ] + $params, $opts );
 	}
 
 	/**
@@ -772,11 +776,12 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @see FileBackend::doQuickOperation()
 	 *
 	 * @param array $params Operation parameters
+	 * @param array $opts Operation options
 	 * @return StatusValue
 	 * @since 1.20
 	 */
-	final public function quickCopy( array $params ) {
-		return $this->doQuickOperation( [ 'op' => 'copy' ] + $params );
+	final public function quickCopy( array $params, array $opts = [] ) {
+		return $this->doQuickOperation( [ 'op' => 'copy' ] + $params, $opts );
 	}
 
 	/**
@@ -786,11 +791,12 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @see FileBackend::doQuickOperation()
 	 *
 	 * @param array $params Operation parameters
+	 * @param array $opts Operation options
 	 * @return StatusValue
 	 * @since 1.20
 	 */
-	final public function quickMove( array $params ) {
-		return $this->doQuickOperation( [ 'op' => 'move' ] + $params );
+	final public function quickMove( array $params, array $opts = [] ) {
+		return $this->doQuickOperation( [ 'op' => 'move' ] + $params, $opts );
 	}
 
 	/**
@@ -800,11 +806,12 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @see FileBackend::doQuickOperation()
 	 *
 	 * @param array $params Operation parameters
+	 * @param array $opts Operation options
 	 * @return StatusValue
 	 * @since 1.20
 	 */
-	final public function quickDelete( array $params ) {
-		return $this->doQuickOperation( [ 'op' => 'delete' ] + $params );
+	final public function quickDelete( array $params, array $opts = [] ) {
+		return $this->doQuickOperation( [ 'op' => 'delete' ] + $params, $opts );
 	}
 
 	/**
@@ -814,11 +821,12 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @see FileBackend::doQuickOperation()
 	 *
 	 * @param array $params Operation parameters
+	 * @param array $opts Operation options
 	 * @return StatusValue
 	 * @since 1.21
 	 */
-	final public function quickDescribe( array $params ) {
-		return $this->doQuickOperation( [ 'op' => 'describe' ] + $params );
+	final public function quickDescribe( array $params, array $opts = [] ) {
+		return $this->doQuickOperation( [ 'op' => 'describe' ] + $params, $opts );
 	}
 
 	/**
