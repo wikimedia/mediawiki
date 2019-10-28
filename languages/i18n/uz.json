@@ -795,6 +795,7 @@
 	"rcfilters-savedqueries-apply-label": "Filter yaratish",
 	"rcfilters-savedqueries-cancel-label": "Bekor qilish",
 	"rcfilters-savedqueries-add-new-title": "Amaldagi filtrlar eslab qolinsin",
+	"rcfilters-show-new-changes": "$1 dan boshlab yangi oʻzgarishlarni koʻrish",
 	"rcfilters-search-placeholder": "Oʻzgarishlarni filtrlash (menyudan foydalaning yoki filtr nomini kiriting)",
 	"rcfilters-search-placeholder-mobile": "Filterlar",
 	"rcfilters-invalid-filter": "Noto‘g‘ri filterlar",
