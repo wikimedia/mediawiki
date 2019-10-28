@@ -126,20 +126,6 @@
 		"phpunit:coverage": "phpunit --testsuite=core:unit --exclude-group Dump,Broken",
 		"phpunit:coverage-edit": "ComposerPhpunitXmlCoverageEdit::onEvent"
 	},
-	"repositories": [
-		{
-			"type": "composer",
-			"url": "https://217.182.92.110/",
-			"options": {
-				"ssl": {
-					"peer_name": "packagist.org"
-				}
-			}
-		},
-		{
-			"packagist.org": false
-		}
-	],
 	"config": {
 		"optimize-autoloader": true,
 		"prepend-autoloader": false
