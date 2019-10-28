@@ -11,9 +11,11 @@
  * @file
  */
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @group Database
- * @covers Parser::getVariableValue
+ * @covers Parser::expandMagicVariable
  */
 class MagicVariableTest extends MediaWikiTestCase {
 	/**
@@ -222,7 +224,7 @@ class MagicVariableTest extends MediaWikiTestCase {
 
 		$this->assertSame(
 			$expected,
-			$this->testParser->getVariableValue( $magic ),
+			TestingAccessWrapper::newFromObject( $this->testParser )->expandMagicVariable( $magic ),
 			$msg
 		);
 	}

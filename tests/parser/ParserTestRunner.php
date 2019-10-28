@@ -1799,7 +1799,7 @@ class ParserTestRunner {
 	 * Fake constant timestamp to make sure time-related parser
 	 * functions give a persistent value.
 	 *
-	 * - Parser::getVariableValue (via ParserGetVariableValueTs hook)
+	 * - Parser::expandMagicVariable (via ParserGetVariableValueTs hook)
 	 * - Parser::preSaveTransform (via ParserOptions)
 	 */
 	private function getFakeTimestamp() {
