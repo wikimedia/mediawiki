@@ -672,6 +672,7 @@
 	"passwordreset-emailelement": "Nazwa użytkownika: \n$1\n\nTymczasowe hasło: \n$2",
 	"passwordreset-emailsentemail": "Jeśli ten adres e‐mail jest przypisany do Twojego konta, zostanie na niego wysłany e-mail do odzyskiwania hasła.",
 	"passwordreset-emailsentusername": "Jeśli z tym kontem powiązany jest adres e‐mail, zostanie na niego wysłany e-mail do odzyskiwania hasła.",
+	"passwordreset-emailtext-require-email": "Jeżeli nie zażądałeś tego maila i chcesz uniknąć podobnych niechcianych wiadomości w przyszłości, możesz zmienić swoje opcje e-mail na $1. Możesz wymagać zarówno nazwy użytkownika, jak i adresu e-mail w celu wygenerowania wiadomości do zresetowania hasła. Może to zmniejszyć ilość podobnych sytuacji.",
 	"passwordreset-nocaller": "Musi być podany wywołujący",
 	"passwordreset-nosuchcaller": "Wywołujący nie istnieje: $1",
 	"passwordreset-ignored": "Zresetowanie hasła nie powiodło się. Może żaden dostawca nie został skonfigurowany?",

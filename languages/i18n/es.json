@@ -769,7 +769,7 @@
 	"passwordreset-emailelement": "Nombre de {{GENDER:$1|usuario|usuaria}}: \n$1\n\nContraseña temporal: \n$2",
 	"passwordreset-emailsentemail": "Si esta dirección de correo electrónico está asociada a tu cuenta, entonces se enviará un correo electrónico para restablecer la contraseña.",
 	"passwordreset-emailsentusername": "Si existe una dirección de correo electrónico asociada a este nombre de usuario, entonces se enviará un correo para restablecer la contraseña.",
-	"passwordreset-emailtext-require-email": "Sin embargo, si usted no ha generado esta solicitud y quiere evitar correos electrónicos no solicitados, quizás quiere actualizar sus opciones de correo en $1. Puede requerir tanto un nombre de usuario como una dirección de correo electrónico para general correos eléctronicos de reajuste de contraseñas. Esto puede reducir el número de tales incidentes.",
+	"passwordreset-emailtext-require-email": "Sin embargo, si no has generado esta solicitud y quieres evitar correos electrónicos no solicitados, puedes actualizar tus opciones de correo electrónico a través de $1. Puedes establecer que tanto un nombre de usuario como una dirección de correo electrónico sean requeridos para poder restablecer tu contraseña. Hacer eso puede reducir el número de tales incidentes.",
 	"passwordreset-nocaller": "Debes proporcionar un interlocutor",
 	"passwordreset-nosuchcaller": "El interlocutor no existe: $1",
 	"passwordreset-ignored": "No se logró el reestablecimiento de la contraseña. ¿Tal vez no se configuró un proveedor?",

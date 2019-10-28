@@ -745,6 +745,7 @@
 	"passwordreset-emailelement": "Nom d’utilisateur : \n$1\n\nMot de passe temporaire : \n$2",
 	"passwordreset-emailsentemail": "Si cette adresse de courriel est associée à votre compte, alors un courriel de réinitialisation de mot de passe sera envoyé.",
 	"passwordreset-emailsentusername": "S’il y a une adresse de courriel associée à ce nom d’utilisateur, alors un courriel de réinitialisation de mot de passe sera envoyé.",
+	"passwordreset-emailtext-require-email": "Toutefois, si vous ne générez pas cette requête et voulez empêcher les courriels non sollicités, vous pouvez vouloir mettre à jour vos options de messagerie sur $1. Vous pouvez demander à la fois au nom d’utilisateur et à l’adresse de messagerie de générer des courriels de réinitialisation de mot de passe. Cela peut réduire le nombre d’incidents semblables.",
 	"passwordreset-nocaller": "Un appelant doit être fourni",
 	"passwordreset-nosuchcaller": "L’appelant n’existe pas : $1",
 	"passwordreset-ignored": "La réinitialisation du mot de passe n’a pas été gérée. Peut-être qu’aucun fournisseur n’a été configuré ?",

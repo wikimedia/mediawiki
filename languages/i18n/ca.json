@@ -62,7 +62,8 @@
 			"Amire80",
 			"Leptictidium",
 			"Townie",
-			"Edustus"
+			"Edustus",
+			"Jlrb+"
 		]
 	},
 	"tog-underline": "Subratlla els enllaços:",
@@ -92,7 +93,7 @@
 	"tog-oldsig": "La vostra signatura actual:",
 	"tog-fancysig": "Tractar la signatura com a text wiki (sense enllaç automàtic)",
 	"tog-uselivepreview": "Mostra previsualitzacions sense recarregar la pàgina",
-	"tog-forceeditsummary": "Avisa'm en deixar el resum de la modificació en blanc",
+	"tog-forceeditsummary": "Avisa'm quan deixi en blanc el resum de la modificació  (o el resum per defecte)",
 	"tog-watchlisthideown": "Amaga les meues edicions de la llista de seguiment",
 	"tog-watchlisthidebots": "Amaga de la llista de seguiment les edicions fetes per usuaris bots",
 	"tog-watchlisthideminor": "Amaga les edicions menors de la llista de seguiment",
@@ -632,6 +633,7 @@
 	"passwordreset-emailelement": "Nom d'usuari: \n$1\n\nContrasenya temporal: \n$2",
 	"passwordreset-emailsentemail": "Si aquesta adreça electrònica està associada al vostre compte, s’enviarà un missatge de restabliment de contrasenya.",
 	"passwordreset-emailsentusername": "Si existeix una adreça electrònica associada a aquest nom d'usuari, s’hi enviarà un missatge de reestabliment de contrasenya.",
+	"passwordreset-emailtext-require-email": "No obstant això, si no has fet aquesta petició i no vols rebre més correus electrònics no sol·licitats, pots modificar les teves preferències a $1. Pots haver de necessitar el nom d'usuari i l'adreça electrònica per generar correus de reinicialització de la contrasenya. Això pot reduir el nombre d'incidents d'aquest tipus.",
 	"passwordreset-nocaller": "Cal proveir un sol·licitant",
 	"passwordreset-nosuchcaller": "El sol·licitant no existeix: $1",
 	"passwordreset-ignored": "El restabliment de la contrasenya no s'ha realitzat. Potser no s'ha configurat cap proveïdor?",

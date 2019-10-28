@@ -432,7 +432,7 @@
 	"cannotlogoutnow-title": "Nem lehet most kijelentkezni",
 	"cannotlogoutnow-text": "A kijelentkezés nem lehetséges $1 használatakor.",
 	"welcomeuser": "Üdvözlünk, $1!",
-	"welcomecreation-msg": "A felhasználói fiókod elkészült.\nNe felejtsd el módosítani a [[Special:Preferences|{{SITENAME}} beállításaidat]].",
+	"welcomecreation-msg": "A felhasználói fiókod elkészült.\nNe felejtsd el módosítani a(z) [[Special:Preferences|{{SITENAME}} beállításaidat]].",
 	"yourname": "Szerkesztőneved:",
 	"userlogin-yourname": "Felhasználónév",
 	"userlogin-yourname-ph": "Add meg a felhasználóneved",
