@@ -869,7 +869,7 @@ class DifferenceEngine extends ContextSource {
 			$out->setArticleFlag( true );
 
 			if ( !Hooks::run( 'ArticleRevisionViewCustom',
-				[ $this->mNewRev->getRevisionRecord(), $this->mNewPage, $out ] )
+				[ $this->mNewRev->getRevisionRecord(), $this->mNewPage, $this->mOldid, $out ] )
 			) {
 				// Handled by extension
 				// NOTE: sync with hooks called in Article::view()
