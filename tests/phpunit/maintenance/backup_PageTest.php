@@ -136,11 +136,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		if ( ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
 			$this->db->update(
 				'revision',
-				[
-					'rev_text_id' => 0,
-					'rev_sha1' => '',
-					'rev_len' => '0',
-				],
+				[ 'rev_text_id' => 0 ],
 				[ 'rev_id' => $revision->getId() ]
 			);
 		}
@@ -148,11 +144,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		if ( ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) ) {
 			$this->db->update(
 				'content',
-				[
-					'content_address' => 'tt:0',
-					'content_sha1' => '',
-					'content_size' => '0',
-				],
+				[ 'content_address' => 'tt:0' ],
 				[ 'content_id' => $revision->getSlot( SlotRecord::MAIN )->getContentId() ]
 			);
 		}
@@ -337,8 +329,7 @@ class BackupDumperPageTest extends DumpTestCase {
 			"Talk about BackupDumperTestP1 Text1",
 			false,
 			CONTENT_MODEL_WIKITEXT,
-			CONTENT_FORMAT_WIKITEXT,
-			$schemaVersion
+			CONTENT_FORMAT_WIKITEXT
 		);
 		$asserter->assertPageEnd();
 
@@ -352,13 +343,12 @@ class BackupDumperPageTest extends DumpTestCase {
 			$this->revId5_1,
 			"BackupDumperTestP5 Summary1",
 			null,
-			0,
-			"",
+			24,
+			"d2vipufvkfs9wfruwjfj8eschxw0fbl",
 			false,
 			false,
 			CONTENT_MODEL_WIKITEXT,
-			CONTENT_FORMAT_WIKITEXT,
-			$schemaVersion
+			CONTENT_FORMAT_WIKITEXT
 		);
 		$asserter->assertPageEnd();
 
@@ -484,8 +474,8 @@ class BackupDumperPageTest extends DumpTestCase {
 			$this->revId5_1,
 			"BackupDumperTestP5 Summary1",
 			null,
-			0,
-			""
+			24,
+			"d2vipufvkfs9wfruwjfj8eschxw0fbl"
 		);
 		$asserter->assertPageEnd();
 
