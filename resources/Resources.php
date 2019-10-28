@@ -2574,10 +2574,9 @@ return [
 	],
 
 	'mediawiki.deflate' => [
-		'scripts' => [
-			'resources/lib/easy-deflate/easydeflate.js',
-			'resources/lib/easy-deflate/deflate.js',
+		'packageFiles' => [
 			'resources/src/mediawiki.deflate/mw.deflate.js',
+			'resources/lib/pako/pako_deflate.js',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],

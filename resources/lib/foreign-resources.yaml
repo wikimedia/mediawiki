@@ -93,19 +93,6 @@ CLDRPluralRuleParser:
   src: https://raw.githubusercontent.com/santhoshtr/CLDRPluralRuleParser/0dda851/src/CLDRPluralRuleParser.js
   integrity: sha384-M4taeYYG2+9Ob1/La16iO+zlRRmBV5lBR3xUKkQT6kfkJ0aLbCi6yc0RYI1BDzdh
 
-easy-deflate:
-  type: multi-file
-  files:
-    deflate.js:
-      src: https://raw.githubusercontent.com/edg2s/Easy-Deflate/7a6056e5302f6f385ff2efa60afda45b4ad81e51/deflate.js
-      integrity: sha384-sHnZLDSWMUhA2w9ygkzCK8YFvoh/fQKY6lXMbvmrYzjuNURiLB0DZFCDNMpGyZ77
-    easydeflate.js:
-      src: https://raw.githubusercontent.com/edg2s/Easy-Deflate/7a6056e5302f6f385ff2efa60afda45b4ad81e51/easydeflate.js
-      integrity: sha384-EwPfP2RMkDPa1HkzQsXgzTsy1KEjcIzQPA1HDS/JPHjvEMvVUsCxWwm1oXql/jk2
-    README.md:
-      src: https://raw.githubusercontent.com/edg2s/Easy-Deflate/7a6056e5302f6f385ff2efa60afda45b4ad81e51/README.md
-      integrity: sha384-6kwcfCLivvqXBZy2ATyya+mTVWLk3eaQyBdC6tbpBtkygnBrM2SNkq3jz/l7IkvP
-
 html5shiv:
   type: file
   src: https://raw.githubusercontent.com/aFarkas/html5shiv/3.7.3/src/html5shiv.js
@@ -278,6 +265,19 @@ ooui:
     package/dist/History.md:
     package/dist/LICENSE-MIT:
     package/dist/README.md:
+
+pako:
+  type: multi-file
+  files:
+    pako_deflate.js:
+      src: https://raw.githubusercontent.com/nodeca/pako/1.0.10/dist/pako_deflate.js
+      integrity: sha384-5WMh5CB1LExc7cwu9KhrrJNgHsi75Q1U6APn5dpmeFGEalKInNRzqTkUkHXb9JA9
+    README.md:
+      src: https://raw.githubusercontent.com/nodeca/pako/1.0.10/README.md
+      integrity: sha384-lI5OTOkO7/0yGfYTICjdLvpYcj5DVpWMTRFS+I7t0usiyiA1jLqBmyDELv/zrGQZ
+    LICENSE:
+      src: https://raw.githubusercontent.com/nodeca/pako/1.0.10/LICENSE
+      integrity: sha384-9tg5LwdfxM6Fpdp6Sep9VI0qXS7Eg5gQRPvNrfV3DKIkVVL3EwSK2atu+zRoEwJg
 
 qunitjs:
   type: multi-file
