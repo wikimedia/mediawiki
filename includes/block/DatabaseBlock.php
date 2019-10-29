@@ -847,7 +847,11 @@ class DatabaseBlock extends AbstractBlock {
 		$autoblock->setTarget( $autoblockIP );
 		$autoblock->setBlocker( $this->getBlocker() );
 		$autoblock->setReason(
-			wfMessage( 'autoblocker', (string)$this->getTarget(), $this->getReasonComment()->text )
+			wfMessage(
+				'autoblocker',
+				(string)$this->getTarget(),
+				$this->getReasonComment()->message->plain()
+			)
 		);
 		$timestamp = wfTimestampNow();
 		$autoblock->setTimestamp( $timestamp );
