@@ -954,15 +954,16 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	}
 
 	/**
-	 * Method to fetch/regenerate cache keys
+	 * Method to fetch/regenerate a cache key
 	 *
 	 * On cache miss, the key will be set to the callback result via set()
 	 * (unless the callback returns false) and that result will be returned.
 	 * The arguments supplied to the callback are:
-	 *   - $oldValue : current cache value or false if not present
-	 *   - &$ttl : a reference to the TTL which can be altered
-	 *   - &$setOpts : a reference to options for set() which can be altered
-	 *   - $oldAsOf : generation UNIX timestamp of $oldValue or null if not present (since 1.28)
+	 *   - $oldValue: prior cache value or false if none was present
+	 *   - &$ttl: alterable reference to the TTL to be assigned to the new value
+	 *   - &$setOpts: alterable reference to the set() options to be used with the new value
+	 *   - $oldAsOf: generation UNIX timestamp of $oldValue or null if not present (since 1.28)
+	 *   - $params: custom field/value map as defined by $cbParams (since 1.35)
 	 *
 	 * It is strongly recommended to set the 'lag' and 'since' fields to avoid race conditions
 	 * that can cause stale values to get stuck at keys. Usually, callbacks ignore the current
@@ -1152,7 +1153,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * @see WANObjectCache::set()
 	 *
 	 * @param string $key Cache key made from makeKey() or makeGlobalKey()
-	 * @param int $ttl Seconds to live for key updates. Special values are:
+	 * @param int $ttl Nominal seconds-to-live for newly computed values. Special values are:
 	 *   - WANObjectCache::TTL_INDEFINITE: Cache forever (subject to LRU-style evictions)
 	 *   - WANObjectCache::TTL_UNCACHEABLE: Do not cache (if the key exists, it is not deleted)
 	 * @param callable $callback Value generation function
@@ -1249,6 +1250,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 *      most sense for values that are moderately to highly expensive to regenerate and easy
 	 *      to query for dependency timestamps. The use of "pcTTL" reduces timestamp queries.
 	 *      Default: null.
+	 * @param array $cbParams Custom field/value map to pass to the callback (since 1.35)
 	 * @codingStandardsIgnoreStart
 	 * @phan-param array{checkKeys?:string[],graceTTL?:int,lockTSE?:int,busyValue?:mixed,pcTTL?:int,pcGroup?:string,version?:int,minAsOf?:int,hotTTR?:int,lowTTL?:int,ageNew?:int,staleTTL?:int,touchedCallback?:callable} $opts
 	 * @codingStandardsIgnoreEnd
@@ -1258,7 +1260,9 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * @note Options added in 1.33: touchedCallback
 	 * @note Callable type hints are not used to avoid class-autoloading
 	 */
-	final public function getWithSetCallback( $key, $ttl, $callback, array $opts = [] ) {
+	final public function getWithSetCallback(
+		$key, $ttl, $callback, array $opts = [], array $cbParams = []
+	) {
 		$version = $opts['version'] ?? null;
 		$pcTTL = $opts['pcTTL'] ?? self::TTL_UNCACHEABLE;
 		$pCache = ( $pcTTL >= 0 )
@@ -1276,7 +1280,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 			}
 		}
 
-		$res = $this->fetchOrRegenerate( $key, $ttl, $callback, $opts );
+		$res = $this->fetchOrRegenerate( $key, $ttl, $callback, $opts, $cbParams );
 		list( $value, $valueVersion, $curAsOf ) = $res;
 		if ( $valueVersion !== $version ) {
 			// Current value has a different version; use the variant key for this version.
@@ -1287,7 +1291,8 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 				$this->makeGlobalKey( 'WANCache-key-variant', md5( $key ), $version ),
 				$ttl,
 				$callback,
-				[ 'version' => null, 'minAsOf' => $curAsOf ] + $opts
+				[ 'version' => null, 'minAsOf' => $curAsOf ] + $opts,
+				$cbParams
 			);
 		}
 
@@ -1307,14 +1312,15 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * @param string $key
 	 * @param int $ttl
 	 * @param callable $callback
-	 * @param array $opts Options map for getWithSetCallback()
+	 * @param array $opts
+	 * @param array $cbParams
 	 * @return array Ordered list of the following:
 	 *   - Cached or regenerated value
 	 *   - Cached or regenerated value version number or null if not versioned
 	 *   - Timestamp of the current cached value at the key or null if there is no value
 	 * @note Callable type hints are not used to avoid class-autoloading
 	 */
-	private function fetchOrRegenerate( $key, $ttl, $callback, array $opts ) {
+	private function fetchOrRegenerate( $key, $ttl, $callback, array $opts, array $cbParams ) {
 		$checkKeys = $opts['checkKeys'] ?? [];
 		$graceTTL = $opts['graceTTL'] ?? self::GRACE_TTL_NONE;
 		$minAsOf = $opts['minAsOf'] ?? self::MIN_TIMESTAMP_NONE;
@@ -1339,16 +1345,15 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 			$this->isValid( $curValue, $curInfo['asOf'], $minAsOf ) &&
 			$this->isAliveOrInGracePeriod( $curTTL, $graceTTL )
 		) {
-			$worthRefreshExpiring = $this->worthRefreshExpiring( $curTTL, $lowTTL );
-			$worthRefreshPopular = $this->worthRefreshPopular( $curInfo['asOf'],
-				$ageNew, $hotTTR, $initialTime );
-			$preemptiveRefresh = $worthRefreshExpiring || $worthRefreshPopular;
+			$preemptiveRefresh = (
+				$this->worthRefreshExpiring( $curTTL, $lowTTL ) ||
+				$this->worthRefreshPopular( $curInfo['asOf'], $ageNew, $hotTTR, $initialTime )
+			);
 			if ( !$preemptiveRefresh ) {
-				$this->logger->debug( "fetchOrRegenerate($key): normal hit" );
 				$this->stats->increment( "wanobjectcache.$kClass.hit.good" );
 
 				return [ $curValue, $curInfo['version'], $curInfo['asOf'] ];
-			} elseif ( $this->scheduleAsyncRefresh( $key, $ttl, $callback, $opts ) ) {
+			} elseif ( $this->scheduleAsyncRefresh( $key, $ttl, $callback, $opts, $cbParams ) ) {
 				$this->logger->debug( "fetchOrRegenerate($key): hit with async refresh" );
 				$this->stats->increment( "wanobjectcache.$kClass.hit.refresh" );
 
@@ -1431,7 +1436,8 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 				( $curInfo['version'] === $version ) ? $curValue : false,
 				$ttl,
 				$setOpts,
-				( $curInfo['version'] === $version ) ? $curInfo['asOf'] : null
+				( $curInfo['version'] === $version ) ? $curInfo['asOf'] : null,
+				$cbParams
 			);
 		} finally {
 			--$this->callbackDepth;
@@ -1633,15 +1639,13 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 * Method to fetch multiple cache keys at once with regeneration
 	 *
 	 * This works the same as getWithSetCallback() except:
-	 *   - a) The $keys argument expects the result of WANObjectCache::makeMultiKeys()
-	 *   - b) The $callback argument expects a callback taking the following arguments:
-	 *         - $id: ID of an entity to query
-	 *         - $oldValue : the prior cache value or false if none was present
-	 *         - &$ttl : a reference to the new value TTL in seconds
-	 *         - &$setOpts : a reference to options for set() which can be altered
-	 *         - $oldAsOf : generation UNIX timestamp of $oldValue or null if not present
-	 *        Aside from the additional $id argument, the other arguments function the same
-	 *        way they do in getWithSetCallback().
+	 *   - a) The $keys argument must be the result of WANObjectCache::makeMultiKeys()
+	 *   - b) The $callback argument must be a callback that takes the following arguments:
+	 *         - $id: ID of the entity to query
+	 *         - $oldValue: prior cache value or false if none was present
+	 *         - &$ttl: reference to the TTL to be assigned to the new value (alterable)
+	 *         - &$setOpts: reference to the new value set() options (alterable)
+	 *         - $oldAsOf: generation UNIX timestamp of $oldValue or null if not present
 	 *   - c) The return value is a map of (cache key => value) in the order of $keyedIds
 	 *
 	 * @see WANObjectCache::getWithSetCallback()
@@ -1705,15 +1709,23 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		);
 		$this->warmupKeyMisses = 0;
 
-		// Wrap $callback to match the getWithSetCallback() format while passing $id to $callback
-		$id = null; // current entity ID
-		$func = function ( $oldValue, &$ttl, &$setOpts, $oldAsOf ) use ( $callback, &$id ) {
-			return $callback( $id, $oldValue, $ttl, $setOpts, $oldAsOf );
+		// The required callback signature includes $id as the first argument for convenience
+		// to distinguish different items. To reuse the code in getWithSetCallback(), wrap the
+		// callback with a proxy callback that has the standard getWithSetCallback() signature.
+		// This is defined only once per batch to avoid closure creation overhead.
+		$proxyCb = function ( $oldValue, &$ttl, &$setOpts, $oldAsOf, $params ) use ( $callback ) {
+			return $callback( $params['id'], $oldValue, $ttl, $setOpts, $oldAsOf );
 		};
 
 		$values = [];
 		foreach ( $keyedIds as $key => $id ) { // preserve order
-			$values[$key] = $this->getWithSetCallback( $key, $ttl, $func, $opts );
+			$values[$key] = $this->getWithSetCallback(
+				$key,
+				$ttl,
+				$proxyCb,
+				$opts,
+				[ 'id' => $id ]
+			);
 		}
 
 		$this->warmupCache = [];
@@ -1728,18 +1740,14 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 *   - a) The $keys argument expects the result of WANObjectCache::makeMultiKeys()
 	 *   - b) The $callback argument expects a callback returning a map of (ID => new value)
 	 *        for all entity IDs in $ids and it takes the following arguments:
-	 *          - $ids: a list of entity IDs that require cache regeneration
-	 *          - &$ttls: a reference to the (entity ID => new TTL) map
-	 *          - &$setOpts: a reference to options for set() which can be altered
+	 *          - $ids: list of entity IDs that require cache regeneration
+	 *          - &$ttls: reference to the (entity ID => new TTL) map (alterable)
+	 *          - &$setOpts: reference to the new value set() options (alterable)
 	 *   - c) The return value is a map of (cache key => value) in the order of $keyedIds
 	 *   - d) The "lockTSE" and "busyValue" options are ignored
 	 *
 	 * @see WANObjectCache::getWithSetCallback()
 	 * @see WANObjectCache::getMultiWithSetCallback()
-	 *
-	 * @warning Usage of this method appears to have caused cache corruption, see T235188.
-	 *          This method should not be used until the root cause of T235188 has been resolved
-	 *          and I94c6f9ba7b9caeeb has been reverted.
 	 *
 	 * Example usage:
 	 * @code
@@ -1820,11 +1828,15 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		$newTTLsById = array_fill_keys( $idsRegen, $ttl );
 		$newValsById = $idsRegen ? $callback( $idsRegen, $newTTLsById, $newSetOpts ) : [];
 
-		// Wrap $callback to match the getWithSetCallback() format while passing $id to $callback
-		$id = null; // current entity ID
-		$func = function ( $oldValue, &$ttl, &$setOpts, $oldAsOf )
-			use ( $callback, &$id, $newValsById, $newTTLsById, $newSetOpts )
+		// The required callback signature includes $id as the first argument for convenience
+		// to distinguish different items. To reuse the code in getWithSetCallback(), wrap the
+		// callback with a proxy callback that has the standard getWithSetCallback() signature.
+		// This is defined only once per batch to avoid closure creation overhead.
+		$proxyCb = function ( $oldValue, &$ttl, &$setOpts, $oldAsOf, $params )
+			use ( $callback, $newValsById, $newTTLsById, $newSetOpts )
 		{
+			$id = $params['id'];
+
 			if ( array_key_exists( $id, $newValsById ) ) {
 				// Value was already regerated as expected, so use the value in $newValsById
 				$newValue = $newValsById[$id];
@@ -1844,7 +1856,13 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		// Run the cache-aside logic using warmupCache instead of persistent cache queries
 		$values = [];
 		foreach ( $keyedIds as $key => $id ) { // preserve order
-			$values[$key] = $this->getWithSetCallback( $key, $ttl, $func, $opts );
+			$values[$key] = $this->getWithSetCallback(
+				$key,
+				$ttl,
+				$proxyCb,
+				$opts,
+				[ 'id' => $id ]
+			);
 		}
 
 		$this->warmupCache = [];
@@ -2266,22 +2284,28 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	}
 
 	/**
+	 * Schedule a deferred cache regeneration if possible
+	 *
 	 * @param string $key
 	 * @param int $ttl Seconds to live
 	 * @param callable $callback
 	 * @param array $opts
+	 * @param array $cbParams
 	 * @return bool Success
 	 * @note Callable type hints are not used to avoid class-autoloading
 	 */
-	private function scheduleAsyncRefresh( $key, $ttl, $callback, $opts ) {
+	private function scheduleAsyncRefresh( $key, $ttl, $callback, array $opts, array $cbParams ) {
 		if ( !$this->asyncHandler ) {
 			return false;
 		}
-		// Update the cache value later, such during post-send of an HTTP request
+		// Update the cache value later, such during post-send of an HTTP request. This forces
+		// cache regeneration by setting "minAsOf" to infinity, meaning that no existing value
+		// is considered valid. Furthermore, note that preemptive regeneration is not applicable
+		// to invalid values, so there is no risk of infinite preemptive regeneration loops.
 		$func = $this->asyncHandler;
-		$func( function () use ( $key, $ttl, $callback, $opts ) {
-			$opts['minAsOf'] = INF; // force a refresh
-			$this->fetchOrRegenerate( $key, $ttl, $callback, $opts );
+		$func( function () use ( $key, $ttl, $callback, $opts, $cbParams ) {
+			$opts['minAsOf'] = INF;
+			$this->fetchOrRegenerate( $key, $ttl, $callback, $opts, $cbParams );
 		} );
 
 		return true;
@@ -2341,11 +2365,15 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 
 		$chance = ( 1 - $curTTL / $lowTTL );
 
-		$this->logger->debug( "worthRefreshExpiring($curTTL, $lowTTL): " .
-			"chance = $chance" );
-
 		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
-		return mt_rand( 1, 1e9 ) <= 1e9 * $chance;
+		$decision = ( mt_rand( 1, 1e9 ) <= 1e9 * $chance );
+
+		$this->logger->debug(
+			"worthRefreshExpiring($curTTL, $lowTTL): " .
+			"p = $chance; refresh = " . ( $decision ? 'Y' : 'N' )
+		);
+
+		return $decision;
 	}
 
 	/**
@@ -2383,15 +2411,18 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		// P(refresh) * ($refreshWindowSec * $popularHitsPerSec) = 1 (by definition)
 		// P(refresh) = 1/($refreshWindowSec * $popularHitsPerSec)
 		$chance = 1 / ( $popularHitsPerSec * $refreshWindowSec );
-
 		// Ramp up $chance from 0 to its nominal value over RAMPUP_TTL seconds to avoid stampedes
 		$chance *= ( $timeOld <= self::$RAMPUP_TTL ) ? $timeOld / self::$RAMPUP_TTL : 1;
 
-		$this->logger->debug( "worthRefreshPopular($asOf, $ageNew, $timeTillRefresh, $now): " .
-			"chance = $chance" );
-
 		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
-		return mt_rand( 1, 1e9 ) <= 1e9 * $chance;
+		$decision = ( mt_rand( 1, 1e9 ) <= 1e9 * $chance );
+
+		$this->logger->debug(
+			"worthRefreshPopular($asOf, $ageNew, $timeTillRefresh, $now): " .
+			"p = $chance; refresh = " . ( $decision ? 'Y' : 'N' )
+		);
+
+		return $decision;
 	}
 
 	/**
