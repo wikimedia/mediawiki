@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 error_reporting( E_ALL );
 require_once __DIR__ . '/Maintenance.php';
 
@@ -42,11 +44,12 @@ class FileOpPerfTest extends Maintenance {
 	}
 
 	public function execute() {
-		$backend = FileBackendGroup::singleton()->get( $this->getOption( 'b1' ) );
+		$backendGroup = MediaWikiServices::getInstance()->getFileBackendGroup();
+		$backend = $backendGroup->get( $this->getOption( 'b1' ) );
 		$this->doPerfTest( $backend );
 
 		if ( $this->getOption( 'b2' ) ) {
-			$backend = FileBackendGroup::singleton()->get( $this->getOption( 'b2' ) );
+			$backend = $backendGroup->get( $this->getOption( 'b2' ) );
 			$this->doPerfTest( $backend );
 		}
 	}
