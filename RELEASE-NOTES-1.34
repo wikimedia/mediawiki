@@ -640,7 +640,9 @@ because of Phabricator reports.
   doHeadings, doAllQuotes, replaceExternalLinks, replaceInternalLinks,
   replaceInternalLinks2, getVariableValue, initialiseVariables, formatHeadings,
   testPst, testPreprocess, testSrvus, areSubpagesAllowed, maybeDoSubpageLink,
-  splitWhitespace, createAssocArgs.
+  splitWhitespace, createAssocArgs, armorLinks, makeKnownLinkHolder,
+  getImageParams, parseLinkParameter, stripAltText, replaceLinkHolders,
+  replaceLinkHoldersText.
 
 === Other changes in 1.34 ===
 * Added option to specify "Various authors" as author in extension credits using
