@@ -54,7 +54,8 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 			// Need for LoggerFactory. Default is NullSpi.
 			'wgMWLoggerDefaultSpi',
 			'wgAutoloadAttemptLowercase',
-			'wgLegalTitleChars'
+			'wgLegalTitleChars',
+			'wgDevelopmentWarnings',
 		];
 	}
 
