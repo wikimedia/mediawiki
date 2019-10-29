@@ -3236,8 +3236,10 @@ class Parser {
 	 * @param string $s
 	 *
 	 * @return array
+	 * @deprecated since 1.34; appears to be unused.
 	 */
 	public static function splitWhitespace( $s ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		$ltrimmed = ltrim( $s );
 		$w1 = substr( $s, 0, strlen( $s ) - strlen( $ltrimmed ) );
 		$trimmed = rtrim( $ltrimmed );
@@ -3300,8 +3302,10 @@ class Parser {
 	 * @param array $args
 	 *
 	 * @return array
+	 * @deprecated since 1.34; appears to be unused in core.
 	 */
 	public static function createAssocArgs( $args ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		$assocArgs = [];
 		$index = 1;
 		foreach ( $args as $arg ) {
