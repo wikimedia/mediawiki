@@ -3009,7 +3009,7 @@
 	"watchlistedit-clear-titles": "Sernamey:",
 	"watchlistedit-clear-submit": "Lista temaşey pak ke (peyd nêgêrêno)",
 	"watchlistedit-clear-done": "Lista seyrkerdişê şıma biya pak.",
-	"watchlistedit-clear-removed": "{{PLURAL:$1|1 sername|$1 sernamey}} wedariya:",
+	"watchlistedit-clear-removed": "{{PLURAL:$1|1 sername dariya|$1 sernameyi dariyayi}} we:",
 	"watchlistedit-too-many": "Seba mocnayışi rê zehf peli estê.",
 	"watchlisttools-clear": "Lista serykerdışê xo pak kı",
 	"watchlisttools-view": "Vurnayışanê elaqedaran bıvêne",
