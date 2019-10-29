@@ -8985,6 +8985,9 @@ $wgXmlDumpSchemaVersion = XML_DUMP_SCHEMA_VERSION_10;
  * Flag to enable Partial Blocks. This allows an admin to prevent a user from editing specific pages
  * or namespaces.
  *
+ * This option should *not* be used with a suffix or tag in a SiteConfiguration object.
+ * @see https://phabricator.wikimedia.org/T224020
+ *
  * @since 1.33
  * @deprecated 1.33
  * @var bool
