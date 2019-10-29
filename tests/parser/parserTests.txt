@@ -24427,7 +24427,7 @@ Line two
 !! end
 
 !! test
-Interwiki links trounced by replaceExternalLinks after early LinkHolderArray expansion
+Interwiki links trounced by handleExternalLinks after early LinkHolderArray expansion
 !! options
 wgLinkHolderBatchSize=0
 !! wikitext
