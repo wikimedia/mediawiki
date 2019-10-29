@@ -1573,7 +1573,7 @@ class Parser {
 
 		$text = $this->doBlockLevels( $text, $linestart );
 
-		$this->replaceLinkHolders( $text );
+		$this->replaceLinkHoldersPrivate( $text );
 
 		/**
 		 * The input doesn't get language converted if
@@ -4662,7 +4662,7 @@ class Parser {
 			# turns into
 			#     link text with suffix
 			# Do this before unstrip since link text can contain strip markers
-			$safeHeadline = $this->replaceLinkHoldersText( $headline );
+			$safeHeadline = $this->replaceLinkHoldersTextPrivate( $headline );
 
 			# Avoid insertion of weird stuff like <math> by expanding the relevant sections
 			$safeHeadline = $this->mStripState->unstripBoth( $safeHeadline );
@@ -5376,8 +5376,20 @@ class Parser {
 	 *
 	 * @param string &$text
 	 * @param int $options
+	 * @deprecated since 1.34; should not be used outside parser class.
 	 */
 	public function replaceLinkHolders( &$text, $options = 0 ) {
+		$this->replaceLinkHoldersPrivate( $text, $options );
+	}
+
+	/**
+	 * Replace "<!--LINK-->" link placeholders with actual links, in the buffer
+	 * Placeholders created in Linker::link()
+	 *
+	 * @param string &$text
+	 * @param int $options
+	 */
+	private function replaceLinkHoldersPrivate( &$text, $options = 0 ) {
 		$this->mLinkHolders->replace( $text );
 	}
 
@@ -5387,8 +5399,21 @@ class Parser {
 	 *
 	 * @param string $text
 	 * @return string
+	 * @deprecated since 1.34; should not be used outside parser class.
 	 */
 	public function replaceLinkHoldersText( $text ) {
+		wfDeprecated( __METHOD__, '1.34' );
+		return $this->replaceLinkHoldersTextPrivate( $text );
+	}
+
+	/**
+	 * Replace "<!--LINK-->" link placeholders with plain text of links
+	 * (not HTML-formatted).
+	 *
+	 * @param string $text
+	 * @return string
+	 */
+	private function replaceLinkHoldersTextPrivate( $text ) {
 		return $this->mLinkHolders->replaceText( $text );
 	}
 
@@ -5925,7 +5950,7 @@ class Parser {
 		if ( $holders ) {
 			$tooltip = $holders->replaceText( $caption );
 		} else {
-			$tooltip = $this->replaceLinkHoldersText( $caption );
+			$tooltip = $this->replaceLinkHoldersTextPrivate( $caption );
 		}
 
 		# make sure there are no placeholders in thumbnail attributes
