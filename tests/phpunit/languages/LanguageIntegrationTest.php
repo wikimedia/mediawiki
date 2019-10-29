@@ -4,7 +4,7 @@ use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use Wikimedia\TestingAccessWrapper;
 
-class LanguageTest extends LanguageClassesTestCase {
+class LanguageIntegrationTest extends LanguageClassesTestCase {
 	use LanguageNameUtilsTestTrait;
 
 	/** @var array Copy of $wgHooks from before we unset LanguageGetTranslatedLanguageNames */

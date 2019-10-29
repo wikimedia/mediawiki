@@ -3765,14 +3765,9 @@ class Language {
 
 		$grammarDataFile = __DIR__ . "/data/grammarTransformations/{$this->getCode()}.json";
 
-		if ( !is_readable( $grammarDataFile ) ) {
-			return [];
-		}
-
-		$this->grammarTransformCache = FormatJson::decode(
-			file_get_contents( $grammarDataFile ),
-			true
-		);
+		$this->grammarTransformCache = is_readable( $grammarDataFile )
+			? FormatJson::decode( file_get_contents( $grammarDataFile ), true )
+			: [];
 
 		if ( $this->grammarTransformCache === null ) {
 			throw new MWException( "Invalid grammar data for \"{$this->getCode()}\"." );
