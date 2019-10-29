@@ -141,8 +141,8 @@ because of Phabricator reports.
   class instead.
 * Language::classFromCode() is deprecated. There is no reason it should be used
   outside the Language class itself.
-* Language::clearCaches() is deprecated. Instead, reset services in your test
-  framework.
+* Language::clearCaches() is deprecated. Instead, reset all services and set
+  Language::$mLangObjCache = [].
 * Language::$mLangObjCache is deprecated and should be removed in 1.36. Use
   MediaWikiServices instead to get a LanguageFactory.
 * Language::getMessagesFor(), getMessageFor(), and getMessageKeysFor() are

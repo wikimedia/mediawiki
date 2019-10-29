@@ -14,7 +14,6 @@ use GenderCache;
 use GlobalVarConfig;
 use Hooks;
 use IBufferingStatsdDataFactory;
-use Language;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LocalisationCache;
 use MediaWiki\Block\BlockErrorFormatter;
@@ -358,26 +357,6 @@ class MediaWikiServices extends ServiceContainer {
 		// Child, reseed because there is no bug in PHP:
 		// https://bugs.php.net/bug.php?id=42465
 		mt_srand( getmypid() );
-	}
-
-	/**
-	 * Intended for tests that may change configuration in a way that invalidates caches.
-	 *
-	 * @throws MWException if called outside of PHPUnit tests or installer.
-	 * @since 1.35
-	 */
-	public function resetLanguageServices() {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MEDIAWIKI_INSTALL' ) ) {
-			throw new MWException( __METHOD__ . ' must not be used outside tests/installer' );
-		}
-		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
-			$this->resetServiceForTesting( 'LanguageFallback' );
-			$this->resetServiceForTesting( 'LanguageNameUtils' );
-			$this->resetServiceForTesting( 'LocalisationCache' );
-		}
-
-		$this->resetService( 'LanguageFactory' );
-		Language::$mLangObjCache = [];
 	}
 
 	/**

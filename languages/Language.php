@@ -223,10 +223,19 @@ class Language {
 	 * Intended for tests that may change configuration in a way that invalidates caches.
 	 *
 	 * @since 1.32
-	 * @deprecated since 1.35. Use MediaWikiServices::resetLanguageServices() instead.
+	 * @deprecated since 1.35. Instead, reset all services and set Language::$mLangObjCache = [].
 	 */
 	public static function clearCaches() {
-		MediaWikiServices::getInstance()->resetLanguageServices();
+		wfDeprecated( __METHOD__, '1.35' );
+
+		$services = MediaWikiServices::getInstance();
+
+		$services->resetServiceForTesting( 'LanguageFallback' );
+		$services->resetServiceForTesting( 'LanguageNameUtils' );
+		$services->resetServiceForTesting( 'LocalisationCache' );
+		$services->resetServiceForTesting( 'LanguageFactory' );
+
+		self::$mLangObjCache = [];
 	}
 
 	/**
