@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * API module to enumerate language information.
  *
@@ -148,7 +150,8 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 			}
 
 			if ( $includeDir ) {
-				$dir = Language::factory( $languageCode )->getDir();
+				$dir = MediaWikiServices::getInstance()->getLanguageFactory()
+					->getLanguage( $languageCode )->getDir();
 				$info['dir'] = $dir;
 			}
 
@@ -181,7 +184,8 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 			}
 
 			if ( $includeVariants ) {
-				$variants = Language::factory( $languageCode )->getVariants();
+				$variants = MediaWikiServices::getInstance()->getLanguageFactory()
+					->getLanguage( $languageCode )->getVariants();
 				ApiResult::setIndexedTagName( $variants, 'var' );
 				$info['variants'] = $variants;
 			}

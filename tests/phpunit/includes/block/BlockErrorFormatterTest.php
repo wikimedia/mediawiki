@@ -31,7 +31,7 @@ class BlockErrorFormatterTest extends MediaWikiTestCase {
 		$message = $formatter->getMessage(
 			$block,
 			$context->getUser(),
-			Language::factory( 'qqx' ),
+			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'qqx' ),
 			$context->getRequest()->getIP()
 		);
 

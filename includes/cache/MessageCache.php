@@ -20,6 +20,7 @@
  * @file
  * @ingroup Cache
  */
+use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\Database;
@@ -101,6 +102,8 @@ class MessageCache implements LoggerAwareInterface {
 	protected $srvCache;
 	/** @var Language */
 	protected $contLang;
+	/** @var LanguageFactory */
+	protected $langFactory;
 
 	/**
 	 * Get the singleton instance of this class
@@ -140,6 +143,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param array $options
 	 *  - useDB (bool): Whether to allow message overrides from "MediaWiki:" pages.
 	 *    Default: true.
+	 * @param LanguageFactory $langFactory
 	 */
 	public function __construct(
 		WANObjectCache $wanCache,
@@ -147,13 +151,15 @@ class MessageCache implements LoggerAwareInterface {
 		BagOStuff $serverCache,
 		Language $contLang,
 		LoggerInterface $logger,
-		array $options
+		array $options,
+		LanguageFactory $langFactory
 	) {
 		$this->wanCache = $wanCache;
 		$this->clusterCache = $clusterCache;
 		$this->srvCache = $serverCache;
 		$this->contLang = $contLang;
 		$this->logger = $logger;
+		$this->langFactory = $langFactory;
 
 		$this->cache = new MapCacheLRU( 5 ); // limit size for sanity
 
@@ -1243,7 +1249,7 @@ class MessageCache implements LoggerAwareInterface {
 		$popts->setInterfaceMessage( $interface );
 
 		if ( is_string( $language ) ) {
-			$language = Language::factory( $language );
+			$language = $this->langFactory->getLanguage( $language );
 		}
 		$popts->setTargetLanguage( $language );
 

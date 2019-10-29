@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @covers ApiResult
  * @group API
@@ -477,7 +479,9 @@ class ApiResultTest extends MediaWikiTestCase {
 		$this->assertSame( 15, $result->getSize() );
 
 		$result = new ApiResult( 10 );
-		$formatter = new ApiErrorFormatter( $result, Language::factory( 'en' ), 'none', false );
+		$formatter = new ApiErrorFormatter( $result,
+			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ),
+			'none', false );
 		$result->setErrorFormatter( $formatter );
 		$this->assertFalse( $result->addValue( null, 'foo', '12345678901' ) );
 		$this->assertTrue( $result->addValue( null, 'foo', '12345678901', ApiResult::NO_SIZE_CHECK ) );

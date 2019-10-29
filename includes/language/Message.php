@@ -312,7 +312,10 @@ class Message implements MessageSpecifier, Serializable {
 		$this->parameters = $data['parameters'];
 		$this->format = $data['format'];
 		$this->useDatabase = $data['useDatabase'];
-		$this->language = $data['language'] ? Language::factory( $data['language'] ) : false;
+		$this->language = $data['language']
+			? MediaWikiServices::getInstance()->getLanguageFactory()
+				->getLanguage( $data['language'] )
+			: false;
 
 		if ( isset( $data['titlestr'] ) ) {
 			$this->title = Title::newFromText( $data['titlestr'] );
@@ -736,7 +739,8 @@ class Message implements MessageSpecifier, Serializable {
 			$this->language = $lang;
 		} elseif ( is_string( $lang ) ) {
 			if ( !$this->language instanceof Language || $this->language->getCode() != $lang ) {
-				$this->language = Language::factory( $lang );
+				$this->language = MediaWikiServices::getInstance()->getLanguageFactory()
+					->getLanguage( $lang );
 			}
 		} elseif ( $lang instanceof StubUserLang ) {
 			$this->language = false;

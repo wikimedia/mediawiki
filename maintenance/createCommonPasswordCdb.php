@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -51,7 +53,7 @@ class CreateCommonPasswordCdb extends Maintenance {
 
 	public function execute() {
 		$limit = (int)$this->getOption( 'limit', PHP_INT_MAX );
-		$langEn = Language::factory( 'en' );
+		$langEn = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 
 		$infile = $this->getArg( 0 );
 		if ( $infile === '-' ) {

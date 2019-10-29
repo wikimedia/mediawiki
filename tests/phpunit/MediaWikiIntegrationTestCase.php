@@ -1084,7 +1084,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		} else {
 			$this->setMwGlobals( [
 				'wgLanguageCode' => $lang,
-				'wgContLang' => Language::factory( $lang ),
+				'wgContLang' =>
+					MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $lang ),
 			] );
 		}
 	}

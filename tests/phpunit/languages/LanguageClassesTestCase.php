@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 /**
  * Helping class to run tests using a clean language instance.
  *
@@ -60,7 +63,8 @@ abstract class LanguageClassesTestCase extends MediaWikiTestCase {
 			);
 		}
 		// @todo validate $m[1] which should be a valid language code
-		$this->languageObject = Language::factory( $m[1] );
+		$this->languageObject = MediaWikiServices::getInstance()->getLanguageFactory()
+			->getLanguage( $m[1] );
 	}
 
 	/**

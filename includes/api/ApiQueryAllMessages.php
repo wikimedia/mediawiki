@@ -43,7 +43,8 @@ class ApiQueryAllMessages extends ApiQueryBase {
 				[ 'apierror-invalidlang', $this->encodeParamName( 'lang' ) ], 'invalidlang'
 			);
 		} else {
-			$langObj = Language::factory( $params['lang'] );
+			$langObj = MediaWikiServices::getInstance()->getLanguageFactory()
+				->getLanguage( $params['lang'] );
 		}
 
 		if ( $params['enableparser'] ) {

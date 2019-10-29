@@ -688,7 +688,8 @@ abstract class ContentHandler {
 		if ( $title->inNamespace( NS_MEDIAWIKI ) ) {
 			// Parse mediawiki messages with correct target language
 			list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $title->getText() );
-			$pageLang = Language::factory( $lang );
+			$pageLang = MediaWikiServices::getInstance()->getLanguageFactory()
+				->getLanguage( $lang );
 		}
 
 		// Simplify hook handlers by only passing objects of one type, in case nothing
@@ -728,7 +729,8 @@ abstract class ContentHandler {
 			// in a language whose code is the variant code.
 			$variant = $pageLang->getPreferredVariant();
 			if ( $pageLang->getCode() !== $variant ) {
-				$pageLang = Language::factory( $variant );
+				$pageLang = MediaWikiServices::getInstance()->getLanguageFactory()
+					->getLanguage( $variant );
 			}
 		}
 

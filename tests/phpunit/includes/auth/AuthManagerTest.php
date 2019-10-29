@@ -4,6 +4,7 @@ namespace MediaWiki\Auth;
 
 use Config;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\UserInfo;
 use PHPUnit\Framework\Assert;
@@ -73,7 +74,8 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			$params = $key->getParams();
 			$key = $key->getKey();
 		}
-		return new \Message( $key, $params, \Language::factory( 'en' ) );
+		return new \Message( $key, $params,
+			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ) );
 	}
 
 	/**

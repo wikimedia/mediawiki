@@ -309,7 +309,7 @@ class RequestContext implements IContextSource, MutableContext {
 			$this->lang = $language;
 		} elseif ( is_string( $language ) ) {
 			$language = self::sanitizeLangCode( $language );
-			$obj = Language::factory( $language );
+			$obj = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $language );
 			$this->lang = $obj;
 		} else {
 			throw new MWException( __METHOD__ . " was passed an invalid type of data." );
@@ -330,7 +330,8 @@ class RequestContext implements IContextSource, MutableContext {
 			wfDebugLog( 'recursion-guard', "Recursion detected:\n" . $e->getTraceAsString() );
 
 			$code = $this->getConfig()->get( 'LanguageCode' ) ?: 'en';
-			$this->lang = Language::factory( $code );
+			$this->lang = MediaWikiServices::getInstance()->getLanguageFactory()
+				->getLanguage( $code );
 		} elseif ( $this->lang === null ) {
 			$this->languageRecursion = true;
 
@@ -350,7 +351,8 @@ class RequestContext implements IContextSource, MutableContext {
 				if ( $code === $this->getConfig()->get( 'LanguageCode' ) ) {
 					$this->lang = MediaWikiServices::getInstance()->getContentLanguage();
 				} else {
-					$obj = Language::factory( $code );
+					$obj = MediaWikiServices::getInstance()->getLanguageFactory()
+						->getLanguage( $code );
 					$this->lang = $obj;
 				}
 			} finally {

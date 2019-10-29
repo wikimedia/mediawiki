@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 /**
  * This file is intended to test magic variables in the parser
  * It was inspired by Raymond & Matěj Grabovský commenting about r66200
@@ -37,7 +40,7 @@ class MagicVariableTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$contLang = Language::factory( 'en' );
+		$contLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 		$this->setContentLang( $contLang );
 
 		$this->testParser = new Parser();

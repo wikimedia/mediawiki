@@ -26,6 +26,7 @@
  * @ingroup Benchmark
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\RunningStat;
 
 // @codeCoverageIgnoreStart
@@ -48,7 +49,7 @@ abstract class Benchmarker extends Maintenance {
 	}
 
 	public function bench( array $benchs ) {
-		$this->lang = Language::factory( 'en' );
+		$this->lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 
 		$this->startBench();
 		$count = $this->getOption( 'count', $this->defaultCount );

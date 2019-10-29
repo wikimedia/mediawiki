@@ -460,7 +460,8 @@ return [
 			$srvCache,
 			$services->getContentLanguage(),
 			$logger,
-			[ 'useDB' => $mainConfig->get( 'UseDatabaseMessages' ) ]
+			[ 'useDB' => $mainConfig->get( 'UseDatabaseMessages' ) ],
+			$services->getLanguageFactory()
 		);
 	},
 

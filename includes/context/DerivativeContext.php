@@ -217,7 +217,7 @@ class DerivativeContext extends ContextSource implements MutableContext {
 			$this->lang = $language;
 		} elseif ( is_string( $language ) ) {
 			$language = RequestContext::sanitizeLangCode( $language );
-			$obj = Language::factory( $language );
+			$obj = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $language );
 			$this->lang = $obj;
 		} else {
 			throw new MWException( __METHOD__ . " was passed an invalid type of data." );

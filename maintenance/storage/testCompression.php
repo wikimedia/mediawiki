@@ -21,6 +21,8 @@
  * @ingroup Maintenance ExternalStorage
  */
 
+use MediaWiki\MediaWikiServices;
+
 $optionsWithArgs = [ 'start', 'limit', 'type' ];
 require __DIR__ . '/../commandLine.inc';
 
@@ -30,7 +32,7 @@ if ( !isset( $args[0] ) ) {
 	exit( 1 );
 }
 
-$lang = Language::factory( 'en' );
+$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 $title = Title::newFromText( $args[0] );
 if ( isset( $options['start'] ) ) {
 	$start = wfTimestamp( TS_MW, strtotime( $options['start'] ) );

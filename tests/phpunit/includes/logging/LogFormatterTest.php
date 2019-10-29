@@ -224,7 +224,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$entry = $this->newLogEntry( 'param', $params );
 		$formatter = LogFormatter::newFromEntry( $entry );
 
-		$this->context->setLanguage( Language::factory( 'qqx' ) );
+		$this->context->setLanguage( 'qqx' );
 		$formatter->setContext( $this->context );
 
 		$logParam = $formatter->getActionText();
