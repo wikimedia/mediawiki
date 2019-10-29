@@ -63,7 +63,7 @@ class CommandFactory {
 		$this->cgroup = $cgroup;
 		if ( $restrictionMethod === 'autodetect' ) {
 			// On Linux systems check for firejail
-			if ( PHP_OS === 'Linux' && $this->findFirejail() !== false ) {
+			if ( PHP_OS === 'Linux' && $this->findFirejail() !== null ) {
 				$this->restrictionMethod = 'firejail';
 			} else {
 				$this->restrictionMethod = false;
@@ -74,7 +74,7 @@ class CommandFactory {
 		$this->setLogger( new NullLogger() );
 	}
 
-	private function findFirejail() {
+	private function findFirejail(): ?string {
 		if ( $this->firejail === null ) {
 			$this->firejail = ExecutableFinder::findInDefaultPaths( 'firejail' );
 		}
@@ -88,7 +88,7 @@ class CommandFactory {
 	 * @param bool $yesno
 	 * @see Command::logStderr
 	 */
-	public function logStderr( $yesno = true ) {
+	public function logStderr( bool $yesno = true ): void {
 		$this->doLogStderr = $yesno;
 	}
 

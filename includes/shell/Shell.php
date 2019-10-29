@@ -134,7 +134,7 @@ class Shell {
 	 *
 	 * @return bool
 	 */
-	public static function isDisabled() {
+	public static function isDisabled(): bool {
 		static $disabled = null;
 
 		if ( is_null( $disabled ) ) {
@@ -160,7 +160,7 @@ class Shell {
 	 *     array of strings parameter. Null values are ignored.
 	 * @return string
 	 */
-	public static function escape( ...$args ) {
+	public static function escape( ...$args ): string {
 		if ( count( $args ) === 1 && is_array( reset( $args ) ) ) {
 			// If only one argument has been passed, and that argument is an array,
 			// treat it as a list of arguments
@@ -233,7 +233,9 @@ class Shell {
 	 * @phan-param array{php?:string,wrapper?:string} $options
 	 * @return Command
 	 */
-	public static function makeScriptCommand( $script, $parameters, $options = [] ): Command {
+	public static function makeScriptCommand(
+		string $script, array $parameters, $options = []
+	): Command {
 		global $wgPhpCli;
 		// Give site config file a chance to run the script in a wrapper.
 		// The caller may likely want to call wfBasename() on $script.
