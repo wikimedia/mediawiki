@@ -197,6 +197,11 @@ class DifferenceEngine extends ContextSource {
 	 */
 	protected $isSlotDiffRenderer = false;
 
+	/* A set of options that will be passed to the SlotDiffRenderer upon creation
+	 * @var array
+	 */
+	private $slotDiffOptions = [];
+
 	/** #@- */
 
 	/**
@@ -252,7 +257,12 @@ class DifferenceEngine extends ContextSource {
 			$this->slotDiffRenderers = array_map( function ( $contents ) {
 				/** @var Content $content */
 				$content = $contents['new'] ?: $contents['old'];
-				return $content->getContentHandler()->getSlotDiffRenderer( $this->getContext() );
+				$context = $this->getContext();
+
+				return $content->getContentHandler()->getSlotDiffRenderer(
+					$context,
+					$this->slotDiffOptions
+				);
 			}, $slotContents );
 		}
 		return $this->slotDiffRenderers;
@@ -568,7 +578,7 @@ class DifferenceEngine extends ContextSource {
 
 		$rollback = '';
 
-		$query = [];
+		$query = $this->slotDiffOptions;
 		# Carry over 'diffonly' param via navigation links
 		if ( $diffOnly != $user->getBoolOption( 'diffonly' ) ) {
 			$query['diffonly'] = $diffOnly;
@@ -1286,6 +1296,13 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		return $params;
+	}
+
+	/**
+	 * @param array $options for the difference engine - accepts keys 'diff-type'
+	 */
+	public function setSlotDiffOptions( $options ) {
+		$this->slotDiffOptions = $options;
 	}
 
 	/**
