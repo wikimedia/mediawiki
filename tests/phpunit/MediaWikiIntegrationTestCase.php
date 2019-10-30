@@ -884,7 +884,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		self::resetLegacyGlobals();
-		MediaWikiServices::getInstance()->resetLanguageServices();
+		Language::$mLangObjCache = [];
 	}
 
 	/**
@@ -938,7 +938,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		self::resetLegacyGlobals();
-		$newInstance->resetLanguageServices();
+		Language::$mLangObjCache = [];
 
 		return $newInstance;
 	}

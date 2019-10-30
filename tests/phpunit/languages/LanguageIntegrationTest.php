@@ -1762,6 +1762,8 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @covers Language::clearCaches
 	 */
 	public function testClearCaches() {
+		$this->hideDeprecated( 'Language::clearCaches' );
+
 		$languageClass = TestingAccessWrapper::newFromClass( Language::class );
 
 		// Populate $mLangObjCache
