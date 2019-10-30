@@ -2461,7 +2461,10 @@ class Parser {
 			$prefix = '';
 		}
 
-		$useSubpages = $this->areSubpagesAllowed();
+		# Some namespaces don't allow subpages
+		$useSubpages = $this->nsInfo->hasSubpages(
+			$this->mTitle->getNamespace()
+		);
 
 		# Loop for each link
 		for ( ; $line !== false && $line !== null; $a->next(), $line = $a->current() ) {
@@ -2534,7 +2537,9 @@ class Parser {
 
 			# Make subpage if necessary
 			if ( $useSubpages ) {
-				$link = $this->maybeDoSubpageLink( $origLink, $text );
+				$link = Linker::normalizeSubpageLink(
+					$this->mTitle, $origLink, $text
+				);
 			} else {
 				$link = $origLink;
 			}
@@ -2759,9 +2764,11 @@ class Parser {
 	/**
 	 * Return true if subpage links should be expanded on this page.
 	 * @return bool
+	 * @deprecated since 1.34; should not be used outside parser class.
 	 */
 	public function areSubpagesAllowed() {
 		# Some namespaces don't allow subpages
+		wfDeprecated( __METHOD__, '1.34' );
 		return $this->nsInfo->hasSubpages( $this->mTitle->getNamespace() );
 	}
 
@@ -2772,8 +2779,10 @@ class Parser {
 	 * @param string &$text The link text, modified as necessary
 	 * @return string The full name of the link
 	 * @private
+	 * @deprecated since 1.34; should not be used outside parser class.
 	 */
 	public function maybeDoSubpageLink( $target, &$text ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return Linker::normalizeSubpageLink( $this->mTitle, $target, $text );
 	}
 
@@ -3529,7 +3538,9 @@ class Parser {
 			$ns = NS_TEMPLATE;
 			# Split the title into page and subpage
 			$subpage = '';
-			$relative = $this->maybeDoSubpageLink( $part1, $subpage );
+			$relative = Linker::normalizeSubpageLink(
+				$this->mTitle, $part1, $subpage
+			);
 			if ( $part1 !== $relative ) {
 				$part1 = $relative;
 				$ns = $this->mTitle->getNamespace();

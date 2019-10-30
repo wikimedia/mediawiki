@@ -644,7 +644,7 @@ because of Phabricator reports.
   reasons and have been deprecated: doMagicLinks, doDoubleUnderscore,
   doHeadings, doAllQuotes, replaceExternalLinks, replaceInternalLinks,
   replaceInternalLinks2, getVariableValue, initialiseVariables, formatHeadings,
-  testPst, testPreprocess, testSrvus.
+  testPst, testPreprocess, testSrvus, areSubpagesAllowed, maybeDoSubpageLink.
 
 === Other changes in 1.34 ===
 * Added option to specify "Various authors" as author in extension credits using
