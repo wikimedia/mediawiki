@@ -850,8 +850,8 @@ class DatabaseBlock extends AbstractBlock {
 			wfMessage(
 				'autoblocker',
 				(string)$this->getTarget(),
-				$this->getReasonComment()->message->plain()
-			)
+				$this->getReasonComment()->text
+			)->plain()
 		);
 		$timestamp = wfTimestampNow();
 		$autoblock->setTimestamp( $timestamp );
