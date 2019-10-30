@@ -663,12 +663,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * Sets a service, maintaining a stashed version of the previous service to be
 	 * restored in tearDown.
 	 *
-	 * @note Tests must not call overrideMwServices() after calling setService(), since that would
-	 *       lose the new service instance. Since 1.34, resetServices() can be used instead, which
-	 *       would reset other services, but retain any services set using setService().
-	 *       This means that once a service is set using this method, it cannot be reverted to
-	 *       the original service within the same test method. The original service is restored
-	 *       in tearDown after the test method has terminated.
+	 * @note This calls resetServices() in case any other services depend on the set service(s).
 	 *
 	 * @param string $name
 	 * @param object $service The service instance, or a callable that returns the service instance.
@@ -702,7 +697,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$instantiator
 		);
 
-		self::resetLegacyGlobals();
+		$this->resetServices();
 	}
 
 	/**
