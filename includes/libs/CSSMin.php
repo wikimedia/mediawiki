@@ -66,9 +66,8 @@ class CSSMin {
 		$files = [];
 
 		$rFlags = PREG_OFFSET_CAPTURE | PREG_SET_ORDER;
-		if ( preg_match_all( '/' . self::getUrlRegex() . '/', $stripped, $matches, $rFlags ) ) {
+		if ( preg_match_all( '/' . self::getUrlRegex() . '/J', $stripped, $matches, $rFlags ) ) {
 			foreach ( $matches as $match ) {
-				self::processUrlMatch( $match, $rFlags );
 				$url = $match['file'][0];
 
 				// Skip fully-qualified and protocol-relative URLs and data URIs
@@ -276,7 +275,7 @@ class CSSMin {
 		// appears in the rule itself, e.g. in a quoted string. You are advised
 		// not to use such characters in file names. We also match start/end of
 		// the string to be consistent in edge-cases ('@import url(…)').
-		$pattern = '/(?:^|[;{])\K[^;{}]*' . self::getUrlRegex() . '[^;}]*(?=[;}]|$)/';
+		$pattern = '/(?:^|[;{])\K[^;{}]*' . self::getUrlRegex() . '[^;}]*(?=[;}]|$)/J';
 
 		$source = preg_replace_callback(
 			$pattern,
@@ -300,13 +299,11 @@ class CSSMin {
 
 				// Build two versions of current rule: with remapped URLs
 				// and with embedded data: URIs (where possible).
-				$pattern = '/(?P<embed>' . CSSMin::EMBED_REGEX . '\s*|)' . self::getUrlRegex() . '/';
+				$pattern = '/(?P<embed>' . CSSMin::EMBED_REGEX . '\s*|)' . self::getUrlRegex() . '/J';
 
 				$ruleWithRemapped = preg_replace_callback(
 					$pattern,
 					function ( $match ) use ( $local, $remote ) {
-						self::processUrlMatch( $match );
-
 						$remapped = CSSMin::remapOne( $match['file'], $match['query'], $local, $remote, false );
 						return CSSMin::buildUrlValue( $remapped );
 					},
@@ -320,8 +317,6 @@ class CSSMin {
 					$ruleWithEmbedded = preg_replace_callback(
 						$pattern,
 						function ( $match ) use ( $embedAll, $local, $remote, &$mimeTypes ) {
-							self::processUrlMatch( $match );
-
 							$embed = $embedAll || $match['embed'];
 							$embedded = CSSMin::remapOne(
 								$match['file'],
@@ -396,71 +391,16 @@ class CSSMin {
 	private static function getUrlRegex() {
 		static $urlRegex;
 		if ( $urlRegex === null ) {
-			// Match these three variants separately to avoid broken urls when
-			// e.g. a double quoted url contains a parenthesis, or when a
-			// single quoted url contains a double quote, etc.
-			// FIXME: Simplify now we only support PHP 7.0.0+
-			// Note: PCRE doesn't support multiple capture groups with the same name by default.
-			// - PCRE 6.7 introduced the "J" modifier (PCRE_INFO_JCHANGED for PCRE_DUPNAMES).
-			//   https://www.php.net/manual/en/reference.pcre.pattern.modifiers.php
-			//   However this isn't useful since it just ignores all but the first one.
-			//   Also, while the modifier was introduced in PCRE 6.7 (PHP 5.2+) it was
-			//   not exposed to public preg_* functions until PHP 5.6.0.
-			// - PCRE 8.36 fixed this to work as expected (e.g. merge conceptually to
-			//   only return the one matched in the part that actually matched).
-			//   However MediaWiki supports 5.5.9, which has PCRE 8.32
-			//   Per https://www.php.net/manual/en/pcre.installation.php:
-			//   - PCRE 8.32 (PHP 5.5.0)
-			//   - PCRE 8.34 (PHP 5.5.10, PHP 5.6.0)
-			//   - PCRE 8.37 (PHP 5.5.26, PHP 5.6.9, PHP 7.0.0)
-			//   Workaround by using different groups and merge via processUrlMatch().
-			// - Using string concatenation for class constant or member assignments
-			//   is only supported in PHP 5.6. Use a getter method for now.
 			$urlRegex = '(' .
 				// Unquoted url
-				'url\(\s*(?P<file0>[^\s\'"][^\?\)]+?)(?P<query0>\?[^\)]*?|)\s*\)' .
+				'url\(\s*(?P<file>[^\s\'"][^\?\)]+?)(?P<query>\?[^\)]*?|)\s*\)' .
 				// Single quoted url
-				'|url\(\s*\'(?P<file1>[^\?\']+?)(?P<query1>\?[^\']*?|)\'\s*\)' .
+				'|url\(\s*\'(?P<file>[^\?\']+?)(?P<query>\?[^\']*?|)\'\s*\)' .
 				// Double quoted url
-				'|url\(\s*"(?P<file2>[^\?"]+?)(?P<query2>\?[^"]*?|)"\s*\)' .
+				'|url\(\s*"(?P<file>[^\?"]+?)(?P<query>\?[^"]*?|)"\s*\)' .
 				')';
 		}
 		return $urlRegex;
-	}
-
-	private static function processUrlMatch( array &$match, $flags = 0 ) {
-		if ( $flags & PREG_SET_ORDER ) {
-			// preg_match_all with PREG_SET_ORDER will return each group in each
-			// match array, and if it didn't match, instead of the sub array
-			// being an empty array it is `[ '', -1 ]`...
-			if ( isset( $match['file0'] ) && $match['file0'][1] !== -1 ) {
-				$match['file'] = $match['file0'];
-				$match['query'] = $match['query0'];
-			} elseif ( isset( $match['file1'] ) && $match['file1'][1] !== -1 ) {
-				$match['file'] = $match['file1'];
-				$match['query'] = $match['query1'];
-			} else {
-				if ( !isset( $match['file2'] ) || $match['file2'][1] === -1 ) {
-					throw new Exception( 'URL must be non-empty' );
-				}
-				$match['file'] = $match['file2'];
-				$match['query'] = $match['query2'];
-			}
-		} else {
-			if ( isset( $match['file0'] ) && $match['file0'] !== '' ) {
-				$match['file'] = $match['file0'];
-				$match['query'] = $match['query0'];
-			} elseif ( isset( $match['file1'] ) && $match['file1'] !== '' ) {
-				$match['file'] = $match['file1'];
-				$match['query'] = $match['query1'];
-			} else {
-				if ( !isset( $match['file2'] ) || $match['file2'] === '' ) {
-					throw new Exception( 'URL must be non-empty' );
-				}
-				$match['file'] = $match['file2'];
-				$match['query'] = $match['query2'];
-			}
-		}
 	}
 
 	/**
