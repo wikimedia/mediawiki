@@ -211,7 +211,6 @@ abstract class FileBackend implements LoggerAwareInterface {
 			: 50;
 		$this->obResetFunc = $config['obResetFunc'] ?? [ $this, 'resetOutputBuffer' ];
 		$this->streamMimeFunc = $config['streamMimeFunc'] ?? null;
-		$this->statusWrapper = $config['statusWrapper'] ?? null;
 
 		$this->profiler = $config['profiler'] ?? null;
 		if ( !is_callable( $this->profiler ) ) {
@@ -1571,6 +1570,9 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @return string|null Parent storage path or null on failure
 	 */
 	final public static function parentStoragePath( $storagePath ) {
+		// XXX dirname() depends on platform and locale! If nothing enforces that the storage path
+		// doesn't contain characters like '\', behavior can vary by platform. We should use
+		// explode() instead.
 		$storagePath = dirname( $storagePath );
 		list( , , $rel ) = self::splitStoragePath( $storagePath );
 
@@ -1585,6 +1587,8 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @return string
 	 */
 	final public static function extensionFromPath( $path, $case = 'lowercase' ) {
+		// This will treat a string starting with . as not having an extension, but store paths have
+		// to start with 'mwstore://', so "garbage in, garbage out".
 		$i = strrpos( $path, '.' );
 		$ext = $i ? substr( $path, $i + 1 ) : '';
 
@@ -1701,7 +1705,12 @@ abstract class FileBackend implements LoggerAwareInterface {
 		return $this->profiler ? ( $this->profiler )( $section ) : null;
 	}
 
+	/**
+	 * @codeCoverageIgnore Let's not reset output buffering during tests
+	 */
 	protected function resetOutputBuffer() {
+		// XXX According to documentation, ob_get_status() always returns a non-empty array and this
+		// condition will always be true
 		while ( ob_get_status() ) {
 			if ( !ob_end_clean() ) {
 				// Could not remove output buffer handler; abort now
