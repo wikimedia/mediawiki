@@ -19,16 +19,17 @@
 			"Ahmad252",
 			"FarsiNevis",
 			"กิ๊ฟ เลิกล่ะ สายแข็ง",
-			"Alireza Ivaz"
+			"Alireza Ivaz",
+			"Arian Ar"
 		]
 	},
 	"config-desc": "نصب‌کنندهٔ مدیاویکی",
 	"config-title": "نصب مدیاویکی $1",
 	"config-information": "اطلاعات",
-	"config-localsettings-upgrade": "یک پروندۀ <code>LocalSettings.php</code> شناسایی شده‌است.\nبرای به‌روزرسانی این نصب، لطفاً مقدار <code>$wgUpgradeKey</code> در جعبۀ زیر وارد کنید.\nشما می‌توانید آن را در <code>LocalSettings.php</code> پیدا کنید.",
+	"config-localsettings-upgrade": "یک پروندۀ <code>LocalSettings.php</code> شناسایی شده‌است.\nبرای به‌روزرسانی این نصب، لطفاً مقدار <code>$wgUpgradeKey</code> را در جعبۀ زیر وارد کنید.\nشما می‌توانید آن را در <code>LocalSettings.php</code> پیدا کنید.",
 	"config-localsettings-cli-upgrade": "یک پروندۀ <code>LocalSettings.php</code> شناسایی شده است.\nبرای به‌روزرسانی این نصب، لطفاً <code>update.php</code> را اجرا کنید.",
 	"config-localsettings-key": "کلید به‌روزرسانی:",
-	"config-localsettings-badkey": "کلید به‌روزرسانی‌ای که شما ارائه کردید نادرست است.",
+	"config-localsettings-badkey": "کلید به‌روزرسانی‌ای که ارائه کرده‌اید نادرست است.",
 	"config-upgrade-key-missing": "یک نصب مدیاویکی موجود شناسایی شده است.\nبرای به‌روزرسانی این نصب، لطفاً خط زیر را در پایین پروندۀ <code>LocalSettings.php</code> خود قرار دهید:\n\n$1",
 	"config-localsettings-incomplete": "وجود <code>LocalSettings.php</code> به نظر ناقص می‌رسد.\nمتغیر $1 تنظیم نشده‌است.\nبرای اینکه این متغیر تنظیم شود، لطفاً <code>LocalSettings.php</code> را تغییر دهید و \"{{int:Config-continue}}\" را کلیک کنید.",
 	"config-localsettings-connection-error": "هنگام اتصال به پایگاه داده‌ای که از تنظیمات مشخص‌شده در <code>LocalSettings.php</code> استفاده می‌کند، خطایی رخ داد. لطفاً این تنظیمات را تعمیر کنید و دوباره تلاش کنید.\n$1",
