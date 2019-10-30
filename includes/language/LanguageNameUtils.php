@@ -33,7 +33,6 @@ use Hooks;
 use MediaWiki\Config\ServiceOptions;
 use MediaWikiTitleCodec;
 use MWException;
-use Wikimedia\Assert\Assert;
 
 /**
  * @ingroup Language
@@ -98,7 +97,7 @@ class LanguageNameUtils {
 	 * @param string $code Language tag (in lower case)
 	 * @return bool Whether language is supported
 	 */
-	public function isSupportedLanguage( $code ) {
+	public function isSupportedLanguage( string $code ) : bool {
 		if ( !$this->isValidBuiltInCode( $code ) ) {
 			return false;
 		}
@@ -120,8 +119,7 @@ class LanguageNameUtils {
 	 *
 	 * @return bool
 	 */
-	public function isValidCode( $code ) {
-		Assert::parameterType( 'string', $code, '$code' );
+	public function isValidCode( string $code ) : bool {
 		if ( !isset( $this->validCodeCache[$code] ) ) {
 			// People think language codes are HTML-safe, so enforce it.  Ideally we should only
 			// allow a-zA-Z0-9- but .+ and other chars are often used for {{int:}} hacks.  See bugs
@@ -141,9 +139,7 @@ class LanguageNameUtils {
 	 * @param string $code
 	 * @return bool
 	 */
-	public function isValidBuiltInCode( $code ) {
-		Assert::parameterType( 'string', $code, '$code' );
-
+	public function isValidBuiltInCode( string $code ) : bool {
 		return (bool)preg_match( '/^[a-z0-9-]{2,}$/', $code );
 	}
 
@@ -154,7 +150,7 @@ class LanguageNameUtils {
 	 *
 	 * @return bool
 	 */
-	public function isKnownLanguageTag( $tag ) {
+	public function isKnownLanguageTag( string $tag ) : bool {
 		// Quick escape for invalid input to avoid exceptions down the line when code tries to
 		// process tags which are not valid at all.
 		if ( !$this->isValidBuiltInCode( $tag ) ) {
