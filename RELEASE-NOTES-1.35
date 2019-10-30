@@ -111,6 +111,8 @@ because of Phabricator reports.
 * The PHPUnit4And6Compat class, used to provide compatibility with PHPUnit 4, is
   now deprecated. MediaWiki support for PHPUnit 4 ended with the removal of HHVM
   support.
+* LockManagerGroup::getDefault() and LockManagerGroup::getAny() are deprecated.
+  They seem to be unused. Just use get() directly, and catch any exception.
 * AbstractBlock::getPermissionsError and AbstractBlock::getBlockErrorParams are
   deprecated. Use BlockErrorFormatter::getMessage instead.
 * The following Language methods are deprecated: getFallbackFor,

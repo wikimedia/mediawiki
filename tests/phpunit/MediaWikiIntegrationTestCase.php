@@ -1958,19 +1958,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Don't throw a warning if $function is deprecated and called later
-	 *
-	 * @since 1.19
-	 *
-	 * @param string $function
-	 */
-	public function hideDeprecated( $function ) {
-		Wikimedia\suppressWarnings();
-		wfDeprecated( $function );
-		Wikimedia\restoreWarnings();
-	}
-
-	/**
 	 * Asserts that the given database query yields the rows given by $expectedRows.
 	 * The expected rows should be given as indexed (not associative) arrays, with
 	 * the values given in the order of the columns in the $fields parameter.
