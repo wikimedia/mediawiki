@@ -676,8 +676,6 @@
 	"undo-nochange": "Zda so, zo změna je so hižo cofnyła.",
 	"undo-summary": "Změna $1 [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusija]]) bu cofnjena.",
 	"undo-summary-username-hidden": "Změna $1 schowaneho wužiwarja je so anulowała",
-	"cantcreateaccount-text": "Wutworjenje wužiwarskeho konta z IP-adresy '''$1''' bu wot [[User:$3|$3]] zablokowane.\n\nPřičina za blokowanje, podata wot $3, je: ''$2''",
-	"cantcreateaccount-range-text": "Załoženje kontow z IP-adresow we wobłuku '''$1'', kotryž twoju IP-adresu wobsahuje (<strong>$4</strong>), je so wot [[User:$3|$3]] zablokowało.\n\nPřičina podata wot $3 je <em>$2</em>",
 	"viewpagelogs": "protokole tuteje strony pokazać",
 	"nohistory": "Njeje žanych staršich wersijow strony.",
 	"currentrev": "Aktualna wersija",

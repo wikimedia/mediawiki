@@ -510,7 +510,6 @@
 	"undo-failure": "Kunn de Siet nich op de vörige Version trüchdreihn. De Afsnitt is twischendör al wedder ännert worrn.",
 	"undo-norev": "De Ännern kunn nich trüchdreiht warrn, de gifft dat nich oder is wegsmeten worrn.",
 	"undo-summary": "Ännern $1 vun [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuschoon]]) trüchdreiht.",
-	"cantcreateaccount-text": "Dat Opstellen vun Brukerkonten vun de IP-Adress '''$1''' ut is vun [[User:$3|$3]] sperrt worrn.\n\nDe Grund weer: ''$2''",
 	"viewpagelogs": "Logbook för disse Siet",
 	"nohistory": "Disse Siet hett keen Vörgeschicht.",
 	"currentrev": "Aktuelle Version",

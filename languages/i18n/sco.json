@@ -749,8 +749,6 @@
 	"undo-nochange": "The edit appears tae hae awready been ondone.",
 	"undo-summary": "Ondae reveesion $1 bi [[Special:Contributions/$2|$2]] ([[User talk:$2|Tauk]])",
 	"undo-summary-username-hidden": "Ondae reveesion $1 bi ae skauk't uiser",
-	"cantcreateaccount-text": "Accoont cræftin fae this IP address ('''$1''') haes been blockit bi [[User:$3|$3]].\n\nThe raison fer this, gien bi $3 is ''$2''",
-	"cantcreateaccount-range-text": "Accoont cræftin fae IP addresses in the range <strong>$1</strong>, that inclædes yer IP address (<strong>$4</strong>), haes been blockit bi [[User:$3|$3]].\n\nThe raison gien bi $3 is <em>$2</em>",
 	"viewpagelogs": "Leuk at logs fer this page",
 	"nohistory": "Thaur's nae eedit histerie fer this page.",
 	"currentrev": "Reveesion the nou",

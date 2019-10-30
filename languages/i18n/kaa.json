@@ -381,7 +381,6 @@
 	"moveddeleted-notice": "Bul bet o'shirilgen.\nTo'mende mag'lıwmat ushın bettin' o'shiriw ha'm ko'shiriw jurnalı ko'rsetilgen.",
 	"edit-conflict": "O'zgerislerdegi konflikt.",
 	"parser-template-loop-warning": "Shablonlarda qaytalanıw tabıldı: [[$1]]",
-	"cantcreateaccount-text": "[[User:$3|$3]] usı IP adresten ('''$1''') akkaunt jaratıwın blokladı.\n\n$3 keltirilgen sebebi: ''$2''",
 	"viewpagelogs": "Usı bettin' jurnalın ko'riw",
 	"nohistory": "Bul bettin' o'zgertiw tariyxı joq.",
 	"currentrev": "Ha'zirgi nusqa",

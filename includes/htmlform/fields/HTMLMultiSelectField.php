@@ -162,6 +162,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 				$optionsOouiSections
 			);
 		}
+		'@phan-var array[][] $optionsOouiSections';
 
 		$out = [];
 		foreach ( $optionsOouiSections as $sectionLabel => $optionsOoui ) {
@@ -169,16 +170,18 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 			$attr['name'] = "{$this->mName}[]";
 
 			$attr['value'] = $value;
-			$attr['options'] = $optionsOoui;
 
-			foreach ( $attr['options'] as &$option ) {
+			$options = $optionsOoui;
+			foreach ( $options as &$option ) {
 				$option['disabled'] = in_array( $option['data'], $this->mParams['disabled-options'], true );
 			}
 			if ( $this->mOptionsLabelsNotFromMessage ) {
-				foreach ( $attr['options'] as &$option ) {
+				foreach ( $options as &$option ) {
 					$option['label'] = new OOUI\HtmlSnippet( $option['label'] );
 				}
 			}
+			unset( $option );
+			$attr['options'] = $options;
 
 			$attr += OOUI\Element::configFromHtmlAttributes(
 				$this->getAttributes( [ 'disabled', 'tabindex' ] )

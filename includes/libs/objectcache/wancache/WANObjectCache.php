@@ -1311,7 +1311,6 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 *   - Cached or regenerated value version number or null if not versioned
 	 *   - Timestamp of the current cached value at the key or null if there is no value
 	 * @note Callable type hints are not used to avoid class-autoloading
-	 * @suppress PhanTypeArraySuspicious
 	 */
 	private function fetchOrRegenerate( $key, $ttl, $callback, array $opts ) {
 		$checkKeys = $opts['checkKeys'] ?? [];
@@ -1327,8 +1326,10 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 
 		// Get the current key value and its metadata
 		$curTTL = self::PASS_BY_REF;
-		$curInfo = self::PASS_BY_REF; /** @var array $curInfo */
+		$curInfo = self::PASS_BY_REF;
 		$curValue = $this->get( $key, $curTTL, $checkKeys, $curInfo );
+		/** @var array $curInfo */
+		'@phan-var array $curInfo';
 		// Apply any $touchedCb invalidation timestamp to get the "last purge timestamp"
 		list( $curTTL, $LPT ) = $this->resolveCTL( $curValue, $curTTL, $curInfo, $touchedCb );
 		// Use the cached value if it exists and is not due for synchronous regeneration
@@ -1724,6 +1725,10 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	 *
 	 * @see WANObjectCache::getWithSetCallback()
 	 * @see WANObjectCache::getMultiWithSetCallback()
+	 *
+	 * @warning Usage of this method appears to have caused cache corruption, see T235188.
+	 *          This method should not be used until the root cause of T235188 has been resolved
+	 *          and I94c6f9ba7b9caeeb has been reverted.
 	 *
 	 * Example usage:
 	 * @code

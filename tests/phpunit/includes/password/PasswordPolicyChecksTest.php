@@ -184,12 +184,11 @@ class PasswordPolicyChecksTest extends MediaWikiTestCase {
 	 */
 	public function testPasswordPolicyDescriptionsExist() {
 		global $wgPasswordPolicy;
-		$lang = Language::factory( 'en' );
 
 		foreach ( array_keys( $wgPasswordPolicy['checks'] ) as $check ) {
 			$msgKey = 'passwordpolicies-policy-' . strtolower( $check );
 			$this->assertTrue(
-				wfMessage( $msgKey )->useDatabase( false )->inLanguage( $lang )->exists(),
+				wfMessage( $msgKey )->useDatabase( false )->inLanguage( 'en' )->exists(),
 				"Message '$msgKey' required by '$check' must exist"
 			);
 		}

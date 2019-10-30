@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 class BashkirUppercaseCollation extends CustomUppercaseCollation {
 
 	public function __construct() {
@@ -66,6 +68,6 @@ class BashkirUppercaseCollation extends CustomUppercaseCollation {
 			'Ә',
 			'Ю',
 			'Я',
-		], Language::factory( 'ba' ) );
+		], MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'ba' ) );
 	}
 }

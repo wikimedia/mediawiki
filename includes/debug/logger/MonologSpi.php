@@ -112,6 +112,7 @@ use Wikimedia\ObjectFactory;
  * @see https://github.com/Seldaek/monolog
  * @since 1.25
  * @copyright © 2014 Wikimedia Foundation and contributors
+ * @phan-file-suppress PhanTypeArraySuspiciousNullable False positives with $this->config
  */
 class MonologSpi implements Spi {
 
@@ -122,7 +123,7 @@ class MonologSpi implements Spi {
 
 	/**
 	 * Configuration for creating new loggers.
-	 * @var array[] $config
+	 * @var array[][] $config
 	 */
 	protected $config;
 

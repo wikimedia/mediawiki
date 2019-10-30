@@ -31,7 +31,7 @@ class DBConnRef implements IDatabase {
 	private $lb;
 	/** @var Database|null Live connection handle */
 	private $conn;
-	/** @var array|null N-tuple of (server index, group, DatabaseDomain|string) */
+	/** @var array N-tuple of (server index, group, DatabaseDomain|string) */
 	private $params;
 	/** @var int One of DB_MASTER/DB_REPLICA */
 	private $role;
@@ -380,7 +380,7 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function makeList( $a, $mode = self::LIST_COMMA ) {
+	public function makeList( array $a, $mode = self::LIST_COMMA ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 

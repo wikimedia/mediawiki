@@ -706,8 +706,6 @@
 	"undo-nochange": "Schyns isch die Bearbeitig scho rugggängig gmacht wore.",
 	"undo-summary": "D Änderig $1 vu [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) isch ruckgängig gmacht wore.",
 	"undo-summary-username-hidden": "Änderig $1 vun eme versteckte Benutzer ruckgängig gmacht.",
-	"cantcreateaccount-text": "S Aalege vu me Benutzerkonto vu dr IP-Adräss '''($1)''' isch dur [[User:$3|$3]] gsperrt wore.\n\nGrund vu dr Sperri: ''$2''",
-	"cantcreateaccount-range-text": "S Aalege vu Benutzerkonte vu IP-Adrässen im Berych <strong>$1</strong>, wu s Dyni IP-Adräss (<strong>$4</strong>) din het, isch vu [[User:$3|$3]] gsperrt wore.\n\nDr Grund, wu vu $3 aagee woren isch: <em>$2</em>",
 	"viewpagelogs": "Logbüecher für die Syten azeige",
 	"nohistory": "S git kei Versionsgschicht fir die Syte.",
 	"currentrev": "Itzigi Version",

@@ -148,6 +148,7 @@ class ReassignEdits extends Maintenance {
 					$this->output( "Updating recent changes..." );
 					$dbw->update( 'recentchanges',
 						[ 'rc_actor' => $to->getActorId( $dbw ) ],
+						// @phan-suppress-next-line PhanTypeArraySuspiciousNullable False positive
 						[ $rcQueryInfo['conds'] ], __METHOD__ );
 					$this->output( "done.\n" );
 				}

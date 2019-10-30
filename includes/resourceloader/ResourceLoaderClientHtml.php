@@ -58,7 +58,7 @@ class ResourceLoaderClientHtml {
 	 * @param array $options [optional] Array of options
 	 *  - 'target': Parameter for modules=startup request, see ResourceLoaderStartUpModule.
 	 *  - 'safemode': Parameter for modules=startup request, see ResourceLoaderStartUpModule.
-	 *  - 'nonce': From OutputPage::getCSPNonce().
+	 *  - 'nonce': From OutputPage->getCSP->getNonce().
 	 */
 	public function __construct( ResourceLoaderContext $context, array $options = [] ) {
 		$this->context = $context;
@@ -387,7 +387,7 @@ JAVASCRIPT;
 	 * @param string $only ResourceLoaderModule TYPE_ class constant
 	 * @param array $extraQuery [optional] Array with extra query parameters for the request
 	 * @param string|null $nonce [optional] Content-Security-Policy nonce
-	 *  (from OutputPage::getCSPNonce)
+	 *  (from OutputPage->getCSP->getNonce())
 	 * @return string|WrappedStringList HTML
 	 */
 	public static function makeLoad( ResourceLoaderContext $mainContext, array $modules, $only,

@@ -458,7 +458,6 @@
 	"undo-failure": "Redaktimi nuk mund të kthehej për shkak të përplasjeve të ndërmjetshme.",
 	"undo-norev": "S'mund të zhbëja këtë redaktim pasi nuk ekziston ose është grisur.",
 	"undo-summary": "U kthye versioni $1 i bërë nga [[Special:Contributions/$2]] ([[User talk:$2]])",
-	"cantcreateaccount-text": "Hapja e llogarive nga kjo adresë IP ('''$1''') është bllokuar nga [[User:$3|$3]].\n\nArsyeja e dhënë nga $3 është ''$2''.",
 	"viewpagelogs": "Shih regjistrat për këtë faqe",
 	"nohistory": "Nuk ka histori redaktimesh për këtë faqe.",
 	"currentrev": "Versioni i tanishëm",

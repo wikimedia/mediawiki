@@ -965,7 +965,7 @@ interface IDatabase {
 	 * @throws DBError If an error occurs, see IDatabase::query()
 	 * @return string
 	 */
-	public function makeList( $a, $mode = self::LIST_COMMA );
+	public function makeList( array $a, $mode = self::LIST_COMMA );
 
 	/**
 	 * Build a partial where clause from a 2-d array such as used for LinkBatch.

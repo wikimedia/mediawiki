@@ -325,19 +325,13 @@ util = {
 		$portlet = $( portlet );
 		$portlet.removeClass( 'emptyPortlet' );
 
-		// Setup the list item (and a span if $portlet is a Vector tab)
-		// eslint-disable-next-line no-jquery/no-class-state
-		if ( $portlet.hasClass( 'vectorTabs' ) ) {
-			item = $( '<li>' ).append( $( '<span>' ).append( link )[ 0 ] )[ 0 ];
-		} else {
-			item = $( '<li>' ).append( link )[ 0 ];
-		}
+		item = $( '<li>' ).append( link )[ 0 ];
 		if ( id ) {
 			item.id = id;
 		}
 
 		// Select the first (most likely only) unordered list inside the portlet
-		ul = portlet.querySelector( 'ul' );
+		ul = portlet.tagName.toLowerCase() === 'ul' ? portlet : portlet.querySelector( 'ul' );
 		if ( !ul ) {
 			// If it didn't have an unordered list yet, create one
 			ul = document.createElement( 'ul' );
@@ -353,6 +347,7 @@ util = {
 		}
 
 		if ( nextnode && ( typeof nextnode === 'string' || nextnode.nodeType || nextnode.jquery ) ) {
+			// eslint-disable-next-line no-jquery/variable-pattern
 			nextnode = $( ul ).find( nextnode );
 			if ( nextnode.length === 1 && nextnode[ 0 ].parentNode === ul ) {
 				// Insertion point: Before nextnode

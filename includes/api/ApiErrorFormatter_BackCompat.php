@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Format errors and warnings in the old style, for backwards compatibility.
  * @since 1.25
@@ -31,7 +33,12 @@ class ApiErrorFormatter_BackCompat extends ApiErrorFormatter {
 	 * @param ApiResult $result Into which data will be added
 	 */
 	public function __construct( ApiResult $result ) {
-		parent::__construct( $result, Language::factory( 'en' ), 'none', false );
+		parent::__construct(
+			$result,
+			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ),
+			'none',
+			false
+		);
 	}
 
 	public function getFormat() {

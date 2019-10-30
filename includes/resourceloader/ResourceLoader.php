@@ -870,13 +870,11 @@ class ResourceLoader implements LoggerAwareInterface {
 			|| $errors
 			|| $context->getVersion() !== $this->makeVersionQuery( $context, $context->getModules() )
 		) {
-			$maxage = $rlMaxage['unversioned']['client'];
-			$smaxage = $rlMaxage['unversioned']['server'];
+			$maxage = $rlMaxage['unversioned'];
 		// If a version was specified we can use a longer expiry time since changing
 		// version numbers causes cache misses
 		} else {
-			$maxage = $rlMaxage['versioned']['client'];
-			$smaxage = $rlMaxage['versioned']['server'];
+			$maxage = $rlMaxage['versioned'];
 		}
 		if ( $context->getImageObj() ) {
 			// Output different headers if we're outputting textual errors.
@@ -899,9 +897,8 @@ class ResourceLoader implements LoggerAwareInterface {
 			header( 'Cache-Control: private, no-cache, must-revalidate' );
 			header( 'Pragma: no-cache' );
 		} else {
-			header( "Cache-Control: public, max-age=$maxage, s-maxage=$smaxage" );
-			$exp = min( $maxage, $smaxage );
-			header( 'Expires: ' . wfTimestamp( TS_RFC2822, $exp + time() ) );
+			header( "Cache-Control: public, max-age=$maxage, s-maxage=$maxage" );
+			header( 'Expires: ' . wfTimestamp( TS_RFC2822, $maxage + time() ) );
 		}
 		foreach ( $extra as $header ) {
 			header( $header );
@@ -961,8 +958,8 @@ class ResourceLoader implements LoggerAwareInterface {
 		ob_start();
 		// Get the maximum age the cache can be
 		$maxage = is_null( $context->getVersion() )
-			? $rlMaxage['unversioned']['server']
-			: $rlMaxage['versioned']['server'];
+			? $rlMaxage['unversioned']
+			: $rlMaxage['versioned'];
 		// Minimum timestamp the cache file must have
 		$good = $fileCache->isCacheGood( wfTimestamp( TS_MW, time() - $maxage ) );
 		if ( !$good ) {
@@ -1534,7 +1531,7 @@ MESSAGE;
 	 *
 	 * @param string $script JavaScript code
 	 * @param string|null $nonce [optional] Content-Security-Policy nonce
-	 *  (from OutputPage::getCSPNonce)
+	 *  (from OutputPage->getCSP()->getNonce())
 	 * @return string|WrappedString HTML
 	 */
 	public static function makeInlineScript( $script, $nonce = null ) {

@@ -646,7 +646,6 @@
 	"undo-norev": "An pagliwat in diri mapapawaray-buhat tungod waray ito dida o napara na.",
 	"undo-summary": "Ginpawara-buhat an rebisyon nga $1 ni [[Special:Contributions/$2|$2]] ([[User talk:$2|himangrawi]])",
 	"undo-summary-username-hidden": "Igpawara-an-ginbuhat nga rebisyon $1 han uska tago nga gumaramit",
-	"cantcreateaccount-text": "An paghimo hin akawnt hini nga IP address  ('''$1''') in ginpugngan ni [[User:$3|$3]]. An rason nga ginhatag ni $3 in ''$2''",
 	"viewpagelogs": "Kitaa an mga log para hini nga pakli",
 	"nohistory": "Waray kaagi hin pagliwat hin nga pakli.",
 	"currentrev": "Giurhii nga pagliwat",

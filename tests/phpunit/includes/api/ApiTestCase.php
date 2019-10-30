@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Util\Test;
@@ -179,7 +180,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		if ( self::$errorFormatter === null ) {
 			self::$errorFormatter = new ApiErrorFormatter(
 				new ApiResult( false ),
-				Language::factory( 'en' ),
+				MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ),
 				'none'
 			);
 		}

@@ -153,7 +153,6 @@ class ForkController {
 		global $wgMemc;
 		// Don't share DB, storage, or memcached connections
 		MediaWikiServices::resetChildProcessServices();
-		FileBackendGroup::destroySingleton();
 		JobQueueGroup::destroySingletons();
 		ObjectCache::clear();
 		RedisConnectionPool::destroySingletons();

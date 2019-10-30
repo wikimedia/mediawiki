@@ -98,7 +98,8 @@
 			"Elroy",
 			"PiefPafPier",
 			"Ecthelion3",
-			"RadioAzureus"
+			"RadioAzureus",
+			"LongJohn nl"
 		]
 	},
 	"tog-underline": "Links onderstrepen:",
@@ -713,8 +714,7 @@
 	"subject-preview": "Voorvertoning van het onderwerp:",
 	"previewerrortext": "Er is een fout opgetreden tijdens het weergeven van uw wijzigingen.",
 	"blockedtitle": "Gebruiker is geblokkeerd",
-	"blocked-email-user": "<strong>Uw gebruikersnaam is geblokkeerd voor het versturen van e-mail. U kunt nog steeds andere pagina's op deze wiki bewerken.</strong> U kunt de volledige details van de blokkade bekijken op de pagina met uw [[Special:MyContributions|gebruikersbijdragen]].\n\nDe blokkade is opgelegd door $1.\n\nDe opgegeven reden is <em>$2</em>.\n\n* Aanvang blokkade: $8\n* Einde blokkade: $6\n* Bedoeld te blokkeren: $7\n* Blokkadenummer #$5",
-	"blockedtext-partial": "<strong>Uw gebruikersnaam of IP-adres is geblokkeerd voor het maken van veranderingen aan deze pgina. U kunt nog steeds andere pagina's op deze wiki bewerken.</strong> U kunt de volledige details van de blokkade bekijken op de pagina met uw [[Special:MyContributions|gebruikersbijdragen]].\n\nDe blokkade is opgelegd door $1.\n\nDe opgegeven reden is <em>$2</em>.\n\n* Aanvang blokkade: $8\n* Einde blokkade: $6\n* Bedoeld te blokkeren: $7\n* Blokkadenummer #$5",
+	"blockedtext-partial": "<strong>Uw gebruikersnaam of IP-adres is geblokkeerd voor het uitvoeren van deze handeling. U kunt mogelijk nog andere dingen doen, zoals bepaalde pagina's op deze wiki bewerken.</strong> U kunt de volledige details van de blokkade bekijken op de pagina met uw [[Special:MyContributions|gebruikersbijdragen]].\n\nDe blokkade is opgelegd door $1.\n\nDe opgegeven reden is <em>$2</em>.\n\n* Aanvang blokkade: $8\n* Einde blokkade: $6\n* Bedoeld te blokkeren: $7\n* Blokkadenummer #$5",
 	"blockedtext": "'''Uw gebruikersaccount of IP-adres is geblokkeerd.'''\n\nDe blokkade is uitgevoerd door $1.\nDe opgegeven reden is ''$2''.\n\n* Aanvang blokkade: $8\n* Einde blokkade: $6\n* Bedoeld te blokkeren: $7\n\nU kunt contact opnemen met $1 of een andere [[{{MediaWiki:Grouppage-sysop}}|beheerder]] om de blokkade te bespreken.\nU kunt geen gebruik maken van de functie \"{{int:emailuser}}\", tenzij u een geldig e-mailadres hebt opgegeven in uw [[Special:Preferences|voorkeuren]] en het gebruik van deze functie niet geblokkeerd is.\nUw huidige IP-adres is $3 en het blokkadenummer is #$5.\nVermeld alle bovenstaande gegevens als u ergens op deze blokkade reageert.",
 	"autoblockedtext": "Uw IP-adres is automatisch geblokkeerd, omdat het gebruikt is door een andere gebruiker, die geblokkeerd is door $1.\nDe opgegeven reden is:\n\n:''$2''\n\n* Aanvang blokkade: $8\n* Einde blokkade: $6\n* Bedoeld te blokkeren: $7\n\nU kunt contact opnemen met $1 of een andere [[{{MediaWiki:Grouppage-sysop}}|beheerder]] om de blokkade te bespreken.\n\nU kunt geen gebruik maken van de functie \"{{int:emailuser}}\", tenzij u een geldig e-mailadres hebt opgegeven in uw [[Special:Preferences|voorkeuren]], en het gebruik van deze functie niet is geblokkeerd.\n\nUw huidige IP-adres is $3 en het blokkadenummer is #$5.\nVermeld alle bovenstaande gegevens als u ergens op deze blokkade reageert.",
 	"systemblockedtext": "Uw gebruikersaccount of IP-adres is automatisch geblokkeerd door MediaWiki.\nDe opgegeven reden is:\n\n:<em>$2</em>\n\n* Aanvang blokkade: $8\n* Einde blokkade: $6\n* Bedoeld te blokkeren: $7\n\nUw huidige IP-adres is $3.\nVermeld alle bovenstaande gegevens als u ergens op deze blokkade reageert.",
@@ -870,8 +870,6 @@
 	"undo-summary": "Versie $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|overleg]]) ongedaan gemaakt",
 	"undo-summary-anon": "Versie $1 van [[Special:Contributions/$2|$2]] ongedaan gemaakt",
 	"undo-summary-username-hidden": "Versie $1 door een verborgen gebruiker ongedaan gemaakt",
-	"cantcreateaccount-text": "Registreren vanaf dit IP-adres ('''$1''') is geblokkeerd door [[User:$3|$3]].\n\nDe door $3 opgegeven reden is ''$2''",
-	"cantcreateaccount-range-text": "Het aanmaken van gebruikers vanaf IP-adressen in de range <strong>$1</strong> is niet mogelijk doordat dit is ingesteld door [[User:$3|$3]]. Uw IP-adres $4 bevindt zich in deze range.\n\nDe reden voor de blokkade is <em>$2</em>",
 	"viewpagelogs": "Logboek voor deze pagina bekijken",
 	"nohistory": "Deze pagina is niet bewerkt.",
 	"currentrev": "Huidige versie",
@@ -3917,11 +3915,5 @@
 	"mycustomjsredirectprotected": "U hebt geen rechten om deze JavaScriptpagina te bewerken omdat het een doorverwijzing is en deze niet verwijst naar een pagina in uw gebruikersruimte.",
 	"easydeflate-invaliddeflate": "De opgegeven inhoud is onjuist gecomprimeerd",
 	"unprotected-js": "Vanwege veiligheidsredenen kan er geen JavaScript geladen worden vanaf onbeveiligde pagina's. Gelieve alleen JavaScript pagina's aan te maken in de MediaWiki: naamruimte of als een subpagina van een gebruikerspagina.",
-	"userlogout-continue": "Wilt u zich afmelden?",
-	"rest-wrong-method": "De requestmethode ($1) is {{PLURAL:$3|niet de toegestane methode voor dit pad|een van de toegestane methoden voor dit pad}} ($2)",
-	"rest-pagehistory-incompatible-params": "Parameters \"older_than\" en \"newer_than\" kunnen niet beide worden opgegeven",
-	"rest-pagehistory-param-range-error": "Versie ID moet groter zijn dan 0",
-	"rest-pagehistory-title-nonexistent": "De opgegeven titel ($1) bestaat niet",
-	"rest-pagehistorycount-title-nonexistent": "De opgegeven titel ($1) bestaat niet",
-	"rest-revision-nonexistent": "De opgevraagde versie ($1) bestaat niet."
+	"userlogout-continue": "Wilt u zich afmelden?"
 }

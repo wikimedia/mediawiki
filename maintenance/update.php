@@ -27,6 +27,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DatabaseSqlite;
 
 /**
@@ -114,7 +115,7 @@ class UpdateMediaWiki extends Maintenance {
 		// T206765: We need to load the installer i18n files as some of errors come installer/updater code
 		$wgMessagesDirs['MediawikiInstaller'] = dirname( __DIR__ ) . '/includes/installer/i18n';
 
-		$lang = Language::factory( 'en' );
+		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 		// Set global language to ensure localised errors are in English (T22633)
 		RequestContext::getMain()->setLanguage( $lang );
 		$wgLang = $lang; // BackCompat
@@ -258,6 +259,7 @@ class UpdateMediaWiki extends Maintenance {
 		// This executes before the PHP version check, so don't use null coalesce (??).
 		// Keeping this compatible with older PHP versions lets us reach the code that
 		// displays a more helpful error.
+		// @phan-suppress-next-line PhanEmptyForeach False positive
 		foreach ( $params as $name => $param ) {
 			$this->addOption(
 				$name,

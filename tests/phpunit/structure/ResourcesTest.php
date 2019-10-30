@@ -81,7 +81,7 @@ class ResourcesTest extends MediaWikiTestCase {
 	 */
 	public function testMissingMessages() {
 		$data = self::getAllModules();
-		$lang = Language::factory( 'en' );
+		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 
 		/** @var ResourceLoaderModule $module */
 		foreach ( $data['modules'] as $moduleName => $module ) {

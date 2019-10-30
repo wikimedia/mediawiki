@@ -122,6 +122,7 @@ class ExtensionProcessor implements Processor {
 		'ResourceModuleSkinStyles',
 		'OOUIThemePaths',
 		'QUnitTestModule',
+		'MessagePosterModule',
 		'ExtensionMessagesFiles',
 		'MessagesDirs',
 		'type',
@@ -480,6 +481,18 @@ class ExtensionProcessor implements Processor {
 				}
 			}
 			$this->attributes['QUnitTestModules']["test.{$info['name']}"] = $data;
+		}
+
+		if ( isset( $info['MessagePosterModule'] ) ) {
+			$data = $info['MessagePosterModule'];
+			$basePath = $data['localBasePath'] ?? '';
+			$baseDir = $basePath === '' ? $dir : "$dir/$basePath";
+			foreach ( $data['scripts'] ?? [] as $scripts ) {
+				$this->attributes['MessagePosterModule']['scripts'][] = "$baseDir/$scripts";
+			}
+			foreach ( $data['dependencies'] ?? [] as $dependency ) {
+				$this->attributes['MessagePosterModule']['dependencies'][] = $dependency;
+			}
 		}
 	}
 

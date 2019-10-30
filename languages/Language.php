@@ -30,6 +30,7 @@ use CLDRPluralRuleParser\Evaluator;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Assert\Assert;
 
 /**
  * Internationalisation code
@@ -93,6 +94,10 @@ class Language {
 	/** @var array[]|null */
 	private $grammarTransformCache;
 
+	/**
+	 * @deprecated since 1.35, use LanguageFactory
+	 * @var array
+	 */
 	public static $mLangObjCache = [];
 
 	/**
@@ -183,9 +188,9 @@ class Language {
 	/**
 	 * Unicode directional formatting characters, for embedBidi()
 	 */
-	private static $lre = "\u{202A}"; // U+202A LEFT-TO-RIGHT EMBEDDING
-	private static $rle = "\u{202B}"; // U+202B RIGHT-TO-LEFT EMBEDDING
-	private static $pdf = "\u{202C}"; // U+202C POP DIRECTIONAL FORMATTING
+	private const LRE = "\u{202A}"; // U+202A LEFT-TO-RIGHT EMBEDDING
+	private const RLE = "\u{202B}"; // U+202B RIGHT-TO-LEFT EMBEDDING
+	private const PDF = "\u{202C}"; // U+202C POP DIRECTIONAL FORMATTING
 
 	/**
 	 * Directionality test regex for embedBidi(). Matches the first strong directionality codepoint:
@@ -205,90 +210,23 @@ class Language {
 
 	/**
 	 * Get a cached or new language object for a given language code
+	 * @deprecated since 1.35, use LanguageFactory
 	 * @param string $code
 	 * @throws MWException
 	 * @return Language
 	 */
 	static function factory( $code ) {
-		global $wgDummyLanguageCodes, $wgLangObjCacheSize;
-
-		if ( isset( $wgDummyLanguageCodes[$code] ) ) {
-			$code = $wgDummyLanguageCodes[$code];
-		}
-
-		// get the language object to process
-		$langObj = self::$mLangObjCache[$code] ?? self::newFromCode( $code );
-
-		// merge the language object in to get it up front in the cache
-		self::$mLangObjCache = array_merge( [ $code => $langObj ], self::$mLangObjCache );
-		// get rid of the oldest ones in case we have an overflow
-		self::$mLangObjCache = array_slice( self::$mLangObjCache, 0, $wgLangObjCacheSize, true );
-
-		return $langObj;
-	}
-
-	/**
-	 * Create a language object for a given language code
-	 * @param string $code
-	 * @param bool $fallback Whether we're going through language fallback chain
-	 * @throws MWException
-	 * @return Language
-	 */
-	protected static function newFromCode( $code, $fallback = false ) {
-		$langNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
-		if ( !$langNameUtils->isValidCode( $code ) ) {
-			throw new MWException( "Invalid language code \"$code\"" );
-		}
-
-		if ( !$langNameUtils->isValidBuiltInCode( $code ) ) {
-			// It's not possible to customise this code with class files, so
-			// just return a Language object. This is to support uselang= hacks.
-			$lang = new Language;
-			$lang->mCode = $code;
-			return $lang;
-		}
-
-		// Check if there is a language class for the code
-		$class = self::classFromCode( $code, $fallback );
-		// LanguageCode does not inherit Language
-		if ( class_exists( $class ) && is_a( $class, 'Language', true ) ) {
-			$lang = new $class;
-			return $lang;
-		}
-
-		// Keep trying the fallback list until we find an existing class
-		$fallbacks = MediaWikiServices::getInstance()->getLanguageFallback()->getAll( $code );
-		foreach ( $fallbacks as $fallbackCode ) {
-			if ( !$langNameUtils->isValidBuiltInCode( $fallbackCode ) ) {
-				throw new MWException( "Invalid fallback '$fallbackCode' in fallback sequence for '$code'" );
-			}
-
-			$class = self::classFromCode( $fallbackCode );
-			if ( class_exists( $class ) ) {
-				$lang = new $class;
-				$lang->mCode = $code;
-				return $lang;
-			}
-		}
-
-		throw new MWException( "Invalid fallback sequence for language '$code'" );
+		return MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $code );
 	}
 
 	/**
 	 * Intended for tests that may change configuration in a way that invalidates caches.
 	 *
 	 * @since 1.32
+	 * @deprecated since 1.35. Use MediaWikiServices::resetLanguageServices() instead.
 	 */
 	public static function clearCaches() {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MEDIAWIKI_INSTALL' ) ) {
-			throw new MWException( __METHOD__ . ' must not be used outside tests/installer' );
-		}
-		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
-			MediaWikiServices::getInstance()->resetServiceForTesting( 'LanguageFallback' );
-			MediaWikiServices::getInstance()->resetServiceForTesting( 'LanguageNameUtils' );
-			MediaWikiServices::getInstance()->resetServiceForTesting( 'LocalisationCache' );
-		}
-		self::$mLangObjCache = [];
+		MediaWikiServices::getInstance()->resetLanguageServices();
 	}
 
 	/**
@@ -421,19 +359,48 @@ class Language {
 		return MediaWikiServices::getInstance()->getLocalisationCache();
 	}
 
-	function __construct() {
-		$this->mConverter = new FakeConverter( $this );
-		// Set the code to the name of the descendant
-		if ( static::class === 'Language' ) {
-			$this->mCode = 'en';
-		} else {
-			$this->mCode = str_replace( '_', '-', strtolower( substr( static::class, 8 ) ) );
+	/**
+	 * Calling this directly is deprecated. Use LanguageFactory instead.
+	 *
+	 * @param string|null $code Which code to use. Passing null is deprecated in 1.35.
+	 * @param LocalisationCache|null $localisationCache
+	 * @param LanguageNameUtils|null $langNameUtils
+	 * @param LanguageFallback|null $langFallback
+	 */
+	public function __construct(
+		$code = null,
+		LocalisationCache $localisationCache = null,
+		LanguageNameUtils $langNameUtils = null,
+		LanguageFallback $langFallback = null
+	) {
+		$this->mConverter = $this->newConverter();
+		if ( !func_num_args() ) {
+			// Old calling convention, deprecated
+			if ( static::class === 'Language' ) {
+				$this->mCode = 'en';
+			} else {
+				$this->mCode = str_replace( '_', '-', strtolower( substr( static::class, 8 ) ) );
+			}
+			$services = MediaWikiServices::getInstance();
+			$this->localisationCache = $services->getLocalisationCache();
+			$this->langNameUtils = $services->getLanguageNameUtils();
+			$this->langFallback = $services->getLanguageFallback();
+			return;
 		}
-		// These will be ported to injection at some point.
-		$services = MediaWikiServices::getInstance();
-		$this->localisationCache = $services->getLocalisationCache();
-		$this->langNameUtils = $services->getLanguageNameUtils();
-		$this->langFallback = $services->getLanguageFallback();
+
+		Assert::parameter( $code !== null, '$code',
+			'Parameters cannot be null unless all are omitted' );
+		Assert::parameter( $localisationCache !== null, '$localisationCache',
+			'Parameters cannot be null unless all are omitted' );
+		Assert::parameter( $langNameUtils !== null, '$langNameUtils',
+			'Parameters cannot be null unless all are omitted' );
+		Assert::parameter( $langFallback !== null, '$langFallback',
+			'Parameters cannot be null unless all are omitted' );
+
+		$this->mCode = $code;
+		$this->localisationCache = $localisationCache;
+		$this->langNameUtils = $langNameUtils;
+		$this->langFallback = $langFallback;
 	}
 
 	/**
@@ -1033,6 +1000,7 @@ class Language {
 	 *
 	 * @throws MWException
 	 * @return string
+	 * @return-taint tainted
 	 */
 	public function sprintfDate( $format, $ts, DateTimeZone $zone = null, &$ttl = 'unused' ) {
 		$s = '';
@@ -2164,8 +2132,8 @@ class Language {
 		}
 
 		if ( !isset( $this->dateFormatStrings[$type][$pref] ) ) {
-			$df =
-				$this->localisationCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
+			$df = $this->localisationCache
+				->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
 
 			if ( $type === 'pretty' && $df === null ) {
 				$df = $this->getDateFormatString( 'date', $pref );
@@ -2173,7 +2141,7 @@ class Language {
 
 			if ( !$wasDefault && $df === null ) {
 				$pref = $this->getDefaultDateFormat();
-				$df = $this->getLocalisationCache()
+				$df = $this->localisationCache
 					->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
 			}
 
@@ -2592,39 +2560,35 @@ class Language {
 	}
 
 	/**
-	 * Make a string's first character uppercase
-	 *
 	 * @param string $str
-	 *
-	 * @return string
+	 * @return string The string with uppercase conversion applied to the first character
 	 */
 	public function ucfirst( $str ) {
-		$o = ord( $str );
-		if ( $o < 96 ) { // if already uppercase...
-			return $str;
-		} elseif ( $o < 128 ) {
-			return ucfirst( $str ); // use PHP's ucfirst()
-		} else {
-			// fall back to more complex logic in case of multibyte strings
-			return $this->uc( $str, true );
+		$octetCode = ord( $str );
+		// See https://en.wikipedia.org/wiki/ASCII#Printable_characters
+		if ( $octetCode < 96 ) {
+			// Assume this is an uppercase/uncased ASCII character
+			return (string)$str;
+		} elseif ( $octetCode < 128 ) {
+			//  Assume this is a lowercase/uncased ASCII character
+			return ucfirst( $str );
 		}
+
+		return $this->isMultibyte( $str )
+			// Assume this is a multibyte character and mb_internal_encoding() is appropriate
+			? $this->mbUpperChar( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 )
+			// Assume this is a non-multibyte character and LC_CASE is appropriate
+			: ucfirst( $str );
 	}
 
 	/**
-	 * Convert a string to uppercase
-	 *
 	 * @param string $str
-	 * @param bool $first
-	 *
-	 * @return string
+	 * @param bool $first Whether to uppercase only the first character
+	 * @return string The string with uppercase conversion applied
 	 */
 	public function uc( $str, $first = false ) {
 		if ( $first ) {
-			if ( $this->isMultibyte( $str ) ) {
-				return $this->mbUpperChar( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 );
-			} else {
-				return ucfirst( $str );
-			}
+			return $this->ucfirst( $str );
 		} else {
 			return $this->isMultibyte( $str ) ? mb_strtoupper( $str ) : strtoupper( $str );
 		}
@@ -2645,43 +2609,40 @@ class Language {
 	 */
 	protected function mbUpperChar( $char ) {
 		global $wgOverrideUcfirstCharacters;
-		if ( array_key_exists( $char, $wgOverrideUcfirstCharacters ) ) {
-			return $wgOverrideUcfirstCharacters[$char];
-		} else {
-			return mb_strtoupper( $char );
-		}
+
+		return $wgOverrideUcfirstCharacters[$char] ?? mb_strtoupper( $char );
 	}
 
 	/**
 	 * @param string $str
-	 * @return mixed|string
+	 * @return string The string with lowercase conversion applied to the first character
 	 */
-	function lcfirst( $str ) {
-		$o = ord( $str );
-		if ( !$o ) {
-			return strval( $str );
-		} elseif ( $o >= 128 ) {
-			return $this->lc( $str, true );
-		} elseif ( $o > 96 ) {
-			return $str;
-		} else {
-			$str[0] = strtolower( $str[0] );
-			return $str;
+	public function lcfirst( $str ) {
+		$octetCode = ord( $str );
+		// See https://en.wikipedia.org/wiki/ASCII#Printable_characters
+		if ( $octetCode < 96 ) {
+			// Assume this is an uppercase/uncased ASCII character
+			return lcfirst( $str );
+		} elseif ( $octetCode < 128 ) {
+			// Assume this is a lowercase/uncased ASCII character
+			return (string)$str;
 		}
+
+		return $this->isMultibyte( $str )
+			// Assume this is a multibyte character and mb_internal_encoding() is appropriate
+			? mb_strtolower( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 )
+			// Assume this is a non-multibyte character and LC_CASE is appropriate
+			: lcfirst( $str );
 	}
 
 	/**
 	 * @param string $str
-	 * @param bool $first
-	 * @return mixed|string
+	 * @param bool $first Whether to lowercase only the first character
+	 * @return string The string with lowercase conversion applied
 	 */
-	function lc( $str, $first = false ) {
+	public function lc( $str, $first = false ) {
 		if ( $first ) {
-			if ( $this->isMultibyte( $str ) ) {
-				return mb_strtolower( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 );
-			} else {
-				return strtolower( substr( $str, 0, 1 ) ) . substr( $str, 1 );
-			}
+			return $this->lcfirst( $str );
 		} else {
 			return $this->isMultibyte( $str ) ? mb_strtolower( $str ) : strtolower( $str );
 		}
@@ -3804,14 +3765,9 @@ class Language {
 
 		$grammarDataFile = __DIR__ . "/data/grammarTransformations/{$this->getCode()}.json";
 
-		if ( !is_readable( $grammarDataFile ) ) {
-			return [];
-		}
-
-		$this->grammarTransformCache = FormatJson::decode(
-			file_get_contents( $grammarDataFile ),
-			true
-		);
+		$this->grammarTransformCache = is_readable( $grammarDataFile )
+			? FormatJson::decode( file_get_contents( $grammarDataFile ), true )
+			: [];
 
 		if ( $this->grammarTransformCache === null ) {
 			throw new MWException( "Invalid grammar data for \"{$this->getCode()}\"." );
@@ -3943,11 +3899,11 @@ class Language {
 		$dir = self::strongDirFromContent( $text );
 		if ( $dir === 'ltr' ) {
 			// Wrap in LEFT-TO-RIGHT EMBEDDING ... POP DIRECTIONAL FORMATTING
-			return self::$lre . $text . self::$pdf;
+			return self::LRE . $text . self::PDF;
 		}
 		if ( $dir === 'rtl' ) {
 			// Wrap in RIGHT-TO-LEFT EMBEDDING ... POP DIRECTIONAL FORMATTING
-			return self::$rle . $text . self::$pdf;
+			return self::RLE . $text . self::PDF;
 		}
 		// No strong directionality: do not wrap
 		return $text;
@@ -4021,6 +3977,16 @@ class Language {
 	 */
 	public function unsegmentForDiff( $text ) {
 		return $text;
+	}
+
+	/**
+	 * Construct a new LanguageConverter suitable for this language. Languages that support variants
+	 * need to override this method appropriately.
+	 *
+	 * @return LanguageConverter|FakeConverter
+	 */
+	protected function newConverter() {
+		return new FakeConverter( $this );
 	}
 
 	/**
@@ -4235,27 +4201,13 @@ class Language {
 	 * Get the "parent" language which has a converter to convert a "compatible" language
 	 * (in another variant) to this language (eg. zh for zh-cn, but not en for en-gb).
 	 *
+	 * @deprecated since 1.35, use LanguageFactory::getParentLanguage
 	 * @return Language|null
 	 * @since 1.22
 	 */
 	public function getParentLanguage() {
-		if ( $this->mParentLanguage !== false ) {
-			return $this->mParentLanguage;
-		}
-
-		$code = explode( '-', $this->getCode() )[0];
-		if ( !in_array( $code, LanguageConverter::$languagesWithVariants ) ) {
-			$this->mParentLanguage = null;
-			return null;
-		}
-		$lang = self::factory( $code );
-		if ( !$lang->hasVariant( $this->getCode() ) ) {
-			$this->mParentLanguage = null;
-			return null;
-		}
-
-		$this->mParentLanguage = $lang;
-		return $lang;
+		return MediaWikiServices::getInstance()->getLanguageFactory()
+			->getParentLanguage( $this->getCode() );
 	}
 
 	/**
@@ -4316,11 +4268,16 @@ class Language {
 	}
 
 	/**
+	 * @deprecated since 1.35, this is an internal method and should not need
+	 * to be used elsewhere
+	 *
 	 * @param string $code
 	 * @param bool $fallback Whether we're going through language fallback chain
 	 * @return string Name of the language class
 	 */
 	public static function classFromCode( $code, $fallback = true ) {
+		wfDeprecated( __METHOD__, '1.35' );
+
 		if ( $fallback && $code == 'en' ) {
 			return 'Language';
 		} else {
@@ -4414,6 +4371,8 @@ class Language {
 	 * WARNING: this may take a long time. If you just need all message *keys*
 	 * but need the *contents* of only a few messages, consider using getMessageKeysFor().
 	 *
+	 * @deprecated since 1.35, use LocalisationCache directly
+	 *
 	 * @param string $code
 	 *
 	 * @return array
@@ -4424,6 +4383,8 @@ class Language {
 
 	/**
 	 * Get a message for a given language
+	 *
+	 * @deprecated since 1.35, use LocalisationCache directly
 	 *
 	 * @param string $key
 	 * @param string $code
@@ -4437,6 +4398,8 @@ class Language {
 	/**
 	 * Get all message keys for a given language. This is a faster alternative to
 	 * array_keys( Language::getMessagesFor( $code ) )
+	 *
+	 * @deprecated since 1.35, use LocalisationCache directly
 	 *
 	 * @since 1.19
 	 * @param string $code Language code

@@ -33,6 +33,11 @@ For notes on 1.34.x and older releases, see HISTORY.
 
 
 ==== Changed configuration ====
+* $wgResourceLoaderMaxage (T235314) - This configuration array controls the
+  max-age for HTTP caching through the Cache-Control header. It has uses the
+  "versioned" key for urls that do have a version parameter, and the
+  "unversioned" key for urls without a version parameter. The sub keys for
+  "client" and "server" are no longer supported in MediaWiki 1.35.
 * …
 
 ==== Removed configuration ====
@@ -44,16 +49,20 @@ For notes on 1.34.x and older releases, see HISTORY.
 
 
 === New developer features in 1.35 ===
+* If CSP is enabled, extensions can now add additional sources using the
+  ContentSecurityPolicy::addDefaultSource, ::addStyleSrc and ::addScriptSrc
+  methods (e.g. $context->getOutput()->getCSP()->addDefaultSrc( 'example.com' ))
 * …
 
 === External library changes in 1.35 ===
-* symfony/yaml was upgraded from 3.4.28 to 4.3.4
 * …
 
 ==== New external libraries ====
 * …
 
 ==== Changed external libraries ====
+* symfony/yaml was upgraded from 3.4.28 to 4.3.4
+* pear/mail_mime was upgraded from 1.10.2 to 1.10.4
 * …
 
 ==== Removed external libraries ====
@@ -86,8 +95,16 @@ because of Phabricator reports.
   CONSTRUCTOR_OPTIONS. This was a breaking change made without deprecation.
 * ObjectCache::getWANInstance, deprecated in 1.34, was removed.
   Use MediaWikiServices::getMainWANObjectCache instead.
-* ObjectCache::newWANCacheFromParams, deprecated in 1.35, was removed.
+* ObjectCache::newWANCacheFromParams, deprecated in 1.34, was removed.
   Construct WANObjectCache directly instead, or use MediaWikiServices.
+* ApiQueryUserInfo::getBlockInfo, deprecated in 1.34, was removed. Use
+  ApiBlockInfoTrait::getBlockDetails instead.
+* Password::equals(), deprecated in 1.33, was removed. Use Password::verify().
+* QuickTemplate::setRef(), deprecated in 1.31, was removed. Use set().
+* The mediawiki.ui.text module, deprecated in 1.28 and unused, was removed.
+* AbstractBlock::mReason, deprecated in 1.34, is no longer public.
+* The GetBlockedStatus, deprecated in 1.34, has been removed. Instead, use the
+  GetUserBlock hook.
 * …
 
 === Deprecations in 1.35 ===
@@ -100,6 +117,41 @@ because of Phabricator reports.
   getFallbacksFor, getFallbacksIncludingSiteLanguage. Use the corresponding new
   methods on the LanguageFallback class: getFirst, getAll, and
   getAllIncludingSiteLanguage.
+* Title::countRevisionsBetween has been deprecated and moved into RevisionStore.
+* FileBackendGroup::singleton() is deprecated. Use MediaWikiServices instead.
+* FileBackendGroup::destroySingleton() is deprecated. Test frameworks should
+  instead reset MediaWikiServices between test runs.
+  (MediaWikiIntegrationTestCase does this automatically.)
+* MediaWikiIntegrationTest::setContentLang() has been deprecated. Use
+  setMwGlobals( 'wgLanguageCode', 'xxx' ) to set a different site language
+  code, or setService( 'ContentLanguage', $myObj ) to set a specific Language
+  object. Service resets and $wgContLang will be handled automatically.
+* AbstractBlock::getReason is deprecated, since reasons are actually stored as
+  CommentStoreComments, and getReason returns a string with no caller control
+  over language or formatting. Instead use AbstractBlock::getReasonComment,
+  which returns the CommentStoreComment.
+* The global function wfGetRusage() is deprecated and will now always call the
+  getrusage() function without checking for its existence.
+* The properties User::mBlock, User::mBlockedby and User::mHideName are
+  deprecated. Instead, use User::getBlock to get the block, then use
+  AbstractBlock::getByName or AbstractBlock::getHideName.Use the GetUserBlock
+  hook to set, unset or modify a block, including hiding or unhiding a user.
+* Language::factory() and Language::getParentLanguage() are deprecated, and so
+  is directly calling the Language constructor. Use the new LanguageFactory
+  class instead.
+* Language::classFromCode() is deprecated. There is no reason it should be used
+  outside the Language class itself.
+* Language::clearCaches() is deprecated. Instead, reset services in your test
+  framework.
+* Language::$mLangObjCache is deprecated and should be removed in 1.36. Use
+  MediaWikiServices instead to get a LanguageFactory.
+* Language::getMessagesFor(), getMessageFor(), and getMessageKeysFor() are
+  deprecated. Use LocalisationCache's getItem(), getSubitem(), and
+  getSubitemList() methods directly.
+* OutputPage::getCSPNonce() is deprecated, use OutputPage::getCSP()->getNonce()
+  instead.
+* Skin::makeI18nUrl() and makeNSUrl() have been deprecated, no longer used.
+* …
 
 === Other changes in 1.35 ===
 * …

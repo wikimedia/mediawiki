@@ -101,7 +101,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @var array List of packaged files to make available through require()
 	 * @par Usage:
 	 * @code
-	 * [ [file-path], [file-path], ... ]
+	 * [ [file-path-or-object], [file-path-or-object], ... ]
 	 * @endcode
 	 */
 	protected $packageFiles = null;
@@ -1103,6 +1103,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *
 	 * @param ResourceLoaderContext $context
 	 * @return array|null
+	 * @phan-return array{main:string,files:string[][]}|null
 	 * @throws MWException If the 'packageFiles' definition is invalid.
 	 */
 	private function expandPackageFiles( ResourceLoaderContext $context ) {
@@ -1116,7 +1117,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$expandedFiles = [];
 		$mainFile = null;
 
-		foreach ( $this->packageFiles as $alias => $fileInfo ) {
+		foreach ( $this->packageFiles as $fileInfo ) {
 			if ( is_string( $fileInfo ) ) {
 				$fileInfo = [ 'name' => $fileInfo, 'file' => $fileInfo ];
 			} elseif ( !isset( $fileInfo['name'] ) ) {
@@ -1148,6 +1149,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			} elseif ( isset( $fileInfo['file'] ) ) {
 				$expanded['filePath'] = $fileInfo['file'];
 			} elseif ( isset( $fileInfo['callback'] ) ) {
+				// If no extra parameter for the callback is given, use null.
+				$expanded['callbackParam'] = $fileInfo['callbackParam'] ?? null;
+
 				if ( !is_callable( $fileInfo['callback'] ) ) {
 					$msg = __METHOD__ . ": invalid callback for package file \"{$fileInfo['name']}\"" .
 						" in module \"{$this->getName()}\"";
@@ -1159,12 +1163,23 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 						throw new MWException( __METHOD__ . ": invalid versionCallback for file" .
 							" \"{$fileInfo['name']}\" in module \"{$this->getName()}\"" );
 					}
-					$expanded['definitionSummary'] =
-						( $fileInfo['versionCallback'] )( $context, $this->getConfig() );
+
+					// Execute the versionCallback with the same arguments that
+					// would be given to the callback
+					$expanded['definitionSummary'] = ( $fileInfo['versionCallback'] )(
+						$context,
+						$this->getConfig(),
+						$expanded['callbackParam']
+					);
 					// Don't invoke 'callback' here as it may be expensive (T223260).
 					$expanded['callback'] = $fileInfo['callback'];
 				} else {
-					$expanded['content'] = ( $fileInfo['callback'] )( $context, $this->getConfig() );
+					// Else go ahead invoke callback with its arguments.
+					$expanded['content'] = ( $fileInfo['callback'] )(
+						$context,
+						$this->getConfig(),
+						$expanded['callbackParam']
+					);
 				}
 			} elseif ( isset( $fileInfo['config'] ) ) {
 				if ( $type !== 'data' ) {
@@ -1241,12 +1256,18 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				$fileInfo['content'] = $content;
 				unset( $fileInfo['filePath'] );
 			} elseif ( isset( $fileInfo['callback'] ) ) {
-				$fileInfo['content'] = ( $fileInfo['callback'] )( $context, $this->getConfig() );
+				$fileInfo['content'] = ( $fileInfo['callback'] )(
+					$context,
+					$this->getConfig(),
+					$fileInfo['callbackParam']
+				);
 				unset( $fileInfo['callback'] );
 			}
 
-			// Not needed for client response, exists for getDefinitionSummary().
+			// Not needed for client response, exists for use by getDefinitionSummary().
 			unset( $fileInfo['definitionSummary'] );
+			// Not needed for client response, used by callbacks only.
+			unset( $fileInfo['callbackParam'] );
 		}
 
 		return $expandedPackageFiles;

@@ -3,6 +3,7 @@
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Logger\LoggerFactory;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * Code shared by the FileBackendGroup integration and unit tests. They need merely provide a
@@ -31,7 +32,12 @@ trait FileBackendGroupTestTrait {
 	 */
 	abstract protected static function getWikiID();
 
-	/** @var BagOStuff */
+	/**
+	 * null indicates that we don't have the actual object reference, but it should be an empty
+	 * HashBagOStuff.
+	 *
+	 * @var BagOStuff|null
+	 */
 	private $srvCache;
 
 	/** @var WANObjectCache */
@@ -68,7 +74,7 @@ trait FileBackendGroupTestTrait {
 			'FileBackends' => [],
 			'ForeignFileRepos' => [],
 			'LocalFileRepo' => self::getDefaultLocalFileRepo(),
-			'wikiId' => self::getWikiID(),
+			'fallbackWikiId' => self::getWikiID(),
 		];
 	}
 
@@ -222,7 +228,9 @@ trait FileBackendGroupTestTrait {
 			'tmpFileFactory' => $this->tmpFileFactory,
 			'statusWrapper' => [ Status::class, 'wrap' ],
 			'wanCache' => $this->wanCache,
-			'srvCache' => $this->srvCache,
+			// If $this->srvCache is null, we don't know what it should be, so just fill in the
+			// actual value. Equality to a new HashBagOStuff doesn't work because of the token.
+			'srvCache' => $this->srvCache ?? $config['srvCache'],
 			'logger' => LoggerFactory::getInstance( 'FileOperation' ),
 			// This was set to null above in $config, it's not really null
 			'profiler' => null,
@@ -249,7 +257,13 @@ trait FileBackendGroupTestTrait {
 		$this->assertSame( [ $obj, 'guessMimeInternal' ], $config['mimeCallback'] );
 		$this->assertSame( $this->tmpFileFactory, $config['tmpFileFactory'] );
 		$this->assertSame( $this->wanCache, $config['wanCache'] );
-		$this->assertSame( $this->srvCache, $config['srvCache'] );
+		if ( $this->srvCache === null ) {
+			$this->assertInstanceOf( HashBagOStuff::class, $config['srvCache'] );
+			$this->assertSame(
+				[], TestingAccessWrapper::newFromObject( $config['srvCache'] )->bag );
+		} else {
+			$this->assertSame( $this->srvCache, $config['srvCache'] );
+		}
 	}
 
 	/**

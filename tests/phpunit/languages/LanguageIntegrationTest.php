@@ -1,12 +1,24 @@
 <?php
 
+use MediaWiki\Languages\LanguageFallback;
+use MediaWiki\Languages\LanguageNameUtils;
 use Wikimedia\TestingAccessWrapper;
 
-class LanguageTest extends LanguageClassesTestCase {
+class LanguageIntegrationTest extends LanguageClassesTestCase {
 	use LanguageNameUtilsTestTrait;
 
 	/** @var array Copy of $wgHooks from before we unset LanguageGetTranslatedLanguageNames */
 	private $origHooks;
+
+	private function newLanguage( $class = Language::class, $code = 'en' ) {
+		return new $class(
+			$code,
+			$this->createNoOpMock( LocalisationCache::class ),
+			$this->createNoOpMock( LanguageNameUtils::class ),
+			$this->createNoOpMock( LanguageFallback::class ),
+			$this->createNoOpMock( MapCacheLRU::class )
+		);
+	}
 
 	public function setUp() {
 		global $wgHooks;
@@ -1829,7 +1841,7 @@ class LanguageTest extends LanguageClassesTestCase {
 	public function testEquals() {
 		$en1 = Language::factory( 'en' );
 		$en2 = Language::factory( 'en' );
-		$en3 = new Language();
+		$en3 = $this->newLanguage();
 		$this->assertTrue( $en1->equals( $en2 ), 'en1 equals en2' );
 		$this->assertTrue( $en2->equals( $en3 ), 'en2 equals en3' );
 		$this->assertTrue( $en3->equals( $en1 ), 'en3 equals en1' );
@@ -1838,7 +1850,7 @@ class LanguageTest extends LanguageClassesTestCase {
 		$this->assertFalse( $en1->equals( $fr ), 'en not equals fr' );
 
 		$ar1 = Language::factory( 'ar' );
-		$ar2 = new LanguageAr();
+		$ar2 = $this->newLanguage( LanguageAr::class, 'ar' );
 		$this->assertTrue( $ar1->equals( $ar2 ), 'ar equals ar' );
 	}
 
@@ -1847,7 +1859,7 @@ class LanguageTest extends LanguageClassesTestCase {
 	 * @covers Language::ucfirst
 	 */
 	public function testUcfirst( $orig, $expected, $desc, $overrides = false ) {
-		$lang = new Language();
+		$lang = $this->newLanguage();
 		if ( is_array( $overrides ) ) {
 			$this->setMwGlobals( [ 'wgOverrideUcfirstCharacters' => $overrides ] );
 		}

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @covers SearchNearMatcher
  */
@@ -16,12 +18,12 @@ class SearchNearMatcherTest extends \PHPUnit\Framework\TestCase {
 	 * @dataProvider nearMatchProvider
 	 */
 	public function testNearMatch( $expected, $langCode, $searchterm ) {
-		$linkCache = MediaWiki\MediaWikiServices::getInstance()->getLinkCache();
-		$linkCache->addGoodLinkObj( 42, Title::newFromText( 'Near Match Test' ) );
+		$services = MediaWikiServices::getInstance();
+		$services->getLinkCache()->addGoodLinkObj( 42, Title::newFromText( 'Near Match Test' ) );
 		$config = new HashConfig( [
 			'EnableSearchContributorsByIP' => false,
 		] );
-		$lang = Language::factory( $langCode );
+		$lang = $services->getLanguageFactory()->getLanguage( $langCode );
 		$matcher = new SearchNearMatcher( $config, $lang );
 
 		$title = $matcher->getNearMatch( $searchterm );

@@ -75,6 +75,10 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 		parent::__construct( $mparams );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @phan-param array[] $reqs
+	 */
 	public function onRequests( array $reqs, Closure $idGenFunc ) {
 		if ( $this->params['parsoidCompat'] ) {
 			return $this->onParsoidRequests( $reqs, $idGenFunc );
@@ -112,7 +116,7 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 
 	/**
 	 * Remaps Parsoid v3 requests to RESTBase v1 requests.
-	 * @param array $reqs
+	 * @param array[] $reqs
 	 * @param Closure $idGeneratorFunc
 	 * @return array
 	 * @throws Exception

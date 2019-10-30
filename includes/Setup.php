@@ -389,7 +389,6 @@ $wgSkipSkins[] = 'apioutput';
 if ( $wgLocalInterwiki ) {
 	// Hard deprecated in 1.34.
 	wfDeprecated( '$wgLocalInterwiki – use $wgLocalInterwikis instead', '1.23' );
-	// @phan-suppress-next-line PhanUndeclaredVariableDim
 	array_unshift( $wgLocalInterwikis, $wgLocalInterwiki );
 }
 
@@ -626,6 +625,15 @@ MediaWikiServices::resetGlobalInstance( new GlobalVarConfig(), 'quick' );
 define( 'MW_SERVICE_BOOTSTRAP_COMPLETE', 1 );
 
 MWExceptionHandler::installHandler();
+
+// T30798: $wgServer must be explicitly set
+if ( $wgServer === false ) {
+	throw new FatalError(
+		'$wgServer must be set in LocalSettings.php. ' .
+		'See <a href="https://www.mediawiki.org/wiki/Manual:$wgServer">' .
+		'https://www.mediawiki.org/wiki/Manual:$wgServer</a>.'
+	);
+}
 
 if ( $wgCanonicalServer === false ) {
 	$wgCanonicalServer = wfExpandUrl( $wgServer, PROTO_HTTP );

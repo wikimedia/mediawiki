@@ -614,8 +614,6 @@
 	"undo-nochange": "Anscheinnd woard die Beoorbeitung schon rückgängich gemacht.",
 	"undo-summary": "Ändrung $1 von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) rückgängich gemacht.",
 	"undo-summary-username-hidden": "Ännrung $1 von en versteckte Benutzer rückgängich gemacht.",
-	"cantcreateaccount-text": "Die Erstellung von en Benutzerkonto raus von der IP-Adresse '''($1)''' woor doorrich [[User:$3|$3]] gesperrt.\n\nGrund der Sperr: ''$2''",
-	"cantcreateaccount-range-text": "Das Erstell von Benutzerkonte von IP-Adressen im Bereich <strong>$1</strong>, wo dein IP-Adress (<strong>$4</strong>) enthält, woor von [[User:$3|$3]] gesperrt.\n\nDer oongebne Grund von $3 laut: <em>$2</em>",
 	"viewpagelogs": "Logbücher von der Seit oonzeiche",
 	"nohistory": "Zu der Seit ist keh Versionsgeschicht voarhand.",
 	"currentrev": "Aktuelle Version",

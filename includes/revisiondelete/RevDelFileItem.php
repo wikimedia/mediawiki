@@ -30,7 +30,7 @@ class RevDelFileItem extends RevDelItem {
 	/** @var OldLocalFile */
 	protected $file;
 
-	public function __construct( $list, $row ) {
+	public function __construct( RevisionListBase $list, $row ) {
 		parent::__construct( $list, $row );
 		$this->file = static::initFile( $list, $row );
 	}
@@ -38,7 +38,7 @@ class RevDelFileItem extends RevDelItem {
 	/**
 	 * Create file object from $row sourced from $list
 	 *
-	 * @param RevDelFileList $list
+	 * @param RevisionListBase $list
 	 * @param mixed $row
 	 * @return mixed
 	 */
@@ -240,13 +240,13 @@ class RevDelFileItem extends RevDelItem {
 		}
 		if ( $file->userCan( RevisionRecord::DELETED_USER, $user ) ) {
 			$ret += [
-				'userid' => $file->user,
-				'user' => $file->user_text,
+				'userid' => $file->getUser( 'id' ),
+				'user' => $file->getUser( 'text' ),
 			];
 		}
 		if ( $file->userCan( RevisionRecord::DELETED_COMMENT, $user ) ) {
 			$ret += [
-				'comment' => $file->description,
+				'comment' => $file->getDescription( LocalFile::RAW ),
 			];
 		}
 

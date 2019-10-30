@@ -593,8 +593,6 @@
 	"undo-nochange": "سنوار اڳ ئي اڻڪريل ظاھر پئي ٿي.",
 	"undo-summary": "$1 [[Special:Contributions/$2|$2]] ([[User talk:$2|بحث]]) پاران ورجاءُ اڻڪريو",
 	"undo-summary-username-hidden": "ڪنھن لڪيل واپرائيندڙ پاران $1 اڻڪريو",
-	"cantcreateaccount-text": "هن آءِپي پتي تان کاتي جي کولڻ تي (<strong>$1</strong>)  [[User:$3|$3]] بندش وڌل آهي.\n\n$3 جو ڄاڻايل سبب ھي <em>$2</em> آهي.",
-	"cantcreateaccount-range-text": "آئِپي پتن جي حد <strong>$1</strong> ۾ [[User:$3|$3]] کاتو کولڻ تي روڪ لڳائي وئي آهي،$4 جنھن ۾ توهان جو آئِپي پتو بہ (<strong>$4</strong>)، پڻ شامل آهي. \n\n$3 ان روڪَ جو سبب <em>\"$2\"<em> ڄاڻايو آهي.",
 	"viewpagelogs": "هن صفحي جا لاگس ڏسو",
 	"nohistory": "هن صفحي جي ڪا بہ سوانح نہ آهي.",
 	"currentrev": "تازو-ترين ورجاءُ",

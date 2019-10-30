@@ -39,13 +39,11 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		global $wgExtensionMessagesFiles;
 		self::$oldExtMsgFiles = $wgExtensionMessagesFiles;
 		$wgExtensionMessagesFiles['LogTests'] = __DIR__ . '/LogTests.i18n.php';
-		Language::clearCaches();
 	}
 
 	public static function tearDownAfterClass() {
 		global $wgExtensionMessagesFiles;
 		$wgExtensionMessagesFiles = self::$oldExtMsgFiles;
-		Language::clearCaches();
 
 		parent::tearDownAfterClass();
 	}
@@ -226,7 +224,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$entry = $this->newLogEntry( 'param', $params );
 		$formatter = LogFormatter::newFromEntry( $entry );
 
-		$this->context->setLanguage( Language::factory( 'qqx' ) );
+		$this->context->setLanguage( 'qqx' );
 		$formatter->setContext( $this->context );
 
 		$logParam = $formatter->getActionText();

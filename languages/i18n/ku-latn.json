@@ -566,7 +566,6 @@
 	"undo-success": "Ev guherandin dikare were şûndekirin. Ji kerema xwe ferqa piştî tomarkirinê bibîne, bê ka tu dixwazî vê guhertoyê tomar bikî an na. Ger te şaşîtiyek kir, ji kerema xwe derkeve.",
 	"undo-failure": "Ev guhertin ji ber guherandinên piştî wê re nikare were şûndekirin.",
 	"undo-summary": "Guhertoya $1 ya [[Special:Contributions/$2|$2]] ([[User talk:$2|gotûbêj]]) şûnde kir",
-	"cantcreateaccount-text": "Çêkirinê hesaban ji vê IP'yê ('''$1''') hatiye qedexekirin ji [[User:$3|$3]].\n\nSedema qedexekirina $3 ev e: ''$2''",
 	"viewpagelogs": "Guhertinên vê rûpelê bibîne",
 	"nohistory": "Dîroka guherandina vê rûpelê nîne.",
 	"currentrev": "Guhertoya niha",

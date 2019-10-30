@@ -778,6 +778,7 @@
 	"api-help-license-unknown": "라이선스: <span class=\"apihelp-unknown\">알 수 없음</span>",
 	"api-help-parameters": "{{PLURAL:$1|변수}}:",
 	"api-help-param-deprecated": "구식입니다.",
+	"api-help-param-internal": "내부 변수입니다.",
 	"api-help-param-required": "이 변수는 필수 입력 사항입니다.",
 	"api-help-param-templated": "이것은 [[Special:ApiHelp/main#main/templatedparams|틀 변수]]입니다. 요청하실 때 $2.",
 	"api-help-datatypes-header": "데이터 유형",

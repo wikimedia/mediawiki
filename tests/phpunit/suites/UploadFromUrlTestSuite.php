@@ -74,7 +74,7 @@ class UploadFromUrlTestSuite extends TestSuite {
 		}
 
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'RepoGroup' );
-		FileBackendGroup::destroySingleton();
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'FileBackendGroup' );
 	}
 
 	protected function tearDown() {
@@ -83,7 +83,7 @@ class UploadFromUrlTestSuite extends TestSuite {
 		}
 		// Restore backends
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'RepoGroup' );
-		FileBackendGroup::destroySingleton();
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'FileBackendGroup' );
 
 		parent::tearDown();
 	}

@@ -9,7 +9,7 @@ use MediaWiki\MediaWikiServices;
  * @group Blocking
  * @coversDefaultClass \MediaWiki\Block\BlockErrorFormatter
  */
-class BlockErrorFormatterTest extends MediaWikiLangTestCase {
+class BlockErrorFormatterTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideTestGetMessage
 	 * @covers ::getMessage
@@ -31,7 +31,7 @@ class BlockErrorFormatterTest extends MediaWikiLangTestCase {
 		$message = $formatter->getMessage(
 			$block,
 			$context->getUser(),
-			$context->getLanguage(),
+			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'qqx' ),
 			$context->getRequest()->getIP()
 		);
 
@@ -46,11 +46,13 @@ class BlockErrorFormatterTest extends MediaWikiLangTestCase {
 		$databaseBlock = new DatabaseBlock( [
 			'timestamp' => $timestamp,
 			'expiry' => $expiry,
+			'reason' => 'Test reason.',
 		] );
 
 		$systemBlock = new SystemBlock( [
 			'timestamp' => $timestamp,
 			'systemBlock' => 'test',
+			'reason' => new Message( 'proxyblockreason' ),
 		] );
 
 		$compositeBlock = new CompositeBlock( [
@@ -67,13 +69,13 @@ class BlockErrorFormatterTest extends MediaWikiLangTestCase {
 				'blockedtext',
 				[
 					'',
-					'no reason given',
+					'Test reason.',
 					'1.2.3.4',
 					'',
 					null, // Block not inserted
-					'00:00, 1 January 2001',
+					'00:00, 1 (january) 2001',
 					'',
-					'00:00, 1 January 2000',
+					'00:00, 1 (january) 2000',
 				],
 			],
 			'Database block (autoblock)' => [
@@ -85,13 +87,13 @@ class BlockErrorFormatterTest extends MediaWikiLangTestCase {
 				'autoblockedtext',
 				[
 					'',
-					'no reason given',
+					'(blockednoreason)',
 					'1.2.3.4',
 					'',
-					null,
-					'00:00, 1 January 2001',
+					null, // Block not inserted
+					'00:00, 1 (january) 2001',
 					'',
-					'00:00, 1 January 2000',
+					'00:00, 1 (january) 2000',
 				],
 			],
 			'Database block (partial block)' => [
@@ -103,13 +105,13 @@ class BlockErrorFormatterTest extends MediaWikiLangTestCase {
 				'blockedtext-partial',
 				[
 					'',
-					'no reason given',
+					'(blockednoreason)',
 					'1.2.3.4',
 					'',
-					null,
-					'00:00, 1 January 2001',
+					null, // Block not inserted
+					'00:00, 1 (january) 2001',
 					'',
-					'00:00, 1 January 2000',
+					'00:00, 1 (january) 2000',
 				],
 			],
 			'System block (type \'test\')' => [
@@ -117,13 +119,31 @@ class BlockErrorFormatterTest extends MediaWikiLangTestCase {
 				'systemblockedtext',
 				[
 					'',
-					'no reason given',
+					'(proxyblockreason)',
 					'1.2.3.4',
 					'',
 					'test',
-					'infinite',
+					'(infiniteblock)',
 					'',
-					'00:00, 1 January 2000',
+					'00:00, 1 (january) 2000',
+				],
+			],
+			'System block (type \'test\') with reason parameters' => [
+				new SystemBlock( [
+					'timestamp' => $timestamp,
+					'systemBlock' => 'test',
+					'reason' => new Message( 'softblockrangesreason', [ '1.2.3.4' ] ),
+				] ),
+				'systemblockedtext',
+				[
+					'',
+					'(softblockrangesreason: 1.2.3.4)',
+					'1.2.3.4',
+					'',
+					'test',
+					'(infiniteblock)',
+					'',
+					'00:00, 1 (january) 2000',
 				],
 			],
 			'Composite block (original blocks not inserted)' => [
@@ -131,13 +151,13 @@ class BlockErrorFormatterTest extends MediaWikiLangTestCase {
 				'blockedtext-composite',
 				[
 					'',
-					'no reason given',
+					'(blockednoreason)',
 					'1.2.3.4',
 					'',
-					'Your IP address appears in multiple blacklists',
-					'infinite',
+					'(blockedtext-composite-no-ids)',
+					'(infiniteblock)',
 					'',
-					'00:00, 1 January 2000',
+					'00:00, 1 (january) 2000',
 				],
 			],
 		];

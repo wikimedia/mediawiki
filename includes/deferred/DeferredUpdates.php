@@ -87,6 +87,7 @@ class DeferredUpdates {
 
 		if (
 			self::$executeContext !== null &&
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			self::$executeContext['stage'] >= $stage &&
 			!( $update instanceof MergeableUpdate )
 		) {
@@ -183,6 +184,7 @@ class DeferredUpdates {
 	 * @param int $stage Class constant (PRESEND, POSTSEND) (since 1.28)
 	 * @throws ErrorPageError Happens on top-level calls
 	 * @throws Exception Happens on second-level calls
+	 * @suppress PhanTypeArraySuspiciousNullable False positives
 	 */
 	protected static function handleUpdateQueue( array &$queue, $mode, $stage ) {
 		$services = MediaWikiServices::getInstance();

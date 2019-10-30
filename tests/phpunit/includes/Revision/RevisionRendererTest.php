@@ -4,8 +4,8 @@ namespace MediaWiki\Tests\Revision;
 
 use CommentStoreComment;
 use Content;
-use Language;
 use LogicException;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\RevisionRecord;
@@ -61,7 +61,8 @@ class RevisionRendererTest extends MediaWikiTestCase {
 			->will( $this->returnValue( CONTENT_MODEL_WIKITEXT ) );
 		$mock->expects( $this->any() )
 			->method( 'getPageLanguage' )
-			->will( $this->returnValue( Language::factory( 'en' ) ) );
+			->will( $this->returnValue(
+				MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ) ) );
 		$mock->expects( $this->any() )
 			->method( 'isContentPage' )
 			->will( $this->returnValue( true ) );

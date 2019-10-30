@@ -165,6 +165,7 @@ class SpecialLinkSearch extends QueryPage {
 	public function getQueryInfo() {
 		$dbr = wfGetDB( DB_REPLICA );
 
+		$orderBy = [];
 		if ( $this->mQuery === '*' && $this->mProt !== '' ) {
 			$this->mungedQuery = [
 				'el_index_60' . $dbr->buildLike( $this->mProt, $dbr->anyString() ),
@@ -175,16 +176,13 @@ class SpecialLinkSearch extends QueryPage {
 				'oneWildcard' => true,
 				'db' => $dbr
 			] );
-		}
-		if ( $this->mungedQuery === false ) {
-			// Invalid query; return no results
-			return [ 'tables' => 'page', 'fields' => 'page_id', 'conds' => '0=1' ];
-		}
-
-		$orderBy = [];
-		if ( !isset( $this->mungedQuery['el_index_60'] ) ) {
+			if ( $this->mungedQuery === false ) {
+				// Invalid query; return no results
+				return [ 'tables' => 'page', 'fields' => 'page_id', 'conds' => '0=1' ];
+			}
 			$orderBy[] = 'el_index_60';
 		}
+
 		$orderBy[] = 'el_id';
 
 		$retval = [

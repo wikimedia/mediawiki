@@ -653,7 +653,6 @@
 	"subject-preview": "Vista previa do asunto:",
 	"previewerrortext": "Produciuse un erro ao intentar previsualizar os cambios.",
 	"blockedtitle": "O usuario está bloqueado",
-	"blocked-email-user": "<strong>O seu nome de usuario ou enderezo IP recibiu un bloqueo que lle impide enviar correos electrónicos. Aínda pode editar outras páxinas nesta wiki.</strong> Pode ver os detalles completos do bloque nas [[Special:MyContributions|contribucións da súa conta]].\n\nO bloqueo realizouno $1.\n\nO motivo indicado é <em>$2</em>.\n\n* Comezo do bloqueo: $8\n* Expiración do bloqueo: $6\n* Usuario especificado: $7\n* ID de bloqueo #$5",
 	"blockedtext-partial": "<strong>O seu nome de usuario ou enderezo IP recibiu un bloqueo que lle impide realizar cambios nesta páxina. Aínda pode editar outras páxinas nesta wiki.</strong> Pode ver os detalles completos do bloque nas [[Special:MyContributions|contribucións da súa conta]].\n\nO bloqueo realizouno $1.\n\nO motivo indicado é <em>$2</em>.\n\n* Comezo do bloqueo: $8\n* Expiración do bloqueo: $6\n* Usuario especificado: $7\n* ID de bloqueo #$5",
 	"blockedtext": "<strong>Bloqueouse o seu nome de usuario ou enderezo IP.</strong>\n\n$1 estableceu o bloqueo.\nO motivo que achegou foi <em>$2</em>.\n\n* Inicio do bloqueo: $8\n* Caducidade do bloqueo: $6\n* Pretendeuse bloquear: $7\n\nPode contactar con $1 ou con calquera outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir este bloqueo.\nNon pode empregar a característica \"{{int:emailuser}}\" a non ser que dispoña dun enderezo electrónico válido rexistrado nas súas [[Special:Preferences|preferencias de usuario]] e que o seu uso non fose bloqueado.\nO seu enderezo IP actual é $3 e o identificador do bloqueo é #$5.\nPor favor, inclúa todos estes datos nas consultas que faga.",
 	"autoblockedtext": "O seu enderezo IP foi bloqueado automaticamente porque foi empregado por outro usuario que foi bloqueado por $1.\nA razón que deu foi a seguinte:\n\n:<em>$2</em>\n\n* Inicio do bloqueo: $8\n* Caducidade do bloqueo: $6\n* Pretendeuse bloquear: $7\n\nPode contactar con $1 ou con calquera outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir este bloqueo.\n\nTeña en conta que non pode empregar a característica \"{{int:emailuser}}\" a non ser que dispoña dun enderezo electrónico válido rexistrado nas súas [[Special:Preferences|preferencias de usuario]] e e que o seu uso non fose bloqueado.\n\nO seu enderezo IP actual é $3 e o ID do bloqueo é #$5.\nPor favor, inclúa eses datos nas consultas que faga.",
@@ -812,8 +811,6 @@
 	"undo-summary": "Desfíxose a edición $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|conversa]])",
 	"undo-summary-anon": "Desfacer a modificación $1 de [[Special:Contributions/$2|$2]]",
 	"undo-summary-username-hidden": "Desfíxose a edición $1 dun usuario agochado",
-	"cantcreateaccount-text": "A creación de contas desde este enderezo IP ('''$1''') foi bloqueada por [[User:$3|$3]].\n\nA razón dada por $3 foi ''$2''",
-	"cantcreateaccount-range-text": "O usuario [[User:$3|$3]] bloqueou a creación de contas desde enderezos IP no rango <strong>$1</strong>, no que se atopa o seu enderezo IP (<strong>$4</strong>).\n\nA razón que deu $3 foi <em>$2</em>.",
 	"viewpagelogs": "Ver os rexistros desta páxina",
 	"nohistory": "Esta páxina non posúe ningún historial de edicións.",
 	"currentrev": "Revisión actual",
@@ -1586,7 +1583,7 @@
 	"recentchangeslinked-feed": "Cambios relacionados",
 	"recentchangeslinked-toolbox": "Cambios relacionados",
 	"recentchangeslinked-title": "Cambios relacionados con \"$1\"",
-	"recentchangeslinked-summary": "Introduce un nome de páxina para ver os cambios en páxinas ligadas dende ou ata esa páxina. (Para ver os membros dunha categoría, introduce {{ns:category}}:Nome da categoría). Os cambios na túa [[Special:Watchlist|lista de vixiancia]] están en <strong>negra</strong>.",
+	"recentchangeslinked-summary": "Introduce un nome de páxina para ver os cambios en páxinas ligadas dende ou ata esa páxina. (Para ver os membros dunha categoría, introduce {{ns:category}}:Nome da categoría). Os cambios na túa [[Special:Watchlist|lista de vixilancia]] están en <strong>grosas</strong>.",
 	"recentchangeslinked-page": "Nome da páxina:",
 	"recentchangeslinked-to": "Amosar os cambios relacionados das páxinas que ligan coa dada",
 	"recentchanges-page-added-to-category": "\"[[:$1]]\" engadiuse á categoría",
@@ -3900,8 +3897,5 @@
 	"mycustomjsredirectprotected": "Non ten permiso para editar esta páxina JavaScript porque é unha redirección e non apunta cara ó seu propio espazo de usuario.",
 	"easydeflate-invaliddeflate": "O contido fornecido non está debidamente comprimido",
 	"unprotected-js": "Por motivos de seguridade non se pode cargar JavaScript desde páxinas non protexidas. Por favor, cree só JavaScript no espazo de nomes MediaWiki ou como subpáxina de usuario",
-	"userlogout-continue": "Quere rematar a sesión?",
-	"rest-prefix-mismatch": "O camiño solicitado ($1) non estaba no interior do camiño raíz da API REST ($2)",
-	"rest-wrong-method": "O método solicitado ($1) non era ̺{{PLURAL:$3|o método permitido para este camiño|un dos métodos permitidos para este camiño}} ($2)",
-	"rest-no-match": "O camiño relativo solicitado ($1) non corresponde con ningún manexador coñecido"
+	"userlogout-continue": "Quere rematar a sesión?"
 }

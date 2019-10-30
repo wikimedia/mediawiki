@@ -1136,7 +1136,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 
 		$attr = [];
-		$targetLanguage = Language::factory( $lang );
+		$targetLanguage = MediaWikiServices::getInstance()->getLanguageFactory()
+			->getLanguage( $lang );
 		$attr['lang'] = $attr['hreflang'] = $targetLanguage->getHtmlCode();
 
 		return $this->getLinkRenderer()->makeKnownLink(

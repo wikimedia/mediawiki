@@ -163,6 +163,10 @@ FilterItem.prototype.getStateMessage = function () {
 
 	if ( messageKey ) {
 		// Build message
+		// The following messages are used here:
+		// * rcfilters-state-message-subset
+		// * rcfilters-state-message-fullcoverage
+		// * conflict.message values...
 		return mw.msg(
 			messageKey,
 			mw.language.listToText( affectingItems ),

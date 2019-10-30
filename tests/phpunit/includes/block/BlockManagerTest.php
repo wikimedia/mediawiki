@@ -62,7 +62,7 @@ class BlockManagerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provideGetBlockFromCookieValue
+	 * @dataProvider provideBlocksForShouldApplyCookieBlock
 	 * @covers ::getBlockFromCookieValue
 	 * @covers ::shouldApplyCookieBlock
 	 */
@@ -91,12 +91,57 @@ class BlockManagerTest extends MediaWikiTestCase {
 		$block->delete();
 	}
 
-	public static function provideGetBlockFromCookieValue() {
+	/**
+	 * @dataProvider provideBlocksForShouldApplyCookieBlock
+	 * @covers ::trackBlockWithCookie
+	 * @covers ::shouldApplyCookieBlock
+	 */
+	public function testTrackBlockWithCookieRemovesBlocks( $options, $expectKeepCookie ) {
+		$blockManager = TestingAccessWrapper::newFromObject(
+			$this->getBlockManager( [
+				'wgCookieSetOnAutoblock' => true,
+				'wgCookieSetOnIpBlock' => true,
+			] )
+		);
+
+		$block = new DatabaseBlock( array_merge( [
+			'address' => $options['target'] ?: $this->user,
+			'by' => $this->sysopId,
+		], $options['blockOptions'] ) );
+		$block->insert();
+
+		$user = $options['loggedIn'] ? $this->user : new User();
+		$user->getRequest()->setCookie( 'BlockID', $block->getCookieValue() );
+
+		$blockManager->trackBlockWithCookie(
+			$user,
+			$user->getRequest()->response()
+		);
+
+		$this->assertSame(
+			$expectKeepCookie ? 0 : 1,
+			count( $user->getRequest()->response()->getCookies() )
+		);
+
+		$block->delete();
+	}
+
+	public static function provideBlocksForShouldApplyCookieBlock() {
 		return [
 			'Autoblocking user block' => [
 				[
 					'target' => '',
 					'loggedIn' => true,
+					'blockOptions' => [
+						'enableAutoblock' => true
+					],
+				],
+				true,
+			],
+			'Autoblocking user block for anonymous user' => [
+				[
+					'target' => '',
+					'loggedIn' => false,
 					'blockOptions' => [
 						'enableAutoblock' => true
 					],

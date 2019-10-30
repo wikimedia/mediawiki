@@ -221,7 +221,8 @@ class WebInstallerOutput {
 	private function getLanguage() {
 		global $wgLang;
 
-		return is_object( $wgLang ) ? $wgLang : Language::factory( 'en' );
+		return is_object( $wgLang ) ? $wgLang
+			: MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 	}
 
 	/**

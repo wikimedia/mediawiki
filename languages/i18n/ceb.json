@@ -366,7 +366,6 @@
 	"undo-failure": "Ang pag-usab dili puyde mapa-way-bili tungod sa mga naka-conflict nga intermediate nga mga pag-usab.",
 	"undo-norev": "Ang pag-usab dili puyde mapa-way-bili tungod kay wala pa ni mahimo o kaha natangtang na kini.",
 	"undo-summary": "Giway-bili  ang rebisyon  $1 ni [[Special:Contributions/$2|$2]] ([[User talk:$2|Hisgot]])",
-	"cantcreateaccount-text": "Ang paghimo og akawnt gikan niining IP address ('''$1''') gi-block ni [[User:$3|$3]].\n\nAng rason nga gihatag ni $3 mao nga ''$2''",
 	"viewpagelogs": "Tan-awa ang mga log niining panid",
 	"nohistory": "Walay kaagi sa pag-usab niining panid.",
 	"currentrev": "Kasamtangang rebisyon",

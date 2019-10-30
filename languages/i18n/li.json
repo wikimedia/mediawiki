@@ -755,8 +755,6 @@
 	"undo-nochange": "De bewirking liek al óngedaon te zeen gemaak.",
 	"undo-summary": "Versie $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|euverlèk]]) óngedaon gemaak.",
 	"undo-summary-username-hidden": "Drej versie $1 door 'ne verborge gebroeker trögk",
-	"cantcreateaccount-text": "'t Aanmake van gebroekers van dit IP-adres ('''$1''') is geblokkeerd door [[User:$3|$3]].\n\nDe door $3 opgegaeve reje is ''$2''",
-	"cantcreateaccount-range-text": "'t Aanmake van gebroekers vanaaf IP-adresse in de rits <strong>$1</strong> is ónmeugelik doordet dit is ingestèld door [[User:$3|$3]]. Dien IP-adres $4 bevindj zich in deze rits.\n\nDe raeje veur de blokkaasj is <em>$2</em>",
 	"viewpagelogs": "Logbeuk veur dees pagina tuine",
 	"nohistory": "Dees pagina is nog neet bewirk.",
 	"currentrev": "Hujige versie",

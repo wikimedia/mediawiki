@@ -772,8 +772,6 @@
 	"undo-nochange": "呢個編輯睇嚟經已一早取消咗。",
 	"undo-summary": "取消由[[Special:Contributions/$2|$2]]（[[User talk:$2|傾偈]]）所做嘅修訂 $1",
 	"undo-summary-username-hidden": "取消匿埋咗嘅用戶嘅修改版本 $1",
-	"cantcreateaccount-text": "由呢個IP地址 ('''$1''') 開嘅新戶口已經被[[User:$3|$3]]封鎖。\n\n當中俾$3封鎖嘅原因係''$2''",
-	"cantcreateaccount-range-text": "由呢個IP地址範圍<strong>$1</strong>（包括你個IP <strong>$4</strong>）開嘅新戶口已經畀[[User:$3|$3]]封鎖咗。\n\n$3畀嘅理由係<em>$2</em>",
 	"viewpagelogs": "睇呢頁嘅日誌",
 	"nohistory": "呢版冇歷史。",
 	"currentrev": "最新嘅修訂",

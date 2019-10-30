@@ -970,6 +970,8 @@ class LanguageConverter {
 			$this->loadDefaultTables();
 			foreach ( $this->mVariants as $var ) {
 				$cached = $this->parseCachedTable( $var );
+				// @phan-suppress-next-next-line PhanTypeArraySuspiciousNullable
+				// FIXME: $this->mTables could theoretically be null here
 				$this->mTables[$var]->mergeArray( $cached );
 			}
 

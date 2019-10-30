@@ -2584,7 +2584,10 @@ class FileBackendTest extends MediaWikiTestCase {
 	public static function provider_testGetContentType() {
 		return [
 			[ null, false ],
-			[ [ FileBackendGroup::singleton(), 'guessMimeInternal' ], true ]
+			[
+				[ MediaWikiServices::getInstance()->getFileBackendGroup(), 'guessMimeInternal' ],
+				true
+			],
 		];
 	}
 

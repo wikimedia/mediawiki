@@ -49,6 +49,10 @@ class ProfilerOutputDb extends ProfilerOutput {
 		return !wfReadOnly();
 	}
 
+	/**
+	 * @inheritDoc
+	 * @phan-param array[] $stats
+	 */
 	public function log( array $stats ) {
 		try {
 			$dbw = wfGetDB( DB_MASTER );

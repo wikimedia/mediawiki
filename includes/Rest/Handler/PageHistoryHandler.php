@@ -29,7 +29,7 @@ use Title;
 class PageHistoryHandler extends SimpleHandler {
 	const REVISIONS_RETURN_LIMIT = 20;
 	const REVERTED_TAG_NAMES = [ 'mw-undo', 'mw-rollback' ];
-	const ALLOWED_FILTER_TYPES = [ 'anonymous', 'bot', 'reverted' ];
+	const ALLOWED_FILTER_TYPES = [ 'anonymous', 'bot', 'reverted', 'minor' ];
 
 	/** @var RevisionStore */
 	private $revisionStore;
@@ -75,6 +75,7 @@ class PageHistoryHandler extends SimpleHandler {
 	 * @param string $title
 	 * @return Response
 	 * @throws LocalizedHttpException
+	 * @suppress PhanTypeArraySuspiciousNullable getValidatedParams() could return null (T235355)
 	 */
 	public function run( $title ) {
 		$params = $this->getValidatedParams();
@@ -108,6 +109,13 @@ class PageHistoryHandler extends SimpleHandler {
 					[ new ScalarParam( ParamType::PLAINTEXT, $title ) ]
 				),
 				404
+			);
+		}
+		if ( !$this->permissionManager->userCan( 'read', $this->user, $titleObj ) ) {
+			throw new LocalizedHttpException(
+				new MessageValue( 'rest-pagehistory-title-permission-denied',
+					[ new ScalarParam( ParamType::PLAINTEXT, $title ) ] ),
+				403
 			);
 		}
 
@@ -203,14 +211,19 @@ class PageHistoryHandler extends SimpleHandler {
 							__METHOD__
 						) . ')';
 					break;
+
+				case 'minor':
+					$cond[] = 'rev_minor_edit != 0';
+					break;
 			}
 		}
 
 		if ( $relativeRevId ) {
 			$op = $params['older_than'] ? '<' : '>';
 			$sort = $params['older_than'] ? 'DESC' : 'ASC';
+			$ts = $dbr->addQuotes( $dbr->timestamp( $ts ) );
 			$cond[] = "rev_timestamp $op $ts OR " .
-				"(rev_timestamp = $ts AND rev_id $op {$relativeRevId})";
+				"(rev_timestamp = $ts AND rev_id $op $relativeRevId)";
 			$orderBy = "rev_timestamp $sort, rev_id $sort";
 		} else {
 			$orderBy = "rev_timestamp DESC, rev_id DESC";
@@ -291,7 +304,7 @@ class PageHistoryHandler extends SimpleHandler {
 				}
 
 				$comment = $rev->getComment( RevisionRecord::FOR_THIS_USER, $this->user );
-				$revision['comment'] = ( $comment && $comment->text !== '' ) ? $comment->text : null;
+				$revision['comment'] = $comment ? $comment->text : null;
 
 				$revUser = $rev->getUser( RevisionRecord::FOR_THIS_USER, $this->user );
 				if ( $revUser ) {
@@ -322,6 +335,7 @@ class PageHistoryHandler extends SimpleHandler {
 				$sizes += $this->revisionStore->getRevisionSizes( $unknownSizes );
 			}
 			foreach ( $revisions as &$revision ) {
+				$revision['delta'] = null;
 				if ( isset( $revision['parent_id'] ) ) {
 					if ( isset( $sizes[$revision['parent_id']] ) ) {
 						$revision['delta'] = $revision['size'] - $sizes[$revision['parent_id']];

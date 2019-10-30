@@ -300,7 +300,7 @@
 	 * one element can have a given id.
 	 */
 	QUnit.test( 'addPortletLink', function ( assert ) {
-		var tbRL, cuQuux, $cuQuux, tbMW, $tbMW, tbRLDM, caFoo,
+		var tbRL, cuQuux, $cuQuux, tbMW, $tbMW, tbRLDM, caFoo, listPortletItem,
 			addedAfter, tbRLDMnonexistentid, tbRLDMemptyjquery;
 
 		$( '#qunit-fixture' ).append(
@@ -319,6 +319,7 @@
 					'</li>' +
 				'</ul>' +
 			'</div>' +
+			'<ul id="p-list"></ul>' +
 			'<div id="p-test-views" class="vectorTabs">' +
 				'<h3>Views</h3>' +
 				'<ul></ul>' +
@@ -342,7 +343,12 @@
 			'List item attributes'
 		);
 		assert.propEqual(
-			$tbMW.find( 'a' ).getAttrs(),
+			$tbMW.children().get().map( function ( node ) { return node.nodeName; } ),
+			[ 'A' ],
+			'List item children'
+		);
+		assert.propEqual(
+			$tbMW.children( 'a' ).getAttrs(),
 			{
 				href: '//example.org/',
 				title: 'Go to Example [test-x]',
@@ -359,11 +365,6 @@
 			$tbMW.next()[ 0 ],
 			tbRL,
 			'Next node (set as Node object)'
-		);
-		assert.strictEqual(
-			$tbMW.find( 'span' ).length,
-			0,
-			'No <span> wrap for porlets without vectorTabs class'
 		);
 
 		cuQuux = util.addPortletLink( 'p-test-custom', '#', 'Quux', null, 'Example [shift-x]', 'q' );
@@ -384,7 +385,11 @@
 		assert.strictEqual( $( tbRLDM ).next()[ 0 ], tbRL, 'Next node (set as CSS selector)' );
 
 		caFoo = util.addPortletLink( 'p-test-views', '#', 'Foo' );
-		assert.strictEqual( $( caFoo ).find( 'span' ).length, 1, 'Added <span> element for porlet with vectorTabs class' );
+		assert.propEqual(
+			[].map.call( caFoo.children, function ( node ) { return node.nodeName; } ),
+			[ 'A' ],
+			'List item children for porlet with vectorTabs class'
+		);
 
 		addedAfter = util.addPortletLink( 'p-test-tb', '#', 'After foo', 'post-foo', 'After foo', null, $( tbRL ) );
 		assert.strictEqual( $( addedAfter ).next()[ 0 ], tbRL, 'Next node (set as jQuery object)' );
@@ -403,6 +408,12 @@
 			tbRLDMemptyjquery,
 			$( '#p-test-tb li' ).last()[ 0 ],
 			'Next node as empty jQuery object falls back to appending'
+		);
+
+		listPortletItem = util.addPortletLink( 'p-list', 'foo.html', 'Foo' );
+		assert.strictEqual(
+			$( listPortletItem ).parents( 'ul' ).length, 1,
+			'Minerva support: The portlet is the list and a new item is added'
 		);
 	} );
 

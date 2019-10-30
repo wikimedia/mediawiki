@@ -713,7 +713,7 @@ class ParserOptions {
 	 */
 	public function setUserLang( $x ) {
 		if ( is_string( $x ) ) {
-			$x = Language::factory( $x );
+			$x = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $x );
 		}
 
 		return $this->setOptionLegacy( 'userlang', $x );

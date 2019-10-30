@@ -93,7 +93,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertSame( $block->isCreateAccountBlocked(), $fields['CreateAccount']['default'] );
 		$this->assertSame( $block->isAutoblocking(), $fields['AutoBlock']['default'] );
 		$this->assertSame( !$block->isUsertalkEditAllowed(), $fields['DisableUTEdit']['default'] );
-		$this->assertSame( $block->getReason(), $fields['Reason']['default'] );
+		$this->assertSame( $block->getReasonComment()->text, $fields['Reason']['default'] );
 		$this->assertSame( 'infinite', $fields['Expiry']['default'] );
 	}
 
@@ -181,7 +181,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertTrue( $result );
 
 		$block = DatabaseBlock::newFromTarget( $badActor );
-		$this->assertSame( $reason, $block->getReason() );
+		$this->assertSame( $reason, $block->getReasonComment()->text );
 		$this->assertSame( $expiry, $block->getExpiry() );
 	}
 
@@ -230,7 +230,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertTrue( $result );
 
 		$block = DatabaseBlock::newFromTarget( $badActor );
-		$this->assertSame( $reason, $block->getReason() );
+		$this->assertSame( $reason, $block->getReasonComment()->text );
 		$this->assertSame( $expiry, $block->getExpiry() );
 		$this->assertSame( '1', $block->isAutoblocking() );
 	}
@@ -279,7 +279,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertTrue( $result );
 
 		$block = DatabaseBlock::newFromTarget( $badActor );
-		$this->assertSame( $reason, $block->getReason() );
+		$this->assertSame( $reason, $block->getReasonComment()->text );
 		$this->assertSame( $expiry, $block->getExpiry() );
 		$this->assertCount( 2, $block->getRestrictions() );
 		$this->assertTrue( $this->getBlockRestrictionStore()->equals( $block->getRestrictions(), [
@@ -333,7 +333,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertTrue( $result );
 
 		$block = DatabaseBlock::newFromTarget( $badActor );
-		$this->assertSame( $reason, $block->getReason() );
+		$this->assertSame( $reason, $block->getReasonComment()->text );
 		$this->assertSame( $expiry, $block->getExpiry() );
 		$this->assertFalse( $block->isSitewide() );
 		$this->assertCount( 2, $block->getRestrictions() );
@@ -349,7 +349,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertTrue( $result );
 
 		$block = DatabaseBlock::newFromTarget( $badActor );
-		$this->assertSame( $reason, $block->getReason() );
+		$this->assertSame( $reason, $block->getReasonComment()->text );
 		$this->assertSame( $expiry, $block->getExpiry() );
 		$this->assertFalse( $block->isSitewide() );
 		$this->assertCount( 1, $block->getRestrictions() );
@@ -364,7 +364,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertTrue( $result );
 
 		$block = DatabaseBlock::newFromTarget( $badActor );
-		$this->assertSame( $reason, $block->getReason() );
+		$this->assertSame( $reason, $block->getReasonComment()->text );
 		$this->assertSame( $expiry, $block->getExpiry() );
 		$this->assertFalse( $block->isSitewide() );
 		$this->assertCount( 0, $block->getRestrictions() );
@@ -376,7 +376,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertTrue( $result );
 
 		$block = DatabaseBlock::newFromTarget( $badActor );
-		$this->assertSame( $reason, $block->getReason() );
+		$this->assertSame( $reason, $block->getReasonComment()->text );
 		$this->assertSame( $expiry, $block->getExpiry() );
 		$this->assertTrue( $block->isSitewide() );
 		$this->assertCount( 0, $block->getRestrictions() );

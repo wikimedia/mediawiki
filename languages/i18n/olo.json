@@ -476,8 +476,6 @@
 	"content-model-text": "perustekstu",
 	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Tyhjy objektu",
-	"cantcreateaccount-text": "Tunnuksien luadimine täs IP-adressaspäi ('''$1''') on estetty. Estäjänny on [[User:$3|$3]].\n\nKäyttäjän $3 annettu syy on ''$2''",
-	"cantcreateaccount-range-text": "Tunnuksien luadimine IP-adressilois adressualovehel <strong>$1</strong>, kuduah kuuluu sinungi käytetty IP-adressu(<strong>$4</strong>), on estetty. Eston on azetannuh [[User:$3|$3]].\n\nKäyttäjän $3 annettu syy estole on \"$2\".",
 	"viewpagelogs": "Ozuta tämän sivun lougat",
 	"nohistory": "Täl sivul ei ole kohendushistoriedu.",
 	"currentrev": "Jälgimäzin versii",

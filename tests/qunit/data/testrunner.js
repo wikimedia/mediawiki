@@ -1,4 +1,3 @@
-/* global sinon */
 ( function () {
 	'use strict';
 

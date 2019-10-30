@@ -718,7 +718,7 @@ class TitleTest extends MediaWikiTestCase {
 	 * @param bool $isValid
 	 */
 	public function testIsValid( Title $title, $isValid ) {
-		$iwLookup = $this->getMock( InterwikiLookup::class );
+		$iwLookup = $this->createMock( InterwikiLookup::class );
 		$iwLookup->method( 'isValidInterwiki' )
 			->willReturn( true );
 

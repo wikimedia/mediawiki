@@ -963,7 +963,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	protected static function getChangeTagList( ResourceLoaderContext $context ) {
 		$tags = self::getChangeTagListSummary( $context );
-		$language = Language::factory( $context->getLanguage() );
+		$language = MediaWikiServices::getInstance()->getLanguageFactory()
+			->getLanguage( $context->getLanguage() );
 		foreach ( $tags as &$tagInfo ) {
 			$tagInfo['label'] = Sanitizer::stripAllTags( $tagInfo['labelMsg']->parse() );
 			$tagInfo['description'] = $tagInfo['descriptionMsg'] ?

@@ -555,8 +555,6 @@
 	"undo-success": "Keitėms gal būtė atšaukts. Prašuom patėkrėntė palīgėnėma, asonti žemiau, kū patvėrtėntomiet, kū Tamsta šėta ė nuorėt padarītė, ė tumet ėšsauguokit pakeitėmos, asontios žemiau, kū ožbėngtomiet keitėma atšaukėma.",
 	"undo-failure": "Keitėms nagal būt atšaukts diel konflėktounantiu tarpėniu pakeitėmu.",
 	"undo-summary": "Pargrōžėnams pakeitėms $1, padėrbts nauduotuojė [[Special:Contributions/$2|$2]] ([[User talk:$2|aptarėms]])",
-	"cantcreateaccount-text": "Paskīrū kūrėma ėš šėta IP adresa ('''$1''') ožbluokava [[User:$3|$3]].\n\n$3 nuruodīta prīžastis īr ''$2''",
-	"cantcreateaccount-range-text": "Nauduotuoju dėrbėms nug IP adresū <strong>$1</strong>, terp katrū prėgol ė Tamstas IP adresos (<strong>$4</strong>), bova ožgints nauduotuojė [[User:$3|$3]].\n\n$3 ožrašė tuokė dingstiː <em>$2</em>",
 	"viewpagelogs": "Ruodītė ton poslapė īpatingus notėkėmus",
 	"nohistory": "Šėts poslapis netor keitėmu istuorėjės.",
 	"currentrev": "Vielībasā atmains",

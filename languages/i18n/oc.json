@@ -757,8 +757,6 @@
 	"undo-nochange": "Sembla que la modificacion es ja estada anullada.",
 	"undo-summary": "Anullacion de las modificacions $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]])",
 	"undo-summary-username-hidden": "Anullar la revision $1 per un utilizaire amagat",
-	"cantcreateaccount-text": "La creacion de compte dempuèi aquesta adreça IP ('''$1''') es estada blocada per [[User:$3|$3]].\n\nLa rason balhada per $3 èra ''$2''.",
-	"cantcreateaccount-range-text": "La creacion de compte dempuèi las adreças IP dins la plaja <strong>$1</strong>, que compren vòstra agreça IP (<strong>$4</strong>) son estadas blocadas per [[User:$3|$3]].\n\nLo motiu provesit per $3 es <em>$2</em>",
 	"viewpagelogs": "Vejatz las operacions per aquesta pagina",
 	"nohistory": "Existís pas d'istoric per aquesta pagina.",
 	"currentrev": "Version actuala",

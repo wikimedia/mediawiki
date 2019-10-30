@@ -140,6 +140,7 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 				$path = dirname( $dataPath ) . '/' . $path;
 			}
 		};
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		array_walk( $data['images'], function ( &$value ) use ( $fixPath ) {
 			if ( is_string( $value['file'] ) ) {
 				$fixPath( $value['file'] );

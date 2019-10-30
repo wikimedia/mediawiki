@@ -311,32 +311,15 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 * @since 1.34
 	 */
 	public function getBlobBatch( $blobAddresses, $queryFlags = 0 ) {
-		$errors = null;
-		$addressByCacheKey = $this->cache->makeMultiKeys(
-			$blobAddresses,
-			function ( $blobAddress ) {
-				return $this->getCacheKey( $blobAddress );
-			}
-		);
-		$blobsByCacheKey = $this->cache->getMultiWithUnionSetCallback(
-			$addressByCacheKey,
-			$this->getCacheTTL(),
-			function ( array $blobAddresses, array &$ttls, array &$setOpts ) use ( $queryFlags, &$errors ) {
-				// Ignore $setOpts; blobs are immutable and negatives are not cached
-				list( $result, $errors ) = $this->fetchBlobs( $blobAddresses, $queryFlags );
-				return $result;
-			},
-			[ 'pcGroup' => self::TEXT_CACHE_GROUP, 'pcTTL' => IExpiringStore::TTL_PROC_LONG ]
-		);
+		// FIXME: All caching has temporarily been removed in I94c6f9ba7b9caeeb due to T235188.
+		//        Caching behavior should be restored by reverting I94c6f9ba7b9caeeb as soon as
+		//        the root cause of T235188 has been resolved.
 
-		// Remap back to incoming blob addresses. The return value of the
-		// WANObjectCache::getMultiWithUnionSetCallback is keyed on the internal
-		// keys from WANObjectCache::makeMultiKeys, so we need to remap them
-		// before returning to the client.
-		$blobsByAddress = [];
-		foreach ( $blobsByCacheKey as $cacheKey => $blob ) {
-			$blobsByAddress[ $addressByCacheKey[ $cacheKey ] ] = $blob !== false ? $blob : null;
-		}
+		list( $blobsByAddress, $errors ) = $this->fetchBlobs( $blobAddresses, $queryFlags );
+
+		$blobsByAddress = array_map( function ( $blob ) {
+			return $blob === false ? null : $blob;
+		}, $blobsByAddress );
 
 		$result = StatusValue::newGood( $blobsByAddress );
 		if ( $errors ) {

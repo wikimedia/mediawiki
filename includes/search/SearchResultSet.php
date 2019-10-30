@@ -188,6 +188,7 @@ class SearchResultSet extends BaseSearchResultSet {
 			// must override this as well.
 			if ( is_array( $this->results ) ) {
 				$this->results = array_slice( $this->results, 0, $limit );
+				$this->titles = null;
 			} else {
 				throw new \UnexpectedValueException(
 					"When overriding result store extending classes must "

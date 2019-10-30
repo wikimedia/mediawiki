@@ -57,6 +57,7 @@ use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
@@ -166,7 +167,8 @@ return [
 	},
 
 	'ContentLanguage' => function ( MediaWikiServices $services ) : Language {
-		return Language::factory( $services->getMainConfig()->get( 'LanguageCode' ) );
+		return $services->getLanguageFactory()->getLanguage(
+			$services->getMainConfig()->get( 'LanguageCode' ) );
 	},
 
 	'CryptHKDF' => function ( MediaWikiServices $services ) : CryptHKDF {
@@ -239,6 +241,40 @@ return [
 		);
 	},
 
+	'FileBackendGroup' => function ( MediaWikiServices $services ) : FileBackendGroup {
+		$mainConfig = $services->getMainConfig();
+
+		$ld = WikiMap::getCurrentWikiDbDomain();
+		$fallbackWikiId = WikiMap::getWikiIdFromDbDomain( $ld );
+		// If the local wiki ID and local domain ID do not match, probably due to a non-default
+		// schema, issue a warning. A non-default schema indicates that it might be used to
+		// disambiguate different wikis.
+		$legacyDomainId = strlen( $ld->getTablePrefix() )
+			? "{$ld->getDatabase()}-{$ld->getTablePrefix()}"
+			: $ld->getDatabase();
+		if ( $ld->getSchema() !== null && $legacyDomainId !== $fallbackWikiId ) {
+			wfWarn(
+				"Legacy default 'domainId' is '$legacyDomainId' but wiki ID is '$fallbackWikiId'."
+			);
+		}
+
+		$cache = $services->getLocalServerObjectCache();
+		if ( $cache instanceof EmptyBagOStuff ) {
+			$cache = new HashBagOStuff;
+		}
+
+		return new FileBackendGroup(
+			new ServiceOptions( FileBackendGroup::CONSTRUCTOR_OPTIONS, $mainConfig,
+				[ 'fallbackWikiId' => $fallbackWikiId ] ),
+			$services->getConfiguredReadOnlyMode(),
+			$cache,
+			$services->getMainWANObjectCache(),
+			$services->getMimeAnalyzer(),
+			$services->getLockManagerGroupFactory(),
+			$services->getTempFSFileFactory()
+		);
+	},
+
 	'GenderCache' => function ( MediaWikiServices $services ) : GenderCache {
 		$nsInfo = $services->getNamespaceInfo();
 		// Database layer may be disabled, so processing without database connection
@@ -262,6 +298,15 @@ return [
 			$config->get( 'InterwikiCache' ),
 			$config->get( 'InterwikiScopes' ),
 			$config->get( 'InterwikiFallbackSite' )
+		);
+	},
+
+	'LanguageFactory' => function ( MediaWikiServices $services ) : LanguageFactory {
+		return new LanguageFactory(
+			new ServiceOptions( LanguageFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			$services->getLocalisationCache(),
+			$services->getLanguageNameUtils(),
+			$services->getLanguageFallback()
 		);
 	},
 
@@ -449,7 +494,9 @@ return [
 			$srvCache,
 			$services->getContentLanguage(),
 			$logger,
-			[ 'useDB' => $mainConfig->get( 'UseDatabaseMessages' ) ]
+			[ 'useDB' => $mainConfig->get( 'UseDatabaseMessages' ) ],
+			$services->getLanguageFactory(),
+			$services->getLocalisationCache()
 		);
 	},
 
@@ -702,6 +749,30 @@ return [
 		$rl->register( $config->get( 'ResourceModules' ) );
 		Hooks::run( 'ResourceLoaderRegisterModules', [ &$rl ] );
 
+		$extRegistry = ExtensionRegistry::getInstance();
+		$msgPosterAttrib = $extRegistry->getAttribute( 'MessagePosterModule' );
+		$rl->register( 'mediawiki.messagePoster', [
+			'localBasePath' => '',
+			'debugRaw' => false,
+			'scripts' => array_merge(
+				[
+					"$IP/resources/src/mediawiki.messagePoster/factory.js",
+					"$IP/resources/src/mediawiki.messagePoster/MessagePoster.js",
+					"$IP/resources/src/mediawiki.messagePoster/WikitextMessagePoster.js",
+				],
+				$msgPosterAttrib['scripts'] ?? []
+			),
+			'dependencies' => array_merge(
+				[
+					'oojs',
+					'mediawiki.api',
+					'mediawiki.ForeignApi',
+				],
+				$msgPosterAttrib['dependencies'] ?? []
+			),
+			'targets' => [ 'desktop', 'mobile' ],
+		] );
+
 		if ( $config->get( 'EnableJavaScriptTest' ) === true ) {
 			$rl->registerTestModules();
 		}
@@ -853,6 +924,10 @@ return [
 
 	'TempFSFileFactory' => function ( MediaWikiServices $services ) : TempFSFileFactory {
 		return new TempFSFileFactory( $services->getMainConfig()->get( 'TmpDirectory' ) );
+	},
+
+	'TitleFactory' => function ( MediaWikiServices $services ) : TitleFactory {
+		return new TitleFactory();
 	},
 
 	'TitleFormatter' => function ( MediaWikiServices $services ) : TitleFormatter {

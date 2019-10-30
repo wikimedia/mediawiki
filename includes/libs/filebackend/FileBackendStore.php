@@ -1182,7 +1182,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * The result must have the same number of items as the input.
 	 * An exception is thrown if an unsupported operation is requested.
 	 *
-	 * @param array $ops Same format as doOperations()
+	 * @param array[] $ops Same format as doOperations()
 	 * @return FileOp[] List of FileOp objects
 	 * @throws FileBackendError
 	 */
@@ -1222,8 +1222,8 @@ abstract class FileBackendStore extends FileBackend {
 	 * to a list of storage paths to be locked. All returned paths are
 	 * normalized.
 	 *
-	 * @param array $performOps List of FileOp objects
-	 * @return array (LockManager::LOCK_UW => path list, LockManager::LOCK_EX => path list)
+	 * @param FileOp[] $performOps List of FileOp objects
+	 * @return string[][] (LockManager::LOCK_UW => path list, LockManager::LOCK_EX => path list)
 	 */
 	final public function getPathsToLockForOpsInternal( array $performOps ) {
 		// Build up a list of files to lock...
@@ -1254,19 +1254,20 @@ abstract class FileBackendStore extends FileBackend {
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = $this->newStatus();
 
-		// Fix up custom header name/value pairs...
+		// Fix up custom header name/value pairs
 		$ops = array_map( [ $this, 'sanitizeOpHeaders' ], $ops );
+		// Build up a list of FileOps and involved paths
+		$fileOps = $this->getOperationsInternal( $ops );
+		$pathsUsed = [];
+		foreach ( $fileOps as $fileOp ) {
+			$pathsUsed = array_merge( $pathsUsed, $fileOp->storagePathsReadOrChanged() );
+		}
 
-		// Build up a list of FileOps...
-		$performOps = $this->getOperationsInternal( $ops );
-
-		// Acquire any locks as needed...
+		// Acquire any locks as needed for the scope of this function
 		if ( empty( $opts['nonLocking'] ) ) {
-			// Build up a list of files to lock...
-			$paths = $this->getPathsToLockForOpsInternal( $performOps );
-			// Try to lock those files for the scope of this function...
+			$pathsByLockType = $this->getPathsToLockForOpsInternal( $fileOps );
 			/** @noinspection PhpUnusedLocalVariableInspection */
-			$scopeLock = $this->getScopedFileLocks( $paths, 'mixed', $status );
+			$scopeLock = $this->getScopedFileLocks( $pathsByLockType, 'mixed', $status );
 			if ( !$status->isOK() ) {
 				return $status; // abort
 			}
@@ -1274,30 +1275,23 @@ abstract class FileBackendStore extends FileBackend {
 
 		// Clear any file cache entries (after locks acquired)
 		if ( empty( $opts['preserveCache'] ) ) {
-			$this->clearCache();
-		}
-
-		// Build the list of paths involved
-		$paths = [];
-		foreach ( $performOps as $performOp ) {
-			$paths = array_merge( $paths, $performOp->storagePathsRead() );
-			$paths = array_merge( $paths, $performOp->storagePathsChanged() );
+			$this->clearCache( $pathsUsed );
 		}
 
 		// Enlarge the cache to fit the stat entries of these files
-		$this->cheapCache->setMaxSize( max( 2 * count( $paths ), self::CACHE_CHEAP_SIZE ) );
+		$this->cheapCache->setMaxSize( max( 2 * count( $pathsUsed ), self::CACHE_CHEAP_SIZE ) );
 
 		// Load from the persistent container caches
-		$this->primeContainerCache( $paths );
+		$this->primeContainerCache( $pathsUsed );
 		// Get the latest stat info for all the files (having locked them)
-		$ok = $this->preloadFileStat( [ 'srcs' => $paths, 'latest' => true ] );
+		$ok = $this->preloadFileStat( [ 'srcs' => $pathsUsed, 'latest' => true ] );
 
 		if ( $ok ) {
 			// Actually attempt the operation batch...
 			$opts = $this->setConcurrencyFlags( $opts );
-			$subStatus = FileOpBatch::attempt( $performOps, $opts, $this->fileJournal );
+			$subStatus = FileOpBatch::attempt( $fileOps, $opts, $this->fileJournal );
 		} else {
-			// If we could not even stat some files, then bail out...
+			// If we could not even stat some files, then bail out
 			$subStatus = $this->newStatus( 'backend-fail-internal', $this->name );
 			foreach ( $ops as $i => $op ) { // mark each op as failed
 				$subStatus->success[$i] = false;
@@ -1322,13 +1316,18 @@ abstract class FileBackendStore extends FileBackend {
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = $this->newStatus();
 
-		// Fix up custom header name/value pairs...
+		// Fix up custom header name/value pairs
 		$ops = array_map( [ $this, 'sanitizeOpHeaders' ], $ops );
+		// Build up a list of FileOps and involved paths
+		$fileOps = $this->getOperationsInternal( $ops );
+		$pathsUsed = [];
+		foreach ( $fileOps as $fileOp ) {
+			$pathsUsed = array_merge( $pathsUsed, $fileOp->storagePathsReadOrChanged() );
+		}
 
-		// Clear any file cache entries
-		$this->clearCache();
+		// Clear any file cache entries for involved paths
+		$this->clearCache( $pathsUsed );
 
-		$supportedOps = [ 'create', 'store', 'copy', 'move', 'delete', 'describe', 'null' ];
 		// Parallel ops may be disabled in config due to dependencies (e.g. needing popen())
 		$async = ( $this->parallelize === 'implicit' && count( $ops ) > 1 );
 		$maxConcurrency = $this->concurrency; // throttle
@@ -1337,12 +1336,10 @@ abstract class FileBackendStore extends FileBackend {
 		$fileOpHandles = []; // list of (index => handle) arrays
 		$curFileOpHandles = []; // current handle batch
 		// Perform the sync-only ops and build up op handles for the async ops...
-		foreach ( $ops as $index => $params ) {
-			if ( !in_array( $params['op'], $supportedOps ) ) {
-				throw new FileBackendError( "Operation '{$params['op']}' is not supported." );
-			}
-			$method = $params['op'] . 'Internal'; // e.g. "storeInternal"
-			$subStatus = $this->$method( [ 'async' => $async ] + $params );
+		foreach ( $fileOps as $index => $fileOp ) {
+			$subStatus = $async
+				? $fileOp->attemptAsyncQuick()
+				: $fileOp->attemptQuick();
 			if ( $subStatus->value instanceof FileBackendStoreOpHandle ) { // async
 				if ( count( $curFileOpHandles ) >= $maxConcurrency ) {
 					$fileOpHandles[] = $curFileOpHandles; // push this batch
@@ -1371,6 +1368,8 @@ abstract class FileBackendStore extends FileBackend {
 				++$status->failCount;
 			}
 		}
+
+		$this->clearCache( $pathsUsed );
 
 		return $status;
 	}

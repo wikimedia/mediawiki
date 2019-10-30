@@ -7,6 +7,18 @@ for use in production.
 
 === Changes since MediaWiki 1.34.0-rc.0 ===
 * (T231742) rdbms: Restore debug toolbar "Queries" feature.
+* (T231366) The ProfilerOutputDb class, 'profiling' table, and profileinfo.php
+  entry point had been deprecated.
+* (T234361) localisation: Add debug message for backend of MessageCache.
+* (T234361) session: Add debug message for the used store class.
+* (T235559) Fix example Kask configuration in RESTBagOStuff class comment.
+* (T235137) Don't apply styling for Special:Contributions on other pages.
+* Upgrade mediawiki-codesniffer from 26.0.0 to 28.0.0 (dev-only).
+* (T219604) The "jquery.ui.*" and "jquery.effects.*" modules are now
+  deprecated as aliases for the "jquery.ui" module.
+* (T235392) Deprecate setting Parser::mTitle to null.
+* Supporting commits for T235392 were also backported to prevent divergence
+  from master (MediaWiki 1.35).
 
 == MediaWiki 1.34.0-rc.0 ==
 
@@ -64,6 +76,10 @@ $wgPasswordPolicy['policies']['default']['PasswordNotInLargeBlacklist'] = false;
   containing some HTML markup in metadata. As a result, the $wgAllowTitlesInSVG
   setting is no longer applied and is now always true. Note that MSIE 7 may
   still be able to misinterpret certain malformed PNG files as HTML.
+* (T30798) $wgServer must now always be set in LocalSettings.php. This is most
+  likely the case already for any wiki installed after 1.18. The autodetection
+  system was informally deprecated since 1.18 and vulnerable to cache poisoning
+  attacks. Older wikis may need to update their LocalSettings.php file.
 * Introduced $wgVerifyMimeTypeIE to allow disabling the MSIE 6/7 file type
   detection heuristic on upload, which is more conservative than the checks
   that were changed above.
@@ -144,7 +160,7 @@ $wgPasswordPolicy['policies']['default']['PasswordNotInLargeBlacklist'] = false;
 * Updated OOjs from v2.2.2 to v3.0.0.
 * Updated composer/semver from 1.4.2 to 1.5.0.
 * Updated composer/spdx-licenses from 1.4.0 to 1.5.1 (dev-only).
-* Updated mediawiki/codesniffer from 25.0.0 to 26.0.0 (dev-only).
+* Updated mediawiki/codesniffer from 25.0.0 to 28.0.0 (dev-only).
 * Updated cssjanus/cssjanus from 1.2.1 to 1.3.0.
 * Updated wikimedia/at-ease from 1.2.0 to 2.0.0.
 * Updated wikimedia/remex-html from 2.0.1 to 2.1.0.
@@ -585,6 +601,7 @@ because of Phabricator reports.
 * Specifying a SpecialPage object for the list of special pages (either through
   the SpecialPage_initList hook or by adding to $wgSpecialPages) is now
   deprecated.
+* The 'jquery.tabIndex' module is deprecated.
 * WebInstaller::getInfoBox(), getWarningBox() and getErrorBox() are deprecated.
   Use Html::errorBox() or Html::warningBox() instead.
 * Use of ActorMigration with 'ar_user', 'img_user', 'oi_user', 'fa_user',
@@ -620,12 +637,23 @@ because of Phabricator reports.
   fetchLanguageName, getFileName, getMessagesFileName, getJsonMessagesFileName.
   Use the new LanguageNameUtils class instead. (Note that fetchLanguageName(s)
   are called getLanguageName(s) in the new class.)
+* Using the Parser without initializing its $mTitle property to non-null has
+  been deprecated.  In a future release Parser::getTitle() will throw a
+  TypeError if $mTitle is uninitialized.
+* A number of public methods of Parser were exposed only for historical
+  reasons and have been deprecated: doMagicLinks, doDoubleUnderscore,
+  doHeadings, doAllQuotes, replaceExternalLinks, replaceInternalLinks,
+  replaceInternalLinks2, getVariableValue, initialiseVariables, formatHeadings,
+  testPst, testPreprocess, testSrvus.
 
 === Other changes in 1.34 ===
 * Added option to specify "Various authors" as author in extension credits using
   "..." as the only author name. If the "author" array contains more than one
   entry and "..." is one of the entries in the array, "..." will be parsed as
   "others" (version-poweredby-others i18n message) like previously.
+* (T232563) Browser support ("Grade C") for Internet Explorer 6 and 7
+  was discontinued. Basic content and security features may no longer
+  work correctly in these browsers.
 
 == Compatibility ==
 MediaWiki 1.34 requires PHP 7.2.9 or later, and the following PHP extensions:

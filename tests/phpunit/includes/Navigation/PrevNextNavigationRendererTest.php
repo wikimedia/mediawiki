@@ -20,7 +20,7 @@ class PrevNextNavigationRendererTest extends MediaWikiTestCase {
 	 * @dataProvider provideBuildPrevNextNavigation
 	 */
 	public function testBuildPrevNextNavigation( $offset, $limit, $atEnd, $subPage ) {
-		$this->setUserLang( Language::factory( 'qqx' ) ); // disable i18n
+		$this->setUserLang( 'qqx' ); // disable i18n
 
 		$prevNext = new PrevNextNavigationRenderer( RequestContext::getMain() );
 		$prevNext = TestingAccessWrapper::newFromObject( $prevNext );

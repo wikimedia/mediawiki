@@ -24,6 +24,7 @@
 	// Function suitable for passing to Array.prototype.map
 	// Can't use mw.msg directly because Array.prototype.map passes element index as second argument
 	function mwMsgMapper( key ) {
+		// eslint-disable-next-line mediawiki/msg-doc
 		return mw.msg( key );
 	}
 

@@ -292,8 +292,8 @@ class OutputPageTest extends MediaWikiTestCase {
 		$op->addScriptFile( '//example.com/somescript.js' );
 
 		$this->assertContains(
-			"\n" . Html::linkedScript( '/somescript.js', $op->getCSPNonce() ) .
-				Html::linkedScript( '//example.com/somescript.js', $op->getCSPNonce() ) . "\n",
+			"\n" . Html::linkedScript( '/somescript.js', $op->getCSP()->getNonce() ) .
+				Html::linkedScript( '//example.com/somescript.js', $op->getCSP()->getNonce() ) . "\n",
 			"\n" . $op->getBottomScripts() . "\n"
 		);
 	}
@@ -307,8 +307,8 @@ class OutputPageTest extends MediaWikiTestCase {
 		$op->addInlineScript( 'alert( foo );' );
 
 		$this->assertContains(
-			"\n" . Html::inlineScript( "\nlet foo = \"bar\";\n", $op->getCSPNonce() ) . "\n" .
-				Html::inlineScript( "\nalert( foo );\n", $op->getCSPNonce() ) . "\n",
+			"\n" . Html::inlineScript( "\nlet foo = \"bar\";\n", $op->getCSP()->getNonce() ) . "\n" .
+				Html::inlineScript( "\nalert( foo );\n", $op->getCSP()->getNonce() ) . "\n",
 			"\n" . $op->getBottomScripts() . "\n"
 		);
 	}
@@ -1174,7 +1174,6 @@ class OutputPageTest extends MediaWikiTestCase {
 
 		if ( $variantLinkCallback ) {
 			$mockContLang = $this->getMockBuilder( Language::class )
-				->setConstructorArgs( [ 'en' ] )
 				->setMethods( [ 'findVariantLink' ] )
 				->getMock();
 			$mockContLang->expects( $this->any() )
@@ -1882,11 +1881,13 @@ class OutputPageTest extends MediaWikiTestCase {
 				"123,456.789",
 			],
 			'Language (content)' => [
-				[ '{{formatnum:123456.789}}', true, false, Language::factory( 'is' ) ],
+				[ '{{formatnum:123456.789}}', true, false,
+					MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'is' ) ],
 				"<div class=\"mw-parser-output\"><p>123.456,789\n</p></div>",
 			],
 			'Language (interface)' => [
-				[ '{{formatnum:123456.789}}', true, true, Language::factory( 'is' ) ],
+				[ '{{formatnum:123456.789}}', true, true,
+					MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'is' ) ],
 				"<p>123.456,789\n</p>",
 				'123.456,789',
 			],
@@ -2538,9 +2539,10 @@ class OutputPageTest extends MediaWikiTestCase {
 		$ctx->setSkin( $skinFactory->makeSkin( 'fallback' ) );
 		$ctx->setLanguage( 'en' );
 		$out = new OutputPage( $ctx );
-		$nonce = $class->getProperty( 'CSPNonce' );
+		$reflectCSP = new ReflectionClass( ContentSecurityPolicy::class );
+		$nonce = $reflectCSP->getProperty( 'nonce' );
 		$nonce->setAccessible( true );
-		$nonce->setValue( $out, 'secret' );
+		$nonce->setValue( $out->getCSP(), 'secret' );
 		$rl = $out->getResourceLoader();
 		$rl->setMessageBlobStore( $this->createMock( MessageBlobStore::class ) );
 		$rl->register( [

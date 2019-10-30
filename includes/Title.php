@@ -79,8 +79,6 @@ class Title implements LinkTarget, IDBAccessObject {
 	public $mUrlform = '';
 	/** @var string Main part with underscores */
 	public $mDbkeyform = '';
-	/** @var string Database key with the initial letter in the case specified by the user */
-	protected $mUserCaseDBKey;
 	/** @var int Namespace index, i.e. one of the NS_xxxx constants */
 	public $mNamespace = NS_MAIN;
 	/** @var string Interwiki prefix */
@@ -1018,18 +1016,15 @@ class Title implements LinkTarget, IDBAccessObject {
 	}
 
 	/**
-	 * Get the DB key with the initial letter case as specified by the user
-	 * @deprecated since 1.33; please use Title::getDBKey() instead
+	 * Same as getDBkey()
 	 *
+	 * @deprecated since 1.33; please use Title::getDBKey() instead
 	 * @return string DB key
 	 */
 	function getUserCaseDBKey() {
-		if ( !is_null( $this->mUserCaseDBKey ) ) {
-			return $this->mUserCaseDBKey;
-		} else {
-			// If created via makeTitle(), $this->mUserCaseDBKey is not set.
-			return $this->mDbkeyform;
-		}
+		wfDeprecated( __METHOD__, '1.33' );
+
+		return $this->getDBkey();
 	}
 
 	/**
@@ -3360,7 +3355,6 @@ class Title implements LinkTarget, IDBAccessObject {
 		$this->mLocalInterwiki = $parts['local_interwiki'];
 		$this->mNamespace = $parts['namespace'];
 		$this->mDefaultNamespace = $defaultNamespace;
-		$this->mUserCaseDBKey = $parts['user_case_dbkey'];
 
 		$this->mDbkeyform = $parts['dbkey'];
 		$this->mUrlform = wfUrlencode( $this->mDbkeyform );
@@ -4021,6 +4015,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * Get the number of revisions between the given revision.
 	 * Used for diffs and other things that really need it.
 	 *
+	 * @deprecated since 1.35 Use RevisionStore::countRevisionsBetween instead.
+	 *
 	 * @param int|Revision $old Old revision or rev ID (first before range)
 	 * @param int|Revision $new New revision or rev ID (first after range)
 	 * @param int|null $max Limit of Revisions to count, will be incremented to detect truncations
@@ -4036,21 +4032,9 @@ class Title implements LinkTarget, IDBAccessObject {
 		if ( !$old || !$new ) {
 			return 0; // nothing to compare
 		}
-		$dbr = wfGetDB( DB_REPLICA );
-		$conds = [
-			'rev_page' => $this->getArticleID(),
-			'rev_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) ),
-			'rev_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) )
-		];
-		if ( $max !== null ) {
-			return $dbr->selectRowCount( 'revision', '1',
-				$conds,
-				__METHOD__,
-				[ 'LIMIT' => $max + 1 ] // extra to detect truncation
-			);
-		} else {
-			return (int)$dbr->selectField( 'revision', 'count(*)', $conds, __METHOD__ );
-		}
+		return MediaWikiServices::getInstance()
+			->getRevisionStore()
+			->countRevisionsBetween( $old->getRevisionRecord(), $new->getRevisionRecord(), $max );
 	}
 
 	/**
@@ -4659,7 +4643,8 @@ class Title implements LinkTarget, IDBAccessObject {
 			$langObj = $contentHandler->getPageLanguage( $this );
 			$this->mPageLanguage = [ $langObj->getCode(), $wgLanguageCode ];
 		} else {
-			$langObj = Language::factory( $this->mPageLanguage[0] );
+			$langObj = MediaWikiServices::getInstance()->getLanguageFactory()
+				->getLanguage( $this->mPageLanguage[0] );
 		}
 
 		return $langObj;
@@ -4681,7 +4666,8 @@ class Title implements LinkTarget, IDBAccessObject {
 			// in a language whose code is the variant code.
 			$variant = $wgLang->getPreferredVariant();
 			if ( $wgLang->getCode() !== $variant ) {
-				return Language::factory( $variant );
+				return MediaWikiServices::getInstance()->getLanguageFactory()
+					->getLanguage( $variant );
 			}
 
 			return $wgLang;
@@ -4693,7 +4679,8 @@ class Title implements LinkTarget, IDBAccessObject {
 			$pageLang = wfGetLangObj( $dbPageLanguage );
 			$variant = $pageLang->getPreferredVariant();
 			if ( $pageLang->getCode() !== $variant ) {
-				$pageLang = Language::factory( $variant );
+				$pageLang = MediaWikiServices::getInstance()->getLanguageFactory()
+					->getLanguage( $variant );
 			}
 
 			return $pageLang;
@@ -4818,7 +4805,6 @@ class Title implements LinkTarget, IDBAccessObject {
 			'mFragment',
 			'mInterwiki',
 			'mLocalInterwiki',
-			'mUserCaseDBKey',
 			'mDefaultNamespace',
 		];
 	}

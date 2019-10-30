@@ -1127,7 +1127,6 @@ function wfLogProfilingData() {
 	if ( isset( $ctx['forwarded_for'] ) ||
 		isset( $ctx['client_ip'] ) ||
 		isset( $ctx['from'] ) ) {
-		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		$ctx['proxy'] = $_SERVER['REMOTE_ADDR'];
 	}
 
@@ -1237,7 +1236,7 @@ function wfGetLangObj( $langcode = false ) {
 	$validCodes = array_keys( Language::fetchLanguageNames() );
 	if ( in_array( $langcode, $validCodes ) ) {
 		# $langcode corresponds to a valid language.
-		return Language::factory( $langcode );
+		return MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $langcode );
 	}
 
 	# $langcode is a string, but not a valid language code; use content language.
@@ -1360,7 +1359,7 @@ function wfHostname() {
  * If $wgShowHostnames is true, the script will also set 'wgHostname' to the
  * hostname of the server handling the request.
  *
- * @param string|null $nonce Value from OutputPage::getCSPNonce
+ * @param string|null $nonce Value from OutputPage->getCSP()->getNonce()
  * @return string|WrappedString HTML
  */
 function wfReportTime( $nonce = null ) {
@@ -1718,7 +1717,7 @@ function wfResetOutputBuffers( $resetGzipEncoding = true ) {
 			// output behavior.
 			break;
 		}
-		if ( $status['name'] === 'MediaWikiTestCase::wfResetOutputBuffersBarrier' ) {
+		if ( $status['name'] === 'MediaWikiIntegrationTestCase::wfResetOutputBuffersBarrier' ) {
 			// Unit testing barrier to prevent this function from breaking PHPUnit.
 			break;
 		}
@@ -2539,10 +2538,12 @@ function wfGlobalCacheKey( ...$args ) {
  * Get an ASCII string identifying this wiki
  * This is used as a prefix in memcached keys
  *
+ * @deprecated since 1.35 Use WikiMap::getCurrentWikiDbDomain()/WikiMap::getWikiIdFromDbDomain()
  * @return string
  */
 function wfWikiID() {
 	global $wgDBprefix, $wgDBname;
+
 	if ( $wgDBprefix ) {
 		return "$wgDBname-$wgDBprefix";
 	} else {
@@ -3084,13 +3085,11 @@ function wfArrayPlus2d( array $baseArray, array $newValues ) {
  * Invokes the getrusage(2) system call, requesting RUSAGE_SELF. Returns false
  * if getrusage is not available.
  *
+ * @deprecated since 1.35
  * @since 1.24
  * @return array|bool Resource usage data or false if no data available.
  */
 function wfGetRusage() {
-	if ( !function_exists( 'getrusage' ) ) {
-		return false;
-	} else {
-		return getrusage( 0 /* RUSAGE_SELF */ );
-	}
+	// wfDeprecated( __FUNCTION__, '1.35' );
+	return getrusage( 0 /* RUSAGE_SELF */ );
 }

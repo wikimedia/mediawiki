@@ -632,7 +632,6 @@
 	"subject-preview": "Vista previa del asuntu:",
 	"previewerrortext": "Hebo un error al intentar entever los cambios.",
 	"blockedtitle": "L'usuariu ta bloquiáu",
-	"blocked-email-user": "<strong>El to usuariu tien bloquiáu l'unviu de correos electrónicos. Entá puedes editar otres páxines nesta wiki.</strong> Pues ver los detalles completos del bloquéu en [[Special:MyContributions|Contribuciones de la cuenta]].\n\nEl bloquéu fízolu $1.\n\nEl motivu dau ye <em>$2</em>.\n\n* Entamu de bloquéu: $8\n* Caducidá del bloquéu: $6\n* Bloquéu destináu a: $7\n* ID del bloquéu #$5",
 	"blockedtext-partial": "<strong>El to usuariu o direición IP tien bloquiáo facer cambeos nesta páxina. Entá pues editar otres páxines nesta wiki.</strong> Pues ver los detalles completos del bloquéu en [[Special:MyContributions|contribuciones de la cuenta]].\n\nEl bloquéu fízolu $1.\n\nEl motivu dau ye <em>$2</em>.\n\n* Entamu de bloquéu: $8\n* Caducidá del bloquéu: $6\n* Bloquéu destináu a: $7\n* ID del bloquéu #$5",
 	"blockedtext": "<strong>El to nome d'usuariu o direición IP ta bloquiáu.</strong>\n\nEl bloquéu fexolu $1.\nEl motivu conseñáu ye <em>$2</em>.\n\n* Principiu del bloquéu: $8\n* Caducidá del bloquéu: $6\n* Usuariu a bloquiar: $7\n\nPuedes comunicate con $1 o con otru [[{{MediaWiki:Grouppage-sysop}}|alministrador]] p'aldericar sobre'l bloquéu.\nNun puedes usar la función «{{int:emailuser}}» a nun ser que tea especificada una direición de corréu electrónicu válida nes tos [[Special:Preferences|preferencies de cuenta]] y que nun tengas torgao usala.\nLa to direición IP actual ye $3, y la ID del bloquéu ye #$5.\nPor favor, incluye tolos detalles anteriores nes consultes que faigas.",
 	"autoblockedtext": "La to direición IP bloquióse automáticamente porque usóla otru usuariu que foi bloquiáu por $1.\nEl motivu conseñáu ye:\n\n:<em>$2</em>\n\n* Principiu del bloquéu: $8\n* Caducidá del bloquéu: $6\n* Usuariu a bloquiar: $7\n\nPues ponete'n contautu con $1 o con otru de los [[{{MediaWiki:Grouppage-sysop}}|alministradores]] p'aldericar sobre'l bloquéu.\n\nTen en cuenta que nun pues usar la función «{{int:emailuser}}» a nun ser que tengas rexistrada una direición de corréu electrónicu válida nes [[Special:Preferences|preferencies d'usuariu]] y que nun tengas torgao usala.\n\nLa to direición IP actual ye $3, y la ID del bloquéu ye #$5.\nPor favor, incluye tolos detalles anteriores nes consultes que faigas.",
@@ -789,8 +788,6 @@
 	"undo-summary": "Esfacer la revisión $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|alderique]])",
 	"undo-summary-anon": "Desfaer la revisión $1 de [[Special:Contributions/$2|$2]]",
 	"undo-summary-username-hidden": "Desfacer la revisión $1 d'un usuariu tapecíu",
-	"cantcreateaccount-text": "[[User:$3|$3]] bloquió la creación de cuentes dende esta direición IP (<strong>$1</strong>).\n\nEl motivu dau por $3 ye <em>$2</em>",
-	"cantcreateaccount-range-text": "La creación de cuentes dende direiciones IP del rangu <strong>$1</strong>, qu'incluye la to direición IP (<strong>$4</strong>), ta bloquiada pol usuariu [[User:$3|$3]].\n\nLa razón dada por $3 ye <em>$2</em>.",
 	"viewpagelogs": "Ver los rexistros d'esta páxina",
 	"nohistory": "Nun hay historial d'ediciones pa esta páxina.",
 	"currentrev": "Revisión actual",
@@ -3819,8 +3816,5 @@
 	"mycustomjsredirectprotected": "Nun tienes permisu pa editar esta páxina en JavaScript porque ye una redireición que nun apunta dientro del to espaciu d'usuariu.",
 	"easydeflate-invaliddeflate": "El conteníu dau nun ta comprimíu correutamente",
 	"unprotected-js": "Por razones de seguridá, JavaScript nun puede cargase dende páxines ensin protexer. Crea javascript sólo nel espaciu de nomes MediaWiki: o como subpáxina d'usuariu",
-	"userlogout-continue": "¿Desees zarrar la sesión?",
-	"rest-prefix-mismatch": "El camín solicitáu ($1) nun taba dientro del camín raíz de la API REST ($2)",
-	"rest-wrong-method": "El métodu solicitáu ($1) nun ̺{{PLURAL:$3|yera'l métodu permitíu pa esti camín|yera unu de los métodos permitíos pa esti camín}} ($2)",
-	"rest-no-match": "El camín relativu solicitáu ($1) nun casa con nengún xestor conocíu"
+	"userlogout-continue": "¿Desees zarrar la sesión?"
 }

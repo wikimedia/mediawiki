@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group Xml
  */
@@ -8,7 +10,7 @@ class XmlTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$langObj = Language::factory( 'en' );
+		$langObj = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 		$langObj->setNamespaces( [
 			-2 => 'Media',
 			-1 => 'Special',
@@ -32,11 +34,6 @@ class XmlTest extends MediaWikiTestCase {
 			'wgLang' => $langObj,
 			'wgUseMediaWikiUIEverywhere' => false,
 		] );
-	}
-
-	protected function tearDown() {
-		Language::factory( 'en' )->resetNamespaces();
-		parent::tearDown();
 	}
 
 	/**

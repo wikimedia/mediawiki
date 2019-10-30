@@ -416,7 +416,6 @@
 	"undo-failure": "Ni mazīngi etwārtai wartīntun redigīsenin, kōnfliktas sen persirzdausnas wersiōnins paggan.",
 	"undo-norev": "Redigīsenis ni mazzi būtwei etwārtai wartīntan, beggi ni ekzistijja anga pastāi āupausintan.",
 	"undo-summary": "Etwārtai wartīnsna stēisan wersiōnin $1 teīktan pra [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusiōni]])",
-	"cantcreateaccount-text": "Rekkenas teīksenis iz šan IP adressin (\"$1\") pastāi drēuditan pra [[User:$3|$3]].\n\nBrewīnsli dātan pra $3 ast \"$2\"",
 	"viewpagelogs": "Wīdais šisse pāusas regīsterins",
 	"nohistory": "Ni ast redigīsnas istōrija per šin pāusan.",
 	"currentrev": "Bigantī wersiōni",

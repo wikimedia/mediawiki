@@ -28,7 +28,8 @@
 			"A2093064",
 			"Vlad5250",
 			"WAN233",
-			"Xiplus"
+			"Xiplus",
+			"WhitePhosphorus"
 		]
 	},
 	"tog-underline": "以底線識鏈接：",
@@ -598,7 +599,6 @@
 	"undo-failure": "中審之異，此審無返也。",
 	"undo-norev": "其審無存或刪，此審無返也。",
 	"undo-summary": "返[[Special:Contributions/$2|$2]]（[[User talk:$2|書]]）之審$1",
-	"cantcreateaccount-text": "[[User:$3|S3]]因''$2''故，封子IP <b>$1</b>。",
 	"viewpagelogs": "覽誌",
 	"nohistory": "此題無誌",
 	"currentrev": "今審",
@@ -1954,6 +1954,9 @@
 	"bydate": "時序",
 	"sp-newimages-showfrom": "自$1 $2賞新檔",
 	"video-dims": "$1，$2矩$3",
+	"seconds-abbrev": "$1秒",
+	"minutes-abbrev": "$1分",
+	"hours-abbrev": "$1小時",
 	"just-now": "方",
 	"hours-ago": "$1時前",
 	"yesterday-at": "昨日於$1",

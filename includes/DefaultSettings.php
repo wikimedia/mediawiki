@@ -95,15 +95,14 @@ $wgAssumeProxiesUseDefaultProtocolPorts = true;
  * $wgServer = 'http://example.com';
  * @endcode
  *
- * This is usually detected correctly by MediaWiki. If MediaWiki detects the
- * wrong server, it will redirect incorrectly after you save a page. In that
- * case, set this variable to fix it.
+ * This must be set in LocalSettings.php. The MediaWiki installer does this
+ * automatically since 1.18.
  *
  * If you want to use protocol-relative URLs on your wiki, set this to a
  * protocol-relative URL like '//example.com' and set $wgCanonicalServer
  * to a fully qualified URL.
  */
-$wgServer = WebRequest::detectServer();
+$wgServer = false;
 
 /**
  * Canonical URL of the server, to use in IRC feeds and notification e-mails.
@@ -3711,14 +3710,8 @@ $wgResourceBasePath = null;
  * - client: On the client side (e.g. in the browser cache).
  */
 $wgResourceLoaderMaxage = [
-	'versioned' => [
-		'server' => 30 * 24 * 60 * 60, // 30 days
-		'client' => 30 * 24 * 60 * 60, // 30 days
-	],
-	'unversioned' => [
-		'server' => 5 * 60, // 5 minutes
-		'client' => 5 * 60, // 5 minutes
-	],
+	'versioned' => 30 * 24 * 60 * 60, // 30 days
+	'unversioned' => 5 * 60, // 5 minutes
 ];
 
 /**
@@ -8502,21 +8495,6 @@ $wgUpdateRowsPerQuery = 100;
 $wgExternalDiffEngine = false;
 
 /**
- * wikidiff2 supports detection of changes in moved paragraphs.
- * This setting controls the maximum number of paragraphs to compare before it bails out.
- * Supported values:
- * * 0: detection of moved paragraphs is disabled
- * * int > 0: maximum number of paragraphs to compare
- * Note: number of paragraph comparisons is in O(n^2).
- * This setting is only effective if the wikidiff2 PHP extension is used as diff engine.
- * See $wgExternalDiffEngine.
- *
- * @since 1.30
- * @deprecated since 1.34
- */
-$wgWikiDiff2MovedParagraphDetectionCutoff = 0;
-
-/**
  * Disable redirects to special pages and interwiki redirects, which use a 302
  * and have no "redirected from" link.
  *
@@ -9005,6 +8983,9 @@ $wgXmlDumpSchemaVersion = XML_DUMP_SCHEMA_VERSION_10;
 /**
  * Flag to enable Partial Blocks. This allows an admin to prevent a user from editing specific pages
  * or namespaces.
+ *
+ * This option should *not* be used with a suffix or tag in a SiteConfiguration object.
+ * @see https://phabricator.wikimedia.org/T224020
  *
  * @since 1.33
  * @deprecated 1.33

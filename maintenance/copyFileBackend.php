@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -55,8 +57,9 @@ class CopyFileBackend extends Maintenance {
 	}
 
 	public function execute() {
-		$src = FileBackendGroup::singleton()->get( $this->getOption( 'src' ) );
-		$dst = FileBackendGroup::singleton()->get( $this->getOption( 'dst' ) );
+		$backendGroup = MediaWikiServices::getInstance()->getFileBackendGroup();
+		$src = $backendGroup->get( $this->getOption( 'src' ) );
+		$dst = $backendGroup->get( $this->getOption( 'dst' ) );
 		$containers = explode( '|', $this->getOption( 'containers' ) );
 		$subDir = rtrim( $this->getOption( 'subdir', '' ), '/' );
 

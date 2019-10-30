@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\ScopedCallback;
 
@@ -45,8 +46,8 @@ class ParserOptionsTest extends MediaWikiTestCase {
 
 	public function testNewCanonical() {
 		$wgUser = $this->getMutableTestUser()->getUser();
-		$wgLang = Language::factory( 'fr' );
-		$contLang = Language::factory( 'qqx' );
+		$wgLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'fr' );
+		$contLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'qqx' );
 
 		$this->setContentLang( $contLang );
 		$this->setMwGlobals( [
@@ -55,8 +56,8 @@ class ParserOptionsTest extends MediaWikiTestCase {
 		] );
 
 		$user = $this->getMutableTestUser()->getUser();
-		$lang = Language::factory( 'de' );
-		$lang2 = Language::factory( 'bug' );
+		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'de' );
+		$lang2 = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'bug' );
 		$context = new DerivativeContext( RequestContext::getMain() );
 		$context->setUser( $user );
 		$context->setLanguage( $lang );
@@ -301,7 +302,8 @@ class ParserOptionsTest extends MediaWikiTestCase {
 		$this->assertFalse( $cOpts->matchesForCacheKey( $uOpts ) );
 
 		$user = new User();
-		$uOpts = ParserOptions::newFromUserAndLang( $user, Language::factory( 'zh' ) );
+		$uOpts = ParserOptions::newFromUserAndLang( $user,
+			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'zh' ) );
 		$this->assertFalse( $cOpts->matchesForCacheKey( $uOpts ) );
 	}
 

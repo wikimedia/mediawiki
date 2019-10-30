@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Shell\Shell;
 
 /**
@@ -142,6 +144,17 @@ class ResourceLoaderImage {
 	}
 
 	/**
+	 * @internal For unit testing overrride
+	 * @param string $lang
+	 * @return string[]
+	 */
+	protected function getLangFallbacks( string $lang ) : array {
+		return MediaWikiServices::getInstance()
+			->getLanguageFallback()
+			->getAll( $lang, LanguageFallback::STRICT );
+	}
+
+	/**
 	 * Get the path to image file for given context.
 	 *
 	 * @param ResourceLoaderContext $context Any context
@@ -158,7 +171,7 @@ class ResourceLoaderImage {
 			if ( isset( $desc['lang'][$contextLang] ) ) {
 				return $this->getLocalPath( $desc['lang'][$contextLang] );
 			}
-			$fallbacks = Language::getFallbacksFor( $contextLang, Language::STRICT_FALLBACKS );
+			$fallbacks = $this->getLangFallbacks( $contextLang );
 			foreach ( $fallbacks as $lang ) {
 				if ( isset( $desc['lang'][$lang] ) ) {
 					return $this->getLocalPath( $desc['lang'][$lang] );

@@ -176,11 +176,20 @@ class User implements IDBAccessObject, UserIdentity {
 	protected $mNewtalk;
 	/** @var string */
 	protected $mDatePreference;
-	/** @var string */
+	/**
+	 * @deprecated since 1.35. Instead, use User::getBlock to get the block,
+	 *  then AbstractBlock::getByName to get the blocker's name; or use the
+	 *  GetUserBlock hook to set or unset a block.
+	 * @var string|int -1 when the block is unset
+	 */
 	public $mBlockedby;
 	/** @var string */
 	protected $mHash;
-	/** @var string */
+	/**
+	 * TODO: This should be removed when User::BlockedFor
+	 * and AbstractBlock::getReason are hard deprecated.
+	 * @var string
+	 */
 	protected $mBlockreason;
 	/** @var array */
 	protected $mEffectiveGroups;
@@ -192,7 +201,12 @@ class User implements IDBAccessObject, UserIdentity {
 	protected $mGlobalBlock;
 	/** @var bool */
 	protected $mLocked;
-	/** @var bool */
+	/**
+	 * @deprecated since 1.35. Instead, use User::getBlock to get the block,
+	 *  then AbstractBlock::getHideName to determine whether the block hides
+	 *  the user; or use the GetUserBlock hook to hide or unhide a user.
+	 * @var bool
+	 */
 	public $mHideName;
 	/** @var array */
 	public $mOptions;
@@ -200,7 +214,11 @@ class User implements IDBAccessObject, UserIdentity {
 	/** @var WebRequest */
 	private $mRequest;
 
-	/** @var AbstractBlock|null */
+	/**
+	 * @deprecated since 1.35. Instead, use User::getBlock to get the block;
+	 *  or the GetUserBlock hook to set or unset a block.
+	 * @var AbstractBlock|null
+	 */
 	public $mBlock;
 
 	/** @var bool */
@@ -1756,11 +1774,6 @@ class User implements IDBAccessObject, UserIdentity {
 			$this->mHideName = 0;
 			$this->mAllowUsertalk = false;
 		}
-
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$thisUser = $this;
-		// Extensions
-		Hooks::run( 'GetBlockedStatus', [ &$thisUser ], '1.34' );
 	}
 
 	/**
@@ -2093,7 +2106,9 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * If user is blocked, return the specified reason for the block
+	 * If user is blocked, return the specified reason for the block.
+	 *
+	 * @deprecated since 1.35 Use AbstractBlock::getReasonComment instead
 	 * @return string Blocking reason
 	 */
 	public function blockedFor() {
@@ -2926,6 +2941,7 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 
 		if ( array_key_exists( $oname, $this->mOptions ) ) {
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable Obvious false positive
 			return $this->mOptions[$oname];
 		}
 

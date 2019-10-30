@@ -73,7 +73,10 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 		ini_set( 'session.use_trans_sid', 1 );
 
 		$store = new TestBagOStuff();
-		$logger = new \TestLogger();
+		// Tolerate debug message, anything else is unexpected
+		$logger = new \TestLogger( false, function ( $m ) {
+			return preg_match( '/^SessionManager using store/', $m ) ? null : $m;
+		} );
 		$manager = new SessionManager( [
 			'store' => $store,
 			'logger' => $logger,
@@ -149,6 +152,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 		$expect = [ 'AuthenticationSessionTest' => $rand ];
 		session_write_close();
 		$this->assertSame( [
+			[ LogLevel::DEBUG, 'SessionManager using store MediaWiki\Session\TestBagOStuff' ],
 			[ LogLevel::WARNING, 'Something wrote to $_SESSION!' ],
 		], $logger->getBuffer() );
 

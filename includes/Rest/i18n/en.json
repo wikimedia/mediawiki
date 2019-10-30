@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bill Pirkle",
+			"Tim Starling"
+		]
+	},
+	"rest-prefix-mismatch": "The requested path ($1) was not inside the REST API root path ($2)",
+	"rest-wrong-method": "The request method ($1) was not {{PLURAL:$3|the allowed method for this path|one of the allowed methods for this path}} ($2)",
+	"rest-no-match": "The requested relative path ($1) did not match any known handler",
+	"rest-pagehistory-incompatible-params": "Parameters \"older_than\" and \"newer_than\" cannot both be specified",
+	"rest-pagehistory-param-range-error": "Revision id must be greater than 0",
+	"rest-pagehistory-title-nonexistent": "The specified title ($1) does not exist",
+	"rest-pagehistory-revision-nonexistent": "The specified revision ($1) does not exist for the specified page ($2)",
+	"rest-pagehistory-timestamp-error": "Unable to retrieve timestamp for the specified revision ($1)",
+	"rest-pagehistorycount-title-nonexistent": "The specified title ($1) does not exist",
+	"rest-pagehistory-title-permission-denied": "The user does not have right to read title ($1)",
+	"rest-pagehistorycount-type-unrecognized": "The specified count type ($1) is not valid",
+	"rest-revision-nonexistent": "The requested revision ($1) does not exist.",
+	"rest-revision-permission-denied": "User doesn't have access to the requested revision ($1).",
+	"rest-compare-page-mismatch": "The specified revisions belong to different pages; refusing to compare them.",
+	"rest-compare-permission-denied": "User doesn't have access to the requested revisions",
+	"rest-compare-nonexistent": "The revision specified by the $1 parameter does not exist.",
+	"rest-compare-inaccessible": "The revision specified by the $1 parameter is not publicly accessible.",
+	"rest-compare-wrong-content": "The $1 slot of the revision specified by the $2 parameter has a content type which cannot be converted to text.",
+	"rest-compare-wikidiff2": "This endpoint requires wikidiff2 1.9.0 or later."
+}

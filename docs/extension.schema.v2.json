@@ -309,8 +309,11 @@
 									"description": "Whether to skip CSSJanus LTR-to-RTL flipping for this module. Recommended for styles imported from libraries that already properly handle their RTL styles. Default is false, meaning CSSJanus will be applied on RTL-mode output."
 								},
 								"packageFiles": {
-									"type": ["object", "array"],
-									"description": "Package files that can be require()d"
+									"type": ["string", "array"],
+									"description": "Package files that can be require()d",
+									"items": {
+										"type": ["string", "object"]
+									}
 								}
 							}
 						},
@@ -455,10 +458,10 @@
 					}
 				},
 				"packageFiles": {
-					"type": ["array"],
-					"description": "Scripts to include (array of file paths)",
+					"type": ["string", "array"],
+					"description": "Package files that can be require()d",
 					"items": {
-						"type": "string"
+						"type": ["string", "object"]
 					}
 				},
 				"dependencies": {
@@ -485,6 +488,31 @@
 				"messages": {
 					"type": ["string", "array"],
 					"description": "Messages to load",
+					"items": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"MessagePosterModule": {
+			"type": "object",
+			"description": "Additional JavaScript files and modules that will register content models with mw.messagePoster.factory.",
+			"additionalProperties": false,
+			"properties": {
+				"localBasePath": {
+					"type": "string",
+					"description": "Prefix for local paths to files in $options, relative to extenion directory"
+				},
+				"scripts": {
+					"type": "array",
+					"description": "Scripts to include as array of file paths",
+					"items": {
+						"type": "string"
+					}
+				},
+				"dependencies": {
+					"type": "array",
+					"description": "Modules which must load before these files",
 					"items": {
 						"type": "string"
 					}

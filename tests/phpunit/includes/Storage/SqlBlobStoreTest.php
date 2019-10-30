@@ -324,14 +324,17 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	public function testSimpleStorageNonExistentBlobBatch() {
 		$store = $this->getBlobStore();
 		$result = $store->getBlobBatch( [ 'tt:this_will_not_exist', 'tt:1000', 'bla:1001' ] );
-		$this->assertSame(
-			[
-				'tt:this_will_not_exist' => null,
-				'tt:1000' => null,
-				'bla:1001' => null
-			],
-			$result->getValue()
-		);
+		$resultBlobs = $result->getValue();
+		$expected = [
+			'tt:this_will_not_exist' => null,
+			'tt:1000' => null,
+			'bla:1001' => null
+		];
+
+		ksort( $expected );
+		ksort( $resultBlobs );
+		$this->assertSame( $expected, $resultBlobs );
+
 		$this->assertSame( [
 			[
 				'type' => 'warning',
@@ -364,13 +367,15 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 		$store = $this->getBlobStore();
 		$address = $store->storeBlob( 'test_data' );
 		$result = $store->getBlobBatch( [ $address, 'tt:this_will_not_exist_too' ] );
-		$this->assertSame(
-			[
-				$address => 'test_data',
-				'tt:this_will_not_exist_too' => null
-			],
-			$result->getValue()
-		);
+		$resultBlobs = $result->getValue();
+		$expected = [
+			$address => 'test_data',
+			'tt:this_will_not_exist_too' => null
+		];
+
+		ksort( $expected );
+		ksort( $resultBlobs );
+		$this->assertSame( $expected, $resultBlobs );
 		$this->assertSame( [
 			[
 				'type' => 'warning',

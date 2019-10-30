@@ -582,9 +582,13 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 						[ 'name' => 'foo.json', 'content' => [ 'Hello' => 'world' ] ],
 						'sample.json',
 						[ 'name' => 'bar.js', 'content' => "console.log('Hello');" ],
-						[ 'name' => 'data.json', 'callback' => function ( $context ) {
-							return [ 'langCode' => $context->getLanguage() ];
-						} ],
+						[
+							'name' => 'data.json',
+							'callback' => function ( $context, $config, $extra ) {
+								return [ 'langCode' => $context->getLanguage(), 'extra' => $extra ];
+							},
+							'callbackParam' => [ 'a' => 'b' ],
+						],
 						[ 'name' => 'config.json', 'config' => [
 							'Sitename',
 							'wgVersion' => 'Version',
@@ -607,7 +611,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 						],
 						'data.json' => [
 							'type' => 'data',
-							'content' => [ 'langCode' => 'fy' ]
+							'content' => [ 'langCode' => 'fy', 'extra' => [ 'a' => 'b' ] ],
 						],
 						'config.json' => [
 							'type' => 'data',
@@ -627,11 +631,16 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 				$base + [
 					'packageFiles' => [
 						[ 'name' => 'bar.js', 'content' => "console.log('Hello');" ],
-						[ 'name' => 'data.json', 'versionCallback' => function ( $context ) {
-							return $context->getLanguage();
-						}, 'callback' => function ( $context ) {
-							return [ 'langCode' => $context->getLanguage() ];
-						} ],
+						[
+							'name' => 'data.json',
+							'versionCallback' => function ( $context ) {
+								return 'x';
+							},
+							'callback' => function ( $context, $config, $extra ) {
+								return [ 'langCode' => $context->getLanguage(), 'extra' => $extra ];
+							},
+							'callbackParam' => [ 'A', 'B' ]
+						],
 					]
 				],
 				[
@@ -642,7 +651,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 						],
 						'data.json' => [
 							'type' => 'data',
-							'content' => [ 'langCode' => 'fy' ]
+							'content' => [ 'langCode' => 'fy', 'extra' => [ 'A', 'B' ] ],
 						],
 					],
 					'main' => 'bar.js'

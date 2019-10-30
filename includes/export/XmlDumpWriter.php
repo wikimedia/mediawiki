@@ -36,16 +36,16 @@ use Wikimedia\Assert\Assert;
 class XmlDumpWriter {
 
 	/** Output serialized revision content. */
-	const WRITE_CONTENT = 0;
+	public const WRITE_CONTENT = 0;
 
 	/** Only output subs for revision content. */
-	const WRITE_STUB = 1;
+	public const WRITE_STUB = 1;
 
 	/**
 	 * Only output subs for revision content, indicating that the content has been
-	 * deleted/suppressed. For internal use only.
+	 * deleted/suppressed.
 	 */
-	const WRITE_STUB_DELETED = 2;
+	private const WRITE_STUB_DELETED = 2;
 
 	/**
 	 * @var string[] the schema versions supported for output

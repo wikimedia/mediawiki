@@ -19,6 +19,8 @@
  * @author Santhosh Thottingal
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Module for populating language specific data, such as grammar forms.
  *
@@ -36,7 +38,8 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderFileModule {
 	 * @return array
 	 */
 	protected function getData( ResourceLoaderContext $context ) {
-		$language = Language::factory( $context->getLanguage() );
+		$language = MediaWikiServices::getInstance()->getLanguageFactory()
+			->getLanguage( $context->getLanguage() );
 		return [
 			'digitTransformTable' => $language->digitTransformTable(),
 			'separatorTransformTable' => $language->separatorTransformTable(),

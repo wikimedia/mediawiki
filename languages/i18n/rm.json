@@ -567,7 +567,6 @@
 	"undo-failure": "La modificaziun na pudeva betg vegnir revocada causa modificaziuns pli novas che stattan en conflict cun questa acziun.",
 	"undo-norev": "La modificaziun na pudeva betg vegnir revocada perquai ch'ella n'exista betg u è vegnida stizzada.",
 	"undo-summary": "Revocar la versiun $1 da [[Special:Contributions/$2|$2]] ([[User talk:$2|discussiun]])",
-	"cantcreateaccount-text": "La creaziun da contos du'utilisader è vegnida bloccada da l'utilisader [[User:$3|$3]] per questa adressa IP ('''$1''').\n\nIl motiv inditgà da $3 è ''$2''",
 	"viewpagelogs": "Guardar ils protocols da questa pagina",
 	"nohistory": "Per questa pagina n'exista nagina cronologia.",
 	"currentrev": "Versiun actuala",

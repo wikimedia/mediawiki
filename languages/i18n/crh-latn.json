@@ -495,7 +495,6 @@
 	"undo-failure": "Aradaki deñiştirmeler bir-birine kelişikli olmağanı içün deñiştirme lâğu etilip olamay.",
 	"undo-norev": "Deñiştirme lâğu etilip olamaz, çünki o ya da yoq, ya da bar edi, amma yoq etilgen.",
 	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|muzakere]]) qullanıcısınıñ $1 nomeralı deñiştirmesini lâğu etüv.",
-	"cantcreateaccount-text": "Bu IP adresinden ('''$1''') esap yaratuv [[User:$3|$3]] tarafından blok etildi.\n\n$3 mına bu sebepni bildirdi: ''$2''",
 	"viewpagelogs": "Bu saifeniñ jurnallarını köster",
 	"nohistory": "Bu saifeniñ keçmiş versiyası yoq.",
 	"currentrev": "Şimdiki versiya",

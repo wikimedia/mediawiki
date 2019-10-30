@@ -631,7 +631,6 @@
 	"undo-nochange": "ਲਗਦਾ ਹੈ ਕਿ ਿਹ ਸੋਧ ਪਹਿਲਾਂ ਹੀ ਮੋੜ ਦਿੱਤੀ ਗਈ ਹੈ।",
 	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|ਗੱਲ-ਬਾਤ]]) ਦੀ ਸੋਧ $1 ਨਕਾਰੀ",
 	"undo-summary-username-hidden": "ਗੁਪਤ ਵਰਤੋਂਕਾਰ ਵੱਲੋਂ ਕੀਤੀ $1 ਸੋਧ ਰੱਦ ਕਰੋ",
-	"cantcreateaccount-text": "[[User:$3|$3]] ਨੇ ਇਸ IP ਪਤੇ ('''$1''') ਤੋਂ ਖਾਤਾ ਬਣਾਉਣ ਤੇ ਪਾਬੰਦੀ ਲਾਈ ਹੈ।\n\n$3 ਨੇ ਕਾਰਨ ਇਹ ਦੱਸਿਆ ਹੈ, ''$2''",
 	"viewpagelogs": "ਇਹ ਸਫ਼ੇ ਲਈ ਇੰਦਰਾਜ ਵੇਖੋ",
 	"nohistory": "ਇਸ ਸਫ਼ੇ ਲਈ ਕੋਈ ਸੋਧ ਅਤੀਤ ਨਹੀਂ ਹੈ।",
 	"currentrev": "ਮੌਜੂਦਾ ਦੁਹਰਾਅ",

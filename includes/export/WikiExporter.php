@@ -48,16 +48,16 @@ class WikiExporter {
 	/** @var string */
 	public $author_list = "";
 
-	const FULL = 1;
-	const CURRENT = 2;
-	const STABLE = 4; // extension defined
-	const LOGS = 8;
-	const RANGE = 16;
+	public const FULL = 1;
+	public const CURRENT = 2;
+	public const STABLE = 4; // extension defined
+	public const LOGS = 8;
+	public const RANGE = 16;
 
-	const TEXT = XmlDumpWriter::WRITE_CONTENT;
-	const STUB = XmlDumpWriter::WRITE_STUB;
+	public const TEXT = XmlDumpWriter::WRITE_CONTENT;
+	public const STUB = XmlDumpWriter::WRITE_STUB;
 
-	const BATCH_SIZE = 50000;
+	protected const BATCH_SIZE = 50000;
 
 	/** @var int */
 	public $text;
@@ -351,15 +351,6 @@ class WikiExporter {
 	 * @throws Exception
 	 */
 	protected function dumpPages( $cond, $orderRevs ) {
-		global $wgMultiContentRevisionSchemaMigrationStage;
-		if ( !( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
-			// TODO: Make XmlDumpWriter use a RevisionStore! (see T198706 and T174031)
-			throw new MWException(
-				'Cannot use WikiExporter with SCHEMA_COMPAT_WRITE_OLD mode disabled!'
-				. ' Support for dumping from the new schema is not implemented yet!'
-			);
-		}
-
 		$revQuery = MediaWikiServicesAlias::getInstance()->getRevisionStore()->getQueryInfo(
 			[ 'page' ]
 		);

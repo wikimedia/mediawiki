@@ -422,7 +422,7 @@ abstract class Installer {
 		$mwServices->getLocalisationCache()->disableBackend();
 
 		// Clear language cache so the old i18n cache doesn't sneak back in
-		Language::clearCaches();
+		$mwServices->resetLanguageServices();
 
 		// Disable object cache (otherwise CACHE_ANYTHING will try CACHE_DB and
 		// SqlBagOStuff will then throw since we just disabled wfGetDB)
@@ -460,7 +460,7 @@ abstract class Installer {
 		$this->parserOptions = new ParserOptions( $wgUser ); // language will be wrong :(
 		$this->parserOptions->setTidy( true );
 		// Don't try to access DB before user language is initialised
-		$this->setParserLanguage( Language::factory( 'en' ) );
+		$this->setParserLanguage( $mwServices->getLanguageFactory()->getLanguage( 'en' ) );
 	}
 
 	/**
@@ -1821,6 +1821,10 @@ abstract class Installer {
 
 		// Don't try to use any object cache for SessionManager either.
 		$GLOBALS['wgSessionCacheType'] = CACHE_NONE;
+
+		// Set a dummy $wgServer to bypass the check in Setup.php, the
+		// web installer will automatically detect it and not use this value.
+		$GLOBALS['wgServer'] = 'https://🌻.invalid';
 	}
 
 	/**

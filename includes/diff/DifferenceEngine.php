@@ -1463,12 +1463,18 @@ class DifferenceEngine extends ContextSource {
 
 		// Sanity: don't show the notice if too many rows must be scanned
 		// @todo show some special message for that case
-		$nEdits = $this->mNewPage->countRevisionsBetween( $oldRev, $newRev, 1000 );
+		$nEdits = MediaWikiServices::getInstance()->getRevisionStore()
+			->countRevisionsBetween(
+				$oldRev->getRevisionRecord(),
+				$newRev->getRevisionRecord(),
+				1000
+			);
 		if ( $nEdits > 0 && $nEdits <= 1000 ) {
 			$limit = 100; // use diff-multi-manyusers if too many users
 			$users = $this->mNewPage->getAuthorsBetween( $oldRev, $newRev, $limit );
 			$numUsers = count( $users );
 
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable False positive
 			if ( $numUsers == 1 && $users[0] == $newRev->getUserText( RevisionRecord::RAW ) ) {
 				$numUsers = 0; // special case to say "by the same user" instead of "by one other user"
 			}

@@ -112,6 +112,10 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 		return $session;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @phan-param array &$metadata
+	 */
 	public function refreshSessionInfo( SessionInfo $info, WebRequest $request, &$metadata ) {
 		$missingKeys = array_diff(
 			[ 'centralId', 'appId', 'token' ],

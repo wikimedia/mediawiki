@@ -37,6 +37,7 @@ class ContentSecurityPolicyTest extends MediaWikiTestCase {
 				'directory' => $wgUploadDirectory,
 				'backend' => 'wikimediacommons-backend',
 			] ],
+			'wgCSPHeader' => true, // enable nonce by default
 		] );
 		// Note, there are some obscure globals which
 		// could affect the results which aren't included above.
@@ -44,8 +45,9 @@ class ContentSecurityPolicyTest extends MediaWikiTestCase {
 		$context = RequestContext::getMain();
 		$resp = $context->getRequest()->response();
 		$conf = $context->getConfig();
-		$csp = new ContentSecurityPolicy( 'secret', $resp, $conf );
+		$csp = new ContentSecurityPolicy( $resp, $conf );
 		$this->csp = TestingAccessWrapper::newFromObject( $csp );
+		$this->csp->nonce = 'secret';
 
 		return parent::setUp();
 	}
@@ -89,6 +91,48 @@ class ContentSecurityPolicyTest extends MediaWikiTestCase {
 			[ 'Mozilla/5.0 (X11; U; Linux i686; en-ca) AppleWebKit/531.2+ (KHTML, like Gecko) Version/5.0 Safari/531.2+ Debian/squeeze (2.30.6-1) Epiphany/2.30.6', false ]
 		];
 		// @codingStandardsIgnoreEnd Generic.Files.LineLength
+	}
+
+	/**
+	 * @covers ContentSecurityPolicy::addScriptSrc
+	 * @covers ContentSecurityPolicy::makeCSPDirectives
+	 */
+	public function testAddScriptSrc() {
+		$this->csp->addScriptSrc( 'https://example.com:71' );
+		$actual = $this->csp->makeCSPDirectives( true, ContentSecurityPolicy::FULL_MODE );
+		$expected = "script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline'" .
+			" sister-site.somewhere.com *.wikipedia.org https://example.com:71; default-src *" .
+			" data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri" .
+			" /w/api.php?action=cspreport&format=json";
+		$this->assertEquals( $expected, $actual );
+	}
+
+	/**
+	 * @covers ContentSecurityPolicy::addStyleSrc
+	 * @covers ContentSecurityPolicy::makeCSPDirectives
+	 */
+	public function testAddStyleSrc() {
+		$this->csp->addStyleSrc( 'style.example.com' );
+		$actual = $this->csp->makeCSPDirectives( true, ContentSecurityPolicy::REPORT_ONLY_MODE );
+		$expected = "script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline'" .
+			" sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:;" .
+			" style-src * data: blob: style.example.com 'unsafe-inline'; report-uri" .
+			" /w/api.php?action=cspreport&format=json&reportonly=1";
+		$this->assertEquals( $expected, $actual );
+	}
+
+	/**
+	 * @covers ContentSecurityPolicy::addDefaultSrc
+	 * @covers ContentSecurityPolicy::makeCSPDirectives
+	 */
+	public function testAddDefaultSrc() {
+		$this->csp->addDefaultSrc( '*.example.com' );
+		$actual = $this->csp->makeCSPDirectives( true, ContentSecurityPolicy::FULL_MODE );
+		$expected = "script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline'" .
+			" sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:" .
+			" *.example.com; style-src * data: blob: *.example.com 'unsafe-inline';" .
+			" report-uri /w/api.php?action=cspreport&format=json";
+		$this->assertEquals( $expected, $actual );
 	}
 
 	/**

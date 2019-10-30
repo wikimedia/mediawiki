@@ -142,13 +142,12 @@ class FileOpBatch {
 	 * within any given sub-batch do not depend on each other.
 	 * This will abort remaining ops on failure.
 	 *
-	 * @param array $pPerformOps Batches of file ops (batches use original indexes)
+	 * @param FileOp[][] $pPerformOps Batches of file ops (batches use original indexes)
 	 * @param StatusValue $status
 	 */
 	protected static function runParallelBatches( array $pPerformOps, StatusValue $status ) {
 		$aborted = false; // set to true on unexpected errors
 		foreach ( $pPerformOps as $performOpsBatch ) {
-			/** @var FileOp[] $performOpsBatch */
 			if ( $aborted ) { // check batch op abort flag...
 				// We can't continue (even with $ignoreErrors) as $predicates is wrong.
 				// Log the remaining ops as failed for recovery...

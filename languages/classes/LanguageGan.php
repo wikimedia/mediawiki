@@ -80,9 +80,7 @@ class GanConverter extends LanguageConverter {
  * @ingroup Language
  */
 class LanguageGan extends LanguageZh {
-	function __construct() {
-		parent::__construct();
-
+	protected function newConverter() : LanguageConverter {
 		$variants = [ 'gan', 'gan-hans', 'gan-hant' ];
 		$variantfallbacks = [
 			'gan' => [ 'gan-hans', 'gan-hant' ],
@@ -93,7 +91,7 @@ class LanguageGan extends LanguageZh {
 			'gan' => 'disable',
 		];
 
-		$this->mConverter = new GanConverter( $this, 'gan',
+		return new GanConverter( $this, 'gan',
 			$variants, $variantfallbacks,
 			[],
 			$ml

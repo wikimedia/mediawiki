@@ -626,8 +626,6 @@
 	"undo-norev": "Rættingin kann ikki takast burtur, tí at hon er ikki til ella var strikað.",
 	"undo-summary": "Tak burtur versjón $1 hjá [[Special:Contributions/$2|$2]] ([[User talk:$2|kjak]])",
 	"undo-summary-username-hidden": "Angra versjón $1 sum ein fjaldur brúkari hevur gjørt",
-	"cantcreateaccount-text": "Upprættan frá hesi IP adressuni ('''$1''') er blivin sperrað av [[User:$3|$3]]. Orsøkin til sperringina sigst vera ''$2''\n\n$3 sigur orsøkina vera ''$2''",
-	"cantcreateaccount-range-text": "IP adressur í intervallinum <strong>$1</strong>, sum fevnir um tína IP adressu (<strong>$4</strong>), eru sperraðar fyri upprættan av nýggjari konto av [[User:$3|$3]].\n\n$3 segði orsøkina vera <em>$2</em>",
 	"viewpagelogs": "Sí logg fyri hesa grein",
 	"nohistory": "Eingin broytisøga er til hesa síðuna.",
 	"currentrev": "Núverandi endurskoðan",

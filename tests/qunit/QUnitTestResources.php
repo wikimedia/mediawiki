@@ -8,7 +8,10 @@ return [
 
 	'jquery.qunit' => [
 		'scripts' => 'resources/lib/qunitjs/qunit.js',
-		'styles' => 'resources/lib/qunitjs/qunit.css',
+		'styles' => [
+			'resources/lib/qunitjs/qunit.css',
+			'resources/src/qunitjs/qunit-local.css',
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
@@ -50,7 +53,6 @@ return [
 			'tests/qunit/suites/resources/jquery/jquery.highlightText.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.lengthLimit.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.makeCollapsible.test.js',
-			'tests/qunit/suites/resources/jquery/jquery.tabIndex.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.tablesorter.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.tablesorter.parsers.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.textSelection.test.js',
@@ -106,7 +108,6 @@ return [
 			'jquery.highlightText',
 			'jquery.lengthLimit',
 			'jquery.makeCollapsible',
-			'jquery.tabIndex',
 			'jquery.tablesorter',
 			'jquery.textSelection',
 			'mediawiki.api',

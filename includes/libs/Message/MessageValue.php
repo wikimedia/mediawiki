@@ -30,6 +30,16 @@ class MessageValue {
 	}
 
 	/**
+	 * Static constructor for easier chaining of `->params()` methods
+	 * @param string $key
+	 * @param (MessageParam|MessageValue|string|int|float)[] $params
+	 * @return MessageValue
+	 */
+	public static function new( $key, $params = [] ) {
+		return new MessageValue( $key, $params );
+	}
+
+	/**
 	 * Get the message key
 	 *
 	 * @return string
@@ -51,7 +61,7 @@ class MessageValue {
 	 * Chainable mutator which adds text parameters and MessageParam parameters
 	 *
 	 * @param MessageParam|MessageValue|string|int|float ...$values
-	 * @return MessageValue
+	 * @return $this
 	 */
 	public function params( ...$values ) {
 		foreach ( $values as $value ) {
@@ -69,7 +79,7 @@ class MessageValue {
 	 *
 	 * @param string $type One of the ParamType constants
 	 * @param MessageValue|string|int|float ...$values Scalar values
-	 * @return MessageValue
+	 * @return $this
 	 */
 	public function textParamsOfType( $type, ...$values ) {
 		foreach ( $values as $value ) {
@@ -84,7 +94,7 @@ class MessageValue {
 	 * @param string $listType One of the ListType constants
 	 * @param (MessageParam|MessageValue|string|int|float)[] ...$values Each value
 	 *  is an array of items suitable to pass as $params to ListParam::__construct()
-	 * @return MessageValue
+	 * @return $this
 	 */
 	public function listParamsOfType( $listType, ...$values ) {
 		foreach ( $values as $value ) {
@@ -97,7 +107,7 @@ class MessageValue {
 	 * Chainable mutator which adds parameters of type text (ParamType::TEXT).
 	 *
 	 * @param MessageValue|string|int|float ...$values
-	 * @return MessageValue
+	 * @return $this
 	 */
 	public function textParams( ...$values ) {
 		return $this->textParamsOfType( ParamType::TEXT, ...$values );
@@ -107,7 +117,7 @@ class MessageValue {
 	 * Chainable mutator which adds numeric parameters (ParamType::NUM).
 	 *
 	 * @param int|float ...$values
-	 * @return MessageValue
+	 * @return $this
 	 */
 	public function numParams( ...$values ) {
 		return $this->textParamsOfType( ParamType::NUM, ...$values );
@@ -121,7 +131,7 @@ class MessageValue {
 	 * more verbose.
 	 *
 	 * @param int|float ...$values
-	 * @return MessageValue
+	 * @return $this
 	 */
 	public function longDurationParams( ...$values ) {
 		return $this->textParamsOfType( ParamType::DURATION_LONG, ...$values );
@@ -135,7 +145,7 @@ class MessageValue {
 	 * compact.
 	 *
 	 * @param int|float ...$values
-	 * @return MessageValue
+	 * @return $this
 	 */
 	public function shortDurationParams( ...$values ) {
 		return $this->textParamsOfType( ParamType::DURATION_SHORT, ...$values );
@@ -146,7 +156,7 @@ class MessageValue {
 	 *
 	 * @param string ...$values Timestamp as accepted by the Wikimedia\Timestamp library,
 	 *  or "infinity"
-	 * @return MessageValue
+	 * @return $this
 	 */
 	public function expiryParams( ...$values ) {
 		return $this->textParamsOfType( ParamType::EXPIRY, ...$values );
@@ -156,7 +166,7 @@ class MessageValue {
 	 * Chainable mutator which adds parameters which are a number of bytes (ParamType::SIZE).
 	 *
 	 * @param int ...$values
-	 * @return MessageValue
+	 * @return $this
 	 */
 	public function sizeParams( ...$values ) {
 		return $this->textParamsOfType( ParamType::SIZE, ...$values );
@@ -167,7 +177,7 @@ class MessageValue {
 	 * second (ParamType::BITRATE).
 	 *
 	 * @param int|float ...$values
-	 * @return MessageValue
+	 * @return $this
 	 */
 	public function bitrateParams( ...$values ) {
 		return $this->textParamsOfType( ParamType::BITRATE, ...$values );
@@ -181,7 +191,7 @@ class MessageValue {
 	 * documenting what that intended output format is.
 	 *
 	 * @param string ...$values
-	 * @return MessageValue
+	 * @return $this
 	 */
 	public function rawParams( ...$values ) {
 		return $this->textParamsOfType( ParamType::RAW, ...$values );
@@ -195,7 +205,7 @@ class MessageValue {
 	 * so as to be represented as plain text rather than as any sort of markup.
 	 *
 	 * @param string ...$values
-	 * @return MessageValue
+	 * @return $this
 	 */
 	public function plaintextParams( ...$values ) {
 		return $this->textParamsOfType( ParamType::PLAINTEXT, ...$values );
@@ -209,7 +219,7 @@ class MessageValue {
 	 *
 	 * @param (MessageParam|MessageValue|string|int|float)[] ...$values Each value
 	 *  is an array of items suitable to pass as $params to ListParam::__construct()
-	 * @return MessageValue
+	 * @return $this
 	 */
 	public function commaListParams( ...$values ) {
 		return $this->listParamsOfType( ListType::COMMA, ...$values );
@@ -223,7 +233,7 @@ class MessageValue {
 	 *
 	 * @param (MessageParam|MessageValue|string|int|float)[] ...$values Each value
 	 *  is an array of items suitable to pass as $params to ListParam::__construct()
-	 * @return MessageValue
+	 * @return $this
 	 */
 	public function semicolonListParams( ...$values ) {
 		return $this->listParamsOfType( ListType::SEMICOLON, ...$values );
@@ -237,7 +247,7 @@ class MessageValue {
 	 *
 	 * @param (MessageParam|MessageValue|string|int|float)[] ...$values Each value
 	 *  is an array of items suitable to pass as $params to ListParam::__construct()
-	 * @return MessageValue
+	 * @return $this
 	 */
 	public function pipeListParams( ...$values ) {
 		return $this->listParamsOfType( ListType::PIPE, ...$values );
@@ -251,7 +261,7 @@ class MessageValue {
 	 * two elements joined with "and".
 	 *
 	 * @param (MessageParam|string)[] ...$values
-	 * @return MessageValue
+	 * @return $this
 	 */
 	public function textListParams( ...$values ) {
 		return $this->listParamsOfType( ListType::AND, ...$values );

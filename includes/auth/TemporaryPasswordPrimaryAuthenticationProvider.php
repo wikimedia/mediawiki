@@ -21,6 +21,7 @@
 
 namespace MediaWiki\Auth;
 
+use SpecialPage;
 use User;
 
 /**
@@ -46,6 +47,9 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	/** @var int */
 	protected $passwordReminderResendTime = null;
 
+	/** @var bool */
+	protected $allowRequiringEmail = null;
+
 	/**
 	 * @param array $params
 	 *  - emailEnabled: (bool) must be true for the option to email passwords to be present
@@ -65,6 +69,9 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		if ( isset( $params['passwordReminderResendTime'] ) ) {
 			$this->passwordReminderResendTime = $params['passwordReminderResendTime'];
 		}
+		if ( isset( $params['allowRequiringEmailForResets'] ) ) {
+			$this->allowRequiringEmail = $params['allowRequiringEmailForResets'];
+		}
 	}
 
 	public function setConfig( \Config $config ) {
@@ -78,6 +85,9 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		}
 		if ( $this->passwordReminderResendTime === null ) {
 			$this->passwordReminderResendTime = $this->config->get( 'PasswordReminderResendTime' );
+		}
+		if ( $this->allowRequiringEmail === null ) {
+			$this->allowRequiringEmail = $this->config->get( 'AllowRequiringEmailForResets' );
 		}
 	}
 
@@ -466,10 +476,21 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 				$req->password )->inLanguage( $userLanguage );
 			$emailMessage = wfMessage( $callerIsAnon ? 'passwordreset-emailtext-ip'
 				: 'passwordreset-emailtext-user' )->inLanguage( $userLanguage );
-			$emailMessage->params( $callerName, $passwordMessage->text(), 1,
+			$body = $emailMessage->params( $callerName, $passwordMessage->text(), 1,
 				'<' . \Title::newMainPage()->getCanonicalURL() . '>',
-				round( $this->newPasswordExpiry / 86400 ) );
+				round( $this->newPasswordExpiry / 86400 ) )->text();
+
+			if ( $this->allowRequiringEmail && !$user->getBoolOption( 'requireemail' ) ) {
+				$body .= "\n\n";
+				$url = SpecialPage::getTitleFor( 'Preferences', false, 'mw-prefsection-personal-email' )
+					->getFullURL();
+				$body .= wfMessage( 'passwordreset-emailtext-require-email' )
+					->inLanguage( $userLanguage )
+					->params( "<$url>" )
+					->text();
+			}
+
 			$emailTitle = wfMessage( 'passwordreset-emailtitle' )->inLanguage( $userLanguage );
-			return $user->sendMail( $emailTitle->text(), $emailMessage->text() );
+			return $user->sendMail( $emailTitle->text(), $body );
 	}
 }

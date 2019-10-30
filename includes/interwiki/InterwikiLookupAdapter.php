@@ -80,6 +80,7 @@ class InterwikiLookupAdapter implements InterwikiLookup {
 			return false;
 		}
 
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		return $this->interwikiMap[$prefix];
 	}
 

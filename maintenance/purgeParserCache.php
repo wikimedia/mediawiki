@@ -65,7 +65,7 @@ class PurgeParserCache extends Maintenance {
 		}
 		$this->usleep = 1e3 * $this->getOption( 'msleep', 0 );
 
-		$english = Language::factory( 'en' );
+		$english = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 		$this->output( "Deleting objects expiring before " .
 			$english->timeanddate( $date ) . "\n" );
 

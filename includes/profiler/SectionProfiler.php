@@ -32,12 +32,12 @@ class SectionProfiler {
 	protected $start;
 	/** @var array Map of (mem,real,cpu) */
 	protected $end;
-	/** @var array List of resolved profile calls with start/end data */
+	/** @var array[] List of resolved profile calls with start/end data */
 	protected $stack = [];
 	/** @var array Queue of open profile calls with start data */
 	protected $workStack = [];
 
-	/** @var array Map of (function name => aggregate data array) */
+	/** @var array[] Map of (function name => aggregate data array) */
 	protected $collated = [];
 	/** @var bool */
 	protected $collateDone = false;
@@ -463,10 +463,7 @@ class SectionProfiler {
 	 */
 	protected function getTime( $metric = 'wall' ) {
 		if ( $metric === 'cpu' || $metric === 'user' ) {
-			$ru = wfGetRusage();
-			if ( !$ru ) {
-				return 0;
-			}
+			$ru = getrusage( 0 /* RUSAGE_SELF */ );
 			$time = $ru['ru_utime.tv_sec'] + $ru['ru_utime.tv_usec'] / 1e6;
 			if ( $metric === 'cpu' ) {
 				# This is the time of system calls, added to the user time

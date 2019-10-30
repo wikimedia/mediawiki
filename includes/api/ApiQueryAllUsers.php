@@ -137,6 +137,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$this->addTables( 'user_groups', 'ug1' );
 
 			if ( count( $params['excludegroup'] ) == 1 ) {
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable False positive
 				$exclude = [ 'ug1.ug_group' => $params['excludegroup'][0] ];
 			} else {
 				$exclude = [ $db->makeList(

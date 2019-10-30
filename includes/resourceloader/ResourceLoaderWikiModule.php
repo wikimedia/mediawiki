@@ -114,7 +114,8 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * medium ('screen', 'print', etc.) of the stylesheet.
 	 *
 	 * @param ResourceLoaderContext $context
-	 * @return array
+	 * @return array[]
+	 * @phan-return array<string,array{type:string,media?:string}>
 	 */
 	protected function getPages( ResourceLoaderContext $context ) {
 		$config = $this->getConfig();
@@ -376,7 +377,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	/**
 	 * Get the information about the wiki pages for a given context.
 	 * @param ResourceLoaderContext $context
-	 * @return array Keyed by page name
+	 * @return array[] Keyed by page name
 	 */
 	protected function getTitleInfo( ResourceLoaderContext $context ) {
 		$dbr = $this->getDB();

@@ -35,7 +35,7 @@ class ProfilerOutputStats extends ProfilerOutput {
 	/**
 	 * Flush profiling data to the current profiling context's stats buffer.
 	 *
-	 * @param array $stats
+	 * @param array[] $stats
 	 */
 	public function log( array $stats ) {
 		$prefix = $this->params['prefix'] ?? '';

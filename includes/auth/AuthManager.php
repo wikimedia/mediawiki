@@ -24,7 +24,6 @@
 namespace MediaWiki\Auth;
 
 use Config;
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -1006,25 +1005,17 @@ class AuthManager implements LoggerAwareInterface {
 			return $status;
 		}
 
+		$ip = $this->getRequest()->getIP();
+
 		$block = $creator->isBlockedFromCreateAccount();
 		if ( $block ) {
-			$errorParams = [
-				$block->getTarget(),
-				$block->getReason() ?: wfMessage( 'blockednoreason' )->text(),
-				$block->getByName()
-			];
-
-			if ( $block->getType() === DatabaseBlock::TYPE_RANGE ) {
-				$errorMessage = 'cantcreateaccount-range-text';
-				$errorParams[] = $this->getRequest()->getIP();
-			} else {
-				$errorMessage = 'cantcreateaccount-text';
-			}
-
-			return Status::newFatal( wfMessage( $errorMessage, $errorParams ) );
+			$language = \RequestContext::getMain()->getLanguage();
+			$formatter = MediaWikiServices::getInstance()->getBlockErrorFormatter();
+			return Status::newFatal(
+				$formatter->getMessage( $block, $creator, $language, $ip )
+			);
 		}
 
-		$ip = $this->getRequest()->getIP();
 		if (
 			MediaWikiServices::getInstance()->getBlockManager()
 				->isDnsBlacklisted( $ip, true /* check $wgProxyWhitelist */ )
@@ -2448,6 +2439,7 @@ class AuthManager implements LoggerAwareInterface {
 		if ( $which & 4 ) {
 			$providers += $this->getSecondaryAuthenticationProviders();
 		}
+		// @phan-suppress-next-line PhanEmptyForeach False positive
 		foreach ( $providers as $provider ) {
 			$provider->$method( ...$args );
 		}

@@ -356,7 +356,6 @@
 	"undo-success": "Ticpatlöx zo pos-coccebj iixponintöx. Controlar comparicion zo !-cmaade verifiatom jan coccebj yazuáxiim ö xuniim quiíx zo !-cmaade fini iixponintöx ticpatlöx zo.",
 	"undo-failure": "Ticpatlöx zo necoccebj ticpatlöxde ticpatlöxám iti-am conflictom.",
 	"undo-summary": "Iixponintöx revicion $1 'de [[Special:Contributions/$2|$2]] ([[User talk:$2|Czaxö]])",
-	"cantcreateaccount-text": "Creacionde caitomde jan adressade IP ('''$1''') coccebj blockom [[User:$3|$3]] mii.\n\nRae' zo xuniim $3 mii coccebj ''$2''",
 	"viewpagelogs": "Cohuatlöx logámde jan páhina",
 	"nohistory": "Jan páhina necoccebj históriade ticpatlöx.",
 	"currentrev": "Revicion cmaa",

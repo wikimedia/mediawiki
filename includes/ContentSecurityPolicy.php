@@ -35,13 +35,23 @@ class ContentSecurityPolicy {
 	/** @var WebResponse */
 	private $response;
 
+	/** @var array */
+	private $extraDefaultSrc = [];
+	/** @var array */
+	private $extraScriptSrc = [];
+	/** @var array */
+	private $extraStyleSrc = [];
+
 	/**
-	 * @param string $nonce
+	 *
+	 * @note As a general rule, you would not construct this class directly
+	 *  but use the instance from OutputPage::getCSP()
+	 * @internal
 	 * @param WebResponse $response
 	 * @param Config $mwConfig
+	 * @since 1.35 Method signature changed
 	 */
-	public function __construct( $nonce, WebResponse $response, Config $mwConfig ) {
-		$this->nonce = $nonce;
+	public function __construct( WebResponse $response, Config $mwConfig ) {
 		$this->response = $response;
 		$this->mwConfig = $mwConfig;
 	}
@@ -50,6 +60,7 @@ class ContentSecurityPolicy {
 	 * Send a single CSP header based on a given policy config.
 	 *
 	 * @note Most callers will probably want ContentSecurityPolicy::sendHeaders() instead.
+	 * @internal
 	 * @param array $csp ContentSecurityPolicy configuration
 	 * @param int $reportOnly self::*_MODE constant
 	 */
@@ -66,23 +77,18 @@ class ContentSecurityPolicy {
 	/**
 	 * Send CSP headers based on wiki config
 	 *
-	 * Main method that callers are expected to use
-	 * @param IContextSource $context A context object, the associated OutputPage
-	 *  object must be the one that the page in question was generated with.
+	 * Main method that callers (OutputPage) are expected to use.
+	 * As a general rule, you would never call this in an extension unless
+	 * you have disabled OutputPage and are fully controlling the output.
+	 *
+	 * @since 1.35
 	 */
-	public static function sendHeaders( IContextSource $context ) {
-		$out = $context->getOutput();
-		$csp = new ContentSecurityPolicy(
-			$out->getCSPNonce(),
-			$context->getRequest()->response(),
-			$context->getConfig()
-		);
+	public function sendHeaders() {
+		$cspConfig = $this->mwConfig->get( 'CSPHeader' );
+		$cspConfigReportOnly = $this->mwConfig->get( 'CSPReportOnlyHeader' );
 
-		$cspConfig = $context->getConfig()->get( 'CSPHeader' );
-		$cspConfigReportOnly = $context->getConfig()->get( 'CSPReportOnlyHeader' );
-
-		$csp->sendCSPHeader( $cspConfig, self::FULL_MODE );
-		$csp->sendCSPHeader( $cspConfigReportOnly, self::REPORT_ONLY_MODE );
+		$this->sendCSPHeader( $cspConfig, self::FULL_MODE );
+		$this->sendCSPHeader( $cspConfigReportOnly, self::REPORT_ONLY_MODE );
 
 		// This used to insert a <meta> tag here, per advice at
 		// https://blogs.dropbox.com/tech/2015/09/unsafe-inline-and-nonce-deployment/
@@ -130,6 +136,15 @@ class ContentSecurityPolicy {
 
 		$mwConfig = $this->mwConfig;
 
+		if (
+			!self::isNonceRequired( $mwConfig ) &&
+			self::isNonceRequiredArray( [ $policyConfig ] )
+		) {
+			// If the current policy requires a nonce, but the global state
+			// does not, that's bad. Throw an exception. This should never happen.
+			throw new LogicException( "Nonce requirement mismatch" );
+		}
+
 		$additionalSelfUrls = $this->getAdditionalSelfUrls();
 		$additionalSelfUrlsScript = $this->getAdditionalSelfUrlsScript();
 
@@ -144,7 +159,7 @@ class ContentSecurityPolicy {
 		$imgSrc = false;
 		$scriptSrc = [ "'unsafe-eval'", "'self'" ];
 		if ( !isset( $policyConfig['useNonces'] ) || $policyConfig['useNonces'] ) {
-			$scriptSrc[] = "'nonce-" . $this->nonce . "'";
+			$scriptSrc[] = "'nonce-" . $this->getNonce() . "'";
 		}
 
 		$scriptSrc = array_merge( $scriptSrc, $additionalSelfUrlsScript );
@@ -196,13 +211,13 @@ class ContentSecurityPolicy {
 			}
 		}
 
+		$defaultSrc = array_merge( $defaultSrc, $this->extraDefaultSrc );
+		$scriptSrc = array_merge( $scriptSrc, $this->extraScriptSrc );
+
+		$cssSrc = array_merge( $defaultSrc, $this->extraStyleSrc, [ "'unsafe-inline'" ] );
+
 		Hooks::run( 'ContentSecurityPolicyDefaultSource', [ &$defaultSrc, $policyConfig, $mode ] );
 		Hooks::run( 'ContentSecurityPolicyScriptSource', [ &$scriptSrc, $policyConfig, $mode ] );
-
-		// Check if array just in case the hook made it false
-		if ( is_array( $defaultSrc ) ) {
-			$cssSrc = array_merge( $defaultSrc, [ "'unsafe-inline'" ] );
-		}
 
 		if ( isset( $policyConfig['report-uri'] ) && $policyConfig['report-uri'] !== true ) {
 			if ( $policyConfig['report-uri'] === false ) {
@@ -242,16 +257,16 @@ class ContentSecurityPolicy {
 
 		$directives = [];
 		if ( $scriptSrc ) {
-			$directives[] = 'script-src ' . implode( ' ', $scriptSrc );
+			$directives[] = 'script-src ' . implode( ' ', array_unique( $scriptSrc ) );
 		}
 		if ( $defaultSrc ) {
-			$directives[] = 'default-src ' . implode( ' ', $defaultSrc );
+			$directives[] = 'default-src ' . implode( ' ', array_unique( $defaultSrc ) );
 		}
 		if ( $cssSrc ) {
-			$directives[] = 'style-src ' . implode( ' ', $cssSrc );
+			$directives[] = 'style-src ' . implode( ' ', array_unique( $cssSrc ) );
 		}
 		if ( $imgSrc ) {
-			$directives[] = 'img-src ' . implode( ' ', $imgSrc );
+			$directives[] = 'img-src ' . implode( ' ', array_unique( $imgSrc ) );
 		}
 		if ( $reportUri ) {
 			$directives[] = 'report-uri ' . $reportUri;
@@ -479,6 +494,16 @@ class ContentSecurityPolicy {
 			$config->get( 'CSPHeader' ),
 			$config->get( 'CSPReportOnlyHeader' )
 		];
+		return self::isNonceRequiredArray( $configs );
+	}
+
+	/**
+	 * Does a specific config require a nonce
+	 *
+	 * @param array $configs An array of CSP config arrays
+	 * @return bool
+	 */
+	private static function isNonceRequiredArray( array $configs ) {
 		foreach ( $configs as $headerConfig ) {
 			if (
 				$headerConfig === true ||
@@ -492,5 +517,68 @@ class ContentSecurityPolicy {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Get the nonce if nonce is in use
+	 *
+	 * @since 1.35
+	 * @return bool|string A random (base64) string or false if not used.
+	 */
+	public function getNonce() {
+		if ( !self::isNonceRequired( $this->mwConfig ) ) {
+			return false;
+		}
+		if ( $this->nonce === null ) {
+			$rand = random_bytes( 15 );
+			$this->nonce = base64_encode( $rand );
+		}
+
+		return $this->nonce;
+	}
+
+	/**
+	 * Add an additional default src
+	 *
+	 * If possible you should use a more specific source type then default.
+	 *
+	 * So for example, if an extension added a special page that loaded something
+	 * it might call $this->getOutput()->getCSP()->addDefaultSrc( '*.example.com' );
+	 *
+	 * @since 1.35
+	 * @param string $source Source to add.
+	 *   e.g. blob:, example.com, https://*.example.com, example.com/foo
+	 */
+	public function addDefaultSrc( $source ) {
+		$this->extraDefaultSrc[] = $this->prepareUrlForCSP( $source );
+	}
+
+	/**
+	 * Add an additional CSS src
+	 *
+	 * So for example, if an extension added a special page that loaded external CSS
+	 * it might call $this->getOutput()->getCSP()->addStyleSrc( '*.example.com' );
+	 *
+	 * @since 1.35
+	 * @param string $source Source to add.
+	 *   e.g. blob:, example.com, https://*.example.com, example.com/foo
+	 */
+	public function addStyleSrc( $source ) {
+		$this->extraStyleSrc[] = $this->prepareUrlForCSP( $source );
+	}
+
+	/**
+	 * Add an additional script src
+	 *
+	 * So for example, if an extension added a special page that loaded something
+	 * it might call $this->getOutput()->getCSP()->addScriptSrc( '*.example.com' );
+	 *
+	 * @since 1.35
+	 * @warning Be careful including external scripts, as they can take over accounts.
+	 * @param string $source Source to add.
+	 *   e.g. blob:, example.com, https://*.example.com, example.com/foo
+	 */
+	public function addScriptSrc( $source ) {
+		$this->extraScriptSrc[] = $this->prepareUrlForCSP( $source );
 	}
 }

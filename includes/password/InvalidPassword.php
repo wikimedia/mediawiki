@@ -37,12 +37,6 @@ class InvalidPassword extends Password {
 		return '';
 	}
 
-	public function equals( $other ) {
-		wfDeprecated( __METHOD__, '1.33' );
-
-		return false;
-	}
-
 	public function verify( $password ) {
 		return false;
 	}

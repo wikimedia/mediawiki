@@ -2209,6 +2209,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$opts = $this->makeUpdateOptions( $options );
 		$sql = "UPDATE $opts $table SET " . $this->makeList( $values, self::LIST_SET );
 
+		// @phan-suppress-next-line PhanTypeComparisonFromArray
 		if ( $conds !== [] && $conds !== '*' ) {
 			$sql .= " WHERE " . $this->makeList( $conds, self::LIST_AND );
 		}
@@ -2218,11 +2219,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return true;
 	}
 
-	public function makeList( $a, $mode = self::LIST_COMMA ) {
-		if ( !is_array( $a ) ) {
-			throw new DBUnexpectedError( $this, __METHOD__ . ' called with incorrect parameters' );
-		}
-
+	public function makeList( array $a, $mode = self::LIST_COMMA ) {
 		$first = true;
 		$list = '';
 
@@ -2963,6 +2960,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( !is_array( reset( $rows ) ) ) {
 			$rows = [ $rows ];
 		}
+		'@phan-var array[] $rows';
 
 		if ( count( $uniqueIndexes ) ) {
 			$clauses = []; // list WHERE clauses that each identify a single row

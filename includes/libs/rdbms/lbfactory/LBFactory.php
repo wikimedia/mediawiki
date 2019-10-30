@@ -93,6 +93,8 @@ abstract class LBFactory implements ILBFactory {
 	private $trxRoundId = false;
 	/** @var string One of the ROUND_* class constants */
 	private $trxRoundStage = self::ROUND_CURSORY;
+	/** @var int Default replication wait timeout */
+	private $replicationWaitTimeout;
 
 	/** @var string|bool Reason all LBs are read-only or false if not */
 	protected $readOnlyReason = false;
@@ -154,6 +156,7 @@ abstract class LBFactory implements ILBFactory {
 		$this->agent = $conf['agent'] ?? '';
 		$this->defaultGroup = $conf['defaultGroup'] ?? null;
 		$this->secret = $conf['secret'] ?? '';
+		$this->replicationWaitTimeout = $this->cliMode ? 60 : 1;
 
 		static $nextId, $nextTicket;
 		$this->id = $nextId = ( is_int( $nextId ) ? $nextId++ : mt_rand() );
@@ -378,7 +381,7 @@ abstract class LBFactory implements ILBFactory {
 		$opts += [
 			'domain' => false,
 			'cluster' => false,
-			'timeout' => $this->cliMode ? 60 : 1,
+			'timeout' => $this->replicationWaitTimeout,
 			'ifWritesSince' => null
 		];
 
@@ -730,6 +733,13 @@ abstract class LBFactory implements ILBFactory {
 		}
 
 		$this->requestInfo = $info + $this->requestInfo;
+	}
+
+	public function setDefaultReplicationWaitTimeout( $seconds ) {
+		$old = $this->replicationWaitTimeout;
+		$this->replicationWaitTimeout = max( 1, (int)$seconds );
+
+		return $old;
 	}
 
 	/**

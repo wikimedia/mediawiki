@@ -36,6 +36,7 @@ $namespaceAliases = [
 	'Razgovor_o_MedijaVikiju' => NS_MEDIAWIKI_TALK,
 	'MediaWiki_razgovor' => NS_MEDIAWIKI_TALK,
 	'Razgovor_{{grammar:instrumental|$1}}' => NS_PROJECT_TALK,
+	'Razgovor_s_{{grammar:instrumental|$1}}' => NS_PROJECT_TALK,
 ];
 
 $specialPageAliases = [

@@ -31,7 +31,7 @@ class RevDelArchivedFileItem extends RevDelFileItem {
 	/** @var LocalFile */
 	protected $lockFile;
 
-	public function __construct( $list, $row ) {
+	public function __construct( RevisionListBase $list, $row ) {
 		parent::__construct( $list, $row );
 		$this->lockFile = RepoGroup::singleton()->getLocalRepo()->newFile( $row->fa_name );
 	}

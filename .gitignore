@@ -27,6 +27,7 @@ sftp-config.json
 /cache
 /docs/coverage
 /docs/js
+/docs/latex
 /images/[0-9a-f]
 /images/archive
 /images/cache

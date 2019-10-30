@@ -488,7 +488,6 @@
 	"undo-success": "Chistha mudìfigga pò assé annulladda. Verifiggà lu sighenti cuntrasthu prisintaddu pa s'azzirthà chi lu cuntinuddu curripundi a cantu disizaddu e dunca saivvà li mudìfigghi pa cumprità la procedura di annullamentu.",
 	"undo-failure": "Impussìbiri annullà la mudìfigga a càusa d'un cuntrasthu cun mudìfigghi intermédi.",
 	"undo-summary": "Annulladda la mudìfigga $1 di [[Special:Contributions/$2|$2]] ([[User talk:$2|Dischussioni]])",
-	"cantcreateaccount-text": "Criazioni di registhrazioni da chistu indirizzu IP ('''$1''') è isthadda broccadda da [[User:$3|$3]].\n\nLa rasgioni frunidda da $3 è ''$2''",
 	"viewpagelogs": "Visuarizza li rigisthri reratibi a chistha pàgina.",
 	"nohistory": "Cronologia di li versioni di chistha pàgina nò riperìbiri.",
 	"currentrev": "Versioni currenti",

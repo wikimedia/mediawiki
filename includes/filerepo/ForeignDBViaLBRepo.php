@@ -48,6 +48,7 @@ class ForeignDBViaLBRepo extends LocalRepo {
 	 */
 	function __construct( $info ) {
 		parent::__construct( $info );
+		'@phan-var array $info';
 		$this->wiki = $info['wiki'];
 		$this->hasSharedCache = $info['hasSharedCache'];
 	}

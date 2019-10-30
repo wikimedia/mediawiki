@@ -146,6 +146,7 @@ class SearchHighlighter {
 			$this->splitAndAdd( $textExt, $count, substr( $text, $start ) );
 			break;
 		}
+		'@phan-var string[] $textExt';
 
 		$all = $textExt + $otherExt; // these have disjunct key sets
 
@@ -305,7 +306,7 @@ class SearchHighlighter {
 	/**
 	 * Split text into lines and add it to extracts array
 	 *
-	 * @param array &$extracts Index -> $line
+	 * @param string[] &$extracts Index -> $line
 	 * @param int &$count
 	 * @param string $text
 	 */

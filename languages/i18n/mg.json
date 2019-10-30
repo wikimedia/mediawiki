@@ -736,8 +736,6 @@
 	"undo-nochange": "Hoatry ny efa nofoanana ilay fanovana.",
 	"undo-summary": "Niala ny fanovàna $1 nataon'i [[Special:Contributions/$2|$2]] ([[User talk:$2|resaho]])",
 	"undo-summary-username-hidden": "Namafa ny famerenana $1 nataom-pikambana afenina",
-	"cantcreateaccount-text": "Voasakan'i [[User:$3|$3]] ny fanokafana kaonty avy amin'ity adiresy IP (<b>$1</b>)\n\n''$2'' ny antony.",
-	"cantcreateaccount-range-text": "Nosakanan'i [[User:$3|$3]] ny fanokafana kaonty avy amin'ny adiresy IP ao amin'ny elanelana <strong>$1</strong> izay ahitana ny adiresy IP-nao (<strong>$4</strong>).",
 	"viewpagelogs": "Hijery ny fanovan'ity pejy ity",
 	"nohistory": "Tsy manana tantaram-panovana io pejy io.",
 	"currentrev": "Votoatiny ankehitriny",

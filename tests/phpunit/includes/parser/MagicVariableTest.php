@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 /**
  * This file is intended to test magic variables in the parser
  * It was inspired by Raymond & Matěj Grabovský commenting about r66200
@@ -11,9 +14,11 @@
  * @file
  */
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @group Database
- * @covers Parser::getVariableValue
+ * @covers Parser::expandMagicVariable
  */
 class MagicVariableTest extends MediaWikiTestCase {
 	/**
@@ -37,7 +42,7 @@ class MagicVariableTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$contLang = Language::factory( 'en' );
+		$contLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 		$this->setContentLang( $contLang );
 
 		$this->testParser = new Parser();
@@ -222,7 +227,7 @@ class MagicVariableTest extends MediaWikiTestCase {
 
 		$this->assertSame(
 			$expected,
-			$this->testParser->getVariableValue( $magic ),
+			TestingAccessWrapper::newFromObject( $this->testParser )->expandMagicVariable( $magic ),
 			$msg
 		);
 	}

@@ -1,13 +1,13 @@
 {
 	"extends": [
 		"wikimedia/client",
-		"wikimedia/jquery"
+		"wikimedia/jquery",
+		"wikimedia/mediawiki"
 	],
 	"globals": {
-		"require": false,
-		"module": false,
-		"mw": false,
-		"OO": false
+		"require": "readonly",
+		"module": "readonly",
+		"OO": "readonly"
 	},
 	"rules": {
 		"quote-props": [ "error", "as-needed" ],

@@ -52,10 +52,10 @@ abstract class ApiBase extends ContextSource {
 	 */
 
 	/** (null|boolean|integer|string) Default value of the parameter. */
-	const PARAM_DFLT = 0;
+	public const PARAM_DFLT = 0;
 
 	/** (boolean) Accept multiple pipe-separated values for this parameter (e.g. titles)? */
-	const PARAM_ISMULTI = 1;
+	public const PARAM_ISMULTI = 1;
 
 	/**
 	 * (string|string[]) Either an array of allowed value strings, or a string
@@ -91,51 +91,51 @@ abstract class ApiBase extends ContextSource {
 	 * - upload: An uploaded file. Will be returned as a WebRequestUpload object.
 	 *   Cannot be used with PARAM_ISMULTI.
 	 */
-	const PARAM_TYPE = 2;
+	public const PARAM_TYPE = 2;
 
 	/** (integer) Max value allowed for the parameter, for PARAM_TYPE 'integer' and 'limit'. */
-	const PARAM_MAX = 3;
+	public const PARAM_MAX = 3;
 
 	/**
 	 * (integer) Max value allowed for the parameter for users with the
 	 * apihighlimits right, for PARAM_TYPE 'limit'.
 	 */
-	const PARAM_MAX2 = 4;
+	public const PARAM_MAX2 = 4;
 
 	/** (integer) Lowest value allowed for the parameter, for PARAM_TYPE 'integer' and 'limit'. */
-	const PARAM_MIN = 5;
+	public const PARAM_MIN = 5;
 
 	/** (boolean) Allow the same value to be set more than once when PARAM_ISMULTI is true? */
-	const PARAM_ALLOW_DUPLICATES = 6;
+	public const PARAM_ALLOW_DUPLICATES = 6;
 
 	/** (boolean) Is the parameter deprecated (will show a warning)? */
-	const PARAM_DEPRECATED = 7;
+	public const PARAM_DEPRECATED = 7;
 
 	/**
 	 * (boolean) Is the parameter required?
 	 * @since 1.17
 	 */
-	const PARAM_REQUIRED = 8;
+	public const PARAM_REQUIRED = 8;
 
 	/**
 	 * (boolean) For PARAM_TYPE 'integer', enforce PARAM_MIN and PARAM_MAX?
 	 * @since 1.17
 	 */
-	const PARAM_RANGE_ENFORCE = 9;
+	public const PARAM_RANGE_ENFORCE = 9;
 
 	/**
 	 * (string|array|Message) Specify an alternative i18n documentation message
 	 * for this parameter. Default is apihelp-{$path}-param-{$param}.
 	 * @since 1.25
 	 */
-	const PARAM_HELP_MSG = 10;
+	public const PARAM_HELP_MSG = 10;
 
 	/**
 	 * ((string|array|Message)[]) Specify additional i18n messages to append to
 	 * the normal message for this parameter.
 	 * @since 1.25
 	 */
-	const PARAM_HELP_MSG_APPEND = 11;
+	public const PARAM_HELP_MSG_APPEND = 11;
 
 	/**
 	 * (array) Specify additional information tags for the parameter. Value is
@@ -145,14 +145,14 @@ abstract class ApiBase extends ContextSource {
 	 * $1 = count, $2 = comma-joined list of values, $3 = module prefix.
 	 * @since 1.25
 	 */
-	const PARAM_HELP_MSG_INFO = 12;
+	public const PARAM_HELP_MSG_INFO = 12;
 
 	/**
 	 * (string[]) When PARAM_TYPE is an array, this may be an array mapping
 	 * those values to page titles which will be linked in the help.
 	 * @since 1.25
 	 */
-	const PARAM_VALUE_LINKS = 13;
+	public const PARAM_VALUE_LINKS = 13;
 
 	/**
 	 * ((string|array|Message)[]) When PARAM_TYPE is an array, this is an array
@@ -161,7 +161,7 @@ abstract class ApiBase extends ContextSource {
 	 * Specify an empty array to use the default message key for all values.
 	 * @since 1.25
 	 */
-	const PARAM_HELP_MSG_PER_VALUE = 14;
+	public const PARAM_HELP_MSG_PER_VALUE = 14;
 
 	/**
 	 * (string[]) When PARAM_TYPE is 'submodule', map parameter values to
@@ -169,14 +169,14 @@ abstract class ApiBase extends ContextSource {
 	 * $this->getModuleManager() in the group matching the parameter name.
 	 * @since 1.26
 	 */
-	const PARAM_SUBMODULE_MAP = 15;
+	public const PARAM_SUBMODULE_MAP = 15;
 
 	/**
 	 * (string) When PARAM_TYPE is 'submodule', used to indicate the 'g' prefix
 	 * added by ApiQueryGeneratorBase (and similar if anything else ever does that).
 	 * @since 1.26
 	 */
-	const PARAM_SUBMODULE_PARAM_PREFIX = 16;
+	public const PARAM_SUBMODULE_PARAM_PREFIX = 16;
 
 	/**
 	 * (boolean|string) When PARAM_TYPE has a defined set of values and PARAM_ISMULTI is true,
@@ -184,20 +184,20 @@ abstract class ApiBase extends ContextSource {
 	 * every possible value. If a string is set, it will be used in place of the asterisk.
 	 * @since 1.29
 	 */
-	const PARAM_ALL = 17;
+	public const PARAM_ALL = 17;
 
 	/**
 	 * (int[]) When PARAM_TYPE is 'namespace', include these as additional possible values.
 	 * @since 1.29
 	 */
-	const PARAM_EXTRA_NAMESPACES = 18;
+	public const PARAM_EXTRA_NAMESPACES = 18;
 
 	/**
 	 * (boolean) Is the parameter sensitive? Note 'password'-type fields are
 	 * always sensitive regardless of the value of this field.
 	 * @since 1.29
 	 */
-	const PARAM_SENSITIVE = 19;
+	public const PARAM_SENSITIVE = 19;
 
 	/**
 	 * (array) When PARAM_TYPE is an array, this indicates which of the values are deprecated.
@@ -206,32 +206,32 @@ abstract class ApiBase extends ContextSource {
 	 * $msg for ApiBase::makeMessage().
 	 * @since 1.30
 	 */
-	const PARAM_DEPRECATED_VALUES = 20;
+	public const PARAM_DEPRECATED_VALUES = 20;
 
 	/**
 	 * (integer) Maximum number of values, for normal users. Must be used with PARAM_ISMULTI.
 	 * @since 1.30
 	 */
-	const PARAM_ISMULTI_LIMIT1 = 21;
+	public const PARAM_ISMULTI_LIMIT1 = 21;
 
 	/**
 	 * (integer) Maximum number of values, for users with the apihighimits right.
 	 * Must be used with PARAM_ISMULTI.
 	 * @since 1.30
 	 */
-	const PARAM_ISMULTI_LIMIT2 = 22;
+	public const PARAM_ISMULTI_LIMIT2 = 22;
 
 	/**
 	 * (integer) Maximum length of a string in bytes (in UTF-8 encoding).
 	 * @since 1.31
 	 */
-	const PARAM_MAX_BYTES = 23;
+	public const PARAM_MAX_BYTES = 23;
 
 	/**
 	 * (integer) Maximum length of a string in characters (unicode codepoints).
 	 * @since 1.31
 	 */
-	const PARAM_MAX_CHARS = 24;
+	public const PARAM_MAX_CHARS = 24;
 
 	/**
 	 * (array) Indicate that this is a templated parameter, and specify replacements. Keys are the
@@ -249,27 +249,27 @@ abstract class ApiBase extends ContextSource {
 	 *
 	 * @since 1.32
 	 */
-	const PARAM_TEMPLATE_VARS = 25;
+	public const PARAM_TEMPLATE_VARS = 25;
 
 	/** @} */
 
-	const ALL_DEFAULT_STRING = '*';
+	public const ALL_DEFAULT_STRING = '*';
 
 	/** Fast query, standard limit. */
-	const LIMIT_BIG1 = 500;
+	public const LIMIT_BIG1 = 500;
 	/** Fast query, apihighlimits limit. */
-	const LIMIT_BIG2 = 5000;
+	public const LIMIT_BIG2 = 5000;
 	/** Slow query, standard limit. */
-	const LIMIT_SML1 = 50;
+	public const LIMIT_SML1 = 50;
 	/** Slow query, apihighlimits limit. */
-	const LIMIT_SML2 = 500;
+	public const LIMIT_SML2 = 500;
 
 	/**
 	 * getAllowedParams() flag: When set, the result could take longer to generate,
 	 * but should be more thorough. E.g. get the list of generators for ApiSandBox extension
 	 * @since 1.21
 	 */
-	const GET_VALUES_FOR_HELP = 1;
+	public const GET_VALUES_FOR_HELP = 1;
 
 	/** @var array Maps extension paths to info arrays */
 	private static $extensionInfo = null;
@@ -1424,6 +1424,7 @@ abstract class ApiBase extends ContextSource {
 					$m = $p;
 				}
 				foreach ( $usedDeprecatedValues as $v ) {
+					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 					$msg = $deprecatedValues[$v];
 					if ( $msg === true ) {
 						$msg = [ 'apiwarn-deprecation-parameter', "$encParamName=$v" ];

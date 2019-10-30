@@ -25,7 +25,6 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 				}
 			}
 		);
-		Language::clearCaches();
 	}
 
 	private function doQuery( array $params, $microtimeFunction = null ): array {

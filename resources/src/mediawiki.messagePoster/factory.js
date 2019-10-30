@@ -3,11 +3,28 @@
 	 * Factory for MessagePoster objects. This provides a pluggable to way to script the action
 	 * of adding a message to someone's talk page.
 	 *
+	 * Usage example:
+	 *
+	 *   function MyExamplePoster() {}
+	 *   OO.inheritClass( MyExamplePoster, mw.messagePoster.MessagePoster );
+	 *
+	 *   mw.messagePoster.factory.register( 'mycontentmodel', MyExamplePoster );
+	 *
+	 * The JavaScript files(s) that register message posters for additional content
+	 * models must be registered with MediaWiki via the `MessagePosterModule`
+	 * extension attribute, like follows:
+	 *
+	 *    "MessagePosterModule": {
+	 *         "localBasePath": "", // (required)
+	 *         "scripts": [], // relative file path(s) (required)
+	 *         "dependencies": [], // module name(s) (optional)
+	 *    }
+	 *
 	 * @class mw.messagePoster.factory
 	 * @singleton
 	 */
 	function MessagePosterFactory() {
-		this.contentModelToClass = {};
+		this.contentModelToClass = Object.create( null );
 	}
 
 	OO.initClass( MessagePosterFactory );
@@ -22,7 +39,7 @@
 	 * @param {Function} constructor Constructor of a MessagePoster subclass
 	 */
 	MessagePosterFactory.prototype.register = function ( contentModel, constructor ) {
-		if ( this.contentModelToClass[ contentModel ] !== undefined ) {
+		if ( this.contentModelToClass[ contentModel ] ) {
 			throw new Error( 'Content model "' + contentModel + '" is already registered' );
 		}
 
@@ -68,37 +85,18 @@
 			prop: 'info',
 			titles: title.getPrefixedDb()
 		} ).then( function ( data ) {
-			var contentModel, moduleName, page = data.query.pages[ 0 ];
+			var contentModel, page = data.query.pages[ 0 ];
 			if ( !page ) {
 				return $.Deferred().reject( 'unexpected-response', 'Unexpected API response' );
 			}
 			contentModel = page.contentmodel;
-			moduleName = 'mediawiki.messagePoster.' + contentModel;
-			return mw.loader.using( moduleName ).then( function () {
-				return factory.createForContentModel(
-					contentModel,
-					title,
-					api
-				);
-			}, function () {
-				return $.Deferred().reject( 'failed-to-load-module', 'Failed to load "' + moduleName + '"' );
-			} );
+			if ( !factory.contentModelToClass[ contentModel ] ) {
+				return $.Deferred().reject( 'content-model-unknown', 'No handler for "' + contentModel + '"' );
+			}
+			return new factory.contentModelToClass[ contentModel ]( title, api );
 		}, function ( error, details ) {
 			return $.Deferred().reject( 'content-model-query-failed', error, details );
 		} );
-	};
-
-	/**
-	 * Creates a MessagePoster instance, given a title and content model
-	 *
-	 * @private
-	 * @param {string} contentModel Content model of title
-	 * @param {mw.Title} title Title being posted to
-	 * @param {mw.Api} api mw.Api instance that the instance should use
-	 * @return {mw.messagePoster.MessagePoster}
-	 */
-	MessagePosterFactory.prototype.createForContentModel = function ( contentModel, title, api ) {
-		return new this.contentModelToClass[ contentModel ]( title, api );
 	};
 
 	mw.messagePoster = {

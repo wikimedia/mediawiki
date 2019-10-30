@@ -1585,10 +1585,6 @@ entitled to be in.
 $user: user to promote.
 &$promote: groups that will be added.
 
-'GetBlockedStatus': DEPRECATED since 1.34 - use GetUserBlock instead. After
-loading blocking status of a user from the database
-&$user: user (object) being checked
-
 'GetCacheVaryCookies': Get cookies that should vary cache options.
 $out: OutputPage object
 &$cookies: array of cookies name, add a value to it if you want to add a cookie
@@ -1730,7 +1726,10 @@ $context: IContextSource
 'GetUserBlock': Modify the block found by the block manager. This may be a
 single block or a composite block made from multiple blocks; the original
 blocks can be seen using CompositeBlock::getOriginalBlocks()
-&$block: AbstractBlock object
+$user: User targeted by the block
+$ip: string|null The IP of the current request if $user is the current user
+  and they're not exempted from IP blocks. Null otherwise.
+&$block: AbstractBlock|null The user's block, or null if none was found.
 
 'getUserPermissionsErrors': Add a permissions error when permissions errors are
 checked for. Use instead of userCan for most cases. Return false if the user

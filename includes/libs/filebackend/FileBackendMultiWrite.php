@@ -151,11 +151,11 @@ class FileBackendMultiWrite extends FileBackend {
 				return $status; // abort
 			}
 		}
-		// Clear any cache entries (after locks acquired)
-		$this->clearCache();
-		$opts['preserveCache'] = true; // only locked files are cached
 		// Get the list of paths to read/write
 		$relevantPaths = $this->fileStoragePathsForOps( $ops );
+		// Clear any cache entries (after locks acquired)
+		$this->clearCache( $relevantPaths );
+		$opts['preserveCache'] = true; // only locked files are cached
 		// Check if the paths are valid and accessible on all backends
 		$status->merge( $this->accessibilityCheck( $relevantPaths ) );
 		if ( !$status->isOK() ) {
@@ -399,6 +399,7 @@ class FileBackendMultiWrite extends FileBackend {
 					if (
 						$resyncMode === 'conservative' &&
 						$cloneStat &&
+						// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 						$cloneStat['mtime'] > $masterStat['mtime']
 					) {
 						// Do not replace files with older ones; reduces the risk of data loss
@@ -527,7 +528,7 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	/**
-	 * @param array $ops File operations for FileBackend::doOperations()
+	 * @param array[] $ops File operations for FileBackend::doOperations()
 	 * @return bool Whether there are file path sources with outside lifetime/ownership
 	 */
 	protected function hasVolatileSources( array $ops ) {

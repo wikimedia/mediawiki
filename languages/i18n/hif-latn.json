@@ -742,8 +742,6 @@
 	"undo-nochange": "Janae hae ki badlao ke pahile delete kar dewa gais hae.",
 	"undo-summary": "$1 badlao [[Special:Contributions/$2|$2]] se, ke pahile jaise karo ([[User talk:$2|Talk]])",
 	"undo-summary-username-hidden": "Hidden sadasya ke badalo $1 ke pahile jaise karo",
-	"cantcreateaccount-text": "Ii IP address ('''$1''') se nawaa account banae ke [[User:$3|$3]] block kar diis hai.\n\nIske kaaran, jon ki $3 diis hai, ''$2'' hai",
-	"cantcreateaccount-range-text": "Nawaa account banae ke IP addresses range <strong>$1</strong>, jisme aap ke IP address (<strong>$4</strong>) hae, ke[[User:$3|$3]] block kar diis hae.\n\n$3 ke kaaran hae <em>$2</em>",
 	"viewpagelogs": "Ii panna ke suchi dekho",
 	"nohistory": "Ii panna ke khatir koi badlao ke itihaas nai hai.",
 	"currentrev": "Abhi ke sansodhan",

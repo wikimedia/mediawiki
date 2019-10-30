@@ -622,7 +622,6 @@
 	"undo-norev": "Manam atinichu llamk'apusqata kutichiyta, mana kaptinmi icha qullusqa kaptinmi.",
 	"undo-summary": "[[Special:Contributions/$2|$2]]-pa $1 hukchasqanta kutichisqa ([[User talk:$2|rimay]])",
 	"undo-summary-username-hidden": "Pakasqa ruraqpa $1 nisqa musuqchasqata kutichiy",
-	"cantcreateaccount-text": "Kay IP tiyaymanta ('''$1''') rakiquna kichariyqa [[User:$3|$3]]-pa hark'asqanmi.\n\n$3-qa nirqan kayraykum: ''$2''",
 	"viewpagelogs": "Kay p'anqamanta hallch'akunata qhaway",
 	"nohistory": "Kay p'anqamantaqa manam llamk'apuy wiñay kawsay kanchu.",
 	"currentrev": "Kunan hukchasqa",

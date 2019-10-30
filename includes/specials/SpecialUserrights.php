@@ -169,7 +169,12 @@ class UserrightsPage extends SpecialPage {
 			) {
 				$block = $user->getBlock();
 				if ( $block && $block->isSitewide() ) {
-					throw new UserBlockedError( $block );
+					throw new UserBlockedError(
+						$block,
+						$user,
+						$this->getLanguage(),
+						$request->getIP()
+					);
 				}
 			}
 

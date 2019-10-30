@@ -25,9 +25,9 @@
 }
 
 .mw-search-results li {
-	padding-bottom: 1.2em;
-	list-style: none;
-	list-style-image: none;
+	list-style: none none;
+	/* Rely on `padding-bottom` here to add on top of `.content li` provided `margin`. */
+	padding-bottom: 24px;
 }
 
 .mw-search-results li a {

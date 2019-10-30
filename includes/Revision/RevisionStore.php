@@ -3258,8 +3258,50 @@ class RevisionStore
 		);
 	}
 
-	// TODO: move relevant methods from Title here, e.g. getFirstRevision, isBigDeletion, etc.
+	/**
+	 * Get the number of revisions between the given revisions.
+	 * Used for diffs and other things that really need it.
+	 *
+	 * @since 1.35
+	 *
+	 * @param RevisionRecord $old Old revision or rev ID (first before range).
+	 * @param RevisionRecord $new New revision or rev ID (first after range).
+	 * @param int|null $max Limit of Revisions to count, will be incremented to detect truncations.
+	 * @throws InvalidArgumentException in case either revision is unsaved or
+	 * 	the revisions do not belong to the same page.
+	 * @return int Number of revisions between these revisions.
+	 */
+	public function countRevisionsBetween( RevisionRecord $old, RevisionRecord $new, $max = null ) {
+		if ( $old->getId() === null || $new->getId() === null ) {
+			throw new InvalidArgumentException( 'Unsaved revision passed' );
+		}
 
+		if ( $old->getPageId() !== $new->getPageId() ) {
+			throw new InvalidArgumentException(
+				"Revisions {$old->getId()} and {$new->getId()} do not belong to the same page"
+			);
+		}
+
+		$dbr = $this->getDBConnectionRef( DB_REPLICA );
+		$oldTs = $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) );
+		$newTs = $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) );
+		$conds = [
+			'rev_page' => $old->getPageId(),
+			"(rev_timestamp = {$oldTs} AND rev_id > {$old->getId()}) OR rev_timestamp > {$oldTs}",
+			"(rev_timestamp = {$newTs} AND rev_id < {$new->getId()}) OR rev_timestamp < {$newTs}",
+		];
+		if ( $max !== null ) {
+			return $dbr->selectRowCount( 'revision', '1',
+				$conds,
+				__METHOD__,
+				[ 'LIMIT' => $max + 1 ] // extra to detect truncation
+			);
+		} else {
+			return (int)$dbr->selectField( 'revision', 'count(*)', $conds, __METHOD__ );
+		}
+	}
+
+	// TODO: move relevant methods from Title here, e.g. getFirstRevision, isBigDeletion, etc.
 }
 
 /**

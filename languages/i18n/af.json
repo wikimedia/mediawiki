@@ -678,7 +678,6 @@
 	"undo-nochange": "Die wysiging is klaarblyklik reeds teruggerol.",
 	"undo-summary": "Rol weergawe $1 deur [[Special:Contributions/$2|$2]] ([[User talk:$2|bespreek]]) terug.",
 	"undo-summary-username-hidden": "Rol weergawe $1 deur 'n versteekte gebruiker terug",
-	"cantcreateaccount-text": "Die registrasie van nuwe rekeninge vanaf die IP-adres ('''$1''') is geblok deur [[User:$3|$3]].\n\nDie rede verskaf deur $3 is ''$2''",
 	"viewpagelogs": "Bekyk logboeke vir hierdie bladsy",
 	"nohistory": "Daar is geen wysigingsgeskiedenis vir hierdie bladsy nie.",
 	"currentrev": "Huidige wysiging",

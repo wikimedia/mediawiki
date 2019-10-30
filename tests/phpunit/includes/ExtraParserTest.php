@@ -17,13 +17,13 @@ class ExtraParserTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$contLang = Language::factory( 'en' );
 		$this->setMwGlobals( [
 			'wgShowExceptionDetails' => true,
 			'wgCleanSignatures' => true,
 		] );
 		$this->setUserLang( 'en' );
-		$this->setContentLang( $contLang );
+		$this->setContentLang( 'en' );
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 
 		// FIXME: This test should pass without setting global content language
 		$this->options = ParserOptions::newFromUserAndLang( new User, $contLang );

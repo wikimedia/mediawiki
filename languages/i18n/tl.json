@@ -690,7 +690,6 @@
 	"undo-failure": "Hindi matanggal ang pagbabago dahil sa magkakasalungat na panggitnang mga pagbabago.",
 	"undo-norev": "Hindi matanggal ang pagbabago dahil hindi ito umiiral o nabura na.",
 	"undo-summary": "Tanggalin ang pagbabagong $1 ni [[Special:Contributions/$2|$2]] ([[User talk:$2|Usapan]])",
-	"cantcreateaccount-text": "Hinarang ni [[User:$3|$3]] ang paglikha ng acciybt mula sa IP address ('''$1''') na ito.\n\nAng dahilang ibinigay ni $3 ay ''$2''",
 	"viewpagelogs": "Tingnan ang mga pagtatala para sa pahinang ito",
 	"nohistory": "Walang kasaysayan ng pagbabago para sa pahinang ito.",
 	"currentrev": "Pangkasalukuyang pagbabago",

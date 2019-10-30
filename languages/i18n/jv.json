@@ -717,8 +717,6 @@
 	"undo-norev": "Besutan iki ora bisa diwurungaké amarga wis ora ana utawa wis binusek.",
 	"undo-summary": "Mbalèkaké owahan $1 déning [[Special:Contributions/$2|$2]] ([[User talk:$2|rembugan]])",
 	"undo-summary-username-hidden": "Balèkaké owahan $1 déning panganggo kang didhelikaké",
-	"cantcreateaccount-text": "Panggawéning akun saka alamat IP iki (<strong>$1</strong>) wis dipenggak [[User:$3|$3]].\n\nDhedhasaré pamenggak miturut $3 iku ''$2''",
-	"cantcreateaccount-range-text": "Nggawe akun saka alamat IP \"$1\", kang kalebu IP panjenengan (<strong>$4</strong>), wis diblokir kaliyan [[User:$3|$3]].\n\nAlesan pamblokiran yaiku \"$2\"",
 	"viewpagelogs": "Deleng cathetaning kaca iki",
 	"nohistory": "Babading besutan kaca iki ora ana.",
 	"currentrev": "Owahan anyaran",

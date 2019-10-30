@@ -21,6 +21,8 @@
  * @ingroup MaintenanceLanguage
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/../Maintenance.php';
 
 /**
@@ -47,7 +49,7 @@ class DateFormats extends Maintenance {
 			}
 			$code = str_replace( '_', '-', strtolower( $m[1] ) );
 			$this->output( "$code " );
-			$lang = Language::factory( $code );
+			$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $code );
 			$prefs = $lang->getDatePreferences();
 			if ( !$prefs ) {
 				$prefs = [ 'default' ];

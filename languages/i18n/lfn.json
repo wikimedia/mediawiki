@@ -740,8 +740,6 @@
 	"undo-nochange": "Lo pare ce la edita es ja desfada.",
 	"undo-summary": "Desfa revisa $1 par [[Special:Contributions/$2|$2]] ([[User talk:$2|discute]])",
 	"undo-summary-username-hidden": "Desfa revisa $1 par un usor ascondeda",
-	"cantcreateaccount-text": "La crea de contas de esta adirije IP (<strong>$1</strong>) ia es impedida par [[User:$3|$3]].\n\nLa razona donada par $3 es <em>$2</em>",
-	"cantcreateaccount-range-text": "La crea de contas de adirijes IP en la estende <strong>$1</strong>, cual inclui tua adirije IP (<strong>$4</strong>), ia es impedida par [[User:$3|$3]].\n\nLa razona donada par $3 es <em>$2</em>",
 	"viewpagelogs": "Mostra rejistras per esta paje",
 	"nohistory": "Esta paje ave no istoria de editas.",
 	"currentrev": "Revisa la plu resente",

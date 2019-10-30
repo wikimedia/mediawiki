@@ -112,9 +112,7 @@ class ZhConverter extends LanguageConverter {
  * @ingroup Language
  */
 class LanguageZh extends LanguageZh_hans {
-	function __construct() {
-		parent::__construct();
-
+	protected function newConverter() : LanguageConverter {
 		$variants = [
 			'zh',
 			'zh-hans',
@@ -144,7 +142,7 @@ class LanguageZh extends LanguageZh_hans {
 			'zh-hant' => 'unidirectional',
 		];
 
-		$this->mConverter = new ZhConverter( $this, 'zh',
+		return new ZhConverter( $this, 'zh',
 			$variants, $variantfallbacks,
 			[],
 			$ml

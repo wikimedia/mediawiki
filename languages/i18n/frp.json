@@ -701,8 +701,6 @@
 	"undo-nochange": "Semble que lo changement seye ja étâ dèfêt.",
 	"undo-summary": "Dèfêta du changement $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discutar]])",
 	"undo-summary-username-hidden": "Dèfêta du changement $1 d’un utilisator cachiê",
-	"cantcreateaccount-text": "La crèacion de comptio dês cel’adrèce IP (<strong>$1</strong>) est étâye blocâye per [[User:$3|$3]].\n\nLa rêson balyêe per $3 ére <em>$2</em>",
-	"cantcreateaccount-range-text": "La crèacion de comptio dês les adrèces IP dedens la plage <strong>$1</strong>, que comprend voutron adrèce IP (<strong>$4</strong>), sont étâye blocâyes per [[User:$3|$3]].\n\nLa rêson balyêe per $3 ére <em>$2</em>",
 	"viewpagelogs": "Vêde los jornâls de cela pâge",
 	"nohistory": "Ègziste gins d’historico por cela pâge.",
 	"currentrev": "Vèrsion d’ora",

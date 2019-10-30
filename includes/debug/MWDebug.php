@@ -454,7 +454,7 @@ class MWDebug {
 			// by the time this method is called.
 			$html = ResourceLoader::makeInlineScript(
 				ResourceLoader::makeConfigSetScript( [ 'debugInfo' => $debugInfo ] ),
-				$context->getOutput()->getCSPNonce()
+				$context->getOutput()->getCSP()->getNonce()
 			);
 		}
 

@@ -1,5 +1,6 @@
 {
-	"parserOptions": {
-		"sourceType": "module"
+	"rules": {
+		"no-implicit-globals": "off"
 	}
 }
+

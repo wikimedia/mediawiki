@@ -186,7 +186,12 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 		// Check blocks
 		if ( $this->permissionManager->isBlockedFrom( $user, $this->targetObj ) ) {
-			throw new UserBlockedError( $user->getBlock() );
+			throw new UserBlockedError(
+				$user->getBlock(),
+				$user,
+				$this->getLanguage(),
+				$request->getIP()
+			);
 		}
 
 		$this->typeLabels = self::UI_LABELS[$this->typeName];

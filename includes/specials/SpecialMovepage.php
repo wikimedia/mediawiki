@@ -249,6 +249,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		if ( count( $err ) ) {
+			'@phan-var array[] $err';
 			if ( $isPermError ) {
 				$action_desc = $this->msg( 'action-move' )->plain();
 				$errMsgHtml = $this->msg( 'permissionserrorstext-withaction',

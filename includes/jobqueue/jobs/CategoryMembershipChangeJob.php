@@ -58,7 +58,10 @@ class CategoryMembershipChangeJob extends Job {
 				'pageId' => $title->getArticleID(),
 				'revTimestamp' => $revisionTimestamp,
 			],
-			[],
+			[
+				'removeDuplicates' => true,
+				'removeDuplicatesIgnoreParams' => [ 'revTimestamp' ]
+			],
 			$title
 		);
 	}

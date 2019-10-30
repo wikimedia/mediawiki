@@ -302,8 +302,11 @@
 									"description": "Whether to skip CSSJanus LTR-to-RTL flipping for this module. Recommended for styles imported from libraries that already properly handle their RTL styles. Default is false, meaning CSSJanus will be applied on RTL-mode output."
 								},
 								"packageFiles": {
-									"type": ["object", "array"],
-									"description": "Package files that can be require()d"
+									"type": ["string", "array"],
+									"description": "Package files that can be require()d",
+									"items": {
+										"type": ["string", "object"]
+									}
 								}
 							}
 						},
@@ -414,6 +417,10 @@
 		"QUnitTestModule": {
 			"type": "object",
 			"description": "A ResourceLoaderFileModule definition registered only when wgEnableJavaScriptTest is true."
+		},
+		"MessagePosterModule": {
+			"type": "object",
+			"description": "Additional JavaScript files and modules that will register content models with mw.messagePoster.factory."
 		},
 		"ConfigRegistry": {
 			"type": "object",

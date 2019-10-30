@@ -140,7 +140,12 @@ class SpecialEditTags extends UnlistedSpecialPage {
 
 		// Check blocks
 		if ( $this->permissionManager->isBlockedFrom( $user, $this->targetObj ) ) {
-			throw new UserBlockedError( $user->getBlock() );
+			throw new UserBlockedError(
+				$user->getBlock(),
+				$user,
+				$this->getLanguage(),
+				$request->getIP()
+			);
 		}
 
 		// Give a link to the logs/hist for this page

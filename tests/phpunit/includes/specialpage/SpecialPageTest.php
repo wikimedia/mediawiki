@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\Error\Notice;
 
 /**
@@ -65,7 +66,8 @@ class SpecialPageTest extends MediaWikiTestCase {
 
 		$user = User::newFromId( 0 );
 		$specialPage->getContext()->setUser( $user );
-		$specialPage->getContext()->setLanguage( Language::factory( 'en' ) );
+		$specialPage->getContext()->setLanguage(
+			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ) );
 
 		$this->expectException( UserNotLoggedIn::class );
 		$this->expectExceptionMessage( $expected );

@@ -80,7 +80,10 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	 */
 	public function testConstructor( $stage, $exceptionMsg ) {
 		try {
-			$m = new CommentStore( Language::factory( 'qqx' ), $stage );
+			$m = new CommentStore(
+				MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'qqx' ),
+				$stage
+			);
 			if ( $exceptionMsg !== null ) {
 				$this->fail( 'Expected exception not thrown' );
 			}

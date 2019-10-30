@@ -279,6 +279,11 @@
 				s /= 1024;
 				sizeMsgs = sizeMsgs.slice( 1 );
 			}
+			// The following messages are used here:
+			// * size-bytes
+			// * size-kilobytes
+			// * size-megabytes
+			// * size-gigabytes
 			return mw.msg( sizeMsgs[ 0 ], Math.round( s ) );
 		}
 

@@ -152,15 +152,17 @@ ChangesLimitAndDateButtonWidget.prototype.updateButtonLabel = function () {
 	var message,
 		limit = this.limitGroupModel.findSelectedItems()[ 0 ],
 		label = limit && limit.getLabel(),
-		days = this.daysGroupModel.findSelectedItems()[ 0 ],
-		daysParamName = Number( days.getParamName() ) < 1 ?
-			'rcfilters-days-show-hours' :
-			'rcfilters-days-show-days';
+		days = this.daysGroupModel.findSelectedItems()[ 0 ];
 
 	// Update the label
 	if ( label && days ) {
 		message = mw.msg( 'rcfilters-limit-and-date-label', label,
-			mw.msg( daysParamName, days.getLabel() )
+			mw.msg(
+				Number( days.getParamName() ) < 1 ?
+					'rcfilters-days-show-hours' :
+					'rcfilters-days-show-days',
+				days.getLabel()
+			)
 		);
 		this.button.setLabel( message );
 	}
