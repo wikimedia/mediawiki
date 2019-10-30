@@ -23,6 +23,8 @@
 
 use MediaWiki\MediaWikiServices;
 
+use Wikimedia\TestingAccessWrapper;
+
 $optionsWithoutArgs = [ 'verbose' ];
 require_once __DIR__ . '/commandLine.inc';
 
@@ -46,7 +48,7 @@ class PPFuzzTester {
 	public $maxLength = 20;
 	public $maxTemplates = 5;
 	// public $outputTypes = [ 'OT_HTML', 'OT_WIKI', 'OT_PREPROCESS' ];
-	public $entryPoints = [ 'testSrvus', 'testPst', 'testPreprocess' ];
+	public $entryPoints = [ 'fuzzTestSrvus', 'fuzzTestPst', 'fuzzTestPreprocess' ];
 	public $verbose = false;
 
 	/**
@@ -216,7 +218,9 @@ class PPFuzzTest {
 		$options->setTemplateCallback( [ $this, 'templateHook' ] );
 		$options->setTimestamp( wfTimestampNow() );
 		$this->output = call_user_func(
-			[ MediaWikiServices::getInstance()->getParser(), $this->entryPoint ],
+			[ TestingAccessWrapper::newFromObject(
+				MediaWikiServices::getInstance()->getParser()
+			), $this->entryPoint ],
 			$this->mainText,
 			$this->title,
 			$options
