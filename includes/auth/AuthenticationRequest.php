@@ -37,19 +37,19 @@ use Message;
 abstract class AuthenticationRequest {
 
 	/** Indicates that the request is not required for authentication to proceed. */
-	const OPTIONAL = 0;
+	public const OPTIONAL = 0;
 
 	/** Indicates that the request is required for authentication to proceed.
 	 * This will only be used for UI purposes; it is the authentication providers'
 	 * responsibility to verify that all required requests are present.
 	 */
-	const REQUIRED = 1;
+	public const REQUIRED = 1;
 
 	/** Indicates that the request is required by a primary authentication
 	 * provider. Since the user can choose which primary to authenticate with,
 	 * the request might or might not end up being actually required.
 	 */
-	const PRIMARY_REQUIRED = 2;
+	public const PRIMARY_REQUIRED = 2;
 
 	/** @var string|null The AuthManager::ACTION_* constant this request was
 	 * created to be used for. The *_CONTINUE constants are not used here, the
