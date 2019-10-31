@@ -49,7 +49,7 @@ class Shell {
 	 *
 	 * @since 1.31
 	 */
-	const NO_ROOT = 1;
+	public const NO_ROOT = 1;
 
 	/**
 	 * Use seccomp to block dangerous syscalls
@@ -57,14 +57,14 @@ class Shell {
 	 *
 	 * @since 1.31
 	 */
-	const SECCOMP = 2;
+	public const SECCOMP = 2;
 
 	/**
 	 * Create a private /dev
 	 *
 	 * @since 1.31
 	 */
-	const PRIVATE_DEV = 4;
+	public const PRIVATE_DEV = 4;
 
 	/**
 	 * Restrict the request to have no
@@ -72,7 +72,7 @@ class Shell {
 	 *
 	 * @since 1.31
 	 */
-	const NO_NETWORK = 8;
+	public const NO_NETWORK = 8;
 
 	/**
 	 * Deny execve syscall with seccomp
@@ -80,14 +80,14 @@ class Shell {
 	 *
 	 * @since 1.31
 	 */
-	const NO_EXECVE = 16;
+	public const NO_EXECVE = 16;
 
 	/**
 	 * Deny access to LocalSettings.php (MW_CONFIG_FILE)
 	 *
 	 * @since 1.31
 	 */
-	const NO_LOCALSETTINGS = 32;
+	public const NO_LOCALSETTINGS = 32;
 
 	/**
 	 * Apply a default set of restrictions for improved
@@ -97,15 +97,15 @@ class Shell {
 	 *       by default, and is not guaranteed to be backwards-compatible.
 	 * @since 1.31
 	 */
-	const RESTRICT_DEFAULT = self::NO_ROOT | self::SECCOMP | self::PRIVATE_DEV |
-							 self::NO_LOCALSETTINGS;
+	public const RESTRICT_DEFAULT = self::NO_ROOT | self::SECCOMP | self::PRIVATE_DEV |
+									self::NO_LOCALSETTINGS;
 
 	/**
 	 * Don't apply any restrictions
 	 *
 	 * @since 1.31
 	 */
-	const RESTRICT_NONE = 0;
+	public const RESTRICT_NONE = 0;
 
 	/**
 	 * Returns a new instance of Command class
