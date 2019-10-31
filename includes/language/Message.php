@@ -728,7 +728,7 @@ class Message implements MessageSpecifier, Serializable {
 	 * turned off.
 	 *
 	 * @since 1.17
-	 * @param Language|string $lang Language code or Language object.
+	 * @param Language|StubUserLang|string $lang Language code or Language object.
 	 * @return Message $this
 	 * @throws MWException
 	 */

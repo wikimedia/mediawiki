@@ -739,4 +739,26 @@ class StatusTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $sw->isOK() );
 	}
 
+	/**
+	 * @covers Status::setMessageLocalizer
+	 */
+	public function testSetContext() {
+		$status = Status::newFatal( 'foo' );
+		$status->fatal( 'bar' );
+
+		$messageLocalizer = $this->getMockBuilder( MessageLocalizer::class )
+			->setMethods( [ 'msg' ] )
+			->getMockForAbstractClass();
+		$messageLocalizer->expects( $this->atLeastOnce() )
+			->method( 'msg' )
+			->willReturnCallback( function ( $key ) {
+				return new RawMessage( $key );
+			} );
+		/** @var MessageLocalizer $messageLocalizer */
+		$status->setMessageLocalizer( $messageLocalizer );
+		$status->getWikiText();
+		$status->getWikiText( null, null, 'en' );
+		$status->getWikiText( 'wrap-short', 'wrap-long' );
+	}
+
 }
