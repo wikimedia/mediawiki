@@ -414,7 +414,7 @@ class Status extends StatusValue {
 	 * @param string|string[] ...$params
 	 * @return Message
 	 */
-	private function msg( $key, ...$params ) {
+	private function msg( $key, ...$params ) : Message {
 		if ( $this->messageLocalizer ) {
 			return $this->messageLocalizer->msg( $key, ...$params );
 		} else {
@@ -428,7 +428,7 @@ class Status extends StatusValue {
 	 * @param string|string[] ...$params
 	 * @return Message
 	 */
-	private function msgInLang( $key, $lang, ...$params ) {
+	private function msgInLang( $key, $lang, ...$params ) : Message {
 		$msg = $this->msg( $key, ...$params );
 		if ( $lang ) {
 			$msg->inLanguage( $lang );
