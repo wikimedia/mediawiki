@@ -36,26 +36,26 @@ use Message;
  */
 class AuthenticationResponse {
 	/** Indicates that the authentication succeeded. */
-	const PASS = 'PASS';
+	public const PASS = 'PASS';
 
 	/** Indicates that the authentication failed. */
-	const FAIL = 'FAIL';
+	public const FAIL = 'FAIL';
 
 	/** Indicates that third-party authentication succeeded but no user exists.
 	 * Either treat this like a UI response or pass $this->createRequest to
 	 * AuthManager::beginCreateAccount(). For use by AuthManager only (providers
 	 * should just return a PASS with no username).
 	 */
-	const RESTART = 'RESTART';
+	public const RESTART = 'RESTART';
 
 	/** Indicates that the authentication provider does not handle this request. */
-	const ABSTAIN = 'ABSTAIN';
+	public const ABSTAIN = 'ABSTAIN';
 
 	/** Indicates that the authentication needs further user input of some sort. */
-	const UI = 'UI';
+	public const UI = 'UI';
 
 	/** Indicates that the authentication needs to be redirected to a third party to proceed. */
-	const REDIRECT = 'REDIRECT';
+	public const REDIRECT = 'REDIRECT';
 
 	/** @var string One of the constants above */
 	public $status;
