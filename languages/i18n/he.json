@@ -3928,7 +3928,7 @@
 	"passwordpolicies-policyflag-forcechange": "לדרוש שינוי בעת כניסה לחשבון",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "להציע שינוי בעת כניסה לחשבון",
 	"mycustomjsredirectprotected": "אין לך הרשאה לערוך את דף ה־JavaScript הזה, כיוון שהוא הפניה לדף שנמצא מחוץ למרחב המשתמש שלך.",
-	"easydeflate-invaliddeflate": "התוכן שהועבר אינו דחוס כנדרש",
+	"deflate-invaliddeflate": "התוכן שהועבר אינו דחוס כנדרש",
 	"unprotected-js": "מסיבות אבטחה, לא ניתן לטעון JavaScript מדפים שאינם מוגנים. ניתן ליצור סקריפטי JavaScript רק במרחב השם \"מדיה ויקי:\" או בדפי משנה של דף המשתמש.",
 	"userlogout-continue": "האם ברצונך לצאת מהחשבון?"
 }

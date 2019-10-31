@@ -99,7 +99,8 @@
 			"PiefPafPier",
 			"Ecthelion3",
 			"RadioAzureus",
-			"LongJohn nl"
+			"LongJohn nl",
+			"Kupulak"
 		]
 	},
 	"tog-underline": "Links onderstrepen:",
@@ -146,6 +147,7 @@
 	"tog-useeditwarning": "Waarschuwen als u een bewerkte pagina wilt verlaten die nog niet is opgeslagen",
 	"tog-prefershttps": "Altijd een beveiligde verbinding gebruiken wanneer u bent aangemeld",
 	"tog-showrollbackconfirmation": "Toon een bevestigingsvenster wanneer er op een terugdraaien koppeling wordt geklikt.",
+	"tog-requireemail": "পাস ওয়ার্ড পরিবর্তনে ই-মেইল দরকার",
 	"underline-always": "Altijd",
 	"underline-never": "Nooit",
 	"underline-default": "Standaardgedrag van vormgeving of webbrowser",
@@ -3913,7 +3915,7 @@
 	"passwordpolicies-policyflag-forcechange": "moet gewijzigd worden bij het aanmelden",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "raad wijzigen aan bij het aanmelden",
 	"mycustomjsredirectprotected": "U hebt geen rechten om deze JavaScriptpagina te bewerken omdat het een doorverwijzing is en deze niet verwijst naar een pagina in uw gebruikersruimte.",
-	"easydeflate-invaliddeflate": "De opgegeven inhoud is onjuist gecomprimeerd",
+	"deflate-invaliddeflate": "De opgegeven inhoud is onjuist gecomprimeerd",
 	"unprotected-js": "Vanwege veiligheidsredenen kan er geen JavaScript geladen worden vanaf onbeveiligde pagina's. Gelieve alleen JavaScript pagina's aan te maken in de MediaWiki: naamruimte of als een subpagina van een gebruikerspagina.",
 	"userlogout-continue": "Wilt u zich afmelden?"
 }

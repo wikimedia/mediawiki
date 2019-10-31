@@ -3904,7 +3904,7 @@
 	"passwordpolicies-policyflag-forcechange": "deve mudar ao iniciar sessão",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "sugerir alteração ao iniciar sessão",
 	"mycustomjsredirectprotected": "Não tem autorização para editar esta página de JavaScript porque ela é um redirecionamento e não aponta para o interior do seu espaço do utilizador.",
-	"easydeflate-invaliddeflate": "O conteúdo fornecido não está devidamente comprimido",
+	"deflate-invaliddeflate": "O conteúdo fornecido não está devidamente comprimido",
 	"unprotected-js": "Por motivos de segurança o JavaScript de páginas desprotegidas não pode ser carregado. Crie javascript só no espaço nominal/domínio MediaWiki: ou numa subpágina do utilizador",
 	"userlogout-continue": "Quer sair?"
 }

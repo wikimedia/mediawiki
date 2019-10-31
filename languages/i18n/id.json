@@ -3952,7 +3952,7 @@
 	"passwordpolicies-policyflag-forcechange": "wajib diganti ketika masuk log",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "sarankan penggantian ketika masuk log",
 	"mycustomjsredirectprotected": "Anda tidak memiliki hak akses untuk menyunting halaman JavaScript karena merupakan halaman pengalihan dan tidak mengarah ke dalam halaman pengguna Anda.",
-	"easydeflate-invaliddeflate": "Isi yang disediakan tidak dikempiskan secara tepat",
+	"deflate-invaliddeflate": "Isi yang disediakan tidak dikempiskan secara tepat",
 	"unprotected-js": "Karena alasan keamanan Javascript tidak dapat dimuat dari halaman yang tidak dilindungi. Mohon hanya buat javascript di ruangnama MediaWiki: atau sebagai subhalaman  Pengguna",
 	"userlogout-continue": "Apakah Anda ingin keluar log?"
 }

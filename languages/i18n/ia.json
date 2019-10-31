@@ -3807,7 +3807,7 @@
 	"passwordpolicies-policyflag-forcechange": "debe cambiar al apertura de session",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "suggerer cambio al apertura de session",
 	"mycustomjsredirectprotected": "Tu non ha le permission de modificar iste pagina JavaScript perque illo es un redirection e non puncta a un pagina in tu spatio de usator.",
-	"easydeflate-invaliddeflate": "Le contento fornite non es correctemente comprimite",
+	"deflate-invaliddeflate": "Le contento fornite non es correctemente comprimite",
 	"unprotected-js": "Pro motivos de securitate, non es possibile cargar codice JavaScript de paginas non protegite. Crea JavaScript solmente in le spatio de nomines \"MediaWiki:\" o como un subpagina de usator.",
 	"userlogout-continue": "Vole tu clauder le session?"
 }

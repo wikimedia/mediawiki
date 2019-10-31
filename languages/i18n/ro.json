@@ -3792,6 +3792,6 @@
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Parola nu poate fi în lista celor mai comune 100.000 de parole.",
 	"passwordpolicies-policyflag-forcechange": "trebuie schimbată la conectare",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "sugerează schimbarea la conectare",
-	"easydeflate-invaliddeflate": "Conținutul oferit nu este comprimat corect",
+	"deflate-invaliddeflate": "Conținutul oferit nu este comprimat corect",
 	"userlogout-continue": "Doriți să vă deconectați?"
 }

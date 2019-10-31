@@ -4008,7 +4008,7 @@
 	"passwordpolicies-policyflag-forcechange": "має бути змінено при вході",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "запропонувати зміну при вході",
 	"mycustomjsredirectprotected": "У вас немає прав редагувати цю сторінку JavaScript, тому що вона є перенаправленням і не веде у ваш користувацький простір.",
-	"easydeflate-invaliddeflate": "Наданий вміст не стиснений належним чином",
+	"deflate-invaliddeflate": "Наданий вміст не стиснений належним чином",
 	"unprotected-js": "З міркувань безпеки JavaScript не можна запускати з незахищених сторінок. Будь ласка, створюйте javascript лише в просторі MediaWiki, або як особисту підсторінку користувача.",
 	"userlogout-continue": "Ви хочете вийти із системи?"
 }

@@ -3961,7 +3961,7 @@
 	"passwordpolicies-policyflag-forcechange": "мора да се промени при најава",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "предложи измена при најава",
 	"mycustomjsredirectprotected": "Немате дозвола да ја уредувате оваа страница со JavaScript бидејќи претставува пренасочување и не води кон вашиот именски простор.",
-	"easydeflate-invaliddeflate": "Содржината не е соодветно прочистена",
+	"deflate-invaliddeflate": "Содржината не е соодветно прочистена",
 	"unprotected-js": "JavaScript не може да се вчита од незаштитени страници од безбедносни причини. Создавајте JavaScript само во именскиот простор МедијаВики: или како корисничка потстраница",
 	"userlogout-continue": "Дали сакате да се одјавите?"
 }

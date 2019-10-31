@@ -3902,7 +3902,7 @@
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Salasana ei voi olla 100,000 yleisimmin käytetyn joukossa.",
 	"passwordpolicies-policyflag-forcechange": "täytyy vaihtaa kirjautuessa",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "ehdota vaihtamista kirjautuessa",
-	"easydeflate-invaliddeflate": "Annettua sisältöä ei ole tyhjennetty kunnolla",
+	"deflate-invaliddeflate": "Annettua sisältöä ei ole tyhjennetty kunnolla",
 	"unprotected-js": "Turvallisuussyistä JavaScriptiä ei voi ladata suojaamattomilta sivuilta. Luo JavaScript-sivuja vain MediaWiki-nimiavaruuteen tai käyttäjän alasivulle.",
 	"userlogout-continue": "Haluatko kirjautua ulos?"
 }

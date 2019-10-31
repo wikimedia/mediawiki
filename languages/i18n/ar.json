@@ -3966,7 +3966,7 @@
 	"passwordpolicies-policyflag-forcechange": "يجب أن تتغير عند تسجيل الدخول",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "اقتراح التغيير عند تسجيل الدخول",
 	"mycustomjsredirectprotected": "ليست لديك صلاحية لتعديل صفحة جافا سكريبت هذه لأنها تحويلة ولا تشير إلى نطاق المستخدمي الخاص بك.",
-	"easydeflate-invaliddeflate": "المحتوى المقدم لا يتم تفريغه بشكل صحيح",
+	"deflate-invaliddeflate": "المحتوى المقدم لا يتم تفريغه بشكل صحيح",
 	"unprotected-js": "لأسباب تتعلق بالأمان; لا يمكن تحميل جافا سكريبت من الصفحات غير المحمية; الرجاء إنشاء جافا سكريبت فقط في نطاق ميدياويكي: أو كصفحة فرعية للمستخدم",
 	"userlogout-continue": "هل تريد تسجيل الخروج؟"
 }

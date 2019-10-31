@@ -4063,7 +4063,7 @@
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "一般的に使われるパスワード10万項目のリストに含まれるパスワードは使用できません。",
 	"passwordpolicies-policyflag-forcechange": "ログイン時に変更を強制",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "ログイン時に変更を提案",
-	"easydeflate-invaliddeflate": "提供されたコンテンツが適切に圧縮されていません",
+	"deflate-invaliddeflate": "提供されたコンテンツが適切に圧縮されていません",
 	"unprotected-js": "セキュリティ上の理由から、JavaScriptは保護されていないページからは読み込みできません。MediaWiki: 名前空間内、利用者下位ページのいずれかでのみjavascriptを作成してください。",
 	"userlogout-continue": "ログアウトしますか？"
 }

@@ -82,7 +82,6 @@
 	"config-using-uri": " \"<nowiki>$1$2</nowiki>\" сервер исеме файҙаланыла.",
 	"config-uploads-not-safe": "'''Иғтибар:''' (<code>$1</code>) күсереүҙәре өсөе ҡулланылған директория ирекле скриптар яһау өсөн бармай.  \nMediaWiki барлыҡ күсерелгән файлдарҙы тикшерһә лә, файлды күсереүҙән алда [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security бирешеүсәнлекте ябыу] тәҡдим ителә.",
 	"config-no-cli-uploads-check": "\"Иғтибар\" әйтмәйенсә тейәлеү өсөн каталог (<code>$1</code>) CLI  урынлаштырған мәлдә тиҙ боҙололоусанлыҡҡа, ирекле сценарийҙы үтәүгә тикшерелмәне.",
-	"config-brokenlibxml": "Системағыҙҙа  MediaWiki һәм башҡа веб-ҡушымталар мәғлүмәттәрен йәшерен щарралауы ихтимал булған  PHP һәм libxml2 версиялары бар. \nlibxml2  2.7.3  йәки юғарыраҡ версияға ([https://bugs.php.net/bug.php?id=45996 хата тураһында мәғлүмәттәр]) тиклем яңыртығыҙ.\nБәйләнеш өҙөлдө.",
 	"config-suhosin-max-value-length": "Suhosin ҡуйылған һәм  GET <code>length</code> параметрын  $1 байтҡаса кәметә.  MediaWiki-ның  ResourceLoader компоненты был сикләүҙе урап үтә, әммә был етештереүсәнлекте кәметә. Әгәр мөмкин булһа, 1024 асылындағы   <code>suhosin.get.max_value_length</code> йәки унан юғарыраҡ булған  <code>php.ini</code>, шулай уҡ  <code>$wgResourceLoaderMaxQueryLength</code> өсөн шундай уҡ  LocalSettings.php ҡуйырға була.",
 	"config-db-type": "Мәғлүмәт базаһы төрө:",
 	"config-db-host": "Мәғлүмәт базаһы хосты:",

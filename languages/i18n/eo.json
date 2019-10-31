@@ -3907,7 +3907,7 @@
 	"passwordpolicies-policyflag-forcechange": "devas ŝanĝi dum ensaluto",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "sugesti ŝanĝadon dum ensaluto",
 	"mycustomjsredirectprotected": "Vi ne havas permeson redakti ĉi tiun JavaScript-paĝon, ĉar ĝi estas alidirektilo, kies celo ne estas en via uzantospaco.",
-	"easydeflate-invaliddeflate": "Provizita enhavo ne estas ĝuste densigita",
+	"deflate-invaliddeflate": "Provizita enhavo ne estas ĝuste densigita",
 	"unprotected-js": "Pro sekurecaj kialoj, JavaScript ne povas esti ŝargata el neprotektataj paĝoj. Bonvolu nur krei JavaScript en la nomspaco MediaWiki: aŭ kiel subpaĝo de Uzanto.",
 	"userlogout-continue": "Ĉu vi volas elsaluti?"
 }

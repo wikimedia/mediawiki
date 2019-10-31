@@ -4059,7 +4059,7 @@
 	"passwordpolicies-policyflag-forcechange": "необходимо изменить при входе",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "предложить изменение при входе",
 	"mycustomjsredirectprotected": "У вас нет прав на редактирование этой JavaScript-страницы, так как она является перенаправлением и не указывает внутрь вашего пространства участника.",
-	"easydeflate-invaliddeflate": "Предоставленное содержимое не спущено надлежащим образом",
+	"deflate-invaliddeflate": "Предоставленное содержимое не спущено надлежащим образом",
 	"unprotected-js": "По соображениям безопасности JavaScript нельзя загружать с незащищённых страниц. Пожалуйста, создавайте скрипты только в пространстве имён MediaWiki: или как подстраницы участника.",
 	"userlogout-continue": "Вы хотите выйти?"
 }

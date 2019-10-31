@@ -3778,7 +3778,7 @@
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "La contrasenya no pot ser a la llista de les 100.000 contrasenyes més utilitzades habitualment.",
 	"passwordpolicies-policyflag-forcechange": "cal canviar a l'inici de sessió",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "suggereix canvi a l'inici de sessió",
-	"easydeflate-invaliddeflate": "El contingut proporcionat no està deflactat adequadament",
+	"deflate-invaliddeflate": "El contingut proporcionat no està deflactat adequadament",
 	"unprotected-js": "Per motius de seguretat, el JavaScript no es pot carregar de les pàgines desprotegides. Creeu javascript en l'espai de noms MediaWiki o en una subpàgina d'usuari",
 	"userlogout-continue": "Voleu finalitzar la sessió?"
 }

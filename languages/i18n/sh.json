@@ -3793,7 +3793,7 @@
 	"passwordpolicies-policyflag-forcechange": "mora se promjeniti pri prijavi",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "predloži izmjenu pri prijavi",
 	"mycustomjsredirectprotected": "Nemate dopuštenje za uređivanje ove JavaScript stranice jer predstavlja preusmjeravanje i ne vodi do vašeg imenskog prostora.",
-	"easydeflate-invaliddeflate": "Sadržaj nije ispravno pročišćen",
+	"deflate-invaliddeflate": "Sadržaj nije ispravno pročišćen",
 	"unprotected-js": "JavaScript ne može da se učita sa nezaštićenih stranica iz bezbednosnih razloga. Samo napravite JavaScript u imenskom prostoru MediaWiki: ili kao korisničku podstranicu",
 	"userlogout-continue": "Želite se odjaviti?"
 }

@@ -3842,7 +3842,7 @@
 	"passwordpolicies-policyflag-forcechange": "peab muutma sisselogimisel",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "soovita muutmist sisselogimisel",
 	"mycustomjsredirectprotected": "Sul pole õigust seda JavaScripti lehekülge redigeerida, sest see on ümbersuunamine ja see ei viita sinu kasutajaruumi.",
-	"easydeflate-invaliddeflate": "Ette antud sisu ei ole õigesti vähendatud",
+	"deflate-invaliddeflate": "Ette antud sisu ei ole õigesti vähendatud",
 	"unprotected-js": "Turvalisuse huvides ei saa JavaScripti laadida kaitsmata lehekülgedelt. Palun koosta JavaScripti ainult nimeruumis MediaWiki või kasutajate nimeruumi alamleheküljel.",
 	"userlogout-continue": "Kas soovid välja logida?"
 }

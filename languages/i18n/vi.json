@@ -3877,7 +3877,7 @@
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Mật khẩu không được nằm tròn danh sách 100.000 mật khẩu phổ biến nhất.",
 	"passwordpolicies-policyflag-forcechange": "phải thay khi đăng nhập",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "khuyên thay khi đăng nhập",
-	"easydeflate-invaliddeflate": "Nội dung được cung cấp không được giải nén đúng cách",
+	"deflate-invaliddeflate": "Nội dung được cung cấp không được giải nén đúng cách",
 	"unprotected-js": "Vì lý do an toàn JavaScript sẽ không được tải tại các trang không được khóa. Xin vui lòng chỉ tạo javascript tại không gian tên MediaWiki: hoặc tại trang con của trang Thành viên",
 	"userlogout-continue": "Nếu bạn muốn đăng xuất, xin hãy [$1 mở trang đăng xuất]."
 }

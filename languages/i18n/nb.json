@@ -3892,7 +3892,7 @@
 	"passwordpolicies-policyflag-forcechange": "må endres ved innlogging",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "foreslå endring ved innlogging",
 	"mycustomjsredirectprotected": "Du har ikke tillatelse til å redigere denne JavaScript-siden fordi den er en omdirigering og ikke peker til en annen side i ditt brukernavnerom.",
-	"easydeflate-invaliddeflate": "Det gitte innholdet er ikke riktig komprimert",
+	"deflate-invaliddeflate": "Det gitte innholdet er ikke riktig komprimert",
 	"unprotected-js": "Av sikkerhetsårsaker kan ikke JavaScript lastes fra ubeskyttede sider. Bare skap JavaScript i MediaWiki-navnerommet eller som en brukerunderside",
 	"userlogout-continue": "Ønsker du å logge ut?"
 }

@@ -3868,7 +3868,7 @@
 	"authmanager-authn-no-primary": "提供的凭据不能被认证。",
 	"authmanager-authn-no-local-user": "提供的证书没有与该wiki上的任何用户相关联。",
 	"authmanager-authn-no-local-user-link": "提供的凭据有效，但没有与该wiki上的任何用户相关联。请通过不同方式登录，或创建一个新用户，然后您将拥有一个把您之前的凭据链接到对应账户的选项。",
-	"authmanager-authn-autocreate-failed": "所有账户的自动创建失败：$1",
+	"authmanager-authn-autocreate-failed": "自动创建本地账户失败：$1",
 	"authmanager-change-not-supported": "提供的凭据不能被更改，因为没有东西会使用它们。",
 	"authmanager-create-disabled": "账户创建已停用。",
 	"authmanager-create-from-login": "要创建您的账户，请填写字段。",
@@ -3981,7 +3981,7 @@
 	"passwordpolicies-policyflag-forcechange": "必须在登录时更改",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "建议在登录时更改",
 	"mycustomjsredirectprotected": "您无权编辑此JavaScript页面，因为它是重定向，并且不指向您的用户空间。",
-	"easydeflate-invaliddeflate": "提供的内容未被适当缩小",
+	"deflate-invaliddeflate": "提供的内容未被适当缩小",
 	"unprotected-js": "基于安全原因，JavaScript不能在未保护页面中载入。请在“MediaWiki:”名字空间或者用户子页面中添加JavaScript。",
 	"userlogout-continue": "您确定要退出登录吗？"
 }

@@ -88,7 +88,6 @@
 	"config-using-uri": "נעשה שימוש בכתובת השרת \"<nowiki>$1$2</nowiki>\".",
 	"config-uploads-not-safe": "'''אזהרה:''' תיקיית ההעלאות ההתחלתית <code>$1</code> חשופה להרצת סקריפטים שרירותיים.\nאף שמדיה־ויקי בודקת את כל הקבצים המוּעלים לאיומי אבטחה, מומלץ מאוד למנוע את [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security פרצת האבטחה] הזאת לפני הפעלת ההעלאות.",
 	"config-no-cli-uploads-check": "'''אזהרה:''' תיקיית בררת המחדל להעלאות (<code>$1</code>) לא נבדקת לפגיעוּת להרצת תסריטים אקראיים בזמן התקנה דרך CLI.",
-	"config-brokenlibxml": "במערכת שלך יש שילוב של גרסאות של PHP ושל libxml2 שחשוף לבאגים ויכול לגרום לעיוות נתונים נסתר במדיה־ויקי וביישומי רשת אחרים.\nיש לשדרג ל־libxml2 2.7.3 או גרסה חדשה יותר ([https://bugs.php.net/bug.php?id=45996 באג מתויק ב־PHP]).\nההתקנה נעצרה.",
 	"config-suhosin-max-value-length": "מותקן פה Suhosin והוא מגביל את אורך פרמטר GET ל־$1 בתים.\nמדיה־ויקי דורשת ש־ <code>suhosin.get.max_value_length</code> יהיה לפחות $2. כבו את האפשרות הזאת, או הַגדילו אותה לערך של $3 בקובץ <code>php.ini</code>.",
 	"config-using-32bit": "<strong>אזהרה:</strong> נראה שהמערכת שלך רצה עם מספרים שלמים של 32 סיביות. זה [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit לא מומלץ].",
 	"config-db-type": "סוג מסד הנתונים:",

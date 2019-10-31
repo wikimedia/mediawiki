@@ -3814,7 +3814,7 @@
 	"passwordpolicies-policyflag-forcechange": "tien de camudase al aniciar sesión",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "suxerir cambiu al aniciar sesión",
 	"mycustomjsredirectprotected": "Nun tienes permisu pa editar esta páxina en JavaScript porque ye una redireición que nun apunta dientro del to espaciu d'usuariu.",
-	"easydeflate-invaliddeflate": "El conteníu dau nun ta comprimíu correutamente",
+	"deflate-invaliddeflate": "El conteníu dau nun ta comprimíu correutamente",
 	"unprotected-js": "Por razones de seguridá, JavaScript nun puede cargase dende páxines ensin protexer. Crea javascript sólo nel espaciu de nomes MediaWiki: o como subpáxina d'usuariu",
 	"userlogout-continue": "¿Desees zarrar la sesión?"
 }

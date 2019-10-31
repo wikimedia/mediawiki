@@ -3902,7 +3902,7 @@
 	"passwordpolicies-policyflag-forcechange": "nutné změnit při přihlášení",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "navrhnout změnu při přihlášení",
 	"mycustomjsredirectprotected": "Nemáte oprávnění editovat tuto stránku s JavaScriptem, protože je to přesměrování mimo váš uživatelský prostor.",
-	"easydeflate-invaliddeflate": "Poskytnutý obsah nebyl správně zkomprimován",
+	"deflate-invaliddeflate": "Poskytnutý obsah nebyl správně zkomprimován",
 	"unprotected-js": "Z bezpečnostních důvodů nelze načítat JavaScript z nechráněných stran. Vyrábějte prosím JavaScriptové skripty jen ve jmenném prostoru MediaWiki: nebo jako uživatelskou podstránku",
 	"userlogout-continue": "Chcete se odhlásit?"
 }

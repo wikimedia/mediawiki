@@ -3894,7 +3894,7 @@
 	"passwordpolicies-policyflag-forcechange": "måste ändras vid inloggning",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "föreslå ändring vid inloggning",
 	"mycustomjsredirectprotected": "Du har inte behörighet att redigera denna JavaScript-sida eftersom det är en omdirigering och leder inte någonstans inom din användarnamnrymd.",
-	"easydeflate-invaliddeflate": "Innehåll som tillhandahålls är inte helt komprimerat",
+	"deflate-invaliddeflate": "Innehåll som tillhandahålls är inte helt komprimerat",
 	"unprotected-js": "Av säkerhetsskäl kan inte JavaScript läsas in från oskyddade sidor. Skapa endast JavaScript i namnrymden MediaWiki: eller som en användarundersida.",
 	"userlogout-continue": "Vill du logga ut?"
 }

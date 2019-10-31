@@ -97,7 +97,6 @@
 	"config-using-uri": "使用服务器URL“<nowiki>$1$2</nowiki>”。",
 	"config-uploads-not-safe": "<strong>警告：</strong>您的默认上传目录<code>$1</code>存在允许执行任意脚本的漏洞。尽管MediaWiki会对所有已上传的文件进行安全检查，但我们仍然强烈建议您在启用上传功能前[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security 关闭该安全漏洞]。",
 	"config-no-cli-uploads-check": "<strong>警告：</strong>在CLI安装过程中，没有对您的默认上传目录（<code>$1</code>）进行执行任意脚本的漏洞检查。",
-	"config-brokenlibxml": "您的系统安装的PHP和libxml2版本组合存在故障，并可能在MediaWiki和其他web应用程序中造成隐藏的数据损坏。请将libxml2升级到2.7.3或以上（[https://bugs.php.net/bug.php?id=45996 PHP的故障报告]）。安装已中断。",
 	"config-suhosin-max-value-length": "Suhosin已经安装并将GET请求的参数长度限制在$1字节。MediaWiki的ResourceLoader部件可以在此限制下正常工作，但其性能会被降低。如果可能，请在<code>php.ini</code>中将<code>suhosin.get.max_value_length</code>设为1024或更高值，并在LocalSettings.php中将<code>$wgResourceLoaderMaxQueryLength</code>设为同一值。",
 	"config-using-32bit": "<strong>警告：</strong>您的系统似乎是32位系统。我们[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit 不建议您]使用32位系统。",
 	"config-db-type": "数据库类型：",

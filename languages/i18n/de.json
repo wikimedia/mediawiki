@@ -3931,7 +3931,7 @@
 	"passwordpolicies-policyflag-forcechange": "muss bei der Anmeldung geändert werden",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "Änderung bei der Anmeldung vorschlagen",
 	"mycustomjsredirectprotected": "Du hast keine Berechtigung, diese JavaScript-Seite zu bearbeiten, da sie eine Weiterleitung, die nicht in deinen Benutzernamensraum zeigt, enthält.",
-	"easydeflate-invaliddeflate": "Der angegebene Inhalt ist nicht ordnungsgemäß komprimiert",
+	"deflate-invaliddeflate": "Der angegebene Inhalt ist nicht ordnungsgemäß komprimiert",
 	"unprotected-js": "Aus Sicherheitsgründen kann JavaScript-Code nicht mehr von ungeschützten Seiten geladen werden. Erstelle die JavaScript-Seite bitte ausschließlich im Namensraum „MediaWiki“ oder als Benutzerunterseite.",
 	"userlogout-continue": "Möchtest du dich abmelden?"
 }
