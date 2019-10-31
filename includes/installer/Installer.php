@@ -121,7 +121,6 @@ abstract class Installer {
 	 */
 	protected $envChecks = [
 		'envCheckDB',
-		'envCheckBrokenXML',
 		'envCheckPCRE',
 		'envCheckMemory',
 		'envCheckCache',
@@ -789,21 +788,6 @@ abstract class Installer {
 			return false;
 		}
 		return $ok;
-	}
-
-	/**
-	 * Some versions of libxml+PHP break < and > encoding horribly
-	 * @return bool
-	 */
-	protected function envCheckBrokenXML() {
-		$test = new PhpXmlBugTester();
-		if ( !$test->ok ) {
-			$this->showError( 'config-brokenlibxml' );
-
-			return false;
-		}
-
-		return true;
 	}
 
 	/**

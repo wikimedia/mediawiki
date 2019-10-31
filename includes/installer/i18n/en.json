@@ -76,7 +76,6 @@
 	"config-using-uri": "Using server URL \"<nowiki>$1$2</nowiki>\".",
 	"config-uploads-not-safe": "<strong>Warning:</strong> Your default directory for uploads <code>$1</code> is vulnerable to arbitrary scripts execution.\nAlthough MediaWiki checks all uploaded files for security threats, it is highly recommended to [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security close this security vulnerability] before enabling uploads.",
 	"config-no-cli-uploads-check": "<strong>Warning:</strong> Your default directory for uploads (<code>$1</code>) is not checked for vulnerability\nto arbitrary script execution during the CLI install.",
-	"config-brokenlibxml": "Your system has a combination of PHP and libxml2 versions that is buggy and can cause hidden data corruption in MediaWiki and other web applications.\nUpgrade to libxml2 2.7.3 or later ([https://bugs.php.net/bug.php?id=45996 bug filed with PHP]).\nInstallation aborted.",
 	"config-suhosin-max-value-length": "Suhosin is installed and limits the GET parameter <code>length</code> to $1 bytes.\nMediaWiki requires <code>suhosin.get.max_value_length</code> to be at least $2. Disable this setting, or increase this value to $3 in <code>php.ini</code>.",
 	"config-using-32bit": "<strong>Warning:</strong> your system appears to be running with 32-bit integers. This is [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit not advised].",
 	"config-db-type": "Database type:",

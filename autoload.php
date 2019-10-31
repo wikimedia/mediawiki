@@ -1098,7 +1098,6 @@ $wgAutoloadLocalClasses = [
 	'PerRowAugmentor' => __DIR__ . '/includes/search/PerRowAugmentor.php',
 	'PermissionsError' => __DIR__ . '/includes/exception/PermissionsError.php',
 	'PhpHttpRequest' => __DIR__ . '/includes/http/PhpHttpRequest.php',
-	'PhpXmlBugTester' => __DIR__ . '/includes/installer/PhpXmlBugTester.php',
 	'Pingback' => __DIR__ . '/includes/Pingback.php',
 	'PoolCounter' => __DIR__ . '/includes/poolcounter/PoolCounter.php',
 	'PoolCounterNull' => __DIR__ . '/includes/poolcounter/PoolCounterNull.php',
