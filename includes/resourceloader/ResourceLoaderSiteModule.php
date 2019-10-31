@@ -37,8 +37,10 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 	protected function getPages( ResourceLoaderContext $context ) {
 		$pages = [];
 		if ( $this->getConfig()->get( 'UseSiteJs' ) ) {
+			$skin = $context->getSkin();
 			$pages['MediaWiki:Common.js'] = [ 'type' => 'script' ];
-			$pages['MediaWiki:' . ucfirst( $context->getSkin() ) . '.js'] = [ 'type' => 'script' ];
+			$pages['MediaWiki:' . ucfirst( $skin ) . '.js'] = [ 'type' => 'script' ];
+			Hooks::run( 'ResourceLoaderSiteModulePages', [ $skin, &$pages ] );
 		}
 		return $pages;
 	}

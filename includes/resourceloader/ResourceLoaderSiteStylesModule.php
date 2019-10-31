@@ -37,10 +37,11 @@ class ResourceLoaderSiteStylesModule extends ResourceLoaderWikiModule {
 	protected function getPages( ResourceLoaderContext $context ) {
 		$pages = [];
 		if ( $this->getConfig()->get( 'UseSiteCss' ) ) {
+			$skin = $context->getSkin();
 			$pages['MediaWiki:Common.css'] = [ 'type' => 'style' ];
-			$pages['MediaWiki:' . ucfirst( $context->getSkin() ) . '.css'] = [ 'type' => 'style' ];
+			$pages['MediaWiki:' . ucfirst( $skin ) . '.css'] = [ 'type' => 'style' ];
 			$pages['MediaWiki:Print.css'] = [ 'type' => 'style', 'media' => 'print' ];
-
+			Hooks::run( 'ResourceLoaderSiteStylesModulePages', [ $skin, &$pages ] );
 		}
 		return $pages;
 	}
