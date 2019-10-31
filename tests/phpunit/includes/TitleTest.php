@@ -297,7 +297,7 @@ class TitleTest extends MediaWikiTestCase {
 		}
 
 		$this->setMwGlobals( [
-			// So User::isEveryoneAllowed( 'read' ) === false
+			// So PermissionManager::isEveryoneAllowed( 'read' ) === false
 			'wgGroupPermissions' => [ '*' => [ 'read' => false ] ],
 			'wgWhitelistRead' => [ 'some random non sense title' ],
 			'wgWhitelistReadRegexp' => $whitelistRegexp,

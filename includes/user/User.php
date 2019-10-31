@@ -4774,7 +4774,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Check, if the given group has the given permission
 	 *
 	 * If you're wanting to check whether all users have a permission, use
-	 * User::isEveryoneAllowed() instead. That properly checks if it's revoked
+	 * PermissionManager::isEveryoneAllowed() instead. That properly checks if it's revoked
 	 * from anyone.
 	 *
 	 * @deprecated since 1.34, use MediaWikiServices::getInstance()->getPermissionManager()
@@ -4800,8 +4800,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Specifically, session-based rights restrictions (such as OAuth or bot
 	 * passwords) are applied based on the current session.
 	 *
-	 * @deprecated since 1.34, use MediaWikiServices::getInstance()->getPermissionManager()
-	 *             ->isEveryoneAllowed() instead
+	 * @deprecated since 1.34, use PermissionManager::isEveryoneAllowed() instead
 	 *
 	 * @param string $right Right to check
 	 *
@@ -4809,6 +4808,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @since 1.22
 	 */
 	public static function isEveryoneAllowed( $right ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getPermissionManager()->isEveryoneAllowed( $right );
 	}
 
