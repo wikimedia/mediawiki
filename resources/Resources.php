@@ -31,6 +31,7 @@ return [
 	'site' => [ 'class' => ResourceLoaderSiteModule::class ],
 	'site.styles' => [ 'class' => ResourceLoaderSiteStylesModule::class ],
 	'noscript' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'class' => ResourceLoaderWikiModule::class,
 		'styles' => [ 'MediaWiki:Noscript.css' ],
 		'group' => 'noscript',
