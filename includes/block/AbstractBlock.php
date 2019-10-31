@@ -79,9 +79,6 @@ abstract class AbstractBlock {
 	 */
 	protected $type;
 
-	/** @var User */
-	protected $blocker;
-
 	/** @var bool */
 	protected $isSitewide = true;
 
@@ -97,33 +94,21 @@ abstract class AbstractBlock {
 	 *
 	 * @param array $options Parameters of the block, with supported options:
 	 *  - address: (string|User) Target user name, User object, IP address or IP range
-	 *  - by: (int) User ID of the blocker
 	 *  - reason: (string|Message|CommentStoreComment) Reason for the block
 	 *  - timestamp: (string) The time at which the block comes into effect
-	 *  - byText: (string) Username of the blocker (for foreign users)
 	 *  - hideName: (bool) Hide the target user name
 	 */
 	public function __construct( array $options = [] ) {
 		$defaults = [
 			'address'         => '',
-			'by'              => null,
 			'reason'          => '',
 			'timestamp'       => '',
-			'byText'          => '',
 			'hideName'        => false,
 		];
 
 		$options += $defaults;
 
 		$this->setTarget( $options['address'] );
-
-		if ( $options['by'] ) {
-			# Local user
-			$this->setBlocker( User::newFromId( $options['by'] ) );
-		} else {
-			# Foreign user
-			$this->setBlocker( $options['byText'] );
-		}
 
 		$this->setReason( $options['reason'] );
 		$this->setTimestamp( wfTimestamp( TS_MW, $options['timestamp'] ) );
@@ -135,18 +120,14 @@ abstract class AbstractBlock {
 	 *
 	 * @return int (0 for foreign users)
 	 */
-	public function getBy() {
-		return $this->getBlocker()->getId();
-	}
+	abstract public function getBy();
 
 	/**
 	 * Get the username of the blocking sysop
 	 *
 	 * @return string
 	 */
-	public function getByName() {
-		return $this->getBlocker()->getName();
-	}
+	abstract public function getByName();
 
 	/**
 	 * Get the block ID
@@ -525,28 +506,21 @@ abstract class AbstractBlock {
 
 	/**
 	 * Get the user who implemented this block
-	 * @return User User object. May name a foreign user.
+	 * @deprecated since 1.35. Use getBy/getByName instead
+	 * @return null User object or null. May name a foreign user.
 	 */
 	public function getBlocker() {
-		return $this->blocker;
+		wfDeprecated( __METHOD__, '1.35' );
+		return null;
 	}
 
 	/**
 	 * Set the user who implemented (or will implement) this block
+	 * @deprecated since 1.35. Moved to DatabaseBlock
 	 * @param User|string $user Local User object or username string
 	 */
 	public function setBlocker( $user ) {
-		if ( is_string( $user ) ) {
-			$user = User::newFromName( $user, false );
-		}
-
-		if ( $user->isAnon() && User::isUsableName( $user->getName() ) ) {
-			throw new InvalidArgumentException(
-				'Blocker must be a local user or a name that cannot be a local user'
-			);
-		}
-
-		$this->blocker = $user;
+		wfDeprecated( __METHOD__, '1.35' );
 	}
 
 	/**

@@ -81,6 +81,9 @@ class DatabaseBlock extends AbstractBlock {
 	/** @var Restriction[] */
 	private $restrictions;
 
+	/** @var User */
+	private $blocker;
+
 	/**
 	 * Create a new block with specified option parameters on a user, IP or IP range.
 	 *
@@ -96,6 +99,8 @@ class DatabaseBlock extends AbstractBlock {
 	 *  - allowUsertalk: (bool) Allow the target to edit its own talk page
 	 *  - sitewide: (bool) Disallow editing all pages and all contribution actions,
 	 *    except those specifically allowed by other block flags
+	 *  - by: (int) User ID of the blocker
+	 *  - byText: (string) Username of the blocker (for foreign users)
 	 *
 	 * @since 1.26 $options array
 	 */
@@ -112,6 +117,8 @@ class DatabaseBlock extends AbstractBlock {
 			'blockEmail'      => false,
 			'allowUsertalk'   => false,
 			'sitewide'        => true,
+			'by'              => null,
+			'byText'          => '',
 		];
 
 		$options += $defaults;
@@ -119,6 +126,14 @@ class DatabaseBlock extends AbstractBlock {
 		if ( $this->target instanceof User && $options['user'] ) {
 			# Needed for foreign users
 			$this->forcedTargetID = $options['user'];
+		}
+
+		if ( $options['by'] ) {
+			# Local user
+			$this->setBlocker( User::newFromId( $options['by'] ) );
+		} else {
+			# Foreign user
+			$this->setBlocker( $options['byText'] );
 		}
 
 		$this->setExpiry( wfGetDB( DB_REPLICA )->decodeExpiry( $options['expiry'] ) );
@@ -1568,6 +1583,48 @@ class DatabaseBlock extends AbstractBlock {
 	 */
 	private function getBlockRestrictionStore() : BlockRestrictionStore {
 		return MediaWikiServices::getInstance()->getBlockRestrictionStore();
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getBy() {
+		return ( $this->blocker ) ? $this->blocker->getId() : 0;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getByName() {
+		return ( $this->blocker ) ? $this->blocker->getName() : '';
+	}
+
+	/**
+	 * Get the user who implemented this block
+	 *
+	 * @return User|null User object or null. May name a foreign user.
+	 */
+	public function getBlocker() {
+		return $this->blocker;
+	}
+
+	/**
+	 * Set the user who implemented (or will implement) this block
+	 *
+	 * @param User|string $user Local User object or username string
+	 */
+	public function setBlocker( $user ) {
+		if ( is_string( $user ) ) {
+			$user = User::newFromName( $user, false );
+		}
+
+		if ( $user->isAnon() && User::isUsableName( $user->getName() ) ) {
+			throw new \InvalidArgumentException(
+				'Blocker must be a local user or a name that cannot be a local user'
+			);
+		}
+
+		$this->blocker = $user;
 	}
 }
 

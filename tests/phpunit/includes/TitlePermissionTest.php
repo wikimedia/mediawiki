@@ -969,15 +969,14 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->user->mBlockedby = $this->user->getName();
 		$this->user->mBlock = new SystemBlock( [
 			'address' => '127.0.8.1',
-			'by' => $this->user->getId(),
 			'reason' => 'no reason given',
 			'timestamp' => $now,
 			'systemBlock' => 'test',
 		] );
 
 		$errors = [ [ 'systemblockedtext',
-				"[[User:Useruser|\u{202A}Useruser\u{202C}]]", 'no reason given', '127.0.0.1',
-				"\u{202A}Useruser\u{202C}", 'test', 'infinite', '127.0.8.1',
+				"", 'no reason given', '127.0.0.1',
+				"", 'test', 'infinite', '127.0.8.1',
 				$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ] ];
 
 		$this->assertEquals( $errors,

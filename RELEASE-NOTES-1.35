@@ -120,6 +120,8 @@ because of Phabricator reports.
   getFallbacksFor, getFallbacksIncludingSiteLanguage. Use the corresponding new
   methods on the LanguageFallback class: getFirst, getAll, and
   getAllIncludingSiteLanguage.
+* AbstractBlock methods setBlocker(), getBlocker() are deprecated and will
+  become internal implementation of DatabaseBlock.
 * Title::countRevisionsBetween has been deprecated and moved into RevisionStore.
 * FileBackendGroup::singleton() is deprecated. Use MediaWikiServices instead.
 * FileBackendGroup::destroySingleton() is deprecated. Test frameworks should

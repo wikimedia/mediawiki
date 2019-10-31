@@ -94,4 +94,17 @@ class SystemBlock extends AbstractBlock {
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 */
+	public function getBy() {
+		return 0;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getByName() {
+		return '';
+	}
 }
