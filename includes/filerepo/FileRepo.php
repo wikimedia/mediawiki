@@ -34,6 +34,8 @@ use MediaWiki\MediaWikiServices;
 /**
  * Base class for file repositories
  *
+ * See [the architecture doc](@ref filerepoarch) for more information.
+ *
  * @ingroup FileRepo
  */
 class FileRepo {
