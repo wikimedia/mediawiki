@@ -588,26 +588,6 @@ class LogEventsList extends ContextSource {
 	}
 
 	/**
-	 * Determine if the current user is allowed to view a particular
-	 * field of this log row, if it's marked as restricted log type.
-	 *
-	 * @param stdClass $type
-	 * @param User|null $user User to check, or null to use $wgUser
-	 * @return bool
-	 */
-	public static function userCanViewLogType( $type, User $user = null ) {
-		if ( $user === null ) {
-			global $wgUser;
-			$user = $wgUser;
-		}
-		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogRestrictions' );
-		if ( isset( $logRestrictions[$type] ) && !$user->isAllowed( $logRestrictions[$type] ) ) {
-			return false;
-		}
-		return true;
-	}
-
-	/**
 	 * @param stdClass $row
 	 * @param int $field One of DELETED_* bitfield constants
 	 * @return bool
@@ -714,7 +694,7 @@ class LogEventsList extends ContextSource {
 				$lang = $context->getLanguage()->getHtmlCode();
 
 				$s = Xml::openElement( 'div', [
-					'class' => "mw-warning-with-logexcerpt mw-content-$dir",
+					'class' => "warningbox mw-warning-with-logexcerpt mw-content-$dir",
 					'dir' => $dir,
 					'lang' => $lang,
 				] );
