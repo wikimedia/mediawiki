@@ -520,6 +520,8 @@ class SpecialSearch extends SpecialPage {
 			} elseif ( ContentHandler::getForTitle( $title )->supportsDirectEditing()
 				&& MediaWikiServices::getInstance()->getPermissionManager()->quickUserCan( 'create',
 					$this->getUser(), $title )
+				&& MediaWikiServices::getInstance()->getPermissionManager()->quickUserCan( 'edit',
+					$this->getUser(), $title )
 			) {
 				$messageName = 'searchmenu-new';
 			}
