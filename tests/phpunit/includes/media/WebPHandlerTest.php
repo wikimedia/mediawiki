@@ -4,13 +4,13 @@
  * @covers WebPHandler
  */
 class WebPHandlerTest extends MediaWikiTestCase {
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 		// Allocated file for testing
 		$this->tempFileName = tempnam( wfTempDir(), 'WEBP' );
 	}
 
-	public function tearDown() {
+	public function tearDown() : void {
 		parent::tearDown();
 		unlink( $this->tempFileName );
 	}

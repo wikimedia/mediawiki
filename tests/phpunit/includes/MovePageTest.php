@@ -95,7 +95,7 @@ class MovePageTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 
 		// Ensure we have some pages that are guaranteed to exist or not

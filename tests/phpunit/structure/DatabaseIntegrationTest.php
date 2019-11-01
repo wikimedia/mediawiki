@@ -14,12 +14,12 @@ class DatabaseIntegrationTest extends MediaWikiTestCase {
 
 	private $functionTest = false;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->db = wfGetDB( DB_MASTER );
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		parent::tearDown();
 		if ( $this->functionTest ) {
 			$this->dropFunctions();

@@ -14,7 +14,7 @@
  */
 class AvroValidatorTest extends MediaWikiUnitTestCase {
 
-	public function setUp() {
+	public function setUp() : void {
 		if ( !class_exists( 'AvroSchema' ) ) {
 			$this->markTestSkipped( 'Avro is required to run the AvroValidatorTest' );
 		}

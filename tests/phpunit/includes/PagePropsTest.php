@@ -28,7 +28,7 @@ class PagePropsTest extends MediaWikiLangTestCase {
 	 */
 	private $the_properties;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( [

@@ -21,7 +21,7 @@ class DBFileJournalIntegrationTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$db = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_MASTER );

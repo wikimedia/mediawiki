@@ -2,7 +2,7 @@
 
 class MWDebugTest extends MediaWikiTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		/** Clear log before each test */
 		MWDebug::clearLog();

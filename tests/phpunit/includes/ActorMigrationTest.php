@@ -17,7 +17,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		'actor',
 	];
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$w = TestingAccessWrapper::newFromClass( ActorMigration::class );
@@ -48,7 +48,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		];
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		parent::tearDown();
 		ScopedCallback::consume( $this->resetActorMigration );
 	}

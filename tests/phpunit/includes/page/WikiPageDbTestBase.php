@@ -54,7 +54,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 	 */
 	abstract protected function getMcrTablesToReset();
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->tablesUsed += $this->getMcrTablesToReset();
@@ -67,7 +67,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		$this->pagesToDelete = [];
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		foreach ( $this->pagesToDelete as $p ) {
 			/* @var WikiPage $p */
 

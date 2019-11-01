@@ -19,7 +19,7 @@ class RevisionMcrDbTest extends RevisionDbTestBase {
 
 	use McrSchemaOverride;
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 	}
 

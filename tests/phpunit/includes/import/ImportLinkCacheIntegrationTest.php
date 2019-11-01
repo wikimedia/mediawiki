@@ -17,7 +17,7 @@ class ImportLinkCacheIntegrationTest extends MediaWikiTestCase {
 
 	private $importStreamSource;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$file = dirname( __DIR__ ) . '/../data/import/ImportLinkCacheIntegrationTest.xml';

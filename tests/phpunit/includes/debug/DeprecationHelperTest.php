@@ -13,7 +13,7 @@ class DeprecationHelperTest extends MediaWikiTestCase {
 	/** @var TestDeprecatedSubclass */
 	private $testSubclass;
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 		$this->testClass = new TestDeprecatedClass();
 		$this->testSubclass = new TestDeprecatedSubclass();

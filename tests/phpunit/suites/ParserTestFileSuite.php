@@ -24,7 +24,7 @@ class ParserTestFileSuite extends TestSuite {
 		}
 	}
 
-	public function setUp() {
+	public function setUp() : void {
 		if ( !$this->ptRunner->meetsRequirements( $this->ptFileInfo['requirements'] ) ) {
 			$this->markTestSuiteSkipped( 'required extension not enabled' );
 		} else {

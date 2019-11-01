@@ -150,7 +150,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		}
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		// Since we will restrict dumping by page ranges (to allow
@@ -163,7 +163,7 @@ class BackupDumperPageTest extends DumpTestCase {
 			"Page ids increasing without holes" );
 	}
 
-	public function tearDown() {
+	public function tearDown() : void {
 		parent::tearDown();
 
 		if ( isset( $this->streamingLoadBalancer ) ) {

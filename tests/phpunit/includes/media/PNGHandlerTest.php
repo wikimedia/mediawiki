@@ -8,7 +8,7 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 	/** @var PNGHandler */
 	protected $handler;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->handler = new PNGHandler();
 	}

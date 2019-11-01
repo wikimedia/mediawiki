@@ -10,7 +10,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class MessageCacheTest extends MediaWikiLangTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->configureLanguages();
 		MessageCache::singleton()->enable();

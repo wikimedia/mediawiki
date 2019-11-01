@@ -15,7 +15,7 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiTestCase 
 
 	protected $oldPatrollersGroup;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		global $wgGroupPermissions;
 
 		parent::setUp();
@@ -43,7 +43,7 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiTestCase 
 
 	abstract protected function getPage();
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		global $wgGroupPermissions;
 
 		parent::tearDown();

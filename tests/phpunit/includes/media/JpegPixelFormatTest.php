@@ -10,7 +10,7 @@ use MediaWiki\Shell\Shell;
  */
 class JpegPixelFormatTest extends MediaWikiMediaTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 	}
 

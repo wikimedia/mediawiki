@@ -17,7 +17,7 @@ class BlockListPagerTest extends MediaWikiTestCase {
 	 */
 	private $linkRenderer;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();

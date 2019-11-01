@@ -7,7 +7,7 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 	 */
 	protected $mConf;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->mConf = new SiteConfiguration;

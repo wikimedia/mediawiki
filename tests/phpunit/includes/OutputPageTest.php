@@ -22,12 +22,12 @@ class OutputPageTest extends MediaWikiTestCase {
 	// @codingStandardsIgnoreEnd
 
 	// Ensure that we don't affect the global ResourceLoader state.
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		ResourceLoader::clearCache();
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		parent::tearDown();
 		ResourceLoader::clearCache();
 	}

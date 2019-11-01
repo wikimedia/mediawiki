@@ -14,7 +14,7 @@
  */
 class MediaWikiTestCaseSchema2Test extends MediaWikiTestCase {
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 		// FIXME: fails under postgres
 		$this->markTestSkippedIfDbType( 'postgres' );

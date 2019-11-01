@@ -6,12 +6,12 @@ class FauxRequestTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 		$this->orgWgServer = $GLOBALS['wgServer'];
 	}
 
-	public function tearDown() {
+	public function tearDown() : void {
 		$GLOBALS['wgServer'] = $this->orgWgServer;
 		parent::tearDown();
 	}

@@ -61,7 +61,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	 */
 	abstract protected function getMcrTablesToReset();
 
-	protected function setUp() {
+	protected function setUp() : void {
 		$this->tablesUsed += $this->getMcrTablesToReset();
 
 		parent::setUp();

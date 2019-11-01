@@ -13,7 +13,7 @@ use Psr\Log\NullLogger;
  * @group Database
  */
 class ApiStashEditTest extends ApiTestCase {
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 		$this->setService( 'PageEditStash', new PageEditStash(
 			new HashBagOStuff( [] ),
@@ -26,7 +26,7 @@ class ApiStashEditTest extends ApiTestCase {
 		$this->setMwGlobals( 'wgMainCacheType', 'hash' );
 	}
 
-	public function tearDown() {
+	public function tearDown() : void {
 		parent::tearDown();
 	}
 

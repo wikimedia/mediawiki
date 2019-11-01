@@ -9,7 +9,7 @@ class ExtensionProcessorTest extends \MediaWikiUnitTestCase {
 
 	private $dir, $dirname;
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 		$this->dir = __DIR__ . '/FooBar/extension.json';
 		$this->dirname = dirname( $this->dir );

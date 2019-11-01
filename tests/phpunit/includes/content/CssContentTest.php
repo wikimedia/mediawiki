@@ -9,7 +9,7 @@
  */
 class CssContentTest extends JavaScriptContentTest {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		// Anon user

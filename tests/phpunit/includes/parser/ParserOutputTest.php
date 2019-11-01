@@ -33,7 +33,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		];
 	}
 
-	public function tearDown() {
+	public function tearDown() : void {
 		MWTimestamp::setFakeTime( false );
 
 		parent::tearDown();

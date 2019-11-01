@@ -12,14 +12,14 @@ class ArticleTest extends MediaWikiUnitTestCase {
 	private $article;
 
 	/** creates a title object and its article object */
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->title = Title::makeTitle( NS_MAIN, 'SomePage' );
 		$this->article = new Article( $this->title );
 	}
 
 	/** cleanup title object and its article object */
-	protected function tearDown() {
+	protected function tearDown() : void {
 		parent::tearDown();
 		$this->title = null;
 		$this->article = null;

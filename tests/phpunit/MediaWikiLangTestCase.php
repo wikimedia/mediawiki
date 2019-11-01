@@ -6,7 +6,7 @@ use MediaWiki\MediaWikiServices;
  * Base class that store and restore the Language objects
  */
 abstract class MediaWikiLangTestCase extends MediaWikiTestCase {
-	protected function setUp() {
+	protected function setUp() : void {
 		global $wgLanguageCode;
 
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();

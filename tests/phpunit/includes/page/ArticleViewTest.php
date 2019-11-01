@@ -11,7 +11,7 @@ use PHPUnit\Framework\MockObject\MockObject;
  */
 class ArticleViewTest extends MediaWikiTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setUserLang( 'qqx' );

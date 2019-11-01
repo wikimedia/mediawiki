@@ -104,7 +104,7 @@ WIKITEXT;
 		return $mock;
 	}
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 
 		$this->setTemporaryHook( 'BadImage', __CLASS__ . '::badImageHook' );

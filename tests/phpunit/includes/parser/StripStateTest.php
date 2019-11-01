@@ -4,7 +4,7 @@
  * @covers StripState
  */
 class StripStateTest extends MediaWikiTestCase {
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 		$this->setContentLang( 'qqx' );
 	}

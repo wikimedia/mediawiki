@@ -10,7 +10,7 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 	/** @var MimeAnalyzer */
 	private $mimeAnalyzer;
 
-	public function setUp() {
+	public function setUp() : void {
 		global $IP;
 
 		$this->mimeAnalyzer = new MimeAnalyzer( [

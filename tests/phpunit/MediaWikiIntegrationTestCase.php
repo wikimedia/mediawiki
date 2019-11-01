@@ -709,7 +709,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 *
 	 * @par Example
 	 * @code
-	 *     protected function setUp() {
+	 *     protected function setUp() : void {
 	 *         $this->setMwGlobals( 'wgRestrictStuff', true );
 	 *     }
 	 *

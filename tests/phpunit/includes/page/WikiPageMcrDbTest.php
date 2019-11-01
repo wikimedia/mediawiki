@@ -17,7 +17,7 @@ class WikiPageMcrDbTest extends WikiPageDbTestBase {
 
 	use McrSchemaOverride;
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 	}
 

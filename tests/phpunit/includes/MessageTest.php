@@ -8,7 +8,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class MessageTest extends MediaWikiLangTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( [

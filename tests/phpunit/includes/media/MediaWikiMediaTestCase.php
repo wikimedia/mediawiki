@@ -11,7 +11,7 @@ abstract class MediaWikiMediaTestCase extends MediaWikiTestCase {
 	/** @var string */
 	protected $filePath;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->filePath = $this->getFilePath();

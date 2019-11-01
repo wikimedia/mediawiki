@@ -26,12 +26,12 @@ use PHPUnit\Framework\Error\Deprecated;
 class DeprecatedGlobalTest extends MediaWikiTestCase {
 	private $oldErrorLevel;
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 		$this->oldErrorLevel = error_reporting( -1 );
 	}
 
-	public function tearDown() {
+	public function tearDown() : void {
 		error_reporting( $this->oldErrorLevel );
 		parent::tearDown();
 	}

@@ -9,7 +9,7 @@ class SpecialMIMESearchTest extends MediaWikiTestCase {
 	/** @var SpecialMIMESearch */
 	private $page;
 
-	public function setUp() {
+	public function setUp() : void {
 		$this->page = new SpecialMIMESearch;
 		$context = new RequestContext();
 		$context->setTitle( Title::makeTitle( NS_SPECIAL, 'MIMESearch' ) );

@@ -5,7 +5,7 @@
  */
 class FormatMetadataTest extends MediaWikiMediaTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->checkPHPExtension( 'exif' );

@@ -10,7 +10,7 @@ use MediaWiki\MediaWikiServices;
 class TextContentTest extends MediaWikiLangTestCase {
 	protected $context;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		// trigger purging of all page related tables
@@ -40,7 +40,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 		MWTidy::destroySingleton();
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		MWTidy::destroySingleton();
 		parent::tearDown();
 	}

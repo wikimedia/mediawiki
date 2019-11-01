@@ -24,7 +24,7 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 		$this->testRecentChangesHelper = new TestRecentChangesHelper();
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( [
