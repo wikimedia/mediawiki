@@ -33,6 +33,7 @@ use Wikimedia\ObjectFactory;
  *      the user unnecessarily.
  *
  * @since 1.34
+ * @unstable
  */
 class ParamValidator {
 

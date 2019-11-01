@@ -23,6 +23,7 @@ use Wikimedia\ParamValidator\ValidationException;
  * the constants' documentation for details.
  *
  * @since 1.34
+ * @unstable
  */
 class EnumDef extends TypeDef {
 
