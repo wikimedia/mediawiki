@@ -24,6 +24,7 @@ use Wikimedia\Timestamp\TimestampException;
  *    Use 'now' instead if you really want the current timestamp. No data.
  *
  * @since 1.34
+ * @unstable
  */
 class TimestampDef extends TypeDef {
 

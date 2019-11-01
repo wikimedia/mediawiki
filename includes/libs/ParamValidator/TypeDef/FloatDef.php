@@ -24,6 +24,7 @@ use Wikimedia\ParamValidator\ValidationException;
  *    infinity or NAN.
  *
  * @since 1.34
+ * @unstable
  */
 class FloatDef extends TypeDef {
 
