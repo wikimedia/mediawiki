@@ -1,6 +1,9 @@
 <?php
+declare( strict_types = 1 );
 
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
+use Psr\Log\NullLogger;
+use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -270,14 +273,12 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 			'streamMimeFunc set' => [ 'streamMimeFunc', 'smf', [ 'streamMimeFunc' => 'smf' ] ],
 
 			'profiler default value' => [ 'profiler', null ],
-			'profiler callable' => [ 'profiler', 'strtr', [ 'profiler' => 'strtr' ] ],
 			'profiler not callable' => [ 'profiler', null, [ 'profiler' => '!' ] ],
 
 			'logger default value' => [ 'logger', new Psr\Log\NullLogger, [ 'inexact' => true ] ],
 			'logger set' => [ 'logger', 'abcd', [ 'logger' => 'abcd' ] ],
 
 			'statusWrapper default value' => [ 'statusWrapper', null ],
-			'statusWrapper set' => [ 'statusWrapper', 'stat', [ 'statusWrapper' => 'stat' ] ],
 
 			'tmpFileFactory default value' =>
 				[ 'tmpFileFactory', new TempFSFileFactory, [ 'inexact' => true ] ],
@@ -297,6 +298,18 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 			'tmpDirectory null and tmpFileFactory set' => [ 'tmpFileFactory', $tmpFileFactory,
 				[ 'tmpDirectory' => null, 'tmpFileFactory' => $tmpFileFactory ] ],
 		];
+	}
+
+	/**
+	 * @covers ::setLogger
+	 */
+	public function testSetLogger() : void {
+		$backend = $this->newMockFileBackend();
+		$logger = new NullLogger;
+		// See comment in testConstruct_properties about use of TestingAccessWrapper.
+		$this->assertNotSame( $logger, TestingAccessWrapper::newFromObject( $backend )->logger );
+		$backend->setLogger( $logger );
+		$this->assertSame( $logger, TestingAccessWrapper::newFromObject( $backend )->logger );
 	}
 
 	/**
@@ -410,6 +423,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 	 * @covers ::secure
 	 * @covers ::publish
 	 * @covers ::clean
+	 * @covers ::newStatus
 	 * @dataProvider provideReadOnly
 	 * @param string $method
 	 */
@@ -450,6 +464,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 	 * @covers ::secure
 	 * @covers ::publish
 	 * @covers ::clean
+	 * @covers ::newStatus
 	 * @dataProvider provideReadOnly
 	 * @param string $method Method to call
 	 * @param string $internalMethod Internal method the call will be forwarded to
@@ -473,6 +488,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 	/**
 	 * @covers ::doOperations
 	 * @covers ::doQuickOperations
+	 * @covers ::newStatus
 	 * @dataProvider provideDoMultipleOperations
 	 * @param string $method
 	 */
@@ -668,8 +684,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 	 * @param int $timeout Only relevant for lockFiles
 	 */
 	public function testLockUnlockFiles( string $method, ?int $timeout = null ) : void {
-		// TODO Test that normalizeStoragePath is being called
-		$args = [ [ 'mwstore://a/b', 'mwstore://c/d/e' ], LockManager::LOCK_SH ];
+		$args = [ [ 'mwstore://a/b/', 'mwstore://c/d//e' ], LockManager::LOCK_SH ];
 
 		$mockLm = $this->getMockBuilder( LockManager::class )
 			->disableOriginalConstructor()
@@ -699,6 +714,85 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 			[ 'lock' ],
 			[ 'lock', 731 ],
 			[ 'unlock' ],
+		];
+	}
+
+	/**
+	 * @covers ::getScopedFileLocks
+	 * @dataProvider provideGetScopedFileLocks
+	 * @param array $paths
+	 * @param int|string $type
+	 * @param array $expectedPathsByType Expected to be passed to the LockManager
+	 * @param StatusValue $lockStatus Returned from doLockByType()
+	 * @param StatusValue|null $unlockStatus Returned from doUnlockByType() (if locking succeeded)
+	 */
+	public function testGetScopedFileLocks(
+		array $paths, $type, array $expectedPathsByType, StatusValue $lockStatus,
+		?StatusValue $unlockStatus = null
+	) : void {
+		$mockLm = $this->getMockBuilder( LockManager::class )
+			->disableOriginalConstructor()
+			->setMethods( [ 'doLockByType', 'doUnlockByType', 'doLock', 'doUnlock' ] )
+			->getMock();
+		$mockLm->expects( $this->once() )->method( 'doLockByType' )
+			->with( $expectedPathsByType )
+			->willReturn( $lockStatus );
+		$mockLm->expects( $this->exactly( $unlockStatus ? 1 : 0 ) )->method( 'doUnlockByType' )
+			->with( $expectedPathsByType )
+			->willReturn( $unlockStatus );
+
+		$backend = $this->newMockFileBackend( [ 'lockManager' => $mockLm ] );
+
+		$status = StatusValue::newGood( 'myvalue' );
+		$scopedLock = $backend->getScopedFileLocks( $paths, $type, $status );
+
+		$this->assertSame( 'myvalue', $status->getValue() );
+		$this->assertSame( $lockStatus->isOK(), $status->isOK() );
+		$this->assertSame( $lockStatus->getErrors(), $status->getErrors() );
+
+		if ( !$lockStatus->isOK() ) {
+			$this->assertNull( $scopedLock );
+			return;
+		}
+
+		$this->assertInstanceOf( ScopedLock::class, $scopedLock );
+		unset( $scopedLock );
+
+		$this->assertSame( 'myvalue', $status->getValue() );
+		$this->assertSame( $lockStatus->isOK(), $status->isOK() );
+		$this->assertSame( array_merge( $lockStatus->getErrors(), $unlockStatus->getErrors() ),
+			$status->getErrors() );
+	}
+
+	public static function provideGetScopedFileLocks() : array {
+		return [
+			'Simple successful shared lock' => [
+				[ 'mwstore://a/b/' ], LockManager::LOCK_SH,
+				[ LockManager::LOCK_SH => [ 'mwstore://a/b' ] ],
+				StatusValue::newGood( 'value2' ), StatusValue::newGood( 'value3' ),
+			],
+			'Mixed lock' => [
+				[ LockManager::LOCK_SH => [ 'mwstore://a/b/' ],
+					LockManager::LOCK_EX => [ 'mwstore://c/d//e' ] ], 'mixed',
+				[ LockManager::LOCK_SH => [ 'mwstore://a/b' ],
+					LockManager::LOCK_EX => [ 'mwstore://c/d/e' ] ],
+				StatusValue::newGood(), StatusValue::newGood(),
+			],
+			'Mixed with only shared locks' => [
+				[ LockManager::LOCK_SH => [ 'mwstore://a/b/', 'mwstore://c/d//e' ] ], 'mixed',
+				[ LockManager::LOCK_SH => [ 'mwstore://a/b', 'mwstore://c/d/e' ] ],
+				StatusValue::newGood(), StatusValue::newGood(),
+			],
+			'Locking error' => [
+				[ 'mwstore://a/b/' ], LockManager::LOCK_EX,
+				[ LockManager::LOCK_EX => [ 'mwstore://a/b' ] ],
+				StatusValue::newFatal( 'XXX' ),
+			],
+			'Unlocking error' => [
+				[ 'mwstore://a/b/', 'mwstore://c/d//e' ], LockManager::LOCK_EX,
+				[ LockManager::LOCK_EX => [ 'mwstore://a/b', 'mwstore://c/d/e' ] ],
+				StatusValue::newGood(), StatusValue::newFatal( 'XXXX' ),
+			],
 		];
 	}
 
@@ -742,6 +836,291 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 		$mockJournal = $this->createNoOpMock( FileJournal::class );
 		$backend = $this->newMockFileBackend( [ 'fileJournal' => $mockJournal ] );
 		$this->assertSame( $mockJournal, $backend->getJournal() );
+	}
+
+	/**
+	 * @covers ::isStoragePath
+	 * @dataProvider provideIsStoragePath
+	 * @param string $path
+	 * @param bool $expected
+	 */
+	public function testIsStoragePath( string $path, bool $expected ) : void {
+		$this->assertSame( $expected, FileBackend::isStoragePath( $path ) );
+	}
+
+	public static function provideIsStoragePath() : array {
+		$paths = [
+			'mwstore://' => true,
+			'mwstore://backend' => true,
+			'mwstore://backend/container' => true,
+			'mwstore://backend/container/' => true,
+			'mwstore://backend/container/path' => true,
+			'mwstore://backend//container/' => true,
+			'mwstore://backend//container//' => true,
+			'mwstore://backend//container//path' => true,
+			'mwstore:///' => true,
+			'mwstore:/' => false,
+			'mwstore:' => false,
+		];
+		$ret = [];
+		foreach ( $paths as $path => $expected ) {
+			$ret[$path] = [ $path, $expected ];
+		}
+		return $ret;
+	}
+
+	/**
+	 * @covers ::splitStoragePath
+	 * @dataProvider provideSplitStoragePath
+	 * @param string $path
+	 * @param array $expected
+	 */
+	public function testSplitStoragePath( string $path, array $expected ) : void {
+		$this->assertSame( $expected, FileBackend::splitStoragePath( $path ) );
+	}
+
+	public static function provideSplitStoragePath() : array {
+		$paths = [
+			'mwstore://backend/container' => [ 'backend', 'container', '' ],
+			'mwstore://backend/container/' => [ 'backend', 'container', '' ],
+			'mwstore://backend/container/path' => [ 'backend', 'container', 'path' ],
+			'mwstore://backend/container//path' => [ 'backend', 'container', '/path' ],
+			'mwstore://backend//container/path' => [ null, null, null ],
+			'mwstore://backend//container' => [ null, null, null ],
+			'mwstore://backend//container//path' => [ null, null, null ],
+			'mwstore://' => [ null, null, null ],
+			'mwstore://backend' => [ null, null, null ],
+			'mwstore:///' => [ null, null, null ],
+			'mwstore:/' => [ null, null, null ],
+			'mwstore:' => [ null, null, null ],
+		];
+		$ret = [];
+		foreach ( $paths as $path => $expected ) {
+			$ret[$path] = [ $path, $expected ];
+		}
+		return $ret;
+	}
+
+	/**
+	 * @covers ::normalizeStoragePath
+	 * @dataProvider provideNormalizeStoragePath
+	 * @param string $path
+	 * @param string|null $expected
+	 */
+	public function testNormalizeStoragePath( string $path, ?string $expected ) : void {
+		$this->assertSame( $expected, FileBackend::normalizeStoragePath( $path ) );
+	}
+
+	public static function provideNormalizeStoragePath() : array {
+		$paths = [
+			'mwstore://backend/container' => 'mwstore://backend/container',
+			'mwstore://backend/container/' => 'mwstore://backend/container',
+			'mwstore://backend/container/path' => 'mwstore://backend/container/path',
+			'mwstore://backend/container//path' => 'mwstore://backend/container/path',
+			'mwstore://backend/container///path' => 'mwstore://backend/container/path',
+			'mwstore://backend/container///path//to///obj' =>
+				'mwstore://backend/container/path/to/obj',
+			'mwstore://' => null,
+			'mwstore://backend' => null,
+			'mwstore://backend//container' => null,
+			'mwstore://backend//container/path' => null,
+			'mwstore://backend//container//path' => null,
+			'mwstore:///' => null,
+			'mwstore:/' => null,
+			'mwstore:' => null,
+		];
+		$ret = [];
+		foreach ( $paths as $path => $expected ) {
+			$ret[$path] = [ $path, $expected ];
+		}
+		return $ret;
+	}
+
+	/**
+	 * @covers ::parentStoragePath
+	 * @dataProvider provideParentStoragePath
+	 * @param string $path
+	 * @param string|null $expected
+	 */
+	public function testParentStoragePath( string $path, ?string $expected ) : void {
+		$this->assertSame( $expected, FileBackend::parentStoragePath( $path ) );
+	}
+
+	public static function provideParentStoragePath() : array {
+		$paths = [
+			'mwstore://backend/container/path/to/obj' => 'mwstore://backend/container/path/to',
+			'mwstore://backend/container/path/to' => 'mwstore://backend/container/path',
+			'mwstore://backend/container/path' => 'mwstore://backend/container',
+			'mwstore://backend/container' => null,
+			'mwstore://backend/container/path/to/obj/' => 'mwstore://backend/container/path/to',
+			'mwstore://backend/container/path/to/' => 'mwstore://backend/container/path',
+			'mwstore://backend/container/path/' => 'mwstore://backend/container',
+			'mwstore://backend/container/' => null,
+		];
+		$ret = [];
+		foreach ( $paths as $path => $expected ) {
+			$ret[$path] = [ $path, $expected ];
+		}
+		return $ret;
+	}
+
+	/**
+	 * @covers ::extensionFromPath
+	 * @dataProvider provideExtensionFromPath
+	 * @param array $args
+	 * @param string $expected
+	 */
+	public function testExtensionFromPath( array $args, string $expected ) : void {
+		$this->assertSame( $expected, FileBackend::extensionFromPath( ...$args ) );
+	}
+
+	public static function provideExtensionFromPath() : array {
+		$paths = [
+			'mwstore://backend/container/path.Txt' => 'Txt',
+			'mwstore://backend/container/path.svg.pNG' => 'pNG',
+			'mwstore://backend/container/path' => '',
+			'mwstore://backend/container/path.' => '',
+		];
+		$ret = [];
+		foreach ( $paths as $path => $expected ) {
+			$ret[$path] = [ [ $path ], strtolower( $expected ) ];
+			$ret["$path (lowercase)"] = [ [ $path, 'lowercase' ], strtolower( $expected ) ];
+			$ret["$path (uppercase)"] = [ [ $path, 'uppercase' ], strtoupper( $expected ) ];
+			$ret["$path (rawcase)"] = [ [ $path, 'rawcase' ], $expected ];
+		}
+		return $ret;
+	}
+
+	/**
+	 * @covers ::isPathTraversalFree
+	 * @covers ::normalizeContainerPath
+	 * @dataProvider provideIsPathTraversalFree
+	 * @param string $path
+	 * @param bool $expected
+	 */
+	public function testIsPathTraversalFree( string $path, bool $expected ) : void {
+		$this->assertSame( $expected, FileBackend::isPathTraversalFree( $path ) );
+	}
+
+	public static function provideIsPathTraversalFree() : array {
+		$traversalFree = [
+			'a\\b',
+			'a//b',
+			'/a',
+			'\\a//b/',
+		];
+
+		$hasTraversal = [];
+
+		$strippedPrefixes = [ '', '/', '//', '///', '\\', '\\\\', '\\\\\\' ];
+		$unstrippedPrefixes = [ '.', 'a', 'a/', '/a', ' ', "\0" ];
+		$suffixes = [ '', '.', 'a', '/', '/a', ' ', "\0" ];
+
+		foreach ( [ '.', '..' ] as $basePath ) {
+			foreach ( $strippedPrefixes as $prefix ) {
+				foreach ( $suffixes as $suffix ) {
+					if ( $suffix === '' ) {
+						$hasTraversal[] = "$prefix$basePath";
+					} else {
+						$traversalFree[] = "$prefix$basePath$suffix";
+					}
+				}
+			}
+			foreach ( $unstrippedPrefixes as $prefix ) {
+				foreach ( $suffixes as $suffix ) {
+					$traversalFree[] = "$prefix$basePath$suffix";
+				}
+			}
+		}
+
+		foreach ( [ './', '.\\', '../', '..\\' ] as $basePath ) {
+			foreach ( $strippedPrefixes as $prefix ) {
+				foreach ( $suffixes as $suffix ) {
+					$hasTraversal[] = "$prefix$basePath$suffix";
+				}
+			}
+			foreach ( $unstrippedPrefixes as $prefix ) {
+				foreach ( $suffixes as $suffix ) {
+					$traversalFree[] = "$prefix$basePath$suffix";
+				}
+			}
+		}
+
+		foreach (
+			[ '/./', '\\./', '/.\\', '\\.\\', '/../', '\\../', '/..\\', '\\..\\' ] as $basePath
+		) {
+			foreach ( array_merge( $strippedPrefixes, $unstrippedPrefixes ) as $prefix ) {
+				foreach ( $suffixes as $suffix ) {
+					$hasTraversal[] = "$prefix$basePath$suffix";
+				}
+			}
+		}
+
+		// Some things might be traversal-free vis-a-vis one base path but a traversal for another
+		$traversalFree = array_diff( $traversalFree, $hasTraversal );
+
+		$ret = [];
+		foreach ( $traversalFree as $path ) {
+			$ret[$path] = [ $path, true ];
+		}
+		foreach ( $hasTraversal as $path ) {
+			$ret[$path] = [ $path, false ];
+		}
+		return $ret;
+	}
+
+	/**
+	 * @covers ::makeContentDisposition
+	 * @dataProvider provideMakeContentDisposition
+	 * @param array $args
+	 * @param string $expected
+	 */
+	public function testMakeContentDisposition( array $args, string $expected )
+	: void {
+		$this->assertSame( $expected, FileBackend::makeContentDisposition( ...$args ) );
+	}
+
+	public static function provideMakeContentDisposition() : array {
+		$tests = [
+			[ [ 'inline' ], 'inline' ],
+			[ [ 'inLINE' ], 'inline' ],
+			[ [ 'inLINE', '' ], 'inline' ],
+			[ [ 'attachment' ], 'attachment' ],
+			[ [ 'atTACHment' ], 'attachment' ],
+			[ [ 'atTACHment', '' ], 'attachment' ],
+
+			[ [ 'inline', 'filename.txt' ], "inline;filename*=UTF-8''filename.txt" ],
+			[ [ 'attachment', 'filename.txt' ], "attachment;filename*=UTF-8''filename.txt" ],
+
+			[ [ 'inline', 'path/filename!!!' ], "inline;filename*=UTF-8''filename%21%21%21" ],
+		];
+		$ret = [];
+		foreach ( $tests as [ $args, $expected ] ) {
+			$ret[implode( ', ', $args )] = [ $args, $expected ];
+		}
+		return $ret;
+	}
+
+	/**
+	 * @covers ::makeContentDisposition
+	 * @dataProvider provideMakeContentDisposition_invalid
+	 * @param string ...$args
+	 */
+	public function testMakeContentDisposition_invalid( string ...$args ) : void {
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( "Invalid Content-Disposition type '{$args[0]}'." );
+
+		FileBackend::makeContentDisposition( ...$args );
+	}
+
+	public static function provideMakeContentDisposition_invalid() : array {
+		return [
+			[ 'foo' ],
+			[ 'foo', '' ],
+			[ 'foo', 'bar' ],
+			[ ' inline' ],
+			[ 'inline ' ],
+		];
 	}
 
 	/**
@@ -789,5 +1168,37 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 		$status = $backend->$method( $op );
 
 		$this->assertTrue( file_exists( $path ) );
+	}
+
+	/**
+	 * @covers ::__construct
+	 * @covers ::wrapStatus
+	 */
+	public function testWrapStatus() : void {
+		$expectedSv = StatusValue::newGood( 'myvalue' );
+		$backend = $this->newMockFileBackend( [ 'statusWrapper' =>
+			function ( StatusValue $sv ) use ( $expectedSv ) : StatusValue {
+				$this->assertEquals( StatusValue::newGood(), $sv );
+				return $expectedSv;
+			}
+		] );
+		$this->assertSame( $expectedSv, $backend->doOperations( [] ) );
+	}
+
+	/**
+	 * @covers ::scopedProfileSection
+	 */
+	public function testScopedProfileSection() : void {
+		$scopedCallback = new ScopedCallback( function () {
+		} );
+		$backend = $this->newMockFileBackend( [ 'profiler' =>
+			function ( string $section ) use ( $scopedCallback ) : ScopedCallback {
+				$this->assertSame( 'mysection', $section );
+				return $scopedCallback;
+			}
+		] );
+		// See comment in testConstruct_properties about use of TestingAccessWrapper.
+		$this->assertSame( $scopedCallback,
+			TestingAccessWrapper::newFromObject( $backend )->scopedProfileSection( 'mysection' ) );
 	}
 }
