@@ -4992,13 +4992,6 @@ $wgAutoblockExpiry = 86400;
 $wgBlockAllowsUTEdit = true;
 
 /**
- * Allow sysops to ban users from accessing Emailuser
- * @deprecated since 1.34; `$wgGroupPermissions['sysop']['blockemail'] = true;`
- * should be used instead
- */
-$wgSysopEmailBans = true;
-
-/**
  * Limits on the possible sizes of range blocks.
  *
  * CIDR notation is hard to understand, it's easy to mistakenly assume that a

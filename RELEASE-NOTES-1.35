@@ -41,6 +41,8 @@ For notes on 1.34.x and older releases, see HISTORY.
 * …
 
 ==== Removed configuration ====
+* $wgSysopEmailBans — This setting, deprecated in 1.34, was removed. To let
+  sysops block email access, use $wgGroupPermissions['sysop']['blockemail'].
 * …
 
 

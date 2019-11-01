@@ -437,14 +437,6 @@ if ( $wgEnableEmail ) {
 	$wgUsersNotifiedOnAllChanges = [];
 }
 
-// $wgSysopEmailBans deprecated in 1.34
-if ( isset( $wgSysopEmailBans ) && $wgSysopEmailBans === false ) {
-	wfDeprecated( 'wgSysopEmailBans', '1.34' );
-	foreach ( $wgGroupPermissions as $group => $_ ) {
-		unset( $wgGroupPermissions[$group]['blockemail'] );
-	}
-}
-
 if ( $wgMetaNamespace === false ) {
 	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 }
