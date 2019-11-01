@@ -4834,6 +4834,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return string[] Array of permission names
 	 */
 	public static function getAllRights() {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getPermissionManager()->getAllPermissions();
 	}
 
