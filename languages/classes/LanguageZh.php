@@ -174,7 +174,7 @@ class LanguageZh extends LanguageZh_hans {
 	 * @param string $autoVariant Defaults to 'zh-hans'
 	 * @return string
 	 */
-	function normalizeForSearch( $string, $autoVariant = 'zh-hans' ) {
+	public function normalizeForSearch( $string, $autoVariant = 'zh-hans' ) {
 		// always convert to zh-hans before indexing. it should be
 		// better to use zh-hans for search, since conversion from
 		// Traditional to Simplified is less ambiguous than the

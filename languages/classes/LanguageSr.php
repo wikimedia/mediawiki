@@ -85,7 +85,7 @@ class SrConverter extends LanguageConverter {
 	 * @param Title &$nt
 	 * @param bool $ignoreOtherCond
 	 */
-	function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
+	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
 		// check for user namespace
 		if ( is_object( $nt ) ) {
 			$ns = $nt->getNamespace();

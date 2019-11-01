@@ -96,7 +96,7 @@ class FakeConverter {
 		return false;
 	}
 
-	function findVariantLink( &$l, &$n, $ignoreOtherCond = false ) {
+	public function findVariantLink( &$l, &$n, $ignoreOtherCond = false ) {
 	}
 
 	function getExtraHashOptions() {

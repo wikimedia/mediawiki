@@ -226,7 +226,7 @@ class KkConverter extends LanguageConverter {
 	 * @param Title &$nt
 	 * @param bool $ignoreOtherCond
 	 */
-	function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
+	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
 		// check for user namespace
 		if ( is_object( $nt ) ) {
 			$ns = $nt->getNamespace();
@@ -402,7 +402,7 @@ class LanguageKk extends LanguageKk_cyrl {
 	 *
 	 * @return string
 	 */
-	function lcfirst( $string ) {
+	public function lcfirst( $string ) {
 		if ( substr( $string, 0, 1 ) === 'I' ) {
 			$variant = $this->getPreferredVariant();
 			if ( $variant == 'kk-latn' || $variant == 'kk-tr' ) {
@@ -417,7 +417,7 @@ class LanguageKk extends LanguageKk_cyrl {
 	 * @param string $case
 	 * @return string
 	 */
-	function convertGrammar( $word, $case ) {
+	public function convertGrammar( $word, $case ) {
 		$variant = $this->getPreferredVariant();
 		switch ( $variant ) {
 			case 'kk-arab':
