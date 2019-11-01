@@ -243,11 +243,19 @@ class SpecialBlock extends FormSpecialPage {
 			];
 		}
 
+		$defaultExpiry = $this->msg( 'ipb-default-expiry' )->inContentLanguage();
+		if ( $this->type === DatabaseBlock::TYPE_RANGE || $this->type === DatabaseBlock::TYPE_IP ) {
+			$defaultExpiryIP = $this->msg( 'ipb-default-expiry-ip' )->inContentLanguage();
+			if ( !$defaultExpiryIP->isDisabled() ) {
+				$defaultExpiry = $defaultExpiryIP;
+			}
+		}
+
 		$a['Expiry'] = [
 			'type' => 'expiry',
 			'required' => true,
 			'options' => $suggestedDurations,
-			'default' => $this->msg( 'ipb-default-expiry' )->inContentLanguage()->text(),
+			'default' => $defaultExpiry->text(),
 			'section' => 'expiry',
 		];
 
