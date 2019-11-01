@@ -1214,3 +1214,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-ParsoidBatchAPI
 	branch = REL1_34
 	ignore = dirty
+[submodule "extensions/DarkMode"]
+	path = extensions/DarkMode
+	url = https://github.com/wikimedia/mediawiki-extensions-DarkMode
+	branch = REL1_34
+	ignore = dirty
