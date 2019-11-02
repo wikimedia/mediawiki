@@ -8,7 +8,7 @@ use MediaWiki\Config\ServiceOptions;
 class ServiceOptionsTest extends \MediaWikiUnitTestCase {
 	public static $testObj;
 
-	public static function setUpBeforeClass() {
+	public static function setUpBeforeClass(): void {
 		parent::setUpBeforeClass();
 
 		self::$testObj = new stdclass();

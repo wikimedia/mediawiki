@@ -663,7 +663,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function provideDecompressRevisionText() {
 		yield '(no legacy encoding), false in false out' => [ false, false, [], false ];
 		yield '(no legacy encoding), empty in empty out' => [ false, '', [], '' ];
-		yield '(no legacy encoding), empty in empty out' => [ false, 'A', [], 'A' ];
+		yield '(no legacy encoding), empty in empty out 2' => [ false, 'A', [], 'A' ];
 		yield '(no legacy encoding), string in with gzip flag returns string' => [
 			// gzip string below generated with gzdeflate( 'AAAABBAAA' )
 			false, "sttttr\002\022\000", [ 'gzip' ], 'AAAABBAAA',

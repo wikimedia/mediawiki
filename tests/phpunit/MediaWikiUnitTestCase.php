@@ -61,7 +61,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		];
 	}
 
-	public static function setUpBeforeClass() {
+	public static function setUpBeforeClass() : void {
 		parent::setUpBeforeClass();
 
 		$reflection = new ReflectionClass( static::class );
@@ -131,7 +131,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		parent::tearDown();
 	}
 
-	public static function tearDownAfterClass() {
+	public static function tearDownAfterClass() : void {
 		// Remove globals created by the test
 		foreach ( $GLOBALS as $key => $_ ) {
 			if ( $key !== 'GLOBALS' && !array_key_exists( $key, self::$originalGlobals ) ) {
