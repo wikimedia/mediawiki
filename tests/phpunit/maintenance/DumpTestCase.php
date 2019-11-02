@@ -107,7 +107,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		);
 	}
 
-	public static function setUpBeforeClass() {
+	public static function setUpBeforeClass() : void {
 		parent::setUpBeforeClass();
 
 		if ( !function_exists( 'libxml_set_external_entity_loader' ) ) {

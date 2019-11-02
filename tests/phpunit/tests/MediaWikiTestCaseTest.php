@@ -21,14 +21,14 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 		'MediaWikiTestCaseTestGLOBAL-ExistingArrayEmpty' => [],
 	];
 
-	public static function setUpBeforeClass() {
+	public static function setUpBeforeClass() : void {
 		parent::setUpBeforeClass();
 		foreach ( self::$startGlobals as $key => $value ) {
 			$GLOBALS[$key] = $value;
 		}
 	}
 
-	public static function tearDownAfterClass() {
+	public static function tearDownAfterClass() : void {
 		parent::tearDownAfterClass();
 		foreach ( self::$startGlobals as $key => $value ) {
 			unset( $GLOBALS[$key] );

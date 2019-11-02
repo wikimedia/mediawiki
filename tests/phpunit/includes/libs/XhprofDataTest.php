@@ -263,7 +263,7 @@ class XhprofDataTest extends PHPUnit\Framework\TestCase {
 	 * @param array $actual Array to check
 	 * @param string $label
 	 */
-	protected function assertArrayStructure( $struct, $actual, $label = null ) {
+	protected function assertArrayStructure( $struct, $actual, $label = '' ) {
 		$this->assertInternalType( 'array', $actual, $label );
 		$this->assertCount( count( $struct ), $actual, $label );
 		foreach ( $struct as $key => $type ) {

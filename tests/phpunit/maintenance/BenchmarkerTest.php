@@ -87,7 +87,7 @@ class BenchmarkerTest extends \PHPUnit\Framework\TestCase {
 
 		$bench->expects( $this->once() )->method( 'addResult' )
 			->with( $this->callback( function ( $res ) {
-				return isset( $res['name'] ) && $res['name'] === __CLASS__ . '::noop()';
+				return isset( $res['name'] ) && $res['name'] === ( __CLASS__ . '::noop()' );
 			} ) );
 
 		$bench->bench( [
