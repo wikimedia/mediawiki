@@ -851,6 +851,15 @@ config-schema:
         description: |-
             Shortcut for setting `hashLevels=2` in $wgLocalFileRepo.
             @note Only used if $wgLocalFileRepo is not set.
+    CSPUploadEntryPoint:
+        default: true
+        type: boolean
+        description: |-
+            Controls whether thumb.php and img_auth.php send CSP headers
+            Note: This does not control general uploads. There is a .htaccess
+            in the images directory which will add a CSP header in some web server
+            configurations
+            @since 1.42
     FileExtensions:
         default:
             - png

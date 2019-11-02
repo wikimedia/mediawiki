@@ -1554,6 +1554,20 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Controls whether thumb.php and img_auth.php send CSP headers
+	 *
+	 * Note: This does not control general uploads. There is a .htaccess
+	 * in the images directory which will add a CSP header in some web server
+	 * configurations
+	 *
+	 * @since 1.42
+	 */
+	public const CSPUploadEntryPoint = [
+		'default' => true,
+		'type' => 'boolean',
+	];
+
+	/**
 	 * This is the list of preferred extensions for uploading files. Uploading files
 	 * with extensions not in this list will trigger a warning.
 	 *

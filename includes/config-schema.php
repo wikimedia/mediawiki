@@ -110,6 +110,7 @@ return [
 			'ThumbnailScriptPath' => false,
 			'SharedThumbnailScriptPath' => false,
 			'HashedUploadDirectory' => true,
+			'CSPUploadEntryPoint' => true,
 			'FileExtensions' => [
 				'png',
 				'gif',
@@ -2740,6 +2741,7 @@ return [
 				'boolean',
 			],
 			'HashedUploadDirectory' => 'boolean',
+			'CSPUploadEntryPoint' => 'boolean',
 			'FileExtensions' => 'array',
 			'ProhibitedFileExtensions' => 'array',
 			'MimeTypeExclusions' => 'array',

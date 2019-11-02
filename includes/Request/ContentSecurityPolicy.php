@@ -38,6 +38,12 @@ class ContentSecurityPolicy {
 	public const REPORT_ONLY_MODE = 1;
 	public const FULL_MODE = 2;
 
+	// Used for uploaded files. Keep in sync with images/.htaccess
+	private const UPLOAD_CSP = "default-src 'none'; style-src 'unsafe-inline' data:;" .
+		"font-src data:; img-src data: 'self'; media-src data: 'self'; sandbox";
+	private const UPLOAD_CSP_PDF = "default-src 'none'; style-src 'unsafe-inline' data:; object-src 'self';" .
+		"font-src data:; img-src data: 'self'; media-src data: 'self';";
+
 	/** @var Config The site configuration object */
 	private $mwConfig;
 	/** @var WebResponse */
@@ -587,5 +593,28 @@ class ContentSecurityPolicy {
 	 */
 	public function addScriptSrc( $source ) {
 		$this->extraScriptSrc[] = $this->prepareUrlForCSP( $source );
+	}
+
+	/**
+	 * Get the CSP header for a specific file
+	 *
+	 * @note Only used in img_auth.php & thumb.php. Normal image serving
+	 * handled by a .htaccess file
+	 *
+	 * @param string $filename
+	 * @return string|null CSP header (Without header name prefix)
+	 */
+	public static function getMediaHeader( string $filename ) {
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		if ( !$config->get( MainConfigNames::CSPUploadEntryPoint ) ) {
+			return null;
+		}
+		// Some browsers (Chrome) require allowing objects to
+		// render PDFs. Generally plugins are slightly higher-risk
+		// so only allow it on pdf files.
+		if ( strtolower( substr( $filename, -4 ) ) === '.pdf' ) {
+			return self::UPLOAD_CSP_PDF;
+		}
+		return self::UPLOAD_CSP;
 	}
 }

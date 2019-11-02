@@ -453,6 +453,12 @@ $wgSharedThumbnailScriptPath = null;
 $wgHashedUploadDirectory = null;
 
 /**
+ * Config variable stub for the CSPUploadEntryPoint setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::CSPUploadEntryPoint
+ */
+$wgCSPUploadEntryPoint = null;
+
+/**
  * Config variable stub for the FileExtensions setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::FileExtensions
  */

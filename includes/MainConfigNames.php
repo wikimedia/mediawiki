@@ -468,6 +468,12 @@ class MainConfigNames {
 	public const HashedUploadDirectory = 'HashedUploadDirectory';
 
 	/**
+	 * Name constant for the CSPUploadEntryPoint setting, for use with Config::get()
+	 * @see MainConfigSchema::CSPUploadEntryPoint
+	 */
+	public const CSPUploadEntryPoint = 'CSPUploadEntryPoint';
+
+	/**
 	 * Name constant for the FileExtensions setting, for use with Config::get()
 	 * @see MainConfigSchema::FileExtensions
 	 */

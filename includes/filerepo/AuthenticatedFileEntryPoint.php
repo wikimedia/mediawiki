@@ -30,6 +30,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\TemplateParser;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiEntryPoint;
+use MediaWiki\Request\ContentSecurityPolicy;
 use MediaWiki\Title\Title;
 use Wikimedia\FileBackend\HTTPFileStreamer;
 use Wikimedia\Message\MessageParam;
@@ -178,6 +179,11 @@ class AuthenticatedFileEntryPoint extends MediaWikiEntryPoint {
 
 		if ( $request->getCheck( 'download' ) ) {
 			$headers['Content-Disposition'] = 'attachment';
+		}
+
+		$cspHeader = ContentSecurityPolicy::getMediaHeader( $filename );
+		if ( $cspHeader ) {
+			$headers['Content-Security-Policy'] = $cspHeader;
 		}
 
 		// Allow modification of headers before streaming a file

@@ -22,6 +22,7 @@ For notes on 1.44.x and older releases, see HISTORY.
 === Configuration changes for system administrators in 1.45 ===
 
 * $wgSitemapNamespacesPriorities is deprecated and ignored.
+* $wgCSPUploadEntryPoint to control if img_auth.php & thumb.php send CSP headers
 * …
 
 ==== New configuration ====

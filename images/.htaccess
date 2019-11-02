@@ -8,3 +8,13 @@ php_flag engine off
 <IfModule php_module>
 php_flag engine off
 </IfModule>
+
+# This will only work in certain configs, but better than nothing
+# Keep CSP headers in sync with ContentSecurityPolicy::UPLOAD_CSP[_PDF]
+<IfModule headers_module>
+	Header set Content-Security-Policy "default-src 'none'; style-src 'unsafe-inline' data:; font-src data:; img-src data: 'self'; media-src data: 'self'; sandbox"
+	<Files "*.pdf">
+		# Chrome wants no sandbox and object-src 'self' to load pdfs.
+		Header set Content-Security-Policy "default-src 'none'; style-src 'unsafe-inline' data:; font-src data:; img-src data: 'self'; media-src data: 'self'; object-src 'self'"
+	</Files>
+</IfModule>
