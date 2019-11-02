@@ -10,6 +10,7 @@ namespace Wikimedia\ParamValidator;
  * and is intended for communication of non-global state.
  *
  * @since 1.34
+ * @unstable
  */
 abstract class TypeDef {
 

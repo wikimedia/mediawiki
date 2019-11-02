@@ -11,6 +11,7 @@ use Wikimedia\ParamValidator\Util\UploadedFile;
  *  - 'useHighLimits': (bool) Return value from useHighLimits()
  *
  * @since 1.34
+ * @unstable
  */
 class SimpleCallbacks implements Callbacks {
 

@@ -28,6 +28,7 @@ use Wikimedia\ParamValidator\ValidationException;
  *     - 'code': The code.
  *
  * @since 1.34
+ * @unstable
  */
 class UploadDef extends TypeDef {
 

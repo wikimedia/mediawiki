@@ -17,6 +17,7 @@ use Wikimedia\ParamValidator\ValidationException;
  *     - 'falsevals': List of recognized values for "false".
  *
  * @since 1.34
+ * @unstable
  */
 class BooleanDef extends TypeDef {
 

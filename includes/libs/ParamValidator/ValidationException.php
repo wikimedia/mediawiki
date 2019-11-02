@@ -10,6 +10,7 @@ use UnexpectedValueException;
  * Error reporting for ParamValidator
  *
  * @since 1.34
+ * @unstable
  */
 class ValidationException extends UnexpectedValueException {
 

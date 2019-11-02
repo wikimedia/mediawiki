@@ -10,6 +10,7 @@ namespace Wikimedia\ParamValidator\TypeDef;
  *
  * @see IntegerDef
  * @since 1.34
+ * @unstable
  */
 class LimitDef extends IntegerDef {
 
