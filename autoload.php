@@ -1206,6 +1206,7 @@ $wgAutoloadLocalClasses = [
 	'RemoveInvalidEmails' => __DIR__ . '/maintenance/removeInvalidEmails.php',
 	'RemoveUnusedAccounts' => __DIR__ . '/maintenance/removeUnusedAccounts.php',
 	'RenameDbPrefix' => __DIR__ . '/maintenance/renameDbPrefix.php',
+	'RenameRestrictions' => __DIR__ . '/maintenance/renameRestrictions.php',
 	'RenderAction' => __DIR__ . '/includes/actions/RenderAction.php',
 	'ReplacementArray' => __DIR__ . '/includes/libs/ReplacementArray.php',
 	'ReplicatedBagOStuff' => __DIR__ . '/includes/libs/objectcache/ReplicatedBagOStuff.php',
