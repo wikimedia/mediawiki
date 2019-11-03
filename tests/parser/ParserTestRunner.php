@@ -534,17 +534,16 @@ class ParserTestRunner {
 	}
 
 	/**
-	 * Ensure a given setup stage has been done, throw an exception if it has
-	 * not.
+	 * Ensure one of the given setup stages has been done, throw an exception otherwise.
 	 * @param string $funcName
 	 * @param string|null $funcName2
 	 */
-	protected function checkSetupDone( $funcName, $funcName2 = null ) {
+	protected function checkSetupDone( string $funcName, string $funcName2 = null ) {
 		if ( !$this->setupDone[$funcName]
-			&& ( $funcName === null || !$this->setupDone[$funcName2] )
+			&& ( $funcName2 === null || !$this->setupDone[$funcName2] )
 		) {
-			throw new MWException( "$funcName must be called before calling " .
-				wfGetCaller() );
+			$name = ( $funcName2 === null ) ? $funcName : "$funcName or $funcName2";
+			throw new MWException( "$name must be called before calling " . wfGetCaller() );
 		}
 	}
 
