@@ -922,7 +922,7 @@
 	"revertmerge": "rastavi",
 	"mergelogpagetext": "Ispod se nalazi spisak najnovijih objedinjavanja istorija jedne stranice u drugu.",
 	"history-title": "Istorija izmena stranice „$1”",
-	"difference-title": "$1 — razlika između izmena",
+	"difference-title": "Razlika između izmena na stranici „$1”",
 	"difference-title-multipage": "Razlika između stranica „$1“ i „$2“",
 	"difference-multipage": "(razlike između stranica)",
 	"lineno": "Red $1:",

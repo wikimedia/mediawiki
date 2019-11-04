@@ -710,7 +710,7 @@
 	"permissionserrorstext-withaction": "Nun haje premmesse abbastante pe' $2, {{PLURAL:$1|'o mutivo è chesto|'e mutive so' chiste}}:",
 	"contentmodelediterror": "Vuje nun putite cagnà sta verziona pecché 'o mudello d' 'e cuntenute è <code>$1</code>, ca cagnasse nu poco nfacc' 'o mudello d' 'a paggena  <code>$2</code> 'e mo.",
 	"recreate-moveddeleted-warn": "'''Attenziò: staje a crià na paggena scancellata già.'''\n\nVire si è bbuono 'e cuntinuà a cagnà sta paggena. L'elenco ch' 'e relative scancellamiente e spustamente s'è scritto ccà abbascio pe' ffà comodo:",
-	"moveddeleted-notice": "Sta paggena è stata scancellata.\n'A lista d' 'e relative scancellamiente e spustamente sta cca 'bbascio pe' n'avé 'nfurmazione.",
+	"moveddeleted-notice": "Sta paggena è stata scancellata.\n'A lista d' 'e relative scancellamiente e spustamente sta cca 'bbascio pe n'avé 'nfurmazione.",
 	"moveddeleted-notice-recent": "Scusate, sta paggena è stata scancellata mo mo (dint'a sti 24 ore).\n\nTutte l'azziune 'e scancellazione e spustamento pe' sta paggena so dispunibbele ccà pe' cumpretezza.",
 	"log-fulllog": "Vide log sano",
 	"edit-hook-aborted": "'O cagnamiento è stato annullato 'a 'o «hook».\nNun dette spiegazione nisciuna.",

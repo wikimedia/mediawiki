@@ -592,7 +592,7 @@
 	"botpasswords-needs-reset": "„$1” {{GENDER:$1|felhasználó}} „$2” botjának jelszavát vissza kell állítani.",
 	"botpasswords-locked": "Nem tudsz bejelentkezni egy botjelszóval mivel a fiókod zárolva van.",
 	"resetpass_forbidden": "A jelszavak nem változtathatók meg",
-	"resetpass_forbidden-reason": "A jelszavakat nem változtathatóak meg: $1",
+	"resetpass_forbidden-reason": "A jelszavak nem változtathatóak meg: $1",
 	"resetpass-no-info": "Be kell jelentkezned, hogy közvetlenül elérd ezt a lapot.",
 	"resetpass-submit-loggedin": "Jelszó megváltoztatása",
 	"resetpass-submit-cancel": "Mégse",

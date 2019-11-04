@@ -381,5 +381,6 @@
 	"json-error-utf8": "Los caracteres UTF-8 tienen errores de formato, puede ser que la codificación es incorrecta.",
 	"json-error-recursion": "Uno o más recursiva de las referencias en valor de codificar",
 	"json-error-inf-or-nan": "Uno o más valores NAN o INF en el valor de ser codificado",
-	"json-error-unsupported-type": "Fue dado un valor de un tipo que no puede ser codificado"
+	"json-error-unsupported-type": "Fue dado un valor de un tipo que no puede ser codificado",
+	"specialmute-login-required": "Acceda a su cuenta para cambiar sus preferencias de silenciamiento."
 }

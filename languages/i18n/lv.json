@@ -2873,7 +2873,7 @@
 	"mediastatistics-table-totalbytes": "Kopējais izmērs",
 	"mediastatistics-header-unknown": "Nav zināms",
 	"mediastatistics-header-bitmap": "Bitmap attēli",
-	"mediastatistics-header-drawing": "Zīmējumi (vector attēli)",
+	"mediastatistics-header-drawing": "Zīmējumi (vektoru attēli)",
 	"mediastatistics-header-audio": "Audio",
 	"mediastatistics-header-video": "Video",
 	"mediastatistics-header-office": "Ofisa",

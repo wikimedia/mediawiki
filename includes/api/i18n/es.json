@@ -111,7 +111,7 @@
 	"apihelp-delete-param-watchlist": "Añadir o quitar incondicionalmente la página de la lista de seguimiento del usuario actual, usar preferencias o no cambiar el estado de seguimiento.",
 	"apihelp-delete-param-unwatch": "Quitar la página de la lista de seguimiento del usuario actual.",
 	"apihelp-delete-param-oldimage": "El nombre de la imagen antigua es proporcionado conforme a lo dispuesto por [[Special:ApiHelp/query+imageinfo|action=query&prop=imageinfo&iiprop=archivename]].",
-	"apihelp-delete-example-simple": "Borrar <kbd>Pagina principal</kbd>.",
+	"apihelp-delete-example-simple": "Borrar la <kbd>Página principal</kbd>",
 	"apihelp-delete-example-reason": "Eliminar <kbd>Main Page</kbd> con el motivo <kbd>Preparándose para traslado</kbd>.",
 	"apihelp-disabled-summary": "Se desactivó este módulo.",
 	"apihelp-edit-summary": "Crear y editar páginas.",

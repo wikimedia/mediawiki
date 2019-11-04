@@ -263,7 +263,7 @@
 	"newmessagesdifflinkplural": "{{PLURAL:$1|zadnja sprememba|999=zadnje spremembe}}",
 	"youhavenewmessagesmulti": "Na $1 imate novo sporočilo",
 	"editsection": "uredi",
-	"editold": "spremeni",
+	"editold": "uredi",
 	"viewsourceold": "izvorno besedilo",
 	"editlink": "uredi",
 	"viewsourcelink": "izvorno besedilo",

@@ -194,6 +194,7 @@
 	"returnto": "Grįžti į $1.",
 	"tagline": "Iš {{SITENAME}}.",
 	"help": "Pagalba",
+	"help-mediawiki": "Pagalba dėl Medijaviki",
 	"search": "Paieška",
 	"search-ignored-headings": " #<!-- palikite šią eilutę tiksliai tokią, kokia ji yra --> <pre>\n# Antraštės, kurios bus ignoruojamos paieškų.\n# Pakeitimai įsigalios iš karto, kai bus suindeksuota puslapio antraštė.\n# Galite priversti perindeksuoti puslapį atlikdami tuščią pakeitimą.\n# Sintaksė tokia:\n#   * Viskas nuo simbolio \"#\" iki eilutės pabaigos yra komentaras.\n#   * Kiekviena netuščia eilutė yra tikslus pavadinimas, kurį reikia ignoruoti, tipas ir visa kita.\nNuorodos\nIšorinės nuorodos\nTaip pat žr.\n #</pre> <!-- palikite šią eilutę tiksliai tokią, kokia ji yra -->",
 	"searchbutton": "Paieška",
