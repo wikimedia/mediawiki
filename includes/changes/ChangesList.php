@@ -568,8 +568,7 @@ class ChangesList extends ContextSource {
 	 * @return string HTML fragment
 	 */
 	public function getTimestamp( $rc ) {
-		// @todo FIXME: Hard coded ". .". Is there a message for this? Should there be?
-		return $this->message['semicolon-separator'] . '<span class="mw-changeslist-date">' .
+		return '<span class="mw-changeslist-date">' .
 			htmlspecialchars( $this->getLanguage()->userTime(
 				$rc->mAttribs['rc_timestamp'],
 				$this->getUser()
