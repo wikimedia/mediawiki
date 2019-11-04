@@ -1236,19 +1236,6 @@ class Parser {
 	/**
 	 * Parse the wiki syntax used to render tables.
 	 *
-	 * @private
-	 * @param string $text
-	 * @return string
-	 * @deprecated since 1.34; should not be used outside parser class.
-	 */
-	public function doTableStuff( $text ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->handleTables( $text );
-	}
-
-	/**
-	 * Parse the wiki syntax used to render tables.
-	 *
 	 * @param string $text
 	 * @return string
 	 */
@@ -1625,21 +1612,6 @@ class Parser {
 	 * magic external links.
 	 *
 	 * DML
-	 * @private
-	 * @param string $text
-	 * @return string
-	 * @deprecated since 1.34; should not be used outside parser class.
-	 */
-	public function doMagicLinks( $text ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->handleMagicLinks( $text );
-	}
-
-	/**
-	 * Replace special strings like "ISBN xxx" and "RFC xxx" with
-	 * magic external links.
-	 *
-	 * DML
 	 *
 	 * @param string $text
 	 *
@@ -1822,19 +1794,6 @@ class Parser {
 	}
 
 	/**
-	 * Parse headers and return html.
-	 *
-	 * @private
-	 * @param string $text
-	 * @return string
-	 * @deprecated since 1.34; should not be used outside parser class.
-	 */
-	public function doHeadings( $text ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->handleHeadings( $text );
-	}
-
-	/**
 	 * Parse headers and return html
 	 *
 	 * @param string $text
@@ -1848,20 +1807,6 @@ class Parser {
 			$text = preg_replace( "/^(?:$h)[ \\t]*(.+?)[ \\t]*(?:$h)\\s*$/m", "<h$i>\\1</h$i>", $text );
 		}
 		return $text;
-	}
-
-	/**
-	 * Replace single quotes with HTML markup
-	 * @private
-	 *
-	 * @param string $text
-	 *
-	 * @return string The altered text
-	 * @deprecated since 1.34; should not be used outside parser class.
-	 */
-	public function doAllQuotes( $text ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->handleAllQuotes( $text );
 	}
 
 	/**
@@ -1882,7 +1827,7 @@ class Parser {
 	}
 
 	/**
-	 * Helper function for doAllQuotes()
+	 * Helper function for handleAllQuotes()
 	 *
 	 * @param string $text
 	 *
@@ -2060,24 +2005,6 @@ class Parser {
 			$output .= '<b><i>' . $buffer . '</i></b>';
 		}
 		return $output;
-	}
-
-	/**
-	 * Replace external links (REL)
-	 *
-	 * Note: this is all very hackish and the order of execution matters a lot.
-	 * Make sure to run tests/parser/parserTests.php if you change this code.
-	 *
-	 * @private
-	 *
-	 * @param string $text
-	 *
-	 * @throws MWException
-	 * @return string
-	 */
-	public function replaceExternalLinks( $text ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->handleExternalLinks( $text );
 	}
 
 	/**
@@ -2360,38 +2287,10 @@ class Parser {
 	 * @param string $text
 	 *
 	 * @return string Processed text
-	 *
-	 * @private
-	 * @deprecated since 1.34; should not be used outside parser class.
-	 */
-	public function replaceInternalLinks( $text ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->handleInternalLinks( $text );
-	}
-
-	/**
-	 * Process [[ ]] wikilinks
-	 *
-	 * @param string $text
-	 *
-	 * @return string Processed text
 	 */
 	private function handleInternalLinks( $text ) {
 		$this->mLinkHolders->merge( $this->handleInternalLinks2( $text ) );
 		return $text;
-	}
-
-	/**
-	 * Process [[ ]] wikilinks (RIL)
-	 * @param string &$text
-	 * @return LinkHolderArray
-	 *
-	 * @private
-	 * @deprecated since 1.34; should not be used outside parser class.
-	 */
-	public function replaceInternalLinks2( &$text ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->handleInternalLinks2( $text );
 	}
 
 	/**
@@ -2634,7 +2533,7 @@ class Parser {
 							$holders->merge( $this->handleInternalLinks2( $text ) );
 						}
 						# cloak any absolute URLs inside the image markup, so handleExternalLinks() won't touch them
-						$s .= $prefix . $this->armorLinksPrivate(
+						$s .= $prefix . $this->armorLinks(
 							$this->makeImage( $nt, $text, $holders ) ) . $trail;
 						continue;
 					}
@@ -2677,7 +2576,7 @@ class Parser {
 				# Fetch and register the file (file title may be different via hooks)
 				list( $file, $nt ) = $this->fetchFileAndTitle( $nt, $options );
 				# Cloak with NOPARSE to avoid replacement in handleExternalLinks
-				$s .= $prefix . $this->armorLinksPrivate(
+				$s .= $prefix . $this->armorLinks(
 					Linker::makeMediaLinkFile( $nt, $file, $text ) ) . $trail;
 				continue;
 			}
@@ -2688,7 +2587,7 @@ class Parser {
 			# batch file existence checks for NS_FILE and NS_MEDIA
 			if ( $iw == '' && $nt->isAlwaysKnown() ) {
 				$this->mOutput->addLink( $nt );
-				$s .= $this->makeKnownLinkHolderPrivate( $nt, $text, $trail, $prefix );
+				$s .= $this->makeKnownLinkHolder( $nt, $text, $trail, $prefix );
 			} else {
 				# Links will be added to the output link list after checking
 				$s .= $holders->makeHolder( $nt, $text, [], $trail, $prefix );
@@ -2709,27 +2608,8 @@ class Parser {
 	 * @param string $trail
 	 * @param string $prefix
 	 * @return string HTML-wikitext mix oh yuck
-	 * @deprecated since 1.34; should not be used outside parser class.
 	 */
-	protected function makeKnownLinkHolder( $nt, $text = '', $trail = '', $prefix = '' ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->makeKnownLinkHolderPrivate( $nt, $text, $trail, $prefix );
-	}
-
-	/**
-	 * Render a forced-blue link inline; protect against double expansion of
-	 * URLs if we're in a mode that prepends full URL prefixes to internal links.
-	 * Since this little disaster has to split off the trail text to avoid
-	 * breaking URLs in the following text without breaking trails on the
-	 * wiki links, it's been made into a horrible function.
-	 *
-	 * @param Title $nt
-	 * @param string $text
-	 * @param string $trail
-	 * @param string $prefix
-	 * @return string HTML-wikitext mix oh yuck
-	 */
-	private function makeKnownLinkHolderPrivate( $nt, $text = '', $trail = '', $prefix = '' ) {
+	private function makeKnownLinkHolder( $nt, $text = '', $trail = '', $prefix = '' ) {
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
 
 		if ( $text == '' ) {
@@ -2740,23 +2620,7 @@ class Parser {
 			$nt, new HtmlArmor( "$prefix$text$inside" )
 		);
 
-		return $this->armorLinksPrivate( $link ) . $trail;
-	}
-
-	/**
-	 * Insert a NOPARSE hacky thing into any inline links in a chunk that's
-	 * going to go through further parsing steps before inline URL expansion.
-	 *
-	 * Not needed quite as much as it used to be since free links are a bit
-	 * more sensible these days. But bracketed links are still an issue.
-	 *
-	 * @param string $text More-or-less HTML
-	 * @return string Less-or-more HTML with NOPARSE bits
-	 * @deprecated since 1.34; should not be used outside parser class.
-	 */
-	public function armorLinks( $text ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->armorLinksPrivate( $text );
+		return $this->armorLinks( $link ) . $trail;
 	}
 
 	/**
@@ -2769,34 +2633,9 @@ class Parser {
 	 * @param string $text More-or-less HTML
 	 * @return string Less-or-more HTML with NOPARSE bits
 	 */
-	private function armorLinksPrivate( $text ) {
+	private function armorLinks( $text ) {
 		return preg_replace( '/\b((?i)' . $this->mUrlProtocols . ')/',
 			self::MARKER_PREFIX . "NOPARSE$1", $text );
-	}
-
-	/**
-	 * Return true if subpage links should be expanded on this page.
-	 * @return bool
-	 * @deprecated since 1.34; should not be used outside parser class.
-	 */
-	public function areSubpagesAllowed() {
-		# Some namespaces don't allow subpages
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->nsInfo->hasSubpages( $this->getTitle()->getNamespace() );
-	}
-
-	/**
-	 * Handle link to subpage if necessary
-	 *
-	 * @param string $target The source of the link
-	 * @param string &$text The link text, modified as necessary
-	 * @return string The full name of the link
-	 * @private
-	 * @deprecated since 1.34; should not be used outside parser class.
-	 */
-	public function maybeDoSubpageLink( $target, &$text ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return Linker::normalizeSubpageLink( $this->getTitle(), $target, $text );
 	}
 
 	/**
@@ -2809,22 +2648,6 @@ class Parser {
 	 */
 	public function doBlockLevels( $text, $linestart ) {
 		return BlockLevelPass::doBlockLevels( $text, $linestart );
-	}
-
-	/**
-	 * Return value of a magic variable (like PAGENAME)
-	 *
-	 * @private
-	 *
-	 * @param string $index Magic variable identifier as mapped in MagicWordFactory::$mVariableIDs
-	 * @param bool|PPFrame $frame
-	 *
-	 * @return string
-	 * @deprecated since 1.34; should not be used outside parser class.
-	 */
-	public function getVariableValue( $index, $frame = false ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->expandMagicVariable( $index, $frame );
 	}
 
 	/**
@@ -3208,17 +3031,6 @@ class Parser {
 	}
 
 	/**
-	 * initialise the magic variables (like CURRENTMONTHNAME) and substitution modifiers
-	 *
-	 * @private
-	 * @deprecated since 1.34; should not be used outside parser class.
-	 */
-	public function initialiseVariables() {
-		wfDeprecated( __METHOD__, '1.34' );
-		$this->initializeVariables();
-	}
-
-	/**
 	 * Initialize the magic variables (like CURRENTMONTHNAME) and
 	 * substitution modifiers.
 	 */
@@ -3255,28 +3067,6 @@ class Parser {
 	public function preprocessToDom( $text, $flags = 0 ) {
 		$dom = $this->getPreprocessor()->preprocessToObj( $text, $flags );
 		return $dom;
-	}
-
-	/**
-	 * Return a three-element array: leading whitespace, string contents, trailing whitespace
-	 *
-	 * @param string $s
-	 *
-	 * @return array
-	 * @deprecated since 1.34; appears to be unused.
-	 */
-	public static function splitWhitespace( $s ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		$ltrimmed = ltrim( $s );
-		$w1 = substr( $s, 0, strlen( $s ) - strlen( $ltrimmed ) );
-		$trimmed = rtrim( $ltrimmed );
-		$diff = strlen( $ltrimmed ) - strlen( $trimmed );
-		if ( $diff > 0 ) {
-			$w2 = substr( $ltrimmed, -$diff );
-		} else {
-			$w2 = '';
-		}
-		return [ $w1, $trimmed, $w2 ];
 	}
 
 	/**
@@ -3321,37 +3111,6 @@ class Parser {
 		$text = $frame->expand( $dom, $flags );
 
 		return $text;
-	}
-
-	/**
-	 * Clean up argument array - refactored in 1.9 so parserfunctions can use it, too.
-	 *
-	 * @param array $args
-	 *
-	 * @return array
-	 * @deprecated since 1.34; appears to be unused in core.
-	 */
-	public static function createAssocArgs( $args ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		$assocArgs = [];
-		$index = 1;
-		foreach ( $args as $arg ) {
-			$eqpos = strpos( $arg, '=' );
-			if ( $eqpos === false ) {
-				$assocArgs[$index++] = $arg;
-			} else {
-				$name = trim( substr( $arg, 0, $eqpos ) );
-				$value = trim( substr( $arg, $eqpos + 1 ) );
-				if ( $value === false ) {
-					$value = '';
-				}
-				if ( $name !== false ) {
-					$assocArgs[$name] = $value;
-				}
-			}
-		}
-
-		return $assocArgs;
 	}
 
 	/**
@@ -4366,19 +4125,6 @@ class Parser {
 	 *
 	 * @param string $text
 	 * @return string
-	 * @deprecated since 1.34; should not be used outside parser class.
-	 */
-	public function doDoubleUnderscore( $text ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->handleDoubleUnderscore( $text );
-	}
-
-	/**
-	 * Strip double-underscore items like __NOGALLERY__ and __NOTOC__
-	 * Fills $this->mDoubleUnderscores, returns the modified text
-	 *
-	 * @param string $text
-	 * @return string
 	 */
 	private function handleDoubleUnderscore( $text ) {
 		# The position of __TOC__ needs to be recorded
@@ -4435,28 +4181,6 @@ class Parser {
 	 */
 	public function addTrackingCategory( $msg ) {
 		return $this->mOutput->addTrackingCategory( $msg, $this->getTitle() );
-	}
-
-	/**
-	 * This function accomplishes several tasks:
-	 * 1) Auto-number headings if that option is enabled
-	 * 2) Add an [edit] link to sections for users who have enabled the option and can edit the page
-	 * 3) Add a Table of contents on the top for users who have enabled the option
-	 * 4) Auto-anchor headings
-	 *
-	 * It loops through all headlines, collects the necessary data, then splits up the
-	 * string and re-inserts the newly formatted headlines.
-	 *
-	 * @param string $text
-	 * @param string $origText Original, untouched wikitext
-	 * @param bool $isMain
-	 * @return mixed|string
-	 * @private
-	 * @deprecated since 1.34; should not be used outside parser class.
-	 */
-	public function formatHeadings( $text, $origText, $isMain = true ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->finalizeHeadings( $text, $origText, $isMain );
 	}
 
 	/**
@@ -4628,7 +4352,7 @@ class Parser {
 			# turns into
 			#     link text with suffix
 			# Do this before unstrip since link text can contain strip markers
-			$safeHeadline = $this->replaceLinkHoldersTextPrivate( $headline );
+			$safeHeadline = $this->replaceLinkHoldersText( $headline );
 
 			# Avoid insertion of weird stuff like <math> by expanding the relevant sections
 			$safeHeadline = $this->mStripState->unstripBoth( $safeHeadline );
@@ -5365,21 +5089,8 @@ class Parser {
 	 *
 	 * @param string $text
 	 * @return string
-	 * @deprecated since 1.34; should not be used outside parser class.
 	 */
-	public function replaceLinkHoldersText( $text ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->replaceLinkHoldersTextPrivate( $text );
-	}
-
-	/**
-	 * Replace "<!--LINK-->" link placeholders with plain text of links
-	 * (not HTML-formatted).
-	 *
-	 * @param string $text
-	 * @return string
-	 */
-	private function replaceLinkHoldersTextPrivate( $text ) {
+	private function replaceLinkHoldersText( $text ) {
 		return $this->mLinkHolders->replaceText( $text );
 	}
 
@@ -5512,16 +5223,16 @@ class Parser {
 
 						switch ( $paramName ) {
 							case 'gallery-internal-alt':
-								$alt = $this->stripAltTextPrivate( $match, false );
+								$alt = $this->stripAltText( $match, false );
 								break;
 							case 'gallery-internal-link':
-								$linkValue = $this->stripAltTextPrivate( $match, false );
+								$linkValue = $this->stripAltText( $match, false );
 								if ( preg_match( '/^-{R|(.*)}-$/', $linkValue ) ) {
 									// Result of LanguageConverter::markNoConversion
 									// invoked on an external link.
 									$linkValue = substr( $linkValue, 4, -2 );
 								}
-								list( $type, $target ) = $this->parseLinkParameterPrivate( $linkValue );
+								list( $type, $target ) = $this->parseLinkParameter( $linkValue );
 								if ( $type === 'link-url' ) {
 									$link = $target;
 									$this->mOutput->addExternalLink( $target );
@@ -5559,18 +5270,8 @@ class Parser {
 	/**
 	 * @param MediaHandler $handler
 	 * @return array
-	 * @deprecated since 1.34; should not be used outside parser class.
 	 */
-	public function getImageParams( $handler ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->getImageParamsPrivate( $handler );
-	}
-
-	/**
-	 * @param MediaHandler $handler
-	 * @return array
-	 */
-	private function getImageParamsPrivate( $handler ) {
+	private function getImageParams( $handler ) {
 		if ( $handler ) {
 			$handlerClass = get_class( $handler );
 		} else {
@@ -5667,7 +5368,7 @@ class Parser {
 		# Get parameter map
 		$handler = $file ? $file->getHandler() : false;
 
-		list( $paramMap, $mwArray ) = $this->getImageParamsPrivate( $handler );
+		list( $paramMap, $mwArray ) = $this->getImageParams( $handler );
 
 		if ( !$file ) {
 			$this->addTrackingCategory( 'broken-file-category' );
@@ -5717,12 +5418,12 @@ class Parser {
 								# manualthumb? downstream behavior seems odd with
 								# missing manual thumbs.
 								$validated = true;
-								$value = $this->stripAltTextPrivate( $value, $holders );
+								$value = $this->stripAltText( $value, $holders );
 								break;
 							case 'link':
 								list( $paramName, $value ) =
-									$this->parseLinkParameterPrivate(
-										$this->stripAltTextPrivate( $value, $holders )
+									$this->parseLinkParameter(
+										$this->stripAltText( $value, $holders )
 									);
 								if ( $paramName ) {
 									$validated = true;
@@ -5799,7 +5500,7 @@ class Parser {
 			if ( !isset( $params['frame']['alt'] ) ) {
 				# No alt text, use the "caption" for the alt text
 				if ( $caption !== '' ) {
-					$params['frame']['alt'] = $this->stripAltTextPrivate( $caption, $holders );
+					$params['frame']['alt'] = $this->stripAltText( $caption, $holders );
 				} else {
 					# No caption, fall back to using the filename for the
 					# alt text
@@ -5807,7 +5508,7 @@ class Parser {
 				}
 			}
 			# Use the "caption" for the tooltip text
-			$params['frame']['title'] = $this->stripAltTextPrivate( $caption, $holders );
+			$params['frame']['title'] = $this->stripAltText( $caption, $holders );
 		}
 		$params['handler']['targetlang'] = $this->getTargetLanguage()->getCode();
 
@@ -5843,32 +5544,8 @@ class Parser {
 	 *     - When `type` is `null` or `'no-link'`: `false`
 	 *     - When `type` is `'link-url'`: URL string corresponding to given value
 	 *     - When `type` is `'link-title'`: Title object corresponding to given value
-	 * @deprecated since 1.34; should not be used outside parser class.
 	 */
-	public function parseLinkParameter( $value ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->parseLinkParameterPrivate( $value );
-	}
-
-	/**
-	 * Parse the value of 'link' parameter in image syntax (`[[File:Foo.jpg|link=<value>]]`).
-	 *
-	 * Adds an entry to appropriate link tables.
-	 *
-	 * @since 1.32
-	 * @param string $value
-	 * @return array of `[ type, target ]`, where:
-	 *   - `type` is one of:
-	 *     - `null`: Given value is not a valid link target, use default
-	 *     - `'no-link'`: Given value is empty, do not generate a link
-	 *     - `'link-url'`: Given value is a valid external link
-	 *     - `'link-title'`: Given value is a valid internal link
-	 *   - `target` is:
-	 *     - When `type` is `null` or `'no-link'`: `false`
-	 *     - When `type` is `'link-url'`: URL string corresponding to given value
-	 *     - When `type` is `'link-title'`: Title object corresponding to given value
-	 */
-	private function parseLinkParameterPrivate( $value ) {
+	private function parseLinkParameter( $value ) {
 		$chars = self::EXT_LINK_URL_CLASS;
 		$addr = self::EXT_LINK_ADDR;
 		$prots = $this->mUrlProtocols;
@@ -5897,26 +5574,15 @@ class Parser {
 	 * @param string $caption
 	 * @param LinkHolderArray|bool $holders
 	 * @return mixed|string
-	 * @deprecated since 1.34; should not be used outside parser class.
 	 */
-	protected function stripAltText( $caption, $holders ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->stripAltTextPrivate( $caption, $holders );
-	}
-
-	/**
-	 * @param string $caption
-	 * @param LinkHolderArray|bool $holders
-	 * @return mixed|string
-	 */
-	private function stripAltTextPrivate( $caption, $holders ) {
+	private function stripAltText( $caption, $holders ) {
 		# Strip bad stuff out of the title (tooltip).  We can't just use
 		# replaceLinkHoldersText() here, because if this function is called
 		# from handleInternalLinks2(), mLinkHolders won't be up-to-date.
 		if ( $holders ) {
 			$tooltip = $holders->replaceText( $caption );
 		} else {
-			$tooltip = $this->replaceLinkHoldersTextPrivate( $caption );
+			$tooltip = $this->replaceLinkHoldersText( $caption );
 		}
 
 		# make sure there are no placeholders in thumbnail attributes
@@ -6508,24 +6174,6 @@ class Parser {
 	}
 
 	/**
-	 * strip/replaceVariables/unstrip for preprocessor regression testing
-	 *
-	 * @param string $text
-	 * @param Title $title
-	 * @param ParserOptions $options
-	 * @param int $outputType
-	 *
-	 * @return string
-	 * @deprecated since 1.34; should not be used outside parser class.
-	 */
-	public function testSrvus( $text, Title $title, ParserOptions $options,
-		$outputType = self::OT_HTML
-	) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->fuzzTestSrvus( $text, $title, $options, $outputType );
-	}
-
-	/**
 	 * Strip/replaceVariables/unstrip for preprocessor regression testing
 	 *
 	 * @param string $text
@@ -6552,33 +6200,9 @@ class Parser {
 	 * @param Title $title
 	 * @param ParserOptions $options
 	 * @return string
-	 * @deprecated since 1.34; should not be used outside parser class.
-	 */
-	public function testPst( $text, Title $title, ParserOptions $options ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->fuzzTestPst( $text, $title, $options );
-	}
-
-	/**
-	 * @param string $text
-	 * @param Title $title
-	 * @param ParserOptions $options
-	 * @return string
 	 */
 	private function fuzzTestPst( $text, Title $title, ParserOptions $options ) {
 		return $this->preSaveTransform( $text, $title, $options->getUser(), $options );
-	}
-
-	/**
-	 * @param string $text
-	 * @param Title $title
-	 * @param ParserOptions $options
-	 * @return string
-	 * @deprecated since 1.34; should not be used outside parser class.
-	 */
-	public function testPreprocess( $text, Title $title, ParserOptions $options ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->fuzzTestPreprocess( $text, $title, $options );
 	}
 
 	/**
