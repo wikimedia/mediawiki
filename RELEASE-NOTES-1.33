@@ -3,8 +3,10 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.33.1 ===
-
-* Fix extra newlines in the installer
+* (T217831) (T200653) PopulateContentTables: compute sha1 and length if needed.
+* Fix extra newlines in the installer.
+* (T236628) Fix for ArticleRevisionViewCustom hook in DifferenceEngine.php.
+* (T181658) Do not insert page titles into querycache.qc_value.
 
 == MediaWiki 1.33.1 ==
 
