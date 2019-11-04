@@ -19,6 +19,27 @@ for use in production.
 * (T235392) Deprecate setting Parser::mTitle to null.
 * Supporting commits for T235392 were also backported to prevent divergence
   from master (MediaWiki 1.35).
+* (T234581) The 'jquery.tabIndex' module is deprecated.
+* Fix docs for GetUserBlock hooks.
+* Parser: Hard deprecate getConverterLanguage.
+* (T236810) A number of public methods of Parser were exposed only for
+  historical reasons and have been deprecated: doMagicLinks,
+  doDoubleUnderscore, doHeadings, doAllQuotes, replaceExternalLinks,
+  replaceInternalLinks, replaceInternalLinks2, getVariableValue,
+  initialiseVariables, formatHeadings, testPst, testPreprocess, testSrvus,
+  areSubpagesAllowed, maybeDoSubpageLink, splitWhitespace, createAssocArgs,
+  armorLinks, makeKnownLinkHolder, getImageParams, parseLinkParameter,
+  stripAltText, replaceLinkHolders, replaceLinkHoldersText, armorLinks,
+  makeKnownLinkHolder, getImageParams, parseLinkParameter, stripAltText.
+* (T30798) $wgServer must now always be set in LocalSettings.php. This is most
+  likely the case already for any wiki installed after 1.18. The autodetection
+  system was informally deprecated since 1.18 and vulnerable to cache poisoning
+  attacks. Older wikis may need to update their LocalSettings.php file.
+* (T232169) Hard deprecate $wgSysopEmailBans.
+* (T236628) Fix for ArticleRevisionViewCustom hook in DifferenceEngine.php.
+* (T181658) Do not insert page titles into querycache.qc_value.
+* ParamValidator has been flagged as unstable.
+* Hard deprecate Parser::disableCache().
 
 == MediaWiki 1.34.0-rc.0 ==
 
@@ -646,7 +667,8 @@ because of Phabricator reports.
   testPst, testPreprocess, testSrvus, areSubpagesAllowed, maybeDoSubpageLink,
   splitWhitespace, createAssocArgs, armorLinks, makeKnownLinkHolder,
   getImageParams, parseLinkParameter, stripAltText, replaceLinkHolders,
-  replaceLinkHoldersText.
+  replaceLinkHoldersText, armorLinks, makeKnownLinkHolder, getImageParams,
+  parseLinkParameter, stripAltText.
 
 === Other changes in 1.34 ===
 * Added option to specify "Various authors" as author in extension credits using
