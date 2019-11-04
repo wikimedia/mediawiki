@@ -640,7 +640,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				$filter->getShowHide(),
 				$filterName,
 				$opts[ $filterName ],
-				$filter->isFeatureAvailableOnStructuredUi( $this )
+				$filter->isFeatureAvailableOnStructuredUi()
 			);
 		}
 

@@ -904,7 +904,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				'data-filter-name' => $filter->getName(),
 			];
 
-			if ( $filter->isFeatureAvailableOnStructuredUi( $this ) ) {
+			if ( $filter->isFeatureAvailableOnStructuredUi() ) {
 				$attribs['data-feature-in-structured-ui'] = true;
 			}
 
