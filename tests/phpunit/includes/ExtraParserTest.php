@@ -237,14 +237,14 @@ class ExtraParserTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers Parser::parseLinkParameterPrivate
+	 * @covers Parser::parseLinkParameter
 	 * @dataProvider provideParseLinkParameter
 	 */
 	public function testParseLinkParameter( $input, $expected, $expectedLinks, $desc ) {
 		$this->parser->startExternalParse( Title::newFromText( __FUNCTION__ ),
 			$this->options, Parser::OT_HTML );
 		$output = TestingAccessWrapper::newFromObject( $this->parser )
-			->parseLinkParameterPrivate( $input );
+			->parseLinkParameter( $input );
 
 		$this->assertEquals( $expected[0], $output[0], "$desc (type)" );
 
