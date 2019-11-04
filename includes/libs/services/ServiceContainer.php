@@ -437,7 +437,8 @@ class ServiceContainer implements ContainerInterface, DestructibleService {
 	private function createService( $name ) {
 		if ( isset( $this->serviceInstantiators[$name] ) ) {
 			if ( isset( $this->servicesBeingCreated[$name] ) ) {
-				throw new RuntimeException( "Circular dependency when creating service! " .
+				throw new RecursiveServiceDependencyException(
+					"Circular dependency when creating service! " .
 					implode( ' -> ', array_keys( $this->servicesBeingCreated ) ) . " -> $name" );
 			}
 			$this->servicesBeingCreated[$name] = true;
