@@ -45,7 +45,7 @@ class UserBlockedError extends ErrorPageError {
 			$context = RequestContext::getMain();
 			$user = $context->getUser();
 			$language = $context->getLanguage();
-			$ip = $context->getRequest()->getIp();
+			$ip = $context->getRequest()->getIP();
 		}
 
 		// @todo This should be passed in via the constructor

@@ -558,7 +558,7 @@ abstract class AbstractBlock {
 				$this,
 				$context->getUser(),
 				$context->getLanguage(),
-				$context->getRequest()->getIp()
+				$context->getRequest()->getIP()
 			)->getParams();
 	}
 

@@ -834,6 +834,7 @@ class Parser {
 	 * @internal
 	 * @deprecated
 	 * @param string $text Wikitext source of the extension
+	 * @return string
 	 * @return-taint escaped
 	 */
 	public function parseExtensionTagAsTopLevelDoc( $text ) {

@@ -619,11 +619,10 @@ abstract class ApiQueryBase extends ApiBase {
 	 *
 	 * @deprecated since 1.34, use ApiQueryBlockInfoTrait instead
 	 * @param bool $showBlockInfo
-	 * @return void
 	 */
 	public function showHiddenUsersAddBlockInfo( $showBlockInfo ) {
 		wfDeprecated( __METHOD__, '1.34' );
-		return $this->addBlockInfoToQuery( $showBlockInfo );
+		$this->addBlockInfoToQuery( $showBlockInfo );
 	}
 
 	/** @} */
