@@ -1625,7 +1625,7 @@ class EditPage {
 			return;
 		}
 
-		$this->getEditConflictHelper()->incrementResolvedStats();
+		$this->getEditConflictHelper()->incrementResolvedStats( $this->context->getUser() );
 	}
 
 	/**
@@ -3802,7 +3802,7 @@ ERROR;
 	}
 
 	protected function incrementConflictStats() {
-		$this->getEditConflictHelper()->incrementConflictStats();
+		$this->getEditConflictHelper()->incrementConflictStats( $this->context->getUser() );
 	}
 
 	/**
