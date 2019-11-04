@@ -1503,6 +1503,7 @@ class DifferenceEngine extends ContextSource {
 			!$this->mOldRev || !$this->mNewRev
 			|| !$this->mOldPage || !$this->mNewPage
 			|| !$this->mOldPage->equals( $this->mNewPage )
+			|| $this->mOldRev->getId() === null || $this->mNewRev->getId() === null
 		) {
 			return '';
 		}
