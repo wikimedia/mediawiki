@@ -23,7 +23,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * Handler class for Core REST API endpoints that perform operations on revisions
  */
 class PageHistoryCountHandler extends SimpleHandler {
-	const ALLOWED_COUNT_TYPES = [ 'anonymous', 'bot', 'editors', 'edits', 'reverted' ];
+	const ALLOWED_COUNT_TYPES = [ 'anonymous', 'bot', 'editors', 'edits', 'reverted', 'minor' ];
 
 	// These types work identically to their similarly-named synonyms, but will be removed in the
 	// next major version of the API. Callers should use the corresponding non-deprecated type.
@@ -31,7 +31,14 @@ class PageHistoryCountHandler extends SimpleHandler {
 		'anonedits', 'botedits', 'revertededits'
 	];
 
+	// The query for minor counts is inefficient for the database for pages with many revisions.
+	// If the specified title contains more revisions than allowed, we will return an error.
+	// This may be fixed with a database index, per T235572. If so, this check can be removed.
+	const MINOR_QUERY_EDIT_COUNT_LIMIT = 1000;
+
 	const REVERTED_TAG_NAMES = [ 'mw-undo', 'mw-rollback' ];
+
+	const MINOR_LIMIT = 500;
 
 	/** @var NameTableStore */
 	private $changeTagDefStore;
@@ -80,8 +87,8 @@ class PageHistoryCountHandler extends SimpleHandler {
 			);
 		}
 
-		$count = $this->getCount( $titleObj, $type );
-		$response = $this->getResponseFactory()->createJson( [ 'count' => $count ] );
+		$responseData = $this->getResponseData( $titleObj, $type );
+		$response = $this->getResponseFactory()->createJson( $responseData );
 
 		// Inform clients who use a deprecated "type" value, so they can adjust
 		if ( in_array( $type, self::DEPRECATED_COUNT_TYPES ) ) {
@@ -97,28 +104,42 @@ class PageHistoryCountHandler extends SimpleHandler {
 	/**
 	 * @param Title $titleObj title object identifying the page to load history for
 	 * @param string $type the validated count type
-	 * @return int the count
+	 * @return array the response data
 	 * @throws LocalizedHttpException
 	 */
-	protected function getCount( $titleObj, $type ) {
+	protected function getResponseData( $titleObj, $type ) {
 		switch ( $type ) {
 			case 'anonedits':
 			case 'anonymous':
-				return $this->getAnonCount( $titleObj );
+				return [ 'count' => $this->getAnonCount( $titleObj ) ];
 
 			case 'botedits':
 			case 'bot':
-				return $this->getBotCount( $titleObj );
+				return [ 'count' => $this->getBotCount( $titleObj ) ];
 
 			case 'editors':
-				return $this->getEditorsCount( $titleObj );
+				return [ 'count' => $this->getEditorsCount( $titleObj ) ];
 
 			case 'edits':
-				return $this->getEditsCount( $titleObj );
+				return [ 'count' => $this->getEditsCount( $titleObj ) ];
 
 			case 'revertededits':
 			case 'reverted':
-				return $this->getRevertedCount( $titleObj );
+				return [ 'count' => $this->getRevertedCount( $titleObj ) ];
+
+			case 'minor':
+				$editsCount = $this->getEditsCount( $titleObj );
+				if ( $editsCount > self::MINOR_QUERY_EDIT_COUNT_LIMIT ) {
+					throw new LocalizedHttpException(
+						new MessageValue( 'rest-pagehistorycount-too-many-revisions' ),
+						500
+					);
+				}
+				$count = $this->getMinorCount( $titleObj );
+				return [
+					'count' => $count > self::MINOR_LIMIT ? self::MINOR_LIMIT : $count,
+					'limit' => $count > self::MINOR_LIMIT
+				];
 
 			// Sanity check
 			default:
@@ -309,6 +330,24 @@ class PageHistoryCountHandler extends SimpleHandler {
 				],
 			]
 		);
+		return $edits;
+	}
+
+	/**
+	 * @param Title $titleObj title object identifying the page to load history for
+	 * @return int the count
+	 */
+	protected function getMinorCount( $titleObj ) {
+		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+		$edits = $dbr->selectRowCount( 'revision', '1',
+			[
+				'rev_page' => $titleObj->getArticleID(),
+				'rev_minor_edit != 0'
+			],
+			__METHOD__,
+			[ 'LIMIT' => self::MINOR_LIMIT + 1 ] // extra to detect truncation
+		);
+
 		return $edits;
 	}
 
