@@ -169,16 +169,17 @@ class TextConflictHelper {
 	 */
 	protected function incrementStatsByUserEdits( $userEdits, $keyPrefixBase ) {
 		if ( $userEdits === null ) {
-			$this->stats->increment( $keyPrefixBase . '.byUserEdits.anon' );
+			$userBucket = 'anon';
 		} elseif ( $userEdits > 200 ) {
-			$this->stats->increment( $keyPrefixBase . '.byUserEdits.over200' );
+			$userBucket = 'over200';
 		} elseif ( $userEdits > 100 ) {
-			$this->stats->increment( $keyPrefixBase . '.byUserEdits.over100' );
+			$userBucket = 'over100';
 		} elseif ( $userEdits > 10 ) {
-			$this->stats->increment( $keyPrefixBase . '.byUserEdits.over10' );
+			$userBucket = 'over10';
 		} else {
-			$this->stats->increment( $keyPrefixBase . '.byUserEdits.under11' );
+			$userBucket = 'under11';
 		}
+		$this->stats->increment( $keyPrefixBase . '.byUserEdits.' . $userBucket );
 	}
 
 	/**
