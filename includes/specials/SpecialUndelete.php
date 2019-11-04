@@ -163,6 +163,34 @@ class SpecialUndelete extends SpecialPage {
 		return $this->isAllowed( $this->mRestriction, $user );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
+	public function checkPermissions() {
+		$user = $this->getUser();
+
+		// First check if user has the right to use this page. If not,
+		// show a permissions error whether they are blocked or not.
+		if ( !parent::userCanExecute( $user ) ) {
+			$this->displayRestrictionError();
+		}
+
+		// If a user has the right to use this page, but is blocked from
+		// the target, show a block error.
+		if (
+			$this->mTargetObj && MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->isBlockedFrom( $user, $this->mTargetObj )
+		) {
+			throw new UserBlockedError( $user->getBlock() );
+		}
+
+		// Finally, do the comprehensive permission check via isAllowed.
+		if ( !$this->userCanExecute( $user ) ) {
+			$this->displayRestrictionError();
+		}
+	}
+
 	function execute( $par ) {
 		$this->useTransactionalTimeLimit();
 
