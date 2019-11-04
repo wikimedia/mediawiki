@@ -28,7 +28,8 @@
 		"class": "MediaWiki\\Rest\\Handler\\CompareHandler",
 		"services": [
 			"RevisionLookup",
-			"PermissionManager"
+			"PermissionManager",
+			"Parser"
 		]
 	},
 	{
