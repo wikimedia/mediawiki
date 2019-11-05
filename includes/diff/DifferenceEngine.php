@@ -1178,7 +1178,7 @@ class DifferenceEngine extends ContextSource {
 		$engine = $this->getEngine();
 		$params = [
 			'diff',
-			$engine,
+			$engine === 'php' ? false : $engine, // Back compat
 			self::DIFF_VERSION,
 			"old-{$this->mOldid}",
 			"rev-{$this->mNewid}"
@@ -1288,32 +1288,59 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * Process ExternalDiffEngine config and get a sane, usable engine
+	 * Process DiffEngine config and get a sane, usable engine
 	 *
-	 * @return bool|string 'wikidiff2', path to an executable, or false
+	 * @return string 'wikidiff2', 'php', or path to an executable
 	 * @internal For use by this class and TextSlotDiffRenderer only.
 	 */
 	public static function getEngine() {
+		$diffEngine = MediaWikiServices::getInstance()->getMainConfig()
+			->get( 'DiffEngine' );
 		$externalDiffEngine = MediaWikiServices::getInstance()->getMainConfig()
 			->get( 'ExternalDiffEngine' );
 
-		if ( $externalDiffEngine ) {
-			if ( is_string( $externalDiffEngine ) ) {
-				if ( is_executable( $externalDiffEngine ) ) {
-					return $externalDiffEngine;
-				}
-				wfDebug( 'ExternalDiffEngine config points to a non-executable, ignoring' );
-			} else {
-				wfWarn( 'ExternalDiffEngine config is set to a non-string value, ignoring' );
+		if ( $diffEngine === null ) {
+			$engines = [ 'external', 'wikidiff2', 'php' ];
+		} else {
+			$engines = [ $diffEngine ];
+		}
+
+		$failureReason = null;
+		foreach ( $engines as $engine ) {
+			switch ( $engine ) {
+				case 'external':
+					if ( is_string( $externalDiffEngine ) ) {
+						if ( is_executable( $externalDiffEngine ) ) {
+							return $externalDiffEngine;
+						}
+						$failureReason = 'ExternalDiffEngine config points to a non-executable';
+						if ( $diffEngine === null ) {
+							wfDebug( "$failureReason, ignoring" );
+						}
+					} else {
+						$failureReason = 'ExternalDiffEngine config is set to a non-string value';
+						if ( $diffEngine === null && $externalDiffEngine ) {
+							wfWarn( "$failureReason, ignoring" );
+						}
+					}
+					break;
+
+				case 'wikidiff2':
+					if ( function_exists( 'wikidiff2_do_diff' ) ) {
+						return 'wikidiff2';
+					}
+					$failureReason = 'wikidiff2 is not available';
+					break;
+
+				case 'php':
+					// Always available.
+					return 'php';
+
+				default:
+					throw new DomainException( 'Invalid value for $wgDiffEngine: ' . $engine );
 			}
 		}
-
-		if ( function_exists( 'wikidiff2_do_diff' ) ) {
-			return 'wikidiff2';
-		}
-
-		// Native PHP
-		return false;
+		throw new UnexpectedValueException( "Cannot use diff engine '$engine': $failureReason" );
 	}
 
 	/**
@@ -1367,7 +1394,7 @@ class DifferenceEngine extends ContextSource {
 		$engine = self::getEngine();
 		if ( $engine === 'wikidiff2' ) {
 			return $this->debug( 'wikidiff2' );
-		} elseif ( $engine === false ) {
+		} elseif ( $engine === 'php' ) {
 			return $this->debug( 'native PHP' );
 		} else {
 			return $this->debug( "external $engine" );

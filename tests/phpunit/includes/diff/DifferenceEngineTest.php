@@ -32,6 +32,8 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 		if ( !self::$revisions ) {
 			self::$revisions = $this->doEdits();
 		}
+
+		$this->setMwGlobals( [ 'wgDiffEngine' => 'php' ] );
 	}
 
 	/**
