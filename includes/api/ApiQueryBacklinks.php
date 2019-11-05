@@ -170,6 +170,11 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->addOption( 'STRAIGHT_JOIN' );
 
 		$res = $this->select( __METHOD__ );
+
+		if ( $resultPageSet === null ) {
+			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__ );
+		}
+
 		$count = 0;
 		foreach ( $res as $row ) {
 			if ( ++$count > $this->params['limit'] ) {
@@ -288,6 +293,11 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->addOption( 'USE INDEX', [ 'page' => 'PRIMARY' ] );
 
 		$res = $this->select( __METHOD__ );
+
+		if ( $resultPageSet === null ) {
+			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__ );
+		}
+
 		$count = 0;
 		foreach ( $res as $row ) {
 			$ns = $this->hasNS ? $row->{$this->bl_ns} : NS_FILE;

@@ -87,6 +87,11 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		$path = [ 'query', $this->getModuleName() ];
 
 		$res = $this->select( __METHOD__ );
+
+		if ( $resultPageSet === null ) {
+			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__ );
+		}
+
 		$count = 0;
 		foreach ( $res as $row ) {
 			if ( $count++ >= $limit ) {

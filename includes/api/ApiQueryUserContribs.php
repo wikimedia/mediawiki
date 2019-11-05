@@ -223,6 +223,10 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$this->prepareQuery( $users, $limit - $count );
 			$res = $this->select( __METHOD__, [], $hookData );
 
+			if ( $this->fld_title ) {
+				$this->executeGenderCacheFromResultWrapper( $res, __METHOD__ );
+			}
+
 			if ( $this->fld_sizediff ) {
 				$revIds = [];
 				foreach ( $res as $row ) {

@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Query module to enumerate links from all pages together.
  *
@@ -182,6 +184,20 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$this->addOption( 'ORDER BY', $orderBy );
 
 		$res = $this->select( __METHOD__ );
+
+		// Get gender information
+		if ( $res->numRows() && $resultPageSet === null ) {
+			$services = MediaWikiServices::getInstance();
+			if ( $services->getNamespaceInfo()->hasGenderDistinction( $namespace ) ) {
+				$users = [];
+				foreach ( $res as $row ) {
+					$users[] = $row->pl_title;
+				}
+				if ( $users !== [] ) {
+					$services->getGenderCache()->doQuery( $users, __METHOD__ );
+				}
+			}
+		}
 
 		$pageids = [];
 		$titles = [];

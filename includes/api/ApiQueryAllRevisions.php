@@ -188,6 +188,11 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 
 		$hookData = [];
 		$res = $this->select( __METHOD__, [], $hookData );
+
+		if ( $resultPageSet === null ) {
+			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__ );
+		}
+
 		$pageMap = []; // Maps rev_page to array index
 		$count = 0;
 		$nextIndex = 0;
