@@ -74,7 +74,7 @@ abstract class VirtualRESTService {
 	 *
 	 * @param array[] $reqs Map of Virtual HTTP request arrays
 	 * @param Closure $idGeneratorFunc Method to generate unique keys for new requests
-	 * @return array Modified HTTP request array map
+	 * @return array[] Modified HTTP request array map
 	 */
 	public function onRequests( array $reqs, Closure $idGeneratorFunc ) {
 		$result = [];
