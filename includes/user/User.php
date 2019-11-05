@@ -838,11 +838,7 @@ class User implements IDBAccessObject, UserIdentity {
 
 		$user = self::newFromRow( $row );
 
-		// A user is considered to exist as a non-system user if it can
-		// authenticate, or has an email set, or has a non-invalid token.
-		if ( $user->mEmail || $user->mToken !== self::INVALID_TOKEN ||
-			AuthManager::singleton()->userCanAuthenticate( $name )
-		) {
+		if ( !$user->isSystemUser() ) {
 			// User exists. Steal it?
 			if ( !$options['steal'] ) {
 				return null;
@@ -3602,6 +3598,25 @@ class User implements IDBAccessObject, UserIdentity {
 		Hooks::run( "UserIsBot", [ $this, &$isBot ] );
 
 		return $isBot;
+	}
+
+	/**
+	 * Get whether the user is a system user
+	 *
+	 * A user is considered to exist as a non-system user if it can
+	 * authenticate, or has an email set, or has a non-invalid token.
+	 *
+	 * @return bool Whether this user is a system user
+	 * @since 1.35
+	 */
+	public function isSystemUser() {
+		$this->load();
+		if ( $this->mEmail || $this->mToken !== self::INVALID_TOKEN ||
+			AuthManager::singleton()->userCanAuthenticate( $this->mName )
+		) {
+			return false;
+		}
+		return true;
 	}
 
 	/**
