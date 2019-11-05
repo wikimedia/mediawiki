@@ -1313,13 +1313,6 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'mediawiki.action.view.dblClickEdit' => [
-		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.dblClickEdit.js',
-		'dependencies' => [
-			'mediawiki.util',
-			'user.options',
-		],
-	],
 	'mediawiki.action.view.metadata' => [
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.view.metadata.css',
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.metadata.js',
@@ -1358,9 +1351,6 @@ return [
 	'mediawiki.action.view.redirectPage' => [
 		'targets' => [ 'desktop', 'mobile' ],
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.view.redirectPage.css',
-	],
-	'mediawiki.action.view.rightClickEdit' => [
-		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.rightClickEdit.js',
 	],
 	'mediawiki.action.edit.editWarning' => [
 		'targets' => [ 'desktop', 'mobile' ],
@@ -2018,8 +2008,8 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	// This bundles various small (under 5 KB?) JavaScript files that:
-	// - .. are not loaded on when viewing or editing wiki pages.
-	// - .. are used by logged-in users only.
+	// - .. are never loaded when viewing or editing wiki pages.
+	// - .. are only used by logged-in users.
 	// - .. depend on oojs-ui-core.
 	// - .. contain UI intialisation code (e.g. no public module exports, because
 	//      requiring or depending on this bundle is awkard)
@@ -2040,6 +2030,22 @@ return [
 			'oojs-ui-core', // Used by special.pageLanguage.js
 		],
 		'targets' => [ 'desktop', 'mobile' ],
+	],
+	// This bundles various small (under 2 KB?) JavaScript files that:
+	// - .. are only used by logged-in users when a non-default preference was enabled.
+	// - .. may be loaded in the critical path for those users on page views.
+	// - .. do NOT depend on OOUI.
+	// - .. contain only UI intialisation code (e.g. no public exports)
+	'mediawiki.misc-authed-pref' => [
+		'localBasePath' => "$IP/resources/src/mediawiki.misc-authed-pref",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.misc-authed-pref",
+		'scripts' => [
+			'rightClickEdit.js',
+			'dblClickEdit.js',
+		],
+		'dependencies' => [
+			'user.options',
+		],
 	],
 	'mediawiki.special.changeslist' => [
 		'styles' => [
