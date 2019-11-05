@@ -3259,37 +3259,68 @@ class RevisionStore
 	}
 
 	/**
+	 * Asserts that if revision is provided, it's saved and belongs to the page with provided pageId.
+	 * @param string $paramName
+	 * @param int $pageId
+	 * @param RevisionRecord|null $rev
+	 * @throws InvalidArgumentException
+	 */
+	private function assertRevisionParameter( $paramName, $pageId, RevisionRecord $rev = null ) {
+		if ( $rev ) {
+			if ( $rev->getId() === null ) {
+				throw new InvalidArgumentException( "Unsaved {$paramName} revision passed" );
+			}
+			if ( $rev->getPageId() !== $pageId ) {
+				throw new InvalidArgumentException(
+					"Revision {$rev->getId()} doesn't belong to page {$pageId}"
+				);
+			}
+		}
+	}
+
+	/**
 	 * Get the number of revisions between the given revisions.
 	 * Used for diffs and other things that really need it.
 	 *
 	 * @since 1.35
 	 *
-	 * @param RevisionRecord $old Old revision or rev ID (first before range).
-	 * @param RevisionRecord $new New revision or rev ID (first after range).
+	 * @param int $pageId The id of the page
+	 * @param RevisionRecord|null $old Old revision or rev ID (first before range).
+	 * 	If null is provided, count starting from the first revision (inclusive).
+	 * @param RevisionRecord|null $new New revision or rev ID (first after range).
+	 *  If null is provided, count until the last revision (inclusive).
 	 * @param int|null $max Limit of Revisions to count, will be incremented to detect truncations.
 	 * @throws InvalidArgumentException in case either revision is unsaved or
 	 * 	the revisions do not belong to the same page.
 	 * @return int Number of revisions between these revisions.
 	 */
-	public function countRevisionsBetween( RevisionRecord $old, RevisionRecord $new, $max = null ) {
-		if ( $old->getId() === null || $new->getId() === null ) {
-			throw new InvalidArgumentException( 'Unsaved revision passed' );
-		}
+	public function countRevisionsBetween(
+		$pageId,
+		RevisionRecord $old = null,
+		RevisionRecord $new = null,
+		$max = null
+	) {
+		$this->assertRevisionParameter( 'old', $pageId, $old );
+		$this->assertRevisionParameter( 'new', $pageId, $new );
 
-		if ( $old->getPageId() !== $new->getPageId() ) {
-			throw new InvalidArgumentException(
-				"Revisions {$old->getId()} and {$new->getId()} do not belong to the same page"
-			);
+		// No DB query needed if old and new are the same revision.
+		// Can't check for consecutive revisions with 'getParentId' for a similar
+		// optimization as edge cases exist when there are revisions between
+		//a revision and it's parent. See T185167 for more details.
+		if ( $old && $new && $new->getId() === $old->getId() ) {
+			return 0;
 		}
 
 		$dbr = $this->getDBConnectionRef( DB_REPLICA );
-		$oldTs = $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) );
-		$newTs = $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) );
-		$conds = [
-			'rev_page' => $old->getPageId(),
-			"(rev_timestamp = {$oldTs} AND rev_id > {$old->getId()}) OR rev_timestamp > {$oldTs}",
-			"(rev_timestamp = {$newTs} AND rev_id < {$new->getId()}) OR rev_timestamp < {$newTs}",
-		];
+		$conds = [ 'rev_page' => $pageId ];
+		if ( $old ) {
+			$oldTs = $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) );
+			$conds[] = "(rev_timestamp = {$oldTs} AND rev_id > {$old->getId()}) OR rev_timestamp > {$oldTs}";
+		}
+		if ( $new ) {
+			$newTs = $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) );
+			$conds[] = "(rev_timestamp = {$newTs} AND rev_id < {$new->getId()}) OR rev_timestamp < {$newTs}";
+		}
 		if ( $max !== null ) {
 			return $dbr->selectRowCount( 'revision', '1',
 				$conds,

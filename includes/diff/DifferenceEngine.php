@@ -1519,6 +1519,7 @@ class DifferenceEngine extends ContextSource {
 		// @todo show some special message for that case
 		$nEdits = MediaWikiServices::getInstance()->getRevisionStore()
 			->countRevisionsBetween(
+				$this->mNewPage->getArticleID(),
 				$oldRev->getRevisionRecord(),
 				$newRev->getRevisionRecord(),
 				1000

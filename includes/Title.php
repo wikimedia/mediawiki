@@ -4034,7 +4034,12 @@ class Title implements LinkTarget, IDBAccessObject {
 		}
 		return MediaWikiServices::getInstance()
 			->getRevisionStore()
-			->countRevisionsBetween( $old->getRevisionRecord(), $new->getRevisionRecord(), $max );
+			->countRevisionsBetween(
+				$this->getArticleID(),
+				$old->getRevisionRecord(),
+				$new->getRevisionRecord(),
+				$max
+			);
 	}
 
 	/**

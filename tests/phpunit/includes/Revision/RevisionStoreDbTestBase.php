@@ -2183,7 +2183,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	public function testCountRevisionsBetween() {
 		$NUM = 5;
 		$MAX = 1;
-		$page = $this->getTestPage();
+		$page = $this->getTestPage( __METHOD__ );
 		$revisions = [];
 		for ( $revNum = 0; $revNum < $NUM; $revNum++ ) {
 			$editStatus = $this->editPage( $page->getTitle()->getPrefixedDBkey(), 'Revision ' . $revNum );
@@ -2192,17 +2192,32 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		}
 
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$this->assertEquals( $NUM - 2, // The count is non-inclusive on both ends.
-			$revisionStore->countRevisionsBetween( $revisions[0], $revisions[$NUM - 1] ) );
+		$this->assertEquals( 0,
+			$revisionStore->countRevisionsBetween( $page->getId(), $revisions[0], $revisions[0] ),
+			'Must return 0 if the same old and new revisions provided' );
+		$this->assertEquals( 0,
+			$revisionStore->countRevisionsBetween( $page->getId(), $revisions[0], $revisions[1] ),
+			'Must return 0 if the consecutive old and new revisions provided' );
+		$this->assertEquals( $NUM - 3,
+			$revisionStore->countRevisionsBetween( $page->getId(), $revisions[0], $revisions[$NUM - 2] ),
+			'The count is non-inclusive on both ends if both beginning and end are provided' );
+		$this->assertEquals( $NUM - 1,
+			$revisionStore->countRevisionsBetween( $page->getId(), $revisions[0] ),
+			'The count is inclusive on the end if the end is omitted' );
+		$this->assertEquals( $NUM + 1, // There was one revision from creating a page, thus NUM + 1
+			$revisionStore->countRevisionsBetween( $page->getId() ),
+			'The count is inclusive if both beginning and end are omitted' );
 		$this->assertEquals( $MAX + 1, // Returns $max + 1 to detect truncation.
-			$revisionStore->countRevisionsBetween( $revisions[0], $revisions[$NUM - 1], $MAX ) );
+			$revisionStore->countRevisionsBetween( $page->getId(), $revisions[0],
+				$revisions[$NUM - 1], $MAX ),
+			'The $max is incremented to detect truncation' );
 	}
 
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::countRevisionsBetween
 	 */
 	public function testCountRevisionsBetween_differentPages() {
-		$page1 = $this->getTestPage();
+		$page1 = $this->getTestPage( __METHOD__ );
 		$page2 = $this->getTestPage( 'Other_Page' );
 		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), 'Revision 1' );
 		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
@@ -2212,7 +2227,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$rev2 = $editStatus->getValue()['revision']->getRevisionRecord();
 
 		$this->expectException( InvalidArgumentException::class );
-		MediaWikiServices::getInstance()->getRevisionStore()->countRevisionsBetween( $rev1, $rev2 );
+		MediaWikiServices::getInstance()->getRevisionStore()
+			->countRevisionsBetween( $page1->getId(), $rev1, $rev2 );
 	}
 
 	/**
@@ -2223,6 +2239,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$rev2 = new MutableRevisionRecord( $this->getTestPageTitle() );
 
 		$this->expectException( InvalidArgumentException::class );
-		MediaWikiServices::getInstance()->getRevisionStore()->countRevisionsBetween( $rev1, $rev2 );
+		MediaWikiServices::getInstance()->getRevisionStore()->countRevisionsBetween(
+			$this->getTestPage( __METHOD__ )->getId(), $rev1, $rev2 );
 	}
 }
