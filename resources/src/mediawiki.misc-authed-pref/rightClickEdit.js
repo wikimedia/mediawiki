@@ -1,9 +1,14 @@
 /*!
- * JavaScript to enable right click edit functionality.
- * When the user right-clicks in a heading, it will open the
- * edit screen.
+ * Enable right-click-to-edit functionality.
+ *
+ * When the user right-clicks in a content heading, it will open the
+ * edit section link.
  */
 ( function () {
+	if ( !parseInt( mw.user.options.get( 'editsectiononrightclick' ), 10 ) ) {
+		return;
+	}
+
 	// Trigger this when a contextmenu click on the page targets an h1-h6 element.
 	// This uses a delegate handler which 1) starts immediately instead of blocking
 	// response on dom-ready, and 2) selects and binds once instead of N times.

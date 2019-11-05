@@ -238,23 +238,18 @@ abstract class Skin extends ContextSource {
 			$modules['styles']['content'][] = 'mediawiki.toc.styles';
 		}
 
-		// Add various resources if required
+		$prefMgr = MediaWikiServices::getInstance()->getPermissionManager();
 		if ( $user->isLoggedIn()
-			&& MediaWikiServices::getInstance()
-				 ->getPermissionManager()
-				 ->userHasAllRights( $user, 'writeapi', 'viewmywatchlist', 'editmywatchlist' )
+			&& $prefMgr->userHasAllRights( $user, 'writeapi', 'viewmywatchlist', 'editmywatchlist' )
 			&& $this->getRelevantTitle()->canExist()
 		) {
 			$modules['watch'][] = 'mediawiki.page.watch.ajax';
 		}
 
-		if ( $user->getBoolOption( 'editsectiononrightclick' ) ) {
-			$modules['user'][] = 'mediawiki.action.view.rightClickEdit';
-		}
-
-		// Crazy edit-on-double-click stuff
-		if ( $out->isArticle() && $user->getOption( 'editondblclick' ) ) {
-			$modules['user'][] = 'mediawiki.action.view.dblClickEdit';
+		if ( $user->getBoolOption( 'editsectiononrightclick' )
+			|| ( $out->isArticle() && $user->getOption( 'editondblclick' ) )
+		) {
+			$modules['user'][] = 'mediawiki.misc-authed-pref';
 		}
 
 		if ( $out->isSyndicated() ) {
