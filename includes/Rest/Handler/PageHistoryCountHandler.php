@@ -24,6 +24,9 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * Handler class for Core REST API endpoints that perform operations on revisions
  */
 class PageHistoryCountHandler extends SimpleHandler {
+	/** int The maximum number of revisions to count */
+	private const LIMIT = 1000;
+
 	const ALLOWED_COUNT_TYPES = [ 'anonymous', 'bot', 'editors', 'edits', 'reverted', 'minor' ];
 
 	// These types work identically to their similarly-named synonyms, but will be removed in the
@@ -35,11 +38,9 @@ class PageHistoryCountHandler extends SimpleHandler {
 	// The query for minor counts is inefficient for the database for pages with many revisions.
 	// If the specified title contains more revisions than allowed, we will return an error.
 	// This may be fixed with a database index, per T235572. If so, this check can be removed.
-	const MINOR_QUERY_EDIT_COUNT_LIMIT = 1000;
+	const MINOR_QUERY_EDIT_COUNT_LIMIT = 2000;
 
 	const REVERTED_TAG_NAMES = [ 'mw-undo', 'mw-rollback' ];
-
-	const LIMIT = 500;
 
 	/** @var RevisionStore */
 	private $revisionStore;
@@ -133,8 +134,11 @@ class PageHistoryCountHandler extends SimpleHandler {
 			);
 		}
 
-		$responseData = $this->getResponseData( $titleObj->getArticleID(), $type );
-		$response = $this->getResponseFactory()->createJson( $responseData );
+		$count = $this->getCount( $titleObj->getArticleID(), $type );
+		$response = $this->getResponseFactory()->createJson( [
+				'count' => $count > self::LIMIT ? self::LIMIT : $count,
+				'limit' => $count > self::LIMIT
+		] );
 
 		// Inform clients who use a deprecated "type" value, so they can adjust
 		if ( in_array( $type, self::DEPRECATED_COUNT_TYPES ) ) {
@@ -150,36 +154,28 @@ class PageHistoryCountHandler extends SimpleHandler {
 	/**
 	 * @param int $pageId the id of the page to load history for
 	 * @param string $type the validated count type
-	 * @return array the response data
+	 * @return int the article count
 	 * @throws LocalizedHttpException
 	 */
-	protected function getResponseData( $pageId, $type ) {
+	protected function getCount( $pageId, $type ) {
 		switch ( $type ) {
 			case 'anonedits':
 			case 'anonymous':
-				return [ 'count' => $this->getAnonCount( $pageId ) ];
+				return $this->getAnonCount( $pageId );
 
 			case 'botedits':
 			case 'bot':
-				return [ 'count' => $this->getBotCount( $pageId ) ];
+				return $this->getBotCount( $pageId );
 
 			case 'editors':
-				$count = $this->getEditorsCount( $pageId );
-				return [
-					'count' => $count > self::LIMIT ? self::LIMIT : $count,
-					'limit' => $count > self::LIMIT
-				];
+				return $this->getEditorsCount( $pageId );
 
 			case 'edits':
-				$count = $this->getEditsCount( $pageId, self::LIMIT );
-				return [
-					'count' => $count > self::LIMIT ? self::LIMIT : $count,
-					'limit' => $count > self::LIMIT
-				];
+				return $this->getEditsCount( $pageId, self::LIMIT );
 
 			case 'revertededits':
 			case 'reverted':
-				return [ 'count' => $this->getRevertedCount( $pageId ) ];
+				return $this->getRevertedCount( $pageId );
 
 			case 'minor':
 				$editsCount = $this->getEditsCount( $pageId, self::MINOR_QUERY_EDIT_COUNT_LIMIT );
@@ -189,12 +185,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 						500
 					);
 				}
-				$count = $this->getMinorCount( $pageId );
-				return [
-					'count' => $count > self::LIMIT ? self::LIMIT : $count,
-					'limit' => $count > self::LIMIT
-				];
-
+				return $this->getMinorCount( $pageId );
 			// Sanity check
 			default:
 				throw new LocalizedHttpException(
@@ -222,16 +213,16 @@ class PageHistoryCountHandler extends SimpleHandler {
 			$cond[] = $dbr->bitAnd( 'rev_deleted', $bitmask ) . " != $bitmask";
 		}
 
-		$edits = (int)$dbr->selectField(
+		$edits = $dbr->selectRowCount(
 			[
 				'revision_actor_temp',
 				'revision',
 				'actor'
 			],
-			'COUNT(*)',
+			'1',
 			$cond,
 			__METHOD__,
-			[],
+			[ 'LIMIT' => self::LIMIT + 1 ], // extra to detect truncation
 			[
 				'revision' => [
 					'JOIN',
@@ -273,16 +264,16 @@ class PageHistoryCountHandler extends SimpleHandler {
 			$cond[] = $dbr->bitAnd( 'rev_deleted', $bitmask ) . " != $bitmask";
 		}
 
-		$edits = (int)$dbr->selectField(
+		$edits = $dbr->selectRowCount(
 			[
 				'revision_actor_temp',
 				'revision',
 				'actor',
 			],
-			'COUNT(*)',
+			'1',
 			$cond,
 			__METHOD__,
-			[],
+			[ 'LIMIT' => self::LIMIT + 1 ], // extra to detect truncation
 			[
 				'revision' => [
 					'JOIN',
@@ -340,15 +331,18 @@ class PageHistoryCountHandler extends SimpleHandler {
 		}
 
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$edits = (int)$dbr->selectField(
+		$edits = $dbr->selectRowCount(
 			[
 				'revision',
 				'change_tag'
 			],
-			'COUNT(DISTINCT rev_id)',
+			'1',
 			[ 'rev_page' => $pageId ],
 			__METHOD__,
-			[],
+			[
+				'LIMIT' => self::LIMIT + 1, // extra to detect truncation
+				'GROUP BY' => 'rev_id'
+			],
 			[
 				'change_tag' => [
 					'JOIN',
