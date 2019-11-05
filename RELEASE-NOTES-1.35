@@ -29,8 +29,9 @@ For notes on 1.34.x and older releases, see HISTORY.
 …
 
 ==== New configuration ====
-* …
-
+* $wgDiffEngine can be used to specify the difference engine to use, rather
+  than choosing the first of $wgExternalDiffEngine, wikidiff2, or php that
+  is usable.
 
 ==== Changed configuration ====
 * $wgResourceLoaderMaxage (T235314) - This configuration array controls the

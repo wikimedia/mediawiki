@@ -9,7 +9,10 @@ class DifferenceEngineSlotDiffRendererIntegrationTest extends \MediaWikiIntegrat
 	 * @covers DifferenceEngineSlotDiffRenderer::getExtraCacheKeys
 	 */
 	public function testGetExtraCacheKeys_noExternalDiffEngineConfigured() {
-		$this->setMwGlobals( [ 'wgExternalDiffEngine' => null ] );
+		$this->setMwGlobals( [
+			'wgDiffEngine' => null,
+			'wgExternalDiffEngine' => null,
+		] );
 
 		$differenceEngine = new CustomDifferenceEngine();
 		$slotDiffRenderer = new DifferenceEngineSlotDiffRenderer( $differenceEngine );
