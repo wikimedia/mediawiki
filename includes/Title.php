@@ -4298,23 +4298,16 @@ class Title implements LinkTarget, IDBAccessObject {
 	public function invalidateCache( $purgeTime = null ) {
 		if ( wfReadOnly() ) {
 			return false;
-		} elseif ( $this->mArticleID === 0 ) {
-			return true; // avoid gap locking if we know it's not there
 		}
-
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->onTransactionPreCommitOrIdle(
-			function () use ( $dbw ) {
-				ResourceLoaderWikiModule::invalidateModuleCache(
-					$this, null, null, $dbw->getDomainID() );
-			},
-			__METHOD__
-		);
+		if ( $this->mArticleID === 0 ) {
+			// avoid gap locking if we know it's not there
+			return true;
+		}
 
 		$conds = $this->pageCond();
 		DeferredUpdates::addUpdate(
 			new AutoCommitUpdate(
-				$dbw,
+				wfGetDB( DB_MASTER ),
 				__METHOD__,
 				function ( IDatabase $dbw, $fname ) use ( $conds, $purgeTime ) {
 					$dbTimestamp = $dbw->timestamp( $purgeTime ?: time() );
@@ -4324,7 +4317,11 @@ class Title implements LinkTarget, IDBAccessObject {
 						$conds + [ 'page_touched < ' . $dbw->addQuotes( $dbTimestamp ) ],
 						$fname
 					);
+
 					MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $this );
+
+					ResourceLoaderWikiModule::invalidateModuleCache(
+						$this, null, null, $dbw->getDomainID() );
 				}
 			),
 			DeferredUpdates::PRESEND
