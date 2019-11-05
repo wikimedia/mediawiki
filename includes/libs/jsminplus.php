@@ -1581,7 +1581,7 @@ class JSParser
 	private function nest($x, $node, $end = false)
 	{
 		array_push($x->stmtStack, $node);
-		$n = $this->statement($x);
+		$n = $this->Statement($x);
 		array_pop($x->stmtStack);
 
 		if ($end)

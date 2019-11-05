@@ -372,7 +372,7 @@ class PageHistoryHandler extends SimpleHandler {
 		}
 
 		$wr = new \WebRequest();
-		$urlParts = wfParseUrl( $wr->getFullRequestUrl() );
+		$urlParts = wfParseUrl( $wr->getFullRequestURL() );
 		if ( $urlParts ) {
 			$queryParts = wfCgiToArray( $urlParts['query'] );
 			unset( $urlParts['query'] );

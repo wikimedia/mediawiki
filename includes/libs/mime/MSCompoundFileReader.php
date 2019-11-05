@@ -41,7 +41,6 @@ class MSCompoundFileReader {
 	private $sectorLength;
 	private $difat;
 	private $fat = [];
-	private $fileLength;
 
 	const TYPE_UNALLOCATED = 0;
 	const TYPE_STORAGE = 1;

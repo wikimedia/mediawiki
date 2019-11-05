@@ -1343,7 +1343,7 @@ class SkinTemplate extends Skin {
 				'href' => self::makeSpecialUrlSubpage( 'Log', $rootUser )
 			];
 
-			if ( MediawikiServices::getInstance()
+			if ( MediaWikiServices::getInstance()
 					->getPermissionManager()
 					->userHasRight( $this->getUser(), 'block' )
 			) {
