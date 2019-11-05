@@ -5630,21 +5630,6 @@ class Parser {
 	}
 
 	/**
-	 * Set a flag in the output object indicating that the content is dynamic and
-	 * shouldn't be cached.
-	 * @deprecated since 1.28; use getOutput()->updateCacheExpiry()
-	 */
-	public function disableCache() {
-		wfDeprecated( __METHOD__, '1.28' );
-		$this->logger->debug( "Parser output marked as uncacheable." );
-		if ( !$this->mOutput ) {
-			throw new MWException( __METHOD__ .
-				" can only be called when actually parsing something" );
-		}
-		$this->mOutput->updateCacheExpiry( 0 ); // new style, for consistency
-	}
-
-	/**
 	 * Callback from the Sanitizer for expanding items found in HTML attribute
 	 * values, so they can be safely tested and escaped.
 	 *
