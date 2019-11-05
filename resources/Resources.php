@@ -2140,6 +2140,7 @@ return [
 	'mediawiki.special.search' => [
 		'scripts' => 'resources/src/mediawiki.special.search/search.js',
 		'dependencies' => 'mediawiki.widgets.SearchInputWidget',
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.search.commonsInterwikiWidget' => [
 		'scripts' => 'resources/src/mediawiki.special.search.commonsInterwikiWidget.js',
@@ -2713,6 +2714,7 @@ return [
 			// FIXME: Needs TitleInputWidget only
 			'mediawiki.widgets',
 		],
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.widgets.SearchInputWidget.styles' => [
 		'skinStyles' => [
