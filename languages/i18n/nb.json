@@ -2933,7 +2933,7 @@
 	"othercontribs": "Basert på arbeid av $1.",
 	"others": "andre",
 	"siteusers": "{{SITENAME}}-{{PLURAL:$2|{{GENDER:$1|bruker}}|brukere}} $1",
-	"anonusers": "{{SITENAME}}s {{PLURAL:$2|anonyme bruker|anonyme brukere}} $1",
+	"anonusers": "{{GRAMMAR:genitive|{{SITENAME}}}} {{PLURAL:$2|anonyme bruker|anonyme brukere}} $1",
 	"creditspage": "Sidekrediteringer",
 	"nocredits": "Ingen krediteringer er tilgjengelig for denne siden.",
 	"spamprotectiontitle": "Spamfilter",

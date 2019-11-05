@@ -1591,7 +1591,7 @@
 	"rcfilters-liveupdates-button-title-off": "Neue Änderungen bei Auftreten anzeigen",
 	"rcfilters-watchlist-markseen-button": "Alle Änderungen als gesehen markieren",
 	"rcfilters-watchlist-edit-watchlist-button": "Deine Liste der beobachteten Seiten bearbeiten",
-	"rcfilters-watchlist-showupdated": "Änderungen an Seiten, die du seit ihrem Auftreten nicht besucht hast, sind <strong>fett</strong> markiert.",
+	"rcfilters-watchlist-showupdated": "Seiten, die verändert wurden, seit du sie zuletzt besucht hast, sind <strong>fett</strong> markiert.",
 	"rcfilters-preference-label": "Die Oberfläche ohne JavaScript verwenden",
 	"rcfilters-preference-help": "Lädt die „Letzten Änderungen“ ohne Filtersuche oder Hervorhebungsfunktion.",
 	"rcfilters-watchlist-preference-label": "Die Oberfläche ohne JavaScript verwenden",

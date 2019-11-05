@@ -251,7 +251,7 @@
 	"permalink": "Постійне посилання",
 	"print": "Друк",
 	"view": "Перегляд",
-	"view-foreign": "Переглянути сторінку {{grammar:locative|$1}}",
+	"view-foreign": "Переглянути сторінку у {{grammar:locative|$1}}",
 	"edit": "Редагувати",
 	"edit-local": "Редагувати локальний опис",
 	"create": "Створити",

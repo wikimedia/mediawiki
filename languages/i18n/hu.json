@@ -535,7 +535,7 @@
 	"accountcreatedtext": "[[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|vita]]) felhasználói fiókja sikeresen létrejött.",
 	"createaccount-title": "Új {{SITENAME}}-azonosító létrehozása",
 	"createaccount-text": "Valaki létrehozott számodra egy \"$2\" nevű {{SITENAME}}-azonosítót ($4).\nA hozzá tartozó jelszó \"$3\", melyet a bejelentkezés után minél előbb változtass meg.\n\nHa nem kértél új azonosítót, és tévedésből kaptad ezt a levelet, hagyd figyelmen kívül.",
-	"login-throttled": "Túl sok hibás bejelentkezés.\nVárj $1, mielőtt újra próbálkozol.",
+	"login-throttled": "Túl sok hibás bejelentkezés.\n$1 múlva próbálkozz újra.",
 	"login-abort-generic": "A bejelentkezés sikertelen – megszakítva",
 	"login-migrated-generic": "A fiók áttelepítése megtörtént, felhasználóneved már nem létezik ezen a wikin.",
 	"loginlanguagelabel": "Nyelv: $1",
