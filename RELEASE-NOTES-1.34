@@ -5,6 +5,10 @@ THIS IS NOT A RELEASE YET
 MediaWiki 1.34 is an pre-release testing branch, and is not recommended
 for use in production.
 
+=== Changes since MediaWiki 1.34.0-rc.1 ===
+
+== MediaWiki 1.34.0-rc.1 ==
+
 === Changes since MediaWiki 1.34.0-rc.0 ===
 * (T231742) rdbms: Restore debug toolbar "Queries" feature.
 * (T231366) The ProfilerOutputDb class, 'profiling' table, and profileinfo.php
