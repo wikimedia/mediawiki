@@ -43,7 +43,7 @@
 		"wikimedia/composer-merge-plugin": "1.4.1",
 		"wikimedia/html-formatter": "1.0.2",
 		"wikimedia/ip-set": "2.1.0",
-		"wikimedia/less.php": "1.8.0",
+		"wikimedia/less.php": "1.8.2",
 		"wikimedia/object-factory": "2.1.0",
 		"wikimedia/password-blacklist": "0.1.4",
 		"wikimedia/php-session-serializer": "1.0.7",
