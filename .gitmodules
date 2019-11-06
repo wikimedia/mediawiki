@@ -1219,3 +1219,7 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-DarkMode
 	branch = REL1_34
 	ignore = dirty
+[submodule "extensions/FontAwesome"]
+	path = extensions/FontAwesome
+	url = https://github.com/cmln/mw-font-awesome
+	branch = master
