@@ -3073,6 +3073,105 @@ class OutputPageTest extends MediaWikiTestCase {
 		];
 	}
 
+	/**
+	 * @param array $options
+	 * @param array $expectations
+	 * @covers OutputPage::sendCacheControl
+	 * @dataProvider provideSendCacheControl
+	 */
+	public function testSendCacheControl( array $options = [], array $expecations = [] ) {
+		$output = $this->newInstance( [
+			'LoggedOutMaxAge' => $options['loggedOutMaxAge'] ?? 0,
+			'UseCdn' => $options['useCdn'] ?? false,
+		] );
+
+		$output->enableClientCache( $options['enableClientCache'] ?? true );
+		$output->setCdnMaxAge( $options['cdnMaxAge'] ?? 0 );
+
+		if ( isset( $options['lastModified'] ) ) {
+			$output->setLastModified( $options['lastModified'] );
+		}
+
+		$response = $output->getRequest()->response();
+		if ( isset( $options['cookie'] ) ) {
+			$response->setCookie( 'test', 1234 );
+		}
+
+		$output->sendCacheControl();
+
+		$headers = [
+			'Vary' => 'Accept-Encoding, Cookie',
+			'Cache-Control' => 'private, must-revalidate, max-age=0',
+			'Pragma' => false,
+			'Expires' => true,
+			'Last-Modified' => false,
+		];
+
+		foreach ( $headers as $header => $default ) {
+			$value = $expecations[$header] ?? $default;
+			if ( $value === true ) {
+				$this->assertNotEmpty( $response->getHeader( $header ) );
+			} elseif ( $value === false ) {
+				$this->assertNull( $response->getHeader( $header ) );
+			} else {
+				$this->assertEquals( $value, $response->getHeader( $header ) );
+			}
+		}
+	}
+
+	public function provideSendCacheControl() {
+		return [
+			'Default' => [],
+			'Logged out max-age' => [
+				[
+					'loggedOutMaxAge' => 300,
+				],
+				[
+					'Cache-Control' => 'private, must-revalidate, max-age=300',
+				],
+			],
+			'Cookies' => [
+				[
+					'cookie' => true,
+				],
+			],
+			'Cookies with logged out max-age' => [
+				[
+					'loggedOutMaxAge' => 300,
+					'cookie' => true,
+				],
+			],
+			'Disable client cache' => [
+				[
+					'enableClientCache' => false,
+				],
+				[
+					'Cache-Control' => 'no-cache, no-store, max-age=0, must-revalidate',
+					'Pragma' => 'no-cache'
+				],
+			],
+			'Set last modified' => [
+				[
+					// 0 is the current time, so we'll use 1 instead.
+					'lastModified' => 1,
+				],
+				[
+					'Last-Modified' => 'Thu, 01 Jan 1970 00:00:01 GMT',
+				]
+			],
+			'Public' => [
+				[
+					'useCdn' => true,
+					'cdnMaxAge' => 300,
+				],
+				[
+					'Cache-Control' => 's-maxage=300, must-revalidate, max-age=0',
+					'Expires' => false,
+				],
+			],
+		];
+	}
+
 	private function newInstance(
 		array $config = [],
 		WebRequest $request = null,
