@@ -74,6 +74,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 
 	/**
 	 * @covers MediaWiki\Preferences\DefaultPreferencesFactory::getForm()
+	 * @covers MediaWiki\Preferences\DefaultPreferencesFactory::searchPreferences()
 	 */
 	public function testGetForm() {
 		$this->setTemporaryHook( 'GetPreferences', null );

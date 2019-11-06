@@ -4134,6 +4134,8 @@
 	"feedback-useragent": "A label denoting the user agent in the feedback that is posted to the feedback page.\n{{Identical|User agent}}",
 	"searchsuggest-search": "Greyed out default text in the simple search box in the Vector skin. (It disappears and lets the user enter the requested search terms when the search box receives focus.)\n{{Identical|Search}}",
 	"searchsuggest-containing": "Label used in the special item of the search suggestions list which gives the user an option to perform a full text search for the term.",
+	"search-match-redirect-label": "Label for user preference to force redirect to a page during search if the page's title matches a search term",
+	"search-match-redirect-help": "Help text for user preference to force redirect to a page during search if the page's title matches a search term",
 	"api-error-badtoken": "API error message that can be used for client side localisation of API errors.",
 	"api-error-emptypage": "API error message that can be used for client side localisation of API errors.",
 	"api-error-publishfailed": "API error message that can be used for client side localisation of API errors.",

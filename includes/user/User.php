@@ -1705,7 +1705,9 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return array Array of String options
 	 */
 	public static function getDefaultOptions() {
-		global $wgNamespacesToBeSearchedDefault, $wgDefaultUserOptions, $wgDefaultSkin;
+		global $wgNamespacesToBeSearchedDefault,
+				$wgDefaultUserOptions,
+				$wgDefaultSkin;
 
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		if ( self::$defOpt !== null && self::$defOptLang === $contLang->getCode() ) {

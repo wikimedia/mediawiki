@@ -3922,6 +3922,8 @@
 	"feedback-useragent": "User agent:",
 	"searchsuggest-search": "Search {{SITENAME}}",
 	"searchsuggest-containing": "containing...",
+	"search-match-redirect-label": "Redirect to exact matches when searching",
+	"search-match-redirect-help": "Select to get redirected to a page when that page title matches what you have searched for",
 	"api-error-badtoken": "Internal error: Bad token.",
 	"api-error-emptypage": "Creating new, empty pages is not allowed.",
 	"api-error-publishfailed": "Internal error: Server failed to publish temporary file.",
