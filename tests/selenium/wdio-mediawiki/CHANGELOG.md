@@ -1,3 +1,15 @@
+## 1.0.0 / 2019-11-05
+
+The wdio-mediawiki library now requires webdriverio 5 and Node 10 (or later).
+
+* The global `username` and `password` config keys have been renamed to
+  `mwUser` and `mwPwd`. These are used as the defaults for `Api` and `LoginPage`
+  methods that require user credentials.
+* Api: The `api.edit()` and `api.delete()` methods were removed as they encouraged
+  an anti-pattern where each user action was preceded by its own API login sequence.
+  Use the `bot.edit()` and `bot.delete()` methods directly instead, and re-use the
+  `bot` object where possible. See [README](./README.md) for a usage example.
+
 ## 0.5.0 / 2019-09-18
 
 * Api: Added `bot()` method.
