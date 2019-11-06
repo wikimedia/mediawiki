@@ -372,11 +372,17 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$histLink = $linkRenderer->makeKnownLink(
 			$title,
 			$this->msg( 'hist' )->text(),
-			[],
+			[ 'class' => 'mw-newpages-history' ],
 			[ 'action' => 'history' ]
 		);
-		$hist = Html::rawElement( 'span', [ 'class' => 'mw-newpages-history' ],
-			$this->msg( 'parentheses' )->rawParams( $histLink )->escaped() );
+		$editLink = $linkRenderer->makeKnownLink(
+			$title,
+			$this->msg( 'editlink' )->text(),
+			[ 'class' => 'mw-newpages-edit' ],
+			[ 'action' => 'edit' ]
+		);
+		$links = $this->msg( 'parentheses' )->rawParams( $this->getLanguage()
+			->pipeList( [ $histLink, $editLink ] ) )->escaped();
 
 		$length = Html::rawElement(
 			'span',
@@ -423,7 +429,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			);
 		}
 
-		$ret = "{$time} {$dm}{$plink} {$hist} {$dm}{$length} {$dm}{$ulink} {$comment} "
+		$ret = "{$time} {$dm}{$plink} {$links} {$dm}{$length} {$dm}{$ulink} {$comment} "
 			. "{$tagDisplay} {$oldTitleText}";
 
 		// Let extensions add data
