@@ -3,17 +3,22 @@
 namespace MediaWiki;
 
 use ActorMigration;
+use BagOStuff;
 use CommentStore;
 use Config;
 use ConfigFactory;
+use ConfiguredReadOnlyMode;
 use CryptHKDF;
 use DateFormatterFactory;
 use EventRelayerGroup;
+use ExternalStoreAccess;
+use ExternalStoreFactory;
 use FileBackendGroup;
 use GenderCache;
 use GlobalVarConfig;
 use Hooks;
 use IBufferingStatsdDataFactory;
+use Language;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LocalisationCache;
 use MediaWiki\Block\BlockErrorFormatter;
@@ -61,6 +66,7 @@ use ParserCache;
 use ParserFactory;
 use PasswordFactory;
 use ProxyLookup;
+use ReadOnlyMode;
 use RepoGroup;
 use ResourceLoader;
 use SearchEngine;
@@ -74,6 +80,7 @@ use SkinFactory;
 use TitleFormatter;
 use TitleParser;
 use VirtualRESTServiceClient;
+use WANObjectCache;
 use Wikimedia\ObjectFactory;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Services\SalvageableService;
@@ -549,7 +556,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.29
-	 * @return \ConfiguredReadOnlyMode
+	 * @return ConfiguredReadOnlyMode
 	 */
 	public function getConfiguredReadOnlyMode() {
 		return $this->getService( 'ConfiguredReadOnlyMode' );
@@ -557,7 +564,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.32
-	 * @return \Language
+	 * @return Language
 	 */
 	public function getContentLanguage() {
 		return $this->getService( 'ContentLanguage' );
@@ -613,7 +620,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.34
-	 * @return \ExternalStoreAccess
+	 * @return ExternalStoreAccess
 	 */
 	public function getExternalStoreAccess() {
 		return $this->getService( 'ExternalStoreAccess' );
@@ -621,7 +628,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.31
-	 * @return \ExternalStoreFactory
+	 * @return ExternalStoreFactory
 	 */
 	public function getExternalStoreFactory() {
 		return $this->getService( 'ExternalStoreFactory' );
@@ -720,7 +727,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.28
-	 * @return \BagOStuff
+	 * @return BagOStuff
 	 */
 	public function getLocalServerObjectCache() {
 		return $this->getService( 'LocalServerObjectCache' );
@@ -755,7 +762,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.28
-	 * @return \BagOStuff
+	 * @return BagOStuff
 	 */
 	public function getMainObjectStash() {
 		return $this->getService( 'MainObjectStash' );
@@ -763,7 +770,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.28
-	 * @return \WANObjectCache
+	 * @return WANObjectCache
 	 */
 	public function getMainWANObjectCache() {
 		return $this->getService( 'MainWANObjectCache' );
@@ -926,7 +933,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.29
-	 * @return \ReadOnlyMode
+	 * @return ReadOnlyMode
 	 */
 	public function getReadOnlyMode() {
 		return $this->getService( 'ReadOnlyMode' );
@@ -1143,7 +1150,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.31
-	 * @return \OldRevisionImporter
+	 * @return OldRevisionImporter
 	 */
 	public function getWikiRevisionOldRevisionImporter() {
 		return $this->getService( 'OldRevisionImporter' );
@@ -1151,7 +1158,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.31
-	 * @return \OldRevisionImporter
+	 * @return OldRevisionImporter
 	 */
 	public function getWikiRevisionOldRevisionImporterNoUpdates() {
 		return $this->getService( 'WikiRevisionOldRevisionImporterNoUpdates' );
@@ -1159,7 +1166,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.31
-	 * @return \UploadRevisionImporter
+	 * @return UploadRevisionImporter
 	 */
 	public function getWikiRevisionUploadImporter() {
 		return $this->getService( 'UploadRevisionImporter' );
