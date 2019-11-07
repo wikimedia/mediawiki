@@ -341,7 +341,7 @@ class Status extends StatusValue {
 	/**
 	 * Get the list of errors (but not warnings)
 	 *
-	 * @return array A list in which each entry is an array with a message key as its first element.
+	 * @return array[] A list in which each entry is an array with a message key as its first element.
 	 *         The remaining array elements are the message parameters.
 	 * @deprecated since 1.25
 	 */
@@ -352,7 +352,7 @@ class Status extends StatusValue {
 	/**
 	 * Get the list of warnings (but not errors)
 	 *
-	 * @return array A list in which each entry is an array with a message key as its first element.
+	 * @return array[] A list in which each entry is an array with a message key as its first element.
 	 *         The remaining array elements are the message parameters.
 	 * @deprecated since 1.25
 	 */
@@ -366,7 +366,7 @@ class Status extends StatusValue {
 	 * @note this handles RawMessage poorly
 	 *
 	 * @param string|bool $type
-	 * @return array
+	 * @return array[]
 	 */
 	protected function getStatusArray( $type = false ) {
 		$result = [];
