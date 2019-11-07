@@ -103,7 +103,6 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'addField', 'filearchive', 'fa_sha1', 'patch-fa_sha1.sql' ],
 			[ 'addField', 'job', 'job_token', 'patch-job_token.sql' ],
 			[ 'addField', 'job', 'job_attempts', 'patch-job_attempts.sql' ],
-			[ 'doEnableProfiling' ],
 			[ 'addField', 'uploadstash', 'us_props', 'patch-uploadstash-us_props.sql' ],
 			[ 'modifyField', 'user_groups', 'ug_group', 'patch-ug_group-length-increase-255.sql' ],
 			[ 'modifyField', 'user_former_groups', 'ufg_group',
