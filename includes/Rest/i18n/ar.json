@@ -12,9 +12,12 @@
 	"rest-pagehistory-title-nonexistent": "العنوان المحدد ($1) غير موجود",
 	"rest-pagehistory-revision-nonexistent": "المراجعة المحددة ($1) غير موجودة للصفحة المحددة ($2)",
 	"rest-pagehistory-timestamp-error": "غير قادر على استرداد الطابع الزمني للمراجعة المحددة ($1)",
-	"rest-pagehistorycount-title-nonexistent": "العنوان المحدد \"$1\" غير موجود",
 	"rest-pagehistory-title-permission-denied": "المستخدم ليست لديه صلاحية قراءة العنوان ($1)",
+	"rest-pagehistorycount-title-nonexistent": "العنوان المحدد \"$1\" غير موجود",
 	"rest-pagehistorycount-type-unrecognized": "نوع العد المحدد ($1) غير صالح",
+	"rest-pagehistorycount-parameters-invalid": "المجموعة المحددة من الوسائط غير مدعومة.",
+	"rest-pagehistorycount-title-permission-denied": "لا يحق للمستخدم قراءة العنوان ($1)",
+	"rest-pagehistorycount-revision-nonexistent": "المراجعة  المحددة ($1) غير موجودة.",
 	"rest-revision-nonexistent": "المراجعة المطلوبة ($1) غير موجودة.",
 	"rest-revision-permission-denied": "لا يمكن للمستخدم الوصول إلى المراجعة المطلوبة ($1).",
 	"rest-compare-page-mismatch": "المراجعات المحددة تنتمي إلى صفحات مختلفة؛ رفض مقارنتها.",
@@ -22,5 +25,6 @@
 	"rest-compare-nonexistent": "المراجعة المحددة بواسطة الوسيط $1 غير موجودة.",
 	"rest-compare-inaccessible": "المراجعة المحددة بواسطة الوسيط $1 ليست متاحة علانية.",
 	"rest-compare-wrong-content": "تحتوي فتحة $1 للمراجعة المحددة بواسطة الوسيط $2 على نوع محتوى لا يمكن تحويله إلى نص.",
-	"rest-compare-wikidiff2": "تتطلب نقطة النهاية هذه wikidiff2 1.9.0 أو أحدث."
+	"rest-compare-wikidiff2": "تتطلب نقطة النهاية هذه wikidiff2 1.9.0 أو أحدث.",
+	"rest-pagehistorycount-too-many-revisions": "يحتوي العنوان المحدد على عدد كبير جدا من المراجعات لاسترداد هذا العدد."
 }

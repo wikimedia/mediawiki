@@ -14,6 +14,7 @@
 	"rest-pagehistory-timestamp-error": "Impossibile obtener le data e hora del version specificate ($1)",
 	"rest-pagehistorycount-title-nonexistent": "Le titulo specificate ($1) non existe",
 	"rest-pagehistorycount-type-unrecognized": "Le typo de numero specificate ($1) non es valide",
+	"rest-pagehistorycount-title-permission-denied": "Le usator non ha le derecto de leger le titulo ($1)",
 	"rest-revision-nonexistent": "Le version requestate ($1) non existe.",
 	"rest-compare-page-mismatch": "Le versiones specificate pertine a paginas differente; non es possibile comparar los.",
 	"rest-compare-nonexistent": "Le version specificate per le parametro $1 non existe.",

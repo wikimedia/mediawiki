@@ -948,6 +948,7 @@
 	"revdelete-otherreason": "سبب آخر/إضافي:",
 	"revdelete-reasonotherlist": "سبب آخر",
 	"revdelete-edit-reasonlist": "عدل أسباب الحذف",
+	"revdelete-edit-reasonlist-suppress": "عدل أسباب الإخفاء",
 	"revdelete-offender": "مؤلف المراجعة:",
 	"suppressionlog": "سجل الإخفاء",
 	"suppressionlogtext": "بالأسفل قائمة بعمليات الحذف والمنع التي تتضمن محتوى مخفيا عن الإداريين.\nانظر [[Special:BlockList|قائمة منع الآيبي]] لترى عمليات المنع القائمة الآن.",

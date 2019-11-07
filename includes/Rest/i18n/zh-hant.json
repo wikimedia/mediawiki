@@ -13,9 +13,12 @@
 	"rest-pagehistory-title-nonexistent": "指定的標題「$1」不存在",
 	"rest-pagehistory-revision-nonexistent": "指定的修訂（$1）不存在指定頁面（$2）",
 	"rest-pagehistory-timestamp-error": "指定的修訂（$1）無法取得時間戳記",
-	"rest-pagehistorycount-title-nonexistent": "指定的標題（$1）不存在",
 	"rest-pagehistory-title-permission-denied": "使用者沒有權限來讀取標題（$1）",
+	"rest-pagehistorycount-title-nonexistent": "指定的標題（$1）不存在",
 	"rest-pagehistorycount-type-unrecognized": "指定的計算類型（$1）無效",
+	"rest-pagehistorycount-parameters-invalid": "指定的參數組合不支援。",
+	"rest-pagehistorycount-title-permission-denied": "使用者沒有權限來讀取標題（$1）",
+	"rest-pagehistorycount-revision-nonexistent": "指定的修訂（$1）不存在",
 	"rest-revision-nonexistent": "請求的修訂（$1）不存在。",
 	"rest-revision-permission-denied": "使用者沒有權限來存取請求修訂（$1）",
 	"rest-compare-page-mismatch": "所指定的修訂屬於不同頁面，拒絕進行比較。",
@@ -23,5 +26,6 @@
 	"rest-compare-nonexistent": "由參數$1指定的修訂不存在。",
 	"rest-compare-inaccessible": "由參數$1指定的修訂不可公開存取。",
 	"rest-compare-wrong-content": "由參數$2指定的修訂部份$1，內容類型無法轉換成文字。",
-	"rest-compare-wikidiff2": "此端點需要 wikidiff2 1.9.0 或以上的版本。"
+	"rest-compare-wikidiff2": "此端點需要 wikidiff2 1.9.0 或以上的版本。",
+	"rest-pagehistorycount-too-many-revisions": "指定的標題包含太多的修訂而無法取得計數。"
 }

@@ -13,9 +13,12 @@
 	"rest-pagehistory-title-nonexistent": "Le titre indiqué ($1) n’existe pas",
 	"rest-pagehistory-revision-nonexistent": "La version spécifiée ($1) n’existe pas pour la page spécifiée ($2)",
 	"rest-pagehistory-timestamp-error": "Impossible de récupérer l’horodatage de la version spécifiée ($1)",
-	"rest-pagehistorycount-title-nonexistent": "Le titre indiqué ($1) n’existe pas",
 	"rest-pagehistory-title-permission-denied": "L’utilisateur n’a pas le droit de lire le titre ($1)",
+	"rest-pagehistorycount-title-nonexistent": "Le titre indiqué ($1) n’existe pas",
 	"rest-pagehistorycount-type-unrecognized": "Le type de compteur indiqué ($1) est incorrect",
+	"rest-pagehistorycount-parameters-invalid": "La combinaison spécifiée de paramètres n’est pas prise en charge.",
+	"rest-pagehistorycount-title-permission-denied": "L’utilisateur n’a pas le droit de lire le titre ($1)",
+	"rest-pagehistorycount-revision-nonexistent": "La version spécifiée ($1) n’existe pas",
 	"rest-revision-nonexistent": "La révision demandée ($1) n’existe pas.",
 	"rest-revision-permission-denied": "L’utilisateur n’a pas accès à la version demandée ($1).",
 	"rest-compare-page-mismatch": "Les révisions spécifiées appartiennent à des pages différentes ; refus de les comparer.",
@@ -23,5 +26,6 @@
 	"rest-compare-nonexistent": "La version spécifiée par le paramètre $1 n’existe pas.",
 	"rest-compare-inaccessible": "La version spécifiée par le paramètre $1 n’est pas accessible publiquement.",
 	"rest-compare-wrong-content": "L’emplacement $1 de la version spécifiée par le paramètre $2 a un type de contenu qui ne peut pas être converti en texte.",
-	"rest-compare-wikidiff2": "Ce point de terminaison nécessite wikidiff2 1.9.0 ou supérieur."
+	"rest-compare-wikidiff2": "Ce point de terminaison nécessite wikidiff2 1.9.0 ou supérieur.",
+	"rest-pagehistorycount-too-many-revisions": "Le titre spécifié contient trop de versions pour en récupérer ce nombre."
 }

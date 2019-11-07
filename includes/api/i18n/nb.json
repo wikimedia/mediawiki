@@ -138,7 +138,7 @@
 	"apihelp-expandtemplates-param-revid": "Revisjons-ID, for <code><nowiki>{{REVISIONID}}</nowiki></code> og lignende variabler.",
 	"apihelp-expandtemplates-param-prop": "Hvilken informasjon som skal hentes.\n\nMerk at om ingen verdier velges vil resultatet inneholde wikiteksten, men utdataene vil komme i et utdatert format.",
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "Den utvidede wikiteksten.",
-	"apihelp-expandtemplates-paramvalue-prop-categories": "Kategorier som er tilstede i innputt som ikke representeres i utputt.",
+	"apihelp-expandtemplates-paramvalue-prop-categories": "Kategorier som er tilstede i inndata som ikke representeres i utdata.",
 	"apihelp-expandtemplates-paramvalue-prop-properties": "Sideegenskaper definert av utvidede magiske ord i wikiteksten.",
 	"apihelp-expandtemplates-paramvalue-prop-volatile": "Hvorvidt utdataene er ustabile og ikke burde gjenbrukes andre steder på siden.",
 	"apihelp-expandtemplates-paramvalue-prop-ttl": "Maksimal tid som skal ha gått før mellomlagrede resultater skal ugyldiggjøres.",

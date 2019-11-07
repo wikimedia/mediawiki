@@ -1177,7 +1177,7 @@
 	"allmessagesdefault": "Ädepki mätini",
 	"allmessagescurrent": "Ağımdıq mätini",
 	"allmessagestext": "Mında {{ns:mediawiki}} esim ayasında jetimdi jüýe xabar tizimi beriledi.\nEger ämbebap MediaWiki jersindirwge üles qosqıñız kelse [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki jersindirw betine] jäne [https://translatewiki.net translatewiki.net jobasına] barıp şığıñız.",
-	"allmessages-not-supported-database": "!!FUZZY!!'''$wgUseDatabaseMessages''' öşirilgen sebebinen '''{{ns:special}}:AllMessages''' beti qoldanılmaýdı.",
+	"allmessages-not-supported-database": "'''$wgUseDatabaseMessages''' öşirilgen sebebinen '''{{ns:special}}:AllMessages''' beti qoldanılmaýdı.",
 	"thumbnail-more": "Ülkeýtw",
 	"filemissing": "Joğalğan faýl",
 	"thumbnail_error": "Nobaý qurw qatesi: $1",

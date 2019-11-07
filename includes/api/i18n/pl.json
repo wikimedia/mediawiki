@@ -83,7 +83,7 @@
 	"apihelp-edit-param-text": "Zawartość strony.",
 	"apihelp-edit-param-summary": "Opis edycji. Także tytuł sekcji gdy użyto $1section=new, a nie ustawiono $1sectiontitle.",
 	"apihelp-edit-param-tags": "Znaczniki zmian do zastosowania w tej edycji.",
-	"apihelp-edit-param-minor": "Oznacz tą zmianę jako drobną zmianę.",
+	"apihelp-edit-param-minor": "Oznacz tę zmianę jako drobną zmianę.",
 	"apihelp-edit-param-notminor": "Nie oznaczaj tej zmiany jako drobną.",
 	"apihelp-edit-param-bot": "Oznacz tę edycję jako edycję bota.",
 	"apihelp-edit-param-basetimestamp": "Czas wersji, która jest edytowana. Służy do wykrywania konfliktów edycji. Można pobrać poprzez [[Special:ApiHelp/query+revisions|action=query&prop=revisions&rvprop=timestamp]].",
