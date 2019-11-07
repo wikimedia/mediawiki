@@ -323,7 +323,7 @@ TXT;
 		$trace = debug_backtrace();
 		$logger = LoggerFactory::getInstance( 'fatal' );
 		$logger->error( $msg, [
-			'fatal_exception' => [
+			'exception' => [
 				'class' => ErrorException::class,
 				'message' => "PHP Fatal Error: {$message}",
 				'code' => $level,
