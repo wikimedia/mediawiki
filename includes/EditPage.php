@@ -1135,16 +1135,23 @@ class EditPage {
 		$this->edittime = $this->page->getTimestamp();
 		$this->editRevId = $this->page->getLatest();
 
-		$content = $this->getContentObject( false ); # TODO: track content object?!
-		if ( $content === false ) {
-			$out = $this->context->getOutput();
-			if ( $out->getRedirect() === '' ) { // mcrundo hack redirects, don't override it
-				$this->noSuchSectionPage();
-			}
+		$dummy = ContentHandler::getForModelID( $this->contentModel )->makeEmptyContent();
+		$content = $this->getContentObject( $dummy ); # TODO: track content object?!
+		if ( $content === $dummy ) { // Invalid section
+			$this->noSuchSectionPage();
 			return false;
 		}
 
-		if ( !$this->isSupportedContentModel( $content->getModel() ) ) {
+		if ( !$content ) {
+			$out = $this->context->getOutput();
+			$this->editFormPageTop .= Html::rawElement(
+				'div', [ 'class' => 'errorbox' ],
+				$out->parseAsInterface( $this->context->msg( 'missing-revision-content',
+					$this->oldid,
+					Message::plaintextParam( $this->mTitle->getPrefixedText() )
+				) )
+			);
+		} elseif ( !$this->isSupportedContentModel( $content->getModel() ) ) {
 			$modelMsg = $this->getContext()->msg( 'content-model-' . $content->getModel() );
 			$modelName = $modelMsg->exists() ? $modelMsg->text() : $content->getModel();
 

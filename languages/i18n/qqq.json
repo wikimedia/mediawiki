@@ -898,6 +898,7 @@
 	"noarticletext-nopermission": "See also {{msg-mw|Noarticletext}}.",
 	"noarticletextanon": "{{notranslate}}\nDefault:\n* {{msg-mw|Noarticletext}}",
 	"missing-revision": "Text displayed when the requested revision does not exist using a permalink.\n\nExample: [{{canonicalurl:Project:News|oldid=9999999}} Permalink with invalid revision#]\n\nParameters:\n* $1 - the ID of the missing revision",
+	"missing-revision-content": "Text displayed when the requested revision exists, but the content of the revision was unable to be loaded.\n\nParameters:\n* $1 - the ID of the revision.\n* $2 - Title of the page.",
 	"userpage-userdoesnotexist": "Error message displayed when trying to edit or create a page or a subpage that belongs to a user who is not registered on the wiki.\n\nParameters:\n* $1 - a username\n{{Identical|Userdoesnotexist}}",
 	"userpage-userdoesnotexist-view": "Shown in user pages of non-existing users. See for example [{{canonicalurl:User:Foo}} User:Foo].\n\nParameters:\n* $1 - a username\n{{Identical|Userdoesnotexist}}",
 	"blocked-notice-logextract": "{{gender}}\nParameters:\n* $1 - (Optional) the name of the blocked user. Can be used for GENDER.",
