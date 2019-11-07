@@ -118,7 +118,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 		$titleObj = Title::newFromText( $title );
 		if ( !$titleObj || !$titleObj->getArticleID() ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'rest-pagehistorycount-title-nonexistent',
+				new MessageValue( 'rest-nonexistent-title',
 					[ new ScalarParam( ParamType::PLAINTEXT, $title ) ]
 				),
 				404
@@ -127,7 +127,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 
 		if ( !$this->permissionManager->userCan( 'read', $this->user, $titleObj ) ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'rest-pagehistorycount-title-permission-denied',
+				new MessageValue( 'rest-permission-denied-title',
 					[ new ScalarParam( ParamType::PLAINTEXT, $title ) ]
 				),
 				403
@@ -431,7 +431,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 		$rev = $this->revisionStore->getRevisionById( $revId );
 		if ( !$rev ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'rest-pagehistorycount-revision-nonexistent', [ $revId ] ),
+				new MessageValue( 'rest-nonexistent-revision', [ $revId ] ),
 				404
 			);
 		}
