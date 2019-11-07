@@ -265,5 +265,3 @@ of some or all the data it represents.
   implementation.
 * SqlThingyStore however creates instances of LazyThingyRecord, and injects
   whatever storage layer service LazyThingyRecord needs to perform lazy loading.
-
-

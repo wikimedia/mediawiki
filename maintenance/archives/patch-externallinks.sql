@@ -10,4 +10,3 @@ CREATE TABLE /*$wgDBprefix*/externallinks (
   KEY (el_to(60), el_from),
   KEY (el_index(60))
 ) /*$wgDBTableOptions*/;
-

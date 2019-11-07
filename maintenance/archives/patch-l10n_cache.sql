@@ -5,4 +5,3 @@ CREATE TABLE /*_*/l10n_cache (
   lc_value mediumblob NOT NULL
 ) /*$wgDBTableOptions*/;
 CREATE INDEX /*i*/lc_lang_key ON /*_*/l10n_cache (lc_lang, lc_key);
-

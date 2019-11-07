@@ -24,5 +24,3 @@ INSERT IGNORE
   SELECT pl_from,pl_namespace,pl_title
     FROM /*$wgDBprefix*/pagelinks, /*$wgDBprefix*/page
     WHERE pl_from=page_id AND page_is_redirect=1;
-
-

@@ -12,4 +12,3 @@ CREATE TABLE category (
 
 CREATE UNIQUE INDEX category_title ON category(cat_title);
 CREATE INDEX category_pages ON category(cat_pages);
-
