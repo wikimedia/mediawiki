@@ -559,7 +559,7 @@ class SkinTemplate extends Skin {
 	 *
 	 * @param string $code
 	 * @return string
-	 * @since 1.34
+	 * @since 1.35
 	 */
 	public function mapInterwikiToLanguage( $code ) {
 		$map = $this->getConfig()->get( 'InterlanguageLinkCodeMap' );
