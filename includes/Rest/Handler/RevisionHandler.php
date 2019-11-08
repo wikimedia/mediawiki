@@ -50,11 +50,11 @@ class RevisionHandler extends SimpleHandler {
 		$rev = $this->revisionLookup->getRevisionById( $id );
 		if ( !$rev ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'rest-revision-nonexistent', [ $id ] ), 404 );
+				new MessageValue( 'rest-nonexistent-revision', [ $id ] ), 404 );
 		}
 		if ( !$this->permissionManager->userCan( 'read', $this->user, $rev->getPageAsLinkTarget() ) ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'rest-revision-permission-denied', [ $id ] ), 403 );
+				new MessageValue( 'rest-permission-denied-revision', [ $id ] ), 403 );
 		}
 
 		$responseData = [

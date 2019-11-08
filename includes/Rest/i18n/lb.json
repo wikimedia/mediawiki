@@ -4,9 +4,7 @@
 			"Robby"
 		]
 	},
-	"rest-pagehistory-title-nonexistent": "Den Titel \"$1\" deen ugi gouf gëtt et net.",
-	"rest-pagehistory-title-permission-denied": "Dëse Benotzer huet net d'Recht fir den Titel ($1) ze liesen",
-	"rest-pagehistorycount-title-nonexistent": "De spezifizéierten titel ($1) gëtt et net",
-	"rest-pagehistorycount-revision-nonexistent": "Déi spezifizéiert Versioun ($1) gëtt et net",
-	"rest-revision-nonexistent": "Déi ugefrot Versioun ($1) gëtt et net."
+	"rest-nonexistent-title": "Den Titel \"$1\" deen ugi gouf gëtt et net.",
+	"rest-nonexistent-revision": "Déi spezifizéiert Versioun ($1) gëtt et net",
+	"rest-permission-denied-title": "Dëse Benotzer huet net d'Recht fir den Titel ($1) ze liesen"
 }
