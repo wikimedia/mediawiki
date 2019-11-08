@@ -1549,7 +1549,7 @@
 	"allmessagesdefault": "Pradėnis teksts",
 	"allmessagescurrent": "Dabartėnis teksts",
 	"allmessagestext": "Čė pateikamė sėstemėniu pranešėmu sārašos, esontis MediaWiki srėtie.",
-	"allmessages-not-supported-database": "!!FUZZY!!'''{{ns:special}}:Allmessages''' nepalaikuoms īr, nes nustatīms '''$wgUseDatabaseMessages''' ėšjungts īr.",
+	"allmessages-not-supported-database": "'''{{ns:special}}:Allmessages''' nepalaikuoms īr, nes nustatīms '''$wgUseDatabaseMessages''' ėšjungts īr.",
 	"allmessages-filter-legend": "Kuošeklis",
 	"allmessages-filter-unmodified": "Naparkeistė",
 	"allmessages-filter-all": "Vėsė",

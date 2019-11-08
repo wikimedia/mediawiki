@@ -3633,6 +3633,8 @@
 	"feedback-useragent": "Aplikacja klienta:",
 	"searchsuggest-search": "Przeszukaj {{GRAMMAR:B.lp|{{SITENAME}}}}",
 	"searchsuggest-containing": "zawierające...",
+	"search-match-redirect-label": "Przekieruj do właściwych wyników podczas wyszukiwania",
+	"search-match-redirect-help": "Przekieruj do strony, gdy jej tytuł odpowiada tekstowi wyszukiwania",
 	"api-error-badtoken": "Błąd wewnętrzny – nieprawidłowy kod weryfikacyjny (token).",
 	"api-error-emptypage": "Tworzenie nowych, pustych stron jest niedozwolone.",
 	"api-error-publishfailed": "Błąd wewnętrzny: serwer nie mógł zapisać pliku tymczasowego.",

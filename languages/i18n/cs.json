@@ -613,6 +613,7 @@
 	"passwordreset-emailelement": "Uživatelské jméno: \n$1\n\nDočasné heslo: \n$2",
 	"passwordreset-emailsentemail": "Pokud je u vašeho účtu nastavena tato e-mailová adresa, bude vám zaslán e-mail pro získání nového hesla.",
 	"passwordreset-emailsentusername": "Pokud je u tohoto účtu nastavena e-mailová adresa, bude vám zaslán e-mail pro získání nového hesla.",
+	"passwordreset-emailtext-require-email": "Pokud jste však tento požadavek nevygenerovali a chcete zabránit nevyžádaným e-mailům, můžete aktualizovat svoje nastavení e-mailů na $1. Na generování e-mailů s obnovením hesla můžete vyžadovat uživatelské jméno a e-mailovou adresu. To může snížit počet takovýchto omylů.",
 	"passwordreset-nocaller": "Musí být uveden volající",
 	"passwordreset-nosuchcaller": "Volající neexistuje: $1",
 	"passwordreset-ignored": "Žádost o nové heslo nebyla zpracována. Možná není nakonfigurován žádný poskytovatel?",

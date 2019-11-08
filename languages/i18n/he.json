@@ -3616,6 +3616,8 @@
 	"feedback-useragent": "User agent:",
 	"searchsuggest-search": "חיפוש ב{{GRAMMAR:תחילית|{{SITENAME}}}}",
 	"searchsuggest-containing": "כולל...",
+	"search-match-redirect-label": "להפנות להתאמות מדויקות בעת חיפוש",
+	"search-match-redirect-help": "יש לבחור את זה כדי שהמערכת תפנה אותך לדף כשכותרת הדף מתאימה למה שחיפשת",
 	"api-error-badtoken": "שגיאה פנימית: אסימון שבור.",
 	"api-error-emptypage": "יצירת דפים חדשים ריקים אינה אפשרית.",
 	"api-error-publishfailed": "שגיאה פנימית: השרת נכשל בפרסום הקובץ הזמני.",

@@ -2594,7 +2594,7 @@
 	"unblocked-id": "$1 차단이 해제되었습니다.",
 	"unblocked-ip": "[[Special:Contributions/$1|$1]]님이 차단 해제되었습니다.",
 	"blocklist": "차단된 사용자 목록",
-	"autoblocklist": "자동차단",
+	"autoblocklist": "자동 차단 목록",
 	"autoblocklist-submit": "검색",
 	"autoblocklist-legend": "자동차단 목록",
 	"autoblocklist-localblocks": "로컬 자동 차단 {{PLURAL:$1|기록|기록들}}",

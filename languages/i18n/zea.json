@@ -802,7 +802,7 @@
 	"allmessagesdefault": "Standerttekst",
 	"allmessagescurrent": "Tekst van noe",
 	"allmessagestext": "Dit is 'n liest van aolle systeemteksten die-an in de MediaWiki-naemruumte stae.",
-	"allmessages-not-supported-database": "!!FUZZY!!'''{{ns:special}}:Allmessages''' kan nie gebruukt ore om'at '''$wgUseDatabaseMessages''' uutgeschaekeld staet.",
+	"allmessages-not-supported-database": "'''{{ns:special}}:Allmessages''' kan nie gebruukt ore om'at '''$wgUseDatabaseMessages''' uutgeschaekeld staet.",
 	"thumbnail-more": "Verhroôt",
 	"thumbnail_error": "Fout bie 't anmaek'n van de miniatuuraofbeêldienge: $1",
 	"tooltip-pt-userpage": "Mien gebrukersbladzie",

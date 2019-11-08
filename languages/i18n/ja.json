@@ -99,7 +99,8 @@
 			"マツムシ",
 			"神樂坂秀吉",
 			"Yuukin0248",
-			"Reiwa period"
+			"Reiwa period",
+			"沈澄心"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -268,7 +269,7 @@
 	"history_small": "履歴",
 	"updatedmarker": "前回の閲覧以降に更新されました",
 	"printableversion": "印刷用バージョン",
-	"permalink": "この版への固定リンク",
+	"permalink": "固定リンク",
 	"print": "印刷",
 	"view": "閲覧",
 	"view-foreign": "$1で閲覧",

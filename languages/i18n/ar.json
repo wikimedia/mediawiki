@@ -3654,6 +3654,8 @@
 	"feedback-useragent": "وكيل المستخدم:",
 	"searchsuggest-search": "ابحث في {{SITENAME}}",
 	"searchsuggest-containing": "يحتوي...",
+	"search-match-redirect-label": "التحويل إلى التطابقات التامة عند البحث",
+	"search-match-redirect-help": "حدد هذا الخيار لإعادة توجيهك إلى صفحة عندما يتطابق عنوان الصفحة مع ما بحثت عنه",
 	"api-error-badtoken": "خطأ داخلي: رمز مميز غير صحيح.",
 	"api-error-emptypage": "إنشاء صفحات فارغة جديدة، غير مسموح به.",
 	"api-error-publishfailed": "خطأ داخلي: لم ينجح الخادوم في نشر ملف مؤقت",

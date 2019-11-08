@@ -81,7 +81,8 @@
 			"Ldacosta",
 			"CaiusSPQR",
 			"Waldyrious",
-			"Mansil alfalb"
+			"Mansil alfalb",
+			"Dianakc"
 		]
 	},
 	"tog-underline": "Sublinhar hiperligação:",
@@ -2636,7 +2637,7 @@
 	"ipblocklist-submit": "Pesquisar",
 	"ipblocklist-localblock": "Bloqueio local",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Outro bloqueio|Outros bloqueios}}",
-	"infiniteblock": "infinito",
+	"infiniteblock": "indefinido",
 	"expiringblock": "expira em $1 às $2",
 	"anononlyblock": "apenas anón.",
 	"noautoblockblock": "bloqueio automático desativado",

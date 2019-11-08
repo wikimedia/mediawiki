@@ -16,6 +16,9 @@
 	"rest-pagehistory-title-permission-denied": "למשתמש אין הרשאה לקרוא כותבת ($1)",
 	"rest-pagehistorycount-title-nonexistent": "הכותרת שצוינה ($1) אינה קיימת",
 	"rest-pagehistorycount-type-unrecognized": "סוג הספירה שצוין ($1) אינו תקין",
+	"rest-pagehistorycount-parameters-invalid": "צירוף הפרמטרים שצוין אינו נתמך.",
+	"rest-pagehistorycount-title-permission-denied": "למשתמש אין הרשאה לקרוא את הכותרת ($1)",
+	"rest-pagehistorycount-revision-nonexistent": "הגרסה שצוינה ($1) אינה קיימת",
 	"rest-revision-nonexistent": "הגרסה שצוינה ($1) אינה קיימת.",
 	"rest-revision-permission-denied": "למשתמש אין גישה לגרסה המבוקשת ($1).",
 	"rest-compare-page-mismatch": "הגרסאות שצוינו שייכות לדפים שונים; ההשוואה שלהן סורבה.",
@@ -23,5 +26,6 @@
 	"rest-compare-nonexistent": "הגרסה שצוינה בפרמטר $1 אינה קיימת.",
 	"rest-compare-inaccessible": "הגרסה שצוינההגרסה שצוינה בפרמטר $1 אינה נגישה באופן ציבורי.",
 	"rest-compare-wrong-content": "למשבצת $1 של הגרסה שצוינה בפרמטר $2 יש סוג תוכן שאינו יכול להיות מומר לטקסט.",
-	"rest-compare-wikidiff2": "נקודת הקצה הזאת דורשת wikidiff2 1.9.0 או גרסה חדשה יותר."
+	"rest-compare-wikidiff2": "נקודת הקצה הזאת דורשת wikidiff2 1.9.0 או גרסה חדשה יותר.",
+	"rest-pagehistorycount-too-many-revisions": "הכותרת שצוינה מכילה יותר מדי גרסאות וזה לא מאפשר לאחזר את המספר הזה."
 }

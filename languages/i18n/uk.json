@@ -3695,6 +3695,7 @@
 	"feedback-useragent": "User Agent:",
 	"searchsuggest-search": "Пошук {{GRAMMAR:locative|{{SITENAME}}}}",
 	"searchsuggest-containing": "що містять...",
+	"search-match-redirect-label": "При пошуку перенаправляти на точне співпадіння",
 	"api-error-badtoken": "Внутрішня помилка: некоректний токен.",
 	"api-error-emptypage": "Створення нової порожньої сторінки неприпустиме.",
 	"api-error-publishfailed": "Внутрішня помилка: сервер не зміг опублікувати тимчасовий файл.",
