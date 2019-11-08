@@ -2659,8 +2659,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return bool If the page is subject to cascading restrictions.
 	 */
 	public function isCascadeProtected() {
-		list( $sources, /* $restrictions */ ) = $this->getCascadeProtectionSources( false );
-		return ( $sources > 0 );
+		list( $isCascadeProtected, ) = $this->getCascadeProtectionSources( false );
+		return $isCascadeProtected;
 	}
 
 	/**
