@@ -3586,7 +3586,7 @@ $wgMangleFlashPolicy = true;
  *   $wgResourceModules['ext.myExtension'] = [
  *      'scripts' => 'myExtension.js',
  *      'styles' => 'myExtension.css',
- *      'dependencies' => [ 'jquery.cookie', 'jquery.tabIndex' ],
+ *      'dependencies' => [ 'jquery.cookie', 'mediawiki.util' ],
  *      'localBasePath' => __DIR__,
  *      'remoteExtPath' => 'MyExtension',
  *   ];

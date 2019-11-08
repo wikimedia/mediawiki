@@ -235,10 +235,6 @@ return [
 		'styles' => 'resources/src/jquery/jquery.suggestions.css',
 		'dependencies' => 'jquery.highlightText',
 	],
-	'jquery.tabIndex' => [
-		'deprecated' => true,
-		'scripts' => 'resources/src/jquery/jquery.tabIndex.js',
-	],
 	'jquery.tablesorter' => [
 		'targets' => [ 'desktop', 'mobile' ],
 		'scripts' => 'resources/src/jquery.tablesorter/jquery.tablesorter.js',
