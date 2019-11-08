@@ -292,7 +292,8 @@ class PageHistoryHandler extends SimpleHandler {
 				$revision = [
 					'id' => $rev->getId(),
 					'timestamp' => wfTimestamp( TS_ISO_8601, $rev->getTimestamp() ),
-					'size' => $rev->getSize(),
+					'minor' => $rev->isMinor(),
+					'size' => $rev->getSize()
 				];
 
 				// Remember revision sizes and parent ids for calculating deltas. If a revision's

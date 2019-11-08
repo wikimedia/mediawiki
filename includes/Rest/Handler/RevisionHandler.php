@@ -64,6 +64,7 @@ class RevisionHandler extends SimpleHandler {
 				'title' => $rev->getPageAsLinkTarget()->getText(),
 			],
 			'size' => $rev->getSize(),
+			'minor' => $rev->isMinor(),
 			'timestamp' => wfTimestamp( TS_ISO_8601, $rev->getTimestamp() ),
 		];
 
