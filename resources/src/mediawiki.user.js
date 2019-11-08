@@ -19,7 +19,7 @@
 		return userInfoPromise;
 	}
 
-	// mw.user with the properties options and tokens gets defined in mediawiki.js.
+	// mw.user with the properties options and tokens gets defined in mediawiki.base.js.
 	$.extend( mw.user, {
 
 		/**
