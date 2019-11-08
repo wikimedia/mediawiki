@@ -250,7 +250,7 @@ class MWDebug {
 				}
 			}
 
-			$component = $component === false ? 'MediaWiki' : $component;
+			$component = $component ?: 'MediaWiki';
 			$msg = "Use of $function was deprecated in $component $version.";
 		} else {
 			$msg = "Use of $function is deprecated.";

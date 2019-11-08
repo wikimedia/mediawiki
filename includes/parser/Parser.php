@@ -4705,7 +4705,7 @@ class Parser {
 	 * as it may have changed.
 	 *
 	 * @param User &$user
-	 * @param string|bool $nickname Nickname to use or false to use user's default nickname
+	 * @param string|false $nickname Nickname to use or false to use user's default nickname
 	 * @param bool|null $fancySig whether the nicknname is the complete signature
 	 *    or null to use default value
 	 * @return string
@@ -4722,9 +4722,9 @@ class Parser {
 			$fancySig = $user->getBoolOption( 'fancysig' );
 		}
 
-		$nickname = $nickname == null ? $username : $nickname;
-
-		if ( mb_strlen( $nickname ) > $this->svcOptions->get( 'MaxSigChars' ) ) {
+		if ( $nickname === null || $nickname === '' ) {
+			$nickname = $username;
+		} elseif ( mb_strlen( $nickname ) > $this->svcOptions->get( 'MaxSigChars' ) ) {
 			$nickname = $username;
 			$this->logger->debug( __METHOD__ . ": $username has overlong signature." );
 		} elseif ( $fancySig !== false ) {
