@@ -101,6 +101,8 @@ because of Phabricator reports.
 * The mediawiki.RegExp module alias, deprecated in 1.34, was removed.
   Use the mediawiki.util module instead.
 * The easy-deflate.inflate module, unused since 1.32, was removed.
+* The easy-deflate.deflate module was removed. Use the mediawiki.deflate
+  module instead.
 * The internal variable $constructorOptions for the Parser & SpecialPageFactory,
   exposed only for integration purposes, are now each replaced by a const called
   CONSTRUCTOR_OPTIONS. This was a breaking change made without deprecation.

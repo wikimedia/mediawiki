@@ -2745,15 +2745,6 @@ return [
 		],
 	],
 
-	'easy-deflate.deflate' => [
-		'deprecated' => 'Please use "mediawiki.deflate" instead.',
-		'scripts' => [
-			'resources/lib/easy-deflate/easydeflate.js',
-			'resources/lib/easy-deflate/deflate.js',
-		],
-		'targets' => [ 'desktop', 'mobile' ],
-	],
-
 	'mediawiki.deflate' => [
 		'scripts' => [
 			'resources/lib/easy-deflate/easydeflate.js',
