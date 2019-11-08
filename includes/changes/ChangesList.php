@@ -568,7 +568,13 @@ class ChangesList extends ContextSource {
 	 * @return string HTML fragment
 	 */
 	public function getTimestamp( $rc ) {
-		return '<span class="mw-changeslist-date">' .
+		// A space is important after mw-changeslist-separator--semicolon to make sure
+		// that whatever comes before it is distinguishable.
+		// (Otherwise your have the text of titles pushing up against the timestamp)
+		// A specific element is used for this purpose as `mw-changeslist-date` is used in a variety
+		// of other places with a different position and the information proceeding getTimestamp can vary.
+		return '<span class="mw-changeslist-separator--semicolon"></span> ' .
+			'<span class="mw-changeslist-date">' .
 			htmlspecialchars( $this->getLanguage()->userTime(
 				$rc->mAttribs['rc_timestamp'],
 				$this->getUser()
