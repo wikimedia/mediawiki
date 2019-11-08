@@ -8,6 +8,11 @@
 	content: '. .';
 }
 
+.mw-changeslist-date:before {
+	// \00a0 = non breaking space.
+	content: '@{msg-semicolon-separator}\00a0';
+}
+
 .mw-rollback-link {
 	&:before {
 		content: '@{msg-brackets-start}';
