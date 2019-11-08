@@ -131,10 +131,10 @@ class ContribsPager extends RangeChronologicalPager {
 		// Date filtering: use timestamp if available
 		$startTimestamp = '';
 		$endTimestamp = '';
-		if ( $options['start'] ) {
+		if ( isset( $options['start'] ) && $options['start'] ) {
 			$startTimestamp = $options['start'] . ' 00:00:00';
 		}
-		if ( $options['end'] ) {
+		if ( isset( $options['end'] ) && $options['end'] ) {
 			$endTimestamp = $options['end'] . ' 23:59:59';
 		}
 		$this->getDateRangeCond( $startTimestamp, $endTimestamp );
