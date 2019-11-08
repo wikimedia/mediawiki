@@ -142,7 +142,7 @@ class FauxResponse extends WebResponse {
 	}
 
 	/**
-	 * @return array
+	 * @return array[]
 	 */
 	public function getCookies() {
 		return $this->cookies;
