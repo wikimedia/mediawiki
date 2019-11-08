@@ -898,10 +898,8 @@ class Html {
 		if ( isset( $params['selected'] ) ) {
 			// If string only contains digits, convert to clean int. Selected could also
 			// be "all" or "" etc. which needs to be left untouched.
-			// PHP is_numeric() has issues with large strings, PHP ctype_digit has other issues
-			// and returns false for already clean ints. Use regex instead..
-			if ( preg_match( '/^\d+$/', $params['selected'] ) ) {
-				$params['selected'] = intval( $params['selected'] );
+			if ( !is_int( $params['selected'] ) && ctype_digit( (string)$params['selected'] ) ) {
+				$params['selected'] = (int)$params['selected'];
 			}
 			// else: leaves it untouched for later processing
 		} else {
