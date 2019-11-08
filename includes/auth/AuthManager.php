@@ -28,6 +28,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Status;
 use StatusValue;
 use User;
@@ -130,6 +131,9 @@ class AuthManager implements LoggerAwareInterface {
 	/** @var Config */
 	private $config;
 
+	/** @var ObjectFactory */
+	private $objectFactory;
+
 	/** @var LoggerInterface */
 	private $logger;
 
@@ -151,25 +155,22 @@ class AuthManager implements LoggerAwareInterface {
 	/**
 	 * Get the global AuthManager
 	 * @return AuthManager
+	 * @deprecated since 1.35 use MediaWikiServices::getInstance()->getAuthManager() instead.
 	 */
 	public static function singleton() {
-		if ( self::$instance === null ) {
-			self::$instance = new self(
-				\RequestContext::getMain()->getRequest(),
-				MediaWikiServices::getInstance()->getMainConfig()
-			);
-		}
-		return self::$instance;
+		return MediaWikiServices::getInstance()->getAuthManager();
 	}
 
 	/**
 	 * @param WebRequest $request
 	 * @param Config $config
+	 * @param ObjectFactory $objectFactory
 	 */
-	public function __construct( WebRequest $request, Config $config ) {
+	public function __construct( WebRequest $request, Config $config, ObjectFactory $objectFactory ) {
 		$this->request = $request;
 		$this->config = $config;
-		$this->setLogger( \MediaWiki\Logger\LoggerFactory::getInstance( 'authentication' ) );
+		$this->objectFactory = $objectFactory;
+		$this->setLogger( new NullLogger() );
 	}
 
 	/**
@@ -2300,12 +2301,7 @@ class AuthManager implements LoggerAwareInterface {
 
 		$ret = [];
 		foreach ( $specs as $spec ) {
-			$provider = ObjectFactory::getObjectFromSpec( $spec );
-			if ( !$provider instanceof $class ) {
-				throw new \RuntimeException(
-					"Expected instance of $class, got " . get_class( $provider )
-				);
-			}
+			$provider = $this->objectFactory->createObject( $spec, [ 'assertClass' => $class ] );
 			$provider->setLogger( $this->logger );
 			$provider->setManager( $this );
 			$provider->setConfig( $this->config );
