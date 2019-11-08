@@ -21,6 +21,13 @@ class TitleTest extends MediaWikiTestCase {
 		$this->setContentLang( 'en' );
 	}
 
+	protected function tearDown() : void {
+		parent::tearDown();
+		// delete dummy pages
+		$this->getNonexistingTestPage( 'UTest1' );
+		$this->getNonexistingTestPage( 'UTest2' );
+	}
+
 	/**
 	 * @covers Title::legalChars
 	 */
@@ -1379,4 +1386,322 @@ class TitleTest extends MediaWikiTestCase {
 			Title::newMainPage( $local )->getText()
 		);
 	}
+
+	/**
+	 * @covers Title::loadRestrictions
+	 */
+	public function testLoadRestrictions() {
+		$title = Title::newFromText( 'UTPage1' );
+		$title->loadRestrictions();
+		$this->assertTrue( $title->areRestrictionsLoaded() );
+		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
+		$title->loadRestrictions();
+		$this->assertTrue( $title->areRestrictionsLoaded() );
+		$this->assertEquals(
+			$title->getRestrictionExpiry( 'create' ),
+			'infinity'
+		);
+		$page = $this->getNonexistingTestPage( 'UTest1' );
+		$title = $page->getTitle();
+		$protectExpiry = wfTimestamp( TS_MW, time() + 10000 );
+		$cascade = 0;
+		$page->doUpdateRestrictions(
+			[ 'create' => 'sysop' ],
+			[ 'create' => $protectExpiry ],
+			$cascade,
+			'test',
+			$this->getTestSysop()->getUser()
+		);
+		$title->mRestrictionsLoaded = false;
+		$title->loadRestrictions();
+		$this->assertSame(
+			$title->getRestrictionExpiry( 'create' ),
+			$protectExpiry
+		);
+	}
+
+	public function provideRestrictionsRows() {
+		yield [ [ (object)[
+			'pr_id' => 1,
+			'pr_page' => 1,
+			'pr_type' => 'edit',
+			'pr_level' => 'sysop',
+			'pr_cascade' => 0,
+			'pr_user' => null,
+			'pr_expiry' => 'infinity'
+		] ] ];
+		yield [ [ (object)[
+			'pr_id' => 1,
+			'pr_page' => 1,
+			'pr_type' => 'edit',
+			'pr_level' => 'sysop',
+			'pr_cascade' => 0,
+			'pr_user' => null,
+			'pr_expiry' => 'infinity'
+		] ] ];
+		yield [ [ (object)[
+			'pr_id' => 1,
+			'pr_page' => 1,
+			'pr_type' => 'move',
+			'pr_level' => 'sysop',
+			'pr_cascade' => 0,
+			'pr_user' => null,
+			'pr_expiry' => wfTimestamp( TS_MW, time() + 10000 )
+		] ] ];
+	}
+
+	/**
+	 * @covers Title::loadRestrictionsFromRows
+	 * @dataProvider provideRestrictionsRows
+	 */
+	public function testloadRestrictionsFromRows( $rows ) {
+		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
+		$title->loadRestrictionsFromRows( $rows );
+		$this->assertSame(
+			$rows[0]->pr_level,
+			$title->getRestrictions( $rows[0]->pr_type )[0]
+		);
+		$this->assertSame(
+			$rows[0]->pr_expiry,
+			$title->getRestrictionExpiry( $rows[0]->pr_type )
+		);
+	}
+
+	/**
+	 * @covers Title::getRestrictions
+	 */
+	public function testGetRestrictions() {
+		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
+		$title->mRestrictions = [
+			'a' => [ 'sysop' ],
+			'b' => [ 'sysop' ],
+			'c' => [ 'sysop' ]
+		];
+		$title->mRestrictionsLoaded = true;
+		$this->assertArrayEquals( [ 'sysop' ], $title->getRestrictions( 'a' ) );
+		$this->assertArrayEquals( [], $title->getRestrictions( 'error' ) );
+		// TODO: maybe test if loadRestrictionsFromRows() is called?
+	}
+
+	/**
+	 * @covers Title::getAllRestrictions
+	 */
+	public function testGetAllRestrictions() {
+		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
+		$title->mRestrictions = [
+			'a' => [ 'sysop' ],
+			'b' => [ 'sysop' ],
+			'c' => [ 'sysop' ]
+		];
+		$title->mRestrictionsLoaded = true;
+		$this->assertArrayEquals(
+			$title->mRestrictions,
+			$title->getAllRestrictions()
+		);
+	}
+
+	/**
+	 * @covers Title::getRestrictionExpiry
+	 */
+	public function testGetRestrictionExpiry() {
+		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
+		$reflection = new ReflectionClass( $title );
+		$reflection_property = $reflection->getProperty( 'mRestrictionsExpiry' );
+		$reflection_property->setAccessible( true );
+		$reflection_property->setValue( $title, [
+			'a' => 'infinity', 'b' => 'infinity', 'c' => 'infinity'
+		] );
+		$title->mRestrictionsLoaded = true;
+		$this->assertSame( 'infinity', $title->getRestrictionExpiry( 'a' ) );
+		$this->assertArrayEquals( [], $title->getRestrictions( 'error' ) );
+	}
+
+	/**
+	 * @covers Title::getTitleProtection
+	 */
+	public function testGetTitleProtection() {
+		$title = $this->getNonexistingTestPage( 'UTest1' )->getTitle();
+		$title->mTitleProtection = false;
+		$this->assertEquals(
+			false,
+			$title->getTitleProtection()
+		);
+	}
+
+	/**
+	 * @covers Title::isSemiProtected
+	 */
+	public function testIsSemiProtected() {
+		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
+		$title->mRestrictions = [
+			'edit' => [ 'sysop' ]
+		];
+		$this->setMwGlobals( [
+			'wgSemiprotectedRestrictionLevels' => [ 'autoconfirmed' ],
+			'wgRestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ]
+		] );
+		$this->assertEquals(
+			false,
+			$title->isSemiProtected( 'edit' )
+		);
+		$title->mRestrictions = [
+			'edit' => [ 'autoconfirmed' ]
+		];
+		$this->assertEquals(
+			true,
+			$title->isSemiProtected( 'edit' )
+		);
+	}
+
+	/**
+	 * @covers Title::deleteTitleProtection
+	 */
+	public function testDeleteTitleProtection() {
+		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
+		$this->assertEquals(
+			false,
+			$title->getTitleProtection()
+		);
+	}
+
+	/**
+	 * @covers Title::isProtected
+	 */
+	public function testIsProtected() {
+		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
+		$this->setMwGlobals( [
+			'wgRestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ],
+			'wgRestrictionTypes' => [ 'create', 'edit', 'move', 'upload' ]
+		] );
+		$title->mRestrictions = [
+			'edit' => [ 'sysop' ]
+		];
+		$this->assertEquals(
+			false,
+			$title->isProtected( 'edit' )
+		);
+		$title->mRestrictions = [
+			'edit' => [ 'test' ]
+		];
+		$this->assertEquals(
+			false,
+			$title->isProtected( 'edit' )
+		);
+	}
+
+	/**
+	 * @covers Title::isNamespaceProtected
+	 */
+	public function testIsNamespaceProtected() {
+		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
+		$this->setMwGlobals( [
+			'wgNamespaceProtection' => []
+		] );
+		$this->assertEquals(
+			false,
+			$title->isNamespaceProtected( $this->getTestUser()->getUser() )
+		);
+		$this->setMwGlobals( [
+			'wgNamespaceProtection' => [
+				NS_MAIN => [ 'edit-main' ]
+			]
+		] );
+		$this->assertEquals(
+			true,
+			$title->isNamespaceProtected( $this->getTestUser()->getUser() )
+		);
+	}
+
+	/**
+	 * @covers Title::isCascadeProtected
+	 */
+	public function testIsCascadeProtected() {
+		$page = $this->getExistingTestPage( 'UTest1' );
+		$title = $page->getTitle();
+		$reflection = new ReflectionClass( $title );
+		$reflection_property = $reflection->getProperty( 'mHasCascadingRestrictions' );
+		$reflection_property->setAccessible( true );
+		$reflection_property->setValue( $title, true );
+		$this->assertEquals( true, $title->isCascadeProtected() );
+		$reflection_property->setValue( $title, null );
+		$this->assertEquals( false, $title->isCascadeProtected() );
+		$reflection_property->setValue( $title, null );
+		$cascade = 1;
+		$anotherPage = $this->getExistingTestPage( 'UTest2' );
+		$anotherPage->doEditContent( new WikitextContent( '{{:UTest1}}' ), 'test' );
+		$anotherPage->doUpdateRestrictions(
+			[ 'edit' => 'sysop' ],
+			[],
+			$cascade,
+			'test',
+			$this->getTestSysop()->getUser()
+		);
+		$this->assertEquals( true, $title->isCascadeProtected() );
+	}
+
+	/**
+	 * @covers Title::getCascadeProtectionSources
+	 */
+	public function testGetCascadeProtectionSources() {
+		$page = $this->getExistingTestPage( 'UTest1' );
+		$title = $page->getTitle();
+
+		$title->mCascadeSources = [];
+		$this->assertArrayEquals(
+			[ [], [] ],
+			$title->getCascadeProtectionSources( true )
+		);
+
+		$reflection = new ReflectionClass( $title );
+		$reflection_property = $reflection->getProperty( 'mHasCascadingRestrictions' );
+		$reflection_property->setAccessible( true );
+		$reflection_property->setValue( $title, true );
+		$this->assertArrayEquals(
+			[ true, [] ],
+			$title->getCascadeProtectionSources( false )
+		);
+
+		$title->mCascadeSources = null;
+		$reflection_property->setValue( $title, null );
+		$this->assertArrayEquals(
+			[ false, [] ],
+			$title->getCascadeProtectionSources( false )
+		);
+
+		$title->mCascadeSources = null;
+		$reflection_property->setValue( $title, null );
+		$this->assertArrayEquals(
+			[ [], [] ],
+			$title->getCascadeProtectionSources( true )
+		);
+
+		//TODO: this might partially duplicate testIsCascadeProtected method above
+
+		$cascade = 1;
+		$anotherPage = $this->getExistingTestPage( 'UTest2' );
+		$anotherPage->doEditContent( new WikitextContent( '{{:UTest1}}' ), 'test' );
+		$anotherPage->doUpdateRestrictions(
+			[ 'edit' => 'sysop' ],
+			[],
+			$cascade,
+			'test',
+			$this->getTestSysop()->getUser()
+		);
+
+		$this->assertArrayEquals(
+			[ true, [] ],
+			$title->getCascadeProtectionSources( false )
+		);
+
+		$title->mCascadeSources = null;
+		$result = $title->getCascadeProtectionSources( true );
+		$this->assertArrayEquals(
+			$result[1],
+			[ 'edit' => [ 'sysop' ] ]
+		);
+		$this->assertTrue(
+			array_key_exists( $anotherPage->getTitle()->getArticleID(), $result[0] )
+		);
+	}
+
 }
