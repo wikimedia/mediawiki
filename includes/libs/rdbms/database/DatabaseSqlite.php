@@ -626,7 +626,7 @@ class DatabaseSqlite extends Database {
 	 */
 	protected function makeUpdateOptionsArray( $options ) {
 		$options = parent::makeUpdateOptionsArray( $options );
-		$options = self::fixIgnore( $options );
+		$options = $this->rewriteIgnoreKeyword( $options );
 
 		return $options;
 	}
@@ -635,7 +635,7 @@ class DatabaseSqlite extends Database {
 	 * @param array $options
 	 * @return array
 	 */
-	static function fixIgnore( $options ) {
+	private function rewriteIgnoreKeyword( $options ) {
 		# SQLite uses OR IGNORE not just IGNORE
 		foreach ( $options as $k => $v ) {
 			if ( $v == 'IGNORE' ) {
@@ -650,13 +650,13 @@ class DatabaseSqlite extends Database {
 	 * @param array $options
 	 * @return string
 	 */
-	function makeInsertOptions( $options ) {
-		$options = self::fixIgnore( $options );
+	protected function makeInsertOptions( $options ) {
+		$options = self::rewriteIgnoreKeyword( $options );
 
 		return parent::makeInsertOptions( $options );
 	}
 
-	function insert( $table, $rows, $fname = __METHOD__, $options = [] ) {
+	public function insert( $table, $rows, $fname = __METHOD__, $options = [] ) {
 		if ( !count( $rows ) ) {
 			return true;
 		}
