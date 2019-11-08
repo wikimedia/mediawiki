@@ -1468,17 +1468,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	protected function validateSignature( $signature, $alldata, HTMLForm $form ) {
 		$maxSigChars = $this->options->get( 'MaxSigChars' );
 		if ( mb_strlen( $signature ) > $maxSigChars ) {
-			return Xml::element( 'span', [ 'class' => 'error' ],
-				$form->msg( 'badsiglength' )->numParams( $maxSigChars )->text() );
+			return $form->msg( 'badsiglength' )->numParams( $maxSigChars )->escaped();
 		} elseif ( isset( $alldata['fancysig'] ) &&
 				$alldata['fancysig'] &&
 				MediaWikiServices::getInstance()->getParser()->validateSig( $signature ) === false
 		) {
-			return Xml::element(
-				'span',
-				[ 'class' => 'error' ],
-				$form->msg( 'badsig' )->text()
-			);
+			return $form->msg( 'badsig' )->escaped();
 		} else {
 			return true;
 		}
