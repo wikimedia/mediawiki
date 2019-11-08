@@ -703,19 +703,19 @@ class DatabaseSqlite extends Database {
 		return true;
 	}
 
-	/**
-	 * @param string $table
-	 * @param array $uniqueIndexes Unused
-	 * @param string|array $rows
-	 * @param string $fname
-	 */
-	function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
-		if ( !count( $rows ) ) {
+	public function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
+		if ( version_compare( $this->getServerVersion(), '3.7.11', '>=' ) ) {
+			// REPLACE is an alias for "INSERT OR REPLACE" in sqlite
+			// Batch support for INSERT per http://www.sqlite.org/releaselog/3_7_11.html
+			$this->nativeReplace( $table, $rows, $fname );
 			return;
 		}
 
-		# SQLite can't handle multi-row replaces, so divide up into multiple single-row queries
-		if ( isset( $rows[0] ) && is_array( $rows[0] ) ) {
+		if ( !$rows ) {
+			return;
+		}
+
+		if ( $this->isMultiRowArray( $rows ) ) {
 			$affectedRowCount = 0;
 			try {
 				$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );

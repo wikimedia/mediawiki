@@ -621,4 +621,65 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 			]
 		];
 	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::replace()
+	 * @param string $version
+	 * @param string $table
+	 * @param array $ukeys
+	 * @param array $rows
+	 * @param string $expectedSql
+	 * @dataProvider provideNativeReplaces
+	 */
+	public function testNativeReplaceSupport( $version, $table, $ukeys, $rows, $expectedSql ) {
+		$sqlDump = '';
+		$db = $this->newMockDb( $version, $sqlDump );
+		$db->query( 'CREATE TABLE a ( a_1 PRIMARY KEY, a_2 )', __METHOD__ );
+
+		$sqlDump = '';
+		$db->replace( $table, $ukeys, $rows, __METHOD__ );
+		$this->assertEquals( $expectedSql, $sqlDump );
+	}
+
+	public function provideNativeReplaces() {
+		return [
+			[
+				'3.7.11',
+				'a',
+				[ 'a_1' ],
+				[ 'a_1' => 1, 'a_2' => 'x' ],
+				'REPLACE INTO a (a_1,a_2) VALUES (\'1\',\'x\');'
+			],
+			[
+				'3.7.10',
+				'a',
+				[ 'a_1' ],
+				[ 'a_1' => 1, 'a_2' => 'x' ],
+				'REPLACE INTO a (a_1,a_2) VALUES (\'1\',\'x\');'
+			],
+			[
+				'3.7.11',
+				'a',
+				[ 'a_1' ],
+				[
+					[ 'a_1' => 2, 'a_2' => 'x' ],
+					[ 'a_1' => 3, 'a_2' => 'y' ]
+				],
+				'REPLACE INTO a (a_1,a_2) VALUES (\'2\',\'x\'),(\'3\',\'y\');'
+			],
+			[
+				'3.7.10',
+				'a',
+				[ 'a_1' ],
+				[
+					[ 'a_1' => 2, 'a_2' => 'x' ],
+					[ 'a_1' => 3, 'a_2' => 'y' ]
+				],
+				'BEGIN;' .
+				'REPLACE INTO a (a_1,a_2) VALUES (\'2\',\'x\');' .
+				'REPLACE INTO a (a_1,a_2) VALUES (\'3\',\'y\');' .
+				'COMMIT;'
+			]
+		];
+	}
 }
