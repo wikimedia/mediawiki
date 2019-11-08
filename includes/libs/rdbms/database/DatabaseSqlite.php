@@ -52,6 +52,9 @@ class DatabaseSqlite extends Database {
 	/** @var FSLockManager (hopefully on the same server as the DB) */
 	protected $lockMgr;
 
+	/** @var string|null */
+	private $version;
+
 	/** @var array List of shared database already attached to this connection */
 	private $sessionAttachedDbs = [];
 
@@ -786,10 +789,12 @@ class DatabaseSqlite extends Database {
 	/**
 	 * @return string Version information from the database
 	 */
-	function getServerVersion() {
-		$ver = $this->getBindingHandle()->getAttribute( PDO::ATTR_SERVER_VERSION );
+	public function getServerVersion() {
+		if ( $this->version === null ) {
+			$this->version = $this->getBindingHandle()->getAttribute( PDO::ATTR_SERVER_VERSION );
+		}
 
-		return $ver;
+		return $this->version;
 	}
 
 	/**
