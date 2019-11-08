@@ -22,9 +22,6 @@
  * @author Russ Nelson
  */
 
-/**
- * @see FileBackendStoreOpHandle
- */
 class SwiftFileOpHandle extends FileBackendStoreOpHandle {
 	/** @var array[] List of HTTP request maps for MultiHttpClient */
 	public $httpOp;

@@ -155,7 +155,7 @@ class JobQueueMemory extends JobQueue {
 	}
 
 	/**
-	 * @see JobQueue::doDelete
+	 * @inheritDoc
 	 */
 	protected function doDelete() {
 		if ( isset( self::$data[$this->type][$this->domain] ) ) {
