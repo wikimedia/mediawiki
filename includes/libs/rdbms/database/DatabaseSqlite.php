@@ -657,11 +657,15 @@ class DatabaseSqlite extends Database {
 	}
 
 	public function insert( $table, $rows, $fname = __METHOD__, $options = [] ) {
-		if ( !count( $rows ) ) {
+		if ( version_compare( $this->getServerVersion(), '3.7.11', '>=' ) ) {
+			// Batch INSERT support per http://www.sqlite.org/releaselog/3_7_11.html
+			return parent::insert( $table, $rows, $fname, $options );
+		}
+
+		if ( !$rows ) {
 			return true;
 		}
 
-		# SQLite can't handle multi-row inserts, so divide up into multiple single-row inserts
 		$multi = $this->isMultiRowArray( $rows );
 		if ( $multi ) {
 			$affectedRowCount = 0;

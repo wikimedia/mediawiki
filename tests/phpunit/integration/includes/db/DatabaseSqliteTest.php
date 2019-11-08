@@ -4,7 +4,7 @@ use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseSqlite;
-use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\ResultWrapper;
 use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\TestingAccessWrapper;
 
@@ -23,11 +23,23 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		if ( !Sqlite::isPresent() ) {
 			$this->markTestSkipped( 'No SQLite support detected' );
 		}
-		$this->db = $this->getMockBuilder( DatabaseSqlite::class )
+		$this->db = $this->newMockDb();
+		if ( version_compare( $this->db->getServerVersion(), '3.6.0', '<' ) ) {
+			$this->markTestSkipped( "SQLite at least 3.6 required, {$this->db->getServerVersion()} found" );
+		}
+	}
+
+	/**
+	 * @param null $version
+	 * @param null $sqlDump
+	 * @return \PHPUnit\Framework\MockObject\MockObject|DatabaseSqlite
+	 */
+	private function newMockDb( $version = null, &$sqlDump = null ) {
+		$mock = $this->getMockBuilder( DatabaseSqlite::class )
 			->setConstructorArgs( [ [
 				'dbFilePath' => ':memory:',
 				'dbname' => 'Foo',
-				'schema' => false,
+				'schema' => null,
 				'host' => false,
 				'user' => false,
 				'password' => false,
@@ -42,13 +54,25 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 				'queryLogger' => new NullLogger(),
 				'errorLogger' => null,
 				'deprecationLogger' => null,
-			] ] )->setMethods( [ 'query' ] )
-			->getMock();
-		$this->db->initConnection();
-		$this->db->method( 'query' )->willReturn( true );
-		if ( version_compare( $this->db->getServerVersion(), '3.6.0', '<' ) ) {
-			$this->markTestSkipped( "SQLite at least 3.6 required, {$this->db->getServerVersion()} found" );
+			] ] )->setMethods( array_merge(
+				[ 'query' ],
+				$version ? [ 'getServerVersion' ] : []
+			) )->getMock();
+
+		$mock->initConnection();
+
+		$sqlDump = '';
+		$mock->method( 'query' )->willReturnCallback( function ( $sql ) use ( &$sqlDump ) {
+			$sqlDump .= "$sql;";
+
+			return true;
+		} );
+
+		if ( $version ) {
+			$mock->method( 'getServerVersion' )->willReturn( $version );
 		}
+
+		return $mock;
 	}
 
 	/**
@@ -391,7 +415,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 
 		$databaseCreation = $db->query( 'CREATE TABLE a ( a_1 )', __METHOD__ );
-		$this->assertInstanceOf( IResultWrapper::class, $databaseCreation, "Database creation" );
+		$this->assertInstanceOf( ResultWrapper::class, $databaseCreation, "Database creation" );
 
 		$insertion = $db->insert( 'a', [ 'a_1' => 10 ], __METHOD__ );
 		$this->assertTrue( $insertion, "Insertion worked" );
@@ -509,7 +533,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 
 		$databaseCreation = $db->query( 'CREATE TABLE a ( a_1 )', __METHOD__ );
-		$this->assertInstanceOf( IResultWrapper::class, $databaseCreation, "Failed to create table a" );
+		$this->assertInstanceOf( ResultWrapper::class, $databaseCreation, "Failed to create table a" );
 		$res = $db->select( 'a', '*' );
 		$this->assertSame( 0, $db->numFields( $res ), "expects to get 0 fields for an empty table" );
 		$insertion = $db->insert( 'a', [ 'a_1' => 10 ], __METHOD__ );
@@ -537,5 +561,61 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	public function testsAttributes() {
 		$attributes = Database::attributesFromType( 'sqlite' );
 		$this->assertTrue( $attributes[Database::ATTR_DB_LEVEL_LOCKING] );
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insert()
+	 * @param string $version
+	 * @param string $table
+	 * @param array $rows
+	 * @param string $expectedSql
+	 * @dataProvider provideNativeInserts
+	 */
+	public function testNativeInsertSupport( $version, $table, $rows, $expectedSql ) {
+		$sqlDump = '';
+		$db = $this->newMockDb( $version, $sqlDump );
+		$db->query( 'CREATE TABLE a ( a_1 )', __METHOD__ );
+
+		$sqlDump = '';
+		$db->insert( $table, $rows, __METHOD__ );
+		$this->assertEquals( $expectedSql, $sqlDump );
+	}
+
+	public function provideNativeInserts() {
+		return [
+			[
+				'3.7.11',
+				'a',
+				[ 'a_1' => 1 ],
+				'INSERT  INTO a (a_1) VALUES (\'1\');'
+			],
+			[
+				'3.7.10',
+				'a',
+				[ 'a_1' => 1 ],
+				'INSERT  INTO a (a_1) VALUES (\'1\');'
+			],
+			[
+				'3.7.11',
+				'a',
+				[
+					[ 'a_1' => 2 ],
+					[ 'a_1' => 3 ]
+				],
+				'INSERT  INTO a (a_1) VALUES (\'2\'),(\'3\');'
+			],
+			[
+				'3.7.10',
+				'a',
+				[
+					[ 'a_1' => 2 ],
+					[ 'a_1' => 3 ]
+				],
+				'BEGIN;' .
+				'INSERT  INTO a (a_1) VALUES (\'2\');' .
+				'INSERT  INTO a (a_1) VALUES (\'3\');' .
+				'COMMIT;'
+			]
+		];
 	}
 }
