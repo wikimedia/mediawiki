@@ -5165,7 +5165,7 @@ This is a bug fix release of the MediaWiki 1.25 branch.
   installed via composer will not be shown in this section as it is assumed
   they will add the proper credits to the skins or extensions section. They
   can also be accessed through the API via the new siprop=libraries to
-  ApiQuerySiteInfo.
+  ApiQuerySiteinfo.
 * Update QUnit from v1.14.0 to v1.16.0.
 * Update Moment.js from v2.8.3 to v2.8.4.
 * Special:Tags now allows for manipulating the list of user-modifiable change
@@ -5335,7 +5335,7 @@ This is a bug fix release of the MediaWiki 1.25 branch.
   log entry is not implemented yet.
 * list=tags has additional properties to indicate 'active' status and tag
   sources.
-* siprop=libraries was added to ApiQuerySiteInfo to list installed external
+* siprop=libraries was added to ApiQuerySiteinfo to list installed external
   libraries.
 * (T88010) Added action=checktoken, to test a CSRF token's validity.
 * (T88010) Added intestactions to prop=info, to allow querying of
@@ -5714,7 +5714,7 @@ This is a security and maintenance release of the MediaWiki 1.24 branch.
 * MediaWiki will no longer function if magic quotes are enabled. It has
   been deprecated for 5 years now, and was removed in PHP 5.4.
 * The server's canonical hostname is available as $wgServerName, which is
-  exposed in both mw.config and ApiQuerySiteInfo.
+  exposed in both mw.config and ApiQuerySiteinfo.
 * Introduced $wgPagePropsHaveSortkey as a backwards-compatibility switch,
   for using the old schema of the page_props table, in case the respective
   schema update was not applied.

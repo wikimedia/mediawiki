@@ -526,7 +526,7 @@ false makes no sense).
 
 'APIQuerySiteInfoGeneralInfo': Use this hook to add extra information to the
 sites general information.
-$module: the current ApiQuerySiteInfo module
+$module: the current ApiQuerySiteinfo module
 &$results: array of results, add things here
 
 'APIQuerySiteInfoStatisticsInfo': Use this hook to add extra information to the
