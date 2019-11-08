@@ -210,12 +210,15 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 		] );
 		$indexLayout->addTabPanels( $tabPanels );
 
-		return new OOUI\PanelLayout( [
+		$header = $this->formatFormHeader();
+		$form = new OOUI\PanelLayout( [
 			'framed' => true,
 			'expanded' => false,
 			'classes' => [ 'mw-prefs-tabs-wrapper' ],
 			'content' => $indexLayout
 		] );
+
+		return $header . $form;
 	}
 
 	/**
