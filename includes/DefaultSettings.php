@@ -3000,7 +3000,7 @@ $wgExtraInterlanguageLinkPrefixes = [];
  * what is shown as the language name when the interwiki code does not match it
  * exactly
 
- * @since 1.34
+ * @since 1.35
  */
 $wgInterlanguageLinkCodeMap = [];
 
