@@ -38,6 +38,10 @@ abstract class Handler {
 	/**
 	 * Initialise with dependencies from the Router. This is called after construction.
 	 * @internal
+	 * @param Router $router
+	 * @param RequestInterface $request
+	 * @param array $config
+	 * @param ResponseFactory $responseFactory
 	 */
 	public function init( Router $router, RequestInterface $request, array $config,
 		ResponseFactory $responseFactory
@@ -51,6 +55,7 @@ abstract class Handler {
 	/**
 	 * Get the Router. The return type declaration causes it to raise
 	 * a fatal error if init() has not yet been called.
+	 * @return Router
 	 */
 	protected function getRouter(): Router {
 		return $this->router;

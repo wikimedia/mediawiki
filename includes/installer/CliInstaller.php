@@ -174,6 +174,7 @@ class CliInstaller extends Installer {
 
 	/**
 	 * Main entry point.
+	 * @return Status
 	 */
 	public function execute() {
 		// If APC is available, use that as the MainCacheType, instead of nothing.
@@ -254,6 +255,8 @@ class CliInstaller extends Installer {
 
 	/**
 	 * Dummy
+	 * @param string $msg Key for wfMessage()
+	 * @param mixed ...$params
 	 */
 	public function showHelpBox( $msg, ...$params ) {
 	}

@@ -2771,6 +2771,7 @@ function wfStripIllegalFilenameChars( $name ) {
  * Raise PHP's memory limit (if needed).
  *
  * @internal For use by Setup.php
+ * @param int $newLimit
  */
 function wfMemoryLimit( $newLimit ) {
 	$oldLimit = wfShorthandToInteger( ini_get( 'memory_limit' ) );

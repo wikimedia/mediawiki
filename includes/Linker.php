@@ -1536,6 +1536,7 @@ class Linker {
 	 * @param bool $local Whether section links should refer to local page
 	 * @param string|null $wikiId Id (as used by WikiMap) of the wiki to generate links to.
 	 *  For use with external changes.
+	 * @param bool $useParentheses Whether the comment is wrapped in parentheses
 	 *
 	 * @return string
 	 */

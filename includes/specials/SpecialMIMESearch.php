@@ -113,6 +113,7 @@ class SpecialMIMESearch extends QueryPage {
 
 	/**
 	 * Generate and output the form
+	 * @return string
 	 */
 	function getPageHeader() {
 		$formDescriptor = [

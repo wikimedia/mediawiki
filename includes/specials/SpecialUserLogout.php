@@ -120,6 +120,7 @@ class SpecialUserLogout extends FormSpecialPage {
 
 	/**
 	 * Let blocked users to log out and come back with their sockpuppets
+	 * @return bool
 	 */
 	public function requiresUnblock() {
 		return false;

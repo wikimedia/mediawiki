@@ -149,7 +149,7 @@ class FauxResponse extends WebResponse {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function hasCookies() {
 		return count( $this->cookies ) > 0;

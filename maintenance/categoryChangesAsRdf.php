@@ -364,6 +364,7 @@ SPARQL;
 	/**
 	 * Fetch categorization changes or edits
 	 * @param IDatabase $dbr
+	 * @param int $type
 	 * @return BatchRowIterator
 	 */
 	protected function getChangedCatsIterator( IDatabase $dbr, $type ) {

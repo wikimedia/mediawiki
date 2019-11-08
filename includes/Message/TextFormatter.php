@@ -24,6 +24,7 @@ class TextFormatter implements ITextFormatter {
 	 * MediaWikiServices::getMessageFormatterFactory()
 	 *
 	 * @internal
+	 * @param string $langCode
 	 */
 	public function __construct( $langCode ) {
 		$this->langCode = $langCode;

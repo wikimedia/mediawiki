@@ -98,6 +98,7 @@ class FileBackendGroup {
 	 * @param MimeAnalyzer $mimeAnalyzer
 	 * @param LockManagerGroupFactory $lmgFactory
 	 * @param TempFSFileFactory $tmpFileFactory
+	 * @param ObjectFactory $objectFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,

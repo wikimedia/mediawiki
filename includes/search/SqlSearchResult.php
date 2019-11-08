@@ -37,7 +37,7 @@ class SqlSearchResult extends RevisionSearchResult {
 	}
 
 	/**
-	 * return string[]
+	 * @return string[]
 	 */
 	public function getTermMatches(): array {
 		return $this->terms;
