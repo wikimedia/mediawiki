@@ -122,6 +122,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		'RCWatchCategoryMembership',
 		'SearchMatchRedirectPreference',
 		'SecureLogin',
+		'SignatureValidation',
 		'ThumbLimits',
 	];
 
@@ -552,11 +553,52 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$oldsigHTML = Parser::stripOuterParagraph(
 			$context->getOutput()->parseAsContent( $oldsigWikiText )
 		);
+		$signatureFieldConfig = [];
+		// Validate existing signature and show a message about it
+		if ( $user->getBoolOption( 'fancysig' ) ) {
+			$validator = new SignatureValidator(
+				$user,
+				$context,
+				ParserOptions::newFromContext( $context )
+			);
+			$signatureErrors = $validator->validateSignature( $user->getOption( 'nickname' ) );
+			if ( $signatureErrors ) {
+				$sigValidation = $this->options->get( 'SignatureValidation' );
+				$oldsigHTML .= '<p><strong>' .
+					// Messages used here:
+					// * prefs-signature-invalid-warning
+					// * prefs-signature-invalid-new
+					// * prefs-signature-invalid-disallow
+					$context->msg( "prefs-signature-invalid-$sigValidation" )->parse() .
+					'</strong></p>';
+
+				// On initial page load, show the warnings as well
+				// (when posting, you get normal validation errors instead)
+				foreach ( $signatureErrors as &$sigError ) {
+					$sigError = new \OOUI\HtmlSnippet( $sigError );
+				}
+				if ( !$context->getRequest()->wasPosted() ) {
+					$signatureFieldConfig = [
+						'warnings' => $sigValidation !== 'disallow' ? $signatureErrors : null,
+						'errors' => $sigValidation === 'disallow' ? $signatureErrors : null,
+					];
+				}
+			}
+		}
 		$defaultPreferences['oldsig'] = [
 			'type' => 'info',
-			'raw' => true,
-			'label-message' => 'tog-oldsig',
-			'default' => $oldsigHTML,
+			// Normally HTMLFormFields do not display warnings, so we need to use 'rawrow'
+			// and provide the entire OOUI\FieldLayout here
+			'rawrow' => true,
+			'default' => new \OOUI\FieldLayout(
+				new \OOUI\LabelWidget( [
+					'label' => new \OOUI\HtmlSnippet( $oldsigHTML ),
+				] ),
+				[
+					'align' => 'top',
+					'label' => new \OOUI\HtmlSnippet( $context->msg( 'tog-oldsig' )->parse() )
+				] + $signatureFieldConfig
+			),
 			'section' => 'personal/signature',
 		];
 		$defaultPreferences['nickname'] = [
@@ -1504,9 +1546,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param string $signature
 	 * @param array $alldata
 	 * @param HTMLForm $form
-	 * @return bool|string
+	 * @return bool|string|string[]
 	 */
 	protected function validateSignature( $signature, $alldata, HTMLForm $form ) {
+		$sigValidation = $this->options->get( 'SignatureValidation' );
 		$maxSigChars = $this->options->get( 'MaxSigChars' );
 		if ( mb_strlen( $signature ) > $maxSigChars ) {
 			return $form->msg( 'badsiglength' )->numParams( $maxSigChars )->escaped();
@@ -1517,13 +1560,45 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			return true;
 		}
 
+		// HERE BE DRAGONS:
+		//
+		// If this value is already saved as the user's signature, treat it as valid, even if it
+		// would be invalid to save now, and even if $wgSignatureValidation is set to 'disallow'.
+		//
+		// It can become invalid when we introduce new validation, or when the value just transcludes
+		// some page containing the real signature and that page is edited (which we can't validate),
+		// or when someone's username is changed.
+		//
+		// Otherwise it would be completely removed when the user opens their preferences page, which
+		// would be very unfriendly.
+		//
+		// Additionally, if it was removed in that way, it would reset to the default value of '',
+		// which is actually invalid when 'fancysig' is enabled, which would cause an exception like
+		// "Default '' is invalid for preference...".
+		if (
+			$signature === $form->getUser()->getOption( 'nickname' ) &&
+			(bool)$alldata['fancysig'] === $form->getUser()->getBoolOption( 'fancysig' )
+		) {
+			return true;
+		}
+
 		// Quick check for mismatched HTML tags in the input.
 		// Note that this is easily fooled by wikitext templates or bold/italic markup.
+		// We're only keeping this until Parsoid is integrated and guaranteed to be available.
 		$parser = MediaWikiServices::getInstance()->getParser();
 		if ( $parser->validateSig( $signature ) === false ) {
 			return $form->msg( 'badsig' )->escaped();
 		}
 
+		if ( $sigValidation === 'new' || $sigValidation === 'disallow' ) {
+			// Validate everything
+			$validator = new SignatureValidator(
+				$form->getUser(),
+				$form->getContext(),
+				ParserOptions::newFromContext( $form->getContext() )
+			);
+			return $validator->validateSignature( $signature ) ?: true;
+		}
 		return true;
 	}
 

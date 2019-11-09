@@ -5180,6 +5180,25 @@ $wgPasswordResetRoutes = [
 $wgMaxSigChars = 255;
 
 /**
+ * Behavior of signature validation. Allowed values are:
+ *  - 'warning' - invalid signatures cause a warning to be displayed on the preferences page, but
+ *    they are still used when signing comments; new invalid signatures can still be saved as normal
+ *  - 'new' - existing invalid signatures behave as above; new invalid signatures can't be saved
+ *  - 'disallow' - existing invalid signatures are no longer used when signing comments; new invalid
+ *    signatures can't be saved
+ *
+ * @since 1.35
+ */
+$wgSignatureValidation = 'warning';
+
+/**
+ * List of lint error codes which don't cause signature validation to fail.
+ *
+ * @since 1.35
+ */
+$wgSignatureAllowedLintErrors = [ 'obsolete-tag' ];
+
+/**
  * Maximum number of bytes in username. You want to run the maintenance
  * script ./maintenance/checkUsernames.php once you have changed this value.
  */
