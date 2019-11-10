@@ -20,6 +20,8 @@
  * @file
  */
 
+declare( strict_types = 1 );
+
 /**
  * Helper class for password hash types that have a delimited set of parameters
  * inside of the hash.
@@ -49,7 +51,10 @@ abstract class ParameterizedPassword extends Password {
 	 */
 	protected $args = [];
 
-	protected function parseHash( $hash ) {
+	/**
+	 * @inheritDoc
+	 */
+	protected function parseHash( ?string $hash ) : void {
 		parent::parseHash( $hash );
 
 		if ( $hash === null ) {
@@ -78,11 +83,11 @@ abstract class ParameterizedPassword extends Password {
 		}
 	}
 
-	public function needsUpdate() {
+	public function needsUpdate() : bool {
 		return $this->params !== $this->getDefaultParams();
 	}
 
-	public function toString() {
+	public function toString() : string {
 		$str = ':' . $this->config['type'] . ':';
 
 		if ( count( $this->params ) || count( $this->args ) ) {
@@ -100,7 +105,7 @@ abstract class ParameterizedPassword extends Password {
 	 *
 	 * @return string
 	 */
-	abstract protected function getDelimiter();
+	abstract protected function getDelimiter() : string;
 
 	/**
 	 * Return an ordered array of default parameters for this password hash
@@ -117,5 +122,5 @@ abstract class ParameterizedPassword extends Password {
 	 *
 	 * @return array
 	 */
-	abstract protected function getDefaultParams();
+	abstract protected function getDefaultParams() : array;
 }
