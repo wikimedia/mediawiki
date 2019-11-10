@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\AtEase\AtEase;
+
 /**
  * @group large
  * @covers Pbkdf2Password
@@ -24,5 +26,23 @@ class Pbkdf2PasswordTest extends PasswordTestCase {
 			[ true, ":pbkdf2:sha1:4096:20:c2FsdA==:SwB5AbdlSJq+rUnZJvch0GWkKcE=", 'password' ],
 			[ true, ":pbkdf2:sha1:4096:16:c2EAbHQ=:Vvpqp1VICZ3MN9fwNCXgww==", "pass\x00word" ],
 		];
+	}
+
+	public function testCryptThrows() {
+		$factory = new PasswordFactory();
+		$password = new Pbkdf2Password(
+			$factory,
+			[
+				'type' => 'pbkdf2',
+				'algo' => 'fail',
+				'cost' => '10000',
+				'length' => '128',
+			]
+		);
+		$this->expectException( PasswordError::class );
+		$this->expectExceptionMessage( 'Error when hashing password.' );
+		AtEase::suppressWarnings();
+		$password->crypt( 'whatever' );
+		AtEase::restoreWarnings();
 	}
 }
