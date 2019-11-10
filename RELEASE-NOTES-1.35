@@ -50,6 +50,8 @@ For notes on 1.34.x and older releases, see HISTORY.
 ==== Removed configuration ====
 * $wgSysopEmailBans — This setting, deprecated in 1.34, was removed. To let
   sysops block email access, use $wgGroupPermissions['sysop']['blockemail'].
+* $wgDBWindowsAuthentication — This setting had no effect anymore after support
+  for SQL Server was removed in 1.34. (T230418)
 * …
 
 
