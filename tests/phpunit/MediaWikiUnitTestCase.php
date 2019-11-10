@@ -33,7 +33,6 @@ use Wikimedia\ObjectFactory;
  * @since 1.34
  */
 abstract class MediaWikiUnitTestCase extends TestCase {
-	use PHPUnit4And6Compat;
 	use MediaWikiCoversValidator;
 	use MediaWikiTestCaseTrait;
 

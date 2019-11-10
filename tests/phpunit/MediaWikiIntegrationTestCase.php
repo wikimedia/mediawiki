@@ -28,7 +28,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;
 	use MediaWikiGroupValidator;
 	use MediaWikiTestCaseTrait;
-	use PHPUnit4And6Compat;
 
 	/**
 	 * The original service locator. This is overridden during setUp().
