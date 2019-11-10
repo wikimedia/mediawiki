@@ -51,7 +51,6 @@ abstract class MWLBFactory {
 		'DBssl',
 		'DBtype',
 		'DBuser',
-		'DBWindowsAuthentication',
 		'DebugDumpSql',
 		'DebugLogFile',
 		'ExternalServers',

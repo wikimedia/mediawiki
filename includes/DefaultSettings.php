@@ -2179,11 +2179,6 @@ $wgSlaveLagWarning = 10;
  */
 $wgSlaveLagCritical = 30;
 
-/**
- * Use Windows Authentication instead of $wgDBuser / $wgDBpassword for MS SQL Server
- */
-$wgDBWindowsAuthentication = false;
-
 /** @} */ # End of DB settings }
 
 /************************************************************************//**
