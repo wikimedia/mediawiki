@@ -22,7 +22,7 @@
  */
 
 class UserGroupExpiryJob extends Job implements GenericParameterJob {
-	public function __construct( array $params = [] ) {
+	public function __construct( array $params ) {
 		parent::__construct( 'userGroupExpiry', $params );
 		$this->removeDuplicates = true;
 	}

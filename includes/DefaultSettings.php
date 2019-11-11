@@ -7834,7 +7834,7 @@ $wgJobClasses = [
 	'refreshLinksPrioritized' => RefreshLinksJob::class,
 	'refreshLinksDynamic' => RefreshLinksJob::class,
 	'activityUpdateJob' => ActivityUpdateJob::class,
-	'categoryMembershipChange' => function ( Title $title, $params = [] ) {
+	'categoryMembershipChange' => function ( Title $title, array $params ) {
 		$pc = MediaWikiServices::getInstance()->getParserCache();
 		return new CategoryMembershipChangeJob( $pc, $title, $params );
 	},
