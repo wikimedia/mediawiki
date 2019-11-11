@@ -35,7 +35,7 @@
 		"php": ">=7.2.9",
 		"psr/container": "1.0.0",
 		"psr/log": "1.0.2",
-		"wikimedia/assert": "0.2.2",
+		"wikimedia/assert": "0.4.0",
 		"wikimedia/at-ease": "2.0.0",
 		"wikimedia/base-convert": "2.0.0",
 		"wikimedia/cdb": "1.4.1",
