@@ -104,7 +104,7 @@ class BenchmarkerTest extends \PHPUnit\Framework\TestCase {
 
 		$bench->expects( $this->once() )->method( 'addResult' )
 			->with( $this->callback( function ( $res ) {
-				return 'strtolower(A)';
+				return $res['name'] === 'strtolower(A)';
 			} ) );
 
 		$bench->bench( [ [

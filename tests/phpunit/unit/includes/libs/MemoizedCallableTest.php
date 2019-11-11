@@ -1,4 +1,7 @@
 <?php
+
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * PHPUnit tests for MemoizedCallable class.
  * @covers MemoizedCallable
@@ -69,11 +72,11 @@ class MemoizedCallableTest extends PHPUnit\Framework\TestCase {
 	 * Outlier TTL values should be coerced to range 1 - 86400.
 	 */
 	public function testTTLMaxMin() {
-		$memoized = new MemoizedCallable( 'abs', 100000 );
-		$this->assertEquals( 86400, $this->readAttribute( $memoized, 'ttl' ) );
+		$memoized = TestingAccessWrapper::newFromObject( new MemoizedCallable( 'abs', 100000 ) );
+		$this->assertEquals( 86400, $memoized->ttl );
 
-		$memoized = new MemoizedCallable( 'abs', -10 );
-		$this->assertEquals( 1, $this->readAttribute( $memoized, 'ttl' ) );
+		$memoized = TestingAccessWrapper::newFromObject( new MemoizedCallable( 'abs', -10 ) );
+		$this->assertEquals( 1, $memoized->ttl );
 	}
 
 	/**
@@ -88,12 +91,15 @@ class MemoizedCallableTest extends PHPUnit\Framework\TestCase {
 			return 'b';
 		} );
 
-		$this->assertEquals( $a->invokeArgs(), 'a' );
-		$this->assertEquals( $b->invokeArgs(), 'b' );
+		$this->assertEquals( 'a', $a->invokeArgs() );
+		$this->assertEquals( 'b', $b->invokeArgs() );
+
+		$a = TestingAccessWrapper::newFromObject( $a );
+		$b = TestingAccessWrapper::newFromObject( $b );
 
 		$this->assertNotEquals(
-			$this->readAttribute( $a, 'callableName' ),
-			$this->readAttribute( $b, 'callableName' )
+			$a->callableName,
+			$b->callableName
 		);
 
 		$c = new ArrayBackedMemoizedCallable( function () {

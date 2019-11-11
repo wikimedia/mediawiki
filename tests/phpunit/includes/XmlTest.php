@@ -3,6 +3,7 @@
 use MediaWiki\MediaWikiServices;
 
 /**
+ * TODO: refactor encodeJsVar() tests to be one method with a provider
  * @group Xml
  */
 class XmlTest extends MediaWikiTestCase {
@@ -423,8 +424,8 @@ class XmlTest extends MediaWikiTestCase {
 	 */
 	public function testEncodeJsVarFloat() {
 		$this->assertEquals(
-			'1.23456',
-			Xml::encodeJsVar( 1.23456 ),
+			'1.5',
+			Xml::encodeJsVar( 1.5 ),
 			'encodeJsVar() with float'
 		);
 	}

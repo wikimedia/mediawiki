@@ -234,7 +234,7 @@ class FetchTextTest extends MediaWikiTestCase {
 	}
 
 	public function testEmpty() {
-		$this->assertFilter( "", null );
+		$this->assertFilter( "", "" );
 	}
 
 	public function testNonExisting() {
