@@ -66,11 +66,14 @@ class DeleteTag extends Maintenance {
 				[ 'LIMIT' => $this->getBatchSize() ]
 			);
 
+			if ( !$ids ) {
+				break;
+			}
 			$dbw->delete( 'change_tag', [ 'ct_id' => $ids ], __METHOD__ );
 			$count += $dbw->affectedRows();
 			$this->output( "$count\n" );
 			$lbFactory->waitForReplication( $options );
-		} while ( $dbw->affectedRows() === $this->getBatchSize() );
+		} while ( true );
 		$this->output( "The tag has been removed from $count revisions, deleting the tag itself...\n" );
 
 		ChangeTags::deleteTagEverywhere( $tag );
