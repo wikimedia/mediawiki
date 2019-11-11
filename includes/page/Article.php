@@ -19,8 +19,11 @@
  *
  * @file
  */
+
+use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -2311,6 +2314,8 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::checkFlags
+	 * @param int $flags
+	 * @return int
 	 */
 	public function checkFlags( $flags ) {
 		return $this->mPage->checkFlags( $flags );
@@ -2319,6 +2324,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::checkTouched
+	 * @return bool
 	 */
 	public function checkTouched() {
 		return $this->mPage->checkTouched();
@@ -2335,6 +2341,15 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::doDeleteArticleReal
+	 * @param string $reason
+	 * @param bool $suppress
+	 * @param int|null $u1
+	 * @param bool|null $u2
+	 * @param array|string &$error
+	 * @param User|null $user
+	 * @param array $tags
+	 * @param bool $immediate
+	 * @return Status
 	 */
 	public function doDeleteArticleReal(
 		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', User $user = null,
@@ -2348,6 +2363,10 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::doDeleteUpdates
+	 * @param int $id
+	 * @param Content|null $content
+	 * @param Revision|null $revision
+	 * @param User|null $user
 	 */
 	public function doDeleteUpdates(
 		$id,
@@ -2362,6 +2381,13 @@ class Article implements Page {
 	 * Call to WikiPage function for backwards compatibility.
 	 * @deprecated since 1.29. Use WikiPage::doEditContent() directly instead
 	 * @see WikiPage::doEditContent
+	 * @param Content $content
+	 * @param string|CommentStoreComment $summary
+	 * @param int $flags
+	 * @param bool|int $originalRevId
+	 * @param User|null $user
+	 * @param string|null $serialFormat
+	 * @return Status
 	 */
 	public function doEditContent( Content $content, $summary, $flags = 0, $originalRevId = false,
 		User $user = null, $serialFormat = null
@@ -2375,9 +2401,12 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::doEditUpdates
+	 * @param Revision $revision
+	 * @param User $user
+	 * @param array $options
 	 */
 	public function doEditUpdates( Revision $revision, User $user, array $options = [] ) {
-		return $this->mPage->doEditUpdates( $revision, $user, $options );
+		$this->mPage->doEditUpdates( $revision, $user, $options );
 	}
 
 	/**
@@ -2385,6 +2414,7 @@ class Article implements Page {
 	 * @see WikiPage::doPurge
 	 * @note In 1.28 (and only 1.28), this took a $flags parameter that
 	 *  controlled how much purging was done.
+	 * @return bool
 	 */
 	public function doPurge() {
 		return $this->mPage->doPurge();
@@ -2393,6 +2423,8 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::doViewUpdates
+	 * @param User $user
+	 * @param int $oldid
 	 */
 	public function doViewUpdates( User $user, $oldid = 0 ) {
 		$this->mPage->doViewUpdates( $user, $oldid );
@@ -2401,6 +2433,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::exists
+	 * @return bool
 	 */
 	public function exists() {
 		return $this->mPage->exists();
@@ -2409,6 +2442,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::followRedirect
+	 * @return bool|Title|string
 	 */
 	public function followRedirect() {
 		return $this->mPage->followRedirect();
@@ -2417,6 +2451,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see ContentHandler::getActionOverrides
+	 * @return array
 	 */
 	public function getActionOverrides() {
 		return $this->mPage->getActionOverrides();
@@ -2425,6 +2460,8 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getAutoDeleteReason
+	 * @param bool &$hasHistory
+	 * @return string|bool
 	 */
 	public function getAutoDeleteReason( &$hasHistory ) {
 		return $this->mPage->getAutoDeleteReason( $hasHistory );
@@ -2433,6 +2470,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getCategories
+	 * @return TitleArray
 	 */
 	public function getCategories() {
 		return $this->mPage->getCategories();
@@ -2441,6 +2479,9 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getComment
+	 * @param int $audience
+	 * @param User|null $user
+	 * @return string|null
 	 */
 	public function getComment( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		return $this->mPage->getComment( $audience, $user );
@@ -2449,6 +2490,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getContentHandler
+	 * @return ContentHandler
 	 */
 	public function getContentHandler() {
 		return $this->mPage->getContentHandler();
@@ -2457,6 +2499,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getContentModel
+	 * @return string
 	 */
 	public function getContentModel() {
 		return $this->mPage->getContentModel();
@@ -2465,6 +2508,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getContributors
+	 * @return UserArrayFromResult
 	 */
 	public function getContributors() {
 		return $this->mPage->getContributors();
@@ -2473,6 +2517,9 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getCreator
+	 * @param int $audience
+	 * @param User|null $user
+	 * @return User|null
 	 */
 	public function getCreator( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		return $this->mPage->getCreator( $audience, $user );
@@ -2481,6 +2528,8 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getDeletionUpdates
+	 * @param Content|null $content
+	 * @return DeferrableUpdate[]
 	 */
 	public function getDeletionUpdates( Content $content = null ) {
 		return $this->mPage->getDeletionUpdates( $content );
@@ -2489,6 +2538,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getHiddenCategories
+	 * @return array
 	 */
 	public function getHiddenCategories() {
 		return $this->mPage->getHiddenCategories();
@@ -2497,6 +2547,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getId
+	 * @return int
 	 */
 	public function getId() {
 		return $this->mPage->getId();
@@ -2505,6 +2556,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getLatest
+	 * @return int
 	 */
 	public function getLatest() {
 		return $this->mPage->getLatest();
@@ -2513,6 +2565,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getLinksTimestamp
+	 * @return string|null
 	 */
 	public function getLinksTimestamp() {
 		return $this->mPage->getLinksTimestamp();
@@ -2521,6 +2574,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getMinorEdit
+	 * @return bool
 	 */
 	public function getMinorEdit() {
 		return $this->mPage->getMinorEdit();
@@ -2529,6 +2583,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getOldestRevision
+	 * @return Revision|null
 	 */
 	public function getOldestRevision() {
 		return $this->mPage->getOldestRevision();
@@ -2537,6 +2592,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getRedirectTarget
+	 * @return Title|null
 	 */
 	public function getRedirectTarget() {
 		return $this->mPage->getRedirectTarget();
@@ -2545,6 +2601,8 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getRedirectURL
+	 * @param Title $rt
+	 * @return bool|Title|string
 	 */
 	public function getRedirectURL( $rt ) {
 		return $this->mPage->getRedirectURL( $rt );
@@ -2553,6 +2611,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getRevision
+	 * @return Revision|null
 	 */
 	public function getRevision() {
 		return $this->mPage->getRevision();
@@ -2561,6 +2620,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getTimestamp
+	 * @return string
 	 */
 	public function getTimestamp() {
 		return $this->mPage->getTimestamp();
@@ -2569,6 +2629,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getTouched
+	 * @return string
 	 */
 	public function getTouched() {
 		return $this->mPage->getTouched();
@@ -2577,6 +2638,9 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getUndoContent
+	 * @param Revision $undo
+	 * @param Revision|null $undoafter
+	 * @return Content|bool
 	 */
 	public function getUndoContent( Revision $undo, Revision $undoafter = null ) {
 		return $this->mPage->getUndoContent( $undo, $undoafter );
@@ -2585,6 +2649,9 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getUser
+	 * @param int $audience
+	 * @param User|null $user
+	 * @return int
 	 */
 	public function getUser( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		return $this->mPage->getUser( $audience, $user );
@@ -2593,6 +2660,9 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getUserText
+	 * @param int $audience
+	 * @param User|null $user
+	 * @return string
 	 */
 	public function getUserText( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		return $this->mPage->getUserText( $audience, $user );
@@ -2601,6 +2671,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::hasViewableContent
+	 * @return bool
 	 */
 	public function hasViewableContent() {
 		return $this->mPage->hasViewableContent();
@@ -2609,6 +2680,9 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::insertOn
+	 * @param IDatabase $dbw
+	 * @param int|null $pageId
+	 * @return bool|int
 	 */
 	public function insertOn( $dbw, $pageId = null ) {
 		return $this->mPage->insertOn( $dbw, $pageId );
@@ -2617,6 +2691,13 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::insertProtectNullRevision
+	 * @param string $revCommentMsg
+	 * @param array $limit
+	 * @param array $expiry
+	 * @param int $cascade
+	 * @param string $reason
+	 * @param User|null $user
+	 * @return Revision|null
 	 */
 	public function insertProtectNullRevision( $revCommentMsg, array $limit,
 		array $expiry, $cascade, $reason, $user = null
@@ -2629,6 +2710,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::insertRedirect
+	 * @return Title|null
 	 */
 	public function insertRedirect() {
 		return $this->mPage->insertRedirect();
@@ -2637,6 +2719,9 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::insertRedirectEntry
+	 * @param Title $rt
+	 * @param int|null $oldLatest
+	 * @return bool
 	 */
 	public function insertRedirectEntry( Title $rt, $oldLatest = null ) {
 		return $this->mPage->insertRedirectEntry( $rt, $oldLatest );
@@ -2645,6 +2730,8 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::isCountable
+	 * @param PreparedEdit|bool $editInfo
+	 * @return bool
 	 */
 	public function isCountable( $editInfo = false ) {
 		return $this->mPage->isCountable( $editInfo );
@@ -2653,6 +2740,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::isRedirect
+	 * @return bool
 	 */
 	public function isRedirect() {
 		return $this->mPage->isRedirect();
@@ -2661,14 +2749,17 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::loadFromRow
+	 * @param object|bool $data
+	 * @param string|int $from
 	 */
 	public function loadFromRow( $data, $from ) {
-		return $this->mPage->loadFromRow( $data, $from );
+		$this->mPage->loadFromRow( $data, $from );
 	}
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::loadPageData
+	 * @param object|string|int $from
 	 */
 	public function loadPageData( $from = 'fromdb' ) {
 		$this->mPage->loadPageData( $from );
@@ -2677,6 +2768,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::lockAndGetLatest
+	 * @return int
 	 */
 	public function lockAndGetLatest() {
 		return $this->mPage->lockAndGetLatest();
@@ -2685,6 +2777,8 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::makeParserOptions
+	 * @param IContextSource|User|string $context
+	 * @return ParserOptions
 	 */
 	public function makeParserOptions( $context ) {
 		return $this->mPage->makeParserOptions( $context );
@@ -2693,6 +2787,10 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::pageDataFromId
+	 * @param IDatabase $dbr
+	 * @param int $id
+	 * @param array $options
+	 * @return object|bool
 	 */
 	public function pageDataFromId( $dbr, $id, $options = [] ) {
 		return $this->mPage->pageDataFromId( $dbr, $id, $options );
@@ -2701,6 +2799,10 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::pageDataFromTitle
+	 * @param IDatabase $dbr
+	 * @param Title $title
+	 * @param array $options
+	 * @return object|bool
 	 */
 	public function pageDataFromTitle( $dbr, $title, $options = [] ) {
 		return $this->mPage->pageDataFromTitle( $dbr, $title, $options );
@@ -2709,6 +2811,12 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::prepareContentForEdit
+	 * @param Content $content
+	 * @param Revision|RevisionRecord|null $revision
+	 * @param User|null $user
+	 * @param string|null $serialFormat
+	 * @param bool $useCache
+	 * @return PreparedEdit
 	 */
 	public function prepareContentForEdit(
 		Content $content, $revision = null, User $user = null,
@@ -2723,6 +2831,9 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::protectDescription
+	 * @param array $limit
+	 * @param array $expiry
+	 * @return string
 	 */
 	public function protectDescription( array $limit, array $expiry ) {
 		return $this->mPage->protectDescription( $limit, $expiry );
@@ -2731,6 +2842,9 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::protectDescriptionLog
+	 * @param array $limit
+	 * @param array $expiry
+	 * @return string
 	 */
 	public function protectDescriptionLog( array $limit, array $expiry ) {
 		return $this->mPage->protectDescriptionLog( $limit, $expiry );
@@ -2739,6 +2853,11 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::replaceSectionAtRev
+	 * @param string|int|null|bool $sectionId
+	 * @param Content $sectionContent
+	 * @param string $sectionTitle
+	 * @param int|null $baseRevId
+	 * @return Content|null
 	 */
 	public function replaceSectionAtRev( $sectionId, Content $sectionContent,
 		$sectionTitle = '', $baseRevId = null
@@ -2751,6 +2870,11 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::replaceSectionContent
+	 * @param string|int|null|bool $sectionId
+	 * @param Content $sectionContent
+	 * @param string $sectionTitle
+	 * @param string|null $edittime
+	 * @return Content|null
 	 */
 	public function replaceSectionContent(
 		$sectionId, Content $sectionContent, $sectionTitle = '', $edittime = null
@@ -2763,6 +2887,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::setTimestamp
+	 * @param string $ts
 	 */
 	public function setTimestamp( $ts ) {
 		$this->mPage->setTimestamp( $ts );
@@ -2771,6 +2896,9 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::shouldCheckParserCache
+	 * @param ParserOptions $parserOptions
+	 * @param int $oldId
+	 * @return bool
 	 */
 	public function shouldCheckParserCache( ParserOptions $parserOptions, $oldId ) {
 		return $this->mPage->shouldCheckParserCache( $parserOptions, $oldId );
@@ -2779,6 +2907,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::supportsSections
+	 * @return bool
 	 */
 	public function supportsSections() {
 		return $this->mPage->supportsSections();
@@ -2787,22 +2916,29 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::triggerOpportunisticLinksUpdate
+	 * @param ParserOutput $parserOutput
 	 */
 	public function triggerOpportunisticLinksUpdate( ParserOutput $parserOutput ) {
-		return $this->mPage->triggerOpportunisticLinksUpdate( $parserOutput );
+		$this->mPage->triggerOpportunisticLinksUpdate( $parserOutput );
 	}
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::updateCategoryCounts
+	 * @param array $added
+	 * @param array $deleted
+	 * @param int $id
 	 */
 	public function updateCategoryCounts( array $added, array $deleted, $id = 0 ) {
-		return $this->mPage->updateCategoryCounts( $added, $deleted, $id );
+		$this->mPage->updateCategoryCounts( $added, $deleted, $id );
 	}
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::updateIfNewerOn
+	 * @param IDatabase $dbw
+	 * @param Revision $revision
+	 * @return bool
 	 */
 	public function updateIfNewerOn( $dbw, $revision ) {
 		return $this->mPage->updateIfNewerOn( $dbw, $revision );
@@ -2811,6 +2947,10 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::updateRedirectOn
+	 * @param IDatabase $dbw
+	 * @param Title|null $redirectTitle
+	 * @param null|bool $lastRevIsRedirect
+	 * @return bool
 	 */
 	public function updateRedirectOn( $dbw, $redirectTitle, $lastRevIsRedirect = null ) {
 		return $this->mPage->updateRedirectOn( $dbw, $redirectTitle, $lastRevIsRedirect );
@@ -2819,6 +2959,11 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::updateRevisionOn
+	 * @param IDatabase $dbw
+	 * @param Revision $revision
+	 * @param int|null $lastRevision
+	 * @param bool|null $lastRevIsRedirect
+	 * @return bool
 	 */
 	public function updateRevisionOn( $dbw, $revision, $lastRevision = null,
 		$lastRevIsRedirect = null

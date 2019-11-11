@@ -4,8 +4,6 @@
 		<exclude name="Generic.ControlStructures.InlineControlStructure" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationProtected" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.MissingParamTag" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.MissingReturn" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.WrongStyle" />
 		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentEnd" />
 		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentStart" />
@@ -26,6 +24,14 @@
 		<exclude-pattern>includes/</exclude-pattern>
 		<exclude-pattern>maintenance/</exclude-pattern>
 		<exclude-pattern>languages/</exclude-pattern>
+	</rule>
+	<!-- TODO Still to be done -->
+	<rule ref="MediaWiki.Commenting.FunctionComment.MissingParamTag">
+		<exclude-pattern>tests/</exclude-pattern>
+	</rule>
+	<!-- TODO Still to be done -->
+	<rule ref="MediaWiki.Commenting.FunctionComment.MissingReturn">
+		<exclude-pattern>tests/</exclude-pattern>
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
 		<properties>
