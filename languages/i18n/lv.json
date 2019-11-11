@@ -353,6 +353,7 @@
 	"no-null-revision": "Neizdevās izveidot jaunu nulles versiju lapai \"$1\"",
 	"badtitle": "Nepiemērots nosaukums",
 	"badtitletext": "Pieprasītā lapa ir kļūdaina, tukša, vai nepareizi saistīts starpvalodu vai starp-vikiju virsrakstas. Tas var saturēt vienu vai vairākus simbolus, ko nedrīkst izmantot nosaukumos.",
+	"title-invalid": "Pieprasītās lapas nosaukums ir nederīgs",
 	"title-invalid-empty": "Pieprasītais lapas nosaukums ir tukšs vai satur tikai vārdtelpas nosaukumu.",
 	"title-invalid-utf8": "Pieprasītais lapas nosaukums satur nederīgu UTF-8 virkni.",
 	"title-invalid-interwiki": "Pieprasītais lapas nosaukums satur interwiki saiti, bet tās nevar lietot nosaukumos.",

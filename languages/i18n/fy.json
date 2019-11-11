@@ -2023,6 +2023,7 @@
 	"autosumm-removed-redirect": "Trochferwizing nei [[$1]] wiske",
 	"autosumm-changed-redirect-target": "Trochferwizingsdoel feroare fan [[$1]] nei [[$2]]",
 	"autosumm-new": "Side makke mei \"$1\"",
+	"autosumm-newblank": "Lege side oanmakke",
 	"size-bytes": "$1 B",
 	"size-kilobytes": "$1 KB",
 	"size-megabytes": "$1 MB",

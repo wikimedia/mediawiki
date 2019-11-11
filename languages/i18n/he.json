@@ -684,6 +684,7 @@
 	"noarticletext": "אין כרגע טקסט בדף הזה.\nבאפשרותך [[Special:Search/{{PAGENAME}}|לחפש את כותרת הדף]] בדפים אחרים,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} לחפש את הדף ביומנים],\nאו [{{fullurl:{{FULLPAGENAME}}|action=edit}} ליצור את הדף]</span>.",
 	"noarticletext-nopermission": "אין כרגע טקסט בדף הזה.\nבאפשרותך [[Special:Search/{{PAGENAME}}|לחפש את כותרת הדף]] בדפים אחרים או <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} לחפש את הדף ביומנים]</span>, אך אין לך הרשאה ליצור את הדף.",
 	"missing-revision": "גרסה #$1 של הדף \"{{FULLPAGENAME}}\" אינה קיימת.\n\nזה נגרם בדרך־כלל עקב לחיצה על קישור ישן לגרסה של דף שנמחק.\nאפשר למצוא פרטים ב[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].",
+	"missing-revision-content": "לא היה לטעון את התוכן של גרסה #$1 של הדף ששמו \"$2\".",
 	"userpage-userdoesnotexist": "חשבון המשתמש \"$1\" אינו רשום.\nאנא {{GENDER:|בדוק|בדקי|בדקו}} אם {{GENDER:|ברצונך|ברצונך|ברצונכם}} ליצור/לערוך את הדף הזה.",
 	"userpage-userdoesnotexist-view": "חשבון המשתמש \"$1\" אינו רשום.",
 	"blocked-notice-logextract": "{{GENDER:$1|המשתמש הזה חסום|המשתמשת הזו חסומה}} כרגע.\nהפעולה האחרונה ביומן החסימות מוצגת להלן:",

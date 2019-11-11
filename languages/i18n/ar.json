@@ -724,6 +724,7 @@
 	"noarticletext": "هذه الصفحة خالية حاليا. يمكنك [[Special:Search/{{PAGENAME}}|البحث عن عنوانها]] في الصفحات الأخرى أو\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} البحث في السجلات] (لتعرف إن كانت قد حُذِفَت)،\nأو '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} إنشاؤها]'''</span>.",
 	"noarticletext-nopermission": "لا يوجد حاليا أي نص في هذه الصفحة.\nيمكنك [[Special:Search/{{PAGENAME}}|البحث عن عنوان هذه الصفحة]] في الصفحات الأخرى، أو <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} البحث في السجلات المتعلقة بها]</span>، لكن ليست لك صلاحية إنشاء هذه الصفحة.",
 	"missing-revision": "المراجعة #$1 من الصفحة المسماة \"{{FULLPAGENAME}}\" غير موجودة.\n\nهذا يحدث عادة عن طريق اتباع وصلة تاريخ قديمة لصفحة تم حذفها.\nالتفاصيل يمكن إيجادها في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
+	"missing-revision-content": "تعذر تحميل المراجعة #$1 من الصفحة المسماة \"$2\".",
 	"userpage-userdoesnotexist": "حساب المستخدم \"<nowiki>$1</nowiki>\" غير مسجل.\nمن فضلك تأكد أنك تريد إنشاء/تعديل هذه الصفحة.",
 	"userpage-userdoesnotexist-view": "حساب المستخدم \"$1\" غير مسجل.",
 	"blocked-notice-logextract": "هذا المستخدم ممنوع حاليا.\nآخر مدخلة في سجل المنع موفرة بالأسفل كمرجع:",

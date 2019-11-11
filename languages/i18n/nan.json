@@ -13,7 +13,8 @@
 			"Yoxem",
 			"Matěj Suchánek",
 			"Reke",
-			"LNDDYL"
+			"LNDDYL",
+			"A-lú-mih"
 		]
 	},
 	"tog-underline": "Liân-kiat oē té-sûn:",
@@ -1063,6 +1064,12 @@
 	"othercontribs": "Kin-kù $1 ê kòng-hiàn.",
 	"siteusers": "{{SITENAME}} iōng-chiá $1",
 	"simpleantispam-label": "Khòng spam kiám-cha.\n<strong>Mài</strong> thiām chit ūi!",
+	"pageinfo-title": "\"$1\" ê chu-sìn",
+	"pageinfo-header-basic": "Ki-pún chu-sìn",
+	"pageinfo-header-properties": "Ia̍h ê sèng-chit",
+	"pageinfo-display-title": "Hián-sī piau-tê",
+	"pageinfo-robot-policy": "Ke-khì-lâng chò ín-tek",
+	"pageinfo-robot-index": "Ún-chún",
 	"pageinfo-toolboxlink": "Ia̍h ê chu-sìn",
 	"markaspatrolleddiff": "Phiau-sī sûn--kòe",
 	"markedaspatrolledtext": "Í-keng phiau-sī chit ê siu-tēng-pún ū lâng sûn--kòe.",

@@ -2370,7 +2370,7 @@
 	"emailusername": "Nom d'utilisateur :",
 	"emailusernamesubmit": "Soumettre",
 	"email-legend": "Envoyer un courriel à un autre utilisateur de {{SITENAME}}",
-	"emailfrom": "De :",
+	"emailfrom": "De :",
 	"emailto": "À :",
 	"emailsubject": "Objet :",
 	"emailmessage": "Message :",

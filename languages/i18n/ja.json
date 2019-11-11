@@ -3743,6 +3743,7 @@
 	"feedback-useragent": "ユーザーエージェント:",
 	"searchsuggest-search": "{{SITENAME}}内を検索",
 	"searchsuggest-containing": "この語句を全文検索",
+	"search-match-redirect-label": "検索を完全一致にリダイレクトします",
 	"api-error-badtoken": "内部エラー: トークンが正しくありません。",
 	"api-error-emptypage": "内容がないページの新規作成は許可されていません。",
 	"api-error-publishfailed": "内部エラー: サーバーは一時ファイルを発行できませんでした。",

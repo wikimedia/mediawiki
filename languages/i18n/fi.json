@@ -1552,7 +1552,7 @@
 	"rcfilters-liveupdates-button-title-on": "Ota live-päivitykset pois käytöstä",
 	"rcfilters-liveupdates-button-title-off": "Näytä uudet muutokset niiden tapahtuessa",
 	"rcfilters-watchlist-markseen-button": "Merkitse kaikki muutokset nähdyiksi",
-	"rcfilters-watchlist-edit-watchlist-button": "Muokkaa tarkkailemiasi sivuja",
+	"rcfilters-watchlist-edit-watchlist-button": "Tee muutoksia tarkkailulistaasi",
 	"rcfilters-watchlist-showupdated": "Muutokset sivuihin, joilla et ole vieraillut sen jälkeen kun muutokset on tehty, on <strong>lihavoitu</strong> ja värimerkitty.",
 	"rcfilters-preference-label": "Käytä ilman JavaScriptiä toimivaa käyttöliittymää",
 	"rcfilters-preference-help": "Lataa tuoreimmat muutokset -näkymän ilman suodattimien haku- tai korostustoimintoa.",

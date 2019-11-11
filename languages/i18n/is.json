@@ -2133,7 +2133,7 @@
 	"protect-cascadeon": "Þessi síða er vernduð vegna þess að hún er ítengd eftirfarandi {{PLURAL:$1|síðu, sem er keðjuvernduð|síðum, sem eru keðjuverndaðar}}.\nBreytingar á verndunarstigi þessarar síðu munu ekki hafa áhrif á keðjuverndunina.",
 	"protect-default": "Leyfa öllum notendum",
 	"protect-fallback": "Leyfa eingöngu notendur með „$1“ réttindi",
-	"protect-level-autoconfirmed": "Leyfa aðeins sjálfvikt staðfesta notendur",
+	"protect-level-autoconfirmed": "Leyfa aðeins sjálkrafa staðfesta notendur",
 	"protect-level-sysop": "Leyfa aðeins stjórnendur",
 	"protect-summary-desc": "[$1=$2] ($3)",
 	"protect-summary-cascade": "keðjuvörn",

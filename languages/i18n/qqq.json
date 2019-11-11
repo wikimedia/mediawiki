@@ -211,7 +211,8 @@
 			"Waldyrious",
 			"Ktrst",
 			"Quiddity",
-			"Xiplus"
+			"Xiplus",
+			"Sunny00217"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -2287,8 +2288,8 @@
 	"mostinterwikis-summary": "{{doc-specialpagesummary|mostinterwikis}}",
 	"mostrevisions": "{{doc-special|MostRevisions}}",
 	"mostrevisions-summary": "{{notranslate}}\nThe summary displayed at the top of [[Special:Mostrevisions]]. [[mw:Manual:Interface/Special pages summary|mw manual]].",
-	"prefixindex": "{{doc-special|PrefixIndex}}\nWhen the user limits the list to a certain namespace, {{msg-mw|allinnamespace}} is used instead.",
-	"prefixindex-namespace": "The page title of [[Special:PrefixIndex]] limited to a specific namespace. Similar to {{msg-mw|allinnamespace}}. $1 is the name of the namespace",
+	"prefixindex": "{{doc-special|PrefixIndex}}\nWhen the user limits the list to a certain namespace, {{msg-mw|Prefixindex-namespace}} is used instead.",
+	"prefixindex-namespace": "The page title of [[Special:PrefixIndex]] limited to a specific namespace. Similar to {{msg-mw|Allinnamespace}} and {{msg-mw|Prefixindex}}. $1 is the name of the namespace",
 	"prefixindex-summary": "{{notranslate}}\n\nThe summary displayed at the top of [[Special:Prefixindex]]. [[mw:Manual:Interface/Special pages summary|MediaWiki manual]].",
 	"prefixindex-submit": "Label on submit button in [[Special:PrefixIndex]]\n{{Identical|Show}}",
 	"prefixindex-strip": "Label for a checkbox. If the checkbox is checked, the prefix searched (do not confuse with prefix of the namespace) will be removed from the title displayed in the list. Used in [[Special:PrefixIndex]].\n\nSee the following search results:\n* [{{canonicalurl:Special:PrefixIndex|prefix=Doc&namespace=10}} Special:PrefixIndex?prefix=Doc&namespace=10] (prefix NOT stripped)\n* [{{canonicalurl:Special:PrefixIndex|prefix=Doc&namespace=10&stripprefix=1}} Special:PrefixIndex?prefix=Doc&namespace=10&stripprefix=1] (prefix stripped)",

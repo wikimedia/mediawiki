@@ -748,6 +748,7 @@
 	"noarticletext": "Obecnie ta strona nie ma zawartości.\nMożesz [[Special:Search/{{PAGENAME}}|wyszukać ten tytuł na innych stronach]],\n<span class=\"plainlinks\">[{{fullurl:{{#special:Log}}|page={{urlencode:{{FULLPAGENAMEE}}}}}} przeszukać rejestr] \nlub [{{fullurl:{{FULLPAGENAME}}|action=edit}} utworzyć tę stronę]</span>.",
 	"noarticletext-nopermission": "Ta strona nie posiada jeszcze zawartości.\nMożesz [[Special:Search/{{PAGENAME}}|wyszukać ten tytuł]] w treści innych stron\nlub <span class=\"plainlinks\">[{{fullurl:{{#special:Log}}|page={{urlencode:{{FULLPAGENAMEE}}}}}} przeszukać powiązane rejestry]</span>, ale nie masz uprawnień do utworzenia tej strony",
 	"missing-revision": "Wersja #$1 strony \"{{FULLPAGENAME}}\" nie istnieje.\n\nZazwyczaj jest to spowodowane przestarzałym linkiem do usuniętej strony. Powód usunięcia znajduje się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze].",
+	"missing-revision-content": "Zawartość wersji #$1 strony „$2” nie mogła zostać załadowana.",
 	"userpage-userdoesnotexist": "Użytkownik „$1” nie jest zarejestrowany.\nUpewnij się, czy na pewno zamierzał{{GENDER:|eś|aś|eś/aś}} utworzyć lub zmodyfikować właśnie tę stronę.",
 	"userpage-userdoesnotexist-view": "Konto użytkownika „$1” nie jest zarejestrowane.",
 	"blocked-notice-logextract": "{{GENDER:$1|Ten użytkownik|Ta użytkowniczka}} jest obecnie {{GENDER:$1|zablokowany|zablokowana}}.\nOstatni wpis rejestru blokad jest pokazany poniżej.",

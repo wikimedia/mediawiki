@@ -9,7 +9,7 @@
 	"rest-no-match": "المسار النسبي المطلوب ($1) لا يتطابق مع أي معالج معروف",
 	"rest-nonexistent-title": "العنوان المحدد ($1) غير موجود",
 	"rest-nonexistent-title-revision": "المراجعة المحددة ($1) غير موجودة للصفحة المحددة ($2)",
-	"rest-nonexistent-revision": "المراجعة  المحددة ($1) غير موجودة.",
+	"rest-nonexistent-revision": "المراجعة المحددة ($1) غير موجودة.",
 	"rest-permission-denied-title": "المستخدم ليست لديه صلاحية قراءة العنوان ($1)",
 	"rest-permission-denied-revision": "لا يمكن للمستخدم الوصول إلى المراجعة المطلوبة ($1).",
 	"rest-pagehistory-incompatible-params": "لا يمكن تحديد كلا الوسيطين \"الأقدم من\" و\"الأحدث من\"",
