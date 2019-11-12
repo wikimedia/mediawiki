@@ -1869,7 +1869,7 @@ more stuff
 	 * @param array $expiry
 	 * @param bool $cascade
 	 * @param string $reason
-	 * @param bool|null $user true if the test sysop should be used, or null
+	 * @param true|null $user true if the test sysop should be used, or null
 	 * @param string $expectedComment
 	 */
 	public function testInsertProtectNullRevision(
@@ -1885,7 +1885,7 @@ more stuff
 
 		$page = $this->createPage( __METHOD__, 'Goat' );
 
-		$user = $user === null ? $user : $this->getTestSysop()->getUser();
+		$user = $user ? $this->getTestSysop()->getUser() : null;
 
 		$result = $page->insertProtectNullRevision(
 			$revCommentMsg,

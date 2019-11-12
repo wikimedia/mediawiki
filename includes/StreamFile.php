@@ -100,7 +100,7 @@ class StreamFile {
 		global $wgTrivialMimeDetection;
 
 		$ext = strrchr( $filename, '.' );
-		$ext = $ext === false ? '' : strtolower( substr( $ext, 1 ) );
+		$ext = $ext ? strtolower( substr( $ext, 1 ) ) : '';
 
 		# trivial detection by file extension,
 		# used for thumbnails (thumb.php)
