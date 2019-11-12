@@ -234,6 +234,7 @@ $wgAutoloadLocalClasses = [
 	'CategoryPage' => __DIR__ . '/includes/page/CategoryPage.php',
 	'CategoryPager' => __DIR__ . '/includes/specials/pagers/CategoryPager.php',
 	'CategoryViewer' => __DIR__ . '/includes/CategoryViewer.php',
+	'CdbInspector' => __DIR__ . '/maintenance/cdb.php',
 	'CdnCacheUpdate' => __DIR__ . '/includes/deferred/CdnCacheUpdate.php',
 	'CdnPurgeJob' => __DIR__ . '/includes/jobqueue/jobs/CdnPurgeJob.php',
 	'CentralIdLookup' => __DIR__ . '/includes/user/CentralIdLookup.php',
