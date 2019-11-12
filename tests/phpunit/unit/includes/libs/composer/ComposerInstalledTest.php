@@ -6,7 +6,7 @@ class ComposerInstalledTest extends PHPUnit\Framework\TestCase {
 
 	public function setUp() : void {
 		parent::setUp();
-		$this->installed = __DIR__ . "/../../../data/composer/installed.json";
+		$this->installed = __DIR__ . "/../../../../data/composer/installed.json";
 	}
 
 	/**
