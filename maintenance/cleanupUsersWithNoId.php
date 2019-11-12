@@ -131,13 +131,18 @@ class CleanupUsersWithNoId extends LoggedUpdateMaintenance {
 			return;
 		}
 
+		$dbw = $this->getDB( DB_MASTER );
+		if ( !$dbw->fieldExists( $table, $idField ) ||
+			!$dbw->fieldExists( $table, $nameField )
+		) {
+			$this->output( "Skipping $table, fields $idField and/or $nameField do not exist\n" );
+			return;
+		}
+
 		$primaryKey = (array)$primaryKey;
 		$pkFilter = array_flip( $primaryKey );
-		$this->output(
-			"Beginning cleanup of $table\n"
-		);
+		$this->output( "Beginning cleanup of $table\n" );
 
-		$dbw = $this->getDB( DB_MASTER );
 		$next = '1=1';
 		$countAssigned = 0;
 		$countPrefixed = 0;
