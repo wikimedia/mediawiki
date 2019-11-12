@@ -1223,3 +1223,7 @@
 	path = extensions/FontAwesome
 	url = https://github.com/cmln/mw-font-awesome
 	branch = master
+[submodule "extensions/Preloader"]
+	path = extensions/Preloader
+	url = https://gitlab.com/troyengel/Preloader
+	branch = master
