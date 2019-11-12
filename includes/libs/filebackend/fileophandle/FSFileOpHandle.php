@@ -19,9 +19,6 @@
  * @ingroup FileBackend
  */
 
-/**
- * @see FileBackendStoreOpHandle
- */
 class FSFileOpHandle extends FileBackendStoreOpHandle {
 	/** @var string Shell command */
 	public $cmd;

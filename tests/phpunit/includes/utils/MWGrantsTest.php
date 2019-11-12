@@ -1,4 +1,5 @@
 <?php
+
 class MWGrantsTest extends MediaWikiTestCase {
 
 	protected function setUp() : void {

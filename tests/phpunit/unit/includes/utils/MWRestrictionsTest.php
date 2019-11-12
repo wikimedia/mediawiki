@@ -1,4 +1,5 @@
 <?php
+
 class MWRestrictionsTest extends MediaWikiUnitTestCase {
 
 	protected static $restrictionsForChecks;
