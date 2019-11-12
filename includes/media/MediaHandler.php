@@ -33,14 +33,14 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Media
  */
 abstract class MediaHandler {
-	const TRANSFORM_LATER = 1;
-	const METADATA_GOOD = true;
-	const METADATA_BAD = false;
-	const METADATA_COMPATIBLE = 2; // for old but backwards compatible.
+	public const TRANSFORM_LATER = 1;
+	public const METADATA_GOOD = true;
+	public const METADATA_BAD = false;
+	public const METADATA_COMPATIBLE = 2; // for old but backwards compatible.
 	/**
 	 * Max length of error logged by logErrorForExternalProcess()
 	 */
-	const MAX_ERR_LOG_SIZE = 65535;
+	private const MAX_ERR_LOG_SIZE = 65535;
 
 	/**
 	 * Get a MediaHandler for a given MIME type from the instance cache

@@ -27,7 +27,10 @@
  * @ingroup Media
  */
 class GIFHandler extends BitmapHandler {
-	const BROKEN_FILE = '0'; // value to store in img_metadata if error extracting metadata.
+	/**
+	 * Value to store in img_metadata if there was error extracting metadata
+	 */
+	private const BROKEN_FILE = '0';
 
 	public function getMetadata( $image, $filename ) {
 		try {

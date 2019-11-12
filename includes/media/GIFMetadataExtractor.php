@@ -41,12 +41,12 @@ class GIFMetadataExtractor {
 	/** @var string */
 	private static $gifTerm;
 
-	const VERSION = 1;
+	public const VERSION = 1;
 
 	// Each sub-block is less than or equal to 255 bytes.
 	// Most of the time its 255 bytes, except for in XMP
 	// blocks, where it's usually between 32-127 bytes each.
-	const MAX_SUBBLOCKS = 262144; // 5mb divided by 20.
+	private const MAX_SUBBLOCKS = 262144; // 5mb divided by 20.
 
 	/**
 	 * @throws Exception

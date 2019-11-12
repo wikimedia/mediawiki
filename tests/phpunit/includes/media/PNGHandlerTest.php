@@ -14,11 +14,19 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
+	 * @return string Value of PNGHandler::BROKEN_FILE
+	 */
+	private function brokenFile() : string {
+		$const = new ReflectionClassConstant( PNGHandler::class, 'BROKEN_FILE' );
+		return $const->getValue();
+	}
+
+	/**
 	 * @covers PNGHandler::getMetadata
 	 */
 	public function testInvalidFile() {
 		$res = $this->handler->getMetadata( null, $this->filePath . '/README' );
-		$this->assertEquals( PNGHandler::BROKEN_FILE, $res );
+		$this->assertEquals( $this->brokenFile(), $res );
 	}
 
 	/**
@@ -72,10 +80,10 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 		$this->assertEquals( $expected, $actual );
 	}
 
-	public static function provideIsMetadataValid() {
+	public function provideIsMetadataValid() {
 		// phpcs:disable Generic.Files.LineLength
 		return [
-			[ PNGHandler::BROKEN_FILE, PNGHandler::METADATA_GOOD ],
+			[ $this->brokenFile(), PNGHandler::METADATA_GOOD ],
 			[ '', PNGHandler::METADATA_BAD ],
 			[ null, PNGHandler::METADATA_BAD ],
 			[ 'Something invalid!', PNGHandler::METADATA_BAD ],

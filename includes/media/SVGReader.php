@@ -29,11 +29,11 @@
  * @ingroup Media
  */
 class SVGReader {
-	const DEFAULT_WIDTH = 512;
-	const DEFAULT_HEIGHT = 512;
-	const NS_SVG = 'http://www.w3.org/2000/svg';
-	const LANG_PREFIX_MATCH = 1;
-	const LANG_FULL_MATCH = 2;
+	private const DEFAULT_WIDTH = 512;
+	private const DEFAULT_HEIGHT = 512;
+	private const NS_SVG = 'http://www.w3.org/2000/svg';
+	public const LANG_PREFIX_MATCH = 1;
+	public const LANG_FULL_MATCH = 2;
 
 	/** @var null|XMLReader */
 	private $reader = null;

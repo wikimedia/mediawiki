@@ -29,7 +29,7 @@ use MediaWiki\Shell\Shell;
  * @ingroup Media
  */
 class DjVuHandler extends ImageHandler {
-	const EXPENSIVE_SIZE_LIMIT = 10485760; // 10MiB
+	private const EXPENSIVE_SIZE_LIMIT = 10485760; // 10MiB
 
 	/**
 	 * @return bool

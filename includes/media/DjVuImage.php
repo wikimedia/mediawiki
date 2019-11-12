@@ -40,7 +40,7 @@ class DjVuImage {
 	/**
 	 * Memory limit for the DjVu description software
 	 */
-	const DJVUTXT_MEMORY_LIMIT = 300000;
+	private const DJVUTXT_MEMORY_LIMIT = 300000;
 
 	/** @var string */
 	private $mFilename;

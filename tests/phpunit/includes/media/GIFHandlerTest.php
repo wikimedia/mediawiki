@@ -15,11 +15,19 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
+	 * @return string Value of GIFHandler::BROKEN_FILE
+	 */
+	private function brokenFile() : string {
+		$const = new ReflectionClassConstant( GIFHandler::class, 'BROKEN_FILE' );
+		return $const->getValue();
+	}
+
+	/**
 	 * @covers GIFHandler::getMetadata
 	 */
 	public function testInvalidFile() {
 		$res = $this->handler->getMetadata( null, $this->filePath . '/README' );
-		$this->assertEquals( GIFHandler::BROKEN_FILE, $res );
+		$this->assertEquals( $this->brokenFile(), $res );
 	}
 
 	/**
@@ -71,10 +79,10 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 		$this->assertEquals( $expected, $actual );
 	}
 
-	public static function provideIsMetadataValid() {
+	public function provideIsMetadataValid() {
 		// phpcs:disable Generic.Files.LineLength
 		return [
-			[ GIFHandler::BROKEN_FILE, GIFHandler::METADATA_GOOD ],
+			[ $this->brokenFile(), GIFHandler::METADATA_GOOD ],
 			[ '', GIFHandler::METADATA_BAD ],
 			[ null, GIFHandler::METADATA_BAD ],
 			[ 'Something invalid!', GIFHandler::METADATA_BAD ],

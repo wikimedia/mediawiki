@@ -32,11 +32,11 @@ use Wikimedia\XMPReader\Reader as XMPReader;
  * @ingroup Media
  */
 class JpegMetadataExtractor {
-	const MAX_JPEG_SEGMENTS = 200;
-
-	// the max segment is a sanity check.
-	// A jpeg file should never even remotely have
-	// that many segments. Your average file has about 10.
+	/**
+	 * The max segment is a sanity check. A JPEG file should never even remotely have
+	 * that many segments. Your average file has about 10.
+	 */
+	private const MAX_JPEG_SEGMENTS = 200;
 
 	/** Function to extract metadata segments of interest from jpeg files
 	 * based on GIFMetadataExtractor.
