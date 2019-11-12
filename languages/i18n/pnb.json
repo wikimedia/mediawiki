@@ -141,7 +141,7 @@
 	"hidden-category-category": "لکائیاں گٹھاں",
 	"category-subcat-count": "{{PLURAL:$2|اس گٹھ دی صرف اکو تھلے آلی نکی گٹھ اے|اس گٹھ دیاں 2$ چوں   {{PLURAL:$1|نکی گٹھ|$1 نکی گٹھیاں}}}} نیں۔",
 	"category-subcat-count-limited": "اس گٹھ چ ایہ {{PLURAL:$1|نکی گٹھ|$1 نکیاں گٹھاں}} نیں۔",
-	"category-article-count": "{{PLURAL:$2|اس گٹھ چ اکو تھلے آلا صفحہ اے۔|تھلے {{PLURAL:$1|آلا صفحہ|آلے صفحے}} 2$ چوں اس گٹھ دے صفحے نیں۔}}",
+	"category-article-count": "{{PLURAL:$2|اس گٹھ چ اکو تھلے آلا صفحہ اے۔|تھلے {{PLURAL:$1|آلا صفحہ|$1 آلے صفحے}} 2$ چوں اس گٹھ دے صفحے نیں۔}}",
 	"category-article-count-limited": "اس گٹھ چ اے {{PLURAL:$1|صفحہ اے|$1 صفحے نیں}}۔",
 	"category-file-count": "{{PLURAL:$2|اس گٹھ چ صرف اکو اے فائل اے۔$2 چوں، اے {{PLURAL:$1|فائل اس گٹھ چ اے|$1 فائلاں اس گٹھ چ نیں۔}}۔}}",
 	"category-file-count-limited": "اس گٹھ چ اے {{PLURAL:$1|فائل اے|$1 فائلاں نیں}}۔",

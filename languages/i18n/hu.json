@@ -266,7 +266,7 @@
 	"pool-errorunknown": "Ismeretlen hiba",
 	"pool-servererror": "A pool counter szolgáltatás nem elérhető ($1).",
 	"poolcounter-usage-error": "Használati hiba: $1",
-	"aboutsite": "A {{SITENAME}} wikiről",
+	"aboutsite": "A(z) {{SITENAME}} wikiről",
 	"aboutpage": "Project:Rólunk",
 	"copyright": "A tartalom további jelölés hiányában a(z) $1 feltételei szerint használható fel.",
 	"copyrightpage": "{{ns:project}}:Szerzői jogok",

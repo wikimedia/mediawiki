@@ -9,7 +9,7 @@
 	"rest-no-match": "Le cammino relative requestate ($1) non corresponde a un gestor cognoscite",
 	"rest-nonexistent-title": "Le titulo specificate ($1) non existe",
 	"rest-nonexistent-title-revision": "Le version specificate ($1) non existe pro le pagina specificate ($2)",
-	"rest-nonexistent-revision": "Le version requestate ($1) non existe.",
+	"rest-nonexistent-revision": "Le version specificate ($1) non existe",
 	"rest-permission-denied-title": "Le usator non ha le derecto de leger le titulo ($1)",
 	"rest-pagehistory-incompatible-params": "Le parametros \"older_than\" e \"newer_than\" non pote esser specificate simultaneemente",
 	"rest-pagehistory-param-range-error": "Le ID del version debe esser superior a 0",
