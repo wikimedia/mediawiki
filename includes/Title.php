@@ -3693,46 +3693,34 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return bool
 	 */
 	public function isSingleRevRedirect() {
-		global $wgContentHandlerUseDB;
-
 		$dbw = wfGetDB( DB_MASTER );
+		$dbw->startAtomic( __METHOD__ );
 
-		# Is it a redirect?
-		$fields = [ 'page_is_redirect', 'page_latest', 'page_id' ];
-		if ( $wgContentHandlerUseDB ) {
-			$fields[] = 'page_content_model';
-		}
-
-		$row = $dbw->selectRow( 'page',
-			$fields,
+		$row = $dbw->selectRow(
+			'page',
+			self::getSelectFields(),
 			$this->pageCond(),
 			__METHOD__,
 			[ 'FOR UPDATE' ]
 		);
-		# Cache some fields we may want
-		$this->mArticleID = $row ? intval( $row->page_id ) : 0;
-		$this->mRedirect = $row ? (bool)$row->page_is_redirect : false;
-		$this->mLatestID = $row ? intval( $row->page_latest ) : false;
-		$this->mContentModel = $row && isset( $row->page_content_model )
-			? strval( $row->page_content_model )
-			: false;
+		// Update the cached fields
+		$this->loadFromRow( $row );
 
-		if ( !$this->mRedirect ) {
-			return false;
+		if ( $this->mRedirect && $this->mLatestID ) {
+			$isSingleRevRedirect = !$dbw->selectField(
+				'revision',
+				'1',
+				[ 'rev_page' => $this->mArticleID,  'rev_id != ' . (int)$this->mLatestID ],
+				__METHOD__,
+				[ 'FOR UPDATE' ]
+			);
+		} else {
+			$isSingleRevRedirect = false;
 		}
-		# Does the article have a history?
-		$row = $dbw->selectField( [ 'page', 'revision' ],
-			'rev_id',
-			[ 'page_namespace' => $this->mNamespace,
-				'page_title' => $this->mDbkeyform,
-				'page_id=rev_page',
-				'page_latest != rev_id'
-			],
-			__METHOD__,
-			[ 'FOR UPDATE' ]
-		);
-		# Return true if there was no history
-		return ( $row === false );
+
+		$dbw->endAtomic( __METHOD__ );
+
+		return $isSingleRevRedirect;
 	}
 
 	/**
