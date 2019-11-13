@@ -3504,7 +3504,7 @@
 	"logentry-partialblock-block-page": "$2 {{PLURAL:$1|문서를}}",
 	"logentry-partialblock-block-ns": "$2 {{PLURAL:$1|이름공간}}을",
 	"logentry-partialblock-block": "$1님이 $7 편집하지 못하도록 {{GENDER:$4|$3}}님을 $5 {{GENDER:$2|차단}}했습니다. $6",
-	"logentry-partialblock-reblock": "$1님이 $7에 대하여 {{GENDER:$4|$3}}님의 편집을 막는 차단 설정을 $5 $6으로 {{GENDER:$2|변경}}했습니다.",
+	"logentry-partialblock-reblock": "$1님이 $7 편집하지 못하도록 {{GENDER:$4|$3}}님에 대한 차단 설정을 $5 $6으로 {{GENDER:$2|변경}}했습니다.",
 	"logentry-non-editing-block-block": "$1님이 {{GENDER:$4|$3}}님을 편집 이외의 특정한 행위를 하지 못하도록 $5 {{GENDER:$2|차단}}했습니다. $6",
 	"logentry-non-editing-block-reblock": "$1님이 {{GENDER:$4|$3}}님의 편집 이외의 특정한 행위를 막는 차단 설정을 $5 $6으로 {{GENDER:$2|변경}}했습니다.",
 	"logentry-suppress-block": "$1님이 {{GENDER:$4|$3}} 사용자를 $5 {{GENDER:$2|차단했습니다}} $6",

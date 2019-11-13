@@ -705,6 +705,7 @@
 	"noarticletext": "Actualment no hi ha text en aquesta pàgina.\nPodeu [[Special:Search/{{PAGENAME}}|cercar aquest títol]] en altres pàgines,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar en els registres]\no [{{fullurl:{{FULLPAGENAME}}|action=edit}} crear-la ara]</span>.",
 	"noarticletext-nopermission": "Actualment no hi ha text en aquesta pàgina.\nPodeu [[Special:Search/{{PAGENAME}}|cercar aquest títol]] en altres pàgines o bé <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar en els registres relacionats]</span>, però no teniu permisos per crear la pàgina.",
 	"missing-revision": "La revisió núm. $1 de la pàgina anomenada «{{FULLPAGENAME}}» no existeix.\n\nNormalment això ocorre quan seguiu un enllaç d’historial desactualitzat que apunta a una pàgina que s’ha suprimit.\nPodeu trobar detalls en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre de supressions].",
+	"missing-revision-content": "No s’ha pogut carregar el contingut de la revisió núm. $1 de la pàgina «$2».",
 	"userpage-userdoesnotexist": "Atenció: El compte d'usuari «<nowiki>$1</nowiki>» no està registrat. En principi no hauríeu de crear ni editar aquesta pàgina.",
 	"userpage-userdoesnotexist-view": "El compte d'usuari \"$1\" no està registrat.",
 	"blocked-notice-logextract": "En aquests moments aquest compte d'usuari es troba blocat.\nPer més detalls, la darrera entrada del registre es mostra a continuació:",

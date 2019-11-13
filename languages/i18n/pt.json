@@ -205,7 +205,7 @@
 	"category_header": "Páginas na categoria \"$1\"",
 	"subcategories": "Subcategorias",
 	"category-media-header": "Multimédia na categoria \"$1\"",
-	"category-empty": "<em>Esta categoria atualmente não contém nenhuma página ou mediateca.</em>",
+	"category-empty": "<em>Esta categoria atualmente não contém nenhuma página ou ficheiro multimédia.</em>",
 	"hidden-categories": "{{PLURAL:$1|Categoria oculta|Categorias ocultas}}",
 	"hidden-category-category": "Categorias ocultas",
 	"category-subcat-count": "{{PLURAL:$2|Esta categoria só contém a seguinte subcategoria.|Esta categoria contém {{PLURAL:$1|a seguinte subcategoria|as seguintes $1 subcategorias}} (de um total de $2).}}",

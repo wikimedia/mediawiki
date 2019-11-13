@@ -2144,7 +2144,7 @@
 	"ipb_expiry_old": "Beigu termiņš ir pagātnē.",
 	"ipb_expiry_temp": "Slēpto lietotājvārdu bloķēšanai jābūt beztermiņa.",
 	"ipb_already_blocked": "\"$1\" jau ir bloķēts",
-	"ipb-needreblock": "$1 jau ir bloķēts.\nVai tu gribi izmainīt bloka uzstādījumus?",
+	"ipb-needreblock": "$1 jau ir bloķēts.\nVai vēlies izmainīt bloka iestatījumus?",
 	"ipb-otherblocks-header": "{{PLURAL:$1|Citi bloki|Cits bloks|Citi bloki}}",
 	"unblock-hideuser": "Šo lietotāju nevar atbloķēt, jo tā lietotājvārds ir paslēpts.",
 	"ipb_cant_unblock": "Kļūda: Bloka ID $1 nav atrasts.\nTas, iespējams, jau ir atbloķēts.",

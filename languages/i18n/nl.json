@@ -3603,6 +3603,8 @@
 	"feedback-useragent": "Useragent:",
 	"searchsuggest-search": "Doorzoek {{SITENAME}}",
 	"searchsuggest-containing": "bevat...",
+	"search-match-redirect-label": "Doorverwijzen naar een exacte overeenkomst bij het zoeken",
+	"search-match-redirect-help": "Selecteer deze optie om doorverwezen te worden naar een pagina wanneer de pagina titel overeenkomt met de zoekopdracht",
 	"api-error-badtoken": "Interne fout: Foutief token.",
 	"api-error-emptypage": "Het aanmaken van nieuwe, lege pagina's is niet toegestaan.",
 	"api-error-publishfailed": "Interne fout: de server kon het tijdelijke bestand niet publiceren.",

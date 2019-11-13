@@ -1785,6 +1785,7 @@
 	"block-log-flags-nousertalk": "ne povas redaktar lua propra diskuto-pagino",
 	"range_block_disabled": "Ne permisesas al administrero blokusar grupi di IP.",
 	"ipb_expiry_invalid": "Nevalida expiro-tempo.",
+	"ipb_already_blocked": "\"$1\" ja esis blokuzata.",
 	"ipb-needreblock": "$1 ja esas blokusata. Ka vu deziras modifikar la selekti?",
 	"ipb-otherblocks-header": "Altra {{PLURAL:$1|blokuso|blokusi}}",
 	"ip_range_invalid": "Nevalida IP-rango.",
