@@ -90,7 +90,7 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 
 	public function provideDecompress() {
 		yield '(no legacy encoding), empty in empty out' => [ false, '', [], '' ];
-		yield '(no legacy encoding), empty in empty out' => [ false, 'A', [], 'A' ];
+		yield '(no legacy encoding), string in string out' => [ false, 'A', [], 'A' ];
 		yield '(no legacy encoding), error flag -> false' => [ false, 'X', [ 'error' ], false ];
 		yield '(no legacy encoding), string in with gzip flag returns string' => [
 			// gzip string below generated with gzdeflate( 'AAAABBAAA' )
