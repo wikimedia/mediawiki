@@ -53,7 +53,6 @@ class SpecialListRedirects extends QueryPage {
 			'tables' => [ 'p1' => 'page', 'redirect', 'p2' => 'page' ],
 			'fields' => [ 'namespace' => 'p1.page_namespace',
 				'title' => 'p1.page_title',
-				'value' => 'p1.page_title',
 				'rd_namespace',
 				'rd_title',
 				'rd_fragment',

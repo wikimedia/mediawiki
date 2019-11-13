@@ -5978,6 +5978,7 @@ class Parser {
 	 * @deprecated since 1.28; use getOutput()->updateCacheExpiry()
 	 */
 	public function disableCache() {
+		wfDeprecated( __METHOD__, '1.28' );
 		$this->logger->debug( "Parser output marked as uncacheable." );
 		if ( !$this->mOutput ) {
 			throw new MWException( __METHOD__ .

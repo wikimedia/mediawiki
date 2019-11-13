@@ -72,7 +72,7 @@ $wgConfigRegistry = [
  * MediaWiki version number
  * @since 1.2
  */
-$wgVersion = '1.34.0-rc.0';
+$wgVersion = '1.34.0-rc.1';
 
 /**
  * Name of the site. It must be changed in LocalSettings.php
@@ -8487,10 +8487,23 @@ $wgUpdateRowsPerQuery = 100;
  */
 
 /**
- * Name of the external diff engine to use. Supported values:
- * * string: path to an external diff executable
- * * false: wikidiff2 PHP/HHVM module if installed, otherwise the default PHP implementation
- * * 'wikidiff', 'wikidiff2', and 'wikidiff3' are treated as false for backwards compatibility
+ * Specify the difference engine to use.
+ *
+ * Supported values:
+ * - 'external': Use an external diff engine, which must be specified via $wgExternalDiffEngine
+ * - 'wikidiff2': Use the wikidiff2 PHP extension
+ * - 'php': PHP implementations included in MediaWiki
+ *
+ * The default (null) is to use the first engine that's available.
+ *
+ * @since 1.34
+ * @var string|null
+ */
+$wgDiffEngine = null;
+
+/**
+ * Name of the external diff engine to use.
+ * @var string|false Path to an external diff executable
  */
 $wgExternalDiffEngine = false;
 

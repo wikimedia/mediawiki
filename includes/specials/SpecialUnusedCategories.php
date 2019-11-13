@@ -37,13 +37,16 @@ class SpecialUnusedCategories extends QueryPage {
 		return $this->msg( 'unusedcategoriestext' )->parseAsBlock();
 	}
 
+	function getOrderFields() {
+		return [ 'title' ];
+	}
+
 	public function getQueryInfo() {
 		return [
 			'tables' => [ 'page', 'categorylinks', 'page_props' ],
 			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
-				'value' => 'page_title'
 			],
 			'conds' => [
 				'cl_from IS NULL',

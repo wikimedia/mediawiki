@@ -651,7 +651,7 @@ abstract class ContentHandler {
 		$slotDiffRenderer->setLanguage( $contentLanguage );
 
 		$engine = DifferenceEngine::getEngine();
-		if ( $engine === false ) {
+		if ( $engine === 'php' ) {
 			$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_PHP );
 		} elseif ( $engine === 'wikidiff2' ) {
 			$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_WIKIDIFF2 );
