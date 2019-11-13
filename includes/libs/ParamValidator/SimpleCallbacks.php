@@ -2,6 +2,7 @@
 
 namespace Wikimedia\ParamValidator;
 
+use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\Util\UploadedFile;
 
 /**
@@ -21,7 +22,7 @@ class SimpleCallbacks implements Callbacks {
 	/** @var (array|UploadedFile)[] $_FILES data or UploadedFile instances */
 	private $files;
 
-	/** @var array Any recorded conditions */
+	/** @var array[] Any recorded conditions */
 	private $conditions = [];
 
 	/**
@@ -54,8 +55,15 @@ class SimpleCallbacks implements Callbacks {
 		return $file;
 	}
 
-	public function recordCondition( ValidationException $condition, array $options ) {
-		$this->conditions[] = $condition;
+	public function recordCondition(
+		DataMessageValue $message, $name, $value, array $settings, array $options
+	) {
+		$this->conditions[] = [
+			'message' => $message,
+			'name' => $name,
+			'value' => $value,
+			'settings' => $settings,
+		];
 	}
 
 	/**

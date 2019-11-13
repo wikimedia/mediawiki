@@ -2,7 +2,9 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
+use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\Callbacks;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef;
 use Wikimedia\ParamValidator\ValidationException;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
@@ -17,7 +19,7 @@ use Wikimedia\Timestamp\TimestampException;
  * The result from validate() is a ConvertibleTimestamp by default, but this
  * may be changed by both a constructor option and a PARAM constant.
  *
- * ValidationException codes:
+ * Failure codes:
  *  - 'badtimestamp': The timestamp is not valid. No data, but the
  *    TimestampException is available via Exception::getPrevious().
  *  - 'unclearnowtimestamp': Non-fatal. The value is the empty string or "0".
@@ -64,17 +66,18 @@ class TimestampDef extends TypeDef {
 	public function validate( $name, $value, array $settings, array $options ) {
 		// Confusing synonyms for the current time accepted by ConvertibleTimestamp
 		if ( !$value ) {
-			$this->callbacks->recordCondition(
-				new ValidationException( $name, $value, $settings, 'unclearnowtimestamp', [] ),
-				$options
-			);
+			$this->failure( 'unclearnowtimestamp', $name, $value, $settings, $options, false );
 			$value = 'now';
 		}
 
 		try {
 			$timestamp = new ConvertibleTimestamp( $value === 'now' ? false : $value );
 		} catch ( TimestampException $ex ) {
-			throw new ValidationException( $name, $value, $settings, 'badtimestamp', [], $ex );
+			// $this->failure() doesn't handle passing a previous exception
+			throw new ValidationException(
+				$this->failureMessage( 'badtimestamp' )->plaintextParams( $name, $value ),
+				$name, $value, $settings, $ex
+			);
 		}
 
 		$format = $settings[self::PARAM_TIMESTAMP_FORMAT] ?? $this->defaultFormat;
@@ -96,6 +99,15 @@ class TimestampDef extends TypeDef {
 			$value = new ConvertibleTimestamp( $value );
 		}
 		return $value->getTimestamp( $this->stringifyFormat );
+	}
+
+	public function getHelpInfo( $name, array $settings, array $options ) {
+		$info = parent::getHelpInfo( $name, $settings, $options );
+
+		$info[ParamValidator::PARAM_TYPE] = MessageValue::new( 'paramvalidator-help-type-timestamp' )
+			->params( empty( $settings[ParamValidator::PARAM_ISMULTI] ) ? 1 : 2 );
+
+		return $info;
 	}
 
 }

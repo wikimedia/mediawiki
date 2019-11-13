@@ -21,10 +21,24 @@ class PresenceBooleanDefTest extends TypeDefTestCase {
 		];
 	}
 
-	public function provideDescribeSettings() {
+	public function provideNormalizeSettings() {
 		return [
-			[ [], [], [] ],
-			[ [ ParamValidator::PARAM_DEFAULT => 'foo' ], [], [] ],
+			[ [], [ ParamValidator::PARAM_ISMULTI => false ] ],
+			[ [ ParamValidator::PARAM_ISMULTI => true ], [ ParamValidator::PARAM_ISMULTI => false ] ],
+		];
+	}
+
+	public function provideGetInfo() {
+		return [
+			'Basic test' => [
+				[],
+				[ 'default' => null ],
+				[
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-presenceboolean"><text>1</text></message>',
+					ParamValidator::PARAM_DEFAULT => null,
+				],
+			],
 		];
 	}
 

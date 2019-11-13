@@ -3,6 +3,7 @@
 namespace Wikimedia\ParamValidator;
 
 use Psr\Http\Message\UploadedFileInterface;
+use Wikimedia\Message\DataMessageValue;
 
 /**
  * Interface defining callbacks needed by ParamValidator
@@ -59,10 +60,15 @@ interface Callbacks {
 
 	/**
 	 * Record non-fatal conditions.
-	 * @param ValidationException $condition
+	 * @param DataMessageValue $message Failure message
+	 * @param string $name Parameter name
+	 * @param mixed $value Parameter value
+	 * @param array $settings Parameter settings array
 	 * @param array $options Options array
 	 */
-	public function recordCondition( ValidationException $condition, array $options );
+	public function recordCondition(
+		DataMessageValue $message, $name, $value, array $settings, array $options
+	);
 
 	/**
 	 * Indicate whether "high limits" should be used.

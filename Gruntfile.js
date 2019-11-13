@@ -49,7 +49,8 @@ module.exports = function ( grunt ) {
 			exif: 'languages/i18n/exif/',
 			api: 'includes/api/i18n/',
 			rest: 'includes/Rest/i18n/',
-			installer: 'includes/installer/i18n/'
+			installer: 'includes/installer/i18n/',
+			paramvalidator: 'includes/libs/ParamValidator/i18n/'
 		},
 		stylelint: {
 			src: '{resources/src,mw-config}/**/*.{css,less}'
