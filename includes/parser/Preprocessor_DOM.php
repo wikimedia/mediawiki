@@ -45,9 +45,9 @@ class Preprocessor_DOM extends Preprocessor {
 		$this->parser = $parser;
 		$mem = ini_get( 'memory_limit' );
 		$this->memoryLimit = false;
-		if ( strval( $mem ) !== '' && $mem != -1 ) {
-			if ( preg_match( '/^\d+$/', $mem ) ) {
-				$this->memoryLimit = $mem;
+		if ( $mem > 0 ) {
+			if ( ctype_digit( (string)$mem ) ) {
+				$this->memoryLimit = (int)$mem;
 			} elseif ( preg_match( '/^(\d+)M$/i', $mem, $m ) ) {
 				$this->memoryLimit = $m[1] * 1048576;
 			}
