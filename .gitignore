@@ -87,3 +87,6 @@ Thumbs.db
 /.htpasswd
 /tests/phan/issues
 *.rej
+
+# Docker
+docker-compose.override.yml

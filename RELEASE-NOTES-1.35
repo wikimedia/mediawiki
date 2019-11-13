@@ -90,6 +90,9 @@ For notes on 1.34.x and older releases, see HISTORY.
 * …
 
 === New developer features in 1.35 ===
+* A Docker based local development develpoment environment configuration is
+  included (T238224) and DEVELOPERS.md has been added with usage documentation
+  and links to further help.
 * If CSP is enabled, extensions can now add additional sources using the
   ContentSecurityPolicy::addDefaultSource, ::addStyleSrc and ::addScriptSrc
   methods (e.g. $context->getOutput()->getCSP()->addDefaultSrc( 'example.com' ))
