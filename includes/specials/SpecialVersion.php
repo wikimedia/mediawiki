@@ -818,11 +818,10 @@ class SpecialVersion extends SpecialPage {
 			$versionString .= " {$vcsVerString}";
 
 			if ( $vcsDate ) {
-				$vcsTimeString = Html::element( 'span',
-					[ 'class' => 'mw-version-ext-vcs-timestamp' ],
-					$this->getLanguage()->timeanddate( $vcsDate, true )
-				);
-				$versionString .= " {$vcsTimeString}";
+				$versionString .= ' ' . Html::element( 'span', [
+					'class' => 'mw-version-ext-vcs-timestamp',
+					'dir' => $this->getLanguage()->getDir(),
+				], $this->getLanguage()->timeanddate( $vcsDate, true ) );
 			}
 			$versionString = Html::rawElement( 'span',
 				[ 'class' => 'mw-version-ext-meta-version' ],
