@@ -5881,6 +5881,72 @@ class Parser {
 	}
 
 	/**
+	 * Get an array of preprocessor section information.
+	 *
+	 * Preprocessor sections are those identified by wikitext-style syntax, not
+	 * HTML-style syntax. Templates are not expanded, so these sections do not
+	 * include sections created by templates or parser functions. This is the
+	 * same definition of a section as used by section editing, but not the
+	 * same as TOC generation.
+	 *
+	 * These sections are typically smaller than those acted on by getSection() and
+	 * replaceSection() since they are not nested. Section nesting could be
+	 * reconstructed from the heading levels.
+	 *
+	 * The return value is an array of associative array info structures. Each
+	 * associative array contains the following keys, describing a section:
+	 *
+	 *  - index: An integer identifying the section.
+	 *  - level: The heading level, e.g. 1 for <h1>. For the section before the
+	 *    the first heading, this will be 0.
+	 *  - offset: The byte offset within the wikitext at which the section starts
+	 *  - heading: The wikitext for the header which introduces the section,
+	 *    including equals signs. For the section before the first heading, this
+	 *    will be an empty string.
+	 *  - text: The complete text of the section.
+	 *
+	 * @param string $text
+	 * @return array[]
+	 */
+	public function getFlatSectionInfo( $text ) {
+		$magicScopeVariable = $this->lock();
+		$this->startParse( null, new ParserOptions, self::OT_PLAIN, true );
+		$frame = $this->getPreprocessor()->newFrame();
+		$root = $this->preprocessToDom( $text, 0 );
+		$node = $root->getFirstChild();
+		$offset = 0;
+		$currentSection = [
+			'index' => 0,
+			'level' => 0,
+			'offset' => 0,
+			'heading' => '',
+			'text' => ''
+		];
+		$sections = [];
+
+		while ( $node ) {
+			$nodeText = $frame->expand( $node, PPFrame::RECOVER_ORIG );
+			if ( $node->getName() === 'h' ) {
+				$bits = $node->splitHeading();
+				$sections[] = $currentSection;
+				$currentSection = [
+					'index' => $bits['i'],
+					'level' => $bits['level'],
+					'offset' => $offset,
+					'heading' => $nodeText,
+					'text' => $nodeText
+				];
+			} else {
+				$currentSection['text'] .= $nodeText;
+			}
+			$offset += strlen( $nodeText );
+			$node = $node->getNextSibling();
+		}
+		$sections[] = $currentSection;
+		return $sections;
+	}
+
+	/**
 	 * Get the ID of the revision we are parsing
 	 *
 	 * The return value will be either:
