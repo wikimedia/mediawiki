@@ -8,15 +8,17 @@
  *
  */
 
+$fallback = 'fr, es, ru';
+
 $namespaceNames = [
-	NS_MEDIA            => 'Mamind',
+	NS_MEDIA            => 'Kanaca',
 	NS_SPECIAL          => 'Aptaca',
 	NS_TALK             => 'Prilara',
 	NS_USER             => 'Favesik',
 	NS_USER_TALK        => 'Favesikprilara',
 	NS_PROJECT_TALK     => '$1_prilara',
-	NS_FILE             => 'Ewava',
-	NS_FILE_TALK        => 'Ewavaprilara',
+	NS_FILE             => 'Iyeltak',
+	NS_FILE_TALK        => 'Iyeltakprilara',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_prilara',
 	NS_TEMPLATE         => 'Teza',
@@ -25,6 +27,12 @@ $namespaceNames = [
 	NS_HELP_TALK        => 'Pomaraprilara',
 	NS_CATEGORY         => 'Loma',
 	NS_CATEGORY_TALK    => 'Lomaprilara',
+];
+
+$namespaceAliases = [
+	'Mamind' => NS_MEDIA,
+	'Ewava' => NS_FILE,
+	'Ewavaprilara' => NS_FILE_TALK,
 ];
 
 $specialPageAliases = [
