@@ -2653,7 +2653,7 @@
 	"noautoblockblock": "automatyczne blokowanie wyłączone",
 	"createaccountblock": "blokada tworzenia kont",
 	"emailblock": "zablokowany e‐mail",
-	"blocklist-nousertalk": "nie mogą edytować własnych stron dyskusji",
+	"blocklist-nousertalk": "nie może edytować swojej strony dyskusji",
 	"blocklist-editing": "edytowanie",
 	"blocklist-editing-sitewide": "edytowanie całej strony",
 	"blocklist-editing-page": "strony",

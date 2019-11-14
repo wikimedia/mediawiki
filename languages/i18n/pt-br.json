@@ -2673,7 +2673,7 @@
 	"ipblocklist-legend": "Procurar por um usuário bloqueado",
 	"blocklist-userblocks": "Esconder bloqueios de contas",
 	"blocklist-tempblocks": "Esconder bloqueios temporários",
-	"blocklist-indefblocks": "Ocultar bloqueios indefinidos",
+	"blocklist-indefblocks": "Ocultar bloqueios sem fim definido",
 	"blocklist-addressblocks": "Esconder bloqueios de IP único",
 	"blocklist-type": "Tipo:",
 	"blocklist-type-opt-all": "Todos",

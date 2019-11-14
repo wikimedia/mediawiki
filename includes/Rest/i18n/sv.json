@@ -12,7 +12,7 @@
 	"rest-nonexistent-title-revision": "Den angivna sidversionen ($1) finns inte för den specificerade sidan ($2)",
 	"rest-nonexistent-revision": "Den angivna sidversionen ($1) finns inte",
 	"rest-permission-denied-title": "Användaren har inte behörighet att läsa titeln ($1)",
-	"rest-permission-denied-revision": "Användaren har inte åtkomst till den begärda sidversionen ($1)",
+	"rest-permission-denied-revision": "Användaren har inte åtkomst till den begärda sidversionen ($1).",
 	"rest-pagehistory-incompatible-params": "Båda parametrarna \"older_than\" och \"newer_than\" kan inte specifieras",
 	"rest-pagehistory-param-range-error": "Sidversionens ID måste vara större än 0",
 	"rest-pagehistory-timestamp-error": "Kunde inte hämta tidsstämpeln för den specificerade sidversionen ($1)",
