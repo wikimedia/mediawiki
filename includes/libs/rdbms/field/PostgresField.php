@@ -17,7 +17,7 @@ class PostgresField implements Field {
 SELECT
  attnotnull, attlen, conname AS conname,
  atthasdef,
- adsrc,
+ pg_get_expr(adbin, adrelid) AS adsrc,
  COALESCE(condeferred, 'f') AS deferred,
  COALESCE(condeferrable, 'f') AS deferrable,
  CASE WHEN typname = 'int2' THEN 'smallint'

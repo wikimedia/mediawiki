@@ -816,7 +816,7 @@ __INDEXATTR__;
 			. ' WHERE relkind = \'r\''
 			. ' AND nspname = ' . $this->addQuotes( $this->getCoreSchema() )
 			. ' AND relname = ' . $this->addQuotes( $oldName )
-			. ' AND adsrc LIKE \'nextval(%\'',
+			. ' AND pg_get_expr(adbin, adrelid) LIKE \'nextval(%\'',
 			$fname
 		);
 		$row = $this->fetchObject( $res );
@@ -851,10 +851,10 @@ __INDEXATTR__;
 			}
 
 			$oid = $this->fetchObject( $res )->oid;
-			$res = $this->query( 'SELECT adsrc FROM pg_attribute a'
+			$res = $this->query( 'SELECT pg_get_expr(adbin, adrelid) AS adsrc FROM pg_attribute a'
 				. ' JOIN pg_attrdef d ON (a.attrelid=d.adrelid and a.attnum=d.adnum)'
 				. " WHERE a.attrelid = $oid"
-				. ' AND adsrc LIKE \'nextval(%\'',
+				. ' AND pg_get_expr(adbin, adrelid) LIKE \'nextval(%\'',
 				$fname
 			);
 			$row = $this->fetchObject( $res );
