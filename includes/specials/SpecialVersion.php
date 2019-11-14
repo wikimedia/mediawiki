@@ -517,6 +517,9 @@ class SpecialVersion extends SpecialPage {
 				continue;
 			}
 			foreach ( $extensionCredits[$type] as $extension ) {
+				if ( !isset( $extension['path'] ) ) {
+					continue;
+				}
 				$paths[] = dirname( $extension['path'] ) . '/vendor/composer/installed.json';
 			}
 		}
