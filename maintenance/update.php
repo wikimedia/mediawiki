@@ -74,15 +74,6 @@ class UpdateMediaWiki extends Maintenance {
 				"https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE\n\n" .
 				"ABORTING.\n" );
 		}
-
-		$test = new PhpXmlBugTester();
-		if ( !$test->ok ) {
-			$this->fatalError(
-				"Your system has a combination of PHP and libxml2 versions that is buggy\n" .
-				"and can cause hidden data corruption in MediaWiki and other web apps.\n" .
-				"Upgrade to libxml2 2.7.3 or later.\n" .
-				"ABORTING (see https://bugs.php.net/bug.php?id=45996).\n" );
-		}
 	}
 
 	public function execute() {

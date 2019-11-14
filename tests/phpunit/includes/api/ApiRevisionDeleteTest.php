@@ -15,7 +15,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 	public static $page = 'Help:ApiRevDel_test';
 	public $revs = [];
 
-	protected function setUp() {
+	protected function setUp() : void {
 		// Needs to be before setup since this gets cached
 		$this->mergeMwGlobalArrayValue(
 			'wgGroupPermissions',

@@ -223,10 +223,19 @@ class Language {
 	 * Intended for tests that may change configuration in a way that invalidates caches.
 	 *
 	 * @since 1.32
-	 * @deprecated since 1.35. Use MediaWikiServices::resetLanguageServices() instead.
+	 * @deprecated since 1.35. Instead, reset all services and set Language::$mLangObjCache = [].
 	 */
 	public static function clearCaches() {
-		MediaWikiServices::getInstance()->resetLanguageServices();
+		wfDeprecated( __METHOD__, '1.35' );
+
+		$services = MediaWikiServices::getInstance();
+
+		$services->resetServiceForTesting( 'LanguageFallback' );
+		$services->resetServiceForTesting( 'LanguageNameUtils' );
+		$services->resetServiceForTesting( 'LocalisationCache' );
+		$services->resetServiceForTesting( 'LanguageFactory' );
+
+		self::$mLangObjCache = [];
 	}
 
 	/**
@@ -2724,7 +2733,7 @@ class Language {
 	 *
 	 * @return string
 	 */
-	function caseFold( $s ) {
+	public function caseFold( $s ) {
 		return $this->uc( $s );
 	}
 
@@ -2781,7 +2790,7 @@ class Language {
 	 * @param string $string
 	 * @return string
 	 */
-	function normalizeForSearch( $string ) {
+	public function normalizeForSearch( $string ) {
 		return self::convertDoubleWidth( $string );
 	}
 
@@ -2937,7 +2946,7 @@ class Language {
 	 *
 	 * @return bool
 	 */
-	function isRTL() {
+	public function isRTL() {
 		return $this->localisationCache->getItem( $this->mCode, 'rtl' );
 	}
 
@@ -2945,7 +2954,7 @@ class Language {
 	 * Return the correct HTML 'dir' attribute value for this language.
 	 * @return string
 	 */
-	function getDir() {
+	public function getDir() {
 		return $this->isRTL() ? 'rtl' : 'ltr';
 	}
 
@@ -2957,7 +2966,7 @@ class Language {
 	 *
 	 * @return string
 	 */
-	function alignStart() {
+	public function alignStart() {
 		return $this->isRTL() ? 'right' : 'left';
 	}
 
@@ -2969,7 +2978,7 @@ class Language {
 	 *
 	 * @return string
 	 */
-	function alignEnd() {
+	public function alignEnd() {
 		return $this->isRTL() ? 'left' : 'right';
 	}
 
@@ -2984,7 +2993,7 @@ class Language {
 	 * @return string
 	 * @since 1.20
 	 */
-	function getDirMarkEntity( $opposite = false ) {
+	public function getDirMarkEntity( $opposite = false ) {
 		if ( $opposite ) {
 			return $this->isRTL() ? '&lrm;' : '&rlm;';
 		}
@@ -3001,7 +3010,7 @@ class Language {
 	 * @param bool $opposite Get the direction mark opposite to your language
 	 * @return string
 	 */
-	function getDirMark( $opposite = false ) {
+	public function getDirMark( $opposite = false ) {
 		$lrm = "\u{200E}"; # LEFT-TO-RIGHT MARK, commonly abbreviated LRM
 		$rlm = "\u{200F}"; # RIGHT-TO-LEFT MARK, commonly abbreviated RLM
 		if ( $opposite ) {
@@ -3321,7 +3330,7 @@ class Language {
 	 * @param string[] $list Array of strings to put in a comma list
 	 * @return string
 	 */
-	function commaList( array $list ) {
+	public function commaList( array $list ) {
 		return implode(
 			wfMessage( 'comma-separator' )->inLanguage( $this )->escaped(),
 			$list
@@ -3334,7 +3343,7 @@ class Language {
 	 * @param string[] $list Array of strings to put in a semicolon list
 	 * @return string
 	 */
-	function semicolonList( array $list ) {
+	public function semicolonList( array $list ) {
 		return implode(
 			wfMessage( 'semicolon-separator' )->inLanguage( $this )->escaped(),
 			$list
@@ -3346,7 +3355,7 @@ class Language {
 	 * @param string[] $list Array of strings to put in a pipe list
 	 * @return string
 	 */
-	function pipeList( array $list ) {
+	public function pipeList( array $list ) {
 		return implode(
 			wfMessage( 'pipe-separator' )->inLanguage( $this )->escaped(),
 			$list
@@ -3368,7 +3377,7 @@ class Language {
 	 *
 	 * @return string
 	 */
-	function truncateForDatabase( $string, $length, $ellipsis = '...', $adjustLength = true ) {
+	public function truncateForDatabase( $string, $length, $ellipsis = '...', $adjustLength = true ) {
 		return $this->truncateInternal(
 			$string, $length, $ellipsis, $adjustLength, 'strlen', 'substr'
 		);
@@ -3392,7 +3401,7 @@ class Language {
 	 *
 	 * @return string
 	 */
-	function truncateForVisual( $string, $length, $ellipsis = '...', $adjustLength = true ) {
+	public function truncateForVisual( $string, $length, $ellipsis = '...', $adjustLength = true ) {
 		// Passing encoding to mb_strlen and mb_substr is optional.
 		// Encoding defaults to mb_internal_encoding(), which is set to UTF-8 in Setup.php, so
 		// explicit specification of encoding is skipped.
@@ -3523,7 +3532,7 @@ class Language {
 	 * @param string $ellipsis String to append to the truncated text
 	 * @return string
 	 */
-	function truncateHtml( $text, $length, $ellipsis = '...' ) {
+	public function truncateHtml( $text, $length, $ellipsis = '...' ) {
 		# Use the localized ellipsis character
 		if ( $ellipsis == '...' ) {
 			$ellipsis = wfMessage( 'ellipsis' )->inLanguage( $this )->escaped();
@@ -3687,7 +3696,7 @@ class Language {
 	 * @param string $case
 	 * @return string
 	 */
-	function convertGrammar( $word, $case ) {
+	public function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
 		if ( isset( $wgGrammarForms[$this->getCode()][$case][$word] ) ) {
 			return $wgGrammarForms[$this->getCode()][$case][$word];
@@ -3795,7 +3804,7 @@ class Language {
 	 *
 	 * @return string
 	 */
-	function gender( $gender, $forms ) {
+	public function gender( $gender, $forms ) {
 		if ( !count( $forms ) ) {
 			return '';
 		}
@@ -3824,7 +3833,7 @@ class Language {
 	 * @param array $forms Different plural forms
 	 * @return string Correct form of plural for $count in this language
 	 */
-	function convertPlural( $count, $forms ) {
+	public function convertPlural( $count, $forms ) {
 		// Handle explicit n=pluralform cases
 		$forms = $this->handleExplicitPluralForms( $count, $forms );
 		if ( is_string( $forms ) ) {
@@ -3922,7 +3931,7 @@ class Language {
 	 * @return string Somehow translated block duration
 	 * @see LanguageFi.php for example implementation
 	 */
-	function translateBlockExpiry( $str, User $user = null, $now = 0 ) {
+	public function translateBlockExpiry( $str, User $user = null, $now = 0 ) {
 		$duration = SpecialBlock::getSuggestedDurations( $this );
 		foreach ( $duration as $show => $value ) {
 			if ( strcmp( $str, $value ) == 0 ) {
@@ -4479,7 +4488,7 @@ class Language {
 	 *     or 'avoidminutes'.
 	 * @return string
 	 */
-	function formatTimePeriod( $seconds, $format = [] ) {
+	public function formatTimePeriod( $seconds, $format = [] ) {
 		if ( !is_array( $format ) ) {
 			$format = [ 'avoid' => $format ]; // For backwards compatibility
 		}
@@ -4586,7 +4595,7 @@ class Language {
 	 * @param int $bps
 	 * @return string
 	 */
-	function formatBitrate( $bps ) {
+	public function formatBitrate( $bps ) {
 		return $this->formatComputingNumbers( $bps, 1000, "bitrate-$1bits" );
 	}
 
@@ -4596,7 +4605,7 @@ class Language {
 	 * @param string $messageKey Message key to be uesd
 	 * @return string
 	 */
-	function formatComputingNumbers( $size, $boundary, $messageKey ) {
+	public function formatComputingNumbers( $size, $boundary, $messageKey ) {
 		if ( $size <= 0 ) {
 			return str_replace( '$1', $this->formatNum( $size ),
 				$this->getMessageFromDB( str_replace( '$1', '', $messageKey ) )
@@ -4634,7 +4643,7 @@ class Language {
 	 * @param int $size Size to format
 	 * @return string Plain text (not HTML)
 	 */
-	function formatSize( $size ) {
+	public function formatSize( $size ) {
 		return $this->formatComputingNumbers( $size, 1024, "size-$1bytes" );
 	}
 

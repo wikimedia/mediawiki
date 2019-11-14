@@ -855,6 +855,7 @@ class ParserOutput extends CacheTime {
 
 	/**
 	 * @see OutputPage::addModules
+	 * @param string|array $modules
 	 */
 	public function addModules( $modules ) {
 		$this->mModules = array_merge( $this->mModules, (array)$modules );
@@ -862,6 +863,7 @@ class ParserOutput extends CacheTime {
 
 	/**
 	 * @see OutputPage::addModuleStyles
+	 * @param string|array $modules
 	 */
 	public function addModuleStyles( $modules ) {
 		$this->mModuleStyles = array_merge( $this->mModuleStyles, (array)$modules );

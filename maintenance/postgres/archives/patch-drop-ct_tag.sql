@@ -7,4 +7,3 @@ DROP INDEX /*i*/change_tag_rev_tag_nonuniq;
 DROP INDEX /*i*/change_tag_tag_id;
 
 ALTER TABLE /*_*/change_tag DROP COLUMN ct_tag;
-

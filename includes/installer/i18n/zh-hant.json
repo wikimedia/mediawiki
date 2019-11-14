@@ -98,7 +98,6 @@
 	"config-using-uri": "使用伺服器 URL  \"<nowiki>$1$2</nowiki>\"。",
 	"config-uploads-not-safe": "<strong>警告：</strong>您預設的上傳目錄 <code>$1</code> 有可被任意執行 Script 的漏洞。\n雖然 MediaWiki 會對所有上傳的檔案進行安全檢查，但我們仍強烈建議您在開啟上傳功能前了解如何 [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security 關閉此安全漏洞]。",
 	"config-no-cli-uploads-check": "<strong>警告：</strong>透過指令介面安不會檢查您預設的上傳目錄 (<code>$1</code>) 是否有可任意執行 Script 的安全性漏洞。",
-	"config-brokenlibxml": "您的系統使用了可能造成 MediaWiki 或其他網頁應用程式資料損毀問題的 PHP 與 limbxml2 版本。\n請升級 libxml2 2.7.3 或更新的版本 ([https://bugs.php.net/bug.php?id=45996 PHP 問題報告])。\n安裝已中止。",
 	"config-suhosin-max-value-length": "Suhosin 已安裝並且限制 GET 參數的長度 <code>length</code> 為 $1 位元組。\nMediaWiki 需要 <code>suhosin.get.max_value_length</code> 至少為 $2。請在 <code>php.ini</code> 停用此設定，或是將此值增加成 $3。",
 	"config-using-32bit": "<strong>警告：</strong>您的系統似乎是 32 位元系統，[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit 不推薦]您使用。",
 	"config-db-type": "資料庫類型：",

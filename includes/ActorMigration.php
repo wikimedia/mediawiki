@@ -108,7 +108,10 @@ class ActorMigration {
 	/** @var int Combination of SCHEMA_COMPAT_* constants */
 	private $stage;
 
-	/** @private */
+	/**
+	 * @private
+	 * @param int $stage
+	 */
 	public function __construct( $stage ) {
 		if ( ( $stage & SCHEMA_COMPAT_WRITE_BOTH ) === 0 ) {
 			throw new InvalidArgumentException( '$stage must include a write mode' );

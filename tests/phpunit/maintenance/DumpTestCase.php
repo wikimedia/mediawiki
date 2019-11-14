@@ -107,7 +107,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		);
 	}
 
-	public static function setUpBeforeClass() {
+	public static function setUpBeforeClass() : void {
 		parent::setUpBeforeClass();
 
 		if ( !function_exists( 'libxml_set_external_entity_loader' ) ) {
@@ -142,7 +142,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 *
 	 * Clears $wgUser, and reports errors from addDBData to PHPUnit
 	 */
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		// Check if any Exception is stored for rethrowing from addDBData

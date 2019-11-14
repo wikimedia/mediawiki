@@ -85,6 +85,7 @@ class MovePage {
 	 * @param NamespaceInfo|null $nsInfo
 	 * @param WatchedItemStoreInterface|null $watchedItems
 	 * @param PermissionManager|null $permMgr
+	 * @param RepoGroup|null $repoGroup
 	 */
 	public function __construct(
 		Title $oldTitle,

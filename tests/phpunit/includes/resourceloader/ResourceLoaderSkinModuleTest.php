@@ -75,7 +75,6 @@ CSS
 	 */
 	public function testGetStyles( $parent, $logo, $expected ) {
 		$module = $this->getMockBuilder( ResourceLoaderSkinModule::class )
-			->disableOriginalConstructor()
 			->setMethods( [ 'readStyleFiles', 'getConfig', 'getLogoData' ] )
 			->getMock();
 		$module->expects( $this->once() )->method( 'readStyleFiles' )

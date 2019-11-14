@@ -6,7 +6,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	/** @var TestConverter */
 	protected $lc;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setContentLang( 'tg' );
@@ -32,7 +32,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		unset( $this->lc );
 		unset( $this->lang );
 

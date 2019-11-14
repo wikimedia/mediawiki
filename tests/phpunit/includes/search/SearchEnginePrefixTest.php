@@ -50,7 +50,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 		$this->insertPage( 'External' );
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		if ( !$this->isWikitextNS( NS_MAIN ) ) {
@@ -70,7 +70,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 		TestingAccessWrapper::newFromClass( Hooks::class )->handlers = [];
 	}
 
-	public function tearDown() {
+	public function tearDown() : void {
 		parent::tearDown();
 
 		TestingAccessWrapper::newFromClass( Hooks::class )->handlers = $this->originalHandlers;

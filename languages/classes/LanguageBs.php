@@ -38,7 +38,7 @@ class LanguageBs extends Language {
 	 *
 	 * @return string
 	 */
-	function convertGrammar( $word, $case ) {
+	public function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
 		if ( isset( $wgGrammarForms['bs'][$case][$word] ) ) {
 			return $wgGrammarForms['bs'][$case][$word];

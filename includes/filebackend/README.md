@@ -1,10 +1,10 @@
-/*!
-\ingroup FileBackend
-\page file_backend_design File backend design
+@ingroup FileBackend
 
-Some notes on the FileBackend architecture.
+FileBackend Architecture {#filebackendarch}
+========================
 
-\section intro Introduction
+Introduction
+------------
 
 To abstract away the differences among different types of storage media,
 MediaWiki is providing an interface known as FileBackend. Any MediaWiki
@@ -20,8 +20,8 @@ file system to distributed object stores). The types include:
 Configuration documentation for each type of backend is to be found in their
 __construct() inline documentation.
 
-
-\section setup Setup
+Setup
+-----
 
 File backends are registered in LocalSettings.php via the global variable
 $wgFileBackends. To access one of those defined backends, one would use
@@ -30,19 +30,16 @@ handle. Such handles are reused for any subsequent get() call (via singleton).
 The FileBackends objects are caching request calls such as file stats,
 SHA1 requests or TCP connection handles.
 
-\par Note:
-Some backends may require additional PHP extensions to be enabled or can rely on a
+Note: Some backends may require additional PHP extensions to be enabled or can rely on a
 MediaWiki extension. This is often the case when a FileBackend subclass makes use of an
 upstream client API for communicating with the backing store.
 
-
-\section fileoperations File operations
+## File operations
 
 The MediaWiki FileBackend API supports various operations on either files or
 directories. See FileBackend.php for full documentation for each function.
 
-
-\subsection reading Reading
+### Reading
 
 The following basic operations are supported for reading from a backend:
 
@@ -59,16 +56,14 @@ On directories:
 * get a list of directories directly under a directory
 * get a recursive list of directories under a directory
 
-\par Note:
-Backend handles should return directory listings as iterators, all though in some cases
+Note: Backend handles should return directory listings as iterators, all though in some cases
 they may just be simple arrays (which can still be iterated over). Iterators allow for
 callers to traverse a large number of file listings without consuming excessive RAM in
 the process. Either the memory consumed is flatly bounded (if the iterator does paging)
 or it is proportional to the depth of the portion of the directory tree being traversed
 (if the iterator works via recursion).
 
-
-\subsection writing Writing
+### Writing
 
 The following basic operations are supported for writing or changing in the backend:
 
@@ -86,8 +81,7 @@ The following operations are supported for writing directories in the backend:
 * publish (try to reverse the effects of secure)
 * clean (remove empty containers or directories)
 
-
-\subsection invokingoperation Invoking an operation
+### Invoking an operation
 
 Generally, callers should use doOperations() or doQuickOperations() when doing
 batches of changes, rather than making a suite of single operation calls. This
@@ -106,8 +100,7 @@ regenerated from original data. It will always pipeline without checking for
 dependencies within the operation batch. One might use this function for
 creating and purging generated thumbnails of original files for example.
 
-
-\section consistency Consistency
+## Consistency
 
 Not all backing stores are sequentially consistent by default. Various FileBackend
 functions offer a "latest" option that can be passed in to assure (or try to assure)
@@ -121,8 +114,7 @@ made my the current client or any other client from a very short time ago. For e
 creating a file under a directory and then immediately doing a file listing operation
 on that directory may result in a listing that does not include that file.
 
-
-\section locking Locking
+## Locking
 
 Locking is effective if and only if a proper lock manager is registered and is
 actually being used by the backend. Lock managers can be registered in LocalSettings.php
@@ -160,7 +152,7 @@ note that all callers that change any of the files should then go through functi
 acquire these locks. For example, if a caller just directly uses the file backend store()
 function, it will ignore any custom "FOR UPDATE" locks, which can cause problems.
 
-\section objectstore Object stores
+## Object stores
 
 Support for object stores (like Amazon S3/Swift) drive much of the API and design
 decisions of FileBackend, but using any POSIX compliant file systems works fine.
@@ -168,8 +160,7 @@ The system essentially stores "files" in "containers". For a mounted file system
 as a backing store, "files" will just be files under directories. For an object store
 as a backing store, the "files" will be objects stored in actual containers.
 
-
-\section file_obj_diffs File system and Object store differences
+## File system and Object store differences
 
 An advantage of object stores is the reduced Round-Trip Times. This is
 achieved by avoiding the need to create each parent directory before placing a
@@ -204,5 +195,3 @@ aware of some important differences:
   with poor scalability, so calling code should use layouts that shard the data.
   Instead of storing files like "container/file.txt", one can store files like
   "container/<x>/<y>/file.txt". It is best if "sharding" optional or configurable.
-
-*/

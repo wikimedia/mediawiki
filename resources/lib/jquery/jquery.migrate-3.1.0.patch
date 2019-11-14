@@ -1,23 +1,24 @@
-diff --git a/resources/lib/jquery/jquery.migrate.js b/resources/lib/jquery/jquery.migrate.js
-index 6ba8af4a42..711e424a39 100644
---- a/resources/lib/jquery/jquery.migrate.js
-+++ b/resources/lib/jquery/jquery.migrate.js
-@@ -1,6 +1,14 @@
+diff --git resources/lib/jquery/jquery.migrate.js resources/lib/jquery/jquery.migrate.js
+index 31cf2f5114..7e6dd5a053 100644
+--- resources/lib/jquery/jquery.migrate.js
++++ resources/lib/jquery/jquery.migrate.js
+@@ -1,6 +1,15 @@
  /*!
-  * jQuery Migrate - v3.0.1 - 2017-09-26
-  * Copyright jQuery Foundation and other contributors
+  * jQuery Migrate - v3.1.0 - 2019-06-08
+  * Copyright OpenJS Foundation and other contributors
 + *
 + * Patched for MediaWiki:
-+ * - Qualify the global lookup for 'jQuery' as 'window.jQuery',
++ - Qualify the global lookup for 'jQuery' as 'window.jQuery',
 + *   because within mw.loader.implement() for 'jquery', the closure
 + *   specifies '$' and 'jQuery', which are undefined.
 + * - Add mw.track instrumentation for statistics.
 + * - Disable jQuery.migrateTrace by default. They are slow and
 + *   redundant given console.warn() already provides a trace.
++ * - Don't warn for using features which have no plans for removal.
   */
  ;( function( factory ) {
  	if ( typeof define === "function" && define.amd ) {
-@@ -15,7 +23,8 @@
+@@ -17,7 +26,8 @@
  	} else {
  
  		// Browser globals
@@ -27,7 +28,7 @@ index 6ba8af4a42..711e424a39 100644
  	}
  } )( function( jQuery, window ) {
  "use strict";
-@@ -58,7 +67,8 @@ jQuery.migrateWarnings = [];
+@@ -81,7 +91,8 @@ jQuery.migrateWarnings = [];
  
  // Set to false to disable traces that appear with warnings
  if ( jQuery.migrateTrace === undefined ) {
@@ -37,7 +38,7 @@ index 6ba8af4a42..711e424a39 100644
  }
  
  // Forget any warnings we've already given; public
-@@ -72,6 +82,10 @@ function migrateWarn( msg ) {
+@@ -95,6 +106,10 @@ function migrateWarn( msg ) {
  	if ( !warnedAbout[ msg ] ) {
  		warnedAbout[ msg ] = true;
  		jQuery.migrateWarnings.push( msg );
@@ -48,14 +49,14 @@ index 6ba8af4a42..711e424a39 100644
  		if ( console && console.warn && !jQuery.migrateMute ) {
  			console.warn( "JQMIGRATE: " + msg );
  			if ( jQuery.migrateTrace && console.trace ) {
-@@ -466,20 +480,6 @@ jQuery.each( [ "load", "unload", "error" ], function( _, name ) {
+@@ -518,19 +533,7 @@ jQuery.each( [ "load", "unload", "error" ], function( _, name ) {
  
  } );
  
 -jQuery.each( ( "blur focus focusin focusout resize scroll click dblclick " +
 -	"mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
 -	"change select submit keydown keypress keyup contextmenu" ).split( " " ),
--	function( i, name ) {
+-	function( _i, name ) {
 -
 -	// Handle event binding
 -	jQuery.fn[ name ] = function( data, fn ) {
@@ -65,7 +66,7 @@ index 6ba8af4a42..711e424a39 100644
 -			this.trigger( name );
 -	};
 -} );
--
++// PATCH: Don't warn for using features which have no plans for removal. --Krinkle
+ 
  // Trigger "ready" event only once, on document ready
  jQuery( function() {
- 	jQuery( window.document ).triggerHandler( "ready" );

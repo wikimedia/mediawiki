@@ -44,7 +44,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers LockManager
  * @covers NullLockManager
  */
-class FileBackendTest extends MediaWikiTestCase {
+class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	/** @var FileBackend */
 	private $backend;
@@ -54,7 +54,7 @@ class FileBackendTest extends MediaWikiTestCase {
 	public $singleBackend;
 	private static $backendToUse;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		global $wgFileBackends;
 		parent::setUp();
 		$tmpDir = $this->getNewTempDirectory();
@@ -75,7 +75,10 @@ class FileBackendTest extends MediaWikiTestCase {
 					'unittest-cont1' => [ 'levels' => 1, 'base' => 16, 'repeat' => 1 ]
 				];
 				if ( isset( $useConfig['fileJournal'] ) ) {
-					$useConfig['fileJournal'] = FileJournal::factory( $useConfig['fileJournal'], $name );
+					$useConfig['fileJournal'] = ObjectFactory::getObjectFromSpec(
+						[ 'backend' => $name ] + $useConfig['fileJournal'],
+						[ 'specIsArg' => true, 'assertClass' => FileJournal::class ]
+					);
 				}
 				$useConfig['lockManager'] = LockManagerGroup::singleton()->get( $useConfig['lockManager'] );
 				$class = $useConfig['class'];
@@ -124,121 +127,6 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	private function backendClass() {
 		return get_class( $this->backend );
-	}
-
-	/**
-	 * @dataProvider provider_testIsStoragePath
-	 */
-	public function testIsStoragePath( $path, $isStorePath ) {
-		$this->assertEquals( $isStorePath, FileBackend::isStoragePath( $path ),
-			"FileBackend::isStoragePath on path '$path'" );
-	}
-
-	public static function provider_testIsStoragePath() {
-		return [
-			[ 'mwstore://', true ],
-			[ 'mwstore://backend', true ],
-			[ 'mwstore://backend/container', true ],
-			[ 'mwstore://backend/container/', true ],
-			[ 'mwstore://backend/container/path', true ],
-			[ 'mwstore://backend//container/', true ],
-			[ 'mwstore://backend//container//', true ],
-			[ 'mwstore://backend//container//path', true ],
-			[ 'mwstore:///', true ],
-			[ 'mwstore:/', false ],
-			[ 'mwstore:', false ],
-		];
-	}
-
-	/**
-	 * @dataProvider provider_testSplitStoragePath
-	 */
-	public function testSplitStoragePath( $path, $res ) {
-		$this->assertEquals( $res, FileBackend::splitStoragePath( $path ),
-			"FileBackend::splitStoragePath on path '$path'" );
-	}
-
-	public static function provider_testSplitStoragePath() {
-		return [
-			[ 'mwstore://backend/container', [ 'backend', 'container', '' ] ],
-			[ 'mwstore://backend/container/', [ 'backend', 'container', '' ] ],
-			[ 'mwstore://backend/container/path', [ 'backend', 'container', 'path' ] ],
-			[ 'mwstore://backend/container//path', [ 'backend', 'container', '/path' ] ],
-			[ 'mwstore://backend//container/path', [ null, null, null ] ],
-			[ 'mwstore://backend//container//path', [ null, null, null ] ],
-			[ 'mwstore://', [ null, null, null ] ],
-			[ 'mwstore://backend', [ null, null, null ] ],
-			[ 'mwstore:///', [ null, null, null ] ],
-			[ 'mwstore:/', [ null, null, null ] ],
-			[ 'mwstore:', [ null, null, null ] ]
-		];
-	}
-
-	/**
-	 * @dataProvider provider_normalizeStoragePath
-	 */
-	public function testNormalizeStoragePath( $path, $res ) {
-		$this->assertEquals( $res, FileBackend::normalizeStoragePath( $path ),
-			"FileBackend::normalizeStoragePath on path '$path'" );
-	}
-
-	public static function provider_normalizeStoragePath() {
-		return [
-			[ 'mwstore://backend/container', 'mwstore://backend/container' ],
-			[ 'mwstore://backend/container/', 'mwstore://backend/container' ],
-			[ 'mwstore://backend/container/path', 'mwstore://backend/container/path' ],
-			[ 'mwstore://backend/container//path', 'mwstore://backend/container/path' ],
-			[ 'mwstore://backend/container///path', 'mwstore://backend/container/path' ],
-			[
-				'mwstore://backend/container///path//to///obj',
-				'mwstore://backend/container/path/to/obj'
-			],
-			[ 'mwstore://', null ],
-			[ 'mwstore://backend', null ],
-			[ 'mwstore://backend//container/path', null ],
-			[ 'mwstore://backend//container//path', null ],
-			[ 'mwstore:///', null ],
-			[ 'mwstore:/', null ],
-			[ 'mwstore:', null ],
-		];
-	}
-
-	/**
-	 * @dataProvider provider_testParentStoragePath
-	 */
-	public function testParentStoragePath( $path, $res ) {
-		$this->assertEquals( $res, FileBackend::parentStoragePath( $path ),
-			"FileBackend::parentStoragePath on path '$path'" );
-	}
-
-	public static function provider_testParentStoragePath() {
-		return [
-			[ 'mwstore://backend/container/path/to/obj', 'mwstore://backend/container/path/to' ],
-			[ 'mwstore://backend/container/path/to', 'mwstore://backend/container/path' ],
-			[ 'mwstore://backend/container/path', 'mwstore://backend/container' ],
-			[ 'mwstore://backend/container', null ],
-			[ 'mwstore://backend/container/path/to/obj/', 'mwstore://backend/container/path/to' ],
-			[ 'mwstore://backend/container/path/to/', 'mwstore://backend/container/path' ],
-			[ 'mwstore://backend/container/path/', 'mwstore://backend/container' ],
-			[ 'mwstore://backend/container/', null ],
-		];
-	}
-
-	/**
-	 * @dataProvider provider_testExtensionFromPath
-	 */
-	public function testExtensionFromPath( $path, $res ) {
-		$this->assertEquals( $res, FileBackend::extensionFromPath( $path ),
-			"FileBackend::extensionFromPath on path '$path'" );
-	}
-
-	public static function provider_testExtensionFromPath() {
-		return [
-			[ 'mwstore://backend/container/path.txt', 'txt' ],
-			[ 'mwstore://backend/container/path.svg.png', 'png' ],
-			[ 'mwstore://backend/container/path', '' ],
-			[ 'mwstore://backend/container/path.', '' ],
-		];
 	}
 
 	/**

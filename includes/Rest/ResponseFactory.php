@@ -181,6 +181,9 @@ class ResponseFactory {
 
 	/**
 	 * Create an HTTP 4xx or 5xx response with error message localisation
+	 * @param int $errorCode
+	 * @param MessageValue $messageValue
+	 * @return Response
 	 */
 	public function createLocalizedHttpError( $errorCode, MessageValue $messageValue ) {
 		return $this->createHttpError( $errorCode, $this->formatMessage( $messageValue ) );

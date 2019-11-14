@@ -1173,7 +1173,7 @@
 	"allmessagesdefault": "ادەپكى ٴماتىنى",
 	"allmessagescurrent": "اعىمدىق ٴماتىنى",
 	"allmessagestext": "مىندا {{ns:mediawiki}} ەسىم اياسىندا جەتىمدى جۇيە حابار ٴتىزىمى بەرىلەدى.\nەگەر امبەباپ MediaWiki جەرسىندىرۋگە ۇلەس قوسقىڭىز كەلسە [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki جەرسىندىرۋ بەتىنە] جانە [https://translatewiki.net translatewiki.net جوباسىنا] بارىپ شىعىڭىز.",
-	"allmessages-not-supported-database": "!!FUZZY!!'''$wgUseDatabaseMessages''' وشىرىلگەن سەبەبىنەن '''{{ns:special}}:AllMessages''' بەتى قولدانىلمايدى.",
+	"allmessages-not-supported-database": "'''$wgUseDatabaseMessages''' وشىرىلگەن سەبەبىنەن '''{{ns:special}}:AllMessages''' بەتى قولدانىلمايدى.",
 	"thumbnail-more": "ۇلكەيتۋ",
 	"filemissing": "جوعالعان فايل",
 	"thumbnail_error": "نوباي قۇرۋ قاتەسى: $1",

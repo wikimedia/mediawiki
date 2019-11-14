@@ -20,7 +20,7 @@ class CategoryMembershipChangeJobTest extends MediaWikiTestCase {
 	 */
 	private $title;
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 		$this->setMwGlobals( 'wgRCWatchCategoryMembership', true );
 		$this->setContentLang( 'qqx' );

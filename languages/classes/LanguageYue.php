@@ -53,7 +53,7 @@ class LanguageYue extends Language {
 	 * @param string $string
 	 * @return string
 	 */
-	function normalizeForSearch( $string ) {
+	public function normalizeForSearch( $string ) {
 		// Double-width roman characters
 		$s = self::convertDoubleWidth( $string );
 		$s = trim( $s );

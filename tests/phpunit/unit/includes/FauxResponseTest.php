@@ -24,7 +24,7 @@ class FauxResponseTest extends \MediaWikiUnitTestCase {
 	/** @var FauxResponse */
 	protected $response;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->response = new FauxResponse;
 	}

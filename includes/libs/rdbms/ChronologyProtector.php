@@ -288,6 +288,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 
 	/**
 	 * Load in previous master positions for the client
+	 * @return DBMasterPos[]
 	 */
 	protected function getStartupMasterPositions() {
 		if ( $this->initialized ) {

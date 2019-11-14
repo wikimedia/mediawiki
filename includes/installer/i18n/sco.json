@@ -76,7 +76,6 @@
 	"config-using-uri": "Uisin server URL \"<nowiki>$1$2</nowiki>\".",
 	"config-uploads-not-safe": "<strong>Warnishment:</strong> Yer defaut directerie fer uplaids <code>$1</code> is vulnerable til arbitrie scripts execution.\nAathough MediaWiki checks aw uplaided files fer securitie threats, it is heily recommended tae [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security close this security vulnerabeelitie] afore enablin uplaids.",
 	"config-no-cli-uploads-check": "<strong>Warnishment:</strong> Yer defaut directerie fer uplaids (<code>$1</code>) isna checkit fer vulnerabeelitie\ntae arbitrie script execution durin the CLI install.",
-	"config-brokenlibxml": "Yer system haes ae combinâtion o PHP n libxml2 versions that's buggie n can cause skauk't data rottin in MediaWiki n ither wab applicâtions.\nUpgrade til libxml2 2.7.3 or later ([https://bugs.php.net/bug.php?id=45996 bug filed with PHP]).\nInstallâtion aborted.",
 	"config-suhosin-max-value-length": "Suhosin is installed n limits the GET parameter <code>length</code> til $1 bytes.\nMediaWiki's ResoorceLaider component will wark aroonn this limit, but that will lawer performance.\nGif at aw possible, ye shid set <code>suhosin.get.max_value_length</code> til 1024 or heier in <code>php.ini</code>, n set <code>$wgResourceLoaderMaxQueryLength</code> til the same value in <code>LocalSettings.php</code>.",
 	"config-db-type": "Dâtabase type:",
 	"config-db-host": "Dâtabase host:",

@@ -699,7 +699,7 @@
 	"allmessagesdefault": "Tohi tuʻunga",
 	"allmessagescurrent": "Tohi lolotonga",
 	"allmessagestext": "Ko e hokohoko ʻeni ʻo e ngaahi tala fakafounga kātoa ʻi he vā hingoa ''MediaWiki''.",
-	"allmessages-not-supported-database": "!!FUZZY!!ʻOku ʻikai ngāueʻaki mo e '''{{ns:special}}:Allmessages''' koeʻuhi ʻoku kamosiʻi mate ʻa e '''$wgUseDatabaseMessages'''.",
+	"allmessages-not-supported-database": "ʻOku ʻikai ngāueʻaki mo e '''{{ns:special}}:Allmessages''' koeʻuhi ʻoku kamosiʻi mate ʻa e '''$wgUseDatabaseMessages'''.",
 	"filemissing": "ʻOku pulia ʻa e faile",
 	"import": "Hū mai ngaahi peesi",
 	"importinterwiki": "Hū mai ʻo e fakalava ''wiki''",

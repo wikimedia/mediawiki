@@ -2647,6 +2647,14 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Deletions can often be completed inline without involving the job queue.
 	 *
 	 * Potentially called many times per deletion operation for pages with many revisions.
+	 * @param string $reason
+	 * @param bool $suppress
+	 * @param User $deleter
+	 * @param array $tags
+	 * @param string $logsubtype
+	 * @param bool $immediate
+	 * @param string|null $webRequestId
+	 * @return Status
 	 */
 	public function doDeleteArticleBatched(
 		$reason, $suppress, User $deleter, $tags,

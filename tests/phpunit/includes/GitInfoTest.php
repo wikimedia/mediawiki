@@ -6,7 +6,9 @@ class GitInfoTest extends MediaWikiTestCase {
 
 	private static $tempDir;
 
-	public static function setUpBeforeClass() {
+	public static function setUpBeforeClass() : void {
+		parent::setUpBeforeClass();
+
 		self::$tempDir = wfTempDir() . '/mw-phpunit-' . wfRandomString( 8 );
 		if ( !mkdir( self::$tempDir ) ) {
 			self::$tempDir = null;
@@ -31,13 +33,13 @@ class GitInfoTest extends MediaWikiTestCase {
 			'gitdir: ' . self::$tempDir . "/gitrepo/1/.git\n" );
 	}
 
-	public static function tearDownAfterClass() {
+	public static function tearDownAfterClass() : void {
 		if ( self::$tempDir ) {
 			wfRecursiveRemoveDir( self::$tempDir );
 		}
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->setMwGlobals( 'wgGitInfoCacheDirectory', __DIR__ . '/../data/gitinfo' );
 	}

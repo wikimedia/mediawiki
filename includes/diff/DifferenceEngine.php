@@ -465,6 +465,85 @@ class DifferenceEngine extends ContextSource {
 		$out->addHTML( $msg );
 	}
 
+	/**
+	 * Checks whether one of the given Revisions was deleted
+	 *
+	 * @return bool
+	 */
+	public function hasDeletedRevision() {
+		$this->loadRevisionData();
+		return ( $this->mNewRev && $this->mNewRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) ||
+			( $this->mOldRev && $this->mOldRev->isDeleted( RevisionRecord::DELETED_TEXT ) );
+	}
+
+	/**
+	 * Get the permission errors associated with the revisions for the current diff.
+	 *
+	 * @param User $user
+	 * @return array[] Array of arrays of the arguments to wfMessage to explain permissions problems.
+	 */
+	public function getPermissionErrors( User $user ) {
+		$this->loadRevisionData();
+		$permErrors = [];
+		if ( $this->mNewPage ) {
+			$permErrors = $this->mNewPage->getUserPermissionsErrors( 'read', $user );
+		}
+		if ( $this->mOldPage ) {
+			$permErrors = wfMergeErrorArrays( $permErrors,
+				$this->mOldPage->getUserPermissionsErrors( 'read', $user ) );
+		}
+		return $permErrors;
+	}
+
+	/**
+	 * Checks whether one of the given Revisions was suppressed
+	 *
+	 * @return bool
+	 */
+	public function hasSuppressedRevision() {
+		return $this->hasDeletedRevision() &&
+			(
+				( $this->mOldRev && $this->mOldRev->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ) ||
+				( $this->mNewRev && $this->mNewRev->isDeleted( RevisionRecord::DELETED_RESTRICTED ) )
+			);
+	}
+
+	/**
+	 * Checks whether the current user has permission for accessing the revisions of the diff.
+	 * Note that this does not check whether the user has permission to view the page, it only
+	 * checks revdelete permissions.
+	 *
+	 * It is the caller's responsibility to call
+	 * $this->getUserPermissionErrors or similar checks.
+	 *
+	 * @param User $user
+	 * @return bool
+	 */
+	public function isUserAllowedToSeeRevisions( $user ) {
+		$this->loadRevisionData();
+		// $this->mNewRev will only be falsy if a loading error occurred
+		// (in which case the user is allowed to see).
+		$allowed = !$this->mNewRev || $this->mNewRev->userCan( RevisionRecord::DELETED_TEXT, $user );
+		if ( $this->mOldRev &&
+			!$this->mOldRev->userCan( RevisionRecord::DELETED_TEXT, $user )
+		) {
+			$allowed = false;
+		}
+		return $allowed;
+	}
+
+	/**
+	 * Checks whether the diff should be hidden from the current user
+	 * This is based on whether the user is allowed to see it and has specifically asked to see it.
+	 *
+	 * @param User $user
+	 * @return bool
+	 */
+	public function shouldBeHiddenFromUser( $user ) {
+		return $this->hasDeletedRevision() && ( !$this->unhide ||
+			!$this->isUserAllowedToSeeRevisions( $user ) );
+	}
+
 	public function showDiffPage( $diffOnly = false ) {
 		# Allow frames except in certain special cases
 		$out = $this->getOutput();
@@ -482,14 +561,7 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		$user = $this->getUser();
-		$permErrors = [];
-		if ( $this->mNewPage ) {
-			$permErrors = $this->mNewPage->getUserPermissionsErrors( 'read', $user );
-		}
-		if ( $this->mOldPage ) {
-			$permErrors = wfMergeErrorArrays( $permErrors,
-				$this->mOldPage->getUserPermissionsErrors( 'read', $user ) );
-		}
+		$permErrors = $this->getPermissionErrors( $user );
 		if ( count( $permErrors ) ) {
 			throw new PermissionsError( 'read', $permErrors );
 		}
@@ -507,8 +579,9 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		# Check if one of the revisions is deleted/suppressed
-		$deleted = $suppressed = false;
-		$allowed = $this->mNewRev->userCan( RevisionRecord::DELETED_TEXT, $user );
+		$deleted = $this->hasDeletedRevision();
+		$suppressed = $this->hasSuppressedRevision();
+		$allowed = $this->isUserAllowedToSeeRevisions( $user );
 
 		$revisionTools = [];
 
@@ -605,18 +678,6 @@ class DifferenceEngine extends ContextSource {
 			// Allow extensions to change the $oldHeader variable
 			Hooks::run( 'DifferenceEngineOldHeader', [ $this, &$oldHeader, $prevlink, $oldminor,
 				$diffOnly, $ldel, $this->unhide ] );
-
-			if ( $this->mOldRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
-				$deleted = true; // old revisions text is hidden
-				if ( $this->mOldRev->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ) {
-					$suppressed = true; // also suppressed
-				}
-			}
-
-			# Check if this user can see the revisions
-			if ( !$this->mOldRev->userCan( RevisionRecord::DELETED_TEXT, $user ) ) {
-				$allowed = false;
-			}
 		}
 
 		$out->addJsConfigVars( [
@@ -676,16 +737,9 @@ class DifferenceEngine extends ContextSource {
 		Hooks::run( 'DifferenceEngineNewHeader', [ $this, &$newHeader, $formattedRevisionTools,
 			$nextlink, $rollback, $newminor, $diffOnly, $rdel, $this->unhide ] );
 
-		if ( $this->mNewRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
-			$deleted = true; // new revisions text is hidden
-			if ( $this->mNewRev->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ) {
-				$suppressed = true; // also suppressed
-			}
-		}
-
 		# If the diff cannot be shown due to a deleted revision, then output
 		# the diff header and links to unhide (if available)...
-		if ( $deleted && ( !$this->unhide || !$allowed ) ) {
+		if ( $this->shouldBeHiddenFromUser( $user ) ) {
 			$this->showDiffStyle();
 			$multi = $this->getMultiNotice();
 			$out->addHTML( $this->addHeader( '', $oldHeader, $newHeader, $multi ) );
@@ -869,7 +923,7 @@ class DifferenceEngine extends ContextSource {
 			$out->setArticleFlag( true );
 
 			if ( !Hooks::run( 'ArticleRevisionViewCustom',
-				[ $this->mNewRev->getRevisionRecord(), $this->mNewPage, $out ] )
+				[ $this->mNewRev->getRevisionRecord(), $this->mNewPage, $this->mOldid, $out ] )
 			) {
 				// Handled by extension
 				// NOTE: sync with hooks called in Article::view()
@@ -1178,7 +1232,7 @@ class DifferenceEngine extends ContextSource {
 		$engine = $this->getEngine();
 		$params = [
 			'diff',
-			$engine,
+			$engine === 'php' ? false : $engine, // Back compat
 			self::DIFF_VERSION,
 			"old-{$this->mOldid}",
 			"rev-{$this->mNewid}"
@@ -1288,32 +1342,59 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * Process ExternalDiffEngine config and get a sane, usable engine
+	 * Process DiffEngine config and get a sane, usable engine
 	 *
-	 * @return bool|string 'wikidiff2', path to an executable, or false
+	 * @return string 'wikidiff2', 'php', or path to an executable
 	 * @internal For use by this class and TextSlotDiffRenderer only.
 	 */
 	public static function getEngine() {
+		$diffEngine = MediaWikiServices::getInstance()->getMainConfig()
+			->get( 'DiffEngine' );
 		$externalDiffEngine = MediaWikiServices::getInstance()->getMainConfig()
 			->get( 'ExternalDiffEngine' );
 
-		if ( $externalDiffEngine ) {
-			if ( is_string( $externalDiffEngine ) ) {
-				if ( is_executable( $externalDiffEngine ) ) {
-					return $externalDiffEngine;
-				}
-				wfDebug( 'ExternalDiffEngine config points to a non-executable, ignoring' );
-			} else {
-				wfWarn( 'ExternalDiffEngine config is set to a non-string value, ignoring' );
+		if ( $diffEngine === null ) {
+			$engines = [ 'external', 'wikidiff2', 'php' ];
+		} else {
+			$engines = [ $diffEngine ];
+		}
+
+		$failureReason = null;
+		foreach ( $engines as $engine ) {
+			switch ( $engine ) {
+				case 'external':
+					if ( is_string( $externalDiffEngine ) ) {
+						if ( is_executable( $externalDiffEngine ) ) {
+							return $externalDiffEngine;
+						}
+						$failureReason = 'ExternalDiffEngine config points to a non-executable';
+						if ( $diffEngine === null ) {
+							wfDebug( "$failureReason, ignoring" );
+						}
+					} else {
+						$failureReason = 'ExternalDiffEngine config is set to a non-string value';
+						if ( $diffEngine === null && $externalDiffEngine ) {
+							wfWarn( "$failureReason, ignoring" );
+						}
+					}
+					break;
+
+				case 'wikidiff2':
+					if ( function_exists( 'wikidiff2_do_diff' ) ) {
+						return 'wikidiff2';
+					}
+					$failureReason = 'wikidiff2 is not available';
+					break;
+
+				case 'php':
+					// Always available.
+					return 'php';
+
+				default:
+					throw new DomainException( 'Invalid value for $wgDiffEngine: ' . $engine );
 			}
 		}
-
-		if ( function_exists( 'wikidiff2_do_diff' ) ) {
-			return 'wikidiff2';
-		}
-
-		// Native PHP
-		return false;
+		throw new UnexpectedValueException( "Cannot use diff engine '$engine': $failureReason" );
 	}
 
 	/**
@@ -1367,7 +1448,7 @@ class DifferenceEngine extends ContextSource {
 		$engine = self::getEngine();
 		if ( $engine === 'wikidiff2' ) {
 			return $this->debug( 'wikidiff2' );
-		} elseif ( $engine === false ) {
+		} elseif ( $engine === 'php' ) {
 			return $this->debug( 'native PHP' );
 		} else {
 			return $this->debug( "external $engine" );
@@ -1449,6 +1530,7 @@ class DifferenceEngine extends ContextSource {
 			!$this->mOldRev || !$this->mNewRev
 			|| !$this->mOldPage || !$this->mNewPage
 			|| !$this->mOldPage->equals( $this->mNewPage )
+			|| $this->mOldRev->getId() === null || $this->mNewRev->getId() === null
 		) {
 			return '';
 		}
@@ -1465,6 +1547,7 @@ class DifferenceEngine extends ContextSource {
 		// @todo show some special message for that case
 		$nEdits = MediaWikiServices::getInstance()->getRevisionStore()
 			->countRevisionsBetween(
+				$this->mNewPage->getArticleID(),
 				$oldRev->getRevisionRecord(),
 				$newRev->getRevisionRecord(),
 				1000

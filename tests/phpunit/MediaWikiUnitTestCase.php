@@ -33,7 +33,6 @@ use Wikimedia\ObjectFactory;
  * @since 1.34
  */
 abstract class MediaWikiUnitTestCase extends TestCase {
-	use PHPUnit4And6Compat;
 	use MediaWikiCoversValidator;
 	use MediaWikiTestCaseTrait;
 
@@ -56,11 +55,12 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 			// Need for LoggerFactory. Default is NullSpi.
 			'wgMWLoggerDefaultSpi',
 			'wgAutoloadAttemptLowercase',
-			'wgLegalTitleChars'
+			'wgLegalTitleChars',
+			'wgDevelopmentWarnings',
 		];
 	}
 
-	public static function setUpBeforeClass() {
+	public static function setUpBeforeClass() : void {
 		parent::setUpBeforeClass();
 
 		$reflection = new ReflectionClass( static::class );
@@ -116,7 +116,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		] ) );
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		// Quick reset between tests
 		foreach ( $GLOBALS as $key => $_ ) {
 			if ( $key !== 'GLOBALS' && !array_key_exists( $key, self::$unitGlobals ) ) {
@@ -130,7 +130,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		parent::tearDown();
 	}
 
-	public static function tearDownAfterClass() {
+	public static function tearDownAfterClass() : void {
 		// Remove globals created by the test
 		foreach ( $GLOBALS as $key => $_ ) {
 			if ( $key !== 'GLOBALS' && !array_key_exists( $key, self::$originalGlobals ) ) {

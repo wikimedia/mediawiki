@@ -8,7 +8,7 @@ class ResourceLoaderImageTest extends MediaWikiUnitTestCase {
 
 	private $imagesPath;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->imagesPath = __DIR__ . '/../../../data/resourceloader';
 	}

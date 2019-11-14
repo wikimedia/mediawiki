@@ -3302,7 +3302,27 @@ class OutputPage extends ContextSource {
 
 		$user = $this->getUser();
 
+		// Internal variables for MediaWiki core
 		$vars = [
+			// @internal For mediawiki.page.startup
+			'wgBreakFrames' => $this->getFrameOptions() == 'DENY',
+
+			// @internal For jquery.tablesorter
+			'wgSeparatorTransformTable' => $compactSeparatorTransTable,
+			'wgDigitTransformTable' => $compactDigitTransTable,
+			'wgDefaultDateFormat' => $lang->getDefaultDateFormat(),
+			'wgMonthNames' => $lang->getMonthNamesArray(),
+			'wgMonthNamesShort' => $lang->getMonthAbbreviationsArray(),
+
+			// @internal For debugging purposes
+			'wgRequestId' => WebRequest::getRequestId(),
+
+			// @internal For mw.loader
+			'wgCSPNonce' => $this->CSP->getNonce(),
+		];
+
+		// Start of supported and stable config vars (for use by extensions/gadgets).
+		$vars += [
 			'wgCanonicalNamespace' => $canonicalNamespace,
 			'wgCanonicalSpecialPageName' => $canonicalSpecialPageName,
 			'wgNamespaceNumber' => $title->getNamespace(),
@@ -3317,20 +3337,11 @@ class OutputPage extends ContextSource {
 			'wgUserName' => $user->isAnon() ? null : $user->getName(),
 			'wgUserGroups' => $user->getEffectiveGroups(),
 			'wgCategories' => $this->getCategories(),
-			'wgBreakFrames' => $this->getFrameOptions() == 'DENY',
 			'wgPageContentLanguage' => $lang->getCode(),
 			'wgPageContentModel' => $title->getContentModel(),
-			'wgSeparatorTransformTable' => $compactSeparatorTransTable,
-			'wgDigitTransformTable' => $compactDigitTransTable,
-			'wgDefaultDateFormat' => $lang->getDefaultDateFormat(),
-			'wgMonthNames' => $lang->getMonthNamesArray(),
-			'wgMonthNamesShort' => $lang->getMonthAbbreviationsArray(),
 			'wgRelevantPageName' => $relevantTitle->getPrefixedDBkey(),
 			'wgRelevantArticleId' => $relevantTitle->getArticleID(),
-			'wgRequestId' => WebRequest::getRequestId(),
-			'wgCSPNonce' => $this->CSP->getNonce(),
 		];
-
 		if ( $user->isLoggedIn() ) {
 			$vars['wgUserId'] = $user->getId();
 			$vars['wgUserEditCount'] = $user->getEditCount();
@@ -3341,33 +3352,30 @@ class OutputPage extends ContextSource {
 			// the client side.
 			$vars['wgUserNewMsgRevisionId'] = $user->getNewMessageRevisionId();
 		}
-
 		$contLang = $services->getContentLanguage();
 		if ( $contLang->hasVariants() ) {
 			$vars['wgUserVariant'] = $contLang->getPreferredVariant();
 		}
 		// Same test as SkinTemplate
 		$vars['wgIsProbablyEditable'] = $this->userCanEditOrCreate( $user, $title );
-
 		$vars['wgRelevantPageIsProbablyEditable'] = $relevantTitle &&
 			$this->userCanEditOrCreate( $user, $relevantTitle );
-
 		foreach ( $title->getRestrictionTypes() as $type ) {
 			// Following keys are set in $vars:
 			// wgRestrictionCreate, wgRestrictionEdit, wgRestrictionMove, wgRestrictionUpload
 			$vars['wgRestriction' . ucfirst( $type )] = $title->getRestrictions( $type );
 		}
-
 		if ( $title->isMainPage() ) {
 			$vars['wgIsMainPage'] = true;
 		}
-
-		if ( $this->mRedirectedFrom ) {
-			$vars['wgRedirectedFrom'] = $this->mRedirectedFrom->getPrefixedDBkey();
-		}
-
 		if ( $relevantUser ) {
 			$vars['wgRelevantUserName'] = $relevantUser->getName();
+		}
+		// End of stable config vars
+
+		if ( $this->mRedirectedFrom ) {
+			// @internal For skin JS
+			$vars['wgRedirectedFrom'] = $this->mRedirectedFrom->getPrefixedDBkey();
 		}
 
 		// Allow extensions to add their custom variables to the mw.config map.

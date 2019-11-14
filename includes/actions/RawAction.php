@@ -89,9 +89,10 @@ class RawAction extends FormlessAction {
 		// Set standard Vary headers so cache varies on cookies and such (T125283)
 		$response->header( $this->getOutput()->getVaryHeader() );
 
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		// Output may contain user-specific data;
 		// vary generated content for open sessions on private wikis
-		$privateCache = !User::isEveryoneAllowed( 'read' ) &&
+		$privateCache = !$permissionManager->isEveryoneAllowed( 'read' ) &&
 			( $smaxage == 0 || MediaWiki\Session\SessionManager::getGlobalSession()->isPersistent() );
 		// Don't accidentally cache cookies if user is logged in (T55032)
 		$privateCache = $privateCache || $this->getUser()->isLoggedIn();
@@ -111,8 +112,7 @@ class RawAction extends FormlessAction {
 			$rootPage = strtok( $title->getText(), '/' );
 			$userFromTitle = User::newFromName( $rootPage, 'usable' );
 			if ( !$userFromTitle || $userFromTitle->getId() === 0 ) {
-				$elevated = MediaWikiServices::getInstance()->getPermissionManager()
-					->userHasRight( $this->getUser(), 'editinterface' );
+				$elevated = $permissionManager->userHasRight( $this->getUser(), 'editinterface' );
 				$elevatedText = $elevated ? 'by elevated ' : '';
 				$log = LoggerFactory::getInstance( "security" );
 				$log->warning(

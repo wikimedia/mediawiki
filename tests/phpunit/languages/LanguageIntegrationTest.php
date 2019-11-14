@@ -20,7 +20,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		);
 	}
 
-	public function setUp() {
+	public function setUp() : void {
 		global $wgHooks;
 
 		parent::setUp();
@@ -573,7 +573,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 */
 	public function testSprintfDate( $format, $ts, $expected, $msg ) {
 		$ttl = null;
-		$this->assertEquals(
+		$this->assertSame(
 			$expected,
 			$this->getLang()->sprintfDate( $format, $ts, null, $ttl ),
 			"sprintfDate('$format', '$ts'): $msg"
@@ -581,7 +581,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		if ( $ttl ) {
 			$dt = new DateTime( $ts );
 			$lastValidTS = $dt->add( new DateInterval( 'PT' . ( $ttl - 1 ) . 'S' ) )->format( 'YmdHis' );
-			$this->assertEquals(
+			$this->assertSame(
 				$expected,
 				$this->getLang()->sprintfDate( $format, $lastValidTS, null ),
 				"sprintfDate('$format', '$ts'): TTL $ttl too high (output was different at $lastValidTS)"
@@ -590,7 +590,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			// advance the time enough to make all of the possible outputs different (except possibly L)
 			$dt = new DateTime( $ts );
 			$newTS = $dt->add( new DateInterval( 'P1Y1M8DT13H1M1S' ) )->format( 'YmdHis' );
-			$this->assertEquals(
+			$this->assertSame(
 				$expected,
 				$this->getLang()->sprintfDate( $format, $newTS, null ),
 				"sprintfDate('$format', '$ts'): Missing TTL (output was different at $newTS)"
@@ -688,8 +688,8 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			[
 				'W',
 				'20120102235000',
-				'1',
-				'1',
+				'01',
+				'01',
 				'Week number'
 			],
 			[
@@ -732,9 +732,9 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			[
 				'N',
 				'20120102090705',
-				'01',
-				'01',
-				'Month index. Zero pad'
+				'1',
+				'1',
+				'Day of the week'
 			],
 			[
 				'M',
@@ -1620,7 +1620,9 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		} else {
 			$expected = $expectedData;
 		}
-		$this->assertEquals( $expected, $lang->translateBlockExpiry( $str, null, $now ), $desc );
+		// HACK:
+		date_default_timezone_set( 'UTC' );
+		$this->assertSame( $expected, $lang->translateBlockExpiry( $str, null, $now ), $desc );
 	}
 
 	public static function provideTranslateBlockExpiry() {
@@ -1762,6 +1764,8 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @covers Language::clearCaches
 	 */
 	public function testClearCaches() {
+		$this->hideDeprecated( 'Language::clearCaches' );
+
 		$languageClass = TestingAccessWrapper::newFromClass( Language::class );
 
 		// Populate $mLangObjCache

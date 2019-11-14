@@ -121,7 +121,6 @@ abstract class Installer {
 	 */
 	protected $envChecks = [
 		'envCheckDB',
-		'envCheckBrokenXML',
 		'envCheckPCRE',
 		'envCheckMemory',
 		'envCheckCache',
@@ -422,7 +421,7 @@ abstract class Installer {
 		$mwServices->getLocalisationCache()->disableBackend();
 
 		// Clear language cache so the old i18n cache doesn't sneak back in
-		$mwServices->resetLanguageServices();
+		Language::$mLangObjCache = [];
 
 		// Disable object cache (otherwise CACHE_ANYTHING will try CACHE_DB and
 		// SqlBagOStuff will then throw since we just disabled wfGetDB)
@@ -789,21 +788,6 @@ abstract class Installer {
 			return false;
 		}
 		return $ok;
-	}
-
-	/**
-	 * Some versions of libxml+PHP break < and > encoding horribly
-	 * @return bool
-	 */
-	protected function envCheckBrokenXML() {
-		$test = new PhpXmlBugTester();
-		if ( !$test->ok ) {
-			$this->showError( 'config-brokenlibxml' );
-
-			return false;
-		}
-
-		return true;
 	}
 
 	/**
@@ -1769,7 +1753,7 @@ abstract class Installer {
 				'',
 				EDIT_NEW,
 				false,
-				User::newFromName( 'MediaWiki default' )
+				User::newSystemUser( 'MediaWiki default' )
 			);
 		} catch ( Exception $e ) {
 			// using raw, because $wgShowExceptionDetails can not be set yet

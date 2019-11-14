@@ -21,7 +21,7 @@ class DBFileJournalIntegrationTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$db = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_MASTER );
@@ -33,9 +33,8 @@ class DBFileJournalIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function getJournal( $options = [] ) {
-		return FileJournal::factory(
-			$options + [ 'class' => DBFileJournal::class, 'domain' => wfWikiID() ],
-			'local-backend' );
+		return new DBFileJournal(
+			$options + [ 'domain' => wfWikiID(), 'backend' => 'local-backend' ] );
 	}
 
 	/**

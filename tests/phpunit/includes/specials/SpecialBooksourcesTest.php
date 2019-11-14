@@ -1,4 +1,5 @@
 <?php
+
 class SpecialBooksourcesTest extends SpecialPageTestBase {
 	public static function provideISBNs() {
 		return [

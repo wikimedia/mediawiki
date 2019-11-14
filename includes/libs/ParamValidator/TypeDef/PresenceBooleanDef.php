@@ -2,6 +2,8 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
+use Wikimedia\Message\MessageValue;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef;
 
 /**
@@ -14,6 +16,7 @@ use Wikimedia\ParamValidator\TypeDef;
  * The result from validate() is a PHP boolean.
  *
  * @since 1.34
+ * @unstable
  */
 class PresenceBooleanDef extends TypeDef {
 
@@ -25,9 +28,32 @@ class PresenceBooleanDef extends TypeDef {
 		return (bool)$value;
 	}
 
-	public function describeSettings( $name, array $settings, array $options ) {
-		$info = parent::describeSettings( $name, $settings, $options );
-		unset( $info['default'] );
+	public function normalizeSettings( array $settings ) {
+		// Cannot be multi-valued
+		$settings[ParamValidator::PARAM_ISMULTI] = false;
+
+		return parent::normalizeSettings( $settings );
+	}
+
+	public function getParamInfo( $name, array $settings, array $options ) {
+		$info = parent::getParamInfo( $name, $settings, $options );
+
+		// No need to report the default of "false"
+		$info['default'] = null;
+
+		return $info;
+	}
+
+	public function getHelpInfo( $name, array $settings, array $options ) {
+		$info = parent::getHelpInfo( $name, $settings, $options );
+
+		$info[ParamValidator::PARAM_TYPE] = MessageValue::new(
+			'paramvalidator-help-type-presenceboolean'
+		)->params( 1 );
+
+		// No need to report the default of "false"
+		$info[ParamValidator::PARAM_DEFAULT] = null;
+
 		return $info;
 	}
 

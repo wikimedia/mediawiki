@@ -21,7 +21,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 	private static $Success = [ 'options' => 'success' ];
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->mUserMock = $this->getMockBuilder( User::class )

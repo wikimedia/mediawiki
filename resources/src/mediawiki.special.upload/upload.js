@@ -172,8 +172,7 @@
 					return;
 				}
 				// Remove any previously flagged errors
-				$( '#mw-upload-permitted' ).attr( 'class', '' );
-				$( '#mw-upload-prohibited' ).attr( 'class', '' );
+				$( '#mw-upload-permitted, #mw-upload-prohibited' ).removeClass();
 
 				path = $( this ).val();
 				// Find trailing part

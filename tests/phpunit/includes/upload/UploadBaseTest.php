@@ -8,7 +8,7 @@ class UploadBaseTest extends MediaWikiTestCase {
 	/** @var UploadTestHandler */
 	protected $upload;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->upload = new UploadTestHandler;

@@ -3849,6 +3849,6 @@
 	"passwordpolicies-policy-maximalpasswordlength": "पासवर्ड $1 {{PLURAL:$1|अक्षर|अक्षरों}} से कम लम्बा होना चाहिये",
 	"passwordpolicies-policy-passwordcannotbepopular": "पासवर्ड {{PLURAL:$1|सामान्य रूप से प्रयोग होने वाले पासवर्ड में|$1 सामान्य पासवर्डों की सूची में}} नहीं हो सकता।",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "पासवर्ड सामान्य रूप से उपयोग होने वाले 1,00,000 पासवर्डों की सूची में नहीं हो सकता।",
-	"easydeflate-invaliddeflate": "Content provided is not properly deflated",
+	"deflate-invaliddeflate": "Content provided is not properly deflated",
 	"unprotected-js": "सुरक्षा कारणों से जावास्क्रिप्ट असुरक्षित पन्नों से लोड नहीं किया जा सका। कृपया जावास्क्रिप्ट केवल मीडियाविकि में बनाये:नामस्थान या सदस्य उपपृष्ठ"
 }

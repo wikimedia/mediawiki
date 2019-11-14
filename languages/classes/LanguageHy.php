@@ -37,7 +37,7 @@ class LanguageHy extends Language {
 	 * @param string $case
 	 * @return string
 	 */
-	function convertGrammar( $word, $case ) {
+	public function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
 		if ( isset( $wgGrammarForms['hy'][$case][$word] ) ) {
 			return $wgGrammarForms['hy'][$case][$word];

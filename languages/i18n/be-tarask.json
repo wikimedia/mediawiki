@@ -3794,7 +3794,7 @@
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Пароль ня можа быць зь сьпісу 100 000 найчасьцей ужываных пароляў.",
 	"passwordpolicies-policyflag-forcechange": "мусіць быць зьменены па ўваходзе",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "прапаноўваць зьмену па ўваходзе",
-	"easydeflate-invaliddeflate": "Пададзены зьмест ня сьціснуты адпаведным чынам",
+	"deflate-invaliddeflate": "Пададзены зьмест ня сьціснуты адпаведным чынам",
 	"unprotected-js": "З прычынаў бясьпекі JavaScript ня можа быць загружаны зь неабароненых сайтаў. Калі ласка, стварайце javascript выключна ў прасторы назваў MediaWiki: ці як падстаронку ўдзельніка",
 	"userlogout-continue": "Вы жадаеце выйсьці з сыстэмы?"
 }

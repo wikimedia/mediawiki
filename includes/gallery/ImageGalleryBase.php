@@ -299,7 +299,8 @@ abstract class ImageGalleryBase extends ContextSource {
 
 	/**
 	 * Returns the list of images this gallery contains
-	 * @return array
+	 * @return array[]
+	 * @phan-return array<int,array{0:Title,1:string,2:string,3:string,4:array}>
 	 */
 	public function getImages() {
 		return $this->mImages;

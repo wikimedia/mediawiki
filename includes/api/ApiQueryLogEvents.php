@@ -251,6 +251,11 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		$count = 0;
 		$res = $this->select( __METHOD__ );
+
+		if ( $this->fld_title ) {
+			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__, 'log' );
+		}
+
 		$result = $this->getResult();
 		foreach ( $res as $row ) {
 			if ( ++$count > $limit ) {

@@ -686,6 +686,7 @@
 	"noarticletext-nopermission": "There is currently no text in this page.\nYou can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages, or <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs]</span>, but you do not have permission to create this page.",
 	"noarticletextanon": "{{int:noarticletext}}",
 	"missing-revision": "The revision #$1 of the page named \"{{FULLPAGENAME}}\" does not exist.\n\nThis is usually caused by following an outdated history link to a page that has been deleted.\nDetails can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
+	"missing-revision-content": "The content of revision #$1 of the page named \"$2\" could not be loaded.",
 	"userpage-userdoesnotexist": "User account \"$1\" is not registered.\nPlease check if you want to create/edit this page.",
 	"userpage-userdoesnotexist-view": "User account \"$1\" is not registered.",
 	"blocked-notice-logextract": "This user is currently blocked.\nThe latest block log entry is provided below for reference:",
@@ -2761,6 +2762,7 @@
 	"ipbblocked": "You cannot block or unblock other users because you are yourself blocked.",
 	"ipbnounblockself": "You are not allowed to unblock yourself.",
 	"ipb-default-expiry": "",
+	"ipb-default-expiry-ip": "",
 	"lockdb": "Lock database",
 	"unlockdb": "Unlock database",
 	"lockdbtext": "Locking the database will suspend the ability of all users to edit pages, change their preferences, edit their watchlists, and other things requiring changes in the database.\nPlease confirm that this is what you intend to do, and that you will unlock the database when your maintenance is done.",
@@ -3921,6 +3923,8 @@
 	"feedback-useragent": "User agent:",
 	"searchsuggest-search": "Search {{SITENAME}}",
 	"searchsuggest-containing": "containing...",
+	"search-match-redirect-label": "Redirect to exact matches when searching",
+	"search-match-redirect-help": "Select to get redirected to a page when that page title matches what you have searched for",
 	"api-error-badtoken": "Internal error: Bad token.",
 	"api-error-emptypage": "Creating new, empty pages is not allowed.",
 	"api-error-publishfailed": "Internal error: Server failed to publish temporary file.",
@@ -4247,7 +4251,7 @@
 	"passwordpolicies-policyflag-forcechange": "must change on login",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "suggest change on login",
 	"mycustomjsredirectprotected": "You do not have permission to edit this JavaScript page because it is a redirect and it does not point inside your userspace.",
-	"easydeflate-invaliddeflate": "Content provided is not properly deflated",
+	"deflate-invaliddeflate": "Content provided is not properly deflated",
 	"unprotected-js": "For security reasons JavaScript cannot be loaded from unprotected pages. Please only create javascript in the MediaWiki: namespace or as a User subpage",
 	"userlogout-continue": "Do you want to log out?"
 }

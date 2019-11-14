@@ -684,6 +684,7 @@
 	"noarticletext": "אין כרגע טקסט בדף הזה.\nבאפשרותך [[Special:Search/{{PAGENAME}}|לחפש את כותרת הדף]] בדפים אחרים,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} לחפש את הדף ביומנים],\nאו [{{fullurl:{{FULLPAGENAME}}|action=edit}} ליצור את הדף]</span>.",
 	"noarticletext-nopermission": "אין כרגע טקסט בדף הזה.\nבאפשרותך [[Special:Search/{{PAGENAME}}|לחפש את כותרת הדף]] בדפים אחרים או <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} לחפש את הדף ביומנים]</span>, אך אין לך הרשאה ליצור את הדף.",
 	"missing-revision": "גרסה #$1 של הדף \"{{FULLPAGENAME}}\" אינה קיימת.\n\nזה נגרם בדרך־כלל עקב לחיצה על קישור ישן לגרסה של דף שנמחק.\nאפשר למצוא פרטים ב[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].",
+	"missing-revision-content": "לא היה לטעון את התוכן של גרסה #$1 של הדף ששמו \"$2\".",
 	"userpage-userdoesnotexist": "חשבון המשתמש \"$1\" אינו רשום.\nאנא {{GENDER:|בדוק|בדקי|בדקו}} אם {{GENDER:|ברצונך|ברצונך|ברצונכם}} ליצור/לערוך את הדף הזה.",
 	"userpage-userdoesnotexist-view": "חשבון המשתמש \"$1\" אינו רשום.",
 	"blocked-notice-logextract": "{{GENDER:$1|המשתמש הזה חסום|המשתמשת הזו חסומה}} כרגע.\nהפעולה האחרונה ביומן החסימות מוצגת להלן:",
@@ -3616,6 +3617,8 @@
 	"feedback-useragent": "User agent:",
 	"searchsuggest-search": "חיפוש ב{{GRAMMAR:תחילית|{{SITENAME}}}}",
 	"searchsuggest-containing": "כולל...",
+	"search-match-redirect-label": "להפנות להתאמות מדויקות בעת חיפוש",
+	"search-match-redirect-help": "יש לבחור את זה כדי שהמערכת תפנה אותך לדף כשכותרת הדף מתאימה למה שחיפשת",
 	"api-error-badtoken": "שגיאה פנימית: אסימון שבור.",
 	"api-error-emptypage": "יצירת דפים חדשים ריקים אינה אפשרית.",
 	"api-error-publishfailed": "שגיאה פנימית: השרת נכשל בפרסום הקובץ הזמני.",
@@ -3928,7 +3931,7 @@
 	"passwordpolicies-policyflag-forcechange": "לדרוש שינוי בעת כניסה לחשבון",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "להציע שינוי בעת כניסה לחשבון",
 	"mycustomjsredirectprotected": "אין לך הרשאה לערוך את דף ה־JavaScript הזה, כיוון שהוא הפניה לדף שנמצא מחוץ למרחב המשתמש שלך.",
-	"easydeflate-invaliddeflate": "התוכן שהועבר אינו דחוס כנדרש",
+	"deflate-invaliddeflate": "התוכן שהועבר אינו דחוס כנדרש",
 	"unprotected-js": "מסיבות אבטחה, לא ניתן לטעון JavaScript מדפים שאינם מוגנים. ניתן ליצור סקריפטי JavaScript רק במרחב השם \"מדיה ויקי:\" או בדפי משנה של דף המשתמש.",
 	"userlogout-continue": "האם ברצונך לצאת מהחשבון?"
 }

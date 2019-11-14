@@ -587,6 +587,10 @@ abstract class ApiQueryBase extends ApiBase {
 		}
 
 		$services = MediaWikiServices::getInstance();
+		if ( !$services->getContentLanguage()->needsGenderDistinction() ) {
+			return;
+		}
+
 		$nsInfo = $services->getNamespaceInfo();
 		$namespaceField = $fieldPrefix . '_namespace';
 		$titleField = $fieldPrefix . '_title';
@@ -619,11 +623,10 @@ abstract class ApiQueryBase extends ApiBase {
 	 *
 	 * @deprecated since 1.34, use ApiQueryBlockInfoTrait instead
 	 * @param bool $showBlockInfo
-	 * @return void
 	 */
 	public function showHiddenUsersAddBlockInfo( $showBlockInfo ) {
 		wfDeprecated( __METHOD__, '1.34' );
-		return $this->addBlockInfoToQuery( $showBlockInfo );
+		$this->addBlockInfoToQuery( $showBlockInfo );
 	}
 
 	/** @} */

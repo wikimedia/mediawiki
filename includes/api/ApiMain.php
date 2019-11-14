@@ -445,7 +445,7 @@ class ApiMain extends ApiBase {
 			return;
 		}
 
-		if ( !User::isEveryoneAllowed( 'read' ) ) {
+		if ( !$this->getPermissionManager()->isEveryoneAllowed( 'read' ) ) {
 			// Private wiki, only private headers
 			if ( $mode !== 'private' ) {
 				wfDebug( __METHOD__ . ": ignoring request for $mode cache mode, private wiki\n" );

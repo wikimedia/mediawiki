@@ -3,36 +3,49 @@
 namespace MediaWiki;
 
 use ActorMigration;
+use BagOStuff;
 use CommentStore;
 use Config;
 use ConfigFactory;
+use ConfiguredReadOnlyMode;
 use CryptHKDF;
 use DateFormatterFactory;
 use EventRelayerGroup;
+use ExternalStoreAccess;
+use ExternalStoreFactory;
 use FileBackendGroup;
 use GenderCache;
 use GlobalVarConfig;
 use Hooks;
 use IBufferingStatsdDataFactory;
 use Language;
+use LinkCache;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LocalisationCache;
+use MWException;
+use MagicWordFactory;
+use MediaHandlerFactory;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockRestrictionStore;
+use MediaWiki\Config\ConfigRepository;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Http\HttpRequestFactory;
-use PasswordReset;
+use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
-use TitleFactory;
-use Wikimedia\Message\IMessageFormatterFactory;
+use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\PreferencesFactory;
+use MediaWiki\Revision\RevisionFactory;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRenderer;
+use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Revision\RevisionStoreFactory;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Special\SpecialPageFactory;
@@ -40,28 +53,19 @@ use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
-use MediaWiki\Revision\RevisionFactory;
-use MediaWiki\Revision\RevisionLookup;
-use MediaWiki\Revision\RevisionStore;
-use OldRevisionImporter;
-use MediaWiki\Revision\RevisionStoreFactory;
-use UploadRevisionImporter;
-use Wikimedia\Rdbms\ILoadBalancer;
-use LinkCache;
-use MediaHandlerFactory;
-use MediaWiki\Config\ConfigRepository;
-use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\Linker\LinkRendererFactory;
-use MWException;
+use MediaWiki\Storage\PageEditStash;
 use MessageCache;
 use MimeAnalyzer;
 use NamespaceInfo;
 use ObjectCache;
+use OldRevisionImporter;
 use Parser;
 use ParserCache;
 use ParserFactory;
 use PasswordFactory;
+use PasswordReset;
 use ProxyLookup;
+use ReadOnlyMode;
 use RepoGroup;
 use ResourceLoader;
 use SearchEngine;
@@ -69,20 +73,22 @@ use SearchEngineConfig;
 use SearchEngineFactory;
 use SiteLookup;
 use SiteStore;
-use WatchedItemStoreInterface;
-use WatchedItemQueryService;
 use SkinFactory;
+use TitleFactory;
 use TitleFormatter;
 use TitleParser;
+use UploadRevisionImporter;
 use VirtualRESTServiceClient;
+use WANObjectCache;
+use WatchedItemQueryService;
+use WatchedItemStoreInterface;
+use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\ObjectFactory;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Services\NoSuchServiceException;
 use Wikimedia\Services\SalvageableService;
 use Wikimedia\Services\ServiceContainer;
-use Wikimedia\Services\NoSuchServiceException;
-use MediaWiki\Interwiki\InterwikiLookup;
-use MagicWordFactory;
-use MediaWiki\Storage\PageEditStash;
 
 /**
  * Service locator for MediaWiki core services.
@@ -361,26 +367,6 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
-	 * Intended for tests that may change configuration in a way that invalidates caches.
-	 *
-	 * @throws MWException if called outside of PHPUnit tests or installer.
-	 * @since 1.35
-	 */
-	public function resetLanguageServices() {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MEDIAWIKI_INSTALL' ) ) {
-			throw new MWException( __METHOD__ . ' must not be used outside tests/installer' );
-		}
-		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
-			$this->resetServiceForTesting( 'LanguageFallback' );
-			$this->resetServiceForTesting( 'LanguageNameUtils' );
-			$this->resetServiceForTesting( 'LocalisationCache' );
-		}
-
-		$this->resetService( 'LanguageFactory' );
-		Language::$mLangObjCache = [];
-	}
-
-	/**
 	 * Resets the given service for testing purposes.
 	 *
 	 * @since 1.28
@@ -570,7 +556,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.29
-	 * @return \ConfiguredReadOnlyMode
+	 * @return ConfiguredReadOnlyMode
 	 */
 	public function getConfiguredReadOnlyMode() {
 		return $this->getService( 'ConfiguredReadOnlyMode' );
@@ -578,7 +564,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.32
-	 * @return \Language
+	 * @return Language
 	 */
 	public function getContentLanguage() {
 		return $this->getService( 'ContentLanguage' );
@@ -634,7 +620,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.34
-	 * @return \ExternalStoreAccess
+	 * @return ExternalStoreAccess
 	 */
 	public function getExternalStoreAccess() {
 		return $this->getService( 'ExternalStoreAccess' );
@@ -642,7 +628,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.31
-	 * @return \ExternalStoreFactory
+	 * @return ExternalStoreFactory
 	 */
 	public function getExternalStoreFactory() {
 		return $this->getService( 'ExternalStoreFactory' );
@@ -741,7 +727,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.28
-	 * @return \BagOStuff
+	 * @return BagOStuff
 	 */
 	public function getLocalServerObjectCache() {
 		return $this->getService( 'LocalServerObjectCache' );
@@ -776,7 +762,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.28
-	 * @return \BagOStuff
+	 * @return BagOStuff
 	 */
 	public function getMainObjectStash() {
 		return $this->getService( 'MainObjectStash' );
@@ -784,7 +770,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.28
-	 * @return \WANObjectCache
+	 * @return WANObjectCache
 	 */
 	public function getMainWANObjectCache() {
 		return $this->getService( 'MainWANObjectCache' );
@@ -947,7 +933,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.29
-	 * @return \ReadOnlyMode
+	 * @return ReadOnlyMode
 	 */
 	public function getReadOnlyMode() {
 		return $this->getService( 'ReadOnlyMode' );
@@ -1164,7 +1150,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.31
-	 * @return \OldRevisionImporter
+	 * @return OldRevisionImporter
 	 */
 	public function getWikiRevisionOldRevisionImporter() {
 		return $this->getService( 'OldRevisionImporter' );
@@ -1172,7 +1158,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.31
-	 * @return \OldRevisionImporter
+	 * @return OldRevisionImporter
 	 */
 	public function getWikiRevisionOldRevisionImporterNoUpdates() {
 		return $this->getService( 'WikiRevisionOldRevisionImporterNoUpdates' );
@@ -1180,7 +1166,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.31
-	 * @return \UploadRevisionImporter
+	 * @return UploadRevisionImporter
 	 */
 	public function getWikiRevisionUploadImporter() {
 		return $this->getService( 'UploadRevisionImporter' );

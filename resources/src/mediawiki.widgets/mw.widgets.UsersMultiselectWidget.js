@@ -152,7 +152,7 @@
 	 * @private
 	 */
 	mw.widgets.UsersMultiselectWidget.prototype.updateHiddenInput = function () {
-		if ( 'hiddenInput' in this ) {
+		if ( '$hiddenInput' in this ) {
 			this.$hiddenInput.val( this.getSelectedUsernames().join( '\n' ) );
 			// Trigger a 'change' event as if a user edited the text
 			// (it is not triggered when changing the value from JS code).

@@ -26,6 +26,7 @@ use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ObjectFactory;
 
 /**
  * Class to handle file backend registration
@@ -57,6 +58,9 @@ class FileBackendGroup {
 
 	/** @var TempFSFileFactory */
 	private $tmpFileFactory;
+
+	/** @var ObjectFactory */
+	private $objectFactory;
 
 	/**
 	 * @internal
@@ -94,6 +98,7 @@ class FileBackendGroup {
 	 * @param MimeAnalyzer $mimeAnalyzer
 	 * @param LockManagerGroupFactory $lmgFactory
 	 * @param TempFSFileFactory $tmpFileFactory
+	 * @param ObjectFactory $objectFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -102,7 +107,8 @@ class FileBackendGroup {
 		WANObjectCache $wanCache,
 		MimeAnalyzer $mimeAnalyzer,
 		LockManagerGroupFactory $lmgFactory,
-		TempFSFileFactory $tmpFileFactory
+		TempFSFileFactory $tmpFileFactory,
+		ObjectFactory $objectFactory
 	) {
 		$this->options = $options;
 		$this->srvCache = $srvCache;
@@ -110,6 +116,7 @@ class FileBackendGroup {
 		$this->mimeAnalyzer = $mimeAnalyzer;
 		$this->lmgFactory = $lmgFactory;
 		$this->tmpFileFactory = $tmpFileFactory;
+		$this->objectFactory = $objectFactory;
 
 		// Register explicitly defined backends
 		$this->register( $options->get( 'FileBackends' ), $configuredReadOnlyMode->getReason() );
@@ -251,8 +258,10 @@ class FileBackendGroup {
 					$this->lmgFactory->getLockManagerGroup( $config['domainId'] )
 						->get( $config['lockManager'] ),
 				'fileJournal' => isset( $config['fileJournal'] )
-					? FileJournal::factory( $config['fileJournal'], $name )
-					: FileJournal::factory( [ 'class' => NullFileJournal::class ], $name )
+					? $this->objectFactory->createObject(
+						$config['fileJournal'] + [ 'backend' => $name ],
+						[ 'specIsArg' => true, 'assertClass' => FileJournal::class ] )
+					: new NullFileJournal
 			]
 		);
 	}

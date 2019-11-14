@@ -121,6 +121,8 @@ class ApiComparePagesTest extends ApiTestCase {
 	 * @dataProvider provideDiff
 	 */
 	public function testDiff( $params, $expect, $exceptionCode = false, $sysop = false ) {
+		$this->setMwGlobals( [ 'wgDiffEngine' => 'php' ] );
+
 		$this->doReplacements( $params );
 
 		$params += [

@@ -146,7 +146,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 	 * @dataProvider provideBuildContentScripts
 	 * @covers ResourceLoaderModule::buildContent
 	 */
-	public function testBuildContentScripts( $raw, $build, $message = null ) {
+	public function testBuildContentScripts( $raw, $build, $message = '' ) {
 		$context = $this->getResourceLoaderContext();
 		$module = new ResourceLoaderTestModule( [
 			'script' => $raw

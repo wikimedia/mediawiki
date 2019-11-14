@@ -54,7 +54,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 	 */
 	abstract protected function getMcrTablesToReset();
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->tablesUsed += $this->getMcrTablesToReset();
@@ -67,7 +67,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		$this->pagesToDelete = [];
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		foreach ( $this->pagesToDelete as $p ) {
 			/* @var WikiPage $p */
 
@@ -1869,7 +1869,7 @@ more stuff
 	 * @param array $expiry
 	 * @param bool $cascade
 	 * @param string $reason
-	 * @param bool|null $user true if the test sysop should be used, or null
+	 * @param true|null $user true if the test sysop should be used, or null
 	 * @param string $expectedComment
 	 */
 	public function testInsertProtectNullRevision(
@@ -1885,7 +1885,7 @@ more stuff
 
 		$page = $this->createPage( __METHOD__, 'Goat' );
 
-		$user = $user === null ? $user : $this->getTestSysop()->getUser();
+		$user = $user ? $this->getTestSysop()->getUser() : null;
 
 		$result = $page->insertProtectNullRevision(
 			$revCommentMsg,

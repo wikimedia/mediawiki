@@ -4,9 +4,9 @@ class ComposerLockTest extends PHPUnit\Framework\TestCase {
 
 	private $lock;
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
-		$this->lock = __DIR__ . "/../../../data/composer/composer.lock";
+		$this->lock = __DIR__ . "/../../../../data/composer/composer.lock";
 	}
 
 	/**

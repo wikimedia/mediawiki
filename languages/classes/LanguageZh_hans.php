@@ -54,7 +54,7 @@ class LanguageZh_hans extends Language {
 	 * @param string $s
 	 * @return string
 	 */
-	function normalizeForSearch( $s ) {
+	public function normalizeForSearch( $s ) {
 		// Double-width roman characters
 		$s = parent::normalizeForSearch( $s );
 		$s = trim( $s );

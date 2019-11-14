@@ -99,7 +99,8 @@
 			"PiefPafPier",
 			"Ecthelion3",
 			"RadioAzureus",
-			"LongJohn nl"
+			"LongJohn nl",
+			"Kupulak"
 		]
 	},
 	"tog-underline": "Links onderstrepen:",
@@ -146,6 +147,7 @@
 	"tog-useeditwarning": "Waarschuwen als u een bewerkte pagina wilt verlaten die nog niet is opgeslagen",
 	"tog-prefershttps": "Altijd een beveiligde verbinding gebruiken wanneer u bent aangemeld",
 	"tog-showrollbackconfirmation": "Toon een bevestigingsvenster wanneer er op een terugdraaien koppeling wordt geklikt.",
+	"tog-requireemail": "পাস ওয়ার্ড পরিবর্তনে ই-মেইল দরকার",
 	"underline-always": "Altijd",
 	"underline-never": "Nooit",
 	"underline-default": "Standaardgedrag van vormgeving of webbrowser",
@@ -738,6 +740,7 @@
 	"noarticletext": "Deze pagina bevat geen tekst.\nU kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina's, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken doorzoeken] of [{{fullurl:{{FULLPAGENAME}}|action=edit}} deze pagina aanmaken]</span>.",
 	"noarticletext-nopermission": "Deze pagina bevat geen tekst.\nU kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina's of\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken doorzoeken]</span>, maar u mag de pagina niet aanmaken.",
 	"missing-revision": "De versie #$1 van de pagina \"{{FULLPAGENAME}}\" bestaat niet.\n\nDit wordt meestal veroorzaakt door het volgen van een verouderde koppeling naar een pagina die is verwijderd.\nMeer gegevens zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].",
+	"missing-revision-content": "De inhoud van de versie #$1 van de pagina met de naam \"$2\" kon niet worden geladen.",
 	"userpage-userdoesnotexist": "Gebruikersaccount \"$1\" bestaat niet.\nControleer of u deze pagina wel wilt aanmaken/bewerken.",
 	"userpage-userdoesnotexist-view": "Gebruikersaccount \"$1\" bestaat niet.",
 	"blocked-notice-logextract": "Deze gebruiker is momenteel geblokkeerd.\nDe laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergegeven:",
@@ -1220,7 +1223,7 @@
 	"group-user": "gebruikers",
 	"group-autoconfirmed": "autobevestigde gebruikers",
 	"group-bot": "bots",
-	"group-sysop": "beheyrders",
+	"group-sysop": "beheerders",
 	"group-interface-admin": "interfacemoderatoren",
 	"group-bureaucrat": "bureaucraten",
 	"group-suppress": "toezichthouders",
@@ -3600,6 +3603,8 @@
 	"feedback-useragent": "Useragent:",
 	"searchsuggest-search": "Doorzoek {{SITENAME}}",
 	"searchsuggest-containing": "bevat...",
+	"search-match-redirect-label": "Doorverwijzen naar een exacte overeenkomst bij het zoeken",
+	"search-match-redirect-help": "Selecteer deze optie om doorverwezen te worden naar een pagina wanneer de pagina titel overeenkomt met de zoekopdracht",
 	"api-error-badtoken": "Interne fout: Foutief token.",
 	"api-error-emptypage": "Het aanmaken van nieuwe, lege pagina's is niet toegestaan.",
 	"api-error-publishfailed": "Interne fout: de server kon het tijdelijke bestand niet publiceren.",
@@ -3913,7 +3918,7 @@
 	"passwordpolicies-policyflag-forcechange": "moet gewijzigd worden bij het aanmelden",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "raad wijzigen aan bij het aanmelden",
 	"mycustomjsredirectprotected": "U hebt geen rechten om deze JavaScriptpagina te bewerken omdat het een doorverwijzing is en deze niet verwijst naar een pagina in uw gebruikersruimte.",
-	"easydeflate-invaliddeflate": "De opgegeven inhoud is onjuist gecomprimeerd",
+	"deflate-invaliddeflate": "De opgegeven inhoud is onjuist gecomprimeerd",
 	"unprotected-js": "Vanwege veiligheidsredenen kan er geen JavaScript geladen worden vanaf onbeveiligde pagina's. Gelieve alleen JavaScript pagina's aan te maken in de MediaWiki: naamruimte of als een subpagina van een gebruikerspagina.",
 	"userlogout-continue": "Wilt u zich afmelden?"
 }

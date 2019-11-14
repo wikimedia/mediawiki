@@ -11,6 +11,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  *
  * @see StringDef
  * @since 1.34
+ * @unstable
  */
 class PasswordDef extends StringDef {
 

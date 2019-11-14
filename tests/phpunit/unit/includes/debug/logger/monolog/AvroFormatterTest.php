@@ -21,13 +21,14 @@
 namespace MediaWiki\Logger\Monolog;
 
 use PHPUnit\Framework\Error\Notice;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * @covers \MediaWiki\Logger\Monolog\AvroFormatter
  */
 class AvroFormatterTest extends \MediaWikiUnitTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		if ( !class_exists( 'AvroStringIO' ) ) {
 			$this->markTestSkipped( 'Avro is required for the AvroFormatterTest' );
 		}
@@ -43,14 +44,10 @@ class AvroFormatterTest extends \MediaWikiUnitTestCase {
 
 	public function testSchemaNotAvailableReturnValue() {
 		$formatter = new AvroFormatter( [] );
-		$noticeEnabled = Notice::$enabled;
-		// disable conversion of notices
-		Notice::$enabled = false;
 		// have to keep the user notice from being output
-		\Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$res = $formatter->format( [ 'channel' => 'marty' ] );
-		\Wikimedia\restoreWarnings();
-		Notice::$enabled = $noticeEnabled;
+		AtEase::restoreWarnings();
 		$this->assertNull( $res );
 	}
 

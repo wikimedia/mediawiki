@@ -17,6 +17,7 @@
 		"path": "/v1/page/{title}/history/counts/{type}",
 		"class": "MediaWiki\\Rest\\Handler\\PageHistoryCountHandler",
 		"services": [
+			"RevisionStore",
 			"NameTableStoreFactory",
 			"PermissionManager",
 			"DBLoadBalancer"
@@ -27,7 +28,8 @@
 		"class": "MediaWiki\\Rest\\Handler\\CompareHandler",
 		"services": [
 			"RevisionLookup",
-			"PermissionManager"
+			"PermissionManager",
+			"Parser"
 		]
 	},
 	{

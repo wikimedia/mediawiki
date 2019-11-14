@@ -9,7 +9,7 @@ use Psr\Log\NullLogger;
  */
 class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 
 		$this->tablesUsed[] = 'change_tag';

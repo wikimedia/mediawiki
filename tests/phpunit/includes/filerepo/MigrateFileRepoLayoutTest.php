@@ -9,7 +9,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiTestCase {
 	protected $tmpFilepath;
 	protected $text = 'testing';
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$filename = 'Foo.png';
@@ -91,7 +91,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiTestCase {
 		rmdir( $directory );
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		foreach ( glob( $this->tmpPrefix . '*' ) as $directory ) {
 			$this->deleteFilesRecursively( $directory );
 		}

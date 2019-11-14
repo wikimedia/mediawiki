@@ -28,7 +28,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;
 	use MediaWikiGroupValidator;
 	use MediaWikiTestCaseTrait;
-	use PHPUnit4And6Compat;
 
 	/**
 	 * The original service locator. This is overridden during setUp().
@@ -663,12 +662,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * Sets a service, maintaining a stashed version of the previous service to be
 	 * restored in tearDown.
 	 *
-	 * @note Tests must not call overrideMwServices() after calling setService(), since that would
-	 *       lose the new service instance. Since 1.34, resetServices() can be used instead, which
-	 *       would reset other services, but retain any services set using setService().
-	 *       This means that once a service is set using this method, it cannot be reverted to
-	 *       the original service within the same test method. The original service is restored
-	 *       in tearDown after the test method has terminated.
+	 * @note This calls resetServices() in case any other services depend on the set service(s).
 	 *
 	 * @param string $name
 	 * @param object $service The service instance, or a callable that returns the service instance.
@@ -702,7 +696,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$instantiator
 		);
 
-		self::resetLegacyGlobals();
+		$this->resetServices();
 	}
 
 	/**
@@ -714,7 +708,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 *
 	 * @par Example
 	 * @code
-	 *     protected function setUp() {
+	 *     protected function setUp() : void {
 	 *         $this->setMwGlobals( 'wgRestrictStuff', true );
 	 *     }
 	 *
@@ -889,7 +883,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		self::resetLegacyGlobals();
-		MediaWikiServices::getInstance()->resetLanguageServices();
+		Language::$mLangObjCache = [];
 	}
 
 	/**
@@ -943,7 +937,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		self::resetLegacyGlobals();
-		$newInstance->resetLanguageServices();
+		Language::$mLangObjCache = [];
 
 		return $newInstance;
 	}
@@ -1336,7 +1330,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	/**
 	 * Restores MediaWiki to using the table set (table prefix) it was using before
 	 * setupTestDB() was called. Useful if we need to perform database operations
-	 * after the test run has finished (such as saving logs or profiling info).
+	 * after the test run has finished (such as saving logs).
 	 *
 	 * This is called by phpunit/bootstrap.php after the last test.
 	 *
@@ -1960,19 +1954,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	public function setCliArg( $offset, $value ) {
 		$this->cliArgs[$offset] = $value;
-	}
-
-	/**
-	 * Don't throw a warning if $function is deprecated and called later
-	 *
-	 * @since 1.19
-	 *
-	 * @param string $function
-	 */
-	public function hideDeprecated( $function ) {
-		Wikimedia\suppressWarnings();
-		wfDeprecated( $function );
-		Wikimedia\restoreWarnings();
 	}
 
 	/**

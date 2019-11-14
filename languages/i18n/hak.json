@@ -1233,7 +1233,7 @@
 	"allmessagesdefault": "默認信息文字",
 	"allmessagescurrent": "Tông-chhièn ke vùn-sṳ",
 	"allmessagestext": "Liá-piên lie̍t-chhut só-yû hí-khó thin-chṳ ke ne-thúng kie-mien.\nPlease visit [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] and [https://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.",
-	"allmessages-not-supported-database": "!!FUZZY!!!!FUZZY!!Ne-thúng kie-mien kûng-yung chhu-yî kôan-pit chong-thai （wgUseDatabaseMessages）。",
+	"allmessages-not-supported-database": "Ne-thúng kie-mien kûng-yung chhu-yî kôan-pit chong-thai （wgUseDatabaseMessages）。",
 	"thumbnail-more": "Piong-thai",
 	"filemissing": "Mò-fap cháu-to tóng-on",
 	"thumbnail_error": "建立縮略圖差錯：$1",

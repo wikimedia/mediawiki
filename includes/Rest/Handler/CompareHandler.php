@@ -11,6 +11,7 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
+use Parser;
 use RequestContext;
 use TextContent;
 use User;
@@ -24,18 +25,26 @@ class CompareHandler extends Handler {
 	/** @var PermissionManager */
 	private $permissionManager;
 
+	/** @var Parser */
+	private $parser;
+
 	/** @var User */
 	private $user;
 
 	/** @var RevisionRecord[] */
 	private $revisions = [];
 
+	/** @var string[] */
+	private $textCache = [];
+
 	public function __construct(
 		RevisionLookup $revisionLookup,
-		PermissionManager $permissionManager
+		PermissionManager $permissionManager,
+		Parser $parser
 	) {
 		$this->revisionLookup = $revisionLookup;
 		$this->permissionManager = $permissionManager;
+		$this->parser = $parser;
 
 		// @todo Inject this, when there is a good way to do that
 		$this->user = RequestContext::getMain()->getUser();
@@ -61,10 +70,12 @@ class CompareHandler extends Handler {
 			'from' => [
 				'id' => $fromRev->getId(),
 				'slot_role' => $this->getRole(),
+				'sections' => $this->getSectionInfo( 'from' )
 			],
 			'to' => [
 				'id' => $toRev->getId(),
-				'slot_role' => $this->getRole()
+				'slot_role' => $this->getRole(),
+				'sections' => $this->getSectionInfo( 'to' )
 			],
 			'diff' => [ 'PLACEHOLDER' => null ]
 		];
@@ -129,29 +140,32 @@ class CompareHandler extends Handler {
 	}
 
 	private function getRevisionText( $paramName ) {
-		$revision = $this->getRevision( $paramName );
-		try {
-			$content = $revision
-				->getSlot( $this->getRole(), RevisionRecord::FOR_THIS_USER, $this->user )
-				->getContent()
-				->convert( CONTENT_MODEL_TEXT );
-			if ( $content instanceof TextContent ) {
-				return $content->getText();
-			} else {
+		if ( !isset( $this->textCache[$paramName] ) ) {
+			$revision = $this->getRevision( $paramName );
+			try {
+				$content = $revision
+					->getSlot( $this->getRole(), RevisionRecord::FOR_THIS_USER, $this->user )
+					->getContent()
+					->convert( CONTENT_MODEL_TEXT );
+				if ( $content instanceof TextContent ) {
+					$this->textCache[$paramName] = $content->getText();
+				} else {
+					throw new LocalizedHttpException(
+						new MessageValue(
+							'rest-compare-wrong-content',
+							[ $this->getRole(), $paramName ]
+						),
+						400 );
+				}
+			} catch ( SuppressedDataException $e ) {
 				throw new LocalizedHttpException(
-					new MessageValue(
-						'rest-compare-wrong-content',
-						[ $this->getRole(), $paramName ]
-					),
-					400 );
+					new MessageValue( 'rest-compare-inaccessible', [ $paramName ] ), 403 );
+			} catch ( RevisionAccessException $e ) {
+				throw new LocalizedHttpException(
+					new MessageValue( 'rest-compare-nonexistent', [ $paramName ] ), 404 );
 			}
-		} catch ( SuppressedDataException $e ) {
-			throw new LocalizedHttpException(
-				new MessageValue( 'rest-compare-inaccessible', [ $paramName ] ), 403 );
-		} catch ( RevisionAccessException $e ) {
-			throw new LocalizedHttpException(
-				new MessageValue( 'rest-compare-nonexistent', [ $paramName ] ), 404 );
 		}
+		return $this->textCache[$paramName];
 	}
 
 	/**
@@ -167,6 +181,27 @@ class CompareHandler extends Handler {
 				new MessageValue( 'rest-compare-wikidiff2' ), 500 );
 		}
 		return wikidiff2_inline_json_diff( $fromText, $toText, 2 );
+	}
+
+	/**
+	 * @return array
+	 */
+	private function getSectionInfo( $paramName ) {
+		$text = $this->getRevisionText( $paramName );
+		$parserSections = $this->parser->getFlatSectionInfo( $text );
+		$sections = [];
+		foreach ( $parserSections as $i => $parserSection ) {
+			// Skip section zero, which comes before the first heading, since
+			// its offset is always zero, so the client can assume its location.
+			if ( $i !== 0 ) {
+				$sections[] = [
+					'level' => $parserSection['level'],
+					'heading' => $parserSection['heading'],
+					'offset' => $parserSection['offset'],
+				];
+			}
+		}
+		return $sections;
 	}
 
 	public function getParamSettings() {

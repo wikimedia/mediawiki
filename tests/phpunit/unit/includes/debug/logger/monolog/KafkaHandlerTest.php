@@ -22,15 +22,13 @@ namespace MediaWiki\Logger\Monolog;
 
 use Kafka\Exception;
 use Monolog\Logger;
-use PHPUnit\Framework\MockObject\Matcher\ConsecutiveParameters;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Logger\Monolog\KafkaHandler
  */
 class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		if ( !class_exists( 'Monolog\Handler\AbstractProcessingHandler' )
 			|| !class_exists( 'Kafka\Produce' )
 		) {
@@ -153,18 +151,15 @@ class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 		$produce->expects( $this->any() )
 			->method( 'getAvailablePartitions' )
 			->will( $this->returnValue( [ 'A' ] ) );
-		$mockMethod = $produce->expects( $this->exactly( 2 ) )
-			->method( 'setMessages' );
+		$produce->expects( $this->exactly( 2 ) )
+			->method( 'setMessages' )
+			->will( $this->onConsecutiveCalls(
+				[ $this->anything(), $this->anything(), [ 'words' ] ],
+				[ $this->anything(), $this->anything(), [ 'lines' ] ]
+			) );
 		$produce->expects( $this->any() )
 			->method( 'send' )
 			->will( $this->returnValue( true ) );
-		// evil hax
-		$matcher = TestingAccessWrapper::newFromObject( $mockMethod )->matcher;
-		TestingAccessWrapper::newFromObject( $matcher )->parametersMatcher =
-			new ConsecutiveParameters( [
-				[ $this->anything(), $this->anything(), [ 'words' ] ],
-				[ $this->anything(), $this->anything(), [ 'lines' ] ]
-			] );
 
 		$formatter = $this->createMock( \Monolog\Formatter\FormatterInterface::class );
 		$formatter->expects( $this->any() )

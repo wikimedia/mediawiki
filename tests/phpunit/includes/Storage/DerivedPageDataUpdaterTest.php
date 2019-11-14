@@ -33,7 +33,7 @@ use DeferredUpdates;
  */
 class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 
-	public function tearDown() {
+	public function tearDown() : void {
 		MWTimestamp::setFakeTime( false );
 
 		parent::tearDown();

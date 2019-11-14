@@ -794,6 +794,7 @@
 	"noarticletext": "В настоящий момент текст на данной странице отсутствует.\nВы можете [[Special:Search/{{PAGENAME}}|найти упоминание данного названия]] на других страницах,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} найти соответствующие записи журналов]\nили '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} создать страницу с таким названием]'''</span>.",
 	"noarticletext-nopermission": "В настоящее время на этой странице нет текста.\nВы можете [[Special:Search/{{PAGENAME}}|найти упоминание данного названия]] на других страницах,\nили <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} найти соответствующие записи журналов].</span> У вас нет разрешения создать данную страницу.",
 	"missing-revision": "Версия $1 страницы «{{FULLPAGENAME}}» не существует.\n\nОбычно это бывает, если проследовать по устаревшей ссылке на удалённую страницу.\nПодробности могут быть в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журнале удалений].",
+	"missing-revision-content": "Не удалось загрузить содержимое версии #$1 страницы «$2».",
 	"userpage-userdoesnotexist": "Учётной записи «<nowiki>$1</nowiki>» не существует. Убедитесь, что вы действительно желаете создать или изменить эту страницу.",
 	"userpage-userdoesnotexist-view": "Не зарегистрировано учётной записи «$1».",
 	"blocked-notice-logextract": "{{GENDER:$1|Этот участник|Эта участница}} в данный момент {{GENDER:$1|заблокирован|заблокирована}}.\nНиже приведена последняя запись из журнала блокировок:",
@@ -3739,6 +3740,8 @@
 	"feedback-useragent": "Браузер:",
 	"searchsuggest-search": "Искать в {{grammar:prepositional|{{SITENAME}}}}",
 	"searchsuggest-containing": "содержащие…",
+	"search-match-redirect-label": "Перенаправлять на точные совпадения при поиске",
+	"search-match-redirect-help": "Выберите для перенаправления на страницу в том случае, когда заголовок этой страницы соответствует тому, что вы ищите",
 	"api-error-badtoken": "Внутренняя ошибка:  некорректный токен.",
 	"api-error-emptypage": "Не допускается создание новых пустых страниц.",
 	"api-error-publishfailed": "Внутренняя ошибка: сервер не смог сохранить временный файл.",
@@ -4059,7 +4062,7 @@
 	"passwordpolicies-policyflag-forcechange": "необходимо изменить при входе",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "предложить изменение при входе",
 	"mycustomjsredirectprotected": "У вас нет прав на редактирование этой JavaScript-страницы, так как она является перенаправлением и не указывает внутрь вашего пространства участника.",
-	"easydeflate-invaliddeflate": "Предоставленное содержимое не спущено надлежащим образом",
+	"deflate-invaliddeflate": "Предоставленное содержимое не спущено надлежащим образом",
 	"unprotected-js": "По соображениям безопасности JavaScript нельзя загружать с незащищённых страниц. Пожалуйста, создавайте скрипты только в пространстве имён MediaWiki: или как подстраницы участника.",
 	"userlogout-continue": "Вы хотите выйти?"
 }

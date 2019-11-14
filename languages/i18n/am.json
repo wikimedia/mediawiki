@@ -1421,7 +1421,7 @@
 	"allmessagesdefault": "የቆየው ጽሕፈት",
 	"allmessagescurrent": "ያሁኑ ጽሕፈት",
 	"allmessagestext": "በ«MediaWiki» ክፍለ-ዊኪ ያሉት የድረገጽ መልክ መልእክቶች ሙሉ ዝርዝር ይህ ነው።\nPlease visit [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] and [https://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.",
-	"allmessages-not-supported-database": "!!FUZZY!!'''$wgUseDatabaseMessages''' ስለ ተዘጋ '''{{ns:special}}:Allmessages''' ሊጠቀም አይችልም።",
+	"allmessages-not-supported-database": "'''$wgUseDatabaseMessages''' ስለ ተዘጋ '''{{ns:special}}:Allmessages''' ሊጠቀም አይችልም።",
 	"allmessages-filter-legend": "ማጣሪያ",
 	"allmessages-filter-all": "ሁሉ",
 	"allmessages-language": "ቋንቋ፦",

@@ -16,7 +16,7 @@ class ApiUnblockTest extends ApiTestCase {
 	/** @var User */
 	private $blockee;
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 
 		$this->tablesUsed = array_merge(

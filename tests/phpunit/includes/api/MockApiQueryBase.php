@@ -1,4 +1,5 @@
 <?php
+
 class MockApiQueryBase extends ApiQueryBase {
 	private $name;
 

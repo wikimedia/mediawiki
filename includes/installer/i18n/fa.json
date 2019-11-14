@@ -19,16 +19,17 @@
 			"Ahmad252",
 			"FarsiNevis",
 			"กิ๊ฟ เลิกล่ะ สายแข็ง",
-			"Alireza Ivaz"
+			"Alireza Ivaz",
+			"Arian Ar"
 		]
 	},
 	"config-desc": "نصب‌کنندهٔ مدیاویکی",
 	"config-title": "نصب مدیاویکی $1",
 	"config-information": "اطلاعات",
-	"config-localsettings-upgrade": "یک پروندۀ <code>LocalSettings.php</code> شناسایی شده‌است.\nبرای به‌روزرسانی این نصب، لطفاً مقدار <code>$wgUpgradeKey</code> در جعبۀ زیر وارد کنید.\nشما می‌توانید آن را در <code>LocalSettings.php</code> پیدا کنید.",
+	"config-localsettings-upgrade": "یک پروندۀ <code>LocalSettings.php</code> شناسایی شده‌است.\nبرای به‌روزرسانی این نصب، لطفاً مقدار <code>$wgUpgradeKey</code> را در جعبۀ زیر وارد کنید.\nشما می‌توانید آن را در <code>LocalSettings.php</code> پیدا کنید.",
 	"config-localsettings-cli-upgrade": "یک پروندۀ <code>LocalSettings.php</code> شناسایی شده است.\nبرای به‌روزرسانی این نصب، لطفاً <code>update.php</code> را اجرا کنید.",
 	"config-localsettings-key": "کلید به‌روزرسانی:",
-	"config-localsettings-badkey": "کلید به‌روزرسانی‌ای که شما ارائه کردید نادرست است.",
+	"config-localsettings-badkey": "کلید به‌روزرسانی‌ای که ارائه کرده‌اید نادرست است.",
 	"config-upgrade-key-missing": "یک نصب مدیاویکی موجود شناسایی شده است.\nبرای به‌روزرسانی این نصب، لطفاً خط زیر را در پایین پروندۀ <code>LocalSettings.php</code> خود قرار دهید:\n\n$1",
 	"config-localsettings-incomplete": "وجود <code>LocalSettings.php</code> به نظر ناقص می‌رسد.\nمتغیر $1 تنظیم نشده‌است.\nبرای اینکه این متغیر تنظیم شود، لطفاً <code>LocalSettings.php</code> را تغییر دهید و \"{{int:Config-continue}}\" را کلیک کنید.",
 	"config-localsettings-connection-error": "هنگام اتصال به پایگاه داده‌ای که از تنظیمات مشخص‌شده در <code>LocalSettings.php</code> استفاده می‌کند، خطایی رخ داد. لطفاً این تنظیمات را تعمیر کنید و دوباره تلاش کنید.\n$1",
@@ -95,7 +96,6 @@
 	"config-using-uri": "از اسم سرور \"<nowiki>$1$2</nowiki>\" استفاده کنید.",
 	"config-uploads-not-safe": "'''هشدار:''' فهرست پیش‌فرض ارسال‌های <code>$1</code> شما برای اجرای متون دلخواه آسیب‌پذیر است.\nاگرچه مدیاویکی همهٔ پوشه‌های ارسال‌ شده را برای خطرات امنیتی بررسی می‌کند، پیش از فعال‌سازی ارسال‌ها، بسیار به [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security close this security vulnerability] توصیه شده‌است.",
 	"config-no-cli-uploads-check": "'''هشدار:''' فهرست پیش‌فرض ارسال‌های شما (<code>$1</code>) برای آسیب‌پذیری اجرای متن دلخواه در طول نصب سی‌ال آی بررسی نشده‌است.",
-	"config-brokenlibxml": "دستگاه شما دارای تلفیقی از نسخه‌های پی‌اچ‌پی و لیبکسمل۲ است که ناقص است و می‌تواند دلیل از بین رفتن اطلاعات مخفی در مدیاویکی و دیگر برنامه‌های کاربردی شبکه باشد.\nارتقاء به لیبکسمل۲  ۲.۷.۳ یا بالاتر ([https://bugs.php.net/bug.php?id=45996 bug filed with PHP]) ارتفاء دهید.\nنصب شکست خورد ماند.",
 	"config-suhosin-max-value-length": "سوهسین نصب شده است و پارامتر گت <code>lenght</code> را به $1 بایت محدود می‌کند.\nمدیاویکی نیاز دارد تا <code>suhosin.get.max_value_lenght</code> حداقل $2 باشد. این تنظیم را غیرفعال کنید و یا مقدار آن را در <code>php.ini</code> به $3 افزایش دهید.",
 	"config-using-32bit": "<strong>هشدار:</strong> سیستم شما به‌نظر می‌آید با اعداد صحیح ۳۲ بیت اجرا شده باشد. [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit توصیه نمی‌شود].",
 	"config-db-type": "نوع پایگاه اطلاعات:",

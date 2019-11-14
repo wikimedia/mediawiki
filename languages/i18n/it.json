@@ -3907,7 +3907,7 @@
 	"passwordpolicies-policyflag-forcechange": "(deve essere modificata all'accesso)",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "(suggerita modifica all'accesso)",
 	"mycustomjsredirectprotected": "Non si dispone dei permessi necessari a modificare questa pagina JavaScript perché si tratta di un redirect che non punta al proprio spazio utente.",
-	"easydeflate-invaliddeflate": "Il contenuto fornito non è compresso correttamente",
+	"deflate-invaliddeflate": "Il contenuto fornito non è compresso correttamente",
 	"unprotected-js": "Per motivi di sicurezza, non è possibile caricare JavaScript da pagine non protette. Crea javascript solo nel namespace MediaWiki o come sottopagina Utente",
 	"userlogout-continue": "Vuoi davvero uscire?"
 }

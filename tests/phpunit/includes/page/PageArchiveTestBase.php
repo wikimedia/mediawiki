@@ -78,7 +78,7 @@ abstract class PageArchiveTestBase extends MediaWikiTestCase {
 		return true;
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->tablesUsed += $this->getMcrTablesToReset();

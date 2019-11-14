@@ -22,12 +22,12 @@ class OutputPageTest extends MediaWikiTestCase {
 	// @codingStandardsIgnoreEnd
 
 	// Ensure that we don't affect the global ResourceLoader state.
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		ResourceLoader::clearCache();
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		parent::tearDown();
 		ResourceLoader::clearCache();
 	}
@@ -61,7 +61,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		];
 	}
 
-	private function setupFeedLinks( $feed, $types ) {
+	private function setupFeedLinks( $feed, $types ) : OutputPage {
 		$outputPage = $this->newInstance( [
 			'AdvertisedFeedTypes' => $types,
 			'Feed' => $feed,
@@ -76,7 +76,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		return $outputPage;
 	}
 
-	private function assertFeedLinks( $outputPage, $message, $present, $non_present ) {
+	private function assertFeedLinks( OutputPage $outputPage, $message, $present, $non_present ) {
 		$links = $outputPage->getHeadLinksArray();
 		foreach ( $present as $link ) {
 			$this->assertContains( $link, $links, $message );
@@ -86,7 +86,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		}
 	}
 
-	private function assertFeedUILinks( $outputPage, $ui_links ) {
+	private function assertFeedUILinks( OutputPage $outputPage, $ui_links ) {
 		if ( $ui_links ) {
 			$this->assertTrue( $outputPage->isSyndicated(), 'Syndication should be offered' );
 			$this->assertGreaterThan( 0, count( $outputPage->getSyndicationLinks() ),
@@ -497,7 +497,7 @@ class OutputPageTest extends MediaWikiTestCase {
 					[ 'CacheEpoch' => wfTimestamp( TS_MW, $lastModified + 1 ) ] ],
 			'Recently-touched user' =>
 				[ $lastModified, $lastModified, false, [],
-				function ( $op ) {
+				function ( OutputPage $op ) {
 					$op->getContext()->setUser( $this->getTestUser()->getUser() );
 				} ],
 			'After CDN expiry' =>
@@ -614,7 +614,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	/**
 	 * Shorthand for getting the text of a message, in content language.
 	 */
-	private static function getMsgText( $op, ...$msgParams ) {
+	private static function getMsgText( MessageLocalizer $op, ...$msgParams ) {
 		return $op->msg( ...$msgParams )->inContentLanguage()->text();
 	}
 
@@ -1187,13 +1187,13 @@ class OutputPageTest extends MediaWikiTestCase {
 		return $op;
 	}
 
-	private function doCategoryAsserts( $op, $expectedNormal, $expectedHidden ) {
+	private function doCategoryAsserts( OutputPage $op, $expectedNormal, $expectedHidden ) {
 		$this->assertSame( array_merge( $expectedHidden, $expectedNormal ), $op->getCategories() );
 		$this->assertSame( $expectedNormal, $op->getCategories( 'normal' ) );
 		$this->assertSame( $expectedHidden, $op->getCategories( 'hidden' ) );
 	}
 
-	private function doCategoryLinkAsserts( $op, $expectedNormal, $expectedHidden ) {
+	private function doCategoryLinkAsserts( OutputPage $op, $expectedNormal, $expectedHidden ) {
 		$catLinks = $op->getCategoryLinks();
 		$this->assertSame( (bool)$expectedNormal + (bool)$expectedHidden, count( $catLinks ) );
 		if ( $expectedNormal ) {
@@ -1394,6 +1394,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		$stubFile->method( 'getTimestamp' )->willReturn( '12211221123321' );
 		$stubFile->method( 'getSha1' )->willReturn( 'bf3ffa7047dc080f5855377a4f83cd18887e3b05' );
 
+		/** @var File $stubFile */
 		$op->setFileVersion( $stubFile );
 
 		$this->assertEquals(
@@ -1404,6 +1405,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		$stubMissingFile = $this->createMock( File::class );
 		$stubMissingFile->method( 'exists' )->willReturn( false );
 
+		/** @var File $stubMissingFile */
 		$op->setFileVersion( $stubMissingFile );
 		$this->assertNull( $op->getFileVersion() );
 
@@ -1418,7 +1420,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * Call either with arguments $methodName, $returnValue; or an array
 	 * [ $methodName => $returnValue, $methodName => $returnValue, ... ]
 	 */
-	private function createParserOutputStub( ...$args ) {
+	private function createParserOutputStub( ...$args ) : ParserOutput {
 		if ( count( $args ) === 0 ) {
 			$retVals = [];
 		} elseif ( count( $args ) === 1 ) {
@@ -2666,6 +2668,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			->getMock();
 		$op->method( 'buildCssLinksArray' )
 			->willReturn( [] );
+		/** @var OutputPage $op */
 		$rl = $op->getResourceLoader();
 		$rl->setMessageBlobStore( $this->createMock( MessageBlobStore::class ) );
 
@@ -3054,7 +3057,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			->method( 'getLatestRevID' )
 			->willReturn( $titleLastRevision );
 
-		$output = $this->newInstance( [], null, [ 'notitle' => true ] );
+		$output = $this->newInstance( [], null );
 		$output->setTitle( $titleMock );
 		$output->setRevisionId( $outputRevision );
 		$this->assertEquals( $expectedResult, $output->isRevisionCurrent() );
@@ -3071,9 +3074,109 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return OutputPage
+	 * @param array $options
+	 * @param array $expectations
+	 * @covers OutputPage::sendCacheControl
+	 * @dataProvider provideSendCacheControl
 	 */
-	private function newInstance( $config = [], WebRequest $request = null, $options = [] ) {
+	public function testSendCacheControl( array $options = [], array $expecations = [] ) {
+		$output = $this->newInstance( [
+			'LoggedOutMaxAge' => $options['loggedOutMaxAge'] ?? 0,
+			'UseCdn' => $options['useCdn'] ?? false,
+		] );
+
+		$output->enableClientCache( $options['enableClientCache'] ?? true );
+		$output->setCdnMaxAge( $options['cdnMaxAge'] ?? 0 );
+
+		if ( isset( $options['lastModified'] ) ) {
+			$output->setLastModified( $options['lastModified'] );
+		}
+
+		$response = $output->getRequest()->response();
+		if ( isset( $options['cookie'] ) ) {
+			$response->setCookie( 'test', 1234 );
+		}
+
+		$output->sendCacheControl();
+
+		$headers = [
+			'Vary' => 'Accept-Encoding, Cookie',
+			'Cache-Control' => 'private, must-revalidate, max-age=0',
+			'Pragma' => false,
+			'Expires' => true,
+			'Last-Modified' => false,
+		];
+
+		foreach ( $headers as $header => $default ) {
+			$value = $expecations[$header] ?? $default;
+			if ( $value === true ) {
+				$this->assertNotEmpty( $response->getHeader( $header ) );
+			} elseif ( $value === false ) {
+				$this->assertNull( $response->getHeader( $header ) );
+			} else {
+				$this->assertEquals( $value, $response->getHeader( $header ) );
+			}
+		}
+	}
+
+	public function provideSendCacheControl() {
+		return [
+			'Default' => [],
+			'Logged out max-age' => [
+				[
+					'loggedOutMaxAge' => 300,
+				],
+				[
+					'Cache-Control' => 'private, must-revalidate, max-age=300',
+				],
+			],
+			'Cookies' => [
+				[
+					'cookie' => true,
+				],
+			],
+			'Cookies with logged out max-age' => [
+				[
+					'loggedOutMaxAge' => 300,
+					'cookie' => true,
+				],
+			],
+			'Disable client cache' => [
+				[
+					'enableClientCache' => false,
+				],
+				[
+					'Cache-Control' => 'no-cache, no-store, max-age=0, must-revalidate',
+					'Pragma' => 'no-cache'
+				],
+			],
+			'Set last modified' => [
+				[
+					// 0 is the current time, so we'll use 1 instead.
+					'lastModified' => 1,
+				],
+				[
+					'Last-Modified' => 'Thu, 01 Jan 1970 00:00:01 GMT',
+				]
+			],
+			'Public' => [
+				[
+					'useCdn' => true,
+					'cdnMaxAge' => 300,
+				],
+				[
+					'Cache-Control' => 's-maxage=300, must-revalidate, max-age=0',
+					'Expires' => false,
+				],
+			],
+		];
+	}
+
+	private function newInstance(
+		array $config = [],
+		WebRequest $request = null,
+		$option = null
+	) : OutputPage {
 		$context = new RequestContext();
 
 		$context->setConfig( new MultiConfig( [
@@ -3092,7 +3195,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			$context->getConfig()
 		] ) );
 
-		if ( !in_array( 'notitle', (array)$options ) ) {
+		if ( $option !== 'notitle' ) {
 			$context->setTitle( Title::newFromText( 'My test page' ) );
 		}
 

@@ -185,7 +185,7 @@ class Command {
 	 * @param string $method
 	 * @return $this
 	 */
-	public function profileMethod( $method ): Command {
+	public function profileMethod( string $method ): Command {
 		$this->method = $method;
 
 		return $this;
@@ -197,7 +197,7 @@ class Command {
 	 * @param string|null $inputString
 	 * @return $this
 	 */
-	public function input( $inputString ): Command {
+	public function input( ?string $inputString ): Command {
 		$this->inputString = is_null( $inputString ) ? null : (string)$inputString;
 
 		return $this;
@@ -210,7 +210,7 @@ class Command {
 	 * @param bool $yesno
 	 * @return $this
 	 */
-	public function includeStderr( $yesno = true ): Command {
+	public function includeStderr( bool $yesno = true ): Command {
 		$this->doIncludeStderr = $yesno;
 
 		return $this;
@@ -222,7 +222,7 @@ class Command {
 	 * @param bool $yesno
 	 * @return $this
 	 */
-	public function logStderr( $yesno = true ): Command {
+	public function logStderr( bool $yesno = true ): Command {
 		$this->doLogStderr = $yesno;
 
 		return $this;
@@ -247,7 +247,7 @@ class Command {
 	 * @param int $restrictions
 	 * @return $this
 	 */
-	public function restrict( $restrictions ): Command {
+	public function restrict( int $restrictions ): Command {
 		$this->restrictions |= $restrictions;
 
 		return $this;
@@ -260,7 +260,7 @@ class Command {
 	 *
 	 * @return bool
 	 */
-	protected function hasRestriction( $restriction ) {
+	protected function hasRestriction( int $restriction ): bool {
 		return ( $this->restrictions & $restriction ) === $restriction;
 	}
 
@@ -286,7 +286,7 @@ class Command {
 	 * @param string $command Already-escaped command to run
 	 * @return array [ command, whether to use log pipe ]
 	 */
-	protected function buildFinalCommand( $command ) {
+	protected function buildFinalCommand( string $command ): array {
 		$envcmd = '';
 		foreach ( $this->env as $k => $v ) {
 			if ( wfIsWindows() ) {
@@ -345,7 +345,7 @@ class Command {
 	 * @throws ProcOpenError
 	 * @throws ShellDisabledError
 	 */
-	public function execute() {
+	public function execute(): Result {
 		$this->everExecuted = true;
 
 		$profileMethod = $this->method ?: wfGetCaller();
@@ -553,7 +553,7 @@ class Command {
 	 *
 	 * @return string
 	 */
-	public function __toString() {
+	public function __toString(): string {
 		return "#Command: {$this->command}";
 	}
 }

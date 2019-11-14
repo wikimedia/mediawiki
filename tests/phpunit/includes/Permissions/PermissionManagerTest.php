@@ -53,7 +53,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	/** Constant for self::testIsBlockedFrom */
 	const USER_TALK_PAGE = '<user talk page>';
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$localZone = 'UTC';
@@ -124,7 +124,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	public function tearDown() {
+	public function tearDown() : void {
 		parent::tearDown();
 		$this->restoreMwServices();
 	}
@@ -1283,30 +1283,16 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		$this->overrideUserPermissions( $user, [ 'edit' ] );
 
-		// TODO: PermissionManager::checkUserBlock gets the global IP because
-		// the correct context is not currently passed in. When that is fixed,
-		// this should be updated.
-		$expectedErrors = [ [
-			$expected['message'],
-			"[[User:Useruser|\u{202A}Useruser\u{202C}]]",
-			'Test reason',
-			RequestContext::getMain()->getRequest()->getIP(),
-			"\u{202A}Useruser\u{202C}",
-			$expected['identifier'],
-			'infinite',
-			'127.0.8.1',
-			'00:00, 1 January 2000'
-		] ];
-
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$errors = $permissionManager->getPermissionErrors(
+			'edit',
+			$user,
+			$this->title
+		);
 
 		$this->assertEquals(
-			$expectedErrors,
-			$permissionManager->getPermissionErrors(
-				'edit',
-				$user,
-				$this->title
-			)
+			$expected['message'],
+			$errors[0][0]
 		);
 	}
 
@@ -1318,7 +1304,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 				false,
 				[
 					'message' => 'autoblockedtext',
-					'identifier' => null, // Block not inserted
 				],
 			],
 			'Sitewide block' => [
@@ -1327,7 +1312,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 				false,
 				[
 					'message' => 'blockedtext',
-					'identifier' => null, // Block not inserted
 				],
 			],
 			'Partial block with restriction against this page' => [
@@ -1336,7 +1320,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 				true,
 				[
 					'message' => 'blockedtext-partial',
-					'identifier' => null, // Block not inserted
 				],
 			],
 			'System block' => [
@@ -1345,7 +1328,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 				false,
 				[
 					'message' => 'systemblockedtext',
-					'identifier' => 'test',
 				],
 			],
 		];

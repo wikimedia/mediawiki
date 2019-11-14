@@ -2,7 +2,9 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
+use Wikimedia\Message\DataMessageValue;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
 use Wikimedia\ParamValidator\ValidationException;
 
@@ -55,16 +57,20 @@ class TimestampDefTest extends TypeDefTestCase {
 			'Generic format + TZ +0100' => [ '2018-02-03 05:05:06+0100', $specific ],
 			'Generic format + TZ -01' => [ '2018-02-03 03:05:06-01', $specific ],
 			'Seconds-since-epoch format' => [ '1517630706', $specific ],
+			'Seconds-since-epoch format with ms' => [ '1517630706.9990', $specificMs ],
 			'Now' => [ 'now', $now ],
 
 			// Warnings
-			'Empty' => [ '', $now, [], [], [ [ 'unclearnowtimestamp' ] ] ],
-			'Zero' => [ '0', $now, [], [], [ [ 'unclearnowtimestamp' ] ] ],
+			'Empty' => [ '', $now, [], [], [ [ 'code' => 'unclearnowtimestamp', 'data' => null ] ] ],
+			'Zero' => [ '0', $now, [], [], [ [ 'code' => 'unclearnowtimestamp', 'data' => null ] ] ],
 
 			// Error handling
 			'Bad value' => [
 				'bogus',
-				new ValidationException( 'test', 'bogus', [], 'badtimestamp', [] ),
+				new ValidationException(
+					DataMessageValue::new( 'paramvalidator-badtimestamp', [], 'badtimestamp' ),
+					'test', 'bogus', []
+				),
 			],
 
 			// Formatting
@@ -84,6 +90,27 @@ class TimestampDefTest extends TypeDefTestCase {
 			[ $specific, '2018-02-03T04:05:06Z' ],
 			[ $specific->timestamp, '2018-02-03T04:05:06Z' ],
 			[ $specific, '20180203040506', [], [ 'stringifyFormat' => TS_MW ] ],
+		];
+	}
+
+	public function provideGetInfo() {
+		return [
+			'Basic test' => [
+				[],
+				[],
+				[
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-timestamp"><text>1</text></message>',
+				],
+			],
+			'Multi-valued' => [
+				[ ParamValidator::PARAM_ISMULTI => true ],
+				[],
+				[
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-timestamp"><text>2</text></message>',
+				],
+			],
 		];
 	}
 

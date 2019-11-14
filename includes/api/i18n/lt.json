@@ -4,7 +4,8 @@
 			"Zygimantus",
 			"Eitvys200",
 			"Hugo.arg",
-			"Homo"
+			"Homo",
+			"Tomasdd"
 		]
 	},
 	"apihelp-main-param-action": "Kurį veiksmą atlikti.",
@@ -44,6 +45,7 @@
 	"apihelp-emailuser-summary": "Siųsti el. laišką naudotojui.",
 	"apihelp-emailuser-param-target": "El. laiško gavėjas.",
 	"apihelp-emailuser-param-subject": "Temos antraštė.",
+	"apihelp-emailuser-param-text": "Email body.",
 	"apihelp-emailuser-param-ccme": "Siųsti šio laiško kopiją man.",
 	"apihelp-emailuser-example-email": "Siųsti el. pašto vartotojui <kbd>WikiSysop</kbd> su tekstu <kbd>Content</kbd>.",
 	"apihelp-expandtemplates-param-title": "Puslapio pavadinimas.",

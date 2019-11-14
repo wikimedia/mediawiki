@@ -418,6 +418,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		/* Perform the actual query. */
 		$res = $this->select( __METHOD__, [], $hookData );
 
+		if ( $this->fld_title && $resultPageSet === null ) {
+			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__, 'rc' );
+		}
+
 		$revids = [];
 		$titles = [];
 

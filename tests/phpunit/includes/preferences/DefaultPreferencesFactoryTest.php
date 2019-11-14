@@ -37,7 +37,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 	/** @var Config */
 	protected $config;
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 		$this->context = new RequestContext();
 		$this->context->setTitle( Title::newFromText( self::class ) );
@@ -74,6 +74,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 
 	/**
 	 * @covers MediaWiki\Preferences\DefaultPreferencesFactory::getForm()
+	 * @covers MediaWiki\Preferences\DefaultPreferencesFactory::searchPreferences()
 	 */
 	public function testGetForm() {
 		$this->setTemporaryHook( 'GetPreferences', null );

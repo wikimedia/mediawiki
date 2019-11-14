@@ -30,6 +30,7 @@ use Html;
 use IBufferingStatsdDataFactory;
 use OutputPage;
 use Title;
+use User;
 
 /**
  * Helper for displaying edit conflicts in text content
@@ -121,8 +122,9 @@ class TextConflictHelper {
 
 	/**
 	 * Record a user encountering an edit conflict
+	 * @param User|null $user
 	 */
-	public function incrementConflictStats() {
+	public function incrementConflictStats( User $user = null ) {
 		$this->stats->increment( 'edit.failures.conflict' );
 		// Only include 'standard' namespaces to avoid creating unknown numbers of statsd metrics
 		if (
@@ -133,12 +135,16 @@ class TextConflictHelper {
 				'edit.failures.conflict.byNamespaceId.' . $this->title->getNamespace()
 			);
 		}
+		if ( $user ) {
+			$this->incrementStatsByUserEdits( $user->getEditCount(), 'edit.failures.conflict' );
+		}
 	}
 
 	/**
 	 * Record when a user has resolved an edit conflict
+	 * @param User|null $user
 	 */
-	public function incrementResolvedStats() {
+	public function incrementResolvedStats( User $user = null ) {
 		$this->stats->increment( 'edit.failures.conflict.resolved' );
 		// Only include 'standard' namespaces to avoid creating unknown numbers of statsd metrics
 		if (
@@ -149,6 +155,31 @@ class TextConflictHelper {
 				'edit.failures.conflict.resolved.byNamespaceId.' . $this->title->getNamespace()
 			);
 		}
+		if ( $user ) {
+			$this->incrementStatsByUserEdits(
+				$user->getEditCount(),
+				'edit.failures.conflict.resolved'
+			);
+		}
+	}
+
+	/**
+	 * @param int|null $userEdits
+	 * @param string $keyPrefixBase
+	 */
+	protected function incrementStatsByUserEdits( $userEdits, $keyPrefixBase ) {
+		if ( $userEdits === null ) {
+			$userBucket = 'anon';
+		} elseif ( $userEdits > 200 ) {
+			$userBucket = 'over200';
+		} elseif ( $userEdits > 100 ) {
+			$userBucket = 'over100';
+		} elseif ( $userEdits > 10 ) {
+			$userBucket = 'over10';
+		} else {
+			$userBucket = 'under11';
+		}
+		$this->stats->increment( $keyPrefixBase . '.byUserEdits.' . $userBucket );
 	}
 
 	/**

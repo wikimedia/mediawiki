@@ -3,6 +3,7 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
+use Wikimedia\ObjectFactory;
 
 /**
  * @coversDefaultClass FileBackendGroup
@@ -77,7 +78,8 @@ class FileBackendGroupTest extends MediaWikiUnitTestCase {
 			$this->getWANObjectCache(),
 			$options['mimeAnalyzer'] ?? $this->getNoOpMock( MimeAnalyzer::class ),
 			$options['lmgFactory'] ?? $this->getLockManagerGroupFactory(),
-			$options['tmpFileFactory'] ?? $this->getTempFSFileFactory()
+			$options['tmpFileFactory'] ?? $this->getTempFSFileFactory(),
+			new ObjectFactory( $this->getNoOpMock( Psr\Container\ContainerInterface::class ) )
 		);
 	}
 

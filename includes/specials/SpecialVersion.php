@@ -505,12 +505,40 @@ class SpecialVersion extends SpecialPage {
 	 */
 	protected function getExternalLibraries() {
 		global $IP;
-		$path = "$IP/vendor/composer/installed.json";
-		if ( !file_exists( $path ) ) {
+		$paths = [
+			"$IP/vendor/composer/installed.json"
+		];
+
+		$extensionCredits = $this->getConfig()->get( 'ExtensionCredits' );
+		$extensionTypes = self::getExtensionTypes();
+
+		foreach ( $extensionTypes as $type => $message ) {
+			if ( !isset( $extensionCredits[$type] ) || $extensionCredits[$type] === [] ) {
+				continue;
+			}
+			foreach ( $extensionCredits[$type] as $extension ) {
+				$paths[] = dirname( $extension['path'] ) . '/vendor/composer/installed.json';
+			}
+		}
+
+		$dependencies = [];
+
+		foreach ( $paths as $path ) {
+			if ( !file_exists( $path ) ) {
+				continue;
+			}
+
+			$installed = new ComposerInstalled( $path );
+
+			$dependencies += $installed->getInstalledDependencies();
+		}
+
+		if ( $dependencies === [] ) {
 			return '';
 		}
 
-		$installed = new ComposerInstalled( $path );
+		ksort( $dependencies );
+
 		$out = Html::element(
 			'h2',
 			[ 'id' => 'mw-version-libraries' ],
@@ -528,8 +556,8 @@ class SpecialVersion extends SpecialPage {
 			. Html::element( 'th', [], $this->msg( 'version-libraries-authors' )->text() )
 			. Html::closeElement( 'tr' );
 
-		foreach ( $installed->getInstalledDependencies() as $name => $info ) {
-			if ( strpos( $info['type'], 'mediawiki-' ) === 0 ) {
+		foreach ( $dependencies as $name => $info ) {
+			if ( !is_array( $info ) || strpos( $info['type'], 'mediawiki-' ) === 0 ) {
 				// Skip any extensions or skins since they'll be listed
 				// in their proper section
 				continue;
@@ -790,11 +818,10 @@ class SpecialVersion extends SpecialPage {
 			$versionString .= " {$vcsVerString}";
 
 			if ( $vcsDate ) {
-				$vcsTimeString = Html::element( 'span',
-					[ 'class' => 'mw-version-ext-vcs-timestamp' ],
-					$this->getLanguage()->timeanddate( $vcsDate, true )
-				);
-				$versionString .= " {$vcsTimeString}";
+				$versionString .= ' ' . Html::element( 'span', [
+					'class' => 'mw-version-ext-vcs-timestamp',
+					'dir' => $this->getLanguage()->getDir(),
+				], $this->getLanguage()->timeanddate( $vcsDate, true ) );
 			}
 			$versionString = Html::rawElement( 'span',
 				[ 'class' => 'mw-version-ext-meta-version' ],

@@ -30,7 +30,7 @@ class SearchNearMatcherTest extends \PHPUnit\Framework\TestCase {
 		$this->assertEquals( $expected, $title === null ? null : (string)$title );
 	}
 
-	public function tearDown() {
+	public function tearDown() : void {
 		Title::clearCaches();
 		parent::tearDown();
 	}

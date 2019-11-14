@@ -33,7 +33,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	 */
 	protected $user_comment;
 
-	public static function setUpBeforeClass() {
+	public static function setUpBeforeClass() : void {
 		parent::setUpBeforeClass();
 
 		global $wgExtensionMessagesFiles;
@@ -41,14 +41,14 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$wgExtensionMessagesFiles['LogTests'] = __DIR__ . '/LogTests.i18n.php';
 	}
 
-	public static function tearDownAfterClass() {
+	public static function tearDownAfterClass() : void {
 		global $wgExtensionMessagesFiles;
 		$wgExtensionMessagesFiles = self::$oldExtMsgFiles;
 
 		parent::tearDownAfterClass();
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( [

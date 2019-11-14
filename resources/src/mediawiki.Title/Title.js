@@ -790,13 +790,13 @@ Title.prototype = {
 	},
 
 	/**
-	 * Get the page name without extension or namespace prefix
+	 * Get the page name as if it is a file name, without extension or namespace prefix. Warning,
+	 * this is usually not what you want! A title like "User:Dr._J._Fail" will be returned as
+	 * "Dr. J"! Use #getMain or #getMainText for the actual page name.
 	 *
-	 * Example: "Example_image" for "File:Example_image.svg".
-	 *
-	 * For the page title (full page name without namespace prefix), see #getMain.
-	 *
-	 * @return {string}
+	 * @return {string} File name without file extension, in the canonical form with underscores
+	 *  instead of spaces. For example, the title "File:Example_image.svg" will be returned as
+	 *  "Example_image".
 	 */
 	getName: function () {
 		var ext = this.getExtension();
@@ -807,13 +807,13 @@ Title.prototype = {
 	},
 
 	/**
-	 * Get the page name (transformed by #text)
+	 * Get the page name as if it is a file name, without extension or namespace prefix. Warning,
+	 * this is usually not what you want! A title like "User:Dr._J._Fail" will be returned as
+	 * "Dr. J"! Use #getMainText for the actual page name.
 	 *
-	 * Example: "Example image" for "File:Example_image.svg".
-	 *
-	 * For the page title (full page name without namespace prefix), see #getMainText.
-	 *
-	 * @return {string}
+	 * @return {string} File name without file extension, formatted with spaces instead of
+	 *  underscores. For example, the title "File:Example_image.svg" will be returned as
+	 *  "Example image".
 	 */
 	getNameText: function () {
 		return text( this.getName() );

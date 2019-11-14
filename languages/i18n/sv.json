@@ -725,6 +725,7 @@
 	"noarticletext": "Det finns just nu ingen text på denna sida.\nDu kan [[Special:Search/{{PAGENAME}}|söka efter denna sidtitel]] på andra sidor, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} söka i relaterade loggar], eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} skapa denna sida]</span>.",
 	"noarticletext-nopermission": "Det finns för tillfället ingen text på denna sida.\nDu kan [[Special:Search/{{PAGENAME}}|söka efter denna sidas titel]] på andra sidor,\neller <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} söka i relaterade loggar]</span> men du har inte behörighet att skapa sidan.",
 	"missing-revision": "Version #$1 av sidan med namnet \"{{FULLPAGENAME}}\" finns inte.\n\nDetta orsakas vanligen genom att en gammal historiklänk följts till en sida som har raderats.\nDetaljer kan hittas i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].",
+	"missing-revision-content": "Innehållet i sidversionen nummer $1 för sidan \"$2\" kunde inte läsas in.",
 	"userpage-userdoesnotexist": "\"<nowiki>$1</nowiki>\" är inte ett registrerat användarkonto. Tänk efter om du vill skapa/redigera den här sidan.",
 	"userpage-userdoesnotexist-view": "Kontot \"$1\" är inte registrerat.",
 	"blocked-notice-logextract": "Användaren är blockerad.\nOrsaken till senaste blockeringen kan ses nedan:",
@@ -3581,6 +3582,8 @@
 	"feedback-useragent": "Användaragent:",
 	"searchsuggest-search": "Sök på {{SITENAME}}",
 	"searchsuggest-containing": "innehåller...",
+	"search-match-redirect-label": "Omdirigera till exakta matchningar vid sökning",
+	"search-match-redirect-help": "Markera detta för att omdirigera till en sida när sidtiteln matchar det du har sökt efter",
 	"api-error-badtoken": "Internt fel: felaktig nyckel.",
 	"api-error-emptypage": "Det är inte tillåtet att skapa nya, tomma sidor.",
 	"api-error-publishfailed": "Internt fel: Servern kunde inte publicera temporär fil.",
@@ -3894,7 +3897,7 @@
 	"passwordpolicies-policyflag-forcechange": "måste ändras vid inloggning",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "föreslå ändring vid inloggning",
 	"mycustomjsredirectprotected": "Du har inte behörighet att redigera denna JavaScript-sida eftersom det är en omdirigering och leder inte någonstans inom din användarnamnrymd.",
-	"easydeflate-invaliddeflate": "Innehåll som tillhandahålls är inte helt komprimerat",
+	"deflate-invaliddeflate": "Innehåll som tillhandahålls är inte helt komprimerat",
 	"unprotected-js": "Av säkerhetsskäl kan inte JavaScript läsas in från oskyddade sidor. Skapa endast JavaScript i namnrymden MediaWiki: eller som en användarundersida.",
 	"userlogout-continue": "Vill du logga ut?"
 }

@@ -21,7 +21,6 @@
     "@wdio/sync": "5.13.2",
     "chromedriver": "73.0.0",
     "eslint-config-wikimedia": "0.15.0",
-    "eslint-plugin-mediawiki": "0.1.0",
     "grunt": "1.0.4",
     "grunt-banana-checker": "0.8.1",
     "grunt-contrib-copy": "1.0.0",

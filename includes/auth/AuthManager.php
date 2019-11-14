@@ -83,42 +83,42 @@ use Wikimedia\ObjectFactory;
  */
 class AuthManager implements LoggerAwareInterface {
 	/** Log in with an existing (not necessarily local) user */
-	const ACTION_LOGIN = 'login';
+	public const ACTION_LOGIN = 'login';
 	/** Continue a login process that was interrupted by the need for user input or communication
 	 * with an external provider
 	 */
-	const ACTION_LOGIN_CONTINUE = 'login-continue';
+	public const ACTION_LOGIN_CONTINUE = 'login-continue';
 	/** Create a new user */
-	const ACTION_CREATE = 'create';
+	public const ACTION_CREATE = 'create';
 	/** Continue a user creation process that was interrupted by the need for user input or
 	 * communication with an external provider
 	 */
-	const ACTION_CREATE_CONTINUE = 'create-continue';
+	public const ACTION_CREATE_CONTINUE = 'create-continue';
 	/** Link an existing user to a third-party account */
-	const ACTION_LINK = 'link';
+	public const ACTION_LINK = 'link';
 	/** Continue a user linking process that was interrupted by the need for user input or
 	 * communication with an external provider
 	 */
-	const ACTION_LINK_CONTINUE = 'link-continue';
+	public const ACTION_LINK_CONTINUE = 'link-continue';
 	/** Change a user's credentials */
-	const ACTION_CHANGE = 'change';
+	public const ACTION_CHANGE = 'change';
 	/** Remove a user's credentials */
-	const ACTION_REMOVE = 'remove';
+	public const ACTION_REMOVE = 'remove';
 	/** Like ACTION_REMOVE but for linking providers only */
-	const ACTION_UNLINK = 'unlink';
+	public const ACTION_UNLINK = 'unlink';
 
 	/** Security-sensitive operations are ok. */
-	const SEC_OK = 'ok';
+	public const SEC_OK = 'ok';
 	/** Security-sensitive operations should re-authenticate. */
-	const SEC_REAUTH = 'reauth';
+	public const SEC_REAUTH = 'reauth';
 	/** Security-sensitive should not be performed. */
-	const SEC_FAIL = 'fail';
+	public const SEC_FAIL = 'fail';
 
 	/** Auto-creation is due to SessionManager */
-	const AUTOCREATE_SOURCE_SESSION = \MediaWiki\Session\SessionManager::class;
+	public const AUTOCREATE_SOURCE_SESSION = \MediaWiki\Session\SessionManager::class;
 
 	/** Auto-creation is due to a Maintenance script */
-	const AUTOCREATE_SOURCE_MAINT = '::Maintenance::';
+	public const AUTOCREATE_SOURCE_MAINT = '::Maintenance::';
 
 	/** @var AuthManager|null */
 	private static $instance = null;

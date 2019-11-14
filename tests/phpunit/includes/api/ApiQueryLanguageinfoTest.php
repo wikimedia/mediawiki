@@ -8,7 +8,7 @@
  */
 class ApiQueryLanguageinfoTest extends ApiTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		// register custom language names so this test is independent of CLDR
 		$this->setTemporaryHook(

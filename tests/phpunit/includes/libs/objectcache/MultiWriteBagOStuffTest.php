@@ -11,7 +11,7 @@ class MultiWriteBagOStuffTest extends MediaWikiTestCase {
 	/** @var MultiWriteBagOStuff */
 	private $cache;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->cache1 = new HashBagOStuff();

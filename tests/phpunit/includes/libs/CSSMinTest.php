@@ -8,7 +8,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class CSSMinTest extends MediaWikiTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		// For wfExpandUrl

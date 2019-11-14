@@ -527,4 +527,3 @@ CREATE TABLE /*_*/module_deps (
   md_deps mediumblob NOT NULL
 ) /*$wgDBTableOptions*/;
 CREATE UNIQUE INDEX /*i*/md_module_skin ON /*_*/module_deps (md_module, md_skin);
-

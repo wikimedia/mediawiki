@@ -85,7 +85,6 @@
 	"config-using-uri": "Bruker server-URL \"<nowiki>$1$2</nowiki>\".",
 	"config-uploads-not-safe": "'''Advarsel:''' Din standardmappe for opplastinger <code>$1</code> er sårbar for kjøring av vilkårlige skript.\nSelv om MediaWiki sjekker alle opplastede filer for sikkerhetstrusler er det sterkt anbefalt å [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security lukke denne sikkerhetssårbarheten] før du aktiverer opplastinger.",
 	"config-no-cli-uploads-check": "'''Advarsel:''' Din standard-katalog for opplastinger (<code>$1</code>) er ikke kontrollert for sårbarhet overfor vilkårlig skript-kjøring under CLI-installasjonen.",
-	"config-brokenlibxml": "Ditt system bruker en kombinasjon av PHP- og libxml2-versjoner som har feil og kan forårsake skjult dataødeleggelse i MediaWiki og andre web-applikasjoner.\nOppgrader til libxml2 2.7.3 eller nyere ([https://bugs.php.net/bug.php?id=45996 Feil-liste for PHP]).\nInstalleringen ble abortert.",
 	"config-suhosin-max-value-length": "Suhosin er installert og begrenser GET-parameterlengder til $1 bytes.\nMediaWiki krever at <code>suoshin.get.max_value_length</code> er minst $2. Slå av denne innstillingen eller øk verdien til $3 i <code>php.ini</code>.",
 	"config-using-32bit": "<strong>Adversel:</strong> Systemet ditt ser ut til å være 32-bit-basert, mens dette er [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit not advised].",
 	"config-db-type": "Databasetype:",

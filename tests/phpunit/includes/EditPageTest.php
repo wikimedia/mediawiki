@@ -13,7 +13,7 @@ use MediaWiki\MediaWikiServices;
  */
 class EditPageTest extends MediaWikiLangTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();

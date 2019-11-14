@@ -47,7 +47,7 @@ class LessFileCompilationTest extends ResourceLoaderTestCase {
 		$this->assertNotNull( $method->invoke( $this->module, $this->file, $rlContext ) );
 	}
 
-	public function toString() {
+	public function toString() : string {
 		$moduleName = $this->module->getName();
 
 		return "{$this->file} in the \"{$moduleName}\" module";

@@ -182,7 +182,7 @@
 				index: context.config.suggestions.indexOf( query )
 			} );
 
-			if ( $el.children().length === 0 ) {
+			if ( mw.user.options.get( 'search-match-redirect' ) && $el.children().length === 0 ) {
 				$el
 					.append(
 						$( '<div>' )

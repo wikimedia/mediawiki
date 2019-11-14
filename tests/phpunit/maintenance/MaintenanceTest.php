@@ -12,7 +12,7 @@ use Wikimedia\TestingAccessWrapper;
 class MaintenanceTest extends MaintenanceBaseTestCase {
 
 	/**
-	 * @see MaintenanceBaseTestCase::getMaintenanceClass
+	 * @inheritDoc
 	 */
 	protected function getMaintenanceClass() {
 		return Maintenance::class;

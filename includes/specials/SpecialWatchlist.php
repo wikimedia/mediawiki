@@ -111,7 +111,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * @see ChangesListSpecialPage::checkStructuredFilterUiEnabled
+	 * @inheritDoc
 	 */
 	public static function checkStructuredFilterUiEnabled( $user ) {
 		if ( $user instanceof Config ) {
@@ -640,7 +640,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				$filter->getShowHide(),
 				$filterName,
 				$opts[ $filterName ],
-				$filter->isFeatureAvailableOnStructuredUi( $this )
+				$filter->isFeatureAvailableOnStructuredUi()
 			);
 		}
 

@@ -16,7 +16,7 @@ class SwiftFileBackendTest extends MediaWikiTestCase {
 	/** @var TestingAccessWrapper|SwiftFileBackend */
 	private $backend;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->backend = TestingAccessWrapper::newFromObject(

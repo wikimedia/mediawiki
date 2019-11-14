@@ -85,6 +85,8 @@ class ForeignResourceManager {
 	}
 
 	/**
+	 * @param string $action
+	 * @param string $module
 	 * @return bool
 	 * @throws Exception
 	 */

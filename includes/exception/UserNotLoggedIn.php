@@ -74,6 +74,7 @@ class UserNotLoggedIn extends ErrorPageError {
 	/**
 	 * Redirect to Special:Userlogin if the specified message is compatible. Otherwise,
 	 * show an error page as usual.
+	 * @param int $action
 	 */
 	public function report( $action = self::SEND_OUTPUT ) {
 		// If an unsupported message is used, don't try redirecting to Special:Userlogin,

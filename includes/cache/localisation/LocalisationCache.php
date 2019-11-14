@@ -828,6 +828,7 @@ class LocalisationCache {
 			'api' => "$IP/includes/api/i18n",
 			'rest' => "$IP/includes/Rest/i18n",
 			'oojs-ui' => "$IP/resources/lib/ooui/i18n",
+			'paramvalidator' => "$IP/includes/libs/ParamValidator/i18n",
 		] + $this->options->get( 'MessagesDirs' );
 	}
 

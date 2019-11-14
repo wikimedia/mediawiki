@@ -151,9 +151,6 @@ class ParserCache {
 	 * @param string $metricSuffix
 	 */
 	private function incrementStats( $article, $metricSuffix ) {
-		// old style global metric (can be removed once no longer used)
-		wfIncrStats( 'pcache.' . $metricSuffix );
-		// new per content model metric
 		$contentModel = str_replace( '.', '_', $article->getContentModel() );
 		$metricSuffix = str_replace( '.', '_', $metricSuffix );
 		wfIncrStats( 'pcache.' . $contentModel . '.' . $metricSuffix );

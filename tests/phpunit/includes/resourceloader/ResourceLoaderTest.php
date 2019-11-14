@@ -5,7 +5,7 @@ use MediaWiki\MediaWikiServices;
 
 class ResourceLoaderTest extends ResourceLoaderTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( [

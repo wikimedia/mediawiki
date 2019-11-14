@@ -689,6 +689,7 @@ class WebInstaller extends Installer {
 	 * Parameters like wfMessage().
 	 *
 	 * @param string $msg
+	 * @param mixed ...$args
 	 * @return string
 	 */
 	public function getHelpBox( $msg, ...$args ) {

@@ -17,7 +17,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	/** @var DatabaseSqlite */
 	protected $db;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		if ( !Sqlite::isPresent() ) {
@@ -311,7 +311,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	 * @coversNothing
 	 */
 	public function testUpgrades() {
-		global $IP, $wgVersion, $wgProfiler;
+		global $IP, $wgVersion;
 
 		// Versions tested
 		$versions = [
@@ -336,19 +336,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$currentDB = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$currentDB->sourceFile( "$IP/maintenance/tables.sql" );
 
-		$profileToDb = false;
-		if ( isset( $wgProfiler['output'] ) ) {
-			$out = $wgProfiler['output'];
-			if ( $out === 'db' ) {
-				$profileToDb = true;
-			} elseif ( is_array( $out ) && in_array( 'db', $out ) ) {
-				$profileToDb = true;
-			}
-		}
-
-		if ( $profileToDb ) {
-			$currentDB->sourceFile( "$IP/maintenance/sqlite/archives/patch-profiling.sql" );
-		}
 		$currentTables = $this->getTables( $currentDB );
 		sort( $currentTables );
 

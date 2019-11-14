@@ -78,7 +78,6 @@
 	"config-using-uri": "ใช้ยูอาร์แอลของเซิร์ฟเวอร์ \"<nowiki>$1$2</nowiki>\"",
 	"config-uploads-not-safe": "<strong>คำเตือน:</strong> ไดเรกทอรีเริ่มต้นของคุณสำหรับการอัปโหลด <code>$1</code> มีช่องโหว่ที่มีต่อการดำเนินการสคริปต์ด้วยตัวเอง\nถึงแม้ว่า MediaWiki จะมีการตรวจสอบช่องโหว่ด้านความปลอดภัยในไฟล์ที่อัปโหลดทั้งหมด แต่ขอแนะนำอย่างยิ่งว่าให้[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security ปิดช่องโหว่ด้านความปลอดภัยนี้]ก่อนเปิดใช้งานการอัปโหลด",
 	"config-no-cli-uploads-check": "<strong>คำเตือน:</strong> ไดเรกทอรีสำหรับอัปโหลดเริ่มต้นของคุณ (<code>$1</code>) ยังไม่ได้ถูกตรวจสอบช่องโหว่ด้านความปลอดภัย\nที่มีต่อการดำเนินการสคริปต์เองระหว่างการติดตั้ง CLI",
-	"config-brokenlibxml": "การใช้รุ่น PHP และ libxml2 ร่วมกันในระบบของคุณเป็นคู่รุ่นที่มีบักมากและอาจทำให้เกิดการเสียหายของข้อมูลแอบแฝงอยู่ใน MediaWiki และเว็บแอปพลิเคชั่นอื่นๆ ได้\nอัปเกรดเป็น libxml2 2.7.3 หรือสูงกว่า ([https://bugs.php.net/bug.php?id=45996 บักที่รายงานด้วย PHP])\nการติดตั้งถูกยกเลิกแล้ว",
 	"config-suhosin-max-value-length": "Suhosin ถูกติดตั้งแล้วและจำกัด<code>ความยาว</code>พารามิเตอร์ GET เป็น $1 ไบต์\nองค์ประกอบ ResourceLoader ของ MediaWiki จะยังคงทำงานภายใต้การจำกัดนี้ แต่อาจลดระดับประสิทธิภาพลงได้\nถ้าเป็นไปได้ คุณควรตั้ง <code>suhosin.get.max_value_length</code> เป็น 1024 หรือสูงกว่าใน <code>php.ini</code> และตั้งค่า <code>$wgResourceLoaderMaxQueryLength</code> ให้เป็นค่าเดียวกับใน <code>LocalSettings.php</code>",
 	"config-db-type": "ชนิดฐานข้อมูล:",
 	"config-db-host": "โฮสต์ฐานข้อมูล:",

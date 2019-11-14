@@ -108,6 +108,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		'RCMaxAge',
 		'RCShowWatchingUsers',
 		'RCWatchCategoryMembership',
+		'SearchMatchRedirectPreference',
 		'SecureLogin',
 		'ThumbLimits',
 	];
@@ -1279,6 +1280,19 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				'type' => 'api',
 			];
 		}
+
+		if ( $this->options->get( 'SearchMatchRedirectPreference' ) ) {
+			$defaultPreferences['search-match-redirect'] = [
+				'type' => 'toggle',
+				'section' => 'searchoptions',
+				'label-message' => 'search-match-redirect-label',
+				'help-message' => 'search-match-redirect-help',
+			];
+		} else {
+			$defaultPreferences['search-match-redirect'] = [
+				'type' => 'api',
+			];
+		}
 	}
 
 	/**
@@ -1454,17 +1468,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	protected function validateSignature( $signature, $alldata, HTMLForm $form ) {
 		$maxSigChars = $this->options->get( 'MaxSigChars' );
 		if ( mb_strlen( $signature ) > $maxSigChars ) {
-			return Xml::element( 'span', [ 'class' => 'error' ],
-				$form->msg( 'badsiglength' )->numParams( $maxSigChars )->text() );
+			return $form->msg( 'badsiglength' )->numParams( $maxSigChars )->escaped();
 		} elseif ( isset( $alldata['fancysig'] ) &&
 				$alldata['fancysig'] &&
 				MediaWikiServices::getInstance()->getParser()->validateSig( $signature ) === false
 		) {
-			return Xml::element(
-				'span',
-				[ 'class' => 'error' ],
-				$form->msg( 'badsig' )->text()
-			);
+			return $form->msg( 'badsig' )->escaped();
 		} else {
 			return true;
 		}

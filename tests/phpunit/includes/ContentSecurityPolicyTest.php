@@ -6,7 +6,7 @@ class ContentSecurityPolicyTest extends MediaWikiTestCase {
 	/** @var ContentSecurityPolicy */
 	private $csp;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		global $wgUploadDirectory;
 		$this->setMwGlobals( [
 			'wgAllowExternalImages' => false,
@@ -49,7 +49,7 @@ class ContentSecurityPolicyTest extends MediaWikiTestCase {
 		$this->csp = TestingAccessWrapper::newFromObject( $csp );
 		$this->csp->nonce = 'secret';
 
-		return parent::setUp();
+		parent::setUp();
 	}
 
 	/**

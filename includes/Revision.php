@@ -58,6 +58,7 @@ class Revision implements IDBAccessObject {
 	public const TEXT_CACHE_GROUP = SqlBlobStore::TEXT_CACHE_GROUP;
 
 	/**
+	 * @param string|false $wiki
 	 * @return RevisionStore
 	 */
 	protected static function getRevisionStore( $wiki = false ) {

@@ -86,6 +86,7 @@ class RevisionSlotsUpdate {
 	 * in $newContent are not considered removed. They are instead assumed to be inherited.
 	 *
 	 * @param Content[] $newContent The new content, using slot roles as array keys.
+	 * @param RevisionSlots|null $parentSlots
 	 *
 	 * @return RevisionSlotsUpdate
 	 */

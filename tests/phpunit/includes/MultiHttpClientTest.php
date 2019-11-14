@@ -8,7 +8,7 @@
 class MultiHttpClientTest extends MediaWikiTestCase {
 	protected $client;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$client = $this->getMockBuilder( MultiHttpClient::class )
 			->setConstructorArgs( [ [] ] )

@@ -269,7 +269,7 @@ class HTTPFileStreamer {
 	 */
 	protected static function contentTypeFromPath( $filename ) {
 		$ext = strrchr( $filename, '.' );
-		$ext = $ext === false ? '' : strtolower( substr( $ext, 1 ) );
+		$ext = $ext ? strtolower( substr( $ext, 1 ) ) : '';
 
 		switch ( $ext ) {
 			case 'gif':

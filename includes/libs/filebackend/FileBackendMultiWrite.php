@@ -541,7 +541,7 @@ class FileBackendMultiWrite extends FileBackend {
 		return false;
 	}
 
-	protected function doQuickOperationsInternal( array $ops ) {
+	protected function doQuickOperationsInternal( array $ops, array $opts ) {
 		$status = $this->newStatus();
 		// Do the operations on the master backend; setting StatusValue fields
 		$realOps = $this->substOpBatchPaths( $ops, $this->backends[$this->masterIndex] );

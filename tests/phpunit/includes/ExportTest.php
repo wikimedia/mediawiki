@@ -11,7 +11,7 @@ use MediaWiki\MediaWikiServices;
  */
 class ExportTest extends MediaWikiLangTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->setMwGlobals( [
 			'wgCapitalLinks' => true,

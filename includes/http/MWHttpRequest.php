@@ -335,7 +335,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @throws InvalidArgumentException
 	 */
 	public function setCallback( $callback ) {
-		return $this->doSetCallback( $callback );
+		$this->doSetCallback( $callback );
 	}
 
 	/**

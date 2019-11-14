@@ -178,8 +178,26 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		] );
 
 		$ids = [];
-		$watchedItemQuery = MediaWikiServices::getInstance()->getWatchedItemQueryService();
+		$services = MediaWikiServices::getInstance();
+		$watchedItemQuery = $services->getWatchedItemQueryService();
 		$items = $watchedItemQuery->getWatchedItemsWithRecentChangeInfo( $wlowner, $options, $startFrom );
+
+		// Get gender information
+		if ( $items !== [] && $resultPageSet === null && $this->fld_title &&
+			$services->getContentLanguage()->needsGenderDistinction()
+		) {
+			$nsInfo = $services->getNamespaceInfo();
+			$usernames = [];
+			foreach ( $items as list( $watchedItem, $recentChangeInfo ) ) {
+				$linkTarget = $watchedItem->getLinkTarget();
+				if ( $nsInfo->hasGenderDistinction( $linkTarget->getNamespace() ) ) {
+					$usernames[] = $linkTarget->getText();
+				}
+			}
+			if ( $usernames !== [] ) {
+				$services->getGenderCache()->doQuery( $usernames, __METHOD__ );
+			}
+		}
 
 		foreach ( $items as list( $watchedItem, $recentChangeInfo ) ) {
 			/** @var WatchedItem $watchedItem */

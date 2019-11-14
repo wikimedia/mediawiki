@@ -22,7 +22,7 @@ use WikiPage;
  */
 class PageUpdaterTest extends MediaWikiTestCase {
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 
 		MediaWikiServices::getInstance()->getSlotRoleRegistry()->defineRoleWithModel(

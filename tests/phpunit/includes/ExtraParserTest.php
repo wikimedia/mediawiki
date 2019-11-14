@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * Parser-related tests that don't suit for parserTests.txt
@@ -14,7 +15,7 @@ class ExtraParserTest extends MediaWikiTestCase {
 	/** @var Parser */
 	protected $parser;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( [
@@ -242,7 +243,8 @@ class ExtraParserTest extends MediaWikiTestCase {
 	public function testParseLinkParameter( $input, $expected, $expectedLinks, $desc ) {
 		$this->parser->startExternalParse( Title::newFromText( __FUNCTION__ ),
 			$this->options, Parser::OT_HTML );
-		$output = $this->parser->parseLinkParameter( $input );
+		$output = TestingAccessWrapper::newFromObject( $this->parser )
+			->parseLinkParameter( $input );
 
 		$this->assertEquals( $expected[0], $output[0], "$desc (type)" );
 

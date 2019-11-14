@@ -316,6 +316,11 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 		$this->addOption( 'ORDER BY', $orderby );
 
 		$res = $this->select( __METHOD__ );
+
+		if ( $resultPageSet === null ) {
+			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__, 'ar' );
+		}
+
 		$pageMap = []; // Maps ns&title to array index
 		$count = 0;
 		$nextIndex = 0;

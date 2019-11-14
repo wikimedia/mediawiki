@@ -34,7 +34,8 @@
 			"Framawiki",
 			"Epok",
 			"Derugon",
-			"Lucas Werkmeister (WMDE)"
+			"Lucas Werkmeister (WMDE)",
+			"Od1n"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentation]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Liste de diffusion]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annonces de l’API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Suivi des anomalies et demandes d’amélioration]\n</div>\n<strong>État :</strong> l’API de MediaWiki est une interface stable et mature qui est supportée et améliorée de façon active. Bien que nous essayions de l’éviter, nous pouvons avoir parfois besoin de faire des modifications impactantes ; inscrivez-vous à [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la liste de diffusion ''mediawiki-api-announce''] pour être informé des mises à jour.\n\n<strong>Requêtes erronées :</strong> si des requêtes erronées sont envoyées à l’API, un entête HTTP sera renvoyé avec la clé « MediaWiki-API-Error ». La valeur de cet entête et le code d’erreur renvoyé prendront la même valeur. Pour plus d’information, voyez [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Erreurs et avertissments]].\n\n<p class=\"mw-apisandbox-link\"><strong>Test :</strong> pour faciliter le test des requêtes à l’API, utilisez le [[Special:ApiSandbox|bac à sable de l’API]].</p>",
@@ -71,8 +72,8 @@
 	"apihelp-block-param-partial": "Bloquer un utilisateur pour des pages ou des espaces de nom spécifiques plutôt que pour tout un site.",
 	"apihelp-block-param-pagerestrictions": "Liste des titres pour lesquels bloquer l’utilisateur en modification. Ne s’applique que quand <var>partial</var> est mis à vrai.",
 	"apihelp-block-param-namespacerestrictions": "Liste d’ID d’espaces de noms sur lesquels l'utilisateur est bloqué en modification. Ne s’applique que quand <var>partial</var> vaut vrai.",
-	"apihelp-block-example-ip-simple": "Bloquer l’adresse IP <kbd>192.0.2.5</kbd> pour trois jours avec le motif <kbd>Premier avertissement</kbd>.",
-	"apihelp-block-example-user-complex": "Bloquer indéfiniment l’utilisateur <kbd>Vandal</kbd> avec le motif <kbd>Vandalism</kbd>, et empêcher la création de nouveau compte et l’envoi de courriel.",
+	"apihelp-block-example-ip-simple": "Bloquer l’adresse IP <kbd>192.0.2.5</kbd> pour trois jours avec un motif indiqué.",
+	"apihelp-block-example-user-complex": "Bloquer indéfiniment l’utilisateur <kbd>Vandal</kbd> avec le motif indiqué et empêcher la création de nouveau compte et l’envoi de courriel.",
 	"apihelp-changeauthenticationdata-summary": "Modifier les données d’authentification pour l’utilisateur actuel.",
 	"apihelp-changeauthenticationdata-example-password": "Tentative de modification du mot de passe de l’utilisateur actuel en <kbd>ExamplePassword</kbd>.",
 	"apihelp-checktoken-summary": "Vérifier la validité d’un jeton de <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd>.",
@@ -1617,7 +1618,7 @@
 	"apierror-bad-watchlist-token": "Jeton de liste de suivi fourni non valide. Veuillez mettre un jeton valide dans [[Special:Preferences]].",
 	"apierror-blockedfrommail": "Vous avez été bloqué pour l’envoi de courriel.",
 	"apierror-blocked": "Vous avez été bloqué pour modifier.",
-	"apierror-blocked-partial": "Vous avez été bloqué pour la modification de cette page.",
+	"apierror-blocked-partial": "Vous avez été bloqué en modification sur cette page.",
 	"apierror-botsnotsupported": "Cette interface n’est pas prise en charge pour les robots.",
 	"apierror-cannot-async-upload-file": "Les paramètres <var>async</var> et <var>file</var> ne peuvent pas être combinés. Si vous voulez un traitement asynchrone de votre fichier téléversé, importez-le d’abord dans la réserve (en utilisant le paramètre <var>stash</var>) puis publiez le fichier importé de façon asynchrone (en utilisant <var>filekey</var> et <var>async</var>).",
 	"apierror-cannotreauthenticate": "Cette action n’est pas disponible car votre identité ne peut pas être vérifiée.",

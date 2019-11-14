@@ -44,7 +44,7 @@ class ParserPreloadTest extends MediaWikiTestCase {
 	 */
 	private $title;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->testParserOptions = ParserOptions::newFromUserAndLang( new User,
 			MediaWikiServices::getInstance()->getContentLanguage() );
@@ -56,7 +56,7 @@ class ParserPreloadTest extends MediaWikiTestCase {
 		$this->title = Title::newFromText( 'Preload Test' );
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		parent::tearDown();
 
 		unset( $this->testParser );

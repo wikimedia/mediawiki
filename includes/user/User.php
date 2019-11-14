@@ -110,6 +110,9 @@ class User implements IDBAccessObject, UserIdentity {
 		'mActorId',
 	];
 
+	/** @var string[]|false Cache for self::isUsableName() */
+	private static $reservedUsernames = false;
+
 	/** Cache variables */
 	// @{
 	/** @var int */
@@ -789,9 +792,48 @@ class User implements IDBAccessObject, UserIdentity {
 
 		if ( !$row ) {
 			// No user. Create it?
-			return $options['create']
-				? self::createNew( $name, [ 'token' => self::INVALID_TOKEN ] )
-				: null;
+			if ( !$options['create'] ) {
+				// No.
+				return null;
+			}
+
+			// If it's a reserved user that had an anonymous actor created for it at
+			// some point, we need special handling.
+			if ( !self::isValidUserName( $name ) || self::isUsableName( $name ) ) {
+				// Not reserved, so just create it.
+				return self::createNew( $name, [ 'token' => self::INVALID_TOKEN ] );
+			}
+
+			// It is reserved. Check for an anonymous actor row.
+			$dbw = wfGetDB( DB_MASTER );
+			return $dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) use ( $name ) {
+				$row = $dbw->selectRow(
+					'actor',
+					[ 'actor_id' ],
+					[ 'actor_name' => $name, 'actor_user' => null ],
+					$fname,
+					[ 'FOR UPDATE' ]
+				);
+				if ( !$row ) {
+					// No anonymous actor.
+					return self::createNew( $name, [ 'token' => self::INVALID_TOKEN ] );
+				}
+
+				// There is an anonymous actor. Delete the actor row so we can create the user,
+				// then restore the old actor_id so as to not break existing references.
+				// @todo If MediaWiki ever starts using foreign keys for `actor`, this will break things.
+				$dbw->delete( 'actor', [ 'actor_id' => $row->actor_id ], $fname );
+				$user = self::createNew( $name, [ 'token' => self::INVALID_TOKEN ] );
+				$dbw->update(
+					'actor',
+					[ 'actor_id' => $row->actor_id ],
+					[ 'actor_id' => $user->getActorId() ],
+					$fname
+				);
+				$user->clearInstanceCache( 'id' );
+				$user->invalidateCache();
+				return $user;
+			} );
 		}
 
 		$user = self::newFromRow( $row );
@@ -988,14 +1030,13 @@ class User implements IDBAccessObject, UserIdentity {
 			return false;
 		}
 
-		static $reservedUsernames = false;
-		if ( !$reservedUsernames ) {
-			$reservedUsernames = $wgReservedUsernames;
-			Hooks::run( 'UserGetReservedNames', [ &$reservedUsernames ] );
+		if ( !self::$reservedUsernames ) {
+			self::$reservedUsernames = $wgReservedUsernames;
+			Hooks::run( 'UserGetReservedNames', [ &self::$reservedUsernames ] );
 		}
 
 		// Certain names may be reserved for batch processes.
-		foreach ( $reservedUsernames as $reserved ) {
+		foreach ( self::$reservedUsernames as $reserved ) {
 			if ( substr( $reserved, 0, 4 ) == 'msg:' ) {
 				$reserved = wfMessage( substr( $reserved, 4 ) )->inContentLanguage()->plain();
 			}
@@ -1664,7 +1705,9 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return array Array of String options
 	 */
 	public static function getDefaultOptions() {
-		global $wgNamespacesToBeSearchedDefault, $wgDefaultUserOptions, $wgDefaultSkin;
+		global $wgNamespacesToBeSearchedDefault,
+				$wgDefaultUserOptions,
+				$wgDefaultSkin;
 
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		if ( self::$defOpt !== null && self::$defOptLang === $contLang->getCode() ) {
@@ -4774,7 +4817,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Check, if the given group has the given permission
 	 *
 	 * If you're wanting to check whether all users have a permission, use
-	 * User::isEveryoneAllowed() instead. That properly checks if it's revoked
+	 * PermissionManager::isEveryoneAllowed() instead. That properly checks if it's revoked
 	 * from anyone.
 	 *
 	 * @deprecated since 1.34, use MediaWikiServices::getInstance()->getPermissionManager()
@@ -4800,8 +4843,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Specifically, session-based rights restrictions (such as OAuth or bot
 	 * passwords) are applied based on the current session.
 	 *
-	 * @deprecated since 1.34, use MediaWikiServices::getInstance()->getPermissionManager()
-	 *             ->isEveryoneAllowed() instead
+	 * @deprecated since 1.34, use PermissionManager::isEveryoneAllowed() instead
 	 *
 	 * @param string $right Right to check
 	 *
@@ -4809,6 +4851,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @since 1.22
 	 */
 	public static function isEveryoneAllowed( $right ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getPermissionManager()->isEveryoneAllowed( $right );
 	}
 
@@ -4834,6 +4877,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return string[] Array of permission names
 	 */
 	public static function getAllRights() {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getPermissionManager()->getAllPermissions();
 	}
 

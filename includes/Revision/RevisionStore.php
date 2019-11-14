@@ -38,6 +38,7 @@ use InvalidArgumentException;
 use IP;
 use LogicException;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\NameTableAccessException;
@@ -3259,37 +3260,241 @@ class RevisionStore
 	}
 
 	/**
+	 * Asserts that if revision is provided, it's saved and belongs to the page with provided pageId.
+	 * @param string $paramName
+	 * @param int $pageId
+	 * @param RevisionRecord|null $rev
+	 * @throws InvalidArgumentException
+	 */
+	private function assertRevisionParameter( $paramName, $pageId, RevisionRecord $rev = null ) {
+		if ( $rev ) {
+			if ( $rev->getId() === null ) {
+				throw new InvalidArgumentException( "Unsaved {$paramName} revision passed" );
+			}
+			if ( $rev->getPageId() !== $pageId ) {
+				throw new InvalidArgumentException(
+					"Revision {$rev->getId()} doesn't belong to page {$pageId}"
+				);
+			}
+		}
+	}
+
+	/**
+	 * Returns a bitmask for the rev_deleted field visible to the provided user.
+	 *
+	 * @param UserIdentity $user
+	 * @return int
+	 */
+	private function getRevisionDeletionBitmask( UserIdentity $user ) {
+		// TODO: We can't inject the permission manager since it would create
+		// a cyclic dependency! This RevisionRecord instead? See T233222 as well.
+		$pm = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( !$pm->userHasRight( $user, 'deletedhistory' ) ) {
+			$bitmask = RevisionRecord::DELETED_USER;
+		} elseif ( !$pm->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' )
+		) {
+			$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
+		} else {
+			$bitmask = 0;
+		}
+		return $bitmask;
+	}
+
+	/**
+	 * Converts revision limits to query conditions.
+	 *
+	 * @param IDatabase $dbr
+	 * @param RevisionRecord|null $old Old revision.
+	 * @param RevisionRecord|null $new New revision.
+	 * @param array $options Single option, or an array of options:
+	 *     'include_old' Include $old in the range; $new is excluded.
+	 *     'include_new' Include $new in the range; $old is excluded.
+	 *     'include_both' Include both $old and $new in the range.
+	 * @return array
+	 */
+	private function getRevisionLimitConditions(
+		IDatabase $dbr,
+		RevisionRecord $old = null,
+		RevisionRecord $new = null,
+		$options = []
+	) {
+		$options = (array)$options;
+		$oldCmp = '>';
+		$newCmp = '<';
+		if ( in_array( 'include_old', $options ) ) {
+			$oldCmp = '>=';
+		}
+		if ( in_array( 'include_new', $options ) ) {
+			$newCmp = '<=';
+		}
+		if ( in_array( 'include_both', $options ) ) {
+			$oldCmp = '>=';
+			$newCmp = '<=';
+		}
+
+		$conds = [];
+		if ( $old ) {
+			$oldTs = $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) );
+			$conds[] = "(rev_timestamp = {$oldTs} AND rev_id {$oldCmp} {$old->getId()}) " .
+				"OR rev_timestamp > {$oldTs}";
+		}
+		if ( $new ) {
+			$newTs = $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) );
+			$conds[] = "(rev_timestamp = {$newTs} AND rev_id {$newCmp} {$new->getId()}) " .
+				"OR rev_timestamp < {$newTs}";
+		}
+		return $conds;
+	}
+
+	/**
+	 * Get the authors between the given revisions or revisions.
+	 * Used for diffs and other things that really need it.
+	 *
+	 * @since 1.35
+	 *
+	 * @param int $pageId The id of the page
+	 * @param RevisionRecord|null $old Old revision.
+	 * 	If null is provided, count starting from the first revision (inclusive).
+	 * @param RevisionRecord|null $new New revision.
+	 *  If null is provided, count until the last revision (inclusive).
+	 * @param User|null $user the user who's access rights to apply
+	 * @param int|null $max Limit of Revisions to count, will be incremented to detect truncations.
+	 * @param string|array $options Single option, or an array of options:
+	 *     'include_old' Include $old in the range; $new is excluded.
+	 *     'include_new' Include $new in the range; $old is excluded.
+	 *     'include_both' Include both $old and $new in the range.
+	 * @throws InvalidArgumentException in case either revision is unsaved or
+	 * 	the revisions do not belong to the same page or unknown option is passed.
+	 * @return UserIdentity[] Names of revision authors in the range
+	 */
+	public function getAuthorsBetween(
+		$pageId,
+		RevisionRecord $old = null,
+		RevisionRecord $new = null,
+		User $user = null,
+		$max = null,
+		$options = []
+	) {
+		$this->assertRevisionParameter( 'old', $pageId, $old );
+		$this->assertRevisionParameter( 'new', $pageId, $new );
+		$options = (array)$options;
+
+		// No DB query needed if old and new are the same revision.
+		// Can't check for consecutive revisions with 'getParentId' for a similar
+		// optimization as edge cases exist when there are revisions between
+		//a revision and it's parent. See T185167 for more details.
+		if ( $old && $new && $new->getId() === $old->getId() ) {
+			if ( empty( $options ) ) {
+				return [];
+			} else {
+				return $user ? [ $new->getUser( RevisionRecord::FOR_THIS_USER, $user ) ] : [ $new->getUser() ];
+			}
+		}
+
+		$dbr = $this->getDBConnectionRef( DB_REPLICA );
+		$conds = array_merge(
+			[ 'rev_page' => $pageId ],
+			$this->getRevisionLimitConditions( $dbr, $old, $new, $options )
+		);
+		$bitmask = $user ? $this->getRevisionDeletionBitmask( $user ) : 0;
+		if ( $bitmask ) {
+			$conds[] = $dbr->bitAnd( 'rev_deleted', $bitmask ) . " != $bitmask";
+		}
+
+		$queryOpts = [ 'DISTINCT' ];
+		if ( $max !== null ) {
+			$queryOpts['LIMIT'] = $max + 1;
+		}
+
+		$actorQuery = $this->actorMigration->getJoin( 'rev_user' );
+		return array_map( function ( $row ) {
+			return new UserIdentityValue( (int)$row->rev_user, $row->rev_user_text, (int)$row->rev_actor );
+		}, iterator_to_array( $dbr->select(
+			array_merge( [ 'revision' ], $actorQuery['tables'] ),
+			$actorQuery['fields'],
+			$conds, __METHOD__,
+			$queryOpts,
+			$actorQuery['joins']
+		) ) );
+	}
+
+	/**
+	 * Get the number of authors between the given revisions.
+	 * Used for diffs and other things that really need it.
+	 *
+	 * @since 1.35
+	 *
+	 * @param int $pageId The id of the page
+	 * @param RevisionRecord|null $old Old revision .
+	 * 	If null is provided, count starting from the first revision (inclusive).
+	 * @param RevisionRecord|null $new New revision.
+	 *  If null is provided, count until the last revision (inclusive).
+	 * @param User|null $user the user who's access rights to apply
+	 * @param int|null $max Limit of Revisions to count, will be incremented to detect truncations.
+	 * @param string|array $options Single option, or an array of options:
+	 *     'include_old' Include $old in the range; $new is excluded.
+	 *     'include_new' Include $new in the range; $old is excluded.
+	 *     'include_both' Include both $old and $new in the range.
+	 * @throws InvalidArgumentException in case either revision is unsaved or
+	 * 	the revisions do not belong to the same page or unknown option is passed.
+	 * @return int Number of revisions authors in the range.
+	 */
+	public function countAuthorsBetween(
+		$pageId,
+		RevisionRecord $old = null,
+		RevisionRecord $new = null,
+		User $user = null,
+		$max = null,
+		$options = []
+	) {
+		// TODO: Implement with a separate query to avoid cost of selecting unneeded fields
+		// and creation of UserIdentity stuff.
+		return count( $this->getAuthorsBetween( $pageId, $old, $new, $user, $max, $options ) );
+	}
+
+	/**
 	 * Get the number of revisions between the given revisions.
 	 * Used for diffs and other things that really need it.
 	 *
 	 * @since 1.35
 	 *
-	 * @param RevisionRecord $old Old revision or rev ID (first before range).
-	 * @param RevisionRecord $new New revision or rev ID (first after range).
+	 * @param int $pageId The id of the page
+	 * @param RevisionRecord|null $old Old revision.
+	 * 	If null is provided, count starting from the first revision (inclusive).
+	 * @param RevisionRecord|null $new New revision.
+	 *  If null is provided, count until the last revision (inclusive).
 	 * @param int|null $max Limit of Revisions to count, will be incremented to detect truncations.
+	 * @param string|array $options Single option, or an array of options:
+	 *     'include_old' Include $old in the range; $new is excluded.
+	 *     'include_new' Include $new in the range; $old is excluded.
+	 *     'include_both' Include both $old and $new in the range.
 	 * @throws InvalidArgumentException in case either revision is unsaved or
 	 * 	the revisions do not belong to the same page.
 	 * @return int Number of revisions between these revisions.
 	 */
-	public function countRevisionsBetween( RevisionRecord $old, RevisionRecord $new, $max = null ) {
-		if ( $old->getId() === null || $new->getId() === null ) {
-			throw new InvalidArgumentException( 'Unsaved revision passed' );
-		}
+	public function countRevisionsBetween(
+		$pageId,
+		RevisionRecord $old = null,
+		RevisionRecord $new = null,
+		$max = null,
+		$options = []
+	) {
+		$this->assertRevisionParameter( 'old', $pageId, $old );
+		$this->assertRevisionParameter( 'new', $pageId, $new );
 
-		if ( $old->getPageId() !== $new->getPageId() ) {
-			throw new InvalidArgumentException(
-				"Revisions {$old->getId()} and {$new->getId()} do not belong to the same page"
-			);
+		// No DB query needed if old and new are the same revision.
+		// Can't check for consecutive revisions with 'getParentId' for a similar
+		// optimization as edge cases exist when there are revisions between
+		//a revision and it's parent. See T185167 for more details.
+		if ( $old && $new && $new->getId() === $old->getId() ) {
+			return 0;
 		}
 
 		$dbr = $this->getDBConnectionRef( DB_REPLICA );
-		$oldTs = $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) );
-		$newTs = $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) );
-		$conds = [
-			'rev_page' => $old->getPageId(),
-			"(rev_timestamp = {$oldTs} AND rev_id > {$old->getId()}) OR rev_timestamp > {$oldTs}",
-			"(rev_timestamp = {$newTs} AND rev_id < {$new->getId()}) OR rev_timestamp < {$newTs}",
-		];
+		$conds = array_merge(
+			[ 'rev_page' => $pageId ],
+			$this->getRevisionLimitConditions( $dbr, $old, $new, $options )
+		);
 		if ( $max !== null ) {
 			return $dbr->selectRowCount( 'revision', '1',
 				$conds,

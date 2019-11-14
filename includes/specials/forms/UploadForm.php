@@ -394,6 +394,7 @@ class UploadForm extends HTMLForm {
 
 	/**
 	 * Add the upload JS and show the form.
+	 * @return bool|Status
 	 */
 	public function show() {
 		$this->addUploadJS();

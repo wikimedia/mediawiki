@@ -1199,31 +1199,6 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Enable profiling table when it's turned on
-	 */
-	protected function doEnableProfiling() {
-		global $wgProfiler;
-
-		if ( !$this->doTable( 'profiling' ) ) {
-			return;
-		}
-
-		$profileToDb = false;
-		if ( isset( $wgProfiler['output'] ) ) {
-			$out = $wgProfiler['output'];
-			if ( $out === 'db' ) {
-				$profileToDb = true;
-			} elseif ( is_array( $out ) && in_array( 'db', $out ) ) {
-				$profileToDb = true;
-			}
-		}
-
-		if ( $profileToDb && !$this->db->tableExists( 'profiling', __METHOD__ ) ) {
-			$this->applyPatch( 'patch-profiling.sql', false, 'Add profiling table' );
-		}
-	}
-
-	/**
 	 * Rebuilds the localisation cache
 	 */
 	protected function rebuildLocalisationCache() {

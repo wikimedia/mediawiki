@@ -154,7 +154,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addField', 'user_newtalk', 'user_last_timestamp', 'patch-user_last_timestamp.sql' ],
 			[ 'doPopulateParentId' ],
 			[ 'checkBin', 'protected_titles', 'pt_title', 'patch-pt_title-encoding.sql', ],
-			[ 'doMaybeProfilingMemoryUpdate' ],
 			[ 'ifNoActorTable', 'doFilearchiveIndicesUpdate' ],
 
 			// 1.14
@@ -227,7 +226,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addField', 'filearchive', 'fa_sha1', 'patch-fa_sha1.sql' ],
 			[ 'addField', 'job', 'job_token', 'patch-job_token.sql' ],
 			[ 'addField', 'job', 'job_attempts', 'patch-job_attempts.sql' ],
-			[ 'doEnableProfiling' ],
 			[ 'addField', 'uploadstash', 'us_props', 'patch-uploadstash-us_props.sql' ],
 			[ 'modifyField', 'user_groups', 'ug_group', 'patch-ug_group-length-increase-255.sql' ],
 			[ 'modifyField', 'user_former_groups', 'ufg_group',
@@ -1073,26 +1071,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			$task = $this->maintenance->runChild( PopulateParentId::class );
 			$task->execute();
 		}
-	}
-
-	protected function doMaybeProfilingMemoryUpdate() {
-		if ( !$this->doTable( 'profiling' ) ) {
-			return true;
-		}
-
-		if ( !$this->db->tableExists( 'profiling', __METHOD__ ) ) {
-			return true;
-		} elseif ( $this->db->fieldExists( 'profiling', 'pf_memory', __METHOD__ ) ) {
-			$this->output( "...profiling table has pf_memory field.\n" );
-
-			return true;
-		}
-
-		return $this->applyPatch(
-			'patch-profiling-memory.sql',
-			false,
-			'Adding pf_memory field to table profiling'
-		);
 	}
 
 	protected function doFilearchiveIndicesUpdate() {

@@ -44,29 +44,33 @@ abstract class FileJournal {
 	protected $ttlDays;
 
 	/**
-	 * Construct a new instance from configuration. Do not call this directly, use factory().
+	 * Construct a new instance from configuration.
 	 *
 	 * @param array $config Includes:
-	 *     'ttlDays' : days to keep log entries around (false means "forever")
+	 *   - 'backend': The name of a registered file backend
+	 *   - 'ttlDays': Days to keep log entries around (false means "forever")
 	 */
 	public function __construct( array $config ) {
+		$this->backend = $config['backend'];
 		$this->ttlDays = $config['ttlDays'] ?? false;
 	}
 
 	/**
 	 * Create an appropriate FileJournal object from config
 	 *
+	 * @deprecated since 1.35, only FileBackendGroup should need to create FileJournals
 	 * @param array $config
 	 * @param string $backend A registered file backend name
 	 * @throws Exception
 	 * @return FileJournal
 	 */
 	final public static function factory( array $config, $backend ) {
+		wfDeprecated( __METHOD__, '1.35' );
+
 		$jrn = ObjectFactory::getObjectFromSpec(
-			$config,
+			[ 'backend' => $backend ] + $config,
 			[ 'specIsArg' => true, 'assertClass' => __CLASS__ ]
 		);
-		$jrn->backend = $backend;
 
 		return $jrn;
 	}

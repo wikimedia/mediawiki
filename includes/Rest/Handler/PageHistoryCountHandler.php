@@ -7,6 +7,7 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Rest\Response;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
@@ -23,8 +24,26 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * Handler class for Core REST API endpoints that perform operations on revisions
  */
 class PageHistoryCountHandler extends SimpleHandler {
-	const ALLOWED_COUNT_TYPES = [ 'anonedits', 'botedits', 'editors', 'edits', 'revertededits' ];
+	/** int The maximum number of revisions to count */
+	private const LIMIT = 1000;
+
+	const ALLOWED_COUNT_TYPES = [ 'anonymous', 'bot', 'editors', 'edits', 'reverted', 'minor' ];
+
+	// These types work identically to their similarly-named synonyms, but will be removed in the
+	// next major version of the API. Callers should use the corresponding non-deprecated type.
+	const DEPRECATED_COUNT_TYPES = [
+		'anonedits', 'botedits', 'revertededits'
+	];
+
+	// The query for minor counts is inefficient for the database for pages with many revisions.
+	// If the specified title contains more revisions than allowed, we will return an error.
+	// This may be fixed with a database index, per T235572. If so, this check can be removed.
+	const MINOR_QUERY_EDIT_COUNT_LIMIT = 2000;
+
 	const REVERTED_TAG_NAMES = [ 'mw-undo', 'mw-rollback' ];
+
+	/** @var RevisionStore */
+	private $revisionStore;
 
 	/** @var NameTableStore */
 	private $changeTagDefStore;
@@ -39,15 +58,18 @@ class PageHistoryCountHandler extends SimpleHandler {
 	private $user;
 
 	/**
+	 * @param RevisionStore $revisionStore
 	 * @param NameTableStoreFactory $nameTableStoreFactory
 	 * @param PermissionManager $permissionManager
 	 * @param ILoadBalancer $loadBalancer
 	 */
 	public function __construct(
+		RevisionStore $revisionStore,
 		NameTableStoreFactory $nameTableStoreFactory,
 		PermissionManager $permissionManager,
 		ILoadBalancer $loadBalancer
 	) {
+		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $nameTableStoreFactory->getChangeTagDef();
 		$this->permissionManager = $permissionManager;
 		$this->loadBalancer = $loadBalancer;
@@ -57,49 +79,113 @@ class PageHistoryCountHandler extends SimpleHandler {
 	}
 
 	/**
+	 * Validates that the provided parameter combination is supported.
+	 *
+	 * @param string $type
+	 * @throws LocalizedHttpException
+	 */
+	private function validateParameterCombination( $type ) {
+		$params = $this->getValidatedParams();
+		if ( !$params ) {
+			return;
+		}
+
+		if ( $params['from'] || $params['to'] ) {
+			if ( $type === 'edits' || $type === 'editors' ) {
+				if ( !$params['from'] || !$params['to'] ) {
+					throw new LocalizedHttpException(
+						new MessageValue( 'rest-pagehistorycount-parameters-invalid' ),
+						400
+					);
+				}
+			} else {
+				throw new LocalizedHttpException(
+					new MessageValue( 'rest-pagehistorycount-parameters-invalid' ),
+					400
+				);
+			}
+		}
+	}
+
+	/**
 	 * @param string $title
 	 * @param string $type
 	 * @return Response
 	 * @throws LocalizedHttpException
 	 */
 	public function run( $title, $type ) {
+		$this->validateParameterCombination( $type );
 		$titleObj = Title::newFromText( $title );
 		if ( !$titleObj || !$titleObj->getArticleID() ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'rest-pagehistorycount-title-nonexistent',
+				new MessageValue( 'rest-nonexistent-title',
 					[ new ScalarParam( ParamType::PLAINTEXT, $title ) ]
 				),
 				404
 			);
 		}
 
-		$count = $this->getCount( $titleObj, $type );
-		return $this->getResponseFactory()->createJson( [ 'count' => $count ] );
+		if ( !$this->permissionManager->userCan( 'read', $this->user, $titleObj ) ) {
+			throw new LocalizedHttpException(
+				new MessageValue( 'rest-permission-denied-title',
+					[ new ScalarParam( ParamType::PLAINTEXT, $title ) ]
+				),
+				403
+			);
+		}
+
+		$count = $this->getCount( $titleObj->getArticleID(), $type );
+		$response = $this->getResponseFactory()->createJson( [
+				'count' => $count > self::LIMIT ? self::LIMIT : $count,
+				'limit' => $count > self::LIMIT
+		] );
+
+		// Inform clients who use a deprecated "type" value, so they can adjust
+		if ( in_array( $type, self::DEPRECATED_COUNT_TYPES ) ) {
+			$docs = '<https://www.mediawiki.org/wiki/API:REST/History_API' .
+				'#Get_page_history_counts>; rel="deprecation"';
+			$response->setHeader( 'Deprecation', 'version="v1"' );
+			$response->setHeader( 'Link', $docs );
+		}
+
+		return $response;
 	}
 
 	/**
-	 * @param Title $titleObj title object identifying the page to load history for
+	 * @param int $pageId the id of the page to load history for
 	 * @param string $type the validated count type
-	 * @return int the count
+	 * @return int the article count
 	 * @throws LocalizedHttpException
 	 */
-	protected function getCount( $titleObj, $type ) {
+	protected function getCount( $pageId, $type ) {
 		switch ( $type ) {
 			case 'anonedits':
-				return $this->getAnonEditsCount( $titleObj );
+			case 'anonymous':
+				return $this->getAnonCount( $pageId );
 
 			case 'botedits':
-				return $this->getBotEditsCount( $titleObj );
+			case 'bot':
+				return $this->getBotCount( $pageId );
 
 			case 'editors':
-				return $this->getEditorsCount( $titleObj );
+				return $this->getEditorsCount( $pageId );
 
 			case 'edits':
-				return $this->getEditsCount( $titleObj );
+				return $this->getEditsCount( $pageId, self::LIMIT );
 
 			case 'revertededits':
-				return $this->getRevertedEditsCount( $titleObj );
+			case 'reverted':
+				return $this->getRevertedCount( $pageId );
 
+			case 'minor':
+				$editsCount = $this->getEditsCount( $pageId, self::MINOR_QUERY_EDIT_COUNT_LIMIT );
+				if ( $editsCount > self::MINOR_QUERY_EDIT_COUNT_LIMIT ) {
+					throw new LocalizedHttpException(
+						new MessageValue( 'rest-pagehistorycount-too-many-revisions' ),
+						500
+					);
+				}
+				return $this->getMinorCount( $pageId );
 			// Sanity check
 			default:
 				throw new LocalizedHttpException(
@@ -112,14 +198,14 @@ class PageHistoryCountHandler extends SimpleHandler {
 	}
 
 	/**
-	 * @param Title $titleObj title object identifying the page to load history for
+	 * @param int $pageId the id of the page to load history for
 	 * @return int the count
 	 */
-	protected function getAnonEditsCount( $titleObj ) {
+	protected function getAnonCount( $pageId ) {
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 
 		$cond = [
-			'rev_page' => $titleObj->getArticleID(),
+			'rev_page' => $pageId,
 			'actor_user IS NULL',
 		];
 		$bitmask = $this->getBitmask();
@@ -127,16 +213,16 @@ class PageHistoryCountHandler extends SimpleHandler {
 			$cond[] = $dbr->bitAnd( 'rev_deleted', $bitmask ) . " != $bitmask";
 		}
 
-		$edits = (int)$dbr->selectField(
+		$edits = $dbr->selectRowCount(
 			[
 				'revision_actor_temp',
 				'revision',
 				'actor'
 			],
-			'COUNT(*)',
+			'1',
 			$cond,
 			__METHOD__,
-			[],
+			[ 'LIMIT' => self::LIMIT + 1 ], // extra to detect truncation
 			[
 				'revision' => [
 					'JOIN',
@@ -152,14 +238,14 @@ class PageHistoryCountHandler extends SimpleHandler {
 	}
 
 	/**
-	 * @param Title $titleObj title object identifying the page to load history for
+	 * @param int $pageId the id of the page to load history for
 	 * @return int the count
 	 */
-	protected function getBotEditsCount( $titleObj ) {
+	protected function getBotCount( $pageId ) {
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 
 		$cond = [
-			'rev_page' => $titleObj->getArticleID(),
+			'rev_page' => $pageId,
 			'EXISTS(' .
 				$dbr->selectSQLText(
 					'user_groups',
@@ -178,16 +264,16 @@ class PageHistoryCountHandler extends SimpleHandler {
 			$cond[] = $dbr->bitAnd( 'rev_deleted', $bitmask ) . " != $bitmask";
 		}
 
-		$edits = (int)$dbr->selectField(
+		$edits = $dbr->selectRowCount(
 			[
 				'revision_actor_temp',
 				'revision',
 				'actor',
 			],
-			'COUNT(*)',
+			'1',
 			$cond,
 			__METHOD__,
-			[],
+			[ 'LIMIT' => self::LIMIT + 1 ], // extra to detect truncation
 			[
 				'revision' => [
 					'JOIN',
@@ -203,59 +289,34 @@ class PageHistoryCountHandler extends SimpleHandler {
 	}
 
 	/**
-	 * @param Title $titleObj title object identifying the page to load history for
+	 * @param int $pageId the id of the page to load history for
 	 * @return int the count
+	 * @throws LocalizedHttpException
 	 */
-	protected function getEditorsCount( $titleObj ) {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+	protected function getEditorsCount( $pageId ) {
+		$from = $this->getValidatedParams()['from'] ?? null;
+		$to = $this->getValidatedParams()['to'] ?? null;
+		$fromRev = $from ? $this->getRevisionOrThrow( $from ) : null;
+		$toRev = $to ? $this->getRevisionOrThrow( $to ) : null;
 
-		$cond = [
-			'rev_page' => $titleObj->getArticleID(),
-		];
-		$bitmask = $this->getBitmask();
-		if ( $bitmask ) {
-			$cond[] = $dbr->bitAnd( 'rev_deleted', $bitmask ) . " != $bitmask";
+		// Reorder from and to parameters if they are out of order.
+		if ( $fromRev && $toRev && ( $fromRev->getTimestamp() > $toRev->getTimestamp() ||
+				( $fromRev->getTimestamp() === $toRev->getTimestamp() && $from > $to ) )
+		) {
+			$tmp = $fromRev;
+			$fromRev = $toRev;
+			$toRev = $tmp;
 		}
 
-		$edits = (int)$dbr->selectField(
-			[
-				'revision_actor_temp',
-				'revision'
-			],
-			'COUNT(DISTINCT revactor_actor)',
-			$cond,
-			__METHOD__,
-			[],
-			[
-				'revision' => [
-					'JOIN',
-					'revactor_rev = rev_id AND revactor_page = rev_page'
-				]
-			]
-		);
-		return $edits;
+		return $this->revisionStore->countAuthorsBetween( $pageId, $fromRev,
+			$toRev, $this->user, self::LIMIT );
 	}
 
 	/**
-	 * @param Title $titleObj title object identifying the page to load history for
+	 * @param int $pageId the id of the page to load history for
 	 * @return int the count
 	 */
-	protected function getEditsCount( $titleObj ) {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$edits = (int)$dbr->selectField(
-			'revision',
-			'COUNT(*)',
-			[ 'rev_page' => $titleObj->getArticleID() ],
-			__METHOD__
-		);
-		return $edits;
-	}
-
-	/**
-	 * @param Title $titleObj title object identifying the page to load history for
-	 * @return int the count
-	 */
-	protected function getRevertedEditsCount( $titleObj ) {
+	protected function getRevertedCount( $pageId ) {
 		$tagIds = [];
 
 		foreach ( self::REVERTED_TAG_NAMES as $tagName ) {
@@ -270,15 +331,18 @@ class PageHistoryCountHandler extends SimpleHandler {
 		}
 
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$edits = (int)$dbr->selectField(
+		$edits = $dbr->selectRowCount(
 			[
 				'revision',
 				'change_tag'
 			],
-			'COUNT(DISTINCT rev_id)',
-			[ 'rev_page' => $titleObj->getArticleID() ],
+			'1',
+			[ 'rev_page' => $pageId ],
 			__METHOD__,
-			[],
+			[
+				'LIMIT' => self::LIMIT + 1, // extra to detect truncation
+				'GROUP BY' => 'rev_id'
+			],
 			[
 				'change_tag' => [
 					'JOIN',
@@ -290,6 +354,52 @@ class PageHistoryCountHandler extends SimpleHandler {
 			]
 		);
 		return $edits;
+	}
+
+	/**
+	 * @param int $pageId the id of the page to load history for
+	 * @return int the count
+	 */
+	protected function getMinorCount( $pageId ) {
+		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+		$edits = $dbr->selectRowCount( 'revision', '1',
+			[
+				'rev_page' => $pageId,
+				'rev_minor_edit != 0'
+			],
+			__METHOD__,
+			[ 'LIMIT' => self::LIMIT + 1 ] // extra to detect truncation
+		);
+
+		return $edits;
+	}
+
+	/**
+	 * @param int $pageId the id of the page to load history for
+	 * @param int $limit
+	 * @return int the count
+	 * @throws LocalizedHttpException
+	 */
+	protected function getEditsCount( $pageId, $limit ) {
+		$from = $this->getValidatedParams()['from'] ?? null;
+		$to = $this->getValidatedParams()['to'] ?? null;
+		$fromRev = $from ? $this->getRevisionOrThrow( $from ) : null;
+		$toRev = $to ? $this->getRevisionOrThrow( $to ) : null;
+
+		// Reorder from and to parameters if they are out of order.
+		if ( $fromRev && $toRev && ( $fromRev->getTimestamp() > $toRev->getTimestamp() ||
+			( $fromRev->getTimestamp() === $toRev->getTimestamp() && $from > $to ) )
+		) {
+			$tmp = $fromRev;
+			$fromRev = $toRev;
+			$toRev = $tmp;
+		}
+		return $this->revisionStore->countRevisionsBetween(
+			$pageId,
+			$fromRev,
+			$toRev,
+			$limit // Will be increased by 1 to detect truncation
+		);
 	}
 
 	/**
@@ -312,6 +422,22 @@ class PageHistoryCountHandler extends SimpleHandler {
 		return $bitmask;
 	}
 
+	/**
+	 * @param int $revId
+	 * @return RevisionRecord
+	 * @throws LocalizedHttpException
+	 */
+	private function getRevisionOrThrow( $revId ) {
+		$rev = $this->revisionStore->getRevisionById( $revId );
+		if ( !$rev ) {
+			throw new LocalizedHttpException(
+				new MessageValue( 'rest-nonexistent-revision', [ $revId ] ),
+				404
+			);
+		}
+		return $rev;
+	}
+
 	public function needsWriteAccess() {
 		return false;
 	}
@@ -325,9 +451,22 @@ class PageHistoryCountHandler extends SimpleHandler {
 			],
 			'type' => [
 				self::PARAM_SOURCE => 'path',
-				ParamValidator::PARAM_TYPE => self::ALLOWED_COUNT_TYPES,
+				ParamValidator::PARAM_TYPE => array_merge(
+					self::ALLOWED_COUNT_TYPES,
+					self::DEPRECATED_COUNT_TYPES
+				),
 				ParamValidator::PARAM_REQUIRED => true,
 			],
+			'from' => [
+				self::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_REQUIRED => false
+			],
+			'to' => [
+				self::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_REQUIRED => false
+			]
 		];
 	}
 }

@@ -25,7 +25,7 @@ class LinkRendererFactoryTest extends MediaWikiLangTestCase {
 	 */
 	private $nsInfo;
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 
 		$services = MediaWikiServices::getInstance();

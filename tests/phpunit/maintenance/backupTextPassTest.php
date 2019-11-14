@@ -104,7 +104,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 		}
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		// Since we will restrict dumping by page ranges (to allow

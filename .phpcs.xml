@@ -4,8 +4,6 @@
 		<exclude name="Generic.ControlStructures.InlineControlStructure" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationProtected" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.MissingParamTag" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.MissingReturn" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.WrongStyle" />
 		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentEnd" />
 		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentStart" />
@@ -17,7 +15,6 @@
 		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle" />
 		<exclude name="MediaWiki.Usage.ForbiddenFunctions.passthru" />
 		<exclude name="MediaWiki.Usage.NullableType.PHP71NullableStyle" />
-		<exclude name="MediaWiki.Usage.PHPUnitTypeHints.MissingTypehint" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.SingleSpaceBeforeSingleLineComment" />
 		<exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
@@ -27,6 +24,14 @@
 		<exclude-pattern>includes/</exclude-pattern>
 		<exclude-pattern>maintenance/</exclude-pattern>
 		<exclude-pattern>languages/</exclude-pattern>
+	</rule>
+	<!-- TODO Still to be done -->
+	<rule ref="MediaWiki.Commenting.FunctionComment.MissingParamTag">
+		<exclude-pattern>tests/</exclude-pattern>
+	</rule>
+	<!-- TODO Still to be done -->
+	<rule ref="MediaWiki.Commenting.FunctionComment.MissingReturn">
+		<exclude-pattern>tests/</exclude-pattern>
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
 		<properties>
@@ -45,16 +50,13 @@
 			maintenance/storage/resolveStubs.php
 			* resolveStub
 			* resolveStubs
-			profileinfo.php
-			* compare_point
-			* getEscapedProfileUrl
 			tests/phpunit/includes/HooksTest.php
 			* NothingFunction
 			* NothingFunctionData
 			tests/qunit/data/styleTest.css.php
 			* cssfilter
 			-->
-			<property name="ignoreList" type="array" value="cdbShowHelp,compare_point,cssfilter,getEscapedProfileUrl,mccGetHelp,mccShowUsage,mimeTypeMatch,moveToExternal,NothingFunction,NothingFunctionData,resolveStub,resolveStubs,showUsage" />
+			<property name="ignoreList" type="array" value="cdbShowHelp,cssfilter,mccGetHelp,mccShowUsage,mimeTypeMatch,moveToExternal,NothingFunction,NothingFunctionData,resolveStub,resolveStubs,showUsage" />
 		</properties>
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.ValidGlobalName">
@@ -63,7 +65,6 @@
 		</properties>
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix">
-		<exclude-pattern>profileinfo\.php</exclude-pattern>
 		<exclude-pattern>maintenance/language/checkLanguage\.inc</exclude-pattern>
 		<exclude-pattern>maintenance/doMaintenance\.php</exclude-pattern>
 		<exclude-pattern>maintenance/mergeMessageFileList\.php</exclude-pattern>
@@ -122,7 +123,6 @@
 		<exclude-pattern>*/maintenance/userDupes.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/userOptions\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/view\.php</exclude-pattern>
-		<exclude-pattern>*/profileinfo\.php</exclude-pattern>
 		<!-- Language converters use the pattern of 2 classes in one file -->
 		<exclude-pattern>*/languages/*\.php</exclude-pattern>
 		<!-- Skip violations in some tests for now -->

@@ -5,6 +5,10 @@ namespace Wikimedia\ParamValidator;
 use DomainException;
 use InvalidArgumentException;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Message\DataMessageValue;
+use Wikimedia\Message\MessageValue;
+use Wikimedia\Message\ParamType;
+use Wikimedia\Message\ScalarParam;
 use Wikimedia\ObjectFactory;
 
 /**
@@ -33,6 +37,7 @@ use Wikimedia\ObjectFactory;
  *      the user unnecessarily.
  *
  * @since 1.34
+ * @unstable
  */
 class ParamValidator {
 
@@ -41,7 +46,7 @@ class ParamValidator {
 	 * These constants are keys in the settings array that define how the
 	 * parameters coming in from the request are to be interpreted.
 	 *
-	 * If a constant is associated with a ValidationException, the failure code
+	 * If a constant is associated with a failure code, the failure code
 	 * and data are described. ValidationExceptions are typically thrown, but
 	 * those indicated as "non-fatal" are instead passed to
 	 * Callbacks::recordCondition().
@@ -68,7 +73,7 @@ class ParamValidator {
 	/**
 	 * (bool) Indicate that the parameter is required.
 	 *
-	 * ValidationException codes:
+	 * Failure codes:
 	 *  - 'missingparam': The parameter is omitted/empty (and no default was set). No data.
 	 */
 	const PARAM_REQUIRED = 'param-required';
@@ -77,7 +82,7 @@ class ParamValidator {
 	 * (bool) Indicate that the parameter is multi-valued.
 	 *
 	 * A multi-valued parameter may be submitted in one of several formats. All
-	 * of the following result a value of `[ 'a', 'b', 'c' ]`.
+	 * of the following result in a value of `[ 'a', 'b', 'c' ]`.
 	 *  - "a|b|c", i.e. pipe-separated.
 	 *  - "\x1Fa\x1Fb\x1Fc", i.e. separated by U+001F, with a signalling U+001F at the start.
 	 *  - As a string[], e.g. from a query string like "foo[]=a&foo[]=b&foo[]=c".
@@ -88,11 +93,13 @@ class ParamValidator {
 	 * By default duplicates are removed from the resulting parameter list. Use
 	 * PARAM_ALLOW_DUPLICATES to override that behavior.
 	 *
-	 * ValidationException codes:
+	 * Failure codes:
 	 *  - 'toomanyvalues': More values were supplied than are allowed. See
 	 *    PARAM_ISMULTI_LIMIT1, PARAM_ISMULTI_LIMIT2, and constructor option
 	 *    'ismultiLimits'. Data:
-	 *     - 'limit': The limit that was exceeded.
+	 *     - 'limit': The limit currently in effect.
+	 *     - 'lowlimit': The limit when high limits are not allowed.
+	 *     - 'highlimit': The limit when high limits are allowed.
 	 *  - 'unrecognizedvalues': Non-fatal. Invalid values were passed and
 	 *    PARAM_IGNORE_INVALID_VALUES was set. Data:
 	 *     - 'values': The unrecognized values.
@@ -102,12 +109,7 @@ class ParamValidator {
 	/**
 	 * (int) Maximum number of multi-valued parameter values allowed
 	 *
-	 * PARAM_ISMULTI_LIMIT1 is the normal limit, and PARAM_ISMULTI_LIMIT2 is
-	 * the limit when useHighLimits() returns true.
-	 *
-	 * ValidationException codes:
-	 *  - 'toomanyvalues': The limit was exceeded. Data:
-	 *     - 'limit': The limit that was exceeded.
+	 * @see PARAM_ISMULTI
 	 */
 	const PARAM_ISMULTI_LIMIT1 = 'param-ismulti-limit1';
 
@@ -115,12 +117,7 @@ class ParamValidator {
 	 * (int) Maximum number of multi-valued parameter values allowed for users
 	 * allowed high limits.
 	 *
-	 * PARAM_ISMULTI_LIMIT1 is the normal limit, and PARAM_ISMULTI_LIMIT2 is
-	 * the limit when useHighLimits() returns true.
-	 *
-	 * ValidationException codes:
-	 *  - 'toomanyvalues': The limit was exceeded. Data:
-	 *     - 'limit': The limit that was exceeded.
+	 * @see PARAM_ISMULTI
 	 */
 	const PARAM_ISMULTI_LIMIT2 = 'param-ismulti-limit2';
 
@@ -145,24 +142,26 @@ class ParamValidator {
 	/**
 	 * (bool) Indicate that the parameter's value should not be logged.
 	 *
-	 * ValidationException codes: (non-fatal)
-	 *  - 'param-sensitive': Always recorded.
+	 * Failure codes: (non-fatal)
+	 *  - 'param-sensitive': Always recorded when the parameter is used.
 	 */
 	const PARAM_SENSITIVE = 'param-sensitive';
 
 	/**
 	 * (bool) Indicate that a deprecated parameter was used.
 	 *
-	 * ValidationException codes: (non-fatal)
-	 *  - 'param-deprecated': Always recorded.
+	 * Failure codes: (non-fatal)
+	 *  - 'param-deprecated': Always recorded when the parameter is used.
 	 */
 	const PARAM_DEPRECATED = 'param-deprecated';
 
 	/**
 	 * (bool) Whether to ignore invalid values.
 	 *
-	 * This controls whether certain ValidationExceptions are considered fatal
+	 * This controls whether certain failures are considered fatal
 	 * or non-fatal. The default is false.
+	 *
+	 * @see PARAM_ISMULTI
 	 */
 	const PARAM_IGNORE_INVALID_VALUES = 'param-ignore-invalid-values';
 
@@ -382,16 +381,18 @@ class ParamValidator {
 		if ( $value !== null ) {
 			if ( !empty( $settings[self::PARAM_SENSITIVE] ) ) {
 				$this->callbacks->recordCondition(
-					new ValidationException( $name, $value, $settings, 'param-sensitive', [] ),
-					$options
+					DataMessageValue::new( 'paramvalidator-param-sensitive', [], 'param-sensitive' )
+						->plaintextParams( $name, $value ),
+					$name, $value, $settings, $options
 				);
 			}
 
 			// Set a warning if a deprecated parameter has been passed
 			if ( !empty( $settings[self::PARAM_DEPRECATED] ) ) {
 				$this->callbacks->recordCondition(
-					new ValidationException( $name, $value, $settings, 'param-deprecated', [] ),
-					$options
+					DataMessageValue::new( 'paramvalidator-param-deprecated', [], 'param-deprecated' )
+						->plaintextParams( $name, $value ),
+					$name, $value, $settings, $options
 				);
 			}
 		} elseif ( isset( $settings[self::PARAM_DEFAULT] ) ) {
@@ -426,19 +427,30 @@ class ParamValidator {
 
 		if ( $value === null ) {
 			if ( !empty( $settings[self::PARAM_REQUIRED] ) ) {
-				throw new ValidationException( $name, $value, $settings, 'missingparam', [] );
+				throw new ValidationException(
+					DataMessageValue::new( 'paramvalidator-missingparam', [], 'missingparam' )
+						->plaintextParams( $name ),
+					$name, $value, $settings
+				);
 			}
 			return null;
 		}
 
 		// Non-multi
 		if ( empty( $settings[self::PARAM_ISMULTI] ) ) {
+			if ( substr( $value, 0, 1 ) === "\x1f" ) {
+				throw new ValidationException(
+					DataMessageValue::new( 'paramvalidator-notmulti', [], 'badvalue' )
+						->plaintextParams( $name, $value ),
+					$name, $value, $settings
+				);
+			}
 			return $typeDef->validate( $name, $value, $settings, $options );
 		}
 
 		// Split the multi-value and validate each parameter
 		$limit1 = $settings[self::PARAM_ISMULTI_LIMIT1] ?? $this->ismultiLimit1;
-		$limit2 = $settings[self::PARAM_ISMULTI_LIMIT2] ?? $this->ismultiLimit2;
+		$limit2 = max( $limit1, $settings[self::PARAM_ISMULTI_LIMIT2] ?? $this->ismultiLimit2 );
 		$valuesList = is_array( $value ) ? $value : self::explodeMultiValue( $value, $limit2 + 1 );
 
 		// Handle PARAM_ALL
@@ -455,13 +467,22 @@ class ParamValidator {
 		}
 
 		// Avoid checking useHighLimits() unless it's actually necessary
-		$sizeLimit = count( $valuesList ) > $limit1 && $this->callbacks->useHighLimits( $options )
-			? $limit2
-			: $limit1;
+		$sizeLimit = (
+			$limit2 > $limit1 && count( $valuesList ) > $limit1 &&
+			$this->callbacks->useHighLimits( $options )
+		) ? $limit2 : $limit1;
 		if ( count( $valuesList ) > $sizeLimit ) {
-			throw new ValidationException( $name, $valuesList, $settings, 'toomanyvalues', [
-				'limit' => $sizeLimit
-			] );
+			if ( is_array( $value ) ) {
+				$value = self::implodeMultiValue( $value );
+			}
+			throw new ValidationException(
+				DataMessageValue::new( 'paramvalidator-toomanyvalues', [], 'toomanyvalues', [
+					'limit' => $sizeLimit,
+					'lowlimit' => $limit1,
+					'highlimit' => $limit2,
+				] )->plaintextParams( $name, $value )->numParams( $sizeLimit ),
+				$name, $valuesList, $settings
+			);
 		}
 
 		$options['values-list'] = $valuesList;
@@ -479,10 +500,15 @@ class ParamValidator {
 		}
 		if ( $invalidValues ) {
 			$this->callbacks->recordCondition(
-				new ValidationException( $name, $value, $settings, 'unrecognizedvalues', [
+				DataMessageValue::new( 'paramvalidator-unrecognizedvalues', [], 'unrecognizedvalues', [
 					'values' => $invalidValues,
-				] ),
-				$options
+				] )
+					->plaintextParams( $name, $value )
+					->commaListParams( array_map( function ( $v ) {
+						return new ScalarParam( ParamType::PLAINTEXT, $v );
+					}, $invalidValues ) )
+					->numParams( count( $invalidValues ) ),
+				$name, $value, $settings, $options
 			);
 		}
 
@@ -492,6 +518,151 @@ class ParamValidator {
 		}
 
 		return $validValues;
+	}
+
+	/**
+	 * Describe parameter settings in a machine-readable format.
+	 *
+	 * @param string $name Parameter name.
+	 * @param array|mixed $settings Default value or an array of settings
+	 *  using PARAM_* constants.
+	 * @param array $options Options array.
+	 * @return array
+	 */
+	public function getParamInfo( $name, $settings, array $options ) {
+		$settings = $this->normalizeSettings( $settings );
+		$typeDef = $this->getTypeDef( $settings[self::PARAM_TYPE] );
+		$info = [];
+
+		$info['type'] = $settings[self::PARAM_TYPE];
+		$info['required'] = !empty( $settings[self::PARAM_REQUIRED] );
+		if ( !empty( $settings[self::PARAM_DEPRECATED] ) ) {
+			$info['deprecated'] = true;
+		}
+		if ( !empty( $settings[self::PARAM_SENSITIVE] ) ) {
+			$info['sensitive'] = true;
+		}
+		if ( isset( $settings[self::PARAM_DEFAULT] ) ) {
+			$info['default'] = $settings[self::PARAM_DEFAULT];
+		}
+		$info['multi'] = !empty( $settings[self::PARAM_ISMULTI] );
+		if ( $info['multi'] ) {
+			$info['lowlimit'] = $settings[self::PARAM_ISMULTI_LIMIT1] ?? $this->ismultiLimit1;
+			$info['highlimit'] = max(
+				$info['lowlimit'], $settings[self::PARAM_ISMULTI_LIMIT2] ?? $this->ismultiLimit2
+			);
+			$info['limit'] =
+				$info['highlimit'] > $info['lowlimit'] && $this->callbacks->useHighLimits( $options )
+					? $info['highlimit']
+					: $info['lowlimit'];
+
+			if ( !empty( $settings[self::PARAM_ALLOW_DUPLICATES] ) ) {
+				$info['allowsduplicates'] = true;
+			}
+
+			$allSpecifier = $settings[self::PARAM_ALL] ?? false;
+			if ( $allSpecifier !== false ) {
+				if ( !is_string( $allSpecifier ) ) {
+					$allSpecifier = self::ALL_DEFAULT_STRING;
+				}
+				$info['allspecifier'] = $allSpecifier;
+			}
+		}
+
+		if ( $typeDef ) {
+			$info = array_merge( $info, $typeDef->getParamInfo( $name, $settings, $options ) );
+		}
+
+		// Filter out nulls (strictly)
+		return array_filter( $info, function ( $v ) {
+			return $v !== null;
+		} );
+	}
+
+	/**
+	 * Describe parameter settings in human-readable format
+	 *
+	 * @param string $name Parameter name being described.
+	 * @param array|mixed $settings Default value or an array of settings
+	 *  using PARAM_* constants.
+	 * @param array $options Options array.
+	 * @return MessageValue[]
+	 */
+	public function getHelpInfo( $name, $settings, array $options ) {
+		$settings = $this->normalizeSettings( $settings );
+		$typeDef = $this->getTypeDef( $settings[self::PARAM_TYPE] );
+
+		// Define ordering. Some are overwritten below, some expected from the TypeDef
+		$info = [
+			self::PARAM_DEPRECATED => null,
+			self::PARAM_REQUIRED => null,
+			self::PARAM_SENSITIVE => null,
+			self::PARAM_TYPE => null,
+			self::PARAM_ISMULTI => null,
+			self::PARAM_ISMULTI_LIMIT1 => null,
+			self::PARAM_ALL => null,
+			self::PARAM_DEFAULT => null,
+		];
+
+		if ( !empty( $settings[self::PARAM_DEPRECATED] ) ) {
+			$info[self::PARAM_DEPRECATED] = MessageValue::new( 'paramvalidator-help-deprecated' );
+		}
+
+		if ( !empty( $settings[self::PARAM_REQUIRED] ) ) {
+			$info[self::PARAM_REQUIRED] = MessageValue::new( 'paramvalidator-help-required' );
+		}
+
+		if ( !empty( $settings[self::PARAM_ISMULTI] ) ) {
+			$info[self::PARAM_ISMULTI] = MessageValue::new( 'paramvalidator-help-multi-sep' );
+
+			$lowcount = $settings[self::PARAM_ISMULTI_LIMIT1] ?? $this->ismultiLimit1;
+			$highcount = max( $lowcount, $settings[self::PARAM_ISMULTI_LIMIT2] ?? $this->ismultiLimit2 );
+			$values = $typeDef ? $typeDef->getEnumValues( $name, $settings, $options ) : null;
+			if (
+				// Only mention the limits if they're likely to matter.
+				$values === null || count( $values ) > $lowcount ||
+				!empty( $settings[self::PARAM_ALLOW_DUPLICATES] )
+			) {
+				if ( $highcount > $lowcount ) {
+					$info[self::PARAM_ISMULTI_LIMIT1] = MessageValue::new( 'paramvalidator-help-multi-max' )
+						->numParams( $lowcount, $highcount );
+				} else {
+					$info[self::PARAM_ISMULTI_LIMIT1] = MessageValue::new( 'paramvalidator-help-multi-max-simple' )
+						->numParams( $lowcount );
+				}
+			}
+
+			$allSpecifier = $settings[self::PARAM_ALL] ?? false;
+			if ( $allSpecifier !== false ) {
+				if ( !is_string( $allSpecifier ) ) {
+					$allSpecifier = self::ALL_DEFAULT_STRING;
+				}
+				$info[self::PARAM_ALL] = MessageValue::new( 'paramvalidator-help-multi-all' )
+					->plaintextParams( $allSpecifier );
+			}
+		}
+
+		if ( isset( $settings[self::PARAM_DEFAULT] ) && $typeDef ) {
+			$value = $typeDef->stringifyValue( $name, $settings[self::PARAM_DEFAULT], $settings, $options );
+			if ( $value === '' ) {
+				$info[self::PARAM_DEFAULT] = MessageValue::new( 'paramvalidator-param-default-empty' );
+			} elseif ( $value !== null ) {
+				$info[self::PARAM_DEFAULT] = MessageValue::new( 'paramvalidator-param-default' )
+					->plaintextParams( $value );
+			}
+		}
+
+		if ( $typeDef ) {
+			$info = array_merge( $info, $typeDef->getHelpInfo( $name, $settings, $options ) );
+		}
+
+		// Put the default at the very end (the TypeDef may have added extra messages)
+		$default = $info[self::PARAM_DEFAULT];
+		unset( $info[self::PARAM_DEFAULT] );
+		$info[self::PARAM_DEFAULT] = $default;
+
+		// Filter out nulls
+		return array_filter( $info );
 	}
 
 	/**
@@ -517,6 +688,27 @@ class ParamValidator {
 		}
 
 		return explode( $sep, $value, $limit );
+	}
+
+	/**
+	 * Implode an array as a multi-valued parameter string, like implode()
+	 *
+	 * @param array $value
+	 * @return string
+	 */
+	public static function implodeMultiValue( array $value ) {
+		if ( $value === [ '' ] ) {
+			// There's no value that actually returns a single empty string.
+			// Best we can do is this that returns two, which will be deduplicated to one.
+			return '|';
+		}
+
+		foreach ( $value as $v ) {
+			if ( strpos( $v, '|' ) !== false ) {
+				return "\x1f" . implode( "\x1f", $value );
+			}
+		}
+		return implode( '|', $value );
 	}
 
 }

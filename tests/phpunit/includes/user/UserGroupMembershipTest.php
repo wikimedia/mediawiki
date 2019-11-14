@@ -24,7 +24,7 @@ class UserGroupMembershipTest extends MediaWikiTestCase {
 	 */
 	protected $expiryTime;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( [

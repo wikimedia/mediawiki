@@ -99,7 +99,8 @@
 			"マツムシ",
 			"神樂坂秀吉",
 			"Yuukin0248",
-			"Reiwa period"
+			"Reiwa period",
+			"沈澄心"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -268,7 +269,7 @@
 	"history_small": "履歴",
 	"updatedmarker": "前回の閲覧以降に更新されました",
 	"printableversion": "印刷用バージョン",
-	"permalink": "この版への固定リンク",
+	"permalink": "固定リンク",
 	"print": "印刷",
 	"view": "閲覧",
 	"view-foreign": "$1で閲覧",
@@ -3742,6 +3743,7 @@
 	"feedback-useragent": "ユーザーエージェント:",
 	"searchsuggest-search": "{{SITENAME}}内を検索",
 	"searchsuggest-containing": "この語句を全文検索",
+	"search-match-redirect-label": "検索を完全一致にリダイレクトします",
 	"api-error-badtoken": "内部エラー: トークンが正しくありません。",
 	"api-error-emptypage": "内容がないページの新規作成は許可されていません。",
 	"api-error-publishfailed": "内部エラー: サーバーは一時ファイルを発行できませんでした。",
@@ -4063,7 +4065,7 @@
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "一般的に使われるパスワード10万項目のリストに含まれるパスワードは使用できません。",
 	"passwordpolicies-policyflag-forcechange": "ログイン時に変更を強制",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "ログイン時に変更を提案",
-	"easydeflate-invaliddeflate": "提供されたコンテンツが適切に圧縮されていません",
+	"deflate-invaliddeflate": "提供されたコンテンツが適切に圧縮されていません",
 	"unprotected-js": "セキュリティ上の理由から、JavaScriptは保護されていないページからは読み込みできません。MediaWiki: 名前空間内、利用者下位ページのいずれかでのみjavascriptを作成してください。",
 	"userlogout-continue": "ログアウトしますか？"
 }

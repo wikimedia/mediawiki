@@ -199,6 +199,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					$extraConds[] = $contWhere;
 				}
 				$res = $this->select( __METHOD__, [ 'where' => $extraConds ] );
+				if ( $type === 'page' && $resultPageSet === null ) {
+					$this->executeGenderCacheFromResultWrapper( $res, __METHOD__ );
+				}
 				$rows = array_merge( $rows, iterator_to_array( $res ) );
 				if ( count( $rows ) >= $limit + 1 ) {
 					break;
@@ -210,6 +213,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			// No need to worry about per-type queries because we
 			// aren't sorting or filtering by type anyway
 			$res = $this->select( __METHOD__ );
+			if ( $resultPageSet === null ) {
+				$this->executeGenderCacheFromResultWrapper( $res, __METHOD__ );
+			}
 			$rows = iterator_to_array( $res );
 		}
 
