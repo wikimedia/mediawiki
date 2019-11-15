@@ -12,7 +12,7 @@ $fallback = 'id';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Media',
-	NS_SPECIAL          => 'Astamiwa',
+	NS_SPECIAL          => 'Mirunggan',
 	NS_TALK             => 'Parembugan',
 	NS_USER             => 'Panganggo',
 	NS_USER_TALK        => 'Parembugan_Panganggo',
@@ -43,4 +43,5 @@ $namespaceAliases = [ // Kept former namespaces for backwards compatibility - T1
 	'MediaWiki_Dhiskusi' => NS_MEDIAWIKI_TALK,
 	'Pitulung_Dhiskusi'  => NS_HELP_TALK,
 	'Gambar_Dhiskusi'    => NS_FILE_TALK,
+	'Astamiwa'           => NS_SPECIAL,
 ];
