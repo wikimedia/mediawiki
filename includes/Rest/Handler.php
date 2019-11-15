@@ -166,12 +166,16 @@ abstract class Handler {
 	}
 
 	/**
-	 * Fetch the validated parameters
+	 * Fetch the validated parameters. This must be called after validate() is
+	 * called. During execute() is fine.
 	 *
-	 * @return array|null Array mapping parameter names to validated values,
-	 *  or null if validate() was not called yet.
+	 * @return array Array mapping parameter names to validated values
+	 * @throws \RuntimeException If validate() has not been called
 	 */
 	public function getValidatedParams() {
+		if ( $this->validatedParams === null ) {
+			throw new \RuntimeException( 'getValidatedParams() called before validate()' );
+		}
 		return $this->validatedParams;
 	}
 
