@@ -104,7 +104,7 @@
 	"apihelp-compare-paramvalue-prop-rel": "'from' 之前與 'to' 之後修訂的修訂 ID，若有的話。",
 	"apihelp-compare-paramvalue-prop-ids": "「from」與「to」修訂的頁面與修訂 ID。",
 	"apihelp-compare-paramvalue-prop-title": "「from」與「to」修訂的頁面標題。",
-	"apihelp-compare-paramvalue-prop-user": "「from」與「to」修訂的使用者名稱與 ID。",
+	"apihelp-compare-paramvalue-prop-user": "「from」與「to」修訂的使用者名稱與 ID。若為已刪除修訂裡的使用者，會回傳 <samp>fromuserhidden</samp> 或 <samp>touserhidden</samp> 參數。",
 	"apihelp-compare-paramvalue-prop-comment": "「from」與「to」修訂的註釋。",
 	"apihelp-compare-paramvalue-prop-parsedcomment": "「from」與「to」修訂的解析註釋。",
 	"apihelp-compare-paramvalue-prop-size": "「from」與「to」修訂的大小。",
