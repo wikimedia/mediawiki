@@ -372,9 +372,23 @@ a.new {
 .warningbox,
 .successbox {
 	color: #000;
-	margin-bottom: 1em;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	margin-bottom: 16px;
 	border: 1px solid;
-	padding: 0.5em 1em;
+	padding: 12px 24px;
+	word-wrap: break-word;
+	/* Standard property is `overflow-wrap` */
+	overflow-wrap: break-word;
+}
+
+/* Ensure box inner spacing is not all over the place no matter what element is only child. */
+.messagebox :only-child,
+.errorbox :only-child,
+.warningbox :only-child,
+.successbox :only-child {
+	margin: 0;
 }
 
 .messagebox h2,
