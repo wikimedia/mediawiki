@@ -348,7 +348,7 @@
 	 * bound.
 	 *
 	 * @param {string} topic Topic name
-	 * @param {Object} [data] Data describing the event, encoded as an object
+	 * @param {Object|number|string} [data] Data describing the event.
 	 */
 	mw.track = function ( topic, data ) {
 		mwLoaderTrack( topic, data );
