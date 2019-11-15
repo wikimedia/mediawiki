@@ -245,7 +245,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 
 		$cond = [
-			'rev_page' => $pageId,
+			'rev_page=' . intval( $pageId ),
 			'EXISTS(' .
 				$dbr->selectSQLText(
 					'user_groups',
