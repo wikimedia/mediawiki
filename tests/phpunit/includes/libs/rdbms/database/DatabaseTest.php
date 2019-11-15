@@ -46,7 +46,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	public static function provideAddQuotes() {
 		return [
 			[ null, 'NULL' ],
-			[ 1234, "'1234'" ],
+			[ 1234, "1234" ],
 			[ 1234.5678, "'1234.5678'" ],
 			[ 'string', "'string'" ],
 			[ 'string\'s cause trouble', "'string\'s cause trouble'" ],

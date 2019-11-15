@@ -638,16 +638,6 @@ abstract class DatabaseMysqlBase extends Database {
 	 */
 	abstract protected function mysqlRealEscapeString( $s );
 
-	public function addQuotes( $s ) {
-		if ( is_bool( $s ) ) {
-			// Parent would transform to int, which does not play nice with MySQL type juggling.
-			// When searching for an int in a string column, the strings are cast to int, which
-			// means false would match any string not starting with a number.
-			$s = (string)(int)$s;
-		}
-		return parent::addQuotes( $s );
-	}
-
 	/**
 	 * MySQL uses `backticks` for identifier quoting instead of the sql standard "double quotes".
 	 *

@@ -307,7 +307,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$conds['log_type'] = [ 'delete', 'suppress' ];
 		$conds['log_action'] = $this->getList()->getLogAction();
 		$conds['ls_field'] = RevisionDeleter::getRelationType( $this->typeName );
-		$conds['ls_value'] = $this->ids;
+		// Convert IDs to strings, since ls_value is a text field. This avoids
+		// a fatal error in PostgreSQL: "operator does not exist: text = integer".
+		$conds['ls_value'] = array_map( 'strval', $this->ids );
 
 		return $conds;
 	}

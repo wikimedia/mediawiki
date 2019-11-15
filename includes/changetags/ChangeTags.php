@@ -354,7 +354,7 @@ class ChangeTags {
 			$log_id = $dbw->selectField(
 				'log_search',
 				'ls_log_id',
-				[ 'ls_field' => 'associated_rev_id', 'ls_value' => $rev_id ],
+				[ 'ls_field' => 'associated_rev_id', 'ls_value' => (string)$rev_id ],
 				__METHOD__
 			);
 		}

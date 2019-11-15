@@ -189,7 +189,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 				"SELECT tid,field,field2 AS alias,t2.id " .
 					"FROM table LEFT JOIN table2 t2 ON ((tid = t2.id)) " .
 					"WHERE alias = 'text' " .
-					"GROUP BY field,field2 HAVING (COUNT(*) > 1) AND field = '1' " .
+					"GROUP BY field,field2 HAVING (COUNT(*) > 1) AND field = 1 " .
 					"LIMIT 1"
 			],
 			[
@@ -200,7 +200,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 				],
 				"SELECT field AS alias " .
 					"FROM table " .
-					"WHERE alias IN ('1','2','3','4')"
+					"WHERE alias IN (1,2,3,4)"
 			],
 			[
 				[
@@ -281,7 +281,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 					'conds' => [ 'field' => [ 1, 2, 3, 4 ] ],
 				],
 				"SELECT COUNT(*) AS rowcount FROM " .
-				"(SELECT 1 FROM table WHERE field IN ('1','2','3','4')    " .
+				"(SELECT 1 FROM table WHERE field IN (1,2,3,4)    " .
 				"FOR UPDATE) tmp_count"
 			],
 			[
@@ -385,7 +385,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 				[
 					'tables' => 'table',
 					'field' => [ 'alias' => 'column' ],
-					'conds' => '1',
+					'conds' => 1,
 				],
 				"SELECT COUNT(*) AS rowcount FROM " .
 				"(SELECT 1 FROM table WHERE (1) AND (column IS NOT NULL)  ) tmp_count"
@@ -394,7 +394,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 				[
 					'tables' => 'table',
 					'field' => [ 'alias' => 'column' ],
-					'conds' => '0',
+					'conds' => 0,
 				],
 				"SELECT COUNT(*) AS rowcount FROM " .
 				"(SELECT 1 FROM table WHERE (0) AND (column IS NOT NULL)  ) tmp_count"
@@ -596,7 +596,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 				],
 				"INSERT INTO table " .
 					"(field,field2) " .
-					"VALUES ('text','2')"
+					"VALUES ('text',2)"
 			],
 			[
 				[
@@ -606,7 +606,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 				],
 				"INSERT IGNORE INTO table " .
 					"(field,field2) " .
-					"VALUES ('text','2')"
+					"VALUES ('text',2)"
 			],
 			[
 				[
@@ -620,8 +620,8 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 				"INSERT IGNORE INTO table " .
 					"(field,field2) " .
 					"VALUES " .
-					"('text','2')," .
-					"('multi','3')"
+					"('text',2)," .
+					"('multi',3)"
 			],
 		];
 	}
@@ -676,7 +676,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 					"FROM select_table",
 				"SELECT field_select AS field_insert,field2 AS field " .
 				"FROM select_table      FOR UPDATE",
-				"INSERT INTO insert_table (field_insert,field) VALUES ('0','1')"
+				"INSERT INTO insert_table (field_insert,field) VALUES (0,1)"
 			],
 			[
 				[
@@ -689,10 +689,10 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 					"(field_insert,field) " .
 					"SELECT field_select,field2 " .
 					"FROM select_table " .
-					"WHERE field = '2'",
+					"WHERE field = 2",
 				"SELECT field_select AS field_insert,field2 AS field FROM " .
-				"select_table WHERE field = '2'   FOR UPDATE",
-				"INSERT INTO insert_table (field_insert,field) VALUES ('0','1')"
+				"select_table WHERE field = 2   FOR UPDATE",
+				"INSERT INTO insert_table (field_insert,field) VALUES (0,1)"
 			],
 			[
 				[
@@ -707,11 +707,11 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 					"(field_insert,field) " .
 					"SELECT field_select,field2 " .
 					"FROM select_table " .
-					"WHERE field = '2' " .
+					"WHERE field = 2 " .
 					"ORDER BY field",
 				"SELECT field_select AS field_insert,field2 AS field " .
-				"FROM select_table WHERE field = '2' ORDER BY field  FOR UPDATE",
-				"INSERT IGNORE INTO insert_table (field_insert,field) VALUES ('0','1')"
+				"FROM select_table WHERE field = 2 ORDER BY field  FOR UPDATE",
+				"INSERT IGNORE INTO insert_table (field_insert,field) VALUES (0,1)"
 			],
 			[
 				[
@@ -729,12 +729,12 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 					"(field_insert,field) " .
 					"SELECT field_select,field2 " .
 					"FROM select_table1 LEFT JOIN select_table2 ON ((select_table1.foo = select_table2.bar)) " .
-					"WHERE field = '2' " .
+					"WHERE field = 2 " .
 					"ORDER BY field",
 				"SELECT field_select AS field_insert,field2 AS field " .
 				"FROM select_table1 LEFT JOIN select_table2 ON ((select_table1.foo = select_table2.bar)) " .
-				"WHERE field = '2' ORDER BY field  FOR UPDATE",
-				"INSERT INTO insert_table (field_insert,field) VALUES ('0','1')"
+				"WHERE field = 2 ORDER BY field  FOR UPDATE",
+				"INSERT INTO insert_table (field_insert,field) VALUES (0,1)"
 			],
 		];
 	}
@@ -760,9 +760,9 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertLastSqlDb( implode( '; ', [
 			'SELECT field2 AS field FROM select_table      FOR UPDATE',
 			'BEGIN',
-			"INSERT INTO insert_table (field) VALUES ('" . implode( "'),('", range( 0, 9999 ) ) . "')",
-			"INSERT INTO insert_table (field) VALUES ('" . implode( "'),('", range( 10000, 19999 ) ) . "')",
-			"INSERT INTO insert_table (field) VALUES ('" . implode( "'),('", range( 20000, 25000 ) ) . "')",
+			"INSERT INTO insert_table (field) VALUES (" . implode( "),(", range( 0, 9999 ) ) . ")",
+			"INSERT INTO insert_table (field) VALUES (" . implode( "),(", range( 10000, 19999 ) ) . ")",
+			"INSERT INTO insert_table (field) VALUES (" . implode( "),(", range( 20000, 25000 ) ) . ")",
 			'COMMIT'
 		] ), $dbWeb );
 	}
@@ -1098,12 +1098,12 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 						'table2' => [ 'JOIN', 'table1.foo_id = table2.foo_id' ],
 					],
 				],
-				"(SELECT  field1,field2 AS alias  FROM table1 JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = '1' AND duplicates = '4' AND single = '0' AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) UNION ALL " .
-				"(SELECT  field1,field2 AS alias  FROM table1 JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = '1' AND duplicates = '5' AND single = '0' AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) UNION ALL " .
-				"(SELECT  field1,field2 AS alias  FROM table1 JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = '2' AND duplicates = '4' AND single = '0' AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) UNION ALL " .
-				"(SELECT  field1,field2 AS alias  FROM table1 JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = '2' AND duplicates = '5' AND single = '0' AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) UNION ALL " .
-				"(SELECT  field1,field2 AS alias  FROM table1 JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = '3' AND duplicates = '4' AND single = '0' AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) UNION ALL " .
-				"(SELECT  field1,field2 AS alias  FROM table1 JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = '3' AND duplicates = '5' AND single = '0' AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) " .
+				"(SELECT  field1,field2 AS alias  FROM table1 JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = 1 AND duplicates = 4 AND single = 0 AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) UNION ALL " .
+				"(SELECT  field1,field2 AS alias  FROM table1 JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = 1 AND duplicates = 5 AND single = 0 AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) UNION ALL " .
+				"(SELECT  field1,field2 AS alias  FROM table1 JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = 2 AND duplicates = 4 AND single = 0 AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) UNION ALL " .
+				"(SELECT  field1,field2 AS alias  FROM table1 JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = 2 AND duplicates = 5 AND single = 0 AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) UNION ALL " .
+				"(SELECT  field1,field2 AS alias  FROM table1 JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = 3 AND duplicates = 4 AND single = 0 AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) UNION ALL " .
+				"(SELECT  field1,field2 AS alias  FROM table1 JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = 3 AND duplicates = 5 AND single = 0 AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) " .
 				"ORDER BY field1,alias LIMIT 100"
 			],
 			[
@@ -1120,9 +1120,9 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 						'LIMIT' => 25,
 					],
 				],
-				"(SELECT  foo_id  FROM foo    WHERE bar = '1' AND baz IS NULL  ORDER BY foo_id LIMIT 25  ) UNION " .
-				"(SELECT  foo_id  FROM foo    WHERE bar = '2' AND baz IS NULL  ORDER BY foo_id LIMIT 25  ) UNION " .
-				"(SELECT  foo_id  FROM foo    WHERE bar = '3' AND baz IS NULL  ORDER BY foo_id LIMIT 25  ) " .
+				"(SELECT  foo_id  FROM foo    WHERE bar = 1 AND baz IS NULL  ORDER BY foo_id LIMIT 25  ) UNION " .
+				"(SELECT  foo_id  FROM foo    WHERE bar = 2 AND baz IS NULL  ORDER BY foo_id LIMIT 25  ) UNION " .
+				"(SELECT  foo_id  FROM foo    WHERE bar = 3 AND baz IS NULL  ORDER BY foo_id LIMIT 25  ) " .
 				"ORDER BY foo_id LIMIT 25"
 			],
 			[
@@ -1140,9 +1140,9 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 					],
 					'unionSupportsOrderAndLimit' => false,
 				],
-				"(SELECT  foo_id  FROM foo    WHERE bar = '1' AND baz IS NULL  ) UNION " .
-				"(SELECT  foo_id  FROM foo    WHERE bar = '2' AND baz IS NULL  ) UNION " .
-				"(SELECT  foo_id  FROM foo    WHERE bar = '3' AND baz IS NULL  ) " .
+				"(SELECT  foo_id  FROM foo    WHERE bar = 1 AND baz IS NULL  ) UNION " .
+				"(SELECT  foo_id  FROM foo    WHERE bar = 2 AND baz IS NULL  ) UNION " .
+				"(SELECT  foo_id  FROM foo    WHERE bar = 3 AND baz IS NULL  ) " .
 				"ORDER BY foo_id LIMIT 25"
 			],
 			[
@@ -1186,7 +1186,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 						'OFFSET' => 150,
 					],
 				],
-				"SELECT  foo_id  FROM foo    WHERE bar = '1'  ORDER BY foo_id LIMIT 150,25"
+				"SELECT  foo_id  FROM foo    WHERE bar = 1  ORDER BY foo_id LIMIT 150,25"
 			],
 			[
 				[
@@ -2021,7 +2021,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->delete( 'x', [ 'field' => 1 ], __METHOD__ );
 		$this->database->endAtomic( __METHOD__ );
 		$this->assertEquals( Database::STATUS_TRX_NONE, $wrapper->trxStatus() );
-		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'1\'; COMMIT' );
+		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = 1; COMMIT' );
 		$this->assertSame( 0, $this->database->trxLevel(), 'Use after rollback()' );
 
 		$this->database->begin( __METHOD__ );
@@ -2035,7 +2035,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->endAtomic( __METHOD__ );
 		$this->database->commit( __METHOD__ );
 		// phpcs:ignore Generic.Files.LineLength
-		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; UPDATE y SET a = \'1\' WHERE field = \'1\'; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; DELETE FROM y WHERE field = \'1\'; COMMIT' );
+		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; UPDATE y SET a = 1 WHERE field = 1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; DELETE FROM y WHERE field = 1; COMMIT' );
 		$this->assertSame( 0, $this->database->trxLevel(), 'Use after rollback()' );
 
 		// Next transaction
@@ -2044,7 +2044,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->delete( 'x', [ 'field' => 3 ], __METHOD__ );
 		$this->database->endAtomic( __METHOD__ );
 		$this->assertEquals( Database::STATUS_TRX_NONE, $wrapper->trxStatus() );
-		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'3\'; COMMIT' );
+		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = 3; COMMIT' );
 		$this->assertSame( 0, $this->database->trxLevel() );
 	}
 
@@ -2099,7 +2099,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		}
 		$this->database->rollback( __METHOD__, Database::FLUSHING_INTERNAL );
 		// phpcs:ignore
-		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'1\'; DELETE FROM error WHERE 1; ROLLBACK' );
+		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = 1; DELETE FROM error WHERE 1; ROLLBACK' );
 	}
 
 	/**
@@ -2134,7 +2134,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->delete( 'x', [ 'field' => 1 ], __METHOD__ );
 		$this->assertSame( [], $warning );
 		// phpcs:ignore
-		$this->assertLastSql( 'BEGIN; DELETE FROM error WHERE 1; ROLLBACK; DELETE FROM x WHERE field = \'1\'' );
+		$this->assertLastSql( 'BEGIN; DELETE FROM error WHERE 1; ROLLBACK; DELETE FROM x WHERE field = 1' );
 
 		// cancelAtomic() doesn't raise a warning
 		$warning = [];
@@ -2146,7 +2146,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->commit( __METHOD__ );
 		$this->assertSame( [], $warning );
 		// phpcs:ignore
-		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; DELETE FROM error WHERE 1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; DELETE FROM x WHERE field = \'1\'; COMMIT' );
+		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; DELETE FROM error WHERE 1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; DELETE FROM x WHERE field = 1; COMMIT' );
 
 		// Commit does raise a warning
 		$warning = [];
@@ -2164,7 +2164,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->commit( __METHOD__ );
 		$this->assertSame( [ $expectWarning ], $warning );
 		// phpcs:ignore
-		$this->assertLastSql( 'BEGIN; DELETE FROM error WHERE 1; DELETE FROM x WHERE field = \'1\'; COMMIT' );
+		$this->assertLastSql( 'BEGIN; DELETE FROM error WHERE 1; DELETE FROM x WHERE field = 1; COMMIT' );
 	}
 
 	/**
@@ -2191,7 +2191,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		}
 
 		$this->assertFalse( $this->database->isOpen() );
-		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'3\'; ROLLBACK; SELECT 2' );
+		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = 3; ROLLBACK; SELECT 2' );
 		$this->assertSame( 0, $this->database->trxLevel() );
 	}
 
@@ -2220,7 +2220,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		}
 
 		$this->assertFalse( $this->database->isOpen() );
-		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'3\'; ROLLBACK; SELECT 2' );
+		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = 3; ROLLBACK; SELECT 2' );
 		$this->assertSame( 0, $this->database->trxLevel() );
 	}
 
@@ -2243,7 +2243,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		}
 
 		$this->assertFalse( $this->database->isOpen() );
-		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'3\'; ROLLBACK' );
+		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = 3; ROLLBACK' );
 		$this->assertSame( 0, $this->database->trxLevel() );
 	}
 

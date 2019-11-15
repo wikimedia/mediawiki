@@ -1711,7 +1711,7 @@ class LocalFile extends File {
 						'log_search',
 						[
 							'ls_field' => 'associated_rev_id',
-							'ls_value' => $logEntry->getAssociatedRevId(),
+							'ls_value' => (string)$logEntry->getAssociatedRevId(),
 							'ls_log_id' => $logId,
 						],
 						$fname
