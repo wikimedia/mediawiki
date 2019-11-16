@@ -32,7 +32,7 @@ class GanConverter extends LanguageConverter {
 	 * @param array $flags
 	 * @param array $manualLevel
 	 */
-	function __construct( Language $langobj, $maincode,
+	public function __construct( Language $langobj, $maincode,
 		$variants = [],
 		$variantfallbacks = [],
 		$flags = [],
@@ -54,7 +54,7 @@ class GanConverter extends LanguageConverter {
 		$this->mVariantNames = array_merge( $this->mVariantNames, $names );
 	}
 
-	function loadDefaultTables() {
+	protected function loadDefaultTables() {
 		$this->mTables = [
 			'gan-hans' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hans ),
 			'gan-hant' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hant ),
@@ -66,7 +66,7 @@ class GanConverter extends LanguageConverter {
 	 * @param string $key
 	 * @return string
 	 */
-	function convertCategoryKey( $key ) {
+	public function convertCategoryKey( $key ) {
 		return $this->autoConvert( $key, 'gan' );
 	}
 }

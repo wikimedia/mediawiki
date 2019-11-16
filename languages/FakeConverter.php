@@ -37,23 +37,23 @@ class FakeConverter {
 	 */
 	public $mLang;
 
-	function __construct( Language $langobj ) {
+	public function __construct( Language $langobj ) {
 		$this->mLang = $langobj;
 	}
 
-	function autoConvert( $text, $variant = false ) {
+	public function autoConvert( $text, $variant = false ) {
 		return $text;
 	}
 
-	function autoConvertToAllVariants( $text ) {
+	public function autoConvertToAllVariants( $text ) {
 		return [ $this->mLang->getCode() => $text ];
 	}
 
-	function convert( $t ) {
+	public function convert( $t ) {
 		return $t;
 	}
 
-	function convertTo( $text, $variant ) {
+	public function convertTo( $text, $variant ) {
 		return $text;
 	}
 
@@ -61,45 +61,45 @@ class FakeConverter {
 	 * @param Title $t
 	 * @return mixed
 	 */
-	function convertTitle( $t ) {
+	public function convertTitle( $t ) {
 		return $t->getPrefixedText();
 	}
 
-	function convertNamespace( $ns ) {
+	public function convertNamespace( $ns ) {
 		return $this->mLang->getFormattedNsText( $ns );
 	}
 
 	/**
 	 * @return string[]
 	 */
-	function getVariants() {
+	public function getVariants() {
 		return [ $this->mLang->getCode() ];
 	}
 
-	function getVariantFallbacks( $variant ) {
+	public function getVariantFallbacks( $variant ) {
 		return $this->mLang->getCode();
 	}
 
-	function getPreferredVariant() {
+	public function getPreferredVariant() {
 		return $this->mLang->getCode();
 	}
 
-	function getDefaultVariant() {
+	public function getDefaultVariant() {
 		return $this->mLang->getCode();
 	}
 
-	function getURLVariant() {
+	public function getURLVariant() {
 		return '';
 	}
 
-	function getConvRuleTitle() {
+	public function getConvRuleTitle() {
 		return false;
 	}
 
 	public function findVariantLink( &$l, &$n, $ignoreOtherCond = false ) {
 	}
 
-	function getExtraHashOptions() {
+	public function getExtraHashOptions() {
 		return '';
 	}
 
@@ -107,15 +107,15 @@ class FakeConverter {
 		return '';
 	}
 
-	function markNoConversion( $text, $noParse = false ) {
+	public function markNoConversion( $text, $noParse = false ) {
 		return $text;
 	}
 
-	function convertCategoryKey( $key ) {
+	public function convertCategoryKey( $key ) {
 		return $key;
 	}
 
-	function validateVariant( $variant = null ) {
+	public function validateVariant( $variant = null ) {
 		if ( $variant === null ) {
 			return null;
 		}
@@ -123,7 +123,7 @@ class FakeConverter {
 		return $variant === $this->mLang->getCode() ? $variant : null;
 	}
 
-	function translate( $text, $variant ) {
+	public function translate( $text, $variant ) {
 		return $text;
 	}
 

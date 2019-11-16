@@ -44,7 +44,7 @@ class KkConverter extends LanguageConverter {
 	 * @param array $variantfallbacks
 	 * @param array $flags
 	 */
-	function __construct( Language $langobj, $maincode,
+	public function __construct( Language $langobj, $maincode,
 		$variants = [],
 		$variantfallbacks = [],
 		$flags = []
@@ -58,7 +58,7 @@ class KkConverter extends LanguageConverter {
 		$this->loadRegs();
 	}
 
-	function loadDefaultTables() {
+	protected function loadDefaultTables() {
 		// require __DIR__."/../../includes/KkConversion.php";
 		// Placeholder for future implementing. Remove variables declarations
 		// after generating KkConversion.php
@@ -80,7 +80,7 @@ class KkConverter extends LanguageConverter {
 		];
 	}
 
-	function postLoadTables() {
+	protected function postLoadTables() {
 		$this->mTables['kk-kz']->merge( $this->mTables['kk-cyrl'] );
 		$this->mTables['kk-tr']->merge( $this->mTables['kk-latn'] );
 		$this->mTables['kk-cn']->merge( $this->mTables['kk-arab'] );
@@ -250,7 +250,7 @@ class KkConverter extends LanguageConverter {
 	 *
 	 * @return string
 	 */
-	function translate( $text, $toVariant ) {
+	public function translate( $text, $toVariant ) {
 		$text = parent::translate( $text, $toVariant );
 
 		switch ( $toVariant ) {
@@ -351,7 +351,7 @@ class KkConverter extends LanguageConverter {
 	 * @param string $key
 	 * @return string
 	 */
-	function convertCategoryKey( $key ) {
+	public function convertCategoryKey( $key ) {
 		return $this->autoConvert( $key, 'kk' );
 	}
 }
