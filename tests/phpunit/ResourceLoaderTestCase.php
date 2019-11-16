@@ -190,7 +190,10 @@ class ResourceLoaderFileTestModule extends ResourceLoaderFileModule {
 		return $this->lessVars;
 	}
 
-	/** @return array */
+	/**
+	 * @param ResourceLoaderContext $context
+	 * @return array
+	 */
 	protected function getFileDependencies( ResourceLoaderContext $context ) {
 		// No-op
 		return [];

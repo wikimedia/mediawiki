@@ -956,6 +956,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * Conditions to use together with getSlotsQueryInfo() when selecting slot rows for a given
 	 * revision.
 	 *
+	 * @param int $revId
 	 * @return array
 	 */
 	abstract protected function getSlotRevisionConditions( $revId );

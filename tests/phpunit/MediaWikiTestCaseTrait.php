@@ -11,6 +11,7 @@ trait MediaWikiTestCaseTrait {
 	 * which will throw if any unexpected method is called.
 	 *
 	 * @param mixed ...$values Values that are not matched
+	 * @return PHPUnit_Framework_Constraint
 	 */
 	protected function anythingBut( ...$values ) {
 		return $this->logicalNot( $this->logicalOr(

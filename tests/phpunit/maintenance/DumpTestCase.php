@@ -207,6 +207,8 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 
 	/**
 	 * Checks an XML file against an XSD schema.
+	 * @param string $fname
+	 * @param string $schemaFile
 	 */
 	protected function assertDumpSchema( $fname, $schemaFile ) {
 		if ( !function_exists( 'libxml_use_internal_errors' ) ) {
