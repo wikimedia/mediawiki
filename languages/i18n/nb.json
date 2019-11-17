@@ -3450,6 +3450,7 @@
 	"htmlform-float-invalid": "Verdien du valgte er ikke et tall.",
 	"htmlform-int-toolow": "Verdien du valgte er mindre enn minimum på $1",
 	"htmlform-int-toohigh": "Verdien du valgte er over det mulige $1",
+	"htmlform-multiselect-toomany": "Antall elementer du anga er over det maksimalt tillatte $1.",
 	"htmlform-required": "Denne verdien er påkrevd",
 	"htmlform-submit": "Lagre",
 	"htmlform-reset": "Omgjør endringer",

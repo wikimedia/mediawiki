@@ -1084,7 +1084,7 @@
 	"mergelog": "Journal des fusions",
 	"revertmerge": "Séparer",
 	"mergelogpagetext": "Voici la liste des fusions les plus récentes de l’historique d’une page dans celui d’une autre.",
-	"history-title": "Historique des versions de « $1 »",
+	"history-title": "Historique des versions de « $1 »",
 	"difference-title": "Différences entre versions de « $1 »",
 	"difference-title-multipage": "Différences entre les pages « $1 » et « $2 »",
 	"difference-multipage": "(Différence entre les pages)",

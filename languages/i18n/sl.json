@@ -3374,6 +3374,7 @@
 	"htmlform-float-invalid": "Vrednost, ki ste jo vnesli, ni število.",
 	"htmlform-int-toolow": "Vrednost, ki ste jo vnesli, je manjša od najmanjše dovoljene vrednosti $1",
 	"htmlform-int-toohigh": "Vrednost, ki ste jo vnesli, je večja od največje dovoljene vrednosti $1",
+	"htmlform-multiselect-toomany": "Število vnosov, ki ste jih navedli, presega največjo vrednost $1.",
 	"htmlform-required": "To je zahtevana vrednost.",
 	"htmlform-submit": "Pošlji",
 	"htmlform-reset": "Razveljavi spremembe",
