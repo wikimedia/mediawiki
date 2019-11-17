@@ -2,6 +2,7 @@
 
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 class LanguageIntegrationTest extends LanguageClassesTestCase {
@@ -1957,5 +1958,134 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		// "pal" is an ancient language, which probably will not appear in Names.php, but appears in
 		// CLDR in English
 		$this->assertTrue( Language::isKnownLanguageTag( 'pal' ) );
+	}
+
+	/**
+	 * @covers Language::getNamespaces
+	 * @covers Language::fixVariableInNamespace
+	 * @dataProvider provideGetNamespaces
+	 */
+	public function testGetNamespaces( string $langCode, array $config, array $expected ) {
+		$langClass = Language::class . ucfirst( $langCode );
+		if ( !class_exists( $langClass ) ) {
+			$langClass = Language::class;
+		}
+		/** @var Language $lang */
+		$lang = new $langClass(
+			$langCode,
+			MediaWikiServices::getInstance()->getLocalisationCache(),
+			$this->createNoOpMock( LanguageNameUtils::class ),
+			$this->createNoOpMock( LanguageFallback::class ),
+			$this->createNoOpMock( MapCacheLRU::class )
+		);
+		$config += [
+			'wgMetaNamespace' => 'Project',
+			'wgMetaNamespaceTalk' => false,
+			'wgExtraNamespaces' => [],
+		];
+		$this->setMwGlobals( $config );
+		$namespaces = $lang->getNamespaces();
+		$this->assertEquals( $expected, $namespaces );
+	}
+
+	public function provideGetNamespaces() {
+		$enNamespaces = [
+			NS_MEDIA            => 'Media',
+			NS_SPECIAL          => 'Special',
+			NS_MAIN             => '',
+			NS_TALK             => 'Talk',
+			NS_USER             => 'User',
+			NS_USER_TALK        => 'User_talk',
+			NS_FILE             => 'File',
+			NS_FILE_TALK        => 'File_talk',
+			NS_MEDIAWIKI        => 'MediaWiki',
+			NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
+			NS_TEMPLATE         => 'Template',
+			NS_TEMPLATE_TALK    => 'Template_talk',
+			NS_HELP             => 'Help',
+			NS_HELP_TALK        => 'Help_talk',
+			NS_CATEGORY         => 'Category',
+			NS_CATEGORY_TALK    => 'Category_talk',
+		];
+		$ukNamespaces = [
+			NS_MEDIA            => 'Медіа',
+			NS_SPECIAL          => 'Спеціальна',
+			NS_TALK             => 'Обговорення',
+			NS_USER             => 'Користувач',
+			NS_USER_TALK        => 'Обговорення_користувача',
+			NS_FILE             => 'Файл',
+			NS_FILE_TALK        => 'Обговорення_файлу',
+			NS_MEDIAWIKI        => 'MediaWiki',
+			NS_MEDIAWIKI_TALK   => 'Обговорення_MediaWiki',
+			NS_TEMPLATE         => 'Шаблон',
+			NS_TEMPLATE_TALK    => 'Обговорення_шаблону',
+			NS_HELP             => 'Довідка',
+			NS_HELP_TALK        => 'Обговорення_довідки',
+			NS_CATEGORY         => 'Категорія',
+			NS_CATEGORY_TALK    => 'Обговорення_категорії',
+		];
+		return [
+			'Default configuration' => [
+				'en',
+				[],
+				$enNamespaces + [
+					NS_PROJECT => 'Project',
+					NS_PROJECT_TALK => 'Project_talk',
+				],
+			],
+			'Custom project NS + extra' => [
+				'en',
+				[
+					'wgMetaNamespace' => 'Wikipedia',
+					'wgExtraNamespaces' => [
+						100 => 'Borderlands',
+						101 => 'Borderlands_talk',
+					],
+				],
+				$enNamespaces + [
+					NS_PROJECT => 'Wikipedia',
+					NS_PROJECT_TALK => 'Wikipedia_talk',
+					100 => 'Borderlands',
+					101 => 'Borderlands_talk',
+				],
+			],
+			'Custom project NS and talk + extra' => [
+				'en',
+				[
+					'wgMetaNamespace' => 'Wikipedia',
+					'wgMetaNamespaceTalk' => 'Wikipedia_drama',
+					'wgExtraNamespaces' => [
+						100 => 'Borderlands',
+						101 => 'Borderlands_talk',
+					],
+				],
+				$enNamespaces + [
+					NS_PROJECT => 'Wikipedia',
+					NS_PROJECT_TALK => 'Wikipedia_drama',
+					100 => 'Borderlands',
+					101 => 'Borderlands_talk',
+				],
+			],
+			'Ukrainian default' => [
+				'uk',
+				[],
+				$ukNamespaces + [
+					NS_MAIN => '',
+					NS_PROJECT => 'Project',
+					NS_PROJECT_TALK => 'Обговорення_Project',
+				],
+			],
+			'Ukrainian custom NS' => [
+				'uk',
+				[
+					'wgMetaNamespace' => 'Вікіпедія',
+				],
+				$ukNamespaces + [
+					NS_MAIN => '',
+					NS_PROJECT => 'Вікіпедія',
+					NS_PROJECT_TALK => 'Обговорення_Вікіпедії',
+				],
+			],
+		];
 	}
 }
