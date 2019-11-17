@@ -586,6 +586,7 @@
 	"sitecssprotected": "Used as error message. Parameters:\n* $1 - (Unused) the action the user attempted to perform",
 	"sitejsonprotected": "Used as error message. Parameters:\n* $1 - (Unused) the action the user attempted to perform",
 	"sitejsprotected": "Used as error message. Parameters:\n* $1 - (Unused) the action the user attempted to perform",
+	"siterawhtmlprotected": "Used as error message. Parameters:\n* $1 - (Unused) the action the user attempted to perform",
 	"mycustomcssprotected": "Used as error message. Parameters:\n* $1 - (Unused) the action the user attempted to perform",
 	"mycustomjsonprotected": "Used as error message. Parameters:\n* $1 - (Unused) the action the user attempted to perform",
 	"mycustomjsprotected": "Used as error message. Parameters:\n* $1 - (Unused) the action the user attempted to perform",

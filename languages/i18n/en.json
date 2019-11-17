@@ -373,6 +373,7 @@
 	"sitecssprotected": "You do not have permission to edit this CSS page because it may affect all visitors.",
 	"sitejsonprotected": "You do not have permission to edit this JSON page because it may affect all visitors.",
 	"sitejsprotected": "You do not have permission to edit this JavaScript page because it may affect all visitors.",
+	"siterawhtmlprotected": "You do not have permission to edit this page because it contains raw HTML which can be modified to affect all visitors.",
 	"mycustomcssprotected": "You do not have permission to edit this CSS page.",
 	"mycustomjsonprotected": "You do not have permission to edit this JSON page.",
 	"mycustomjsprotected": "You do not have permission to edit this JavaScript page.",
