@@ -3,7 +3,7 @@
 use PHPUnit\TextUI\Command;
 
 class MediaWikiPHPUnitCommand extends Command {
-	protected function handleCustomTestSuite() {
+	protected function handleCustomTestSuite() : void {
 		// Use our suite.xml
 		if ( !isset( $this->arguments['configuration'] ) ) {
 			$this->arguments['configuration'] = __DIR__ . '/suite.xml';
