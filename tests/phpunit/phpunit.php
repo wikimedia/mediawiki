@@ -14,6 +14,17 @@ define( 'MW_PHPUNIT_TEST', true );
 require_once dirname( dirname( __DIR__ ) ) . "/maintenance/Maintenance.php";
 
 class PHPUnitMaintClass extends Maintenance {
+	/**
+	 * @fixme This is an awful hack.
+	 */
+	public static $additionalOptions = [
+		'use-filebackend' => false,
+		'use-bagostuff' => false,
+		'use-jobqueue' => false,
+		'use-normal-tables' => false,
+		'reuse-db' => false,
+	];
+
 	public function __construct() {
 		parent::__construct();
 		$this->setAllowUnregisteredOptions( true );
@@ -67,31 +78,11 @@ class PHPUnitMaintClass extends Maintenance {
 
 		fwrite( STDERR, 'Using PHP ' . PHP_VERSION . "\n" );
 
-		// Tell PHPUnit to ignore options meant for MediaWiki
-		$ignore = [];
-		foreach ( $this->mParams as $name => $param ) {
-			if ( empty( $param['withArg'] ) ) {
-				$ignore[] = $name;
-			} else {
-				$ignore[] = "$name=";
-			}
+		foreach ( self::$additionalOptions as $option => $default ) {
+			self::$additionalOptions[$option] = $this->getOption( $option );
 		}
 
-		// Pass through certain options to MediaWikiTestCase
-		$cliArgs = [];
-		foreach (
-			[
-				'use-filebackend',
-				'use-bagostuff',
-				'use-jobqueue',
-				'use-normal-tables',
-				'reuse-db'
-			] as $name
-		) {
-			$cliArgs[$name] = $this->getOption( $name );
-		}
-
-		$command = new MediaWikiPHPUnitCommand( $ignore, $cliArgs );
+		$command = new MediaWikiPHPUnitCommand();
 		$command->run( $_SERVER['argv'], true );
 	}
 
@@ -117,12 +108,14 @@ class PHPUnitMaintClass extends Maintenance {
 		foreach ( $_SERVER['argv'] as $key => $arg ) {
 			if ( $key === 0 ) {
 				$argv[0] = $arg;
-			} elseif ( strstr( $arg, '=' ) ) {
-				foreach ( explode( '=', $arg, 2 ) as $argPart ) {
-					$argv[] = $argPart;
-				}
 			} else {
-				$argv[] = $arg;
+				$parts = explode( '=', $arg, 2 );
+				$arg = preg_replace( '/^--/', '', $parts[0] );
+				// Avoid confusing PHPUnit with MediaWiki-specific parameters
+				if ( isset( $this->mParams[$arg] ) ) {
+					continue;
+				}
+				$argv = array_merge( $argv, $parts );
 			}
 		}
 		$_SERVER['argv'] = $argv;

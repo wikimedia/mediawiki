@@ -3,17 +3,6 @@
 use PHPUnit\TextUI\Command;
 
 class MediaWikiPHPUnitCommand extends Command {
-	private $cliArgs;
-
-	public function __construct( $ignorableOptions, $cliArgs ) {
-		$ignore = function ( $arg ) {
-		};
-		foreach ( $ignorableOptions as $option ) {
-			$this->longOptions[$option] = $ignore;
-		}
-		$this->cliArgs = $cliArgs;
-	}
-
 	protected function handleCustomTestSuite() {
 		// Use our suite.xml
 		if ( !isset( $this->arguments['configuration'] ) ) {
@@ -32,11 +21,5 @@ class MediaWikiPHPUnitCommand extends Command {
 		if ( !isset( $this->arguments['printer'] ) ) {
 			$this->arguments['printer'] = MediaWikiPHPUnitResultPrinter::class;
 		}
-	}
-
-	protected function createRunner() {
-		$runner = new MediaWikiTestRunner;
-		$runner->setMwCliArgs( $this->cliArgs );
-		return $runner;
 	}
 }
