@@ -790,7 +790,7 @@
 	"postedit-confirmation-created": "Siden er blevet oprettet.",
 	"postedit-confirmation-restored": "Siden er blevet genoprettet.",
 	"postedit-confirmation-saved": "Din redigering blev gemt.",
-	"postedit-confirmation-published": "Din ændring blev udgivet.",
+	"postedit-confirmation-published": "Din ændring blev offentliggjort.",
 	"edit-already-exists": "En ny side kunne ikke oprettes, fordi den allerede findes.",
 	"defaultmessagetext": "Standard beskedtekst",
 	"content-failed-to-parse": "Kunne ikke fortolke $2-indholdet af $1-modellen: $3",

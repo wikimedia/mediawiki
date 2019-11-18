@@ -188,9 +188,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		}
 
 		// Disable some if needed
-		if ( !MediaWikiServices::getInstance()->getPermissionManager()
-				->groupHasPermission( '*', 'createpage' )
-		) {
+		if ( !$this->canAnonymousUsersCreatePages() ) {
 			unset( $filters['hideliu'] );
 		}
 		if ( !$this->getUser()->useNPPatrol() ) {
@@ -372,11 +370,17 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$histLink = $linkRenderer->makeKnownLink(
 			$title,
 			$this->msg( 'hist' )->text(),
-			[],
+			[ 'class' => 'mw-newpages-history' ],
 			[ 'action' => 'history' ]
 		);
-		$hist = Html::rawElement( 'span', [ 'class' => 'mw-newpages-history' ],
-			$this->msg( 'parentheses' )->rawParams( $histLink )->escaped() );
+		$editLink = $linkRenderer->makeKnownLink(
+			$title,
+			$this->msg( 'editlink' )->text(),
+			[ 'class' => 'mw-newpages-edit' ],
+			[ 'action' => 'edit' ]
+		);
+		$links = $this->msg( 'parentheses' )->rawParams( $this->getLanguage()
+			->pipeList( [ $histLink, $editLink ] ) )->escaped();
 
 		$length = Html::rawElement(
 			'span',
@@ -423,7 +427,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			);
 		}
 
-		$ret = "{$time} {$dm}{$plink} {$hist} {$dm}{$length} {$dm}{$ulink} {$comment} "
+		$ret = "{$time} {$dm}{$plink} {$links} {$dm}{$length} {$dm}{$ulink} {$comment} "
 			. "{$tagDisplay} {$oldTitleText}";
 
 		// Let extensions add data
@@ -536,6 +540,13 @@ class SpecialNewpages extends IncludableSpecialPage {
 			htmlspecialchars( FeedItem::stripComment( $revision->getComment() ) ) .
 			"</p>\n<hr />\n<div>" .
 			nl2br( htmlspecialchars( $content->serialize() ) ) . "</div>";
+	}
+
+	private function canAnonymousUsersCreatePages() {
+		$pm = MediaWikiServices::getInstance()->getPermissionManager();
+		return ( $pm->groupHasPermission( '*', 'createpage' ) ||
+			$pm->groupHasPermission( '*', 'createtalk' )
+		);
 	}
 
 	protected function getGroupName() {

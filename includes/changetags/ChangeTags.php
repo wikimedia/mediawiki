@@ -35,6 +35,11 @@ class ChangeTags {
 	const MAX_DELETE_USES = 5000;
 
 	/**
+	 * Flag for canDeleteTag().
+	 */
+	public const BYPASS_MAX_USAGE_CHECK = 1;
+
+	/**
 	 * A list of tags defined and used by MediaWiki itself.
 	 */
 	private static $definedSoftwareTags = [
@@ -1301,11 +1306,13 @@ class ChangeTags {
 	 * @param string $tag Tag that you are interested in deleting
 	 * @param User|null $user User whose permission you wish to check, or null if
 	 * you don't care (e.g. maintenance scripts)
-	 * @param bool $ignoreCounts If true, no check for tag usage will be preformed
+	 * @param int $flags Use ChangeTags::BYPASS_MAX_USAGE_CHECK to ignore whether
+	 *  there are more uses than we would normally allow to be deleted through the
+	 *  user interface.
 	 * @return Status
 	 * @since 1.25
 	 */
-	public static function canDeleteTag( $tag, User $user = null, bool $ignoreCounts = false ) {
+	public static function canDeleteTag( $tag, User $user = null, int $flags = 0 ) {
 		$tagUsage = self::tagUsageStatistics();
 
 		if ( !is_null( $user ) ) {
@@ -1322,7 +1329,10 @@ class ChangeTags {
 			return Status::newFatal( 'tags-delete-not-found', $tag );
 		}
 
-		if ( !$ignoreCounts && isset( $tagUsage[$tag] ) && $tagUsage[$tag] > self::MAX_DELETE_USES ) {
+		if ( $flags !== self::BYPASS_MAX_USAGE_CHECK &&
+			isset( $tagUsage[$tag] ) &&
+			$tagUsage[$tag] > self::MAX_DELETE_USES
+		) {
 			return Status::newFatal( 'tags-delete-too-many-uses', $tag, self::MAX_DELETE_USES );
 		}
 

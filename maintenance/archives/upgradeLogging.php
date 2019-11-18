@@ -130,7 +130,7 @@ EOT;
 	 * @param string $srcTable
 	 * @param string $dstTable
 	 */
-	function sync( $srcTable, $dstTable ) {
+	private function sync( $srcTable, $dstTable ) {
 		$batchSize = 1000;
 		$minTs = $this->dbw->selectField( $srcTable, 'MIN(log_timestamp)', '', __METHOD__ );
 		$minTsUnix = wfTimestamp( TS_UNIX, $minTs );
@@ -180,7 +180,7 @@ EOT;
 		echo "Copied $numRowsCopied rows\n";
 	}
 
-	function copyExactMatch( $srcTable, $dstTable, $copyPos ) {
+	private function copyExactMatch( $srcTable, $dstTable, $copyPos ) {
 		$numRowsCopied = 0;
 		$srcRes = $this->dbw->select( $srcTable, '*', [ 'log_timestamp' => $copyPos ], __METHOD__ );
 		$dstRes = $this->dbw->select( $dstTable, '*', [ 'log_timestamp' => $copyPos ], __METHOD__ );

@@ -1469,14 +1469,21 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$maxSigChars = $this->options->get( 'MaxSigChars' );
 		if ( mb_strlen( $signature ) > $maxSigChars ) {
 			return $form->msg( 'badsiglength' )->numParams( $maxSigChars )->escaped();
-		} elseif ( isset( $alldata['fancysig'] ) &&
-				$alldata['fancysig'] &&
-				MediaWikiServices::getInstance()->getParser()->validateSig( $signature ) === false
-		) {
-			return $form->msg( 'badsig' )->escaped();
-		} else {
+		}
+
+		// Remaining checks only apply to fancy signatures
+		if ( !( isset( $alldata['fancysig'] ) && $alldata['fancysig'] ) ) {
 			return true;
 		}
+
+		// Quick check for mismatched HTML tags in the input.
+		// Note that this is easily fooled by wikitext templates or bold/italic markup.
+		$parser = MediaWikiServices::getInstance()->getParser();
+		if ( $parser->validateSig( $signature ) === false ) {
+			return $form->msg( 'badsig' )->escaped();
+		}
+
+		return true;
 	}
 
 	/**

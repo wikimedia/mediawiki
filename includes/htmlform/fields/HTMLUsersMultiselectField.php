@@ -38,6 +38,11 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 
 		// $value is a string, because HTMLForm fields store their values as strings
 		$usersArray = explode( "\n", $value );
+
+		if ( isset( $this->mParams['max'] ) && ( count( $usersArray ) > $this->mParams['max'] ) ) {
+			return $this->msg( 'htmlform-multiselect-toomany', $this->mParams['max'] );
+		}
+
 		foreach ( $usersArray as $username ) {
 			$result = parent::validate( $username, $alldata );
 			if ( $result !== true ) {
@@ -72,6 +77,10 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 			$params['placeholder'] = $this->mParams['placeholder'];
 		} else {
 			$params['placeholder'] = $this->msg( 'mw-widgets-usersmultiselect-placeholder' )->plain();
+		}
+
+		if ( isset( $this->mParams['max'] ) ) {
+			$params['tagLimit'] = $this->mParams['max'];
 		}
 
 		if ( !is_null( $value ) ) {

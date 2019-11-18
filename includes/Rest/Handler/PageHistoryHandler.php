@@ -75,7 +75,6 @@ class PageHistoryHandler extends SimpleHandler {
 	 * @param string $title
 	 * @return Response
 	 * @throws LocalizedHttpException
-	 * @suppress PhanTypeArraySuspiciousNullable getValidatedParams() could return null (T235355)
 	 */
 	public function run( $title ) {
 		$params = $this->getValidatedParams();

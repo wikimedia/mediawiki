@@ -63,7 +63,7 @@ class CrhConverter extends LanguageConverter {
 	 * @param array $variantfallbacks
 	 * @param array $flags
 	 */
-	function __construct( Language $langobj, $maincode,
+	public function __construct( Language $langobj, $maincode,
 		$variants = [],
 		$variantfallbacks = [],
 		$flags = []
@@ -142,7 +142,7 @@ class CrhConverter extends LanguageConverter {
 
 	public $mExceptionsLoaded = false;
 
-	function loadDefaultTables() {
+	protected function loadDefaultTables() {
 		$this->mTables = [
 			'crh-latn' => new ReplacementArray( $this->mCyrillicToLatin ),
 			'crh-cyrl' => new ReplacementArray( $this->mLatinToCyrillic ),
@@ -198,7 +198,7 @@ class CrhConverter extends LanguageConverter {
 	 * @throws MWException
 	 * @return string
 	 */
-	function translate( $text, $toVariant ) {
+	public function translate( $text, $toVariant ) {
 		switch ( $toVariant ) {
 			case 'crh-cyrl':
 			case 'crh-latn':

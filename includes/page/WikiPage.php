@@ -2292,16 +2292,31 @@ class WikiPage implements Page, IDBAccessObject {
 
 			$logRelationsField = 'pr_id';
 
-			// Update restrictions table
-			foreach ( $limit as $action => $restrictions ) {
+			// T214035: Avoid deadlock on MySQL.
+			// Do a DELETE by primary key (pr_id) for any existing protection rows.
+			// On MySQL and derivatives, unconditionally deleting by page ID (pr_page) would.
+			// place a gap lock if there are no matching rows. This can deadlock when another
+			// thread modifies protection settings for page IDs in the same gap.
+			$existingProtectionIds = $dbw->selectFieldValues(
+				'page_restrictions',
+				'pr_id',
+				[
+					'pr_page' => $id,
+					'pr_type' => array_keys( $limit )
+				],
+				__METHOD__
+			);
+
+			if ( $existingProtectionIds ) {
 				$dbw->delete(
 					'page_restrictions',
-					[
-						'pr_page' => $id,
-						'pr_type' => $action
-					],
+					[ 'pr_id' => $existingProtectionIds ],
 					__METHOD__
 				);
+			}
+
+			// Update restrictions table
+			foreach ( $limit as $action => $restrictions ) {
 				if ( $restrictions != '' ) {
 					$cascadeValue = ( $cascade && $action == 'edit' ) ? 1 : 0;
 					$dbw->insert(

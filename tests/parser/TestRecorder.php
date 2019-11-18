@@ -42,18 +42,21 @@ class TestRecorder {
 
 	/**
 	 * Called before starting a test
+	 * @param string $test
 	 */
 	public function startTest( $test ) {
 	}
 
 	/**
 	 * Called before starting an input file
+	 * @param string $path
 	 */
 	public function startSuite( $path ) {
 	}
 
 	/**
 	 * Called after ending an input file
+	 * @param string $path
 	 */
 	public function endSuite( $path ) {
 	}
@@ -68,12 +71,15 @@ class TestRecorder {
 
 	/**
 	 * Show a warning to the user
+	 * @param string $message
 	 */
 	public function warning( $message ) {
 	}
 
 	/**
 	 * Mark a test skipped
+	 * @param string $test
+	 * @param string $subtest
 	 */
 	public function skipped( $test, $subtest ) {
 	}

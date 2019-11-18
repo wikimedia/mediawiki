@@ -22,7 +22,6 @@
 	<!-- TODO Still to be done -->
 	<rule ref="Squiz.Scope.MethodScope.Missing">
 		<exclude-pattern>includes/</exclude-pattern>
-		<exclude-pattern>maintenance/</exclude-pattern>
 		<exclude-pattern>languages/</exclude-pattern>
 	</rule>
 	<!-- TODO Still to be done -->

@@ -67,7 +67,7 @@ class SrConverter extends LanguageConverter {
 		'Nj' => 'Њ', 'n!j' => 'нј', 'N!j' => 'Нј', 'N!J' => 'НЈ'
 	];
 
-	function loadDefaultTables() {
+	protected function loadDefaultTables() {
 		$this->mTables = [
 			'sr-ec' => new ReplacementArray( $this->mToCyrillics ),
 			'sr-el' => new ReplacementArray( $this->mToLatin ),
@@ -111,7 +111,7 @@ class SrConverter extends LanguageConverter {
 	 * @throws MWException
 	 * @return string
 	 */
-	function translate( $text, $toVariant ) {
+	public function translate( $text, $toVariant ) {
 		$breaks = '[^\w\x80-\xff]';
 
 		// regexp for roman numbers

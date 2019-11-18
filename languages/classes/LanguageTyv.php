@@ -37,7 +37,7 @@ class LanguageTyv extends Language {
 	 * @param string $case
 	 * @return string
 	 */
-	function convertGrammar( $word, $case ) {
+	public function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
 		if ( isset( $wgGrammarForms['tyv'][$case][$word] ) ) {
 			return $wgGrammarForms['tyv'][$case][$word];

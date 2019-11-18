@@ -85,10 +85,10 @@
 			"Dianakc"
 		]
 	},
-	"tog-underline": "Sublinhar hiperligação:",
-	"tog-hideminor": "Ocultar edições menores das alterações recentes",
-	"tog-hidepatrolled": "Ocultar edições patrulhadas das alterações recentes",
-	"tog-newpageshidepatrolled": "Ocultar páginas patrulhadas da nova lista de páginas",
+	"tog-underline": "Sublinhar hiperligações:",
+	"tog-hideminor": "Esconder edições menores nas mudanças recentes",
+	"tog-hidepatrolled": "Esconder edições patrulhadas nas mudanças recentes",
+	"tog-newpageshidepatrolled": "Esconder páginas patrulhadas na lista de páginas novas",
 	"tog-hidecategorization": "Ocultar categorização de páginas",
 	"tog-extendwatchlist": "Listagem expandida de todas as mudanças às páginas vigiadas, não apenas das mais recentes",
 	"tog-usenewrc": "Agrupar alterações por página nas mudanças recentes e páginas vigiadas",
@@ -205,7 +205,7 @@
 	"category_header": "Páginas na categoria \"$1\"",
 	"subcategories": "Subcategorias",
 	"category-media-header": "Multimédia na categoria \"$1\"",
-	"category-empty": "<em>Esta categoria atualmente não contém nenhuma página ou ficheiro multimédia.</em>",
+	"category-empty": "<em>Esta categoria não contém atualmente nenhuma página ou ficheiro multimédia.</em>",
 	"hidden-categories": "{{PLURAL:$1|Categoria oculta|Categorias ocultas}}",
 	"hidden-category-category": "Categorias ocultas",
 	"category-subcat-count": "{{PLURAL:$2|Esta categoria só contém a seguinte subcategoria.|Esta categoria contém {{PLURAL:$1|a seguinte subcategoria|as seguintes $1 subcategorias}} (de um total de $2).}}",

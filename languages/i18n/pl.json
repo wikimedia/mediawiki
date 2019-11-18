@@ -3505,6 +3505,7 @@
 	"htmlform-float-invalid": "Podana wartość nie jest liczbą.",
 	"htmlform-int-toolow": "Podana wartość jest poniżej dopuszczalnego minimum $1",
 	"htmlform-int-toohigh": "Podana wartość jest powyżej dopuszczalnego maximum $1",
+	"htmlform-multiselect-toomany": "Ilość podanych elementów jest powyżej dopuszczalnego maximum $1.",
 	"htmlform-required": "Podanie tej wartości jest wymagane",
 	"htmlform-submit": "Prześlij",
 	"htmlform-reset": "Cofnij zmiany",

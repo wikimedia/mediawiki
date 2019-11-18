@@ -62,7 +62,7 @@ class UpdateMediaWiki extends Maintenance {
 		return Maintenance::DB_ADMIN;
 	}
 
-	function compatChecks() {
+	private function compatChecks() {
 		$minimumPcreVersion = Installer::MINIMUM_PCRE_VERSION;
 
 		$pcreVersion = explode( ' ', PCRE_VERSION, 2 )[0];
@@ -223,7 +223,7 @@ class UpdateMediaWiki extends Maintenance {
 		$this->output( "\nDone in $timeDiff.\n" );
 	}
 
-	function afterFinalSetup() {
+	protected function afterFinalSetup() {
 		global $wgLocalisationCacheConf;
 
 		# Don't try to access the database

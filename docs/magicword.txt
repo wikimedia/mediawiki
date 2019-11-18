@@ -49,9 +49,9 @@ function wfAddCustomMagicWordID( &$magicWords ) {
 	return true;
 }
 
-function wfGetCustomMagicWordValue( &$parser, &$varCache, &$index, &$ret ){
-	if( $index == 'mag_custom' ){
-		$ret = $varCache['mag_custom'] = "Custom value";
+function wfGetCustomMagicWordValue( $parser, &$variableCache, &$magicWordId, &$ret ){
+	if( $magicWordId == 'mag_custom' ){
+		$ret = $variableCache['mag_custom'] = "Custom value";
 	}
 	return true;
 }

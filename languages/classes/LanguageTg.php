@@ -103,7 +103,7 @@ class TgConverter extends LanguageConverter {
 		'Ц' => 'Ts',
 	];
 
-	function loadDefaultTables() {
+	protected function loadDefaultTables() {
 		$this->mTables = [
 			'tg-latn' => new ReplacementArray( $this->table ),
 			'tg' => new ReplacementArray()

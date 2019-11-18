@@ -102,7 +102,7 @@ class UzConverter extends LanguageConverter {
 		'ʼ' => 'ъ',
 	];
 
-	function loadDefaultTables() {
+	protected function loadDefaultTables() {
 		$this->mTables = [
 			'uz-cyrl' => new ReplacementArray( $this->toCyrillic ),
 			'uz-latn' => new ReplacementArray( $this->toLatin ),
@@ -110,7 +110,7 @@ class UzConverter extends LanguageConverter {
 		];
 	}
 
-	function translate( $text, $toVariant ) {
+	public function translate( $text, $toVariant ) {
 		if ( $toVariant == 'uz-cyrl' ) {
 			$text = str_replace( 'ye', 'е', $text );
 			$text = str_replace( 'Ye', 'Е', $text );

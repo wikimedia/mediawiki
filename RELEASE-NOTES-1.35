@@ -147,6 +147,7 @@ because of Phabricator reports.
   areSubpagesAllowed, maybeDoSubpageLink, splitWhitespace,
   createAssocArgs, armorLinks, makeKnownLinkHolder, getImageParams,
   parseLinkParameter, stripAltText, replaceLinkHoldersText.
+* MediaWikiTestCase::prepareServices(), deprecated in 1.32, has been removed
 * …
 
 === Deprecations in 1.35 ===

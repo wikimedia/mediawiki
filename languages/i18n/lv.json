@@ -1285,6 +1285,7 @@
 	"rcfilters-exclude-button-off": "Izslēgt izvēlētos",
 	"rcfilters-view-tags": "Iezīmētie labojumi",
 	"rcfilters-view-namespaces-tooltip": "Filtrēt rezultātus pēc vārdtelpas",
+	"rcfilters-view-tags-tooltip": "Filtrēt rezultātus pēc labojumu iezīmēm",
 	"rcfilters-view-tags-help-icon-tooltip": "Uzzināt vairāk par iezīmētajiem labojumiem",
 	"rcfilters-liveupdates-button": "Tūlītēji atjauninājumi",
 	"rcfilters-liveupdates-button-title-on": "Atslēgt tūlītējos atjauninājumus",

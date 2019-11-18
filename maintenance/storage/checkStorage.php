@@ -57,7 +57,7 @@ class CheckStorage {
 		'fixable' => 'Errors which would already be fixed if --fix was specified',
 	];
 
-	function check( $fix = false, $xml = '' ) {
+	public function check( $fix = false, $xml = '' ) {
 		global $wgMultiContentRevisionSchemaMigrationStage;
 
 		$dbr = wfGetDB( DB_REPLICA );
@@ -398,7 +398,7 @@ class CheckStorage {
 		}
 	}
 
-	function addError( $type, $msg, $ids ) {
+	private function addError( $type, $msg, $ids ) {
 		if ( is_array( $ids ) && count( $ids ) == 1 ) {
 			$ids = reset( $ids );
 		}
@@ -421,7 +421,7 @@ class CheckStorage {
 		$this->errors[$type] = $this->errors[$type] + array_flip( $revIds );
 	}
 
-	function checkExternalConcatBlobs( $externalConcatBlobs ) {
+	private function checkExternalConcatBlobs( $externalConcatBlobs ) {
 		if ( !count( $externalConcatBlobs ) ) {
 			return;
 		}
@@ -463,7 +463,7 @@ class CheckStorage {
 		}
 	}
 
-	function restoreText( $revIds, $xml ) {
+	private function restoreText( $revIds, $xml ) {
 		global $wgDBname;
 		$tmpDir = wfTempDir();
 
@@ -524,7 +524,7 @@ class CheckStorage {
 		$importer->doImport();
 	}
 
-	function importRevision( &$revision, &$importer ) {
+	private function importRevision( &$revision, &$importer ) {
 		$id = $revision->getID();
 		$content = $revision->getContent( RevisionRecord::RAW );
 		$id = $id ?: '';

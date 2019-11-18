@@ -20,15 +20,15 @@
  * @file
  */
 
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
-use MediaWiki\Logger\LoggerFactory;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IDatabase;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\LoadBalancer;
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DBTransactionError;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 
 /**
  * Class for managing the deferred updates
@@ -179,6 +179,8 @@ class DeferredUpdates {
 	/**
 	 * Immediately run or enqueue a list of updates
 	 *
+	 * Updates that implement EnqueueableDataUpdate and fail to run will be enqueued
+	 *
 	 * @param DeferrableUpdate[] &$queue List of DeferrableUpdate objects
 	 * @param string $mode Either "run" or "enqueue" (to use the job queue when possible)
 	 * @param int $stage Class constant (PRESEND, POSTSEND) (since 1.28)
@@ -197,6 +199,9 @@ class DeferredUpdates {
 
 		/** @var ErrorPageError $guiEx */
 		$guiEx = null;
+		/** @var Exception|Throwable $exception */
+		$exception = null;
+
 		/** @var DeferrableUpdate[] $updates Snapshot of queue */
 		$updates = $queue;
 
@@ -227,6 +232,7 @@ class DeferredUpdates {
 					try {
 						$e = self::run( $du, $lbf, $logger, $stats, $httpMethod );
 						$guiEx = $guiEx ?: ( $e instanceof ErrorPageError ? $e : null );
+						$exception = $exception ?: $e;
 						// Do the subqueue updates for $update until there are none
 						while ( self::$executeContext['subqueue'] ) {
 							$duChild = reset( self::$executeContext['subqueue'] );
@@ -235,6 +241,7 @@ class DeferredUpdates {
 
 							$e = self::run( $duChild, $lbf, $logger, $stats, $httpMethod );
 							$guiEx = $guiEx ?: ( $e instanceof ErrorPageError ? $e : null );
+							$exception = $exception ?: $e;
 						}
 					} finally {
 						// Make sure we always clean up the context.
@@ -246,6 +253,12 @@ class DeferredUpdates {
 			}
 
 			$updates = $queue; // new snapshot of queue (check for new entries)
+		}
+
+		// VW-style hack to work around T190178, so we can make sure
+		// PageMetaDataUpdater doesn't throw exceptions.
+		if ( $exception && defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw $exception;
 		}
 
 		// Throw the first of any GUI errors as long as the context is HTTP pre-send. However,
@@ -274,32 +287,52 @@ class DeferredUpdates {
 		StatsdDataFactoryInterface $stats,
 		$httpMethod
 	) {
-		$name = get_class( $update );
 		$suffix = ( $update instanceof DeferrableCallback ) ? "_{$update->getOrigin()}" : '';
-		$stats->increment( "deferred_updates.$httpMethod.{$name}{$suffix}" );
+		$type = get_class( $update ) . $suffix;
+		$stats->increment( "deferred_updates.$httpMethod.$type" );
 
 		$e = null;
 		try {
 			self::attemptUpdate( $update, $lbFactory );
+
+			return null;
 		} catch ( Exception $e ) {
 		} catch ( Throwable $e ) {
 		}
 
-		if ( $e ) {
+		$logger->error(
+			"Deferred update {type} failed to run: {exception_message}",
+			[
+				'type' => $type,
+				'trace' => $e->getTraceAsString(),
+				'exception_message' => $e->getMessage()
+			]
+		);
+
+		$lbFactory->rollbackMasterChanges( __METHOD__ );
+
+		// Try to push the update as a job so it can run later if possible
+		if ( $update instanceof EnqueueableDataUpdate ) {
+			$jobEx = null;
+			try {
+				$spec = $update->getAsJobSpecification();
+				JobQueueGroup::singleton( $spec['domain'] )->push( $spec['job'] );
+
+				return $e;
+			} catch ( Exception $jobEx ) {
+			} catch ( Throwable $jobEx ) {
+			}
+
 			$logger->error(
-				"Deferred update {type} failed: {message}",
+				"Job enqueue of deferred update, {type}, failed: {exception_message}",
 				[
-					'type' => $name . $suffix,
-					'message' => $e->getMessage(),
-					'trace' => $e->getTraceAsString()
+					'type' => $type,
+					'trace' => $jobEx->getTraceAsString(),
+					'exception_message' => $jobEx->getMessage()
 				]
 			);
+
 			$lbFactory->rollbackMasterChanges( __METHOD__ );
-			// VW-style hack to work around T190178, so we can make sure
-			// PageMetaDataUpdater doesn't throw exceptions.
-			if ( defined( 'MW_PHPUNIT_TEST' ) ) {
-				throw $e;
-			}
 		}
 
 		return $e;
@@ -321,27 +354,25 @@ class DeferredUpdates {
 		StatsdDataFactoryInterface $stats,
 		$httpMethod
 	) {
-		$stats->increment( "deferred_updates.$httpMethod." . get_class( $update ) );
+		$type = get_class( $update );
+		$stats->increment( "deferred_updates.$httpMethod.$type" );
 
 		$e = null;
 		try {
 			$spec = $update->getAsJobSpecification();
-			JobQueueGroup::singleton( $spec['domain'] ?? $spec['wiki'] )->push( $spec['job'] );
+			JobQueueGroup::singleton( $spec['domain'] )->push( $spec['job'] );
+
+			return;
 		} catch ( Exception $e ) {
 		} catch ( Throwable $e ) {
 		}
 
-		if ( $e ) {
-			$logger->error(
-				"Job insertion of deferred update {type} failed: {message}",
-				[
-					'type' => get_class( $update ),
-					'message' => $e->getMessage(),
-					'trace' => $e->getTraceAsString()
-				]
-			);
-			$lbFactory->rollbackMasterChanges( __METHOD__ );
-		}
+		$logger->error(
+			"Job enqueue of deferred update, {type}, failed: {exception_message}",
+			[ 'exception' => $e ]
+		);
+
+		$lbFactory->rollbackMasterChanges( __METHOD__ );
 	}
 
 	/**

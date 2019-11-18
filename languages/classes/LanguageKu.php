@@ -143,7 +143,7 @@ class KuConverter extends LanguageConverter {
 */
 		];
 
-	function loadDefaultTables() {
+	protected function loadDefaultTables() {
 		$this->mTables = [
 			'ku-latn' => new ReplacementArray( $this->mArabicToLatin ),
 			'ku-arab' => new ReplacementArray( $this->mLatinToArabic ),
@@ -187,7 +187,7 @@ class KuConverter extends LanguageConverter {
 	 * @throws MWException
 	 * @return string
 	 */
-	function translate( $text, $toVariant ) {
+	public function translate( $text, $toVariant ) {
 		$this->loadTables();
 		/* From Kazakh interface, maybe we need it later
 		$breaks = '[^\w\x80-\xff]';

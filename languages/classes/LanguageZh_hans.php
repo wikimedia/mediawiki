@@ -31,7 +31,7 @@ class LanguageZh_hans extends Language {
 	/**
 	 * @return bool
 	 */
-	function hasWordBreaks() {
+	public function hasWordBreaks() {
 		return false;
 	}
 
@@ -44,7 +44,7 @@ class LanguageZh_hans extends Language {
 	 *
 	 * @return string
 	 */
-	function segmentByWord( $string ) {
+	public function segmentByWord( $string ) {
 		$reg = "/([\\xc0-\\xff][\\x80-\\xbf]*)/";
 		$s = self::insertSpace( $string, $reg );
 		return $s;

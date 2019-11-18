@@ -93,7 +93,7 @@ TEXT
 		}
 	}
 
-	function processOptions() {
+	protected function processOptions() {
 		parent::processOptions();
 
 		// Evaluate options specific to this class

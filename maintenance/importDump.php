@@ -134,7 +134,7 @@ TEXT
 		$this->output( "and initSiteStats.php to update page and revision counts\n" );
 	}
 
-	function setNsfilter( array $namespaces ) {
+	private function setNsfilter( array $namespaces ) {
 		if ( count( $namespaces ) == 0 ) {
 			$this->nsFilter = false;
 
@@ -183,14 +183,14 @@ TEXT
 		return is_array( $this->nsFilter ) && !in_array( $ns, $this->nsFilter );
 	}
 
-	function reportPage( $page ) {
+	private function reportPage( $page ) {
 		$this->pageCount++;
 	}
 
 	/**
 	 * @param Revision $rev
 	 */
-	function handleRevision( $rev ) {
+	private function handleRevision( $rev ) {
 		$title = $rev->getTitle();
 		if ( !$title ) {
 			$this->progress( "Got bogus revision with null title!" );
@@ -214,7 +214,7 @@ TEXT
 	 * @param Revision $revision
 	 * @return bool
 	 */
-	function handleUpload( $revision ) {
+	private function handleUpload( $revision ) {
 		if ( $this->uploads ) {
 			if ( $this->skippedNamespace( $revision ) ) {
 				return false;
@@ -236,7 +236,7 @@ TEXT
 		return false;
 	}
 
-	function handleLogItem( $rev ) {
+	private function handleLogItem( $rev ) {
 		if ( $this->skippedNamespace( $rev ) ) {
 			return;
 		}
@@ -248,13 +248,13 @@ TEXT
 		}
 	}
 
-	function report( $final = false ) {
+	private function report( $final = false ) {
 		if ( $final xor ( $this->pageCount % $this->reportingInterval == 0 ) ) {
 			$this->showReport();
 		}
 	}
 
-	function showReport() {
+	private function showReport() {
 		if ( !$this->mQuiet ) {
 			$delta = microtime( true ) - $this->startTime;
 			if ( $delta ) {
@@ -274,11 +274,11 @@ TEXT
 		wfWaitForSlaves();
 	}
 
-	function progress( $string ) {
+	private function progress( $string ) {
 		fwrite( $this->stderr, $string . "\n" );
 	}
 
-	function importFromFile( $filename ) {
+	private function importFromFile( $filename ) {
 		if ( preg_match( '/\.gz$/', $filename ) ) {
 			$filename = 'compress.zlib://' . $filename;
 		} elseif ( preg_match( '/\.bz2$/', $filename ) ) {
@@ -292,7 +292,7 @@ TEXT
 		return $this->importFromHandle( $file );
 	}
 
-	function importFromStdin() {
+	private function importFromStdin() {
 		$file = fopen( 'php://stdin', 'rt' );
 		if ( self::posix_isatty( $file ) ) {
 			$this->maybeHelp( true );
@@ -301,7 +301,7 @@ TEXT
 		return $this->importFromHandle( $file );
 	}
 
-	function importFromHandle( $handle ) {
+	private function importFromHandle( $handle ) {
 		$this->startTime = microtime( true );
 
 		$source = new ImportStreamSource( $handle );

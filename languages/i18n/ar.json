@@ -3526,6 +3526,7 @@
 	"htmlform-float-invalid": "القيمة التي حددتها ليست عددا.",
 	"htmlform-int-toolow": "القيمة التي حددتها أقل من الحد الأدنى وهو $1",
 	"htmlform-int-toohigh": "القيمة التي حددتها أكبر من الحد الأقصى وهو $1",
+	"htmlform-multiselect-toomany": "يتجاوز عدد العناصر التي حددتها الحد الأقصى $1.",
 	"htmlform-required": "هذه القيمة مطلوبة",
 	"htmlform-submit": "إرسال",
 	"htmlform-reset": "الرجوع عن التغييرات",

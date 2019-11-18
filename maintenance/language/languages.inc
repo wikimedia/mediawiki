@@ -62,7 +62,7 @@ class Languages {
 	 * Load the list of languages: all the Messages*.php
 	 * files in the languages directory.
 	 */
-	function __construct() {
+	public function __construct() {
 		Hooks::run( 'LocalisationIgnoredOptionalMessages',
 			[ &$this->mIgnoredMessages, &$this->mOptionalMessages ] );
 
@@ -795,7 +795,7 @@ class ExtensionLanguages extends Languages {
 	 * Load the messages group.
 	 * @param MessageGroup $group The messages group.
 	 */
-	function __construct( MessageGroup $group ) {
+	public function __construct( MessageGroup $group ) {
 		$this->mMessageGroup = $group;
 
 		$this->mIgnoredMessages = $this->mMessageGroup->getIgnored();

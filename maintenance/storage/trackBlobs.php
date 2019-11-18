@@ -59,7 +59,7 @@ class TrackBlobs {
 		}
 	}
 
-	function run() {
+	public function run() {
 		$this->checkIntegrity();
 		$this->initTrackingTable();
 		$this->trackRevisions();
@@ -69,7 +69,7 @@ class TrackBlobs {
 		}
 	}
 
-	function checkIntegrity() {
+	private function checkIntegrity() {
 		echo "Doing integrity check...\n";
 		$dbr = wfGetDB( DB_REPLICA );
 
@@ -91,7 +91,7 @@ class TrackBlobs {
 		echo "Integrity check OK\n";
 	}
 
-	function initTrackingTable() {
+	private function initTrackingTable() {
 		$dbw = wfGetDB( DB_MASTER );
 		if ( $dbw->tableExists( 'blob_tracking' ) ) {
 			$dbw->query( 'DROP TABLE ' . $dbw->tableName( 'blob_tracking' ) );
@@ -100,7 +100,7 @@ class TrackBlobs {
 		$dbw->sourceFile( __DIR__ . '/blob_tracking.sql' );
 	}
 
-	function getTextClause() {
+	private function getTextClause() {
 		if ( !$this->textClause ) {
 			$dbr = wfGetDB( DB_REPLICA );
 			$this->textClause = '';
@@ -115,7 +115,7 @@ class TrackBlobs {
 		return $this->textClause;
 	}
 
-	function interpretPointer( $text ) {
+	private function interpretPointer( $text ) {
 		if ( !preg_match( '!^DB://(\w+)/(\d+)(?:/([0-9a-fA-F]+)|)$!', $text, $m ) ) {
 			return false;
 		}
@@ -130,7 +130,7 @@ class TrackBlobs {
 	/**
 	 *  Scan the revision table for rows stored in the specified clusters
 	 */
-	function trackRevisions() {
+	private function trackRevisions() {
 		global $wgMultiContentRevisionSchemaMigrationStage;
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -225,7 +225,7 @@ class TrackBlobs {
 	 * Orphan text here does not imply DB corruption -- deleted text tracked by the
 	 * archive table counts as orphan for our purposes.
 	 */
-	function trackOrphanText() {
+	private function trackOrphanText() {
 		# Wait until the blob_tracking table is available in the replica DB
 		$dbw = wfGetDB( DB_MASTER );
 		$dbr = wfGetDB( DB_REPLICA );
@@ -311,7 +311,7 @@ class TrackBlobs {
 	 * Orphan blobs are indicative of DB corruption. They are inaccessible and
 	 * should probably be deleted.
 	 */
-	function findOrphanBlobs() {
+	private function findOrphanBlobs() {
 		if ( !extension_loaded( 'gmp' ) ) {
 			echo "Can't find orphan blobs, need bitfield support provided by GMP.\n";
 

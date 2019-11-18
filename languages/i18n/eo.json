@@ -1982,7 +1982,7 @@
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|membro|membroj}}",
 	"nrevisions": "$1 {{PLURAL:$1|versio|versioj}}",
 	"nimagelinks": "Uzita en $1 {{PLURAL:$1|paĝo|paĝoj}}",
-	"ntransclusions": "uzita en $1 {{PLURAL:$1|paĝo|paĝoj}}",
+	"ntransclusions": "uzata en $1 {{PLURAL:$1|paĝo|paĝoj}}",
 	"specialpage-empty": "Ne estas rezultoj por ĉi tiu raporto.",
 	"lonelypages": "Neligitaj paĝoj",
 	"lonelypagestext": "La jenaj paĝoj ne estas ligitaj de aŭ transikluzivita en aliaj paĝoj en {{SITENAME}}.",

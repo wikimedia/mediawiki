@@ -109,6 +109,7 @@ class TestUserRegistry {
 	 * @todo It would be nice if this were a non-static method of TestUser
 	 * instead, but that doesn't seem possible without friends?
 	 *
+	 * @param User $user
 	 * @return bool True if it's safe to modify the user
 	 */
 	public static function isMutable( User $user ) {

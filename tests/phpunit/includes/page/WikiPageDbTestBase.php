@@ -106,6 +106,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 	 * @param string|Title|WikiPage $page
 	 * @param string|Content|Content[] $content
 	 * @param int|null $model
+	 * @param User|null $user
 	 *
 	 * @return WikiPage
 	 */
@@ -1005,8 +1006,6 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		$text = preg_replace( '!\s*(</p>|</div>)!sm', '\1', $text ); # don't let tidy confuse us
 
 		$this->assertEquals( $expectedHtml, $text );
-
-		return $po;
 	}
 
 	/**

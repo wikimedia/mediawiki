@@ -158,7 +158,7 @@ TEXT
 		$this->dump( true );
 	}
 
-	function processOptions() {
+	protected function processOptions() {
 		parent::processOptions();
 
 		if ( $this->hasOption( 'buffersize' ) ) {
@@ -211,7 +211,7 @@ TEXT
 	 * @throws MWException
 	 * @suppress PhanTypeObjectUnsetDeclaredProperty
 	 */
-	function rotateDb() {
+	protected function rotateDb() {
 		// Cleaning up old connections
 		if ( isset( $this->lb ) ) {
 			$this->lb->closeAll();
@@ -250,12 +250,12 @@ TEXT
 		}
 	}
 
-	function initProgress( $history = WikiExporter::FULL ) {
+	public function initProgress( $history = WikiExporter::FULL ) {
 		parent::initProgress();
 		$this->timeOfCheckpoint = $this->startTime;
 	}
 
-	function dump( $history, $text = WikiExporter::TEXT ) {
+	public function dump( $history, $text = WikiExporter::TEXT ) {
 		// Notice messages will foul up your XML output even if they're
 		// relatively harmless.
 		if ( ini_get( 'display_errors' ) ) {
@@ -296,7 +296,7 @@ TEXT
 		$this->report( true );
 	}
 
-	function processFileOpt( $opt ) {
+	protected function processFileOpt( $opt ) {
 		$split = explode( ':', $opt, 2 );
 		$val = $split[0];
 		$param = '';
@@ -332,7 +332,7 @@ TEXT
 	/**
 	 * Overridden to include prefetch ratio if enabled.
 	 */
-	function showReport() {
+	public function showReport() {
 		if ( !$this->prefetch ) {
 			parent::showReport();
 
@@ -394,11 +394,11 @@ TEXT
 		}
 	}
 
-	function setTimeExceeded() {
+	private function setTimeExceeded() {
 		$this->timeExceeded = true;
 	}
 
-	function checkIfTimeExceeded() {
+	private function checkIfTimeExceeded() {
 		if ( $this->maxTimeAllowed
 			&& ( $this->lastTime - $this->timeOfCheckpoint > $this->maxTimeAllowed )
 		) {
@@ -408,7 +408,7 @@ TEXT
 		return false;
 	}
 
-	function finalOptionCheck() {
+	private function finalOptionCheck() {
 		if ( ( $this->checkpointFiles && !$this->maxTimeAllowed )
 			|| ( $this->maxTimeAllowed && !$this->checkpointFiles )
 		) {
@@ -437,7 +437,7 @@ TEXT
 	 * @param resource $input
 	 * @return bool
 	 */
-	function readDump( $input ) {
+	protected function readDump( $input ) {
 		$this->buffer = "";
 		$this->openElement = false;
 		$this->atStart = true;
@@ -557,7 +557,7 @@ TEXT
 	 * @throws MWException
 	 * @return string The revision text for $id, or ""
 	 */
-	function getText( $id, $model = null, $format = null ) {
+	protected function getText( $id, $model = null, $format = null ) {
 		global $wgContentHandlerUseDB;
 
 		$prefetchNotTried = true; // Whether or not we already tried to get the text via prefetch.
@@ -760,7 +760,7 @@ TEXT
 		return $text;
 	}
 
-	function openSpawn() {
+	protected function openSpawn() {
 		global $IP;
 
 		$wiki = WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() );
@@ -901,7 +901,7 @@ TEXT
 		return $normalized;
 	}
 
-	function startElement( $parser, $name, $attribs ) {
+	protected function startElement( $parser, $name, $attribs ) {
 		$this->checkpointJustWritten = false;
 
 		$this->clearOpenElement( null );
@@ -938,7 +938,7 @@ TEXT
 		}
 	}
 
-	function endElement( $parser, $name ) {
+	protected function endElement( $parser, $name ) {
 		$this->checkpointJustWritten = false;
 
 		if ( $this->openElement ) {
@@ -998,7 +998,7 @@ TEXT
 		}
 	}
 
-	function characterData( $parser, $data ) {
+	protected function characterData( $parser, $data ) {
 		$this->clearOpenElement( null );
 		if ( $this->lastName == "id" ) {
 			if ( $this->state == "revision" ) {
@@ -1023,7 +1023,7 @@ TEXT
 		$this->buffer .= htmlspecialchars( $data );
 	}
 
-	function clearOpenElement( $style ) {
+	protected function clearOpenElement( $style ) {
 		if ( $this->openElement ) {
 			$this->buffer .= Xml::element( $this->openElement[0], $this->openElement[1], $style );
 			$this->openElement = false;

@@ -810,7 +810,7 @@ class LoadBalancer implements ILoadBalancer {
 		) {
 			$this->replLogger->debug(
 				__METHOD__ .
-				': replica DB {dbserver} known to be caught up (pos >= $knownReachedPos).',
+				": replica DB {dbserver} known to be caught up (pos >= $knownReachedPos).",
 				[ 'dbserver' => $server ]
 			);
 			return true;

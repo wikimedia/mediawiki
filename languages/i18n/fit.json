@@ -12,7 +12,7 @@
 	"tog-hidepatrolled": "Piilota tarkastetut muutokset vereksen muutoksitten listasta",
 	"tog-newpageshidepatrolled": "Piilota tarkastetut sivut uusitten sivuitten listalta",
 	"tog-extendwatchlist": "Laajena valvontalistaa näyttämhään kaikki tehtyt muutokset eikä vain viimisimät.",
-	"tog-usenewrc": "Käytä avanseerattu verekset muutokset (vaatii JavaScript)",
+	"tog-usenewrc": "Ryhmittele muutokset sivun mukhaan vereksitten muutosten listala ja valvontalistala",
 	"tog-numberheadings": "Nymreeraa rypriikit",
 	"tog-editondblclick": "Mookkaa sivuja kaksoisknapituksella",
 	"tog-editsectiononrightclick": "Aktiveeraa seksuuni mookkaus oikeapuolen klikkauksella seksuuni tittelhiin",

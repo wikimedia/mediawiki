@@ -63,7 +63,7 @@ class ShiConverter extends LanguageConverter {
 		'ẓ' => 'ⵥ', 'ʷ' => 'ⵯ', 'ɣ' => 'ⵖ', 'v' => 'ⵠ', 'p' => 'ⵒ',
 	];
 
-	function loadDefaultTables() {
+	protected function loadDefaultTables() {
 		$this->mTables = [
 			'lowercase' => new ReplacementArray( $this->mUpperToLowerCaseLatin ),
 			'shi-tfng' => new ReplacementArray( $this->mToTifinagh ),
@@ -106,7 +106,7 @@ class ShiConverter extends LanguageConverter {
 	 *
 	 * @return string
 	 */
-	function translate( $text, $toVariant ) {
+	public function translate( $text, $toVariant ) {
 		// If $text is empty or only includes spaces, do nothing
 		// Otherwise translate it
 		if ( trim( $text ) ) {

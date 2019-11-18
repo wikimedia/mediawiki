@@ -25,7 +25,7 @@
 
 /** A general output object. Need to be overridden */
 class StatsOutput {
-	function formatPercent( $subset, $total, $revert = false, $accuracy = 2 ) {
+	public function formatPercent( $subset, $total, $revert = false, $accuracy = 2 ) {
 		Wikimedia\suppressWarnings();
 		$return = sprintf( '%.' . $accuracy . 'f%%', 100 * $subset / $total );
 		Wikimedia\restoreWarnings();
@@ -34,25 +34,25 @@ class StatsOutput {
 	}
 
 	# Override the following methods
-	function heading() {
+	public function heading() {
 	}
 
-	function footer() {
+	public function footer() {
 	}
 
-	function blockstart() {
+	public function blockstart() {
 	}
 
-	function blockend() {
+	public function blockend() {
 	}
 
-	function element( $in, $heading = false ) {
+	public function element( $in, $heading = false ) {
 	}
 }
 
 /** Outputs WikiText */
 class WikiStatsOutput extends StatsOutput {
-	function heading() {
+	public function heading() {
 		global $wgDummyLanguageCodes;
 		$version = SpecialVersion::getVersion( 'nodb' );
 		echo "'''Statistics are based on:''' <code>" . $version . "</code>\n\n";
@@ -75,23 +75,23 @@ class WikiStatsOutput extends StatsOutput {
 			'border: 1px #AAAAAA solid; border-collapse: collapse; clear:both; width:100%;"' . "\n";
 	}
 
-	function footer() {
+	public function footer() {
 		echo "|}\n";
 	}
 
-	function blockstart() {
+	public function blockstart() {
 		echo "|-\n";
 	}
 
-	function blockend() {
+	public function blockend() {
 		echo '';
 	}
 
-	function element( $in, $heading = false ) {
+	public function element( $in, $heading = false ) {
 		echo ( $heading ? '!' : '|' ) . "$in\n";
 	}
 
-	function formatPercent( $subset, $total, $revert = false, $accuracy = 2 ) {
+	public function formatPercent( $subset, $total, $revert = false, $accuracy = 2 ) {
 		Wikimedia\suppressWarnings();
 		$v = round( 255 * $subset / $total );
 		Wikimedia\restoreWarnings();
@@ -125,22 +125,22 @@ class WikiStatsOutput extends StatsOutput {
 
 /** Output text. To be used on a terminal for example. */
 class TextStatsOutput extends StatsOutput {
-	function element( $in, $heading = false ) {
+	public function element( $in, $heading = false ) {
 		echo $in . "\t";
 	}
 
-	function blockend() {
+	public function blockend() {
 		echo "\n";
 	}
 }
 
 /** csv output. Some people love excel */
 class CsvStatsOutput extends StatsOutput {
-	function element( $in, $heading = false ) {
+	public function element( $in, $heading = false ) {
 		echo $in . ";";
 	}
 
-	function blockend() {
+	public function blockend() {
 		echo "\n";
 	}
 }
