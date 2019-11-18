@@ -2542,32 +2542,6 @@ class Language {
 		return $text;
 	}
 
-	// callback functions for ucwords(), ucwordbreaks()
-
-	/**
-	 * @param array $matches
-	 * @return mixed|string
-	 */
-	function ucwordbreaksCallbackAscii( $matches ) {
-		return $this->ucfirst( $matches[1] );
-	}
-
-	/**
-	 * @param array $matches
-	 * @return string
-	 */
-	function ucwordbreaksCallbackMB( $matches ) {
-		return mb_strtoupper( $matches[0] );
-	}
-
-	/**
-	 * @param array $matches
-	 * @return string
-	 */
-	function ucwordsCallbackMB( $matches ) {
-		return mb_strtoupper( $matches[0] );
-	}
-
 	/**
 	 * @param string $str
 	 * @return string The string with uppercase conversion applied to the first character
@@ -2679,7 +2653,9 @@ class Language {
 			// function to use to capitalize a single char
 			return preg_replace_callback(
 				$replaceRegexp,
-				[ $this, 'ucwordsCallbackMB' ],
+				function ( $matches ) {
+					return mb_strtoupper( $matches[0] );
+				},
 				$str
 			);
 		} else {
@@ -2706,13 +2682,17 @@ class Language {
 
 			return preg_replace_callback(
 				$replaceRegexp,
-				[ $this, 'ucwordbreaksCallbackMB' ],
+				function ( $matches ) {
+					return mb_strtoupper( $matches[0] );
+				},
 				$str
 			);
 		} else {
 			return preg_replace_callback(
 				'/\b([\w\x80-\xff]+)\b/',
-				[ $this, 'ucwordbreaksCallbackAscii' ],
+				function ( $matches ) {
+					return $this->ucfirst( $matches[1] );
+				},
 				$str
 			);
 		}
@@ -4434,17 +4414,14 @@ class Language {
 		# Allowing full message-style parsing would make simple requests
 		# such as action=raw much more expensive than they need to be.
 		# This will hopefully cover most cases.
-		$talk = preg_replace_callback( '/{{grammar:(.*?)\|(.*?)}}/i',
-			[ $this, 'replaceGrammarInNamespace' ], $talk );
+		$talk = preg_replace_callback(
+			'/{{grammar:(.*?)\|(.*?)}}/i',
+			function ( $m ) {
+				return $this->convertGrammar( trim( $m[2] ), trim( $m[1] ) );
+			},
+			$talk
+		);
 		return str_replace( ' ', '_', $talk );
-	}
-
-	/**
-	 * @param string $m
-	 * @return string
-	 */
-	function replaceGrammarInNamespace( $m ) {
-		return $this->convertGrammar( trim( $m[2] ), trim( $m[1] ) );
 	}
 
 	/**
