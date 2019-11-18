@@ -1271,6 +1271,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		if ( $pCache && $this->callbackDepth == 0 ) {
 			$cached = $pCache->get( $this->getProcessCacheKey( $key, $version ), $pcTTL, false );
 			if ( $cached !== false ) {
+				$this->logger->debug( "getWithSetCallback($key): process cache hit" );
 				return $cached;
 			}
 		}
@@ -1281,6 +1282,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 			// Current value has a different version; use the variant key for this version.
 			// Regenerate the variant value if it is not newer than the main value at $key
 			// so that purges to the main key propagate to the variant value.
+			$this->logger->debug( "getWithSetCallback($key): using variant key" );
 			list( $value ) = $this->fetchOrRegenerate(
 				$this->makeGlobalKey( 'WANCache-key-variant', md5( $key ), $version ),
 				$ttl,
@@ -1337,18 +1339,36 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 			$this->isValid( $curValue, $curInfo['asOf'], $minAsOf ) &&
 			$this->isAliveOrInGracePeriod( $curTTL, $graceTTL )
 		) {
-			$preemptiveRefresh = (
-				$this->worthRefreshExpiring( $curTTL, $lowTTL ) ||
-				$this->worthRefreshPopular( $curInfo['asOf'], $ageNew, $hotTTR, $initialTime )
-			);
+			$worthRefreshExpiring = $this->worthRefreshExpiring( $curTTL, $lowTTL );
+			$worthRefreshPopular = $this->worthRefreshPopular( $curInfo['asOf'],
+				$ageNew, $hotTTR, $initialTime );
+			$preemptiveRefresh = $worthRefreshExpiring || $worthRefreshPopular;
 			if ( !$preemptiveRefresh ) {
+				$this->logger->debug( "fetchOrRegenerate($key): normal hit" );
 				$this->stats->increment( "wanobjectcache.$kClass.hit.good" );
 
 				return [ $curValue, $curInfo['version'], $curInfo['asOf'] ];
 			} elseif ( $this->scheduleAsyncRefresh( $key, $ttl, $callback, $opts ) ) {
+				$this->logger->debug( "fetchOrRegenerate($key): hit with async refresh" );
 				$this->stats->increment( "wanobjectcache.$kClass.hit.refresh" );
 
 				return [ $curValue, $curInfo['version'], $curInfo['asOf'] ];
+			} else {
+				$reasons = function () use ( $worthRefreshExpiring, $worthRefreshPopular ) {
+					$reasons = [];
+					if ( $worthRefreshExpiring ) {
+						$reasons[] = 'expiry';
+					}
+					if ( $worthRefreshPopular ) {
+						$reasons[] = 'popularity';
+					}
+					return implode( ' and ', $reasons );
+				};
+
+				// TODO: loggers should really accept closures in the context,
+				// to allow message generation to be skipped when the logger is disabled.
+				$this->logger->debug( "fetchOrRegenerate($key): refreshing due to {reasons}",
+					[ 'reasons' => $reasons() ] );
 			}
 		}
 
@@ -1370,6 +1390,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 			$this->isValid( $possValue, $possInfo['asOf'], $minAsOf, $LPT ) &&
 			$this->isVolatileValueAgeNegligible( $initialTime - $possInfo['asOf'] )
 		) {
+			$this->logger->debug( "fetchOrRegenerate($key): volatile hit" );
 			$this->stats->increment( "wanobjectcache.$kClass.hit.volatile" );
 
 			return [ $possValue, $possInfo['version'], $curInfo['asOf'] ];
@@ -1402,11 +1423,13 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		$hasLock = $useRegenerationLock && $this->claimStampedeLock( $key );
 		if ( $useRegenerationLock && !$hasLock ) {
 			if ( $this->isValid( $possValue, $possInfo['asOf'], $minAsOf ) ) {
+				$this->logger->debug( "fetchOrRegenerate($key): returning stale value" );
 				$this->stats->increment( "wanobjectcache.$kClass.hit.stale" );
 
 				return [ $possValue, $possInfo['version'], $curInfo['asOf'] ];
 			} elseif ( $busyValue !== null ) {
 				$miss = is_infinite( $minAsOf ) ? 'renew' : 'miss';
+				$this->logger->debug( "fetchOrRegenerate($key): busy $miss" );
 				$this->stats->increment( "wanobjectcache.$kClass.$miss.busy" );
 
 				return [ $this->resolveBusyValue( $busyValue ), $version, $curInfo['asOf'] ];
@@ -1463,6 +1486,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		$this->yieldStampedeLock( $key, $hasLock );
 
 		$miss = is_infinite( $minAsOf ) ? 'renew' : 'miss';
+		$this->logger->debug( "fetchOrRegenerate($key): $miss, new value computed" );
 		$this->stats->increment( "wanobjectcache.$kClass.$miss.compute" );
 
 		return [ $value, $version, $curInfo['asOf'] ];
@@ -2330,6 +2354,9 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 
 		$chance = ( 1 - $curTTL / $lowTTL );
 
+		$this->logger->debug( "worthRefreshExpiring($curTTL, $lowTTL): " .
+			"chance = $chance" );
+
 		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 		return mt_rand( 1, 1e9 ) <= 1e9 * $chance;
 	}
@@ -2372,6 +2399,9 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 
 		// Ramp up $chance from 0 to its nominal value over RAMPUP_TTL seconds to avoid stampedes
 		$chance *= ( $timeOld <= self::$RAMPUP_TTL ) ? $timeOld / self::$RAMPUP_TTL : 1;
+
+		$this->logger->debug( "worthRefreshPopular($asOf, $ageNew, $timeTillRefresh, $now): " .
+			"chance = $chance" );
 
 		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 		return mt_rand( 1, 1e9 ) <= 1e9 * $chance;
