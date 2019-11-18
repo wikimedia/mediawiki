@@ -34,7 +34,7 @@ class DeleteTag extends Maintenance {
 			return;
 		}
 
-		$status = ChangeTags::canDeleteTag( $tag, null, true );
+		$status = ChangeTags::canDeleteTag( $tag, null, ChangeTags::BYPASS_MAX_USAGE_CHECK );
 		if ( !$status->isOK() ) {
 			$message = $status->getHTML( false, false, 'en' );
 			$this->fatalError( Sanitizer::stripAllTags( $message ) );
