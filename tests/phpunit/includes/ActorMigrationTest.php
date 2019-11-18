@@ -324,28 +324,28 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			'Simple table, old' => [
 				SCHEMA_COMPAT_OLD, 'am1_user', $genericUser, true, [
 					'tables' => [],
-					'orconds' => [ 'userid' => "am1_user = '1'" ],
+					'orconds' => [ 'userid' => "am1_user = 1" ],
 					'joins' => [],
 				],
 			],
 			'Simple table, read-old' => [
 				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'am1_user', $genericUser, true, [
 					'tables' => [],
-					'orconds' => [ 'userid' => "am1_user = '1'" ],
+					'orconds' => [ 'userid' => "am1_user = 1" ],
 					'joins' => [],
 				],
 			],
 			'Simple table, read-new' => [
 				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'am1_user', $genericUser, true, [
 					'tables' => [],
-					'orconds' => [ 'actor' => "am1_actor = '11'" ],
+					'orconds' => [ 'actor' => "am1_actor = 11" ],
 					'joins' => [],
 				],
 			],
 			'Simple table, new' => [
 				SCHEMA_COMPAT_NEW, 'am1_user', $genericUser, true, [
 					'tables' => [],
-					'orconds' => [ 'actor' => "am1_actor = '11'" ],
+					'orconds' => [ 'actor' => "am1_actor = 11" ],
 					'joins' => [],
 				],
 			],
@@ -353,28 +353,28 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			'Special name, old' => [
 				SCHEMA_COMPAT_OLD, 'am3_xxx', $genericUser, true, [
 					'tables' => [],
-					'orconds' => [ 'userid' => "am3_xxx = '1'" ],
+					'orconds' => [ 'userid' => "am3_xxx = 1" ],
 					'joins' => [],
 				],
 			],
 			'Special name, read-old' => [
 				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'am3_xxx', $genericUser, true, [
 					'tables' => [],
-					'orconds' => [ 'userid' => "am3_xxx = '1'" ],
+					'orconds' => [ 'userid' => "am3_xxx = 1" ],
 					'joins' => [],
 				],
 			],
 			'Special name, read-new' => [
 				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'am3_xxx', $genericUser, true, [
 					'tables' => [],
-					'orconds' => [ 'actor' => "am3_xxx_actor = '11'" ],
+					'orconds' => [ 'actor' => "am3_xxx_actor = 11" ],
 					'joins' => [],
 				],
 			],
 			'Special name, new' => [
 				SCHEMA_COMPAT_NEW, 'am3_xxx', $genericUser, true, [
 					'tables' => [],
-					'orconds' => [ 'actor' => "am3_xxx_actor = '11'" ],
+					'orconds' => [ 'actor' => "am3_xxx_actor = 11" ],
 					'joins' => [],
 				],
 			],
@@ -382,14 +382,14 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			'Temp table, old' => [
 				SCHEMA_COMPAT_OLD, 'am2_user', $genericUser, true, [
 					'tables' => [],
-					'orconds' => [ 'userid' => "am2_user = '1'" ],
+					'orconds' => [ 'userid' => "am2_user = 1" ],
 					'joins' => [],
 				],
 			],
 			'Temp table, read-old' => [
 				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'am2_user', $genericUser, true, [
 					'tables' => [],
-					'orconds' => [ 'userid' => "am2_user = '1'" ],
+					'orconds' => [ 'userid' => "am2_user = 1" ],
 					'joins' => [],
 				],
 			],
@@ -398,7 +398,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 					'tables' => [
 						'temp_am2_user' => 'actormigration2_temp',
 					],
-					'orconds' => [ 'actor' => "temp_am2_user.am2t_actor = '11'" ],
+					'orconds' => [ 'actor' => "temp_am2_user.am2t_actor = 11" ],
 					'joins' => [
 						'temp_am2_user' => [ 'JOIN', 'temp_am2_user.am2t_id = am2_id' ],
 					],
@@ -409,7 +409,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 					'tables' => [
 						'temp_am2_user' => 'actormigration2_temp',
 					],
-					'orconds' => [ 'actor' => "temp_am2_user.am2t_actor = '11'" ],
+					'orconds' => [ 'actor' => "temp_am2_user.am2t_actor = 11" ],
 					'joins' => [
 						'temp_am2_user' => [ 'JOIN', 'temp_am2_user.am2t_id = am2_id' ],
 					],
@@ -420,7 +420,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 				SCHEMA_COMPAT_OLD, 'am1_user', $complicatedUsers, true, [
 					'tables' => [],
 					'orconds' => [
-						'userid' => "am1_user IN ('1','2','3') ",
+						'userid' => "am1_user IN (1,2,3) ",
 						'username' => "am1_user_text IN ('192.168.12.34','192.168.12.35') "
 					],
 					'joins' => [],
@@ -430,7 +430,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'am1_user', $complicatedUsers, true, [
 					'tables' => [],
 					'orconds' => [
-						'userid' => "am1_user IN ('1','2','3') ",
+						'userid' => "am1_user IN (1,2,3) ",
 						'username' => "am1_user_text IN ('192.168.12.34','192.168.12.35') "
 					],
 					'joins' => [],
@@ -439,14 +439,14 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			'Multiple users, read-new' => [
 				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'am1_user', $complicatedUsers, true, [
 					'tables' => [],
-					'orconds' => [ 'actor' => "am1_actor IN ('11','12','34') " ],
+					'orconds' => [ 'actor' => "am1_actor IN (11,12,34) " ],
 					'joins' => [],
 				],
 			],
 			'Multiple users, new' => [
 				SCHEMA_COMPAT_NEW, 'am1_user', $complicatedUsers, true, [
 					'tables' => [],
-					'orconds' => [ 'actor' => "am1_actor IN ('11','12','34') " ],
+					'orconds' => [ 'actor' => "am1_actor IN (11,12,34) " ],
 					'joins' => [],
 				],
 			],
@@ -472,14 +472,14 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			'Multiple users, read-new' => [
 				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'am1_user', $complicatedUsers, false, [
 					'tables' => [],
-					'orconds' => [ 'actor' => "am1_actor IN ('11','12','34') " ],
+					'orconds' => [ 'actor' => "am1_actor IN (11,12,34) " ],
 					'joins' => [],
 				],
 			],
 			'Multiple users, new' => [
 				SCHEMA_COMPAT_NEW, 'am1_user', $complicatedUsers, false, [
 					'tables' => [],
-					'orconds' => [ 'actor' => "am1_actor IN ('11','12','34') " ],
+					'orconds' => [ 'actor' => "am1_actor IN (11,12,34) " ],
 					'joins' => [],
 				],
 			],

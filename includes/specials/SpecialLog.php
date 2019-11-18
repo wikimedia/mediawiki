@@ -107,7 +107,7 @@ class SpecialLog extends SpecialPage {
 			$offenderName = $opts->getValue( 'offender' );
 			$offender = empty( $offenderName ) ? null : User::newFromName( $offenderName, false );
 			if ( $offender ) {
-				$qc = [ 'ls_field' => 'target_author_actor', 'ls_value' => $offender->getActorId() ];
+				$qc = [ 'ls_field' => 'target_author_actor', 'ls_value' => (string)$offender->getActorId() ];
 			}
 		} else {
 			// Allow extensions to add relations to their search types

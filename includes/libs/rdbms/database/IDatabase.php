@@ -1164,7 +1164,7 @@ interface IDatabase {
 	 * Escape and quote a raw value string for use in a SQL query
 	 *
 	 * @param string|int|null|bool|Blob $s
-	 * @return string|int
+	 * @return string
 	 */
 	public function addQuotes( $s );
 
